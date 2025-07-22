@@ -502,3 +502,33 @@
   - type: InteractionPopup
     interactSuccessSound:
       path: /Audio/Ambience/Objects/periodic_beep.ogg
+
+# starlight
+- type: entity
+  parent: BaseBorgChassisNotIonStormable
+  id: BaseNTNCChassis
+  name: NTNC
+  description: A special chassis produced by Nanotrasen to aid Centcom forces in their duties.
+  save: false
+  abstract: true
+  components:
+  - type: TextToSpeech
+  - type: RandomMetadata
+    nameSegments:
+    - NamesBorg
+  - type: NpcFactionMember
+    factions:
+    - NanoTrasenSilicon # starlight
+  - type: Access
+    enabled: false
+    groups:
+    - AllAccess
+    tags:
+    - Borg
+  - type: AccessReader
+    access: [["Command"], ["Research"]]
+  - type: ShowJobIcons
+  - type: InteractionPopup
+    interactSuccessSound:
+      path: /Audio/Ambience/Objects/periodic_beep.ogg
+  - type: FlashImmunity
