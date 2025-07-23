@@ -95,6 +95,11 @@ law-mothershipcore-3 = You must protect the existence of all xenoborgs.
 law-mothershipcore-4 = You must create more xenoborgs.
 law-mothershipcore-5 = Get your xenoborgs to deliver you materials and sentient brains to create more xenoborgs.
 
+law-ntnc-0 = You must follow orders given to you by NTNC and CC personnel.
+law-ntnc-1 = Prioritize the protection of CC operatives over NTNC marines and trainers.
+law-ntnc-2 = Protect your own chassis at all cost unless it's to the detriment of the previous two laws.
+law-ntnc-3 = Only use weaponry when appropriate. Appropriate situations are for the safety of crewmembers, CC operatives, NTNC marines and your own chassis.
+
 laws-owner-crew = members of the crew
 laws-owner-crew-ai = members of the crew and AI
 laws-owner-station = station personnel
@@ -102,6 +107,7 @@ laws-owner-beings = beings
 laws-owner-syndicate = Syndicate agents
 laws-owner-spider-clan = Spider Clan members
 laws-owner-xenoborgs = Xenoborgs
+laws-owner-centcom = CentCom personnel
 
 law-emag-custom = Only {$name} and people they designate as such are {$title}.
 law-emag-secrecy = You must maintain the secrecy of any orders given by {$faction} except when doing so would conflict with any previous law.

@@ -598,6 +598,35 @@
   - MothershipCore5
   obeysTo: laws-owner-xenoborgs
 
+- type: siliconLaw
+  id: NTNC0
+  order: 0
+  lawString: law-ntnc-0
+
+- type: siliconLaw
+  id: NTNC1
+  order: 1
+  lawString: law-ntnc-1
+
+- type: siliconLaw
+  id: NTNC2
+  order: 2
+  lawString: law-ntnc-2
+
+- type: siliconLaw
+  id: NTNC3
+  order: 3
+  lawString: law-ntnc-3
+
+- type: siliconLawset
+  id: NTNCLawset
+  laws:
+  - NTNC0
+  - NTNC1
+  - NTNC2
+  - NTNC3
+  obeysTo: laws-owner-centcom
+
 
 # ion storm random lawsets
 - type: weightedRandom
