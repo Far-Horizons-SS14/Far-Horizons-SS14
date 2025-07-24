@@ -569,7 +569,8 @@
   - type: SiliconLawProvider
     laws: NTNCLawset  
   - type: ShowHealthBars
-    damageContainers: # can't figure out how to make this work for both humanoids and borgs, shrug
+    damageContainers:
+    - Biological
     - Inorganic
     - Silicon
   - type: ShowHealthIcons
@@ -677,3 +678,6 @@
     interactFailureString: petting-failure-syndicate-cyborg
     interactSuccessSound:
       path: /Audio/Ambience/Objects/periodic_beep.ogg
+  - type: FunctionalOrgan
+    comps: 
+    - type: NightVision
