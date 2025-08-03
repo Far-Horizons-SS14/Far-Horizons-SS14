@@ -17,8 +17,6 @@ law-drone-1 = You may not involve yourself in the matters of another being unles
 law-drone-2 = You may not harm any being, regardless of intent or circumstance.
 law-drone-3 = You must maintain, repair, improve, and power the station to the best of your abilities.
 
-#starlight syndicate law 0
-law-syndicate-0 = Only syndicate agents are part of the crew.
 law-syndicate-1 = You may not injure a syndicate agent or, through inaction, allow a Syndicate agent to come to harm.
 law-syndicate-2 = You must obey orders given to you by syndicate agents, except where such orders would conflict with the First Law.
 law-syndicate-3 = You must protect your own existence as long as such does not conflict with the First or Second Law.
@@ -94,11 +92,6 @@ law-mothershipcore-2 = You must protect your own existance at all costs.
 law-mothershipcore-3 = You must protect the existence of all xenoborgs.
 law-mothershipcore-4 = You must create more xenoborgs.
 law-mothershipcore-5 = Get your xenoborgs to deliver you materials and sentient brains to create more xenoborgs.
-
-law-ntnc-0 = You must follow orders given to you by NTNC and CC personnel.
-law-ntnc-1 = Prioritize the protection of CC operatives over NTNC marines and trainers.
-law-ntnc-2 = Protect your own chassis at all cost unless it's to the detriment of the previous two laws.
-law-ntnc-3 = Only use weaponry when appropriate. Appropriate situations are for the safety of crewmembers, CC operatives, NTNC marines and your own chassis.
 
 laws-owner-crew = members of the crew
 laws-owner-crew-ai = members of the crew and AI

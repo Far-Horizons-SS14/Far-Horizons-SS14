@@ -1,0 +1,203 @@
+- type: entity
+  parent: BaseBorgChassisNotIonStormable
+  id: BaseNTNCChassis
+  name: NT-NC
+  description: A special chassis produced by Nanotrasen to aid Centcom forces in their duties.
+  save: false
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _Starlight/Mobs/Silicon/chassis.rsi
+  - type: TextToSpeech
+  - type: RandomMetadata
+    nameSegments:
+    - NamesBorg
+  - type: NpcFactionMember
+    factions:
+    - NanoTrasenSilicon
+  - type: Access
+    enabled: false
+    groups:
+    - AllAccess
+    tags:
+    - Borg
+  - type: AccessReader
+    access: [["CentralCommand"]]
+  - type: ShowJobIcons
+  - type: InteractionPopup
+    interactSuccessSound:
+      path: /Audio/Ambience/Objects/periodic_beep.ogg
+  - type: Speech
+    speechVerb: Robotic
+    speechSounds: Xenoborg
+    allowedEmotes:
+    - Laugh
+  - type: Vocal
+    sounds:
+      Unsexed: UnisexSiliconXenoborg
+  - type: FlashImmunity
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Binary
+    - CentCom
+    - Common
+    - Command
+    - Engineering
+    - Medical
+    - Science
+    - Security
+    - Service
+    - Supply
+    - Law
+  - type: ActiveRadio
+    channels:
+    - Binary
+    - CentCom
+    - Common
+    - Command
+    - Engineering
+    - Medical
+    - Science
+    - Security
+    - Service
+    - Supply
+    - Law
+  - type: SiliconLawProvider
+    laws: NTNCLawset
+  - type: ShowHealthBars
+    damageContainers:
+    - Biological
+    - Inorganic
+    - Silicon
+  - type: ShowHealthIcons
+  - type: ShowMindShieldIcons
+  - type: ShowCriminalRecordIcons
+
+- type: entity
+  parent: BaseNTNCChassis
+  id: NTNCBorgChassisHAW
+  name: NT-NC H.A.W
+  description: A special chassis produced by Nanotrasen to aid Centcom forces in their duties. The H.A.W (Hazardous Assault Walker) features heavy armaments and a specialised access configurator designed to grant immediate entry.
+  components:
+  - type: TextToSpeech
+  - type: Sprite
+    layers:
+      - state: ntnc_haw
+      - state: ntnc_haw_e
+        map: ["enum.BorgVisualLayers.Light"]
+        shader: unshaded
+        visible: false
+      - state: ntnc_haw_l
+        shader: unshaded
+        map: ["light"]
+        visible: false
+  - type: BorgChassis
+    maxModules: 5
+    moduleWhitelist:
+      tags:
+        - BorgModuleGeneric
+        - BaseBorgModuleCentcomm
+        - BorgModuleEngineering
+    hasMindState: ntnc_haw_e
+    noMindState: ntnc_haw_e_r
+  - type: MobThresholds # tankier
+    thresholds:
+      0: Alive
+      150: Critical
+      300: Dead
+    stateAlertDict:
+      Alive: BorgHealth
+      Critical: BorgCrit
+      Dead: BorgDead
+    showOverlays: false
+    allowRevives: true
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 125
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Machines/warning_buzzer.ogg
+          params:
+            volume: 5
+    - trigger:
+        !type:DamageTrigger
+        damage: 450
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:EmptyContainersBehaviour
+        containers:
+        - borg_brain
+        - cell_slot
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: InteractionPopup
+    interactSuccessString: petting-success-syndicate-cyborg
+    interactFailureString: petting-failure-syndicate-cyborg
+    interactSuccessSound:
+      path: /Audio/Ambience/Objects/periodic_beep.ogg
+
+- type: entity
+  parent: BaseNTNCChassis
+  id: NTNCBorgChassisSOSU
+  name: NT-NC S.O.S.U
+  description: A special chassis produced by Nanotrasen to aid Centcom forces in their duties. The S.O.S.U (Special Operations Sentry Unit) specializes in covert operations and sabotaged and is equipped with several modules to aid it in this task.
+  components:
+  - type: TextToSpeech
+  - type: Sprite
+    layers:
+      - state: ntnc_sosu
+        map: ["body"]
+      - state: ntnc_sosu_e
+        map: ["enum.BorgVisualLayers.Light", "activeLight"]
+        shader: unshaded
+        visible: false
+      - state: ntnc_sosu_l
+        shader: unshaded
+        map: ["light"]
+        visible: false
+  - type: BorgChassis
+    maxModules: 5
+    moduleWhitelist:
+      tags:
+        - BorgModuleGeneric
+        - BaseBorgModuleCentcomm
+        - BorgModuleEngineering
+    hasMindState: ntnc_sosu_e
+    noMindState: ntnc_sosu_e_r
+  - type: InteractionPopup
+    interactSuccessString: petting-success-syndicate-cyborg
+    interactFailureString: petting-failure-syndicate-cyborg
+    interactSuccessSound:
+      path: /Audio/Ambience/Objects/periodic_beep.ogg
+  - type: NightVision
+  - type: OptionsVisualizer
+    visuals:
+      body:
+      - options: Default
+        data: {state: ntnc_sosu}
+      - options: ReducedMotion
+        data: {state: ntnc_sosu_static}
+      light:
+      - options: Default
+        data: {state: ntnc_sosu_l}
+      - options: ReducedMotion
+        data: {state: ntnc_sosu_l_static}
+      activeLight:
+      - options: Default
+        data: {state: ntnc_sosu_e}
+      - options: ReducedMotion
+        data: {state: ntnc_sosu_e_static}
+      noMindState:
+      - options: Default
+        data: {state: ntnc_sosu_e_r}
+      - options: ReducedMotion
+        data: {state: ntnc_sosu_e_r_static}
+  - type: MovementAlwaysTouching # it flies in space with tiny thrusters
+  - type: FootstepModifier # it flies instead of walking
+    footstepSoundCollection:
+      collection: FootstepHoverXenoborg
