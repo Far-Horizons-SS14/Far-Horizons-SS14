@@ -1,6 +1,6 @@
-using Content.Shared.Bed.Sleep;
+using Content.Shared.Bed.Sleep; // Starlight-edit
 using Content.Shared.CCVar;
-using Content.Shared.Movement.Events;
+using Content.Shared.Movement.Events; // Starlight-edit
 using Content.Shared.StatusEffectNew;
 using Robust.Shared.Configuration;
 using Robust.Shared.Player;
@@ -94,6 +94,8 @@ public sealed class SSDIndicatorSystem : EntitySystem
         }
     }
 
+     #region Starlight
+
     /// <summary>
     /// STARLIGHT
     /// Attempts to set the entity as SSD.
@@ -148,4 +150,6 @@ public sealed class SSDIndicatorSystem : EntitySystem
         Dirty(uid, comp);
         return success;
     }
+    
+    #endregion
 }
