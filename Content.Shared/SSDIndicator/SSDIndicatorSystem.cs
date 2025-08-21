@@ -105,23 +105,21 @@ public sealed class SSDIndicatorSystem : EntitySystem
     /// <returns>True if succesful</returns>
     public bool TrySSD(EntityUid uid, SSDIndicatorComponent? comp)
     {
-        bool success = false;
-
         if (comp == null)
-            return success;
+            return false;
+
+        if (comp.IsSSD)
+            return false;
 
         comp.IsSSD = true;
 
-        // Sets the time when the entity should fall asleep
         if (_icSsdSleep)
-        {
             comp.FallAsleepTime = _timing.CurTime + TimeSpan.FromSeconds(_icSsdSleepTime);
-            success = true;
-        }
 
         _sleep.TrySleeping(uid);
+
         Dirty(uid, comp);
-        return success;
+        return true;
     }
 
     /// <summary>
