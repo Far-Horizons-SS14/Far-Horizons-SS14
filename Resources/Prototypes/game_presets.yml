@@ -272,6 +272,24 @@
   - BasicRoundstartVariation
 
 - type: gamePreset
+  id: Vampire
+  alias:
+  - vamp
+  - vamps
+  - vampire
+  - vampires
+  name: vampire-gamemode-title
+  description: vampire-gamemode-description
+  showInVote: false # 🌟Starlight🌟  # TODO: fix after vamps fixed
+  minPlayers: 50 # 🌟Starlight🌟
+  rules:
+  - Vampire
+  - SubGamemodesRule
+  - BasicStationEventScheduler
+  - MeteorSwarmScheduler
+  - BasicRoundstartVariation
+
+- type: gamePreset
   id: Changeling
   alias:
     - ling

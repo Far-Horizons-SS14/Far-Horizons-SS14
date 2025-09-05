@@ -2,5 +2,9 @@
   id: Vampire
   name: roles-antag-vamire-name
   antagonist: true
-  setPreference: false
+  setPreference: false  # TODO: fix after vamps fixed
   objective: roles-antag-vampire-description
+#  guides: [ Changelings ]
+  requirements:
+  - !type:OverallPlaytimeRequirement
+    time: 10800 # 3h
