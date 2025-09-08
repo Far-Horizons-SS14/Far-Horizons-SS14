@@ -1,5 +1,5 @@
 - type: entity
-  name: hybrid taser
+  name: taser
   parent: [ BaseWeaponBatterySmall, BaseSecurityContraband ]
   id: WeaponAdvancedTaser
   description: A low-capacity, energy-based stun gun used by security teams to subdue targets at range.
@@ -34,20 +34,8 @@
     steps: 5
     zeroVisible: true
   - type: HitscanBatteryAmmoProvider
-    proto: DisablerBolt
-    fireCost: 50
-  - type: BatteryWeaponFireModes
-    fireModes:
-    - proto: DisablerBolt
-      fireCost: 50
-      visualState: disable
-      magState: disable
-      heldPrefix: disable4
-    - proto: TaserBolt
-      fireCost: 166
-      visualState: stun
-      magState: stun
-      heldPrefix: stun4
+    proto: TaserBolt
+    fireCost: 166
 
 - type: entity
   name: energy gun
@@ -176,19 +164,17 @@
   - type: AccessReader
     access: [["Security"]]
   - type: HitscanBatteryAmmoProvider
-    proto: DisablerBolt
-    fireCost: 50
+    proto: TaserBolt
+    fireCost: 166
   - type: BatteryWeaponFireModes
     fireModes:
-    - proto: DisablerBolt
-      fireCost: 50
-      magState: disable
     - proto: TaserBolt
       fireCost: 166
       magState: stun
       conditions:
       - !type:AlertLevelCondition
         alertLevels:
+        - green
         - blue
         - violet
         - yellow
