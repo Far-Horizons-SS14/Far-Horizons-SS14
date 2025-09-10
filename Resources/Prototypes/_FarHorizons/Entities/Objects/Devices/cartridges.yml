@@ -1,0 +1,17 @@
+﻿- type: entity
+  parent: BaseItem
+  id: CCOperationsCartridge
+  name: CC Operations cartridge
+  description: Top-secret program designed to remotely send orders to special operations personnel.
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Objects/Devices/fh_cartridge.rsi
+      state: cart-cc-operations
+    - type: Cartridge
+      programName: cc-operations-program-name
+      icon:
+        sprite: _FarHorizons/Interface/Misc/fh_program_icons.rsi
+        state: cc_operations
+    - type: UIFragment
+      ui: !type:OperationsUi
+    - type: CCOperationsCartridge
