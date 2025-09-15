@@ -20,6 +20,11 @@ using Content.Shared.Popups;
 using Robust.Server.GameObjects;
 using Robust.Shared.Configuration;
 using Content.Shared.Speech; //Starlight
+using Content.Shared.Radio.Components;//FarHorizons
+using Content.Shared.Containers.ItemSlots;//FarHorizons
+using Robust.Shared.Timing;//FarHorizons
+using Content.Server.Construction;//FarHorizons
+using Content.Shared.Containers;//FarHorizons
 
 namespace Content.Server.Communications
 {
@@ -52,9 +57,14 @@ namespace Content.Server.Communications
             SubscribeLocalEvent<CommunicationsConsoleComponent, CommunicationsConsoleBroadcastMessage>(OnBroadcastMessage);
             SubscribeLocalEvent<CommunicationsConsoleComponent, CommunicationsConsoleCallEmergencyShuttleMessage>(OnCallShuttleMessage);
             SubscribeLocalEvent<CommunicationsConsoleComponent, CommunicationsConsoleRecallEmergencyShuttleMessage>(OnRecallShuttleMessage);
+            SubscribeLocalEvent<CommunicationsConsoleComponent, CommunicationsConsoleSelectAnnouncementChannel>(OnSelectAnnouncementChannel); //FarHorizons
 
             // On console init, set cooldown
             SubscribeLocalEvent<CommunicationsConsoleComponent, MapInitEvent>(OnCommunicationsConsoleMapInit);
+
+            SubscribeLocalEvent<CommunicationsConsoleComponent, ItemSlotInsertAttemptEvent>(OnInsertAttempt);//FarHorizons
+            SubscribeLocalEvent<CommunicationsConsoleComponent, ItemSlotEjectAttemptEvent>(OnEjectAttempt);//FarHorizons
+            SubscribeLocalEvent<CommunicationsConsoleComponent, ConstructionChangeEntityEvent>(OnConstructionChangeEntityEvent);
         }
 
         public override void Update(float frameTime)
@@ -159,14 +169,42 @@ namespace Content.Server.Communications
                 }
             }
 
+            //FarHorizon Start
+            bool hasCommon = false;
+            if (TryComp<ItemSlotsComponent>(comp.Owner, out var itemSlots))
+            {
+                foreach (var id in itemSlots.Slots.Values)
+                {
+                    var keyUid = id.ContainerSlot!.ContainedEntity;
+                    if (TryComp<EncryptionKeyComponent>(keyUid, out var keyComp))
+                    {
+                        comp.Channels = new();
+                        foreach (var channel in keyComp.Channels)
+                        {
+                            comp.Channels.Add(channel);
+                            if (channel == "Common")
+                                hasCommon = true;
+                        }
+                        if (!hasCommon)
+                            comp.Channels.Add("Common");
+
+                        if (comp.CurrentChannel == "No Channels Available")
+                            comp.CurrentChannel = keyComp.DefaultChannel ?? "Common";
+                    }
+                }
+            }
+            //FarHorizon End
+
             _uiSystem.SetUiState(uid, CommunicationsConsoleUiKey.Key, new CommunicationsConsoleInterfaceState(
-                CanAnnounce(comp),
-                CanCallOrRecall(comp),
-                levels,
-                currentLevel,
-                currentDelay,
-                _roundEndSystem.ExpectedCountdownEnd
-            ));
+            CanAnnounce(comp),
+            CanCallOrRecall(comp),
+            levels,
+            currentLevel,
+            currentDelay,
+            comp.Channels, //FarHorizons
+            comp.CurrentChannel, //FarHorizons
+            _roundEndSystem.ExpectedCountdownEnd
+        ));
         }
 
         private static bool CanAnnounce(CommunicationsConsoleComponent comp)
@@ -226,6 +264,14 @@ namespace Content.Server.Communications
             }
         }
 
+        //FarHorizons Start
+        private void OnSelectAnnouncementChannel(EntityUid uid, CommunicationsConsoleComponent comp, CommunicationsConsoleSelectAnnouncementChannel message)
+        {
+            comp.CurrentChannel = message.Channel;
+            UpdateCommsConsoleInterface(uid, comp);
+        }
+        //FarHorizons End
+
         private void OnAnnounceMessage(EntityUid uid, CommunicationsConsoleComponent comp,
             CommunicationsConsoleAnnounceMessage message)
         {
@@ -234,7 +280,7 @@ namespace Content.Server.Communications
             //#region Starlight
             msg = _chatSystem.SanitizeMessageReplaceWords(msg);
             var accentEv = new AccentGetEvent(uid, msg);
-            RaiseLocalEvent(uid,accentEv);
+            RaiseLocalEvent(uid, accentEv);
             msg = accentEv.Message;
             //#endregion Starlight
             var author = Loc.GetString("comms-console-announcement-unknown-sender");
@@ -269,7 +315,7 @@ namespace Content.Server.Communications
             if (comp.AnnounceSentBy)
                 msg += "\n" + Loc.GetString("comms-console-announcement-sent-by") + " " + author;
 
-            if (comp.Global)
+            if (comp.Global && comp.CurrentChannel == "Common")
             {
                 _chatSystem.DispatchGlobalAnnouncement(msg, title, announcementSound: comp.Sound, colorOverride: comp.Color);
 
@@ -277,9 +323,18 @@ namespace Content.Server.Communications
                 return;
             }
 
-            _chatSystem.DispatchCommunicationsConsoleAnnouncement(uid, msg, title, announcementSound: comp.Sound, colorOverride: comp.Color); // 🌟Starlight🌟
-
-            _adminLogger.Add(LogType.Chat, LogImpact.Low, $"{ToPrettyString(message.Actor):player} has sent the following station announcement: {msg}");
+            if (comp.CurrentChannel == "Common")
+            {
+                _chatSystem.DispatchCommunicationsConsoleAnnouncement(uid, msg, title, announcementSound: comp.Sound, colorOverride: comp.Color); // 🌟Starlight🌟
+                _adminLogger.Add(LogType.Chat, LogImpact.Low, $"{ToPrettyString(message.Actor):player} has sent the following station announcement: {msg}");
+                return;
+            }
+            else
+            {
+                _chatSystem.DispatchFilteredCommunicationsConsoleAnnouncement(comp.CurrentChannel, uid, msg, title, announcementSound: comp.Sound, colorOverride: comp.Color, Global: comp.Global); // 🌟Starlight🌟
+                _adminLogger.Add(LogType.Chat, LogImpact.Low, $"{ToPrettyString(message.Actor):player} has sent the following departmental announcement to {comp.CurrentChannel}: {msg}");
+                return;
+            }
 
         }
 
@@ -337,6 +392,36 @@ namespace Content.Server.Communications
             _roundEndSystem.CancelRoundEndCountdown(uid);
             _adminLogger.Add(LogType.Action, LogImpact.High, $"{ToPrettyString(message.Actor):player} has recalled the shuttle.");
         }
+
+        //FarHorizons Start
+        private void OnInsertAttempt(EntityUid uid, CommunicationsConsoleComponent comp, ref ItemSlotInsertAttemptEvent args)
+        {
+            Timer.Spawn(0, () => UpdateCommsConsoleInterface(uid, Comp<CommunicationsConsoleComponent>(uid)));
+        }
+
+        private void OnEjectAttempt(EntityUid uid, CommunicationsConsoleComponent comp, ref ItemSlotEjectAttemptEvent args)
+        {
+            comp.CurrentChannel = "No Channels Available";
+            comp.Channels = new List<string> { "No Channels Available" };
+            Timer.Spawn(0, () => UpdateCommsConsoleInterface(uid, Comp<CommunicationsConsoleComponent>(uid)));
+        }
+
+        private void OnConstructionChangeEntityEvent(EntityUid uid, CommunicationsConsoleComponent comp, ref ConstructionChangeEntityEvent args)
+        {
+            var newUid = args.New;
+            if (newUid == null)
+                return;
+
+            if (TryComp<ContainerFillComponent>(newUid, out var ContainerComp))
+            {
+                foreach (var id in ContainerComp.Containers)
+                {
+                    ContainerComp.Containers.Remove(id.Key);
+                }
+            }
+        }
+
+        //FarHorizons End
     }
 
     /// <summary>

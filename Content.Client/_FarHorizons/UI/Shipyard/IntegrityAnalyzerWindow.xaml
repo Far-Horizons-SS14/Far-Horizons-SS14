@@ -1,0 +1,58 @@
+<controls:FancyWindow
+    xmlns="https://spacestation14.io"
+    xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+    MaxHeight="525"
+    MinWidth="300">
+    <ScrollContainer
+        Margin="5 5 5 5"
+        ReturnMeasure="True"
+        VerticalExpand="True">
+        <BoxContainer
+            Name="RootContainer"
+            VerticalExpand="True"
+            Orientation="Vertical">
+            <Label
+                Name="NoTargetDataText"
+                Text="{Loc integrity-analyzer-window-no-target-data-text}" />
+
+            <BoxContainer
+                Name="TargetDataContainer"
+                Margin="0 0 0 5"
+                Orientation="Vertical">
+                <BoxContainer Orientation="Horizontal" Margin="0 0 0 5">
+                    <SpriteView OverrideDirection="South" Scale="2 2" Name="SpriteView" Access="Public" SetSize="64 64" />
+                    <TextureRect Name="NoDataTex" Access="Public" SetSize="64 64" Visible="false" Stretch="KeepAspectCentered" TexturePath="/Textures/Interface/Misc/health_analyzer_out_of_range.png"/>
+                    <BoxContainer Margin="5 0 0 0" Orientation="Vertical" VerticalAlignment="Top">
+                        <RichTextLabel Name="NameLabel" SetWidth="150" />
+                        <Label Name="SpeciesLabel" VerticalAlignment="Top" StyleClasses="LabelSubText" />
+                    </BoxContainer>
+                    <Label Margin="0 0 5 0" HorizontalExpand="True" HorizontalAlignment="Right" VerticalExpand="True"
+                           VerticalAlignment="Top" Name="ScanModeLabel"
+                           Text="{Loc 'integrity-analyzer-window-entity-unknown-text'}" />
+                </BoxContainer>
+
+                <PanelContainer StyleClasses="LowDivider" />
+
+                <GridContainer Margin="0 5 0 0" Columns="2">
+                    <Label Text="{Loc 'integrity-analyzer-window-entity-damage-total-text'}" />
+                    <Label Name="DamageLabel" />
+                </GridContainer>
+            </BoxContainer>
+
+            <PanelContainer Name="AlertsDivider" Visible="False" StyleClasses="LowDivider" />
+
+            <BoxContainer Name="AlertsContainer" Visible="False" Margin="0 5" Orientation="Vertical" HorizontalAlignment="Center">
+
+            </BoxContainer>
+
+            <PanelContainer StyleClasses="LowDivider" />
+
+            <BoxContainer
+                Name="GroupsContainer"
+                Margin="0 5 0 5"
+                Orientation="Vertical">
+            </BoxContainer>
+
+        </BoxContainer>
+    </ScrollContainer>
+</controls:FancyWindow>

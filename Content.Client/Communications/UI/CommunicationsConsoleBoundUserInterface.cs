@@ -27,6 +27,7 @@ namespace Content.Client.Communications.UI
             _menu.OnBroadcast += BroadcastButtonPressed;
             _menu.OnAlertLevel += AlertLevelSelected;
             _menu.OnEmergencyLevel += EmergencyShuttleButtonPressed;
+            _menu.OnAnnounceChannel += AnnounceChannelSelected; //FarHorizons
         }
 
         public void AlertLevelSelected(string level)
@@ -68,6 +69,13 @@ namespace Content.Client.Communications.UI
             SendMessage(new CommunicationsConsoleRecallEmergencyShuttleMessage());
         }
 
+        //FarHorizons Start
+        public void AnnounceChannelSelected(string channel)
+        {
+            _menu!.CurrentChannel = channel;
+            SendMessage(new CommunicationsConsoleSelectAnnouncementChannel(channel));
+        }
+        //FarHorizons End
         protected override void UpdateState(BoundUserInterfaceState state)
         {
             base.UpdateState(state);
@@ -91,6 +99,9 @@ namespace Content.Client.Communications.UI
                 _menu.EmergencyShuttleButton.Disabled = !_menu.CanCall;
                 _menu.AnnounceButton.Disabled = !_menu.CanAnnounce;
                 _menu.BroadcastButton.Disabled = !_menu.CanBroadcast;
+
+                _menu!.CurrentChannel = commsState.CurrentChannel; //FarHorizon
+                _menu.UpdateAnnouncementChannels(commsState.Channels, commsState.CurrentChannel); //FarHorizon
             }
         }
     }

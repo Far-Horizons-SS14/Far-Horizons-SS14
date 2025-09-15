@@ -1,5 +1,10 @@
 # User interface
 comms-console-menu-title = Communications Console
+
+# FarHorizons Start
+comms-console-menu-department-announcement-button-tooltip = Changes the channel where the announcement will be broadcast.
+# FarHorizons End
+
 comms-console-menu-announcement-placeholder = Announcement text...
 comms-console-menu-announcement-button = Announce
 comms-console-menu-announcement-button-tooltip = Send your message as a station-wide radio announcement.
@@ -15,6 +20,7 @@ comms-console-menu-time-remaining = Time remaining: {$time}
 comms-console-permission-denied = Permission denied
 comms-console-shuttle-unavailable = Shuttle is currently unavailable
 comms-console-message-too-long = Message is too long
+communication-channels-updated = Communication channels updated
 
 # Placeholder values
 comms-console-announcement-sent-by = Sent by

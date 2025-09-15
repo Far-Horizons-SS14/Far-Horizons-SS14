@@ -58,12 +58,15 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
     public const string SawmillId = "admin.bans";
     public const string JobPrefix = "Job:";
 
+    private const string WebhookLogo16X16 = "https://i.imgur.com/Q3mC5k1.png";
+    private const string WebhookLogo128X128 = "https://i.imgur.com/eeMDddo.png";
+    
     private readonly HttpClient _httpClient = new();
     private string _serverName = string.Empty;
     private string _webhookUrl = string.Empty;
     private WebhookData? _webhookData;
-    private string _webhookName = "STARLIGHT Punishments";
-    private string _webhookAvatarUrl = "https://i.imgur.com/whiqrpC.png";
+    private string _webhookName = "Punishments";
+    private string _webhookAvatarUrl = WebhookLogo128X128;
 
     private readonly Dictionary<ICommonSession, List<ServerRoleBanDef>> _cachedRoleBans = new();
     // Cached ban exemption flags are used to handle
@@ -513,7 +516,7 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
                         Footer = new EmbedFooter
                         {
                             Text =  Loc.GetString("server-ban-footer", ("server", serverName), ("round", round)),
-                            IconUrl = "https://i.imgur.com/40FeP1B.png"
+                            IconUrl = WebhookLogo16X16
                         },
                     },
                 },
@@ -543,7 +546,7 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
                         Footer = new EmbedFooter
                         {
                             Text = Loc.GetString("server-ban-footer", ("server", serverName), ("round", round)),
-                            IconUrl = "https://i.imgur.com/40FeP1B.png"
+                            IconUrl = WebhookLogo16X16
                         },
                     },
                 },
@@ -631,7 +634,7 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
                         Footer = new EmbedFooter
                         {
                             Text =  Loc.GetString("server-ban-footer", ("server", serverName), ("round", round)),
-                            IconUrl = "https://i.imgur.com/40FeP1B.png"
+                            IconUrl = WebhookLogo16X16
                         },
                     },
                 },
@@ -661,7 +664,7 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
                         Footer = new EmbedFooter
                         {
                             Text = Loc.GetString("server-ban-footer", ("server", serverName), ("round", round)),
-                            IconUrl = "https://i.imgur.com/40FeP1B.png"
+                            IconUrl = WebhookLogo16X16
                         },
                     },
                 },
@@ -701,6 +704,7 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
     private void OnServerNameChanged(string obj)
     {
         _serverName = obj;
+        _webhookName = $"{_serverName} Punishments";
     }
 
     private async Task SetWebhookData(string id, string token)

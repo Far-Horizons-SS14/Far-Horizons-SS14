@@ -1,26 +1,24 @@
+# Far Horizons edit: replace components with custom ones for separate handheld radio system
 - type: entity
   name: expedition radio
-  description: A handy expedition radio.
+  description: An advanced version of handheld radio. Features lower frequencies and a bluespace antenna for unlimited reception distance.
   parent: [ RadioHandheld, BaseCargoContraband ]
   id: RadioHandheldExpedition
   components:
-  - type: TelecomExempt
-  - type: RadioMicrophone
-    broadcastChannel: Expedition
-  - type: RadioSpeaker
-    channels:
-    - Expedition
-  - type: Speech
-    speechVerb: Robotic
+  - type: HandheldRadio
+    frequencyMin: 60.0
+    frequencyMax: 140.0
+    currentFrequency: 78.9
+    micEnabled: false
+    speakerEnabled: false
+    micListeningRange: 1.5
+    recievesFromAnyMap: true
+  - type: ActivatableUI
+    key: enum.HandheldRadioUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.HandheldRadioUiKey.Key:
+        type: HandheldRadioBoundUserInterface
   - type: Sprite
-    sprite: _Starlight/Objects/Devices/expeditionhandy.rsi
-    layers:
-    - state: walkietalkie
-    - state: walkietalkie-on
-    state: walkietalkie
-  - type: Item
-    sprite: _Starlight/Objects/Devices/expeditionhandy.rsi
-    heldPrefix: walkietalkie
-  - type: Tag
-    tags:
-    - Radio
+    sprite: _FarHorizons/Objects/Devices/handheld_radio.rsi
+    state: radio-exped

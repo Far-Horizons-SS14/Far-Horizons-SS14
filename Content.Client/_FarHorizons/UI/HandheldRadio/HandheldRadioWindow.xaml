@@ -1,0 +1,27 @@
+<controls:FancyWindow
+    xmlns="https://spacestation14.io"
+    xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+    xmlns:ui="clr-namespace:Content.Client.Options.UI"
+    MaxHeight="525"
+    MinWidth="170">
+    <BoxContainer Orientation="Vertical" Margin="5">
+        <Label Name="FrequencyHeader" Text="{Loc 'handheld-radio-ui-frequency-label'}" />
+        <LineEdit Name="FrequencyEdit" Margin="0 5 0 0" />
+        <BoxContainer Orientation="Horizontal">
+            <Button Name="ToggleMic"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Margin="0 5 5 0"
+                    Text="{Loc handheld-radio-ui-mic-toggle-button}"
+                    ToggleMode="True"/>
+            <Button Name="ToggleSpeaker"
+                    VerticalExpand="False"
+                    HorizontalExpand="False"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Margin="0 5 5 0"
+                    Text="{Loc handheld-radio-ui-speaker-toggle-button}"
+                    ToggleMode="True"/>
+        </BoxContainer>
+    </BoxContainer>
+</controls:FancyWindow>

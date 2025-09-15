@@ -1775,3 +1775,36 @@
     wideAnimationRotation: 180
     soundHit:
       path: /Audio/Effects/Lightning/lightningshock.ogg
+
+- type: entity
+  parent: BaseLizardPlushie
+  id: PlushieBreaks
+  name: Breaks Plushie
+  description: Your least favorite protector. Dont blame him... He is just a lil guy!
+  components:
+  - type: Item
+    size: Small
+    sprite: _Starlight/Objects/Fun/Plushies/breaks_plushie.rsi
+  - type: Sprite
+    sprite: _Starlight/Objects/Fun/Plushies/breaks_plushie.rsi
+    state: icon
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/Animals/lizard_happy.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Voice/Reptilian/reptilian_scream.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/Animals/lizard_happy.ogg
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/Voice/Reptilian/reptilian_tailthump.ogg
+  - type: MeleeWeapon
+    wideAnimationRotation: 180
+    soundHit:
+      path: /Audio/Items/Handcuffs/cuff_start.ogg
+    animation: WeaponArcThrust
+    damage:
+      types:
+        Blunt: 0

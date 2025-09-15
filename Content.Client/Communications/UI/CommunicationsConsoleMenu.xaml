@@ -25,12 +25,19 @@
             <BoxContainer Orientation="Vertical"
                 Margin="0 2">
 
+                <!-- FarHorizon Start -->
+                <OptionButton Name="AnnounceToButton"
+                    Access="Public"
+                    ToolTip="{Loc 'comms-console-menu-department-announcement-button-tooltip'}"
+                    StyleClasses="OpenLeft"
+                    Margin="0 0 1 0"/>
+                <!-- FarHorizon End -->
+
                 <Button Name="AnnounceButton"
                     Access="Public"
                     Text="{Loc 'comms-console-menu-announcement-button'}"
                     ToolTip="{Loc 'comms-console-menu-announcement-button-tooltip'}"
-                    StyleClasses="OpenLeft"
-                    Margin="0 0 1 0"
+                    StyleClasses="OpenBoth"
                     Disabled="True"/>
 
                 <Button Name="BroadcastButton"

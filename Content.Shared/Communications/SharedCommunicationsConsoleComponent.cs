@@ -19,7 +19,12 @@ namespace Content.Shared.Communications
         public string CurrentAlert;
         public float CurrentAlertDelay;
 
-        public CommunicationsConsoleInterfaceState(bool canAnnounce, bool canCall, List<string>? alertLevels, string currentAlert, float currentAlertDelay, TimeSpan? expectedCountdownEnd = null)
+        //FarHorizon Start
+        public List<string>? Channels;
+        public string CurrentChannel;
+        //FarHorizon End
+
+        public CommunicationsConsoleInterfaceState(bool canAnnounce, bool canCall, List<string>? alertLevels, string currentAlert, float currentAlertDelay, List<string>? channels, string currentChannel, TimeSpan? expectedCountdownEnd = null)
         {
             CanAnnounce = canAnnounce;
             CanCall = canCall;
@@ -28,6 +33,10 @@ namespace Content.Shared.Communications
             AlertLevels = alertLevels;
             CurrentAlert = currentAlert;
             CurrentAlertDelay = currentAlertDelay;
+            //FarHorizon Start
+            Channels = channels;
+            CurrentChannel = currentChannel;
+            //FarHorizon End
         }
     }
 
@@ -41,6 +50,19 @@ namespace Content.Shared.Communications
             Level = level;
         }
     }
+
+    //FarHorizons Start
+    [Serializable, NetSerializable]
+    public sealed class CommunicationsConsoleSelectAnnouncementChannel : BoundUserInterfaceMessage
+    {
+        public readonly string Channel;
+
+        public CommunicationsConsoleSelectAnnouncementChannel(string channel)
+        {
+            Channel = channel;
+        }
+    }
+    //FarHorizons End
 
     [Serializable, NetSerializable]
     public sealed class CommunicationsConsoleAnnounceMessage : BoundUserInterfaceMessage

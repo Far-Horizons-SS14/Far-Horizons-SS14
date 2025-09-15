@@ -1,0 +1,156 @@
+- type: entity
+  id: ShipyardRCD
+  parent: RCD
+  name: Shipyard RCD
+  description: An upgraded version of standard RCD, with more charge storage and more shipbuilding parts.
+  components:
+  - type: RCD
+    availablePrototypes:
+    - WallShuttle
+    - WallShuttleDiagonal
+    - ShuttleWindow
+    - ShuttleWindowDiagonal
+    - GrilleDiagonal
+    - AirlockShuttle
+    - TinyFan
+    - DirectionalFan
+    - WallSolid
+    - FloorSteel
+    - Plating
+    - Catwalk
+    - Grille
+    - Window
+    - WindowDirectional
+    - WindowReinforcedDirectional
+    - ReinforcedWindow
+    - Airlock
+    - AirlockGlass
+    - Firelock
+    - TubeLight
+    - BulbLight
+    - LVCable
+    - MVCable
+    - HVCable
+    - CableTerminal
+    - Deconstruct
+  - type: Sprite
+    sprite: _FarHorizons/Tools/Shipyard/shipyard_rcd.rsi
+    state: icon
+  - type: Clothing
+    sprite: _FarHorizons/Tools/Shipyard/shipyard_rcd.rsi
+    quickEquip: false
+    slots:
+    - Belt
+  - type: LimitedCharges
+    maxCharges: 100
+  - type: StaticPrice
+    price: 800
+
+- type: entity
+  id: ShipyardRCDExperimental
+  parent: ShipyardRCD
+  name: Experimental shipyard RCD
+  description: A bluespace-enhanced shipyard RCD that passively generates its own compressed matter.
+  components:
+  - type: AutoRecharge
+    rechargeDuration: 5
+
+- type: rcd
+  id: WallShuttle
+  category: WallsAndFlooring
+  sprite: /Textures/_FarHorizons/Interface/ShipyardRCD/wall_shuttle.png
+  mode: ConstructObject
+  prototype: WallShuttle
+  cost: 8
+  delay: 5
+  collisionMask: FullTileMask
+  rotation: Fixed
+  fx: EffectRCDConstruct2
+
+- type: rcd
+  id: WallShuttleDiagonal
+  category: WallsAndFlooring
+  sprite: /Textures/_FarHorizons/Interface/ShipyardRCD/wall_shuttle_diagonal.png
+  mode: ConstructObject
+  prototype: WallShuttleDiagonal
+  cost: 8
+  delay: 5
+  collisionMask: FullTileMask
+  rotation: User
+  fx: EffectRCDConstruct2
+
+- type: rcd
+  id: ShuttleWindow
+  category: WindowsAndGrilles
+  sprite: /Textures/_FarHorizons/Interface/ShipyardRCD/window_shuttle.png
+  mode: ConstructObject
+  prototype: ShuttleWindow
+  cost: 4
+  delay: 5
+  collisionMask: Impassable
+  rules:
+    - IsWindow
+  rotation: Fixed
+  fx: EffectRCDConstruct2
+
+- type: rcd
+  id: ShuttleWindowDiagonal
+  category: WindowsAndGrilles
+  sprite: /Textures/_FarHorizons/Interface/ShipyardRCD/window_shuttle_diagonal.png
+  mode: ConstructObject
+  prototype: ShuttleWindowDiagonal
+  cost: 4
+  delay: 5
+  collisionMask: Impassable
+  rules:
+    - IsWindow
+  rotation: User
+  fx: EffectRCDConstruct2
+
+- type: rcd
+  id: GrilleDiagonal
+  category: WindowsAndGrilles
+  sprite: /Textures/_FarHorizons/Interface/ShipyardRCD/grille_diagonal.png
+  mode: ConstructObject
+  prototype: GrilleDiagonal
+  cost: 2
+  delay: 4
+  collisionMask: Impassable
+  rotation: User
+  fx: EffectRCDConstruct2
+
+- type: rcd
+  id: AirlockShuttle
+  category: Airlocks
+  sprite: /Textures/_FarHorizons/Interface/ShipyardRCD/airlock_shuttle.png
+  mode: ConstructObject
+  prototype: AirlockShuttle
+  cost: 6
+  delay: 4
+  collisionMask: FullTileMask
+  rotation: User
+  fx: EffectRCDConstruct2
+
+- type: rcd
+  id: TinyFan
+  category: Airlocks
+  sprite: /Textures/_FarHorizons/Interface/ShipyardRCD/tiny_fan.png
+  mode: ConstructObject
+  prototype: AtmosDeviceFanTiny
+  cost: 10
+  delay: 8
+  collisionMask: Impassable
+  rotation: Fixed
+  fx: EffectRCDConstruct2
+
+- type: rcd
+  id: DirectionalFan
+  category: Airlocks
+  sprite: /Textures/_FarHorizons/Interface/ShipyardRCD/directional_fan.png
+  mode: ConstructObject
+  prototype: AtmosDeviceFanDirectional
+  cost: 10
+  delay: 8
+  collisionMask: Impassable
+  rotation: User
+  fx: EffectRCDConstruct2

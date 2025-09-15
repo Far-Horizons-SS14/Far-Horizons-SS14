@@ -1,0 +1,102 @@
+- type: entity
+  id: HolotableBase
+  parent: BaseStructure
+  name: Holotable
+  description: Holographic display table. Does absolutely nothing but look cool at the moment.
+  abstract: true
+  components:
+    - type: Sprite
+      noRot: true
+    - type: Anchorable
+    - type: Transform
+      noRot: true
+   
+      damageContainer: StructuralInorganic
+      damageModifierSet: Metallic
+    - type: Destructible
+    - type: PlaceableSurface
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeAabb
+            bounds: "-0.45,-0.45,0.45,0.45"
+          density: 55
+          mask:
+          - TableMask
+          layer:
+            - TableLayer
+            - Opaque
+    - type: Climbable
+    - type: Clickable
+    - type: InteractionOutline
+    - type: Damageable
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 200
+          behaviors:
+            - !type:DoActsBehavior
+              acts: [ "Destruction" ]
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                SheetSteel1:
+                  min: 2
+                  max: 5
+                SheetGlass1:
+                  min: 1
+                  max: 2
+                  
+- type: entity
+  id: GenericHolotable
+  parent: HolotableBase
+  name: generic holotable
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Machines/HoloTables/holotable.rsi
+    layers:
+      - map: ["holotable"]
+        state: holotable
+      - type: Icon
+        sprite: _FarHorizons/Structures/Machines/HoloTables/holotable.rsi
+  - type: Appearance
+  - type: PointLight
+    radius: 3
+    energy: 2
+    color: "#66ccde"
+
+- type: entity
+  id: EngineeringHolotable
+  parent: HolotableBase
+  name: engineering holotable
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Structures/Machines/HoloTables/engineering_holotable.rsi
+      layers:
+        - state: engiholo
+        - type: Icon
+          sprite: _FarHorizons/Structures/Machines/HoloTables/engineering_holotable.rsi
+    - type: Appearance
+
+    - type: PointLight
+      radius: 3
+      energy: 2
+      color: "#d9b12e"
+
+    - type: PowerMonitoringConsole
+    - type: PowerMonitoringCableNetworks
+    - type: NodeContainer
+      examinable: true
+      nodes:
+        hv:
+          !type:CableDeviceNode
+          nodeGroupID: HVPower
+    - type: ActivatableUI
+      singleUser: true
+      key: enum.PowerMonitoringConsoleUiKey.Key
+    - type: UserInterface
+      interfaces:
+        enum.PowerMonitoringConsoleUiKey.Key:
+          type: PowerMonitoringConsoleBoundUserInterface
+        enum.WiresUiKey.Key:
+          type: WiresBoundUserInterface

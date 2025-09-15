@@ -29,7 +29,7 @@
 
 #Basic Helmet (Security Helmet)
 - type: entity
-  parent: [ClothingHeadHelmetArmoredBase, BaseSecurityContraband, ClothingHeadSuitWithLightBase]
+  parent: [ClothingHeadHelmetArmoredBase, BaseSecurityContraband ]
   id: ClothingHeadHelmetBasic
   name: helmet
   description: Standard security gear. Protects the head from impacts.
@@ -38,28 +38,20 @@
     sprite: Clothing/Head/Helmets/security.rsi
   - type: Clothing
     sprite: Clothing/Head/Helmets/security.rsi
-    clothingVisuals:
-      head:
-      - state: light-equipped-HELMET
+    #clothingVisuals:
+      #head:
+      #- state: light-equipped-HELMET
       # - state: shaded
-      head-vox:
-      - state: equipped-HELMET-vox
+      #head-vox:
+      #- state: equipped-HELMET-vox
       # - state: shaded
   - type: Tag
     tags:
     - WhitelistChameleon
     - SecurityHelmet
-  - type: HideLayerClothing
-    layers:
-      Hair: HEAD
-  - type: ToggleableVisuals
-    clothingVisuals:
-      head:
-      - state: lighton-equipped-HELMET
-        shader: unshaded
-      head-vox:
-      - state: lighton-equipped-HELMET-vox
-        shader: unshaded
+  #- type: HideLayerClothing
+  #  layers:
+  #    Hair: HEAD
 
 #Mercenary Helmet
 - type: entity

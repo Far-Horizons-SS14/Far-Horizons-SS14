@@ -40,6 +40,8 @@ using Content.Shared.Speech; // Starlight
 using Content.Server._Starlight.Language; // Starlight
 using Content.Shared._Starlight.Language; // Starlight
 using Content.Shared.Popups; // Starlight
+using Content.Shared.Radio.Components;//FarHorizons
+using Content.Server.Radio.Components;//FarHorizons
 
 namespace Content.Server.Chat.Systems;
 
@@ -506,6 +508,65 @@ public sealed partial class ChatSystem : SharedChatSystem
     }
 
     // Starlight End
+
+    /// FarHorizons Start
+    /// <summary>
+    /// Dispatches a departamental announcement that is filtered from the Communications Console, replacing the default announcement.
+    /// </summary>
+    /// <param name="channel">The channel that is used to filter where the message will be shown.</param>
+    /// <param name="source">The entity making the announcement (Communications Console entity)</param>
+    /// <param name="message">The contents of the message</param>
+    /// <param name="sender">The sender name</param>
+    /// <param name="playSound">Play the announcement sound</param>
+    /// <param name="announcementSound">Sound to play</param>
+    /// <param name="colorOverride">Optional color for the announcement message</param>
+    public void DispatchFilteredCommunicationsConsoleAnnouncement(
+        string channel,
+        EntityUid source,
+        string message,
+        string? sender = null,
+        bool playSound = true,
+        SoundSpecifier? announcementSound = null,
+        Color? colorOverride = null,
+        bool Global = false)
+    {   
+        sender ??= Loc.GetString("chat-manager-sender-announcement");
+        var wrappedMessage = Loc.GetString("chat-manager-sender-announcement-wrap-message", ("sender", sender), ("message", FormattedMessage.EscapeText(message)));
+
+        var inStation = Filter.Broadcast();
+        if (!Global)
+        {
+            var station = _stationSystem.GetOwningStation(source);
+
+            if (station == null)
+            {
+                // you can't make a communications console announcement without a station
+                return;
+            }
+            if (!EntityManager.TryGetComponent<StationDataComponent>(station, out var stationDataComp)) return;
+            inStation = _stationSystem.GetInStation(stationDataComp);
+        }
+        var filter = ChannelFilter(channel, inStation);
+
+        // Custom behavior: For example, change the chat channel or message formatting here if needed
+        _chatManager.ChatMessageToManyFiltered(filter, ChatChannel.Radio, message, wrappedMessage, source, false, true, colorOverride);
+
+        if (playSound)
+        {
+            var commsConsoleSound = announcementSound ?? new SoundPathSpecifier("/Audio/_Starlight/Announcements/announce2.ogg");
+            var resolvedSound = _audio.ResolveSound(commsConsoleSound);
+            _audio.PlayGlobal(resolvedSound, filter, true, AudioParams.Default.WithVolume(-2f));
+        }
+
+        RaiseLocalEvent(new AnnouncementSpokeEvent
+        {
+            AnnouncementSound = announcementSound,
+            Message = message,
+            Source = filter
+        });
+    }
+
+    // FarHorizons End
 
     #endregion
 
@@ -1194,6 +1255,38 @@ public sealed partial class ChatSystem : SharedChatSystem
         }
         return sb.ToString();
     }
+
+    //FarHorizons Start
+    private Filter ChannelFilter(string channel, Filter filter)
+    {
+        filter.RemoveWhere(session =>
+        {
+            var uid = session.AttachedEntity;
+            if (uid == null)
+                return true;
+
+            if (TryComp<WearingHeadsetComponent>(uid.Value, out var headsetEntity) && TryComp<ActiveRadioComponent>(headsetEntity.Headset, out var keyComp))
+            {
+                foreach (var id in keyComp.Channels)
+                {
+                    if (channel == id)
+                        return false;
+                }
+            }
+            if (TryComp<ActiveRadioComponent>(uid.Value, out var ActiveRadio))
+            {
+                foreach (var id in ActiveRadio.Channels)
+                {
+                    if (channel == id)
+                        return false;
+                }
+            }
+            return true;
+        });
+
+        return filter;
+    }
+    //FarHorizons End
 
     #endregion
 }

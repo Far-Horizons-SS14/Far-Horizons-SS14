@@ -1,0 +1,31 @@
+- type: entity
+  parent: BaseItem
+  id: ShipLabeler
+  name: ship labeler
+  description: A tool for renaming shuttles
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Tools/Shipyard/ship_labeler.rsi
+      state: icon
+    - type: Item
+    - type: ActivatableUI
+      key: enum.ShipLabelerUiKey.Key
+      inHandsOnly: true
+    - type: UserInterface
+      interfaces:
+        enum.ShipLabelerUiKey.Key:
+          type: ShipLabelerBoundUserInterface
+    - type: ShipLabeler
+      nameMaxChars: 20
+    - type: PhysicalComposition
+
+- type: entity
+  parent: ShipLabeler
+  id: ShipLabelerAdmeme
+  name: ship labeler
+  suffix: Admeme
+  description: A tool for renaming any grid
+  components:
+    - type: ShipLabeler
+      nameMaxChars: 20
+      noChecks: true

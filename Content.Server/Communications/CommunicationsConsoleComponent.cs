@@ -74,5 +74,14 @@ namespace Content.Server.Communications
         /// </summary>
         [DataField]
         public bool AnnounceSentBy = true;
+
+        [DataField]
+        public List<string> Channels = new List<string> { "No Channels Available" };
+
+        /// <summary>
+        ///     This is the channel that will be used when using the default/department prefix (<see cref="SharedChatSystem.DefaultChannelKey"/>).
+        /// </summary>
+        [DataField]
+        public string CurrentChannel = "No Channels Available";
     }
 }

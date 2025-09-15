@@ -1,44 +1,61 @@
+# Far Horizons edit: replace components with custom ones for separate handheld radio system
 - type: entity
   name: handheld radio
   description: A handy handheld radio.
   parent: BaseItem
   id: RadioHandheld
   components:
-  - type: TelecomExempt
-  - type: RadioMicrophone
-    broadcastChannel: Handheld
-  - type: RadioSpeaker
-    channels:
-    - Handheld
+  - type: HandheldRadio
+    frequencyMin: 80.0
+    frequencyMax: 140.0
+    currentFrequency: 98.3
+    micEnabled: false
+    speakerEnabled: false
+    micListeningRange: 1.5
+    recievesFromAnyMap: false
+  - type: ActivatableUI
+    key: enum.HandheldRadioUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.HandheldRadioUiKey.Key:
+        type: HandheldRadioBoundUserInterface
   - type: Speech
     speechVerb: Robotic
   - type: Sprite
-    sprite: Objects/Devices/communication.rsi
-    layers:
-    - state: walkietalkie
-    - state: walkietalkie-on
-    state: walkietalkie
+    sprite: _FarHorizons/Objects/Devices/handheld_radio.rsi
+    state: radio
   - type: Item
-    sprite: Objects/Devices/communication.rsi
-    heldPrefix: walkietalkie
+    sprite: _FarHorizons/Objects/Devices/handheld_radio.rsi
+    heldPrefix: radio
   - type: Tag
     tags:
     - Radio
 
+# Far Horizons edit: remove handheld radio as base item
 - type: entity
   name: security radio
   description: A handy security radio.
-  parent: [ RadioHandheld, BaseSecurityContraband ]
+  parent: [BaseItem, BaseSecurityContraband]
   id: RadioHandheldSecurity
   components:
+  - type: TelecomExempt
   - type: RadioMicrophone
     broadcastChannel: Security
     listenRange: 1
   - type: RadioSpeaker
     channels:
     - Security
+  - type: Speech
+    speechVerb: Robotic
   - type: Sprite
     sprite: Objects/Devices/securityhandy.rsi
+    layers:
+    - state: walkietalkie
+    - state: walkietalkie-on
+    state: walkietalkie
   - type: Item
     sprite: Objects/Devices/securityhandy.rsi
     heldPrefix: walkietalkie
+  - type: Tag
+    tags:
+    - Radio
