@@ -45,10 +45,10 @@ namespace Content.Client._FarHorizons.UI.HandheldRadio
 
         public void OnFunctionSwitched(HandheldRadioStateChange ev){
             switch (ev.State){
-                case HanheldRadioState.Microphone:
+                case HandheldRadioState.Microphone:
                     ToggleMic.Pressed = ev.value;
                     break;
-                case HanheldRadioState.Speaker:
+                case HandheldRadioState.Speaker:
                     ToggleSpeaker.Pressed = ev.value;
                     break;
             }

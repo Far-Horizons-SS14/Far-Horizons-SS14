@@ -9,13 +9,13 @@ public sealed class HandheldRadioFrequencyChange(float frequency) : BoundUserInt
 }
 
 [Serializable, NetSerializable]
-public sealed class HandheldRadioStateChange(HanheldRadioState state, bool value) : BoundUserInterfaceMessage
+public sealed class HandheldRadioStateChange(HandheldRadioState state, bool value) : BoundUserInterfaceMessage
 {
-    public HanheldRadioState State { get; } = state;
+    public HandheldRadioState State { get; } = state;
     public bool value { get; } = value;
 }
 
-public enum HanheldRadioState {
+public enum HandheldRadioState {
     Microphone,
     Speaker
 }

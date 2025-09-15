@@ -54,7 +54,7 @@ public sealed class HandheldRadioSystem : EntitySystem
         {
             Act = () =>
             {
-                var ev = new HandheldRadioStateChange(HanheldRadioState.Microphone, !uid.Comp.MicEnabled);
+                var ev = new HandheldRadioStateChange(HandheldRadioState.Microphone, !uid.Comp.MicEnabled);
                 OnStateChange(uid, ref ev);
                 var state = Loc.GetString(uid.Comp.MicEnabled ? "handheld-radio-verb-on-state" : "handheld-radio-verb-off-state");
                 var message = Loc.GetString("handheld-radio-verb-mic-switched", ("state", state));
@@ -75,7 +75,7 @@ public sealed class HandheldRadioSystem : EntitySystem
         {
             Act = () =>
             {
-                var ev = new HandheldRadioStateChange(HanheldRadioState.Speaker, !uid.Comp.SpeakerEnabled);
+                var ev = new HandheldRadioStateChange(HandheldRadioState.Speaker, !uid.Comp.SpeakerEnabled);
                 OnStateChange(uid, ref ev);
                 var state = Loc.GetString(uid.Comp.SpeakerEnabled ? "handheld-radio-verb-on-state" : "handheld-radio-verb-off-state");
                 var message = Loc.GetString("handheld-radio-verb-speaker-switched", ("state", state));
@@ -111,7 +111,7 @@ public sealed class HandheldRadioSystem : EntitySystem
 
     private void OnStateChange(Entity<HandheldRadioComponent> uid, ref HandheldRadioStateChange args){
         switch(args.State){
-            case HanheldRadioState.Microphone:
+            case HandheldRadioState.Microphone:
                 if(!uid.Comp.MicEnabled && args.value)
                     EnsureComp<ActiveListenerComponent>(uid).Range = uid.Comp.MicListeningRange;
 
@@ -120,7 +120,7 @@ public sealed class HandheldRadioSystem : EntitySystem
 
                 uid.Comp.MicEnabled = args.value;
                 break;
-            case HanheldRadioState.Speaker:
+            case HandheldRadioState.Speaker:
                 if (!uid.Comp.SpeakerEnabled && args.value)
                     AddFrequencyCache(uid.Comp, true);
                 
