@@ -21,4 +21,14 @@
         type: HandheldRadioBoundUserInterface
   - type: Sprite
     sprite: _FarHorizons/Objects/Devices/handheld_radio.rsi
-    state: radio-exped
+    layers:
+      - state: exped-frame
+        map: ["enum.RadioLayers.Frame"]
+      - state: exped-screen
+        map: ["enum.RadioLayers.Screen"]
+        visible: false
+      - state: exped-flap-open
+        map: ["enum.RadioLayers.FlapOpen"]
+        visible: false
+      - state: exped-flap-closed
+        map: ["enum.RadioLayers.FlapClosed"]

@@ -10,6 +10,8 @@ using Content.Shared._Starlight.Language;
 using Content.Shared.Chat;
 using Content.Server._Starlight.Language;
 using Content.Server.Chat.Systems;
+using Content.Shared.Verbs;
+using Content.Server.Popups;
 
 namespace Content.Server.FarHorizons.Tools.HandheldRadio.Systems;
 
@@ -19,6 +21,7 @@ public sealed class HandheldRadioSystem : EntitySystem
     [Dependency] private readonly InteractionSystem _interaction = default!;
     [Dependency] private readonly LanguageSystem _language = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
+    [Dependency] private readonly PopupSystem _popup = default!;
 
     private Dictionary<float, HashSet<HandheldRadioComponent>> frequencyCache = new();
 
@@ -33,6 +36,7 @@ public sealed class HandheldRadioSystem : EntitySystem
         SubscribeLocalEvent<HandheldRadioComponent, DroppedEvent>(OnDropped);
         SubscribeLocalEvent<HandheldRadioComponent, ListenAttemptEvent>(OnAttemptListen);
         SubscribeLocalEvent<HandheldRadioComponent, ListenEvent>(OnListen);
+        SubscribeLocalEvent<HandheldRadioComponent, GetVerbsEvent<AlternativeVerb>>(OnGetAlternativeVerb);
 
         foreach (HandheldRadioComponent radio in EntityManager.EntityQuery<HandheldRadioComponent>()){
             AddFrequencyCache(radio);
@@ -43,6 +47,53 @@ public sealed class HandheldRadioSystem : EntitySystem
     {
         base.Update(frameTime);
         _recentlySent.Clear();
+    }
+
+    private void OnGetAlternativeVerb(Entity<HandheldRadioComponent> uid, ref GetVerbsEvent<AlternativeVerb> args){
+        AlternativeVerb microphoneSwitch = new()
+        {
+            Act = () =>
+            {
+                var ev = new HandheldRadioStateChange(HandheldRadioState.Microphone, !uid.Comp.MicEnabled);
+                OnStateChange(uid, ref ev);
+                var state = Loc.GetString(uid.Comp.MicEnabled ? "handheld-radio-verb-on-state" : "handheld-radio-verb-off-state");
+                var message = Loc.GetString("handheld-radio-verb-mic-switched", ("state", state));
+                _popup.PopupEntity(message, uid);
+
+                if (!TryComp(uid, out UserInterfaceComponent? ui_comp) || 
+                    !_uiSystem.HasUi(uid, HandheldRadioUiKey.Key))
+                    return;
+                
+                _uiSystem.ServerSendUiMessage((uid, ui_comp), HandheldRadioUiKey.Key, ev);
+            },
+            Category = VerbCategory.Switch,
+            Text = Loc.GetString("handheld-radio-verb-mic"),
+            Priority = 2
+        };
+
+        AlternativeVerb speakerSwitch = new()
+        {
+            Act = () =>
+            {
+                var ev = new HandheldRadioStateChange(HandheldRadioState.Speaker, !uid.Comp.SpeakerEnabled);
+                OnStateChange(uid, ref ev);
+                var state = Loc.GetString(uid.Comp.SpeakerEnabled ? "handheld-radio-verb-on-state" : "handheld-radio-verb-off-state");
+                var message = Loc.GetString("handheld-radio-verb-speaker-switched", ("state", state));
+                _popup.PopupEntity(message, uid);
+
+                if (!TryComp(uid, out UserInterfaceComponent? ui_comp) || 
+                    !_uiSystem.HasUi(uid, HandheldRadioUiKey.Key))
+                    return;
+                
+                _uiSystem.ServerSendUiMessage((uid, ui_comp), HandheldRadioUiKey.Key, ev);
+            },
+            Category = VerbCategory.Switch,
+            Text = Loc.GetString("handheld-radio-verb-speaker"),
+            Priority = 1
+        };
+
+        args.Verbs.Add(microphoneSwitch);
+        args.Verbs.Add(speakerSwitch);
     }
 
     private void OnFrequencyChange(Entity<HandheldRadioComponent> uid, ref HandheldRadioFrequencyChange args){
@@ -60,7 +111,7 @@ public sealed class HandheldRadioSystem : EntitySystem
 
     private void OnStateChange(Entity<HandheldRadioComponent> uid, ref HandheldRadioStateChange args){
         switch(args.State){
-            case HanheldRadioState.Microphone:
+            case HandheldRadioState.Microphone:
                 if(!uid.Comp.MicEnabled && args.value)
                     EnsureComp<ActiveListenerComponent>(uid).Range = uid.Comp.MicListeningRange;
 
@@ -69,7 +120,7 @@ public sealed class HandheldRadioSystem : EntitySystem
 
                 uid.Comp.MicEnabled = args.value;
                 break;
-            case HanheldRadioState.Speaker:
+            case HandheldRadioState.Speaker:
                 if (!uid.Comp.SpeakerEnabled && args.value)
                     AddFrequencyCache(uid.Comp, true);
                 

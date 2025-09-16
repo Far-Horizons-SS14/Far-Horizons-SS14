@@ -23,7 +23,17 @@
     speechVerb: Robotic
   - type: Sprite
     sprite: _FarHorizons/Objects/Devices/handheld_radio.rsi
-    state: radio
+    layers:
+      - state: frame
+        map: ["enum.RadioLayers.Frame"]
+      - state: screen
+        map: ["enum.RadioLayers.Screen"]
+        visible: false
+      - state: flap-open
+        map: ["enum.RadioLayers.FlapOpen"]
+        visible: false
+      - state: flap-closed
+        map: ["enum.RadioLayers.FlapClosed"]
   - type: Item
     sprite: _FarHorizons/Objects/Devices/handheld_radio.rsi
     heldPrefix: radio

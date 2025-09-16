@@ -2,7 +2,7 @@ using Robust.Shared.GameStates;
 
 namespace Content.Shared.FarHorizons.Tools.HandheldRadio.Components;
 
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(true)]
 public sealed partial class HandheldRadioComponent : Component
 {
     [DataField]
@@ -20,9 +20,9 @@ public sealed partial class HandheldRadioComponent : Component
     [DataField, AutoNetworkedField]
     public bool SpeakerEnabled = false;
 
-    [DataField, AutoNetworkedField]
+    [DataField]
     public float MicListeningRange = 1.5f;
 
-    [DataField, AutoNetworkedField]
+    [DataField]
     public bool RecievesFromAnyMap = false;
 }

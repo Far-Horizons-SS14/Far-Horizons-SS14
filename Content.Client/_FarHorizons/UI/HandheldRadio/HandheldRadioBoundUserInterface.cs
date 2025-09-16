@@ -48,7 +48,7 @@ namespace Content.Client._FarHorizons.UI.HandheldRadio
                 !_entManager.TryGetComponent(Owner, out HandheldRadioComponent? radio))
                 return;
 
-            SendPredictedMessage(new HandheldRadioStateChange(HanheldRadioState.Microphone, state));
+            SendPredictedMessage(new HandheldRadioStateChange(HandheldRadioState.Microphone, state));
         }
 
         private void OnSpeakerToggled(bool state) {
@@ -56,7 +56,17 @@ namespace Content.Client._FarHorizons.UI.HandheldRadio
                 !_entManager.TryGetComponent(Owner, out HandheldRadioComponent? radio))
                 return;
 
-            SendPredictedMessage(new HandheldRadioStateChange(HanheldRadioState.Speaker, state));
+            SendPredictedMessage(new HandheldRadioStateChange(HandheldRadioState.Speaker, state));
+        }
+
+        protected override void ReceiveMessage(BoundUserInterfaceMessage message){
+            if (_window == null)
+                return;
+
+            if (message is not HandheldRadioStateChange cast)
+                return;
+
+            _window.OnFunctionSwitched(cast);
         }
 
     }
