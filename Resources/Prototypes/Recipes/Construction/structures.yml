@@ -939,18 +939,19 @@
   conditions:
   - !type:TileNotBlocked
 
-#Airlocks
-- type: construction
-  id: Airlock
-  graph: Airlock
-  startNode: start
-  targetNode: airlock
-  category: construction-category-structures
-  objectType: Structure
-  placementMode: SnapgridCenter
-  canBuildInImpassable: false
-  conditions:
-    - !type:TileNotBlocked
+# FarHorizons
+##Airlocks
+#- type: construction
+#  id: Airlock
+#  graph: Airlock
+#  startNode: start
+#  targetNode: airlock
+#  category: construction-category-structures
+#  objectType: Structure
+#  placementMode: SnapgridCenter
+#  canBuildInImpassable: false
+#  conditions:
+#    - !type:TileNotBlocked
 
 - type: construction
   id: AirlockGlass

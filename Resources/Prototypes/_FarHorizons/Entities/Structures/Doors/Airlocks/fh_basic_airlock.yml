@@ -1,0 +1,63 @@
+﻿- type: entity
+  abstract: true
+  id: FHBaseDoorConstructible
+  components:
+    - type: Construction
+      graph: FHAirlock
+      node: airlock
+      containers:
+        - board
+    - type: Sprite
+      snapCardinals: false
+      layers:
+        - state: electrified
+          sprite: Effects/electricity.rsi
+          shader: unshaded
+          visible: false
+          map: ["enum.ElectrifiedLayers.Sparks"]
+        - state: closed
+          map: [ "enum.DoorVisualLayers.Base" ]
+        - state: unlit
+          map: ["enum.DoorVisualLayers.BaseUnlit"]
+        - state: welded
+          map: [ "enum.WeldableLayers.BaseWelded" ]
+          visible: false
+        - state: locked
+          shader: unshaded
+          map: ["enum.DoorVisualLayers.BaseBolted"]
+        - state: spark
+          shader: unshaded
+          map: ["enum.DoorVisualLayers.BaseEmergencyAccess"]
+        - state: panel_open
+          map: ["enum.WiresVisualLayers.MaintenancePanel"]
+        - state: electrified_ai
+          sprite: Interface/Misc/ai_hud.rsi
+          shader: unshaded
+          visible: false
+          map: ["enum.ElectrifiedLayers.HUD"]
+    - type: GenericVisualizer
+      visuals:
+        enum.ElectrifiedVisuals.ShowSparks:
+          enum.ElectrifiedLayers.Sparks:
+            True: { visible: True }
+            False: { visible: False }
+
+
+- type: entity
+  parent:
+    - CMBaseDoor
+    - FHBaseDoorConstructible
+  id: FHAirlock
+  name: airlock
+  description: It opens, it closes, and maybe crushes you.
+  placement:
+    mode: SnapgridCenter
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/basic.rsi
+    - type: Construction
+      graph: FHAirlock
+      node: airlock
+      containers:
+        - board
+    - type: Occluder

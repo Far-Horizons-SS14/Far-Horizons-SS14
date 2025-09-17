@@ -1,0 +1,188 @@
+﻿- type: entity
+  abstract: true
+  parent: BaseStructure
+  id: RMCBaseDoorInvincible
+  name: door
+  placement:
+    mode: SnapgridCenter
+  components:
+    - type: Ricochetable   # FarHorizons
+      chance: 1
+    - type: Pierceable   # FarHorizons
+      level: HardenedMetal   # FarHorizons
+    - type: StationAiWhitelist   # FarHorizons
+    - type: InteractionOutline
+    - type: Sprite
+      snapCardinals: false
+      layers:
+        - state: closed
+          map: [ "enum.DoorVisualLayers.Base" ]
+        - state: unlit
+          map: ["enum.DoorVisualLayers.BaseUnlit"]
+        - state: welded
+          map: [ "enum.WeldableLayers.BaseWelded" ]
+          visible: false
+        - state: locked
+          shader: unshaded
+          map: ["enum.DoorVisualLayers.BaseBolted"]
+        - state: spark
+          shader: unshaded
+          map: ["enum.DoorVisualLayers.BaseEmergencyAccess"]
+        - state: panel_open
+          map: ["enum.WiresVisualLayers.MaintenancePanel"]
+        - state: electrified_ai
+          sprite: Interface/Misc/ai_hud.rsi
+          shader: unshaded
+          visible: false
+          map: ["enum.ElectrifiedLayers.HUD"]
+        - state: electrified
+          sprite: Effects/electricity.rsi
+          shader: unshaded
+          visible: false
+          map: ["enum.ElectrifiedLayers.Sparks"]
+    - type: AnimationPlayer
+    - type: Physics
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeAabb
+            bounds: "-0.49,-0.49,0.49,0.49" # don't want this colliding with walls or they won't close
+          density: 100
+          mask:
+            - FullTileMask
+          layer:
+            - AirlockLayer
+    - type: LayerChangeOnWeld
+      unWeldedLayer: AirlockLayer
+      weldedLayer: WallLayer
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronics ]
+    - type: Damageable   # FarHorizons
+      damageContainer: StructuralInorganic
+      damageModifierSet: StrongMetallic
+    - type: RCDDeconstructable   # FarHorizons
+      cost: 6
+      delay: 8
+      fx: EffectRCDDeconstruct8
+    - type: Destructible   # FarHorizons
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 500
+          behaviors:
+            - !type:DoActsBehavior
+              acts: ["Destruction"]
+            # TODO this should go to the broken node first
+            - !type:PlaySoundBehavior
+              sound:
+                collection: MetalSlam
+    - type: Door
+      crushDamage:
+        types:
+          Blunt: 15
+      openSound:
+        path: /Audio/_RMC14/Machines/airlock.ogg
+      closeSound:
+        path: /Audio/_RMC14/Machines/airlock.ogg
+      denySound:
+        path: /Audio/_RMC14/Machines/buzz_two.ogg
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+    - type: Airlock
+      openingSpriteState: unlit
+      closingSpriteState: unlit
+      denySpriteState: door_deny
+    - type: NavMapDoor   # FarHorizons
+    - type: DoorBolt
+    - type: Appearance
+    - type: ApcPowerReceiver
+      # FarHorizons -- removed idleLoad
+      activeLoad: 20
+      # FarHorizons -- removed channel
+    - type: UserInterface
+      interfaces:
+        enum.AiUi.Key:   # FarHorizons
+          type: StationAiBoundUserInterface
+        enum.WiresUiKey.Key:
+          type: WiresBoundUserInterface
+    - type: Airtight
+      fixVacuum: true
+      noAirWhenFullyAirBlocked: false
+    - type: RadiationBlocker
+      resistance: 3
+    - type: PlacementReplacement
+      key: walls
+    - type: IconSmooth
+      key: walls
+      mode: NoSprite
+    - type: Paintable
+      group: null
+    - type: LightningTarget   # FarHorizons
+      priority: 1
+    - type: BlockWeather   # FarHorizons
+    - type: AccessReader   # FarHorizons
+      containerAccessProvider: board
+    - type: StaticPrice
+      price: 150
+    - type: Tag
+      tags:
+        - Airlock
+      # This tag is used to nagivate the Airlock construction graph. It's needed because the construction graph is shared between Airlock, AirlockGlass, and HighSecDoor
+    - type: PryUnpowered
+    - type: GuideHelp   # FarHorizons
+      guides:
+        - Airlocks
+        - WirePanels
+        - Networking
+
+- type: entity
+  abstract: true
+  parent: RMCBaseDoorInvincible
+  id: CMBaseDoor
+  name: door
+  placement:
+    mode: SnapgridCenter
+  components:
+    - type: Weldable
+      time: 3
+      fuel: 5   # FarHorizons
+    - type: WiresVisuals
+    - type: ElectrocutionHUDVisuals   # FarHorizons
+    - type: ExtensionCableReceiver
+    - type: Electrified
+      enabled: false
+      usesApcPower: true
+    - type: WiresPanel
+    - type: WiresPanelSecurity
+    - type: Wires
+      boardName: wires-board-name-airlock
+      layoutId: Airlock
+    - type: DoorSignalControl
+    - type: DeviceNetwork
+      deviceNetId: Wireless
+      receiveFrequencyId: BasicDevice
+    - type: WirelessNetworkConnection
+      range: 200
+    - type: DeviceLinkSink
+      ports:
+        - Open
+        - Close
+        - Toggle
+        - AutoClose
+        - DoorBolt
+    - type: DeviceLinkSource
+      ports:
+        - DoorStatus
+      lastSignals:   # FarHorizons
+        DoorStatus: false
+    - type: SoundOnOverload
+    - type: SpawnOnOverload
+    - type: MeleeSound
+      soundGroups:
+        Brute:
+          path:
+            "/Audio/Weapons/smash.ogg"
+    # FarHorizons -- removed rmc-based components

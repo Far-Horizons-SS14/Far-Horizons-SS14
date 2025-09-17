@@ -1,0 +1,12 @@
+﻿#Airlocks
+- type: construction
+  id: FHAirlock
+  graph: FHAirlock
+  startNode: start
+  targetNode: airlock
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
