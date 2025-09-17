@@ -1275,6 +1275,10 @@ public sealed partial class ChatSystem : SharedChatSystem
             }
             if (TryComp<ActiveRadioComponent>(uid.Value, out var ActiveRadio))
             {
+                if (ActiveRadio.ReceiveAllChannels)
+                {
+                    return false;
+                }
                 foreach (var id in ActiveRadio.Channels)
                 {
                     if (channel == id)

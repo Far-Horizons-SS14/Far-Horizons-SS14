@@ -331,7 +331,9 @@ namespace Content.Server.Communications
             }
             else
             {
-                _chatSystem.DispatchFilteredCommunicationsConsoleAnnouncement(comp.CurrentChannel, uid, msg, title, announcementSound: comp.Sound, colorOverride: comp.Color, Global: comp.Global); // 🌟Starlight🌟
+                Loc.TryGetString(comp.TitleAlt, out var titlealt);
+                titlealt ??= comp.TitleAlt;
+                _chatSystem.DispatchFilteredCommunicationsConsoleAnnouncement(comp.CurrentChannel, uid, msg, titlealt, announcementSound: comp.Sound, colorOverride: comp.Color, Global: comp.Global); // 🌟Starlight🌟
                 _adminLogger.Add(LogType.Chat, LogImpact.Low, $"{ToPrettyString(message.Actor):player} has sent the following departmental announcement to {comp.CurrentChannel}: {msg}");
                 return;
             }

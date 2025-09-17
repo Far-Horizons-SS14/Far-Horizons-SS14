@@ -32,3 +32,10 @@ comms-console-announcement-title-centcom = Central Command
 comms-console-announcement-title-nukie = Syndicate Nuclear Operative
 comms-console-announcement-title-station-ai = Station AI
 comms-console-announcement-title-wizard = Wizard
+
+# Comms console variant titles alts
+comms-console-announcement-title-station-alt = Communications Console Departmental
+comms-console-announcement-title-centcom-alt = Central Command Departmental
+comms-console-announcement-title-nukie-alt = Syndicate Nuclear Operative Departmental
+comms-console-announcement-title-station-ai-alt = Station AI Departmental
+comms-console-announcement-title-wizard-alt = Wizard Departmental
