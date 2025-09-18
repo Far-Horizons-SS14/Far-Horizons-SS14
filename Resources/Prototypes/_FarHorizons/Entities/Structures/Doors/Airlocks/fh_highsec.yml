@@ -1,0 +1,49 @@
+﻿- type: entity
+  id: FHHighSecDoor
+  parent: FHAirlock
+  name: high security door
+  description: Keeps the bad out and keeps the good in.
+  placement:
+    mode: SnapgridCenter
+  components:
+    - type: StationAiWhitelist
+    - type: Door
+      crushDamage:
+        types:
+          Blunt: 50
+      openSound:
+        path: /Audio/Machines/airlock_open.ogg
+      closeSound:
+        path: /Audio/Machines/airlock_close.ogg
+      denySound:
+        path: /Audio/Machines/airlock_deny.ogg
+    - type: Weldable
+      fuel: 10
+      time: 10
+    - type: ApcPowerReceiver
+      powerLoad: 20
+    - type: ExtensionCableReceiver
+    - type: WiresPanelSecurity
+      securityLevel: maxSecurity
+    - type: Wires
+      boardName: wires-board-name-highsec
+      layoutId: HighSec
+      alwaysRandomize: true
+    - type: Damageable
+      damageContainer: StructuralInorganic
+      damageModifierSet: StrongMetallic
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 1500
+          behaviors:
+            - !type:DoActsBehavior
+              acts: ["Destruction"]
+    - type: Construction
+      graph: FHAirlock
+      node: highSecDoor
+    - type: Tag
+      tags:
+        - HighSecDoor
+        # This tag is used to nagivate the Airlock construction graph. It's needed because this construction graph is shared between Airlock, AirlockGlass, and HighSecDoor

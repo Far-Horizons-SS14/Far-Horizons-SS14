@@ -952,18 +952,19 @@
 #  canBuildInImpassable: false
 #  conditions:
 #    - !type:TileNotBlocked
-
-- type: construction
-  id: AirlockGlass
-  graph: Airlock
-  startNode: start
-  targetNode: glassAirlock
-  category: construction-category-structures
-  objectType: Structure
-  placementMode: SnapgridCenter
-  canBuildInImpassable: false
-  conditions:
-    - !type:TileNotBlocked
+    
+# FarHorizons
+#- type: construction
+#  id: AirlockGlass
+#  graph: Airlock
+#  startNode: start
+#  targetNode: glassAirlock
+#  category: construction-category-structures
+#  objectType: Structure
+#  placementMode: SnapgridCenter
+#  canBuildInImpassable: false
+#  conditions:
+#    - !type:TileNotBlocked
 
 - type: construction
   id: PinionAirlock

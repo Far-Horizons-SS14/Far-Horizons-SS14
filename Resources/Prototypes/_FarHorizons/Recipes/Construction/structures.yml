@@ -10,3 +10,15 @@
   canBuildInImpassable: false
   conditions:
     - !type:TileNotBlocked
+
+- type: construction
+  id: FHAirlockGlass
+  graph: FHAirlock
+  startNode: start
+  targetNode: glassAirlock
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
