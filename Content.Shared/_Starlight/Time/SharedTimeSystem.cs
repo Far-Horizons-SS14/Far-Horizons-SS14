@@ -8,7 +8,7 @@ namespace Content.Shared._Starlight.Time
     {
         [Dependency] private readonly IGameTiming _timing = default!;
         
-        private DateTime _date = DateTime.UtcNow.AddYears(500);
+        private DateTime _date = DateTime.UtcNow.AddYears(300);
 
         private TimeSpan _roundStart;
 
