@@ -35,7 +35,7 @@
       Normal: fire_off
       Warning: fire_off # shouldn't be alarming at a warning
       Danger: fire_on
-      Emagged: fire_emagged
+      Emagged: fire_on  # TODO: FIXME
     hideOnDepowered: [ "fireAlarmState" ]
   - type: Tag
     tags:
@@ -54,11 +54,11 @@
   - type: AlertLevelDisplay
     alertVisuals:
       green: fire_0
-      blue: fire_1
+      blue: fire_0  # TODO: FIXME
       red: fire_2
-      violet: fire_1
-      yellow: fire_1
-      delta: fire_3
+      violet: fire_0  # TODO: FIXME
+      yellow: fire_0  # TODO: FIXME
+      delta: fire_2  # TODO: FIXME
   - type: UserInterface
     interfaces:
       enum.WiresUiKey.Key:
