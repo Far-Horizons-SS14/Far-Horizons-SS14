@@ -3,12 +3,12 @@
 - type: loadout
   id: SecurityDominator
   equipment:
-    pocket1: WeaponDominator
+    pocket2: WeaponDominator
 
 - type: loadout
   id: SecurityTaser
   equipment:
-    pocket1: WeaponAdvancedTaser
+    pocket2: WeaponAdvancedTaser
 
 # Sidearm Options
 - type: loadout
@@ -16,7 +16,8 @@
   dummyEntity: WeaponPistolMk58
   storage:
     back:
-      - WeaponPistolMk58
+      - WeaponPistolMk58Nonlethal #Far Horizons
+      - MagazinePistolRubber #Far Horizons
       - MagazinePistolSP
 
 - type: loadout

@@ -516,7 +516,7 @@
   name: disabler
   parent: [WeaponDisablerPractice, BaseSecurityCommandContraband]
   id: WeaponDisabler
-  description: A self-defense weapon that exhausts organic targets, weakening them until they collapse.
+  description: A standard-issue taser that exhausts organic targets, weakening them until they collapse.
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Battery/disabler.rsi
@@ -533,8 +533,8 @@
       - suitStorage
       - Belt
   - type: HitscanBatteryAmmoProvider
-    proto: DisablerBolt # 🌟Starlight🌟
-    fireCost: 62.5
+    proto: TaserBolt # Far Horizons
+    fireCost: 250
   - type: GuideHelp
     guides:
     - Security

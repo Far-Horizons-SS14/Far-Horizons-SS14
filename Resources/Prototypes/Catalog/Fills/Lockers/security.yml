@@ -203,7 +203,7 @@
 - type: entity
   parent: [GunSafeBaseSecure, BaseSecurityContraband]
   id: GunSafeDisabler
-  name: disabler safe
+  name: less-lethals safe
   components:
   - type: EntityTableContainerFill
     containers:
@@ -215,7 +215,12 @@
   table: !type:AllSelector
     children:
     - id: WeaponDisabler
-      amount: 5
+    - id: WeaponAdvancedTaser
+    - id: WeaponDominator
+    - id: WeaponShotgunDoubleBarreledRubber
+      amount: 3
+    - id: MagazineShotgunBeanbag
+      amount: 3 
 
 - type: entity
   parent: [GunSafeBaseSecure, BaseSecurityContraband]
