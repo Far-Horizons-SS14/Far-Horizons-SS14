@@ -1,0 +1,71 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Sprited by ItsAbby, Modified APC from RMC",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "base",
+      "directions": 4
+    },
+	  {
+      "name": "static"
+    },
+    {
+      "name": "broken",
+      "directions": 4
+    },
+    {
+      "name": "frame",
+      "directions": 4
+    },
+    {
+      "name": "panel",
+      "directions": 4
+    },
+    {
+      "name": "lock0-locked",
+      "directions": 4
+    },
+    {
+      "name": "lock1-locked",
+      "directions": 4
+    },
+    {
+      "name": "display-lack",
+      "directions": 4
+    },
+    {
+      "name": "display-charging",
+      "directions": 4
+    },
+    {
+      "name": "display-full",
+      "directions": 4
+    },
+    {
+      "name": "display-remote",
+      "directions": 4
+    },
+    {
+      "name": "emag-unlit",
+      "directions": 4
+    },
+    {
+      "name": "sparks-unlit",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    }
+  ]
+}
