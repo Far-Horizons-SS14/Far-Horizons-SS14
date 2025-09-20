@@ -1,63 +1,76 @@
 # Stun baton heavily edited for Far Horizons
 - type: entity
-  name: baton
+  name: telescopic baton
   parent: [BaseItem, BaseSecurityContraband]
   id: Stunbaton
-  description: A simple baton designed to incapacite people through breaking their legs. Using this when a suspect is complying is considered a bad tone.
+  description: A simple telescopic baton designed to incapacite people through breaking their legs. Using this when a suspect is complying is considered a bad tone.
   components:
   - type: Sprite
-    sprite: Objects/Weapons/Melee/stunbaton.rsi
-    layers:
-    - state: stunbaton_off
-      map: [ "enum.ToggleableVisuals.Layer" ]
-  - type: MeleeWeapon
-    wideAnimationRotation: -135
-    damage:
-      types:
-        Blunt: 9
-    soundHit:
-      collection: MetalThud
-    angle: 60
-    animation: WeaponArcThrust
-  - type: StaminaDamageOnHit
-    damage: 25
-  - type: StaminaDamageOnCollide
-    damage: 25
+    sprite: _FarHorizons/Objects/Weapons/Melee/telebatonsec.rsi
+    state: batonoff-icon
+  - type: UseDelay #bug fix to prevent spamming use to reset the swing delay (HOLY SHIT THAT SHIT IS STRONG)
+  - type: ItemSwitch
+    state: batonoff
+    states:
+      batonoff: !type:ItemSwitchState
+        verb: batonoff
+        sprite:
+          sprite: _FarHorizons/Objects/Weapons/Melee/telebatonsec.rsi
+          state: batonoff-icon
+        components:
+        - type: Item
+          size: Small
+        - type: MeleeWeapon
+          wideAnimationRotation: -135
+          attackRate: 1
+          damage:
+            types:
+              Blunt: 6
+        - type: StaminaDamageOnHit
+          damage: 10 #Still hurts
+        - type: StaminaDamageOnCollide
+          damage: 10
+        soundStateActivate:
+          path: /Audio/Weapons/telescopicoff.ogg
+          params:
+            volume: -5
+
+      batonon: !type:ItemSwitchState
+        verb: batonon
+        sprite:
+          sprite: _FarHorizons/Objects/Weapons/Melee/telebatonsec.rsi
+          state: batonon-icon
+        components:
+        - type: Item
+          size: Normal
+        - type: MeleeWeapon
+          wideAnimationRotation: -135
+          attackRate: 1
+          damage:
+            types:
+              Blunt: 12
+        - type: StaminaDamageOnHit
+          damage: 25
+        - type: StaminaDamageOnCollide
+          damage: 25
+        soundStateActivate:
+          path: /Audio/Weapons/telescopicon.ogg
+          params:
+            volume: -5
   - type: LandAtCursor # it deals stamina damage when thrown
-  - type: Item
-    size: Normal
   - type: Clothing
-    sprite: Objects/Weapons/Melee/stunbaton.rsi
+    sprite: _FarHorizons/Objects/Weapons/Melee/telebatonsec.rsi
     quickEquip: false
     slots:
     - Belt
   - type: DisarmMalus
     malus: 0.225
   - type: Appearance
-  - type: GenericVisualizer
-    visuals:
-     enum.ToggleableVisuals.Enabled:
-        enum.ToggleableVisuals.Layer:
-          True: {state: stunbaton_on}
-          False: {state: stunbaton_off}
   - type: Tag
     tags:
     - Truncheon
   - type: StaticPrice
     price: 80
-  - type: Riggable
-  - type: SolutionContainerManager
-    solutions:
-      battery:
-        maxVol: 5
-  - type: InjectableSolution
-    solution: battery
-  - type: DrawableSolution
-    solution: battery
-  - type: Explosive
-    explosionType: Default
-    intensitySlope: 1.5
-    maxIntensity: 200
   - type: PhysicalComposition
     materialComposition:
       Steel: 100
