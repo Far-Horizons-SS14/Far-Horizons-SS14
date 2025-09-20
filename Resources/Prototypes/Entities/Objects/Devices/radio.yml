@@ -62,11 +62,18 @@
     layers:
     - state: security
     - state: security-on
+      map: ['screen-layer']
       visible: false
-    state: security
   - type: Item
     sprite: Objects/Devices/securityhandy.rsi
     heldPrefix: walkietalkie
   - type: Tag
     tags:
     - Radio
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.RadioDeviceVisuals.Broadcasting:
+        screen-layer:
+          True: { visible: true }
+          False: { visible: false }
