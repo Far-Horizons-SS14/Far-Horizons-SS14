@@ -91,6 +91,15 @@ uplink-shrapnel-grenade-desc = Launches a spray of sharp fragments dealing great
 uplink-pistol-magazine-name = Pistol Magazine (.35 auto)
 uplink-pistol-magazine-desc = Pistol magazine with 10 cartridges. Compatible with the Viper.
 
+uplink-pistol-magazine-nameFMJ = Pistol Magazine (.35 FMJ)
+uplink-pistol-magazine-descFMJ = Pistol magazine with 10 cartridges
+
+uplink-pistol-magazine-nameSP = Pistol Magazine (.35 SP)
+uplink-pistol-magazine-descSP = Pistol magazine with 10 cartridges.
+
+uplink-pistol-magazine-nameHP = Pistol Magazine (.35 HP)
+uplink-pistol-magazine-descHP = Pistol magazine with 10 cartridges.
+
 uplink-pistol-magazine-c20r-name = SMG magazine (.35 auto)
 uplink-pistol-magazine-c20r-desc = Rifle magazine with 30 cartridges. Compatible with C-20r.
 
