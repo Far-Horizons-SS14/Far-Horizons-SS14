@@ -1,0 +1,18 @@
+﻿- type: entity
+  parent: BaseItem
+  id: DoorBender
+  name: door bender
+  suffix: ADMIN
+  description: A tool for rotating doors
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Tools/Admin/door_bender.rsi
+      state: icon
+    - type: Item
+    - type: ShipLabeler
+      nameMaxChars: 20
+    - type: PhysicalComposition
+    - type: EmitSoundOnLand
+      sound:
+        path: /Audio/Items/wrench_drop.ogg
+    - type: DoorBender
