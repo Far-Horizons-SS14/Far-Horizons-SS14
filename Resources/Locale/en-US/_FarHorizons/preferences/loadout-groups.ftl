@@ -1,0 +1,1 @@
+loadout-group-chemist-hat = Chemist Hat
