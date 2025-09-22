@@ -74,6 +74,10 @@
   - type: Clothing
     sprite: Clothing/Uniforms/Jumpsuit/punpun.rsi
 #Far Horizons - Removed Suit Sensors from Clothing
+#- type: SuitSensor
+#    controlsLocked: false
+#    randomMode: false
+#    mode: SensorCords
 
 - type: entity
   parent: ClothingUniformBase
@@ -913,7 +917,10 @@
       sprite: Clothing/Uniforms/Jumpsuit/tacticool.rsi
     - type: Clothing
       sprite: Clothing/Uniforms/Jumpsuit/tacticool.rsi
-    #Far Horizons - Removed Suit Sensors on clothing
+    #Far Horizons - Removed Suit Sensors from Clothing
+    #- type: SuitSensor
+    #  randomMode: false
+    #  mode: SensorOff
 
 - type: entity
   parent: [ ClothingUniformBase , BaseSalvageContraband ] #Starlight salvContra
