@@ -85,6 +85,7 @@ public sealed partial class BorgSystem : SharedBorgSystem
         SubscribeLocalEvent<BorgChassisComponent, GetCharactedDeadIcEvent>(OnGetDeadIC);
         SubscribeLocalEvent<BorgChassisComponent, GetCharacterUnrevivableIcEvent>(OnGetUnrevivableIC);
         SubscribeLocalEvent<BorgChassisComponent, ItemToggledEvent>(OnToggled);
+        //SubscribeLocalEvent<BorgChassisComponent, BorgToggleSirensEvent>(OnBorgToggleSirens); Far Horizons, borg siren. TODO implement
 
         SubscribeLocalEvent<BorgBrainComponent, MindAddedMessage>(OnBrainMindAdded);
         SubscribeLocalEvent<BorgBrainComponent, PointAttemptEvent>(OnBrainPointAttempt);
@@ -322,6 +323,22 @@ public sealed partial class BorgSystem : SharedBorgSystem
 
         _movementSpeedModifier.RefreshMovementSpeedModifiers(uid);
     }
+    // Far Horizons - borg siren. TODO IMPLEMENT
+    // private void OnBorgToggleSirens(EntityUid uid, BorgChassisComponent component, BorgToggleSelectTypeEvent args)
+    // {
+    //     if (args.Handled)
+    //         return;
+
+    //     args.Handled = true;
+
+    //     component.Siren = !component.Siren;
+
+    //     Dirty(uid, component);
+
+    //     _actions.SetToggled(component.MechToggleSirenActionEntity, component.Siren);
+
+    //     UpdateBorgAppearance(uid, component);
+    // }
 
     private void OnBrainMindAdded(EntityUid uid, BorgBrainComponent component, MindAddedMessage args)
     {
@@ -347,11 +364,11 @@ public sealed partial class BorgSystem : SharedBorgSystem
         }
 
         //Load voice from mind 🌟Starlight🌟
-		if (TryComp<TextToSpeechComponent>(uid, out var ttscomp))
-		{
-			if(mind != null)
-			    ttscomp.VoicePrototypeId = mind.SiliconVoice;
-		}
+        if (TryComp<TextToSpeechComponent>(uid, out var ttscomp))
+        {
+            if (mind != null)
+                ttscomp.VoicePrototypeId = mind.SiliconVoice;
+        }
 
         _mind.TransferTo(mindId, containerEnt, mind: mind);
     }
