@@ -13,4 +13,7 @@ public sealed partial class PainNumbnessComponent : Component
     /// </summary>
     [DataField]
     public ProtoId<LocalizedDatasetPrototype> ForceSayNumbDataset = "ForceSayNumbDataset";
+    
+    [DataField]
+    public bool Temporary = false;  // FarHorizons
 }

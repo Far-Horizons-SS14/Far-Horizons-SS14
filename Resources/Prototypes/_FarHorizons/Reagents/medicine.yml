@@ -1,0 +1,41 @@
+﻿- type: reagent
+  id: Lemintrozine
+  name: reagent-name-lemintrozine
+  group: Medicine
+  desc: reagent-desc-lemintrozine
+  flavor: medicine
+  color: "#afafc4"
+  physicalDesc: reagent-physical-desc-nondescript
+  metabolisms:
+    Poison:
+      effects:
+        - !type:Emote
+          emote: Yawn
+          showInChat: true
+          probability: 0.1
+        - !type:MovespeedModifier
+          walkSpeedModifier: 0.9
+          sprintSpeedModifier: 0.8
+        - !type:ModifyStatusEffect
+          effectProto: StatusEffectNumbness
+          time: 10
+          type: Add
+          refresh: false
+        - !type:ModifyStatusEffect
+          effectProto: StatusEffectDrowsiness
+          time: 12
+          type: Add
+          refresh: false
+          conditions:
+            - !type:ReagentThreshold
+              reagent: Lemintrozine
+              min: 12
+        - !type:HealthChange
+          conditions:
+            - !type:ReagentThreshold
+              reagent: Lemintrozine
+              min: 15
+          damage:
+            types:
+              Poison: 5
+              Asphyxiation: 5
