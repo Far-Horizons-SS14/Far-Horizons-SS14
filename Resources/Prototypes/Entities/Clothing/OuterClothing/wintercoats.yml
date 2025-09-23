@@ -271,20 +271,22 @@
   name: chief medical officer's winter coat
   components:
   - type: Sprite
-    sprite: Clothing/OuterClothing/WinterCoats/coat.rsi
-    layers:
-    - state: CMO-icon
+    sprite: _FarHorizons/Clothing/OuterClothing/WinterCoats/cmo.rsi #Far Horizons
+  #Far Horizons-Start - Separating out the winter coat files
+  #  layers:
+  #  - state: CMO-icon
   - type: Item
-    inhandVisuals:
-      left:
-      - state: CMO-inhand-left
-      right:
-      - state: CMO-inhand-right
+  #  inhandVisuals:
+  #    left:
+  #    - state: CMO-inhand-left
+  #    right:
+  #    - state: CMO-inhand-right
   - type: Clothing
-    sprite: Clothing/OuterClothing/WinterCoats/coat.rsi
-    clothingVisuals:
-      outerClothing:
-      - state: CMO-equipped-OUTERCLOTHING
+    sprite: _FarHorizons/Clothing/OuterClothing/WinterCoats/cmo.rsi #Far Horizons
+  #  clothingVisuals:
+  #    outerClothing:
+  #    - state: CMO-equipped-OUTERCLOTHING
+  #Far Horizons-End
   - type: Pierceable
     level: Metal
   - type: Armor
@@ -486,20 +488,22 @@
   name: medical winter coat
   components:
   - type: Sprite
-    sprite: Clothing/OuterClothing/WinterCoats/coat.rsi
-    layers:
-    - state: MED-icon
+    sprite: _FarHorizons/Clothing/OuterClothing/WinterCoats/medical.rsi #Far Horizons
+  #Far Horizons-Start - Separating out the winter coat files
+  #  layers:
+  #  - state: MED-icon
   - type: Item
-    inhandVisuals:
-      left:
-      - state: MED-inhand-left
-      right:
-      - state: MED-inhand-right
+  #  inhandVisuals:
+  #    left:
+  #    - state: MED-inhand-left
+  #    right:
+  #    - state: MED-inhand-right
   - type: Clothing
-    sprite: Clothing/OuterClothing/WinterCoats/coat.rsi
-    clothingVisuals:
-      outerClothing:
-      - state: MED-equipped-OUTERCLOTHING
+    sprite: _FarHorizons/Clothing/OuterClothing/WinterCoats/medical.rsi #Far Horizons
+  #  clothingVisuals:
+  #    outerClothing:
+  #    - state: MED-equipped-OUTERCLOTHING
+  #Far Horizons-End
   - type: Pierceable
     level: Metal
   - type: Armor
@@ -564,20 +568,22 @@
   name: paramedic winter coat
   components:
   - type: Sprite
-    sprite: Clothing/OuterClothing/WinterCoats/coat.rsi
-    layers:
-    - state: PARA-icon
+    sprite: _FarHorizons/Clothing/OuterClothing/WinterCoats/paramedic.rsi #Far Horizons
+  #Far Horizons-Start - Separating out the winter coat files
+  #  layers:
+  #  - state: PARA-icon
   - type: Item
-    inhandVisuals:
-      left:
-      - state: PARA-inhand-left
-      right:
-      - state: PARA-inhand-right
+  #  inhandVisuals:
+  #    left:
+  #    - state: PARA-inhand-left
+  #    right:
+  #    - state: PARA-inhand-right
   - type: Clothing
-    sprite: Clothing/OuterClothing/WinterCoats/coat.rsi
-    clothingVisuals:
-      outerClothing:
-      - state: PARA-equipped-OUTERCLOTHING
+    sprite: _FarHorizons/Clothing/OuterClothing/WinterCoats/paramedic.rsi #Far Horizons
+  #  clothingVisuals:
+  #    outerClothing:
+  #    - state: PARA-equipped-OUTERCLOTHING
+  # Far Horizons-End
   - type: Pierceable
     level: Metal
   - type: Armor
@@ -740,20 +746,21 @@
   name: virology winter coat
   components:
   - type: Sprite
-    sprite: Clothing/OuterClothing/WinterCoats/coat.rsi
-    layers:
-    - state: VIRO-icon
+    sprite: _FarHorizons/Clothing/OuterClothing/WinterCoats/viro.rsi #Far Horizons
+  #Far Horizons-Start - Separating out the winter coat files
+  #  layers:
+  #  - state: VIRO-icon
   - type: Item
-    inhandVisuals:
-      left:
-      - state: VIRO-inhand-left
-      right:
-      - state: VIRO-inhand-right
+  #  inhandVisuals:
+  #    left:
+  #    - state: VIRO-inhand-left
+  #    right:
+  #    - state: VIRO-inhand-right
   - type: Clothing
-    sprite: Clothing/OuterClothing/WinterCoats/coat.rsi
-    clothingVisuals:
-      outerClothing:
-      - state: VIRO-equipped-OUTERCLOTHING
+    sprite: _FarHorizons/Clothing/OuterClothing/WinterCoats/viro.rsi #Far Horizons
+  #  clothingVisuals:
+  #    outerClothing:
+  #    - state: VIRO-equipped-OUTERCLOTHING
   - type: Pierceable
     level: Metal
   - type: Armor

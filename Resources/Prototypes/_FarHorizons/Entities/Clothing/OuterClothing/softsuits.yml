@@ -1,0 +1,14 @@
+- type: entity
+  parent: ClothingOuterEVASuitBase
+  id: ClothingOuterHardsuitMedicalEVA
+  name: Medical EVA Suit
+  description: A lightweight space suit supplied in the medical department with the basic ability to protect the wearer from the vacuum of space during emergencies.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/Suits/medical_eva.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/Suits/medical_eva.rsi
+  - type: Tag
+    tags:
+    - SuitEVA
+    - WhitelistChameleon

@@ -1,0 +1,29 @@
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatBeretVirologist
+  name: Virology Beret
+  description: A sterile green beret.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Head/Hats/beret_virology.rsi #Far Horizons
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Head/Hats/beret_virology.rsi #Far Horizons
+  - type: Tag
+    tags:
+    - PetWearable
+    - CorgiWearable
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatBeretChemist
+  name: Chemist Beret
+  description: A sterile orange beret.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Head/Hats/beret_chemist.rsi #Far Horizons
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Head/Hats/beret_chemist.rsi #Far Horizons
+  - type: Tag
+    tags:
+    - PetWearable
+    - CorgiWearable
