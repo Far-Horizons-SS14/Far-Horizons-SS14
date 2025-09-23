@@ -1,0 +1,56 @@
+- type: entity #X-22 BSO's gauntlets
+  parent: [ClothingHandsBase, BaseCommandContraband]
+  id: ClotingHandsGauntletsX22
+  name: X-22 enforcement guntlets
+  description: "Made by Nanotrasen's Security Division, these gauntlets—powered by a small, unidentified anomaly—were originally developed for the NT-NC military. Now repurposed for Blueshields, they enhance the wearer's strength and manipulate the embedded anomaly to deliver either a powerful strike or a lethal stun on impact."
+  components:
+  - type: Sprite
+    sprite: /Textures/_FarHorizons/Clothing/Hands/Gloves/energized_gauntlets.rsi
+  - type: Clothing
+    sprite: /Textures/_FarHorizons/Clothing/Hands/Gloves/energized_gauntlets.rsi
+    equipDelay: 5
+    unequipDelay: 2.5
+    equipSound: /Audio/_FarHorizons/Effects/gauntlet-equip.ogg
+    unequipSound: /Audio/_FarHorizons/Effects/gauntlet-equip.ogg
+  - type: Item
+    size: Huge
+  - type: MeleeWeapon #Lowered all of it honestly to make sure no BSO can just one-shot a nuke or two. :)
+    attackRate: 1.25
+    damage:
+      types:
+        Blunt: 6 
+        Shock: 6 #Applies shock damage as the anomaly is constantly shifting giving it off "sparks" when punching enemies.
+    soundHit: /Audio/_FarHorizons/Effects/gauntlet-punch.ogg
+    animation: WeaponArcFist
+    mustBeEquippedToUse: true
+  - type: Pierceable
+    level: Rock
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8 #It's gauntlets, I promise you if you try to whack it with a crowbar, the gauntlets would win.
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9 
+  - type: ClothingSpeedModifier
+    walkModifier: 0.8
+    sprintModifier: 0.8
+  - type: HeldSpeedModifier
+    walkModifier: 0.8
+    sprintModifier: 0.8
+  - type: JumpAbility #Wanted it more than just "big punchy powergaming gloves"
+    jumpDistance: 2.5
+    jumpSound: /Audio/_FarHorizons/Effects/gauntlets-boost.ogg
+  - type: ActionGrant
+    actions:
+    - ActionGravityJump 
+  - type: ItemActionGrant
+    actions:
+    - ActionGravityJump
+    activeIfWorn: true
+  - type: StaminaDamageOnHit #More or less a way to convey that if you are fighting someone as BSO, you either stun them down or FORCE yourself to kill them. The stun-drop will activate before you do "real damage"
+    damage: 20
+    sound: /Audio/_FarHorizons/Effects/gauntlet-stun-punch.ogg
+  - type: StaminaDamageOnCollide
+    damage: 20
+    sound: /Audio/_FarHorizons/Effects/gauntlet-stun-punch.ogg
