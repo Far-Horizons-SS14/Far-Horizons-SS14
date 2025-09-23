@@ -1,12 +1,16 @@
 - type: entity
-  parent: BaseSign
+  parent: [ BaseSign, BaseSignPowered ] #Far Horizons
   id: SignBrigmed
   name: brigmed sign
   description: A sign indicating the brig medical bay.
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/signs.rsi
-    state: brigmed
+    sprite: _Farhorizons/Structures/Wallmounts/signs.rsi #Far Horizons start
+    layers:
+    - state: off
+    - state: brigmed
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"] #Far Horizons end
     
 - type: entity
   parent: BaseSign
