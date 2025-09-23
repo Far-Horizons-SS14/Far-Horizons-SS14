@@ -69,13 +69,15 @@
     autoRot: true
   - type: Ringer
   - type: RingerUplink
+  - type: SuitSensor #Far Horizons
   - type: DeviceNetwork
     deviceNetId: Wireless
-    receiveFrequencyId: PDA
+    transmitFrequencyId: SuitSensor #PDA-Far Horizons
     prefix: device-address-prefix-console
     savableAddress: false
   - type: WirelessNetworkConnection
-    range: 500
+    range: 1200 #500-Far Horizons
+  - type: StationLimitedNetwork #Far Horizons
   - type: CartridgeLoader
     uiKey: enum.PdaUiKey.Key
     preinstalled:
