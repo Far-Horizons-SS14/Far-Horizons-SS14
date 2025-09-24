@@ -1,0 +1,31 @@
+- type: hitscan
+  id: BoltTaserFH
+  name: Taser
+  parent: EnergyTrace
+  bullet:
+    sprite:
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+      state: spark
+    color: "#ffff33"
+  staminaDamage: 33
+  knockdownAmount: 1 # You honestly expect an officer to react in 0.5 seconds? Get real.
+  maxLength: 5
+  damage:
+    types:
+      Heat: 2
+
+- type: hitscan
+  id: HighBoltTaserFH
+  name: High Power Taser
+  parent: EnergyTrace
+  bullet:
+    sprite:
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+      state: spark
+    color: "#ffff33"
+  staminaDamage: 20 #Trades time on the ground for disabling potential, follow up with batong
+  knockdownAmount: 2
+  maxLength: 5
+  damage:
+    types:
+      Heat: 6 #Yeowchers

@@ -1,8 +1,9 @@
+# HEAVILY MODIFIED BY FH.
 - type: entity
-  name: taser
+  name: advanced taser
   parent: [ BaseWeaponBatterySmall, BaseSecurityContraband ]
   id: WeaponAdvancedTaser
-  description: A low-capacity, energy-based stun gun used by security teams to subdue targets at range.
+  description: Energy-based stun gun used by security teams to subdue targets at range, can be switched to a higher power mode.
   components:
   - type: Tag
     tags:
@@ -13,15 +14,15 @@
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
-    - state: disable
+    - state: stun
       map: ["enum.FireModesLayers.FireMode"]
       shader: unshaded
-    - state: disable-unshaded-4
+    - state: stun-unshaded-4
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
   - type: Appearance
   - type: Item
-    heldPrefix: disable4
+    heldPrefix: stun4
   - type: Clothing
     quickEquip: false
     slots:
@@ -30,12 +31,24 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/taser.ogg
   - type: MagazineVisuals
-    magState: disable
+    magState: stun
     steps: 5
     zeroVisible: true
   - type: HitscanBatteryAmmoProvider
-    proto: TaserBolt
+    proto: BoltTaserFH
     fireCost: 166
+  - type: BatteryWeaponFireModes
+    fireModes:
+    - proto: BoltTaserFH
+      fireCost: 166
+      visualState: stun
+      magState: stun
+      heldPrefix: stun4
+    - proto: HighBoltTaserFH
+      fireCost: 500
+      visualState: stun
+      magState: stun
+      heldPrefix: stun4
 
 - type: entity
   name: energy gun
@@ -141,6 +154,7 @@
   - type: ToggleableLightVisuals
     spriteLayer: light
 
+# HEAVILY MODIFIED BY FH.
 - type: entity
   name: dominator
   parent: [ BaseWeaponBatterySmall, BaseSecurityContraband ]
@@ -156,19 +170,19 @@
     - state: disable-unshaded-0
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
-  - type: MagazineVisuals
-    magState: disable
+  - type: MagazineVisuals #FH edit
+    magState: stun
     steps: 4
     zeroVisible: true
   - type: Lock
   - type: AccessReader
     access: [["Security"]]
-  - type: HitscanBatteryAmmoProvider
-    proto: TaserBolt
+  - type: HitscanBatteryAmmoProvider  #FH edit
+    proto: BoltTaserFH
     fireCost: 166
   - type: BatteryWeaponFireModes
     fireModes:
-    - proto: TaserBolt
+    - proto: BoltTaserFH #FH edit
       fireCost: 166
       magState: stun
       conditions:
@@ -180,14 +194,24 @@
         - yellow
         - red
         - gamma
-    - proto: RedLaserBeam
+    - proto: RedLaserBeam #FH edit
       fireCost: 66.6
       magState: lethal
       conditions:
       - !type:AlertLevelCondition
         alertLevels:
+        - blue
         - violet
         - yellow
+        - red
+        - gamma
+    - proto: DestroyBeam #FH edit
+      fireCost: 500
+      magState: destroy
+      conditions:
+      - !type:AlertLevelCondition
+        alertLevels:
+        - violet
         - red
         - gamma
 

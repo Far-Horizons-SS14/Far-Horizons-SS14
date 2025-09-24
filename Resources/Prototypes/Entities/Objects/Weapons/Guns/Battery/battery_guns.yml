@@ -512,29 +512,43 @@
     - Taser
     - Sidearm
 
+# HEAVILY MODIFIED BY FH.
 - type: entity
-  name: disabler
+  name: taser
   parent: [WeaponDisablerPractice, BaseSecurityCommandContraband]
   id: WeaponDisabler
+  suffix: FH SEC
   description: A standard-issue taser that exhausts organic targets, weakening them until they collapse.
   components:
+  - type: Tag
+    tags:
+    - Taser
+    - Sidearm
   - type: Sprite
-    sprite: Objects/Weapons/Guns/Battery/disabler.rsi
+    sprite: Objects/Weapons/Guns/Battery/taser.rsi
     layers:
-      - state: base
-        map: ["enum.GunVisualLayers.Base"]
-      - state: mag-unshaded-0
-        map: ["enum.GunVisualLayers.MagUnshaded"]
-        shader: unshaded
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-0
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Appearance
+  - type: Item
+    heldPrefix: taser4
   - type: Clothing
-    sprite: Objects/Weapons/Guns/Battery/disabler.rsi
     quickEquip: false
     slots:
-      - suitStorage
-      - Belt
+    - Belt
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/taser.ogg
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: true
   - type: HitscanBatteryAmmoProvider
-    proto: TaserBolt # Far Horizons
-    fireCost: 250
+    proto: BoltTaserFH
+    fireCost: 200
   - type: GuideHelp
     guides:
     - Security
