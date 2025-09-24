@@ -21,7 +21,7 @@
         mask:
         - TableMask
   - type: Sprite
-    sprite: Structures/Furniture/furniture.rsi
+    sprite: _FarHorizons/Structures/Furniture/furniture.rsi #Far Horizons
     state: bed
     noRot: true
   - type: Strap
@@ -81,6 +81,18 @@
   - type: Construction
     graph: bed
     node: medicalbed
+    #Far Horizons-Start - Letting Medical beds also receive the operating computer visuals
+  - type: OperatingTable
+  - type: InteractionOutline
+  - type: DeviceList
+  - type: DeviceNetwork
+    deviceNetId: Wired
+  - type: DeviceLinkSink
+    ports:
+      - VitalsMonitorReceiver
+  - type: PlaceableSurface
+    isPlaceable: false
+    #Far Horizons-End
   - type: GuideHelp
     guides:
     - MedicalDoctor
