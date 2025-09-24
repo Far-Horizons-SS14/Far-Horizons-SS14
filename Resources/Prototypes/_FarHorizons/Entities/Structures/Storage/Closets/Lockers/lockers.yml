@@ -1,0 +1,160 @@
+
+# Security Officer
+- type: entity
+  id: LockerSecurityFH
+  parent: LockerBaseSecure
+  name: security officer's locker
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Storage/closet.rsi
+  - type: EntityStorageVisuals
+    stateBaseClosed: sec
+    stateDoorOpen: sec_open
+    stateDoorClosed: sec_door
+  - type: AccessReader
+    access: [["Security"]]
+
+- type: entity
+  id: LockerSecurityLargeFH
+  parent: LockerBaseSecure
+  name: large security officer's locker
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Storage/closet-large.rsi
+  - type: EntityStorageVisuals
+    stateBaseClosed: sec
+    stateDoorOpen: sec_open
+    stateDoorClosed: sec_door
+  - type: AccessReader
+    access: [["Security"]]
+
+- type: entity
+  id: LockerSecurityLargeFHL
+  parent: LockerBaseSecure
+  name: large security officer lockers
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Storage/closet-left-large.rsi
+  - type: EntityStorageVisuals
+    stateBaseClosed: sec_L
+    stateDoorOpen: sec_L_open
+    stateDoorClosed: sec_L_door
+  - type: AccessReader
+    access: [["Security"]]
+
+- type: entity
+  id: LockerSecurityLargeFHM
+  parent: LockerBaseSecure
+  name: large security officer lockers
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Storage/closet-middle-large.rsi
+  - type: EntityStorageVisuals
+    stateBaseClosed: sec_M
+    stateDoorOpen: sec_M_open
+    stateDoorClosed: sec_M_door
+  - type: AccessReader
+    access: [["Security"]]
+
+- type: entity
+  id: LockerSecurityLargeFHR
+  parent: LockerBaseSecure
+  name: large security officer lockers
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Storage/closet-right-large.rsi
+  - type: EntityStorageVisuals
+    stateBaseClosed: sec_R
+    stateDoorOpen: sec_R_open
+    stateDoorClosed: sec_R_door
+  - type: AccessReader
+    access: [["Security"]]
+
+# Warden
+- type: entity
+  id: LockerWardenFH
+  parent: LockerLargeBaseSecure
+  name: warden's locker
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Storage/closet.rsi
+  - type: EntityStorageVisuals
+    stateBaseClosed: warden
+    stateDoorOpen: sec_open
+    stateDoorClosed: warden_door
+  - type: AccessReader
+    access: [["Armory"]]
+  - type: WiresPanelSecurity
+    securityLevel: medSecurity
+
+- type: entity
+  id: LockerWardenLargeFH
+  parent: LockerLargeBaseSecure
+  name: large warden's locker
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Storage/closet-large.rsi
+  - type: EntityStorageVisuals
+    stateBaseClosed: warden
+    stateDoorOpen: sec_open
+    stateDoorClosed: warden_door
+  - type: AccessReader
+    access: [["Armory"]]
+  - type: WiresPanelSecurity
+    securityLevel: medSecurity
+  
+# Brigmedic
+- type: entity
+  id: LockerBrigmedicFH
+  parent: LockerLargeBaseSecure
+  name: brigmedic's locker
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Storage/closet.rsi
+  - type: EntityStorageVisuals
+    stateBaseClosed: brigmedic
+    stateDoorOpen: sec_open
+    stateDoorClosed: brigmedic_door
+  - type: AccessReader
+    access: [["Brigmedic"]]
+
+- type: entity
+  id: LockerBrigmedicLargeFH
+  parent: LockerLargeBaseSecure
+  name: large brigmedic's locker
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Storage/closet-large.rsi
+  - type: EntityStorageVisuals
+    stateBaseClosed: brigmedic
+    stateDoorOpen: sec_open
+    stateDoorClosed: brigmedic_door
+  - type: AccessReader
+    access: [["Brigmedic"]]
+
+# HoS
+- type: entity
+  id: LockerHeadOfSecurityFH
+  parent: LockerLargeBaseSecure
+  name: head of security's locker
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Storage/closet.rsi
+  - type: EntityStorageVisuals
+    stateBaseClosed: hos
+    stateDoorOpen: hos_open
+    stateDoorClosed: hos_door
+  - type: AccessReader
+    access: [["HeadOfSecurity"]]
+  - type: WiresPanelSecurity
+    securityLevel: medSecurity
