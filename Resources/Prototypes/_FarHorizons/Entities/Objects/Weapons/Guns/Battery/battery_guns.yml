@@ -46,17 +46,9 @@
       magState: disable
       visualState: disable-unshaded
     - proto: RedLaserBeam
-      fireCost: 200
+      fireCost: 175
       magState: kill
       visualState: kill-unshaded
-      conditions:
-      - !type:AlertLevelCondition
-        alertLevels:
-        - blue
-        - violet
-        - yellow
-        - red
-        - gamma
   - type: Battery
     maxCharge: 1500
     startingCharge: 1500
