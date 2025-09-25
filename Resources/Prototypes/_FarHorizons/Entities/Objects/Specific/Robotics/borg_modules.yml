@@ -69,6 +69,22 @@
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-laser2-module } # TODO icon
 
 - type: entity
+  parent: [BaseBorgModuleSecurity,BaseProviderBorgModule,BaseSecurityContraband]
+  id: BorgModuleLaserCarbine
+  name: Laser Carbine Cyborg module.
+  description: Module with a Laser Carbine specifically designed for cyborgs.
+  components:
+  - type: Sprite
+    layers:
+    - state: security
+    - state: icon-security
+  - type: ItemBorgModule
+    hands:
+    - item: BorgWeaponWeaponLaserCarbine
+  - type: BorgModuleIcon
+    icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-laser2-module } # TODO icon
+
+- type: entity
   parent: BaseBorgModule
   id: BaseBorgModuleCentcomm
   abstract: true
