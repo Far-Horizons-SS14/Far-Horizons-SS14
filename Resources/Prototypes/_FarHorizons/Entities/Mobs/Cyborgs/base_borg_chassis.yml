@@ -65,6 +65,21 @@
     maxModules: 6
     hasMindState: secborg_e
     noMindState: secborg_e_r
+
+- type: entity
+  parent: BorgChassisSecurity
+  id: BorgChassisSecurityModule
+  suffix: Module
+  components:
+  - type: ContainerFill
+    containers:
+      borg_module:
+      - BorgModuleTool
+      - BorgModuleBaton
+      - BorgModuleDominator
+
+  
+
 - type: entity
   parent: BaseBorgChassisNotIonStormable
   id: BaseNTNCChassis
