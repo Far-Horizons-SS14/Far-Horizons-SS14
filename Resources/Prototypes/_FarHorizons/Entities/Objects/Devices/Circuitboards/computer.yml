@@ -1,0 +1,10 @@
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: SecurityRoboticsConsoleCircuitboard
+  name: security robotics control console board
+  description: A computer printed circuit board for a security robotics control console.
+  components:
+    - type: Sprite
+      state: cpu_security
+    - type: ComputerBoard
+      prototype: ComputerSecurityRoboticsControl
