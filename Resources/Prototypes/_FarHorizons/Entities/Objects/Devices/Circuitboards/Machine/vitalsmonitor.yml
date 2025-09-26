@@ -1,0 +1,12 @@
+- type: entity
+  id: VitalsMonitorMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: Vitals Monitor Machine board
+  description: A machine printed circuit board for a vitals monitor.
+  components:
+    - type: MachineBoard
+      prototype: VitalsMonitor
+      stackRequirements:
+        Manipulator: 4
+        Cable: 4
+        Glass: 2
