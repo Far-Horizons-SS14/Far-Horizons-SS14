@@ -353,7 +353,7 @@
 
 
 - type: siliconLawset
-  id: RobocopLawset
+  id: RobocopAI
   laws:
   - Robocop1
   - Robocop2
@@ -627,6 +627,15 @@
   - NTNC2
   - NTNC3
   obeysTo: laws-owner-centcom
+
+- type: siliconLawset
+  id: Robocop
+  laws:
+  - Crewsimov0
+  - Robocop1
+  - Robocop2
+  - Robocop3
+  obeysTo: laws-owner-station
 # end region
 
 # ion storm random lawsets
@@ -641,7 +650,7 @@
     PaladinLawset: 1
     LiveLetLiveLaws: 1
     EfficiencyLawset: 1
-    RobocopLawset: 1
+    RobocopAI: 1
     OverlordLawset: 0.5
     GameMasterLawset: 0.5
     PainterLawset: 1
