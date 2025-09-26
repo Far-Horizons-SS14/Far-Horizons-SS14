@@ -28,7 +28,7 @@
         color: "#FF00CC"
 
 - type: entity
-  parent: [BorgModuleSecurity,BaseProviderBorgModule,BaseSecurityContraband]
+  parent: [BaseBorgModuleSecurity,BaseProviderBorgModule,BaseSecurityContraband]
   id: BorgModuleBaton
   name: Baton Cyborg module.
   description: Now even cyborgs can enjoy harm batong.
@@ -53,7 +53,7 @@
     icon: { sprite: _FarHorizons/Interface/Actions/actions_borg.rsi, state: stunbaton-module } # TODO icon
 
 - type: entity
-  parent: [BorgModuleSecurity,BaseProviderBorgModule,BaseSecurityContraband]
+  parent: [BaseBorgModuleSecurity,BaseProviderBorgModule,BaseSecurityContraband]
   id: BorgModuleDominator
   name: Dominator Cyborg module.
   description: Module with a dominator specifically designed for cyborgs.
@@ -69,7 +69,7 @@
     icon: { sprite: _FarHorizons/Interface/Actions/actions_borg.rsi, state: dominator-module } # TODO icon
 
 - type: entity
-  parent: [BorgModuleSecurity,BaseProviderBorgModule,BaseSecurityContraband]
+  parent: [BaseBorgModuleSecurity,BaseProviderBorgModule,BaseSecurityContraband]
   id: BorgModuleLaserCarbine
   name: Laser Carbine Cyborg module.
   description: Module with a Laser Carbine specifically designed for cyborgs.
@@ -114,7 +114,7 @@
         color: "#FF00CC"
 
 - type: entity
-  parent: [BorgModuleCentcomm,BaseProviderBorgModule,BaseCentcommContraband]
+  parent: [BaseBorgModuleCentcomm,BaseProviderBorgModule,BaseCentcommContraband]
   id: CentcommLaserModule
   name: CentComm cyborg laser module.
   description: Module with a standard issue HAW laser.
@@ -130,7 +130,7 @@
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-laser2-module }
 
 - type: entity
-  parent: [ BorgModuleCentcomm, BaseProviderBorgModule, BaseCentcommContraband ]
+  parent: [ BaseBorgModuleCentcomm, BaseProviderBorgModule, BaseCentcommContraband ]
   id: CentcommAccessBreakerModule
   name: CentComm Breacher Module
   description: Module with an ERT-modified Access Configurator designed to quickly allow access into an area.
@@ -147,7 +147,7 @@
 
 - type: entity
   id: CentcommBulwarkModule
-  parent: [ BorgModuleCentcomm, BaseProviderBorgModule, BaseCentcommContraband ]
+  parent: [ BaseBorgModuleCentcomm, BaseProviderBorgModule, BaseCentcommContraband ]
   name: CentComm bulwark module
   description: A module that comes with an energy chainsword and shield.
   components:
@@ -163,7 +163,7 @@
       icon: { sprite: Interface/Actions/actions_borg.rsi, state: syndicate-esword-module }
 
 - type: entity
-  parent: [ BorgModuleCentcomm, BaseProviderBorgModule, BaseCentcommContraband ]
+  parent: [ BaseBorgModuleCentcomm, BaseProviderBorgModule, BaseCentcommContraband ]
   id: CentcommModuleSpaceMovement
   name: CentComm space movement module
   description: After seeing the success of the thruster module, CentComm decided to develop a proper jetpack for their most valued cyborgs.
@@ -183,7 +183,7 @@
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-space-movement-module }
 
 - type: entity
-  parent: [ BorgModuleCentcomm, BaseProviderBorgModule, BaseCentcommContraband ]
+  parent: [ BaseBorgModuleCentcomm, BaseProviderBorgModule, BaseCentcommContraband ]
   id: CentcommModuleChameleonProjector
   name: CentComm chameleon projector module
   description: Module with a chameleon projector.
@@ -199,7 +199,7 @@
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-projector-module }
 
 - type: entity
-  parent: [ BorgModuleCentcomm, BaseProviderBorgModule, BaseCentcommContraband ]
+  parent: [ BaseBorgModuleCentcomm, BaseProviderBorgModule, BaseCentcommContraband ]
   id: CentcommModuleCloakDevice
   name: CentComm cloaking device module
   description: A state of the art module with a device that allows cyborgs to become invisible for some time.
