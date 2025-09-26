@@ -1,10 +1,20 @@
+- type: entity
+  abstract: true
+  parent: BaseBorgTransponder
+  id: BaseSecBorgTransponder
+  components:
+  - type: DeviceNetwork
+    receiveFrequencyId: SecborgControl
+    transmitFrequencyId: SecurityRoboticsConsole
+
+
 - type: entity # TODO implement sirens
-  parent: BaseBorgChassis
+  parent: [BaseBorgChassis, BaseSecBorgTransponder]
   id: BorgChassisSecurity
   name: security cyborg
   description: A special chassis produced by Nanotrasen to aid station side security forces in their duties.
-  save: false
   components:
+  - type: BorgTransponder
   - type: TextToSpeech
   - type: Sprite
     sprite: _FarHorizons/Mobs/Silicon/chassis.rsi
@@ -30,7 +40,7 @@
   - type: Access
     enabled: false
     groups:
-    - AllAccess
+    - Security
     tags: # Ensure it can go anywhere inside of sec.
     - HeadOfSecurity
   - type: AccessReader
