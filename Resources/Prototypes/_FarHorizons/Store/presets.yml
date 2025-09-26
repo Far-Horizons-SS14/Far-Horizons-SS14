@@ -1,0 +1,16 @@
+﻿# CC Uplink
+- type: entity
+  id: StorePresetCC
+  abstract: true
+  components:
+    - type: Store
+      name: store-preset-name-cc-uplink
+      categories:
+        - CCUplinkWeaponry
+        - CCUplinkWearables
+        - CCUplinkUtils
+        - CCUplinkPointless
+      currencyWhitelist:
+        - ActionPoint
+      balance:
+        ActionPoint: 0

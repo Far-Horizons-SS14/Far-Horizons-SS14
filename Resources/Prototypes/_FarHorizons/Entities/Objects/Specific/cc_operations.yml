@@ -1,0 +1,35 @@
+﻿
+# Uplinks
+- type: entity
+  parent: [BaseUplinkRadio, StorePresetCC, BaseCentcommContraband]
+  id: BaseCCUplinkRadio
+  name: Special Requisitions Device
+  description: TOP SECRET NT device for special operation equipment requisitions.
+  suffix: Empty
+  components:
+    - type: Sprite
+      sprite: _FarHorizons\Objects\Devices\uplink.rsi
+      layers:
+        - state: uplink-radio
+    - type: Item
+      sprite: _FarHorizons\Objects\Devices\uplink.rsi
+      heldPrefix: uplink-radio-inhand-left
+    - type: UserInterface
+      interfaces:
+        enum.StoreUiKey.Key:
+          type: StoreBoundUserInterface
+    - type: ActivatableUI
+      key: enum.StoreUiKey.Key
+    - type: Store
+      balance:
+        ActionPoint: 0
+
+- type: entity
+  id: DebugCCUplinkRadio
+  parent: BaseCCUplinkRadio
+  name: Special Requisitions Device
+  suffix: DEBUG
+  components:
+    - type: Store
+      balance:
+        ActionPoint: 100

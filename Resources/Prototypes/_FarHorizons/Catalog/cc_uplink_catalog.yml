@@ -1,0 +1,131 @@
+﻿- type: listing
+  id: BSOGun
+  name: X-01 multiphase energy gun
+  description: This is an expensive, modern version of the antique laser pistol, with several unique fire modes.
+  productEntity: WeaponMultiphaseGun
+  cost:
+    ActionPoint: 5
+  categories:
+    - CCUplinkWeaponry
+
+- type: listing
+  id: BSOSMG
+  name: X-49 multiphase rifle "Rushdown"
+  description: After the success of the X-01, Nanotrasen developed a leaner, bulkier variant of the weapon designed for close-quarters combat. It boasts the highest rate of fire manufacturers can achieve and features a self-recharging battery like its predecessor—though it recharges significantly slower
+  productEntity: WeaponMultiphaseSMG
+  cost:
+    ActionPoint: 15
+  categories:
+    - CCUplinkWeaponry
+
+- type: listing
+  id: DSPistol
+  name: Pulse pistol
+  description: An extremely compact version of the pulse carabine.
+  productEntity: WeaponPulsePistol
+  cost:
+    ActionPoint: 50
+  categories:
+    - CCUplinkWeaponry
+
+- type: listing
+  id: BSOVisor
+  name: Blueshield Officer's Visor
+  description: An innovative visor that scans the humanoids in view and provides accurate data about their ID status, security records, and medical information.
+  productEntity: ClothingEyesVisorBlueShield
+  cost:
+    ActionPoint: 3
+  categories:
+    - CCUplinkWearables
+
+- type: listing
+  id: BSOHardsuit
+  name: blueshield officer's hardsuit
+  description: A high-tech hardsuit perfect for diving in front of Mr. Pre- Er, Captain.
+  productEntity: ClothingOuterHardsuitBlueshield
+  cost:
+    ActionPoint: 10
+  categories:
+    - CCUplinkWearables
+
+- type: listing
+  id: BSOBoots
+  name: blueshield magboots
+  description: A pair of standard magnetic boots, issued alongside the BSO Hardsuit.
+  productEntity: ClothingShoesBootsMagBSO
+  cost:
+    ActionPoint: 10
+  categories:
+    - CCUplinkWearables
+
+- type: listing
+  id: CCTrackingImplant
+  name: tracking implanter
+  productEntity: TrackingImplanter
+  icon: { sprite: Objects/Specific/Medical/implanter.rsi, state: implanter0 }
+  cost:
+    ActionPoint: 1
+  categories:
+    - CCUplinkUtils
+
+- type: listing
+  id: CCDeathRattleImplanter
+  name: centcomm death rattle implanter
+  icon: { sprite: Objects/Specific/Medical/implanter.rsi, state: implanter0 }
+  productEntity: DeathRattleImplanterCentcomm
+  cost:
+    ActionPoint: 5
+  categories:
+    - CCUplinkUtils
+
+- type: listing
+  id: BSOIdCard
+  name: BSO ID card
+  description: Spare ID card... In case you managed to lost yours.
+  icon: { sprite: _Starlight/Objects/Misc/id_cards.rsi, state: silver }
+  productEntity: BlueShieldIDCard
+  cost:
+    ActionPoint: 5
+  categories:
+    - CCUplinkUtils
+
+- type: listing
+  id: DSIdCard
+  name: Death Squad ID card
+  description: Use only with direct CC approval.
+  icon: { sprite: Objects/Misc/id_cards.rsi, state: centcom }
+  productEntity: CentcomIDCardDeathsquad
+  cost:
+    ActionPoint: 30
+  categories:
+    - CCUplinkUtils
+
+- type: listing
+  id: CCBalloonNT
+  name: nanotrasen balloon
+  description: Specially designed to inflict maximum psychological damage to Syndicate operatives.
+  productEntity: BalloonNT
+  cost:
+    ActionPoint: 1
+  categories:
+    - CCUplinkPointless
+
+- type: listing
+  id: CCFlagNT
+  name: Nanotrasen handheld flag
+  description: "Glory to NT! Wait, they really made a handheld flag for a corporation?"
+  productEntity: NTHandyFlag
+  cost:
+    ActionPoint: 1
+  categories:
+    - CCUplinkPointless
+
+- type: listing
+  id: CCFlippoNT
+  name: Nanotrasen Flippo
+  description: "A navy blue luxury flippo, generally handed out to loyal heads of staff instead of a payraise. Fueled with liquid plasma"
+  productEntity: NanotrasenFlippo
+  cost:
+    ActionPoint: 5
+  categories:
+    - CCUplinkPointless

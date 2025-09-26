@@ -1,0 +1,20 @@
+﻿- type: entity
+  id: CCUplinkImplant
+  name: CC uplink implant
+  description: A subdermal implant containing the CC uplink radio.
+  parent: [ BaseSubdermalImplant, StorePresetCC ]
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: SubdermalImplant
+      implantAction: ActionOpenCCUplinkImplant
+      whitelist:
+        components:
+          - Hands
+    - type: Store
+      balance:
+        ActionPoint: 0
+    - type: UserInterface
+      interfaces:
+        enum.StoreUiKey.Key:
+          type: StoreBoundUserInterface
+    - type: CCUplinkImplant

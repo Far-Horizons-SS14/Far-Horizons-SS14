@@ -1,0 +1,10 @@
+﻿
+- type: entity
+  id: CCUplinkImplanter
+  suffix: CC uplink
+  parent: [BaseImplantOnlyImplanter, BaseCentcommContraband]
+  name: CC implanter
+  description: A brittle disposable syringe exclusively designed for the injection of subdermal implants for CC agents.
+  components:
+    - type: Implanter
+      implant: CCUplinkImplant
