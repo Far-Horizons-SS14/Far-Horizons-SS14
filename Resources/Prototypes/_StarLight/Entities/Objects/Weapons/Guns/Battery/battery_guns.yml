@@ -194,19 +194,19 @@
         - yellow
         - red
         - gamma
-    - proto: RedLaserBeam #FH edit
-      fireCost: 66.6
+    - proto: RedLaserBeamDominator #FH edit
+      fireCost: 50 #FH edit
       magState: lethal
       conditions:
       - !type:AlertLevelCondition
         alertLevels:
-        - blue
+        - blue #FH edit
         - violet
         - yellow
         - red
         - gamma
-    - proto: DestroyBeam #FH edit
-      fireCost: 500
+    - proto: DestroyBeamDominator #FH edit
+      fireCost: 250
       magState: destroy
       conditions:
       - !type:AlertLevelCondition

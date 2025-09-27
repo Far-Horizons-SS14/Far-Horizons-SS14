@@ -29,3 +29,36 @@
   damage:
     types:
       Heat: 6 #Yeowchers
+
+- type: hitscan
+  id: DestroyBeamDominator
+  name: destroying beam
+  parent: LaserTrace
+  muzzleFlash:
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    state: muzzle_blue
+  travelFlash:
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    state: beam_blue
+  impactFlash:
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    state: impact_blue
+  damage:
+    types:
+      Heat: 30
+
+- type: hitscan
+  id: RedLaserBeamDominator
+  name: laser beam
+  parent: LaserTrace
+  damage:
+    types:
+      Heat: 15
+
+- type: hitscan
+  id: RedLaserBeamCarbine
+  name: laser beam
+  parent: LaserTrace
+  damage:
+    types:
+      Heat: 18
