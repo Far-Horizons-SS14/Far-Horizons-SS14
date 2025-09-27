@@ -1,0 +1,14 @@
+- type: entity
+  id: SpawnPointSecBorg
+  parent: SpawnPointJobBase
+  name: security cyborg
+  components:
+  - type: SpawnPoint
+    job_id: SecBorg
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: _FarHorizons/Mobs/Silicon/Chassis/security.rsi
+      state: borg
+    - sprite: _FarHorizons/Mobs/Silicon/Chassis/security.rsi
+      state: borg_e
