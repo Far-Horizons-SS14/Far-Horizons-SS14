@@ -208,34 +208,3 @@
   # Pet
   petSuccessString: petting-success-service-cyborg
   petFailureString: petting-failure-service-cyborg
-
-# Far Horizons
-# Generic borg
-- type: borgType
-  id: security
-
-  # Description
-  dummyPrototype: BorgChassisSecurity
-
-  # Functional
-  extraModuleCount: 3
-  moduleWhitelist:
-    tags:
-    - BorgModuleGeneric
-    - BorgModuleSecurity
-
-  defaultModules:
-  - BorgModuleTool
-  - BorgModuleBaton
-  - BorgModuleDominator
-  radioChannels:
-  - Science
-  - Security
-
-  # Visual
-  inventoryTemplateId: borgShort
-  spritePath: _FarHorizons/Mobs/Silicon/Chassis/security.rsi
-
-  # Pet
-  petSuccessString: petting-success-generic-cyborg
-  petFailureString: petting-failure-generic-cyborg  
