@@ -1,8 +1,20 @@
 <Document>
   # Corporate Law: Crime Listing
-  Crime codes are colored by linked crime groups, which are collections of non-stackable crimes. Suffixes are also included in the Quick Crime Guide to identify linked crimes.
+  The enforcement of Corporate Law is the duty of those vested with such responsibility and no others. Unauthorized civilian enforcement of the law is classified as vigilantism and is strictly illegal. Only the Captain or Central Command may authorize civilian participation in the enforcement of Corporate Law, under dire circumstances.
+  Actions to preserve one’s own life and property, or the life of another, are not classified as vigilantism so long as all other laws are followed. Acting to assist an on-scene officer may be counted as an exception and not vigilantism on a case by case basis, if the action was deemed necessary to prevent further harm to the officer or other civilians.
 
+  Those vested with the responsibility to enforce Corporate Law are defined as follows:
+  - Security - Members of the Security Department are always valid to enforce Corporate Law, and should be deferred to by all other law enforcement within reason.
+  - Captain - The Captain is permitted to enforce Corporate Law only in the event Security is understaffed and/or they are following Standard Operating Procedures.
+  - Blue Shield - Members of Blue Shield are sometimes valid to enforce Corporate Law, but only if it is to prevent further harm to Command or Central Command personnel.
+  - Mercenaries - Hired Mercenaries under the direct employ of Central Command may, in extreme circumstances, be permitted by Central Command to enforce Corporate Law. They are however required to operate under the command of the Head of Security and not to circumvent Security.
+  - Emergency Response Teams - Members of an ERT are valid to enforce Corporate Law on deployment to Stations. They are however required to issue sentencing under the command of the Head of Security and not circumvent Security, unless ordered otherwise by Central Command.
+
+  *** Penal Codes 13 and 14 directly apply to sanctioned enforcers of the Corporate Law Only. ***
+  
   ## Quick Crime Guide
+  Crime codes are colored by linked crime groups, which are collections of non-stackable crimes. Suffixes are also included in the Quick Crime Guide to identify linked crimes.
+  Enforcement of the Law
   <Table Columns="6">
     <ColorBox>
       <Box>
@@ -258,29 +270,28 @@
         07
       </Box>
     </ColorBox>
-    <ColorBox Color="#3b4354">
+    <ColorBox Color="#6a724eff">
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
         Disturbance (7)
       </Box>
     </ColorBox>
-    <ColorBox Color="#3b4354">
+    <ColorBox Color="#6a724eff">
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
         Vigilantism (7)
       </Box>
     </ColorBox>
-    <ColorBox Color="#3b4354">
+    <ColorBox Color="#6a724eff">
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
         Rioting (7)
       </Box>
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        Unlawful Detainment
+        Kidnapping
       </Box>
     </ColorBox>
-    <ColorBox Color="#4d2e2e">
+    <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        Unlawful Execution (6)
       </Box>
     </ColorBox>
     <ColorBox>
@@ -398,6 +409,63 @@
         12
       </Box>
     </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#4d2e2e">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+      Excessive Force (6)
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#4d2e2e">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+      Brutality (6)
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        13
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#476571">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+      Unlawful Search (9)
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#476571">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+      Unlawful Detainment (9)
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#476571">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+      Unlawful Detainment and Search (9)
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#476571">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+      Unlawful Arrest (9)
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#476571">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+      Unlawful Execution (9)
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+      14
+      </Box>
+    </ColorBox>
   </Table>
 
   ## Linked Crimes:
@@ -413,11 +481,13 @@
   
   5. Trespass, Secure Trespass
   
-  6. Endangerment, Minor Assault, Major Assault, Manslaughter, Attempted Murder, Murder, Prevention of Revival, Mass Murder, Unlawful Execution
+  6. Endangerment, Minor Assault, Major Assault, Manslaughter, Attempted Murder, Murder, Prevention of Revival, Mass Murder, Excessive Force, Brutality
   
   7. Disturbance, Vigilantism, Rioting
   
   8. Sedition, Conspiracy, Treason, Enemy of Corporation
+
+  9. Unlawful Search, Unlawful Detainment, Unlawful Detainment and Search, Unlawful Arrest, Unlawful Execution
   
   ## Minor Crimes
   Those who commit a minor crime should be issued a warning for their first offense, however repeat offenses are cumulative and should result in jail time of up to 10 minutes per minor crime committed. 
@@ -482,12 +552,12 @@
         Trespass - To enter a non-secured area without permission, such as climbing over counters to enter employee areas like the Bar or Kitchen.
       </Box>
     </ColorBox>
-    <ColorBox Color="#3b4354">
+    <ColorBox Color="#6a724eff">
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
         Disturbance
       </Box>
     </ColorBox>
-    <ColorBox Color="#3b4354">
+    <ColorBox Color="#6a724eff">
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
         To cause a public disturbance. This is the catch-all for excessive obnoxious behavior, and includes public nudity, harassment, inciting crime, repeated and intentional misgendering, and disruption of authorities or communications.
       </Box>
@@ -500,6 +570,16 @@
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
         To pretend to be someone you are not, or attempting to commit fraud in any fashion. Impersonation may be elevated to a Moderate crime if the perpetrator is impersonating a member of Security, or a Major crime if they are impersonating a member of Command or Central Command.
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#476571">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Unlawful Search
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#476571">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        To search a member of the crew on green alert level without probable cause or a warrant.
       </Box>
     </ColorBox>
   </Table>
@@ -577,14 +657,24 @@
         To attempt or succeed to bribe officials to be derelict of their duties or commit a crime with any payment including but not limited to; Services, favors, spesos, credits, materials, or items of any kind. This also applies to anyone caught accepting a bribe, and is cumulative with whatever crime they were bribed to commit.
       </Box>
     </ColorBox>
-    <ColorBox Color="#3b4354">
+    <ColorBox Color="#6a724eff">
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
         Vigilantism
       </Box>
     </ColorBox>
-    <ColorBox Color="#3b4354">
+    <ColorBox Color="#6a724eff">
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
         To attempt to unlawfully enforce Corporate Law without vested authority. See: Enforcement of the Law.
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#476571">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Unlawful Detainment
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#476571">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        To detain a member of the crew without sufficient evidence or probable cause that they have committed a crime. Detainment is defined as temporarily placing crew in restraints, holding them for questioning, or other actions that have them temporarily restrained, but not sentenced for a crime.
       </Box>
     </ColorBox>
   </Table>
@@ -722,14 +812,34 @@
       	To incidentally kill a sapient being without intent. This includes manslaughter in self-defense and negligent manslaughter.
       </Box>
     </ColorBox>
-    <ColorBox Color="#3b4354">
+    <ColorBox Color="#6a724eff">
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
         Rioting
       </Box>
     </ColorBox>
-    <ColorBox Color="#3b4354">
+    <ColorBox Color="#6a724eff">
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
         To participate in a large group of personnel creating an unlawful public disturbance. Leaders of a riot may be charged with all the crimes committed under their lead, plus sedition.
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#4d2e2e">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Excessive Force
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#4d2e2e">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        To harm a sapient being during an arrest as a sanctioned enforcer of Corporate Law, while they are compliant, have not fled or otherwise resisted arrest.
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#476571">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Unlawful Detainment and Search
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#476571">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        To detain and search a member of the crew without sufficient evidence or probable cause that they have committed a crime. Combination of the previous two separate crimes into one, if performed in the same instance. Not applicable in Blue alert level or above.
       </Box>
     </ColorBox>
   </Table>
@@ -771,7 +881,7 @@
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        Unlawful Detainment
+        Kidnapping
       </Box>
     </ColorBox>
     <ColorBox>
@@ -819,6 +929,26 @@
         To consume any part of a sapient being. Consumption of vital components should be treated more harshly. This can be charged on top of other charges such as Murder or Assault if the suspect committed these crimes to obtain the parts consumed. Consumption of blood is not considered cannibalism, but if the source is non-consensual or stolen it may be assault or theft.
       </Box>
     </ColorBox>
+    <ColorBox Color="#4d2e2e">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Brutality
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#4d2e2e">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        To harm a sapient being during an arrest as a sanctioned enforcer of Corporate Law, while the being is either compliant or not, and keep using force until they are in Critical, Dead or past the Point of Revival or otherwise point in which an arrest is already feasible. Demotion is also applicable should this happen.
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#476571">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Unlawful Arrest
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#476571">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        To arrest a member of the crew without sufficient evidence linking them to the accused crime. Arrest is defined by restraining or peacefully bringing the member of crew to the Brig, where they are charged with crime(s) and sentenced with time in the General Population, Solitary or Permanent Confinement Brig.
+      </Box>
+    </ColorBox>
   </Table>
 
   ## Capital Crimes
@@ -854,14 +984,13 @@
       	To engage in malicious destructive actions which threaten to destroy or successfully destroy a vessel, habitat, or station. This includes extreme sabotage of station systems or setting off the self-destruction systems.
       </Box>
     </ColorBox>
-    <ColorBox Color="#4d2e2e">
+    <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        Unlawful Execution
       </Box>
     </ColorBox>
     <ColorBox Color="#4d2e2e">
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        To unlawfully execute an individual without authorization or outside of Standard Operating Procedure. This law is distinct from murder, and applies primarily to Security, Command, and Central Command forces such as Emergency Response
+        
       </Box>
     </ColorBox>
     <ColorBox Color="#4d2e2e">
@@ -892,6 +1021,16 @@
     <ColorBox Color="#475c7d">
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
         To act as or knowingly aid a known enemy of the Station and NT-CC. Only applies beyond a shadow of doubt.
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#476571">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Unlawful Execution
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#476571">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        To unlawfully execute an individual without authorization or outside of Standard Operating Procedure. This law is distinct from murder, and applies primarily to Security, Command, and Central Command forces such as Emergency Response Teams.
       </Box>
     </ColorBox>
   </Table>
