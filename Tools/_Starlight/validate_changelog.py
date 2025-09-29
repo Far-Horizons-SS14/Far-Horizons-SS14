@@ -1,7 +1,7 @@
 import os
 import sys
 import re
-from github import Github
+from github import Github, Auth
 
 GITHUB_TOKEN = os.getenv('GITHUB_TOKEN')
 PR_NUMBER = os.getenv('PR_NUMBER')
@@ -11,7 +11,7 @@ if not all([GITHUB_TOKEN, PR_NUMBER, GITHUB_REPOSITORY]):
     print("::error::Missing required environment variables")
     sys.exit(1)
 
-g = Github(GITHUB_TOKEN)
+g = Github(Auth.Token(GITHUB_TOKEN))
 repo = g.get_repo(GITHUB_REPOSITORY)
 pr = repo.get_pull(int(PR_NUMBER))
 
