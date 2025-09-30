@@ -3,6 +3,7 @@ using System.Linq;
 using Content.Server.Maps;
 using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
+using Content.Shared.FarHorizons.Factions;
 using Content.Shared.Preferences;
 using Content.Shared.Roles;
 using Robust.Shared.GameObjects;
@@ -75,6 +76,46 @@ public sealed class StationJobsTest
 - type: job
   id: TChaplain
   playTimeTracker: PlayTimeDummyChaplain
+
+- type: faction
+  id: TFaction
+  default: true
+
+- type: faction
+  id: TFaction2
+
+- type: faction
+  id: TFaction3
+
+- type: factionJobAssignment
+  id: TFactionAssistant
+  faction: TFaction
+  job: TAssistant
+
+- type: factionJobAssignment
+  id: TFaction2Assistant
+  faction: TFaction2
+  job: TAssistant
+
+- type: factionJobAssignment
+  id: TFactionMime
+  faction: TFaction
+  job: TMime
+
+- type: factionJobAssignment
+  id: TFactionClown
+  faction: TFaction
+  job: TClown
+
+- type: factionJobAssignment
+  id: TFactionCaptain
+  faction: TFaction
+  job: TCaptain
+
+- type: factionJobAssignment
+  id: TFactionChaplain
+  faction: TFaction
+  job: TChaplain
 ";
 
     private const int StationCount = 100;
@@ -106,15 +147,17 @@ public sealed class StationJobsTest
             }
         });
 
-        var jobPrioritiesA = new Dictionary<ProtoId<JobPrototype>, JobPriority>()
+        List<ProtoId<FactionPrototype>> allFactions = ["TFaction", "TFaction2", "TFaction3"];
+
+        var jobPrioritiesA = new Dictionary<(ProtoId<FactionPrototype>, ProtoId<JobPrototype>), JobPriority>()
         {
-            { "TAssistant", JobPriority.Medium },
-            { "TClown", JobPriority.Low },
-            { "TMime", JobPriority.High },
+            { ("TFaction", "TAssistant"), JobPriority.Medium },
+            { ("TFaction", "TClown"), JobPriority.Low },
+            { ("TFaction", "TMime"), JobPriority.High },
         };
-        var jobPrioritiesB = new Dictionary<ProtoId<JobPrototype>, JobPriority>()
+        var jobPrioritiesB = new Dictionary<(ProtoId<FactionPrototype>, ProtoId<JobPrototype>), JobPriority>()
         {
-            { "TCaptain", JobPriority.High },
+            { ("TFaction", "TCaptain"), JobPriority.High },
         };
 
         var tideSessions = await pair.AddDummyPlayers(jobPrioritiesA, PlayerCount);
@@ -128,7 +171,7 @@ public sealed class StationJobsTest
 
             var start = new Stopwatch();
             start.Start();
-            var assigned = stationJobs.AssignJobs(allNetIds, stations);
+            var assigned = stationJobs.AssignJobs(allNetIds, stations, ["TFaction"]);
             Assert.That(assigned, Is.Not.Empty);
             var time = start.Elapsed.TotalMilliseconds;
             logmill.Info($"Took {time} ms to distribute {TotalPlayers} players.");

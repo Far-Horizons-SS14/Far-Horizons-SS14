@@ -5,6 +5,7 @@ using Content.Server.Antag;
 using Content.Server.GameTicking;
 using Content.Server.Humanoid;
 using Content.Shared.CCVar;
+using Content.Shared.FarHorizons.Factions;
 using Content.Shared.GameTicking;
 using Content.Shared.Preferences;
 using Content.Shared.Roles;
@@ -73,16 +74,16 @@ public sealed class CharacterSelectionTest
 ";
 
     // some constants to help test case readability & also make the compiler catch typos
-    private static readonly ProtoId<JobPrototype> Captain = "Captain";
-    private static readonly ProtoId<JobPrototype> Passenger = "Assistant"; //starlight
-    private static readonly ProtoId<JobPrototype> Mime = "Mime";
-    private static readonly ProtoId<JobPrototype> Clown = "Clown";
+    private static readonly (ProtoId<FactionPrototype>, ProtoId<JobPrototype>) Captain = ("TFaction", "Captain");
+    private static readonly (ProtoId<FactionPrototype>, ProtoId<JobPrototype>) Passenger = ("TFaction", "Assistant");
+    private static readonly (ProtoId<FactionPrototype>, ProtoId<JobPrototype>) Mime = ("TFaction", "Mime");
+    private static readonly (ProtoId<FactionPrototype>, ProtoId<JobPrototype>) Clown = ("TFaction", "Clown");
     private static readonly ProtoId<AntagPrototype> Traitor = "Traitor";
 
     // helper structs for test case definition readability
     public sealed class TestCharacter
     {
-        public List<ProtoId<JobPrototype>> Jobs;
+        public List<(ProtoId<FactionPrototype>, ProtoId<JobPrototype>)> Jobs;
         public bool IsTraitor;
         public bool ExpectToSpawn;
         public bool Enabled = true;
@@ -99,11 +100,11 @@ public sealed class CharacterSelectionTest
     public sealed class SelectionTestData
     {
         public string Description;
-        public ProtoId<JobPrototype>? HighPrioJob;
-        public List<ProtoId<JobPrototype>> MediumPrioJobs = [];
-        public List<ProtoId<JobPrototype>> LowPrioJobs = [];
+        public (ProtoId<FactionPrototype>, ProtoId<JobPrototype>)? HighPrioJob;
+        public List<(ProtoId<FactionPrototype>, ProtoId<JobPrototype>)> MediumPrioJobs = [];
+        public List<(ProtoId<FactionPrototype>, ProtoId<JobPrototype>)> LowPrioJobs = [];
         public List<TestCharacter> Characters = [];
-        public ProtoId<JobPrototype>? ExpectedJob;
+        public (ProtoId<FactionPrototype>, ProtoId<JobPrototype>)? ExpectedJob;
         public bool ExpectTraitor;
         public int? SetSeed;
 
@@ -127,9 +128,9 @@ public sealed class CharacterSelectionTest
             return new TestCaseData(this).SetArgDisplayNames(Description);
         }
 
-        public Dictionary<ProtoId<JobPrototype>, JobPriority> MakeJobPrioDict()
+        public Dictionary<(ProtoId<FactionPrototype>, ProtoId<JobPrototype>), JobPriority> MakeJobPrioDict()
         {
-            var dict = new Dictionary<ProtoId<JobPrototype>, JobPriority>();
+            var dict = new Dictionary<(ProtoId<FactionPrototype>, ProtoId<JobPrototype>), JobPriority>();
             if (HighPrioJob.HasValue)
             {
                 dict.Add(HighPrioJob.Value,  JobPriority.High);
@@ -384,7 +385,7 @@ public sealed class CharacterSelectionTest
         else
         {
             Assert.That(ticker.PlayerGameStatuses[pair.Client.User!.Value], Is.EqualTo(PlayerGameStatus.JoinedGame));
-            pair.AssertJob(data.ExpectedJob.ToString(), pair.Player!);
+            pair.AssertJob(data.ExpectedJob.Value, pair.Player!);
             var antagSystem = pair.Server.System<AntagSelectionSystem>();
             var antags = antagSystem.GetPreSelectedAntagDefinitions(pair.Player);
             if (data.ExpectTraitor)

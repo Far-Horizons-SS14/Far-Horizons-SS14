@@ -1,5 +1,6 @@
 using System.Linq;
 using Content.Shared.Construction.Prototypes;
+using Content.Shared.FarHorizons.Factions;
 using Content.Shared.Preferences;
 using Content.Shared.Roles;
 using Robust.Client;
@@ -123,8 +124,9 @@ namespace Content.Client.Lobby
         /// <summary>
         /// Send a message to the server to update the list of your job priorities
         /// </summary>
-        /// <param name="jobPriorities">Dictionary of job priorities to save to the server</param>
-        public void UpdateJobPriorities(Dictionary<ProtoId<JobPrototype>, JobPriority> jobPriorities)
+        /// <param name="jobPriorities">Dictionary of faction-job pairs and priorities to save to the server</param>
+        /// Far Horizons
+        public void UpdateJobPriorities(Dictionary<(ProtoId<FactionPrototype>, ProtoId<JobPrototype>), JobPriority> jobPriorities)
         {
             Preferences = new PlayerPreferences(Preferences.Characters,
                 Preferences.AdminOOCColor,

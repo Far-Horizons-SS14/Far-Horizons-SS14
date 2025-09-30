@@ -1,4 +1,5 @@
-﻿using Content.Shared.Humanoid;
+﻿using Content.Shared.FarHorizons.Factions;
+using Content.Shared.Humanoid;
 using Content.Shared.Preferences;
 using Content.Shared.Roles;
 using Robust.Client.UserInterface.Controls;
@@ -18,6 +19,7 @@ public sealed partial class ProfilePreviewSpriteView : SpriteView
     private IPrototypeManager _prototypeManager = default!;
     private ISharedPlayerManager _playerManager = default!;
     private MetaDataSystem _metaDataSystem = default!;
+    private ISharedFactionManager _factions = default!; // Far Horizons
 
     /// <summary>
     /// The name of the loaded profile
@@ -54,12 +56,14 @@ public sealed partial class ProfilePreviewSpriteView : SpriteView
     /// <param name="playerMan">Passed in dependency</param>
     public void Initialize(IClientPreferencesManager prefMan,
         IPrototypeManager protoMan,
-        ISharedPlayerManager playerMan)
+        ISharedPlayerManager playerMan,
+        ISharedFactionManager factionMan) // Far Horizons
     {
         _preferencesManager = prefMan;
         _prototypeManager = protoMan;
         _playerManager = playerMan;
         _metaDataSystem = EntMan.System<MetaDataSystem>();
+        _factions = factionMan; // Far Horizons
 
         Stretch = StretchMode.None; //starlight
     }
@@ -73,7 +77,7 @@ public sealed partial class ProfilePreviewSpriteView : SpriteView
     /// <param name="jobOverride">If null, attempt to find the character's preferred job, otherwise use this value</param>
     /// <param name="showClothes">If false, render the dummy without clothes</param>
     /// <exception cref="ArgumentException">Throws if something other than <see cref="HumanoidCharacterProfile"/> is passed in</exception>
-    public void LoadPreview(ICharacterProfile profile, JobPrototype? jobOverride = null, bool showClothes = true)
+    public void LoadPreview(ICharacterProfile profile, (FactionPrototype, JobPrototype)? jobOverride = null, bool showClothes = true)
     {
         EntMan.DeleteEntity(PreviewDummy);
         PreviewDummy = EntityUid.Invalid;

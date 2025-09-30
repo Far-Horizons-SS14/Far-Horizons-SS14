@@ -1,6 +1,7 @@
 using Content.Shared.Access.Systems;
 using Content.Shared.CCVar;
 using Content.Shared.Examine;
+using Content.Shared.FarHorizons.Factions;
 using Content.Shared.Localizations;
 using Content.Shared.Roles;
 using Content.Shared.Verbs;
@@ -20,6 +21,7 @@ public sealed class ContrabandSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly SharedIdCardSystem _id = default!;
     [Dependency] private readonly ExamineSystemShared _examine = default!;
+    [Dependency] private readonly ISharedFactionManager _factions = default!; // Far Horizons
 
     private bool _contrabandExamineEnabled;
     private bool _contrabandExamineOnlyInHudEnabled;

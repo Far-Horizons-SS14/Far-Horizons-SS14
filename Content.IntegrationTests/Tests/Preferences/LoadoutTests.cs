@@ -67,7 +67,7 @@ public sealed class LoadoutTests
 
             profile.SetLoadout(new RoleLoadout("LoadoutTester"));
 
-            var tester = stationSystem.SpawnPlayerMob(testMap.GridCoords, job: "LoadoutTester", profile, station: null);
+            var tester = stationSystem.SpawnPlayerMob(testMap.GridCoords, faction: "TFaction", job: "LoadoutTester", profile, station: null);
 
             var slotQuery = inventorySystem.GetSlotEnumerator(tester);
             var checkedCount = 0;

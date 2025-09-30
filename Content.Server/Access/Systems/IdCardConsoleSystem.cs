@@ -19,7 +19,8 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
-using Content.Shared.Chat; // Starlight
+using Content.Shared.Chat;
+using Content.Server.FarHorizons.Factions; // Starlight
 
 namespace Content.Server.Access.Systems;
 
@@ -37,6 +38,7 @@ public sealed class IdCardConsoleSystem : SharedIdCardConsoleSystem
     [Dependency] private readonly ThrowingSystem _throwing = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
+    [Dependency] private readonly IServerFactionManager _factions = default!; // Far Horizons
 
     public override void Initialize()
     {
@@ -145,7 +147,7 @@ public sealed class IdCardConsoleSystem : SharedIdCardConsoleSystem
         _idCard.TryChangeJobTitle(targetId, newJobTitle, player: player);
 
         if (_prototype.TryIndex<JobPrototype>(newJobProto, out var job)
-            && _prototype.Resolve(job.Icon, out var jobIcon))
+            && _prototype.Resolve(_factions.OverrideJobIcon((_factions.DecideFactionForJob(job), job)), out var jobIcon)) // Far Horizons faction icon override
         {
             _idCard.TryChangeJobIcon(targetId, jobIcon, player: player);
             _idCard.TryChangeJobDepartment(targetId, job);
@@ -228,7 +230,7 @@ public sealed class IdCardConsoleSystem : SharedIdCardConsoleSystem
         if (newJobProto != null)
         {
             record.JobPrototype = newJobProto.ID;
-            record.JobIcon = newJobProto.Icon;
+            record.JobIcon = _factions.OverrideJobIcon((_factions.DecideFactionForJob(newJobProto), newJobProto));
         }
 
         _record.Synchronize(key);

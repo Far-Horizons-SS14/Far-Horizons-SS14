@@ -3,6 +3,7 @@ using System.Linq;
 using Content.Shared.Administration.Logs;
 using Content.Shared.CCVar;
 using Content.Shared.Database;
+using Content.Shared.FarHorizons.Factions;
 using Content.Shared.GameTicking;
 using Content.Shared.Mind;
 using Content.Shared.Roles.Components;
@@ -108,10 +109,13 @@ public abstract class SharedRoleSystem : EntitySystem
     /// <param name="mind">If the mind component is provided, it will be checked if it belongs to the mind entity</param>
     /// <param name="silent">If true, no briefing will be generated upon receiving the mind role</param>
     /// <param name="jobPrototype">The Job prototype for the new role</param>
+    /// <param name="factionPrototype">The Faction Prototype for the new role. Far Horizons change.</param>
+    /// Far Horizons
     public void MindAddJobRole(EntityUid mindId,
         MindComponent? mind = null,
         bool silent = false,
-        string? jobPrototype = null)
+        string? jobPrototype = null,
+        ProtoId<FactionPrototype>? factionPrototype = null) // Far Horizons
     {
         if (!Resolve(mindId, ref mind))
             return;
@@ -127,7 +131,7 @@ public abstract class SharedRoleSystem : EntitySystem
             jobRole.Value.Comp1.JobPrototype = jobPrototype;
         }
         else
-            MindAddRoleDo(mindId, "MindRoleJob", mind, silent, jobPrototype);
+            MindAddRoleDo(mindId, "MindRoleJob", mind, silent, jobPrototype, factionPrototype); // Far Horzions
     }
 
     /// <summary>
@@ -137,7 +141,8 @@ public abstract class SharedRoleSystem : EntitySystem
         EntProtoId protoId,
         MindComponent? mind = null,
         bool silent = false,
-        string? jobPrototype = null)
+        string? jobPrototype = null,
+        ProtoId<FactionPrototype>? factionPrototype = null) // Far Horzions
     {
         if (!Resolve(mindId, ref mind))
         {
@@ -171,6 +176,9 @@ public abstract class SharedRoleSystem : EntitySystem
             DebugTools.Assert(!mindRoleComp.Antag);
             DebugTools.Assert(!mindRoleComp.ExclusiveAntag);
         }
+        
+        if (factionPrototype is not null)
+            mindRoleComp.FactionPrototype = factionPrototype; // Far Horizons
         
         //starlight start
         if (TryComp(mind.CurrentEntity, out ActorComponent? actor))

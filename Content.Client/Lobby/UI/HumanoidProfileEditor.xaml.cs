@@ -34,6 +34,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using Content.Shared.Starlight.CCVar;
 using Content.Client._Starlight.TTS;
+using Content.Shared.FarHorizons.Factions;
 
 namespace Content.Client.Lobby.UI
 {
@@ -48,6 +49,7 @@ namespace Content.Client.Lobby.UI
         private readonly IPrototypeManager _prototypeManager;
         private readonly MarkingManager _markingManager;
         private readonly JobRequirementsManager _requirements;
+        private readonly ISharedFactionManager _factions; // Far Horizons
 
         private readonly SpriteSystem _sprite;
 
@@ -74,7 +76,7 @@ namespace Content.Client.Lobby.UI
         /// <summary>
         /// Temporary override of their selected job, used to preview roles.
         /// </summary>
-        public JobPrototype? JobOverride;
+        public (FactionPrototype, JobPrototype)? JobOverride;
 
         /// <summary>
         /// Track the state of the ShowClothes button to use for the profile preview
@@ -98,9 +100,9 @@ namespace Content.Client.Lobby.UI
 
         private readonly List<SpeciesPrototype> _species = new();
 
-        private readonly List<(string, RequirementsSelector)> _jobPriorities = new();
+        private readonly List<((string, string), RequirementsSelector)> _jobPriorities = new();
 
-        private readonly Dictionary<string, BoxContainer> _jobCategories = new();
+        private readonly Dictionary<(string, string), BoxContainer> _jobCategories = new();
 
         private readonly ColorSelectorSliders _rgbSkinColorSelector = new();
 
@@ -126,7 +128,8 @@ namespace Content.Client.Lobby.UI
             IPrototypeManager prototypeManager,
             IResourceManager resManager,
             JobRequirementsManager requirements,
-            MarkingManager markings)
+            MarkingManager markings,
+            ISharedFactionManager factions) // Far Horizons
         {
             RobustXamlLoader.Load(this);
             _sawmill = logManager.GetSawmill("profile.editor");
@@ -138,6 +141,7 @@ namespace Content.Client.Lobby.UI
             _markingManager = markings;
             _preferencesManager = preferencesManager;
             _requirements = requirements;
+            _factions = factions;
             _sprite = _entManager.System<SpriteSystem>();
 
             _maxNameLength = _cfgManager.GetCVar(CCVars.MaxNameLength);
@@ -473,8 +477,7 @@ namespace Content.Client.Lobby.UI
             #region Jobs
 
 
-
-            _jobCategories = new Dictionary<string, BoxContainer>();
+            _jobCategories = new Dictionary<(string, string), BoxContainer>();
 
             RefreshAntags();
             RefreshJobs();
@@ -505,7 +508,8 @@ namespace Content.Client.Lobby.UI
 
             #region Dummy
 
-            Preview.Initialize(this, _entManager, _preferencesManager, _prototypeManager, _playerManager);
+            // Far Horizons factions
+            Preview.Initialize(this, _entManager, _preferencesManager, _prototypeManager, _playerManager, _factions);
 
             #endregion Dummy
 
@@ -943,7 +947,7 @@ namespace Content.Client.Lobby.UI
             RefreshSpecies();
             RefreshTraits();
             RefreshCharacterInfo(); //starlight
-            Preview.Initialize(this, _entManager, _preferencesManager, _prototypeManager, _playerManager);
+            Preview.Initialize(this, _entManager, _preferencesManager, _prototypeManager, _playerManager, _factions); // Far Horizons factions
             ReloadPreview();
         }
 
@@ -1001,19 +1005,6 @@ namespace Content.Client.Lobby.UI
             JobList.DisposeAllChildren();
             _jobCategories.Clear();
             _jobPriorities.Clear();
-            var firstCategory = true;
-
-            // Get all displayed departments
-            var departments = new List<DepartmentPrototype>();
-            foreach (var department in _prototypeManager.EnumeratePrototypes<DepartmentPrototype>())
-            {
-                if (department.EditorHidden)
-                    continue;
-
-                departments.Add(department);
-            }
-
-            departments.Sort(DepartmentUIComparer.Instance);
 
             var items = new[]
             {
@@ -1021,58 +1012,76 @@ namespace Content.Client.Lobby.UI
                 ("humanoid-profile-editor-antag-preference-no-button", 1)
             };
 
-            foreach (var department in departments)
+            // Far Horizons - factions
+            Dictionary<ProtoId<FactionPrototype>, BoxContainer> faciton_tabs = new();
+            foreach (var faction in _factions.ListPlayableFactions().ToList())
             {
-                var departmentName = Loc.GetString(department.Name);
+                var faction_tab = new ScrollContainer
+                {
+                    VerticalExpand = true,
+                    Name = faction.Name,
+                    ToolTip = Loc.GetString(faction.Description)
+                };
 
-                if (!_jobCategories.TryGetValue(department.ID, out var category))
+                JobList.AddChild(faction_tab);
+
+                var faction_tab_content = new BoxContainer
+                {
+                    Orientation = LayoutOrientation.Vertical,
+                };
+
+
+                faction_tab.AddChild(faction_tab_content);
+
+                faciton_tabs.Add(faction, faction_tab_content);
+            }
+
+            foreach (var dptAssignment in _factions.ListFactionDepartments().OrderBy(p => p.Weight).ThenBy(p => p.Department))
+            {
+                if (!_prototypeManager.TryIndex<DepartmentPrototype>(dptAssignment.Department, out var department) ||
+                    !_prototypeManager.TryIndex<FactionPrototype>(dptAssignment.Faction, out var faction))
+                    continue;
+
+                var departmentName = Loc.GetString(dptAssignment.NameOverride != "" ? 
+                                                    dptAssignment.NameOverride : 
+                                                    department.Name);
+
+                if (!_jobCategories.TryGetValue((faction.ID, department.ID), out var category))
                 {
                     category = new BoxContainer
                     {
                         Orientation = LayoutOrientation.Vertical,
-                        Name = department.ID,
+                        Name = dptAssignment.Department,
                         ToolTip = Loc.GetString("humanoid-profile-editor-jobs-amount-in-department-tooltip",
                             ("departmentName", departmentName))
                     };
-
-                    if (firstCategory)
-                    {
-                        firstCategory = false;
-                    }
-                    else
-                    {
-                        category.AddChild(new Control
-                        {
-                            MinSize = new Vector2(0, 23),
-                        });
-                    }
 
                     category.AddChild(new PanelContainer
                     {
                         PanelOverride = new StyleBoxFlat { BackgroundColor = Color.FromHex("#464966") },
                         Children =
+                    {
+                        new Label
                         {
-                            new Label
-                            {
-                                Text = Loc.GetString("humanoid-profile-editor-department-jobs-label",
-                                    ("departmentName", departmentName)),
-                                Margin = new Thickness(5f, 0, 0, 0)
-                            }
+                            Text = Loc.GetString("humanoid-profile-editor-department-jobs-label",
+                                ("departmentName", departmentName)),
+                            Margin = new Thickness(5f, 0, 0, 0)
                         }
+                    }
                     });
 
-                    _jobCategories[department.ID] = category;
-                    JobList.AddChild(category);
+                    _jobCategories[(dptAssignment.Faction, dptAssignment.Department)] = category;
+                    faciton_tabs[dptAssignment.Faction].AddChild(category);
                 }
 
-                var jobs = department.Roles.Select(jobId => _prototypeManager.Index(jobId))
-                    .Where(job => job.SetPreference)
-                    .ToArray();
-
-                Array.Sort(jobs, JobUIComparer.Instance);
-
-                foreach (var job in jobs)
+                foreach (var jobAssignment in _factions.ListFactionJobs()
+                                                    .Where(p => (p.Faction == faction) && department.Roles.Contains(p.Job))
+                                                    .OrderBy(p => p.Weight)
+                                                    .ThenBy(p => p.Job))
                 {
+                    if (!_prototypeManager.TryIndex<JobPrototype>(jobAssignment.Job, out var job))
+                        continue;
+
                     var jobContainer = new BoxContainer()
                     {
                         Orientation = LayoutOrientation.Horizontal,
@@ -1089,14 +1098,15 @@ namespace Content.Client.Lobby.UI
                         TextureScale = new Vector2(2, 2),
                         VerticalAlignment = VAlignment.Center
                     };
-                    var jobIcon = _prototypeManager.Index(job.Icon);
+                    var jobIcon = _prototypeManager.Index(_factions.OverrideJobIcon(jobAssignment));
                     icon.Texture = _sprite.Frame0(jobIcon.Icon);
-                    selector.Setup(items, job.LocalizedName, 200, job.LocalizedDescription, icon, job.Guides);
+
+                    selector.Setup(items, _factions.OverrideLocalizedJobName(jobAssignment), 200, _factions.OverrideLocalizedJobDescription(jobAssignment), icon, job.Guides);
 
                     if (!_requirements.IsAllowed(job, Profile, out var reason))
                     {
                         selector.LockRequirements(reason);
-                        Profile = Profile?.WithoutJob(job);
+                        Profile = Profile?.WithoutJob(faction, job);
                         SetDirty();
                     }
                     else
@@ -1107,7 +1117,7 @@ namespace Content.Client.Lobby.UI
                     selector.OnSelected += selection =>
                     {
                         var include = selection == 0;
-                        Profile = Profile?.WithJob(job.ID, include);
+                        Profile = Profile?.WithJob(faction, job, include);
 
                         UpdateJobPreferences();
                         ReloadPreview();
@@ -1126,7 +1136,7 @@ namespace Content.Client.Lobby.UI
                     var protoManager = collection.Resolve<IPrototypeManager>();
 
                     // If no loadout found then disabled button
-                    if (!protoManager.TryIndex<RoleLoadoutPrototype>(LoadoutSystem.GetJobPrototype(job.ID), out var roleLoadoutProto))
+                    if (!protoManager.TryIndex<RoleLoadoutPrototype>(_factions.OverrideJobLoadout(jobAssignment), out var roleLoadoutProto))
                     {
                         loadoutWindowBtn.Disabled = true;
                     }
@@ -1138,7 +1148,7 @@ namespace Content.Client.Lobby.UI
                             RoleLoadout? loadout = null;
 
                             // Clone so we don't modify the underlying loadout.
-                            Profile?.Loadouts.TryGetValue(LoadoutSystem.GetJobPrototype(job.ID), out loadout);
+                            Profile?.Loadouts.TryGetValue(_factions.OverrideJobLoadout(jobAssignment), out loadout);
                             loadout = loadout?.Clone();
 
                             if (loadout == null)
@@ -1147,21 +1157,26 @@ namespace Content.Client.Lobby.UI
                                 loadout.SetDefault(Profile, _playerManager.LocalSession, _prototypeManager);
                             }
 
-                            OpenLoadout(job, loadout, roleLoadoutProto);
+                            OpenLoadout((faction, job), loadout, roleLoadoutProto);
                         };
                     }
 
-                    _jobPriorities.Add((job.ID, selector));
+                    _jobPriorities.Add(((jobAssignment.Faction, job.ID), selector));
                     jobContainer.AddChild(selector);
                     jobContainer.AddChild(loadoutWindowBtn);
                     category.AddChild(jobContainer);
                 }
+
+                faciton_tabs[dptAssignment.Faction].AddChild(new Control
+                {
+                    MinSize = new Vector2(0, 23),
+                });
             }
 
             UpdateJobPreferences();
         }
 
-        private void OpenLoadout(JobPrototype? jobProto, RoleLoadout roleLoadout, RoleLoadoutPrototype roleLoadoutProto)
+        private void OpenLoadout((FactionPrototype faction, JobPrototype job) factionJob, RoleLoadout roleLoadout, RoleLoadoutPrototype roleLoadoutProto)
         {
             _loadoutWindow?.Dispose();
             _loadoutWindow = null;
@@ -1170,12 +1185,12 @@ namespace Content.Client.Lobby.UI
             if (collection == null || _playerManager.LocalSession == null || Profile == null)
                 return;
 
-            JobOverride = jobProto;
+            JobOverride = factionJob;
             var session = _playerManager.LocalSession;
 
             _loadoutWindow = new LoadoutWindow(Profile, roleLoadout, roleLoadoutProto, _playerManager.LocalSession, collection)
             {
-                Title = Loc.GetString("loadout-window-title-loadout", ("job", $"{jobProto?.LocalizedName}")),
+                Title = Loc.GetString("loadout-window-title-loadout", ("job", $"{_factions.OverrideLocalizedJobName((factionJob.faction, factionJob.job))}")),
             };
 
             // Refresh the buttons etc.
@@ -1205,7 +1220,7 @@ namespace Content.Client.Lobby.UI
                 ReloadPreview();
             };
 
-            JobOverride = jobProto;
+            JobOverride = factionJob;
             ReloadPreview();
 
             _loadoutWindow.OnClose += () =>
@@ -1500,9 +1515,9 @@ namespace Content.Client.Lobby.UI
         /// </summary>
         private void UpdateJobPreferences()
         {
-            foreach (var (jobId, prioritySelector) in _jobPriorities)
+            foreach (var ((factionID, jobId), prioritySelector) in _jobPriorities)
             {
-                prioritySelector.Select((Profile?.JobPreferences.Contains(jobId) ?? false) ? 0 : 1);
+                prioritySelector.Select((Profile?.JobPreferences.Contains((factionID, jobId)) ?? false) ? 0 : 1);
             }
         }
 

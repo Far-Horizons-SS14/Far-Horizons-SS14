@@ -42,7 +42,7 @@ public sealed class JobWhitelistSystem : EntitySystem
 
         for (var i = ev.Jobs.Count - 1; i >= 0; i--)
         {
-            var jobId = ev.Jobs[i];
+            var jobId = ev.Jobs[i].job; // Far Horizons
             if (_player.TryGetSessionById(ev.Player, out var player) &&
                 !_manager.IsAllowed(player, jobId))
             {

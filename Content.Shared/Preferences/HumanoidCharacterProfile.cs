@@ -16,6 +16,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Serialization;
 using Robust.Shared.Utility;
+using Content.Shared.FarHorizons.Factions;
 
 namespace Content.Shared.Preferences
 {
@@ -30,10 +31,11 @@ namespace Content.Shared.Preferences
         private static readonly Regex ICNameCaseRegex = new(@"^(?<word>\w)|\b(?<word>\w)(?=\w*$)");
 
         /// <summary>
-        /// Job preferences for initial spawn.
+        /// Faction-Job preferences for initial spawn.
         /// </summary>
+        /// Far Horizons
         [DataField]
-        private HashSet<ProtoId<JobPrototype>> _jobPreferences = new() { SharedGameTicker.FallbackOverflowJob };
+        private HashSet<(ProtoId<FactionPrototype> faction, ProtoId<JobPrototype> job)> _jobPreferences = [];
 
         /// <summary>
         /// Antags we have opted in to.
@@ -101,7 +103,8 @@ namespace Content.Shared.Preferences
         /// <summary>
         /// <see cref="_jobPreferences"/>
         /// </summary>
-        public IReadOnlySet<ProtoId<JobPrototype>> JobPreferences => _jobPreferences;
+        /// Far Horizons
+        public IReadOnlySet<(ProtoId<FactionPrototype> faction, ProtoId<JobPrototype> job)> JobPreferences => _jobPreferences;
 
         /// <summary>
         /// <see cref="_antagPreferences"/>
@@ -130,7 +133,7 @@ namespace Content.Shared.Preferences
             Gender gender,
             HumanoidCharacterAppearance appearance,
             SpawnPriorityPreference spawnPriority,
-            HashSet<ProtoId<JobPrototype>> jobPreferences,
+            HashSet<(ProtoId<FactionPrototype>, ProtoId<JobPrototype>)> jobPreferences, // Far Horizons
             HashSet<ProtoId<AntagPrototype>> antagPreferences,
             HashSet<ProtoId<TraitPrototype>> traitPreferences,
             Dictionary<string, RoleLoadout> loadouts,
@@ -153,7 +156,7 @@ namespace Content.Shared.Preferences
             Gender = gender;
             Appearance = appearance;
             SpawnPriority = spawnPriority;
-            _jobPreferences = jobPreferences;
+            _jobPreferences = jobPreferences; // Far Horizons
             _antagPreferences = antagPreferences;
             _traitPreferences = traitPreferences;
             _loadouts = loadouts;
@@ -179,7 +182,7 @@ namespace Content.Shared.Preferences
                 other.Gender,
                 other.Appearance.Clone(),
                 other.SpawnPriority,
-                new HashSet<ProtoId<JobPrototype>>(other.JobPreferences),
+                [.. other.JobPreferences], // Far Horizons
                 new HashSet<ProtoId<AntagPrototype>>(other.AntagPreferences),
                 new HashSet<ProtoId<TraitPrototype>>(other.TraitPreferences),
                 new Dictionary<string, RoleLoadout>(other.Loadouts),
@@ -321,24 +324,23 @@ namespace Content.Shared.Preferences
             return new(this) { SpawnPriority = spawnPriority };
         }
 
-        public HumanoidCharacterProfile WithJobPreferences(IEnumerable<ProtoId<JobPrototype>> jobPreferences)
+        // Far Horizons
+        public HumanoidCharacterProfile WithJobPreferences(IEnumerable<(ProtoId<FactionPrototype>, ProtoId<JobPrototype>)> jobPreferences) => new(this)
         {
-            return new(this)
-            {
-                _jobPreferences = new HashSet<ProtoId<JobPrototype>>(jobPreferences),
-            };
-        }
+            _jobPreferences = [.. jobPreferences],
+        };
 
-        public HumanoidCharacterProfile WithJob(ProtoId<JobPrototype> jobId, bool include = true)
+        // Far Horizons
+        public HumanoidCharacterProfile WithJob(ProtoId<FactionPrototype> faction, ProtoId<JobPrototype> job, bool include = true)
         {
-            var jobPreferences = new HashSet<ProtoId<JobPrototype>>(_jobPreferences);
+            var jobPreferences = new HashSet<(ProtoId<FactionPrototype>, ProtoId<JobPrototype>)>(_jobPreferences);
             if (include)
             {
-                jobPreferences.Add(jobId);
+                jobPreferences.Add((faction, job));
             }
             else
             {
-                jobPreferences.Remove(jobId);
+                jobPreferences.Remove((faction, job));
             }
 
             return new(this)
@@ -347,10 +349,9 @@ namespace Content.Shared.Preferences
             };
         }
 
-        public HumanoidCharacterProfile WithoutJob(ProtoId<JobPrototype> jobId)
-        {
-            return WithJob(jobId, false);
-        }
+        // Far Horizons
+        public HumanoidCharacterProfile WithoutJob(ProtoId<FactionPrototype> faction, ProtoId<JobPrototype> job) => 
+            WithJob(faction, job, false);
 
         public HumanoidCharacterProfile WithAntagPreferences(IEnumerable<ProtoId<AntagPrototype>> antagPreferences)
         {
@@ -592,10 +593,6 @@ namespace Content.Shared.Preferences
                 _ => SpawnPriorityPreference.None // Invalid enum values.
             };
 
-            var jobs = new HashSet<ProtoId<JobPrototype>>(JobPreferences
-                .Where(p => prototypeManager.TryIndex(p, out var job)
-                            && job is { SetPreference: true, Hidden: false }));
-
             var antags = AntagPreferences
                 .Where(id => prototypeManager.TryIndex(id, out var antag) && antag.SetPreference)
                 .ToList();
@@ -613,7 +610,7 @@ namespace Content.Shared.Preferences
             Appearance = appearance;
             SpawnPriority = spawnPriority;
 
-            _jobPreferences = new HashSet<ProtoId<JobPrototype>>(jobs);
+            _jobPreferences = ValidateFactionJobPreferences(_jobPreferences); // Far Horizons
 
             _antagPreferences.Clear();
             _antagPreferences.UnionWith(antags);

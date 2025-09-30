@@ -1,6 +1,7 @@
 ﻿using Content.Server.Administration;
 using Content.Server.Roles.Jobs;
 using Content.Shared.Administration;
+using Content.Shared.FarHorizons.Factions;
 using Content.Shared.Players;
 using Content.Shared.Roles;
 using Robust.Server.Player;
@@ -20,11 +21,11 @@ namespace Content.Server.Roles
 
         public override void Execute(IConsoleShell shell, string argStr, string[] args)
         {
-            if (args.Length != 2)
+            // Far Horizons edit - select faction when adding role
+            if (args.Length < 2)
             {
-                shell.WriteLine(Loc.GetString($"shell-wrong-arguments-number-need-specific",
-                    ("properAmount", 2),
-                    ("currentAmount", args.Length)));
+                shell.WriteLine(Loc.GetString($"shell-need-minimum-arguments",
+                    ("minimum", 2)));
                 return;
             }
 
@@ -53,6 +54,12 @@ namespace Content.Server.Roles
                 return;
             }
 
+            // Far Horizons, add faction if any
+            if (args.Length > 2 && _prototypeManager.TryIndex<FactionPrototype>(args[2], out var _))
+            {
+                _jobSystem.MindAddJob(mind.Value, args[1], args[2]);
+                return;
+            }
             _jobSystem.MindAddJob(mind.Value, args[1]);
         }
     }

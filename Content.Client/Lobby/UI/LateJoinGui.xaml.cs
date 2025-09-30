@@ -19,6 +19,8 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using static Robust.Client.UserInterface.Controls.BoxContainer;
+using Content.Shared.FarHorizons.Factions;
+using Robust.Client.Graphics;
 
 namespace Content.Client.Lobby.UI
 {
@@ -33,20 +35,21 @@ namespace Content.Client.Lobby.UI
         [Dependency] private readonly IClientPreferencesManager _preferencesManager = default!;
         [Dependency] private readonly ISharedPlayerManager _playerManager = default!;
         [Dependency] private readonly ILogManager _logManager = default!;
+        [Dependency] private readonly ISharedFactionManager _factions = default!; // Far Horizons
 
         /// <summary>
         /// Action invoked when a job is pressed
         /// </summary>
-        public event Action<(NetEntity, int, string)> SelectedId;
+        public event Action<(NetEntity, int, (ProtoId<FactionPrototype> faction, ProtoId<JobPrototype> job))> SelectedId;
 
         private readonly ClientGameTicker _gameTicker;
         private readonly SpriteSystem _sprites;
         private readonly CrewManifestSystem _crewManifest;
         private readonly ISawmill _sawmill;
 
-        private readonly Dictionary<NetEntity, Dictionary<string, List<JobButton>>> _jobButtons = new();
-        private readonly Dictionary<NetEntity, Dictionary<string, BoxContainer>> _jobCategories = new();
-        private readonly List<ScrollContainer> _jobLists = new();
+        private readonly Dictionary<NetEntity, Dictionary<(ProtoId<FactionPrototype> faction, ProtoId<JobPrototype> job), List<JobButton>>> _jobButtons = new();
+        private readonly Dictionary<NetEntity, Dictionary<(ProtoId<FactionPrototype> faction, ProtoId<DepartmentPrototype> job), BoxContainer>> _jobCategories = new();
+        Dictionary<ProtoId<FactionPrototype>, BoxContainer> _factionTabs = new();
 
         private int? _selectedSlot;
         
@@ -70,7 +73,7 @@ namespace Content.Client.Lobby.UI
                 if (slot < 0)
                     return;
                 _sawmill.Info($"Late joining as ID: {jobId}");
-                _consoleHost.ExecuteCommand($"joingame {slot} {CommandParsing.Escape(jobId)} {station}");
+                _consoleHost.ExecuteCommand($"joingame {slot} {CommandParsing.Escape(jobId.faction)} {CommandParsing.Escape(jobId.job)} {station}");
                 Close();
             };
 
@@ -92,7 +95,7 @@ namespace Content.Client.Lobby.UI
                 if (profile is not HumanoidCharacterProfile humanoid)
                     continue;
                 var characterPickerButton =
-                    new CharacterPickerButton(_preferencesManager, _prototypeManager, _playerManager, group, humanoid, isSelected, true);
+                    new CharacterPickerButton(_preferencesManager, _prototypeManager, _playerManager, _factions, group, humanoid, isSelected, true); // Far Horizons
                 CharacterList.AddChild(characterPickerButton);
 
                 if (isSelected && _selectedSlot != slot)
@@ -114,7 +117,6 @@ namespace Content.Client.Lobby.UI
         private void RebuildJobList()
         {
             JobList.RemoveAllChildren();
-            _jobLists.Clear();
             _jobButtons.Clear();
             _jobCategories.Clear();
 
@@ -127,28 +129,6 @@ namespace Content.Client.Lobby.UI
 
             foreach (var (id, name) in _gameTicker.StationNames)
             {
-                var jobList = new BoxContainer
-                {
-                    Orientation = LayoutOrientation.Vertical,
-                    Margin = new Thickness(0, 0, 5f, 0),
-                };
-
-                var collapseButton = new ContainerButton()
-                {
-                    HorizontalAlignment = HAlignment.Right,
-                    ToggleMode = true,
-                    Children =
-                    {
-                        new TextureRect
-                        {
-                            StyleClasses = { OptionButton.StyleClassOptionTriangle },
-                            Margin = new Thickness(8, 0),
-                            HorizontalAlignment = HAlignment.Center,
-                            VerticalAlignment = VAlignment.Center,
-                        }
-                    }
-                };
-
                 JobList.AddChild(new StripeBack()
                 {
                     Children =
@@ -162,8 +142,7 @@ namespace Content.Client.Lobby.UI
                                     StyleClasses = { "LabelBig" },
                                     Text = name,
                                     Align = Label.AlignMode.Center,
-                                },
-                                collapseButton
+                                }
                             }
                         }
                     }
@@ -180,101 +159,99 @@ namespace Content.Client.Lobby.UI
                     JobList.AddChild(crewManifestButton);
                 }
 
-                var jobListScroll = new ScrollContainer()
+                // Far Horizons factions
+                var faction_tab_container = new TabContainer
                 {
-                    VerticalExpand = true,
-                    Children = { jobList },
-                    Visible = false,
+                    VerticalExpand = true
                 };
+                JobList.AddChild(faction_tab_container);
 
-                if (_jobLists.Count == 0)
-                    jobListScroll.Visible = true;
+                Dictionary<ProtoId<FactionPrototype>, Control> faciton_tabs = [];
 
-                _jobLists.Add(jobListScroll);
-
-                JobList.AddChild(jobListScroll);
-
-                collapseButton.OnToggled += _ =>
-                {
-                    foreach (var section in _jobLists)
+                foreach (var faction in _factions.ListSpawnableFactions().ToList()){
+                    var faction_tab = new ScrollContainer
                     {
-                        section.Visible = false;
-                    }
-                    jobListScroll.Visible = true;
-                };
+                        VerticalExpand = true,
+                        Name = faction.Name,
+                        ToolTip = Loc.GetString(faction.Description)
+                    };
 
-                var firstCategory = true;
-                var departments = _prototypeManager.EnumeratePrototypes<DepartmentPrototype>().ToArray();
-                Array.Sort(departments, DepartmentUIComparer.Instance);
+                    faction_tab_container.AddChild(faction_tab);
 
-                _jobButtons[id] = new Dictionary<string, List<JobButton>>();
+                    var faction_tab_content = new BoxContainer
+                    {
+                        Orientation = LayoutOrientation.Vertical,
+                        Margin = new Thickness(0, 0, 5f, 0),
+                    };
 
-                foreach (var department in departments)
+                    faction_tab.AddChild(faction_tab_content);
+
+                    faciton_tabs.Add(faction, faction_tab_content);
+                }
+
+                _jobButtons[id] = [];
+
+                foreach (var dptAssignment in _factions.ListFactionDepartments().Where(p => _factions.ListSpawnableFactionIDs().Contains(p.Faction)))
                 {
+                    if (!_prototypeManager.TryIndex<DepartmentPrototype>(dptAssignment.Department, out var department) ||
+                        !_prototypeManager.TryIndex<FactionPrototype>(dptAssignment.Faction, out var faction))
+                        continue;
+
                     var departmentName = Loc.GetString(department.Name);
-                    _jobCategories[id] = new Dictionary<string, BoxContainer>();
+                    _jobCategories[id] = [];
                     var stationAvailable = _gameTicker.JobsAvailable[id];
-                    var jobsAvailable = new List<JobPrototype>();
-
-                    foreach (var jobId in department.Roles)
-                    {
-                        if (!stationAvailable.ContainsKey(jobId))
-                            continue;
-
-                        jobsAvailable.Add(_prototypeManager.Index<JobPrototype>(jobId));
-                    }
-
-                    jobsAvailable.Sort(JobUIComparer.Instance);
+                    var jobsAvailable = department.Roles
+                                        .Where(stationAvailable.ContainsKey)
+                                        .Select(_prototypeManager.Index<JobPrototype>)
+                                        .ToList();
 
                     // Do not display departments with no jobs available.
                     if (jobsAvailable.Count == 0)
                         continue;
 
-                    var category = new BoxContainer
+                    if (!_jobCategories[id].TryGetValue(((ProtoId<FactionPrototype>)faction.ID, (ProtoId<DepartmentPrototype>)department.ID), out var category))
                     {
-                        Orientation = LayoutOrientation.Vertical,
-                        Name = department.ID,
-                        ToolTip = Loc.GetString("late-join-gui-jobs-amount-in-department-tooltip",
-                            ("departmentName", departmentName))
-                    };
-
-                    if (firstCategory)
-                    {
-                        firstCategory = false;
-                    }
-                    else
-                    {
-                        category.AddChild(new Control
+                        category = new BoxContainer
                         {
-                            MinSize = new Vector2(0, 23),
-                        });
-                    }
+                            Orientation = LayoutOrientation.Vertical,
+                            Name = department.ID,
+                        };
 
-                    category.AddChild(new PanelContainer
-                    {
-                        Children =
+                        category.AddChild(new PanelContainer
                         {
-                            new Label
+                            PanelOverride = new StyleBoxFlat { BackgroundColor = Color.FromHex("#464966") },
+                            Children =
                             {
-                                StyleClasses = { "LabelBig" },
-                                Text = Loc.GetString("late-join-gui-department-jobs-label", ("departmentName", departmentName))
+                                new Label
+                                {
+                                    Text = Loc.GetString("humanoid-profile-editor-department-jobs-label",
+                                        ("departmentName", departmentName)),
+                                    Margin = new Thickness(5f, 0, 0, 0)
+                                }
                             }
-                        }
-                    });
+                        });
 
-                    _jobCategories[id][department.ID] = category;
-                    jobList.AddChild(category);
+                        _jobCategories[id][(faction.ID, department.ID)] = category;
+                        faciton_tabs[faction].AddChild(category);
+                    }
 
-                    foreach (var prototype in jobsAvailable)
+                    foreach (var jobAssignment in _factions.ListFactionJobs()
+                                                .Where(p => (p.Faction == faction) &&
+                                                            department.Roles.Contains(p.Job) &&
+                                                            jobsAvailable.Any(e => e.ID == p.Job) &&
+                                                            stationAvailable.ContainsKey(p.Job)))
                     {
-                        var value = stationAvailable[prototype.ID];
+                        if (!_prototypeManager.TryIndex<JobPrototype>(jobAssignment.Job, out var job))
+                            continue;
+                        
+                        var value = stationAvailable[jobAssignment.Job];
 
                         var jobLabel = new Label
                         {
                             Margin = new Thickness(5f, 0, 0, 0)
                         };
 
-                        var jobButton = new JobButton(jobLabel, prototype.ID, prototype.LocalizedName, value);
+                        var jobButton = new JobButton(jobLabel, jobAssignment.Faction, jobAssignment.Job, _factions.OverrideLocalizedJobName(jobAssignment), value);
 
                         var jobSelector = new BoxContainer
                         {
@@ -288,7 +265,7 @@ namespace Content.Client.Lobby.UI
                             VerticalAlignment = VAlignment.Center
                         };
 
-                        var jobIcon = _prototypeManager.Index(prototype.Icon);
+                        var jobIcon = _prototypeManager.Index(_factions.OverrideJobIcon(jobAssignment));
                         icon.Texture = _sprites.Frame0(jobIcon.Icon);
                         jobSelector.AddChild(icon);
 
@@ -297,9 +274,9 @@ namespace Content.Client.Lobby.UI
                         category.AddChild(jobButton);
 
                         // just send a -1 if there is no selected slot... catch it later
-                        jobButton.OnPressed += _ => SelectedId.Invoke((id, _selectedSlot ?? -1, jobButton.JobId));
+                        jobButton.OnPressed += _ => SelectedId.Invoke((id, _selectedSlot ?? -1, (jobButton.FactionId, jobButton.JobId)));
 
-                        if (!_jobRequirements.IsAllowed(prototype, humanoid, out var reason))
+                        if (!_jobRequirements.IsAllowed(job, humanoid, out var reason))
                         {
                             jobButton.Disabled = true;
 
@@ -324,13 +301,18 @@ namespace Content.Client.Lobby.UI
                             jobButton.Disabled = true;
                         }
 
-                        if (!_jobButtons[id].ContainsKey(prototype.ID))
+                        if (!_jobButtons[id].ContainsKey((faction, job)))
                         {
-                            _jobButtons[id][prototype.ID] = new List<JobButton>();
+                            _jobButtons[id][(faction, job)] = new List<JobButton>();
                         }
 
-                        _jobButtons[id][prototype.ID].Add(jobButton);
+                        _jobButtons[id][(faction, job)].Add(jobButton);
                     }
+
+                    faciton_tabs[dptAssignment.Faction].AddChild(new Control
+                    {
+                        MinSize = new Vector2(0, 23),
+                    });
                 }
             }
         }
@@ -352,9 +334,9 @@ namespace Content.Client.Lobby.UI
                     var existingJobEntries = _jobButtons[stationEntries.Key];
                     foreach (var existingJobEntry in existingJobEntries)
                     {
-                        if (jobsAvailable.ContainsKey(existingJobEntry.Key))
+                        if (jobsAvailable.ContainsKey(existingJobEntry.Key.job))
                         {
-                            var updatedJobValue = jobsAvailable[existingJobEntry.Key];
+                            var updatedJobValue = jobsAvailable[existingJobEntry.Key.job];
                             foreach (var matchingJobButton in existingJobEntry.Value)
                             {
                                 if (matchingJobButton.Amount != updatedJobValue)
@@ -378,7 +360,6 @@ namespace Content.Client.Lobby.UI
                 _jobRequirements.Updated -= RebuildUI;
                 _gameTicker.LobbyJobsAvailableUpdated -= JobsAvailableUpdated;
                 _jobButtons.Clear();
-                _jobCategories.Clear();
             }
         }
     }
@@ -386,14 +367,16 @@ namespace Content.Client.Lobby.UI
     sealed class JobButton : ContainerButton
     {
         public Label JobLabel { get; }
-        public string JobId { get; }
+        public ProtoId<FactionPrototype> FactionId { get; }
+        public ProtoId<JobPrototype> JobId { get; }
         public string JobLocalisedName { get; }
         public int? Amount { get; private set; }
         private bool _initialised = false;
 
-        public JobButton(Label jobLabel, ProtoId<JobPrototype> jobId, string jobLocalisedName, int? amount)
+        public JobButton(Label jobLabel, ProtoId<FactionPrototype> factionID, ProtoId<JobPrototype> jobId, string jobLocalisedName, int? amount)
         {
             JobLabel = jobLabel;
+            FactionId = factionID;
             JobId = jobId;
             JobLocalisedName = jobLocalisedName;
             RefreshLabel(amount);

@@ -162,7 +162,8 @@ namespace Content.Server.Administration.Systems
 
                                         var stationUid = _stations.GetOwningStation(args.Target);
 
-                                        var mobUid = _spawning.SpawnPlayerMob(coords.Value, null, humanoid, stationUid);
+                                        // Far Horizons, spawn without faction
+                                        var mobUid = _spawning.SpawnPlayerMob(coords.Value, null, null, humanoid, stationUid);
 
                                         if (_mindSystem.TryGetMind(args.Target, out var mindId, out var mindComp))
                                             _mindSystem.TransferTo(mindId, mobUid, true, mind: mindComp);
@@ -189,7 +190,8 @@ namespace Content.Server.Administration.Systems
 
                                 var stationUid = _stations.GetOwningStation(args.Target);
                                 var profile = _humanoidAppearance.GetBaseProfile(args.Target);
-                                _spawning.SpawnPlayerMob(coords.Value, null, profile, stationUid);
+                                // Far Horizons, spawn without faction
+                                _spawning.SpawnPlayerMob(coords.Value, null, null, profile, stationUid);
                             },
                             ConfirmationPopup = true,
                             Impact = LogImpact.High,

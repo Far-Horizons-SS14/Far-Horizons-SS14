@@ -10,7 +10,6 @@ using Content.Shared.Database;
 using Content.Shared.GameTicking;
 using Content.Shared.Mind;
 using Content.Shared.Players;
-using Content.Shared.Preferences;
 using Content.Shared.Roles.Components;
 using JetBrains.Annotations;
 using Prometheus;
@@ -395,6 +394,10 @@ namespace Content.Server.GameTicking
 
             DebugTools.AssertEqual(readyPlayers.Count, ReadyPlayerCount());
 
+            // Far Horizons 
+            // Rounds is about to start, faction must be selected at this point
+            _factions.MustHaveCurrentFaction();
+
             // Just in case it hasn't been loaded previously we'll try loading it.
             LoadMaps();
 
@@ -659,6 +662,9 @@ namespace Content.Server.GameTicking
             ResettingCleanup();
             IncrementRoundNumber();
             SendRoundStartingDiscordMessage();
+
+            // Far Horizons, reset factions at the end of round
+            _factions.SetCurrentFaction(null);
 
             if (!LobbyEnabled)
             {

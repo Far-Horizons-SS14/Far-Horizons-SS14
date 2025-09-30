@@ -3,6 +3,7 @@ using Content.Server._Starlight.Medical.Limbs;
 using Content.Server.Access.Components;
 using Content.Server.Access.Systems;
 using Content.Server.Body.Systems;
+using Content.Server.FarHorizons.Factions;
 using Content.Server.GameTicking;
 using Content.Server.Humanoid;
 using Content.Server.IdentityManagement;
@@ -16,6 +17,7 @@ using Content.Shared.Body.Part;
 using Content.Shared.CCVar;
 using Content.Shared.Clothing;
 using Content.Shared.DetailExaminable;
+using Content.Shared.FarHorizons.Factions;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.PDA;
@@ -53,6 +55,7 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
     [Dependency] private readonly MindSystem _mindSystem = default!;
     [Dependency] private readonly LimbSystem _limbSystem = default!;
     [Dependency] private readonly BodySystem _bodySystem = default!;
+    [Dependency] private readonly IServerFactionManager _factions = default!; // Far Horizons
 
     private List<CyberneticImplant> _allCybernetics = default!; // Starlight
 
@@ -78,6 +81,7 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
     /// Attempts to spawn a player character onto the given station.
     /// </summary>
     /// <param name="station">Station to spawn onto.</param>
+    /// <param name="faction">The faction to assign, if any.</param>
     /// <param name="job">The job to assign, if any.</param>
     /// <param name="profile">The character profile to use, if any.</param>
     /// <param name="stationSpawning">Resolve pattern, the station spawning component for the station.</param>
@@ -86,12 +90,13 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
     /// <remarks>
     /// This only spawns the character, and does none of the mind-related setup you'd need for it to be playable.
     /// </remarks>
-    public EntityUid? SpawnPlayerCharacterOnStation(EntityUid? station, ProtoId<JobPrototype>? job, HumanoidCharacterProfile? profile, StationSpawningComponent? stationSpawning = null)
+    /// Far Horizons
+    public EntityUid? SpawnPlayerCharacterOnStation(EntityUid? station, ProtoId<FactionPrototype>? faction, ProtoId<JobPrototype>? job, HumanoidCharacterProfile? profile, StationSpawningComponent? stationSpawning = null)
     {
         if (station != null && !Resolve(station.Value, ref stationSpawning))
             throw new ArgumentException("Tried to use a non-station entity as a station!", nameof(station));
 
-        var ev = new PlayerSpawningEvent(job, profile, station);
+        var ev = new PlayerSpawningEvent(faction, job, profile, station); // Far Horizons
 
         RaiseLocalEvent(ev);
         DebugTools.Assert(ev.SpawnResult is { Valid: true } or null);
@@ -114,16 +119,20 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
     /// <returns>The spawned entity</returns>
     public EntityUid SpawnPlayerMob(
         EntityCoordinates coordinates,
+        ProtoId<FactionPrototype>? faction, // Far Horizons
         ProtoId<JobPrototype>? job,
         HumanoidCharacterProfile? profile,
         EntityUid? station,
         EntityUid? entity = null)
     {
-        _prototypeManager.Resolve(job, out var prototype);
+        _prototypeManager.Resolve(faction ?? string.Empty, out var factionProto); // Far Horizons
+        _prototypeManager.Resolve(job ?? string.Empty, out var prototype);
         RoleLoadout? loadout = null;
 
         // Need to get the loadout up-front to handle names if we use an entity spawn override.
-        var jobLoadout = LoadoutSystem.GetJobPrototype(prototype?.ID);
+        // Far Horizons override faction loadouts
+        var jobLoadout = faction is null || job is null ? string.Empty : 
+                            (string)_factions.OverrideJobLoadout((faction.Value, job.Value));
 
         if (_prototypeManager.TryIndex(jobLoadout, out RoleLoadoutPrototype? roleProto))
         {
@@ -138,10 +147,12 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
         }
 
         // If we're not spawning a humanoid, we're gonna exit early without doing all the humanoid stuff.
+        // Far Horizons - we don't check override job entity here, this is intentional, base job should have JobEntity to override it with faction.
         if (prototype?.JobEntity != null)
         {
             DebugTools.Assert(entity is null);
-            var jobEntity = Spawn(prototype.JobEntity, coordinates);
+            // Far Horizons override job entity
+            var jobEntity = Spawn(_factions.OverrideJobEntity((faction, prototype)), coordinates);
             _mindSystem.MakeSentient(jobEntity);
 
             // Make sure custom names get handled, what is gameticker control flow whoopy.
@@ -183,16 +194,17 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
 
         if (prototype?.StartingGear != null)
         {
-            var startingGear = _prototypeManager.Index<StartingGearPrototype>(prototype.StartingGear);
+            var startingGear = _prototypeManager.Index<StartingGearPrototype>(_factions.OverrideJobStartingGear((factionProto?.ID, prototype))!); // Far Horizons starting gear faction override
             EquipStartingGear(entity.Value, startingGear, raiseEvent: false);
         }
 
         var gearEquippedEv = new StartingGearEquippedEvent(entity.Value);
         RaiseLocalEvent(entity.Value, ref gearEquippedEv);
 
-        if (prototype != null && TryComp(entity.Value, out MetaDataComponent? metaData))
+        // Far Horizons
+        if (prototype != null && factionProto != null && TryComp(entity.Value, out MetaDataComponent? metaData))
         {
-            SetPdaAndIdCardData(entity.Value, metaData.EntityName, prototype, station);
+            SetPdaAndIdCardData(entity.Value, metaData.EntityName, factionProto, prototype, station); // Far Horizons
         }
 
         DoJobSpecials(job, entity.Value);
@@ -216,7 +228,7 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
             _speciesJobsSpawns
                 .WithLabels(
                     Loc.GetString(speciesProto.Name),
-                    jobProto.LocalizedName,
+                    _factions.OverrideLocalizedJobName((factionProto?.ID, jobProto)), // Far Horizons faction name override
                     _gameTicker.RunLevel.ToString())
                 .Inc();
         }
@@ -294,9 +306,11 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
     /// </summary>
     /// <param name="entity">Entity to load out.</param>
     /// <param name="characterName">Character name to use for the ID.</param>
+    /// <param name="factionPrototype">Faction prototype to use for the PDA and ID.</param>
     /// <param name="jobPrototype">Job prototype to use for the PDA and ID.</param>
     /// <param name="station">The station this player is being spawned on.</param>
-    public void SetPdaAndIdCardData(EntityUid entity, string characterName, JobPrototype jobPrototype, EntityUid? station)
+    /// Far Horizons
+    public void SetPdaAndIdCardData(EntityUid entity, string characterName, FactionPrototype factionPrototype, JobPrototype jobPrototype, EntityUid? station)
     {
         if (!InventorySystem.TryGetSlotEntity(entity, "id", out var idUid))
             return;
@@ -308,15 +322,16 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
         if (!TryComp<IdCardComponent>(cardId, out var card))
             return;
 
-        // FarHorizons - custom job titles
-        string jobTitle = jobPrototype.LocalizedName;
+        // FarHorizons - custom job titles and faction overrides
+        var jobTitle = _factions.OverrideLocalizedJobName((factionPrototype, jobPrototype));
         if (TryComp<PresetIdCardComponent>(cardId, out var presetIdCard) && presetIdCard.CustomJobTitle != null)
             jobTitle = presetIdCard.CustomJobTitle;
         
         _cardSystem.TryChangeFullName(cardId, characterName, card);
         _cardSystem.TryChangeJobTitle(cardId, jobTitle, card);
 
-        if (_prototypeManager.Resolve(jobPrototype.Icon, out var jobIcon))
+        // Far Horizons - faction icon override
+        if (_prototypeManager.Resolve(_factions.OverrideJobIcon((factionPrototype, jobPrototype)), out var jobIcon))
             _cardSystem.TryChangeJobIcon(cardId, jobIcon, card);
 
         var extendedAccess = false;
@@ -350,6 +365,10 @@ public sealed class PlayerSpawningEvent : EntityEventArgs
     /// </summary>
     public EntityUid? SpawnResult;
     /// <summary>
+    /// The faction to use, if any.
+    /// </summary>
+    public readonly ProtoId<FactionPrototype>? Faction;
+    /// <summary>
     /// The job to use, if any.
     /// </summary>
     public readonly ProtoId<JobPrototype>? Job;
@@ -362,8 +381,10 @@ public sealed class PlayerSpawningEvent : EntityEventArgs
     /// </summary>
     public readonly EntityUid? Station;
 
-    public PlayerSpawningEvent(ProtoId<JobPrototype>? job, HumanoidCharacterProfile? humanoidCharacterProfile, EntityUid? station)
+    // Far Horizons
+    public PlayerSpawningEvent(ProtoId<FactionPrototype>? faction, ProtoId<JobPrototype>? job, HumanoidCharacterProfile? humanoidCharacterProfile, EntityUid? station)
     {
+        Faction = faction; // Far Horizons
         Job = job;
         HumanoidCharacterProfile = humanoidCharacterProfile;
         Station = station;

@@ -39,6 +39,8 @@ using Content.Shared.Players.PlayTimeTracking;
 using Content.Shared.Players.RateLimiting;
 using Content.Shared.Starlight;
 using Content.Server.Economy; // Starlight-edit
+using Content.Shared.FarHorizons.Factions;
+using Content.Server.FarHorizons.Factions; // Far Horizons edit
 
 namespace Content.Server.IoC
 {
@@ -103,6 +105,9 @@ namespace Content.Server.IoC
             IoCManager.Register<INullLinkPlayerManager, NullLinkPlayerManager>();
             IoCManager.Register<INullLinkEventBusManager, NullLinkEventBusManager>();
             IoCManager.Register<ISharedNullLinkPlayerRolesReqManager, PlayerRolesReqManager>();
+            // Far Horizons
+            IoCManager.Register<IServerFactionManager, ServerFactionManager>();
+            IoCManager.Register<ISharedFactionManager, ServerFactionManager>();
         }
     }
 }

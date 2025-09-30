@@ -12,7 +12,7 @@ public sealed partial class HumanoidProfileExport
     public string ForkId;
 
     [DataField]
-    public int Version = 2;
+    public int Version = 3; // Version 1: priorities in profile (wizden); Version 2: priorities on account between characters (starlight); Version 3: priorities for both jobs and factions coupled together (far horizons)
 
     [DataField(required: true)]
     public HumanoidCharacterProfile Profile = default!;

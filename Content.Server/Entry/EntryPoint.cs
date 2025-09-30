@@ -12,6 +12,7 @@ using Content.Server.Connection;
 using Content.Server.Database;
 using Content.Server.Discord.DiscordLink;
 using Content.Server.EUI;
+using Content.Server.FarHorizons.Factions;
 using Content.Server.GameTicking;
 using Content.Server.GhostKick;
 using Content.Server.GuideGenerator;
@@ -130,6 +131,9 @@ namespace Content.Server.Entry
                 IoCManager.Resolve<ITTSManager>().Initialize();
                 IoCManager.Resolve<HolidaySystem>().Initialize();
                 //🌟Starlight🌟 end
+
+                //Far Horizons
+                IoCManager.Resolve<IServerFactionManager>().Init();
             }
         }
 
@@ -216,6 +220,8 @@ namespace Content.Server.Entry
             IoCManager.Resolve<INullLinkEventBusManager>().Shutdown();
             IoCManager.Resolve<IActorRouter>().Shutdown();
             // Nullink end
+            //Far Horizons
+            IoCManager.Resolve<IServerFactionManager>().Shutdown();
         }
 
         private static void LoadConfigPresets(IConfigurationManager cfg, IResourceManager res, ISawmill sawmill)

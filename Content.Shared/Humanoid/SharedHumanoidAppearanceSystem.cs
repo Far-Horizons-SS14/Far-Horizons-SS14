@@ -4,6 +4,7 @@ using System.Numerics;
 using Content.Shared.CCVar;
 using Content.Shared.Decals;
 using Content.Shared.Examine;
+using Content.Shared.FarHorizons.Factions;
 using Content.Shared.Humanoid.Markings;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.IdentityManagement;
@@ -43,6 +44,7 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
     [Dependency] private readonly MarkingManager _markingManager = default!;
     [Dependency] private readonly GrammarSystem _grammarSystem = default!;
     [Dependency] private readonly SharedIdentitySystem _identity = default!;
+    [Dependency] private readonly ISharedFactionManager _factions = default!; // Far Horizons
 
     public static readonly ProtoId<SpeciesPrototype> DefaultSpecies = "Human";
 
@@ -75,6 +77,9 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
         var root = yamlStream.Documents[0].RootNode;
         var export = _serManager.Read<HumanoidProfileExport>(root.ToDataNode(), notNullableOverride: true);
 
+        var defaultFaction = _factions.GetDefaultFaction();
+        var allFactionJobs = _factions.ListFactionJobs();
+
         switch (export.Version)
         {
             // Converting version 1 profile to version 2
@@ -84,21 +89,48 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
             // In Version 2, job priorities are now a job "preference", each job is just "yes" or "no".
             // These preferences are represented as a hash set of jobs selected as "yes"
             // Jobs not represented in the hash set are assumed to be "no".
+            // --- Far Horizons addition ---
+            // Version 3 now holds separate priorities for different factions.
+            // Just like versions 1 and 2 it's stored in a hash set. However, it's keys are now pairs of `(faction, job)`
+            // Anyone importing from previous version will have preferences imported into "fallback" faction (likely NT)
+            // However, some jobs, like cargo, have moved from one faction into another and have to be handled separately
             case 1:
                 // Pull out the old job priorities dictionary
                 var jobPriorities = root["profile"]["_jobPriorities"] as YamlMappingNode ?? new YamlMappingNode();
-                var jobPreferences = new HashSet<ProtoId<JobPrototype>>();
+                var jobPreferences = new HashSet<(ProtoId<FactionPrototype>, ProtoId<JobPrototype>)>();
                 foreach (var (job, prio) in jobPriorities)
                 {
                     if (!_proto.TryIndex<JobPrototype>(job.AsString(), out var jobProto))
                         continue;
                     // If a job isn't set to "never", we add it to the hash set as an enabled job preference
-                    if (prio.AsEnum<JobPriority>() != JobPriority.Never)
-                        jobPreferences.Add(jobProto);
+                    if (prio.AsEnum<JobPriority>() != JobPriority.Never) {
+                        var filteredFactions = allFactionJobs.Where(p => p.Job == jobProto).ToList();
+                        if (filteredFactions.Count == 1)
+                            jobPreferences.Add((filteredFactions.First().Faction, filteredFactions.First().Job));
+                        else
+                            jobPreferences.Add((defaultFaction, jobProto));
+                    }
                 }
 
                 // Tack on the new job preferences and proceed normally.
                 export.Profile = export.Profile.WithJobPreferences(jobPreferences);
+                break;
+            
+            case 2:
+                var jobPreferences2 = root["profile"]["_jobPreferences"] as YamlSequenceNode ?? new YamlSequenceNode();
+                var factionJobPreferences2 = new HashSet<(ProtoId<FactionPrototype>, ProtoId<JobPrototype>)>();
+                foreach (var job in jobPreferences2){
+                    if (!_proto.TryIndex<JobPrototype>(job.AsString(), out var jobProto))
+                        continue;
+                    
+                    var filteredFactions = allFactionJobs.Where(p => p.Job == jobProto).ToList();
+                    if (filteredFactions.Count == 1)
+                        factionJobPreferences2.Add((filteredFactions.First().Faction, filteredFactions.First().Job));
+                    else
+                        factionJobPreferences2.Add((defaultFaction, jobProto));
+                }
+
+                export.Profile = export.Profile.WithJobPreferences(factionJobPreferences2);
                 break;
         }
 

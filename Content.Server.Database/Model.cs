@@ -111,7 +111,7 @@ namespace Content.Server.Database
                 .HasIndex(j => j.ProfileId);
 
             modelBuilder.Entity<Job>()
-                .HasIndex(j => new { j.ProfileId, j.JobName })
+                .HasIndex(j => new { j.ProfileId, j.JobName, j.FactionName }) // Far Horizons, instead of indexing (profile, job), we index (profile, job, faction)
                 .IsUnique();
 
             modelBuilder.Entity<AssignedUserId>()
@@ -447,7 +447,7 @@ namespace Content.Server.Database
         public int Id { get; set; }
         public Profile Profile { get; set; } = null!;
         public int ProfileId { get; set; }
-
+        public string FactionName { get; set; } = null!; // Far Horizons - new field, which is also indexing key, for factions
         public string JobName { get; set; } = null!;
     }
 
@@ -456,7 +456,7 @@ namespace Content.Server.Database
         public int Id { get; set; }
         public Preference Preference { get; set; } = null!;
         public int PreferenceId { get; set; }
-
+        public string FactionName { get; set; } = null!; // Far Horizons - another faction field, this time isn't the key. What, you expected consistency? I don't make the rules
         public string JobName { get; set; } = null!;
         public DbJobPriority Priority { get; set; }
     }

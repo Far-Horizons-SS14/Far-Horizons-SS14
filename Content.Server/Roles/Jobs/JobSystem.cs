@@ -1,9 +1,12 @@
 ﻿using System.Globalization;
 using Content.Server.Chat.Managers;
+using Content.Server.FarHorizons.Factions;
+using Content.Shared.FarHorizons.Factions;
 using Content.Shared.Mind;
 using Content.Shared.Roles;
 using Content.Shared.Roles.Jobs;
 using Robust.Shared.Player;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Roles.Jobs;
 
@@ -15,6 +18,7 @@ public sealed class JobSystem : SharedJobSystem
     [Dependency] private readonly IChatManager _chat = default!;
     [Dependency] private readonly ISharedPlayerManager _player = default!;
     [Dependency] private readonly RoleSystem _roles = default!;
+    [Dependency] private readonly IServerFactionManager _factions = default!; // Far Horizons
 
     public override void Initialize()
     {
@@ -49,22 +53,24 @@ public sealed class JobSystem : SharedJobSystem
             return;
 
         _chat.DispatchServerMessage(session, Loc.GetString("job-greet-introduce-job-name",
-            ("jobName", CultureInfo.CurrentCulture.TextInfo.ToTitleCase(prototype.LocalizedName))));
+            ("jobName", CultureInfo.CurrentCulture.TextInfo.ToTitleCase(MindTryGetJobName(mindId))))); // Far Horizons faction name override
 
         if (prototype.RequireAdminNotify)
             _chat.DispatchServerMessage(session, Loc.GetString("job-greet-important-disconnect-admin-notify"));
 
-        _chat.DispatchServerMessage(session, Loc.GetString("job-greet-supervisors-warning", ("jobName", prototype.LocalizedName), ("supervisors", Loc.GetString(prototype.Supervisors))));
+        // Far Horizons faction name override
+        _chat.DispatchServerMessage(session, Loc.GetString("job-greet-supervisors-warning", ("jobName", MindTryGetJobName(mindId)), ("supervisors", Loc.GetString(prototype.Supervisors))));
         
         // Starlight
         _chat.DispatchServerMessage(session, Loc.GetString("job-greet-information-rules", ("jobRules", Loc.GetString(prototype.JobRules))));
     }
 
-    public void MindAddJob(EntityUid mindId, string jobPrototypeId)
+    // Far Horizons
+    public void MindAddJob(EntityUid mindId, string jobPrototypeId, ProtoId<FactionPrototype>? factionPrototypeId = null)
     {
         if (MindHasJobWithId(mindId, jobPrototypeId))
             return;
 
-        _roles.MindAddJobRole(mindId, null, false, jobPrototypeId);
+        _roles.MindAddJobRole(mindId, null, false, jobPrototypeId, factionPrototypeId); // Far Horizons
     }
 }

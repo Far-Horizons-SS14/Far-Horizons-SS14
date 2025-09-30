@@ -35,6 +35,10 @@ namespace Content.Server.GameTicking
         /// </summary>
         public IReadOnlyDictionary<NetUserId, PlayerGameStatus> PlayerGameStatuses => _playerGameStatuses;
 
+        // Far Horizons
+        // Lobby needs to subscribe to updates from faction manager to correctly update filters
+        private void InitializeLobby() => _factions.OnFactionUpdated += _ => UpdateInfoText();
+
         public void UpdateInfoText()
         {
             RaiseNetworkEvent(GetInfoMsg(), Filter.Empty().AddPlayers(_playerManager.NetworkedSessions));
@@ -83,7 +87,9 @@ namespace Content.Server.GameTicking
                 ("readyCount", readyCount),
                 ("mapName", stationNames.ToString()),
                 ("gmTitle", string.IsNullOrWhiteSpace(GamemodeNameOverride) ? gmTitle : Loc.GetString(GamemodeNameOverride)), //Starlight edit: gamemode name override
-                ("desc", string.IsNullOrWhiteSpace(GamemodeDescOverride) ? desc : Loc.GetString(GamemodeDescOverride))); //Starlight edit: gamemode desc override
+                ("desc", string.IsNullOrWhiteSpace(GamemodeDescOverride) ? desc : Loc.GetString(GamemodeDescOverride)), //Starlight edit: gamemode desc override
+                ("factionName", _factions.GetCurrentFaction() is null ? Loc.GetString("game-ticker-no-faction-selected") : _factions.GetCurrentFaction()!.Name), //Far Horizons edit: factions
+                ("factionColor", _factions.GetCurrentFaction() is null ? "yellow" : _factions.GetCurrentFaction()!.Color)); //Far Horizons edit: factions
         }
 
         private TickerConnectionStatusEvent GetConnectionStatusMsg()

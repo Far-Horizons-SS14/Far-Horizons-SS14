@@ -21,6 +21,7 @@ using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+using Content.Shared.FarHorizons.Factions;
 
 namespace Content.Server.Players.PlayTimeTracking;
 
@@ -179,7 +180,8 @@ public sealed class PlayTimeTrackingSystem : EntitySystem
 
     private void OnIsJobAllowed(ref IsJobAllowedEvent ev)
     {
-        if (!IsAllowed(ev.Player, ev.JobId))
+        // Far Horizons
+        if (!IsAllowed(ev.Player, ev.FactionId, ev.JobId))
             ev.Cancelled = true;
     }
 
@@ -206,14 +208,12 @@ public sealed class PlayTimeTrackingSystem : EntitySystem
         return playTimes;
     }
 
-    public bool IsAllowed(ICommonSession player, string role)
+    // Far Horizons
+    public bool IsAllowed(ICommonSession player, ProtoId<FactionPrototype> faction, ProtoId<JobPrototype> job)
     {
-        if (!_prototypes.TryIndex<JobPrototype>(role, out var job))
-            return true;
-
         var playTimes = GetPlayTimesIfEnabled(player);
 
-        var allProfilesForJob = _preferencesManager.GetPreferences(player.UserId).GetAllEnabledProfilesForJob(job);
+        var allProfilesForJob = _preferencesManager.GetPreferences(player.UserId).GetAllEnabledProfilesForJob(faction, job); // Far Horizons
         return allProfilesForJob.Values.Any(profile => JobRequirements.TryRequirementsMet(job, player, playTimes, out _, EntityManager, _prototypes, profile));
     }
 
@@ -223,30 +223,33 @@ public sealed class PlayTimeTrackingSystem : EntitySystem
 
         var playTimes = GetPlayTimesIfEnabled(player);
 
-        foreach (var job in _prototypes.EnumeratePrototypes<JobPrototype>())
+        // Far Horizons
+        foreach (var assignment in _prototypes.EnumeratePrototypes<FactionJobAssignmentPrototype>())
         {
-            var allProfilesForJob = _preferencesManager.GetPreferences(player.UserId).GetAllEnabledProfilesForJob(job);
-            if (allProfilesForJob.Values.All(profile => !JobRequirements.TryRequirementsMet(job, player, playTimes, out _, EntityManager, _prototypes, profile)))
-                roles.Add(job.ID);
+            var allProfilesForJob = _preferencesManager.GetPreferences(player.UserId).GetAllEnabledProfilesForJob(assignment.Faction, assignment.Job);
+            if (allProfilesForJob.Values.All(profile => !JobRequirements.TryRequirementsMet(assignment.Job, player, playTimes, out _, EntityManager, _prototypes, profile)))
+                roles.Add(assignment.Job);
         }
 
         return roles;
     }
 
-    public void RemoveDisallowedJobs(NetUserId userId, List<ProtoId<JobPrototype>> jobs)
+    // Far Horizons
+    public void RemoveDisallowedJobs(NetUserId userId, List<(ProtoId<FactionPrototype>, ProtoId<JobPrototype>)> jobs)
     {
         var player = _playerManager.GetSessionById(userId);
 
         var playTimes = GetPlayTimesIfEnabled(player);
 
-        foreach (var job in jobs.ShallowClone())
+        foreach (var (faction, job) in jobs.ShallowClone())
         {
-            if(!_prototypes.Resolve(job, out var jobToRemove))
+            if(!_prototypes.Resolve(job, out var jobToRemove) ||
+               !_prototypes.Resolve(faction, out var factionToRemove))
                 continue;
-            var allProfilesForJob = _preferencesManager.GetPreferences(player.UserId).GetAllEnabledProfilesForJob(job);
+            var allProfilesForJob = _preferencesManager.GetPreferences(player.UserId).GetAllEnabledProfilesForJob(faction, job);
             if (allProfilesForJob.Values.All(profile =>
                     !JobRequirements.TryRequirementsMet(jobToRemove, player, playTimes, out _, EntityManager, _prototypes, profile)))
-                jobs.Remove(job);
+                jobs.Remove((faction, job));
         }
     }
 

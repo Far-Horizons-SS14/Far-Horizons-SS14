@@ -9,6 +9,7 @@ using Content.Shared.Preferences;
 using Content.Shared.Roles;
 using Content.Shared.Humanoid;
 using Robust.Shared.Prototypes;
+using Content.Shared.FarHorizons.Factions;
 
 namespace Content.IntegrationTests.Tests.Round;
 
@@ -130,10 +131,10 @@ public sealed class JobRequirementsTest
         var humanoidZero = cPref.Preferences!.Characters[0] as HumanoidCharacterProfile;
         Assert.That(humanoidZero, Is.Not.Null);
 
-        var priorities = new Dictionary<ProtoId<JobPrototype>, JobPriority>
+        var priorities = new Dictionary<(ProtoId<FactionPrototype> faction, ProtoId<JobPrototype> job), JobPriority>
         {
-            { wantedJob, JobPriority.High },
-            { "Assistant", JobPriority.Low },
+            { ("TFaction", wantedJob), JobPriority.High },
+            { ("TFaction", "Assistant"), JobPriority.Low },
         };
 
         await pair.Client.WaitAssertion(() =>
@@ -154,7 +155,7 @@ public sealed class JobRequirementsTest
         await pair.Server.WaitPost(() => ticker.StartRound());
         await pair.RunTicksSync(10);
 
-        pair.AssertJob(expectedJob ? wantedJob : "Assistant");
+        pair.AssertJob(expectedJob ? ("TFaction", wantedJob) : ("TFaction", "Assistant"));
 
         await pair.Server.WaitPost(() => ticker.RestartRound());
         await pair.CleanReturnAsync();
@@ -187,10 +188,10 @@ public sealed class JobRequirementsTest
         var humanoidZero = cPref.Preferences!.Characters[0] as HumanoidCharacterProfile;
         Assert.That(humanoidZero, Is.Not.Null);
 
-        var priorities = new Dictionary<ProtoId<JobPrototype>, JobPriority>
+        var priorities = new Dictionary<(ProtoId<FactionPrototype> faction, ProtoId<JobPrototype> job), JobPriority>
         {
-            { "SeniorCitizen", JobPriority.High },
-            { "Passenger", JobPriority.Low },
+            { ("TFaction", "SeniorCitizen"), JobPriority.High },
+            { ("TFaction", "Passenger"), JobPriority.Low },
         };
 
         await pair.Client.WaitAssertion(() =>
@@ -212,7 +213,7 @@ public sealed class JobRequirementsTest
         await pair.Server.WaitPost(() => ticker.StartRound());
         await pair.RunTicksSync(10);
 
-        pair.AssertJob("SeniorCitizen");
+        pair.AssertJob(("TFaction", "SeniorCitizen"));
         Assert.That(pair.Client.AttachedEntity, Is.Not.Null);
         pair.Server.EntMan.TryGetComponent<HumanoidAppearanceComponent>(pair.ToServerUid(pair.Client.AttachedEntity.Value), out var appearance);
         Assert.That(appearance, Is.Not.Null);
@@ -251,10 +252,10 @@ public sealed class JobRequirementsTest
         var humanoidZero = cPref.Preferences!.Characters[0] as HumanoidCharacterProfile;
         Assert.That(humanoidZero, Is.Not.Null);
 
-        var priorities = new Dictionary<ProtoId<JobPrototype>, JobPriority>
+        var priorities = new Dictionary<(ProtoId<FactionPrototype>, ProtoId<JobPrototype>), JobPriority>
         {
-            { wantedJob, JobPriority.High },
-            { "Assistant", JobPriority.Low },
+            { ("TFaction", wantedJob), JobPriority.High },
+            { ("TFaction", "Assistant"), JobPriority.Low },
         };
 
         await pair.Client.WaitAssertion(() =>
@@ -275,7 +276,7 @@ public sealed class JobRequirementsTest
         await pair.Server.WaitPost(() => ticker.StartRound());
         await pair.RunTicksSync(10);
 
-        pair.AssertJob(expectedJob ? wantedJob : "Assistant");
+        pair.AssertJob(expectedJob ? ("TFaction", wantedJob) : ("TFaction", "Assistant"));
 
         await pair.Server.WaitPost(() => ticker.RestartRound());
         await pair.CleanReturnAsync();

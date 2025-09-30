@@ -6,6 +6,7 @@ using Robust.Shared.Random;
 using Content.Shared.Construction.Prototypes;
 using Robust.Shared.Serialization;
 using Robust.Shared.Utility;
+using Content.Shared.FarHorizons.Factions;
 
 namespace Content.Shared.Preferences
 {
@@ -15,11 +16,12 @@ namespace Content.Shared.Preferences
     /// </summary>
     [Serializable]
     [NetSerializable]
-    public sealed class PlayerPreferences
+    public sealed partial class PlayerPreferences
     {
         private Dictionary<int, ICharacterProfile> _characters;
 
-        public PlayerPreferences(IEnumerable<KeyValuePair<int, ICharacterProfile>> characters, Color adminOOCColor, List<ProtoId<ConstructionPrototype>> constructionFavorites,  Dictionary<ProtoId<JobPrototype>, JobPriority> jobPriorities)
+        // Far Horizons
+        public PlayerPreferences(IEnumerable<KeyValuePair<int, ICharacterProfile>> characters, Color adminOOCColor, List<ProtoId<ConstructionPrototype>> constructionFavorites,  Dictionary<(ProtoId<FactionPrototype>, ProtoId<JobPrototype>), JobPriority> jobPriorities)
         {
             _characters = new Dictionary<int, ICharacterProfile>(characters);
             AdminOOCColor = adminOOCColor;
@@ -27,10 +29,9 @@ namespace Content.Shared.Preferences
             JobPriorities = SanitizeJobPriorities(jobPriorities);
         }
 
-        private static Dictionary<ProtoId<JobPrototype>, JobPriority> SanitizeJobPriorities(Dictionary<ProtoId<JobPrototype>, JobPriority> jobPriorities)
-        {
-            return jobPriorities.Where(kvp => kvp.Value != JobPriority.Never).ToDictionary();
-        }
+        // Far Horizons
+        private static Dictionary<(ProtoId<FactionPrototype>, ProtoId<JobPrototype>), JobPriority> SanitizeJobPriorities(Dictionary<(ProtoId<FactionPrototype>, ProtoId<JobPrototype>), JobPriority> jobPriorities) => 
+            jobPriorities.Where(kvp => kvp.Value != JobPriority.Never).ToDictionary();
 
         /// <summary>
         ///     All player characters.
@@ -42,7 +43,8 @@ namespace Content.Shared.Preferences
             return _characters[index];
         }
 
-        public Dictionary<ProtoId<JobPrototype>, JobPriority> JobPriorities { get; set; }
+        // Far Horizons
+        public Dictionary<(ProtoId<FactionPrototype> faction, ProtoId<JobPrototype> job), JobPriority> JobPriorities { get; set; }
 
         public Color AdminOOCColor { get; set; }
 
@@ -64,9 +66,10 @@ namespace Content.Shared.Preferences
         /// <summary>
         /// Get job priorities, but filtered by the presence of enabled characters asking for that job
         /// </summary>
-        public Dictionary<ProtoId<JobPrototype>, JobPriority> JobPrioritiesFiltered()
+        /// Far Horizons
+        public Dictionary<(ProtoId<FactionPrototype> faction, ProtoId<JobPrototype> job), JobPriority> JobPrioritiesFiltered()
         {
-            var allCharacterJobs = new HashSet<ProtoId<JobPrototype>>();
+            var allCharacterJobs = new HashSet<(ProtoId<FactionPrototype>, ProtoId<JobPrototype>)>();
             foreach (var profile in Characters.Values)
             {
                 if (profile is not HumanoidCharacterProfile { Enabled: true } humanoid)
@@ -74,68 +77,55 @@ namespace Content.Shared.Preferences
                 allCharacterJobs.UnionWith(humanoid.JobPreferences);
             }
 
-            var filteredPlayerJobs = new Dictionary<ProtoId<JobPrototype>, JobPriority>();
-            foreach (var (job, priority) in JobPriorities)
+            var filteredPlayerJobs = new Dictionary<(ProtoId<FactionPrototype>, ProtoId<JobPrototype>), JobPriority>();
+            foreach (var ((faction, job), priority) in JobPriorities)
             {
-                if (!allCharacterJobs.Contains(job))
+                if (!allCharacterJobs.Contains((faction, job)))
                     continue;
-                filteredPlayerJobs.Add(job, priority);
+                filteredPlayerJobs.Add((faction, job), priority);
             }
 
             return filteredPlayerJobs;
         }
 
         /// <summary>
-        /// Given a job, return a random enabled character asking for this job
+        /// Given a job and faction, return a random enabled character asking for this job in this faction
         /// </summary>
-        public HumanoidCharacterProfile? SelectProfileForJob(ProtoId<JobPrototype> job)
+        /// Far Horizons
+        public HumanoidCharacterProfile? SelectProfileForJob(ProtoId<FactionPrototype> faction, ProtoId<JobPrototype> job)
         {
-            List<HumanoidCharacterProfile> pool = [];
-            foreach (var profile in Characters.Values)
-            {
-                if (profile is not HumanoidCharacterProfile { Enabled: true } humanoid)
-                    continue;
-                if (!humanoid.JobPreferences.Contains(job))
-                    continue;
-                pool.Add(humanoid);
-            }
+            List<HumanoidCharacterProfile> pool = [.. Characters.Values
+                                                .Where(p =>
+                                                        p is HumanoidCharacterProfile { Enabled: true } humanoid &&
+                                                        humanoid.JobPreferences.Contains((faction, job)))
+                                                .Select(p => (HumanoidCharacterProfile)p)];
 
-            var random = IoCManager.Resolve<IRobustRandom>();
-            return pool.Count == 0 ? null : random.Pick(pool);
-        }
+        var random = IoCManager.Resolve<IRobustRandom>();
+        return pool.Count == 0 ? null : random.Pick(pool);
+    }
 
         /// <summary>
         /// Get all enabled profiles asking for a job
         /// </summary>
-        public Dictionary<int, HumanoidCharacterProfile> GetAllEnabledProfilesForJob(ProtoId<JobPrototype> job)
-        {
-            return GetAllProfilesForJobInternal(job, onlyEnabled: true);
-        }
+        /// Far Horizons
+        public Dictionary<int, HumanoidCharacterProfile> GetAllEnabledProfilesForJob(ProtoId<FactionPrototype> faction, ProtoId<JobPrototype> job) => 
+            GetAllProfilesForJobInternal(faction, job, onlyEnabled: true);
 
         /// <summary>
         /// Get all profiles asking for a job
         /// </summary>
-        public Dictionary<int, HumanoidCharacterProfile> GetAllProfilesForJob(ProtoId<JobPrototype> job)
-        {
-            return GetAllProfilesForJobInternal(job, onlyEnabled: false);
-        }
+        /// Far Horizons
+        public Dictionary<int, HumanoidCharacterProfile> GetAllProfilesForJob(ProtoId<FactionPrototype> faction, ProtoId<JobPrototype> job) => 
+            GetAllProfilesForJobInternal(faction, job, onlyEnabled: false);
 
-        private Dictionary<int, HumanoidCharacterProfile> GetAllProfilesForJobInternal(ProtoId<JobPrototype> job, bool onlyEnabled)
-        {
-            var result = new Dictionary<int, HumanoidCharacterProfile>();
-            foreach (var (slot, profile) in Characters)
-            {
-                if (profile is not HumanoidCharacterProfile humanoid)
-                    continue;
-                if (onlyEnabled && !humanoid.Enabled)
-                    continue;
-                if (humanoid.JobPreferences.Contains(job))
-                    result.Add(slot, humanoid);
-            }
-
-            return result;
-        }
-
+        private Dictionary<int, HumanoidCharacterProfile> GetAllProfilesForJobInternal(ProtoId<FactionPrototype> faction, ProtoId<JobPrototype> job, bool onlyEnabled) => 
+                Characters
+                    .Where(kv =>
+                        kv.Value is HumanoidCharacterProfile humanoid &&
+                        (humanoid.Enabled || !onlyEnabled) &&
+                        humanoid.JobPreferences.Contains((faction, job)))
+                    .Select(kv => (kv.Key, (HumanoidCharacterProfile)kv.Value))
+                    .ToDictionary();
 
         /// <summary>
         /// Get any random enabled profile

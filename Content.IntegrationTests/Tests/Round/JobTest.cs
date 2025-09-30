@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Content.Server.GameTicking;
 using Content.Shared.CCVar;
+using Content.Shared.FarHorizons.Factions;
 using Content.Shared.GameTicking;
 using Content.Shared.Preferences;
 using Content.Shared.Roles;
@@ -13,9 +14,9 @@ namespace Content.IntegrationTests.Tests.Round;
 [TestFixture]
 public sealed class JobTest
 {
-    private static readonly ProtoId<JobPrototype> Passenger = "Assistant"; //starlight
-    private static readonly ProtoId<JobPrototype> Engineer = "StationEngineer";
-    private static readonly ProtoId<JobPrototype> Captain = "Captain";
+    private static readonly (ProtoId<FactionPrototype> faction, ProtoId<JobPrototype> job) Passenger = ("TFaction", "Assistant");
+    private static readonly (ProtoId<FactionPrototype> faction, ProtoId<JobPrototype> job) Engineer = ("TFaction", "StationEngineer");
+    private static readonly (ProtoId<FactionPrototype> faction, ProtoId<JobPrototype> job) Captain = ("TFaction", "Captain");
 
     private static string _map = "JobTestMap";
 
@@ -34,9 +35,9 @@ public sealed class JobTest
           mapNameTemplate: ""Empty""
         - type: StationJobs
           availableJobs:
-            {Passenger}: [ -1, -1 ]
-            {Engineer}: [ -1, -1 ]
-            {Captain}: [ 1, 1 ]
+            {Passenger.job}: [ -1, -1 ]
+            {Engineer.job}: [ -1, -1 ]
+            {Captain.job}: [ 1, 1 ]
 ";
 
     /// <summary>
@@ -138,9 +139,9 @@ public sealed class JobTest
         Assert.That(ticker.RunLevel, Is.EqualTo(GameRunLevel.PreRoundLobby));
         Assert.That(pair.Client.AttachedEntity, Is.Null);
 
-        var captain = pair.Server.ProtoMan.Index(Captain);
-        var engineer = pair.Server.ProtoMan.Index(Engineer);
-        var passenger = pair.Server.ProtoMan.Index(Passenger);
+        var captain = pair.Server.ProtoMan.Index(Captain.job);
+        var engineer = pair.Server.ProtoMan.Index(Engineer.job);
+        var passenger = pair.Server.ProtoMan.Index(Passenger.job);
         Assert.That(captain.Weight, Is.GreaterThan(engineer.Weight));
         Assert.That(engineer.Weight, Is.EqualTo(passenger.Weight));
 
@@ -181,13 +182,13 @@ public sealed class JobTest
         Assert.That(ticker.RunLevel, Is.EqualTo(GameRunLevel.PreRoundLobby));
         Assert.That(pair.Client.AttachedEntity, Is.Null);
 
-        var engJobs = new Dictionary<ProtoId<JobPrototype>, JobPriority>()
+        var engJobs = new Dictionary<(ProtoId<FactionPrototype> faction, ProtoId<JobPrototype> job), JobPriority>()
         {
             {Engineer, JobPriority.High},
             {Captain, JobPriority.Medium},
         };
 
-        var capJobs = new Dictionary<ProtoId<JobPrototype>, JobPriority>()
+        var capJobs = new Dictionary<(ProtoId<FactionPrototype> faction, ProtoId<JobPrototype> job), JobPriority>()
         {
             {Captain, JobPriority.High},
             {Engineer, JobPriority.Medium},

@@ -1,8 +1,10 @@
 using System.Diagnostics.CodeAnalysis;
 using Content.Server.Access.Components;
 using Content.Server.Access.Systems;
+using Content.Server.FarHorizons.Factions;
 using Content.Server.Forensics;
 using Content.Shared.Access.Components;
+using Content.Shared.FarHorizons.Factions;
 using Content.Shared.Forensics.Components;
 using Content.Shared.GameTicking;
 using Content.Shared.Inventory;
@@ -42,6 +44,7 @@ public sealed class StationRecordsSystem : SharedStationRecordsSystem
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly IdCardSystem _idCard = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly IServerFactionManager _factions = default!; // Far Horizons
 
     public override void Initialize()
     {
@@ -56,7 +59,7 @@ public sealed class StationRecordsSystem : SharedStationRecordsSystem
         if (!TryComp<StationRecordsComponent>(args.Station, out var stationRecords))
             return;
 
-        CreateGeneralRecord(args.Station, args.Mob, args.Profile, args.JobId, stationRecords);
+        CreateGeneralRecord(args.Station, args.Mob, args.Profile, args.FactionId, args.JobId, stationRecords);
     }
 
     private void OnRename(ref EntityRenamedEvent ev)
@@ -84,12 +87,15 @@ public sealed class StationRecordsSystem : SharedStationRecordsSystem
         }
     }
 
+    // Far Horizons
     private void CreateGeneralRecord(EntityUid station, EntityUid player, HumanoidCharacterProfile profile,
-        string? jobId, StationRecordsComponent records)
+        ProtoId<FactionPrototype>? factionId, string? jobId, StationRecordsComponent records)
     {
         // TODO make PlayerSpawnCompleteEvent.JobId a ProtoId
-        if (string.IsNullOrEmpty(jobId)
-            || !_prototypeManager.HasIndex<JobPrototype>(jobId))
+        if (string.IsNullOrEmpty(jobId) 
+            || factionId == null // Far Horizons
+            || !_prototypeManager.HasIndex<JobPrototype>(jobId)
+            || !_prototypeManager.HasIndex(factionId)) // Far Horizons
             return;
 
         if (!_inventory.TryGetSlotEntity(player, "id", out var idUid))
@@ -104,7 +110,7 @@ public sealed class StationRecordsSystem : SharedStationRecordsSystem
             specie = profile.CustomSpecieName + " (" + profile.Species + ")";
         /// Starlight - End
 
-        CreateGeneralRecord(station, idUid.Value, profile.Name, profile.Age, specie, profile.Gender, jobId, fingerprintComponent?.Fingerprint, dnaComponent?.DNA, profile, records); // Starlight Edited (profile.Species -> specie)
+        CreateGeneralRecord(station, idUid.Value, profile.Name, profile.Age, specie, profile.Gender, factionId.Value, jobId, fingerprintComponent?.Fingerprint, dnaComponent?.DNA, profile, records); // Starlight Edited (profile.Species -> specie) and then Far Horizons added factions, how neat.
     }
 
 
@@ -142,6 +148,7 @@ public sealed class StationRecordsSystem : SharedStationRecordsSystem
         int age,
         string species,
         Gender gender,
+        ProtoId<FactionPrototype> faction, // Far Horizons
         string jobId,
         string? mobFingerprint,
         string? dna,
@@ -159,8 +166,8 @@ public sealed class StationRecordsSystem : SharedStationRecordsSystem
             return;
         }
 
-        // FarHorizons - custom job titles
-        string jobTitle = jobPrototype.LocalizedName;
+        // FarHorizons - custom job titles and faction overrides
+        var jobTitle = _factions.OverrideLocalizedJobName((faction, jobPrototype));
         if (idUid.HasValue && _idCard.TryFindIdCard(idUid.Value, out var idCard) && 
             TryComp<PresetIdCardComponent>(idCard, out var presetId) && presetId.CustomJobTitle != null)
             jobTitle = presetId.CustomJobTitle;
@@ -170,7 +177,7 @@ public sealed class StationRecordsSystem : SharedStationRecordsSystem
             Name = name,
             Age = age,
             JobTitle = jobTitle, // FarHorizons - custom job titles
-            JobIcon = jobPrototype.Icon,
+            JobIcon = _factions.OverrideJobIcon((faction, jobPrototype)),
             JobPrototype = jobId,
             Species = species,
             Gender = gender,

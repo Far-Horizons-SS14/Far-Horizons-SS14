@@ -3,6 +3,7 @@
 using System.Collections.Generic;
 using Content.Server.GameTicking;
 using Content.Server.Preferences.Managers;
+using Content.Shared.FarHorizons.Factions;
 using Content.Shared.GameTicking;
 using Content.Shared.Mind;
 using Content.Shared.Preferences;
@@ -23,7 +24,7 @@ public sealed partial class TestPair
     /// <param name="player">session to modify</param>
     /// <param name="jobPriorities">job priorities to set</param>
     public async Task SetJobPriorities(ICommonSession player,
-        Dictionary<ProtoId<JobPrototype>,JobPriority> jobPriorities)
+        Dictionary<(ProtoId<FactionPrototype> faction, ProtoId<JobPrototype> job),JobPriority> jobPriorities)
     {
         var prefMan = Server.ResolveDependency<IServerPreferencesManager>();
         await Server.WaitPost(() =>
@@ -36,7 +37,7 @@ public sealed partial class TestPair
     /// Set the job priorities for the TestPair.Player session
     /// </summary>
     /// <param name="jobPriorities">job priorities to set</param>
-    public Task SetJobPriorities(Dictionary<ProtoId<JobPrototype>, JobPriority> jobPriorities)
+    public Task SetJobPriorities(Dictionary<(ProtoId<FactionPrototype> faction, ProtoId<JobPrototype> job), JobPriority> jobPriorities)
     {
         return SetJobPriorities(Player!, jobPriorities);
     }
@@ -45,7 +46,7 @@ public sealed partial class TestPair
     /// Set the job preferences for the TestPair.Player session, specifically the character in slot 0
     /// </summary>
     /// <param name="jobPreferences">job preferences to set</param>
-    public async Task SetJobPreferences(HashSet<ProtoId<JobPrototype>> jobPreferences)
+    public async Task SetJobPreferences(HashSet<(ProtoId<FactionPrototype> faction, ProtoId<JobPrototype> job)> jobPreferences)
     {
         var prefMan = Server.ResolveDependency<IServerPreferencesManager>();
         await Server.WaitPost(() =>
@@ -86,12 +87,10 @@ public sealed partial class TestPair
     /// <param name="session">Session to check</param>
     /// <param name="isAntag">Assert that the player is or isn't an antag</param>
     public void AssertJob(
-        ProtoId<JobPrototype> job,
+        (ProtoId<FactionPrototype> faction, ProtoId<JobPrototype> job) factionJob,
         ICommonSession session,
-        bool isAntag = false)
-    {
-        AssertJob(job, session.UserId, isAntag);
-    }
+        bool isAntag = false) => 
+            AssertJob(factionJob, session.UserId, isAntag);
 
     /// <summary>
     /// Assert that the player of a given NetUserId has a job and check antag status.
@@ -100,7 +99,7 @@ public sealed partial class TestPair
     /// <param name="job">Job to assert against</param>
     /// <param name="user">NetUserId to check, Client.User if null</param>
     /// <param name="isAntag">Assert that the player is or isn't an antag</param>
-    public void AssertJob(ProtoId<JobPrototype> job, NetUserId? user = null, bool isAntag = false)
+    public void AssertJob((ProtoId<FactionPrototype> faction, ProtoId<JobPrototype> job) factionJob, NetUserId? user = null, bool isAntag = false)
     {
         var jobSys = Server.System<SharedJobSystem>();
         var mindSys = Server.System<SharedMindSystem>();
@@ -117,7 +116,7 @@ public sealed partial class TestPair
         var mind = mindSys.GetMind(uid!.Value);
         Assert.That(Server.EntMan.EntityExists(mind));
         Assert.That(jobSys.MindTryGetJobId(mind, out var actualJob));
-        Assert.That(actualJob, Is.EqualTo(job));
+        Assert.That(actualJob, Is.EqualTo(factionJob.job));
         Assert.That(roleSys.MindIsAntagonist(mind), Is.EqualTo(isAntag));
     }
 }

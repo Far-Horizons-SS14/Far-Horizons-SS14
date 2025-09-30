@@ -175,7 +175,8 @@ public sealed partial class AntagSelectionSystem
             return true;
 
         var pref = _pref.GetPreferences(session.UserId);
-        var priorities = pref.JobPriorities.Where(kvp => kvp.Value != JobPriority.Never).ToDictionary().Keys;
+        // Far Horizons - ignore non active factions
+        var priorities = pref.JobPriorities.Where(p => _factions.ListSpawnableFactionIDs().Contains(p.Key.faction)).Where(kvp => kvp.Value != JobPriority.Never).ToDictionary().Keys;
 
         foreach (var profile in pref.Characters.Values)
         {
@@ -184,7 +185,8 @@ public sealed partial class AntagSelectionSystem
 
             // If this is a crew antag and this character has no jobs that can be antag, then skip this profile.
             if (selectionTime == AntagSelectionTime.IntraPlayerSpawn
-                && !humanoid.JobPreferences.Intersect(priorities).Any(_jobs.CanBeAntag))
+                // Far Horizons
+                && !humanoid.JobPreferences.Where(p => _factions.ListSpawnableFactionIDs().Contains(p.faction)).Intersect(priorities).Any(p => _jobs.CanBeAntag(p.Item2)))
                 continue;
 
             foreach (var antag in antagList)
@@ -216,9 +218,11 @@ public sealed partial class AntagSelectionSystem
             return true;
 
         var pref = _pref.GetPreferences(session.UserId);
-        var priorities = pref.JobPriorities.Where(kvp => kvp.Value != JobPriority.Never).ToDictionary().Keys;
+        // Far Horizons - ignore non active factions
+        var priorities = pref.JobPriorities.Where(p => _factions.ListSpawnableFactionIDs().Contains(p.Key.faction)).Where(kvp => kvp.Value != JobPriority.Never).ToDictionary().Keys;
 
-        if (!priorities.Contains(job))
+        // Far Horizons
+        if (!priorities.Any(p => p.job == job))
             return false;
 
         foreach (var profile in pref.Characters.Values)
@@ -226,7 +230,8 @@ public sealed partial class AntagSelectionSystem
             if (profile is not HumanoidCharacterProfile { Enabled: true } humanoid)
                 continue;
 
-            if (!humanoid.JobPreferences.Contains(job))
+            // Far Horizons
+            if (!humanoid.JobPreferences.Where(p => _factions.ListSpawnableFactionIDs().Contains(p.faction)).Any(p => p.job == job))
                 continue;
 
             // If this is a crew antag and they have no characters that can be antag considering their selected jobs,

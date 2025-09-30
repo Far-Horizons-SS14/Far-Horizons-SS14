@@ -1,9 +1,12 @@
+using System.Linq;
 using Content.Server.Administration.Managers;
+using Content.Server.FarHorizons.Factions;
 using Content.Server.Ghost.Roles;
 using Content.Server.Preferences.Managers;
 using Content.Server.Station.Systems;
 using Content.Shared.Administration;
 using Content.Shared.CCVar;
+using Content.Shared.FarHorizons.Factions;
 using Content.Shared.GameTicking;
 using Content.Shared.Roles;
 using Robust.Shared.Configuration;
@@ -20,6 +23,7 @@ namespace Content.Server.GameTicking.Commands
         [Dependency] private readonly IAdminManager _adminManager = default!;
         [Dependency] private readonly IConfigurationManager _cfg = default!;
         [Dependency] private readonly IServerPreferencesManager _preferencesManager = default!;
+        [Dependency] private readonly IServerFactionManager _factions = default!; // Far Horizons
 
         public string Command => "joingame";
         public string Description => "";
@@ -31,7 +35,7 @@ namespace Content.Server.GameTicking.Commands
         }
         public void Execute(IConsoleShell shell, string argStr, string[] args)
         {
-            if (args.Length != 3)
+            if (args.Length != 4) // Far Horizons - +1 argument for faction
             {
                 shell.WriteError(Loc.GetString("shell-wrong-arguments-number"));
                 return;
@@ -58,9 +62,13 @@ namespace Content.Server.GameTicking.Commands
                 {
                     shell.WriteError(Loc.GetString("shell-argument-must-be-number"));
                 }
-                string id = args[1];
 
-                if (!int.TryParse(args[2], out var sid))
+                // Far Horizons faction
+                ProtoId<FactionPrototype> faction = args[1];
+
+                ProtoId<JobPrototype> job = args[2];
+
+                if (!int.TryParse(args[3], out var sid))
                 {
                     shell.WriteError(Loc.GetString("shell-argument-must-be-number"));
                 }
@@ -80,10 +88,10 @@ namespace Content.Server.GameTicking.Commands
                 }
 
                 var station = _entManager.GetEntity(new NetEntity(sid));
-                var jobPrototype = _prototypeManager.Index<JobPrototype>(id);
+                var jobPrototype = _prototypeManager.Index<JobPrototype>(job);
                 if(stationJobs.TryGetJobSlot(station, jobPrototype, out var slots) == false || slots == 0)
                 {
-                    shell.WriteLine($"{jobPrototype.LocalizedName} has no available slots.");
+                    shell.WriteLine($"{_factions.OverrideLocalizedJobName((faction, job))} has no available slots.");
                     return;
                 }
 
@@ -98,7 +106,12 @@ namespace Content.Server.GameTicking.Commands
                     _adminManager.DeAdmin(player);
                 }
 
-                ticker.MakeJoinGame(player, humanoid, station, id);
+                if (!_factions.ListSpawnableFactionIDs().Contains(faction)){
+                    shell.WriteLine("Faction can not be spawned");
+                    return;
+                }
+
+                ticker.MakeJoinGame(player, humanoid, station, faction, job); // Far Horizons
                 return;
             }
 

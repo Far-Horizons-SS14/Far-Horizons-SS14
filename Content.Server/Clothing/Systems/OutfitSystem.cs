@@ -1,4 +1,5 @@
-﻿using Content.Server.Hands.Systems;
+﻿using Content.Server.FarHorizons.Factions;
+using Content.Server.Hands.Systems;
 using Content.Server.Preferences.Managers;
 using Content.Shared.Access.Components;
 using Content.Shared.Clothing;
@@ -24,6 +25,7 @@ public sealed class OutfitSystem : EntitySystem
     [Dependency] private readonly InventorySystem _invSystem = default!;
     [Dependency] private readonly SharedStationSpawningSystem _spawningSystem = default!;
     [Dependency] private readonly SharedHumanoidAppearanceSystem _appearance = default!; //Starlight
+    [Dependency] private readonly IServerFactionManager _factions = default!; // Far Horizons
 
     public bool SetOutfit(EntityUid target, string gear, Action<EntityUid, EntityUid>? onEquipped = null)
     {
@@ -73,13 +75,17 @@ public sealed class OutfitSystem : EntitySystem
         }
 
         // See if this starting gear is associated with a job
-        var jobs = _prototypeManager.EnumeratePrototypes<JobPrototype>();
-        foreach (var job in jobs)
+        // Far horizons, find outfits from faction jobs
+        foreach (var jobAssignment in _factions.ListFactionJobs())
         {
+            if (!_prototypeManager.TryIndex(jobAssignment.Job, out var job) ||
+                !_prototypeManager.TryIndex(jobAssignment.Faction, out var faction))
+                continue;
+
             if (job.StartingGear != gear)
                 continue;
 
-            var jobProtoId = LoadoutSystem.GetJobPrototype(job.ID);
+            var jobProtoId = _factions.OverrideJobLoadout(jobAssignment); // Far Horizons
             if (!_prototypeManager.TryIndex<RoleLoadoutPrototype>(jobProtoId, out var jobProto))
                 break;
 

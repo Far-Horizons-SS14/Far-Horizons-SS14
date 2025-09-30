@@ -1,3 +1,4 @@
+using Content.Shared.FarHorizons.Factions;
 using Content.Shared.Mind;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
@@ -40,6 +41,13 @@ public sealed partial class MindRoleComponent : BaseMindRoleComponent
     /// </summary>
     [DataField]
     public ProtoId<AntagPrototype>? AntagPrototype;
+
+    /// <summary>
+    /// The Faction prototype of this role.
+    /// </summary>
+    /// Far Horizons
+    [DataField]
+    public ProtoId<FactionPrototype>? FactionPrototype;
 
     /// <summary>
     /// The Job prototype of this role.

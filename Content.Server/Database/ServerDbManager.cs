@@ -9,6 +9,7 @@ using Content.Shared.Administration.Logs;
 using Content.Shared.CCVar;
 using Content.Shared.Construction.Prototypes;
 using Content.Shared.Database;
+using Content.Shared.FarHorizons.Factions;
 using Content.Shared.Preferences;
 using Content.Shared.Roles;
 using Microsoft.Data.Sqlite;
@@ -39,7 +40,7 @@ namespace Content.Server.Database
 
         Task SaveCharacterSlotAsync(NetUserId userId, ICharacterProfile? profile, int slot);
 
-        Task SaveJobPrioritiesAsync(NetUserId userId, Dictionary<ProtoId<JobPrototype>, JobPriority> newJobPriorities);
+        Task SaveJobPrioritiesAsync(NetUserId userId, Dictionary<(ProtoId<FactionPrototype>, ProtoId<JobPrototype>), JobPriority> newJobPriorities);
 
         Task SaveAdminOOCColorAsync(NetUserId userId, Color color);
 
@@ -480,7 +481,7 @@ namespace Content.Server.Database
         }
 
         public Task SaveJobPrioritiesAsync(NetUserId userId,
-            Dictionary<ProtoId<JobPrototype>, JobPriority> newJobPriorities)
+            Dictionary<(ProtoId<FactionPrototype>, ProtoId<JobPrototype>), JobPriority> newJobPriorities)
         {
             DbWriteOpsMetric.Inc();
             return RunDbCommand(() => _db.SaveJobPrioritiesAsync(userId, newJobPriorities));

@@ -26,6 +26,7 @@ using Content.Client.Viewport;
 using Content.Client.Voting;
 using Content.Shared._NullLink;
 using Content.Shared.Ame.Components;
+using Content.Shared.FarHorizons.Factions;
 using Content.Shared.Gravity;
 using Content.Shared.Localizations;
 using Robust.Client;
@@ -82,6 +83,7 @@ namespace Content.Client.Entry
         [Dependency] private readonly ClientsidePlaytimeTrackingManager _clientsidePlaytimeManager = default!;
        	[Dependency] private readonly INullLinkPlayerRolesManager _nullLinkPlayerRolesManager = default!; //NullLink
        	[Dependency] private readonly ISharedNullLinkPlayerRolesReqManager _sharedNullLinkPlayer = default!; //NullLink
+        [Dependency] private readonly ISharedFactionManager _factions = default!; //Far Horizons
 
         public override void Init()
         {
@@ -147,6 +149,9 @@ namespace Content.Client.Entry
             _playbackMan.Initialize();
             _clientsidePlaytimeManager.Initialize();
 
+            //Far Horizons
+            _factions.Init();
+
             //AUTOSCALING default Setup!
             _configManager.SetCVar("interface.resolutionAutoScaleUpperCutoffX", 1080);
             _configManager.SetCVar("interface.resolutionAutoScaleUpperCutoffY", 720);
@@ -159,6 +164,9 @@ namespace Content.Client.Entry
         {
             base.Shutdown();
             _titleWindowManager.Shutdown();
+
+            //Far Horizons
+            _factions.Shutdown();
         }
 
         public override void PostInit()

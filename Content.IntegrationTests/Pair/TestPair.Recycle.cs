@@ -5,6 +5,7 @@ using Content.Client.Lobby;
 using Content.Server.GameTicking;
 using Content.Server.Preferences.Managers;
 using Content.Shared.CCVar;
+using Content.Shared.FarHorizons.Factions;
 using Content.Shared.GameTicking;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
@@ -100,6 +101,8 @@ public sealed partial class TestPair : IAsyncDisposable
         var prefMan = Client.ResolveDependency<IClientPreferencesManager>();
         var prefs = prefMan.Preferences;
 
+        var factions = Client.ResolveDependency<ISharedFactionManager>();
+
         await Client.WaitAssertion(() =>
         {
             foreach (var slot in prefs!.Characters.Keys)
@@ -110,7 +113,7 @@ public sealed partial class TestPair : IAsyncDisposable
             }
 
             prefMan.UpdateCharacter(new HumanoidCharacterProfile().AsEnabled(), 0);
-            prefMan.UpdateJobPriorities(new() { { SharedGameTicker.FallbackOverflowJob, JobPriority.High } });
+            prefMan.UpdateJobPriorities(new() { { factions.GetDefaultWithJob(), JobPriority.High } });
         });
 
         await ReallyBeIdle();

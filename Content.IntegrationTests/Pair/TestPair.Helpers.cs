@@ -4,6 +4,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Server.Database;
 using Content.Server.Preferences.Managers;
+using Content.Shared.FarHorizons.Factions;
 using Content.Shared.Preferences;
 using Content.Shared.Roles;
 using JetBrains.Annotations;
@@ -177,15 +178,15 @@ public sealed partial class TestPair
     /// <param name="count">How many players to add</param>
     /// <returns>Enumerable of sessions for the new players</returns>
     [PublicAPI]
-    public Task<IEnumerable<ICommonSession>> AddDummyPlayers(Dictionary<ProtoId<JobPrototype>,JobPriority> jobPriorities, int count=1)
+    public Task<IEnumerable<ICommonSession>> AddDummyPlayers(Dictionary<(ProtoId<FactionPrototype>, ProtoId<JobPrototype>),JobPriority> jobPriorities, int count=1)
     {
         return AddDummyPlayers(jobPriorities, jobPriorities.Keys, count);
     }
 
     [PublicAPI]
     public async Task<IEnumerable<ICommonSession>> AddDummyPlayers(
-        Dictionary<ProtoId<JobPrototype>,JobPriority> jobPriorities,
-        IEnumerable<ProtoId<JobPrototype>> jobPreferences,
+        Dictionary<(ProtoId<FactionPrototype>, ProtoId<JobPrototype>),JobPriority> jobPriorities,
+        IEnumerable<(ProtoId<FactionPrototype>, ProtoId<JobPrototype>)> jobPreferences,
         int count=1)
     {
         var prefMan = Server.ResolveDependency<IServerPreferencesManager>();

@@ -1,0 +1,338 @@
+# Command
+- type: factionJobAssignment
+  id: SyndieCaptain
+  faction: FactionSyndicate
+  job: Captain
+  weight: -10
+  override:
+    name: faction-syndicate-job-captain
+    loadout: SyndieCaptain
+
+- type: factionJobAssignment
+  id: SyndieHeadOfSecurity
+  faction: FactionSyndicate
+  job: HeadOfSecurity
+  weight: -9
+  override:
+    name: faction-syndicate-job-hos
+    loadout: SyndieHeadOfSecurity
+
+
+- type: factionJobAssignment
+  id: SyndieChiefEngineer
+  faction: FactionSyndicate
+  job: ChiefEngineer
+  weight: -8
+  override:
+    name: faction-syndicate-job-ce
+    icon: JobIconSyndieChiefEngineer
+    loadout: SyndieChiefEngineer
+    startingGear: SyndieChiefEngineerGear
+
+
+- type: factionJobAssignment
+  id: SyndieChiefMedicalOfficer
+  faction: FactionSyndicate
+  job: ChiefMedicalOfficer
+  weight: -7
+  override:
+    name: faction-syndicate-job-cmo
+    loadout: SyndieChiefMedicalOfficer
+
+- type: factionJobAssignment
+  id: SyndieResearchDirector
+  faction: FactionSyndicate
+  job: ResearchDirector
+  weight: -6
+  override:
+    name: faction-syndicate-job-rd
+    loadout: SyndieResearchDirector
+
+- type: factionJobAssignment
+  id: SyndieHeadOfPersonnel
+  faction: FactionSyndicate
+  job: HeadOfPersonnel
+  weight: -5
+  override:
+    name: faction-syndicate-job-hop
+    loadout: SyndieHeadOfPersonnel
+
+- type: factionJobAssignment
+  id: SyndieMagistrate
+  faction: FactionSyndicate
+  job: Magistrate
+  weight: -4
+  override:
+    name: faction-syndicate-job-magistrate
+    loadout: SyndieMagistrate
+
+- type: factionJobAssignment
+  id: SyndieNanoTrasenRepresentative
+  faction: FactionSyndicate
+  job: NanoTrasenRepresentative
+  weight: -3
+  override:
+    name: faction-syndicate-job-rep
+    loadout: SyndieNanoTrasenRepresentative
+
+# Civilan
+- type: factionJobAssignment
+  id: SyndieAssistant
+  faction: FactionSyndicate
+  job: Assistant
+  weight: 0
+
+- type: factionJobAssignment
+  id: SyndieBartender
+  faction: FactionSyndicate
+  job: Bartender
+
+- type: factionJobAssignment
+  id: SyndieBotanist
+  faction: FactionSyndicate
+  job: Botanist
+
+- type: factionJobAssignment
+  id: SyndieBoxer
+  faction: FactionSyndicate
+  job: Boxer
+
+- type: factionJobAssignment
+  id: SyndieChaplain
+  faction: FactionSyndicate
+  job: Chaplain
+
+- type: factionJobAssignment
+  id: SyndieChef
+  faction: FactionSyndicate
+  job: Chef
+
+- type: factionJobAssignment
+  id: SyndieClown
+  faction: FactionSyndicate
+  job: Clown
+
+- type: factionJobAssignment
+  id: SyndieJanitor
+  faction: FactionSyndicate
+  job: Janitor
+
+- type: factionJobAssignment
+  id: SyndieLibrarian
+  faction: FactionSyndicate
+  job: Librarian
+
+- type: factionJobAssignment
+  id: SyndieMime
+  faction: FactionSyndicate
+  job: Mime
+
+- type: factionJobAssignment
+  id: SyndieMusician
+  faction: FactionSyndicate
+  job: Musician
+
+- type: factionJobAssignment
+  id: SyndieReporter
+  faction: FactionSyndicate
+  job: Reporter
+
+- type: factionJobAssignment
+  id: SyndieServiceWorker
+  faction: FactionSyndicate
+  job: ServiceWorker
+
+- type: factionJobAssignment
+  id: SyndieZookeeper
+  faction: FactionSyndicate
+  job: Zookeeper
+
+# LAW
+- type: factionJobAssignment
+  id: SyndieIAA
+  faction: FactionSyndicate
+  job: IAA
+  override:
+    loadout: SyndieIAA
+
+# Engineering
+- type: factionJobAssignment
+  id: SyndieAtmosphericTechnician
+  faction: FactionSyndicate
+  job: AtmosphericTechnician
+  weight: 0
+  override:
+    name: faction-syndicate-job-atmos
+    loadout: SyndieAtmosphericTechnician
+
+- type: factionJobAssignment
+  id: SyndieStationEngineer
+  faction: FactionSyndicate
+  job: StationEngineer
+  weight: 1
+  override:
+    name: faction-syndicate-job-engineer
+    loadout: SyndieStationEngineer
+
+- type: factionJobAssignment
+  id: SyndieTechnicalAssistant
+  faction: FactionSyndicate
+  job: TechnicalAssistant
+  weight: 2
+  override:
+    name: faction-syndicate-job-ta
+    loadout: SyndieTechnicalAssistant
+
+# Medical
+- type: factionJobAssignment
+  id: SyndieSurgeon
+  faction: FactionSyndicate
+  job: Surgeon
+  weight: 0
+  override:
+    name: faction-syndicate-job-surgeon
+    loadout: SyndieSurgeon
+
+- type: factionJobAssignment
+  id: SyndieChemist
+  faction: FactionSyndicate
+  job: Chemist
+  weight: 1
+  override:
+    name: faction-syndicate-job-chemist
+    loadout: SyndieChemist
+
+- type: factionJobAssignment
+  id: SyndieParamedic
+  faction: FactionSyndicate
+  job: Paramedic
+  weight: 2
+  override:
+    name: faction-syndicate-job-paramedic
+    loadout: SyndieParamedic
+
+- type: factionJobAssignment
+  id: SyndieMedicalDoctor
+  faction: FactionSyndicate
+  job: MedicalDoctor
+  weight: 3
+  override:
+    name: faction-syndicate-job-doctor
+    loadout: SyndieMedicalDoctor
+
+- type: factionJobAssignment
+  id: SyndieMedicalIntern
+  faction: FactionSyndicate
+  job: MedicalIntern
+  weight: 4
+  override:
+    name: faction-syndicate-job-intern
+    loadout: SyndieMedicalIntern
+
+- type: factionJobAssignment
+  id: SyndiePsychologist
+  faction: FactionSyndicate
+  job: Psychologist
+  weight: 5
+  override:
+    name: faction-syndicate-job-psychologist
+    loadout: SyndiePsychologist
+
+# Science
+- type: factionJobAssignment
+  id: SyndieRoboticist
+  faction: FactionSyndicate
+  job: Roboticist
+  weight: 0
+  override:
+    name: faction-syndicate-job-roboticist
+    loadout: SyndieRoboticist
+
+- type: factionJobAssignment
+  id: SyndieScientist
+  faction: FactionSyndicate
+  job: Scientist
+  weight: 1
+  override:
+    name: faction-syndicate-job-scientist
+    loadout: SyndieScientist
+
+- type: factionJobAssignment
+  id: SyndieResearchAssistant
+  faction: FactionSyndicate
+  job: ResearchAssistant
+  weight: 2
+  override:
+    name: faction-syndicate-job-ra
+    loadout: SyndieResearchAssistant
+
+# Silicon
+- type: factionJobAssignment
+  id: SyndieStationAi
+  faction: FactionSyndicate
+  job: StationAi
+  weight: 0
+
+- type: factionJobAssignment
+  id: SyndieBorg
+  faction: FactionSyndicate
+  job: Borg
+  weight: 1
+  override:
+    name: faction-syndicate-job-borg
+    jobEntity: PlayerBorgSyndicateAssaultBattery
+
+# Security
+- type: factionJobAssignment
+  id: SyndieWarden
+  faction: FactionSyndicate
+  job: Warden
+  weight: 0
+  override:
+    name: faction-syndicate-job-warden
+    loadout: SyndieWarden
+
+- type: factionJobAssignment
+  id: SyndieBrigmedic
+  faction: FactionSyndicate
+  job: Brigmedic
+  weight: 1
+  override:
+    name: faction-syndicate-job-brigmed
+    loadout: SyndieBrigmedic
+
+- type: factionJobAssignment
+  id: SyndieDetective
+  faction: FactionSyndicate
+  job: Detective
+  weight: 2
+  override:
+    name: faction-syndicate-job-detective
+    loadout: SyndieDetective
+
+- type: factionJobAssignment
+  id: SyndieSecurityOfficer
+  faction: FactionSyndicate
+  job: SecurityOfficer
+  weight: 3
+  override:
+    name: faction-syndicate-job-officer
+    loadout: SyndieCaptain
+
+- type: factionJobAssignment
+  id: SyndieSecurityCadet
+  faction: FactionSyndicate
+  job: SecurityCadet
+  weight: 4
+  override:
+    name: faction-syndicate-job-cadet
+    loadout: SyndieSecurityCadet
+
+# Syndie jobs
+- type: factionJobAssignment
+  id: SyndieBlueShield
+  faction: FactionSyndicate
+  job: BlueShield
+  override:
+    name: faction-syndicate-job-bso
+    loadout: SyndieBlueShield

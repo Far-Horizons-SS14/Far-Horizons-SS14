@@ -6,6 +6,7 @@ using Content.Server.Preferences.Managers;
 using Content.Server.Station.Components;
 using Content.Server.Station.Events;
 using Content.Shared.Antag;
+using Content.Shared.FarHorizons.Factions;
 using Content.Shared.Preferences;
 using Content.Shared.Roles;
 using Robust.Server.Player;
@@ -50,6 +51,7 @@ public sealed partial class StationJobsSystem
     /// </summary>
     /// <param name="userIdsIn">Set of the UserIds we will be attempting to assign.</param>
     /// <param name="stations">List of stations to assign for.</param>
+    /// <param name="allowedFactions">List of factions that can spawn this round.</param>
     /// <param name="useRoundStartJobs">Whether or not to use the round-start jobs for the stations instead of their current jobs.</param>
     /// <returns>List of players and their assigned jobs.</returns>
     /// <remarks>
@@ -57,7 +59,8 @@ public sealed partial class StationJobsSystem
     /// as there may end up being more round-start slots than available slots, which can cause weird behavior.
     /// A warning to all who enter ye cursed lands: This function is long and mildly incomprehensible. Best used without touching.
     /// </remarks>
-    public Dictionary<NetUserId, (ProtoId<JobPrototype>? job, EntityUid station)> AssignJobs(IReadOnlySet<NetUserId> userIdsIn, IReadOnlyList<EntityUid> stations, bool useRoundStartJobs = true)
+    /// Far Horizons
+    public Dictionary<NetUserId, (ProtoId<JobPrototype>? job, EntityUid station)> AssignJobs(IReadOnlySet<NetUserId> userIdsIn, IReadOnlyList<EntityUid> stations, List<ProtoId<FactionPrototype>> allowedFactions, bool useRoundStartJobs = true)
     {
         DebugTools.Assert(stations.Count > 0);
 
@@ -114,7 +117,7 @@ public sealed partial class StationJobsSystem
                 if (userIds.Count == 0)
                     goto endFunc;
 
-                var candidates = GetPlayersJobCandidates(weight, selectedPriority, userIds);
+                var candidates = GetPlayersJobCandidates(weight, selectedPriority, userIds, allowedFactions); // Far Horizons
 
                 var optionsRemaining = 0;
 
@@ -295,8 +298,10 @@ public sealed partial class StationJobsSystem
     /// <param name="weight">Weight to find, if any.</param>
     /// <param name="selectedPriority">Priority to find, if any.</param>
     /// <param name="players">Players to select from</param>
+    /// <param name="allowedFactions">Factions that can be spawned this round</param>
     /// <returns>Players and a list of their matching jobs.</returns>
-    private Dictionary<NetUserId, List<string>> GetPlayersJobCandidates(int? weight, JobPriority? selectedPriority, ICollection<NetUserId> players)
+    /// Far Horizons
+    private Dictionary<NetUserId, List<string>> GetPlayersJobCandidates(int? weight, JobPriority? selectedPriority, ICollection<NetUserId> players, List<ProtoId<FactionPrototype>> allowedFactions)
     {
         var outputDict = new Dictionary<NetUserId, List<string>>(players.Count);
 
@@ -312,22 +317,24 @@ public sealed partial class StationJobsSystem
             // Get all the jobs that a player has selected with a priority greater than Never and also that they
             // have an enabled character with that job preference selected
             var playerPrefs = _serverPreferences.GetPreferences(player);
-            var playerJobs = playerPrefs.JobPriorities;
-            var allCharacterJobs = new HashSet<ProtoId<JobPrototype>>();
+            // Far Horizons, we don't want to spawn jobs from inactive faction
+            var playerJobs = playerPrefs.JobPriorities.Where(p => allowedFactions.Contains(p.Key.faction)).ToDictionary();
+            var allCharacterJobs = new HashSet<(ProtoId<FactionPrototype>, ProtoId<JobPrototype>)>();
             foreach (var profile in playerPrefs.Characters.Values)
             {
                 if (profile is not HumanoidCharacterProfile { Enabled: true } humanoid)
                     continue;
-                allCharacterJobs.UnionWith(humanoid.JobPreferences);
+                // Far Horizons, we don't want to spawn jobs from inactive faction
+                allCharacterJobs.UnionWith(humanoid.JobPreferences.Where(p => allowedFactions.Contains(p.faction)));
             }
-            var filteredPlayerJobs = new HashSet<ProtoId<JobPrototype>>();
-            foreach (var (job, priority) in playerJobs)
+            var filteredPlayerJobs = new HashSet<(ProtoId<FactionPrototype>, ProtoId<JobPrototype>)>();
+            foreach (var ((faction, job), priority) in playerJobs)
             {
                 if (!(priority == selectedPriority || selectedPriority is null))
                     continue;
-                if (!allCharacterJobs.Contains(job))
+                if (!allCharacterJobs.Contains((faction, job)))
                     continue;
-                filteredPlayerJobs.Add(job);
+                filteredPlayerJobs.Add((faction, job));
             }
 
             // Remove jobs that the player in ineligible for
@@ -337,9 +344,10 @@ public sealed partial class StationJobsSystem
 
             List<string>? availableJobs = null;
 
-            foreach (var jobId in profileJobs)
+            // Far Horizons
+            foreach (var (faction, jobId) in profileJobs)
             {
-                var priority = playerJobs[jobId];
+                var priority = playerJobs[(faction, jobId)];
 
                 if (!(priority == selectedPriority || selectedPriority is null))
                     continue;

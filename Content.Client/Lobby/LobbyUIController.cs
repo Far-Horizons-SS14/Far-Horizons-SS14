@@ -9,6 +9,7 @@ using Content.Shared.CCVar;
 using Content.Shared.Clothing;
 using Content.Shared.GameTicking;
 using Content.Shared.Humanoid;
+using Content.Shared.FarHorizons.Factions;
 using Content.Shared.Humanoid.Markings;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Preferences;
@@ -39,6 +40,7 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
     [Dependency] private readonly IStateManager _stateManager = default!;
     [Dependency] private readonly JobRequirementsManager _requirements = default!;
     [Dependency] private readonly MarkingManager _markings = default!;
+    [Dependency] private readonly ISharedFactionManager _factions = default!; // Far Horizons
     [UISystemDependency] private readonly HumanoidAppearanceSystem _humanoid = default!;
     [UISystemDependency] private readonly ClientInventorySystem _inventory = default!;
     [UISystemDependency] private readonly StationSpawningSystem _spawn = default!;
@@ -216,7 +218,8 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
     /// Save job priorities locally and on the remote server, reload the character setup gui appropriately
     /// </summary>
     /// <param name="newJobPriorities"></param>
-    private void SaveJobPriorities(Dictionary<ProtoId<JobPrototype>, JobPriority> newJobPriorities)
+    /// Far Horizons
+    private void SaveJobPriorities(Dictionary<(ProtoId<FactionPrototype>, ProtoId<JobPrototype>), JobPriority> newJobPriorities)
     {
         _preferencesManager.UpdateJobPriorities(newJobPriorities);
         OnAnyCharacterOrJobChange?.Invoke();
@@ -302,9 +305,10 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
             _prototypeManager,
             _resourceCache,
             _requirements,
-            _markings);
+            _markings,
+            _factions); // Far Horizons
 
-        _jobPriorityEditor = new JobPriorityEditor(_preferencesManager, _prototypeManager, _requirements);
+        _jobPriorityEditor = new JobPriorityEditor(_preferencesManager, _prototypeManager, _requirements, _factions); // Far Horizons
 
         _jobPriorityEditor.Save += SaveJobPriorities;
 
@@ -396,7 +400,7 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
     /// </summary>
     public JobPrototype GetPreferredJob(HumanoidCharacterProfile profile)
     {
-        var highPriorityJob = profile.JobPreferences.FirstOrNull() ?? SharedGameTicker.FallbackOverflowJob;
+        var highPriorityJob = profile.JobPreferences.FirstOrNull()?.job ?? SharedGameTicker.FallbackOverflowJob;
         // ReSharper disable once NullCoalescingConditionIsAlwaysNotNullAccordingToAPIContract (what is resharper smoking?)
         return _prototypeManager.Index<JobPrototype>(highPriorityJob.Id ?? SharedGameTicker.FallbackOverflowJob);
     }

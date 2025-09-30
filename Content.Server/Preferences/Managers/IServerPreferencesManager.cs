@@ -2,6 +2,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 using System.Threading.Tasks;
 using Content.Shared.Construction.Prototypes;
+using Content.Shared.FarHorizons.Factions;
 using Content.Shared.Preferences;
 using Content.Shared.Roles;
 using Robust.Shared.Network;
@@ -29,7 +30,8 @@ namespace Content.Server.Preferences.Managers
         /// <summary>
         /// Save a player's job priorities to their player profile.
         /// </summary>
-        Task SetJobPriorities(NetUserId userId, Dictionary<ProtoId<JobPrototype>, JobPriority> jobPriorities);
+        /// Far Horizons
+        Task SetJobPriorities(NetUserId userId, Dictionary<(ProtoId<FactionPrototype>, ProtoId<JobPrototype>), JobPriority> jobPriorities);
 
         /// <summary>
         /// Delete the character profile in the given slot from a player's profile

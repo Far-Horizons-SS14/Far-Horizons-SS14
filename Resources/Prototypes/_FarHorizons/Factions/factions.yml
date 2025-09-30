@@ -1,0 +1,33 @@
+- type: faction
+  id: FactionNT
+  name: Nanotrasen
+  alias:
+    - NT
+  default: true # When handling issues of suddenly having factions where none existed before, this one will be used
+  color: blue
+  description: faction-description-nt
+  playable: true
+  major: true
+  weight: 0 # highest
+
+- type: faction
+  id: FactionSyndicate
+  name: Syndicate
+  alias:
+    - syndie
+  color: red
+  description: faction-description-syndicate
+  playable: true
+  major: true
+  weight: 1
+
+- type: faction
+  id: FactionCargonia
+  name: Gemini Stellar Logistics
+  alias:
+    - gsl
+  color: "#b48b57"
+  description: faction-description-gsl
+  playable: true
+  major: false
+  weight: 2

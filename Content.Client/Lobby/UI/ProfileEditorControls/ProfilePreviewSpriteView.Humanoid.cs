@@ -12,6 +12,7 @@ using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Content.Shared.Body.Part;
 using Content.Shared.Starlight;
+using Content.Shared.FarHorizons.Factions;
 
 namespace Content.Client.Lobby.UI.ProfileEditorControls;
 
@@ -43,7 +44,7 @@ public sealed partial class ProfilePreviewSpriteView
     /// <param name="humanoid">Profile to load</param>
     /// <param name="job">Force job clothes override -- don't use job preferences</param>
     /// <param name="showClothes">Add job clothes or just spawn a species doll</param>
-    private void LoadHumanoidEntity(HumanoidCharacterProfile humanoid, JobPrototype? job, bool showClothes)
+    private void LoadHumanoidEntity(HumanoidCharacterProfile humanoid, (FactionPrototype faction, JobPrototype job)? job, bool showClothes)
     {
         ProfileName = humanoid.Name;
         JobName = null;
@@ -53,12 +54,12 @@ public sealed partial class ProfilePreviewSpriteView
 
         RoleLoadout? loadout;
 
-        if(job != null)
+        if(job is (FactionPrototype faction, JobPrototype jobProto))
         {
             try
             {
                 loadout = humanoid.GetLoadoutOrDefault(
-                    LoadoutSystem.GetJobPrototype(job.ID),
+                    _factions.OverrideJobLoadout((faction, jobProto)),
                     _playerManager.LocalSession,
                     humanoid.Species,
                     EntMan,
@@ -70,13 +71,14 @@ public sealed partial class ProfilePreviewSpriteView
             }
 
             // If the job has a preview specific entity or a job specific entity use that
-            var previewEntity = job.JobPreviewEntity ?? (EntProtoId?)job.JobEntity;
+            // Far Horizons override job (preview)entity
+            var previewEntity = _factions.OverrideJobPreviewEntity((faction, jobProto)) ?? _factions.OverrideJobEntity((faction, jobProto));
 
             if (previewEntity != null)
             {
                 // This is currently for borg and AI
                 PreviewDummy = EntMan.SpawnEntity(previewEntity, MapCoordinates.Nullspace);
-                JobName = job.LocalizedName;
+                JobName = _factions.OverrideLocalizedJobName((faction, jobProto));
                 // Grab the loadout specific name too!
                 LoadoutName = GetLoadoutName(loadout);
                 return;
@@ -116,19 +118,19 @@ public sealed partial class ProfilePreviewSpriteView
         if (job == null)
         {
             // We STILL don't have a job, use fallback and don't set "JobName" (we don't want to display Passenger)
-            job = _prototypeManager.Index<JobPrototype>(SharedGameTicker.FallbackOverflowJob);
+            job = _factions.GetDefaultWithJob();
         }
         else
         {
-            JobName = job.LocalizedName;
+            JobName = _factions.OverrideLocalizedJobName((job.Value.faction, job.Value.job));
         }
-        GiveDummyJobClothes(PreviewDummy, humanoid, job);
+        GiveDummyJobClothes(PreviewDummy, humanoid, job.Value.job);
 
-        if (!_prototypeManager.HasIndex<RoleLoadoutPrototype>(LoadoutSystem.GetJobPrototype(job.ID)))
+        if (!_prototypeManager.HasIndex<RoleLoadoutPrototype>(_factions.OverrideJobLoadout(job.Value)))
             return;
 
         loadout = humanoid.GetLoadoutOrDefault(
-            LoadoutSystem.GetJobPrototype(job.ID),
+            _factions.OverrideJobLoadout((job.Value.faction, job.Value.job)),
             _playerManager.LocalSession,
             humanoid.Species,
             EntMan,
@@ -146,9 +148,9 @@ public sealed partial class ProfilePreviewSpriteView
     ///     the first "Medium" priority job found, etc.
     /// </summary>
     /// <param name="profile">Profile to get job for</param>
-    private JobPrototype? GetPreferredJob(HumanoidCharacterProfile profile)
+    private (FactionPrototype, JobPrototype)? GetPreferredJob(HumanoidCharacterProfile profile)
     {
-        ProtoId<JobPrototype> highPriorityJob = default;
+        (ProtoId<FactionPrototype> faction, ProtoId<JobPrototype> job) highPriorityJob = default;
         if (profile.JobPreferences.Count == 1)
         {
             highPriorityJob = profile.JobPreferences.First();
@@ -159,12 +161,14 @@ public sealed partial class ProfilePreviewSpriteView
             foreach (var priority in new List<JobPriority>{JobPriority.High, JobPriority.Medium, JobPriority.Low})
             {
                 highPriorityJob = profile.JobPreferences.FirstOrDefault(p => priorities.GetValueOrDefault(p) == priority);
-                if (highPriorityJob.Id != null)
+                if (highPriorityJob.faction.Id != null && highPriorityJob.job.Id != null)
                     break;
             }
         }
         // ReSharper disable once NullCoalescingConditionIsAlwaysNotNullAccordingToAPIContract (what is resharper smoking?)
-        return highPriorityJob.Id == null ? null : _prototypeManager.Index(highPriorityJob);
+        return highPriorityJob.faction.Id == null || highPriorityJob.job.Id == null ? 
+            null : 
+            (_prototypeManager.Index(highPriorityJob.faction), _prototypeManager.Index(highPriorityJob.job));
     }
 
     private string? GetLoadoutName(RoleLoadout loadout)

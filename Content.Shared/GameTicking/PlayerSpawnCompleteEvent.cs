@@ -1,6 +1,8 @@
-﻿using Content.Shared.Preferences;
+﻿using Content.Shared.FarHorizons.Factions;
+using Content.Shared.Preferences;
 using JetBrains.Annotations;
 using Robust.Shared.Player;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared.GameTicking;
 
@@ -14,6 +16,7 @@ public sealed class PlayerSpawnCompleteEvent : EntityEventArgs
 {
     public EntityUid Mob { get; }
     public ICommonSession Player { get; }
+    public ProtoId<FactionPrototype>? FactionId { get; } // Far Horizons
     public string? JobId { get; }
     public bool LateJoin { get; }
     public bool Silent { get; }
@@ -25,6 +28,7 @@ public sealed class PlayerSpawnCompleteEvent : EntityEventArgs
 
     public PlayerSpawnCompleteEvent(EntityUid mob,
         ICommonSession player,
+        ProtoId<FactionPrototype>? factionId, // Far Horizons
         string? jobId,
         bool lateJoin,
         bool silent,
@@ -34,6 +38,7 @@ public sealed class PlayerSpawnCompleteEvent : EntityEventArgs
     {
         Mob = mob;
         Player = player;
+        FactionId = factionId; // Far Horizons
         JobId = jobId;
         LateJoin = lateJoin;
         Silent = silent;

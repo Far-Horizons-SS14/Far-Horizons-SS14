@@ -14,6 +14,8 @@ using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+using Content.Shared.FarHorizons.Factions;
+using Content.Server.FarHorizons.Factions;
 
 namespace Content.Server.Preferences.Managers
 {
@@ -32,6 +34,7 @@ namespace Content.Server.Preferences.Managers
         [Dependency] private readonly ILogManager _log = default!;
         [Dependency] private readonly UserDbDataManager _userDb = default!;
         [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+        [Dependency] private readonly IServerFactionManager _factions = default!; // Far Horizons
 
         // Cache player prefs on the server so we don't need as much async hell related to them.
         private readonly Dictionary<NetUserId, PlayerPrefData> _cachedPlayerPrefs =
@@ -109,7 +112,8 @@ namespace Content.Server.Preferences.Managers
         /// <summary>
         /// Update the job priorities dictionary for a given player
         /// </summary>
-        public async Task SetJobPriorities(NetUserId userId, Dictionary<ProtoId<JobPrototype>, JobPriority> jobPriorities)
+        /// Far Horizons
+        public async Task SetJobPriorities(NetUserId userId, Dictionary<(ProtoId<FactionPrototype>, ProtoId<JobPrototype>), JobPriority> jobPriorities)
         {
             if (!_cachedPlayerPrefs.TryGetValue(userId, out var prefsData) || !prefsData.PrefsLoaded)
             {
@@ -261,7 +265,7 @@ namespace Content.Server.Preferences.Managers
                         new[] {new KeyValuePair<int, ICharacterProfile>(0, HumanoidCharacterProfile.Random())},
                         Color.Transparent,
                         [],
-                        new Dictionary<ProtoId<JobPrototype>, JobPriority>{{ SharedGameTicker.FallbackOverflowJob, JobPriority.High }}),
+                        new Dictionary<(ProtoId<FactionPrototype>, ProtoId<JobPrototype>), JobPriority>{{ _factions.GetDefaultWithJob(), JobPriority.High }}), // Far Horizons
                 };
 
                 _cachedPlayerPrefs[session.UserId] = prefsData;
@@ -377,15 +381,17 @@ namespace Content.Server.Preferences.Managers
             var prototypeManager = collection.Resolve<IPrototypeManager>();
 
             // Sanitize the job priorities
-            var priorities = new Dictionary<ProtoId<JobPrototype>, JobPriority>(prefs.JobPriorities
-                .Where(p => prototypeManager.TryIndex(p.Key, out var job) && job.SetPreference && p.Value switch
-                {
-                    JobPriority.Never => false, // Drop never since that's assumed default.
-                    JobPriority.Low => true,
-                    JobPriority.Medium => true,
-                    JobPriority.High => true,
-                    _ => false
-                }));
+            // Far Horizons
+            var priorities = new Dictionary<(ProtoId<FactionPrototype>, ProtoId<JobPrototype>), JobPriority>(
+                prefs.JobPriorities
+                .Where(p => 
+                    prototypeManager.TryIndex(p.Key.faction, out var faction) &&
+                    prototypeManager.TryIndex(p.Key.job, out var job) && 
+                    faction.Playable &&
+                    job.SetPreference && 
+                    p.Value != JobPriority.Never
+                    )
+                );
 
             // Ensure only one high priority job
             var hasHighPrio = false;

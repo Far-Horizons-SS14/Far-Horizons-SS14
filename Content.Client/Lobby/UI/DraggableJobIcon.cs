@@ -1,4 +1,5 @@
 ﻿using System.Numerics;
+using Content.Shared.FarHorizons.Factions;
 using Content.Shared.Preferences;
 using Content.Shared.Roles;
 using Robust.Client.GameObjects;
@@ -19,6 +20,7 @@ public sealed class DraggableJobIcon : TextureRect
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly IEntityManager _entManager = default!;
     [Dependency] private readonly IUserInterfaceManager _uiManager = default!;
+    [Dependency] private readonly ISharedFactionManager _factions = default!; // Far Horizons
 
     /// <summary>
     /// The TextureScale of a job icon
@@ -31,9 +33,10 @@ public sealed class DraggableJobIcon : TextureRect
     private const float DefaultHighScale = 8;
 
     /// <summary>
-    /// The job prototype represented by this icon
+    /// The faction-job pair represented by this icon
     /// </summary>
-    public JobPrototype JobProto { get; private init; }
+    /// Far Horizons
+    public (FactionPrototype, JobPrototype) JobProto { get; private init; }
 
     /// <summary>
     /// If the icon is being dragged, this will hold a reference to the control that contained it before the dragging.
@@ -83,7 +86,8 @@ public sealed class DraggableJobIcon : TextureRect
     /// </summary>
     private readonly CheckCanDrag? _canDragFunc;
 
-    public DraggableJobIcon(JobPrototype jobPrototype, CheckCanDrag? checkDrag = null, TooltipSupplier? tooltipSupplier = null)
+    // Far Horizons
+    public DraggableJobIcon((FactionPrototype, JobPrototype) jobPrototype, CheckCanDrag? checkDrag = null, TooltipSupplier? tooltipSupplier = null)
     {
         IoCManager.InjectDependencies(this);
 
@@ -92,7 +96,7 @@ public sealed class DraggableJobIcon : TextureRect
         _canDragFunc = checkDrag;
 
         var sprite = _entManager.System<SpriteSystem>();
-        var iconProto = _prototypeManager.Index(jobPrototype.Icon);
+        var iconProto = _prototypeManager.Index(_factions.OverrideJobIcon(jobPrototype));
 
         Texture = sprite.Frame0(iconProto.Icon);
         TextureScale = new Vector2(DefaultScale);

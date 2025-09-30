@@ -36,6 +36,8 @@ using Robust.Shared.Utility;
 using Content.Server._NullLink.PlayerData;
 using Content.Shared._Starlight.Language.Components;
 using Content.Shared._Starlight.Language.Systems;
+using Content.Shared.FarHorizons.Factions;
+using System.Collections.Immutable;
 
 namespace Content.Server.GameTicking
 {
@@ -102,7 +104,8 @@ namespace Content.Server.GameTicking
             }
 
             var spawnableStations = GetSpawnableStations();
-            var assignedJobs = _stationJobs.AssignJobs(netUserIds, spawnableStations);
+            // Far Horizons
+            var assignedJobs = _stationJobs.AssignJobs(netUserIds, spawnableStations, [.. _factions.ListSpawnableFactionIDs()]);
 
             // Calculate extended access for stations.
             var stationJobCounts = spawnableStations.ToDictionary(e => e, _ => 0);
@@ -130,11 +133,16 @@ namespace Content.Server.GameTicking
                 if (job == null)
                     continue;
 
+                // Station Job System doesn't know about factions
+                // We need to guess which faction the priority was for before
+                if (_factions.DecideFactionForJob(job.Value) is not ProtoId<FactionPrototype> faction)
+                    continue;
+
                 var playerSession = _playerManager.GetSessionById(player);
 
                 // Select a profile for the player
                 var playerPrefs = _prefsManager.GetPreferences(player);
-                var playerProfiles = playerPrefs.GetAllEnabledProfilesForJob(job.Value);
+                var playerProfiles = playerPrefs.GetAllEnabledProfilesForJob(faction, job.Value);
 
                 // Filter out job requirements
                 var filteredPlayerProfiles = playerProfiles.Values.Where(profile =>
@@ -166,7 +174,7 @@ namespace Content.Server.GameTicking
 
                 var profile = _robustRandom.Pick(finalPlayerProfiles.ToList());
 
-                SpawnPlayer(playerSession, profile, station, job, false);
+                SpawnPlayer(playerSession, profile, station, faction, job, false);
             }
 
             RefreshLateJoinAllowed();
@@ -179,6 +187,7 @@ namespace Content.Server.GameTicking
 
         private void SpawnPlayer(ICommonSession player,
             EntityUid station,
+            ProtoId<FactionPrototype>? faction = null, // Far Horizons
             string? jobId = null,
             bool lateJoin = true,
             bool silent = false)
@@ -187,20 +196,22 @@ namespace Content.Server.GameTicking
             if (jobBans == null || jobId != null && jobBans.Contains(jobId))
                 return;
 
-            if (jobId != null)
+            if (jobId != null &&
+                faction != null)
             {
-                var ev = new IsJobAllowedEvent(player, new ProtoId<JobPrototype>(jobId));
+                var ev = new IsJobAllowedEvent(player, faction.Value, new ProtoId<JobPrototype>(jobId)); // Far Horizons
                 RaiseLocalEvent(ref ev);
                 if (ev.Cancelled)
                     return;
             }
 
-            SpawnPlayer(player, null, station, jobId, lateJoin, silent);
+            SpawnPlayer(player, null, station, faction, jobId, lateJoin, silent); // Far Horizons
         }
 
         private void SpawnPlayer(ICommonSession player,
             HumanoidCharacterProfile? character,
             EntityUid station,
+            ProtoId<FactionPrototype>? faction = null, // Far Horizons
             string? jobId = null,
             bool lateJoin = true,
             bool silent = false)
@@ -277,13 +288,35 @@ namespace Content.Server.GameTicking
 
             // Pick best job best on prefs.
             var playerPreferences = _prefsManager.GetPreferences(player.UserId);
-            var jobPrioritiesFiltered = playerPreferences.JobPrioritiesFiltered();
-            jobId ??= _stationJobs.PickBestAvailableJobWithPriority(station,
-                jobPrioritiesFiltered,
-                true,
-                restrictedRoles);
+            
+            // Far Horizons
+            var jobPriorities = playerPreferences.JobPrioritiesFiltered()
+                                        .Where(p => _factions.ListSpawnableFactionIDs().Contains(p.Key.faction));
+
+            // StationJobsSystem doesn't know about factions, so if we have multiple of the same job with different factions available, 
+            // we take the highest pritority job as the only one to consider.
+            // It shouldn't really matter until dual station, and then most of this code will need to be rewritten anyways.
+            Dictionary<ProtoId<JobPrototype>, JobPriority> jobPrioritiesFiltered = [];
+            foreach (var ((_faciton, _job), priority) in jobPriorities){
+                if (!jobPrioritiesFiltered.TryGetValue(_job, out var prio) || priority > prio)
+                    jobPrioritiesFiltered[_job] = priority;
+            }
+
+            if ((faction == null || jobId == null) &&
+                _stationJobs.PickBestAvailableJobWithPriority(station,
+                                                jobPrioritiesFiltered,
+                                                true,
+                                                restrictedRoles) 
+                is ProtoId<JobPrototype> job
+            ){
+                // Hopefully select the same faction we dropped before
+                // Still probably irrelevant until dual stations...
+                faction = _factions.DecideFactionForJob(job);
+                jobId = job;
+            }
+
             // If no job available, stay in lobby, or if no lobby spawn as observer
-            if (jobId is null)
+            if (faction == null || jobId == null)
             {
                 if (!LobbyEnabled)
                 {
@@ -299,7 +332,7 @@ namespace Content.Server.GameTicking
             }
 
             // Job has been selected concretely, let's make sure the character profile is concrete
-            character ??= playerPreferences.SelectProfileForJob(jobId);
+            character ??= playerPreferences.SelectProfileForJob(faction.Value, jobId); // Far Horizons
             if (character == null)
             {
                 if (!LobbyEnabled)
@@ -326,7 +359,7 @@ namespace Content.Server.GameTicking
 
             _playTimeTrackings.PlayerRolesChanged(player);
 
-            var mobMaybe = _stationSpawning.SpawnPlayerCharacterOnStation(station, jobId, character);
+            var mobMaybe = _stationSpawning.SpawnPlayerCharacterOnStation(station, faction, jobId, character); // Far Horizons
             DebugTools.AssertNotNull(mobMaybe);
             var mob = mobMaybe!.Value;
 
@@ -336,7 +369,7 @@ namespace Content.Server.GameTicking
             
 			_mind.TransferTo(newMind, mob);
 
-            _roles.MindAddJobRole(newMind, silent: silent, jobPrototype: jobId);
+            _roles.MindAddJobRole(newMind, silent: silent, jobPrototype: jobId, factionPrototype: faction); // Far Horizons faction
             var jobName = _jobs.MindTryGetJobName(newMind);
             _admin.UpdatePlayerList(player);
 
@@ -417,6 +450,7 @@ namespace Content.Server.GameTicking
             PlayersJoinedRoundNormally++;
             var aev = new PlayerSpawnCompleteEvent(mob,
                 player,
+                faction, // Far Horizons
                 jobId,
                 lateJoin,
                 silent,
@@ -442,9 +476,11 @@ namespace Content.Server.GameTicking
         /// </summary>
         /// <param name="player">The player joining</param>
         /// <param name="station">The station they're spawning on</param>
+        /// <param name="faction">The faction they're spawning as</param>
         /// <param name="jobId">An optional job for them to spawn as</param>
         /// <param name="silent">Whether or not the player should be greeted upon joining</param>
-        public void MakeJoinGame(ICommonSession player, EntityUid station, string? jobId = null, bool silent = false)
+        /// Far Horizons
+        public void MakeJoinGame(ICommonSession player, EntityUid station, ProtoId<FactionPrototype>? faction = null, string? job = null, bool silent = false)
         {
             if (!_playerGameStatuses.ContainsKey(player.UserId))
                 return;
@@ -452,7 +488,7 @@ namespace Content.Server.GameTicking
             if (!_userDb.IsLoadComplete(player))
                 return;
 
-            SpawnPlayer(player, station, jobId, silent: silent);
+            SpawnPlayer(player, station, faction, job, silent: silent); // Far Horizons
         }
 
         /// <summary>
@@ -466,9 +502,11 @@ namespace Content.Server.GameTicking
         /// <param name="player">The player joining</param>
         /// <param name="profile">The humanoid profile they're spawning with</param>
         /// <param name="station">The station they're spawning on</param>
+        /// <param name="faction">The faction they're spawning as</param>
         /// <param name="jobId">An optional job for them to spawn as</param>
         /// <param name="silent">Whether or not the player should be greeted upon joining</param>
-        public void MakeJoinGame(ICommonSession player, HumanoidCharacterProfile profile, EntityUid station, string? jobId = null, bool silent = false)
+        /// Far Horizons
+        public void MakeJoinGame(ICommonSession player, HumanoidCharacterProfile profile, EntityUid station, ProtoId<FactionPrototype>? faction = null, string? jobId = null, bool silent = false)
         {
             if (!_playerGameStatuses.ContainsKey(player.UserId))
                 return;
@@ -476,7 +514,7 @@ namespace Content.Server.GameTicking
             if (!_userDb.IsLoadComplete(player))
                 return;
 
-            SpawnPlayer(player, profile, station, jobId, silent: silent);
+            SpawnPlayer(player, profile, station, faction, jobId, silent: silent); // Far Horizons
         }
 
         /// <summary>

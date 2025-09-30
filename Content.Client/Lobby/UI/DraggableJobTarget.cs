@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Numerics;
 using Content.Client.Stylesheets;
+using Content.Shared.FarHorizons.Factions;
 using Content.Shared.Preferences;
 using Content.Shared.Roles;
 using Robust.Client.Graphics;
@@ -19,14 +20,16 @@ namespace Content.Client.Lobby.UI;
 public sealed class DraggableJobTarget : Control
 {
     /// <summary>
-    /// A cached ordered list of jobs. This will be the sorted order of the job icons.
+    /// A cached ordered list of factions and jobs. This will be the sorted order of the job icons.
     /// </summary>
-    private static readonly List<JobPrototype> OrderedJobsInternal = new ();
+    /// Far Horizons
+    private static readonly List<(FactionPrototype, JobPrototype)> OrderedJobsInternal = new ();
 
     /// <summary>
-    /// A public immutable accessor for the ordered jobs list
+    /// A public immutable accessor for the ordered factions and jobs list
     /// </summary>
-    public static ImmutableList<JobPrototype> OrderedJobs => OrderedJobsInternal.ToImmutableList();
+    /// Far Horizons
+    public static ImmutableList<(FactionPrototype, JobPrototype)> OrderedJobs => OrderedJobsInternal.ToImmutableList();
 
     /// <summary>
     /// This will be the main "layout" box of the control, which contains the job container and label header
@@ -248,34 +251,43 @@ public sealed class DraggableJobTarget : Control
     }
 
     /// <summary>
-    /// Update the cached list of sorted jobs
+    /// Update the cached list of sorted factions and jobs
     /// </summary>
-    public static void UpdatedOrderedJobs(IPrototypeManager protoMan)
+    /// Far Horizons
+    public static void UpdatedOrderedJobs(IPrototypeManager protoMan, ISharedFactionManager factionMan)
     {
         OrderedJobsInternal.Clear();
 
-        // Get and sort departments
-        var departments = protoMan.EnumeratePrototypes<DepartmentPrototype>().ToList();
-        departments.Sort(DepartmentUIComparer.Instance);
-        foreach (var department in departments)
-        {
-            // Get and sort jobs in department
-            var jobs = department.Roles.Select(protoMan.Index)
-                .Where(r => r is { SetPreference: true, Hidden: false })
-                .ToList();
-            jobs.Sort(JobUIComparer.Instance);
-            foreach (var job in jobs)
+        // Sort by faction
+        foreach (var faction in factionMan.ListPlayableFactions()
+                                        .OrderBy(p => p.Weight))
             {
-                if (!OrderedJobsInternal.Contains(job))
-                    OrderedJobsInternal.Add(job);
+            // Sort by department
+            foreach (var dptAssignment in factionMan.ListFactionDepartments()
+                                                 .Where(p => p.Faction == faction)
+                                                 .OrderBy(p => p.Weight)
+                                                 .ThenBy(p => p.Department))
+            {
+                var department = protoMan.Index(dptAssignment.Department);
+                // Sort jobs
+                foreach (var jobAssignment in factionMan.ListFactionJobs()
+                                              .Where(p => (p.Faction == faction) && department.Roles.Contains(p.Job))
+                                              .OrderBy(p => p.Weight)
+                                              .ThenBy(p => p.Job))
+                {
+                    var job = protoMan.Index(jobAssignment.Job);
+                    if (!OrderedJobsInternal.Contains((faction, job)))
+                        OrderedJobsInternal.Add((faction, job));
+                }
             }
         }
     }
 
     /// <summary>
-    /// Get the jobs that are contained in this control.
+    /// Get the faction-job pairs that are contained in this control.
     /// </summary>
-    public IEnumerable<JobPrototype> GetContainedJobs()
+    /// Far Horizons
+    public IEnumerable<(FactionPrototype, JobPrototype)> GetContainedJobs()
     {
         if (_jobIconContainer is null)
             return [];
@@ -284,9 +296,9 @@ public sealed class DraggableJobTarget : Control
     }
 
     /// <summary>
-    /// Get the number of jobs contained in this control.
+    /// Get the number of faction-job pairs contained in this control.
     /// </summary>
-    public int ContainedJobCount()
+    public int ContainedFactionJobCount()
     {
         return GetContainedJobs().Count();
     }

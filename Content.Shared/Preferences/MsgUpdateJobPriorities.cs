@@ -1,4 +1,5 @@
 using System.IO;
+using Content.Shared.FarHorizons.Factions;
 using Content.Shared.Roles;
 using Lidgren.Network;
 using Robust.Shared.Network;
@@ -10,11 +11,12 @@ namespace Content.Shared.Preferences;
 /// <summary>
 /// The client sends this to update their global job priorities
 /// </summary>
+/// Far Horizons
 public sealed class MsgUpdateJobPriorities : NetMessage
 {
     public override MsgGroups MsgGroup => MsgGroups.Command;
 
-    public Dictionary<ProtoId<JobPrototype>, JobPriority> JobPriorities = default!;
+    public Dictionary<(ProtoId<FactionPrototype>, ProtoId<JobPrototype>), JobPriority> JobPriorities = default!; // Far Horizons
 
     public override void ReadFromBuffer(NetIncomingMessage buffer, IRobustSerializer serializer)
     {

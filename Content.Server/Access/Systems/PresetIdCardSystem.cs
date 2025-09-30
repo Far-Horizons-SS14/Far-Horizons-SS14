@@ -1,4 +1,5 @@
 using Content.Server.Access.Components;
+using Content.Server.FarHorizons.Factions;
 using Content.Server.GameTicking;
 using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
@@ -15,7 +16,7 @@ public sealed class PresetIdCardSystem : EntitySystem
     [Dependency] private readonly IdCardSystem _cardSystem = default!;
     [Dependency] private readonly SharedAccessSystem _accessSystem = default!;
     [Dependency] private readonly StationSystem _stationSystem = default!;
-
+    [Dependency] private readonly IServerFactionManager _factions = default!; // Far Horizons
     public override void Initialize()
     {
         SubscribeLocalEvent<PresetIdCardComponent, MapInitEvent>(OnMapInit);
@@ -79,14 +80,15 @@ public sealed class PresetIdCardSystem : EntitySystem
 
         _accessSystem.SetAccessToJob(uid, job, extended);
 
-        // FarHorizons - custom job titles
-        string jobName = job.LocalizedName;
+        // FarHorizons - custom job titles and factions name override
+        var jobName = _factions.OverrideLocalizedJobName((_factions.DecideFactionForJob(job), job));
         if (id.CustomJobTitle != null)
             jobName = id.CustomJobTitle;
         _cardSystem.TryChangeJobTitle(uid, jobName);
         _cardSystem.TryChangeJobDepartment(uid, job);
 
-        if (_prototypeManager.Resolve(job.Icon, out var jobIcon))
+        // Far Horizons faction job icon override
+        if (_prototypeManager.Resolve(_factions.OverrideJobIcon((_factions.DecideFactionForJob(job), job)), out var jobIcon))
             _cardSystem.TryChangeJobIcon(uid, jobIcon);
     }
 }
