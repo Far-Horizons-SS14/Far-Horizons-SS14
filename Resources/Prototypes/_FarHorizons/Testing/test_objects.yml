@@ -33,3 +33,26 @@
     restrictInteractionSource:
       whitelist:
         - Resomi
+
+- type: entity
+  name: bird sword
+  parent: EnergySword
+  id: BirdSword
+  description: A sword for a bird
+  components:
+  - type: InteractRestriction
+    restrictInteractionSource:
+      whitelist:
+        - Resomi
+
+
+- type: entity
+  name: bird gun
+  parent: WeaponPistolViper
+  id: WeaponPistolViperBird
+  description: Bird gun
+  components:
+  - type: InteractRestriction
+    restrictInteractionSource:
+      whitelist:
+        - Resomi

@@ -1,4 +1,6 @@
 ﻿using Content.Shared._FarHorizons.Util.Components;
+using Content.Shared.IdentityManagement;
+using Content.Shared.Popups;
 using Content.Shared.Tag;
 
 namespace Content.Shared._FarHorizons.Util;
@@ -6,6 +8,7 @@ namespace Content.Shared._FarHorizons.Util;
 public sealed class InteractRestrictionSystem : EntitySystem
 {
     [Dependency] private readonly TagSystem _tagSystem = default!;
+    [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
 
     public override void Initialize()
     {
@@ -30,6 +33,9 @@ public sealed class InteractRestrictionSystem : EntitySystem
             if (targetRestrict.Whitelist != null &&
                 !_tagSystem.HasAnyTag(target.Value, targetRestrict.Whitelist))
                     ev.Cancel();
+            
+            if (ev.Cancelled)
+                _popupSystem.PopupClient(Loc.GetString("interact-restriction-restricted-target", ("item", Identity.Entity(ent, EntityManager)), ("target", Identity.Entity(target.Value, EntityManager))), user);
         }
 
         if (ent.Comp.RestrictInteractionSource is InteractRestrictionList sourceRestrict) {
@@ -40,6 +46,9 @@ public sealed class InteractRestrictionSystem : EntitySystem
             if (sourceRestrict.Whitelist != null &&
                 !_tagSystem.HasAnyTag(user, sourceRestrict.Whitelist))
                     ev.Cancel();
+            
+            if (ev.Cancelled)
+                _popupSystem.PopupClient(Loc.GetString("interact-restriction-restricted-source", ("item", Identity.Entity(ent, EntityManager))), user);
         }
     }
 }
