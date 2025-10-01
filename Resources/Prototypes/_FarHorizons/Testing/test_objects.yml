@@ -10,49 +10,28 @@
         - Resomi
 
 - type: entity
-  name: gauze that only Resomi know how to use
+  name: gauze that birds don't know how to use
   description: It's complicated, alright?
   parent: Gauze
-  id: ResomiOnlyGauze
+  id: NoBirdGauze
   components:
   - type: InteractRestriction
     restrictInteractionSource:
-      whitelist:
+      blacklist:
         - Resomi
+        - Avali
 
 - type: entity
-  name: gauze that only Resomi know how to use that doesn't heal resomi
+  name: gauze that only birds know how to use that only heals Resomi
   description: For situation when you need one
   parent: Gauze
-  id: AntiResomiOnlyGauze
+  id: BirdGauze
   components:
   - type: InteractRestriction
     restrictInteractionTarget:
-      blacklist:
+      whitelist:
         - Resomi
     restrictInteractionSource:
       whitelist:
         - Resomi
-
-- type: entity
-  name: bird sword
-  parent: EnergySword
-  id: BirdSword
-  description: A sword for a bird
-  components:
-  - type: InteractRestriction
-    restrictInteractionSource:
-      whitelist:
-        - Resomi
-
-
-- type: entity
-  name: bird gun
-  parent: WeaponPistolViper
-  id: WeaponPistolViperBird
-  description: Bird gun
-  components:
-  - type: InteractRestriction
-    restrictInteractionSource:
-      whitelist:
-        - Resomi
+        - Avali
