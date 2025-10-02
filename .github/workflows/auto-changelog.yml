@@ -15,6 +15,7 @@ env:
 
 jobs:
   wait-for-que:
+    if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -104,7 +105,7 @@ jobs:
           token: ${{ github.token }}
           commit-message: Update changelog for PR/${{ steps.get_pr.outputs.PR_NUMBER }} [skip ci]
           committer: github-actions[bot] <github-actions[bot]@users.noreply.github.com>
-          author: ${{ github.actor }} <${{ github.actor_id }}+${{ github.actor }}@users.noreply.github.com>
+          author: github-actions[bot] <github-actions[bot]@users.noreply.github.com>
           signoff: false
           branch: patch-changelog-${{ steps.get_pr.outputs.PR_NUMBER }}
           delete-branch: true
