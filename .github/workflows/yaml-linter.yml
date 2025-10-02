@@ -15,6 +15,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4.2.2
+      - name: Cache yaml linter
+        id: cache-linter-build
+        uses: actions/cache@v4
+        with:
+          path: bin
+          key: linter-cache
       - name: Setup submodule
         run: |
           git submodule update --init --recursive
