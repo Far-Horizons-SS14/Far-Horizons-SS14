@@ -41,6 +41,7 @@ jobs:
           echo "Script exited with code $?"
 
   update-changelog:
+    if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
     needs: wait-for-que
     steps:
