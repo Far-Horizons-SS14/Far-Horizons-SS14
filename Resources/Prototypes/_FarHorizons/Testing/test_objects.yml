@@ -1,0 +1,37 @@
+- type: entity
+  name: gauze that doesn't heal Resomi
+  description: It just doesn't
+  parent: Gauze
+  id: AntiResomiGauze
+  components:
+  - type: InteractRestriction
+    restrictInteractionTarget:
+      blacklist:
+        - Resomi
+
+- type: entity
+  name: gauze that birds don't know how to use
+  description: It's complicated, alright?
+  parent: Gauze
+  id: NoBirdGauze
+  components:
+  - type: InteractRestriction
+    restrictInteractionSource:
+      blacklist:
+        - Resomi
+        - Avali
+
+- type: entity
+  name: gauze that only birds know how to use that only heals Resomi
+  description: For situation when you need one
+  parent: Gauze
+  id: BirdGauze
+  components:
+  - type: InteractRestriction
+    restrictInteractionTarget:
+      whitelist:
+        - Resomi
+    restrictInteractionSource:
+      whitelist:
+        - Resomi
+        - Avali
