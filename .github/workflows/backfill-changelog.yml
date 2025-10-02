@@ -80,7 +80,7 @@ jobs:
           committer: github-actions[bot] <github-actions[bot]@users.noreply.github.com>
           author: github-actions[bot] <github-actions[bot]@users.noreply.github.com>
           signoff: false
-          branch: patch-changelog-backfill
+          branch: ci-branch/patch-changelog-backfill
           delete-branch: true
           title: '[CI] Update patchnotes for ${{ steps.get_pr.outputs.PR_NUMBER }}'
           body: |
