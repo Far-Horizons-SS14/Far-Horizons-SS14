@@ -10,7 +10,7 @@ permissions:
 
 jobs:
   diff:
-    if: "!contains(github.event.pull_request.labels.*.name, 'automated pr')"
+    if: "!contains(github.event.pull_request.labels.*.name, 'automated pr') && github.actor != 'github-actions[bot]'"
     name: Diff
     runs-on: ubuntu-latest
     steps:

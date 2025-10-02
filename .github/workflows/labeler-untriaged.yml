@@ -1,14 +1,12 @@
 ﻿name: "Labels: Untriaged"
 
 on:
-  issues:
-    types: [opened]
   pull_request_target:
     types: [opened]
 
 jobs:
   add_label:
-    if: "!contains(github.event.pull_request.labels.*.name, 'automated pr')"
+    if: "!contains(github.event.pull_request.labels.*.name, 'automated pr') && github.actor != 'github-actions[bot]'"
     runs-on: ubuntu-latest
     permissions:
       contents: read

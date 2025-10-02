@@ -1,16 +1,14 @@
 name: RSI Validator
 
 on:
-  push:
-    branches: [ Far-Horizons ]
-  merge_group:
+  workflow_dispatch:
   pull_request:
     paths:
       - '**.rsi/**'
 
 jobs:
   validate_rsis:
-    if: "!contains(github.event.pull_request.labels.*.name, 'automated pr')"
+    if: "!contains(github.event.pull_request.labels.*.name, 'automated pr') && github.actor != 'github-actions[bot]'"
     name: Validate RSIs
     runs-on: ubuntu-latest
     steps:

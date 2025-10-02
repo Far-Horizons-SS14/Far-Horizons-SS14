@@ -1,7 +1,7 @@
 name: Build & Test Debug
 
 on:
-  merge_group:
+  workflow_dispatch:
   pull_request:
     types: [ opened, reopened, synchronize, ready_for_review ]
     branches: [ Far-Horizons ]
@@ -12,7 +12,7 @@ on:
 
 jobs:
   build:
-    if: "!contains(github.event.pull_request.labels.*.name, 'automated pr') && github.event.pull_request.draft == false"
+    if: "!contains(github.event.pull_request.labels.*.name, 'automated pr') && github.actor != 'github-actions[bot]' && github.event.pull_request.draft == false"
     strategy:
       matrix:
         os: [ubuntu-latest]

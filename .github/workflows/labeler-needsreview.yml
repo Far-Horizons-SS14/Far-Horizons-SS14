@@ -6,7 +6,7 @@ on:
 
 jobs:
   add_label:
-    if: "!contains(github.event.pull_request.labels.*.name, 'automated pr') && github.event.pull_request.draft == false"
+    if: "!contains(github.event.pull_request.labels.*.name, 'automated pr') && github.actor != 'github-actions[bot]' && github.event.pull_request.draft == false"
     runs-on: ubuntu-latest
     permissions:
       contents: read

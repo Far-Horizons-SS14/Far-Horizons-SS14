@@ -5,7 +5,7 @@ on:
 
 jobs:
   labeler:
-    if: "!contains(github.event.pull_request.labels.*.name, 'automated pr')"
+    if: "!contains(github.event.pull_request.labels.*.name, 'automated pr') && github.actor != 'github-actions[bot]'"
     permissions:
       contents: read
       pull-requests: write

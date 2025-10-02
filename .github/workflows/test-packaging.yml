@@ -1,19 +1,7 @@
 ﻿name: Test Packaging
 
 on:
-  push:
-    branches: [ FarHorizons ]
-    paths:
-      - '**.cs'
-      - '**.csproj'
-      - '**.sln'
-      - '**.git**'
-      - '**.yml'
-      # no docs on which one of these is supposed to work, so
-      # why not just do both
-      - 'RobustToolbox'
-      - 'RobustToolbox/**'
-  merge_group:
+  workflow_dispatch:
 
 jobs:
   build:

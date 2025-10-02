@@ -7,7 +7,7 @@ on:
 jobs:
   build:
     name: CRLF Check
-    if: "!contains(github.event.pull_request.labels.*.name, 'automated pr') && github.event.pull_request.draft == false"
+    if: "!contains(github.event.pull_request.labels.*.name, 'automated pr') && github.actor != 'github-actions[bot]' && github.event.pull_request.draft == false"
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4.2.2

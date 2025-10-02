@@ -76,11 +76,11 @@ jobs:
         uses: peter-evans/create-pull-request@v7
         with:
           token: ${{ github.token }}
-          commit-message: Update changelog for PR/${{ steps.get_pr.outputs.PR_NUMBER }} [skip ci]
+          commit-message: Backfill changelog [skip ci]
           committer: github-actions[bot] <github-actions[bot]@users.noreply.github.com>
           author: github-actions[bot] <github-actions[bot]@users.noreply.github.com>
           signoff: false
-          branch: patch-changelog-${{ steps.get_pr.outputs.PR_NUMBER }}
+          branch: patch-changelog-backfill
           delete-branch: true
           title: '[CI] Update patchnotes for ${{ steps.get_pr.outputs.PR_NUMBER }}'
           body: |

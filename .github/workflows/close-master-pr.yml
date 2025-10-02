@@ -7,7 +7,7 @@ on:
 jobs:
   run:
     runs-on: ubuntu-latest
-    if: ${{github.head_ref == 'master' || github.head_ref == 'main' || github.head_ref == 'develop' || github.head_ref == 'Far-Horizons'}}
+    if: github.head_ref == 'master' || github.head_ref == 'main' || github.head_ref == 'develop' || github.head_ref == 'Far-Horizons'
     permissions:
       contents: read
       pull-requests: write
