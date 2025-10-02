@@ -10,7 +10,7 @@ on:
 
 jobs:
   validate_rsis:
-    if: "!contains(github.event.pull_request.labels.*.name, 'automated pr'))"
+    if: "!contains(github.event.pull_request.labels.*.name, 'automated pr')"
     name: Validate RSIs
     runs-on: ubuntu-latest
     steps:

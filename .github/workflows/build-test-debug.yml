@@ -14,7 +14,7 @@ on:
 
 jobs:
   build:
-    if: "!contains(github.event.pull_request.labels.*.name, 'automated pr')) && github.event.pull_request.draft == false"
+    if: "!contains(github.event.pull_request.labels.*.name, 'automated pr') && github.event.pull_request.draft == false"
     strategy:
       matrix:
         os: [ubuntu-latest]

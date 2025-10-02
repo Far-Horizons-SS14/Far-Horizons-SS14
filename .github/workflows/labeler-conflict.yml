@@ -10,7 +10,7 @@ on:
 
 jobs:
   Label:
-    if: "( github.event.pull_request.draft == false ) && !contains(github.event.pull_request.labels.*.name, 'automated pr'))"
+    if: "( github.event.pull_request.draft == false ) && !contains(github.event.pull_request.labels.*.name, 'automated pr')"
     permissions:
       contents: read
       pull-requests: write
