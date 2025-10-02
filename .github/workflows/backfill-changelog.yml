@@ -35,7 +35,7 @@ jobs:
         id: find_prs
         env:
           CHANGELOG_FILE_PATH: 'Resources/Changelog/ChangelogStarlight.yml'
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ github.token }}
           GITHUB_REPOSITORY: ${{ github.repository }}
           COMMITS_COUNT: ${{ inputs.commits_count }}
         run: |
@@ -45,7 +45,7 @@ jobs:
         if: steps.find_prs.outputs.missing_prs != '[]'
         env:
           CHANGELOG_FILE_PATH: 'Resources/Changelog/ChangelogStarlight.yml'
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ github.token }}
           GITHUB_REPOSITORY: ${{ github.repository }}
         run: |
           missing_prs='${{ steps.find_prs.outputs.missing_prs }}'
