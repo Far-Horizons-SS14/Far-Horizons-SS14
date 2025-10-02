@@ -47,6 +47,7 @@ namespace Content.Client.Lobby.UI
         private readonly CrewManifestSystem _crewManifest;
         private readonly ISawmill _sawmill;
 
+        // Far Horizons
         private readonly Dictionary<NetEntity, Dictionary<(ProtoId<FactionPrototype> faction, ProtoId<JobPrototype> job), List<JobButton>>> _jobButtons = new();
         private readonly Dictionary<NetEntity, Dictionary<(ProtoId<FactionPrototype> faction, ProtoId<DepartmentPrototype> job), BoxContainer>> _jobCategories = new();
         Dictionary<ProtoId<FactionPrototype>, BoxContainer> _factionTabs = new();
@@ -367,7 +368,7 @@ namespace Content.Client.Lobby.UI
     sealed class JobButton : ContainerButton
     {
         public Label JobLabel { get; }
-        public ProtoId<FactionPrototype> FactionId { get; }
+        public ProtoId<FactionPrototype> FactionId { get; } // Far Horizons
         public ProtoId<JobPrototype> JobId { get; }
         public string JobLocalisedName { get; }
         public int? Amount { get; private set; }

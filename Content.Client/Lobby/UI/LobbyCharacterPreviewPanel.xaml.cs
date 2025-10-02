@@ -227,7 +227,7 @@ public sealed partial class LobbyCharacterPreviewPanel : Control
         };
 
         // Get how many jobs in each target
-        var counts = targets.Select(c => c.ContainedFactionJobCount());
+        var counts = targets.Select(c => c.ContainedJobCount());
 
         // initialize best value variables
         var best = 10000;
@@ -335,6 +335,7 @@ public sealed partial class LobbyCharacterPreviewPanel : Control
         var content = tooltip.GetChild(0);
         content.RemoveAllChildren();
 
+        // Far Horizons
         var factionTitle = new Label()
         {
             Text = faction.Name,

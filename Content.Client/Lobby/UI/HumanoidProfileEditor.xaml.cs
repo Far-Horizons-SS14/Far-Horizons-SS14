@@ -76,6 +76,7 @@ namespace Content.Client.Lobby.UI
         /// <summary>
         /// Temporary override of their selected job, used to preview roles.
         /// </summary>
+        /// Far Horizons
         public (FactionPrototype, JobPrototype)? JobOverride;
 
         /// <summary>
@@ -100,9 +101,11 @@ namespace Content.Client.Lobby.UI
 
         private readonly List<SpeciesPrototype> _species = new();
 
-        private readonly List<((string, string), RequirementsSelector)> _jobPriorities = new();
+        // Far Horizons
+        private readonly List<((ProtoId<FactionPrototype>, ProtoId<JobPrototype>), RequirementsSelector)> _jobPriorities = new();
 
-        private readonly Dictionary<(string, string), BoxContainer> _jobCategories = new();
+        // Far Horizons
+        private readonly Dictionary<(ProtoId<FactionPrototype>, ProtoId<DepartmentPrototype>), BoxContainer> _jobCategories = new();
 
         private readonly ColorSelectorSliders _rgbSkinColorSelector = new();
 
@@ -141,7 +144,7 @@ namespace Content.Client.Lobby.UI
             _markingManager = markings;
             _preferencesManager = preferencesManager;
             _requirements = requirements;
-            _factions = factions;
+            _factions = factions; // Far Horizons
             _sprite = _entManager.System<SpriteSystem>();
 
             _maxNameLength = _cfgManager.GetCVar(CCVars.MaxNameLength);
@@ -476,8 +479,8 @@ namespace Content.Client.Lobby.UI
 
             #region Jobs
 
-
-            _jobCategories = new Dictionary<(string, string), BoxContainer>();
+            // Far Horizons
+            _jobCategories = [];
 
             RefreshAntags();
             RefreshJobs();

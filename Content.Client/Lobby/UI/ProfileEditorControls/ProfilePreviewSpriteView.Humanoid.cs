@@ -42,8 +42,9 @@ public sealed partial class ProfilePreviewSpriteView
     /// This is expensive so not recommended to run if you have a slider.
     /// </remarks>
     /// <param name="humanoid">Profile to load</param>
-    /// <param name="job">Force job clothes override -- don't use job preferences</param>
+    /// <param name="job">Faction and job to force job clothes override -- don't use job preferences</param>
     /// <param name="showClothes">Add job clothes or just spawn a species doll</param>
+    /// Far Horizons
     private void LoadHumanoidEntity(HumanoidCharacterProfile humanoid, (FactionPrototype faction, JobPrototype job)? job, bool showClothes)
     {
         ProfileName = humanoid.Name;

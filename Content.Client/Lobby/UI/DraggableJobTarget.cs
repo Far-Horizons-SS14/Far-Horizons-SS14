@@ -259,6 +259,7 @@ public sealed class DraggableJobTarget : Control
         OrderedJobsInternal.Clear();
 
         // Sort by faction
+        // Far Horizons
         foreach (var faction in factionMan.ListPlayableFactions()
                                         .OrderBy(p => p.Weight))
             {
@@ -298,7 +299,8 @@ public sealed class DraggableJobTarget : Control
     /// <summary>
     /// Get the number of faction-job pairs contained in this control.
     /// </summary>
-    public int ContainedFactionJobCount()
+    /// Far Horizons
+    public int ContainedJobCount()
     {
         return GetContainedJobs().Count();
     }
