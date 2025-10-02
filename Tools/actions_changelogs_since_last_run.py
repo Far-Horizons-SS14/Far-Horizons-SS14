@@ -182,7 +182,7 @@ def build_embed_for_pr(pr_id: str, entries: list[ChangelogEntry]) -> dict[str, A
   #      "fields": [
   #          {"name": "Author(s)", "value": author_field[:EMBED_FIELD_VALUE_LIMIT], "inline": False}
   #      ],
-        "footer": {"text": "Starlight changelog"},
+        "footer": {"text": "Far Horizons changelog"},
         "timestamp": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
     }
     if pr_id != "no-pr":
