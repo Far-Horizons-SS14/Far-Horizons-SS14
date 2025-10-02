@@ -2,7 +2,7 @@ name: RSI Validator
 
 on:
   push:
-    branches: [ master, staging, stable, Starlight ]
+    branches: [ Far-Horizons ]
   merge_group:
   pull_request:
     paths:
@@ -10,6 +10,7 @@ on:
 
 jobs:
   validate_rsis:
+    if: "!contains(github.event.pull_request.labels.*.name, 'automated pr')"
     name: Validate RSIs
     runs-on: ubuntu-latest
     steps:

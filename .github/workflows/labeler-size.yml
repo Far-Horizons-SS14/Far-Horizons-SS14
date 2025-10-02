@@ -2,6 +2,7 @@ name: "Labels: Size"
 on: pull_request_target
 jobs:
   size-label:
+    if: "!contains(github.event.pull_request.labels.*.name, 'automated pr')"
     runs-on: ubuntu-latest
     permissions:
       contents: read

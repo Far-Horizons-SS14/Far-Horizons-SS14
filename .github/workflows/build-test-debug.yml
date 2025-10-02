@@ -1,16 +1,18 @@
 name: Build & Test Debug
 
 on:
-  push:
-    branches: [ master, staging, stable, Starlight, starlight-dev ]
   merge_group:
   pull_request:
     types: [ opened, reopened, synchronize, ready_for_review ]
-    branches: [ master, staging, stable, Starlight, starlight-dev ]
+    branches: [ Far-Horizons ]
+    paths:
+      - '**.cs'
+      - '**.csproj'
+      - '**.sln'
 
 jobs:
   build:
-    if: github.actor != 'PJBot' && github.event.pull_request.draft == false
+    if: "!contains(github.event.pull_request.labels.*.name, 'automated pr') && github.event.pull_request.draft == false"
     strategy:
       matrix:
         os: [ubuntu-latest]

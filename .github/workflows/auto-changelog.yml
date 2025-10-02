@@ -97,18 +97,20 @@ jobs:
         if: steps.get_pr.outputs.PR_NUMBER != ''
         run: |
           git status
-
-      - name: Commit and push changes
-        if: steps.get_pr.outputs.PR_NUMBER != ''
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add "Resources/Changelog/ChangelogFarHorizons.yml"
-          if git diff --cached --quiet; then
-            echo "No changes to commit."
-          else
-            git pull
-            git commit -m "Update changelog for PR #${{ steps.get_pr.outputs.PR_NUMBER }} [skip ci]"
-            git push
-          fi
+      
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ github.token }}
+          commit-message: Update changelog for PR/${{ steps.get_pr.outputs.PR_NUMBER }} [skip ci]
+          committer: github-actions[bot] <github-actions[bot]@users.noreply.github.com>
+          author: ${{ github.actor }} <${{ github.actor_id }}+${{ github.actor }}@users.noreply.github.com>
+          signoff: false
+          branch: patch-changelog-${{ steps.get_pr.outputs.PR_NUMBER }}
+          delete-branch: true
+          title: '[CI] Update patchnotes for ${{ steps.get_pr.outputs.PR_NUMBER }}'
+          body: |
+            Automated PR to populate patchnotes
+          labels: |
+            automated pr
           

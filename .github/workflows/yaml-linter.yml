@@ -2,15 +2,18 @@ name: YAML Linter
 
 on:
   push:
-    branches: [ master, staging, stable, Starlight ]
+    branches: [ Far-Horizons ]
   merge_group:
   pull_request:
     types: [ opened, reopened, synchronize, ready_for_review ]
+    paths:
+      - '**.yaml'
+      - '**.yml'
 
 jobs:
   build:
     name: YAML Linter
-    if: github.actor != 'PJBot' && github.event.pull_request.draft == false
+    if: "!contains(github.event.pull_request.labels.*.name, 'automated pr') && github.event.pull_request.draft == false"
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4.2.2
