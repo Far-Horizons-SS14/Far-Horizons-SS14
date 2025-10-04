@@ -96,6 +96,10 @@
       radius: 1.5
       energy: 1.6
       color: "#90EE90"
+    - type: ContainerContainer
+      containers:
+        key_slot: !type:ContainerSlot
+        board: !type:Container
 
 - type: entity
   parent: BaseComputer
