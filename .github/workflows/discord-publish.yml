@@ -19,19 +19,4 @@ jobs:
         GITHUB_TOKEN: ${{ github.token }}
         GITHUB_REPOSITORY: ${{ github.repository }}
         DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_PATCHNOTES_WEBHOOK }}
-    
-    - name: Create Pull Request
-      uses: peter-evans/create-pull-request@v7
-      with:
-        token: ${{ github.token }}
-        commit-message: Discord metadata update [skip ci]
-        committer: github-actions[bot] <github-actions[bot]@users.noreply.github.com>
-        author: github-actions[bot] <github-actions[bot]@users.noreply.github.com>
-        signoff: false
-        branch: ci-branch/discord-metadata
-        delete-branch: true
-        title: '[CI] Update discord metadata for patchnotes'
-        body: |
-          Automated PR to populate patchnotes
-        labels: |
-          automated pr
+        DISCORD_CHANGELOG_ROLE_ID: "1423332975688286308"
