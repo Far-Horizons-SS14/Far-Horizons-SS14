@@ -14,4 +14,8 @@ public interface INullLinkPlayerManager
     ValueTask SyncRoles(PlayerRolesSyncEvent ev);
     bool TryGetPlayerData(Guid userId, [NotNullWhen(true)] out PlayerData? playerData);
     ValueTask UpdateRoles(RolesChangedEvent ev);
+
+    public ulong[]? GetUserRoles(Guid player); // FarHorizons
+    public void AddUserRole(Guid player, ulong role); // FarHorizons, debug
+    public void RemoveUserRole(Guid player, ulong role); // FarHorizons, debug
 }

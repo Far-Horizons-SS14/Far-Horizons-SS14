@@ -198,4 +198,36 @@ public sealed partial class NullLinkPlayerManager : INullLinkPlayerManager
         else
             _mentors.Remove(player, out _);
     }
+
+    // FarHorizons
+    public ulong[]? GetUserRoles(Guid player)
+    {
+        if (_playerById.TryGetValue(player, out var playerData))
+        {
+            var output = new ulong[playerData.Roles.Count];
+            playerData.Roles.CopyTo(output);
+            return output;
+        }
+        return null;
+    }
+    // FarHorizons
+    public void AddUserRole(Guid player, ulong role)
+    {
+        if (!_playerById.TryGetValue(player, out var playerData))
+            return;
+
+        playerData.Roles.Add(role);
+
+        MentorCheck(player, playerData);
+    }
+    // FarHorizons
+    public void RemoveUserRole(Guid player, ulong role)
+    {
+        if (!_playerById.TryGetValue(player, out var playerData))
+            return;
+
+        playerData.Roles.Remove(role);
+
+        MentorCheck(player, playerData);
+    }
 }
