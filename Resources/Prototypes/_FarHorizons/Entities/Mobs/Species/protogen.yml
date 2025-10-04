@@ -1,0 +1,62 @@
+- type: entity
+  parent: BaseMobSpeciesOrganic
+  id: BaseMobProtogen
+  name: Urist McToaster
+  abstract: true
+  components:
+  - type: LanguageKnowledge
+    speaks:
+    - GalacticCommon
+#   - Trinary
+    understands:
+    - GalacticCommon
+#   - Trinary
+  - type: Hunger
+  - type: Icon
+    sprite: _FarHorizons/Mobs/Species/Protogen/parts.rsi
+    state: full
+  - type: Thirst
+  - type: Butcherable
+    butcheringType: Spike
+    spawned:
+    - id: FoodMeatHuman
+      amount: 5
+  - type: MeleeWeapon
+    soundHit:
+      path: /Audio/Weapons/pierce.ogg
+    animation: WeaponArcClaw
+    damage:
+      types:
+        Piercing: 2 #AP claws. Funny.
+        Slash: 3
+  - type: Body
+    prototype: Protogen
+    requiredLegs: 2
+  - type: HumanoidAppearance
+    species: Protogen
+    hideLayersOnEquip:
+    - Hair
+  - type: Inventory
+    femaleDisplacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: _FarHorizons/Mobs/Species/Protogen/displacement.rsi
+            state: jumpsuit-female
+  - type: Speech
+    speechVerb: Protogen
+    speechSounds: UnisexProtogen
+    allowedEmotes: ['Beep', 'Ping', 'Buzz']
+
+- type: entity
+  parent: BaseSpeciesDummy
+  id: MobProtogenDummy
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Inventory
+    femaleDisplacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: _FarHorizons/Mobs/Species/Protogen/displacement.rsi
+            state: jumpsuit-female

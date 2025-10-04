@@ -1,0 +1,120 @@
+- type: entity
+  parent: [MobBloodstream, MobFlammable, BaseMobSpecies]
+  id: BaseMobIPC
+  name: Urist McRobot
+  abstract: true
+  components:
+  - type: LanguageKnowledge
+    speaks:
+    - GalacticCommon
+#   - Trinary
+    understands:
+    - GalacticCommon
+#   - Trinary
+  - type: BorgChassis
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+    fitsInCharger: true
+  - type: PowerCellDraw
+    drawRate: 0.6
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellMedium
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _FarHorizons/Mobs/Species/IPC/parts.rsi
+    layers:
+    - map: ["enum.BorgVisualLayers.Body"]
+      state: light
+      visible: false
+    - map: ["enum.BorgVisualLayers.Light"]
+      state: light
+      shader: unshaded
+      visible: false
+    - map: [ "enum.HumanoidVisualLayers.Handcuffs" ]
+      color: "#ffffff"
+      sprite: Objects/Misc/handcuffs.rsi # Would do a custom dog handcuff sprite but unfortunately handcuffs have their overlay baked-in to the cuff itself so this is mostly filler
+      state: body-overlay-2
+      visible: false
+    - map: ["enum.BorgVisualLayers.LightStatus"]
+      state: light
+      shader: unshaded
+      visible: false
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      100: Critical
+      200: Dead
+    stateAlertDict:
+      Alive: BorgHealth
+      Critical: BorgCrit
+      Dead: BorgDead
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot { }
+  - type: MeleeWeapon
+    hidden: true
+    soundHit:
+      collection: MetalThud
+    damage:
+      groups:
+        Brute: 6
+  - type: Instrument
+    allowPercussion: false
+    handheld: false
+    bank: 0
+    program: 33
+  - type: UserInterface
+    interfaces:
+      enum.InstrumentUiKey.Key:
+        type: InstrumentBoundUserInterface
+        requireInputValidation: false
+  - type: Barotrauma
+    damage:
+      types:
+        Blunt: 0 #Metal can't decompress..
+        Heat: 0.5 #..But it can overheat!
+  - type: PassiveDamage # Need it here to disable it.
+    allowedStates:
+    - Alive
+    damageCap: 0
+    damage:
+      types:
+        Heat: 0
+      groups:
+        Brute: 0
+  - type: Temperature
+    heatDamageThreshold: 1800
+    coldDamageThreshold: 260
+    currentTemperature: 310.15
+    specificHeat: 42
+    coldDamage:
+      types:
+        Cold: 0.1
+    heatDamage:
+      types:
+        Heat: 3
+  - type: Bloodstream
+    bloodReagent: Oil
+  - type: TypingIndicator
+    proto: robot
+  - type: Icon
+    sprite: _FarHorizons/Mobs/Species/IPC/parts.rsi
+    state: full
+  - type: Body
+    prototype: IPC
+    requiredLegs: 2
+  - type: HumanoidAppearance
+    species: IPC
+  - type: ZombieImmune
+  - type: Speech
+    speechVerb: IPC
+    speechSounds: UnisexIPC
+    allowedEmotes: ['Beep', 'Ping', 'Buzz']
+
+- type: entity
+  parent: BaseSpeciesDummy
+  id: MobIPCDummy
+  categories: [ HideSpawnMenu ]
