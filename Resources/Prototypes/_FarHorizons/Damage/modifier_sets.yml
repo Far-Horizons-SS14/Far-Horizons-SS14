@@ -1,0 +1,17 @@
+- type: damageModifierSet
+  id: IPC
+  coefficients:
+    Shock: 1.5 # Insulated these components are not.
+    Blunt: 1.2 # Delicate internals
+    Slash: 0.7 # Plasteel frames
+    Piercing: 0.7
+
+- type: damageModifierSet
+  id: Protogen # Weaker IPC values, on account of being half-robot
+  coefficients:
+    Shock: 1.25
+    Heat: 1.2 # Fur my beloved
+    Cold: 0.5 # Well Insulated
+    Blunt: 1.1
+    Slash: 0.8
+    Piercing: 0.8

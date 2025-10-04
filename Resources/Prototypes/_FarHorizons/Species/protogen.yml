@@ -15,12 +15,12 @@
   id: MobProtogenSprites
   sprites:
     Head: MobProtogenHead
+    Eyes: MobProtogenEyes
     Snout: MobHumanoidAnyMarking
     Chest: MobProtogenTorso
     HeadTop: MobHumanoidAnyMarking
     HeadSide: MobHumanoidAnyMarking
     Tail: MobHumanoidAnyMarking
-    Eyes: MobHumanoidEyes
     LArm: MobProtogenLArm
     RArm: MobProtogenRArm
     LHand: MobProtogenLHand
@@ -47,9 +47,9 @@
       required: true
       defaultMarkings: [ ProtogenTail ]
     HeadTop:
-      points: 1
+      points: 2
       required: true
-      defaultMarkings: [ ProtogenEars ]
+      defaultMarkings: [ ProtogenEars, ProtogenLights ]
     Chest:
       points: 2
       required: false
@@ -63,7 +63,7 @@
 - type: humanoidBaseSprite
   id: MobProtogenEyes
   baseSprite:
-    sprite: _FarHorizons/Mobs/Customization/ProtogenEyes.rsi
+    sprite: _FarHorizons/Mobs/Species/Protogen/parts.rsi
     state: eyes
 
 - type: humanoidBaseSprite

@@ -7,15 +7,20 @@
   - type: LanguageKnowledge
     speaks:
     - GalacticCommon
-#   - Trinary
+    - Machine
+    - Trinary
     understands:
     - GalacticCommon
-#   - Trinary
+    - Machine
+    - Trinary
   - type: Hunger
   - type: Icon
     sprite: _FarHorizons/Mobs/Species/Protogen/parts.rsi
     state: full
   - type: Thirst
+  - type: Damageable
+    damageContainer: Biological
+    damageModifierSet: Protogen
   - type: Butcherable
     butcheringType: Spike
     spawned:
@@ -32,6 +37,16 @@
   - type: Body
     prototype: Protogen
     requiredLegs: 2
+  - type: Temperature # Similar to vulp becasue they are ALSO a furred race
+    heatDamageThreshold: 325
+    coldDamageThreshold: 230
+    currentTemperature: 310.15
+    specificHeat: 46
+  - type: TemperatureSpeed
+    thresholds:
+      280: 0.9
+      250: 0.8
+      230: 0.7
   - type: HumanoidAppearance
     species: Protogen
     hideLayersOnEquip:
@@ -43,10 +58,14 @@
           32:
             sprite: _FarHorizons/Mobs/Species/Protogen/displacement.rsi
             state: jumpsuit-female
-  - type: Speech
-    speechVerb: Protogen
-    speechSounds: UnisexProtogen
-    allowedEmotes: ['Beep', 'Ping', 'Buzz']
+  - type: Barotrauma
+    damage:
+      types:
+        Blunt: 0.07 #per second, halved
+  - type: Speech #MAKE LANG COUNTERPART
+    speechVerb: Protogen #MAKE LANG COUNTERPART
+    speechSounds: UnisexProtogen #MAKE LANG COUNTERPART
+    allowedEmotes: ['Beep', 'Ping', 'Buzz'] #MAKE LANG COUNTERPART
 
 - type: entity
   parent: BaseSpeciesDummy

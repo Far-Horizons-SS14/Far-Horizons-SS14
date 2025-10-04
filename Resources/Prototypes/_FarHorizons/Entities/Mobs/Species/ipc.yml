@@ -7,11 +7,22 @@
   - type: LanguageKnowledge
     speaks:
     - GalacticCommon
-#   - Trinary
+    - Machine
+    - Trinary
     understands:
     - GalacticCommon
-#   - Trinary
+    - Machine
+    - Trinary
   - type: BorgChassis
+    sprite: _FarHorizons/Mobs/Species/IPC/parts.rsi
+    maxModules: 0
+    hasMindState: light
+    noMindState: light
+#  - type: Instrument # Needs to be linked with an action in order to show up on action hotbar to trigger music UI
+#    allowPercussion: false
+#    handheld: false
+#    bank: 1
+#    program: 2
   - type: PowerCellSlot
     cellSlotId: cell_slot
     fitsInCharger: true
@@ -51,9 +62,32 @@
       Alive: BorgHealth
       Critical: BorgCrit
       Dead: BorgDead
+  - type: WiresPanel
+  - type: ActivatableUIRequiresPanel
+  - type: UserInterface
+    interfaces:
+      enum.BorgUiKey.Key:
+        type: BorgBoundUserInterface
+      enum.InstrumentUiKey.Key:
+        type: InstrumentBoundUserInterface
+        requireInputValidation: false
+  - type: ActivatableUI
+    key: enum.BorgUiKey.Key
+  - type: LockedWiresPanel
   - type: ContainerContainer
     containers:
       cell_slot: !type:ContainerSlot { }
+  - type: Lock
+    locked: true
+    unlockOnClick: false
+  - type: UIRequiresLock
+    userInterfaceKeys:
+    - enum.BorgUiKey.Key
+  - type: DamageVisuals
+    damageOverlayGroups:
+      Brute:
+        sprite: Mobs/Effects/brute_damage.rsi
+        color: "#b67823"
   - type: MeleeWeapon
     hidden: true
     soundHit:
@@ -61,16 +95,6 @@
     damage:
       groups:
         Brute: 6
-  - type: Instrument
-    allowPercussion: false
-    handheld: false
-    bank: 0
-    program: 33
-  - type: UserInterface
-    interfaces:
-      enum.InstrumentUiKey.Key:
-        type: InstrumentBoundUserInterface
-        requireInputValidation: false
   - type: Barotrauma
     damage:
       types:
@@ -90,12 +114,9 @@
     coldDamageThreshold: 260
     currentTemperature: 310.15
     specificHeat: 42
-    coldDamage:
-      types:
-        Cold: 0.1
-    heatDamage:
-      types:
-        Heat: 3
+  - type: Damageable
+    damageContainer: Biological
+    damageModifierSet: IPC
   - type: Bloodstream
     bloodReagent: Oil
   - type: TypingIndicator
@@ -110,9 +131,14 @@
     species: IPC
   - type: ZombieImmune
   - type: Speech
-    speechVerb: IPC
-    speechSounds: UnisexIPC
-    allowedEmotes: ['Beep', 'Ping', 'Buzz']
+    speechVerb: Parrot # REPLACE WITH IPC
+    speechSounds: MaleAvali # REPLACE WITH IPC
+    allowedEmotes: ['Chirp', 'Hisses', 'Purr', 'Growl', 'Trill', 'Scree', 'Call', 'Squawk'] # REPLACE WITH IPC
+  - type: Vocal
+    sounds:
+      Male: MaleShadekin # REPLACE WITH IPC
+      Female: FemaleShadekin # REPLACE WITH IPC
+      Unsexed: MaleShadekin # REPLACE WITH IPC
 
 - type: entity
   parent: BaseSpeciesDummy
