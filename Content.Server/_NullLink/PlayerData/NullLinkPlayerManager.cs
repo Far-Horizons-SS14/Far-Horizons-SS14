@@ -28,9 +28,11 @@ public sealed partial class NullLinkPlayerManager : INullLinkPlayerManager
     [Dependency] private readonly IServerNetManager _netMgr = default!;
     [Dependency] private readonly ILogManager _logManager = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
+    [Dependency] private readonly IServerDbManager _dbManager = default!;
 
     private readonly ConcurrentDictionary<Guid, PlayerData> _playerById = [];
     private readonly ConcurrentDictionary<Guid, ICommonSession> _mentors = [];
+    private readonly ConcurrentBag<Guid> _storedMentors = [];
     private ISawmill _sawmill = default!;
     private RoleRequirementPrototype? _mentorReq;
     private TitleBuilderPrototype? _builder;
@@ -45,6 +47,7 @@ public sealed partial class NullLinkPlayerManager : INullLinkPlayerManager
         _cfg.OnValueChanged(NullLinkCCVars.RoleReqMentors, UpdateMentors, true);
         _cfg.OnValueChanged(NullLinkCCVars.TitleBuild, UpdateTitleBuilder, true);
         _actors.OnConnected += OnNullLinkConnected;
+        SyncMentors();
     }
 
     private void OnNullLinkConnected()
@@ -116,6 +119,8 @@ public sealed partial class NullLinkPlayerManager : INullLinkPlayerManager
                     serverGrain.PlayerConnected(e.Session.UserId)
                         .FireAndForget(err=> _sawmill.Error($"PlayerConnected dispatch failed: {err}"));
                 SendPlayerRoles(e.Session, state.Roles);
+                if (_storedMentors.Contains(e.Session.UserId.UserId)) // FarHorizons, as we dont use nullink directly
+                    _mentors.TryAdd(e.Session.UserId.UserId, e.Session);
                 break;
             case SessionStatus.InGame:
                 break;
@@ -156,6 +161,7 @@ public sealed partial class NullLinkPlayerManager : INullLinkPlayerManager
                 _mentors.TryAdd(player.Key, player.Value.Session);
             }
         });
+        SyncMentors();  // FarHorizons
     }
     private void UpdateTitleBuilder(string obj)
     {
@@ -219,6 +225,7 @@ public sealed partial class NullLinkPlayerManager : INullLinkPlayerManager
         playerData.Roles.Add(role);
 
         MentorCheck(player, playerData);
+        SyncMentors();
     }
     // FarHorizons
     public void RemoveUserRole(Guid player, ulong role)
@@ -229,5 +236,28 @@ public sealed partial class NullLinkPlayerManager : INullLinkPlayerManager
         playerData.Roles.Remove(role);
 
         MentorCheck(player, playerData);
+        SyncMentors();
     }
+
+    public void SyncMentors() => SyncMentorsAsync();
+
+    private async void SyncMentorsAsync()
+    {
+        var mentors = await _dbManager.GetMentorsAsync();
+        _storedMentors.Clear();
+        foreach (var mentor in mentors)
+        {
+            _storedMentors.Add(mentor);
+            if (_playerById.TryGetValue(mentor, out var playerData))
+                _mentors.TryAdd(mentor, playerData.Session);
+        }
+
+        foreach (var (mentor, _) in _mentors)
+        {
+            if (!_storedMentors.Contains(mentor))
+                _mentors.Remove(mentor, out _);
+        }
+    }
+
+    public bool IsStoredMentor(Guid player) => _storedMentors.Contains(player);
 }

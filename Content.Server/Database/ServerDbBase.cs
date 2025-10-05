@@ -468,6 +468,37 @@ namespace Content.Server.Database
             await db.DbContext.SaveChangesAsync();
         }
         #endregion
+        
+        #region Mentors
+
+        public async Task AddMentorAsync(NetUserId netUserId)
+        {
+            await using var db = await GetDb();
+
+            db.DbContext.Mentor.Add(new Mentor{UserId = netUserId.UserId});
+
+            await db.DbContext.SaveChangesAsync();
+        }
+
+        public async Task RemoveMentorAsync(NetUserId netUserId, CancellationToken cancel)
+        {
+            await using var db = await GetDb(cancel);
+
+            var mentor = await db.DbContext.Mentor.SingleAsync(m => m.UserId == netUserId.UserId, cancel);
+            db.DbContext.Mentor.Remove(mentor);
+
+            await db.DbContext.SaveChangesAsync(cancel);
+        }
+
+        public async Task<List<Guid>> GetMentorsAsync(CancellationToken cancel)
+        {
+            await using var db = await GetDb(cancel);
+            return await db.DbContext.Mentor
+                .Select(w => w.UserId)
+                .ToListAsync(cancellationToken: cancel);
+        }
+        
+        #endregion
 
         #region Bans
         /*
@@ -743,6 +774,19 @@ namespace Content.Server.Database
                 .SingleOrDefaultAsync(p => p.UserId == userId.UserId, cancel);
 
             return record == null ? null : MakePlayerRecord(record);
+        }
+
+        public async Task<List<PlayerRecord>> GetPlayerRecordsByUserIds(List<Guid> userIds, CancellationToken cancel)
+        {
+            await using var db = await GetDb();
+            
+            var players = await db.DbContext.Player
+                .Where(player => userIds.Contains(player.UserId))
+                .ToListAsync(cancel);
+            var records = new List<PlayerRecord>();
+            foreach (var player in players)
+                records.Add(MakePlayerRecord(player));
+            return records;
         }
 
         protected async Task<bool> PlayerRecordExists(DbGuard db, NetUserId userId)

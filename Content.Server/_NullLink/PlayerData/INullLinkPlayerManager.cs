@@ -18,4 +18,6 @@ public interface INullLinkPlayerManager
     public ulong[]? GetUserRoles(Guid player); // FarHorizons
     public void AddUserRole(Guid player, ulong role); // FarHorizons, debug
     public void RemoveUserRole(Guid player, ulong role); // FarHorizons, debug
+    public bool IsStoredMentor(Guid player); // FarHorizons
+    public void SyncMentors();
 }

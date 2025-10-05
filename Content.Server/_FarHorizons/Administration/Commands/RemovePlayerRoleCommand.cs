@@ -44,7 +44,7 @@ public sealed class RemovePlayerRolesCommand : IConsoleCommand
             throw;
         }
 
-        _nullLinkPlayerManager.AddUserRole(netUserId.UserId, roleId);
+        _nullLinkPlayerManager.RemoveUserRole(netUserId.UserId, roleId);
 
         shell.WriteLine(Loc.GetString("remove-player-role-success"));
     }
