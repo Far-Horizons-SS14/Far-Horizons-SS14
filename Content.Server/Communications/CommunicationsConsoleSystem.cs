@@ -20,11 +20,6 @@ using Content.Shared.Popups;
 using Robust.Server.GameObjects;
 using Robust.Shared.Configuration;
 using Content.Shared.Speech; //Starlight
-using Content.Shared.Radio.Components;//FarHorizons
-using Content.Shared.Containers.ItemSlots;//FarHorizons
-using Robust.Shared.Timing;//FarHorizons
-using Content.Server.Construction;//FarHorizons
-using Content.Shared.Containers;//FarHorizons
 
 namespace Content.Server.Communications
 {
@@ -41,6 +36,7 @@ namespace Content.Server.Communications
         [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
         [Dependency] private readonly IConfigurationManager _cfg = default!;
         [Dependency] private readonly IAdminLogManager _adminLogger = default!;
+        [Dependency] private readonly DepartmentalAnnouncementSystem _deptAnnounce = default!; //FarHorizons
 
         private const float UIUpdateInterval = 5.0f;
 
@@ -57,14 +53,9 @@ namespace Content.Server.Communications
             SubscribeLocalEvent<CommunicationsConsoleComponent, CommunicationsConsoleBroadcastMessage>(OnBroadcastMessage);
             SubscribeLocalEvent<CommunicationsConsoleComponent, CommunicationsConsoleCallEmergencyShuttleMessage>(OnCallShuttleMessage);
             SubscribeLocalEvent<CommunicationsConsoleComponent, CommunicationsConsoleRecallEmergencyShuttleMessage>(OnRecallShuttleMessage);
-            SubscribeLocalEvent<CommunicationsConsoleComponent, CommunicationsConsoleSelectAnnouncementChannel>(OnSelectAnnouncementChannel); //FarHorizons
 
             // On console init, set cooldown
             SubscribeLocalEvent<CommunicationsConsoleComponent, MapInitEvent>(OnCommunicationsConsoleMapInit);
-
-            SubscribeLocalEvent<CommunicationsConsoleComponent, ItemSlotInsertAttemptEvent>(OnInsertAttempt);//FarHorizons
-            SubscribeLocalEvent<CommunicationsConsoleComponent, ItemSlotEjectAttemptEvent>(OnEjectAttempt);//FarHorizons
-            SubscribeLocalEvent<CommunicationsConsoleComponent, ConstructionChangeEntityEvent>(OnConstructionChangeEntityEvent);
         }
 
         public override void Update(float frameTime)
@@ -145,6 +136,10 @@ namespace Content.Server.Communications
             var stationUid = _stationSystem.GetOwningStation(uid);
             List<string>? levels = null;
             string currentLevel = default!;
+            //FarHorizons Start
+            List<string>? channels = null;
+            string currentChannel = default!;
+            //FarHorizons End
             float currentDelay = 0;
 
             if (stationUid != null)
@@ -169,42 +164,24 @@ namespace Content.Server.Communications
                 }
             }
 
-            //FarHorizon Start
-            bool hasCommon = false;
-            if (TryComp<ItemSlotsComponent>(comp.Owner, out var itemSlots))
+            //FarHorizons Start
+            if (TryComp<DepartmentalAnnouncementComponent>(uid, out var deptComp))
             {
-                foreach (var id in itemSlots.Slots.Values)
-                {
-                    var keyUid = id.ContainerSlot!.ContainedEntity;
-                    if (TryComp<EncryptionKeyComponent>(keyUid, out var keyComp))
-                    {
-                        comp.Channels = new();
-                        foreach (var channel in keyComp.Channels)
-                        {
-                            comp.Channels.Add(channel);
-                            if (channel == "Common")
-                                hasCommon = true;
-                        }
-                        if (!hasCommon)
-                            comp.Channels.Add("Common");
-
-                        if (comp.CurrentChannel == "No Channels Available")
-                            comp.CurrentChannel = keyComp.DefaultChannel ?? "Common";
-                    }
-                }
+                channels = deptComp.Channels;
+                currentChannel = deptComp.CurrentChannel;
             }
-            //FarHorizon End
-
+            //FarHorizons End
+            
             _uiSystem.SetUiState(uid, CommunicationsConsoleUiKey.Key, new CommunicationsConsoleInterfaceState(
-            CanAnnounce(comp),
-            CanCallOrRecall(comp),
-            levels,
-            currentLevel,
-            currentDelay,
-            comp.Channels, //FarHorizons
-            comp.CurrentChannel, //FarHorizons
-            _roundEndSystem.ExpectedCountdownEnd
-        ));
+                CanAnnounce(comp),
+                CanCallOrRecall(comp),
+                levels,
+                currentLevel,
+                currentDelay,
+                channels, //FarHorizons
+                currentChannel, //FarHorizons
+                _roundEndSystem.ExpectedCountdownEnd
+            ));
         }
 
         private static bool CanAnnounce(CommunicationsConsoleComponent comp)
@@ -264,14 +241,6 @@ namespace Content.Server.Communications
             }
         }
 
-        //FarHorizons Start
-        private void OnSelectAnnouncementChannel(EntityUid uid, CommunicationsConsoleComponent comp, CommunicationsConsoleSelectAnnouncementChannel message)
-        {
-            comp.CurrentChannel = message.Channel;
-            UpdateCommsConsoleInterface(uid, comp);
-        }
-        //FarHorizons End
-
         private void OnAnnounceMessage(EntityUid uid, CommunicationsConsoleComponent comp,
             CommunicationsConsoleAnnounceMessage message)
         {
@@ -280,7 +249,7 @@ namespace Content.Server.Communications
             //#region Starlight
             msg = _chatSystem.SanitizeMessageReplaceWords(msg);
             var accentEv = new AccentGetEvent(uid, msg);
-            RaiseLocalEvent(uid, accentEv);
+            RaiseLocalEvent(uid,accentEv);
             msg = accentEv.Message;
             //#endregion Starlight
             var author = Loc.GetString("comms-console-announcement-unknown-sender");
@@ -312,10 +281,24 @@ namespace Content.Server.Communications
             Loc.TryGetString(comp.Title, out var title);
             title ??= comp.Title;
 
+            //FarHorizons Start
+            List<string>? channels = null;
+            string currentChannel = default!;
+            string? titleAlt = default!;
+            if (TryComp<DepartmentalAnnouncementComponent>(uid, out var deptComp))
+            {
+                channels = deptComp.Channels;
+                currentChannel = deptComp.CurrentChannel;
+                Loc.TryGetString(deptComp.TitleAlt, out titleAlt);
+                titleAlt ??= deptComp.TitleAlt;
+
+            }
+            //FarHorizons End
+
             if (comp.AnnounceSentBy)
                 msg += "\n" + Loc.GetString("comms-console-announcement-sent-by") + " " + author;
 
-            if (comp.Global && comp.CurrentChannel == "Common")
+            if (comp.Global && currentChannel == "Common")
             {
                 _chatSystem.DispatchGlobalAnnouncement(msg, title, announcementSound: comp.Sound, colorOverride: comp.Color);
 
@@ -323,7 +306,7 @@ namespace Content.Server.Communications
                 return;
             }
 
-            if (comp.CurrentChannel == "Common")
+            if (currentChannel == "Common")
             {
                 _chatSystem.DispatchCommunicationsConsoleAnnouncement(uid, msg, title, announcementSound: comp.Sound, colorOverride: comp.Color); // 🌟Starlight🌟
                 _adminLogger.Add(LogType.Chat, LogImpact.Low, $"{ToPrettyString(message.Actor):player} has sent the following station announcement: {msg}");
@@ -331,13 +314,10 @@ namespace Content.Server.Communications
             }
             else
             {
-                Loc.TryGetString(comp.TitleAlt, out var titlealt);
-                titlealt ??= comp.TitleAlt;
-                _chatSystem.DispatchFilteredCommunicationsConsoleAnnouncement(comp.CurrentChannel, uid, msg, titlealt, announcementSound: comp.Sound, colorOverride: comp.Color, Global: comp.Global); // 🌟Starlight🌟
-                _adminLogger.Add(LogType.Chat, LogImpact.Low, $"{ToPrettyString(message.Actor):player} has sent the following departmental announcement to {comp.CurrentChannel}: {msg}");
+                _deptAnnounce.DispatchFilteredCommunicationsConsoleAnnouncement(currentChannel, uid, msg, titleAlt, announcementSound: comp.Sound, colorOverride: comp.Color, Global: comp.Global);
+                _adminLogger.Add(LogType.Chat, LogImpact.Low, $"{ToPrettyString(message.Actor):player} has sent the following departmental announcement to {currentChannel}: {msg}");
                 return;
             }
-
         }
 
         private void OnBroadcastMessage(EntityUid uid, CommunicationsConsoleComponent component, CommunicationsConsoleBroadcastMessage message)
@@ -394,36 +374,6 @@ namespace Content.Server.Communications
             _roundEndSystem.CancelRoundEndCountdown(uid);
             _adminLogger.Add(LogType.Action, LogImpact.High, $"{ToPrettyString(message.Actor):player} has recalled the shuttle.");
         }
-
-        //FarHorizons Start
-        private void OnInsertAttempt(EntityUid uid, CommunicationsConsoleComponent comp, ref ItemSlotInsertAttemptEvent args)
-        {
-            Timer.Spawn(0, () => UpdateCommsConsoleInterface(uid, Comp<CommunicationsConsoleComponent>(uid)));
-        }
-
-        private void OnEjectAttempt(EntityUid uid, CommunicationsConsoleComponent comp, ref ItemSlotEjectAttemptEvent args)
-        {
-            comp.CurrentChannel = "No Channels Available";
-            comp.Channels = new List<string> { "No Channels Available" };
-            Timer.Spawn(0, () => UpdateCommsConsoleInterface(uid, Comp<CommunicationsConsoleComponent>(uid)));
-        }
-
-        private void OnConstructionChangeEntityEvent(EntityUid uid, CommunicationsConsoleComponent comp, ref ConstructionChangeEntityEvent args)
-        {
-            var newUid = args.New;
-            if (newUid == null)
-                return;
-
-            if (TryComp<ContainerFillComponent>(newUid, out var ContainerComp))
-            {
-                foreach (var id in ContainerComp.Containers)
-                {
-                    ContainerComp.Containers.Remove(id.Key);
-                }
-            }
-        }
-
-        //FarHorizons End
     }
 
     /// <summary>
