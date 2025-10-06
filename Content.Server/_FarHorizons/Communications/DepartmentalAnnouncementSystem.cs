@@ -1,5 +1,4 @@
 using Content.Shared.Communications;
-using Robust.Server.GameObjects;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Radio.Components;
 using Content.Server.Construction;
@@ -14,26 +13,19 @@ using Content.Server.Chat.Managers;
 using Content.Shared.Chat;
 using Content.Server.Starlight.TTS;
 using Robust.Shared.Utility; 
-using Content.Server.AlertLevel;
-using Content.Server.RoundEnd;
-using Content.Shared.CCVar;
-using Robust.Shared.Configuration;
-using Content.Server.Shuttles.Systems;
-using Robust.Shared.Log;
+using Robust.Server.GameObjects;
 
 namespace Content.Server.Communications
 {
     public sealed class DepartmentalAnnouncementSystem : EntitySystem
     {
-        [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
         [Dependency] private readonly SharedAudioSystem _audio = default!;
         [Dependency] private readonly StationSystem _stationSystem = default!;
         [Dependency] private readonly IChatManager _chatManager = default!;
-        [Dependency] private readonly AlertLevelSystem _alertLevelSystem = default!;
-        [Dependency] private readonly RoundEndSystem _roundEndSystem = default!;
-        [Dependency] private readonly IConfigurationManager _cfg = default!;
-        [Dependency] private readonly EmergencyShuttleSystem _emergency = default!;
+        [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
+        [Dependency] private readonly CommunicationsConsoleSystem _commsSystem = default!;
         private const float UIUpdateInterval = 5.0f;
+
         public override void Initialize()
         {
             SubscribeLocalEvent<DepartmentalAnnouncementComponent, MapInitEvent>(OnCommunicationsConsoleMapInit);
@@ -69,34 +61,6 @@ namespace Content.Server.Communications
 
         public void UpdateCommsConsoleInterface(EntityUid uid, DepartmentalAnnouncementComponent comp)
         {
-
-            var stationUid = _stationSystem.GetOwningStation(uid);
-            List<string>? levels = null;
-            string currentLevel = default!;
-            float currentDelay = 0;
-
-            if (stationUid != null)
-            {
-                if (TryComp(stationUid.Value, out AlertLevelComponent? alertComp) &&
-                    alertComp.AlertLevels != null)
-                {
-                    if (alertComp.IsSelectable)
-                    {
-                        levels = new();
-                        foreach (var (id, detail) in alertComp.AlertLevels.Levels)
-                        {
-                            if (detail.Selectable)
-                            {
-                                levels.Add(id);
-                            }
-                        }
-                    }
-
-                    currentLevel = alertComp.CurrentLevel;
-                    currentDelay = _alertLevelSystem.GetAlertLevelDelay(stationUid.Value, alertComp);
-                }
-            }
-
             bool hasCommon = false;
             if (TryComp<ItemSlotsComponent>(uid, out var itemSlots))
             {
@@ -122,74 +86,25 @@ namespace Content.Server.Communications
                     }
                 }
             }
-
-            var canAnnounce = false;
-            var canCallorRecall = false;
-
-            if (TryComp<CommunicationsConsoleComponent>(uid, out var commsComp))
-            {
-                canAnnounce = CanAnnounce(commsComp);
-                canCallorRecall = CanCallOrRecall(commsComp);
-            }
-
-            _uiSystem.SetUiState(uid, CommunicationsConsoleUiKey.Key, new CommunicationsConsoleInterfaceState(
-                canAnnounce,
-                canCallorRecall,
-                levels,
-                currentLevel,
-                currentDelay,
-                comp.Channels,
-                comp.CurrentChannel,
-                _roundEndSystem.ExpectedCountdownEnd
-            ));
-        }
-
-        private static bool CanAnnounce(CommunicationsConsoleComponent comp)
-        {
-            return comp.AnnouncementCooldownRemaining <= 0f;
-        }
-
-        private bool CanCallOrRecall(CommunicationsConsoleComponent comp)
-        {
-            // Defer to what the round end system thinks we should be able to do.
-            if (_emergency.EmergencyShuttleArrived || !_roundEndSystem.CanCallOrRecall())
-                return false;
-
-            // Ensure that we can communicate with the shuttle (either call or recall)
-            if (!comp.CanShuttle)
-                return false;
-
-            // Calling shuttle checks
-            if (_roundEndSystem.ExpectedCountdownEnd is null)
-                return true;
-
-            // Recalling shuttle checks
-            var recallThreshold = _cfg.GetCVar(CCVars.EmergencyRecallTurningPoint);
-
-            // shouldn't really be happening if we got here
-            if (_roundEndSystem.ShuttleTimeLeft is not { } left
-                || _roundEndSystem.ExpectedShuttleLength is not { } expected)
-                return false;
-
-            return !(left.TotalSeconds / expected.TotalSeconds < recallThreshold);
+            _commsSystem.UpdateCommsConsoleInterface(uid, Comp<CommunicationsConsoleComponent>(uid));
         }
 
         private void OnSelectAnnouncementChannel(EntityUid uid, DepartmentalAnnouncementComponent comp, CommunicationsConsoleSelectAnnouncementChannel message)
         {
             comp.CurrentChannel = message.Channel;
-            UpdateCommsConsoleInterface(uid, comp);
+            _commsSystem.UpdateCommsConsoleInterface(uid, Comp<CommunicationsConsoleComponent>(uid));
         }
 
         private void OnInsertAttempt(EntityUid uid, DepartmentalAnnouncementComponent comp, ref ItemSlotInsertAttemptEvent args)
         {
-            Timer.Spawn(0, () => UpdateCommsConsoleInterface(uid, Comp<DepartmentalAnnouncementComponent>(uid)));
+            Timer.Spawn(0, () => _commsSystem.UpdateCommsConsoleInterface(uid, Comp<CommunicationsConsoleComponent>(uid)));
         }
 
         private void OnEjectAttempt(EntityUid uid, DepartmentalAnnouncementComponent comp, ref ItemSlotEjectAttemptEvent args)
         {
             comp.CurrentChannel = "No Channels Available";
             comp.Channels = new List<string> { "No Channels Available" };
-            Timer.Spawn(0, () => UpdateCommsConsoleInterface(uid, Comp<DepartmentalAnnouncementComponent>(uid)));
+            Timer.Spawn(0, () => _commsSystem.UpdateCommsConsoleInterface(uid, Comp<CommunicationsConsoleComponent>(uid)));
         }
 
         private void OnConstructionChangeEntityEvent(EntityUid uid, DepartmentalAnnouncementComponent comp, ref ConstructionChangeEntityEvent args)
