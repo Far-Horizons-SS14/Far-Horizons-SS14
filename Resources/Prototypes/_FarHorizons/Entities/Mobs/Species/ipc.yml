@@ -109,6 +109,13 @@
         Heat: 0
       groups:
         Brute: 0
+  - type: Tag
+    tags:
+      - CanPilot
+      - FootstepSound
+      - DoorBumpOpener
+      - AnomalyHost
+      - IPC
   - type: Temperature
     heatDamageThreshold: 1800
     coldDamageThreshold: 260
@@ -119,8 +126,6 @@
     damageModifierSet: IPC
   - type: Bloodstream
     bloodReagent: Oil
-  - type: TypingIndicator
-    proto: robot
   - type: Icon
     sprite: _FarHorizons/Mobs/Species/IPC/parts.rsi
     state: full
@@ -130,15 +135,20 @@
   - type: HumanoidAppearance
     species: IPC
   - type: ZombieImmune
+  - type: TypingIndicator
+    proto: robot
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepBorg
   - type: Speech
-    speechVerb: Parrot # REPLACE WITH IPC
-    speechSounds: MaleAvali # REPLACE WITH IPC
-    allowedEmotes: ['Chirp', 'Hisses', 'Purr', 'Growl', 'Trill', 'Scree', 'Call', 'Squawk'] # REPLACE WITH IPC
+    speechVerb: Robotic
+    speechSounds: Borg
+    allowedEmotes: ['BeepRobot', 'PingRobot', 'BuzzRobot', 'Buzz-TwoRobot', 'ChimeRobot', 'HonkRobot']
   - type: Vocal
     sounds:
-      Male: MaleShadekin # REPLACE WITH IPC
-      Female: FemaleShadekin # REPLACE WITH IPC
-      Unsexed: MaleShadekin # REPLACE WITH IPC
+      Male: MaleIPC
+      Female: FemaleIPC
+      Unsexed: MaleIPC
 
 - type: entity
   parent: BaseSpeciesDummy

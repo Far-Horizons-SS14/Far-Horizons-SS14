@@ -19,7 +19,7 @@
     Chest: MobIPCTorso
     HeadTop: MobHumanoidAnyMarking
     HeadSide: MobHumanoidAnyMarking
-    Eyes: MobHumanoidEyes
+    Eyes: MobIPCEyes
     LArm: MobIPCLArm
     RArm: MobIPCRArm
     LHand: MobIPCLHand
@@ -56,6 +56,12 @@
     Arms:
       points: 3
       required: false
+
+- type: humanoidBaseSprite
+  id: MobIPCEyes
+  baseSprite:
+    sprite: _FarHorizons/Mobs/Species/IPC/parts.rsi
+    state: light
 
 - type: humanoidBaseSprite
   id: MobIPCAnyMarking

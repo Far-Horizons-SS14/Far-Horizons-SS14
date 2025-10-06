@@ -37,6 +37,13 @@
   - type: Body
     prototype: Protogen
     requiredLegs: 2
+  - type: Tag
+    tags:
+      - CanPilot
+      - FootstepSound
+      - DoorBumpOpener
+      - AnomalyHost
+      - Protogen
   - type: Temperature # Similar to vulp becasue they are ALSO a furred race
     heatDamageThreshold: 325
     coldDamageThreshold: 230
@@ -61,11 +68,18 @@
   - type: Barotrauma
     damage:
       types:
-        Blunt: 0.07 #per second, halved
-  - type: Speech #MAKE LANG COUNTERPART
-    speechVerb: Protogen #MAKE LANG COUNTERPART
-    speechSounds: UnisexProtogen #MAKE LANG COUNTERPART
-    allowedEmotes: ['Beep', 'Ping', 'Buzz'] #MAKE LANG COUNTERPART
+        Blunt: 0.07 #per second, halved compared to normal
+  - type: TypingIndicator # TODO - Find "protogen" noises. Idk.
+    proto: robot
+  - type: Speech
+    speechVerb: Robotic
+    speechSounds: Borg
+    allowedEmotes: ['Chirp', 'Hisses', 'Squish', 'Purr', 'Growl', 'Trill', 'Scree', 'Call', 'Squawk', 'Bark', 'Snarl', 'Whine', 'Howl', 'Yip', 'Mew', 'Meow','Thump', 'Liss', 'Lurr', 'Rattle', "Mar", "Wurble", 'Chitter', 'Squeak', 'Click', 'BeepRobot', 'PingRobot', 'BuzzRobot', 'Buzz-TwoRobot', 'ChimeRobot', 'HonkRobot']
+  - type: Vocal
+    sounds:
+      Male: MaleProtogen
+      Female: FemaleProtogen
+      Unsexed: MaleProtogen
 
 - type: entity
   parent: BaseSpeciesDummy

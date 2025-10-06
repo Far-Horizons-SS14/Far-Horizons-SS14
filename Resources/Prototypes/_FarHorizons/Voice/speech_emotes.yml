@@ -1,0 +1,102 @@
+- type: emote
+  id: BuzzRobot
+  name: chat-emote-name-buzz
+  category: Vocal
+  available: false
+  icon: Interface/Emotes/buzz.png
+  whitelist:
+    components:
+    - Vocal
+  chatMessages: ["chat-emote-msg-buzz"]
+  chatTriggers:
+    - buzzing
+    - buzz
+    - buzzed
+    - buzzes
+
+- type: emote
+  id: Buzz-TwoRobot
+  name: chat-emote-name-buzztwo
+  category: Vocal
+  available: false
+  icon: Interface/Emotes/buzztwo.png
+  whitelist:
+    components:
+    - Vocal
+  chatMessages: ["chat-emote-msg-buzzestwo"]
+  chatTriggers:
+    - buzztwice
+    - buzzstwice
+    - buzzestwice
+    - buzzingtwice
+    - buzzedtwice
+    - buzz twice
+    - buzzs twice
+    - buzzes twice
+    - buzzing twice
+    - buzzed twice
+
+- type: emote
+  id: PingRobot
+  name: chat-emote-name-ping
+  category: Vocal
+  available: false
+  icon: Interface/Emotes/ping.png
+  whitelist:
+    components:
+    - Vocal
+  chatMessages: ["chat-emote-msg-ping"]
+  chatTriggers:
+    - ping
+    - pings
+    - pinged
+    - pinging
+
+- type: emote
+  id: BeepRobot
+  name: chat-emote-name-beep
+  category: Vocal
+  available: false
+  icon: Interface/Emotes/beep.png
+  whitelist:
+    components:
+    - Vocal
+  chatMessages: ["chat-emote-msg-beep"]
+  chatTriggers:
+    - beep
+    - beeps
+    - beeped
+    - beeping
+
+- type: emote
+  id: ChimeRobot
+  name: chat-emote-name-chime
+  category: Vocal
+  available: false
+  icon: Interface/Emotes/chime.png
+  whitelist:
+    components:
+    - Vocal
+  chatMessages: ["chat-emote-msg-chime"]
+  chatTriggers:
+    - chime
+    - chimes
+    - chimed
+    - chiming
+
+- type: emote
+  id: HonkRobot
+  name: chat-emote-name-honk
+  category: Vocal
+  available: false
+  icon: Interface/Emotes/honk.png
+  whitelist:
+    requireAll: true
+    components:
+    - Vocal
+  chatMessages: ["chat-emote-msg-honk"]
+  chatTriggers:
+    - honk
+    - honks
+    - honked
+    - honking
