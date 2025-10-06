@@ -1,0 +1,15 @@
+- type: entity
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
+  id: ClothingHeadHelmetHardsuitMagistrate
+  categories: [ HideSpawnMenu ]
+  name: Magistate Hardsuit Helmet
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Head/Hardsuits/magistrate.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Head/Hardsuits/magistrate.rsi
+  - type: PointLight
+    color: "#adeeff"
+  - type: PressureProtection
+    highPressureMultiplier: 0.45
+    lowPressureMultiplier: 10000
