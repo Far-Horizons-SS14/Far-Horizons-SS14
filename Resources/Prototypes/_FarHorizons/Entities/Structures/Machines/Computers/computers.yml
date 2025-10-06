@@ -56,3 +56,8 @@
       - VitalsMonitorSender
   - type: Machine
     board: VitalsMonitorMachineCircuitboard
+  - type: ContainerContainer
+    containers:
+      board: !type:Container
+      machine_board: !type:Container
+      machine_parts: !type:Container
