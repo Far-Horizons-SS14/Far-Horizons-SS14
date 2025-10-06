@@ -1,0 +1,52 @@
+- type: entity
+  name: Ammonia Pack
+  description: Contains an Ammonia based fluid created by Nanotrasen's advanced medical science.
+  parent: BaseHealingItem
+  id: AmmoniaPack
+  suffix: Full
+  components:
+  - type: Item
+    heldPrefix: bloodpack
+  - type: Tag
+    tags:
+    - AmmoniaPack
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Specific/Medical/medical.rsi
+    state: ammoniapack
+  - type: Healing
+    damageContainers:
+      - Biological
+    damage:
+      types:
+        Bloodloss: -0.5 #lowers bloodloss damage
+    delay: 1.6 # STARLIGHT
+    modifyBloodLevel: 15 #restores about 5% blood per use on standard humanoids.
+    healingBeginSound:
+      path: "/Audio/Items/Medical/brutepack_begin.ogg"
+      params:
+        volume: 1.0
+        variation: 0.125
+    healingEndSound:
+      path: "/Audio/Items/Medical/brutepack_end.ogg"
+      params:
+        volume: 1.0
+        variation: 0.125
+  - type: InteractRestriction 
+    restrictInteractionTarget:
+      whitelist:
+      - Avali
+      - Resomi
+  - type: Stack
+    stackType: AmmoniaPack
+    count: 10
+  - type: StackPrice
+    price: 10
+
+- type: entity
+  parent: AmmoniaPack
+  id: AmmoniaPack1
+  suffix: Single
+  components:
+  - type: Stack
+    stackType: AmmoniaPack
+    count: 1

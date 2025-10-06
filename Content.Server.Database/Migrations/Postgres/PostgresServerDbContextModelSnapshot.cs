@@ -725,6 +725,28 @@ namespace Content.Server.Database.Migrations.Postgres
                     b.ToTable("job_priority_entry", (string)null);
                 });
 
+            modelBuilder.Entity("Content.Server.Database.Mentor", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasColumnName("mentor_id");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("user_id");
+
+                    b.HasKey("Id")
+                        .HasName("PK_mentor");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
+
+                    b.ToTable("mentor", (string)null);
+                });
+
             modelBuilder.Entity("Content.Server.Database.PlayTime", b =>
                 {
                     b.Property<int>("Id")

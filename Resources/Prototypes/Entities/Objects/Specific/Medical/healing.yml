@@ -237,6 +237,11 @@
       params:
         volume: 1.0
         variation: 0.125
+  - type: InteractRestriction #Far Horizons
+    restrictInteractionTarget:
+      blacklist:
+      - Avali
+      - Resomi
   - type: Stack
     stackType: Bloodpack
     count: 10
