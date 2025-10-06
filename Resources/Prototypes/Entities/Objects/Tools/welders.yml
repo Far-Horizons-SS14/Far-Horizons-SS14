@@ -114,6 +114,23 @@
       path: /Audio/_Starlight/Medical/Surgery/cautery2.ogg
   - type: Cautery
   # 🌟Starlight-end🌟
+  # FH-Start
+  - type: Healing
+    solutionDrain: true
+    reagentsToDrain:
+    - ReagentId: WeldingFuel
+      Quantity: 5
+    delay: 2
+    damageContainers:
+      - Biological
+    damage:
+      groups:
+        Brute: -5
+    healingBeginSound:
+      path: "/Audio/_Starlight/Items/Medical/mender.ogg"
+    healingEndSound:
+      path: "/Audio/_Starlight/Items/Medical/mender2.ogg"
+  # FH-End
 
 - type: entity
   name: industrial welding tool

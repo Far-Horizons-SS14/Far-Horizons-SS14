@@ -14,3 +14,18 @@
     - state: crypt_gray
     - sprite: _FarHorizons/Objects/Devices/encryption_keys.rsi
       state: secmed_label
+
+- type: entity
+  parent: EncryptionKey
+  id: EncryptionKeyTrinary
+  name: trinary combination encryption & translator key
+  description: Obtaining such a complex key typically requires violently ripping it out from an IPC or Protogen.
+  components:
+    - type: EncryptionKey
+      channels:
+      - Trinary
+      defaultChannel: Trinary
+    - type: Sprite
+      layers:
+      - state: crypt_silver
+      - state: ai_label
