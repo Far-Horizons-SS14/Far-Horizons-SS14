@@ -176,14 +176,14 @@
   description: A modern SMG manufactured by Nanotrasen’s Small Arms Division. It features an exceptional rate of fire in burst mode, useful for holding defensive angles or engaging hostiles at longer ranges. Feeds from .35 SMG magazines.
   components:
     - type: Sprite
-      sprite: Objects/Weapons/Guns/SMGs/drozd.rsi
+      sprite: _FarHorizons/Objects/Weapons/Guns/SMGs/drozd.rsi # Far Horizons 
       layers:
         - state: base
           map: ["enum.GunVisualLayers.Base"]
         - state: mag-0
           map: ["enum.GunVisualLayers.Mag"]
     - type: Clothing
-      sprite: Objects/Weapons/Guns/SMGs/drozd.rsi
+      sprite: _FarHorizons/Objects/Weapons/Guns/SMGs/drozd.rsi # Far Horizons
     - type: Wieldable
       unwieldOnUse: false
     - type: GunWieldBonus
@@ -196,7 +196,7 @@
       burstFireRate: 18
       soundGunshot:
         path: /Audio/Weapons/Guns/Gunshots/atreides.ogg
-      selectedMode: Burst
+      selectedMode: FullAuto # Far Horizons
       availableModes:
       - Burst
       - FullAuto
@@ -224,11 +224,11 @@
               - CartridgePistol
     - type: MagazineVisuals
       magState: mag
-      steps: 5
+      steps: 1 # Far Horizons
       zeroVisible: true
     - type: Appearance
 
-- type: entity
+- type: entity # TODO - Far Horizons - Change the sprite when someone with above room temperature iq can make a design
   name: WT550
   parent: [BaseWeaponSubMachineGun, BaseSecurityContraband]
   id: WeaponSubMachineGunWt550
