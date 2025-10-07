@@ -24,7 +24,7 @@ public sealed class AutoInternalsTests
         await server.WaitAssertion(() =>
         {
             var profile = new HumanoidCharacterProfile();
-            var dummy = stationSpawning.SpawnPlayerMob(testMap.GridCoords, "TestInternalsDummy", profile, station: null);
+            var dummy = stationSpawning.SpawnPlayerMob(testMap.GridCoords, "FactionNT", "TestInternalsDummy", profile, station: null);
 
             Assert.That(atmos.HasAtmosphere(testMap.Grid), Is.False, "Test map has atmosphere - test needs adjustment!");
             Assert.That(internals.AreInternalsWorking(dummy), "Internals did not automatically connect!");
@@ -74,6 +74,11 @@ public sealed class AutoInternalsTests
   id: TestInternalsDummy
   playTimeTracker: PlayTimeInternalsDummy
   startingGear: InternalsDummyGear
+
+- type: factionJobAssignment
+  id: NTTestInternalsDummy
+  faction: FactionNT
+  job: TestInternalsDummy
 
 - type: entity
   id: TestInternalsDummyEntity
