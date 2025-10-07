@@ -35,7 +35,7 @@ namespace Content.Shared.Preferences
         /// </summary>
         /// Far Horizons
         [DataField]
-        private HashSet<(ProtoId<FactionPrototype> faction, ProtoId<JobPrototype> job)> _factionJobPreferences = [];
+        private HashSet<(ProtoId<FactionPrototype> faction, ProtoId<JobPrototype> job)> _factionJobPreferences = [ (SharedFactionManager.FallbackFaction, SharedGameTicker.FallbackOverflowJob) ];
 
         /// <summary>
         /// Antags we have opted in to.

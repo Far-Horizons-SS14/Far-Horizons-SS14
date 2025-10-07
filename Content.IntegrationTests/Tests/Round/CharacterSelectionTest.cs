@@ -74,10 +74,10 @@ public sealed class CharacterSelectionTest
 ";
 
     // some constants to help test case readability & also make the compiler catch typos
-    private static readonly (ProtoId<FactionPrototype>, ProtoId<JobPrototype>) Captain = ("TFaction", "Captain");
-    private static readonly (ProtoId<FactionPrototype>, ProtoId<JobPrototype>) Passenger = ("TFaction", "Assistant");
-    private static readonly (ProtoId<FactionPrototype>, ProtoId<JobPrototype>) Mime = ("TFaction", "Mime");
-    private static readonly (ProtoId<FactionPrototype>, ProtoId<JobPrototype>) Clown = ("TFaction", "Clown");
+    private static readonly (ProtoId<FactionPrototype>, ProtoId<JobPrototype>) Captain = ("FactionNT", "Captain");
+    private static readonly (ProtoId<FactionPrototype>, ProtoId<JobPrototype>) Passenger = ("FactionNT", "Assistant");
+    private static readonly (ProtoId<FactionPrototype>, ProtoId<JobPrototype>) Mime = ("FactionNT", "Mime");
+    private static readonly (ProtoId<FactionPrototype>, ProtoId<JobPrototype>) Clown = ("FactionNT", "Clown");
     private static readonly ProtoId<AntagPrototype> Traitor = "Traitor";
 
     // helper structs for test case definition readability

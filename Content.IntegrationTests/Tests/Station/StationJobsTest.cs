@@ -77,44 +77,29 @@ public sealed class StationJobsTest
   id: TChaplain
   playTimeTracker: PlayTimeDummyChaplain
 
-- type: faction
-  id: TFaction
-  default: true
-
-- type: faction
-  id: TFaction2
-
-- type: faction
-  id: TFaction3
-
 - type: factionJobAssignment
-  id: TFactionAssistant
-  faction: TFaction
+  id: NTTAssistant
+  faction: FactionNT
   job: TAssistant
 
 - type: factionJobAssignment
-  id: TFaction2Assistant
-  faction: TFaction2
-  job: TAssistant
-
-- type: factionJobAssignment
-  id: TFactionMime
-  faction: TFaction
+  id: NTTMime
+  faction: FactionNT
   job: TMime
 
 - type: factionJobAssignment
-  id: TFactionClown
-  faction: TFaction
+  id: NTTClown
+  faction: FactionNT
   job: TClown
 
 - type: factionJobAssignment
-  id: TFactionCaptain
-  faction: TFaction
+  id: NTTCaptain
+  faction: FactionNT
   job: TCaptain
 
 - type: factionJobAssignment
-  id: TFactionChaplain
-  faction: TFaction
+  id: NTTChaplain
+  faction: FactionNT
   job: TChaplain
 ";
 
@@ -147,17 +132,17 @@ public sealed class StationJobsTest
             }
         });
 
-        List<ProtoId<FactionPrototype>> allFactions = ["TFaction", "TFaction2", "TFaction3"];
+        List<ProtoId<FactionPrototype>> allFactions = ["FactionNT"];
 
         var jobPrioritiesA = new Dictionary<(ProtoId<FactionPrototype>, ProtoId<JobPrototype>), JobPriority>()
         {
-            { ("TFaction", "TAssistant"), JobPriority.Medium },
-            { ("TFaction", "TClown"), JobPriority.Low },
-            { ("TFaction", "TMime"), JobPriority.High },
+            { ("FactionNT", "TAssistant"), JobPriority.Medium },
+            { ("FactionNT", "TClown"), JobPriority.Low },
+            { ("FactionNT", "TMime"), JobPriority.High },
         };
         var jobPrioritiesB = new Dictionary<(ProtoId<FactionPrototype>, ProtoId<JobPrototype>), JobPriority>()
         {
-            { ("TFaction", "TCaptain"), JobPriority.High },
+            { ("FactionNT", "TCaptain"), JobPriority.High },
         };
 
         var tideSessions = await pair.AddDummyPlayers(jobPrioritiesA, PlayerCount);
@@ -171,7 +156,7 @@ public sealed class StationJobsTest
 
             var start = new Stopwatch();
             start.Start();
-            var assigned = stationJobs.AssignJobs(allNetIds, stations, ["TFaction"]);
+            var assigned = stationJobs.AssignJobs(allNetIds, stations, ["FactionNT"]);
             Assert.That(assigned, Is.Not.Empty);
             var time = start.Elapsed.TotalMilliseconds;
             logmill.Info($"Took {time} ms to distribute {TotalPlayers} players.");

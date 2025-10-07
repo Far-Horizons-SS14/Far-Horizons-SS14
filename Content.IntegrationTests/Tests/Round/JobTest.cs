@@ -14,9 +14,9 @@ namespace Content.IntegrationTests.Tests.Round;
 [TestFixture]
 public sealed class JobTest
 {
-    private static readonly (ProtoId<FactionPrototype> faction, ProtoId<JobPrototype> job) Passenger = ("TFaction", "Assistant");
-    private static readonly (ProtoId<FactionPrototype> faction, ProtoId<JobPrototype> job) Engineer = ("TFaction", "StationEngineer");
-    private static readonly (ProtoId<FactionPrototype> faction, ProtoId<JobPrototype> job) Captain = ("TFaction", "Captain");
+    private static readonly (ProtoId<FactionPrototype> faction, ProtoId<JobPrototype> job) Passenger = ("FactionNT", "Assistant");
+    private static readonly (ProtoId<FactionPrototype> faction, ProtoId<JobPrototype> job) Engineer = ("FactionNT", "StationEngineer");
+    private static readonly (ProtoId<FactionPrototype> faction, ProtoId<JobPrototype> job) Captain = ("FactionNT", "Captain");
 
     private static string _map = "JobTestMap";
 

@@ -35,6 +35,11 @@ public sealed class LoadoutTests
 - type: job
   id: LoadoutTester
   playTimeTracker: PlayTimeLoadoutTester
+
+- type: factionJobAssignment
+  id: NTLoadoutTester
+  faction: FactionNT
+  job: LoadoutTester
 ";
 
     private readonly Dictionary<string, EntProtoId> _expectedEquipment = new()
@@ -67,7 +72,7 @@ public sealed class LoadoutTests
 
             profile.SetLoadout(new RoleLoadout("LoadoutTester"));
 
-            var tester = stationSystem.SpawnPlayerMob(testMap.GridCoords, faction: "TFaction", job: "LoadoutTester", profile, station: null);
+            var tester = stationSystem.SpawnPlayerMob(testMap.GridCoords, faction: "FactionNT", job: "LoadoutTester", profile, station: null);
 
             var slotQuery = inventorySystem.GetSlotEnumerator(tester);
             var checkedCount = 0;

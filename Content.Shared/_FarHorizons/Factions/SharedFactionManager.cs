@@ -13,7 +13,7 @@ public partial class SharedFactionManager : ISharedFactionManager
 {
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
 
-    public static readonly string FallbackFaction = "FactionNanotrasen";
+    public static readonly string FallbackFaction = "FactionNT";
 
     public event Action<ProtoId<FactionPrototype>?>? OnFactionUpdated;
 
@@ -98,7 +98,7 @@ public partial class SharedFactionManager : ISharedFactionManager
         faction = found.Count == 0 ? null : found.First();
 
         return faction != null;
-    }
+    }  
 
     public string OverrideLocalizedJobName(FactionJobAssignmentPrototype assignment) =>
         assignment.Override == null || assignment.Override.Name == null ?
@@ -106,8 +106,9 @@ public partial class SharedFactionManager : ISharedFactionManager
             Loc.GetString(assignment.Override.Name);
 
     public string OverrideLocalizedJobName((ProtoId<FactionPrototype>? faction, ProtoId<JobPrototype> job) factionJob) =>
-        factionJob.faction is null ? _prototypeManager.Index(factionJob.job).LocalizedName :
-        OverrideLocalizedJobName(GetJobAssignment((factionJob.faction.Value, factionJob.job)));
+        factionJob.faction is null || !TryGetJobAssignment((factionJob.faction.Value, factionJob.job), out var assignment) ? 
+        _prototypeManager.Index(factionJob.job).LocalizedName :
+        OverrideLocalizedJobName(assignment!);
 
     public string? OverrideLocalizedJobDescription(FactionJobAssignmentPrototype assignment) =>
         assignment.Override == null || assignment.Override.Description == null ?
@@ -115,7 +116,9 @@ public partial class SharedFactionManager : ISharedFactionManager
             Loc.GetString(assignment.Override.Description);
 
     public string? OverrideLocalizedJobDescription((ProtoId<FactionPrototype> faction, ProtoId<JobPrototype> job) factionJob) =>
-        OverrideLocalizedJobDescription(GetJobAssignment(factionJob));
+        !TryGetJobAssignment(factionJob, out var assignment) ?
+        _prototypeManager.Index(factionJob.job).LocalizedDescription :
+        OverrideLocalizedJobDescription(assignment!);
 
     public ProtoId<JobIconPrototype> OverrideJobIcon(FactionJobAssignmentPrototype assignment) =>
         assignment.Override == null || assignment.Override.Icon == null ?
@@ -123,8 +126,9 @@ public partial class SharedFactionManager : ISharedFactionManager
             assignment.Override.Icon.Value;
 
     public ProtoId<JobIconPrototype> OverrideJobIcon((ProtoId<FactionPrototype>? faction, ProtoId<JobPrototype> job) factionJob) =>
-        factionJob.faction == null ? _prototypeManager.Index(factionJob.job).Icon :
-        OverrideJobIcon(GetJobAssignment((factionJob.faction.Value, factionJob.job)));
+        factionJob.faction == null || !TryGetJobAssignment((factionJob.faction.Value, factionJob.job), out var assignment) ? 
+        _prototypeManager.Index(factionJob.job).Icon :
+        OverrideJobIcon(assignment!);
 
     public ProtoId<StartingGearPrototype>? OverrideJobStartingGear(FactionJobAssignmentPrototype assignment) =>
         assignment.Override == null || assignment.Override.StartingGear == null ?
@@ -132,8 +136,9 @@ public partial class SharedFactionManager : ISharedFactionManager
             assignment.Override.StartingGear;
     
     public ProtoId<StartingGearPrototype>? OverrideJobStartingGear((ProtoId<FactionPrototype>? faction, ProtoId<JobPrototype> job) factionJob) =>
-        factionJob.faction == null ? _prototypeManager.Index(factionJob.job).StartingGear :
-        OverrideJobStartingGear(GetJobAssignment((factionJob.faction.Value, factionJob.job)));
+        factionJob.faction == null || !TryGetJobAssignment((factionJob.faction.Value, factionJob.job), out var assignment) ? 
+        _prototypeManager.Index(factionJob.job).StartingGear :
+        OverrideJobStartingGear(assignment!);
     
     public ProtoId<RoleLoadoutPrototype> OverrideJobLoadout(FactionJobAssignmentPrototype assignment) =>
         assignment.Override == null || assignment.Override.Loadout == null ?
@@ -141,7 +146,9 @@ public partial class SharedFactionManager : ISharedFactionManager
             assignment.Override.Loadout.Value;
     
     public ProtoId<RoleLoadoutPrototype> OverrideJobLoadout((ProtoId<FactionPrototype> faction, ProtoId<JobPrototype> job) factionJob) =>
-        OverrideJobLoadout(GetJobAssignment(factionJob));
+        !TryGetJobAssignment(factionJob, out var assignment) ?
+        LoadoutSystem.GetJobPrototype(factionJob.job) :
+        OverrideJobLoadout(assignment!);
 
     public EntProtoId? OverrideJobEntity(FactionJobAssignmentPrototype assignment) =>
         assignment.Override == null || assignment.Override.JobEntity == null ?
@@ -149,8 +156,9 @@ public partial class SharedFactionManager : ISharedFactionManager
             assignment.Override.JobEntity;
 
     public EntProtoId? OverrideJobEntity((ProtoId<FactionPrototype>? faction, ProtoId<JobPrototype> job) factionJob) =>
-        factionJob.faction is null ? _prototypeManager.Index(factionJob.job).JobEntity :
-        OverrideJobEntity(GetJobAssignment((factionJob.faction.Value, factionJob.job)));
+        factionJob.faction is null || !TryGetJobAssignment((factionJob.faction.Value, factionJob.job), out var assignment) ? 
+        _prototypeManager.Index(factionJob.job).JobEntity :
+        OverrideJobEntity(assignment!);
     
     public EntProtoId? OverrideJobPreviewEntity(FactionJobAssignmentPrototype assignment) =>
         assignment.Override == null || assignment.Override.JobPreviewEntity == null ?
@@ -158,12 +166,18 @@ public partial class SharedFactionManager : ISharedFactionManager
             assignment.Override.JobPreviewEntity;
 
     public EntProtoId? OverrideJobPreviewEntity((ProtoId<FactionPrototype>? faction, ProtoId<JobPrototype> job) factionJob) =>
-        factionJob.faction is null ? _prototypeManager.Index(factionJob.job).JobPreviewEntity :
-        OverrideJobEntity(GetJobAssignment((factionJob.faction.Value, factionJob.job)));
+        factionJob.faction is null || !TryGetJobAssignment((factionJob.faction.Value, factionJob.job), out var assignment) ? 
+        _prototypeManager.Index(factionJob.job).JobPreviewEntity :
+        OverrideJobPreviewEntity(assignment!);
 
     private (ProtoId<FactionPrototype> faction, ProtoId<JobPrototype> job) GetDefaultIdsWithJob() =>
         (GetDefaultFaction(), SharedGameTicker.FallbackOverflowJob);
     private static bool TryGetFactionColor(FactionPrototype faction, out Color color) => Color.TryParse(faction.Color, out color);
-    private FactionJobAssignmentPrototype GetJobAssignment((ProtoId<FactionPrototype> faction, ProtoId<JobPrototype> job) factionJob) =>
-        ListFactionJobs().First(p => p.Faction == factionJob.faction && p.Job == factionJob.job);
+    private FactionJobAssignmentPrototype? GetJobAssignment((ProtoId<FactionPrototype> faction, ProtoId<JobPrototype> job) factionJob) =>
+        ListFactionJobs().FirstOrDefault(p => p.Faction == factionJob.faction && p.Job == factionJob.job);
+    
+    private bool TryGetJobAssignment((ProtoId<FactionPrototype> faction, ProtoId<JobPrototype> job) factionJob, out FactionJobAssignmentPrototype? assignment){
+        assignment = GetJobAssignment(factionJob);
+        return assignment != null;
+    }
 }

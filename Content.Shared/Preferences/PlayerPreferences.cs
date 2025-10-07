@@ -16,7 +16,7 @@ namespace Content.Shared.Preferences
     /// </summary>
     [Serializable]
     [NetSerializable]
-    public sealed partial class PlayerPreferences
+    public sealed class PlayerPreferences
     {
         private Dictionary<int, ICharacterProfile> _characters;
 

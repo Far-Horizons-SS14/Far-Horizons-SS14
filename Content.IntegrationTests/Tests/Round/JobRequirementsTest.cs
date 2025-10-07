@@ -33,6 +33,11 @@ public sealed class JobRequirementsTest
           requirements:
           - !type:AgeRequirement
             requiredAge: 65
+        
+        - type: factionJobAssignment
+          id: NTSeniorCitizen
+          faction: FactionNT
+          job: SeniorCitizen
 
         - type: roleLoadout
           id: JobSeniorCitizen
@@ -46,6 +51,11 @@ public sealed class JobRequirementsTest
           - !type:AgeRequirement
             requiredAge: 29
             inverted: true
+        
+        - type: factionJobAssignment
+          id: NTTwenties
+          faction: FactionNT
+          job: Twenties
 
         - type: roleLoadout
           id: JobTwenties
@@ -63,6 +73,11 @@ public sealed class JobRequirementsTest
           - !type:SpeciesRequirement
             species:
             - Reptilian
+        
+        - type: factionJobAssignment
+          id: NTWehngineer
+          faction: FactionNT
+          job: Wehngineer
 
         - type: roleLoadout
           id: JobWehngineer
@@ -75,6 +90,11 @@ public sealed class JobRequirementsTest
             inverted: true
             species:
             - Reptilian
+        
+        - type: factionJobAssignment
+          id: NTFreezerHead
+          faction: FactionNT
+          job: FreezerHead
 
         - type: roleLoadout
           id: JobFreezerHead
@@ -133,8 +153,8 @@ public sealed class JobRequirementsTest
 
         var priorities = new Dictionary<(ProtoId<FactionPrototype> faction, ProtoId<JobPrototype> job), JobPriority>
         {
-            { ("TFaction", wantedJob), JobPriority.High },
-            { ("TFaction", "Assistant"), JobPriority.Low },
+            { ("FactionNT", wantedJob), JobPriority.High },
+            { ("FactionNT", "Assistant"), JobPriority.Low },
         };
 
         await pair.Client.WaitAssertion(() =>
@@ -155,7 +175,7 @@ public sealed class JobRequirementsTest
         await pair.Server.WaitPost(() => ticker.StartRound());
         await pair.RunTicksSync(10);
 
-        pair.AssertJob(expectedJob ? ("TFaction", wantedJob) : ("TFaction", "Assistant"));
+        pair.AssertJob(expectedJob ? ("FactionNT", wantedJob) : ("FactionNT", "Assistant"));
 
         await pair.Server.WaitPost(() => ticker.RestartRound());
         await pair.CleanReturnAsync();
@@ -190,8 +210,8 @@ public sealed class JobRequirementsTest
 
         var priorities = new Dictionary<(ProtoId<FactionPrototype> faction, ProtoId<JobPrototype> job), JobPriority>
         {
-            { ("TFaction", "SeniorCitizen"), JobPriority.High },
-            { ("TFaction", "Passenger"), JobPriority.Low },
+            { ("FactionNT", "SeniorCitizen"), JobPriority.High },
+            { ("FactionNT", "Passenger"), JobPriority.Low },
         };
 
         await pair.Client.WaitAssertion(() =>
@@ -213,7 +233,7 @@ public sealed class JobRequirementsTest
         await pair.Server.WaitPost(() => ticker.StartRound());
         await pair.RunTicksSync(10);
 
-        pair.AssertJob(("TFaction", "SeniorCitizen"));
+        pair.AssertJob(("FactionNT", "SeniorCitizen"));
         Assert.That(pair.Client.AttachedEntity, Is.Not.Null);
         pair.Server.EntMan.TryGetComponent<HumanoidAppearanceComponent>(pair.ToServerUid(pair.Client.AttachedEntity.Value), out var appearance);
         Assert.That(appearance, Is.Not.Null);
@@ -254,8 +274,8 @@ public sealed class JobRequirementsTest
 
         var priorities = new Dictionary<(ProtoId<FactionPrototype>, ProtoId<JobPrototype>), JobPriority>
         {
-            { ("TFaction", wantedJob), JobPriority.High },
-            { ("TFaction", "Assistant"), JobPriority.Low },
+            { ("FactionNT", wantedJob), JobPriority.High },
+            { ("FactionNT", "Assistant"), JobPriority.Low },
         };
 
         await pair.Client.WaitAssertion(() =>
@@ -276,7 +296,7 @@ public sealed class JobRequirementsTest
         await pair.Server.WaitPost(() => ticker.StartRound());
         await pair.RunTicksSync(10);
 
-        pair.AssertJob(expectedJob ? ("TFaction", wantedJob) : ("TFaction", "Assistant"));
+        pair.AssertJob(expectedJob ? ("FactionNT", wantedJob) : ("FactionNT", "Assistant"));
 
         await pair.Server.WaitPost(() => ticker.RestartRound());
         await pair.CleanReturnAsync();
