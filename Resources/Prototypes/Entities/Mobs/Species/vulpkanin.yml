@@ -16,10 +16,8 @@
     - Fox # "vaguely canidae"
     - Dog # "vaguely canidae"
   #Starlight
-#  - type: Hunger # starlight
-#  - type: Thirst # starlight
-  - type: MessyDrinker
-    spillChance: 0.33
+#  - type: MessyDrinker #Far Horizons
+#    spillChance: 0.33 #Far Horizons
   - type: Icon
     sprite: _Starlight/Mobs/Species/Vulpkanin/parts.rsi #Starlight
     state: full
@@ -177,7 +175,7 @@
       Peckish: 150
       Starving: 100
       Dead: 0
-    baseDecayRate: 0.018
+    baseDecayRate: 0.018 #Far Horizons
   - type: Thirst # on 1.5x more
     thresholds:
       OverHydrated: 650

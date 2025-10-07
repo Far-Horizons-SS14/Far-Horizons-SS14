@@ -88,6 +88,7 @@ public sealed class SpawnPointSystem : EntitySystem
 
         args.SpawnResult = _stationSpawning.SpawnPlayerMob(
             spawnLoc,
+            args.Faction, // Far Horizons
             args.Job,
             args.HumanoidCharacterProfile,
             args.Station);

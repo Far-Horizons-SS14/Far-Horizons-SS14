@@ -3,6 +3,7 @@ using System.Linq;
 using Content.Server.Maps;
 using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
+using Content.Shared._FarHorizons.Factions;
 using Content.Shared.Preferences;
 using Content.Shared.Roles;
 using Robust.Shared.GameObjects;
@@ -75,6 +76,31 @@ public sealed class StationJobsTest
 - type: job
   id: TChaplain
   playTimeTracker: PlayTimeDummyChaplain
+
+- type: factionJobAssignment
+  id: NTTAssistant
+  faction: FactionNT
+  job: TAssistant
+
+- type: factionJobAssignment
+  id: NTTMime
+  faction: FactionNT
+  job: TMime
+
+- type: factionJobAssignment
+  id: NTTClown
+  faction: FactionNT
+  job: TClown
+
+- type: factionJobAssignment
+  id: NTTCaptain
+  faction: FactionNT
+  job: TCaptain
+
+- type: factionJobAssignment
+  id: NTTChaplain
+  faction: FactionNT
+  job: TChaplain
 ";
 
     private const int StationCount = 100;
@@ -106,15 +132,17 @@ public sealed class StationJobsTest
             }
         });
 
-        var jobPrioritiesA = new Dictionary<ProtoId<JobPrototype>, JobPriority>()
+        List<ProtoId<FactionPrototype>> allFactions = ["FactionNT"];
+
+        var jobPrioritiesA = new Dictionary<(ProtoId<FactionPrototype>, ProtoId<JobPrototype>), JobPriority>()
         {
-            { "TAssistant", JobPriority.Medium },
-            { "TClown", JobPriority.Low },
-            { "TMime", JobPriority.High },
+            { ("FactionNT", "TAssistant"), JobPriority.Medium },
+            { ("FactionNT", "TClown"), JobPriority.Low },
+            { ("FactionNT", "TMime"), JobPriority.High },
         };
-        var jobPrioritiesB = new Dictionary<ProtoId<JobPrototype>, JobPriority>()
+        var jobPrioritiesB = new Dictionary<(ProtoId<FactionPrototype>, ProtoId<JobPrototype>), JobPriority>()
         {
-            { "TCaptain", JobPriority.High },
+            { ("FactionNT", "TCaptain"), JobPriority.High },
         };
 
         var tideSessions = await pair.AddDummyPlayers(jobPrioritiesA, PlayerCount);
@@ -128,7 +156,7 @@ public sealed class StationJobsTest
 
             var start = new Stopwatch();
             start.Start();
-            var assigned = stationJobs.AssignJobs(allNetIds, stations);
+            var assigned = stationJobs.AssignJobs(allNetIds, stations, ["FactionNT"]);
             Assert.That(assigned, Is.Not.Empty);
             var time = start.Elapsed.TotalMilliseconds;
             logmill.Info($"Took {time} ms to distribute {TotalPlayers} players.");

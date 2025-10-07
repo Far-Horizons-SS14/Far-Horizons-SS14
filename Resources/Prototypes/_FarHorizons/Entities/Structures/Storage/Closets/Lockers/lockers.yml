@@ -44,6 +44,8 @@
     stateDoorClosed: sec_L_door
   - type: AccessReader
     access: [["Security"]]
+  - type: EntityStorage
+    capacity: 50 # Big lockers tend to have more than 30 items in them
 
 - type: entity
   id: LockerSecurityLargeFHM
@@ -59,6 +61,8 @@
     stateDoorClosed: sec_M_door
   - type: AccessReader
     access: [["Security"]]
+  - type: EntityStorage
+    capacity: 50 # Big lockers tend to have more than 30 items in them
 
 - type: entity
   id: LockerSecurityLargeFHR
@@ -74,6 +78,8 @@
     stateDoorClosed: sec_R_door
   - type: AccessReader
     access: [["Security"]]
+  - type: EntityStorage
+    capacity: 50 # Big lockers tend to have more than 30 items in them
 
 # Warden
 - type: entity

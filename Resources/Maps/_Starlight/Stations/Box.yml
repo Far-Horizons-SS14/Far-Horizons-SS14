@@ -150677,13 +150677,15 @@ entities:
     - type: Transform
       pos: -6.5,-17.5
       parent: 2
-- proto: SpawnPointBorg
+- proto: SpawnPointSecBorg
   entities:
   - uid: 23087
     components:
     - type: Transform
       pos: 59.5,-21.5
       parent: 2
+- proto: SpawnPointBorg
+  entities:
   - uid: 23088
     components:
     - type: Transform
@@ -151122,6 +151124,13 @@ entities:
     - type: Transform
       pos: 9.5,40.5
       parent: 2
+- proto: SpawnPointBrigmedic
+  entities:
+    - uid: 28467
+      components:
+      - type: Transform
+        pos: 9.5,39.5
+        parent: 2
 - proto: SpawnPointSecurityOfficer
   entities:
   - uid: 23162

@@ -633,6 +633,11 @@ namespace Content.Server.Database.Migrations.Sqlite
                         .HasColumnType("INTEGER")
                         .HasColumnName("job_id");
 
+                    b.Property<string>("FactionName")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("faction_name");
+
                     b.Property<string>("JobName")
                         .IsRequired()
                         .HasColumnType("TEXT")
@@ -647,7 +652,7 @@ namespace Content.Server.Database.Migrations.Sqlite
 
                     b.HasIndex("ProfileId");
 
-                    b.HasIndex("ProfileId", "JobName")
+                    b.HasIndex("ProfileId", "JobName", "FactionName")
                         .IsUnique();
 
                     b.ToTable("job", (string)null);
@@ -659,6 +664,11 @@ namespace Content.Server.Database.Migrations.Sqlite
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER")
                         .HasColumnName("job_priority_entry_id");
+
+                    b.Property<string>("FactionName")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("faction_name");
 
                     b.Property<string>("JobName")
                         .IsRequired()
