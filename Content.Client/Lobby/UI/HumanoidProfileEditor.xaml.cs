@@ -1016,7 +1016,7 @@ namespace Content.Client.Lobby.UI
             };
 
             // Far Horizons - factions
-            Dictionary<ProtoId<FactionPrototype>, BoxContainer> faciton_tabs = new();
+            Dictionary<ProtoId<FactionPrototype>, BoxContainer> faction_tabs = new();
             foreach (var faction in _factions.ListPlayableFactions().ToList())
             {
                 var faction_tab = new ScrollContainer
@@ -1036,10 +1036,14 @@ namespace Content.Client.Lobby.UI
 
                 faction_tab.AddChild(faction_tab_content);
 
-                faciton_tabs.Add(faction, faction_tab_content);
+                faction_tabs.Add(faction, faction_tab_content);
             }
 
-            foreach (var dptAssignment in _factions.ListFactionDepartments().OrderBy(p => p.Weight).ThenBy(p => p.Department))
+            foreach (var dptAssignment in _factions.ListFactionDepartments()
+                                            .Where(p => _factions.ListPlayableFactions()
+                                                .Any(e => e.ID == p.Faction))
+                                                .OrderBy(p => p.Weight)
+                                                .ThenBy(p => p.Department))
             {
                 if (!_prototypeManager.TryIndex<DepartmentPrototype>(dptAssignment.Department, out var department) ||
                     !_prototypeManager.TryIndex<FactionPrototype>(dptAssignment.Faction, out var faction))
@@ -1074,7 +1078,7 @@ namespace Content.Client.Lobby.UI
                     });
 
                     _jobCategories[(dptAssignment.Faction, dptAssignment.Department)] = category;
-                    faciton_tabs[dptAssignment.Faction].AddChild(category);
+                    faction_tabs[dptAssignment.Faction].AddChild(category);
                 }
 
                 foreach (var jobAssignment in _factions.ListFactionJobs()
@@ -1170,7 +1174,7 @@ namespace Content.Client.Lobby.UI
                     category.AddChild(jobContainer);
                 }
 
-                faciton_tabs[dptAssignment.Faction].AddChild(new Control
+                faction_tabs[dptAssignment.Faction].AddChild(new Control
                 {
                     MinSize = new Vector2(0, 23),
                 });

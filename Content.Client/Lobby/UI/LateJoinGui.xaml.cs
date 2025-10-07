@@ -167,7 +167,7 @@ namespace Content.Client.Lobby.UI
                 };
                 JobList.AddChild(faction_tab_container);
 
-                Dictionary<ProtoId<FactionPrototype>, Control> faciton_tabs = [];
+                Dictionary<ProtoId<FactionPrototype>, Control> faction_tabs = [];
 
                 foreach (var faction in _factions.ListSpawnableFactions().ToList()){
                     var faction_tab = new ScrollContainer
@@ -187,7 +187,7 @@ namespace Content.Client.Lobby.UI
 
                     faction_tab.AddChild(faction_tab_content);
 
-                    faciton_tabs.Add(faction, faction_tab_content);
+                    faction_tabs.Add(faction, faction_tab_content);
                 }
 
                 _jobButtons[id] = [];
@@ -233,7 +233,7 @@ namespace Content.Client.Lobby.UI
                         });
 
                         _jobCategories[id][(faction.ID, department.ID)] = category;
-                        faciton_tabs[faction].AddChild(category);
+                        faction_tabs[faction].AddChild(category);
                     }
 
                     foreach (var jobAssignment in _factions.ListFactionJobs()
@@ -310,7 +310,7 @@ namespace Content.Client.Lobby.UI
                         _jobButtons[id][(faction, job)].Add(jobButton);
                     }
 
-                    faciton_tabs[dptAssignment.Faction].AddChild(new Control
+                    faction_tabs[dptAssignment.Faction].AddChild(new Control
                     {
                         MinSize = new Vector2(0, 23),
                     });
