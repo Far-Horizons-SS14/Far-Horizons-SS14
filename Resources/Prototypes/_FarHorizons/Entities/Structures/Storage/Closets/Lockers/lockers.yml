@@ -164,3 +164,20 @@
     access: [["HeadOfSecurity"]]
   - type: WiresPanelSecurity
     securityLevel: medSecurity
+
+- type: entity
+  id: LockerMagistrate
+  parent: LockerBaseSecure
+  name: Magistrate's Locker
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Storage/closet.rsi
+  - type: EntityStorageVisuals
+    stateBaseClosed: hos
+    stateDoorOpen: hos_open
+    stateDoorClosed: hos_door
+  - type: AccessReader
+    access: [["Magistrate"]]
+  - type: WiresPanelSecurity
+    securityLevel: medSecurity
