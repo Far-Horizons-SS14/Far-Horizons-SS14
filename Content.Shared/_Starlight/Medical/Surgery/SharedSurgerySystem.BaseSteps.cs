@@ -13,6 +13,8 @@ using Content.Shared.Starlight.Medical.Surgery.Steps;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using System.Linq;
+using Content.Shared._FarHorizons.Medical.SurgeryOverhaul.SpeedModifiers.Components;
+using Robust.Shared.Log;
 
 namespace Content.Shared.Starlight.Medical.Surgery;
 // Based on the RMC14.
@@ -93,8 +95,8 @@ public abstract partial class SharedSurgerySystem
         }
         else
         {
-            progress = new SurgeryProgressComponent { CompletedSteps = [$"{args.SurgeryProto}:{args.StepProto}"]};
-            if(!args.IsFinal)
+            progress = new SurgeryProgressComponent { CompletedSteps = [$"{args.SurgeryProto}:{args.StepProto}"] };
+            if (!args.IsFinal)
                 progress.StartedSurgeries.Add(args.SurgeryProto);
             AddComp(args.Part, progress);
         }
@@ -244,15 +246,21 @@ public abstract partial class SharedSurgerySystem
         }
 
         var duration = stepComp.Duration;
+        var durationCap = duration * 2;
+        var bedSpeedMod = 2f;
         float SmallestSuccessRate = 1f;
 
         foreach (var tool in validTools)
             if (TryComp(tool, out SurgeryToolComponent? toolComp))
             {
+                Logger.Info($"{body}");
+                if (TryComp(body, out BuckleComponent? buckle) && TryComp(buckle.BuckledTo, out SurgeryBedSpeedComponent? bedComp))
+                    bedSpeedMod = bedComp.BedSpeedModifier;
+                Logger.Info($"{bedSpeedMod}");
                 duration *= toolComp.Speed;
                 if (toolComp.StartSound != null) _audio.PlayPvs(toolComp.StartSound, tool);
 
-                if(toolComp.SuccessRate < SmallestSuccessRate)
+                if (toolComp.SuccessRate < SmallestSuccessRate)
                     SmallestSuccessRate = toolComp.SuccessRate;
             }
 
