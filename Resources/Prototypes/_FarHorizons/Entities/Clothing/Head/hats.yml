@@ -5,9 +5,9 @@
   description: A sterile green beret.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/Head/Hats/beret_virology.rsi #Far Horizons
+    sprite: _FarHorizons/Clothing/Head/Hats/beret_virology.rsi
   - type: Clothing
-    sprite: _FarHorizons/Clothing/Head/Hats/beret_virology.rsi #Far Horizons
+    sprite: _FarHorizons/Clothing/Head/Hats/beret_virology.rsi
   - type: Tag
     tags:
     - PetWearable
@@ -20,9 +20,39 @@
   description: A sterile orange beret.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/Head/Hats/beret_chemist.rsi #Far Horizons
+    sprite: _FarHorizons/Clothing/Head/Hats/beret_chemist.rsi
   - type: Clothing
-    sprite: _FarHorizons/Clothing/Head/Hats/beret_chemist.rsi #Far Horizons
+    sprite: _FarHorizons/Clothing/Head/Hats/beret_chemist.rsi
+  - type: Tag
+    tags:
+    - PetWearable
+    - CorgiWearable
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatBeretAtmos
+  name: Atmospherics Beret
+  description: A brightly colored yellow beret.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Head/Hats/beret_atmos.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Head/Hats/beret_atmos.rsi
+  - type: Tag
+    tags:
+    - PetWearable
+    - CorgiWearable
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatBeretCE
+  name: Chief Engineer's Beret
+  description: A blue colored beret for the head of engineering.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Head/Hats/beret_CE.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Head/Hats/beret_CE.rsi
   - type: Tag
     tags:
     - PetWearable

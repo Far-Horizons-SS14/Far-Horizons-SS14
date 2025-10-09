@@ -1,3 +1,5 @@
+loadout-group-atmos-tech-hat = Atmospherics Technician Hat
+
 loadout-group-chemist-hat = Chemist Hat
 
 loadout-group-corpsman-head = Corpsman head
