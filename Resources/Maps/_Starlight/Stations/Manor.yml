@@ -4,8 +4,8 @@ meta:
   engineVersion: 266.0.0
   forkId: ""
   forkVersion: ""
-  time: 10/07/2025 15:30:22
-  entityCount: 31195
+  time: 10/09/2025 10:47:35
+  entityCount: 31236
 maps:
 - 1
 grids:
@@ -4833,7 +4833,8 @@ entities:
           -8,17:
             0: 65520
           -9,17:
-            0: 56785
+            0: 40401
+            2: 16384
           -8,18:
             0: 65520
           -9,18:
@@ -14935,6 +14936,11 @@ entities:
     - type: Transform
       pos: -20.5,63.5
       parent: 2
+  - uid: 31209
+    components:
+    - type: Transform
+      pos: -49.5,48.5
+      parent: 2
 - proto: BedsheetBlack
   entities:
   - uid: 1477
@@ -15027,6 +15033,13 @@ entities:
     components:
     - type: Transform
       pos: 31.5,40.5
+      parent: 2
+- proto: BedsheetCorpsman
+  entities:
+  - uid: 31208
+    components:
+    - type: Transform
+      pos: -49.5,48.5
       parent: 2
 - proto: BedsheetCosmos
   entities:
@@ -15859,7 +15872,7 @@ entities:
   - uid: 1638
     components:
     - type: Transform
-      pos: -46.59851,48.670807
+      pos: -46.642887,48.719807
       parent: 2
   - uid: 1639
     components:
@@ -75726,6 +75739,92 @@ entities:
     - type: Transform
       pos: -37.529377,55.042118
       parent: 2
+- proto: ClothingHeadHelmetBulletProof
+  entities:
+  - uid: 13365
+    components:
+    - type: Transform
+      parent: 13715
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
+  - uid: 13366
+    components:
+    - type: Transform
+      parent: 13715
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
+  - uid: 22742
+    components:
+    - type: Transform
+      parent: 13715
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
+  - uid: 31201
+    components:
+    - type: Transform
+      parent: 13715
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
+  - uid: 31202
+    components:
+    - type: Transform
+      parent: 13715
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
+  - uid: 31203
+    components:
+    - type: Transform
+      parent: 13715
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
+- proto: ClothingHeadHelmetReflective
+  entities:
+  - uid: 31210
+    components:
+    - type: Transform
+      pos: -33.269165,69.57137
+      parent: 2
+  - uid: 31211
+    components:
+    - type: Transform
+      pos: -33.487915,69.7745
+      parent: 2
+  - uid: 31212
+    components:
+    - type: Transform
+      pos: -33.59729,69.55575
+      parent: 2
+  - uid: 31219
+    components:
+    - type: Transform
+      pos: -33.543198,69.53559
+      parent: 2
+  - uid: 31220
+    components:
+    - type: Transform
+      pos: -33.777573,69.56684
+      parent: 2
+  - uid: 31222
+    components:
+    - type: Transform
+      pos: -33.465073,69.62934
+      parent: 2
+  - uid: 31223
+    components:
+    - type: Transform
+      pos: -33.777573,69.62934
+      parent: 2
+  - uid: 31224
+    components:
+    - type: Transform
+      pos: -33.418198,69.62934
+      parent: 2
 - proto: ClothingHeadHelmetRiot
   entities:
   - uid: 13341
@@ -75737,6 +75836,36 @@ entities:
     components:
     - type: Transform
       pos: -32.283188,69.72385
+      parent: 2
+  - uid: 31229
+    components:
+    - type: Transform
+      pos: -32.467026,69.488716
+      parent: 2
+  - uid: 31230
+    components:
+    - type: Transform
+      pos: -32.467026,69.488716
+      parent: 2
+  - uid: 31231
+    components:
+    - type: Transform
+      pos: -32.467026,69.488716
+      parent: 2
+  - uid: 31232
+    components:
+    - type: Transform
+      pos: -32.467026,69.488716
+      parent: 2
+  - uid: 31233
+    components:
+    - type: Transform
+      pos: -32.467026,69.488716
+      parent: 2
+  - uid: 31234
+    components:
+    - type: Transform
+      pos: -32.6389,69.457466
       parent: 2
 - proto: ClothingHeadsetMagistrate
   entities:
@@ -75877,6 +76006,50 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
+- proto: ClothingOuterArmorBulletproof
+  entities:
+  - uid: 13363
+    components:
+    - type: Transform
+      parent: 13715
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
+  - uid: 13364
+    components:
+    - type: Transform
+      parent: 13715
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
+  - uid: 31204
+    components:
+    - type: Transform
+      parent: 13715
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
+  - uid: 31205
+    components:
+    - type: Transform
+      parent: 13715
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
+  - uid: 31206
+    components:
+    - type: Transform
+      parent: 13715
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
+  - uid: 31207
+    components:
+    - type: Transform
+      parent: 13715
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
 - proto: ClothingOuterArmorReflective
   entities:
   - uid: 13377
@@ -75894,6 +76067,31 @@ entities:
     - type: Transform
       pos: -33.330063,69.3801
       parent: 2
+  - uid: 31213
+    components:
+    - type: Transform
+      pos: -33.355698,69.36349
+      parent: 2
+  - uid: 31214
+    components:
+    - type: Transform
+      pos: -33.746323,69.394966
+      parent: 2
+  - uid: 31215
+    components:
+    - type: Transform
+      pos: -33.511948,69.394966
+      parent: 2
+  - uid: 31216
+    components:
+    - type: Transform
+      pos: -33.324448,69.394966
+      parent: 2
+  - uid: 31217
+    components:
+    - type: Transform
+      pos: -33.761948,69.41059
+      parent: 2
 - proto: ClothingOuterArmorRiot
   entities:
   - uid: 13380
@@ -75905,6 +76103,36 @@ entities:
     components:
     - type: Transform
       pos: -32.642563,69.34885
+      parent: 2
+  - uid: 31218
+    components:
+    - type: Transform
+      pos: -32.48265,69.551216
+      parent: 2
+  - uid: 31221
+    components:
+    - type: Transform
+      pos: -32.48265,69.53559
+      parent: 2
+  - uid: 31225
+    components:
+    - type: Transform
+      pos: -32.48265,69.53559
+      parent: 2
+  - uid: 31226
+    components:
+    - type: Transform
+      pos: -32.48265,69.53559
+      parent: 2
+  - uid: 31227
+    components:
+    - type: Transform
+      pos: -32.48265,69.53559
+      parent: 2
+  - uid: 31228
+    components:
+    - type: Transform
+      pos: -32.48265,69.519966
       parent: 2
 - proto: ClothingOuterCoatNtrep
   entities:
@@ -78116,6 +78344,36 @@ entities:
     - type: Transform
       pos: -33.5,71.5
       parent: 2
+    - type: EntityStorage
+      air:
+        volume: 200
+        immutable: False
+        temperature: 293.14673
+        moles:
+          Oxygen: 1.7459903
+          Nitrogen: 6.568249
+    - type: ContainerContainer
+      containers:
+        entity_storage: !type:Container
+          showEnts: False
+          occludes: True
+          ents:
+          - 13363
+          - 13364
+          - 13365
+          - 13366
+          - 22742
+          - 31201
+          - 31202
+          - 31203
+          - 31204
+          - 31205
+          - 31206
+          - 31207
+        paper_label: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: null
 - proto: CrateSecurityTrackingMindshieldImplants
   entities:
   - uid: 13716
@@ -88870,7 +89128,7 @@ entities:
       pos: 18.5,53.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -128615.43
+      secondsUntilStateChange: -128757.7
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -170497,6 +170755,18 @@ entities:
     components:
     - type: Transform
       pos: 28.489906,13.337998
+      parent: 2
+- proto: Truncheon
+  entities:
+  - uid: 31235
+    components:
+    - type: Transform
+      pos: -28.46032,71.52993
+      parent: 2
+  - uid: 31236
+    components:
+    - type: Transform
+      pos: -28.58532,69.451805
       parent: 2
 - proto: TurnstileGenpopEnter
   entities:
