@@ -157,13 +157,15 @@ namespace Content.IntegrationTests.Tests
             "StarlightFland",
             "StarlightHotel",
             "StarlightMarathon",
-            "StarlightMeta",
             "StarlightOasis",
             "StarlightOmega",
             "StarlightPacked",
             "StarlightReach",
             "StarlightSaltern",
-            "StarlightSilica"
+            "StarlightSilica",
+            #endregion
+            #region Far Horizons
+            "FHMeta",
             #endregion
         };
 
