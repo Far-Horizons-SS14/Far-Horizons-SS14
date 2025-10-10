@@ -13,8 +13,10 @@ using Content.Shared.Starlight.Medical.Surgery.Steps;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using System.Linq;
+//FarHorizons Start
 using Content.Shared._FarHorizons.Medical.SurgeryOverhaul.SpeedModifiers.Components;
-using Robust.Shared.Log;
+using Content.Shared.Stunnable;
+//FarHorizons End
 
 namespace Content.Shared.Starlight.Medical.Surgery;
 // Based on the RMC14.
@@ -154,8 +156,9 @@ public abstract partial class SharedSurgerySystem
 
     private void OnCanPerformStep(Entity<SurgeryStepComponent> ent, ref SurgeryCanPerformStepEvent args)
     {
-        if (HasComp<SurgeryOperatingTableConditionComponent>(ent)
+        if ((HasComp<SurgeryOperatingTableConditionComponent>(ent)
             && (!TryComp(args.Body, out BuckleComponent? buckle) || !HasComp<OperatingTableComponent>(buckle.BuckledTo)))
+             || !HasComp<KnockedDownComponent>(args.Body)) // FarHorizons
         {
             args.Invalid = StepInvalidReason.NeedsOperatingTable;
             return;
@@ -200,6 +203,16 @@ public abstract partial class SharedSurgerySystem
 
                 return;
             }
+            //Far Horizons Start
+            else if (_hands.GetActiveItem(args.User) != tool)
+            {
+                    args.Invalid = StepInvalidReason.MissingTool;
+
+                    if (reg.Component is ISurgeryToolComponent toolComp)
+                        args.Popup = $"You need {toolComp.ToolName} to perform this step!";
+                    return;
+            }
+            //Far Horizons End
             else if (TryComp<ItemToggleComponent>(tool, out var togglable) && !togglable.Activated)
             {
                 args.Invalid = StepInvalidReason.DisabledTool;
@@ -246,22 +259,37 @@ public abstract partial class SharedSurgerySystem
         }
 
         var duration = stepComp.Duration;
-        var durationCap = duration * 2;
-        var bedSpeedMod = 2f;
         float SmallestSuccessRate = 1f;
 
         foreach (var tool in validTools)
             if (TryComp(tool, out SurgeryToolComponent? toolComp))
             {
-                Logger.Info($"{body}");
+                var durationCap = duration * 2;
+                var durationToSuccessRate = 0f;
+                var bedSpeedMod = 2f;
+                Logger.Info($"Target: {body}");
                 if (TryComp(body, out BuckleComponent? buckle) && TryComp(buckle.BuckledTo, out SurgeryBedSpeedComponent? bedComp))
                     bedSpeedMod = bedComp.BedSpeedModifier;
-                Logger.Info($"{bedSpeedMod}");
-                duration *= toolComp.Speed;
+                Logger.Info($"Bed Speed Mod: {bedSpeedMod}");
+                Logger.Info($"Tool Speed Mod: {toolComp.Speed}");
+                Logger.Info($"Original Duration: {duration}");
+                Logger.Info($"Max Duration: {durationCap}");
+                duration = duration * toolComp.Speed * bedSpeedMod;
+                Logger.Info($"Modified Duration: {duration}");
+                if (duration > durationCap)
+                {
+                    durationToSuccessRate = (duration - durationCap)*5 / 100;
+                    duration = durationCap;
+                }
+                
+                Logger.Info($"Duration Failure Rate: {durationToSuccessRate}");
                 if (toolComp.StartSound != null) _audio.PlayPvs(toolComp.StartSound, tool);
 
-                if (toolComp.SuccessRate < SmallestSuccessRate)
-                    SmallestSuccessRate = toolComp.SuccessRate;
+                var toolSuccessRate = toolComp.SuccessRate;
+                var totalSuccesRate = toolSuccessRate - durationToSuccessRate;
+                Logger.Info($"Total Failure Rate: {(1-totalSuccesRate)*100}");
+                if (totalSuccesRate < SmallestSuccessRate)
+                    SmallestSuccessRate = totalSuccesRate;
             }
 
         if (TryComp(body, out TransformComponent? xform))
@@ -270,6 +298,10 @@ public abstract partial class SharedSurgerySystem
         var ev = new SurgeryDoAfterEvent(args.Surgery, args.Step, SmallestSuccessRate);
         var doAfter = new DoAfterArgs(EntityManager, user, duration, ev, body, part)
         {
+            //FarHorizons Start
+            NeedHand = true,
+            BreakOnHandChange = true,
+            //FarHorizons End
             BreakOnMove = true,
             DuplicateCondition = DuplicateConditions.SameTarget,
             ForceNet = true
