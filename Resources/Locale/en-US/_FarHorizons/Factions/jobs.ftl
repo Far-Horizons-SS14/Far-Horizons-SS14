@@ -8,10 +8,12 @@ faction-syndicate-job-magistrate = Evil Magistrate
 faction-syndicate-job-rep = SCH Representative
 
 faction-syndicate-job-warden = Evil Warden
+faction-syndicate-job-corpsman = Evil Corpsman
 faction-syndicate-job-brigmed = Evil Brigmedic
 faction-syndicate-job-detective = Evil Detective
 faction-syndicate-job-officer = Evil Security Officer
 faction-syndicate-job-cadet = Evil Security Cadet
+faction-syndicate-job-secborg = Evil Security Borg
 
 faction-syndicate-job-bso = Evil BSO
 
