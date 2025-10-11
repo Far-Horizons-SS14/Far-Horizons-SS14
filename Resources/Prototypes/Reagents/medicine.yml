@@ -1132,13 +1132,13 @@
   color: "#283332"
   metabolisms:
     Medicine:
-      metabolismRate: 0.1 #FH
+      metabolismRate: 0.5 #FH
       effects:
       - !type:HealthChange
         damage:
           types:
-            Slash: -0.8 #FH
-            Blunt: 0.1 #FH
+            Slash: -4 #FH
+            Blunt: 1 #FH
       - !type:ModifyBleedAmount #FH
         amount: -1.5 #FH
       - !type:HealthChange
@@ -1147,7 +1147,7 @@
           min: 12
         damage:
           types:
-            Blunt: 1 #FH
+            Blunt: 2 #FH
 
 - type: reagent
   id: Puncturase
@@ -1159,13 +1159,13 @@
   color: "#b9bf93"
   metabolisms:
     Medicine:
-      metabolismRate: 0.1
+      metabolismRate: 0.5 #FH
       effects:
       - !type:HealthChange
         damage:
           types:
-            Piercing: -0.8 #FH = 7 per u / 5u = 40 Piercing healed - 10 Blunt = 30 Piercing total
-            Blunt: 0.1 #FH = 1 per u
+            Piercing: -4 #FH = 7 per u / 5u = 40 Piercing healed - 10 Blunt = 30 Piercing total
+            Blunt: 1 #FH = 1 per u
       - !type:ModifyBleedAmount #FH - Real reason to use over bic.
         amount: -1.5 #FH
       - !type:HealthChange
@@ -1174,7 +1174,7 @@
           min: 12
         damage:
           types:
-            Blunt: 1 #FH
+            Blunt: 2 #FH
 
 - type: reagent
   id: Bruizine
@@ -1186,12 +1186,12 @@
   color: "#ff3636"
   metabolisms:
     Medicine:
-      metabolismRate: 0.1
+      metabolismRate: 0.5
       effects:
       - !type:HealthChange
         damage:
           types:
-            Blunt: -0.6 #FH - Heals less due to no drawback
+            Blunt: -3 #FH - Heals less due to no drawback
       - !type:SatiateHunger
         factor: -1
       - !type:HealthChange
@@ -1200,7 +1200,7 @@
           min: 12 #FH
         damage:
           types:
-            Poison: 1 #FH
+            Poison: 2 #FH
 
 - type: reagent
   id: Holywater
