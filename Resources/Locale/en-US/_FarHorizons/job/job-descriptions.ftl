@@ -1,5 +1,2 @@
 job-description-secborg = Half-human, Half-machine, and purpose-built for security work. Follow (and uphold) your laws, serve the crew, or harm baton them them when they won't consent to a search.
 job-description-corpsman = Drag blackout drunk officers into the brig for the Brigmedic to treat, provide on-field emergency triage during a shootout and smack any who gets too close to your officer with your defibrillator, and most importantly, ensure security stays alive during times of emergency.
-job-description-cc-cad-official = Official member of CentComm's Administrative Division. Respond to the station's requests and relax in the downtime.
-job-description-cc-csd-official = Official member of CentComm's Security Division. Provide protection to CentComm forces.
-job-description-cc-cid-official = Official member of CentComm's Intelligence Division. -Redacted Description-
