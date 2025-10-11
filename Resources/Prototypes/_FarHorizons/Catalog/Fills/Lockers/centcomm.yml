@@ -1,0 +1,75 @@
+- type: entity
+  id: CADFilled
+  name: Central Administrative Division Secretary Locker
+  suffix: Filled
+  parent: LockerBaseSecure
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: _Starlight/Structures/Storage/closet.rsi
+  - type: EntityStorageVisuals
+    stateBaseClosed: bssecure
+    stateDoorOpen: bssecure_open
+    stateDoorClosed: bssecure_door
+  - type: AccessReader
+    access: [ [ "BlueShield" ] ]
+  - type: WiresPanelSecurity
+    securityLevel: medSecurity
+
+  - type: StorageFill
+    contents:
+    - id: ClothingBackpackSatchelLeather
+    - id: MagazineMagnum
+      amount: 2
+    - id: ClothingEyesHudCommand
+    - id: MindShieldImplanter
+    - id: DeathRattleImplanterCentcomm
+    - id: ClothingUniformJumpskirtCentcommAdminFormalWear
+    - id: ClothingEyesGlassesCommand
+    - id: ClothingHandsGlovesHop
+    - id: CentcomPDA
+    - id: WeaponPistolN1984
+    - id: ClothingBeltSheathFilled
+    - id: ClothingHeadHatCentcomcap
+    - id: ClothingShoesBootsLaceup
+    - id: ClothingOuterArmorCentcommCarapace
+    - id: ClothingHeadsetCentCom
+    - id: ClothingMaskGasCentcom
+
+- type: entity
+  id: CSDFilled
+  name: Central Security Division Cadet Locker
+  suffix: Filled
+  parent: LockerBaseSecure
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: _Starlight/Structures/Storage/closet.rsi
+  - type: EntityStorageVisuals
+    stateBaseClosed: bssecure
+    stateDoorOpen: bssecure_open
+    stateDoorClosed: bssecure_door
+  - type: AccessReader
+    access: [ [ "BlueShield" ] ]
+  - type: WiresPanelSecurity
+    securityLevel: medSecurity
+
+  - type: StorageFill
+    contents:
+    - id: ClothingBackpackSatchelSecurity
+    - id: MagazineMagnum
+      amount: 2
+    - id: ClothingEyesHudCommand
+    - id: MindShieldImplanter
+    - id: DeathRattleImplanterCentcomm
+    - id: ClothingUniformJumpskirtCentcommSecurityFormalWear
+    - id: ClothingEyesGlassesCentComm
+    - id: ClothingHandsGlovesCombat
+    - id: CentcomPDA
+    - id: WeaponPistolN1984
+    - id: ClothingBeltSecurityFilled
+    - id: ClothingHeadHatBeretSecurity
+    - id: ClothingShoesBootsJackFilled
+    - id: ClothingOuterVestWebEliteCentcomm
+    - id: ClothingHeadsetAltCentComDS
+    - id: ClothingMaskGasCentcom

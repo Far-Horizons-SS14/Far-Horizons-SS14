@@ -9,6 +9,7 @@ using Content.Shared.Administration.Logs;
 using Content.Shared.CCVar;
 using Content.Shared.Construction.Prototypes;
 using Content.Shared.Database;
+using Content.Shared._FarHorizons.Factions;
 using Content.Shared.Preferences;
 using Content.Shared.Roles;
 using Microsoft.Data.Sqlite;
@@ -39,7 +40,7 @@ namespace Content.Server.Database
 
         Task SaveCharacterSlotAsync(NetUserId userId, ICharacterProfile? profile, int slot);
 
-        Task SaveJobPrioritiesAsync(NetUserId userId, Dictionary<ProtoId<JobPrototype>, JobPriority> newJobPriorities);
+        Task SaveJobPrioritiesAsync(NetUserId userId, Dictionary<(ProtoId<FactionPrototype>, ProtoId<JobPrototype>), JobPriority> newJobPriorities);
 
         Task SaveAdminOOCColorAsync(NetUserId userId, Color color);
 
@@ -54,6 +55,14 @@ namespace Content.Server.Database
         Task<NetUserId?> GetAssignedUserIdAsync(string name);
         #endregion
 
+        #region Mentors
+
+        Task AddMentorAsync(NetUserId userId);
+        Task RemoveMentorAsync(NetUserId userId, CancellationToken cancel = default);
+        Task<List<Guid>> GetMentorsAsync(CancellationToken cancel = default);
+
+        #endregion
+        
         #region Bans
         /// <summary>
         ///     Looks up a ban by id.
@@ -190,6 +199,9 @@ namespace Content.Server.Database
             ImmutableTypedHwid? hwId);
         Task<PlayerRecord?> GetPlayerRecordByUserName(string userName, CancellationToken cancel = default);
         Task<PlayerRecord?> GetPlayerRecordByUserId(NetUserId userId, CancellationToken cancel = default);
+        
+        // Far Horizons
+        Task<List<PlayerRecord>> GetPlayerRecordsByUserIds(List<Guid> userIds, CancellationToken cancel = default);
         #endregion
 
         #region Connection Logs
@@ -480,7 +492,7 @@ namespace Content.Server.Database
         }
 
         public Task SaveJobPrioritiesAsync(NetUserId userId,
-            Dictionary<ProtoId<JobPrototype>, JobPriority> newJobPriorities)
+            Dictionary<(ProtoId<FactionPrototype>, ProtoId<JobPrototype>), JobPriority> newJobPriorities)
         {
             DbWriteOpsMetric.Inc();
             return RunDbCommand(() => _db.SaveJobPrioritiesAsync(userId, newJobPriorities));
@@ -515,6 +527,30 @@ namespace Content.Server.Database
             DbReadOpsMetric.Inc();
             return RunDbCommand(() => _db.GetAssignedUserIdAsync(name));
         }
+
+
+        #region Mentors
+
+        
+        public Task AddMentorAsync(NetUserId netUserId)
+        {
+            DbReadOpsMetric.Inc();
+            return RunDbCommand(() => _db.AddMentorAsync(netUserId));
+        }
+
+        public Task RemoveMentorAsync(NetUserId netUserId, CancellationToken cancel = default)
+        {
+            DbReadOpsMetric.Inc();
+            return RunDbCommand(() => _db.RemoveMentorAsync(netUserId, cancel));
+        }
+
+        public Task<List<Guid>> GetMentorsAsync(CancellationToken cancel = default)
+        {
+            DbReadOpsMetric.Inc();
+            return RunDbCommand(() => _db.GetMentorsAsync(cancel));
+        }
+
+        #endregion
 
         public Task<ServerBanDef?> GetServerBanAsync(int id)
         {
@@ -646,6 +682,12 @@ namespace Content.Server.Database
         {
             DbReadOpsMetric.Inc();
             return RunDbCommand(() => _db.GetPlayerRecordByUserId(userId, cancel));
+        }
+
+        public Task<List<PlayerRecord>> GetPlayerRecordsByUserIds(List<Guid> userIds, CancellationToken cancel = default)
+        {
+            DbReadOpsMetric.Inc();
+            return RunDbCommand(() => _db.GetPlayerRecordsByUserIds(userIds, cancel));
         }
 
         public Task<int> AddConnectionLogAsync(

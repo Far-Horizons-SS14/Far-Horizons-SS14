@@ -12,6 +12,7 @@ using Content.Server.Humanoid.Markings.Extensions;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Construction.Prototypes;
 using Content.Shared.Database;
+using Content.Shared._FarHorizons.Factions;
 using Content.Shared.GameTicking;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Markings;
@@ -76,7 +77,8 @@ namespace Content.Server.Database
             foreach (var favorite in prefs.ConstructionFavorites)
                 constructionFavorites.Add(new ProtoId<ConstructionPrototype>(favorite));
 
-            var jobPriorities = prefs.JobPriorities.ToDictionary(j => new ProtoId<JobPrototype>(j.JobName), j => (JobPriority) j.Priority);
+            // Far Horizons, factions in priorities
+            var jobPriorities = prefs.JobPriorities.ToDictionary(j => (new ProtoId<FactionPrototype>(j.FactionName), new ProtoId<JobPrototype>(j.JobName)), j => (JobPriority) j.Priority);
 
             return new PlayerPreferences(profiles, Color.FromHex(prefs.AdminOOCColor), constructionFavorites, jobPriorities);
         }
@@ -126,7 +128,7 @@ namespace Content.Server.Database
             await db.DbContext.SaveChangesAsync();
         }
 
-        public async Task SaveJobPrioritiesAsync(NetUserId userId, Dictionary<ProtoId<JobPrototype>, JobPriority> newJobPriorities)
+        public async Task SaveJobPrioritiesAsync(NetUserId userId, Dictionary<(ProtoId<FactionPrototype>, ProtoId<JobPrototype>), JobPriority> newJobPriorities)
         {
             await using var db = await GetDb();
 
@@ -135,10 +137,11 @@ namespace Content.Server.Database
                 .Single(p => p.UserId == userId.UserId);
 
             var newPrios = new List<JobPriorityEntry>();
-            foreach (var (job, priority) in newJobPriorities)
+            foreach (var ((faction, job), priority) in newJobPriorities)
             {
                 var newPrio = new JobPriorityEntry
                 {
+                    FactionName = faction, // Far Horizons
                     JobName = job,
                     Priority = (DbJobPriority)priority,
                 };
@@ -167,12 +170,12 @@ namespace Content.Server.Database
         {
             await using var db = await GetDb();
 
-            var priorities = new Dictionary<ProtoId<JobPrototype>, JobPriority>
-                { { SharedGameTicker.FallbackOverflowJob, JobPriority.High } };
+            var priorities = new Dictionary<(ProtoId<FactionPrototype> faction, ProtoId<JobPrototype> job), JobPriority>
+                { { (SharedFactionManager.FallbackFaction, SharedGameTicker.FallbackOverflowJob), JobPriority.High } };
 
             var dbPriorities = priorities
                 .Where(j => j.Value != JobPriority.Never)
-                .Select(j => new JobPriorityEntry { JobName = j.Key, Priority = (DbJobPriority)j.Value })
+                .Select(j => new JobPriorityEntry { FactionName = j.Key.faction, JobName = j.Key.job, Priority = (DbJobPriority)j.Value })
                 .ToList();
 
             var profile = ConvertProfiles((HumanoidCharacterProfile)defaultProfile, 0);
@@ -225,7 +228,7 @@ namespace Content.Server.Database
 
         private static HumanoidCharacterProfile ConvertProfiles(Profile profile)
         {
-            var jobs = profile.Jobs.Select(j => new ProtoId<JobPrototype>(j.JobName)).ToHashSet();
+            var jobs = profile.Jobs.Select(j => (new ProtoId<FactionPrototype>(j.FactionName), new ProtoId<JobPrototype>(j.JobName))).ToHashSet();
             var antags = profile.Antags.Select(a => new ProtoId<AntagPrototype>(a.AntagName));
             var traits = profile.Traits.Select(t => new ProtoId<TraitPrototype>(t.TraitName));
 
@@ -396,7 +399,7 @@ namespace Content.Server.Database
             profile.Jobs.Clear();
             profile.Jobs.AddRange(
                 humanoid.JobPreferences
-                    .Select(j => new Job {JobName = j})
+                    .Select(j => new Job {FactionName = j.faction, JobName = j.job})
             );
 
             profile.Antags.Clear();
@@ -467,6 +470,37 @@ namespace Content.Server.Database
 
             await db.DbContext.SaveChangesAsync();
         }
+        #endregion
+        
+        #region Mentors
+
+        public async Task AddMentorAsync(NetUserId netUserId)
+        {
+            await using var db = await GetDb();
+
+            db.DbContext.Mentor.Add(new Mentor{UserId = netUserId.UserId});
+
+            await db.DbContext.SaveChangesAsync();
+        }
+
+        public async Task RemoveMentorAsync(NetUserId netUserId, CancellationToken cancel)
+        {
+            await using var db = await GetDb(cancel);
+
+            var mentor = await db.DbContext.Mentor.SingleAsync(m => m.UserId == netUserId.UserId, cancel);
+            db.DbContext.Mentor.Remove(mentor);
+
+            await db.DbContext.SaveChangesAsync(cancel);
+        }
+
+        public async Task<List<Guid>> GetMentorsAsync(CancellationToken cancel)
+        {
+            await using var db = await GetDb(cancel);
+            return await db.DbContext.Mentor
+                .Select(w => w.UserId)
+                .ToListAsync(cancellationToken: cancel);
+        }
+        
         #endregion
 
         #region Bans
@@ -743,6 +777,19 @@ namespace Content.Server.Database
                 .SingleOrDefaultAsync(p => p.UserId == userId.UserId, cancel);
 
             return record == null ? null : MakePlayerRecord(record);
+        }
+
+        public async Task<List<PlayerRecord>> GetPlayerRecordsByUserIds(List<Guid> userIds, CancellationToken cancel)
+        {
+            await using var db = await GetDb();
+            
+            var players = await db.DbContext.Player
+                .Where(player => userIds.Contains(player.UserId))
+                .ToListAsync(cancel);
+            var records = new List<PlayerRecord>();
+            foreach (var player in players)
+                records.Add(MakePlayerRecord(player));
+            return records;
         }
 
         protected async Task<bool> PlayerRecordExists(DbGuard db, NetUserId userId)

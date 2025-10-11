@@ -10,9 +10,22 @@
     - type: Anchorable
     - type: Transform
       noRot: true
-      damageContainer: StructuralInorganic
-      damageModifierSet: Metallic
     - type: Destructible
+      thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 200
+        behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+        - !type:SpawnEntitiesBehavior
+          spawn:
+            SheetSteel1:
+              min: 2
+              max: 5
+            SheetGlass1:
+              min: 1
+              max: 2
     - type: PlaceableSurface
     - type: Fixtures
       fixtures:
@@ -30,21 +43,8 @@
     - type: Clickable
     - type: InteractionOutline
     - type: Damageable
-      thresholds:
-        - trigger:
-            !type:DamageTrigger
-            damage: 200
-          behaviors:
-            - !type:DoActsBehavior
-              acts: [ "Destruction" ]
-            - !type:SpawnEntitiesBehavior
-              spawn:
-                SheetSteel1:
-                  min: 2
-                  max: 5
-                SheetGlass1:
-                  min: 1
-                  max: 2
+      damageContainer: StructuralInorganic
+      damageModifierSet: Metallic
                   
 - type: entity
   id: GenericHolotable

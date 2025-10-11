@@ -10,8 +10,8 @@
     - !type:DepartmentTimeRequirement
       department: Security
       time: 36000 # 10h
-    - !type:RolesRequirement
-      proto: ExtRolesReq
+#    - !type:RolesRequirement                #Far Horizons Disabled Currently Till Whitelist Added
+#      proto: ExtRolesReq
   startingGear: MagistrateGear
   icon: "JobIconMagistrate"
   rules: job-rules-corporate-aligned
@@ -26,6 +26,7 @@
   - Janitor
   - Theatre
   - Chapel
+  - External #Far Horizons
   - Lawyer
   - Brig
   - Security
@@ -48,14 +49,14 @@
 - type: startingGear
   id: MagistrateGear
   equipment:
-    jumpsuit: MagistrateUniformSuit
+    #jumpsuit: MagistrateUniformSuit #Far Horizons
     #shoes: ClothingShoesBootsLaceup
     eyes: ClothingEyesGlassesSecurity
     gloves: ClothingHandsGlovesColorWhite
     outerClothing: ClothingOuterRobesJudge
     id: MagistratePDA
     ears: ClothingHeadsetMagistrate
-    head: ClothingHeadHatPwig
+    #head: ClothingHeadHatPwig #Far Horizons
     belt: BoxFolderNanoTrasenClipboard
   storage:
     back:
@@ -63,7 +64,8 @@
     - ClothingNeckLawyerbadge
     - GavelHammer
     - GavelBlock
-    - MagistrateUniformSkirt
+    - BookSpaceLaw #Far Horizons
+    #- MagistrateUniformSkirt #Far Horizons
 
 - type: chameleonOutfit
   id: MagistrateChameleonOutfit

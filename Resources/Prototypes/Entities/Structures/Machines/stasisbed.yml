@@ -65,3 +65,15 @@
     guides:
     - MedicalDoctor
   - type: PowerSwitch
+    #Far Horizons-Start - Letting Medical beds also receive the operating computer visuals
+  - type: OperatingTable
+  - type: InteractionOutline
+  - type: DeviceList
+  - type: DeviceNetwork
+    deviceNetId: Wired
+  - type: DeviceLinkSink
+    ports:
+      - VitalsMonitorReceiverStasis
+  - type: PlaceableSurface
+    isPlaceable: false
+    #Far Horizons-End

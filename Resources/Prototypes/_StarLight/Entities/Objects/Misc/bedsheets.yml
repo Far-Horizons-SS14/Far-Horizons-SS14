@@ -9,11 +9,14 @@
 
 - type: entity
   id: BedsheetBrigmedicStrange
-  parent: [BedsheetBaseStarlight, HarmonicaInstrument]
+  parent: [BedsheetBase, HarmonicaInstrument] #FH Change
   name: Strange Brigmedic's Bedsheet
   description: Upon closer inspection, this seems to be multiple brigmedic bedsheets sewn together including a harmonica for good measure along with the initials 'K.T' sewn in. Stealing such a prized posession would make a certain vulpine very angry.
   components:
   - type: Sprite
-    state: sheetbrigmedicstrange
+    sprite: _FarHorizons/Objects/Misc/bedsheets.rsi #FH Change
+    state: sheetbrigmedicstrange #FH Change
   - type: Clothing
-    sprite: _Starlight/Clothing/Neck/Bedsheets/brigmedic.rsi
+    sprite: _FarHorizons/Clothing/Neck/Bedsheets/brigmedicstrange.rsi #FH Change
+  - type: StealTarget #FH Change
+    stealGroup: BrigmedicBedsheetSteal #FH Change

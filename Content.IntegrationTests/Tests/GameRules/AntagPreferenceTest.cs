@@ -1,6 +1,7 @@
 #nullable enable
 using System.Collections.Generic;
 using System.Linq;
+using Content.Server._FarHorizons.Factions;
 using Content.Server.Antag;
 using Content.Server.Antag.Components;
 using Content.Server.GameTicking;
@@ -30,11 +31,17 @@ public sealed class AntagPreferenceTest
         var client = pair.Client;
         var ticker = server.System<GameTicker>();
         var sys = server.System<AntagSelectionSystem>();
+        var factions = server.Resolve<IServerFactionManager>(); // Far Horizons
 
         // Initially in the lobby
         Assert.That(ticker.RunLevel, Is.EqualTo(GameRunLevel.PreRoundLobby));
         Assert.That(client.AttachedEntity, Is.Null);
         Assert.That(ticker.PlayerGameStatuses[client.User!.Value], Is.EqualTo(PlayerGameStatus.NotReadyToPlay));
+
+        // Ok so... This test is a menace. 
+        // It tries to check if antag pools are available in lobby.
+        // But to know available antags you need a list of jobs, which require faction to be selected, which doesn't happen normally until round start
+        factions.MustHaveCurrentFaction(); // Far Horizons
 
         EntityUid uid = default;
         await server.WaitPost(() => uid = server.EntMan.Spawn("Traitor"));

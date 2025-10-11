@@ -1,0 +1,21 @@
+## Corpsman
+
+- type: entity
+  abstract: true
+  parent: BaseTraitorStealObjective
+  id: BaseCorpsmanStealObjective
+  components:
+  - type: NotJobRequirement
+    job: Corpsman
+  - type: StealCondition
+    owner: job-name-corpsman
+
+- type: entity
+  parent: BaseCorpsmanStealObjective
+  id: CorpsmanHyposprayStealObjective
+  components:
+  - type: StealCondition
+    stealGroup: CorpsmanHypoSteal
+  - type: Objective
+    # You'll have to snatch this from the corpsman's cold, dead hands. Also they're always in sec.
+    difficulty: 2

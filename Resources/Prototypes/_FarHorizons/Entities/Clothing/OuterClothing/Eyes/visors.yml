@@ -47,6 +47,7 @@
     - HudMedical
   - type: EyeProtection
     protectionTime: 5
+  - type: FlashImmunity
 
 - type: entity
   parent: [ ClothingEyesBase, ShowSecurityIcons, BaseSecurityContraband ]
@@ -68,3 +69,26 @@
     - WhitelistChameleon
   - type: IdentityBlocker
     coverage: EYES
+  - type: FlashImmunity
+
+- type: entity
+  parent: [ ClothingEyesBase, ShowSecurityIcons, BaseSecurityContraband ]
+  id: ClothingEyesVisorCorpsman
+  name: Corpsman Visor
+  description: Super Tamashi-upgraded Visor. Yes. Corpsman ones.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Eyes/Visors/corpsman.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Eyes/Visors/corpsman.rsi
+  - type: EyeProtection
+    protectionTime: 5
+  - type: ShowHealthBars
+  - type: SolutionScanner
+  - type: Tag
+    tags:
+    - HamsterWearable
+    - WhitelistChameleon
+  - type: IdentityBlocker
+    coverage: EYES
+  - type: FlashImmunity

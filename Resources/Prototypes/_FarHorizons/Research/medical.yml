@@ -1,0 +1,32 @@
+- type: technology
+  id: HypoinjectorTech
+  name: research-technology-hypoinjector
+  icon: 
+    sprite: _FarHorizons/Objects/Specific/Medical/syringe.rsi
+    state: syringe_base_inject0
+  discipline: Biochemical
+  tier: 1
+  cost: 4000
+  recipeUnlocks:
+    - SlowAutoinjector
+  radioChannels:
+  - Medical
+
+- type: technology
+  id: BlastProofTech
+  name: research-technology-blast-proof
+  icon:
+    sprite: _FarHorizons/Objects/Specific/Chemistry/reinforced_beaker_large.rsi
+    state: beakerlarge
+  discipline: Biochemical
+  tier: 2
+  cost: 9000
+  recipeUnlocks:
+    - LargeBeakerReinforced
+    - BeakerReinforced
+    - ChemistryVialReinforced
+    - EmptyBottleReinforced
+    - JugReinforced
+    - ReinforcedMiniatureEmptyChemistryVial
+  radioChannels:
+  - Medical

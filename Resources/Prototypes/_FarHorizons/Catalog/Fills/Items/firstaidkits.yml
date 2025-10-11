@@ -1,0 +1,30 @@
+- type: entity
+  id: SecurityHypoKitFilled
+  suffix: Filled
+  parent: SecurityHypoKit
+  components:
+  - type: StorageFill
+    contents:
+      - id: CorpsHypo
+      - id: ReinforcedMiniatureEmptyChemistryVial
+        amount: 8
+
+- type: entity
+  id: SecurityMedkitFHFilled
+  suffix: Filled
+  parent: SecurityMedkitFH
+  components:
+  - type: StorageFill
+    contents:
+      - id: RedBrutePack
+        amount: 1
+      - id: RedOintment
+        amount: 1
+      - id: Bloodpack
+        amount: 1
+      - id: AmmoniaPack
+        amount: 1
+      - id: AutoMenderBruteFilled
+        amount: 1
+      - id: AutoMenderBurnFilled
+        amount: 1

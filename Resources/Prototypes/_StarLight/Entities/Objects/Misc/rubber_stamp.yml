@@ -56,16 +56,16 @@
     
 - type: entity
   name: Brigmedic's rubber stamp
-  parent: RubberStampBase
+  parent: [RubberStampBase, BaseSecurityContraband] #FH change
   id: RubberStampBrigmedic
   suffix: DO NOT MAP
   components:
     - type: Stamp
       stampedName: "Brigmedic"
-      stampedColor: "#ae2e33"
+      stampedColor: "#3176AD" #FH change
       stampState: "paper_stamp-brigmedic"
     - type: Sprite
-      sprite: _Starlight/Objects/Misc/stamps.rsi
+      sprite: _FarHorizons/Objects/Misc/stamps.rsi #FH change
       state: stamp-brigmedic
 
 - type: entity

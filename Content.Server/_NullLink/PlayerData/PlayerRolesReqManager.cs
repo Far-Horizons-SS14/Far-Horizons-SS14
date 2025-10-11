@@ -31,7 +31,8 @@ public sealed class PlayerRolesReqManager : SharedPlayerRolesReqManager
             && _playerManager.TryGetPlayerData(session.UserId, out var playerData)
             && _mentorReq.Roles.Any(playerData.Roles.Contains);
     public override bool IsMentor(ICommonSession session)
-        =>  _mentorReq is not null
+        =>  _playerManager.IsStoredMentor(session.UserId) ||
+            _mentorReq is not null
             && _playerManager.TryGetPlayerData(session.UserId, out var playerData)
             && _mentorReq.Roles.Any(playerData.Roles.Contains);
     public override bool IsPeacefulBypass(EntityUid uid)

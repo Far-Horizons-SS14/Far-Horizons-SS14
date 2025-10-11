@@ -12,3 +12,16 @@
       state: borg
     - sprite: _FarHorizons/Mobs/Silicon/Chassis/security.rsi
       state: borg_e
+
+- type: entity
+  id: SpawnPointCorpsman
+  parent: SpawnPointJobBase
+  name: corpsman
+  components:
+  - type: SpawnPoint
+    job_id: Corpsman
+  - type: Sprite
+    sprite: _FarHorizons/Markers/jobs.rsi
+    layers:
+      - state: green
+      - state: corpsman

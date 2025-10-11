@@ -129,7 +129,9 @@
   description: It's a high visibility jumpsuit given to those engineers insane enough to achieve the rank of Chief Engineer.
   components:
   - type: Sprite
-    sprite: Clothing/Uniforms/Jumpsuit/ce.rsi
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/ce.rsi #Far Horizons
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/ce.rsi #Far Horizons
 
 - type: entity
   parent: [ClothingUniformBase, BaseCommandContraband]
@@ -138,9 +140,9 @@
   description: A yellow turtleneck designed specifically for work in conditions of the engineering department.
   components:
   - type: Sprite
-    sprite: Clothing/Uniforms/Jumpsuit/ce_turtle.rsi
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/ce_turtle.rsi #Far Horizons
   - type: Clothing
-    sprite: Clothing/Uniforms/Jumpsuit/ce_turtle.rsi
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/ce_turtle.rsi #Far Horizons
 
 - type: entity
   parent: ClothingUniformBase
@@ -331,13 +333,13 @@
       sprite: Clothing/Uniforms/Jumpsuit/detective_grey.rsi
 
 - type: entity
-  parent: [ClothingUniformBase, ClothingUniformFoldableBase]
+  parent: ClothingUniformBase #ClothingUniformFoldableBase - Folded version not resprited and too visually different, disabling temporarily
   id: ClothingUniformJumpsuitEngineering
   name: engineering jumpsuit
   description: If this suit was non-conductive, maybe engineers would actually do their damn job.
   components:
   - type: Sprite
-    sprite: Clothing/Uniforms/Jumpsuit/engineering.rsi
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/engineering.rsi #Far Horizons
 
 - type: entity
   parent: [ClothingUniformBase, ClothingUniformFoldableBase]
@@ -640,14 +642,14 @@
     sprite: Clothing/Uniforms/Jumpsuit/roboticist.rsi
 
 - type: entity
-  parent: [ClothingUniformBase, BaseSecurityContraband, ClothingUniformFoldableBase]
+  parent: [ClothingUniformBase, BaseSecurityContraband] #ClothingUniformFoldableBase] - Folded version not resprited and too visually different, disabling temporarily
   id: ClothingUniformJumpsuitSec
   name: security jumpsuit
   description: A jumpsuit made of strong material, providing robust protection.
   components:
   - type: RollUpSleeves
   - type: Sprite
-    sprite: Clothing/Uniforms/Jumpsuit/security.rsi
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/security.rsi #Far Horizons
   - type: Item
     inhandVisuals:
       left:
@@ -940,7 +942,7 @@
   components:
   - type: RollUpSleeves
   - type: Sprite
-    sprite: Clothing/Uniforms/Jumpsuit/atmos.rsi
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/atmos.rsi #Far Horizons
 
 - type: entity
   parent: [ClothingUniformBase, ClothingUniformFoldableBase]
@@ -949,7 +951,7 @@
   description: Might as well relax with a job as easy as yours.
   components:
   - type: Sprite
-    sprite: Clothing/Uniforms/Jumpsuit/atmos_casual.rsi
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/atmos_casual.rsi #Far Horizons
 
 - type: entity
   parent: ClothingUniformBase

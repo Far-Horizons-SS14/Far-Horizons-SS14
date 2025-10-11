@@ -9,6 +9,7 @@ using Content.Shared.Preferences;
 using Content.Shared.Roles;
 using Content.Shared.Humanoid;
 using Robust.Shared.Prototypes;
+using Content.Shared._FarHorizons.Factions;
 
 namespace Content.IntegrationTests.Tests.Round;
 
@@ -32,6 +33,11 @@ public sealed class JobRequirementsTest
           requirements:
           - !type:AgeRequirement
             requiredAge: 65
+        
+        - type: factionJobAssignment
+          id: NTSeniorCitizen
+          faction: FactionNT
+          job: SeniorCitizen
 
         - type: roleLoadout
           id: JobSeniorCitizen
@@ -45,6 +51,11 @@ public sealed class JobRequirementsTest
           - !type:AgeRequirement
             requiredAge: 29
             inverted: true
+        
+        - type: factionJobAssignment
+          id: NTTwenties
+          faction: FactionNT
+          job: Twenties
 
         - type: roleLoadout
           id: JobTwenties
@@ -62,6 +73,11 @@ public sealed class JobRequirementsTest
           - !type:SpeciesRequirement
             species:
             - Reptilian
+        
+        - type: factionJobAssignment
+          id: NTWehngineer
+          faction: FactionNT
+          job: Wehngineer
 
         - type: roleLoadout
           id: JobWehngineer
@@ -74,6 +90,11 @@ public sealed class JobRequirementsTest
             inverted: true
             species:
             - Reptilian
+        
+        - type: factionJobAssignment
+          id: NTFreezerHead
+          faction: FactionNT
+          job: FreezerHead
 
         - type: roleLoadout
           id: JobFreezerHead
@@ -130,10 +151,10 @@ public sealed class JobRequirementsTest
         var humanoidZero = cPref.Preferences!.Characters[0] as HumanoidCharacterProfile;
         Assert.That(humanoidZero, Is.Not.Null);
 
-        var priorities = new Dictionary<ProtoId<JobPrototype>, JobPriority>
+        var priorities = new Dictionary<(ProtoId<FactionPrototype> faction, ProtoId<JobPrototype> job), JobPriority>
         {
-            { wantedJob, JobPriority.High },
-            { "Assistant", JobPriority.Low },
+            { ("FactionNT", wantedJob), JobPriority.High },
+            { ("FactionNT", "Assistant"), JobPriority.Low },
         };
 
         await pair.Client.WaitAssertion(() =>
@@ -154,7 +175,7 @@ public sealed class JobRequirementsTest
         await pair.Server.WaitPost(() => ticker.StartRound());
         await pair.RunTicksSync(10);
 
-        pair.AssertJob(expectedJob ? wantedJob : "Assistant");
+        pair.AssertJob(expectedJob ? ("FactionNT", wantedJob) : ("FactionNT", "Assistant"));
 
         await pair.Server.WaitPost(() => ticker.RestartRound());
         await pair.CleanReturnAsync();
@@ -187,10 +208,10 @@ public sealed class JobRequirementsTest
         var humanoidZero = cPref.Preferences!.Characters[0] as HumanoidCharacterProfile;
         Assert.That(humanoidZero, Is.Not.Null);
 
-        var priorities = new Dictionary<ProtoId<JobPrototype>, JobPriority>
+        var priorities = new Dictionary<(ProtoId<FactionPrototype> faction, ProtoId<JobPrototype> job), JobPriority>
         {
-            { "SeniorCitizen", JobPriority.High },
-            { "Passenger", JobPriority.Low },
+            { ("FactionNT", "SeniorCitizen"), JobPriority.High },
+            { ("FactionNT", "Passenger"), JobPriority.Low },
         };
 
         await pair.Client.WaitAssertion(() =>
@@ -212,7 +233,7 @@ public sealed class JobRequirementsTest
         await pair.Server.WaitPost(() => ticker.StartRound());
         await pair.RunTicksSync(10);
 
-        pair.AssertJob("SeniorCitizen");
+        pair.AssertJob(("FactionNT", "SeniorCitizen"));
         Assert.That(pair.Client.AttachedEntity, Is.Not.Null);
         pair.Server.EntMan.TryGetComponent<HumanoidAppearanceComponent>(pair.ToServerUid(pair.Client.AttachedEntity.Value), out var appearance);
         Assert.That(appearance, Is.Not.Null);
@@ -251,10 +272,10 @@ public sealed class JobRequirementsTest
         var humanoidZero = cPref.Preferences!.Characters[0] as HumanoidCharacterProfile;
         Assert.That(humanoidZero, Is.Not.Null);
 
-        var priorities = new Dictionary<ProtoId<JobPrototype>, JobPriority>
+        var priorities = new Dictionary<(ProtoId<FactionPrototype>, ProtoId<JobPrototype>), JobPriority>
         {
-            { wantedJob, JobPriority.High },
-            { "Assistant", JobPriority.Low },
+            { ("FactionNT", wantedJob), JobPriority.High },
+            { ("FactionNT", "Assistant"), JobPriority.Low },
         };
 
         await pair.Client.WaitAssertion(() =>
@@ -275,7 +296,7 @@ public sealed class JobRequirementsTest
         await pair.Server.WaitPost(() => ticker.StartRound());
         await pair.RunTicksSync(10);
 
-        pair.AssertJob(expectedJob ? wantedJob : "Assistant");
+        pair.AssertJob(expectedJob ? ("FactionNT", wantedJob) : ("FactionNT", "Assistant"));
 
         await pair.Server.WaitPost(() => ticker.RestartRound());
         await pair.CleanReturnAsync();

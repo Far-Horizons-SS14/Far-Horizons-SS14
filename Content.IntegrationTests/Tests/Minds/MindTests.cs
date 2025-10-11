@@ -296,8 +296,9 @@ public sealed partial class MindTests
             });
 
             var jobRole = "";
+            var faction = "FactionNT";
 
-            roleSystem.MindAddJobRole(mindId, jobPrototype:jobRole);
+            roleSystem.MindAddJobRole(mindId, jobPrototype:jobRole, factionPrototype:faction);
 
             Assert.Multiple(() =>
             {

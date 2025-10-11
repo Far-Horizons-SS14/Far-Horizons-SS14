@@ -1,35 +1,11 @@
 ﻿name: Test Packaging
 
 on:
-  push:
-    branches: [ master, staging, stable, Starlight ]
-    paths:
-      - '**.cs'
-      - '**.csproj'
-      - '**.sln'
-      - '**.git**'
-      - '**.yml'
-      # no docs on which one of these is supposed to work, so
-      # why not just do both
-      - 'RobustToolbox'
-      - 'RobustToolbox/**'
-  merge_group:
-  pull_request:
-    types: [ opened, reopened, synchronize, ready_for_review ]
-    branches: [ master, staging, stable, Starlight ]
-    paths:
-      - '**.cs'
-      - '**.csproj'
-      - '**.sln'
-      - '**.git**'
-      - '**.yml'
-      - 'RobustToolbox'
-      - 'RobustToolbox/**'
+  workflow_dispatch:
 
 jobs:
   build:
     name: Test Packaging
-    if: github.actor != 'PJBot' && github.event.pull_request.draft == false
     runs-on: ubuntu-latest
 
     steps:

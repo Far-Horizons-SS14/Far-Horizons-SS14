@@ -74,6 +74,7 @@ public sealed class ContainerSpawnPointSystem : EntitySystem
 
         args.SpawnResult = _stationSpawning.SpawnPlayerMob(
             baseCoords,
+            args.Faction, // Far Horizons
             args.Job,
             args.HumanoidCharacterProfile,
             args.Station);

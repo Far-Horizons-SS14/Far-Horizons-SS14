@@ -1,0 +1,29 @@
+- type: entity
+  parent: [BaseSecurityContraband, ClothingOuterWinterCoatToggleable]
+  id: ClothingOuterCoatCorpsmanFH
+  name: Corpsman's Armored Jacket
+  description: Heavily armored yet surprisingly comfortable jacket, a byproduct from the tendency of corpsmen to throw themselves directly into danger.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/Coats/corpsman.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/Coats/corpsman.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: equipped-OUTERCLOTHING
+  - type: Pierceable
+    level: Metal
+  - type: ZombificationResistance
+    zombificationResistanceCoefficient: 0.50
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.75
+        Slash: 0.75
+        Piercing: 0.60
+        Heat: 0.75
+        Caustic: 0.75
+  - type: ExplosionResistance
+    damageCoefficient: 0.95
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHatHoodCorpsman

@@ -1,0 +1,43 @@
+# Magistrate Helmet
+- type: entity
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
+  id: ClothingHeadHelmetHardsuitMagistrate
+  categories: [ HideSpawnMenu ]
+  name: Magistate Hardsuit Helmet
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Head/Hardsuits/magistrate.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Head/Hardsuits/magistrate.rsi
+  - type: PointLight
+    color: "#adeeff"
+  - type: PressureProtection
+    highPressureMultiplier: 0.45
+    lowPressureMultiplier: 10000
+
+# Corpsman Helmet
+- type: entity
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
+  id: ClothingHeadHelmetHardsuitCorpsman
+  name: corpsman hardsuit helmet
+  description: The reinforced helmet of a Corpsman. Protects against viruses and bullets.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Head/Hardsuits/corpsman.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Head/Hardsuits/corpsman.rsi
+  - type: PointLight
+    color: "#00FFFF"
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.95
+        Slash: 0.95
+        Piercing: 0.9
+        Heat: 0.9
+        Caustic: 0.85
+  - type: ZombificationResistance
+    zombificationResistanceCoefficient: 0.90 # Now it actually does!
+  - type: PressureProtection
+    highPressureMultiplier: 0.6
+    lowPressureMultiplier: 1000

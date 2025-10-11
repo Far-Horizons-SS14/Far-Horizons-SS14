@@ -8,7 +8,7 @@
     containers:
       board: [ DoorElectronicsService ]
   - type: Wires
-    layoutid: FHAirlockService
+    layoutId: AirlockService
 
 - type: entity
   parent: FHAirlockMaint
@@ -359,7 +359,7 @@
     containers:
       board: [ DoorElectronicsArmory ]
   - type: Wires
-    layoutid: FHAirlockArmory
+    layoutId: AirlockArmory
 
 - type: entity
   parent: FHAirlockSecurity

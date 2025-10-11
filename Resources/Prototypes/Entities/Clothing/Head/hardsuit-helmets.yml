@@ -13,7 +13,7 @@
   description: A special hardsuit helmet designed for working in low-pressure, high thermal environments.
   components:
   - type: Sprite
-    sprite: Clothing/Head/Hardsuits/atmospherics.rsi
+    sprite: _FarHorizons/Clothing/Head/Hardsuits/atmospherics.rsi #Far Horizons
     layers:
     - state: icon
     - state: icon-unshaded
@@ -33,12 +33,12 @@
       head-vox:
       - state: equipped-head-light-vox
         shader: unshaded
-      head-vulpkanin:
-      - state: equipped-head-light-vulpkanin
-        shader: unshaded
-      head-reptilian:
-      - state: equipped-head-light-reptilian
-        shader: unshaded
+    #  head-vulpkanin:                        #Far Horizons - Temporarily disabled for respriting
+    #  - state: equipped-head-light-vulpkanin
+    #    shader: unshaded
+    #  head-reptilian:
+    #  - state: equipped-head-light-reptilian
+    #    shader: unshaded
       head-dog:
       - state: equipped-head-light-dog
         shader: unshaded
@@ -52,14 +52,14 @@
       - state: equipped-head-vox
       - state: equipped-head-unshaded-vox
         shader: unshaded
-      head-vulpkanin:
-      - state: equipped-head-vulpkanin
-      - state: equipped-head-unshaded-vulpkanin
-        shader: unshaded
-      head-reptilian:
-      - state: equipped-head-reptilian
-      - state: equipped-head-unshaded-reptilian
-        shader: unshaded
+    #  head-vulpkanin:                        #Far Horizons - Temporarily disabled for respriting
+    #  - state: equipped-head-vulpkanin
+    #  - state: equipped-head-unshaded-vulpkanin
+    #    shader: unshaded
+    #  head-reptilian:
+    #  - state: equipped-head-reptilian
+    #  - state: equipped-head-unshaded-reptilian
+    #    shader: unshaded
       head-dog:
       - state: equipped-head-dog
       - state: equipped-head-unshaded-dog
@@ -87,7 +87,7 @@
   description: An engineering hardsuit helmet designed for working in low-pressure, high radioactive environments.
   components:
   - type: Sprite
-    sprite: Clothing/Head/Hardsuits/engineering.rsi
+    sprite: _FarHorizons/Clothing/Head/Hardsuits/engineering.rsi #Far Horizons
     layers:
     - state: icon
     - state: icon-unshaded
@@ -107,12 +107,12 @@
       head-vox:
       - state: equipped-head-light-vox
         shader: unshaded
-      head-vulpkanin:
-      - state: equipped-head-light-vulpkanin
-        shader: unshaded
-      head-reptilian:
-      - state: equipped-head-light-reptilian
-        shader: unshaded
+    #  head-vulpkanin:                        #Far Horizons - Temporarily disabled for respriting
+    #  - state: equipped-head-light-vulpkanin
+    #    shader: unshaded
+    #  head-reptilian:
+    #  - state: equipped-head-light-reptilian
+    #    shader: unshaded
       head-dog:
       - state: equipped-head-light-dog
         shader: unshaded
@@ -126,14 +126,14 @@
       - state: equipped-head-vox
       - state: equipped-head-unshaded-vox
         shader: unshaded
-      head-vulpkanin:
-      - state: equipped-head-vulpkanin
-      - state: equipped-head-unshaded-vulpkanin
-        shader: unshaded
-      head-reptilian:
-      - state: equipped-head-reptilian
-      - state: equipped-head-unshaded-reptilian
-        shader: unshaded
+    #  head-vulpkanin:                        #Far Horizons - Temporarily disabled for respriting
+    #  - state: equipped-head-vulpkanin
+    #  - state: equipped-head-unshaded-vulpkanin
+    #    shader: unshaded
+    #  head-reptilian:
+    #  - state: equipped-head-reptilian
+    #  - state: equipped-head-unshaded-reptilian
+    #    shader: unshaded
       head-dog:
       - state: equipped-head-dog
       - state: equipped-head-unshaded-dog
@@ -330,9 +330,9 @@
   description: Armored hardsuit helmet for security needs.
   components:
   - type: Sprite
-    sprite: Clothing/Head/Hardsuits/security.rsi
+    sprite: _FarHorizons/Clothing/Head/Hardsuits/security.rsi #Far Horizons
   - type: Clothing
-    sprite: Clothing/Head/Hardsuits/security.rsi
+    sprite: _FarHorizons/Clothing/Head/Hardsuits/security.rsi #Far Horizons
   - type: PointLight
     color: "#ffeead"
   - type: PressureProtection
@@ -372,6 +372,8 @@
         Heat: 0.95
         Radiation: 0.90
         Caustic: 0.90
+  - type: ZombificationResistance
+    zombificationResistanceCoefficient: 0.95 # Now it actually does! FH edit
   - type: PressureProtection
     highPressureMultiplier: 0.6
     lowPressureMultiplier: 1000
@@ -427,7 +429,7 @@
   description: Special hardsuit helmet, made for the chief engineer of the station.
   components:
   - type: Sprite
-    sprite: Clothing/Head/Hardsuits/engineering-white.rsi
+    sprite: _FarHorizons/Clothing/Head/Hardsuits/engineering-white.rsi #Far Horizons
     layers:
     - state: icon
     - state: icon-unshaded
@@ -447,12 +449,12 @@
       head-vox:
       - state: equipped-head-light-vox
         shader: unshaded
-      head-vulpkanin:
-      - state: equipped-head-light-vulpkanin
-        shader: unshaded
-      head-reptilian:
-      - state: equipped-head-light-reptilian
-        shader: unshaded
+    #  head-vulpkanin:                        #Far Horizons - Temporarily disabled for respriting
+    #  - state: equipped-head-light-vulpkanin
+    #    shader: unshaded
+    #  head-reptilian:
+    #  - state: equipped-head-light-reptilian
+    #    shader: unshaded
       head-dog:
       - state: equipped-head-light-dog
         shader: unshaded
@@ -466,14 +468,14 @@
       - state: equipped-head-vox
       - state: equipped-head-unshaded-vox
         shader: unshaded
-      head-vulpkanin:
-      - state: equipped-head-vulpkanin
-      - state: equipped-head-unshaded-vulpkanin
-        shader: unshaded
-      head-reptilian:
-      - state: equipped-head-reptilian
-      - state: equipped-head-unshaded-reptilian
-        shader: unshaded
+    #  head-vulpkanin:                        #Far Horizons - Temporarily disabled for respriting
+    #  - state: equipped-head-vulpkanin
+    #  - state: equipped-head-unshaded-vulpkanin
+    #    shader: unshaded
+    #  head-reptilian:
+    #  - state: equipped-head-reptilian
+    #  - state: equipped-head-unshaded-reptilian
+    #    shader: unshaded
       head-dog:
       - state: equipped-head-dog
       - state: equipped-head-unshaded-dog
@@ -540,9 +542,9 @@
   description: Security hardsuit helmet with the latest top secret NT-HUD software. Belongs to the HoS.
   components:
   - type: Sprite
-    sprite: Clothing/Head/Hardsuits/security-red.rsi
+    sprite: _FarHorizons/Clothing/Head/Hardsuits/security-red.rsi #Far Horizons
   - type: Clothing
-    sprite: Clothing/Head/Hardsuits/security-red.rsi
+    sprite: _FarHorizons/Clothing/Head/Hardsuits/security-red.rsi #Far Horizons
   - type: PointLight
     color: "#ffeead"
   - type: PressureProtection
@@ -584,9 +586,9 @@
   description: A heavily armored helmet designed for work in special operations. Property of Gorlex Marauders.
   components:
   - type: Sprite
-    sprite: Clothing/Head/Hardsuits/syndicate.rsi
+    sprite: _FarHorizons/Clothing/Head/Hardsuits/syndicate.rsi #Far Horizons
   - type: Clothing
-    sprite: Clothing/Head/Hardsuits/syndicate.rsi
+    sprite: _FarHorizons/Clothing/Head/Hardsuits/syndicate.rsi #Far Horizons
     clothingVisuals: # STARLIGHT
       head:
         - state: off-equipped-HELMET
@@ -673,9 +675,9 @@
   description: An advanced red hardsuit helmet specifically designed for field medic operations.
   components:
   - type: Sprite
-    sprite: Clothing/Head/Hardsuits/syndiemedic.rsi
+    sprite: _FarHorizons/Clothing/Head/Hardsuits/syndiemedic.rsi #Far Horizons
   - type: Clothing
-    sprite: Clothing/Head/Hardsuits/syndiemedic.rsi
+    sprite: _FarHorizons/Clothing/Head/Hardsuits/syndiemedic.rsi #Far Horizons
     clothingVisuals: # STARLIGHT
       head:
         - state: off-equipped-HELMET
@@ -758,9 +760,9 @@
   description: An elite version of the blood-red hardsuit's helmet, with improved radiation resistance and fireproofing. Property of Gorlex Marauders.
   components:
   - type: Sprite
-    sprite: Clothing/Head/Hardsuits/syndieelite.rsi
+    sprite: _FarHorizons/Clothing/Head/Hardsuits/syndieelite.rsi #Far Horizons
   - type: Clothing
-    sprite: Clothing/Head/Hardsuits/syndieelite.rsi
+    sprite: _FarHorizons/Clothing/Head/Hardsuits/syndieelite.rsi #Far Horizons
     clothingVisuals: # STARLIGHT
       head:
         - state: off-equipped-HELMET
@@ -853,9 +855,9 @@
   description: A bulked up version of the blood-red hardsuit's helmet, purpose-built for the commander of a syndicate operative squad. Has significantly improved armor for those deadly front-lines firefights.
   components:
   - type: Sprite
-    sprite: Clothing/Head/Hardsuits/syndiecommander.rsi
+    sprite: _FarHorizons/Clothing/Head/Hardsuits/syndiecommander.rsi #Far Horizons
   - type: Clothing
-    sprite: Clothing/Head/Hardsuits/syndiecommander.rsi
+    sprite: _FarHorizons/Clothing/Head/Hardsuits/syndiecommander.rsi #Far Horizons
     clothingVisuals: # STARLIGHT
       head:
         - state: off-equipped-HELMET
@@ -943,9 +945,9 @@
   description: Made of compressed red matter, this helmet was designed in the Tau chromosphere facility.
   components:
   - type: Sprite
-    sprite: Clothing/Head/Hardsuits/cybersun.rsi
+    sprite: _FarHorizons/Clothing/Head/Hardsuits/cybersun.rsi #Far Horizons
   - type: Clothing
-    sprite: Clothing/Head/Hardsuits/cybersun.rsi
+    sprite: _FarHorizons/Clothing/Head/Hardsuits/cybersun.rsi #Far Horizons
     clothingVisuals: # STARLIGHT
       head:
         - state: off-equipped-HELMET

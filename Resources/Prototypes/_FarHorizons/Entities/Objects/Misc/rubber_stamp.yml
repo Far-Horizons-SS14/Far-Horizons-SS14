@@ -16,3 +16,17 @@
     - type: Sprite
       sprite: _FarHorizons/Objects/Misc/stamps.rsi
       state: stamp-secret
+
+- type: entity
+  name: Corpsman rubber stamp
+  parent: [RubberStampBase, BaseSecurityContraband]
+  id: RubberStampCorpsman
+  categories: [ DoNotMap ]
+  components:
+    - type: Stamp
+      stampedName: "Corpsman"
+      stampedColor: "#14568B"
+      stampState: "paper_stamp-corpsman"
+    - type: Sprite
+      sprite: _FarHorizons/Objects/Misc/stamps.rsi
+      state: stamp-corpsman

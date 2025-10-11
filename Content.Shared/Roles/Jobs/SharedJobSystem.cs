@@ -12,7 +12,8 @@ namespace Content.Shared.Roles.Jobs;
 /// <summary>
 ///     Handles the job data on mind entities.
 /// </summary>
-public abstract class SharedJobSystem : EntitySystem
+/// Far Horizons: Make partial to add code to a separate file
+public abstract partial class SharedJobSystem : EntitySystem
 {
     [Dependency] private readonly SharedPlayerSystem _playerSystem = default!;
     [Dependency] private readonly IPrototypeManager _prototypes = default!;
@@ -187,7 +188,8 @@ public abstract class SharedJobSystem : EntitySystem
     {
         if (MindTryGetJob(mindId, out var prototype))
         {
-            name = prototype.LocalizedName;
+            // Far Horizons job name override
+            name = _factions.OverrideLocalizedJobName((MindGetFactionId(mindId), prototype));
             return true;
         }
 

@@ -671,6 +671,11 @@ namespace Content.Server.Database.Migrations.Postgres
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("FactionName")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("faction_name");
+
                     b.Property<string>("JobName")
                         .IsRequired()
                         .HasColumnType("text")
@@ -685,7 +690,7 @@ namespace Content.Server.Database.Migrations.Postgres
 
                     b.HasIndex("ProfileId");
 
-                    b.HasIndex("ProfileId", "JobName")
+                    b.HasIndex("ProfileId", "JobName", "FactionName")
                         .IsUnique();
 
                     b.ToTable("job", (string)null);
@@ -699,6 +704,11 @@ namespace Content.Server.Database.Migrations.Postgres
                         .HasColumnName("job_priority_entry_id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("FactionName")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("faction_name");
 
                     b.Property<string>("JobName")
                         .IsRequired()
@@ -723,6 +733,28 @@ namespace Content.Server.Database.Migrations.Postgres
                         .HasFilter("priority = 3");
 
                     b.ToTable("job_priority_entry", (string)null);
+                });
+
+            modelBuilder.Entity("Content.Server.Database.Mentor", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasColumnName("mentor_id");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("user_id");
+
+                    b.HasKey("Id")
+                        .HasName("PK_mentor");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
+
+                    b.ToTable("mentor", (string)null);
                 });
 
             modelBuilder.Entity("Content.Server.Database.PlayTime", b =>

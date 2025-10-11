@@ -47,9 +47,11 @@
         whitelist:
           components:
           - BloodPack
+          - AmmoniaPack
   - type: ContainerContainer
     containers:
-      pack: !type:ContainerSlot {}
+      board: !type:Container
+      pack: !type:ContainerSlot
 #  - type: InteractedBlacklist
 #    blacklist:
 #      components:

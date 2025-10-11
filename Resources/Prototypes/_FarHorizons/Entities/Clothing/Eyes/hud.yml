@@ -1,0 +1,20 @@
+- type: entity
+  parent: [ ClothingEyesBase, ShowSecurityIcons, BaseSecurityContraband ]
+  id: ClothingEyesHudCorpsman
+  name: corpsman hud
+  description: Super Tamashi-Upgraded hud. Corpsman one.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Eyes/Hud/corpsman.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Eyes/Hud/corpsman.rsi
+  - type: ShowHealthBars
+  - type: Construction
+    graph: GlassesSecHUD
+    node: glassesSec
+  - type: Tag
+    tags:
+    - HamsterWearable
+    - WhitelistChameleon
+  - type: IdentityBlocker
+    coverage: EYES

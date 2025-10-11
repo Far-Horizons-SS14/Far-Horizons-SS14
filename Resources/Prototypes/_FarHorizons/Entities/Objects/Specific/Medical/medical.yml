@@ -1,0 +1,64 @@
+- type: entity
+  name: Security Medical Treatment Kit
+  description: A heavy duty version of the first aid kit typically utilized by security medical staff.
+  parent: BaseStorageItem
+  id: SecurityMedkitFH
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Specific/Medical/firstaidkits.rsi
+    state: BrigKube
+  - type: Storage
+    whitelist:
+      tags:
+        - Bottle
+        - Brutepack
+        - Bloodpack
+        - AmmoniaPack
+        - Gauze
+        - Ointment
+        - PillCanister
+        - AutoMender
+      components:
+        - Hypospray
+        - Injector
+        - Pill
+    grid:
+    - 0,0,3,2
+  - type: Item
+    size: Normal
+    sprite: _FarHorizons/Objects/Specific/Medical/firstaidkits.rsi
+    heldPrefix: BrigKube
+  - type: PhysicalComposition
+    materialComposition:
+      Plastic: 150
+  - type: Tag
+    tags:
+    - Medkit
+
+- type: entity
+  name: Miniature Hypospray Case
+  description: A blast-resistant case to protect fragile glassware within for use inside the hypospray. #this is a lie since I can't add explosive damage resist.
+  parent: BaseStorageItem
+  id: SecurityHypoKit
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Specific/Medical/firstaidkits.rsi
+    state: HypoKit
+  - type: Storage
+    whitelist:
+      tags:
+        - ExternalContainerInjectorVial
+        - Hypospray
+    grid:
+    - 1,0,2,0
+    - 0,2,3,3
+  - type: Item
+    size: Normal
+    sprite: _FarHorizons/Objects/Specific/Medical/firstaidkits.rsi
+    heldPrefix: HypoKit
+  - type: PhysicalComposition
+    materialComposition:
+      Plastic: 150
+  - type: Tag
+    tags:
+    - Medkit

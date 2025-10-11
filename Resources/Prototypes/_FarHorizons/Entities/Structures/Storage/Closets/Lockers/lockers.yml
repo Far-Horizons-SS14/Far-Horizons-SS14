@@ -44,6 +44,8 @@
     stateDoorClosed: sec_L_door
   - type: AccessReader
     access: [["Security"]]
+  - type: EntityStorage
+    capacity: 50 # Big lockers tend to have more than 30 items in them
 
 - type: entity
   id: LockerSecurityLargeFHM
@@ -59,6 +61,8 @@
     stateDoorClosed: sec_M_door
   - type: AccessReader
     access: [["Security"]]
+  - type: EntityStorage
+    capacity: 50 # Big lockers tend to have more than 30 items in them
 
 - type: entity
   id: LockerSecurityLargeFHR
@@ -74,6 +78,8 @@
     stateDoorClosed: sec_R_door
   - type: AccessReader
     access: [["Security"]]
+  - type: EntityStorage
+    capacity: 50 # Big lockers tend to have more than 30 items in them
 
 # Warden
 - type: entity
@@ -141,6 +147,22 @@
   - type: AccessReader
     access: [["Brigmedic"]]
 
+# Corpsman
+- type: entity
+  id: LockerCorpsman
+  parent: LockerLargeBaseSecure
+  name: corpsman's locker
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Storage/closet.rsi
+  - type: EntityStorageVisuals
+    stateBaseClosed: brigmedic
+    stateDoorOpen: sec_open
+    stateDoorClosed: corpsman_door
+  - type: AccessReader
+    access: [["Brigmedic"]]
+
 # HoS
 - type: entity
   id: LockerHeadOfSecurityFH
@@ -156,5 +178,22 @@
     stateDoorClosed: hos_door
   - type: AccessReader
     access: [["HeadOfSecurity"]]
+  - type: WiresPanelSecurity
+    securityLevel: medSecurity
+
+- type: entity
+  id: LockerMagistrate
+  parent: LockerBaseSecure
+  name: Magistrate's Locker
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Storage/closet.rsi
+  - type: EntityStorageVisuals
+    stateBaseClosed: hos
+    stateDoorOpen: hos_open
+    stateDoorClosed: hos_door
+  - type: AccessReader
+    access: [["Magistrate"]]
   - type: WiresPanelSecurity
     securityLevel: medSecurity

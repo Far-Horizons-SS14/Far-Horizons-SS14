@@ -4,7 +4,7 @@
   abstract: true
   components:
   - type: Sprite
-    sprite: Structures/Wallmounts/posters.rsi
+    sprite: _FarHorizons/Structures/Wallmounts/posters.rsi #Far Horizons
   - type: Destructible
     thresholds:
     - trigger: # Excess damage, don't spawn entities
@@ -40,7 +40,7 @@
   components:
   - type: Sprite
     drawdepth: WallTops
-    sprite: Structures/Wallmounts/posters.rsi
+    sprite: _FarHorizons/Structures/Wallmounts/posters.rsi #Far Horizons
     state: poster_broken
   - type: Destructible
     thresholds:

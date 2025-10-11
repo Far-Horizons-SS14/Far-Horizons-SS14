@@ -9,9 +9,9 @@
   description: A special suit that protects against hazardous, low pressure environments. Has thermal shielding.
   components:
   - type: Sprite
-    sprite: Clothing/OuterClothing/Hardsuits/atmospherics.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/atmospherics.rsi #Far Horizons
   - type: Clothing
-    sprite: Clothing/OuterClothing/Hardsuits/atmospherics.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/atmospherics.rsi #Far Horizons
   - type: PressureProtection
     highPressureMultiplier: 0.02
     lowPressureMultiplier: 1000
@@ -52,9 +52,9 @@
   description: A special suit that protects against hazardous, low pressure environments. Has radiation shielding.
   components:
   - type: Sprite
-    sprite: Clothing/OuterClothing/Hardsuits/engineering.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/engineering.rsi #Far Horizons
   - type: Clothing
-    sprite: Clothing/OuterClothing/Hardsuits/engineering.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/engineering.rsi #Far Horizons
   - type: PressureProtection
     highPressureMultiplier: 0.04
     lowPressureMultiplier: 1000
@@ -266,9 +266,9 @@
   description: A special suit that protects against hazardous, low pressure environments. Has an additional layer of armor.
   components:
   - type: Sprite
-    sprite: Clothing/OuterClothing/Hardsuits/security.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/security.rsi #Far Horizons
   - type: Clothing
-    sprite: Clothing/OuterClothing/Hardsuits/security.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/security.rsi #Far Horizons
   - type: PressureProtection
     highPressureMultiplier: 0.5
     lowPressureMultiplier: 1000
@@ -282,7 +282,7 @@
         Blunt: 0.6
         Slash: 0.6
         Piercing: 0.6
-        Heat: 0.7 # Starlight Edit
+        Heat: 0.6 #FH edit
         Caustic: 0.7
     staminaModifier: 0.5 # SL: Default stun resistance
   - type: ClothingSpeedModifier
@@ -305,30 +305,30 @@
   description: Special hardsuit of the guardian angel of the brig. It is the medical version of the security hardsuit.
   components:
   - type: Sprite
-    sprite: Clothing/OuterClothing/Hardsuits/brigmedic.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/brigmedic.rsi #Far Horizons
   - type: Clothing
-    sprite: Clothing/OuterClothing/Hardsuits/brigmedic.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/brigmedic.rsi #Far Horizons
   - type: PressureProtection
     highPressureMultiplier: 0.3
     lowPressureMultiplier: 1000
   - type: ExplosionResistance
-    damageCoefficient: 0.4
+    damageCoefficient: 0.7 #FH edit
   - type: Pierceable
     level: Metal
   - type: Armor
     modifiers:
       coefficients:
         Blunt: 0.7
-        Slash: 0.6
-        Piercing: 0.6 # Starlight edit
+        Slash: 0.7 #FH edit
+        Piercing: 0.7 #FH edit
         Heat: 0.7 # Starlight Edit
         Caustic: 0.7
     staminaModifier: 0.7
   - type: ZombificationResistance
-    zombificationResistanceCoefficient: 0.7 # Starlight
+    zombificationResistanceCoefficient: 0.6 #FH edit
   - type: ClothingSpeedModifier
-    walkModifier: 0.80
-    sprintModifier: 0.80
+    walkModifier: 0.85 #FH edit
+    sprintModifier: 0.85 #FH edit
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitBrigmedic
@@ -341,9 +341,9 @@
   description: A specialized, heavy riot suit geared to combat low pressure environments.
   components:
   - type: Sprite
-    sprite: Clothing/OuterClothing/Hardsuits/security-warden.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/security-warden.rsi #Far Horizons
   - type: Clothing
-    sprite: Clothing/OuterClothing/Hardsuits/security-warden.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/security-warden.rsi #Far Horizons
   - type: PressureProtection
     highPressureMultiplier: 0.5
     lowPressureMultiplier: 1000
@@ -357,7 +357,7 @@
         Blunt: 0.4
         Slash: 0.5
         Piercing: 0.6
-        Heat: 0.7 # Starlight Edit
+        Heat: 0.6 #FH edit
         Caustic: 0.7
     staminaModifier: 0.5 # SL: Default stun resistance
   - type: ClothingSpeedModifier
@@ -415,9 +415,9 @@
   description: A special hardsuit that protects against hazardous, low pressure environments, made for the chief engineer of the station.
   components:
   - type: Sprite
-    sprite: Clothing/OuterClothing/Hardsuits/engineering-white.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/engineering-white.rsi #Far Horizons
   - type: Clothing
-    sprite: Clothing/OuterClothing/Hardsuits/engineering-white.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/engineering-white.rsi #Far Horizons
   - type: PressureProtection
     highPressureMultiplier: 0.02
     lowPressureMultiplier: 1000
@@ -554,7 +554,7 @@
         Blunt: 0.6
         Slash: 0.5
         Piercing: 0.5
-        Heat: 0.7 # Starlight Edit
+        Heat: 0.5 #FH edit
         Radiation: 0.5
         Caustic: 0.6
     staminaModifier: 0.6

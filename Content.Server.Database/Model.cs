@@ -22,6 +22,7 @@ namespace Content.Server.Database
         public DbSet<Preference> Preference { get; set; } = null!;
         public DbSet<Profile> Profile { get; set; } = null!;
         public DbSet<AssignedUserId> AssignedUserId { get; set; } = null!;
+        public DbSet<Mentor> Mentor { get; set; } = null!;
         public DbSet<Player> Player { get; set; } = default!;
         public DbSet<Admin> Admin { get; set; } = null!;
         public DbSet<AdminRank> AdminRank { get; set; } = null!;
@@ -111,7 +112,7 @@ namespace Content.Server.Database
                 .HasIndex(j => j.ProfileId);
 
             modelBuilder.Entity<Job>()
-                .HasIndex(j => new { j.ProfileId, j.JobName })
+                .HasIndex(j => new { j.ProfileId, j.JobName, j.FactionName }) // Far Horizons, instead of indexing (profile, job), we index (profile, job, faction)
                 .IsUnique();
 
             modelBuilder.Entity<AssignedUserId>()
@@ -120,6 +121,10 @@ namespace Content.Server.Database
 
             // Can't have two usernames with the same user ID.
             modelBuilder.Entity<AssignedUserId>()
+                .HasIndex(p => p.UserId)
+                .IsUnique();
+
+            modelBuilder.Entity<Mentor>()
                 .HasIndex(p => p.UserId)
                 .IsUnique();
 
@@ -447,7 +452,7 @@ namespace Content.Server.Database
         public int Id { get; set; }
         public Profile Profile { get; set; } = null!;
         public int ProfileId { get; set; }
-
+        public string FactionName { get; set; } = null!; // Far Horizons - new field, which is also indexing key, for factions
         public string JobName { get; set; } = null!;
     }
 
@@ -456,7 +461,7 @@ namespace Content.Server.Database
         public int Id { get; set; }
         public Preference Preference { get; set; } = null!;
         public int PreferenceId { get; set; }
-
+        public string FactionName { get; set; } = null!; // Far Horizons - another faction field, this time isn't the key. What, you expected consistency? I don't make the rules
         public string JobName { get; set; } = null!;
         public DbJobPriority Priority { get; set; }
     }
@@ -572,6 +577,12 @@ namespace Content.Server.Database
         public int Id { get; set; }
         public string UserName { get; set; } = null!;
 
+        public Guid UserId { get; set; }
+    }
+
+    public class Mentor
+    {
+        public int Id { get; set; }
         public Guid UserId { get; set; }
     }
 
