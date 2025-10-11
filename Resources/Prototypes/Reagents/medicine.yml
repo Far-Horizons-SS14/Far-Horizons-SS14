@@ -1137,7 +1137,7 @@
       - !type:HealthChange
         damage:
           types:
-            Slash: -4 #FH
+            Slash: -3.5 #FH
             Blunt: 1 #FH
       - !type:ModifyBleedAmount #FH
         amount: -1.5 #FH
@@ -1164,7 +1164,7 @@
       - !type:HealthChange
         damage:
           types:
-            Piercing: -4 #FH = 8 per u / 5u = 40 Piercing healed - 10 Blunt = 30 Piercing total
+            Piercing: -3.5 #FH = 7 per u / 5u = 35 Piercing healed - 10 Blunt = 25 Piercing total
             Blunt: 1 #FH = 2 per u
       - !type:ModifyBleedAmount #FH - Real reason to use over bic.
         amount: -1.5 #FH
@@ -1191,7 +1191,7 @@
       - !type:HealthChange
         damage:
           types:
-            Blunt: -3 #FH - Heals less due to no drawback
+            Blunt: -2.5 #FH - Heals less due to no drawback
       - !type:SatiateHunger
         factor: -1
       - !type:HealthChange
