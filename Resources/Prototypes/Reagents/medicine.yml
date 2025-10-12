@@ -626,14 +626,13 @@
         min: 4
   metabolisms:
     Medicine:
-      metabolismRate: 0.1
+      metabolismRate: 0.5
       effects:
       - !type:HealthChange
         damage:
           types:
-            Cellular: -0.3
-            Radiation: 0.15
-            Caustic: 0.15
+            Cellular: -1
+            Radiation: 1
       - !type:HealthChange
         conditions:
         - !type:ReagentThreshold
@@ -641,14 +640,6 @@
         damage:
           types:
             Radiation: 0.2
-      - !type:HealthChange
-        conditions:
-        - !type:ReagentThreshold
-          reagent: Arithrazine
-          min: 1
-        damage:
-          types:
-            Caustic: 0.3
 
 - type: reagent
   id: PolypyryliumOligomers
@@ -1132,20 +1123,22 @@
   color: "#283332"
   metabolisms:
     Medicine:
-      metabolismRate: 0.25
+      metabolismRate: 0.5 #FH
       effects:
       - !type:HealthChange
         damage:
           types:
-            Slash: -2 # 8 per u
-            Heat: 0.2 # 0.8 per u
+            Slash: -3 #FH
+            Blunt: 0.5 #FH
+      - !type:ModifyBleedAmount #FH
+        amount: -1.5 #FH
       - !type:HealthChange
         conditions:
         - !type:ReagentThreshold
           min: 12
         damage:
           types:
-            Cold: 1.5 # 6 per u
+            Blunt: 2 #FH
 
 - type: reagent
   id: Puncturase
@@ -1157,20 +1150,22 @@
   color: "#b9bf93"
   metabolisms:
     Medicine:
-      metabolismRate: 0.25
+      metabolismRate: 0.5 #FH
       effects:
       - !type:HealthChange
         damage:
           types:
-            Piercing: -2.5 # 10 per u
-            Radiation: 0.05 # 0.2 per u, 3 for 15u
+            Piercing: -3 #FH = 6 per u / 5u = 30 Piercing healed - 5 Blunt = 25 Piercing total
+            Blunt: 0.5 #FH = 1 per u
+      - !type:ModifyBleedAmount #FH - Real reason to use over bic.
+        amount: -1.5 #FH
       - !type:HealthChange
         conditions:
         - !type:ReagentThreshold
           min: 12
         damage:
           types:
-            Blunt: 3 # 12 per u
+            Blunt: 2 #FH
 
 - type: reagent
   id: Bruizine
@@ -1182,21 +1177,21 @@
   color: "#ff3636"
   metabolisms:
     Medicine:
-      metabolismRate: 0.25
+      metabolismRate: 0.5
       effects:
       - !type:HealthChange
         damage:
           types:
-            Blunt: -2.25 # 9 per u
+            Blunt: -2.5 #FH - Heals less due to no drawback
       - !type:SatiateHunger
         factor: -1
       - !type:HealthChange
         conditions:
         - !type:ReagentThreshold
-          min: 10.5
+          min: 12 #FH
         damage:
           types:
-            Poison: 2.5 # 10 per u
+            Poison: 2 #FH
 
 - type: reagent
   id: Holywater
