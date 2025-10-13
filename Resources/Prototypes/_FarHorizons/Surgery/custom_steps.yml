@@ -13,9 +13,92 @@
     sprite: Objects/Specific/Medical/Surgery/scalpel.rsi
     state: scalpel
   - type: SurgeryAlterAppearance
-  #FarHorizons Start
   - type: OnFailDamage
     damage: 
       types:
         Slash: 10
-  #FarHorizons End
+
+#TendWound Surgery Start
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepCarefulIncision
+  name: Make Careful Incision
+  components:
+  - type: SurgeryStep
+    duration: 10
+    tools:
+      - type: Scalpel
+  - type: Sprite
+    sprite: Objects/Specific/Medical/Surgery/scalpel.rsi
+    state: scalpel
+  - type: OnFailDamage
+    damage: 
+      types:
+        Slash: 10
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepRepairBrute 
+  name: Repair Brute Damage [Repeatable]
+  components:
+  - type: SurgeryStep
+    repeatable: true
+    duration: 5
+    tools:
+      - type: Hemostat
+  - type: Sprite
+    sprite: Objects/Specific/Medical/Surgery/scissors.rsi
+    state: hemostat
+  - type: HealDamage
+    damage: 
+      types:
+        Blunt: -5
+        Slash: -5
+        Pierce: -5
+  - type: OnFailDamage
+    damage: 
+      types:
+        Pierce: 10
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepRepairBurn
+  name: Repair Burn Damage [Repeatable]
+  components:
+  - type: SurgeryStep
+    repeatable: true
+    duration: 5
+    tools:
+      - type: Hemostat
+  - type: Sprite
+    sprite: Objects/Specific/Medical/Surgery/scissors.rsi
+    state: hemostat
+  - type: HealDamage
+    damage: 
+      types:
+        Heat: -5
+        Cold: -5
+        Caustic: -5
+  - type: OnFailDamage
+    damage: 
+      types:
+        Pierce: 10
+  
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepSealWound
+  name: Seal Wound
+  components:
+  - type: SurgeryStep
+    tools:
+    - type: Cautery
+  - type: Sprite
+    sprite: Objects/Specific/Medical/Surgery/cautery.rsi
+    state: cautery
+  - type: SurgeryStepEmoteEffect
+  - type: SurgeryClearProgress
+  - type: OnFailDamage
+    damage: 
+      types:
+        Heat: 10
+#TendWound Surgery End

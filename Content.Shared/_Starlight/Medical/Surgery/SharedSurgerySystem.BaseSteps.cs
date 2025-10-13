@@ -89,6 +89,7 @@ public abstract partial class SharedSurgerySystem
         var progress = Comp<SurgeryProgressComponent>(args.Part);
         progress.CompletedSteps.Clear();
         progress.CompletedSurgeries.Clear();
+        progress.ActiveRepeatableStep = default; //FarHorizons
     }
     /*
     private void OnStepComplete(Entity<SurgeryStepComponent> ent, ref SurgeryStepCompleteEvent args)

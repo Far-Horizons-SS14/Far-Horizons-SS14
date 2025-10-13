@@ -15,7 +15,35 @@
     parts:
     - Head
   - type: Sprite
-    sprite: Mobs/Species/Human/organs.rsi
-    state: brain
+    sprite: Mobs/Species/Human/parts.rsi
+    state: head_m
 
-    
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryTendBrute
+  name: Tend Brute Wound
+  description: Heals Brute Injuries.
+  components:
+  - type: Surgery
+    steps:
+    - SurgeryStepCarefulIncision
+    - SurgeryStepRepairBrute 
+    - SurgeryStepSealWound
+  - type: SurgeryPartCondition
+    parts:
+    - Torso
+
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryTendBurn
+  name: Tend Burn Wounds
+  description: Heals Burn Injuries.
+  components:
+  - type: Surgery
+    steps:
+    - SurgeryStepCarefulIncision
+    - SurgeryStepRepairBurn 
+    - SurgeryStepSealWound
+  - type: SurgeryPartCondition
+    parts:
+    - Torso
