@@ -154,7 +154,6 @@ namespace Content.IntegrationTests.Tests
             "StarlightCrescent",
             "StarlightElkridge",
             "StarlightExo",
-            "StarlightFland",
             "StarlightHotel",
             "StarlightMarathon",
             "StarlightOasis",
@@ -166,6 +165,7 @@ namespace Content.IntegrationTests.Tests
             #endregion
             #region Far Horizons
             "FHMeta",
+            "FHFland"
             #endregion
         };
 
