@@ -24,11 +24,7 @@ public sealed class CCUplinkSystem : EntitySystem
 
     private void OnImplantImplanted(EntityUid uid, CCUplinkImplantComponent component, ref ImplantImplantedEvent args)
     {
-        
-        if (args.Implanted == null)
-            return;
-
-        var ev = new CCAgentInitializedEvent(args.Implanted.Value);
+        var ev = new CCAgentInitializedEvent(args.Implanted);
         RaiseLocalEvent(uid, ref ev);
         
         // register user as special agent

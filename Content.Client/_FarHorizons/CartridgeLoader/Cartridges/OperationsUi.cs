@@ -1,5 +1,4 @@
-﻿using Content.Client.CartridgeLoader.Cartridges;
-using Content.Client.UserInterface.Fragments;
+﻿using Content.Client.UserInterface.Fragments;
 using Content.Shared.CartridgeLoader.Cartridges;
 using Robust.Client.UserInterface;
 
