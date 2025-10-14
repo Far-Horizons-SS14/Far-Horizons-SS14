@@ -50,11 +50,8 @@ public abstract partial class SharedSurgerySystem
                 Dirty(args.Target.Value, dirtyPart, Comp<MetaDataComponent>(args.Target.Value));
             return;
         }
-
-        if (!_random.Prob(args.SuccessRate))
+        if (args.DidSurgeryFail)
         {
-            if (_net.IsClient) return;
-
             var StepProto = _prototypes.Index<EntityPrototype>(args.Step);
             if (StepProto.TryGetComponent<OnFailDamageComponent>(out var comp) && TryComp<BodyPartComponent>(args.Target, out var bodyComp))
             {
@@ -65,22 +62,23 @@ public abstract partial class SharedSurgerySystem
             args.Handled = true;
             return;
         }
-
-        var ev = new SurgeryStepEvent(args.User, ent, part, GetTools(args.User))
+        else
         {
-            StepProto = args.Step,
-            SurgeryProto = args.Surgery,
-        };
-        RaiseLocalEvent(step, ref ev);
-        if (ev.IsCancelled) return;
-        var evComplete = new SurgeryStepCompleteEvent(args.User, ent, part, GetTools(args.User))
-        {
-            StepProto = args.Step,
-            SurgeryProto = args.Surgery,
-            IsFinal = surgery.Comp.Steps[^1] == args.Step,
-        };
-        RaiseLocalEvent(step, ref evComplete);
-
+            var ev = new SurgeryStepEvent(args.User, ent, part, GetTools(args.User))
+            {
+                StepProto = args.Step,
+                SurgeryProto = args.Surgery,
+            };
+            RaiseLocalEvent(step, ref ev);
+            if (ev.IsCancelled) return;
+            var evComplete = new SurgeryStepCompleteEvent(args.User, ent, part, GetTools(args.User))
+            {
+                StepProto = args.Step,
+                SurgeryProto = args.Surgery,
+                IsFinal = surgery.Comp.Steps[^1] == args.Step,
+            };
+            RaiseLocalEvent(step, ref evComplete);
+        }
         RefreshUI(ent);
     }
 
@@ -205,9 +203,9 @@ public abstract partial class SharedSurgerySystem
 
     private void OnCanPerformStep(Entity<SurgeryStepComponent> ent, ref SurgeryCanPerformStepEvent args)
     {
-        if ((HasComp<SurgeryOperatingTableConditionComponent>(ent)
-            && (!TryComp(args.Body, out BuckleComponent? buckle) || !HasComp<OperatingTableComponent>(buckle.BuckledTo)))
-             || !HasComp<KnockedDownComponent>(args.Body)) // FarHorizons
+        if (HasComp<SurgeryOperatingTableConditionComponent>(ent)
+            && (!TryComp(args.Body, out BuckleComponent? buckle) || !HasComp<OperatingTableComponent>(buckle.BuckledTo)
+             || !HasComp<KnockedDownComponent>(args.Body))) // FarHorizons
         {
             args.Invalid = StepInvalidReason.NeedsOperatingTable;
             return;
@@ -309,7 +307,7 @@ public abstract partial class SharedSurgerySystem
 
         var duration = stepComp.Duration;
         float SmallestSuccessRate = 1f;
-
+        bool didSurgeryFail = false; //FarHorizons
         foreach (var tool in validTools)
             if (TryComp(tool, out SurgeryToolComponent? toolComp))
             {
@@ -317,6 +315,7 @@ public abstract partial class SharedSurgerySystem
                 var durationCap = duration * 2;
                 var durationToSuccessRate = 0f;
                 var bedSpeedMod = 2f;
+
                 if (TryComp(body, out BuckleComponent? buckle) && TryComp(buckle.BuckledTo, out SurgeryBedSpeedComponent? bedComp))
                     bedSpeedMod = bedComp.BedSpeedModifier;
                 duration = duration * toolComp.Speed * bedSpeedMod;
@@ -334,12 +333,14 @@ public abstract partial class SharedSurgerySystem
 
                 if (totalSuccesRate < SmallestSuccessRate)
                     SmallestSuccessRate = totalSuccesRate;
-                //FarHorizons End
             }
+        if (!_random.Prob(SmallestSuccessRate))
+            didSurgeryFail = true;
+        //FarHorizons End
         if (TryComp(body, out TransformComponent? xform))
             _rotateToFace.TryFaceCoordinates(user, _transform.GetMapCoordinates(body, xform).Position);
 
-        var ev = new SurgeryDoAfterEvent(args.Surgery, args.Step, SmallestSuccessRate);
+        var ev = new SurgeryDoAfterEvent(args.Surgery, args.Step, didSurgeryFail);
         var doAfter = new DoAfterArgs(EntityManager, user, duration, ev, body, part)
         {
             //FarHorizons Start
@@ -394,9 +395,9 @@ public abstract partial class SharedSurgerySystem
         {
             foreach (var requirement in requirements)
             {
-                if (!_entitySystem.TryGetSingleton(requirement, out var requiredEnt)
+                if ((!_entitySystem.TryGetSingleton(requirement, out var requiredEnt)
                     || !TryComp(requiredEnt, out SurgeryComponent? requiredComp)
-                    || !PreviousStepsComplete(body, part, (requiredEnt, requiredComp), step)
+                    || !PreviousStepsComplete(body, part, (requiredEnt, requiredComp), step))
                     && IsSurgeryValid(body, part, requirement, step, out _, out _, out _))
                     return false;
             }
