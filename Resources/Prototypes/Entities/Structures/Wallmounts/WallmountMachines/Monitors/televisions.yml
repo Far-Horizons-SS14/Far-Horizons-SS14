@@ -4,6 +4,7 @@
   suffix: entertainment
   name: television
   description: Finally, some decent reception around here...
+  abstract: true
   components:
   - type: Construction
     graph: WallmountTelevision
@@ -15,6 +16,7 @@
         state: television_wall
       - map: ["computerLayerScreen"]
         state: television_wallscreen
+        shader: unshaded
   - type: DeviceNetwork
     deviceNetId: Wireless
     receiveFrequencyId: SurveillanceCamera
@@ -33,10 +35,23 @@
     interfaces:
         enum.SurveillanceCameraMonitorUiKey.Key:
           type: SurveillanceCameraMonitorBoundUserInterface
+  #Far Horizons-Start
+  - type: ApcPowerReceiver
+    powerLoad: 50
+  - type: LitOnPowered
+  - type: GenericVisualizer
+    visuals:
+      enum.PowerDeviceVisuals.Powered:
+        computerLayerScreen:
+          True: { visible: true }
+          False: { visible: false }
   - type: PointLight
-    radius: 1.5
-    energy: 1.6
-    color: "#b89f25"
+    enabled: true
+    energy: 2
+    radius: 2.5
+    offset: 0.0, -.75
+    color: "#ffffff"
+  #Far Horizons-End
   - type: Destructible
     thresholds:
       - trigger:
