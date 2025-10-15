@@ -7,3 +7,7 @@ cc-operations-age-label = [color=darkgray]Age:[/color] [color=white]{$age}[/colo
 cc-operations-job-label = [color=darkgray]Job:[/color] [color=white]{$job}[/color]
 cc-operations-species-label = [color=darkgray]Species:[/color] [color=white]{$species}[/color]
 cc-operations-gender-label = [color=darkgray]Gender:[/color] [color=white]{$gender}[/color]
+
+cc-operations-uplink-label = [color=darkgray]Uplink open:[/color] [color=white]{status}[/color]
+cc-operations-toggle-uplink-button = Toggle
+cc-operations-neutralize-button = Neutralize agent

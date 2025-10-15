@@ -40,10 +40,10 @@
                     <RichTextLabel Name="TargetSpecies" />
                     <RichTextLabel Name="TargetGender" />
                     <PanelContainer StyleClasses="LowDivider" Margin="0 5 0 5"/>
-                    <RichTextLabel Name="InitiatorName" VerticalAlignment="Stretch"/>
-                    <RichTextLabel Name="WantedReason" VerticalAlignment="Stretch"/>
+                    <RichTextLabel Name="UplinkStatus" VerticalAlignment="Stretch"/>
+                    <Button Name="UplinkToggleButton" HorizontalAlignment="Left" Text="{Loc 'cc-operations-toggle-uplink-button'}" />
                     <PanelContainer StyleClasses="LowDivider" Margin="0 5 0 5" />
-                    <controls:TableContainer Name="HistoryTable" Columns="3" Visible="False" HorizontalAlignment="Stretch" />
+                    <Button Name="NeutralizeButton" HorizontalAlignment="Left" Text="{Loc 'cc-operations-neutralize-button'}" />
                 </BoxContainer>
             </ScrollContainer>
         </BoxContainer>

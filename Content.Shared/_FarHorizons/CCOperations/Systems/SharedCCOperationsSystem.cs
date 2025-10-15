@@ -6,34 +6,39 @@ public abstract class SharedCCOperationsSystem : EntitySystem
 {
 }
 
-[Serializable, NetSerializable]
-public struct CCOperativeAgent(int id)
-{
-    public int Id = id;  // expected to be character uid (basically user netId)
-    public bool UplinkOpen = false;
-}
-
 [ByRefEvent]
-public readonly struct CCAgentInitializedEvent
+public readonly struct CCAgentInitializedEvent(CCOperativeAgent agent)
 {
-    public readonly EntityUid AgentId;
+    public readonly CCOperativeAgent Agent = agent;
+}
 
-    public CCAgentInitializedEvent(EntityUid agentId)
-    {
-        AgentId = agentId;
-    }
+public readonly struct CCAgentUpdatedEvent(CCOperativeAgent agent)
+{
+    public readonly CCOperativeAgent Agent = agent;
 }
 
 [Serializable, NetSerializable]
-public struct CCOperativeAgentUiItem(
+public sealed class CCAgentToggleUplinkMessage(int agentId, bool uplinkStatus) : EntityEventArgs
+{
+    public readonly int AgentId = agentId;
+    public readonly bool UplinkStatus = uplinkStatus;
+}
+
+[Serializable, NetSerializable]
+public sealed class CCNeutralizeAgentMessage(int agentId) : EntityEventArgs
+{
+    public readonly int AgentId = agentId;
+}
+
+[Serializable, NetSerializable]
+public struct CCOperativeAgent(
     int id,
     bool uplinkOpen,
     string name,
     int age,
     string jobTitle,
     string species,
-    string gender,
-    string state
+    string gender
 )
 {
     public int Id = id;
@@ -43,5 +48,4 @@ public struct CCOperativeAgentUiItem(
     public string JobTitle = jobTitle;
     public string Species = species;
     public string Gender = gender;
-    public string State = state;
 }
