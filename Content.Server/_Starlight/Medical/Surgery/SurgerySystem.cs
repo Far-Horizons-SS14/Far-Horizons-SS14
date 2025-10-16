@@ -14,7 +14,7 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using Content.Shared._FarHorizons.Medical.SurgeryOverhaul.Systems;
-
+using Content.Shared._FarHorizons.Medical.SurgeryOverhaul.Components;
 namespace Content.Server.Starlight.Medical.Surgery;
 // Based on the RMC14.
 // https://github.com/RMC-14/RMC-14
@@ -78,6 +78,7 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
                 continue;
 
             var ev = new SurgeryValidEvent(body, part);
+            
 
             var isCompleted = progress.CompletedSurgeries.Contains(surgery);
             if (!progress.StartedSurgeries.Contains(surgery)
@@ -88,8 +89,10 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
                 if (ev.Cancelled)
                     continue;
             }
-
-            surgeries.GetOrNew(GetNetEntity(part)).Add((surgery, ev.Suffix, isCompleted));
+            if (!TryComp<RequiredTechnologyComponent>(surgeryEnt, out var reqComp))
+            {
+                surgeries.GetOrNew(GetNetEntity(part)).Add((surgery, ev.Suffix, isCompleted));
+            }
         }
     }
 

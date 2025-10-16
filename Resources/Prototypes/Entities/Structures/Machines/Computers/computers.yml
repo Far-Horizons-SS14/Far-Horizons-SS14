@@ -664,6 +664,8 @@
     interfaces:
       enum.HealthAnalyzerUiKey.Key:
         type: HealthAnalyzerBoundUserInterface
+      enum.ResearchClientUiKey.Key:
+        type: ResearchClientBoundUserInterface
   - type: DeviceList
   - type: DeviceNetwork
     deviceNetId: Wired
@@ -672,6 +674,11 @@
     ports:
       - BodyScannerSender
   # Starlight-end
+  #FarHorizons Start
+  - type: ResearchClient
+  - type: TechnologyDatabase
+  - type: ActivatableUIRequiresPower
+  #FarHorizons End
 
 - type: entity
   parent: BaseComputerAiAccess
