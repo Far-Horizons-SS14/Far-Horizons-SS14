@@ -225,7 +225,6 @@ public sealed class SurgeryBui : BoundUserInterface
     {
         if (_window == null)
             return;
-
         _part = _entities.GetEntity(netPart);
         _surgery = (surgery, surgeryId);
 
@@ -266,15 +265,14 @@ public sealed class SurgeryBui : BoundUserInterface
             AddStep(stepId, netPart, surgeryId);
         }
 
-        View(ViewType.Steps);
         RefreshUI();
+        View(ViewType.Steps);
     }
 
     private void OnPartPressed(NetEntity netPart, List<(EntProtoId, string, bool)> surgeryIds)
     {
         if (_window == null)
             return;
-
         _part = _entities.GetEntity(netPart);
 
         _window.Surgeries.DisposeAllChildren();
@@ -313,7 +311,6 @@ public sealed class SurgeryBui : BoundUserInterface
             _window.Surgeries.AddChild(surgeryButton);
         }
 
-        RefreshUI();
         View(ViewType.Surgeries);
     }
 
@@ -325,7 +322,6 @@ public sealed class SurgeryBui : BoundUserInterface
         {
             return;
         }
-
         var next = _system.GetNextStep(Owner, _part.Value, _surgery.Value.Ent);
         var i = 0;
         foreach (var child in _window.Steps.Children)

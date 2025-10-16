@@ -13,7 +13,7 @@ using Robust.Server.Containers;
 using Robust.Server.GameObjects;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
-using Content.Server.Administration.Systems;
+using Content.Shared._FarHorizons.Medical.SurgeryOverhaul.Systems;
 
 namespace Content.Server.Starlight.Medical.Surgery;
 // Based on the RMC14.
@@ -27,6 +27,7 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
     [Dependency] private readonly ContainerSystem _containers = default!;
+    [Dependency] private readonly SurgeryOverhaulSystem _surgery = default!;
 
     private readonly List<EntProtoId> _surgeries = [];
     public override void Initialize()

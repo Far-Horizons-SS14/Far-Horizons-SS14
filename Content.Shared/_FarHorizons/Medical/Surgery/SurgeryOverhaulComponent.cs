@@ -3,7 +3,6 @@ using Content.Shared.Damage;
 using Robust.Shared.Prototypes;
 using Content.Shared.Chat.Prototypes;
 using Content.Shared.Research.Prototypes;
-using System.Collections.Generic;
 
 namespace Content.Shared._FarHorizons.Medical.SurgeryOverhaul.Components;
 

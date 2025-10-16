@@ -12,7 +12,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared._FarHorizons.Medical.SurgeryOverhaul.Systems;
 
-public sealed class SurgeryOverhaulSystem : EntitySystem
+public sealed partial class SurgeryOverhaulSystem : EntitySystem
 {
     [Dependency] private readonly MetaDataSystem _metaData = default!;
     [Dependency] private readonly SharedHumanoidAppearanceSystem _humanoidAppearance = default!;
@@ -69,7 +69,8 @@ public sealed class SurgeryOverhaulSystem : EntitySystem
             _damageableSystem.TryChangeDamage(args.Body, TotalHeal);
         }
     }
-    
+
+    public bool TryCheckForTech(string name) => CheckForTech(name);
     private bool CheckForTech(string name)
     {
         var query = EntityQueryEnumerator<TechnologyDatabaseComponent>();
