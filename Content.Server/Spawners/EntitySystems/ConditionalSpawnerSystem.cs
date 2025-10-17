@@ -120,17 +120,13 @@ namespace Content.Server.Spawners.EntitySystems
 
             // Far Horizons start
             // Making spawners rotateable and rotation is transferred to spawned entity
-            if (TryComp(uid, out TransformComponent? transform))
-            {
-                var coordinates = _transform.GetMapCoordinates(uid, transform).Offset(new Vector2(xOffset, yOffset));
+            
 
-                Spawn(_robustRandom.Pick(component.Prototypes), coordinates, null, transform.LocalRotation);
-            } else {
+            var coordinates = Transform(uid).Coordinates.Offset(new Vector2(xOffset, yOffset));
+            var rotation = Transform(uid).LocalRotation;
+            var spawned = Spawn(_robustRandom.Pick(component.Prototypes), coordinates);
+            _transform.SetLocalRotation(spawned, rotation);
             // Far Horizons end
-                var coordinates = Transform(uid).Coordinates.Offset(new Vector2(xOffset, yOffset));
-
-                Spawn(_robustRandom.Pick(component.Prototypes), coordinates);
-            }
         }
 
         private void Spawn(Entity<EntityTableSpawnerComponent> ent)
