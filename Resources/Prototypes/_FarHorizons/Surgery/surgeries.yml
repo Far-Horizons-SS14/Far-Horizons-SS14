@@ -17,8 +17,6 @@
   - type: Sprite
     sprite: Mobs/Species/Human/parts.rsi
     state: head_m
-  - type: RequiredTechnology
-    technology: SurgeryTech
 
 - type: entity
   parent: SurgeryBase
@@ -46,6 +44,19 @@
     - SurgeryStepCarefulIncision
     - SurgeryStepRepairBurn 
     - SurgeryStepSealWound
+  - type: SurgeryPartCondition
+    parts:
+    - Torso
+  
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryReverseNecrosisBase
+  name: Necrosis Reversal [Base]
+  description: We can try our best. 
+  components:
+  - type: Surgery
+    steps:
+    - SurgeryStepInspectForNecrosis
   - type: SurgeryPartCondition
     parts:
     - Torso

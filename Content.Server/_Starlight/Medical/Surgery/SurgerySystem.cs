@@ -15,6 +15,12 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using Content.Shared._FarHorizons.Medical.SurgeryOverhaul.Systems;
 using Content.Shared._FarHorizons.Medical.SurgeryOverhaul.Components;
+using Content.Shared.Buckle.Components;
+using Content.Shared.DeviceLinking;
+using Content.Shared.Research.Components;
+using Content.Shared.Research.Systems;
+using Content.Shared.Research.Prototypes;
+
 namespace Content.Server.Starlight.Medical.Surgery;
 // Based on the RMC14.
 // https://github.com/RMC-14/RMC-14
@@ -28,6 +34,7 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
     [Dependency] private readonly ContainerSystem _containers = default!;
     [Dependency] private readonly SurgeryOverhaulSystem _surgery = default!;
+    [Dependency] private readonly SharedResearchSystem _research = default!;
 
     private readonly List<EntProtoId> _surgeries = [];
     public override void Initialize()
@@ -92,6 +99,21 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
             if (!TryComp<RequiredTechnologyComponent>(surgeryEnt, out var reqComp))
             {
                 surgeries.GetOrNew(GetNetEntity(part)).Add((surgery, ev.Suffix, isCompleted));
+            }
+            else if(TryComp(body, out BuckleComponent? buckle) && TryComp(buckle.BuckledTo, out DeviceLinkSinkComponent? linkComp))
+            {
+                TechnologyDatabaseComponent? TechDatabase = new();
+                foreach (var source in linkComp.LinkedSources)
+                {
+                    if (TryComp(source, out TechnologyDatabaseComponent? techComp))
+                    {
+                        TechDatabase = techComp;
+                        break;
+                    }
+                }
+                var TechProto = _prototypes.Index<TechnologyPrototype>(reqComp.Technology.Id);
+                if (_research.IsTechnologyUnlocked(body, TechProto, TechDatabase))
+                    surgeries.GetOrNew(GetNetEntity(part)).Add((surgery, ev.Suffix, isCompleted));
             }
         }
     }

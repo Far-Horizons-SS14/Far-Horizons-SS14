@@ -106,3 +106,17 @@
       types:
         Heat: 10
 #TendWound Surgery End
+
+#Revert Necrosis Surgery
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepInspectForNecrosis
+  name: Inspect For Necrosis
+  components:
+  - type: SurgeryStep
+    add:
+    - type: NecrosisSurgery
+  - type: Sprite
+    sprite: Objects/Specific/Medical/Surgery/cautery.rsi
+    state: cautery

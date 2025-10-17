@@ -353,7 +353,8 @@ public sealed class SurgeryBui : BoundUserInterface
                 status = StepStatus.Complete;
             }
 
-            stepButton.Button.Disabled = status != StepStatus.Next;
+            stepButton.Button.Disabled = !(status == StepStatus.Next 
+                || status == StepStatus.Complete);
 
             var stepName = new FormattedMessage();
             stepName.AddText(_entities.GetComponent<MetaDataComponent>(stepButton.Step).EntityName);
@@ -406,18 +407,6 @@ public sealed class SurgeryBui : BoundUserInterface
         _window.DisabledPanel.Visible = false;
         _window.DisabledPanel.MouseFilter = MouseFilterMode.Ignore;
         return;
-
-        if (!_system.IsLyingDown(Owner))
-        {
-            _window.DisabledPanel.Visible = true;
-            if (_window.DisabledLabel.GetMessage() is null)
-            {
-                var text = new FormattedMessage();
-                text.AddMarkupOrThrow("[color=red][font size=16]They need to be lying down![/font][/color]");
-                _window.DisabledLabel.SetMessage(text);
-            }
-            _window.DisabledPanel.MouseFilter = MouseFilterMode.Stop;
-        }
     }
 
     private void View(ViewType type)

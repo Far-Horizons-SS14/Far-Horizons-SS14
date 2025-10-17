@@ -43,3 +43,4 @@ public sealed partial class RequiredTechnologyComponent : Component
     public ProtoId<TechnologyPrototype> Technology;
 }
 [RegisterComponent, NetworkedComponent] public sealed partial class SurgeryAlterAppearanceComponent : Component;
+[RegisterComponent, NetworkedComponent] public sealed partial class NecrosisSurgeryComponent : Component;

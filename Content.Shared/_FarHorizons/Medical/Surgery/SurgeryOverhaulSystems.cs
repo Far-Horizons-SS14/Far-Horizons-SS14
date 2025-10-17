@@ -7,6 +7,8 @@ using Content.Shared.Damage;
 using Content.Shared.Research.Components;
 using Content.Shared.Research.Systems;
 using Content.Shared.Research.Prototypes;
+using Content.Shared.Buckle.Components;
+using Content.Shared.DeviceLinking;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 
@@ -51,13 +53,28 @@ public sealed partial class SurgeryOverhaulSystem : EntitySystem
         if (_net.IsClient) return;
         var StepProto = _prototypes.Index<EntityPrototype>(args.StepProto);
         var ResearchModifier = 75f;
+        TechnologyDatabaseComponent? TechDatabase = new();
         DamageSpecifier BonusHeal = new();
         DamageSpecifier TotalHeal;
         if (StepProto.TryGetComponent<HealDamageComponent>(out var healComp))
         {
+            if(TryComp(args.Body, out BuckleComponent? buckle) && TryComp(buckle.BuckledTo, out DeviceLinkSinkComponent? linkComp))
+            {
+                foreach(var source in linkComp.LinkedSources)
+                {
+                    if (TryComp(source, out TechnologyDatabaseComponent? techComp))
+                    {
+                        TechDatabase = techComp;
+                        break;
+                    }
+                }
+            }
             foreach (var (key, value) in healComp.TechnologyModifier!)
-                if (CheckForTech(key.Id) && ResearchModifier > value)
+            {
+                var TechProto = _prototypes.Index<TechnologyPrototype>(key.Id);
+                if (_research.IsTechnologyUnlocked(uid, TechProto, TechDatabase) && ResearchModifier > value)
                     ResearchModifier = value;
+            }
             if (TryComp<DamageableComponent>(args.Body, out var dmgComp))
             {
                 foreach (var key in healComp.Heal!.DamageDict.Keys)
@@ -68,18 +85,5 @@ public sealed partial class SurgeryOverhaulSystem : EntitySystem
             TotalHeal = healComp.Heal! + (-BonusHeal);
             _damageableSystem.TryChangeDamage(args.Body, TotalHeal);
         }
-    }
-
-    public bool TryCheckForTech(string name) => CheckForTech(name);
-    private bool CheckForTech(string name)
-    {
-        var query = EntityQueryEnumerator<TechnologyDatabaseComponent>();
-        var TechProto = _prototypes.Index<TechnologyPrototype>(name);
-        while (query.MoveNext(out var uid, out var comp))
-        {
-            if (_research.IsTechnologyUnlocked(uid, TechProto, comp))
-                return true;
-        }
-        return false;
     }
 }
