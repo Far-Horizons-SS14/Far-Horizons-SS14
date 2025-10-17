@@ -134,28 +134,38 @@
   parent: ClothingBackpackDuffelSyndicateAmmo
   id: ClothingBackpackDuffelSyndicateAmmoFilled
   name: ammo bundle
-  description: "Reloading! Contains 4 magazines for the C-20r, 4 drums for the Bulldog, and 3 ammo boxes for the L6 SAW."
+  description: "Reloading! Contains 4-5 magazines for all avaliable nuclear operative weapons, minus the China-Lake." #FH
   components:
   - type: StorageFill
     contents:
-      - id: MagazinePistolSubMachineGunSP
-        amount: 4
-      - id: MagazineShotgun
-        amount: 4
-      - id: MagazineRifleSP
-        amount: 3
-      - id: MagazineRifleSP #Starlight, for the estoc
-        amount: 2 
-      - id: MagazineLightRifleBoxSP
-        amount: 3
-      - id: MagazineShotgunSlug
-        amount: 1
-      - id: MagazineBoxLightRifleSP
-        amount: 1
-      - id: MagazineBoxLightRifleHP
-        amount: 1
-      - id: MagazineBoxLightRifleFMJ
-        amount: 1
+      - id: MagazinePistolSubMachineGunSP  #FH
+        amount: 5  #FH
+      - id: MagazineShotgun  #FH
+        amount: 5  #FH
+      - id: MagazineRifleSP  #FH
+        amount: 4  #FH
+      - id: MagazineMagnumRifleSP #FH
+        amount: 4 #FH
+      - id: MagazineLightRifleBoxSP #FH
+        amount: 4 #FH
+      - id: MagazineShotgunSlug #FH
+        amount: 2 #FH
+      - id: SpeedLoaderMagnumAP #FH
+        amount: 2 #FH
+      - id: SpeedLoaderMagnumSP #FH
+        amount: 2 #FH
+      - id: MagazinePistolCaselessRifle #FH
+        amount: 5 #FH
+      - id: MagazinePistolSP #FH
+        amount: 5 #FH
+      - id: MagazinePistol40FMJ #FH
+        amount: 5 #FH
+      - id: MagazinePistolSubMachineGunUzi #FH
+        amount: 4 #FH
+      - id: MagazineBoxAntiMateriel #FH
+        amount: 4 #FH
+      - id: MagazineMagnum #FH
+        amount: 4 #FH
 
 - type: entity
   parent: ClothingBackpackDuffelClown

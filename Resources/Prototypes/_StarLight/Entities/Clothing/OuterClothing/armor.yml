@@ -12,6 +12,9 @@
     level: Metal
   - type: Armor
     modifiers:
+      flatReductions: #FH
+        Piercing: 5 #FH
+        Heat: 4 #FH
       coefficients:
         Blunt: 0.6
         Slash: 0.6
@@ -71,6 +74,9 @@
           level: Metal
         - type: Armor
           modifiers:
+            flatReductions: #FH
+              Piercing: 5 #FH
+              Heat: 4 #FH
             coefficients:
               Blunt: 0.5
               Slash: 0.5
@@ -96,6 +102,8 @@
     sprite: _Starlight/Clothing/OuterClothing/Armor/platecarrier.rsi
   - type: Armor
     modifiers:
+      flatReductions: #FH
+        Piercing: 5 #FH
       coefficients:
         Blunt: 0.85
         Slash: 0.85
@@ -138,6 +146,8 @@
     sprite: _Starlight/Clothing/OuterClothing/Armor/heatabsorbent.rsi
   - type: Armor
     modifiers:
+      flatReductions: #FH
+        Heat: 4 #FH
       coefficients:
         Blunt: 0.85
         Slash: 0.85
@@ -207,6 +217,8 @@
     level: Metal
   - type: Armor 
     modifiers:
+      flatReductions: #FH
+        Piercing: 5 #FH
       coefficients:
         Blunt: 0.75
         Slash: 0.65
@@ -229,6 +241,8 @@
     level: Metal
   - type: Armor 
     modifiers:
+      flatReductions: #FH
+        Piercing: 5 #FH
       coefficients:
         Blunt: 0.70
         Slash: 0.50
