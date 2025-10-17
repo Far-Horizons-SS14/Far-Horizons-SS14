@@ -119,7 +119,23 @@
       head-vox:
         - state: off-equipped-HELMET-vox
       head-vulpkanin:
-        - state: off-equipped-HELMET-vulpkanin
+        - state: off-equipped-HELMET-vulpkanine
+      head-cyclorite:
+        - state: off-equipped-HELMET-cyclorite
+      head-resomi:
+        - state: off-equipped-HELMET-resomi
+      head-felionoid:
+        - state: off-equipped-HELMET-felionoid
+      head-avali:
+        - state: off-equipped-HELMET-avali
+  - type: ToggleableVisuals  # FH: hardsuit fixes
+    clothingVisuals:  # TODO: Requires actual sprites
+      head:
+        - state: off-equipped-HELMET
+      head-vox:
+        - state: off-equipped-HELMET-vox
+      head-vulpkanin:
+        - state: off-equipped-HELMET-vulpkanine
       head-cyclorite:
         - state: off-equipped-HELMET-cyclorite
       head-resomi:
@@ -141,6 +157,13 @@
         Slash: 0.9
         Piercing: 0.9
         Heat: 0.9
+  - type: Hailer
+    hailMessage: "Stop."
+    hailSound:
+      path: /Audio/_FarHorizons/Effects/stop.ogg
+      params:
+        variation: 0.125
+    cooldownDuration: 5
 
 - type: entity
   parent: ClothingHeadHardsuitBase #[ ClothingHeadSuitWithLightBase ]
@@ -227,6 +250,9 @@
     sprite: _Starlight/Clothing/Head/Hardsuits/ntnc_med_hardsuit_helmet.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Head/Hardsuits/ntnc_med_hardsuit_helmet.rsi
+    clothingVisuals: # FH: hardsuit fixes
+      head:
+        - state: off-equipped-HELMET
   - type: PointLight
     color: "#addbff"
   - type: Pierceable
@@ -235,6 +261,17 @@
     modifiers:
       coefficients:
         Heat: 0.9
+  - type: ToggleableVisuals  # FH: hardsuit fixes
+    clothingVisuals:
+      head:
+        - state: on-equipped-HELMET  # needs an actual sprite here
+  - type: Hailer # FH: hardsuit fixes
+    hailMessage: "Stop."
+    hailSound:
+      path: /Audio/_FarHorizons/Effects/stop.ogg
+      params:
+        variation: 0.125
+    cooldownDuration: 5
 
 - type: entity
   parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]

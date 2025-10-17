@@ -1500,9 +1500,9 @@
   components:
     - type: Item
       size: Small
-      sprite: _FarHorizons/Objects/Fun/Plushies/wren_plushie.rsi
+      sprite: _FarHorizons/Objects/Fun/Plushies/wren_plushie.rsi #Far Horizons
     - type: Sprite
-      sprite: _FarHorizons/Objects/Fun/Plushies/wren_plushie.rsi
+      sprite: _FarHorizons/Objects/Fun/Plushies/wren_plushie.rsi #Far Horizons
       layers:
         - state: icon
     - type: ItemToggle
@@ -1775,64 +1775,6 @@
     wideAnimationRotation: 180
     soundHit:
       path: /Audio/Effects/Lightning/lightningshock.ogg
-
-- type: entity
-  parent: BaseLizardPlushie
-  id: PlushieBreaks
-  name: Breaks Plushie
-  description: Your least favorite protector. Dont blame him... He is just a lil guy!
-  components:
-  - type: Item
-    size: Small
-    sprite: _Starlight/Objects/Fun/Plushies/breaks_plushie.rsi
-  - type: Sprite
-    sprite: _Starlight/Objects/Fun/Plushies/breaks_plushie.rsi
-    state: icon
-  - type: EmitSoundOnUse
-    sound:
-      path: /Audio/Animals/lizard_happy.ogg
-  - type: EmitSoundOnLand
-    sound:
-      path: /Audio/Voice/Reptilian/reptilian_scream.ogg
-  - type: EmitSoundOnActivate
-    sound:
-      path: /Audio/Animals/lizard_happy.ogg
-  - type: EmitSoundOnTrigger
-    sound:
-      path: /Audio/Voice/Reptilian/reptilian_tailthump.ogg
-  - type: MeleeWeapon
-    wideAnimationRotation: 180
-    soundHit:
-      path: /Audio/Items/Handcuffs/cuff_start.ogg
-    animation: WeaponArcThrust
-    damage:
-      types:
-        Blunt: 0
-
-
-- type: entity
-  parent: PlushieHuman
-  id: PlushieFuria
-  name: Furia Plushie
-  description: A model Security Officer... most of the time. Pair her with Romero and Amali for an unstoppable trio!
-  components:
-    - type: Item
-      size: Small
-      sprite: _FarHorizons/Objects/Fun/Plushies/furia_plushie.rsi
-    - type: Sprite
-      sprite: _FarHorizons/Objects/Fun/Plushies/furia_plushie.rsi
-      layers:
-        - state: icon
-    - type: ItemToggle
-      onUse: false
-      verbToggleOn: plushie-voicebox-activate
-      verbToggleOff: plushie-voicebox-deactivate
-    - type: ComponentToggler
-      components:
-        - type: DatasetVocalizer
-          dataset: PlushiesFuria
-        - type: TextToSpeech
-          voice: venti
 
 #TODO: Move to FarHorizons
 - type: entity
