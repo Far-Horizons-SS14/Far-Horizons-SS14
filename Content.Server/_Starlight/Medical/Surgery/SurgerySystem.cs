@@ -13,7 +13,6 @@ using Robust.Server.Containers;
 using Robust.Server.GameObjects;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
-using Content.Shared._FarHorizons.Medical.SurgeryOverhaul.Systems;
 using Content.Shared._FarHorizons.Medical.SurgeryOverhaul.Components;
 using Content.Shared.Buckle.Components;
 using Content.Shared.DeviceLinking;
@@ -33,7 +32,6 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
     [Dependency] private readonly ContainerSystem _containers = default!;
-    [Dependency] private readonly SurgeryOverhaulSystem _surgery = default!;
     [Dependency] private readonly SharedResearchSystem _research = default!;
 
     private readonly List<EntProtoId> _surgeries = [];
@@ -85,7 +83,7 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
                 continue;
 
             var ev = new SurgeryValidEvent(body, part);
-            
+
 
             var isCompleted = progress.CompletedSurgeries.Contains(surgery);
             if (!progress.StartedSurgeries.Contains(surgery)
@@ -96,7 +94,7 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
                 if (ev.Cancelled)
                     continue;
             }
-            if (!TryComp<RequiredTechnologyComponent>(surgeryEnt, out var reqComp))
+            if (!TryComp<RequiredTechnologyComponent>(surgeryEnt, out var reqComp) && !HasComp<DisableSurgeryComponent>(surgeryEnt))
             {
                 surgeries.GetOrNew(GetNetEntity(part)).Add((surgery, ev.Suffix, isCompleted));
             }
@@ -111,7 +109,7 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
                         break;
                     }
                 }
-                var TechProto = _prototypes.Index<TechnologyPrototype>(reqComp.Technology.Id);
+                var TechProto = _prototypes.Index<TechnologyPrototype>(reqComp!.Technology.Id);
                 if (_research.IsTechnologyUnlocked(body, TechProto, TechDatabase))
                     surgeries.GetOrNew(GetNetEntity(part)).Add((surgery, ev.Suffix, isCompleted));
             }

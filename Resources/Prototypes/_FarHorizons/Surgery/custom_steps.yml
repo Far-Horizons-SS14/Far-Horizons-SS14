@@ -120,3 +120,16 @@
   - type: Sprite
     sprite: Objects/Specific/Medical/Surgery/cautery.rsi
     state: cautery
+  - type: NecrosisSurgery
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepEndNecrosisSurgery
+  name: Finish Necrosis Surgery
+  components:
+  - type: SurgeryStep
+  - type: SurgeryClearProgress
+  - type: Sprite
+    sprite: Objects/Specific/Medical/Surgery/cautery.rsi
+    state: cautery
+  - type: NecrosisSurgery

@@ -60,3 +60,131 @@
   - type: SurgeryPartCondition
     parts:
     - Torso
+    
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryEndNecrosisBase
+  name: Finish Necrosis Surgery
+  description: We can try our best. 
+  components:
+  - type: Surgery
+    requirement: 
+      - SurgeryReverseNecrosisBase
+    steps:
+    - SurgeryStepEndNecrosisSurgery
+  - type: SurgeryPartCondition
+    parts:
+    - Torso
+    
+- type: entity
+  parent: SurgeryAmputation
+  id: SurgeryAmputationNecrosis
+  name: Amputate Dead Limb
+  description: Surgical removal of dead tissue.
+  components:
+  - type: Surgery
+    requirement: 
+    - SurgeryReverseNecrosisBase
+  - type: SurgeryPartCondition
+    parts: 
+    - Torso
+  - type: NecrosisSurgeryStep
+  - type: DisableSurgery
+
+- type: entity
+  parent: SurgeryExtractLiver
+  id: SurgeryExtractLiverNecrosis
+  name: Remove Rotten Liver
+  description: Surgical removal of rotten Liver.
+  components:
+  - type: Surgery
+    requirement: 
+      - SurgeryReverseNecrosisBase
+  - type: SurgeryPartCondition
+    parts: 
+    - Torso
+  - type: NecrosisSurgeryStep
+
+- type: entity
+  parent: SurgeryExtractKidneys
+  id: SurgeryExtractKidneysNecrosis
+  name: Remove Rotten Kidneys
+  description: Surgical removal of rotten kidneys.
+  components:
+  - type: Surgery
+    requirement: 
+      - SurgeryReverseNecrosisBase
+  - type: SurgeryPartCondition
+    parts: 
+    - Torso
+  - type: NecrosisSurgeryStep
+
+- type: entity
+  parent: SurgeryExtractStomach
+  id: SurgeryExtractStomachNecrosis
+  name: Remove Rotten Stomach
+  description: Surgical removal of rotten stomach.
+  components:
+  - type: Surgery
+    requirement: 
+      - SurgeryReverseNecrosisBase
+  - type: SurgeryPartCondition
+    parts: 
+    - Torso
+  - type: NecrosisSurgeryStep
+
+- type: entity
+  parent: SurgeryExtractLungs
+  id: SurgeryExtractLungsNecrosis
+  name: Remove Rotten Lungs
+  description: Surgical removal of rotten lungs.
+  components:
+  - type: Surgery
+    requirement: 
+      - SurgeryReverseNecrosisBase
+  - type: SurgeryPartCondition
+    parts: 
+    - Torso
+  - type: NecrosisSurgeryStep
+
+- type: entity
+  parent: SurgeryExtractLungsSlime
+  id: SurgeryExtractLungsSlimeNecrosis
+  name: Remove Rotten Slime Lungs
+  description: Surgical removal of rotten lungs.
+  components:
+  - type: Surgery
+    requirement: 
+      - SurgeryReverseNecrosisBase
+  - type: SurgeryPartCondition
+    parts: 
+    - Torso
+  - type: NecrosisSurgeryStep
+
+- type: entity
+  parent: SurgeryExtractHeart
+  id: SurgeryExtractHeartNecrosis
+  name: Remove Rotten Heart
+  description: Surgical removal of rotten heart.
+  components:
+  - type: Surgery
+    requirement: 
+      - SurgeryReverseNecrosisBase
+  - type: SurgeryPartCondition
+    parts: 
+    - Torso
+  - type: NecrosisSurgeryStep
+
+- type: entity
+  parent: SurgeryExtractHeartSlime
+  id: SurgeryExtractHeartSlimeNecrosis
+  name: Remove Rotten Slime Heart
+  description: Surgical removal of rotten slime heart.
+  components:
+  - type: Surgery
+    requirement: 
+      - SurgeryReverseNecrosisBase
+  - type: SurgeryPartCondition
+    parts: 
+    - Torso
+  - type: NecrosisSurgeryStep
