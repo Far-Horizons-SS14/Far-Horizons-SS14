@@ -3,15 +3,20 @@ using System.Threading;
 using Content.Server._FarHorizons.CCOperations;
 using Content.Server.Body.Systems;
 using Content.Server.Explosion.EntitySystems;
+using Content.Server.Implants;
 using Content.Server.Mind;
 using Content.Server.Popups;
 using Content.Server.Roles.Jobs;
 using Content.Server.Store.Systems;
+using Content.Shared.Actions.Components;
 using Content.Shared.CCOperations.Systems;
+using Content.Shared.FixedPoint;
 using Content.Shared.Humanoid;
 using Content.Shared.Implants;
+using Content.Shared.Implants.Components;
 using Content.Shared.Mind;
 using Content.Shared.Roles;
+using Content.Shared.Store.Components;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Timer = Robust.Shared.Timing.Timer;
@@ -31,10 +36,7 @@ public sealed class CCUplinkSystem : EntitySystem
     [Dependency] private readonly BodySystem _bodySystem = default!;
     [Dependency] private readonly ExplosionSystem _explosionSystem = default!;
     [Dependency] private readonly IGameTiming _gameTiming = default!;
-
-    // register user as special agent
-    // somehow listen back to the events of CCUplinkUpdate{state, balanceDiff}
-    // and also listen to event CCKillAgent {uid}
+    [Dependency] private readonly SubdermalImplantSystem _subdermalImplant = default!;
 
     public override void Initialize()
     {
@@ -54,6 +56,8 @@ public sealed class CCUplinkSystem : EntitySystem
             agent.UplinkOpen = message.UplinkStatus;
             var ev = new CCAgentUpdatedEvent(agent);
             RaiseLocalEvent(entityUid, ev, true);
+            
+            // if false - remove action; if true - add action.
         }
     }
 
@@ -129,14 +133,14 @@ public sealed class CCUplinkSystem : EntitySystem
         var ev = new CCAgentInitializedEvent(agentData);
         RaiseLocalEvent(implantUid, ref ev);
 
-        // if (TryComp<StoreComponent>(uid, out var store))
-        // {
-        //     if (store.Balance.ContainsKey("ActionPoint"))
-        //     {
-        //         var currency = new Dictionary<string, FixedPoint2> { ["ActionPoint"] = 3 };
-        //         _storeSystem.TryAddCurrency(currency, uid, store);
-        //     }
-        // }
+        if (TryComp<StoreComponent>(uid, out var store))
+        {
+            if (store.Balance.ContainsKey("ActionPoint"))
+            {
+                var currency = new Dictionary<string, FixedPoint2> { ["ActionPoint"] = 20 };
+                _storeSystem.TryAddCurrency(currency, uid, store);
+            }
+        }
 
     }
 }
