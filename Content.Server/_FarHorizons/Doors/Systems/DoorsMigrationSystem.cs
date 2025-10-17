@@ -1,4 +1,6 @@
-﻿using Content.Server.Atmos.Components;
+﻿using System.Collections.Concurrent;
+using System.Linq;
+using Content.Server.Atmos.Components;
 using Content.Server.Construction.Components;
 using Content.Shared._FarHorizons.Doors.Components;
 using Content.Shared.Light.Components;
@@ -9,6 +11,7 @@ namespace Content.Server.Airlocks;
 public sealed class AirlockFixupSystem : EntitySystem
 {
     [Dependency] private readonly IEntityManager _entityManager = default!;
+    private ConcurrentBag<int> knownFhMaps = [];
 
     public override void Initialize()
     {
@@ -21,6 +24,20 @@ public sealed class AirlockFixupSystem : EntitySystem
         try
         {
             var transform = _entityManager.GetComponent<TransformComponent>(uid);
+            if (transform.MapUid != null)
+            {  
+                if (knownFhMaps.Contains(transform.MapUid.Value.Id))
+                    return;
+
+                // and there could be multiple maps on a map, so yea...
+                var (_, mapData) = _entityManager.GetEntityData(_entityManager.GetNetEntity(transform.MapUid.Value));
+                if (mapData.EntityName.StartsWith("FH"))
+                {
+                    knownFhMaps.Add(transform.MapUid.Value.Id);
+                    return;
+                }
+            }
+
             var localPosition = transform.LocalPosition;
             var nearestStructures = _entityManager.System<EntityLookupSystem>()
                 .GetEntitiesInRange(uid, 0.5f, LookupFlags.Static);

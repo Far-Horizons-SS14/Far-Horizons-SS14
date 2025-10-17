@@ -172,6 +172,9 @@ namespace Content.IntegrationTests.Tests
             "FHFland",
             "FHCentCommG24",
             "FHCentCommSC17",
+            "FHCog", 
+            "FHManor", 
+            "FHOasis",
             #endregion
         };
 
