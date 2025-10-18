@@ -369,8 +369,9 @@
   - type: GhostRole
     name: ghost-role-information-wizard-name
     description: ghost-role-information-wizard-desc
+    rules: ghost-role-information-freeagent-rules #Far Horizons
     mindRoles:
-    - MindRoleGhostRoleSoloAntagonist
+    - MindRoleWizard #Far Horizons
     raffle:
       settings: default
     requirements:

@@ -203,6 +203,13 @@
     state: icon-ammo
   - type: Item
     heldPrefix: ammo
+  - type: Storage  # FH
+    maxItemSize: Huge  # FH
+    grid:  # FH
+    - 0,0,11,10 # FH
+  - type: ClothingSpeedModifier # FH - Prevents abuse of bigger bag
+    walkModifier: 0.2  # FH
+    sprintModifier: 0.2  # FH
   - type: Clothing
     equippedPrefix: ammo
 

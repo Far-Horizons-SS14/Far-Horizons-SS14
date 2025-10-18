@@ -12,6 +12,7 @@ public sealed partial class CrewMonitoringNavMapControl : NavMapControl
 
     private Label _trackedEntityLabel;
     private PanelContainer _trackedEntityPanel;
+    private readonly SharedTransformSystem _transformSystem; //FarHorizons
 
     public CrewMonitoringNavMapControl() : base()
     {
@@ -42,6 +43,7 @@ public sealed partial class CrewMonitoringNavMapControl : NavMapControl
 
         _trackedEntityPanel.AddChild(_trackedEntityLabel);
         this.AddChild(_trackedEntityPanel);
+        _transformSystem = EntManager.System<SharedTransformSystem>();//FarHorizons
     }
 
     protected override void FrameUpdate(FrameEventArgs args)
@@ -65,8 +67,8 @@ public sealed partial class CrewMonitoringNavMapControl : NavMapControl
                 name = "Unknown";
 
             var message = name + "\n" + Loc.GetString("navmap-location",
-                ("x", MathF.Round(blip.Coordinates.X)),
-                ("y", MathF.Round(blip.Coordinates.Y)));
+                ("x", MathF.Round(_transformSystem.ToMapCoordinates(blip.Coordinates).X)), //FarHorizons
+                ("y", MathF.Round(_transformSystem.ToMapCoordinates(blip.Coordinates).Y)));//FarHorizons
 
             _trackedEntityLabel.Text = message;
             _trackedEntityPanel.Visible = true;
