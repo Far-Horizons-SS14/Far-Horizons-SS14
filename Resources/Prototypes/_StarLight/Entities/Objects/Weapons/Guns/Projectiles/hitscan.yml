@@ -713,10 +713,10 @@
   parent: BulletTrace
   damage:
     types:
-      Piercing: 5
-      Structural: 5
-  pierceChance: 0.03
-  count: 12
+      Piercing: 7 #FH - Adjustment for -5
+      Structural: 7 #FH - Adjustment for less pellet count
+  pierceChance: 0.04 #FH - Adjustment for less pellet count
+  count: 10 #FH ~ 70. Technicaly a buff, not an easy way to divide 60 evenly and still have a lot of pellets.
   spread: 15
   bullet:
     sprite:
