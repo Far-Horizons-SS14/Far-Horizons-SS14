@@ -1136,7 +1136,7 @@
 #CENTCOMM / ERT HARDSUITS
 #ERT Leader Hardsuit
 - type: entity
-  parent: [ BaseCentcommContraband, ClothingHeadHelmetHardsuitSyndieCommander ]
+  parent: [ BaseCentcommContraband, ClothingHeadHardsuitBase ] #Far Horizons - Disconnecting ERT suits from Syndicate Base
   id: ClothingHeadHelmetHardsuitERTLeader
   name: ERT leader hardsuit helmet
   description: A special hardsuit helmet worn by members of an emergency response team.
@@ -1147,6 +1147,17 @@
     sprite: Clothing/Head/Hardsuits/ERThelmets/ertleader.rsi
   - type: PointLight
     color: "#addbff"
+    #Far Horizons-Start - Disconnecting ERT suits from Syndicate Base
+    radius: 7 
+    energy: 5
+  - type: PressureProtection
+    highPressureMultiplier: 0.08
+    lowPressureMultiplier: 1000
+  - type: TemperatureProtection
+    heatingCoefficient: 0.005
+    coolingCoefficient: 0.005
+  - type: FireProtection
+    reduction: 0.2
   - type: Armor
     modifiers:
       coefficients:
@@ -1154,10 +1165,15 @@
         Slash: 0.9
         Piercing: 0.9
         Heat: 0.9
+  - type: Tag
+    tags:
+    - CorgiWearable
+    - WhitelistChameleon
+    #Far Horizons-End
 
 #ERT Chaplain Hardsuit
 - type: entity
-  parent: [ BaseCentcommContraband, ClothingHeadHelmetHardsuitSyndie ]
+  parent: [ BaseCentcommContraband, ClothingHeadHardsuitBase ] #Far Horizons - Disconnecting ERT suits from Syndicate Base
   id: ClothingHeadHelmetHardsuitERTChaplain
   name: ERT chaplain hardsuit helmet
   description: A special hardsuit helmet worn by members of an emergency response team.
@@ -1168,10 +1184,28 @@
     sprite: Clothing/Head/Hardsuits/ERThelmets/ertchaplain.rsi
   - type: PointLight
     color: "#ffffff"
+    #Far Horizons-Start - Disconnecting ERT suits from Syndicate Base
+    radius: 6 
+    energy: 5
+  - type: PressureProtection
+    highPressureMultiplier: 0.08
+    lowPressureMultiplier: 1000
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9
+  - type: Tag
+    tags:
+    - CorgiWearable
+    - WhitelistChameleon
+    #Far Horizons-End
 
 #ERT Engineer Hardsuit
 - type: entity
-  parent: [ BaseCentcommContraband, ClothingHeadHelmetHardsuitSyndie ]
+  parent: [ BaseCentcommContraband, ClothingHeadHardsuitBase ] #Far Horizons - Disconnecting ERT suits from Syndicate Base
   id: ClothingHeadHelmetHardsuitERTEngineer
   name: ERT engineer hardsuit helmet
   description: A special hardsuit helmet worn by members of an emergency response team.
@@ -1182,8 +1216,12 @@
     sprite: Clothing/Head/Hardsuits/ERThelmets/ertengineer.rsi
   - type: PointLight
     color: "#f4ffad"
-  - type: FireProtection
-    reduction: 0.2
+    #Far Horizons-Start - Disconnecting ERT suits from Syndicate Base
+    radius: 6 
+    energy: 5
+  - type: PressureProtection
+    highPressureMultiplier: 0.08
+    lowPressureMultiplier: 1000
   - type: Armor
     modifiers:
       coefficients:
@@ -1191,10 +1229,18 @@
         Slash: 0.9
         Piercing: 0.9
         Heat: 0.9
+  - type: Tag
+    tags:
+    - CorgiWearable
+    - WhitelistChameleon
+  - type: FireProtection
+    reduction: 0.2
+    #Far Horizons-End
+
 
 #ERT Medical Hardsuit
 - type: entity
-  parent: [ BaseCentcommContraband, ClothingHeadHelmetHardsuitSyndieElite ]
+  parent: [ BaseCentcommContraband, ClothingHeadHardsuitBase ] #Far Horizons - Disconnecting ERT suits from Syndicate Base
   id: ClothingHeadHelmetHardsuitERTMedical
   name: ERT medic hardsuit helmet
   description: A special hardsuit helmet worn by members of an emergency response team.
@@ -1205,10 +1251,33 @@
     sprite: Clothing/Head/Hardsuits/ERThelmets/ertmedical.rsi
   - type: PointLight
     color: "#adffec"
+    #Far Horizons-Start - Disconnecting ERT suits from Syndicate Base
+    radius: 6
+    energy: 5
+  - type: PressureProtection
+    highPressureMultiplier: 0.08
+    lowPressureMultiplier: 1000
+  - type: TemperatureProtection
+    heatingCoefficient: 0.005
+    coolingCoefficient: 0.005
+  - type: FireProtection
+    reduction: 0.2
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9
+  - type: Tag
+    tags:
+    - CorgiWearable
+    - WhitelistChameleon
+    #Far Horizons-End
 
 #ERT Security Hardsuit
 - type: entity
-  parent: [ BaseCentcommContraband, ClothingHeadHelmetHardsuitSyndie ]
+  parent: [ BaseCentcommContraband, ClothingHeadHardsuitBase ] #Far Horizons - Disconnecting ERT suits from Syndicate Base
   id: ClothingHeadHelmetHardsuitERTSecurity
   name: ERT security hardsuit helmet
   description: A special hardsuit helmet worn by members of an emergency response team.
@@ -1219,6 +1288,12 @@
     sprite: Clothing/Head/Hardsuits/ERThelmets/ertsecurity.rsi
   - type: PointLight
     color: "#ffadc6"
+    #Far Horizons-Start - Disconnecting ERT suits from Syndicate Base
+    radius: 6 
+    energy: 5
+  - type: PressureProtection
+    highPressureMultiplier: 0.08
+    lowPressureMultiplier: 1000
   - type: Pierceable
     level: HardenedMetal
   - type: Armor
@@ -1228,10 +1303,16 @@
         Slash: 0.9
         Piercing: 0.9
         Heat: 0.9
+  - type: Tag
+    tags:
+    - CorgiWearable
+    - WhitelistChameleon
+    #Far Horizons-End
+
 
 #ERT Janitor Hardsuit
 - type: entity
-  parent: [ BaseCentcommContraband, ClothingHeadHelmetHardsuitSyndie ]
+  parent: [ BaseCentcommContraband, ClothingHeadHardsuitBase ] #Far Horizons - Disconnecting ERT suits from Syndicate Base
   id: ClothingHeadHelmetHardsuitERTJanitor
   name: ERT janitor hardsuit helmet
   description: A special hardsuit helmet worn by members of an emergency response team.
@@ -1242,6 +1323,24 @@
     sprite: Clothing/Head/Hardsuits/ERThelmets/ertjanitor.rsi
   - type: PointLight
     color: "#cbadff"
+    #Far Horizons-Start - Disconnecting ERT suits from Syndicate Base
+    radius: 6
+    energy: 5
+  - type: PressureProtection
+    highPressureMultiplier: 0.08
+    lowPressureMultiplier: 1000
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9
+  - type: Tag
+    tags:
+    - CorgiWearable
+    - WhitelistChameleon
+    #Far Horizons-End
 
 #CBURN Hardsuit
 - type: entity
