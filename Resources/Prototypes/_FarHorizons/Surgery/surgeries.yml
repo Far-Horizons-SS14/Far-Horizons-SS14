@@ -246,3 +246,67 @@
   - type: NecrosisSurgeryStep
     target: "body_part_slot_right leg"
   - type: DisableSurgery
+
+- type: entity
+  parent: SurgeryAmputationSlime
+  id: SurgeryAmputationArmLNecrosisSlime
+  name: Amputate Rotten Left Arm
+  description: Surgical removal of rotten arm.
+  components:
+  - type: Surgery
+    requirement: 
+    - SurgeryReverseNecrosisBase
+  - type: SurgeryPartCondition
+    parts: 
+    - Torso
+  - type: NecrosisSurgeryStep
+    target: body_part_slot_left arm
+  - type: DisableSurgery
+
+- type: entity
+  parent: SurgeryAmputationSlime
+  id: SurgeryAmputationArmRNecrosisSlime
+  name: Amputate Rotten Right Arm
+  description: Surgical removal of rotten arm.
+  components:
+  - type: Surgery
+    requirement: 
+    - SurgeryReverseNecrosisBase
+  - type: SurgeryPartCondition
+    parts: 
+    - Torso
+  - type: NecrosisSurgeryStep
+    target: body_part_slot_right arm
+  - type: DisableSurgery
+
+- type: entity
+  parent: SurgeryAmputationSlime
+  id: SurgeryAmputationLegLNecrosisSlime
+  name: Amputate Rotten Left Leg
+  description: Surgical removal of rotten leg.
+  components:
+  - type: Surgery
+    requirement: 
+    - SurgeryReverseNecrosisBase
+  - type: SurgeryPartCondition
+    parts: 
+    - Torso
+  - type: NecrosisSurgeryStep
+    target: body_part_slot_left leg
+  - type: DisableSurgery
+
+- type: entity
+  parent: SurgeryAmputationSlime
+  id: SurgeryAmputationLegRNecrosisSlime
+  name: Amputate Rotten Right Leg
+  description: Surgical removal of rotten leg.
+  components:
+  - type: Surgery
+    requirement: 
+    - SurgeryReverseNecrosisBase
+  - type: SurgeryPartCondition
+    parts: 
+    - Torso
+  - type: NecrosisSurgeryStep
+    target: "body_part_slot_right leg"
+  - type: DisableSurgery

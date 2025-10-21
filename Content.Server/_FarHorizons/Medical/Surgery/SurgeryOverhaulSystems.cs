@@ -19,6 +19,10 @@ using Content.Shared.Starlight.Medical.Surgery.Steps.Parts;
 using Content.Shared.Body.Part;
 using Content.Shared.Body.Systems;
 using Content.Shared.Body.Components;
+using Content.Shared.Starlight.Medical.Surgery.Effects.Step;
+using System.Linq;
+using Robust.Shared.Containers;
+using Content.Shared.Body.Organ;
 
 namespace Content.Server._FarHorizons.Medical.SurgeryOverhaul.Systems;
 
@@ -110,7 +114,6 @@ public sealed partial class SurgeryOverhaulSystem : EntitySystem
         if (!surgProto.TryGetComponent<NecrosisSurgeryComponent>(out var surgComp))
             return;
 
-        Logger.Info($"Surg Comp: {surgComp}");
         surgComp.RequiredSurgeries.Clear();
 
         for (int i = 0; i < surgComp.AmountofSurgeries; i++)
@@ -123,26 +126,34 @@ public sealed partial class SurgeryOverhaulSystem : EntitySystem
                     break;
                 chosenSurgery = _random.PickAndTake(_surgeriesForRotten);
                 var chosenSurgeryProto = _prototypes.Index<EntityPrototype>(chosenSurgery);
-                foreach (var parent in chosenSurgeryProto.Parents!)
-                {
-                    var parentProto = _prototypes.Index<EntityPrototype>(parent);
-                }
-                if (!TryComp<BodyPartComponent>(args.Part, out var partComp) || !TryComp<BodyComponent>(args.Body, out var bodyComp))
+                if (!TryComp<BodyPartComponent>(args.Part, out var partComp))
                     return;
-                var Organs = _sharedBodySystem.GetBodyOrgans(args.Body, bodyComp);
-                foreach (var (organUid, organEnt) in Organs)
+
+                if (chosenSurgeryProto.TryGetComponent<SurgeryOrganExistConditionComponent>(out var organComp))
                 {
-                    Logger.Info($"{organUid}");
-                    Logger.Info($"{organEnt}");
+                    var Organs = _sharedBodySystem.GetPartOrgans(args.Part, partComp);
+                    var organType = organComp.Organ!.Values.First().Component.GetType();
+                    foreach (var organ in Organs)
+                        if (HasComp(organ.Id, organType))
+                            break;
                 }
-                
-                break;
+                if (chosenSurgeryProto.TryGetComponent<NecrosisSurgeryStepComponent>(out var necroSurgComp) &&
+                    TryComp<ContainerManagerComponent>(args.Part, out var container) && necroSurgComp.Target != "bodypart")
+                    if (container.Containers.TryGetValue(necroSurgComp.Target, out var limb) && limb.ContainedEntities.Count == 0)
+                        continue;
+
+                if (chosenSurgeryProto.TryGetComponent<SurgerySpeciesConditionComponent>(out var speciesComp) && TryComp<HumanoidAppearanceComponent>(args.Body, out var charComp))
+                {
+                    var blacklist = speciesComp.SpeciesBlacklist;
+                    var whitelist = speciesComp.SpeciesWhitelist;
+                    if (whitelist.Contains(charComp.Species))
+                        break;
+                    else if (blacklist.Count > 0  && !blacklist.Contains(charComp.Species))
+                        break;
+                }
             }
             surgComp.RequiredSurgeries.Add((EntProtoId)chosenSurgery!);
         }
-
-        foreach (var test in surgComp.RequiredSurgeries)
-            Logger.Info($"Test Id: {test.Id}");
     }
 
     private void LoadSurgeriesForRotten()
