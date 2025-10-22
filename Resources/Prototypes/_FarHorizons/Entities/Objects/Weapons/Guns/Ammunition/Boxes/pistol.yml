@@ -1,0 +1,64 @@
+# Boxes
+- type: entity
+  parent: BaseMagazineBoxPistol40
+  id: MagazineBoxPistol40Practice
+  name: ammunition box (.40 special practice)
+  description: A cardboard box of .40 special rounds. Intended to hold non-harmful chalk ammunition.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgePistolPractice
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: practice
+
+- type: entity
+  parent: BaseMagazineBoxPistol40
+  id: MagazineBoxPistol40Incendiary
+  name: ammunition box (.40 special incendiary)
+  description: A cardboard box of .40 special rounds. Intended to hold self-igniting incendiary ammunition.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgePistolIncendiary
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: incendiary
+
+- type: entity
+  parent: BaseMagazineBoxPistol40
+  id: MagazineBoxPistol40Uranium
+  name: ammunition box (.40 special uranium)
+  description: A cardboard box of .40 special rounds. Intended to hold exotic uranium-core ammunition.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgePistolUranium
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: uranium
+
+- type: entity
+  parent: BaseMagazineBoxPistol40
+  id: MagazineBoxPistol40Rubber
+  name: ammunition box (.40 special rubber)
+  description: A cardboard box of .40 special rounds. Intended to hold non-lethal rubber rounds.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgePistolRubber
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: rubber

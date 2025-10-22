@@ -15,7 +15,7 @@
         
 - type: entity
   id: CartridgePistol40SP
-  name: cartridge (.40 SP)
+  name: cartridge (.40 special SP) #FH
   parent: BaseCartridgePistol
   components:
   - type: HitScanCartridgeAmmo
@@ -34,7 +34,7 @@
       
 - type: entity
   id: CartridgePistol40HP
-  name: cartridge (.40 HP)
+  name: cartridge (.40 special HP) #FH
   parent: CartridgePistol40SP
   components:
   - type: HitScanCartridgeAmmo
@@ -49,7 +49,7 @@
 
 - type: entity
   id: CartridgePistol40FMJ
-  name: cartridge (.40 FMJ)
+  name: cartridge (.40 special FMJ) #FH
   parent: CartridgePistol40SP
   components:
   - type: HitScanCartridgeAmmo
@@ -64,7 +64,7 @@
 
 - type: entity
   id: CartridgePistol40AP
-  name: cartridge (.40 AP)
+  name: cartridge (.40 special AP) #FH
   parent: CartridgePistol40SP
   components:
   - type: HitScanCartridgeAmmo
