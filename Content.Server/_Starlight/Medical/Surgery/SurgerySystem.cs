@@ -104,13 +104,16 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
                 !necrosurgComp.RequiredSurgeries.Contains(surgery))
                 continue;
 
-            if (TryComp<RequiredTechnologyComponent>(surgeryEnt, out var reqComp) &&
+            Logger.Info($"{surgeryEnt}");
+            if (TryComp<SurgeryTechnologyComponent>(surgeryEnt, out var reqComp) &&
                 TryComp(body, out BuckleComponent? buckle) &&
                 TryComp(buckle.BuckledTo, out DeviceLinkSinkComponent? linkComp))
             {
+                Logger.Info($"{reqComp}");
+                Logger.Info($"{reqComp.RequiredTechnology.Id}");
                 if (TryComp(linkComp.LinkedSources.First(), out TechnologyDatabaseComponent? techComp))
                 {
-                    var TechProto = _prototypes.Index<TechnologyPrototype>(reqComp!.Technology.Id);
+                    var TechProto = _prototypes.Index<TechnologyPrototype>(reqComp.RequiredTechnology.Id);
                     if (!_research.IsTechnologyUnlocked(body, TechProto, techComp))
                         continue;
                 }

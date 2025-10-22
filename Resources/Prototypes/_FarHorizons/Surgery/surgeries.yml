@@ -17,6 +17,8 @@
   - type: Sprite
     sprite: Mobs/Species/Human/parts.rsi
     state: head_m
+  - type: SurgeryTechnology
+    requiredTechnology: SurgeryTech 
 
 - type: entity
   parent: SurgeryBase
@@ -32,6 +34,10 @@
   - type: SurgeryPartCondition
     parts:
     - Torso
+  - type: SurgeryTechnology
+    technologyModifier:
+      SurgeryTech : 50
+      SurgeryTechAdvanced : 25
 
 - type: entity
   parent: SurgeryBase
@@ -47,16 +53,21 @@
   - type: SurgeryPartCondition
     parts:
     - Torso
+  - type: SurgeryTechnology
+    technologyModifier:
+      SurgeryTech : 50
+      SurgeryTechAdvanced : 25
     
 - type: entity
   parent: SurgeryBase
-  id: SurgeryEndNecrosisBase
-  name: Finish Necrosis Surgery
-  description: We can try our best. 
+  id: SurgeryEndNecrosis
+  name: Finish Removing Necrotic Flesh
+  description: We have tried our best.
   components:
   - type: Surgery
+    priority: 100
     requirement: 
-      - SurgeryReverseNecrosisBase
+      - SurgeryReverseNecrosis
     steps:
     - SurgeryStepEndNecrosisSurgery
   - type: SurgeryPartCondition
@@ -65,8 +76,8 @@
 
 - type: entity
   parent: SurgeryBase
-  id: SurgeryReverseNecrosisBase
-  name: Necrosis Reversal [Base]
+  id: SurgeryReverseNecrosis
+  name: Start Removing Necrotic Flesh
   description: We can try our best. 
   components:
   - type: Surgery
@@ -76,4 +87,5 @@
     parts:
     - Torso
   - type: NecrosisSurgery
-    amountOfSurgeries : 1
+    amount_of_surgeries: 2
+    

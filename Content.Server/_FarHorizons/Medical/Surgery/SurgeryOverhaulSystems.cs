@@ -69,16 +69,17 @@ public sealed partial class SurgeryOverhaulSystem : EntitySystem
     {
         if (_net.IsClient) return;
         var StepProto = _prototypes.Index<EntityPrototype>(args.StepProto);
+        var surgProto = _prototypes.Index<EntityPrototype>(args.SurgeryProto);
         var ResearchModifier = 75f;
         DamageSpecifier BonusHeal = new();
         DamageSpecifier TotalHeal;
         if (StepProto.TryGetComponent<HealDamageComponent>(out var healComp, _componentFactory))
         {
-            if (TryComp(args.Body, out BuckleComponent? buckle)
+            if (surgProto.TryGetComponent<SurgeryTechnologyComponent> (out var techvar, _componentFactory) && TryComp(args.Body, out BuckleComponent? buckle)
                 && TryComp(buckle.BuckledTo, out DeviceLinkSinkComponent? linkComp) &&
                 TryComp<TechnologyDatabaseComponent>(linkComp.LinkedSources.First(), out var techComp))
             {
-                foreach (var (key, value) in healComp.TechnologyModifier!)
+                foreach (var (key, value) in techvar.TechnologyModifier!)
                 {
                     var TechProto = _prototypes.Index<TechnologyPrototype>(key.Id);
                     if (_research.IsTechnologyUnlocked(uid, TechProto, techComp) && ResearchModifier > value)
@@ -102,16 +103,18 @@ public sealed partial class SurgeryOverhaulSystem : EntitySystem
         if (!TryComp<NecrosisSurgeryComponent>(args.Part, out var surgComp))
             return;
 
+        var surgProto = _prototypes.Index<EntityPrototype>(args.SurgeryProto);
+        if (!surgProto.TryGetComponent<NecrosisSurgeryComponent>(out var surgProtoComp, _componentFactory)) return;
         surgComp.RequiredSurgeries.Clear();
-
-        for (int i = 0; i < surgComp.AmountofSurgeries; i++)
+        
+        for (int i = 0; i < surgProtoComp.AmountOfSurgeries; i++)
         {
-            EntProtoId? chosenSurgery = null;
-
+            EntProtoId? chosenSurgery;
+            if (_surgeriesForRotten.Count == 0)
+                break;
+                
             while (true)
             {
-                if (_surgeriesForRotten.Count == 0)
-                    break;
                 chosenSurgery = _random.PickAndTake(_surgeriesForRotten);
                 var chosenSurgeryProto = _prototypes.Index<EntityPrototype>(chosenSurgery);
                 if (!TryComp<BodyPartComponent>(args.Part, out var partComp))

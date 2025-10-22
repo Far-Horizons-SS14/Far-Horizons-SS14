@@ -33,14 +33,15 @@ public sealed partial class HealDamageComponent : Component
 {
     [DataField]
     public DamageSpecifier? Heal;
-    [DataField]
-    public Dictionary<ProtoId<TechnologyPrototype>, float> TechnologyModifier = new();
 }
 [RegisterComponent, NetworkedComponent]
-public sealed partial class RequiredTechnologyComponent : Component
+public sealed partial class SurgeryTechnologyComponent : Component
 {
     [DataField]
-    public ProtoId<TechnologyPrototype> Technology;
+    public ProtoId<TechnologyPrototype> RequiredTechnology;
+    
+    [DataField]
+    public Dictionary<ProtoId<TechnologyPrototype>, float> TechnologyModifier = new();
 }
 [RegisterComponent, NetworkedComponent] 
 public sealed partial class NecrosisSurgeryStepComponent : Component
@@ -55,8 +56,8 @@ public sealed partial class NecrosisSurgeryComponent : Component
 {
     [DataField]
     public List<EntProtoId> RequiredSurgeries = new();
-    [DataField]
-    public int AmountofSurgeries = 1;
+    [DataField("amount_of_surgeries")]
+    public int AmountOfSurgeries = 1;
 }
 [RegisterComponent, NetworkedComponent] public sealed partial class DisableSurgeryComponent : Component;
 [RegisterComponent, NetworkedComponent] public sealed partial class SurgeryAlterAppearanceComponent : Component;
