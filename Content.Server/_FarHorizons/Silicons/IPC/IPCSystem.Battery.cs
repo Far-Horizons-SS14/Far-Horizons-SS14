@@ -48,6 +48,7 @@ public sealed partial class IPCSystem
         if (ent.Comp.Timer == 0 &&
             TryComp<MobStateComponent>(ent, out var state))
         {
+            _chat.TryEmoteWithChat(ent, ent.Comp.NoPowerDeathEmote);
             _state.ChangeMobState(ent, MobState.Dead, state);
         }
     }

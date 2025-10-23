@@ -1,4 +1,5 @@
 using Content.Server.Administration.Logs;
+using Content.Server.Chat.Systems;
 using Content.Server.DoAfter;
 using Content.Server.EUI;
 using Content.Server.Hands.Systems;
@@ -44,6 +45,7 @@ public sealed partial class IPCSystem : SharedIPCSystem
     [Dependency] private readonly SharedSolutionContainerSystem _solutionContainerSystem = default!;
     [Dependency] private readonly IConfigurationManager _cfgManager = default!;
     [Dependency] private readonly MetaDataSystem _metaData = default!;
+    [Dependency] private readonly ChatSystem _chat = default!;
 
     public override void Initialize()
     {
