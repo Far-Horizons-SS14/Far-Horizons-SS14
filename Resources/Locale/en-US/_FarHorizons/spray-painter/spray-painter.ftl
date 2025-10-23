@@ -1,6 +1,6 @@
 ﻿# Groups (subtabs)
 spray-painter-tab-group-fhairlockstandard = Standard
-spray-painter-tab-group-fhairlockglass = Standard
+spray-painter-tab-group-fhairlockglass = Glass
 
 # Airlocks
 spray-painter-style-fhairlockstandard-atmospherics = Atmospheric

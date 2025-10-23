@@ -13,7 +13,7 @@
   description: A special hardsuit helmet designed for working in low-pressure, high thermal environments.
   components:
   - type: Sprite
-    sprite: Clothing/Head/Hardsuits/atmospherics.rsi
+    sprite: _FarHorizons/Clothing/Head/Hardsuits/atmospherics.rsi #Far Horizons
     layers:
     - state: icon
     - state: icon-unshaded
@@ -33,12 +33,12 @@
       head-vox:
       - state: equipped-head-light-vox
         shader: unshaded
-      head-vulpkanin:
-      - state: equipped-head-light-vulpkanin
-        shader: unshaded
-      head-reptilian:
-      - state: equipped-head-light-reptilian
-        shader: unshaded
+    #  head-vulpkanin:                        #Far Horizons - Temporarily disabled for respriting
+    #  - state: equipped-head-light-vulpkanin
+    #    shader: unshaded
+    #  head-reptilian:
+    #  - state: equipped-head-light-reptilian
+    #    shader: unshaded
       head-dog:
       - state: equipped-head-light-dog
         shader: unshaded
@@ -52,14 +52,14 @@
       - state: equipped-head-vox
       - state: equipped-head-unshaded-vox
         shader: unshaded
-      head-vulpkanin:
-      - state: equipped-head-vulpkanin
-      - state: equipped-head-unshaded-vulpkanin
-        shader: unshaded
-      head-reptilian:
-      - state: equipped-head-reptilian
-      - state: equipped-head-unshaded-reptilian
-        shader: unshaded
+    #  head-vulpkanin:                        #Far Horizons - Temporarily disabled for respriting
+    #  - state: equipped-head-vulpkanin
+    #  - state: equipped-head-unshaded-vulpkanin
+    #    shader: unshaded
+    #  head-reptilian:
+    #  - state: equipped-head-reptilian
+    #  - state: equipped-head-unshaded-reptilian
+    #    shader: unshaded
       head-dog:
       - state: equipped-head-dog
       - state: equipped-head-unshaded-dog
@@ -87,7 +87,7 @@
   description: An engineering hardsuit helmet designed for working in low-pressure, high radioactive environments.
   components:
   - type: Sprite
-    sprite: Clothing/Head/Hardsuits/engineering.rsi
+    sprite: _FarHorizons/Clothing/Head/Hardsuits/engineering.rsi #Far Horizons
     layers:
     - state: icon
     - state: icon-unshaded
@@ -107,12 +107,12 @@
       head-vox:
       - state: equipped-head-light-vox
         shader: unshaded
-      head-vulpkanin:
-      - state: equipped-head-light-vulpkanin
-        shader: unshaded
-      head-reptilian:
-      - state: equipped-head-light-reptilian
-        shader: unshaded
+    #  head-vulpkanin:                        #Far Horizons - Temporarily disabled for respriting
+    #  - state: equipped-head-light-vulpkanin
+    #    shader: unshaded
+    #  head-reptilian:
+    #  - state: equipped-head-light-reptilian
+    #    shader: unshaded
       head-dog:
       - state: equipped-head-light-dog
         shader: unshaded
@@ -126,14 +126,14 @@
       - state: equipped-head-vox
       - state: equipped-head-unshaded-vox
         shader: unshaded
-      head-vulpkanin:
-      - state: equipped-head-vulpkanin
-      - state: equipped-head-unshaded-vulpkanin
-        shader: unshaded
-      head-reptilian:
-      - state: equipped-head-reptilian
-      - state: equipped-head-unshaded-reptilian
-        shader: unshaded
+    #  head-vulpkanin:                        #Far Horizons - Temporarily disabled for respriting
+    #  - state: equipped-head-vulpkanin
+    #  - state: equipped-head-unshaded-vulpkanin
+    #    shader: unshaded
+    #  head-reptilian:
+    #  - state: equipped-head-reptilian
+    #  - state: equipped-head-unshaded-reptilian
+    #    shader: unshaded
       head-dog:
       - state: equipped-head-dog
       - state: equipped-head-unshaded-dog
@@ -372,6 +372,8 @@
         Heat: 0.95
         Radiation: 0.90
         Caustic: 0.90
+  - type: ZombificationResistance
+    zombificationResistanceCoefficient: 0.95 # Now it actually does! FH edit
   - type: PressureProtection
     highPressureMultiplier: 0.6
     lowPressureMultiplier: 1000
@@ -427,7 +429,7 @@
   description: Special hardsuit helmet, made for the chief engineer of the station.
   components:
   - type: Sprite
-    sprite: Clothing/Head/Hardsuits/engineering-white.rsi
+    sprite: _FarHorizons/Clothing/Head/Hardsuits/engineering-white.rsi #Far Horizons
     layers:
     - state: icon
     - state: icon-unshaded
@@ -444,40 +446,40 @@
       head:
       - state: equipped-head-light
         shader: unshaded
-      head-vox:
-      - state: equipped-head-light-vox
-        shader: unshaded
-      head-vulpkanin:
-      - state: equipped-head-light-vulpkanin
-        shader: unshaded
-      head-reptilian:
-      - state: equipped-head-light-reptilian
-        shader: unshaded
-      head-dog:
-      - state: equipped-head-light-dog
-        shader: unshaded
+    #  head-vox:                        #Far Horizons - Temporarily disabled for respriting
+    #  - state: equipped-head-light-vox
+    #    shader: unshaded
+    #  head-vulpkanin:
+    #  - state: equipped-head-light-vulpkanin
+    #    shader: unshaded
+    #  head-reptilian:
+    #  - state: equipped-head-light-reptilian
+    #    shader: unshaded
+    #  head-dog:
+    #  - state: equipped-head-light-dog
+    #    shader: unshaded
   - type: Clothing
     clothingVisuals:
       head:
       - state: equipped-head
       - state: equipped-head-unshaded
         shader: unshaded
-      head-vox:
-      - state: equipped-head-vox
-      - state: equipped-head-unshaded-vox
-        shader: unshaded
-      head-vulpkanin:
-      - state: equipped-head-vulpkanin
-      - state: equipped-head-unshaded-vulpkanin
-        shader: unshaded
-      head-reptilian:
-      - state: equipped-head-reptilian
-      - state: equipped-head-unshaded-reptilian
-        shader: unshaded
-      head-dog:
-      - state: equipped-head-dog
-      - state: equipped-head-unshaded-dog
-        shader: unshaded
+    #  head-vox:                        #Far Horizons - Temporarily disabled for respriting
+    #  - state: equipped-head-vox
+    #  - state: equipped-head-unshaded-vox
+    #    shader: unshaded
+    #  head-vulpkanin:
+    #  - state: equipped-head-vulpkanin
+    #  - state: equipped-head-unshaded-vulpkanin
+    #    shader: unshaded
+    #  head-reptilian:
+    #  - state: equipped-head-reptilian
+    #  - state: equipped-head-unshaded-reptilian
+    #    shader: unshaded
+    #  head-dog:
+    #  - state: equipped-head-dog
+    #  - state: equipped-head-unshaded-dog
+    #    shader: unshaded
   - type: PointLight
     color: "#daffad"
   - type: PressureProtection
@@ -1134,7 +1136,7 @@
 #CENTCOMM / ERT HARDSUITS
 #ERT Leader Hardsuit
 - type: entity
-  parent: [ BaseCentcommContraband, ClothingHeadHelmetHardsuitSyndieCommander ]
+  parent: [ BaseCentcommContraband, ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ] #Far Horizons - Disconnecting ERT suits from Syndicate Base
   id: ClothingHeadHelmetHardsuitERTLeader
   name: ERT leader hardsuit helmet
   description: A special hardsuit helmet worn by members of an emergency response team.
@@ -1143,43 +1145,76 @@
     sprite: Clothing/Head/Hardsuits/ERThelmets/ertleader.rsi
   - type: Clothing
     sprite: Clothing/Head/Hardsuits/ERThelmets/ertleader.rsi
+    #Far Horizons-Start - Disconnecting ERT suits from Syndicate Base
+    clothingVisuals:
+      head:
+        - state: off-equipped-HELMET
+        #- state: off-equipped-HELMET-unshaded
+        #  shader: unshaded
+      head-vox:
+        - state: off-equipped-HELMET-vox
+        #- state: off-equipped-HELMET-unshaded-vox
+        #  shader: unshaded
+      #head-cyclorite:
+        #- state: off-equipped-HELMET-cyclorite
+        #- state: off-equipped-HELMET-unshaded-cyclorite
+        #  shader: unshaded
+      head-vulpkanin:
+        - state: off-equipped-HELMET-vulpkanin
+        #- state: off-equipped-HELMET-unshaded-vulpkanin
+        #  shader: unshaded
+      #head-felionoid:
+        #- state: off-equipped-HELMET-felionoid
+        #- state: off-equipped-HELMET-unshaded-felionoid
+        #  shader: unshaded
+      head-reptilian:
+        - state: off-equipped-HELMET-reptilian
+        #- state: off-equipped-HELMET-unshaded-reptilian
+        #  shader: unshaded
+      #head-resomi:
+        #- state: off-equipped-HELMET-resomi
+        #- state: off-equipped-HELMET-unshaded-resomi
+        #  shader: unshaded
+      #head-avali:
+        #- state: off-equipped-HELMET-avali
+        #- state: off-equipped-HELMET-unshaded-avali
+        #  shader: unshaded
+  - type: ToggleableVisuals
+    clothingVisuals:
+      head:
+        - state: on-equipped-HELMET
+          shader: unshaded
+      head-vox:
+        - state: on-equipped-HELMET-vox
+          shader: unshaded
+      #head-cyclorite:
+        #- state: on-equipped-HELMET-unshaded-cyclorite
+        #  shader: unshaded
+      head-vulpkanin:
+        - state: on-equipped-HELMET-vulpkanin
+          shader: unshaded
+      #head-felionoid:
+        #- state: on-equipped-HELMET-unshaded-felionoid
+        #  shader: unshaded
+      head-reptilian:
+        - state: on-equipped-HELMET-reptilian
+          shader: unshaded
+      #head-resomi:
+        #- state: on-equipped-HELMET-unshaded-resomi
+        #  shader: unshaded
+      #head-avali:
+        #- state: on-equipped-HELMET-unshaded-avali
+        #  shader: unshaded
   - type: PointLight
     color: "#addbff"
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.9
-        Slash: 0.9
-        Piercing: 0.9
-        Heat: 0.9
-
-#ERT Chaplain Hardsuit
-- type: entity
-  parent: [ BaseCentcommContraband, ClothingHeadHelmetHardsuitSyndie ]
-  id: ClothingHeadHelmetHardsuitERTChaplain
-  name: ERT chaplain hardsuit helmet
-  description: A special hardsuit helmet worn by members of an emergency response team.
-  components:
-  - type: Sprite
-    sprite: Clothing/Head/Hardsuits/ERThelmets/ertchaplain.rsi
-  - type: Clothing
-    sprite: Clothing/Head/Hardsuits/ERThelmets/ertchaplain.rsi
-  - type: PointLight
-    color: "#ffffff"
-
-#ERT Engineer Hardsuit
-- type: entity
-  parent: [ BaseCentcommContraband, ClothingHeadHelmetHardsuitSyndie ]
-  id: ClothingHeadHelmetHardsuitERTEngineer
-  name: ERT engineer hardsuit helmet
-  description: A special hardsuit helmet worn by members of an emergency response team.
-  components:
-  - type: Sprite
-    sprite: Clothing/Head/Hardsuits/ERThelmets/ertengineer.rsi
-  - type: Clothing
-    sprite: Clothing/Head/Hardsuits/ERThelmets/ertengineer.rsi
-  - type: PointLight
-    color: "#f4ffad"
+    radius: 7 
+    energy: 5
+  - type: PressureProtection
+    highPressureMultiplier: 0.08
+    lowPressureMultiplier: 1000
+  - type: TemperatureProtection
+    heatingCoefficient: 0.005
+    coolingCoefficient: 0.005
   - type: FireProtection
     reduction: 0.2
   - type: Armor
@@ -1189,10 +1224,200 @@
         Slash: 0.9
         Piercing: 0.9
         Heat: 0.9
+  - type: Tag
+    tags:
+    - CorgiWearable
+    - WhitelistChameleon
+    #Far Horizons-End
+
+#ERT Chaplain Hardsuit
+- type: entity
+  parent: [ BaseCentcommContraband, ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ] #Far Horizons - Disconnecting ERT suits from Syndicate Base
+  id: ClothingHeadHelmetHardsuitERTChaplain
+  name: ERT chaplain hardsuit helmet
+  description: A special hardsuit helmet worn by members of an emergency response team.
+  components:
+  - type: Sprite
+    sprite: Clothing/Head/Hardsuits/ERThelmets/ertchaplain.rsi
+  - type: Clothing
+    sprite: Clothing/Head/Hardsuits/ERThelmets/ertchaplain.rsi
+    #Far Horizons-Start - Disconnecting ERT suits from Syndicate Base
+    clothingVisuals:
+      head:
+        - state: off-equipped-HELMET
+        #- state: off-equipped-HELMET-unshaded
+        #  shader: unshaded
+      #head-vox:
+        #- state: off-equipped-HELMET-vox
+        #- state: off-equipped-HELMET-unshaded-vox
+        #  shader: unshaded
+      #head-cyclorite:
+        #- state: off-equipped-HELMET-cyclorite
+        #- state: off-equipped-HELMET-unshaded-cyclorite
+        #  shader: unshaded
+      #head-vulpkanin:
+        #- state: off-equipped-HELMET-vulpkanin
+        #- state: off-equipped-HELMET-unshaded-vulpkanin
+        #  shader: unshaded
+      #head-felionoid:
+        #- state: off-equipped-HELMET-felionoid
+        #- state: off-equipped-HELMET-unshaded-felionoid
+        #  shader: unshaded
+      #head-reptilian:
+        #- state: off-equipped-HELMET-reptilian
+        #- state: off-equipped-HELMET-unshaded-reptilian
+        #  shader: unshaded
+      #head-resomi:
+        #- state: off-equipped-HELMET-resomi
+        #- state: off-equipped-HELMET-unshaded-resomi
+        #  shader: unshaded
+      #head-avali:
+        #- state: off-equipped-HELMET-avali
+        #- state: off-equipped-HELMET-unshaded-avali
+        #  shader: unshaded
+  - type: ToggleableVisuals
+    clothingVisuals:
+      head:
+        - state: on-equipped-HELMET
+          shader: unshaded
+      #head-vox:
+        #- state: on-equipped-HELMET-vox
+        #  shader: unshaded
+      #head-cyclorite:
+        #- state: on-equipped-HELMET-unshaded-cyclorite
+        #  shader: unshaded
+      #head-vulpkanin:
+        #- state: on-equipped-HELMET-vulpkanin
+        #  shader: unshaded
+      #head-felionoid:
+        #- state: on-equipped-HELMET-unshaded-felionoid
+        #  shader: unshaded
+      #head-reptilian:
+        #- state: on-equipped-HELMET-reptilian
+        #  shader: unshaded
+      #head-resomi:
+        #- state: on-equipped-HELMET-unshaded-resomi
+        #  shader: unshaded
+      #head-avali:
+        #- state: on-equipped-HELMET-unshaded-avali
+        #  shader: unshaded
+  - type: PointLight
+    color: "#ffffff"
+    radius: 6 
+    energy: 5
+  - type: PressureProtection
+    highPressureMultiplier: 0.08
+    lowPressureMultiplier: 1000
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9
+  - type: Tag
+    tags:
+    - CorgiWearable
+    - WhitelistChameleon
+    #Far Horizons-End
+
+#ERT Engineer Hardsuit
+- type: entity
+  parent: [ BaseCentcommContraband, ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ] #Far Horizons - Disconnecting ERT suits from Syndicate Base
+  id: ClothingHeadHelmetHardsuitERTEngineer
+  name: ERT engineer hardsuit helmet
+  description: A special hardsuit helmet worn by members of an emergency response team.
+  components:
+  - type: Sprite
+    sprite: Clothing/Head/Hardsuits/ERThelmets/ertengineer.rsi
+  - type: Clothing
+    sprite: Clothing/Head/Hardsuits/ERThelmets/ertengineer.rsi
+    #Far Horizons-Start - Disconnecting ERT suits from Syndicate Base
+    clothingVisuals:
+      head:
+        - state: off-equipped-HELMET
+        #- state: off-equipped-HELMET-unshaded
+        #  shader: unshaded
+      head-vox:
+        - state: off-equipped-HELMET-vox
+        #- state: off-equipped-HELMET-unshaded-vox
+        #  shader: unshaded
+      #head-cyclorite:
+        #- state: off-equipped-HELMET-cyclorite
+        #- state: off-equipped-HELMET-unshaded-cyclorite
+        #  shader: unshaded
+      head-vulpkanin:
+        - state: off-equipped-HELMET-vulpkanin
+        #- state: off-equipped-HELMET-unshaded-vulpkanin
+        #  shader: unshaded
+      #head-felionoid:
+        #- state: off-equipped-HELMET-felionoid
+        #- state: off-equipped-HELMET-unshaded-felionoid
+        #  shader: unshaded
+      head-reptilian:
+        - state: off-equipped-HELMET-reptilian
+        #- state: off-equipped-HELMET-unshaded-reptilian
+        #  shader: unshaded
+      #head-resomi:
+        #- state: off-equipped-HELMET-resomi
+        #- state: off-equipped-HELMET-unshaded-resomi
+        #  shader: unshaded
+      #head-avali:
+        #- state: off-equipped-HELMET-avali
+        #- state: off-equipped-HELMET-unshaded-avali
+        #  shader: unshaded
+  - type: ToggleableVisuals
+    clothingVisuals:
+      head:
+        - state: on-equipped-HELMET
+          shader: unshaded
+      head-vox:
+        - state: on-equipped-HELMET-vox
+          shader: unshaded
+      #head-cyclorite:
+        #- state: on-equipped-HELMET-unshaded-cyclorite
+        #  shader: unshaded
+      head-vulpkanin:
+        - state: on-equipped-HELMET-vulpkanin
+          shader: unshaded
+      #head-felionoid:
+        #- state: on-equipped-HELMET-unshaded-felionoid
+        #  shader: unshaded
+      head-reptilian:
+        - state: on-equipped-HELMET-reptilian
+          shader: unshaded
+      #head-resomi:
+        #- state: on-equipped-HELMET-unshaded-resomi
+        #  shader: unshaded
+      #head-avali:
+        #- state: on-equipped-HELMET-unshaded-avali
+        #  shader: unshaded
+  - type: PointLight
+    color: "#f4ffad"
+    radius: 6 
+    energy: 5
+  - type: PressureProtection
+    highPressureMultiplier: 0.08
+    lowPressureMultiplier: 1000
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9
+  - type: Tag
+    tags:
+    - CorgiWearable
+    - WhitelistChameleon
+  - type: FireProtection
+    reduction: 0.2
+    #Far Horizons-End
+
 
 #ERT Medical Hardsuit
 - type: entity
-  parent: [ BaseCentcommContraband, ClothingHeadHelmetHardsuitSyndieElite ]
+  parent: [ BaseCentcommContraband, ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ] #Far Horizons - Disconnecting ERT suits from Syndicate Base
   id: ClothingHeadHelmetHardsuitERTMedical
   name: ERT medic hardsuit helmet
   description: A special hardsuit helmet worn by members of an emergency response team.
@@ -1201,12 +1426,94 @@
     sprite: Clothing/Head/Hardsuits/ERThelmets/ertmedical.rsi
   - type: Clothing
     sprite: Clothing/Head/Hardsuits/ERThelmets/ertmedical.rsi
+    #Far Horizons-Start - Disconnecting ERT suits from Syndicate Base
+    clothingVisuals:
+      head:
+        - state: off-equipped-HELMET
+        #- state: off-equipped-HELMET-unshaded
+        #  shader: unshaded
+      head-vox:
+        - state: off-equipped-HELMET-vox
+        #- state: off-equipped-HELMET-unshaded-vox
+        #  shader: unshaded
+      #head-cyclorite:
+        #- state: off-equipped-HELMET-cyclorite
+        #- state: off-equipped-HELMET-unshaded-cyclorite
+        #  shader: unshaded
+      head-vulpkanin:
+        - state: off-equipped-HELMET-vulpkanin
+        #- state: off-equipped-HELMET-unshaded-vulpkanin
+        #  shader: unshaded
+      #head-felionoid:
+        #- state: off-equipped-HELMET-felionoid
+        #- state: off-equipped-HELMET-unshaded-felionoid
+        #  shader: unshaded
+      head-reptilian:
+        - state: off-equipped-HELMET-reptilian
+        #- state: off-equipped-HELMET-unshaded-reptilian
+        #  shader: unshaded
+      #head-resomi:
+        #- state: off-equipped-HELMET-resomi
+        #- state: off-equipped-HELMET-unshaded-resomi
+        #  shader: unshaded
+      #head-avali:
+        #- state: off-equipped-HELMET-avali
+        #- state: off-equipped-HELMET-unshaded-avali
+        #  shader: unshaded
+  - type: ToggleableVisuals
+    clothingVisuals:
+      head:
+        - state: on-equipped-HELMET
+          shader: unshaded
+      head-vox:
+        - state: on-equipped-HELMET-vox
+          shader: unshaded
+      #head-cyclorite:
+        #- state: on-equipped-HELMET-unshaded-cyclorite
+        #  shader: unshaded
+      head-vulpkanin:
+        - state: on-equipped-HELMET-vulpkanin
+          shader: unshaded
+      #head-felionoid:
+        #- state: on-equipped-HELMET-unshaded-felionoid
+        #  shader: unshaded
+      head-reptilian:
+        - state: on-equipped-HELMET-reptilian
+          shader: unshaded
+      #head-resomi:
+        #- state: on-equipped-HELMET-unshaded-resomi
+        #  shader: unshaded
+      #head-avali:
+        #- state: on-equipped-HELMET-unshaded-avali
+        #  shader: unshaded
   - type: PointLight
     color: "#adffec"
+    radius: 6
+    energy: 5
+  - type: PressureProtection
+    highPressureMultiplier: 0.08
+    lowPressureMultiplier: 1000
+  - type: TemperatureProtection
+    heatingCoefficient: 0.005
+    coolingCoefficient: 0.005
+  - type: FireProtection
+    reduction: 0.2
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9
+  - type: Tag
+    tags:
+    - CorgiWearable
+    - WhitelistChameleon
+    #Far Horizons-End
 
 #ERT Security Hardsuit
 - type: entity
-  parent: [ BaseCentcommContraband, ClothingHeadHelmetHardsuitSyndie ]
+  parent: [ BaseCentcommContraband, ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ] #Far Horizons - Disconnecting ERT suits from Syndicate Base
   id: ClothingHeadHelmetHardsuitERTSecurity
   name: ERT security hardsuit helmet
   description: A special hardsuit helmet worn by members of an emergency response team.
@@ -1215,8 +1522,73 @@
     sprite: Clothing/Head/Hardsuits/ERThelmets/ertsecurity.rsi
   - type: Clothing
     sprite: Clothing/Head/Hardsuits/ERThelmets/ertsecurity.rsi
+    #Far Horizons-Start - Disconnecting ERT suits from Syndicate Base
+    clothingVisuals:
+      head:
+        - state: off-equipped-HELMET
+        #- state: off-equipped-HELMET-unshaded
+        #  shader: unshaded
+      head-vox:
+        - state: off-equipped-HELMET-vox
+        #- state: off-equipped-HELMET-unshaded-vox
+        #  shader: unshaded
+      #head-cyclorite:
+        #- state: off-equipped-HELMET-cyclorite
+        #- state: off-equipped-HELMET-unshaded-cyclorite
+        #  shader: unshaded
+      head-vulpkanin:
+        - state: off-equipped-HELMET-vulpkanin
+        #- state: off-equipped-HELMET-unshaded-vulpkanin
+        #  shader: unshaded
+      #head-felionoid:
+        #- state: off-equipped-HELMET-felionoid
+        #- state: off-equipped-HELMET-unshaded-felionoid
+        #  shader: unshaded
+      head-reptilian:
+        - state: off-equipped-HELMET-reptilian
+        #- state: off-equipped-HELMET-unshaded-reptilian
+        #  shader: unshaded
+      #head-resomi:
+        #- state: off-equipped-HELMET-resomi
+        #- state: off-equipped-HELMET-unshaded-resomi
+        #  shader: unshaded
+      #head-avali:
+        #- state: off-equipped-HELMET-avali
+        #- state: off-equipped-HELMET-unshaded-avali
+        #  shader: unshaded
+  - type: ToggleableVisuals
+    clothingVisuals:
+      head:
+        - state: on-equipped-HELMET
+          shader: unshaded
+      head-vox:
+        - state: on-equipped-HELMET-vox
+          shader: unshaded
+      #head-cyclorite:
+        #- state: on-equipped-HELMET-unshaded-cyclorite
+        #  shader: unshaded
+      head-vulpkanin:
+        - state: on-equipped-HELMET-vulpkanin
+          shader: unshaded
+      #head-felionoid:
+        #- state: on-equipped-HELMET-unshaded-felionoid
+        #  shader: unshaded
+      head-reptilian:
+        - state: on-equipped-HELMET-reptilian
+          shader: unshaded
+      #head-resomi:
+        #- state: on-equipped-HELMET-unshaded-resomi
+        #  shader: unshaded
+      #head-avali:
+        #- state: on-equipped-HELMET-unshaded-avali
+        #  shader: unshaded
   - type: PointLight
     color: "#ffadc6"
+    radius: 6 
+    energy: 5
+  - type: PressureProtection
+    highPressureMultiplier: 0.08
+    lowPressureMultiplier: 1000
   - type: Pierceable
     level: HardenedMetal
   - type: Armor
@@ -1226,10 +1598,16 @@
         Slash: 0.9
         Piercing: 0.9
         Heat: 0.9
+  - type: Tag
+    tags:
+    - CorgiWearable
+    - WhitelistChameleon
+    #Far Horizons-End
+
 
 #ERT Janitor Hardsuit
 - type: entity
-  parent: [ BaseCentcommContraband, ClothingHeadHelmetHardsuitSyndie ]
+  parent: [ BaseCentcommContraband, ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ] #Far Horizons - Disconnecting ERT suits from Syndicate Base
   id: ClothingHeadHelmetHardsuitERTJanitor
   name: ERT janitor hardsuit helmet
   description: A special hardsuit helmet worn by members of an emergency response team.
@@ -1238,8 +1616,85 @@
     sprite: Clothing/Head/Hardsuits/ERThelmets/ertjanitor.rsi
   - type: Clothing
     sprite: Clothing/Head/Hardsuits/ERThelmets/ertjanitor.rsi
+    #Far Horizons-Start - Disconnecting ERT suits from Syndicate Base
+    clothingVisuals:
+      head:
+        - state: off-equipped-HELMET
+        #- state: off-equipped-HELMET-unshaded
+        #  shader: unshaded
+      head-vox:
+        - state: off-equipped-HELMET-vox
+        #- state: off-equipped-HELMET-unshaded-vox
+        #  shader: unshaded
+      #head-cyclorite:
+        #- state: off-equipped-HELMET-cyclorite
+        #- state: off-equipped-HELMET-unshaded-cyclorite
+        #  shader: unshaded
+      head-vulpkanin:
+        - state: off-equipped-HELMET-vulpkanin
+        #- state: off-equipped-HELMET-unshaded-vulpkanin
+        #  shader: unshaded
+      #head-felionoid:
+        #- state: off-equipped-HELMET-felionoid
+        #- state: off-equipped-HELMET-unshaded-felionoid
+        #  shader: unshaded
+      head-reptilian:
+        - state: off-equipped-HELMET-reptilian
+        #- state: off-equipped-HELMET-unshaded-reptilian
+        #  shader: unshaded
+      #head-resomi:
+        #- state: off-equipped-HELMET-resomi
+        #- state: off-equipped-HELMET-unshaded-resomi
+        #  shader: unshaded
+      #head-avali:
+        #- state: off-equipped-HELMET-avali
+        #- state: off-equipped-HELMET-unshaded-avali
+        #  shader: unshaded
+  - type: ToggleableVisuals
+    clothingVisuals:
+      head:
+        - state: on-equipped-HELMET
+          shader: unshaded
+      head-vox:
+        - state: on-equipped-HELMET-vox
+          shader: unshaded
+      #head-cyclorite:
+        #- state: on-equipped-HELMET-unshaded-cyclorite
+        #  shader: unshaded
+      head-vulpkanin:
+        - state: on-equipped-HELMET-vulpkanin
+          shader: unshaded
+      #head-felionoid:
+        #- state: on-equipped-HELMET-unshaded-felionoid
+        #  shader: unshaded
+      head-reptilian:
+        - state: on-equipped-HELMET-reptilian
+          shader: unshaded
+      #head-resomi:
+        #- state: on-equipped-HELMET-unshaded-resomi
+        #  shader: unshaded
+      #head-avali:
+        #- state: on-equipped-HELMET-unshaded-avali
+        #  shader: unshaded
   - type: PointLight
     color: "#cbadff"
+    radius: 6
+    energy: 5
+  - type: PressureProtection
+    highPressureMultiplier: 0.08
+    lowPressureMultiplier: 1000
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9
+  - type: Tag
+    tags:
+    - CorgiWearable
+    - WhitelistChameleon
+    #Far Horizons-End
 
 #CBURN Hardsuit
 - type: entity

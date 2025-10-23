@@ -147,6 +147,22 @@
   - type: AccessReader
     access: [["Brigmedic"]]
 
+# Corpsman
+- type: entity
+  id: LockerCorpsman
+  parent: LockerLargeBaseSecure
+  name: corpsman's locker
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Storage/closet.rsi
+  - type: EntityStorageVisuals
+    stateBaseClosed: brigmedic
+    stateDoorOpen: sec_open
+    stateDoorClosed: corpsman_door
+  - type: AccessReader
+    access: [["Brigmedic"]]
+
 # HoS
 - type: entity
   id: LockerHeadOfSecurityFH

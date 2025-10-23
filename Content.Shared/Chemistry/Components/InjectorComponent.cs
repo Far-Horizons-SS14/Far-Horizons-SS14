@@ -118,6 +118,14 @@ public sealed partial class InjectorComponent : Component
     public float MovementThreshold = 0.1f;
 
     #endregion
+
+    /// FarHorizons Edit start
+
+    [DataField] public string InjectorInjectingStartDescription = "injector-component-injecting-user";
+
+    [DataField] public string InjectorDrawingStartDescription = "injector-component-drawing-user";
+
+    /// FarHorizons Edit end
 }
 
 /// <summary>

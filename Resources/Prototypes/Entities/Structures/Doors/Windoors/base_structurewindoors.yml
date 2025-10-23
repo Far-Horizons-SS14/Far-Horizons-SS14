@@ -29,7 +29,7 @@
         layer:
         - GlassAirlockLayer
   - type: Sprite
-    sprite: Structures/Doors/Windoors/windoor.rsi
+    sprite: _FarHorizons/Structures/Doors/Windoors/windoor.rsi  # FarHorizons
     layers:
     - state: closed
       map: ["enum.DoorVisualLayers.Base"]
@@ -178,7 +178,7 @@
   abstract: true
   components:
   - type: Sprite
-    sprite: Structures/Doors/Windoors/windoor.rsi
+    sprite: _FarHorizons/Structures/Doors/Windoors/windoor.rsi  # FarHorizons
     layers:
     - state: secure_underlay
     - state: closed
@@ -250,7 +250,7 @@
   abstract: true
   components:
   - type: Sprite
-    sprite: Structures/Doors/Windoors/plasma.rsi
+    sprite: _FarHorizons/Structures/Doors/Windoors/plasma.rsi  # FarHorizons
     layers:
     - state: closed
       map: [ "enum.DoorVisualLayers.Base" ]
@@ -315,7 +315,7 @@
   abstract: true
   components:
   - type: Sprite
-    sprite: Structures/Doors/Windoors/plasma.rsi
+    sprite: _FarHorizons/Structures/Doors/Windoors/plasma.rsi  # FarHorizons
     layers:
     - state: secure_underlay
     - state: closed
@@ -387,7 +387,7 @@
   abstract: true
   components:
   - type: Sprite
-    sprite: Structures/Doors/Windoors/uranium.rsi
+    sprite: _FarHorizons/Structures/Doors/Windoors/uranium.rsi  # FarHorizons
     layers:
     - state: closed
       map: [ "enum.DoorVisualLayers.Base" ]
@@ -452,7 +452,7 @@
   abstract: true
   components:
   - type: Sprite
-    sprite: Structures/Doors/Windoors/uranium.rsi
+    sprite: _FarHorizons/Structures/Doors/Windoors/uranium.rsi  # FarHorizons
     layers:
     - state: secure_underlay
     - state: closed

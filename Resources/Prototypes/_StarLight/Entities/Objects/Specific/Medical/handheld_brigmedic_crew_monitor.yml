@@ -8,7 +8,7 @@
     tags:
       - BrigmedicBeltEquip
   - type: Sprite
-    sprite: _Starlight/Objects/Specific/Medical/handheld_brigmedic_crewmonitor.rsi
+    sprite: _FarHorizons/Objects/Specific/Medical/handheld_brigmedic_crewmonitor.rsi #FH Change
     state: scanner
   - type: ActivatableUI
     key: enum.CrewMonitoringUIKey.Key
@@ -22,6 +22,10 @@
     receiveFrequencyId: CrewMonitor
   - type: WirelessNetworkConnection
     range: 500
+  - type: MeleeWeapon #FarHorizons
+    damage: #FarHorizons
+      types: #FarHorizons
+        Blunt: 5 #FarHorizons
 
 - type: entity
   id: HandheldBrigmedicCrewMonitorEmpty

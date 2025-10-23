@@ -1,0 +1,35 @@
+- type: entity
+  id: DefibrillatorCorpsman
+  parent: [DefibrillatorBrigmedical, BaseSecurityContraband]
+  name: Corpsman Defibrillator
+  description: Hand-held device that can save lives, and act as a weapon in a pinch. Now in black!
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Specific/Medical/defibcorps.rsi
+    layers:
+      - state: icon
+      - state: screen
+        map: [ "enum.ToggleableVisuals.Layer" ]
+        visible: false
+        shader: unshaded
+      - state: ready
+        map: ["enum.PowerDeviceVisualLayers.Powered"]
+        shader: unshaded
+
+- type: entity
+  id: DefibrillatorParamedical
+  parent: [DefibrillatorBrigmedical]
+  name: Paramedical Defibrillator
+  description: Hand-held device that can save lives with such a terrible battery life you'd be hard pressed to neglectfully leave it on.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Specific/Medical/defibpara.rsi
+    layers:
+      - state: icon
+      - state: screen
+        map: [ "enum.ToggleableVisuals.Layer" ]
+        visible: false
+        shader: unshaded
+      - state: ready
+        map: ["enum.PowerDeviceVisualLayers.Powered"]
+        shader: unshaded

@@ -1,0 +1,97 @@
+- type: entity
+  name: small reinforced vial
+  parent: BaseItem
+  id: ReinforcedMiniatureEmptyChemistryVial
+  description: A small vial made with blast-resistant glass.
+  components:
+  - type: Tag
+    tags:
+    - Trash
+    - CentrifugeCompatible
+    - ExternalContainerInjectorVial
+  - type: PhysicalComposition
+    materialComposition:
+      ReinforcedGlass: 5
+  - type: FitsInDispenser
+    solution: beaker
+  - type: SpaceGarbage
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Specific/Chemistry/reinforced_vial_small.rsi
+    layers:
+      - state: vial-1
+      - state: vial-1-1
+        map: ["enum.SolutionContainerLayers.Fill"]
+        visible: false
+  - type: Appearance
+  - type: SolutionContainerVisuals
+    maxFillLevels: 2
+    fillBaseName: vial-1-
+    inHandsMaxFillLevels: 2
+    inHandsFillBaseName: -fill-
+  - type: Drink
+    solution: beaker
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 10
+  - type: MixableSolution
+    solution: beaker
+  - type: RefillableSolution
+    solution: beaker
+  - type: DrainableSolution
+    solution: beaker
+  - type: ExaminableSolution
+    solution: beaker
+  - type: DrawableSolution
+    solution: beaker
+  - type: SolutionTransfer
+    maxTransferAmount: 5
+    canChangeTransferAmount: true
+  - type: SolutionItemStatus
+    solution: beaker
+  - type: UserInterface
+    interfaces:
+      enum.TransferAmountUiKey.Key:
+        type: TransferAmountBoundUserInterface
+  - type: Item
+    size: Tiny
+    sprite: _FarHorizons/Objects/Specific/Chemistry/reinforced_vial.rsi
+    shape:
+    - 0,0,0,0
+  - type: MeleeWeapon
+    soundNoDamage:
+      path: "/Audio/Effects/Fluids/splat.ogg"
+    damage:
+      types:
+        Blunt: 0
+  - type: TrashOnSolutionEmpty
+    solution: beaker
+  - type: StaticPrice
+    price: 100
+  - type: Spillable
+    solution: beaker
+  - type: DnaSubstanceTrace
+
+- type: entity
+  name: reinforced vial
+  id: ChemistryVialReinforced
+  parent: ReinforcedMiniatureEmptyChemistryVial
+  description: A small vial, now explosion proof.
+  components:
+  - type: Tag
+    tags:
+    - Vial
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 40
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Specific/Chemistry/reinforced_vial.rsi
+    layers:
+      - state: vial-1
+      - state: vial-1-1
+        map: ["enum.SolutionContainerLayers.Fill"]
+        visible: false
+  - type: Item
+    size: Tiny
+    sprite: _FarHorizons/Objects/Specific/Chemistry/reinforced_vial.rsi

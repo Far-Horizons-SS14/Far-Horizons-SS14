@@ -6,12 +6,12 @@
   abstract: true
   components:
   - type: Sprite
-    sprite: Clothing/Shoes/Boots/magboots.rsi
+    sprite: _FarHorizons/Clothing/Shoes/Boots/magboots.rsi #Far Horizons
     layers:
     - state: icon
       map: [ "enum.ToggleableVisuals.Layer" ]
   - type: Clothing
-    sprite: Clothing/Shoes/Boots/magboots.rsi
+    sprite: _FarHorizons/Clothing/Shoes/Boots/magboots.rsi #Far Horizons
   - type: ToggleClothing
     action: ActionToggleMagboots
     mustEquip: false
@@ -50,10 +50,10 @@
   description: State-of-the-art magnetic boots that do not slow down their wearer.
   components:
   - type: Sprite
-    sprite: Clothing/Shoes/Boots/magboots-advanced.rsi
+    sprite: _FarHorizons/Clothing/Shoes/Boots/magboots-advanced.rsi #Far Horizons
     state: icon
   - type: Clothing
-    sprite: Clothing/Shoes/Boots/magboots-advanced.rsi
+    sprite: _FarHorizons/Clothing/Shoes/Boots/magboots-advanced.rsi #Far Horizons
   - type: ClothingSpeedModifier
     walkModifier: 1
     sprintModifier: 1

@@ -1,0 +1,23 @@
+- type: entity
+  parent: [ClothingEyesBase, ShowSecurityIcons, BaseSecurityContraband]
+  id: ClothingEyesGlassesCorpsman
+  name: corpsman glasses
+  description: Super Tamashi-Upgraded glasses. Corpsman ones.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Eyes/Glasses/corpsman.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Eyes/Glasses/corpsman.rsi
+  - type: FlashImmunity
+  - type: EyeProtection
+    protectionTime: 5
+  - type: ShowHealthBars
+  - type: Construction
+    graph: GlassesSecHUD
+    node: glassesSec
+  - type: Tag
+    tags:
+    - HamsterWearable
+    - WhitelistChameleon
+  - type: IdentityBlocker
+    coverage: EYES

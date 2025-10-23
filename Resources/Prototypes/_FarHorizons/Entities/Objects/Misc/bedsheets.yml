@@ -1,0 +1,35 @@
+- type: entity
+  parent: BedsheetBase
+  id: BedsheetBaseFarHorizons
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Misc/bedsheets.rsi
+    noRot: true
+
+- type: entity
+  id: BedsheetCorpsmanStrange
+  parent: [BedsheetBaseFarHorizons, BaseHandheldInstrument]
+  name: Strange Corpsman's Bedsheet
+  description: Upon closer inspection, this appears to be a custom-made corpsman bedsheet with a pocket for a portable Digital Audio Workstation. The initials 'K.T' seem to be printed on it.
+  components:
+  - type: Sprite
+    state: sheetcorpsmanstrange
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Neck/Bedsheets/corpsmanstrange.rsi
+  - type: Instrument
+    allowPercussion: true
+    allowProgramChange: true
+  - type: ActivatableUI
+    inHandsOnly: false  
+
+- type: entity
+  id: BedsheetCorpsman
+  parent: BedsheetBaseFarHorizons
+  name: Corpsman's Bedsheet
+  description: Better than cotton.
+  components:
+  - type: Sprite
+    state: sheetcorpsman
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Neck/Bedsheets/corpsman.rsi

@@ -293,10 +293,19 @@
     loadout: SyndieWarden
 
 - type: factionJobAssignment
+  id: SyndieCorpsman
+  faction: FactionSyndicate
+  job: Corpsman
+  weight: 1
+  override:
+    name: faction-syndicate-job-corpsman
+    loadout: SyndieCorpsman
+
+- type: factionJobAssignment
   id: SyndieBrigmedic
   faction: FactionSyndicate
   job: Brigmedic
-  weight: 1
+  weight: 2
   override:
     name: faction-syndicate-job-brigmed
     loadout: SyndieBrigmedic
@@ -305,7 +314,7 @@
   id: SyndieDetective
   faction: FactionSyndicate
   job: Detective
-  weight: 2
+  weight: 3
   override:
     name: faction-syndicate-job-detective
     loadout: SyndieDetective
@@ -314,7 +323,7 @@
   id: SyndieSecurityOfficer
   faction: FactionSyndicate
   job: SecurityOfficer
-  weight: 3
+  weight: 4
   override:
     name: faction-syndicate-job-officer
     loadout: SyndieCaptain
@@ -323,10 +332,19 @@
   id: SyndieSecurityCadet
   faction: FactionSyndicate
   job: SecurityCadet
-  weight: 4
+  weight: 5
   override:
     name: faction-syndicate-job-cadet
     loadout: SyndieSecurityCadet
+
+- type: factionJobAssignment
+  id: SyndieSecBorg
+  faction: FactionSyndicate
+  job: SecBorg
+  weight: 6
+  override:
+    name: faction-syndicate-job-secborg
+    jobEntity: PlayerBorgSyndicateAssaultBattery
 
 # Syndie jobs
 - type: factionJobAssignment

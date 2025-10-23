@@ -4,6 +4,7 @@ using Content.Server.Spawners.Components;
 using Content.Shared.EntityTable;
 using Content.Shared.GameTicking.Components;
 using JetBrains.Annotations;
+using Robust.Server.GameObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Random;
 
@@ -15,6 +16,7 @@ namespace Content.Server.Spawners.EntitySystems
         [Dependency] private readonly IRobustRandom _robustRandom = default!;
         [Dependency] private readonly GameTicker _ticker = default!;
         [Dependency] private readonly EntityTableSystem _entityTable = default!;
+        [Dependency] private readonly TransformSystem _transform = default!;
 
         public override void Initialize()
         {
@@ -116,9 +118,15 @@ namespace Content.Server.Spawners.EntitySystems
             var xOffset = _robustRandom.NextFloat(-offset, offset);
             var yOffset = _robustRandom.NextFloat(-offset, offset);
 
-            var coordinates = Transform(uid).Coordinates.Offset(new Vector2(xOffset, yOffset));
+            // Far Horizons start
+            // Making spawners rotateable and rotation is transferred to spawned entity
+            
 
-            Spawn(_robustRandom.Pick(component.Prototypes), coordinates);
+            var coordinates = Transform(uid).Coordinates.Offset(new Vector2(xOffset, yOffset));
+            var rotation = Transform(uid).LocalRotation;
+            var spawned = Spawn(_robustRandom.Pick(component.Prototypes), coordinates);
+            _transform.SetLocalRotation(spawned, rotation);
+            // Far Horizons end
         }
 
         private void Spawn(Entity<EntityTableSpawnerComponent> ent)

@@ -267,48 +267,24 @@
       - id: ClothingUniformJumpsuitBrigmedic
       - id: ClothingUniformJumpskirtBrigmedic
       - id: ClothingUniformJumpskirtOfLife
-      - id: ClothingHeadHatBeretCorpsman
-      - id: ClothingOuterCoatCorpsman
-      - id: ClothingUniformJumpsuitCorpsman
-      - id: ClothingUniformJumpskirtCorpsman
-      - id: ClothingBeltCorpsmanFilled
-      - id: ClothingHandsGlovesBlackNitrile
       - id: ClothingShoesBootsMagSec
         amount: 2
       - id: BedsheetBrigmedicStrange
       - id: BedsheetBrigmedic
       - id: MedkitFilled
         amount: 2
-      - id: MedkitCombatFilled
-        prob: 0.6
-      - id: MedkitCombatFilled
-        prob: 0.6
       - id: MedkitAdvancedFilled
-        prob: 0.4
-      - id: MedkitAdvancedFilled
-        prob: 0.4
+        amount: 2
       - id: MedkitOxygenFilled
-        prob: 0.3
-      - id: MedkitOxygenFilled
-        prob: 0.3
-      - id: MedkitBruteFilled
-        prob: 0.3
-      - id: MedkitBruteFilled
-        prob: 0.3
+        amount: 2
       - id: MedkitToxinFilled
-        prob: 0.3
-      - id: MedkitToxinFilled
-        prob: 0.3
-      - id: MedkitBurnFilled
-        prob: 0.7
-      - id: MedkitBurnFilled
-        prob: 0.7
+        amount: 2
+      - id: SecurityMedkitFHFilled
+        amount: 2
       - id: ClothingNeckCloakMoth #bzzz Moth-pocalypse
         prob: 0.35
       - id: RubberStampBrigmedic
         amount: 2
-      - id: PlushieMorgana
-      - id: PlushieKiller
 
 - type: entity
   id: LockerBrigmedicFHFilled
@@ -329,31 +305,52 @@
       - id: ClothingUniformJumpsuitBrigmedic
       - id: ClothingUniformJumpskirtBrigmedic
       - id: ClothingUniformJumpskirtOfLife
-      - id: ClothingHeadHatBeretCorpsman
-      - id: ClothingOuterCoatCorpsman
-      - id: ClothingUniformJumpsuitCorpsman
-      - id: ClothingUniformJumpskirtCorpsman
-      - id: ClothingBeltCorpsmanFilled
-      - id: ClothingHandsGlovesBlackNitrile
       - id: ClothingShoesBootsMagSec
+        amount: 2 #Will change to 1 when corps locker is mapped
       - id: BedsheetBrigmedicStrange
-      - id: BedsheetBrigmedic
       - id: MedkitFilled
-      - id: MedkitCombatFilled
-        prob: 0.6
+      - id: PlasmaChemistryVial
+      - id: BoxBeaker
+      - id: BoxSyringe
+      - id: DefibrillatorBrigmedical
       - id: MedkitAdvancedFilled
-        prob: 0.4
       - id: MedkitOxygenFilled
-        prob: 0.3
-      - id: MedkitBruteFilled
-        prob: 0.3
       - id: MedkitToxinFilled
-        prob: 0.3
-      - id: MedkitBurnFilled
-        prob: 0.7
+      - id: SecurityMedkitFHFilled
       - id: ClothingNeckCloakMoth #bzzz Moth-pocalypse
         prob: 0.35
       - id: RubberStampBrigmedic
+
+- type: entity
+  id: LockerCorpsmanFilled
+  suffix: Filled
+  parent: LockerCorpsman
+  components:
+  - type: StorageFill
+    contents:
+      - id: ClothingEyesGlassesCorpsman
+      - id: ClothingEyesHudCorpsman
+      - id: WeaponDisabler
+      - id: TrackingImplanter
+        amount: 2
+      - id: ClothingOuterHardsuitCorpsman
+      - id: BoxSterileMask
+      - id: ClothingHeadHatBeretCorpsman
+      - id: ClothingOuterCoatCorpsmanFH
+      - id: ClothingUniformJumpsuitCorpsman
+      - id: ClothingUniformJumpskirtCorpsman
+      - id: ClothingBeltCorpsmanFilled
+      - id: DefibrillatorCorpsman
+      - id: SecurityHypoKitFilled
+      - id: ClothingHandsGlovesBlackNitrile
+      - id: ClothingShoesBootsMagSec
+      - id: BedsheetCorpsmanStrange
+      - id: MedkitFilled
+      - id: MedkitCombatFilled
+      - id: SecurityMedkitFHFilled
+      - id: MedkitOxygenFilled
+      - id: MedkitToxinFilled
+      - id: RubberStampCorpsman
       - id: PlushieMorgana
       - id: PlushieKiller
 

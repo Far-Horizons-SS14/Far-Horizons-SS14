@@ -13,7 +13,7 @@
 - type: entity
   parent: FHAirlockMaint
   id: FHAirlockMaintLocked
-  suffix: Locked
+  suffix: Locked, Maint
   components:
     - type: ContainerFill
       containers:
@@ -49,6 +49,7 @@
 - type: entity
   parent: FHAirlockFreezerKitchenHydroLocked
   id: FHAirlockMaintKitchenHydroLocked
+  suffix: Kitchen/Hydroponics, Locked, Maint
   components:
     - type: Sprite
       sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/maint.rsi
@@ -382,6 +383,7 @@
 - type: entity
   parent: FHAirlockSalvageLocked
   id: FHAirlockMaintSalvageLocked
+  suffix: Salvage, Locked, Maint
   components:
   - type: Sprite
     sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/maint.rsi
@@ -389,6 +391,7 @@
 - type: entity
   parent: FHAirlockCargoLocked
   id: FHAirlockMaintCargoLocked
+  suffix: Cargo, Locked, Maint
   components:
   - type: Sprite
     sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/maint.rsi
@@ -396,6 +399,7 @@
 - type: entity
   parent: FHAirlockCommandLocked
   id: FHAirlockMaintCommandLocked
+  suffix: Command, Locked, Maint
   components:
   - type: Sprite
     sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/maint.rsi
@@ -403,6 +407,7 @@
 - type: entity
   parent: FHAirlockEngineeringLocked
   id: FHAirlockMaintEngiLocked
+  suffix: Engineering, Locked, Maint
   components:
   - type: Sprite
     sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/maint.rsi
@@ -410,6 +415,7 @@
 - type: entity
   parent: FHAirlockAtmosphericsLocked
   id: FHAirlockMaintAtmoLocked
+  suffix: Atmospherics, Locked, Maint
   components:
   - type: Sprite
     sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/maint.rsi
@@ -417,6 +423,7 @@
 - type: entity
   parent: FHAirlockBarLocked
   id: FHAirlockMaintBarLocked
+  suffix: Bar, Locked, Maint
   components:
   - type: Sprite
     sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/maint.rsi
@@ -424,6 +431,7 @@
 - type: entity
   parent: FHAirlockBarKitchenLocked
   id: FHAirlockMaintBarKitchenLocked
+  suffix: Bar&Kitchen, Locked, Maint
   components:
   - type: Sprite
     sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/maint.rsi
@@ -431,6 +439,7 @@
 - type: entity
   parent: FHAirlockChapelLocked
   id: FHAirlockMaintChapelLocked
+  suffix: Chapel, Locked, Maint
   components:
   - type: Sprite
     sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/maint.rsi
@@ -438,6 +447,7 @@
 - type: entity
   parent: FHAirlockHydroponicsLocked
   id: FHAirlockMaintHydroLocked
+  suffix: Hydroponics, Locked, Maint
   components:
   - type: Sprite
     sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/maint.rsi
@@ -445,6 +455,7 @@
 - type: entity
   parent: FHAirlockJanitorLocked
   id: FHAirlockMaintJanitorLocked
+  suffix: Janitor, Locked, Maint
   components:
   - type: Sprite
     sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/maint.rsi
@@ -452,6 +463,7 @@
 - type: entity
   parent: FHAirlockLawyerLocked
   id: FHAirlockMaintLawyerLocked
+  suffix: Lawyer, Locked, Maint
   components:
   - type: Sprite
     sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/maint.rsi
@@ -459,6 +471,7 @@
 - type: entity
   parent: FHAirlockServiceLocked
   id: FHAirlockMaintServiceLocked
+  suffix: Service, Locked, Maint
   components:
   - type: Sprite
     sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/maint.rsi
@@ -466,6 +479,7 @@
 - type: entity
   parent: FHAirlockTheatreLocked
   id: FHAirlockMaintTheatreLocked
+  suffix: Theatre, Locked, Maint
   components:
   - type: Sprite
     sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/maint.rsi
@@ -473,6 +487,7 @@
 - type: entity
   parent: FHAirlockServiceTheatreLocked
   id: FHAirlockMaintServiceTheatreLocked
+  suffix: Service, Theatre, Locked, Maint
   components:
   - type: Sprite
     sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/maint.rsi
@@ -480,6 +495,7 @@
 - type: entity
   parent: FHAirlockKitchenLocked
   id: FHAirlockMaintKitchenLocked
+  suffix: Kitchen, Locked, Maint
   components:
   - type: Sprite
     sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/maint.rsi
@@ -487,6 +503,7 @@
 - type: entity
   parent: FHAirlockMedicalLocked
   id: FHAirlockMaintMedLocked
+  suffix: Medical, Locked, Maint
   components:
   - type: Sprite
     sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/maint.rsi
@@ -494,6 +511,7 @@
 - type: entity
   parent: FHAirlockMedicalMorgueLocked
   id: FHAirlockMedicalMorgueMaintLocked
+  suffix: Morgue, Locked, Maint
   components:
   - type: Sprite
     sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/maint.rsi
@@ -501,6 +519,7 @@
 - type: entity
   parent: FHAirlockChemistryLocked
   id: FHAirlockMaintChemLocked
+  suffix: Chemistry, Locked, Maint
   components:
   - type: Sprite
     sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/maint.rsi
@@ -508,6 +527,7 @@
 - type: entity
   parent: FHAirlockScienceLocked
   id: FHAirlockMaintRnDLocked
+  suffix: Science, Locked, Maint
   components:
   - type: Sprite
     sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/maint.rsi
@@ -515,6 +535,7 @@
 - type: entity
   parent: FHAirlockMedicalScienceLocked
   id: FHAirlockMaintRnDMedLocked
+  suffix: Medical/Science, Locked, Maint
   components:
   - type: Sprite
     sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/maint.rsi
@@ -522,6 +543,7 @@
 - type: entity
   parent: FHAirlockSecurityLocked
   id: FHAirlockMaintSecLocked
+  suffix: Security, Locked, Maint
   components:
   - type: Sprite
     sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/maint.rsi
@@ -529,6 +551,7 @@
 - type: entity
   parent: FHAirlockDetectiveLocked
   id: FHAirlockMaintDetectiveLocked
+  suffix: Detective, Locked, Maint
   components:
   - type: Sprite
     sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/maint.rsi
@@ -536,6 +559,7 @@
 - type: entity
   parent: FHAirlockHeadOfPersonnelLocked
   id: FHAirlockMaintHOPLocked
+  suffix: HeadOfPersonnel, Locked, Maint
   components:
   - type: Sprite
     sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/maint.rsi
@@ -543,6 +567,7 @@
 - type: entity
   parent: FHAirlockCaptainLocked
   id: FHAirlockMaintCaptainLocked
+  suffix: Captain, Locked, Maint
   components:
   - type: Sprite
     sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/maint.rsi
@@ -550,6 +575,7 @@
 - type: entity
   parent: FHAirlockChiefEngineerLocked
   id: FHAirlockMaintChiefEngineerLocked
+  suffix: ChiefEngineer, Locked, Maint
   components:
   - type: Sprite
     sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/maint.rsi
@@ -557,6 +583,7 @@
 - type: entity
   parent: FHAirlockChiefMedicalOfficerLocked
   id: FHAirlockMaintChiefMedicalOfficerLocked
+  suffix: ChiefMedicalOfficer, Locked, Maint
   components:
   - type: Sprite
     sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/maint.rsi
@@ -564,6 +591,7 @@
 - type: entity
   parent: FHAirlockHeadOfSecurityLocked
   id: FHAirlockMaintHeadOfSecurityLocked
+  suffix: HeadOfSecurity, Locked, Maint
   components:
   - type: Sprite
     sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/maint.rsi
@@ -571,6 +599,7 @@
 - type: entity
   parent: FHAirlockResearchDirectorLocked
   id: FHAirlockMaintResearchDirectorLocked
+  suffix: ResearchDirector, Locked, Maint
   components:
   - type: Sprite
     sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/maint.rsi
@@ -578,6 +607,7 @@
 - type: entity
   parent: FHAirlockQuartermasterLocked
   id: FHAirlockMaintQuartermasterLocked
+  suffix: Quartermaster, Locked, Maint
   components:
   - type: Sprite
     sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/maint.rsi
@@ -585,6 +615,7 @@
 - type: entity
   parent: FHAirlockArmoryLocked
   id: FHAirlockMaintArmoryLocked
+  suffix: Armory, Locked, Maint
   components:
   - type: Sprite
     sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/maint.rsi

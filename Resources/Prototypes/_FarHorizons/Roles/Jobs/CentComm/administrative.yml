@@ -1,0 +1,38 @@
+- type: job
+  id: CC-CADOfficial
+  name: job-name-cc-cad-official
+  description: job-description-cc-cad-official
+  playTimeTracker: JobCC-CADOfficial
+  setPreference: false
+  startingGear: CC-CADGear
+  icon: "JobIconCentComm"
+  supervisors: job-supervisors-hos
+  canBeAntag: false
+  accessGroups:
+  - AllAccess
+  access:
+  - CentralCommand
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant, DeathRattleImplantCentcomm ]
+
+- type: startingGear
+  id: CC-CADGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitCentcomOfficial
+    shoes: ClothingShoesBootsCombatFilled
+    head: ClothingHeadHatCentcom
+    mask: ClothingMaskGasCentcom
+    eyes: ClothingEyesGlassesCentComm
+    gloves: ClothingHandsGlovesColorBlack
+    outerClothing: ClothingOuterArmorCentcommCarapace
+    back: ClothingBackpackSatchelLeather
+    id: CADOfficialPDA
+    ears: ClothingHeadsetAltCentCom
+    belt: BoxFolderCentComClipboardThreePapers
+    suitstorage: WeaponPistolN1984
+    pocket1: MindShieldImplanter
+    pocket2: DeathRattleImplanterCentcomm
+    suitstorage2: NitrogenTankFilled
+  inhand:
+    - MagazineMagnum

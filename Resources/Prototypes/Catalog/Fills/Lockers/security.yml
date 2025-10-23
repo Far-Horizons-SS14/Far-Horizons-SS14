@@ -108,16 +108,12 @@
   id: FillLockerBrigmedic
   table: !type:AllSelector
     children:
-    - id: ClothingOuterCoatCorpsman #Starlight
-    - id: ClothingUniformJumpsuitCorpsman #Starlight
-    - id: ClothingUniformJumpskirtCorpsman #Starlight
-    - id: ClothingHeadHatBeretCorpsman #Starlight
-    - id: ClothingBeltCorpsmanFilled #Starlight
-    - id: ClothingHandsGlovesBlackNitrile #Starlight
-    - id: ClothingEyesGlassesSecurity #Starlight
+# Corpsman gear removed and sent to FH fill.
+    - id: ClothingEyesGlassesBrigmedic #FH Edit
+    - id: ClothingEyesHudBrigmedic #FH Edit
     - id: WeaponDisabler
     - id: TrackingImplanter
-      amount: 1
+      amount: 2
     - id: ClothingOuterHardsuitBrigmedic
     - id: BoxSterileMask
     - id: ClothingHeadHatBeretBrigmedic
@@ -125,22 +121,12 @@
     - id: ClothingUniformJumpsuitBrigmedic
     - id: ClothingUniformJumpskirtBrigmedic
     - id: ClothingUniformJumpskirtOfLife
-      prob: 0.1
-    - id: MedkitFilled
-    - !type:GroupSelector
-      prob: 0.7
-      children:
-      - id: MedkitCombatFilled
-        weight: 1.6
-      - id: MedkitAdvancedFilled
-      - id: MedkitOxygenFilled
-        weight: 0.8
-      - id: MedkitBruteFilled
-        weight: 0.8
-      - id: MedkitToxinFilled
-        weight: 0.8
-      - id: MedkitBurnFilled
-        prob: 1.8
+#FH Edit Start - Removed gambling for kits
+    - id: MedkitCombatFilled
+    - id: MedkitAdvancedFilled
+    - id: MedkitOxygenFilled
+    - id: MedkitToxinFilled
+#FH Edit End - Removed gambling for kits
     - id: ClothingNeckCloakMoth #bzzz Moth-pocalypse
       prob: 0.15
     - id: PlushieMorgana #starlight

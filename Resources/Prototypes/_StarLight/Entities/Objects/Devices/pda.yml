@@ -30,7 +30,7 @@
   - type: Pda
     id: MagistrateIDCard
     penSlot:
-      startingItem: Pen
+      startingItem: LuxuryPen #Far Horizons
       priority: -1
       whitelist:
         tags:
@@ -40,6 +40,13 @@
      enum.PdaVisuals.PdaType:
        !type:String
        pda-captain
+  - type: CartridgeLoader #Far Horizons
+    preinstalled:
+    - CrewManifestCartridge
+    - NotekeeperCartridge
+    - NanoTaskCartridge
+    - NewsReaderCartridge
+    - WantedListCartridge
   - type: PdaBorderColor
     borderColor: "#7C5D00"
   - type: Icon
@@ -85,6 +92,19 @@
   components:
   - type: Pda
     id: IAAIDCard
+    penSlot: #Far Horizons
+      startingItem: LuxuryPen
+      priority: -1
+      whitelist:
+        tags:
+        - Write
+  - type: CartridgeLoader #Far Horizons
+    preinstalled:
+    - CrewManifestCartridge    
+    - NotekeeperCartridge
+    - NanoTaskCartridge
+    - NewsReaderCartridge
+    - WantedListCartridge
   - type: Appearance
     appearanceDataInit:
      enum.PdaVisuals.PdaType:

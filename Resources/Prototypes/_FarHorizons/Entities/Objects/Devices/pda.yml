@@ -1,0 +1,72 @@
+- type: entity
+  parent: BaseMedicalPDA
+  id: CorpsmanPDA
+  name: corpsman PDA
+  description: The pulse looks attuned to the beat of your own heart.
+  components:
+  - type: Pda
+    id: CorpsmanIDCard
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-brigmedic
+  - type: PdaBorderColor
+    borderColor: "#A32D26"
+    accentHColor: "#d7d7d0"
+    accentVColor: "#d7d7d0"
+  - type: Icon
+    state: pda-brigmedic
+  - type: CartridgeLoader
+    preinstalled:
+    - CrewManifestCartridge
+    - NotekeeperCartridge
+    - NanoTaskCartridge
+    - NewsReaderCartridge
+    - WantedListCartridge
+    - MedTekCartridge
+
+- type: entity
+  parent: CentcomPDA
+  id: CADOfficialPDA
+  name: CAD Official PDA
+  description: Light green sign of walking bureaucracy.
+  components: 
+  - type: Pda
+    id: CCCADIDCard
+    penSlot:
+      startingItem: PenCentcom
+      priority: -1
+      whitelist:
+        tags:
+        - Write
+
+- type: entity
+  parent: CentcomPDA
+  id: CSDOfficialPDA
+  name: CSD Official PDA
+  description: Light green sign of walking bureaucracy.
+  components: 
+  - type: Pda
+    id: CCCSDIDCard
+    penSlot:
+      startingItem: PenCentcom
+      priority: -1
+      whitelist:
+        tags:
+        - Write
+
+- type: entity
+  parent: CentcomPDA
+  id: CIDOfficialPDA
+  name: CID Official PDA
+  description: Light green sign of walking bureaucracy.
+  components: 
+  - type: Pda
+    id: CCCIDIDCard
+    penSlot:
+      startingItem: PenCentcom
+      priority: -1
+      whitelist:
+        tags:
+        - Write
