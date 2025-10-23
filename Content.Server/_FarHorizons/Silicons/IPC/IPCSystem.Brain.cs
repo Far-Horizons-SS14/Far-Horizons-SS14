@@ -29,7 +29,6 @@ public sealed partial class IPCSystem
             return;
 
         _mind.TransferTo(mindId, ent, mind: mind);
-        UpdateUI(ent);
     }
 
     private void OnRemoved(Entity<IPCBrainHolderComponent> ent, ref EntRemovedFromContainerMessage args)
@@ -40,7 +39,6 @@ public sealed partial class IPCSystem
             return;
 
         _mind.TransferTo(mindId, args.Entity, mind: mind);
-        UpdateUI(ent);
     }
 
     private void OnBrainMindAdded(Entity<IPCBrainComponent> ent, ref MindAddedMessage args)

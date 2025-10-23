@@ -19,20 +19,11 @@ public sealed class IPCBuiState : BoundUserInterfaceState
 
     public MobState MobState;
 
-    public int EyeDamage;
-
-    public float BloodLevel;
-
-    public DamageSpecifier Damage;
-
-    public IPCBuiState(float chargePercent, bool hasBattery, MobState mobState, int eyeDamage, float bloodLevel, DamageSpecifier damage)
+    public IPCBuiState(float chargePercent, bool hasBattery, MobState mobState)
     {
         ChargePercent = chargePercent;
         HasBattery = hasBattery;
         MobState = mobState;
-        EyeDamage = eyeDamage;
-        BloodLevel = bloodLevel;
-        Damage = damage;
     }
 }
 

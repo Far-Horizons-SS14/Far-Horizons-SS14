@@ -4,6 +4,7 @@ using Content.Shared.CCVar;
 using Content.Shared.Damage;
 using Content.Shared.Database;
 using Content.Shared.Eye.Blinding.Components;
+using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.UserInterface;
 
@@ -16,8 +17,8 @@ public sealed partial class IPCSystem
 
     private void InitializeUI()
     {
-        SubscribeLocalEvent<IPCLockComponent, BeforeActivatableUIOpenEvent>(OnBeforeIPCUiOpen);
-        SubscribeLocalEvent<IPCLockComponent, DamageChangedEvent>( (ent, _, _) => UpdateUI(ent));
+        SubscribeLocalEvent<IPCLockComponent, BeforeActivatableUIOpenEvent>((ent, _, _) => UpdateUI(ent));
+        SubscribeLocalEvent<IPCLockComponent, MobStateChangedEvent>((ent, _, _) => UpdateUI(ent));
 
         SubscribeLocalEvent<IPCLockComponent, IPCEjectBrainBuiMessage>(OnEjectBrainBuiMessage);
         SubscribeLocalEvent<IPCLockComponent, IPCEjectBatteryBuiMessage>(OnEjectBatteryBuiMessage);
@@ -49,39 +50,21 @@ public sealed partial class IPCSystem
         _metaData.SetEntityName(ent, name, metaData);
     }
 
-    private void OnBeforeIPCUiOpen(Entity<IPCLockComponent> ent, ref BeforeActivatableUIOpenEvent args)
-    {
-        UpdateUI(ent);
-    }
-
     public void UpdateUI(EntityUid uid)
     {
-        if (!_ui.IsUiOpen(uid, IPCUiKey.Key))
-            return;
-
         var chargePercent = 0f;
         var hasBattery = false;
-        var eyeDamage = 0;
-        var bloodLevel = 0f;
-        DamageSpecifier damage = new();
+        var mobState = MobState.Dead;
         if (_powerCell.TryGetBatteryFromSlot(uid, out var battery))
         {
             hasBattery = true;
             chargePercent = battery.CurrentCharge / battery.MaxCharge;
         }
 
-        if (TryComp<DamageableComponent>(uid, out var damageable))
-            damage = damageable.Damage;
-
-        if (TryComp<BlindableComponent>(uid, out var blindable))
-            eyeDamage = blindable.EyeDamage;
-
-        if (TryComp<BloodstreamComponent>(uid, out var bloodstream) &&
-            _solutionContainerSystem.ResolveSolution(uid, bloodstream.BloodSolutionName, ref bloodstream.BloodSolution, out var bloodSolution))
-                bloodLevel = bloodSolution.FillFraction;
-
-        if (TryComp<MobStateComponent>(uid, out var mobState))
-            _ui.SetUiState(uid, IPCUiKey.Key,
-                new IPCBuiState(chargePercent, hasBattery, mobState.CurrentState, eyeDamage, bloodLevel, damage));
+        if (TryComp<MobStateComponent>(uid, out var mobStateComp))
+            mobState = mobStateComp.CurrentState;
+        
+        _ui.SetUiState(uid, IPCUiKey.Key,
+            new IPCBuiState(chargePercent, hasBattery, mobState));
     }
 } 
