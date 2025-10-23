@@ -126,9 +126,11 @@
   - type: ContainerFill
     containers:
       borg_brain: [ PositronicBrain ]
+      key_slots:
+      - EncryptionKeyTrinary
   # Battery
   - type: IPCBattery
-    dieWithoutPowerAfter: 20.0
+    dieWithoutPowerAfter: 10.0 # 20 Seconds was too forgiving
     numWarnings: 2 #warn player that they are about to die
     warningText: ipc-warning-critical-charge
 #    warningSound: #Add sounds maybe? idk
@@ -142,9 +144,9 @@
     drainTime: 0.8
   # Radio
   - type: IPCRadio
-    keysCapacity: 5
-    copyHeadsetKeys: true # Copy contents on headset when starting gear is equipped
-    removeHeadset: true # Delete headset when starting gear is equipped (after copying keys)
+    keysCapacity: 2
+    copyHeadsetKeys: false  # Copy contents on headset when starting gear is equipped
+    removeHeadset: false # Delete headset when starting gear is equipped (after copying keys)
   - type: ActiveRadio
   - type: IntrinsicRadioTransmitter
   - type: IntrinsicRadioReceiver
@@ -159,19 +161,19 @@
   - type: Blindable
   - type: IPCRevive
     rebootButton: true
-    rebootTime: 5.0
+    rebootTime: 6.0
     defibBatteryDrain: true
     defibDamage:
       types:
         Shock: 20 # It already does 5 shock to everyone, take that into account
         Heat: 20 
   - type: Repairable # So welder is just a special little snowflake in the code. I tried making healing with welder work through ConditionalHealing component, but it would require too many changes in too many places. So we will keep on the trend and have brute healing defined here. /shrug
-    doAfterDelay: 3
+    doAfterDelay: 2 # A bit slower than conventional topicals, but heals for more.
     allowSelfRepair: true
-    fuelCost: 15
+    fuelCost: 10
     damage:
       groups:
-        Brute: -60 # 20 for each type
+        Brute: -30 # 10 for each type
   - type: HumanoidEMP
     effect:
       stunAmount: 5.0
@@ -190,7 +192,7 @@
   # Lock
   - type: IPCLock
     instantSelfUnlock: true
-    unlockTime: 5.0
+    unlockTime: 10.0
     # Just in case:
     #instantSelfLock: true
     #lockTime: 0.0

@@ -114,14 +114,14 @@
     - ConstructionMaterial
   - type: ConditionalHealing
     healingDefinitions:
-      - allowedTags: [ IPC ]
+      - allowedTags: [ IPC, Protogen ]
         healing:
           damageContainers:
             - Biological
-          delay: 1.6
+          delay: 2
           damage:
             groups:
-              Toxin: -40 # 20 each
+              Toxin: -20 # 10 each
           healingBeginSound:
             path: "/Audio/Items/Medical/ointment_begin.ogg"
             params:

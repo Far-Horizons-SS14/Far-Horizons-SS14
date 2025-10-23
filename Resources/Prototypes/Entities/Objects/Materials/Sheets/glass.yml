@@ -88,12 +88,12 @@
           Quantity: 10
   - type: ConditionalHealing
     healingDefinitions:
-      - allowedTags: [ IPC ]
+      - allowedTags: [ IPC, Protogen ]
         healing:
           damageContainers:
             - Biological
           damage: {}
-          delay: 1.6
+          delay: 2
           adjustEyeDamage: -1 # 1 glass = 1 weld
           healingBeginSound:
             path: "/Audio/Items/Medical/ointment_begin.ogg"

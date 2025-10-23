@@ -21,6 +21,35 @@
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: Protogen
+  # Music player
+  - type: ActionGrant
+    actions:
+    - ActionPAIPlayMidi
+  - type: Instrument
+    allowPercussion: true
+    handheld: false
+  - type: UserInterface
+    interfaces:
+      enum.StrippingUiKey.Key:
+        type: StrippableBoundUserInterface
+      enum.InstrumentUiKey.Key:
+        type: InstrumentBoundUserInterface
+        requireInputValidation: false
+  - type: HumanoidEMP
+    effect:
+      stunAmount: 5.0
+      blindAmount: 10.0
+      knockdownAmount: 2.0
+      slowdownAmount: 15.0
+      walkSpeedModifier: 0.5
+      sprintSpeedModifier: 0.5
+      dropItemsFrom:
+        - body_part_slot_right hand
+        - body_part_slot_left hand
+      damageAmount:
+        types:
+          Shock: 10
+          Heat: 10
   - type: Butcherable
     butcheringType: Spike
     spawned:

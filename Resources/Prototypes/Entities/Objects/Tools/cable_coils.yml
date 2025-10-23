@@ -85,11 +85,11 @@
           Quantity: 1
   - type: ConditionalHealing
     healingDefinitions:
-      - allowedTags: [ IPC ]
+      - allowedTags: [ IPC, Protogen ]
         healing:
           damageContainers:
             - Biological
-          delay: 1.6
+          delay: 2
           damage:
             types:
               Heat: -10
@@ -164,11 +164,11 @@
           Quantity: 2
   - type: ConditionalHealing
     healingDefinitions:
-      - allowedTags: [ IPC ]
+      - allowedTags: [ IPC, Protogen ]
         healing:
           damageContainers:
             - Biological
-          delay: 1.6
+          delay: 2
           damage:
             types:
               Heat: -5
@@ -242,11 +242,11 @@
           Quantity: 2
   - type: ConditionalHealing
     healingDefinitions:
-      - allowedTags: [ IPC ]
+      - allowedTags: [ IPC, Protogen ]
         healing:
           damageContainers:
             - Biological
-          delay: 1.6
+          delay: 2
           damage:
             types:
               Heat: -3
