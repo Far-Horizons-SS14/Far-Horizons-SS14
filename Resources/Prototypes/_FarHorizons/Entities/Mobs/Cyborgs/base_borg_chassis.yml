@@ -47,6 +47,9 @@
     enabled: false
     groups:
     - Security # Ensure it can go anywhere inside of sec.
+    tags:
+    - Maintenance # Was told it's not unbalanced to give it maints.
+    - External # Is borg. Can go outside.
   - type: AccessReader
     access: [["Command"], ["Armory"]] # Warden & Command. Todo, sec roboticist
   - type: ShowJobIcons
