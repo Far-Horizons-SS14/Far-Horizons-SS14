@@ -80,7 +80,7 @@
   components:
   - type: BatterySelfRecharger
     autoRecharge: true
-    autoRechargeRate: 10
+    autoRechargeRate: 10 # ~1:30 minutes for recharge
   - type: Gun
     fireRate: 2
     selectedMode: SemiAuto
@@ -89,3 +89,6 @@
     - FullAuto
     minAngle: 1
     maxAngle: 4
+  - type: Battery 
+    maxCharge: 900 # ~1:30 minutes for recharge
+    startingCharge: 900
