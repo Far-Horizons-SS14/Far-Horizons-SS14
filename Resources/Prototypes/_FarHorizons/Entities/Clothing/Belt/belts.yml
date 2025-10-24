@@ -1,0 +1,123 @@
+- type: entity
+  parent: ClothingBeltStorageBase
+  id: ClothingBeltScience
+  name: science belt
+  description: Can hold various scientific things.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Belt/sciencebelt.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Belt/sciencebelt.rsi
+  - type: Storage
+    whitelist:
+      tags:
+        - Wirecutter
+        - Crowbar
+        - Screwdriver
+        - Flashlight
+        - Wrench
+        - GeigerCounter
+        - Flare
+        - CableCoil
+        - Powerdrill
+        - JawsOfLife
+        - CigPack
+        - Radio
+        - HolofanProjector
+        - Multitool
+        - AppraisalTool
+        - GPS
+        - WeldingMask
+        - RemoteSignaller
+        - ImprovisedCrowbar
+        - ImprovisedScrewdriver
+        - ImprovisedWirecutter
+        - ImprovisedWrench
+        - ImprovisedMultitool
+        - AnomalyScanner
+        - NodeScanner
+      components:
+        - StationMap
+        - SprayPainter
+        - SprayPainterAmmo
+        - NetworkConfigurator
+        - Welder
+        - PowerCell
+        - Geiger
+        - TrayScanner
+        - GasAnalyzer
+        - HandLabeler
+  - type: StorageFill
+    contents:
+      - id: AnomalyScanner
+      - id: NodeScanner
+  - type: ItemMapper
+    mapLayers:
+      drill:
+        whitelist:
+          tags:
+          - Powerdrill
+      cutters_red:
+        whitelist:
+          tags:
+          - Wirecutter
+          - ImprovisedWirecutter
+      crowbar:
+        whitelist:
+          tags:
+          - Crowbar
+          - ImprovisedCrowbar
+      crowbar_red:
+        whitelist:
+          tags:
+          - CrowbarRed
+      jaws:
+        whitelist:
+          tags:
+          - JawsOfLife
+      screwdriver_nuke:
+        whitelist:
+          tags:
+          - Screwdriver
+          - ImprovisedScrewdriver
+      multitool:
+        whitelist:
+          tags:
+            - Multitool
+            - ImprovisedMultitool
+      wrench:
+        whitelist:
+          tags:
+          - Wrench
+          - ImprovisedWrench
+    sprite: Clothing/Belt/belt_overlay.rsi
+
+- type: entity
+  id: ClothingBeltScienceRoboticist
+  parent: ClothingBeltScience
+  suffix: Roboticist
+  components:
+  - type: StorageFill
+    contents:
+      - id: CrowbarYellow
+      - id: Wrench
+      - id: Screwdriver
+      - id: Wirecutter
+      - id: Welder
+      - id: Multitool
+
+- type: entity
+  id: ClothingBeltScienceRD
+  parent: ClothingBeltScience
+  suffix: ResearchDirector
+  components:
+  - type: StorageFill
+    contents:
+      - id: CrowbarYellow
+      - id: Wrench
+      - id: Screwdriver
+      - id: Wirecutter
+      - id: Welder
+      - id: Multitool
+      - id: AnomalyScanner
+      - id: NodeScanner
