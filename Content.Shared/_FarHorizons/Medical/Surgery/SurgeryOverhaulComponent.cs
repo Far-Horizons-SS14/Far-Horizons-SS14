@@ -37,7 +37,7 @@ public sealed partial class HealDamageComponent : Component
 [RegisterComponent, NetworkedComponent]
 public sealed partial class SurgeryTechnologyComponent : Component
 {
-    [DataField]
+    [DataField(required: false)]
     public ProtoId<TechnologyPrototype>? RequiredTechnology;
     
     [DataField]
