@@ -88,7 +88,10 @@
     - type: IngestionBlocker
     - type: FlashImmunity
     - type: IdentityBlocker
-
+  - type: Tag #FH
+    tags: #FH
+    - BulletproofArmor #FH
+  
 - type: entity
   parent: [ClothingHeadHelmetBase, BaseSecurityContraband]
   id: ClothingHeadHelmetReflective
@@ -113,6 +116,7 @@
   - type: Tag
     tags:
     - SecurityHelmet
+    - ReflectArmor #FH
 
 - type: entity
   parent: [ClothingHeadHelmetBase, BaseSecurityContraband]

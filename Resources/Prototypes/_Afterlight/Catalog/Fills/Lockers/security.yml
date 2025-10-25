@@ -1,0 +1,301 @@
+# Armory - Rifles
+
+- type: entity
+  id: ShelfArmoryLecterLargeFilled
+  parent: ShelfArmoryLecterLarge
+  suffix: Sec Armory Med-Highpop, Filled
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponRifleLecter
+      amount: 4
+    - id: WeaponPistolEnforcer
+      amount: 4
+    - id: MagazineRifleSP
+      amount: 8
+    - id: MagazineRifleHP
+      amount: 4
+    - id: MagazinePistolSP
+      amount: 8
+    - id: MagazinePistolHP
+      amount: 4
+
+- type: entity
+  id: ShelfArmoryLeikhaLargeFilled
+  parent: ShelfArmoryLeikhaLarge
+  suffix: Sec Armory Med-Highpop, Filled
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponRifleLeikha
+      amount: 4
+    - id: WeaponPistolEnforcer
+      amount: 4
+    - id: MagazineRifleSP
+      amount: 8
+    - id: MagazineRifleHP
+      amount: 4
+    - id: MagazinePistolSP
+      amount: 8
+    - id: MagazinePistolHP
+      amount: 4
+
+- type: entity
+  id: ShelfArmoryMixedRifleFilled
+  parent: ShelfArmoryMixedRifle
+  suffix: Sec Armory Lowpop, Filled
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponRifleLecter
+      amount: 2
+    - id: WeaponRifleLeikha
+      amount: 2
+    - id: WeaponPistolEnforcer
+      amount: 4
+    - id: MagazineRifleSP
+      amount: 8
+    - id: MagazineRifleHP
+      amount: 4
+    - id: MagazinePistolSP
+      amount: 8
+    - id: MagazinePistolHP
+      amount: 4
+
+# Armory - Shotguns
+
+- type: entity
+  id: ShelfArmoryRiotShotgunLargeFilled
+  parent: ShelfArmoryRiotShotgunLarge
+  suffix: Sec Armory Med-Highpop, Filled
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponShotgunRiot
+      amount: 4
+    - id: WeaponPistolN1984
+      amount: 4
+    - id: SpeedLoaderMagnumBasic
+      amount: 8
+    - id: SpeedLoaderShotgunBeanbag
+      amount: 4
+    - id: MagazineMagnum
+      amount: 12
+
+- type: entity
+  id: ShelfArmoryKrammerLargeFilled
+  parent: ShelfArmoryKrammerLarge
+  suffix: Sec Armory Med-Highpop, Filled
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponShotgunKammerer
+      amount: 4
+    - id: WeaponPistolEnforcer
+      amount: 4
+    - id: SpeedLoaderMagnumBasic
+      amount: 8
+    - id: SpeedLoaderShotgunBeanbag
+      amount: 4
+    - id: MagazinePistolSP
+      amount: 8
+    - id: MagazinePistolHP
+      amount: 4
+
+- type: entity
+  id: ShelfArmoryMixedShotgunFilled
+  parent: ShelfArmoryMixedShotgun
+  suffix: Sec Armory Lowpop, Filled
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponShotgunKammerer
+      amount: 2
+    - id: WeaponShotgunRiot
+      amount: 2
+    - id: WeaponPistolEnforcer
+      amount: 2
+    - id: WeaponPistolN1984
+      amount: 2
+    - id: SpeedLoaderMagnumBasic
+      amount: 8
+    - id: SpeedLoaderShotgunBeanbag
+      amount: 4
+    - id: MagazinePistolSP
+      amount: 4
+    - id: MagazinePistolHP
+      amount: 2
+    - id: MagazineMagnum
+      amount: 6
+
+# Armory - SMGs
+
+- type: entity
+  id: ShelfArmoryDrozdLargeFilled
+  parent: ShelfArmoryDrozdLarge
+  suffix: Sec Armory Med-Highpop, Filled
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponSubMachineGunDrozd
+      amount: 4
+    - id: WeaponPistolEnforcer
+      amount: 4
+    - id: MagazinePistolSubMachineGunSP
+      amount: 8
+    - id: MagazinePistolSubMachineGunHP
+      amount: 4
+    - id: MagazinePistolSP
+      amount: 8
+    - id: MagazinePistolHP
+      amount: 4
+
+- type: entity
+  id: ShelfArmorySP91RCLargeFilled
+  parent: ShelfArmorySP91RCLarge
+  suffix: Sec Armory Med-Highpop, Filled
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponSubMachineGunSP91RC
+      amount: 4
+    - id: WeaponPistolEnforcer
+      amount: 4
+    - id: MagazinePistolSubMachineGunSP
+      amount: 8
+    - id: MagazinePistolSubMachineGunHP
+      amount: 4
+    - id: MagazinePistolSP
+      amount: 8
+    - id: MagazinePistolHP
+      amount: 4
+
+- type: entity
+  id: ShelfArmoryMixedSMGFilled
+  parent: ShelfArmoryMixedSMG
+  suffix: Sec Armory Lowpop, Filled
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponSubMachineGunDrozd
+      amount: 2
+    - id: WeaponSubMachineGunSP91RC
+      amount: 2
+    - id: WeaponPistolEnforcer
+      amount: 4
+    - id: MagazinePistolSubMachineGunSP
+      amount: 8
+    - id: MagazinePistolSubMachineGunHP
+      amount: 4
+    - id: MagazinePistolSP
+      amount: 8
+    - id: MagazinePistolHP
+      amount: 4
+
+# Armory - Lasers
+
+- type: entity
+  id: ShelfArmoryLaserLargeFilled
+  parent: ShelfArmoryLaserLarge
+  suffix: Sec Armory Med-Highpop, Filled
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponLaserCarbine
+      amount: 4
+    - id: WeaponDominator
+      amount: 4
+
+- type: entity
+  id: ShelfArmoryLaserFilled
+  parent: ShelfArmoryLaser
+  suffix: Sec Armory Lowpop, Filled
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponLaserCarbine
+      amount: 2
+    - id: WeaponDominator
+      amount: 2
+
+#Armory - Armor
+
+- type: entity
+  id: ShelfArmoryArmorRiotLargeFilled
+  parent: ShelfArmoryArmorRiotLarge
+  suffix: Sec Armory Med-Highpop, Filled
+  components:
+  - type: StorageFill
+    contents:
+    - id: ClothingOuterArmorRiot
+      amount: 9
+    - id: ClothingHeadHelmetRiot
+      amount: 10
+
+- type: entity
+  id: ShelfArmoryArmorBulletproofLargeFilled
+  parent: ShelfArmoryArmorBulletproofLarge
+  suffix: Sec Armory Med-Highpop, Filled
+  components:
+  - type: StorageFill
+    contents:
+    - id: ClothingOuterArmorBulletproof
+      amount: 9
+    - id: ClothingHeadHelmetBulletProof
+      amount: 10
+
+- type: entity
+  id: ShelfArmoryArmorReflectiveLargeFilled
+  parent: ShelfArmoryArmorReflectiveLarge
+  suffix: Sec Armory Med-Highpop, Filled
+  components:
+  - type: StorageFill
+    contents:
+    - id: ClothingOuterArmorReflective
+      amount: 9
+    - id: ClothingHeadHelmetReflective
+      amount: 10
+
+- type: entity
+  id: ShelfArmoryArmorMixedFilled
+  parent: ShelfArmoryArmorMixed
+  suffix: Sec Armory Lowpop, Filled
+  components:
+  - type: StorageFill
+    contents:
+    - id: ClothingOuterArmorBulletproof
+      amount: 3
+    - id: ClothingOuterArmorRiot
+      amount: 3
+    - id: ClothingOuterArmorReflective
+      amount: 3
+    - id: ClothingHeadHelmetBulletProof
+      amount: 3
+    - id: ClothingHeadHelmetRiot
+      amount: 3
+    - id: ClothingHeadHelmetReflective
+      amount: 4
+
+- type: entity
+  id: ShelfArmoryArmorBiosuitLargeFilled
+  parent: ShelfArmoryArmorBiosuitLarge
+  suffix: Sec Armory Med-Highpop, Filled
+  components:
+  - type: StorageFill
+    contents:
+    - id: ClothingOuterBioSecurity
+      amount: 9
+    - id: ClothingHeadHatHoodBioSecurity
+      amount: 10
+
+- type: entity
+  id: ShelfArmoryArmorBiosuitFilled
+  parent: ShelfArmoryArmorBiosuit
+  suffix: Sec Armory Lowpop, Filled
+  components:
+  - type: StorageFill
+    contents:
+    - id: ClothingOuterBioSecurity
+      amount: 6
+    - id: ClothingHeadHatHoodBioSecurity
+      amount: 6
