@@ -26,6 +26,12 @@ public abstract partial class SharedIPCSystem
             return false;
         }
 
+        if (radio.EncryptionKeysContainer.ContainedEntities.Count >= radio.KeysCapacity)
+        {
+            _popup.PopupPredicted(Loc.GetString("encryption-key-slots-already-full"), target, user);
+            return false;
+        }
+
         if (_container.Insert(key, radio.EncryptionKeysContainer))
         {
             _popup.PopupPredicted(Loc.GetString("encryption-key-successfully-installed"), target, user);
