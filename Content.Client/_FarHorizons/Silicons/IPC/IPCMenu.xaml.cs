@@ -168,15 +168,19 @@ public sealed partial class IPCMenu : FancyWindow
 
         var temp = 0f;
         LocId fanMode = "";
+        var fansEfficiency = "";
         if (Thermals != null)
         {
             temp = Thermals.CurrentTemp;
             fanMode = Thermals.FansCurrentlyOff || Thermals.CurrentMode == null ? 
                         Thermals.FansOffDiagnosticsText : 
                         Thermals.CurrentMode.DiagnosticsText;
+            fansEfficiency = Thermals.FansCurrentlyOff || Thermals.CurrentMode == null ?
+                                Loc.GetString("ipc-ui-console-fans-efficiency-none") :
+                                (Thermals.CurrentEfficiency * 100).ToString("F2") + "%";
         }
 
-        FullText = PrintConsole(LastKnownState.ToString(), LastKnownBattery, LastKnownCharge, eyeDamage, bloodLevel, temp, fanMode, Brain, damage);
+        FullText = PrintConsole(LastKnownState.ToString(), LastKnownBattery, LastKnownCharge, eyeDamage, bloodLevel, temp, fanMode, fansEfficiency, Brain, damage);
         UpdateBrainButton(Brain);
         EjectBatteryButton.Disabled = !LastKnownBattery;
         ChargeBar.Value = LastKnownCharge;
@@ -191,7 +195,7 @@ public sealed partial class IPCMenu : FancyWindow
         LastKnownState = state.MobState;
     }
 
-    private static string PrintConsole(string currentState, bool hasBattery, float batteryCharge, int eyeDamage, float bloodLevel, float currentTemp, string fansMode, IPCBrainHolderComponent? brain, DamageSpecifier damageSpec)
+    private static string PrintConsole(string currentState, bool hasBattery, float batteryCharge, int eyeDamage, float bloodLevel, float currentTemp, string fansMode, string fansEfficiency, IPCBrainHolderComponent? brain, DamageSpecifier damageSpec)
     {
         var separator = Loc.GetString("ipc-ui-console-separator") + '\n';
 
@@ -226,6 +230,7 @@ public sealed partial class IPCMenu : FancyWindow
         status.Add((Loc.GetString("ipc-ui-console-blood-level"), (bloodLevel * 100).ToString("F2") + "%"));
         status.Add((Loc.GetString("ipc-ui-console-temperature"), $"{TemperatureHelpers.KelvinToCelsius(currentTemp):F2}C"));
         status.Add((Loc.GetString("ipc-ui-console-fans"), Loc.GetString(fansMode)));
+        status.Add((Loc.GetString("ipc-ui-console-fans-efficiency"), fansEfficiency));
 
         var body = AestheticJoin(status);
 

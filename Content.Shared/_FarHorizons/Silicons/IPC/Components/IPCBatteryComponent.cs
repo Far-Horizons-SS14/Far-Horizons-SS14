@@ -3,9 +3,11 @@ using Content.Shared.Chat.Prototypes;
 using Content.Shared.Ninja.Components;
 using Content.Shared.PowerCell.Components;
 using Robust.Shared.Audio;
+using Robust.Shared.Audio.Components;
 using Robust.Shared.Containers;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization;
 
 namespace Content.Shared._FarHorizons.Silicons.IPC;
 
@@ -55,4 +57,18 @@ public sealed partial class IPCBatteryComponent : Component
     public TimeSpan RefreshRate = TimeSpan.FromSeconds(1);
     [ViewVariables(VVAccess.ReadWrite)]
     public int WarningsIssued = 0;
+
+    public Entity<AudioComponent>? Playing;
 }
+
+[Serializable, NetSerializable]
+public sealed class BatteryDeathTimerStart : EntityEventArgs;
+
+[Serializable, NetSerializable]
+public sealed class BatteryDeathTimerEnd(bool interrupted = false) : EntityEventArgs
+{
+    public bool Interrupted = interrupted;
+}
+
+[Serializable, NetSerializable]
+public sealed class BatteryDeathTimerUpdate : EntityEventArgs;

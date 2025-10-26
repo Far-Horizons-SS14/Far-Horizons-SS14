@@ -51,6 +51,9 @@ public sealed partial class IPCThermalRegulationComponent : Component
     [DataField(required: true)]
     public float MaxPressure;
 
+    [DataField(required: true)]
+    public float MaxTemperature;
+
     [DataField]
     public HashSet<FanMode> FanModes = [];
 
@@ -86,6 +89,8 @@ public sealed partial class IPCThermalRegulationComponent : Component
     [DataField]
     public ProtoId<AlertCategoryPrototype> AlertsCategory = "IPCCirculation";
 
+    [DataField]
+    public float FansEfficiencyLowThreshold = 0.5f;
     public ProtoId<AlertPrototype> CurrentAlert = "";
 
     [DataField]

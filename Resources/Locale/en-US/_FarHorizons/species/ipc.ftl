@@ -23,6 +23,9 @@ ipc-ui-console-eye-damage = Optics
 ipc-ui-console-blood-level = Oil
 ipc-ui-console-temperature = Core Temp.
 ipc-ui-console-fans = Cooling Fans
+ipc-ui-console-fans-efficiency = Fans Efficiency
+
+ipc-ui-console-fans-efficiency-none = N/A
 
 ipc-ui-console-part-installed = OK
 ipc-ui-console-part-missing = MISSING

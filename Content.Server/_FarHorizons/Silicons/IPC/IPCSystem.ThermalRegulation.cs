@@ -37,7 +37,7 @@ public sealed partial class IPCSystem
             passiveHeat += ent.Comp1.ProduceHeat;
         
         _tempSys.ChangeHeat(ent, passiveHeat, ignoreHeatResistance: true, ent);
-        ent.Comp1.FansCurrentlyOff = FanShutOff(ent, ent.Comp2, gas);
+        ent.Comp1.FansCurrentlyOff = FanShutOff(ent, gas);
 
         ent.Comp1.CurrentTemp = ent.Comp2.CurrentTemperature;
         var switchFans = CanSwitchFan(ent);
@@ -74,11 +74,11 @@ public sealed partial class IPCSystem
         return true;
     }
 
-    private bool FanShutOff(Entity<IPCThermalRegulationComponent> ent, TemperatureComponent temp, GasMixture gas) =>
+    private bool FanShutOff(Entity<IPCThermalRegulationComponent> ent, GasMixture gas) =>
         _state.IsDead(ent) ||
         gas.Pressure < ent.Comp.MinPressure ||
         gas.Pressure > ent.Comp.MaxPressure ||
-        gas.Temperature > temp.CurrentTemperature;
+        gas.Temperature > ent.Comp.MaxTemperature;
     
     private static bool CanSwitchFan(Entity<IPCThermalRegulationComponent> ent)
     {
@@ -94,16 +94,23 @@ public sealed partial class IPCSystem
         if (gas == null && !isolated)
             return;
 
-        float PressureEfficiency = 1;
+        float TotalEfficiency = 1;
         if (!isolated)
         {
+            float PressureEfficiency = 1;
             if (gas!.Pressure < ent.Comp.MinEffectivePressure)
                 PressureEfficiency = (gas!.Pressure - ent.Comp.MinPressure) / (ent.Comp.MinEffectivePressure - ent.Comp.MinPressure);
             else if (gas!.Pressure > ent.Comp.MaxEffectivePressure)
                 PressureEfficiency = 1 - ((gas!.Pressure - ent.Comp.MaxEffectivePressure) / (ent.Comp.MaxPressure - ent.Comp.MaxEffectivePressure));
+
+            float TemperatureEfficiency = 1;
+            if (gas!.Temperature > temp.CurrentTemperature)
+                TemperatureEfficiency = 1 - (gas!.Temperature - temp.CurrentTemperature) / (ent.Comp.MaxTemperature - temp.CurrentTemperature);
+
+            TotalEfficiency = PressureEfficiency * TemperatureEfficiency;
         }
 
-        ent.Comp.CurrentEfficiency = PressureEfficiency;
+        ent.Comp.CurrentEfficiency = TotalEfficiency;
 
         if (canSwitch)
         {
@@ -123,8 +130,8 @@ public sealed partial class IPCSystem
         if (ent.Comp.CurrentMode != null)
         {
             if (!isolated)
-                _atmos.AddHeat(gas!, ent.Comp.CurrentMode.AtmosHeatEffect * PressureEfficiency);
-            _tempSys.ChangeHeat(ent, ent.Comp.CurrentMode.BodyHeatEffect * PressureEfficiency, true);
+                _atmos.AddHeat(gas!, ent.Comp.CurrentMode.AtmosHeatEffect * TotalEfficiency);
+            _tempSys.ChangeHeat(ent, ent.Comp.CurrentMode.BodyHeatEffect * TotalEfficiency, true);
         }
     }
 
@@ -132,7 +139,7 @@ public sealed partial class IPCSystem
     {
         var newAlert = ent.Comp.FansCurrentlyOff
             ? ent.Comp.FansOffAlert
-            : ent.Comp.CurrentEfficiency < 0.5
+            : ent.Comp.CurrentEfficiency < ent.Comp.FansEfficiencyLowThreshold
             ? ent.Comp.FansEfficiencyLowAlert
             : ent.Comp.CurrentMode?.ModeAlert is ProtoId<AlertPrototype> alert ? alert : ent.Comp.FansOKAlert;
 
