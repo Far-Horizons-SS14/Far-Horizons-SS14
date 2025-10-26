@@ -72,6 +72,8 @@
       - DoorBumpOpener
       - AnomalyHost
       - IPC
+  - type: Stamina
+    staminaAlert: "IPCStamina"
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: IPC
@@ -259,13 +261,27 @@
         staysOnFor: 10 # Every time this fan mode activated, it can't be switched off for this long, to prevent fans constantly switching back and forth
         examineText: ipc-thermals-examine-low # Text you see when examining IPC upclose (hearing or not hearing sound of fans)
         diagnosticsText: ipc-thermals-diagnostics-low # Text to show in control panel
-      - minTemp: 353 # At ~80C fans go into overdrive
-        bodyHeatEffect: -6000
-        atmosHeatEffect: 150
+      - minTemp: 353 # At ~70C fans speed up to medium
+        bodyHeatEffect: -3500
+        atmosHeatEffect: 80
+        staysOnFor: 10
+        examineText: ipc-thermals-examine-medium
+        diagnosticsText: ipc-thermals-diagnostics-medium
+        modeAlert: IPCFansSpeedMedium
+      - minTemp: 373 # At ~100C fans go into high
+        bodyHeatEffect: -4500
+        atmosHeatEffect: 100
         staysOnFor: 10
         examineText: ipc-thermals-examine-high
         diagnosticsText: ipc-thermals-diagnostics-high
         modeAlert: IPCFansSpeedHigh
+      - minTemp: 393 # At ~120C fans go into overdrive
+        bodyHeatEffect: -6000
+        atmosHeatEffect: 150
+        staysOnFor: 10
+        examineText: ipc-thermals-examine-extreme
+        diagnosticsText: ipc-thermals-diagnostics-extreme
+        modeAlert: IPCFansSpeedExtreme
 
 - type: entity
   parent: BaseSpeciesDummy

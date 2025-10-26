@@ -38,17 +38,27 @@ ipc-thermals-examine-off = { CAPITALIZE(POSS-ADJ($entity)) } fans are still and 
 ipc-thermals-diagnostics-off = OFF
 ipc-thermals-examine-low = You faintly hear a hum of cooling fans inside { POSS-ADJ($entity) } chassis.
 ipc-thermals-diagnostics-low = LOW
-ipc-thermals-examine-high = { CAPITALIZE(POSS-ADJ($entity)) } fans are spinning lodly, blowing hot air in every direction.
+ipc-thermals-examine-medium = { CAPITALIZE(POSS-ADJ($entity)) } fans are spinning fast enough to be audible, blowing somewhat hot air to cool off.
+ipc-thermals-diagnostics-medium = MEDIUM
+ipc-thermals-examine-high = { CAPITALIZE(POSS-ADJ($entity)) } fans are spinning loudly, blowing hot air in every direction.
 ipc-thermals-diagnostics-high = HIGH
+ipc-thermals-examine-extreme = { CAPITALIZE(POSS-ADJ($entity)) } fans sounds like a jet engine, blowing scalding hot air in every direction in a desperate attempt to cool off.
+ipc-thermals-diagnostics-extreme = EXTREME
 
-alerts-ipc-fans-ok-name = Cooling nominal
-alerts-ipc-fans-ok-desc = Cooling subsystems work as usual, no anomalies detected
+alerts-ipc-fans-ok-name = Cooling Nominal
+alerts-ipc-fans-ok-desc = Cooling subsystems working at minimum capacity, no anomalies detected.
+
+alerts-ipc-fans-speed-medium-name = Cooling Medium
+alerts-ipc-fans-speed-medium-desc = Cooling subsystems working at over half capacity, consider moving into a cooler location.
+
+alerts-ipc-fans-speed-high-name = Cooling High
+alerts-ipc-fans-speed-high-desc = Cooling subsystems working at maximum capacity, overheat imminent.
+
+alerts-ipc-fans-speed-turbo-name = Cooling Turbo
+alerts-ipc-fans-speed-turbo-desc = Cooling subsystems working over maximum safe heat limits, system damage detected!
 
 alerts-ipc-fans-efficiency-low-name = Cooling efficiency low
-alerts-ipc-fans-efficiency-low-desc = External conditions are below optimal, cooling effectiveness impaired
+alerts-ipc-fans-efficiency-low-desc = Atmospheric conditions are below optimal, cooling effectiveness impaired.
 
-alerts-ipc-fans-off-name = Cooling fans cut off
-alerts-ipc-fans-off-desc = Extreme danger! Active cooling not functional
-
-alerts-ipc-fans-speed-high-name = Cooling system turbo mode
-alerts-ipc-fans-speed-high-desc = Cooling system is working at recommended limits
+alerts-ipc-fans-off-name = Cooling unable to activate!
+alerts-ipc-fans-off-desc = Extreme danger! Atmospheric conditions prevent activation of cooling subsystems!
