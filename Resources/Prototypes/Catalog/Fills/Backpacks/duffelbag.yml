@@ -38,14 +38,15 @@
   parent: ClothingBackpackDuffelSyndicateBundle
   id: ClothingBackpackDuffelSyndicateFilledShotgun
   name: Bulldog bundle
-  description: "Lean and mean: Contains the popular Bulldog Shotgun, a 12g slug drum, and four 12g buckshot drums." #, and a pair of Thermal Imaging Goggles.
+  description: "Lean and mean: Contains the popular Bulldog Shotgun, four 12g slug drums, and two 12g buckshot drums." #, and a pair of Thermal Imaging Goggles. #FH
   components:
   - type: StorageFill
     contents:
       - id: WeaponShotgunBulldog
       - id: MagazineShotgun
-        amount: 3
+        amount: 2 #FH
       - id: MagazineShotgunSlug
+        amount: 4 #FH
 #     - id: ThermalImagingGoggles
 
 - type: entity
@@ -58,7 +59,7 @@
     contents:
       - id: WeaponSubMachineGunC20r
       - id: MagazinePistolSubMachineGunSP
-        amount: 2
+        amount: 3 #FH
 #     - id: SMGSuppressor
 
 - type: entity
@@ -71,7 +72,7 @@
     contents:
     - id: WeaponRifleEstoc
     - id: MagazineRifleSP
-      amount: 2
+      amount: 3 #FH
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle
@@ -83,20 +84,19 @@
     contents:
       - id: WeaponRevolverPythonAP
       - id: SpeedLoaderMagnumAP
-        amount: 2
+        amount: 3 #FH
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle
   id: ClothingBackpackDuffelSyndicateFilledLMG
   name: L6 Saw bundle
-  description: "More dakka: The iconic L6 lightmachinegun, bundled with a box magazine."
+  description: "More dakka: The iconic L6 lightmachinegun, bundled with three box magazines."
   components:
   - type: StorageFill
     contents:
       - id: WeaponLightMachineGunL6
-      - id: MagazineBoxLightRifleSP
-      - id: MagazineLightRifleBoxSP
-      - id: MagazineLightRifleBoxSP
+      - id: MagazineLightRifleBoxSP #FH
+        amount: 3 #FH
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle
@@ -122,7 +122,7 @@
     contents:
       - id: WeaponRifleM90GrenadeLauncher
       - id: MagazineRifleFMJ
-        amount: 2
+        amount: 3 #FH
       - id: GrenadeBlast
         amount: 2
       - id: GrenadeFlash
@@ -141,7 +141,7 @@
       - id: MagazinePistolSubMachineGunSP  #FH
         amount: 5  #FH
       - id: MagazineShotgun  #FH
-        amount: 5  #FH
+        amount: 2  #FH
       - id: MagazineRifleSP  #FH
         amount: 4  #FH
       - id: MagazineMagnumRifleSP #FH
@@ -149,7 +149,7 @@
       - id: MagazineLightRifleBoxSP #FH
         amount: 4 #FH
       - id: MagazineShotgunSlug #FH
-        amount: 2 #FH
+        amount: 5 #FH
       - id: SpeedLoaderMagnumAP #FH
         amount: 2 #FH
       - id: SpeedLoaderMagnumSP #FH
@@ -386,7 +386,7 @@
     contents:
       - id: WeaponSubMachineGunC20r
       - id: MagazinePistolSubMachineGunSP
-        amount: 3
+        amount: 4 #FH
       - id: MagazinePistolSP
       - id: SyndicateJawsOfLife
       - id: C4
