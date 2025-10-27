@@ -18,16 +18,16 @@
   parent: ClothingBackpackDuffelSyndicateBundle
   id: ClothingBackpackDuffelSyndicateFilledMinotaurShotgun
   name: Minotaur bundle
-  description: "Lean and mean: Contains smooth, powerful, highly illegal Shotgun, a 5 12g buckshot drums."
+  description: "Lean and mean: Contains smooth, powerful, highly illegal Shotgun, and 4 12g slug drums with 2 12g buckshot drums."  #FH
   components:
   - type: StorageFill
     contents:
       - id: WeaponShotgunMinotaur
-      - id: MagazineShotgun
-      - id: MagazineShotgun
-      - id: MagazineShotgun
-      - id: MagazineShotgun
-      
+      - id: MagazineShotgun #FH
+        amount: 2 #FH
+      - id: MagazineShotgunSlug #FH
+        amount: 4 #FH
+
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle
   id: ClothingBackpackDuffelSyndicateFilledDeagle
@@ -38,7 +38,7 @@
     contents:
       - id: WeaponPistolDeagle
       - id: MagazineMagnum
-      - id: MagazineMagnum
+        amount: 3 #FH
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle
@@ -57,25 +57,25 @@
   parent: ClothingBackpackDuffelSyndicateBundle
   id: ClothingBackpackDuffelSyndicateFilledBullpup
   name: pitbull bundle
-  description: "Contains the Pitbull Rifle and two additional magazines."
+  description: "Contains the Pitbull Rifle and three additional magazines." #FH
   components:
   - type: StorageFill
     contents:
     - id: WeaponRiflePitbull
     - id: MagazineMagnumRifleSP
-      amount: 2
+      amount: 3 #FH
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle
   id: ClothingBackpackDuffelSyndicateFilledUzi
   name: type u3 uzi bundle
-  description: "Contains a sleek, dangerous uzi, and 2 additional magazines."
+  description: "Contains a sleek, dangerous uzi, and 3 additional magazines." #FH
   components:
   - type: StorageFill
     contents:
       - id: WeaponSubMachineGunUzi
       - id: MagazinePistolSubMachineGunUzi
-      - id: MagazinePistolSubMachineGunUzi
+        amount: 3 #FH
       
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle
