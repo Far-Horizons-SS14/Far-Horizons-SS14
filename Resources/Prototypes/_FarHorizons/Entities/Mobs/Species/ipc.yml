@@ -277,7 +277,7 @@
     maxEffectivePressure: 200 # Outside of optimal window fans become less effective
     minPressure: 10
     maxPressure: 500 # Outside of this window fans stop working entirely
-    maxTemperature: 403 # ~130C just above highest mode
+    maxTemperature: 414 # ~140C just above highest mode
     # External cooling completely turns off natual heat generation and loss. 
     # Active cooling will still work until the temperature is normal, then it will stay unchanging until external cooling is removed
     externalCoolingTag: IPCExternalCooling # Items must have this tag on them
@@ -298,7 +298,7 @@
         staysOnFor: 10 # Every time this fan mode activated, it can't be switched off for this long, to prevent fans constantly switching back and forth
         examineText: ipc-thermals-examine-low # Text you see when examining IPC upclose (hearing or not hearing sound of fans)
         diagnosticsText: ipc-thermals-diagnostics-low # Text to show in control panel
-      - minTemp: 353 # At ~70C fans speed up to medium
+      - minTemp: 343 # At ~70C fans speed up to medium
         bodyHeatEffect: -3500
         atmosHeatEffect: 80
         staysOnFor: 10
