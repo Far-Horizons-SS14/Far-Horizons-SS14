@@ -1,4 +1,5 @@
 using Content.Shared._FarHorizons.Silicons.IPC;
+using Content.Shared.Body.Events;
 using Content.Shared.Radio.Components;
 using Content.Shared.Roles;
 using Content.Shared.Verbs;
@@ -16,8 +17,11 @@ public sealed partial class IPCSystem
         SubscribeLocalEvent<IPCRadioComponent, StartingGearEquippedEvent>(OnRadioStartingGear);
         SubscribeLocalEvent<IPCRadioComponent, EntInsertedIntoContainerMessage>(OnContainerChanged);
         SubscribeLocalEvent<IPCRadioComponent, EntRemovedFromContainerMessage>(OnContainerChanged);
+        SubscribeLocalEvent<IPCRadioComponent, BeingGibbedEvent>(OnRadioGibbed);
     }
 
+    private void OnRadioGibbed(Entity<IPCRadioComponent> ent, ref BeingGibbedEvent args) =>
+        _container.EmptyContainer(ent.Comp.EncryptionKeysContainer);
     public void UpdateRadioChannels(Entity<IPCRadioComponent> ent)
     {
         if (!ent.Comp.RadioTransmitter.Initialized)
