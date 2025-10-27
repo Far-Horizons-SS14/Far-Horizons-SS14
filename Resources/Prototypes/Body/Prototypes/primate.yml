@@ -3,15 +3,21 @@
   name: "primate"
   root: torso
   slots:
+    head:
+      part: HeadHuman
+      connections:
+      - torso
+      organs:
+        brain: OrganAnimalBrain
+        eyes: OrganAnimalEyes
+        tongue: OrganAnimalTongue
+        eye_implant: null
     torso:
       part: TorsoAnimal
       connections:
       - hands
       - legs
       organs:
-        brain: OrganAnimalBrain
-        eyes: OrganAnimalEyes
-        tongue: OrganAnimalTongue
         lungs: OrganAnimalLungs
         stomach: OrganAnimalStomach
         liver: OrganAnimalLiver

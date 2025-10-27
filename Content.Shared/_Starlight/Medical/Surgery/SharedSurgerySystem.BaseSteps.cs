@@ -351,7 +351,7 @@ public abstract partial class SharedSurgerySystem
             BreakOnHandChange = true,
             //FarHorizons End
             BreakOnMove = true,
-            DuplicateCondition = DuplicateConditions.SameTarget,
+            //DuplicateCondition = DuplicateConditions.SameTarget,
             ForceNet = true
         };
         _doAfter.TryStartDoAfter(doAfter);

@@ -1389,12 +1389,15 @@
       effects:
       - !type:WashCreamPieReaction
   - type: Crawler
+  #FarHorizons Start
   - type: SurgeryTarget
   - type: UserInterface
     interfaces:
       enum.SurgeryUIKey.Key:
         type: SurgeryBui
-
+      enum.StrippingUiKey.Key:
+        type: StrippableBoundUserInterface
+  #FarHorizons End
 
 - type: entity
   name: monkey

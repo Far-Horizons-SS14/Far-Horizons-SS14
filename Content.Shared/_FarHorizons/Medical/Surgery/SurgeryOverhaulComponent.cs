@@ -61,3 +61,4 @@ public sealed partial class NecrosisSurgeryComponent : Component
 }
 [RegisterComponent, NetworkedComponent] public sealed partial class DisableSurgeryComponent : Component;
 [RegisterComponent, NetworkedComponent] public sealed partial class SurgeryAlterAppearanceComponent : Component;
+[RegisterComponent, NetworkedComponent] public sealed partial class AnimalBypassComponent : Component;
