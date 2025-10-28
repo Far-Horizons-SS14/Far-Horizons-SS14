@@ -1,4 +1,5 @@
 using Content.Shared._FarHorizons.Silicons.IPC;
+using Content.Shared.Body.Events;
 using Content.Shared.DoAfter;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
@@ -22,14 +23,18 @@ public sealed partial class IPCSystem
         SubscribeLocalEvent<IPCBatteryComponent, PowerCellSlotEmptyEvent>(OnPowerCellSlotEmpty);
         SubscribeLocalEvent<IPCBatteryComponent, MobStateChangedEvent>(OnBatteryStateChange);
 
-        SubscribeLocalEvent<IPCBatteryComponent, BatteryDeathTimerStart>(OnBatteryTimerStart);
-        SubscribeLocalEvent<IPCBatteryComponent, BatteryDeathTimerEnd>(OnBatteryTimerEnd);
-        SubscribeLocalEvent<IPCBatteryComponent, BatteryDeathTimerUpdate>(OnBatteryTimerUpdate);
+        SubscribeLocalEvent<IPCBatteryComponent, IPCBatteryDeathTimerStart>(OnBatteryTimerStart);
+        SubscribeLocalEvent<IPCBatteryComponent, IPCBatteryDeathTimerEnd>(OnBatteryTimerEnd);
+        SubscribeLocalEvent<IPCBatteryComponent, IPCBatteryDeathTimerUpdate>(OnBatteryTimerUpdate);
+
+        SubscribeLocalEvent<IPCBatteryComponent, BeingGibbedEvent>(OnBatteryGibbed);
     }
 
-    private void OnBatteryTimerStart(Entity<IPCBatteryComponent> ent, ref BatteryDeathTimerStart args) =>
+    private void OnBatteryGibbed(Entity<IPCBatteryComponent> ent, ref BeingGibbedEvent args) =>
+        _container.EmptyContainer(ent.Comp.BatteryContainerSlot);
+    private void OnBatteryTimerStart(Entity<IPCBatteryComponent> ent, ref IPCBatteryDeathTimerStart args) =>
         ent.Comp.Playing = _audio.PlayPvs(ent.Comp.WarningSound, ent);
-    private void OnBatteryTimerEnd(Entity<IPCBatteryComponent> ent, ref BatteryDeathTimerEnd args)
+    private void OnBatteryTimerEnd(Entity<IPCBatteryComponent> ent, ref IPCBatteryDeathTimerEnd args)
     {
         if (ent.Comp.Playing == null)
             return;
@@ -43,7 +48,7 @@ public sealed partial class IPCSystem
             _state.ChangeMobState(ent, MobState.Dead, mobState);
         }
     }
-    private void OnBatteryTimerUpdate(Entity<IPCBatteryComponent> ent, ref BatteryDeathTimerUpdate args)
+    private void OnBatteryTimerUpdate(Entity<IPCBatteryComponent> ent, ref IPCBatteryDeathTimerUpdate args)
     {
         if(ent.Comp.WarningText != null)
             _popup.PopupEntity(Loc.GetString(ent.Comp.WarningText), ent, PopupType.LargeCaution);
@@ -81,7 +86,7 @@ public sealed partial class IPCSystem
 
                 if (should_send > comp.WarningsIssued)
                 {
-                    RaiseLocalEvent(uid, new BatteryDeathTimerUpdate());
+                    RaiseLocalEvent(uid, new IPCBatteryDeathTimerUpdate());
                     comp.WarningsIssued += 1;
                 }
             }
@@ -122,7 +127,7 @@ public sealed partial class IPCSystem
         ent.Comp.TimerActive = true;
         ent.Comp.WarningsIssued = 0;
         ent.Comp.Timer = ent.Comp.DieWithoutPowerAfter;
-        RaiseLocalEvent(ent, new BatteryDeathTimerStart());
+        RaiseLocalEvent(ent, new IPCBatteryDeathTimerStart());
     }
 
     public void StopDeathTimer(Entity<IPCBatteryComponent> ent){
@@ -131,7 +136,7 @@ public sealed partial class IPCSystem
         
         ent.Comp.TimerActive = false;
         ent.Comp.WarningsIssued = 0;
-        RaiseLocalEvent(ent, new BatteryDeathTimerEnd(ent.Comp.Timer != 0f));
+        RaiseLocalEvent(ent, new IPCBatteryDeathTimerEnd(ent.Comp.Timer != 0f));
         ent.Comp.Timer = 0f;
     }
 

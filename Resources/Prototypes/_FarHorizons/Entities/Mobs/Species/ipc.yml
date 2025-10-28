@@ -263,8 +263,7 @@
     heatDamageThreshold: 373 # ~100C
     coldDamageThreshold: 253 # Temperature alert works funky, basically requred for "ideal temperature" to be in the middle between 2
     coldDamage: {} # Since we had to set treshold for damage, but we don't actually want any damage
-    coldAlert: ""
-    hotAlert: "" # Just hide all alerts, we don't care
+    disableAlerts: true
     heatDamage:
       types:
         Heat: 2.5 #per second, scales with temperature & other constants

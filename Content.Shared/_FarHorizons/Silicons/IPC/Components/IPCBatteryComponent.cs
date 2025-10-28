@@ -62,13 +62,13 @@ public sealed partial class IPCBatteryComponent : Component
 }
 
 [Serializable, NetSerializable]
-public sealed class BatteryDeathTimerStart : EntityEventArgs;
+public sealed class IPCBatteryDeathTimerStart : EntityEventArgs;
 
 [Serializable, NetSerializable]
-public sealed class BatteryDeathTimerEnd(bool interrupted = false) : EntityEventArgs
+public sealed class IPCBatteryDeathTimerEnd(bool interrupted = false) : EntityEventArgs
 {
     public bool Interrupted = interrupted;
 }
 
 [Serializable, NetSerializable]
-public sealed class BatteryDeathTimerUpdate : EntityEventArgs;
+public sealed class IPCBatteryDeathTimerUpdate : EntityEventArgs;

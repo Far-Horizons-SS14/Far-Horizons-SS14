@@ -196,6 +196,9 @@ public sealed class TemperatureSystem : EntitySystem
             return;
         }
 
+        if(temperature.DisableAlerts)
+            return;
+
         if (TryComp<ThermalRegulatorComponent>(uid, out var regulator) &&
             regulator.NormalBodyTemperature > temperature.ColdDamageThreshold &&
             regulator.NormalBodyTemperature < temperature.HeatDamageThreshold)
