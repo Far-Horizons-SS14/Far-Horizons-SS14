@@ -1,0 +1,158 @@
+- type: entity
+  parent: [ BoxCardboard, BaseBagOpenClose ]
+  id: FHFoodBoxDonut
+  name: Monkin' Donuts Deluxe
+  description: A long-haired security officer's dream.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Consumable/Food/Baked/donut.rsi
+    layers:
+    - state: box
+      map: ["closeLayer"]
+    - state: box-open
+      map: ["openLayer"]
+      visible: false
+    - state: box1
+      map: ["box1"]
+      visible: false
+    - state: box2
+      map: ["box2"]
+      visible: false
+    - state: box3
+      map: ["box3"]
+      visible: false
+    - state: box4
+      map: ["box4"]
+      visible: false
+    - state: box5
+      map: ["box5"]
+      visible: false
+    - state: box6
+      map: ["box6"]
+      visible: false
+    - state: box7
+      map: ["box7"]
+      visible: false
+    - state: box8
+      map: ["box8"]
+      visible: false
+    - state: box9
+      map: ["box9"]
+      visible: false
+    - state: box10
+      map: ["box10"]
+      visible: false
+    - state: box11
+      map: ["box11"]
+      visible: false
+    - state: box12
+      map: ["box12"]
+      visible: false
+    - state: box13
+      map: ["box13"]
+      visible: false
+    - state: box14
+      map: ["box14"]
+      visible: false
+    - state: box15
+      map: ["box15"]
+      visible: false
+    - state: box16
+      map: ["box16"]
+      visible: false
+    - state: box17
+      map: ["box17"]
+      visible: false
+    - state: box18
+      map: ["box18"]
+      visible: false
+    - state: box19
+      map: ["box19"]
+      visible: false
+    - state: box20
+      map: ["box20"]
+      visible: false
+    - state: box21
+      map: ["box21"]
+      visible: false      
+  - type: Storage
+    grid:
+    - 0,1,1,3 #Long 1
+    - 3,0,4,4 #Long 2
+    - 6,1,7,3 #Long 3
+    whitelist:
+      tags:
+      - Donut
+  - type: Item
+    sprite: _FarHorizons/Objects/Consumable/Food/Baked/donut.rsi
+    size: Normal
+    shape:
+    - 0,0,2,1
+    heldPrefix: box
+  - type: StorageFill
+    contents:
+    - id: FoodDonutSweetpea
+      amount: 1
+    - id: FoodDonutJellySweetpea
+      amount: 1
+    - id: FoodDonutChocolate
+      amount: 1
+    - id: FoodDonutJellyChocolate
+      amount: 1
+    - id: FoodDonutMeat
+      amount: 2
+    - id: FoodDonutBluePumpkin
+      amount: 1
+    - id: FoodDonutJellyBluePumpkin
+      amount: 1
+    - id: FoodDonutHomer
+      amount: 1
+    - id: FoodDonutJellyHomer
+      amount: 1
+    - id: FoodDonutChaos
+      amount: 2
+    - id: FoodDonutBungo
+      amount: 1
+    - id: FoodDonutJellyBungo
+      amount: 1
+    - id: FoodDonutCaramel
+      amount: 1
+    - id: FoodDonutJellyCaramel
+      amount: 1
+    - id: FoodDonutJellyScurret
+      amount: 2
+    - id: FoodDonutApple
+      amount: 1
+    - id: FoodDonutJellyApple
+      amount: 1
+    - id: FoodDonutPlain
+      amount: 1
+    - id: FoodDonutJellyPlain
+      amount: 1
+  - type: ItemCounter
+    count:
+      tags: [Donut]
+    composite: true
+    layerStates:
+    - box1
+    - box2
+    - box3
+    - box4
+    - box5
+    - box6
+    - box7
+    - box8
+    - box9
+    - box10
+    - box11
+    - box12
+    - box13
+    - box14
+    - box15
+    - box16
+    - box17
+    - box18
+    - box19
+    - box20
+    - box21
+  - type: Appearance
