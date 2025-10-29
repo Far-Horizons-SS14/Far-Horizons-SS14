@@ -139,3 +139,25 @@
     remove:
     - type: NecrosisSurgery
   - type: SurgeryClearProgress
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepInspectEyeDamage
+  name: Inspect For Eye Damage
+  components:
+  - type: SurgeryStep
+    duration: 5
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepRepairEyeDamage
+  name: Repair Eye Damage
+  components:
+  - type: SurgeryStep
+    duration: 10
+    tools:
+      - type: Hemostat
+  - type: Sprite
+    sprite: Objects/Specific/Medical/Surgery/scissors.rsi
+    state: hemostat
+  - type: SurgeryRepairEyes

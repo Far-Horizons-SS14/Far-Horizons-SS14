@@ -14,10 +14,11 @@ using Robust.Shared.Prototypes;
 using Content.Shared.Prototypes;
 using Robust.Shared.Random;
 using Content.Shared.Random.Helpers;
-using Content.Shared.Body.Systems;
 using System.Linq;
+using Content.Server.Administration.Systems;
+using Content.Shared.Eye.Blinding.Systems;
+using Content.Shared.Eye.Blinding.Components;
 using Content.Shared.Atmos.Rotting;
-using Content.Server.Administration.Systems; 
 
 namespace Content.Server._FarHorizons.Medical.SurgeryOverhaul.Systems;
 
@@ -31,10 +32,10 @@ public sealed partial class SurgeryOverhaulSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _prototypes = default!;
     [Dependency] private readonly SharedResearchSystem _research = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly SharedBodySystem _sharedBodySystem = default!;
     [Dependency] private readonly IComponentFactory _componentFactory = default!;
-    [Dependency] private readonly SharedRottingSystem _rottingSystem = default!;
     [Dependency] private readonly StarlightEntitySystem _entity = default!;
+    [Dependency] private readonly BlindableSystem _blindableSystem = default!;
+    [Dependency] private readonly SharedRottingSystem _rottingSystem = default!;
     private readonly List<EntProtoId> _surgeriesForRotten = [];
 
     public override void Initialize()
@@ -43,10 +44,13 @@ public sealed partial class SurgeryOverhaulSystem : EntitySystem
         SubscribeLocalEvent<SurgeryAlterAppearanceComponent, SurgeryStepCompleteEvent>(OnAlterAppearanceComplete);
         SubscribeLocalEvent<HealDamageComponent, SurgeryStepCompleteEvent>(OnHealDamageComplete);
         SubscribeLocalEvent<NecrosisSurgeryComponent, SurgeryStepCompleteEvent>(OnNecrosisComplete);
+        SubscribeLocalEvent<SurgeryRepairEyesComponent, SurgeryStepCompleteEvent>(OnRepairEyesComplete);
+        SubscribeLocalEvent<NecrosisSurgeryComponent, SurgeryValidEvent>(OnNecrosisSurgeryValid);
+        SubscribeLocalEvent<SurgeryTechnologyComponent, SurgeryValidEvent>(OnResearchSurgeryValid);
 
         LoadSurgeriesForRotten();
     }
-
+//Surgeries
     private void OnAlterAppearanceComplete(EntityUid uid, SurgeryAlterAppearanceComponent comp, ref SurgeryStepCompleteEvent args)
     {
         if (_net.IsClient) return;
@@ -105,13 +109,13 @@ public sealed partial class SurgeryOverhaulSystem : EntitySystem
         var surgProto = _prototypes.Index<EntityPrototype>(args.SurgeryProto);
         if (!surgProto.TryGetComponent<NecrosisSurgeryComponent>(out var surgProtoComp, _componentFactory)) return;
         surgComp.RequiredSurgeries.Clear();
-        
+
         for (int i = 0; i < surgProtoComp.AmountOfSurgeries; i++)
         {
             EntProtoId chosenSurgery;
             if (_surgeriesForRotten.Count == 0)
                 break;
-                
+
             while (true)
             {
                 chosenSurgery = _random.PickAndTake(_surgeriesForRotten);
@@ -127,7 +131,45 @@ public sealed partial class SurgeryOverhaulSystem : EntitySystem
             surgComp.RequiredSurgeries.Add(chosenSurgery!);
         }
     }
-
+    private void OnRepairEyesComplete(EntityUid uid, SurgeryRepairEyesComponent comp, ref SurgeryStepCompleteEvent args)
+    {
+        if (TryComp<BlindableComponent>(args.Body, out var blindComp))
+            _blindableSystem.AdjustEyeDamage(args.Body, -blindComp.EyeDamage);
+    }
+    // Valid Event Checks
+    private void OnNecrosisSurgeryValid(Entity<NecrosisSurgeryComponent> ent, ref SurgeryValidEvent args)
+    {
+        if (!_rottingSystem.IsRotten(args.Body))
+        {
+            args.Cancelled = true;
+            return;
+        }
+        if (HasComp<DisableSurgeryComponent>(ent)
+            && TryComp<MetaDataComponent>(ent, out var metaComp)
+            && metaComp.EntityPrototype != null
+            && !ent.Comp.RequiredSurgeries.Contains(metaComp.EntityPrototype.ID))
+        {
+            args.Cancelled = true;
+            return;
+        }
+    }
+    private void OnResearchSurgeryValid(Entity<SurgeryTechnologyComponent> ent, ref SurgeryValidEvent args)
+    {
+        if (ent.Comp.RequiredTechnology != null)
+        {
+            var TechProto = _prototypes.Index<TechnologyPrototype>(ent.Comp.RequiredTechnology);
+            if (!TryComp(args.Body, out BuckleComponent? buckle) || !TryComp(buckle.BuckledTo, out DeviceLinkSinkComponent? linkComp) || linkComp.LinkedSources.Count == 0)
+            {
+                args.Cancelled = true;
+                return;
+            }
+            if (TryComp(linkComp.LinkedSources.First(), out TechnologyDatabaseComponent? techComp) && !_research.IsTechnologyUnlocked(args.Body, TechProto, techComp))
+            {
+                args.Cancelled = true;
+                return;
+            }
+        }
+    }
     private void LoadSurgeriesForRotten()
     {
         _surgeriesForRotten.Clear();

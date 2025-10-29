@@ -42,6 +42,7 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
     [Dependency] private readonly LimbSystem _limbSystem = default!;
     [Dependency] private readonly StarlightEntitySystem _entity = default!;
     [Dependency] private readonly SharedBloodstreamSystem _bloodstreamSystem = default!;
+    [Dependency] private readonly SharedRottingSystem _rottingSystem = default!;
 
     public void InitializeSteps()
     {

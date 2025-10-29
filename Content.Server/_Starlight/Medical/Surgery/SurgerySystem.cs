@@ -14,13 +14,11 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 //Far Horizons Start
-using Content.Shared._FarHorizons.Medical.SurgeryOverhaul.Components;
 using Content.Shared.Buckle.Components;
 using Content.Shared.DeviceLinking;
 using Content.Shared.Research.Components;
 using Content.Shared.Research.Systems;
 using Content.Shared.Research.Prototypes;
-using Content.Shared.Atmos.Rotting;
 //Far Horizons End
 namespace Content.Server.Starlight.Medical.Surgery;
 // Based on the RMC14.
@@ -35,7 +33,6 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
     [Dependency] private readonly ContainerSystem _containers = default!;
     [Dependency] private readonly SharedResearchSystem _research = default!; //Far Horizons
-    [Dependency] private readonly SharedRottingSystem _rottingSystem = default!; //Far Horizons
 
     private readonly List<EntProtoId> _surgeries = [];
     public override void Initialize()
@@ -96,25 +93,6 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
                 if (ev.Cancelled)
                     continue;
             }
-            //Far Horizons Start
-            if (HasComp<NecrosisSurgeryComponent>(surgeryEnt) &&
-                !_rottingSystem.IsRotten(body))
-                continue;
-
-            if (TryComp<NecrosisSurgeryComponent>(part, out var necrosurgComp) &&
-            HasComp<DisableSurgeryComponent>(surgeryEnt) &&
-                !necrosurgComp.RequiredSurgeries.Contains(surgery))
-                continue;
-
-            if (TryComp<SurgeryTechnologyComponent>(surgeryEnt, out var reqComp) && reqComp.RequiredTechnology != null)
-            {
-                var TechProto = _prototypes.Index<TechnologyPrototype>(reqComp.RequiredTechnology);
-                if (!TryComp(body, out BuckleComponent? buckle) || !TryComp(buckle.BuckledTo, out DeviceLinkSinkComponent? linkComp) || linkComp.LinkedSources.Count == 0)
-                    continue;
-                if (TryComp(linkComp.LinkedSources.First(), out TechnologyDatabaseComponent? techComp) && !_research.IsTechnologyUnlocked(body, TechProto, techComp))
-                    continue;
-            }
-            //Far Horizons End
             surgeries.GetOrNew(GetNetEntity(part)).Add((surgery, ev.Suffix, isCompleted));
         }
     }

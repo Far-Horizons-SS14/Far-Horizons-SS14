@@ -12,14 +12,6 @@ public sealed partial class SurgeryBedSpeedComponent : Component
     [DataField]
     public float BedSpeedModifier = 2.0f;
 }
-
-[RegisterComponent, NetworkedComponent]
-public sealed partial class SurgeryChemicalSpeedComponent : Component
-{
-    [DataField]
-    public float ChemicalSpeedModifier = 1.0f;
-}
-
 [RegisterComponent, NetworkedComponent] 
 public sealed partial class OnFailDamageComponent : Component
 {
@@ -61,4 +53,5 @@ public sealed partial class NecrosisSurgeryComponent : Component
 }
 [RegisterComponent, NetworkedComponent] public sealed partial class DisableSurgeryComponent : Component;
 [RegisterComponent, NetworkedComponent] public sealed partial class SurgeryAlterAppearanceComponent : Component;
+[RegisterComponent, NetworkedComponent] public sealed partial class SurgeryRepairEyesComponent : Component;
 [RegisterComponent, NetworkedComponent] public sealed partial class AnimalBypassComponent : Component;

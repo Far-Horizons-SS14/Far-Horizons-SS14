@@ -16,6 +16,7 @@ using System.Linq;
 //FarHorizons Start
 using Content.Shared._FarHorizons.Medical.SurgeryOverhaul.Components;
 using Content.Shared.Stunnable;
+using Robust.Shared.Timing;
 //FarHorizons End
 
 namespace Content.Shared.Starlight.Medical.Surgery;
@@ -24,6 +25,7 @@ namespace Content.Shared.Starlight.Medical.Surgery;
 public abstract partial class SharedSurgerySystem
 {
     [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
     private void InitializeSteps()
     {
         SubscribeLocalEvent<SurgeryStepComponent, SurgeryStepCompleteEvent>(OnStepComplete);
@@ -37,6 +39,8 @@ public abstract partial class SharedSurgerySystem
     }
     private void OnTargetDoAfter(Entity<SurgeryTargetComponent> ent, ref SurgeryDoAfterEvent args)
     {
+         if (!_timing.IsFirstTimePredicted)
+            return;
         if (args.Cancelled ||
             args.Handled ||
             args.Target is not { } target ||
@@ -51,7 +55,8 @@ public abstract partial class SharedSurgerySystem
             return;
         }
         //Far Horizons Start
-        if (args.DidSurgeryFail)
+        _random.SetSeed((int)_timing.CurTime.TotalMilliseconds);
+        if (!_random.Prob(args.SuccessRate))
         {
             var StepProto = _prototypes.Index<EntityPrototype>(args.Step);
             if (StepProto.TryGetComponent<OnFailDamageComponent>(out var comp, _compFactory) && TryComp<BodyPartComponent>(args.Target, out var bodyComp))
@@ -91,28 +96,6 @@ public abstract partial class SharedSurgerySystem
         progress.CompletedSurgeries.Clear();
         progress.ActiveRepeatableStep = default; //FarHorizons
     }
-    /*
-    private void OnStepComplete(Entity<SurgeryStepComponent> ent, ref SurgeryStepCompleteEvent args)
-    {
-        if (TryComp<SurgeryClearProgressComponent>(ent, out _)) return;
-        if (TryComp<SurgeryProgressComponent>(args.Part, out var progress))
-        {
-            progress.CompletedSteps.Add($"{args.SurgeryProto}:{args.StepProto}");
-            if (!progress.StartedSurgeries.Contains(args.SurgeryProto) && !args.IsFinal)
-                progress.StartedSurgeries.Add(args.SurgeryProto);
-            if (progress.StartedSurgeries.Contains(args.SurgeryProto) && args.IsFinal)
-                progress.StartedSurgeries.Remove(args.SurgeryProto);
-        }
-        else
-        {
-            progress = new SurgeryProgressComponent { CompletedSteps = [$"{args.SurgeryProto}:{args.StepProto}"] };
-            if (!args.IsFinal)
-                progress.StartedSurgeries.Add(args.SurgeryProto);
-            AddComp(args.Part, progress);
-        }
-        if (args.IsFinal)
-            progress.CompletedSurgeries.Add(args.SurgeryProto);
-    }*/
     //FarHorizons Start
     private void OnStepComplete(Entity<SurgeryStepComponent> ent, ref SurgeryStepCompleteEvent args)
     {
@@ -310,7 +293,6 @@ public abstract partial class SharedSurgerySystem
 
         var duration = stepComp.Duration;
         float SmallestSuccessRate = 1f;
-        bool didSurgeryFail = false; //FarHorizons
         foreach (var tool in validTools)
             if (TryComp(tool, out SurgeryToolComponent? toolComp))
             {
@@ -336,14 +318,13 @@ public abstract partial class SharedSurgerySystem
 
                 if (totalSuccesRate < SmallestSuccessRate)
                     SmallestSuccessRate = totalSuccesRate;
+                //FarHorizons End
             }
-        if (!_random.Prob(SmallestSuccessRate))
-            didSurgeryFail = true;
-        //FarHorizons End
+        
         if (TryComp(body, out TransformComponent? xform))
             _rotateToFace.TryFaceCoordinates(user, _transform.GetMapCoordinates(body, xform).Position);
 
-        var ev = new SurgeryDoAfterEvent(args.Surgery, args.Step, didSurgeryFail);
+        var ev = new SurgeryDoAfterEvent(args.Surgery, args.Step, SmallestSuccessRate);
         var doAfter = new DoAfterArgs(EntityManager, user, duration, ev, body, part)
         {
             //FarHorizons Start
