@@ -227,12 +227,6 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
             || !TryComp(args.Part, out BodyPartComponent? limb)
             || !_limbSystem.AttachItem(args.Body, slot, (args.Part, limb), (itemId, metadata));
 
-    /*    private void OnStepAmputationComplete(Entity<SurgeryStepAmputationEffectComponent> ent, ref SurgeryStepEvent args)
-        {
-            if (_entity.TryEntity<TransformComponent, HumanoidAppearanceComponent, BodyComponent>(args.Body, out var body) 
-                && _entity.TryEntity<TransformComponent, MetaDataComponent, BodyPartComponent>(args.Part, out var limb))
-                _limbSystem.Amputatate(body, limb);
-        }*/
     //FarHorizons Start
     private void OnStepAmputationComplete(Entity<SurgeryStepAmputationEffectComponent> ent, ref SurgeryStepEvent args)
     {

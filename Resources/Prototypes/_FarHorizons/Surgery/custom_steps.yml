@@ -49,8 +49,10 @@
   - type: Sprite
     sprite: Objects/Specific/Medical/Surgery/scissors.rsi
     state: hemostat
-  - type: HealDamage
-    heal: 
+  - type: Healing
+    damageContainers:
+      - Biological
+    damage: 
       types:
         Blunt: -5
         Slash: -5
@@ -73,8 +75,10 @@
   - type: Sprite
     sprite: Objects/Specific/Medical/Surgery/scissors.rsi
     state: hemostat
-  - type: HealDamage
-    heal: 
+  - type: Healing
+    damageContainers:
+      - Biological
+    damage: 
       types:
         Heat: -5
         Cold: -5

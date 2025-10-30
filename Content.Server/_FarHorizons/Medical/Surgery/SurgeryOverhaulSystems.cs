@@ -19,6 +19,7 @@ using Content.Server.Administration.Systems;
 using Content.Shared.Eye.Blinding.Systems;
 using Content.Shared.Eye.Blinding.Components;
 using Content.Shared.Atmos.Rotting;
+using Content.Shared.Medical.Healing;
 
 namespace Content.Server._FarHorizons.Medical.SurgeryOverhaul.Systems;
 
@@ -42,7 +43,7 @@ public sealed partial class SurgeryOverhaulSystem : EntitySystem
     {
         base.Initialize();
         SubscribeLocalEvent<SurgeryAlterAppearanceComponent, SurgeryStepCompleteEvent>(OnAlterAppearanceComplete);
-        SubscribeLocalEvent<HealDamageComponent, SurgeryStepCompleteEvent>(OnHealDamageComplete);
+        SubscribeLocalEvent<HealingComponent, SurgeryStepCompleteEvent>(OnHealComplete);
         SubscribeLocalEvent<NecrosisSurgeryComponent, SurgeryStepCompleteEvent>(OnNecrosisComplete);
         SubscribeLocalEvent<SurgeryRepairEyesComponent, SurgeryStepCompleteEvent>(OnRepairEyesComplete);
         SubscribeLocalEvent<NecrosisSurgeryComponent, SurgeryValidEvent>(OnNecrosisSurgeryValid);
@@ -68,7 +69,7 @@ public sealed partial class SurgeryOverhaulSystem : EntitySystem
         _identity.QueueIdentityUpdate(target);
     }
 
-    private void OnHealDamageComplete(EntityUid uid, HealDamageComponent comp, ref SurgeryStepCompleteEvent args)
+    private void OnHealComplete(EntityUid uid, HealingComponent comp, ref SurgeryStepCompleteEvent args)
     {
         if (_net.IsClient) return;
         var StepProto = _prototypes.Index<EntityPrototype>(args.StepProto);
@@ -76,7 +77,7 @@ public sealed partial class SurgeryOverhaulSystem : EntitySystem
         var ResearchModifier = 75f;
         DamageSpecifier BonusHeal = new();
         DamageSpecifier TotalHeal;
-        if (StepProto.TryGetComponent<HealDamageComponent>(out var healComp, _componentFactory))
+        if (StepProto.TryGetComponent<HealingComponent>(out var healComp, _componentFactory))
         {
             if (surgProto.TryGetComponent<SurgeryTechnologyComponent> (out var techvar, _componentFactory) && TryComp(args.Body, out BuckleComponent? buckle)
                 && TryComp(buckle.BuckledTo, out DeviceLinkSinkComponent? linkComp) && linkComp.LinkedSources.Count > 0 &&
@@ -91,10 +92,10 @@ public sealed partial class SurgeryOverhaulSystem : EntitySystem
             }
 
             if (TryComp<DamageableComponent>(args.Body, out var dmgComp))
-                foreach (var key in healComp.Heal!.DamageDict.Keys)
+                foreach (var key in healComp.Damage!.DamageDict.Keys)
                     BonusHeal.DamageDict.Add(key, dmgComp.TotalDamage / ResearchModifier);
 
-            TotalHeal = healComp.Heal! + (-BonusHeal);
+            TotalHeal = healComp.Damage! + (-BonusHeal);
             _damageableSystem.TryChangeDamage(args.Body, TotalHeal);
         }
     }

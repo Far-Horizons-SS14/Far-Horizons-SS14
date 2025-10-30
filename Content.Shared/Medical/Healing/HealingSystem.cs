@@ -156,7 +156,7 @@ public sealed class HealingSystem : EntitySystem
             args.Args.Delay = healing.Delay * GetScaledHealingPenalty(target.Owner, healing.SelfHealPenaltyMultiplier);
     }
 
-    private bool HasDamage(Entity<HealingComponent> healing, Entity<DamageableComponent> target)
+    public bool HasDamage(Entity<HealingComponent> healing, Entity<DamageableComponent> target)
     {
         var damageableDict = target.Comp.Damage.DamageDict;
         var healingDict = healing.Comp.Damage.DamageDict;

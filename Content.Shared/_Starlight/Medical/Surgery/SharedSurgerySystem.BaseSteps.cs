@@ -17,6 +17,8 @@ using System.Linq;
 using Content.Shared._FarHorizons.Medical.SurgeryOverhaul.Components;
 using Content.Shared.Stunnable;
 using Robust.Shared.Timing;
+using Content.Shared.Medical.Healing;
+using Content.Shared.Damage;
 //FarHorizons End
 
 namespace Content.Shared.Starlight.Medical.Surgery;
@@ -26,6 +28,7 @@ public abstract partial class SharedSurgerySystem
 {
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly HealingSystem _healing = default!;
     private void InitializeSteps()
     {
         SubscribeLocalEvent<SurgeryStepComponent, SurgeryStepCompleteEvent>(OnStepComplete);
@@ -84,6 +87,8 @@ public abstract partial class SharedSurgerySystem
                 IsFinal = surgery.Comp.Steps[^1] == args.Step,
             };
             RaiseLocalEvent(step, ref evComplete);
+            if (_entitySystem.TryGetSingleton(args.Step, out var stepEnt) && TryComp(stepEnt, out HealingComponent? healing) && TryComp(ent, out DamageableComponent? damage))
+                args.Repeat = _healing.HasDamage((stepEnt, healing), (ent, damage));
         }
         //Far Horizons End
         RefreshUI(ent);
