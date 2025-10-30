@@ -47,7 +47,9 @@ public sealed partial class SurgeryOverhaulSystem : EntitySystem
         SubscribeLocalEvent<NecrosisSurgeryComponent, SurgeryStepCompleteEvent>(OnNecrosisComplete);
         SubscribeLocalEvent<SurgeryRepairEyesComponent, SurgeryStepCompleteEvent>(OnRepairEyesComplete);
         SubscribeLocalEvent<NecrosisSurgeryComponent, SurgeryValidEvent>(OnNecrosisSurgeryValid);
+        SubscribeLocalEvent<NecrosisSurgeryStepComponent, SurgeryValidEvent>(OnNecrosisSurgeryStepValid);
         SubscribeLocalEvent<SurgeryTechnologyComponent, SurgeryValidEvent>(OnResearchSurgeryValid);
+        
 
         LoadSurgeriesForRotten();
     }
@@ -140,20 +142,36 @@ public sealed partial class SurgeryOverhaulSystem : EntitySystem
     // Valid Event Checks
     private void OnNecrosisSurgeryValid(Entity<NecrosisSurgeryComponent> ent, ref SurgeryValidEvent args)
     {
+        if (args.Cancelled) return;
+
         if (!_rottingSystem.IsRotten(args.Body))
         {
             args.Cancelled = true;
             return;
         }
-        if (HasComp<DisableSurgeryComponent>(ent)
-            && TryComp<MetaDataComponent>(ent, out var metaComp)
+
+    }
+    private void OnNecrosisSurgeryStepValid(Entity<NecrosisSurgeryStepComponent> ent, ref SurgeryValidEvent args)
+    {
+        if (args.Cancelled) return;
+
+        if (!_rottingSystem.IsRotten(args.Body))
+        {
+            args.Cancelled = true;
+            return;
+        }
+
+        if (HasComp<DisableSurgeryComponent>(ent.Owner)
+            && TryComp<MetaDataComponent>(ent.Owner, out var metaComp)
+            && TryComp<NecrosisSurgeryComponent>(args.Part, out var necroComp)
             && metaComp.EntityPrototype != null
-            && !ent.Comp.RequiredSurgeries.Contains(metaComp.EntityPrototype.ID))
+            && !necroComp.RequiredSurgeries.Contains(metaComp.EntityPrototype.ID))
         {
             args.Cancelled = true;
             return;
         }
     }
+
     private void OnResearchSurgeryValid(Entity<SurgeryTechnologyComponent> ent, ref SurgeryValidEvent args)
     {
         if (ent.Comp.RequiredTechnology != null)
