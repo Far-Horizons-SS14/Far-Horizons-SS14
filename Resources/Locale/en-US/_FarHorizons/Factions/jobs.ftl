@@ -1,35 +1,35 @@
-faction-syndicate-job-captain = Evil Captain
-faction-syndicate-job-hos = Evil Head of Security
-faction-syndicate-job-ce = Evil Chief Engineer
-faction-syndicate-job-cmo = Evil Chief Medical Officer
-faction-syndicate-job-rd = Evil Research Director
-faction-syndicate-job-hop = Evil Head of Personnel
-faction-syndicate-job-magistrate = Evil Magistrate
-faction-syndicate-job-rep = SCH Representative
+faction-syndicate-job-captain = Commander
+faction-syndicate-job-hos = Security Overwatch
+faction-syndicate-job-ce = Technical Lead
+faction-syndicate-job-cmo = Medical Director
+faction-syndicate-job-rd = Head of Research
+faction-syndicate-job-hop = Personnel Chief
+faction-syndicate-job-magistrate = Corporate Arbiter
+faction-syndicate-job-rep = Syndicate Operations Agent
 
-faction-syndicate-job-warden = Evil Warden
-faction-syndicate-job-corpsman = Evil Corpsman
-faction-syndicate-job-brigmed = Evil Brigmedic
-faction-syndicate-job-detective = Evil Detective
-faction-syndicate-job-officer = Evil Security Officer
-faction-syndicate-job-cadet = Evil Security Cadet
-faction-syndicate-job-secborg = Evil Security Borg
+faction-syndicate-job-warden = Guardian
+faction-syndicate-job-corpsman = Combat Medic
+faction-syndicate-job-brigmed = Medical Officer
+faction-syndicate-job-detective = Inspector
+faction-syndicate-job-officer = Law Enforcer
+faction-syndicate-job-cadet = Recruit
+faction-syndicate-job-secborg = L.E.A.D.
 
-faction-syndicate-job-bso = Evil BSO
+faction-syndicate-job-bso = Operative "Red Sword"
 
-faction-syndicate-job-atmos = Evil Atmospheric Technician
-faction-syndicate-job-engineer = Evil Station Engineer
-faction-syndicate-job-ta = Evil Technical Assistant
+faction-syndicate-job-atmos = Environmental Technician
+faction-syndicate-job-engineer = Station Architect
+faction-syndicate-job-ta = Trainee Architect
 
-faction-syndicate-job-surgeon = Evil Surgeon
-faction-syndicate-job-chemist = Evil Chemist
-faction-syndicate-job-paramedic = Evil Paramedic
-faction-syndicate-job-doctor = Evil Medical Doctor
-faction-syndicate-job-intern = Evil Medical Intern
-faction-syndicate-job-psychologist = Evil Psychologist
+faction-syndicate-job-surgeon = Physician
+faction-syndicate-job-chemist = Pharmacist
+faction-syndicate-job-paramedic = Medic
+faction-syndicate-job-doctor = Clinician
+faction-syndicate-job-intern = Nursing Assistant
+faction-syndicate-job-psychologist = Psychoanalyst
 
-faction-syndicate-job-roboticist = Evil Roboticist
-faction-syndicate-job-scientist = Evil Scientist
-faction-syndicate-job-ra = Evil Research Assistant
+faction-syndicate-job-roboticist = Robotics Engineer
+faction-syndicate-job-scientist = Researcher
+faction-syndicate-job-ra = Undergraduate
 
-faction-syndicate-job-borg = Evil Borg
+faction-syndicate-job-borg = Droid

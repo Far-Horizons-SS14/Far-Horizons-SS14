@@ -1,10 +1,302 @@
+# Command
+
+- type: startingGear
+  id: SyndieCaptain
+  equipment:
+    gloves: ClothingHandsGlovesCaptain
+    id: CaptainPDA
+    ears: ClothingHeadsetAltCommand
+  storage:
+    back:
+    - Flash
+
+- type: startingGear
+  id: SyndieHoSGear
+  equipment:
+    eyes: ClothingEyesGlassesSecurity
+    id: HoSPDA
+    gloves: ClothingHandsGlovesCombat
+    ears: ClothingHeadsetAltSecurity
+  storage:
+    back:
+    - Flash
+
 - type: startingGear
   id: SyndieChiefEngineerGear
   equipment:
-    id: SyndiPDA
+    id: CEPDA
     eyes: ClothingEyesGlassesMeson
     ears: ClothingHeadsetCE
     belt: ClothingBeltUtilityEngineering
   storage:
     back:
     - Flash
+
+- type: startingGear
+  id: SyndieCMOGear
+  equipment:
+    id: CMOPDA
+    ears: ClothingHeadsetCMO
+    belt: ClothingBeltMedicalFilled
+  storage:
+    back:
+    - Flash
+
+- type: startingGear
+  id: SyndieResearchDirectorGear
+  equipment:
+    id: RnDPDA
+    ears: ClothingHeadsetRD
+    belt: ClothingBeltScienceRD
+  storage:
+    back:
+    - Flash
+
+- type: startingGear
+  id: SyndieHoPGear
+  equipment:
+    id: HoPPDA
+    gloves: ClothingHandsGlovesHop
+    ears: ClothingHeadsetHoP
+    belt: BoxFolderClipboardThreePapers
+  storage:
+    back:
+    - Flash
+
+- type: startingGear
+  id: SyndieMagistrateGear
+  equipment:
+    eyes: ClothingEyesGlassesSecurity
+    gloves: ClothingHandsGlovesColorWhite
+    outerClothing: ClothingOuterRobesJudge
+    id: MagistratePDA
+    ears: ClothingHeadsetMagistrate
+    belt: BoxFolderNanoTrasenClipboard
+  storage:
+    back:
+    - RubberStampMagistrate
+    - ClothingNeckLawyerbadge
+    - GavelHammer
+    - GavelBlock
+    - BookSpaceLaw
+
+- type: startingGear
+  id: SyndieNanoTrasenRepresentativeGear
+  equipment:
+    head: ClothingHeadHatCapNtrep
+    id: NanoTrasenRepresentativePDA
+    ears: ClothingHeadsetAltCommand
+    outerClothing: ClothingOuterCoatNtrep
+    belt: BoxFolderNanoTrasenClipboard
+  storage:
+    back:
+    - RubberStampNtrep
+    - CaneNT
+
+# Law
+
+- type: startingGear
+  id: SyndieIAAGear
+  equipment:
+    id: IAAPDA
+    eyes: ClothingEyesGlassesSunglasses
+    ears: ClothingHeadsetIAA
+    belt: BoxFolderNanoTrasenClipboard
+  inhand:
+    - BriefcaseIAAFilled
+  storage:
+    back:
+      - BookSpaceLaw
+
+# Engineering
+
+- type: startingGear
+  id: SyndieAtmosphericTechnicianGear
+  equipment:
+    eyes: ClothingEyesGlassesMeson
+    id: AtmosPDA
+    belt: ClothingBeltUtilityEngineering
+    ears: ClothingHeadsetEngineering
+
+- type: startingGear
+  id: SyndieStationEngineerGear
+  equipment:
+    eyes: ClothingEyesGlassesMeson
+    belt: ClothingBeltUtilityEngineering
+    ears: ClothingHeadsetEngineering
+
+- type: startingGear
+  id: SyndieTechnicalAssistantGear
+  equipment:
+    shoes: ClothingShoesBootsWork
+    id: TechnicalAssistantPDA
+    belt: ClothingBeltUtilityEngineering
+    ears: ClothingHeadsetEngineering
+    pocket2: BookEngineersHandbook
+
+# Medical
+
+- type: startingGear
+  id: SyndieSurgeonGear
+  equipment:
+    ears: ClothingHeadsetMedical
+    belt: ClothingBeltMedicalFilled
+  inhand:
+    - ClothingBackpackDuffelSurgeryFilled
+
+- type: startingGear
+  id: SyndieChemistGear
+  equipment:
+    id: ChemistryPDA
+    ears: ClothingHeadsetMedical
+    belt: ChemBag
+    pocket1: HandLabeler
+    eyes: ClothingEyesGlassesChemical
+
+- type: startingGear
+  id: SyndieParamedicGear
+  equipment:
+    id: ParamedicPDA
+    ears: ClothingHeadsetMedical
+    belt: ClothingBeltMedicalEMTFilled
+  storage:
+    back:
+    - EmergencyRollerBedSpawnFolded
+    - DefibrillatorParamedical
+
+- type: startingGear
+  id: SyndieDoctorGear
+  equipment:
+    ears: ClothingHeadsetMedical
+    belt: ClothingBeltMedicalFilled
+
+- type: startingGear
+  id: SyndieMedicalInternGear
+  equipment:
+    shoes: ClothingShoesColorWhite
+    id: MedicalInternPDA
+    ears: ClothingHeadsetMedical
+    belt: ClothingBeltMedicalFilled
+    pocket2: BookMedicalReferenceBook
+
+- type: startingGear
+  id: SyndiePsychologistGear
+  equipment:
+    id: PsychologistPDA
+    ears: ClothingHeadsetMedical
+  storage:
+    back:
+    - RubberStampPsychologist
+
+# Science
+
+- type: startingGear
+  id: SyndieRoboticistGear
+  equipment:
+    id: RoboticistPDA
+    belt: ClothingBeltScienceRoboticist
+    ears: ClothingHeadsetRobotics
+
+- type: startingGear
+  id: SyndieScientistGear
+  equipment:
+    ears: ClothingHeadsetScience
+    belt: ClothingBeltScience
+
+- type: startingGear
+  id: SyndieResearchAssistantGear
+  equipment:
+    shoes: ClothingShoesColorWhite
+    id: ResearchAssistantPDA
+    ears: ClothingHeadsetScience
+    pocket2: BookScientistsGuidebook
+    belt: ClothingBeltScience
+
+# Security
+
+- type: startingGear
+  id: SyndieWardenGear
+  equipment:
+    id: WardenPDA
+    ears: ClothingHeadsetSecurityWarden
+    pocket1: WeaponPistolDP
+  storage:
+    back:
+    - Flash
+    - MagazinePistol40SP
+    - MagazinePistol40SP
+
+- type: startingGear
+  id: SyndieCorpsmanGear
+  equipment:
+    ears: ClothingHeadsetBrigmedic
+    neck: ClothingNeckTieBlue
+    pocket2: HandheldCorpsmanCrewMonitor
+    id: CorpsmanPDA
+  storage:
+    back:
+    - Flash
+    - ClothingMaskGasCorpsman
+    - EmergencyRollerBedSpawnFolded
+
+- type: startingGear
+  id: SyndieBrigmedicGear
+  equipment:
+    ears: ClothingHeadsetBrigmedic
+    neck: ClothingNeckTieRed
+    pocket2: HandheldBrigmedicCrewMonitor
+    mask: ClothingMaskBreathMedicalSecurity
+    id: BrigmedicPDA
+  storage:
+    back:
+    - Flash
+
+- type: startingGear
+  id: SyndieDetectiveGear
+  equipment:
+    id: DetectivePDA
+    ears: ClothingHeadsetSecurity
+    belt: ClothingBeltHolsterFilled
+  storage:
+    back:
+    - Flash
+    - ForensicPad
+    - ForensicScanner
+
+- type: startingGear
+  id: SyndieSecurityOfficerGear
+  equipment:
+    ears: ClothingHeadsetSecurity
+  storage:
+    back:
+    - Flash
+
+- type: startingGear
+  id: SyndieSecurityCadetGear
+  equipment:
+    shoes: ClothingShoesBootsJackFilled
+    outerClothing: ClothingOuterArmorBasic
+    id: SecurityCadetPDA
+    ears: ClothingHeadsetSecurity
+    belt: ClothingBeltSecurityFilled
+    pocket2: BookSecurity
+  storage:
+    back:
+    - Flash
+
+# Syndie Jobs
+
+- type: startingGear
+  id: SyndieBlueShieldGear
+  equipment:
+    head: ClothingHeadHatBeretBlueShield
+    id: BlueShieldPDA
+    ears: ClothingHeadsetAltBSO
+    belt: ClothingBeltBlueShieldWebbingFilled
+    gloves: ClothingHandsGlovesCombat
+    pocket1: WeaponMultiphaseGun
+    pocket2: HandheldBSOCrewMonitor
+  storage:
+    back:
+    - Flash
+    - ClothingMaskGasBSO

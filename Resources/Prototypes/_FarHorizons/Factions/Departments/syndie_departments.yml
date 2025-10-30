@@ -40,20 +40,22 @@
   weight: 5
 
 - type: factionDepartmentAssignment
-  id: SyndieLaw
-  faction: FactionSyndicate
-  department: Law
-  weight: 6
-
-- type: factionDepartmentAssignment
   id: SyndieRepresentives
   faction: FactionSyndicate
   department: Representives
   nameOverride: faction-syndie-department-Representives
-  weight: 7
+  weight: 6
 
 - type: factionDepartmentAssignment
   id: SyndieSilicon
   faction: FactionSyndicate
   department: Silicon
+  nameOverride: faction-syndie-department-Silicon
+  weight: 7
+
+- type: factionDepartmentAssignment
+  id: SyndieLaw
+  faction: FactionSyndicate
+  department: Law
+  nameOverride: faction-neutral-department-Law
   weight: 8
