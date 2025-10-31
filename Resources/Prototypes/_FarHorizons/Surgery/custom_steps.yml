@@ -130,7 +130,8 @@
   - type: SurgeryStep
     duration: 10
     add:
-    - type: NecrosisSurgery
+      - type: NecrosisSurgeryTarget
+        amount_of_surgeries: 2
   - type: NecrosisSurgery
 
 - type: entity
@@ -141,7 +142,7 @@
   - type: SurgeryStep
     duration: 10
     remove:
-    - type: NecrosisSurgery
+    - type: NecrosisSurgeryTarget
   - type: SurgeryClearProgress
 
 - type: entity

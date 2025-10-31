@@ -37,15 +37,22 @@ public sealed partial class NecrosisSurgeryStepComponent : Component
     [DataField("seconds")]
     public double time = 120;
 }
-[RegisterComponent, NetworkedComponent] 
-public sealed partial class NecrosisSurgeryComponent : Component
+[RegisterComponent, NetworkedComponent]
+public sealed partial class NecrosisSurgeryTargetComponent : Component
 {
     [DataField]
     public List<EntProtoId> RequiredSurgeries = new();
     [DataField("amount_of_surgeries")]
     public int AmountOfSurgeries = 1;
 }
+[RegisterComponent, NetworkedComponent] 
+public sealed partial class SurgeryLimbExistConditionComponent : Component
+{
+    [DataField]
+    public string Slot;
+}
 [RegisterComponent, NetworkedComponent] public sealed partial class DisableSurgeryComponent : Component;
+[RegisterComponent, NetworkedComponent] public sealed partial class NecrosisSurgeryComponent : Component;
 [RegisterComponent, NetworkedComponent] public sealed partial class SurgeryAlterAppearanceComponent : Component;
 [RegisterComponent, NetworkedComponent] public sealed partial class SurgeryRepairEyesComponent : Component;
 [RegisterComponent, NetworkedComponent] public sealed partial class AnimalBypassComponent : Component;

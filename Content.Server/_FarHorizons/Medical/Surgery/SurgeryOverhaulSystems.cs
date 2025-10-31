@@ -20,6 +20,8 @@ using Content.Shared.Eye.Blinding.Systems;
 using Content.Shared.Eye.Blinding.Components;
 using Content.Shared.Atmos.Rotting;
 using Content.Shared.Medical.Healing;
+using Robust.Shared.Containers;
+using Content.Shared.Body.Systems;
 
 namespace Content.Server._FarHorizons.Medical.SurgeryOverhaul.Systems;
 
@@ -37,6 +39,8 @@ public sealed partial class SurgeryOverhaulSystem : EntitySystem
     [Dependency] private readonly StarlightEntitySystem _entity = default!;
     [Dependency] private readonly BlindableSystem _blindableSystem = default!;
     [Dependency] private readonly SharedRottingSystem _rottingSystem = default!;
+    [Dependency] private readonly SharedContainerSystem _containers = default!;
+    [Dependency] private readonly SharedBodySystem _sharedbody = default!;
     private readonly List<EntProtoId> _surgeriesForRotten = [];
 
     public override void Initialize()
@@ -49,6 +53,7 @@ public sealed partial class SurgeryOverhaulSystem : EntitySystem
         SubscribeLocalEvent<NecrosisSurgeryComponent, SurgeryValidEvent>(OnNecrosisSurgeryValid);
         SubscribeLocalEvent<NecrosisSurgeryStepComponent, SurgeryValidEvent>(OnNecrosisSurgeryStepValid);
         SubscribeLocalEvent<SurgeryTechnologyComponent, SurgeryValidEvent>(OnResearchSurgeryValid);
+        SubscribeLocalEvent<SurgeryLimbExistConditionComponent, SurgeryValidEvent>(OnLimbExistConditionValid);
         
 
         LoadSurgeriesForRotten();
@@ -106,23 +111,20 @@ public sealed partial class SurgeryOverhaulSystem : EntitySystem
         if (_net.IsClient) return;
         LoadSurgeriesForRotten();
 
-        if (!TryComp<NecrosisSurgeryComponent>(args.Part, out var surgComp))
-            return;
+        if (!TryComp<NecrosisSurgeryTargetComponent>(args.Part, out var targetComp)) return;
+        targetComp.RequiredSurgeries.Clear();
 
-        var surgProto = _prototypes.Index<EntityPrototype>(args.SurgeryProto);
-        if (!surgProto.TryGetComponent<NecrosisSurgeryComponent>(out var surgProtoComp, _componentFactory)) return;
-        surgComp.RequiredSurgeries.Clear();
-
-        for (int i = 0; i < surgProtoComp.AmountOfSurgeries; i++)
+        for (int i = 0; i < targetComp.AmountOfSurgeries; i++)
         {
-            EntProtoId chosenSurgery;
             if (_surgeriesForRotten.Count == 0)
                 break;
+            EntProtoId? chosenSurgery = null;
 
-            while (true)
+            List<EntProtoId> availableSurgeries = [.. _surgeriesForRotten];
+            while (availableSurgeries.Count > 0)
             {
-                chosenSurgery = _random.PickAndTake(_surgeriesForRotten);
-                if (!_entity.TryGetSingleton(chosenSurgery, out var surgeryEnt))
+                chosenSurgery = _random.PickAndTake(availableSurgeries);
+                if (!_entity.TryGetSingleton(chosenSurgery.Value, out var surgeryEnt))
                     continue;
                 var ev = new SurgeryValidEvent(args.Body, args.Part);
 
@@ -130,8 +132,11 @@ public sealed partial class SurgeryOverhaulSystem : EntitySystem
 
                 if (!ev.Cancelled)
                     break;
+
+                chosenSurgery = null;
             }
-            surgComp.RequiredSurgeries.Add(chosenSurgery!);
+            if(chosenSurgery != null)
+                targetComp.RequiredSurgeries.Add(chosenSurgery.Value);
         }
     }
     private void OnRepairEyesComplete(EntityUid uid, SurgeryRepairEyesComponent comp, ref SurgeryStepCompleteEvent args)
@@ -149,7 +154,6 @@ public sealed partial class SurgeryOverhaulSystem : EntitySystem
             args.Cancelled = true;
             return;
         }
-
     }
     private void OnNecrosisSurgeryStepValid(Entity<NecrosisSurgeryStepComponent> ent, ref SurgeryValidEvent args)
     {
@@ -163,8 +167,9 @@ public sealed partial class SurgeryOverhaulSystem : EntitySystem
 
         if (HasComp<DisableSurgeryComponent>(ent.Owner)
             && TryComp<MetaDataComponent>(ent.Owner, out var metaComp)
-            && TryComp<NecrosisSurgeryComponent>(args.Part, out var necroComp)
+            && TryComp<NecrosisSurgeryTargetComponent>(args.Part, out var necroComp)
             && metaComp.EntityPrototype != null
+            && necroComp.RequiredSurgeries.Count >= necroComp.AmountOfSurgeries
             && !necroComp.RequiredSurgeries.Contains(metaComp.EntityPrototype.ID))
         {
             args.Cancelled = true;
@@ -174,6 +179,8 @@ public sealed partial class SurgeryOverhaulSystem : EntitySystem
 
     private void OnResearchSurgeryValid(Entity<SurgeryTechnologyComponent> ent, ref SurgeryValidEvent args)
     {
+        if (args.Cancelled) return;
+
         if (ent.Comp.RequiredTechnology != null)
         {
             var TechProto = _prototypes.Index<TechnologyPrototype>(ent.Comp.RequiredTechnology);
@@ -189,15 +196,21 @@ public sealed partial class SurgeryOverhaulSystem : EntitySystem
             }
         }
     }
+
+    private void OnLimbExistConditionValid(Entity<SurgeryLimbExistConditionComponent> ent, ref SurgeryValidEvent args)
+        {
+            if (args.Cancelled) return;
+            
+            args.Cancelled = !(_containers.TryGetContainer(args.Part, SharedBodySystem.GetPartSlotContainerId(ent.Comp.Slot), out var container)
+            && container.ContainedEntities.Count > 0);
+        } 
+            
     private void LoadSurgeriesForRotten()
     {
         _surgeriesForRotten.Clear();
 
         foreach (var entity in _prototypes.EnumeratePrototypes<EntityPrototype>())
-        {
-            var surgProto = _prototypes.Index<EntityPrototype>(entity);
-            if (surgProto.HasComponent<NecrosisSurgeryStepComponent>())
+            if (entity.HasComponent<NecrosisSurgeryStepComponent>())
                 _surgeriesForRotten.Add(new EntProtoId(entity.ID));
-        }
     }
 }
