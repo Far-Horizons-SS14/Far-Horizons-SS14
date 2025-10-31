@@ -1,8 +1,7 @@
-﻿using Content.Server.GameTicking;
+using Content.Server.GameTicking;
 using Content.Server.Spawners.Components;
 using Content.Server.Station.Systems;
 using Content.Shared.Preferences;
-using Content.Shared.Roles;
 using Robust.Server.Containers;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
@@ -88,6 +87,9 @@ public sealed class ContainerSpawnPointSystem : EntitySystem
             if (!_container.Insert(args.SpawnResult.Value, container, containerXform: xform))
                 continue;
 
+            var ev = new ContainerSpawnEvent(args.SpawnResult.Value);
+            RaiseLocalEvent(uid, ref ev);
+
             return;
         }
 
@@ -95,3 +97,9 @@ public sealed class ContainerSpawnPointSystem : EntitySystem
         args.SpawnResult = null;
     }
 }
+
+/// <summary>
+/// Raised on a container when a player is spawned into it.
+/// </summary>
+[ByRefEvent]
+public record struct ContainerSpawnEvent(EntityUid Player);

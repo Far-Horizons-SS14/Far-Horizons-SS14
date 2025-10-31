@@ -23,8 +23,31 @@ namespace Content.Shared.Communications
         public List<string>? Channels;
         public string CurrentChannel;
         //FarHorizon End
+        // Starlight edit Start
+        public readonly TimeSpan? AnnouncementCooldownEnd;
+        public readonly TimeSpan? ShuttleCountdownEnd;
+        public readonly TimeSpan? CallRecallCooldownEnd;
+        public readonly bool ShuttleCallsAllowed;
+        public readonly TimeSpan? LastCountdownStart;
+        // Starlight edit End
 
-        public CommunicationsConsoleInterfaceState(bool canAnnounce, bool canCall, List<string>? alertLevels, string currentAlert, float currentAlertDelay, List<string>? channels, string currentChannel, TimeSpan? expectedCountdownEnd = null)
+        public CommunicationsConsoleInterfaceState(
+            bool canAnnounce,
+            bool canCall,
+            List<string>? alertLevels,
+            string currentAlert,
+            float currentAlertDelay,
+            List<string>? channels, //Far-Horizons
+            string currentChannel, //Far-Horizons
+            TimeSpan? expectedCountdownEnd = null,
+            //Region Starlight
+            TimeSpan? announcementCooldownEnd = null,
+            TimeSpan? callRecallCooldownEnd = null,
+            TimeSpan? shuttleCountdownEnd = null,
+            bool shuttleCallsAllowed = true,
+            TimeSpan? lastCountdownStart = null
+            //End Region
+        )
         {
             CanAnnounce = canAnnounce;
             CanCall = canCall;
@@ -37,6 +60,13 @@ namespace Content.Shared.Communications
             Channels = channels;
             CurrentChannel = currentChannel;
             //FarHorizon End
+            // Starlight Start
+            AnnouncementCooldownEnd = announcementCooldownEnd;
+            CallRecallCooldownEnd = callRecallCooldownEnd;
+            ShuttleCountdownEnd = shuttleCountdownEnd;
+            ShuttleCallsAllowed = shuttleCallsAllowed;
+            LastCountdownStart = lastCountdownStart;
+            // Starlight End
         }
     }
 

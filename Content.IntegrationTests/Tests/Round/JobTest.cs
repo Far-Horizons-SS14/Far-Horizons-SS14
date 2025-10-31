@@ -92,11 +92,10 @@ public sealed class JobTest
         Assert.That(pair.Client.AttachedEntity, Is.Null);
 
         await pair.SetJobPreferences([Passenger, Engineer]);
-        await pair.SetJobPriorities(new()
-        {
-            { Passenger, JobPriority.Medium },
-            { Engineer, JobPriority.High },
-        });
+        await pair.SetJobPriorities(
+            ( Passenger, JobPriority.Medium ),
+            ( Engineer, JobPriority.High )
+        );
         ticker.ToggleReadyAll(true);
         await pair.Server.WaitPost(() => ticker.StartRound());
         await pair.RunTicksSync(10);
@@ -105,11 +104,10 @@ public sealed class JobTest
 
         await pair.Server.WaitPost(() => ticker.RestartRound());
         Assert.That(ticker.RunLevel, Is.EqualTo(GameRunLevel.PreRoundLobby));
-        await pair.SetJobPriorities(new()
-        {
-            { Passenger, JobPriority.High },
-            { Engineer, JobPriority.Medium },
-        });
+        await pair.SetJobPriorities(
+            ( Passenger, JobPriority.High ),
+            ( Engineer, JobPriority.Medium )
+        );
         ticker.ToggleReadyAll(true);
         await pair.Server.WaitPost(() => ticker.StartRound());
         await pair.RunTicksSync(10);
@@ -145,14 +143,13 @@ public sealed class JobTest
         Assert.That(captain.Weight, Is.GreaterThan(engineer.Weight));
         Assert.That(engineer.Weight, Is.EqualTo(passenger.Weight));
 
-        await pair.SetJobPriorities( new ()
-        {
+        await pair.SetJobPriorities(
             //starlight change https://github.com/ss14Starlight/space-station-14/pull/1109
             //essentially, weight only matters for each category now instead of globally
-            { Passenger, JobPriority.Medium},
-            {Engineer, JobPriority.Medium},
-            {Captain, JobPriority.Medium},
-        });
+            (Passenger, JobPriority.Medium),
+            (Engineer, JobPriority.Medium),
+            (Captain, JobPriority.Medium)
+        );
         await pair.SetJobPreferences([Passenger, Engineer, Captain]);
         ticker.ToggleReadyAll(true);
         await pair.Server.WaitPost(() => ticker.StartRound());

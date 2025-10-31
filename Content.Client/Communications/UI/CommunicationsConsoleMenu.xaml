@@ -39,6 +39,10 @@
                     ToolTip="{Loc 'comms-console-menu-announcement-button-tooltip'}"
                     StyleClasses="OpenBoth"
                     Disabled="True"/>
+                <!-- Starlight Start -->
+                <!-- Announce Cooldown -->
+                <RichTextLabel Name="AnnouncementCooldownLabel" />
+                <!-- Starlight End -->
 
                 <Button Name="BroadcastButton"
                     Access="Public"
@@ -50,6 +54,10 @@
                     Access="Public"
                     ToolTip="{Loc 'comms-console-menu-alert-level-button-tooltip'}"
                     StyleClasses="OpenRight"/>
+                <!-- Starlight Start -->
+                <!-- Alert Cooldown -->
+                <RichTextLabel Name="AlertCooldownLabel" />
+                <!-- Starlight End -->
 
             </BoxContainer>
 
@@ -63,6 +71,10 @@
                     Access="Public" 
                     Text="Placeholder Text"
                     ToolTip="{Loc 'comms-console-menu-emergency-shuttle-button-tooltip'}"/>
+                <!-- Starlight Start -->
+                <!-- Call/Recall Cooldown -->
+                <RichTextLabel Name="ShuttleCooldownLabel" />
+                <!-- Starlight End -->
             </BoxContainer>
         </BoxContainer>
     </BoxContainer>
