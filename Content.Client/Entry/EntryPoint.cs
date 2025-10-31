@@ -135,6 +135,7 @@ namespace Content.Client.Entry
             _prototypeManager.RegisterIgnore("ghostRoleRaffleDecider");
             _prototypeManager.RegisterIgnore("codewordGenerator");
             _prototypeManager.RegisterIgnore("codewordFaction");
+            _prototypeManager.RegisterIgnore("salvageMissionObjectiveHandler"); // Far Horizons
 
             _componentFactory.GenerateNetIds();
             _adminManager.Initialize();
