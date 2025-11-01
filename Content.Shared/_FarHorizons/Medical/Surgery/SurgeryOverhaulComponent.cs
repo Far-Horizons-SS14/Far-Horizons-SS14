@@ -21,6 +21,45 @@ public sealed partial class OnFailDamageComponent : Component
     public ProtoId<EmotePrototype> Emote = "Scream";
 }
 [RegisterComponent, NetworkedComponent]
+public sealed partial class NecrosisSurgeryTargetComponent : Component
+{
+    [DataField]
+    public List<EntProtoId> RequiredSurgeries = new();
+    [DataField("amount_of_surgeries")]
+    public int AmountOfSurgeries = 1;
+}
+[RegisterComponent, NetworkedComponent] public sealed partial class DisableSurgeryComponent : Component;
+[RegisterComponent, NetworkedComponent] public sealed partial class SurgeryAlterAppearanceComponent : Component;
+[RegisterComponent, NetworkedComponent] public sealed partial class SurgeryRepairEyesComponent : Component;
+[RegisterComponent, NetworkedComponent] public sealed partial class AnimalBypassComponent : Component;
+
+// Valid Events
+
+[RegisterComponent, NetworkedComponent]
+public sealed partial class SurgeryLimbExistConditionComponent : Component
+{
+    [DataField]
+    public string Slot;
+}
+[RegisterComponent, NetworkedComponent]
+public sealed partial class RequireOrganicPartComponent : Component
+{
+    [DataField]
+    public string Slot;
+}
+
+[RegisterComponent, NetworkedComponent] public sealed partial class NecrosisSurgeryComponent : Component;
+
+[RegisterComponent, NetworkedComponent]
+public sealed partial class NecrosisSurgeryStepComponent : Component
+{
+    [DataField]
+    public string Target = "bodypart";
+    [DataField("seconds")]
+    public double time = 120;
+}
+
+[RegisterComponent, NetworkedComponent]
 public sealed partial class SurgeryTechnologyComponent : Component
 {
     [DataField(required: false)]
@@ -29,30 +68,3 @@ public sealed partial class SurgeryTechnologyComponent : Component
     [DataField]
     public Dictionary<ProtoId<TechnologyPrototype>, long> TechnologyModifier = new();
 }
-[RegisterComponent, NetworkedComponent] 
-public sealed partial class NecrosisSurgeryStepComponent : Component
-{
-    [DataField]
-    public string Target = "bodypart";
-    [DataField("seconds")]
-    public double time = 120;
-}
-[RegisterComponent, NetworkedComponent]
-public sealed partial class NecrosisSurgeryTargetComponent : Component
-{
-    [DataField]
-    public List<EntProtoId> RequiredSurgeries = new();
-    [DataField("amount_of_surgeries")]
-    public int AmountOfSurgeries = 1;
-}
-[RegisterComponent, NetworkedComponent] 
-public sealed partial class SurgeryLimbExistConditionComponent : Component
-{
-    [DataField]
-    public string Slot;
-}
-[RegisterComponent, NetworkedComponent] public sealed partial class DisableSurgeryComponent : Component;
-[RegisterComponent, NetworkedComponent] public sealed partial class NecrosisSurgeryComponent : Component;
-[RegisterComponent, NetworkedComponent] public sealed partial class SurgeryAlterAppearanceComponent : Component;
-[RegisterComponent, NetworkedComponent] public sealed partial class SurgeryRepairEyesComponent : Component;
-[RegisterComponent, NetworkedComponent] public sealed partial class AnimalBypassComponent : Component;

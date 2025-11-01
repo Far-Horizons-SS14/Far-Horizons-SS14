@@ -1,4 +1,3 @@
-
 - type: entity
   parent: SurgeryExtractLiver
   id: SurgeryExtractLiverNecrosis
@@ -17,6 +16,8 @@
     technologyModifier:
       SurgeryTech : 25
       SurgeryTechAdvanced : 15
+  - type: RequireOrganicPart
+    slot: "body_organ_slot_liver"
 
 - type: entity
   parent: SurgeryExtractKidneys
@@ -36,6 +37,8 @@
     technologyModifier:
       SurgeryTech : 25
       SurgeryTechAdvanced : 15
+  - type: RequireOrganicPart
+    slot: "body_organ_slot_kidneys"
 
 - type: entity
   parent: SurgeryExtractStomach
@@ -55,6 +58,8 @@
     technologyModifier:
       SurgeryTech : 25
       SurgeryTechAdvanced : 15
+  - type: RequireOrganicPart
+    slot: "body_organ_slot_stomach"
 
 - type: entity
   parent: SurgeryExtractLungs
@@ -74,6 +79,8 @@
     technologyModifier:
       SurgeryTech : 25
       SurgeryTechAdvanced : 15
+  - type: RequireOrganicPart
+    slot: "body_organ_slot_lungs"
 
 - type: entity
   parent: SurgeryExtractLungsSlime
@@ -93,6 +100,8 @@
     technologyModifier:
       SurgeryTech : 25
       SurgeryTechAdvanced : 15
+  - type: RequireOrganicPart
+    slot: "body_organ_slot_lungs"
 
 - type: entity
   parent: SurgeryExtractHeart
@@ -112,6 +121,8 @@
     technologyModifier:
       SurgeryTech : 25
       SurgeryTechAdvanced : 15
+  - type: RequireOrganicPart
+    slot: "body_organ_slot_heart"
 
 - type: entity
   parent: SurgeryExtractHeartSlime
@@ -131,6 +142,8 @@
     technologyModifier:
       SurgeryTech : 25
       SurgeryTechAdvanced : 15
+  - type: RequireOrganicPart
+    slot: "body_organ_slot_heart"
 
 - type: entity
   parent: SurgeryAmputation
@@ -145,7 +158,7 @@
     parts: 
     - Torso
   - type: NecrosisSurgeryStep
-    target: body_part_slot_left arm
+    target: "body_part_slot_left arm"
   - type: DisableSurgery
   - type: SurgeryTechnology
     technologyModifier:
@@ -153,6 +166,8 @@
       SurgeryTechAdvanced : 15
   - type: SurgeryLimbExistCondition
     slot: left arm
+  - type: RequireOrganicPart
+    slot: "body_part_slot_left arm"
 
 - type: entity
   parent: SurgeryAmputation
@@ -167,7 +182,7 @@
     parts: 
     - Torso
   - type: NecrosisSurgeryStep
-    target: body_part_slot_right arm
+    target: "body_part_slot_right arm"
   - type: DisableSurgery
   - type: SurgeryTechnology
     technologyModifier:
@@ -175,6 +190,8 @@
       SurgeryTechAdvanced : 15
   - type: SurgeryLimbExistCondition
     slot: right arm
+  - type: RequireOrganicPart
+    slot: "body_part_slot_right arm"
 
 - type: entity
   parent: SurgeryAmputation
@@ -189,7 +206,7 @@
     parts: 
     - Torso
   - type: NecrosisSurgeryStep
-    target: body_part_slot_left leg
+    target: "body_part_slot_left leg"
   - type: DisableSurgery
   - type: SurgeryTechnology
     technologyModifier:
@@ -197,6 +214,8 @@
       SurgeryTechAdvanced : 15
   - type: SurgeryLimbExistCondition
     slot: left leg
+  - type: RequireOrganicPart
+    slot: "body_part_slot_left leg"
 
 - type: entity
   parent: SurgeryAmputation
@@ -219,6 +238,8 @@
       SurgeryTechAdvanced : 15
   - type: SurgeryLimbExistCondition
     slot: right leg
+  - type: RequireOrganicPart
+    slot: "body_part_slot_right leg"
 
 - type: entity
   parent: SurgeryAmputationSlime
@@ -233,7 +254,7 @@
     parts: 
     - Torso
   - type: NecrosisSurgeryStep
-    target: body_part_slot_left arm
+    target: "body_part_slot_left arm"
   - type: DisableSurgery
   - type: SurgeryTechnology
     technologyModifier:
@@ -241,6 +262,8 @@
       SurgeryTechAdvanced : 15
   - type: SurgeryLimbExistCondition
     slot: left arm
+  - type: RequireOrganicPart
+    slot: "body_part_slot_left arm"
 
 - type: entity
   parent: SurgeryAmputationSlime
@@ -255,7 +278,7 @@
     parts: 
     - Torso
   - type: NecrosisSurgeryStep
-    target: body_part_slot_right arm
+    target: "body_part_slot_right arm"
   - type: DisableSurgery
   - type: SurgeryTechnology
     technologyModifier:
@@ -263,6 +286,8 @@
       SurgeryTechAdvanced : 15
   - type: SurgeryLimbExistCondition
     slot: right arm
+  - type: RequireOrganicPart
+    slot: "body_part_slot_right arm"
 
 - type: entity
   parent: SurgeryAmputationSlime
@@ -285,6 +310,8 @@
       SurgeryTechAdvanced : 15
   - type: SurgeryLimbExistCondition
     slot: left leg
+  - type: RequireOrganicPart
+    slot: "body_part_slot_left leg"
 
 - type: entity
   parent: SurgeryAmputationSlime
@@ -307,3 +334,5 @@
       SurgeryTechAdvanced : 15
   - type: SurgeryLimbExistCondition
     slot: right leg
+  - type: RequireOrganicPart
+    slot: "body_part_slot_right leg"

@@ -22,6 +22,8 @@ using Content.Shared.Atmos.Rotting;
 using Content.Shared.Medical.Healing;
 using Robust.Shared.Containers;
 using Content.Shared.Body.Systems;
+using Content.Shared.Body.Components;
+using Content.Shared.Tag; 
 
 namespace Content.Server._FarHorizons.Medical.SurgeryOverhaul.Systems;
 
@@ -40,7 +42,7 @@ public sealed partial class SurgeryOverhaulSystem : EntitySystem
     [Dependency] private readonly BlindableSystem _blindableSystem = default!;
     [Dependency] private readonly SharedRottingSystem _rottingSystem = default!;
     [Dependency] private readonly SharedContainerSystem _containers = default!;
-    [Dependency] private readonly SharedBodySystem _sharedbody = default!;
+    [Dependency] private readonly TagSystem _tag = default!;
     private readonly List<EntProtoId> _surgeriesForRotten = [];
 
     public override void Initialize()
@@ -54,6 +56,7 @@ public sealed partial class SurgeryOverhaulSystem : EntitySystem
         SubscribeLocalEvent<NecrosisSurgeryStepComponent, SurgeryValidEvent>(OnNecrosisSurgeryStepValid);
         SubscribeLocalEvent<SurgeryTechnologyComponent, SurgeryValidEvent>(OnResearchSurgeryValid);
         SubscribeLocalEvent<SurgeryLimbExistConditionComponent, SurgeryValidEvent>(OnLimbExistConditionValid);
+        SubscribeLocalEvent<RequireOrganicPartComponent, SurgeryValidEvent>(OnRequireOrganicPartValid);
         
 
         LoadSurgeriesForRotten();
@@ -120,10 +123,9 @@ public sealed partial class SurgeryOverhaulSystem : EntitySystem
                 break;
             EntProtoId? chosenSurgery = null;
 
-            List<EntProtoId> availableSurgeries = [.. _surgeriesForRotten];
-            while (availableSurgeries.Count > 0)
+            while (_surgeriesForRotten.Count > 0)
             {
-                chosenSurgery = _random.PickAndTake(availableSurgeries);
+                chosenSurgery = _random.PickAndTake(_surgeriesForRotten);
                 if (!_entity.TryGetSingleton(chosenSurgery.Value, out var surgeryEnt))
                     continue;
                 var ev = new SurgeryValidEvent(args.Body, args.Part);
@@ -198,12 +200,27 @@ public sealed partial class SurgeryOverhaulSystem : EntitySystem
     }
 
     private void OnLimbExistConditionValid(Entity<SurgeryLimbExistConditionComponent> ent, ref SurgeryValidEvent args)
-        {
-            if (args.Cancelled) return;
+    {
+        if (args.Cancelled) return;
+
+        args.Cancelled = !(TryComp<BodyComponent>(args.Body, out var bodyComp) &&
+        bodyComp.RootContainer?.ContainedEntity is { } rootEnt &&
+        _containers.TryGetContainer(rootEnt, SharedBodySystem.GetPartSlotContainerId(ent.Comp.Slot), out var container) &&
+        container.ContainedEntities.Count > 0);
+    } 
+    
+    private void OnRequireOrganicPartValid(Entity<RequireOrganicPartComponent> ent, ref SurgeryValidEvent args)
+    {
+        if (args.Cancelled) return;
+        
+        if (TryComp<BodyComponent>(args.Body, out var bodyComp) &&
+        bodyComp.RootContainer?.ContainedEntity is { } rootEnt &&
+        _containers.TryGetContainer(rootEnt, ent.Comp.Slot, out var container) &&
+        container.ContainedEntities.Count > 0)
+            if (_tag.HasTag(container.ContainedEntities.First(), "Inorganic"))
+                args.Cancelled = true;
             
-            args.Cancelled = !(_containers.TryGetContainer(args.Part, SharedBodySystem.GetPartSlotContainerId(ent.Comp.Slot), out var container)
-            && container.ContainedEntities.Count > 0);
-        } 
+    } 
             
     private void LoadSurgeriesForRotten()
     {
