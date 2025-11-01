@@ -159,21 +159,21 @@ public sealed partial class IPCSystem
     private void UpdateBatteryAlert(Entity<IPCBatteryComponent> ent)
     {
         if (_state.IsAlive(ent) && ent.Comp.TimerActive && !_powerCell.HasDrawCharge(ent)){
+            _alerts.ClearAlertCategory(ent.Owner, ent.Comp.BatteryAlertsCategory);
             _alerts.ShowAlert(ent.Owner, ent.Comp.ChargeCritical);
-        } else {
-            _alerts.ClearAlert(ent.Owner, ent.Comp.ChargeCritical);
+            return;
         }
 
         if (!_powerCell.TryGetBatteryFromSlot(ent, out var battery, ent.Comp.PowerCellSlot))
         {
-            _alerts.ClearAlert(ent.Owner, ent.Comp.BatteryAlert);
+            _alerts.ClearAlertCategory(ent.Owner, ent.Comp.BatteryAlertsCategory);
             _alerts.ShowAlert(ent.Owner, ent.Comp.NoBatteryAlert);
             return;
         }
 
         var chargePercent = (short) MathF.Round(battery.CurrentCharge / battery.MaxCharge * 10f);
 
-        _alerts.ClearAlert(ent.Owner, ent.Comp.NoBatteryAlert);
+        _alerts.ClearAlertCategory(ent.Owner, ent.Comp.BatteryAlertsCategory);
         _alerts.ShowAlert(ent.Owner, ent.Comp.BatteryAlert, chargePercent);
     }
 
