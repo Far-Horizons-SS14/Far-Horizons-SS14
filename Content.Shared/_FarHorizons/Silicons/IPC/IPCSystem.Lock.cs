@@ -1,3 +1,4 @@
+using Content.Shared._FarHorizons.Silicons.IPC.Components;
 using Content.Shared.Audio;
 using Content.Shared.DoAfter;
 using Content.Shared.Lock;

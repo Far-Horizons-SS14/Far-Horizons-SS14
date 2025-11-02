@@ -1,4 +1,4 @@
-using Content.Shared._FarHorizons.Silicons.IPC;
+using Content.Shared._FarHorizons.Silicons.IPC.Components;
 using Content.Shared.StatusEffectNew;
 using Robust.Shared.Timing;
 

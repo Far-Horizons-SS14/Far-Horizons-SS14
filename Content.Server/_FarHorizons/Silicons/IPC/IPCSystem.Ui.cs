@@ -1,9 +1,11 @@
 using Content.Shared._FarHorizons.Silicons.IPC;
+using Content.Shared._FarHorizons.Silicons.IPC.Components;
 using Content.Shared.Body.Components;
 using Content.Shared.CCVar;
 using Content.Shared.Damage;
 using Content.Shared.Database;
 using Content.Shared.Eye.Blinding.Components;
+using Content.Shared.Lock;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.UserInterface;
@@ -27,10 +29,28 @@ public sealed partial class IPCSystem
         Subs.CVar(_cfgManager, CCVars.MaxNameLength, value => _maxNameLength = value, true);
     }
 
-    private void OnEjectBrainBuiMessage(Entity<IPCLockComponent> ent, ref IPCEjectBrainBuiMessage args) =>
+    private void OnEjectBrainBuiMessage(Entity<IPCLockComponent> ent, ref IPCEjectBrainBuiMessage args)
+    {   
+        if (ent.Comp.Lock.Locked || !ent.Comp.WiresPanel.Open)
+        {
+            _popup.PopupEntity(Loc.GetString(ent.Comp.LockedPopupMessage), ent);
+            _audio.PlayPvs(ent.Comp.LockedSound, ent);
+            return;
+        }
+
         EjectBrain(ent.Owner, args.Actor);
-    private void OnEjectBatteryBuiMessage(Entity<IPCLockComponent> ent, ref IPCEjectBatteryBuiMessage args) =>
+    }
+    private void OnEjectBatteryBuiMessage(Entity<IPCLockComponent> ent, ref IPCEjectBatteryBuiMessage args)
+    {
+        if (ent.Comp.Lock.Locked || !ent.Comp.WiresPanel.Open)
+        {
+            _popup.PopupEntity(Loc.GetString(ent.Comp.LockedPopupMessage), ent);
+            _audio.PlayPvs(ent.Comp.LockedSound, ent);
+            return;
+        }
+
         EjectBattery(ent.Owner, args.Actor);
+    }
     private void OnSetNameBuiMessage(Entity<IPCLockComponent> ent, ref IPCSetNameBuiMessage args)
     {
         if (args.Name.Length > _maxNameLength ||

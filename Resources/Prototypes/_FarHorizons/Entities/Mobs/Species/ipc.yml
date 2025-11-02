@@ -43,7 +43,6 @@
       Critical: BorgCrit
       Dead: BorgDead
   - type: WiresPanel
-  - type: ActivatableUIRequiresPanel
   - type: DamageVisuals
     damageOverlayGroups:
       Brute:
@@ -172,6 +171,12 @@
       types:
         Shock: 20 # It already does 5 shock to everyone, take that into account
         Heat: 20 
+    damagedSound:
+      params:
+        loop: true
+      path: /Audio/_FarHorizons/Effects/Alerts/healthpanel-alert.ogg
+    damagedThreshold:
+      min: 75
   - type: Repairable # So welder is just a special little snowflake in the code. I tried making healing with welder work through ConditionalHealing component, but it would require too many changes in too many places. So we will keep on the trend and have brute healing defined here. /shrug
     doAfterDelay: 2 # A bit slower than conventional topicals, but heals for more.
     allowSelfRepair: true

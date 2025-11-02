@@ -1,4 +1,4 @@
-using Content.Shared._FarHorizons.Silicons.IPC;
+using Content.Shared._FarHorizons.Silicons.IPC.Components;
 using Content.Shared.Body.Events;
 using Content.Shared.DoAfter;
 using Content.Shared.Mobs;
@@ -32,8 +32,11 @@ public sealed partial class IPCSystem
 
     private void OnBatteryGibbed(Entity<IPCBatteryComponent> ent, ref BeingGibbedEvent args) =>
         _container.EmptyContainer(ent.Comp.BatteryContainerSlot);
-    private void OnBatteryTimerStart(Entity<IPCBatteryComponent> ent, ref IPCBatteryDeathTimerStart args) =>
-        ent.Comp.Playing = _audio.PlayPvs(ent.Comp.WarningSound, ent);
+    private void OnBatteryTimerStart(Entity<IPCBatteryComponent> ent, ref IPCBatteryDeathTimerStart args)
+    {
+        if (!TryComp<IPCReviveComponent>(ent, out var revive) || revive.DamageSoundEnt == null)
+            ent.Comp.Playing = _audio.PlayPvs(ent.Comp.WarningSound, ent);
+    }
     private void OnBatteryTimerEnd(Entity<IPCBatteryComponent> ent, ref IPCBatteryDeathTimerEnd args)
     {
         if (ent.Comp.Playing == null)
@@ -159,21 +162,21 @@ public sealed partial class IPCSystem
     private void UpdateBatteryAlert(Entity<IPCBatteryComponent> ent)
     {
         if (_state.IsAlive(ent) && ent.Comp.TimerActive && !_powerCell.HasDrawCharge(ent)){
+            _alerts.ClearAlertCategory(ent.Owner, ent.Comp.BatteryAlertsCategory);
             _alerts.ShowAlert(ent.Owner, ent.Comp.ChargeCritical);
-        } else {
-            _alerts.ClearAlert(ent.Owner, ent.Comp.ChargeCritical);
+            return;
         }
 
         if (!_powerCell.TryGetBatteryFromSlot(ent, out var battery, ent.Comp.PowerCellSlot))
         {
-            _alerts.ClearAlert(ent.Owner, ent.Comp.BatteryAlert);
+            _alerts.ClearAlertCategory(ent.Owner, ent.Comp.BatteryAlertsCategory);
             _alerts.ShowAlert(ent.Owner, ent.Comp.NoBatteryAlert);
             return;
         }
 
         var chargePercent = (short) MathF.Round(battery.CurrentCharge / battery.MaxCharge * 10f);
 
-        _alerts.ClearAlert(ent.Owner, ent.Comp.NoBatteryAlert);
+        _alerts.ClearAlertCategory(ent.Owner, ent.Comp.BatteryAlertsCategory);
         _alerts.ShowAlert(ent.Owner, ent.Comp.BatteryAlert, chargePercent);
     }
 

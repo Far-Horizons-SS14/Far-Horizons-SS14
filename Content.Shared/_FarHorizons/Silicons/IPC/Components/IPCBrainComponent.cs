@@ -2,7 +2,7 @@ using Robust.Shared.Audio;
 using Robust.Shared.Containers;
 using Robust.Shared.GameStates;
 
-namespace Content.Shared._FarHorizons.Silicons.IPC;
+namespace Content.Shared._FarHorizons.Silicons.IPC.Components;
 
 [RegisterComponent, NetworkedComponent]
 public sealed partial class IPCBrainHolderComponent : Component

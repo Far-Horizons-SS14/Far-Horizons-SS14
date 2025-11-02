@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Shared._FarHorizons.Silicons.IPC.Components;
 using Content.Shared.Interaction;
 using Content.Shared.Radio.Components;
 using Content.Shared.Wires;

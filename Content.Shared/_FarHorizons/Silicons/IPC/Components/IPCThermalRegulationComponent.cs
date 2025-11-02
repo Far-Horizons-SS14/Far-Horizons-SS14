@@ -5,7 +5,7 @@ using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 
-namespace Content.Shared._FarHorizons.Silicons.IPC;
+namespace Content.Shared._FarHorizons.Silicons.IPC.Components;
 
 [DataDefinition, Serializable, NetSerializable]
 public sealed partial class FanMode

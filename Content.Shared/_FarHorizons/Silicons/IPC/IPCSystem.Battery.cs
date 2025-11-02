@@ -1,3 +1,4 @@
+using Content.Shared._FarHorizons.Silicons.IPC.Components;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Ninja.Components;
 using Content.Shared.PowerCell;

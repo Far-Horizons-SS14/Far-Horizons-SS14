@@ -1,4 +1,5 @@
 
+using Content.Shared._FarHorizons.Silicons.IPC.Components;
 using Robust.Shared.Containers;
 
 namespace Content.Shared._FarHorizons.Silicons.IPC;

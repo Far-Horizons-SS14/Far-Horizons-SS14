@@ -1,6 +1,6 @@
+using Content.Shared._FarHorizons.Silicons.IPC.Components;
 using Content.Shared.Examine;
 using Content.Shared.IdentityManagement;
-using Content.Shared.Lock;
 
 namespace Content.Shared._FarHorizons.Silicons.IPC;
 

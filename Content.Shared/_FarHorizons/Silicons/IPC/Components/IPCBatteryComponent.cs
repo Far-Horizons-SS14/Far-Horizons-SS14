@@ -9,9 +9,9 @@ using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 
-namespace Content.Shared._FarHorizons.Silicons.IPC;
+namespace Content.Shared._FarHorizons.Silicons.IPC.Components;
 
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
+[RegisterComponent, NetworkedComponent]
 public sealed partial class IPCBatteryComponent : Component
 {
     [DataField]
@@ -30,6 +30,8 @@ public sealed partial class IPCBatteryComponent : Component
     public ProtoId<AlertPrototype> NoBatteryAlert = "IPCBatteryNone";
     [DataField]
     public ProtoId<AlertPrototype> BatteryAlert = "IPCBattery";
+    [DataField]
+    public ProtoId<AlertCategoryPrototype> BatteryAlertsCategory = "IPCBattery";
 
     [DataField]
     public List<EntProtoId> DrainAllowedTargets = [];
@@ -45,7 +47,6 @@ public sealed partial class IPCBatteryComponent : Component
     public PowerCellSlotComponent PowerCellSlot = default!;
 
     [ViewVariables(VVAccess.ReadWrite)]
-    [AutoNetworkedField]
     public EntityUid? Battery = default!;
 
     [ViewVariables(VVAccess.ReadWrite)]
@@ -53,7 +54,7 @@ public sealed partial class IPCBatteryComponent : Component
     [ViewVariables(VVAccess.ReadWrite)]
     public float Timer = 0f;
     public TimeSpan NextUpdate;
-    [DataField, AutoNetworkedField]
+    [DataField]
     public TimeSpan RefreshRate = TimeSpan.FromSeconds(1);
     [ViewVariables(VVAccess.ReadWrite)]
     public int WarningsIssued = 0;
