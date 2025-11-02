@@ -41,19 +41,19 @@ public sealed partial class TestPair
     /// <summary>
     /// Set a user's job preferences.  Modified preferences are automatically reset at the end of the test.
     /// </summary>
-    public async Task SetJobPriority(ProtoId<JobPrototype> id, JobPriority value, NetUserId? user = null)
+    public async Task SetJobPriority(ProtoId<JobPrototype> id, ProtoId<FactionPrototype> faction, JobPriority value, NetUserId? user = null)
     {
         user ??= Client.User!.Value;
         if (user is { } userId)
-            await SetJobPriorities(userId, (id, value));
+            await SetJobPriorities(userId, ((faction, id), value));
     }
 
     /// <inheritdoc cref="SetJobPriority"/>
-    public async Task SetJobPriorities(params (ProtoId<JobPrototype>, JobPriority)[] priorities)
+    public async Task SetJobPriorities(params ((ProtoId<FactionPrototype>, ProtoId<JobPrototype>), JobPriority)[] priorities)
         => await SetJobPriorities(Client.User!.Value, priorities);
 
     /// <inheritdoc cref="SetJobPriority"/>
-    public async Task SetJobPriorities(NetUserId user, params (ProtoId<JobPrototype>, JobPriority)[] priorities)
+    public async Task SetJobPriorities(NetUserId user, params ((ProtoId<FactionPrototype>, ProtoId<JobPrototype>), JobPriority)[] priorities)
     {
         var highCount = priorities.Count(x => x.Item2 == JobPriority.High);
         Assert.That(highCount, Is.LessThanOrEqualTo(1), "Cannot have more than one high priority job");
@@ -61,7 +61,7 @@ public sealed partial class TestPair
         var prefMan = Server.ResolveDependency<IServerPreferencesManager>();
         var prefs = prefMan.GetPreferences(user);
         var profile = (HumanoidCharacterProfile)prefs.Characters[0];
-        var dictionary = new Dictionary<ProtoId<JobPrototype>, JobPriority>(prefs.JobPriorities); //Starlight: priorities are on the prefs
+        var dictionary = new Dictionary<(ProtoId<FactionPrototype>, ProtoId<JobPrototype>), JobPriority>(prefs.JobPriorities); //Starlight: priorities are on the prefs
 
         // Automatic preference resetting only resets slot 0.
         //Index, Is.EqualTo(0)); //Starlight has no "selected index"

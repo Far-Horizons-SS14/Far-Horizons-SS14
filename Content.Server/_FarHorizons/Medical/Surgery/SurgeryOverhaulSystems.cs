@@ -31,7 +31,7 @@ public sealed partial class SurgeryOverhaulSystem : EntitySystem
 {
     [Dependency] private readonly MetaDataSystem _metaData = default!;
     [Dependency] private readonly SharedHumanoidAppearanceSystem _humanoidAppearance = default!;
-    [Dependency] private readonly SharedIdentitySystem _identity = default!;
+    [Dependency] private readonly IdentitySystem _identity = default!;
     [Dependency] private readonly INetManager _net = default!;
     [Dependency] private readonly DamageableSystem _damageableSystem = default!;
     [Dependency] private readonly IPrototypeManager _prototypes = default!;

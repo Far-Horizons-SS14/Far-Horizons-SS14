@@ -513,7 +513,7 @@ namespace Content.Shared.Preferences
             if (CustomSpecieName != other.CustomSpecieName) throw new DebugAssertException($"CustomSpecieName doesn't match expected '{CustomSpecieName}' got '{other.CustomSpecieName}'");
             if (!Cybernetics.SequenceEqual(other.Cybernetics)) throw new DebugAssertException($"Cybernetics doesn't match expected '{Cybernetics}' got '{other.Cybernetics}'");
             if (SpawnPriority != other.SpawnPriority) throw new DebugAssertException($"SpawnPriority doesn't match expected '{SpawnPriority}' got '{other.SpawnPriority}'");
-            if (!_jobPreferences.SequenceEqual(other._jobPreferences)) throw new DebugAssertException($"_jobPreferences doesn't match expected '{_jobPreferences}' got '{other._jobPreferences}'");;
+            if (!_factionJobPreferences.SequenceEqual(other._factionJobPreferences)) throw new DebugAssertException($"_factionJobPreferences doesn't match expected '{_factionJobPreferences}' got '{other._factionJobPreferences}'");;
             if (!_antagPreferences.SequenceEqual(other._antagPreferences)) throw new DebugAssertException($"_antagPreferences doesn't match expected '{_antagPreferences}' got '{other._antagPreferences}'");
             if (!_traitPreferences.SequenceEqual(other._traitPreferences)) throw new DebugAssertException($"_traitPreferences doesn't match expected '{_traitPreferences}' got '{other._traitPreferences}'");
             if (!Loadouts.SequenceEqual(other.Loadouts))  throw new DebugAssertException($"Loadouts doesn't match expected '{Loadouts}' got '{other.Loadouts}'");

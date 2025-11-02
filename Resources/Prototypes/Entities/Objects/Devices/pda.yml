@@ -1145,9 +1145,9 @@
     appearanceDataInit:
      enum.PdaVisuals.PdaType:
        !type:String
-       pda-syndi-operative
+       pda-syndi
   - type: Icon
-    state: pda-syndi-operative
+    state: pda-syndi
 
 - type: entity
   parent: [ SyndiOperativePDA, BaseSyndicateContraband ]
@@ -1161,9 +1161,9 @@
     appearanceDataInit:
      enum.PdaVisuals.PdaType:
        !type:String
-       pda-syndi-corpsman
+       pda-syndi-agent
   - type: Icon
-    state: pda-syndi-corpsman
+    state: pda-syndi-agent
   - type: CartridgeLoader
     uiKey: enum.PdaUiKey.Key
     preinstalled:
@@ -1183,9 +1183,9 @@
     appearanceDataInit:
      enum.PdaVisuals.PdaType:
        !type:String
-       pda-syndi-commander
+       pda-syndi
   - type: Icon
-    state: pda-syndi-commander
+    state: pda-syndi
 
 - type: entity
   parent: BaseSecurityPDA
