@@ -3914,8 +3914,7 @@ entities:
           -8,2:
             0: 30495
           -9,2:
-            0: 64259
-            3: 8
+            0: 64267
           -9,3:
             0: 48011
           -7,1:
@@ -4115,12 +4114,12 @@ entities:
           -9,8:
             0: 136
           -8,9:
-            4: 16
+            3: 16
             0: 8
           -9,9:
-            4: 142
+            3: 142
           -8,10:
-            4: 3
+            3: 3
             0: 3072
           -7,9:
             0: 17535
@@ -4600,19 +4599,19 @@ entities:
           -9,10:
             0: 17
           -12,4:
-            4: 546
-            5: 136
+            3: 546
+            4: 136
             0: 2048
           -13,4:
-            4: 2184
-            6: 546
+            3: 2184
+            5: 546
           -12,5:
             1: 3856
           -11,5:
             1: 272
             0: 1032
           -11,4:
-            7: 34
+            6: 34
             0: 35336
           -11,7:
             0: 35904
@@ -4626,7 +4625,7 @@ entities:
           -10,6:
             0: 238
           -10,7:
-            4: 1632
+            3: 1632
           -10,3:
             0: 61007
           -13,0:
@@ -4665,7 +4664,7 @@ entities:
             0: 12288
           -16,0:
             1: 4369
-            4: 3276
+            3: 3276
           -17,0:
             1: 8930
           -16,1:
@@ -4675,19 +4674,19 @@ entities:
             1: 43746
           -16,2:
             1: 13090
-            4: 34944
+            3: 34944
           -17,2:
             1: 34986
           -16,3:
             1: 58594
           -15,0:
-            4: 273
+            3: 273
             0: 52428
           -15,1:
             0: 239
             1: 61440
           -15,2:
-            4: 13104
+            3: 13104
             1: 34952
           -15,3:
             1: 16120
@@ -4704,7 +4703,7 @@ entities:
             0: 61166
           -14,4:
             1: 12561
-            4: 2184
+            3: 2184
           -16,-2:
             0: 1772
           -16,-3:
@@ -6187,6 +6186,439 @@ entities:
     - type: Transform
       pos: -34.5,-2.5
       parent: 2
+- proto: Airlock
+  entities:
+  - uid: 111
+    components:
+    - type: Transform
+      pos: -18.5,0.5
+      parent: 2
+  - uid: 112
+    components:
+    - type: Transform
+      pos: -18.5,3.5
+      parent: 2
+  - uid: 113
+    components:
+    - type: Transform
+      pos: 13.5,7.5
+      parent: 2
+  - uid: 114
+    components:
+    - type: Transform
+      pos: -12.5,-34.5
+      parent: 2
+  - uid: 115
+    components:
+    - type: Transform
+      pos: -26.5,-34.5
+      parent: 2
+  - uid: 116
+    components:
+    - type: Transform
+      pos: -32.5,32.5
+      parent: 2
+  - uid: 117
+    components:
+    - type: Transform
+      pos: -27.5,31.5
+      parent: 2
+- proto: AirlockArmoryGlassLocked
+  entities:
+  - uid: 118
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -28.5,18.5
+      parent: 2
+- proto: AirlockAtmosphericsGlassLocked
+  entities:
+  - uid: 119
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -33.5,0.5
+      parent: 2
+  - uid: 120
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -53.5,7.5
+      parent: 2
+- proto: AirlockAtmosphericsLocked
+  entities:
+  - uid: 121
+    components:
+    - type: Transform
+      pos: -36.5,7.5
+      parent: 2
+  - uid: 122
+    components:
+    - type: Transform
+      pos: -35.5,2.5
+      parent: 2
+  - uid: 123
+    components:
+    - type: Transform
+      pos: -32.5,-36.5
+      parent: 2
+  - uid: 124
+    components:
+    - type: Transform
+      pos: -39.5,-0.5
+      parent: 2
+- proto: AirlockBarLocked
+  entities:
+  - uid: 125
+    components:
+    - type: Transform
+      pos: 4.5,7.5
+      parent: 2
+- proto: AirlockBrigGlassLocked
+  entities:
+  - uid: 126
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -28.5,14.5
+      parent: 2
+    - type: DeviceLinkSink
+      invokeCounter: 2
+    - type: DeviceLinkSource
+      linkedPorts:
+        130:
+        - - DoorStatus
+          - Close
+        128:
+        - - DoorStatus
+          - Close
+  - uid: 127
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -28.5,13.5
+      parent: 2
+    - type: DeviceLinkSink
+      invokeCounter: 2
+    - type: DeviceLinkSource
+      linkedPorts:
+        130:
+        - - DoorStatus
+          - Close
+        128:
+        - - DoorStatus
+          - Close
+  - uid: 128
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -24.5,13.5
+      parent: 2
+    - type: DeviceLinkSink
+      invokeCounter: 2
+    - type: DeviceLinkSource
+      linkedPorts:
+        126:
+        - - DoorStatus
+          - Close
+        127:
+        - - DoorStatus
+          - Close
+  - uid: 129
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -33.5,11.5
+      parent: 2
+  - uid: 130
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -24.5,14.5
+      parent: 2
+    - type: DeviceLinkSink
+      invokeCounter: 2
+    - type: DeviceLinkSource
+      linkedPorts:
+        126:
+        - - DoorStatus
+          - Close
+        127:
+        - - DoorStatus
+          - Close
+- proto: AirlockCaptainGlassLocked
+  entities:
+  - uid: 131
+    components:
+    - type: Transform
+      pos: -9.5,23.5
+      parent: 2
+- proto: AirlockCaptainLocked
+  entities:
+  - uid: 132
+    components:
+    - type: Transform
+      pos: -11.5,26.5
+      parent: 2
+  - uid: 133
+    components:
+    - type: Transform
+      pos: -14.5,28.5
+      parent: 2
+- proto: AirlockCargoGlassLocked
+  entities:
+  - uid: 134
+    components:
+    - type: Transform
+      pos: 19.5,16.5
+      parent: 2
+  - uid: 135
+    components:
+    - type: Transform
+      pos: 16.5,22.5
+      parent: 2
+  - uid: 136
+    components:
+    - type: Transform
+      pos: 15.5,22.5
+      parent: 2
+- proto: AirlockChapelLocked
+  entities:
+  - uid: 137
+    components:
+    - type: MetaData
+      name: Chaplain's Room
+    - type: Transform
+      pos: -25.5,-36.5
+      parent: 2
+  - uid: 138
+    components:
+    - type: Transform
+      pos: -20.5,-36.5
+      parent: 2
+  - uid: 139
+    components:
+    - type: Transform
+      pos: -21.5,-34.5
+      parent: 2
+- proto: AirlockChemistryGlassLocked
+  entities:
+  - uid: 140
+    components:
+    - type: Transform
+      pos: -13.5,-17.5
+      parent: 2
+- proto: AirlockChiefEngineerGlassLocked
+  entities:
+  - uid: 141
+    components:
+    - type: Transform
+      pos: -49.5,-10.5
+      parent: 2
+- proto: AirlockChiefMedicalOfficerGlassLocked
+  entities:
+  - uid: 142
+    components:
+    - type: Transform
+      pos: -25.5,-24.5
+      parent: 2
+- proto: AirlockCommandGlassLocked
+  entities:
+  - uid: 143
+    components:
+    - type: Transform
+      pos: 1.5,29.5
+      parent: 2
+  - uid: 144
+    components:
+    - type: Transform
+      pos: -8.5,21.5
+      parent: 2
+  - uid: 145
+    components:
+    - type: Transform
+      pos: -7.5,21.5
+      parent: 2
+  - uid: 146
+    components:
+    - type: Transform
+      pos: 2.5,21.5
+      parent: 2
+  - uid: 147
+    components:
+    - type: Transform
+      pos: 3.5,21.5
+      parent: 2
+  - uid: 148
+    components:
+    - type: Transform
+      pos: 2.5,31.5
+      parent: 2
+  - uid: 149
+    components:
+    - type: Transform
+      pos: 3.5,31.5
+      parent: 2
+  - uid: 150
+    components:
+    - type: MetaData
+      name: AI Sat
+    - type: Transform
+      pos: 4.5,32.5
+      parent: 2
+  - uid: 151
+    components:
+    - type: Transform
+      pos: -7.5,31.5
+      parent: 2
+  - uid: 152
+    components:
+    - type: Transform
+      pos: -8.5,31.5
+      parent: 2
+  - uid: 153
+    components:
+    - type: Transform
+      pos: -6.5,29.5
+      parent: 2
+  - uid: 154
+    components:
+    - type: Transform
+      pos: 6.5,18.5
+      parent: 2
+- proto: AirlockDetectiveGlassLocked
+  entities:
+  - uid: 155
+    components:
+    - type: Transform
+      pos: 8.5,-32.5
+      parent: 2
+- proto: AirlockDetectiveLocked
+  entities:
+  - uid: 156
+    components:
+    - type: Transform
+      pos: 6.5,-35.5
+      parent: 2
+- proto: AirlockEngineeringGlassLocked
+  entities:
+  - uid: 157
+    components:
+    - type: Transform
+      pos: -47.5,-3.5
+      parent: 2
+  - uid: 158
+    components:
+    - type: Transform
+      pos: -48.5,-0.5
+      parent: 2
+  - uid: 159
+    components:
+    - type: Transform
+      pos: -44.5,-4.5
+      parent: 2
+  - uid: 160
+    components:
+    - type: Transform
+      pos: -43.5,-4.5
+      parent: 2
+  - uid: 161
+    components:
+    - type: Transform
+      pos: -33.5,-4.5
+      parent: 2
+  - uid: 162
+    components:
+    - type: Transform
+      pos: -43.5,-12.5
+      parent: 2
+  - uid: 163
+    components:
+    - type: Transform
+      pos: -40.5,-9.5
+      parent: 2
+- proto: AirlockEngineeringLocked
+  entities:
+  - uid: 164
+    components:
+    - type: Transform
+      pos: -14.5,9.5
+      parent: 2
+  - uid: 165
+    components:
+    - type: Transform
+      pos: -13.5,18.5
+      parent: 2
+  - uid: 166
+    components:
+    - type: Transform
+      pos: 24.5,2.5
+      parent: 2
+  - uid: 167
+    components:
+    - type: Transform
+      pos: 19.5,0.5
+      parent: 2
+  - uid: 168
+    components:
+    - type: Transform
+      pos: 18.5,3.5
+      parent: 2
+  - uid: 169
+    components:
+    - type: Transform
+      pos: 15.5,-32.5
+      parent: 2
+  - uid: 170
+    components:
+    - type: Transform
+      pos: -9.5,-32.5
+      parent: 2
+  - uid: 171
+    components:
+    - type: Transform
+      pos: -39.5,-4.5
+      parent: 2
+  - uid: 172
+    components:
+    - type: Transform
+      pos: -34.5,-8.5
+      parent: 2
+  - uid: 173
+    components:
+    - type: Transform
+      pos: -37.5,-8.5
+      parent: 2
+  - uid: 174
+    components:
+    - type: Transform
+      pos: -46.5,-12.5
+      parent: 2
+  - uid: 175
+    components:
+    - type: Transform
+      pos: -46.5,-20.5
+      parent: 2
+  - uid: 176
+    components:
+    - type: Transform
+      pos: -51.5,-23.5
+      parent: 2
+  - uid: 177
+    components:
+    - type: Transform
+      pos: -46.5,-16.5
+      parent: 2
+  - uid: 178
+    components:
+    - type: Transform
+      pos: 33.5,-37.5
+      parent: 2
+  - uid: 179
+    components:
+    - type: Transform
+      pos: 6.5,4.5
+      parent: 2
 - proto: AirlockExternalCommandLocked
   entities:
   - uid: 180
@@ -6671,6 +7103,331 @@ entities:
         207:
         - - DoorStatus
           - DoorBolt
+- proto: AirlockFreezer
+  entities:
+  - uid: 237
+    components:
+    - type: Transform
+      pos: 18.5,35.5
+      parent: 2
+- proto: AirlockFreezerKitchenHydroLocked
+  entities:
+  - uid: 238
+    components:
+    - type: Transform
+      pos: 4.5,-4.5
+      parent: 2
+- proto: AirlockGlass
+  entities:
+  - uid: 239
+    components:
+    - type: Transform
+      pos: 14.5,-2.5
+      parent: 2
+  - uid: 240
+    components:
+    - type: Transform
+      pos: -3.5,15.5
+      parent: 2
+  - uid: 241
+    components:
+    - type: Transform
+      pos: -2.5,15.5
+      parent: 2
+  - uid: 242
+    components:
+    - type: Transform
+      pos: -1.5,15.5
+      parent: 2
+  - uid: 243
+    components:
+    - type: Transform
+      pos: -21.5,16.5
+      parent: 2
+  - uid: 244
+    components:
+    - type: Transform
+      pos: -24.5,1.5
+      parent: 2
+  - uid: 245
+    components:
+    - type: Transform
+      pos: -24.5,2.5
+      parent: 2
+  - uid: 246
+    components:
+    - type: Transform
+      pos: -21.5,9.5
+      parent: 2
+  - uid: 247
+    components:
+    - type: Transform
+      pos: -21.5,10.5
+      parent: 2
+  - uid: 248
+    components:
+    - type: Transform
+      pos: -7.5,-21.5
+      parent: 2
+  - uid: 249
+    components:
+    - type: Transform
+      pos: -7.5,-22.5
+      parent: 2
+  - uid: 250
+    components:
+    - type: Transform
+      pos: 14.5,-3.5
+      parent: 2
+  - uid: 251
+    components:
+    - type: Transform
+      pos: 0.5,-33.5
+      parent: 2
+  - uid: 252
+    components:
+    - type: Transform
+      pos: -1.5,-9.5
+      parent: 2
+  - uid: 253
+    components:
+    - type: Transform
+      pos: -3.5,-9.5
+      parent: 2
+  - uid: 254
+    components:
+    - type: Transform
+      pos: -6.5,-33.5
+      parent: 2
+  - uid: 255
+    components:
+    - type: Transform
+      pos: -5.5,-33.5
+      parent: 2
+  - uid: 256
+    components:
+    - type: Transform
+      pos: 1.5,-33.5
+      parent: 2
+  - uid: 257
+    components:
+    - type: Transform
+      pos: -25.5,-13.5
+      parent: 2
+  - uid: 258
+    components:
+    - type: Transform
+      pos: -24.5,-13.5
+      parent: 2
+  - uid: 259
+    components:
+    - type: Transform
+      pos: -1.5,12.5
+      parent: 2
+  - uid: 260
+    components:
+    - type: Transform
+      pos: -3.5,12.5
+      parent: 2
+  - uid: 261
+    components:
+    - type: Transform
+      pos: -2.5,12.5
+      parent: 2
+  - uid: 262
+    components:
+    - type: Transform
+      pos: -2.5,-9.5
+      parent: 2
+  - uid: 263
+    components:
+    - type: Transform
+      pos: -28.5,-2.5
+      parent: 2
+  - uid: 264
+    components:
+    - type: Transform
+      pos: -28.5,-1.5
+      parent: 2
+  - uid: 265
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 26.5,-1.5
+      parent: 2
+  - uid: 266
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 26.5,-2.5
+      parent: 2
+  - uid: 267
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 26.5,-3.5
+      parent: 2
+  - uid: 268
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 32.5,-1.5
+      parent: 2
+  - uid: 269
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 32.5,-2.5
+      parent: 2
+  - uid: 270
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 32.5,-3.5
+      parent: 2
+- proto: AirlockHeadOfPersonnelGlassLocked
+  entities:
+  - uid: 271
+    components:
+    - type: Transform
+      pos: 4.5,25.5
+      parent: 2
+- proto: AirlockHeadOfPersonnelLocked
+  entities:
+  - uid: 272
+    components:
+    - type: Transform
+      pos: 6.5,27.5
+      parent: 2
+  - uid: 273
+    components:
+    - type: Transform
+      pos: 9.5,28.5
+      parent: 2
+- proto: AirlockHeadOfSecurityLocked
+  entities:
+  - uid: 274
+    components:
+    - type: Transform
+      pos: -37.5,13.5
+      parent: 2
+  - uid: 275
+    components:
+    - type: Transform
+      pos: -37.5,17.5
+      parent: 2
+- proto: AirlockHydroGlassLocked
+  entities:
+  - uid: 276
+    components:
+    - type: Transform
+      pos: -10.5,-10.5
+      parent: 2
+  - uid: 277
+    components:
+    - type: Transform
+      pos: -17.5,-10.5
+      parent: 2
+- proto: AirlockJanitorLocked
+  entities:
+  - uid: 278
+    components:
+    - type: Transform
+      pos: -22.5,-10.5
+      parent: 2
+- proto: AirlockKitchenGlassLocked
+  entities:
+  - uid: 279
+    components:
+    - type: Transform
+      pos: 3.5,1.5
+      parent: 2
+- proto: AirlockMaint
+  entities:
+  - uid: 280
+    components:
+    - type: Transform
+      pos: 13.5,-33.5
+      parent: 2
+  - uid: 281
+    components:
+    - type: Transform
+      pos: 13.5,-34.5
+      parent: 2
+- proto: AirlockMaintAtmoLocked
+  entities:
+  - uid: 282
+    components:
+    - type: Transform
+      pos: -36.5,0.5
+      parent: 2
+  - uid: 283
+    components:
+    - type: Transform
+      pos: -39.5,6.5
+      parent: 2
+- proto: AirlockMaintBarLocked
+  entities:
+  - uid: 284
+    components:
+    - type: Transform
+      pos: 8.5,7.5
+      parent: 2
+- proto: AirlockMaintCargoLocked
+  entities:
+  - uid: 285
+    components:
+    - type: Transform
+      pos: 13.5,24.5
+      parent: 2
+- proto: AirlockMaintChapelLocked
+  entities:
+  - uid: 286
+    components:
+    - type: Transform
+      pos: -21.5,-31.5
+      parent: 2
+  - uid: 287
+    components:
+    - type: Transform
+      pos: -18.5,-31.5
+      parent: 2
+- proto: AirlockMaintEngiLocked
+  entities:
+  - uid: 288
+    components:
+    - type: Transform
+      pos: -30.5,-10.5
+      parent: 2
+  - uid: 289
+    components:
+    - type: Transform
+      pos: -36.5,-10.5
+      parent: 2
+  - uid: 290
+    components:
+    - type: Transform
+      pos: -36.5,-6.5
+      parent: 2
+  - uid: 291
+    components:
+    - type: Transform
+      pos: -44.5,-15.5
+      parent: 2
+- proto: AirlockMaintGlass
+  entities:
+  - uid: 292
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 19.5,-13.5
+      parent: 2
+  - uid: 293
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 17.5,-17.5
+      parent: 2
 - proto: AirlockMaintGlassLocked
   entities:
   - uid: 294
@@ -11478,15 +12235,6 @@ entities:
     - type: Transform
       pos: -25.5,-28.5
       parent: 2
-- proto: BedsheetCorpsman
-  entities:
-  - uid: 14341
-    components:
-    - type: Transform
-      parent: 14340
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
 - proto: BedsheetCult
   entities:
   - uid: 1152
@@ -33083,40 +33831,6 @@ entities:
     - type: Transform
       pos: -34.345192,23.606998
       parent: 2
-- proto: ClothingHeadHelmetBulletProof
-  entities:
-  - uid: 14331
-    components:
-    - type: Transform
-      pos: -34.49724,22.927708
-      parent: 2
-  - uid: 14337
-    components:
-    - type: Transform
-      pos: -34.18474,22.849583
-      parent: 2
-  - uid: 14338
-    components:
-    - type: Transform
-      pos: -34.919113,22.943333
-      parent: 2
-- proto: ClothingHeadHelmetReflective
-  entities:
-  - uid: 14334
-    components:
-    - type: Transform
-      pos: -34.544113,23.443333
-      parent: 2
-  - uid: 14335
-    components:
-    - type: Transform
-      pos: -34.77849,23.537083
-      parent: 2
-  - uid: 14336
-    components:
-    - type: Transform
-      pos: -34.30974,23.474583
-      parent: 2
 - proto: ClothingHeadHelmetRiot
   entities:
   - uid: 5289
@@ -33128,11 +33842,6 @@ entities:
     components:
     - type: Transform
       pos: -34.313942,23.367249
-      parent: 2
-  - uid: 14329
-    components:
-    - type: Transform
-      pos: -34.62224,23.333958
       parent: 2
 - proto: ClothingHeadHelmetSyndicate
   entities:
@@ -33340,27 +34049,12 @@ entities:
     - type: Transform
       pos: -34.334778,22.762663
       parent: 2
-  - uid: 14330
-    components:
-    - type: Transform
-      pos: -34.481613,22.755833
-      parent: 2
 - proto: ClothingOuterArmorReflective
   entities:
   - uid: 5319
     components:
     - type: Transform
       pos: -34.491028,22.919022
-      parent: 2
-  - uid: 14332
-    components:
-    - type: Transform
-      pos: -34.325363,23.552708
-      parent: 2
-  - uid: 14333
-    components:
-    - type: Transform
-      pos: -34.450363,23.568333
       parent: 2
 - proto: ClothingOuterArmorRiot
   entities:
@@ -33373,11 +34067,6 @@ entities:
     components:
     - type: Transform
       pos: -34.355614,23.044107
-      parent: 2
-  - uid: 14328
-    components:
-    - type: Transform
-      pos: -34.40349,23.349583
       parent: 2
 - proto: ClothingOuterCoatBomber
   entities:
@@ -39603,1332 +40292,6 @@ entities:
     components:
     - type: Transform
       pos: -12.5,22.5
-      parent: 2
-- proto: FHAirlock
-  entities:
-  - uid: 111
-    components:
-    - type: Transform
-      pos: -18.5,0.5
-      parent: 2
-  - uid: 112
-    components:
-    - type: Transform
-      pos: -18.5,3.5
-      parent: 2
-  - uid: 113
-    components:
-    - type: Transform
-      pos: 13.5,7.5
-      parent: 2
-  - uid: 114
-    components:
-    - type: Transform
-      pos: -12.5,-34.5
-      parent: 2
-  - uid: 115
-    components:
-    - type: Transform
-      pos: -26.5,-34.5
-      parent: 2
-  - uid: 116
-    components:
-    - type: Transform
-      pos: -32.5,32.5
-      parent: 2
-  - uid: 117
-    components:
-    - type: Transform
-      pos: -27.5,31.5
-      parent: 2
-- proto: FHAirlockArmoryGlassLocked
-  entities:
-  - uid: 118
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -28.5,18.5
-      parent: 2
-- proto: FHAirlockAtmosphericsGlassLocked
-  entities:
-  - uid: 119
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -33.5,0.5
-      parent: 2
-  - uid: 120
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -53.5,7.5
-      parent: 2
-- proto: FHAirlockAtmosphericsLocked
-  entities:
-  - uid: 121
-    components:
-    - type: Transform
-      pos: -36.5,7.5
-      parent: 2
-  - uid: 122
-    components:
-    - type: Transform
-      pos: -35.5,2.5
-      parent: 2
-  - uid: 123
-    components:
-    - type: Transform
-      pos: -32.5,-36.5
-      parent: 2
-  - uid: 124
-    components:
-    - type: Transform
-      pos: -39.5,-0.5
-      parent: 2
-- proto: FHAirlockBarLocked
-  entities:
-  - uid: 125
-    components:
-    - type: Transform
-      pos: 4.5,7.5
-      parent: 2
-- proto: FHAirlockBrigGlassLocked
-  entities:
-  - uid: 126
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -28.5,14.5
-      parent: 2
-    - type: DeviceLinkSink
-      invokeCounter: 2
-    - type: DeviceLinkSource
-      linkedPorts:
-        130:
-        - - DoorStatus
-          - Close
-        128:
-        - - DoorStatus
-          - Close
-  - uid: 127
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -28.5,13.5
-      parent: 2
-    - type: DeviceLinkSink
-      invokeCounter: 2
-    - type: DeviceLinkSource
-      linkedPorts:
-        130:
-        - - DoorStatus
-          - Close
-        128:
-        - - DoorStatus
-          - Close
-  - uid: 128
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -24.5,13.5
-      parent: 2
-    - type: DeviceLinkSink
-      invokeCounter: 2
-    - type: DeviceLinkSource
-      linkedPorts:
-        126:
-        - - DoorStatus
-          - Close
-        127:
-        - - DoorStatus
-          - Close
-  - uid: 129
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -33.5,11.5
-      parent: 2
-  - uid: 130
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -24.5,14.5
-      parent: 2
-    - type: DeviceLinkSink
-      invokeCounter: 2
-    - type: DeviceLinkSource
-      linkedPorts:
-        126:
-        - - DoorStatus
-          - Close
-        127:
-        - - DoorStatus
-          - Close
-- proto: FHAirlockCaptainGlassLocked
-  entities:
-  - uid: 131
-    components:
-    - type: Transform
-      pos: -9.5,23.5
-      parent: 2
-- proto: FHAirlockCaptainLocked
-  entities:
-  - uid: 132
-    components:
-    - type: Transform
-      pos: -11.5,26.5
-      parent: 2
-  - uid: 133
-    components:
-    - type: Transform
-      pos: -14.5,28.5
-      parent: 2
-- proto: FHAirlockCargoGlassLocked
-  entities:
-  - uid: 134
-    components:
-    - type: Transform
-      pos: 19.5,16.5
-      parent: 2
-  - uid: 135
-    components:
-    - type: Transform
-      pos: 16.5,22.5
-      parent: 2
-  - uid: 136
-    components:
-    - type: Transform
-      pos: 15.5,22.5
-      parent: 2
-- proto: FHAirlockChapelLocked
-  entities:
-  - uid: 137
-    components:
-    - type: MetaData
-      name: Chaplain's Room
-    - type: Transform
-      pos: -25.5,-36.5
-      parent: 2
-  - uid: 138
-    components:
-    - type: Transform
-      pos: -20.5,-36.5
-      parent: 2
-  - uid: 139
-    components:
-    - type: Transform
-      pos: -21.5,-34.5
-      parent: 2
-- proto: FHAirlockChemistryGlassLocked
-  entities:
-  - uid: 140
-    components:
-    - type: Transform
-      pos: -13.5,-17.5
-      parent: 2
-- proto: FHAirlockChiefEngineerGlassLocked
-  entities:
-  - uid: 141
-    components:
-    - type: Transform
-      pos: -49.5,-10.5
-      parent: 2
-- proto: FHAirlockChiefMedicalOfficerGlassLocked
-  entities:
-  - uid: 142
-    components:
-    - type: Transform
-      pos: -25.5,-24.5
-      parent: 2
-- proto: FHAirlockCommandGlassLocked
-  entities:
-  - uid: 143
-    components:
-    - type: Transform
-      pos: 1.5,29.5
-      parent: 2
-  - uid: 144
-    components:
-    - type: Transform
-      pos: -8.5,21.5
-      parent: 2
-  - uid: 145
-    components:
-    - type: Transform
-      pos: -7.5,21.5
-      parent: 2
-  - uid: 146
-    components:
-    - type: Transform
-      pos: 2.5,21.5
-      parent: 2
-  - uid: 147
-    components:
-    - type: Transform
-      pos: 3.5,21.5
-      parent: 2
-  - uid: 148
-    components:
-    - type: Transform
-      pos: 2.5,31.5
-      parent: 2
-  - uid: 149
-    components:
-    - type: Transform
-      pos: 3.5,31.5
-      parent: 2
-  - uid: 150
-    components:
-    - type: MetaData
-      name: AI Sat
-    - type: Transform
-      pos: 4.5,32.5
-      parent: 2
-  - uid: 151
-    components:
-    - type: Transform
-      pos: -7.5,31.5
-      parent: 2
-  - uid: 152
-    components:
-    - type: Transform
-      pos: -8.5,31.5
-      parent: 2
-  - uid: 153
-    components:
-    - type: Transform
-      pos: -6.5,29.5
-      parent: 2
-  - uid: 154
-    components:
-    - type: Transform
-      pos: 6.5,18.5
-      parent: 2
-- proto: FHAirlockDetectiveGlassLocked
-  entities:
-  - uid: 155
-    components:
-    - type: Transform
-      pos: 8.5,-32.5
-      parent: 2
-- proto: FHAirlockDetectiveLocked
-  entities:
-  - uid: 156
-    components:
-    - type: Transform
-      pos: 6.5,-35.5
-      parent: 2
-- proto: FHAirlockEngineeringGlassLocked
-  entities:
-  - uid: 157
-    components:
-    - type: Transform
-      pos: -47.5,-3.5
-      parent: 2
-  - uid: 158
-    components:
-    - type: Transform
-      pos: -48.5,-0.5
-      parent: 2
-  - uid: 159
-    components:
-    - type: Transform
-      pos: -44.5,-4.5
-      parent: 2
-  - uid: 160
-    components:
-    - type: Transform
-      pos: -43.5,-4.5
-      parent: 2
-  - uid: 161
-    components:
-    - type: Transform
-      pos: -33.5,-4.5
-      parent: 2
-  - uid: 162
-    components:
-    - type: Transform
-      pos: -43.5,-12.5
-      parent: 2
-  - uid: 163
-    components:
-    - type: Transform
-      pos: -40.5,-9.5
-      parent: 2
-- proto: FHAirlockEngineeringLocked
-  entities:
-  - uid: 164
-    components:
-    - type: Transform
-      pos: -14.5,9.5
-      parent: 2
-  - uid: 165
-    components:
-    - type: Transform
-      pos: -13.5,18.5
-      parent: 2
-  - uid: 166
-    components:
-    - type: Transform
-      pos: 24.5,2.5
-      parent: 2
-  - uid: 167
-    components:
-    - type: Transform
-      pos: 19.5,0.5
-      parent: 2
-  - uid: 168
-    components:
-    - type: Transform
-      pos: 18.5,3.5
-      parent: 2
-  - uid: 169
-    components:
-    - type: Transform
-      pos: 15.5,-32.5
-      parent: 2
-  - uid: 170
-    components:
-    - type: Transform
-      pos: -9.5,-32.5
-      parent: 2
-  - uid: 171
-    components:
-    - type: Transform
-      pos: -39.5,-4.5
-      parent: 2
-  - uid: 172
-    components:
-    - type: Transform
-      pos: -34.5,-8.5
-      parent: 2
-  - uid: 173
-    components:
-    - type: Transform
-      pos: -37.5,-8.5
-      parent: 2
-  - uid: 174
-    components:
-    - type: Transform
-      pos: -46.5,-12.5
-      parent: 2
-  - uid: 175
-    components:
-    - type: Transform
-      pos: -46.5,-20.5
-      parent: 2
-  - uid: 176
-    components:
-    - type: Transform
-      pos: -51.5,-23.5
-      parent: 2
-  - uid: 177
-    components:
-    - type: Transform
-      pos: -46.5,-16.5
-      parent: 2
-  - uid: 178
-    components:
-    - type: Transform
-      pos: 33.5,-37.5
-      parent: 2
-  - uid: 179
-    components:
-    - type: Transform
-      pos: 6.5,4.5
-      parent: 2
-- proto: FHAirlockFreezer
-  entities:
-  - uid: 237
-    components:
-    - type: Transform
-      pos: 18.5,35.5
-      parent: 2
-- proto: FHAirlockFreezerKitchenHydroLocked
-  entities:
-  - uid: 238
-    components:
-    - type: Transform
-      pos: 4.5,-4.5
-      parent: 2
-- proto: FHAirlockGlass
-  entities:
-  - uid: 239
-    components:
-    - type: Transform
-      pos: 14.5,-2.5
-      parent: 2
-  - uid: 240
-    components:
-    - type: Transform
-      pos: -3.5,15.5
-      parent: 2
-  - uid: 241
-    components:
-    - type: Transform
-      pos: -2.5,15.5
-      parent: 2
-  - uid: 242
-    components:
-    - type: Transform
-      pos: -1.5,15.5
-      parent: 2
-  - uid: 243
-    components:
-    - type: Transform
-      pos: -21.5,16.5
-      parent: 2
-  - uid: 244
-    components:
-    - type: Transform
-      pos: -24.5,1.5
-      parent: 2
-  - uid: 245
-    components:
-    - type: Transform
-      pos: -24.5,2.5
-      parent: 2
-  - uid: 246
-    components:
-    - type: Transform
-      pos: -21.5,9.5
-      parent: 2
-  - uid: 247
-    components:
-    - type: Transform
-      pos: -21.5,10.5
-      parent: 2
-  - uid: 248
-    components:
-    - type: Transform
-      pos: -7.5,-21.5
-      parent: 2
-  - uid: 249
-    components:
-    - type: Transform
-      pos: -7.5,-22.5
-      parent: 2
-  - uid: 250
-    components:
-    - type: Transform
-      pos: 14.5,-3.5
-      parent: 2
-  - uid: 251
-    components:
-    - type: Transform
-      pos: 0.5,-33.5
-      parent: 2
-  - uid: 252
-    components:
-    - type: Transform
-      pos: -1.5,-9.5
-      parent: 2
-  - uid: 253
-    components:
-    - type: Transform
-      pos: -3.5,-9.5
-      parent: 2
-  - uid: 254
-    components:
-    - type: Transform
-      pos: -6.5,-33.5
-      parent: 2
-  - uid: 255
-    components:
-    - type: Transform
-      pos: -5.5,-33.5
-      parent: 2
-  - uid: 256
-    components:
-    - type: Transform
-      pos: 1.5,-33.5
-      parent: 2
-  - uid: 257
-    components:
-    - type: Transform
-      pos: -25.5,-13.5
-      parent: 2
-  - uid: 258
-    components:
-    - type: Transform
-      pos: -24.5,-13.5
-      parent: 2
-  - uid: 259
-    components:
-    - type: Transform
-      pos: -1.5,12.5
-      parent: 2
-  - uid: 260
-    components:
-    - type: Transform
-      pos: -3.5,12.5
-      parent: 2
-  - uid: 261
-    components:
-    - type: Transform
-      pos: -2.5,12.5
-      parent: 2
-  - uid: 262
-    components:
-    - type: Transform
-      pos: -2.5,-9.5
-      parent: 2
-  - uid: 263
-    components:
-    - type: Transform
-      pos: -28.5,-2.5
-      parent: 2
-  - uid: 264
-    components:
-    - type: Transform
-      pos: -28.5,-1.5
-      parent: 2
-  - uid: 265
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 26.5,-1.5
-      parent: 2
-  - uid: 266
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 26.5,-2.5
-      parent: 2
-  - uid: 267
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 26.5,-3.5
-      parent: 2
-  - uid: 268
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 32.5,-1.5
-      parent: 2
-  - uid: 269
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 32.5,-2.5
-      parent: 2
-  - uid: 270
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 32.5,-3.5
-      parent: 2
-- proto: FHAirlockHeadOfPersonnelGlassLocked
-  entities:
-  - uid: 271
-    components:
-    - type: Transform
-      pos: 4.5,25.5
-      parent: 2
-- proto: FHAirlockHeadOfPersonnelLocked
-  entities:
-  - uid: 272
-    components:
-    - type: Transform
-      pos: 6.5,27.5
-      parent: 2
-  - uid: 273
-    components:
-    - type: Transform
-      pos: 9.5,28.5
-      parent: 2
-- proto: FHAirlockHeadOfSecurityLocked
-  entities:
-  - uid: 274
-    components:
-    - type: Transform
-      pos: -37.5,13.5
-      parent: 2
-  - uid: 275
-    components:
-    - type: Transform
-      pos: -37.5,17.5
-      parent: 2
-- proto: FHAirlockHydroGlassLocked
-  entities:
-  - uid: 276
-    components:
-    - type: Transform
-      pos: -10.5,-10.5
-      parent: 2
-  - uid: 277
-    components:
-    - type: Transform
-      pos: -17.5,-10.5
-      parent: 2
-- proto: FHAirlockJanitorLocked
-  entities:
-  - uid: 278
-    components:
-    - type: Transform
-      pos: -22.5,-10.5
-      parent: 2
-- proto: FHAirlockKitchenGlassLocked
-  entities:
-  - uid: 279
-    components:
-    - type: Transform
-      pos: 3.5,1.5
-      parent: 2
-- proto: FHAirlockMaint
-  entities:
-  - uid: 280
-    components:
-    - type: Transform
-      pos: 13.5,-33.5
-      parent: 2
-  - uid: 281
-    components:
-    - type: Transform
-      pos: 13.5,-34.5
-      parent: 2
-- proto: FHAirlockMaintAtmoLocked
-  entities:
-  - uid: 282
-    components:
-    - type: Transform
-      pos: -36.5,0.5
-      parent: 2
-  - uid: 283
-    components:
-    - type: Transform
-      pos: -39.5,6.5
-      parent: 2
-- proto: FHAirlockMaintBarLocked
-  entities:
-  - uid: 284
-    components:
-    - type: Transform
-      pos: 8.5,7.5
-      parent: 2
-- proto: FHAirlockMaintCargoLocked
-  entities:
-  - uid: 285
-    components:
-    - type: Transform
-      pos: 13.5,24.5
-      parent: 2
-- proto: FHAirlockMaintChapelLocked
-  entities:
-  - uid: 286
-    components:
-    - type: Transform
-      pos: -21.5,-31.5
-      parent: 2
-  - uid: 287
-    components:
-    - type: Transform
-      pos: -18.5,-31.5
-      parent: 2
-- proto: FHAirlockMaintEngiLocked
-  entities:
-  - uid: 288
-    components:
-    - type: Transform
-      pos: -30.5,-10.5
-      parent: 2
-  - uid: 289
-    components:
-    - type: Transform
-      pos: -36.5,-10.5
-      parent: 2
-  - uid: 290
-    components:
-    - type: Transform
-      pos: -36.5,-6.5
-      parent: 2
-  - uid: 291
-    components:
-    - type: Transform
-      pos: -44.5,-15.5
-      parent: 2
-- proto: FHAirlockMaintGlass
-  entities:
-  - uid: 292
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 19.5,-13.5
-      parent: 2
-  - uid: 293
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 17.5,-17.5
-      parent: 2
-- proto: FHAirlockMaintHydroLocked
-  entities:
-  - uid: 296
-    components:
-    - type: Transform
-      pos: -10.5,-4.5
-      parent: 2
-- proto: FHAirlockMaintJanitorLocked
-  entities:
-  - uid: 297
-    components:
-    - type: Transform
-      pos: -21.5,-5.5
-      parent: 2
-- proto: FHAirlockMaintKitchenLocked
-  entities:
-  - uid: 298
-    components:
-    - type: Transform
-      pos: 8.5,-1.5
-      parent: 2
-  - uid: 299
-    components:
-    - type: Transform
-      pos: 8.5,-6.5
-      parent: 2
-- proto: FHAirlockMaintLocked
-  entities:
-  - uid: 300
-    components:
-    - type: Transform
-      pos: 1.5,-8.5
-      parent: 2
-  - uid: 301
-    components:
-    - type: Transform
-      pos: -6.5,-3.5
-      parent: 2
-  - uid: 302
-    components:
-    - type: Transform
-      pos: 4.5,2.5
-      parent: 2
-  - uid: 303
-    components:
-    - type: Transform
-      pos: -5.5,13.5
-      parent: 2
-  - uid: 304
-    components:
-    - type: Transform
-      pos: 0.5,14.5
-      parent: 2
-  - uid: 305
-    components:
-    - type: Transform
-      pos: -15.5,10.5
-      parent: 2
-  - uid: 306
-    components:
-    - type: Transform
-      pos: -23.5,-4.5
-      parent: 2
-  - uid: 307
-    components:
-    - type: Transform
-      pos: 8.5,-10.5
-      parent: 2
-  - uid: 308
-    components:
-    - type: Transform
-      pos: 10.5,3.5
-      parent: 2
-  - uid: 309
-    components:
-    - type: Transform
-      pos: -16.5,2.5
-      parent: 2
-  - uid: 310
-    components:
-    - type: Transform
-      pos: 12.5,21.5
-      parent: 2
-  - uid: 311
-    components:
-    - type: Transform
-      pos: -17.5,21.5
-      parent: 2
-  - uid: 312
-    components:
-    - type: Transform
-      pos: 14.5,3.5
-      parent: 2
-  - uid: 313
-    components:
-    - type: Transform
-      pos: 13.5,10.5
-      parent: 2
-  - uid: 314
-    components:
-    - type: Transform
-      pos: 23.5,0.5
-      parent: 2
-  - uid: 315
-    components:
-    - type: Transform
-      pos: 22.5,-7.5
-      parent: 2
-  - uid: 316
-    components:
-    - type: Transform
-      pos: 14.5,-7.5
-      parent: 2
-  - uid: 317
-    components:
-    - type: Transform
-      pos: 12.5,-13.5
-      parent: 2
-  - uid: 318
-    components:
-    - type: Transform
-      pos: 18.5,-27.5
-      parent: 2
-  - uid: 319
-    components:
-    - type: Transform
-      pos: -10.5,-33.5
-      parent: 2
-  - uid: 320
-    components:
-    - type: Transform
-      pos: -28.5,-21.5
-      parent: 2
-  - uid: 321
-    components:
-    - type: Transform
-      pos: -28.5,-11.5
-      parent: 2
-  - uid: 322
-    components:
-    - type: Transform
-      pos: -33.5,-31.5
-      parent: 2
-  - uid: 323
-    components:
-    - type: Transform
-      pos: -29.5,-26.5
-      parent: 2
-  - uid: 324
-    components:
-    - type: Transform
-      pos: -30.5,-34.5
-      parent: 2
-  - uid: 325
-    components:
-    - type: Transform
-      pos: -28.5,-39.5
-      parent: 2
-  - uid: 326
-    components:
-    - type: Transform
-      pos: -49.5,-22.5
-      parent: 2
-  - uid: 327
-    components:
-    - type: Transform
-      pos: -34.5,-26.5
-      parent: 2
-  - uid: 328
-    components:
-    - type: Transform
-      pos: 19.5,-35.5
-      parent: 2
-  - uid: 329
-    components:
-    - type: Transform
-      pos: 25.5,-34.5
-      parent: 2
-    - type: DeviceLinkSink
-      invokeCounter: 1
-    - type: DeviceLinkSource
-      linkedPorts:
-        332:
-        - - DoorStatus
-          - DoorBolt
-  - uid: 330
-    components:
-    - type: Transform
-      pos: 34.5,-34.5
-      parent: 2
-  - uid: 331
-    components:
-    - type: Transform
-      pos: 31.5,-35.5
-      parent: 2
-  - uid: 332
-    components:
-    - type: Transform
-      pos: 25.5,-37.5
-      parent: 2
-    - type: DeviceLinkSink
-      invokeCounter: 1
-    - type: DeviceLinkSource
-      linkedPorts:
-        329:
-        - - DoorStatus
-          - DoorBolt
-  - uid: 333
-    components:
-    - type: Transform
-      pos: -15.5,-2.5
-      parent: 2
-- proto: FHAirlockMaintMedLocked
-  entities:
-  - uid: 334
-    components:
-    - type: Transform
-      pos: -27.5,-23.5
-      parent: 2
-  - uid: 335
-    components:
-    - type: Transform
-      pos: -10.5,-29.5
-      parent: 2
-- proto: FHAirlockMaintRnDLocked
-  entities:
-  - uid: 336
-    components:
-    - type: Transform
-      pos: 11.5,-15.5
-      parent: 2
-  - uid: 337
-    components:
-    - type: Transform
-      pos: 33.5,-29.5
-      parent: 2
-- proto: FHAirlockMaintTheatreLocked
-  entities:
-  - uid: 338
-    components:
-    - type: Transform
-      pos: -8.5,10.5
-      parent: 2
-- proto: FHAirlockMedicalGlassLocked
-  entities:
-  - uid: 339
-    components:
-    - type: Transform
-      pos: -11.5,-26.5
-      parent: 2
-  - uid: 340
-    components:
-    - type: Transform
-      pos: -18.5,-27.5
-      parent: 2
-  - uid: 341
-    components:
-    - type: Transform
-      pos: -15.5,-19.5
-      parent: 2
-  - uid: 342
-    components:
-    - type: Transform
-      pos: -23.5,-23.5
-      parent: 2
-  - uid: 343
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -13.5,-22.5
-      parent: 2
-  - uid: 344
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -13.5,-21.5
-      parent: 2
-- proto: FHAirlockMedicalLocked
-  entities:
-  - uid: 345
-    components:
-    - type: Transform
-      pos: -17.5,-17.5
-      parent: 2
-  - uid: 346
-    components:
-    - type: Transform
-      pos: -19.5,-19.5
-      parent: 2
-- proto: FHAirlockMedicalMorgueLocked
-  entities:
-  - uid: 347
-    components:
-    - type: Transform
-      pos: -19.5,-13.5
-      parent: 2
-- proto: FHAirlockQuartermasterGlassLocked
-  entities:
-  - uid: 348
-    components:
-    - type: Transform
-      pos: 16.5,33.5
-      parent: 2
-- proto: FHAirlockQuartermasterLocked
-  entities:
-  - uid: 349
-    components:
-    - type: Transform
-      pos: 15.5,28.5
-      parent: 2
-- proto: FHAirlockResearchDirectorGlassLocked
-  entities:
-  - uid: 350
-    components:
-    - type: Transform
-      pos: 23.5,-20.5
-      parent: 2
-  - uid: 351
-    components:
-    - type: Transform
-      pos: 13.5,-19.5
-      parent: 2
-- proto: FHAirlockSalvageLocked
-  entities:
-  - uid: 352
-    components:
-    - type: Transform
-      pos: 21.5,14.5
-      parent: 2
-- proto: FHAirlockScienceGlassLocked
-  entities:
-  - uid: 353
-    components:
-    - type: Transform
-      pos: 8.5,-29.5
-      parent: 2
-  - uid: 354
-    components:
-    - type: Transform
-      pos: 12.5,-29.5
-      parent: 2
-  - uid: 355
-    components:
-    - type: Transform
-      pos: 17.5,-24.5
-      parent: 2
-  - uid: 356
-    components:
-    - type: Transform
-      pos: 2.5,-21.5
-      parent: 2
-  - uid: 357
-    components:
-    - type: Transform
-      pos: 2.5,-20.5
-      parent: 2
-  - uid: 358
-    components:
-    - type: Transform
-      pos: 10.5,-13.5
-      parent: 2
-  - uid: 359
-    components:
-    - type: Transform
-      pos: 4.5,-19.5
-      parent: 2
-  - uid: 360
-    components:
-    - type: Transform
-      pos: 5.5,-22.5
-      parent: 2
-  - uid: 361
-    components:
-    - type: Transform
-      pos: 7.5,-24.5
-      parent: 2
-  - uid: 362
-    components:
-    - type: Transform
-      pos: 10.5,-25.5
-      parent: 2
-  - uid: 363
-    components:
-    - type: Transform
-      pos: 30.5,-25.5
-      parent: 2
-  - uid: 364
-    components:
-    - type: Transform
-      pos: 26.5,-29.5
-      parent: 2
-  - uid: 365
-    components:
-    - type: Transform
-      pos: 24.5,-29.5
-      parent: 2
-- proto: FHAirlockScienceLocked
-  entities:
-  - uid: 366
-    components:
-    - type: Transform
-      pos: 15.5,-20.5
-      parent: 2
-  - uid: 367
-    components:
-    - type: Transform
-      pos: 15.5,-21.5
-      parent: 2
-  - uid: 368
-    components:
-    - type: Transform
-      pos: 19.5,-21.5
-      parent: 2
-  - uid: 369
-    components:
-    - type: Transform
-      pos: 19.5,-20.5
-      parent: 2
-  - uid: 370
-    components:
-    - type: Transform
-      pos: 20.5,-24.5
-      parent: 2
-- proto: FHAirlockSecurityGlassLocked
-  entities:
-  - uid: 371
-    components:
-    - type: Transform
-      pos: 30.5,1.5
-      parent: 2
-  - uid: 372
-    components:
-    - type: Transform
-      pos: -2.5,-30.5
-      parent: 2
-  - uid: 373
-    components:
-    - type: Transform
-      pos: -4.5,-25.5
-      parent: 2
-  - uid: 374
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -28.5,8.5
-      parent: 2
-  - uid: 375
-    components:
-    - type: Transform
-      pos: -28.5,23.5
-      parent: 2
-  - uid: 376
-    components:
-    - type: Transform
-      pos: -34.5,19.5
-      parent: 2
-  - uid: 377
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -31.5,9.5
-      parent: 2
-- proto: FHAirlockSecurityLawyerGlassLocked
-  entities:
-  - uid: 378
-    components:
-    - type: Transform
-      pos: -17.5,18.5
-      parent: 2
-- proto: FHAirlockSecurityLocked
-  entities:
-  - uid: 379
-    components:
-    - type: Transform
-      pos: -30.5,21.5
-      parent: 2
-  - uid: 380
-    components:
-    - type: Transform
-      pos: -30.5,25.5
-      parent: 2
-  - uid: 381
-    components:
-    - type: Transform
-      pos: -31.5,25.5
-      parent: 2
-  - uid: 382
-    components:
-    - type: Transform
-      pos: -31.5,21.5
-      parent: 2
-- proto: FHAirlockServiceLocked
-  entities:
-  - uid: 383
-    components:
-    - type: Transform
-      pos: -31.5,-20.5
-      parent: 2
-- proto: FHAirlockTheatreLocked
-  entities:
-  - uid: 384
-    components:
-    - type: Transform
-      pos: -6.5,-0.5
-      parent: 2
-  - uid: 385
-    components:
-    - type: Transform
-      pos: -8.5,2.5
-      parent: 2
-- proto: FHAirlockVirologyGlassLocked
-  entities:
-  - uid: 386
-    components:
-    - type: Transform
-      pos: -36.5,-36.5
-      parent: 2
-  - uid: 387
-    components:
-    - type: Transform
-      pos: -35.5,-33.5
-      parent: 2
-- proto: FHAirlockVirologyLocked
-  entities:
-  - uid: 388
-    components:
-    - type: Transform
-      pos: -32.5,-33.5
-      parent: 2
-- proto: FHHighSecArmoryLocked
-  entities:
-  - uid: 9578
-    components:
-    - type: Transform
-      pos: -36.5,21.5
-      parent: 2
-- proto: FHHighSecCommandLocked
-  entities:
-  - uid: 9579
-    components:
-    - type: Transform
-      pos: -2.5,21.5
-      parent: 2
-  - uid: 9580
-    components:
-    - type: Transform
-      pos: 22.5,6.5
-      parent: 2
-  - uid: 9581
-    components:
-    - type: Transform
-      pos: 8.5,45.5
-      parent: 2
-  - uid: 9582
-    components:
-    - type: Transform
-      pos: 12.5,45.5
-      parent: 2
-  - uid: 9583
-    components:
-    - type: Transform
-      pos: 10.5,47.5
-      parent: 2
-  - uid: 9584
-    components:
-    - type: Transform
-      pos: -51.5,-12.5
       parent: 2
 - proto: FigureSpawner
   entities:
@@ -63630,6 +62993,45 @@ entities:
     - type: Transform
       pos: 13.5565815,-27.824743
       parent: 2
+- proto: HighSecArmoryLocked
+  entities:
+  - uid: 9578
+    components:
+    - type: Transform
+      pos: -36.5,21.5
+      parent: 2
+- proto: HighSecCommandLocked
+  entities:
+  - uid: 9579
+    components:
+    - type: Transform
+      pos: -2.5,21.5
+      parent: 2
+  - uid: 9580
+    components:
+    - type: Transform
+      pos: 22.5,6.5
+      parent: 2
+  - uid: 9581
+    components:
+    - type: Transform
+      pos: 8.5,45.5
+      parent: 2
+  - uid: 9582
+    components:
+    - type: Transform
+      pos: 12.5,45.5
+      parent: 2
+  - uid: 9583
+    components:
+    - type: Transform
+      pos: 10.5,47.5
+      parent: 2
+  - uid: 9584
+    components:
+    - type: Transform
+      pos: -51.5,-12.5
+      parent: 2
 - proto: HolopadAiCore
   entities:
   - uid: 9585
@@ -65128,7 +64530,7 @@ entities:
   - uid: 9769
     components:
     - type: Transform
-      pos: -32.735275,8.500002
+      pos: -32.5,8.5
       parent: 2
 - proto: LockerBSOFilled
   entities:
@@ -65181,34 +64583,6 @@ entities:
     - type: Transform
       pos: -26.5,-28.5
       parent: 2
-- proto: LockerCorpsmanFilled
-  entities:
-  - uid: 14340
-    components:
-    - type: Transform
-      pos: -32.2212,8.444998
-      parent: 2
-    - type: EntityStorage
-      air:
-        volume: 200
-        immutable: False
-        temperature: 293.14673
-        moles:
-          Oxygen: 1.7459903
-          Nitrogen: 6.568249
-    - type: ContainerContainer
-      containers:
-        entity_storage: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 14341
-        paper_label: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-    - type: Pullable
-      prevFixedRotation: True
 - proto: LockerDetectiveFilled
   entities:
   - uid: 9775
@@ -65625,7 +64999,7 @@ entities:
       parent: 2
     - type: Fixtures
       fixtures: {}
-- proto: LockerWardenFHFilled
+- proto: LockerWardenFilled
   entities:
   - uid: 9817
     components:
@@ -65888,6 +65262,11 @@ entities:
     components:
     - type: Transform
       pos: -17.5,-23.5
+      parent: 2
+  - uid: 9861
+    components:
+    - type: Transform
+      pos: -31.5,7.5
       parent: 2
   - uid: 9862
     components:
@@ -78245,6 +77624,11 @@ entities:
       parent: 2
 - proto: SpawnPointBorg
   entities:
+  - uid: 11669
+    components:
+    - type: Transform
+      pos: 4.5,-26.5
+      parent: 2
   - uid: 11670
     components:
     - type: Transform
@@ -78334,13 +77718,6 @@ entities:
     components:
     - type: Transform
       pos: -9.5,1.5
-      parent: 2
-- proto: SpawnPointCorpsman
-  entities:
-  - uid: 14339
-    components:
-    - type: Transform
-      pos: -30.5,8.5
       parent: 2
 - proto: SpawnPointDetective
   entities:
@@ -78594,13 +77971,6 @@ entities:
     components:
     - type: Transform
       pos: 10.5,-20.5
-      parent: 2
-- proto: SpawnPointSecBorg
-  entities:
-  - uid: 11669
-    components:
-    - type: Transform
-      pos: 4.5,-26.5
       parent: 2
 - proto: SpawnPointSecurityCadet
   entities:
