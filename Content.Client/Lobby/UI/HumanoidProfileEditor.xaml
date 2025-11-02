@@ -62,6 +62,13 @@
                                                    ToolTip="{Loc 'humanoid-profile-editor-guidebook-button-tooltip'}"/>
                                     <OptionButton Name="SpeciesButton" HorizontalAlignment="Right" />
                                 </BoxContainer>
+                                <!-- Far Horizons - subspecies -->
+                                <BoxContainer Name="CSubspecies" HorizontalExpand="True">
+                                    <Label Text="{Loc 'humanoid-profile-editor-subspecies-label'}" />
+                                    <Control HorizontalExpand="True"/>
+                                    <OptionButton Name="SubspeciesButton" HorizontalAlignment="Right" />
+                                </BoxContainer>
+                                <!-- Far Horizons end -->
                                 <!-- Species // Starlight -->
                                 <BoxContainer Name="CCustomSpecieName" HorizontalExpand="True">
                                     <Label Text="{Loc 'humanoid-profile-editor-customspeciename-label'}" />

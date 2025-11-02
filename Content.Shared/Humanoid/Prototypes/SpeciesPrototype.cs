@@ -202,6 +202,14 @@ public sealed partial class SpeciesPrototype : IPrototype
     [DataField]
     public int RoundstartCyberwareCapacity = 3;
 
+    // Far Horizons subspecies start
+    [DataField]
+    public ProtoId<SpeciesPrototype>? SubspeciesOf = null;
+    [DataField]
+    public LocId? SubspeciesName = null;
+    [DataField]
+    public bool HasSubspecies = false;
+    // Far Horizons subspecies end
 }
 
 public enum SpeciesNaming : byte
