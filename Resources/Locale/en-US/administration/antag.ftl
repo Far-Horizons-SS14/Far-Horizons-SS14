@@ -10,7 +10,6 @@ admin-verb-make-changeling = Make the target into a changeling.
 admin-verb-make-paradox-clone = Create a Paradox Clone ghost role of the target.
 admin-verb-make-changeling-wip = Make the target into a (upstream) Changeling.
 admin-verb-make-vampire = Make the target into a vampire.
-admin-verb-make-wizard = Make the target into a wizard
 
 admin-verb-text-make-traitor = Make Traitor
 admin-verb-text-make-initial-infected = Make Initial Infected
@@ -22,6 +21,5 @@ admin-verb-text-make-thief = Make Thief
 admin-verb-text-make-changeling = Make Changeling
 admin-verb-text-make-paradox-clone = Create Paradox Clone
 admin-verb-text-make-changeling-wip = Make Changeling (Upstream, WIP)
-admin-verb-text-make-wizard = Make Wizard
 
 admin-overlay-antag-classic = ANTAG
