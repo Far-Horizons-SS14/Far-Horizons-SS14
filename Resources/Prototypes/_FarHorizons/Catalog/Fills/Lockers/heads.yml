@@ -1,0 +1,81 @@
+
+
+## Syndicate Station
+
+# Commander (Captain)
+
+- type: entity
+  id: LockerCommanderFilledNoLaser
+  suffix: Filled
+  parent: LockerCommander
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: LockerFillCommanderNoLaser
+
+- type: entityTable
+  id: LockerFillCommanderNoLaser
+  table: !type:AllSelector
+    children:
+    - id: ClothingNeckCloakCapFormalSyndi
+    - id: CaptainIDCard
+    - id: CigarGoldCase
+      prob: 0.25
+    - id: ClothingBeltSheathFilled
+    - id: ClothingHeadsetAltCommandSyndi
+    - id: ClothingOuterArmorCaptainCarapaceSyndi
+    - id: CommsComputerCircuitboard
+    - id: DoorRemoteCustom
+    - id: MedalCase
+    - id: NukeDisk
+    - id: PinpointerNuclear
+    - id: PlushieNuke
+      prob: 0.1
+    - id: RubberStampCaptain
+    - id: SpaceCash1000
+    - id: ClothingEyesGlassesCommandSyndi
+    - id: ClothingEyesHudCommandSyndi
+    - id: EncryptionKeyExpedition
+    - id: HeadSkeleton
+      conditions:
+      - !type:PlayerCountCondition
+        max: 15
+    - id: PrintedDocumentGreenshiftAlert
+      conditions:
+      - !type:GamemodeCondition
+        presets:
+        - Greenshift
+        - Sandbox
+
+- type: entity
+  id: LockerCommanderFilled
+  suffix: Filled, AntiqueLaser
+  parent: LockerCommander
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: LockerFillCommanderLaser
+
+- type: entityTable
+  id: LockerFillCommanderLaser
+  table: !type:AllSelector
+    children:
+    - !type:NestedSelector
+      tableId: LockerFillCaptainNoLaser
+    - id: WeaponAntiqueLaser
+
+- type: entity
+  id: LockerCommanderFilledHardsuit
+  suffix: Filled, Hardsuit
+  parent: LockerCommander
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - !type:NestedSelector
+          tableId: LockerFillCaptainLaser
+        - !type:NestedSelector
+          tableId: FillCommanderHardsuit

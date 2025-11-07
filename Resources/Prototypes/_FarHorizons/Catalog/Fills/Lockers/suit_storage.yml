@@ -1,0 +1,26 @@
+
+
+## Syndicate Station
+
+
+- type: entity
+  id: SuitStorageCommander
+  parent: SuitStorageBase
+  suffix: Commander
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: FillCommanderHardsuit
+  - type: AccessReader
+    access: [["Captain"]]
+
+- type: entityTable
+  id: FillCommanderHardsuit
+  table: !type:AllSelector
+    children:
+    - id: ClothingOuterHardsuitCapSyndi
+    - id: ClothingMaskGasCaptainSyndi
+    - id: JetpackCaptainFilled
+    - id: OxygenTankFilled
+    - id: NitrogenTankFilled
