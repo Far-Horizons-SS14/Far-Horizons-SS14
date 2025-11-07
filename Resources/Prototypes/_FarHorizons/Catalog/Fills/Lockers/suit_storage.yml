@@ -1,7 +1,29 @@
+- type: entity
+  id: SuitStorageHoP
+  parent: SuitStorageBase
+  suffix: Head of Personnel
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: FillHoPHardsuit
+  - type: AccessReader
+    access: [["HeadOfPersonnel"]]
+
+- type: entityTable
+  id: FillHoPHardsuit
+  table: !type:AllSelector
+    children:
+    - id: ClothingOuterHardsuitHoP
+    - id: ClothingMaskBreath
+    - id: OxygenTankFilled
+    - id: NitrogenTankFilled
+
 
 
 ## Syndicate Station
 
+# Commander (Captain)
 
 - type: entity
   id: SuitStorageCommander
@@ -22,5 +44,28 @@
     - id: ClothingOuterHardsuitCapSyndi
     - id: ClothingMaskGasCaptainSyndi
     - id: JetpackCaptainFilled
+    - id: OxygenTankFilled
+    - id: NitrogenTankFilled
+
+# Personnel Chief (HoP)
+
+- type: entity
+  id: SuitStoragePC
+  parent: SuitStorageBase
+  suffix: Personnel Chief
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: FillPCHardsuit
+  - type: AccessReader
+    access: [["HeadOfPersonnel"]]
+
+- type: entityTable
+  id: FillPCHardsuit
+  table: !type:AllSelector
+    children:
+    - id: ClothingOuterHardsuitHoPSyndi
+    - id: ClothingMaskBreath
     - id: OxygenTankFilled
     - id: NitrogenTankFilled

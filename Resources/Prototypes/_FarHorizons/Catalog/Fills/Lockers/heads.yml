@@ -79,3 +79,51 @@
           tableId: LockerFillCommanderLaser
         - !type:NestedSelector
           tableId: FillCommanderHardsuit
+
+# Personnel Chief (HoP)
+
+- type: entity
+  id: LockerPersonnelChiefFilled
+  suffix: Filled
+  parent: LockerPersonnelChief
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: LockerFillPersonnelChief
+
+- type: entityTable
+  id: LockerFillPersonnelChief
+  table: !type:AllSelector
+    children:
+    - id: ClothingNeckMantleHOPSyndi
+    - id: ClothingBeltHoPSyndi
+    - id: AccessConfigurator
+    - id: BoxEncryptionKeyAssistant
+    - id: BoxEncryptionKeyService
+    - id: BoxHeadset
+    - id: BoxID
+    - id: BoxPDA
+    - id: CigarGoldCase
+      prob: 0.25
+    - id: ClothingBackpackIan
+      prob: 0.5
+    - id: ClothingHeadsetHoP
+    - id: ClothingNeckGoldmedal
+    - id: DoorRemoteService
+    - id: HoPIDCard
+    - id: IDComputerCircuitboard
+    - id: FundingAllocationComputerCircuitboard
+    - id: CargoRequestServiceComputerCircuitboard
+    - id: RubberStampApproved
+    - id: RubberStampDenied
+    - id: RubberStampHop
+    - id: ClothingEyesGlassesCommandSyndi
+    - id: ClothingEyesHudCommandSyndi
+    - id: BoxFolderHoPClipboard
+    - id: PrintedDocumentGreenshiftAlert
+      conditions:
+      - !type:GamemodeCondition
+        presets:
+        - Greenshift
+        - Sandbox
