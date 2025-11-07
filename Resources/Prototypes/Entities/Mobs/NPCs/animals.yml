@@ -1280,6 +1280,8 @@
     - Ancestor
     understands:
     - Ancestor
+    - GalacticCommon #Far Horizons
+    - SolCommon #Far Horizons
   # Starlight-end
   - type: VentCrawler # Starlight-edit: Vent Crawl
   - type: CombatMode
@@ -1443,15 +1445,6 @@
   description: New church of neo-darwinists actually believe that EVERY animal evolved from a monkey. Tastes like pork, and killing them is both fun and relaxing.
   suffix: syndicate base
   components:
-  # Starlight-Start
-  - type: LanguageSpeaker
-  - type: LanguageKnowledge
-    speaks:
-    - Ancestor
-    understands:
-    - Ancestor
-    - GalacticCommon
-  # Starlight-End
   - type: NameIdentifier
     group: Monkey
   - type: SentienceTarget
@@ -1485,15 +1478,6 @@
   components:
     # make the player a traitor once its taken
   - type: VentCrawler
-  # Starlight-Start
-  - type: LanguageSpeaker
-  - type: LanguageKnowledge
-    speaks:
-    - Ancestor
-    understands:
-    - Ancestor
-    - GalacticCommon
-  # Starlight-End
   - type: AutoTraitor
     profile: TraitorReinforcement
 
@@ -1503,15 +1487,6 @@
   suffix: NukeOps
   components:
   - type: VentCrawler
-  # Starlight-Start
-  - type: LanguageSpeaker
-  - type: LanguageKnowledge
-    speaks:
-    - Ancestor
-    understands:
-    - Ancestor
-    - GalacticCommon
-  # Starlight-End
   - type: NukeOperative
 
 - type: entity
@@ -1521,6 +1496,16 @@
   description: Cousins to the sentient race of lizard people, kobolds blend in with their natural habitat and are as nasty as monkeys; ready to pull out your hair and stab you to death.
   abstract: true
   components:
+  # Far Horizons-Start
+  - type: LanguageSpeaker
+  - type: LanguageKnowledge
+    speaks:
+    - Ancestor
+    understands:
+    - Ancestor
+    - GalacticCommon
+    - Draconic
+  # Far Horizons-End
   - type: NameIdentifier
     group: Kobold
   - type: LizardAccent
@@ -1649,15 +1634,6 @@
   parent: MobBaseKobold
   suffix: syndicate base
   components:
-  # Starlight-Start
-  - type: LanguageSpeaker
-  - type: LanguageKnowledge
-    speaks:
-    - Ancestor
-    understands:
-    - Ancestor
-    - GalacticCommon
-  # Starlight-End
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -1674,15 +1650,6 @@
   parent: MobBaseSyndicateKobold
   suffix: syndicate agent
   components:
-  # Starlight-Start
-  - type: LanguageSpeaker
-  - type: LanguageKnowledge
-    speaks:
-    - Ancestor
-    understands:
-    - Ancestor
-    - GalacticCommon
-  # Starlight-End
     # make the player a traitor once its taken
   - type: AutoTraitor
     profile: TraitorReinforcement
@@ -1692,15 +1659,6 @@
   parent: MobBaseSyndicateKobold
   suffix: NukeOps
   components:
-  # Starlight-Start
-  - type: LanguageSpeaker
-  - type: LanguageKnowledge
-    speaks:
-    - Ancestor
-    understands:
-    - Ancestor
-    - GalacticCommon
-  # Starlight-End
   - type: NukeOperative
 
 - type: entity
