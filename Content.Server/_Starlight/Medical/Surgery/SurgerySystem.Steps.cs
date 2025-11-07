@@ -184,6 +184,8 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
                 RemComp<ActiveNPCComponent>(args.Body);
             if (HasComp<GhostTakeoverAvailableComponent>(args.Body))
                 RemComp<GhostTakeoverAvailableComponent>(args.Body);
+            if (HasComp<GhostRoleComponent>(args.Body))
+                RemComp<GhostRoleComponent>(args.Body);
             if (HasComp<SentienceTargetComponent>(args.Body))
                 RemComp<SentienceTargetComponent>(args.Body);
         }            
