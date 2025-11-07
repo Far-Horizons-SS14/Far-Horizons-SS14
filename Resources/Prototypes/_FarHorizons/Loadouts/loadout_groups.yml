@@ -1,3 +1,5 @@
+# Atmos
+
 - type: loadoutGroup
   id: AtmosTechHead
   name: loadout-group-atmos-tech-hat
@@ -5,6 +7,8 @@
   loadouts:
   - AtmosTechBeret
   - AtmosTechHardhat
+
+# Chemist
 
 - type: loadoutGroup
   id: ChemistHead
@@ -110,3 +114,28 @@
   loadouts:
   - CommandGlassesSyndi
   - CommandHudSyndi
+# Musician
+
+- type: loadoutGroup
+  id: MusicianHead
+  name: loadout-group-musician-head
+  minLimit: 0
+  loadouts:
+    - MusicianHatPerformer
+    - MusicianHatPerformerBright
+    - MusicianHatPerformerDark
+
+- type: loadoutGroup
+  id: MusicianShoes
+  name: loadout-group-musician-shoes
+  minLimit: 1
+  loadouts:
+  - BlackShoes
+  - WhiteShoes
+  - GreenShoes
+  - LeatherShoes
+  - Heels
+  - LaceupShoes
+  - MusicianShoesPerformer
+  - MusicianShoesPerformerBright
+  - MusicianShoesPerformerDark
