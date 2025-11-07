@@ -2,7 +2,6 @@ using Content.Shared.Atmos;
 using Content.Shared.Damage.Components;
 using Content.Shared.Examine;
 using Content.Shared.Radiation.Components;
-using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Audio;
 using Robust.Shared.Random;
@@ -110,7 +109,7 @@ public abstract class SharedReactorPartSystem : EntitySystem
                 radcomp.Intensity = (component.Radioactive * 0.1f) + (component.NRadioactive * 0.15f) + (component.SpentFuel * 0.125f);
             }
 
-            if (component.NRadioactive > 0 && !_entityManager.HasComponent<PointLightComponent>(uid))
+            if (component.NRadioactive > 0 && !_lightSystem.TryGetLight(uid, out _))
             {
                 var lightcomp = _lightSystem.EnsureLight(uid);
                 _lightSystem.SetEnergy(uid, component.NRadioactive, lightcomp);
