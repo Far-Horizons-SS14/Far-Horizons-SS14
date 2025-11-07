@@ -28,6 +28,10 @@ using Content.Shared.Research.Components;
 using Content.Server.NPC.Components;
 using Content.Shared.NPC.Components;
 using Content.Shared.NPC;
+using Content.Server.Ghost.Roles.Components;
+using Content.Server.StationEvents.Components;
+using Content.Server.Mind;
+using Content.Shared.Tag; 
 //FarHorizons End
 
 namespace Content.Server.Starlight.Medical.Surgery;
@@ -45,6 +49,8 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
     [Dependency] private readonly SharedBloodstreamSystem _bloodstreamSystem = default!;
     [Dependency] private readonly SharedRottingSystem _rottingSystem = default!;
     [Dependency] private readonly SleepingSystem _sleeping = default!;
+    [Dependency] private readonly MindSystem _mind = default!;
+    [Dependency] private readonly TagSystem _tag = default!;
 
     public void InitializeSteps()
     {
@@ -133,6 +139,11 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
             return;
         }
 
+        if (HasComp<OrganBrainComponent>(organId) && _tag.HasTag(args.Body, "VimPilot"))
+        {
+            _mind.MakeSentient(args.Body);
+        }      
+        
         var ev = new SurgeryOrganImplantationCompleted(body, part, organId);
         RaiseLocalEvent(organId, ref ev);
     }
@@ -163,7 +174,7 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
                 _rottingSystem.ReduceAccumulator(args.Body, TimeSpan.FromSeconds(surgComp.time + BonusRotRemoved));
             }
 
-        if(type == typeof(OrganBrainComponent))
+        if(type == typeof(OrganBrainComponent) && _tag.HasTag(args.Body, "VimPilot"))
         {
             if (HasComp<NPCRetaliationComponent>(args.Body))
                 RemComp<NPCRetaliationComponent>(args.Body);
@@ -171,6 +182,10 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
                 RemComp<NpcFactionMemberComponent>(args.Body);
             if (HasComp<ActiveNPCComponent>(args.Body))
                 RemComp<ActiveNPCComponent>(args.Body);
+            if (HasComp<GhostTakeoverAvailableComponent>(args.Body))
+                RemComp<GhostTakeoverAvailableComponent>(args.Body);
+            if (HasComp<SentienceTargetComponent>(args.Body))
+                RemComp<SentienceTargetComponent>(args.Body);
         }            
         //Far Horizons End
         if (ent.Comp.Slot != null && _containers.TryGetContainer(args.Part, SharedBodySystem.GetOrganContainerId(ent.Comp.Slot), out var container))
@@ -239,10 +254,24 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
         if (_entity.TryEntity<TransformComponent, HumanoidAppearanceComponent, BodyComponent>(args.Body, out var body))
         {
             if (_entity.TryEntity<TransformComponent, MetaDataComponent, BodyPartComponent>(args.Part, out var limb) && !surgProto.HasComponent<NecrosisSurgeryStepComponent>())
+            {
                 _limbSystem.Amputatate(body, limb);
+                if (TryComp<SurgeryProgressComponent>(limb, out var progress))
+                {
+                    progress.CompletedSteps.Clear();
+                    progress.CompletedSurgeries.Clear();
+                }
+                if (HasComp<SkinRetractedComponent>(limb))
+                    RemComp<SkinRetractedComponent>(limb);
+                if (HasComp<BleedersClampedComponent>(limb))
+                    RemComp<BleedersClampedComponent>(limb);
+                if (HasComp<IncisionOpenComponent>(limb))
+                    RemComp<IncisionOpenComponent>(limb);
+            }
+
             else if (TryComp(args.Body, out BodyComponent? bodyComp) && TryComp(bodyComp.RootContainer.ContainedEntity, out ContainerManagerComponent? contComp))
             {
-                if(surgProto.TryGetComponent<NecrosisSurgeryStepComponent>(out var surgComp) &&
+                if (surgProto.TryGetComponent<NecrosisSurgeryStepComponent>(out var surgComp) &&
                     _entity.TryEntity<TransformComponent, MetaDataComponent, BodyPartComponent>(contComp.Containers[surgComp.Target].ContainedEntities.First(), out var limb2))
                 {
                     if (TryComp<RottingComponent>(args.Body, out var rotting) && TryComp<PerishableComponent>(args.Body, out var perishable))
@@ -260,11 +289,22 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
                             }
                         }
                         var BonusRotRemoved = Math.Round((rotting.TotalRotTime.TotalSeconds + perishable.RotAccumulator.TotalSeconds) / ResearchModifier);
-                        _rottingSystem.ReduceAccumulator(args.Body, TimeSpan.FromSeconds(surgComp.time+BonusRotRemoved));   
+                        _rottingSystem.ReduceAccumulator(args.Body, TimeSpan.FromSeconds(surgComp.time + BonusRotRemoved));
 
                     }
                     _limbSystem.Amputatate(body, limb2);
-                }   
+                    if (TryComp<SurgeryProgressComponent>(limb2, out var progress))
+                    {
+                        progress.CompletedSteps.Clear();
+                        progress.CompletedSurgeries.Clear();
+                    }
+                    if (HasComp<SkinRetractedComponent>(limb))
+                        RemComp<SkinRetractedComponent>(limb);
+                    if (HasComp<BleedersClampedComponent>(limb))
+                        RemComp<BleedersClampedComponent>(limb);
+                    if (HasComp<IncisionOpenComponent>(limb))
+                        RemComp<IncisionOpenComponent>(limb);
+                }
             }
         }
     }
