@@ -222,3 +222,18 @@
     access: [["Captain"]]
   - type: WiresPanelSecurity # Maintenance panel
     securityLevel: medSecurity
+
+- type: entity
+  id: LockerPersonnelChief
+  parent: LockerBaseSecure
+  name: personnel chief's locker
+  components:
+  - type: Appearance
+  - type: EntityStorageVisuals
+    stateBaseClosed: hop
+    stateDoorOpen: hop_open
+    stateDoorClosed: hop_door
+  - type: AccessReader
+    access: [["HeadOfPersonnel"]]
+  - type: WiresPanelSecurity # Maintenance panel
+    securityLevel: medSecurity 
