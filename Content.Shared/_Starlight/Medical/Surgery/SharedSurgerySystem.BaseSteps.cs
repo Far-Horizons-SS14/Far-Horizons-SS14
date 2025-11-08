@@ -28,7 +28,6 @@ namespace Content.Shared.Starlight.Medical.Surgery;
 public abstract partial class SharedSurgerySystem
 {
     [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly HealingSystem _healing = default!;
     private void InitializeSteps()
     {
@@ -43,8 +42,6 @@ public abstract partial class SharedSurgerySystem
     }
     private void OnTargetDoAfter(Entity<SurgeryTargetComponent> ent, ref SurgeryDoAfterEvent args)
     {
-         if (!_timing.IsFirstTimePredicted)
-            return;
         if (args.Cancelled ||
             args.Handled ||
             args.Target is not { } target ||
@@ -59,8 +56,7 @@ public abstract partial class SharedSurgerySystem
             return;
         }
         //Far Horizons Start
-        _random.SetSeed((int)_timing.CurTime.TotalMilliseconds);
-        if (!_random.Prob(args.SuccessRate))
+        if (args.DidSurgeryFail)
         {
             var StepProto = _prototypes.Index<EntityPrototype>(args.Step);
             if (StepProto.TryGetComponent<OnFailDamageComponent>(out var comp, _compFactory) && TryComp<BodyPartComponent>(args.Target, out var bodyComp))
@@ -333,13 +329,17 @@ public abstract partial class SharedSurgerySystem
 
                 if (totalSuccesRate < SmallestSuccessRate)
                     SmallestSuccessRate = totalSuccesRate;
-                //FarHorizons End
+                
             }
+        bool didSurgeryFail = false;
+        if (!_random.Prob(SmallestSuccessRate))
+            didSurgeryFail = true;
+        //FarHorizons End
         
         if (TryComp(body, out TransformComponent? xform))
             _rotateToFace.TryFaceCoordinates(user, _transform.GetMapCoordinates(body, xform).Position);
 
-        var ev = new SurgeryDoAfterEvent(args.Surgery, args.Step, SmallestSuccessRate);
+        var ev = new SurgeryDoAfterEvent(args.Surgery, args.Step, didSurgeryFail);
         var doAfter = new DoAfterArgs(EntityManager, user, duration, ev, body, part)
         {
             //FarHorizons Start
