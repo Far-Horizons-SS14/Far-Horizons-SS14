@@ -117,7 +117,7 @@ public abstract partial class SharedSurgerySystem
     }
     private void OnSpeciesConditionValid(Entity<SurgerySpeciesConditionComponent> ent, ref SurgeryValidEvent args)
     {
-        if (EntityManager.HasComponent<AnimalBypassComponent>(ent)) return;
+        if (EntityManager.HasComponent<AnimalBypassComponent>(ent) && _tag.HasTag(args.Body, "VimPilot")) return;
         
         if (!EntityManager.TryGetComponent<HumanoidAppearanceComponent>(args.Body, out var humanoidAppearanceComponent))
         {

@@ -22,6 +22,7 @@
 - type: entity
   parent: SurgeryBase
   id: SurgeryOpenIncisionSlime
+  name: Open Incision
   components:
   - type: Surgery
     priority: -100
@@ -55,6 +56,7 @@
 - type: entity
   parent: SurgeryBase
   id: SurgeryCloseIncisionSlime
+  name: Close Incision
   components:
   - type: Surgery
     requirement:
@@ -495,6 +497,7 @@
 - type: entity
   parent: SurgeryBase
   id: SurgeryExtractHeartSlime
+  name: Extract Heart
   components:
   - type: Surgery
     requirement:
@@ -520,6 +523,7 @@
 - type: entity
   parent: SurgeryBase
   id: SurgeryImplantHeartSlime
+  name: Implant Heart
   components:
   - type: Surgery
     requirement:
