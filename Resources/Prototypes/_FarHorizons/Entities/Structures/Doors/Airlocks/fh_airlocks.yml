@@ -142,6 +142,16 @@
       layoutId: AirlockCargo
 
 - type: entity
+  parent: FHAirlockSalvage
+  id: FHAirlockSalvageLead
+  suffix: Salvage Lead
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/salvage.rsi
+    - type: Wires
+      layoutId: AirlockCargo
+
+- type: entity
   parent: FHAirlockCommand # if you get centcom door somehow it counts as command, also inherit panel
   id: FHAirlockCentralCommand
   suffix: Central Command
@@ -218,6 +228,16 @@
   components:
     - type: Sprite
       sprite: _FarHorizons/Structures/Doors/Airlocks/Glass/salvage.rsi
+    - type: Wires
+      layoutId: AirlockCargo
+
+- type: entity
+  parent: FHAirlockSalvageGlass
+  id: FHAirlockSalvageLeadGlass
+  suffix: Salvage Lead
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/salvage.rsi
     - type: Wires
       layoutId: AirlockCargo
 

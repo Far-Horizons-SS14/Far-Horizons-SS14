@@ -172,6 +172,15 @@
       board: [ DoorElectronicsSalvage ]
 
 - type: entity
+  parent: FHAirlockSalvageLead
+  id: FHAirlockSalvageLeadLocked
+  suffix: Salvage Lead, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSalvageLead ]
+
+- type: entity
   parent: FHAirlockMining
   id: FHAirlockMiningLocked
   suffix: Mining/Salvage, Locked
@@ -796,6 +805,15 @@
     - type: ContainerFill
       containers:
         board: [ DoorElectronicsSalvage ]
+
+- type: entity
+  parent: FHAirlockSalvageLeadGlass
+  id: FHAirlockSalvageLeadGlassLocked
+  suffix: Salvage Lead, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSalvageLead ]
 
 - type: entity
   parent: FHAirlockMiningGlass
