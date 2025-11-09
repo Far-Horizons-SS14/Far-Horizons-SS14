@@ -178,6 +178,7 @@ namespace Content.IntegrationTests.Tests
             "FHCog", 
             "FHManor", 
             "FHOasis",
+            "FHOmega",
             #endregion
         };
 

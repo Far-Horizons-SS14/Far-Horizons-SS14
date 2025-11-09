@@ -6,14 +6,16 @@
   components:
   - type: Transform
     anchored: true
-  - type: Fixtures
+  - type: Fixtures      
     fixtures:
       fix1:
         shape:
           !type:PhysShapeCircle
           radius: 0.25
         mask:
-        - Impassable
+        - LowImpassable #Far Horizons - Holopad should be LowImpassable, not Impassable....
+  - type: Physics #Far Horizons - Stop blocking hallways and everything else you punk.
+    canCollide: false #Far Horizons - That's right. No more collisions for you punk.
   - type: ApcPowerReceiver
     powerLoad: 300
   - type: StationAiVision
