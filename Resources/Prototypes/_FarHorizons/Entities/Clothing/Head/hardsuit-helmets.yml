@@ -56,8 +56,6 @@
     sprite: _FarHorizons/Clothing/Head/Hardsuits/hopspace.rsi
   - type: Clothing
     sprite: _FarHorizons/Clothing/Head/Hardsuits/hopspace.rsi
-  - type: PointLight
-    color: "#f4ffad"
   - type: PressureProtection
     highPressureMultiplier: 0.5
     lowPressureMultiplier: 1000
@@ -80,6 +78,10 @@
   - type: PressureProtection
     highPressureMultiplier: 0.3
     lowPressureMultiplier: 1000
+  - type: PointLight
+    color: green
+    radius: 3.5
+    energy: 5
   - type: Tag
     tags:
     - CorgiWearable
@@ -97,3 +99,7 @@
     sprite: _FarHorizons/Clothing/Head/Hardsuits/syndihopspace.rsi
   - type: Clothing
     sprite: _FarHorizons/Clothing/Head/Hardsuits/syndihopspace.rsi
+  - type: PointLight
+    color: green
+    radius: 3.5
+    energy: 5
