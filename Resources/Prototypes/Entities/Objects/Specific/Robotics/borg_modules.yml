@@ -841,6 +841,7 @@
   - type: ItemBorgModule
     hands:
     - item: HandheldHealthAnalyzerUnpowered
+    - item: DefibrillatorOneHandedUnpowered
     - item: Gauze
       hand:
         emptyLabel: borg-slot-topicals-empty
@@ -932,6 +933,7 @@
         whitelist:
           components:
           - FitsInDispenser
+    - item: HandLabeler
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: chem-module }
 
@@ -986,6 +988,7 @@
           - FitsInDispenser
           tags:
           - ChemDispensable
+    - item: HandLabeler
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: adv-chem-module }
 
