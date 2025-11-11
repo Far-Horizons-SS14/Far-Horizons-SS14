@@ -2,6 +2,8 @@ using Robust.Shared.GameStates;
 using Robust.Shared.Audio;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Atmos;
+using Content.Shared._FarHorizons.PhysicalMaterial;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared._FarHorizons.Power.Generation.FissionGenerator;
 
@@ -145,6 +147,9 @@ public sealed partial class NuclearReactorComponent : Component
     /// </summary>
     [DataField]
     public bool ApplyPrefab = true;
+
+    [DataField("material")]
+    public ProtoId<PhysicalMaterialPrototype> Material = "steel";
 
     [DataField("inlet")]
     public string InletName { get; set; } = "inlet";
