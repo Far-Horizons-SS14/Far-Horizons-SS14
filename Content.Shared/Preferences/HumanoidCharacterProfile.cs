@@ -138,7 +138,8 @@ namespace Content.Shared.Preferences
             HashSet<ProtoId<TraitPrototype>> traitPreferences,
             Dictionary<string, RoleLoadout> loadouts,
             List<string> cybernetics, // Starlight
-            bool enabled)
+            bool enabled,
+            RoleLoadout? speciesLoadout) // Far Horizons
         {
             Name = name;
             Voice = voice;
@@ -162,6 +163,7 @@ namespace Content.Shared.Preferences
             _loadouts = loadouts;
             Cybernetics = cybernetics; // Starlight
             Enabled = enabled;
+            SpeciesLoadout = speciesLoadout;
         }
 
         /// <summary>Copy constructor</summary>
@@ -187,7 +189,8 @@ namespace Content.Shared.Preferences
                 new HashSet<ProtoId<TraitPrototype>>(other.TraitPreferences),
                 new Dictionary<string, RoleLoadout>(other.Loadouts),
                 other.Cybernetics, // Starlight
-                other.Enabled)
+                other.Enabled,
+                other.SpeciesLoadout) // Far Horizons
         {
         }
 
@@ -467,6 +470,7 @@ namespace Content.Shared.Preferences
             if (!Loadouts.SequenceEqual(other.Loadouts)) return false;
             if (FlavorText != other.FlavorText) return false;
             if (Enabled != other.Enabled) return false;
+            if (SpeciesLoadout != other.SpeciesLoadout) return false; // Far Horizons
             return Appearance.MemberwiseEquals(other.Appearance);
         }
 
@@ -639,6 +643,17 @@ namespace Content.Shared.Preferences
             {
                 _loadouts.Remove(value);
             }
+
+            // Far Horizons start
+            if (speciesPrototype.Loadout == null)
+                SpeciesLoadout = null;
+            else
+            {
+                SpeciesLoadout ??= new RoleLoadout(speciesPrototype.Loadout.Value);
+                SpeciesLoadout.Role = speciesPrototype.Loadout.Value;
+                SpeciesLoadout.SetDefault(this, session, prototypeManager);
+            }
+            // Far Horizons end
         }
 
         /// <summary>
@@ -725,6 +740,7 @@ namespace Content.Shared.Preferences
             hashCode.Add((int)SpawnPriority);
             hashCode.Add(Enabled);
             hashCode.Add(Cybernetics); // Starlight
+            hashCode.Add(SpeciesLoadout); // Far Horizons
             return hashCode.ToHashCode();
         }
 

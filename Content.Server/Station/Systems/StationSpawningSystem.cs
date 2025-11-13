@@ -185,6 +185,10 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
             // }
         }
 
+        // Far Horizons species loadouts
+        if (species.Loadout != null && _prototypeManager.TryIndex(species.Loadout.Value, out var speciesLoadoutProto) && profile != null && profile.SpeciesLoadout != null)
+            EquipRoleLoadout(entity.Value, profile.SpeciesLoadout, speciesLoadoutProto);
+
         SetupCybernetics(entity.Value, profile?.Cybernetics ?? []); // Starlight
 
         if (loadout != null)

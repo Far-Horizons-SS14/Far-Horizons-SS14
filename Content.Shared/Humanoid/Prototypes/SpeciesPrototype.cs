@@ -1,5 +1,6 @@
 using Content.Shared.Dataset;
 using Content.Shared.Humanoid.Markings;
+using Content.Shared.Preferences.Loadouts;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
@@ -210,6 +211,10 @@ public sealed partial class SpeciesPrototype : IPrototype
     [DataField]
     public bool HasSubspecies = false;
     // Far Horizons subspecies end
+
+    // Far Horizons species loadout
+    [DataField]
+    public ProtoId<RoleLoadoutPrototype>? Loadout = null;
 }
 
 public enum SpeciesNaming : byte

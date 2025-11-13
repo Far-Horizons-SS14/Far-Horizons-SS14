@@ -1,0 +1,25 @@
+- type: roleLoadout
+  id: ProtogenLoadout
+  groups:
+  - ProtogenCoolHat
+
+---
+
+- type: loadoutGroup
+  id: ProtogenCoolHat
+  name: loadout-group-protogen-cool-hat
+  loadouts:
+  - ProtogenCoolHat1
+  - ProtogenCoolHat2
+
+---
+
+- type: loadout
+  id: ProtogenCoolHat1
+  equipment:
+    head: ClothingHeadHatCone
+
+- type: loadout
+  id: ProtogenCoolHat2
+  equipment:
+    head: ClothingHeadHatSkub

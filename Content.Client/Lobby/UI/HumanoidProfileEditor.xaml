@@ -119,6 +119,12 @@
                                     <Button Name="SiliconVoicePreviewButton" Text="{Loc 'humanoid-profile-editor-voice-play'}" MaxWidth="80" />
                                 </BoxContainer>
                                 <!--Starlight End-->
+                                <!--Far Horizons species loadouts-->
+                                <BoxContainer HorizontalExpand="True" Name="CSpeciesLoadout">
+                                    <Label Text="{Loc 'humanoid-profile-editor-species-loadout'}" />
+                                    <Control HorizontalExpand="True"/>
+                                    <Button Name="SpeciesLoadout" Text="{Loc 'loadout-window'}" HorizontalAlignment="Right" />
+                                </BoxContainer>
                             </BoxContainer>
                             <!-- STARLIGHT - Species Size -->
                             <BoxContainer Margin="10" HorizontalExpand="True" Orientation="Vertical">

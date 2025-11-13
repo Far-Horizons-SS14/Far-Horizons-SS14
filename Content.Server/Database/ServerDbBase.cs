@@ -311,6 +311,13 @@ namespace Content.Server.Database
                 }
             }
             //end starlight
+            //start Far Horizons
+            RoleLoadout? speciesLoadout = null;
+            if (loadouts.Remove(HumanoidCharacterProfile.SpeciesLoadoutDatabaseKey, out var value))
+            {
+                speciesLoadout = value;
+            }
+            //end Far Horizons
             return new HumanoidCharacterProfile(
                 profile.CharacterName,
                 profile.Voice,
@@ -347,7 +354,8 @@ namespace Content.Server.Database
                 traits.ToHashSet(),
                 loadouts,
                 profile.StarLightProfile?.CyberneticIds ?? [], // Starlight
-                profile.Enabled
+                profile.Enabled,
+                speciesLoadout // Far Horizons
             );
         }
 
@@ -416,7 +424,13 @@ namespace Content.Server.Database
 
             profile.Loadouts.Clear();
 
-            foreach (var (role, loadouts) in humanoid.Loadouts)
+            // Far Horizons start
+            Dictionary<string, RoleLoadout> extraLoadouts = new(humanoid.Loadouts);
+            if (humanoid.SpeciesLoadout != null)
+                extraLoadouts[HumanoidCharacterProfile.SpeciesLoadoutDatabaseKey] = humanoid.SpeciesLoadout;
+            // Far Horizons end
+
+            foreach (var (role, loadouts) in extraLoadouts) // Far Horizons species loadout
             {
                 var dz = new ProfileRoleLoadout()
                 {
