@@ -38,7 +38,8 @@ public sealed class HandheldRadioSystem : EntitySystem
         SubscribeLocalEvent<HandheldRadioComponent, GetVerbsEvent<AlternativeVerb>>(OnGetAlternativeVerb);
 
         var query = EntityQueryEnumerator<HandheldRadioComponent>();
-        while (query.MoveNext(out var uid, out var comp))            AddFrequencyCache((uid, comp));
+        while (query.MoveNext(out var uid, out var comp))
+            AddFrequencyCache((uid, comp));
     }
 
     public override void Update(float frameTime)
