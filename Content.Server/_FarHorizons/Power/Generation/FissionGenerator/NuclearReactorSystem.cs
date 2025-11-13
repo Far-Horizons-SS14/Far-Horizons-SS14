@@ -114,7 +114,7 @@ public sealed class NuclearReactorSystem : SharedNuclearReactorSystem
             }
 
             comp.ApplyPrefab = false;
-            UpdateGridVisual(uid, comp);
+            UpdateGridVisual(comp);
         }
 
         if (!_nodeContainer.TryGetNodes(uid, comp.InletName, comp.OutletName, out OffsetPipeNode? inlet, out OffsetPipeNode? outlet))
@@ -444,7 +444,7 @@ public sealed class NuclearReactorSystem : SharedNuclearReactorSystem
         Array.Clear(comp.TemperatureGrid);
         Array.Clear(comp.FluxGrid);
 
-        UpdateGridVisual(ent.Owner, comp);
+        UpdateGridVisual(comp);
     }
 
     private void UpdateVisuals(Entity<NuclearReactorComponent> ent)
@@ -648,7 +648,7 @@ public sealed class NuclearReactorSystem : SharedNuclearReactorSystem
             _entityManager.DeleteEntity(comp.PartSlot.Item);
         }
 
-        UpdateGridVisual(ent.Owner, comp);
+        UpdateGridVisual(comp);
         UpdateUI(ent.Owner, comp);
     }
 
