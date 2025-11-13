@@ -18,6 +18,26 @@
   - ChemistBeret
   - MedicalBeret
 
+# Chief Medical Officer
+
+- type: loadoutGroup
+  id: CMOBackpack
+  name: loadout-group-cmo-backpack
+  loadouts:
+    - ChemistBackpack
+    - ChemistSatchel
+    - ChemistDuffel
+    - MedicalDoctorBackpack
+    - MedicalDoctorSatchel
+    - MedicalDoctorDuffel
+    - ParamedicBackpack
+    - ParamedicDuffel
+    - ParamedicSatchel
+    - VirologyBackpack
+    - VirologyDuffel
+    - VirologySatchel
+    - LeatherSatchel
+
 # Corpsman #
 
 - type: loadoutGroup
@@ -70,6 +90,19 @@
   loadouts:
   - Nitrile
   - BlackNitrile
+
+# Doctor
+
+- type: loadoutGroup
+  id: DoctorBackpack
+  name: loadout-group-doctor-backpack
+  loadouts:
+    - MedicalDoctorBackpack
+    - MedicalDoctorSatchel
+    - MedicalDoctorDuffel
+    - VirologyBackpack
+    - VirologyDuffel
+    - VirologySatchel
 
 # Magistrate #
 
@@ -140,3 +173,25 @@
   - MusicianShoesPerformer
   - MusicianShoesPerformerBright
   - MusicianShoesPerformerDark
+
+# Paramedic
+
+- type: loadoutGroup
+  id: ParamedicBackpack
+  name: loadout-group-paramedic-backpack
+  minLimit: 0
+  loadouts:
+    - ParamedicBackpack
+    - ParamedicDuffel
+    - ParamedicSatchel
+
+# Virologist
+
+- type: loadoutGroup
+  id: VirologistBag
+  name: loadout-group-virologist-backpack
+  minLimit: 0
+  loadouts:
+    - VirologyBackpack
+    - VirologyDuffel
+    - VirologySatchel

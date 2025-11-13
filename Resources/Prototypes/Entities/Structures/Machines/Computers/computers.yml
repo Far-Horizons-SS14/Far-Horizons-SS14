@@ -498,11 +498,12 @@
   description: A computer used to interface with R&D tools.
   components:
   - type: Sprite
+    sprite: _FarHorizons/Structures/Machines/Computers/research.rsi #Far Horizons
     layers:
     - map: ["computerLayerBody"]
       state: computer
     - map: ["computerLayerKeyboard"]
-      state: generic_keyboard
+      state: computer #Far Horizons
     - map: ["computerLayerScreen"]
       state: rdcomp
     - map: ["computerLayerKeys"]
@@ -546,15 +547,16 @@
   description: A computer used to interface with the artifact analyzer.
   components:
   - type: Sprite
+    sprite: _FarHorizons/Structures/Machines/Computers/artifactconsole.rsi #Far Horizons
     layers:
     - map: ["computerLayerBody"]
       state: computer
     - map: ["computerLayerKeyboard"]
-      state: generic_keyboard
+      state: computer #Far Horizons
     - map: ["computerLayerScreen"]
       state: artifact
     - map: ["computerLayerKeys"]
-      state: tech_key
+      state: artifact #Far Horizons
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
   - type: ResearchClient
@@ -1168,15 +1170,16 @@
   description: Used by the science department to order supplies.
   components:
   - type: Sprite
+    sprite: _FarHorizons/Structures/Machines/Computers/scirequest.rsi #Far Horizons
     layers:
     - map: ["computerLayerBody"]
       state: computer
     - map: ["computerLayerKeyboard"]
-      state: generic_keyboard
+      state: computer #Far Horizons
     - map: ["computerLayerScreen"]
       state: request-sci
     - map: ["computerLayerKeys"]
-      state: generic_keys
+      state: request-sci #Far Horizons
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
   - type: CargoOrderConsole
@@ -1708,15 +1711,16 @@
   description: Used to remotely monitor, disable and destroy the station's cyborgs.
   components:
   - type: Sprite
+    sprite: _FarHorizons/Structures/Machines/Computers/robotics.rsi #Far Horizons
     layers:
     - map: ["computerLayerBody"]
       state: computer
     - map: ["computerLayerKeyboard"]
-      state: generic_keyboard
+      state: computer #Far Horizons
     - map: ["computerLayerScreen"]
       state: robot
     - map: ["computerLayerKeys"]
-      state: rd_key
+      state: robot #Far Horizons
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
   - type: RoboticsConsole
@@ -1751,6 +1755,7 @@
   description: Used to remotely monitor all xenoborgs.
   components:
   - type: Sprite
+    sprite: Structures/Machines/computers.rsi #Far Horizons
     layers:
     - map: ["computerLayerBody"]
       state: computer

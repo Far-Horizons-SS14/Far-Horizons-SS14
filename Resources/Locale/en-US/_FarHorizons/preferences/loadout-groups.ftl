@@ -2,6 +2,8 @@ loadout-group-atmos-tech-hat = Atmospherics Technician Hat
 
 loadout-group-chemist-hat = Chemist Head
 
+loadout-group-cmo-backpack = CMO Backpack
+
 loadout-group-corpsman-head = Corpsman head
 loadout-group-corpsman-jumpsuit = Corpsman jumpsuit
 loadout-group-corpsman-backpack = Corpsman backpack
@@ -10,9 +12,15 @@ loadout-group-corpsman-eyewear = Corpsman eyewear
 loadout-group-corpsman-belt = Corpsman belt
 loadout-group-corpsman-gloves = Corpsman gloves
 
+loadout-group-doctor-backpack = Medical Doctor Backpack
+
 loadout-group-magistrate-hat = Magistrate Head
 loadout-group-magistrate-uniform = Magistrate Uniform
 loadout-group-magistrate-neck = Magistrate Neck
 
 loadout-group-musician-head = Musician Head
 loadout-group-musician-shoes = Musician Shoes
+
+loadout-group-paramedic-backpack = Paramedic Backpack
+
+loadout-group-virologist-backpack = Virologist Backpack
