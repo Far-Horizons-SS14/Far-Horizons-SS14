@@ -172,13 +172,22 @@
       board: [ DoorElectronicsSalvage ]
 
 - type: entity
-  parent: FHAirlockMining
-  id: FHAirlockMiningLocked
-  suffix: Mining(Salvage), Locked
+  parent: FHAirlockSalvageLead
+  id: FHAirlockSalvageLeadLocked
+  suffix: Salvage Lead, Locked
   components:
   - type: ContainerFill
     containers:
-      board: [ DoorElectronicsSalvage ]
+      board: [ DoorElectronicsSalvageLead ]
+
+- type: entity
+  parent: FHAirlockMining
+  id: FHAirlockMiningLocked
+  suffix: Mining/Salvage, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSalvageMining ]
 
 - type: entity
   parent: FHAirlockMedical
@@ -509,6 +518,15 @@
     sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/maint.rsi
 
 - type: entity
+  parent: FHAirlockSurgery
+  id: FHAirlockSurgeryLocked
+  suffix: Surgery, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSurgery ]
+
+- type: entity
   parent: FHAirlockMedicalMorgueLocked
   id: FHAirlockMedicalMorgueMaintLocked
   suffix: Morgue, Locked, Maint
@@ -531,6 +549,15 @@
   components:
   - type: Sprite
     sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/maint.rsi
+
+- type: entity
+  parent: FHAirlockRobotics
+  id: FHAirlockRoboticsLocked
+  suffix: Robotics, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsRobotics ]
 
 - type: entity
   parent: FHAirlockMedicalScienceLocked
@@ -780,6 +807,24 @@
         board: [ DoorElectronicsSalvage ]
 
 - type: entity
+  parent: FHAirlockSalvageLeadGlass
+  id: FHAirlockSalvageLeadGlassLocked
+  suffix: Salvage Lead, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSalvageLead ]
+
+- type: entity
+  parent: FHAirlockMiningGlass
+  id: FHAirlockMiningGlassLocked
+  suffix: Mining/Salvage, Locked
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsSalvageMining ]
+
+- type: entity
   parent: FHAirlockChemistryGlass
   id: FHAirlockChemistryGlassLocked
   suffix: Chemistry, Locked
@@ -816,6 +861,15 @@
         board: [ DoorElectronicsMedical ]
 
 - type: entity
+  parent: FHAirlockSurgeryGlass
+  id: FHAirlockSurgeryGlassLocked
+  suffix: Surgery, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSurgery ]
+
+- type: entity
   parent: FHAirlockScienceGlass
   id: FHAirlockScienceGlassLocked
   suffix: Science, Locked
@@ -823,6 +877,15 @@
     - type: ContainerFill
       containers:
         board: [ DoorElectronicsResearch ]
+
+- type: entity
+  parent: FHAirlockRoboticsGlass
+  id: FHAirlockRoboticsGlassLocked
+  suffix: Robotics, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsRobotics ]
 
 - type: entity
   parent: FHAirlockScienceGlass
