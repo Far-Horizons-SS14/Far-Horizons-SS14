@@ -585,7 +585,7 @@ public sealed class NuclearReactorSystem : SharedNuclearReactorSystem
                 neutron[pos] = reactor.NeutronGrid[x, y];
                 icon[pos] = reactorPart != null ? reactorPart.IconStateInserted : "base";
 
-                partName[pos] = reactorPart != null ? reactorPart.Name : "empty";
+                partName[pos] = reactorPart != null ? _prototypes.Index(reactorPart.ProtoId).Name : "empty";
                 partInfo[pos] = reactorPart != null ? reactorPart.Properties!.NeutronRadioactivity : 0;
                 partInfo[pos + zoff] = reactorPart != null ? reactorPart.Properties!.Radioactivity : 0;
                 partInfo[pos + (zoff * 2)] = reactorPart != null ? reactorPart.Properties!.FissileIsotopes : 0;
@@ -629,11 +629,11 @@ public sealed class NuclearReactorSystem : SharedNuclearReactorSystem
                 return;
             }
 
-            var item = SpawnInContainerOrDrop("BaseReactorItem", ent.Owner, "part_slot");
-            _metaDataSystem.SetEntityName(item, part!.Name);
+            var item = SpawnInContainerOrDrop(part!.ProtoId, ent.Owner, "part_slot");
+            _entityManager.RemoveComponent<ReactorPartComponent>(item);
             _entityManager.AddComponent(item, new ReactorPartComponent(part!));
 
-            _adminLog.Add(LogType.Action, $"{ToPrettyString(args.Actor):actor} removed {part!.Name} from position {args.Position} from {ToPrettyString(ent):target}");
+            _adminLog.Add(LogType.Action, $"{ToPrettyString(args.Actor):actor} removed {ToPrettyString(item):item} from position {args.Position} in {ToPrettyString(ent):target}");
             comp.ComponentGrid[(int)pos.X, (int)pos.Y] = null;
         }
         else
@@ -644,7 +644,8 @@ public sealed class NuclearReactorSystem : SharedNuclearReactorSystem
                 return;
 
             _adminLog.Add(LogType.Action, $"{ToPrettyString(args.Actor):actor} added {ToPrettyString(comp.PartSlot.Item):item} to position {args.Position} in {ToPrettyString(ent):target}");
-            comp.ComponentGrid[(int)pos.X, (int)pos.Y]!.Name = Identity.Name(comp.PartSlot.Item.Value, _entityManager);
+            var proto = _entityManager.GetComponent<MetaDataComponent>(comp.PartSlot.Item.Value).EntityPrototype;
+            comp.ComponentGrid[(int)pos.X, (int)pos.Y]!.ProtoId = proto != null ? proto.ID : "BaseReactorPart";
             _entityManager.DeleteEntity(comp.PartSlot.Item);
         }
 

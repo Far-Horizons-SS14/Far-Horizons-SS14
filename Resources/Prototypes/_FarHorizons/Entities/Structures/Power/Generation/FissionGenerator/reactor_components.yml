@@ -1,8 +1,9 @@
 - type: entity
-  id: BaseReactorItem
+  id: BaseReactorPart
   parent: BaseItem
   categories: [ HideSpawnMenu ]
   components:
+  - type: ReactorPart
   - type: Sprite
     sprite: _FarHorizons/Structures/Power/Generation/FissionGenerator/reactor_parts.rsi
     state: default_rod
@@ -16,13 +17,6 @@
     guides:
     - NuclearReactor
     - Power
-  
-- type: entity
-  id: BaseReactorPart
-  abstract: true
-  parent: BaseReactorItem
-  components:
-  - type: ReactorPart
 
 # Fuel Rods
 - type: entity
@@ -56,6 +50,8 @@
         - ReagentId: Radium
           Quantity: 200
         canReact: false
+  - type: StealTarget
+    stealGroup: ReactorFuelRodSteal
 
 - type: entity
   id: CerenkiteReactorFuelRod
