@@ -24,6 +24,7 @@ using Robust.Shared.Random;
 using System.Linq;
 using Content.Shared.Atmos.Piping.Components;
 using Content.Shared._FarHorizons.Materials.Systems;
+using Content.Server.NodeContainer.Nodes;
 
 namespace Content.Server._FarHorizons.Power.Generation.FissionGenerator;
 
@@ -129,8 +130,6 @@ public sealed class NuclearReactorSystem : SharedNuclearReactorSystem
         _appearance.SetData(uid, ReactorVisuals.Input, inlet.Air.Moles.Sum() > 20);
         _appearance.SetData(uid, ReactorVisuals.Output, outlet.Air.Moles.Sum() > 20);
 
-        var AirContents = new GasMixture();
-
         var TempRads = 0;
         var ControlRods = 0;
         var AvgControlRodInsertion = 0f;
@@ -143,10 +142,10 @@ public sealed class NuclearReactorSystem : SharedNuclearReactorSystem
         var TotalRads = 0f;
         var TotalSpent = 0f;
 
-        var GasInput = inlet.Air.RemoveVolume(inlet.Air.Volume);
+        var transferVolume = CalculateTransferVolume(inlet.Air.Volume, inlet, outlet, args.dt);
+        var GasInput = inlet.Air.RemoveVolume(transferVolume);
 
-        AirContents.Volume = inlet.Air.Volume;
-        GasInput.Volume = AirContents.Volume;
+        GasInput.Volume = transferVolume;
 
         // Even though it's probably bad for performace, we have to do the for x, for y loops 3 times
         // to ensure the processes do not interfere with each other
@@ -167,7 +166,7 @@ public sealed class NuclearReactorSystem : SharedNuclearReactorSystem
                     GasInput.Volume -= ReactorComp.GasVolume;
 
                     if (gas != null)
-                        _atmosphereSystem.Merge(AirContents, gas);
+                        _atmosphereSystem.Merge(outlet.Air, gas);
 
                     _partSystem.ProcessHeat(ReactorComp, ent, GetGridNeighbors(comp, x, y), this);
                     comp.TemperatureGrid[x, y] = ReactorComp.Temperature;
@@ -236,10 +235,10 @@ public sealed class NuclearReactorSystem : SharedNuclearReactorSystem
 
         var CasingGas = ProcessCasingGas(comp, args, GasInput);
         if (CasingGas != null)
-            _atmosphereSystem.Merge(AirContents, CasingGas);
+            _atmosphereSystem.Merge(outlet.Air, CasingGas);
 
         // If there's still input gas left over
-        _atmosphereSystem.Merge(AirContents, GasInput);
+        _atmosphereSystem.Merge(outlet.Air, GasInput);
 
         UpdateTempIndicators(ent);
 
@@ -270,8 +269,6 @@ public sealed class NuclearReactorSystem : SharedNuclearReactorSystem
         {
             CatastrophicOverload(ent);
         }
-
-        _atmosphereSystem.Merge(outlet.Air, AirContents);
 
         UpdateVisuals(ent);
         UpdateAudio(ent);
@@ -384,6 +381,16 @@ public sealed class NuclearReactorSystem : SharedNuclearReactorSystem
             }
         }
         return ProcessedGas;
+    }
+
+    private float CalculateTransferVolume(float volume, PipeNode inlet, PipeNode outlet, float dt)
+    {
+        var wantToTransfer = volume * _atmosphereSystem.PumpSpeedup() * dt;
+        var transferVolume = Math.Min(inlet.Air.Volume, wantToTransfer);
+        var transferMoles = inlet.Air.Pressure * transferVolume / (inlet.Air.Temperature * Atmospherics.R);
+        var molesSpaceLeft = ((Atmospherics.MaxOutputPressure * 3) - outlet.Air.Pressure) * outlet.Air.Volume / (outlet.Air.Temperature * Atmospherics.R);
+        var actualMolesTransfered = Math.Clamp(transferMoles, 0, Math.Max(0, molesSpaceLeft));
+        return Math.Max(0, actualMolesTransfered * inlet.Air.Temperature * Atmospherics.R / inlet.Air.Pressure);
     }
 
     private void CatastrophicOverload(Entity<NuclearReactorComponent> ent)

@@ -16,6 +16,7 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Audio;
 using Robust.Shared.Random;
+using Content.Server.NodeContainer.Nodes;
 
 namespace Content.Server._FarHorizons.Power.Generation.FissionGenerator;
 
@@ -79,9 +80,11 @@ public sealed class TurbineSystem : SharedTurbineSystem
 
         UpdateAppearance(uid, comp);
 
-        var AirContents = inlet.Air.RemoveVolume(Math.Min(comp.FlowRate * _atmosphereSystem.PumpSpeedup() * args.dt, inlet.Air.Volume) * inlet.Air.Temperature * Atmospherics.R / inlet.Air.Temperature) ?? new GasMixture();
+        var transferVolume = CalculateTransferVolume(comp, inlet, outlet, args.dt);
 
-        comp.LastVolumeTransfer = AirContents.Volume;
+        var AirContents = inlet.Air.RemoveVolume(transferVolume) ?? new GasMixture();
+
+        comp.LastVolumeTransfer = transferVolume;
         comp.LastGen = 0;
         comp.Overtemp = AirContents.Temperature >= comp.MaxTemp - 500;
         comp.Undertemp = AirContents.Temperature <= comp.MinTemp;
@@ -209,6 +212,16 @@ public sealed class TurbineSystem : SharedTurbineSystem
         {
             TearApart(uid, comp);
         }
+    }
+
+    private float CalculateTransferVolume(TurbineComponent comp, PipeNode inlet, PipeNode outlet, float dt)
+    {
+        var wantToTransfer = comp.FlowRate * _atmosphereSystem.PumpSpeedup() * dt;
+        var transferVolume = Math.Min(inlet.Air.Volume, wantToTransfer);
+        var transferMoles = inlet.Air.Pressure * transferVolume / (inlet.Air.Temperature * Atmospherics.R);
+        var molesSpaceLeft = (comp.OutputPressure - outlet.Air.Pressure) * outlet.Air.Volume / (outlet.Air.Temperature * Atmospherics.R);
+        var actualMolesTransfered = Math.Clamp(transferMoles, 0, Math.Max(0, molesSpaceLeft));
+        return Math.Max(0, actualMolesTransfered * inlet.Air.Temperature * Atmospherics.R / inlet.Air.Pressure);
     }
 
     private void TearApart(EntityUid uid, TurbineComponent comp)
