@@ -46,3 +46,4 @@ jobs:
         path: out
         destination: ${{ secrets.GCP_BUCKET }}
         parent: false
+        gzip: false
