@@ -28,12 +28,11 @@ jobs:
       run: |
         mkdir out
         dotnet run --project Content.Packaging -c Release client
-        mv release/SS14.Client.zip out/client.zip
-        CLIENT_HASH=$(sha256sum out/client.zip | head -c64 | tr 'a-z' 'A-Z')
+        mv release/SS14.Client.zip out/SS14.Client.zip
         dotnet run --project Content.Packaging -c Release server --platform linux-arm64
-        mv release/SS14.Server_linux-arm64.zip out/server-arm64.zip
-        echo "$CLIENT_HASH" > /tmp/CLIENT_HASH
-        zip -u out/server-arm64.zip /tmp/CLIENT_HASH
+        mv release/SS14.Server_linux-arm64.zip out/SS14.Server_linux-arm64.zip
+        git rev-parse --short HEAD > out/VERSION
+        sed -nr "s|.*<Version>(.*)</Version>.*|\1|p" RobustToolbox/MSBuild/Robust.Engine.Version.props > out/ENGINE_VERSION
 
     - name: GCP auth
       uses: google-github-actions/auth@v3
@@ -46,5 +45,4 @@ jobs:
       with:
         path: out
         destination: ${{ secrets.GCP_BUCKET }}
-        glob: '**/*.zip'
         parent: false
