@@ -97,7 +97,19 @@ public sealed partial class NuclearReactorComponent : Component
     /// Radio channel to send alerts to
     /// </summary>
     [DataField]
-    public string AlertChannel = "Engineering";
+    public string EngineeringChannel = "Engineering";
+
+    /// <summary>
+    /// Last reported temperature during overheat events
+    /// </summary>
+    [ViewVariables]
+    public float LastSendTemperature = Atmospherics.T20C;
+
+    /// <summary>
+    /// If the reactor has given the nuclear emergency warning
+    /// </summary>
+    [ViewVariables]
+    public bool HasSentWarning = false;
 
     /// <summary>
     /// Alert level to set after meltdown

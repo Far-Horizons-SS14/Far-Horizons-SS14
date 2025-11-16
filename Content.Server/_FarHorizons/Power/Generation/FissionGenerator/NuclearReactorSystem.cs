@@ -49,7 +49,6 @@ public sealed class NuclearReactorSystem : SharedNuclearReactorSystem
 
     private static readonly int _gridWidth = NuclearReactorComponent.ReactorGridWidth;
     private static readonly int _gridHeight = NuclearReactorComponent.ReactorGridHeight;
-    private RadioChannelPrototype? _engi;
 
     private readonly float _threshold = 0.5f;
     private float _accumulator = 0f;
@@ -263,8 +262,6 @@ public sealed class NuclearReactorSystem : SharedNuclearReactorSystem
         // If there's still input gas left over
         _atmosphereSystem.Merge(outlet.Air, GasInput);
 
-        UpdateTempIndicators(ent);
-
         comp.RadiationLevel = Math.Clamp(comp.RadiationLevel + TempRads, 0, 50);
 
         comp.NeutronCount = NeutronCount;
@@ -286,6 +283,8 @@ public sealed class NuclearReactorSystem : SharedNuclearReactorSystem
 
         UpdateVisuals(ent);
         UpdateAudio(ent);
+        UpdateRadio(ent);
+        UpdateTempIndicators(ent);
     }
 
     private void ProcessCaseRadiation(Entity<NuclearReactorComponent> ent)
@@ -556,6 +555,85 @@ public sealed class NuclearReactorSystem : SharedNuclearReactorSystem
             if (_audio.IsPlaying(comp.AlarmAudioHighRads))
             comp.AlarmAudioHighRads = _audio.Stop(comp.AlarmAudioHighRads);
     }
+
+    private void UpdateRadio(Entity<NuclearReactorComponent> ent)
+    {
+        var comp = ent.Comp;
+        var uid = ent.Owner;
+
+        if (comp.Melted)
+            return;
+
+        var engi = _prototypes.Index<RadioChannelPrototype>(ent.Comp.EngineeringChannel);
+
+        if (comp.Temperature >= comp.ReactorOverheatTemp)
+        {
+            if (!comp.IsSmoking)
+            {
+                _adminLog.Add(LogType.Damaged, $"{ToPrettyString(ent):reactor} is at {comp.Temperature}K and may meltdown");
+                _radioSystem.SendRadioMessage(uid, Loc.GetString("reactor-smoke-start-message", ("owner", uid), ("temperature", Math.Round(comp.Temperature))), engi, ent);
+                comp.LastSendTemperature = comp.Temperature;
+            }
+            if (comp.Temperature >= comp.ReactorFireTemp && !comp.IsBurning)
+            {
+                _adminLog.Add(LogType.Damaged, $"{ToPrettyString(ent):reactor} is at {comp.Temperature}K and is likely to meltdown");
+                _radioSystem.SendRadioMessage(uid, Loc.GetString("reactor-fire-start-message", ("owner", uid), ("temperature", Math.Round(comp.Temperature))), engi, ent);
+                comp.LastSendTemperature = comp.Temperature;
+            }
+            else if (comp.Temperature < comp.ReactorFireTemp && comp.IsBurning)
+            {
+                _adminLog.Add(LogType.Healed, $"{ToPrettyString(ent):reactor} is cooling from {comp.ReactorFireTemp}K");
+                _radioSystem.SendRadioMessage(uid, Loc.GetString("reactor-fire-stop-message", ("owner", uid)), engi, ent);
+                comp.LastSendTemperature = comp.Temperature;
+            }
+        }
+        else
+        {
+            if (comp.IsSmoking)
+            {
+                _adminLog.Add(LogType.Healed, $"{ToPrettyString(ent):reactor} is cooling from {comp.ReactorOverheatTemp}K");
+                _radioSystem.SendRadioMessage(uid, Loc.GetString("reactor-smoke-stop-message", ("owner", uid)), engi, ent);
+                comp.LastSendTemperature = comp.Temperature;
+                comp.HasSentWarning = false;
+            }
+        }
+
+        if (comp.Temperature >= 1700 && !comp.HasSentWarning)
+        {
+            var stationUid = _station.GetStationInMap(Transform(uid).MapID);
+            var announcement = Loc.GetString("reactor-melting-announcement");
+            var sender = Loc.GetString("reactor-melting-announcement-sender");
+            _chatSystem.DispatchStationAnnouncement(stationUid ?? uid, announcement, sender, false, null, Color.Orange);
+            _soundSystem.PlayGlobalOnStation(uid, _audio.ResolveSound(new SoundPathSpecifier("/Audio/Misc/delta_alt.ogg")));
+            comp.HasSentWarning = true;
+        }
+
+        if (Math.Max(comp.LastSendTemperature, comp.Temperature) < comp.ReactorOverheatTemp)
+            return;
+
+        var step = comp.ReactorMeltdownTemp * 0.05;
+
+        if (Math.Abs(comp.Temperature - comp.LastSendTemperature) < step)
+            return;
+
+        if (comp.LastSendTemperature > comp.Temperature)
+        {
+            _radioSystem.SendRadioMessage(uid, Loc.GetString("reactor-temperature-cooling-message", ("owner", uid), ("temperature", Math.Round(comp.Temperature))), engi, ent);
+        }
+        else
+        {
+            if (comp.Temperature >= comp.ReactorFireTemp)
+            {
+                _radioSystem.SendRadioMessage(uid, Loc.GetString("reactor-temperature-critical-message", ("owner", uid), ("temperature", Math.Round(comp.Temperature))), engi, ent);
+            }
+            else if (comp.Temperature >= comp.ReactorOverheatTemp)
+            {
+                _radioSystem.SendRadioMessage(uid, Loc.GetString("reactor-temperature-dangerous-message", ("owner", uid), ("temperature", Math.Round(comp.Temperature))), engi, ent);
+            }
+        }
+
+        comp.LastSendTemperature = comp.Temperature;
+    }
     #endregion
 
     #region BUI
@@ -680,11 +758,4 @@ public sealed class NuclearReactorSystem : SharedNuclearReactorSystem
         UpdateUI(ent.Owner, ent.Comp);
     }
     #endregion
-
-    protected override void SendEngiRadio(Entity<NuclearReactorComponent> ent, string message)
-    {
-        _engi ??= _prototypes.Index<RadioChannelPrototype>(ent.Comp.AlertChannel);
-
-        _radioSystem.SendRadioMessage(ent.Owner, message, _engi, ent);
-    }
 }
