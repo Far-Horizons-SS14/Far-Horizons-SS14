@@ -79,8 +79,6 @@ public sealed partial class SalvageMissionRescue : BaseSalvageMissionObjectiveHa
         var stationSpawning = EntMan.System<StationSpawningSystem>();
         var inventory = EntMan.System<InventorySystem>();
 
-        var damageTypes = ProtoMan.EnumeratePrototypes<DamageTypePrototype>().ToList();
-
         int objectivesSpawned = 0;
 
         var possibleFactions = factions.ListPlayableFactions().Where(p => p.Major).ToList();
@@ -88,48 +86,104 @@ public sealed partial class SalvageMissionRescue : BaseSalvageMissionObjectiveHa
 
         for (var i = 0; i < GetNumSpawnables(); i++)
         {
-            var character = HumanoidCharacterProfile.Random();
-            var species = ProtoMan.Index(character.Species);
-
             if (GetRandomEmptyTileInDungeon() is not EntityCoordinates pos)
                 return;
 
-            var ent = EntMan.SpawnAtPosition(species.Prototype, pos);
-            humanoid.LoadProfile(ent, character);
-            metadata.SetEntityName(ent, character.Name);
-            state.ChangeMobState(ent, MobState.Dead);
-
-            var damage = new DamageSpecifier();
-            damage.DamageDict.Add(damageTypes[Rand.Next(damageTypes.Count)].ID, Rand.Next(300));
-            if (Rand.Next(100) > 50)
-                damage.DamageDict.TryAdd(damageTypes[Rand.Next(damageTypes.Count)].ID, Rand.Next(300));
-            if (Rand.Next(100) > 75)
-                damage.DamageDict.TryAdd(damageTypes[Rand.Next(damageTypes.Count)].ID, Rand.Next(300));
-            damageable.TryChangeDamage(ent, damage);
-
-            var jobs = factions.ListFactionJobs().Where(p => p.Faction == selectedFaction).ToList();
-            var job = jobs[Rand.Next(jobs.Count)];
-            var loadoutProtoId = factions.OverrideJobLoadout(job);
-            var loadoutProto = ProtoMan.Index(loadoutProtoId);
-
-            var loadout = new RoleLoadout(loadoutProtoId);
-            loadout.SetDefault(character, null, ProtoMan);
-
-            stationSpawning.EquipRoleLoadout(ent, loadout, loadoutProto);
+            var damage = RandomDamage(ProtoMan, Rand, 100, 200, 4);
+            var body = SpawnRandomBody(ProtoMan, EntMan, Rand, pos, humanoid, metadata, state, damageable, factions, stationSpawning, selectedFaction, true, damage, true);
 
             if (Rand.Prob(0.4))
             {
                 var gasMaskEnt = EntMan.SpawnAtPosition(GasMask, pos);
-                if (!inventory.TryEquip(ent, gasMaskEnt, MaskSlot, force: true))
+                if (!inventory.TryEquip(body, gasMaskEnt, MaskSlot, force: true))
                     EntMan.DeleteEntity(gasMaskEnt);
             }
 
             if (objectivesSpawned < Objective.NumTargets.GetValueOrDefault(Difficulty, 0))
             {
-                MarkEntity(ent);
+                MarkEntity(body);
                 objectivesSpawned++;
             }
         }
+    }
+
+    public static EntityUid SpawnRandomBody(
+        IPrototypeManager ProtoMan,
+        IEntityManager EntMan,
+        Random Rand,
+        EntityCoordinates pos, 
+        HumanoidAppearanceSystem humanoidAppearance, 
+        MetaDataSystem metadata,
+        MobStateSystem? state = null,
+        DamageableSystem? damageable = null,
+        ISharedFactionManager? factions = null,
+        StationSpawningSystem? stationSpawning = null,
+        FactionPrototype? faction = null,
+        bool dead = true,
+        DamageSpecifier? damage = null,
+        bool randomLoadout = true)
+    {
+        var character = HumanoidCharacterProfile.Random();
+        var species = ProtoMan.Index(character.Species);
+
+        var ent = EntMan.SpawnAtPosition(species.Prototype, pos);
+        humanoidAppearance.LoadProfile(ent, character);
+        metadata.SetEntityName(ent, character.Name);
+
+        if (dead && state != null)
+            state.ChangeMobState(ent, MobState.Dead);
+        
+        if (damage != null && damageable != null)
+            damageable.TryChangeDamage(ent, damage);
+        
+        if (randomLoadout && faction != null && factions != null && stationSpawning != null)
+        {
+            var jobs = factions.ListFactionJobs().Where(p => p.Faction == faction ).ToList();
+            var valid = false;
+
+            RoleLoadout loadout;
+            RoleLoadoutPrototype loadoutProto;
+
+            do
+            {
+                var job = jobs[Rand.Next(jobs.Count)];
+                var jobProto = ProtoMan.Index(job.Job);
+
+                valid = string.IsNullOrEmpty(jobProto.JobEntity);
+
+                var loadoutProtoId = factions.OverrideJobLoadout(job);
+                loadoutProto = ProtoMan.Index(loadoutProtoId);
+                loadout = new RoleLoadout(loadoutProtoId);
+            } while (!valid);
+
+            loadout.SetDefault(character, null, ProtoMan);
+
+            stationSpawning.EquipRoleLoadout(ent, loadout, loadoutProto);
+        }
+
+        return ent;
+    }
+
+    public static DamageSpecifier RandomDamage(IPrototypeManager ProtoMan, Random Rand, int minDamage, int maxDamage, int maxDamageTypes)
+    {
+        var damageTypes = ProtoMan.EnumeratePrototypes<DamageTypePrototype>().ToList();
+
+        var damage = new DamageSpecifier();
+        float chance = 1;
+        for (var i = 0; i < maxDamageTypes; i++)
+        {
+            if(Rand.Prob(chance))
+            {
+                var type = damageTypes[Rand.Next(damageTypes.Count)].ID;
+                if (damage.DamageDict.ContainsKey(type))
+                    continue;
+
+                damage.DamageDict.Add(type, Rand.Next(minDamage, maxDamage));       
+            }
+            chance -= 1 / maxDamageTypes;
+        }
+
+        return damage;
     }
 
     private int GetNumSpawnables() => 
