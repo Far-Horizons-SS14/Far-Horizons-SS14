@@ -776,7 +776,7 @@
 
 - type: entity
   save: false
-  name: Urist McShadster
+  name: Urist McDuskin #pronounced Dusk-Kin
   parent: [MobBloodstream, MobAtmosStandard, MobFlammable, BaseMobSpecies] #These fucks have no lungs, can't just inherent from protogen..
   id: BaseMobProtoKin
   abstract: true
@@ -804,7 +804,7 @@
       sprite: _FarHorizons/Mobs/Species/Proto-Kin/parts.rsi
       state: full
     - type: Body
-      prototype: Shadekin # Replace when I figure out more complex sprites for proto-[species]
+      prototype: ProtoKin
       requiredLegs: 2
     # Music player
     - type: ActionGrant
@@ -1775,7 +1775,7 @@
             sprite: Mobs/Species/Human/displacement.rsi
             state: jumpsuit-female
 
-#region Felionoid ####
+#region FELIONOID ####
 
 - type: entity
   parent: [BaseMobProtogen, BaseSpeciesPickupable]
@@ -1952,3 +1952,83 @@
           32:
             sprite: _Starlight/Mobs/Species/Felionoid/displacement.rsi
             state: shoes
+
+#region DWARF ####
+
+- type: entity
+  save: false
+  name: Urist McHands The ProtoDawi
+  parent: BaseMobProtogen
+  id: BaseMobProtoDawi
+  abstract: true
+  components:
+  - type: LanguageKnowledge
+    speaks:
+    - GalacticCommon
+    - Machine
+    - Trinary
+    - SolCommon
+    understands:
+    - GalacticCommon
+    - Machine
+    - Trinary
+    - SolCommon
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      110: Critical
+      220: Dead
+  - type: Icon
+    sprite: _FarHorizons/Mobs/Species/Proto-Humie/parts.rsi
+    state: full
+  - type: Respirator
+    damage:
+      types:
+        Asphyxiation: 2
+    damageRecovery:
+      types:
+        Asphyxiation: -1.0
+  - type: Body
+    prototype: ProtoDawi
+    requiredLegs: 2
+  - type: Fixtures
+    fixtures: # TODO: This needs a second fixture just for mob collisions.
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        # they r smaller
+        density: 120
+        restitution: 0.0
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: ReplacementAccent
+    accent: dwarf
+  - type: HumanoidAppearance
+    species: ProtoDawi
+    hideLayersOnEquip:
+    - Hair
+  - type: Inventory
+    templateId: protogen
+    femaleDisplacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: jumpsuit-female
+
+- type: entity
+  parent: BaseSpeciesDummy
+  id: MobProtoDawiDummy
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Inventory
+    templateId: protogen
+    femaleDisplacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: jumpsuit-female

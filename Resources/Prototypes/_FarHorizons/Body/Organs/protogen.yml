@@ -39,7 +39,7 @@
 - type: entity
   id: OrganProtogenBrain
   parent: [BaseOrganBrain, BaseProtogenUnGibbable]
-  name: brain
+  name: Cybernetic Brain
   description: "The source of incredible, unending intelligence. 01201020 02102111 01201210 02121012 20121210"
   components:
   - type: Sprite
@@ -48,8 +48,8 @@
 - type: entity
   id: OrganProtogenEyes
   parent: [BaseProtogenOrgan, BaseOrganEyes]
-  name: eyes
-  description: "Squishy. Who knew there was eyes underneath that visor?"
+  name: Cybernetic Eyes
+  description: "It's still focusing on you.. Creepy."
   components:
   - type: Sprite
     layers:
@@ -65,27 +65,25 @@
 - type: entity
   id: OrganProtogenTongue
   parent: [BaseProtogenOrgan, BaseOrganTongue]
-  name: tongue
-  description: "A fleshy muscle located underneath the visor, typically used for lying."
+  name: Cybernetic Tongue
+  description: "A completely glowing organ commonly used for lying or self-expression. Sometimes both."
   components:
   - type: Sprite
     state: tongue
 
 - type: entity
-  id: OrganProtogenAppendix
-  parent: [BaseProtogenOrgan, BaseOrganAppendix]
-  name: appendix
+  id: OrganProtogenTongueForked
+  parent: [BaseProtogenOrgan, BaseOrganTongue]
+  name: Forked Cybernetic Tongue
+  description: "A completely glowing organ commonly used for lying or self-expression. Sometimes both. Now split in two."
   components:
   - type: Sprite
-    layers:
-    - state: appendix
-    - state: appendix-inflamed
-      visible: false
+    state: tongueforked
 
 - type: entity
   id: OrganProtogenEars
   parent: [BaseProtogenOrgan, BaseOrganEars]
-  name: ears
+  name: Cybernetic Ears
   description: "Process audio at a higher quality than most humanoids, allowing for greater appreciation of techno music"
   components:
   - type: Sprite
@@ -94,8 +92,8 @@
 - type: entity
   id: OrganProtogenLungs
   parent: [BaseProtogenOrgan, BaseOrganLungs]
-  name: lungs
-  description: "Filters oxygen from an atmosphere, which is then sent into the bloodstream to be used as an electron carrier. Unusually healthy, due to the constant filtration of air by a protogen's visor."
+  name: Cybernetic Lungs
+  description: "Filters oxygen from an atmosphere, which is then sent into the bloodstream to be used as an electron carrier. Entirely cybernetic in nature, working in tandem with the visor's filtration system."
   components:
   - type: Sprite
     layers:
@@ -131,8 +129,27 @@
 - type: entity
   id: OrganProtogenHeart
   parent: [BaseProtogenOrgan, BaseOrganHeart]
-  name: heart
-  description: "I feel bad for the heartless bastard who lost this."
+  name: Cybernetic Heart
+  description: "Doesn't actually need to beat, simply mimics the movement to provide comfort for the user."
+  components:
+  - type: Sprite
+    state: heart-on
+  - type: Metabolizer
+    maxReagents: 2
+    metabolizerTypes: [Human]
+    groups:
+    - id: Medicine
+    - id: Poison
+    - id: Narcotic
+  - type: Item
+    size: Small
+    heldPrefix: heart
+
+- type: entity
+  id: OrganProtoKinCore
+  parent: [BaseProtogenOrgan, BaseOrganHeart]
+  name: Cybernetic Shadekin Core
+  description: "The result of a very dangerous one-time operation to restore a shadekin's core, it is bright once more- but not as bright as it could've been."
   components:
   - type: Sprite
     state: heart-on
@@ -150,8 +167,8 @@
 - type: entity
   id: OrganProtogenStomach
   parent: [OrganAnimalStomach, BaseOrganStomach]
-  name: stomach
-  description: "Gross. This is hard to stomach."
+  name: Biological Reactor
+  description: "Some call it over-engineered, but it's vital to the function of a protogen. Turns organic matter into organic and electrical energy to power the protogen's cybernetics and flesh."
   components:
   - type: Sprite
     state: stomach
@@ -224,12 +241,68 @@
         - ReagentId: UncookedAnimalProteins
           Quantity: 5
 
+#### Dwarf Specific ####
+
+- type: entity
+  id: OrganProtoDawiHeart
+  parent: OrganProtogenHeart
+  name: dawi heart
+  components:
+  - type: Metabolizer
+    metabolizerTypes: [Dwarf]
+
+- type: entity
+  id: OrganProtoDawiLiver
+  parent: OrganProtogenLiver
+  name: dawi liver
+  components:
+  - type: Metabolizer
+    metabolizerTypes: [Dwarf]
+
+- type: entity
+  id: OrganProtoDawiStomach
+  parent: OrganProtogenStomach
+  name: dawi stomach
+  components:
+  - type: Sprite
+    state: stomach
+  - type: Organ
+  - type: SolutionContainerManager
+    solutions:
+      stomach:
+        maxVol: 75
+      food:
+        maxVol: 5
+        reagents:
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 5
+  - type: Stomach
+    specialDigestible: # all this for the ram chip meme.
+      tags:
+      - Paper
+      - Pill
+      - Pizza
+      - Meat
+      - Fruit
+      - Donut
+      - Vegetable
+      - Cake
+      - FoodSnack
+      - Soup
+      - Crayon
+      - Pancake
+     # - Put computer boards here 
+  - type: Metabolizer
+    # mm very yummy
+    maxReagents: 5
+    metabolizerTypes: [Dwarf]
+
 ####
 
 - type: entity
   id: OrganProtogenLiver
   parent: [BaseProtogenOrgan, BaseOrganLiver]
-  name: liver
+  name: Cybernetic Liver
   description: "Pairing suggestion: fermented RAM sticks and CPU drives."
   components:
   - type: Sprite
@@ -247,8 +320,8 @@
 - type: entity
   id: OrganProtogenKidneys
   parent: [BaseProtogenOrgan, BaseOrganKidneys]
-  name: kidneys
-  description: "Filters toxins from the bloodstream. Does not filter computer viruses."
+  name: Cybernetic Kidneys
+  description: "Pumps toxins out of the bloodstream and serves as a minor biological battery for electrical components"
   components:
   - type: Sprite
     layers:

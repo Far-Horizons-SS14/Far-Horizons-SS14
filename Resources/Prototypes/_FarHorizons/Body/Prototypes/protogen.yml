@@ -217,9 +217,64 @@
     left foot:
       part: LeftFootThaven
 
-#region Slime / Shadekin ####
+#region Slime ####
 
 # I'd need to resprite their organs since they're unique compared to others. Not happening by deadline I set for myself, so revisit later.
+
+#region Shadekin ####
+
+- type: body
+  id: ProtoKin
+  name: "protokin"
+  root: torso
+  slots:
+    head:
+      part: HeadShadekin
+      connections:
+      - torso
+      organs:
+        brain: OrganProtogenBrain
+        eyes: OrganProtogenEyes
+        tongue: OrganProtogenTongueForked
+        eye_implant: null
+    torso:
+      part: TorsoShadekin
+      connections:
+      - right arm
+      - left arm
+      - right leg
+      - left leg
+      organs:
+        core: OrganProtoKinCore
+        heart: OrganProtogenHeart
+        stomach: OrganProtogenStomach
+        liver: OrganProtogenLiver
+        kidneys: OrganProtogenKidneys
+        cavity: null
+    right arm:
+      part: RightArmShadekin
+      connections:
+      - right hand
+    left arm:
+      part: LeftArmShadekin
+      connections:
+      - left hand
+    right hand:
+      part: RightHandShadekin
+    left hand:
+      part: LeftHandShadekin
+    right leg:
+      part: RightLegShadekin
+      connections:
+      - right foot
+    left leg:
+      part: LeftLegShadekin
+      connections:
+      - left foot
+    right foot:
+      part: RightFootShadekin
+    left foot:
+      part: LeftFootShadekin
 
 #region RESOMI ####
 
@@ -235,7 +290,7 @@
       organs:
         brain: OrganProtogenBrain
         eyes: OrganProtogenEyes
-        tongue: OrganProtogenTongue
+        tongue: OrganProtogenTongueForked
         eye_implant: null
     torso:
       part: TorsoResomi
@@ -441,7 +496,7 @@
     left foot:
       part: LeftFootHuman
 
-#region FELINID
+#region FELINID ####
 
 - type: body
   id: ProtoFeline
@@ -495,3 +550,58 @@
       part: RightFootFelionoid
     left foot:
       part: LeftFootFelionoid
+
+#region DWARF ####
+
+- type: body
+  id: Dwarf
+  name: "dwarf"
+  root: torso
+  slots:
+    head:
+      part: HeadHuman
+      connections:
+      - torso
+      organs:
+        brain: OrganHumanBrain
+        eyes: OrganHumanEyes
+        tongue: OrganHumanTongue
+        eye_implant: null
+    torso:
+      part: TorsoHuman
+      connections:
+      - right arm
+      - left arm
+      - right leg
+      - left leg
+      organs:
+        heart: OrganDwarfHeart
+        lungs: OrganHumanLungs
+        stomach: OrganDwarfStomach
+        liver: OrganDwarfLiver
+        kidneys: OrganHumanKidneys
+        cavity: null
+    right arm:
+      part: RightArmHuman
+      connections:
+      - right hand
+    left arm:
+      part: LeftArmHuman
+      connections:
+      - left hand
+    right hand:
+      part: RightHandHuman
+    left hand:
+      part: LeftHandHuman
+    right leg:
+      part: RightLegHuman
+      connections:
+      - right foot
+    left leg:
+      part: LeftLegHuman
+      connections:
+      - left foot
+    right foot:
+      part: RightFootHuman
+    left foot:
+      part: LeftFootHuman
