@@ -25,14 +25,6 @@
         enum.TurbineVisualLayers.TurbineRuined:
           True: { visible: true }
           False: { visible: false }
-      enum.TurbineVisuals.TurbineSpeed:
-        enum.TurbineVisualLayers.TurbineSpeed:
-          SpeedStill: { state: turbine }
-          # Allows for multiple speed anims, even if there is only one
-          SpeedSlow: { state: turbinerun }
-          SpeedMid: { state: turbinerun }
-          SpeedFast: { state: turbinerun }
-          SpeedOverspeed: { state: turbinerun }
       enum.TurbineVisuals.DamageSpark:
         enum.TurbineVisualLayers.DamageSpark:
           True: { visible: true }

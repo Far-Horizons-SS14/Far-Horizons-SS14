@@ -39,6 +39,12 @@ public sealed partial class TurbineComponent : Component
     public float BestRPM = 600;
 
     /// <summary>
+    /// RPM the animation is playing at
+    /// </summary>
+    [ViewVariables]
+    public float AnimRPM = 600;
+
+    /// <summary>
     /// Volume of gas to process per tick for power generation
     /// </summary>
     [DataField, AutoNetworkedField]

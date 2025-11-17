@@ -18,6 +18,9 @@ public abstract class SharedTurbineSystem : EntitySystem
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
     [Dependency] private readonly SharedToolSystem _toolSystem = default!;
 
+    private readonly float _threshold = 0.5f;
+    private float _accumulator = 0f;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -86,6 +89,18 @@ public abstract class SharedTurbineSystem : EntitySystem
         }
     }
 
+    public override void Update(float frameTime)
+    {
+        _accumulator += frameTime;
+        if (_accumulator > _threshold)
+        {
+            AccUpdate();
+            _accumulator = 0;
+        }
+    }
+
+    protected virtual void AccUpdate() { }
+
     protected void UpdateAppearance(EntityUid uid, TurbineComponent? comp = null, AppearanceComponent? appearance = null)
     {
         if (!Resolve(uid, ref comp, ref appearance, false))
@@ -105,24 +120,7 @@ public abstract class SharedTurbineSystem : EntitySystem
             {
                 _appearance.SetData(uid, TurbineVisuals.TurbineRuined, false);
             }
-            switch (comp.RPM)
-            {
-                case float n when n is > 1 and <= 60:
-                    _appearance.SetData(uid, TurbineVisuals.TurbineSpeed, TurbineSpeed.SpeedSlow);
-                    break;
-                case float n when n > 60 && n <= comp.BestRPM * 0.5:
-                    _appearance.SetData(uid, TurbineVisuals.TurbineSpeed, TurbineSpeed.SpeedMid);
-                    break;
-                case float n when n > comp.BestRPM * 0.5 && n <= comp.BestRPM * 1.2:
-                    _appearance.SetData(uid, TurbineVisuals.TurbineSpeed, TurbineSpeed.SpeedFast);
-                    break;
-                case float n when n > comp.BestRPM * 1.2 && n <= float.PositiveInfinity:
-                    _appearance.SetData(uid, TurbineVisuals.TurbineSpeed, TurbineSpeed.SpeedOverspeed);
-                    break;
-                default:
-                    _appearance.SetData(uid, TurbineVisuals.TurbineSpeed, TurbineSpeed.SpeedStill);
-                    break;
-            }
+            _appearance.SetData(uid, TurbineVisuals.TurbineSpeed, comp.RPM > 1);
         }
 
         _appearance.SetData(uid, TurbineVisuals.DamageSpark, comp.IsSparking);
