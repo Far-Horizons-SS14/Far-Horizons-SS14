@@ -42,7 +42,7 @@ public sealed partial class TurbineComponent : Component
     /// RPM the animation is playing at
     /// </summary>
     [ViewVariables]
-    public float AnimRPM = 600;
+    public float AnimRPM = 0;
 
     /// <summary>
     /// Volume of gas to process per tick for power generation
