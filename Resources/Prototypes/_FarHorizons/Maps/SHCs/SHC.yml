@@ -1,0 +1,15 @@
+- type: gameMap
+  id: SHC
+  isGrid: true # This might fuck things lowkey
+  mapName: 'Syndicate High Command'
+  mapPath: /Maps/_FarHorizons/SHCs/shc.yml
+  minPlayers: 10
+  stations:
+    shc:
+      stationProto: SyndicateHighCommand
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: '{0} Syndicate High Command {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: 'TG'
