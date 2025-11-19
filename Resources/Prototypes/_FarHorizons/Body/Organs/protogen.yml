@@ -147,22 +147,13 @@
 
 - type: entity
   id: OrganProtoKinCore
-  parent: [BaseProtogenOrgan, BaseOrganHeart]
+  parent: BaseProtogenOrgan
   name: Cybernetic Shadekin Core
   description: "The result of a one-time operation to restore a shadekin's core, it is bright once more- but not as bright as it could've been."
   components:
+  - type: Organ
   - type: Sprite
-    state: heart-on
-  - type: Metabolizer
-    maxReagents: 2
-    metabolizerTypes: [Human]
-    groups:
-    - id: Medicine
-    - id: Poison
-    - id: Narcotic
-  - type: Item
-    size: Small
-    heldPrefix: heart
+    state: core
 
 - type: entity
   id: OrganProtogenStomach
@@ -171,6 +162,7 @@
   description: "Some call it over-engineered, but it's vital to the function of a protogen. Turns organic matter into organic and electrical energy to power the protogen's cybernetics and flesh."
   components:
   - type: Sprite
+    sprite: _FarHorizons/Mobs/Species/Protogen/organs.rsi
     state: stomach
   - type: Item
     size: Small
@@ -190,7 +182,7 @@
       - Soup
       - Crayon
       - Pancake
-     # - Put computer boards here 
+      - RamChip
   - type: SolutionContainerManager
     solutions:
       stomach:
@@ -246,6 +238,7 @@
   description: "Some call it over-engineered, but it's vital to the function of a protogen. Turns organic matter into organic and electrical energy to power the protogen's cybernetics and flesh."
   components:
   - type: Sprite
+    sprite: _FarHorizons/Mobs/Species/Protogen/organs.rsi
     state: stomach
   - type: Item
     size: Small
@@ -266,7 +259,7 @@
       - Soup
       - Crayon
       - Pancake
-      # - Put computer boards here 
+      - RamChip
   - type: SolutionContainerManager
     solutions:
       stomach:
@@ -304,6 +297,7 @@
   description: "Some call it over-engineered, but it's vital to the function of a protogen. Turns organic matter into organic and electrical energy to power the protogen's cybernetics and flesh."
   components:
   - type: Sprite
+    sprite: _FarHorizons/Mobs/Species/Protogen/organs.rsi
     state: stomach
   - type: Organ
   - type: SolutionContainerManager
@@ -330,7 +324,7 @@
       - Soup
       - Crayon
       - Pancake
-     # - Put computer boards here 
+      - RamChip
   - type: Metabolizer
     # mm very yummy
     maxReagents: 5
@@ -358,7 +352,7 @@
       - Soup
       - Crayon
       - Pancake
-     # - Put computer boards here 
+      - RamChip
   - type: SolutionContainerManager
     solutions:
       stomach:
