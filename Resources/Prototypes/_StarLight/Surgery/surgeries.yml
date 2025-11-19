@@ -17,10 +17,12 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
+  - type: AnimalBypass
     
 - type: entity
-  parent: SurgeryOpenIncision
+  parent: SurgeryBase
   id: SurgeryOpenIncisionSlime
+  name: Open Incision
   components:
   - type: Surgery
     priority: -100
@@ -49,10 +51,12 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
+  - type: AnimalBypass
     
 - type: entity
-  parent: SurgeryCloseIncision
+  parent: SurgeryBase
   id: SurgeryCloseIncisionSlime
+  name: Close Incision
   components:
   - type: Surgery
     requirement:
@@ -87,6 +91,7 @@
   - type: Sprite
     sprite: Mobs/Species/Skeleton/parts.rsi
     state: torso_m
+  - type: AnimalBypass
     
 - type: entity
   parent: SurgeryBase
@@ -107,6 +112,7 @@
   - type: Sprite
     sprite: Mobs/Species/Human/parts.rsi
     state: torso_m
+  - type: AnimalBypass
 
 - type: entity
   parent: SurgeryBase
@@ -157,6 +163,7 @@
   - type: Sprite
     sprite: Mobs/Species/Human/organs.rsi
     state: liver
+  - type: AnimalBypass
     
 - type: entity
   parent: SurgeryBase
@@ -184,6 +191,7 @@
   - type: Sprite
     sprite: Mobs/Species/Human/organs.rsi
     state: liver
+  - type: AnimalBypass
 #
 - type: entity
   parent: SurgeryBase
@@ -236,6 +244,7 @@
     layers:
       - state: kidney-l
       - state: kidney-r
+  - type: AnimalBypass
 
 - type: entity
   parent: SurgeryBase
@@ -265,6 +274,7 @@
     layers:
       - state: kidney-l
       - state: kidney-r
+  - type: AnimalBypass
 #
 - type: entity
   parent: SurgeryBase
@@ -290,6 +300,7 @@
   - type: Sprite
     sprite: Mobs/Species/Human/organs.rsi
     state: stomach
+  - type: AnimalBypass
 
 - type: entity
   parent: SurgeryBase
@@ -317,6 +328,7 @@
   - type: Sprite
     sprite: Mobs/Species/Human/organs.rsi
     state: stomach
+  - type: AnimalBypass
 #
 - type: entity
   parent: SurgeryBase
@@ -344,6 +356,7 @@
     layers:
       - state: lung-l
       - state: lung-r
+  - type: AnimalBypass
 
 - type: entity
   parent: SurgeryBase
@@ -371,6 +384,7 @@
     layers:
       - state: lung-l
       - state: lung-r
+  - type: AnimalBypass
       
 - type: entity
   parent: SurgeryBase
@@ -452,6 +466,7 @@
   - type: Sprite
     sprite: Mobs/Species/Human/organs.rsi
     state: heart-on
+  - type: AnimalBypass
 
 - type: entity
   parent: SurgeryBase
@@ -477,10 +492,12 @@
   - type: Sprite
     sprite: Mobs/Species/Human/organs.rsi
     state: heart-on
+  - type: AnimalBypass
 #
 - type: entity
-  parent: SurgeryExtractHeart
+  parent: SurgeryBase
   id: SurgeryExtractHeartSlime
+  name: Extract Heart
   components:
   - type: Surgery
     requirement:
@@ -504,8 +521,9 @@
     state: heart-on
 
 - type: entity
-  parent: SurgeryImplantHeart
+  parent: SurgeryBase
   id: SurgeryImplantHeartSlime
+  name: Implant Heart
   components:
   - type: Surgery
     requirement:
@@ -552,6 +570,7 @@
     layers:
       - state: eyeball-l
       - state: eyeball-r
+  - type: AnimalBypass
 
 - type: entity
   parent: SurgeryBase
@@ -577,6 +596,7 @@
     layers:
       - state: eyeball-l
       - state: eyeball-r
+  - type: AnimalBypass
 #
 - type: entity
   parent: SurgeryBase
@@ -601,6 +621,7 @@
     sprite: _Starlight/Objects/Specific/Medical/implants.rsi
     layers:
       - state: eye_implant_welding
+  - type: AnimalBypass
 
 - type: entity
   parent: SurgeryBase
@@ -625,6 +646,7 @@
     sprite: _Starlight/Objects/Specific/Medical/implants.rsi
     layers:
       - state: eye_implant_welding
+  - type: AnimalBypass
 #
 - type: entity
   parent: SurgeryBase
@@ -644,6 +666,7 @@
   - type: Sprite
     sprite: Mobs/Species/Human/organs.rsi
     state: tongue
+  - type: AnimalBypass
 
 - type: entity
   parent: SurgeryBase
@@ -664,6 +687,7 @@
   - type: Sprite
     sprite: Mobs/Species/Human/organs.rsi
     state: tongue
+  - type: AnimalBypass
 #
 - type: entity
   parent: SurgeryBase
@@ -699,6 +723,7 @@
   - type: Sprite
     sprite: Mobs/Species/Human/organs.rsi
     state: brain
+  - type: AnimalBypass
 
 - type: entity
   parent: SurgeryBase
@@ -739,6 +764,7 @@
   - type: Sprite
     sprite: Mobs/Species/Human/organs.rsi
     state: brain
+  - type: AnimalBypass
 
 # 
 - type: entity
@@ -819,6 +845,7 @@
     sprite:  _Starlight/Interface/Actions/actions_spider.rsi
     layers:
       - state: egg
+  - type: AnimalBypass
 #
 - type: entity
   parent: SurgeryBase
@@ -844,6 +871,7 @@
   - type: Sprite
     sprite: Mobs/Species/Human/parts.rsi
     state: torso_m
+  - type: AnimalBypass
 
 - type: entity
   parent: SurgeryBase
@@ -869,3 +897,4 @@
   - type: Sprite
     sprite: Mobs/Species/Human/parts.rsi
     state: torso_m
+  - type: AnimalBypass

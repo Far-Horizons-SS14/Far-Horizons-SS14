@@ -1,0 +1,338 @@
+- type: entity
+  parent: SurgeryExtractLiver
+  id: SurgeryExtractLiverNecrosis
+  name: Remove Rotten Liver
+  description: Surgical removal of rotten Liver.
+  components:
+  - type: Surgery
+    requirement: 
+      - SurgeryReverseNecrosis
+  - type: SurgeryPartCondition
+    parts: 
+    - Torso
+  - type: NecrosisSurgeryStep
+  - type: DisableSurgery
+  - type: SurgeryTechnology
+    technologyModifier:
+      SurgeryTech : 25
+      SurgeryTechAdvanced : 15
+  - type: RequireOrganicPart
+    slot: "body_organ_slot_liver"
+
+- type: entity
+  parent: SurgeryExtractKidneys
+  id: SurgeryExtractKidneysNecrosis
+  name: Remove Rotten Kidneys
+  description: Surgical removal of rotten kidneys.
+  components:
+  - type: Surgery
+    requirement: 
+      - SurgeryReverseNecrosis
+  - type: SurgeryPartCondition
+    parts: 
+    - Torso
+  - type: NecrosisSurgeryStep
+  - type: DisableSurgery
+  - type: SurgeryTechnology
+    technologyModifier:
+      SurgeryTech : 25
+      SurgeryTechAdvanced : 15
+  - type: RequireOrganicPart
+    slot: "body_organ_slot_kidneys"
+
+- type: entity
+  parent: SurgeryExtractStomach
+  id: SurgeryExtractStomachNecrosis
+  name: Remove Rotten Stomach
+  description: Surgical removal of rotten stomach.
+  components:
+  - type: Surgery
+    requirement: 
+      - SurgeryReverseNecrosis
+  - type: SurgeryPartCondition
+    parts: 
+    - Torso
+  - type: NecrosisSurgeryStep
+  - type: DisableSurgery
+  - type: SurgeryTechnology
+    technologyModifier:
+      SurgeryTech : 25
+      SurgeryTechAdvanced : 15
+  - type: RequireOrganicPart
+    slot: "body_organ_slot_stomach"
+
+- type: entity
+  parent: SurgeryExtractLungs
+  id: SurgeryExtractLungsNecrosis
+  name: Remove Rotten Lungs
+  description: Surgical removal of rotten lungs.
+  components:
+  - type: Surgery
+    requirement: 
+      - SurgeryReverseNecrosis
+  - type: SurgeryPartCondition
+    parts: 
+    - Torso
+  - type: NecrosisSurgeryStep
+  - type: DisableSurgery
+  - type: SurgeryTechnology
+    technologyModifier:
+      SurgeryTech : 25
+      SurgeryTechAdvanced : 15
+  - type: RequireOrganicPart
+    slot: "body_organ_slot_lungs"
+
+- type: entity
+  parent: SurgeryExtractLungsSlime
+  id: SurgeryExtractLungsSlimeNecrosis
+  name: Remove Rotten Slime Lungs
+  description: Surgical removal of rotten lungs.
+  components:
+  - type: Surgery
+    requirement: 
+      - SurgeryReverseNecrosis
+  - type: SurgeryPartCondition
+    parts: 
+    - Torso
+  - type: NecrosisSurgeryStep
+  - type: DisableSurgery
+  - type: SurgeryTechnology
+    technologyModifier:
+      SurgeryTech : 25
+      SurgeryTechAdvanced : 15
+  - type: RequireOrganicPart
+    slot: "body_organ_slot_lungs"
+
+- type: entity
+  parent: SurgeryExtractHeart
+  id: SurgeryExtractHeartNecrosis
+  name: Remove Rotten Heart
+  description: Surgical removal of rotten heart.
+  components:
+  - type: Surgery
+    requirement: 
+      - SurgeryReverseNecrosis
+  - type: SurgeryPartCondition
+    parts: 
+    - Torso
+  - type: NecrosisSurgeryStep
+  - type: DisableSurgery
+  - type: SurgeryTechnology
+    technologyModifier:
+      SurgeryTech : 25
+      SurgeryTechAdvanced : 15
+  - type: RequireOrganicPart
+    slot: "body_organ_slot_heart"
+
+- type: entity
+  parent: SurgeryExtractHeartSlime
+  id: SurgeryExtractHeartSlimeNecrosis
+  name: Remove Rotten Slime Heart
+  description: Surgical removal of rotten slime heart.
+  components:
+  - type: Surgery
+    requirement: 
+      - SurgeryReverseNecrosis
+  - type: SurgeryPartCondition
+    parts: 
+    - Torso
+  - type: NecrosisSurgeryStep
+  - type: DisableSurgery
+  - type: SurgeryTechnology
+    technologyModifier:
+      SurgeryTech : 25
+      SurgeryTechAdvanced : 15
+  - type: RequireOrganicPart
+    slot: "body_organ_slot_heart"
+
+- type: entity
+  parent: SurgeryAmputation
+  id: SurgeryAmputationArmLNecrosis
+  name: Amputate Rotten Left Arm
+  description: Surgical removal of rotten arm.
+  components:
+  - type: Surgery
+    requirement: 
+    - SurgeryReverseNecrosis
+  - type: SurgeryPartCondition
+    parts: 
+    - Torso
+  - type: NecrosisSurgeryStep
+    target: "body_part_slot_left arm"
+  - type: DisableSurgery
+  - type: SurgeryTechnology
+    technologyModifier:
+      SurgeryTech : 25
+      SurgeryTechAdvanced : 15
+  - type: SurgeryLimbExistCondition
+    slot: left arm
+  - type: RequireOrganicPart
+    slot: "body_part_slot_left arm"
+
+- type: entity
+  parent: SurgeryAmputation
+  id: SurgeryAmputationArmRNecrosis
+  name: Amputate Rotten Right Arm
+  description: Surgical removal of rotten arm.
+  components:
+  - type: Surgery
+    requirement: 
+    - SurgeryReverseNecrosis
+  - type: SurgeryPartCondition
+    parts: 
+    - Torso
+  - type: NecrosisSurgeryStep
+    target: "body_part_slot_right arm"
+  - type: DisableSurgery
+  - type: SurgeryTechnology
+    technologyModifier:
+      SurgeryTech : 25
+      SurgeryTechAdvanced : 15
+  - type: SurgeryLimbExistCondition
+    slot: right arm
+  - type: RequireOrganicPart
+    slot: "body_part_slot_right arm"
+
+- type: entity
+  parent: SurgeryAmputation
+  id: SurgeryAmputationLegLNecrosis
+  name: Amputate Rotten Left Leg
+  description: Surgical removal of rotten leg.
+  components:
+  - type: Surgery
+    requirement: 
+    - SurgeryReverseNecrosis
+  - type: SurgeryPartCondition
+    parts: 
+    - Torso
+  - type: NecrosisSurgeryStep
+    target: "body_part_slot_left leg"
+  - type: DisableSurgery
+  - type: SurgeryTechnology
+    technologyModifier:
+      SurgeryTech : 25
+      SurgeryTechAdvanced : 15
+  - type: SurgeryLimbExistCondition
+    slot: left leg
+  - type: RequireOrganicPart
+    slot: "body_part_slot_left leg"
+
+- type: entity
+  parent: SurgeryAmputation
+  id: SurgeryAmputationLegRNecrosis
+  name: Amputate Rotten Right Leg
+  description: Surgical removal of rotten leg.
+  components:
+  - type: Surgery
+    requirement: 
+    - SurgeryReverseNecrosis
+  - type: SurgeryPartCondition
+    parts: 
+    - Torso
+  - type: NecrosisSurgeryStep
+    target: "body_part_slot_right leg"
+  - type: DisableSurgery
+  - type: SurgeryTechnology
+    technologyModifier:
+      SurgeryTech : 25
+      SurgeryTechAdvanced : 15
+  - type: SurgeryLimbExistCondition
+    slot: right leg
+  - type: RequireOrganicPart
+    slot: "body_part_slot_right leg"
+
+- type: entity
+  parent: SurgeryAmputationSlime
+  id: SurgeryAmputationArmLNecrosisSlime
+  name: Amputate Rotten Left Arm
+  description: Surgical removal of rotten arm.
+  components:
+  - type: Surgery
+    requirement: 
+    - SurgeryReverseNecrosis
+  - type: SurgeryPartCondition
+    parts: 
+    - Torso
+  - type: NecrosisSurgeryStep
+    target: "body_part_slot_left arm"
+  - type: DisableSurgery
+  - type: SurgeryTechnology
+    technologyModifier:
+      SurgeryTech : 25
+      SurgeryTechAdvanced : 15
+  - type: SurgeryLimbExistCondition
+    slot: left arm
+  - type: RequireOrganicPart
+    slot: "body_part_slot_left arm"
+
+- type: entity
+  parent: SurgeryAmputationSlime
+  id: SurgeryAmputationArmRNecrosisSlime
+  name: Amputate Rotten Right Arm
+  description: Surgical removal of rotten arm.
+  components:
+  - type: Surgery
+    requirement: 
+    - SurgeryReverseNecrosis
+  - type: SurgeryPartCondition
+    parts: 
+    - Torso
+  - type: NecrosisSurgeryStep
+    target: "body_part_slot_right arm"
+  - type: DisableSurgery
+  - type: SurgeryTechnology
+    technologyModifier:
+      SurgeryTech : 25
+      SurgeryTechAdvanced : 15
+  - type: SurgeryLimbExistCondition
+    slot: right arm
+  - type: RequireOrganicPart
+    slot: "body_part_slot_right arm"
+
+- type: entity
+  parent: SurgeryAmputationSlime
+  id: SurgeryAmputationLegLNecrosisSlime
+  name: Amputate Rotten Left Leg
+  description: Surgical removal of rotten leg.
+  components:
+  - type: Surgery
+    requirement: 
+    - SurgeryReverseNecrosis
+  - type: SurgeryPartCondition
+    parts: 
+    - Torso
+  - type: NecrosisSurgeryStep
+    target: body_part_slot_left leg
+  - type: DisableSurgery
+  - type: SurgeryTechnology
+    technologyModifier:
+      SurgeryTech : 25
+      SurgeryTechAdvanced : 15
+  - type: SurgeryLimbExistCondition
+    slot: left leg
+  - type: RequireOrganicPart
+    slot: "body_part_slot_left leg"
+
+- type: entity
+  parent: SurgeryAmputationSlime
+  id: SurgeryAmputationLegRNecrosisSlime
+  name: Amputate Rotten Right Leg
+  description: Surgical removal of rotten leg.
+  components:
+  - type: Surgery
+    requirement: 
+    - SurgeryReverseNecrosis
+  - type: SurgeryPartCondition
+    parts: 
+    - Torso
+  - type: NecrosisSurgeryStep
+    target: "body_part_slot_right leg"
+  - type: DisableSurgery
+  - type: SurgeryTechnology
+    technologyModifier:
+      SurgeryTech : 25
+      SurgeryTechAdvanced : 15
+  - type: SurgeryLimbExistCondition
+    slot: right leg
+  - type: RequireOrganicPart
+    slot: "body_part_slot_right leg"

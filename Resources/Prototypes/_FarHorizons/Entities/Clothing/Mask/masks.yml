@@ -27,3 +27,19 @@
         Slash: 0.95
         Piercing: 0.95
         Heat: 0.95
+
+## Syndicate Station
+
+
+- type: entity
+  parent: [ClothingMaskGasAtmos, BaseCommandContraband]
+  id: ClothingMaskGasCaptainSyndi
+  name: commander's gas mask
+  description: The Syndicate cut corners and repainted a spare atmospheric gas mask, but don't tell anyone.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Mask/syndigascaptain.rsi #Far Horizons
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Mask/syndigascaptain.rsi #Far Horizons
+  - type: BreathMask
+  - type: IngestionBlocker

@@ -62,6 +62,10 @@
     noRot: true
   - type: Anchorable
   - type: Pullable
+  # FarHorizons Start
+  - type: SurgeryBedSpeed
+    bedSpeedModifier: 1.6
+  # FarHorizons End
 
 
 - type: entity
@@ -92,6 +96,8 @@
       - VitalsMonitorReceiverMed
   - type: PlaceableSurface
     isPlaceable: false
+  - type: SurgeryBedSpeed
+    bedSpeedModifier: 1.4
     #Far Horizons-End
   - type: GuideHelp
     guides:

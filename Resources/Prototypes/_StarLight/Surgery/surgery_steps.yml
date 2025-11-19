@@ -23,6 +23,12 @@
       types:
         Slash: 10
   - type: SurgeryStepEmoteEffect
+  #FarHorizons Start
+  - type: OnFailDamage
+    damage: 
+      types:
+        Slash: 10
+  #FarHorizons End
 
 - type: entity
   parent: SurgeryStepBase
@@ -38,6 +44,12 @@
     sprite: Objects/Specific/Medical/Surgery/scissors.rsi
     state: hemostat
   - type: SurgeryClampBleedEffect
+  #FarHorizons Start
+  - type: OnFailDamage
+    damage: 
+      types:
+        Pierce: 10
+  #FarHorizons End
 
 - type: entity
   parent: SurgeryStepBase
@@ -52,6 +64,12 @@
     sprite: Objects/Specific/Medical/Surgery/saw.rsi
     state: saw
   - type: SurgeryStepEmoteEffect
+  #FarHorizons Start
+  - type: OnFailDamage
+    damage: 
+      types:
+        Slash: 10
+  #FarHorizons End
 
 - type: entity
   parent: SurgeryStepBase
@@ -64,6 +82,12 @@
   - type: Sprite
     sprite: Objects/Specific/Medical/Surgery/scissors.rsi
     state: setter
+  #FarHorizons Start
+  - type: OnFailDamage
+    damage: 
+      types:
+        Blunt: 10
+  #FarHorizons End
 
 - type: entity
   parent: SurgeryStepBase
@@ -76,6 +100,12 @@
   - type: Sprite
     sprite: Objects/Specific/Medical/Surgery/scissors.rsi
     state: setter
+  #FarHorizons Start
+  - type: OnFailDamage
+    damage: 
+      types:
+        Blunt: 10
+  #FarHorizons End
 
 - type: entity
   parent: SurgeryStepBase
@@ -85,6 +115,8 @@
   - type: SurgeryStep
     tools:
     - type: BoneGel
+    reagentId: BoneGel
+    reagentQuantity: 5
   - type: Sprite
     sprite: Objects/Specific/Medical/Surgery/bone_gel.rsi
     state: bone-gel
@@ -106,6 +138,12 @@
     state: cautery
   - type: SurgeryStepEmoteEffect
   - type: SurgeryClearProgress
+  #FarHorizons Start
+  - type: OnFailDamage
+    damage: 
+      types:
+        Heat: 10
+  #FarHorizons End
 
 - type: entity
   parent: SurgeryStepBase
@@ -119,6 +157,12 @@
     sprite: Objects/Specific/Medical/Surgery/scalpel.rsi
     state: scalpel
   - type: SurgeryStepEmoteEffect
+  #FarHorizons Start
+  - type: OnFailDamage
+    damage: 
+      types:
+        Slash: 10
+  #FarHorizons End
 
 - type: entity
   parent: SurgeryStepBase
@@ -131,6 +175,12 @@
   - type: Sprite
     sprite: Objects/Specific/Medical/Surgery/scissors.rsi
     state: retractor
+  #FarHorizons Start
+  - type: OnFailDamage
+    damage: 
+      types:
+        Pierce: 10
+  #FarHorizons End
 
 - type: entity
   parent: SurgeryStepBase
@@ -144,6 +194,12 @@
   - type: Sprite
     sprite: Objects/Specific/Medical/Surgery/cautery.rsi
     state: cautery
+  #FarHorizons Start
+  - type: OnFailDamage
+    damage: 
+      types:
+        Heat: 10
+  #FarHorizons End
 
 - type: entity
   parent: SurgeryStepBase
@@ -158,3 +214,9 @@
     sprite: Objects/Specific/Medical/Surgery/scissors.rsi
     state: retractor
   - type: SurgeryStepEmoteEffect
+  #FarHorizons Start
+  - type: OnFailDamage
+    damage: 
+      types:
+        Pierce: 10
+  #FarHorizons End

@@ -1,4 +1,4 @@
-- type: entity
+﻿- type: entity
   id: BaseBorgModule
   parent: BaseItem
   name: borg module
@@ -718,6 +718,7 @@
           components:
           - GasTank
           - AmeFuelContainer
+          - ReactorPart # FH edit
     #Starlight-edit: end
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: construction-module }
@@ -841,6 +842,7 @@
   - type: ItemBorgModule
     hands:
     - item: HandheldHealthAnalyzerUnpowered
+    - item: DefibrillatorOneHandedUnpowered
     - item: Gauze
       hand:
         emptyLabel: borg-slot-topicals-empty
@@ -932,6 +934,7 @@
         whitelist:
           components:
           - FitsInDispenser
+    - item: HandLabeler
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: chem-module }
 
@@ -986,6 +989,7 @@
           - FitsInDispenser
           tags:
           - ChemDispensable
+    - item: HandLabeler
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: adv-chem-module }
 
@@ -1305,26 +1309,26 @@
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: syndicate-desword-module }
 
 - type: entity
-  parent: [ BaseBorgModuleSyndicateAssault, BaseProviderBorgModule, BaseSyndicateContraband ]
+  parent: [ BaseBorgModule, BaseProviderBorgModule, BaseSyndicateContraband ] #Starlight L6 printing
   id: BorgModuleL6C
   name: L6C ROW cyborg module
   description: A weapons module that comes with a L6C.
   components:
-  - type: Sprite
-    layers:
-    - state: syndicate
-    - state: icon-syndicate
-  - type: ItemBorgModule
-    hands:
-    - item: WeaponLightMachineGunL6C
-    - item: PinpointerSyndicateNuclear
-  - type: BorgModuleIcon
-    icon: { sprite: Interface/Actions/actions_borg.rsi, state: syndicate-l6c-module }
+    - type: Sprite
+      layers:
+      - state: syndicate
+      - state: icon-syndicate
+    - type: ItemBorgModule
+      hands:
+      - item: WeaponLightMachineGunL6C
+      - item: PinpointerSyndicateNuclear
+    - type: BorgModuleIcon
+      icon: { sprite: Interface/Actions/actions_borg.rsi, state: syndicate-l6c-module }
 
 - type: entity
-  parent: [ BaseBorgModuleSyndicateAssault, BaseProviderBorgModule, BaseSyndicateContraband ]
+  parent: [ BaseBorgModule, BaseProviderBorgModule, BaseSyndicateContraband ] #Starlight c20 printing
   id: BorgModuleC20r
-  name: C20-r ROW cyborg module
+  name: C-20r ROW cyborg module
   description: A weapons module that comes with a burst-fire C-20r.
   components:
   - type: Sprite

@@ -10,6 +10,12 @@
   - type: Sprite
     sprite: Objects/Specific/Medical/Surgery/scissors.rsi
     state: retractor
+  #FarHorizons Start
+  - type: OnFailDamage
+    damage: 
+      types:
+        Piercing: 10
+  #FarHorizons End
 
 - type: entity
   parent: SurgeryStepBase
@@ -26,6 +32,12 @@
   - type: SurgeryStepSpawnEffect
     entity: SheetPlastic1
   - type: SurgeryOperatingTableCondition
+  #FarHorizons Start
+  - type: OnFailDamage
+    damage: 
+      types:
+        Slash: 10
+  #FarHorizons End
 
 - type: entity
   parent: SurgeryStepBase
@@ -40,3 +52,9 @@
   - type: Sprite
     sprite: Objects/Specific/Medical/Surgery/cautery.rsi
     state: cautery
+  #FarHorizons Start
+  - type: OnFailDamage
+    damage: 
+      types:
+        Heat: 10
+  #FarHorizons End

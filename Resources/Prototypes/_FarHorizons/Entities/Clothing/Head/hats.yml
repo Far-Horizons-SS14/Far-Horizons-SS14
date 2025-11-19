@@ -57,3 +57,129 @@
     tags:
     - PetWearable
     - CorgiWearable
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatBeretScience
+  name: Scientist Beret
+  description: A purple colored beret.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Head/Hats/beret_sci.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Head/Hats/beret_sci.rsi
+  - type: Tag
+    tags:
+    - PetWearable
+    - CorgiWearable
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatBeretHoP
+  name: Head of Personnel's Beret
+  description: A simplistic but rugged blue beret for the Head of Personnel.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Head/Hats/beret_hop.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Head/Hats/beret_hop.rsi
+  - type: Tag
+    tags:
+    - PetWearable
+    - CorgiWearable
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatMagistrateCap
+  name: Magistrate's Cap
+  description: A well maintained cap that just exemplifies order.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Head/Hats/magistratecap.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Head/Hats/magistratecap.rsi
+  - type: Tag
+    tags:
+    - PetWearable
+    - CorgiWearable
+
+## Syndicate Station
+
+
+# Commander (Captain)
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatCapcapSyndi
+  name: com cap
+  description: A grand, stylish cap worn by the Commander. Shows the station who's in charge.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Head/Hats/syndicapcap.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Head/Hats/syndicapcap.rsi
+  - type: Item
+    sprite: _FarHorizons/Clothing/Head/Hats/syndicapcap.rsi
+  - type: Tag
+    tags:
+    - PetWearable
+    - CorgiWearable
+    - ClothMade
+    - Recyclable
+    - WhitelistChameleon
+    - HamsterWearable
+  - type: SentienceTarget
+    flavorKind: station-event-random-sentience-flavor-inanimate
+    weight: 0.0002 # 5,000 times less likely than 1 regular animal
+  - type: BlockMovement
+
+- type: entity
+  parent: [ClothingHeadBase, BaseCommandContraband]
+  id: ClothingHeadHatCaptainSyndi
+  name: commander's hardhat
+  description: Feels good being the king.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Head/Hats/syndicaptain.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Head/Hats/syndicaptain.rsi
+  - type: Tag
+    tags:
+    - PetWearable
+    - CorgiWearable
+    - ClothMade
+    - Recyclable
+    - HamsterWearable
+    - WhitelistChameleon
+
+# Personnel Chief (HoP)
+
+- type: entity
+  parent: ClothingHeadHatHopcap
+  id: ClothingHeadHatHopcapSyndi
+  name: personnel chief's cap
+  description: A stylish cap worn by the Personnel Chief. Shows paperwork who's in charge.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Head/Hats/syndihopcap.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Head/Hats/syndihopcap.rsi
+  - type: Tag
+    tags:
+    - PetWearable
+    - CorgiWearable
+    - ClothMade
+    - Recyclable
+    - HamsterWearable
+    - WhitelistChameleon
+
+- type: entity
+  parent: ClothingHeadHatBeretHoP
+  id: ClothingHeadHatBeretHoPSyndi
+  name: Personnel Chief's Beret
+  description: A simplistic but rugged red beret for the Personnel Chief.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Head/Hats/syndiberet_hop.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Head/Hats/syndiberet_hop.rsi

@@ -1,4 +1,5 @@
 using System.Numerics;
+using Content.Shared._FarHorizons.Salvage;
 using Content.Shared.Salvage;
 using Content.Shared.Salvage.Expeditions;
 using Robust.Shared.Audio;
@@ -57,4 +58,7 @@ public sealed partial class SalvageExpeditionComponent : SharedSalvageExpedition
     /// </summary>
     [DataField]
     public ResolvedSoundSpecifier SelectedSong;
+
+    // Far Horizons
+    public ProtoId<SalvageMissionObjectivePrototype> Objective;
 }

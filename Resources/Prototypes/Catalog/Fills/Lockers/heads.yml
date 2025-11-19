@@ -26,6 +26,44 @@
     - id: ClothingOuterHardsuitLuxmax #starlight
     - id: SalvageShuttleConsoleCircuitboard #starlight
     - id: ShipLabeler # Far Horizons
+    - id: MiningShuttleConsoleCircuitboard #starlight
+    - id: EncryptionKeySalvage #starlight
+    - id: PrintedDocumentGreenshiftAlert #SL
+      conditions: #SL
+      - !type:GamemodeCondition #SL
+        presets: #SL
+        - Greenshift #SL
+        - Sandbox #SL
+    - id: SpaceCash1000 #SL
+      conditions: #SL
+      - !type:GamemodeCondition #SL
+        presets: #SL
+        - Greenshift #SL
+        - Sandbox #SL
+    - id: SpaceCash1000 #SL
+      conditions: #SL
+      - !type:GamemodeCondition #SL
+        presets: #SL
+        - Greenshift #SL
+        - Sandbox #SL
+    - id: SpaceCash1000 #SL
+      conditions: #SL
+      - !type:GamemodeCondition #SL
+        presets: #SL
+        - Greenshift #SL
+        - Sandbox #SL
+    - id: SpaceCash1000 #SL
+      conditions: #SL
+      - !type:GamemodeCondition #SL
+        presets: #SL
+        - Greenshift #SL
+        - Sandbox #SL
+    - id: SpaceCash1000 #SL
+      conditions: #SL
+      - !type:GamemodeCondition #SL
+        presets: #SL
+        - Greenshift #SL
+        - Sandbox #SL
 
 - type: entity
   id: LockerQuarterMasterFilled
@@ -60,10 +98,25 @@
     - id: SpaceCash1000
     - id: ClothingEyesGlassesCommand
     - id: ClothingEyesHudCommand
+    - id: EncryptionKeyExpedition #starlight
     - id: HeadSkeleton # A skull to accompany your skeleton crew
       conditions:
       - !type:PlayerCountCondition
         max: 15
+    - id: PrintedDocumentGreenshiftAlert #SL
+      conditions: #SL
+      - !type:GamemodeCondition #SL
+        presets: #SL
+        - Greenshift #SL
+        - Sandbox #SL
+    #region Starlight
+    # - id: PaperEndGreenshift
+    #   conditions:
+    #   - !type:GamemodeCondition
+    #     presets:
+    #     - Greenshift
+    #     - Sandbox
+    #endregion Starlight
 
 
 # No laser table + Laser table
@@ -84,6 +137,7 @@
     - id: ClothingMaskGasCaptain
     - id: JetpackCaptainFilled
     - id: OxygenTankFilled
+    - id: NitrogenTankFilled # Starlight - vox gang
 
 # No laser locker, used when the antique laser is placed in the special display crate
 - type: entity
@@ -150,7 +204,14 @@
     - id: RubberStampDenied
     - id: RubberStampHop
     - id: ClothingEyesHudCommand
-    - id: BoxFolderHoPClipboard #Starlight Change
+    - id: ClothingEyesGlassesCommand #Far Horizons
+    #- id: BoxFolderHoPClipboard #Starlight Change - #Far Horizons disabled - HoP already spawns with one.
+    - id: PrintedDocumentGreenshiftAlert #SL
+      conditions: #SL
+      - !type:GamemodeCondition #SL
+        presets: #SL
+        - Greenshift #SL
+        - Sandbox #SL
 
 - type: entity
   id: LockerHeadOfPersonnelFilled
@@ -185,6 +246,12 @@
     - id: PlushieMatthew #starlight
     - id: IntegrityAnalyzer # Far Horizons
     - id: ShipLabeler # Far Horizons
+    - id: PrintedDocumentGreenshiftAlert #SL
+      conditions: #SL
+      - !type:GamemodeCondition #SL
+        presets: #SL
+        - Greenshift #SL
+        - Sandbox #SL
 
 # Hardsuit table, used for suit storage as well
 - type: entityTable
@@ -196,6 +263,7 @@
     - id: ClothingShoesBootsMagAdv
     - id: JetpackVoidFilled
     - id: OxygenTankFilled
+    - id: NitrogenTankFilled # Starlight - vox gang
 
 # No hardsuit locker
 - type: entity
@@ -248,6 +316,12 @@
     - id: AutoMenderBurnFilled #Starlight
     - id: AutoMenderBruteFilled #Starlight
     - id: CMOLicense #STARLIGHT
+    - id: PrintedDocumentGreenshiftAlert #SL
+      conditions: #SL
+      - !type:GamemodeCondition #SL
+        presets: #SL
+        - Greenshift #SL
+        - Sandbox #SL
 
 # Hardsuit table, used for suit storage as well
 - type: entityTable
@@ -257,6 +331,7 @@
     - id: ClothingMaskBreathMedical
     - id: ClothingOuterHardsuitMedical
     - id: OxygenTankFilled
+    - id: NitrogenTankFilled # Starlight - vox gang
 
 # No hardsuit locker
 - type: entity
@@ -300,8 +375,20 @@
     - id: ProtolatheMachineCircuitboard
     - id: ResearchComputerCircuitboard
     - id: CargoRequestScienceComputerCircuitboard
+    - id: StationAiFixerCircuitboard
     - id: RubberStampRd
     - id: RDDiploma #STARLIGHT
+    - id: PrintedDocumentGreenshiftAlert #SL
+      conditions: #SL
+      - !type:GamemodeCondition #SL
+        presets: #SL
+        - Greenshift #SL
+        - Sandbox #SL
+    #region Starlight
+    - id: RDDiploma
+    #- id: PaperIonstormBorgs
+    #  prob: 0.10 #1/10 rounds will have this paper that can be signed repeatedly for no discernable effect!
+    #endregion Starlight
 
 # Hardsuit table, used for suit storage as well
 - type: entityTable
@@ -311,6 +398,7 @@
     - id: ClothingMaskBreath
     - id: ClothingOuterHardsuitRd
     - id: OxygenTankFilled
+    - id: NitrogenTankFilled # Starlight - vox gang
 
 # No hardsuit locker
 - type: entity
@@ -364,6 +452,12 @@
     - id: WeaponDisabler
     - id: WantedListCartridge
     - id: DrinkHosFlask
+    - id: PrintedDocumentGreenshiftAlert #SL
+      conditions: #SL
+      - !type:GamemodeCondition #SL
+        presets: #SL
+        - Greenshift #SL
+        - Sandbox #SL
 
 # Hardsuit table, used for suit storage as well
 - type: entityTable
@@ -374,6 +468,7 @@
     - id: ClothingOuterHardsuitSecurityRed
     - id: JetpackSecurityFilled
     - id: OxygenTankFilled
+    - id: NitrogenTankFilled # Starlight - vox gang
     - id: ClothingShoesBootsMagSec
 
 # No hardsuit locker

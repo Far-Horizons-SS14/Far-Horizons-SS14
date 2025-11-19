@@ -25,6 +25,7 @@ using Robust.Client.ResourceManagement;
 using Robust.Client.UserInterface;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+using Content.Shared.Research.Components; //FarHorizons
 
 namespace Content.Client.HealthAnalyzer.UI
 {
@@ -35,6 +36,7 @@ namespace Content.Client.HealthAnalyzer.UI
         private readonly SpriteSystem _spriteSystem;
         private readonly IPrototypeManager _prototypes;
         private readonly IResourceCache _cache;
+        public event Action<BaseButton.ButtonEventArgs>? OnServerListButtonPressed; //FarHorizons
 
         public HealthAnalyzerWindow()
         {
@@ -45,6 +47,8 @@ namespace Content.Client.HealthAnalyzer.UI
             _spriteSystem = _entityManager.System<SpriteSystem>();
             _prototypes = dependencies.Resolve<IPrototypeManager>();
             _cache = dependencies.Resolve<IResourceCache>();
+
+            ServerListButton.OnPressed += a => OnServerListButtonPressed?.Invoke(a); // FarHorizons
         }
 
         public void Populate(HealthAnalyzerScannedUserMessage msg)
@@ -117,7 +121,7 @@ namespace Content.Client.HealthAnalyzer.UI
             AlertsContainer.Visible = showAlerts;
 
             if (showAlerts)
-                AlertsContainer.DisposeAllChildren();
+                AlertsContainer.RemoveAllChildren();
 
             if (msg.Unrevivable == true)
                 AlertsContainer.AddChild(new RichTextLabel
@@ -244,5 +248,14 @@ namespace Content.Client.HealthAnalyzer.UI
 
             return rootContainer;
         }
+        //FarHorizons Start
+        public void SetEntity(EntityUid uid)
+        {
+            if (!_entityManager.HasComponent<ResearchClientComponent>(uid))
+            {
+                ServerListButton.Visible = false;
+            }
+        }
+        //FarHorizons End
     }
 }

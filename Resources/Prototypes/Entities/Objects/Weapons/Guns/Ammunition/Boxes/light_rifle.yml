@@ -3,6 +3,7 @@
   parent: BaseItem
   id: BaseMagazineBoxLightRifle
   name: ammunition box (.30 rifle)
+  description: 60 round box of .30 Rifle ammunition. #Far Horizons
   components:
   - type: BallisticAmmoProvider
     mayTransfer: true
@@ -29,6 +30,7 @@
   parent: BaseMagazineBoxLightRifle
   id: MagazineBoxLightRifleBig
   name: ammunition box (.30 rifle SP)
+  description: 200 round box of .30 ammunition. #Far Horizons
   components:
   - type: BallisticAmmoProvider
     capacity: 200
@@ -59,6 +61,11 @@
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
     - state: sp
+# Starlight-start
+  - type: Tag
+    tags:
+    - MagazineBoxLightRifle
+# Starlight-end
 
 - type: entity
   parent: BaseMagazineBoxLightRifle

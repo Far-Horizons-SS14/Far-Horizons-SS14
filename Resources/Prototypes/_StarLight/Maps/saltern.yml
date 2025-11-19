@@ -3,7 +3,7 @@
   mapName: 'Saltern'
   mapPath: /Maps/_Starlight/Stations/Saltern.yml
   minPlayers: 0
-  maxPlayers: 40
+  maxPlayers: 50
   stations:
     StarlightSaltern:
       stationProto: StandardNanotrasenStation
@@ -50,14 +50,15 @@
             SecurityOfficer: [ 4, 4 ]
             SecurityCadet: [ 4, 4 ]
             Brigmedic: [ 1, 1 ]
-            Corpsman: [1,1] #Far Horizons
-            SecBorg: [1,1] #Far Horizons
+            #Corpsman: [1,1] #Far Horizons
+            #SecBorg: [1,1] #Far Horizons
             #supply
             Quartermaster: [ 1, 1 ]
             SalvageSpecialist: [ 3, 4 ]
             MiningSpecialist: [ 2, 3 ]
             CargoTechnician: [ 2, 3 ]
             MailTech: [ 1, 2 ]
+            SalvageLead: [ 1, 1 ]
             #civillian
             Assistant: [ -1, -1 ]
             Clown: [ 1, 1 ]

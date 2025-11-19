@@ -1,5 +1,6 @@
 
 # Security Officer
+
 - type: entity
   id: LockerSecurityFH
   parent: LockerBaseSecure
@@ -82,6 +83,7 @@
     capacity: 50 # Big lockers tend to have more than 30 items in them
 
 # Warden
+
 - type: entity
   id: LockerWardenFH
   parent: LockerLargeBaseSecure
@@ -117,6 +119,7 @@
     securityLevel: medSecurity
   
 # Brigmedic
+
 - type: entity
   id: LockerBrigmedicFH
   parent: LockerLargeBaseSecure
@@ -148,6 +151,7 @@
     access: [["Brigmedic"]]
 
 # Corpsman
+
 - type: entity
   id: LockerCorpsman
   parent: LockerLargeBaseSecure
@@ -164,6 +168,7 @@
     access: [["Brigmedic"]]
 
 # HoS
+
 - type: entity
   id: LockerHeadOfSecurityFH
   parent: LockerLargeBaseSecure
@@ -197,3 +202,38 @@
     access: [["Magistrate"]]
   - type: WiresPanelSecurity
     securityLevel: medSecurity
+
+## Syndicate Station
+
+
+# Command
+
+- type: entity
+  id: LockerCommander
+  parent: LockerBaseSecure
+  name: commander's locker
+  components:
+  - type: Appearance
+  - type: EntityStorageVisuals
+    stateBaseClosed: cap
+    stateDoorOpen: cap_open
+    stateDoorClosed: cap_door
+  - type: AccessReader
+    access: [["Captain"]]
+  - type: WiresPanelSecurity # Maintenance panel
+    securityLevel: medSecurity
+
+- type: entity
+  id: LockerPersonnelChief
+  parent: LockerBaseSecure
+  name: personnel chief's locker
+  components:
+  - type: Appearance
+  - type: EntityStorageVisuals
+    stateBaseClosed: hop
+    stateDoorOpen: hop_open
+    stateDoorClosed: hop_door
+  - type: AccessReader
+    access: [["HeadOfPersonnel"]]
+  - type: WiresPanelSecurity # Maintenance panel
+    securityLevel: medSecurity 

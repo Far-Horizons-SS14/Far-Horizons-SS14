@@ -1,3 +1,5 @@
+# Atmos
+
 - type: loadoutGroup
   id: AtmosTechHead
   name: loadout-group-atmos-tech-hat
@@ -6,6 +8,8 @@
   - AtmosTechBeret
   - AtmosTechHardhat
 
+# Chemist
+
 - type: loadoutGroup
   id: ChemistHead
   name: loadout-group-chemist-hat
@@ -13,6 +17,26 @@
   loadouts:
   - ChemistBeret
   - MedicalBeret
+
+# Chief Medical Officer
+
+- type: loadoutGroup
+  id: CMOBackpack
+  name: loadout-group-cmo-backpack
+  loadouts:
+    - ChemistBackpack
+    - ChemistSatchel
+    - ChemistDuffel
+    - MedicalDoctorBackpack
+    - MedicalDoctorSatchel
+    - MedicalDoctorDuffel
+    - ParamedicBackpack
+    - ParamedicDuffel
+    - ParamedicSatchel
+    - VirologyBackpack
+    - VirologyDuffel
+    - VirologySatchel
+    - LeatherSatchel
 
 # Corpsman #
 
@@ -67,6 +91,32 @@
   - Nitrile
   - BlackNitrile
 
+# IAA
+
+- type: loadoutGroup
+  id: IAAEyewear
+  name: loadout-group-iaa-eyewear
+  loadouts:
+  - LawGlasses
+  - Glasses
+  - GlassesJamjar
+  - GlassesJensen
+  - CheapSunnies
+  - AssistantNoirGlasses
+  
+# Doctor
+
+- type: loadoutGroup
+  id: DoctorBackpack
+  name: loadout-group-doctor-backpack
+  loadouts:
+    - MedicalDoctorBackpack
+    - MedicalDoctorSatchel
+    - MedicalDoctorDuffel
+    - VirologyBackpack
+    - VirologyDuffel
+    - VirologySatchel
+
 # Magistrate #
 
 - type: loadoutGroup
@@ -74,6 +124,7 @@
   name: loadout-group-magistrate-hat
   minLimit: 0
   loadouts:
+  - MagistrateCap
   - MagistrateCowboy
   - MagistratePwig
   - MagistrateBeret
@@ -81,14 +132,108 @@
 - type: loadoutGroup
   id: MagistrateUniform
   name: loadout-group-magistrate-uniform
-  minLimit: 1
   loadouts:
   - MagistrateJumpsuit
   - MagistrateJumpskirt
+  - MagistrateJumpsuitTurtleneck
+  - MagistrateJumpskirtTurtleneck
 
 - type: loadoutGroup
   id: MagistrateNeck
   name: loadout-group-magistrate-neck
   minLimit: 0
   loadouts:
+  - MagistrateMantle
   - MagistratePurpleScarf
+
+- type: loadoutGroup
+  id: MagistrateOuterClothing
+  name: loadout-group-magistrate-outer
+  minLimit: 0
+  loadouts:
+  - MagistrateCoat
+  - MagistrateJudgeCoat
+
+- type: loadoutGroup
+  id: MagistrateEyewear
+  name: loadout-group-magistrate-eyewear
+  minLimit: 0
+  loadouts:
+  - MagistrateGlasses
+  - CommandGlasses
+  - CommandHud
+
+# NTR
+
+- type: loadoutGroup
+  id: NTROuterClothes
+  name: loadout-group-ntr-outer
+  minLimit: 0
+  loadouts:
+  - NTRCoat
+
+# Command
+
+- type: loadoutGroup
+  id: CommandEyewear
+  name: loadout-group-command-eyewear
+  minLimit: 0
+  loadouts:
+  - CommandGlasses
+  - CommandHud
+
+- type: loadoutGroup
+  id: CommandEyewearSyndi
+  name: loadout-group-command-eyewear-syndi
+  minLimit: 0
+  loadouts:
+  - CommandGlassesSyndi
+  - CommandHudSyndi
+  
+# Musician
+
+- type: loadoutGroup
+  id: MusicianHead
+  name: loadout-group-musician-head
+  minLimit: 0
+  loadouts:
+    - MusicianHatPerformer
+    - MusicianHatPerformerBright
+    - MusicianHatPerformerDark
+
+- type: loadoutGroup
+  id: MusicianShoes
+  name: loadout-group-musician-shoes
+  minLimit: 1
+  loadouts:
+  - BlackShoes
+  - WhiteShoes
+  - GreenShoes
+  - LeatherShoes
+  - Heels
+  - LaceupShoes
+  - MusicianShoesPerformer
+  - MusicianShoesPerformerBright
+  - MusicianShoesPerformerDark
+
+# Paramedic
+
+- type: loadoutGroup
+  id: ParamedicBackpack
+  name: loadout-group-paramedic-backpack
+  minLimit: 0
+  loadouts:
+    - ParamedicBackpack
+    - ParamedicDuffel
+    - ParamedicSatchel
+
+# Virologist
+
+- type: loadoutGroup
+  id: VirologistBag
+  name: loadout-group-virologist-backpack
+  minLimit: 0
+  loadouts:
+    - VirologyBackpack
+    - VirologyDuffel
+    - VirologySatchel

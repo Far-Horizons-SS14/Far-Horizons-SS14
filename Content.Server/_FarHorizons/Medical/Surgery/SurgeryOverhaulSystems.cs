@@ -1,0 +1,233 @@
+using Content.Shared._FarHorizons.Medical.SurgeryOverhaul.Components;
+using Content.Shared.Starlight.Medical.Surgery.Events;
+using Content.Shared.Humanoid;
+using Content.Shared.IdentityManagement;
+using Content.Shared.Preferences;
+using Content.Shared.Damage;
+using Content.Shared.Research.Components;
+using Content.Shared.Research.Systems;
+using Content.Shared.Research.Prototypes;
+using Content.Shared.Buckle.Components;
+using Content.Shared.DeviceLinking;
+using Robust.Shared.Network;
+using Robust.Shared.Prototypes;
+using Content.Shared.Prototypes;
+using Robust.Shared.Random;
+using Content.Shared.Random.Helpers;
+using System.Linq;
+using Content.Server.Administration.Systems;
+using Content.Shared.Eye.Blinding.Systems;
+using Content.Shared.Eye.Blinding.Components;
+using Content.Shared.Atmos.Rotting;
+using Content.Shared.Medical.Healing;
+using Robust.Shared.Containers;
+using Content.Shared.Body.Systems;
+using Content.Shared.Body.Components;
+using Content.Shared.Tag; 
+
+namespace Content.Server._FarHorizons.Medical.SurgeryOverhaul.Systems;
+
+public sealed partial class SurgeryOverhaulSystem : EntitySystem
+{
+    [Dependency] private readonly MetaDataSystem _metaData = default!;
+    [Dependency] private readonly SharedHumanoidAppearanceSystem _humanoidAppearance = default!;
+    [Dependency] private readonly IdentitySystem _identity = default!;
+    [Dependency] private readonly INetManager _net = default!;
+    [Dependency] private readonly DamageableSystem _damageableSystem = default!;
+    [Dependency] private readonly IPrototypeManager _prototypes = default!;
+    [Dependency] private readonly SharedResearchSystem _research = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly IComponentFactory _componentFactory = default!;
+    [Dependency] private readonly StarlightEntitySystem _entity = default!;
+    [Dependency] private readonly BlindableSystem _blindableSystem = default!;
+    [Dependency] private readonly SharedRottingSystem _rottingSystem = default!;
+    [Dependency] private readonly SharedContainerSystem _containers = default!;
+    [Dependency] private readonly TagSystem _tag = default!;
+    private readonly List<EntProtoId> _surgeriesForRotten = [];
+
+    public override void Initialize()
+    {
+        base.Initialize();
+        SubscribeLocalEvent<SurgeryAlterAppearanceComponent, SurgeryStepCompleteEvent>(OnAlterAppearanceComplete);
+        SubscribeLocalEvent<HealingComponent, SurgeryStepCompleteEvent>(OnHealComplete);
+        SubscribeLocalEvent<NecrosisSurgeryComponent, SurgeryStepCompleteEvent>(OnNecrosisComplete);
+        SubscribeLocalEvent<SurgeryRepairEyesComponent, SurgeryStepCompleteEvent>(OnRepairEyesComplete);
+        SubscribeLocalEvent<NecrosisSurgeryComponent, SurgeryValidEvent>(OnNecrosisSurgeryValid);
+        SubscribeLocalEvent<NecrosisSurgeryStepComponent, SurgeryValidEvent>(OnNecrosisSurgeryStepValid);
+        SubscribeLocalEvent<SurgeryTechnologyComponent, SurgeryValidEvent>(OnResearchSurgeryValid);
+        SubscribeLocalEvent<SurgeryLimbExistConditionComponent, SurgeryValidEvent>(OnLimbExistConditionValid);
+        SubscribeLocalEvent<RequireOrganicPartComponent, SurgeryValidEvent>(OnRequireOrganicPartValid);
+        
+
+        LoadSurgeriesForRotten();
+    }
+//Surgeries
+    private void OnAlterAppearanceComplete(EntityUid uid, SurgeryAlterAppearanceComponent comp, ref SurgeryStepCompleteEvent args)
+    {
+        if (_net.IsClient) return;
+        var target = args.Body;
+
+        if (!TryComp<HumanoidAppearanceComponent>(target, out var humanoid))
+            return;
+
+        if (_net.IsClient)
+            return;
+
+        var newProfile = HumanoidCharacterProfile.RandomWithSpecies(humanoid.Species);
+        _humanoidAppearance.LoadProfile(target, newProfile, humanoid);
+        _metaData.SetEntityName(target, newProfile.Name, raiseEvents: false);
+        _identity.QueueIdentityUpdate(target);
+    }
+
+    private void OnHealComplete(EntityUid uid, HealingComponent comp, ref SurgeryStepCompleteEvent args)
+    {
+        if (_net.IsClient) return;
+        var StepProto = _prototypes.Index<EntityPrototype>(args.StepProto);
+        var surgProto = _prototypes.Index<EntityPrototype>(args.SurgeryProto);
+        var ResearchModifier = 75f;
+        DamageSpecifier BonusHeal = new();
+        DamageSpecifier TotalHeal;
+        if (StepProto.TryGetComponent<HealingComponent>(out var healComp, _componentFactory))
+        {
+            if (surgProto.TryGetComponent<SurgeryTechnologyComponent> (out var techvar, _componentFactory) && TryComp(args.Body, out BuckleComponent? buckle)
+                && TryComp(buckle.BuckledTo, out DeviceLinkSinkComponent? linkComp) && linkComp.LinkedSources.Count > 0 &&
+                TryComp<TechnologyDatabaseComponent>(linkComp.LinkedSources.First(), out var techComp))
+            {
+                foreach (var (key, value) in techvar.TechnologyModifier!)
+                {
+                    var TechProto = _prototypes.Index<TechnologyPrototype>(key.Id);
+                    if (_research.IsTechnologyUnlocked(uid, TechProto, techComp) && ResearchModifier > value)
+                        ResearchModifier = value;
+                }
+            }
+
+            if (TryComp<DamageableComponent>(args.Body, out var dmgComp))
+                foreach (var key in healComp.Damage!.DamageDict.Keys)
+                    BonusHeal.DamageDict.Add(key, dmgComp.TotalDamage / ResearchModifier);
+
+            TotalHeal = healComp.Damage! + (-BonusHeal);
+            _damageableSystem.TryChangeDamage(args.Body, TotalHeal);
+        }
+    }
+    private void OnNecrosisComplete(EntityUid uid, NecrosisSurgeryComponent comp, ref SurgeryStepCompleteEvent args)
+    {
+        if (_net.IsClient) return;
+        LoadSurgeriesForRotten();
+
+        if (!TryComp<NecrosisSurgeryTargetComponent>(args.Part, out var targetComp)) return;
+        targetComp.RequiredSurgeries.Clear();
+
+        for (int i = 0; i < targetComp.AmountOfSurgeries; i++)
+        {
+            if (_surgeriesForRotten.Count == 0)
+                break;
+            EntProtoId? chosenSurgery = null;
+
+            while (_surgeriesForRotten.Count > 0)
+            {
+                chosenSurgery = _random.PickAndTake(_surgeriesForRotten);
+                if (!_entity.TryGetSingleton(chosenSurgery.Value, out var surgeryEnt))
+                    continue;
+                var ev = new SurgeryValidEvent(args.Body, args.Part);
+
+                RaiseLocalEvent(surgeryEnt, ref ev);
+
+                if (!ev.Cancelled)
+                    break;
+
+                chosenSurgery = null;
+            }
+            if(chosenSurgery != null)
+                targetComp.RequiredSurgeries.Add(chosenSurgery.Value);
+        }
+    }
+    private void OnRepairEyesComplete(EntityUid uid, SurgeryRepairEyesComponent comp, ref SurgeryStepCompleteEvent args)
+    {
+        if (TryComp<BlindableComponent>(args.Body, out var blindComp))
+            _blindableSystem.AdjustEyeDamage(args.Body, -blindComp.EyeDamage);
+    }
+    // Valid Event Checks
+    private void OnNecrosisSurgeryValid(Entity<NecrosisSurgeryComponent> ent, ref SurgeryValidEvent args)
+    {
+        if (args.Cancelled) return;
+
+        if (!_rottingSystem.IsRotten(args.Body))
+        {
+            args.Cancelled = true;
+            return;
+        }
+    }
+    private void OnNecrosisSurgeryStepValid(Entity<NecrosisSurgeryStepComponent> ent, ref SurgeryValidEvent args)
+    {
+        if (args.Cancelled) return;
+
+        if (!_rottingSystem.IsRotten(args.Body))
+        {
+            args.Cancelled = true;
+            return;
+        }
+
+        if (HasComp<DisableSurgeryComponent>(ent.Owner)
+            && TryComp<MetaDataComponent>(ent.Owner, out var metaComp)
+            && TryComp<NecrosisSurgeryTargetComponent>(args.Part, out var necroComp)
+            && metaComp.EntityPrototype != null
+            && necroComp.RequiredSurgeries.Count >= necroComp.AmountOfSurgeries
+            && !necroComp.RequiredSurgeries.Contains(metaComp.EntityPrototype.ID))
+        {
+            args.Cancelled = true;
+            return;
+        }
+    }
+
+    private void OnResearchSurgeryValid(Entity<SurgeryTechnologyComponent> ent, ref SurgeryValidEvent args)
+    {
+        if (args.Cancelled) return;
+
+        if (ent.Comp.RequiredTechnology != null)
+        {
+            var TechProto = _prototypes.Index<TechnologyPrototype>(ent.Comp.RequiredTechnology);
+            if (!TryComp(args.Body, out BuckleComponent? buckle) || !TryComp(buckle.BuckledTo, out DeviceLinkSinkComponent? linkComp) || linkComp.LinkedSources.Count == 0)
+            {
+                args.Cancelled = true;
+                return;
+            }
+            if (TryComp(linkComp.LinkedSources.First(), out TechnologyDatabaseComponent? techComp) && !_research.IsTechnologyUnlocked(args.Body, TechProto, techComp))
+            {
+                args.Cancelled = true;
+                return;
+            }
+        }
+    }
+
+    private void OnLimbExistConditionValid(Entity<SurgeryLimbExistConditionComponent> ent, ref SurgeryValidEvent args)
+    {
+        if (args.Cancelled) return;
+
+        args.Cancelled = !(TryComp<BodyComponent>(args.Body, out var bodyComp) &&
+        bodyComp.RootContainer?.ContainedEntity is { } rootEnt &&
+        _containers.TryGetContainer(rootEnt, SharedBodySystem.GetPartSlotContainerId(ent.Comp.Slot), out var container) &&
+        container.ContainedEntities.Count > 0);
+    } 
+    
+    private void OnRequireOrganicPartValid(Entity<RequireOrganicPartComponent> ent, ref SurgeryValidEvent args)
+    {
+        if (args.Cancelled) return;
+        
+        if (TryComp<BodyComponent>(args.Body, out var bodyComp) &&
+        bodyComp.RootContainer?.ContainedEntity is { } rootEnt &&
+        _containers.TryGetContainer(rootEnt, ent.Comp.Slot, out var container) &&
+        container.ContainedEntities.Count > 0)
+            if (_tag.HasTag(container.ContainedEntities.First(), "Inorganic"))
+                args.Cancelled = true;
+            
+    } 
+            
+    private void LoadSurgeriesForRotten()
+    {
+        _surgeriesForRotten.Clear();
+
+        foreach (var entity in _prototypes.EnumeratePrototypes<EntityPrototype>())
+            if (entity.HasComponent<NecrosisSurgeryStepComponent>())
+                _surgeriesForRotten.Add(new EntProtoId(entity.ID));
+    }
+}

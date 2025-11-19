@@ -30,8 +30,11 @@
     - Chemistry
     - Engineering
     - Research
+    - Robotics
     - Detective
     - Salvage
+    - Mining
+    - SalvageLead
     - Security
     - Brig
     - Cargo
@@ -39,6 +42,9 @@
     - Cargo
     - Medical
     - Ntrep
+    - Brigmedic
+    - Surgery
+    - Paramedic
   special:
     - !type:AddImplantSpecial
       implants: [MindShieldImplant]
@@ -49,11 +55,11 @@
 - type: startingGear
   id: NanoTrasenRepresentativeGear
   equipment:
-    #shoes: ClothingShoesBootsLaceup
-    head: ClothingHeadHatCapNtrep
+    #shoes: ClothingShoesBootsLaceup #Far Horizons
+    #head: ClothingHeadHatCapNtrep #Far Horizons
     id: NanoTrasenRepresentativePDA
     ears: ClothingHeadsetAltCommand
-    outerClothing: ClothingOuterCoatNtrep
+    #outerClothing: ClothingOuterCoatNtrep #Far Horizons
     belt: BoxFolderNanoTrasenClipboard
   storage:
     back:

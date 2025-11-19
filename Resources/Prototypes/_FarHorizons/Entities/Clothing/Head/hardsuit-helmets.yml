@@ -1,4 +1,5 @@
 # Magistrate Helmet
+
 - type: entity
   parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetHardsuitMagistrate
@@ -16,6 +17,7 @@
     lowPressureMultiplier: 10000
 
 # Corpsman Helmet
+
 - type: entity
   parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetHardsuitCorpsman
@@ -41,3 +43,63 @@
   - type: PressureProtection
     highPressureMultiplier: 0.6
     lowPressureMultiplier: 1000
+
+# Head of Personnel Helmet
+
+- type: entity
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
+  id: ClothingHeadHelmetHardsuitHoP
+  categories: [ HideSpawnMenu ]
+  name: Head Of Personnel Hardsuit Helmet
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Head/Hardsuits/hopspace.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Head/Hardsuits/hopspace.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.5
+    lowPressureMultiplier: 1000
+
+## Syndicate Station
+
+
+# Commander (Captain)
+
+- type: entity
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
+  id: ClothingHeadHelmetHardsuitCapSyndi
+  name: commander's hardsuit helmet
+  description: Special hardsuit helmet, made for the commander of the station.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Head/Hardsuits/syndicapspace.rsi #Far Horizons
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Head/Hardsuits/syndicapspace.rsi #Far Horizons
+  - type: PressureProtection
+    highPressureMultiplier: 0.3
+    lowPressureMultiplier: 1000
+  - type: PointLight
+    color: green
+    radius: 3.5
+    energy: 5
+  - type: Tag
+    tags:
+    - CorgiWearable
+    - WhitelistChameleon
+
+# Personnel Chief (HoP)
+
+- type: entity
+  parent: ClothingHeadHelmetHardsuitHoP
+  id: ClothingHeadHelmetHardsuitHoPSyndi
+  categories: [ HideSpawnMenu ]
+  name: Personnel Chief Hardsuit Helmet
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Head/Hardsuits/syndihopspace.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Head/Hardsuits/syndihopspace.rsi
+  - type: PointLight
+    color: green
+    radius: 3.5
+    energy: 5

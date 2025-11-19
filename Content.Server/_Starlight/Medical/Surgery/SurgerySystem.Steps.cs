@@ -10,11 +10,29 @@ using Content.Shared.Body.Systems;
 using Content.Shared.Damage;
 using Content.Shared.Humanoid;
 using Content.Shared.Traits.Assorted;
+using Content.Shared.Bed.Sleep;
 using Microsoft.CodeAnalysis;
 using Content.Server._Starlight.Medical.Limbs;
 using Content.Server.Administration.Systems;
 using Robust.Shared.Timing;
-
+//FarHorizons Start
+using Robust.Shared.Containers;
+using Robust.Shared.Prototypes;
+using Content.Shared._FarHorizons.Medical.SurgeryOverhaul.Components;
+using Content.Shared.Prototypes;
+using Content.Shared.Atmos.Rotting;
+using Content.Shared.Research.Prototypes;
+using Content.Shared.Buckle.Components;
+using Content.Shared.DeviceLinking;
+using Content.Shared.Research.Components;
+using Content.Server.NPC.Components;
+using Content.Shared.NPC.Components;
+using Content.Shared.NPC;
+using Content.Server.Ghost.Roles.Components;
+using Content.Server.StationEvents.Components;
+using Content.Server.Mind;
+using Content.Shared.Tag; 
+//FarHorizons End
 
 namespace Content.Server.Starlight.Medical.Surgery;
 // Based on the RMC14.
@@ -26,10 +44,13 @@ namespace Content.Server.Starlight.Medical.Surgery;
 public sealed partial class SurgerySystem : SharedSurgerySystem
 {
     [Dependency] protected readonly IGameTiming Timing = default!;
-    [Dependency] private readonly IComponentFactory _compFactory = default!;
     [Dependency] private readonly LimbSystem _limbSystem = default!;
     [Dependency] private readonly StarlightEntitySystem _entity = default!;
     [Dependency] private readonly SharedBloodstreamSystem _bloodstreamSystem = default!;
+    [Dependency] private readonly SharedRottingSystem _rottingSystem = default!;
+    [Dependency] private readonly SleepingSystem _sleeping = default!;
+    [Dependency] private readonly MindSystem _mind = default!;
+    [Dependency] private readonly TagSystem _tag = default!;
 
     public void InitializeSteps()
     {
@@ -80,9 +101,12 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
     }
 
     private void OnStepBleedComplete(Entity<SurgeryStepBleedEffectComponent> ent, ref SurgeryStepEvent args)
-    {        
+    {      
+        if (ent.Comp.Damage == null)
+            return;
+        var damage = ent.Comp.Damage;  
         if (ent.Comp.Damage is not null && TryComp<DamageableComponent>(args.Body, out var comp))
-            _damageableSystem.TryChangeDamage(args.Body, ent.Comp.Damage);
+            _damageableSystem.TryChangeDamage(args.Body, damage);
     }
 
     private void OnStepClampBleedComplete(Entity<SurgeryClampBleedEffectComponent> ent, ref SurgeryStepEvent args)
@@ -115,6 +139,11 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
             return;
         }
 
+        if (HasComp<OrganBrainComponent>(organId) && _tag.HasTag(args.Body, "VimPilot"))
+        {
+            _mind.MakeSentient(args.Body);
+        }      
+        
         var ev = new SurgeryOrganImplantationCompleted(body, part, organId);
         RaiseLocalEvent(organId, ref ev);
     }
@@ -123,7 +152,44 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
         if (ent.Comp.Organ?.Count != 1) return;
 
         var type = ent.Comp.Organ.Values.First().Component.GetType();
+        //Far Horizons Start
+        var surgProto = _prototypes.Index<EntityPrototype>(args.SurgeryProto);
+        if (surgProto.TryGetComponent<NecrosisSurgeryStepComponent>(out var surgComp))
+            if (TryComp<RottingComponent>(args.Body, out var rotting) && TryComp<PerishableComponent>(args.Body, out var perishable))
+            {
+                long ResearchModifier = 50;
+                if (surgProto.TryGetComponent<SurgeryTechnologyComponent>(out var techvar) && TryComp(args.Body, out BuckleComponent? buckle)
+                && TryComp(buckle.BuckledTo, out DeviceLinkSinkComponent? linkComp) && linkComp.LinkedSources.Count > 0 &&
+                TryComp<TechnologyDatabaseComponent>(linkComp.LinkedSources.First(), out var techComp))
+                {
+                    foreach (var (key, value) in techvar.TechnologyModifier!)
+                    {
+                        var TechProto = _prototypes.Index<TechnologyPrototype>(key.Id);
+                        if (_research.IsTechnologyUnlocked(args.Body, TechProto, techComp) && ResearchModifier > value)
+                            ResearchModifier = value;
+                    }
+                }
 
+                var BonusRotRemoved = Math.Round((rotting.TotalRotTime.TotalSeconds + perishable.RotAccumulator.TotalSeconds) / ResearchModifier);
+                _rottingSystem.ReduceAccumulator(args.Body, TimeSpan.FromSeconds(surgComp.time + BonusRotRemoved));
+            }
+
+        if(type == typeof(OrganBrainComponent) && _tag.HasTag(args.Body, "VimPilot"))
+        {
+            if (HasComp<NPCRetaliationComponent>(args.Body))
+                RemComp<NPCRetaliationComponent>(args.Body);
+            if (HasComp<NpcFactionMemberComponent>(args.Body))
+                RemComp<NpcFactionMemberComponent>(args.Body);
+            if (HasComp<ActiveNPCComponent>(args.Body))
+                RemComp<ActiveNPCComponent>(args.Body);
+            if (HasComp<GhostTakeoverAvailableComponent>(args.Body))
+                RemComp<GhostTakeoverAvailableComponent>(args.Body);
+            if (HasComp<GhostRoleComponent>(args.Body))
+                RemComp<GhostRoleComponent>(args.Body);
+            if (HasComp<SentienceTargetComponent>(args.Body))
+                RemComp<SentienceTargetComponent>(args.Body);
+        }            
+        //Far Horizons End
         if (ent.Comp.Slot != null && _containers.TryGetContainer(args.Part, SharedBodySystem.GetOrganContainerId(ent.Comp.Slot), out var container))
         {
             foreach (var containedEnt in container.ContainedEntities)
@@ -154,11 +220,11 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
 
     private void OnStepEmoteEffectComplete(Entity<SurgeryStepEmoteEffectComponent> ent, ref SurgeryStepEvent args)
     {
-        
-        if (!HasComp<PainNumbnessComponent>(args.Body))
-        {
-             _chat.TryEmoteWithChat(args.Body, ent.Comp.Emote);
-        }
+
+        if (!HasComp<PainNumbnessComponent>(args.Body) && !HasComp<SleepingComponent>(args.Body))
+            _chat.TryEmoteWithChat(args.Body, ent.Comp.Emote);
+        else
+            _sleeping.TryWaking(args.Body); // If the patient sleeping without n2o or reagents, wake them up.
     }
 
     private void OnStepSpawnComplete(Entity<SurgeryStepSpawnEffectComponent> ent, ref SurgeryStepEvent args)
@@ -176,20 +242,75 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
             || !_limbSystem.AttachLimb((args.Body, humanoid), slot, (args.Part, part), (limdId, limb));
 
     private void OnStepAttachItemComplete(Entity<SurgeryStepAttachLimbEffectComponent> ent, string slot, ref SurgeryStepEvent args)
-        => args.IsCancelled = args.Tools.Count == 0 
-            || !(args.Tools.FirstOrDefault() is var itemId) 
-            || !TryComp(itemId, out MetaDataComponent? metadata) 
-            || HasComp<BodyPartComponent>(itemId) 
-            || !TryComp(args.Part, out BodyPartComponent? limb) 
+        => args.IsCancelled = args.Tools.Count == 0
+            || !(args.Tools.FirstOrDefault() is var itemId)
+            || !TryComp(itemId, out MetaDataComponent? metadata)
+            || HasComp<BodyPartComponent>(itemId)
+            || !TryComp(args.Part, out BodyPartComponent? limb)
             || !_limbSystem.AttachItem(args.Body, slot, (args.Part, limb), (itemId, metadata));
 
+    //FarHorizons Start
     private void OnStepAmputationComplete(Entity<SurgeryStepAmputationEffectComponent> ent, ref SurgeryStepEvent args)
     {
-        if (_entity.TryEntity<TransformComponent, HumanoidAppearanceComponent, BodyComponent>(args.Body, out var body) 
-            && _entity.TryEntity<TransformComponent, MetaDataComponent, BodyPartComponent>(args.Part, out var limb))
-            _limbSystem.Amputatate(body, limb);
-    }
+        var surgProto = _prototypes.Index<EntityPrototype>(args.SurgeryProto);
+        if (_entity.TryEntity<TransformComponent, HumanoidAppearanceComponent, BodyComponent>(args.Body, out var body))
+        {
+            if (_entity.TryEntity<TransformComponent, MetaDataComponent, BodyPartComponent>(args.Part, out var limb) && !surgProto.HasComponent<NecrosisSurgeryStepComponent>())
+            {
+                _limbSystem.Amputatate(body, limb);
+                if (TryComp<SurgeryProgressComponent>(limb, out var progress))
+                {
+                    progress.CompletedSteps.Clear();
+                    progress.CompletedSurgeries.Clear();
+                }
+                if (HasComp<SkinRetractedComponent>(limb))
+                    RemComp<SkinRetractedComponent>(limb);
+                if (HasComp<BleedersClampedComponent>(limb))
+                    RemComp<BleedersClampedComponent>(limb);
+                if (HasComp<IncisionOpenComponent>(limb))
+                    RemComp<IncisionOpenComponent>(limb);
+            }
 
+            else if (TryComp(args.Body, out BodyComponent? bodyComp) && TryComp(bodyComp.RootContainer.ContainedEntity, out ContainerManagerComponent? contComp))
+            {
+                if (surgProto.TryGetComponent<NecrosisSurgeryStepComponent>(out var surgComp) &&
+                    _entity.TryEntity<TransformComponent, MetaDataComponent, BodyPartComponent>(contComp.Containers[surgComp.Target].ContainedEntities.First(), out var limb2))
+                {
+                    if (TryComp<RottingComponent>(args.Body, out var rotting) && TryComp<PerishableComponent>(args.Body, out var perishable))
+                    {
+                        long ResearchModifier = 50;
+                        if (surgProto.TryGetComponent<SurgeryTechnologyComponent>(out var techvar) && TryComp(args.Body, out BuckleComponent? buckle)
+                        && TryComp(buckle.BuckledTo, out DeviceLinkSinkComponent? linkComp) && linkComp.LinkedSources.Count > 0 &&
+                        TryComp<TechnologyDatabaseComponent>(linkComp.LinkedSources.First(), out var techComp))
+                        {
+                            foreach (var (key, value) in techvar.TechnologyModifier!)
+                            {
+                                var TechProto = _prototypes.Index<TechnologyPrototype>(key.Id);
+                                if (_research.IsTechnologyUnlocked(args.Body, TechProto, techComp) && ResearchModifier > value)
+                                    ResearchModifier = value;
+                            }
+                        }
+                        var BonusRotRemoved = Math.Round((rotting.TotalRotTime.TotalSeconds + perishable.RotAccumulator.TotalSeconds) / ResearchModifier);
+                        _rottingSystem.ReduceAccumulator(args.Body, TimeSpan.FromSeconds(surgComp.time + BonusRotRemoved));
+
+                    }
+                    _limbSystem.Amputatate(body, limb2);
+                    if (TryComp<SurgeryProgressComponent>(limb2, out var progress))
+                    {
+                        progress.CompletedSteps.Clear();
+                        progress.CompletedSurgeries.Clear();
+                    }
+                    if (HasComp<SkinRetractedComponent>(limb))
+                        RemComp<SkinRetractedComponent>(limb);
+                    if (HasComp<BleedersClampedComponent>(limb))
+                        RemComp<BleedersClampedComponent>(limb);
+                    if (HasComp<IncisionOpenComponent>(limb))
+                        RemComp<IncisionOpenComponent>(limb);
+                }
+            }
+        }
+    }
+    //FarHorizons End
     private void CustomLimbRemoved(Entity<CustomLimbMarkerComponent> ent, ref ComponentRemove args)
     {
         if (ent.Comp.VirtualPart is null) return;

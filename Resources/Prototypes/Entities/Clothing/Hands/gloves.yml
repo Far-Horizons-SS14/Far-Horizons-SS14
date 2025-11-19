@@ -100,9 +100,9 @@
   description: Regal blue gloves, with a nice gold trim. Swanky.
   components:
   - type: Sprite
-    sprite: Clothing/Hands/Gloves/captain.rsi
+    sprite: _FarHorizons/Clothing/Hands/Gloves/captain.rsi #Far Horizons
   - type: Clothing
-    sprite: Clothing/Hands/Gloves/captain.rsi
+    sprite: _FarHorizons/Clothing/Hands/Gloves/captain.rsi #Far Horizons
   - type: Insulated
   - type: Fiber
     fiberMaterial: fibers-durathread
@@ -116,9 +116,9 @@
   description: Perfect for dealing with paperwork and matters with bureaucracy.
   components:
   - type: Sprite
-    sprite: Clothing/Hands/Gloves/hop.rsi
+    sprite: _FarHorizons/Clothing/Hands/Gloves/hop.rsi #Far Horizons
   - type: Clothing
-    sprite: Clothing/Hands/Gloves/hop.rsi
+    sprite: _FarHorizons/Clothing/Hands/Gloves/hop.rsi #Far Horizons
   - type: Fiber
     fiberMaterial: fibers-durathread
     fiberColor: fibers-black
@@ -184,9 +184,9 @@
   description: Now I'm playin' with power! Wait... they're turned off. #Use "Now I'm playin' with power! BAM!" for when they're turned on
   components:
   - type: Sprite
-    sprite: Clothing/Hands/Gloves/powerglove.rsi
+    sprite: _FarHorizons/Clothing/Hands/Gloves/powerglove.rsi #Far Horizons
   - type: Clothing
-    sprite: Clothing/Hands/Gloves/powerglove.rsi
+    sprite: _FarHorizons/Clothing/Hands/Gloves/powerglove.rsi #Far Horizons
   - type: Fiber
     fiberMaterial: fibers-nanomachines
   - type: FingerprintMask
@@ -198,16 +198,16 @@
   description: Beep boop borp!
   components:
   - type: Sprite
-    sprite: Clothing/Hands/Gloves/robohands.rsi
+    sprite: _FarHorizons/Clothing/Hands/Gloves/robohands.rsi #Far Horizons
   - type: Clothing
-    sprite: Clothing/Hands/Gloves/robohands.rsi
+    sprite: _FarHorizons/Clothing/Hands/Gloves/robohands.rsi #Far Horizons
   - type: Fiber
     fiberMaterial: fibers-leather
     fiberColor: fibers-black
   - type: FingerprintMask
 
 - type: entity
-  parent: [ClothingHandsBase, BaseToggleClothing, BaseMajorContraband]
+  parent: [ClothingHandsBase, BaseToggleClothing, BaseHighlyIllegalContraband]
   id: ClothingHandsGlovesSpaceNinja
   name: space ninja gloves
   description: These black nano-enhanced gloves insulate from electricity and provide fire resistance.

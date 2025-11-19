@@ -15,4 +15,8 @@ public sealed partial class SurgeryProgressComponent : Component
 
     [DataField, AutoNetworkedField]
     public HashSet<EntProtoId> StartedSurgeries = [];
+    //FarHorizons Start
+    [DataField, AutoNetworkedField]
+    public EntProtoId ActiveRepeatableStep = default;
+    //FarHorizons End
 }

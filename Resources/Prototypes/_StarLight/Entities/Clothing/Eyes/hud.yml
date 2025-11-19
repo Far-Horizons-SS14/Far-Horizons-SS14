@@ -54,9 +54,9 @@
   description: Visor with a built-in skills HUD, showing the employment history of nearby NT crew members.
   components:
   - type: Sprite
-    sprite: _Starlight/Clothing/Eyes/Hud/hudskill.rsi
+    sprite: _FarHorizons/Clothing/Eyes/Hud/hudskill.rsi #Far Horizons
   - type: Clothing
-    sprite: _Starlight/Clothing/Eyes/Hud/hudskill.rsi
+    sprite: _FarHorizons/Clothing/Eyes/Hud/hudskill.rsi #Far Horizons
   - type: ShowJobIcons
   - type: ShowMindShieldIcons
   - type: ShowCriminalRecordIcons
@@ -87,6 +87,21 @@
     - HudMedical
   - type: EyeProtection
     protectionTime: 5
+
+- type: entity
+  parent: [ClothingEyesBase, BaseCommandContraband]
+  id: ClothingEyesNTRMonocle
+  name: NanoTrasen representative monocle
+  description: A fancy monocle that also functions as a HUD to make sure no functionality is lost for style.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Eyes/Hud/ntrmonocle.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Eyes/Hud/ntrmonocle.rsi
+  - type: ShowJobIcons
+  - type: Tag
+    tags:
+    - PetWearable
 
 #USSP
 - type: entity

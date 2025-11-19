@@ -30,3 +30,68 @@
     damageCoefficient: 0.95
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHatHoodCorpsman
+
+# HOP
+
+- type: entity
+  parent: [ BaseCommandContraband, ClothingOuterStorageBase ]
+  id: ClothingOuterCoatHoP
+  name: Head of Personnel's Jacket
+  description: A sleek coat for the administrative arm of the station.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/Coats/hop.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/Coats/hop.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: equipped-OUTERCLOTHING
+    
+# Magistrate
+
+- type: entity
+  parent: [ BaseCommandContraband, ClothingOuterStorageBase ]
+  id: ClothingOuterCoatMagistrate
+  name: Magistrate's Jacket
+  description: A sleek coat for the justicar of space law.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/Coats/magistrate.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/Coats/magistrate.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: equipped-OUTERCLOTHING
+
+# NTR
+
+- type: entity
+  parent: [ BaseCommandContraband, ClothingOuterStorageBase ]
+  id: ClothingOuterCoatNTR
+  name: NanoTrasen Representatives's Jacket
+  description: A gold lined coat for the official representative of NanoTrasen on station.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/Coats/ntrep.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/Coats/ntrep.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: equipped-OUTERCLOTHING
+
+## Syndicate Station
+
+
+- type: entity
+  parent: ClothingOuterCoatHoP
+  id: ClothingOuterCoatHoPSyndi
+  name: Personnel Chief's Jacket
+  description: A sleek coat for the administrative arm of the station.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/Coats/syndihop.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/Coats/syndihop.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: equipped-OUTERCLOTHING

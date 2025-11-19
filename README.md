@@ -7,14 +7,14 @@
 [![Discord](https://img.shields.io/discord/1272545509562777621?label=Discord&logo=discord&logoColor=white)](https://discord.gg/7Z2ZpJDzQA)
 [![Steam](https://img.shields.io/badge/Steam-SS14%20-blue)](https://store.steampowered.com/app/1255460/Space_Station_14/)
 [![Client](https://img.shields.io/badge/Client-Download-blue)](https://spacestation14.io/about/nightlies/)
-[![GitHub](https://img.shields.io/github/stars/ss14Starlight/space-station-14?style=social)]([https://github.com/ss14Starlight/space-station-14])
+[![GitHub](https://img.shields.io/github/stars/Far-Horizons-SS14/Far-Horizons-SS14?style=social)]([https://github.com/Far-Horizons-SS14/Far-Horizons-SS14])
 
 # Far Horizons
 <sub>Space-Station 14</sub>
 
-![GitHub commit activity](https://img.shields.io/github/commit-activity/y/ss14Starlight/space-station-14)
-![GitHub Issues](https://img.shields.io/github/issues/ss14Starlight/space-station-14)
-![GitHub Pull Requests](https://img.shields.io/github/issues-pr-closed/ss14Starlight/space-station-14)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/y/Far-Horizons-SS14/Far-Horizons-SS14)
+![GitHub Issues](https://img.shields.io/github/issues/Far-Horizons-SS14/Far-Horizons-SS14)
+![GitHub Pull Requests](https://img.shields.io/github/issues-pr-closed/Far-Horizons-SS14/Far-Horizons-SS14)
 
 </div>
 
@@ -25,7 +25,7 @@ FAR HORIZONS is a server meticulously crafted for immersive storytelling! Our co
 Space-Station 14 has [docs site](https://docs.spacestation14.io/) documentation on SS14s content, engine, game design and more. We also have lots of resources for new contributors to the project.
 
 ## Project Activity
-![Alt](https://repobeats.axiom.co/api/embed/6d9d589842ff6980c7972b18cf09d8b5b0365de5.svg "Repobeats analytics image")
+![Alt](https://repobeats.axiom.co/api/embed/73e6e24e98aa2166ece0680349b3cec02b690748.svg "Repobeats analytics image")
 
 ---
 

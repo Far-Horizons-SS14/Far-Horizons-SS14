@@ -58,7 +58,19 @@
                 Margin="0 5 0 5"
                 Orientation="Vertical">
             </BoxContainer>
-
+            <!--FarHorizons Start-->
+            <BoxContainer
+                Orientation="Horizontal"
+                Align="End"
+                HorizontalExpand="True">
+                <Button
+                    Name="ServerListButton"
+                    Text="{Loc 'lathe-menu-server-list'}"
+                    TextAlign="Center"
+                    Mode="Press">
+                </Button>
+            </BoxContainer>
+            <!--FarHorizons End-->
         </BoxContainer>
     </ScrollContainer>
 </controls:FancyWindow>

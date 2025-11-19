@@ -1,3 +1,4 @@
+## Generic Loadout Options
 - type: loadoutGroup
   id: SyndieBackpack
   name: loadout-group-syndie-generic-backpack
@@ -48,3 +49,81 @@
   - BlackShoes
   - BootsWinterSyndicate
   - Heels
+
+## Specific Loadout Groups
+
+
+# Commander (Captain)
+
+- type: loadoutGroup
+  id: CommanderHead
+  name: loadout-group-commander-head
+  minLimit: 0
+  loadouts:
+  - CommanderHead
+  - CommanderCap
+
+- type: loadoutGroup
+  id: CommanderEyewear
+  name: loadout-group-commander-eyewear
+  loadouts:
+  - CommanderGlasses
+  - CommanderHud
+
+- type: loadoutGroup
+  id: CommanderNeck
+  name: loadout-group-commander-neck
+  minLimit: 0
+  loadouts:
+  - CommanderCloak
+  - CommanderCloakFormal
+
+- type: loadoutGroup
+  id: CommanderOuterClothing
+  name: loadout-group-commander-outerclothing
+  loadouts:
+  - CommanderCarapace
+
+- type: loadoutGroup
+  id: CommanderJumpsuit
+  name: loadout-group-commander-jumpsuit
+  loadouts:
+  - CommanderJumpsuit
+  - CommanderJumpskirt
+  - CommanderFormalSuit
+  - CommanderFormalSkirt
+
+# Personnel Chief (HoP)
+
+- type: loadoutGroup
+  id: PCHead
+  name: loadout-group-pc-head
+  minLimit: 0
+  loadouts:
+  - PCCap
+  - PCBeret
+
+- type: loadoutGroup
+  id: PCNeck
+  name: loadout-group-pc-neck
+  minLimit: 0
+  loadouts:
+  - HoPCloak
+  - PCMantle
+
+- type: loadoutGroup
+  id: PCJumpsuit
+  name: loadout-group-pc-jumpsuit
+  loadouts:
+  - PCJumpsuit
+  - PCJumpskirt
+  - PCTurtleneckJumpsuit
+  - PCTurtleneckJumpskirt
+
+- type: loadoutGroup
+  id: PCOuterClothing
+  name: loadout-group-pc-outerclothing
+  minLimit: 0
+  loadouts:
+  - PCCoat
+

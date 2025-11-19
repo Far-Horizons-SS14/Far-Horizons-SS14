@@ -69,6 +69,9 @@
     fireCost: 30 #Starlight - End
   - type: StaticPrice
     price: 420
+  - type: Tag #FH
+    tags: #FH
+    - LaserRifle #FH
 
 - type: entity
   id: BaseWeaponPowerCell
@@ -512,6 +515,7 @@
     fireCost: 62.5
   - type: Tag
     tags:
+    - Disabler # Starlight-edit
     - Taser
     - Sidearm
   - type: PacifismAllowedGun

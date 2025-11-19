@@ -5,9 +5,88 @@
   description: It's a high visibility jumpsuit given to those engineers insane enough to achieve the rank of Chief Engineer.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/ce_nt.rsi #Far Horizons
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/ce_nt.rsi
   - type: Clothing
-    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/ce_nt.rsi #Far Horizons
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/ce_nt.rsi
+    
+# Magistrate
+
+- type: entity
+  parent: [ ClothingUniformBase, BaseCommandContraband ]
+  id: ClothingUniformJumpsuitTurtleneckMagistrate
+  name: magistrate's turtleneck jumpsuit
+  description: A state of the art turtleneck jumpsuit that the CFA supplies their law justicars.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/magistrateturtleneck.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/magistrateturtleneck.rsi
+
+# NTR
+
+- type: entity
+  parent: [ ClothingUniformSkirtBase, BaseCommandContraband ]
+  id: ClothingUniformJumpsuitNtrepCentComm
+  name: nt representive's centcomm jumpsuit
+  description: When you somehow want to look even more official than you did before.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/ntrepCC.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/ntrepCC.rsi
+
+## Syndicate Station
+
+
+# Commander (Captain)
+
+- type: entity
+  parent: [ClothingUniformBase, BaseCommandContraband]
+  id: ClothingUniformJumpsuitCaptainSyndi
+  name: commander's jumpsuit
+  description: It's a black jumpsuit with some gold markings denoting the rank of "Commander".
+  components:
+  - type: RollUpSleeves
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/syndicaptain.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/syndicaptain.rsi
+
+- type: entity
+  parent: [ClothingUniformBase, BaseCommandContraband]
+  id: ClothingUniformJumpsuitCapFormalSyndi
+  name: commander's formal suit
+  description: A suit for special occasions.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/syndicapformal.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/syndicapformal.rsi
+
+# Personnel Chief (HoP)
+
+- type: entity
+  parent: [ClothingUniformBase, BaseCommandContraband, ClothingUniformFoldableBase]
+  id: ClothingUniformJumpsuitHoPSyndi
+  name: personnel chief's jumpsuit
+  description: Rather bland and inoffensive. Perfect for vanishing off the face of the universe.
+  components:
+  - type: RollUpSleeves
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/syndihop.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitHoPTurtleneckSyndi
+  name: personnel chief's turtleneck
+  description: It's the Personnel Chief's turtleneck.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/syndihop_turtleneck.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/syndihop_turtleneck.rsi
+
+# Technical Lead (Chief Engineer)
 
 - type: entity
   parent: [ClothingUniformBase, BaseCommandContraband, ClothingUniformFoldableBase]
@@ -16,6 +95,6 @@
   description: It's a high visibility jumpsuit given to those engineers insane enough to achieve the rank of Chief Engineer.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/ce_syndie.rsi #Far Horizons
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/ce_syndie.rsi
   - type: Clothing
-    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/ce_syndie.rsi #Far Horizons
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/ce_syndie.rsi

@@ -1,4 +1,5 @@
 # Magistrate Hardsuit
+
 - type: entity
   parent: [ClothingOuterHardsuitBase, BaseCommandContraband]
   id: ClothingOuterHardsuitMagistrate
@@ -33,6 +34,7 @@
     clothingPrototype: ClothingHeadHelmetHardsuitMagistrate
 
 # Corpsman Hardsuit
+
 - type: entity
   parent: [ClothingOuterHardsuitBase, BaseSecurityContraband]
   id: ClothingOuterHardsuitCorpsman
@@ -70,3 +72,100 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitCorpsman
+
+# Head of Personnel Hardsuit
+
+- type: entity
+  parent: [ClothingOuterHardsuitBase, BaseCommandContraband]
+  id: ClothingOuterHardsuitHoP
+  name: Head of Personnel Hardsuit
+  description: A hardsuit which somehow just seems to be covered in papercuts. How that even happened on this is astounding.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/hopspace.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/hopspace.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.5
+    lowPressureMultiplier: 1000
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.7
+        Piercing: 0.9
+        Heat: 0.9
+        Radiation: 0.9
+        Caustic: 0.9
+    staminaModifier: 0.8
+  - type: ExplosionResistance
+    damageCoefficient: 0.9
+  - type: ClothingSpeedModifier
+    walkModifier: 0.80
+    sprintModifier: 0.80
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitHoP
+
+## Syndicate Station
+
+
+# Commander (Captain)
+
+- type: entity
+  parent: [ClothingOuterHardsuitBase, BaseCommandContraband]
+  id: ClothingOuterHardsuitCapSyndi
+  name: commander's armored spacesuit
+  description: A formal armored spacesuit, made for the station's commander.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/syndicapspace.rsi #Far Horizons
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/syndicapspace.rsi #Far Horizons
+  - type: PressureProtection
+    highPressureMultiplier: 0.02
+    lowPressureMultiplier: 1000
+  - type: ExplosionResistance
+    damageCoefficient: 0.5
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      flatReductions: #FH
+        Piercing: 5 #FH
+        Heat: 4 #FH
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.6
+        Heat: 0.5
+        Radiation: 0.5
+        Caustic: 0.6
+    staminaModifier: 0.6
+  - type: ClothingSpeedModifier
+    walkModifier: 0.8
+    sprintModifier: 0.8
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitCapSyndi
+  - type: Tag
+    tags:
+    - CorgiWearable
+    - Hardsuit
+    - WhitelistChameleon
+
+# Personnel Chief (HoP)
+
+- type: entity
+  parent: ClothingOuterHardsuitHoP
+  id: ClothingOuterHardsuitHoPSyndi
+  name: Personnel Chief Hardsuit
+  description: A hardsuit which somehow just seems to be covered in papercuts. How that even happened on this is astounding.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/syndihopspace.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/syndihopspace.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitHoPSyndi

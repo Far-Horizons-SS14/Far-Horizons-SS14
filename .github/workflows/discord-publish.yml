@@ -4,19 +4,23 @@ concurrency:
   group: publish
 
 on:
-  workflow_dispatch:
+  push:
+    branches:
+      - Far-Horizons
+    paths:
+      - 'Resources/Changelog/ChangelogFarHorizons.yml'
 
 jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
     - name: Install dependencies
-      run: sudo apt-get install -y python3-paramiko python3-lxml
+      run: sudo apt-get install -y python3-git
     - uses: actions/checkout@v3
+      with:
+        fetch-depth: 2
     - name: Publish changelog (Discord)
-      run: Tools/actions_changelogs_since_last_run.py
+      run: Tools/actions_live_changelog.py
       env:
-        GITHUB_TOKEN: ${{ github.token }}
-        GITHUB_REPOSITORY: ${{ github.repository }}
         DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_PATCHNOTES_WEBHOOK }}
-        DISCORD_CHANGELOG_ROLE_ID: "1423332975688286308"
+        CHANGELOG_FILE: Resources/Changelog/ChangelogFarHorizons.yml

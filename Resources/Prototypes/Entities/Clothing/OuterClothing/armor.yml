@@ -83,6 +83,9 @@
         Heat: 0.9
   - type: ExplosionResistance
     damageCoefficient: 0.80
+  - type: Tag #FH
+    tags: #FH
+    - BulletproofArmor #FH
 
 - type: entity
   parent: ClothingOuterArmorBase
@@ -110,6 +113,9 @@
     reflects:
       - Energy
     reflectingInHands: false
+  - type: Tag #FH
+    tags: #FH
+    - ReflectArmor #FH
 
 #Detective's vest
 - type: entity
@@ -164,9 +170,9 @@
   description: An armored chestpiece that provides protection whilst still offering maximum mobility and flexibility. Issued only to the station's finest.
   components:
   - type: Sprite
-    sprite: Clothing/OuterClothing/Armor/captain_carapace.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Armor/captain_carapace.rsi #Far Horizons
   - type: Clothing
-    sprite: Clothing/OuterClothing/Armor/captain_carapace.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Armor/captain_carapace.rsi #Far Horizons
   - type: Tag
     tags:
     - CorgiWearable
@@ -380,6 +386,9 @@
   - type: ExplosionResistance
     damageCoefficient: 0.9
   - type: GroupExamine
+  - type: Tag #FH
+    tags: #FH
+    - RiotArmor #FH
 
 - type: entity
   parent: [ ClothingOuterBaseLarge, BaseMajorContraband, AllowSuitStorageClothing ]

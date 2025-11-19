@@ -5,6 +5,12 @@
     xmlns:graphics="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
     MinSize="400 400">
     <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True">
+        <!--Far Horizons Start-->
+        <BoxContainer Orientation="Horizontal" Margin="0 0 0 5">
+            <Label Text="Surgery Research Level:" />
+            <Label Name="ResearchLevelLabel" Access="Public" Margin="5 0 0 0" />
+        </BoxContainer>
+        <!--Far Horizons End-->
         <BoxContainer Orientation="Horizontal" HorizontalExpand="True" Margin="0 0 0 10">
             <Button Name="PartsButton" Access="Public" Text="&lt; Parts"
                     HorizontalExpand="True" StyleClasses="OpenBoth" />

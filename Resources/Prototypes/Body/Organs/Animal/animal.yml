@@ -32,7 +32,7 @@
 
 - type: entity
   id: OrganAnimalLungs
-  parent: BaseAnimalOrgan
+  parent: [BaseAnimalOrgan, BaseOrganLungs]
   name: animal lungs
   categories: [ HideSpawnMenu ]
   components:
@@ -66,7 +66,7 @@
 
 - type: entity
   id: OrganAnimalStomach
-  parent: BaseAnimalOrgan
+  parent: [BaseAnimalOrgan, BaseOrganStomach]
   name: animal stomach
   categories: [ HideSpawnMenu ]
   components:
@@ -147,7 +147,7 @@
 
 - type: entity
   id: OrganAnimalKidneys
-  parent: BaseAnimalOrgan
+  parent: [BaseAnimalOrgan, BaseOrganKidneys]
   name: animal kidneys
   categories: [ HideSpawnMenu ]
   components:

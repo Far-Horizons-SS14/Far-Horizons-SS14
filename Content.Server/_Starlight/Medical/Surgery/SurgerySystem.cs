@@ -13,8 +13,13 @@ using Robust.Server.Containers;
 using Robust.Server.GameObjects;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
-using Content.Server.Administration.Systems;
-
+//Far Horizons Start
+using Content.Shared.Buckle.Components;
+using Content.Shared.DeviceLinking;
+using Content.Shared.Research.Components;
+using Content.Shared.Research.Systems;
+using Content.Shared.Research.Prototypes;
+//Far Horizons End
 namespace Content.Server.Starlight.Medical.Surgery;
 // Based on the RMC14.
 // https://github.com/RMC-14/RMC-14
@@ -27,6 +32,7 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
     [Dependency] private readonly ContainerSystem _containers = default!;
+    [Dependency] private readonly SharedResearchSystem _research = default!; //Far Horizons
 
     private readonly List<EntProtoId> _surgeries = [];
     public override void Initialize()
@@ -57,8 +63,8 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
                 AddSurgeries(part.Id, body, surgeries);
             }
         }
-
-        _ui.SetUiState(body, SurgeryUIKey.Key, new SurgeryBuiState() { Choices = surgeries });
+        var researchLevel = GetResearchLevel(body);
+        _ui.SetUiState(body, SurgeryUIKey.Key, new SurgeryBuiState() { Choices = surgeries, ResearchLevel = researchLevel });
     }
 
     private void AddSurgeries(EntityUid part, EntityUid body, Dictionary<NetEntity, List<(EntProtoId, string suffix, bool isCompleted)>> surgeries)
@@ -87,7 +93,6 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
                 if (ev.Cancelled)
                     continue;
             }
-
             surgeries.GetOrNew(GetNetEntity(part)).Add((surgery, ev.Suffix, isCompleted));
         }
     }
@@ -129,4 +134,29 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
                 _surgeries.Add(new EntProtoId(entity.ID));
         }
     }
+    //FarHorizons Start
+    protected override void TryEmoteWithChat(EntityUid body, string? emote)
+    {
+        if (string.IsNullOrEmpty(emote))
+            return;
+
+        _chat.TryEmoteWithChat(body, emote);
+    }
+    private string GetResearchLevel(EntityUid body)
+    {
+        if (TryComp(body, out BuckleComponent? buckle) &&
+            TryComp(buckle.BuckledTo, out DeviceLinkSinkComponent? linkComp) &&
+            linkComp.LinkedSources.Count > 0 &&
+            TryComp(linkComp.LinkedSources.First(), out TechnologyDatabaseComponent? techComp))
+        {
+            var AdvSurgeryTechProto = _prototypes.Index<TechnologyPrototype>("SurgeryTechAdvanced");
+            var SurgeryTechProto = _prototypes.Index<TechnologyPrototype>("SurgeryTech");
+            if (_research.IsTechnologyUnlocked(body, AdvSurgeryTechProto, techComp))
+                return "Advanced Surgery";
+            if (_research.IsTechnologyUnlocked(body, SurgeryTechProto, techComp))
+                return "Basic Surgery";
+        }
+        return "None";
+    }
+    //FarHorizons End
 }

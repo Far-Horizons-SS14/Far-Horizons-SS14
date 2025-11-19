@@ -1,6 +1,7 @@
 ﻿using Content.Shared.MedicalScanner;
 using JetBrains.Annotations;
 using Robust.Client.UserInterface;
+using Content.Shared.Research.Components; //FarHorizons
 
 namespace Content.Client.HealthAnalyzer.UI
 {
@@ -21,6 +22,13 @@ namespace Content.Client.HealthAnalyzer.UI
             _window = this.CreateWindow<HealthAnalyzerWindow>();
 
             _window.Title = EntMan.GetComponent<MetaDataComponent>(Owner).EntityName;
+            //FarHorizons Start
+            _window.SetEntity(Owner);
+            _window.OnServerListButtonPressed += _ =>
+            {
+                SendMessage(new ConsoleServerSelectionMessage());
+            };
+            //FarHorizons End
         }
 
         protected override void ReceiveMessage(BoundUserInterfaceMessage message)

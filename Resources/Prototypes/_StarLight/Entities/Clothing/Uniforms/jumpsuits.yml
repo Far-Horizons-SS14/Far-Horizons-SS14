@@ -32,9 +32,9 @@
   name: Magistrate's Jumpsuit
   components:
   - type: Sprite
-    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/magistrate.rsi
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/magistrate.rsi #Far Horizons
   - type: Clothing
-    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/magistrate.rsi
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/magistrate.rsi #Far Horizons
 
 - type: entity
   parent: [ ClothingUniformBase, BaseCommandContraband ]
@@ -43,9 +43,9 @@
   description: That suit that is better not to see.
   components:
   - type: Sprite
-    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/ntrep.rsi
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/ntrep.rsi #Far Horizons
   - type: Clothing
-    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/ntrep.rsi
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/ntrep.rsi #Far Horizons
 
 - type: entity
   parent: [ ClothingUniformBase, BaseCommandContraband ]
@@ -54,9 +54,31 @@
   description: That suit that is better not to see.
   components:
   - type: Sprite
-    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/ntrepformal.rsi
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/ntrepformal.rsi #Far Horizons
   - type: Clothing
-    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/ntrepformal.rsi
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/ntrepformal.rsi #Far Horizons
+
+- type: entity
+  parent: [ ClothingUniformBase, BaseCommandContraband ]
+  id: ClothingUniformJumpsuitNtrepTurtleNeck
+  name: nt representive's turtleneck jumpsuit
+  description: For a more casual look while on the job.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/ntrepturtleneck.rsi #Far Horizons
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/ntrepturtleneck.rsi #Far Horizons
+
+- type: entity
+  parent: [ ClothingUniformBase, BaseCommandContraband ]
+  id: ClothingUniformJumpsuitNtrepNoble
+  name: nt representive's noble jumpsuit
+  description: A more classical and elegant style of clothing, designed to emulate the fashion of old earth nobility.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/ntrepnoble.rsi #Far Horizons
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/ntrepnoble.rsi #Far Horizons
 
 - type: entity
   parent: [ClothingUniformBase, BaseCommandContraband]
@@ -72,8 +94,8 @@
 - type: entity
   parent: [ClothingUniformBase, BaseCommandContraband]
   id: ClothingUniformJumpsuitEliteBlueShield
-  name: Elite Blueshield Officer's Suit
-  description: Suit of an Elite Blueshield. To reach such a level, you must have protected command from a [REDACTED] threat.
+  name: elite blueshield officer's suit
+  description: Suit of an elite blueshield. To reach such a level, you must have protected command from a [REDACTED] threat.
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/eliteblueshield.rsi
@@ -83,13 +105,25 @@
 - type: entity
   parent: [ClothingUniformBase, BaseCommandContraband]
   id: ClothingUniformJumpsuitBlueShieldCaptain
-  name: Blueshield Officer's shirt
+  name: blueshield officer's shirt
   description: A classic suit in theme with a blueshield. 
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/blueshieldshirt.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/blueshieldshirt.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitSalvageLead
+  name: salvage leads's jumpsuit
+  description: It's a snappy jumpsuit with a sturdy set of overalls. It's very dirty.
+  components:
+  - type: RollUpSleeves
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/salvagelead.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/salvagelead.rsi
 
 - type: entity
   parent: ClothingUniformBase
@@ -106,7 +140,7 @@
 - type: entity
   parent: [ClothingUniformBase, BaseSecurityContraband]
   id: ClothingUniformJumpsuitCorpsman
-  name: Corpsman's Suit
+  name: corpsman's suit
   description: Die in style on the front lines!
   components:
   - type: Sprite
@@ -297,18 +331,18 @@
   parent: ClothingUniformBase
   id: ClothingUniformJumpsuitHoPTurtleneck
   name: head of personal's turtleneck
-  description: It's Head of Personal's turtleneck.
+  description: It's the Head of Personal's turtleneck. #Far Horizons
   components:
   - type: Sprite
-    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/hop_turtleneck.rsi
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/hop_turtleneck.rsi #Far Horizons
   - type: Clothing
-    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/hop_turtleneck.rsi
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/hop_turtleneck.rsi #Far Horizons
 
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformJumpsuitHoSBlack
   name: head of security's black suit
-  description: It's Head of Security's black suit.
+  description: It's the Head of Security's black suit. #Far Horizons
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/hos_black.rsi
@@ -394,3 +428,36 @@
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/sovietuniform.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/sovietuniform.rsi
+
+- type: entity
+  parent: [ ClothingUniformBase, BaseCentcommContraband ]
+  id: ClothingAltUniformJumpsuitCentcomOfficial
+  name: CentComm officer's jumpsuit
+  description: It's a jumpsuit worn by CentComm officers.
+  components: 
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/centcom_official.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/centcom_official.rsi
+
+- type: entity
+  parent: [ClothingUniformBase, BaseSecurityContraband]
+  id: ClothingUniformSecurityTshirt
+  name: t-shirt security uniform
+  description: Light and unrestrictive uniform, so that nothing can stop you from swinging a stunbaton.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/security_tshirt.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/security_tshirt.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitRisk
+  name: station daredevil's  jumpsuit
+  description: A jumpsuit with red lines along the sides. 
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/riskjumpsuit.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/riskjumpsuit.rsi

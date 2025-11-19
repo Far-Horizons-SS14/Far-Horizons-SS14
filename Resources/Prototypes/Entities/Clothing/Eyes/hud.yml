@@ -23,13 +23,14 @@
   description: A heads-up display capable of analyzing the integrity and status of robotics and exosuits. Made out of see-borg-ium.
   components:
   - type: Sprite
-    sprite: Clothing/Eyes/Hud/diag.rsi
+    sprite: _FarHorizons/Clothing/Eyes/Hud/diag.rsi #Far Horizons
   - type: Clothing
-    sprite: Clothing/Eyes/Hud/diag.rsi
+    sprite: _FarHorizons/Clothing/Eyes/Hud/diag.rsi #Far Horizons
   - type: ShowHealthBars
     damageContainers:
     - Inorganic
     - Silicon
+  - type: ShowAccessReaderSettings
 
 - type: entity
   parent: [ClothingEyesBase, ShowMedicalIcons]
@@ -70,9 +71,9 @@
   description: A heads-up display that scans the humanoids in view and provides accurate data about their ID status.
   components:
   - type: Sprite
-    sprite: Clothing/Eyes/Hud/command.rsi
+    sprite: _FarHorizons/Clothing/Eyes/Hud/command.rsi #Far Horizons
   - type: Clothing
-    sprite: Clothing/Eyes/Hud/command.rsi
+    sprite: _FarHorizons/Clothing/Eyes/Hud/command.rsi #Far Horizons
   - type: ShowJobIcons
   - type: Tag
     tags:
@@ -228,7 +229,7 @@
   parent: [ClothingEyesBase, ShowSecurityIcons, BaseSyndicateContraband]
   id: ClothingEyesHudSyndicateAgent
   name: syndicate medical visor
-  description: The Syndicate Corpsman's professional heads-up display, designed for quick diagnosis of their team's status.
+  description: The Syndicate corpsman's professional heads-up display, designed for quick diagnosis of their team's status.
   components:
   - type: Sprite
     sprite: Clothing/Eyes/Hud/syndagent.rsi

@@ -43,7 +43,7 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
     [Dependency] private readonly ISerializationManager _serManager = default!;
     [Dependency] private readonly MarkingManager _markingManager = default!;
     [Dependency] private readonly GrammarSystem _grammarSystem = default!;
-    [Dependency] private readonly SharedIdentitySystem _identity = default!;
+    [Dependency] private readonly IdentitySystem _identity = default!;
     [Dependency] private readonly ISharedFactionManager _factions = default!; // Far Horizons
 
     public static readonly ProtoId<SpeciesPrototype> DefaultSpecies = "Human";

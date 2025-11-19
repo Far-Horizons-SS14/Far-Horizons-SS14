@@ -88,3 +88,18 @@
     sprintModifier: 0.90 #Seems low, but a secvest has 30% w/no reduction or a better example would be plate carrier for 45% reduction. 10% reduction for bit better secvest seems fine to me - Keep in mind that they take increased blunt as well.
   - type: ExplosionResistance
     damageCoefficient: 0.80
+
+- type: entity
+  parent: [ClothingOuterArmorBaseCarapace, BaseCommandContraband]
+  id: ClothingOuterArmorCaptainCarapaceSyndi
+  name: commander's carapace
+  description: An armored chestpiece that provides protection whilst still offering maximum mobility and flexibility. Issued only to the station's finest.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/Armor/syndicaptain_carapace.rsi #Far Horizons
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/Armor/syndicaptain_carapace.rsi #Far Horizons
+  - type: Tag
+    tags:
+    - CorgiWearable
+    - WhitelistChameleon

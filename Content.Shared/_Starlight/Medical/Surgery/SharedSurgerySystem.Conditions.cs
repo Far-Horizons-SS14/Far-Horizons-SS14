@@ -1,11 +1,10 @@
 ﻿using Content.Shared.Body.Part;
-using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Humanoid;
 using System.Linq;
-using Content.Shared.Starlight.Medical.Surgery.Steps.Parts;
 using Content.Shared.Starlight.Medical.Surgery.Events;
 using Content.Shared.Starlight.Medical.Surgery.Effects.Step;
 using Content.Shared.Body.Systems;
+using Content.Shared._FarHorizons.Medical.SurgeryOverhaul.Components; // FarHorizons
 
 namespace Content.Shared.Starlight.Medical.Surgery;
 // Based on the RMC14.
@@ -118,6 +117,8 @@ public abstract partial class SharedSurgerySystem
     }
     private void OnSpeciesConditionValid(Entity<SurgerySpeciesConditionComponent> ent, ref SurgeryValidEvent args)
     {
+        if (EntityManager.HasComponent<AnimalBypassComponent>(ent) && _tag.HasTag(args.Body, "VimPilot")) return;
+        
         if (!EntityManager.TryGetComponent<HumanoidAppearanceComponent>(args.Body, out var humanoidAppearanceComponent))
         {
             args.Cancelled = true;

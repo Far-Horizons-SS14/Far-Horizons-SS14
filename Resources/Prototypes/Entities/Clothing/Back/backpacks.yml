@@ -25,6 +25,7 @@
     interfaces:
       enum.StorageUiKey.Key:
         type: StorageBoundUserInterface
+  - type: SwitchableEquipMode # Starlight
   # to prevent bag open/honk spam
   - type: UseDelay
     delay: 0.5
@@ -108,7 +109,7 @@
   description: It's a backpack especially designed for use in a sterile environment.
   components:
   - type: Sprite
-    sprite: Clothing/Back/Backpacks/medical.rsi
+    sprite: _FarHorizons/Clothing/Back/Backpacks/medical.rsi #Far Horizons
 
 - type: entity
   parent: [ClothingBackpack, BaseCommandContraband]
@@ -127,6 +128,9 @@
   components:
   - type: Sprite
     sprite: Clothing/Back/Backpacks/mime.rsi
+  - type: Storage
+    storageOpenSound: null
+    storageInsertSound: null
 
 - type: entity
   parent: ClothingBackpack
@@ -135,7 +139,7 @@
   description: A backpack specially designed to repel stains and hazardous liquids.
   components:
   - type: Sprite
-    sprite: Clothing/Back/Backpacks/chemistry.rsi
+    sprite: _FarHorizons/Clothing/Back/Backpacks/chemistry.rsi #Far Horizons
 
 - type: entity
   parent: ClothingBackpack
@@ -162,7 +166,7 @@
   description: A backpack made of hypo-allergenic fibers. It's designed to help prevent the spread of disease. Smells like monkey.
   components:
   - type: Sprite
-    sprite: Clothing/Back/Backpacks/virology.rsi
+    sprite: _FarHorizons/Clothing/Back/Backpacks/virology.rsi #Far Horizons
 
 - type: entity
   parent: ClothingBackpack
@@ -291,7 +295,7 @@
   - type: Storage
     grid:
     - 0,0,7,3
-    - 8,1,8,3
+    - 8,0,8,3
   - type: StaticPrice
     price: 1000
 

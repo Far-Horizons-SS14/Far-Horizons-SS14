@@ -11,6 +11,12 @@
     sprite: Objects/Specific/Medical/Surgery/scalpel.rsi
     state: scalpel
   - type: SurgeryStepEmoteEffect
+  #FarHorizons Start
+  - type: OnFailDamage
+    damage: 
+      types:
+        Slash: 10
+  #FarHorizons End
 
 - type: entity
   parent: SurgeryStepBase
@@ -25,6 +31,12 @@
     sprite: Objects/Specific/Medical/Surgery/scalpel.rsi
     state: scalpel
   - type: SurgeryStepEmoteEffect
+  #FarHorizons Start
+  - type: OnFailDamage
+    damage: 
+      types:
+        Slash: 10
+  #FarHorizons End
 
 - type: entity
   parent: SurgeryStepBase
@@ -39,6 +51,12 @@
       sprite: Objects/Specific/Medical/Surgery/scalpel.rsi
       state: scalpel
     - type: SurgeryStepEmoteEffect
+    #FarHorizons Start
+    - type: OnFailDamage
+      damage: 
+        types:
+          Slash: 10
+    #FarHorizons End
     
 - type: entity
   parent: SurgeryStepBase
@@ -53,6 +71,12 @@
   - type: Sprite
     sprite: Objects/Specific/Medical/Surgery/scissors.rsi
     state: retractor
+  #FarHorizons Start
+  - type: OnFailDamage
+    damage: 
+      types:
+        Piercing: 10
+  #FarHorizons End
     
 - type: entity
   parent: SurgeryStepRetractSkin
@@ -70,3 +94,9 @@
   - type: Sprite
     sprite: Objects/Specific/Medical/Surgery/scissors.rsi
     state: hemostat
+  #FarHorizons Start
+  - type: OnFailDamage
+    damage: 
+      types:
+        Pierce: 10
+  #FarHorizons End

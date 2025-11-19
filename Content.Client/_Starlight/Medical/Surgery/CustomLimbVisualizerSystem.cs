@@ -117,10 +117,18 @@ public sealed class CustomLimbVisualizerSystem : EntitySystem
         }
 
         foreach (var layer in old)
+        {
+            //FarHorizons Start
             if (!ent.Comp.CachedLayers.Contains(layer))
             {
-                var index = sprite.LayerMapReserveBlank($"custom-{layer}");
-                sprite.LayerSetVisible(layer, false);
+                var mapKey = $"custom-{layer}";
+                if (sprite.LayerMapTryGet(mapKey, out var index))
+                {
+                    sprite.LayerSetVisible(index, false);
+                    sprite.LayerMapRemove(mapKey);
+                }
             }
+            //FarHorizons End
+        }
     }
 }

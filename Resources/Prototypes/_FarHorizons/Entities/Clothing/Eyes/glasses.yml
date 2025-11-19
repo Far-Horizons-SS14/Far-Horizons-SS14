@@ -21,3 +21,67 @@
     - WhitelistChameleon
   - type: IdentityBlocker
     coverage: EYES
+
+- type: entity
+  parent: [ClothingEyesBase, BaseCommandContraband]
+  id: ClothingEyesGlassesCommandSyndi
+  name: administration glasses
+  description: Upgraded sunglasses that provide flash immunity and show ID card status.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Eyes/Glasses/syndicommandglasses.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Eyes/Glasses/syndicommandglasses.rsi
+  - type: FlashImmunity
+  - type: EyeProtection
+    protectionTime: 5
+  - type: Tag
+    tags:
+    - HamsterWearable
+    - PetWearable
+    - WhitelistChameleon
+  - type: IdentityBlocker
+    coverage: EYES
+  - type: ShowJobIcons
+
+# Law Department
+
+- type: entity
+  parent: ClothingEyesBase
+  id: ClothingEyesGlassesLaw
+  name: law glasses
+  description: A set of slick looking glasses for the law department.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Eyes/Glasses/lawglasses.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Eyes/Glasses/lawglasses.rsi
+  - type: Tag
+    tags:
+    - HamsterWearable
+    - PetWearable
+    - WhitelistChameleon
+  - type: IdentityBlocker
+    coverage: EYES
+
+- type: entity
+  parent: [ClothingEyesBase, BaseCommandContraband]
+  id: ClothingEyesGlassesMagistrate
+  name: magistrate's glasses
+  description: A set of slick looking glasses for the space law overseer.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Eyes/Glasses/lawglasses.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Eyes/Glasses/lawglasses.rsi
+  - type: FlashImmunity
+  - type: EyeProtection
+    protectionTime: 5
+  - type: Tag
+    tags:
+    - HamsterWearable
+    - PetWearable
+    - WhitelistChameleon
+  - type: IdentityBlocker
+    coverage: EYES
+  - type: ShowJobIcons

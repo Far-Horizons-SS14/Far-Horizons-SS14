@@ -1,12 +1,15 @@
 - type: entity
-  parent: BaseSign
+  parent: [ BaseSign, BaseSignPowered ] #Far Horizons
   id: SignBrigmed
   name: brigmed sign
   description: A sign indicating the brig medical bay.
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/signs.rsi
-    state: brigmed
+    layers: #Far Horizons start
+    - state: off
+    - state: brigmed
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"] #Far Horizons end
     
 - type: entity
   parent: BaseSign
@@ -67,3 +70,26 @@
   - type: Sprite
     sprite: _Starlight/Structures/Wallmounts/signs.rsi
     state: yessmoking
+    
+- type: entity
+  parent: BaseSignDirectional
+  id: SignDirectionalMining
+  name: mining sign
+  description: A direction sign, pointing out which way the Mining department is.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Structures/Wallmounts/signs.rsi
+      state: direction_mining
+
+- type: entity
+  parent: [ BaseSign, BaseSignPowered ] #Far Horizons
+  id: SignMining
+  name: mining sign
+  description: A sign indicating the mining area.
+  components:
+  - type: Sprite
+    layers: #Far Horizons start
+    - state: off
+    - state: mining
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"] #Far Horizons end

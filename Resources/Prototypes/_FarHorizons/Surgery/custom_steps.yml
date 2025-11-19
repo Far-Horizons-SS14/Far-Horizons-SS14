@@ -1,0 +1,168 @@
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepAlterAppearance
+  name: Alter Appearance
+  components:
+  - type: SurgeryStep
+    duration: 20
+    tools:
+    - type: Scalpel
+    add:
+    - type: IncisionOpen
+  - type: Sprite
+    sprite: Objects/Specific/Medical/Surgery/scalpel.rsi
+    state: scalpel
+  - type: SurgeryAlterAppearance
+  - type: OnFailDamage
+    damage: 
+      types:
+        Slash: 10
+
+#TendWound Surgery Start
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepCarefulIncision
+  name: Make Careful Incision
+  components:
+  - type: SurgeryStep
+    duration: 10
+    tools:
+      - type: Scalpel
+  - type: Sprite
+    sprite: Objects/Specific/Medical/Surgery/scalpel.rsi
+    state: scalpel
+  - type: OnFailDamage
+    damage: 
+      types:
+        Slash: 10
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepRepairBrute 
+  name: Repair Brute Damage [Repeatable]
+  components:
+  - type: SurgeryStep
+    repeatable: true
+    duration: 5
+    tools:
+      - type: Hemostat
+  - type: Sprite
+    sprite: Objects/Specific/Medical/Surgery/scissors.rsi
+    state: hemostat
+  - type: Healing
+    damageContainers:
+      - Biological
+    damage: 
+      types:
+        Blunt: -5
+        Slash: -5
+        Piercing: -5
+  - type: OnFailDamage
+    damage: 
+      types:
+        Piercing: 10
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepRepairBurn
+  name: Repair Burn Damage [Repeatable]
+  components:
+  - type: SurgeryStep
+    repeatable: true
+    duration: 5
+    tools:
+      - type: Hemostat
+  - type: Sprite
+    sprite: Objects/Specific/Medical/Surgery/scissors.rsi
+    state: hemostat
+  - type: Healing
+    damageContainers:
+      - Biological
+    damage: 
+      types:
+        Heat: -5
+        Cold: -5
+        Caustic: -5
+        Shock: -5
+  - type: OnFailDamage
+    damage: 
+      types:
+        Pierce: 10
+  
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepSealWound
+  name: Seal Wound
+  components:
+  - type: SurgeryStep
+    tools:
+    - type: Cautery
+  - type: Sprite
+    sprite: Objects/Specific/Medical/Surgery/cautery.rsi
+    state: cautery
+  - type: SurgeryStepEmoteEffect
+  - type: SurgeryClearProgress
+  - type: OnFailDamage
+    damage: 
+      types:
+        Heat: 10
+#TendWound Surgery End
+
+#Revert Necrosis Surgery
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepCutRottenFlesh
+  name: Cut Rotten Flesh
+  components:
+  - type: SurgeryStep
+    tools:
+    - type: Scalpel
+  - type: Sprite
+    sprite: Objects/Specific/Medical/Surgery/scalpel.rsi
+    state: scalpel
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepInspectForNecrosis
+  name: Inspect For Rotten Parts
+  components:
+  - type: SurgeryStep
+    duration: 10
+    add:
+      - type: NecrosisSurgeryTarget
+        amount_of_surgeries: 2
+  - type: NecrosisSurgery
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepEndNecrosisSurgery
+  name: Finish Necrosis Surgery
+  components:
+  - type: SurgeryStep
+    duration: 10
+    remove:
+    - type: NecrosisSurgeryTarget
+  - type: SurgeryClearProgress
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepInspectEyeDamage
+  name: Inspect For Eye Damage
+  components:
+  - type: SurgeryStep
+    duration: 5
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepRepairEyeDamage
+  name: Repair Eye Damage
+  components:
+  - type: SurgeryStep
+    duration: 10
+    tools:
+      - type: Hemostat
+  - type: Sprite
+    sprite: Objects/Specific/Medical/Surgery/scissors.rsi
+    state: hemostat
+  - type: SurgeryRepairEyes

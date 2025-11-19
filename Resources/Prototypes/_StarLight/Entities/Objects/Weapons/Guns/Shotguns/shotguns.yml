@@ -21,6 +21,9 @@
     graph: ShotgunRiotSawn
     node: start
     deconstructionTarget: null
+  - type: Tag #FH
+    tags: #FH
+    - RiotShotgun #FH
 
 - type: entity
   name: sawn-off riot shotgun
@@ -44,6 +47,9 @@
     graph: ShotgunRiotSawn
     node: shotgunsawn
     deconstructionTarget: null
+  - type: Tag #FH
+    tags: #FH
+    - RiotShotgun #FH
 
 - type: entity
   parent: [WeaponShotgunRiotSawn, BaseSecurityContraband]
@@ -74,7 +80,10 @@
   - type: GunRequiresWield
   - type: BallisticAmmoProvider
     capacity: 7
-
+  - type: Tag #FH
+    tags: #FH
+    - CombatShotgun #FH
+  
 - type: entity
   name: cycler shotgun
   parent: [BaseWeaponShotgunAny, BaseGunWieldable, BaseSecuritySalvageContraband]

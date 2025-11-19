@@ -1,0 +1,22 @@
+
+
+## Syndicate Station
+
+
+- type: entity
+  parent: [ClothingHeadset, BaseCommandContraband]
+  id: ClothingHeadsetCommandSyndi
+  name: command headset
+  description: A headset with a commanding channel.
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyStationMaster
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Ears/Headsets/syndicommand.rsi #Far Horizons
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Ears/Headsets/syndicommand.rsi #Far Horizons
+  - type: RadioChime
+    sound:
+      path: /Audio/_Starlight/Effects/Radio/captain.ogg

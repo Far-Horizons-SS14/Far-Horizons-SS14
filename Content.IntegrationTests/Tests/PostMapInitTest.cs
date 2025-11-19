@@ -99,6 +99,7 @@ namespace Content.IntegrationTests.Tests
             "/Maps/_Starlight/Stations/Orwell.yml",
             "/Maps/_Starlight/Stations/Remix.yml",
             "/Maps/_Starlight/Stations/Starboard.yml",
+            "/Maps/_Starlight/Shuttles/RecluseClassSHC.yml",
             #endregion
             #region FarHorizons
             "/Maps/_FarHorizons/Centcomms/CC_Outpost_G24.yml", //starlight centcomm map edited for FarHorizons
@@ -166,6 +167,8 @@ namespace Content.IntegrationTests.Tests
             "StarlightReach",
             "StarlightSaltern",
             "StarlightSilica",
+            "StarlightCluster",
+            "StarlightFland",
             #endregion
             #region Far Horizons
             "FHMeta",
@@ -175,6 +178,7 @@ namespace Content.IntegrationTests.Tests
             "FHCog", 
             "FHManor", 
             "FHOasis",
+            "FHOmega",
             #endregion
         };
 

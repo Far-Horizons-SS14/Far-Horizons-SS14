@@ -494,6 +494,10 @@
     - Moffic
     - Mothroach
   # Starlight-end
+  # Starlight-start: Body emotes (wing flap!)
+  - type: BodyEmotes
+    soundsId: MothroachBodyEmotes
+  # Starlight-end
   - type: GhostRole
     makeSentient: true
     allowSpeech: true
@@ -518,7 +522,7 @@
   - type: Speech
     speechVerb: Moth
     speechSounds: Squeak
-    allowedEmotes: ['Chitter', 'Squeak']
+    allowedEmotes: ['Chitter', 'Squeak', 'FlapWings'] # Starlight: Add wing flap
   - type: FaxableObject
     insertingState: inserting_mothroach
   - type: MothAccent
@@ -1230,8 +1234,6 @@
   - type: Vocal
     sounds:
       Unsexed: Kangaroo
-  - type: Puller
-    needsHands: false
   - type: StaminaDamageOnHit
     damage: 8 #Stam damage values seem a bit higher than regular damage because of the decay, etc
     # This needs to be moved to boxinggloves
@@ -1278,6 +1280,8 @@
     - Ancestor
     understands:
     - Ancestor
+    - GalacticCommon #Far Horizons
+    - SolCommon #Far Horizons
   # Starlight-end
   - type: VentCrawler # Starlight-edit: Vent Crawl
   - type: CombatMode
@@ -1361,8 +1365,6 @@
     spawned:
     - id: FoodMeat
       amount: 3
-  - type: Puller
-    needsHands: false
   - type: CanHostGuardian
   - type: NPCRetaliation
     attackMemoryLength: 10
@@ -1389,8 +1391,17 @@
       effects:
       - !type:WashCreamPieReaction
   - type: Crawler
-
-
+  #FarHorizons Start
+  - type: SurgeryTarget
+  - type: UserInterface
+    interfaces:
+      enum.SurgeryUIKey.Key:
+        type: SurgeryBui
+      enum.StrippingUiKey.Key:
+        type: StrippableBoundUserInterface
+  - type: Blindable
+  - type: DarkenedVision
+  #FarHorizons End
 
 - type: entity
   name: monkey
@@ -1434,15 +1445,6 @@
   description: New church of neo-darwinists actually believe that EVERY animal evolved from a monkey. Tastes like pork, and killing them is both fun and relaxing.
   suffix: syndicate base
   components:
-  # Starlight-Start
-  - type: LanguageSpeaker
-  - type: LanguageKnowledge
-    speaks:
-    - Ancestor
-    understands:
-    - Ancestor
-    - GalacticCommon
-  # Starlight-End
   - type: NameIdentifier
     group: Monkey
   - type: SentienceTarget
@@ -1476,15 +1478,6 @@
   components:
     # make the player a traitor once its taken
   - type: VentCrawler
-  # Starlight-Start
-  - type: LanguageSpeaker
-  - type: LanguageKnowledge
-    speaks:
-    - Ancestor
-    understands:
-    - Ancestor
-    - GalacticCommon
-  # Starlight-End
   - type: AutoTraitor
     profile: TraitorReinforcement
 
@@ -1494,15 +1487,6 @@
   suffix: NukeOps
   components:
   - type: VentCrawler
-  # Starlight-Start
-  - type: LanguageSpeaker
-  - type: LanguageKnowledge
-    speaks:
-    - Ancestor
-    understands:
-    - Ancestor
-    - GalacticCommon
-  # Starlight-End
   - type: NukeOperative
 
 - type: entity
@@ -1512,6 +1496,16 @@
   description: Cousins to the sentient race of lizard people, kobolds blend in with their natural habitat and are as nasty as monkeys; ready to pull out your hair and stab you to death.
   abstract: true
   components:
+  # Far Horizons-Start
+  - type: LanguageSpeaker
+  - type: LanguageKnowledge
+    speaks:
+    - Ancestor
+    understands:
+    - Ancestor
+    - GalacticCommon
+    - Draconic
+  # Far Horizons-End
   - type: NameIdentifier
     group: Kobold
   - type: LizardAccent
@@ -1640,15 +1634,6 @@
   parent: MobBaseKobold
   suffix: syndicate base
   components:
-  # Starlight-Start
-  - type: LanguageSpeaker
-  - type: LanguageKnowledge
-    speaks:
-    - Ancestor
-    understands:
-    - Ancestor
-    - GalacticCommon
-  # Starlight-End
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -1665,15 +1650,6 @@
   parent: MobBaseSyndicateKobold
   suffix: syndicate agent
   components:
-  # Starlight-Start
-  - type: LanguageSpeaker
-  - type: LanguageKnowledge
-    speaks:
-    - Ancestor
-    understands:
-    - Ancestor
-    - GalacticCommon
-  # Starlight-End
     # make the player a traitor once its taken
   - type: AutoTraitor
     profile: TraitorReinforcement
@@ -1683,15 +1659,6 @@
   parent: MobBaseSyndicateKobold
   suffix: NukeOps
   components:
-  # Starlight-Start
-  - type: LanguageSpeaker
-  - type: LanguageKnowledge
-    speaks:
-    - Ancestor
-    understands:
-    - Ancestor
-    - GalacticCommon
-  # Starlight-End
   - type: NukeOperative
 
 - type: entity
@@ -2519,6 +2486,8 @@
     interactSuccessSpawn: EffectHearts
     interactSuccessSound:
       path: /Audio/Animals/snake_hiss.ogg
+  - type: Puller
+    needsHands: false
   - type: NoSlip
   - type: Spider
   - type: IgnoreSpiderWeb
@@ -2737,6 +2706,8 @@
   - type: Tag
     tags:
     - VimPilot
+  - type: Puller
+    needsHands: false
 
 - type: entity
   name: possum
@@ -2811,6 +2782,8 @@
   - type: Tag
     tags:
     - VimPilot
+  - type: Puller
+    needsHands: false
 
 - type: entity
   name: fox
@@ -2895,6 +2868,8 @@
     rootTask:
       task: RuminantHostileCompound
   - type: MessyDrinker
+  - type: Puller
+    needsHands: false
   - type: Tag
     tags:
     - VimPilot
@@ -2942,6 +2917,8 @@
   - type: MobPrice
     price: 200
   - type: MessyDrinker
+  - type: Puller
+    needsHands: false
 
 - type: entity
   parent: MobCorgiBase
@@ -3142,6 +3119,8 @@
       gender: epicene
   - type: MobPrice
     price: 200
+  - type: Puller
+    needsHands: false
   - type: Tag
     tags:
     - VimPilot
@@ -3430,6 +3409,8 @@
   - type: Tag
     tags:
     - VimPilot
+  - type: Puller
+    needsHands: false
 
 - type: entity
   name: hamster
@@ -3825,8 +3806,6 @@
   - type: HTN
     rootTask:
       task: SimpleHostileCompound
-  - type: Puller
-    needsHands: false
 
 - type: entity
   name: reindeer doe

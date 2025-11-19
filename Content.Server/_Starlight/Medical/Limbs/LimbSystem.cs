@@ -56,6 +56,8 @@ public sealed partial class LimbSystem : SharedLimbSystem
             QueueDel(virtualItem);
             return false;
         }
+        if(!HasComp<SurgeryTargetComponent>(virtualItem))
+            AddComp<SurgeryTargetComponent>(virtualItem);
         AddItemLimb(body, slot, item);
         AddItemHand(body, item, BodySystem.GetPartSlotContainerId(slot));
         return true;

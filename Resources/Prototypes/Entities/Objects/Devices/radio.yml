@@ -25,15 +25,22 @@
     sprite: _FarHorizons/Objects/Devices/handheld_radio.rsi
     layers:
       - state: frame
-        map: ["enum.RadioLayers.Frame"]
       - state: screen
-        map: ["enum.RadioLayers.Screen"]
-        visible: false
-      - state: flap-open
-        map: ["enum.RadioLayers.FlapOpen"]
+        map: ["speaker"]
         visible: false
       - state: flap-closed
-        map: ["enum.RadioLayers.FlapClosed"]
+        map: ["microphone"]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.HandheldRadioVisuals.Microphone:
+        microphone:
+          True: {state: flap-open}
+          False: {state: flap-closed}
+      enum.HandheldRadioVisuals.Speaker:
+        speaker:
+          True: {visible: true}
+          False: {visible: false}
   - type: Item
     sprite: _FarHorizons/Objects/Devices/handheld_radio.rsi
     heldPrefix: radio

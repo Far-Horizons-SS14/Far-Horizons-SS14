@@ -25,6 +25,7 @@ public sealed partial class AdminVerbSystem
     private static readonly EntProtoId DefaultTraitorRule = "Traitor";
     private static readonly EntProtoId DefaultInitialInfectedRule = "Zombie";
     private static readonly EntProtoId DefaultNukeOpRule = "LoneOpsSpawn";
+    private static readonly EntProtoId DefaultWizardRule = "Wizard"; //FH
     private static readonly EntProtoId DefaultRevsRule = "Revolutionary";
     private static readonly EntProtoId DefaultThiefRule = "Thief";
     private static readonly EntProtoId DefaultChangelingRule = "Changeling";
@@ -124,6 +125,24 @@ public sealed partial class AdminVerbSystem
             Message = string.Join(": ", pirateName, Loc.GetString("admin-verb-make-pirate")),
         };
         args.Verbs.Add(pirate);
+        
+        // Far Horzions start
+        var wizardName = Loc.GetString("admin-verb-text-make-wizard");
+        Verb wizard = new()
+        {
+            Text = wizardName,
+            Category = VerbCategory.Antag,
+            Icon = new SpriteSpecifier.Rsi(new("/Textures/Clothing/Head/Hats/wizardhat.rsi"), "icon"),
+            Act = () =>
+            {
+                //using nukeops rule for wizard, it doesnt do anything anyway
+                _antag.ForceMakeAntag<NukeopsRuleComponent>(targetPlayer, DefaultWizardRule); 
+            },
+            Impact = LogImpact.High,
+            Message = string.Join(": ", wizardName, Loc.GetString("admin-verb-make-wizard")),
+        };
+        args.Verbs.Add(wizard);
+        // Far Horizons end
 
         var headRevName = Loc.GetString("admin-verb-text-make-head-rev");
         Verb headRev = new()

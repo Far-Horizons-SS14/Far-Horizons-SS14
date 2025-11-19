@@ -20,3 +20,41 @@
   - type: StartingMindRole
     mindRole: "MindRoleSiliconBrain"
     silent: true
+
+- type: entity
+  id: PlayerSecBorgBatterySyndicate
+  parent: PlayerSecBorgBattery
+  suffix: Syndicate
+  components:
+    - type: Sprite
+      sprite: Mobs/Silicon/Chassis/synd_sec.rsi
+      layers:
+      - state: borg
+      - state: borg_e
+        map: [ "enum.BorgVisualLayers.Light" ]
+        shader: unshaded
+        visible: false
+      - state: borg_l
+        shader: unshaded
+        map: [ "light" ]
+        visible: false
+    - type: Speech
+      speechSounds: SyndieBorg
+      allowedEmotes:
+      - Laugh
+    - type: Vocal
+      sounds:
+        Unsexed: UnisexSiliconSyndicate
+    - type: BorgChassis
+      maxModules: 6
+      hasMindState: borg_e
+      noMindState: borg
+    - type: PointLight
+      color: "#dd200b"
+      radius: 4
+      energy: 2
+
+- type: entity
+  id: PlayerBorgBatterySyndicate
+  parent: PlayerBorgBattery
+  suffix: Syndicate

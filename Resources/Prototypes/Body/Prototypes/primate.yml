@@ -3,6 +3,15 @@
   name: "primate"
   root: torso
   slots:
+    head:
+      part: HeadAnimal
+      connections:
+      - torso
+      organs:
+        brain: OrganAnimalBrain
+        eyes: OrganAnimalEyes
+        tongue: OrganAnimalTongue
+        eye_implant: null
     torso:
       part: TorsoAnimal
       connections:

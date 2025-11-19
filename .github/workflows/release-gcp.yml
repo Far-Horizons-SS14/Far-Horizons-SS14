@@ -1,0 +1,49 @@
+name: Release to GCP
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+    - name: Checkout Master
+      uses: actions/checkout@v4.2.2
+
+    - name: Setup Submodule
+      run: |
+        git submodule update --init --recursive
+
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v4.1.0
+      with:
+        dotnet-version: 9.0.x
+
+    - name: Release
+      shell: bash
+      run: |
+        mkdir out
+        dotnet run --project Content.Packaging -c Release client
+        mv release/SS14.Client.zip out/SS14.Client.zip
+        dotnet run --project Content.Packaging -c Release server --platform linux-arm64
+        mv release/SS14.Server_linux-arm64.zip out/SS14.Server_linux-arm64.zip
+        git rev-parse --short HEAD > out/VERSION
+        sed -nr "s|.*<Version>(.*)</Version>.*|\1|p" RobustToolbox/MSBuild/Robust.Engine.Version.props > out/ENGINE_VERSION
+
+    - name: GCP auth
+      uses: google-github-actions/auth@v3
+      with:
+        workload_identity_provider: ${{ secrets.GCP_WIP }}
+        service_account: ${{ secrets.GCP_SA }}
+    
+    - name: GCP upload
+      uses: google-github-actions/upload-cloud-storage@v3
+      with:
+        path: out
+        destination: ${{ secrets.GCP_BUCKET }}
+        parent: false
+        gzip: false

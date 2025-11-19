@@ -14,6 +14,7 @@ public enum SurgeryUIKey
 public sealed class SurgeryBuiState : BoundUserInterfaceState
 {
     public required Dictionary<NetEntity, List<(EntProtoId, string, bool)>> Choices { get; init; }
+    public required string ResearchLevel { get; init; } = "None";
 }
 
 [Serializable, NetSerializable]

@@ -1,4 +1,30 @@
 - type: loadoutGroup
+  id: Scarves
+  name: loadout-group-scarves
+  minLimit: 0
+  loadouts:
+  - ScarfRed
+  - ScarfBlue
+  - ScarfGreen
+  - ScarfBlack
+  - ScarfBrown
+  - ScarfLightBlue
+  - ScarfOrange
+  - ScarfPurple
+  - ScarfPrideAce
+  - ScarfPrideAro
+  - ScarfPrideAroace
+  - ScarfPrideBisexual
+  - ScarfPrideGay
+  - ScarfPrideIntersex
+  - ScarfPrideLesbian
+  - ScarfPridePansexual
+  - ScarfPrideNonbinary
+  - ScarfPrideRainbow
+  - ScarfPrideTrans
+  - ScarfPrideLongBacon
+
+- type: loadoutGroup
   id: AssistantGlasses
   name: loadout-group-assistant-glasses
   minLimit: 0
@@ -56,6 +82,7 @@
   minLimit: 0
   loadouts:
   - RoboticistCap
+  - ScienceBeret #Far Horizons
   - SkullBandana
 
 - type: loadoutGroup
@@ -75,7 +102,6 @@
   - RoboticistWeldingGoggles
   - RoboticistDiagnosticsHud
 
-
 - type: loadoutGroup
   id: RoboticistBackpack
   name: loadout-group-roboticist-backpack
@@ -84,14 +110,30 @@
   - RoboticistSatchel
   - RoboticistDuffel
   - LeatherSatchel
-  
+
+- type: loadoutGroup
+  id: NanoTrasenRepresentativeHead
+  name: loadout-group-nanotrasenrepresentative-head
+  loadouts:
+  - NanoTrasenRepresentativeTophat
+  - NanoTrasenRepresentativeEliteTophat
+  - NanoTrasenRepresentativeCap
+
 - type: loadoutGroup
   id: NanoTrasenRepresentativeJumpsuit
   name: loadout-group-nanotrasenrepresentative-jumpsuit
+  minLimit: 1 #Far Horizons
   loadouts:
   - NanoTrasenRepresentativeJumpsuit
   - NanoTrasenRepresentativeJumpskirt
   - NanoTrasenRepresentativeJumpsuitFormal
+  - NTRJumpskirtFormal #Far Horizons
+  - NTRJumpsuitCC #Far Horizons
+  - NTRJumpskirtCC #Far Horizons
+  - NanoTrasenRepresentativeTurtleneck
+  - NanoTrasenRepresentativeTurtleneckSkirt
+  - NanoTrasenRepresentativeNoble
+  - NTRJumpskirtNoble #Far Horizons
 
 - type: loadoutGroup
   id: NanoTrasenRepresentativeEyewear
@@ -99,6 +141,14 @@
   loadouts:
   - NanoTrasenRepresentativeGlasses
   - NanoTrasenRepresentativeHud
+  - NanoTrasenRepresentativeMonocle
+
+- type: loadoutGroup
+  id: BlueShieldHead
+  name: loadout-group-blueshield-head
+  loadouts:
+  - BlueShieldBeret
+  - BlueShieldBountyHat
 
 - type: loadoutGroup
   id: BlueShieldBackpack
@@ -118,6 +168,7 @@
   - EliteBlueShieldJumpsuit
   - EliteBlueShieldJumpskirt
   - BlueShieldShirt
+  - FormalBlueShieldJumpsuit
 
 - type: loadoutGroup
   id: BlueShieldOuterclothing
@@ -132,6 +183,7 @@
   loadouts:
   - BlueShieldFormalCloak
   - BlueShieldEliteCloak
+  - BlueShieldPoncho
 
 - type: loadoutGroup
   id: BlueShieldEyewear
@@ -250,3 +302,43 @@
   loadouts:
   - CombatBoots
   - HighHeelBootsFilled
+
+# Salvage Lead
+- type: loadoutGroup
+  id: SalvageLeadJumpsuit
+  name: loadout-group-salvage-lead-jumpsuit
+  loadouts:
+    - SalvageLeadJumpsuit
+    - SalvageLeadJumpskirt
+
+- type: loadoutGroup
+  id: SalvageLeadPDA
+  name: loadout-group-salvagelead-id
+  loadouts:
+  - SalvageLeadPDA
+  - VeteranSalvageLeadPDA
+
+# Mining Specialist
+- type: loadoutGroup
+  id: MiningSpecialistJumpsuit
+  name: loadout-group-mining-specialist-jumpsuit
+  loadouts:
+    - MiningSpecialistJumpsuit
+    - MiningSpecialistJumpskirt
+
+- type: loadoutGroup
+  id: MiningSpecialistPDA
+  name: loadout-group-mining-id
+  minLimit: 1 #Far Horizons
+  loadouts:
+  - MiningPDA
+  - VeteranMiningPDA
+
+# Salvage Specialist
+- type: loadoutGroup
+  id: SalvageSpecialistPDA
+  name: loadout-group-salvage-id
+  minLimit: 1 #Far Horizons
+  loadouts:
+    - SalvagePDA
+    - VeteranSalvagePDA

@@ -1,0 +1,27 @@
+
+
+## Syndicate Station
+
+# Commander (Captain)
+
+- type: entity
+  id: JetpackCommander
+  parent: JetpackCaptain
+  name: commander's jetpack
+  suffix: Empty
+
+- type: entity
+  id: JetpackCommanderFilled
+  parent: JetpackCommander
+  name: commander's jetpack
+  suffix: Filled
+  components:
+  - type: GasTank
+    outputPressure: 42.6
+    air:
+      # 13 minutes of thrust
+      volume: 5
+      temperature: 293.15
+      moles:
+        Oxygen: 1.025689525 # oxygen
+        Nitrogen: 1.025689525 # nitrogen

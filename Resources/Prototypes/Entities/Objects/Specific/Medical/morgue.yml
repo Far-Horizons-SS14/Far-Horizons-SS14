@@ -8,7 +8,8 @@
     size: Small
     heldPrefix: bag
   - type: Sprite
-    drawdepth: SmallObjects # I guess body bags need appear above a coroner's table?
+    drawdepth: BelowMobs # I guess body bags need appear above a coroner's table?
+    offset: "0,0.23"
     sprite: Objects/Specific/Medical/Morgue/bodybags.rsi
     layers:
     - state: bag
@@ -39,7 +40,7 @@
         shape:
           !type:PhysShapeAabb
           bounds: "-0.25,-0.4,0.25,0.1"
-        density: 20
+        density: 80
         mask:
         - ItemMask
   - type: EntityStorage
@@ -95,6 +96,7 @@
       paper_label: !type:ContainerSlot
   - type: StaticPrice
     price: 50
+  - type: Buckle
 
 - type: entity
   id: BodyBagFolded
