@@ -1,16 +1,16 @@
 meta:
   format: 7
-  category: Map
+  category: Grid
   engineVersion: 267.3.0
-  forkId: ""
+  forkId: "FarHorizons"
   forkVersion: ""
   time: 11/19/2025 19:55:54
   entityCount: 13772
-maps:
-- 1
+maps: []
 grids:
 - 2
-orphans: []
+orphans:
+- 2
 nullspace: []
 tilemap:
   3: Space
@@ -38,25 +38,14 @@ tilemap:
 entities:
 - proto: ""
   entities:
-  - uid: 1
+  - uid: 2  # grid 1 is a myth. any mentions of that MUST be reported to the local authorities.
     components:
     - type: MetaData
       name: Syndicate High Command
-    - type: Transform
-    - type: Map
-      mapPaused: True
-    - type: GridTree
-    - type: Broadphase
-    - type: OccluderTree
     - type: Parallax
       parallax: KettleStation
-  - uid: 2
-    components:
-    - type: MetaData
-      name: Syndicate High Command
     - type: Transform
       pos: -0.5625,-0.640625
-      parent: 1
     - type: MapGrid
       chunks:
         0,0:
@@ -276,6 +265,8 @@ entities:
       bodyStatus: InAir
       fixedRotation: False
       bodyType: Dynamic
+    - type: BecomesStation
+      id: centcomm
     - type: Fixtures
       fixtures: {}
     - type: OccluderTree
