@@ -47,9 +47,6 @@ public sealed partial class IPCBatteryComponent : Component
     public PowerCellSlotComponent PowerCellSlot = default!;
 
     [ViewVariables(VVAccess.ReadWrite)]
-    public EntityUid? Battery = default!;
-
-    [ViewVariables(VVAccess.ReadWrite)]
     public bool TimerActive = false;
     [ViewVariables(VVAccess.ReadWrite)]
     public float Timer = 0f;

@@ -8,7 +8,6 @@ using Content.Shared.Ninja.Systems;
 using Content.Shared.Popups;
 using Content.Shared.PowerCell;
 using Content.Shared.PowerCell.Components;
-using Content.Shared.Roles;
 
 namespace Content.Server._FarHorizons.Silicons.IPC;
 
@@ -18,7 +17,6 @@ public sealed partial class IPCSystem
     {
         base.SetupBattery();
         
-        SubscribeLocalEvent<IPCBatteryComponent, StartingGearEquippedEvent>(OnBatteryStartingGear);
         SubscribeLocalEvent<IPCBatteryComponent, PowerCellChangedEvent>(OnPowerCellChanged);
         SubscribeLocalEvent<IPCBatteryComponent, PowerCellSlotEmptyEvent>(OnPowerCellSlotEmpty);
         SubscribeLocalEvent<IPCBatteryComponent, MobStateChangedEvent>(OnBatteryStateChange);
@@ -95,16 +93,6 @@ public sealed partial class IPCSystem
             }
         }
     }
-    
-    private void OnBatteryStartingGear(Entity<IPCBatteryComponent> ent, ref StartingGearEquippedEvent args)
-    {
-        if (!TryComp<BatteryDrainerComponent>(ent, out var drainer))
-            return;
-
-        ent.Comp.Battery = ent.Comp.BatteryContainerSlot.ContainedEntity;
-        _drainer.SetBattery((ent, drainer), ent.Comp.BatteryContainerSlot.ContainedEntity);
-        UpdateBatteryAlert(ent);
-    }
 
     private void OnPowerCellSlotEmpty(Entity<IPCBatteryComponent> ent, ref PowerCellSlotEmptyEvent args)
     {
@@ -118,7 +106,8 @@ public sealed partial class IPCSystem
             StartDeathTimer(ent);
         else
             StopDeathTimer(ent);
-
+        
+        _drainer.SetBattery((ent, ent.Comp.BatteryDrainer), ent.Comp.BatteryContainerSlot.ContainedEntity);
         UpdateBatteryAlert(ent);
         UpdateUI(ent);
     }
@@ -183,19 +172,19 @@ public sealed partial class IPCSystem
     public void DrainBattery(Entity<IPCBatteryComponent?> ent)
     {
         if (!Resolve(ent, ref ent.Comp) ||
-            ent.Comp.Battery == null)
+            ent.Comp.BatteryContainerSlot.ContainedEntity == null)
             return;
 
-        _battery.SetCharge(ent.Comp.Battery.Value, 0);
+        _battery.SetCharge(ent.Comp.BatteryContainerSlot.ContainedEntity.Value, 0);
     }
 
     public void EjectBattery(Entity<IPCBatteryComponent?> ent, EntityUid user)
     {
         if (!Resolve(ent, ref ent.Comp) ||
-            ent.Comp.Battery == null)
+            ent.Comp.BatteryContainerSlot.ContainedEntity == null)
             return;
         
-        var battery = ent.Comp.Battery.Value;
+        var battery = ent.Comp.BatteryContainerSlot.ContainedEntity.Value;
         _container.EmptyContainer(ent.Comp.BatteryContainerSlot);
 
         _hands.PickupOrDrop(user, battery, dropNear: true);
