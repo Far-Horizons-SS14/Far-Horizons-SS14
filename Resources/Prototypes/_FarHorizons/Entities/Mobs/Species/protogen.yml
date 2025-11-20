@@ -238,12 +238,27 @@
   - type: Inventory
     speciesId: vulpkanin #to be replaced with proto[species] when new sprites are made
     templateId: protogen
-    femaleDisplacements:
+    displacements: 
+      head:
+        sizeMaps:
+          32:
+            sprite: _FarHorizons/Mobs/Species/Proto-Vulp/displacement.rsi
+            state: head
+      outerClothing:
+        sizeMaps:
+          32:
+            sprite: _FarHorizons/Mobs/Species/Proto-Vulp/displacement.rsi
+            state: outerClothing
       jumpsuit:
         sizeMaps:
           32:
             sprite: _FarHorizons/Mobs/Species/Proto-Vulp/displacement.rsi
-            state: jumpsuit-female
+            state: jumpsuit
+      shoes:
+        sizeMaps:
+          32:
+            sprite: _FarHorizons/Mobs/Species/Proto-Vulp/displacement.rsi
+            state: shoes
   - type: ContentEye
     targetZoom: "1.125, 1.125"
     maxZoom: "1.125, 1.125"
@@ -256,12 +271,16 @@
   - type: Inventory
     speciesId: vulpkanin #to be replaced with proto[species] when new sprites are made
     templateId: protogen
-    femaleDisplacements:
+    displacements: 
       jumpsuit:
         sizeMaps:
           32:
             sprite: _FarHorizons/Mobs/Species/Proto-Vulp/displacement.rsi
-            state: jumpsuit-female
+            state: jumpsuit
+        sizeMaps:
+          32:
+            sprite: _FarHorizons/Mobs/Species/Proto-Vulp/displacement.rsi
+            state: shoes
 
 #region VOX ####
 
