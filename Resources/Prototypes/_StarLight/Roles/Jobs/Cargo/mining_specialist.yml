@@ -25,10 +25,11 @@
   equipment:
     #id: MiningPDA #Far Horizons - Disabling because they can choose between PDA's in loadout.
     ears: ClothingHeadsetMining
-    belt: OreBag
-    #storage:
-    #back:
-    #- Stuff
+    belt: ClothingBeltSalvageWebbing #Far Horizons
+    gloves: ClothingHandsGlovesCargo #Far Horizons
+  storage: #Far Horizons
+    back:
+    - OreBag
 
 - type: chameleonOutfit
   id: MiningSpecialistChameleonOutfit
@@ -38,5 +39,6 @@
     eyes: ClothingEyesGlassesCheapSunglasses
     mask: ClothingMaskGasExplorer
     outerClothing: ClothingOuterWinterMiner
+    belt: ClothingBeltSalvageWebbing #Far Horizons
     neck: ClothingNeckScarfStripedBrown
-    gloves: ClothingHandsGlovesColorBlack
+    gloves: ClothingHandsGlovesCargo #Far Horizons

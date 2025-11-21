@@ -21,3 +21,30 @@
       coefficients:
         Slash: 0.95
   - type: FingerprintMask
+
+- type: entity
+  parent: ClothingHandsGlovesSyntheticBase
+  id: ClothingHandsGlovesCargo
+  name: cargo gloves
+  description: Some nice padded gloves for moving items between crates over extended periods of time.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Hands/Gloves/cargo.rsi
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#535353"
+      right:
+      - state: inhand-right
+        color: "#535353"
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Hands/Gloves/cargo.rsi
+  - type: Butcherable
+    butcheringType: Knife
+    spawned:
+    - id: MaterialCloth1
+      amount: 1
+  - type: Fiber
+    fiberMaterials: fibers-synthetic
+    fiberColor: fibers-black

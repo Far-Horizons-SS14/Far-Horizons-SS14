@@ -1,0 +1,13 @@
+- type: entity
+  parent: [ ClothingHeadHelmetBase, BaseSalvageContraband ]
+  id: ClothingHeadHelmetSalvage
+  name: salvage helmet
+  description: A generic helmet given to all of GSL's salvage teams. Clearly the money that was supposed to armor it went somewhere's else.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Head/Helmets/salvagerhelmet.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Head/Helmets/salvagerhelmet.rsi
+  - type: HideLayerClothing
+    layers:
+      Hair: HEAD
