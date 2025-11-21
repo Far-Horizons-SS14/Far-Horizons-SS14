@@ -58,7 +58,7 @@ public sealed partial class SalvageMissionPurge : BaseSalvageMissionObjectiveHan
             {
                 var slot = _pocketSlots[Rand.Next(_pocketSlots.Count)];
                 var damage = SalvageMissionRescue.RandomDamage(ProtoMan, Rand, 100, 200, 4);
-                var body = SalvageMissionRescue.SpawnRandomBody(ProtoMan, EntMan, Rand, pos, humanoid, metadata, state, damageable, factions, stationSpawning, selectedFaction, true, damage, true);
+                var body = SalvageMissionRescue.SpawnRandomBody(ProtoMan, EntMan, Rand, pos, humanoid, metadata, state, damageable, factions, stationSpawning, inventory, selectedFaction, true, damage, true);
                 if (!inventory.TryEquip(body, spawned, slot, force: true))
                     EntMan.DeleteEntity(body);
                 else{
@@ -76,7 +76,7 @@ public sealed partial class SalvageMissionPurge : BaseSalvageMissionObjectiveHan
             var item = _stuffProtos[Rand.Next(_stuffProtos.Count)];
 
             var damage = SalvageMissionRescue.RandomDamage(ProtoMan, Rand, 100, 200, 4);
-            var body = SalvageMissionRescue.SpawnRandomBody(ProtoMan, EntMan, Rand, pos, humanoid, metadata, state, damageable, factions, stationSpawning, selectedFaction, true, damage, true);
+            var body = SalvageMissionRescue.SpawnRandomBody(ProtoMan, EntMan, Rand, pos, humanoid, metadata, state, damageable, factions, stationSpawning, inventory, selectedFaction, true, damage, true);
             var itemEnt = EntMan.SpawnAtPosition(item, pos);
             if (!inventory.TryEquip(body, itemEnt, slot, force: true))
                 EntMan.DeleteEntity(itemEnt);
