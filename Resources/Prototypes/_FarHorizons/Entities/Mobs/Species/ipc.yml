@@ -309,6 +309,17 @@
       enum.InstrumentUiKey.Key:
         type: InstrumentBoundUserInterface
         requireInputValidation: false
+      enum.HumanoidMarkingModifierKey.Key:
+        type: HumanoidMarkingModifierBoundUserInterface
+      enum.StoreUiKey.Key:
+        type: StoreBoundUserInterface
+      enum.SurgeryUIKey.Key:
+        type: SurgeryBui
+      enum.VampireMutationUiKey.Key:
+        type: VampireMutationBoundUserInterface
+      enum.ThavenMoodsUiKey.Key: # impstation edit
+        type: ThavenMoodsBoundUserInterface
+        requireInputValidation: false
   - type: ActivatableUI
     key: enum.IPCUiKey.Key
   - type: UIRequiresLock
