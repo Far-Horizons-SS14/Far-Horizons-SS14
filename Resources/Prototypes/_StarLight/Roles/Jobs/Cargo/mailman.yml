@@ -19,11 +19,12 @@
   equipment:
     id: MailPDA
     ears: ClothingHeadsetCargo
-    belt: MailBag
+    belt: ClothingBeltCargo #Far Horizons
   storage:
     back:
     - MailTrolleyFlatpack
     - Multitool #maybe not a good idea? idk makes unpacking it quick
+    - MailBag # Far Horizons - Unfortunately this most likely just drops to the ground on spawn and I don't feel like fixing that currently. -Corrupt
 
 - type: chameleonOutfit
   id: MailTechChameleonOutfit
@@ -33,5 +34,6 @@
     eyes: ClothingEyesGlassesCheapSunglasses
     mask: ClothingMaskBreath
     outerClothing: ClothingOuterWinterCargo
+    belt: ClothingBeltCargo #Far Horizons
     neck: ClothingNeckScarfStripedBrown
     gloves: ClothingHandsGlovesFingerless
