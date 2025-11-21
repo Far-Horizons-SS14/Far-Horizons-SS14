@@ -47,15 +47,17 @@ public sealed class HullSenseCartridgeSystem : EntitySystem
         var user = args.Args.User;
         var target = args.Args.Target;
 
-        var patientCoordinates = Transform(target).Coordinates;
-        var canReach = _transformSystem.InRange(patientCoordinates, Transform(user).Coordinates, ent.Comp.MaxScanRange!.Value);
-        InnateVerb verb = new()
+        if (TryComp(target, out TransformComponent? targetTransform))
         {
-            Act = () => _interactionSystem.InteractDoAfter(user, ent.Owner, target, patientCoordinates, canReach),
-            Text = "Analyze Structure",
-            IconEntity = GetNetEntity(ent),
-            Priority = 2,
-        };
-        args.Args.Verbs.Add(verb);
+            var patientCoordinates = targetTransform.Coordinates;
+            InnateVerb verb = new()
+            {
+                Act = () => _interactionSystem.InteractDoAfter(user, ent.Owner, target, patientCoordinates, true), // Setting canReach to true, because if it's false - args.Args.CanAccess will be false and this code won't run
+                Text = "Analyze Structure",
+                IconEntity = GetNetEntity(ent),
+                Priority = 2,
+            };
+            args.Args.Verbs.Add(verb);
+        }
     }    
 }
