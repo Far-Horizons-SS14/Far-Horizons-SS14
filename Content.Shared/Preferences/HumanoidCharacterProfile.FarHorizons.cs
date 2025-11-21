@@ -48,4 +48,22 @@ public sealed partial class HumanoidCharacterProfile
         SpeciesLoadout.SetDefault(this, session, protoManager);
         return SpeciesLoadout;
     }
+
+    private static bool SpeciesLoadoutEquals(RoleLoadout? A, RoleLoadout? B)
+    {
+        if (A == null != (B == null))
+            return false;
+
+        if (A != null && B != null)
+        {   
+            if (A.SelectedLoadouts.Count != B.SelectedLoadouts.Count)
+                return false;
+            
+            foreach (var (k, v) in A.SelectedLoadouts)
+                if (!B.SelectedLoadouts.TryGetValue(k, out var bValue) || !bValue.SequenceEqual(v))
+                    return false;
+        }
+
+        return true;
+    }
 }
