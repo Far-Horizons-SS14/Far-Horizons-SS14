@@ -57,6 +57,19 @@
   - type: Clothing
     sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/ntrepnoble.rsi
 
+# QM
+
+- type: entity
+  parent: [ ClothingUniformSkirtBase, BaseCommandContraband ]
+  id: ClothingUniformJumpskirtQMFormal
+  name: quartermaster's formal jumpskirt
+  description: For only the highest nobility within CentComm's representatives. May they be dazzled by your brilliance.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/qmformal.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/qmformal.rsi
+
 ## Syndicate Station
 
 # Commander (Captain)
