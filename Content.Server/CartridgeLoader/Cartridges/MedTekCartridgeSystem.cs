@@ -6,7 +6,6 @@ using Content.Shared.Damage;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Interaction;
 using Robust.Server.GameObjects;
-using Robust.Shared.Physics;
 
 namespace Content.Server.CartridgeLoader.Cartridges;
 
