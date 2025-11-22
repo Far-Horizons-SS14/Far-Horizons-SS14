@@ -154,8 +154,8 @@
   - type: ContainerContainer
     containers:
       cell_slot: !type:ContainerSlot { }
-      key_slots: !type:Container
-      borg_brain: !type:ContainerSlot { }
+      key_slots: !type:Container # todo probably need to move this to the integrated headset.
+      borg_brain: !type:ContainerSlot { } # todo probably need get this in line with organics
   - type: ItemSlots
     slots:
       cell_slot:
@@ -195,7 +195,7 @@
     drainTime: 0.8
     disableHandInteraction: true
   # Radio
-  - type: IPCRadio
+  - type: IPCRadio # todo Move this entire component to an integrated headset which can be removed via surgery
     keysCapacity: 2
     copyHeadsetKeys: false  # Copy contents on headset when starting gear is equipped
     removeHeadset: false # Delete headset when starting gear is equipped (after copying keys)
