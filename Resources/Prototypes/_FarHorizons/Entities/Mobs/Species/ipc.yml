@@ -166,8 +166,6 @@
   - type: ContainerFill
     containers:
       borg_brain: [ PositronicBrain ]
-      key_slots:
-      - EncryptionKeyTrinary
   # Battery
   - type: IPCBattery
     dieWithoutPowerAfter: 15.0 # 10 was too short
@@ -202,7 +200,11 @@
     copyHeadsetKeys: false  # Copy contents on headset when starting gear is equipped
     removeHeadset: false # Delete headset when starting gear is equipped (after copying keys)
   - type: ActiveRadio
+    channels:
+    - Trinary
   - type: IntrinsicRadioTransmitter
+    channels:
+    - Trinary
   - type: IntrinsicRadioReceiver
   # Music player
   - type: ActionGrant
