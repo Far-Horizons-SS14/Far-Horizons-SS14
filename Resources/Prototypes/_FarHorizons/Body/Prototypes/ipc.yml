@@ -7,7 +7,8 @@
       part: HeadIPC
       connections:
       - torso
-      organs: # No brain in head, brain is handled by IPCBrain component
+      organs:
+        brain: PositronicBrain # Could put this in the torso. But let's somewhat stick to conventions
         eyes: OrganIPCEyes
         tongue: OrganIPCTongue
         eye_implant: null
