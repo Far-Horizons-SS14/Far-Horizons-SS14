@@ -52,6 +52,29 @@
     state: ears
 
 - type: entity
+  id: OrganIPCIntegratedHeadset
+  parent: [BaseIPCOrganUnGibbable, BaseOrganEars]
+  name: integrated headset
+  description: "A headset designed to easily integrate inside an IPC. Comes with Trinary by default, and 3 slots for additional channels."
+  components:
+  - type: Sprite
+    state: ears # todo get a custom sprite
+  - type: ContainerContainer
+    containers:
+      key_slots: !type:Container
+  - type: IPCRadio # todo Move this entire component to an integrated headset which can be removed via surgery
+    keysCapacity: 3
+    copyHeadsetKeys: true
+    removeHeadset: true
+  - type: ActiveRadio
+    channels:
+    - Trinary
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Trinary
+  - type: IntrinsicRadioReceiver
+
+- type: entity
   id: OrganIPCHeart
   parent: [BaseIPCOrganUnGibbable, BaseOrganHeart]
   name: micro pump
