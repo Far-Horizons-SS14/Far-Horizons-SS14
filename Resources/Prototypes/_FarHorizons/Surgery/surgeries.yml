@@ -116,3 +116,29 @@
       - state: eyeball-l
       - state: eyeball-r
   - type: AnimalBypass
+
+# region IPC
+
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryMechanicalBase
+  components:
+  - type: SurgerySpeciesCondition
+    speciesBlacklist: []
+    speciesWhitelist:
+    - IPC
+
+- type: entity
+  parent: SurgeryMechanicalBase
+  id: SurgeryMechanicalExtractPositronic
+  name: Disconnect Positronic Brain
+  components:
+  - type: Surgery
+    requirement: # todo figure out how I make this check for an open panel.
+    - SurgeryOpenIncision
+    steps:
+    - SurgeryStepMechanicalOpenPositronicContainer
+    - SurgeryStepDisconnectOptics
+    - SurgeryStepDisconnectMonitoring
+    - SurgeryStepDisconnectMotorFunction
+    - SurgeryStepExtractBrain # todo probably change how IPC's sit inside of a body so they are extracted via surgery
