@@ -55,6 +55,10 @@
     stealGroup: ReactorFuelRodSteal
 
 - type: entity
+  id: UniversalReactorFuelRod
+  parent: BaseReactorFuelRod
+
+- type: entity
   id: CerenkiteReactorFuelRod
   parent: BaseReactorFuelRod
   name: cerenkite fuel rod
@@ -107,6 +111,10 @@
     neutronCrossSection: 2.0
 
 - type: entity
+  id: UniversalReactorControlRod
+  parent: BaseReactorControlRod
+
+- type: entity
   id: BohrumReactorControlRod
   parent: BaseReactorControlRod
   name: bohrum control rod
@@ -129,6 +137,10 @@
     thermalCrossSection: 15
     gasVolume: 100
     thermalMass: 21000
+
+- type: entity
+  id: UniversalReactorGasChannel
+  parent: BaseReactorGasChannel
 
 - type: entity
   id: SteelReactorGasChannel
@@ -160,6 +172,10 @@
     iconStateCap: "heat_cap"
     neutronCrossSection: 0.1
     thermalCrossSection: 25
+
+- type: entity
+  id: UniversalReactorHeatExchanger
+  parent: BaseReactorHeatExchanger
 
 - type: entity
   id: SteelReactorHeatExchanger
