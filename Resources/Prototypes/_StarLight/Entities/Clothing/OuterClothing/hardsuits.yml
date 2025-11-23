@@ -301,7 +301,7 @@
     tags:
     - Hardsuit
     - WhitelistChameleon
-
+    - IPCExternalCooling # Far Horizons
 
 #USSP
 - type: entity
@@ -411,12 +411,13 @@
     zombificationResistanceCoefficient: 0.50
   - type: IdClothingBlocker
     allowedJobs:
-      - SecurityOfficer
-      - Brigmedic
-      - Warden
-      - HeadOfSecurity
-      - Captain
-      - Detective
+      - Captain #FH change (reorganized)
+      - HeadOfSecurity #FH change (reorganized)
+      - Warden #FH change (reorganized)
+      - Corpsman #FH change (added)
+      - Brigmedic #FH change (reorganized)
+      - Detective #FH change (reorganized)
+      - SecurityOfficer #FH change (reorganized)
   - type: Pierceable
     level: Metal
   - type: Armor
@@ -442,6 +443,7 @@
   - type: Tag
     tags:
       - RequiredForLmgTag
+      - IPCExternalCooling # Far Horizons
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitSecurityExperimental
 
@@ -481,6 +483,7 @@
         - Hardsuit
         - HardsuitSpatio
         - CorgiWearable
+        - IPCExternalCooling # Far Horizons
 
 #Mining Specialist Advanced hardsuit
 - type: entity
