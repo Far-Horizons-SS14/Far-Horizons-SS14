@@ -10,7 +10,7 @@ namespace Content.Client._FarHorizons.Power.Generation.FissionGenerator;
 
 // Ported and modified from goonstation by Jhrushbe.
 // CC-BY-NC-SA-3.0
-// https://github.com/goonstation/goonstation/blob/master/code/obj/nuclearreactor/turbine.dm
+// https://github.com/goonstation/goonstation/blob/ff86b044/code/obj/nuclearreactor/turbine.dm
 
 public sealed class TurbineSystem : SharedTurbineSystem
 {
