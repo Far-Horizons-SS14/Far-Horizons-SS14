@@ -104,6 +104,7 @@ namespace Content.IntegrationTests.Tests
             #region FarHorizons
             "/Maps/_FarHorizons/Centcomms/CC_Outpost_G24.yml", //starlight centcomm map edited for FarHorizons
             "/Maps/_FarHorizons/Centcomms/CC_Outpost_SC17.yml", //starlight centcomm map edited for FarHorizons
+            "/Maps/_FarHorizons/SHCs/shc.yml", //Syndicate high command
             #endregion
         };
 
@@ -179,6 +180,7 @@ namespace Content.IntegrationTests.Tests
             "FHManor", 
             "FHOasis",
             "FHOmega",
+            "SHC",
             #endregion
         };
 

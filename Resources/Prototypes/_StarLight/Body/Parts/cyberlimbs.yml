@@ -33,6 +33,15 @@
         left hand: LeftHandCyber
     - type: RoundstartImplantable
       cost: 1
+    # Far Horizons - EMP effects from installed cybernetics
+    - type: HumanoidEMPCompositeElement
+      effect:
+        stunAmount: 1.0
+        dropItemsFrom:
+        - body_part_slot_left hand
+        damageAmount:
+          types:
+            Shock: 10
 
 - type: entity
   id: RightArmCyber
@@ -52,6 +61,15 @@
         right hand: RightHandCyber
     - type: RoundstartImplantable
       cost: 1
+    # Far Horizons - EMP effects from installed cybernetics
+    - type: HumanoidEMPCompositeElement
+      effect:
+        stunAmount: 1.0
+        dropItemsFrom:
+        - body_part_slot_right hand
+        damageAmount:
+          types:
+            Shock: 10
 
 - type: entity
   id: LeftHandCyber
@@ -68,6 +86,15 @@
       state: "l_hand"
     - type: RoundstartImplantable
       cost: 1
+    # Far Horizons - EMP effects from installed cybernetics
+    - type: HumanoidEMPCompositeElement
+      effect:
+        stunAmount: 0.5
+        dropItemsFrom:
+        - body_part_slot_left hand
+        damageAmount:
+          types:
+            Shock: 5
 
 - type: entity
   id: RightHandCyber
@@ -84,6 +111,15 @@
       state: "r_hand"
     - type: RoundstartImplantable
       cost: 1
+    # Far Horizons - EMP effects from installed cybernetics
+    - type: HumanoidEMPCompositeElement
+      effect:
+        stunAmount: 0.5
+        dropItemsFrom:
+        - body_part_slot_right hand
+        damageAmount:
+          types:
+            Shock: 5
 
 - type: entity
   id: LeftLegCyber
@@ -106,6 +142,17 @@
         left foot: LeftFootCyber
     - type: RoundstartImplantable
       cost: 2
+    # Far Horizons - EMP effects from installed cybernetics
+    - type: HumanoidEMPCompositeElement
+      effect:
+        stunAmount: 1.0
+        knockdownAmount: 1.0
+        slowdownAmount: 1.0
+        walkSpeedModifier: 0.6
+        sprintSpeedModifier: 0.6
+        damageAmount:
+          types:
+            Shock: 10
 
 - type: entity
   id: RightLegCyber
@@ -128,6 +175,17 @@
         right foot: RightFootCyber
     - type: RoundstartImplantable
       cost: 2
+    # Far Horizons - EMP effects from installed cybernetics
+    - type: HumanoidEMPCompositeElement
+      effect:
+        stunAmount: 1.0
+        knockdownAmount: 1.0
+        slowdownAmount: 1.0
+        walkSpeedModifier: 0.6
+        sprintSpeedModifier: 0.6
+        damageAmount:
+          types:
+            Shock: 10
 
 - type: entity
   id: LeftFootCyber
@@ -144,6 +202,17 @@
       state: "l_foot"
     - type: RoundstartImplantable
       cost: 1
+    # Far Horizons - EMP effects from installed cybernetics
+    - type: HumanoidEMPCompositeElement
+      effect:
+        stunAmount: 0.5
+        knockdownAmount: 0.5
+        slowdownAmount: 0.5
+        walkSpeedModifier: 0.8
+        sprintSpeedModifier: 0.8
+        damageAmount:
+          types:
+            Shock: 5
 
 - type: entity
   id: RightFootCyber
@@ -160,6 +229,17 @@
       state: "r_foot"
     - type: RoundstartImplantable
       cost: 1
+    # Far Horizons - EMP effects from installed cybernetics
+    - type: HumanoidEMPCompositeElement
+      effect:
+        stunAmount: 0.5
+        knockdownAmount: 0.5
+        slowdownAmount: 0.5
+        walkSpeedModifier: 0.8
+        sprintSpeedModifier: 0.8
+        damageAmount:
+          types:
+            Shock: 5
       
 #reaper
 - type: entity
@@ -198,6 +278,15 @@
     - type: WithAttachedBodyParts
       parts:
         left hand: LeftHandCyber
+    # Far Horizons - EMP effects from installed cybernetics
+    - type: HumanoidEMPCompositeElement
+      effect:
+        stunAmount: 1.0
+        dropItemsFrom:
+        - body_part_slot_left hand
+        damageAmount:
+          types:
+            Shock: 15
 
 - type: entity
   id: RightArmCyberReaper
@@ -235,6 +324,15 @@
     - type: WithAttachedBodyParts
       parts:
         right hand: RightHandCyber
+    # Far Horizons - EMP effects from installed cybernetics
+    - type: HumanoidEMPCompositeElement
+      effect:
+        stunAmount: 1.0
+        dropItemsFrom:
+        - body_part_slot_right hand
+        damageAmount:
+          types:
+            Shock: 15
 #Mechwright
 - type: entity
   id: LeftArmCyberMechwright
@@ -268,6 +366,16 @@
     - type: WithAttachedBodyParts
       parts:
         left hand: LeftHandCyber
+    # Far Horizons - EMP effects from installed cybernetics
+    - type: HumanoidEMPCompositeElement
+      effect:
+        stunAmount: 1.0
+        dropItemsFrom:
+        - body_part_slot_left hand
+        damageAmount:
+          types:
+            Shock: 15
+
 - type: entity
   id: RightArmCyberMechwright
   name: "right mechwright arm"
@@ -300,6 +408,15 @@
     - type: WithAttachedBodyParts
       parts:
         right hand: RightHandCyber
+    # Far Horizons - EMP effects from installed cybernetics
+    - type: HumanoidEMPCompositeElement
+      effect:
+        stunAmount: 1.0
+        dropItemsFrom:
+        - body_part_slot_right hand
+        damageAmount:
+          types:
+            Shock: 15
 #Bulwark 
 - type: entity
   id: LeftArmCyberBulwark
@@ -330,6 +447,15 @@
     - type: WithAttachedBodyParts
       parts:
         left hand: LeftHandCyber
+    # Far Horizons - EMP effects from installed cybernetics
+    - type: HumanoidEMPCompositeElement
+      effect:
+        stunAmount: 1.0
+        dropItemsFrom:
+        - body_part_slot_left hand
+        damageAmount:
+          types:
+            Shock: 15
 
 - type: entity
   id: RightArmCyberBulwark
@@ -360,6 +486,15 @@
     - type: WithAttachedBodyParts
       parts:
         right hand: RightHandCyber
+    # Far Horizons - EMP effects from installed cybernetics
+    - type: HumanoidEMPCompositeElement
+      effect:
+        stunAmount: 1.0
+        dropItemsFrom:
+        - body_part_slot_right hand
+        damageAmount:
+          types:
+            Shock: 15
 
 #Mantis Blade
 - type: entity
@@ -390,6 +525,15 @@
     - type: WithAttachedBodyParts
       parts:
         left hand: LeftHandCyber
+    # Far Horizons - EMP effects from installed cybernetics
+    - type: HumanoidEMPCompositeElement
+      effect:
+        stunAmount: 1.0
+        dropItemsFrom:
+        - body_part_slot_left hand
+        damageAmount:
+          types:
+            Shock: 15
 
 - type: entity
   id: RightArmCyberMantisBlade
@@ -419,6 +563,15 @@
     - type: WithAttachedBodyParts
       parts:
         right hand: RightHandCyber
+    # Far Horizons - EMP effects from installed cybernetics
+    - type: HumanoidEMPCompositeElement
+      effect:
+        stunAmount: 1.0
+        dropItemsFrom:
+        - body_part_slot_right hand
+        damageAmount:
+          types:
+            Shock: 15
 
 #ripperdoc
 - type: entity
@@ -457,6 +610,17 @@
     - type: WithAttachedBodyParts
       parts:
         left hand: LeftHandCyber
+    - type: RoundstartImplantable
+      cost: 2
+    # Far Horizons - EMP effects from installed cybernetics
+    - type: HumanoidEMPCompositeElement
+      effect:
+        stunAmount: 1.0
+        dropItemsFrom:
+        - body_part_slot_left hand
+        damageAmount:
+          types:
+            Shock: 10
     - type: Construction
       graph: RipperLeftGraph
       node: left
@@ -497,6 +661,17 @@
     - type: WithAttachedBodyParts
       parts:
         right hand: RightHandCyber
+    - type: RoundstartImplantable
+      cost: 2
+    # Far Horizons - EMP effects from installed cybernetics
+    - type: HumanoidEMPCompositeElement
+      effect:
+        stunAmount: 1.0
+        dropItemsFrom:
+        - body_part_slot_right hand
+        damageAmount:
+          types:
+            Shock: 10
     - type: Construction
       graph: RipperRightGraph
       node: right

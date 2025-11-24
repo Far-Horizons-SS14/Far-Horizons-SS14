@@ -90,7 +90,7 @@ public sealed partial class SalvageMissionRescue : BaseSalvageMissionObjectiveHa
                 return;
 
             var damage = RandomDamage(ProtoMan, Rand, 100, 200, 4);
-            var body = SpawnRandomBody(ProtoMan, EntMan, Rand, pos, humanoid, metadata, state, damageable, factions, stationSpawning, selectedFaction, true, damage, true);
+            var body = SpawnRandomBody(ProtoMan, EntMan, Rand, pos, humanoid, metadata, state, damageable, factions, stationSpawning, inventory, selectedFaction, true, damage, true);
 
             if (Rand.Prob(0.4))
             {
@@ -118,6 +118,7 @@ public sealed partial class SalvageMissionRescue : BaseSalvageMissionObjectiveHa
         DamageableSystem? damageable = null,
         ISharedFactionManager? factions = null,
         StationSpawningSystem? stationSpawning = null,
+        InventorySystem? inventory = null,
         FactionPrototype? faction = null,
         bool dead = true,
         DamageSpecifier? damage = null,
@@ -159,6 +160,10 @@ public sealed partial class SalvageMissionRescue : BaseSalvageMissionObjectiveHa
             loadout.SetDefault(character, null, ProtoMan);
 
             stationSpawning.EquipRoleLoadout(ent, loadout, loadoutProto);
+
+            if (inventory != null)
+                if (inventory.TryUnequip(ent, "id", out var id, true, true))
+                    EntMan.DeleteEntity(id);
         }
 
         return ent;

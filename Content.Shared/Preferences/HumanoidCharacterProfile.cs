@@ -143,7 +143,8 @@ namespace Content.Shared.Preferences
             HashSet<ProtoId<TraitPrototype>> traitPreferences,
             Dictionary<string, RoleLoadout> loadouts,
             List<string> cybernetics, // Starlight
-            bool enabled)
+            bool enabled,
+            RoleLoadout? speciesLoadout) // Far Horizons
         {
             Name = name;
             Voice = voice;
@@ -167,6 +168,7 @@ namespace Content.Shared.Preferences
             _loadouts = loadouts;
             Cybernetics = cybernetics; // Starlight
             Enabled = enabled;
+            SpeciesLoadout = speciesLoadout;
         }
 
         /// <summary>Copy constructor</summary>
@@ -192,7 +194,8 @@ namespace Content.Shared.Preferences
                 new HashSet<ProtoId<TraitPrototype>>(other.TraitPreferences),
                 new Dictionary<string, RoleLoadout>(other.Loadouts),
                 other.Cybernetics, // Starlight
-                other.Enabled)
+                other.Enabled,
+                other.SpeciesLoadout) // Far Horizons
         {
             // Cosmatic Drift Record System-start
             CDCharacterRecords = other.CDCharacterRecords != null
@@ -220,11 +223,25 @@ namespace Content.Shared.Preferences
         {
             species ??= SharedHumanoidAppearanceSystem.DefaultSpecies;
 
-            return new()
+            var prototypeManager = IoCManager.Resolve<IPrototypeManager>();
+            var speciesProto = prototypeManager.Index<SpeciesPrototype>(species);
+            
+            var profile = new HumanoidCharacterProfile()
             {
                 Species = species,
                 Appearance = HumanoidCharacterAppearance.DefaultWithSpecies(species),
             };
+
+            // Far Horizons start
+            RoleLoadout? loadout = null;
+            if (speciesProto.Loadout != null)
+            {
+                loadout = new(speciesProto.Loadout.Value);
+                loadout.SetDefault(profile, null, prototypeManager);
+            }
+
+            return profile.WithSpeciesLoadout(loadout);
+            // Far Horizons end
         }
 
         // TODO: This should eventually not be a visual change only.
@@ -277,7 +294,7 @@ namespace Content.Shared.Preferences
 
             var customspeciename = ""; // Starlight
 
-            return new HumanoidCharacterProfile()
+            var profile = new HumanoidCharacterProfile()
             {
                 Name = name,
                 Sex = sex,
@@ -285,8 +302,19 @@ namespace Content.Shared.Preferences
                 Gender = gender,
                 Species = species,
                 CustomSpecieName = customspeciename, // Starlight
-                Appearance = HumanoidCharacterAppearance.Random(species, sex),
+                Appearance = HumanoidCharacterAppearance.Random(species, sex)
             };
+
+            // Far Horizons start
+            RoleLoadout? speciesLoadout = null;
+            if (speciesPrototype != null && speciesPrototype.Loadout != null)
+            {
+                speciesLoadout = new(speciesPrototype.Loadout.Value);
+                speciesLoadout.SetDefault(profile, null, prototypeManager);
+            }
+
+            return profile.WithSpeciesLoadout(speciesLoadout);
+            // Far Horizons end
         }
 
         public HumanoidCharacterProfile WithName(string name)
@@ -487,6 +515,7 @@ namespace Content.Shared.Preferences
             if (!Loadouts.SequenceEqual(other.Loadouts)) return false;
             if (FlavorText != other.FlavorText) return false;
             if (Enabled != other.Enabled) return false;
+            if (!SpeciesLoadoutEquals(SpeciesLoadout, other.SpeciesLoadout)) return false; // Far Horizons
             // Cosmatic Drift Record System-start
             if (CDCharacterRecords != null)
             {
@@ -519,6 +548,7 @@ namespace Content.Shared.Preferences
             if (!Loadouts.SequenceEqual(other.Loadouts))  throw new DebugAssertException($"Loadouts doesn't match expected '{Loadouts}' got '{other.Loadouts}'");
             if (FlavorText != other.FlavorText) throw new DebugAssertException($"FlavorText doesn't match expected '{FlavorText}' got '{other.FlavorText}'");
             if (Enabled != other.Enabled) throw new DebugAssertException($"Enabled doesn't match expected '{Enabled}' got '{other.Enabled}'");
+            if (!SpeciesLoadoutEquals(SpeciesLoadout, other.SpeciesLoadout)) throw new DebugAssertException($"SpeciesLoadout doesn't match"); // Far Horizons
             // Cosmatic Drift Record System-start
             if (CDCharacterRecords != null)
             {
@@ -710,6 +740,16 @@ namespace Content.Shared.Preferences
             CDCharacterRecords ??= PlayerProvidedCharacterRecords.DefaultRecords();
             CDCharacterRecords.EnsureValid();
             // Cosmatic Drift Record System-end
+            // Far Horizons start
+            if (speciesPrototype.Loadout == null)
+                SpeciesLoadout = null;
+            else
+            {
+                SpeciesLoadout ??= new RoleLoadout(speciesPrototype.Loadout.Value);
+                SpeciesLoadout.Role = speciesPrototype.Loadout.Value;
+                SpeciesLoadout.SetDefault(this, session, prototypeManager);
+            }
+            // Far Horizons end
         }
 
         /// <summary>
@@ -796,6 +836,7 @@ namespace Content.Shared.Preferences
             hashCode.Add((int)SpawnPriority);
             hashCode.Add(Enabled);
             hashCode.Add(Cybernetics); // Starlight
+            hashCode.Add(SpeciesLoadout); // Far Horizons
             return hashCode.ToHashCode();
         }
 

@@ -1,11 +1,13 @@
+# Cargo
+
 - type: entity
-  parent: [ClothingBackpackDuffel, BaseSecurityContraband]
-  id: ClothingBackpackDuffelCorpsman
-  name: corpsman's duffel bag
-  description: An odd duffelbag that uses flaps instead of zippers for quicker access. Handy!
+  parent: [ ClothingBackpackDuffel, BaseCargoContraband ] 
+  id: ClothingBackpackDuffelMining
+  name: mining duffel bag
+  description: It's a well worn duffel bag covered in asteroid dust and scuff marks from rocks hitting it.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/Back/Duffels/corpsman.rsi
+    sprite: _FarHorizons/Clothing/Back/Duffels/mining.rsi
 
 # Medical
 
@@ -17,3 +19,14 @@
   components:
   - type: Sprite
     sprite: _FarHorizons/Clothing/Back/Duffels/paramedic.rsi
+
+# Security
+
+- type: entity
+  parent: [ClothingBackpackDuffel, BaseSecurityContraband]
+  id: ClothingBackpackDuffelCorpsman
+  name: corpsman's duffel bag
+  description: An odd duffelbag that uses flaps instead of zippers for quicker access. Handy!
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Back/Duffels/corpsman.rsi

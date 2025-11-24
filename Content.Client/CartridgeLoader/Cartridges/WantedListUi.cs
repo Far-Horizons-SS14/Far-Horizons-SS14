@@ -23,7 +23,7 @@ public sealed partial class WantedListUi : UIFragment
         switch (state)
         {
             case WantedListUiState cast:
-                _fragment?.UpdateState(cast.Records);
+                _fragment?.UpdateState(cast.Records, cast.TargetName); //FarHorizons
                 break;
         }
     }

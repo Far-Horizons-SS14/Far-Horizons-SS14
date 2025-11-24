@@ -1,0 +1,18 @@
+- type: entity
+  parent: BaseItem
+  id: HullSenseCartridge
+  name: HullSense cartridge
+  description: A program that provides structure integrity analysis tools.
+  components:
+    - type: Sprite
+      sprite: Objects/Devices/cartridge.rsi
+      state: cart-ce
+    - type: Icon
+      sprite: Objects/Devices/cartridge.rsi
+      state: cart-ce
+    - type: Cartridge
+      programName: hull-sense-program-name
+      icon:
+        sprite: _FarHorizons/Tools/Shipyard/integrityanalyzer.rsi
+        state: icon
+    - type: HullSenseCartridge

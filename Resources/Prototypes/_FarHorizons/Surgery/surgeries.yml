@@ -14,6 +14,9 @@
   - type: SurgeryPartCondition
     parts:
     - Head
+  - type: SurgerySpeciesCondition
+    speciesBlacklist:
+    - IPC
   - type: Sprite
     sprite: Mobs/Species/Human/parts.rsi
     state: head_m
@@ -34,6 +37,9 @@
   - type: SurgeryPartCondition
     parts:
     - Torso
+  - type: SurgerySpeciesCondition
+    speciesBlacklist:
+    - IPC
   - type: SurgeryTechnology
     technologyModifier:
       SurgeryTech : 50
@@ -53,6 +59,9 @@
   - type: SurgeryPartCondition
     parts:
     - Torso
+  - type: SurgerySpeciesCondition
+    speciesBlacklist:
+    - IPC
   - type: SurgeryTechnology
     technologyModifier:
       SurgeryTech : 50
@@ -73,6 +82,9 @@
   - type: SurgeryPartCondition
     parts:
     - Torso
+  - type: SurgerySpeciesCondition
+    speciesBlacklist:
+    - IPC
 
 - type: entity
   parent: SurgeryBase
@@ -91,6 +103,9 @@
     parts:
     - Torso
   - type: NecrosisSurgery
+  - type: SurgerySpeciesCondition
+    speciesBlacklist:
+    - IPC
   
 - type: entity
   parent: SurgeryBase
@@ -110,6 +125,9 @@
   - type: SurgeryOrganExistCondition
     organ:
     - type: OrganEyes
+  - type: SurgerySpeciesCondition
+    speciesBlacklist:
+    - IPC
   - type: Sprite
     sprite: Mobs/Species/Human/organs.rsi
     layers:

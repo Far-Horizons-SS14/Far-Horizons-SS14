@@ -1,0 +1,11 @@
+- type: entity
+  parent: BaseSubdermalImplant
+  id: RadioImplantTrinary
+  name: Trinary radio implant
+  description: This implant grants access to the Trinary channel. Restricted to Protogens and IPCs.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SubdermalImplant
+  - type: RadioImplant
+    radioChannels:
+    - Trinary

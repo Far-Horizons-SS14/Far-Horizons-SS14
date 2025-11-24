@@ -17,7 +17,6 @@ using System.Linq;
 //FarHorizons Start
 using Content.Shared._FarHorizons.Medical.SurgeryOverhaul.Components;
 using Content.Shared.Stunnable;
-using Robust.Shared.Timing;
 using Content.Shared.Medical.Healing;
 using Content.Shared.Damage;
 //FarHorizons End
@@ -240,7 +239,7 @@ public abstract partial class SharedSurgerySystem
                 return;
             }
             //Far Horizons Start
-            else if (_hands.GetActiveItem(args.User) != tool)
+            else if (_hands.GetActiveItem(args.User) != tool && !_tag.HasTag(tool, "CyberHandItem"))
             {
                     args.Invalid = StepInvalidReason.MissingTool;
 

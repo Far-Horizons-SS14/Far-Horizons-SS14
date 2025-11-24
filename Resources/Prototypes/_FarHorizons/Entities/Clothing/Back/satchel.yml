@@ -1,11 +1,13 @@
+# Cargo
+
 - type: entity
-  parent: [ClothingBackpackSatchel, BaseSecurityContraband]
-  id: ClothingBackpackSatchelCorpsman
-  name: Corpsman Satchel
-  description: Has more than enough pockets to organize everything.
+  parent: [ ClothingBackpackSatchel, BaseCargoContraband ] 
+  id: ClothingBackpackSatchelMining
+  name: mining satchel
+  description: It's a well worn satchel covered in asteroid dust and scuff marks from rocks hitting it.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/Back/Satchels/corpsman.rsi
+    sprite: _FarHorizons/Clothing/Back/Satchels/mining.rsi
 
 # Medical
 
@@ -17,3 +19,14 @@
   components:
   - type: Sprite
     sprite: _FarHorizons/Clothing/Back/Satchels/paramedic.rsi
+
+# Security
+
+- type: entity
+  parent: [ClothingBackpackSatchel, BaseSecurityContraband]
+  id: ClothingBackpackSatchelCorpsman
+  name: Corpsman Satchel
+  description: Has more than enough pockets to organize everything.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Back/Satchels/corpsman.rsi

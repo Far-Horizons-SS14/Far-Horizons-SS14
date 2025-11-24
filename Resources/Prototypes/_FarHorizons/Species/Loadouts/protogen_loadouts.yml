@@ -1,0 +1,43 @@
+- type: roleLoadout
+  id: ProtogenLoadout
+  groups:
+  - ProtogenCybernetics
+  - ProtogenTelecomms
+---
+
+- type: loadoutGroup
+  id: ProtogenCybernetics
+  name: loadout-group-protogen-cybernetics
+  loadouts:
+  - ProtogenArmorLight
+  - ProtogenArmorMedium
+  - ProtogenArmorHeavy
+
+- type: loadoutGroup
+  id: ProtogenTelecomms
+  name: loadout-group-protogen-telecomms
+  loadouts:
+  - ProtogenTrinaryImplant
+
+---
+
+- type: loadout
+  id: ProtogenArmorLight
+  equipment:
+    outerClothing2: ClothingOuterArmorProtogenLight
+
+- type: loadout
+  id: ProtogenArmorMedium
+  equipment:
+    outerClothing2: ClothingOuterArmorProtogenMedium
+
+- type: loadout
+  id: ProtogenArmorHeavy
+  equipment:
+    outerClothing2: ClothingOuterArmorProtogenHeavy
+
+- type: loadout
+  id: ProtogenTrinaryImplant
+  storage:
+    back: 
+    - TrinaryImplanter

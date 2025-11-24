@@ -32,7 +32,9 @@ Space-Station 14 has [docs site](https://docs.spacestation14.io/) documentation 
 ## License
 
 > [!CAUTION]
-> The repository code is licensed both under MIT - this applies to Space Wizards Federation code - and under modified MIT - this applies to our changes.
+> Unless stated otherwise in the file, the repository code is licensed both under MIT - this applies to Space Wizards Federation code - and under modified MIT - this applies to our changes.
+
+p.s. please note that reactor-related code was taken from goonstation, and therefore licensed under CC-BY-NC-SA-3.0
 
 ### Click each banner for further information
 

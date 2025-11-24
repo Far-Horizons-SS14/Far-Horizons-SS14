@@ -178,16 +178,16 @@
     sprite: Clothing/Back/Backpacks/genetics.rsi
 
 - type: entity
-  parent: ClothingBackpack
+  parent: [ ClothingBackpack, BaseCargoContraband ] #Far Horizons
   id: ClothingBackpackCargo
   name: cargo backpack
   description: A robust backpack for stealing cargo's loot.
   components:
     - type: Sprite
-      sprite: Clothing/Back/Backpacks/cargo.rsi
+      sprite: _FarHorizons/Clothing/Back/Backpacks/cargo.rsi #Far Horizons
 
 - type: entity
-  parent: ClothingBackpack
+  parent: [ ClothingBackpack, BaseCargoContraband ] #Far Horizons
   id: ClothingBackpackSalvage
   name: salvage bag
   description: A robust backpack for stashing your loot.

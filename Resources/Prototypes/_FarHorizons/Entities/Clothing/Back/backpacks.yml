@@ -1,11 +1,13 @@
+# Cargo
+
 - type: entity
-  parent: [ClothingBackpack, BaseSecurityContraband]
-  id: ClothingBackpackCorpsman
-  name: corpsman's backpack
-  description: A backpack with easy to access pockets for the organized Corpsman!
+  parent: [ ClothingBackpack, BaseCargoContraband ] 
+  id: ClothingBackpackMining
+  name: mining backpack
+  description: It's a well worn backpack covered in asteroid dust and scuff marks from rocks hitting it.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/Back/Backpacks/corpsman.rsi
+    sprite: _FarHorizons/Clothing/Back/Backpacks/mining.rsi
 
 # Medical
 
@@ -17,3 +19,14 @@
   components:
   - type: Sprite
     sprite: _FarHorizons/Clothing/Back/Backpacks/paramedic.rsi
+
+# Security
+
+- type: entity
+  parent: [ClothingBackpack, BaseSecurityContraband]
+  id: ClothingBackpackCorpsman
+  name: corpsman's backpack
+  description: A backpack with easy to access pockets for the organized Corpsman!
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Back/Backpacks/corpsman.rsi

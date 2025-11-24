@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using Content.Shared._FarHorizons.Damage;
 using Content.Shared._Starlight.Medical.Damage;
 using Content.Shared.CCVar;
 using Content.Shared.Chemistry;
@@ -220,6 +221,16 @@ namespace Content.Shared.Damage
                     return damage;
                 }
             }
+
+            // Far Horizons start
+            // In a perfect world DamageModifyEvent would be used for that, but it's designed to not work when ignoreResistances is set to true, such as when healing system is doing it
+            if (damage.GetTotal() < 0)
+            {
+                var ev = new HealModifyEvent(damage, origin);
+                RaiseLocalEvent(uid.Value, ev);
+                damage = ev.Damage;
+            }
+            // Far Horizons end
 
             // 🌟Starlight🌟 start
             var finalEv = new DamageBeforeApplyEvent

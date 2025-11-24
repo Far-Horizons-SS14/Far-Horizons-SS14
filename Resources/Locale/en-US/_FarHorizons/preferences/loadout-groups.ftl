@@ -12,6 +12,8 @@ loadout-group-corpsman-eyewear = Corpsman eyewear
 loadout-group-corpsman-belt = Corpsman belt
 loadout-group-corpsman-gloves = Corpsman gloves
 
+loadout-group-doctor-backpack = Medical Doctor Backpack
+
 loadout-group-iaa-eyewear = IAA Eyewear
 
 loadout-group-magistrate-hat = Magistrate Head
@@ -20,7 +22,8 @@ loadout-group-magistrate-uniform = Magistrate Uniform
 loadout-group-magistrate-neck = Magistrate Neck
 loadout-group-magistrate-outer = Magistrate Outer Clothing
 
-loadout-group-doctor-backpack = Medical Doctor Backpack
+loadout-group-mining-head = Mining Specialist Head
+loadout-group-mining-backpack = Mining Specialist Backpack
 
 loadout-group-ntr-outer = NanoTrasen Representatives Outer Clothing
 
@@ -28,5 +31,7 @@ loadout-group-musician-head = Musician Head
 loadout-group-musician-shoes = Musician Shoes
 
 loadout-group-paramedic-backpack = Paramedic Backpack
+
+loadout-group-salvage-head = Salvage Specialist Head
 
 loadout-group-virologist-backpack = Virologist Backpack

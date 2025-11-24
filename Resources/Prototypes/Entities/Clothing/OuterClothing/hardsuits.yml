@@ -43,6 +43,7 @@
     - CorgiWearable
     - Hardsuit
     - WhitelistChameleon
+    - IPCExternalCooling # Far Horizons
 
 #Engineering Hardsuit
 - type: entity
@@ -82,6 +83,7 @@
     - CorgiWearable
     - Hardsuit
     - WhitelistChameleon
+    - IPCExternalCooling # Far Horizons
 
 #Spationaut Hardsuit
 - type: entity
@@ -91,9 +93,9 @@
   description: A lightweight hardsuit designed for industrial EVA in zero gravity.
   components:
   - type: Sprite
-    sprite: Clothing/OuterClothing/Hardsuits/spatio.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/spatio.rsi #Far Horizons
   - type: Clothing
-    sprite: Clothing/OuterClothing/Hardsuits/spatio.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/spatio.rsi #Far Horizons
   - type: PressureProtection
     highPressureMultiplier: 0.7
     lowPressureMultiplier: 1000
@@ -119,6 +121,7 @@
     - WhitelistChameleon
     - HardsuitSpatio
     - CorgiWearable
+    - IPCExternalCooling # Far Horizons
 
 #Salvage Hardsuit
 - type: entity
@@ -128,9 +131,9 @@
   description: A special suit that protects against hazardous, low pressure environments. Has reinforced plating for wildlife encounters.
   components:
   - type: Sprite
-    sprite: _Starlight/Clothing/OuterClothing/Hardsuits/salvage.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/salvage.rsi #Far Horizons
   - type: Clothing
-    sprite: _Starlight/Clothing/OuterClothing/Hardsuits/salvage.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/salvage.rsi #Far Horizons
   - type: PressureProtection
     highPressureMultiplier: 0.5
     lowPressureMultiplier: 1000
@@ -158,6 +161,7 @@
     - CorgiWearable
     - Hardsuit
     - WhitelistChameleon
+    - IPCExternalCooling # Far Horizons
 
 #Goliath Hardsuit
 - type: entity
@@ -167,9 +171,9 @@
   description: A lightweight hardsuit, adorned with a patchwork of thick, chitinous goliath hide.
   components:
   - type: Sprite
-    sprite: Clothing/OuterClothing/Hardsuits/goliath.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/goliath.rsi #Far Horizons
   - type: Clothing
-    sprite: Clothing/OuterClothing/Hardsuits/goliath.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/goliath.rsi #Far Horizons
   - type: PressureProtection
     highPressureMultiplier: 0.5
     lowPressureMultiplier: 1000
@@ -198,6 +202,7 @@
     - CorgiWearable
     - Hardsuit
     - WhitelistChameleon
+    - IPCExternalCooling # Far Horizons
 
 #Maxim Hardsuit
 - type: entity
@@ -207,9 +212,9 @@
   description: Fire. Heat. These things forge great weapons, they also forge great salvagers.  Has built-in battery-powered energy barrier technology.
   components:
   - type: Sprite
-    sprite: Clothing/OuterClothing/Hardsuits/maxim.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/maxim.rsi #Far Horizons
   - type: Clothing
-    sprite: Clothing/OuterClothing/Hardsuits/maxim.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/maxim.rsi #Far Horizons
   - type: PressureProtection
     highPressureMultiplier: 0.02
     lowPressureMultiplier: 1000
@@ -299,6 +304,7 @@
     - CorgiWearable
     - Hardsuit
     - WhitelistChameleon
+    - IPCExternalCooling # Far Horizons
 
 #Brigmedic Hardsuit
 - type: entity
@@ -418,6 +424,7 @@
     - CorgiWearable
     - Hardsuit
     - WhitelistChameleon
+    - IPCExternalCooling # Far Horizons
 
 #Chief Engineer's Hardsuit
 - type: entity
@@ -459,6 +466,7 @@
     - CorgiWearable
     - Hardsuit
     - WhitelistChameleon
+    - IPCExternalCooling # Far Horizons
 
 #Chief Medical Officer's Hardsuit
 - type: entity
@@ -493,6 +501,7 @@
     - CorgiWearable
     - Hardsuit
     - WhitelistChameleon
+    - IPCExternalCooling # Far Horizons
 
 #Research Director's Hardsuit
 - type: entity
@@ -535,6 +544,7 @@
     - HighRiskItem
     - CorgiWearable
     - Hardsuit
+    - IPCExternalCooling # Far Horizons
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitRd
   - type: StaticPrice
@@ -613,9 +623,9 @@
   categories: [ DoNotMap ]
   components:
   - type: Sprite
-    sprite: Clothing/OuterClothing/Hardsuits/luxury.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/luxury.rsi #Far Horizons
   - type: Clothing
-    sprite: Clothing/OuterClothing/Hardsuits/luxury.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/luxury.rsi #Far Horizons
   - type: PressureProtection
     highPressureMultiplier: 0.5
     lowPressureMultiplier: 1000
@@ -698,6 +708,7 @@
     - WhitelistChameleon
     - CorgiWearable
     - ScurretWearable
+    - IPCExternalCooling # Far Horizons
   - type: StaticPrice
     price: 5000
 
@@ -720,6 +731,7 @@
     tags:
     - Hardsuit
     - WhitelistChameleon
+    - IPCExternalCooling # Far Horizons
 
 #Syndicate Elite Hardsuit
 - type: entity
@@ -814,6 +826,7 @@
     - CorgiWearable
     - Hardsuit
     - WhitelistChameleon
+    - IPCExternalCooling # Far Horizons
 
 #Syndicate Commander Hardsuit
 - type: entity
@@ -869,6 +882,7 @@
     - CorgiWearable
     - Hardsuit
     - WhitelistChameleon
+    - IPCExternalCooling # Far Horizons
 
 
 #Cybersun Juggernaut Hardsuit
@@ -957,6 +971,7 @@
     - CorgiWearable
     - Hardsuit
     - WhitelistChameleon
+    - IPCExternalCooling # Far Horizons
     - RequiredForLmgTag #Starlight
 
 #Wizard Hardsuit
@@ -1000,6 +1015,7 @@
     - CorgiWearable
     - Hardsuit
     - WhitelistChameleon
+    - IPCExternalCooling # Far Horizons
 
 #Ling Space Suit
 - type: entity
@@ -1208,6 +1224,7 @@
     tags:
     - Hardsuit
     - WhitelistChameleon
+    - IPCExternalCooling # Far Horizons
 
 #ERT Janitor Hardsuit
 - type: entity

@@ -198,6 +198,10 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
             EquipStartingGear(entity.Value, startingGear, raiseEvent: false);
         }
 
+        // Far Horizons species loadouts
+        if (species.Loadout != null && _prototypeManager.TryIndex(species.Loadout.Value, out var speciesLoadoutProto) && profile != null && profile.SpeciesLoadout != null)
+            EquipRoleLoadout(entity.Value, profile.SpeciesLoadout, speciesLoadoutProto);
+
         var gearEquippedEv = new StartingGearEquippedEvent(entity.Value);
         RaiseLocalEvent(entity.Value, ref gearEquippedEv);
 

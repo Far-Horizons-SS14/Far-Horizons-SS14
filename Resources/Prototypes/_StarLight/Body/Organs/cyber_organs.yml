@@ -13,7 +13,13 @@
       reagents:
       - ReagentId: Iron
         Quantity: 30
-#FarHorizons Start
+  # Far Horizons - EMP effects from installed cybernetics
+  - type: HumanoidEMPCompositeElement
+    effect:
+      stunAmount: 0.5
+      damageAmount:
+        types:
+          Shock: 5
   - type: Tag
     tags:
       - Inorganic
@@ -34,6 +40,15 @@
   - type: OrganVisualization
     layer: Eyes
     prototype: CyberEyesNightVision
+  # Far Horizons - EMP effects from installed cybernetics
+  - type: HumanoidEMPCompositeElement
+    effect:
+      stunAmount: 0.5
+      additionalEffects:
+        StatusEffectBlinded: 10.0
+      damageAmount:
+        types:
+          Shock: 5
 
 - type: entity
   id: CyberEyeThermal
@@ -50,6 +65,15 @@
   - type: OrganVisualization
     layer: Eyes
     prototype: CyberEyesThermalVision
+  # Far Horizons - EMP effects from installed cybernetics
+  - type: HumanoidEMPCompositeElement
+    effect:
+      stunAmount: 0.5
+      additionalEffects:
+        StatusEffectBlinded: 10.0
+      damageAmount:
+        types:
+          Shock: 5
 
 - type: entity
   id: BudgetCyberEyes
@@ -68,6 +92,15 @@
   - type: OrganVisualization
     layer: Eyes
     prototype: MobHumanoidEyes
+  # Far Horizons - EMP effects from installed cybernetics
+  - type: HumanoidEMPCompositeElement
+    effect:
+      stunAmount: 0.5
+      additionalEffects:
+        StatusEffectBlinded: 10.0
+      damageAmount:
+        types:
+          Shock: 5
 
 - type: entity
   id: BudgetCyberTongue

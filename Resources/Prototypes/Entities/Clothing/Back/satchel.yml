@@ -151,16 +151,16 @@
     sprite: Clothing/Back/Satchels/hydroponics.rsi
 
 - type: entity
-  parent: ClothingBackpackSatchel
+  parent: [ ClothingBackpackSatchel, BaseCargoContraband ] #Far Horizons
   id: ClothingBackpackSatchelCargo
   name: cargo satchel
   description: A robust satchel for stealing cargo's loot.
   components:
     - type: Sprite
-      sprite: Clothing/Back/Satchels/cargo.rsi
+      sprite: _FarHorizons/Clothing/Back/Satchels/cargo.rsi #Far Horizons
 
 - type: entity
-  parent: ClothingBackpackSatchel
+  parent: [ ClothingBackpackSatchel, BaseCargoContraband ] #Far Horizons
   id: ClothingBackpackSatchelSalvage
   name: salvage satchel
   description: A robust satchel for stashing your loot.

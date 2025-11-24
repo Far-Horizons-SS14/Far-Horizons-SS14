@@ -112,6 +112,26 @@
     tags:
     - Sheet
     - ConstructionMaterial
+  - type: ConditionalHealing
+    healingDefinitions:
+      - allowedTags: [ IPC, Protogen, ProtoArachnid, ProtoAvali, ProtoCyclops, ProtoDawi, ProtoDionae, ProtoFeline, ProtoHumie, ProtoMoth, ProtoReptile, ProtoResomi, ProtoSlimePerson, ProtoThaven, ProtoVox, ProtoVulp, ProtoKin ]
+        healing:
+          damageContainers:
+            - Biological
+          delay: 2
+          damage:
+            groups:
+              Toxin: -20 # 10 each
+          healingBeginSound:
+            path: "/Audio/Items/Medical/ointment_begin.ogg"
+            params:
+              volume: 1.0
+              variation: 0.125
+          healingEndSound:
+            path: "/Audio/Items/Medical/ointment_end.ogg"
+            params:
+              volume: 1.0
+              variation: 0.125
 
 - type: entity
   parent: SheetPlasma

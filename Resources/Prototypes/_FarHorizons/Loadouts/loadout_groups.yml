@@ -163,6 +163,24 @@
   - CommandGlasses
   - CommandHud
 
+# Mining Specialist
+
+- type: loadoutGroup
+  id: MiningSpecialistHead
+  name: loadout-group-mining-head
+  minLimit: 0
+  loadouts:
+  - MiningHardhat
+  - CargoTechnicianHead
+
+- type: loadoutGroup
+  id: MiningSpecialistBackpack
+  name: loadout-group-mining-backpack
+  loadouts:
+  - MiningBackpack
+  - MiningDuffel
+  - MiningSatchel
+
 # NTR
 
 - type: loadoutGroup
@@ -226,6 +244,16 @@
     - ParamedicBackpack
     - ParamedicDuffel
     - ParamedicSatchel
+
+# Salvage Specialist
+
+- type: loadoutGroup
+  id: SalvageHead
+  name: loadout-group-salvage-head
+  minLimit: 0
+  loadouts:
+  - SalvageHelmet
+  - CargoTechnicianHead
 
 # Virologist
 

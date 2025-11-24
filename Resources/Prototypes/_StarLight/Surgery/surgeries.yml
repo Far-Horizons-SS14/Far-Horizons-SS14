@@ -17,7 +17,10 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
-  - type: AnimalBypass
+  #FarHorizons Start
+    - IPC 
+  - type: AnimalBypass 
+  #FarHorizons End
     
 - type: entity
   parent: SurgeryBase
@@ -51,7 +54,10 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
-  - type: AnimalBypass
+  #FarHorizons Start
+    - IPC 
+  - type: AnimalBypass 
+  #FarHorizons End
     
 - type: entity
   parent: SurgeryBase
@@ -88,10 +94,13 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
+  #FarHorizons Start
+    - IPC 
+  - type: AnimalBypass 
+  #FarHorizons End
   - type: Sprite
     sprite: Mobs/Species/Skeleton/parts.rsi
     state: torso_m
-  - type: AnimalBypass
     
 - type: entity
   parent: SurgeryBase
@@ -109,10 +118,15 @@
   - type: SurgeryPartCondition
     parts:
     - Torso
+  #FarHorizons Start
+  - type: SurgerySpeciesCondition
+    speciesBlacklist: 
+    - IPC 
+  - type: AnimalBypass 
+  #FarHorizons End
   - type: Sprite
     sprite: Mobs/Species/Human/parts.rsi
     state: torso_m
-  - type: AnimalBypass
 
 - type: entity
   parent: SurgeryBase
@@ -132,6 +146,11 @@
   - type: SurgeryPartCondition
     parts: 
     - Head
+  #FarHorizons Start
+  - type: SurgerySpeciesCondition 
+    speciesBlacklist: 
+    - IPC 
+  #FarHorizons End
   - type: Sprite
     sprite: Objects/Fun/Instruments/microphone.rsi
     state: icon
@@ -154,6 +173,10 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
+  #FarHorizons Start
+    - IPC 
+  - type: AnimalBypass 
+  #FarHorizons End
   - type: SurgeryPartCondition
     parts:
     - Torso
@@ -163,7 +186,6 @@
   - type: Sprite
     sprite: Mobs/Species/Human/organs.rsi
     state: liver
-  - type: AnimalBypass
     
 - type: entity
   parent: SurgeryBase
@@ -182,6 +204,10 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
+  #FarHorizons Start
+    - IPC 
+  - type: AnimalBypass 
+  #FarHorizons End
   - type: SurgeryPartCondition
     parts:
     - Torso
@@ -191,7 +217,6 @@
   - type: Sprite
     sprite: Mobs/Species/Human/organs.rsi
     state: liver
-  - type: AnimalBypass
 #
 - type: entity
   parent: SurgeryBase
@@ -208,6 +233,7 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
+    - IPC #FarHorizons
   - type: SurgeryPartCondition
     parts:
     - Torso
@@ -233,6 +259,10 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
+  #FarHorizons Start
+    - IPC 
+  - type: AnimalBypass 
+  #FarHorizons End
   - type: SurgeryPartCondition
     parts:
     - Torso
@@ -244,7 +274,6 @@
     layers:
       - state: kidney-l
       - state: kidney-r
-  - type: AnimalBypass
 
 - type: entity
   parent: SurgeryBase
@@ -263,6 +292,10 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
+  #FarHorizons Start 
+    - IPC
+  - type: AnimalBypass 
+  #FarHorizons End
   - type: SurgeryPartCondition
     parts:
     - Torso
@@ -274,7 +307,6 @@
     layers:
       - state: kidney-l
       - state: kidney-r
-  - type: AnimalBypass
 #
 - type: entity
   parent: SurgeryBase
@@ -291,6 +323,10 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
+  #FarHorizons Start
+    - IPC 
+  - type: AnimalBypass 
+  #FarHorizons End
   - type: SurgeryPartCondition
     parts:
     - Torso
@@ -300,7 +336,6 @@
   - type: Sprite
     sprite: Mobs/Species/Human/organs.rsi
     state: stomach
-  - type: AnimalBypass
 
 - type: entity
   parent: SurgeryBase
@@ -319,6 +354,10 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
+  #FarHorizons Start
+    - IPC 
+  - type: AnimalBypass 
+  #FarHorizons End
   - type: SurgeryPartCondition
     parts:
     - Torso
@@ -328,7 +367,6 @@
   - type: Sprite
     sprite: Mobs/Species/Human/organs.rsi
     state: stomach
-  - type: AnimalBypass
 #
 - type: entity
   parent: SurgeryBase
@@ -345,6 +383,10 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
+  #FarHorizons Start
+    - IPC 
+  - type: AnimalBypass 
+  #FarHorizons End
   - type: SurgeryPartCondition
     parts:
     - Torso
@@ -356,7 +398,6 @@
     layers:
       - state: lung-l
       - state: lung-r
-  - type: AnimalBypass
 
 - type: entity
   parent: SurgeryBase
@@ -373,6 +414,10 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
+  #FarHorizons Start
+    - IPC
+  - type: AnimalBypass 
+  #FarHorizons End
   - type: SurgeryPartCondition
     parts:
     - Torso
@@ -384,7 +429,6 @@
     layers:
       - state: lung-l
       - state: lung-r
-  - type: AnimalBypass
       
 - type: entity
   parent: SurgeryBase
@@ -457,6 +501,10 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
+  #FarHorizons Start
+    - IPC 
+  - type: AnimalBypass 
+  #FarHorizons End
   - type: SurgeryPartCondition
     parts:
     - Torso
@@ -466,7 +514,6 @@
   - type: Sprite
     sprite: Mobs/Species/Human/organs.rsi
     state: heart-on
-  - type: AnimalBypass
 
 - type: entity
   parent: SurgeryBase
@@ -483,6 +530,10 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
+  #FarHorizons Start
+    - IPC 
+  - type: AnimalBypass
+  #FarHorizons End
   - type: SurgeryPartCondition
     parts:
     - Torso
@@ -492,7 +543,6 @@
   - type: Sprite
     sprite: Mobs/Species/Human/organs.rsi
     state: heart-on
-  - type: AnimalBypass
 #
 - type: entity
   parent: SurgeryBase
@@ -570,7 +620,12 @@
     layers:
       - state: eyeball-l
       - state: eyeball-r
-  - type: AnimalBypass
+  #FarHorizons Start
+  - type: AnimalBypass 
+  - type: SurgerySpeciesCondition 
+    speciesBlacklist: 
+    - IPC 
+  #FarHorizons End
 
 - type: entity
   parent: SurgeryBase
@@ -596,7 +651,13 @@
     layers:
       - state: eyeball-l
       - state: eyeball-r
-  - type: AnimalBypass
+  #FarHorizons Start
+  - type: AnimalBypass 
+  - type: SurgerySpeciesCondition 
+    speciesBlacklist: 
+    - IPC 
+  #FarHorizons End
+
 #
 - type: entity
   parent: SurgeryBase
@@ -621,7 +682,12 @@
     sprite: _Starlight/Objects/Specific/Medical/implants.rsi
     layers:
       - state: eye_implant_welding
-  - type: AnimalBypass
+  #FarHorizons Start
+  - type: AnimalBypass 
+  - type: SurgerySpeciesCondition 
+    speciesBlacklist: 
+    - IPC 
+  #FarHorizons End
 
 - type: entity
   parent: SurgeryBase
@@ -646,7 +712,12 @@
     sprite: _Starlight/Objects/Specific/Medical/implants.rsi
     layers:
       - state: eye_implant_welding
-  - type: AnimalBypass
+  #FarHorizons Start
+  - type: AnimalBypass 
+  - type: SurgerySpeciesCondition 
+    speciesBlacklist: 
+    - IPC 
+  #FarHorizons End
 #
 - type: entity
   parent: SurgeryBase
@@ -666,7 +737,12 @@
   - type: Sprite
     sprite: Mobs/Species/Human/organs.rsi
     state: tongue
-  - type: AnimalBypass
+  #FarHorizons Start
+  - type: AnimalBypass 
+  - type: SurgerySpeciesCondition 
+    speciesBlacklist: 
+    - IPC 
+  #FarHorizons End
 
 - type: entity
   parent: SurgeryBase
@@ -687,7 +763,12 @@
   - type: Sprite
     sprite: Mobs/Species/Human/organs.rsi
     state: tongue
-  - type: AnimalBypass
+  #FarHorizons Start
+  - type: AnimalBypass 
+  - type: SurgerySpeciesCondition 
+    speciesBlacklist: 
+    - IPC 
+  #FarHorizons End
 #
 - type: entity
   parent: SurgeryBase
@@ -714,6 +795,10 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
+  #FarHorizons Start
+    - IPC
+  - type: AnimalBypass
+  #FarHorizons End
   - type: SurgeryPartCondition
     parts:
     - Head
@@ -723,7 +808,6 @@
   - type: Sprite
     sprite: Mobs/Species/Human/organs.rsi
     state: brain
-  - type: AnimalBypass
 
 - type: entity
   parent: SurgeryBase
@@ -755,6 +839,10 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
+  #FarHorizons Start
+    - IPC
+  - type: AnimalBypass
+  #FarHorizons End
   - type: SurgeryPartCondition
     parts:
     - Head
@@ -764,7 +852,6 @@
   - type: Sprite
     sprite: Mobs/Species/Human/organs.rsi
     state: brain
-  - type: AnimalBypass
 
 # 
 - type: entity
@@ -845,7 +932,12 @@
     sprite:  _Starlight/Interface/Actions/actions_spider.rsi
     layers:
       - state: egg
-  - type: AnimalBypass
+  #FarHorizons Start
+  - type: AnimalBypass 
+  - type: SurgerySpeciesCondition 
+    speciesBlacklist: 
+    - IPC 
+  #FarHorizons End
 #
 - type: entity
   parent: SurgeryBase
@@ -861,6 +953,10 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
+  #FarHorizons Start
+    - IPC
+  - type: AnimalBypass
+  #FarHorizons End
   - type: SurgeryPartCondition
     parts:
     - Torso
@@ -871,7 +967,6 @@
   - type: Sprite
     sprite: Mobs/Species/Human/parts.rsi
     state: torso_m
-  - type: AnimalBypass
 
 - type: entity
   parent: SurgeryBase
@@ -887,6 +982,10 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
+  #FarHorizons Start
+    - IPC
+  - type: AnimalBypass
+  #FarHorizons End
   - type: SurgeryPartCondition
     parts:
     - Torso
@@ -897,4 +996,3 @@
   - type: Sprite
     sprite: Mobs/Species/Human/parts.rsi
     state: torso_m
-  - type: AnimalBypass

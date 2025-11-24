@@ -173,6 +173,7 @@
     tags:
     - Hardsuit
     - WhitelistChameleon
+    - IPCExternalCooling # Far Horizons
 
 #NTNC Consortium BSOs
 - type: entity
@@ -215,6 +216,7 @@
     tags:
     - Hardsuit
     - WhitelistChameleon
+    - IPCExternalCooling # Far Horizons
 
 #Syndicate Infiltration Suit
 - type: entity
@@ -299,7 +301,7 @@
     tags:
     - Hardsuit
     - WhitelistChameleon
-
+    - IPCExternalCooling # Far Horizons
 
 #USSP
 - type: entity
@@ -348,6 +350,7 @@
     - MonkeyWearable
     - WhitelistChameleon
     - FootstepSound
+    - IPCExternalCooling # Far Horizons
   - type: Item
     size: Huge
 
@@ -359,9 +362,9 @@
   description: This luxury maxim hardsuit has been retrofitted with solid gold fittings and furnishings, making it more cumbersome, and less protective than a standard maxim hardsuit.
   components:
   - type: Sprite
-    sprite: _Starlight/Clothing/OuterClothing/Hardsuits/luxmax.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/luxmax.rsi #Far Horizons
   - type: Clothing
-    sprite: _Starlight/Clothing/OuterClothing/Hardsuits/luxmax.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/luxmax.rsi #Far Horizons
   - type: PressureProtection
     highPressureMultiplier: 0.5
     lowPressureMultiplier: 1000
@@ -408,12 +411,13 @@
     zombificationResistanceCoefficient: 0.50
   - type: IdClothingBlocker
     allowedJobs:
-      - SecurityOfficer
-      - Brigmedic
-      - Warden
-      - HeadOfSecurity
-      - Captain
-      - Detective
+      - Captain #FH change (reorganized)
+      - HeadOfSecurity #FH change (reorganized)
+      - Warden #FH change (reorganized)
+      - Corpsman #FH change (added)
+      - Brigmedic #FH change (reorganized)
+      - Detective #FH change (reorganized)
+      - SecurityOfficer #FH change (reorganized)
   - type: Pierceable
     level: Metal
   - type: Armor
@@ -439,6 +443,7 @@
   - type: Tag
     tags:
       - RequiredForLmgTag
+      - IPCExternalCooling # Far Horizons
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitSecurityExperimental
 
@@ -451,9 +456,9 @@
   description: A lightweight decorated hardsuit designed for industrial EVA in zero gravity.
   components:
     - type: Sprite
-      sprite: _Starlight/Clothing/OuterClothing/Hardsuits/leadspatio.rsi
+      sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/spatio.rsi #Far Horizons
     - type: Clothing
-      sprite: _Starlight/Clothing/OuterClothing/Hardsuits/leadspatio.rsi
+      sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/spatio.rsi #Far Horizons
     - type: PressureProtection
       highPressureMultiplier: 0.7
       lowPressureMultiplier: 1000
@@ -478,6 +483,7 @@
         - Hardsuit
         - HardsuitSpatio
         - CorgiWearable
+        - IPCExternalCooling # Far Horizons
 
 #Mining Specialist Advanced hardsuit
 - type: entity
@@ -548,9 +554,9 @@
   description: A special suit that protects against hazardous, low pressure environments encountered during space mining.
   components:
   - type: Sprite
-    sprite: _Starlight/Clothing/OuterClothing/Hardsuits/mining.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/mining.rsi #Far Horizons
   - type: Clothing
-    sprite: _Starlight/Clothing/OuterClothing/Hardsuits/mining.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/mining.rsi #Far Horizons
   - type: PressureProtection
     highPressureMultiplier: 0.2
     lowPressureMultiplier: 1000
@@ -578,6 +584,7 @@
     tags:
     - CorgiWearable
     - Hardsuit
+    - IPCExternalCooling # Far Horizons
 
 # Golden
 

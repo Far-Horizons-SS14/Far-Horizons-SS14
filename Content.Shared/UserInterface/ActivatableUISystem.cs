@@ -177,7 +177,8 @@ public sealed partial class ActivatableUISystem : EntitySystem
 
         SetCurrentSingleUser(uid, null, component);
     }
-
+    
+    public bool InteractUIp(EntityUid user, EntityUid uiEntity, ActivatableUIComponent aui) => InteractUI(user, uiEntity, aui); //FarHorizons
     private bool InteractUI(EntityUid user, EntityUid uiEntity, ActivatableUIComponent aui)
     {
         if (aui.Key == null || !_uiSystem.HasUi(uiEntity, aui.Key))
