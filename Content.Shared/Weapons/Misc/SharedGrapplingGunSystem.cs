@@ -87,6 +87,8 @@ public abstract class SharedGrapplingGunSystem : EntitySystem
         // When the grappling gun is dropped, remove the projectile to prevent the player from being hooked while not holding the gun
         if (component.Projectile is { } projectile)
         {
+            _appearance.SetData(uid, SharedTetherGunSystem.TetherVisualsStatus.Key, true);
+
             if (_netManager.IsServer)
                 QueueDel(projectile);
 
