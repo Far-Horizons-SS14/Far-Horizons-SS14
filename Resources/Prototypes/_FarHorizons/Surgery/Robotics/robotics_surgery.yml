@@ -1,0 +1,63 @@
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryRemovePlating
+  name: Remove Outer Plating
+  description: Removes the protective outer plating.
+  components:
+  - type: Surgery
+    priority: -100
+    steps:
+    - SurgeryStepRemoveScrews
+    - SurgeryStepUnweldJoints
+    - SurgeryStepPryPlating
+  - type: SurgerySpeciesCondition
+    speciesBlacklist: []
+    speciesWhitelist:
+    - IPC
+
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryRestorePlating
+  name: Restore Outer Plating
+  description: Restores the protective outer plating.
+  components:
+  - type: Surgery
+    priority: 100
+    requirement:
+    - SurgeryRemovePlating
+    steps:
+    - SurgeryStepPositionPlating
+    - SurgeryStepRestoreScrews
+    - SurgeryStepWeldJoints
+  - type: SurgerySpeciesCondition
+    speciesBlacklist: []
+    speciesWhitelist:
+    - IPC
+  
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryRobotAmputation
+  name: Amputation
+  description: Surgical removal of a limb.
+  components:
+  - type: Surgery
+    requirement:
+    - SurgeryRemovePlating
+    steps:
+    - SurgeryStepRemoveScrews
+    - SurgeryStepUnboltNuts
+    - SurgeryStepCutWires
+    - SurgeryStepRobotAmputation
+  - type: SurgerySpeciesCondition
+    speciesBlacklist: []
+    speciesWhitelist:
+    - IPC
+  - type: SurgeryPartCondition
+    parts: 
+    - Arm
+    - Hand
+    - Leg
+    - Foot
+  - type: Sprite
+    sprite: Objects/Specific/Medical/Surgery/saw.rsi
+    state: saw

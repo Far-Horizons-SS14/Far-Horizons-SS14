@@ -46,6 +46,7 @@
   # 🌟Starlight-start🌟
   - type: Hemostat
     analogue: true #FarHorizons
+  - type: WirecutterSurgery
   - type: SurgeryTool
     analogueSpeed: 2.3 #FarHorizons
     startSound:
@@ -104,6 +105,7 @@
     priceCategory: tool_basic
   - type: SurgicalDrill
     analogue: true #FarHorizons
+  - type: ScrewdriverSurgery
   - type: SurgeryTool
     analogueSpeed: 2.6 #FarHorizons
     endSound:
@@ -155,6 +157,10 @@
   - type: ItemPrice
     priceCategory: tool_basic
   # Starlight-end
+  # 🌟Starlight-start🌟
+  - type: WrenchSurgery
+  - type: SurgeryTool
+  # 🌟Starlight-end🌟
 
 - type: entity
   name: multitool
@@ -209,6 +215,10 @@
     - WirePanels
     - Airlocks
     - InspectingPower
+  # 🌟Starlight-start🌟
+  - type: MultitoolSurgery
+  - type: SurgeryTool
+  # 🌟Starlight-end🌟
 
 - type: entity
   name: network configurator

@@ -1,0 +1,140 @@
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepRemoveScrews
+  name: Remove Screws
+  components:
+  - type: SurgeryStep
+    tools:
+    - type: ScrewdriverSurgery
+  - type: Sprite
+    sprite: Objects/Tools/screwdriver.rsi
+    state: screwdriver-map
+  - type: OnFailDamage
+    damage: 
+      types:
+        Slash: 10
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepUnweldJoints
+  name: Unweld Joints
+  components:
+  - type: SurgeryStep
+    tools:
+    - type: WelderSurgery
+  - type: Sprite
+    sprite: Objects\Tools\welder.rsi
+    state: icon
+  - type: OnFailDamage
+    damage: 
+      types:
+        Heat: 10
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepPryPlating
+  name: Pry Outer Plating
+  components:
+  - type: SurgeryStep
+    tools:
+    - type: CrowbarSurgery
+  - type: Sprite
+    sprite: Objects\Tools\crowbar.rsi
+    state: icon
+  - type: OnFailDamage
+    damage: 
+      types:
+        Blunt: 10
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepPositionPlating
+  name: Position Plating Back
+  components:
+  - type: SurgeryStep
+  - type: Sprite
+    sprite: Objects\Materials\Sheets\metal.rsi
+    state: plasteel
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepRestoreScrews
+  name: Restore Screws
+  components:
+  - type: SurgeryStep
+    tools:
+    - type: ScrewdriverSurgery
+  - type: Sprite
+    sprite: Objects/Tools/screwdriver.rsi
+    state: screwdriver-map
+  - type: OnFailDamage
+    damage: 
+      types:
+        Slash: 10
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepWeldJoints
+  name: Weld Joints
+  components:
+  - type: SurgeryStep
+    tools:
+    - type: WelderSurgery
+  - type: Sprite
+    sprite: Objects\Tools\welder.rsi
+    state: icon
+  - type: SurgeryClearProgress
+  - type: OnFailDamage
+    damage: 
+      types:
+        Heat: 10
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepCutWires
+  name: Cut Wires
+  components:
+  - type: SurgeryStep
+    tools:
+    - type: WirecutterSurgery
+  - type: Sprite
+    sprite: Objects\Tools\wirecutters.rsi
+    state: cutters-map
+  - type: OnFailDamage
+    damage: 
+      types:
+        Slash: 10
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepUnboltNuts
+  name: Unbolt Nuts
+  components:
+  - type: SurgeryStep
+    tools:
+    - type: WrenchSurgery
+  - type: Sprite
+    sprite: Objects\Tools\wrench.rsi
+    state: icon
+  - type: OnFailDamage
+    damage: 
+      types:
+        Slash: 10
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepRobotAmputation
+  name: Unweld Limb
+  components:
+  - type: SurgeryStep
+    duration: 16 
+    tools:
+    - type: WelderSurgery
+  - type: Sprite
+    sprite: Objects\Tools\welder.rsi
+    state: icon
+  - type: SurgeryStepAmputationEffect
+  - type: OnFailDamage
+    damage: 
+      types:
+        Heat: 10

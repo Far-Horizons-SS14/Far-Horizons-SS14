@@ -146,7 +146,16 @@ public sealed partial class SurgicalDrillComponent : Component, ISurgeryToolComp
 public sealed partial class CrowbarSurgeryComponent : Component, ISurgeryToolComponent
 {
     public string ToolName => "a crowbar";
-    public string ToolType => "Crowbar";
+    public string ToolType => "CrowbarSurgery";
+    [DataField]
+    public bool Analogue { get; private set; } = false;
+}
+
+[RegisterComponent, NetworkedComponent, Access(typeof(SharedSurgerySystem))]
+public sealed partial class MultitoolSurgeryComponent : Component, ISurgeryToolComponent
+{
+    public string ToolName => "a multitool";
+    public string ToolType => "MultitoolSurgery";
     [DataField]
     public bool Analogue { get; private set; } = false;
 }
@@ -155,7 +164,7 @@ public sealed partial class CrowbarSurgeryComponent : Component, ISurgeryToolCom
 public sealed partial class ScrewdriverSurgeryComponent : Component, ISurgeryToolComponent
 {
     public string ToolName => "a screwdriver";
-    public string ToolType => "Screwdriver";
+    public string ToolType => "ScrewdriverSurgery";
     [DataField]
     public bool Analogue { get; private set; } = false;
 }
@@ -164,7 +173,7 @@ public sealed partial class ScrewdriverSurgeryComponent : Component, ISurgeryToo
 public sealed partial class WelderSurgeryComponent : Component, ISurgeryToolComponent
 {
     public string ToolName => "a welder";
-    public string ToolType => "Welder";
+    public string ToolType => "WelderSurgery";
     [DataField]
     public bool Analogue { get; private set; } = false;
 }
@@ -173,7 +182,7 @@ public sealed partial class WelderSurgeryComponent : Component, ISurgeryToolComp
 public sealed partial class WirecutterSurgeryComponent : Component, ISurgeryToolComponent
 {
     public string ToolName => "a wirecutter";
-    public string ToolType => "Wirecutter";
+    public string ToolType => "WirecutterSurgery";
     [DataField]
     public bool Analogue { get; private set; } = false;
 }
@@ -182,7 +191,7 @@ public sealed partial class WirecutterSurgeryComponent : Component, ISurgeryTool
 public sealed partial class WrenchSurgeryComponent : Component, ISurgeryToolComponent
 {
     public string ToolName => "a wrench";
-    public string ToolType => "Wrench";
+    public string ToolType => "WrenchSurgery";
     [DataField]
     public bool Analogue { get; private set; } = false;
 }
