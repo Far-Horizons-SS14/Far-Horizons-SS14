@@ -43,6 +43,15 @@
     radius: 1.5
     energy: 1.6
     color: "#1f8c28"
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.2
+        density: 100
+        mask:
+        - TableMask
   - type: Sprite
     sprite: _FarHorizons/Structures/Machines/Computers/vitalmonitor.rsi
     layers:
