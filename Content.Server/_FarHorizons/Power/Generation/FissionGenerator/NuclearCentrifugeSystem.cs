@@ -1,8 +1,8 @@
+using Content.Server.Popups;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Stack;
 using Content.Shared._FarHorizons.Power.Generation.FissionGenerator;
 using Content.Shared.Interaction;
-using Content.Shared.Popups;
 using Content.Shared.Power;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
@@ -19,7 +19,7 @@ public sealed class NuclearCentrifugeSystem : EntitySystem
     [Dependency] private readonly StackSystem _stackSystem = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
+    [Dependency] private readonly PopupSystem _popupSystem = default!;
 
     private readonly float _threshold = 1f;
     private float _accumulator = 0f;
@@ -94,13 +94,13 @@ public sealed class NuclearCentrifugeSystem : EntitySystem
 
         if (!_entityManager.TryGetComponent<ReactorPartComponent>(args.Used, out var ReactorPart) || ReactorPart.RodType != ReactorPartComponent.RodTypes.FuelRod)
         {
-            _popupSystem.PopupEntity(Loc.GetString("nuclear-centrifuge-wrong-item", ("item", args.Used)), uid);
+            _popupSystem.PopupEntity(Loc.GetString("nuclear-centrifuge-wrong-item", ("item", args.Used)), args.User, args.User);
             return;
         }
 
         if (ReactorPart.Properties == null || ReactorPart.Properties.FissileIsotopes < 0.1)
         {
-            _popupSystem.PopupEntity(Loc.GetString("nuclear-centrifuge-unfit-item", ("item", args.Used)), uid);
+            _popupSystem.PopupEntity(Loc.GetString("nuclear-centrifuge-unfit-item", ("item", args.Used)), args.User, args.User);
             return;
         }
 
