@@ -250,6 +250,9 @@
     - prefRoles: [ Changeling ]
       max: 3
       playerRatio: 15
+      blacklist: #FH
+        tags: #FH
+          - IPC #FH
       briefing:
         text: changeling-role-greeting
         color: Red
@@ -378,6 +381,8 @@
         components:
         - ZombieImmune
         - AntagImmune
+        tags: #FH
+          - IPC #FH
       briefing:
         text: zombie-patientzero-role-greeting
         color: Plum
