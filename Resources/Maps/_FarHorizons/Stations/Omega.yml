@@ -4,7 +4,7 @@ meta:
   engineVersion: 267.3.0
   forkId: ""
   forkVersion: ""
-  time: 11/27/2025 20:25:37
+  time: 11/27/2025 20:48:04
   entityCount: 14382
 maps:
 - 1
@@ -33712,6 +33712,14 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 22.5,16.5
       parent: 2
+- proto: ComputerSecurityRoboticsControl
+  entities:
+  - uid: 14369
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -29.5,17.5
+      parent: 2
 - proto: ComputerShuttleCargo
   entities:
   - uid: 5455
@@ -41631,7 +41639,7 @@ entities:
       pos: -7.5,27.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -6681.91
+      secondsUntilStateChange: -6735.0024
       state: Closing
     - type: Firelock
       emergencyCloseCooldown: 391.7662769
@@ -67697,11 +67705,6 @@ entities:
     components:
     - type: Transform
       pos: -2.5,-15.5
-      parent: 2
-  - uid: 14369
-    components:
-    - type: Transform
-      pos: -29.5,17.5
       parent: 2
 - proto: PottedPlantRD
   entities:
