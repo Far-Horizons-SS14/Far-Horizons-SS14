@@ -3,7 +3,7 @@ using Content.Shared.CombatMode;
 using Content.Shared.Hands;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
-using Content.Shared.Interaction.Events;
+using Content.Shared.Interaction.Events; // Far Horizons - For DroppedEvent
 using Content.Shared.Movement.Events;
 using Content.Shared.Physics;
 using Content.Shared.Projectiles;
@@ -45,7 +45,7 @@ public abstract class SharedGrapplingGunSystem : EntitySystem
         SubscribeLocalEvent<GrapplingGunComponent, GunShotEvent>(OnGrapplingShot);
         SubscribeLocalEvent<GrapplingGunComponent, ActivateInWorldEvent>(OnGunActivate);
         SubscribeLocalEvent<GrapplingGunComponent, HandDeselectedEvent>(OnGrapplingDeselected);
-        SubscribeLocalEvent<GrapplingGunComponent, DroppedEvent>(OnGrapplingDropped);
+        SubscribeLocalEvent<GrapplingGunComponent, DroppedEvent>(OnGrapplingDropped); // Far Horizons - Fix for chasm crossing
     }
 
     private void OnGrappleJointRemoved(EntityUid uid, GrapplingProjectileComponent component, JointRemovedEvent args)
@@ -82,9 +82,11 @@ public abstract class SharedGrapplingGunSystem : EntitySystem
         SetReeling(uid, component, false, args.User);
     }
 
+    // Far Horizons - Grappling gun fix 
     private void OnGrapplingDropped(EntityUid uid, GrapplingGunComponent component, ref DroppedEvent args)
     {
         // When the grappling gun is dropped, remove the projectile to prevent the player from being hooked while not holding the gun
+        // Far Horizons - This prevents players from staying hooked after dropping the gun
         if (component.Projectile is { } projectile)
         {
             _appearance.SetData(uid, SharedTetherGunSystem.TetherVisualsStatus.Key, true);
