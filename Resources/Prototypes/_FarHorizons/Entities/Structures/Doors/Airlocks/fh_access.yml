@@ -325,6 +325,26 @@
       board: [ DoorElectronicsQuartermaster ]
 
 - type: entity
+  parent: FHAirlockCommand
+  id: FHAirlockMagistrateLocked
+  suffix: Magistrate, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsMagistrate ]
+
+- type: entity
+  parent: FHAirlock
+  id: FHAirlockCourtroomLocked
+  suffix: Courtroom, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsCourtroom ]
+  - type: Wires
+    layoutId: AirlockCommand
+
+- type: entity
   parent: FHAirlockSecurity
   id: FHAirlockSecurityLocked
   suffix: Security, Locked
@@ -976,6 +996,26 @@
     - type: ContainerFill
       containers:
         board: [ DoorElectronicsQuartermaster ]
+
+- type: entity
+  parent: FHAirlockCommandGlass
+  id: FHAirlockMagistrateGlassLocked
+  suffix: Magistrate, Locked
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsMagistrate ]
+
+- type: entity
+  parent: FHAirlockGlass
+  id: FHAirlockCourtroomGlassLocked
+  suffix: Courtroom, Locked
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsCourtroom ]
+    - type: Wires
+      layoutId: AirlockCommand
 
 - type: entity
   parent: FHAirlockSecurityGlass

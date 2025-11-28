@@ -1,3 +1,10 @@
+  id: DoorElectronicsCourtroom
+  suffix: Courtroom, Locked
+  components:
+  - type: AccessReader
+    access: [["Command"], ["Security"], ["Lawyer"]]
+
+#Salvage Lead Office
 - type: entity
   parent: DoorElectronics
   id: DoorElectronicsSalvageLead
