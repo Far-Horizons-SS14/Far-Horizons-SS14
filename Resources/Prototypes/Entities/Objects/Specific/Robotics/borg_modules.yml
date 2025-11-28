@@ -47,6 +47,9 @@
   - type: ContainerContainer
     containers:
       holding_container: !type:Container { }
+  - type: Tag # Starlight Change - Allows for people to escape from borg modules when they are picked up
+    tags:
+      - PersonnelStorage # Starlight Change - Allows for people to escape from borg modules when they are picked up
 
 - type: entity
   parent: BaseAction
@@ -1312,7 +1315,7 @@
   parent: [ BaseBorgModule, BaseProviderBorgModule, BaseSyndicateContraband ] #Starlight L6 printing
   id: BorgModuleL6C
   name: L6C ROW cyborg module
-  description: A weapons module that comes with a L6C.
+  description: A weapons module that comes with an L6 and capacity to hold 2 spare magazines.
   components:
     - type: Sprite
       layers:

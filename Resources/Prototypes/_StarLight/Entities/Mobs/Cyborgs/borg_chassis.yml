@@ -18,18 +18,30 @@
       map: [ "light" ]
       visible: false
   - type: BorgChassis
-    maxModules: 2
+    maxModules: 4
     moduleWhitelist:
       tags:
       - BorgModuleGeneric
       - BorgModuleSyndicate
+      - BorgModuleSyndicateStealth
     hasMindState: borg_e
     noMindState: borg_e_r
   - type: InteractionPopup
-    interactSuccessString: petting-success-generic-cyborg
-    interactFailureString: petting-failure-generic-cyborg
-# end region
+    interactSuccessString: petting-success-syndicate-cyborg
+    interactFailureString: petting-failure-syndicate-cyborg
+  - type: VentCrawler
+  - type: Thieving
+    stealthy: true
+  - type: Pacified # THE STEALTH BORG DOES NOT FUCKING GET GUNS
 
+- type: entity
+  id: BorgChassisSecurity
+  parent: BorgChassisSelectable
+  name: security cyborg
+  components:
+  - type: BorgSwitchableType
+    selectedBorgType: security
+    
 - type: entity
   id: BorgChassisPurrfus
   parent: BorgChassisSelectable
