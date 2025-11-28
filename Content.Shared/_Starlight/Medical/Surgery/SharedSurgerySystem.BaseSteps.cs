@@ -19,6 +19,7 @@ using Content.Shared._FarHorizons.Medical.SurgeryOverhaul.Components;
 using Content.Shared.Stunnable;
 using Content.Shared.Medical.Healing;
 using Content.Shared.Damage;
+using Robust.Shared.Audio;
 //FarHorizons End
 
 namespace Content.Shared.Starlight.Medical.Surgery;
@@ -140,13 +141,30 @@ public abstract partial class SharedSurgerySystem
     //FarHorizons End
     private void OnStep(Entity<SurgeryStepComponent> ent, ref SurgeryStepEvent args)
     {
+        if(!_entitySystem.TryGetSingleton(args.StepProto, out var stepEnt)
+            || !TryComp(stepEnt, out SurgeryStepComponent? stepComp)) return;
+
         foreach (var reg in (ent.Comp.Tools ?? []).Values)
         {
             var tool = args.Tools.FirstOrDefault(x => HasComp(x, reg.Component.GetType()));
             if (tool == default) return;
+            
+            var specificToolComp = EntityManager.GetComponents(tool)
+                .OfType<ISurgeryToolComponent>();
 
-            if (_net.IsServer && TryComp(tool, out SurgeryToolComponent? toolComp) && toolComp.EndSound != null)
-                _audio.PlayPvs(toolComp.EndSound, tool);
+            SoundSpecifier? endSound = null;
+            foreach(var usedTool in specificToolComp)
+            {  
+                var requestedTool = stepComp.Tools?.FirstOrDefault().Key;
+                if(requestedTool != null)
+                    if(usedTool.ToolType.Contains(requestedTool))
+                    {
+                        endSound = usedTool.EndSound;
+                    }
+            }
+
+            if (_net.IsServer && TryComp(tool, out SurgeryToolComponent? toolComp) && endSound != null)
+                _audio.PlayPvs(endSound, tool);
             if (ent.Comp.ReagentId != null && _solutionContainerSystem.TryGetSolution(tool, "drink", out var solution))
                 _solutionContainerSystem.RemoveReagent(solution.Value, new ReagentQuantity(ent.Comp.ReagentId, ent.Comp.ReagentQuantity));
         }
@@ -310,9 +328,9 @@ public abstract partial class SharedSurgerySystem
                 var durationCap = duration * 2;
                 var durationToSuccessRate = 0f;
                 var bedSpeedMod = 2f;
-                var isAnalogue = false; 
-                var toolSpeed = toolComp.Speed;
-                var toolSuccessRate = toolComp.SuccessRate;
+                var toolSpeed = 1f;
+                var toolSuccessRate = 1f;
+                SoundSpecifier? startSound = null;
                 var specificToolComp = EntityManager.GetComponents(tool)
                     .OfType<ISurgeryToolComponent>();
 
@@ -321,12 +339,11 @@ public abstract partial class SharedSurgerySystem
                     var requestedTool = stepComp.Tools?.FirstOrDefault().Key;
                     if(requestedTool != null)
                         if(usedTool.ToolType.Contains(requestedTool))
-                           isAnalogue = usedTool.Analogue;
-                }
-                if(isAnalogue)
-                {
-                    toolSpeed = toolComp.AnalogueSpeed;
-                    toolSuccessRate = toolComp.AnalogueSuccessRate;
+                        {
+                            toolSpeed = usedTool.Speed;
+                            toolSuccessRate = usedTool.SuccessRate;
+                            startSound = usedTool.StartSound;
+                        }
                 }
                     
                 if (TryComp(body, out BuckleComponent? buckle) && TryComp(buckle.BuckledTo, out SurgeryBedSpeedComponent? bedComp))
@@ -338,7 +355,7 @@ public abstract partial class SharedSurgerySystem
                     durationToSuccessRate = (float)Math.Clamp(Math.Pow(duration - durationCap, 2) / 100, 0.0, 0.75);
                     duration = durationCap;
                 }
-                if (toolComp.StartSound != null) _audio.PlayPvs(toolComp.StartSound, tool);
+                if (startSound != null) _audio.PlayPvs(startSound, tool);
 
                 var totalSuccesRate = Math.Clamp(toolSuccessRate - durationToSuccessRate, 0.25, 1);
 

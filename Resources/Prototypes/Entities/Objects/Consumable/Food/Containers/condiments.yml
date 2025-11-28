@@ -374,13 +374,14 @@
       Glass: 50
   # 🌟Starlight-start🌟
   - type: BoneGel
-    analogue: true #FarHorizons
-  - type: SurgeryTool
-    analogueSpeed: 3.0 #FarHorizons
+    #FarHorizons Start
+    speed: 3.0 
     startSound:
       path: /Audio/Items/Medical/ointment_begin.ogg
     endSound:
       path: /Audio/Items/Medical/ointment_end.ogg
+    #FarHorizons End
+  - type: SurgeryTool
   # 🌟Starlight-end🌟
 
 - type: entity

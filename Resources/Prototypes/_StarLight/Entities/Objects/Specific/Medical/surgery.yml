@@ -6,6 +6,14 @@
   abstract: true
   components:
   - type: BoneGel
+    #FarHorizons Start
+    speed: 1.0 
+    startSound:
+      path: /Audio/Items/Medical/ointment_begin.ogg
+    endSound:
+      path: /Audio/Items/Medical/ointment_end.ogg
+  - type: SurgeryTool
+    #FarHorizons End
   - type: Tag
     tags:
     - BoneGel
@@ -55,10 +63,13 @@
   - type: Sprite
     sprite: Objects/Specific/Medical/Surgery/bone_gel.rsi
     state: bone-gel
+    #FarHorizons Start
   - type: SurgeryTool
+  - type: BoneGel
     speed: 1
     startSound:
       path: /Audio/_Starlight/Medical/Surgery/bone_setter.ogg
+    #FarHorizons End
   - type: HeldSpeedModifier
     walkModifier: 1
     sprintModifier: 0.9

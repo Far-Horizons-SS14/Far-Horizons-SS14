@@ -51,13 +51,14 @@
   - type: Glue
   # 🌟Starlight-start🌟
   - type: BoneGel
-    analogue: true #FarHorizons
-  - type: SurgeryTool
-    analogueSpeed: 2.4 #FarHorizons
+    #FarHorizons Start
+    speed: 2.4
     startSound:
       path: /Audio/Items/Medical/ointment_begin.ogg
     endSound:
       path: /Audio/Items/Medical/ointment_end.ogg
+    #FarHorizons End
+  - type: SurgeryTool
   # 🌟Starlight-end🌟
 
 - type: entity

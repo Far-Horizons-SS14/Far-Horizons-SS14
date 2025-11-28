@@ -6,29 +6,22 @@ using Robust.Shared.Prototypes;
 // https://github.com/RMC-14/RMC-14
 namespace Content.Shared.Starlight.Medical.Surgery.Effects.Step;
 
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
+[RegisterComponent, NetworkedComponent]
 [Access(typeof(SharedSurgerySystem))]
 public sealed partial class SurgeryToolComponent : Component
 {
+    /*
     [DataField, AutoNetworkedField]
     public float Speed = 1;
     
     [DataField, AutoNetworkedField]
     public float SuccessRate = 1f;
 
-    //FarHorizon Start
-    [DataField, AutoNetworkedField]
-    public float AnalogueSpeed = 1;
-    
-    [DataField, AutoNetworkedField]
-    public float AnalogueSuccessRate = 1f;
-    //FarHorizon End
-
     [DataField, AutoNetworkedField]
     public SoundSpecifier? StartSound;
 
     [DataField, AutoNetworkedField]
-    public SoundSpecifier? EndSound;
+    public SoundSpecifier? EndSound;*/
 }
 
 [RegisterComponent, NetworkedComponent, Access(typeof(SharedSurgerySystem), typeof(SharedBodyScannerSystem))]
@@ -59,8 +52,18 @@ public sealed partial class BoneGelComponent : Component, ISurgeryToolComponent
     public string ToolName => "bone gel";
     //FarHorizons Start
     public string ToolType => "BoneGel";
+
     [DataField]
-    public bool Analogue { get; private set; } = false;
+    public float Speed { get; private set; } = 1;
+    
+    [DataField]
+    public float SuccessRate { get; private set; } = 1f;
+
+    [DataField]
+    public SoundSpecifier? StartSound { get; private set; }
+
+    [DataField]
+    public SoundSpecifier? EndSound { get; private set; }
     //FarHorizons End
 }
 
@@ -70,8 +73,18 @@ public sealed partial class BoneSawComponent : Component, ISurgeryToolComponent
     public string ToolName => "a bone saw";
     //FarHorizons Start
     public string ToolType => "BoneSaw";
+
     [DataField]
-    public bool Analogue { get; private set; } = false;
+    public float Speed { get; private set; } = 1;
+    
+    [DataField]
+    public float SuccessRate { get; private set; } = 1f;
+
+    [DataField]
+    public SoundSpecifier? StartSound { get; private set; }
+
+    [DataField]
+    public SoundSpecifier? EndSound { get; private set; }
     //FarHorizons End
 }
 
@@ -81,8 +94,18 @@ public sealed partial class BoneSetterComponent : Component, ISurgeryToolCompone
     public string ToolName => "a bone setter";
     //FarHorizons Start
     public string ToolType => "BoneSetter";
+
     [DataField]
-    public bool Analogue { get; private set; } = false;
+    public float Speed { get; private set; } = 1;
+    
+    [DataField]
+    public float SuccessRate { get; private set; } = 1f;
+
+    [DataField]
+    public SoundSpecifier? StartSound { get; private set; }
+
+    [DataField]
+    public SoundSpecifier? EndSound { get; private set; }
     //FarHorizons End
 }
 
@@ -92,8 +115,18 @@ public sealed partial class CauteryComponent : Component, ISurgeryToolComponent
     public string ToolName => "a cautery";
     //FarHorizons Start
     public string ToolType => "Cautery";
+
     [DataField]
-    public bool Analogue { get; private set; } = false;
+    public float Speed { get; private set; } = 1;
+    
+    [DataField]
+    public float SuccessRate { get; private set; } = 1f;
+
+    [DataField]
+    public SoundSpecifier? StartSound { get; private set; }
+
+    [DataField]
+    public SoundSpecifier? EndSound { get; private set; }
     //FarHorizons End
 }
 
@@ -103,8 +136,18 @@ public sealed partial class HemostatComponent : Component, ISurgeryToolComponent
     public string ToolName => "a hemostat";
     //FarHorizons Start
     public string ToolType => "Hemostat";
+
     [DataField]
-    public bool Analogue { get; private set; } = false;
+    public float Speed { get; private set; } = 1;
+    
+    [DataField]
+    public float SuccessRate { get; private set; } = 1f;
+
+    [DataField]
+    public SoundSpecifier? StartSound { get; private set; }
+
+    [DataField]
+    public SoundSpecifier? EndSound { get; private set; }
     //FarHorizons End
 }
 
@@ -114,8 +157,18 @@ public sealed partial class RetractorComponent : Component, ISurgeryToolComponen
     public string ToolName => "a retractor";
     //FarHorizons Start
     public string ToolType => "Retractor";
+
     [DataField]
-    public bool Analogue { get; private set; } = false;
+    public float Speed { get; private set; } = 1;
+    
+    [DataField]
+    public float SuccessRate { get; private set; } = 1f;
+
+    [DataField]
+    public SoundSpecifier? StartSound { get; private set; }
+
+    [DataField]
+    public SoundSpecifier? EndSound { get; private set; }
     //FarHorizons End
 }
 
@@ -125,8 +178,18 @@ public sealed partial class ScalpelComponent : Component, ISurgeryToolComponent
     public string ToolName => "a scalpel";
     //FarHorizons Start
     public string ToolType => "Scalpel";
+
     [DataField]
-    public bool Analogue { get; private set; } = false;
+    public float Speed { get; private set; } = 1;
+    
+    [DataField]
+    public float SuccessRate { get; private set; } = 1f;
+
+    [DataField]
+    public SoundSpecifier? StartSound { get; private set; }
+
+    [DataField]
+    public SoundSpecifier? EndSound { get; private set; }
     //FarHorizons End
 }
 
@@ -136,8 +199,18 @@ public sealed partial class SurgicalDrillComponent : Component, ISurgeryToolComp
     public string ToolName => "a surgical drill";
     //FarHorizons Start
     public string ToolType => "SurgicalDrill";
+
     [DataField]
-    public bool Analogue { get; private set; } = false;
+    public float Speed { get; private set; } = 1;
+    
+    [DataField]
+    public float SuccessRate { get; private set; } = 1f;
+
+    [DataField]
+    public SoundSpecifier? StartSound { get; private set; }
+
+    [DataField]
+    public SoundSpecifier? EndSound { get; private set; }
     //FarHorizons End
 }
 
@@ -147,8 +220,18 @@ public sealed partial class CrowbarSurgeryComponent : Component, ISurgeryToolCom
 {
     public string ToolName => "a crowbar";
     public string ToolType => "CrowbarSurgery";
+ 
     [DataField]
-    public bool Analogue { get; private set; } = false;
+    public float Speed { get; private set; } = 1;
+    
+    [DataField]
+    public float SuccessRate { get; private set; } = 1f;
+
+    [DataField]
+    public SoundSpecifier? StartSound { get; private set; }
+
+    [DataField]
+    public SoundSpecifier? EndSound { get; private set; }
 }
 
 [RegisterComponent, NetworkedComponent, Access(typeof(SharedSurgerySystem))]
@@ -156,8 +239,18 @@ public sealed partial class MultitoolSurgeryComponent : Component, ISurgeryToolC
 {
     public string ToolName => "a multitool";
     public string ToolType => "MultitoolSurgery";
+
     [DataField]
-    public bool Analogue { get; private set; } = false;
+    public float Speed { get; private set; } = 1;
+    
+    [DataField]
+    public float SuccessRate { get; private set; } = 1f;
+
+    [DataField]
+    public SoundSpecifier? StartSound { get; private set; }
+
+    [DataField]
+    public SoundSpecifier? EndSound { get; private set; }
 }
 
 [RegisterComponent, NetworkedComponent, Access(typeof(SharedSurgerySystem))]
@@ -165,8 +258,18 @@ public sealed partial class ScrewdriverSurgeryComponent : Component, ISurgeryToo
 {
     public string ToolName => "a screwdriver";
     public string ToolType => "ScrewdriverSurgery";
+
     [DataField]
-    public bool Analogue { get; private set; } = false;
+    public float Speed { get; private set; } = 1;
+    
+    [DataField]
+    public float SuccessRate { get; private set; } = 1f;
+
+    [DataField]
+    public SoundSpecifier? StartSound { get; private set; }
+
+    [DataField]
+    public SoundSpecifier? EndSound { get; private set; }
 }
 
 [RegisterComponent, NetworkedComponent, Access(typeof(SharedSurgerySystem))]
@@ -174,8 +277,18 @@ public sealed partial class WelderSurgeryComponent : Component, ISurgeryToolComp
 {
     public string ToolName => "a welder";
     public string ToolType => "WelderSurgery";
+
     [DataField]
-    public bool Analogue { get; private set; } = false;
+    public float Speed { get; private set; } = 1;
+    
+    [DataField]
+    public float SuccessRate { get; private set; } = 1f;
+
+    [DataField]
+    public SoundSpecifier? StartSound { get; private set; }
+
+    [DataField]
+    public SoundSpecifier? EndSound { get; private set; }
 }
 
 [RegisterComponent, NetworkedComponent, Access(typeof(SharedSurgerySystem))]
@@ -183,8 +296,18 @@ public sealed partial class WirecutterSurgeryComponent : Component, ISurgeryTool
 {
     public string ToolName => "a wirecutter";
     public string ToolType => "WirecutterSurgery";
+
     [DataField]
-    public bool Analogue { get; private set; } = false;
+    public float Speed { get; private set; } = 1;
+    
+    [DataField]
+    public float SuccessRate { get; private set; } = 1f;
+
+    [DataField]
+    public SoundSpecifier? StartSound { get; private set; }
+
+    [DataField]
+    public SoundSpecifier? EndSound { get; private set; }
 }
 
 [RegisterComponent, NetworkedComponent, Access(typeof(SharedSurgerySystem))]
@@ -192,7 +315,17 @@ public sealed partial class WrenchSurgeryComponent : Component, ISurgeryToolComp
 {
     public string ToolName => "a wrench";
     public string ToolType => "WrenchSurgery";
+
     [DataField]
-    public bool Analogue { get; private set; } = false;
+    public float Speed { get; private set; } = 1;
+    
+    [DataField]
+    public float SuccessRate { get; private set; } = 1f;
+
+    [DataField]
+    public SoundSpecifier? StartSound { get; private set; }
+
+    [DataField]
+    public SoundSpecifier? EndSound { get; private set; }
 }
 //FarHorizons End
