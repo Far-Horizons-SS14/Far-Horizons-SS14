@@ -183,6 +183,9 @@
     damageCoefficient: 0.3
   - type: Armor
     modifiers:
+      flatReductions: #FH
+        Piercing: 3 #FH
+        Heat: 3 #FH
       coefficients:
         Blunt: 0.7
         Slash: 0.7
@@ -224,6 +227,9 @@
     level: Metal
   - type: Armor
     modifiers:
+      flatReductions: #FH
+        Piercing: 3 #FH
+        Heat: 3 #FH - Makes up for losing bubble shield, makes this a very solid combat hardsuit, if bubble shield is fixed, remove these.
       coefficients:
       # region starlight: maxim lowered values
         Blunt: 0.65 
