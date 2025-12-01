@@ -1,7 +1,24 @@
+#Medical
+
+- type: entity
+  parent: IDCardStandard
+  id: SurgeonIDCard
+  name: Surgeon ID Card
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Misc/id_cards.rsi
+    layers:
+    - state: default
+    - state: idsurgeon
+  - type: PresetIdCard
+    job: Surgeon
+
+#Security
+
 - type: entity
   parent: [ IDCardStandard, BaseSecurityContraband ]
   id: CorpsmanIDCard
-  name: corpsman ID card
+  name: Corpsman ID Card
   components:
     - type: Sprite
       sprite: _FarHorizons/Objects/Misc/id_cards.rsi
@@ -11,10 +28,12 @@
     - type: PresetIdCard
       job: Corpsman
 
+#CentComm
+
 - type: entity
   parent: IDCardStandard
   id: CCCADIDCard
-  name: CAD Officer ID card
+  name: CAD Officer ID Card
   components:
   - type: Sprite
     layers:
@@ -28,7 +47,7 @@
 - type: entity
   parent: IDCardStandard
   id: CCCSDIDCard
-  name: CSD Officer ID card
+  name: CSD Officer ID Card
   components:
   - type: Sprite
     layers:
@@ -42,7 +61,7 @@
 - type: entity
   parent: IDCardStandard
   id: CCCIDIDCard
-  name: CID Officer ID card
+  name: CID Officer ID Card
   components:
   - type: Sprite
     layers:

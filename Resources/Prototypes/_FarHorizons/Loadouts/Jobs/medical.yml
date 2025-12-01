@@ -46,6 +46,20 @@
   equipment:
     back: ClothingBackpackDuffelVirology
 
+# PDA
+
+- type: loadout
+  id: SurgeonPDA
+  equipment:
+    id: SurgeonPDA
+
+- type: loadout
+  id: SeniorSurgeonPDA
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SeniorPhysician
+  equipment:
+    id: SeniorSurgeonPDA
 
 # Satchel
 

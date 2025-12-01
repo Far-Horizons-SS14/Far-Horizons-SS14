@@ -153,15 +153,15 @@
   description: Shows the current security alert level on station. If it's red that means you should stay in your department as much as possible.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Structures/Machines/HoloTables/sec_holotable.rsi
+    sprite: _FarHorizons/Structures/Machines/HoloTables/sec_holotables.rsi
     layers:
       - state: TableFrame
         type: Icon
-        sprite: _FarHorizons/Structures/Machines/HoloTables/sec_holotable.rsi
+        sprite: _FarHorizons/Structures/Machines/HoloTables/sec_holotables.rsi
       - map: [ "enum.TextScreenVisuals.AlertLevel" ]
         state: green
         type: Icon
-        sprite: _FarHorizons/Structures/Machines/HoloTables/sec_holotable.rsi
+        sprite: _FarHorizons/Structures/Machines/HoloTables/sec_holotables.rsi
   - type: Appearance
   - type: PointLight
     radius: 3
@@ -179,16 +179,16 @@
   description: Shows the current wanted people on station, or at least it was supposed to before Security told the designers not to announce wanted suspects and it became a security records kiosk instead.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Structures/Machines/HoloTables/sec_holotable.rsi
+    sprite: _FarHorizons/Structures/Machines/HoloTables/sec_holotables.rsi
     layers:
       - state: TableFrame
         type: Icon
-        sprite: _FarHorizons/Structures/Machines/HoloTables/sec_holotable.rsi
+        sprite: _FarHorizons/Structures/Machines/HoloTables/sec_holotables.rsi
       - map: [ "enum.PowerDeviceVisualLayers.Powered" ]
         state: Wanted
         shader: unshaded
         type: Icon
-        sprite: _FarHorizons/Structures/Machines/HoloTables/sec_holotable.rsi
+        sprite: _FarHorizons/Structures/Machines/HoloTables/sec_holotables.rsi
   - type: Appearance
   - type: PointLight
     radius: 3

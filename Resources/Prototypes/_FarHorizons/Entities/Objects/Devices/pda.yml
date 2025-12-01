@@ -1,7 +1,50 @@
+#Medical
+
+- type: entity
+  parent: BaseMedicalPDA
+  id: SurgeonPDA
+  name: Surgeon PDA
+  description: Shiny and sterile, for the most part. You can see some bloodstains around the edges if you look close enough.
+  components:
+  - type: Pda
+    id: SurgeonIDCard
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-medical
+  - type: PdaBorderColor
+    borderColor: "#d7d7d0"
+    accentVColor: "#447987"
+  - type: Icon
+    state: pda-medical
+
+- type: entity
+  parent: BaseMedicalPDA
+  id: SeniorSurgeonPDA
+  name: Senior Surgeon PDA
+  description: Shiny and sterile, for the most part. You can see some bloodstains around the edges if you look close enough.
+  components:
+  - type: Pda
+    id: SurgeonIDCard
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-medical
+  - type: PdaBorderColor
+    borderColor: "#d7d7d0"
+    accentHColor: "#447987"
+    accentVColor: "#B34200"
+  - type: Icon
+    state: pda-seniorphysician
+
+#Security
+
 - type: entity
   parent: BaseMedicalPDA
   id: CorpsmanPDA
-  name: corpsman PDA
+  name: Corpsman PDA
   description: The pulse looks attuned to the beat of your own heart.
   components:
   - type: Pda
@@ -25,6 +68,8 @@
     - NewsReaderCartridge
     - WantedListCartridge
     - MedTekCartridge
+
+#CentComm
 
 - type: entity
   parent: CentcomPDA

@@ -1719,8 +1719,8 @@
       state: computer #Far Horizons
     - map: ["computerLayerScreen"]
       state: robot
-    - map: ["computerLayerKeys"]
-      state: robot #Far Horizons
+    #- map: ["computerLayerKeys"] #Far Horizons - Screens not turning off when power out. Only the screen layer gets turned off, having this active with the merged screen/key png kept the screen on.
+    #  state: robot #Far Horizons
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
   - type: RoboticsConsole

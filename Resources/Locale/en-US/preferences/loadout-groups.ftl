@@ -1,3 +1,5 @@
+## Far Horizons - Start - ALL OF THESE ARE GETTING CAPITALIZATED AND YOU CAN'T STOP ME - Corrupt
+
 # Errors
 loadout-group-species-restriction = This item is not available for your current species.
 
@@ -12,210 +14,212 @@ loadout-group-survival-clown = Clown Survival Box
 loadout-group-survival-medical = Medical Survival Box
 loadout-group-survival-security = Security Survival Box
 loadout-group-survival-syndicate = Github is forcing me to write text that is literally twice-impossible for the player to ever see, send help
-loadout-group-breath-tool = Species-dependent breath tools
-loadout-group-tank-harness = Species-specific survival equipment
-loadout-group-EVA-tank = Species-specific gas tank
-loadout-group-vox-tank = Vox-specific gas tank
+loadout-group-breath-tool = Species-Dependent Breath Tools
+loadout-group-tank-harness = Species-Specific Survival Equipment
+loadout-group-EVA-tank = Species-Specific Gas Tank
+loadout-group-vox-tank = Vox-Specific Gas Tank
 loadout-group-pocket-tank-double = Species-specific double emergency tank in pocket
 loadout-group-survival-mime = Mime Survival Box
 
 # Command
-loadout-group-captain-head = Captain head
-loadout-group-captain-jumpsuit = Captain jumpsuit
-loadout-group-captain-neck = Captain neck
-loadout-group-captain-backpack = Captain backpack
-loadout-group-captain-outerclothing = Captain outer clothing
-loadout-group-captain-eyewear = Captain eyewear
+loadout-group-captain-head = Captain Head
+loadout-group-captain-jumpsuit = Captain Jumpsuit
+loadout-group-captain-neck = Captain Neck
+loadout-group-captain-backpack = Captain Backpack
+loadout-group-captain-outerclothing = Captain Outer Clothing
+loadout-group-captain-eyewear = Captain Eyewear
 
-loadout-group-hop-head = Head of Personnel head
-loadout-group-hop-jumpsuit = Head of Personnel jumpsuit
-loadout-group-hop-neck = Head of Personnel neck
-loadout-group-hop-backpack = Head of Personnel backpack
-loadout-group-hop-outerclothing = Head of Personnel outer clothing
+loadout-group-hop-head = Head Of Personnel Head
+loadout-group-hop-jumpsuit = Head Of Personnel Jumpsuit
+loadout-group-hop-neck = Head Of Personnel Neck
+loadout-group-hop-backpack = Head Of Personnel Backpack
+loadout-group-hop-outerclothing = Head Of Personnel Outer Clothing
 
 # Civilian
-loadout-group-assistant-jumpsuit = Assistant jumpsuit
-loadout-group-assistant-mask = Assistant mask
-loadout-group-assistant-gloves = Assistant gloves
-loadout-group-assistant-outerclothing = Assistant outer clothing
-loadout-group-assistant-shoes = Assistant shoes
-loadout-group-assistant-neck = Assistant neck
+loadout-group-assistant-jumpsuit = Assistant Jumpsuit
+loadout-group-assistant-mask = Assistant Mask
+loadout-group-assistant-gloves = Assistant Gloves
+loadout-group-assistant-outerclothing = Assistant Outer Clothing
+loadout-group-assistant-shoes = Assistant Shoes
+loadout-group-assistant-neck = Assistant Neck
 loadout-group-assistant-id = Assistant PDA
 
-loadout-group-bartender-head = Bartender head
-loadout-group-bartender-jumpsuit = Bartender jumpsuit
-loadout-group-bartender-outerclothing = Bartender outer clothing
+loadout-group-bartender-head = Bartender Head
+loadout-group-bartender-jumpsuit = Bartender Jumpsuit
+loadout-group-bartender-outerclothing = Bartender Outer Clothing
 
-loadout-group-chef-head = Chef head
-loadout-group-chef-mask = Chef mask
-loadout-group-chef-jumpsuit = Chef jumpsuit
-loadout-group-chef-outerclothing = Chef outer clothing
+loadout-group-chef-head = Chef Head
+loadout-group-chef-mask = Chef Mask
+loadout-group-chef-jumpsuit = Chef Jumpsuit
+loadout-group-chef-outerclothing = Chef Outer Clothing
 
-loadout-group-librarian-jumpsuit = Librarian jumpsuit
+loadout-group-librarian-jumpsuit = Librarian Jumpsuit
 
-loadout-group-lawyer-jumpsuit = Lawyer jumpsuit
-loadout-group-lawyer-neck = Lawyer neck
+loadout-group-lawyer-jumpsuit = Lawyer Jumpsuit
+loadout-group-lawyer-neck = Lawyer Neck
 
-loadout-group-chaplain-head = Chaplain head
-loadout-group-chaplain-mask = Chaplain mask
-loadout-group-chaplain-jumpsuit = Chaplain jumpsuit
-loadout-group-chaplain-outerclothing = Chaplain outer clothing
-loadout-group-chaplain-neck = Chaplain neck
+loadout-group-chaplain-head = Chaplain Head
+loadout-group-chaplain-mask = Chaplain Mask
+loadout-group-chaplain-jumpsuit = Chaplain Jumpsuit
+loadout-group-chaplain-outerclothing = Chaplain Outer Clothing
+loadout-group-chaplain-neck = Chaplain Neck
 loadout-group-chaplain-bible = Holy Book
 
-loadout-group-janitor-head = Janitor head
-loadout-group-janitor-jumpsuit = Janitor jumpsuit
-loadout-group-janitor-gloves = Janitor gloves
-loadout-group-janitor-outerclothing = Janitor outer clothing
-loadout-group-janitor-plunger = Janitor plunger
+loadout-group-janitor-head = Janitor Head
+loadout-group-janitor-jumpsuit = Janitor Jumpsuit
+loadout-group-janitor-gloves = Janitor Gloves
+loadout-group-janitor-outerclothing = Janitor Outer Clothing
+loadout-group-janitor-plunger = Janitor Plunger
 
-loadout-group-botanist-head = Botanist head
-loadout-group-botanist-jumpsuit = Botanist jumpsuit
-loadout-group-botanist-backpack = Botanist backpack
-loadout-group-botanist-outerclothing = Botanist outer clothing
+loadout-group-botanist-head = Botanist Head
+loadout-group-botanist-jumpsuit = Botanist Jumpsuit
+loadout-group-botanist-backpack = Botanist Backpack
+loadout-group-botanist-outerclothing = Botanist Outer Clothing
 
-loadout-group-clown-head = Clown head
-loadout-group-clown-jumpsuit = Clown jumpsuit
-loadout-group-clown-backpack = Clown backpack
-loadout-group-clown-outerclothing = Clown outer clothing
-loadout-group-clown-shoes = Clown shoes
+loadout-group-clown-head = Clown Head
+loadout-group-clown-jumpsuit = Clown Jumpsuit
+loadout-group-clown-backpack = Clown Backpack
+loadout-group-clown-outerclothing = Clown Outer Clothing
+loadout-group-clown-shoes = Clown Shoes
 
-loadout-group-mime-head = Mime head
-loadout-group-mime-mask = Mime mask
-loadout-group-mime-jumpsuit = Mime jumpsuit
-loadout-group-mime-backpack = Mime backpack
-loadout-group-mime-outerclothing = Mime outer clothing
-loadout-group-mime-belt = Mime belt
+loadout-group-mime-head = Mime Head
+loadout-group-mime-mask = Mime Mask
+loadout-group-mime-jumpsuit = Mime Jumpsuit
+loadout-group-mime-backpack = Mime Backpack
+loadout-group-mime-outerclothing = Mime Outer Clothing
+loadout-group-mime-belt = Mime Belt
 
-loadout-group-musician-jumpsuit = Musician jumpsuit
-loadout-group-musician-outerclothing = Musician outer clothing
+loadout-group-musician-jumpsuit = Musician Jumpsuit
+loadout-group-musician-outerclothing = Musician Outer Clothing
 
 # Cargo
-loadout-group-quartermaster-head = Quartermaster head
-loadout-group-quartermaster-jumpsuit = Quartermaster jumpsuit
-loadout-group-quartermaster-neck = Quartermaster neck
-loadout-group-quartermaster-outerclothing = Quartermaster outer clothing
-loadout-group-quartermaster-shoes = Quartermaster shoes
+loadout-group-quartermaster-head = Quartermaster Head
+loadout-group-quartermaster-jumpsuit = Quartermaster Jumpsuit
+loadout-group-quartermaster-neck = Quartermaster Neck
+loadout-group-quartermaster-outerclothing = Quartermaster Outer Clothing
+loadout-group-quartermaster-shoes = Quartermaster Shoes
 
-loadout-group-cargo-technician-head = Cargo Technician head
-loadout-group-cargo-technician-jumpsuit = Cargo Technician jumpsuit
-loadout-group-cargo-technician-backpack = Cargo Technician backpack
-loadout-group-cargo-technician-outerclothing = Cargo Technician outer clothing
-loadout-group-cargo-technician-shoes = Cargo Technician shoes
+loadout-group-cargo-technician-head = Cargo Technician Head
+loadout-group-cargo-technician-jumpsuit = Cargo Technician Jumpsuit
+loadout-group-cargo-technician-backpack = Cargo Technician Backpack
+loadout-group-cargo-technician-outerclothing = Cargo Technician Outer Clothing
+loadout-group-cargo-technician-shoes = Cargo Technician Shoes
 loadout-group-cargo-technician-id = Cargo Technician ID
 
-loadout-group-salvage-specialist-backpack = Salvage Specialist backpack
-loadout-group-salvage-specialist-outerclothing = Salvage Specialist outer clothing
-loadout-group-salvage-specialist-shoes = Salvage Specialist shoes
+loadout-group-salvage-specialist-backpack = Salvage Specialist Backpack
+loadout-group-salvage-specialist-outerclothing = Salvage Specialist Outer Clothing
+loadout-group-salvage-specialist-shoes = Salvage Specialist Shoes
 
 # Engineering
-loadout-group-chief-engineer-head = Chief Engineer head
-loadout-group-chief-engineer-jumpsuit = Chief Engineer jumpsuit
-loadout-group-chief-engineer-outerclothing = Chief Engineer outer clothing
-loadout-group-chief-engineer-neck = Chief Engineer neck
-loadout-group-chief-engineer-shoes = Chief Engineer shoes
+loadout-group-chief-engineer-head = Chief Engineer Head
+loadout-group-chief-engineer-jumpsuit = Chief Engineer Jumpsuit
+loadout-group-chief-engineer-outerclothing = Chief Engineer Outer Clothing
+loadout-group-chief-engineer-neck = Chief Engineer Neck
+loadout-group-chief-engineer-shoes = Chief Engineer Shoes
 
-loadout-group-technical-assistant-jumpsuit = Technical Assistant jumpsuit
+loadout-group-technical-assistant-jumpsuit = Technical Assistant Jumpsuit
 
-loadout-group-station-engineer-head = Station Engineer head
-loadout-group-station-engineer-jumpsuit = Station Engineer jumpsuit
-loadout-group-station-engineer-backpack = Station Engineer backpack
-loadout-group-station-engineer-outerclothing = Station Engineer outer clothing
-loadout-group-station-engineer-shoes = Station Engineer shoes
+loadout-group-station-engineer-head = Station Engineer Head
+loadout-group-station-engineer-jumpsuit = Station Engineer Jumpsuit
+loadout-group-station-engineer-backpack = Station Engineer Backpack
+loadout-group-station-engineer-outerclothing = Station Engineer Outer Clothing
+loadout-group-station-engineer-shoes = Station Engineer Shoes
 loadout-group-station-engineer-id = Station Engineer ID
 
-loadout-group-atmospheric-technician-jumpsuit = Atmospheric Technician jumpsuit
-loadout-group-atmospheric-technician-backpack = Atmospheric Technician backpack
-loadout-group-atmospheric-technician-outerclothing = Atmospheric Technician outer clothing
-loadout-group-atmospheric-technician-shoes = Atmospheric Technician shoes
+loadout-group-atmospheric-technician-jumpsuit = Atmospheric Technician Jumpsuit
+loadout-group-atmospheric-technician-backpack = Atmospheric Technician Backpack
+loadout-group-atmospheric-technician-outerclothing = Atmospheric Technician Outer Clothing
+loadout-group-atmospheric-technician-shoes = Atmospheric Technician Shoes
 
 # Science
-loadout-group-research-director-head = Research Director head
-loadout-group-research-director-neck = Research Director neck
-loadout-group-research-director-jumpsuit = Research Director jumpsuit
-loadout-group-research-director-outerclothing = Research Director outer clothing
-loadout-group-research-director-shoes = Research Director shoes
+loadout-group-research-director-head = Research Director Head
+loadout-group-research-director-neck = Research Director Neck
+loadout-group-research-director-jumpsuit = Research Director Jumpsuit
+loadout-group-research-director-outerclothing = Research Director Outer Clothing
+loadout-group-research-director-shoes = Research Director Shoes
 
-loadout-group-scientist-head = Scientist head
-loadout-group-scientist-neck = Scientist neck
-loadout-group-scientist-jumpsuit = Scientist jumpsuit
-loadout-group-scientist-backpack = Scientist backpack
-loadout-group-scientist-outerclothing = Scientist outer clothing
-loadout-group-scientist-gloves = Scientist gloves
-loadout-group-scientist-shoes = Scientist shoes
+loadout-group-scientist-head = Scientist Head
+loadout-group-scientist-neck = Scientist Neck
+loadout-group-scientist-jumpsuit = Scientist Jumpsuit
+loadout-group-scientist-backpack = Scientist Backpack
+loadout-group-scientist-outerclothing = Scientist Outer Clothing
+loadout-group-scientist-gloves = Scientist Gloves
+loadout-group-scientist-shoes = Scientist Shoes
 loadout-group-scientist-id = Scientist ID
 
-loadout-group-research-assistant-jumpsuit = Research Assistant jumpsuit
+loadout-group-research-assistant-jumpsuit = Research Assistant Jumpsuit
 
 # Security
-loadout-group-head-of-security-head = Head of Security head
-loadout-group-head-of-security-jumpsuit = Head of Security jumpsuit
-loadout-group-head-of-security-neck = Head of Security neck
-loadout-group-head-of-security-outerclothing = Head of Security outer clothing
+loadout-group-head-of-security-head = Head of Security Head
+loadout-group-head-of-security-jumpsuit = Head of Security Jumpsuit
+loadout-group-head-of-security-neck = Head of Security Neck
+loadout-group-head-of-security-outerclothing = Head of Security Outer Clothing
 
-loadout-group-warden-head = Warden head
-loadout-group-warden-jumpsuit = Warden jumpsuit
-loadout-group-warden-outerclothing = Warden outer clothing
+loadout-group-warden-head = Warden Head
+loadout-group-warden-jumpsuit = Warden Jumpsuit
+loadout-group-warden-outerclothing = Warden Outer Clothing
 
-loadout-group-security-head = Security head
-loadout-group-security-jumpsuit = Security jumpsuit
-loadout-group-security-backpack = Security backpack
+loadout-group-security-head = Security Head
+loadout-group-security-jumpsuit = Security Jumpsuit
+loadout-group-security-backpack = Security Backpack
 loadout-group-security-belt = Security Belt
-loadout-group-security-outerclothing = Security outer clothing
-loadout-group-security-shoes = Security shoes
+loadout-group-security-outerclothing = Security Outer Clothing
+loadout-group-security-shoes = Security Shoes
 loadout-group-security-id = Security ID
 loadout-group-security-weapon = Security Weapon
-loadout-group-security-eyewear = Security eyewear
+loadout-group-security-eyewear = Security Eyewear
 
-loadout-group-brigmedic-head = Brigmedic head
-loadout-group-brigmedic-jumpsuit = Brigmedic jumpsuit
-loadout-group-brigmedic-backpack = Brigmedic backpack
-loadout-group-brigmedic-belt = Brigmedic belt
-loadout-group-brigmedic-outerclothing = Brigmedic outer clothing
-loadout-group-brigmedic-eyewear = Brigmedic eyewear
+loadout-group-brigmedic-head = Brigmedic Head
+loadout-group-brigmedic-jumpsuit = Brigmedic Jumpsuit
+loadout-group-brigmedic-backpack = Brigmedic Backpack
+loadout-group-brigmedic-belt = Brigmedic Belt
+loadout-group-brigmedic-outerclothing = Brigmedic Outer Clothing
+loadout-group-brigmedic-eyewear = Brigmedic Eyewear
 
-loadout-group-detective-head = Detective head
-loadout-group-detective-neck = Detective neck
-loadout-group-detective-jumpsuit = Detective jumpsuit
-loadout-group-detective-outerclothing = Detective outer clothing
+loadout-group-detective-head = Detective Head
+loadout-group-detective-neck = Detective Neck
+loadout-group-detective-jumpsuit = Detective Jumpsuit
+loadout-group-detective-outerclothing = Detective Outer Clothing
 
-loadout-group-security-cadet-jumpsuit = Security cadet jumpsuit
+loadout-group-security-cadet-jumpsuit = Security Cadet Jumpsuit
 loadout-group-security-star = Security Star
 
 # Medical
-loadout-group-medical-gloves = Medical gloves
-loadout-group-medical-mask = Medical mask
+loadout-group-medical-gloves = Medical Gloves
+loadout-group-medical-mask = Medical Mask
 
-loadout-group-chief-medical-officer-head = Chief Medical Officer head
-loadout-group-chief-medical-officer-jumpsuit = Chief Medical Officer jumpsuit
-loadout-group-chief-medical-officer-outerclothing = Chief Medical Officer outer clothing
-loadout-group-chief-medical-officer-shoes = Chief Medical Officer shoes
-loadout-group-chief-medical-officer-neck = Chief Medical Officer neck
+loadout-group-chief-medical-officer-head = Chief Medical Officer Head
+loadout-group-chief-medical-officer-jumpsuit = Chief Medical Officer Jumpsuit
+loadout-group-chief-medical-officer-outerclothing = Chief Medical Officer Outer Clothing
+loadout-group-chief-medical-officer-shoes = Chief Medical Officer Shoes
+loadout-group-chief-medical-officer-neck = Chief Medical Officer Neck
 
-loadout-group-medical-doctor-head = Medical Doctor head
-loadout-group-medical-doctor-jumpsuit = Medical Doctor jumpsuit
-loadout-group-medical-doctor-outerclothing = Medical Doctor outer clothing
-loadout-group-medical-doctor-backpack = Medical Doctor backpack
-loadout-group-medical-doctor-shoes = Medical Doctor shoes
+loadout-group-medical-doctor-head = Medical Doctor Head
+loadout-group-medical-doctor-jumpsuit = Medical Doctor Jumpsuit
+loadout-group-medical-doctor-outerclothing = Medical Doctor Outer Clothing
+loadout-group-medical-doctor-backpack = Medical Doctor Backpack
+loadout-group-medical-doctor-shoes = Medical Doctor Shoes
 loadout-group-medical-doctor-id = Medical Doctor ID
 
-loadout-group-medical-intern-jumpsuit = Medical intern jumpsuit
+loadout-group-medical-intern-jumpsuit = Medical intern Jumpsuit
 
-loadout-group-chemist-jumpsuit = Chemist jumpsuit
-loadout-group-chemist-outerclothing = Chemist outer clothing
-loadout-group-chemist-backpack = Chemist backpack
+loadout-group-chemist-jumpsuit = Chemist Jumpsuit
+loadout-group-chemist-outerclothing = Chemist Outer Clothing
+loadout-group-chemist-backpack = Chemist Backpack
 
-loadout-group-paramedic-head = Paramedic head
-loadout-group-paramedic-jumpsuit = Paramedic jumpsuit
-loadout-group-paramedic-outerclothing = Paramedic outer clothing
-loadout-group-paramedic-shoes = Paramedic shoes
+loadout-group-paramedic-head = Paramedic Head
+loadout-group-paramedic-jumpsuit = Paramedic Jumpsuit
+loadout-group-paramedic-outerclothing = Paramedic Outer Clothing
+loadout-group-paramedic-shoes = Paramedic Shoes
 
-loadout-group-medical-glasses = Medical glasses
+loadout-group-medical-glasses = Medical Eyewear
 
 # Wildcards
-loadout-group-reporter-jumpsuit = Reporter jumpsuit
+loadout-group-reporter-jumpsuit = Reporter Jumpsuit
 
-loadout-group-psychologist-jumpsuit = Psychologist jumpsuit
+loadout-group-psychologist-jumpsuit = Psychologist Jumpsuit
 
-loadout-group-boxer-jumpsuit = Boxer jumpsuit
-loadout-group-boxer-gloves = Boxer gloves
+loadout-group-boxer-jumpsuit = Boxer Jumpsuit
+loadout-group-boxer-gloves = Boxer Gloves
+
+## Far Horizons - End - The end of the Capitalization Crusade.
