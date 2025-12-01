@@ -1,7 +1,7 @@
 - type: entity
   parent: BaseComputerAiAccess
   id: ComputerAlert
-  name: atmospheric alerts computer
+  name: Atmospheric Alerts Computer #Far Horizons - The Great Capitalization Crusade
   description: Used to access the station's atmospheric automated alert system.
   components:
   - type: Computer
@@ -56,7 +56,7 @@
 - type: entity
   parent: BaseComputerAiAccess
   id: ComputerAtmosMonitoring
-  name: atmospheric network monitor
+  name: Atmospheric Network Monitor #Far Horizons - The Great Capitalization Crusade
   description: Used to monitor the station's atmospheric networks.
   components:
   - type: Computer
@@ -93,7 +93,7 @@
 - type: entity
   parent: BaseComputer
   id: ComputerEmergencyShuttle
-  name: emergency shuttle console
+  name: Emergency Shuttle Console #Far Horizons - The Great Capitalization Crusade
   description: Handles authorization to early launch the shuttle.
   components:
   - type: AccessReader
@@ -116,7 +116,7 @@
 - type: entity
   parent: BaseComputerAiAccess
   id: BaseComputerShuttle
-  name: shuttle console
+  name: Shuttle Console #Far Horizons - The Great Capitalization Crusade
   description: Used to pilot a shuttle.
   abstract: true
   components:
@@ -147,7 +147,7 @@
         whitelist:
           components:
           - ShuttleDestinationCoordinates
-  - type: ContainerContainer
+  - type: Containercontainer
     containers:
       board: !type:Container
         ents: []
@@ -159,7 +159,7 @@
 - type: entity
   parent: BaseComputerShuttle
   id: ComputerShuttle
-  name: shuttle console
+  name: Shuttle Console #Far Horizons - The Great Capitalization Crusade
   description: Used to pilot a shuttle.
   components:
   - type: Sprite
@@ -180,7 +180,7 @@
 - type: entity
   parent: BaseComputerShuttle
   id: ComputerShuttleSyndie
-  name: syndicate shuttle console
+  name: Syndicate Shuttle Console #Far Horizons - The Great Capitalization Crusade
   description: Used to pilot a syndicate shuttle.
   components:
   - type: Sprite
@@ -212,7 +212,7 @@
 - type: entity
   parent: BaseComputerShuttle
   id: ComputerShuttleCargo
-  name: cargo shuttle console
+  name: Cargo Shuttle Console #Far Horizons - The Great Capitalization Crusade
   description: Used to pilot the cargo shuttle.
   components:
   - type: Sprite
@@ -245,7 +245,7 @@
 - type: entity
   parent: BaseComputerAiAccess
   id: ComputerIFF
-  name: IFF computer
+  name: IFF Computer #Far Horizons - The Great Capitalization Crusade
   description: Allows you to control the IFF characteristics of this vessel.
   components:
   - type: IFFConsole
@@ -276,7 +276,7 @@
 - type: entity
   parent: ComputerIFF
   id: ComputerIFFSyndicate
-  name: IFF computer
+  name: IFF Computer #Far Horizons - The Great Capitalization Crusade
   suffix: Syndicate
   description: Allows you to control the IFF and stealth characteristics of this vessel.
   components:
@@ -298,7 +298,7 @@
 - type: entity
   parent: BaseComputerAiAccess
   id: ComputerPowerMonitoring
-  name: power monitoring computer
+  name: Power Monitoring Computer #Far Horizons - The Great Capitalization Crusade
   description: It monitors power levels across the station.
   components:
   - type: Sprite
@@ -340,7 +340,7 @@
 - type: entity
   parent: BaseComputerAiAccess
   id: ComputerMedicalRecords
-  name: medical records computer
+  name: Medical Records Computer #Far Horizons - The Great Capitalization Crusade
   description: This can be used to check medical records.
   components:
   - type: Sprite
@@ -455,7 +455,7 @@
 - type: entity
   parent: BaseComputerAiAccess
   id: ComputerCrewMonitoring
-  name: crew monitoring console
+  name: Crew Monitoring Console #Far Horizons - The Great Capitalization Crusade
   description: Used to monitor active health sensors built into most of the crew's uniforms.
   components:
   - type: Sprite
@@ -494,7 +494,7 @@
 - type: entity
   parent: BaseComputerAiAccess
   id: ComputerResearchAndDevelopment
-  name: R&D computer
+  name: R&D Computer #Far Horizons - The Great Capitalization Crusade
   description: A computer used to interface with R&D tools.
   components:
   - type: Sprite
@@ -543,7 +543,7 @@
 - type: entity
   parent: BaseComputerAiAccess
   id: ComputerAnalysisConsole
-  name: analysis console
+  name: Analysis Console #Far Horizons - The Great Capitalization Crusade
   description: A computer used to interface with the artifact analyzer.
   components:
   - type: Sprite
@@ -593,7 +593,7 @@
 - type: entity
   parent: BaseComputerAiAccess
   id: ComputerId
-  name: ID card computer
+  name: ID Card Computer #Far Horizons - The Great Capitalization Crusade
   description: Terminal for programming Nanotrasen employee ID cards to access parts of the station.
   components:
   - type: IdCardConsole
@@ -670,7 +670,7 @@
 - type: entity
   parent: BaseComputerAiAccess
   id: computerBodyScanner
-  name: operating computer # Starlight-edit
+  name: Operating Computer # Starlight-Edit #Far Horizons - The Great Capitalization Crusade
   description: A body scanner.
   components:
   - type: ApcPowerReceiver
@@ -723,7 +723,7 @@
 - type: entity
   parent: BaseComputerAiAccess
   id: ComputerComms
-  name: communications computer
+  name: Communications Computer #Far Horizons - The Great Capitalization Crusade
   description: A computer used to make station wide announcements via keyboard, set the appropriate alert level, and call the emergency shuttle.
   components:
   - type: Sprite
@@ -794,7 +794,7 @@
 - type: entity
   parent: ComputerComms
   id: SyndicateComputerComms
-  name: syndicate communications computer
+  name: Syndicate Communications Computer #Far Horizons - The Great Capitalization Crusade
   description: A computer capable of remotely hacking into the station's communications systems. Using this to make an announcement will alert the station to your presence.
   components:
   - type: Sprite
@@ -855,7 +855,7 @@
 - type: entity
   parent: ComputerComms
   id: WizardComputerComms
-  name: wizard communications computer
+  name: Wizard Communications Computer #Far Horizons - The Great Capitalization Crusade
   description: A computer capable of magically projecting your speech to the station. Using this to make an announcement will alert the station to your presence.
   components:
   - type: Sprite
@@ -916,7 +916,7 @@
 - type: entity
   parent: ComputerComms
   id: CentcommComputerComms
-  name: central command communications computer
+  name: Central Command Communications Computer #Far Horizons - The Great Capitalization Crusade
   description: A computer used to make world wide announcements via keyboard. The superior cousin of the regular communications computer.
   components:
   - type: Sprite
@@ -975,7 +975,7 @@
 - type: entity
   parent: BaseComputerAiAccess
   id: ComputerSolarControl
-  name: solar control computer
+  name: Solar Control Computer #Far Horizons - The Great Capitalization Crusade
   description: A controller for solar panel arrays.
   components:
   - type: Sprite
@@ -1013,7 +1013,7 @@
 - type: entity
   parent: BaseComputerAiAccess
   id: ComputerRadar
-  name: mass scanner computer
+  name: Mass Scanner Computer #Far Horizons - The Great Capitalization Crusade
   description: A computer for detecting nearby bodies, displaying them by position and mass.
   components:
   - type: Sprite
@@ -1047,7 +1047,7 @@
 - type: entity
   id: ComputerCargoOrders
   parent: BaseComputerAiAccess
-  name: cargo request computer
+  name: Cargo Request Computer #Far Horizons - The Great Capitalization Crusade
   description: Used to order supplies and approve requests.
   components:
   - type: Sprite
@@ -1100,7 +1100,7 @@
 - type: entity
   id: ComputerCargoOrdersEngineering
   parent: ComputerCargoOrders
-  name: engineering request computer
+  name: Engineering Request Computer #Far Horizons - The Great Capitalization Crusade
   description: Used by the engineering department to order supplies.
   components:
   - type: Sprite
@@ -1133,7 +1133,7 @@
 - type: entity
   id: ComputerCargoOrdersMedical
   parent: ComputerCargoOrders
-  name: medical request computer
+  name: Medical Request Computer #Far Horizons - The Great Capitalization Crusade
   description: Used by the medical department to order supplies.
   components:
   - type: Sprite
@@ -1166,7 +1166,7 @@
 - type: entity
   id: ComputerCargoOrdersScience
   parent: ComputerCargoOrders
-  name: science request computer
+  name: Science Request Computer #Far Horizons - The Great Capitalization Crusade
   description: Used by the science department to order supplies.
   components:
   - type: Sprite
@@ -1200,7 +1200,7 @@
 - type: entity
   id: ComputerCargoOrdersSecurity
   parent: ComputerCargoOrders
-  name: security request computer
+  name: Security Request Computer #Far Horizons - The Great Capitalization Crusade
   description: Used by the security department to order supplies.
   components:
   - type: Sprite
@@ -1233,7 +1233,7 @@
 - type: entity
   id: ComputerCargoOrdersService
   parent: ComputerCargoOrders
-  name: service request computer
+  name: Service Request Computer #Far Horizons - The Great Capitalization Crusade
   description: Used by the service department to order supplies.
   components:
   - type: Sprite
@@ -1266,7 +1266,7 @@
 - type: entity
   id: ComputerCargoBounty
   parent: BaseComputerAiAccess
-  name: cargo bounty computer
+  name: Cargo Bounty Computer #Far Horizons - The Great Capitalization Crusade
   description: Used to manage currently active bounties.
   components:
   - type: Sprite
@@ -1306,7 +1306,7 @@
 - type: entity
   parent: BaseComputerAiAccess
   id: ComputerFundingAllocation
-  name: funding allocation computer
+  name: Funding Allocation Computer #Far Horizons - The Great Capitalization Crusade
   description: Terminal for controlling the distribution of funds and pay to departments.
   components:
   - type: Sprite
@@ -1343,7 +1343,7 @@
 - type: entity
   parent: BaseComputerAiAccess
   id: ComputerCloningConsole
-  name: cloning console computer
+  name: Cloning Console Computer #Far Horizons - The Great Capitalization Crusade
   description: The centerpiece of the cloning system, medicine's greatest accomplishment. It has lots of ports and wires.
   components:
   - type: CloningConsole
@@ -1396,7 +1396,7 @@
 - type: entity
   parent: BaseComputerAiAccess
   id: ComputerSalvageJobBoard
-  name: salvage job board
+  name: Salvage Job Board #Far Horizons - The Great Capitalization Crusade
   description: Console for accessing salvage jobs, if you're tough enough.
   components:
   - type: Sprite
@@ -1432,7 +1432,7 @@
 - type: entity
   id: ComputerSalvageExpedition
   parent: BaseComputerAiAccess
-  name: salvage expeditions computer
+  name: Salvage Expeditions Computer #Far Horizons - The Great Capitalization Crusade
   description: Used to accept salvage missions, if you're tough enough.
   components:
     - type: Sprite
@@ -1488,7 +1488,7 @@
 - type: entity
   parent: BaseComputer
   id: ComputerSurveillanceCameraMonitor
-  name: camera monitor
+  name: Camera Monitor #Far Horizons - The Great Capitalization Crusade
   description: A surveillance camera monitor. You're watching them. Maybe.
   components:
   - type: Sprite
@@ -1527,7 +1527,7 @@
 - type: entity
   parent: BaseComputer
   id: ComputerSurveillanceWirelessCameraMonitor
-  name: wireless camera monitor
+  name: Wireless Camera Monitor #Far Horizons - The Great Capitalization Crusade
   description: A wireless surveillance camera monitor. You're watching them. Maybe.
   components:
   - type: Sprite
@@ -1568,7 +1568,7 @@
 - type: entity
   parent: ComputerSurveillanceWirelessCameraMonitor
   id: ComputerSurveillanceWirelessXenoborgCameraMonitor
-  name: xenoborg camera monitor
+  name: Xenoborg Camera Monitor #Far Horizons - The Great Capitalization Crusade
   description: A wireless xenoborg camera monitor. You're watching them. Maybe.
   components:
   - type: Computer
@@ -1583,7 +1583,7 @@
 - type: entity
   id: ComputerPalletConsole
   parent: BaseComputerAiAccess
-  name: cargo sale computer
+  name: Cargo Sale Computer #Far Horizons - The Great Capitalization Crusade
   description: Used to sell goods loaded onto cargo pallets.
   components:
   - type: Sprite
@@ -1623,7 +1623,7 @@
 - type: entity
   parent: BaseComputerAiAccess
   id: ComputerMassMedia
-  name: news manager console
+  name: News Manager Console #Far Horizons - The Great Capitalization Crusade
   description: Write your message to the world!
   components:
   - type: Sprite
@@ -1659,7 +1659,7 @@
 - type: entity
   parent: BaseComputer
   id: ComputerSensorMonitoring
-  name: sensor monitoring computer
+  name: Sensor Monitoring Computer #Far Horizons - The Great Capitalization Crusade
   description: A flexible console for monitoring all kinds of sensors.
   # Putting this as "DO NOT MAP" until the performance issues are fixed.
   # And it's more fleshed out.
@@ -1707,7 +1707,7 @@
 - type: entity
   parent: BaseComputerAiAccess
   id: ComputerRoboticsControl
-  name: robotics control console
+  name: Robotics Control Console #Far Horizons - The Great Capitalization Crusade
   description: Used to remotely monitor, disable and destroy the station's cyborgs.
   components:
   - type: Sprite
@@ -1751,7 +1751,7 @@
 - type: entity
   parent: ComputerRoboticsControl
   id: ComputerXenoborgsControl
-  name: xenoborgs control console
+  name: Xenoborgs Control Console #Far Horizons - The Great Capitalization Crusade
   description: Used to remotely monitor all xenoborgs.
   components:
   - type: Sprite
@@ -1785,7 +1785,7 @@
 - type: entity
   id: StationAiUploadComputer
   parent: BaseComputer
-  name: AI upload console
+  name: AI Upload Console #Far Horizons - The Great Capitalization Crusade
   description: Used to update the laws of the station AI.
   components:
   - type: Sprite
@@ -1833,7 +1833,7 @@
 - type: entity
   id: StationAiFixerComputer
   parent: BaseComputer
-  name: AI restoration console
+  name: AI Restoration Console #Far Horizons - The Great Capitalization Crusade
   description: Used to repair damaged artifical intelligences.
   components:
   - type: Sprite
