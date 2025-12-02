@@ -827,7 +827,7 @@
 
 - type: hitscan
   id: RedLaserBeam
-  name: laser beam
+  name: Laser Beam #Far Horizons - The Great Capitalization Crusade
   parent: LaserTrace
   damage:
     types:
@@ -835,7 +835,7 @@
 
 - type: hitscan
   id: DestroyBeam
-  name: destroying beam
+  name: Destroying Beam #Far Horizons - The Great Capitalization Crusade
   parent: LaserTrace
   muzzleFlash:
     sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
@@ -852,7 +852,7 @@
 
 - type: hitscan
   id: DeleteBeam
-  name: erasing beam
+  name: Erasing Beam #Far Horizons - The Great Capitalization Crusade
   parent: LaserTrace
   muzzleFlash:
     sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
@@ -870,7 +870,7 @@
       
 - type: hitscan
   id: DisablerBoltPractice
-  name: disabler bolt practice
+  name: Disabler Bolt Practice #Far Horizons - The Great Capitalization Crusade
   parent: EnergyTrace
   collisionMask: 64 #BulletImpassable
   bullet:
@@ -880,19 +880,19 @@
 
 - type: hitscan
   id: DisablerBolt
-  name: disabler bolt
+  name: Disabler Bolt #Far Horizons - The Great Capitalization Crusade
   parent: DisablerBoltPractice
   staminaDamage: 25
 
 - type: hitscan
   id: DisablerBoltSmg
-  name: disabler bolt smg
+  name: Disabler Bolt SMG #Far Horizons - The Great Capitalization Crusade
   parent: DisablerBolt
   staminaDamage: 15
       
 - type: hitscan
   id: TaserBolt
-  name: taser bolt
+  name: Taser Bolt #Far Horizons - The Great Capitalization Crusade
   parent: EnergyTrace
   bullet:
     sprite:
@@ -908,7 +908,7 @@
       
 - type: hitscan
   id: TaserBoltExtreme
-  name: taser bolt
+  name: Taser Bolt #Far Horizons - The Great Capitalization Crusade
   parent: EnergyTrace
   bullet:
     sprite:
@@ -924,7 +924,7 @@
       
 - type: hitscan
   id: AdvancedTaserBolt
-  name: taser bolt
+  name: Taser Bolt #Far Horizons - The Great Capitalization Crusade
   parent: EnergyTrace
   bullet:
     sprite:
@@ -940,7 +940,7 @@
       
 - type: hitscan
   id: EmpPulse
-  name: EMP impulse
+  name: EMP Impulse #Far Horizons - The Great Capitalization Crusade
   parent: EnergyTrace
   bullet:
     sprite:
@@ -953,7 +953,7 @@
 
 - type: hitscan
   id: DecloneBolt
-  name: declone bolt
+  name: Declone Bolt #Far Horizons - The Great Capitalization Crusade
   parent: EnergyTrace
   bullet:
     sprite:
@@ -966,7 +966,7 @@
       
 - type: hitscan
   id: SniperBolt
-  name: sniper bolt
+  name: Sniper Bolt #Far Horizons - The Great Capitalization Crusade
   parent: EnergyTrace
   bullet:
     sprite:
@@ -980,7 +980,7 @@
       
 - type: hitscan
   id: EnergyCrossbowBolt
-  name: crossbow bolt
+  name: Crossbow Bolt #Far Horizons - The Great Capitalization Crusade
   bullet:
     sprite:
       sprite: _Starlight/Objects/Weapons/Guns/Projectiles/projectiles.rsi
@@ -996,7 +996,7 @@
       
 - type: hitscan
   id: MiniEnergyCrossbowBolt
-  name: crossbow bolt
+  name: Crossbow Bolt #Far Horizons - The Great Capitalization Crusade
   parent: EnergyCrossbowBolt
   knockdownAmount: 2
   staminaDamage: 40
@@ -1007,7 +1007,7 @@
 - type: entity
   id: ProjectilePolyboltJohnToe
   parent: ProjectilePolyboltBase
-  name: john toe polybolt
+  name: John Toe Polybolt #Far Horizons - The Great Capitalization Crusade
   description: Nooo, I don't wanna be john toe!
   categories: [ HideSpawnMenu ]
   components:
@@ -1022,7 +1022,7 @@
 
 - type: hitscan
   id: PointDefenseBeam
-  name: Point Defense beam
+  name: Point Defense Beam #Far Horizons - The Great Capitalization Crusade
   parent: LaserTrace
   maxLength: 25
   muzzleFlash:
@@ -1039,7 +1039,7 @@
 
 - type: hitscan
   id: BulletAcidHitscan
-  name: acid spit
+  name: Acid Spit #Far Horizons - The Great Capitalization Crusade
   bullet:
     sprite:
       sprite: Objects/Weapons/Guns/Projectiles/xeno_toxic.rsi
