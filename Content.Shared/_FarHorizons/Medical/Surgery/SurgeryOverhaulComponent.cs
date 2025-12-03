@@ -41,12 +41,19 @@ public sealed partial class SurgeryLimbExistConditionComponent : Component
     [DataField]
     public string Slot;
 }
+
 [RegisterComponent, NetworkedComponent]
-public sealed partial class RequireOrganicPartComponent : Component
+public sealed partial class RequireSpecificOrganicPartComponent : Component
 {
     [DataField]
     public string Slot;
 }
+
+[RegisterComponent, NetworkedComponent]
+public sealed partial class RequireOrganicPartComponent : Component;
+
+[RegisterComponent, NetworkedComponent]
+public sealed partial class RequireInorganicPartComponent : Component;
 
 [RegisterComponent, NetworkedComponent] public sealed partial class NecrosisSurgeryComponent : Component;
 
