@@ -1,3 +1,4 @@
+using Content.Shared.Radio;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared._FarHorizons.Research.Components;
@@ -20,8 +21,17 @@ public sealed partial class FHResearchTreeComponent : Component
 
     [DataField]
     public int BankedPoints = 0;
+    [DataField]
+    public int BankCapacity = 15000;
 
     [DataField]
     public int MaxQueueSize = 3;
+    [DataField]
+    public List<ProtoId<RadioChannelPrototype>> AnnounceTo = [];
+
+    [DataField]
+    public TimeSpan WarningFrequency = TimeSpan.Zero;
+
+    public TimeSpan LastWarning = TimeSpan.Zero;
 }
 

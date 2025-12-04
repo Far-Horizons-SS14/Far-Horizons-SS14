@@ -9,3 +9,6 @@ research-tree-label-progress = Research progress: {$progress}/{$required}
 research-tree-requirement-progress = ({$progress}/{$required})
 
 research-tree-console-error-queue-full = Error! Queue is full!
+
+research-tree-bank-full-warning = [bold]Attention![/bold] Maximum amount of research points ([bold]{$amount}[/bold]) has been reached. No more points can be saved on this server. Assign active research at R&D console to avoid losing progress.
+research-tree-unlock-broadcast = Unlocked [bold]{$technology}[/bold] for [bold]{$amount}[/bold] research.

@@ -163,10 +163,12 @@ public sealed partial class ResearchSystem
         if (!Resolve(uid, ref component))
             return;
 
-        // Far Horizons
-        // Try to handle research with FHResearchSystem and fall back to vanilla if it failed
-        if (_fhResearch.HandleResearch(uid, points))
+        // Far Horizons start
+        // Take all of the points for FHResearchSystem, if any left over, continue as normal 
+        points = _fhResearch.HandleResearch(uid, points);
+        if (points == 0)
             return;
+        // Far Horizons end
 
         component.Points += points;
         var ev = new ResearchServerPointsChangedEvent(uid, component.Points, points);

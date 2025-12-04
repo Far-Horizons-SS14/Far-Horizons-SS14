@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Shared.Radio;
 using Content.Shared.Research.Prototypes;
 using Robust.Shared.Prototypes;
 
@@ -22,6 +23,8 @@ public sealed partial class ResearchTreeNodePrototype : IPrototype
 
     [DataField]
     public List<ProtoId<LatheRecipePrototype>> Unlocks = [];
+    [DataField]
+    public List<ProtoId<RadioChannelPrototype>> AnnounceTo = [];
 
     public int GetDepth(IPrototypeManager protoMan)
     {

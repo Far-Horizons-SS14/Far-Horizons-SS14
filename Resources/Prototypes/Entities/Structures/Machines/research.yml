@@ -32,6 +32,19 @@
     - Biochemical
   - type: FHResearchTree # Far Horizons
     tree: ResearchTreeNT
+    maxQueueSize: 3
+    bankCapacity: 15000
+    warningFrequency: 60
+    announceTo:
+      - Science
+  - type: ActiveRadio
+    channels:
+    - Security
+    - Science
+    - Service
+    - Supply
+    - Medical
+    - Engineering
   - type: ApcPowerReceiver
     powerLoad: 200
   - type: ExtensionCableReceiver

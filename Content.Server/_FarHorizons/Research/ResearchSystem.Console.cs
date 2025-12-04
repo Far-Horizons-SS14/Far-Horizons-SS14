@@ -73,8 +73,6 @@ public sealed partial class FHResearchSystem
             researchProgress = server!.Value.Comp.Progress;
             bankedPoints = server!.Value.Comp.BankedPoints;
         }
-        
-        _logManager.GetSawmill("FHResearch").Fatal($"Sending {nodes.Count} nodes");
 
         if (build)
             _ui.SetUiState(ent.Owner, FHResearchConsoleUiKey.Key, new FHResearchConsoleBUIFullState(nodes, unlockedTiers, unlockedNodes, researchedNodes, queuedNodes, researchProgress, bankedPoints));

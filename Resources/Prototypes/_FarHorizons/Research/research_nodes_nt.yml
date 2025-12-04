@@ -19,6 +19,8 @@
     - MechEquipmentKineticAccelerator
     - RadarConsoleCircuitboard
     - HandHeldMassScanner
+  announceTo:
+    - Supply
 
 # Industry
 
@@ -59,6 +61,8 @@
     - RipleyCentralElectronics
     - RipleyPeripheralsElectronics
     - MechEquipmentGrabber
+  announceTo:
+    - Supply
 
 # Sec
 
@@ -72,6 +76,8 @@
     - TelescopicShield
     - HoloprojectorSecurity
     - ClothingBackpackElectropack
+  announceTo:
+    - Security
 
 - type: researchTreeNode
   id: SpecialAmmo
@@ -106,6 +112,8 @@
     - LightRifleHeavyMagazineUranium
     - MagazinePistolSubMachineGunUranium
     - SpeedLoaderShotgunUranium
+  announceTo:
+    - Security
 
 - type: researchTreeNode
   id: LaserGun
@@ -115,6 +123,8 @@
   unlocks:
     - WeaponLaserCarbine
     - WeaponMechCombatFiredartLaser
+  announceTo:
+    - Security
 
 # Space
 
@@ -126,6 +136,8 @@
   unlocks:
     - ThermomachineFreezerMachineCircuitBoard
     - GasRecyclerMachineCircuitboard
+  announceTo:
+    - Engineering
 
 - type: researchTreeNode
   id: AdvAtmospherics
@@ -138,6 +150,8 @@
     - HellfireFreezerMachineCircuitBoard
     - PortableScrubberMachineCircuitBoard
     - HolofanProjector
+  announceTo:
+    - Engineering
 
 - type: researchTreeNode
   id: AstroTiles
@@ -169,6 +183,8 @@
     - SolarControlComputerCircuitboard
     - SolarTrackerElectronics
     - EmitterCircuitboard
+  announceTo:
+    - Engineering
 
 - type: researchTreeNode
   id: AdvPowerCells
@@ -181,6 +197,8 @@
     - PowerCellHigh
     - TurboItemRechargerCircuitboard
     - SMESAdvancedMachineCircuitboard
+  announceTo:
+    - Engineering
 
 - type: researchTreeNode
   id: ExplosiveTech
@@ -195,6 +213,8 @@
     - FlashPayload
     - ExplosivePayload
     - ChemicalPayload
+  announceTo:
+    - Security
 
 # Research
 
@@ -263,6 +283,8 @@
     - DawInstrumentMachineCircuitboard
     - MassMediaCircuitboard
     - JukeboxCircuitBoard
+  announceTo:
+    - Service
 
 - type: researchTreeNode
   id: AVComms
@@ -278,6 +300,8 @@
     - SurveillanceWirelessCameraMonitorCircuitboard
     - TelecomServerCircuitboard
     - HolopadMachineCircuitboard
+  announceTo:
+    - Service
 
 # Robotics
 
@@ -307,7 +331,8 @@
     - RightLegCyber
     - LeftFootCyber
     - RightFootCyber
-  
+  announceTo:
+    - Medical
 
 - type: researchTreeNode
   id: BudgetCyberorgans
@@ -322,6 +347,8 @@
     - BudgetCyberLiver
     - BudgetCyberStomach
     - BudgetCyberKidneys
+  announceTo:
+    - Medical
 
 # Chem
 
@@ -332,6 +359,8 @@
   tier: Tier1
   unlocks:
     - SlowAutoinjector
+  announceTo:
+    - Medical
 
 # Biology
 
@@ -348,6 +377,8 @@
     - Cautery
     - Saw
     - Hemostat
+  announceTo:
+    - Medical
 
 - type: researchTreeNode
   id: MeatManipulation
@@ -358,6 +389,8 @@
     - FatExtractorMachineCircuitboard
     - BiofabricatorMachineCircuitboard
     - BiomassReclaimerMachineCircuitboard
+  announceTo:
+    - Service
 
 - type: researchTreeNode
   id: Hydroponics
@@ -368,6 +401,8 @@
     - SeedExtractorMachineCircuitboard
     - HydroponicsTrayMachineCircuitboard
     - ReagentGrinderIndustrialMachineCircuitboard
+  announceTo:
+    - Service
 
 ---
 
@@ -388,6 +423,8 @@
     - AdvancedMineralScannerEmpty
     - MechEquipmentDrillDiamond
     - BorgModuleAdvancedMining
+  announceTo:
+    - Supply
 
 - type: researchTreeNode
   id: AdvancedTools
@@ -403,6 +440,8 @@
     - BorgModuleAdvancedTool
     - Fulton
     - FultonBeacon
+  announceTo:
+    - Engineering
 
 - type: researchTreeNode
   id: RecreationalMech
@@ -431,6 +470,8 @@
     - HamtrPeripheralsElectronics
     - MechEquipmentGrabberSmall
     - VimHarness
+  announceTo:
+    - Service
 
 - type: researchTreeNode
   id: IndustialMech
@@ -450,6 +491,8 @@
     - ClarkePeripheralsElectronics
     - RipleyMKIIHarness
     - RipleyUpgradeKit
+  announceTo:
+    - Supply
 
 # Sec
 
@@ -464,6 +507,9 @@
     - PKAUpgradeDamage
     - PKAUpgradeRange
     - PKAUpgradeFireRate
+  announceTo:
+    - Security
+    - Supply
 
 - type: researchTreeNode
   id: APAmmo
@@ -485,6 +531,8 @@
     - MagazineBoxLightRifleAP
     - LightRifleHeavyMagazineAP
     - MagazinePistolSubMachineGunAP
+  announceTo:
+    - Security
 
 - type: researchTreeNode
   id: PaddyMech
@@ -496,6 +544,8 @@
     - RiotControl
   unlocks:
     - PaddyUpgradeKit
+  announceTo:
+    - Security
 
 # Space
 
@@ -512,6 +562,9 @@
     - ThrusterMachineCircuitboard
     - GyroscopeMachineCircuitboard
     - MiniGravityGeneratorCircuitboard
+  announceTo:
+    - Supply
+    - Engineering
 
 - type: researchTreeNode
   id: PointDefense
@@ -522,7 +575,10 @@
     - Shuttlecraft
   unlocks:
     - WeaponTurretPointDefenseMachineCircuitboard
-  
+  announceTo:
+    - Security
+    - Supply
+    - Engineering
 
 - type: researchTreeNode
   id: ShuttleArmament
@@ -541,6 +597,10 @@
     - ShuttleGunSvalinnMachineGunCircuitboard
     - ShuttleGunPerforatorCircuitboard
     - ShuttleGunFriendshipCircuitboard
+  announceTo:
+    - Security
+    - Supply
+    - Engineering
 
 # Lasers
 
@@ -554,6 +614,8 @@
   unlocks:
     - WeaponIonRifle
     - WeaponIonCarbine
+  announceTo:
+    - Security
 
 - type: researchTreeNode
   id: RayGun
@@ -564,6 +626,8 @@
     - LaserGun
   unlocks:
     - WeaponXrayCannon
+  announceTo:
+    - Security
 
 - type: researchTreeNode
   id: LaserGun2
@@ -576,6 +640,8 @@
     - WeaponLaserCannon
     - WeaponMechCombatSolarisLaser
     - WeaponLaserImmolator
+  announceTo:
+    - Security
 
 # Power
 
@@ -593,6 +659,9 @@
     - EmptyBottleReinforced
     - JugReinforced
     - ReinforcedMiniatureEmptyChemistryVial
+  announceTo:
+    - Security
+    - Medical
 
 - type: researchTreeNode
   id: EnergyBarriers
@@ -603,6 +672,8 @@
     - AdvPowerCells
   unlocks:
     - EnergyDomeTurtle
+  announceTo:
+    - Engineering
 
 # Research
 
@@ -655,6 +726,8 @@
   unlocks:
     - WeaponParticleDecelerator
     - HoloprojectorField
+  announceTo:
+    - Engineering
 
 # Civ
 
@@ -668,6 +741,8 @@
   unlocks:
     - MechEquipmentHonkerBananaMortar
     - MechEquipmentHonkerMousetrapMortar
+  announceTo:
+    - Service
 
 # Robotics
 
@@ -707,6 +782,8 @@
   unlocks:
     - PushHorn
     - BorgModuleAdvancedClowning
+  announceTo:
+    - Service
 
 - type: researchTreeNode
   id: AdvMedBorg
@@ -718,6 +795,8 @@
     - Cyberlimbs
   unlocks:
     - BorgModuleAdvancedChemical
+  announceTo:
+    - Medical
 
 # Cybernetics
 
@@ -742,6 +821,10 @@
     - EyeImplantWelding
     - EyeImplantMedical
     - EyeImplantSecurity
+  announceTo:
+    - Security
+    - Medical
+    - Engineering
 
 # Chem
 
@@ -756,6 +839,8 @@
     - AdvMopItem
     - MegaSprayBottle
     - BorgModuleAdvancedCleaning
+  announceTo:
+    - Service
 
 - type: researchTreeNode
   id: AdvSpray
@@ -784,6 +869,8 @@
     - BoneSetterAdvanced
     - RetractorAdvanced
     - HemostatAdvanced
+  announceTo:
+    - Medical
 
 - type: researchTreeNode
   id: StasisBed
@@ -798,6 +885,8 @@
     - CryoPodMachineCircuitboard
     - CryostasisBeaker
     - SyringeCryostasis
+  announceTo:
+    - Medical
 
 ---
 
@@ -825,6 +914,8 @@
     - GygaxPeripheralsElectronics
     - GygaxTargetingElectronics
     - WeaponMechCombatUltraRifle
+  announceTo:
+    - Security
 
 - type: researchTreeNode
   id: DurandMech
@@ -846,6 +937,8 @@
     - DurandTargetingElectronics
     - WeaponMechCombatShotgun
     - WeaponMechCombatShotgunIncendiary
+  announceTo:
+    - Security
 
 # Space
 
@@ -860,6 +953,10 @@
     - GrenadeEMP
     - PowerCageHigh
     - ShuttleGunDusterCircuitboard
+  announceTo:
+    - Security
+    - Supply
+    - Engineering
 
 - type: researchTreeNode
   id: ScanGates
@@ -870,6 +967,8 @@
     - AdvShuttleWeapons
   unlocks:
     - ScanGateMachineCircuitboard
+  announceTo:
+    - Security
 
 # Power
 
@@ -882,6 +981,8 @@
     - BlastproofContainers
   unlocks:
     - WeaponMechCombatMissileRack8
+  announceTo:
+    - Security
 
 - type: researchTreeNode
   id: Microreactor
@@ -894,6 +995,8 @@
   unlocks:
     - PowerCellMicroreactor
     - PowerCellHyper
+  announceTo:
+    - Engineering
 
 # Energy weapons
 
@@ -907,6 +1010,8 @@
   unlocks:
     - WeaponLaserSvalinn
     - WeaponTemperatureGun
+  announceTo:
+    - Security
 
 - type: researchTreeNode
   id: AdvLaserPistol
@@ -921,6 +1026,8 @@
     - WeaponAdvancedLaser
     - PortableRecharger
     - WeaponMechCombatImmolationGun
+  announceTo:
+    - Security
 
 - type: researchTreeNode
   id: Declone
@@ -931,6 +1038,8 @@
     - AdvLaserPistol
   unlocks:
     - WeaponDecloner
+  announceTo:
+    - Security
 
 # Physics / bluespace
 
@@ -964,6 +1073,8 @@
     - SpeedBoot
   unlocks:
     - CargoTelepadMachineCircuitboard
+  announceTo:
+    - Supply
 
 - type: researchTreeNode
   id: BluespaceBag
@@ -1010,6 +1121,10 @@
     - RightArmCyberMechwright
     - LeftArmCyberBulwark
     - RightArmCyberBulwark
+  announceTo:
+    - Security
+    - Medical
+    - Engineering
 
 - type: researchTreeNode
   id: NVEyes
@@ -1020,6 +1135,8 @@
     - EyeImplants
   unlocks:
     - CyberEyeNightVision
+  announceTo:
+    - Medical
 
 - type: researchTreeNode
   id: ThermalEyes
@@ -1030,6 +1147,8 @@
     - EyeImplants
   unlocks:
     - CyberEyeThermal
+  announceTo:
+    - Medical
 
 # Cyborgs
 
@@ -1071,6 +1190,8 @@
   unlocks:
     - SecborgEndoskeleton
     - BorgModuleLaserCarbine
+  announceTo:
+    - Security
 
 # Chem
 
@@ -1085,6 +1206,8 @@
   unlocks:
     - LauncherSyringe
     - MiniSyringe
+  announceTo:
+    - Medical
 
 - type: researchTreeNode
   id: Cloning
@@ -1099,3 +1222,5 @@
     - CloningConsoleComputerCircuitboard 
     - CloningPodMachineCircuitboard 
     - MedicalScannerMachineCircuitboard
+  announceTo:
+    - Medical

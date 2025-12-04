@@ -1,6 +1,8 @@
 using System.Linq;
+using System.Threading.Channels;
 using Content.Shared._FarHorizons.Research;
 using Content.Shared._FarHorizons.Research.Components;
+using Content.Shared.Radio;
 using Content.Shared.Research.Components;
 using Robust.Shared.Prototypes;
 
@@ -8,19 +10,18 @@ namespace Content.Server._FarHorizons.Research;
 
 public sealed partial class FHResearchSystem
 {
-    public bool HandleResearch(Entity<FHResearchTreeComponent?> ent, int points)
+    public int HandleResearch(Entity<FHResearchTreeComponent?> ent, int points)
     {
-        if (!Resolve(ent, ref ent.Comp) || 
-            ent.Comp.Queue.Count == 0)
-            return false;
-        
-        var totalPoints = points;
-        while (totalPoints > 0)
-            Research ((ent, ent.Comp), ref totalPoints);
+        if (!Resolve(ent, ref ent.Comp))
+            return points;
+
+        var pointsAfter = points;
+        while (pointsAfter > 0)
+            Research((ent, ent.Comp), ref pointsAfter);
 
         RefreshUIOnClients(ent);
-        
-        return true;
+
+        return pointsAfter;
     }
 
     public void Research(Entity<FHResearchTreeComponent> ent, ref int points)
@@ -30,8 +31,7 @@ public sealed partial class FHResearchSystem
 
         if (ent.Comp.Queue.Count == 0)
         {
-            ent.Comp.BankedPoints += points;
-            points = 0;
+            AddBankedPoints(ent, ref points);
             return;
         }
 
@@ -53,6 +53,34 @@ public sealed partial class FHResearchSystem
         }
     }
 
+    public void AddBankedPoints(Entity<FHResearchTreeComponent> ent, ref int points)
+    {
+        ent.Comp.BankedPoints += points;
+        points = 0;
+
+        if (ent.Comp.BankedPoints > ent.Comp.BankCapacity)
+        {
+            ent.Comp.BankedPoints = ent.Comp.BankCapacity;
+            SendBankFullWarning(ent);
+        }
+    }
+
+    public void SendBankFullWarning(Entity<FHResearchTreeComponent> ent)
+    {
+        if (_timing.CurTime > ent.Comp.LastWarning + ent.Comp.WarningFrequency)
+        {
+            ent.Comp.LastWarning = _timing.CurTime;
+            SendAnnouncement(ent, Loc.GetString("research-tree-bank-full-warning", ("amount", ent.Comp.BankCapacity)));
+        }
+    }
+
+    public void SendAnnouncement(Entity<FHResearchTreeComponent> ent, string message) => SendAnnouncement(ent, message, []);
+    public void SendAnnouncement(Entity<FHResearchTreeComponent> ent, string message, List<ProtoId<RadioChannelPrototype>> channels)
+    {
+        foreach (var channel in ent.Comp.AnnounceTo.Union(channels))
+            _radio.SendRadioMessage(ent, message, channel, ent, escapeMarkup: false);
+    }
+
     public void UnlockNode(Entity<FHResearchTreeComponent> ent, ProtoId<ResearchTreeNodePrototype> node)
     {
         ent.Comp.Queue.Remove(node);
@@ -66,6 +94,8 @@ public sealed partial class FHResearchSystem
 
         foreach(var recipe in nodeProto.Unlocks)
             _research.AddLatheRecipe(ent, recipe, techDb);
+
+        SendAnnouncement(ent, Loc.GetString("research-tree-unlock-broadcast", ("technology", nodeProto.Name), ("amount", nodeProto.Cost)), nodeProto.AnnounceTo);
     }
 
     public void AddResearchToQueue(Entity<FHResearchTreeComponent?> ent, ProtoId<ResearchTreeNodePrototype> node)
@@ -79,12 +109,16 @@ public sealed partial class FHResearchSystem
             var nodes = GetTreeNodes((ent, ent.Comp));
             if (nodes.Contains(nodeProto) && IsNodeUnlocked((ent, ent.Comp), nodeProto))
                 ent.Comp.Queue.Add(node);
-            while (ent.Comp.BankedPoints > 0)
-                Research ((ent, ent.Comp), ref ent.Comp.BankedPoints);
+
+            if (ent.Comp.BankedPoints > 0)
+            {
+                var points = ent.Comp.BankedPoints;
+                ent.Comp.BankedPoints = 0;
+                HandleResearch(ent, points);
+            } else
+                RefreshUIOnClients(ent);
         } else
             SendErrorToClients(ent, Loc.GetString("research-tree-console-error-queue-full"));
-
-        RefreshUIOnClients(ent);
     }
 
     public void RemoveResearchFromQueue(Entity<FHResearchTreeComponent?> ent, ProtoId<ResearchTreeNodePrototype> node)
