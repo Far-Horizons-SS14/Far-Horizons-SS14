@@ -32,6 +32,14 @@
   - type: OrganVisualization
     layer: Eyes
     prototype: MobHumanoidEyes
+  - type: HumanoidEMPCompositeElement
+    effect:
+      stunAmount: 0.5
+      additionalEffects:
+        StatusEffectBlinded: 10.0
+      damageAmount:
+        types:
+          Shock: 1
 
 - type: entity
   id: OrganIPCTongue
