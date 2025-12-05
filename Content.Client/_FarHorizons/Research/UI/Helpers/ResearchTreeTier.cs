@@ -3,32 +3,53 @@ using Robust.Client.Graphics;
 
 namespace Content.Client._FarHorizons.Research.UI.Helpers;
 
-public struct DrawResearchTier (string name, Font? font, int? left, int? right, Color bgColor, Vector2? pos = null)
+public struct DrawResearchTier (string name, Font? font, int? left, int? right, Vector2 spacing, Vector2 margin, Vector2 size, Color bgColor, Vector2? offset = null)
 {
     public string Name = name;
     public Font? Font = font;
     public int? Left = left;
     public int? Right = right;
 
+    public Vector2 Spacing = spacing;
+    public Vector2 Margin = margin;
+    public Vector2 Size = size;
+
     public Color BgColor = bgColor;
 
-    private Vector2? _position = pos;
-    public Vector2 Position
-    {
-        get => _position ?? (Vector2)(_position = Vector2.Zero);
-        set => _position = value;
+    public readonly Vector2 LeftPos => new(Left == null ? 0 : Offset.X + Margin.X - (Spacing.X / 2) + (Left!.Value * (Size.X + Spacing.X)), 0);
+    public readonly Vector2 RightPos => new(Right == null ? 3000 : Offset.X + Margin.X - (Spacing.X / 2) + (Right!.Value * (Size.X + Spacing.X)), 3000);
+    public readonly UIBox2 Box => new(LeftPos, RightPos);
+
+    private Vector2? _offset = offset;
+    public Vector2 Offset {
+        readonly get => _offset ?? Vector2.Zero;
+        set => _offset = value;
     }
 
-    public UIBox2 Box => 
-        new(new(Left == null ? 0 : Left.Value + Position.X, 0), 
-            new(Right == null ? 3000 : Right.Value + Position.X, 3000)); //Imma just hardcode some large nubmers here and assume you don't have a screen large enough. Surely nobody will have 3k pixels in a single window, right?
+    public DrawResearchTier (DrawResearchTier other) 
+        : this(
+            other.Name, 
+            other.Font, 
+            other.Left, 
+            other.Right, 
+            other.Spacing,
+            other.Margin,
+            other.Size,
+            other.BgColor,
+            other.Offset
+        ){}
 
-    public DrawResearchTier (DrawResearchTier other) : this(other.Name, other.Font, other.Left, other.Right, other.BgColor, other.Position){}
-
+    public DrawResearchTier Zoom(float zoom) =>
+        new(this)
+        {
+            Size = Size * zoom,
+            Spacing = Spacing * zoom,
+            Margin = Margin * zoom
+        };
     public DrawResearchTier Translate(Vector2 offset) =>
         new(this)
         {
-            Position = Position + offset,
+            Offset = offset,
         };
 
     public DrawResearchTier RemoveRight() =>
@@ -47,7 +68,7 @@ public struct DrawResearchTier (string name, Font? font, int? left, int? right, 
             var dimensions = handle.GetDimensions(Font, Name, 0.8f);
             Vector2 pos = new(Math.Max(0, Box.Left), 0);
 
-            handle.DrawRect(new(Box.TopLeft, new(Box.Right, Box.Top + dimensions.Y)), Color.Black, true);
+            handle.DrawRect(new(Box.TopLeft, new(RightPos.X, Box.Top + dimensions.Y)), Color.Black, true);
 
             var size = Box.Right - Math.Max(0, Box.Left);
             if (size > dimensions.X)

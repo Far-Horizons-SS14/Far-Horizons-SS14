@@ -1,4 +1,5 @@
 using System.Linq;
+using System.Numerics;
 using Content.Shared._FarHorizons.Research;
 using Robust.Client.Graphics;
 using Robust.Shared.Prototypes;
@@ -35,6 +36,10 @@ public sealed class ResearchTreeGrid
         List<DrawResearchNode> nodes = [];
         List<DrawResearchEdge> edges = [];
 
+        Vector2 vSpacing = new(spacing.x, spacing.y);
+        Vector2 vMargin = new(margin.x, margin.y);
+        Vector2 vSize = new(nodeSize.w, nodeSize.h);
+
         for (var i = 0; i < Grid.Count; i++)
         {
             for (var j = 0; j < Grid[i].Count; j++)
@@ -49,9 +54,9 @@ public sealed class ResearchTreeGrid
 
                 if (nodeSpace.IsNode)
                 {
-                    nodes.Add(new(nodeSpace.Node!, nodeSpace.Node!.Tier, nodeSpace.Node!.Name, new(posX + margin.x, posY + margin.y), new(nodeSize.w, nodeSize.h), font));
+                    nodes.Add(new(nodeSpace.Node!, nodeSpace.Node!.Tier, nodeSpace.Node!.Name, (i, j), vSpacing, vMargin, vSize, font));
                 } else {
-                    DrawResearchEdge edge = new(new(posX + margin.x, posY + margin.y + (nodeSize.h / 2)), new(posX + margin.x + nodeSize.w, posY + margin.y + (nodeSize.h / 2)));
+                    DrawResearchEdge edge = new((i, j), (i, j), vSpacing, vMargin, vSize);
                     edge.Linked.AddRange(nodeSpace.LineFor.Select(p => (ProtoId<ResearchTreeNodePrototype>)p.Node!.ID));
                     edges.Add(edge);
                 }
@@ -63,7 +68,7 @@ public sealed class ResearchTreeGrid
                     {
                         var linkedPosX = (nodeSize.w + spacing.x) * link.x;
                         var linkedPosY = (nodeSize.h + spacing.y) * link.y;
-                        edge = new(new(posX + margin.x + nodeSize.w, posY + margin.y + (nodeSize.h / 2)), new(linkedPosX + margin.x, linkedPosY + margin.y + (nodeSize.h / 2)));
+                        edge = new((i, j), link, vSpacing, vMargin, vSize);
                         placed[link] = edge;
                     }
 
@@ -77,14 +82,15 @@ public sealed class ResearchTreeGrid
 
         var tiers = new List<DrawResearchTier>();
         int? left = null;
-        int? right = margin.x - (spacing.x / 2);
+        int? right = 0;
+
         foreach (var tier in TierWidths)
         {
-            right += (tier.Value + 1) * (nodeSize.w + spacing.x);
+            right += tier.Value + 1;
             var tierProto = _prototypeManager.Index(tier.Key);
             if (!Color.TryParse(tierProto.Color, out var bgColor))
                 bgColor = Color.Black;
-            DrawResearchTier drawTier = new(tierProto.Name, font, left, right, bgColor);
+            DrawResearchTier drawTier = new(tierProto.Name, font, left, right, vSpacing, vMargin, vSize, bgColor);
             tiers.Add(drawTier);
             left = right;
         }

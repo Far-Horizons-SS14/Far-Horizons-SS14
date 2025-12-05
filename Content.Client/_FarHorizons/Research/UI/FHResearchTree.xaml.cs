@@ -43,6 +43,10 @@ public sealed partial class FHResearchTree : BoxContainer
     private Vector2 _currentMousePosition => 
         (UserInterfaceManager.MousePositionScaled.Position * UIScale) - GlobalPixelPosition;
     
+    private float _zoom = 1;
+    private const float MaxZoom = 2;
+    private const float MinZoom = 0.5f;
+    private const float ZoomSpeed = 0.1f;
 
     public int NodeWidth = 100;
     public int NodeHeight = 30;
@@ -106,7 +110,7 @@ public sealed partial class FHResearchTree : BoxContainer
             return;
         
         _lastViewportPosition = _viewportPosition;
-        if (_nodes.Any(p => p.Proto == _hovered && p.Translate(_viewportPosition).IsHovering(_currentMousePosition)))
+        if (_nodes.Any(p => p.Proto == _hovered && p.Zoom(_zoom).Translate(_viewportPosition * _zoom).IsHovering(_currentMousePosition)))
         {
             _willSelect = _hovered;
             return;
@@ -137,6 +141,16 @@ public sealed partial class FHResearchTree : BoxContainer
         if (lastSelection != _selected)
             OnSelectionChanged?.Invoke(_selected);
     }
+    
+    protected override void MouseWheel(GUIMouseWheelEventArgs args)
+    {
+        base.MouseWheel(args);
+
+        if (args.Handled)
+            return;
+        
+        _zoom = Math.Clamp(_zoom + (args.Delta.Y * ZoomSpeed), MinZoom, MaxZoom);
+    }
 
     protected override void Draw(DrawingHandleScreen handle)
     {
@@ -148,12 +162,14 @@ public sealed partial class FHResearchTree : BoxContainer
         MoveViewport();
         foreach (var tier in _tiers)
             tier
-            .Translate(_viewportPosition)
+            .Zoom(_zoom)
+            .Translate(_viewportPosition * _zoom)
             .DrawBg(handle);
         _hovered = GetHovered();
         foreach (var edge in _edges)
             edge
-            .Translate(_viewportPosition)
+            .Zoom(_zoom)
+            .Translate(_viewportPosition * _zoom)
             .Hovered(_hovered)
             .Research(_researched)
             .Draw(handle);
@@ -161,7 +177,8 @@ public sealed partial class FHResearchTree : BoxContainer
         {
             _nodes[i] = _nodes[i].WrapName(handle); // basically part of initialization, but it requires handle so it's here. Will only run first time
             _nodes[i]
-            .Translate(_viewportPosition)
+            .Zoom(_zoom)
+            .Translate(_viewportPosition * _zoom)
             .Hovered(_currentMousePosition)
             .Select(_selected)
             .Unlock(_unlockedTiers, _unlockedNodes)
@@ -171,7 +188,8 @@ public sealed partial class FHResearchTree : BoxContainer
         }
         foreach (var tier in _tiers)
             tier
-            .Translate(_viewportPosition)
+            .Zoom(_zoom)
+            .Translate(_viewportPosition * _zoom)
             .DrawHeader(handle);
     }
 
@@ -188,7 +206,7 @@ public sealed partial class FHResearchTree : BoxContainer
     private ProtoId<ResearchTreeNodePrototype>? GetHovered()
     {
         var hovered = _nodes
-        .Where(p => p.Translate(_viewportPosition).IsHovering(_currentMousePosition))
+        .Where(p => p.Zoom(_zoom).Translate(_viewportPosition * _zoom).IsHovering(_currentMousePosition))
         .Select(p => p.Proto)
         .ToList();
 

@@ -1,6 +1,7 @@
 using System.Numerics;
 using Content.Shared._FarHorizons.Research;
 using Robust.Client.Graphics;
+using Robust.Shared.Console.Commands;
 using Robust.Shared.Prototypes;
 
 namespace Content.Client._FarHorizons.Research.UI.Helpers;
@@ -10,8 +11,10 @@ public struct DrawResearchNode
         ProtoId<ResearchTreeNodePrototype> proto,
         ProtoId<ResearchTreeTierPrototype> tier,
         string name,
-        Vector2? pos = null,
-        Vector2? size = null,
+        (int, int) index,
+        Vector2 spacing,
+        Vector2 margin,
+        Vector2 size,
         Font? font = null,
         List<string>? text = null,
         int textSize = 0,
@@ -20,7 +23,8 @@ public struct DrawResearchNode
         bool hovered = false,
         bool selected = false,
         bool unlocked = false,
-        bool completed = false
+        bool completed = false,
+        Vector2? offset = null
     )
 {
     public ProtoId<ResearchTreeNodePrototype> Proto = proto;
@@ -33,21 +37,22 @@ public struct DrawResearchNode
     public bool Completed = completed;
     public bool Highlight = hovered;
     public bool Selected = selected;
-    private Vector2? _position = pos;
-    public Vector2 Position
-    {
-        get => _position ?? (Vector2)(_position = Vector2.Zero);
-        set => _position = value;
+    public (int x, int y) Index = index;
+    public Vector2 Spacing = spacing;
+    public Vector2 Margin = margin;
+    public readonly Vector2 Position => Offset + new Vector2(Margin.X + (Index.x * (_size.X + Spacing.X)), Margin.Y + (Index.y * (_size.Y + Spacing.Y)));
+    private Vector2? _offset = offset;
+    public Vector2 Offset {
+        readonly get => _offset ?? Vector2.Zero;
+        set => _offset = value;
     }
-    private Vector2? _size = size;
+    private Vector2 _size = size;
     public readonly Vector2 Size
     {
         get
         {
-            var size = _size ?? Vector2.Zero;
-
-            var width = size.X;
-            var height = size.Y + TextSize;
+            var width = _size.X;
+            var height = _size.Y + TextSize;
 
             if (Progress != null && !Completed)
                 height += ProgressHeight / 2;
@@ -83,7 +88,9 @@ public struct DrawResearchNode
             other.Proto, 
             other.Tier,
             other.Name,
-            other.Position,
+            other.Index,
+            other.Spacing,
+            other.Margin,
             other._size,
             other.Font,
             other.Text,
@@ -93,7 +100,8 @@ public struct DrawResearchNode
             other.Highlight,
             other.Selected,
             other.Unlocked,
-            other.Completed){}
+            other.Completed,
+            other.Offset){}
     
     public DrawResearchNode WrapName(DrawingHandleScreen handle)
     {
@@ -130,10 +138,19 @@ public struct DrawResearchNode
         };
     }
 
+    public DrawResearchNode Zoom(float zoom) =>
+        new(this)
+        {
+            _size = _size * zoom,
+            Spacing = Spacing * zoom,
+            Margin = Margin * zoom,
+            FontScale = FontScale * zoom,
+        };
+
     public DrawResearchNode Translate(Vector2 offset) =>
         new(this)
         {
-            Position = Position + offset,
+            Offset = offset,
         };
 
     public DrawResearchNode Hovered(Vector2 mousePos) =>
