@@ -53,11 +53,17 @@ public sealed partial class FHResearchSystem
         }
     }
 
+    public void AddBankedPoints(Entity<FHResearchTreeComponent> ent, int points) => 
+        AddBankedPoints(ent, ref points);
+
     public void AddBankedPoints(Entity<FHResearchTreeComponent> ent, ref int points)
     {
         ent.Comp.BankedPoints += points;
         points = 0;
 
+        if (ent.Comp.BankedPoints < 0)
+            ent.Comp.BankedPoints = 0;
+        
         if (ent.Comp.BankedPoints > ent.Comp.BankCapacity)
         {
             ent.Comp.BankedPoints = ent.Comp.BankCapacity;

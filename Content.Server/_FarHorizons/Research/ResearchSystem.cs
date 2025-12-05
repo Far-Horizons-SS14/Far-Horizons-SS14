@@ -1,6 +1,9 @@
+using System.Diagnostics.CodeAnalysis;
 using Content.Server.Chat.Systems;
 using Content.Server.Radio.EntitySystems;
 using Content.Server.Research.Systems;
+using Content.Shared._FarHorizons.Research.Components;
+using Content.Shared.Research.Components;
 using Robust.Server.Audio;
 using Robust.Server.GameObjects;
 using Robust.Shared.Prototypes;
@@ -22,5 +25,18 @@ public sealed partial class FHResearchSystem : EntitySystem
     {
         base.Initialize();
         InitializeConsole();
+    }
+
+    public bool TryGetServerWithTree(Entity<ResearchClientComponent?> ent, [NotNullWhen(true)] out Entity<FHResearchTreeComponent>? server)
+    {   
+        server = null;
+        if (Resolve(ent, ref ent.Comp) && 
+            _research.TryGetClientServer(ent, out var serverEnt, out _) && 
+            TryComp(serverEnt, out FHResearchTreeComponent? treeComp))
+        {
+            server = (serverEnt.Value, treeComp);
+            return true;
+        }
+        return false;
     }
 }

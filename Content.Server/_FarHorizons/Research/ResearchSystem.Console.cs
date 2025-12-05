@@ -21,12 +21,12 @@ public sealed partial class FHResearchSystem
 
     private void OnRemoveQueueRequest(Entity<FHResearchConsoleComponent> ent, ref FHResearchConsoleRemoveQueueRequest args)
     {
-        if (TryGetServerWithTree((ent, ent.Comp), out var server))
+        if (TryGetServerWithTree(ent.Owner, out var server))
             RemoveResearchFromQueue((server.Value, server.Value.Comp), args.Node);
     }
     private void OnResearchRequest(Entity<FHResearchConsoleComponent> ent, ref FHResearchConsoleResearchRequest args)
     {
-        if (TryGetServerWithTree((ent, ent.Comp), out var server))
+        if (TryGetServerWithTree(ent.Owner, out var server))
             AddResearchToQueue((server.Value, server.Value.Comp), args.Node);
     }
     private void OnConsoleRegistrationChanged(Entity<FHResearchConsoleComponent> ent, ref ResearchRegistrationChangedEvent args) =>
@@ -34,19 +34,6 @@ public sealed partial class FHResearchSystem
 
     private void OnConsoleBeforeUiOpened(Entity<FHResearchConsoleComponent> ent, ref BeforeActivatableUIOpenEvent args) =>
         UpdateUI((ent, ent.Comp), true);
-
-    public bool TryGetServerWithTree(Entity<FHResearchConsoleComponent?> ent, [NotNullWhen(true)] out Entity<FHResearchTreeComponent>? server)
-    {   
-        server = null;
-        if (Resolve(ent, ref ent.Comp) && 
-            _research.TryGetClientServer(ent, out var serverEnt, out _) && 
-            TryComp(serverEnt, out FHResearchTreeComponent? treeComp))
-        {
-            server = (serverEnt.Value, treeComp);
-            return true;
-        }
-        return false;
-    }
 
     public void UpdateUI(Entity<FHResearchConsoleComponent?> ent, bool build = false)
     {
@@ -61,7 +48,7 @@ public sealed partial class FHResearchSystem
         Dictionary<ProtoId<ResearchTreeNodePrototype>, int> researchProgress = [];
         int bankedPoints = 0;
 
-        if (TryGetServerWithTree(ent, out var server))
+        if (TryGetServerWithTree(ent.Owner, out var server))
         {
             if (build)
                 nodes = [.. GetTreeNodes(server.Value).Select(p => (ProtoId<ResearchTreeNodePrototype>)p.ID)];

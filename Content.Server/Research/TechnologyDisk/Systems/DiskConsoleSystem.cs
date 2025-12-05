@@ -1,4 +1,3 @@
-using Content.Server.Research.Systems;
 using Content.Server.Research.TechnologyDisk.Components;
 using Content.Shared.UserInterface;
 using Content.Shared.Research;
@@ -6,6 +5,7 @@ using Content.Shared.Research.Components;
 using Robust.Server.Audio;
 using Robust.Server.GameObjects;
 using Robust.Shared.Timing;
+using Content.Server._FarHorizons.Research;
 
 namespace Content.Server.Research.TechnologyDisk.Systems;
 
@@ -13,7 +13,7 @@ public sealed class DiskConsoleSystem : EntitySystem
 {
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly AudioSystem _audio = default!;
-    [Dependency] private readonly ResearchSystem _research = default!;
+    [Dependency] private readonly FHResearchSystem _fhResearch = default!; // Far Horizons
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
 
     /// <inheritdoc/>
@@ -47,13 +47,15 @@ public sealed class DiskConsoleSystem : EntitySystem
         if (HasComp<DiskConsolePrintingComponent>(uid))
             return;
 
-        if (!_research.TryGetClientServer(uid, out var server, out var serverComp))
+        // Far Horizons start
+        if (!_fhResearch.TryGetServerWithTree(uid, out var server))
             return;
 
-        if (serverComp.Points < component.PricePerDisk)
+        if (server.Value.Comp.BankedPoints < component.PricePerDisk)
             return;
 
-        _research.ModifyServerPoints(server.Value, -component.PricePerDisk, serverComp);
+        _fhResearch.AddBankedPoints(server.Value, -component.PricePerDisk);
+        // Far Horizons end
         _audio.PlayPvs(component.PrintSound, uid);
 
         var printing = EnsureComp<DiskConsolePrintingComponent>(uid);
@@ -82,10 +84,8 @@ public sealed class DiskConsoleSystem : EntitySystem
             return;
 
         var totalPoints = 0;
-        if (_research.TryGetClientServer(uid, out _, out var server))
-        {
-            totalPoints = server.Points;
-        }
+        if (_fhResearch.TryGetServerWithTree(uid, out var server)) // Far Horizons
+            totalPoints = server.Value.Comp.BankedPoints;  // Far Horizons
 
         var canPrint = !(TryComp<DiskConsolePrintingComponent>(uid, out var printing) && printing.FinishTime >= _timing.CurTime) &&
                        totalPoints >= component.PricePerDisk;
