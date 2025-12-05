@@ -21,6 +21,12 @@ public sealed class VehicleSystems : SharedVehicleSystems
         {
             _mover.SetRelay(args.Buckle.Owner, ent.Owner);
             ent.Comp.Rider = args.Buckle.Owner;
+
+            if(TryComp<InputMoverComponent>(ent.Owner, out var mover))
+            {
+                mover.CanMove = true;
+                Dirty(ent.Owner, mover);
+            }
         }
     }
     

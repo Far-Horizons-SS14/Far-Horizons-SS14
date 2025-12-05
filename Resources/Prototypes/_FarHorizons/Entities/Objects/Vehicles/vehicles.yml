@@ -1,7 +1,5 @@
 - type: entity
   id: BaseVehicle
-  save: false
-  abstract: true
   components:
   - type: AmbientSound
     sound: "/Audio/Effects/Vehicle/vehicleengineidle.ogg"
@@ -49,6 +47,7 @@
   - type: Strap
     buckleOffset: "0.10, 0.36"
     maxBuckleDistance: 1
+  - type: InputMover
   - type: Rotatable
   - type: InteractionOutline
   - type: Pullable
@@ -87,10 +86,8 @@
         visible: false
       noRot: true
     - type: Vehicle
-    - type: InputMover
-    - type: ActiveInputMover
     - type: MovementSpeedModifier
-      baseWalkSpeed: 2
+      baseWalkSpeed: 4
       baseSprintSpeed: 2
     - type: Strap
       buckleOffset: "0,0"
@@ -109,6 +106,9 @@
             - TableLayer
     - type: StaticPrice
       price: 70
+    - type: Tag
+      tags:
+        - DoorBumpOpener
 
 - type: entity
   parent: VehicleWheelchair

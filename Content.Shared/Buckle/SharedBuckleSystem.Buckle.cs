@@ -22,6 +22,7 @@ using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+using Content.Shared._FarHorizons.Vehicle.Components; // FarHorizons
 
 namespace Content.Shared.Buckle;
 
@@ -175,7 +176,8 @@ public abstract partial class SharedBuckleSystem
 
     private void OnBuckleUpdateCanMove(EntityUid uid, BuckleComponent component, UpdateCanMoveEvent args)
     {
-        if (component.Buckled)
+        if (component.Buckled 
+            && !HasComp<VehicleComponent>(component.BuckledTo)) //FarHorizons
             args.Cancel();
     }
 
