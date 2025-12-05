@@ -133,9 +133,10 @@ public sealed class ResearchTreeGrid
                 if (handledNodes.Contains(node))
                     continue;
 
+                var height = ApproxBranchHeight(node, tierNodes);
                 var x = NodePosX(node, tierNodes, TierWidths, tierStartingColumns);
                 var y = 0;
-                while (!CheckFreeRow(result, (x, y), 2, TierWidths[tier]))
+                while (!CheckFreeRow(result, (x, y), height, TierWidths[tier]))
                     y++;
 
                 var partialTree = WalkForward(ref result, node, y, tierNodes, TierWidths, tierStartingColumns, ref handledNodes);
@@ -144,6 +145,22 @@ public sealed class ResearchTreeGrid
         }
 
         return result;
+    }
+
+    private int ApproxBranchHeight(ResearchTreeNodePrototype node, 
+                         Dictionary<ProtoId<ResearchTreeTierPrototype>, List<ResearchTreeNodePrototype>> tierNodes)
+    {
+        var height = 1;
+        var children = node.Children(_prototypeManager);
+        if (children.Count == 0)
+            return height;
+
+        var childrenSum = 0;
+        foreach (var child in children)
+            if (tierNodes[node.Tier].Contains(child))
+                childrenSum += ApproxBranchHeight(child, tierNodes);
+        
+        return Math.Max(children.Count, childrenSum);
     }
 
     private static bool CheckFreeRow(List<List<NodeSpace?>> grid, (int x, int y) pos, int searchRange = 0, int searchDepth = 0)
@@ -179,7 +196,9 @@ public sealed class ResearchTreeGrid
                         tierStartingColumns[node.Tier] : 
                         tierStartingColumns[node.Tier] + tierWidths[node.Tier] : 
                     childrenInTier.Count == 0 ? 
-                        tierStartingColumns[node.Tier] + tierWidths[node.Tier] : 
+                        parentsInTier.Count == 0 ? 
+                            tierStartingColumns[node.Tier] :
+                            tierStartingColumns[node.Tier] + tierWidths[node.Tier] : 
                         childrenPos.Order().First() - 1;
         
         return Math.Clamp(x, tierStartingColumns[node.Tier], tierStartingColumns[node.Tier] + tierWidths[node.Tier]);
@@ -200,23 +219,24 @@ public sealed class ResearchTreeGrid
         return result;
     }
 
-    private static ((int x, int y) position, NodeSpace nodeSpace, bool created) PlaceAtCoords(ref List<List<NodeSpace?>> matrix, NodeSpace nodeSpace, (int x, int y) position, int offset = 0)
+    private static ((int x, int y) position, NodeSpace nodeSpace, bool created) PlaceAtCoords(ref List<List<NodeSpace?>> grid, NodeSpace nodeSpace, (int x, int y) position, bool rev = false, int offset = 0)
     {
-        if (FindInColumn(matrix, nodeSpace, position, -1) is ((int, int), NodeSpace) existing)
+        if (FindInColumn(grid, nodeSpace, position, 2) is ((int, int), NodeSpace) existing)
             return (existing.position, existing.nodeSpace, false);
         
-        if (offset > matrix[0].Count - 1)
+        if (offset > grid[0].Count - 1)
             throw new Exception("Error generating ResearchTreeGrid: Ran out of space");
         
-        var verticalOffset = (offset + 1) / 2 * (offset % 2 == 0 ? 1 : -1);
-        var posY = Math.Clamp(position.y + verticalOffset, 0, matrix[0].Count - 1);
-        if (matrix[position.x][posY] == null)
+        var order = rev ? -1 : 1;
+        var verticalOffset = (offset + 1) / 2 * (offset % 2 == 0 ? order : -order);
+        var posY = Math.Clamp(position.y + verticalOffset, 0, grid[0].Count - 1);
+        if (grid[position.x][posY] == null)
         {
-            matrix[position.x][posY] = nodeSpace;
+            grid[position.x][posY] = nodeSpace;
             return ((position.x, posY), nodeSpace, true);
         }
         else
-            return PlaceAtCoords(ref matrix, nodeSpace, (position.x, posY), offset + 1);
+            return PlaceAtCoords(ref grid, nodeSpace, position, rev, offset + 1);
     }
 
     private static ((int x, int y) position, NodeSpace nodeSpace)? FindInColumn(List<List<NodeSpace?>> grid, NodeSpace nodeSpace, (int x, int y) position, int lineMergeDistance = -1)
@@ -227,8 +247,8 @@ public sealed class ResearchTreeGrid
                     .Select(p => p!)] : 
             lineMergeDistance < 0 ? [] : 
                 [.. grid[position.x]
-                        .Slice(Math.Max(position.y - lineMergeDistance, 0), Math.Min(position.y + lineMergeDistance, grid[position.x].Count - 1))
-                        .Where(p => p != null && !p.IsNode)
+                        .Slice(Math.Max(position.y - lineMergeDistance, 0), Math.Min(lineMergeDistance * 2, grid[position.x].Count - 1 - position.y))
+                        .Where(p => p != null && !p.IsNode && p.LineFor.Intersect(nodeSpace.LineFor).Any())
                         .Select(p => p!)];
         return matching.Count == 0 ? null : ((position.x, grid[position.x].IndexOf(matching.First())), matching.First());
     }
@@ -257,10 +277,15 @@ public sealed class ResearchTreeGrid
             {
                 var parent = _prototypeManager.Index(parentId);
                 if (excludedNodes.Contains(parent))
+                {
+                    var parentPos = FindInGrid(grid, parent);
+                    if (parentPos != null)
+                        ConnectNodes(ref grid, parentPos.Value, node, true);
                     continue;
+                }
                 
                 var subTree = WalkBackward(ref grid, parent, node.position.y, tierNodes, tierWidths, tierStartingColumns, ref excludedNodes);
-                ConnectNodes(ref grid, subTree[0], node);
+                ConnectNodes(ref grid, subTree[0], node, true);
 
                 List<((int x, int y) position, NodeSpace nodeSpace)> extra = [];
                 foreach (var (position, nodeSpace) in subTree)
@@ -281,25 +306,6 @@ public sealed class ResearchTreeGrid
 
                 fullTree.AddRange(subTree);
                 fullTree.AddRange(extra);
-
-                foreach (var (position, nodeSpace) in fullTree)
-                {
-                    if (!nodeSpace.IsNode)
-                        continue;
-                    
-                    var children = nodeSpace.Node!.Children(_prototypeManager);
-                    var unhandledChildren = children.Where(p => !nodeSpace.LinksTo.Select(e => e.to.Node).Contains(p));
-
-                    foreach (var unhandled in unhandledChildren)
-                    {
-                        var search = FindInGrid(grid, unhandled);
-
-                        if (search != null)
-                        {
-                            ConnectNodes(ref grid, (position, nodeSpace), search.Value);
-                        }
-                    }
-                }
             }
         }
 
@@ -318,7 +324,7 @@ public sealed class ResearchTreeGrid
 
         var startPosition = (NodePosX(node, tierNodes, tierWidths, tierStartingColumns), startY);
         var newNodeSpace = new NodeSpace(node);
-        (var newPos, newNodeSpace, _) = PlaceAtCoords(ref grid, newNodeSpace, startPosition);
+        (var newPos, newNodeSpace, _) = PlaceAtCoords(ref grid, newNodeSpace, startPosition, true);
         subTree.Add((newPos, newNodeSpace));
         excludedNodes.Add(node);
         
@@ -329,7 +335,7 @@ public sealed class ResearchTreeGrid
             var parentNode = new NodeSpace(parent);
             var prev = WalkBackward(ref grid, parent, newPos.y, tierNodes, tierWidths, tierStartingColumns, ref excludedNodes);
             subTree.AddRange(prev);
-            ConnectNodes(ref grid, prev[0], (newPos, newNodeSpace));
+            ConnectNodes(ref grid, prev[0], (newPos, newNodeSpace), true);
         }
 
         return subTree;
@@ -362,8 +368,11 @@ public sealed class ResearchTreeGrid
         return tree;
     }
 
-    private static void ConnectNodes(ref List<List<NodeSpace?>> grid, ((int x, int y) position, NodeSpace nodeSpace) from, ((int x, int y) position, NodeSpace nodeSpace) to)
+    private static void ConnectNodes(ref List<List<NodeSpace?>> grid, ((int x, int y) position, NodeSpace nodeSpace) from, ((int x, int y) position, NodeSpace nodeSpace) to, bool rev = false)
     {
+        if (from.nodeSpace.LinksTo.Any(p => p.to.Node == to.nodeSpace.Node))
+            return;
+
         if (to.position.x <= from.position.x + 2 && (to.position.x != from.position.x + 2 || to.position.y != from.position.y))
             from.nodeSpace.LinksTo.Add((to.position, from.nodeSpace, to.nodeSpace));
         else {
@@ -371,12 +380,13 @@ public sealed class ResearchTreeGrid
             for (var i = from.position.x + 1; i < to.position.x; i++)
             {
                 var nextLine = new NodeSpace();
+                nextLine.LineFor.AddRange([from.nodeSpace, to.nodeSpace]);
                 (int x, int y) pos;
 
-                (var pos1, var nextLine1, var created1) = PlaceAtCoords(ref grid, nextLine, (i, to.position.y));
-                (var pos2, var nextLine2, var created2) = PlaceAtCoords(ref grid, nextLine, (i + 1, to.position.y));
+                (var pos1, var nextLine1, var created1) = PlaceAtCoords(ref grid, nextLine, (i, to.position.y), rev);
+                (var pos2, var nextLine2, var created2) = PlaceAtCoords(ref grid, nextLine, (i + 1, to.position.y), rev);
 
-                if (i + 1 >= to.position.x || Math.Abs(pos1.y - to.position.y) <= Math.Abs(pos2.y - to.position.y))
+                if (i + 1 >= to.position.x || Math.Abs(pos1.y - to.position.y) <= Math.Abs(pos2.y - to.position.y) || pos2.y == from.position.y)
                 {
                     if (created2)
                         grid[pos2.x][pos2.y] = null;
@@ -395,6 +405,7 @@ public sealed class ResearchTreeGrid
 
                 previous.LinksTo.Add((pos, from.nodeSpace, to.nodeSpace));
                 nextLine.LineFor.AddRange([from.nodeSpace, to.nodeSpace]);
+                nextLine.LineFor = [.. nextLine.LineFor.Distinct()];
                 previous = nextLine;
             }
             previous.LinksTo.Add((to.position, from.nodeSpace, to.nodeSpace));
