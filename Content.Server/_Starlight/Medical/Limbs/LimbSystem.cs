@@ -11,6 +11,8 @@ using Content.Shared.Interaction.Components;
 using Content.Shared.Starlight.Medical.Surgery;
 using Robust.Server.Containers;
 using Robust.Shared.Prototypes;
+using Content.Shared.Tag;
+using Orleans.Serialization.WireProtocol; //FarHorizons
 
 namespace Content.Server._Starlight.Medical.Limbs;
 public sealed partial class LimbSystem : SharedLimbSystem
@@ -21,6 +23,7 @@ public sealed partial class LimbSystem : SharedLimbSystem
     [Dependency] private readonly HumanoidAppearanceSystem _humanoidAppearanceSystem = default!;
     [Dependency] private readonly MetaDataSystem _metadata = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
+    [Dependency] private readonly TagSystem _tag = default!; //FarHorizons
 
     private readonly EntProtoId _virtual = "PartVirtual";
     public override void Initialize()
@@ -56,8 +59,12 @@ public sealed partial class LimbSystem : SharedLimbSystem
             QueueDel(virtualItem);
             return false;
         }
+        //FarHorizon Start
         if(!HasComp<SurgeryTargetComponent>(virtualItem))
             AddComp<SurgeryTargetComponent>(virtualItem);
+        if(!_tag.HasTag(virtualItem, "Organic"))
+            _tag.AddTag(virtualItem, "Organic");
+        //FarHorizons End
         AddItemLimb(body, slot, item);
         AddItemHand(body, item, BodySystem.GetPartSlotContainerId(slot));
         return true;

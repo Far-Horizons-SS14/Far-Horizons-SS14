@@ -56,8 +56,9 @@ public sealed partial class SurgeryOverhaulSystem : EntitySystem
         SubscribeLocalEvent<NecrosisSurgeryStepComponent, SurgeryValidEvent>(OnNecrosisSurgeryStepValid);
         SubscribeLocalEvent<SurgeryTechnologyComponent, SurgeryValidEvent>(OnResearchSurgeryValid);
         SubscribeLocalEvent<SurgeryLimbExistConditionComponent, SurgeryValidEvent>(OnLimbExistConditionValid);
+        SubscribeLocalEvent<RequireSpecificOrganicPartComponent, SurgeryValidEvent>(OnRequireSpecifiOrganicPartValid);
         SubscribeLocalEvent<RequireOrganicPartComponent, SurgeryValidEvent>(OnRequireOrganicPartValid);
-        
+        SubscribeLocalEvent<RequireInorganicPartComponent, SurgeryValidEvent>(OnRequireInorganicPartValid);
 
         LoadSurgeriesForRotten();
     }
@@ -209,7 +210,7 @@ public sealed partial class SurgeryOverhaulSystem : EntitySystem
         container.ContainedEntities.Count > 0);
     } 
     
-    private void OnRequireOrganicPartValid(Entity<RequireOrganicPartComponent> ent, ref SurgeryValidEvent args)
+    private void OnRequireSpecifiOrganicPartValid(Entity<RequireSpecificOrganicPartComponent> ent, ref SurgeryValidEvent args)
     {
         if (args.Cancelled) return;
         
@@ -217,9 +218,24 @@ public sealed partial class SurgeryOverhaulSystem : EntitySystem
         bodyComp.RootContainer?.ContainedEntity is { } rootEnt &&
         _containers.TryGetContainer(rootEnt, ent.Comp.Slot, out var container) &&
         container.ContainedEntities.Count > 0)
-            if (_tag.HasTag(container.ContainedEntities.First(), "Inorganic"))
+            if (!_tag.HasTag(container.ContainedEntities.First(), "Organic"))
                 args.Cancelled = true;
-            
+    } 
+
+    private void OnRequireOrganicPartValid(Entity<RequireOrganicPartComponent> ent, ref SurgeryValidEvent args)
+    {
+        if (args.Cancelled) return;
+        
+        if (!_tag.HasTag(args.Part, "Organic"))
+            args.Cancelled = true;
+    } 
+
+    private void OnRequireInorganicPartValid(Entity<RequireInorganicPartComponent> ent, ref SurgeryValidEvent args)
+    {
+        if (args.Cancelled) return;
+        
+        if (!_tag.HasTag(args.Part, "Inorganic"))
+            args.Cancelled = true;
     } 
             
     private void LoadSurgeriesForRotten()
