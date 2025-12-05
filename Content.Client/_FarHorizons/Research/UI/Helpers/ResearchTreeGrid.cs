@@ -202,7 +202,7 @@ public sealed class ResearchTreeGrid
 
     private static ((int x, int y) position, NodeSpace nodeSpace, bool created) PlaceAtCoords(ref List<List<NodeSpace?>> matrix, NodeSpace nodeSpace, (int x, int y) position, int offset = 0)
     {
-        if (FindInColumn(matrix, nodeSpace, position, 1) is ((int, int), NodeSpace) existing)
+        if (FindInColumn(matrix, nodeSpace, position, -1) is ((int, int), NodeSpace) existing)
             return (existing.position, existing.nodeSpace, false);
         
         if (offset > matrix[0].Count - 1)

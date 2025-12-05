@@ -51,7 +51,7 @@
   cost: 7500
   tier: Tier1
   requires: 
-    - IndustrialEng
+    - MechanicalCompress
   unlocks:
     - RipleyHarness
     - RipleyLArm
@@ -84,6 +84,8 @@
   name: Special Munitions
   cost: 10000
   tier: Tier1
+  requires:
+    - RiotControl
   unlocks:
     - BoxShotgunIncendiary
     - MagazineRifleIncendiary
@@ -115,17 +117,6 @@
   announceTo:
     - Security
 
-- type: researchTreeNode
-  id: LaserGun
-  name: Weaponized Laser Manipulation
-  cost: 7500
-  tier: Tier1
-  unlocks:
-    - WeaponLaserCarbine
-    - WeaponMechCombatFiredartLaser
-  announceTo:
-    - Security
-
 # Space
 
 - type: researchTreeNode
@@ -153,21 +144,18 @@
   announceTo:
     - Engineering
 
+# Laser
+
 - type: researchTreeNode
-  id: AstroTiles
-  name: Faux Astro-Tiles
-  cost: 5000
+  id: LaserGun
+  name: Weaponized Laser Manipulation
+  cost: 7500
   tier: Tier1
   unlocks:
-    - FauxTileAstroGrass
-    - FauxTileMowedAstroGrass
-    - FauxTileJungleAstroGrass
-    - FauxTileDarkAstroGrass
-    - FauxTileLightAstroGrass
-    - FauxTileAstroIce
-    - FauxTileAstroSnow
-    - FauxTileAstroAsteroidSand
-    - FauxTileDesertAstroSand
+    - WeaponLaserCarbine
+    - WeaponMechCombatFiredartLaser
+  announceTo:
+    - Security
 
 # Power
 
@@ -223,6 +211,9 @@
   name: Localized Magnetism
   cost: 7500
   tier: Tier1
+  requires:
+    - AnomResearch
+    - ArtiResearch
   unlocks:
     - ClothingShoesBootsMagSci
     - ClothingShoesBootsMoon
@@ -265,8 +256,8 @@
   cost: 5000
   tier: Tier1
   requires:
-    - AnomResearch
-    - ArtiResearch
+    - MagBoot
+    - AnomCoreHarvesting
   unlocks:
     - TechDiskComputerCircuitboard
 
@@ -277,6 +268,8 @@
   name: Advanced Entertainment
   cost: 7500
   tier: Tier1
+  requires:
+    - AVComms
   unlocks:
     - ComputerTelevisionCircuitboard
     - SynthesizerInstrument
@@ -302,6 +295,7 @@
     - HolopadMachineCircuitboard
   announceTo:
     - Service
+    - Security
 
 # Robotics
 
@@ -310,6 +304,8 @@
   name: Basic Robotics
   cost: 5000
   tier: Tier1
+  requires:
+    - AVComms
   unlocks:
     - ProximitySensor
 
@@ -362,6 +358,19 @@
   announceTo:
     - Medical
 
+- type: researchTreeNode
+  id: AdvSpray
+  name: Advanced Spray
+  cost: 10000
+  tier: Tier1
+  requires:
+    - AutomatedInjection
+  unlocks:
+    - WeaponSprayNozzle
+    - ClothingBackpackWaterTank
+  announceTo:
+    - Service
+
 # Biology
 
 - type: researchTreeNode
@@ -385,6 +394,8 @@
   name: Meat Manipulation
   cost: 7500
   tier: Tier1
+  requires:
+    - Hydroponics
   unlocks:
     - FatExtractorMachineCircuitboard
     - BiofabricatorMachineCircuitboard
@@ -417,6 +428,7 @@
   tier: Tier2
   requires: 
     - SalvEquip
+    - MechanicalCompress
   unlocks:
     - OreBagOfHolding
     - MiningDrillDiamond
@@ -427,29 +439,11 @@
     - Supply
 
 - type: researchTreeNode
-  id: AdvancedTools
-  name: Advanced Tools
-  cost: 10000
-  tier: Tier2
-  requires: 
-    - MassExcav
-  unlocks:
-    - WelderExperimental
-    - PowerDrill
-    - JawsOfLife
-    - BorgModuleAdvancedTool
-    - Fulton
-    - FultonBeacon
-  announceTo:
-    - Engineering
-
-- type: researchTreeNode
   id: RecreationalMech
   name: Recreational Mechs
   cost: 7500
   tier: Tier2
   requires: 
-    - RipleyMech
     - MechanicalCompress
   unlocks:
     - HonkerHarness
@@ -541,7 +535,6 @@
   tier: Tier2
   requires:
     - KineticModifications
-    - RiotControl
   unlocks:
     - PaddyUpgradeKit
   announceTo:
@@ -556,7 +549,6 @@
   tier: Tier2
   requires: 
     - AdvAtmospherics
-    - AstroTiles
   unlocks:
     - ShuttleConsoleCircuitboard
     - ThrusterMachineCircuitboard
@@ -605,12 +597,27 @@
 # Lasers
 
 - type: researchTreeNode
+  id: LaserGun2
+  name: Concentrated Laser Weaponry
+  cost: 10000
+  tier: Tier2
+  requires: 
+    - LaserGun
+  unlocks:
+    - WeaponLaserCannon
+    - WeaponMechCombatSolarisLaser
+    - WeaponLaserImmolator
+  announceTo:
+    - Security
+
+- type: researchTreeNode
   id: IonGun
   name: Ion Weaponry
   cost: 8200
   tier: Tier2
   requires: 
-    - LaserGun
+    - LaserGun2
+    - EnergyBarriers
   unlocks:
     - WeaponIonRifle
     - WeaponIonCarbine
@@ -623,24 +630,21 @@
   cost: 10000
   tier: Tier2
   requires: 
-    - LaserGun
+    - LaserGun2
   unlocks:
     - WeaponXrayCannon
   announceTo:
     - Security
 
 - type: researchTreeNode
-  id: LaserGun2
-  name: Concentrated Laser Weaponry
-  cost: 10000
+  id: EnergyBarriers
+  name: Energy Barriers
+  cost: 5400
   tier: Tier2
-  requires: 
-    - LaserGun
   unlocks:
-    - WeaponLaserCannon
-    - WeaponMechCombatSolarisLaser
-    - WeaponLaserImmolator
+    - EnergyDomeTurtle
   announceTo:
+    - Engineering
     - Security
 
 # Power
@@ -664,14 +668,19 @@
     - Medical
 
 - type: researchTreeNode
-  id: EnergyBarriers
-  name: Energy Barriers
-  cost: 5400
+  id: AdvancedTools
+  name: Advanced Tools
+  cost: 10000
   tier: Tier2
   requires:
     - AdvPowerCells
   unlocks:
-    - EnergyDomeTurtle
+    - WelderExperimental
+    - PowerDrill
+    - JawsOfLife
+    - BorgModuleAdvancedTool
+    - Fulton
+    - FultonBeacon
   announceTo:
     - Engineering
 
@@ -683,7 +692,7 @@
   cost: 10000
   tier: Tier2
   requires:
-    - AnomCoreHarvesting
+    - AltResearch
   unlocks:
     - WeaponPistolCHIMP
     - AnomalySynchronizerCircuitboard
@@ -695,7 +704,7 @@
   cost: 5000
   tier: Tier2
   requires:
-    - ArtiResearch
+    - AltResearch
   unlocks:
     - ArtifactCrusherMachineCircuitboard
 
@@ -705,10 +714,7 @@
   cost: 10000
   tier: Tier2
   requires:
-    - AdvAnomResearch
-    - AltResearch
     - ArtiRecycle
-    - MagBoot
   unlocks:
     - WeaponForceGun
     - WeaponTetherGun
@@ -720,16 +726,35 @@
   tier: Tier2
   requires:
     - AdvAnomResearch
-    - AltResearch
-    - ArtiRecycle
-    - MagBoot
   unlocks:
     - WeaponParticleDecelerator
     - HoloprojectorField
   announceTo:
     - Engineering
+    - Security
 
 # Civ
+
+- type: researchTreeNode
+  id: AstroTiles
+  name: Faux Astro-Tiles
+  cost: 5000
+  tier: Tier2
+  requires:
+    - AdvEntertainment
+  unlocks:
+    - FauxTileAstroGrass
+    - FauxTileMowedAstroGrass
+    - FauxTileJungleAstroGrass
+    - FauxTileDarkAstroGrass
+    - FauxTileLightAstroGrass
+    - FauxTileAstroIce
+    - FauxTileAstroSnow
+    - FauxTileAstroAsteroidSand
+    - FauxTileDesertAstroSand
+  announceTo:
+    - Service
+    - Engineering
 
 - type: researchTreeNode
   id: BananiumWeapons
@@ -737,7 +762,7 @@
   cost: 6000
   tier: Tier2
   requires:
-    - AdvEntertainment
+    - AstroTiles
   unlocks:
     - MechEquipmentHonkerBananaMortar
     - MechEquipmentHonkerMousetrapMortar
@@ -753,7 +778,6 @@
   tier: Tier2
   requires:
     - Robotics
-    - AVComms
   unlocks:
     - NTDefaultCircuitBoard
     - AsimovCircuitBoard
@@ -809,6 +833,8 @@
     - Cyberlimbs
   unlocks:
     - ClothingBackpackHarmpack
+  announceTo:
+    - Security
 
 - type: researchTreeNode
   id: EyeImplants
@@ -834,24 +860,13 @@
   cost: 10000
   tier: Tier2
   requires:
-    - AutomatedInjection
+    - AdvSpray
   unlocks:
     - AdvMopItem
     - MegaSprayBottle
     - BorgModuleAdvancedCleaning
   announceTo:
     - Service
-
-- type: researchTreeNode
-  id: AdvSpray
-  name: Advanced Spray
-  cost: 10000
-  tier: Tier2
-  requires:
-    - AutomatedInjection
-  unlocks:
-    - WeaponSprayNozzle
-    - ClothingBackpackWaterTank
 
 # Biology
 
@@ -879,7 +894,6 @@
   tier: Tier2
   requires:
     - MeatManipulation
-    - Hydroponics
   unlocks:
     - StasisBedMachineCircuitboard
     - CryoPodMachineCircuitboard
@@ -990,8 +1004,7 @@
   cost: 10000
   tier: Tier3
   requires:
-    - AdvPowerCells
-    - BlastproofContainers
+    - AdvancedTools
   unlocks:
     - PowerCellMicroreactor
     - PowerCellHyper
@@ -1021,7 +1034,6 @@
   requires:
     - Microreactor
     - IonGun
-    - LaserGun2
   unlocks:
     - WeaponAdvancedLaser
     - PortableRecharger
@@ -1064,26 +1076,15 @@
     - ClothingShoesBootsSpeed
 
 - type: researchTreeNode
-  id: CargoTeleporter
-  name: Bluespace Cargo Transport
-  cost: 15000
+  id: BluespaceMastery
+  name: Bluespace Mastery
+  cost: 25000
   tier: Tier3
   requires:
     - QuantumLeaping
     - SpeedBoot
   unlocks:
     - CargoTelepadMachineCircuitboard
-  announceTo:
-    - Supply
-
-- type: researchTreeNode
-  id: BluespaceBag
-  name: Bluespace Storage
-  cost: 15000
-  tier: Tier3
-  requires:
-    - CargoTeleporter
-  unlocks:
     - ClothingBackpackHolding
     - ClothingBackpackSatchelHolding
     - ClothingBackpackDuffelHolding
@@ -1094,16 +1095,11 @@
     - AdvancedMineralScannerEmpty
     - MechEquipmentDrillDiamond
     - BorgModuleAdvancedMining
-
-- type: researchTreeNode
-  id: Desynchronizer
-  name: Bluespace Time Manipulation
-  cost: 10000
-  tier: Tier3
-  requires:
-    - CargoTeleporter
-  unlocks:
     - DeviceDesynchronizer
+  announceTo:
+    - Supply
+    - Medical
+    - Service
 
 # Cybernetics
 
@@ -1185,8 +1181,6 @@
   requires:
     - BorgPlaceholder3
     - FunctionalCyberlimbs
-    - NVEyes
-    - ThermalEyes
   unlocks:
     - SecborgEndoskeleton
     - BorgModuleLaserCarbine
@@ -1202,7 +1196,6 @@
   tier: Tier3
   requires:
     - AdvCleaning
-    - AdvSpray
   unlocks:
     - LauncherSyringe
     - MiniSyringe
