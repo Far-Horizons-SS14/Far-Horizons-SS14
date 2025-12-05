@@ -145,6 +145,7 @@ public struct DrawResearchNode
             Spacing = Spacing * zoom,
             Margin = Margin * zoom,
             FontScale = FontScale * zoom,
+            TextSize = (int)(TextSize * zoom),
         };
 
     public DrawResearchNode Translate(Vector2 offset) =>
