@@ -64,7 +64,6 @@ public enum ReactorStatusLights
     Active,
     Overheat,
     Meltdown,
-    Boom,
 }
 
 /// <summary>
