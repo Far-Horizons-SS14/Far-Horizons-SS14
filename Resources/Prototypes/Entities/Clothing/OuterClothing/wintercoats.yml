@@ -725,13 +725,16 @@
       - state: SEC-inhand-right
   - type: Armor
     modifiers:
+      flatReductions: #FH
+        Piercing: 5 #FH
+        Heat: 4 #FH
       coefficients:
-        Blunt: 0.85
-        Slash: 0.75
-        Piercing: 0.95
-        Heat: 0.65
+        Blunt: 0.70 #FH
+        Slash: 0.70 #FH
+        Piercing: 0.70 #FH
+        Heat: 0.80 #FH
   - type: ExplosionResistance
-    damageCoefficient: 0.85
+    damageCoefficient: 0.9 #FH
   - type: Clothing
     sprite: Clothing/OuterClothing/WinterCoats/coat.rsi
     clothingVisuals:

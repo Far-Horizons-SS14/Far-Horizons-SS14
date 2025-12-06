@@ -6,6 +6,8 @@ using Content.Shared.Damage;
 using Content.Shared.Interaction;
 using Robust.Server.GameObjects;
 using Content.Shared.Mobs.Components;
+using Content.Shared.Actions;
+using Content.Shared._FarHorizons.CartridgeLoader.Cartridges;
 
 namespace Content.Server.CartridgeLoader.Cartridges;
 
@@ -20,6 +22,8 @@ public sealed class HullSenseCartridgeSystem : EntitySystem
 
         SubscribeLocalEvent<HullSenseCartridgeComponent, CartridgeAddedEvent>(OnCartridgeAdded);
         SubscribeLocalEvent<HullSenseCartridgeComponent, CartridgeRemovedEvent>(OnCartridgeRemoved);
+        SubscribeLocalEvent<IntegrityAnalyzerComponent, HullSenseActionEvent>(OnHullSenseAction);
+        SubscribeLocalEvent<IntegrityAnalyzerComponent, GetItemActionsEvent>(OnGetActions);
         SubscribeLocalEvent<IntegrityAnalyzerComponent, InventoryRelayedEvent<GetVerbsEvent<InnateVerb>>>(AddVerbAnalyzer);
     }
 
@@ -60,4 +64,23 @@ public sealed class HullSenseCartridgeSystem : EntitySystem
             args.Args.Verbs.Add(verb);
         }
     }    
+
+    private void OnGetActions(Entity<IntegrityAnalyzerComponent> ent, ref GetItemActionsEvent args)
+    {
+        if (_cartridgeLoaderSystem.HasProgram<HullSenseCartridgeComponent>(ent.Owner))
+        {
+            args.AddAction(ref ent.Comp.ActionEntity, ent.Comp.Action);
+        }
+    }
+    
+    private void OnHullSenseAction(Entity<IntegrityAnalyzerComponent> ent, ref HullSenseActionEvent args)
+    {
+        var user = args.Performer;
+        var target = args.Target;
+        if (TryComp(target, out TransformComponent? targetTransform))
+        {
+            var patientCoordinates = targetTransform.Coordinates;
+            _interactionSystem.InteractDoAfter(user, ent.Owner, target, patientCoordinates, true);
+        }
+    }
 }

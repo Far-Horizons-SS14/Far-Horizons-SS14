@@ -1,0 +1,13 @@
+#Equipment
+
+- type: listing
+  id: VendorMiningProtoKineticShotgun
+  productEntity: WeaponProtoKineticShotgun
+  cost:
+    SalvageTicket: 350
+  categories:
+  - MiningEquipment
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 5
+  - !type:BuyerAccessCondition

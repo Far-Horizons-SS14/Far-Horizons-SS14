@@ -2,7 +2,57 @@
   name: Mark 1 Rifle
   parent: [BaseWeaponSniper, BaseGunWieldable, BaseSalvageContraband]
   id: WeaponRifleMark1
-  description: A very old Mark 1 Rifle used in many old wars. Someone managed to find one out of a museum or something, with the date of production scratched out from usage... but the GSL logo is very new.
+  description: A very old Mark 1 Rifle used in many old wars. Someone managed to find one out of a museum or something, with the date of production scratched out from usage... but the GSL logo is very new.                                                                               Note - This weapon can be chambered in .30 and .45 ammunition!
+  components:
+  - type: KnockbackByUserTag
+    doestContain:
+      Resomi:
+        knockback: 2
+      Felionoid:
+        knockback: 1
+  - type: BallisticAmmoProvider
+    capacity: 10
+    proto: CartridgeLightRifleSP
+    whitelist:
+      tags:
+        - CartridgeMagnum
+        - CartridgeLightRifle
+    soundRack:
+      path: /Audio/_FarHorizons/Items/Weapons/Mark1/mark1_cycle_Bolt.ogg
+      params:
+        variation: 0.05
+  - type: Gun
+    minAngle: 10
+    maxAngle: 40
+    soundGunshot:
+      path: /Audio/_FarHorizons/Items/Weapons/Mark1/mark1.ogg
+      params:
+        variation: 0.246
+    pump: true
+    fireRate: .99
+  - type: Sprite
+    sprite: /Textures/_FarHorizons/Objects/Weapons/Guns/Snipers/mark1_rifle.rsi
+  - type: Clothing
+    sprite: /Textures/_FarHorizons/Objects/Weapons/Guns/Snipers/mark1_rifle.rsi
+    slots:
+      - Back
+      - suitStorage
+  - type: Item
+    size: Large
+  - type: Wieldable
+    unwieldOnUse: false
+  - type: GunWieldBonus
+    minAngle: -5
+    maxAngle: -10
+  - type: GunRequiresWield
+  - type: StaticPrice
+    price: 500
+
+- type: entity
+  name: Mark 1 Sniper Rifle
+  parent: [BaseWeaponSniper, BaseGunWieldable, BaseSalvageContraband]
+  id: WeaponRifleMark1Sniper
+  description: A very old Mark 1 Rifle used in many old wars. They say the scratches on the side of the gun are for every kill the wielder had.                                Note - This weapon can be chambered in .30 and .45 ammunition!
   components:
   - type: KnockbackByUserTag
     doestContain:
@@ -30,56 +80,6 @@
         variation: 0.246
     pump: true
     fireRate: .75
-  - type: Sprite
-    sprite: /Textures/_FarHorizons/Objects/Weapons/Guns/Snipers/mark1_rifle.rsi
-  - type: Clothing
-    sprite: /Textures/_FarHorizons/Objects/Weapons/Guns/Snipers/mark1_rifle.rsi
-    slots:
-      - Back
-      - suitStorage
-  - type: Item
-    size: Large
-  - type: Wieldable
-    unwieldOnUse: false
-  - type: GunWieldBonus
-    minAngle: -5
-    maxAngle: -10
-  - type: GunRequiresWield
-  - type: StaticPrice
-    price: 500
-
-- type: entity
-  name: Mark 1 Sniper Rifle
-  parent: [BaseWeaponSniper, BaseGunWieldable, BaseSalvageContraband]
-  id: WeaponRifleMark1Sniper
-  description: A very old Mark 1 Rifle used in many old wars. They say the scratches on the side of the gun are for every kill the wielder had.
-  components:
-  - type: KnockbackByUserTag
-    doestContain:
-      Resomi:
-        knockback: 2
-      Felionoid:
-        knockback: 1
-  - type: BallisticAmmoProvider
-    capacity: 10
-    proto: CartridgeLightRifleSP
-    whitelist:
-      tags:
-        - CartridgeMagnum
-        - CartridgeLightRifle
-    soundRack:
-      path: /Audio/_FarHorizons/Items/Weapons/Mark1/mark1_cycle_Bolt.ogg
-      params:
-        variation: 0.05
-  - type: Gun
-    minAngle: 10
-    maxAngle: 40
-    soundGunshot:
-      path: /Audio/_FarHorizons/Items/Weapons/Mark1/mark1.ogg
-      params:
-        variation: 0.246
-    pump: true
-    fireRate: .40
   - type: Sprite
     sprite: /Textures/_FarHorizons/Objects/Weapons/Guns/Snipers/mark1_sniper_rifle.rsi
   - type: Clothing
@@ -106,7 +106,7 @@
   name: Markalibur 1 "Rifle"
   parent: [BaseWeaponSniper, BaseGunWieldable, BaseSalvageContraband]
   id: WeaponRifleMarkalibur1
-  description: A very old Mark 1 Rifle used in many old wars... before someone took the poor thing, mangled it, and somehow ended up with a sword.
+  description: A very old Mark 1 Rifle used in many old wars... before someone took the poor thing, mangled it, and somehow ended up with a sword.                 Note - This weapon can be chambered in .30 and .45 ammunition!
   components:
   - type: KnockbackByUserTag
     doestContain:
@@ -133,7 +133,7 @@
       params:
         variation: 0.246
     pump: true
-    fireRate: .75
+    fireRate: .99
   - type: Sprite
     sprite: /Textures/_FarHorizons/Objects/Weapons/Guns/Snipers/markalibur1_rifle.rsi
   - type: Clothing

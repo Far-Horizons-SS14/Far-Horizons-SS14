@@ -16,3 +16,52 @@
         sprite: _FarHorizons/Tools/Shipyard/integrityanalyzer.rsi
         state: icon
     - type: HullSenseCartridge
+
+- type: entity
+  parent: BaseAction
+  id: ActionMedTek
+  name: Analyze Patient
+  components:
+  - type: Action
+    icon:
+      sprite: Objects/Specific/Medical/healthanalyzer.rsi
+      state: icon
+    priority: -1
+    itemIconStyle: BigAction
+    checkCanInteract: false
+  - type: TargetAction
+  - type: EntityTargetAction
+    event: !type:MedTekActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionHullSense
+  name: Analyze Structure
+  components:
+  - type: Action
+    icon:
+      sprite: _FarHorizons/Tools/Shipyard/integrityanalyzer.rsi
+      state: icon
+    priority: -1
+    itemIconStyle: BigAction
+    checkCanInteract: false
+  - type: TargetAction
+  - type: EntityTargetAction
+    event: !type:HullSenseActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionCrimeCheck
+  name: Check Crimes
+  components:
+  - type: Action
+    icon:
+      sprite: Clothing/Eyes/Glasses/secglasses.rsi
+      state: icon
+    priority: -1
+    itemIconStyle: BigAction
+    checkCanInteract: false
+  - type: TargetAction
+    range: 16
+  - type: EntityTargetAction
+    event: !type:CrimeCheckActionEvent

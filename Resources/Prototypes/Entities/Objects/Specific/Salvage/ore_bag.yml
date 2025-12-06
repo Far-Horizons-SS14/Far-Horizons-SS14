@@ -1,5 +1,5 @@
 - type: entity
-  name: ore bag
+  name: Ore Bag #Far Horizons - The Great Capitalization Crusade
   id: OreBag
   parent: BaseStorageItem
   description: A robust bag for salvage specialists and miners alike to carry large amounts of ore. Magnetises any nearby ores when attached to a belt.
@@ -51,14 +51,14 @@
     visuals:
       enum.ToggleableVisuals.Enabled:
         enum.ToggleableVisuals.Layer:
-          True: { state: "icon-on" }
+          True: { state: "icon" } #Far Horizons - Idk where this magical icon-on was hiding, but we don't got that.
           False: { state: "icon" }
   # Starlight Edit End
 
 - type: entity
   parent: OreBag
   id: BorgOreBag
-  name: integrated ore bag
+  name: Integrated Ore Bag #Far Horizons - The Great Capitalization Crusade
   description: A large ore bag built into the frame of a mining cyborg.
   components:
     - type: Storage

@@ -1,6 +1,6 @@
 # HEAVILY MODIFIED BY FH.
 - type: entity
-  name: advanced taser
+  name: Advanced Taser #Far Horizons - The Great Capitalization Crusade
   parent: [ BaseWeaponBatterySmall, BaseSecurityContraband ]
   id: WeaponAdvancedTaser
   description: Energy-based stun gun used by security teams to subdue targets at range, can be switched to a higher power mode.
@@ -51,7 +51,7 @@
       heldPrefix: stun4
 
 - type: entity
-  name: energy gun
+  name: Energy Gun #Far Horizons - The Great Capitalization Crusade
   parent: [ BaseWeaponBatterySmall, BaseSecurityContraband ]
   id: WeaponEnergyGun
   description: An energy gun capable of switching between lethal and debilitating lasers.
@@ -90,7 +90,7 @@
       heldPrefix: kill4
 
 - type: entity
-  name: miniature energy gun
+  name: Miniature Energy Gun #Far Horizons - The Great Capitalization Crusade
   parent: [ BaseWeaponBatterySmall, BaseSecurityContraband ]
   id: WeaponMiniEnergyGun
   description: An energy gun capable of switching between lethal and debilitating lasers.
@@ -161,7 +161,7 @@
 
 # HEAVILY MODIFIED BY FH.
 - type: entity
-  name: dominator
+  name: Dominator #Far Horizons - The Great Capitalization Crusade
   parent: [ BaseWeaponBatterySmall, BaseSecurityContraband ]
   id: WeaponDominator
   description: A high-tech weapon created by the law enforcement organization Sibyl System, designed specifically to fight crime.
@@ -230,7 +230,7 @@
         - delta
 
 - type: entity
-  name: X-01 multiphase energy gun
+  name: X-01 Multiphase Energy Gun #Far Horizons - The Great Capitalization Crusade
   parent: [ BaseWeaponBatterySmall, BaseSecurityContraband ]
   id: WeaponMultiphaseGun
   description: This is an expensive, modern version of the antique laser pistol, with several unique fire modes.
@@ -337,7 +337,7 @@
 - type: entity
   parent: [ BaseWeaponBattery, BaseGunWieldable, BaseCentcommContraband ]
   id: WeaponIonRifle
-  name: ion rifle
+  name: Ion Rifle #Far Horizons - The Great Capitalization Crusade
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Guns/Battery/ion_rifle.rsi
@@ -378,7 +378,7 @@
 - type: entity
   parent: [BaseWeaponBattery, BaseSecurityContraband ]
   id: WeaponIonCarbine
-  name: ion carbine
+  name: Ion Carbine #Far Horizons - The Great Capitalization Crusade
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Guns/Battery/ion_carbine.rsi
@@ -410,7 +410,7 @@
   - type: EmpImmune
 
 - type: entity
-  name: immolator laser gun
+  name: Immolator Laser Gun #Far Horizons - The Great Capitalization Crusade
   parent: [BaseWeaponBattery, BaseGunWieldable, BaseSecuritySalvageContraband]
   id: WeaponLaserImmolator
   description: An irregular, unstable firearm. It remains warm to the touch long after it has finished firing.
@@ -440,7 +440,7 @@
 - type: entity
   parent: [BaseWeaponBatterySmall, BaseSecurityContraband ]
   id: WeaponDecloner
-  name: decloner
+  name: Decloner #Far Horizons - The Great Capitalization Crusade
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Guns/Battery/decloner.rsi
@@ -462,7 +462,7 @@
   - type: Appearance
 
 - type: entity
-  name: m1911
+  name: M1911 #Far Horizons - The Great Capitalization Crusade
   parent: [BaseWeaponBatterySmall, BaseSecurityContraband ]
   id: WeaponM1911
   description: A compact pulse core in a classic Nanotrasen officer pistol design. It's not the size of the gun, it's the size of the hole it puts in people.
@@ -503,7 +503,7 @@
       magState: destroy
 
 - type: entity
-  name: pulse pistol
+  name: Pulse Pistol #Far Horizons - The Great Capitalization Crusade
   parent: [BaseWeaponBatterySmall, BaseSecurityContraband ]
   id: WeaponPulsePistol
   description: An extremely compact version of the pulse carabine.
@@ -549,7 +549,7 @@
     startingCharge: 2600
 
 - type: entity
-  name: PDW-9 taser pistol
+  name: PDW-9 Taser Pistol #Far Horizons - The Great Capitalization Crusade
   parent: [ BaseWeaponBatterySmall, BaseSecurityContraband ]
   id: WeaponPDW9
   description: A compact pulse core in a classic Nanotrasen officer pistol design. It's not the size of the gun, it's the size of the hole it puts in people.
@@ -593,7 +593,7 @@
 - type: entity
   parent: [ BaseWeaponBatterySmall, BaseMajorContraband ]
   id: WeaponAlien
-  name: alien pistol
+  name: Alien Pistol #Far Horizons - The Great Capitalization Crusade
   components:
   - type: RestrictByUserTag
     doestContain: []
@@ -662,7 +662,7 @@
     pvsIncrease: 0.3
 
 - type: entity
-  name: pulse carbine
+  name: Pulse Carbine #Far Horizons - The Great Capitalization Crusade
   parent: [BaseWeaponBattery, BaseGunWieldable, BaseCentcommContraband]
   id: WeaponPulseCarbine
   description: A high tech energy carbine favoured by the NT-ERT operatives.
@@ -720,7 +720,7 @@
     startingCharge: 3300
 
 - type: entity
-  name: pulse rifle
+  name: Pulse Rifle #Far Horizons - The Great Capitalization Crusade
   parent: [BaseWeaponBattery, BaseGunWieldable, BaseCentcommContraband]
   id: WeaponPulseRifle
   description: A weapon that is almost as infamous as its users.
@@ -815,7 +815,7 @@
 - type: entity
   parent: BaseWeaponBatterySmall
   id: WeaponToecloner
-  name: toecloner
+  name: Toecloner #Far Horizons - The Great Capitalization Crusade
   suffix: Admeme
   components:
     - type: Sprite
@@ -842,7 +842,7 @@
     - type: Appearance
 
 - type: entity
-  name: proto-5x energy gun
+  name: Proto-5x Energy Gun #Far Horizons - The Great Capitalization Crusade
   parent: [BaseWeaponBattery, BaseGrandTheftContraband]
   id: WeaponEnergySMG
   description: A one-of-a-kind prototype energy sub-machine gun. It offers high energy firepower and a powerful self recharge.
@@ -910,7 +910,7 @@
     autoRechargePauseTime: 10
 
 - type: entity
-  name: pulse cannon
+  name: Pulse Cannon #Far Horizons - The Great Capitalization Crusade
   parent: [BaseWeaponBattery, BaseGunWieldable, BaseCentcommContraband]
   id: WeaponPulseCannonNTNC
   description: A weapon meant to blow holes in people with lasers. Like Superman. I like Superman.

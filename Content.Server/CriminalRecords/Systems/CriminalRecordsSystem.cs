@@ -17,6 +17,8 @@ using Content.Shared.Inventory;
 using Content.Shared.IdentityManagement.Components;
 using Content.Shared.UserInterface;
 using Robust.Shared.Timing;
+using Content.Shared.Actions;
+using Content.Shared._FarHorizons.CartridgeLoader.Cartridges;
 //FarHorizons End
 namespace Content.Server.CriminalRecords.Systems;
 
@@ -48,6 +50,8 @@ public sealed class CriminalRecordsSystem : SharedCriminalRecordsSystem
         //FarHorizons Start
         SubscribeLocalEvent<WantedListCartridgeComponent, CartridgeAddedEvent>(OnCartridgeAdded);
         SubscribeLocalEvent<WantedListCartridgeComponent, CartridgeRemovedEvent>(OnCartridgeRemoved);
+        SubscribeLocalEvent<CrimeAnalyzerComponent, CrimeCheckActionEvent>(OnCrimeCheckAction);
+        SubscribeLocalEvent<CrimeAnalyzerComponent, GetItemActionsEvent>(OnGetActions);
         SubscribeLocalEvent<CrimeAnalyzerComponent, InventoryRelayedEvent<GetVerbsEvent<InnateVerb>>>(AddVerbCheckCrime);
         //FarHorizons End
     }
@@ -237,6 +241,21 @@ public sealed class CriminalRecordsSystem : SharedCriminalRecordsSystem
         _cartridge.ActivateProgram(item, programUid);
         Timer.Spawn(TimeSpan.FromMilliseconds(300), () => UpdateReaderUi((programUid, program), item, metaComp.EntityName));
         _activatableUISystem.InteractUIp(user, item, activeComp);
+    }
+
+    private void OnGetActions(Entity<CrimeAnalyzerComponent> ent, ref GetItemActionsEvent args)
+    {
+        if (_cartridge.HasProgram<WantedListCartridgeComponent>(ent.Owner))
+        {
+            args.AddAction(ref ent.Comp.ActionEntity, ent.Comp.Action);
+        }
+    }
+    
+    private void OnCrimeCheckAction(Entity<CrimeAnalyzerComponent> ent, ref CrimeCheckActionEvent args)
+    {
+        var user = args.Performer;
+        var target = args.Target;
+        CheckCriminal(user, target, ent.Owner);
     }
     //FarHorizons End
 }

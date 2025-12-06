@@ -234,23 +234,19 @@
     damage:
       groups:
         Brute: -30 # 10 for each type
+  - type: HumanoidEMPComposite # Composite effect will include HumanoidEMP values, but also collect values from all limbs/organs
   - type: HumanoidEMP
     effect:
-      stunAmount: 5.0
-      knockdownAmount: 2.0
-      slowdownAmount: 15.0
+      stunAmount: 2.5
+      slowdownAmount: 5.0
       walkSpeedModifier: 0.5
       sprintSpeedModifier: 0.5
-      dropItemsFrom:
-        - body_part_slot_right hand
-        - body_part_slot_left hand
       additionalEffects:
-        StatusEffectBlinded: 10.0
         StatusEffectIPCFanDisabled: 20.0
       damageAmount:
         types:
-          Shock: 30
-          Heat: 10
+          Shock: 2
+          Heat: 2
   - type: Destructible
     thresholds:
     - trigger:

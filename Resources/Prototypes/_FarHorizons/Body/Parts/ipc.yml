@@ -9,6 +9,10 @@
       reagents:
       - ReagentId: Oil
         Quantity: 10
+  - type: Tag
+    tags:
+      - Trash
+      - Inorganic
 
 - type: entity
   id: TorsoIPC
@@ -46,6 +50,15 @@
   - type: Sprite
     sprite: _FarHorizons/Mobs/Species/IPC/parts.rsi
     state: "l_arm"
+  - type: HumanoidEMPCompositeElement
+    effect:
+      stunAmount: 0.25
+      dropItemsFrom:
+      - body_part_slot_left hand
+      damageAmount:
+        types:
+          Shock: 3
+          Heat: 1
 
 - type: entity
   id: RightArmIPC
@@ -55,6 +68,15 @@
   - type: Sprite
     sprite: _FarHorizons/Mobs/Species/IPC/parts.rsi
     state: "r_arm"
+  - type: HumanoidEMPCompositeElement
+    effect:
+      stunAmount: 0.25
+      dropItemsFrom:
+      - body_part_slot_right hand
+      damageAmount:
+        types:
+          Shock: 3
+          Heat: 2
 
 - type: entity
   id: LeftHandIPC
@@ -64,6 +86,15 @@
   - type: Sprite
     sprite: _FarHorizons/Mobs/Species/IPC/parts.rsi
     state: "l_hand"
+  - type: HumanoidEMPCompositeElement
+    effect:
+      stunAmount: 0.25
+      dropItemsFrom:
+      - body_part_slot_left hand
+      damageAmount:
+        types:
+          Shock: 3
+          Heat: 2
 
 - type: entity
   id: RightHandIPC
@@ -73,6 +104,15 @@
   - type: Sprite
     sprite: _FarHorizons/Mobs/Species/IPC/parts.rsi
     state: "r_hand"
+  - type: HumanoidEMPCompositeElement
+    effect:
+      stunAmount: 0.25
+      dropItemsFrom:
+      - body_part_slot_right hand
+      damageAmount:
+        types:
+          Shock: 3
+          Heat: 1
 
 - type: entity
   id: LeftLegIPC
@@ -82,6 +122,17 @@
   - type: Sprite
     sprite: _FarHorizons/Mobs/Species/IPC/parts.rsi
     state: "l_leg"
+  - type: HumanoidEMPCompositeElement
+    effect:
+      stunAmount: 0.25
+      knockdownAmount: 0.5
+      slowdownAmount: 2.5
+      walkSpeedModifier: 0.5
+      sprintSpeedModifier: 0.5
+      damageAmount:
+        types:
+          Shock: 3
+          Heat: 2
 
 - type: entity
   id: RightLegIPC
@@ -91,6 +142,17 @@
   - type: Sprite
     sprite: _FarHorizons/Mobs/Species/IPC/parts.rsi
     state: "r_leg"
+  - type: HumanoidEMPCompositeElement
+    effect:
+      stunAmount: 0.25
+      knockdownAmount: 0.5
+      slowdownAmount: 2.5
+      walkSpeedModifier: 0.5
+      sprintSpeedModifier: 0.5
+      damageAmount:
+        types:
+          Shock: 3
+          Heat: 2
 
 - type: entity
   id: LeftFootIPC
@@ -100,6 +162,17 @@
   - type: Sprite
     sprite: _FarHorizons/Mobs/Species/IPC/parts.rsi
     state: "l_foot"
+  - type: HumanoidEMPCompositeElement
+    effect:
+      stunAmount: 0.25
+      knockdownAmount: 0.5
+      slowdownAmount: 2.5
+      walkSpeedModifier: 0.5
+      sprintSpeedModifier: 0.5
+      damageAmount:
+        types:
+          Shock: 3
+          Heat: 1
 
 - type: entity
   id: RightFootIPC
@@ -109,3 +182,14 @@
   - type: Sprite
     sprite: _FarHorizons/Mobs/Species/IPC/parts.rsi
     state: "r_foot"
+  - type: HumanoidEMPCompositeElement
+    effect:
+      stunAmount: 0.25
+      knockdownAmount: 0.5
+      slowdownAmount: 2.5
+      walkSpeedModifier: 0.5
+      sprintSpeedModifier: 0.5
+      damageAmount:
+        types:
+          Shock: 3
+          Heat: 1

@@ -189,9 +189,16 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.8
-        Slash: 0.8
-        Piercing: 0.8
+        Blunt: 0.9 #FH
+        Slash: 0.9 #FH
+        Piercing: 0.9 #FH
+  - type: Hailer #FH
+    hailMessage: "Death to NanoTrasen!!"
+    hailSound:
+      path: /Audio/_Starlight/Effects/nano_death.ogg
+      params:
+        variation: 0.09
+    cooldownDuration: 30
 
 # USSP
 - type: entity

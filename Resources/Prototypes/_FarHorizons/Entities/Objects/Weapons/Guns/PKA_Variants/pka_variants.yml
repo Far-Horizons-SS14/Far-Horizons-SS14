@@ -1,0 +1,45 @@
+- type: entity
+  name: proto-kinetic shotgun
+  id: WeaponProtoKineticShotgun
+  parent: [WeaponProtoKineticAcceleratorBase, BaseSalvageMiningContraband]
+  description: A modified variant of the Proto-Kinetic Accelerator, its bolt is fractured upon firing, resulting in a much more effective tool for mining and a potent weapon at close range.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/PKA_Variants/kinetic_accelerator_shotgun.rsi
+    layers:
+    - state: icon
+    - state: animation-icon
+      visible: false
+      map: [ "empty-icon" ]
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 1
+    rechargeSound:
+      path: /Audio/Weapons/Guns/MagIn/kinetic_reload.ogg
+  - type: BasicEntityAmmoProvider
+    proto: ProtoKineticPellet
+    capacity: 1
+    count: 1
+  - type: RandomSprite
+    available:
+      - 0:
+          icon: ""
+          icon_h: ""
+          icon_u: ""
+    heldPrefixes:
+      icon_h: "h"
+      icon_u: "u"
+  - type: Gun
+    fireRate: 0.5
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg
+  - type: GunRequiresWield
+  - type: UpgradeableGun
+    whitelist:
+      tags:
+      - PKAUpgrade
+  - type: ContainerContainer
+    containers:
+      upgrades: !type:Container

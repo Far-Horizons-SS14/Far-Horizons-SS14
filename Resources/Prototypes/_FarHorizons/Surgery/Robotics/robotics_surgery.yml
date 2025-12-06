@@ -10,10 +10,7 @@
     - SurgeryStepRemoveScrews
     - SurgeryStepUnweldJoints
     - SurgeryStepPryPlating
-  - type: SurgerySpeciesCondition
-    speciesBlacklist: []
-    speciesWhitelist:
-    - IPC
+  - type: RequireInorganicPart
 
 - type: entity
   parent: SurgeryBase
@@ -29,10 +26,6 @@
     - SurgeryStepPositionPlating
     - SurgeryStepRestoreScrews
     - SurgeryStepWeldJoints
-  - type: SurgerySpeciesCondition
-    speciesBlacklist: []
-    speciesWhitelist:
-    - IPC
   
 - type: entity
   parent: SurgeryBase
@@ -48,10 +41,6 @@
     - SurgeryStepExposeWiringConnections
     - SurgeryStepExposeCoolantChannels
     - SurgeryStepRobotAmputation
-  - type: SurgerySpeciesCondition
-    speciesBlacklist: []
-    speciesWhitelist:
-    - IPC
   - type: SurgeryPartCondition
     parts: 
     - Arm
@@ -80,10 +69,6 @@
   - type: SurgeryPartCondition
     parts: 
     - Head
-  - type: SurgerySpeciesCondition
-    speciesBlacklist: []
-    speciesWhitelist:
-    - IPC
 
 - type: entity
   parent: SurgeryBase

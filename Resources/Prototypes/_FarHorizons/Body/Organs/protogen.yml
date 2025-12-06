@@ -28,6 +28,7 @@
   - type: Tag
     tags:
       - Meat
+      - Organic
 
 - type: entity
   id: BaseProtogenOrgan
@@ -168,22 +169,10 @@
     size: Small
     heldPrefix: stomach
   - type: Stomach
-    specialDigestible: # all this for the ram chip meme.
+    specialDigestible:
       tags:
-      - Paper
-      - Pill
-      - Pizza
-      - Meat
-      - Fruit
-      - Donut
-      - Vegetable
-      - Cake
-      - FoodSnack
-      - Soup
-      - Crayon
-      - Pancake
       - RamChip
-      - ReptilianFood
+    isSpecialDigestibleExclusive: false
   - type: SolutionContainerManager
     solutions:
       stomach:
@@ -245,23 +234,11 @@
     size: Small
     heldPrefix: stomach
   - type: Stomach
-    specialDigestible: # Why is this a whitelist instead of a blacklist.. Ugh. Can digest any correctly tagged food.
+    specialDigestible:
       tags:
       - ClothMade
-      - Paper
-      - Pill
-      - Pizza
-      - Meat
-      - Fruit
-      - Donut
-      - Vegetable
-      - Cake
-      - FoodSnack
-      - Soup
-      - Crayon
-      - Pancake
       - RamChip
-      - ReptilianFood
+    isSpecialDigestibleExclusive: false
   - type: SolutionContainerManager
     solutions:
       stomach:
@@ -312,22 +289,10 @@
         - ReagentId: UncookedAnimalProteins
           Quantity: 5
   - type: Stomach
-    specialDigestible: # all this for the ram chip meme.
+    specialDigestible:
       tags:
-      - Paper
-      - Pill
-      - Pizza
-      - Meat
-      - Fruit
-      - Donut
-      - Vegetable
-      - Cake
-      - FoodSnack
-      - Soup
-      - Crayon
-      - Pancake
       - RamChip
-      - ReptilianFood
+    isSpecialDigestibleExclusive: false
   - type: Metabolizer
     # mm very yummy
     maxReagents: 5
@@ -343,20 +308,8 @@
   - type: Stomach
     specialDigestible:
       tags:
-      - Paper
-      - Pill
-      - Pizza
-      - Meat
-      - Fruit
-      - Donut
-      - Vegetable
-      - Cake
-      - FoodSnack
-      - Soup
-      - Crayon
-      - Pancake
       - RamChip
-      - ReptilianFood
+    isSpecialDigestibleExclusive: false
   - type: SolutionContainerManager
     solutions:
       stomach:
@@ -413,3 +366,41 @@
     - id: Medicine
     - id: Poison
     - id: Narcotic
+
+# Vox
+
+- type: entity
+  id: OrganProtoVoxStomach
+  parent: OrganProtogenStomach
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Metabolizer
+    metabolizerTypes: [Vox]
+  - type: Stomach
+    specialDigestible:
+      tags:
+      - RamChip
+      - Trash
+    isSpecialDigestibleExclusive: false
+  - type: SolutionContainerManager
+    solutions:
+      stomach:
+        maxVol: 50
+      food:
+        maxVol: 5
+        reagents:
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 5
+
+- type: entity
+  id: OrganProtoVoxHeart
+  parent: [BaseProtogenOrgan, OrganProtogenHeart]
+  name: Cybernetic Heart
+  components:
+  - type: Sprite
+    state: heart-on
+  - type: Item
+    size: Small
+    heldPrefix: heart
+  - type: Metabolizer
+    metabolizerTypes: [Vox]

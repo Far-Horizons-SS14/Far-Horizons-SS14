@@ -551,6 +551,10 @@
   - type: Body
     prototype: ProtoThaven
     requiredLegs: 2
+  - type: HumanoidAppearance
+    species: ProtoThaven
+    hideLayersOnEquip:
+    - Hair
   - type: MeleeWeapon
     attackRate: 0.55
     soundHit:
@@ -685,6 +689,10 @@
     - Machine
     - Trinary
     - Bubblish
+  - type: HumanoidAppearance
+    species: ProtoSlimePerson
+    hideLayersOnEquip:
+    - Hair
   - type: UserInterface
     interfaces:
       enum.StorageUiKey.Key:
@@ -1857,9 +1865,13 @@
     - Trinary
     - Nekomimetic
     - Cat
+  - type: HumanoidAppearance
+    species: ProtoFeline
+    hideLayersOnEquip:
+    - Hair
   - type: Icon
     sprite: _FarHorizons/Mobs/Species/Proto-Feline/parts.rsi
-    state: full
+    state: fullcat
   - type: Body
     prototype: ProtoFeline
     requiredLegs: 2
@@ -2655,7 +2667,7 @@
       path: /Audio/Effects/bite.ogg
     damage:
       types:
-        Piercing: 5
+        Slash: 5
   # Visual & Audio
   - type: DamageVisuals
     damageOverlayGroups:

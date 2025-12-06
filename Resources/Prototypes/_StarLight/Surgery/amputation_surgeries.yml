@@ -15,7 +15,6 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
-    - IPC #FarHorizons
   - type: SurgeryPartCondition
     parts: 
     - Arm
@@ -45,11 +44,6 @@
   - type: SurgeryPartCondition
     parts: 
     - Head
-  #FarHorizons Start
-  - type: SurgerySpeciesCondition 
-    speciesBlacklist: 
-    - IPC 
-  #FarHorizons End
 
 - type: entity
   parent: SurgeryAmputation

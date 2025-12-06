@@ -23,6 +23,16 @@
     contents:
     - id: SmokingPipeFilledTobacco
     - id: FlippoEngravedLighter
+  - type: Armor #FH
+    modifiers: #FH
+      flatReductions: #FH
+        Piercing: 5 #FH
+        Heat: 4 #FH
+      coefficients: #FH
+        Blunt: 0.70 #FH
+        Slash: 0.70 #FH
+        Piercing: 0.70 #FH
+        Heat: 0.80 #FH
   - type: ExplosionResistance
     damageCoefficient: 1 #its a coat. it doesnt do shit
 
@@ -36,6 +46,16 @@
     sprite: Clothing/OuterClothing/Coats/detective_grey.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Coats/detective_grey.rsi
+  - type: Armor #FH
+    modifiers: #FH
+      flatReductions: #FH
+        Piercing: 5 #FH
+        Heat: 4 #FH
+      coefficients: #FH
+        Blunt: 0.70 #FH
+        Slash: 0.70 #FH
+        Piercing: 0.70 #FH
+        Heat: 0.80 #FH
 
 - type: entity
   parent: ClothingOuterCoatDetective
