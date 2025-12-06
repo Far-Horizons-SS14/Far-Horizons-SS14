@@ -1,0 +1,39 @@
+# Gorlex-Tactical-Implant 'Vanguard'
+- type: entity
+  name: cybernetic scattergun
+  parent: [BaseItem, BaseSyndicateContraband]
+  id: CyberScatterGun
+  description: The GTI Scattergun, built into the GTI 'Vanguard'. The scattergun is a concealed, forearm-mounted close-quarters weapon designed for rapid deployment and room-clearing efficiency. Likewise, commanders rarely uses such implant, however, if you do hear it, you know true syndicate judgement is being enforced.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/Cybernetic/cyberscattergun.rsi
+    state: cyberscattergun
+  - type: Gun
+    spread: 15
+    fireRate: 1.5
+    burstFireRate: 3.5
+    burstCooldown: 1.5
+    selectedMode: Burst
+    shotsPerBurst: 3
+    availableModes:
+    - Burst
+    soundGunshot:
+      path: /Audio/_FarHorizons/Weapon/Guns/scattergun_gunshot.ogg
+      params:
+        volume: 5
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: ProjectileBatteryAmmoProvider
+    proto: ShellShotgun
+    fireCost: 100
+  - type: Battery
+    maxCharge: 1000
+    startingCharge: 1000
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 25
+  - type: AmmoCounter
+  - type: Tag
+    tags:
+      - CyberHandItem

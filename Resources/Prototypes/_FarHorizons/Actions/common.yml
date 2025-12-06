@@ -1,0 +1,28 @@
+#Syndicate Cyberlimb Actions
+- type: entity
+  id: ActionToggleCyberHandSyndiLeft
+  name: Toggle Hand.
+  description: Toggle the left hand
+  components:
+  - type: Action
+    useDelay: 1
+    icon:
+      sprite: _FarHorizons/Interface/Actions/actions_cyber_syndicate.rsi
+      state: cyber-hand-left
+    itemIconStyle: BigItem
+  - type: InstantAction
+    event: !type:ToggleLimbEvent
+
+- type: entity
+  id: ActionToggleCyberHandSyndiRight
+  name: Toggle Hand.
+  description: Toggle the right hand
+  components:
+  - type: Action
+    useDelay: 1
+    icon:
+      sprite: _Starlight/Interface/Actions/actions_cyber_syndicate.rsi
+      state: cyber-hand-right
+    itemIconStyle: BigItem
+  - type: InstantAction
+    event: !type:ToggleLimbEvent

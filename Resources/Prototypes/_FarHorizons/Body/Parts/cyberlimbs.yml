@@ -1,0 +1,127 @@
+#Gorlex-Tactical-Implant 'Vanguard' Arms
+- type: entity
+  id: LeftArmCyberGorlexTacticalImplantVanguard
+  name: "left GTI 'Vanguard' arm"
+  description: "A popular cybernetic arm commonly found on most syndicate commanders stationed on the many syndicate-stations, the cybernetic itself, equipped with the GTI 'Cyber-Scattergun', how in the world did you get this?"
+  parent: [PartCyber, BaseLeftArm, BaseSyndicateContraband]
+  components:
+    - type: BaseLayerId
+      layer: CyberLArmGTIVanguard
+    - type: BaseLayerIdToggled
+      layer: CyberLArmGTIVanguardToggled 
+    - type: Sprite
+      sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "l_gti_vanguard_arm"
+    - type: Icon
+      sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "l_gti_vanguard_arm"
+    - type: LimbItemStorage
+      items:
+        - CyberScatterGun
+    - type: LimbItemDeployer
+      action: ActionToggleCyberHandSyndiLeft
+      sound:
+        path: /Audio/_FarHorizons/Effects/Cybernetic/GTI_vanguard_activate.ogg
+      handWhitelist:
+        tags:
+          - CyberHandItem
+    - type: WithAttachedBodyParts
+      parts:
+        left hand: LeftHandCyberGTIVanguard
+    - type: HumanoidEMPCompositeElement
+      effect:
+        stunAmount: 1.0
+        dropItemsFrom:
+        - body_part_slot_left hand
+        damageAmount:
+          types:
+            Shock: 15
+
+- type: entity
+  id: RightArmCyberGorlexTacticalImplantVanguard
+  name: "right GTI 'Vanguard' arm"
+  description: "A popular cybernetic arm commonly found on most syndicate commanders stationed on the many syndicate-stations, the cybernetic itself, equipped with the GTI 'Cyber-Scattergun', how in the world did you get this?"
+  parent: [PartCyber, BaseRightArm, BaseSyndicateContraband]
+  components:
+    - type: BaseLayerId
+      layer: CyberRArmGTIVanguard
+    - type: BaseLayerIdToggled
+      layer: CyberRArmGTIVanguardToggled 
+    - type: Sprite
+      sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "r_gti_vanguard_arm"
+    - type: Icon
+      sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "r_gti_vanguard_arm"
+    - type: LimbItemStorage
+      items:
+        - CyberScatterGun
+    - type: LimbItemDeployer
+      action: ActionToggleCyberHandSyndiRight
+      sound:
+        path: /Audio/_FarHorizons/Effects/Cybernetic/GTI_vanguard_activate.ogg
+      handWhitelist:
+        tags:
+          - CyberHandItem
+    - type: WithAttachedBodyParts
+      parts:  
+        right hand: RightHandCyber
+    - type: HumanoidEMPCompositeElement
+      effect:
+        stunAmount: 1.0
+        dropItemsFrom:
+        - body_part_slot_right hand
+        damageAmount:
+          types:
+            Shock: 15
+
+#Gorlex-Tactical-Implant 'Vanguard' Hands
+- type: entity
+  id: LeftHandCyberGTIVanguard
+  name: "left GTI 'vanguard' hand"
+  parent: [PartCyber, BaseLeftHand, BaseSyndicateContraband]
+  components:
+    - type: BaseLayerId
+      layer: CyberGTIVanguardLHand
+    - type: Sprite
+      sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "l_gti_vanguard_hand"
+    - type: Icon
+      sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "l_gti_vanguard_hand"
+    - type: RoundstartImplantable
+      cost: 1
+    # Far Horizons - EMP effects from installed cybernetics
+    - type: HumanoidEMPCompositeElement
+      effect:
+        stunAmount: 0.5
+        dropItemsFrom:
+        - body_part_slot_left hand
+        damageAmount:
+          types:
+            Shock: 5
+
+- type: entity
+  id: RightHandCyberGTIVanguard
+  name: "right GTI 'vanguard' hand"
+  parent: [PartCyber, BaseRightHand, BaseSyndicateContraband]
+  components:
+    - type: BaseLayerId
+      layer: CyberGTIVanguardRHand
+    - type: Sprite
+      sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "r_gti_vanguard_hand"
+    - type: Icon
+      sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "r_gti_vanguard_hand"
+    - type: RoundstartImplantable
+      cost: 1
+    # Far Horizons - EMP effects from installed cybernetics
+    - type: HumanoidEMPCompositeElement
+      effect:
+        stunAmount: 0.5
+        dropItemsFrom:
+        - body_part_slot_right hand
+        damageAmount:
+          types:
+            Shock: 5
