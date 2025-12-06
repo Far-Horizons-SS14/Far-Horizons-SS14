@@ -119,7 +119,6 @@ public sealed partial class SurgeryOverhaulSystem : EntitySystem
             {
                 foreach (var (key, value) in techvar.TechnologyModifier!)
                 {
-                    var FlagProto = _prototypes.Index(key.Id);
                     if (_fhResearch.IsFlagUnlocked((server.Value, server.Value.Comp), key))
                         ResearchModifier = value;
                 }
