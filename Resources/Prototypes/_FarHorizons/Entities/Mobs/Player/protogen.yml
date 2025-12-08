@@ -3,6 +3,16 @@
   name: Urist McToaster
   parent: BaseMobProtogen
   id: MobProtogen
+  components:  # had to put it there because BaseMobProtogen is actually used by all other protogens
+    - type: Tag
+      tags:
+        - CanPilot
+        - FootstepSound
+        - DoorBumpOpener
+        - AnomalyHost
+        - Protogen
+        - SiliconEmotesFH
+        - TrueProtogen  # because of that
 
 - type: entity
   save: false
