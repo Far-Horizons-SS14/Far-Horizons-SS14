@@ -7,10 +7,6 @@
     volume: -10
     enabled: false
   - type: MovementSpeedModifier
-    weightlessModifier: 0
-    acceleration: 2
-    friction: 2
-    frictionNoInput: 6
     baseWalkSpeed: 4.5
     baseSprintSpeed: 6
   - type: Tag
@@ -87,19 +83,25 @@
     - type: Sprite
       sprite: Objects/Vehicles/wheelchair.rsi
       layers:
-      - state: vehicle
+      - state: wheelchair
         map: ["enum.VehicleVisualLayers.AutoAnimate", "unfoldedLayer"]
-      - state: vehicle_folded
+      - state: wheelchair_overlay
+        map: ["enum.VehicleVisualLayers.AutoAnimate", "unfoldedLayer"]
+        visible: false
+      - state: wheelchair_folded
         map: ["foldedLayer"]
         visible: false
       noRot: true
     - type: Vehicle
+      acceleration: 2 # higher acceleration the faster it reaches max baseSpeed
+      friction: 2 # higher friction counteracts the current speed so higher makes it easier to turn but has the inverse effect also it counter acts acceleration
+      frictionNoInput: 2 # same as friction but for when the user doesn't input anything so lower friction means it will take them longer to stop
       baseState: vehicle
     - type: VehicleBuckle
       unbuckletime: 1
     - type: MovementSpeedModifier
-      baseWalkSpeed: 2.5
       baseSprintSpeed: 4.5
+      baseWalkSpeed: 2.5
     - type: Strap
       buckleOffset: "0,0"
       maxBuckleDistance: 1

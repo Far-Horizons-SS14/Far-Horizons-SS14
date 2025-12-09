@@ -11,6 +11,8 @@ using Content.Shared._FarHorizons.Vehicles;
 using System.Numerics;
 using Content.Shared.Buckle;
 using Content.Shared.Popups;
+using Robust.Shared.Physics.Components;
+using Robust.Shared.Physics.Systems;
 
 namespace Content.Server._FarHorizons.Vehicle;
 
@@ -21,15 +23,24 @@ public sealed class VehicleSystems : SharedVehicleSystems
     [Dependency] private readonly SharedBuckleSystem _buckle = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private readonly MovementSpeedModifierSystem _movementSpeed = default!;
+    [Dependency] private readonly SharedPhysicsSystem _physics = default!;
     public override void Initialize()
     {
+        SubscribeLocalEvent<VehicleComponent, MapInitEvent>(OnModMapInit);
+        SubscribeLocalEvent<VehicleComponent, GetAdditionalAccessEvent>(OnGetAdditionalAccess);
         SubscribeLocalEvent<VehicleBuckleComponent, StrappedEvent>(OnStrapped);
         SubscribeLocalEvent<VehicleBuckleComponent, UnstrappedEvent>(OnUnstrapped);
         SubscribeLocalEvent<VehicleBuckleComponent, UnstrapAttemptEvent>(OnUnstrapAttempt);
-        SubscribeLocalEvent<VehicleBuckleComponent, GetAdditionalAccessEvent>(OnGetAdditionalAccess);
         SubscribeLocalEvent<VehicleBuckleComponent, VehicleUnbuckleDoAfter>(OnUnbuckleDoAfter);
         SubscribeLocalEvent<RiderComponent, PullAttemptEvent>(OnPullAttempt);
         _transform.OnGlobalMoveEvent += OnMoveEvent;
+    }
+
+    private void OnModMapInit(Entity<VehicleComponent> ent, ref MapInitEvent args)
+    {
+        if(!TryComp<MovementSpeedModifierComponent>(ent.Owner, out var msmComp)) return;
+        _movementSpeed.ChangeFrictionAndAcceleration(ent.Owner, ent.Comp.Friction, ent.Comp.FrictionNoInput, ent.Comp.Acceleration, msmComp);
     }
 
     private void OnStrapped(Entity<VehicleBuckleComponent> ent, ref StrappedEvent args)
@@ -80,12 +91,11 @@ public sealed class VehicleSystems : SharedVehicleSystems
         }
     }
 
-    private void OnGetAdditionalAccess(Entity<VehicleBuckleComponent> ent, ref GetAdditionalAccessEvent args)
+    private void OnGetAdditionalAccess(Entity<VehicleComponent> ent, ref GetAdditionalAccessEvent args)
     {
-        if(!TryComp<VehicleComponent>(ent, out var vehicleComp)) return;
-        if (vehicleComp.Rider == null) return;
+        if (ent.Comp.Rider == null) return;
 
-        args.Entities.Add(vehicleComp.Rider.Value);
+        args.Entities.Add(ent.Comp.Rider.Value);
     }
 
     private void OnPullAttempt(Entity<RiderComponent> ent, ref PullAttemptEvent args)
@@ -96,15 +106,29 @@ public sealed class VehicleSystems : SharedVehicleSystems
     
     private void OnMoveEvent(ref MoveEvent ev)
     {
-        var rider = ev.Entity.Owner;
+        var rider = ev.Entity.Owner; 
         if(!TryComp<RiderComponent>(rider, out var ridercomp)) return;
+        if(!TryComp<PhysicsComponent>(rider, out var riderPhys)) return;
+        var vehicle = ridercomp.Riding;
+        if(!TryComp<PhysicsComponent>(vehicle, out var vehiclePhys)) return;
         var riderTransform = Transform(rider);
-        if(riderTransform.ParentUid !=  ridercomp.Riding) return;
+        if(riderTransform.ParentUid !=  vehicle) return;
         
         if(riderTransform.LocalPosition.X != 0 || riderTransform.LocalPosition.Y != 0)
             _transform.SetLocalPosition(rider, new Vector2(0f, 0f), riderTransform);
         if(riderTransform.LocalRotation != 0)
             _transform.SetLocalRotation(rider, 0f, riderTransform);
+        
+        if(!TryComp<MovementSpeedModifierComponent>(vehicle, out var moveComp)) return;
+        if(Math.Abs(vehiclePhys.LinearVelocity.X) > 1.05*moveComp.BaseSprintSpeed || 
+            Math.Abs(vehiclePhys.LinearVelocity.Y) > 1.05*moveComp.BaseSprintSpeed)
+        {
+            if(TryComp<BuckleComponent>(rider, out var buckleComp))
+                if(_buckle.TryUnbuckle(rider, null, buckleComp))
+                {
+                    _physics.ApplyLinearImpulse(rider, vehiclePhys.LinearVelocity, body: riderPhys);
+                }
+        }
     }
 
     private void OnUnbuckleDoAfter(Entity<VehicleBuckleComponent> ent, ref VehicleUnbuckleDoAfter args)

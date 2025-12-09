@@ -10,6 +10,24 @@ public sealed partial class VehicleComponent : Component
     /// </summary>
     [DataField("rider")]
     public EntityUid? Rider;
+
+    /// <summary>
+    /// the levels of friction the wearer is subected to, higher the number the more friction.
+    /// </summary>
+    [DataField]
+    public float Friction = 2;
+
+    /// <summary>
+    /// Determines the turning ability of the wearer, Higher the number the less control of their turning ability.
+    /// </summary>
+    [DataField]
+    public float FrictionNoInput = 6;
+
+    /// <summary>
+    /// Sets the speed in which the wearer accelerates to full speed, higher the number the quicker the acceleration.
+    /// </summary>
+    [DataField]
+    public float Acceleration = 2;
     
     [DataField]
     public string? BaseState;
