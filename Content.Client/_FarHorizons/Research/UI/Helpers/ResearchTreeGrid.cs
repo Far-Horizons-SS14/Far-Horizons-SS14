@@ -227,7 +227,7 @@ public sealed class ResearchTreeGrid
 
     private static ((int x, int y) position, NodeSpace nodeSpace, bool created) PlaceAtCoords(ref List<List<NodeSpace?>> grid, NodeSpace nodeSpace, (int x, int y) position, bool rev = false, int offset = 0)
     {
-        if (FindInColumn(grid, nodeSpace, position, 2) is ((int, int), NodeSpace) existing)
+        if (FindInColumn(grid, nodeSpace, position, 1) is ((int, int), NodeSpace) existing)
             return (existing.position, existing.nodeSpace, false);
         
         if (offset > grid[0].Count - 1)
@@ -253,7 +253,8 @@ public sealed class ResearchTreeGrid
                     .Select(p => p!)] : 
             lineMergeDistance < 0 ? [] : 
                 [.. grid[position.x]
-                        .Slice(Math.Max(position.y - lineMergeDistance, 0), Math.Min(lineMergeDistance * 2, grid[position.x].Count - 1 - position.y))
+                        [Math.Max(position.y - lineMergeDistance, 0)..]
+                        .Take((lineMergeDistance * 2) + 1)
                         .Where(p => p != null && !p.IsNode && p.LineFor.Intersect(nodeSpace.LineFor).Any())
                         .Select(p => p!)];
         return matching.Count == 0 ? null : ((position.x, grid[position.x].IndexOf(matching.First())), matching.First());
@@ -365,7 +366,12 @@ public sealed class ResearchTreeGrid
         foreach (var child in node.Children(_prototypeManager))
         {
             if (excludedNodes.Contains(child))
+            {
+                var childNode = FindInGrid(grid, child);
+                if (childNode != null)
+                    ConnectNodes(ref grid, (newPos, newNodeSpace), childNode.Value);
                 continue;
+            }
 
             var next = WalkForward(ref grid, child, tree[0].position.y, tierNodes, tierWidths, tierStartingColumns, ref excludedNodes);
             tree.AddRange(next);
@@ -383,31 +389,14 @@ public sealed class ResearchTreeGrid
             from.nodeSpace.LinksTo.Add((to.position, from.nodeSpace, to.nodeSpace));
         else {
             var previous = from.nodeSpace;
+            var nextPos = (from.position.x + 1, to.position.y);
             for (var i = from.position.x + 1; i < to.position.x; i++)
             {
                 var nextLine = new NodeSpace();
                 nextLine.LineFor.AddRange([from.nodeSpace, to.nodeSpace]);
-                (int x, int y) pos;
 
-                (var pos1, var nextLine1, var created1) = PlaceAtCoords(ref grid, nextLine, (i, to.position.y), rev);
-                (var pos2, var nextLine2, var created2) = PlaceAtCoords(ref grid, nextLine, (i + 1, to.position.y), rev);
-
-                if (i + 1 >= to.position.x || Math.Abs(pos1.y - to.position.y) <= Math.Abs(pos2.y - to.position.y) || pos2.y == from.position.y)
-                {
-                    if (created2)
-                        grid[pos2.x][pos2.y] = null;
-                    
-                    pos = pos1;
-                    nextLine = nextLine1;
-                } else 
-                {
-                    if (created1)
-                        grid[pos1.x][pos1.y] = null;
-                    
-                    pos = pos2;
-                    nextLine = nextLine2;
-                    i++;
-                }
+                (var pos, nextLine, var created) = PlaceAtCoords(ref grid, nextLine, nextPos, rev);
+                nextPos = (i + 1, pos.y);
 
                 previous.LinksTo.Add((pos, from.nodeSpace, to.nodeSpace));
                 nextLine.LineFor.AddRange([from.nodeSpace, to.nodeSpace]);
