@@ -118,7 +118,7 @@ public sealed partial class FHResearchTree : BoxContainer
         _researched = researched;
         _researching = progress;
 
-        _viewportPosition = -_viewportSize / 2;
+        _viewportPosition = (-_viewportSize / 2) + new Vector2(NodeMarginHorizontal * 2, NodeMarginVertical * 2);
 
         _searchDb.Build(_prototypeManager, [.. nodes.Select(p => (ProtoId<ResearchTreeNodePrototype>)p.ID)]);
         _search.SetDb(_searchDb);
