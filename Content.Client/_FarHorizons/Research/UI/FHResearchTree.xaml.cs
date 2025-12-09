@@ -25,6 +25,7 @@ public sealed partial class FHResearchTree : BoxContainer
 
     private bool _moving = false;
     private Vector2 _viewportPosition = Vector2.Zero;
+    private Vector2 _pseudoViewport => (_viewportPosition * _zoom) + (_viewportSize / 2);
     private Vector2 _lastViewportPosition = Vector2.Zero;
     private Vector2 _lastMousePos = Vector2.Zero;
     private List<DrawResearchTier> _tiers = [];
@@ -117,6 +118,8 @@ public sealed partial class FHResearchTree : BoxContainer
         _researched = researched;
         _researching = progress;
 
+        _viewportPosition = -_viewportSize / 2;
+
         _searchDb.Build(_prototypeManager, [.. nodes.Select(p => (ProtoId<ResearchTreeNodePrototype>)p.ID)]);
         _search.SetDb(_searchDb);
         _search.OnSearchSelected += (node) => Select(node);
@@ -149,7 +152,7 @@ public sealed partial class FHResearchTree : BoxContainer
             return;
         
         _lastViewportPosition = _viewportPosition;
-        if (_nodes.Any(p => p.Proto == _hovered && p.Zoom(_zoom).Translate(_viewportPosition * _zoom).IsHovering(_currentMousePosition)))
+        if (_nodes.Any(p => p.Proto == _hovered && p.Zoom(_zoom).Translate(_pseudoViewport).IsHovering(_currentMousePosition)))
         {
             _willSelect = _hovered;
             return;
@@ -239,13 +242,13 @@ public sealed partial class FHResearchTree : BoxContainer
         foreach (var tier in _tiers)
             tier
             .Zoom(_zoom)
-            .Translate(_viewportPosition * _zoom)
+            .Translate(_pseudoViewport)
             .DrawBg(handle);
         _hovered = GetHovered();
         foreach (var edge in _edges)
             edge
             .Zoom(_zoom)
-            .Translate(_viewportPosition * _zoom)
+            .Translate(_pseudoViewport)
             .Hovered(_hovered)
             .Research(_researched)
             .Draw(handle);
@@ -254,7 +257,7 @@ public sealed partial class FHResearchTree : BoxContainer
             _nodes[i] = _nodes[i].WrapName(handle); // basically part of initialization, but it requires handle so it's here. Will only run first time
             _nodes[i]
             .Zoom(_zoom)
-            .Translate(_viewportPosition * _zoom)
+            .Translate(_pseudoViewport)
             .Hovered(_currentMousePosition)
             .Select(_selected)
             .Unlock(_unlockedTiers, _unlockedNodes)
@@ -265,7 +268,7 @@ public sealed partial class FHResearchTree : BoxContainer
         foreach (var tier in _tiers)
             tier
             .Zoom(_zoom)
-            .Translate(_viewportPosition * _zoom)
+            .Translate(_pseudoViewport)
             .DrawHeader(handle);
         
         _search.Draw(handle);
@@ -284,7 +287,7 @@ public sealed partial class FHResearchTree : BoxContainer
     private ProtoId<ResearchTreeNodePrototype>? GetHovered()
     {
         var hovered = _nodes
-        .Where(p => p.Zoom(_zoom).Translate(_viewportPosition * _zoom).IsHovering(_currentMousePosition))
+        .Where(p => p.Zoom(_zoom).Translate(_pseudoViewport).IsHovering(_currentMousePosition))
         .Select(p => p.Proto)
         .ToList();
 
@@ -298,7 +301,7 @@ public sealed partial class FHResearchTree : BoxContainer
             _selected = select;
             OnSelectionChanged?.Invoke(_selected);
             var node = _nodes.Where(p => p.Proto == _selected).First();
-            _viewportPosition = -node.Position - (node.Size / 2) + (_viewportSize / 2);
+            _viewportPosition = -node.Position - (node.Size / 2);
             _zoom = 1;
         }
     }
