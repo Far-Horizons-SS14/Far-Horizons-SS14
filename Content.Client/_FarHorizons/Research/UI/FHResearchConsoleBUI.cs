@@ -28,6 +28,7 @@ public sealed class FHResearchConsoleBoundUserInterface(EntityUid owner, Enum ui
         
         _nodeProtos = [.. _protoMan.EnumeratePrototypes<ResearchTreeNodePrototype>()];
         _window = this.CreateWindow<FHResearchConsoleWindow>();
+        _window.Title = EntMan.GetComponent<MetaDataComponent>(Owner).EntityName;
 
         _window.OnServerButtonPressed += () => SendMessage(new ConsoleServerSelectionMessage());
 
