@@ -8,7 +8,6 @@ namespace Content.Client._FarHorizons.Vehicles;
 
 public sealed class VehicleSystems : SharedVehicleSystems
 {
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly SpriteSystem _sprite = default!;
 
     /// <inheritdoc/>

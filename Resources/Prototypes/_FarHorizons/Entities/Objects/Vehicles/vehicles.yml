@@ -85,8 +85,6 @@
       layers:
       - state: wheelchair
         map: ["enum.VehicleVisualLayers.AutoAnimate", "unfoldedLayer"]
-      - state: wheelchair_overlay
-        visible: false
       - state: wheelchair_folded
         map: ["foldedLayer"]
         visible: false
@@ -95,9 +93,12 @@
       acceleration: 2 # higher acceleration the faster it reaches max baseSpeed
       friction: 2 # higher friction counteracts the current speed so higher makes it easier to turn but has the inverse effect also it counter acts acceleration
       frictionNoInput: 2 # same as friction but for when the user doesn't input anything so lower friction means it will take them longer to stop
+      requireKeys: true 
       baseState: wheelchair
     - type: VehicleBuckle
       unbuckletime: 1
+      dismountonstun: true
+      dismountonknockdown: true
     - type: MovementSpeedModifier
       baseSprintSpeed: 4.5
       baseWalkSpeed: 2.5

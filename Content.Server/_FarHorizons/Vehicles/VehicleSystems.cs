@@ -13,7 +13,9 @@ using Content.Shared.Buckle;
 using Content.Shared.Popups;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
-using Robust.Shared.Timing;
+using Content.Shared.Stunnable;
+using Content.Shared.ActionBlocker;
+using Content.Shared.Movement.Events;
 
 namespace Content.Server._FarHorizons.Vehicle;
 
@@ -26,21 +28,24 @@ public sealed partial class VehicleSystems : SharedVehicleSystems
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly MovementSpeedModifierSystem _movementSpeed = default!;
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
-    [Dependency] private readonly IGameTiming _gameTiming = default!;
+    [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!;
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeLocalEvent<VehicleComponent, MapInitEvent>(OnModMapInit);
+        SubscribeLocalEvent<VehicleComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<VehicleComponent, GetAdditionalAccessEvent>(OnGetAdditionalAccess);
+        SubscribeLocalEvent<RiderComponent, UpdateCanMoveEvent>(OnUpdateCanMoveEvent);
         SubscribeLocalEvent<VehicleBuckleComponent, StrappedEvent>(OnStrapped);
         SubscribeLocalEvent<VehicleBuckleComponent, UnstrappedEvent>(OnUnstrapped);
         SubscribeLocalEvent<VehicleBuckleComponent, UnstrapAttemptEvent>(OnUnstrapAttempt);
         SubscribeLocalEvent<VehicleBuckleComponent, VehicleUnbuckleDoAfter>(OnUnbuckleDoAfter);
         SubscribeLocalEvent<RiderComponent, BeingPulledAttemptEvent>(OnPullAttempt);
+        SubscribeLocalEvent<RiderComponent, StunnedEvent>(OnStunned);
+        SubscribeLocalEvent<RiderComponent, KnockedDownEvent>(OnKnockdown);
         _transform.OnGlobalMoveEvent += OnMoveEvent;
     }
 
-    private void OnModMapInit(Entity<VehicleComponent> ent, ref MapInitEvent args)
+    private void OnMapInit(Entity<VehicleComponent> ent, ref MapInitEvent args)
     {
         if(!TryComp<MovementSpeedModifierComponent>(ent.Owner, out var msmComp)) return;
         _movementSpeed.ChangeFrictionAndAcceleration(ent.Owner, ent.Comp.Friction, ent.Comp.FrictionNoInput, ent.Comp.Acceleration, msmComp);
@@ -56,12 +61,7 @@ public sealed partial class VehicleSystems : SharedVehicleSystems
 
             _mover.SetRelay(args.Buckle.Owner, ent.Owner);
             vehicleComp.Rider = args.Buckle.Owner;
-
-            if(TryComp<InputMoverComponent>(ent.Owner, out var mover))
-            {
-                mover.CanMove = true;
-                Dirty(ent.Owner, mover);
-            }
+            _actionBlocker.UpdateCanMove(args.Buckle.Owner);
         }
     }
     
@@ -74,6 +74,7 @@ public sealed partial class VehicleSystems : SharedVehicleSystems
         if(HasComp<RiderComponent>(args.Buckle.Owner))
             RemComp<RiderComponent>(args.Buckle.Owner);
         vehicleComp.Rider = null;
+        _actionBlocker.UpdateCanMove(args.Buckle.Owner);
     }
 
     private void OnUnstrapAttempt(Entity<VehicleBuckleComponent> ent, ref UnstrapAttemptEvent args)
@@ -106,21 +107,45 @@ public sealed partial class VehicleSystems : SharedVehicleSystems
         if (ent.Owner != args.Puller)
             args.Cancel();
     }
+
+    private void OnStunned(Entity<RiderComponent> ent, ref StunnedEvent args)
+    { 
+        var vehicle = ent.Comp.Riding;
+        if(!TryComp<VehicleBuckleComponent>(vehicle, out var vehicleBuckleComp)) return;
+        if(!vehicleBuckleComp.stundismount) return;
+        if(!TryComp<BuckleComponent>(ent.Owner, out var buckleComp)) return;
+
+        _buckle.Unbuckle((ent.Owner, buckleComp), ent.Owner);   
+    }
+
+    private void OnKnockdown(Entity<RiderComponent> ent, ref KnockedDownEvent args)
+    {
+        var vehicle = ent.Comp.Riding;
+        if(!TryComp<VehicleBuckleComponent>(vehicle, out var vehicleBuckleComp)) return;
+        if(!vehicleBuckleComp.knockdowndismount) return;
+        if(!TryComp<BuckleComponent>(ent.Owner, out var buckleComp)) return;
+        
+        _buckle.Unbuckle((ent.Owner, buckleComp), ent.Owner);   
+    }
     
     private void OnMoveEvent(ref MoveEvent ev)
     {
-        var rider = ev.Entity.Owner; 
-        if(!TryComp<RiderComponent>(rider, out var ridercomp)) return;
+        var vehicle = ev.Entity.Owner; 
+        if(!TryComp<VehicleComponent>(vehicle, out var vehicleComp)) return;
+        if( vehicleComp.Rider == null) return;
+        var rider = vehicleComp.Rider.Value;
         if(!TryComp<PhysicsComponent>(rider, out var riderPhys)) return;
-        var vehicle = ridercomp.Riding;
         if(!TryComp<PhysicsComponent>(vehicle, out var vehiclePhys)) return;
         var riderTransform = Transform(rider);
         if(riderTransform.ParentUid !=  vehicle) return;
-        
-        if(riderTransform.LocalPosition.X != 0 || riderTransform.LocalPosition.Y != 0)
-            _transform.SetLocalPosition(rider, new Vector2(0f, 0f), riderTransform);
-        if(riderTransform.LocalRotation != 0)
-            _transform.SetLocalRotation(rider, 0f, riderTransform);
+
+        if(HasComp<VehicleBuckleComponent>(vehicle) && TryComp<StrapComponent>(vehicle, out var strapComp))
+        {
+            if(riderTransform.LocalPosition.X != 0 || riderTransform.LocalPosition.Y != 0)
+                _transform.SetLocalPosition(rider, new Vector2(0f+strapComp.BuckleOffset.X, 0f+strapComp.BuckleOffset.Y), riderTransform);
+            if(riderTransform.LocalRotation != 0)
+                _transform.SetLocalRotation(rider, 0f, riderTransform);
+        }
         
         if(!TryComp<MovementSpeedModifierComponent>(vehicle, out var moveComp)) return;
         if(Math.Abs(vehiclePhys.LinearVelocity.X) > 1.05*moveComp.BaseSprintSpeed || 
@@ -142,5 +167,13 @@ public sealed partial class VehicleSystems : SharedVehicleSystems
         var user = vehicleComp.Rider.Value;
         if(!TryComp<BuckleComponent>(user, out var buckleComp)) return;
         _buckle.Unbuckle((user, buckleComp), user);
+    }
+
+    private void OnUpdateCanMoveEvent(Entity<RiderComponent> ent, ref UpdateCanMoveEvent args)
+    {
+        if(TryComp<VehicleComponent>(ent.Comp.Riding, out var vehicleComp) && vehicleComp.requireKeys)
+        {
+            args.Cancel();
+        }
     }
 }

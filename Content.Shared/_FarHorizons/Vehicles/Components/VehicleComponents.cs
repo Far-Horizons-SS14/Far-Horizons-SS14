@@ -12,6 +12,12 @@ public sealed partial class VehicleComponent : Component
     public EntityUid? Rider;
 
     /// <summary>
+    /// check if a vehicle requires keys before allowing it to move
+    /// </summary>
+    [DataField("requireKeys")]
+    public bool requireKeys = false;
+
+    /// <summary>
     /// the levels of friction the wearer is subected to, higher the number the more friction.
     /// </summary>
     [DataField]
