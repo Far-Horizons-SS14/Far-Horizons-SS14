@@ -204,6 +204,28 @@
   announceTo:
     - Security
 
+- type: researchTreeNode
+  id: NuclearPowerGeneration
+  name: Nuclear Power Generation
+  cost: 7500
+  tier: Tier1
+  requires:
+    - PowerGeneration
+  unlocks:
+    - NuclearFabricatorMachineCircuitboard
+    - UraniumReactorFuelRod
+    - PlasmaReactorFuelRod
+    - UraniumGlassReactorFuelRod
+    - SilverReactorControlRod
+    - PlasteelReactorControlRod
+    - PlasmaGlassReactorControlRod
+    - SilverReactorGasChannel
+    - PlasteelReactorGasChannel
+    - PlasmaGlassReactorGasChannel
+    - SilverReactorHeatExchanger
+    - PlasteelReactorHeatExchanger
+    - PlasmaGlassReactorHeatExchanger
+
 # Research
 
 - type: researchTreeNode
@@ -687,6 +709,26 @@
   announceTo:
     - Engineering
 
+- type: researchTreeNode
+  id: NuclearPowerRecycling
+  name: Nuclear Power Recycling
+  cost: 12500
+  tier: Tier2
+  requires:
+    - NuclearPowerGeneration
+  unlocks:
+    - NuclearCentrifugeMachineCircuitboard
+    - PlutoniumReactorFuelRod
+    - BananiumReactorFuelRod
+    - GoldReactorControlRod
+    - DiamondReactorControlRod
+    - GoldReactorGasChannel
+    - DiamondReactorGasChannel
+    - GoldReactorHeatExchanger
+    - DiamondReactorHeatExchanger
+  announceTo:
+    - Engineering
+
 # Research
 
 - type: researchTreeNode
@@ -1010,6 +1052,7 @@
   tier: Tier3
   requires:
     - AdvancedTools
+    - NuclearPowerRecycling
   unlocks:
     - PowerCellMicroreactor
     - PowerCellHyper
