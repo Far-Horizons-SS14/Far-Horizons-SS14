@@ -280,7 +280,7 @@ public sealed partial class FHResearchTree : BoxContainer
             return;
 
         var curMousePos = _currentMousePosition;
-        _viewportPosition += _currentMousePosition - _lastMousePos;
+        _viewportPosition += (_currentMousePosition - _lastMousePos) * (MaxZoom - (_zoom - MinZoom));
         _lastMousePos = curMousePos;
     }
 
