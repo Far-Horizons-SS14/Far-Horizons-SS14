@@ -4,8 +4,8 @@ meta:
   engineVersion: 267.3.0
   forkId: ""
   forkVersion: ""
-  time: 12/03/2025 18:25:07
-  entityCount: 437
+  time: 12/06/2025 11:11:46
+  entityCount: 439
 maps: []
 grids:
 - 2
@@ -1307,6 +1307,18 @@ entities:
     components:
     - type: Transform
       pos: -0.5,11.5
+      parent: 2
+- proto: CrateSalvageContrabandStorageSecure
+  entities:
+  - uid: 438
+    components:
+    - type: Transform
+      pos: 0.5,-9.5
+      parent: 2
+  - uid: 439
+    components:
+    - type: Transform
+      pos: 1.5,-0.5
       parent: 2
 - proto: CrateTrashCart
   entities:
