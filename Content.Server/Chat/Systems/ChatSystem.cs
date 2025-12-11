@@ -40,6 +40,7 @@ using Content.Shared.Speech; // Starlight
 using Content.Server._Starlight.Language; // Starlight
 using Content.Shared._Starlight.Language; // Starlight
 using Content.Shared.Popups; // Starlight
+using Content.Server._NullLink.PlayerData;  // Far Horizons
 
 namespace Content.Server.Chat.Systems;
 
@@ -848,8 +849,9 @@ public sealed partial class ChatSystem : SharedChatSystem
         string wrappedMessage;
         if (_adminManager.IsAdmin(player))
         {
+            var prefix = _chatManager.GetAdminTitle(player);// Far Horizons
             wrappedMessage = Loc.GetString("chat-manager-send-admin-dead-chat-wrap-message",
-                ("adminChannelName", Loc.GetString("chat-manager-admin-channel-name")),
+                ("adminChannelName", prefix),  // Far Horizons
                 ("userName", player.Channel.UserName),
                 ("message", FormattedMessage.EscapeText(message)));
             _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Admin dead chat from {player:Player}: {message}");
