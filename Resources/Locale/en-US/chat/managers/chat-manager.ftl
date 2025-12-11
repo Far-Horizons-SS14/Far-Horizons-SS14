@@ -50,7 +50,8 @@ chat-manager-send-hook-admin-wrap-message = ADMIN: [bold](D){$senderName}:[/bold
 
 chat-manager-dead-channel-name = DEAD
 #Far Horizons-Start Editing
-chat-manager-admin-channel-name = Staff
+chat-manager-admin-channel-name = Admin
+chat-manager-staff-channel-name = Staff
 #Far Horizons-End Editing
 
 chat-manager-rate-limited = You are sending messages too quickly!

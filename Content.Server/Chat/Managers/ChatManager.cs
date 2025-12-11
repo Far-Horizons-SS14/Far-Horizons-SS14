@@ -316,8 +316,11 @@ internal sealed partial class ChatManager : IChatManager
         }
 
         var clients = _adminManager.ActiveAdmins.Select(p => p.Channel);
+
+        var prefix = GetAdminTitle(player);
+        
         var wrappedMessage = Loc.GetString("chat-manager-send-admin-chat-wrap-message",
-                                        ("adminChannelName", Loc.GetString("chat-manager-admin-channel-name")),
+                                        ("adminChannelName", prefix),
                                         ("playerName", player.Name), ("message", FormattedMessage.EscapeText(message)));
 
         foreach (var client in clients)
@@ -436,6 +439,17 @@ internal sealed partial class ChatManager : IChatManager
         }
 
         return isOverLength;
+    }
+
+    // Far Horizons
+    public string GetAdminTitle(ICommonSession player)
+    {
+        // TODO: make FHManager and move this to it
+        var prefix = Loc.GetString("chat-manager-staff-channel-name");
+        var roles = _playerRoles.GetUserRoles(player.UserId);
+        if (roles != null && roles.Contains<ulong>(1407078784611385534))  // Game Admin role
+            prefix = Loc.GetString("chat-manager-admin-channel-name");
+        return prefix;
     }
 
     #endregion
