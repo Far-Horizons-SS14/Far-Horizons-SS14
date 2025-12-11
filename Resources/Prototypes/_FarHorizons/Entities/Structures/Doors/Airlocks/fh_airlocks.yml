@@ -1,4 +1,6 @@
-﻿- type: entity
+﻿#region Standard
+
+- type: entity
   parent: FHAirlock
   id: FHAirlockEngineering
   suffix: Engineering
@@ -165,7 +167,7 @@
   suffix: Surgery
   components:
   - type: Sprite
-    sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/medical.rsi
+    sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/surgery.rsi
 
 - type: entity
   parent: FHAirlock
@@ -173,9 +175,9 @@
   suffix: Robotics
   components:
   - type: Sprite
-    sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/science.rsi
+    sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/robotics.rsi
 
-# Glass
+#region Glass
 
 - type: entity
   parent: FHAirlockGlass
@@ -237,7 +239,7 @@
   suffix: Salvage Lead
   components:
     - type: Sprite
-      sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/salvage.rsi
+      sprite: _FarHorizons/Structures/Doors/Airlocks/Glass/salvage.rsi
     - type: Wires
       layoutId: AirlockCargo
 
@@ -341,7 +343,7 @@
   suffix: Surgery
   components:
   - type: Sprite
-    sprite: _FarHorizons/Structures/Doors/Airlocks/Glass/medical.rsi
+    sprite: _FarHorizons/Structures/Doors/Airlocks/Glass/surgery.rsi
 
 - type: entity
   parent: FHAirlockGlass
@@ -349,4 +351,4 @@
   suffix: Robotics
   components:
   - type: Sprite
-    sprite: _FarHorizons/Structures/Doors/Airlocks/Glass/science.rsi
+    sprite: _FarHorizons/Structures/Doors/Airlocks/Glass/robotics.rsi
