@@ -15,3 +15,5 @@ research-tree-unlock-broadcast = Unlocked [bold]{$technology}[/bold] for [bold]{
 
 research-tree-console-add-queue-radio-broadcast = [bold]{$technology}[/bold] added to reserach queue by [bold]{$approver}[/bold].
 research-tree-console-remove-queue-radio-broadcast = [bold]{$technology}[/bold] removed from reserach queue by [bold]{$approver}[/bold].
+
+research-tree-map-electronics = Research Tree Map Electronics
