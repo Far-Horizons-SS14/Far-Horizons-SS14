@@ -25,13 +25,17 @@ public sealed class PlayerRolesReqManager : SharedPlayerRolesReqManager
         => AllRoles is not null
             && _playerManager.TryGetPlayerData(session.UserId, out var playerData)
             && roles.Any(playerData.Roles.Contains);
+
     public override bool IsMentor(EntityUid uid)
-        => _player.TryGetSessionByEntity(uid, out var session)
-            && _mentorReq is not null
-            && _playerManager.TryGetPlayerData(session.UserId, out var playerData)
-            && _mentorReq.Roles.Any(playerData.Roles.Contains);
+        => _player.TryGetSessionByEntity(uid, out var session) &&
+           (
+               _playerManager.IsStoredMentor(session.UserId) ||  // FarHorizons
+               _mentorReq is not null
+               && _playerManager.TryGetPlayerData(session.UserId, out var playerData)
+               && _mentorReq.Roles.Any(playerData.Roles.Contains)
+           );
     public override bool IsMentor(ICommonSession session)
-        =>  _playerManager.IsStoredMentor(session.UserId) ||
+        =>  _playerManager.IsStoredMentor(session.UserId) ||  // FarHorizons
             _mentorReq is not null
             && _playerManager.TryGetPlayerData(session.UserId, out var playerData)
             && _mentorReq.Roles.Any(playerData.Roles.Contains);

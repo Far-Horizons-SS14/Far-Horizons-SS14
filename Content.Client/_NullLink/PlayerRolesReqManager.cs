@@ -25,12 +25,14 @@ public sealed class PlayerRolesReqManager : SharedPlayerRolesReqManager
         && _playerRolesManager.ContainsAny(roles);
 
     public override bool IsMentor(EntityUid uid)
-        => _player.LocalEntity == uid
+        => _playerRolesManager.IsMentor  // Far Horizons
+        || _player.LocalEntity == uid
         && _mentorReq is not null
         && _playerRolesManager.ContainsAny(_mentorReq.Roles);
 
     public override bool IsMentor(ICommonSession session)
-        => _player.LocalSession == session
+        => _playerRolesManager.IsMentor  // Far Horizons
+        || _player.LocalSession == session
         && _mentorReq is not null
         && _playerRolesManager.ContainsAny(_mentorReq.Roles);
         

@@ -21,6 +21,7 @@ public sealed class NullLinkPlayerRolesManager : INullLinkPlayerRolesManager
     private HashSet<ulong> _roles = [];
     private string? _discordLink;
     private ISawmill _sawmill = default!;
+    public bool IsMentor {get; private set;}  // Far Horizons
 
     public event Action PlayerRolesChanged = delegate { };
 
@@ -34,6 +35,7 @@ public sealed class NullLinkPlayerRolesManager : INullLinkPlayerRolesManager
     {
         _roles = message.Roles;
         _discordLink = message.DiscordLink;
+        IsMentor = message.IsMentor;  // Far Horizons
 
         _sawmill.Info("Updated player roles");
         PlayerRolesChanged?.Invoke();

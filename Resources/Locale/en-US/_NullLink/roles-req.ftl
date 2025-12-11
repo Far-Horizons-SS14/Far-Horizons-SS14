@@ -2,6 +2,8 @@ roles-req-any-role-required = You require any of the following roles on {$discor
 
 roles-req-discord-starlight = 🌟 STARLIGHT 🌟
 roles-req-discord-wizden = Wizden
+##Far Horizons addition
+roles-req-discord-farhorizons = Far Horizons
 
 roles-req-mentor-roles = mentor
 roles-req-all-roles = staff or mentor

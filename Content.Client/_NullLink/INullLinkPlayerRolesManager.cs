@@ -8,4 +8,5 @@ public interface INullLinkPlayerRolesManager
     bool ContainsAny(ulong[] roles);
     string? GetDiscordLink();
     void Initialize();
+    bool IsMentor { get; }  // Far Horizons
 }

@@ -25,6 +25,7 @@ public sealed class MsgUpdatePlayerRoles : NetMessage
 
     public HashSet<ulong> Roles = [];
     public string? DiscordLink;
+    public bool IsMentor;  // Far Horizons
 
     public override void ReadFromBuffer(NetIncomingMessage buffer, IRobustSerializer serializer)
     {
@@ -34,6 +35,7 @@ public sealed class MsgUpdatePlayerRoles : NetMessage
         Roles.Clear();
         for (var i = 0; i < length; i++)
             Roles.Add(buffer.ReadUInt64());
+        IsMentor = buffer.ReadBoolean();  // FarHorizons
     }
 
     public override void WriteToBuffer(NetOutgoingMessage buffer, IRobustSerializer serializer)
@@ -43,6 +45,7 @@ public sealed class MsgUpdatePlayerRoles : NetMessage
         buffer.WriteVariableInt32(Roles.Count);
         foreach (var role in Roles)
             buffer.Write(role);
+        buffer.Write(IsMentor);  // FarHorizons
     }
 
     public override NetDeliveryMethod DeliveryMethod => NetDeliveryMethod.ReliableOrdered;

@@ -139,7 +139,8 @@ public sealed partial class NullLinkPlayerManager : INullLinkPlayerManager
         => _netMgr.ServerSendMessage(new MsgUpdatePlayerRoles
         {
             Roles = roles,
-            DiscordLink = GetDiscordAuthUrl(session.UserId.ToString())
+            DiscordLink = GetDiscordAuthUrl(session.UserId.ToString()),
+            IsMentor = IsStoredMentor(session.UserId)// FarHorizons
         }, session.Channel);
 
     private void UpdateMentors(string obj)
@@ -239,8 +240,10 @@ public sealed partial class NullLinkPlayerManager : INullLinkPlayerManager
         SyncMentors();
     }
 
+    // FarHorizons
     public void SyncMentors() => SyncMentorsAsync();
 
+    // FarHorizons
     private async void SyncMentorsAsync()
     {
         var mentors = await _dbManager.GetMentorsAsync();
@@ -259,5 +262,6 @@ public sealed partial class NullLinkPlayerManager : INullLinkPlayerManager
         }
     }
 
+    // FarHorizons
     public bool IsStoredMentor(Guid player) => _storedMentors.Contains(player);
 }
