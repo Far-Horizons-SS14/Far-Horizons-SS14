@@ -23,6 +23,23 @@ public sealed partial class FHResearchSystem
         return pointsAfter;
     }
 
+    public override void Update(float frameTime)
+    {
+        var query = EntityQueryEnumerator<FHResearchTreeComponent>();
+        while (query.MoveNext(out var uid, out var comp))
+        {
+            if(_timing.CurTime < comp.NextUpdate ||
+               comp.BankedPoints <= comp.BankCapacity)
+                continue;
+
+            comp.NextUpdate = _timing.CurTime + comp.RefreshRate;
+
+            SendBankFullWarning((uid, comp));
+            comp.BankedPoints -= Math.Min(comp.BankedPoints - comp.BankCapacity, comp.PointBleed);
+            RefreshUIOnClients((uid, comp));
+        }
+    }
+
     public void Research(Entity<FHResearchTreeComponent> ent, ref int points)
     {
         if (points <= 0)
@@ -62,19 +79,13 @@ public sealed partial class FHResearchSystem
 
         if (ent.Comp.BankedPoints < 0)
             ent.Comp.BankedPoints = 0;
-        
-        if (ent.Comp.BankedPoints > ent.Comp.BankCapacity)
-        {
-            ent.Comp.BankedPoints = ent.Comp.BankCapacity;
-            SendBankFullWarning(ent);
-        }
     }
 
     public void SendBankFullWarning(Entity<FHResearchTreeComponent> ent)
     {
-        if (_timing.CurTime > ent.Comp.LastWarning + ent.Comp.WarningFrequency)
+        if (_timing.CurTime >= ent.Comp.NextWarning)
         {
-            ent.Comp.LastWarning = _timing.CurTime;
+            ent.Comp.NextWarning = _timing.CurTime + ent.Comp.WarningFrequency;
             SendAnnouncement(ent, Loc.GetString("research-tree-bank-full-warning", ("amount", ent.Comp.BankCapacity)));
         }
     }

@@ -23,6 +23,8 @@ public sealed partial class FHResearchTreeComponent : Component
     public int BankedPoints = 0;
     [DataField]
     public int BankCapacity = 15000;
+    [DataField]
+    public int PointBleed = 1000;
 
     [DataField]
     public int MaxQueueSize = 3;
@@ -35,6 +37,12 @@ public sealed partial class FHResearchTreeComponent : Component
     [DataField]
     public List<ProtoId<ResearchTreeUnlockFlagPrototype>> UnlockFlags = [];
 
-    public TimeSpan LastWarning = TimeSpan.Zero;
+    [ViewVariables]
+    public TimeSpan NextWarning = TimeSpan.Zero;
+
+    [ViewVariables]
+    public TimeSpan NextUpdate = TimeSpan.Zero;
+    [DataField]
+    public TimeSpan RefreshRate = TimeSpan.FromSeconds(1);
 }
 
