@@ -86,6 +86,11 @@ public sealed partial class NuclearReactorWindow : FancyWindow
                     SetSize = new(32, 32), 
                     TexturePath = "/Textures/_FarHorizons/Structures/Power/Generation/FissionGenerator/reactor_part_inserted/base.png"
                 };
+                var button = new Button
+                {
+                    Margin = new(0),
+                    StyleBoxOverride = new StyleBoxFlat(Color.Transparent)
+                };
 
                 var vect = new Vector2i(x, y);
                 _reactorGrid.Add(vect, styleBox);
@@ -98,7 +103,10 @@ public sealed partial class NuclearReactorWindow : FancyWindow
                     HorizontalExpand = true,
                     VerticalExpand = true,
                 };
-                control.AddChild(icon);
+                control.AddChild(button);
+                var nvect = new Vector2i(y, x); // Can't be declared as a part of the line below for some reason, will break if you try
+                button.OnPressed += _ => SetTarget(nvect);
+                button.AddChild(icon);
                 ReactorGrid.AddChild(control);
             }
         }
@@ -150,7 +158,7 @@ public sealed partial class NuclearReactorWindow : FancyWindow
             _isMonitor = true;
         }
 
-        this.SetInfoFromEntity(_entityManager, _reactor);
+        this.SetInfoFromEntity(_entityManager, _isMonitor ? _monitor : _reactor);
     }
 
     protected override void FrameUpdate(FrameEventArgs args)
@@ -273,10 +281,14 @@ public sealed partial class NuclearReactorWindow : FancyWindow
             : Loc.GetString("comp-nuclear-reactor-ui-insert-button");
     }
 
-    private void MoveTarget(int x, int y)
+    private void MoveTarget(int x, int y) => SetTarget(_targetX + x, _targetY + y);
+
+    private void SetTarget(Vector2i vect) => SetTarget(vect.X, vect.Y);
+
+    private void SetTarget(int x, int y)
     {
-        _targetX = Math.Clamp(_targetX + x, 0, _gridWidth);
-        _targetY = Math.Clamp(_targetY + y, 0, _gridHeight);
+        _targetX = Math.Clamp(x, 0, _gridWidth - 1);
+        _targetY = Math.Clamp(y, 0, _gridHeight - 1);
 
         XPos.Text = _targetX.ToString();
         YPos.Text = _targetY.ToString();
