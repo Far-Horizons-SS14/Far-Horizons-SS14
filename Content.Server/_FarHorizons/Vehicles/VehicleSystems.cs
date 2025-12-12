@@ -1,6 +1,8 @@
 using Content.Shared._FarHorizons.Vehicles.EntitySystems;
 using Content.Shared._FarHorizons.VehicleBuckle.Components;
 using Content.Shared._FarHorizons.Vehicles.Components;
+using Content.Shared._Starlight.Actions.Components;
+using Content.Shared._Starlight.Actions.Events;
 using Content.Shared.Access.Components;
 using Content.Shared.Actions;
 using Content.Shared.ActionBlocker;
@@ -18,7 +20,6 @@ using Robust.Shared.Physics.Systems;
 using Robust.Shared.Prototypes;
 using System.Numerics;
 using System.Linq;
-using Robust.Server.Containers;
 using Robust.Shared.Timing;
 
 namespace Content.Server._FarHorizons.Vehicle;
@@ -33,14 +34,13 @@ public sealed partial class VehicleSystems : SharedVehicleSystems
     [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!;
     [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private readonly TagSystem _tags = default!;
-    [Dependency] private readonly ContainerSystem _container = default!;
     private static readonly ProtoId<TagPrototype> _vehicleKeyTag = "VehicleKey";
     public override void Initialize()
     {
         base.Initialize();
         SubscribeLocalEvent<VehicleComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<VehicleComponent, GetAdditionalAccessEvent>(OnGetAdditionalAccess);
-        SubscribeLocalEvent<VehicleComponent, ItemSlotInsertAttemptEvent>(OnInsertAttemptEvent);
+        SubscribeLocalEvent<VehicleComponent, ItemSlotInsertEvent>(OnInsertEvent);
 
         SubscribeLocalEvent<VehicleBuckleComponent, StrappedEvent>(OnStrapped);
         SubscribeLocalEvent<VehicleBuckleComponent, UnstrappedEvent>(OnUnstrapped);
@@ -49,6 +49,9 @@ public sealed partial class VehicleSystems : SharedVehicleSystems
         SubscribeLocalEvent<RiderComponent, StunnedEvent>(OnStunned);
         SubscribeLocalEvent<RiderComponent, KnockedDownEvent>(OnKnockdown);
         SubscribeLocalEvent<RiderComponent, UpdateCanMoveEvent>(OnUpdateCanMoveEvent);
+        SubscribeLocalEvent<RiderComponent, JumpActionEvent>(OnJumpActionEvent);
+
+        SubscribeLocalEvent<TransformComponent, JetJumpActionEvent>(OnJetJumpActionEvent);
 
         _transform.OnGlobalMoveEvent += OnMoveEvent;
     }
@@ -59,18 +62,13 @@ public sealed partial class VehicleSystems : SharedVehicleSystems
         _movementSpeed.ChangeFrictionAndAcceleration(ent.Owner, ent.Comp.Friction, ent.Comp.FrictionNoInput, ent.Comp.Acceleration, msmComp);
     }
 
-    private void OnInsertAttemptEvent(Entity<VehicleComponent> ent, ref ItemSlotInsertAttemptEvent args)
+    private void OnInsertEvent(Entity<VehicleComponent> ent, ref ItemSlotInsertEvent args)
     {
         if(ent.Comp.Rider == null) return;
-        var itemSlot = args.Slot;
-        var item = args.Item;
-        Timer.Spawn(0, () =>
+        if(_tags.HasTag(args.Item, _vehicleKeyTag))
         {
-            if(_tags.HasTag(item, _vehicleKeyTag) && itemSlot.ContainerSlot!.ContainedEntity != null)
-            {
-                AddActions(ent.Comp.Rider.Value, ent.Owner, ent.Comp);
-            }
-        });
+            AddActions(ent.Comp.Rider.Value, ent.Owner, ent.Comp);
+        }
     }
 
     private void OnStrapped(Entity<VehicleBuckleComponent> ent, ref StrappedEvent args)
@@ -139,6 +137,18 @@ public sealed partial class VehicleSystems : SharedVehicleSystems
         _buckle.Unbuckle((ent.Owner, buckleComp), ent.Owner);   
     }
     
+    private void OnJumpActionEvent(Entity<RiderComponent> ent, ref JumpActionEvent args)
+    {
+        if(!TryComp<BuckleComponent>(ent.Owner, out var buckleComp)) return;
+        _buckle.Unbuckle((ent.Owner, buckleComp), ent.Owner);
+    }
+
+    private void OnJetJumpActionEvent(Entity<TransformComponent> ent, ref JetJumpActionEvent args)
+    {
+        if(!TryComp<BuckleComponent>(ent.Comp.ParentUid, out var buckleComp)) return;
+        _buckle.Unbuckle((ent.Comp.ParentUid, buckleComp), ent.Comp.ParentUid);
+    }
+
     private void OnMoveEvent(ref MoveEvent ev)
     {
         var vehicle = ev.Entity.Owner; 
@@ -165,7 +175,7 @@ public sealed partial class VehicleSystems : SharedVehicleSystems
             if(TryComp<BuckleComponent>(rider, out var buckleComp))
                 if(_buckle.TryUnbuckle(rider, null, buckleComp))
                 {
-                    _physics.ApplyLinearImpulse(rider, vehiclePhys.LinearVelocity, body: riderPhys);
+                    _physics.ApplyLinearImpulse(rider, vehiclePhys.LinearVelocity*riderPhys.Mass, body: riderPhys);
                 }
         }
     }

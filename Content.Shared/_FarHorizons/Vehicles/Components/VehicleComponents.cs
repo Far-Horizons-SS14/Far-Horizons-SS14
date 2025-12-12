@@ -28,7 +28,13 @@ public sealed partial class VehicleComponent : Component
     /// how long does it take the vehicle to start
     /// </summary>
     [DataField("startupTime")]
-    public TimeSpan startupTime = TimeSpan.FromSeconds(3f);
+    public TimeSpan startupTime = TimeSpan.FromSeconds(3);
+
+    /// <summary>
+    /// how long does it take the keys from a vehicle
+    /// </summary>
+    [DataField("timeToStealKeys")]
+    public TimeSpan timeToStealKeys = TimeSpan.FromSeconds(3);
 
     /// <summary>
     /// the levels of friction the wearer is subected to, higher the number the more friction.

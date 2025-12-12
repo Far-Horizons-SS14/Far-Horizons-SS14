@@ -7,7 +7,10 @@ namespace Content.Shared._FarHorizons.Vehicles;
 [Serializable, NetSerializable]
 public sealed partial class VehicleUnbuckleDoAfter : SimpleDoAfterEvent;
 
-public sealed partial class TurnKeysEvent : InstantActionEvent;
-
 [Serializable, NetSerializable]
 public sealed partial class TurnKeysDoAfter : SimpleDoAfterEvent;
+
+[Serializable, NetSerializable]
+public sealed partial class EjectKeysDoAfter : SimpleDoAfterEvent;
+
+public sealed partial class TurnKeysEvent : InstantActionEvent;
