@@ -29,7 +29,8 @@ using Content.Server.DeviceLinking.Systems;
 using Content.Shared.Construction.Components;
 using Content.Shared.Popups;
 using Content.Server.Popups;
-using System.Numerics;
+using Content.Shared.DeviceLinking;
+using Content.Shared.DeviceNetwork;
 
 namespace Content.Server._FarHorizons.Power.Generation.FissionGenerator;
 
@@ -212,6 +213,17 @@ public sealed class NuclearReactorSystem : SharedNuclearReactorSystem
         var GasInput = inlet.Air.RemoveVolume(transferVolume);
 
         GasInput.Volume = inlet.Volume;
+
+        // Update control rod insertion based on device network
+        if (comp.InsertPortState != SignalState.Low)
+            AdjustControlRods(comp, 0.1f);
+        if (comp.RetractPortState != SignalState.Low)
+            AdjustControlRods(comp, -0.1f);
+
+        if (comp.InsertPortState == SignalState.Momentary)
+            comp.InsertPortState = SignalState.Low;
+        if (comp.RetractPortState == SignalState.Momentary)
+            comp.RetractPortState = SignalState.Low;
 
         // Even though it's probably bad for performace, we have to do the for x, for y loops 3 times
         // to ensure the processes do not interfere with each other
@@ -799,14 +811,21 @@ public sealed class NuclearReactorSystem : SharedNuclearReactorSystem
 
     private void OnSignalReceived(EntityUid uid, NuclearReactorComponent comp, ref SignalReceivedEvent args)
     {
-        var change = 0f;
-        if (args.Port == comp.ControlRodInsertPort)
-            change = 0.1f;
-        else if (args.Port == comp.ControlRodRetractPort)
-            change = -0.1f;
+        var state = SignalState.Momentary;
+        args.Data?.TryGetValue(DeviceNetworkConstants.LogicState, out state);
 
-        if (AdjustControlRods(comp, change))
-            _adminLog.Add(LogType.Action, $"{ToPrettyString(args.Trigger):trigger} set control rod insertion of {ToPrettyString(uid):target} to {comp.ControlRodInsertion}");
+        if (args.Port == comp.ControlRodInsertPort)
+            comp.InsertPortState = state;
+        else if (args.Port == comp.ControlRodRetractPort)
+            comp.RetractPortState = state;
+
+        var logtext = "maintain";
+        if (comp.InsertPortState != SignalState.Low && comp.RetractPortState == SignalState.Low)
+            logtext = "insert";
+        else if (comp.RetractPortState != SignalState.Low && comp.InsertPortState == SignalState.Low)
+            logtext = "retract";
+
+        _adminLog.Add(LogType.Action, $"{ToPrettyString(args.Trigger):trigger} set control rod insertion of {ToPrettyString(uid):target} to {logtext}");
     }
 
     private void OnAnchorChanged(EntityUid uid, NuclearReactorComponent comp, ref AnchorStateChangedEvent args)

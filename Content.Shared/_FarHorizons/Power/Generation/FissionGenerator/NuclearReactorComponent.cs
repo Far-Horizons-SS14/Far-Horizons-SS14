@@ -249,11 +249,31 @@ public sealed partial class NuclearReactorComponent : Component
 
     #endregion
 
+    #region Device Network
+    /// <summary>
+    /// The proto ID of the "Retract Control Rods" sink port
+    /// </summary>
     [DataField("controlRodRetractPort", customTypeSerializer: typeof(PrototypeIdSerializer<SinkPortPrototype>))]
     public string ControlRodRetractPort = "RetractControlRods";
 
+    /// <summary>
+    /// The proto ID of the "Insert Control Rods" sink port
+    /// </summary>
     [DataField("controlRodInsertPort", customTypeSerializer: typeof(PrototypeIdSerializer<SinkPortPrototype>))]
     public string ControlRodInsertPort = "InsertControlRods";
+
+    /// <summary>
+    /// The signal state of the retract control rods port
+    /// </summary>
+    [ViewVariables(VVAccess.ReadWrite)]
+    public SignalState RetractPortState = SignalState.Low;
+
+    /// <summary>
+    /// The signal state of the insert control rods port
+    /// </summary>
+    [ViewVariables(VVAccess.ReadWrite)]
+    public SignalState InsertPortState = SignalState.Low;
+    #endregion
 
     #region Debug
     [ViewVariables(VVAccess.ReadOnly)]
