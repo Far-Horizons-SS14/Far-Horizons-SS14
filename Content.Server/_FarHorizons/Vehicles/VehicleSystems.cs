@@ -18,6 +18,9 @@ using Robust.Shared.Physics.Systems;
 using Robust.Shared.Prototypes;
 using System.Numerics;
 using System.Linq;
+using Robust.Server.Containers;
+using Robust.Shared.Timing;
+
 namespace Content.Server._FarHorizons.Vehicle;
 
 public sealed partial class VehicleSystems : SharedVehicleSystems
@@ -30,7 +33,7 @@ public sealed partial class VehicleSystems : SharedVehicleSystems
     [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!;
     [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private readonly TagSystem _tags = default!;
-
+    [Dependency] private readonly ContainerSystem _container = default!;
     private static readonly ProtoId<TagPrototype> _vehicleKeyTag = "VehicleKey";
     public override void Initialize()
     {
@@ -59,10 +62,15 @@ public sealed partial class VehicleSystems : SharedVehicleSystems
     private void OnInsertAttemptEvent(Entity<VehicleComponent> ent, ref ItemSlotInsertAttemptEvent args)
     {
         if(ent.Comp.Rider == null) return;
-        if(_tags.HasTag(args.Item, _vehicleKeyTag))
+        var itemSlot = args.Slot;
+        var item = args.Item;
+        Timer.Spawn(0, () =>
         {
-            AddActions(ent.Comp.Rider.Value, ent.Owner, ent.Comp);
-        }
+            if(_tags.HasTag(item, _vehicleKeyTag) && itemSlot.ContainerSlot!.ContainedEntity != null)
+            {
+                AddActions(ent.Comp.Rider.Value, ent.Owner, ent.Comp);
+            }
+        });
     }
 
     private void OnStrapped(Entity<VehicleBuckleComponent> ent, ref StrappedEvent args)
