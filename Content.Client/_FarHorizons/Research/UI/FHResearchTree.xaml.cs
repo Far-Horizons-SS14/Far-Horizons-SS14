@@ -24,6 +24,7 @@ public sealed partial class FHResearchTree : BoxContainer
     public Action<ProtoId<ResearchTreeNodePrototype>?>? OnSelectionChanged;
 
     private bool _moving = false;
+    private bool _viewportReady = false;
     private Vector2 _viewportPosition = Vector2.Zero;
     private Vector2 _pseudoViewport => (_viewportPosition * _zoom) + (_viewportSize / 2);
     private Vector2 _lastViewportPosition = Vector2.Zero;
@@ -43,6 +44,7 @@ public sealed partial class FHResearchTree : BoxContainer
     private HashSet<ProtoId<ResearchTreeNodePrototype>> _unlockedNodes = [];
     private HashSet<ProtoId<ResearchTreeNodePrototype>> _researched = [];
     private Dictionary<ProtoId<ResearchTreeNodePrototype>, float> _researching = [];
+    private List<ProtoId<ResearchTreeNodePrototype>> _queuedNodes = [];
 
     private Vector2 _currentMousePosition => 
         (UserInterfaceManager.MousePositionScaled.Position * UIScale) - GlobalPixelPosition;
@@ -99,6 +101,8 @@ public sealed partial class FHResearchTree : BoxContainer
         CanKeyboardFocus = true;
         DefaultCursorShape = CursorShape.Arrow;
         _search = new(_timing, _prototypeManager, _font, _searchTexture);
+
+        _viewportReady = false;
     }
     
     public void BuildTree(
@@ -106,7 +110,8 @@ public sealed partial class FHResearchTree : BoxContainer
         HashSet<ProtoId<ResearchTreeTierPrototype>> unlockedTiers,
         HashSet<ProtoId<ResearchTreeNodePrototype>> unlockedNodes,
         HashSet<ProtoId<ResearchTreeNodePrototype>> researched,
-        Dictionary<ProtoId<ResearchTreeNodePrototype>, float> progress
+        Dictionary<ProtoId<ResearchTreeNodePrototype>, float> progress,
+        List<ProtoId<ResearchTreeNodePrototype>> queued
     )
     {   
         var grid = new ResearchTreeGrid(_prototypeManager, nodes);
@@ -117,8 +122,7 @@ public sealed partial class FHResearchTree : BoxContainer
         _unlockedNodes = unlockedNodes;
         _researched = researched;
         _researching = progress;
-
-        _viewportPosition = (-_viewportSize / 2) + new Vector2(NodeMarginHorizontal * 2, NodeMarginVertical * 2);
+        _queuedNodes = queued;
 
         _searchDb.Build(_prototypeManager, [.. nodes.Select(p => (ProtoId<ResearchTreeNodePrototype>)p.ID)]);
         _search.SetDb(_searchDb);
@@ -129,13 +133,15 @@ public sealed partial class FHResearchTree : BoxContainer
         HashSet<ProtoId<ResearchTreeTierPrototype>> unlockedTiers,
         HashSet<ProtoId<ResearchTreeNodePrototype>> unlockedNodes,
         HashSet<ProtoId<ResearchTreeNodePrototype>> researched,
-        Dictionary<ProtoId<ResearchTreeNodePrototype>, float> progress
+        Dictionary<ProtoId<ResearchTreeNodePrototype>, float> progress,
+        List<ProtoId<ResearchTreeNodePrototype>> queued
     )
     {
         _unlockedTiers = unlockedTiers;
         _unlockedNodes = unlockedNodes;
         _researched = researched;
         _researching = progress;
+        _queuedNodes = queued;
     }
 
     protected override void KeyBindDown(GUIBoundKeyEventArgs args)
@@ -233,6 +239,12 @@ public sealed partial class FHResearchTree : BoxContainer
     {
         base.Draw(handle);
 
+        if (!_viewportReady)
+        {
+            _viewportPosition = (-_viewportSize / 2) + new Vector2(NodeMarginHorizontal * 2, NodeMarginVertical * 2);
+            _viewportReady = true;
+        }
+
         if (!_draw)
             return;
 
@@ -261,6 +273,7 @@ public sealed partial class FHResearchTree : BoxContainer
             .Hovered(_currentMousePosition)
             .Select(_selected)
             .Unlock(_unlockedTiers, _unlockedNodes)
+            .Queue(_queuedNodes)
             .Research(_researched)
             .Researching(_researching)
             .Draw(handle);

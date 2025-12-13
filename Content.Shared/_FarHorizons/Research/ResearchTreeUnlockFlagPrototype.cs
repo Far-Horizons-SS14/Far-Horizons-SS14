@@ -9,4 +9,24 @@ public sealed partial class ResearchTreeUnlockFlagPrototype : IPrototype
     public string ID { get; private set; } = default!;
     [DataField(required: true)]
     public LocId Text = default!;
+    [DataField]
+    public IResearchTreeUnlockFlagData? Data = null;
+}
+
+public interface IResearchTreeUnlockFlagData;
+
+[Serializable]
+[DataDefinition]
+public sealed partial class ResearchTreeUnlockFlagQueueSizeBonus : IResearchTreeUnlockFlagData
+{
+    [DataField]
+    public int Bonus = 0;
+}
+
+[Serializable]
+[DataDefinition]
+public sealed partial class ResearchTreeUnlockFlagBankSizeBonus : IResearchTreeUnlockFlagData
+{
+    [DataField]
+    public int Bonus = 0;
 }

@@ -1,7 +1,6 @@
 using System.Numerics;
 using Content.Shared._FarHorizons.Research;
 using Robust.Client.Graphics;
-using Robust.Shared.Console.Commands;
 using Robust.Shared.Prototypes;
 
 namespace Content.Client._FarHorizons.Research.UI.Helpers;
@@ -24,6 +23,8 @@ public struct DrawResearchNode
         bool selected = false,
         bool unlocked = false,
         bool completed = false,
+        bool queued = false,
+        int queueOrder = -1,
         Vector2? offset = null
     )
 {
@@ -37,6 +38,8 @@ public struct DrawResearchNode
     public bool Completed = completed;
     public bool Highlight = hovered;
     public bool Selected = selected;
+    public bool Queued = queued;
+    public int QueueOrder = queueOrder;
     public (int x, int y) Index = index;
     public Vector2 Spacing = spacing;
     public Vector2 Margin = margin;
@@ -67,10 +70,19 @@ public struct DrawResearchNode
     public Font? Font = font;
     public float FontScale = fontScale;
 
-    public readonly Color ForegroundColor =>
-        !Unlocked ? LockedColor :
-        !Completed ? 
-            UnlockedColor : ResearchedColor;
+    public readonly Color ForegroundColor
+    {
+        get
+        {
+            if (Completed)
+                return ResearchedColor;
+            if (Queued)
+                return QueuedColor;
+            if (!Unlocked)
+                return LockedColor;
+            return UnlockedColor;
+        }
+    }
 
     private const int NodeMargin = 2;
     private const int SelectedMargin = 2;
@@ -80,7 +92,7 @@ public struct DrawResearchNode
     private readonly Color LockedColor = Color.Gray;
     private readonly Color UnlockedColor = Color.White;
     private readonly Color ResearchedColor = Color.DarkGreen;
-    private readonly Color ResearchingColor = Color.LightBlue;
+    private readonly Color QueuedColor = Color.Orange;
     private readonly Color SelectionColor = Color.Yellow;
 
     public DrawResearchNode(DrawResearchNode other) 
@@ -101,6 +113,8 @@ public struct DrawResearchNode
             other.Selected,
             other.Unlocked,
             other.Completed,
+            other.Queued,
+            other.QueueOrder,
             other.Offset){}
     
     public DrawResearchNode WrapName(DrawingHandleScreen handle)
@@ -177,6 +191,14 @@ public struct DrawResearchNode
         {
             Unlocked = unlockedTiers.Contains(Tier) && unlockedNodes.Contains(Proto),
         };
+    
+    public DrawResearchNode Queue(List<ProtoId<ResearchTreeNodePrototype>> queuedNodes) => 
+        new(this)
+        {
+            Queued = queuedNodes.Contains(Proto),
+            QueueOrder = !queuedNodes.Contains(Proto) ? -1 : queuedNodes.IndexOf(Proto) + 1,
+        };
+        
 
     public DrawResearchNode Research(HashSet<ProtoId<ResearchTreeNodePrototype>> allResearched) =>
         new(this)
@@ -207,9 +229,10 @@ public struct DrawResearchNode
         {
             for (var i = 0; i < Text.Count; i++)
             {
-                var dimensions = handle.GetDimensions(Font, Text[i], FontScale);
+                var text = Text[i];
+                var dimensions = handle.GetDimensions(Font, text, FontScale);
                 Vector2 pos = new(Center.X - (dimensions.X / 2), Position.Y + (dimensions.Y * i) + (dimensions.Y / 2));
-                handle.DrawString(Font, pos, Text[i], FontScale, Highlight ? BackgroundColor : ForegroundColor);
+                handle.DrawString(Font, pos, text, FontScale, Highlight ? BackgroundColor : ForegroundColor);
             }
         }
     }

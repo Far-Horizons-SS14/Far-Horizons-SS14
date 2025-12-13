@@ -16,16 +16,16 @@
                 <Label Text="No research selected." FontColorOverride="Red" Margin="0 5" VerticalAlignment="Top"/>
             </BoxContainer>
             <ScrollContainer Name="SelectionScroll" Visible="False" HorizontalExpand="True" VerticalExpand="True" HScrollEnabled="False" VScrollEnabled="True">
-                <BoxContainer Name="SelectionBox" Orientation="Vertical" Margin="5 10" HorizontalExpand="True" VerticalExpand="True">
+                <BoxContainer Name="SelectionBox" Orientation="Vertical" Margin="5 10 15 10" HorizontalExpand="True" VerticalExpand="True">
                     <Label Text="{Loc 'research-tree-label-selected'}" FontColorOverride="Orange" Margin="0 5" VerticalAlignment="Top"/>
                     <Label Name="SelectedName" Margin="0 5" VerticalAlignment="Top"/>
                     <Label Text="{Loc 'research-tree-label-cost'}" FontColorOverride="Orange" Margin="0 5" VerticalAlignment="Top"/>
                     <Label Name="SelectedCost" FontColorOverride="LightBlue" Margin="0 5" VerticalAlignment="Top"/>
                     <Label Text="{Loc 'research-tree-label-reqs'}" FontColorOverride="Orange" Margin="0 5" VerticalAlignment="Top"/>
-                    <BoxContainer Name="RequirementsBox" Visible="True" Orientation="Vertical" Margin="0 5" HorizontalExpand="True" VerticalExpand="False">
+                    <BoxContainer Name="RequirementsBox" Visible="True" Orientation="Vertical" Margin="0 5 30 5" HorizontalExpand="True" VerticalExpand="False">
                     </BoxContainer>
                     <Label Text="{Loc 'research-tree-label-unlocks'}" FontColorOverride="Orange" Margin="0 5" VerticalAlignment="Top"/>
-                    <BoxContainer Name="UnlocksBox" Visible="True" Orientation="Vertical" Margin="0 5" HorizontalExpand="True" VerticalExpand="False">
+                    <BoxContainer Name="UnlocksBox" Visible="True" Orientation="Vertical" Margin="0 5 30 5" HorizontalExpand="True" VerticalExpand="False">
                     </BoxContainer>
                 </BoxContainer>
             </ScrollContainer>

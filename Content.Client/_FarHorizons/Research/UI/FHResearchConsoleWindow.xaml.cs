@@ -62,7 +62,7 @@ public sealed partial class FHResearchConsoleWindow : FancyWindow
         if (_readonly)
             ResearchButton.Visible = false;
 
-        TreeDisplay.BuildTree(_allNodes, _unlockedTiers, _unlockedNodes, _researchedNodes, _researchProgressPercentage);
+        TreeDisplay.BuildTree(_allNodes, _unlockedTiers, _unlockedNodes, _researchedNodes, _researchProgressPercentage, _queue);
         Selected(_selected?.ID);
         UpdateQueue();
     }
@@ -84,7 +84,7 @@ public sealed partial class FHResearchConsoleWindow : FancyWindow
 
         BankedPointsText.Text = _bankedPoints.ToString();
 
-        TreeDisplay.RefreshTree(_unlockedTiers, _unlockedNodes, _researchedNodes, _researchProgressPercentage);
+        TreeDisplay.RefreshTree(_unlockedTiers, _unlockedNodes, _researchedNodes, _researchProgressPercentage, _queue);
         Selected(_selected?.ID);
         UpdateQueue();
     }
@@ -192,17 +192,15 @@ public sealed partial class FHResearchConsoleWindow : FancyWindow
             tierProgress = " " + Loc.GetString("research-tree-requirement-progress", 
                 ("progress", _researchedNodes.Sum(p => _protoMan.Index(p).Cost) + _researchProgress.Values.Sum()), 
                 ("required", _protoMan.Index(_selected.Tier).UnlocksAt));
-        var tierLabel = new Label() {
-            Text = "- " + _protoMan.Index(_selected.Tier).Name + tierProgress, 
-            FontColorOverride = _unlockedTiers.Contains(_selected.Tier) ? Color.Green : Color.Red};
+        var color = _unlockedTiers.Contains(_selected.Tier) ? Color.Green : Color.Red;
+        var tierLabel = new RichTextLabel() { Text = $"[color={color.ToHex()}]- " + _protoMan.Index(_selected.Tier).Name + tierProgress + "[/color]"};
         RequirementsBox.AddChild(tierLabel);
 
         foreach(var req in _selected.Requires)
         {
             var reqProto = _protoMan.Index(req);
-            var reqLabel = new Label() {
-                Text = "- " + Loc.GetString(reqProto.Name), 
-                FontColorOverride = _researchedNodes.Contains(req) ? Color.Green : Color.Red};
+            var reqColor = _researchedNodes.Contains(req) ? Color.Green : Color.Red;
+            var reqLabel = new RichTextLabel() { Text = $"[color={reqColor.ToHex()}]- " + Loc.GetString(reqProto.Name) + "[/color]"};
             RequirementsBox.AddChild(reqLabel);
         }
     }
@@ -220,14 +218,14 @@ public sealed partial class FHResearchConsoleWindow : FancyWindow
                 continue;
             
             var unlockName = _protoMan.Index<EntityPrototype>(unlockProto.Result).Name;
-            var unlockLabel = new Label() {Text = "- " + Loc.GetString(unlockName)};
+            var unlockLabel = new RichTextLabel() {Text = "- " + Loc.GetString(unlockName)};
             UnlocksBox.AddChild(unlockLabel);
         }
 
         foreach(var flag in _selected.UnlockFlags)
         {
             var flagProto = _protoMan.Index(flag);
-            var unlockLabel = new Label() {Text = "- " + Loc.GetString(flagProto.Text)};
+            var unlockLabel = new RichTextLabel() {Text = "- " + Loc.GetString(flagProto.Text)};
             UnlocksBox.AddChild(unlockLabel);
         }
     }
