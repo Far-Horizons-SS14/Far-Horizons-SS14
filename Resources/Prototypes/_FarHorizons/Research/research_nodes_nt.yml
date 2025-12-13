@@ -786,7 +786,7 @@
   cost: 1
   tier: Tier2
   requires:
-    - AVComms
+    - AltResearch
 
 - type: researchTreeNode
   id: AdvDataCompression #Increase buffer to 30k
@@ -1167,6 +1167,7 @@
   cost: 30000
   tier: Tier3
   requires:
+    - QuantumDataManagement
     - QuantumLeaping
     - SpeedBoot
   unlocks:
