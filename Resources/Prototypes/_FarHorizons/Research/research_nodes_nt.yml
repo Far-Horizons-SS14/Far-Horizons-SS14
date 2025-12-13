@@ -785,6 +785,8 @@
   name: research-tree-node-automated-development
   cost: 10000
   tier: Tier2
+  requires:
+    - AVComms
 
 - type: researchTreeNode
   id: AdvDataCompression #Increase buffer to 30k
@@ -805,10 +807,10 @@
 - type: researchTreeNode
   id: ResearchUplink #enables automatic printing for tech disk terminal
   name: research-tree-node-research-uplink
-  cost: 10000
+  cost: 1
   tier: Tier2
   requires:
-    - AutomatedDevelopment
+    - AdvDataCompression
 
 # Civ
 
