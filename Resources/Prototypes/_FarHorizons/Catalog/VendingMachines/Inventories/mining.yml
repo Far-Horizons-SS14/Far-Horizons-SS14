@@ -11,3 +11,15 @@
   - !type:ListingLimitedStockCondition
     stock: 5
   - !type:BuyerAccessCondition
+
+- type: listing
+  id: VendorMiningPTK
+  productEntity: PTKFlatpack
+  cost:
+    SalvageTicket: 200
+  categories:
+  - MiningEquipment
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 4
+  - !type:BuyerAccessCondition
