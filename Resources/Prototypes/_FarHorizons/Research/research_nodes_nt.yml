@@ -456,7 +456,6 @@
     - SalvEquip
     - MechanicalCompress
   unlocks:
-    - OreBagOfHolding
     - MiningDrillDiamond
     - AdvancedMineralScannerEmpty
     - MechEquipmentDrillDiamond
@@ -778,6 +777,40 @@
   announceTo:
     - Engineering
     - Security
+
+# Computing
+
+- type: researchTreeNode
+  id: AutomatedDevelopment #enables automatic printing for tech disk terminal
+  name: research-tree-node-automated-development
+  cost: 1
+  tier: Tier2
+  requires:
+    - AVComms
+
+- type: researchTreeNode
+  id: AdvDataCompression #Increase buffer to 30k
+  name: research-tree-node-adv-data-compression
+  cost: 15000
+  tier: Tier2
+  requires:
+    - AutomatedDevelopment
+
+- type: researchTreeNode
+  id: SapientResearchAlgorithms #increase queue size to 5
+  name: research-tree-node-sapient-research-algorithms
+  cost: 15000
+  tier: Tier2
+  requires:
+    - AdvDataCompression
+
+- type: researchTreeNode
+  id: ResearchUplink #enables automatic printing for tech disk terminal
+  name: research-tree-node-research-uplink
+  cost: 1
+  tier: Tier2
+  requires:
+    - AdvDataCompression
 
 # Civ
 
@@ -1127,7 +1160,7 @@
 - type: researchTreeNode
   id: BluespaceMastery
   name: research-tree-node-bluespace
-  cost: 25000
+  cost: 30000
   tier: Tier3
   requires:
     - QuantumLeaping
@@ -1140,15 +1173,22 @@
     - BluespaceBeaker
     - SyringeBluespace
     - OreBagOfHolding
-    - MiningDrillDiamond
-    - AdvancedMineralScannerEmpty
-    - MechEquipmentDrillDiamond
-    - BorgModuleAdvancedMining
     - DeviceDesynchronizer
   announceTo:
     - Supply
     - Medical
     - Service
+
+# Computing
+
+- type: researchTreeNode
+  id: QuantumDataManagement #increase queue size to 10 and buffer size to 100k
+  name: research-tree-node-quantum-data-management
+  cost: 25000
+  tier: Tier3
+  requires:
+    - SapientResearchAlgorithms
+    - ResearchUplink
 
 # Cybernetics
 
@@ -1225,7 +1265,7 @@
 - type: researchTreeNode
   id: SecBorg
   name: research-tree-node-mech-security
-  cost: 25000
+  cost: 35000
   tier: Tier3
   requires:
     - BorgPlaceholder3
