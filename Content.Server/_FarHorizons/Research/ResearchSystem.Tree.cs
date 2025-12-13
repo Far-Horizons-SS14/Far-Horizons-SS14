@@ -115,7 +115,16 @@ public sealed partial class FHResearchSystem
         foreach(var recipe in nodeProto.Unlocks)
             _research.AddLatheRecipe(ent, recipe, techDb);
         
-        ent.Comp.UnlockFlags.AddRange(nodeProto.UnlockFlags);
+        List<ProtoId<ResearchTreeUnlockFlagPrototype>> add = [];
+        foreach (var unlockFlag in nodeProto.UnlockFlags)
+        {
+            if (!ent.Comp.UnlockFlags.Contains(unlockFlag))
+            {
+                add.Add(unlockFlag);
+            }
+        }
+        ent.Comp.UnlockFlags.AddRange(add);
+        AddResearchModifiers(ent, add);
 
         SendAnnouncement(ent, Loc.GetString("research-tree-unlock-broadcast", ("technology", Loc.GetString(nodeProto.Name)), ("amount", nodeProto.Cost)), nodeProto.AnnounceTo);
     }
@@ -131,7 +140,16 @@ public sealed partial class FHResearchSystem
         foreach (var unlockedRecipe in nodeProto.Unlocks)
             _research.RemoveLatheRecipe(ent, unlockedRecipe, techDb);
 
-        ent.Comp.UnlockFlags.RemoveAll(nodeProto.UnlockFlags.Contains);
+        List<ProtoId<ResearchTreeUnlockFlagPrototype>> remove = [];
+        foreach (var unlockFlag in nodeProto.UnlockFlags)
+        {
+            if (ent.Comp.UnlockFlags.Contains(unlockFlag))
+            {
+                remove.Add(unlockFlag);
+            }
+        }
+        ent.Comp.UnlockFlags.RemoveAll(remove.Contains);
+        RemoveResearchModifiers(ent, remove);
 
         RefreshUIOnClients((ent, ent.Comp));
         
@@ -230,29 +248,33 @@ public sealed partial class FHResearchSystem
         return result;
     }
 
-    public int GetCurrentBankCapacity(Entity<FHResearchTreeComponent> ent)
+    public void AddResearchModifiers(Entity<FHResearchTreeComponent> ent, List<ProtoId<ResearchTreeUnlockFlagPrototype>> addedFlags)
     {
-        var cap = ent.Comp.BankCapacity;
-        foreach (var flag in ent.Comp.UnlockFlags)
+        foreach (var flag in addedFlags)
         {
             var flagProto = _protoMan.Index(flag);
             if (flagProto.Data is ResearchTreeUnlockFlagBankSizeBonus bankSizeBonus)
-                cap += bankSizeBonus.Bonus;
+                ent.Comp.BankCapacity += bankSizeBonus.Bonus;
+            if (flagProto.Data is ResearchTreeUnlockFlagQueueSizeBonus queueSizeBonus)
+                ent.Comp.MaxQueueSize += queueSizeBonus.Bonus;
         }
-        return cap;
     }
 
-    public int GetCurrentQueueSize(Entity<FHResearchTreeComponent> ent)
+    public void RemoveResearchModifiers(Entity<FHResearchTreeComponent> ent, List<ProtoId<ResearchTreeUnlockFlagPrototype>> removedFlags)
     {
-        var size = ent.Comp.MaxQueueSize;
-        foreach (var flag in ent.Comp.UnlockFlags)
+        foreach (var flag in removedFlags)
         {
             var flagProto = _protoMan.Index(flag);
+            if (flagProto.Data is ResearchTreeUnlockFlagBankSizeBonus bankSizeBonus)
+                ent.Comp.BankCapacity -= bankSizeBonus.Bonus;
             if (flagProto.Data is ResearchTreeUnlockFlagQueueSizeBonus queueSizeBonus)
-                size += queueSizeBonus.Bonus;
+                ent.Comp.MaxQueueSize -= queueSizeBonus.Bonus;
         }
-        return size;
     }
+
+    public static int GetCurrentBankCapacity(Entity<FHResearchTreeComponent> ent) => ent.Comp.BankCapacity;
+
+    public static int GetCurrentQueueSize(Entity<FHResearchTreeComponent> ent) => ent.Comp.MaxQueueSize;
 
     public bool IsFlagUnlocked(Entity<FHResearchTreeComponent?> ent, ProtoId<ResearchTreeUnlockFlagPrototype> flag) =>
         Resolve(ent, ref ent.Comp) && ent.Comp.UnlockFlags.Contains(flag);
