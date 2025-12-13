@@ -861,6 +861,7 @@
   parent: WallDiagonalBase
   id: WallShuttleDiagonal
   name: Shuttle Wall #Far Horizons - The Great Capitalization Crusade
+  suffix: Diagonal #Far Horizons
   components:
   - type: Sprite
     drawdepth: Walls
@@ -869,6 +870,9 @@
   - type: Icon
     sprite: _FarHorizons/Structures/Walls/shuttle_diagonal.rsi #Far Horizons
     state: state0
+  - type: IconSmooth #Far Horizons
+    key: walls
+    base: state
   - type: Physics
     bodyType: Static
   - type: Ricochetable

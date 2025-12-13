@@ -1,6 +1,6 @@
 - type: entity
   id: ShuttleWindow
-  name: shuttle window
+  name: Shuttle Window # Far Horizons - The Great Capitalization Crusade
   parent: [BaseDeltaPressureReinforcedGlass, WindowRCDResistant]
   components:
   - type: Sprite
@@ -40,6 +40,7 @@
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
   - type: IconSmooth
+    key: walls # Far Horizons... This will surely get fixed, eventually, during a lunar eclipse, when all the stars align.
     base: swindow
   - type: Construction
     graph: Window
@@ -57,7 +58,7 @@
 - type: entity
   parent: ShuttleWindow
   id: ShuttleWindowDiagonal
-  suffix: diagonal
+  suffix: Diagonal # Far Horizons - The Great Capitalization Crusade
   placement:
     mode: SnapgridCenter
     snap:
@@ -73,7 +74,7 @@
     - Window
   - type: IconSmooth
     mode: Diagonal
-    key: windows
+    key: walls # Far Horizons... This will surely get fixed, eventually, during a lunar eclipse, when all the stars align.
     base: state
   - type: Icon
     sprite: Structures/Windows/shuttle_window_diagonal.rsi
