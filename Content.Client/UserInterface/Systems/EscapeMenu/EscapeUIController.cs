@@ -1,4 +1,5 @@
-﻿using Content.Client._Starlight.Managers;
+﻿using Content.Client._FarHorizons.DiscordLink;
+using Content.Client._Starlight.Managers;
 using Content.Client.Administration.Managers;
 using Content.Client.Gameplay;
 using Content.Client.UserInterface.Controls;
@@ -29,7 +30,8 @@ public sealed class EscapeUIController : UIController, IOnStateEntered<GameplayS
     [Dependency] private readonly InfoUIController _info = default!;
     [Dependency] private readonly OptionsUIController _options = default!;
     [Dependency] private readonly GuidebookUIController _guidebook = default!;
-
+    [Dependency] private readonly DiscordLinkManager _discordLinkManager = default!; // Far Horizons
+    
     private Options.UI.EscapeMenu? _escapeWindow;
 
     private Controls.MenuButton? EscapeButton => UIManager.GetActiveUIWidgetOrNull<MenuBar.Widgets.GameTopMenuBar>()?.EscapeButton;
@@ -67,13 +69,12 @@ public sealed class EscapeUIController : UIController, IOnStateEntered<GameplayS
         _escapeWindow.OnClose += DeactivateButton;
         _escapeWindow.OnOpen += ActivateButton;
 
-        // NullLink start
+        // N̶u̶l̶l̶i̶n̶k̶ Far Horizons
         _escapeWindow.DiscordButton.OnPressed += _ =>
         {
-            if(_playerRoles.GetDiscordLink() is string link)
+            if(_discordLinkManager.GetDiscordLink() is string link)
                 _uri.OpenUri(link);
         };
-        // NullLink end
 
         _escapeWindow.ChangelogButton.OnPressed += _ =>
         {

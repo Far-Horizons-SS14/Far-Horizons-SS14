@@ -1,3 +1,4 @@
+using Content.Server._FarHorizons.DiscordLink;
 using Content.Server._NullLink;
 using Content.Server._NullLink.Core;
 using Content.Server._NullLink.EventBus;
@@ -136,6 +137,8 @@ namespace Content.Server.Entry
 
                 //Far Horizons
                 IoCManager.Resolve<IServerFactionManager>().Init();
+                IoCManager.Resolve<DiscordOauthServer>().Initialize();
+                IoCManager.Resolve<DiscordRequestsAdapter>().Initialize();
             }
         }
 
@@ -185,6 +188,9 @@ namespace Content.Server.Entry
                 IoCManager.Resolve<INullLinkEventBusManager>().Initialize();
                 IoCManager.Resolve<INullLinkPlayerManager>().Initialize();
                 // NullLink end
+
+                // Far Horizons
+                IoCManager.Resolve<IDiscordLinkManager>().Initialize();
             }
         }
 
@@ -223,6 +229,7 @@ namespace Content.Server.Entry
             IoCManager.Resolve<IActorRouter>().Shutdown();
             IoCManager.Resolve<IBugReportManager>().Shutdown();
             // Nullink end
+
             //Far Horizons
             IoCManager.Resolve<IServerFactionManager>().Shutdown();
         }

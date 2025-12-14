@@ -1,3 +1,4 @@
+using Content.Server._FarHorizons.DiscordLink;
 using Content.Server._NullLink;
 using Content.Server._NullLink.Core;
 using Content.Server._NullLink.EventBus;
@@ -110,6 +111,9 @@ namespace Content.Server.IoC
             // Far Horizons
             IoCManager.Register<IServerFactionManager, ServerFactionManager>();
             IoCManager.Register<ISharedFactionManager, ServerFactionManager>();
+            IoCManager.Register<IDiscordLinkManager, DiscordLinkManager>();
+            IoCManager.Register<DiscordOauthServer>();
+            IoCManager.Register<DiscordRequestsAdapter>();
         }
     }
 }
