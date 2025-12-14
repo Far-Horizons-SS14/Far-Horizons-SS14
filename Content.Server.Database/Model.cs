@@ -22,6 +22,7 @@ namespace Content.Server.Database
         public DbSet<Preference> Preference { get; set; } = null!;
         public DbSet<Profile> Profile { get; set; } = null!;
         public DbSet<AssignedUserId> AssignedUserId { get; set; } = null!;
+        public DbSet<UserDiscord> UserDiscord { get; set; } = null!;  // Far Horizons
         public DbSet<Mentor> Mentor { get; set; } = null!;
         public DbSet<Player> Player { get; set; } = default!;
         public DbSet<Admin> Admin { get; set; } = null!;
@@ -145,6 +146,11 @@ namespace Content.Server.Database
                 .HasIndex(p => p.UserId)
                 .IsUnique();
 
+            // Far Horizons
+            modelBuilder.Entity<UserDiscord>()
+                .HasIndex(p => p.UserId)
+                .IsUnique();
+            
             modelBuilder.Entity<Mentor>()
                 .HasIndex(p => p.UserId)
                 .IsUnique();
@@ -606,6 +612,14 @@ namespace Content.Server.Database
     {
         public int Id { get; set; }
         public Guid UserId { get; set; }
+    }
+
+    // Far Horizons
+    public class UserDiscord
+    {
+        public int Id { get; set; }
+        public Guid UserId { get; set; }
+        public required string DiscordId { get; set; }
     }
 
     [Table("player")]

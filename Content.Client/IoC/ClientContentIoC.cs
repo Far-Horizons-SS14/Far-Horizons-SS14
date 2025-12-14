@@ -1,3 +1,4 @@
+using Content.Client._FarHorizons.DiscordLink;
 using Content.Client._Starlight.Managers;
 using Content.Client.Administration.Managers;
 using Content.Client.Changelog;
@@ -78,6 +79,7 @@ namespace Content.Client.IoC
 
             // Far Horizons start
             collection.Register<ISharedFactionManager, ClientFactionManager>();
+            collection.Register<DiscordLinkManager>();  
             // Far Horizons end
         }
     }

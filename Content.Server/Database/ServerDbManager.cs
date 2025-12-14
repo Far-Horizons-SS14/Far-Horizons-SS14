@@ -55,6 +55,15 @@ namespace Content.Server.Database
         Task<NetUserId?> GetAssignedUserIdAsync(string name);
         #endregion
 
+        // Far Horizons
+        #region Mentors
+
+        Task UpsertUserDiscordAsync(NetUserId netUserId, string discordId);
+        Task RemoveUserDiscordAsync(NetUserId userId, CancellationToken cancel = default);
+        Task<UserDiscord?> GetUserDiscordAsync(NetUserId netUserId, CancellationToken cancel = default);
+
+        #endregion
+
         #region Mentors
 
         Task AddMentorAsync(NetUserId userId);
@@ -529,8 +538,30 @@ namespace Content.Server.Database
         }
 
 
-        #region Mentors
+        // Far Horizons
+        #region UserDiscord
+        
+        public Task UpsertUserDiscordAsync(NetUserId netUserId, string discordId)
+        {
+            DbReadOpsMetric.Inc();
+            return RunDbCommand(() => _db.UpsertUserDiscordAsync(netUserId, discordId));
+        }
 
+        public Task RemoveUserDiscordAsync(NetUserId netUserId, CancellationToken cancel = default)
+        {
+            DbReadOpsMetric.Inc();
+            return RunDbCommand(() => _db.RemoveUserDiscordAsync(netUserId, cancel));
+        }
+
+        public Task<UserDiscord?> GetUserDiscordAsync(NetUserId netUserId, CancellationToken cancel = default)
+        {
+            DbReadOpsMetric.Inc();
+            return RunDbCommand(() => _db.GetUserDiscordAsync(netUserId, cancel));
+        }
+
+        #endregion
+
+        #region Mentors
         
         public Task AddMentorAsync(NetUserId netUserId)
         {

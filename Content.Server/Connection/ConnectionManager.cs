@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
+using Content.Server._FarHorizons.DiscordLink;
 using Content.Server._NullLink.Core;
 using Content.Server._NullLink.PlayerData;
 using Content.Server.Administration.Managers;
@@ -72,6 +73,7 @@ namespace Content.Server.Connection
         [Dependency] private readonly IHttpClientHolder _http = default!;
         [Dependency] private readonly IAdminManager _adminManager = default!;
         [Dependency] private readonly IEntityManager _entityManager = default!;
+        [Dependency] private readonly IDiscordLinkManager _discordLinkManager = default!;  // Far Horizons
 
         private GameTicker? _ticker;
 

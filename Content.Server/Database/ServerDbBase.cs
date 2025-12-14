@@ -524,6 +524,45 @@ namespace Content.Server.Database
         }
         #endregion
         
+        // Far Horizons
+        #region UserDiscord
+
+        public async Task UpsertUserDiscordAsync(NetUserId netUserId, string discordId)
+        {
+            await using var db = await GetDb();
+            var existing = await GetUserDiscordAsync(netUserId, CancellationToken.None);
+            if (existing == null)
+            {
+                db.DbContext.UserDiscord.Add(new UserDiscord{UserId = netUserId.UserId, DiscordId = discordId});
+            }
+            else
+            {
+                existing.DiscordId = discordId;
+                db.DbContext.UserDiscord.Update(existing);
+            }
+
+            await db.DbContext.SaveChangesAsync();
+        }
+
+        public async Task RemoveUserDiscordAsync(NetUserId netUserId, CancellationToken cancel)
+        {
+            await using var db = await GetDb(cancel);
+
+            var userDiscord = await db.DbContext.UserDiscord.SingleAsync(m => m.UserId == netUserId.UserId, cancel);
+            db.DbContext.UserDiscord.Remove(userDiscord);
+
+            await db.DbContext.SaveChangesAsync(cancel);
+        }
+
+        public async Task<UserDiscord?> GetUserDiscordAsync(NetUserId netUserId, CancellationToken cancel)
+        {
+            await using var db = await GetDb(cancel);
+            return await db.DbContext.UserDiscord
+                .SingleOrDefaultAsync(w => w.UserId == netUserId.UserId, cancel);
+        }
+        
+        #endregion
+
         #region Mentors
 
         public async Task AddMentorAsync(NetUserId netUserId)

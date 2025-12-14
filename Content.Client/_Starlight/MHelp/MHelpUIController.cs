@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Client._FarHorizons.DiscordLink;
 using Content.Client._Starlight.Managers;
 using Content.Client._Starlight.MHelp;
 using Content.Client.Administration.Managers;
@@ -41,6 +42,7 @@ public sealed class MHelpUIController : UIController, IOnSystemChanged<MentorSys
     [Dependency] private readonly IClyde _clyde = default!;
     [Dependency] private readonly IUserInterfaceManager _uiManager = default!;
     [UISystemDependency] private readonly AudioSystem _audio = default!;
+    [Dependency] private readonly DiscordLinkManager _discordLinkManager = default!;  // Far Horizons
 
     private MentorSystem? _mentorSystem;
     private Controls.MenuButton? GameMHelpButton => UIManager.GetActiveUIWidgetOrNull<GameTopMenuBar>()?.MHelpButton;
@@ -156,7 +158,8 @@ public sealed class MHelpUIController : UIController, IOnSystemChanged<MentorSys
     public void EnsureUIHelper()
     {
 
-        var isMentor = _playerManager.LocalSession is { } local && _playerRolesReq.IsMentor(local);
+        // Far Horizons
+        var isMentor = _playerManager.LocalSession is { } local && _discordLinkManager.IsMentor();
         var isAdmin = _adminManager.HasFlag(AdminFlags.Adminhelp);
 
         if (UIHelper != null && UIHelper.IsMentor == (isMentor || isAdmin))

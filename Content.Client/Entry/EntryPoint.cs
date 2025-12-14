@@ -1,4 +1,5 @@
-﻿using Content.Client._Starlight.Managers;
+﻿using Content.Client._FarHorizons.DiscordLink;
+using Content.Client._Starlight.Managers;
 using Content.Client.Administration.Managers;
 using Content.Client.Changelog;
 using Content.Client.Chat.Managers;
@@ -84,6 +85,7 @@ namespace Content.Client.Entry
        	[Dependency] private readonly INullLinkPlayerRolesManager _nullLinkPlayerRolesManager = default!; //NullLink
        	[Dependency] private readonly ISharedNullLinkPlayerRolesReqManager _sharedNullLinkPlayer = default!; //NullLink
         [Dependency] private readonly ISharedFactionManager _factions = default!; //Far Horizons
+        [Dependency] private readonly DiscordLinkManager _discordLinkManager = default!; // Far Horizons
 
         public override void Init()
         {
@@ -207,6 +209,9 @@ namespace Content.Client.Entry
             _nullLinkPlayerRolesManager.Initialize();
             _sharedNullLinkPlayer.Initialize();
             // NullLink end
+            
+            // Far Horizons
+            _discordLinkManager.Initialize();
 
             // Disable engine-default viewport since we use our own custom viewport control.
             _userInterfaceManager.MainViewport.Visible = false;

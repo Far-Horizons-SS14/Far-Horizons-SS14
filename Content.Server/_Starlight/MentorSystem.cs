@@ -8,6 +8,7 @@ using System.Text.Json.Nodes;
 using System.Text.RegularExpressions;
 using System.Threading.Channels;
 using System.Threading.Tasks;
+using Content.Server._FarHorizons.DiscordLink;
 using Content.Server.Administration.Managers;
 using Content.Server.Afk;
 using Content.Server.Database;
@@ -56,6 +57,7 @@ public sealed partial class MentorSystem : SharedMentorSystem
     [Dependency] private readonly PlayerRateLimitManager _rateLimit = default!;
     [Dependency] private readonly SharedTransformSystem _xform = default!;
     [Dependency] private readonly ISharedAdminLogManager _alog = default!;
+    [Dependency] private readonly IDiscordLinkManager _discordLinkManager = default!;
 
     private readonly Dictionary<Guid, MentorTicket> _tickets = [];
     private ISawmill _sawmill = default!;
@@ -162,7 +164,7 @@ public sealed partial class MentorSystem : SharedMentorSystem
                 PlaySound = false,
                 TicketClosed = true
             };
-            var nonparticipantsRecipients = _nullLinkPlayers.Mentors
+            var nonparticipantsRecipients = _discordLinkManager.Mentors
                 .Except([_playerManager.GetSessionById(ticket.Creator), _playerManager.GetSessionById(ticket.Mentor.Value)])
                 .Except(_adminManager.ActiveAdmins);
             foreach (var channel in nonparticipantsRecipients)
@@ -180,7 +182,7 @@ public sealed partial class MentorSystem : SharedMentorSystem
             .Concat([_playerManager.GetSessionById(ticket.Creator)])
             .Concat(ticket.Mentor is not null
                 ? [_playerManager.GetSessionById(ticket.Mentor.Value)]
-                : _nullLinkPlayers.Mentors)
+                : _discordLinkManager.Mentors)
             .Distinct();
 
         foreach (var channel in recipients)
@@ -222,7 +224,7 @@ public sealed partial class MentorSystem : SharedMentorSystem
             .Concat([_playerManager.GetSessionById(ticket.Creator)])
             .Concat(ticket.Mentor is not null
                 ? [_playerManager.GetSessionById(ticket.Mentor.Value)]
-                : _nullLinkPlayers.Mentors)
+                : _discordLinkManager.Mentors)
             .Distinct();
 
         foreach (var channel in recipients)
@@ -274,7 +276,7 @@ public sealed partial class MentorSystem : SharedMentorSystem
             .Concat([_playerManager.GetSessionById(ticket.Creator)])
             .Concat(ticket.Mentor is not null
                 ? [_playerManager.GetSessionById(ticket.Mentor.Value)]
-                : _nullLinkPlayers.Mentors)
+                : _discordLinkManager.Mentors)
             .Except([senderSession])
             .Distinct();
 
@@ -305,7 +307,7 @@ public sealed partial class MentorSystem : SharedMentorSystem
             var recipients = _adminManager.ActiveAdmins
                  .Concat(ticket.Mentor is not null
                      ? [_playerManager.GetSessionById(ticket.Mentor.Value)]
-                     : _nullLinkPlayers.Mentors)
+                     : _discordLinkManager.Mentors)
                  .Except([e.Session])
                  .Distinct();
 
