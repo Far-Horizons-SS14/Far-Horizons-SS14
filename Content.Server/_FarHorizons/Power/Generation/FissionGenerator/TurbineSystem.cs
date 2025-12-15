@@ -9,7 +9,6 @@ using Content.Shared._FarHorizons.Power.Generation.FissionGenerator;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Atmos;
 using Content.Shared.Database;
-using Content.Shared.Explosion.Components;
 using Content.Shared.Popups;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
@@ -287,7 +286,7 @@ public sealed class TurbineSystem : SharedTurbineSystem
     {
         _audio.PlayPvs(new SoundPathSpecifier("/Audio/Effects/metal_break5.ogg"), uid, AudioParams.Default);
         _popupSystem.PopupEntity(Loc.GetString("turbine-explode", ("owner", uid)), uid, PopupType.LargeCaution);
-        _explosion.TriggerExplosive(uid, Comp<ExplosiveComponent>(uid), false, comp.RPM/10, 5);
+        _explosion.QueueExplosion(uid, "Default", comp.RPM / 10, 15, 5, 0, canCreateVacuum: false);
         ShootShrapnel(uid);
         _adminLogger.Add(LogType.Explosion, LogImpact.High, $"{ToPrettyString(uid)} destroyed by overspeeding for too long");
         comp.Ruined = true;
