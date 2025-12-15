@@ -1,4 +1,5 @@
 using Robust.Shared.GameStates;
+using DrawDepthTag = Robust.Shared.GameObjects.DrawDepth;
 using System.Numerics;
 
 namespace Content.Shared._FarHorizons.VehicleBuckle.Components;
@@ -42,4 +43,28 @@ public sealed partial class VehicleBuckleComponent : Component
     [DataField("eastOffset"), AutoNetworkedField]
     [ViewVariables(VVAccess.ReadWrite)]
     public Vector2 EastOffset = Vector2.Zero;
+
+    /// <summary>
+    /// What drawdepth is used for north
+    /// </summary>
+    [DataField("northDrawDepth"), AutoNetworkedField]
+    public int northDrawDepth = DrawDepthTag.Default;
+
+    /// <summary>
+    /// What drawdepth is used for south
+    /// </summary>
+    [DataField("southDrawDepth"), AutoNetworkedField]
+    public int southDrawDepth = DrawDepthTag.Default;
+
+    /// <summary>
+    /// What drawdepth is used for south
+    /// </summary>
+    [DataField("eastDrawDepth"), AutoNetworkedField]
+    public int eastDrawDepth = DrawDepthTag.Default;
+
+    /// <summary>
+    /// What drawdepth is used for south
+    /// </summary>
+    [DataField("westDrawDepth"), AutoNetworkedField]
+    public int westDrawDepth = DrawDepthTag.Default;
 }
