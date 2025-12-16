@@ -99,6 +99,10 @@
       unbuckletime: 1
       dismountonstun: true
       dismountonknockdown: true
+      northDrawDepth: BelowMobs
+      southDrawDepth: BelowMobs
+      eastDrawDepth: OverMobs
+      westDrawDepth: OverMobs
     - type: MovementSpeedModifier
       baseSprintSpeed: 4.5
       baseWalkSpeed: 2.5
@@ -147,6 +151,10 @@
     southOffset: "0, -0.12"
     eastOffset: "0, -0.2"
     westOffset: "-0, -0.2"
+    northDrawDepth: BelowMobs
+    southDrawDepth: OverMobs
+    eastDrawDepth: OverMobs
+    westDrawDepth: OverMobs
   - type: Sprite
     sprite: Objects/Vehicles/secway.rsi
     layers:

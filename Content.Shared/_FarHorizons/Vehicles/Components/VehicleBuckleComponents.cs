@@ -1,4 +1,5 @@
 using Robust.Shared.GameStates;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 using DrawDepthTag = Robust.Shared.GameObjects.DrawDepth;
 using System.Numerics;
 
@@ -47,24 +48,24 @@ public sealed partial class VehicleBuckleComponent : Component
     /// <summary>
     /// What drawdepth is used for north
     /// </summary>
-    [DataField("northDrawDepth"), AutoNetworkedField]
+    [DataField("northDrawDepth", customTypeSerializer: typeof(ConstantSerializer<DrawDepthTag>)), AutoNetworkedField]
     public int northDrawDepth = DrawDepthTag.Default;
 
     /// <summary>
     /// What drawdepth is used for south
     /// </summary>
-    [DataField("southDrawDepth"), AutoNetworkedField]
+    [DataField("southDrawDepth", customTypeSerializer: typeof(ConstantSerializer<DrawDepthTag>)), AutoNetworkedField]
     public int southDrawDepth = DrawDepthTag.Default;
 
     /// <summary>
     /// What drawdepth is used for south
     /// </summary>
-    [DataField("eastDrawDepth"), AutoNetworkedField]
+    [DataField("eastDrawDepth", customTypeSerializer: typeof(ConstantSerializer<DrawDepthTag>)), AutoNetworkedField]
     public int eastDrawDepth = DrawDepthTag.Default;
 
     /// <summary>
     /// What drawdepth is used for south
     /// </summary>
-    [DataField("westDrawDepth"), AutoNetworkedField]
+    [DataField("westDrawDepth", customTypeSerializer: typeof(ConstantSerializer<DrawDepthTag>)), AutoNetworkedField]
     public int westDrawDepth = DrawDepthTag.Default;
 }

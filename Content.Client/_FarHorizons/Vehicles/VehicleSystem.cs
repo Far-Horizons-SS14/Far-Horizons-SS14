@@ -31,10 +31,8 @@ public sealed class VehicleSystems : SharedVehicleSystems
             return;
 
         var state = component.BaseState;
-        var drawDepth = DrawDepth.BelowMobs;
 
         _sprite.LayerSetRsiState((uid, args.Sprite), VehicleVisualLayers.AutoAnimate, state);
-        _sprite.SetDrawDepth((uid, args.Sprite), (int)drawDepth);
 
         if (_appearance.TryGetData<bool>(uid, VehicleVisuals.AutoAnimate, out var autoAnimate, args.Component) && TryComp<SpriteComponent>(uid, out var spriteComp))
             _sprite.LayerSetAutoAnimated((uid, spriteComp), VehicleVisualLayers.AutoAnimate, autoAnimate);
@@ -44,20 +42,24 @@ public sealed class VehicleSystems : SharedVehicleSystems
     {
         if(!TryComp<SpriteComponent>(ent.Owner, out var spriteComp)) return;
         if(!TryComp<VehicleComponent>(ent.Owner, out var vehicleComp)) return;
-        if(!vehicleComp.Started) return;
+        if(!vehicleComp.Started && vehicleComp.requireIgnition) return;
 
         switch(args.Dir)
         {
             case Direction.North:
+                _sprite.SetDrawDepth((ent.Owner, spriteComp), ent.Comp.northDrawDepth);
                 _sprite.LayerSetOffset((ent.Owner, spriteComp), (int)VehicleVisualLayers.AutoAnimate, ent.Comp.NorthOffset);
                 break;
             case Direction.South:
+                _sprite.SetDrawDepth((ent.Owner, spriteComp), ent.Comp.southDrawDepth);
                 _sprite.LayerSetOffset((ent.Owner, spriteComp), (int)VehicleVisualLayers.AutoAnimate, ent.Comp.SouthOffset);
                 break;
             case Direction.West:
+                _sprite.SetDrawDepth((ent.Owner, spriteComp), ent.Comp.westDrawDepth);
                 _sprite.LayerSetOffset((ent.Owner, spriteComp), (int)VehicleVisualLayers.AutoAnimate, ent.Comp.WestOffset);
                 break;
             case Direction.East:
+                _sprite.SetDrawDepth((ent.Owner, spriteComp), ent.Comp.eastDrawDepth);
                 _sprite.LayerSetOffset((ent.Owner, spriteComp), (int)VehicleVisualLayers.AutoAnimate, ent.Comp.EastOffset);
                 break;
         }

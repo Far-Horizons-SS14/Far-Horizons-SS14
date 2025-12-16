@@ -212,6 +212,7 @@ public sealed partial class VehicleSystems : SharedVehicleSystems
                 vehicleComp.Started = false;
             args.Cancel();
         }
+        Dirty(ent.Owner, vehicleComp);
     }
 
     private void AddActions(EntityUid rider, EntityUid vehicle, VehicleComponent? component=null)
