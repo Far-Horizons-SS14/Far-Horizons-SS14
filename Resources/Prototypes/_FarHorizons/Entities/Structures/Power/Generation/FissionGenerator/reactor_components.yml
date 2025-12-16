@@ -103,6 +103,21 @@
   - type: ReactorPart
     material: UraniumGlass
 
+- type: entity
+  id: MeatReactorFuelRod
+  parent: BaseReactorFuelRod
+  name: meat fuel rod
+  description: A fuel rod fo- wait, is it alive?
+  components:
+  - type: ReactorPart
+    material: Meaterial
+    properties:
+      electrical: 4
+      hard: 1
+      density: 3
+      flammable: 3
+      radioactive: 5
+
 # Control Rods
 - type: entity
   id: BaseReactorControlRod
