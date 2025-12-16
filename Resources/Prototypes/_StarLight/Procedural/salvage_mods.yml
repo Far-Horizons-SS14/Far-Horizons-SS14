@@ -31,6 +31,7 @@
   desc: salvage-dungeon-mod-soviet-stronghold
   proto: ShipWreckDungeon
   biomes:
+    - LowDesert # Far Horizons
     - Grasslands
   difficulties: 
     - Challenging
@@ -45,6 +46,7 @@
   biomes:
     - Lava
     - Grasslands
+    - LowDesert # Far Horizons
     - Caves
     - Snow
   difficulties: 
@@ -73,7 +75,7 @@
   desc: salvage-dungeon-mod-experiment
   proto: Experiment
   biomes:
-    #- LowDesert
+    - LowDesert # Far Horizons
     - Abyss
     - Grasslands
   difficulties: 
@@ -140,7 +142,7 @@
   temperature: 323.15 # 50C
   biomes:
     - Caves
-    #- LowDesert
+    - LowDesert # Far Horizons
     - Grasslands
     - Lava
   difficulties: 
@@ -155,7 +157,7 @@
   temperature: 423.15 # 200C
   biomes:
     - Caves
-    #- LowDesert
+    - LowDesert # Far Horizons
     - Lava
   difficulties: 
     - Challenging
@@ -178,7 +180,6 @@
   temperature: 275.15 # 2C
   biomes:
     - Caves
-    #- LowDesert
     - Grasslands
     - Snow
   difficulties: 
@@ -245,7 +246,7 @@
     - 10 # nitrous oxide
   biomes:
     - Caves
-    #- LowDesert
+    - LowDesert # Far Horizons
     - Snow
     - Grasslands
     - Lava
@@ -255,7 +256,7 @@
  
 - type: salvageAirMod
   id: Poisoned
-  cost: 2
+  cost: 1 # Far Horizons
   desc: salvage-air-mod-dangerous-atmosphere
   gases:
     - 21.824779 # oxygen
@@ -263,7 +264,7 @@
     - 10 # carbon dioxide
   biomes:
     - Caves
-    #- LowDesert
+    - LowDesert # Far Horizons
     - Snow
     - Grasslands
     - Lava
@@ -273,7 +274,7 @@
  
 - type: salvageAirMod
   id: Poison
-  cost: 3
+  cost: 2 # Far Horizons
   desc: salvage-air-mod-toxic-atmosphere
   gases:
     - 21.824779 # oxygen
@@ -286,10 +287,9 @@
   difficulties: 
     - Challenging
     - Moderate
- 
 - type: salvageAirMod
   id: Plasma
-  cost: 4
+  cost: 4 # Far Horizons, this is to make sure this doesn't happen
   desc: salvage-air-mod-toxic-atmosphere
   gases:
     - 0
