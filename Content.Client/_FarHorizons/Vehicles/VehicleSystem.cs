@@ -34,7 +34,9 @@ public sealed class VehicleSystems : SharedVehicleSystems
 
         _sprite.LayerSetRsiState((uid, args.Sprite), VehicleVisualLayers.AutoAnimate, state);
 
-        if (_appearance.TryGetData<bool>(uid, VehicleVisuals.AutoAnimate, out var autoAnimate, args.Component) && TryComp<SpriteComponent>(uid, out var spriteComp))
+        if(!TryComp<SpriteComponent>(uid, out var spriteComp)) return;
+
+        if (_appearance.TryGetData<bool>(uid, VehicleVisuals.AutoAnimate, out var autoAnimate, args.Component))
             _sprite.LayerSetAutoAnimated((uid, spriteComp), VehicleVisualLayers.AutoAnimate, autoAnimate);
     }
 
@@ -43,6 +45,10 @@ public sealed class VehicleSystems : SharedVehicleSystems
         if(!TryComp<SpriteComponent>(ent.Owner, out var spriteComp)) return;
         if(!TryComp<VehicleComponent>(ent.Owner, out var vehicleComp)) return;
         if(!vehicleComp.Started && vehicleComp.requireIgnition) return;
+        if(args.Dir == Direction.Invalid) return;
+        if(args.Dir == vehicleComp.currentDirection) return;
+        vehicleComp.currentDirection = args.Dir;
+        Dirty(ent.Owner, vehicleComp);
 
         switch(args.Dir)
         {

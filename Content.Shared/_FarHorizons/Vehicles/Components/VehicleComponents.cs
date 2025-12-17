@@ -54,6 +54,9 @@ public sealed partial class VehicleComponent : Component
     [DataField, AutoNetworkedField]
     public float Acceleration = 2;
 
+    [DataField, AutoNetworkedField]
+    public Direction? currentDirection;
+
     #region Appearance
     [DataField, AutoNetworkedField]
     public string? BaseState;

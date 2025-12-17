@@ -12,10 +12,6 @@ public enum VehicleVisualLayers : byte
 public enum VehicleVisuals : byte
 {
     /// <summary>
-    /// What layer the vehicle should draw on (assumed integer)
-    /// </summary>
-    DrawDepth,
-    /// <summary>
     /// Whether the wheels should be turning
     /// </summary>
     AutoAnimate

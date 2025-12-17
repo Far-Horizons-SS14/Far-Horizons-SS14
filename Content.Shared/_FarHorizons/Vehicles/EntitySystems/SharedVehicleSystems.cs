@@ -13,6 +13,7 @@ using Content.Shared.Hands.EntitySystems;
 using Robust.Shared.Containers;
 using System.Linq;
 using Content.Shared.PowerCell;
+using Robust.Shared.Timing;
 
 namespace Content.Shared._FarHorizons.Vehicles.EntitySystems;
 
@@ -25,6 +26,7 @@ public abstract partial class SharedVehicleSystems : EntitySystem
     [Dependency] private readonly TagSystem _tags = default!;
     [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
+    [Dependency] private readonly IGameTiming _gameTiming = default!;
     private static readonly ProtoId<TagPrototype> _vehicleKeyTag = "VehicleKey";
 
     public override void Initialize()
@@ -68,6 +70,7 @@ public abstract partial class SharedVehicleSystems : EntitySystem
 
     private void OnTurnKeysEvent(Entity<VehicleComponent> ent, ref TurnKeysEvent args)
     {
+        if (!_gameTiming.IsFirstTimePredicted) return;
         if(ent.Comp.Rider == null) return;
         if(!ent.Comp.Started)
             _popup.PopupEntity($"You turn the keys to start the vehicle.", ent.Owner, PopupType.Medium);
@@ -94,6 +97,7 @@ public abstract partial class SharedVehicleSystems : EntitySystem
 
     private void OnEjectEvent(Entity<VehicleComponent> ent, ref ItemSlotEjectEvent args)
     {
+        if (!_gameTiming.IsFirstTimePredicted) return;
         if(ent.Comp.Rider == null) return;
         if(args.User == null) return;
         if(_tags.HasTag(args.Item, _vehicleKeyTag))
