@@ -43,7 +43,9 @@ public sealed partial class FHResearchTree : BoxContainer
     private HashSet<ProtoId<ResearchTreeTierPrototype>> _unlockedTiers = [];
     private HashSet<ProtoId<ResearchTreeNodePrototype>> _unlockedNodes = [];
     private HashSet<ProtoId<ResearchTreeNodePrototype>> _researched = [];
-    private Dictionary<ProtoId<ResearchTreeNodePrototype>, float> _researching = [];
+    private Dictionary<ProtoId<ResearchTreeNodePrototype>, (float from, float to, TimeSpan fromTime, TimeSpan toTime)> _researchingAnim = [];
+    private readonly TimeSpan _researchingAnimSpeed = TimeSpan.FromSeconds(0.9);
+    private Dictionary<ProtoId<ResearchTreeNodePrototype>, (float from, float to, TimeSpan fromTime, TimeSpan toTime)> _lingeringResearchingAnim = [];
     private List<ProtoId<ResearchTreeNodePrototype>> _queuedNodes = [];
 
     private Vector2 _currentMousePosition => 
@@ -121,12 +123,14 @@ public sealed partial class FHResearchTree : BoxContainer
         _unlockedTiers = unlockedTiers;
         _unlockedNodes = unlockedNodes;
         _researched = researched;
-        _researching = progress;
         _queuedNodes = queued;
 
         _searchDb.Build(_prototypeManager, [.. nodes.Select(p => (ProtoId<ResearchTreeNodePrototype>)p.ID)]);
         _search.SetDb(_searchDb);
         _search.OnSearchSelected += (node) => Select(node);
+
+        _researchingAnim = progress.ToDictionary(p => p.Key, p => (p.Value, p.Value, _timing.CurTime, _timing.CurTime));
+        _lingeringResearchingAnim = [];
     }
 
     public void RefreshTree(
@@ -137,11 +141,15 @@ public sealed partial class FHResearchTree : BoxContainer
         List<ProtoId<ResearchTreeNodePrototype>> queued
     )
     {
+        var newResearchedNodes = researched.Except(_researched).ToHashSet();
+        AnimateLingering(newResearchedNodes);
+
         _unlockedTiers = unlockedTiers;
         _unlockedNodes = unlockedNodes;
         _researched = researched;
-        _researching = progress;
         _queuedNodes = queued;
+
+        _researchingAnim = AnimateProgress(progress);
     }
 
     protected override void KeyBindDown(GUIBoundKeyEventArgs args)
@@ -248,6 +256,12 @@ public sealed partial class FHResearchTree : BoxContainer
         if (!_draw)
             return;
 
+        var researchProgress = GetAnimatedProgress();
+        var lingeringProgress = ProcessLingeringAnim();
+        var combinedProgress = researchProgress.Union(lingeringProgress).ToDictionary();
+        var researchedWithoutLingering = _researched.Except(lingeringProgress.Keys).ToHashSet();
+        var queuedIncludingLingering = _queuedNodes.Union(lingeringProgress.Keys).ToList();
+
         _search.Update(handle, _viewportSize, _currentMousePosition);
 
         MoveViewport();
@@ -262,7 +276,7 @@ public sealed partial class FHResearchTree : BoxContainer
             .Zoom(_zoom)
             .Translate(_pseudoViewport)
             .Hovered(_hovered)
-            .Research(_researched)
+            .Research(researchedWithoutLingering)
             .Draw(handle);
         for (var i = 0; i < _nodes.Count; i++)
         {
@@ -273,9 +287,9 @@ public sealed partial class FHResearchTree : BoxContainer
             .Hovered(_currentMousePosition)
             .Select(_selected)
             .Unlock(_unlockedTiers, _unlockedNodes)
-            .Queue(_queuedNodes)
-            .Research(_researched)
-            .Researching(_researching)
+            .Queue(queuedIncludingLingering)
+            .Research(researchedWithoutLingering)
+            .Researching(combinedProgress)
             .Draw(handle);
         }
         foreach (var tier in _tiers)
@@ -305,6 +319,65 @@ public sealed partial class FHResearchTree : BoxContainer
         .ToList();
 
         return hovered.Count > 0 ? hovered.First() : (ProtoId<ResearchTreeNodePrototype>?)null;
+    }
+
+    private Dictionary<ProtoId<ResearchTreeNodePrototype>, (float, float, TimeSpan, TimeSpan)> AnimateProgress(Dictionary<ProtoId<ResearchTreeNodePrototype>, float> progress)
+    {
+        Dictionary<ProtoId<ResearchTreeNodePrototype>, (float, float, TimeSpan, TimeSpan)> anim = [];
+        var current = GetAnimatedProgress();
+        foreach(var nodeProgress in progress)
+        {
+            anim[nodeProgress.Key] = (
+                current.TryGetValue(nodeProgress.Key, out var val) ? val : 0,
+                nodeProgress.Value,
+                _timing.CurTime,
+                _timing.CurTime + _researchingAnimSpeed
+            );
+        }
+        return anim;
+    }
+
+    private void AnimateLingering(HashSet<ProtoId<ResearchTreeNodePrototype>> nodes)
+    {
+        var current = GetAnimatedProgress();
+        foreach(var node in nodes)
+        {
+            _lingeringResearchingAnim[node] = (
+                current.TryGetValue(node, out var val) ? val : 0,
+                1,
+                _timing.CurTime,
+                _timing.CurTime + _researchingAnimSpeed
+            );
+        }
+    }
+
+    private Dictionary<ProtoId<ResearchTreeNodePrototype>, float> GetAnimatedProgress()
+    {
+        Dictionary<ProtoId<ResearchTreeNodePrototype>, float> progress = [];
+        foreach(var nodeAnim in _researchingAnim)
+        {
+            var animProgress = Math.Clamp((float)(_timing.CurTime - nodeAnim.Value.fromTime).TotalSeconds / (float)(nodeAnim.Value.toTime - nodeAnim.Value.fromTime).TotalSeconds, 0f, 1f);
+            progress[nodeAnim.Key] = float.Lerp(nodeAnim.Value.from, nodeAnim.Value.to, animProgress);
+        }
+        return progress;
+    }
+
+    private Dictionary<ProtoId<ResearchTreeNodePrototype>, float> ProcessLingeringAnim()
+    {
+        Dictionary<ProtoId<ResearchTreeNodePrototype>, float> progress = [];
+        List<ProtoId<ResearchTreeNodePrototype>> finished = [];
+        foreach (var nodeAnim in _lingeringResearchingAnim)
+        {
+            var animProgress = Math.Clamp((float)(_timing.CurTime - nodeAnim.Value.fromTime).TotalSeconds / (float)(nodeAnim.Value.toTime - nodeAnim.Value.fromTime).TotalSeconds, 0f, 1f);
+            progress[nodeAnim.Key] = float.Lerp(nodeAnim.Value.from, nodeAnim.Value.to, animProgress);
+            if (animProgress == 1)
+                finished.Add(nodeAnim.Key);
+        }
+
+        foreach (var node in finished)
+            _lingeringResearchingAnim.Remove(node);
+
+        return progress;
     }
 
     public void Select(ProtoId<ResearchTreeNodePrototype>? select)

@@ -222,7 +222,7 @@ public struct DrawResearchNode
         if (Progress != null && !Completed)
         {
             var progressBarWidth = (Size.X - (NodeMargin * 2)) * Progress!.Value;
-            handle.DrawRect(new(new(Box.BottomLeft.X + NodeMargin, Box.BottomLeft.Y - ProgressHeight - NodeMargin), new(Box.BottomLeft.X + NodeMargin + progressBarWidth, Box.BottomRight.Y - NodeMargin)), Color.Green);
+            handle.DrawRect(new(new(Box.BottomLeft.X + NodeMargin, Box.BottomLeft.Y - ProgressHeight - NodeMargin), new(Box.BottomLeft.X + NodeMargin + progressBarWidth, Box.BottomRight.Y - NodeMargin)), Color.Orange);
         }
 
         if (Font != null && Text.Count > 0)
