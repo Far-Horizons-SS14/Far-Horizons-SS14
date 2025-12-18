@@ -1,4 +1,5 @@
 ﻿using System.Collections.Concurrent;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net.Http;
 using System.Security.Cryptography;
@@ -30,10 +31,10 @@ public sealed class DiscordLinkManager : IDiscordLinkManager
     private readonly ConcurrentDictionary<Guid, ulong[]> _usersRoles = new();
     private readonly ConcurrentDictionary<Guid, ICommonSession> _mentors = new();
     public IEnumerable<ICommonSession> Mentors => _mentors.Values;
-    private ulong mentorRole;
 
     private List<DiscordRolePrototype> _rolePrototypes = new();
-
+    private Dictionary<ulong, DiscordRolePrototype>? _rolesDictionary;
+    
     public const int ExpireDelayMinutes = 5*60;  // just to be sure...
     
     public void Initialize()
@@ -42,12 +43,8 @@ public sealed class DiscordLinkManager : IDiscordLinkManager
         _netMgr.RegisterNetMessage<MsgDiscordLink>();
         _netMgr.RegisterNetMessage<MsgPermissions>();
         _playerManager.PlayerStatusChanged += PlayerStatusChanged;
-        _rolePrototypes = _prototypeManager.GetInstances<DiscordRolePrototype>().Values.ToList();
-        foreach (var role in _rolePrototypes)
-        {
-            if (role.ID == "Mentor")
-                mentorRole = role.DiscordRoleId;
-        }
+        _rolePrototypes = _prototypeManager.GetInstances<DiscordRolePrototype>().Values.OrderBy(item => item.Order).ToList();
+        _rolesDictionary = _rolePrototypes.ToDictionary(item => item.DiscordRoleId);
     }
 
     public void Shutdown() {}
@@ -84,9 +81,14 @@ public sealed class DiscordLinkManager : IDiscordLinkManager
 
     public bool IsMentor(Guid userId)
     {
+        if (_mentors.ContainsKey(userId)) return true;
         var roles = GetDiscordRoleIds(userId);
-        if (roles == null || roles.Length == 0) return false;
-        return roles.Contains(mentorRole);
+        if (roles == null || roles.Length == 0 || _rolesDictionary == null) return false;
+        foreach (var role in roles)
+            if (_rolesDictionary.TryGetValue(role, out var value) &&
+                value.AdditionalPermissions?.Contains(DiscordRolePrototype.AdditionalPermissionsTypes.Mentor) == true)
+                return true;
+        return false;
     }
 
     private static string GenerateStateToken(int length = 32)

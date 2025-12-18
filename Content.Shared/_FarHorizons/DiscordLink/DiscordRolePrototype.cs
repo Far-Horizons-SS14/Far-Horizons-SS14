@@ -14,4 +14,15 @@ public sealed class DiscordRolePrototype : IPrototype
     
     [DataField(required: true)]
     public string PlayerTitle = default!;
+    
+    [DataField(required: true)]
+    public uint Order = uint.MaxValue;
+
+    public enum AdditionalPermissionsTypes : ushort
+    {
+        Mentor,
+    }
+    
+    [DataField(required: false)]
+    public AdditionalPermissionsTypes[]? AdditionalPermissions;
 }
