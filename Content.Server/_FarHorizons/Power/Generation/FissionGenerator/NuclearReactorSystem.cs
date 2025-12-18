@@ -553,11 +553,12 @@ public sealed class NuclearReactorSystem : SharedNuclearReactorSystem
         _explosionSystem.QueueExplosion(ent.Owner, "Radioactive", Math.Max(100, MeltdownBadness * 5), 1, 5, 0, canCreateVacuum: false);
 
         // Reset grids
-        Array.Clear(comp.ComponentGrid);
+        comp.ComponentGrid = new ReactorPartComponent[comp.ReactorGridWidth, comp.ReactorGridHeight]; // Not Array.Clear due to ammonia
         Array.Clear(comp.NeutronGrid);
         Array.Clear(comp.TemperatureGrid);
         Array.Clear(comp.FluxGrid);
 
+        // This will Dirty() the reactor, so no need to declare it explicitly
         UpdateGridVisual(ent);
     }
 
@@ -733,6 +734,12 @@ public sealed class NuclearReactorSystem : SharedNuclearReactorSystem
     {
         if (!_uiSystem.IsUiOpen(uid, NuclearReactorUiKey.Key))
             return;
+
+        if(reactor.Melted)
+        {
+            _uiSystem.CloseUi(uid, NuclearReactorUiKey.Key);
+            return;
+        }
 
         var gridWidth = reactor.ReactorGridWidth;
         var gridHeight = reactor.ReactorGridHeight;

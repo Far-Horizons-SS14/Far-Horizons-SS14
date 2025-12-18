@@ -96,7 +96,7 @@ public sealed partial class NuclearReactorComponent : Component
     /// <summary>
     /// Flag indicating total meltdown has happened
     /// </summary>
-    [DataField, ViewVariables]
+    [DataField, ViewVariables, AutoNetworkedField]
     public bool Melted = false;
 
     /// <summary>
