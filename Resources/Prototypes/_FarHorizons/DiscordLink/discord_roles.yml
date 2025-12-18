@@ -1,30 +1,43 @@
 ﻿- type: discordRole
-  id: SeniorStuff
+  id: Leadership
   discordRoleId: 1407109433670111315
   playerTitle: "Senior"
   order: 1
 
 - type: discordRole
+  id: SeniorAdmin
+  discordRoleId: 1411084097404801104
+  playerTitle: "Senior"
+  order: 2
+
+# # reserved for the future eventmin role
+#- type: discordRole
+#  id: EventAdmin
+#  discordRoleId: 1407084985680269382
+#  playerTitle: "Eventmin"
+#  order: 3
+
+- type: discordRole
   id: GameAdmin
   discordRoleId: 1407078784611385534
   playerTitle: "Admin"
-  order: 2
+  order: 4
 
 - type: discordRole
   id: DevAdmin
   discordRoleId: 1415515150123012219
   playerTitle: "Dev Admin"
-  order: 3
+  order: 5
 
 - type: discordRole
   id: TrialAdmin
   discordRoleId: 1407078837325402152
   playerTitle: "Trialmin"
-  order: 4
+  order: 6
 
 - type: discordRole
   id: Mentor
   discordRoleId: 1407078878786359348
   playerTitle: "Mentor"
-  order: 5
+  order: 7
   additionalPermissions: [Mentor]
