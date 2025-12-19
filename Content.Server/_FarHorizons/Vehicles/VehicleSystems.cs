@@ -15,7 +15,6 @@ using Content.Shared.Pulling.Events;
 using Content.Shared.Stunnable;
 using Content.Shared.Tag;
 using Robust.Shared.Physics.Components;
-using Robust.Shared.Physics.Systems;
 using Robust.Shared.Prototypes;
 using System.Numerics;
 using System.Linq;
@@ -23,6 +22,10 @@ using Content.Server.PowerCell;
 using Content.Shared.PowerCell;
 using Robust.Server.GameObjects;
 using Content.Shared._FarHorizons.Vehicles;
+using Robust.Shared.Physics.Events;
+using Content.Server.Stunnable;
+using Content.Shared.Projectiles;
+using Content.Shared.Throwing;
 
 namespace Content.Server._FarHorizons.Vehicle;
 
@@ -32,20 +35,26 @@ public sealed partial class VehicleSystems : SharedVehicleSystems
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly SharedBuckleSystem _buckle = default!;
     [Dependency] private readonly MovementSpeedModifierSystem _movementSpeed = default!;
-    [Dependency] private readonly SharedPhysicsSystem _physics = default!;
     [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!;
     [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private readonly TagSystem _tags = default!;
     [Dependency] private readonly PowerCellSystem _powerCell = default!;
     [Dependency] private readonly AppearanceSystem _appearance = default!;
+    [Dependency] private readonly StunSystem _stun = default!;
+    [Dependency] private readonly ThrowingSystem _throwing = default!;
 
     private static readonly ProtoId<TagPrototype> _vehicleKeyTag = "VehicleKey";
+    private EntityQuery<ProjectileComponent> _projQuery;
     public override void Initialize()
     {
         base.Initialize();
+
+        _projQuery = GetEntityQuery<ProjectileComponent>();
+
         SubscribeLocalEvent<VehicleComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<VehicleComponent, GetAdditionalAccessEvent>(OnGetAdditionalAccess);
         SubscribeLocalEvent<VehicleComponent, ItemSlotInsertEvent>(OnInsertEvent);
+        SubscribeLocalEvent<VehicleComponent, StartCollideEvent>(HandleCollide);
 
         SubscribeLocalEvent<VehicleBuckleComponent, StrappedEvent>(OnStrapped);
         SubscribeLocalEvent<VehicleBuckleComponent, UnstrappedEvent>(OnUnstrapped);
@@ -74,6 +83,34 @@ public sealed partial class VehicleSystems : SharedVehicleSystems
         if(_tags.HasTag(args.Item, _vehicleKeyTag))
         {
             AddActions(ent.Comp.Rider.Value, ent.Owner, ent.Comp);
+        }
+    }
+
+    private void HandleCollide(Entity<VehicleComponent> ent, ref StartCollideEvent args)
+    {
+        if(ent.Comp.Rider == null) return;
+        var rider = ent.Comp.Rider.Value;
+        
+        if(TryComp<VehicleBuckleComponent>(rider, out var vehicleBuckleComp))
+        {
+            if(!vehicleBuckleComp.ejectOnCrash) return;
+
+            if (!args.OurFixture.Hard || !args.OtherFixture.Hard) return;
+
+            var speed = args.OurBody.LinearVelocity.Length();
+
+            if (speed < vehicleBuckleComp.SpeedToEjectOnCrash) return;
+            
+            if(!TryComp<PhysicsComponent>(ent.Owner, out var vehiclePhys) || !TryComp<PhysicsComponent>(rider, out var riderPhys))
+                return;
+
+            if(TryComp<BuckleComponent>(rider, out var buckleComp))
+                if(_buckle.TryUnbuckle(rider, null, buckleComp))
+                {
+                    var riderXform = Transform(rider);
+                    _stun.TryCrawling(rider, TimeSpan.FromSeconds(3));
+                    _throwing.TryThrow(rider, vehiclePhys.LinearVelocity*riderPhys.Mass, riderPhys, riderXform, _projQuery, vehiclePhys.LinearVelocity.Length(), playSound: false);
+                }
         }
     }
 
@@ -183,13 +220,14 @@ public sealed partial class VehicleSystems : SharedVehicleSystems
         }
         
         if(!TryComp<MovementSpeedModifierComponent>(vehicle, out var moveComp)) return;
-        if(Math.Abs(vehiclePhys.LinearVelocity.X) > 1.05*moveComp.BaseSprintSpeed || 
-            Math.Abs(vehiclePhys.LinearVelocity.Y) > 1.05*moveComp.BaseSprintSpeed)
+        if(Math.Abs(vehiclePhys.LinearVelocity.X) > 1.05*moveComp.CurrentSprintSpeed || 
+            Math.Abs(vehiclePhys.LinearVelocity.Y) > 1.05*moveComp.CurrentSprintSpeed)
         {
             if(TryComp<BuckleComponent>(rider, out var buckleComp))
                 if(_buckle.TryUnbuckle(rider, null, buckleComp))
                 {
-                    _physics.ApplyLinearImpulse(rider, vehiclePhys.LinearVelocity*riderPhys.Mass, body: riderPhys);
+                    _stun.TryCrawling(rider, TimeSpan.FromSeconds(3));
+                    _throwing.TryThrow(rider, vehiclePhys.LinearVelocity*riderPhys.Mass, riderPhys, riderTransform, _projQuery, vehiclePhys.LinearVelocity.Length(), playSound: false);
                 }
         }
 
