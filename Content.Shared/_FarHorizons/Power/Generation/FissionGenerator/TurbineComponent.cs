@@ -95,7 +95,7 @@ public sealed partial class TurbineComponent : Component
     /// <summary>
     /// If the turbine is functional or not
     /// </summary>
-    [ViewVariables]
+    [DataField, ViewVariables, AutoNetworkedField]
     public bool Ruined = false;
 
     /// <summary>
