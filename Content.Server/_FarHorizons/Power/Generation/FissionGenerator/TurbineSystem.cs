@@ -110,9 +110,9 @@ public sealed class TurbineSystem : SharedTurbineSystem
         supplier.MaxSupply = comp.LastGen;
 
         if (!comp.InletEnt.HasValue || EntityManager.Deleted(comp.InletEnt.Value))
-            comp.InletEnt = SpawnAttachedTo("TurbineGasPipe", new(uid, comp.InletPos), rotation: Angle.FromDegrees(comp.InletRot));
+            comp.InletEnt = SpawnAttachedTo(comp.PipePrototype, new(uid, comp.InletPos), rotation: Angle.FromDegrees(comp.InletRot));
         if (!comp.OutletEnt.HasValue || EntityManager.Deleted(comp.OutletEnt.Value))
-            comp.OutletEnt = SpawnAttachedTo("TurbineGasPipe", new(uid, comp.OutletPos), rotation: Angle.FromDegrees(comp.OutletRot));
+            comp.OutletEnt = SpawnAttachedTo(comp.PipePrototype, new(uid, comp.OutletPos), rotation: Angle.FromDegrees(comp.OutletRot));
 
         CheckAnchoredPipes(uid, comp);
 
@@ -351,10 +351,21 @@ public sealed class TurbineSystem : SharedTurbineSystem
         _adminLogger.Add(LogType.Action, $"{ToPrettyString(args.Trigger):trigger} set the stator load on {ToPrettyString(uid):target} to {logtext}");
     }
 
+    #region Anchoring
     private void OnAnchorChanged(EntityUid uid, TurbineComponent comp, ref AnchorStateChangedEvent args)
     {
         if (!args.Anchored)
+        {
             CleanUp(comp);
+            return;
+        }
+
+        if (!comp.InletEnt.HasValue || EntityManager.Deleted(comp.InletEnt.Value))
+            comp.InletEnt = SpawnAttachedTo(comp.PipePrototype, new(uid, comp.InletPos), rotation: Angle.FromDegrees(comp.InletRot));
+        if (!comp.OutletEnt.HasValue || EntityManager.Deleted(comp.OutletEnt.Value))
+            comp.OutletEnt = SpawnAttachedTo(comp.PipePrototype, new(uid, comp.OutletPos), rotation: Angle.FromDegrees(comp.OutletRot));
+
+        CheckAnchoredPipes(uid, comp);
     }
 
     private void OnUnanchorAttempt(EntityUid uid, TurbineComponent comp, ref UnanchorAttemptEvent args)
@@ -378,6 +389,7 @@ public sealed class TurbineSystem : SharedTurbineSystem
             _transform.Unanchor(uid);
         }
     }
+    #endregion
 
     private void CleanUp(TurbineComponent comp)
     {

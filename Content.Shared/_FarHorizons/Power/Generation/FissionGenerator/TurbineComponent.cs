@@ -211,6 +211,12 @@ public sealed partial class TurbineComponent : Component
     /// </summary>
     [DataField]
     public EntProtoId ArrowPrototype = "TurbineFlowArrow";
+
+    /// <summary>
+    /// Name of the prototype of the pipes the turbine uses to connect to the pipe network
+    /// </summary>
+    [DataField]
+    public EntProtoId PipePrototype = "TurbineGasPipe";
     #endregion
 
     #region Device Network

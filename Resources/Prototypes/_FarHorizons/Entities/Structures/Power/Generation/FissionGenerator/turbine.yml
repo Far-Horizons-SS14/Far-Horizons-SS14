@@ -172,6 +172,7 @@
   components:
   - type: Transform
     anchored: true
+  - type: Anchorable
   - type: NodeContainer
     nodes:
       pipe:
@@ -198,6 +199,7 @@
     - pipe2
     outlets:
     - pipe
+  - type: PipeRestrictOverlap
   - type: Tag
     tags:
       - HideContextMenu

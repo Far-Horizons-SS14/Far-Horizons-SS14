@@ -279,6 +279,11 @@ public sealed partial class NuclearReactorComponent : Component
     [DataField]
     public EntProtoId ArrowPrototype = "ReactorFlowArrow";
 
+    /// <summary>
+    /// Name of the prototype of the pipes the reactor uses to connect to the pipe network
+    /// </summary>
+    [DataField]
+    public EntProtoId PipePrototype = "ReactorGasPipe";
     #endregion
 
     #region Device Network
