@@ -75,7 +75,6 @@ public sealed class NuclearReactorSystem : SharedNuclearReactorSystem
 
         // Atmos events
         SubscribeLocalEvent<NuclearReactorComponent, AtmosDeviceUpdateEvent>(OnUpdate);
-        SubscribeLocalEvent<NuclearReactorComponent, AtmosDeviceEnabledEvent>(OnEnable);
         SubscribeLocalEvent<NuclearReactorComponent, GasAnalyzerScanEvent>(OnAnalyze);
 
         // Item events
@@ -167,11 +166,6 @@ public sealed class NuclearReactorSystem : SharedNuclearReactorSystem
         return exportDict;
     }
     #endregion
-
-    private void OnEnable(Entity<NuclearReactorComponent> ent, ref AtmosDeviceEnabledEvent args)
-    {
-        //UpdateGridVisual(ent);
-    }
 
     private void OnAnalyze(EntityUid uid, NuclearReactorComponent comp, ref GasAnalyzerScanEvent args)
     {
@@ -295,7 +289,7 @@ public sealed class NuclearReactorSystem : SharedNuclearReactorSystem
                     _partSystem.ProcessHeat(ReactorComp, ent, GetGridNeighbors(comp, x, y), this);
                     comp.TemperatureGrid[x, y] = ReactorComp.Temperature;
 
-                    if (ReactorComp.RodType == ReactorPartComponent.RodTypes.ControlRod && ReactorComp.IsControlRod)
+                    if (ReactorComp.HasRodType(ReactorPartComponent.RodTypes.ControlRod) && ReactorComp.IsControlRod)
                     {
                         AvgControlRodInsertion += ReactorComp.NeutronCrossSection;
                         ReactorComp.ConfiguredInsertionLevel = comp.ControlRodInsertion;
@@ -424,7 +418,10 @@ public sealed class NuclearReactorSystem : SharedNuclearReactorSystem
 
     private void UpdateGasVolume(NuclearReactorComponent reactor)
     {
-        if (reactor.InletEnt == null || !_nodeContainer.TryGetNode(reactor.InletEnt.Value, reactor.PipeName, out PipeNode? inlet))
+        if (reactor.InletEnt == null || reactor.OutletEnt == null)
+            return;
+
+        if (!_nodeContainer.TryGetNode(reactor.InletEnt.Value, reactor.PipeName, out PipeNode? inlet) || !_nodeContainer.TryGetNode(reactor.OutletEnt.Value, reactor.PipeName, out PipeNode? outlet))
             return;
 
         var totalGasVolume = reactor.ReactorVesselGasVolume;
@@ -432,10 +429,9 @@ public sealed class NuclearReactorSystem : SharedNuclearReactorSystem
         for (var x = 0; x < reactor.ReactorGridWidth; x++)
             for (var y = 0; y < reactor.ReactorGridHeight; y++)
                 if (reactor.ComponentGrid![x, y] != null)
-                {
                     totalGasVolume += reactor.ComponentGrid[x, y]!.GasVolume;
-                }
         inlet.Volume = totalGasVolume;
+        outlet.Volume = totalGasVolume;
     }
 
     private GasMixture? ProcessCasingGas(NuclearReactorComponent reactor, AtmosDeviceUpdateEvent args, GasMixture inGas)
@@ -530,7 +526,7 @@ public sealed class NuclearReactorSystem : SharedNuclearReactorSystem
                     if (RC == null)
                         return;
                     MeltdownBadness += ((RC.Properties!.Radioactivity * 2) + (RC.Properties.NeutronRadioactivity * 5) + (RC.Properties.FissileIsotopes * 10)) * (RC.Melted ? 2 : 1);
-                    if (RC.RodType == ReactorPartComponent.RodTypes.GasChannel)
+                    if (RC.HasRodType(ReactorPartComponent.RodTypes.GasChannel))
                         _atmosphereSystem.Merge(comp.AirContents, RC.AirContents ?? new());
                 }
             }

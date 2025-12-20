@@ -27,7 +27,7 @@
   description: A fuel rod for a nuclear reactor.
   components:
   - type: ReactorPart
-    rodType: FuelRod
+    rodType: 1
     iconStateInserted: "fuel"
     iconStateCap: "fuel_cap"
     neutronCrossSection: 1.0
@@ -127,7 +127,7 @@
   description: A control rod assembly for a nuclear reactor.
   components:
   - type: ReactorPart
-    rodType: ControlRod
+    rodType: 2
     iconStateInserted: "control"
     iconStateCap: "control_cap"
     isControlRod: true
@@ -214,7 +214,7 @@
   description: A gas channel for a nuclear reactor.
   components:
   - type: ReactorPart
-    rodType: GasChannel
+    rodType: 4
     iconStateInserted: "gas"
     iconStateCap: "gas_cap"
     thermalCrossSection: 15
@@ -294,7 +294,6 @@
   description: A heat exchanger for a nuclear reactor.
   components:
   - type: ReactorPart
-    rodType: HeatExchanger
     iconStateInserted: "heat"
     iconStateCap: "heat_cap"
     neutronCrossSection: 0.1

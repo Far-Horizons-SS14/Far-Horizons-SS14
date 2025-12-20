@@ -34,15 +34,14 @@ public sealed partial class ReactorPartComponent : Component
     /// Byte indicating what type of rod this reactor part is
     /// </summary>
     [DataField]
-    public RodTypes RodType = RodTypes.Generic;
+    public int RodType = 0;
 
     public enum RodTypes
     {
-        Generic = 1 << 0,
-        FuelRod = 1 << 1,
-        ControlRod = 1 << 2,
-        GasChannel = 1 << 3,
-        HeatExchanger = 1 << 4,
+        None = 0,
+        FuelRod = 1 << 0,    // 1 Can be processed by the nuclear centrifuge
+        ControlRod = 1 << 1, // 2 Can change its NeutronCrossSection according to control rod setting
+        GasChannel = 1 << 2, // 4 Can process gas
     }
 
     #region Variables
@@ -161,6 +160,8 @@ public sealed partial class ReactorPartComponent : Component
         GasThermalCrossSection = source.GasThermalCrossSection;
         AirContents = source.AirContents;
     }
+
+    public bool HasRodType(RodTypes type) => (RodType & (int)type) == (int)type;
 }
 
 /// <summary>

@@ -216,7 +216,7 @@ public abstract class SharedReactorPartSystem : EntitySystem
         reactorPart.ThermalCrossSection = 20f;
         reactorPart.IsControlRod = false;
 
-        if(reactorPart.RodType == ReactorPartComponent.RodTypes.GasChannel)
+        if(reactorPart.HasRodType(ReactorPartComponent.RodTypes.GasChannel))
             reactorPart.GasThermalCrossSection = 0.1f;
     }
 
@@ -367,7 +367,7 @@ public abstract class SharedReactorPartSystem : EntitySystem
             //thermalEnergy += 6.5f * reactorPart.ThermalMass;
         }
 
-        if (reactorPart.RodType == ReactorPartComponent.RodTypes.ControlRod)
+        if (reactorPart.HasRodType(ReactorPartComponent.RodTypes.ControlRod))
         {
             if (!reactorPart.Melted && (reactorPart.NeutronCrossSection != reactorPart.ConfiguredInsertionLevel))
             {
@@ -379,7 +379,7 @@ public abstract class SharedReactorPartSystem : EntitySystem
             }
         }
 
-        if (reactorPart.RodType == ReactorPartComponent.RodTypes.GasChannel)
+        if (reactorPart.HasRodType(ReactorPartComponent.RodTypes.GasChannel))
             neutrons = ProcessNeutronsGas(reactorPart, neutrons);
 
         neutrons ??= [];
