@@ -20,13 +20,13 @@
     tile: FloorDarkMono
     contents: FHBaseAirlock
   
-  - !type:ExternalWindowDunGen
-    tile: FloorDarkMono
-    contents: FHBaseWindow
-  
   - !type:RoomEntranceDunGen
     tile: FloorDarkMono
     contents: FHBaseAirlock
+  
+  - !type:ExternalWindowDunGen
+    tile: FloorDarkMono
+    contents: FHBaseWindow
 
   - !type:WallMountDunGen
     contents: ReactorWalls
@@ -35,10 +35,6 @@
   - !type:BoundaryWallDunGen
     wall: WallSolidSyndicate
     tile: FloorDarkMono
-  
-  - !type:RoomEntranceDunGen
-    tile: FloorDarkMono
-    contents: FHBaseAirlock
 
   - !type:JunctionDunGen
     width: 3
