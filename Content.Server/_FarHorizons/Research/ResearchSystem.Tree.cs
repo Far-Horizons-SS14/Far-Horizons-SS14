@@ -192,7 +192,15 @@ public sealed partial class FHResearchSystem
 
         if (!ent.Comp.Queue.Remove(node))
             return false;
-        ent.Comp.Queue = [.. ent.Comp.Queue.Intersect([.. GetUnlockedNodes((ent, ent.Comp))])];
+        
+        List<ProtoId<ResearchTreeNodePrototype>> toRemove = [];
+        foreach (var queuedNode in ent.Comp.Queue)
+        {
+            var nodeProto = _protoMan.Index(queuedNode);
+            if (nodeProto.DependencyChain(_protoMan).Any(p => p.ID == node))
+                toRemove.Add(queuedNode);
+        }
+        ent.Comp.Queue.RemoveAll(toRemove.Contains);
 
         RefreshUIOnClients(ent);
         return true;

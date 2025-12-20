@@ -27,6 +27,7 @@ public sealed partial class FHResearchConsoleWindow : FancyWindow
     public Action? OnServerButtonPressed;
     public Action<ProtoId<ResearchTreeNodePrototype>>? OnResearchButtonPressed;
     public Action<ProtoId<ResearchTreeNodePrototype>>? OnRemoveQueueButtonPressed;
+    public Action<ProtoId<ResearchTreeNodePrototype>>? OnQuickResearch;
 
     public FHResearchConsoleWindow()
     {
@@ -35,6 +36,7 @@ public sealed partial class FHResearchConsoleWindow : FancyWindow
 
         ServerButton.OnPressed += _ => OnServerButtonPressed?.Invoke();
         TreeDisplay.OnSelectionChanged += Selected;
+        TreeDisplay.OnQuickResearch += QuickResearch;
     }
 
     public void SetupUI(
@@ -137,6 +139,9 @@ public sealed partial class FHResearchConsoleWindow : FancyWindow
         UpdateRequirements();
         UpdateUnlocks();
     }
+
+    private void QuickResearch(ProtoId<ResearchTreeNodePrototype> node) =>
+        OnQuickResearch?.Invoke(node);
 
     private void ResearchNode(BaseButton.ButtonEventArgs args)
     {

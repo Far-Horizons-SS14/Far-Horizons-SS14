@@ -17,6 +17,7 @@ public sealed class FHResearchConsoleBoundUserInterface(EntityUid owner, Enum ui
     private HashSet<ProtoId<ResearchTreeNodePrototype>> _unlockedNodes = [];
     private HashSet<ProtoId<ResearchTreeNodePrototype>> _researchedNodes = [];
     private HashSet<ProtoId<ResearchTreeTierPrototype>> _unlockedTiers = [];
+    private List<ProtoId<ResearchTreeNodePrototype>> _queuedNodes = [];
     private bool _readonly = false;
 
     [ViewVariables]
@@ -36,6 +37,7 @@ public sealed class FHResearchConsoleBoundUserInterface(EntityUid owner, Enum ui
         {
             _window.OnResearchButtonPressed += SendReseachRequest;
             _window.OnRemoveQueueButtonPressed += SendRemoveFromQueueRequest;
+            _window.OnQuickResearch += QuickResearchRequest;
         }
     }
 
@@ -49,23 +51,34 @@ public sealed class FHResearchConsoleBoundUserInterface(EntityUid owner, Enum ui
             _researchedNodes = fullState.ResearchedNodes;
             _unlockedTiers = fullState.UnlockedTiers;
             _unlockedNodes = fullState.UnlockedNodes;
+            _queuedNodes = fullState.QueuedNodes;
             _readonly = fullState.Readonly;
 
             if (_readonly && _window != null)
             {
                 _window.OnResearchButtonPressed -= SendReseachRequest;
                 _window.OnRemoveQueueButtonPressed -= SendRemoveFromQueueRequest;
+                _window.OnQuickResearch -= QuickResearchRequest;
             }
             
-            _window?.SetupUI(_nodeProtos, _unlockedTiers, _unlockedNodes, _researchedNodes, fullState.QueuedNodes, fullState.ResearchProgress, fullState.BankedPoints, fullState.Readonly);
+            _window?.SetupUI(_nodeProtos, _unlockedTiers, _unlockedNodes, _researchedNodes, _queuedNodes, fullState.ResearchProgress, fullState.BankedPoints, fullState.Readonly);
         } else if (state is FHResearchConsoleBUIPartialState partialState)
         {
             _researchedNodes = partialState.ResearchedNodes;
             _unlockedTiers = partialState.UnlockedTiers;
             _unlockedNodes = partialState.UnlockedNodes;
+            _queuedNodes = partialState.QueuedNodes;
             
-            _window?.RefreshUI(_unlockedTiers, _unlockedNodes, _researchedNodes, partialState.QueuedNodes, partialState.ResearchProgress, partialState.BankedPoints);
+            _window?.RefreshUI(_unlockedTiers, _unlockedNodes, _researchedNodes, _queuedNodes, partialState.ResearchProgress, partialState.BankedPoints);
         }
+    }
+
+    private void QuickResearchRequest(ProtoId<ResearchTreeNodePrototype> node)
+    {
+        if (_queuedNodes.Contains(node))
+            SendRemoveFromQueueRequest(node);
+        else if (_unlockedNodes.Contains(node))
+            SendReseachRequest(node);
     }
 
     private void SendReseachRequest(ProtoId<ResearchTreeNodePrototype> node)

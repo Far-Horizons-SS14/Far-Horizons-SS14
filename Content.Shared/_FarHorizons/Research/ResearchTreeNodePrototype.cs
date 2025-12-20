@@ -54,4 +54,13 @@ public sealed partial class ResearchTreeNodePrototype : IPrototype
 
     public List<ResearchTreeNodePrototype> Children(IPrototypeManager protoMan) =>
         [.. protoMan.EnumeratePrototypes<ResearchTreeNodePrototype>().Where(p => p.Requires.Contains(ID))];
+
+    public List<ResearchTreeNodePrototype> DependencyChain(IPrototypeManager protoMan)
+    {
+        List<ResearchTreeNodePrototype> dependencies = [.. Requires.Select(p => protoMan.Index(p))];
+        List<ResearchTreeNodePrototype> extras = [];
+        foreach (var dep in dependencies)
+            extras.AddRange(dep.DependencyChain(protoMan));
+        return [.. dependencies.Union(extras).Distinct()];
+    }
 }
