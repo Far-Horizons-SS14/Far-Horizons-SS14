@@ -184,8 +184,16 @@ public sealed partial class FHResearchTree : BoxContainer
     {
         base.KeyBindUp(args);
 
-        if (args.Handled || 
-            !(args.Function == EngineKeyFunctions.UIClick || args.Function == ContentKeyFunctions.AltActivateItemInWorld))
+        if (args.Handled)
+            return;
+        
+        if (args.Function == ContentKeyFunctions.AltActivateItemInWorld && _hovered != null)
+        {
+            OnQuickResearch?.Invoke(_hovered.Value);
+            return;
+        }
+
+        if (args.Function != EngineKeyFunctions.UIClick)
             return;
 
         if (_search.AnyMouseOver)
@@ -207,9 +215,6 @@ public sealed partial class FHResearchTree : BoxContainer
         _selected = _hovered != null && _hovered == _willSelect ? _hovered : null;
         if (lastSelection != _selected)
             OnSelectionChanged?.Invoke(_selected);
-        
-        if (args.Function == ContentKeyFunctions.AltActivateItemInWorld && _hovered != null)
-            OnQuickResearch?.Invoke(_hovered.Value);
     }
     
     protected override void MouseWheel(GUIMouseWheelEventArgs args)
