@@ -99,11 +99,10 @@
             - ReactorPart
   - type: NuclearReactor
   - type: DeviceNetwork
-    deviceNetId: Wireless
+    deviceNetId: Wired
     receiveFrequencyId: BasicDevice
-  - type: WirelessNetworkConnection
-    range: 200
   - type: DeviceLinkSource
+    range: 50
     ports:
       - NuclearReactorDataSender
   - type: DeviceLinkSink
