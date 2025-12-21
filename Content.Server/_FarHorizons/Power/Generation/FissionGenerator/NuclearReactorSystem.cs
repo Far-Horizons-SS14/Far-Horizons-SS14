@@ -273,43 +273,51 @@ public sealed class NuclearReactorSystem : SharedNuclearReactorSystem
         {
             for (var y = 0; y < gridHeight; y++)
             {
-                if (comp.ComponentGrid![x, y] != null)
+                var ReactorComp = comp.ComponentGrid[x, y];
+
+                if (ReactorComp == null)
                 {
-                    var ReactorComp = comp.ComponentGrid[x, y]!;
-
-                    if (ReactorComp.Properties == null)
-                        _partSystem.SetProperties(ReactorComp, out ReactorComp.Properties);
-
-                    var gas = _partSystem.ProcessGas(ReactorComp, ent, GasInput);
-                    GasInput.Volume -= ReactorComp.GasVolume;
-
-                    if (gas != null)
-                        _atmosphereSystem.Merge(outlet.Air, gas);
-
-                    _partSystem.ProcessHeat(ReactorComp, ent, GetGridNeighbors(comp, x, y), this);
-                    comp.TemperatureGrid[x, y] = ReactorComp.Temperature;
-
-                    if (ReactorComp.HasRodType(ReactorPartComponent.RodTypes.ControlRod) && ReactorComp.IsControlRod)
-                    {
-                        AvgControlRodInsertion += ReactorComp.NeutronCrossSection;
-                        ReactorComp.ConfiguredInsertionLevel = comp.ControlRodInsertion;
-                        ControlRods++;
-                    }
-
-                    if (ReactorComp.Melted)
-                        MeltedComps++;
-
-                    comp.FluxGrid[x, y] = _partSystem.ProcessNeutrons(ReactorComp, comp.FluxGrid[x, y], uid, out var deltaT);
-                    TempChange += deltaT;
-
-                    TotalNRads += ReactorComp.Properties.NeutronRadioactivity;
-                    TotalRads += ReactorComp.Properties.Radioactivity;
-                    TotalSpent += ReactorComp.Properties.FissileIsotopes;
-                }
-                else
                     comp.TemperatureGrid[x, y] = 0;
+                    continue;
+                }
+
+                if (ReactorComp.Properties == null)
+                    _partSystem.SetProperties(ReactorComp, out ReactorComp.Properties);
+
+                var gas = _partSystem.ProcessGas(ReactorComp, ent, GasInput);
+                GasInput.Volume -= ReactorComp.GasVolume;
+
+                if (gas != null)
+                    _atmosphereSystem.Merge(outlet.Air, gas);
+
+                _partSystem.ProcessHeat(ReactorComp, ent, GetGridNeighbors(comp, x, y), this);
+                comp.TemperatureGrid[x, y] = ReactorComp.Temperature;
+
+                if (ReactorComp.HasRodType(ReactorPartComponent.RodTypes.ControlRod) && ReactorComp.IsControlRod)
+                {
+                    ReactorComp.ConfiguredInsertionLevel = comp.ControlRodInsertion;
+                    ControlRods++;
+                }
+
+                if (ReactorComp.Melted)
+                    MeltedComps++;
+
+                comp.FluxGrid[x, y] = _partSystem.ProcessNeutrons(ReactorComp, comp.FluxGrid[x, y], uid, out var deltaT);
+                TempChange += deltaT;
+
+                // Second check so that AvgControlRodInsertion represents the present instead of 1 tick in the past
+                if (ReactorComp.HasRodType(ReactorPartComponent.RodTypes.ControlRod) && ReactorComp.IsControlRod)
+                    AvgControlRodInsertion += ReactorComp.NeutronCrossSection;
+
+                TotalNRads += ReactorComp.Properties.NeutronRadioactivity;
+                TotalRads += ReactorComp.Properties.Radioactivity;
+                TotalSpent += ReactorComp.Properties.FissileIsotopes;
             }
         }
+
+        // Sound for the control rods moving, basically an audio warning that the reactor's doing something important
+        if(!MathHelper.CloseTo(comp.AvgInsertion, AvgControlRodInsertion / ControlRods))
+            _audio.PlayPvs(new SoundPathSpecifier("/Audio/_FarHorizons/Machines/relay_click.ogg"), uid);
 
         // Snapshot of the flux grid that won't get messed up by the neutron calculations
         var flux = new List<ReactorNeutron>[gridWidth, gridHeight];
