@@ -132,6 +132,9 @@
     iconStateCap: "control_cap"
     isControlRod: true
     neutronCrossSection: 2.0
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 250
 
 - type: entity
   id: BohrumReactorControlRod
@@ -140,6 +143,10 @@
   components:
   - type: ReactorPart
     material: Bohrum
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 500
+      Plasteel: 250
 
 - type: entity
   id: SteelReactorControlRod
@@ -148,6 +155,9 @@
   components:
   - type: ReactorPart
     material: Steel
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 1500
 
 - type: entity
   id: GoldReactorControlRod
@@ -156,6 +166,10 @@
   components:
   - type: ReactorPart
     material: Gold
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 250
+      Gold: 500
 
 - type: entity
   id: SilverReactorControlRod
@@ -164,6 +178,10 @@
   components:
   - type: ReactorPart
     material: Silver
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 250
+      Silver: 500
 
 - type: entity
   id: BrassReactorControlRod
@@ -172,6 +190,10 @@
   components:
   - type: ReactorPart
     material: Brass
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 250
+      Brass: 500
 
 - type: entity
   id: PlasteelReactorControlRod
@@ -180,6 +202,10 @@
   components:
   - type: ReactorPart
     material: Plasteel
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 250
+      Plasteel: 500
 
 - type: entity
   id: GlassReactorControlRod
@@ -188,6 +214,10 @@
   components:
   - type: ReactorPart
     material: Glass
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 250
+      Glass: 500
 
 - type: entity
   id: PlasmaGlassReactorControlRod
@@ -196,6 +226,10 @@
   components:
   - type: ReactorPart
     material: PlasmaGlass
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 250
+      PlasmaGlass: 500
 
 - type: entity
   id: DiamondReactorControlRod
@@ -204,6 +238,10 @@
   components:
   - type: ReactorPart
     material: Diamond
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 250
+      Diamond: 500
 
 # Gas Channel Rods
 - type: entity
@@ -220,6 +258,9 @@
     thermalCrossSection: 15
     gasVolume: 100
     thermalMass: 21000
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 250
 
 - type: entity
   id: SteelReactorGasChannel
@@ -228,6 +269,9 @@
   components:
   - type: ReactorPart
     material: Steel
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 500
 
 - type: entity
   id: GoldReactorGasChannel
@@ -236,6 +280,10 @@
   components:
   - type: ReactorPart
     material: Gold
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 250
+      Gold: 250
 
 - type: entity
   id: SilverReactorGasChannel
@@ -244,6 +292,10 @@
   components:
   - type: ReactorPart
     material: Silver
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 250
+      Silver: 250
 
 - type: entity
   id: BrassReactorGasChannel
@@ -252,6 +304,10 @@
   components:
   - type: ReactorPart
     material: Brass
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 250
+      Brass: 250
 
 - type: entity
   id: PlasteelReactorGasChannel
@@ -260,6 +316,10 @@
   components:
   - type: ReactorPart
     material: Plasteel
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 250
+      Plasteel: 250
 
 - type: entity
   id: GlassReactorGasChannel
@@ -268,6 +328,10 @@
   components:
   - type: ReactorPart
     material: Glass
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 250
+      Glass: 250
 
 - type: entity
   id: PlasmaGlassReactorGasChannel
@@ -276,6 +340,10 @@
   components:
   - type: ReactorPart
     material: PlasmaGlass
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 250
+      PlasmaGlass: 250
 
 - type: entity
   id: DiamondReactorGasChannel
@@ -284,6 +352,10 @@
   components:
   - type: ReactorPart
     material: Diamond
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 250
+      Diamond: 250
 
 # Heat Exchanger Rods
 - type: entity
@@ -298,6 +370,9 @@
     iconStateCap: "heat_cap"
     neutronCrossSection: 0.1
     thermalCrossSection: 25
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 250
 
 - type: entity
   id: SteelReactorHeatExchanger
@@ -306,6 +381,9 @@
   components:
   - type: ReactorPart
     material: Steel
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 625
 
 - type: entity
   id: GoldReactorHeatExchanger
@@ -314,6 +392,10 @@
   components:
   - type: ReactorPart
     material: Gold
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 250
+      Gold: 275
 
 - type: entity
   id: SilverReactorHeatExchanger
@@ -322,6 +404,10 @@
   components:
   - type: ReactorPart
     material: Silver
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 250
+      Silver: 275
 
 - type: entity
   id: BrassReactorHeatExchanger
@@ -330,6 +416,10 @@
   components:
   - type: ReactorPart
     material: Brass
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 250
+      Brass: 275
 
 - type: entity
   id: PlasteelReactorHeatExchanger
@@ -338,6 +428,10 @@
   components:
   - type: ReactorPart
     material: Plasteel
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 250
+      Plasteel: 275
 
 - type: entity
   id: GlassReactorHeatExchanger
@@ -346,6 +440,10 @@
   components:
   - type: ReactorPart
     material: Glass
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 250
+      Glass: 275
 
 - type: entity
   id: PlasmaGlassReactorHeatExchanger
@@ -354,6 +452,10 @@
   components:
   - type: ReactorPart
     material: PlasmaGlass
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 250
+      PlasmaGlass: 275
 
 - type: entity
   id: DiamondReactorHeatExchanger
@@ -362,6 +464,10 @@
   components:
   - type: ReactorPart
     material: Diamond
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 250
+      Diamond: 275
 
 # Parts to chose from for a random prefab
 - type: weightedRandom
