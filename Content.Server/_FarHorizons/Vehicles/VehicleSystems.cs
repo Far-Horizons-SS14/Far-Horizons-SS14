@@ -91,7 +91,7 @@ public sealed partial class VehicleSystems : SharedVehicleSystems
         if(ent.Comp.Rider == null) return;
         var rider = ent.Comp.Rider.Value;
         
-        if(TryComp<VehicleBuckleComponent>(rider, out var vehicleBuckleComp))
+        if(TryComp<VehicleBuckleComponent>(ent.Owner, out var vehicleBuckleComp))
         {
             if(!vehicleBuckleComp.ejectOnCrash) return;
 
@@ -109,7 +109,7 @@ public sealed partial class VehicleSystems : SharedVehicleSystems
                 {
                     var riderXform = Transform(rider);
                     _stun.TryCrawling(rider, TimeSpan.FromSeconds(3));
-                    _throwing.TryThrow(rider, vehiclePhys.LinearVelocity*riderPhys.Mass, riderPhys, riderXform, _projQuery, vehiclePhys.LinearVelocity.Length(), playSound: false);
+                    _throwing.TryThrow(rider, vehiclePhys.LinearVelocity, riderPhys, riderXform, _projQuery, vehiclePhys.LinearVelocity.Length(), playSound: false);
                 }
         }
     }

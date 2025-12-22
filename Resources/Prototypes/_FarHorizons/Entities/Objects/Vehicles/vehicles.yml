@@ -191,3 +191,74 @@
   - type: PowerCellDraw
     drawRate: 1
     enabled: false
+
+- type: entity
+  id: VehicleATV
+  parent: BaseVehicleRideable
+  name: ATV
+  description: All-Tile Vehicle.
+  components:
+  - type: RandomMetadata
+    descriptionSegments: [DescriptionsATV]
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 10
+    baseSprintSpeed: 15
+  - type: Vehicle
+    acceleration: 2
+    friction: 4.5
+    frictionNoInput: 4.5
+    requireIgnition: true 
+    baseState: vehicle
+    startupTime: 2
+  - type: VehicleBuckle
+    unbuckletime: 2
+    dismountonstun: true
+    dismountonknockdown: true
+    ejectOnCrash: true
+    ejectionSpeed: 12
+    northOffset: "0, -0.12"
+    southOffset: "0, -0.12"
+    eastOffset: "0, -0.2"
+    westOffset: "-0, -0.2"
+    northDrawDepth: OverMobs
+    southDrawDepth: OverMobs
+    eastDrawDepth: BelowMobs
+    westDrawDepth: BelowMobs
+  - type: Sprite
+    sprite: Objects/Vehicles/atv.rsi
+    layers:
+    - state: vehicle
+      map: ["enum.VehicleVisualLayers.AutoAnimate"]
+    noRot: true
+  - type: Strap
+    maxBuckleDistance: 1
+  - type: ItemSlots
+    slots:
+      key_slot:
+        name: Keys
+        whitelist:
+          requireAll: true
+          tags:
+          - VehicleKey
+          - ATVKeys
+  - type: SolutionContainerManager
+    solutions:
+      Welder:
+        #reagents:
+        #- ReagentId: WeldingFuel
+        #  Quantity: 1000
+        maxVol: 250
+  - type: RefillableSolution
+    solution: Welder
+  - type: ExaminableSolution
+    solution: Welder
+    exactVolume: true
+  - type: CombustionEngine
+    fuel: WeldingFuel
+  - type: UnpoweredFlashlight
+  - type: PointLight
+    enabled: false
+    radius: 3.5
+    softness: 2
+    mask: /Textures/Effects/LightMasks/cone.png
+    autoRot: true
