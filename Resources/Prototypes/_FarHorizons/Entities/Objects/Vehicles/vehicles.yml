@@ -243,17 +243,18 @@
           - ATVKeys
   - type: SolutionContainerManager
     solutions:
-      Welder:
+      fueltank:
         #reagents:
         #- ReagentId: WeldingFuel
         #  Quantity: 1000
         maxVol: 250
   - type: RefillableSolution
-    solution: Welder
+    solution: fueltank
   - type: ExaminableSolution
-    solution: Welder
+    solution: fueltank
     exactVolume: true
-  - type: CombustionEngine
+  - type: ReagantDrain
+    solutionContainer: fueltank
     fuel: WeldingFuel
   - type: UnpoweredFlashlight
   - type: PointLight
