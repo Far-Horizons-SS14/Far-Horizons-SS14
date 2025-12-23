@@ -341,9 +341,9 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
-    sprite: _FarHorizons/Structures/Power/Generation/FissionGenerator/nuclear_waste.rsi
+    sprite: _FarHorizons/Structures/Power/Generation/FissionGenerator/nuclear_debris.rsi
     layers:
-      - state: nuclear_waste
+      - state: graphite
         map: [ "base" ]
   - type: Item
     size: Huge
@@ -351,7 +351,16 @@
   - type: RandomSprite
     available:
     - base:
-        nuclear_waste: "" # Allows for multiple debris sprites... even though there's just one
+        graphite_damaged_0: ""
+        graphite_damaged_0_mirrored: ""
+        graphite_damaged_1: ""
+        graphite_damaged_1_mirrored: ""
+        graphite_damaged_2: ""
+        graphite_damaged_2_mirrored: ""
+        graphite_damaged_3: ""
+        graphite_damaged_3_mirrored: ""
+        graphite_damaged_4: ""
+        graphite_damaged_4_mirrored: ""
   - type: RadiationSource
     intensity: 1.6
 
