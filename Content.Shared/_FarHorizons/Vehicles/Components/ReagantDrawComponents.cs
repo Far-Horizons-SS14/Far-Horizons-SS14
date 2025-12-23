@@ -3,19 +3,19 @@ using Robust.Shared.Prototypes;
 using Content.Shared.Chemistry.Components;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
-namespace Content.Shared._FarHorizons.ReagantDrain;
+namespace Content.Shared._FarHorizons.ReagantDraw;
 
 [RegisterComponent, AutoGenerateComponentState, AutoGenerateComponentPause]
-public sealed partial class ReagantDrainComponent : Component
+public sealed partial class ReagantDrawComponent : Component
 {
     /// <summary>
-    /// ReagentID for what solution to use as fuel.
+    /// ReagentID for what solution to whitelist.
     /// </summary>
-    [DataField]
-    public ProtoId<ReagentPrototype> Fuel = "WeldingFuel";
+    [DataField("whitelistedReagants")]
+    public List<ProtoId<ReagentPrototype>> WhitelistedReagants = new();
 
     /// <summary>
-    /// Solution name that can added to easily.
+    /// Solution container name
     /// </summary>
     [DataField, ViewVariables(VVAccess.ReadWrite)]
     public string SolutionContainer = "default";
@@ -27,26 +27,26 @@ public sealed partial class ReagantDrainComponent : Component
     public Entity<SolutionComponent>? Solution = null;
     
     /// <summary>
-    /// Whether the combustion engine is enabled.
+    /// Whether the reagant drain is enabled
     /// </summary>
     [DataField, AutoNetworkedField]
     public bool Enabled = true;
 
     /// <summary>
-    /// How much fuel does the engine consume
+    /// How much reagant is drained
     /// </summary>
     [DataField]
     public float DrainRate = 1f;
 
     /// <summary>
-    /// When the next automatic fuel drain will occur
+    /// When the next reagant drain will go off
     /// </summary>
     [DataField("nextUpdate", customTypeSerializer: typeof(TimeOffsetSerializer))]
     [AutoPausedField]
     public TimeSpan NextUpdateTime;
 
     /// <summary>
-    /// How long to wait between fuel draining
+    /// How long between drains
     /// </summary>
     [DataField]
     public TimeSpan Delay = TimeSpan.FromSeconds(1);

@@ -253,9 +253,10 @@
   - type: ExaminableSolution
     solution: fueltank
     exactVolume: true
-  - type: ReagantDrain
+  - type: ReagantDraw
     solutionContainer: fueltank
-    fuel: WeldingFuel
+    whitelistedReagants: 
+    - WeldingFuel
   - type: UnpoweredFlashlight
   - type: PointLight
     enabled: false
