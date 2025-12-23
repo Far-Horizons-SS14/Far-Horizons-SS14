@@ -317,9 +317,10 @@ public sealed class NuclearReactorSystem : SharedNuclearReactorSystem
                 TotalSpent += ReactorComp.Properties.FissileIsotopes;
             }
         }
+        AvgControlRodInsertion /= ControlRods;
 
-        // Sound for the control rods moving, basically an audio warning that the reactor's doing something important
-        if(!MathHelper.CloseTo(comp.AvgInsertion, AvgControlRodInsertion / ControlRods))
+        // Sound for the control rods moving, basically an audio cue that the reactor's doing something important
+        if (ControlRods > 0 && !MathHelper.CloseTo(comp.AvgInsertion, AvgControlRodInsertion))
             _audio.PlayPvs(new SoundPathSpecifier("/Audio/_FarHorizons/Machines/relay_click.ogg"), uid);
 
         // Snapshot of the flux grid that won't get messed up by the neutron calculations
@@ -374,7 +375,7 @@ public sealed class NuclearReactorSystem : SharedNuclearReactorSystem
         comp.NeutronCount = NeutronCount;
         comp.MeltedParts = MeltedComps;
         comp.DetectedControlRods = ControlRods;
-        comp.AvgInsertion = AvgControlRodInsertion / ControlRods;
+        comp.AvgInsertion = AvgControlRodInsertion;
         comp.TotalNRads = TotalNRads;
         comp.TotalRads = TotalRads;
         comp.TotalSpent = TotalSpent;
