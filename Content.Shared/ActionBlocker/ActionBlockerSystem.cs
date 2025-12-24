@@ -1,5 +1,5 @@
 ﻿using Content.Shared.Starlight.Antags.Abductor;
-using Content.Shared._Starlight.Railroading; /// Far Horizons -  You try finding a component that can be paired with AIEye so Netrunners stop interacting with the station.
+using Content.Shared._Starlight.Railroading; /// Far Horizons -  You try finding a component that can be paired with AIEye so Netrunners stop interacting with the station that the AI doesn't also share.
 using Content.Shared.Silicons.StationAi;
 using Content.Shared.Body.Events;
 using Content.Shared.Emoting;
