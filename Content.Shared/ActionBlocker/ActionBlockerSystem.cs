@@ -1,4 +1,5 @@
 ﻿using Content.Shared.Starlight.Antags.Abductor;
+using Content.Shared._Starlight.Railroading; /// Far Horizons -  You try finding a component that can be paired with AIEye so Netrunners stop interacting with the station.
 using Content.Shared.Silicons.StationAi;
 using Content.Shared.Body.Events;
 using Content.Shared.Emoting;
@@ -86,7 +87,7 @@ namespace Content.Shared.ActionBlocker
             if (!CanConsciouslyPerformAction(user))
                 return false;
             
-            if (HasComp<StationAiOverlayComponent>(user) && HasComp<AbductorScientistComponent>(user) || HasComp<StationAiOverlayComponent>(user) && HasComp<AbductorAgentComponent>(user))
+            if (HasComp<StationAiOverlayComponent>(user) && HasComp<AbductorScientistComponent>(user) || HasComp<StationAiOverlayComponent>(user) && HasComp<AbductorAgentComponent>(user) || HasComp<StationAiOverlayComponent>(user) && HasComp<RailroadableComponent>(user)) /// Far Horizons - Added StationAIOverlay and Railroadable to stop people using the netrunner eye to mess up station.
                 return false;
 
             var ev = new InteractionAttemptEvent(user, target);
