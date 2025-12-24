@@ -81,6 +81,7 @@
   description: A chair with big wheels. It looks like you can move in these on your own.
   components:
     - type: Sprite
+      drawdepth: BelowMobs
       sprite: Objects/Vehicles/wheelchair.rsi
       layers:
       - state: wheelchair
@@ -160,6 +161,7 @@
     eastDrawDepth: OverMobs
     westDrawDepth: OverMobs
   - type: Sprite
+    drawdepth: OverMobs
     sprite: Objects/Vehicles/secway.rsi
     layers:
     - state: vehicle
@@ -232,6 +234,7 @@
     eastDrawDepth: BelowMobs
     westDrawDepth: BelowMobs
   - type: Sprite
+    drawdepth: OverMobs
     sprite: Objects/Vehicles/atv.rsi
     layers:
     - state: vehicle

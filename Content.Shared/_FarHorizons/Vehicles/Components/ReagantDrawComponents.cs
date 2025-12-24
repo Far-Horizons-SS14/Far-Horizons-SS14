@@ -2,10 +2,11 @@ using Content.Shared.Chemistry.Reagent;
 using Robust.Shared.Prototypes;
 using Content.Shared.Chemistry.Components;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
+using Robust.Shared.GameStates;
 
 namespace Content.Shared._FarHorizons.ReagantDraw.Components;
 
-[RegisterComponent, AutoGenerateComponentState, AutoGenerateComponentPause]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState, AutoGenerateComponentPause]
 public sealed partial class ReagantDrawComponent : Component
 {
     /// <summary>
@@ -57,3 +58,9 @@ public sealed partial class ReagantDrawComponent : Component
 /// </summary>
 [ByRefEvent]
 public readonly record struct ReagantChangedEvent(float Volume, float MaxVolume);
+
+/// <summary>
+/// Raised directed on an entity when it no longer has any solution to draw from
+/// </summary>
+[ByRefEvent]
+public readonly record struct ReagantContainerSlotEmptyEvent;

@@ -4,7 +4,7 @@ using Robust.Shared.Audio;
 
 namespace Content.Shared._FarHorizons.Vehicles.Components;
 
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(true)]
 public sealed partial class VehicleComponent : Component
 {
     /// <summary>

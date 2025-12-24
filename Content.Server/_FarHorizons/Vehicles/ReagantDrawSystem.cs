@@ -1,23 +1,22 @@
 using System.Linq;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.EntitySystems;
-using Robust.Shared.Network;
 using Robust.Shared.Timing;
 using Robust.Shared.Containers;
 using Content.Shared._FarHorizons.ReagantDraw.Components;
 
-namespace Content.Shared._FarHorizons.ReagantDraw.EntitySystems;
+namespace Content.Server._FarHorizons.ReagantDraw.EntitySystems;
 
 public sealed class SharedReagantDrawSystem : EntitySystem
 {
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly SharedSolutionContainerSystem _solutionContainer = default!;
-    [Dependency] private readonly INetManager _net = default!;
     [Dependency] private readonly SharedContainerSystem _container = default!;
 
     public override void Initialize()
     {
         base.Initialize();
+        SubscribeLocalEvent<ReagantDrawComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<ReagantDrawComponent, SolutionTransferAttemptEvent>(OnSolutionTransferAttempt);
     }
 
@@ -34,20 +33,25 @@ public sealed class SharedReagantDrawSystem : EntitySystem
             if (_timing.CurTime < comp.NextUpdateTime)
                 continue;
             
-            comp.NextUpdateTime += comp.Delay;
-
-            TryUseReagant(uid, comp.DrainRate * (float)comp.Delay.TotalSeconds, comp);
+            comp.NextUpdateTime = _timing.CurTime + comp.Delay;
+            if(TryUseReagant(uid, comp.DrainRate, comp))
+                continue;
+            
+            var ev = new ReagantContainerSlotEmptyEvent();
+            RaiseLocalEvent(uid, ref ev);
         }
     }
 
+    private void OnMapInit(Entity<ReagantDrawComponent> ent, ref MapInitEvent args) => 
+        ent.Comp.NextUpdateTime = _timing.CurTime + ent.Comp.Delay;
+
     public bool TryUseReagant(EntityUid uid, float value, ReagantDrawComponent? reagantComp = null)
     {
-        if(!_net.IsServer) 
-            return false;
         if (!Resolve(uid, ref reagantComp, false))
             return false;
 
-        if(!_solutionContainer.ResolveSolution(uid, reagantComp.SolutionContainer, ref reagantComp.Solution, out var solution)) 
+        if(!_solutionContainer.ResolveSolution(uid, reagantComp.SolutionContainer, ref reagantComp.Solution, out var solution)
+        || value > solution.Volume) 
             return false;
 
         UseReagant(uid, value, solution, reagantComp);
