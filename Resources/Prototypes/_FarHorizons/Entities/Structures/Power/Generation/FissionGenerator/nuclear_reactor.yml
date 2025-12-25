@@ -338,16 +338,16 @@
   id: NuclearDebrisChunk
   parent: BaseItem
   name: nuclear debris
+  description: You do not see the graphite on the floor. You're in shock. Report to medical.
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: _FarHorizons/Structures/Power/Generation/FissionGenerator/nuclear_debris.rsi
     layers:
-      - state: graphite
+      - state: graphite_damaged_0
         map: [ "base" ]
   - type: Item
     size: Huge
-  - type: MultiHandedItem
   - type: RandomSprite
     available:
     - base:
