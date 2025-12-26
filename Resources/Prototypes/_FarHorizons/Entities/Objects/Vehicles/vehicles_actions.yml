@@ -2,15 +2,30 @@
   parent: BaseAction
   id: ActionTurnKeys
   name: Turn Keys
+  description: Turn the keys to start or stop the vehicle
   components:
-  - type: Action  
-    usedelay: 1
+  - type: Action
     icon:
       sprite: Objects/Vehicles/atv.rsi
       state: keys
     priority: -1
-    itemIconStyle: BigAction
     checkCanInteract: false
+    itemIconStyle: BigAction
   - type: InstantAction
-    event: 
-      !type:TurnKeysEvent
+    event: !type:TurnKeysEvent
+
+
+- type: entity
+  parent: BaseAction
+  id: ActionVehicleHorn
+  name: Honk
+  description: Honk!
+  noSpawn: true
+  components:
+  - type: Action  
+    useDelay: 4
+    icon: Objects/Fun/bikehorn.rsi/icon.png
+    checkCanInteract: false
+    itemIconStyle: BigAction
+  - type: InstantAction
+    event: !type:HornActionEvent

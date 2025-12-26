@@ -96,6 +96,7 @@
       frictionNoInput: 2 # same as friction but for when the user doesn't input anything so lower friction means it will take them longer to stop
       requireIgnition: false 
       baseState: wheelchair
+      handsNeeded: 0
     - type: VehicleBuckle
       unbuckletime: 1
       dismountonstun: true
@@ -124,6 +125,12 @@
           restitution: 0.0
           mask:
             - MobMask
+    - type: FootstepModifier
+      footstepSoundCollection:
+        path: /Audio/Effects/Footsteps/borgwalk1.ogg
+        params:
+          pitch: 0.75
+          variation: 0.05
     - type: StaticPrice
       price: 70
 
@@ -148,6 +155,7 @@
     requireIgnition: true 
     baseState: vehicle
     startupTime: 2
+    handsNeeded: 1
   - type: VehicleBuckle
     unbuckletime: 2
     dismountonstun: true
@@ -183,7 +191,6 @@
           - SecwayKeys
       cell_slot:
         name: power-cell-slot-component-slot-name-default
-        startingItem: PowerCellMedium
         # Swappable batteries until we can get secway recharge stations
         #disableEject: true
         #swap: false 
@@ -196,6 +203,31 @@
   - type: FootstepModifier
     footstepSoundCollection:
       path: /Audio/Effects/Footsteps/borgwalk4.ogg
+      params:
+        pitch: 1.15
+        variation: 0.05
+
+- type: entity
+  id: VehicleSecwayBattery
+  parent: VehicleSecway
+  suffix: Battery
+  components: 
+    - type: ContainerFill
+      containers:
+        cell_slot:
+        - PowerCellMedium
+
+- type: entity
+  id: VehicleSecwayBatterywithKeys
+  parent: VehicleSecway
+  suffix: Battery, Keys
+  components: 
+    - type: ContainerFill
+      containers:
+        cell_slot:
+        - PowerCellMedium
+        key_slot:
+        - VehicleKeySecway
 
 - type: entity
   id: VehicleATV
@@ -217,6 +249,10 @@
     startupTime: 2
     startUp: 
       path: /Audio/Effects/Vehicle/vehiclestartup.ogg
+      params:
+        volume: -3
+    hornSound: 
+      path: /Audio/Effects/Vehicle/carhorn.ogg
       params:
         volume: -3
   - type: VehicleBuckle
@@ -254,10 +290,7 @@
   - type: SolutionContainerManager
     solutions:
       fueltank:
-        #reagents:
-        #- ReagentId: WeldingFuel
-        #  Quantity: 1000
-        maxVol: 250
+        maxVol: 150
   - type: RefillableSolution
     solution: fueltank
   - type: ExaminableSolution
@@ -272,7 +305,7 @@
   - type: UnpoweredFlashlight
   - type: PointLight
     enabled: false
-    radius: 3.5
+    radius: 10
     softness: 2
     mask: /Textures/Effects/LightMasks/cone.png
     autoRot: true
@@ -280,6 +313,36 @@
     footstepSoundCollection:
       path: /Audio/_FarHorizons/Vehicles/atvwalk.ogg
       params:
-        volume: -8
-        pitch: 0.9
+        volume: -11
+        pitch: 1.15
         variation: 0.10
+
+- type: entity
+  id: VehicleATVFueled
+  parent: VehicleATV
+  suffix: Fueled
+  components: 
+    - type: SolutionContainerManager
+      solutions:
+        fueltank:
+          reagents:
+          - ReagentId: WeldingFuel
+            Quantity: 150
+          maxVol: 150
+
+- type: entity
+  id: VehicleATVFueledwithKeys
+  parent: VehicleATV
+  suffix: Fueled, Keys
+  components: 
+    - type: SolutionContainerManager
+      solutions:
+        fueltank:
+          reagents:
+          - ReagentId: WeldingFuel
+            Quantity: 150
+          maxVol: 150
+    - type: ContainerFill
+      containers:
+        key_slot:
+        - VehicleKeyATV

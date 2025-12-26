@@ -26,6 +26,18 @@ public sealed partial class VehicleComponent : Component
     public bool Started = false;
 
     /// <summary>
+    /// How many hands are blocked by the vehicle
+    /// </summary>
+    [DataField("handsNeeded")]
+    public int HandsNeeded = 2;
+
+    /// <summary>
+    /// UID for the virtual item for the allowhands check
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public EntityUid? VirtualItem;
+
+    /// <summary>
     /// how long does it take the vehicle to start
     /// </summary>
     [DataField("startupTime"), AutoNetworkedField]
@@ -64,16 +76,22 @@ public sealed partial class VehicleComponent : Component
     [DataField]
     public SoundSpecifier? StartUp;
 
-    #region Appearance
+    /// <summary>
+    /// Sound played whenever the horn is press HONK
+    /// </summary>
+    [DataField]
+    public SoundSpecifier? HornSound;
+
     [DataField, AutoNetworkedField]
     public string? BaseState;
 
-    #endregion
+    [DataField, AutoNetworkedField]
+    public EntProtoId HornVehicleAction = "ActionVehicleHorn";
+    
+    [DataField, AutoNetworkedField] public EntityUid? HornVehicleActionEntity;
 
-    #region Actions
     [DataField, AutoNetworkedField]
     public EntProtoId TurnKeysAction = "ActionTurnKeys";
     
     [DataField, AutoNetworkedField] public EntityUid? TurnKeysActionEntity;
-    #endregion
 }
