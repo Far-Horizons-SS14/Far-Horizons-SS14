@@ -1,6 +1,6 @@
 ﻿using Robust.Shared.Prototypes;
 
-namespace Content.Server._FarHorizons.DiscordLink;
+namespace Content.Shared._FarHorizons.DiscordLink;
 
 [Prototype("discordRole")]
 public sealed class DiscordRolePrototype : IPrototype
@@ -18,11 +18,6 @@ public sealed class DiscordRolePrototype : IPrototype
     [DataField(required: true)]
     public uint Order = uint.MaxValue;
 
-    public enum AdditionalPermissionsTypes : ushort
-    {
-        Mentor,
-    }
-    
     [DataField(required: false)]
     public AdditionalPermissionsTypes[]? AdditionalPermissions;
 }

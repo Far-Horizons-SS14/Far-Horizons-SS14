@@ -18,9 +18,9 @@ add-mentor-wrong-args-error = This command takes exactly one arg - username
 add-mentor-not-found-error = The requested user not found
 add-mentor-success = Mentor added
 
-list-mentors-command-description = List mentors
+list-mentors-command-description = List online mentors
 list-mentors-wrong-args-error = This command doesn't take any args
-list-mentors-success = List of mentors:
+list-mentors-success = List of online mentors:
 
 remove-mentor-command-description = Remove mentor
 remove-mentor-wrong-args-error = This command takes exactly one arg - username

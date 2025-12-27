@@ -1,9 +1,6 @@
 ﻿using System.Collections.Concurrent;
-using System.Collections.ObjectModel;
 using System.Linq;
-using System.Net.Http;
 using System.Security.Cryptography;
-using System.Text.Json;
 using System.Threading.Tasks;
 using Content.Server.Database;
 using Content.Shared._FarHorizons.DiscordLink;
@@ -33,7 +30,7 @@ public sealed class DiscordLinkManager : IDiscordLinkManager
     public IEnumerable<ICommonSession> Mentors => _mentors.Values;
 
     private List<DiscordRolePrototype> _rolePrototypes = new();
-    private Dictionary<ulong, DiscordRolePrototype>? _rolesDictionary;
+    private Dictionary<ulong, DiscordRolePrototype> _rolesDictionary = new Dictionary<ulong, DiscordRolePrototype>();
     
     public const int ExpireDelayMinutes = 5*60;  // just to be sure...
     
@@ -53,13 +50,13 @@ public sealed class DiscordLinkManager : IDiscordLinkManager
     {
         if (e.NewStatus == SessionStatus.Connected)
         {
-            OnPlayerConnected(e.Session);
+            _ = OnPlayerConnected(e.Session);
         }
 
         if (e.NewStatus == SessionStatus.Disconnected)
         {
             // that way players can reconnect if roles weren't synced
-            RemoveUserRoles(e.Session);
+            _ = RemoveUserRoles(e.Session);
         }
     }
 
@@ -71,7 +68,7 @@ public sealed class DiscordLinkManager : IDiscordLinkManager
 
     private void SendPermissions(ICommonSession session) =>
         _netMgr.ServerSendMessage(
-            new MsgPermissions { IsMentor = IsMentor(session.UserId.UserId) },
+            new MsgPermissions { Permissions = GetPermissions(session.UserId.UserId) },
             session.Channel);
 
     private void SendDiscordLink(ICommonSession session) =>
@@ -79,17 +76,36 @@ public sealed class DiscordLinkManager : IDiscordLinkManager
             new MsgDiscordLink { DiscordLink = GetDiscordAuthLink(session.UserId.UserId) },
             session.Channel);
 
-    public bool IsMentor(Guid userId)
+    private AdditionalPermissionsTypes[] GetPermissions(Guid userId)
     {
-        if (_mentors.ContainsKey(userId)) return true;
         var roles = GetDiscordRoleIds(userId);
-        if (roles == null || roles.Length == 0 || _rolesDictionary == null) return false;
+        return roles?.SelectMany(role => _rolesDictionary.TryGetValue(role, out var data) 
+                ? data.AdditionalPermissions ?? [] 
+                : [])
+            .Distinct()
+            .ToArray() ?? [];
+    }
+    
+    public bool HasPermission(Guid userId, AdditionalPermissionsTypes permission)
+    {
+        var roles = GetDiscordRoleIds(userId);
+        if (roles == null || roles.Length == 0) return false;
         foreach (var role in roles)
             if (_rolesDictionary.TryGetValue(role, out var value) &&
-                value.AdditionalPermissions?.Contains(DiscordRolePrototype.AdditionalPermissionsTypes.Mentor) == true)
+                value.AdditionalPermissions?.Contains(permission) == true)
                 return true;
         return false;
     }
+
+    public bool HasPermission(EntityUid userEntityUid, AdditionalPermissionsTypes permission) => 
+        _playerManager.TryGetSessionByEntity(userEntityUid, out var session) 
+        && HasPermission(session.UserId.UserId, permission);
+
+    public bool IsMentor(Guid userId) => 
+        _mentors.ContainsKey(userId) 
+        || HasPermission(userId, AdditionalPermissionsTypes.Mentor);
+
+    public List<string> ListMentorsNames() => Mentors.Select(item => item.Name).ToList();
 
     private static string GenerateStateToken(int length = 32)
     {
@@ -108,7 +124,7 @@ public sealed class DiscordLinkManager : IDiscordLinkManager
 
         SetState(state, userId);
         
-        var baseUrl = "https://discord.com/api/oauth2/authorize";
+        const string BaseUrl = "https://discord.com/api/oauth2/authorize";
         var queryParams = new Dictionary<string, string>
         {
             { "client_id", _cfg.GetCVar(DiscordLinkCCVars.ClientId) },
@@ -121,7 +137,7 @@ public sealed class DiscordLinkManager : IDiscordLinkManager
         var queryString = string.Join("&", queryParams.Select(kvp => 
             $"{Uri.EscapeDataString(kvp.Key)}={Uri.EscapeDataString(kvp.Value)}"));
 
-        var authUrl = $"{baseUrl}?{queryString}";
+        var authUrl = $"{BaseUrl}?{queryString}";
 
         return authUrl;
     }
@@ -137,16 +153,11 @@ public sealed class DiscordLinkManager : IDiscordLinkManager
     public string GetDiscordRoleHighestTitle(Guid userId)
     {
         var userRoles = GetDiscordRoleIds(userId);
-        if (userRoles != null)
-        {
-            foreach (var role in _rolePrototypes)
-            {
-                if (userRoles.Contains(role.DiscordRoleId))
-                {
-                    return role.PlayerTitle;
-                }
-            }
-        }
+        if (userRoles == null) return "Staff";
+
+        foreach (var role in _rolePrototypes.Where(role => userRoles.Contains(role.DiscordRoleId)))
+            return role.PlayerTitle;
+
         return "Staff";
     }
 

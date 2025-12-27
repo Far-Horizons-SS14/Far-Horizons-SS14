@@ -232,6 +232,7 @@ namespace Content.Server.Entry
 
             //Far Horizons
             IoCManager.Resolve<IServerFactionManager>().Shutdown();
+            IoCManager.Resolve<IDiscordLinkManager>().Shutdown();
         }
 
         private static void LoadConfigPresets(IConfigurationManager cfg, IResourceManager res, ISawmill sawmill)
