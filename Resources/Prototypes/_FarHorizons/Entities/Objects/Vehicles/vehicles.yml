@@ -112,7 +112,6 @@
       baseSprintSpeed: 4.5
       baseWalkSpeed: 2.5
     - type: Strap
-      buckleOffset: "0,0"
     - type: Fixtures
       fixtures:
         fix1:
@@ -139,6 +138,8 @@
   components:
     - type: Foldable
       folded: true
+    - type: Strap
+      enabled: false
 
 - type: entity
   id: VehicleSecway
@@ -191,6 +192,10 @@
         # Swappable batteries until we can get secway recharge stations
         #disableEject: true
         #swap: false 
+  - type: ContainerContainer
+    containers:
+      key_slot: !type:ContainerSlot
+      cell_slot: !type:ContainerSlot
   - type: PowerCellSlot
     cellSlotId: cell_slot
     fitsInCharger: false
@@ -283,6 +288,9 @@
           tags:
           - VehicleKey
           - ATVKeys
+  - type: ContainerContainer
+    containers:
+      key_slot: !type:ContainerSlot
   - type: SolutionContainerManager
     solutions:
       fueltank:
@@ -318,6 +326,7 @@
   parent: VehicleATV
   suffix: Fueled
   components: 
+    - type: ContainerContainer
     - type: SolutionContainerManager
       solutions:
         fueltank:
