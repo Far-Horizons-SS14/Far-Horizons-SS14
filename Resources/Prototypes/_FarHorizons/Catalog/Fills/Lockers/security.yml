@@ -1,6 +1,8 @@
+#region NanoTrasen
+
 - type: entity
   id: LockerSecurityFHFilled
-  suffix: Filled
+  suffix: NT, Filled
   parent: LockerSecurityFH
   components:
   - type: StorageFill
@@ -24,7 +26,7 @@
   
 - type: entity
   id: LockerSecurityLargeFHFilled
-  suffix: Filled
+  suffix: NT, Filled
   parent: LockerSecurityLargeFH
   components:
   - type: StorageFill
@@ -61,7 +63,7 @@
 
 - type: entity
   id: LockerSecurityLargeFHLFilled
-  suffix: Filled, Left
+  suffix: NT, Filled, Left
   parent: LockerSecurityLargeFHL
   components:
   - type: StorageFill
@@ -98,7 +100,7 @@
 
 - type: entity
   id: LockerSecurityLargeFHMFilled
-  suffix: Filled, Middle
+  suffix: NT, Filled, Middle
   parent: LockerSecurityLargeFHM
   components:
   - type: StorageFill
@@ -135,7 +137,7 @@
 
 - type: entity
   id: LockerSecurityLargeFHRFilled
-  suffix: Filled, Right
+  suffix: NT, Filled, Right
   parent: LockerSecurityLargeFHR
   components:
   - type: StorageFill
@@ -172,7 +174,7 @@
 
 - type: entity
   id: LockerWardenFHFilled
-  suffix: Filled
+  suffix: NT, Filled
   parent: LockerWardenFH
   components:
   - type: StorageFill
@@ -201,7 +203,7 @@
 
 - type: entity
   id: LockerWardenLargeFHFilled
-  suffix: Filled
+  suffix: NT, Filled
   parent: LockerWardenLargeFH
   components:
   - type: StorageFill
@@ -246,7 +248,7 @@
 
 - type: entity
   id: LockerBrigmedicLargeFHFilled
-  suffix: Filled
+  suffix: NT, Filled
   parent: LockerBrigmedicLargeFH
   components:
   - type: StorageFill
@@ -288,7 +290,7 @@
 
 - type: entity
   id: LockerBrigmedicFHFilled
-  suffix: Filled
+  suffix: NT, Filled
   parent: LockerBrigmedicFH
   components:
   - type: StorageFill
@@ -323,7 +325,7 @@
 
 - type: entity
   id: LockerCorpsmanFilled
-  suffix: Filled
+  suffix: NT, Filled
   parent: LockerCorpsman
   components:
   - type: StorageFill
@@ -354,63 +356,363 @@
       - id: PlushieMorgana
       - id: PlushieKiller
 
-- type: entity
-  id: LockerHeadOfSecurityFHFilled
-  suffix: Filled
-  parent: LockerHeadOfSecurityFH
-  components:
-  - type: StorageFill
-    contents:
-    - id: ClothingNeckCloakHosElite
-    - id: WeaponEnergySMG
-    - id: BookSpaceLaw
-    - id: BoxEncryptionKeySecurity
-    - id: CigarGoldCase
-    - id: ClothingBeltSecurityFilled
-    - id: ClothingEyesGlassesSecurity
-    - id: ClothingEyesHudSecurity
-    - id: ClothingHeadsetAltSecurity
-    - id: ClothingMaskNeckGaiter
-    - id: ClothingOuterCoatHoSTrench
-    - id: ClothingShoesBootsJack
-    - id: DoorRemoteSecurity
-    - id: HoloprojectorSecurity
-    - id: RubberStampHos
-    - id: SecurityTechFabCircuitboard
-    - id: CargoRequestSecurityComputerCircuitboard
-    - id: WeaponDisabler
-    - id: WantedListCartridge
-    - id: DrinkHosFlask
+#region Syndicate
+
+
+
+
+
+
+
+
+
+#region Security
+
+# General Security
 
 - type: entity
-  id: LockerHeadOfSecurityFHFilledHardsuit
-  suffix: Filled, Hardsuit
-  parent: LockerHeadOfSecurityFH
+  id: LockerSecurityFHFilledSyndi
+  suffix: Filled
+  parent: LockerSecurityFHSyndi
   components:
   - type: StorageFill
     contents:
-    - id: ClothingNeckCloakHosElite
-    - id: WeaponEnergySMG
-    - id: BookSpaceLaw
-    - id: BoxEncryptionKeySecurity
-    - id: CigarGoldCase
-    - id: ClothingBeltSecurityFilled
-    - id: ClothingEyesGlassesSecurity
-    - id: ClothingEyesHudSecurity
-    - id: ClothingHeadsetAltSecurity
-    - id: ClothingMaskNeckGaiter
-    - id: ClothingOuterCoatHoSTrench
-    - id: ClothingShoesBootsJack
-    - id: DoorRemoteSecurity
-    - id: HoloprojectorSecurity
-    - id: RubberStampHos
-    - id: SecurityTechFabCircuitboard
-    - id: CargoRequestSecurityComputerCircuitboard
-    - id: WeaponDisabler
-    - id: WantedListCartridge
-    - id: DrinkHosFlask
-    - id: ClothingMaskGasSwat
-    - id: ClothingOuterHardsuitSecurityRed
-    - id: JetpackSecurityFilled
+      - id: FlashlightSeclite
+      - id: WeaponDisabler
+      - id: ClothingUniformJumpsuitSecGreySyndi
+        prob: 0.6
+      - id: ClothingHeadHelmetSecuritySyndi
+      - id: ClothingOuterArmorBasicSyndi
+      - id: ClothingBeltSecuritySyndiFilled
+      - id: Flash
+      - id: ClothingEyesGlassesSecuritySyndi
+      - id: ClothingEyesHudSecuritySyndi
+      - id: ClothingHeadsetSecuritySyndi
+      - id: ClothingHandsGlovesSecurityRed
+      - id: ClothingShoesBootsJackSyndi
+      - id: WeaponMeleeNeedle
+      - id: HoloprojectorSecurity
+      - id: BookSpaceLaw
+  
+- type: entity
+  id: LockerSecurityLargeFHFilledSyndi
+  suffix: Filled
+  parent: LockerSecurityLargeFHSyndi
+  components:
+  - type: StorageFill
+    contents:
+      - id: FlashlightSeclite
+        amount: 2
+      - id: WeaponDisabler
+        amount: 2
+      - id: ClothingUniformJumpsuitSecGreySyndi
+        prob: 0.6
+      - id: ClothingHeadHelmetSecuritySyndi
+        amount: 2
+      - id: ClothingOuterArmorBasicSyndi
+        amount: 2
+      - id: ClothingBeltSecuritySyndiFilled
+        amount: 2
+      - id: Flash
+        amount: 2
+      - id: ClothingEyesGlassesSecuritySyndi
+        amount: 2
+      - id: ClothingEyesHudSecuritySyndi
+        amount: 2
+      - id: ClothingHeadsetSecuritySyndi
+        amount: 2
+      - id: ClothingHandsGlovesSecurityRed
+        amount: 2
+      - id: ClothingShoesBootsJackSyndi
+        amount: 2
+      - id: WeaponMeleeNeedle
+      - id: HoloprojectorSecurity
+        amount: 2
+      - id: BookSpaceLaw
+        amount: 2
+
+- type: entity
+  id: LockerSecurityLargeFHLFilledSyndi
+  suffix: Filled, Left
+  parent: LockerSecurityLargeFHLSyndi
+  components:
+  - type: StorageFill
+    contents:
+      - id: FlashlightSeclite
+        amount: 2
+      - id: WeaponDisabler
+        amount: 2
+      - id: ClothingUniformJumpsuitSecGreySyndi
+        prob: 0.6
+      - id: ClothingHeadHelmetSecuritySyndi
+        amount: 2
+      - id: ClothingOuterArmorBasicSyndi
+        amount: 2
+      - id: ClothingBeltSecuritySyndiFilled
+        amount: 2
+      - id: Flash
+        amount: 2
+      - id: ClothingEyesGlassesSecuritySyndi
+        amount: 2
+      - id: ClothingEyesHudSecuritySyndi
+        amount: 2
+      - id: ClothingHeadsetSecuritySyndi
+        amount: 2
+      - id: ClothingHandsGlovesSecurityRed
+        amount: 2
+      - id: ClothingShoesBootsJackSyndi
+        amount: 2
+      - id: WeaponMeleeNeedle
+      - id: HoloprojectorSecurity
+        amount: 2
+      - id: BookSpaceLaw
+        amount: 2
+
+- type: entity
+  id: LockerSecurityLargeFHMFilledSyndi
+  suffix: Filled, Middle
+  parent: LockerSecurityLargeFHMSyndi
+  components:
+  - type: StorageFill
+    contents:
+      - id: FlashlightSeclite
+        amount: 3
+      - id: WeaponDisabler
+        amount: 3
+      - id: ClothingUniformJumpsuitSecGreySyndi
+        prob: 0.6
+      - id: ClothingHeadHelmetSecuritySyndi
+        amount: 3
+      - id: ClothingOuterArmorBasicSyndi
+        amount: 3
+      - id: ClothingBeltSecuritySyndiFilled
+        amount: 3
+      - id: Flash
+        amount: 3
+      - id: ClothingEyesGlassesSecuritySyndi
+        amount: 3
+      - id: ClothingEyesHudSecuritySyndi
+        amount: 3
+      - id: ClothingHeadsetSecuritySyndi
+        amount: 3
+      - id: ClothingHandsGlovesSecurityRed
+        amount: 3
+      - id: ClothingShoesBootsJackSyndi
+        amount: 3
+      - id: WeaponMeleeNeedle
+        amount: 2
+      - id: HoloprojectorSecurity
+        amount: 3
+      - id: BookSpaceLaw
+        amount: 3
+
+- type: entity
+  id: LockerSecurityLargeFHRFilledSyndi
+  suffix: Filled, Right
+  parent: LockerSecurityLargeFHRSyndi
+  components:
+  - type: StorageFill
+    contents:
+      - id: FlashlightSeclite
+        amount: 2
+      - id: WeaponDisabler
+        amount: 2
+      - id: ClothingUniformJumpsuitSecGreySyndi
+        prob: 0.6
+      - id: ClothingHeadHelmetSecuritySyndi
+        amount: 2
+      - id: ClothingOuterArmorBasicSyndi
+        amount: 2
+      - id: ClothingBeltSecuritySyndiFilled
+        amount: 2
+      - id: Flash
+        amount: 2
+      - id: ClothingEyesGlassesSecuritySyndi
+        amount: 2
+      - id: ClothingEyesHudSecuritySyndi
+        amount: 2
+      - id: ClothingHeadsetSecuritySyndi
+        amount: 2
+      - id: ClothingHandsGlovesSecurityRed
+        amount: 2
+      - id: ClothingShoesBootsJackSyndi
+        amount: 2
+      - id: WeaponMeleeNeedle
+      - id: HoloprojectorSecurity
+        amount: 2
+      - id: BookSpaceLaw
+        amount: 2
+
+# Guardian (Warden)
+
+- type: entityTable
+  id: FillLockerGuardianHarduit
+  table: !type:AllSelector
+    children:
+    - id: ClothingOuterHardsuitWardenSyndi
     - id: OxygenTankFilled
-    - id: ClothingShoesBootsMagSec
+    - id: NitrogenTankFilled
+    - id: ClothingMaskBreath
+
+- type: entityTable
+  id: FillLockerGuardian
+  table: !type:AllSelector
+    children:
+    - id: WeaponEnergyShotgun
+    - id: ClothingEyesHudSecuritySyndi
+    - id: ClothingHeadsetSecurityWardenSyndi
+    - id: FlashlightSeclite
+    - id: WeaponDisabler
+    - id: ClothingBeltSecuritySyndiFilled
+    - id: Flash
+    - id: ClothingEyesGlassesSecuritySyndi
+    - id: ClothingHandsGlovesSecurityRed
+    - id: ClothingShoesBootsJackSyndiFilled
+    - id: ClothingOuterCoatWardenSyndi
+    - id: ClothingOuterWinterWardenSyndi
+    - id: RubberStampWarden
+    - id: DoorRemoteArmory
+    - id: HoloprojectorSecurity
+    - id: BookSpaceLaw
+    - id: ClothingBackpackElectropack
+      amount: 2
+    - id: RemoteSignaller
+      amount: 2
+    - id: NetworkConfigurator
+    - id: Binoculars
+
+- type: entity
+  id: LockerGuardianFilledHardsuit
+  suffix: Filled, Hardsuit
+  parent: LockerWardenFHSyndi
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - !type:NestedSelector
+          tableId: FillLockerGuardian
+        - !type:NestedSelector
+          tableId: FillLockerGuardianHarduit
+
+
+
+# Medical Officer (Brigmedic)
+
+- type: entity
+  id: LockerBrigmedicLargeFHFilledSyndi
+  suffix: Filled, Hardsuit
+  parent: LockerBrigmedicLargeFHSyndi
+  components:
+  - type: StorageFill
+    contents:
+      - id: ClothingEyesGlassesBrigmedicSyndi
+      - id: ClothingEyesHudBrigmedicSyndi
+      - id: ClothingEyesEyepatchHudSecMedSyndi
+      - id: ClothingEyesVisorSecMedSyndi
+      - id: WeaponDisabler
+        amount: 2
+      - id: TrackingImplanter
+        amount: 4
+      - id: ClothingOuterHardsuitBrigmedicSyndi
+        amount: 2
+      - id: BoxSterileMask
+      - id: ClothingHeadHatBeretMedicalOfficer
+      #- id: ClothingOuterCoatAMG
+      - id: ClothingUniformJumpsuitBrigmedicSyndi
+      - id: ClothingUniformJumpskirtBrigmedicSyndi
+      - id: ClothingShoesBootsMag
+        amount: 2
+      - id: BedsheetBrigmedicStrange
+        prob: 0.6
+      - id: BedsheetBrigmedic
+      - id: MedkitFilled
+        amount: 2
+      - id: MedkitAdvancedFilled
+        amount: 2
+      - id: MedkitOxygenFilled
+        amount: 2
+      - id: MedkitToxinFilled
+        amount: 2
+      - id: SecurityMedkitFHFilled
+        amount: 2
+      - id: ClothingNeckCloakMoth #bzzz Moth-pocalypse
+        prob: 0.35
+      - id: RubberStampBrigmedic
+        amount: 2
+
+- type: entity
+  id: LockerBrigmedicFHFilledSyndi
+  suffix: Filled, Hardsuit
+  parent: LockerBrigmedicFHSyndi
+  components:
+  - type: StorageFill
+    contents:
+      - id: ClothingEyesGlassesBrigmedicSyndi
+      - id: ClothingEyesHudBrigmedicSyndi
+      - id: ClothingEyesEyepatchHudSecMedSyndi
+      - id: ClothingEyesVisorSecMedSyndi
+      - id: WeaponDisabler
+      - id: TrackingImplanter
+        amount: 2
+      - id: ClothingOuterHardsuitBrigmedicSyndi
+      - id: BoxSterileMask
+      - id: ClothingHeadHatBeretMedicalOfficer
+      #- id: ClothingOuterCoatAMG
+      - id: ClothingUniformJumpsuitBrigmedicSyndi
+      - id: ClothingUniformJumpskirtBrigmedicSyndi
+      #- id: ClothingUniformJumpskirtOfLife
+      - id: ClothingShoesBootsMagSec
+        amount: 2 #Will change to 1 when corps locker is mapped
+      - id: BedsheetBrigmedicStrange
+        prob: 0.6
+      - id: BedsheetBrigmedic
+      - id: MedkitFilled
+      - id: PlasmaChemistryVial
+      - id: BoxBeaker
+      - id: BoxSyringe
+      - id: DefibrillatorBrigmedical
+      - id: MedkitAdvancedFilled
+      - id: MedkitOxygenFilled
+      - id: MedkitToxinFilled
+      - id: SecurityMedkitFHFilled
+      - id: ClothingNeckCloakMoth #bzzz Moth-pocalypse
+        prob: 0.35
+      - id: RubberStampBrigmedic
+
+# Combat Medic (Corpsman)
+
+- type: entity
+  id: LockerCorpsmanFilledSyndi
+  suffix: Filled, Hardsuit
+  parent: LockerCorpsmanFHSyndi
+  components:
+  - type: StorageFill
+    contents:
+      - id: ClothingEyesGlassesBrigmedicSyndi
+      - id: ClothingEyesHudBrigmedicSyndi
+      - id: ClothingEyesEyepatchHudSecMedSyndi
+      - id: ClothingEyesVisorSecMedSyndi
+      - id: WeaponDisabler
+      - id: TrackingImplanter
+        amount: 2
+      - id: ClothingOuterHardsuitCorpsman
+      - id: BoxSterileMask
+      - id: ClothingHeadHatBeretCorpsman
+      - id: ClothingOuterCoatCorpsmanFH
+      - id: ClothingUniformJumpsuitCorpsman
+      - id: ClothingUniformJumpskirtCorpsman
+      - id: ClothingBeltCorpsmanFilled
+      - id: DefibrillatorCorpsman
+      - id: SecurityHypoKitFilled
+      - id: ClothingHandsGlovesBlackNitrile
+      - id: ClothingShoesBootsMagSec
+      - id: BedsheetCorpsmanStrange
+      - id: MedkitFilled
+      - id: MedkitCombatFilled
+      - id: SecurityMedkitFHFilled
+      - id: MedkitOxygenFilled
+      - id: MedkitToxinFilled
+      - id: RubberStampCorpsman
+      - id: PlushieMorgana
+      - id: PlushieKiller

@@ -103,15 +103,42 @@
     - PetWearable
     - CorgiWearable
 
-## Syndicate Station
+#region Syndicate ####
 
+
+
+
+
+
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatFedoraBlackRed
+  name: Black and Red Fedora
+  description: A black fedora with a red band.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Head/Hats/blackredfedora.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Head/Hats/blackredfedora.rsi
+  - type: Tag
+    tags:
+    - PetWearable
+    - CorgiWearable
+    - ClothMade
+    - Recyclable
+    - HamsterWearable
+    - WhitelistChameleon
+
+#region Command
 
 # Commander (Captain)
 
 - type: entity
-  parent: ClothingHeadBase
+  parent: [ ClothingHeadBase, BaseCommandContraband ]
   id: ClothingHeadHatCapcapSyndi
-  name: com cap
+  name: Com Cap
+  suffix: S
   description: A grand, stylish cap worn by the Commander. Shows the station who's in charge.
   components:
   - type: Sprite
@@ -134,9 +161,10 @@
   - type: BlockMovement
 
 - type: entity
-  parent: [ClothingHeadBase, BaseCommandContraband]
+  parent: [ ClothingHeadBase, BaseCommandContraband ]
   id: ClothingHeadHatCaptainSyndi
-  name: commander's hardhat
+  name: Commander's Hardhat
+  suffix: S
   description: Feels good being the king.
   components:
   - type: Sprite
@@ -155,9 +183,10 @@
 # Personnel Chief (HoP)
 
 - type: entity
-  parent: ClothingHeadHatHopcap
+  parent: [ ClothingHeadHatHopcap, BaseCommandContraband ]
   id: ClothingHeadHatHopcapSyndi
-  name: personnel chief's cap
+  name: Personnel Chief's Cap
+  suffix: S
   description: A stylish cap worn by the Personnel Chief. Shows paperwork who's in charge.
   components:
   - type: Sprite
@@ -174,12 +203,184 @@
     - WhitelistChameleon
 
 - type: entity
-  parent: ClothingHeadHatBeretHoP
+  parent: [ ClothingHeadHatBeretHoP, BaseCommandContraband ]
   id: ClothingHeadHatBeretHoPSyndi
   name: Personnel Chief's Beret
+  suffix: S
   description: A simplistic but rugged red beret for the Personnel Chief.
   components:
   - type: Sprite
     sprite: _FarHorizons/Clothing/Head/Hats/syndiberet_hop.rsi
   - type: Clothing
     sprite: _FarHorizons/Clothing/Head/Hats/syndiberet_hop.rsi
+
+# Security Overwatch (Head of Security)
+
+- type: entity
+  parent: [ClothingHeadBase, BaseCommandContraband]
+  id: ClothingHeadHatBeretSecurityOverwatch
+  name: Security Overwatch's Beret
+  suffix: S
+  description: A black beret with a commander's rank emblem. For officers that are more inclined towards style than safety.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Head/Hats/beret_hos-syndi.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Head/Hats/beret_hos-syndi.rsi
+  - type: Tag
+    tags:
+    - PetWearable
+    - CorgiWearable
+    - ClothMade
+    - Recyclable
+    - HamsterWearable
+    - WhitelistChameleon
+
+- type: entity
+  parent: [ClothingHeadBase, BaseCommandContraband]
+  id: ClothingHeadHatSheriffSecurityOverwatch
+  name: Security Overwatch's Sheriff Hat
+  suffix: S
+  description: A black sherriff hat with gold lacing. This station aint big enough for enemies of the syndicate.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Head/Hats/hos_sheriff-syndi.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Head/Hats/hos_sheriff-syndi.rsi
+  - type: Tag
+    tags:
+    - PetWearable
+    - CorgiWearable
+    - ClothMade
+    - Recyclable
+    - HamsterWearable
+    - WhitelistChameleon
+
+- type: entity
+  parent: [ClothingHeadBase, BaseCommandContraband]
+  id: ClothingHeadHatSecurityOverwatchHat
+  name: Security Overwatch's Hat
+  suffix: S
+  description: The robust hat of the Security Overwatch. For showing the officers who's the real boss.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Head/Hats/hoshat-syndi.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Head/Hats/hoshat-syndi.rsi
+  - type: Tag
+    tags:
+    - PetWearable
+    - CorgiWearable
+    - ClothMade
+    - Recyclable
+    - HamsterWearable
+    - WhitelistChameleon
+
+#region Security
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatBeretSecuritySyndi
+  name: Security Beret
+  suffix: S
+  description: A beret with the security department's insignia. For officers that are more inclined towards style than safety.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Head/Hats/beret_security-syndi.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Head/Hats/beret_security-syndi.rsi
+  - type: Tag
+    tags:
+    - ClothMade
+    - Recyclable
+    - PetWearable
+    - CorgiWearable
+    - HamsterWearable
+    - WhitelistChameleon
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatSecurityTrooperSyndi
+  name: Trooper Hat
+  suffix: S
+  description: A campaign hat for the Syndicate Troopers. It's supposed to come with a case, too...
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Head/Hats/security_trooper_hat-syndi.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Head/Hats/security_trooper_hat-syndi.rsi
+  - type: Tag
+    tags:
+    - ClothMade
+    - WhitelistChameleon
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatSecurityCapSyndi
+  name: Security Cap
+  suffix: S
+  description: A red security cap for the security department. 
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Head/Hats/securitycap-syndi.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Head/Hats/securitycap-syndi.rsi
+  - type: Tag
+    tags:
+    - ClothMade
+    - WhitelistChameleon
+
+# Guardian (Warden)
+
+- type: entity
+  parent: [ ClothingHeadBase, BaseSecurityContraband ]
+  id: ClothingHeadHatGuardianCap
+  name: Guardian's Cap
+  suffix: S
+  description: This hat emphasizes that you are THE LAW. If you look closely you can see some blood splatter...
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Head/Hats/warden_cap-syndi.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Head/Hats/warden_cap-syndi.rsi
+  - type: StealTarget
+    stealGroup: ClothingHeadHatGuardian
+  - type: Tag
+    tags:
+    - PetWearable
+    - CorgiWearable
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatBeretGuardian
+  name: Guardian's Beret
+  suffix: S
+  description: A faded red beret with a guardian's rank emblem. For officers that are more inclined towards style than safety.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Head/Hats/beret_warden-syndi.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Head/Hats/beret_warden-syndi.rsi
+  - type: Tag
+    tags:
+    - PetWearable
+    - CorgiWearable
+
+# Medical Officer (Brigmedic)
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatBeretMedicalOfficer
+  name: Medical Officer Beret
+  suffix: S
+  description: A white beret for Medical Officers.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Head/Hats/beret_brigmedic-syndi.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Head/Hats/beret_brigmedic-syndi.rsi
+  - type: Tag
+    tags:
+    - PetWearable
+    - CorgiWearable
+

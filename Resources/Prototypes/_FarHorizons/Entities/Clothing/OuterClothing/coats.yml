@@ -1,7 +1,72 @@
+#region NanoTrasen ##
+
+
+
+
+
+
+
+
+#region Command
+
+# HOP
+
+- type: entity
+  parent: [ BaseCommandContraband, ClothingOuterStorageBase ]
+  id: ClothingOuterCoatHoP
+  name: Head of Personnel's Jacket
+  suffix: NT
+  description: A sleek coat for the administrative arm of the station.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/Coats/hop.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/Coats/hop.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: equipped-OUTERCLOTHING
+    
+# Magistrate
+
+- type: entity
+  parent: [ BaseCommandContraband, ClothingOuterStorageBase ]
+  id: ClothingOuterCoatMagistrate
+  name: Magistrate's Jacket
+  suffix: NT
+  description: A sleek coat for the justicar of space law.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/Coats/magistrate.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/Coats/magistrate.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: equipped-OUTERCLOTHING
+
+# NTR
+
+- type: entity
+  parent: [ BaseCommandContraband, ClothingOuterStorageBase ]
+  id: ClothingOuterCoatNTR
+  name: NanoTrasen Representatives's Jacket
+  suffix: NT
+  description: A gold lined coat for the official representative of NanoTrasen on station.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/Coats/ntrep.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/Coats/ntrep.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: equipped-OUTERCLOTHING
+
+#region Security
+
 - type: entity
   parent: [BaseSecurityContraband, ClothingOuterWinterCoatToggleable, AllowSuitStorageClothing]
   id: ClothingOuterCoatCorpsmanFH
   name: Corpsman's Armored Jacket
+  suffix: NT
   description: Heavily armored yet surprisingly comfortable jacket, a byproduct from the tendency of corpsmen to throw themselves directly into danger.
   components:
   - type: Sprite
@@ -31,61 +96,28 @@
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHatHoodCorpsman
 
-# HOP
 
-- type: entity
-  parent: [ BaseCommandContraband, ClothingOuterStorageBase ]
-  id: ClothingOuterCoatHoP
-  name: Head of Personnel's Jacket
-  description: A sleek coat for the administrative arm of the station.
-  components:
-  - type: Sprite
-    sprite: _FarHorizons/Clothing/OuterClothing/Coats/hop.rsi
-  - type: Clothing
-    sprite: _FarHorizons/Clothing/OuterClothing/Coats/hop.rsi
-    clothingVisuals:
-      outerClothing:
-      - state: equipped-OUTERCLOTHING
-    
-# Magistrate
+#region Syndicate ####
 
-- type: entity
-  parent: [ BaseCommandContraband, ClothingOuterStorageBase ]
-  id: ClothingOuterCoatMagistrate
-  name: Magistrate's Jacket
-  description: A sleek coat for the justicar of space law.
-  components:
-  - type: Sprite
-    sprite: _FarHorizons/Clothing/OuterClothing/Coats/magistrate.rsi
-  - type: Clothing
-    sprite: _FarHorizons/Clothing/OuterClothing/Coats/magistrate.rsi
-    clothingVisuals:
-      outerClothing:
-      - state: equipped-OUTERCLOTHING
 
-# NTR
 
-- type: entity
-  parent: [ BaseCommandContraband, ClothingOuterStorageBase ]
-  id: ClothingOuterCoatNTR
-  name: NanoTrasen Representatives's Jacket
-  description: A gold lined coat for the official representative of NanoTrasen on station.
-  components:
-  - type: Sprite
-    sprite: _FarHorizons/Clothing/OuterClothing/Coats/ntrep.rsi
-  - type: Clothing
-    sprite: _FarHorizons/Clothing/OuterClothing/Coats/ntrep.rsi
-    clothingVisuals:
-      outerClothing:
-      - state: equipped-OUTERCLOTHING
 
-## Syndicate Station
 
+
+
+
+
+
+
+#region Command
+
+# Personnel Chief (HoP)
 
 - type: entity
   parent: ClothingOuterCoatHoP
   id: ClothingOuterCoatHoPSyndi
   name: Personnel Chief's Jacket
+  suffix: S
   description: A sleek coat for the administrative arm of the station.
   components:
   - type: Sprite
@@ -95,3 +127,127 @@
     clothingVisuals:
       outerClothing:
       - state: equipped-OUTERCLOTHING
+
+# Security Overwatch (HoS)
+
+- type: entity
+  parent: [ ClothingOuterArmorHoS, ClothingOuterWinterCoat, BaseSecurityCommandContraband ]
+  id: ClothingOuterWinterHoSSyndi
+  name: Security Overwatch's Armored Winter Coat
+  suffix: S
+  description: A sturdy, utilitarian winter coat designed to protect the security overwatch from any threats and hypothermic events.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/WinterCoats/coat-hos-armored-syndi.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/WinterCoats/coat-hos-armored-syndi.rsi
+
+- type: entity
+  parent: [ClothingOuterArmorHoS, ClothingOuterStorageBase, BaseSecurityCommandContraband]
+  id: ClothingOuterCoatHoSTrenchSyndi
+  name: Security Overwatch's Armored Trenchcoat
+  suffix: S
+  description: A greatcoat enhanced with a special alloy for some extra protection and style for those with a commanding presence.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/Coats/hos_trenchcoat-syndi.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/Coats/hos_trenchcoat-syndi.rsi
+
+#region Security
+
+
+# Guardian (Warden)
+
+- type: entity
+  parent: [ClothingOuterArmorWarden, ClothingOuterWinterCoat, BaseSecurityContraband]
+  id: ClothingOuterWinterWardenSyndi
+  name: Guardian's Armored Winter Coat
+  suffix: S
+  description: A sturdy, utilitarian winter coat designed to protect a warden from any brig-bound threats and hypothermic events.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/WinterCoats/coat-warden-armored-syndi.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/WinterCoats/coat-warden-armored-syndi.rsi
+
+- type: entity
+  parent: [ ClothingOuterArmorWarden, ClothingOuterStorageBase, BaseSecurityContraband ]
+  id: ClothingOuterCoatWardenSyndi
+  name: Guardian's Armored Jacket
+  suffix: S
+  description: A sturdy, utilitarian jacket designed to protect a guardian from any brig-bound threats.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/Coats/warden-syndi.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/Coats/warden-syndi.rsi
+
+# Inspector (Detective)
+
+- type: entity
+  parent: [ClothingOuterStorageBase, AllowSuitStorageClothing, ClothingOuterArmorBase]
+  id: ClothingOuterCoatDetectiveSyndi
+  name: Inspector Trenchcoat
+  suffix: S
+  description: An 18th-century multi-purpose trenchcoat. Someone who wears this means serious business.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/Coats/detective-syndi.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/Coats/detective-syndi.rsi
+  - type: StorageFill
+    contents:
+    - id: SmokingPipeFilledTobacco
+    - id: FlippoEngravedLighter
+  - type: ExplosionResistance
+    damageCoefficient: 1 #its a coat. it doesnt do shit
+
+- type: entity
+  parent: [ClothingOuterStorageBase, AllowSuitStorageClothing, ClothingOuterArmorBase]
+  id: ClothingOuterCoatDetectiveLoadoutGreySyndi
+  name: Inspectors's Noir Trenchcoat
+  suffix: S
+  description: Ah, your trusty coat. There's a few tears here and there, giving it a more timely look. Or at least, that's what you told yourself when you found out gettin' it repaired would set you back 200 spesos.
+  components:
+  - type: Sprite
+    sprite: Clothing/OuterClothing/Coats/detective_grey.rsi
+  - type: Clothing
+    sprite: Clothing/OuterClothing/Coats/detective_grey.rsi
+  - type: StorageFill
+    contents:
+    - id: SmokingPipeFilledTobacco
+    - id: FlippoEngravedLighter
+  - type: ExplosionResistance
+    damageCoefficient: 1 #its a coat. it doesnt do shit
+
+# Law Enforcer (Security Officer)
+
+# Medical Officer (Brigmedic)
+
+- type: entity
+  parent: [ClothingOuterStorageBase, AllowSuitStorageClothing]
+  id: ClothingOuterCoatAMGSyndi
+  name: Armored Medical Gown
+  suffix: S
+  description: The version of the medical gown, with elements of a bulletproof vest, looks strange, but your heart is protected.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/Coats/brigmedic-syndi.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/Coats/brigmedic-syndi.rsi
+  - type: Pierceable
+    level: Metal
+  - type: ZombificationResistance
+    zombificationResistanceCoefficient: 0.60
+  - type: Armor
+    modifiers:
+      flatReductions:
+        Piercing: 5
+        Heat: 4
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.85
+        Piercing: 0.65
+        Heat: 0.85
+        Caustic: 0.75
