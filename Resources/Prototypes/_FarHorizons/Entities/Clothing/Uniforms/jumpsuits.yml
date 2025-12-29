@@ -1,7 +1,19 @@
+#region NanoTrasen
+
+
+
+
+
+
+
+
+
+#region Command
 - type: entity
-  parent: [ClothingUniformBase, BaseCommandContraband, ClothingUniformFoldableBase]
+  parent: [ ClothingUniformBase, BaseCommandContraband, ClothingUniformFoldableBase ]
   id: ClothingUniformJumpsuitNTChiefEngineer
-  name: chief engineer's jumpsuit
+  name: Chief Engineer's Jumpsuit
+  suffix: NT
   description: It's a high visibility jumpsuit given to those engineers insane enough to achieve the rank of Chief Engineer.
   components:
   - type: Sprite
@@ -14,7 +26,8 @@
 - type: entity
   parent: [ ClothingUniformBase, BaseCommandContraband ]
   id: ClothingUniformJumpsuitTurtleneckMagistrate
-  name: magistrate's turtleneck jumpsuit
+  name: Magistrate's Turtleneck Jumpsuit
+  suffix: NT
   description: A state of the art turtleneck jumpsuit that the CFA supplies their law justicars.
   components:
   - type: Sprite
@@ -25,9 +38,10 @@
 # NTR
 
 - type: entity
-  parent: [ ClothingUniformSkirtBase, BaseCommandContraband ]
+  parent: [ ClothingUniformBase, BaseCommandContraband ]
   id: ClothingUniformJumpsuitNtrepCentComm
-  name: nt representive's centcomm jumpsuit
+  name: NT Representive's Centcomm Jumpsuit
+  suffix: NT
   description: When you somehow want to look even more official than you did before.
   components:
   - type: Sprite
@@ -35,15 +49,24 @@
   - type: Clothing
     sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/ntrepCC.rsi
 
-## Syndicate Station
+#region Syndicate
 
+
+
+
+
+
+
+
+#region Command
 
 # Commander (Captain)
 
 - type: entity
-  parent: [ClothingUniformBase, BaseCommandContraband]
+  parent: [ ClothingUniformBase, BaseCommandContraband ]
   id: ClothingUniformJumpsuitCaptainSyndi
-  name: commander's jumpsuit
+  name: Commander's Jumpsuit
+  suffix: S
   description: It's a black jumpsuit with some gold markings denoting the rank of "Commander".
   components:
   - type: RollUpSleeves
@@ -53,9 +76,10 @@
     sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/syndicaptain.rsi
 
 - type: entity
-  parent: [ClothingUniformBase, BaseCommandContraband]
+  parent: [ ClothingUniformBase, BaseCommandContraband ]
   id: ClothingUniformJumpsuitCapFormalSyndi
-  name: commander's formal suit
+  name: Commander's Formal Suit
+  suffix: S
   description: A suit for special occasions.
   components:
   - type: Sprite
@@ -66,9 +90,10 @@
 # Personnel Chief (HoP)
 
 - type: entity
-  parent: [ClothingUniformBase, BaseCommandContraband, ClothingUniformFoldableBase]
+  parent: [ ClothingUniformBase, BaseCommandContraband, ClothingUniformFoldableBase ]
   id: ClothingUniformJumpsuitHoPSyndi
-  name: personnel chief's jumpsuit
+  name: Personnel Chief's Jumpsuit
+  suffix: S
   description: Rather bland and inoffensive. Perfect for vanishing off the face of the universe.
   components:
   - type: RollUpSleeves
@@ -76,9 +101,10 @@
     sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/syndihop.rsi
 
 - type: entity
-  parent: ClothingUniformBase
+  parent: [ ClothingUniformBase, BaseCommandContraband ]
   id: ClothingUniformJumpsuitHoPTurtleneckSyndi
-  name: personnel chief's turtleneck
+  name: Personnel Chief's Turtleneck
+  suffix: S
   description: It's the Personnel Chief's turtleneck.
   components:
   - type: Sprite
@@ -89,12 +115,185 @@
 # Technical Lead (Chief Engineer)
 
 - type: entity
-  parent: [ClothingUniformBase, BaseCommandContraband, ClothingUniformFoldableBase]
+  parent: [ ClothingUniformBase, BaseCommandContraband, ClothingUniformFoldableBase ]
   id: ClothingUniformJumpsuitSyndieChiefEngineer
-  name: chief engineer's jumpsuit
+  name: Technical Lead's Jumpsuit
+  suffix: S
   description: It's a high visibility jumpsuit given to those engineers insane enough to achieve the rank of Chief Engineer.
   components:
   - type: Sprite
     sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/ce_syndie.rsi
   - type: Clothing
     sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/ce_syndie.rsi
+
+# Security Overwatch (Head of Security)
+
+- type: entity
+  parent: [ ClothingUniformBase, BaseCommandContraband ]
+  id: ClothingUniformJumpsuitHoSSyndi
+  name: Security Overwatch's Jumpsuit
+  suffix: S
+  description: It's half red, half black and rather crisp, much like security's victims tend to be.
+  components:
+  - type: RollUpSleeves
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/hos-syndi.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/hos-syndi.rsi
+
+- type: entity
+  parent: [ ClothingUniformBase, BaseCommandContraband ]
+  id: ClothingUniformJumpsuitHoSAltSyndi
+  name: Security Overwatch's Turtleneck
+  suffix: S
+  description: It's a turtleneck worn by those strong and disciplined enough to achieve the position of Security Overwatch.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/hos_alt-syndi.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/hos_alt-syndi.rsi
+
+#- type: entity              ### This is using the parade sprites for some reason... disabling for now
+#  parent: [ ClothingUniformBase, BaseCommandContraband ]
+#  id: ClothingUniformJumpsuitHoSGreySyndi
+#  name: Security Overwatch's Grey Jumpsuit
+#  suffix: S
+#  description: A grey jumpsuit of Security Overwatch, which make him look somewhat like a assistant.
+#  components:
+#  - type: Sprite
+#    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/hos_grey-syndi.rsi
+#  - type: Clothing
+#    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/hos_grey-syndi.rsi
+
+- type: entity
+  parent: [ ClothingUniformBase, BaseCommandContraband ]
+  id: ClothingUniformJumpsuitHosFormalSyndi
+  name: Security Overwatch's Formal Suit
+  suffix: S
+  description: A suit for special occasions.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/hosformal-syndi.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/hosformal-syndi.rsi
+
+#region Security
+
+# Guardian (Warden)
+
+- type: entity
+  parent: [ ClothingUniformBase, BaseSecurityContraband ]
+  id: ClothingUniformJumpsuitWardenSyndi
+  name: Guardian's Jumpsuit
+  description: A formal security suit for officers complete with Syndicate belt buckle.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/warden-syndi.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/warden-syndi.rsi
+
+# Inspector (Detective)
+
+- type: entity
+  parent: [ ClothingUniformBase, BaseSecurityContraband ]
+  id: ClothingUniformJumpsuitDetectiveSyndi
+  name: Hard-Worn Suit
+  suffix: S
+  description: Someone who wears this means business.
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/detective-syndi.rsi
+    - type: Clothing
+      sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/detective-syndi.rsi
+
+- type: entity
+  parent: [ ClothingUniformBase, BaseSecurityContraband ]
+  id: ClothingUniformJumpsuitDetectiveGreySyndi
+  name: Noir Suit
+  suffix: S
+  description: A hard-boiled private investigator's grey suit, complete with tie clip.
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/detective_grey-syndi.rsi
+    - type: Clothing
+      sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/detective_grey-syndi.rsi
+
+# Law Enforcer
+
+- type: entity
+  parent: [ ClothingUniformBase, BaseSecurityContraband ]
+  id: ClothingUniformJumpsuitSecSyndi
+  name: Security Jumpsuit
+  suffix: S
+  description: A jumpsuit made of strong material, providing robust protection.
+  components:
+  - type: RollUpSleeves
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/security-syndi.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/security-syndi.rsi
+    
+- type: entity
+  parent: [ ClothingUniformBase, BaseSecurityContraband ]
+  id: ClothingUniformJumpsuitSecGreySyndi
+  name: Grey Security Jumpsuit
+  suffix: S
+  description: A tactical relic of years past where the colors have faded over time. 
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/security_grey-syndi.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/security_grey-syndi.rsi
+
+- type: entity
+  parent: [ ClothingUniformBase, BaseSecurityContraband ]
+  id: ClothingUniformSecurityTrooperSyndi
+  name: Trooper Uniform
+  suffix: S
+  description: A formal uniform issued to the Syndicate Troopers, usually it comes with a car.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/security_trooper-syndi.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/security_trooper-syndi.rsi
+
+- type: entity
+  parent: [ ClothingUniformBase, BaseSecurityContraband ]
+  id: ClothingUniformJumpsuitSeniorOfficerSyndi
+  name: Senior Law Enforcer Jumpsuit
+  suffix: S
+  description: A sign of skill and prestige within the security department.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/senior_officer-syndi.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/senior_officer-syndi.rsi
+
+# Medical Officer (Brigmedic)
+
+- type: entity
+  parent: [ ClothingUniformBase, BaseSecurityContraband ]
+  id: ClothingUniformJumpsuitBrigmedicSyndi
+  name: Medical Officer Jumpsuit
+  suffix: S
+  description: This uniform is issued to qualified personnel who have been trained. No one cares that the training took half a day.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/brigmedic-syndi.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/brigmedic-syndi.rsi
+
+# Recruit (Cadet)
+
+- type: entity
+  parent: [ ClothingUniformBase, BaseSecurityContraband ]
+  id: ClothingUniformJumpsuitSecCadetSyndi
+  name: Security Recruit Jumpsuit
+  suffix: S
+  description: A jumpsuit made of strong material, providing robust protection.
+  components:
+  - type: RollUpSleeves
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/security_cadet-syndi.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/security_cadet-syndi.rsi

@@ -1,4 +1,4 @@
-## Generic Loadout Options
+#region Generic Loadout Options
 - type: loadoutGroup
   id: SyndieBackpack
   name: loadout-group-syndie-generic-backpack
@@ -50,10 +50,13 @@
   - BootsWinterSyndicate
   - Heels
 
+
 ## Specific Loadout Groups
 
 
-# Commander (Captain)
+#region Command
+
+ #Commander (Captain)
 
 - type: loadoutGroup
   id: CommanderHead
@@ -100,30 +103,318 @@
   name: loadout-group-pc-head
   minLimit: 0
   loadouts:
-  - PCCap
-  - PCBeret
+    - PCCap
+    - PCBeret
 
 - type: loadoutGroup
   id: PCNeck
   name: loadout-group-pc-neck
   minLimit: 0
   loadouts:
-  - HoPCloak
-  - PCMantle
+    - HoPCloak
+    - PCMantle
 
 - type: loadoutGroup
   id: PCJumpsuit
   name: loadout-group-pc-jumpsuit
   loadouts:
-  - PCJumpsuit
-  - PCJumpskirt
-  - PCTurtleneckJumpsuit
-  - PCTurtleneckJumpskirt
+    - PCJumpsuit
+    - PCJumpskirt
+    - PCTurtleneckJumpsuit
+    - PCTurtleneckJumpskirt
 
 - type: loadoutGroup
   id: PCOuterClothing
   name: loadout-group-pc-outerclothing
   minLimit: 0
   loadouts:
-  - PCCoat
+    - PCCoat
 
+# Security Overwatch (Head of Security)
+
+- type: loadoutGroup
+  id: SecurityOverwatchHead
+  name: loadout-group-so-head
+  minLimit: 0
+  loadouts:
+    - SOHat
+    - SOSheriff
+    - SOBeret
+
+- type: loadoutGroup
+  id: SOHeadset
+  name: loadout-group-so-headset
+  loadouts:
+    - SOHeadsetRegular
+    - SOHeadsetAlt
+
+- type: loadoutGroup
+  id: SONeck
+  name: loadout-group-so-neck
+  minLimit: 0
+  loadouts:
+    - SOCloak
+    - SOMantle
+    - SOEliteCloak
+
+- type: loadoutGroup
+  id: SOUniform
+  name: loadout-group-so-uniform
+  loadouts:
+    - SOJumpsuit
+    - SOJumpskirt
+    - SOTurtleneckSuit
+    - SOTurtleneckSkirt
+    #- SOGreySuit # Disabled for now because it's the same sprite as the parade.
+    - SOFormalSuit
+    - SOFormalSkirt
+    - SOParade
+
+- type: loadoutGroup
+  id: SOOuterClothing
+  name: loadout-group-so-outerclothing
+  minLimit: 0
+  loadouts:
+    - SOArmoredTrenchCoat
+    - SOArmoredWinterCoat
+
+#region Security
+
+# General Security
+
+- type: loadoutGroup
+  id: SecurityHeadsetSyndi
+  name: loadout-group-security-headset
+  loadouts:
+  - SecurityHeadsetSyndi
+  - SecurityAltHeadsetSyndi
+
+- type: loadoutGroup
+  id: SecMedHeadsetSyndi
+  name: loadout-group-secmed-headset
+  loadouts:
+    - SecMedicalHeadsetSyndi
+    - SecMedicalAltHeadsetSyndi
+
+- type: loadoutGroup
+  id: SecurityEyesSyndi
+  name: loadout-group-sec-syndi-eyewear
+  loadouts:
+    - SecGlassesSyndi
+    - SecHUDSyndi
+    - SecHUDEyepatchSyndi
+    - SecVisorSyndi
+
+- type: loadoutGroup
+  id: SecMedEyesSyndi
+  name: loadout-group-sec-med-syndi-eyewear
+  loadouts:
+    - SecMedGlassesSyndi
+    - SecMedHUDSyndi
+    - SecMedHUDEyepatchSyndi
+    - SecMedVisorSyndi
+
+- type: loadoutGroup
+  id: SecurityBeltSyndi
+  name: loadout-group-security-belt
+  loadouts:
+    - SecurityBeltSyndi
+    - SecurityWebbingSyndi
+
+- type: loadoutGroup
+  id: SecurityShoesSyndi
+  name: loadout-group-security-shoes
+  loadouts:
+  - JackBootsSyndi
+  - CombatBootsSyndi
+  - HighHeelBootsFilled
+
+# Combat Medic (Corpsman)
+
+- type: loadoutGroup
+  id: CMBelt
+  name: loadout-group-cm-belt
+  loadouts:
+    - CMBelt
+
+- type: loadoutGroup
+  id: CMHead
+  name: loadout-group-cm-head
+  loadouts:
+  - SecHelmetSyndi
+  - CMBeret
+
+# Guardian (Warden)
+
+- type: loadoutGroup
+  id: GuardianHead
+  name: loadout-group-guard-head
+  minLimit: 0
+  loadouts:
+    - GuardianBeret
+    - GuardianCap
+
+- type: loadoutGroup
+  id: GuardianHeadset
+  name: loadout-group-guard-headset
+  loadouts:
+    - GuardianHeadsetRegular
+    - GuardianHeadsetAlt
+
+- type: loadoutGroup
+  id: GuardianUniform
+  name: loadout-group-guard-uniform
+  loadouts:
+    - GuardSuit
+    - GuardSkirt
+
+- type: loadoutGroup
+  id: GuardianOuterClothing
+  name: loadout-group-guard-outerclothing
+  loadouts:
+    - GuardianArmoredCoat
+    - GuardianArmoredWinterCoat
+
+# Inspector (Detective)
+
+- type: loadoutGroup
+  id: InspectorHead
+  name: loadout-group-inspector-head
+  minLimit: 0
+  loadouts:
+  - BlackRedFedora
+  - DetectiveFedoraGrey
+
+- type: loadoutGroup
+  id: InspectorNeck
+  name: loadout-group-inspector-neck
+  loadouts:
+    - InspectorTie
+
+- type: loadoutGroup
+  id: InspectorUniform
+  name: loadout-group-inspector-uniform
+  loadouts:
+    - InspectorHardWornSuit
+    - InspectorHardWornSkirt
+    - InspectorNoirSuit
+    - InspectorNoirSkirt
+
+- type: loadoutGroup
+  id: InspectorOuterClothing
+  name: loadout-group-inspector-outerclothing
+  minLimit: 0
+  loadouts:
+    - InspectorVest
+    - InspectorTrench
+    - InspectorNoirTrench
+
+- type: loadoutGroup
+  id: InspectorShoes
+  name: loadout-group-inspector-shoes
+  loadouts:
+  - JackBootsSyndi
+  - LaceupShoes
+  - CowboyBootsBrownFilled
+  - CowboyBootsBlackFilled
+  - CowboyBootsWhiteFilled
+  - CombatBootsSyndi
+  - HighHeelBootsFilled
+
+# Law Enforcer (Security Officer)
+
+- type: loadoutGroup
+  id: SecurityHeadSyndi
+  name: loadout-group-security-head
+  minLimit: 0
+  loadouts:
+  - SecHelmetSyndi
+  - SecHelmetPlateSyndi
+  - SecHelmetStabproofSyndi
+  - SecHelmetHeatAbsorbSyndi
+  - SecurityBeretSyndi
+  - SecurityCapSyndi
+  - SecurityTrooperHatSyndi
+
+- type: loadoutGroup
+  id: LEUniform
+  name: loadout-group-le-uniform
+  loadouts:
+    - LESuit
+    - LESkirt
+    - LEGreySuit
+    - LEGreySkirt
+    - LETrooperSuit
+    - LETrooperSkirt
+    - LESeniorSuit
+    - LESeniorSkirt
+
+- type: loadoutGroup
+  id: LEOuterClothing
+  name: loadout-group-le-outerclothing
+  loadouts:
+  - LEArmorVest
+  - LEArmorVestSlim
+  - LEArmorVestPlate
+  - LEArmorVestStab
+  - LEArmorVestHeatAbsorb
+  - LEWindbreaker
+  - LEBomber
+  #- LEWintercoat -Omega: Disabled currently because it's blue from incorrect base texture folder.
+
+
+# Medical Officer (Brigmedic)
+
+- type: loadoutGroup
+  id: MOHead
+  name: loadout-group-mo-head
+  minLimit: 0
+  loadouts:
+    - MOBeret
+    - SecHelmetSyndi
+
+- type: loadoutGroup
+  id: MOUniform
+  name: loadout-group-mo-uniform
+  loadouts:
+    - MOSuit
+    - MOSkirt
+
+- type: loadoutGroup
+  id: MOOuterClothing
+  name: loadout-group-mo-outerclothing
+  minLimit: 0
+  loadouts:
+    - MOArmoredMedGown
+
+- type: loadoutGroup
+  id: MOGloves
+  name: loadout-group-mo-gloves
+  loadouts:
+  - Nitrile
+
+- type: loadoutGroup
+  id: MOBelt
+  name: loadout-group-mo-belt
+  loadouts:
+    - MOBelt
+    - MOWebbing
+
+# Recruit (Security Cadet)
+
+- type: loadoutGroup
+  id: RecruitUniform
+  name: loadout-group-recruit-uniform
+  loadouts:
+    - RecruitSuit
+    - RecruitSkirt
+
+#region SHC
+
+- type: loadoutGroup
+  id: RedSwordShoes
+  name: loadout-group-rso-shoes
+  loadouts:
+  - CombatBootsSyndi
+  - JackBootsSyndi
+  - HighHeelBootsFilled

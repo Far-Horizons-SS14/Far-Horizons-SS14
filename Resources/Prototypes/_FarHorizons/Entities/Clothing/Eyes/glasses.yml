@@ -1,7 +1,55 @@
+
+#region Law ####
+
+- type: entity
+  parent: ClothingEyesBase
+  id: ClothingEyesGlassesLaw
+  name: Law Glasses
+  suffix: NT
+  description: A set of slick looking glasses for the law department.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Eyes/Glasses/lawglasses.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Eyes/Glasses/lawglasses.rsi
+  - type: Tag
+    tags:
+    - HamsterWearable
+    - PetWearable
+    - WhitelistChameleon
+  - type: IdentityBlocker
+    coverage: EYES
+
+- type: entity
+  parent: [ClothingEyesBase, BaseCommandContraband]
+  id: ClothingEyesGlassesMagistrate
+  name: Magistrate's Glasses
+  suffix: NT
+  description: A set of slick looking glasses for the space law overseer.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Eyes/Glasses/lawglasses.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Eyes/Glasses/lawglasses.rsi
+  - type: FlashImmunity
+  - type: EyeProtection
+    protectionTime: 5
+  - type: Tag
+    tags:
+    - HamsterWearable
+    - PetWearable
+    - WhitelistChameleon
+  - type: IdentityBlocker
+    coverage: EYES
+  - type: ShowJobIcons
+
+#region NanoTrasen ##
+
 - type: entity
   parent: [ClothingEyesBase, ShowSecurityIcons, BaseSecurityContraband]
   id: ClothingEyesGlassesCorpsman
-  name: corpsman glasses
+  name: Corpsman's Glasses
+  suffix: NT
   description: Super Tamashi-Upgraded glasses. Corpsman ones.
   components:
   - type: Sprite
@@ -22,10 +70,22 @@
   - type: IdentityBlocker
     coverage: EYES
 
+#region Syndicate ####
+
+
+
+
+
+
+
+
+
+#region Command
 - type: entity
   parent: [ClothingEyesBase, BaseCommandContraband]
   id: ClothingEyesGlassesCommandSyndi
-  name: administration glasses
+  name: Administration Glasses
+  suffix: S
   description: Upgraded sunglasses that provide flash immunity and show ID card status.
   components:
   - type: Sprite
@@ -44,44 +104,61 @@
     coverage: EYES
   - type: ShowJobIcons
 
-# Law Department
+#region Security
 
 - type: entity
-  parent: ClothingEyesBase
-  id: ClothingEyesGlassesLaw
-  name: law glasses
-  description: A set of slick looking glasses for the law department.
+  parent: [ ClothingEyesBase, ShowSecurityIcons, BaseSecurityContraband ]
+  id: ClothingEyesGlassesSecuritySyndi
+  name: Security Glasses
+  suffix: S
+  description: Upgraded sunglasses that provide flash immunity and a security HUD.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/Eyes/Glasses/lawglasses.rsi
+    sprite: _FarHorizons/Clothing/Eyes/Glasses/secglasses-syndi.rsi
   - type: Clothing
-    sprite: _FarHorizons/Clothing/Eyes/Glasses/lawglasses.rsi
-  - type: Tag
-    tags:
-    - HamsterWearable
-    - PetWearable
-    - WhitelistChameleon
-  - type: IdentityBlocker
-    coverage: EYES
-
-- type: entity
-  parent: [ClothingEyesBase, BaseCommandContraband]
-  id: ClothingEyesGlassesMagistrate
-  name: magistrate's glasses
-  description: A set of slick looking glasses for the space law overseer.
-  components:
-  - type: Sprite
-    sprite: _FarHorizons/Clothing/Eyes/Glasses/lawglasses.rsi
-  - type: Clothing
-    sprite: _FarHorizons/Clothing/Eyes/Glasses/lawglasses.rsi
+    sprite: _FarHorizons/Clothing/Eyes/Glasses/secglasses-syndi.rsi
   - type: FlashImmunity
   - type: EyeProtection
     protectionTime: 5
+  - type: Construction
+    graph: GlassesSecHUD
+    node: glassesSec
   - type: Tag
     tags:
     - HamsterWearable
     - PetWearable
     - WhitelistChameleon
+  - type: GuideHelp
+    guides:
+    - Security
+    - Antagonists
   - type: IdentityBlocker
     coverage: EYES
-  - type: ShowJobIcons
+
+# Medical Officer
+
+- type: entity
+  parent: [ClothingEyesBase, ShowSecurityIcons, BaseSecurityContraband]
+  id: ClothingEyesGlassesBrigmedicSyndi
+  name: Security Medical Glasses
+  suffix: S
+  description: Tamashi-upgraded glasses. Yes. Security medical ones.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Eyes/Glasses/brigmedicglasses-syndi.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Eyes/Glasses/brigmedicglasses-syndi.rsi
+  - type: FlashImmunity
+  - type: SolutionScanner
+  - type: EyeProtection
+    protectionTime: 5
+  - type: ShowHealthBars
+  - type: Construction
+    graph: GlassesSecHUD
+    node: glassesSec
+  - type: Tag
+    tags:
+    - HamsterWearable
+    - WhitelistChameleon
+  - type: IdentityBlocker
+    coverage: EYES
