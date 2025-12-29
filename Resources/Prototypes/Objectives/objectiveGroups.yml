@@ -74,6 +74,7 @@
     FigurineStealCollectionObjective: 0.3          #service
     IDCardsStealCollectionObjective: 1
     LAMPStealCollectionObjective: 0.1                   #only for moth, weight decreased cause boring and insanely easy
+    ReactorFuelRodStealCollectionObjective: 1 #Reactor ##Far Horizons 
 
 - type: weightedRandom
   id: ThiefObjectiveGroupItem
@@ -96,6 +97,8 @@
     BibleStealObjective: 1
     ClothingNeckGoldmedalStealObjective: 1              #other
     ClothingNeckClownmedalStealObjective: 0.5
+    BrigmedicBedsheetStealObjective: 1 #FarHorizon StealObj
+
 - type: weightedRandom
   id: ThiefObjectiveGroupStructure
   weights:
@@ -109,6 +112,7 @@
     AltarNanotrasenStealObjective: 1
     PlantRDStealObjective: 1
     ToiletGoldenStealObjective: 1
+    VehicleSecwayStealObjective: 1 #FarHorizon Vehicles
 
 - type: weightedRandom
   id: ThiefObjectiveGroupAnimal
