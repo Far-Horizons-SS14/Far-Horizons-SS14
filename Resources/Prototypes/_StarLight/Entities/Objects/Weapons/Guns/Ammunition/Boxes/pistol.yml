@@ -16,7 +16,7 @@
 - type: entity
   parent: BaseItem
   id: BaseMagazineBoxPistol40
-  name: ammunition box (.40 special) #FH
+  name: Ammunition box (.38 Special) #FH
   abstract: true
   components:
   - type: BallisticAmmoProvider
@@ -25,7 +25,7 @@
       tags:
         - CartridgePistolDP
     proto: CartridgePistol40SP
-    capacity: 20
+    capacity: 40 #FH
   - type: Item
     size: Small
   - type: ContainerContainer
@@ -42,7 +42,7 @@
 - type: entity
   parent: BaseMagazineBoxPistol40
   id: MagazineBoxPistol40SP
-  name: ammunition box (.40 special SP) #FH
+  name: Ammunition box (.38 Special SP) #FH
   components:
   - type: BallisticAmmoProvider
     mayTransfer: true
@@ -58,7 +58,7 @@
 - type: entity
   parent: BaseMagazineBoxPistol40
   id: MagazineBoxPistol40HP
-  name: ammunition box (.40 special HP) #FH
+  name: Ammunition box (.38 Special HP) #FH
   components:
   - type: BallisticAmmoProvider
     mayTransfer: true
@@ -73,7 +73,7 @@
 - type: entity
   parent: BaseMagazineBoxPistol40
   id: MagazineBoxPistol40FMJ
-  name: ammunition box (.40 special FMJ) #FH
+  name: Ammunition box (.38 Special FMJ) #FH
   components:
   - type: BallisticAmmoProvider
     mayTransfer: true
@@ -89,7 +89,7 @@
 - type: entity
   parent: BaseMagazineBoxPistol40
   id: MagazineBoxPistol40AP
-  name: ammunition box (.40 special AP) #FH
+  name: Ammunition box (.38 Special AP) #FH
   components:
   - type: BallisticAmmoProvider
     mayTransfer: true

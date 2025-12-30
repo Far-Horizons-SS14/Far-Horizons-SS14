@@ -189,14 +189,11 @@
     steps: 5
     zeroVisible: true
   - type: HitscanBatteryAmmoProvider
-    proto: DisablerBolt
-    fireCost: 40
+    proto: TaserBolt #FH
+    fireCost: 100 #FH
   - type: BatteryWeaponFireModes
     fireModes:
-    - proto: DisablerBolt
-      fireCost: 40
-      magState: disable
-      visualState: disable-unshaded
+# FH - Removal of Disabler mode
     - proto: TaserBolt
       fireCost: 100
       magState: stun

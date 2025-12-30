@@ -1,7 +1,7 @@
 - type: entity
   name: MK 78
   parent: [BaseWeaponPistol, BaseSecurityContraband, FlashlightLantern]
-  id: WeaponPistolMk78
+  id: WeaponPistolMk58
   description: Designed by Nanotrasen’s Small Arms Division, the Mk78 is a semi-automatic pistol with a simple recoil-operated action and excellent reliability. The new standard sidearm of Nanotrasen’s station security and emergency response teams, feeds from .35 pistol magazines. Comes with a intergrated flashlight, unlike the MK58.
   components:
   - type: Sprite
@@ -68,3 +68,289 @@
     - SemiAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/mk58.ogg
+
+- type: entity
+  name: Enforcer
+  parent: [WeaponPistolMk58]
+  id: WeaponPistolEnforcer
+  description: A burst-fire pistol often issued in NanoTransen armories to supplement larger firearms like the Lecter or Kammerer. Unlike the MK 78, the flashlight is attached rather than intergrated.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/Pistols/enforcer.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: base-overlay
+      shader: unshaded
+      visible: false
+      map: [ "light" ]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Gun
+    selectedMode: Burst
+    fireRate: 5
+    burstFireRate: 7
+    shotsPerBurst: 2
+    burstCooldown: 0.2
+    availableModes:
+    - SemiAuto
+    - Burst
+  - type: Clothing
+    sprite: _FarHorizons/Objects/Weapons/Guns/Pistols/enforcer.rsi
+  - type: Item
+    sprite: _FarHorizons/Objects/Weapons/Guns/Pistols/enforcer.rsi
+    storedOffset: 0,-2
+  - type: Tag
+    tags:
+    - Enforcer
+
+- type: entity
+  name: Due Process
+  parent: [WeaponPistolMk58]
+  id: WeaponPistolDP
+  description: A retrofitted Enforcer chambered in .38 Special, it is THE final word in brig defense.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/Pistols/dp.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: base-overlay
+      shader: unshaded
+      visible: false
+      map: [ "light" ]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Gun
+    fireRate: 5
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/_Starlight/Weapons/Guns/Gunshots/dp.ogg
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellMedium
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazinePistol40SP
+        insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazinePistolDP
+        whitelistFailPopup: gun-magazine-whitelist-fail
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgePistol40SP
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgePistolDP
+  - type: Clothing
+    sprite: _FarHorizons/Objects/Weapons/Guns/Pistols/dp.rsi
+  - type: Item
+    sprite: _FarHorizons/Objects/Weapons/Guns/Pistols/dp.rsi
+    storedOffset: 0,-2
+
+- type: entity
+  name: Enforcinator
+  parent: [BaseWeaponPistol, BaseGunWieldable, BaseSecurityContraband]
+  id: WeaponPistolEnforcinator
+  description: What's wrong with you?
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/Pistols/Enforcinatorx64/enforcinator_x64.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: _FarHorizons/Objects/Weapons/Guns/Pistols/Enforcinatorx64/enforcinator_x32.rsi
+  - type: Item
+    sprite: _FarHorizons/Objects/Weapons/Guns/Pistols/Enforcinatorx64/enforcinator_x32.rsi
+    size: Large
+    shape:
+    - 0,0,3,0
+    - 1,1,0,1
+    storedOffset: -5,-4
+  - type: GunRequiresWield
+  - type: GunWieldBonus
+    minAngle: -7
+    maxAngle: -7
+  - type: Gun
+    minAngle: 21
+    maxAngle: 32
+    selectedMode: Burst
+    fireRate: 5
+    burstFireRate: 7
+    shotsPerBurst: 4
+    burstCooldown: 0.2
+    availableModes:
+    - Burst
+    - FullAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/mk58.ogg
+  - type: Sharp
+    butcherDelayModifier: 2
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    attackRate: 1
+    damage:
+      types:
+        Slash: 18
+    soundHit: /Audio/Weapons/bladeslice.ogg
+    angle: 0
+    animation: WeaponArcThrust
+  - type: Tool
+    qualities:
+      - Slicing
+  - type: Execution
+  - type: AltFireMelee
+    attackType: Heavy
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: null
+        insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazinePistolDouble
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgePistolSP
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgePistol
+
+
+- type: entity
+  name: Pathology
+  parent: [BaseWeaponPistol, BaseSecurityContraband]
+  id: WeaponPistolPathology
+  description: Corpsman's custom-made pistol, posessing a special intergrated knife that partially injects it's contents upon embedding into it's target via a pressure system. Usage of this weapon is more than likely considered a warcrime, thankfully, you're not in a war.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/Pistols/pathology.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: base-1
+      map: ["enum.SolutionContainerLayers.Fill"]
+      visible: false
+  - type: Clothing
+    sprite: _FarHorizons/Objects/Weapons/Guns/Pistols/pathology.rsi
+  - type: Item
+    storedOffset: 0,-2
+  - type: Gun
+    fireRate: 5
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/mk58.ogg
+  - type: SolutionContainerManager
+    solutions:
+      melee:
+        maxVol: 20
+  - type: MeleeChemicalInjector
+    solution: melee
+    transferAmount: 2
+  - type: RefillableSolution
+    solution: melee
+  - type: InjectableSolution
+    solution: melee
+    transferAmount: 2
+  - type: SolutionTransfer
+    maxTransferAmount: 20
+  - type: SolutionContainerVisuals
+    maxFillLevels: 10
+    fillBaseName: base-
+    inHandsFillBaseName: -fill-
+    inHandsMaxFillLevels: 4
+  - type: Sharp
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    attackRate: 1
+    damage:
+      types:
+        Slash: 15 # to explain- a knife does 12 slashing at 1.25/s which equates to 15 slashing at 1/s
+    soundHit: /Audio/Weapons/bladeslice.ogg
+    angle: 0
+    animation: WeaponArcThrust
+  - type: Execution
+  - type: AltFireMelee
+    attackType: Heavy
+  - type: MagazineVisuals
+    magState: mag
+    steps: 4
+    zeroVisible: true
+
+- type: entity
+  name: N1984
+  parent: [WeaponPistolMk58, BaseGunWieldable]
+  id: WeaponPistolN1984
+  description: An exceptionally powerful ‘hand cannon’ designed as part of Nanotrasen's BFG initiative. Chambered in .44, the lord’s caliber, it was deemed too costly to produce as part of standard security-issue gear and a handful are supplied to station-side armories instead. Due to the relative rarity of the gun, it's become somewhat of a status symbol among Security officers and Nanotransen officals alike.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/Pistols/N1984.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: base-overlay
+      shader: unshaded
+      visible: false
+      map: [ "light" ]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: _FarHorizons/Objects/Weapons/Guns/Pistols/N1984.rsi
+  - type: Item
+    sprite: _FarHorizons/Objects/Weapons/Guns/Pistols/N1984.rsi
+    storedOffset: 0,-2
+  - type: GunWieldBonus
+    minAngle: -0
+    maxAngle: -10
+  - type: Gun
+    minAngle: 1
+    maxAngle: 20
+    angleIncrease: 8
+    angleDecay: 9
+    fireRate: 3
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/hpistol.ogg
+      params:
+        variation: 0.05
+        pitch: 0.8
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellMedium
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineMagnum
+        insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazineMagnum
+        whitelistFailPopup: gun-magazine-whitelist-fail
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeMagnumSP
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgeMagnum

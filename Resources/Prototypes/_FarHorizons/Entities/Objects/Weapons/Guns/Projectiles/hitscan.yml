@@ -7,12 +7,12 @@
       sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
       state: spark
     color: "#ffff33"
-  staminaDamage: 33
+  staminaDamage: 33 # four shots
   knockdownAmount: 1 # You honestly expect an officer to react in 0.5 seconds? Get real.
   maxLength: 5
   damage:
     types:
-      Heat: 2
+      Shock: 2 # 16 shock damage to stamcrit
 
 - type: hitscan
   id: BoltTaserRifle # Only use in rifles/longarms, do not use in sidearms.
@@ -23,12 +23,60 @@
       sprite: Objects/Weapons/Guns/Projectiles/projectiles_tg.rsi
       state: omnilaser_greyscale
     color: "#ffff33"
-  staminaDamage: 10 # Very weak, good for knocking down at range.
-  knockdownAmount: 1
-  maxLength: 8
+  staminaDamage: 12 # Very weak but has range. Ten shots given stun will likely fade with time.
+  maxLength: 20
   damage:
     types:
-      Heat: 4
+      Shock: 2 # ~ 20 shock damage to stamcrit.
+
+- type: hitscan
+  id: BoltTaserSpread # Only use in shotguns
+  name: Taser Bolt
+  parent: EnergyTrace
+  bullet:
+    sprite:
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles_tg.rsi
+      state: omnilaser_greyscale
+    color: "#ffff33"
+#  count: 12 Not supported in laser hitscan, readd when support is added.
+#  spread: 30 Not supported in laser hitscan, readd when support is added.
+  staminaDamage: 48 # Change to 3 when support is added # ~ 48, three shots assuming you hit them all.
+  maxLength: 4 # Close range. Would make shorter but landing hits would be impossible.
+  damage:
+    types:
+      Shock: 12 # Change to 1 shock per shot when spread is added # ~ 12 shock per shot, ~36 shock damage to stamcrit. Will likely need tweaking given almost no armor resists shock, but also insuls make you immune so.. ???
+
+- type: hitscan
+  id: BoltPlasmaSpread # Only use in shotguns
+  name: Plasma Bolt
+  parent: EnergyTrace
+  muzzleFlash:
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles_tg.rsi
+    state: heavylaser_flash
+  damage:
+    types:
+      Heat: 50 # Change to a lower number when support is added # About as strong as slugs (and weaker than current eshotty), does a bit more damage to account for lack of AP. Will likely be stronger in practice due to majority species having heat weakness + flat heat being -4 instead of -5 - assuming you point blank someone with it.
+      Structural: 90 # Change to a lower number when support is added
+#  count: 8
+#  spread: 30 # Immense heat warps the barrel, not very accurate.
+  maxLength: 4
+  bullet:
+    sprite:
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles_tg.rsi # Resprite for plasma-y sprites eventually.
+      state: heavylaser
+  collisionMask: 64 #BulletImpassable
+  reflective: NonEnergy
+
+- type: hitscan
+  id: RedLaserBeamSpread # Only use in shotguns
+  name: Split Laser Beam
+  parent: LaserTrace
+  damage:
+    types:
+      Heat: 30 # Buckshot is 70 for reference. Performs a bit worse against a blood-red compared to buckshot, which is fine given it goes through glass.
+#  count: 8
+#  spread: 30
+  maxLength: 5 #simulates spread, buckshot barely hits at this distance
 
 - type: hitscan
   id: HighBoltTaserFH
@@ -44,7 +92,7 @@
   maxLength: 5
   damage:
     types:
-      Heat: 6 #Yeowchers
+      Shock: 6 #Yeowchers
 
 - type: hitscan
   id: DestroyBeamDominator

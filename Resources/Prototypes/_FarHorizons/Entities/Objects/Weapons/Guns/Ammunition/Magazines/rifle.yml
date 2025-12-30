@@ -1,7 +1,7 @@
 ## Empty mags
 - type: entity
   id: BaseMagazineRifle40
-  name: "magazine (.40 special)"
+  name: "Magazine (.38 Special)"
   parent: [ BaseItem, BaseSecurityContraband ]
   abstract: true
   components:
@@ -34,7 +34,7 @@
 
 - type: entity
   id: MagazineRifle40Empty
-  name: "magazine (.40 special any)"
+  name: "Magazine (.38 Special any)"
   suffix: empty
   parent: MagazineRifle40SP
   components:
@@ -44,8 +44,6 @@
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
   - type: Item
     inhandVisuals:
       left:
@@ -56,7 +54,7 @@
 ## Magazines
 - type: entity
   id: MagazineRifle40SP
-  name: "magazine (.40 special SP)"
+  name: "Magazine (.38 Special SP)"
   parent: BaseMagazineRifle40
   components:
   - type: BallisticAmmoProvider
@@ -80,7 +78,7 @@
 
 - type: entity
   id: MagazineRifle40HP
-  name: "magazine (.40 special HP)"
+  name: "Magazine (.38 Special HP)"
   parent: BaseMagazineRifle40
   components:
   - type: BallisticAmmoProvider
@@ -104,7 +102,7 @@
 
 - type: entity
   id: MagazineRifle40FMJ
-  name: "magazine (.40 special FMJ)"
+  name: "Magazine (.38 Special FMJ)"
   parent: BaseMagazineRifle40
   components:
   - type: BallisticAmmoProvider
@@ -128,7 +126,7 @@
 
 - type: entity
   id: MagazineRifle40AP
-  name: "magazine (.40 special AP)"
+  name: "Magazine (.38 Special AP)"
   parent: BaseMagazineRifle40
   components:
   - type: BallisticAmmoProvider
@@ -152,7 +150,7 @@
 
 - type: entity
   id: MagazineRifle40Incendiary
-  name: "magazine (.40 special incendiary)"
+  name: "Magazine (.38 Special Incendiary)"
   parent: BaseMagazineRifle40
   components:
   - type: BallisticAmmoProvider
@@ -176,7 +174,7 @@
         
 - type: entity
   id: MagazineRifle40Practice
-  name: "magazine (.40 special practice)"
+  name: "Magazine (.38 Special Practice)"
   parent: BaseMagazineRifle40
   components:
   - type: BallisticAmmoProvider
@@ -200,7 +198,7 @@
 
 - type: entity
   id: MagazineRifle40Uranium
-  name: "magazine (.40 special uranium)"
+  name: "Magazine (.38 Special Uranium)"
   parent: BaseMagazineRifle40
   components:
   - type: BallisticAmmoProvider
@@ -224,7 +222,7 @@
 
 - type: entity
   id: MagazineRifle40Rubber
-  name: magazine (.40 special rubber)
+  name: Magazine (.38 Special Rubber)
   parent: BaseMagazineRifle40
   components:
   - type: BallisticAmmoProvider

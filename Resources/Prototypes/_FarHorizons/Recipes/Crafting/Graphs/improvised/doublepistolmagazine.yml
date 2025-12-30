@@ -1,0 +1,20 @@
+- type: constructionGraph
+  id: MagazinePistolDoubleGraph
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: shotgun
+      steps:
+      - tag: MagazinePistol
+        icon:
+          sprite: Objects/Weapons/Guns/Ammunition/Magazine/Pistol/pistol_mag.rsi
+          state: red
+        name: crafting-menu-name-MagazinePistol
+      - tag: MagazinePistol
+        icon:
+          sprite: Objects/Weapons/Guns/Ammunition/Magazine/Pistol/pistol_mag.rsi
+          state: red
+        name: crafting-menu-name-MagazinePistol
+  - node: shotgun
+    entity: MagazinePistolDouble

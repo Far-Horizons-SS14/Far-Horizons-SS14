@@ -1,0 +1,188 @@
+- type: entity
+  id: BaseSpeedLoaderPistol40
+  name: "Speed loader (.38 Special)"
+  parent: [BaseItem, BaseSecurityContraband]
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - SpeedLoaderPistol
+  - type: SpeedLoader
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+        - CartridgePistolDP
+    capacity: 8
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/SpeedLoaders/Pistol/.38_speed_loader.rsi
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+        ents: []
+  - type: MagazineVisuals
+    magState: base
+    steps: 9
+
+- type: entity
+  id: SpeedLoaderPistol40Empty
+  name: "Speed loader (.38 Special any)"
+  parent: BaseSpeedLoaderPistol40
+  components:
+  - type: BallisticAmmoProvider
+    proto: null
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  id: SpeedLoaderPistol40SP
+  name: "Speed loader (.38 Special SP)"
+  parent: BaseSpeedLoaderPistol40
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgePistol40SP
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: base-8
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: base-tip-8
+      map: [ "enum.GunVisualLayers.Tip" ]
+      color: "#326ec8"
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  id: SpeedLoaderPistol40HP
+  name: "Speed loader (.38 Special HP)"
+  parent: BaseSpeedLoaderPistol40
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgePistol40HP
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: base-8
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: base-tip-8
+      map: [ "enum.GunVisualLayers.Tip" ]
+      color: "#000000"
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  id: SpeedLoaderPistol40FMJ
+  name: "Speed loader (.38 Special FMJ)"
+  parent: BaseSpeedLoaderPistol40
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgePistol40FMJ
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: base-8
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: base-tip-8
+      map: [ "enum.GunVisualLayers.Tip" ]
+      color: "#B68F0E"
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  id: SpeedLoaderPistol40Incendiary
+  name: "Speed loader (.38 Special Incendiary)"
+  parent: BaseSpeedLoaderPistol40
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgePistol40Incendiary
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: base-8
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: base-tip-8
+      map: [ "enum.GunVisualLayers.Tip" ]
+      color: "#BFC8CA"
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  id: SpeedLoaderPistol40Uranium
+  name: "Speed loader (.38 Special Uranium)"
+  parent: BaseSpeedLoaderPistol40
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgePistol40Uranium
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: base-8
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: base-tip-8
+      map: [ "enum.GunVisualLayers.Tip" ]
+      color: "#65fe08"
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  id: SpeedLoaderPistol40AP
+  name: "Speed loader (.38 Special AP)"
+  parent: BaseSpeedLoaderPistol40
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgePistol40AP
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: base-8
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: base-tip-8
+      map: [ "enum.GunVisualLayers.Tip" ]
+      color: "#1A8C1A"
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  id: SpeedLoaderPistol40Practice
+  name: "Speed loader (.38 Special Practice)"
+  parent: BaseSpeedLoaderPistol40
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgePistol40Practice
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: base-8
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: base-tip-8
+      map: [ "enum.GunVisualLayers.Tip" ]
+      color: "#D86E2C"
+  - type: Appearance
+
+- type: entity
+  id: SpeedLoaderPistol40Rubber
+  name: "Speed loader (.38 Special Rubber)"
+  parent: BaseSpeedLoaderPistol40
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgePistol40Rubber
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: base-8
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: base-tip-8
+      map: [ "enum.GunVisualLayers.Tip" ]
+      color: "#43c4f7"
+  - type: Appearance

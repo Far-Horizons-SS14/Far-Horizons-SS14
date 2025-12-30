@@ -312,3 +312,134 @@
         - violet
         - red
         - gamma
+
+- type: entity
+  name: X-03 Plasmeric Bolt Shotgun
+  parent: [BaseWeaponBattery, BaseGunWieldable, BaseGrandTheftContraband, BaseSecurityContraband]
+  id: WeaponEnergyShotgun
+  description: Part of a series of self-recharging plasma weapon prototypes, this one is configured to act like a shotgun. It offers the possibility of both lethal and non-lethal shots, making it a versatile weapon. (Dev note, spread doesn't work on laser hitscan rn)
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/Battery/plasma_shotgun.rsi
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: stun
+        map: ["enum.FireModesLayers.FireMode"]
+      - state: stun-unshaded-4
+        map: ["enum.GunVisualLayers.MagUnshaded"]
+        shader: unshaded
+  - type: MagazineVisuals
+    magState: stun
+    steps: 5
+    zeroVisible: false
+  - type: Appearance
+  - type: Clothing
+    sprite: _FarHorizons/Objects/Weapons/Guns/Battery/plasma_shotgun.rsi
+  - type: Gun
+    fireRate: 1 # bring back to 2 when bullet spread is a thing
+    spread: 10
+    soundGunshot:
+      path: /Audio/_Starlight/Weapons/Energy/laser_shotgun.ogg
+      params:
+        variation: 0.07
+  - type: HitscanBatteryAmmoProvider
+    proto: BoltTaserSpread
+    fireCost: 200
+  - type: BatteryWeaponFireModes
+    fireModes:
+    - proto: BoltTaserSpread
+      fireCost: 200 # ~ 6 shots
+      visualState: stun
+      magState: stun
+      heldPrefix: stun
+    - proto: BoltPlasmaSpread
+      fireCost: 150 # ~ 8 shots 
+      visualState: lethal
+      magState: lethal
+      heldPrefix: lethal
+  - type: Item
+    size: Large
+    sprite: _FarHorizons/Objects/Weapons/Guns/Battery/plasma_shotgun_inhands_64x.rsi
+    heldPrefix: stun
+  - type: Tag
+    tags:
+    - HighRiskItem
+  - type: StealTarget
+    stealGroup: WeaponEnergyShotgun
+  - type: GunRequiresWield
+  - type: Battery
+    maxCharge: 1200
+    startingCharge: 1200
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 15
+
+- type: entity
+  name: Laser Shotgun
+  parent: [BaseWeaponBattery, BaseGunWieldable, BaseSecurityContraband]
+  id: WeaponLaserShotgun
+  description: A highly advanced riot control tool, it shares some similarities with the Kammerer series of firearms. It's main purpose is to provide a strong, disabling shocking force at close range but it can also be configured to fire lethal shots in an emergency. (Dev note, spread doesn't work on laser hitscan rn)
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/Battery/laser_shotgun.rsi
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: stun
+        map: ["enum.FireModesLayers.FireMode"]
+      - state: stun-unshaded-4
+        map: ["enum.GunVisualLayers.MagUnshaded"]
+        shader: unshaded
+  - type: MagazineVisuals
+    magState: stun
+    steps: 5
+    zeroVisible: false
+  - type: Appearance
+  - type: Clothing
+    sprite: _FarHorizons/Objects/Weapons/Guns/Battery/laser_shotgun.rsi
+  - type: Gun
+    fireRate: 1 # bring back to 2 when bullet spread is a thing
+    spread: 10
+    soundGunshot:
+      path: /Audio/_Starlight/Weapons/Energy/laser_shotgun.ogg
+      params:
+        variation: 0.07
+  - type: HitscanBatteryAmmoProvider
+    proto: BoltTaserSpread
+    fireCost: 200
+  - type: BatteryWeaponFireModes
+    fireModes:
+    - proto: BoltTaserSpread
+      fireCost: 300 # ~ 8 shots 
+      visualState: stun
+      magState: stun
+      heldPrefix: stun
+      conditions:
+      - !type:AlertLevelCondition
+        alertLevels:
+        - green
+        - blue
+        - violet
+        - yellow
+        - red
+        - gamma
+    - proto: RedLaserBeamSpread
+      fireCost: 150 # ~ 16 shots 
+      visualState: lethal
+      magState: lethal
+      heldPrefix: lethal
+      conditions:
+      - !type:AlertLevelCondition
+        alertLevels:
+        - violet
+        - red
+        - gamma
+  - type: Item
+    size: Large
+    sprite: _FarHorizons/Objects/Weapons/Guns/Battery/laser_shotgun_inhands_64x.rsi
+    heldPrefix: stun
+  - type: GunRequiresWield
+  - type: Battery
+    maxCharge: 2400
+    startingCharge: 2400

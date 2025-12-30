@@ -1,6 +1,6 @@
 - type: entity
   id: MagazinePistol40Incendiary
-  name: pistol magazine (.40 special incendiary)
+  name: Pistol magazine (.38 Special Incendiary)
   parent: MagazinePistol40Base
   components:
   - type: BallisticAmmoProvider
@@ -24,7 +24,7 @@
 
 - type: entity
   id: MagazinePistol40Practice
-  name: pistol magazine (.40 special practice)
+  name: Pistol magazine (.38 Special Practice)
   parent: MagazinePistol40Base
   description: 10-round single-stack magazine for pistols. Intended to hold non-harmful chalk ammunition.
   components:
@@ -49,7 +49,7 @@
 
 - type: entity
   id: MagazinePistol40Uranium
-  name: pistol magazine (.40 special uranium)
+  name: Pistol magazine (.38 Special Uranium)
   parent: MagazinePistol40Base
   description: 10-round single-stack magazine for pistols. Intended to hold exotic uranium-core ammunition.
   components:
@@ -74,7 +74,7 @@
 
 - type: entity
   id: MagazinePistol40Rubber
-  name: pistol magazine (.40 special rubber)
+  name: Pistol magazine (.38 Special Rubber)
   parent: MagazinePistol40Base
   components:
   - type: BallisticAmmoProvider
@@ -95,3 +95,86 @@
       - state: inhand-right-mag
       - state: inhand-right-stripe
         color: "#28E7DC"
+
+- type: entity
+  id: MagazinePistolDouble
+  name: "Double pistol magazine (.35)"
+  description: Just two pistol magazines side-by-side. Only fits in the Enforcinator.
+  parent: [BaseItem, BaseSecurityContraband]
+  components:
+  - type: Tag
+    tags:
+      - MagazinePistolDouble
+  - type: BallisticAmmoProvider
+    proto: null
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgePistol
+        - CartridgePistolImprovised
+    capacity: 21
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      right:
+      - state: inhand-right-mag
+    size: Small
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/enforcinator_mag.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 6
+    zeroVisible: false
+  - type: Appearance
+  - type: Construction
+    graph: DoublePistolMagazineGraph
+    node: shell
+
+- type: entity
+  id: MagazinePistolDoubleFilled
+  name: "Double pistol magazine (.35)"
+  suffix: Filled
+  parent: [BaseItem, BaseSecurityContraband]
+  components:
+  - type: Tag
+    tags:
+      - MagazinePistolDouble
+  - type: BallisticAmmoProvider
+    proto: CartridgePistolSP
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgePistol
+        - CartridgePistolImprovised
+    capacity: 21
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      right:
+      - state: inhand-right-mag
+    size: Small
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/enforcinator_mag.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 6
+    zeroVisible: false
+  - type: Appearance

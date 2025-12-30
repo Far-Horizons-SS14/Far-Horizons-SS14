@@ -1,0 +1,56 @@
+- type: constructionGraph
+  id: EnforcinatorGraph
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: shotgun
+      steps:
+      - tag: Enforcer
+        icon:
+          sprite: _FarHorizons/Objects/Weapons/Guns/Pistols/enforcer.rsi
+          state: icon
+        name: crafting-menu-name-Enforcer
+      - tag: Enforcer
+        icon:
+          sprite: _FarHorizons/Objects/Weapons/Guns/Pistols/enforcer.rsi
+          state: icon
+        name: crafting-menu-name-Enforcer
+      - tag: ModularReceiver
+        icon:
+          sprite: Objects/Misc/modular_receiver.rsi
+          state: icon
+        name: construction-graph-tag-modular-receiver
+      - tag: ModularReceiver
+        icon:
+          sprite: Objects/Misc/modular_receiver.rsi
+          state: icon
+        name: construction-graph-tag-modular-receiver
+      - material: Steel
+        amount: 4
+        doAfter: 15
+      - material: Plasteel
+        amount: 6
+        doAfter: 10
+      - tag: RifleStock
+        icon:
+          sprite: Objects/Misc/rifle_stock.rsi
+          state: icon
+        name: construction-graph-tag-rifle-stock
+      - tag: RifleStock
+        icon:
+          sprite: Objects/Misc/rifle_stock.rsi
+          state: icon
+        name: construction-graph-tag-rifle-stock
+      - tag: CombatKnife
+        icon:
+          sprite: Objects/Weapons/Melee/combat_knife.rsi
+          state: icon
+        name: crafting-menu-name-CombatKnife
+      - tag: CombatKnife
+        icon:
+          sprite: Objects/Weapons/Melee/combat_knife.rsi
+          state: icon
+        name: crafting-menu-name-CombatKnife
+  - node: shotgun
+    entity: UnfinishedEnforcinator
