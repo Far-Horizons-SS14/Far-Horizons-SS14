@@ -47,12 +47,6 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 600
-      behaviors:
-        - !type:DoActsBehavior
-          acts: [ "Destruction" ]
-    - trigger:
-        !type:DamageTrigger
         damage: 300
       behaviors:
       - !type:DoActsBehavior
@@ -391,6 +385,8 @@
       path: /Audio/Effects/Vehicle/carhorn.ogg
       params:
         volume: -3
+  - type: VehicleContainer
+    seats: 8
   - type: Sprite
     drawdepth: Mobs
     sprite: _FarHorizons/Objects/Vehicles/clown.rsi
@@ -411,7 +407,7 @@
   - type: ContainerContainer
     containers:
       key_slot: !type:ContainerSlot
-      entity_storage: !type:Container
+      passenger_slot: !type:Container
   - type: SolutionContainerManager
     solutions:
       fueltank:

@@ -40,6 +40,5 @@ public abstract partial class SharedVehicleSystems : EntitySystem
     {
         args.Handled = true;
         args.CanDrop = true;
-        Logger.Info("Weh");
     }
 }

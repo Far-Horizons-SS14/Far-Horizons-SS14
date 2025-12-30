@@ -5,6 +5,12 @@ using Content.Shared.Actions;
 namespace Content.Shared._FarHorizons.Vehicles;
 
 [Serializable, NetSerializable]
+public sealed partial class VehicleRemoveDoAfter : SimpleDoAfterEvent;
+
+[Serializable, NetSerializable]
+public sealed partial class VehicleEntryDoAfter : SimpleDoAfterEvent;
+
+[Serializable, NetSerializable]
 public sealed partial class VehicleUnbuckleDoAfter : SimpleDoAfterEvent;
 
 [Serializable, NetSerializable]
