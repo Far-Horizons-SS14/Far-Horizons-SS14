@@ -71,14 +71,20 @@
   components:
   - type: StorageFill
     contents:
-    - id: WeaponShotgunRiot
-      amount: 4
+    - id: WeaponShotgunKammerer5001
+      amount: 3
+    - id: WeaponShotgunEnforcer
+      amount: 1
     - id: WeaponPistolN1984
       amount: 4
     - id: SpeedLoaderMagnumBasic
-      amount: 8
+      amount: 6
     - id: SpeedLoaderShotgunBeanbag
-      amount: 4
+      amount: 3
+    - id: MagazineShotgun
+      amount: 2
+    - id: MagazineShotgunBeanbag
+      amount: 1
     - id: MagazineMagnum
       amount: 12
 
@@ -89,9 +95,9 @@
   components:
   - type: StorageFill
     contents:
-    - id: WeaponShotgunKammerer
+    - id: WeaponShotgunKammererCitadel
       amount: 4
-    - id: WeaponPistolEnforcer
+    - id: WeaponPistolMk58
       amount: 4
     - id: SpeedLoaderMagnumBasic
       amount: 8
@@ -109,11 +115,11 @@
   components:
   - type: StorageFill
     contents:
-    - id: WeaponShotgunKammerer
+    - id: WeaponShotgunKammererCitadel
       amount: 2
-    - id: WeaponShotgunRiot
+    - id: WeaponShotgunKammerer5001
       amount: 2
-    - id: WeaponPistolEnforcer
+    - id: WeaponPistolMk58
       amount: 2
     - id: WeaponPistolN1984
       amount: 2
@@ -159,7 +165,7 @@
     contents:
     - id: WeaponSubMachineGunSP91RC
       amount: 4
-    - id: WeaponPistolEnforcer
+    - id: WeaponPistolMk58
       amount: 4
     - id: MagazinePistolSubMachineGunSP
       amount: 8
@@ -182,7 +188,9 @@
     - id: WeaponSubMachineGunSP91RC
       amount: 2
     - id: WeaponPistolEnforcer
-      amount: 4
+      amount: 2
+    - id: WeaponPistolMk58
+      amount: 2
     - id: MagazinePistolSubMachineGunSP
       amount: 8
     - id: MagazinePistolSubMachineGunHP
@@ -203,7 +211,7 @@
     contents:
     - id: WeaponLaserCarbine
       amount: 4
-    - id: WeaponDominator
+    - id: WeaponLaserPistol
       amount: 4
 
 - type: entity
@@ -214,6 +222,30 @@
   - type: StorageFill
     contents:
     - id: WeaponLaserCarbine
+      amount: 2
+    - id: WeaponLaserPistol
+      amount: 2
+
+- type: entity
+  id: ShelfArmoryDominatorLargeFilled
+  parent: ShelfArmoryDominatorLarge
+  suffix: Sec Armory Med-Highpop, Filled
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponDominatorRifle
+      amount: 4
+    - id: WeaponDominator
+      amount: 4
+
+- type: entity
+  id: ShelfArmoryDominatorFilled
+  parent: ShelfArmoryDominator
+  suffix: Sec Armory Lowpop, Filled
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponDominatorRifle
       amount: 2
     - id: WeaponDominator
       amount: 2

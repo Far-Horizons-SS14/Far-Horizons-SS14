@@ -480,8 +480,8 @@
 - type: entity
   id: ShelfArmoryRiotShotgunLarge
   parent: ShelfArmoryBase
-  name: large riot shotgun rack
-  description: Holds four Riot Shotguns and N1984 Pistols.
+  name: Large Kammerer 5001 Rack
+  description: Holds three Kammerer 5001 Shotguns, one Sentinel Shotgun and four N1984 Pistols.
   components:
   - type: EntityStorageVisuals
     stateBaseClosed: shotguncase
@@ -526,13 +526,17 @@
         - RiotShotgun
         - CombatShotgun
         - SpeedLoaderShotgun
+        - ShotgunKammererCitadel
+        - ShotgunKammerer5001
+        - MagazineShotgun
+        - ShotgunSentinel
 
 # Armory - Krammer
 - type: entity
   id: ShelfArmoryKrammerLarge
   parent: ShelfArmoryBase
-  name: large krammer rack
-  description: Holds four high-quality Krammers and lesser-quality Enforcer Pistols.
+  name: Large Krammer Citadel Rack
+  description: Holds four high-quality Krammer Citadels and lesser-quality Enforcer Pistols.
   components:
   - type: EntityStorageVisuals
     stateBaseClosed: shotguncase
@@ -576,13 +580,14 @@
         - MagazineMagnum
         - WeaponShotgunKammerer
         - SpeedLoaderShotgun
+        - ShotgunKammererCitadel
 
 # Armory - Mixed Shotguns
 - type: entity
   id: ShelfArmoryMixedShotgun
   parent: ShelfArmoryBase
-  name: mixed shotgun rack
-  description: Holds two high-quality Krammers & Riot shotguns and two Enforcers & N1984s.
+  name: Mixed Shotgun Rack
+  description: Holds two high-quality Krammerer Citadels & Krammerer 5001 shotguns and two Enforcers & N1984s.
   components:
   - type: EntityStorageVisuals
     stateBaseClosed: shotguncase
@@ -628,6 +633,8 @@
         - RiotShotgun
         - CombatShotgun
         - SpeedLoaderShotgun
+        - ShotgunKammererCitadel
+        - ShotgunKammerer5001
 
 # Armory - Drozd
 - type: entity
@@ -786,7 +793,7 @@
   id: ShelfArmoryLaserLarge
   parent: ShelfArmoryBase
   name: large laser rack
-  description: Holds four standard-issue Laser Rifles and Dominator Pistols.
+  description: Holds four standard-issue Laser Rifles and Laser Pistols.
   components:
   - type: EntityStorageVisuals
     stateBaseClosed: shotguncase
@@ -832,7 +839,7 @@
   id: ShelfArmoryLaser
   parent: ShelfArmoryBase
   name: laser rack
-  description: Holds two standard-issue Laser Rifles and Dominator Pistols.
+  description: Holds two standard-issue Laser Rifles and Laser Pistols.
   components:
   - type: EntityStorageVisuals
     stateBaseClosed: shotguncase
@@ -867,3 +874,89 @@
       tags:
         - Sidearm
         - LaserRifle
+
+- type: entity
+  id: ShelfArmoryDominatorLarge
+  parent: ShelfArmoryBase
+  name: Large Dominator Rack
+  description: Holds four special-issue Dominator Rifles and Dominator Pistols.
+  components:
+  - type: EntityStorageVisuals
+    stateBaseClosed: shotguncase
+    stateDoorOpen: shotguncase_open
+    stateDoorClosed: shotguncase_door
+#  - type: Sprite
+#    sprite: _Afterlight/Structures/Storage/closet-large.rsi
+#    layers:
+#    - state: lasercase
+#      map: ["enum.StorageVisualLayers.Base"]
+#    - state: unlocked
+#      shader: unshaded
+#    - state: laser-0
+#    - map: ["enum.StorageFillLayers.Fill"]
+#    - state: closed
+#      map: ["enum.StorageVisualLayers.Door"]
+#    - state: locked
+#      map: ["enum.LockVisualLayers.Lock"]
+#      shader: unshaded
+#  - type: StorageFillVisualizer
+#    maxFillLevels: 5
+#    fillBaseName: laser
+  - type: Storage
+    grid:
+    - 0,0,1,3 #Long 1
+    - 3,0,4,3 #Long 2
+    - 6,0,7,3 #Long 3
+    - 9,0,10,3 #Long 4
+    - 0,5,1,5 #Pistol 1
+    - 0,6,0,6 #Pistol Bottom 1
+    - 3,5,4,5 #Pistol 2
+    - 3,6,3,6 #Pistol Bottom 2
+    - 6,5,7,5 #Pistol 3
+    - 6,6,6,6 #Pistol Bottom 3
+    - 9,5,10,5 #Pistol 4
+    - 9,6,9,6 #Pistol Bottom 4
+    whitelist:
+      tags:
+        - Sidearm
+        - Dominator
+
+- type: entity
+  id: ShelfArmoryDominator
+  parent: ShelfArmoryBase
+  name: Dominator Rack
+  description: Holds two special-issue Dominator Rifles and Dominator Pistols.
+  components:
+  - type: EntityStorageVisuals
+    stateBaseClosed: shotguncase
+    stateDoorOpen: shotguncase_open
+    stateDoorClosed: shotguncase_door
+#  - type: Sprite
+#    sprite: _Afterlight/Structures/Storage/closet.rsi
+#    layers:
+#    - state: lasercase
+#      map: ["enum.StorageVisualLayers.Base"]
+#    - state: unlocked
+#      shader: unshaded
+#    - state: laser-0
+#    - map: ["enum.StorageFillLayers.Fill"]
+#    - state: closed
+#      map: ["enum.StorageVisualLayers.Door"]
+#    - state: locked
+#      map: ["enum.LockVisualLayers.Lock"]
+#      shader: unshaded
+#  - type: StorageFillVisualizer
+#    maxFillLevels: 3
+#    fillBaseName: laser
+  - type: Storage
+    grid:
+    - 0,0,1,3 #Long 1
+    - 3,0,4,3 #Long 2
+    - 0,5,1,5 #Pistol 1
+    - 0,6,0,6 #Pistol Bottom 1
+    - 3,5,4,5 #Pistol 2
+    - 3,6,3,6 #Pistol Bottom 2
+    whitelist:
+      tags:
+        - Sidearm
+        - Dominator
