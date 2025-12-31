@@ -170,13 +170,14 @@
 #  - type: BallisticAmmoProvider
 #  - type: GunRequiresWield #remove when inaccuracy on spreads is fixed
 
-- type: entity
-  parent: WeaponShotgunEnforcer
-  id: WeaponShotgunSentielRubber
-  suffix: Non-Lethal
-  components:
-  - type: BallisticAmmoProvider
-    proto: ShellShotgunBeanbag
+# FH - Turned off because it broke shit
+#- type: entity
+#  parent: WeaponShotgunEnforcer
+#  id: WeaponShotgunSentielRubber
+#  suffix: Non-Lethal
+#  components:
+#  - type: BallisticAmmoProvider
+#    proto: ShellShotgunBeanbag
 
 - type: entity
   name: Kammerer
