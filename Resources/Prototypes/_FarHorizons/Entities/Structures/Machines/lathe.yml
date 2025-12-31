@@ -384,3 +384,51 @@
 #  - type: StealTarget #TODO: Figure out steal target stuff
 #    stealGroup: MedicalTechFabCircuitboard
   - type: OreSiloClient
+
+- type: entity
+  parent: BaseLathe
+  id: SyndicateUniformPrinter
+  name: Syndicate Uniform Printer
+  description: Prints new or replacement uniforms.
+  components:
+  - type: Transform
+    noRot: false
+  - type: Sprite
+    sprite: Structures/Machines/uniform_printer.rsi
+    snapCardinals: false
+    layers:
+    - state: icon
+      map: ["enum.LatheVisualLayers.IsRunning"]
+  - type: Machine
+    board: UniformPrinterMachineCircuitboard
+  - type: Lathe
+    producingSound: /Audio/Machines/uniformprinter.ogg
+    idleState: icon
+    runningState: building
+    staticPacks: #TODO: Uniform Packs
+    - ClothingCivilian
+    - ClothingCargo #should Syndicate have cargo clothing?
+    - ClothingSyndicateCommand
+    - ClothingEngineering
+    - ClothingMedical
+    - ClothingScience
+    - ClothingSecurity
+    - ClothingService
+    - WinterCoats
+    - Ties
+    - Scarves
+    - Carpets
+    - Bedsheets
+    dynamicPacks:
+    - StarlightUniformPrinterLootable
+#  - type: EmagLatheRecipes #TODO: EMGA
+#    emagStaticPacks:
+#    - ClothingCentComm
+#    - ClothingSyndie
+  - type: MaterialStorage
+    whitelist:
+      tags:
+        - Sheet
+        - RawMaterial
+        - Ingot
+  - type: OreSiloClient

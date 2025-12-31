@@ -145,3 +145,14 @@
           defaultPrototype: Beaker
 #    - type: StealTarget #TODO: Figure out steal target stuff
 #      stealGroup: MedicalTechFabCircuitboard
+
+- type: entity
+  id: SyndicateUniformPrinterMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: Syndicate Uniform Printer Machine Board
+  description: A machine printed circuit board for a Syndicate Unifrom Printer.
+  components:
+  - type: MachineBoard
+    prototype: SyndicateUniformPrinter
+    stackRequirements:
+      Manipulator: 3
