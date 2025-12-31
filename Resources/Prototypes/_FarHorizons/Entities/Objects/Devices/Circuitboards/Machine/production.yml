@@ -21,10 +21,7 @@
     stackRequirements:
       Manipulator: 3
       Glass: 1
-    tagRequirements:
-      Igniter:
-        amount: 1
-        defaultPrototype: Igniter
+      Cable: 10
 
 - type: entity
   id: ProtofabMachineCircuitboard
@@ -52,13 +49,99 @@
   - type: Sprite
     state: science
   - type: MachineBoard
-    prototype: ProtofabHyperConvection
+    prototype: ProtoProtofabSubzero
     stackRequirements:
       Manipulator: 4
+      Cable: 10
     tagRequirements:
       GlassBeaker:
         amount: 2
         defaultPrototype: Beaker
-      Igniter:
-        amount: 1
-        defaultPrototype: Igniter
+
+- type: entity
+  id: BoardEngraverMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: Board Engraver Machine Board
+  components:
+  - type: Sprite
+    state: science
+  - type: MachineBoard
+    prototype: BoardEngraver
+    stackRequirements:
+      Manipulator: 2
+    tagRequirements:
+      GlassBeaker:
+        amount: 2
+        defaultPrototype: Beaker
+
+- type: entity
+  parent: BaseMachineCircuitboard
+  id: BoardEngraverSubzeroMachineCircuitboard
+  name: Subzero Board Engraver Machine Board
+  description: A machine printed circuit board for a Subzero Board Engraver.
+  components:
+  - type: Sprite
+    state: science
+  - type: MachineBoard
+    prototype: BoardEngraverSubzero
+    stackRequirements:
+      Manipulator: 2
+      Cable: 10
+    tagRequirements:
+      GlassBeaker:
+        amount: 2
+        defaultPrototype: Beaker
+
+- type: entity
+  id: CybersunAssemblerMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: Cybersun Assembler Machine Board
+  components:
+  - type: Sprite
+    state: science
+  - type: MachineBoard
+    prototype: CybersunAssembler
+    stackRequirements:
+      Manipulator: 4
+      Glass: 5
+  - type: GuideHelp
+    guides:
+    - Robotics
+
+- type: entity
+  id: OverwatchTechFabCircuitboard
+  parent: BaseMachineCircuitboard
+  name: Overwatch TechFab Machine Board
+  description: A machine printed circuit board for an Overwatch TechFab.
+  components:
+    - type: Sprite
+      state: security
+    - type: MachineBoard
+      prototype: OverwatchTechFab
+      stackRequirements:
+        Manipulator: 4
+      tagRequirements:
+        GlassBeaker:
+          amount: 2
+          defaultPrototype: Beaker
+
+#Ammotechfab isnt needed yet
+
+- type: entity
+  id: InterdyneTechFabCircuitboard
+  parent: BaseMachineCircuitboard
+  name: Interdyne Techfab Machine Board
+  description: A machine printed circuit board for an Interdyne Techfab.
+  components:
+    - type: Sprite
+      state: medical
+    - type: MachineBoard
+      prototype: InterdyneTechFab
+      stackRequirements:
+        Manipulator: 4
+      tagRequirements:
+        GlassBeaker:
+          amount: 2
+          defaultPrototype: Beaker
+#    - type: StealTarget #TODO: Figure out steal target stuff
+#      stealGroup: MedicalTechFabCircuitboard

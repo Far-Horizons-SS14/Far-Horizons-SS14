@@ -45,8 +45,8 @@
     unlitIdleState: unlit
     unlitRunningState: unlit-building
     staticPacks:
-    - ToolsStatic
-    - PartsStatic
+    - ToolsStatic 
+    - PartsStatic 
     - AtmosStatic
     - CablesStatic
     - PaperworkStatic
@@ -62,7 +62,7 @@
     - StarlightAutolatheLootable
 #  - type: EmagLatheRecipes
 #    emagStaticPacks:
-    #NEEDS SYNDICATE EMAG RECIPIES
+    #NEEDS SYNDICATE EMAG RECIPIES, 
   - type: BlueprintReceiver
     whitelist:
       tags:
@@ -122,34 +122,34 @@
     unlitRunningState: unlit-building
     staticPacks:
     - ChemistryStatic
-    dynamicPacks: #TODO: Syndicate Packs
-    - AdvancedTools
-    - ScienceEquipment
-    - ScienceExplosives
-    - ScienceClothing
-    - PowerCells
-    - ScienceWeapons
-    - Mining
-    - AtmosTools
-    - EngineeringWeapons
-    - Chemistry
-    - Janitor
-    - Instruments
-    - Equipment
-    - StarlightProtolatheLootable
-  - type: EmagLatheRecipes
-    emagDynamicPacks: #TODO: EMAG
-    - StarlightSurgeryDynamic
-    - StarlightCyberlimbDynamic
-    - StarlightCyberOrgansDynamic
-    - StarlightImplantDynamic
-    - StarlightBudgetCyberOrgansDynamic
-
-    - StarlightSecurityAmmoDynamic
-    - StarlightSecurityExplosives
-    - StarlightSecurityEquipment
-    - StarlightSecurityWeapons
-    - StarlightDefenseStatic
+#    dynamicPacks: #TODO: Syndicate Dynamic Packs, need to know what will be researchable
+#    - AdvancedTools
+#    - ScienceEquipment
+#    - ScienceExplosives
+#    - ScienceClothing
+#    - PowerCells
+#    - ScienceWeapons
+#    - Mining
+#    - AtmosTools
+#    - EngineeringWeapons
+#    - Chemistry
+#    - Janitor
+#    - Instruments
+#    - Equipment
+#    - StarlightProtolatheLootable
+#  - type: EmagLatheRecipes
+#    emagDynamicPacks: #TODO: EMAG
+#    - StarlightSurgeryDynamic
+#    - StarlightCyberlimbDynamic
+#    - StarlightCyberOrgansDynamic
+#    - StarlightImplantDynamic
+#    - StarlightBudgetCyberOrgansDynamic
+#
+#    - StarlightSecurityAmmoDynamic
+#    - StarlightSecurityExplosives
+#    - StarlightSecurityEquipment
+#    - StarlightSecurityWeapons
+#    - StarlightDefenseStatic
 
 - type: entity
   id: ProtofabSubzero
@@ -158,6 +158,229 @@
   description: A highly-experimental Protofab that harnesses the power of extreme Cold to slowly create objects more cost-effectively.
   components:
   - type: Sprite
-    sprite: Structures/Machines/protolathe_hypercon.rsi
+    sprite: Structures/Machines/protolathe_hypercon.rsi #TODO: CUSTOM SPRITE
   - type: Machine
     board: ProtofabSubzeroMachineCircuitboard
+
+- type: entity
+  id: BoardEngraver
+  parent: BaseLatheLube
+  name: Board Engraver
+  description: Prints circuit boards for machines.
+  components:
+  - type: Sprite
+    sprite: Structures/Machines/circuit_imprinter.rsi #TODO: CUSTOM SPRITE
+    snapCardinals: true
+    layers:
+    - state: icon
+      map: ["enum.LatheVisualLayers.IsRunning"]
+    - state: unlit
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: Machine
+    board: BoardEngraverMachineCircuitboard
+  - type: Lathe
+    producingSound: /Audio/Machines/circuitprinter.ogg #TODO: CUSTOM SOUND
+    idleState: icon
+    runningState: building
+    staticPacks:
+    - SyndicateScienceBoardsStatic
+    - SyndicateServiceBoardsStatic
+    - CargoBoardsStatic
+    - MedicalBoardsStatic
+    - EngineeringBoardsStatic
+#    - StarlightVendorBoards #TODO: Figure out what to do with all the vending machines
+#    dynamicPacks: #TODO: RESEARCHABLE BOARD PACKS
+#    - EngineeringBoards
+#    - CargoBoards
+#    - MedicalBoards
+#    - ServiceBoards
+#    - ScienceBoards
+#    - CameraBoards
+#    - MechBoards
+#    - ShuttleBoards
+#    - StarlightMechBoards
+#    - StarlightLawboards
+#    - StarlightCircuitImprinterLootable
+#    - ReactorCircuitboards
+#  - type: EmagLatheRecipes
+#    emagDynamicPacks: #TODO: EMAG SEC BOARDS
+#    - StarlightSecurityBoards
+#    emagStaticPacks:               TOOD: EMAG LAWBOARDS
+#    - StarlightDangerousLawboards
+#    - StarlightSyndicateVendorBoards
+  - type: MaterialStorage
+    whitelist:
+      tags:
+        - Sheet
+        - RawMaterial
+        - Ingot
+  - type: OreSiloClient
+  - type: RequireProjectileTarget
+
+- type: entity
+  id: BoardEngraverSubzero
+  parent: [BoardEngraver, BaseSubzerofab]
+  name: Subzero BoardEngraver
+  description: A highly-experimental circuit imprinter that harnesses the power of extreme heat to slowly create objects more cost-effectively.
+  components:
+  - type: Sprite
+    sprite: Structures/Machines/circuit_imprinter_hypercon.rsi
+  - type: Machine
+    board: CircuitImprinterHyperConvectionMachineCircuitboard
+  - type: MaterialStorage
+    whitelist:
+      tags:
+        - Sheet
+        - RawMaterial
+        - Ingot
+
+- type: entity #UNFINISHED
+  id: CybersunAssembler
+  parent: BaseLatheLube
+  name: Cybersun Assembler
+  description: Creates parts for robotics and other mechanical needs.
+  components:
+  - type: Sprite
+    sprite: Structures/Machines/exosuit_fabricator.rsi #TOOD: CUSTOM SPRITE
+    layers:
+    - state: fab-idle
+      map: ["enum.LatheVisualLayers.IsRunning"]
+    - state: fab-load
+      map: ["enum.MaterialStorageVisualLayers.Inserting"]
+    - state: fab-o
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: Machine
+    board: CybersunAssemblerMachineCircuitboard
+  - type: Lathe
+    idleState: fab-idle
+    runningState: fab-active
+    staticPacks:
+    - RoboticsStatic
+    - BorgModulesStatic
+    - BorgLimbsStatic
+#    dynamicPacks: #TODO
+#    - Robotics
+#    - BorgModules
+#    - MechParts
+#    - MechEquipment
+#    - StarlightMechEquipment
+#    - StarlightSecurityMechs
+#    - StarlightMechParts
+#  - type: EmagLatheRecipes #TODO: EMAG STATIC
+#    emagStaticPacks:
+#    - StarlightMechWeapon
+#    - StarlightSyndicateModules
+  - type: MaterialStorage
+    whitelist:
+      tags:
+      - Sheet
+      - RawMaterial
+      - Ingot
+  - type: OreSiloClient
+  - type: GuideHelp
+    guides:
+    - Robotics
+
+- type: entity
+  id: OverwatchTechFab
+  parent: BaseLatheLube
+  name: Overwatch Techfab
+  description: Prints equipment for use by Overwatch crew.
+  components:
+  - type: Sprite
+    sprite: Structures/Machines/techfab.rsi #TODO: CUSTOM SPRITE, Might be fine for a bit cus sec is diffrent color
+    layers:
+    - state: icon
+      map: ["enum.LatheVisualLayers.IsRunning"]
+    - state: sec
+    - state: unlit
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+    - state: inserting
+      map: ["enum.MaterialStorageVisualLayers.Inserting"]
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: Machine
+    board: OverwatchTechFabCircuitboard
+  - type: Lathe
+    idleState: icon
+    runningState: icon
+#    staticPacks: #TODO SEC PACKS
+#    - SecurityEquipmentStatic
+#    - SecurityPracticeStatic
+#    - StarlightSecurityAmmoStatic
+#    - SecurityDisablers
+#    - StarlightSecurityAmmoEmagStatic
+#    - SecurityWeaponsStatic
+#    dynamicPacks:
+#    - SalvageSecurityBoards
+#    - SalvageSecurityWeapons
+#    - StarlightDefenseStatic
+#    - StarlightSecurityEquipment
+#    - StarlightSecurityBoards
+#    - StarlightSecurityExplosives
+#    - StarlightSecurityAmmoDynamic
+#    - StarlightSecurityWeapons
+#    - SecurityCyberLimbs
+#    - StarlightSecurityMechsWeapons
+#    - FarHorizonsSecBorgRecipePack
+#  - type: EmagLatheRecipes
+#    emagStaticPacks:
+#    - StarlightSyndicateModulesSecfab
+  - type: MaterialStorage
+    whitelist:
+      tags:
+        - Sheet
+        - RawMaterial
+        - Ingot
+  - type: OreSiloClient
+
+#Ammotechfab isnt needed yet
+
+- type: entity
+  id: InterdyneTechFab
+  parent: BaseLatheLube
+  name: Interdyne Techfab
+  description: Prints equipment for use by the medbay.
+  components:
+  - type: Sprite
+    sprite: Structures/Machines/techfab.rsi #TODO: CUSTOM SPRITE
+    layers:
+    - state: icon
+      map: ["enum.LatheVisualLayers.IsRunning"]
+    - state: med
+    - state: unlit
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+    - state: inserting
+      map: ["enum.MaterialStorageVisualLayers.Inserting"]
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: Lathe
+    idleState: icon
+    runningState: icon
+    staticPacks:
+    - TopicalsStatic
+    - ChemistryStatic
+    - MedicalStatic
+    - RollerBedsStatic
+    - MedicalClothingStatic
+    - EmptyMedkitsStatic
+    - StarlightMedicalStatic
+#    dynamicPacks: #TODO: MEDICAL DYNAMIC PACKS
+#    - StarlightSurgeryDynamic
+#    - StarlightCyberlimbDynamic
+#    - StarlightCyberOrgansDynamic
+#    - StarlightImplantDynamic
+#    - Chemistry
+#    - StarlightBudgetCyberOrgansDynamic
+#    - FarHorizonsMedContainersDynamic
+#    - FarHorizonsMedSyringeDynamic
+  - type: Machine
+    board: MedicalTechFabCircuitboard
+#  - type: StealTarget #TODO: Figure out steal target stuff
+#    stealGroup: MedicalTechFabCircuitboard
+  - type: OreSiloClient
