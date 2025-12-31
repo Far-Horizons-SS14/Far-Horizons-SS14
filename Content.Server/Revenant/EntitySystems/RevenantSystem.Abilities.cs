@@ -151,11 +151,8 @@ public sealed partial class RevenantSystem
         }
 
         // Starlight start
-        if (TryComp(target, out SSDIndicatorComponent? SSDComp) && HasComp<SleepingComponent>(target))
-        {
-            if (SSDComp!.IsSSD)
-                return;
-        }
+        if (TryComp(target, out SSDIndicatorComponent? SSDComp) && HasComp<SleepingComponent>(target) && SSDComp!.IsSSD)
+            return;
         // Starlight end
 
         if (_physics.GetEntitiesIntersectingBody(uid, (int)CollisionGroup.Impassable).Count > 0)

@@ -93,10 +93,8 @@ public sealed class SSDIndicatorSystem : EntitySystem
     /// <returns>True if succesful</returns>
     public bool TrySSD(EntityUid uid, SSDIndicatorComponent? comp)
     {
-        if (comp == null)
-            return false;
-
-        if (comp.IsSSD)
+        if (comp == null 
+            || comp.IsSSD)
             return false;
 
         comp.IsSSD = true;
@@ -119,10 +117,8 @@ public sealed class SSDIndicatorSystem : EntitySystem
     /// <returns>True if succesful</returns>
     public bool TryRemoveSSD(EntityUid uid, SSDIndicatorComponent? comp)
     {
-        if (comp == null)
-            return false;
-
-        if (!comp.IsSSD)
+        if (comp == null 
+            || !comp.IsSSD)
             return false;
 
         comp.IsSSD = false;
