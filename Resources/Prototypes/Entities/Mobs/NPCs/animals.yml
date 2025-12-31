@@ -1752,7 +1752,7 @@
     allowedEmotes: ['Squeak']
   - type: Sprite
     drawdepth: SmallMobs
-    sprite: Mobs/Animals/mouse.rsi
+    sprite: _Starlight/Mobs/Animals/mouse.rsi
     layers:
     - map: ["enum.DamageStateVisualLayers.Base", "movement"]
       state: mouse-0
@@ -1816,7 +1816,7 @@
       Critical:
         Base: dead-0
       Dead:
-        Base: splat-0
+        Base: dead-0
   - type: Edible
   - type: FlavorProfile
     flavors:
