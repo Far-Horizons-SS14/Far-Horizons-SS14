@@ -40,6 +40,10 @@ using Content.Shared.Interaction.Components;
 using Content.Shared._FarHorizons.VehicleContainer.Components;
 using Content.Shared.DragDrop;
 using Content.Shared.Verbs;
+using Content.Shared.Destructible;
+using Content.Shared.Damage;
+using Content.Shared.Whitelist;
+using Robust.Shared.Containers;
 
 namespace Content.Server._FarHorizons.Vehicle;
 
@@ -64,6 +68,8 @@ public sealed partial class VehicleSystems : SharedVehicleSystems
     [Dependency] private readonly IGameTiming _gameTiming = default!;
     [Dependency] private readonly SharedVirtualItemSystem _virtualItem = default!;
     [Dependency] private readonly SharedContainerSystem _container = default!;
+    [Dependency] private readonly DamageableSystem _damageable = default!;
+    [Dependency] private readonly EntityWhitelistSystem _whitelist = default!;
 
     private static readonly ProtoId<TagPrototype> _vehicleKeyTag = "VehicleKey";
     private EntityQuery<ProjectileComponent> _projQuery;
@@ -92,6 +98,9 @@ public sealed partial class VehicleSystems : SharedVehicleSystems
         SubscribeLocalEvent<VehicleContainerComponent, VehicleEntryDoAfter>(OnVehicleEntryDoAfter);
         SubscribeLocalEvent<VehicleContainerComponent, VehicleRemoveDoAfter>(OnVehicleRemoveDoAfter);
         SubscribeLocalEvent<VehicleContainerComponent, GetVerbsEvent<AlternativeVerb>>(OnAlternativeVerb);
+        SubscribeLocalEvent<VehicleContainerComponent, DestructionEventArgs>(OnDestruction);
+        SubscribeLocalEvent<VehicleContainerComponent, DamageChangedEvent>(OnDamageChanged);
+        SubscribeLocalEvent<VehicleContainerComponent, EntInsertedIntoContainerMessage>(OnEntInserted);
 
         SubscribeLocalEvent<RiderComponent, BeingPulledAttemptEvent>(OnPullAttempt);
         SubscribeLocalEvent<RiderComponent, StunnedEvent>(OnStunned);
@@ -336,10 +345,7 @@ public sealed partial class VehicleSystems : SharedVehicleSystems
     private void OnStrapped(Entity<VehicleBuckleComponent> ent, ref StrappedEvent args)
     {
         if(!TryComp<VehicleComponent>(ent, out var vehicleComp)) return;
-        if(vehicleComp.Rider == null)
-        {
-            SetUpRider(args.Buckle.Owner, ent.Owner, vehicleComp);
-        }
+        SetUpRider(args.Buckle.Owner, ent.Owner, vehicleComp);
     }
 
     private void OnUnstrapAttempt(Entity<VehicleBuckleComponent> ent, ref UnstrapAttemptEvent args)
@@ -388,14 +394,14 @@ public sealed partial class VehicleSystems : SharedVehicleSystems
             return;
         if(!TryComp<VehicleComponent>(uid, out var vehicleComp)) return; 
 
-        if (CanInsert(uid, args.User, component))
+        if (CanInsert(uid, component) && !component.PassengerSlot.ContainedEntities.Contains(args.User))
         {
             var enterVerb = new AlternativeVerb
             {
                 Text = "Enter Vehicle",
                 Act = () =>
                 {
-                    var doAfterEventArgs = new DoAfterArgs(EntityManager, args.User, component.EntryTime, new VehicleEntryDoAfter(), uid, target: uid)
+                    var doAfterEventArgs = new DoAfterArgs(EntityManager, args.User, component.EntryTime, new VehicleEntryDoAfter(), uid, target: args.User)
                     {
                         BreakOnMove = true,
                     };
@@ -405,7 +411,7 @@ public sealed partial class VehicleSystems : SharedVehicleSystems
             };
             args.Verbs.Add(enterVerb);
         }
-        else if(component.Passengers.Any(x => x == args.User))
+        else if(component.PassengerSlot.ContainedEntities.Contains(args.User))
         {
             var exitVerb = new AlternativeVerb
             {
@@ -420,7 +426,7 @@ public sealed partial class VehicleSystems : SharedVehicleSystems
             args.Verbs.Add(exitVerb);
         }
         
-        if(component.Passengers.Count != 0 && component.Passengers.Any(x => x != args.User))
+        if(component.PassengerSlot.ContainedEntities.Count != 0 && !component.PassengerSlot.ContainedEntities.Contains(args.User))
         {
             var removeVerb = new AlternativeVerb
             {
@@ -444,9 +450,9 @@ public sealed partial class VehicleSystems : SharedVehicleSystems
         if(args.Handled) return;
         args.Handled = true;
 
-        if(!CanInsert(ent.Owner, args.Dragged, ent.Comp)) return;
+        if(!CanInsert(ent.Owner, ent.Comp)) return;
 
-        var doAfterEventArgs = new DoAfterArgs(EntityManager, args.Dragged, ent.Comp.EntryTime, new VehicleEntryDoAfter(), ent.Owner, target: ent.Owner)
+        var doAfterEventArgs = new DoAfterArgs(EntityManager, args.User, ent.Comp.EntryTime, new VehicleEntryDoAfter(), ent.Owner, target: args.Dragged)
         {
             BreakOnMove = true,
         };
@@ -460,12 +466,9 @@ public sealed partial class VehicleSystems : SharedVehicleSystems
             return;
 
         if(!TryComp<VehicleComponent>(ent, out var vehicleComp)) return;
-        if(!TryInsert(args.Args.User, ent.Owner, ent.Comp)) return;
+        if(!TryInsert(args.Args.Target, ent.Owner, ent.Comp)) return;
 
-        if(vehicleComp.Rider == null)
-        {
-            SetUpRider(args.Args.User, ent.Owner, vehicleComp);
-        }
+        SetUpRider(args.Args.Target!.Value, ent.Owner, vehicleComp);
 
         args.Handled = true;
     }
@@ -476,14 +479,50 @@ public sealed partial class VehicleSystems : SharedVehicleSystems
             return;
         
         if(!TryComp<VehicleComponent>(ent, out var vehicleComp)) return;
-        if(vehicleComp.Rider != null)
-        {
-            RemoveRider(ent.Comp.Passengers.First(), ent.Owner, vehicleComp);
-        }
+        RemoveRider(ent.Comp.PassengerSlot.ContainedEntities.First(), ent.Owner, vehicleComp);
         
-        if(!TryRemove(ent.Comp.Passengers.First(), ent.Owner, ent.Comp)) return;
+        if(!TryRemove(ent.Comp.PassengerSlot.ContainedEntities.First(), ent.Owner, ent.Comp)) return;
 
         args.Handled = true;
+    }
+
+    private void OnDestruction(EntityUid ent, VehicleContainerComponent component, DestructionEventArgs args)
+    {
+        if(component.PassengerSlot.ContainedEntities.Count != 0)
+        {
+            foreach(var passengers in component.PassengerSlot.ContainedEntities.ToArray())
+            {
+                if(TryComp<VehicleComponent>(ent, out var vehicleComp))
+                {
+                    RemoveRider(passengers, ent, vehicleComp);
+                }
+                TryRemove(passengers, ent, component);
+            }
+        }
+    }
+
+    private void OnDamageChanged(EntityUid ent, VehicleContainerComponent component, DamageChangedEvent args)
+    {
+        if (args.DamageIncreased &&
+            args.DamageDelta != null &&
+            component.PassengerSlot.ContainedEntities.Count != 0)
+        {
+            var damage = (args.DamageDelta * component.DamageTransferMultiplier) / component.PassengerSlot.ContainedEntities.Count;
+            foreach(var passenger in component.PassengerSlot.ContainedEntities)
+            {
+                _damageable.TryChangeDamage(passenger, damage);
+            }
+        }
+    }
+
+    private void OnEntInserted(EntityUid ent, VehicleContainerComponent component, EntInsertedIntoContainerMessage args)
+    {
+        if(_whitelist.IsWhitelistFail(component.PassengerWhitelist, args.Entity))
+        {
+            if(HasComp<RiderComponent>(args.Entity) && TryComp<VehicleComponent>(ent, out var vehicleComp))
+                RemoveRider(args.Entity, ent, vehicleComp);
+            _container.Remove(args.Entity, component.PassengerSlot);
+        }
     }
 
     #endregion
@@ -623,6 +662,8 @@ public sealed partial class VehicleSystems : SharedVehicleSystems
         EnsureComp<RiderComponent>(rider);
         Comp<RiderComponent>(rider).Riding = vehicle;
 
+        if(_whitelist.IsWhitelistFail(vehicleComp.RiderWhitelist, rider)) return;
+        if(vehicleComp.Rider != null) return;
         _mover.SetRelay(rider, vehicle);
         vehicleComp.Rider = rider;
         Dirty(vehicle, vehicleComp);
@@ -649,6 +690,8 @@ public sealed partial class VehicleSystems : SharedVehicleSystems
             RemComp<RelayInputMoverComponent>(rider);
         if(HasComp<RiderComponent>(rider))
             RemComp<RiderComponent>(rider);
+            
+        if(rider != vehicleComp.Rider) return;
         vehicleComp.Rider = null;
         _actionBlocker.UpdateCanMove(rider);
         _actions.RemoveProvidedActions(rider, vehicle);
@@ -686,21 +729,20 @@ public sealed partial class VehicleSystems : SharedVehicleSystems
         if(Rider == null)
             return false;
                 
-        if (!CanInsert(Vehicle, Rider.Value, component))
+        if (!CanInsert(Vehicle, component))
             return false;
 
-        component.Passengers.Add(Rider.Value);
         _container.Insert(Rider.Value, component.PassengerSlot);
         Dirty(Rider.Value, component);
         return true;
     }
 
-    public bool CanInsert(EntityUid uid, EntityUid toInsert, VehicleContainerComponent? component = null)
+    public bool CanInsert(EntityUid uid, VehicleContainerComponent? component = null)
     {
         if (!Resolve(uid, ref component))
             return false;
 
-        return component.PassengerSlot.ContainedEntities.Count() < component.Seats && _actionBlocker.CanMove(toInsert);
+        return component.PassengerSlot.ContainedEntities.Count() < component.Seats;
     }
 
     private bool TryRemove(EntityUid? Rider, EntityUid Vehicle, VehicleContainerComponent? component=null)
@@ -711,7 +753,6 @@ public sealed partial class VehicleSystems : SharedVehicleSystems
         if(Rider == null)
             return false;
 
-        component.Passengers.Remove(Rider.Value);
         _container.Remove(Rider.Value, component.PassengerSlot);
         Dirty(Rider.Value, component);
         return true;

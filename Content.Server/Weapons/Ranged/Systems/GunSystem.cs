@@ -58,6 +58,8 @@ using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using static Content.Server.Starlight.TextToSpeech.TTSManager;
 using Content.Shared.Atmos.Components;
+using Content.Shared._FarHorizons.VehicleContainer.Components;
+using Content.Shared._FarHorizons.Vehicles.Components;
 
 namespace Content.Server.Weapons.Ranged.Systems;
 
@@ -261,6 +263,8 @@ public sealed partial class GunSystem : SharedGunSystem
                     var lastUser = user ?? gunUid;
                     if (user != null && TryComp<MechPilotComponent>(user.Value, out var pilotA)) // Startlight-edit
                         lastUser = pilotA.Mech;
+                    if (user != null && TryComp<RiderComponent>(user.Value, out var vehicleA) && vehicleA.Riding != null)
+                        lastUser = vehicleA.Riding.Value;
 
                     if (hitscan.Reflective != ReflectType.None)
                     {
@@ -492,6 +496,8 @@ public sealed partial class GunSystem : SharedGunSystem
 
             if (user != null && TryComp<MechPilotComponent>(user.Value, out var pilotB)) // Startlight-edit
                 lastUser = pilotB.Mech;
+            if (user != null && TryComp<RiderComponent>(user.Value, out var vehicleB) && vehicleB.Riding != null)
+                lastUser = vehicleB.Riding.Value;
 
             hitHashSet.Clear();
             hitHashSet.Add(lastUser);

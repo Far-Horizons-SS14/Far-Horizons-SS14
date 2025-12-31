@@ -1,5 +1,6 @@
 using Robust.Shared.GameStates;
 using Robust.Shared.Containers;
+using Content.Shared.Whitelist;
 
 namespace Content.Shared._FarHorizons.VehicleContainer.Components;
 
@@ -25,12 +26,6 @@ public sealed partial class VehicleContainerComponent : Component
     public TimeSpan RemoveTime = TimeSpan.FromSeconds(1.5);
 
     /// <summary>
-    /// The uid of all the passengers
-    /// </summary>
-    [DataField]
-    public List<EntityUid> Passengers = new();
-
-    /// <summary>
     /// The slot the passengers are stored in
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite)]
@@ -38,4 +33,14 @@ public sealed partial class VehicleContainerComponent : Component
 
     [ViewVariables]
     public readonly string PassengerSlotId = "passenger_slot";
+
+    /// <summary>
+    /// Basically what portion of the damage done to the vehicle is transferred to the passengers
+    /// Take into account this multiplier will also be divided across all the passengers so 20% damage will be 5% to each passenger if there is 4 passengers
+    /// </summary>
+    [DataField("damageTransfer"), ViewVariables(VVAccess.ReadWrite)]
+    public float DamageTransferMultiplier = 0.5f;
+
+    [DataField]
+    public EntityWhitelist? PassengerWhitelist;
 }

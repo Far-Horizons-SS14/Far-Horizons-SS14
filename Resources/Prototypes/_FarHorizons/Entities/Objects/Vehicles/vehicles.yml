@@ -42,19 +42,18 @@
     fuelCost: 20
   - type: Damageable
     damageContainer: StructuralInorganic
-    damageModifierSet: StructuralMetallic
+    damageModifierSet: Metallic
   - type: Destructible
     thresholds:
     - trigger:
         !type:DamageTrigger
         damage: 300
       behaviors:
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
       - !type:PlaySoundBehavior
         sound:
-          collection: MetalGlassBreak
-      - !type:ExplodeBehavior
+          collection: MetalBreak
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
 
 - type: entity
   id: VehicleWheelchair
@@ -79,6 +78,9 @@
       requireIgnition: false 
       baseState: wheelchair
       handsNeeded: 0
+      riderWhitelist:
+        components:
+          - HumanoidAppearance
     - type: VehicleBuckle
       unbuckletime: 1
       dismountonstun: true
@@ -101,7 +103,7 @@
           shape:
             !type:PhysShapeCircle
             radius: 0.2
-          density: 360
+          density: 50
           restitution: 0.0
           mask:
             - MobMask
@@ -138,6 +140,9 @@
     baseState: vehicle
     startupTime: 2
     handsNeeded: 1
+    riderWhitelist:
+      components:
+        - HumanoidAppearance
   - type: VehicleBuckle
     unbuckletime: 2
     dismountonstun: true
@@ -164,7 +169,7 @@
         shape:
           !type:PhysShapeCircle
           radius: 0.4
-        density: 360
+        density: 100
         restitution: 0.0
         mask:
         - MobMask
@@ -254,6 +259,9 @@
       path: /Audio/Effects/Vehicle/carhorn.ogg
       params:
         volume: -3
+    riderWhitelist:
+      components:
+        - HumanoidAppearance
   - type: VehicleBuckle
     unbuckletime: 2
     dismountonstun: true
@@ -385,12 +393,18 @@
       path: /Audio/Effects/Vehicle/carhorn.ogg
       params:
         volume: -3
+    riderWhitelist:
+      components:
+        - HumanoidAppearance
   - type: VehicleContainer
     seats: 8
+    passengerWhitelist:
+      components:
+        - Body
   - type: Sprite
     drawdepth: Mobs
     sprite: _FarHorizons/Objects/Vehicles/clown.rsi
-    scale: 1.5, 1.5
+    scale: 0.75, 0.75
     layers:
     - state: clowncar
       map: ["enum.VehicleVisualLayers.AutoAnimate"]
@@ -443,9 +457,23 @@
         shape:
           !type:PhysShapeCircle
           radius: 0.4
-        density: 360
+        density: 1000
         restitution: 0.0
         mask:
-        - LargeMobMask
+        - MobMask
         layer:
-        - LargeMobLayer
+        - MobLayer
+
+- type: entity
+  id: VehicleClownCarFueled
+  parent: VehicleClownCar
+  suffix: Fueled
+  components: 
+    - type: ContainerContainer
+    - type: SolutionContainerManager
+      solutions:
+        fueltank:
+          reagents:
+          - ReagentId: WeldingFuel
+            Quantity: 150
+          maxVol: 150

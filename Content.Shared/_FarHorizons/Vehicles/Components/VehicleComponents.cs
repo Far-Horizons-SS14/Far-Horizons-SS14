@@ -1,6 +1,7 @@
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Audio;
+using Content.Shared.Whitelist;
 
 namespace Content.Shared._FarHorizons.Vehicles.Components;
 
@@ -81,6 +82,9 @@ public sealed partial class VehicleComponent : Component
     /// </summary>
     [DataField]
     public SoundSpecifier? HornSound;
+
+    [DataField]
+    public EntityWhitelist? RiderWhitelist;
 
     [DataField, AutoNetworkedField]
     public string? BaseState;
