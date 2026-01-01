@@ -10,6 +10,7 @@ using Content.Shared.Bed.Sleep;
 using Content.Shared._Starlight.SSDIndicator.Events;
 using Content.Shared.DoAfter;
 using Content.Shared.Movement.Events;
+using Content.Shared.Starlight.CryoTeleportation;
 // Starlight-end
 
 namespace Content.Shared.SSDIndicator;
@@ -149,6 +150,9 @@ public sealed class SSDIndicatorSystem : EntitySystem
             comp.FallAsleepTime = TimeSpan.Zero;
             _statusEffects.TryRemoveStatusEffect(uid, StatusEffectSSDSleeping);
         }
+
+        if (TryComp<TargetCryoTeleportationComponent>(uid, out var cryoTeleport) && cryoTeleport.TimeDelay > TimeSpan.FromSeconds(0))
+            cryoTeleport.TimeDelay = TimeSpan.FromSeconds(0); // Reset time delay to 0.
 
         Dirty(uid, comp);
         return true;

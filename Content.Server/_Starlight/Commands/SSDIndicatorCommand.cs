@@ -2,6 +2,7 @@ using Content.Server.GameTicking;
 using Content.Shared.Administration;
 using Content.Shared.GameTicking;
 using Robust.Shared.Console;
+using Content.Shared.Starlight.CryoTeleportation;
 
 namespace Content.Shared.SSDIndicator;
 
@@ -53,6 +54,10 @@ public sealed class SSDIndicatorCommand : IConsoleCommand
         if (!_entities.System<SSDIndicatorSystem>().TrySSD((EntityUid)player.AttachedEntity!, indicatorComponent))
         {
             shell.WriteLine(Loc.GetString("ssd-indicator-command-denied"));
+            return;
         }
+
+        if (_entities.TryGetComponent(player.AttachedEntity, out TargetCryoTeleportationComponent? cryoTeleport))
+            cryoTeleport.TimeDelay = TimeSpan.FromMinutes(10); // Delay cryo teleportation for 10 minutes.
     }
 }
