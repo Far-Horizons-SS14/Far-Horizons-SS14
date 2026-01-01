@@ -1,11 +1,16 @@
-using Content.Shared.Bed.Sleep; // Starlight-edit
 using Content.Shared.CCVar;
-using Content.Shared.Movement.Events; // Starlight-edit
 using Content.Shared.StatusEffectNew;
 using Robust.Shared.Configuration;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
+
+// Starlight-start
+using Content.Shared.Bed.Sleep;
+using Content.Shared._Starlight.SSDIndicator.Events;
+using Content.Shared.DoAfter;
+using Content.Shared.Movement.Events;
+// Starlight-end
 
 namespace Content.Shared.SSDIndicator;
 
@@ -20,6 +25,7 @@ public sealed class SSDIndicatorSystem : EntitySystem
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly StatusEffectsSystem _statusEffects = default!;
     [Dependency] private readonly SleepingSystem _sleep = default!; // Starlight
+    [Dependency] private readonly SharedDoAfterSystem _doAfter = default!; // Starlight
 
     private bool _icSsdSleep;
     private float _icSsdSleepTime;
@@ -31,6 +37,7 @@ public sealed class SSDIndicatorSystem : EntitySystem
         SubscribeLocalEvent<SSDIndicatorComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<SSDIndicatorComponent, MoveInputEvent>(OnMoveInput); // Starlight
         SubscribeLocalEvent<SSDIndicatorComponent, WakeActionEvent>(OnWakeAction); // Starlight
+        SubscribeLocalEvent<SSDIndicatorComponent, SSDTryDoAfterEvent>(OnSSDTry); // Starlight
 
         _cfg.OnValueChanged(CCVars.ICSSDSleep, obj => _icSsdSleep = obj, true);
         _cfg.OnValueChanged(CCVars.ICSSDSleepTime, obj => _icSsdSleepTime = obj, true);
@@ -39,7 +46,7 @@ public sealed class SSDIndicatorSystem : EntitySystem
     // Starlight start
     private void OnPlayerAttached(EntityUid uid, SSDIndicatorComponent component, PlayerAttachedEvent args) => TryRemoveSSD(uid, component);
 
-    private void OnPlayerDetached(EntityUid uid, SSDIndicatorComponent component, PlayerDetachedEvent args) => TrySSD(uid, component);
+    private void OnPlayerDetached(EntityUid uid, SSDIndicatorComponent component, PlayerDetachedEvent args) => TrySSD(uid, component, force: true);
 
     private void OnMoveInput(EntityUid uid, SSDIndicatorComponent comp, MoveInputEvent args) => TryRemoveSSD(uid, comp);
 
@@ -84,32 +91,47 @@ public sealed class SSDIndicatorSystem : EntitySystem
 
     #region Starlight
 
+    private void OnSSDTry(EntityUid uid, SSDIndicatorComponent component, SSDTryDoAfterEvent args) => SSD(uid, component);
+
     /// <summary>
-    /// STARLIGHT
     /// Attempts to set the entity as SSD.
     /// </summary>
     /// <param name="uid"></param>
     /// <param name="comp"></param>
     /// <returns>True if succesful</returns>
-    public bool TrySSD(EntityUid uid, SSDIndicatorComponent? comp)
+    public bool TrySSD(EntityUid uid, SSDIndicatorComponent? comp, bool force = false)
     {
         if (comp == null 
             || comp.IsSSD)
             return false;
 
-        comp.IsSSD = true;
+        if (!force)
+        {
+            var doAfter = new DoAfterArgs(EntityManager, uid, TimeSpan.FromSeconds(10), new SSDTryDoAfterEvent(), uid)
+            {
+                BreakOnMove = true,
+            };
+            _doAfter.TryStartDoAfter(doAfter);
+        }
+        else
+            SSD(uid, comp);
 
-        if (_icSsdSleep)
-            comp.FallAsleepTime = _timing.CurTime + TimeSpan.FromSeconds(_icSsdSleepTime);
-
-        _sleep.TrySleeping(uid);
-
-        Dirty(uid, comp);
         return true;
     }
 
+    private void SSD(EntityUid uid, SSDIndicatorComponent component)
+    {
+        component.IsSSD = true;
+
+        if (_icSsdSleep)
+            component.FallAsleepTime = _timing.CurTime + TimeSpan.FromSeconds(_icSsdSleepTime);
+
+        _sleep.TrySleeping(uid);
+
+        Dirty(uid, component);
+    }
+
     /// <summary>
-    /// STARLIGHT
     /// Attempts to remove the SSD condition from the entity.
     /// </summary>
     /// <param name="uid"></param>
