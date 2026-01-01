@@ -96,8 +96,7 @@ public sealed class SSDIndicatorSystem : EntitySystem
     /// <summary>
     /// Attempts to set the entity as SSD.
     /// </summary>
-    /// <param name="uid"></param>
-    /// <param name="comp"></param>
+    /// <param name="force">bypasses doAfter.</param>
     /// <returns>True if succesful</returns>
     public bool TrySSD(EntityUid uid, SSDIndicatorComponent? comp, bool force = false)
     {
@@ -135,8 +134,6 @@ public sealed class SSDIndicatorSystem : EntitySystem
     /// <summary>
     /// Attempts to remove the SSD condition from the entity.
     /// </summary>
-    /// <param name="uid"></param>
-    /// <param name="comp"></param>
     /// <returns>True if succesful</returns>
     public bool TryRemoveSSD(EntityUid uid, SSDIndicatorComponent? comp)
     {
