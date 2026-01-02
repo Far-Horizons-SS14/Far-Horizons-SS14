@@ -37,15 +37,6 @@ public sealed partial class CCVars
     public static readonly CVarDef<bool> OutlineEnabled =
         CVarDef.Create("outline.enabled", true, CVar.CLIENTONLY);
 
-    // Starlight Begin
-    /// <summary>
-    /// A newline-separated list of saved labels for the hand labeler tool
-    /// </summary>
-    public static readonly CVarDef<string> HandLabelerSavedLabels =
-        CVarDef.Create("interface.hand_labeler_saved_labels", "", CVar.CLIENTONLY | CVar.ARCHIVE);
-
-    // Starlight End
-    
     /// <summary>
     /// Determines how antagonist status/roletype is displayed. Based on AdminOverlayAntagFormats enum
     /// Binary: Roletypes of interest get an "ANTAG" label
