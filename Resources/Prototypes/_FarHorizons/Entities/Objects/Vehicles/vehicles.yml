@@ -53,7 +53,13 @@
         sound:
           collection: MetalBreak
       - !type:DoActsBehavior
-        acts: ["Destruction"]
+        acts: ["Breakage"]
+      - !type:SolutionExplosionBehavior
+        solution: fueltank
+      - !type:EmptyContainersBehaviour
+        containers:
+        - passenger_slot
+        - storagebase
 
 - type: entity
   id: VehicleWheelchair
@@ -242,13 +248,15 @@
   - type: RandomMetadata
     descriptionSegments: [DescriptionsATV]
   - type: MovementSpeedModifier
-    baseWalkSpeed: 10
+    baseWalkSpeed: 7.5
     baseSprintSpeed: 15
   - type: Vehicle
-    acceleration: 2
+    acceleration: 4
     friction: 4.5
     frictionNoInput: 4.5
-    requireIgnition: true 
+    requireIgnition: true
+    allowCrashing: true
+    crashingSpeed: 10 
     baseState: vehicle
     startupTime: 2
     startUp: 
@@ -266,8 +274,6 @@
     unbuckletime: 2
     dismountonstun: true
     dismountonknockdown: true
-    ejectOnCrash: true
-    ejectionSpeed: 12
     northOffset: "0, -0.12"
     southOffset: "0, -0.12"
     eastOffset: "0, -0.2"
@@ -376,13 +382,15 @@
   description: What sort of horrors lie within...
   components:
   - type: MovementSpeedModifier
-    baseWalkSpeed: 10
+    baseWalkSpeed: 7.5
     baseSprintSpeed: 15
   - type: Vehicle
-    acceleration: 2
+    acceleration: 4
     friction: 4.5
-    frictionNoInput: 4.5
+    frictionNoInput: 2
     requireIgnition: true 
+    allowCrashing: true
+    crashingSpeed: 10 
     baseState: clowncar
     startupTime: 2
     startUp: 
@@ -417,11 +425,13 @@
           requireAll: true
           tags:
           - VehicleKey
-          - ATVKeys
+          - ClowncarKeys
   - type: ContainerContainer
     containers:
       key_slot: !type:ContainerSlot
       passenger_slot: !type:Container
+      storagebase: !type:Container
+        ents: []
   - type: SolutionContainerManager
     solutions:
       fueltank:
@@ -463,6 +473,29 @@
         - MobMask
         layer:
         - MobLayer
+  - type: UserInterface
+    interfaces:
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 300
+    intensitySlope: 5
+    maxIntensity: 8
+    canCreateVacuum: false
+  - type: Storage
+    grid:
+    - 0,0,9,4
+    maxItemSize: Huge
+    openOnActivate: false
+    clickInsert: false
+  - type: UseDelay
+    delay: 0.5
+  - type: LockedStorage
+  - type: Lock
+    locked: true
+    showLockVerbs: false
+    unlockOnClick: false
 
 - type: entity
   id: VehicleClownCarFueled
@@ -477,3 +510,20 @@
           - ReagentId: WeldingFuel
             Quantity: 150
           maxVol: 150
+
+- type: entity
+  id: VehicleClownCarFueledwithKeys
+  parent: VehicleClownCar
+  suffix: Fueled, Keys
+  components: 
+    - type: SolutionContainerManager
+      solutions:
+        fueltank:
+          reagents:
+          - ReagentId: WeldingFuel
+            Quantity: 150
+          maxVol: 150
+    - type: ContainerFill
+      containers:
+        key_slot:
+        - VehicleKeyClowncar

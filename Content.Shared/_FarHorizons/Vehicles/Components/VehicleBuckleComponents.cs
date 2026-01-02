@@ -25,18 +25,6 @@ public sealed partial class VehicleBuckleComponent : Component
     /// </summary>
     [DataField("dismountonknockdown"), AutoNetworkedField]
     public bool knockdowndismount = true;
-
-    /// <summary>
-    /// Should knockdowns dismount the driver?
-    /// </summary>
-    [DataField("ejectOnCrash"), AutoNetworkedField]
-    public bool ejectOnCrash = false;
-
-    /// <summary>
-    /// Minimum Speed required to eject the driver in case of collision 
-    /// </summary>
-    [DataField("ejectionSpeed"), AutoNetworkedField]
-    public float SpeedToEjectOnCrash = 6;
     
     /// <summary>
     /// What the buckle offset is used for north

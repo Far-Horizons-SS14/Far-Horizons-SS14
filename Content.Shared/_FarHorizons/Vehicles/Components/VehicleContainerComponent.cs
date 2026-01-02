@@ -36,7 +36,7 @@ public sealed partial class VehicleContainerComponent : Component
 
     /// <summary>
     /// Basically what portion of the damage done to the vehicle is transferred to the passengers
-    /// Take into account this multiplier will also be divided across all the passengers so 20% damage will be 5% to each passenger if there is 4 passengers
+    /// take into account this multiplier will also be divided across all the passengers so 20% damage will be 5% to each passenger if there is 4 passengers
     /// </summary>
     [DataField("damageTransfer"), ViewVariables(VVAccess.ReadWrite)]
     public float DamageTransferMultiplier = 0.5f;

@@ -72,6 +72,18 @@ public sealed partial class VehicleComponent : Component
     public Direction? currentDirection;
 
     /// <summary>
+    /// Trigger crash?
+    /// </summary>
+    [DataField("allowCrashing"), AutoNetworkedField]
+    public bool AllowCrashing = false;
+
+    /// <summary>
+    /// Crashing speed if enabled
+    /// </summary>
+    [DataField("crashingSpeed"), AutoNetworkedField]
+    public float CrashingSpeed = 6;
+
+    /// <summary>
     /// Sound played whenever the vehicle is started
     /// </summary>
     [DataField]
@@ -98,4 +110,9 @@ public sealed partial class VehicleComponent : Component
     public EntProtoId TurnKeysAction = "ActionTurnKeys";
     
     [DataField, AutoNetworkedField] public EntityUid? TurnKeysActionEntity;
+
+    [DataField, AutoNetworkedField]
+    public EntProtoId ToggleTrunkAction = "ActionToggleTrunk";
+    
+    [DataField, AutoNetworkedField] public EntityUid? ToggleTrunkActionEntity;
 }

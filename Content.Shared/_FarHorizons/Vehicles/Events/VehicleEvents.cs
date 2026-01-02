@@ -21,3 +21,4 @@ public sealed partial class EjectKeysDoAfter : SimpleDoAfterEvent;
 
 public sealed partial class TurnKeysEvent : InstantActionEvent;
 public sealed partial class HornActionEvent : InstantActionEvent;
+public sealed partial class ToggleTrunkActionEvent : InstantActionEvent;
