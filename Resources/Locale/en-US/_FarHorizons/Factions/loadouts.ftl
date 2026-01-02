@@ -57,6 +57,7 @@ loadout-group-le-outerclothing = Law Enforcer Outer Clothing
 loadout-group-mo-head = Medical Officer Hat
 loadout-group-mo-uniform = Medical Officer Uniform
 loadout-group-mo-outerclothing = Medical Officer Outer Clothing
+loadout-group-mo-backpack = Medical Officer Backpack
 loadout-group-mo-gloves = Medical Officer Gloves
 loadout-group-mo-belt = Medical Officer Belt
 

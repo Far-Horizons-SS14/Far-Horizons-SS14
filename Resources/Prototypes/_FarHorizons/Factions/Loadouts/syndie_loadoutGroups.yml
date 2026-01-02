@@ -215,6 +215,15 @@
     - SecMedVisorSyndi
 
 - type: loadoutGroup
+  id: SecurityBackpackSyndi
+  name: loadout-group-security-backpack
+  loadouts:
+  - SecBackpackSyndi
+  - SecDuffelSyndi
+  - SecSatchelSyndi
+  - LeatherSatchel
+
+- type: loadoutGroup
   id: SecurityBeltSyndi
   name: loadout-group-security-belt
   loadouts:
@@ -386,6 +395,15 @@
   minLimit: 0
   loadouts:
     - MOArmoredMedGown
+
+- type: loadoutGroup
+  id: MedicalOfficerBackpack
+  name: loadout-group-mo-backpack
+  loadouts:
+  - MOBackpack
+  - MODuffel
+  - MOSatchel
+  - LeatherSatchel
 
 - type: loadoutGroup
   id: MOGloves
