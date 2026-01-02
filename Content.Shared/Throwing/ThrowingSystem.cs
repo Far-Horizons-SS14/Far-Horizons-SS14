@@ -1,4 +1,5 @@
 using System.Numerics;
+using Content.Shared._FarHorizons.Vehicles.Components;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Camera;
 using Content.Shared.CCVar;
@@ -226,9 +227,16 @@ public sealed class ThrowingSystem : EntitySystem
             _recoil.KickCamera(user.Value, -direction * 0.04f);
 
         // Give thrower an impulse in the other direction
+        //FarHorizons Start
+        var pushbackTarget = user.Value;
+        if(TryComp<RiderComponent>(pushbackTarget, out var riderComp))
+            if(riderComp.Riding != null)
+                pushbackTarget = riderComp.Riding.Value;
+        //FarHorizons End
+
         if (pushbackRatio == 0.0f ||
             physics.Mass == 0f ||
-            !TryComp(user.Value, out PhysicsComponent? userPhysics))
+            !TryComp(pushbackTarget, out PhysicsComponent? userPhysics)) //FarHorizons
             return;
         var msg = new ThrowPushbackAttemptEvent();
         RaiseLocalEvent(uid, msg);
@@ -237,10 +245,10 @@ public sealed class ThrowingSystem : EntitySystem
             return;
 
         var pushEv = new ThrowerImpulseEvent();
-        RaiseLocalEvent(user.Value, ref pushEv);
+        RaiseLocalEvent(pushbackTarget, ref pushEv); //FarHorizons
         const float massLimit = 5f;
 
         if (pushEv.Push)
-            _physics.ApplyLinearImpulse(user.Value, -impulseVector / physics.Mass * pushbackRatio * MathF.Min(massLimit, physics.Mass), body: userPhysics);
+            _physics.ApplyLinearImpulse(pushbackTarget, -impulseVector / physics.Mass * pushbackRatio * MathF.Min(massLimit, physics.Mass), body: userPhysics); //FarHorizons
     }
 }

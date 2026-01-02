@@ -103,13 +103,14 @@ public sealed partial class GhostThemeWindow : DefaultWindow
         {
             var toolTipText = "";
 
-            if (ghostTheme.Requirement != null && _prototypeManager.TryIndex(ghostTheme.Requirement, out var req))
-            {
-                toolTipText = Loc.GetString(
-                    "roles-req-any-role-required",
-                    ("discord", Loc.GetString(req.Discord)),
-                    ("roles", Loc.GetString(req.RolesLoc)));
-            }
+            // Far Horizons - commented out for now
+            // if (ghostTheme.Requirement != null && _prototypeManager.TryIndex(ghostTheme.Requirement, out var req))
+            // {
+            //     toolTipText = Loc.GetString(
+            //         "roles-req-any-role-required",
+            //         ("discord", Loc.GetString(req.Discord)),
+            //         ("roles", Loc.GetString(req.RolesLoc)));
+            // }
 
             var ghostPicker = new GhostPicker(_sprites,
                 ghostTheme.SpriteSpecifier.Sprite,

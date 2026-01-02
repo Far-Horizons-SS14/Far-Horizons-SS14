@@ -36,6 +36,7 @@ using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using Content.Shared.VentCraw;
 using Content.Shared.Mech.Components; // Startlight-edit
+using Content.Shared._FarHorizons.Vehicles.Components; //FarHorizons
 
 namespace Content.Shared.Weapons.Ranged.Systems;
 
@@ -582,13 +583,22 @@ public abstract partial class SharedGunSystem : EntitySystem
 
     public void CauseImpulse(EntityCoordinates fromCoordinates, EntityCoordinates toCoordinates, EntityUid user, PhysicsComponent userPhysics)
     {
+        var userId = user;
+        var userPhys = userPhysics;
+        if(TryComp<RiderComponent>(userId, out var riderComp))
+        {
+            if(riderComp.Riding != null)
+                userId =  riderComp.Riding.Value;
+            if(TryComp<PhysicsComponent>(userId, out var vehiclePhys))
+                userPhys = vehiclePhys;
+        }
         var fromMap = TransformSystem.ToMapCoordinates(fromCoordinates).Position;
         var toMap = TransformSystem.ToMapCoordinates(toCoordinates).Position;
         var shotDirection = (toMap - fromMap).Normalized();
 
         const float impulseStrength = 25.0f;
         var impulseVector =  shotDirection * impulseStrength;
-        Physics.ApplyLinearImpulse(user, -impulseVector, body: userPhysics);
+        Physics.ApplyLinearImpulse(userId, -impulseVector, body: userPhys);
     }
 
     public void RefreshModifiers(Entity<GunComponent?> gun)

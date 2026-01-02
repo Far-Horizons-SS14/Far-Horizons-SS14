@@ -1,31 +1,7 @@
-    
-
-## Syndicate Station
-
-
-- type: entity
-  parent: ClothingHandsBase
-  id: ClothingHandsGlovesHopSyndi
-  name: papercut-proof gloves
-  description: Perfect for dealing with paperwork and matters with bureaucracy.
-  components:
-  - type: Sprite
-    sprite: _FarHorizons/Clothing/Hands/Gloves/syndihop.rsi #Far Horizons
-  - type: Clothing
-    sprite: _FarHorizons/Clothing/Hands/Gloves/syndihop.rsi #Far Horizons
-  - type: Fiber
-    fiberMaterial: fibers-durathread
-    fiberColor: fibers-black
-  - type: Armor
-    modifiers:
-      coefficients:
-        Slash: 0.95
-  - type: FingerprintMask
-
 - type: entity
   parent: ClothingHandsGlovesSyntheticBase
   id: ClothingHandsGlovesCargo
-  name: cargo gloves
+  name: Cargo Gloves
   description: Some nice padded gloves for moving items between crates over extended periods of time.
   components:
   - type: Sprite
@@ -46,4 +22,25 @@
     - id: MaterialCloth1
       amount: 1
   - type: Fiber
+    fiberColor: fibers-black  
+
+#region Syndicate
+
+- type: entity
+  parent: ClothingHandsBase
+  id: ClothingHandsGlovesHopSyndi
+  name: Papercut-Proof Gloves
+  description: Perfect for dealing with paperwork and matters with bureaucracy.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Hands/Gloves/syndihop.rsi #Far Horizons
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Hands/Gloves/syndihop.rsi #Far Horizons
+  - type: Fiber
+    fiberMaterial: fibers-durathread
     fiberColor: fibers-black
+  - type: Armor
+    modifiers:
+      coefficients:
+        Slash: 0.95
+  - type: FingerprintMask

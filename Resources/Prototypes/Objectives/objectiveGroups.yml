@@ -15,6 +15,7 @@
     CMOHyposprayStealObjective: 1
     CMOCrewMonitorStealObjective: 1
     RDHardsuitStealObjective: 1
+    #ClothingHeadHatGuardianStealObjective: 1 #Far Horizons - Syndicate Steal
     NukeDiskStealObjective: 1
     MagbootsStealObjective: 1
     CorgiMeatStealObjective: 1
@@ -74,6 +75,7 @@
     FigurineStealCollectionObjective: 0.3          #service
     IDCardsStealCollectionObjective: 1
     LAMPStealCollectionObjective: 0.1                   #only for moth, weight decreased cause boring and insanely easy
+    ReactorFuelRodStealCollectionObjective: 1 #Reactor ##Far Horizons 
 
 - type: weightedRandom
   id: ThiefObjectiveGroupItem
@@ -84,6 +86,7 @@
     ForensicScannerStealObjective: 1                    #sec
     FlippoEngravedLighterStealObjective: 0.5
     ClothingHeadHatWardenStealObjective: 1
+    #ClothingHeadHatGuardianStealObjective: 1 #Far Horizons - Syndicate Steal
     WantedListCartridgeStealObjective: 1
     Proto5xStealObjective: 1        # Starlight // HoS Gun
     ClothingOuterHardsuitVoidParamedStealObjective: 1   #med
@@ -96,6 +99,8 @@
     BibleStealObjective: 1
     ClothingNeckGoldmedalStealObjective: 1              #other
     ClothingNeckClownmedalStealObjective: 0.5
+    BrigmedicBedsheetStealObjective: 1 #FarHorizon StealObj
+
 - type: weightedRandom
   id: ThiefObjectiveGroupStructure
   weights:
@@ -109,6 +114,7 @@
     AltarNanotrasenStealObjective: 1
     PlantRDStealObjective: 1
     ToiletGoldenStealObjective: 1
+    VehicleSecwayStealObjective: 1 #FarHorizon Vehicles
 
 - type: weightedRandom
   id: ThiefObjectiveGroupAnimal

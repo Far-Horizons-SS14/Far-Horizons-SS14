@@ -3951,5 +3951,391 @@ Entries:
   id: 52402
   time: '2025-12-22T04:08:05.000000+00:00'
   url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/524
+- author: CorruptOmega
+  changes:
+  - message: NanoTrasen has updated their network firewalls so that Netrunners can
+      no longer interact with everything on station.
+    type: Tweak
+  id: 52700
+  time: '2025-12-24T09:42:26.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/527
+- author: jhrushbe
+  changes:
+  - message: Added the gas turbine monitor.
+    type: Add
+  id: 52600
+  time: '2025-12-27T11:57:41.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/526
+- author: jhrushbe
+  changes:
+  - message: Added the ability to recycle nuclear reactor parts at 50% efficiency.
+    type: Add
+  id: 52601
+  time: '2025-12-27T11:57:41.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/526
+- author: jhrushbe
+  changes:
+  - message: Added more variants of the nuclear reactor that come exclusive to the
+      salvage dungeon.
+    type: Add
+  id: 52602
+  time: '2025-12-27T11:57:41.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/526
+- author: jhrushbe
+  changes:
+  - message: Added a second tab to the gas turbine's UI that shows statistics on the
+      parts within the turbine.
+    type: Add
+  id: 52603
+  time: '2025-12-27T11:57:41.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/526
+- author: jhrushbe
+  changes:
+  - message: Added a holoprojector that blocks radiation.
+    type: Add
+  id: 52604
+  time: '2025-12-27T11:57:41.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/526
+- author: jhrushbe
+  changes:
+  - message: Nuclear reactor prefabs are now defined as prototypes rather than consts.
+    type: Tweak
+  id: 52605
+  time: '2025-12-27T11:57:41.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/526
+- author: jhrushbe
+  changes:
+  - message: Melted nuclear reactors now look melted when spawned.
+    type: Tweak
+  id: 52606
+  time: '2025-12-27T11:57:41.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/526
+- author: jhrushbe
+  changes:
+  - message: The nuclear reactor can now show temperatures in kelvin as well.
+    type: Tweak
+  id: 52607
+  time: '2025-12-27T11:57:41.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/526
+- author: jhrushbe
+  changes:
+  - message: The nuclear reactor parts are now capable of being a fuel rod, gas channel,
+      and control rod at the same time.
+    type: Tweak
+  id: 52608
+  time: '2025-12-27T11:57:41.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/526
+- author: jhrushbe
+  changes:
+  - message: The nuclear reactor monitor's connection range has been greatly extended.
+    type: Tweak
+  id: 52609
+  time: '2025-12-27T11:57:41.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/526
+- author: jhrushbe
+  changes:
+  - message: Fixed a bug where a melted-down nuclear reactor's UI could still be opened.
+    type: Fix
+  id: 52610
+  time: '2025-12-27T11:57:41.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/526
+- author: jhrushbe
+  changes:
+  - message: Potentially fixed a bug where a melted-down nuclear reactor would use
+      ammonia to cut holes in space-time.
+    type: Fix
+  id: 52611
+  time: '2025-12-27T11:57:41.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/526
+- author: jhrushbe
+  changes:
+  - message: Fixed a bug where the input/output lights of a nuclear reactor would
+      not shut off after meltdown.
+    type: Fix
+  id: 52612
+  time: '2025-12-27T11:57:41.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/526
+- author: jhrushbe
+  changes:
+  - message: Fixed a bug where the nuclear reactor and gas turbine were capable of
+      being placed in ways that broke pipe logic.
+    type: Fix
+  id: 52613
+  time: '2025-12-27T11:57:41.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/526
+- author: jhrushbe
+  changes:
+  - message: Fixed a floating point error in the nuclear reactor's UI.
+    type: Fix
+  id: 52614
+  time: '2025-12-27T11:57:41.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/526
+- author: jhrushbe
+  changes:
+  - message: Fixed the nuclear reactor being unable to effectively transfer gas due
+      to undersized outlet.
+    type: Fix
+  id: 52615
+  time: '2025-12-27T11:57:41.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/526
+- author: jhrushbe
+  changes:
+  - message: Fixed a bug where CO2 had no effect on the nuclear reactor.
+    type: Fix
+  id: 52616
+  time: '2025-12-27T11:57:41.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/526
+- author: jhrushbe
+  changes:
+  - message: Fixed a bug where the nuclear reactor's UI showed the control rod level
+      from the previous tick.
+    type: Fix
+  id: 52617
+  time: '2025-12-27T11:57:41.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/526
+- author: jhrushbe
+  changes:
+  - message: Fixed an issue with the nuclear reactor's sound for control rods moving.
+    type: Fix
+  id: 52618
+  time: '2025-12-27T11:57:41.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/526
+- author: jhrushbe
+  changes:
+  - message: Fixed a bug where the nuclear reactor monitor had no collision.
+    type: Fix
+  id: 52619
+  time: '2025-12-27T11:57:41.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/526
+- author: jhrushbe
+  changes:
+  - message: Fixed a bug where disconnecting a device from a nuclear reactor/gas turbine
+      caused the port to get stuck on the last transmitted state.
+    type: Fix
+  id: 52620
+  time: '2025-12-27T11:57:41.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/526
+- author: jhrushbe
+  changes:
+  - message: Fixed a bug where the nuclear reactor monitor would not connect on map
+      init.
+    type: Fix
+  id: 52621
+  time: '2025-12-27T11:57:41.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/526
+- author: jhrushbe
+  changes:
+  - message: Fixed a bug where the nuclear reactor monitor would not disconnect from
+      a nuclear reactor regardless of distance.
+    type: Fix
+  id: 52622
+  time: '2025-12-27T11:57:41.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/526
+- author: jhrushbe
+  changes:
+  - message: Fixed a typo in the nuclear materials list.
+    type: Fix
+  id: 52623
+  time: '2025-12-27T11:57:41.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/526
+- author: AthenaAI
+  changes:
+  - message: Legs Paralyzed disability you won't be able to stand up and will be only
+      able to crawl unless you are on a wheelchair.
+    type: Add
+  id: 52900
+  time: '2025-12-27T15:24:16.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/529
+- author: AthenaAI
+  changes:
+  - message: Wheelchairs slightly slower acceleration but you are about as fast a
+      standard person.
+    type: Add
+  id: 52901
+  time: '2025-12-27T15:24:16.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/529
+- author: AthenaAI
+  changes:
+  - message: Secway a new standard of transport for security requires at least a hand
+      to manage properly and uses batteries to charge. It makes you twice as fast
+      while burning only a fifth of your donut calories. Comes with a medium battery
+      for a 10 minute lifespan.
+    type: Add
+  id: 52902
+  time: '2025-12-27T15:24:16.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/529
+- author: AthenaAI
+  changes:
+  - message: ATV a new fun toy for the station requires both hands to manage properly.
+      It has extremely high speed but a collision at high speeds will mean you being
+      ejected and launched against a wall. Requires welding fuel lasts 10 minutes
+      on a full tank.
+    type: Add
+  id: 52903
+  time: '2025-12-27T15:24:16.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/529
+- author: FAR HORIZONS TEAM
+  changes:
+  - message: Added Set Mind Job debug option.
+    type: Add
+  id: 53100
+  time: '2025-12-27T16:01:09.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/531
+- author: FAR HORIZONS TEAM
+  changes:
+  - message: Added Pacifism Bypass permission.
+    type: Add
+  id: 53101
+  time: '2025-12-27T16:01:09.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/531
+- author: FAR HORIZONS TEAM
+  changes:
+  - message: Senior roles, eventmins, and CC personnel now have Pacifism Bypass.
+    type: Tweak
+  id: 53102
+  time: '2025-12-27T16:01:09.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/531
+- author: FAR HORIZONS TEAM
+  changes:
+  - message: Alpha testers' ghost themes are now available for alpha testers (basically
+      everyone currently).
+    type: Tweak
+  id: 53103
+  time: '2025-12-27T16:01:09.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/531
+- author: FAR HORIZONS TEAM
+  changes:
+  - message: Removed other ghost themes, we should make our own ones instead.
+    type: Remove
+  id: 53104
+  time: '2025-12-27T16:01:09.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/531
+- author: AthenaAI
+  changes:
+  - message: You can no longer use latent psionics to remove riders or steal keys
+      from vehicles if they move away.
+    type: Fix
+  id: 53400
+  time: '2025-12-29T21:36:14.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/534
+- author: AthenaAI
+  changes:
+  - message: Virtual items not making you drop your things if you didn't have empty
+      hands.
+    type: Fix
+  id: 53401
+  time: '2025-12-29T21:36:14.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/534
+- author: AthenaAI
+  changes:
+  - message: Secway steal objective. Good Luck Agent.
+    type: Add
+  id: 53402
+  time: '2025-12-29T21:36:14.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/534
+- author: AthenaAI
+  changes:
+  - message: Reactor Rods or Brigmedic's musically inclined bedsheets not showing
+      as steal objectives (I was here might aswell)
+    type: Fix
+  id: 53403
+  time: '2025-12-29T21:36:14.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/534
+- author: AthenaAI
+  changes:
+  - message: Wheelchair recipe to medical's fabricator
+    type: Add
+  id: 53404
+  time: '2025-12-29T21:36:14.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/534
+- author: KarusKardin
+  changes:
+  - message: modified some tech icons for readability
+    type: Tweak
+  id: 53600
+  time: '2025-12-29T21:49:36.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/536
+- author: CorruptOmega
+  changes:
+  - message: New Syndicate Security sprites done by Abby. Check out some of their
+      cool new swag! (Sorry Syndi Corpsman, due to Syndicate High Command budget cuts
+      you didn't get new equipment yet)
+    type: Add
+  id: 53500
+  time: '2025-12-29T23:53:12.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/535
+- author: CorruptOmega
+  changes:
+  - message: New Syndicate side prototypes for security stuff. So the stuff not only
+      looks different but is actually named different.
+    type: Add
+  id: 53501
+  time: '2025-12-29T23:53:12.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/535
+- author: CorruptOmega
+  changes:
+  - message: Added EliteSharkManiac's Engineering Bird Resprite. Look a little more
+      official with bird designed hardsuits!
+    type: Add
+  id: 53502
+  time: '2025-12-29T23:53:12.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/535
+- author: CorruptOmega
+  changes:
+  - message: Removed the rest of my sanity for this month.
+    type: Remove
+  id: 53503
+  time: '2025-12-29T23:53:12.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/535
+- author: CorruptOmega
+  changes:
+  - message: Continued the Capitalization Crusade.
+    type: Tweak
+  id: 53504
+  time: '2025-12-29T23:53:12.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/535
+- author: Killer Tamashi
+  changes:
+  - message: Fixed IPCs being able to heal with bloodpacks
+    type: Fix
+  id: 54100
+  time: '2025-12-31T22:30:12.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/541
+- author: Killer Tamashi
+  changes:
+  - message: Fixed oilpacks looking like ammonia packs
+    type: Fix
+  id: 54101
+  time: '2025-12-31T22:30:12.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/541
+- author: Killer Tamashi
+  changes:
+  - message: Combined BSO/Corpsman/Brigmedic's medical kits into one. Less duplicate
+      items and neat.
+    type: Tweak
+  id: 54300
+  time: '2026-01-01T13:22:27.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/543
+- author: FAR HORIZONS TEAM, Hanz
+  changes:
+  - message: Added syndicate sec/brig backpack,satchel,duffel sprites.
+    type: Add
+  id: 54800
+  time: '2026-01-01T19:12:51.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/548
+- author: FAR HORIZONS TEAM, Hanz
+  changes:
+  - message: Updated nt sec/brig backpack,satchel,duffel sprites.
+    type: Tweak
+  id: 54801
+  time: '2026-01-01T19:12:51.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/548
+- author: FAR HORIZONS TEAM, Hanz
+  changes:
+  - message: Updated SMES sprites.
+    type: Tweak
+  id: 54802
+  time: '2026-01-01T19:12:51.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/548
 Order: -1
 

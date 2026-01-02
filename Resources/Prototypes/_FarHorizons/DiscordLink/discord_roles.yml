@@ -3,19 +3,21 @@
   discordRoleId: 1407109433670111315
   playerTitle: "Senior"
   order: 1
+  additionalPermissions: [PeacefulBypass]
 
 - type: discordRole
   id: SeniorAdmin
   discordRoleId: 1411084097404801104
   playerTitle: "Senior"
   order: 2
+  additionalPermissions: [PeacefulBypass]
 
-# # reserved for the future eventmin role
-#- type: discordRole
-#  id: EventAdmin
-#  discordRoleId: 1407084985680269382
-#  playerTitle: "Eventmin"
-#  order: 3
+- type: discordRole
+  id: EventAdmin
+  discordRoleId: 1407084985680269382
+  playerTitle: "Eventmin"
+  order: 3
+  additionalPermissions: [PeacefulBypass]
 
 - type: discordRole
   id: GameAdmin
@@ -41,3 +43,10 @@
   playerTitle: "Mentor"
   order: 7
   additionalPermissions: [Mentor]
+
+- type: discordRole
+  id: AlphaTester
+  discordRoleId: 1408159176571617453
+  playerTitle: "α"
+  order: 8
+  additionalPermissions: [AlphaTesterGhost]

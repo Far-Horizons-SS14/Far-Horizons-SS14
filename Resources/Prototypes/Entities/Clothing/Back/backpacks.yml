@@ -70,19 +70,31 @@
   parent: [ClothingBackpack, BaseSecurityContraband]
   id: ClothingBackpackSecurity
   name: Security Backpack #Far Horizons - The Great Capitalization Crusade
+  suffix: NT  # Far Horizons
   description: It's a very robust backpack.
   components:
   - type: Sprite
-    sprite: Clothing/Back/Backpacks/security.rsi
+    sprite: _FarHorizons/Clothing/Back/Backpacks/security.rsi  # Far Horizons
+  - type: Tag  # Far Horizons
+    tags:
+      - NT
+      - WhitelistChameleon
+      - Backpack
 
 - type: entity
   parent: [ClothingBackpack, BaseSecurityContraband]
   id: ClothingBackpackBrigmedic
   name: Brigmedic Backpack #Far Horizons - The Great Capitalization Crusade
+  suffix: NT  # Far Horizons
   description: It's a very sterile backpack.
   components:
   - type: Sprite
-    sprite: Clothing/Back/Backpacks/brigmedic.rsi
+    sprite: _FarHorizons/Clothing/Back/Backpacks/brigmedic.rsi  # Far Horizons
+  - type: Tag  # Far Horizons
+    tags:
+      - NT
+      - WhitelistChameleon
+      - Backpack
 
 - type: entity
   parent: ClothingBackpack

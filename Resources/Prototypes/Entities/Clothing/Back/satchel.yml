@@ -118,19 +118,31 @@
   parent: [ClothingBackpackSatchel, BaseSecurityContraband]
   id: ClothingBackpackSatchelSecurity
   name: Security Satchel #Far Horizons - The Great Capitalization Crusade
+  suffix: NT  # Far Horizons
   description: A robust satchel for security related needs.
   components:
   - type: Sprite
-    sprite: Clothing/Back/Satchels/security.rsi
+    sprite: _FarHorizons/Clothing/Back/Satchels/security.rsi  # Far Horizons
+  - type: Tag  # Far Horizons
+    tags:
+      - NT
+      - WhitelistChameleon
+      - Backpack
 
 - type: entity
   parent: [ClothingBackpackSatchel, BaseSecurityContraband]
   id: ClothingBackpackSatchelBrigmedic
   name: Brigmedic Satchel #Far Horizons - The Great Capitalization Crusade
+  suffix: NT  # Far Horizons
   description: A sterile satchel for medical related needs.
   components:
   - type: Sprite
-    sprite: Clothing/Back/Satchels/brigmedic.rsi
+    sprite: _FarHorizons/Clothing/Back/Satchels/brigmedic.rsi  # Far Horizons
+  - type: Tag  # Far Horizons
+    tags:
+      - NT
+      - WhitelistChameleon
+      - Backpack
 
 - type: entity
   parent: [ClothingBackpackSatchel, BaseCommandContraband]

@@ -1,3 +1,7 @@
+# Shared - Thieves / Traitors Items
+
+steal-target-groups-clothing-head-hat-guardian = Guardian's Cap
+
 # Traitor Single Items
 
 steal-target-groups-corpsmanhypo = Corpsman Hypospray
@@ -10,5 +14,7 @@ steal-target-groups-reactorfuelrod = reactor fuel rod
 # Thief Single Item
 
 # Thief Structures
+
+steal-target-groups-secway = secway
 
 # Thief Animal

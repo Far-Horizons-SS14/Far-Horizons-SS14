@@ -33,6 +33,9 @@
       head-avali:           #Far Horizons
         - state: equipped-head-light-avali
           shader: unshaded
+      head-resomi:           #Far Horizons
+        - state: equipped-head-light-resomi
+          shader: unshaded
       head-vox:
       - state: equipped-head-light-vox
         shader: unshaded
@@ -54,6 +57,10 @@
       head-avali:             #Far Horizons
         - state: equipped-head-avali
         - state: equipped-head-unshaded-avali
+          shader: unshaded
+      head-resomi:             #Far Horizons
+        - state: equipped-head-resomi
+        - state: equipped-head-unshaded-resomi
           shader: unshaded
       head-vox:
       - state: equipped-head-vox
@@ -126,6 +133,9 @@
       head-avali: #Starlight
       - state: equipped-head-light-avali
         shader: unshaded
+      head-resomi: #Far Horizons
+      - state: equipped-head-light-avali
+        shader: unshaded
   - type: Clothing
     clothingVisuals:
       head:
@@ -151,6 +161,10 @@
       head-avali: #Starlight
       - state: equipped-head-avali
       - state: equipped-head-unshaded-avali
+        shader: unshaded
+      head-resomi: #Far Horizons
+      - state: equipped-head-resomi
+      - state: equipped-head-unshaded-resomi
         shader: unshaded
   - type: PointLight
     color: "#ffdbad"
@@ -231,8 +245,6 @@
       #- state: equipped-head-unshaded-resomi
       #  shader: unshaded
       #Far Horizons-End
-  - type: PointLight
-    radius: 6
   - type: PressureProtection
     highPressureMultiplier: 0.72
     lowPressureMultiplier: 1000
@@ -579,6 +591,14 @@
       head:
       - state: equipped-head-light
         shader: unshaded
+      #Far Horizons-Start
+      head-avali:
+      - state: equipped-head-light-avali
+        shader: unshaded
+      head-resomi:
+      - state: equipped-head-light-resomi
+        shader: unshaded
+      #Far Horizons-End
     #  head-vox:                        #Far Horizons - Temporarily disabled for respriting
     #  - state: equipped-head-light-vox
     #    shader: unshaded
@@ -597,6 +617,16 @@
       - state: equipped-head
       - state: equipped-head-unshaded
         shader: unshaded
+      #Far Horizons-Start
+      head-avali:
+      - state: equipped-head-avali
+      - state: equipped-head-unshaded-avali
+        shader: unshaded
+      head-resomi:
+      - state: equipped-head-resomi
+      - state: equipped-head-unshaded-resomi
+        shader: unshaded
+      #Far Horizons-End
     #  head-vox:                        #Far Horizons - Temporarily disabled for respriting
     #  - state: equipped-head-vox
     #  - state: equipped-head-unshaded-vox

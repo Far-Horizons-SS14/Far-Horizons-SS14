@@ -73,19 +73,31 @@
   parent: [ClothingBackpackDuffel, BaseSecurityContraband]
   id: ClothingBackpackDuffelSecurity
   name: Security Duffel Bag #Far Horizons - The Great Capitalization Crusade
+  suffix: NT  # Far Horizons
   description: A large duffel bag for holding extra security related goods.
   components:
   - type: Sprite
-    sprite: Clothing/Back/Duffels/security.rsi
+    sprite: _FarHorizons/Clothing/Back/Duffels/security.rsi  # Far Horizons
+  - type: Tag  # Far Horizons
+    tags:
+      - NT
+      - WhitelistChameleon
+      - Backpack
 
 - type: entity
   parent: [ClothingBackpackDuffel, BaseSecurityContraband]
   id: ClothingBackpackDuffelBrigmedic
   name: Brigmedic Duffel Bag #Far Horizons - The Great Capitalization Crusade
+  suffix: NT  # Far Horizons
   description: A large duffel bag for holding extra medical related goods.
   components:
   - type: Sprite
-    sprite: Clothing/Back/Duffels/brigmedic.rsi
+    sprite: _FarHorizons/Clothing/Back/Duffels/brigmedic.rsi  # Far Horizons
+  - type: Tag  # Far Horizons
+    tags:
+      - NT
+      - WhitelistChameleon
+      - Backpack
 
 - type: entity
   parent: ClothingBackpackDuffel

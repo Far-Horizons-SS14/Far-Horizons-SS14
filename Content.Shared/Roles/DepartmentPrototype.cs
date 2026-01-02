@@ -1,3 +1,4 @@
+using Content.Shared._FarHorizons.DiscordLink;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Roles;

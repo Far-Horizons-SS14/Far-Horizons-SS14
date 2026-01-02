@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Server._FarHorizons.DiscordLink;
 using Content.Server.Administration.Logs;
 using Content.Server.EUI;
 using Content.Server.Ghost.Roles.Components;
@@ -53,9 +54,9 @@ public sealed class GhostThemeSystem : EntitySystem
     [Dependency] private readonly EuiManager _euiManager = default!;
     [Dependency] private readonly GameTicker _gameTicker = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly ISharedNullLinkPlayerRolesReqManager _nulllinkPlayerRoles = default!;
     [Dependency] private readonly IPlayerRolesManager _playerRoles = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
+    [Dependency] private readonly IDiscordLinkManager _discordLinkManager = default!;
 
     public override void Initialize()
     {
@@ -89,9 +90,9 @@ public sealed class GhostThemeSystem : EntitySystem
                 continue;
             }
 
-            if (ghostTheme.Requirement is { } req && _prototypeManager.TryIndex(req, out var roleReq))
+            if (ghostTheme.Requirement is { } req)
             {
-                if (_nulllinkPlayerRoles.IsAnyRole(session, roleReq.Roles))
+                if (_discordLinkManager.HasPermission(session.UserId.UserId, req))  // Far Horizons
                     AvailableThemes.Add(ghostTheme.ID);
                 continue;
             }

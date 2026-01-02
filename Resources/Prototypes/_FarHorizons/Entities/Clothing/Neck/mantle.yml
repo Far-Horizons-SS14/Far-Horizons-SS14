@@ -1,9 +1,10 @@
 # Magistrate
 
 - type: entity
-  parent: [ClothingNeckBase, BaseCommandContraband]
+  parent: [ ClothingNeckBase, BaseCommandContraband ]
   id: ClothingNeckMantleMagistrate
-  name: magistrate's mantle
+  name: Magistrate's Mantle
+  suffix: NT
   description: Did you hear that? That was the sound of criminals whispering, "That Magistrate is so cool", as they witness this mantle in their sentencing.
   components:
   - type: Sprite
@@ -11,15 +12,42 @@
   - type: Clothing
     sprite: _FarHorizons/Clothing/Neck/Mantles/magistrate.rsi
 
+#region Syndicate
+
+
+
+
+
+
+
+
+
+#region Command
+
 # Personnel Chief (HoP)
 
 - type: entity
   parent: [ClothingNeckBase, BaseCommandContraband]
   id: ClothingNeckMantleHOPSyndi
-  name: personnel chief's mantle
+  name: Personnel Chief's Mantle
+  suffix: S
   description: A good PC knows that paper pushing is only half the job... petting your dog and looking fashionable is the other half.
   components:
   - type: Sprite
     sprite: _FarHorizons/Clothing/Neck/Mantles/syndihopmantle.rsi
   - type: Clothing
     sprite: _FarHorizons/Clothing/Neck/Mantles/syndihopmantle.rsi
+
+# Security Overwatch (HoS)
+
+- type: entity
+  parent: [ClothingNeckBase, BaseCommandContraband]
+  id: ClothingNeckMantleHOSSyndi
+  name: Security Overwatch's Mantle
+  suffix: S
+  description: Shootouts with nanotrasen agents are just another Tuesday for this SO. This mantle is a symbol of commitment to the station.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Neck/Mantles/hosmantle-syndi.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Neck/Mantles/hosmantle-syndi.rsi

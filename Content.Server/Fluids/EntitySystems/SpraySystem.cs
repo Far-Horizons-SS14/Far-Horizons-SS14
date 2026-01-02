@@ -17,6 +17,7 @@ using Robust.Shared.Physics.Components;
 using Robust.Shared.Prototypes;
 using System.Numerics;
 using Robust.Shared.Map;
+using Content.Shared._FarHorizons.Vehicles.Components;
 
 namespace Content.Server.Fluids.EntitySystems;
 
@@ -164,12 +165,20 @@ public sealed class SpraySystem : EntitySystem
 
             _vapor.Start(ent, vaporXform, impulseDirection * diffLength, entity.Comp.SprayVelocity, target, time, user);
 
-            if (TryComp<PhysicsComponent>(user, out var body))
+            // FarHorizons Start
+            var userTarget = user;
+            if(TryComp<RiderComponent>(userTarget, out var riderComp))
+                if(riderComp.Riding != null)
+                {
+                    userTarget = riderComp.Riding.Value;
+                }
+            // FarHorizons End
+            if (TryComp<PhysicsComponent>(userTarget, out var body)) //FarHorizons
             {
-                if (_gravity.IsWeightless(user))
+                if (_gravity.IsWeightless(userTarget))//FarHorizons
                 {
                     // push back the player
-                    _physics.ApplyLinearImpulse(user, -impulseDirection * entity.Comp.PushbackAmount, body: body);
+                    _physics.ApplyLinearImpulse(userTarget, -impulseDirection * entity.Comp.PushbackAmount, body: body);//FarHorizons
                 }
                 else
                 {
