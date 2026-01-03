@@ -1,0 +1,186 @@
+﻿- type: jobRequirementOverride
+  id: FHJobRequirements
+  jobs:
+    NanoTrasenRepresentative:
+      - !type:DepartmentTimeRequirement
+        department: Command
+        time: 14400  # 4 hours
+      - !type:OverallPlaytimeRequirement
+        time: 72000 # 20 hours overall playtime
+    BlueShield:
+      - !type:DepartmentTimeRequirement
+        department: Security
+        time: 14400  # 4 hours
+      - !type:OverallPlaytimeRequirement
+        time: 72000 # 20 hours overall playtime
+    Magistrate:
+      - !type:DepartmentTimeRequirement
+        department: Security
+        time: 14400  # 4 hours
+      - !type:OverallPlaytimeRequirement
+        time: 72000 # 20 hours overall playtime
+    IAA:
+      - !type:DepartmentTimeRequirement
+        department: Security
+        time: 14400  # 4 hours
+      - !type:OverallPlaytimeRequirement
+        time: 14400  # 4 hours
+    Captain:
+      - !type:DepartmentTimeRequirement
+        department: Command
+        time: 14400  # 4 hours
+      - !type:OverallPlaytimeRequirement
+        time: 36000 # 10 hours overall playtime
+    HeadOfPersonnel:
+      - !type:DepartmentTimeRequirement
+        department: Civilian
+        time: 14400  # 4 hours
+      - !type:OverallPlaytimeRequirement
+        time: 36000 # 10 hours overall playtime
+    HeadOfSecurity:
+      - !type:DepartmentTimeRequirement
+        department: Security
+        time: 14400  # 4 hours
+      - !type:OverallPlaytimeRequirement
+        time: 36000 # 10 hours overall playtime
+    ChiefEngineer:
+      - !type:DepartmentTimeRequirement
+        department: Engineering
+        time: 14400  # 4 hours
+      - !type:OverallPlaytimeRequirement
+        time: 36000 # 10 hours overall playtime
+    ResearchDirector:
+      - !type:DepartmentTimeRequirement
+        department: Science
+        time: 14400  # 4 hours
+      - !type:OverallPlaytimeRequirement
+        time: 36000 # 10 hours overall playtime
+    ChiefMedicalOfficer:
+      - !type:DepartmentTimeRequirement
+        department: Medical
+        time: 14400  # 4 hours
+      - !type:OverallPlaytimeRequirement
+        time: 36000 # 10 hours overall playtime
+    Quartermaster:
+      - !type:DepartmentTimeRequirement
+        department: Cargo
+        time: 14400  # 4 hours
+      - !type:OverallPlaytimeRequirement
+        time: 36000 # 10 hours overall playtime
+    MedicalDoctor:
+      - !type:OverallPlaytimeRequirement
+        time: 0
+    Chemist:
+      - !type:OverallPlaytimeRequirement
+        time: 0
+    Paramedic:
+      - !type:OverallPlaytimeRequirement
+        time: 0
+    Surgeon:
+      - !type:OverallPlaytimeRequirement
+        time: 0
+    StationEngineer:
+      - !type:OverallPlaytimeRequirement
+        time: 0
+    AtmosphericTechnician:
+      - !type:OverallPlaytimeRequirement
+        time: 0
+    Warden:
+      - !type:OverallPlaytimeRequirement
+        time: 14400  # 4 hours
+    SecurityCadet:
+      - !type:OverallPlaytimeRequirement
+        time: 14400  # 4 hours
+    SecurityOfficer:
+      - !type:OverallPlaytimeRequirement
+        time: 14400  # 4 hours
+    Detective:
+      - !type:OverallPlaytimeRequirement
+        time: 14400  # 4 hours
+    Brigmedic:
+      - !type:OverallPlaytimeRequirement
+        time: 14400  # 4 hours
+    SecBorg:
+      - !type:OverallPlaytimeRequirement
+        time: 14400  # 4 hours
+      - !type:RoleTimeRequirement
+        role: JobBorg
+        time: 3600 # 1 hour as Borg
+    Corpsman:
+      - !type:OverallPlaytimeRequirement
+        time: 14400  # 4 hours
+    StationAi:
+      - !type:OverallPlaytimeRequirement
+        time: 36000 # 10 hours overall playtime
+      - !type:RoleTimeRequirement
+        role: JobBorg
+        time: 14400  # 4 hours
+    Borg:
+      - !type:OverallPlaytimeRequirement
+        time: 0
+    Bartender:
+      - !type:OverallPlaytimeRequirement
+        time: 0
+    Chef:
+      - !type:OverallPlaytimeRequirement
+        time: 0
+    Scientist:
+      - !type:OverallPlaytimeRequirement
+        time: 0
+    Roboticist:
+      - !type:OverallPlaytimeRequirement
+        time: 0
+    SalvageLead:
+      - !type:OverallPlaytimeRequirement
+        time: 0
+      - !type:RoleTimeRequirement
+        role: JobSalvageSpecialist
+        time: 14400 # 4 hrs
+    SalvageSpecialist:
+      - !type:OverallPlaytimeRequirement
+        time: 0
+    MiningSpecialist:
+      - !type:OverallPlaytimeRequirement
+        time: 0
+    Botanist:
+      - !type:OverallPlaytimeRequirement
+        time: 0
+    Clown:
+      - !type:OverallPlaytimeRequirement
+        time: 0
+    CargoTechnician:
+      - !type:OverallPlaytimeRequirement
+        time: 0
+    TechnicalAssistant:
+      - !type:OverallPlaytimeRequirement
+        time: 0
+    MedicalIntern:
+      - !type:OverallPlaytimeRequirement
+        time: 0
+    ResearchAssistant:
+      - !type:OverallPlaytimeRequirement
+        time: 0
+    Chaplain:
+      - !type:OverallPlaytimeRequirement
+        time: 0
+    Janitor:
+      - !type:OverallPlaytimeRequirement
+        time: 0
+    Lawyer:
+      - !type:OverallPlaytimeRequirement
+        time: 0
+    Librarian:
+      - !type:OverallPlaytimeRequirement
+        time: 0
+    Mime:
+      - !type:OverallPlaytimeRequirement
+        time: 0
+    Musician:
+      - !type:OverallPlaytimeRequirement
+        time: 0
+    ServiceWorker:
+      - !type:OverallPlaytimeRequirement
+        time: 0
+    Visitor:
+      - !type:OverallPlaytimeRequirement
+        time: 0
