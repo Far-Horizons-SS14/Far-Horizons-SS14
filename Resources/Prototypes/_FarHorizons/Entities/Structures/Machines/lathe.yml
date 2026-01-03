@@ -61,9 +61,11 @@
     - ElectronicsStatic
     dynamicPacks:
     - StarlightAutolatheLootable
-#  - type: EmagLatheRecipes
-#    emagStaticPacks:
-    #NEEDS SYNDICATE EMAG RECIPIES, 
+  - type: EmagLatheRecipes #TODO: NT THEMED EMAG PACKS
+    emagStaticPacks:
+    - StarlightSecurityEmagWeaponsStatic
+    - StarlightSecurityAmmoStatic
+    - StarlightSecurityAmmoEmagStatic
   - type: BlueprintReceiver
     whitelist:
       tags:
@@ -123,34 +125,34 @@
     unlitRunningState: unlit-building
     staticPacks:
     - ChemistryStatic
-#    dynamicPacks: #TODO: Syndicate Dynamic Packs, need to know what will be researchable
-#    - AdvancedTools
-#    - ScienceEquipment
-#    - ScienceExplosives
-#    - ScienceClothing
-#    - PowerCells
-#    - ScienceWeapons
-#    - Mining
-#    - AtmosTools
-#    - EngineeringWeapons
-#    - Chemistry
-#    - Janitor
-#    - Instruments
-#    - Equipment
-#    - StarlightProtolatheLootable
-#  - type: EmagLatheRecipes
-#    emagDynamicPacks: #TODO: EMAG
-#    - StarlightSurgeryDynamic
-#    - StarlightCyberlimbDynamic
-#    - StarlightCyberOrgansDynamic
-#    - StarlightImplantDynamic
-#    - StarlightBudgetCyberOrgansDynamic
-#
-#    - StarlightSecurityAmmoDynamic
-#    - StarlightSecurityExplosives
-#    - StarlightSecurityEquipment
-#    - StarlightSecurityWeapons
-#    - StarlightDefenseStatic
+    dynamicPacks: #TODO: SYNDI TECH
+    - AdvancedTools
+    - ScienceEquipment
+    - ScienceExplosives
+    - ScienceClothing
+    - PowerCells
+    - ScienceWeapons
+    - Mining
+    - AtmosTools
+    - EngineeringWeapons
+    - Chemistry
+    - Janitor
+    - Instruments
+    - Equipment
+    - StarlightProtolatheLootable
+  - type: EmagLatheRecipes
+    emagDynamicPacks: #TODO: NT THEMED EMAG PACKS
+    - StarlightSurgeryDynamic
+    - StarlightCyberlimbDynamic
+    - StarlightCyberOrgansDynamic
+    - StarlightImplantDynamic
+    - StarlightBudgetCyberOrgansDynamic
+
+    - StarlightSecurityAmmoDynamic
+    - StarlightSecurityExplosives
+    - StarlightSecurityEquipment
+    - StarlightSecurityWeapons
+    - StarlightDefenseStatic
 
 - type: entity
   id: ProtofabSubzero
@@ -189,29 +191,29 @@
     staticPacks:
     - SyndicateScienceBoardsStatic
     - SyndicateServiceBoardsStatic
-    - CargoBoardsStatic
+    - CargoBoardsStatic #Should Syndi have this?
     - MedicalBoardsStatic
     - EngineeringBoardsStatic
 #    - StarlightVendorBoards #TODO: Figure out what to do with all the vending machines
-#    dynamicPacks: #TODO: RESEARCHABLE BOARD PACKS
-#    - EngineeringBoards
-#    - CargoBoards
-#    - MedicalBoards
-#    - ServiceBoards
-#    - ScienceBoards
-#    - CameraBoards
-#    - MechBoards
-#    - ShuttleBoards
-#    - StarlightMechBoards
-#    - StarlightLawboards
-#    - StarlightCircuitImprinterLootable
-#    - ReactorCircuitboards
-#  - type: EmagLatheRecipes
-#    emagDynamicPacks: #TODO: EMAG SEC BOARDS
-#    - StarlightSecurityBoards
-#    emagStaticPacks:               TOOD: EMAG LAWBOARDS
-#    - StarlightDangerousLawboards
-#    - StarlightSyndicateVendorBoards
+    dynamicPacks: #TODO: SYNDI TECH
+    - EngineeringBoards
+    - CargoBoards
+    - MedicalBoards
+    - ServiceBoards
+    - ScienceBoards
+    - CameraBoards
+    - MechBoards
+    - ShuttleBoards
+    - StarlightMechBoards
+    - StarlightLawboards
+    - StarlightCircuitImprinterLootable
+    - ReactorCircuitboards
+  - type: EmagLatheRecipes
+    emagDynamicPacks: #TODO: NT THEMED EMAG PACKS
+    - StarlightSecurityBoards
+    emagStaticPacks:
+    - StarlightDangerousLawboards
+    - StarlightSyndicateVendorBoards
   - type: MaterialStorage
     whitelist:
       tags:
@@ -238,7 +240,7 @@
         - RawMaterial
         - Ingot
 
-- type: entity #UNFINISHED
+- type: entity
   id: CybersunAssembler
   parent: BaseLatheLube
   name: Cybersun Assembler
@@ -258,22 +260,22 @@
   - type: Lathe
     idleState: fab-idle
     runningState: fab-active
-    staticPacks:
+    staticPacks: #TODO: Syndi Borgs
     - RoboticsStatic
     - BorgModulesStatic
     - BorgLimbsStatic
-#    dynamicPacks: #TODO
-#    - Robotics
-#    - BorgModules
-#    - MechParts
-#    - MechEquipment
-#    - StarlightMechEquipment
-#    - StarlightSecurityMechs
-#    - StarlightMechParts
-#  - type: EmagLatheRecipes #TODO: EMAG STATIC
-#    emagStaticPacks:
-#    - StarlightMechWeapon
-#    - StarlightSyndicateModules
+    dynamicPacks: #TODO: SYNDI TECH
+    - Robotics
+    - BorgModules
+    - MechParts
+    - MechEquipment
+    - StarlightMechEquipment
+    - StarlightSecurityMechs
+    - StarlightMechParts
+  - type: EmagLatheRecipes #TODO: NT THEMED EMAG PACKS
+    emagStaticPacks:
+    - StarlightMechWeapon
+    - StarlightSyndicateModules
   - type: MaterialStorage
     whitelist:
       tags:
@@ -309,28 +311,28 @@
   - type: Lathe
     idleState: icon
     runningState: icon
-#    staticPacks: #TODO SEC PACKS
-#    - SecurityEquipmentStatic
-#    - SecurityPracticeStatic
-#    - StarlightSecurityAmmoStatic
-#    - SecurityDisablers
-#    - StarlightSecurityAmmoEmagStatic
-#    - SecurityWeaponsStatic
-#    dynamicPacks:
-#    - SalvageSecurityBoards
-#    - SalvageSecurityWeapons
-#    - StarlightDefenseStatic
-#    - StarlightSecurityEquipment
-#    - StarlightSecurityBoards
-#    - StarlightSecurityExplosives
-#    - StarlightSecurityAmmoDynamic
-#    - StarlightSecurityWeapons
-#    - SecurityCyberLimbs
-#    - StarlightSecurityMechsWeapons
-#    - FarHorizonsSecBorgRecipePack
-#  - type: EmagLatheRecipes
-#    emagStaticPacks:
-#    - StarlightSyndicateModulesSecfab
+    staticPacks: #TODO Syndie Themed SEC PACKS
+    - SecurityEquipmentStatic
+    - SecurityPracticeStatic
+    - StarlightSecurityAmmoStatic
+    - SecurityDisablers
+    - StarlightSecurityAmmoEmagStatic
+    - SecurityWeaponsStatic
+    dynamicPacks:
+    - SalvageSecurityBoards
+    - SalvageSecurityWeapons
+    - StarlightDefenseStatic
+    - StarlightSecurityEquipment
+    - StarlightSecurityBoards
+    - StarlightSecurityExplosives
+    - StarlightSecurityAmmoDynamic
+    - StarlightSecurityWeapons
+    - SecurityCyberLimbs
+    - StarlightSecurityMechsWeapons
+    - FarHorizonsSecBorgRecipePack
+  - type: EmagLatheRecipes #TODO: NT THEMED EMAG PACKS
+    emagStaticPacks: 
+    - StarlightSyndicateModulesSecfab
   - type: MaterialStorage
     whitelist:
       tags:
@@ -371,17 +373,17 @@
     - MedicalClothingStatic
     - EmptyMedkitsStatic
     - StarlightMedicalStatic
-#    dynamicPacks: #TODO: MEDICAL DYNAMIC PACKS
-#    - StarlightSurgeryDynamic
-#    - StarlightCyberlimbDynamic
-#    - StarlightCyberOrgansDynamic
-#    - StarlightImplantDynamic
-#    - Chemistry
-#    - StarlightBudgetCyberOrgansDynamic
-#    - FarHorizonsMedContainersDynamic
-#    - FarHorizonsMedSyringeDynamic
+    dynamicPacks: #TODO: NT THEMED MEDICAL DYNAMICS
+    - StarlightSurgeryDynamic
+    - StarlightCyberlimbDynamic
+    - StarlightCyberOrgansDynamic
+    - StarlightImplantDynamic
+    - Chemistry
+    - StarlightBudgetCyberOrgansDynamic
+    - FarHorizonsMedContainersDynamic
+    - FarHorizonsMedSyringeDynamic
   - type: Machine
-    board: MedicalTechFabCircuitboard
+    board: InterdyneTechFabCircuitboard
 #  - type: StealTarget #TODO: Figure out steal target stuff
 #    stealGroup: MedicalTechFabCircuitboard
   - type: OreSiloClient
@@ -406,7 +408,7 @@
     producingSound: /Audio/Machines/uniformprinter.ogg
     idleState: icon
     runningState: building
-    staticPacks: #TODO: Uniform Packs
+    staticPacks: #TODO: Syndie Uniform Packs
     - ClothingCivilian
     - ClothingCargo #should Syndicate have cargo clothing?
     - ClothingCommandSyndicate
@@ -422,7 +424,7 @@
     - BedsheetsSyndicate
     dynamicPacks:
     - StarlightUniformPrinterLootable
-#  - type: EmagLatheRecipes #TODO: EMGA
+#  - type: EmagLatheRecipes #TODO: NT THEMED EMAG PACKS
 #    emagStaticPacks:
 #    - ClothingCentComm
 #    - ClothingSyndie
