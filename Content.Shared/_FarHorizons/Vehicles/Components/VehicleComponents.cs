@@ -27,6 +27,30 @@ public sealed partial class VehicleComponent : Component
     public bool Started = false;
 
     /// <summary>
+    /// check if a vehicle requires ignition before allowing it to move
+    /// </summary>
+    [DataField("disallowWielding"), AutoNetworkedField]
+    public bool DisallowWieldingGuns = false;
+
+    /// <summary>
+    /// check if a vehicle requires ignition before allowing it to move
+    /// </summary>
+    [DataField("allowGunKnockback"), AutoNetworkedField]
+    public bool AllowGunKnockback = false;
+
+    /// <summary>
+    /// just to check for if the vehicle is moving for other things
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public bool isMoving = false;
+
+    /// <summary>
+    /// just to check for if the vehicle is moving for other things
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public bool isBroken = false;
+
+    /// <summary>
     /// How many hands are blocked by the vehicle
     /// </summary>
     [DataField("handsNeeded")]
@@ -100,6 +124,9 @@ public sealed partial class VehicleComponent : Component
 
     [DataField, AutoNetworkedField]
     public string? BaseState;
+
+    [DataField, AutoNetworkedField]
+    public string? BrokenState;
 
     [DataField, AutoNetworkedField]
     public EntProtoId HornVehicleAction = "ActionVehicleHorn";

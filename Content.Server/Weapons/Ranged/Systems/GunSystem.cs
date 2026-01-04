@@ -60,6 +60,7 @@ using static Content.Server.Starlight.TextToSpeech.TTSManager;
 using Content.Shared.Atmos.Components;
 using Content.Shared._FarHorizons.VehicleContainer.Components;
 using Content.Shared._FarHorizons.Vehicles.Components;
+using Content.Shared._FarHorizons.VehicleBuckle.Components;
 
 namespace Content.Server.Weapons.Ranged.Systems;
 
@@ -263,7 +264,7 @@ public sealed partial class GunSystem : SharedGunSystem
                     var lastUser = user ?? gunUid;
                     if (user != null && TryComp<MechPilotComponent>(user.Value, out var pilotA)) // Startlight-edit
                         lastUser = pilotA.Mech;
-                    if (user != null && TryComp<RiderComponent>(user.Value, out var vehicleA) && vehicleA.Riding != null)
+                    if (user != null && TryComp<RiderComponent>(user.Value, out var vehicleA) && vehicleA.Riding != null && HasComp<VehicleContainerComponent>(vehicleA.Riding.Value))
                         lastUser = vehicleA.Riding.Value;
 
                     if (hitscan.Reflective != ReflectType.None)
@@ -496,7 +497,7 @@ public sealed partial class GunSystem : SharedGunSystem
 
             if (user != null && TryComp<MechPilotComponent>(user.Value, out var pilotB)) // Startlight-edit
                 lastUser = pilotB.Mech;
-            if (user != null && TryComp<RiderComponent>(user.Value, out var vehicleB) && vehicleB.Riding != null)
+            if (user != null && TryComp<RiderComponent>(user.Value, out var vehicleB) && vehicleB.Riding != null && HasComp<VehicleContainerComponent>(vehicleB.Riding.Value))
                 lastUser = vehicleB.Riding.Value;
 
             hitHashSet.Clear();

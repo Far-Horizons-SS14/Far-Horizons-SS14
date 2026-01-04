@@ -25,6 +25,12 @@ public sealed partial class VehicleBuckleComponent : Component
     /// </summary>
     [DataField("dismountonknockdown"), AutoNetworkedField]
     public bool knockdowndismount = true;
+
+    /// <summary>
+    /// Should knockdowns dismount the driver?
+    /// </summary>
+    [DataField("armoraffectsvehicle"), AutoNetworkedField]
+    public bool armoraffectsvehicle = false;
     
     /// <summary>
     /// What the buckle offset is used for north

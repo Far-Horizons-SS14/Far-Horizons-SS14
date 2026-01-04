@@ -54,8 +54,7 @@
           collection: MetalBreak
       - !type:DoActsBehavior
         acts: ["Breakage"]
-      - !type:SolutionExplosionBehavior
-        solution: fueltank
+      - !type:ExplodeBehavior
       - !type:EmptyContainersBehaviour
         containers:
         - passenger_slot
@@ -72,7 +71,7 @@
       sprite: Objects/Vehicles/wheelchair.rsi
       layers:
       - state: wheelchair
-        map: ["enum.VehicleVisualLayers.AutoAnimate", "unfoldedLayer"]
+        map: ["enum.VehicleVisualLayers.Base", "unfoldedLayer"]
       - state: wheelchair_folded
         map: ["foldedLayer"]
         visible: false
@@ -82,7 +81,7 @@
       friction: 2 # higher friction counteracts the current speed so higher makes it easier to turn but has the inverse effect also it counter acts acceleration
       frictionNoInput: 2 # same as friction but for when the user doesn't input anything so lower friction means it will take them longer to stop
       requireIgnition: false 
-      baseState: wheelchair
+      baseState: vehicle
       handsNeeded: 0
       riderWhitelist:
         components:
@@ -91,6 +90,7 @@
       unbuckletime: 1
       dismountonstun: true
       dismountonknockdown: true
+      armoraffectsvehicle: true
       northOffset: "0, -0.15"
       southOffset: "0, -0.15"
       eastOffset: "0, -0.15"
@@ -149,10 +149,13 @@
     riderWhitelist:
       components:
         - HumanoidAppearance
+    disallowWielding: true
+    allowGunKnockback: true
   - type: VehicleBuckle
     unbuckletime: 2
     dismountonstun: true
     dismountonknockdown: true
+    armoraffectsvehicle: true
     northOffset: "0, -0.12"
     southOffset: "0, -0.12"
     eastOffset: "0, -0.2"
@@ -166,7 +169,7 @@
     sprite: Objects/Vehicles/secway.rsi
     layers:
     - state: vehicle
-      map: ["enum.VehicleVisualLayers.AutoAnimate"]
+      map: ["enum.VehicleVisualLayers.Base"]
     noRot: true
   - type: Strap
   - type: Fixtures
@@ -287,7 +290,7 @@
     sprite: Objects/Vehicles/atv.rsi
     layers:
     - state: vehicle
-      map: ["enum.VehicleVisualLayers.AutoAnimate"]
+      map: ["enum.VehicleVisualLayers.Base"]
     noRot: true
   - type: Strap
   - type: Fixtures
@@ -391,7 +394,8 @@
     requireIgnition: true 
     allowCrashing: true
     crashingSpeed: 10 
-    baseState: clowncar
+    baseState: vehicle
+    brokenState: vehicle_broken
     startupTime: 2
     startUp: 
       path: /Audio/Effects/Vehicle/vehiclestartup.ogg
@@ -411,11 +415,11 @@
         - Body
   - type: Sprite
     drawdepth: Mobs
-    sprite: _FarHorizons/Objects/Vehicles/clown.rsi
+    sprite: _FarHorizons/Objects/Vehicles/clowncar.rsi
     scale: 0.75, 0.75
     layers:
-    - state: clowncar
-      map: ["enum.VehicleVisualLayers.AutoAnimate"]
+    - state: vehicle
+      map: ["enum.VehicleVisualLayers.Base"]
     noRot: true
   - type: ItemSlots
     slots:
@@ -483,6 +487,7 @@
     intensitySlope: 5
     maxIntensity: 8
     canCreateVacuum: false
+    deleteAfterExplosion: false
   - type: Storage
     grid:
     - 0,0,9,4
@@ -496,6 +501,8 @@
     locked: true
     showLockVerbs: false
     unlockOnClick: false
+    popupMessage: false
+    showExamine: false
 
 - type: entity
   id: VehicleClownCarFueled
