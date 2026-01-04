@@ -630,6 +630,9 @@
       tags:
         - ShellShotgun
     capacity: 14
+  - type: Tag #FH
+    tags: 
+    - Webbing
 
 - type: entity
   parent: ClothingBeltBase
@@ -659,6 +662,9 @@
   - type: Storage
     grid:
     - 0,0,3,1
+  - type: Tag #FH
+    tags: 
+    - Webbing
 
 - type: entity
   parent: [ClothingBeltStorageBase, BaseSyndicateContraband]
@@ -683,12 +689,15 @@
         - CartridgeAmmo
   - type: StaticPrice
     price: 500
+  - type: Tag #FH
+    tags: 
+    - Webbing
 
 - type: entity
-  parent: ClothingBeltSecurity
+  parent: ClothingBeltWebbingBase #FarHorizons
   id: ClothingBeltSecurityWebbing
   name: security carrier
-  description: Unique and versatile chest rig, can hold security gear.
+  description: Unique and versatile chest rig, can hold spare magazines. #FH
   components:
   - type: Sprite
     sprite: Clothing/Belt/securitywebbing.rsi
@@ -696,16 +705,12 @@
     sprite: Clothing/Belt/securitywebbing.rsi
 
 - type: entity
-  parent: [ ClothingBeltStorageBase, BaseSalvageContraband ] #Starlight salvContra
+  parent: [ ClothingBeltWebbingBase, BaseSalvageContraband ] #FarHorizons
   id: ClothingBeltMercWebbing
   name: mercenary webbing
   description: Ideal for storing everything from ammo to weapons and combat essentials.
   components:
-  - type: Storage #Starlight
-    grid:
-    - 0,0,1,0 #left
-    - 0,1,0,1 #left - cube
-    - 3,0,10,1
+# FH - Removal
   - type: Sprite
     sprite: Clothing/Belt/mercwebbing.rsi
   - type: Clothing
@@ -724,49 +729,53 @@
 #    sprite: Clothing/Belt/salvagewebbing.rsi
 #Far Horizons-End
 
-- type: entity
-  parent: [ClothingBeltStorageBase, ContentsExplosionResistanceBase, BaseMajorContraband]
-  id: ClothingBeltMilitaryWebbing
-  name: chest rig
-  description: A set of tactical webbing worn by various militant boarding parties.
-  components:
-  - type: Storage #Starlight
-    grid:
-    - 0,0,1,0 #left
-    - 0,1,0,1 #left - cube
-    - 3,0,10,1
-    - 12,0,13,0 #right
-    - 12,1,12,1 #right - cube
-  - type: Sprite
-    sprite: Clothing/Belt/militarywebbing.rsi
-  - type: Clothing
-    sprite: Clothing/Belt/militarywebbing.rsi
-  - type: ExplosionResistance
-    damageCoefficient: 0.1
-  - type: StaticPrice
-    price: 500
+#Far Horizons-Start - Turned off
+#- type: entity
+#  parent: [ClothingBeltStorageBase, ContentsExplosionResistanceBase, BaseMajorContraband]
+#  id: ClothingBeltMilitaryWebbing
+#  name: chest rig
+#  description: A set of tactical webbing worn by various militant boarding parties.
+#  components:
+#  - type: Storage #Starlight
+#    grid:
+#    - 0,0,1,0 #left
+#    - 0,1,0,1 #left - cube
+#    - 3,0,10,1
+#    - 12,0,13,0 #right
+#    - 12,1,12,1 #right - cube
+#  - type: Sprite
+#    sprite: Clothing/Belt/militarywebbing.rsi
+#  - type: Clothing
+#    sprite: Clothing/Belt/militarywebbing.rsi
+#  - type: ExplosionResistance
+#    damageCoefficient: 0.1
+#  - type: StaticPrice
+#    price: 500
+#Far Horizons-End
 
-- type: entity
-  parent: ClothingBeltMilitaryWebbing
-  id: ClothingBeltMilitaryWebbingMed
-  name: medical chest rig
-  description: A set of tactical webbing worn by various military corpsmen.
-  components:
-  - type: Storage #Starlight
-    grid:
-    - 0,0,1,0 #left
-    - 0,1,0,1 #left - cube
-    - 3,0,10,1
-    - 12,0,13,0 #right
-    - 12,1,12,1 #right - cube
-  - type: Sprite
-    sprite: _FarHorizons/Clothing/Belt/paramedicwebbing.rsi #Far Horizons
-  - type: Clothing
-    sprite: _FarHorizons/Clothing/Belt/paramedicwebbing.rsi #Far Horizons
-  - type: Item
-    size: Huge
-  - type: ExplosionResistance
-    damageCoefficient: 0.1
+#Far Horizons-Start - Turned off
+#- type: entity
+#  parent: ClothingBeltMilitaryWebbing
+#  id: ClothingBeltMilitaryWebbingMed
+#  name: medical chest rig
+#  description: A set of tactical webbing worn by various military corpsmen.
+#  components:
+#  - type: Storage #Starlight
+#    grid:
+#    - 0,0,1,0 #left
+#    - 0,1,0,1 #left - cube
+#    - 3,0,10,1
+#    - 12,0,13,0 #right
+#    - 12,1,12,1 #right - cube
+#  - type: Sprite
+#    sprite: _FarHorizons/Clothing/Belt/paramedicwebbing.rsi #Far Horizons
+#  - type: Clothing
+#   sprite: _FarHorizons/Clothing/Belt/paramedicwebbing.rsi #Far Horizons
+#  - type: Item
+#    size: Huge
+#  - type: ExplosionResistance
+#    damageCoefficient: 0.1
+#Far Horizons-End
 
 - type: entity
   parent: ClothingBeltBase

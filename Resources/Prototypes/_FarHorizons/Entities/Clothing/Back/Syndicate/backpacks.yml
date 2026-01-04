@@ -1,0 +1,29 @@
+- type: entity
+  parent: [ClothingBackpack, BaseSyndicateContraband]
+  id: ClothingBackpackSyndicateSecurity
+  name: Security Backpack
+  suffix: S
+  description: It's a very robust backpack.
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Clothing/Back/Backpacks/Syndicate/security.rsi
+    - type: Tag
+      tags:
+        - Syndicate
+        - WhitelistChameleon
+        - Backpack
+
+- type: entity
+  parent: [ClothingBackpack, BaseSyndicateContraband]
+  id: ClothingBackpackSyndicateBrigmedic
+  name: Medical Officer Backpack
+  suffix: S
+  description: It's a very sterile backpack.
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Clothing/Back/Backpacks/Syndicate/brigmedic.rsi
+    - type: Tag
+      tags:
+        - Syndicate
+        - WhitelistChameleon
+        - Backpack

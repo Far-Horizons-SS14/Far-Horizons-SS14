@@ -61,15 +61,7 @@
       storagebase: !type:NestedSelector
         tableId: BeltSecurityEntityTable
 
-- type: entity
-  id: ClothingBeltSecurityWebbingFilled
-  parent: ClothingBeltSecurityWebbing
-  suffix: Filled
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      storagebase: !type:NestedSelector
-        tableId: BeltSecurityEntityTable
+#FH - Removal of filled sec webbing- it's redundant
 
 - type: entity
   id: ClothingBeltJanitorFilled
@@ -164,7 +156,7 @@
 
 - type: entity
   id: ClothingBeltMilitaryWebbingMedFilled
-  parent: ClothingBeltMilitaryWebbingMed
+  parent: ClothingBeltMilitaryWebbing #FH
   suffix: Filled
   components:
   - type: StorageFill
@@ -174,7 +166,7 @@
       - id: ChemistryBottleEphedrine
         amount: 2
       - id: ChemistryBottleOmnizine
-      - id: MedkitCombatFilled
+      - id: MedkitCombatFilled #FH
 
 - type: entity
   parent: ClothingBeltWand

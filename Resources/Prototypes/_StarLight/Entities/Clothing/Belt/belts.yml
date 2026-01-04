@@ -53,7 +53,7 @@
 - type: entity
   parent: [ClothingBeltMedical, ClothingBeltSecurity, BaseSecurityContraband]
   id: ClothingBeltBrigmedic
-  name: tactical trauma belt
+  name: Tactical Trauma Belt #Far Horizons - #Far Horizons - The Great Capitalization Crusade
   description: Because why choose between being a medic or a security guard when you can be both?
   components:
   - type: Sprite
@@ -122,7 +122,7 @@
     damageCoefficient: 0.5
 
 - type: entity
-  parent: [ClothingBeltBrigmedic]
+  parent: ClothingBeltWebbingBase #FH
   id: ClothingBeltBrigmedicWeb
   name: tactical trauma rig
   description: A stylish alternative to the belt.
@@ -169,7 +169,7 @@
         - Ammo
 
 - type: entity
-  parent: [ClothingBeltStorageBase, ContentsExplosionResistanceBase, BaseMajorContraband]
+  parent: [ClothingBeltWebbingBase, ContentsExplosionResistanceBase, BaseMajorContraband] #FH - Edit
   id: ClothingBeltOperativeWebbing
   name: operative webbing
   description: Standard-rendered in a low-vis to mid-vis B3 pattern, this module is a streamlined workhorse and a go-to pick for various galactic paramilitaries that operate within the black market.
@@ -180,13 +180,11 @@
     sprite: _Starlight/Clothing/Belt/militarywebbing_dark.rsi
   - type: ExplosionResistance
     damageCoefficient: 0.05
-  - type: Storage
-    grid:
-    - 0,0,11,1
+#FH - Removal
 
 - type: entity
   id: ClothingBeltOperativeWebbingMedFilled
-  parent: ClothingBeltOperativeWebbing
+  parent: ClothingBeltMilitaryWebbing #FH
   suffix: Filled
   components:
   - type: StorageFill
@@ -200,16 +198,16 @@
 
 - type: entity
   id: ClothingBeltOperativeWebbingGrenadeFilled
-  parent: ClothingBeltOperativeWebbing
+  parent: ClothingBeltWebbingBase #FH
   name: grenadier operative webbing
   suffix: Filled
   components:
+  - type: Sprite #FH
+    sprite: _Starlight/Clothing/Belt/militarywebbing_dark.rsi #FH
+  - type: Clothing #FH
+    sprite: _Starlight/Clothing/Belt/militarywebbing_dark.rsi #FH
   - type: Item
     size: Ginormous
-  - type: Storage
-    maxItemSize: Normal
-    grid:
-    - 0,0,7,1
   - type: StorageFill
     contents:
       - id: ExGrenade
@@ -342,7 +340,7 @@
     price: 1000
 
 - type: entity
-  parent: [ClothingBeltStorageBase, ContentsExplosionResistanceBase, BaseSovietContraband]
+  parent: [ClothingBeltWebbingBase, ContentsExplosionResistanceBase, BaseSovietContraband] #FH
   id: ClothingBeltSovietMarineWebbing
   name: SSF marine chest rig
   description:  A set of tactical webbing worn by the iconic soviet elite marines.

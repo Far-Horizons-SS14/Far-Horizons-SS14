@@ -21,14 +21,14 @@
 
 
 
-## Syndicate Station
+#region Syndicate
 
-# Commander (Captain)
+# Command
 
 - type: entity
-  id: SuitStorageCommander
+  id: SuitStorageCommander #Captain
   parent: SuitStorageBase
-  suffix: Commander
+  suffix: S, Commander
   components:
   - type: EntityTableContainerFill
     containers:
@@ -47,12 +47,10 @@
     - id: OxygenTankFilled
     - id: NitrogenTankFilled
 
-# Personnel Chief (HoP)
-
 - type: entity
-  id: SuitStoragePC
+  id: SuitStoragePC #Head of Personnel
   parent: SuitStorageBase
-  suffix: Personnel Chief
+  suffix: S, Personnel Chief
   components:
   - type: EntityTableContainerFill
     containers:
@@ -66,6 +64,113 @@
   table: !type:AllSelector
     children:
     - id: ClothingOuterHardsuitHoPSyndi
+    - id: ClothingMaskBreath
+    - id: OxygenTankFilled
+    - id: NitrogenTankFilled
+
+- type: entity
+  id: SuitStorageSO
+  parent: SuitStorageBase
+  suffix: S, Security Overwatch
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: FillSecurityOverwatchHardsuit
+  - type: AccessReader
+    access: [["HeadOfSecurity"]]
+
+- type: entityTable
+  id: FillSecurityOverwatchHardsuit
+  table: !type:AllSelector
+    children:
+    - id: ClothingOuterHardsuitSecurityRedSyndi
+    - id: ClothingMaskBreath
+    - id: OxygenTankFilled
+    - id: NitrogenTankFilled
+
+# Security
+
+- type: entity
+  id: SuitStorageSecuritySyndi
+  parent: SuitStorageBase
+  suffix: S, Security
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: FillSecurityHardsuitSyndi
+  - type: AccessReader
+    access: [["Security"]]
+
+- type: entityTable
+  id: FillSecurityHardsuitSyndi
+  table: !type:AllSelector
+    children:
+    - id: ClothingOuterHardsuitSecuritySyndi
+    - id: ClothingMaskBreath
+    - id: OxygenTankFilled
+    - id: NitrogenTankFilled
+
+- type: entity
+  id: SuitStorageGuardian
+  parent: SuitStorageBase
+  suffix: S, Guardian
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: FillGuardianHarduit
+  - type: AccessReader
+    access: [["Armory"]]
+
+- type: entityTable
+  id: FillGuardianHarduit
+  table: !type:AllSelector
+    children:
+    - id: ClothingOuterHardsuitWardenSyndi
+    - id: ClothingMaskBreath
+    - id: OxygenTankFilled
+    - id: NitrogenTankFilled
+
+- type: entity
+  id: SuitStorageMedicalOfficer
+  parent: SuitStorageBase
+  suffix: S, Medical Officer
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: FillMOHarduit
+  - type: AccessReader
+    access: [["Brigmedic"]]
+
+- type: entityTable
+  id: FillMOHarduit
+  table: !type:AllSelector
+    children:
+    - id: ClothingOuterHardsuitBrigmedicSyndi
+    - id: ClothingMaskBreath
+    - id: OxygenTankFilled
+    - id: NitrogenTankFilled
+
+- type: entity
+  id: SuitStorageCombatMedic
+  parent: SuitStorageBase
+  suffix: S, Combat Medic
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: FillCMHarduit
+  - type: AccessReader
+    access: [["Brigmedic"]]
+
+- type: entityTable
+  id: FillCMHarduit
+  table: !type:AllSelector
+    children:
+    - id: ClothingOuterHardsuitCorpsman
     - id: ClothingMaskBreath
     - id: OxygenTankFilled
     - id: NitrogenTankFilled

@@ -25,18 +25,7 @@
       - id: Ointment
       - id: Gauze
 
-- type: entity
-  id: ClothingBeltBrigmedicWebFilled
-  parent: ClothingBeltBrigmedicWeb
-  suffix: Filled
-  components:
-  - type: StorageFill
-    contents:
-      - id: Stunbaton
-      - id: Handcuffs    
-      - id: Brutepack
-      - id: Ointment
-      - id: Gauze
+# FH - Filled brigmedic web removal
 
 - type: entity
   id: ClothingBeltCorpsmanFilled
@@ -63,7 +52,7 @@
     - id: Stunbaton
     - id: GrenadeFlashBang
     - id: TearGasGrenade
-    - id: MedkitCombatFilled
+    - id: SecurityMedkitFHFilledBSO
 
 - type: entity
   id: ClothingBeltNTNCRigFilled

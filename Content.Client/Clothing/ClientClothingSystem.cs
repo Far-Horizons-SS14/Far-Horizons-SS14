@@ -36,7 +36,9 @@ public sealed class ClientClothingSystem : ClothingSystem
         {"outerClothing", "OUTERCLOTHING"},
         {Jumpsuit, "INNERCLOTHING"},
         {"neck", "NECK"},
+        {"pin", "NECK"}, // FarHorizons: Neck Slot
         {"back", "BACKPACK"},
+        {"rig", "BELT"}, // FarHorizons: BELT
         {"belt", "BELT"},
         {"gloves", "HAND"},
         {"shoes", "FEET"},
@@ -44,6 +46,7 @@ public sealed class ClientClothingSystem : ClothingSystem
         {"pocket1", "POCKET1"},
         {"pocket2", "POCKET2"},
         {"suitstorage", "SUITSTORAGE"},
+        {"suitstorage2", "SUITSTORAGE"} // FarHorizons: SUITSTORAGE
     };
 
     [Dependency] private readonly IResourceCache _cache = default!;

@@ -1,3 +1,7 @@
+# Shared - Thieves / Traitors Items
+
+steal-target-groups-clothing-head-hat-guardian = Guardian's Cap
+
 # Traitor Single Items
 
 steal-target-groups-corpsmanhypo = Corpsman Hypospray

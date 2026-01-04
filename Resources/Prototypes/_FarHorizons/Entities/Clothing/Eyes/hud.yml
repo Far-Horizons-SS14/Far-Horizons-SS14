@@ -1,7 +1,9 @@
+#region NanoTrasen ##
 - type: entity
   parent: [ ClothingEyesBase, ShowSecurityIcons, BaseSecurityContraband ]
   id: ClothingEyesHudCorpsman
-  name: corpsman hud
+  name: Corpsman Hud
+  suffix: NT
   description: Super Tamashi-Upgraded hud. Corpsman one.
   components:
   - type: Sprite
@@ -19,10 +21,22 @@
   - type: IdentityBlocker
     coverage: EYES
 
+#region Syndicate ####
+
+
+
+
+
+
+
+
+#region Command
+
 - type: entity
   parent: [ClothingEyesBase, BaseCommandContraband]
   id: ClothingEyesHudCommandSyndi
-  name: administration hud
+  name: Administration HUD
+  suffix: S
   description: A heads-up display that scans the humanoids in view and provides accurate data about their ID status.
   components:
   - type: Sprite
@@ -34,3 +48,84 @@
     tags:
     - PetWearable
     - WhitelistChameleon
+
+#region Security
+
+- type: entity
+  parent: [ClothingEyesBase, ShowSecurityIcons, BaseSecurityContraband]
+  id: ClothingEyesHudSecuritySyndi
+  name: Security HUD
+  suffix: S
+  description: A heads-up display that scans the humanoids in view and provides accurate data about their ID status and security records.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Eyes/Hud/sec-syndi.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Eyes/Hud/sec-syndi.rsi
+  - type: Tag
+    tags:
+    - HudSecurity
+    - PetWearable
+    - WhitelistChameleon
+
+- type: entity
+  parent: [ClothingEyesHudSecuritySyndi, ClothingHeadEyeBaseFlippable]
+  id: ClothingEyesEyepatchHudSecuritySyndi
+  name: Security HUD Eyepatch
+  suffix: S
+  description: A heads-up display that scans the humanoids in view and provides accurate data about their ID status and security records. For true patriots.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Eyes/Hud/secpatch.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Eyes/Hud/secpatch.rsi
+  - type: Tag
+    tags:
+    - PetWearable
+    - WhitelistChameleon
+    - HudSecurity
+
+# Medical Officer + Combat Medic (Brigmedic + Corpsman)
+
+- type: entity
+  parent: [ ClothingEyesBase, ShowSecurityIcons, BaseSecurityContraband ]
+  id: ClothingEyesHudBrigmedicSyndi
+  name: Security Medical HUD
+  suffix: S
+  description: Tamashi-upgraded HUDs. Yes. Security medical ones.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Eyes/Hud/brigmedichud-syndi.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Eyes/Hud/brigmedichud-syndi.rsi
+  - type: FlashImmunity
+  - type: EyeProtection
+    protectionTime: 5
+  - type: ShowHealthBars
+  - type: SolutionScanner
+  - type: Construction
+    graph: GlassesSecHUD
+    node: glassesSec
+  - type: Tag
+    tags:
+    - HamsterWearable
+    - WhitelistChameleon
+  - type: IdentityBlocker
+    coverage: EYES
+
+- type: entity
+  parent: [ ClothingEyesHudBrigmedicSyndi, ClothingHeadEyeBaseFlippable ]
+  id: ClothingEyesEyepatchHudSecMedSyndi
+  name: Security Medical HUD Eyepatch
+  suffix: S
+  description: A heads-up display that scans the humanoids in view and provides accurate data about their ID status and security records. For true patriots.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Eyes/Hud/secpatch.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Eyes/Hud/secpatch.rsi
+  - type: Tag
+    tags:
+    - PetWearable
+    - WhitelistChameleon
+    - HudSecurity
