@@ -93,10 +93,10 @@
       settings: default
     requirements:
     - !type:OverallPlaytimeRequirement
-      time: 86400 # 24h STARLIGHT
+      time: 0 # Far Horizons - Temporary // 86400 # 24h STARLIGHT
     - !type:DepartmentTimeRequirement
       department: Security
-      time: 21600 # 6h STARLIGHT
+      time: 0 # Far Horizons - Temporary // 21600 # 6h STARLIGHT
   - type: GhostRoleMobSpawner
     prototype: MobHumanNukeOp
   - type: Sprite
@@ -138,10 +138,10 @@
     - MindRoleLoneops
     requirements:
     - !type:OverallPlaytimeRequirement
-      time: 86400 # 24h STARLIGHT
+      time: 0 # Far Horizons - Temporary // 86400 # 24h STARLIGHT
     - !type:DepartmentTimeRequirement
       department: Security
-      time: 21600 # 6h STARLIGHT
+      time: 0 # Far Horizons - Temporary // 21600 # 6h STARLIGHT
   - type: Sprite
     sprite: Markers/jobs.rsi
     layers:
@@ -162,13 +162,13 @@
     - MindRoleGhostRoleTeamAntagonist
     requirements:
     - !type:OverallPlaytimeRequirement
-      time: 86400 # 24h STARLIGHT
+      time: 7200 # 2 hours Far Horizons - Temporary // 86400 # 24h STARLIGHT
     - !type:DepartmentTimeRequirement
       department: Security
-      time: 43200 # 12h STARLIGHT
+      time: 0 # Far Horizons - Temporary // 43200 # 12h STARLIGHT
     - !type:DepartmentTimeRequirement
       department: Command
-      time: 21600 # 6h STARLIGHT
+      time: 0 # Far Horizons - Temporary // 21600 # 6h STARLIGHT
 
 - type: entity
   categories: [ HideSpawnMenu, Spawner ]
@@ -183,16 +183,16 @@
     - MindRoleGhostRoleTeamAntagonist
     requirements:
     - !type:OverallPlaytimeRequirement
-      time: 86400 # 24h STARLIGHT
+      time: 0 # Far Horizons - Temporary // 86400 # 24h STARLIGHT
     - !type:RoleTimeRequirement
       role: JobChemist
-      time: 10800 # 3h STARLIGHT
+      time: 0 # Far Horizons - Temporary // 10800 # 3h STARLIGHT
     - !type:RoleTimeRequirement
       role: JobSurgeon
-      time: 10800 # 3h STARLIGHT
+      time: 0 # Far Horizons - Temporary // 10800 # 3h STARLIGHT
     - !type:DepartmentTimeRequirement
       department: Security
-      time: 21600 # 6h STARLIGHT
+      time: 0 # Far Horizons - Temporary // 21600 # 6h STARLIGHT
 
 - type: entity
   categories: [ HideSpawnMenu, Spawner ]
@@ -221,7 +221,7 @@
     requirements:
     - !type:RoleTimeRequirement
       role: JobSalvageSpecialist
-      time: 10800 # 3h STARLIGHT
+      time: 0 # Far Horizons - Temporary // 10800 # 3h STARLIGHT
   - type: Sprite
     layers:
     - state: green
@@ -244,7 +244,7 @@
     requirements:
     - !type:DepartmentTimeRequirement
       department: Security
-      time: 10800 # 3h STARLIGHT
+      time: 0 # Far Horizons - Temporary // 10800 # 3h STARLIGHT
   - type: Sprite
     sprite: Markers/jobs.rsi
     layers:
@@ -267,7 +267,7 @@
       settings: default
     requirements:
     - !type:OverallPlaytimeRequirement
-      time: 86400 # 24h STARLIGHT
+      time: 0 # Far Horizons - Temporary // 86400 # 24h STARLIGHT
   - type: Sprite
     layers:
     - sprite: Markers/jobs.rsi
@@ -300,10 +300,10 @@
       settings: default
     requirements:
     - !type:OverallPlaytimeRequirement
-      time: 86400 # 24h STARLIGHT
+      time: 0 # Far Horizons - Temporary // 86400 # 24h STARLIGHT
     - !type:RoleTimeRequirement
       role: JobBorg
-      time: 21600 # 6h STARLIGHT
+      time: 0 # Far Horizons - Temporary // 21600 # 6h STARLIGHT
   - type: Sprite
     sprite: Markers/jobs.rsi
     layers:
@@ -376,10 +376,10 @@
       settings: default
     requirements:
     - !type:OverallPlaytimeRequirement
-      time: 86400 # 24h STARLIGHT
+      time: 0 # Far Horizons - Temporary // 86400 # 24h STARLIGHT
     - !type:DepartmentTimeRequirement
       department: Security
-      time: 21600 # 6h STARLIGHT
+      time: 0 # Far Horizons - Temporary // 21600 # 6h STARLIGHT
   - type: Sprite
     sprite: Markers/jobs.rsi
     layers:
