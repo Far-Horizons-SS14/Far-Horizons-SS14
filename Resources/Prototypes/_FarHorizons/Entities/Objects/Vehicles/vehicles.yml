@@ -143,8 +143,8 @@
 
 - type: entity
   id: VehicleSecway
-  parent: BaseVehicleRideable
-  name: secway
+  parent: [BaseVehicleRideable, BaseSecurityContraband]
+  name: Secway
   description: The future of transportation. Popularized by St. James, the patron saint of security officers and internet forum moderators.
   components:
   - type: Vehicle
@@ -169,15 +169,22 @@
     westDrawDepth: OverMobs
   - type: Sprite
     drawdepth: OverMobs
-    sprite: Objects/Vehicles/secway.rsi
+    sprite: _FarHorizons/Objects/Vehicles/secway.rsi
     layers:
     - state: vehicle
       map: ["enum.VehicleVisualLayers.AutoAnimate"]
     noRot: true
   - type: Strap
   - type: MovementSpeedModifier
-    baseWalkSpeed: 6
-    baseSprintSpeed: 9
+    baseWalkSpeed: 2
+    baseSprintSpeed: 5.5 #4.5 is default, so this is 1 faster than normal run
+  - type: UnpoweredFlashlight
+  - type: PointLight
+    enabled: false
+    radius: 10
+    softness: 2
+    mask: /Textures/Effects/LightMasks/cone.png
+    autoRot: true
   - type: ItemSlots
     slots:
       key_slot:
@@ -232,6 +239,47 @@
         - PowerCellMedium
         key_slot:
         - VehicleKeySecway
+
+- type: entity
+  id: VehicleSecwayTurboBatterywithKeys
+  parent: [VehicleSecway, BaseSecurityContraband]
+  name: Secway Turbo
+  suffix: Battery, Keys
+  description: An upgraded Secway, it is better in every single aspect.
+  components:
+    - type: MovementSpeedModifier
+      baseWalkSpeed: 6
+      baseSprintSpeed: 9
+    - type: Sprite
+      drawdepth: OverMobs
+      sprite: _FarHorizons/Objects/Vehicles/secway_turbo.rsi
+      layers:
+      - state: vehicle
+        map: ["enum.VehicleVisualLayers.AutoAnimate"]
+      noRot: true
+    - type: ItemSlots
+      slots:
+        key_slot:
+          name: Keys
+          whitelist:
+            requireAll: true
+            tags:
+            - VehicleKey
+            - SecwayTurboKeys
+        cell_slot:
+          name: power-cell-slot-component-slot-name-default
+          # Swappable batteries until we can get secway recharge stations
+          #disableEject: true
+          #swap: false
+    - type: PowerCellDraw
+      drawRate: 1.5 # Eats through cells
+      enabled: false 
+    - type: ContainerFill
+      containers:
+        cell_slot:
+        - PowerCellMedium
+        key_slot:
+        - VehicleKeySecwayTurbo
 
 - type: entity
   id: VehicleATV
@@ -353,3 +401,38 @@
       containers:
         key_slot:
         - VehicleKeyATV
+
+- type: entity
+  id: VehicleATVFueledwithKeysNTSec
+  parent: [VehicleATV, BaseSecurityContraband]
+  name: STV
+  suffix: Fueled, Keys
+  description: Law enforcement variant of the ATV, comes included with sirens to blare at Tiders. #Not actually included yet :P
+  components:
+    - type: Sprite
+      drawdepth: OverMobs
+      sprite: _FarHorizons/Objects/Vehicles/sectv.rsi
+      layers:
+      - state: vehicle
+        map: ["enum.VehicleVisualLayers.AutoAnimate"]
+      noRot: true
+    - type: SolutionContainerManager
+      solutions:
+        fueltank:
+          reagents:
+          - ReagentId: WeldingFuel
+            Quantity: 150
+          maxVol: 150
+    - type: ItemSlots
+      slots:
+        key_slot:
+          name: Keys
+          whitelist:
+            requireAll: true
+            tags:
+            - VehicleKey
+            - STVKeys
+    - type: ContainerFill
+      containers:
+        key_slot:
+        - VehicleKeySTV

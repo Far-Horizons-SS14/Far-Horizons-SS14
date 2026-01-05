@@ -6,8 +6,8 @@
   - type: Sprite
     layers:
       - state: green
-      - sprite: Objects/Vehicles/secway.rsi
-        state: keys
+      - sprite: _FarHorizons/Objects/Vehicles/secway.rsi
+        state: icon
   - type: ConditionalSpawner
     prototypes:
       - VehicleSecwayBatterywithKeys
@@ -25,6 +25,20 @@
   - type: ConditionalSpawner
     prototypes:
       - VehicleATVFueledwithKeys
+
+- type: entity
+  name: STV Spawner
+  id: SpawnVehicleSTV
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: _FarHorizons/Objects/Vehicles/sectv.rsi
+        state: icon
+  - type: ConditionalSpawner
+    prototypes:
+      - VehicleATVFueledwithKeysNTSec
 
 - type: entity
   name: Wheelchair Spawner

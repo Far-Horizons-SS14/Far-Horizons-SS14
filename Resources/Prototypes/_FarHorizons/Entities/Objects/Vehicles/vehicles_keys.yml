@@ -9,26 +9,54 @@
     state: keys
 
 - type: entity
-  parent: VehicleKeyBase
+  parent: [VehicleKeyBase, BaseSecurityContraband]
   id: VehicleKeySecway
-  name: secway keys
-  description: The keys to the future.
+  name: Secway electronic Key
+  description: The USB to the future.
   components:
   - type: Tag
     tags:
     - VehicleKey
     - SecwayKeys
   - type: Sprite
-    sprite: Objects/Vehicles/secway.rsi
+    sprite: _FarHorizons/Objects/Vehicles/secway.rsi
+    state: keys
+
+- type: entity
+  parent: [VehicleKeyBase, BaseSecurityContraband]
+  id: VehicleKeySecwayTurbo
+  name: Secway Turbo electronic Key
+  description: Enforcing justice at the speed of sound. Not compatible with Secways due to software differences.
+  components:
+  - type: Tag
+    tags:
+    - VehicleKey
+    - SecwayTurboKeys
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Vehicles/secway_turbo.rsi
     state: keys
 
 - type: entity
   parent: VehicleKeyBase
   id: VehicleKeyATV
-  name: ATV keys
+  name: ATV Keys
   description: Think this looks like just one key? ATV keys means "actually two vehicle keys."
   components:
   - type: Tag
     tags:
     - VehicleKey
     - ATVKeys
+
+- type: entity
+  parent: [VehicleKeyBase, BaseSecurityContraband]
+  id: VehicleKeySTV
+  name: STV Key
+  description: Universal STV key, does not fit in ATVs.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Vehicles/sectv.rsi
+    state: keys
+  - type: Tag
+    tags:
+    - VehicleKey
+    - STVKeys
