@@ -27,13 +27,13 @@ public sealed partial class VehicleComponent : Component
     public bool Started = false;
 
     /// <summary>
-    /// check if a vehicle requires ignition before allowing it to move
+    /// check if a person is allow to wield a weapon for two handed bonuses
     /// </summary>
     [DataField("disallowWielding"), AutoNetworkedField]
     public bool DisallowWieldingGuns = false;
 
     /// <summary>
-    /// check if a vehicle requires ignition before allowing it to move
+    /// check if a person takes stamina damage from shooting while in a vehicle
     /// </summary>
     [DataField("allowGunKnockback"), AutoNetworkedField]
     public bool AllowGunKnockback = false;

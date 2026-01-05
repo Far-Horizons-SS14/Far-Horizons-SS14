@@ -11,25 +11,25 @@ public sealed partial class VehicleBuckleComponent : Component
     /// <summary>
     /// How long it will take to unbuckle a driver
     /// </summary>
-    [DataField("unbuckletime"), AutoNetworkedField]
+    [DataField("unbuckleTime"), AutoNetworkedField]
     public TimeSpan duration = TimeSpan.FromSeconds(3f);
 
     /// <summary>
     /// Should stuns dismount the driver? 
     /// </summary>
-    [DataField("dismountonstun"), AutoNetworkedField]
+    [DataField("dismountOnStun"), AutoNetworkedField]
     public bool stundismount = true;
 
     /// <summary>
     /// Should knockdowns dismount the driver?
     /// </summary>
-    [DataField("dismountonknockdown"), AutoNetworkedField]
+    [DataField("dismountOnKnockdown"), AutoNetworkedField]
     public bool knockdowndismount = true;
 
     /// <summary>
     /// Should knockdowns dismount the driver?
     /// </summary>
-    [DataField("armoraffectsvehicle"), AutoNetworkedField]
+    [DataField("armorAffectsVehicle"), AutoNetworkedField]
     public bool armoraffectsvehicle = false;
     
     /// <summary>
