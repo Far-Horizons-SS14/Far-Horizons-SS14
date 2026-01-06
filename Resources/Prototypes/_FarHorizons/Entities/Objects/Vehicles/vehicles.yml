@@ -1,5 +1,7 @@
 - type: entity
   id: BaseVehicle
+  save: false
+  abstract: true
   components:
   - type: AmbientSound
     sound: "/Audio/Effects/Vehicle/vehicleengineidle.ogg"
@@ -35,6 +37,7 @@
 - type: entity
   parent: BaseVehicleRideable
   id: BaseVehicleRideableDamageable
+  abstract: true
   name: VehicleDamageable
   components:
   - type: Repairable
@@ -59,8 +62,6 @@
         containers:
         - passenger_slot
         - storagebase
-  - type: Physics
-    canCollide: True
 
 - type: entity
   id: VehicleWheelchair
