@@ -20,6 +20,7 @@ using Content.Shared.Stunnable;
 using Content.Shared.Medical.Healing;
 using Content.Shared.Damage;
 using Robust.Shared.Audio;
+using Content.Shared.Damage.Components;
 //FarHorizons End
 
 namespace Content.Shared.Starlight.Medical.Surgery;
@@ -61,7 +62,7 @@ public abstract partial class SharedSurgerySystem
             var StepProto = _prototypes.Index<EntityPrototype>(args.Step);
             if (StepProto.TryGetComponent<OnFailDamageComponent>(out var comp, _compFactory) && TryComp<BodyPartComponent>(args.Target, out var bodyComp))
             {
-                _damageableSystem.TryChangeDamage(bodyComp.Body, comp.Damage!);
+                _damageableSystem.TryChangeDamage(bodyComp.Body!.Value, comp.Damage!);
                 TryEmoteWithChat(bodyComp.Body!.Value, comp.Emote);
             }
             _popup.PopupEntity("Because of a careless tool, your hand shook and you damaged your patient. You need to start this step all over again!", args.User, PopupType.SmallCaution);

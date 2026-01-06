@@ -235,7 +235,7 @@ public sealed class CriminalRecordsSystem : SharedCriminalRecordsSystem
             return;
         if(!TryComp<ActivatableUIComponent>(item, out var activeComp))
             return;
-        if(!TryComp<IdentityComponent>(target, out var idComp) || !TryComp<MetaDataComponent>(idComp.IdentityEntitySlot.ContainedEntity, out var metaComp))
+        if(!TryComp<IdentityComponent>(target, out var idComp) || !TryComp<MetaDataComponent>(idComp.IdentityEntitySlot?.ContainedEntity, out var metaComp))
             return;
 
         _cartridge.ActivateProgram(item, programUid);

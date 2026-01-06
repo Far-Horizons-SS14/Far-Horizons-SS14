@@ -185,7 +185,8 @@ public sealed class PlayTimeTrackingSystem : EntitySystem
     {
         // Starlight start
         if (!ev.IsSpawning) {
-            if (!IsAllowedNonSpawning(ev.Player, ev.Jobs) || !IsAllowedNonSpawning(ev.Player, ev.Antags))
+            var factionlessJobs = ev.Jobs?.Select(p => p.job).ToList();
+            if (!IsAllowedNonSpawning(ev.Player, factionlessJobs) || !IsAllowedNonSpawning(ev.Player, ev.Antags))
                 ev.Cancelled = true;
             return;
         }
@@ -224,14 +225,14 @@ public sealed class PlayTimeTrackingSystem : EntitySystem
     /// <param name="player">The player.</param>
     /// <param name="jobs">A list of role prototype IDs</param>
     /// <returns>Returns true if all requirements were met or there were no requirements.</returns>
-    public bool IsAllowed(ICommonSession player, List<ProtoId<JobPrototype>>? jobs)
+    public bool IsAllowed(ICommonSession player, List<(ProtoId<FactionPrototype> faction, ProtoId<JobPrototype> job)>? jobs)
     {
         if (jobs is null)
             return true;
 
         foreach (var job in jobs)
         {
-            if (!IsAllowed(player, job))
+            if (!IsAllowed(player, job.faction, job.job))
                 return false;
         }
 
@@ -264,7 +265,7 @@ public sealed class PlayTimeTrackingSystem : EntitySystem
     /// <param name="player">The player.</param>
     /// <param name="job">A list of role prototype IDs</param>
     /// <returns>Returns true if all requirements were met or there were no requirements.</returns>
-    public bool IsAllowed(ICommonSession player, ProtoId<JobPrototype> job)
+    public bool IsAllowed(ICommonSession player, ProtoId<FactionPrototype> faction, ProtoId<JobPrototype> job)
     {
         /* Starlight start - we check this in GetPlayTimeIfEnabled
         if (!_cfg.GetCVar(CCVars.GameRoleTimers))
@@ -287,7 +288,7 @@ public sealed class PlayTimeTrackingSystem : EntitySystem
             return JobRequirements.TryRequirementsMet(requirements, player, playTimes, out _, EntityManager, _prototypes, null);
         // Starlight end
 
-        var allProfilesForJob = _preferencesManager.GetPreferences(player.UserId).GetAllEnabledProfilesForJob(job);
+        var allProfilesForJob = _preferencesManager.GetPreferences(player.UserId).GetAllEnabledProfilesForJob(faction, job);
         return allProfilesForJob.Values.Any(profile => JobRequirements.TryRequirementsMet(
                     requirements,
                     player,

@@ -952,7 +952,7 @@ namespace Content.Client.Lobby.UI
                             loadout.SetDefault(Profile, _playerManager.LocalSession, _prototypeManager, force: true);
                         }
 
-                        OpenAntagLoadout(antag, loadout, roleLoadoutProto);
+                        OpenAntagLoadout((_factions.GetDefaultFaction(), antag), loadout, roleLoadoutProto);
                     };
                 }
 
@@ -1343,7 +1343,7 @@ namespace Content.Client.Lobby.UI
         }
 
         // Starlight Start: Antag loadouts
-        private void OpenAntagLoadout(AntagPrototype antagProto, RoleLoadout roleLoadout, RoleLoadoutPrototype roleLoadoutProto)
+        private void OpenAntagLoadout((FactionPrototype faction, AntagPrototype antag) antagProto, RoleLoadout roleLoadout, RoleLoadoutPrototype roleLoadoutProto)
         {
             _loadoutWindow?.Dispose();
             _loadoutWindow = null;
@@ -1356,7 +1356,7 @@ namespace Content.Client.Lobby.UI
 
             _loadoutWindow = new LoadoutWindow(Profile, roleLoadout, roleLoadoutProto, session, collection)
             {
-                Title = Loc.GetString("loadout-window-title-loadout", ("job", Loc.GetString(antagProto.Name))),
+                Title = Loc.GetString("loadout-window-title-loadout", ("job", Loc.GetString(antagProto.antag.Name))),
             };
 
             _loadoutWindow.RefreshLoadouts(roleLoadout, session, collection);
@@ -1385,9 +1385,9 @@ namespace Content.Client.Lobby.UI
                 ReloadPreview();
             };
 
-            AntagOverride = antagProto.ID;
-            JobOverride = antagProto.PreviewStartingGear != null
-                ? _prototypeManager.EnumeratePrototypes<JobPrototype>().FirstOrDefault(j => j.StartingGear == antagProto.PreviewStartingGear)
+            AntagOverride = antagProto.antag.ID;
+            JobOverride = antagProto.antag.PreviewStartingGear != null
+                ? (antagProto.faction, _prototypeManager.EnumeratePrototypes<JobPrototype>().FirstOrDefault(j => j.StartingGear == antagProto.antag.PreviewStartingGear)!)
                 : null;
 
             ReloadPreview();

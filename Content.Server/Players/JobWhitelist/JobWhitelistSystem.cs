@@ -56,9 +56,9 @@ public sealed class JobWhitelistSystem : EntitySystem
         if (ev.Jobs is null)
             return;
 
-        foreach (var proto in ev.Jobs)
+        foreach (var (_, job) in ev.Jobs)
         {
-            if (!_manager.IsAllowed(ev.Player, proto))
+            if (!_manager.IsAllowed(ev.Player, job))
                 ev.Cancelled = true;
         }
     }

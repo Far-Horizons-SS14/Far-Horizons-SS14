@@ -35,6 +35,8 @@ using Content.Shared.Verbs;
 using Robust.Shared.Collections;
 using Content.Shared.Ghost.Roles.Components;
 using Content.Shared.Roles.Components;
+using Content.Shared._FarHorizons.Factions;
+using Content.Server._FarHorizons.Factions;
 
 namespace Content.Server.Ghost.Roles;
 
@@ -55,6 +57,7 @@ public sealed class GhostRoleSystem : EntitySystem
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly PopupSystem _popupSystem = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
+    [Dependency] private readonly IServerFactionManager _factions = default!;
 
     private uint _nextRoleIdentifier;
     private bool _needsUpdateGhostRoleCount = true;
@@ -557,7 +560,8 @@ public sealed class GhostRoleSystem : EntitySystem
         List<ProtoId<JobPrototype>>? jobIds,
         List<ProtoId<AntagPrototype>>? antagIds)
     {
-        var ev = new IsRoleAllowedEvent(player, jobIds, antagIds, cancelled: false, isSpawning: false); // Starlight-edit: add last two parameters
+        List<(ProtoId<FactionPrototype>, ProtoId<JobPrototype>)>? factionJobs = jobIds?.Select(p => (_factions.DecideFactionForJob(p)!.Value, p)).ToList();
+        var ev = new IsRoleAllowedEvent(player, factionJobs, antagIds, cancelled: false, isSpawning: false); // Starlight-edit: add last two parameters
         RaiseLocalEvent(ref ev);
 
         return !ev.Cancelled;

@@ -18,7 +18,6 @@ using Robust.Shared.Physics.Components;
 using Robust.Shared.Prototypes;
 using System.Numerics;
 using System.Linq;
-using Content.Server.PowerCell;
 using Content.Shared.PowerCell;
 using Robust.Server.GameObjects;
 using Content.Shared._FarHorizons.Vehicles;
@@ -37,6 +36,7 @@ using Robust.Shared.Containers;
 using Content.Shared.Light.Components;
 using Content.Shared.Inventory.VirtualItem;
 using Content.Shared.Interaction.Components;
+using Content.Shared.PowerCell.Components;
 
 namespace Content.Server._FarHorizons.Vehicle;
 
@@ -129,8 +129,7 @@ public sealed partial class VehicleSystems : SharedVehicleSystems
                     
                 if(TryComp<PowerCellDrawComponent>(ent.Owner, out var pcdComp) && pcdComp.Enabled)
                 {
-                    pcdComp.Enabled = false;
-                    Dirty(ent.Owner, pcdComp);
+                    _powerCell.SetDrawEnabled((ent.Owner, pcdComp), false);
                 }
                 if(TryComp<ReagantDrawComponent>(ent.Owner, out var rdComp) && rdComp.Enabled)
                 {
@@ -230,7 +229,7 @@ public sealed partial class VehicleSystems : SharedVehicleSystems
         if(!TryComp<PowerCellDrawComponent>(ent.Owner, out var pcdComp)) return;
 
         ent.Comp.Started = false;
-        pcdComp.Enabled = false;
+        _powerCell.SetDrawEnabled((ent.Owner, pcdComp), false);
         _ambientSound.SetAmbience(ent.Owner, false);
         Dirty(ent.Owner, pcdComp);
         Dirty(ent.Owner, ent.Comp);
@@ -371,8 +370,7 @@ public sealed partial class VehicleSystems : SharedVehicleSystems
 
         if (pcdComp?.Enabled == vehicleComp.Started)
         {
-            pcdComp.Enabled = false;
-            Dirty(riding, pcdComp);
+            _powerCell.SetDrawEnabled((riding, pcdComp), false);
         }
 
         if (rdComp?.Enabled == true)
@@ -456,8 +454,7 @@ public sealed partial class VehicleSystems : SharedVehicleSystems
 
             if(TryComp<PowerCellDrawComponent>(ent.Owner, out var pcdComp) && pcdComp.Enabled)
             {
-                pcdComp.Enabled = false;
-                Dirty(ent.Owner, pcdComp);
+                _powerCell.SetDrawEnabled((ent.Owner, pcdComp), false);
             }   
             if(TryComp<ReagantDrawComponent>(ent.Owner, out var rdComp) && rdComp.Enabled)
             {
@@ -481,7 +478,7 @@ public sealed partial class VehicleSystems : SharedVehicleSystems
         ent.Comp.Started = !ent.Comp.Started;
         if(TryComp<PowerCellDrawComponent>(ent.Owner, out var pcdComp))
         {
-            pcdComp.Enabled = ent.Comp.Started;
+            _powerCell.SetDrawEnabled((ent.Owner, pcdComp), ent.Comp.Started);
         }
         if(TryComp<ReagantDrawComponent>(ent.Owner, out var rdComp))
         {

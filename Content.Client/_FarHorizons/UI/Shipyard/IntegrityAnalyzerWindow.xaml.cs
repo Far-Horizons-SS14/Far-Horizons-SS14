@@ -8,6 +8,7 @@ using Robust.Client.UserInterface.XAML;
 using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Utility;
 using Content.Shared.FarHorizons.Tools.Shipyard;
+using Content.Shared.Damage.Components;
 
 namespace Content.Client._FarHorizons.UI.Shipyard
 {

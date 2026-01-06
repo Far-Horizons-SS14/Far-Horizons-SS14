@@ -111,13 +111,6 @@ public sealed partial class NullLinkPlayerManager : INullLinkPlayerManager
                 break;
         }
     }
-    private void SendPlayerRoles(ICommonSession session, HashSet<ulong> roles)
-        => _netMgr.ServerSendMessage(new MsgUpdatePlayerRoles
-        {
-            Roles = roles,
-            DiscordLink = GetDiscordAuthUrl(session.UserId.ToString()),
-            IsMentor = IsStoredMentor(session.UserId)// FarHorizons
-        }, session.Channel);
 
     private void UpdateMentors(string obj)
     {

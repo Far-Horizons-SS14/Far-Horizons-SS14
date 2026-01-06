@@ -1,4 +1,4 @@
-using Content.Server.Temperature.Components;
+using Content.Shared.Temperature.Components;
 using Content.Shared._FarHorizons.Silicons.IPC.Components;
 using Content.Shared.Alert;
 using Content.Shared.Atmos;

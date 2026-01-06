@@ -87,8 +87,6 @@ namespace Content.Client.Entry
        	[Dependency] private readonly ISharedNullLinkPlayerRolesReqManager _sharedNullLinkPlayer = default!; //NullLink
         [Dependency] private readonly ISharedFactionManager _factions = default!; //Far Horizons
         [Dependency] private readonly DiscordLinkManager _discordLinkManager = default!; // Far Horizons
-        [Dependency] private readonly INullLinkPlayerRolesManager _nullLinkPlayerRolesManager = default!; //NullLink
-        [Dependency] private readonly ISharedNullLinkPlayerRolesReqManager _sharedNullLinkPlayer = default!; //NullLink
         [Dependency] private readonly PreWrittenDocumentManager _documentManager = default!; // Starlight
 
         public override void PreInit()
@@ -175,7 +173,7 @@ namespace Content.Client.Entry
         public override void Shutdown()
         {
             base.Shutdown();
-            _titleWindowManager.Shutdown();
+            //_titleWindowManager.Shutdown();
 
             //Far Horizons
             _factions.Shutdown();

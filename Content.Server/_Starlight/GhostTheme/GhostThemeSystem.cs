@@ -82,6 +82,7 @@ public sealed class GhostThemeSystem : EntitySystem
         HashSet<string> availableThemes = [];
 
         foreach (var ghostTheme in _prototypeManager.EnumeratePrototypes<GhostThemePrototype>())
+        {
             if(ghostTheme.Requirements.Count == 0 || ghostTheme.Requirements.All(x => x.Handle(session)))
                 availableThemes.Add(ghostTheme.ID);
 
@@ -93,6 +94,7 @@ public sealed class GhostThemeSystem : EntitySystem
             }
             availableThemes.Add(ghostTheme.ID);
         }
+
 
         var eui = _openUis[session] = new GhostThemeEui(availableThemes);
 

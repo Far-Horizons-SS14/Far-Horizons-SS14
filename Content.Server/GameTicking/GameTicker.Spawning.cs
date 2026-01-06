@@ -199,7 +199,9 @@ namespace Content.Server.GameTicking
             if (jobId != null &&
                 faction != null)
             {
-                var ev = new IsJobAllowedEvent(player, faction.Value, new ProtoId<JobPrototype>(jobId)); // Far Horizons
+                var factionJob = (faction.Value, new ProtoId<JobPrototype>(jobId));
+                List<(ProtoId<FactionPrototype>, ProtoId<JobPrototype>)> factionJobList = [ factionJob ];
+                var ev = new IsRoleAllowedEvent(player, factionJobList, []); // Far Horizons
                 RaiseLocalEvent(ref ev);
                 if (ev.Cancelled)
                     return;
@@ -348,7 +350,7 @@ namespace Content.Server.GameTicking
             
             _newLifeSystem.SaveCharacterToUsed(player.UserId, playerPreferences.IndexOfCharacter(character));     //🌟Starlight🌟
 
-            DoSpawn(player, character, station, jobId, silent, out var mob, out var jobPrototype, out var jobName);
+            DoSpawn(player, character, station, faction, jobId, silent, out var mob, out var jobPrototype, out var jobName);
 
             if (lateJoin && !silent)
             {
@@ -443,6 +445,7 @@ namespace Content.Server.GameTicking
             ICommonSession player,
             HumanoidCharacterProfile character,
             EntityUid station,
+            ProtoId<FactionPrototype>? faction, // Far Horizons
             string jobId,
             bool silent,
             out EntityUid mob,
@@ -462,7 +465,7 @@ namespace Content.Server.GameTicking
 
             _playTimeTrackings.PlayerRolesChanged(player);
 
-            var mobMaybe = _stationSpawning.SpawnPlayerCharacterOnStation(station, jobId, character);
+            var mobMaybe = _stationSpawning.SpawnPlayerCharacterOnStation(station, faction, jobId, character);
             DebugTools.AssertNotNull(mobMaybe);
             mob = mobMaybe!.Value;
 

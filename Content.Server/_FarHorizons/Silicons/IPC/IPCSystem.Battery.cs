@@ -102,7 +102,7 @@ public sealed partial class IPCSystem
     }
     private void OnPowerCellChanged(Entity<IPCBatteryComponent> ent, ref PowerCellChangedEvent args)
     {
-        if(!_powerCell.HasDrawCharge(ent))
+        if(!_powerCell.HasDrawCharge(ent.Owner))
             StartDeathTimer(ent);
         else
             StopDeathTimer(ent);
@@ -150,20 +150,20 @@ public sealed partial class IPCSystem
 
     private void UpdateBatteryAlert(Entity<IPCBatteryComponent> ent)
     {
-        if (_state.IsAlive(ent) && ent.Comp.TimerActive && !_powerCell.HasDrawCharge(ent)){
+        if (_state.IsAlive(ent) && ent.Comp.TimerActive && !_powerCell.HasDrawCharge(ent.Owner)){
             _alerts.ClearAlertCategory(ent.Owner, ent.Comp.BatteryAlertsCategory);
             _alerts.ShowAlert(ent.Owner, ent.Comp.ChargeCritical);
             return;
         }
 
-        if (!_powerCell.TryGetBatteryFromSlot(ent, out var battery, ent.Comp.PowerCellSlot))
+        if (!_powerCell.TryGetBatteryFromSlot((ent, ent.Comp.PowerCellSlot), out var battery))
         {
             _alerts.ClearAlertCategory(ent.Owner, ent.Comp.BatteryAlertsCategory);
             _alerts.ShowAlert(ent.Owner, ent.Comp.NoBatteryAlert);
             return;
         }
 
-        var chargePercent = (short) MathF.Round(battery.CurrentCharge / battery.MaxCharge * 10f);
+        var chargePercent = (short) MathF.Round(battery.Value.Comp.LastCharge / battery.Value.Comp.MaxCharge * 10f);
 
         _alerts.ClearAlertCategory(ent.Owner, ent.Comp.BatteryAlertsCategory);
         _alerts.ShowAlert(ent.Owner, ent.Comp.BatteryAlert, chargePercent);

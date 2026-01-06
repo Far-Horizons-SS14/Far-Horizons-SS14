@@ -139,7 +139,7 @@ public class RaiseEventBenchmark
         }
 
         [ByRefEvent]
-        [ComponentEvent(Exclusive = false)]
+        [ComponentEvent]
         public struct BenchEv
         {
             public int N;

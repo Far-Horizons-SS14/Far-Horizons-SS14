@@ -7,11 +7,10 @@ using Content.Server.Hands.Systems;
 using Content.Server.Ninja.Systems;
 using Content.Server.Popups;
 using Content.Server.Power.EntitySystems;
-using Content.Server.PowerCell;
+using Content.Shared.PowerCell;
 using Content.Server.Temperature.Systems;
 using Content.Shared._FarHorizons.Silicons.IPC;
 using Content.Shared.Alert;
-using Content.Shared.Damage;
 using Content.Shared.Mind;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Tag;
@@ -22,6 +21,7 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Configuration;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
+using Content.Shared.Damage.Systems;
 
 namespace Content.Server._FarHorizons.Silicons.IPC;
 

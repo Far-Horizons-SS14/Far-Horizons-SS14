@@ -191,15 +191,15 @@ public sealed class SpraySystem : SharedSpraySystem
             // FarHorizons End
             if (TryComp<PhysicsComponent>(userTarget, out var body)) //FarHorizons
             {
-                if (_gravity.IsWeightless(userTarget))//FarHorizons
+                if (_gravity.IsWeightless(userTarget.Value))//FarHorizons
                 {
                     // push back the player
-                    _physics.ApplyLinearImpulse(userTarget, -impulseDirection * entity.Comp.PushbackAmount, body: body);//FarHorizons
+                    _physics.ApplyLinearImpulse(userTarget.Value, -impulseDirection * entity.Comp.PushbackAmount, body: body);//FarHorizons
                 }
                 else
                 {
                     // push back the grid the player is standing on
-                    var userTransform = Transform(thingGettingPushed);
+                    var userTransform = Transform(userTarget.Value);
                     if (userTransform.GridUid == userTransform.ParentUid)
                     {
                         // apply both linear and angular momentum depending on the player position

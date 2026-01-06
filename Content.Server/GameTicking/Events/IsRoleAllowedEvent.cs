@@ -1,4 +1,5 @@
-﻿using Content.Shared.Roles;
+﻿using Content.Shared._FarHorizons.Factions;
+using Content.Shared.Roles;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 
@@ -14,13 +15,13 @@ namespace Content.Server.GameTicking.Events;
 [ByRefEvent]
 public struct IsRoleAllowedEvent(
     ICommonSession player,
-    List<ProtoId<JobPrototype>>? jobs,
+    List<(ProtoId<FactionPrototype> faction, ProtoId<JobPrototype> job)>? jobs,
     List<ProtoId<AntagPrototype>>? antags,
     bool cancelled = false,
     bool isSpawning = true) // Starlight - add isSpawning
 {
     public readonly ICommonSession Player = player;
-    public readonly List<ProtoId<JobPrototype>>? Jobs = jobs;
+    public readonly List<(ProtoId<FactionPrototype> faction, ProtoId<JobPrototype> job)>? Jobs = jobs;
     public readonly List<ProtoId<AntagPrototype>>? Antags = antags;
     public bool Cancelled = cancelled;
     public bool IsSpawning = isSpawning; // Starlight - add isSpawning

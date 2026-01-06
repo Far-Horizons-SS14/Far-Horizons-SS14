@@ -102,8 +102,9 @@ public sealed class HealingSystem : EntitySystem
             return;
 
         if (healed == null && healing.BloodlossModifier != 0 && healing.AdjustEyeDamage != 0) // Far Horizons - added eye healing
+            return;
 
-        var total = healed.GetTotal();
+        var total = healed?.GetTotal();
 
         // Re-verify that we can heal the damage.
         var dontRepeat = false;

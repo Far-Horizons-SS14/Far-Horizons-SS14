@@ -118,6 +118,15 @@ namespace Content.Shared.Preferences
         public Dictionary<int, HumanoidCharacterProfile> GetAllProfilesForJob(ProtoId<FactionPrototype> faction, ProtoId<JobPrototype> job) => 
             GetAllProfilesForJobInternal(faction, job, onlyEnabled: false);
 
+        private Dictionary<int, HumanoidCharacterProfile> GetAllProfilesForJobInternal(ProtoId<FactionPrototype> faction, ProtoId<JobPrototype> job, bool onlyEnabled) => 
+                Characters
+                    .Where(kv =>
+                        kv.Value is HumanoidCharacterProfile humanoid &&
+                        (humanoid.Enabled || !onlyEnabled) &&
+                        humanoid.JobPreferences.Contains((faction, job)))
+                    .Select(kv => (kv.Key, (HumanoidCharacterProfile)kv.Value))
+                    .ToDictionary();
+
         /// <summary>
         /// Get all enabled profiles asking for an antag
         /// </summary>
