@@ -835,6 +835,9 @@ public sealed partial class VehicleSystems : SharedVehicleSystems
 
         if(component.HornSound != null)
             _actions.AddAction(rider, ref component.HornVehicleActionEntity, component.HornVehicleAction, vehicle);
+
+        if(component.SirenToggleAction != null)
+            _actions.AddAction(rider, component.SirenToggleAction, vehicle);
     }
 
     private bool TryInsert(EntityUid? Rider, EntityUid Vehicle, VehicleContainerComponent? component=null)
