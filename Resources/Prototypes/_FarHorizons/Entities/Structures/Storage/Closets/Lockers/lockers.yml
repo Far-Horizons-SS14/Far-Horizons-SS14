@@ -12,9 +12,9 @@
   - type: Sprite
     sprite: _FarHorizons/Structures/Storage/closet.rsi
   - type: EntityStorageVisuals
-    stateBaseClosed: hos
-    stateDoorOpen: hos_open
-    stateDoorClosed: hos_door
+    stateBaseClosed: alien #This is pinkish purple. I'll take it.
+    stateDoorOpen: alien_open
+    stateDoorClosed: alien_door
   - type: AccessReader
     access: [["Magistrate"]]
   - type: WiresPanelSecurity
@@ -25,7 +25,7 @@
 - type: entity
   id: LockerHeadOfSecurityFH
   parent: LockerLargeBaseSecure
-  name: head of security's locker
+  name: Head Of Security's Locker
   components:
   - type: Appearance
   - type: Sprite
@@ -46,7 +46,7 @@
 - type: entity
   id: LockerSecurityFH
   parent: LockerBaseSecure
-  name: security officer's locker
+  name: Security Officer's Locker
   components:
   - type: Appearance
   - type: Sprite
@@ -61,7 +61,7 @@
 - type: entity
   id: LockerSecurityLargeFH
   parent: LockerBaseSecure
-  name: large security officer's locker
+  name: Large Security Officer's Locker
   components:
   - type: Appearance
   - type: Sprite
@@ -76,7 +76,7 @@
 - type: entity
   id: LockerSecurityLargeFHL
   parent: LockerBaseSecure
-  name: large security officer lockers
+  name: Large Security Officer Lockers
   components:
   - type: Appearance
   - type: Sprite
@@ -93,7 +93,7 @@
 - type: entity
   id: LockerSecurityLargeFHM
   parent: LockerBaseSecure
-  name: large security officer lockers
+  name: Large Security Officer Lockers
   components:
   - type: Appearance
   - type: Sprite
@@ -110,7 +110,7 @@
 - type: entity
   id: LockerSecurityLargeFHR
   parent: LockerBaseSecure
-  name: large security officer lockers
+  name: Large Security Officer Lockers
   components:
   - type: Appearance
   - type: Sprite
@@ -129,7 +129,7 @@
 - type: entity
   id: LockerWardenFH
   parent: LockerLargeBaseSecure
-  name: warden's locker
+  name: Warden's Locker
   components:
   - type: Appearance
   - type: Sprite
@@ -146,7 +146,7 @@
 - type: entity
   id: LockerWardenLargeFH
   parent: LockerLargeBaseSecure
-  name: large warden's locker
+  name: Large Warden's Locker
   components:
   - type: Appearance
   - type: Sprite
@@ -165,7 +165,7 @@
 - type: entity
   id: LockerBrigmedicFH
   parent: LockerLargeBaseSecure
-  name: brigmedic's locker
+  name: Brigmedic's Locker
   components:
   - type: Appearance
   - type: Sprite
@@ -180,7 +180,7 @@
 - type: entity
   id: LockerBrigmedicLargeFH
   parent: LockerLargeBaseSecure
-  name: large brigmedic's locker
+  name: Large Brigmedic's Locker
   components:
   - type: Appearance
   - type: Sprite
@@ -197,7 +197,7 @@
 - type: entity
   id: LockerCorpsman
   parent: LockerLargeBaseSecure
-  name: corpsman's locker
+  name: Corpsman's Locker
   components:
   - type: Appearance
   - type: Sprite
