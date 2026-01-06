@@ -5,6 +5,7 @@
 - type: researchTreeNode
   id: SalvEquip
   name: research-tree-node-salvage-equipment
+  priority: 2
   cost: 10000
   icon:
     state: mechanical
@@ -30,6 +31,7 @@
 - type: researchTreeNode
   id: IndustrialEng
   name: research-tree-node-industrial-engineering
+  priority: 3
   cost: 10000
   icon:
     state: industry
@@ -81,6 +83,7 @@
 - type: researchTreeNode
   id: RiotControl
   name: research-tree-node-riot-control
+  priority: 4
   cost: 8000
   icon:
     state: kinetic
@@ -140,6 +143,7 @@
 - type: researchTreeNode
   id: Atmospherics
   name: research-tree-node-atmos
+  priority: 7
   cost: 7500
   icon:
     state: engineering
@@ -174,6 +178,7 @@
   id: LaserGun
   name: research-tree-node-laser
   cost: 7500
+  priority: 5
   icon:
     state: laser
     color: "#003860"
@@ -189,6 +194,7 @@
 - type: researchTreeNode
   id: PowerGeneration
   name: research-tree-node-generators
+  priority: 6
   cost: 7500
   icon:
     state: power
@@ -287,6 +293,7 @@
 - type: researchTreeNode
   id: AnomResearch
   name: research-tree-node-anom
+  priority: 1
   cost: 5000
   icon:
     state: electronics
@@ -315,6 +322,7 @@
 - type: researchTreeNode
   id: ArtiResearch
   name: research-tree-node-arti
+  priority: 0
   cost: 5000
   icon:
     state: electronics
@@ -364,6 +372,7 @@
 - type: researchTreeNode
   id: AVComms
   name: research-tree-node-av-comms
+  priority: 11
   cost: 5000
   icon:
     state: electronics
@@ -476,6 +485,7 @@
 - type: researchTreeNode
   id: Surgery
   name: research-tree-node-surgery
+  priority: 10
   cost: 4000
   icon:
     state: medical

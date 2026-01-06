@@ -35,7 +35,7 @@ public sealed partial class FHResearchTree : BoxContainer
     private List<DrawResearchNode> _nodes = [];
     private List<DrawResearchEdge> _edges = [];
     private bool _draw = false;
-    private readonly Font _font;
+    private Font? _font = null;
 
     private ProtoId<ResearchTreeNodePrototype>? _hovered = null;
     private ProtoId<ResearchTreeNodePrototype>? _selected = null;
@@ -56,7 +56,7 @@ public sealed partial class FHResearchTree : BoxContainer
     private Vector2 _viewportSize =>
         new(Width * UIScale, Height * UIScale);
     
-    private readonly ResearchSearch _search;
+    private ResearchSearch? _search = null;
     
     private const float MaxZoom = 1.5f;
     private const float MinZoom = 0.3f;
@@ -77,37 +77,25 @@ public sealed partial class FHResearchTree : BoxContainer
         }
     }
 
-    public int NodeWidth = 100;
-    public int NodeHeight = 30;
+    private readonly IResourceCache? _resourceCache;
 
-    public int NodeSpacingHorizontal = 45;
-    public int NodeSpacingVertical = 35;
-
-    public int NodeMarginHorizontal = 10;
-    public int NodeMarginVertical = 10;
-
-    public string FontPath = "/EngineFonts/NotoSans/NotoSansMono-Regular.ttf";
-    public string SearchTexturePath = "/Textures/Interface/VerbIcons/examine.svg.192dpi.png";
-    private readonly Texture _searchTexture;
+    private Texture? _searchTexture = null;
 
     private readonly SearchDatabase _searchDb = new();
     private readonly IconCache _icons;
+
+    private ResearchTreeStyleSheetPrototype? _style = null;
     
     public FHResearchTree()
     {
         IoCManager.InjectDependencies(this);
         RobustXamlLoader.Load(this);
-        var resourceCache = IoCManager.Resolve<IResourceCache>();
+        _resourceCache = IoCManager.Resolve<IResourceCache>();
 
-        var fontResource = resourceCache.GetResource<FontResource>(FontPath);
-        _font = new VectorFont(fontResource, 16);
-        _searchTexture = resourceCache.GetResource<TextureResource>(SearchTexturePath).Texture;
-
-        _icons = new(_prototypeManager, resourceCache);
+        _icons = new(_prototypeManager, _resourceCache);
 
         CanKeyboardFocus = true;
         DefaultCursorShape = CursorShape.Arrow;
-        _search = new(_timing, _prototypeManager, _font, _searchTexture);
 
         _viewportReady = false;
     }
@@ -118,18 +106,29 @@ public sealed partial class FHResearchTree : BoxContainer
         HashSet<ProtoId<ResearchTreeNodePrototype>> unlockedNodes,
         HashSet<ProtoId<ResearchTreeNodePrototype>> researched,
         Dictionary<ProtoId<ResearchTreeNodePrototype>, float> progress,
-        List<ProtoId<ResearchTreeNodePrototype>> queued
+        List<ProtoId<ResearchTreeNodePrototype>> queued,
+        ResearchTreeStyleSheetPrototype style
     )
     {   
         var grid = new ResearchTreeGrid(_prototypeManager, nodes);
 
-        (_tiers, _nodes, _edges) = grid.GetDrawable((NodeWidth, NodeHeight), (NodeSpacingHorizontal, NodeSpacingVertical), (NodeMarginHorizontal, NodeMarginVertical), _font);
+        if (_resourceCache == null)
+            return;
+        
+        _style = style;
+
+        var fontResource = _resourceCache.GetResource<FontResource>(style.FontPath);
+        _font = new VectorFont(fontResource, style.FontSize);
+
+        (_tiers, _nodes, _edges) = grid.GetDrawable((style.NodeWidth, style.NodeHeight), (style.NodeSpacingHorizontal, style.NodeSpacingVertical), (style.NodeMarginHorizontal, style.NodeMarginVertical), _font);
         _draw = true;
         _unlockedTiers = unlockedTiers;
         _unlockedNodes = unlockedNodes;
         _researched = researched;
         _queuedNodes = queued;
 
+        _searchTexture = _resourceCache.GetResource<TextureResource>(style.SearchIconPath).Texture;
+        _search = new(_timing, _prototypeManager, _font, _searchTexture);
         _searchDb.Build(_prototypeManager, [.. nodes.Select(p => (ProtoId<ResearchTreeNodePrototype>)p.ID)]);
         _search.SetDb(_searchDb);
         _search.OnSearchSelected += (node) => Select(node);
@@ -161,13 +160,13 @@ public sealed partial class FHResearchTree : BoxContainer
     {
         base.KeyBindDown(args);
 
-        if (_search.Active && args.Function == EngineKeyFunctions.TextBackspace)
+        if (_search != null && _search.Active && args.Function == EngineKeyFunctions.TextBackspace)
             _search.Backspace();
 
         if (args.Handled || args.Function != EngineKeyFunctions.UIClick)
             return;
         
-        if (_search.AnyMouseOver)
+        if (_search != null && _search.AnyMouseOver)
             return;
         
         _lastViewportPosition = _viewportPosition;
@@ -199,10 +198,10 @@ public sealed partial class FHResearchTree : BoxContainer
         if (args.Function != EngineKeyFunctions.UIClick)
             return;
 
-        if (_search.AnyMouseOver)
+        if (_search != null && _search.AnyMouseOver)
             _search.OnClicked();
         
-        if (_search.Active)
+        if (_search != null && _search.Active)
             GrabKeyboardFocus();
         else
             ReleaseKeyboardFocus();
@@ -237,7 +236,7 @@ public sealed partial class FHResearchTree : BoxContainer
     {
         base.KeyboardFocusEntered();
 
-        if (_search.Active)
+        if (_search != null && _search.Active)
             Root?.Window?.TextInputStart();
     }
 
@@ -245,13 +244,13 @@ public sealed partial class FHResearchTree : BoxContainer
     {
         base.KeyboardFocusEntered();
 
-        if (!_search.Active)
+        if (_search != null && !_search.Active)
             Root?.Window?.TextInputStop();
     }
 
     protected override void TextEntered(GUITextEnteredEventArgs args)
     {
-        if (!_search.Active)
+        if (_search == null || !_search.Active)
             return;
         
         _search.UpdateText(args.Text);
@@ -261,9 +260,9 @@ public sealed partial class FHResearchTree : BoxContainer
     {
         base.Draw(handle);
 
-        if (!_viewportReady)
+        if (!_viewportReady && _style != null)
         {
-            _viewportPosition = (-_viewportSize / 2) + new Vector2(NodeMarginHorizontal * 2, NodeMarginVertical * 2);
+            _viewportPosition = (-_viewportSize / 2) + new Vector2(_style.NodeMarginHorizontal * 2, _style.NodeMarginVertical * 2);
             _viewportReady = true;
         }
 
@@ -276,7 +275,7 @@ public sealed partial class FHResearchTree : BoxContainer
         var researchedWithoutLingering = _researched.Except(lingeringProgress.Keys).ToHashSet();
         var queuedIncludingLingering = _queuedNodes.Union(lingeringProgress.Keys).ToList();
 
-        _search.Update(handle, _viewportSize, _currentMousePosition);
+        _search?.Update(handle, _viewportSize, _currentMousePosition);
 
         MoveViewport();
         foreach (var tier in _tiers)
@@ -313,7 +312,7 @@ public sealed partial class FHResearchTree : BoxContainer
             .Translate(_pseudoViewport)
             .DrawHeader(handle);
         
-        _search.Draw(handle);
+        _search?.Draw(handle);
     }
 
     private void MoveViewport()

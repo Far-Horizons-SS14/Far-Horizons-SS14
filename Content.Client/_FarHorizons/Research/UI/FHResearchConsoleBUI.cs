@@ -18,6 +18,7 @@ public sealed class FHResearchConsoleBoundUserInterface(EntityUid owner, Enum ui
     private HashSet<ProtoId<ResearchTreeNodePrototype>> _researchedNodes = [];
     private HashSet<ProtoId<ResearchTreeTierPrototype>> _unlockedTiers = [];
     private List<ProtoId<ResearchTreeNodePrototype>> _queuedNodes = [];
+    private ResearchTreeStyleSheetPrototype? _style = null;
     private bool _readonly = false;
 
     [ViewVariables]
@@ -54,6 +55,8 @@ public sealed class FHResearchConsoleBoundUserInterface(EntityUid owner, Enum ui
             _queuedNodes = fullState.QueuedNodes;
             _readonly = fullState.Readonly;
 
+            _style = _protoMan.Index(fullState.StyleSheet);
+
             if (_readonly && _window != null)
             {
                 _window.OnResearchButtonPressed -= SendReseachRequest;
@@ -61,7 +64,7 @@ public sealed class FHResearchConsoleBoundUserInterface(EntityUid owner, Enum ui
                 _window.OnQuickResearch -= QuickResearchRequest;
             }
             
-            _window?.SetupUI(_nodeProtos, _unlockedTiers, _unlockedNodes, _researchedNodes, _queuedNodes, fullState.ResearchProgress, fullState.BankedPoints, fullState.Readonly);
+            _window?.SetupUI(_nodeProtos, _unlockedTiers, _unlockedNodes, _researchedNodes, _queuedNodes, fullState.ResearchProgress, _style, fullState.BankedPoints, fullState.Readonly);
         } else if (state is FHResearchConsoleBUIPartialState partialState)
         {
             _researchedNodes = partialState.ResearchedNodes;

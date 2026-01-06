@@ -132,7 +132,7 @@ public sealed class ResearchTreeGrid
 
         foreach (var tier in tiers)
         {
-            var startingNodes = tierNodes[tier].Where(p => p.Requires.Count == 0);
+            var startingNodes = tierNodes[tier].Where(p => p.Requires.Count == 0).OrderBy(p => p.Priority).ThenBy(p => p.ID).ToList();
             
             foreach (var node in startingNodes)
             {

@@ -46,6 +46,7 @@ public sealed partial class FHResearchConsoleWindow : FancyWindow
         HashSet<ProtoId<ResearchTreeNodePrototype>> researched,
         List<ProtoId<ResearchTreeNodePrototype>> queued,
         Dictionary<ProtoId<ResearchTreeNodePrototype>, int> progress,
+        ResearchTreeStyleSheetPrototype style,
         int bankedPoints,
         bool readonlyClient)
     {
@@ -64,7 +65,7 @@ public sealed partial class FHResearchConsoleWindow : FancyWindow
         if (_readonly)
             ResearchButton.Visible = false;
 
-        TreeDisplay.BuildTree(_allNodes, _unlockedTiers, _unlockedNodes, _researchedNodes, _researchProgressPercentage, _queue);
+        TreeDisplay.BuildTree(_allNodes, _unlockedTiers, _unlockedNodes, _researchedNodes, _researchProgressPercentage, _queue, style);
         Selected(_selected?.ID);
         UpdateQueue();
     }

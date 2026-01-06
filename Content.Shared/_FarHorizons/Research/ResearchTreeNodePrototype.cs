@@ -41,6 +41,8 @@ public sealed partial class ResearchTreeNodePrototype : IPrototype
 
     [DataField]
     public ResearchTreeNodeIcon Icon = new();
+    [DataField]
+    public int Priority = 1000;
 
     public int GetDepth(IPrototypeManager protoMan)
     {

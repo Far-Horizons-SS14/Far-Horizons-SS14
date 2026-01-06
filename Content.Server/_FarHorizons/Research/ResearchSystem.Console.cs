@@ -118,6 +118,7 @@ public sealed partial class FHResearchSystem
         HashSet<ProtoId<ResearchTreeNodePrototype>> researchedNodes = [];
         List<ProtoId<ResearchTreeNodePrototype>> queuedNodes = [];
         Dictionary<ProtoId<ResearchTreeNodePrototype>, int> researchProgress = [];
+        ProtoId<ResearchTreeStyleSheetPrototype> styleSheet = string.Empty;
         int bankedPoints = 0;
         bool readonlyConsole = false;
 
@@ -133,10 +134,11 @@ public sealed partial class FHResearchSystem
             researchProgress = server!.Value.Comp.Progress;
             bankedPoints = server!.Value.Comp.BankedPoints;
             readonlyConsole = ent.Comp.Readonly;
+            styleSheet = GetTreeStyleSheet(server.Value);
         }
 
         if (build)
-            _ui.SetUiState(ent.Owner, FHResearchConsoleUiKey.Key, new FHResearchConsoleBUIFullState(nodes, unlockedTiers, unlockedNodes, researchedNodes, queuedNodes, researchProgress, bankedPoints, readonlyConsole));
+            _ui.SetUiState(ent.Owner, FHResearchConsoleUiKey.Key, new FHResearchConsoleBUIFullState(nodes, unlockedTiers, unlockedNodes, researchedNodes, queuedNodes, researchProgress, styleSheet, bankedPoints, readonlyConsole));
         else
             _ui.SetUiState(ent.Owner, FHResearchConsoleUiKey.Key, new FHResearchConsoleBUIPartialState(unlockedTiers, unlockedNodes, researchedNodes, queuedNodes, researchProgress, bankedPoints));
     }

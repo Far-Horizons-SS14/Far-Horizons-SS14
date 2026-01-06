@@ -28,6 +28,7 @@ public sealed class FHResearchConsoleBUIFullState(
     HashSet<ProtoId<ResearchTreeNodePrototype>> researchedNodes,
     List<ProtoId<ResearchTreeNodePrototype>> queuedNodes,
     Dictionary<ProtoId<ResearchTreeNodePrototype>, int> researchProgress,
+    ProtoId<ResearchTreeStyleSheetPrototype> styleSheet,
     int bankedPoints,
     bool readonlyConsole
     ) : BoundUserInterfaceState
@@ -38,6 +39,7 @@ public sealed class FHResearchConsoleBUIFullState(
     public HashSet<ProtoId<ResearchTreeNodePrototype>> ResearchedNodes = researchedNodes;
     public List<ProtoId<ResearchTreeNodePrototype>> QueuedNodes = queuedNodes;
     public Dictionary<ProtoId<ResearchTreeNodePrototype>, int> ResearchProgress = researchProgress;
+    public ProtoId<ResearchTreeStyleSheetPrototype> StyleSheet = styleSheet;
     public int BankedPoints = bankedPoints;
     public bool Readonly = readonlyConsole;
 }

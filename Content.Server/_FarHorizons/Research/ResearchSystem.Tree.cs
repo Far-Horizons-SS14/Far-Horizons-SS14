@@ -305,4 +305,7 @@ public sealed partial class FHResearchSystem
     
     public List<ProtoId<ResearchTreeNodePrototype>> GetRemovableReseach(Entity<FHResearchTreeComponent> ent) =>
         [.. ent.Comp.Researched.Where(p => !_protoMan.Index(p).Children(_protoMan).Any(e => ent.Comp.Researched.Contains(e.ID)))];
+
+    public ProtoId<ResearchTreeStyleSheetPrototype> GetTreeStyleSheet(Entity<FHResearchTreeComponent> ent) =>
+        _protoMan.Index(ent.Comp.Tree).Style;
 }

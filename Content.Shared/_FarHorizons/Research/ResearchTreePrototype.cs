@@ -10,6 +10,8 @@ public sealed partial class ResearchTreePrototype : IPrototype
     public string ID { get; private set; } = default!;
     [DataField(required: true)]
     public HashSet<ProtoId<ResearchTreeNodePrototype>> Nodes = default!;
+    [DataField(required: true)]
+    public ProtoId<ResearchTreeStyleSheetPrototype> Style = default!;
 
     public HashSet<ResearchTreeNodePrototype> GetNodes(IPrototypeManager protoMan) =>
         [.. Nodes.Select(p => protoMan.Index(p))];
