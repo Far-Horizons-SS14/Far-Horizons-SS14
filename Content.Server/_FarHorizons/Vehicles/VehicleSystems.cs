@@ -57,6 +57,9 @@ using Content.Shared.Effects;
 using Robust.Shared.Player;
 using Content.Server.Emp;
 using Content.Shared.Administration.Logs;
+using Content.Shared.Damage.Systems;
+using Content.Shared.Emp;
+using Content.Shared.PowerCell.Components;
 
 namespace Content.Server._FarHorizons.Vehicle;
 
@@ -281,7 +284,7 @@ public sealed partial class VehicleSystems : SharedVehicleSystems
         ent.Comp.Started = !ent.Comp.Started;
         if(TryComp<PowerCellDrawComponent>(ent.Owner, out var pcdComp))
         {
-            pcdComp.Enabled = ent.Comp.Started;
+            _powerCell.SetDrawEnabled((ent.Owner, pcdComp), ent.Comp.Started);
         }
         if(TryComp<ReagantDrawComponent>(ent.Owner, out var rdComp))
         {
@@ -672,8 +675,7 @@ public sealed partial class VehicleSystems : SharedVehicleSystems
 
         if (pcdComp?.Enabled == vehicleComp.Started)
         {
-            pcdComp.Enabled = false;
-            Dirty(riding, pcdComp);
+            _powerCell.SetDrawEnabled((riding, pcdComp), false);
         }
 
         if (rdComp?.Enabled == true)
@@ -881,8 +883,7 @@ public sealed partial class VehicleSystems : SharedVehicleSystems
 
         if(TryComp<PowerCellDrawComponent>(vehicle, out var pcdComp) && pcdComp.Enabled)
         {
-            pcdComp.Enabled = false;
-            Dirty(vehicle, pcdComp);
+            _powerCell.SetDrawEnabled((vehicle, pcdComp), false);
         }   
         if(TryComp<ReagantDrawComponent>(vehicle, out var rdComp) && rdComp.Enabled)
         {
