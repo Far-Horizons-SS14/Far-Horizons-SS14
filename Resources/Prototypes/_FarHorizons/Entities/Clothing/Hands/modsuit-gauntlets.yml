@@ -1,0 +1,53 @@
+# MODsuit Gauntlets
+
+- type: entity
+  id: ClothingHandsGlovesModsuitBase
+  parent: ClothingHandsGlovesSyntheticBase
+  abstract: true
+  name: MOD gauntlets
+  description: Armored gauntlets for a MODsuit.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Hands/Modsuits/basic.rsi
+    layers:
+    - state: gauntlets
+      map: ["base"]
+    - state: gauntlets-sealed
+      map: ["sealed"]
+      visible: false
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Hands/Modsuits/basic.rsi
+  - type: ModsuitPart
+    partType: Gauntlets
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.95
+        Slash: 0.95
+        Piercing: 0.95
+        Heat: 0.9
+        Caustic: 0.9
+  - type: Insulated
+  - type: Appearance
+  - type: ToggleableVisuals
+    spriteLayer: sealed
+    clothingVisuals:
+      gloves:
+        - state: equipped-HAND-sealed
+      gloves-resomi:
+        - state: equipped-HAND-sealed-resomi
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+
+- type: entity
+  id: ClothingHandsGlovesModsuitBasic
+  parent: ClothingHandsGlovesModsuitBase
+  name: basic MOD gauntlets
+  description: Dexterous gauntlets for the basic MODsuit. Provides basic hand protection.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Hands/Modsuits/basic.rsi
+    state: icon
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Hands/Modsuits/basic.rsi

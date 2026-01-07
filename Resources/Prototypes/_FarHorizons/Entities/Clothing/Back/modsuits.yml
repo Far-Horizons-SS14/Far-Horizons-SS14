@@ -1,0 +1,95 @@
+# MODsuit (Modular Outerwear Device) System
+# Based on TG/Paradise modsuit mechanics
+
+# Base modsuit control unit - parent for all modsuits
+- type: entity
+  id: ClothingBackpackModsuitBase
+  parent: ClothingBackpack
+  abstract: true
+  name: MOD control unit
+  description: The control unit of a Modular Outerwear Device, a powered suit that protects against various environments.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Back/Modsuits/basic.rsi
+    state: icon
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Back/Modsuits/basic.rsi
+  - type: Item
+    size: Large
+  - type: ModsuitControl
+    complexityMax: 15
+    slowdownInactive: 1.25
+    slowdownActive: 0.75
+    activationStepTime: 2.0
+    idlePowerDrain: 5.0
+    deployAction: ActionModsuitDeploy
+    activateAction: ActionModsuitActivate
+    deploySound:
+      path: /Audio/Mecha/mechmove03.ogg
+      params:
+        volume: -3
+    activateSound:
+      path: /Audio/Effects/powerup.ogg
+      params:
+        volume: -2
+    deactivateSound:
+      path: /Audio/Effects/powerdown.ogg
+      params:
+        volume: -2
+  - type: Storage
+    maxItemSize: Normal
+    grid:
+    - 0,0,5,3
+  - type: UserInterface
+    interfaces:
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+      modsuit-helmet: !type:Container
+      modsuit-chestplate: !type:Container
+      modsuit-gauntlets: !type:Container
+      modsuit-boots: !type:Container
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellHigh
+  - type: Tag
+    tags:
+    - Modsuit
+
+# Basic/Prototype Modsuit - A simple civilian modsuit for testing and as a parent
+- type: entity
+  id: ClothingBackpackModsuitBasic
+  parent: ClothingBackpackModsuitBase
+  name: basic MODsuit
+  description: A basic civilian-class modular suit. Lightweight and easy to maintain, but offers minimal protection. Perfect for general EVA and maintenance work.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Back/Modsuits/basic.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Back/Modsuits/basic.rsi
+  - type: ModsuitControl
+    helmetPrototype: ClothingHeadHelmetModsuitBasic
+    chestplatePrototype: ClothingOuterModsuitBasic
+    gauntletsPrototype: ClothingHandsGlovesModsuitBasic
+    bootsPrototype: ClothingShoesBootsModsuitBasic
+    complexityMax: 15
+    slowdownInactive: 1.0
+    slowdownActive: 0.5
+
+# Pre-equipped basic modsuit with power cell
+- type: entity
+  id: ClothingBackpackModsuitBasicFilled
+  parent: ClothingBackpackModsuitBasic
+  suffix: Filled
+  components:
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellHigh

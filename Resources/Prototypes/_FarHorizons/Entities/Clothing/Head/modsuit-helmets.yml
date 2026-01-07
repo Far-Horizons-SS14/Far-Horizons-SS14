@@ -1,0 +1,68 @@
+# MODsuit Helmets
+
+- type: entity
+  id: ClothingHeadHelmetModsuitBase
+  parent: ClothingHeadBase
+  abstract: true
+  name: MOD helmet
+  description: A helmet for a MODsuit.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Head/Modsuits/basic.rsi
+    layers:
+    - state: helmet
+      map: ["base"]
+    - state: helmet-sealed
+      map: ["sealed"]
+      visible: false
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Head/Modsuits/basic.rsi
+  - type: ModsuitPart
+    partType: Helmet
+  - type: PressureProtection
+    highPressureMultiplier: 0.08
+    lowPressureMultiplier: 1000
+  - type: TemperatureProtection
+    heatingCoefficient: 0.001
+    coolingCoefficient: 0.001
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.95
+        Slash: 0.95
+        Piercing: 0.95
+        Heat: 0.9
+        Radiation: 0.8
+        Caustic: 0.9
+  - type: BreathMask
+  - type: IdentityBlocker
+  - type: HideLayerClothing
+    slots:
+    - Hair
+    - Snout
+    - HeadTop
+    - HeadSide
+  - type: Appearance
+  - type: ToggleableVisuals
+    spriteLayer: sealed
+    clothingVisuals:
+      head:
+        - state: equipped-HEAD-sealed
+      head-resomi:
+        - state: equipped-HEAD-sealed-resomi
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - HidesNose
+
+- type: entity
+  id: ClothingHeadHelmetModsuitBasic
+  parent: ClothingHeadHelmetModsuitBase
+  name: basic MOD helmet
+  description: A lightweight helmet for the basic MODsuit. Seals the suit for EVA operations.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Head/Modsuits/basic.rsi
+    state: icon
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Head/Modsuits/basic.rsi

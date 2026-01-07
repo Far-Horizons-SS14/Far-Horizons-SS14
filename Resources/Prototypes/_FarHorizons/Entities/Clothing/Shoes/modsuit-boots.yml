@@ -1,0 +1,56 @@
+# MODsuit Boots
+
+- type: entity
+  id: ClothingShoesBootsModsuitBase
+  parent: ClothingShoesBootsCombat
+  abstract: true
+  name: MOD boots
+  description: Armored boots for a MODsuit.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Shoes/Modsuits/basic.rsi
+    layers:
+    - state: boots
+      map: ["base"]
+    - state: boots-sealed
+      map: ["sealed"]
+      visible: false
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Shoes/Modsuits/basic.rsi
+  - type: ModsuitPart
+    partType: Boots
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.95
+        Slash: 0.95
+        Piercing: 0.95
+        Heat: 0.9
+  - type: ClothingSpeedModifier
+    walkModifier: 1.0
+    sprintModifier: 1.0
+  - type: HideLayerClothing
+    slots:
+    - RFoot
+    - LFoot
+  - type: Appearance
+  - type: ToggleableVisuals
+    spriteLayer: sealed
+    clothingVisuals:
+      shoes:
+        - state: equipped-FEET-sealed
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+
+- type: entity
+  id: ClothingShoesBootsModsuitBasic
+  parent: ClothingShoesBootsModsuitBase
+  name: basic MOD boots
+  description: Magnetic-gripped boots for the basic MODsuit. Allows secure footing in zero-g.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Shoes/Modsuits/basic.rsi
+    state: icon
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Shoes/Modsuits/basic.rsi

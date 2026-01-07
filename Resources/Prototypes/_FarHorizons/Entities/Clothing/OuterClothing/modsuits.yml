@@ -1,0 +1,69 @@
+# MODsuit Chestplates/Suits
+
+- type: entity
+  id: ClothingOuterModsuitBase
+  parent: ClothingOuterStorageBase
+  abstract: true
+  name: MOD chestplate
+  description: The main body armor of a MODsuit.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/Modsuits/basic.rsi
+    layers:
+    - state: chestplate
+      map: ["base"]
+    - state: chestplate-sealed
+      map: ["sealed"]
+      visible: false
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/Modsuits/basic.rsi
+  - type: ModsuitPart
+    partType: Chestplate
+  - type: PressureProtection
+    highPressureMultiplier: 0.08
+    lowPressureMultiplier: 1000
+  - type: TemperatureProtection
+    heatingCoefficient: 0.001
+    coolingCoefficient: 0.001
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.85
+        Radiation: 0.75
+        Caustic: 0.85
+  - type: ClothingSpeedModifier
+    walkModifier: 0.85
+    sprintModifier: 0.85
+  - type: HeldSpeedModifier
+  - type: HideLayerClothing
+    slots:
+    - Chest
+    - RArm
+    - LArm
+  - type: Appearance
+  - type: ToggleableVisuals
+    spriteLayer: sealed
+    clothingVisuals:
+      outerClothing:
+        - state: equipped-OUTERCLOTHING-sealed
+      outerClothing-resomi:
+        - state: equipped-OUTERCLOTHING-sealed-resomi
+  - type: Tag
+    tags:
+    - MonkeyWearable
+    - WhitelistChameleon
+
+- type: entity
+  id: ClothingOuterModsuitBasic
+  parent: ClothingOuterModsuitBase
+  name: basic MOD chestplate
+  description: The armored torso section of a basic MODsuit. Lightweight but offers basic environmental protection.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/Modsuits/basic.rsi
+    state: icon
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/Modsuits/basic.rsi
