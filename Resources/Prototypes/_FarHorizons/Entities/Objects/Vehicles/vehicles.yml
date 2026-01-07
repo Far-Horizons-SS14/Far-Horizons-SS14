@@ -264,7 +264,7 @@
       sprite: _FarHorizons/Objects/Vehicles/syndicatesecway.rsi
       layers:
       - state: vehicle
-        map: ["enum.VehicleVisualLayers.AutoAnimate"]
+        map: ["enum.VehicleVisualLayers.Base"]
       noRot: true 
     - type: ContainerFill
       containers:
@@ -288,7 +288,7 @@
       sprite: _FarHorizons/Objects/Vehicles/secway_turbo.rsi
       layers:
       - state: vehicle
-        map: ["enum.VehicleVisualLayers.AutoAnimate"]
+        map: ["enum.VehicleVisualLayers.Base"]
       noRot: true
     - type: ItemSlots
       slots:
@@ -466,8 +466,32 @@
       sprite: _FarHorizons/Objects/Vehicles/sectv.rsi
       layers:
       - state: vehicle
-        map: ["enum.VehicleVisualLayers.AutoAnimate"]
+        map: ["enum.VehicleVisualLayers.Base"]
       noRot: true
+    - type: ContainerContainer
+      containers:
+        key_slot: !type:ContainerSlot
+        storagebase: !type:Container
+          ents: []
+    - type: UserInterface
+      interfaces:
+        enum.StorageUiKey.Key:
+          type: StorageBoundUserInterface
+    - type: Storage
+      grid:
+      - 0,0,6,4
+      maxItemSize: Huge
+      openOnActivate: false
+      clickInsert: false
+    - type: UseDelay
+      delay: 0.5
+    - type: LockedStorage
+    - type: Lock
+      locked: true
+      showLockVerbs: false
+      unlockOnClick: false
+      popupMessage: false
+      showExamine: false
     - type: SolutionContainerManager
       solutions:
         fueltank:
