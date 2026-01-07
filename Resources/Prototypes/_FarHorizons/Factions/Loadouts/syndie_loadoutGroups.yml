@@ -1,12 +1,4 @@
 #region Generic Loadout Options
-- type: loadoutGroup
-  id: SyndieBackpack
-  name: loadout-group-syndie-generic-backpack
-  loadouts:
-  - BackpackSyndie
-  - DuffelSyndie
-  - DuffelSyndieMedical
-  - DuffelSyndieAmmo
 
 - type: loadoutGroup
   id: SyndieHead
@@ -15,6 +7,22 @@
   loadouts:
   - HatSyndie
   - HatSyndieMAA
+
+- type: loadoutGroup
+  id: CommandEyewearSyndi
+  name: loadout-group-command-eyewear-syndi
+  loadouts:
+  - CommandGlassesSyndi
+  - CommandHudSyndi
+
+- type: loadoutGroup
+  id: SyndieBackpack
+  name: loadout-group-syndie-generic-backpack
+  loadouts:
+  - BackpackSyndie
+  - DuffelSyndie
+  - DuffelSyndieMedical
+  - DuffelSyndieAmmo
 
 - type: loadoutGroup
   id: SyndieJumpsuit

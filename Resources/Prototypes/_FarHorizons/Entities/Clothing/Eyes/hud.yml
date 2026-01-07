@@ -1,3 +1,21 @@
+- type: entity
+  parent: [ClothingEyesBase, ShowSecurityIcons, BaseCommandContraband]
+  id: ClothingEyesHudCommandMagistrate
+  name: Magistrate HUD
+  suffix: CFA
+  description: A heads-up display that scans the humanoids in view and provides accurate data about their ID status and some extra security information.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Eyes/Hud/command.rsi #Far Horizons
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Eyes/Hud/command.rsi #Far Horizons
+  - type: ShowJobIcons
+  - type: Tag
+    tags:
+    - HudSecurity
+    - PetWearable
+    - WhitelistChameleon
+
 #region NanoTrasen ##
 - type: entity
   parent: [ ClothingEyesBase, ShowSecurityIcons, BaseSecurityContraband ]
