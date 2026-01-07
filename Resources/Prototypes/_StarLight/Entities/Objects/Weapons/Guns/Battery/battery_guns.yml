@@ -34,7 +34,7 @@
     magState: stun
     steps: 5
     zeroVisible: true
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: BoltTaserFH
     fireCost: 166
   - type: BatteryWeaponFireModes
@@ -184,9 +184,9 @@
   - type: Lock
   - type: AccessReader
     access: [["Security"]]
-  - type: HitscanBatteryAmmoProvider  #FH edit
-    proto: BoltTaserFH
-    fireCost: 166
+  # - type: HitscanBatteryAmmoProvider  #FH edit
+  #   proto: BoltTaserFH
+  #   fireCost: 166
   - type: BatteryWeaponFireModes
     fireModes:
     - proto: BoltTaserFH #FH edit

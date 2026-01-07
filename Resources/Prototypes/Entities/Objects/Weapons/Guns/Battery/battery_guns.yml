@@ -894,9 +894,6 @@
     fireRate: 2
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
-  - type: ProjectileBatteryAmmoProvider
-    proto: BulletLaserSpread
-    fireCost: 60
   - type: BatteryWeaponFireModes
     fireModes:
 #    - proto: BulletLaserSpread Starlight
@@ -915,19 +912,8 @@
   - type: StealTarget
     stealGroup: WeaponEnergyShotgun
   - type: BatteryAmmoProvider
-    proto: BulletLaserSpreadNarrow
-    fireCost: 48 #Starlight
-  - type: BatteryWeaponFireModes
-    fireModes:
-    - proto: BulletLaserSpreadNarrow
-      fireCost: 48 #Starlight
-    - proto: BulletDisablerSmgSpread
-      fireCost: 30 #Starlight
-      pacifismAllowedMode: true
-  - type: Item
-    size: Large
-    sprite: Objects/Weapons/Guns/Battery/inhands_64x.rsi
-    heldPrefix: energy
+    proto: BulletLaserSpread
+    fireCost: 60
   - type: GunRequiresWield #remove when inaccuracy on spreads is fixed
   - type: PredictedBattery
     maxCharge: 480
@@ -1044,7 +1030,7 @@
   id: CentcommCyborgLaser
   description: Standard issue NTNC Cyborg laser with internal self-charging battery. You probably don't want this aiming at you...
   components:
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: Pulse
     fireCost: 150
   - type: Battery

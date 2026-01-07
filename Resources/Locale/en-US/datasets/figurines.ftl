@@ -293,25 +293,6 @@ figurines-holoclown-5 = Pathetic.
 figurines-holoclown-6 = It's not them you need to worry about; it's me.
 figurines-holoclown-7 = What's so funny?
 
-figurines-nukie-1 = I got the disk!
-figurines-nukie-2 = Whiskey, Echo, Whiskey.
-figurines-nukie-3 = The nuke makes boom.
-figurines-nukie-4 = What's the code?
-figurines-nukie-5 = Commander...? ...That's a balloon...
-
-figurines-nukie-commander-1 = GET DAT FUKKEN DISK!
-figurines-nukie-commander-2 = Fuckin' flukies.
-figurines-nukie-commander-3 = The Syndicate sends its regards.
-figurines-nukie-commander-4 = Failure is not an option.
-figurines-nukie-commander-5 = Whoops.
-
-figurines-nukie-elite-1 = Not a word in Nanotrasen.
-figurines-nukie-elite-2 = THAT'S A KEG!
-figurines-nukie-elite-3 = Guys, are you alive?
-figurines-nukie-elite-4 = Breach and clear!
-figurines-nukie-elite-5 = Leave no survivors.
-figurines-nukie-elite-6 = Good work, team.
-
 figurines-queen-1 = Our domain must grow.
 figurines-queen-2 = The hive hungers.
 figurines-queen-3 = We consume all.
@@ -349,11 +330,6 @@ figurines-thief-2 = This is just a normal beacon!
 figurines-thief-3 = Theres nothing suspicious about this satchel at all, officer.
 figurines-thief-4 = I have NO idea where your pet is...
 figurines-thief-5 = Huh, I didn't know that wall could open up...
-
-figurines-wizard-1 = Ei Nath!!
-figurines-wizard-2 = Real wizards support trans rights.
-figurines-wizard-3 = Skidaddle skadoodle!
-figurines-wizard-4 = FIREBALL!
 
 # Animals
 

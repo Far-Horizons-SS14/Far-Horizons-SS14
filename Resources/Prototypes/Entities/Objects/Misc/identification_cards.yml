@@ -78,65 +78,6 @@
     job: Assistant
     customJobTitle: Refugee
 
-- type: entity
-  parent: AssistantIDCard
-  id: TechnicalAssistantIDCard
-  name: Technical Assistant ID Card #Far Horizons - The Great Capitalization Crusade
-  components:
-  - type: PresetIdCard
-    job: TechnicalAssistant
-  - type: Sprite
-    layers:
-    - state: default
-    - state: idintern-tech
-
-- type: entity
-  parent: AssistantIDCard
-  id: MedicalInternIDCard
-  name: Medical Intern ID Card #Far Horizons - The Great Capitalization Crusade
-  components:
-  - type: PresetIdCard
-    job: MedicalIntern
-  - type: Sprite
-    layers:
-    - state: default
-    - state: idintern-med
-
-- type: entity
-  parent: AssistantIDCard
-  id: ResearchAssistantIDCard
-  name: Research Assistant ID Card #Far Horizons - The Great Capitalization Crusade
-  components:
-  - type: PresetIdCard
-    job: ResearchAssistant
-  - type: Sprite
-    layers:
-    - state: default
-    - state: idintern-sci
-
-- type: entity
-  parent: AssistantIDCard
-  id: SecurityCadetIDCard
-  name: Security Cadet ID Card #Far Horizons - The Great Capitalization Crusade
-  components:
-  - type: PresetIdCard
-    job: SecurityCadet
-  - type: Sprite
-    layers:
-    - state: default
-    - state: idintern-cadet
-
-- type: entity
-  parent: AssistantIDCard
-  id: ServiceWorkerIDCard
-  name: Service Worker ID Card #Far Horizons - The Great Capitalization Crusade
-  components:
-  - type: PresetIdCard
-    job: ServiceWorker
-  - type: Sprite
-    layers:
-    - state: default
-    - state: idintern-service
 #Command
 
 - type: entity
@@ -166,253 +107,6 @@
     - HighRiskItem
   - type: StealTarget
     stealGroup: CaptainIDCard
-
-- type: entity
-  parent: IDCardStandard
-  id: SecurityIDCard
-  name: Security ID Card #Far Horizons - The Great Capitalization Crusade
-  components:
-  - type: Sprite
-    layers:
-    - state: default
-    - state: idsecurityofficer
-  - type: PresetIdCard
-    job: SecurityOfficer
-
-- type: entity
-  parent: IDCardStandard
-  id: WardenIDCard
-  name: Warden ID Card #Far Horizons - The Great Capitalization Crusade
-  components:
-    - type: Sprite
-      layers:
-        - state: default
-        - state: idwarden
-    - type: PresetIdCard
-      job: Warden
-
-- type: entity
-  parent: IDCardStandard
-  id: EngineeringIDCard
-  name: Engineer ID Card #Far Horizons - The Great Capitalization Crusade
-  components:
-  - type: Sprite
-    layers:
-    - state: default
-    - state: idstationengineer
-  - type: PresetIdCard
-    job: StationEngineer
-
-- type: entity
-  parent: IDCardStandard
-  id: MedicalIDCard
-  name: Medical ID Card #Far Horizons - The Great Capitalization Crusade
-  components:
-  - type: Sprite
-    layers:
-    - state: default
-    - state: idmedicaldoctor
-  - type: PresetIdCard
-    job: MedicalDoctor
-
-- type: entity
-  parent: IDCardStandard
-  id: ParamedicIDCard
-  name: Paramedic ID Card #Far Horizons - The Great Capitalization Crusade
-  components:
-  - type: Sprite
-    layers:
-    - state: default
-    - state: idparamedic
-  - type: PresetIdCard
-    job: Paramedic
-
-- type: entity
-  parent: IDCardStandard
-  id: ChemistIDCard
-  name: Chemist ID Card #Far Horizons - The Great Capitalization Crusade
-  components:
-  - type: Sprite
-    layers:
-    - state: default
-    - state: idchemist
-  - type: PresetIdCard
-    job: Chemist
-
-- type: entity
-  parent: IDCardStandard
-  id: CargoIDCard
-  name: Cargo ID Card #Far Horizons - The Great Capitalization Crusade
-  components:
-  - type: Sprite
-    layers:
-    - state: default
-    - state: idcargotechnician
-  - type: PresetIdCard
-    job: CargoTechnician
-
-- type: entity
-  parent: IDCardStandard
-  id: SalvageIDCard
-  name: Salvage ID Card #Far Horizons - The Great Capitalization Crusade
-  components:
-  - type: Sprite
-    sprite: _Starlight/Objects/Misc/id_cards.rsi # Starlight - new salv icon
-    layers:
-    - state: default
-    - state: idsalvagespecialist # Starlight - new salv icon
-  - type: PresetIdCard
-    job: SalvageSpecialist
-
-- type: entity
-  parent: IDCardStandard
-  id: QuartermasterIDCard
-  name: Quartermaster ID Card #Far Horizons - The Great Capitalization Crusade
-  components:
-    - type: Sprite
-      layers:
-        - state: silver
-        - state: idquartermaster
-    - type: Item
-      heldPrefix: silver
-    - type: PresetIdCard
-      job: Quartermaster
-
-- type: entity
-  parent: IDCardStandard
-  id: ResearchIDCard
-  name: Research ID Card #Far Horizons - The Great Capitalization Crusade
-  components:
-  - type: Sprite
-    layers:
-    - state: default
-    - state: idscientist
-  - type: PresetIdCard
-    job: Scientist
-
-- type: entity
-  parent: IDCardStandard
-  id: ClownIDCard
-  name: Clown ID Card #Far Horizons - The Great Capitalization Crusade
-  components:
-  - type: Sprite
-    layers:
-    - state: default
-    - state: idclown
-  - type: PresetIdCard
-    job: Clown
-
-- type: entity
-  parent: IDCardStandard
-  id: MimeIDCard
-  name: Mime ID Card #Far Horizons - The Great Capitalization Crusade
-  components:
-  - type: Sprite
-    layers:
-    - state: default
-    - state: idmime
-  - type: PresetIdCard
-    job: Mime
-
-- type: entity
-  parent: IDCardStandard
-  id: ChaplainIDCard
-  name: Chaplain ID Card #Far Horizons - The Great Capitalization Crusade
-  components:
-    - type: Sprite
-      layers:
-        - state: default
-        - state: idchaplain
-    - type: PresetIdCard
-      job: Chaplain
-
-- type: entity
-  parent: IDCardStandard
-  id: JanitorIDCard
-  name: Janitor ID Card #Far Horizons - The Great Capitalization Crusade
-  components:
-  - type: Sprite
-    layers:
-    - state: default
-    - state: idjanitor
-  - type: PresetIdCard
-    job: Janitor
-
-- type: entity
-  parent: IDCardStandard
-  id: BartenderIDCard
-  name: Bartender ID Card #Far Horizons - The Great Capitalization Crusade
-  components:
-  - type: Sprite
-    layers:
-    - state: default
-    - state: idbartender
-  - type: PresetIdCard
-    job: Bartender
-
-- type: entity
-  parent: IDCardStandard
-  id: PunPunIDCard
-  name: Pun Pun ID Card #Far Horizons - The Great Capitalization Crusade
-  components:
-    - type: Sprite
-      layers:
-        - state: default
-        - state: idbartender
-    - type: PresetIdCard
-      job: Bartender
-      name: Pun Pun
-    - type: Tag #  Ignore Chameleon tags
-      tags:
-      - DoorBumpOpener
-
-- type: entity
-  parent: IDCardStandard
-  id: ChefIDCard
-  name: Chef ID Card #Far Horizons - The Great Capitalization Crusade
-  components:
-  - type: Sprite
-    layers:
-    - state: default
-    - state: idcook
-  - type: PresetIdCard
-    job: Chef
-
-- type: entity
-  parent: IDCardStandard
-  id: BotanistIDCard
-  name: Botanist ID Card #Far Horizons - The Great Capitalization Crusade
-  components:
-    - type: Sprite
-      layers:
-        - state: default
-        - state: idbotanist
-    - type: PresetIdCard
-      job: Botanist
-
-- type: entity
-  parent: IDCardStandard
-  id: LibrarianIDCard
-  name: Librarian ID Card #Far Horizons - The Great Capitalization Crusade
-  components:
-    - type: Sprite
-      layers:
-        - state: default
-        - state: idcurator
-    - type: PresetIdCard
-      job: Librarian
-
-- type: entity
-  parent: IDCardStandard
-  id: LawyerIDCard
-  name: Lawyer ID Card #Far Horizons - The Great Capitalization Crusade
-  components:
-    - type: Sprite
-      layers:
-        - state: default
-        - state: idlawyer
-    - type: PresetIdCard
-      job: Lawyer
 
 - type: entity
   parent: IDCardStandard
@@ -517,7 +211,7 @@
 - type: entity
   parent: IDCardStandard
   id: QuartermasterIDCard
-  name: quartermaster ID card
+  name: Quartermaster ID Card #Far Horizons - The Great Capitalization Crusade
   components:
   - type: Sprite
     layers:
@@ -539,7 +233,7 @@
 - type: entity
   parent: IDCardStandard
   id: TechnicalAssistantIDCard
-  name: technical assistant ID card
+  name: Technical Assistant ID Card #Far Horizons - The Great Capitalization Crusade
   components:
   - type: Sprite
     layers:
@@ -557,7 +251,7 @@
 - type: entity
   parent: IDCardStandard
   id: EngineeringIDCard
-  name: engineer ID card
+  name: Engineer ID Card #Far Horizons - The Great Capitalization Crusade
   components:
   - type: Sprite
     layers:
@@ -575,7 +269,7 @@
 - type: entity
   parent: IDCardStandard
   id: AtmosIDCard
-  name: atmospheric technician ID card
+  name: Atmospheric Technician ID Card #Far Horizons - The Great Capitalization Crusade
   components:
   - type: Sprite
     layers:
@@ -593,7 +287,7 @@
 - type: entity
   parent: EngineeringIDCard
   id: SeniorEngineerIDCard
-  name: senior engineer ID card
+  name: Senior Engineer ID Card #Far Horizons - The Great Capitalization Crusade
   components:
   - type: Sprite
     layers:
@@ -611,7 +305,7 @@
 - type: entity
   parent: IDCardStandard
   id: MedicalInternIDCard
-  name: medical intern ID card
+  name: Medical Intern ID Card #Far Horizons - The Great Capitalization Crusade
   components:
   - type: Sprite
     layers:
@@ -629,7 +323,7 @@
 - type: entity
   parent: IDCardStandard
   id: MedicalIDCard
-  name: medical ID card
+  name: Medical ID Card #Far Horizons - The Great Capitalization Crusade
   components:
   - type: Sprite
     layers:
@@ -647,7 +341,7 @@
 - type: entity
   parent: IDCardStandard
   id: ParamedicIDCard
-  name: paramedic ID card
+  name: Paramedic ID Card #Far Horizons - The Great Capitalization Crusade
   components:
   - type: Sprite
     layers:
@@ -665,7 +359,7 @@
 - type: entity
   parent: IDCardStandard
   id: ChemistIDCard
-  name: chemist ID card
+  name: Chemist ID Card #Far Horizons - The Great Capitalization Crusade
   components:
   - type: Sprite
     layers:
@@ -683,7 +377,7 @@
 - type: entity
   parent: IDCardStandard
   id: PsychologistIDCard
-  name: psychologist ID card
+  name: Psychologist ID Card #Far Horizons - The Great Capitalization Crusade
   components:
   - type: Sprite
     layers:
@@ -701,7 +395,7 @@
 - type: entity
   parent: MedicalIDCard
   id: SeniorPhysicianIDCard
-  name: senior physician ID card
+  name: Senior Physician ID Card #Far Horizons - The Great Capitalization Crusade
   components:
   - type: Sprite
     layers:
@@ -719,7 +413,7 @@
 - type: entity
   parent: IDCardStandard
   id: ResearchAssistantIDCard
-  name: research assistant ID card
+  name: Research Assistant ID Card #Far Horizons - The Great Capitalization Crusade
   components:
   - type: Sprite
     layers:
@@ -737,7 +431,7 @@
 - type: entity
   parent: IDCardStandard
   id: ResearchIDCard
-  name: research ID card
+  name: Research ID Card #Far Horizons - The Great Capitalization Crusade
   components:
   - type: Sprite
     layers:
@@ -755,7 +449,7 @@
 - type: entity
   parent: ResearchIDCard
   id: SeniorResearcherIDCard
-  name: senior researcher ID card
+  name: Senior Researcher ID Card #Far Horizons - The Great Capitalization Crusade
   components:
   - type: Sprite
     layers:
@@ -773,7 +467,7 @@
 - type: entity
   parent: IDCardStandard
   id: SecurityCadetIDCard
-  name: security cadet ID card
+  name: Security Cadet ID Card #Far Horizons - The Great Capitalization Crusade
   components:
   - type: Sprite
     layers:
@@ -791,7 +485,7 @@
 - type: entity
   parent: IDCardStandard
   id: SecurityIDCard
-  name: security ID card
+  name: Security ID Card #Far Horizons - The Great Capitalization Crusade
   components:
   - type: Sprite
     layers:
@@ -809,7 +503,7 @@
 - type: entity
   parent: IDCardStandard
   id: WardenIDCard
-  name: warden ID card
+  name: Warden ID Card #Far Horizons - The Great Capitalization Crusade
   components:
   - type: Sprite
     layers:
@@ -827,7 +521,7 @@
 - type: entity
   parent: IDCardStandard
   id: DetectiveIDCard
-  name: detective ID card
+  name: Detective ID Card #Far Horizons - The Great Capitalization Crusade
   components:
   - type: Sprite
     layers:
@@ -863,7 +557,7 @@
 - type: entity
   parent: SecurityIDCard
   id: SeniorOfficerIDCard
-  name: senior officer ID card
+  name: Senior Officer ID Card #Far Horizons - The Great Capitalization Crusade
   components:
   - type: Sprite
     layers:
@@ -881,7 +575,7 @@
 - type: entity
   parent: IDCardStandard
   id: ServiceWorkerIDCard
-  name: service worker ID card
+  name: Service Worker ID Card #Far Horizons - The Great Capitalization Crusade
   components:
   - type: Sprite
     layers:
@@ -899,7 +593,7 @@
 - type: entity
   parent: IDCardStandard
   id: ClownIDCard
-  name: clown ID card
+  name: Clown ID Card #Far Horizons - The Great Capitalization Crusade
   components:
   - type: Sprite
     layers:
@@ -914,7 +608,7 @@
 - type: entity
   parent: IDCardStandard
   id: MimeIDCard
-  name: mime ID card
+  name: Mime ID Card #Far Horizons - The Great Capitalization Crusade
   components:
   - type: Sprite
     layers:
@@ -932,7 +626,7 @@
 - type: entity
   parent: IDCardStandard
   id: MusicianIDCard
-  name: musician ID card
+  name: Musician ID Card #Far Horizons - The Great Capitalization Crusade
   components:
   - type: Sprite
     layers:
@@ -950,7 +644,7 @@
 - type: entity
   parent: IDCardStandard
   id: ChaplainIDCard
-  name: chaplain ID card
+  name: Chaplain ID Card #Far Horizons - The Great Capitalization Crusade
   components:
   - type: Sprite
     layers:
@@ -968,7 +662,7 @@
 - type: entity
   parent: IDCardStandard
   id: JanitorIDCard
-  name: janitor ID card
+  name: Janitor ID Card #Far Horizons - The Great Capitalization Crusade
   components:
   - type: Sprite
     layers:
@@ -986,7 +680,7 @@
 - type: entity
   parent: IDCardStandard
   id: BartenderIDCard
-  name: bartender ID card
+  name: Bartender ID Card #Far Horizons - The Great Capitalization Crusade
   components:
   - type: Sprite
     layers:
@@ -1004,7 +698,7 @@
 - type: entity
   parent: IDCardStandard
   id: PunPunIDCard
-  name: pun pun ID card
+  name: Pun Pun ID Card #Far Horizons - The Great Capitalization Crusade
   components:
   - type: Sprite
     layers:
@@ -1026,7 +720,7 @@
 - type: entity
   parent: IDCardStandard
   id: ChefIDCard
-  name: chef ID card
+  name: Chef ID Card #Far Horizons - The Great Capitalization Crusade
   components:
   - type: Sprite
     layers:
@@ -1044,7 +738,7 @@
 - type: entity
   parent: IDCardStandard
   id: BotanistIDCard
-  name: botanist ID card
+  name: Botanist ID Card #Far Horizons - The Great Capitalization Crusade
   components:
   - type: Sprite
     layers:
@@ -1062,7 +756,7 @@
 - type: entity
   parent: IDCardStandard
   id: LibrarianIDCard
-  name: librarian ID card
+  name: Librarian ID Card #Far Horizons - The Great Capitalization Crusade
   components:
   - type: Sprite
     layers:
@@ -1080,7 +774,7 @@
 - type: entity
   parent: IDCardStandard
   id: LawyerIDCard
-  name: lawyer ID card
+  name: Lawyer ID Card #Far Horizons - The Great Capitalization Crusade
   components:
   - type: Sprite
     layers:
@@ -1098,7 +792,7 @@
 - type: entity
   parent: IDCardStandard
   id: ReporterIDCard
-  name: reporter ID card
+  name: Reporter ID Card #Far Horizons - The Great Capitalization Crusade
   components:
   - type: Sprite
     layers:
@@ -1116,7 +810,7 @@
 - type: entity
   parent: IDCardStandard
   id: BoxerIDCard
-  name: boxer ID card
+  name: Boxer ID Card #Far Horizons - The Great Capitalization Crusade
   components:
   - type: Sprite
     layers:
@@ -1134,7 +828,7 @@
 - type: entity
   parent: IDCardStandard
   id: ZookeeperIDCard
-  name: zookeeper ID card
+  name: Zookeeper ID Card #Far Horizons - The Great Capitalization Crusade
   components:
   - type: Sprite
     layers:
@@ -1154,7 +848,7 @@
 - type: entity
   parent: IDCardStandard
   id: CargoIDCard
-  name: cargo ID card
+  name: Cargo ID Card #Far Horizons - The Great Capitalization Crusade
   components:
   - type: Sprite
     layers:
@@ -1172,7 +866,7 @@
 - type: entity
   parent: IDCardStandard
   id: SalvageIDCard
-  name: salvage ID card
+  name: Salvage ID Card #Far Horizons - The Great Capitalization Crusade
   components:
   - type: Sprite
     layers:
@@ -1192,7 +886,7 @@
 - type: entity
   parent: IDCardStandard
   id: PrisonerIDCard
-  name: prisoner ID card
+  name: Prisoner ID Card #Far Horizons - The Great Capitalization Crusade
   description: A generically printed ID card for scummy prisoners.
   components:
   - type: Sprite
@@ -1229,7 +923,7 @@
 - type: entity
   parent: IDCardStandard
   id: CluwneIDCard
-  name: cluwne ID card
+  name: Cluwne ID Card #Far Horizons - The Great Capitalization Crusade
   suffix: Unremoveable
   components:
   - type: Sprite
@@ -1263,121 +957,6 @@
     jobIcon: JobIconVisitor
   - type: PresetIdCard
     job: Visitor
-
-- type: entity
-  parent: IDCardStandard
-  id: CentcomIDCard
-  name: Command Officer ID Card #Far Horizons - The Great Capitalization Crusade
-  components:
-  - type: Sprite
-    layers:
-    - state: centcom
-    - state: idcentcom
-  - type: Item
-    heldPrefix: blue
-  - type: PresetIdCard
-    job: CentralCommandOfficial
-
-- type: entity
-  parent: IDCardStandard
-  id: ERTLeaderIDCard
-  name: ERT Leader ID Card #Far Horizons - The Great Capitalization Crusade
-  components:
-  - type: Sprite
-    layers:
-    - state: gold
-    - state: ert_commander
-  - type: PresetIdCard
-    job: ERTLeader
-  - type: Item
-    heldPrefix: gold
-
-- type: entity
-  parent: IDCardStandard
-  id: ERTChaplainIDCard
-  name: ERT Chaplain ID Card #Far Horizons - The Great Capitalization Crusade
-  components:
-  - type: Sprite
-    layers:
-    - state: gold
-    - state: ert_chaplain # we have the sprite for the id but dont have chaplain ERT equipment for now.
-  - type: PresetIdCard
-    job: ERTChaplain
-  - type: Item
-    heldPrefix: blue
-
-- type: entity
-  parent: IDCardStandard
-  id: ERTEngineerIDCard
-  name: ERT Engineer ID Card #Far Horizons - The Great Capitalization Crusade
-  components:
-  - type: Sprite
-    layers:
-    - state: gold
-    - state: ert_engineer
-  - type: PresetIdCard
-    job: ERTEngineer
-
-- type: entity
-  parent: IDCardStandard
-  id: ERTJanitorIDCard
-  name: ERT Janitor ID Card #Far Horizons - The Great Capitalization Crusade
-  components:
-  - type: Sprite
-    layers:
-    - state: gold
-    - state: ert_janitor
-  - type: PresetIdCard
-    job: ERTJanitor
-
-- type: entity
-  parent: IDCardStandard
-  id: ERTMedicIDCard
-  name: ERT Medic ID Card #Far Horizons - The Great Capitalization Crusade
-  components:
-  - type: Sprite
-    layers:
-    - state: gold
-    - state: ert_medic
-  - type: PresetIdCard
-    job: ERTMedical
-
-- type: entity
-  parent: IDCardStandard
-  id: ERTSecurityIDCard
-  name: ERT Security ID Card #Far Horizons - The Great Capitalization Crusade
-  components:
-  - type: Sprite
-    layers:
-    - state: gold
-    - state: ert_security
-  - type: PresetIdCard
-    job: ERTSecurity
-
-- type: entity
-  parent: IDCardStandard
-  id: MusicianIDCard
-  name: Musician ID Card #Far Horizons - The Great Capitalization Crusade
-  components:
-    - type: Sprite
-      layers:
-        - state: default
-        - state: idmusician
-    - type: PresetIdCard
-      job: Musician
-
-- type: entity
-  parent: IDCardStandard
-  id: CentcomIDCardDeathsquad
-  name: Death Squad ID Card #Far Horizons - The Great Capitalization Crusade
-  components:
-  - type: Sprite
-    layers:
-    - state: centcom
-  - type: Item
-    heldPrefix: blue
-  - type: PresetIdCard
-    job: DeathSquad
 
 - type: entity
   name: Assistant ID Card #Starlight De-Gretidification  #Far Horizons - The Great Capitalization Crusade
@@ -1427,18 +1006,6 @@
     - Maintenance
     - SyndicateAgent
     - NuclearOperative
-
-- type: entity
-  parent: IDCardStandard
-  id: AtmosIDCard
-  name: Atmospheric Technician ID Card #Far Horizons - The Great Capitalization Crusade
-  components:
-  - type: Sprite
-    layers:
-    - state: orange
-    - state: idatmospherictechnician
-  - type: PresetIdCard
-    job: AtmosphericTechnician
 
 - type: entity
   parent: [ IDCardStandard, BaseSyndicateContraband ]
@@ -1526,181 +1093,18 @@
     - NuclearOperative
     - SyndicateAgent
 
-- type: entity
-  parent: IDCardStandard
-  id: PsychologistIDCard
-  name: Psychologist ID Card #Far Horizons - The Great Capitalization Crusade
-  components:
-  - type: Sprite
-    layers:
-    - state: default
-    - state: idpsychologist
-  - type: PresetIdCard
-    job: Psychologist
-
-- type: entity
-  parent: IDCardStandard
-  id: ReporterIDCard
-  name: Reporter ID Card #Far Horizons - The Great Capitalization Crusade
-  components:
-  - type: Sprite
-    layers:
-    - state: default
-    - state: idreporter
-  - type: PresetIdCard
-    job: Reporter
-
-- type: entity
-  parent: IDCardStandard
-  id: BoxerIDCard
-  name: Boxer ID Card #Far Horizons - The Great Capitalization Crusade
-  components:
-  - type: Sprite
-    layers:
-    - state: default
-    - state: idboxer
-  - type: PresetIdCard
-    job: Boxer
-
-- type: entity
-  parent: IDCardStandard
-  id: ZookeeperIDCard
-  name: Zookeeper ID Card #Far Horizons - The Great Capitalization Crusade
-  components:
-  - type: Sprite
-    layers:
-    - state: default
-    - state: idzookeeper
-  - type: PresetIdCard
-    job: Zookeeper
-
-- type: entity
-  parent: IDCardStandard
-  id: DetectiveIDCard
-  name: Detective ID Card #Far Horizons - The Great Capitalization Crusade
-  components:
-  - type: Sprite
-    layers:
-    - state: default
-    - state: iddetective
-  - type: PresetIdCard
-    job: Detective
-
-- type: entity
-  parent: IDCardStandard
-  id: PrisonerIDCard
-  name: Prisoner ID Card #Far Horizons - The Great Capitalization Crusade
-  description: A generically printed ID card for scummy prisoners.
-  components:
-  - type: Sprite
-    layers:
-    - state: orange
-  - type: Item
-    heldPrefix: orange
-  - type: Access
-    tags:
-    - GenpopEnter
-  - type: GenpopIdCard
-  - type: IdCard
-    jobTitle: job-name-prisoner
-    jobIcon: JobIconPrisoner
-    canMicrowave: false
-  - type: ExpireIdCard
-    expireMessage: genpop-prisoner-id-expire
-    expiredAccess:
-    - GenpopLeave
-  - type: Speech
-    speechVerb: Robotic
-  - type: Tag
-    tags:
-    - DoorBumpOpener
-    - WhitelistChameleon
-    - WhitelistChameleonIdCard
-    - Recyclable
-  - type: StaticPrice # these are infinitely producible.
-    price: 0
-
-- type: entity
-  parent: CentcomIDCard
-  id: CBURNIDcard
-  name: CBURN ID Card  #Far Horizons - The Great Capitalization Crusade
-  suffix: CBURN
-  components:
-  - type: Sprite
-    layers:
-    - state: centcom
-  - type: Item
-    heldPrefix: blue
-  - type: PresetIdCard
-    job: CBURN
-
-- type: entity
-  parent: IDCardStandard
-  id: CluwneIDCard
-  name: Cluwne ID Card #Far Horizons - The Great Capitalization Crusade
-  suffix: Unremoveable
-  components:
-  - type: Sprite
-    layers:
-    - state: default
-    - state: idcluwne
-  - type: IdCard
-    jobTitle: job-title-cluwne
-    jobIcon: JobIconCluwne
-  - type: Unremoveable
-
-- type: entity
-  parent: IDCardStandard
-  id: CluwneBeastIDCard
-  name: Cluwne ID Card #Far Horizons - The Great Capitalization Crusade
-  suffix: Unremoveable
-  components:
-  - type: Sprite
-    layers:
-    - state: default
-    - state: idcluwne
-  - type: IdCard
-    jobTitle: job-title-cluwne
-
-- type: entity
-  parent: EngineeringIDCard
-  id: SeniorEngineerIDCard
-  name: Senior Engineer ID Card #Far Horizons - The Great Capitalization Crusade
-  components:
-  - type: Sprite
-    layers:
-    - state: default
-    - state: idseniorengineer
-
-- type: entity
-  parent: ResearchIDCard
-  id: SeniorResearcherIDCard
-  name: Senior Researcher ID Card #Far Horizons - The Great Capitalization Crusade
-  components:
-  - type: Sprite
-    layers:
-    - state: default
-    - state: idseniorresearcher
-
-- type: entity
-  parent: MedicalIDCard
-  id: SeniorPhysicianIDCard
-  name: Senior Physician ID Card #Far Horizons - The Great Capitalization Crusade
-  components:
-  - type: Sprite
-    layers:
-    - state: default
-    - state: idseniorphysician
-
-- type: entity
-  parent: SecurityIDCard
-  id: SeniorOfficerIDCard
-  name: Senior Officer ID Card #Far Horizons - The Great Capitalization Crusade
-  components:
-  - type: Sprite
-    layers:
-    - state: default
-    - state: idseniorofficer
+# - type: entity
+#   parent: IDCardStandard
+#   id: CluwneBeastIDCard
+#   name: Cluwne ID Card #Far Horizons - The Great Capitalization Crusade
+#   suffix: Unremoveable
+#   components:
+#   - type: Sprite
+#     layers:
+#     - state: default
+#     - state: idcluwne
+#   - type: IdCard
+#     jobTitle: job-title-cluwne
 
 - type: entity
   parent: IDCardStandard
@@ -1726,7 +1130,7 @@
 - type: entity
   parent: IDCardStandard
   id: CentcomIDCard
-  name: command officer ID card
+  name: Command Officer ID Card #Far Horizons - The Great Capitalization Crusade
   components:
   - type: Sprite
     layers:
@@ -1746,7 +1150,7 @@
 - type: entity
   parent: IDCardStandard
   id: ERTLeaderIDCard
-  name: ERT leader ID card
+  name: ERT Leader ID Card #Far Horizons - The Great Capitalization Crusade
   components:
   - type: Sprite
     layers:
@@ -1766,7 +1170,7 @@
 - type: entity
   parent: IDCardStandard
   id: ERTChaplainIDCard
-  name: ERT chaplain ID card
+  name: ERT Chaplain ID Card #Far Horizons - The Great Capitalization Crusade
   components:
   - type: Sprite
     layers:
@@ -1786,7 +1190,7 @@
 - type: entity
   parent: IDCardStandard
   id: ERTEngineerIDCard
-  name: ERT engineer ID card
+  name: ERT Engineer ID Card #Far Horizons - The Great Capitalization Crusade
   components:
   - type: Sprite
     layers:
@@ -1806,7 +1210,7 @@
 - type: entity
   parent: IDCardStandard
   id: ERTJanitorIDCard
-  name: ERT janitor ID card
+  name: ERT Janitor ID Card #Far Horizons - The Great Capitalization Crusade
   components:
   - type: Sprite
     layers:
@@ -1826,7 +1230,7 @@
 - type: entity
   parent: IDCardStandard
   id: ERTMedicIDCard
-  name: ERT medic ID card
+  name: ERT Medic ID Card #Far Horizons - The Great Capitalization Crusade
   components:
   - type: Sprite
     layers:
@@ -1846,7 +1250,7 @@
 - type: entity
   parent: IDCardStandard
   id: ERTSecurityIDCard
-  name: ERT security ID card
+  name: ERT Security ID Card #Far Horizons - The Great Capitalization Crusade
   components:
   - type: Sprite
     layers:
@@ -1866,7 +1270,7 @@
 - type: entity
   parent: IDCardStandard
   id: CentcomIDCardDeathsquad
-  name: death squad ID card
+  name: Death Squad ID Card #Far Horizons - The Great Capitalization Crusade
   components:
   - type: Sprite
     layers:
@@ -1884,7 +1288,7 @@
 - type: entity
   parent: IDCardStandard
   id: CBURNIDcard
-  name: CBURN ID card
+  name: CBURN ID Card  #Far Horizons - The Great Capitalization Crusade
   suffix: CBURN
   components:
   - type: Sprite

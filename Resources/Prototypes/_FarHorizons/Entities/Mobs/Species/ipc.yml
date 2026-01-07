@@ -125,7 +125,10 @@
     damageContainer: Biological
     damageModifierSet: IPC
   - type: Bloodstream
-    bloodReagent: Oil
+    bloodReagents:
+      reagents:
+      - ReagentId: Oil
+        Quantity: 1
   - type: Icon
     sprite: _FarHorizons/Mobs/Species/IPC/parts.rsi
     state: full

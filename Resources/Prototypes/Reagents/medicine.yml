@@ -741,18 +741,6 @@
             type: [ Avali, Resomi ]
             inverted: true
           amount: 6
-        - !type:ModifyBleedAmount
-          conditions:
-          - !type:OrganType
-           type: Avali
-           shouldHave: true
-          amount: 2
-        - !type:ModifyBleedAmount
-          conditions:
-          - !type:OrganType
-           type: Resomi
-           shouldHave: true
-          amount: 2
         - !type:HealthChange
           conditions:
           - !type:MetabolizerTypeCondition
@@ -1134,8 +1122,6 @@
           types:
             Slash: -3 #FH
             Blunt: 0.5 #FH
-      - !type:ModifyBleedAmount #FH
-        amount: -1.5 #FH
       - !type:HealthChange
         conditions:
         - !type:ReagentCondition
@@ -1162,8 +1148,6 @@
           types:
             Piercing: -3 #FH = 6 per u / 5u = 30 Piercing healed - 5 Blunt = 25 Piercing total
             Blunt: 0.5 #FH = 1 per u
-      - !type:ModifyBleedAmount #FH - Real reason to use over bic.
-        amount: -1.5 #FH
       - !type:HealthChange
         conditions:
         - !type:ReagentCondition
@@ -1574,6 +1558,6 @@
       - !type:AdjustReagent
         reagent: MindbreakerToxin
         amount: -3.0
-      - !type:AdjustReagent  # FarHorizons
-        reagent: Lemintrozine
-        amount: -3.0
+      # - !type:AdjustReagent  # FarHorizons
+      #   reagent: Lemintrozine
+      #   amount: -3.0

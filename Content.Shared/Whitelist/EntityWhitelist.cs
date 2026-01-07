@@ -34,7 +34,7 @@ public sealed partial class EntityWhitelist
     /// <summary>
     ///     Component names that are allowed in the whitelist.
     /// </summary>
-    //[DataField(customTypeSerializer:typeof(CustomArraySerializer<string, ComponentNameSerializer>))]
+    [DataField(customTypeSerializer:typeof(CustomArraySerializer<string, ComponentNameSerializer>))]
     public string[]? Components;
 
     /// <summary>

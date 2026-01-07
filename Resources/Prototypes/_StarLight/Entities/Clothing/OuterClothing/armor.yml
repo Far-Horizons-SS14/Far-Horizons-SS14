@@ -63,30 +63,30 @@
             - type: ExplosionResistance
               damageCoefficient: 0.85
 
-      Combat: !type:ItemSwitchState
-        verb: Combat
-        hiden: true
-        sprite:
-          sprite: _Starlight/Clothing/OuterClothing/Armor/abductor.rsi
-          state: combat-icon
-        components:
-        - type: Pierceable
-          level: Metal
-        - type: Armor
-          modifiers:
-            flatReductions: #FH
-              Piercing: 5 #FH
-              Heat: 4 #FH
-            coefficients:
-              Blunt: 0.5
-              Slash: 0.5
-              Heat: 0.5
-              Piercing: 0.5
-              Radiation: 0.5
-              Caustic: 0.1
-          staminaModifier: 0.5
-        - type: ExplosionResistance
-          damageCoefficient: 0.5
+        Combat: !type:ItemSwitchState
+          verb: Combat
+          hiden: true
+          sprite:
+            sprite: _Starlight/Clothing/OuterClothing/Armor/abductor.rsi
+            state: combat-icon
+          components:
+          - type: Pierceable
+            level: Metal
+          - type: Armor
+            modifiers:
+              flatReductions: #FH
+                Piercing: 5 #FH
+                Heat: 4 #FH
+              coefficients:
+                Blunt: 0.5
+                Slash: 0.5
+                Heat: 0.5
+                Piercing: 0.5
+                Radiation: 0.5
+                Caustic: 0.1
+            staminaModifier: 0.5
+          - type: ExplosionResistance
+            damageCoefficient: 0.5
 
 - type: entity
   parent: [ClothingOuterArmorBase, BaseSecurityContraband]

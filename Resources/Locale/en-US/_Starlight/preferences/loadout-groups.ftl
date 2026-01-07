@@ -75,8 +75,6 @@ loadout-group-chemist-shoes = Chemist shoes
 loadout-group-scarves = Scarf
 loadout-group-pens = Pen
 
-loadout-group-scarves = Scarf
-
 ## Far Horizons - End - The end of the Capitalization Crusade.
 # Brighteye
 loadout-group-brighteye-jumpsuit = Brighteye jumpsuit

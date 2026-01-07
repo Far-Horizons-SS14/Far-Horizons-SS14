@@ -75,36 +75,36 @@
     - WantedListCartridge
     - MedTekCartridge
 
-- type: entity
-  parent: BaseMedicalPDA
-  id: CorpsmanPDA
-  name: corpsman PDA
-  description: How's it going to end?
-  components:
-  - type: Sprite
-    sprite: _Starlight/Objects/Devices/pda.rsi
-  - type: Pda
-    id: BrigmedicIDCard
-  - type: Appearance
-    appearanceDataInit:
-     enum.PdaVisuals.PdaType:
-       !type:String
-       pda-corpsman
-  - type: PdaBorderColor
-    borderColor: "#A32D26"
-    accentHColor: "#d7d7d0"
-    accentVColor: "#d7d7d0"
-  - type: Icon
-    sprite: _Starlight/Objects/Devices/pda.rsi
-    state: pda-corpsman
-  - type: CartridgeLoader
-    preinstalled:
-    - CrewManifestCartridge
-    - NotekeeperCartridge
-    - NanoTaskCartridge
-    - NewsReaderCartridge
-    - WantedListCartridge
-    - MedTekCartridge
+# - type: entity
+#   parent: BaseMedicalPDA
+#   id: CorpsmanPDA
+#   name: corpsman PDA
+#   description: How's it going to end?
+#   components:
+#   - type: Sprite
+#     sprite: _Starlight/Objects/Devices/pda.rsi
+#   - type: Pda
+#     id: BrigmedicIDCard
+#   - type: Appearance
+#     appearanceDataInit:
+#      enum.PdaVisuals.PdaType:
+#        !type:String
+#        pda-corpsman
+#   - type: PdaBorderColor
+#     borderColor: "#A32D26"
+#     accentHColor: "#d7d7d0"
+#     accentVColor: "#d7d7d0"
+#   - type: Icon
+#     sprite: _Starlight/Objects/Devices/pda.rsi
+#     state: pda-corpsman
+#   - type: CartridgeLoader
+#     preinstalled:
+#     - CrewManifestCartridge
+#     - NotekeeperCartridge
+#     - NanoTaskCartridge
+#     - NewsReaderCartridge
+#     - WantedListCartridge
+#     - MedTekCartridge
 
 - type: entity
   parent: BaseMedicalPDA

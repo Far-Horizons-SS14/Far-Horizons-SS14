@@ -13,18 +13,18 @@
     - type: PresetIdCard
       job: Magistrate
 
-- type: entity
-  parent: [ IDCardStandard, BaseSecurityContraband ]
-  id: BrigmedicIDCard
-  name: brigmedic ID card
-  components:
-    - type: Sprite
-      sprite: _FarHorizons/Objects/Misc/id_cards.rsi #FH
-      layers:
-        - state: default
-        - state: idbrigmedic
-    - type: PresetIdCard
-      job: Brigmedic
+# - type: entity
+#   parent: [ IDCardStandard, BaseSecurityContraband ]
+#   id: BrigmedicIDCard
+#   name: brigmedic ID card
+#   components:
+#     - type: Sprite
+#       sprite: _FarHorizons/Objects/Misc/id_cards.rsi #FH
+#       layers:
+#         - state: default
+#         - state: idbrigmedic
+#     - type: PresetIdCard
+#       job: Brigmedic
 
 - type: entity
   parent: [ IDCardStandard, BaseCentcommContraband ]
