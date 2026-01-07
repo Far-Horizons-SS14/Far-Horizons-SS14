@@ -1,4 +1,6 @@
+using Content.Server._FarHorizons.DiscordLink;
 using Content.Server.GameTicking;
+using Content.Shared._FarHorizons.DiscordLink;
 using Content.Shared.Administration;
 using Content.Shared.Ghost;
 using Content.Shared.Mind;
@@ -13,7 +15,7 @@ namespace Content.Server._Starlight.Ghost;
 public sealed class MGhostCommand : LocalizedCommands
 {
     [Dependency] private readonly IEntityManager _entities = default!;
-    [Dependency] private readonly ISharedNullLinkPlayerRolesReqManager _playerRoles = default!;
+    [Dependency] private readonly IDiscordLinkManager _discordLinkManager = default!;
 
     public override string Command => "mghost";
     public override string Help => "mghost";
@@ -36,7 +38,7 @@ public sealed class MGhostCommand : LocalizedCommands
             return;
         }
 
-        if (!_playerRoles.IsMentor(player)) // if you are a admin you should be using aghost
+        if (!_discordLinkManager.HasPermission(player.UserId.UserId, AdditionalPermissionsTypes.Mentor)) // if you are a admin you should be using aghost
         {
             shell.WriteError(LocalizationManager.GetString("mghost-mentors-only"));
             return;

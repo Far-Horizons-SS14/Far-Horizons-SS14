@@ -159,11 +159,9 @@
 - type: loadoutGroup
   id: MagistrateEyewear
   name: loadout-group-magistrate-eyewear
-  minLimit: 0
   loadouts:
   - MagistrateGlasses
-  - CommandGlasses
-  - CommandHud
+  - MagistrateHUD
 
 # Mining Specialist
 
@@ -197,18 +195,9 @@
 - type: loadoutGroup
   id: CommandEyewear
   name: loadout-group-command-eyewear
-  minLimit: 0
   loadouts:
   - CommandGlasses
   - CommandHud
-
-- type: loadoutGroup
-  id: CommandEyewearSyndi
-  name: loadout-group-command-eyewear-syndi
-  minLimit: 0
-  loadouts:
-  - CommandGlassesSyndi
-  - CommandHudSyndi
   
 # Musician
 

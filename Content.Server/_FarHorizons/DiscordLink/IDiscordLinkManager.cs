@@ -4,7 +4,7 @@ using Robust.Shared.Player;
 
 namespace Content.Server._FarHorizons.DiscordLink;
 
-public interface IDiscordLinkManager
+public interface IDiscordLinkManager: IDiscordLinkManagerShared
 {
     void Initialize();
     void Shutdown();
@@ -13,6 +13,4 @@ public interface IDiscordLinkManager
     public OAuthStateInfo? GetState(string state);
     IEnumerable<ICommonSession> Mentors { get; }
     public List<string> ListMentorsNames();
-    public bool HasPermission(Guid userId, AdditionalPermissionsTypes permission);
-    public bool HasPermission(EntityUid userEntityUid, AdditionalPermissionsTypes permission);
 }

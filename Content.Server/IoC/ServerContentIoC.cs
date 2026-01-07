@@ -42,7 +42,8 @@ using Content.Shared.Players.RateLimiting;
 using Content.Shared.Starlight;
 using Content.Server.Economy; // Starlight-edit
 using Content.Shared._FarHorizons.Factions;
-using Content.Server._FarHorizons.Factions; // Far Horizons edit
+using Content.Server._FarHorizons.Factions;
+using Content.Shared._FarHorizons.DiscordLink; // Far Horizons edit
 
 namespace Content.Server.IoC
 {
@@ -111,6 +112,7 @@ namespace Content.Server.IoC
             // Far Horizons
             IoCManager.Register<IServerFactionManager, ServerFactionManager>();
             IoCManager.Register<ISharedFactionManager, ServerFactionManager>();
+            IoCManager.Register<IDiscordLinkManagerShared, DiscordLinkManager>();  // double-registered for compatibility
             IoCManager.Register<IDiscordLinkManager, DiscordLinkManager>();
             IoCManager.Register<DiscordOauthServer>();
             IoCManager.Register<DiscordRequestsAdapter>();

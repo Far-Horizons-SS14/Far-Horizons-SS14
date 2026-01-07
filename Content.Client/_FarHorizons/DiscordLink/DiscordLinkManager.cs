@@ -1,11 +1,14 @@
 ﻿using System.Linq;
 using Content.Shared._FarHorizons.DiscordLink;
+using Robust.Client.Player;
 using Robust.Shared.Network;
 
 namespace Content.Client._FarHorizons.DiscordLink;
 
-public sealed class DiscordLinkManager
+public sealed class DiscordLinkManager: IDiscordLinkManagerShared
 {
+    [Dependency] private readonly IPlayerManager _player = default!;
+
     private string? _discordLink;
     private bool _isMentor;
     private AdditionalPermissionsTypes[] _permissions = [];
@@ -28,4 +31,10 @@ public sealed class DiscordLinkManager
     public bool IsMentor() => _isMentor;
     
     public string? GetDiscordLink() => _discordLink;
+
+    public bool HasPermission(EntityUid userEntityUid, AdditionalPermissionsTypes permission)
+        => _permissions.Contains(permission);
+
+    public bool HasPermission(Guid userId, AdditionalPermissionsTypes permission) 
+        => _permissions.Contains(permission);
 }
