@@ -147,6 +147,7 @@
     requireIgnition: true 
     baseState: vehicle
     brokenState: vehicle
+    sirenToggleAction: ActionVehicleToggleSecuritySiren
     startupTime: 2
     handsNeeded: 1
     riderWhitelist:
@@ -487,6 +488,30 @@
         key_slot: !type:ContainerSlot
         storagebase: !type:Container
           ents: []
+    - type: Vehicle
+      acceleration: 4
+      friction: 4.5
+      frictionNoInput: 4.5
+      requireIgnition: true
+      allowCrashing: true
+      crashingSpeed: 10 
+      baseState: vehicle
+      brokenState: vehicle
+      sirenToggleAction: ActionVehicleToggleSecuritySiren
+      startupTime: 2
+      startUp: 
+        path: /Audio/Effects/Vehicle/vehiclestartup.ogg
+        params:
+          volume: -3
+      hornSound: 
+        path: /Audio/Effects/Vehicle/carhorn.ogg
+        params:
+          volume: -3
+      riderWhitelist:
+        components:
+          - HumanoidAppearance
+      soundHit:
+        collection: MetalThud
     - type: UserInterface
       interfaces:
         enum.StorageUiKey.Key:
