@@ -69,3 +69,20 @@
   id: CorpsmanVisor
   equipment:
     eyes: ClothingEyesVisorCorpsman
+
+# Sidearm
+- type: loadout
+  id: SecurityPistolPathology
+  dummyEntity: WeaponPistolPathology
+  effects:
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:RoleTimeRequirement
+        role: JobCorpsman
+        time: 36000 # Needs to be earned
+  storage:
+    back:
+    - WeaponPistolPathology
+    - MagazinePistolRubber
+    - MagazinePistolSP
+    - MagazinePistolSP

@@ -181,7 +181,7 @@
   name: Drozd
   parent: [BaseWeaponSubMachineGun, BaseSecurityContraband]
   id: WeaponSubMachineGunDrozd
-  description: A modern SMG manufactured by Nanotrasen’s Small Arms Division. It features an exceptional rate of fire in burst mode, useful for holding defensive angles or engaging hostiles at longer ranges. Feeds from .35 SMG magazines.
+  description: A modern heavy SMG manufactured by Nanotrasen’s Small Arms Division. It features an exceptional rate of fire in burst mode, useful for holding defensive angles or engaging hostiles at longer ranges. Feeds from .35 SMG magazines. # Far Horizons
   components:
     - type: Sprite
       sprite: _FarHorizons/Objects/Weapons/Guns/SMGs/drozd.rsi # Far Horizons 
@@ -232,34 +232,31 @@
               - CartridgePistol
     - type: MagazineVisuals
       magState: mag
-      steps: 1 # Far Horizons
+      steps: 5 # Far Horizons
       zeroVisible: true
     - type: Appearance
     - type: Tag #FH
       tags: #FH
       - Drozd #FH
 
-- type: entity # TODO - Far Horizons - Change the sprite when someone with above room temperature iq can make a design
+- type: entity
   name: WT550
   parent: [BaseWeaponSubMachineGun, BaseSecurityContraband]
   id: WeaponSubMachineGunWt550
-  description: A truly unique firearm, the WT550 was designed by Nanotrasen's Small Arms Division as a compact submachine gun fully controllable with one hand. It contains an exotic internal recoil buffer and feeds from special top-mounted .35 magazines.
+  description: A rather expensive firearm, the WT550 was designed by Nanotrasen's Small Arms Division as a compact submachine gun fully controllable with one hand. It contains an exotic internal recoil buffer and feeds from side-mounted .35 magazines. # Far Horizons
   components:
   - type: Sprite
-    sprite: Objects/Weapons/Guns/SMGs/wt550.rsi
+    sprite: _FarHorizons/Objects/Weapons/Guns/SMGs/wt550.rsi # Far Horizons
     layers:
       - state: base
         map: ["enum.GunVisualLayers.Base"]
-      - state: base-unshaded
-        map: ["enum.GunVisualLayers.BaseUnshaded"]
-        shader: unshaded
+# FH - Removal of unshaded
       - state: mag-0
         map: ["enum.GunVisualLayers.Mag"]
-      - state: mag-unshaded-0
-        map: ["enum.GunVisualLayers.MagUnshaded"]
-        shader: unshaded
+# FH - Removal of unshaded
+# FH - Removal of unshaded
   - type: Clothing
-    sprite: Objects/Weapons/Guns/SMGs/wt550.rsi
+    sprite: _FarHorizons/Objects/Weapons/Guns/SMGs/wt550.rsi # Far Horizons
   - type: ChamberMagazineAmmoProvider
     boltClosed: null
   - type: Gun
@@ -276,17 +273,21 @@
     - Burst
     - FullAuto
     - SemiAuto
+  - type: Wieldable # Far Horizons
+    unwieldOnUse: false # Far Horizons
+  - type: GunWieldBonus # Far Horizons
+    maxAngle: -4 # Far Horizons
   - type: ItemSlots
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazinePistolSubMachineGunTopMounted
+        startingItem: MagazinePistolSubMachineGunSP # Far Horizons
         insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
         priority: 2
         whitelist:
           tags:
-            - MagazinePistolSubMachineGunTopMounted
+            - MagazinePistolSubMachineGunSP # Far Horizons
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber

@@ -1,0 +1,31 @@
+- type: loadout
+  id: SecurityPistolN1984
+  dummyEntity: WeaponPistolN1984
+  effects:
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:RoleTimeRequirement
+        role: JobHeadOfSecurity
+        time: 36000 # Needs to be earned
+  storage:
+    back:
+    - WeaponPistolN1984
+    - MagazineMagnum
+    - MagazineMagnum
+    - MagazineMagnumRubber
+
+- type: loadout
+  id: SecurityPistolEnforcerFH
+  dummyEntity: WeaponPistolEnforcer
+  effects:
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:RoleTimeRequirement
+        role: JobHeadOfSecurity
+        time: 36000 # Needs to be earned
+  storage:
+    back:
+    - WeaponPistolEnforcer
+    - MagazinePistolSP
+    - MagazinePistolSP
+    - MagazinePistolRubber

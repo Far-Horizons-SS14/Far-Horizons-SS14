@@ -151,44 +151,46 @@
   - type: BallisticAmmoProvider
     proto: ShellShotgunBeanbag
 
-- type: entity
-  name: Sentiel
-  parent: [BaseWeaponShotgun, BaseGunWieldable, BaseSecurityContraband]
-  id: WeaponShotgunEnforcer
-  description: A premium semi-automatic shotgun, and the pride of all security forces. Takes 12 gauge shells. # Starlight: .50 -> 12 gauge
-  components: # intend for Enforcer to have wider choke for semi-auto function
-  - type: Gun
-    spread: 5
-    pump: true
-  - type: Sprite
-    sprite: Objects/Weapons/Guns/Shotguns/enforcer.rsi
-  - type: Clothing
-    sprite: Objects/Weapons/Guns/Shotguns/enforcer.rsi
-  - type: Item
-    sprite: Objects/Weapons/Guns/Shotguns/enforcer_inhands_64x.rsi
-  - type: BallisticAmmoProvider
-  - type: GunRequiresWield #remove when inaccuracy on spreads is fixed
+#FH - Turned off due to needing code rework.
+#- type: entity
+#  name: Sentiel
+#  parent: [BaseWeaponShotgun, BaseGunWieldable, BaseSecurityContraband]
+#  id: WeaponShotgunEnforcer
+#  description: A premium semi-automatic shotgun, and the pride of all security forces. Uses .50 shotgun shells.
+#  components: # intend for Enforcer to have wider choke for semi-auto function
+#  - type: Gun
+#    spread: 5
+#    pump: true
+#  - type: Sprite
+#    sprite: Objects/Weapons/Guns/Shotguns/enforcer.rsi
+#  - type: Clothing
+#    sprite: Objects/Weapons/Guns/Shotguns/enforcer.rsi
+#  - type: Item
+#    sprite: Objects/Weapons/Guns/Shotguns/enforcer_inhands_64x.rsi
+#  - type: BallisticAmmoProvider
+#  - type: GunRequiresWield #remove when inaccuracy on spreads is fixed
 
-- type: entity
-  parent: WeaponShotgunEnforcer
-  id: WeaponShotgunSentielRubber
-  suffix: Non-Lethal
-  components:
-  - type: BallisticAmmoProvider
-    proto: ShellShotgunBeanbag
+# FH - Turned off because it broke shit
+#- type: entity
+#  parent: WeaponShotgunEnforcer
+#  id: WeaponShotgunSentielRubber
+#  suffix: Non-Lethal
+#  components:
+#  - type: BallisticAmmoProvider
+#    proto: ShellShotgunBeanbag
 
 - type: entity
   name: Kammerer
   parent: [BaseWeaponShotgun, BaseGunWieldable, BaseSecurityContraband]
   id: WeaponShotgunKammerer
-  description: An old yet faithful design, and a favorite among irregular forces of many worlds. Takes 12 gauge shells. # Starlight: .50 -> 12 gauge
+  description: An old yet faithful design, and a favorite among irregular forces of many worlds. Uses .50 shotgun shells and suffers from a slow pump-action. #Another FH Change
   components: # intend for Kammerer to have tighter choke for slower fire rate and/or manual cycling
   - type: Item
     sprite: Objects/Weapons/Guns/Shotguns/pump_inhands_64x.rsi
   - type: Gun
     spread: 10 # FH Changes Start!!
     pump: true
-    fireRate: 2
+    fireRate: 1
   - type: BallisticAmmoProvider
     whitelist:
       tags:

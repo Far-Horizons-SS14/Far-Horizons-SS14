@@ -1,0 +1,240 @@
+- type: entity
+  name: Pistol Magazine (.44 Magnum)
+  parent: [BaseSecuritySalvageContraband, BaseMagazinePistol]
+  id: BaseMagazineMagnum
+  description: 8-round single stack pistol magazine. Intended to hold general-purpose kinetic ammunition.
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/magnum.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+  - type: Tag
+    tags:
+      - MagazineMagnum
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeMagnum
+    capacity: 8
+  - type: MagazineVisuals
+    magState: mag
+    steps: 7
+
+- type: entity
+  id: MagazineMagnumEmpty
+  name: Pistol Magazine (.44 Magnum any)
+  suffix: empty
+  parent: BaseMagazineMagnum
+  components:
+  - type: BallisticAmmoProvider
+    proto: null
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      right:
+      - state: inhand-right-mag
+
+- type: entity
+  id: MagazineMagnum
+  name: Pistol Magazine (.44 Magnum SP)
+  parent: BaseMagazineMagnum
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeMagnumSP
+  - type: Sprite
+    layers:
+    - state: sp
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#575EF5"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#575EF5"
+
+- type: entity
+  id: MagazineMagnumHP
+  name: Pistol Magazine (.44 Magnum HP)
+  parent: BaseMagazineMagnum
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeMagnumHP
+  - type: Sprite
+    layers:
+    - state: red
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#F5514C"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#F5514C"
+
+- type: entity
+  id: MagazineMagnumFMJ
+  name: Pistol Magazine (.44 Magnum FMJ)
+  parent: BaseMagazineMagnum
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeMagnumFMJ
+  - type: Sprite
+    layers:
+    - state: fmj
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#080706"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#080706"
+
+- type: entity
+  id: MagazineMagnumPractice
+  name: Pistol Magazine (.44 Magnum practice)
+  parent: BaseMagazineMagnum
+  description: 8-round single stack pistol magazine. Intended to hold non-harmful chalk ammunition.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeMagnumPractice
+  - type: Sprite
+    layers:
+    - state: practice
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#F5514C"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#F5514C"
+
+- type: entity
+  id: MagazineMagnumIncendiary
+  name: Pistol Magazine (.44 Magnum incendiary)
+  parent: BaseMagazineMagnum
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeMagnumIncendiary
+  - type: Sprite
+    layers:
+    - state: incendiary
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#E7EEEE"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#E7EEEE"
+
+- type: entity
+  id: MagazineMagnumUranium
+  name: Pistol Magazine (.44 Magnum uranium)
+  parent: BaseMagazineMagnum
+  description: 8-round single stack pistol magazine. Intended to hold exotic uranium-core ammunition.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeMagnumUranium
+  - type: Sprite
+    layers:
+    - state: uranium
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#40F57A"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#40F57A"
+
+- type: entity
+  id: MagazineMagnumAP
+  name: Pistol Magazine (.44 Magnum armor-piercing)
+  parent: BaseMagazineMagnum
+  description: 8-round single stack pistol magazine. Intended to hold rare armor-piercing ammunition.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeMagnumAP
+  - type: Sprite
+    layers:
+    - state: ap
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#72E374"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#72E374"
+
+- type: entity
+  id: MagazineMagnumRubber
+  name: Pistol Magazine (.44 Magnum rubber)
+  parent: BaseMagazineMagnum
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeMagnumRubber
+  - type: Sprite
+    layers:
+    - state: rubber
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#40F57A"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#40F57A"

@@ -1,6 +1,6 @@
 - type: entity
   id: SpeedLoaderLightRifle
-  name: "speed loader (.45 magnum)" # Starlight
+  name: "Speed loader (.44 Magnum)" #FH
   parent: [ BaseItem, BaseMinorContraband ]
   components:
   - type: Tag
@@ -13,7 +13,7 @@
     whitelist:
       tags:
         - CartridgeMagnum # Starlight
-    capacity: 5
+    capacity: 8 #FarHorzions - Fits Lever Action (this has always bugged the hell out of me)
     proto: CartridgeMagnumSP # Starlight
   - type: Sprite
     sprite: Objects/Weapons/Guns/Ammunition/SpeedLoaders/LightRifle/light_rifle_speed_loader.rsi

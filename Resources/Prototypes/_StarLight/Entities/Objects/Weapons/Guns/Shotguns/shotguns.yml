@@ -63,27 +63,38 @@
     node: shotgunsawn
     deconstructionTarget: null
 
-- type: entity
-  name: combat shotgun
-  parent: [BaseWeaponShotgun, BaseGunWieldable, BaseSecurityContraband]
-  id: WeaponShotgunCombat
-  description: A semi automatic shotgun with tactical furniture and a seven-shell capacity underneath.
-  components:
-  - type: Item
-    sprite: _Starlight/Objects/Weapons/Guns/Shotguns/cshotgun_inhands_64x.rsi
-  - type: Gun
-    spread: 20
-  - type: Sprite
-    sprite: _Starlight/Objects/Weapons/Guns/Shotguns/cshotgun.rsi
-  - type: Clothing
-    sprite: _Starlight/Objects/Weapons/Guns/Shotguns/cshotgun.rsi
-  - type: GunRequiresWield
-  - type: BallisticAmmoProvider
-    capacity: 7
-  - type: Tag #FH
-    tags: #FH
-    - CombatShotgun #FH
-  
+# OFF BECAUSE I NEED TO REWRITE HOW IT WORKS ENTIRELY IN THE _FH SECTION
+#- type: entity
+#  name: combat shotgun
+#  parent: [BaseWeaponShotgun, BaseGunWieldable, BaseSecurityContraband]
+#  id: WeaponShotgunCombat
+#  description: A semi automatic shotgun with a shellholder allowing for much faster reloads. Holds eight rounds. #FH
+#  components:
+#  - type: Item
+#    sprite: _FarHorizons/Objects/Weapons/Guns/Shotguns/cshotgunfolded.rsi_inhands_64x.rsi #FH
+#  - type: Gun
+#    spread: 20
+#  - type: Sprite
+#    sprite: _FarHorizons/Objects/Weapons/Guns/Shotguns/cshotgunfolded.rsi #FH
+#  - type: Clothing
+#    sprite: _FarHorizons/Objects/Weapons/Guns/Shotguns/cshotgunfolded.rsi #FH
+#  - type: GunRequiresWield
+#  - type: RevolverAmmoProvider #FH Start - Allows instant speedloader inserts.
+#    whitelist:
+#      tags:
+#      - ShellShotgun
+#      - SpeedLoaderShotgun
+#      - ShotgunBoxAmmo
+#    proto: ShellShotgun
+#    capacity: 8
+#    chambers: [ True, True, True, True, True, True, True, True ]
+#    ammoSlots: [ null, null, null, null, null, null, null, null ]
+#    soundInsert:
+#      path: /Audio/Weapons/Guns/MagIn/shotgun_insert.ogg #FH End
+#  - type: ContainerContainer
+#    containers:
+#      revolver-ammo: !type:Container
+
 - type: entity
   name: cycler shotgun
   parent: [BaseWeaponShotgunAny, BaseGunWieldable, BaseSecuritySalvageContraband]

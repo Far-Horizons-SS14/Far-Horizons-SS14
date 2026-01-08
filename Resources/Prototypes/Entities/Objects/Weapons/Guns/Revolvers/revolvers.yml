@@ -83,12 +83,12 @@
   name: Inspector
   parent: [BaseWeaponRevolver, BaseSecurityContraband]
   id: WeaponRevolverInspector
-  description: A double-action revolver manufactured by various companies. It is readily available on the civilian market, making it a popular choice among private investigators. You feel lucky just holding it. Loads 6 rounds of .45 magnum.
+  description: A double-action revolver manufactured by various companies. It is readily available on the civilian market, making it a popular choice among private investigators. You feel lucky just holding it. Loads 6 rounds of .44 magnum. #FH
   components:
   - type: Sprite
-    sprite: Objects/Weapons/Guns/Revolvers/inspector.rsi
+    sprite: _FarHorizons/Objects/Weapons/Guns/Revolvers/inspector.rsi #FH
   - type: Clothing
-    sprite: Objects/Weapons/Guns/Revolvers/inspector.rsi
+    sprite: _FarHorizons/Objects/Weapons/Guns/Revolvers/inspector.rsi #FH
   - type: Item
     storedOffset: 0,-2
   - type: RevolverAmmoProvider

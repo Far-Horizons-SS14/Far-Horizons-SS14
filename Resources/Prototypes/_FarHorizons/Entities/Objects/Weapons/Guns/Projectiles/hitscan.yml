@@ -12,10 +12,75 @@
     impactEffect: BulletImpactEffectDisabler
     damage:
       types:
-        Heat: 2
+        Shock: 2 # 16 shock damage to stamcrit
     soundHit:
       collection: WeakHit
     forceSound: true
+
+- type: entity
+  id: BoltTaserRifle
+  name: Taser
+  parent: BulletTaser
+  components:
+  - type: StaminaDamageOnCollide
+    damage: 12
+  - type: TimedDespawn
+    lifetime: 1.0 # Old values were in tiles, new ones in seconds, don't assume I know what I'm doing
+  - type: Projectile
+    impactEffect: BulletImpactEffectDisabler
+    damage:
+      types:
+        Shock: 2 # ~ 20 shock damage to stamcrit.
+    soundHit:
+      collection: WeakHit
+    forceSound: true
+
+- type: entity
+  id: BoltTaserSpread
+  name: Taser
+  parent: BulletTaser
+  components:
+  - type: StaminaDamageOnCollide
+    damage: 48 # Change to 3 when support is added # ~ 48, three shots assuming you hit them all
+  - type: Projectile
+    impactEffect: BulletImpactEffectDisabler
+    damage:
+      types:
+        Shock: 12 # Change to 1 shock per shot when spread is added # ~ 12 shock per shot, ~36 shock damage to stamcrit. Will likely need tweaking given almost no armor resists shock, but also insuls make you immune so.. ???
+    soundHit:
+      collection: WeakHit
+    forceSound: true
+
+- type: entity
+  id: BoltPlasmaSpread
+  name: Plasma Bolt
+  parent: EnergyTrace
+  components:
+  - type: Projectile
+    impactEffect: BulletImpactEffectDisabler
+    damage:
+      types:
+        Heat: 50 # Change to a lower number when support is added # About as strong as slugs (and weaker than current eshotty), does a bit more damage to account for lack of AP. Will likely be stronger in practice due to majority species having heat weakness + flat heat being -4 instead of -5 - assuming you point blank someone with it.
+        Structural: 90 # Change to a lower number when support is added
+    soundHit:
+      collection: WeakHit
+    forceSound: true
+
+- type: entity
+  id: RedLaserBeamSpread
+  name: Split Laser Beam
+  parent: LaserTrace
+  components:
+  - type: Projectile
+    impactEffect: BulletImpactEffectDisabler
+    damage:
+      types:
+        Heat: 30 # Buckshot is 70 for reference. Performs a bit worse against a blood-red compared to buckshot, which is fine given it goes through glass.
+    soundHit:
+      collection: WeakHit
+    forceSound: true
+  - type: TimedDespawn
+    lifetime: 0.2 # Old values were in tiles, new ones in seconds, don't assume I know what I'm doing
 
 - type: entity
   id: HighBoltTaserFH
@@ -29,7 +94,7 @@
     impactEffect: BulletImpactEffectDisabler
     damage:
       types:
-        Heat: 6
+        Shock: 6
     soundHit:
       collection: WeakHit
     forceSound: true
@@ -76,3 +141,66 @@
     damage:
       types:
         Heat: 18
+
+- type: entity
+  id: BulletPistolTrace40Practice
+  name: .40 Practice Round #Far Horizons - The Great Capitalization Crusade
+  parent: BulletTrace
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HitscanBasicDamage
+    damage:
+      types:
+        Blunt: 2
+  - type: HitscanPierce
+    chance: 0.69
+    pierceLevel: Wood
+    deviation: 0.12
+  - type: HitscanRicochet
+    chance: 0.48
+  - type: HitscanReflect
+    reflectiveType: NonEnergy
+    maxReflections: 20 # This is the recursion depth for reflect, ricochet, and pierce
+
+- type: entity
+  id: BulletPistolTrace40Incendiary
+  name: .40 Incendiary Round
+  parent: BulletTrace
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HitscanBasicDamage
+    damage:
+      types:
+        Piercing: 2.5
+        Heat: 23
+  - type: HitscanPierce
+    chance: 0.69
+    pierceLevel: Rock
+    deviation: 0.12
+  - type: HitscanRicochet
+    chance: 0.48
+  - type: HitscanReflect
+    reflectiveType: NonEnergy
+    maxReflections: 20 # This is the recursion depth for reflect, ricochet, and pierce
+
+- type: entity
+  id: BulletPistolTrace40Uranium
+  name: .40 Uranium Round
+  parent: BulletTrace
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HitscanBasicDamage
+    damage:
+      types:
+        Radiation: 3
+        Piercing: 15
+    armorPenetration: 0.35
+  - type: HitscanPierce
+    chance: 0.75
+    pierceLevel: HardenedMetal
+    deviation: 0.12
+  - type: HitscanRicochet
+    chance: 0.80
+  - type: HitscanReflect
+    reflectiveType: NonEnergy
+    maxReflections: 20 # This is the recursion depth for reflect, ricochet, and pierce

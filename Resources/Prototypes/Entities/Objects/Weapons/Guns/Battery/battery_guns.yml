@@ -271,26 +271,21 @@
     zeroVisible: true
   - type: Appearance
 
-- type: entity
-  name: laser carbine
-  parent: [BaseLaserRifle, BaseGunWieldable, BaseSecurityContraband]
-  id: WeaponLaserCarbine
-  description: Favoured by Nanotrasen Security for being cheap and easy to use.
+# FH - MOVED TO _FarHorizons/battery_guns.yml
+#- type: entity
+#  name: laser carbine
+#  parent: [BaseLaserRifle, BaseGunWieldable, BaseSecurityContraband]
+#  id: WeaponLaserCarbine
+#  description: Favoured by Nanotrasen Security for being cheap and easy to use.
 
 - type: entity
   name: practice laser carbine
-  parent: [BaseLaserRifle, BaseGunWieldable]
+  parent: [WeaponLaserCarbine, BaseGunWieldable] #FH
   id: WeaponLaserCarbinePractice
   description: This modified laser carbine fires nearly harmless beams in the 40-watt range, for target practice.
   components:
   - type: StaticPrice
-    price: 420
-  - type: Item
-    heldPrefix: mag4
-  - type: MagazineVisuals
-    magState: mag
-    steps: 5
-    zeroVisible: true
+    price: 420 #FH - Removal
   - type: PacifismAllowedGun
   - type: BatteryAmmoProvider
     proto: RedLaserPractice
@@ -869,102 +864,56 @@
     - Sidearm
     - LaserWeapon
 
-- type: entity
-  name: energy shotgun
-  parent: [BaseWeaponBattery, BaseGunWieldable, BaseWardenGrandTheftContraband] # Starlight - warden grand contra
-  id: WeaponEnergyShotgun
-  description: A one-of-a-kind prototype energy weapon that uses various shotgun configurations. It offers the possibility of both lethal and non-lethal shots, making it a versatile weapon.
-  components:
-  - type: Sprite
-    sprite: Objects/Weapons/Guns/Battery/energy_shotgun.rsi
-    layers:
-      - state: base
-        map: ["enum.GunVisualLayers.Base"]
-      - state: mag-unshaded-4
-        map: ["enum.GunVisualLayers.MagUnshaded"]
-        shader: unshaded
-  - type: MagazineVisuals
-    magState: mag
-    steps: 5
-    zeroVisible: false
-  - type: Appearance
-  - type: Clothing
-    sprite: Objects/Weapons/Guns/Battery/energy_shotgun.rsi
-  - type: Gun
-    fireRate: 2
-    soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
-  - type: BatteryWeaponFireModes
-    fireModes:
+#FH - Turned off and moved to our own! Farhorizons/battery_guns.yml
+#- type: entity
+#  name: energy shotgun
+#  parent: [BaseWeaponBattery, BaseGunWieldable, BaseGrandTheftContraband]
+#  id: WeaponEnergyShotgun
+#  description: A one-of-a-kind prototype energy weapon that uses various shotgun configurations. It offers the possibility of both lethal and non-lethal shots, making it a versatile weapon.
+#  components:
+#  - type: Sprite
+#    sprite: Objects/Weapons/Guns/Battery/energy_shotgun.rsi
+#    layers:
+#      - state: base
+#        map: ["enum.GunVisualLayers.Base"]
+#      - state: mag-unshaded-4
+#        map: ["enum.GunVisualLayers.MagUnshaded"]
+#        shader: unshaded
+#  - type: MagazineVisuals
+#    magState: mag
+#    steps: 5
+#    zeroVisible: false
+#  - type: Appearance
+#  - type: Clothing
+#    sprite: Objects/Weapons/Guns/Battery/energy_shotgun.rsi
+#  - type: Gun
+#    fireRate: 2
+#    soundGunshot:
+#      path: /Audio/_Starlight/Weapons/Energy/laser_shotgun.ogg # STARLIGHT
+#      params:
+#        variation: 0.07
+#  - type: ProjectileBatteryAmmoProvider
+#    proto: BulletLaserSpread
+#    fireCost: 60
+#  - type: BatteryWeaponFireModes
+#    fireModes:
 #    - proto: BulletLaserSpread Starlight
 #      fireCost: 65
-    - proto: BulletLaserSpreadNarrow #Starlight
-      fireCost: 120
-    - proto: BulletDisablerSmgSpread #Starlight
-      fireCost: 75
-  - type: Item
-    size: Large
-    sprite: Objects/Weapons/Guns/Battery/inhands_64x.rsi
-    heldPrefix: energy
-  - type: Tag
-    tags:
-    - HighRiskItem
-  - type: StealTarget
-    stealGroup: WeaponEnergyShotgun
-  - type: BatteryAmmoProvider
-    proto: BulletLaserSpread
-    fireCost: 60
-  - type: GunRequiresWield #remove when inaccuracy on spreads is fixed
-  - type: PredictedBattery
-    maxCharge: 480
-    startingCharge: 480
-
-- type: entity
-  name: energy magnum
-  parent: [BaseWeaponBatterySmall, BaseDetectiveGrandTheftContraband] # Starlight - detective grand contra
-  id: WeaponEnergyMagnum
-  description: A high powered self-charging energy pistol designed for elite security personnel. It has has three firing modes allowing for either high damage, window piercing, or non-lethal disabling.
-  components:
-  - type: Sprite
-    sprite: Objects/Weapons/Guns/Battery/energy_magnum.rsi
-    layers:
-    - state: base
-      map: [ "enum.GunVisualLayers.Base" ]
-    - state: mag-unshaded-1
-      visible: false
-      map: [ "enum.GunVisualLayers.MagUnshaded" ]
-      shader: unshaded
-  - type: MagazineVisuals
-    magState: mag
-    steps: 4
-    zeroVisible: true
-  - type: Appearance
-  - type: Clothing
-    sprite: Objects/Weapons/Guns/Battery/energy_magnum.rsi
-  - type: Tag
-    tags:
-    - HighRiskItem
-    - Sidearm
-  - type: StealTarget
-    stealGroup: WeaponEnergyMagnum
-  - type: Gun
-    soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
-  - type: BatteryAmmoProvider
-    proto: BulletLaserMagnum
-    fireCost: 150
-  - type: BatteryWeaponFireModes
-    fireModes:
-    - proto: BulletLaserMagnum
-      fireCost: 150
-    - proto: BulletLaserWindowPiercingMagnum
-      fireCost: 150
-    - proto: BulletDisabler
-      fireCost: 62.5
-      pacifismAllowedMode: true
-  - type: PredictedBatterySelfRecharger
-    autoRechargeRate: 48
-    autoRechargePauseTime: 10
+#    - proto: BulletLaserSpreadNarrow #Starlight
+#      fireCost: 120
+#  - type: Item
+#    size: Large
+#    sprite: Objects/Weapons/Guns/Battery/inhands_64x.rsi
+#    heldPrefix: energy
+#  - type: Tag
+#    tags:
+#    - HighRiskItem
+#  - type: StealTarget
+#    stealGroup: WeaponEnergyShotgun
+#  - type: GunRequiresWield #remove when inaccuracy on spreads is fixed
+#  - type: Battery
+#    maxCharge: 1200
+#    startingCharge: 1200
 
 - type: entity
   name: temperature gun
