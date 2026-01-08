@@ -31,9 +31,57 @@
 - type: entity
   id: SteelGasTurbineBlade
   parent: BaseGasTurbineBlade
+  name: steel gas turbine blade
   components:
   - type: GasTurbineBlade
     material: Steel
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 1000
+
+- type: entity
+  id: BrassGasTurbineBlade
+  parent: BaseGasTurbineBlade
+  name: brass gas turbine blade
+  components:
+  - type: GasTurbineBlade
+    material: Brass
+  - type: PhysicalComposition
+    materialComposition:
+      Brass: 1000
+
+- type: entity
+  id: DiamondGasTurbineBlade
+  parent: BaseGasTurbineBlade
+  name: diamond gas turbine blade
+  components:
+  - type: GasTurbineBlade
+    material: Diamond
+  - type: PhysicalComposition
+    materialComposition:
+      Diamond: 1000
+
+- type: entity
+  id: GoldGasTurbineBlade
+  parent: BaseGasTurbineBlade
+  name: gold gas turbine blade
+  components:
+  - type: GasTurbineBlade
+    material: Gold
+  - type: PhysicalComposition
+    materialComposition:
+      Gold: 1000
+
+- type: entity
+  id: PlasteelGasTurbineBlade
+  parent: BaseGasTurbineBlade
+  name: plasteel gas turbine blade
+  components:
+  - type: GasTurbineBlade
+    material: Plasteel
+  - type: PhysicalComposition
+    materialComposition:
+      Plasteel: 1000
 
 # Stators
 - type: entity
@@ -53,6 +101,32 @@
 - type: entity
   id: SteelGasTurbineStator
   parent: BaseGasTurbineStator
+  name: steel gas turbine stator
   components:
   - type: GasTurbineStator
     material: Steel
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 1000
+
+- type: entity
+  id: SilverGasTurbineStator
+  parent: BaseGasTurbineStator
+  name: silver gas turbine stator
+  components:
+  - type: GasTurbineStator
+    material: Silver
+  - type: PhysicalComposition
+    materialComposition:
+      Silver: 1000
+
+- type: entity
+  id: GoldGasTurbineStator
+  parent: BaseGasTurbineStator
+  name: gold gas turbine stator
+  components:
+  - type: GasTurbineStator
+    material: Gold
+  - type: PhysicalComposition
+    materialComposition:
+      Gold: 1000
