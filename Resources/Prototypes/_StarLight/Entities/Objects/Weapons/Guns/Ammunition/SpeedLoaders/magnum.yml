@@ -1,6 +1,6 @@
 - type: entity
   id: SpeedLoaderMagnumRubber
-  name: "speed loader (.45 magnum rubber)"
+  name: "Speed loader (.44 Magnum Rubber)" #FH
   parent: [ BaseSpeedLoaderMagnum, BaseSecurityContraband ]
   components:
   - type: BallisticAmmoProvider
@@ -18,7 +18,7 @@
 
 - type: entity
   id: SpeedLoaderMagnumImprovised
-  name: "speed loader (.45 magnum)"
+  name: "Speed loader (.44 Magnum)" #FH
   parent: [BaseItem, BaseMinorContraband]
   components:
   - type: Tag
@@ -57,7 +57,7 @@
 
 - type: entity
   id: SpeedLoaderMagnumLeverImprovised
-  name: "speed loader (.30 /.45 magnum)"
+  name: "Speed loader (.30 /.44 Magnum)" #FH
   parent: [BaseSpeedLoaderShotgun, BaseMinorContraband]
   components:
   - type: BallisticAmmoProvider

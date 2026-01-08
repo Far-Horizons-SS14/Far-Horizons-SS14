@@ -1,3 +1,21 @@
+# Sidearm
+- type: loadout
+  id: SecurityRevolverOathbreaker
+  dummyEntity: WeaponRevolverOathbreaker
+  effects:
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:RoleTimeRequirement
+        role: JobBrigmedic
+        time: 36000 # Needs to be earned
+  storage:
+    back:
+    - WeaponRevolverOathbreaker
+    - SpeedLoaderShotgunBeanbag
+    - SpeedLoaderShotgunBeanbag
+    - SpeedLoaderMagnumBasic
+
+# Eyes
 - type: loadout
   id: BrigmedicVisor
   equipment:

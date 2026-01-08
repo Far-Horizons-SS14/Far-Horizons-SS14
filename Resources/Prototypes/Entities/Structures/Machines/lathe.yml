@@ -434,10 +434,11 @@
     - NullSpaceDrainer
     - SecurityPracticeStatic
     - StarlightSecurityAmmoStatic
+    - SecurityWeaponsStatic
     - SecurityDisablers # FH edit, make static
-    - StarlightSecurityAmmoEmagStatic
-    - StarlightNullspaceStatic
-    - SecurityWeaponsStatic # Starlight end
+    - StarlightSecurityPracticeStatic  # FH edit, yes, they didn't have their own pack here
+    - FarHorizonsSecurityPracticeStatic #FarHorizons
+    - FarHorizonsSecurityAmmoStatic #FarHorizons
     dynamicPacks:
     - SalvageSecurityBoards
     - SalvageSecurityWeapons
@@ -449,7 +450,10 @@
     - StarlightSecurityWeapons
     - SecurityCyberLimbs
     - StarlightSecurityMechsWeapons
-    - FarHorizonsSecBorgRecipePack
+    - FarHorizonsSecBorgRecipePack #FarHorizons
+    - FarHorizonsSecurityAmmoDynamic #FarHorizons
+    - FarHorizonsSecurityThrowablesDynamic #FarHorizons
+    - FarHorizonsSecurityWeaponsDynamic #FarHorizons
   #region Starlight secfab emagging
   - type: EmagLatheRecipes
     emagStaticPacks:

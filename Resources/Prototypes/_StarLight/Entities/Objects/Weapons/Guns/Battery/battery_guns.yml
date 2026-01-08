@@ -160,76 +160,9 @@
   - type: ToggleableLightVisuals
     spriteLayer: light
 
-# HEAVILY MODIFIED BY FH.
-- type: entity
-  name: Dominator #Far Horizons - The Great Capitalization Crusade
-  parent: [ BaseWeaponBatterySmall, BaseSecurityContraband ]
-  id: WeaponDominator
-  description: A high-tech weapon created by the law enforcement organization Sibyl System, designed specifically to fight crime.
-  components:
-  - type: StationGridMemory
-  - type: Appearance
-  - type: Sprite
-    sprite: _Starlight/Objects/Weapons/Guns/Battery/dominator.rsi
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: disable-unshaded-0
-      map: ["enum.GunVisualLayers.MagUnshaded"]
-      shader: unshaded
-  - type: MagazineVisuals #FH edit
-    magState: stun
-    steps: 4
-    zeroVisible: true
-  - type: Lock
-  - type: AccessReader
-    access: [["Security"]]
-  # - type: HitscanBatteryAmmoProvider  #FH edit
-  #   proto: BoltTaserFH
-  #   fireCost: 166
-  - type: BatteryWeaponFireModes
-    fireModes:
-    - proto: BoltTaserFH #FH edit
-      fireCost: 166
-      magState: stun
-      conditions:
-      - !type:AlertLevelCondition
-        alertLevels:
-        - green
-        - blue
-        - violet
-        - yellow
-        - red
-        - gamma
-        - psi
-        - orange
-        - delta
-    - proto: RedLaserBeamDominator #FH edit
-      fireCost: 50 #FH edit
-      magState: lethal
-      conditions:
-      - !type:AlertLevelCondition
-        alertLevels:
-        - blue #FH edit
-        - violet
-        - yellow
-        - red
-        - gamma
-        - psi
-        - orange
-        - delta
-    - proto: DestroyBeamDominator #FH edit
-      fireCost: 250
-      magState: destroy
-      conditions:
-      - !type:AlertLevelCondition
-        alertLevels:
-        - violet
-        - red
-        - gamma
-        - psi
-        - orange
-        - delta
+# FH - Dominator moved to /FarHorizons/_battery_guns.yml
+#
+#
 
 - type: entity
   name: X-01 Multiphase Energy Gun #Far Horizons - The Great Capitalization Crusade
@@ -262,14 +195,11 @@
     steps: 5
     zeroVisible: true
   - type: BatteryAmmoProvider
-    proto: DisablerBolt
-    fireCost: 40
+    proto: TaserBolt #FH
+    fireCost: 100 #FH
   - type: BatteryWeaponFireModes
     fireModes:
-    - proto: DisablerBolt
-      fireCost: 40
-      magState: disable
-      visualState: disable-unshaded
+# FH - Removal of Disabler mode
     - proto: TaserBolt
       fireCost: 100
       magState: stun
