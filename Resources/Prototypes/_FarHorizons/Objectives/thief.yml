@@ -3,7 +3,8 @@
   id: BrigmedicBedsheetStealObjective
   components:
   - type: NotJobRequirement
-    job: Brigmedic
+    jobs: 
+      - Brigmedic
   - type: StealCondition
     stealGroup: BrigmedicBedsheetSteal
   - type: Objective
@@ -14,7 +15,8 @@
   id: ReactorFuelRodStealCollectionObjective
   components:
   - type: NotJobRequirement
-    job: StationEngineer #TODO: make it so this also includes AtmosphericTechnician
+    jobs: 
+      - StationEngineer #TODO: make it so this also includes AtmosphericTechnician
   - type: StealCondition
     stealGroup: ReactorFuelRodSteal
     verifyMapExistence: false
@@ -37,7 +39,8 @@
   id: VehicleSecwayStealObjective
   components:
   - type: NotJobRequirement
-    job: SecurityOfficer
+    jobs: 
+      - SecurityOfficer
   - type: StealCondition
     stealGroup: VehicleSecwaySteal
     verifyMapExistence: false

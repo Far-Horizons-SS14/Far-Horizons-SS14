@@ -58,6 +58,12 @@
           params:
             volume: -5
   - type: LandAtCursor # it deals stamina damage when thrown
+  - type: PredictedBattery
+    maxCharge: 1000
+    startingCharge: 1000
+  - type: Item
+    heldPrefix: off
+    size: Normal
   - type: Clothing
     sprite: _FarHorizons/Objects/Weapons/Melee/telebatonsec.rsi
     quickEquip: false

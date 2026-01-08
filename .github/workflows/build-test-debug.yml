@@ -15,11 +15,8 @@ on:
 jobs:
   build:
     if: "!contains(github.event.pull_request.labels.*.name, 'automated pr') && github.actor != 'github-actions[bot]' && github.event.pull_request.draft == false"
-    strategy:
-      matrix:
-        os: [ubuntu-latest]
 
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
 
     steps:
     - name: Checkout Master
@@ -43,7 +40,9 @@ jobs:
         dotnet-version: 9.0.x
 
     - name: Install dependencies
-      run: dotnet restore
+      run: |
+        dotnet restore
+#        apt install -y libfreetype6 libfreetype-dev
 
     - name: Build Project
       run: dotnet build --configuration DebugOpt --no-restore /m
@@ -54,7 +53,8 @@ jobs:
     - name: Run Content.IntegrationTests
       shell: pwsh
       run: |
-        $env:DOTNET_gcServer=1
+        $env:DOTNET_gcServer=0
+        $env:DOTNET_GCHeapHardLimit=4294967296
         dotnet test --no-build --configuration DebugOpt Content.IntegrationTests/Content.IntegrationTests.csproj --logger trx -- NUnit.ConsoleOut=0 NUnit.MapWarningTo=Failed
         
     - name: Test results

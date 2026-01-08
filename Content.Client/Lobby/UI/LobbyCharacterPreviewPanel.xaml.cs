@@ -14,6 +14,13 @@ using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 
+#region Starlight
+using Content.Client.Lobby.UI.ProfileEditorControls;
+using Content.Client.Players.PlayTimeTracking;
+using Content.Shared.Preferences;
+using Content.Shared.Roles;
+#endregion Starlight
+
 namespace Content.Client.Lobby.UI;
 
 [GenerateTypedNameReferences]

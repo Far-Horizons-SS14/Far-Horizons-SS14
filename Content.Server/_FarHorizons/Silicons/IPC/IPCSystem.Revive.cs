@@ -1,12 +1,12 @@
 using Content.Server.Ghost;
 using Content.Shared._FarHorizons.Silicons.IPC.Components;
-using Content.Shared.Damage;
+using Content.Shared.Damage.Components;
+using Content.Shared.Damage.Systems;
 using Content.Shared.DoAfter;
 using Content.Shared.Medical;
 using Content.Shared.Mobs;
 using Content.Shared.Traits.Assorted;
 using Content.Shared.Verbs;
-using Content.Shared.Wires;
 using Robust.Shared.Utility;
 
 namespace Content.Server._FarHorizons.Silicons.IPC;
@@ -38,7 +38,7 @@ public sealed partial class IPCSystem
             return;
 
         if (ent.Comp.DefibDamage != null)
-            _damageable.TryChangeDamage(ent, ent.Comp.DefibDamage);
+            _damageable.TryChangeDamage(ent.Owner, ent.Comp.DefibDamage);
         
         if (ent.Comp.DefibBatteryDrain)
             DrainBattery((ent, null));

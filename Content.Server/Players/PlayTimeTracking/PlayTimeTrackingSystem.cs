@@ -56,7 +56,7 @@ public sealed class PlayTimeTrackingSystem : EntitySystem
         SubscribeLocalEvent<MobStateChangedEvent>(OnMobStateChanged);
         SubscribeLocalEvent<PlayerJoinedLobbyEvent>(OnPlayerJoinedLobby);
         SubscribeLocalEvent<StationJobsGetCandidatesEvent>(OnStationJobsGetCandidates);
-        SubscribeLocalEvent<IsJobAllowedEvent>(OnIsJobAllowed);
+        SubscribeLocalEvent<IsRoleAllowedEvent>(OnIsRoleAllowed);
         SubscribeLocalEvent<GetDisallowedJobsEvent>(OnGetDisallowedJobs);
         _adminManager.OnPermsChanged += AdminPermsChanged;
     }
@@ -88,6 +88,9 @@ public sealed class PlayTimeTrackingSystem : EntitySystem
         trackers.UnionWith(GetTimedRoles(player));
     }
 
+    /// <summary>
+    /// Returns true if the player has an attached mob and it is alive (even if in critical).
+    /// </summary>
     private bool IsPlayerAlive(ICommonSession session)
     {
         var attached = session.AttachedEntity;
@@ -178,10 +181,18 @@ public sealed class PlayTimeTrackingSystem : EntitySystem
         RemoveDisallowedJobs(ev.Player, ev.Jobs);
     }
 
-    private void OnIsJobAllowed(ref IsJobAllowedEvent ev)
+    private void OnIsRoleAllowed(ref IsRoleAllowedEvent ev)
     {
-        // Far Horizons
-        if (!IsAllowed(ev.Player, ev.FactionId, ev.JobId))
+        // Starlight start
+        if (!ev.IsSpawning) {
+            var factionlessJobs = ev.Jobs?.Select(p => p.job).ToList();
+            if (!IsAllowedNonSpawning(ev.Player, factionlessJobs) || !IsAllowedNonSpawning(ev.Player, ev.Antags))
+                ev.Cancelled = true;
+            return;
+        }
+        // Starlight end
+
+        if (!IsAllowed(ev.Player, ev.Jobs) || !IsAllowed(ev.Player, ev.Antags))
             ev.Cancelled = true;
     }
 
@@ -208,13 +219,125 @@ public sealed class PlayTimeTrackingSystem : EntitySystem
         return playTimes;
     }
 
-    // Far Horizons
+    /// <summary>
+    /// Checks if the player meets role requirements.
+    /// </summary>
+    /// <param name="player">The player.</param>
+    /// <param name="jobs">A list of role prototype IDs</param>
+    /// <returns>Returns true if all requirements were met or there were no requirements.</returns>
+    public bool IsAllowed(ICommonSession player, List<(ProtoId<FactionPrototype> faction, ProtoId<JobPrototype> job)>? jobs)
+    {
+        if (jobs is null)
+            return true;
+
+        foreach (var job in jobs)
+        {
+            if (!IsAllowed(player, job.faction, job.job))
+                return false;
+        }
+
+        return true;
+    }
+
+    /// <summary>
+    /// Checks if the player meets role requirements.
+    /// </summary>
+    /// <param name="player">The player.</param>
+    /// <param name="antags">A list of role prototype IDs</param>
+    /// <returns>Returns true if all requirements were met or there were no requirements.</returns>
+    public bool IsAllowed(ICommonSession player, List<ProtoId<AntagPrototype>>? antags)
+    {
+        if (antags is null)
+            return true;
+
+        foreach (var antag in antags)
+        {
+            if (!IsAllowed(player, antag))
+                return false;
+        }
+
+        return true;
+    }
+
+    /// <summary>
+    /// Checks if the player meets role requirements.
+    /// </summary>
+    /// <param name="player">The player.</param>
+    /// <param name="job">A list of role prototype IDs</param>
+    /// <returns>Returns true if all requirements were met or there were no requirements.</returns>
     public bool IsAllowed(ICommonSession player, ProtoId<FactionPrototype> faction, ProtoId<JobPrototype> job)
     {
+        /* Starlight start - we check this in GetPlayTimeIfEnabled
+        if (!_cfg.GetCVar(CCVars.GameRoleTimers))
+            return true;
+
+        if (!_tracking.TryGetTrackerTimes(player, out var playTimes))
+        {
+            Log.Error($"Unable to check playtimes {Environment.StackTrace}");
+            playTimes = new Dictionary<string, TimeSpan>();
+        }
+        */// Starlight end
+
         var playTimes = GetPlayTimesIfEnabled(player);
 
-        var allProfilesForJob = _preferencesManager.GetPreferences(player.UserId).GetAllEnabledProfilesForJob(faction, job); // Far Horizons
-        return allProfilesForJob.Values.Any(profile => JobRequirements.TryRequirementsMet(job, player, playTimes, out _, EntityManager, _prototypes, profile));
+        var requirements = _roles.GetRoleRequirements(job); // Starlight-edit - moved this up a bit
+
+        // Starlight start
+        // If this is a non-profile-selectable antag, don't check profiles
+        if (!_prototypes.Index<JobPrototype>(job).SetPreference)
+            return JobRequirements.TryRequirementsMet(requirements, player, playTimes, out _, EntityManager, _prototypes, null);
+        // Starlight end
+
+        var allProfilesForJob = _preferencesManager.GetPreferences(player.UserId).GetAllEnabledProfilesForJob(faction, job);
+        return allProfilesForJob.Values.Any(profile => JobRequirements.TryRequirementsMet(
+                    requirements,
+                    player,
+                    playTimes,
+                    out _,
+                    EntityManager,
+                    _prototypes,
+                    profile)
+                );
+    }
+
+    /// <summary>
+    /// Checks if the player meets role requirements.
+    /// </summary>
+    /// <param name="player">The player.</param>
+    /// <param name="antag">A list of role prototype IDs</param>
+    /// <returns>Returns true if all requirements were met or there were no requirements.</returns>
+    public bool IsAllowed(ICommonSession player, ProtoId<AntagPrototype> antag)
+    {
+        /* Starlight start - we check this in GetPlayTimeIfEnabled
+        if (!_cfg.GetCVar(CCVars.GameRoleTimers))
+            return true;
+
+        if (!_tracking.TryGetTrackerTimes(player, out var playTimes))
+        {
+            Log.Error($"Unable to check playtimes {Environment.StackTrace}");
+            playTimes = new Dictionary<string, TimeSpan>();
+        }
+        */// Starlight end
+
+        var playTimes = GetPlayTimesIfEnabled(player);
+        var requirements = _roles.GetRoleRequirements(antag); // Starlight-edit - moved this up a bit
+
+        // Starlight start
+        // If this is a non-profile-selectable antag, don't check profiles
+        if (!_prototypes.Index<AntagPrototype>(antag).SetPreference)
+            return JobRequirements.TryRequirementsMet(requirements, player, playTimes, out _, EntityManager, _prototypes, null);
+        // Starlight end
+
+        var allProfilesForAntag = _preferencesManager.GetPreferences(player.UserId).GetAllEnabledProfilesForAntag(antag);
+        return allProfilesForAntag.Values.Any(profile => JobRequirements.TryRequirementsMet(
+                    requirements,
+                    player,
+                    playTimes,
+                    out _,
+                    EntityManager,
+                    _prototypes,
+                    profile)
+                );
     }
 
     public HashSet<ProtoId<JobPrototype>> GetDisallowedJobs(ICommonSession player)
@@ -257,4 +380,52 @@ public sealed class PlayTimeTrackingSystem : EntitySystem
     {
         _tracking.QueueRefreshTrackers(player);
     }
+
+    // Starlight start
+    /// <summary>
+    /// Checks if the player meets role requirements, without checking if they have a profile that has this job
+    /// </summary>
+    /// <param name="player">The player.</param>
+    /// <param name="jobs">A list of role prototype IDs</param>
+    /// <returns>Returns true if all requirements were met or there were no requirements.</returns>
+    public bool IsAllowedNonSpawning(ICommonSession player, List<ProtoId<JobPrototype>>? jobs)
+    {
+        if (jobs is null)
+            return true;
+
+        var playTimes = GetPlayTimesIfEnabled(player);
+
+        foreach (var job in jobs)
+        {
+            var requirements = _roles.GetRoleRequirements(job);
+            if (!JobRequirements.TryRequirementsMet(requirements, player, playTimes, out _, EntityManager, _prototypes, null))
+                return false;
+        }
+
+        return true;
+    }
+
+    /// <summary>
+    /// Checks if the player meets role requirements, without checking if they have a profile that has this antag
+    /// </summary>
+    /// <param name="player">The player.</param>
+    /// <param name="antags">A list of role prototype IDs</param>
+    /// <returns>Returns true if all requirements were met or there were no requirements.</returns>
+    public bool IsAllowedNonSpawning(ICommonSession player, List<ProtoId<AntagPrototype>>? antags)
+    {
+        if (antags is null)
+            return true;
+
+        var playTimes = GetPlayTimesIfEnabled(player);
+
+        foreach (var antag in antags)
+        {
+            var requirements = _roles.GetRoleRequirements(antag);
+            if (!JobRequirements.TryRequirementsMet(requirements, player, playTimes, out _, EntityManager, _prototypes, null))
+                return false;
+        }
+
+        return true;
+    }
+    // Starlight end
 }

@@ -5,6 +5,7 @@ loadout-group-species-restriction = This item is not available for your current 
 
 # Miscellaneous
 loadout-group-trinkets = Trinkets
+loadout-group-jobtrinkets = Job trinkets
 loadout-group-glasses = Glasses
 loadout-group-backpack = Backpack
 loadout-group-instruments = Instruments
@@ -47,6 +48,7 @@ loadout-group-assistant-id = Assistant PDA
 loadout-group-bartender-head = Bartender Head
 loadout-group-bartender-jumpsuit = Bartender Jumpsuit
 loadout-group-bartender-outerclothing = Bartender Outer Clothing
+loadout-group-bartender-shaker = Bartender shaker
 
 loadout-group-chef-head = Chef Head
 loadout-group-chef-mask = Chef Mask

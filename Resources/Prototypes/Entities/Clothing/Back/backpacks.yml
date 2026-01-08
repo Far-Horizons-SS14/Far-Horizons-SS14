@@ -208,7 +208,7 @@
       sprite: _FarHorizons/Clothing/Back/Backpacks/salvage.rsi #Far Horizons
 
 - type: entity
-  parent: [ ClothingBackpack, BaseSalvageContraband ] #Starlight salvContra
+  parent: ClothingBackpack
   id: ClothingBackpackMerc
   name: Mercenary Backpack #Far Horizons - The Great Capitalization Crusade
   description: A backpack that has been in many dangerous places, a reliable combat backpack.
@@ -284,14 +284,19 @@
     sprite: Clothing/Back/Backpacks/ertchaplain.rsi
 
 - type: entity
-  parent: ClothingBackpackERTSecurity
+  parent: ClothingBackpackNTNC #SL
   id: ClothingBackpackDeathSquad
   name: Death Squad Backpack #Far Horizons - The Great Capitalization Crusade
   description: Holds the kit of CentComm's most feared agents.
   components:
-    - type: Storage
-      grid:
-      - 0,0,7,6
+  - type: ExplosionResistance #SL
+    damageCoefficient: 0.1 #SL
+  - type: Sprite #SL
+    sprite: _Starlight/Clothing/Back/Backpacks/ntnc_bag.rsi #SL
+  - type: Storage
+    maxItemSize: Huge #SL
+    grid: #SL
+    - 0,0,8,5 #SL
 
 #Syndicate
 - type: entity

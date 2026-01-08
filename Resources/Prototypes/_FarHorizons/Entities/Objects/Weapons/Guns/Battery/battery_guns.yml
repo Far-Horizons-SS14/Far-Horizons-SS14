@@ -36,7 +36,7 @@
     magState: disable
     steps: 5
     zeroVisible: true
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: DisablerBolt
     fireCost: 100
   - type: BatteryWeaponFireModes
@@ -57,7 +57,7 @@
         - yellow
         - red
         - gamma
-  - type: Battery
+  - type: PredictedBattery
     maxCharge: 1500
     startingCharge: 1500
   - type: BatterySelfRecharger
@@ -89,6 +89,6 @@
     - FullAuto
     minAngle: 1
     maxAngle: 4
-  - type: Battery 
+  - type: PredictedBattery 
     maxCharge: 900 # ~1:30 minutes for recharge
     startingCharge: 900

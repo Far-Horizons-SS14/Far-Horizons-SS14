@@ -425,7 +425,7 @@
         Heat: 0.95
 
 - type: entity
-  parent: [ ClothingMaskGas, BaseSalvageContraband ]
+  parent: ClothingMaskGas
   id: ClothingMaskGasMerc
   name: mercenary gas mask
   description: Slightly outdated, but reliable military-style gas mask.
@@ -477,7 +477,7 @@
 - type: entity
   parent: ClothingMaskGasERT
   id: ClothingMaskGasDeathSquad
-  name: death squad gas mask
+  name: ntsf gas mask #starlight
   description: A unique gas mask for the NT's most elite squad.
   components:
   - type: Sprite
@@ -757,6 +757,7 @@
   - type: Tag
     tags:
     - WhitelistChameleon
+    - CorgiWearable #Starlight
 
 # Entity tables
 - type: entityTable

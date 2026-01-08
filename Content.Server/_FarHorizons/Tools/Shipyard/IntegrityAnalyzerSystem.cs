@@ -1,5 +1,5 @@
 using Content.Server.FarHorizons.Tools.Shipyard.Components;
-using Content.Server.PowerCell;
+using Content.Shared.PowerCell;
 using Content.Shared.FarHorizons.Tools.Shipyard;
 using Content.Shared.Damage;
 using Content.Shared.DoAfter;
@@ -15,6 +15,7 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Timing;
+using Content.Shared.Damage.Components;
 
 namespace Content.Server.FarHorizons.Tools.Shipyard.Systems;
 
@@ -79,7 +80,7 @@ public sealed class IntegrityAnalyzerSystem : EntitySystem
         if (args.Target == null 
             || !TryComp<DamageableComponent>(args.Target, out var damageableComponent)
             || HasComp<MobStateComponent>(args.Target)
-            || !_cell.HasDrawCharge(uid, user: args.User))
+            || !_cell.HasDrawCharge(uid.Owner, user: args.User))
             return;
         
         if (uid.Comp.DamageContainers != null 
@@ -101,7 +102,7 @@ public sealed class IntegrityAnalyzerSystem : EntitySystem
 
     private void OnDoAfter(Entity<IntegrityAnalyzerComponent> uid, ref IntegrityAnalyzerDoAfterEvent args)
     {
-        if (args.Handled || args.Cancelled || args.Target == null || !_cell.HasDrawCharge(uid, user: args.User))
+        if (args.Handled || args.Cancelled || args.Target == null || !_cell.HasDrawCharge(uid.Owner, user: args.User))
             return;
 
         if (!uid.Comp.Silent)
