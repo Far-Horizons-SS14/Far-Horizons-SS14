@@ -1,6 +1,7 @@
 using Robust.Shared.GameStates;
 using Robust.Shared.Serialization;
 using Content.Shared.DoAfter;
+using Robust.Shared.Utility;
 
 namespace Content.Shared._FarHorizons.Towing.Components;
 
@@ -12,6 +13,16 @@ public sealed partial class TowingComponent : Component
     /// </summary>
     [DataField("tieUpTime"), AutoNetworkedField]
     public TimeSpan TieUpTime = TimeSpan.FromSeconds(2);
+
+    /// <summary>
+    /// First entity tied in the rope component
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public EntityUid? EntityA;
+
+    [DataField, ViewVariables]
+    public SpriteSpecifier RopeSprite =
+    new SpriteSpecifier.Rsi(new ResPath("Objects/Weapons/Guns/Launchers/grappling_gun.rsi"), "rope");
 }
 
 [Serializable, NetSerializable]

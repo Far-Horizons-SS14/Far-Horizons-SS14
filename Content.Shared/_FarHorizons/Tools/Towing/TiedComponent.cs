@@ -12,6 +12,12 @@ public sealed partial class TiedComponent : Component
     /// </summary>
     [DataField, AutoNetworkedField]
     public TimeSpan UntieTime = TimeSpan.FromSeconds(2);
+
+    /// <summary>
+    /// Attached to entity
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public EntityUid? AttachedTo;
 }
 
 [Serializable, NetSerializable]
