@@ -8,6 +8,7 @@ using Content.Shared.Repairable;
 using Content.Shared.Tools.Systems;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared._FarHorizons.Power.Generation.FissionGenerator;
 
@@ -24,6 +25,7 @@ public abstract class SharedTurbineSystem : EntitySystem
     [Dependency] private readonly SharedToolSystem _toolSystem = default!;
     [Dependency] private readonly EntityManager _entityManager = default!;
     [Dependency] private readonly DamageableSystem _damageableSystem = default!;
+    [Dependency] private readonly IPrototypeManager _proto = default!;
 
     public override void Initialize()
     {
@@ -43,8 +45,21 @@ public abstract class SharedTurbineSystem : EntitySystem
 
         using (args.PushGroup(nameof(TurbineComponent)))
         {
-            if (!comp.Ruined)
+            if(comp.CurrentStator == null)
+                args.PushMarkup(Loc.GetString("gas-turbine-examine-stator-null"));
+            else
+            // Doesn't work right due to LOC
+            //args.PushMarkup(Loc.GetString("gas-turbine-examine-stator", ("material", _proto.Index(_entityManager.GetComponent<GasTurbineStatorComponent>(comp.CurrentStator.Value).Material).Name)));
+            args.PushMarkup(Loc.GetString("gas-turbine-examine-stator"));
+
+            if (comp.CurrentBlade == null)
+                args.PushMarkup(Loc.GetString("gas-turbine-examine-blade-null"));
+            else
             {
+                // Doesn't work right due to LOC
+                //args.PushMarkup(Loc.GetString("gas-turbine-examine-blade", ("material", _proto.Index(_entityManager.GetComponent<GasTurbineBladeComponent>(comp.CurrentBlade.Value).Material).Name)));
+                args.PushMarkup(Loc.GetString("gas-turbine-examine-blade"));
+
                 switch (comp.RPM)
                 {
                     case float n when n is >= 0 and <= 1:

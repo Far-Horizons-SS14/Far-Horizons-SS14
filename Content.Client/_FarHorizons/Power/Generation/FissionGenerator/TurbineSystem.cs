@@ -1,4 +1,3 @@
-using Robust.Shared.Prototypes;
 using Robust.Shared.Map;
 using Robust.Client.GameObjects;
 using Content.Shared.Repairable;
@@ -6,8 +5,8 @@ using Content.Shared._FarHorizons.Power.Generation.FissionGenerator;
 using Content.Client.Popups;
 using Content.Client.Examine;
 using Robust.Client.Animations;
-using Robust.Shared.Timing;
-using Content.Shared.Atmos;
+using Content.Shared.Containers.ItemSlots;
+using Content.Shared.Popups;
 
 namespace Content.Client._FarHorizons.Power.Generation.FissionGenerator;
 
@@ -31,6 +30,9 @@ public sealed class TurbineSystem : SharedTurbineSystem
         SubscribeLocalEvent<TurbineComponent, ClientExaminedEvent>(TurbineExamined);
 
         SubscribeLocalEvent<TurbineComponent, AnimationCompletedEvent>(OnAnimationCompleted);
+
+        SubscribeLocalEvent<TurbineComponent, ItemSlotInsertAttemptEvent>(OnInsertAttempt);
+        SubscribeLocalEvent<TurbineComponent, ItemSlotEjectAttemptEvent>(OnEjectAttempt);
     }
 
     protected override void OnRepairTurbineFinished(EntityUid uid, TurbineComponent comp, ref RepairFinishedEvent args)
@@ -43,6 +45,7 @@ public sealed class TurbineSystem : SharedTurbineSystem
 
     private void TurbineExamined(EntityUid uid, TurbineComponent comp, ClientExaminedEvent args) => Spawn(comp.ArrowPrototype, new EntityCoordinates(uid, 0, 0));
 
+    #region Animation
     private void OnAnimationCompleted(EntityUid uid, TurbineComponent comp, ref AnimationCompletedEvent args) => PlayAnimation(uid, comp);
 
     public override void FrameUpdate(float frameTime)
@@ -117,5 +120,26 @@ public sealed class TurbineSystem : SharedTurbineSystem
         };
         _sprite.LayerSetVisible(layer, true);
         _animationPlayer.Play(uid, animation, state);
+    }
+    #endregion
+
+    private void OnEjectAttempt(EntityUid uid, TurbineComponent comp, ref ItemSlotEjectAttemptEvent args)
+    {
+        if (comp.RPM < 1)
+            return;
+
+        args.Cancelled = true;
+        if (args.User != null)
+            _popupSystem.PopupClient(Loc.GetString("gas-turbine-eject-fail-speed", ("item", args.Item)), args.User.Value, PopupType.Medium);
+    }
+
+    private void OnInsertAttempt(EntityUid uid, TurbineComponent comp, ref ItemSlotInsertAttemptEvent args)
+    {
+        if (comp.RPM < 1)
+            return;
+
+        args.Cancelled = true;
+        if (args.User != null)
+            _popupSystem.PopupClient(Loc.GetString("gas-turbine-insert-fail-speed", ("item", args.Item)), args.User.Value, PopupType.Medium);
     }
 }

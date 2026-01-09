@@ -1,6 +1,11 @@
 ### Examine
 
-# Shown when examining the turbine.
+gas-turbine-examine-stator-null = It seems to be missing a stator.
+gas-turbine-examine-stator = It has a stator.
+
+gas-turbine-examine-blade-null = It seems to be missing a turbine blade.
+gas-turbine-examine-blade = It has a turbine blade.
+
 turbine-spinning-0 = The blades are not spinning.
 turbine-spinning-1 = The blades are turning slowly.
 turbine-spinning-2 = The blades are spinning.

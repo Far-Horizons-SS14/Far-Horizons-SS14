@@ -372,6 +372,9 @@ public sealed class TurbineSystem : SharedTurbineSystem
 
                Health = turbine.BladeHealth,
                HealthMax = turbine.BladeHealthMax,
+
+               Blade = _entityManager.GetNetEntity(turbine.CurrentBlade),
+               Stator = _entityManager.GetNetEntity(turbine.CurrentStator),
            });
     }
 
@@ -497,8 +500,6 @@ public sealed class TurbineSystem : SharedTurbineSystem
             return;
 
         args.Cancelled = true;
-        if(args.User != null)
-            _popupSystem.PopupEntity(Loc.GetString("gas-turbine-eject-fail-speed", ("item", args.Item)), args.User.Value, args.User.Value);
     }
 
     private void OnInsertAttempt(EntityUid uid, TurbineComponent comp, ref ItemSlotInsertAttemptEvent args)
@@ -507,8 +508,6 @@ public sealed class TurbineSystem : SharedTurbineSystem
             return;
 
         args.Cancelled = true;
-        if (args.User != null)
-            _popupSystem.PopupEntity(Loc.GetString("gas-turbine-insert-fail-speed", ("item", args.Item)), args.User.Value, args.User.Value);
     }
 
     private void OnPartInserted(EntityUid uid, TurbineComponent comp, ref EntInsertedIntoContainerMessage args)
