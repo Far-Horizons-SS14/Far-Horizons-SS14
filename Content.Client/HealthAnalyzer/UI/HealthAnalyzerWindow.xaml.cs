@@ -27,8 +27,8 @@ namespace Content.Client.HealthAnalyzer.UI
     [GenerateTypedNameReferences]
     public sealed partial class HealthAnalyzerWindow : FancyWindow
     {
-        private static readonly Color Green = Color.FromHex("#00FF00");
-        private static readonly Color Red = Color.FromHex("#FF0000");
+        private static readonly Color Green = Color.FromHex("#00FF00"); // Starlight
+        private static readonly Color Red = Color.FromHex("#FF0000"); // Starlight
         
         private readonly IEntityManager _entityManager;
         private readonly SpriteSystem _spriteSystem;
