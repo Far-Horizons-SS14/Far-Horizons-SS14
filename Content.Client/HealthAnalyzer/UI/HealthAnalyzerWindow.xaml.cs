@@ -27,6 +27,9 @@ namespace Content.Client.HealthAnalyzer.UI
     [GenerateTypedNameReferences]
     public sealed partial class HealthAnalyzerWindow : FancyWindow
     {
+        private static readonly Color Green = Color.FromHex("#00FF00");
+        private static readonly Color Red = Color.FromHex("#FF0000");
+        
         private readonly IEntityManager _entityManager;
         private readonly SpriteSystem _spriteSystem;
         private readonly IPrototypeManager _prototypes;
@@ -99,26 +102,21 @@ namespace Content.Client.HealthAnalyzer.UI
             if (!float.IsNaN(msg.BloodLevel))
             {
                 var bloodPercent = msg.BloodLevel;
-                var exclamations = "";
-                
-                if (bloodPercent <= 0f)
-                    exclamations = " !!!!";
-                else if (bloodPercent < 0.25f)
-                    exclamations = " !!!";
-                else if (bloodPercent < 0.5f)
-                    exclamations = " !!";
-                else if (bloodPercent < 0.75f)
-                    exclamations = " !";
+                var exclamations = bloodPercent switch {
+                  <= 0f => "!!!!",
+                  <= 0.25f => "!!!",
+                  <= 0.5f => "!!",
+                  <= 0.75f => "!",
+                  _ => ""
+                };
                 
                 BloodLabel.Text = $"{bloodPercent * 100:F1} %{exclamations}";
                 
                 // Color gradient: Goes from green at 100% to red at 50% then stays red.
                 var clampedPercent = Math.Max(bloodPercent, 0.5f);
                 var scaled = (clampedPercent - 0.5f) / 0.5f;
-                var red = (byte)(255 * (1 - scaled));
-                var green = (byte)(255 * scaled);
                 
-                BloodLabel.FontColorOverride = new Color(red, green, 0);
+                BloodLabel.FontColorOverride = Color.InterpolateBetween(Red, Green, scaled);
             }
             // Starlight end
             else
@@ -390,21 +388,16 @@ namespace Content.Client.HealthAnalyzer.UI
             // Color gradient: green (0) -> red (100+)
             var clampedDamage = Math.Min(damageAmount, 100f);
             var damagePercent = clampedDamage / 100f;
-            var red = (byte)(255 * damagePercent);
-            var green = (byte)(255 * (1 - damagePercent));
             
-            var titleColor = new Color(red, green, 0);
+            var titleColor = Color.InterpolateBetween(Green, Red, damagePercent);
             
-            var exclamations = "";
-            if (damageAmount > 200f)
-                exclamations = " !!!!";
-            else if (damageAmount > 100f)
-                exclamations = " !!!";
-            else if (damageAmount > 75f)
-                exclamations = " !!";
-            else if (damageAmount > 50f)
-                exclamations = " !";
-            
+            var exclamations = damageAmount switch {
+                > 200f => " !!!!",
+                > 100f => " !!!",
+                > 75f => " !!",
+                > 50f => " !",
+                _ => ""
+            };
             var titleRow = new BoxContainer
             {
                 Orientation = BoxContainer.LayoutOrientation.Horizontal,
