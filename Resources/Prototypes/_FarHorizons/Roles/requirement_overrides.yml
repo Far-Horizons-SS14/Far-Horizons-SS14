@@ -2,71 +2,137 @@
   id: FHJobRequirements
   jobs:
     NanoTrasenRepresentative:
-      - !type:DepartmentTimeRequirement
-        department: Command
-        time: 14400  # 4 hours
-      - !type:OverallPlaytimeRequirement
-        time: 72000 # 20 hours overall playtime
+      - !type:CompositeRequirement
+        requirements:
+          - !type:DepartmentTimeRequirement
+            department: Command
+            time: 14400  # 4 hours
+          - !type:OverallPlaytimeRequirement
+            time: 72000 # 20 hours overall playtime
+        alternativeRequirements:
+          - !type:RoleTimeRequirement
+            role: JobNanoTrasenRepresentative
+            time: 3600 # 1 hour
     BlueShield:
-      - !type:DepartmentTimeRequirement
-        department: Security
-        time: 14400  # 4 hours
-      - !type:OverallPlaytimeRequirement
-        time: 72000 # 20 hours overall playtime
+      - !type:CompositeRequirement
+        requirements:
+          - !type:DepartmentTimeRequirement
+            department: Security
+            time: 14400  # 4 hours
+          - !type:OverallPlaytimeRequirement
+            time: 72000 # 20 hours overall playtime
+        alternativeRequirements:
+          - !type:RoleTimeRequirement
+            role: JobBlueShield
+            time: 3600 # 1 hour
     Magistrate:
-      - !type:DepartmentTimeRequirement
-        department: Security
-        time: 14400  # 4 hours
-      - !type:OverallPlaytimeRequirement
-        time: 72000 # 20 hours overall playtime
+      - !type:CompositeRequirement
+        requirements:
+          - !type:DepartmentTimeRequirement
+            department: Security
+            time: 14400  # 4 hours
+          - !type:OverallPlaytimeRequirement
+            time: 72000 # 20 hours overall playtime
+        alternativeRequirements:
+          - !type:RoleTimeRequirement
+            role: JobMagistrate
+            time: 3600 # 1 hour
     IAA:
-      - !type:DepartmentTimeRequirement
-        department: Security
-        time: 14400  # 4 hours
-      - !type:OverallPlaytimeRequirement
-        time: 14400  # 4 hours
+      - !type:CompositeRequirement
+        requirements:
+          - !type:DepartmentTimeRequirement
+            department: Security
+            time: 14400  # 4 hours
+          - !type:OverallPlaytimeRequirement
+            time: 14400  # 4 hours
+        alternativeRequirements:
+          - !type:RoleTimeRequirement
+            role: JobIAA
+            time: 3600 # 1 hour
     Captain:
-      - !type:DepartmentTimeRequirement
-        department: Command
-        time: 14400  # 4 hours
-      - !type:OverallPlaytimeRequirement
-        time: 36000 # 10 hours overall playtime
+      - !type:CompositeRequirement
+        requirements:
+          - !type:DepartmentTimeRequirement
+            department: Command
+            time: 14400  # 4 hours
+          - !type:OverallPlaytimeRequirement
+            time: 36000 # 10 hours overall playtime
+        alternativeRequirements:
+          - !type:RoleTimeRequirement
+            role: JobCaptain
+            time: 3600 # 1 hour
     HeadOfPersonnel:
-      - !type:DepartmentTimeRequirement
-        department: Civilian
-        time: 14400  # 4 hours
-      - !type:OverallPlaytimeRequirement
-        time: 36000 # 10 hours overall playtime
+      - !type:CompositeRequirement
+        requirements:
+          - !type:DepartmentTimeRequirement
+            department: Civilian
+            time: 14400  # 4 hours
+          - !type:OverallPlaytimeRequirement
+            time: 36000 # 10 hours overall playtime
+        alternativeRequirements:
+          - !type:RoleTimeRequirement
+            role: JobHeadOfPersonnel
+            time: 3600 # 1 hour
     HeadOfSecurity:
-      - !type:DepartmentTimeRequirement
-        department: Security
-        time: 14400  # 4 hours
-      - !type:OverallPlaytimeRequirement
-        time: 36000 # 10 hours overall playtime
+      - !type:CompositeRequirement
+        requirements:
+          - !type:DepartmentTimeRequirement
+            department: Security
+            time: 14400  # 4 hours
+          - !type:OverallPlaytimeRequirement
+            time: 36000 # 10 hours overall playtime
+        alternativeRequirements:
+          - !type:RoleTimeRequirement
+            role: JobHeadOfSecurity
+            time: 3600 # 1 hour
     ChiefEngineer:
-      - !type:DepartmentTimeRequirement
-        department: Engineering
-        time: 14400  # 4 hours
-      - !type:OverallPlaytimeRequirement
-        time: 36000 # 10 hours overall playtime
+      - !type:CompositeRequirement
+        requirements:
+          - !type:DepartmentTimeRequirement
+            department: Engineering
+            time: 14400  # 4 hours
+          - !type:OverallPlaytimeRequirement
+            time: 36000 # 10 hours overall playtime
+        alternativeRequirements:
+          - !type:RoleTimeRequirement
+            role: JobChiefEngineer
+            time: 3600 # 1 hour
     ResearchDirector:
-      - !type:DepartmentTimeRequirement
-        department: Science
-        time: 14400  # 4 hours
-      - !type:OverallPlaytimeRequirement
-        time: 36000 # 10 hours overall playtime
+      - !type:CompositeRequirement
+        requirements:
+          - !type:DepartmentTimeRequirement
+            department: Science
+            time: 14400  # 4 hours
+          - !type:OverallPlaytimeRequirement
+            time: 36000 # 10 hours overall playtime
+        alternativeRequirements:
+          - !type:RoleTimeRequirement
+            role: JobResearchDirector
+            time: 3600 # 1 hour
     ChiefMedicalOfficer:
-      - !type:DepartmentTimeRequirement
-        department: Medical
-        time: 14400  # 4 hours
-      - !type:OverallPlaytimeRequirement
-        time: 36000 # 10 hours overall playtime
+      - !type:CompositeRequirement
+        requirements:
+          - !type:DepartmentTimeRequirement
+            department: Medical
+            time: 14400  # 4 hours
+          - !type:OverallPlaytimeRequirement
+            time: 36000 # 10 hours overall playtime
+        alternativeRequirements:
+          - !type:RoleTimeRequirement
+            role: JobChiefMedicalOfficer
+            time: 3600 # 1 hour
     Quartermaster:
-      - !type:DepartmentTimeRequirement
-        department: Cargo
-        time: 14400  # 4 hours
-      - !type:OverallPlaytimeRequirement
-        time: 36000 # 10 hours overall playtime
+      - !type:CompositeRequirement
+        requirements:
+          - !type:DepartmentTimeRequirement
+            department: Cargo
+            time: 14400  # 4 hours
+          - !type:OverallPlaytimeRequirement
+            time: 36000 # 10 hours overall playtime
+        alternativeRequirements:
+          - !type:RoleTimeRequirement
+            role: JobQuartermaster
+            time: 3600 # 1 hour
     MedicalDoctor:
       - !type:OverallPlaytimeRequirement
         time: 0
@@ -101,20 +167,32 @@
       - !type:OverallPlaytimeRequirement
         time: 14400  # 4 hours
     SecBorg:
-      - !type:OverallPlaytimeRequirement
-        time: 14400  # 4 hours
-      - !type:RoleTimeRequirement
-        role: JobBorg
-        time: 3600 # 1 hour as Borg
+      - !type:CompositeRequirement
+        requirements:
+          - !type:OverallPlaytimeRequirement
+            time: 14400  # 4 hours
+          - !type:RoleTimeRequirement
+            role: JobBorg
+            time: 3600 # 1 hour as Borg
+        alternativeRequirements:
+          - !type:RoleTimeRequirement
+            role: JobSecBorg
+            time: 3600 # 1 hour
     Corpsman:
       - !type:OverallPlaytimeRequirement
         time: 14400  # 4 hours
     StationAi:
-      - !type:OverallPlaytimeRequirement
-        time: 36000 # 10 hours overall playtime
-      - !type:RoleTimeRequirement
-        role: JobBorg
-        time: 14400  # 4 hours
+      - !type:CompositeRequirement
+        requirements:
+          - !type:OverallPlaytimeRequirement
+            time: 36000 # 10 hours overall playtime
+          - !type:RoleTimeRequirement
+            role: JobBorg
+            time: 14400  # 4 hours
+        alternativeRequirements:
+          - !type:RoleTimeRequirement
+            role: JobStationAi
+            time: 3600 # 1 hour
     Borg:
       - !type:OverallPlaytimeRequirement
         time: 0
@@ -131,11 +209,17 @@
       - !type:OverallPlaytimeRequirement
         time: 0
     SalvageLead:
-      - !type:OverallPlaytimeRequirement
-        time: 0
-      - !type:RoleTimeRequirement
-        role: JobSalvageSpecialist
-        time: 14400 # 4 hrs
+      - !type:CompositeRequirement
+        requirements:
+          - !type:OverallPlaytimeRequirement
+            time: 0
+          - !type:RoleTimeRequirement
+            role: JobSalvageSpecialist
+            time: 7200 # 2 hours
+        alternativeRequirements:
+          - !type:RoleTimeRequirement
+            role: JobSalvageLead
+            time: 3600 # 1 hour
     SalvageSpecialist:
       - !type:OverallPlaytimeRequirement
         time: 0
@@ -184,3 +268,19 @@
     Visitor:
       - !type:OverallPlaytimeRequirement
         time: 0
+
+# Easy Time Allocation
+
+# 72000 # 20 hours
+# 36000 # 10 hours
+# 14400 # 4 Hours
+# 7200 # 2 hours
+# 3600 # 1 hour
+# 0
+
+# 72000 # 20 hours - Far Horizons
+# 36000 # 10 hours - Far Horizons
+# 14400 # 4 Hours - Far Horizons
+# 7200 # 2 hours - Far Horizons
+# 3600 # 1 hour - Far Horizons
+# 0 # - Far Horizons
