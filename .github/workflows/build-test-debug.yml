@@ -24,7 +24,7 @@ jobs:
     - uses: ./.github/actions/setup-test-env
 
     - name: Run Content.Tests
-      run: dotnet test --no-build -c DebugOpt Content.Tests/Content.Tests.csproj -- NUnit.ConsoleOut=0
+      run: dotnet test --no-build -c Release Content.Tests/Content.Tests.csproj -- NUnit.ConsoleOut=0
   
   integration-tests:
     if: "!contains(github.event.pull_request.labels.*.name, 'automated pr') && github.actor != 'github-actions[bot]' && github.event.pull_request.draft == false"
@@ -35,11 +35,10 @@ jobs:
     - uses: actions/checkout@v4
 
     - uses: ./.github/actions/setup-test-env
-    
+
     - name: Run Content.IntegrationTests
       env:
-        DOTNET_gcServer: "0"
-        DOTNET_GCHeapCount: "2"
+        DOTNET_gcServer: "1"
         DOTNET_GCHeapHardLimitPercent: "60"
-      run: dotnet test --no-build  --maxcpucount:1 -c DebugOpt Content.IntegrationTests/Content.IntegrationTests.csproj -- NUnit.ConsoleOut=0 NUnit.NumberOfTestWorkers=1 NUnit.RetryCount=1 NUnit.MapWarningTo=Failed
+      run: dotnet test --no-build -c Release Content.IntegrationTests/Content.IntegrationTests.csproj -- NUnit.ConsoleOut=0 NUnit.RetryCount=1 NUnit.MapWarningTo=Failed
 
