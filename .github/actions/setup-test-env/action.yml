@@ -3,7 +3,6 @@ name: Setup dotnet testing environment
 runs:
   using: composite
   steps:
-    - uses: actions/checkout@v4
     - run: git submodule update --init --recursive
       shell: bash
     - uses: actions/setup-dotnet@v4

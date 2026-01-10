@@ -19,6 +19,8 @@ jobs:
     runs-on: ubuntu-24.04-arm
 
     steps:
+    - uses: actions/checkout@v4
+    
     - uses: ./.github/actions/setup-test-env
 
     - name: Run Content.Tests
@@ -30,6 +32,8 @@ jobs:
     runs-on: ubuntu-24.04-arm
 
     steps:
+    - uses: actions/checkout@v4
+
     - uses: ./.github/actions/setup-test-env
 
     - name: swap
