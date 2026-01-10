@@ -40,5 +40,5 @@ jobs:
       env:
         DOTNET_gcServer: "1"
         DOTNET_GCHeapHardLimitPercent: "60"
-      run: dotnet test --no-build -c DebugOpt Content.IntegrationTests/Content.IntegrationTests.csproj -- NUnit.ConsoleOut=0 NUnit.RetryCount=1 NUnit.MapWarningTo=Failed
+      run: dotnet test --no-build -c DebugOpt Content.IntegrationTests/Content.IntegrationTests.csproj --settings .farhorizons/.integrationtests
 
