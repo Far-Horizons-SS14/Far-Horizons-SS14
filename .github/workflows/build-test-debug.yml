@@ -13,33 +13,37 @@ on:
       - '**.yaml'
 
 jobs:
-  test:
+  unit-test:
     if: "!contains(github.event.pull_request.labels.*.name, 'automated pr') && github.actor != 'github-actions[bot]' && github.event.pull_request.draft == false"
 
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04-arm
 
     steps:
-    - name: Checkout Master
-      uses: actions/checkout@v4.2.2
-
-    - name: Setup Submodule
-      run: |
-        git submodule update --init --recursive
-
-    - name: Setup .NET Core
-      uses: actions/setup-dotnet@v4.1.0
-      with:
-        dotnet-version: 9.0.x
-
-    - name: Build Project
-      run: dotnet build -c DebugOpt
+    - uses: ./.github/actions/setup-test-env
 
     - name: Run Content.Tests
-      run: dotnet test --no-build -c DebugOpt Content.Tests/Content.Tests.csproj --logger trx -- NUnit.ConsoleOut=0
+      run: dotnet test --no-build -c DebugOpt Content.Tests/Content.Tests.csproj -- NUnit.ConsoleOut=0
+  
+  integration-tests:
+    if: "!contains(github.event.pull_request.labels.*.name, 'automated pr') && github.actor != 'github-actions[bot]' && github.event.pull_request.draft == false"
+
+    runs-on: ubuntu-24.04-arm
+
+    steps:
+    - uses: ./.github/actions/setup-test-env
+
+    - name: swap
+      run: |
+        sudo fallocate -l 6G /swapfile
+        sudo chmod 600 /swapfile
+        sudo mkswap /swapfile
+        sudo swapon /swapfile
+        free -h
 
     - name: Run Content.IntegrationTests
       shell: pwsh
       run: |
         $env:DOTNET_gcServer=0
         $env:DOTNET_GCHeapHardLimitPercent=60
-        dotnet test --no-build --configuration DebugOpt Content.IntegrationTests/Content.IntegrationTests.csproj --logger trx -- NUnit.ConsoleOut=0 NUnit.NumberOfTestWorkers=1 NUnit.RetryCount=1 NUnit.MapWarningTo=Failed
+        dotnet test --no-build  --maxcpucount:1 -c DebugOpt Content.IntegrationTests/Content.IntegrationTests.csproj -- NUnit.ConsoleOut=0 NUnit.NumberOfTestWorkers=1 NUnit.RetryCount=1 NUnit.MapWarningTo=Failed
+
