@@ -101,7 +101,7 @@ public sealed partial class FHResearchSystem
             _radio.SendRadioMessage(ent, message, channel, ent, escapeMarkup: false);
     }
 
-    public void UnlockNode(Entity<FHResearchTreeComponent> ent, ProtoId<ResearchTreeNodePrototype> node)
+    public void UnlockNode(Entity<FHResearchTreeComponent> ent, ProtoId<ResearchTreeNodePrototype> node, bool sendAnnouncement = true)
     {
         ent.Comp.Queue.Remove(node);
         ent.Comp.Progress.Remove(node);
@@ -126,7 +126,8 @@ public sealed partial class FHResearchSystem
         ent.Comp.UnlockFlags.AddRange(add);
         AddResearchModifiers(ent, add);
 
-        SendAnnouncement(ent, Loc.GetString("research-tree-unlock-broadcast", ("technology", Loc.GetString(nodeProto.Name)), ("amount", nodeProto.Cost)), nodeProto.AnnounceTo);
+        if (sendAnnouncement)
+            SendAnnouncement(ent, Loc.GetString("research-tree-unlock-broadcast", ("technology", Loc.GetString(nodeProto.Name)), ("amount", nodeProto.Cost)), nodeProto.AnnounceTo);
     }
 
     public bool TryRemoveResearchedNode(Entity<FHResearchTreeComponent> ent, ProtoId<ResearchTreeNodePrototype> node)

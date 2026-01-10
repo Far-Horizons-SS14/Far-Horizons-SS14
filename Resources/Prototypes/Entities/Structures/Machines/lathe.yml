@@ -460,7 +460,11 @@
     - StarlightSyndicateModulesSecfab
     - StarlightSyndicateAmmoStatic
   #endregion Starlight secfab emagging
-    - SyndicateAmmoStatic
+  #region FarHorizons secfab emagging
+    - FarHorizonsSecurityAmmoEmagStatic
+    emagDynamicPacks:
+    - FarHorizonsSecurityAmmoEmagDynamic
+  #FH - End
   - type: MaterialStorage
     whitelist: *StandardMaterialWhitelist
   - type: OreSiloClient

@@ -6,10 +6,10 @@
   objective: roles-antag-nuclear-operative-objective
   requirements:
   - !type:OverallPlaytimeRequirement
-    time: 24h # Starlight
+    time: 7200 # 2 hours - Far Horizons - Temporary // 86400 # 24h STARLIGHT
   - !type:DepartmentTimeRequirement
     department: Security
-    time: 6h # Starlight
+    time: 0 # Far Horizons - Temporary // 21600 # 6h STARLIGHT
   guides: [ NuclearOperatives ]
   previewStartingGear: SyndicateOperativeGearFull
 
@@ -20,17 +20,27 @@
   setPreference: true
   objective: roles-antag-nuclear-operative-agent-objective
   requirements:
-  - !type:OverallPlaytimeRequirement
-    time: 24h # Starlight
-  - !type:RoleTimeRequirement
-    role: JobChemist
-    time: 6h # Starlight
-  - !type:RoleTimeRequirement
-    role: JobSurgeon
-    time: 3h # Starlight
-  - !type:DepartmentTimeRequirement
-    department: Security
-    time: 3h # Starlight
+  - !type:CompositeRequirement #Far Horizons
+    requirements:
+      - !type:OverallPlaytimeRequirement
+        time: 7200 # 2 hours - Far Horizons - Temporary // 86400 # 24h STARLIGHT
+      - !type:RoleTimeRequirement
+        role: JobChemist
+        time: 3600 # 1 hour - Far Horizons - Temporary // 21600 # 6h STARLIGHT
+      - !type:RoleTimeRequirement
+        role: JobSurgeon
+        time: 0 # Far Horizons - Temporary // 10800 # 3h STARLIGHT
+      - !type:DepartmentTimeRequirement
+        department: Security
+        time: 0 # Far Horizons - Temporary // 10800 # 3h STARLIGHT
+    alternativeRequirements: #Far Horizons
+      - !type:OverallPlaytimeRequirement
+        time: 7200 # 2 hours - Far Horizons - Temporary // 86400 # 24h STARLIGHT
+      - !type:RoleTimeRequirement
+        role: JobChiefMedicalOfficer
+        time: 3600 # 1 hour - Far Horizons
+      
+
   guides: [ NuclearOperatives ]
   previewStartingGear: SyndicateOperativeMedicFull
 
@@ -42,13 +52,13 @@
   objective: roles-antag-nuclear-operative-commander-objective
   requirements:
   - !type:OverallPlaytimeRequirement
-    time: 24h # Starlight
+    time: 14400 # 4 Hours - Far Horizons - Temporary // 86400 # 24h STARLIGHT
   - !type:DepartmentTimeRequirement
     department: Security
-    time: 12h # Starlight
+    time: 0 # Far Horizons - Temporary // 43200 # 12h STARLIGHT
   - !type:DepartmentTimeRequirement
     department: Command
-    time: 6h # Starlight
+    time: 0 # Far Horizons - Temporary // 21600 # 6h STARLIGHT
   # should be changed to nukie playtime when thats tracked (wyci)
   guides: [ NuclearOperatives ]
   previewStartingGear: SyndicateCommanderGearFull

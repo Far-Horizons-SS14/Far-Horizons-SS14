@@ -1,107 +1,139 @@
+# region Tasers
 - type: entity
   id: BoltTaserFH
   name: Taser
-  parent: BulletTaser
+  parent: BasicHitscanNoBeam
+  categories: [ HideSpawnMenu ]
   components:
-  - type: StaminaDamageOnCollide
-    damage: 33
-  - type: StunOnCollide
-    drop: true # this is the evil taser
-    knockdownAmount: 1
-  - type: Projectile
-    impactEffect: BulletImpactEffectDisabler
+  - type: HitscanBasicDamage
     damage:
       types:
-        Shock: 2 # 16 shock damage to stamcrit
-    soundHit:
-      collection: WeakHit
-    forceSound: true
-
-- type: entity
-  id: BoltTaserRifle
-  name: Taser
-  parent: BulletTaser
-  components:
-  - type: StaminaDamageOnCollide
-    damage: 12
-  - type: TimedDespawn
-    lifetime: 1.0 # Old values were in tiles, new ones in seconds, don't assume I know what I'm doing
-  - type: Projectile
-    impactEffect: BulletImpactEffectDisabler
-    damage:
-      types:
-        Shock: 2 # ~ 20 shock damage to stamcrit.
-    soundHit:
-      collection: WeakHit
-    forceSound: true
-
-- type: entity
-  id: BoltTaserSpread
-  name: Taser
-  parent: BulletTaser
-  components:
-  - type: StaminaDamageOnCollide
-    damage: 48 # Change to 3 when support is added # ~ 48, three shots assuming you hit them all
-  - type: Projectile
-    impactEffect: BulletImpactEffectDisabler
-    damage:
-      types:
-        Shock: 12 # Change to 1 shock per shot when spread is added # ~ 12 shock per shot, ~36 shock damage to stamcrit. Will likely need tweaking given almost no armor resists shock, but also insuls make you immune so.. ???
-    soundHit:
-      collection: WeakHit
-    forceSound: true
-
-- type: entity
-  id: BoltPlasmaSpread
-  name: Plasma Bolt
-  parent: EnergyTrace
-  components:
-  - type: Projectile
-    impactEffect: BulletImpactEffectDisabler
-    damage:
-      types:
-        Heat: 50 # Change to a lower number when support is added # About as strong as slugs (and weaker than current eshotty), does a bit more damage to account for lack of AP. Will likely be stronger in practice due to majority species having heat weakness + flat heat being -4 instead of -5 - assuming you point blank someone with it.
-        Structural: 90 # Change to a lower number when support is added
-    soundHit:
-      collection: WeakHit
-    forceSound: true
-
-- type: entity
-  id: RedLaserBeamSpread
-  name: Split Laser Beam
-  parent: LaserTrace
-  components:
-  - type: Projectile
-    impactEffect: BulletImpactEffectDisabler
-    damage:
-      types:
-        Heat: 30 # Buckshot is 70 for reference. Performs a bit worse against a blood-red compared to buckshot, which is fine given it goes through glass.
-    soundHit:
-      collection: WeakHit
-    forceSound: true
-  - type: TimedDespawn
-    lifetime: 0.2 # Old values were in tiles, new ones in seconds, don't assume I know what I'm doing
+        Shock: 2
+  - type: HitscanStaminaDamage
+    staminaDamage: 33
+  - type: HitscanCrawlerTargetEffects
+    knockdownDuration: 1 #in seconds
+  - type: HitscanBasicRaycast
+    maxDistance: 5 #tiles
+  - type: HitscanBasicVisuals
+    bullet:
+      sprite:
+        sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+        state: spark
+      color: "#ffff33"
 
 - type: entity
   id: HighBoltTaserFH
   name: High Power Taser
-  parent: BoltTaserFH
+  parent: BasicHitscanNoBeam
+  categories: [ HideSpawnMenu ]
   components:
-  - type: StunOnCollide
-    drop: true # this is the evil taser
-    knockdownAmount: 2
-  - type: Projectile
-    impactEffect: BulletImpactEffectDisabler
+  - type: HitscanBasicDamage
     damage:
       types:
         Shock: 6
-    soundHit:
-      collection: WeakHit
-    forceSound: true
+  - type: HitscanStaminaDamage
+    staminaDamage: 20
+  - type: HitscanCrawlerTargetEffects
+    knockdownDuration: 2
+  - type: HitscanBasicRaycast
+    maxDistance: 5
+  - type: HitscanBasicVisuals
+    bullet:
+      sprite:
+        sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+        state: spark
+      color: "#ffff33"
+
+- type: entity
+  id: BoltTaserRifle #Use in rifles exclusively
+  name: Taser Bolt
+  parent: BasicHitscanNoBeam
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HitscanBasicDamage
+    damage:
+      types:
+        Shock: 2
+  - type: HitscanStaminaDamage
+    staminaDamage: 12 # Very weak but has range. Ten shots given stun will likely fade with time.
+  - type: HitscanBasicRaycast
+    maxDistance: 20
+  - type: HitscanBasicVisuals
+    bullet:
+      sprite:
+        sprite: Objects/Weapons/Guns/Projectiles/projectiles_tg.rsi
+        state: omnilaser_greyscale
+      color: "#ffff33"
+
+- type: entity
+  id: BoltTaserSpread # Only use in shotguns
+  name: Split Taser Bolt
+  parent: BasicHitscanNoBeam
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HitscanBasicDamage
+    damage:
+      types:
+        Shock: 12 # Change to 1 shock per shot when spread is added  ~ 12 shock per shot, ~36 shock damage to stamcrit
+#  count: 12 Not supported in laser hitscan, readd when support is added.
+#  spread: 30 Not supported in laser hitscan, readd when support is added.
+  - type: HitscanStaminaDamage
+    staminaDamage: 48 # Change to 3 when support is added ~ 48, three shots assuming you hit them all.
+  - type: HitscanBasicRaycast
+    maxDistance: 4
+  - type: HitscanBasicVisuals
+    bullet:
+      sprite:
+        sprite: Objects/Weapons/Guns/Projectiles/projectiles_tg.rsi
+        state: omnilaser_greyscale
+      color: "#ffff33"
+
+#region Plasma
+- type: entity
+  id: BoltPlasmaSpread
+  name: Split Plasma Bolt
+  parent: BasicHitscanNoBeam
+  components:
+  - type: HitscanReflect
+    reflectiveType: NonEnergy
+  - type: HitscanBasicDamage
+    damage:
+      types:
+        Heat: 50 # Change to a lower number when support is added # About as strong as slugs (and weaker than current eshotty), does a bit more damage to account for lack of AP. Will likely be stronger in practice due to majority species having heat weakness + flat heat being -4 instead of -5 - assuming you point blank someone with it.
+        Structural: 90 # Change to a lower number when support is added
+  - type: HitscanBasicRaycast
+    maxDistance: 4
+    collisionMask: BulletImpassable
+  - type: HitscanBasicVisuals
+    muzzleFlash:
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles_tg.rsi
+      state: heavylaser_flash
+    bullet:
+      sprite:
+        sprite: Objects/Weapons/Guns/Projectiles/projectiles_tg.rsi # Resprite for plasma-y sprites eventually.
+        state: heavylaser
+#  count: 8
+#  spread: 30 # Immense heat warps the barrel, not very accurate.
+
+#region Lasers
+- type: entity
+  id: RedLaserBeamSpread
+  name:  Split Laser Beam
+  parent: BasicHitscan
+  components:
+  - type: HitscanBasicDamage
+    damage:
+      types:
+        Heat: 30 # Buckshot is 70 for reference. Performs a bit worse against a blood-red compared to buckshot, which is fine given it goes through glass.
+  - type: HitscanBasicRaycast
+    maxDistance: 5 #simulates spread, buckshot barely hits past this distance
+#  count: 8
+#  spread: 30
 
 - type: entity
   id: DestroyBeamDominator
-  name: Destroying Beam #Far Horizons - The Great Capitalization Crusade
+  name: Destroying Beam
   parent: BasicHitscanNoBeam
   categories: [ HideSpawnMenu ]
   components:
@@ -122,7 +154,7 @@
 
 - type: entity
   id: RedLaserBeamDominator
-  name: Laser Beam #Far Horizons - The Great Capitalization Crusade
+  name: Laser Beam
   parent: LaserTrace
   categories: [ HideSpawnMenu ]
   components:
@@ -133,7 +165,7 @@
 
 - type: entity
   id: RedLaserBeamCarbine
-  name: Laser Beam #Far Horizons - The Great Capitalization Crusade
+  name: Laser Beam
   parent: LaserTrace
   categories: [ HideSpawnMenu ]
   components:
@@ -142,6 +174,7 @@
       types:
         Heat: 18
 
+#region Bullets
 - type: entity
   id: BulletPistolTrace40Practice
   name: .40 Practice Round #Far Horizons - The Great Capitalization Crusade
@@ -175,7 +208,6 @@
         Heat: 23
   - type: HitscanPierce
     chance: 0.69
-    pierceLevel: Rock
     deviation: 0.12
   - type: HitscanRicochet
     chance: 0.48

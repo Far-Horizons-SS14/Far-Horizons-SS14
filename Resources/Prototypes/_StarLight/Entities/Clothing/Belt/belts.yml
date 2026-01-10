@@ -146,7 +146,7 @@
   - type: Appearance
 
 - type: entity
-  parent: [ClothingBeltStorageBase, BaseSovietContraband]
+  parent: [ClothingBeltAmmoProviderBase, BaseSovietContraband] #FH - Edit
   id: ClothingSovietBandolier
   name: marine bandolier
   description: Smells of oil, sweat, and questionable decisions.
@@ -157,16 +157,16 @@
     sprite: _Starlight/Clothing/Belt/soviet_bandolier.rsi
   - type: Item
     size: Normal
-  - type: Storage
+  - type: BallisticAmmoProvider #FH - Edit Start
     whitelist:
       tags:
-        - Radio
-        - Knife
-        - ShellShotgun
         - Cartridge
-      components:
-        - BallisticAmmoProvider
-        - Ammo
+    mayTransfer: true
+    capacity: 100
+  - type: Tag
+    tags: 
+    - Webbing
+ #FH - Edit End
 
 - type: entity
   parent: [ClothingBeltWebbingBase, ContentsExplosionResistanceBase, BaseMajorContraband] #FH - Edit
@@ -357,15 +357,7 @@
   id: ClothingBeltSovietMarineWebbingLoadout
   name: SSF marine chest rig
   description:  A set of tactical webbing worn by the iconic soviet elite marines.
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      storagebase: !type:AllSelector
-        children:
-        - id: MagazineLightRifleFMJ
-        - id: MagazineLightRifleFMJ
-        - id: MagazineLightRifleFMJ
-        - id: MagazineLightRifleFMJ
+#FH - Removal
 
 - type: entity
   parent: [ClothingBeltStorageBase, ContentsExplosionResistanceBase, BaseCentcommContraband]
