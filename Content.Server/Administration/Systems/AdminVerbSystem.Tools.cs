@@ -12,6 +12,7 @@ using Content.Server.Power.EntitySystems;
 using Content.Server.Stack;
 using Content.Server.Station.Systems;
 using Content.Server.Weapons.Ranged.Systems;
+using Content.Shared._FarHorizons.Research.Components;
 using Content.Shared.Access;
 using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
@@ -45,6 +46,7 @@ using Robust.Shared.Utility;
 using Content.Shared.Overlays;
 using Content.Shared.Contraband; // 🌟Starlight🌟
 using Content.Shared.Humanoid; // 🌟Starlight🌟
+using Content.Server._FarHorizons.Research;
 
 namespace Content.Server.Administration.Systems;
 
@@ -63,6 +65,8 @@ public sealed partial class AdminVerbSystem
     [Dependency] private readonly BatterySystem _batterySystem = default!;
     [Dependency] private readonly MetaDataSystem _metaSystem = default!;
     [Dependency] private readonly GunSystem _gun = default!;
+
+    [Dependency] private readonly FHResearchSystem _research = default!;  // Far Horizons
 
     #region Starlight
     [Dependency] private readonly LimbSystem _limbSystem = default!;
@@ -887,6 +891,22 @@ public sealed partial class AdminVerbSystem
         }
         #endregion
         // End Impstation Additions
+        
+        // Far Horizons
+        if (TryComp<FHResearchTreeComponent>(args.Target, out var tree))
+        {
+            Verb bolt = new()
+            {
+                Text = "Full Research",
+                Category = VerbCategory.Tricks,
+                Icon = new SpriteSpecifier.Texture(new("/Textures/_FarHorizons/Interface/AdminActions/full_research.png")),
+                Act = () => _research.TrickFullResearch(args.Target, tree),
+                Impact = LogImpact.Extreme,
+                Message = Loc.GetString("admin-trick-full-research-description"),
+                Priority = (int)(TricksVerbPriorities.FullResearch),
+            };
+            args.Verbs.Add(bolt);
+        }
     }
 
     private void RefillEquippedTanks(EntityUid target, Gas gasType)
@@ -1038,5 +1058,6 @@ public sealed partial class AdminVerbSystem
         AddRandomMood = -32, //Starlight Thaven
         AddCustomMood = -33, //Starlight Thaven
         BlockObjectiveTargeting = -44, // Starlight
+        FullResearch = -45, // Far Horizons
     }
 }

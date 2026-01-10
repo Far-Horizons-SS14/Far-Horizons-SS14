@@ -150,3 +150,6 @@ admin-trick-minigun-fire-description = Makes the targetted gun fire like a minig
 admin-trick-set-bullet-amount-description = Quickly set the amount of unspawned bullets in a gun.
 ## 🌟Starlight🌟
 admin-trick-toggle-overlays-description = Toggle all overlays on target.
+
+## Far Horizons
+admin-trick-full-research-description = Research all technologies.

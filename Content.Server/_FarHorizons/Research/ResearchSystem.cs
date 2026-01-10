@@ -1,7 +1,9 @@
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using Content.Server.Chat.Systems;
 using Content.Server.Radio.EntitySystems;
 using Content.Server.Research.Systems;
+using Content.Shared._FarHorizons.Research;
 using Content.Shared._FarHorizons.Research.Components;
 using Content.Shared.Access.Systems;
 using Content.Shared.Emag.Systems;
@@ -42,5 +44,17 @@ public sealed partial class FHResearchSystem : EntitySystem
             return true;
         }
         return false;
+    }
+
+    public void TrickFullResearch(EntityUid target, FHResearchTreeComponent component)
+    {
+        Entity<FHResearchTreeComponent> serverEnt = (target, component);
+        HashSet<ProtoId<ResearchTreeNodePrototype>> nodes =
+            [
+                .. GetTreeNodes(serverEnt).Where(p => !component.Researched.Contains(p.ID))
+                    .Select(p => (ProtoId<ResearchTreeNodePrototype>)p.ID)
+            ];
+        foreach (var nodeProtoId in nodes)
+            UnlockNode(serverEnt, nodeProtoId, sendAnnouncement: false);
     }
 }
