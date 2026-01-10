@@ -413,7 +413,7 @@
   description: Prints equipment for use by security crew.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Structures/Machines/techfab.rsi #FH
+    sprite: _FarHorizons/Structures/Machines/NT/techfab.rsi #FH
     layers:
     - state: icon
       map: ["enum.LatheVisualLayers.IsRunning"]
@@ -469,7 +469,7 @@
   description: Prints the bare minimum of bullets that any budget military or armory could need. Nothing fancy.
   components:
     - type: Sprite
-      sprite: Structures/Machines/techfab.rsi
+      sprite: _FarHorizons/Structures/Machines/NT/techfab.rsi #FH
       layers:
         - state: icon
           map: ["enum.LatheVisualLayers.IsRunning"]
@@ -503,7 +503,7 @@
   description: Prints equipment for use by the medbay.
   components:
   - type: Sprite
-    sprite: Structures/Machines/techfab.rsi
+    sprite: _FarHorizons/Structures/Machines/NT/techfab.rsi #FH
     layers:
     - state: icon
       map: ["enum.LatheVisualLayers.IsRunning"]

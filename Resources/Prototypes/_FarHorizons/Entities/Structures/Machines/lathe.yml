@@ -19,7 +19,7 @@
   description: It produces basic items using metal and glass. Has the ability to process blueprints to print new recipes.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Structures/Machines/autofab.rsi #TODO: CUSTOM SPRITE
+    sprite: _FarHorizons/Structures/Machines/Syndicate/autofab.rsi #TODO: CUSTOM SPRITE
     snapCardinals: true
     layers:
     - state: icon
@@ -86,7 +86,7 @@
   description: A highly-experimental Autofab that harnesses the power of extreme Cold to slowly create objects more cost-effectively.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Structures/Machines/autofab.rsi #TODO: CUSTOM SPRITE
+    sprite: _FarHorizons/Structures/Machines/Syndicate/autofab.rsi #TODO: CUSTOM SPRITE
   - type: Machine
     board: AutofabSubzeroMachineCircuitboards
 
@@ -97,7 +97,7 @@
   description: Converts raw materials into advanced items.
   components:
   - type: Sprite
-    sprite: Structures/Machines/protolathe.rsi #TODO: CUSTOM SPRITE
+    sprite: _FarHorizons/Structures/Machines/Syndicate/protofab.rsi #TODO: CUSTOM SPRITE
     snapCardinals: true
     layers:
     - state: icon
@@ -161,7 +161,7 @@
   description: A highly-experimental Protofab that harnesses the power of extreme Cold to slowly create objects more cost-effectively.
   components:
   - type: Sprite
-    sprite: Structures/Machines/protolathe_hypercon.rsi #TODO: CUSTOM SPRITE
+    sprite: _FarHorizons/Structures/Machines/Syndicate/protofab.rsi #TODO: CUSTOM SPRITE
   - type: Machine
     board: ProtofabSubzeroMachineCircuitboard
 
@@ -294,7 +294,7 @@
   description: Prints equipment for use by Overwatch crew.
   components:
   - type: Sprite
-    sprite: Structures/Machines/techfab.rsi #TODO: CUSTOM SPRITE, Might be fine for a bit cus sec is diffrent color
+    sprite: _FarHorizons/Structures/Machines/Syndicate/techfab.rsi
     layers:
     - state: icon
       map: ["enum.LatheVisualLayers.IsRunning"]
@@ -341,7 +341,7 @@
         - Ingot
   - type: OreSiloClient
 
-#Ammotechfab isnt needed yet
+#Ammotechfab isnt needed yet and doesnt even have a sprite anyways
 
 - type: entity
   id: InterdyneTechFab
@@ -350,7 +350,7 @@
   description: Prints equipment for use by the medbay.
   components:
   - type: Sprite
-    sprite: Structures/Machines/techfab.rsi #TODO: CUSTOM SPRITE
+    sprite: _FarHorizons/Structures/Machines/Syndicate/techfab.rsi
     layers:
     - state: icon
       map: ["enum.LatheVisualLayers.IsRunning"]
