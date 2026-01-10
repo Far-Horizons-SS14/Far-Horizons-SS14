@@ -20,7 +20,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    
+
     - uses: ./.github/actions/setup-test-env
 
     - name: Run Content.Tests
@@ -35,19 +35,11 @@ jobs:
     - uses: actions/checkout@v4
 
     - uses: ./.github/actions/setup-test-env
-
-    - name: swap
-      run: |
-        sudo fallocate -l 6G /swapfile
-        sudo chmod 600 /swapfile
-        sudo mkswap /swapfile
-        sudo swapon /swapfile
-        free -h
-
+    
     - name: Run Content.IntegrationTests
-      shell: pwsh
-      run: |
-        $env:DOTNET_gcServer=0
-        $env:DOTNET_GCHeapHardLimitPercent=60
-        dotnet test --no-build  --maxcpucount:1 -c DebugOpt Content.IntegrationTests/Content.IntegrationTests.csproj -- NUnit.ConsoleOut=0 NUnit.NumberOfTestWorkers=1 NUnit.RetryCount=1 NUnit.MapWarningTo=Failed
+      env:
+        DOTNET_gcServer: "0"
+        DOTNET_GCHeapCount: "2"
+        DOTNET_GCHeapHardLimitPercent: "60"
+      run: dotnet test --no-build  --maxcpucount:1 -c DebugOpt Content.IntegrationTests/Content.IntegrationTests.csproj -- NUnit.ConsoleOut=0 NUnit.NumberOfTestWorkers=1 NUnit.RetryCount=1 NUnit.MapWarningTo=Failed
 
