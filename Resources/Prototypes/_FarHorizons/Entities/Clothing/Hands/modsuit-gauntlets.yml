@@ -11,10 +11,7 @@
     sprite: _FarHorizons/Clothing/Hands/Modsuits/basic.rsi
     layers:
     - state: gauntlets
-      map: ["base"]
-    - state: gauntlets-sealed
-      map: ["sealed"]
-      visible: false
+      map: ["enum.ToggleableVisuals.Layer"]
   - type: Clothing
     sprite: _FarHorizons/Clothing/Hands/Modsuits/basic.rsi
   - type: ModsuitPart
@@ -30,12 +27,16 @@
   - type: Insulated
   - type: Appearance
   - type: ToggleableVisuals
-    spriteLayer: sealed
+    spriteLayer: enum.ToggleableVisuals.Layer
     clothingVisuals:
       gloves:
+        - state: equipped-HAND
         - state: equipped-HAND-sealed
+          shader: unshaded
       gloves-resomi:
+        - state: equipped-HAND-resomi
         - state: equipped-HAND-sealed-resomi
+          shader: unshaded
   - type: Tag
     tags:
     - WhitelistChameleon

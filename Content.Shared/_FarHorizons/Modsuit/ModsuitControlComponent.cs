@@ -23,6 +23,12 @@ public sealed partial class ModsuitControlComponent : Component
     public bool Active;
 
     /// <summary>
+    /// Whether the activation is primed (warning step before sealing).
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public bool ActivationPrimed;
+
+    /// <summary>
     /// Whether the suit is currently in the process of deploying/retracting.
     /// </summary>
     [DataField, AutoNetworkedField]

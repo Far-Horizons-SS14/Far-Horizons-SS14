@@ -1,9 +1,11 @@
 using Content.Shared.Actions;
+using Content.Shared.Actions.Components;
 using Content.Shared.Alert;
 using Content.Shared.Clothing.EntitySystems;
 using Content.Shared.Clothing;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
+using Content.Shared.Interaction.Components;
 using Content.Shared.Inventory;
 using Content.Shared.Inventory.Events;
 using Content.Shared.Movement.Systems;
@@ -13,9 +15,11 @@ using Content.Shared.Storage;
 using Content.Shared.Storage.EntitySystems;
 using Content.Shared.Toggleable;
 using Content.Shared.Verbs;
+using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Timing;
+using Robust.Shared.Utility;
 
 namespace Content.Shared._FarHorizons.Modsuit;
 
@@ -133,13 +137,28 @@ public sealed class SharedModsuitSystem : EntitySystem
         if (args.Slot != "back")
             return;
 
-        // Retract all parts
-        if (component.Deployed)
-            RetractAllParts(uid, component, args.Equipee);
-
-        // Deactivate suit
+        // Deactivate suit first
         if (component.Active)
             SetActive(uid, component, false);
+
+        // Remove unremoveable from control unit
+        RemCompDeferred<UnremoveableComponent>(uid);
+
+        // Retract all parts if deployed
+        if (component.Deployed && component.Wearer != null)
+        {
+            // Force remove unremoveable from all parts before retracting
+            if (component.Helmet != null)
+                RemCompDeferred<UnremoveableComponent>(component.Helmet.Value);
+            if (component.Chestplate != null)
+                RemCompDeferred<UnremoveableComponent>(component.Chestplate.Value);
+            if (component.Gauntlets != null)
+                RemCompDeferred<UnremoveableComponent>(component.Gauntlets.Value);
+            if (component.Boots != null)
+                RemCompDeferred<UnremoveableComponent>(component.Boots.Value);
+            
+            RetractAllParts(uid, component, args.Equipee);
+        }
 
         component.Wearer = null;
         _movementSpeed.RefreshMovementSpeedModifiers(args.Equipee);
@@ -173,6 +192,12 @@ public sealed class SharedModsuitSystem : EntitySystem
             return;
         }
 
+        if (component.Active)
+        {
+            _popup.PopupClient(Loc.GetString("modsuit-deactivate-first"), uid, user);
+            return;
+        }
+
         if (component.Wearer == null)
         {
             _popup.PopupClient(Loc.GetString("modsuit-not-worn"), uid, user);
@@ -193,7 +218,20 @@ public sealed class SharedModsuitSystem : EntitySystem
             return;
         }
 
+        // If not primed and not active, prime the activation
+        if (!component.ActivationPrimed && !component.Active)
+        {
+            component.ActivationPrimed = true;
+            _popup.PopupClient(Loc.GetString("modsuit-activation-primed"), uid, user);
+            UpdateActivateActionIcon(uid, component, true);
+            Dirty(uid, component);
+            return;
+        }
+
+        // If primed or already active, toggle activation
+        component.ActivationPrimed = false;
         SetActive(uid, component, !component.Active, user);
+        UpdateActivateActionIcon(uid, component, false);
     }
 
     private void DeployAllParts(EntityUid uid, ModsuitControlComponent component, EntityUid user)
@@ -205,7 +243,7 @@ public sealed class SharedModsuitSystem : EntitySystem
         Dirty(uid, component);
 
         if (component.DeploySound != null)
-            _audio.PlayPredicted(component.DeploySound, uid, user);
+            _audio.PlayGlobal(component.DeploySound, user, AudioParams.Default.WithVolume(-5f));
 
         // Deploy parts one by one
         DeployPart(uid, component, component.Helmet, "head", user);
@@ -223,20 +261,27 @@ public sealed class SharedModsuitSystem : EntitySystem
         if (partUid == null || component.Wearer == null)
             return;
 
+        // Remove from container first if it's stored
+        if (_container.TryGetContainingContainer(partUid.Value, out var container))
+            _container.Remove(partUid.Value, container);
+
         if (!_inventory.TryGetSlotEntity(component.Wearer.Value, slot, out var existingItem))
         {
-            // Slot is empty, deploy the part
-            if (_inventory.TryEquip(component.Wearer.Value, partUid.Value, slot, force: true))
+            // Slot is empty, deploy the part (silently to avoid spam)
+            if (_inventory.TryEquip(component.Wearer.Value, partUid.Value, slot, silent: true, force: true))
             {
                 if (TryComp<ModsuitPartComponent>(partUid.Value, out var partComp))
                 {
-                    partComp.Sealed = true;
+                    partComp.Sealed = false; // Start unsealed when deployed
                     
-                    // Update appearance to show sealed state
+                    // Update appearance to show unsealed state
                     if (TryComp<AppearanceComponent>(partUid.Value, out var appearance))
-                        _appearance.SetData(partUid.Value, ToggleableVisuals.Enabled, true, appearance);
+                        _appearance.SetData(partUid.Value, ToggleableVisuals.Enabled, false, appearance);
                     Dirty(partUid.Value, partComp);
                 }
+                
+                // Make part unremovable even when unsealed
+                EnsureComp<UnremoveableComponent>(partUid.Value);
             }
         }
     }
@@ -250,7 +295,7 @@ public sealed class SharedModsuitSystem : EntitySystem
         Dirty(uid, component);
 
         if (component.DeploySound != null)
-            _audio.PlayPredicted(component.DeploySound, uid, user);
+            _audio.PlayGlobal(component.DeploySound, user, AudioParams.Default.WithVolume(-5f));
 
         // Retract parts
         RetractPart(uid, component, component.Helmet, component.HelmetContainerId);
@@ -260,11 +305,6 @@ public sealed class SharedModsuitSystem : EntitySystem
 
         component.Deployed = false;
         component.Activating = false;
-
-        // Deactivate if active
-        if (component.Active)
-            SetActive(uid, component, false);
-
         Dirty(uid, component);
     }
 
@@ -272,6 +312,9 @@ public sealed class SharedModsuitSystem : EntitySystem
     {
         if (partUid == null || component.Wearer == null)
             return;
+
+        // Remove unremoveable component
+        RemCompDeferred<UnremoveableComponent>(partUid.Value);
 
         // Update appearance to show unsealed state before unequipping
         if (TryComp<ModsuitPartComponent>(partUid.Value, out var partComp))
@@ -284,7 +327,7 @@ public sealed class SharedModsuitSystem : EntitySystem
                 _appearance.SetData(partUid.Value, ToggleableVisuals.Enabled, false, appearance);
         }
 
-        // Find which slot this part is in and unequip it
+        // Find which slot this part is in and unequip it ONCE
         if (_inventory.TryGetContainerSlotEnumerator(component.Wearer.Value, out var enumerator))
         {
             while (enumerator.MoveNext(out var slot))
@@ -292,7 +335,7 @@ public sealed class SharedModsuitSystem : EntitySystem
                 if (_inventory.TryGetSlotEntity(component.Wearer.Value, slot.ID, out var slotEntity) && slotEntity == partUid.Value)
                 {
                     _inventory.TryUnequip(component.Wearer.Value, slot.ID, force: true);
-                    break;
+                    break; // Only unequip once
                 }
             }
         }
@@ -309,16 +352,115 @@ public sealed class SharedModsuitSystem : EntitySystem
 
         component.Active = active;
 
-        if (active && component.ActivateSound != null && user != null)
-            _audio.PlayPredicted(component.ActivateSound, uid, user.Value);
-        else if (!active && component.DeactivateSound != null && user != null)
-            _audio.PlayPredicted(component.DeactivateSound, uid, user.Value);
+        if (active)
+        {
+            if (component.ActivateSound != null && user != null)
+                _audio.PlayGlobal(component.ActivateSound, user.Value, AudioParams.Default.WithVolume(-5f));
+            
+            // Seal parts sequentially with delays
+            SealPartSequential(uid, component, component.Helmet, true, 0f);
+            SealPartSequential(uid, component, component.Chestplate, true, 0.5f);
+            SealPartSequential(uid, component, component.Gauntlets, true, 1f);
+            SealPartSequential(uid, component, component.Boots, true, 1.5f);
+            
+            // Make control unit unremoveable
+            EnsureComp<UnremoveableComponent>(uid);
+        }
+        else
+        {
+            if (component.DeactivateSound != null && user != null)
+                _audio.PlayGlobal(component.DeactivateSound, user.Value, AudioParams.Default.WithVolume(-5f));
+            
+            // Unseal parts sequentially when deactivating
+            UnsealPartSequential(uid, component, component.Helmet, 0f);
+            UnsealPartSequential(uid, component, component.Chestplate, 0.5f);
+            UnsealPartSequential(uid, component, component.Gauntlets, 1f);
+            UnsealPartSequential(uid, component, component.Boots, 1.5f);
+            
+            // Allow control unit removal after delay
+            Timer.Spawn(TimeSpan.FromSeconds(2f), () => RemCompDeferred<UnremoveableComponent>(uid));
+        }
 
         // Update movement speed
         if (component.Wearer != null)
             _movementSpeed.RefreshMovementSpeedModifiers(component.Wearer.Value);
 
         Dirty(uid, component);
+    }
+
+    private void SealPart(EntityUid? partUid, bool seal)
+    {
+        if (partUid == null)
+            return;
+
+        if (TryComp<ModsuitPartComponent>(partUid.Value, out var partComp))
+        {
+            partComp.Sealed = seal;
+            
+            // Update appearance to show sealed/unsealed state
+            if (TryComp<AppearanceComponent>(partUid.Value, out var appearance))
+                _appearance.SetData(partUid.Value, ToggleableVisuals.Enabled, seal, appearance);
+            
+            Dirty(partUid.Value, partComp);
+        }
+    }
+
+    private void SealPartSequential(EntityUid uid, ModsuitControlComponent component, EntityUid? partUid, bool seal, float delay)
+    {
+        if (partUid == null)
+            return;
+
+        if (delay > 0f)
+        {
+            // Schedule the sealing with a delay
+            Timer.Spawn(TimeSpan.FromSeconds(delay), () =>
+            {
+                if (component.Active) // Only seal if still active
+                {
+                    SealPart(partUid, seal);
+                }
+            });
+        }
+        else
+        {
+            SealPart(partUid, seal);
+        }
+    }
+
+    private void UnsealPartSequential(EntityUid uid, ModsuitControlComponent component, EntityUid? partUid, float delay)
+    {
+        if (partUid == null)
+            return;
+
+        if (delay > 0f)
+        {
+            // Schedule the unsealing with a delay
+            Timer.Spawn(TimeSpan.FromSeconds(delay), () =>
+            {
+                if (!component.Active) // Only unseal if still inactive
+                {
+                    SealPart(partUid, false);
+                }
+            });
+        }
+        else
+        {
+            SealPart(partUid, false);
+        }
+    }
+
+    private void UpdateActivateActionIcon(EntityUid uid, ModsuitControlComponent component, bool primed)
+    {
+        if (component.ActivateActionEntity == null)
+            return;
+
+        // Change icon based on primed state
+        var icon = new SpriteSpecifier.Rsi(
+            new ResPath("Interface/Actions/actions_mod.rsi"),
+            primed ? "activate" : "activate-ready"
+        );
+        
+        _actions.SetIcon(component.ActivateActionEntity.Value, icon);
     }
 }
 

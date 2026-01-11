@@ -11,10 +11,7 @@
     sprite: _FarHorizons/Clothing/Head/Modsuits/basic.rsi
     layers:
     - state: helmet
-      map: ["base"]
-    - state: helmet-sealed
-      map: ["sealed"]
-      visible: false
+      map: ["enum.ToggleableVisuals.Layer"]
   - type: Clothing
     sprite: _FarHorizons/Clothing/Head/Modsuits/basic.rsi
   - type: ModsuitPart
@@ -44,12 +41,16 @@
     - HeadSide
   - type: Appearance
   - type: ToggleableVisuals
-    spriteLayer: sealed
+    spriteLayer: enum.ToggleableVisuals.Layer
     clothingVisuals:
       head:
+        - state: equipped-HEAD
         - state: equipped-HEAD-sealed
+          shader: unshaded
       head-resomi:
+        - state: equipped-HEAD-resomi
         - state: equipped-HEAD-sealed-resomi
+          shader: unshaded
   - type: Tag
     tags:
     - WhitelistChameleon

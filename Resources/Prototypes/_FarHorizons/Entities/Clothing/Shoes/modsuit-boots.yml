@@ -11,10 +11,7 @@
     sprite: _FarHorizons/Clothing/Shoes/Modsuits/basic.rsi
     layers:
     - state: boots
-      map: ["base"]
-    - state: boots-sealed
-      map: ["sealed"]
-      visible: false
+      map: ["enum.ToggleableVisuals.Layer"]
   - type: Clothing
     sprite: _FarHorizons/Clothing/Shoes/Modsuits/basic.rsi
   - type: ModsuitPart
@@ -35,10 +32,12 @@
     - LFoot
   - type: Appearance
   - type: ToggleableVisuals
-    spriteLayer: sealed
+    spriteLayer: enum.ToggleableVisuals.Layer
     clothingVisuals:
       shoes:
+        - state: equipped-FEET
         - state: equipped-FEET-sealed
+          shader: unshaded
   - type: Tag
     tags:
     - WhitelistChameleon

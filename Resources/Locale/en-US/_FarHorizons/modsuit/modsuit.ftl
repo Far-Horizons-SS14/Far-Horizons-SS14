@@ -10,6 +10,7 @@ modsuit-hatch-closed = You close the module hatch.
 modsuit-still-deploying = The suit is still deploying!
 modsuit-not-worn = The suit must be worn on your back!
 modsuit-not-deployed = The suit must be deployed first!
+modsuit-deactivate-first = You must deactivate the suit before retracting it!
 
 modsuit-deploying = You begin deploying the MODsuit...
 modsuit-deployed = The MODsuit is now fully deployed.
@@ -17,6 +18,7 @@ modsuit-retracting = You begin retracting the MODsuit...
 modsuit-retracted = The MODsuit has been fully retracted.
 
 ## Activation
+modsuit-activation-primed = WARNING: Activation sequence initiated. Click again to seal and activate.
 modsuit-activating = The MODsuit powers on with a hum.
 modsuit-deactivating = The MODsuit powers down.
 modsuit-no-power = The MODsuit has no power!

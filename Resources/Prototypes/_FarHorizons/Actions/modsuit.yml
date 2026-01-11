@@ -1,26 +1,30 @@
 # MODsuit Actions
 
 - type: entity
+  parent: BaseAction
   id: ActionModsuitDeploy
   name: Deploy/Retract MODsuit
   description: Deploys or retracts all parts of your MODsuit.
   components:
   - type: InstantAction
-    itemIconStyle: BigItem
     event: !type:ModsuitDeployActionEvent
+  - type: Action
+    itemIconStyle: BigAction
     icon:
       sprite: _FarHorizons/Clothing/OuterClothing/Modsuits/basic.rsi
       state: icon
     priority: -1
 
 - type: entity
+  parent: BaseAction
   id: ActionModsuitActivate
   name: Activate/Deactivate MODsuit
   description: Toggles your MODsuit's power. The suit must be deployed first.
   components:
   - type: InstantAction
-    itemIconStyle: BigItem
     event: !type:ModsuitActivateActionEvent
+  - type: Action
+    itemIconStyle: BigAction
     icon:
       sprite: Interface/Actions/actions_mod.rsi
       state: activate-ready

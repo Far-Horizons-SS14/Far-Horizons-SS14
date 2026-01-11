@@ -11,10 +11,7 @@
     sprite: _FarHorizons/Clothing/OuterClothing/Modsuits/basic.rsi
     layers:
     - state: chestplate
-      map: ["base"]
-    - state: chestplate-sealed
-      map: ["sealed"]
-      visible: false
+      map: ["enum.ToggleableVisuals.Layer"]
   - type: Clothing
     sprite: _FarHorizons/Clothing/OuterClothing/Modsuits/basic.rsi
   - type: ModsuitPart
@@ -45,12 +42,16 @@
     - LArm
   - type: Appearance
   - type: ToggleableVisuals
-    spriteLayer: sealed
+    spriteLayer: enum.ToggleableVisuals.Layer
     clothingVisuals:
       outerClothing:
+        - state: equipped-OUTERCLOTHING
         - state: equipped-OUTERCLOTHING-sealed
+          shader: unshaded
       outerClothing-resomi:
+        - state: equipped-OUTERCLOTHING-resomi
         - state: equipped-OUTERCLOTHING-sealed-resomi
+          shader: unshaded
   - type: Tag
     tags:
     - MonkeyWearable
