@@ -1968,7 +1968,7 @@
       Critical:
         Base: dead-1
       Dead:
-        Base: splat-1
+        Base: dead-1
   - type: Item
     size: Tiny
     heldPrefix: 1
@@ -1978,26 +1978,27 @@
   id: MobMouse2
   components:
   - type: Sprite
+    color: Gray
     layers:
     - map: ["enum.DamageStateVisualLayers.Base", "movement"]
-      state: mouse-2
+      state: mouse-0
   - type: SpriteMovement
     movementLayers:
       movement:
-        state: mouse-moving-2
+        state: mouse-moving-0
     noMovementLayers:
       movement:
-        state: mouse-2
+        state: mouse-0
   - type: Clothing
     equippedPrefix: 2
   - type: DamageStateVisuals
     states:
       Alive:
-        Base: mouse-2
+        Base: mouse-0
       Critical:
-        Base: dead-2
+        Base: dead-0
       Dead:
-        Base: splat-2
+        Base: dead-0
   - type: Item
     size: Tiny
     heldPrefix: 2
