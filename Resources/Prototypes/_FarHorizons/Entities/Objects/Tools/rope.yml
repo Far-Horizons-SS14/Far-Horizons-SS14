@@ -11,3 +11,23 @@
       sprite: _FarHorizons/Tools/Towing/rope.rsi
       state: rope
     - type: Towing
+
+- type: entity
+  parent: BaseItem
+  id: HitchHook
+  name: Hitch Hook
+  description: Attach this to the other of something to pull it.
+  components:
+    - type: Sprite
+      noRot: false
+      sprite: Objects/Weapons/Guns/Launchers/grappling_gun.rsi
+      layers:
+        - state: hook
+    - type: Icon
+      noRot: false
+      sprite: Objects/Weapons/Guns/Launchers/grappling_gun.rsi
+      layers:
+        - state: hook
+      state: rope
+    - type: Hitch
+    - type: Towing

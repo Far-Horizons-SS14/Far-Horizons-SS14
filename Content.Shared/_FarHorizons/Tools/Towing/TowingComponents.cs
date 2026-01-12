@@ -25,5 +25,15 @@ public sealed partial class TowingComponent : Component
     new SpriteSpecifier.Rsi(new ResPath("Objects/Weapons/Guns/Launchers/grappling_gun.rsi"), "rope");
 }
 
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
+public sealed partial class HitchComponent : Component
+{
+    /// <summary>
+    /// how long does it takes to deploy the hitch rope
+    /// </summary>
+    [DataField("hitchDeployTime"), AutoNetworkedField]
+    public TimeSpan HitchDeploy = TimeSpan.FromSeconds(2);
+}
+
 [Serializable, NetSerializable]
 public sealed partial class TieUpDoAfter : SimpleDoAfterEvent;
