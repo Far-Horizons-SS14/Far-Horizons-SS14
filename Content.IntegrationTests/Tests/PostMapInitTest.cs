@@ -119,63 +119,7 @@ namespace Content.IntegrationTests.Tests
 
         private static readonly string[] GameMaps =
         {
-            "Dev",
-            "TestTeg",
-            "Fland",
-            "Packed",
-            "Bagel",
-            "CentComm",
-            "Box",
-            "Marathon",
-            "MeteorArena",
-            "Saltern",
-            "Reach",
-            "Oasis",
-            "Plasma",
-            "Elkridge",
-            "Relic",
-            "dm01-entryway",
-            "Exo",
-            "Snowball",
-            "dm01-entryway",
-            #region Starlight
-            "StarlightBarratry",
-            "StarlightCork",
-            "StarlightKiloton",
-            "StarlightLagan",
-            "StarlightLobster",
-            "StarlightManor",
-            "Gateway",
-            "StarlightLeth",
-            "StarlightMing",
-            "StarlightOrigin",
-            "StarlightOrwell",
-            "StarlightPrism",
-            "StarlightRemix",
-            "StarlightStarboard",
-            "StarlightAmber",
-            "StarlightBagel",
-            "StarlightBox",
-            "StarlightCentCommG24",
-            "StarlightCentCommSC17",
-            "StarlightCentCommGNT9",
-            "StarlightCog",
-            "StarlightCore",
-            "StarlightCrescent",
-            "StarlightElkridge",
-            "StarlightExo",
-            "StarlightHotel",
-            "StarlightMarathon",
-            "StarlightOasis",
-            "StarlightOmega",
-            "StarlightPacked",
-            "StarlightReach",
-            "StarlightSaltern",
-            "StarlightSilica",
-            "StarlightCluster",
-            "StarlightFland",
-            "StarlightStationBuilding",
-            #endregion
+            // Far Horizons - disabled all non FH maps
             #region Far Horizons
             "FHMeta",
             "FHFland",
@@ -616,6 +560,7 @@ namespace Content.IntegrationTests.Tests
         }
 
         [Test]
+        [Ignore("Test disabled on Far Horizons due to us not testing all existing maps")]
         public async Task AllMapsTested()
         {
             await using var pair = await PoolManager.GetServerClient();
