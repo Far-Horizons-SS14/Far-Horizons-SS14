@@ -108,6 +108,7 @@
       Dead:
         Base: dead
   - type: Puller
+    needsHands: false # Moffstation - even more Xeno buffs
   - type: Butcherable
     butcheringType: Spike
     spawned:
@@ -121,7 +122,7 @@
     description: ghost-role-information-xeno-description
     rules: ghost-role-information-xeno-rules
     raffle:
-      settings: default
+      settings: short # Moffstation - even more Xeno buffs
     # Starlight start
     mindRoles:
     - MindRoleGhostRoleXeno
