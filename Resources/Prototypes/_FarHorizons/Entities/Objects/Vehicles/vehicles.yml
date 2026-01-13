@@ -192,13 +192,6 @@
   - type: MovementSpeedModifier
     baseWalkSpeed: 2
     baseSprintSpeed: 5.5 #4.5 is default, so this is 1 faster than normal run
-  - type: UnpoweredFlashlight
-  - type: PointLight
-    enabled: false
-    radius: 10
-    softness: 2
-    mask: /Textures/Effects/LightMasks/cone.png
-    autoRot: true
   - type: ItemSlots
     slots:
       key_slot:
@@ -217,6 +210,7 @@
     containers:
       key_slot: !type:ContainerSlot
       cell_slot: !type:ContainerSlot
+      vehicle_mods_container: !type:Container
   - type: PowerCellSlot
     cellSlotId: cell_slot
     fitsInCharger: false
@@ -393,6 +387,7 @@
   - type: ContainerContainer
     containers:
       key_slot: !type:ContainerSlot
+      vehicle_mods_container: !type:Container
   - type: SolutionContainerManager
     solutions:
       fueltank:
@@ -408,13 +403,6 @@
     whitelistedReagants: 
     - WeldingFuel
     drainRate: 0.25
-  - type: UnpoweredFlashlight
-  - type: PointLight
-    enabled: false
-    radius: 10
-    softness: 2
-    mask: /Textures/Effects/LightMasks/cone.png
-    autoRot: true
   - type: FootstepModifier
     footstepSoundCollection:
       path: /Audio/_FarHorizons/Vehicles/atvwalk.ogg
@@ -488,6 +476,7 @@
         key_slot: !type:ContainerSlot
         storagebase: !type:Container
           ents: []
+        vehicle_mods_container: !type:Container
     - type: Vehicle
       acceleration: 4
       friction: 4.5
@@ -551,9 +540,6 @@
       containers:
         key_slot:
         - VehicleKeySTV
-    - type: RotatingLight
-      enabled: false
-      speed: 360
 
 - type: entity
   id: VehicleClownCar
@@ -614,6 +600,7 @@
       key_slot: !type:ContainerSlot
       passenger_slot: !type:Container
       storagebase: !type:Container
+      vehicle_mods_container: !type:Container
         ents: []
   - type: SolutionContainerManager
     solutions:
@@ -630,13 +617,6 @@
     whitelistedReagants: 
     - WeldingFuel
     drainRate: 0.25
-  - type: UnpoweredFlashlight
-  - type: PointLight
-    enabled: false
-    radius: 10
-    softness: 2
-    mask: /Textures/Effects/LightMasks/cone.png
-    autoRot: true
   - type: FootstepModifier
     footstepSoundCollection:
       path: /Audio/_FarHorizons/Vehicles/atvwalk.ogg

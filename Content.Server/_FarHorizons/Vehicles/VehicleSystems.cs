@@ -93,6 +93,7 @@ public sealed partial class VehicleSystems : SharedVehicleSystems
     [Dependency] private readonly SharedColorFlashEffectSystem _color = default!;
     [Dependency] private readonly SharedPointLightSystem _pointLight = default!;
     private static readonly ProtoId<TagPrototype> _vehicleKeyTag = "VehicleKey";
+    private static readonly string _vehicleModsSlot = "vehicle_mods_container";
     private static readonly string _bluntname = "Blunt";
     private EntityQuery<ProjectileComponent> _projQuery;
     public override void Initialize()
@@ -420,19 +421,6 @@ public sealed partial class VehicleSystems : SharedVehicleSystems
         TryUpdateVisualState(ent);
 
         TurnOffVehicle(ent, component);
-    }
-
-    protected override void OnToggleFlashlightAction(Entity<VehicleComponent> ent, ref ToggleFlashlightActionEvent args)
-    {
-        if(!TryComp<UnpoweredFlashlightComponent>(ent.Owner, out var flashComp) || !TryComp<PointLightComponent>(ent.Owner, out var pointComp)) return;
-        flashComp.LightOn = !flashComp.LightOn;
-        _pointLight.SetEnabled(ent.Owner, !pointComp.Enabled);
-        Dirty(ent.Owner, flashComp);
-    }
-
-    protected override void OnToggleSirenAction(Entity<VehicleComponent> ent, ref ToggleSirenActionEvent args)
-    {
-
     }
 
     #endregion
@@ -840,14 +828,13 @@ public sealed partial class VehicleSystems : SharedVehicleSystems
                 _actions.AddAction(rider, ref component.ToggleTrunkActionEntity, component.ToggleTrunkAction, vehicle);
         }
 
-        if(TryComp<UnpoweredFlashlightComponent>(vehicle, out var flashComp))
-            _actions.AddAction(rider, ref component.ToggleFlashlightActionEntity, component.ToggleFlashlightAction, vehicle);
-
         if(component.HornSound != null)
             _actions.AddAction(rider, ref component.HornVehicleActionEntity, component.HornVehicleAction, vehicle);
 
-        if(component.hasSiren)
-            _actions.AddAction(rider, ref component.ToggleSirenActionEntity, component.ToggleSirenAction, vehicle);
+        if(_container.TryGetContainer(vehicle, _vehicleModsSlot, out var modSlot))
+        {
+            Logger.Info("Weh");
+        }
     }
 
     private bool TryInsert(EntityUid? Rider, EntityUid Vehicle, VehicleContainerComponent? component=null)

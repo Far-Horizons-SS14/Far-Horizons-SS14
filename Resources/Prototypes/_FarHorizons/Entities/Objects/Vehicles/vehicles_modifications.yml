@@ -1,0 +1,18 @@
+- type: entity
+  id: ATVHeadlight
+  parent: BaseItem
+  name: ATV Headlight
+  description: Standard headlight for ATV's mostly used to distract tiders as you run over them like deers.
+  components:
+    - type: UnpoweredFlashlight
+    - type: PointLight
+      enabled: false
+      radius: 10
+      softness: 2
+      mask: /Textures/Effects/LightMasks/cone.png
+      autoRot: true
+    - type: Sprite
+      sprite: Objects/Power/light_bulb.rsi
+      layers:
+        - map: [ enum.LightBulbVisualLayers.Base ]
+          state: normal

@@ -32,19 +32,6 @@
 
 - type: entity
   parent: BaseAction
-  id: ActionToggleLightVehicle
-  name: Toggle Light
-  description: Turn the light on and off.
-  components:
-  - type: Action
-    useDelay: 1
-    icon: { sprite: Objects/Tools/flashlight.rsi, state: flashlight }
-    iconOn: { sprite: Objects/Tools/flashlight.rsi, state: flashlight-on }
-  - type: InstantAction
-    event: !type:ToggleFlashlightActionEvent
-
-- type: entity
-  parent: BaseAction
   id: ActionVehicleToggleSecuritySiren
   name: Toggle Security Siren
   description: Toggles the security siren on and off.
@@ -55,8 +42,6 @@
       state: siren
     useDelay: 1
     itemIconStyle: BigAction
-  - type: InstantAction
-    event: !type:ToggleSirenActionEvent
 
 - type: entity
   parent: BaseAction
