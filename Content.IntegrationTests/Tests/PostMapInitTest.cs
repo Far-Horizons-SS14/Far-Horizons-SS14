@@ -107,6 +107,8 @@ namespace Content.IntegrationTests.Tests
             "/Maps/_FarHorizons/Centcomms/CC_Outpost_G24.yml", //starlight centcomm map edited for FarHorizons
             "/Maps/_FarHorizons/Centcomms/CC_Outpost_SC17.yml", //starlight centcomm map edited for FarHorizons
             "/Maps/_FarHorizons/SHCs/shc.yml", //Syndicate high command
+            "/Maps/_FarHorizons/Non-Stations/GSL.yml", //Gemini Stellar Logistics
+            "/Maps/_FarHorizons/Non-Stations/ListeningOutpost.yml", //the all new listen ops :ear emoji:
             #endregion
         };
 
