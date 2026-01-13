@@ -221,7 +221,7 @@ public sealed class HealthAnalyzerSystem : EntitySystem
         // Starlight begin - Get a list of metabolizing chemicals
         List<(string ReagentId, FixedPoint2 Quantity)>? metabolizingReagents = null;
         if (TryComp<BloodstreamComponent>(target, out var bloodstreamComp) &&
-            _solutionContainerSystem.TryGetSolution(target, BloodstreamComponent.DefaultChemicalsSolutionName, out _, out var chemicalsSolution))
+            _solutionContainerSystem.TryGetSolution(target, bloodstreamComp.BloodSolutionName, out _, out var chemicalsSolution))
         {
             metabolizingReagents = new List<(string, FixedPoint2)>();
             foreach (var (reagent, quantity) in chemicalsSolution.Contents)
