@@ -62,7 +62,7 @@ jobs:
         env:
           CHANGELOG_FILE_PATH: 'Resources/Changelog/ChangelogFarHorizons.yml'
           GITHUB_TOKEN: ${{ github.token }}
-          PR_NUMBER: ${{ steps.get_pr.outputs.PR_NUMBER }}
+          PR_NUMBER: ${{ steps.get_pr.outputs.result }}
           GITHUB_REPOSITORY: ${{ github.repository }}
         run: |
           python ./Tools/_FarHorizons/update_changelog.py
@@ -82,13 +82,13 @@ jobs:
         uses: peter-evans/create-pull-request@v7
         with:
           token: ${{ github.token }}
-          commit-message: Update changelog for PR/${{ steps.get_pr.outputs.PR_NUMBER }} [skip ci]
+          commit-message: Update changelog for PR/${{ steps.get_pr.outputs.result }} [skip ci]
           committer: github-actions[bot] <github-actions[bot]@users.noreply.github.com>
           author: github-actions[bot] <github-actions[bot]@users.noreply.github.com>
           signoff: false
-          branch: ci-branch/patch-changelog-${{ steps.get_pr.outputs.PR_NUMBER }}
+          branch: ci-branch/patch-changelog-${{ steps.get_pr.outputs.result }}
           delete-branch: true
-          title: '[CI] Update patchnotes for ${{ steps.get_pr.outputs.PR_NUMBER }}'
+          title: '[CI] Update patchnotes for ${{ steps.get_pr.outputs.result }}'
           body: |
             Automated PR to populate patchnotes
           labels: |
