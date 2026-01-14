@@ -1,3 +1,4 @@
+using Content.Shared.StatusIcon;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Radio;
@@ -42,5 +43,8 @@ public sealed partial class RadioChannelPrototype : IPrototype
 
     [DataField]
     public string AnonymousAlias = "Anonymous";
+
+    [DataField]
+    public ProtoId<JobIconPrototype> AnonymousIcon = "JobIconNoId";
     // Far Horizons end
 }

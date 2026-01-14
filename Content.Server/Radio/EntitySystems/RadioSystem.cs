@@ -293,6 +293,10 @@ public sealed partial class RadioSystem : EntitySystem
             languageColor = Color.InterpolateBetween(Color.White, colorOverride, colorOverride.A); // Changed first param to Color.White so it shows color correctly.
 
         var (iconId, jobName) = GetJobIcon(source);
+        // Far Horizons
+        if (channel.Anonymous)
+            (iconId, jobName) = (channel.AnonymousIcon, "");
+
 
         var namestring = $"[icon src=\"{iconId}\" tooltip=\"{jobName}\"] {name}";
         if (_language.GetLanguageIcon(language, obfuscated))
