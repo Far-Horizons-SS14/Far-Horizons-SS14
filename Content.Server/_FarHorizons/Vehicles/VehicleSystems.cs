@@ -91,7 +91,6 @@ public sealed partial class VehicleSystems : SharedVehicleSystems
     [Dependency] private readonly LockSystem _lock = default!;
     [Dependency] private readonly IPrototypeManager _prototypes = default!;
     [Dependency] private readonly SharedColorFlashEffectSystem _color = default!;
-    [Dependency] private readonly SharedPointLightSystem _pointLight = default!;
     private static readonly ProtoId<TagPrototype> _vehicleKeyTag = "VehicleKey";
     private static readonly string _vehicleModsSlot = "vehicle_mods_container";
     private static readonly string _bluntname = "Blunt";
@@ -803,6 +802,9 @@ public sealed partial class VehicleSystems : SharedVehicleSystems
         vehicleComp.Rider = null;
         _actionBlocker.UpdateCanMove(rider);
         _actions.RemoveProvidedActions(rider, vehicle);
+        if(_container.TryGetContainer(vehicle, _vehicleModsSlot, out var items))
+            foreach(var item in items.ContainedEntities)
+                _actions.RemoveProvidedActions(rider, item);
         
         for (var i = 0; i < vehicleComp.HandsNeeded; i++)
         {
@@ -833,7 +835,11 @@ public sealed partial class VehicleSystems : SharedVehicleSystems
 
         if(_container.TryGetContainer(vehicle, _vehicleModsSlot, out var modSlot))
         {
-            Logger.Info("Weh");
+            foreach (var item in modSlot.ContainedEntities)
+            {
+                if(TryComp<UnpoweredFlashlightComponent>(item, out var flashComp))
+                    _actions.AddAction(rider, ref flashComp.ToggleActionEntity, flashComp.ToggleAction, item);
+            }
         }
     }
 
