@@ -481,10 +481,9 @@ public sealed partial class VehicleSystems : SharedVehicleSystems
     private void OnUnstrapped(Entity<VehicleBuckleComponent> ent, ref UnstrappedEvent args)
     {
         if(!TryComp<VehicleComponent>(ent, out var vehicleComp)) return;
-        if(vehicleComp.Rider == null) return;
-        
-        if(HasComp<RiderComponent>(vehicleComp.Rider.Value))
-            RemoveRider(vehicleComp.Rider.Value, ent.Owner, vehicleComp);
+                
+        if(HasComp<RiderComponent>(args.Buckle.Owner))
+            RemoveRider(args.Buckle.Owner, ent.Owner, vehicleComp);
     }
 
     private void OnUnbuckleDoAfter(Entity<VehicleBuckleComponent> ent, ref VehicleUnbuckleDoAfter args)
@@ -799,14 +798,14 @@ public sealed partial class VehicleSystems : SharedVehicleSystems
         riderComp.Riding = vehicle;
         Dirty(rider, riderComp);
         _adminLogger.Add(Shared.Database.LogType.Action, Shared.Database.LogImpact.Low, $"{ToPrettyString(rider)} entered vehicle {ToPrettyString(vehicle)}");
+        _actionBlocker.UpdateCanMove(rider);
 
         if(_whitelist.IsWhitelistFail(vehicleComp.RiderWhitelist, rider)) return;
         if(vehicleComp.Rider != null) return;
         _mover.SetRelay(rider, vehicle);
         vehicleComp.Rider = rider;
         Dirty(vehicle, vehicleComp);
-
-        _actionBlocker.UpdateCanMove(rider);
+        
         AddActions(vehicleComp.Rider.Value, vehicle, vehicleComp);
 
         if(vehicleComp.Started)
@@ -829,10 +828,10 @@ public sealed partial class VehicleSystems : SharedVehicleSystems
         if(HasComp<RiderComponent>(rider))
             RemComp<RiderComponent>(rider);
         _adminLogger.Add(Shared.Database.LogType.Action, Shared.Database.LogImpact.Low, $"{ToPrettyString(rider)} exited vehicle {ToPrettyString(vehicle)}");
+        _actionBlocker.UpdateCanMove(rider);
 
         if(rider != vehicleComp.Rider) return;
         vehicleComp.Rider = null;
-        _actionBlocker.UpdateCanMove(rider);
         _actions.RemoveProvidedActions(rider, vehicle);
         if(vehicleComp.Headlight != null)
             _actions.RemoveProvidedActions(rider, vehicleComp.Headlight.Value);
