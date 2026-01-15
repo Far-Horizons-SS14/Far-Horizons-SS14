@@ -7,6 +7,7 @@ using Robust.Shared.Timing;
 using Robust.Shared.Audio;
 using Content.Shared.Damage;
 using Content.Shared.Examine;
+using Content.Shared.Damage.Components;
 
 namespace Content.Shared._FarHorizons.Vehicles.EntitySystems;
 

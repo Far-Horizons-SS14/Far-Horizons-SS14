@@ -8,6 +8,7 @@ using Content.Shared.Mobs.Components;
 using Content.Shared.Interaction;
 using Content.Shared.Actions;
 using Content.Shared._FarHorizons.CartridgeLoader.Cartridges;
+using Content.Shared.Damage.Components;
 //FarHorizons End
 
 namespace Content.Server.CartridgeLoader.Cartridges;

@@ -19,10 +19,10 @@ using Content.Server.DeviceLinking.Systems;
 using Content.Shared.Construction.Components;
 using Content.Shared.DeviceLinking;
 using Content.Shared.DeviceNetwork;
-using Content.Shared.Damage;
 using Content.Shared.Containers.ItemSlots;
 using Robust.Shared.Containers;
 using System.Diagnostics.CodeAnalysis;
+using Content.Shared.Damage.Systems;
 
 namespace Content.Server._FarHorizons.Power.Generation.FissionGenerator;
 

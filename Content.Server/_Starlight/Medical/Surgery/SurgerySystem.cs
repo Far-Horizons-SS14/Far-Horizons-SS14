@@ -20,6 +20,9 @@ using Content.Server._FarHorizons.Research;
 using Content.Server._FarHorizons.Medical.SurgeryOverhaul.Systems;
 using Content.Shared._FarHorizons.Research;
 //Far Horizons End
+using Content.Server.Administration.Systems;
+using Content.Shared.Damage.Systems;
+
 namespace Content.Server.Starlight.Medical.Surgery;
 // Based on the RMC14.
 // https://github.com/RMC-14/RMC-14

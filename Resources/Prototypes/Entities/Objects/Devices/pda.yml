@@ -847,7 +847,7 @@
 - type: entity
   parent: BaseMedicalPDA
   id: ChemistryPDA
-  name: chemistry PDA
+  name: chemist PDA # Starlight
   description: It has a few discolored blotches here and there.
   components:
   - type: Pda
@@ -1068,8 +1068,8 @@
   - type: Instrument
     allowPercussion: false
     handheld: true
-    bank: 1
     program: 2
+    bank: 100 # Defined in space-station-14.sf2
 
 - type: entity
   parent: MusicianPDA

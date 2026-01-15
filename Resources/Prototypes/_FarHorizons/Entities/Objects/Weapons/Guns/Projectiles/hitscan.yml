@@ -1,175 +1,238 @@
-- type: hitscan
+# region Tasers
+- type: entity
   id: BoltTaserFH
   name: Taser
-  parent: EnergyTrace
-  bullet:
-    sprite:
-      sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
-      state: spark
-    color: "#ffff33"
-  staminaDamage: 33 # four shots
-  knockdownAmount: 1 # You honestly expect an officer to react in 0.5 seconds? Get real.
-  maxLength: 5
-  damage:
-    types:
-      Shock: 2 # 16 shock damage to stamcrit
+  parent: BasicHitscanNoBeam
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HitscanBasicDamage
+    damage:
+      types:
+        Shock: 2
+  - type: HitscanStaminaDamage
+    staminaDamage: 33
+  - type: HitscanCrawlerTargetEffects
+    knockdownDuration: 1 #in seconds
+  - type: HitscanBasicRaycast
+    maxDistance: 5 #tiles
+  - type: HitscanBasicVisuals
+    bullet:
+      sprite:
+        sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+        state: spark
+      color: "#ffff33"
 
-- type: hitscan
-  id: BoltTaserRifle # Only use in rifles/longarms, do not use in sidearms.
-  name: Taser Bolt
-  parent: EnergyTrace
-  bullet:
-    sprite:
-      sprite: Objects/Weapons/Guns/Projectiles/projectiles_tg.rsi
-      state: omnilaser_greyscale
-    color: "#ffff33"
-  staminaDamage: 12 # Very weak but has range. Ten shots given stun will likely fade with time.
-  maxLength: 20
-  damage:
-    types:
-      Shock: 2 # ~ 20 shock damage to stamcrit.
-
-- type: hitscan
-  id: BoltTaserSpread # Only use in shotguns
-  name: Taser Bolt
-  parent: EnergyTrace
-  bullet:
-    sprite:
-      sprite: Objects/Weapons/Guns/Projectiles/projectiles_tg.rsi
-      state: omnilaser_greyscale
-    color: "#ffff33"
-#  count: 12 Not supported in laser hitscan, readd when support is added.
-#  spread: 30 Not supported in laser hitscan, readd when support is added.
-  staminaDamage: 48 # Change to 3 when support is added # ~ 48, three shots assuming you hit them all.
-  maxLength: 4 # Close range. Would make shorter but landing hits would be impossible.
-  damage:
-    types:
-      Shock: 12 # Change to 1 shock per shot when spread is added # ~ 12 shock per shot, ~36 shock damage to stamcrit. Will likely need tweaking given almost no armor resists shock, but also insuls make you immune so.. ???
-
-- type: hitscan
-  id: BoltPlasmaSpread # Only use in shotguns
-  name: Plasma Bolt
-  parent: EnergyTrace
-  muzzleFlash:
-    sprite: Objects/Weapons/Guns/Projectiles/projectiles_tg.rsi
-    state: heavylaser_flash
-  damage:
-    types:
-      Heat: 50 # Change to a lower number when support is added # About as strong as slugs (and weaker than current eshotty), does a bit more damage to account for lack of AP. Will likely be stronger in practice due to majority species having heat weakness + flat heat being -4 instead of -5 - assuming you point blank someone with it.
-      Structural: 90 # Change to a lower number when support is added
-#  count: 8
-#  spread: 30 # Immense heat warps the barrel, not very accurate.
-  maxLength: 4
-  bullet:
-    sprite:
-      sprite: Objects/Weapons/Guns/Projectiles/projectiles_tg.rsi # Resprite for plasma-y sprites eventually.
-      state: heavylaser
-  collisionMask: 64 #BulletImpassable
-  reflective: NonEnergy
-
-- type: hitscan
-  id: RedLaserBeamSpread # Only use in shotguns
-  name: Split Laser Beam
-  parent: LaserTrace
-  damage:
-    types:
-      Heat: 30 # Buckshot is 70 for reference. Performs a bit worse against a blood-red compared to buckshot, which is fine given it goes through glass.
-#  count: 8
-#  spread: 30
-  maxLength: 5 #simulates spread, buckshot barely hits at this distance
-
-- type: hitscan
+- type: entity
   id: HighBoltTaserFH
   name: High Power Taser
-  parent: EnergyTrace
-  bullet:
-    sprite:
-      sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
-      state: spark
-    color: "#ffff33"
-  staminaDamage: 20 #Trades time on the ground for disabling potential, follow up with batong
-  knockdownAmount: 2
-  maxLength: 5
-  damage:
-    types:
-      Shock: 6 #Yeowchers
+  parent: BasicHitscanNoBeam
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HitscanBasicDamage
+    damage:
+      types:
+        Shock: 6
+  - type: HitscanStaminaDamage
+    staminaDamage: 20
+  - type: HitscanCrawlerTargetEffects
+    knockdownDuration: 2
+  - type: HitscanBasicRaycast
+    maxDistance: 5
+  - type: HitscanBasicVisuals
+    bullet:
+      sprite:
+        sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+        state: spark
+      color: "#ffff33"
 
-- type: hitscan
+- type: entity
+  id: BoltTaserRifle #Use in rifles exclusively
+  name: Taser Bolt
+  parent: BasicHitscanNoBeam
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HitscanBasicDamage
+    damage:
+      types:
+        Shock: 2
+  - type: HitscanStaminaDamage
+    staminaDamage: 12 # Very weak but has range. Ten shots given stun will likely fade with time.
+  - type: HitscanBasicRaycast
+    maxDistance: 20
+  - type: HitscanBasicVisuals
+    bullet:
+      sprite:
+        sprite: Objects/Weapons/Guns/Projectiles/projectiles_tg.rsi
+        state: omnilaser_greyscale
+      color: "#ffff33"
+
+- type: entity
+  id: BoltTaserSpread # Only use in shotguns
+  name: Split Taser Bolt
+  parent: BasicHitscanNoBeam
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HitscanBasicDamage
+    damage:
+      types:
+        Shock: 12 # Change to 1 shock per shot when spread is added  ~ 12 shock per shot, ~36 shock damage to stamcrit
+#  count: 12 Not supported in laser hitscan, readd when support is added.
+#  spread: 30 Not supported in laser hitscan, readd when support is added.
+  - type: HitscanStaminaDamage
+    staminaDamage: 48 # Change to 3 when support is added ~ 48, three shots assuming you hit them all.
+  - type: HitscanBasicRaycast
+    maxDistance: 4
+  - type: HitscanBasicVisuals
+    bullet:
+      sprite:
+        sprite: Objects/Weapons/Guns/Projectiles/projectiles_tg.rsi
+        state: omnilaser_greyscale
+      color: "#ffff33"
+
+#region Plasma
+- type: entity
+  id: BoltPlasmaSpread
+  name: Split Plasma Bolt
+  parent: BasicHitscanNoBeam
+  components:
+  - type: HitscanReflect
+    reflectiveType: NonEnergy
+  - type: HitscanBasicDamage
+    damage:
+      types:
+        Heat: 50 # Change to a lower number when support is added # About as strong as slugs (and weaker than current eshotty), does a bit more damage to account for lack of AP. Will likely be stronger in practice due to majority species having heat weakness + flat heat being -4 instead of -5 - assuming you point blank someone with it.
+        Structural: 90 # Change to a lower number when support is added
+  - type: HitscanBasicRaycast
+    maxDistance: 4
+    collisionMask: BulletImpassable
+  - type: HitscanBasicVisuals
+    muzzleFlash:
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles_tg.rsi
+      state: heavylaser_flash
+    bullet:
+      sprite:
+        sprite: Objects/Weapons/Guns/Projectiles/projectiles_tg.rsi # Resprite for plasma-y sprites eventually.
+        state: heavylaser
+#  count: 8
+#  spread: 30 # Immense heat warps the barrel, not very accurate.
+
+#region Lasers
+- type: entity
+  id: RedLaserBeamSpread
+  name:  Split Laser Beam
+  parent: BasicHitscan
+  components:
+  - type: HitscanBasicDamage
+    damage:
+      types:
+        Heat: 30 # Buckshot is 70 for reference. Performs a bit worse against a blood-red compared to buckshot, which is fine given it goes through glass.
+  - type: HitscanBasicRaycast
+    maxDistance: 5 #simulates spread, buckshot barely hits past this distance
+#  count: 8
+#  spread: 30
+
+- type: entity
   id: DestroyBeamDominator
-  name: Destroying Beam #Far Horizons - The Great Capitalization Crusade
-  parent: LaserTrace
-  muzzleFlash:
-    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
-    state: muzzle_blue
-  travelFlash:
-    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
-    state: beam_blue
-  impactFlash:
-    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
-    state: impact_blue
-  damage:
-    types:
-      Heat: 30
+  name: Destroying Beam
+  parent: BasicHitscanNoBeam
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HitscanBasicDamage
+    damage:
+      types:
+        Heat: 30
+  - type: HitscanBasicVisuals
+    muzzleFlash:
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: muzzle_blue
+    travelFlash:
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: beam_blue
+    impactFlash:
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: impact_blue
 
-- type: hitscan
+- type: entity
   id: RedLaserBeamDominator
-  name: Laser Beam #Far Horizons - The Great Capitalization Crusade
+  name: Laser Beam
   parent: LaserTrace
-  damage:
-    types:
-      Heat: 15
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HitscanBasicDamage
+    damage:
+      types:
+        Heat: 15
 
-- type: hitscan
+- type: entity
   id: RedLaserBeamCarbine
-  name: laser beam
+  name: Laser Beam
   parent: LaserTrace
-  damage:
-    types:
-      Heat: 18
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HitscanBasicDamage
+    damage:
+      types:
+        Heat: 18
 
-- type: hitscan
+#region Bullets
+- type: entity
   id: BulletPistolTrace40Practice
+  name: .40 Practice Round #Far Horizons - The Great Capitalization Crusade
   parent: BulletTrace
-  damage:
-    types:
-      Blunt: 2
-  bullet:
-    sprite:
-      sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
-      state: practice
-  pierceChance: 0.69
-  derivation: 0.12
-  ricochetChance: 0.48
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HitscanBasicDamage
+    damage:
+      types:
+        Blunt: 2
+  - type: HitscanPierce
+    chance: 0.69
+    pierceLevel: Wood
+    deviation: 0.12
+  - type: HitscanRicochet
+    chance: 0.48
+  - type: HitscanReflect
+    reflectiveType: NonEnergy
+    maxReflections: 20 # This is the recursion depth for reflect, ricochet, and pierce
 
-- type: hitscan
+- type: entity
   id: BulletPistolTrace40Incendiary
+  name: .40 Incendiary Round
   parent: BulletTrace
-  igniteOnCollision: true
-  damage:
-    types:
-      Piercing: 2.5
-      Heat: 23
-  pierceChance: 0.69
-  derivation: 0.12
-  ricochetChance: 0.48
-  bullet:
-    sprite:
-      sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
-      state: incendiary
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HitscanBasicDamage
+    damage:
+      types:
+        Piercing: 2.5
+        Heat: 23
+  - type: HitscanPierce
+    chance: 0.69
+    deviation: 0.12
+  - type: HitscanRicochet
+    chance: 0.48
+  - type: HitscanReflect
+    reflectiveType: NonEnergy
+    maxReflections: 20 # This is the recursion depth for reflect, ricochet, and pierce
 
-- type: hitscan
+- type: entity
   id: BulletPistolTrace40Uranium
+  name: .40 Uranium Round
   parent: BulletTrace
-  damage:
-    types:
-      Radiation: 3
-      Piercing: 15
-  armorPenetration: 0.35
-  pierceChance: 0.75
-  derivation: 0.12
-  ricochetChance: 0.80
-  pierceLevel: HardenedMetal
-  bullet:
-    sprite:
-      sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
-      state: uranium
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HitscanBasicDamage
+    damage:
+      types:
+        Radiation: 3
+        Piercing: 15
+    armorPenetration: 0.35
+  - type: HitscanPierce
+    chance: 0.75
+    pierceLevel: HardenedMetal
+    deviation: 0.12
+  - type: HitscanRicochet
+    chance: 0.80
+  - type: HitscanReflect
+    reflectiveType: NonEnergy
+    maxReflections: 20 # This is the recursion depth for reflect, ricochet, and pierce

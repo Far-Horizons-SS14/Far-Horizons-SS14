@@ -27,6 +27,8 @@ using Content.Shared.Tag;
 using Content.Server._FarHorizons.Research;
 using Content.Shared._FarHorizons.Research.Components;
 using System.Diagnostics.CodeAnalysis;
+using Content.Shared.Damage.Systems;
+using Content.Shared.Damage.Components;
 
 namespace Content.Server._FarHorizons.Medical.SurgeryOverhaul.Systems;
 

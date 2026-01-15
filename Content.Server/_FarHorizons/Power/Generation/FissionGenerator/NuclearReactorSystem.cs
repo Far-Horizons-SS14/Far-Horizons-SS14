@@ -34,9 +34,9 @@ using Content.Shared.DeviceNetwork;
 using Content.Shared.Random;
 using Content.Shared.Random.Helpers;
 using Content.Shared.Throwing;
-using Content.Shared.Damage;
 using NAudio.CoreAudioApi;
 using System.Diagnostics.CodeAnalysis;
+using Content.Shared.Damage.Systems;
 
 namespace Content.Server._FarHorizons.Power.Generation.FissionGenerator;
 

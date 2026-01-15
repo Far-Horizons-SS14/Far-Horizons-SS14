@@ -36,7 +36,7 @@
     magState: disable
     steps: 5
     zeroVisible: true
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: DisablerBolt
     fireCost: 100
   - type: BatteryWeaponFireModes
@@ -57,7 +57,7 @@
         - yellow
         - red
         - gamma
-  - type: Battery
+  - type: PredictedBattery
     maxCharge: 1500
     startingCharge: 1500
   - type: BatterySelfRecharger
@@ -89,7 +89,7 @@
     - FullAuto
     minAngle: 1
     maxAngle: 4
-  - type: Battery 
+  - type: PredictedBattery 
     maxCharge: 900 # ~1:30 minutes for recharge
     startingCharge: 900
 
@@ -126,10 +126,10 @@
     availableModes:
     - SemiAuto
     - FullAuto
-  - type: Battery 
+  - type: PredictedBattery 
     maxCharge: 1500
     startingCharge: 1500
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: RedLaserBeamCarbine
     fireCost: 30
   - type: StaticPrice
@@ -167,10 +167,10 @@
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
-  - type: Battery 
+  - type: PredictedBattery
     maxCharge: 1000
     startingCharge: 1000
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: RedLaserBeamCarbine
     fireCost: 50
   - type: StaticPrice
@@ -205,10 +205,10 @@
   - type: Lock
   - type: AccessReader
     access: [["Security"]]
-  - type: Battery 
+  - type: PredictedBattery 
     maxCharge: 1500
     startingCharge: 1500
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: BoltTaserRifle
     fireCost: 125
   - type: BatteryWeaponFireModes #TODO - Make wielded inhands configurable. The sprites are there in the file, but cannot be used :/
@@ -283,7 +283,7 @@
   - type: Lock
   - type: AccessReader
     access: [["Security"]]
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: BoltTaserFH
     fireCost: 166
   - type: BatteryWeaponFireModes
@@ -360,7 +360,7 @@
       path: /Audio/_Starlight/Weapons/Energy/laser_shotgun.ogg
       params:
         variation: 0.07
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: BoltTaserSpread
     fireCost: 200
   - type: BatteryWeaponFireModes
@@ -374,7 +374,7 @@
       fireCost: 150 # ~ 8 shots 
       visualState: lethal
       magState: lethal
-      heldPrefix: lethal
+      heldPrefix: lethal 
   - type: Item
     size: Large
     sprite: _FarHorizons/Objects/Weapons/Guns/Battery/plasma_shotgun_inhands_64x.rsi
@@ -385,11 +385,10 @@
   - type: StealTarget
     stealGroup: WeaponEnergyShotgun
   - type: GunRequiresWield
-  - type: Battery
+  - type: PredictedBattery
     maxCharge: 1200
     startingCharge: 1200
-  - type: BatterySelfRecharger
-    autoRecharge: true
+  - type: PredictedBatterySelfRecharger
     autoRechargeRate: 15
 
 - type: entity
@@ -422,7 +421,7 @@
       path: /Audio/_Starlight/Weapons/Energy/laser_shotgun.ogg
       params:
         variation: 0.07
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: BoltTaserSpread
     fireCost: 300
   - type: BatteryWeaponFireModes
@@ -457,6 +456,6 @@
     sprite: _FarHorizons/Objects/Weapons/Guns/Battery/laser_shotgun_inhands_64x.rsi
     heldPrefix: stun
   - type: GunRequiresWield
-  - type: Battery
+  - type: PredictedBattery
     maxCharge: 2400
     startingCharge: 2400

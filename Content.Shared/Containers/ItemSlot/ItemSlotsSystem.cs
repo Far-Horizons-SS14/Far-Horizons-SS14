@@ -14,6 +14,7 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.GameStates;
 using Robust.Shared.Network; //FarHorizons
+using Robust.Shared.Map; // Starlight
 using Robust.Shared.Utility;
 
 namespace Content.Shared.Containers.ItemSlots
@@ -291,7 +292,8 @@ namespace Content.Shared.Containers.ItemSlots
             ItemSlot slot,
             EntityUid item,
             EntityUid? user,
-            bool excludeUserAudio = false)
+            bool excludeUserAudio = false, // Starlight-edit - extend argument list
+            bool suppressSound = false) // Starlight - add suppressSound parameter
         {
             //FarHorizons Start
             var ev = new ItemSlotInsertEvent(uid, item, user, slot);
@@ -310,6 +312,13 @@ namespace Content.Shared.Containers.ItemSlots
                 _adminLogger.Add(LogType.Action,
                     LogImpact.Low,
                     $"{ToPrettyString(user.Value)} inserted {ToPrettyString(item)} into {slot.ContainerSlot?.ID + " slot of "}{ToPrettyString(uid)}");
+
+            // Starlight start - support suppressing generation of sounds
+            if (suppressSound)
+            {
+                return;
+            }
+            // Starlight end
 
             _audioSystem.PlayPredicted(slot.InsertSound, uid, excludeUserAudio ? user : null);
         }
@@ -350,7 +359,7 @@ namespace Content.Shared.Containers.ItemSlots
         private bool CanInsertWhitelist(EntityUid usedUid, ItemSlot slot)
         {
             if (_whitelistSystem.IsWhitelistFail(slot.Whitelist, usedUid)
-                || _whitelistSystem.IsBlacklistPass(slot.Blacklist, usedUid))
+                || _whitelistSystem.IsWhitelistPass(slot.Blacklist, usedUid))
                 return false;
             return true;
         }
@@ -383,12 +392,13 @@ namespace Content.Shared.Containers.ItemSlots
             ItemSlot slot,
             EntityUid item,
             EntityUid? user,
-            bool excludeUserAudio = false)
+            bool excludeUserAudio = false, // Starlight-edit - extend argument list
+            bool suppressSound = false) // Starlight - add suppressSound parameter
         {
             if (!CanInsert(uid, item, user, slot))
                 return false;
 
-            Insert(uid, slot, item, user, excludeUserAudio: excludeUserAudio);
+            Insert(uid, slot, item, user, excludeUserAudio: excludeUserAudio, suppressSound); // Starlight-edit - pass through suppressSound
             return true;
         }
 
@@ -438,11 +448,13 @@ namespace Content.Shared.Containers.ItemSlots
         ///     If true, will exclude the user when playing sound. Does nothing client-side.
         ///     Useful for predicted interactions
         /// </param>
+        /// <param name="suppressSound">Prevent any audio from being generated for this operation</param> // Starlight
         /// <returns>False if failed to insert item</returns>
         public bool TryInsertEmpty(Entity<ItemSlotsComponent?> ent,
             EntityUid item,
             EntityUid? user,
-            bool excludeUserAudio = false)
+            bool excludeUserAudio = false, // Starlight-edit - extend argument list
+            bool suppressSound = false) // Starlight - add suppressSound parameter
         {
             if (!Resolve(ent, ref ent.Comp, false))
                 return false;
@@ -457,7 +469,7 @@ namespace Content.Shared.Containers.ItemSlots
             if (user != null && !_handsSystem.TryDrop(user.Value, item))
                 return false;
 
-            Insert(ent, itemSlot, item, user, excludeUserAudio: excludeUserAudio);
+            Insert(ent, itemSlot, item, user, excludeUserAudio: excludeUserAudio, suppressSound); // Starlight-edit - pass through suppressSound
             return true;
         }
 
@@ -470,12 +482,14 @@ namespace Content.Shared.Containers.ItemSlots
         /// <param name="itemSlot">The ItemSlot on <paramref name="ent"/> to insert <paramref name="item"/> into.</param>
         /// <param name="emptyOnly"> True only returns slots that are empty.
         /// False returns any slot that is able to receive <paramref name="item"/>.</param>
+        /// <param name="allowSwap">Allow finding slots where insertion requires a swap</param> // Starlight
         /// <returns>True when a slot is found. Otherwise, false.</returns>
         public bool TryGetAvailableSlot(Entity<ItemSlotsComponent?> ent,
             EntityUid item,
             Entity<HandsComponent?>? userEnt,
             [NotNullWhen(true)] out ItemSlot? itemSlot,
-            bool emptyOnly = false)
+            bool emptyOnly = false, // Starlight-edit - change to second-to-last parameter
+            bool allowSwap = false) // Starlight - add parameter
         {
             itemSlot = null;
 
@@ -496,7 +510,7 @@ namespace Content.Shared.Containers.ItemSlots
                 if (emptyOnly && slot.ContainerSlot?.ContainedEntity != null)
                     continue;
 
-                if (CanInsert(ent, item, userEnt, slot))
+                if (CanInsert(ent, item, userEnt, slot, allowSwap)) //Starlight - add allowSwap parameter
                     slots.Add(slot);
             }
 
@@ -559,7 +573,8 @@ namespace Content.Shared.Containers.ItemSlots
         /// </summary>
         /// <param name="excludeUserAudio">If true, will exclude the user when playing sound. Does nothing client-side.
         /// Useful for predicted interactions</param>
-        private void Eject(EntityUid uid, ItemSlot slot, EntityUid item, EntityUid? user, bool excludeUserAudio = false)
+        private void Eject(EntityUid uid, ItemSlot slot, EntityUid item, EntityUid? user, bool excludeUserAudio = false, // Starlight-edit - extend argument list
+                EntityCoordinates? destination = null, bool suppressSound = false) // Starlight - add destination and suppressSound parameters
         {
             //FarHorizons Start
             var ev = new ItemSlotEjectEvent(uid, item, user, slot);
@@ -570,7 +585,7 @@ namespace Content.Shared.Containers.ItemSlots
                 return;
             }
             //FarHorizons End
-            bool? ejected = slot.ContainerSlot != null ? _containers.Remove(item, slot.ContainerSlot) : null;
+            bool? ejected = slot.ContainerSlot != null ? _containers.Remove(item, slot.ContainerSlot, destination: destination) : null; // Starlight-edit - pass through destination
             // ContainerSlot automatically raises a directed EntRemovedFromContainerMessage
 
             // Logging
@@ -579,6 +594,12 @@ namespace Content.Shared.Containers.ItemSlots
                     LogImpact.Low,
                     $"{ToPrettyString(user.Value)} ejected {ToPrettyString(item)} from {slot.ContainerSlot?.ID + " slot of "}{ToPrettyString(uid)}");
 
+            // Starlight start - support suppressing generation of sounds
+            if (suppressSound)
+            {
+                return;
+            }
+            // Starlight end
             _audioSystem.PlayPredicted(slot.EjectSound, uid, excludeUserAudio ? user : null);
         }
 
@@ -590,7 +611,9 @@ namespace Content.Shared.Containers.ItemSlots
             ItemSlot slot,
             EntityUid? user,
             [NotNullWhen(true)] out EntityUid? item,
-            bool excludeUserAudio = false)
+            bool excludeUserAudio = false, // Starlight start - extend argument list, add destination and suppressSound
+            EntityCoordinates? destination = null,
+            bool suppressSound = false) // Starlight end
         {
             item = null;
 
@@ -601,10 +624,10 @@ namespace Content.Shared.Containers.ItemSlots
             item = slot.Item;
 
             // This handles user logic
-            if (user != null && item != null && !_actionBlockerSystem.CanPickup(user.Value, item.Value))
+            if (user != null && item != null && !_actionBlockerSystem.CanPickup(user.Value, item.Value, showPopup: true))
                 return false;
 
-            Eject(uid, slot, item!.Value, user, excludeUserAudio);
+            Eject(uid, slot, item!.Value, user, excludeUserAudio, destination, suppressSound); // Starlight-edit - pass through destination and suppressSound
             return true;
         }
 

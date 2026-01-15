@@ -1,9 +1,9 @@
 using Content.Server.Body.Systems;
-using Content.Server.Emp;
 using Content.Server.Hands.Systems;
 using Content.Server.Stunnable;
 using Content.Shared._FarHorizons.Silicons.HumanoidEMP;
-using Content.Shared.Damage;
+using Content.Shared.Damage.Systems;
+using Content.Shared.Emp;
 using Content.Shared.Movement.Systems;
 using Content.Shared.StatusEffectNew;
 using Robust.Shared.Timing;

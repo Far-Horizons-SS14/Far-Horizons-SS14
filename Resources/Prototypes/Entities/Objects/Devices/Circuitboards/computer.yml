@@ -1,4 +1,4 @@
-- type: entity
+﻿- type: entity
   parent: BaseItem
   id: BaseComputerCircuitboard
   name: computer board
@@ -18,11 +18,13 @@
       chemicalComposition:
         Silicon: 20
     - type: Circuitboard
-    - type: Food #FH - Start
+    - type: Edible
       requiresSpecialDigestion: true
-      solution: food
       delay: 4
       forceFeedDelay: 10
+    - type: FlavorProfile
+      flavors:
+      - shocking
     - type: SolutionContainerManager
       solutions:
         food:
@@ -586,7 +588,7 @@
 - type: entity
   parent: BaseComputerCircuitboard
   id: StationAiFixerCircuitboard
-  name: AI restoration console
+  name: AI restoration console board
   description: A computer printed circuit board for an AI restoration console console.
   components:
     - type: Sprite

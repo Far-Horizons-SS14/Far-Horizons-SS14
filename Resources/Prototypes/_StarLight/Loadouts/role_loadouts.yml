@@ -11,7 +11,7 @@
   - Survival
   - Trinkets
   - Scarves
-  - GroupSpeciesBreathTool
+  - Pens
 
 - type: roleLoadout
   id: JobMagistrate
@@ -26,12 +26,11 @@
   - Survival
   - Trinkets
   - Scarves
-  - GroupSpeciesBreathTool
+  - LuxuryPens
 
 - type: roleLoadout
   id: JobSurgeon
   groups:
-  - GroupTankHarness
   - SurgeonHead #FH
   - MedicalMask
   - SurgeonJumpsuit #FH
@@ -44,8 +43,8 @@
   - SurvivalMedical
   - Trinkets
   - Scarves
-  - GroupSpeciesBreathToolMedical
   - SurgeonEquipmentGroup #FH
+  - Pens
 
 - type: roleLoadout
   id: JobNanoTrasenRepresentative
@@ -57,8 +56,8 @@
   - NanotrasenRepresentativeShoes
   - Trinkets
   - Scarves
+  - NTRPens
   - Survival
-  - GroupSpeciesBreathTool
 
 - type: roleLoadout
   id: JobIAA
@@ -70,8 +69,8 @@
   - LawyerShoes
   - Trinkets
   - Scarves
+  - LuxuryPens
   - Survival
-  - GroupSpeciesBreathTool
 
 - type: roleLoadout
   id: JobBlueShield
@@ -85,15 +84,15 @@
   - BlueShieldEyewear
   - Trinkets
   - Scarves
+  - Pens
   - SurvivalSecurity
-  - GroupSpeciesBreathToolSecurity
 
 - type: roleLoadout
   id: JobMiningSpecialist
   groups:
-  - GroupTankHarness
   - MiningSpecialistBackpack # Far Horizons
   - MiningSpecialistHead
+  - SalvageSpecialistBackpack
   - MiningSpecialistJumpsuit
   - SalvageSpecialistOuterClothing
   - SalvageSpecialistShoes
@@ -102,12 +101,11 @@
   - Survival
   - Trinkets
   - Scarves
-  - GroupSpeciesBreathTool
+  - Pens
 
 - type: roleLoadout
   id: JobMailTech
   groups:
-  - GroupTankHarness
   - CargoTechnicianHead
   - CargoTechnicianJumpsuit
   - CargoTechnicianBackpack
@@ -117,37 +115,60 @@
   - Survival
   - Trinkets
   - Scarves
-  - GroupSpeciesBreathTool
+  - Pens
 
 - type: roleLoadout
   id: JobBrigmedic
   groups:
     - BrigmedicHead
+    - BrigmedicMask
     - BrigmedicJumpsuit
+    - BrigmedicTie
     - BrigmedicBackpack
     - BrigmedicOuterClothing
     - BrigmedicBelt
     - BrigmedicGloves
     - BrigmedicEyewear
+    - BrigmedicPDA
+    - BrigmedicBeaker
     - SecurityShoes
     - SecurityNonLethalWeapon
     - BrigmedicSidearm # FarHorizons
     - SurvivalSecurity
     - Trinkets
-    - SecurityStar
-    - GroupSpeciesBreathToolSecurity
 
 - type: roleLoadout
   id: JobSalvageLead
   groups:
-    - GroupTankHarness
     - SalvageHead #Far Horizons
     - SalvageSpecialistBackpack
     - SalvageLeadJumpsuit
+    - SalvageLeadNeck
     - SalvageSpecialistOuterClothing
     - SalvageSpecialistShoes
     - SalvageLeadPDA
     - Glasses
     - Survival
     - Trinkets
-    - GroupSpeciesBreathTool
+
+# Antagonist Loadouts
+- type: roleLoadout
+  id: AntagXenoborg
+  nameDataset: NamesXenoborg
+  canCustomizeName: true
+  groups:
+  - SiliconBrainType
+
+- type: roleLoadout
+  id: AntagMothership
+  nameDataset: NamesXenoborg
+  canCustomizeName: true
+
+- type: roleLoadout
+  id: AntagBrighteye
+  groups:
+  - BrighteyeJumpsuit
+  - BrighteyeNeck
+  - BrighteyeShoes
+  - BrighteyeGloves
+  - Scarves

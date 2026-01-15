@@ -26,6 +26,7 @@ using Content.Client.UserInterface;
 using Content.Client.Viewport;
 using Content.Client.Voting;
 using Content.Shared._NullLink;
+using Content.Shared._Starlight.DocumentManager;
 using Content.Shared.Ame.Components;
 using Content.Shared._FarHorizons.Factions;
 using Content.Shared.Gravity;
@@ -86,26 +87,29 @@ namespace Content.Client.Entry
        	[Dependency] private readonly ISharedNullLinkPlayerRolesReqManager _sharedNullLinkPlayer = default!; //NullLink
         [Dependency] private readonly ISharedFactionManager _factions = default!; //Far Horizons
         [Dependency] private readonly DiscordLinkManager _discordLinkManager = default!; // Far Horizons
+        [Dependency] private readonly PreWrittenDocumentManager _documentManager = default!; // Starlight
 
-        public override void Init()
+        public override void PreInit()
         {
-            ClientContentIoC.Register();
+            ClientContentIoC.Register(Dependencies);
 
             foreach (var callback in TestingCallbacks)
             {
                 var cast = (ClientModuleTestingCallbacks) callback;
                 cast.ClientBeforeIoC?.Invoke();
             }
+        }
 
-            IoCManager.BuildGraph();
-            IoCManager.InjectDependencies(this);
+        public override void Init()
+        {
+            Dependencies.BuildGraph();
+            Dependencies.InjectDependencies(this);
 
             _contentLoc.Initialize();
             _componentFactory.DoAutoRegistrations();
             _componentFactory.IgnoreMissingComponents();
 
             // Do not add to these, they are legacy.
-            _componentFactory.RegisterClass<SharedGravityGeneratorComponent>();
             _componentFactory.RegisterClass<SharedAmeControllerComponent>();
             // Do not add to the above, they are legacy
 
@@ -120,7 +124,6 @@ namespace Content.Client.Entry
             _prototypeManager.RegisterIgnore("htnPrimitive");
             _prototypeManager.RegisterIgnore("gameMap");
             _prototypeManager.RegisterIgnore("gameMapPool");
-            //_prototypeManager.RegisterIgnore("lobbyBackground"); //starlight, disabled for main menu art credits
             _prototypeManager.RegisterIgnore("gamePreset");
             _prototypeManager.RegisterIgnore("noiseChannel");
             _prototypeManager.RegisterIgnore("playerConnectionWhitelist");
@@ -140,6 +143,8 @@ namespace Content.Client.Entry
             _prototypeManager.RegisterIgnore("salvageMissionObjectiveHandler"); // Far Horizons
             
             _prototypeManager.RegisterIgnore("onSignActions"); //🌟Starlight🌟
+
+            _documentManager.Initialize(); // Starlight
 
             _componentFactory.GenerateNetIds();
             _adminManager.Initialize();
@@ -168,7 +173,7 @@ namespace Content.Client.Entry
         public override void Shutdown()
         {
             base.Shutdown();
-            _titleWindowManager.Shutdown();
+            //_titleWindowManager.Shutdown();
 
             //Far Horizons
             _factions.Shutdown();

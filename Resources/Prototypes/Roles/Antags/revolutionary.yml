@@ -15,14 +15,6 @@
     department: Command
     time: 0 # Far Horizons - Temporary // 21600 # 6h STARLIGHT
 
-- type: startingGear
-  id: HeadRevGear
-  storage:
-    back:
-    - Flash
-    - ClothingEyesGlassesSunglasses
-    - USSPUplinkImplanter
-
 - type: antag
   id: Rev
   name: roles-antag-rev-name
@@ -30,3 +22,11 @@
   setPreference: false
   objective: roles-antag-rev-objective
   guides: [ Revolutionaries ]
+
+- type: startingGear
+  id: HeadRevGear
+  storage:
+    back:
+    - Flash
+    - ClothingEyesGlassesSunglasses
+    - USSPUplinkImplanter

@@ -3,8 +3,8 @@
   name: Cartridge (.38 Special Practice)
   parent: CartridgePistol40SP
   components:
-  - type: HitScanCartridgeAmmo
-    hitscan: BulletPistolTrace40Practice
+  - type: CartridgeAmmo
+    proto: BulletPistolTrace40Practice
   - type: Sprite
     layers:
       - state: base
@@ -18,8 +18,8 @@
   name: Cartridge (.38 Special Incendiary)
   parent: CartridgePistol40SP
   components:
-  - type: HitScanCartridgeAmmo
-    hitscan: BulletPistolTrace40Incendiary
+  - type: CartridgeAmmo
+    proto: BulletPistolTrace40Incendiary
   - type: Sprite
     layers:
       - state: base
@@ -33,8 +33,8 @@
   name: Cartridge (.38 Special Uranium)
   parent: CartridgePistol40SP
   components:
-  - type: HitScanCartridgeAmmo
-    hitscan: BulletPistolTrace40Uranium
+  - type: CartridgeAmmo
+    proto: BulletPistolTrace40Uranium
   - type: Sprite
     layers:
       - state: base
@@ -48,8 +48,8 @@
   name: Cartridge (.38 Special Rubber)
   parent: CartridgePistol40SP
   components:
-  - type: HitScanCartridgeAmmo
-    hitscan: RubberBulletTrace
+  - type: CartridgeAmmo
+    proto: RubberBulletTrace
   - type: Sprite
     layers:
       - state: base
