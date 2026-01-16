@@ -28,6 +28,30 @@
         Piercing: 0.95
         Heat: 0.95
 
+- type: entity
+  parent: ClothingMaskBase
+  id: ClothingMaskClownDoc
+  name: Doctor Chuckles
+  description: Surely this doctor won't let you rot.. right?
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Mask/docclown.rsi
+    state: icon
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Mask/docclown.rsi
+  - type: BreathMask
+  - type: IngestionBlocker
+  - type: IdentityBlocker
+  - type: Tag
+    tags: []
+  - type: HideLayerClothing
+    slots:
+    - Hair
+    - Snout
+
+
+
+
 ## Syndicate Station
 
 
