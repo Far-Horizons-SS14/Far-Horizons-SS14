@@ -63,6 +63,7 @@ using Content.Shared.Coordinates;
 using Content.Shared.Item.ItemToggle.Components;
 using Content.Shared.Toggleable;
 using Content.Shared.Interaction;
+using Content.Shared.CombatMode.Pacification;
 
 namespace Content.Server._FarHorizons.Vehicle;
 
@@ -357,8 +358,8 @@ public sealed partial class VehicleSystems : SharedVehicleSystems
         }
         else if(args.OurFixture.Hard && !args.OtherFixture.Hard)
         {
-            if(!HasComp<DamageableComponent>(args.OtherEntity)) return; 
-            
+            if(!HasComp<DamageableComponent>(args.OtherEntity) || HasComp<PacifiedComponent>(ent.Owner)) return; 
+
             DamageTypePrototype? _blunt = _prototypes.Index<DamageTypePrototype>(_bluntname);
             DamageSpecifier? _damage = new(_blunt, Math.Clamp(10 * (1 + (0.5 * speed / ent.Comp.CrashingSpeed)), 10, 20));
             _damageable.TryChangeDamage(args.OtherEntity, _damage, origin: ent.Comp.Rider.Value);
