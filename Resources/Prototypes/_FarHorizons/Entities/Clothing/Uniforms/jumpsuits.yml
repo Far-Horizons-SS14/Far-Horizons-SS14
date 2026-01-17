@@ -49,6 +49,27 @@
   - type: Clothing
     sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/ntrepCC.rsi
 
+#region Security
+
+- type: entity
+  parent: [ClothingUniformBase, BaseSecurityContraband]
+  id: ClothingUniformJumpsuitSecCadet
+  name: Security Cadet Jumpsuit
+  description: A jumpsuit made of strong material, providing robust protection for the newest members of security.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/security_cadet.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/security_cadet.rsi
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      - state: overlay-inhand-left
+      right:
+      - state: inhand-right
+      - state: overlay-inhand-right
+
 #region Syndicate
 
 

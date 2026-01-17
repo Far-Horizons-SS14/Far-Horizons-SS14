@@ -2,7 +2,7 @@
 - type: entity
   parent: ClothingBeltStorageBase
   id: ClothingBeltAssault
-  name: assault belt
+  name: Assault Belt #Far Horizons - The Great Capitalization Crusade
   description: A tactical assault belt.
   components:
   - type: Sprite
@@ -44,7 +44,7 @@
 - type: entity
   parent: [ClothingBeltBase, ClothingSlotBase, BaseCommandContraband]
   id: ClothingBeltSheath
-  name: sabre sheath
+  name: Sabre Sheath #Far Horizons - The Great Capitalization Crusade
   description: An ornate sheath designed to hold an officer's blade.
   components:
   - type: Sprite
@@ -76,7 +76,7 @@
 - type: entity
   parent: ClothingBeltStorageBase
   id: ClothingBeltQuiver
-  name: quiver
+  name: Quiver #Far Horizons - The Great Capitalization Crusade
   description: Can hold up to 15 arrows, and fits snug around your waist.
   components:
   - type: Sprite
@@ -107,7 +107,7 @@
 - type: entity
   parent: [ClothingBeltAmmoProviderBase, BaseSecurityBartenderContraband]
   id: ClothingBeltBandolier
-  name: bandolier
+  name: Bandolier #Far Horizons - The Great Capitalization Crusade
   description: A bandolier for holding shotgun ammunition.
   components:
   - type: Sprite
@@ -128,7 +128,7 @@
 - type: entity
   parent: [ ClothingBeltStorageBase, BaseMagicalContraband ]
   id: ClothingBeltWand
-  name: wand belt
+  name: Wand Belt #Far Horizons - The Great Capitalization Crusade
   description: A belt designed to hold various rods of power. A veritable fanny pack of exotic magic.
   components:
   - type: Sprite
@@ -148,7 +148,7 @@
 - type: entity
   parent: ClothingBeltStorageBase
   id: ClothingBeltHolster
-  name: shoulder holster
+  name: Shoulder Holster #Far Horizons - The Great Capitalization Crusade
   description: 'A holster to carry a handgun and ammo. WARNING: Badasses only.'
   components:
   - type: Sprite
@@ -165,7 +165,7 @@
 - type: entity
   parent: [ClothingBeltStorageBase, BaseSyndicateContraband]
   id: ClothingBeltSyndieHolster
-  name: syndicate shoulder holster
+  name: Syndicate Shoulder Holster #Far Horizons - The Great Capitalization Crusade
   description: A deep shoulder holster capable of holding many types of ballistics.
   components:
   - type: Sprite
@@ -194,18 +194,18 @@
 - type: entity
   parent: ClothingBeltWebbingBase #FarHorizons
   id: ClothingBeltSecurityWebbing
-  name: security carrier
+  name: Security Carrier #Far Horizons - The Great Capitalization Crusade
   description: Unique and versatile chest rig, can hold spare magazines. #FH
   components:
   - type: Sprite
-    sprite: Clothing/Belt/securitywebbing.rsi
+    sprite: _FarHorizons/Clothing/Belt/securitywebbing.rsi #Far Horizons
   - type: Clothing
-    sprite: Clothing/Belt/securitywebbing.rsi
+    sprite: _FarHorizons/Clothing/Belt/securitywebbing.rsi #Far Horizons
 
 - type: entity
   parent: [ ClothingBeltWebbingBase, BaseSalvageContraband ] #FarHorizons
   id: ClothingBeltMercWebbing
-  name: mercenary webbing
+  name: Mercenary Webbing #Far Horizons - The Great Capitalization Crusade
   description: Ideal for storing spare ammo, grenades and other bits and bobs. #FH - Edit
   components:
 # FH - Removal

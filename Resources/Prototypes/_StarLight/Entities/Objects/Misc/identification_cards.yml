@@ -7,7 +7,7 @@
       sprite: _Starlight/Objects/Misc/id_cards.rsi
       layers:
         - state: silver
-        - sprite: &starlight-icon-rsi _Starlight/Interface/Misc/job_icons.rsi
+        - sprite: &icon-rsi _FarHorizons/Interface/Misc/job_icons.rsi #Far Horizons
           offset: &icon-offset -0.09375, 0.0625 #3 pixels left, 2 pixels up
           state: Magistrate
     - type: PresetIdCard
@@ -42,7 +42,7 @@
     - sprite: *id-rsi
       state: stripe_bottom
       color: &color-centcomm-bottom "#0d304d"
-    - sprite: *starlight-icon-rsi
+    - sprite: *icon-rsi #Far Horizons
       offset: *icon-offset
       state: CentCommOperator
   - type: Item
@@ -62,7 +62,7 @@
       color: &color-science-top "#a53aaa"
     - state: stripe_bottom
       color: &color-science-bottom "#652368"
-    - sprite: &icon-rsi Interface/Misc/job_icons.rsi
+    - sprite: *icon-rsi #Far Horizons
       offset: *icon-offset
       state: Roboticist
   - type: PresetIdCard
@@ -99,7 +99,7 @@
     sprite: _Starlight/Objects/Misc/id_cards.rsi
     layers:
     - state: silver
-    - sprite: *starlight-icon-rsi
+    - sprite: *icon-rsi #Far Horizons
       offset: *icon-offset
       state: IAA
   - type: PresetIdCard
@@ -120,7 +120,7 @@
     - sprite: *id-rsi
       state: stripe_bottom
       color: "#1b67a5"
-    - sprite: *starlight-icon-rsi
+    - sprite: *icon-rsi #Far Horizons
       offset: *icon-offset
       state: BlueShield
   - type: PresetIdCard
@@ -141,7 +141,7 @@
     - sprite: *id-rsi
       state: stripe_bottom
       color: "#1b67a5"
-    - sprite: *starlight-icon-rsi
+    - sprite: *icon-rsi #Far Horizons
       offset: *icon-offset
       state: NTNCBlueShield
   - type: PresetIdCard
@@ -162,7 +162,7 @@
     - sprite: *id-rsi
       state: stripe_bottom
       color: &color-supply-bottom "#5b4523"
-    - sprite: *starlight-icon-rsi
+    - sprite: *icon-rsi #Far Horizons
       offset: *icon-offset
       state: SalvageLead
   - type: PresetIdCard
@@ -204,7 +204,7 @@
     - sprite: *id-rsi
       state: stripe_bottom
       color: *color-supply-bottom
-    - sprite: *starlight-icon-rsi
+    - sprite: *icon-rsi #Far Horizons
       offset: *icon-offset
       state: MailTech
   - type: PresetIdCard
@@ -229,7 +229,7 @@
       sprite: _Starlight/Objects/Misc/id_cards.rsi
       layers:
         - state: syndi
-        - sprite: *starlight-icon-rsi
+        - sprite: *icon-rsi #Far Horizons
           offset: *icon-offset
           state: Commander
     - type: Access
@@ -255,7 +255,7 @@
       sprite: _Starlight/Objects/Misc/id_cards.rsi
       layers:
         - state: syndi
-        - sprite: *starlight-icon-rsi
+        - sprite: *icon-rsi #Far Horizons
           offset: *icon-offset
           state: SyndicateAgent
     - type: Access
@@ -281,7 +281,7 @@
       sprite: _Starlight/Objects/Misc/id_cards.rsi
       layers:
         - state: syndi
-        - sprite: *starlight-icon-rsi
+        - sprite: *icon-rsi #Far Horizons
           offset: *icon-offset
           state: Operative
     - type: Access

@@ -1,7 +1,7 @@
 - type: entity
   parent: [ ClothingBeltStorageBase, BaseMajorContraband ]
   id: ClothingAbductorBelt
-  name: abductor belt
+  name: Abductor Belt #Far Horizons - The Great Capitalization Crusade
   description: Can hold various OUR things.
   components:
   - type: Sprite
@@ -107,7 +107,7 @@
 - type: entity
   parent: [ClothingBeltStorageBase, ContentsExplosionResistanceBase, BaseCommandContraband]
   id: ClothingBeltBlueShield
-  name: blueshield webbing
+  name: Blueshield Webbing #Far Horizons - The Great Capitalization Crusade
   description: A tactical rig that can hold many items to save the lives of command.
   components:
   - type: Storage
@@ -124,31 +124,31 @@
 - type: entity
   parent: ClothingBeltWebbingBase #FH
   id: ClothingBeltBrigmedicWeb
-  name: tactical trauma rig
+  name: Tactical Trauma Rig #Far Horizons - The Great Capitalization Crusade
   description: A stylish alternative to the belt.
   components:
   - type: Sprite
-    sprite: _Starlight/Clothing/Belt/brigmedicwebbing.rsi
+    sprite: _FarHorizons/Clothing/Belt/brigmedicwebbing.rsi #Far Horizons
   - type: Clothing
-    sprite: _Starlight/Clothing/Belt/brigmedicwebbing.rsi
+    sprite: _FarHorizons/Clothing/Belt/brigmedicwebbing.rsi #Far Horizons
   - type: Appearance
 
 - type: entity
   parent: [ClothingBeltBrigmedic]
   id: ClothingBeltCorpsman
-  name: corpsman duty belt
+  name: Corpsman Duty Belt #Far Horizons - The Great Capitalization Crusade
   description: A tactical belt with as many pockets and bags to hold all the medical items you need!
   components:
   - type: Sprite
-    sprite: _Starlight/Clothing/Belt/corpsmanbelt.rsi
+    sprite: _FarHorizons/Clothing/Belt/corpsmanbelt.rsi #Far Horizons
   - type: Clothing
-    sprite: _Starlight/Clothing/Belt/corpsmanbelt.rsi
+    sprite: _FarHorizons/Clothing/Belt/corpsmanbelt.rsi #Far Horizons
   - type: Appearance
 
 - type: entity
   parent: [ClothingBeltAmmoProviderBase, BaseSovietContraband] #FH - Edit
   id: ClothingSovietBandolier
-  name: marine bandolier
+  name: Marine Bandolier #Far Horizons - The Great Capitalization Crusade
   description: Smells of oil, sweat, and questionable decisions.
   components:
   - type: Sprite
@@ -171,7 +171,7 @@
 - type: entity
   parent: [ClothingBeltWebbingBase, ContentsExplosionResistanceBase, BaseMajorContraband] #FH - Edit
   id: ClothingBeltOperativeWebbing
-  name: operative webbing
+  name: Operative Webbing #Far Horizons - The Great Capitalization Crusade
   description: Standard-rendered in a low-vis to mid-vis B3 pattern, this module is a streamlined workhorse and a go-to pick for various galactic paramilitaries that operate within the black market.
   components:
   - type: Sprite
@@ -199,7 +199,7 @@
 - type: entity
   id: ClothingBeltOperativeWebbingGrenadeFilled
   parent: ClothingBeltWebbingBase #FH
-  name: grenadier operative webbing
+  name: Grenadier Operative Webbing #Far Horizons - The Great Capitalization Crusade
   suffix: Filled
   components:
   - type: Sprite #FH
@@ -222,7 +222,7 @@
 - type: entity
   parent: [ClothingBeltStorageBase, BaseSovietContraband]
   id: ClothingSovietBelt
-  name: soviet belt
+  name: Soviet Belt #Far Horizons - The Great Capitalization Crusade
   description: Can hold various OUR things.
   components:
   - type: Sprite
@@ -342,7 +342,7 @@
 - type: entity
   parent: [ClothingBeltWebbingBase, ContentsExplosionResistanceBase, BaseSovietContraband] #FH
   id: ClothingBeltSovietMarineWebbing
-  name: SSF marine chest rig
+  name: SSF Marine Chest Rig #Far Horizons - The Great Capitalization Crusade
   description:  A set of tactical webbing worn by the iconic soviet elite marines.
   components:
   - type: Sprite
@@ -355,14 +355,14 @@
 - type: entity
   parent: ClothingBeltSovietMarineWebbing
   id: ClothingBeltSovietMarineWebbingLoadout
-  name: SSF marine chest rig
+  name: SSF Marine Chest Rig #Far Horizons - The Great Capitalization Crusade
   description:  A set of tactical webbing worn by the iconic soviet elite marines.
 #FH - Removal
 
 - type: entity
   parent: [ClothingBeltStorageBase, ContentsExplosionResistanceBase, BaseCentcommContraband]
   id: ClothingBeltNTNCRig
-  name: ntnc rig
+  name: NTNC Rig #Far Horizons - The Great Capitalization Crusade
   description: A military rig worn by NTNC Officers
   components:
   - type: Storage #Starlight
@@ -384,7 +384,7 @@
 - type: entity
   parent: [ BaseSalvageContraband, ClothingBeltStorageBase ]
   id: ClothingBeltSalvageMercWebbing
-  name: scrapper webbing
+  name: Scrapper Webbing #Far Horizons - The Great Capitalization Crusade
   description: Ideal for storing everything from tools, ammo, and salvage.
   components:
     - type: Storage

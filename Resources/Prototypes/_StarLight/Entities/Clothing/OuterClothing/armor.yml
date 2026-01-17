@@ -1,7 +1,7 @@
 - type: entity
   parent: [ClothingOuterArmorBase, BaseCommandContraband]
   id: ClothingOuterArmorBlueShield
-  name: blueshield officer's bulletproof vest
+  name: Blueshield Officer's Bulletproof Vest #Far Horizons - The Great Capitalization Crusade
   description: Much better than a standard type-1 security vest. Don't lose it, you will NOT get a replacement.
   components:
   - type: Sprite
@@ -28,7 +28,7 @@
 - type: entity
   parent: [BaseMajorContraband, ClothingOuterArmorBasic]
   id: ClothingOuterArmorAbductor
-  name: agent vest
+  name: Agent Vest #Far Horizons - The Great Capitalization Crusade
   components:
     - type: Sprite
       sprite: _Starlight/Clothing/OuterClothing/Armor/abductor.rsi
@@ -91,15 +91,15 @@
 - type: entity
   parent: [ClothingOuterArmorBase, BaseSecurityContraband]
   id: ClothingOuterArmorPlate
-  name: plate carrier
+  name: Plate Carrier #Far Horizons - The Great Capitalization Crusade
   description: A standard Type II armored vest that provides good protection against bullets and lasers with the help of a plate inserted in the back and front, but not much else.
   components:
   - type: Pierceable
     level: Metal
   - type: Sprite
-    sprite: _Starlight/Clothing/OuterClothing/Armor/platecarrier.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Armor/platecarrier.rsi #Far Horizons
   - type: Clothing
-    sprite: _Starlight/Clothing/OuterClothing/Armor/platecarrier.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Armor/platecarrier.rsi #Far Horizons
   - type: Armor
     modifiers:
       flatReductions: #FH
@@ -115,15 +115,15 @@
 - type: entity
   parent: [ClothingOuterArmorBase, BaseSecurityContraband]
   id: ClothingOuterArmorStab
-  name: stabproof vest
+  name: Stabproof Vest #Far Horizons - The Great Capitalization Crusade
   description: Contrary to it's name, it's just a Type II armored vest that provides good protection against stabs and punches, but not much else.
   components:
     - type: Pierceable
       level: Metal
     - type: Sprite
-      sprite: _Starlight/Clothing/OuterClothing/Armor/stabvest.rsi
+      sprite: _FarHorizons/Clothing/OuterClothing/Armor/stabvest.rsi #Far Horizons
     - type: Clothing
-      sprite: _Starlight/Clothing/OuterClothing/Armor/stabvest.rsi
+      sprite: _FarHorizons/Clothing/OuterClothing/Armor/stabvest.rsi #Far Horizons
     - type: Armor
       modifiers:
         coefficients:
@@ -135,7 +135,7 @@
 - type: entity
   parent: [ClothingOuterArmorBase, BaseSecurityContraband]
   id: ClothingOuterArmorHeatAbsorb
-  name: heat absorbent vest
+  name: Heat Absorbent Vest #Far Horizons - The Great Capitalization Crusade
   description: Advanced vest designed to absorb heat rather than reflect it, but still has some reflective properties itself. Not good against bullets or blunt impacts due to the fragile material.
   components:
   - type: Pierceable
@@ -157,7 +157,7 @@
 - type: entity
   parent: [ClothingOuterArmorForged, BaseMinorContraband]
   id: ClothingOuterArmorMakeshift
-  name: makeshift vest
+  name: Makeshift Vest #Far Horizons - The Great Capitalization Crusade
   description: Might catch a bullet. Might.
   components:
     - type: Sprite
@@ -183,7 +183,7 @@
 - type: entity
   parent: [ClothingOuterArmorForged, BaseMinorContraband]
   id: ClothingOuterArmorImprovised
-  name: improvised vest
+  name: Improvised Vest #Far Horizons - The Great Capitalization Crusade
   description: Interlocking metal plates ensure you're decently protected against stabs, but not much else.
   components:
     - type: Sprite
@@ -210,7 +210,7 @@
       BaseMinorContraband,
     ] #BaseSecurityContraband overwrites BaseMinorContraband, annoyingly enough.
   id: ClothingOuterArmorForged
-  name: forged vest
+  name: Forged Vest #Far Horizons - The Great Capitalization Crusade
   description: A product of high-quality tidesmithing, the additional leather padding and the swap for plasteel over steel ensures the armor is lightweight and effective.
   components:
   - type: Sprite
@@ -235,7 +235,7 @@
   parent:
     [ClothingOuterBaseMedium, AllowSuitStorageClothing, BaseMajorContraband]
   id: ClothingOuterArmorPaladin
-  name: paladin suit
+  name: Paladin Suit #Far Horizons - The Great Capitalization Crusade
   description: Be the paladin you want to be! Swing swords in maints at the terrified security officer! Battle MONSTERS that are totally not vent creatures! Get shot by lasers and die-! Wait what?
   components:
   - type: Sprite
@@ -263,7 +263,7 @@
   parent:
     [ClothingOuterStorageBase, AllowSuitStorageClothing, BaseCentcommContraband]
   id: ClothingOuterVestWebEliteCentcomm
-  name: central command web vest
+  name: Central Command Web Vest #Far Horizons - The Great Capitalization Crusade
   description: A synthetic armor vest redesignated for use by the Corporate Consortium, webbing and heat resistant fibers included.
   components:
   - type: Sprite
@@ -294,7 +294,7 @@
 - type: entity
   parent: [ClothingOuterArmorBase, BaseCentcommContraband]
   id: ClothingOuterVestNTNC
-  name: nt-nc naval officer's vest
+  name: NT-NC Naval Officer's Vest #Far Horizons - The Great Capitalization Crusade
   description: Much better than a standard type-1 security vest. Don't lose it, you will NOT get a replacement.
   components:
     - type: Sprite
@@ -318,7 +318,7 @@
 - type: entity
   parent: [BaseSalvageContraband, ClothingOuterVestWeb] #web vest so it should have some pockets for ammo
   id: ClothingOuterVestWebSalvageMerc
-  name: scrapper web vest
+  name: Scrapper Web Vest #Far Horizons - The Great Capitalization Crusade
   description: A versatile armored vest, popular among salvagers for its protective yet lightweight design.
   components:
     - type: Sprite
@@ -341,7 +341,7 @@
 - type: entity
   parent: [BaseGrandTheftContraband, ClothingOuterArmorBase]
   id: ClothingOuterReactiveArmourShell
-  name: reactive armour shell
+  name: Reactive Armour Shell #Far Horizons - The Great Capitalization Crusade
   description: An experimental suit of armour, awaiting installation of an anomaly core.
   components:
     - type: Sprite
@@ -383,7 +383,7 @@
 - type: entity
   parent: [ClothingOuterBaseMedium, BaseSovietContraband, AllowSuitStorageClothing ] #"ClothingOuterArmorBase" is stupid and overrides any contraband level.
   id: ClothingOuterArmorSovietFlak
-  name: soviet flak vest
+  name: Soviet Flak Vest #Far Horizons - The Great Capitalization Crusade
   description: An old Soviet-era flak vest designed to mitigate damage from explosives, with minor penetration resistance. However, it's just a cheap reproduction model. quality may vary.
   components:
   - type: Pierceable

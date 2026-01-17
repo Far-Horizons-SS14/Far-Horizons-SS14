@@ -1,4 +1,15 @@
+###### NanoTrasen
+
+## Specific Roles
+
+#### Command
 loadout-group-command-eyewear = Command Eyewear
+
+#### Security
+
+loadout-group-cadet-uniform = Cadet Uniform
+
+###### Syndicate
 
 loadout-group-syndie-generic-backpack = Syndicate Backpack
 loadout-group-syndie-generic-head = Syndicate Hat

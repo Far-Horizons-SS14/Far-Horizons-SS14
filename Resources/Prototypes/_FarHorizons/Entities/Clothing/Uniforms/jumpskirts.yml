@@ -1,23 +1,9 @@
-#region GSL
-# QM
-
-- type: entity
-  parent: [ ClothingUniformSkirtBase, BaseCommandContraband ]
-  id: ClothingUniformJumpskirtQMFormal
-  name: quartermaster's formal jumpskirt
-  description: For only the highest nobility within CentComm's representatives. May they be dazzled by your brilliance.
-  components:
-  - type: Sprite
-    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/qmformal.rsi
-  - type: Clothing
-    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/qmformal.rsi
-
 #region Shared
 
 - type: entity
   parent: ClothingUniformSkirtBase
   id: ClothingUniformJumpskirtBrightPerformer
-  name: bright performer's jumpskirt
+  name: Bright Performer's Jumpskirt
   description: The lesser known AI, but that hasn't stopped her from making a name for herself!
   components:
   - type: Sprite
@@ -25,14 +11,40 @@
   - type: Clothing
     sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/brightperformer.rsi
 
+#region GSL
+
+# QM
+
+- type: entity
+  parent: [ ClothingUniformSkirtBase, BaseCommandContraband ]
+  id: ClothingUniformJumpskirtQMFormal
+  name: Quartermaster's Formal Jumpskirt
+  description: For only the highest nobility within CentComm's representatives. May they be dazzled by your brilliance.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/qmformal.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/qmformal.rsi
+
 #region NanoTrasen
+
+
+
+
+
+
+
+
+
+
+#region Command
 
 # Magistrate
 
 - type: entity
   parent: [ ClothingUniformSkirtBase, BaseCommandContraband ]
   id: ClothingUniformJumpskirtTurtleneckMagistrate
-  name: magistrate's turtleneck jumpskirt
+  name: Magistrate's Turtleneck Jumpskirt
   description: A state of the art turtleneck jumpskirt that the CFA supplies their law justicars.
   components:
   - type: Sprite
@@ -45,7 +57,7 @@
 - type: entity
   parent: [ ClothingUniformSkirtBase, BaseCommandContraband ]
   id: ClothingUniformJumpskirtNtrepCentComm
-  name: nt representive's centcomm jumpskirt
+  name: NT Representive's Centcomm Jumpskirt
   description: When you somehow want to look even more official than you did before.
   components:
   - type: Sprite
@@ -56,7 +68,7 @@
 - type: entity
   parent: [ ClothingUniformSkirtBase, BaseCommandContraband ]
   id: ClothingUniformJumpskirtNtrepFormal
-  name: nt representive's formal jumpskirt
+  name: NT Representive's Formal Jumpskirt
   description: For when CentComm tells you to dress to the nines, the NTR takes it to the tens instead.
   components:
   - type: Sprite
@@ -67,7 +79,7 @@
 - type: entity
   parent: [ ClothingUniformSkirtBase, BaseCommandContraband ]
   id: ClothingUniformJumpskirtNtrepNoble
-  name: nt representive's noble jumpskirt
+  name: NT Representive's Noble Jumpskirt
   description: For only the highest nobility within CentComm's representatives. May they be dazzled by your brilliance.
   components:
   - type: Sprite
@@ -75,7 +87,26 @@
   - type: Clothing
     sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/ntrepnoble.rsi
 
+#region Security
 
+- type: entity
+  parent: [ClothingUniformSkirtBase, BaseSecurityContraband]
+  id: ClothingUniformJumpskirtSecCadet
+  name: Security Cadet Jumpskirt 
+  description: A jumpskirt made of strong material, providing robust protection for the newest members of security.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/security_cadet.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/security_cadet.rsi
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      - state: overlay-inhand-left
+      right:
+      - state: inhand-right
+      - state: overlay-inhand-right
 
 #region Syndicate
 
@@ -98,7 +129,7 @@
 - type: entity
   parent: [ClothingUniformSkirtBase, BaseCommandContraband]
   id: ClothingUniformJumpskirtCaptainSyndi
-  name: commander's jumpskirt
+  name: Commander's Jumpskirt
   description: It's a black jumpskirt with some gold markings denoting the rank of "Commander".
   components:
   - type: Sprite
@@ -109,7 +140,7 @@
 - type: entity
   parent: ClothingUniformSkirtBase
   id: ClothingUniformJumpskirtCapFormalDressSyndi
-  name: commander's formal dress
+  name: Commander's Formal Dress
   description: A dress for special occasions.
   components:
   - type: Sprite
@@ -122,7 +153,7 @@
 - type: entity
   parent: [ClothingUniformSkirtBase, BaseCommandContraband]
   id: ClothingUniformJumpskirtHoPSyndi
-  name: personnel chief's jumpskirt
+  name: Personnel Chief's Jumpskirt
   description: Rather bland and inoffensive. Perfect for vanishing off the face of the universe.
   components:
   - type: Sprite
@@ -133,7 +164,7 @@
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformJumpskirtHoPTurtleneckSyndi
-  name: personnel chief's turtleneck
+  name: Personnel Chief's Turtleneck
   description: It's the Personnel Chief's turtleneck.
   components:
   - type: Sprite
