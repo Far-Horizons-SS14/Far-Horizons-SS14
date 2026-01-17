@@ -19,9 +19,6 @@ public sealed partial class IPCSystem
 
     private void InitializeUI()
     {
-        SubscribeLocalEvent<IPCLockComponent, BeforeActivatableUIOpenEvent>((ent, _, _) => UpdateUI(ent));
-        SubscribeLocalEvent<IPCLockComponent, MobStateChangedEvent>((ent, _, _) => UpdateUI(ent));
-
         SubscribeLocalEvent<IPCLockComponent, IPCEjectBrainBuiMessage>(OnEjectBrainBuiMessage);
         SubscribeLocalEvent<IPCLockComponent, IPCEjectBatteryBuiMessage>(OnEjectBatteryBuiMessage);
         SubscribeLocalEvent<IPCLockComponent, IPCSetNameBuiMessage>(OnSetNameBuiMessage);
@@ -68,23 +65,5 @@ public sealed partial class IPCSystem
 
         _adminLog.Add(LogType.Action, LogImpact.High, $"{ToPrettyString(args.Actor):player} set IPC \"{ToPrettyString(ent)}\"'s name to: {name}");
         _metaData.SetEntityName(ent, name, metaData, false);
-    }
-
-    public void UpdateUI(EntityUid uid)
-    {
-        var chargePercent = 0f;
-        var hasBattery = false;
-        var mobState = MobState.Dead;
-        if (_powerCell.TryGetBatteryFromSlot(uid, out var battery))
-        {
-            hasBattery = true;
-            chargePercent = battery.Value.Comp.LastCharge / battery.Value.Comp.MaxCharge;
-        }
-
-        if (TryComp<MobStateComponent>(uid, out var mobStateComp))
-            mobState = mobStateComp.CurrentState;
-        
-        _ui.SetUiState(uid, IPCUiKey.Key,
-            new IPCBuiState(chargePercent, hasBattery, mobState));
     }
 } 
