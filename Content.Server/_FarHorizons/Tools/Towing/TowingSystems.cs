@@ -74,7 +74,6 @@ public sealed partial class TowingSystem : EntitySystem
                 CreateJoint(entA, target, ent.Comp, isHitch:tied.isHitch);
             else
                 CreateJoint(entA, target, ent.Comp);
-
             QueueDel(ent.Owner);
         }
     }
