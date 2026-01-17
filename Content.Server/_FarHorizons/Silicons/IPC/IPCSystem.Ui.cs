@@ -67,7 +67,7 @@ public sealed partial class IPCSystem
             return;
 
         _adminLog.Add(LogType.Action, LogImpact.High, $"{ToPrettyString(args.Actor):player} set IPC \"{ToPrettyString(ent)}\"'s name to: {name}");
-        _metaData.SetEntityName(ent, name, metaData);
+        _metaData.SetEntityName(ent, name, metaData, false);
     }
 
     public void UpdateUI(EntityUid uid)

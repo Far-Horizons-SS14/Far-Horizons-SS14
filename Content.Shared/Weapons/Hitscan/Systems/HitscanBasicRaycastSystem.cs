@@ -20,6 +20,8 @@ using Content.Shared.Weapons.Reflect;
 using Robust.Shared.Maths;
 using Robust.Shared.Prototypes;
 using Content.Shared._Starlight.NullSpace;
+
+using Content.Shared._FarHorizons.Vehicles.Components; // FarHorizons
 #endregion Starlight
 
 namespace Content.Shared.Weapons.Hitscan.Systems;
@@ -60,7 +62,15 @@ public sealed class HitscanBasicRaycastSystem : EntitySystem
         // Starlight end
         var mapCords = _transform.ToMapCoordinates(args.FromCoordinates);
         var ray = new CollisionRay(mapCords.Position, args.ShotDirection, (int) ent.Comp.CollisionMask);
-        var rayCastResults = _physics.IntersectRay(mapCords.MapId, ray, ent.Comp.MaxDistance, shooter, false);
+        //FarHorizons-edit start
+        var rayCastResults = _physics.IntersectRay(mapCords.MapId, ray, ent.Comp.MaxDistance, shooter, false).ToList();
+
+        if (TryComp<RiderComponent>(shooter, out var rider) && rider.Riding != null)
+        {
+            var ridden = rider.Riding;
+            rayCastResults.RemoveAll(x => x.HitEntity == ridden.Value);
+        }
+        //FarHorizons-edit end
 
         var target = args.Target;
         // If you are in a container, use the raycast result

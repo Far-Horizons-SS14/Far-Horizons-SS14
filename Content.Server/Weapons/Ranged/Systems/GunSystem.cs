@@ -222,6 +222,7 @@ public sealed partial class GunSystem : SharedGunSystem
         {
             // Startlight-edit: start
             var isMechShooter = user != null && TryComp<MechPilotComponent>(user.Value, out _);
+            isMechShooter = user != null && HasComp<RiderComponent>(user.Value);
             const float MechMuzzleOffset = 0.8f;
 
             EntityCoordinates SpawnFrom(Angle angle)
