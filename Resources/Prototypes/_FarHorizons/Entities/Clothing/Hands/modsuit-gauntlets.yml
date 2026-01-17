@@ -26,17 +26,12 @@
         Caustic: 0.9
   - type: Insulated
   - type: Appearance
-  - type: ToggleableVisuals
-    spriteLayer: enum.ToggleableVisuals.Layer
-    clothingVisuals:
-      gloves:
-        - state: equipped-HAND
-        - state: equipped-HAND-sealed
-          shader: unshaded
-      gloves-resomi:
-        - state: equipped-HAND-resomi
-        - state: equipped-HAND-sealed-resomi
-          shader: unshaded
+  - type: GenericVisualizer
+    visuals:
+      enum.ToggleableVisuals.Enabled:
+        enum.ToggleableVisuals.Layer:
+          False: { state: gauntlets }
+          True: { state: gauntlets-sealed, shader: unshaded }
   - type: Tag
     tags:
     - WhitelistChameleon

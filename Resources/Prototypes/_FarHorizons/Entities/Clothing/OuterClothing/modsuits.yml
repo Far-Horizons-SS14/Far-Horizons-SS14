@@ -41,17 +41,12 @@
     - RArm
     - LArm
   - type: Appearance
-  - type: ToggleableVisuals
-    spriteLayer: enum.ToggleableVisuals.Layer
-    clothingVisuals:
-      outerClothing:
-        - state: equipped-OUTERCLOTHING
-        - state: equipped-OUTERCLOTHING-sealed
-          shader: unshaded
-      outerClothing-resomi:
-        - state: equipped-OUTERCLOTHING-resomi
-        - state: equipped-OUTERCLOTHING-sealed-resomi
-          shader: unshaded
+  - type: GenericVisualizer
+    visuals:
+      enum.ToggleableVisuals.Enabled:
+        enum.ToggleableVisuals.Layer:
+          False: { state: chestplate }
+          True: { state: chestplate-sealed, shader: unshaded }
   - type: Tag
     tags:
     - MonkeyWearable

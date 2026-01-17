@@ -31,13 +31,12 @@
     - RFoot
     - LFoot
   - type: Appearance
-  - type: ToggleableVisuals
-    spriteLayer: enum.ToggleableVisuals.Layer
-    clothingVisuals:
-      shoes:
-        - state: equipped-FEET
-        - state: equipped-FEET-sealed
-          shader: unshaded
+  - type: GenericVisualizer
+    visuals:
+      enum.ToggleableVisuals.Enabled:
+        enum.ToggleableVisuals.Layer:
+          False: { state: boots }
+          True: { state: boots-sealed, shader: unshaded }
   - type: Tag
     tags:
     - WhitelistChameleon

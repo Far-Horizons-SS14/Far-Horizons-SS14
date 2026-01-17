@@ -40,17 +40,12 @@
     - HeadTop
     - HeadSide
   - type: Appearance
-  - type: ToggleableVisuals
-    spriteLayer: enum.ToggleableVisuals.Layer
-    clothingVisuals:
-      head:
-        - state: equipped-HEAD
-        - state: equipped-HEAD-sealed
-          shader: unshaded
-      head-resomi:
-        - state: equipped-HEAD-resomi
-        - state: equipped-HEAD-sealed-resomi
-          shader: unshaded
+  - type: GenericVisualizer
+    visuals:
+      enum.ToggleableVisuals.Enabled:
+        enum.ToggleableVisuals.Layer:
+          False: { state: helmet }
+          True: { state: helmet-sealed, shader: unshaded }
   - type: Tag
     tags:
     - WhitelistChameleon

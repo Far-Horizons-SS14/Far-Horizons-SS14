@@ -142,20 +142,20 @@ public sealed class SharedModsuitSystem : EntitySystem
             SetActive(uid, component, false);
 
         // Remove unremoveable from control unit
-        RemCompDeferred<UnremoveableComponent>(uid);
+        RemComp<UnremoveableComponent>(uid);
 
         // Retract all parts if deployed
         if (component.Deployed && component.Wearer != null)
         {
             // Force remove unremoveable from all parts before retracting
-            if (component.Helmet != null)
-                RemCompDeferred<UnremoveableComponent>(component.Helmet.Value);
-            if (component.Chestplate != null)
-                RemCompDeferred<UnremoveableComponent>(component.Chestplate.Value);
-            if (component.Gauntlets != null)
-                RemCompDeferred<UnremoveableComponent>(component.Gauntlets.Value);
-            if (component.Boots != null)
-                RemCompDeferred<UnremoveableComponent>(component.Boots.Value);
+            if (component.Helmet != null && Exists(component.Helmet.Value))
+                RemComp<UnremoveableComponent>(component.Helmet.Value);
+            if (component.Chestplate != null && Exists(component.Chestplate.Value))
+                RemComp<UnremoveableComponent>(component.Chestplate.Value);
+            if (component.Gauntlets != null && Exists(component.Gauntlets.Value))
+                RemComp<UnremoveableComponent>(component.Gauntlets.Value);
+            if (component.Boots != null && Exists(component.Boots.Value))
+                RemComp<UnremoveableComponent>(component.Boots.Value);
             
             RetractAllParts(uid, component, args.Equipee);
         }
@@ -261,6 +261,14 @@ public sealed class SharedModsuitSystem : EntitySystem
         if (partUid == null || component.Wearer == null)
             return;
 
+        // Ensure the part component link is maintained
+        if (TryComp<ModsuitPartComponent>(partUid.Value, out var partComp))
+        {
+            partComp.Control = uid;
+            partComp.Sealed = false; // Start unsealed when deployed
+            Dirty(partUid.Value, partComp);
+        }
+
         // Remove from container first if it's stored
         if (_container.TryGetContainingContainer(partUid.Value, out var container))
             _container.Remove(partUid.Value, container);
@@ -270,15 +278,9 @@ public sealed class SharedModsuitSystem : EntitySystem
             // Slot is empty, deploy the part (silently to avoid spam)
             if (_inventory.TryEquip(component.Wearer.Value, partUid.Value, slot, silent: true, force: true))
             {
-                if (TryComp<ModsuitPartComponent>(partUid.Value, out var partComp))
-                {
-                    partComp.Sealed = false; // Start unsealed when deployed
-                    
-                    // Update appearance to show unsealed state
-                    if (TryComp<AppearanceComponent>(partUid.Value, out var appearance))
-                        _appearance.SetData(partUid.Value, ToggleableVisuals.Enabled, false, appearance);
-                    Dirty(partUid.Value, partComp);
-                }
+                // Update appearance to show unsealed state
+                if (TryComp<AppearanceComponent>(partUid.Value, out var appearance))
+                    _appearance.SetData(partUid.Value, ToggleableVisuals.Enabled, false, appearance);
                 
                 // Make part unremovable even when unsealed
                 EnsureComp<UnremoveableComponent>(partUid.Value);
@@ -313,36 +315,53 @@ public sealed class SharedModsuitSystem : EntitySystem
         if (partUid == null || component.Wearer == null)
             return;
 
-        // Remove unremoveable component
-        RemCompDeferred<UnremoveableComponent>(partUid.Value);
+        // Check if entity is valid
+        if (!Exists(partUid.Value))
+            return;
 
-        // Update appearance to show unsealed state before unequipping
+        // Update part component to maintain link
         if (TryComp<ModsuitPartComponent>(partUid.Value, out var partComp))
         {
+            partComp.Control = uid; // Ensure link is maintained
             partComp.Sealed = false;
             Dirty(partUid.Value, partComp);
             
-            // Update appearance to show unsealed state
+            // Update appearance to show unsealed state before unequipping
             if (TryComp<AppearanceComponent>(partUid.Value, out var appearance))
                 _appearance.SetData(partUid.Value, ToggleableVisuals.Enabled, false, appearance);
         }
 
-        // Find which slot this part is in and unequip it ONCE
+        // Remove unremoveable component to allow unequip
+        RemComp<UnremoveableComponent>(partUid.Value);
+
+        // Check if part is already in a container - if so, we're done
+        if (_container.TryGetContainingContainer(partUid.Value, out var existingContainer))
+        {
+            // Already in a container, nothing to do
+            return;
+        }
+
+        // Find which slot this part is in and unequip it
+        bool wasUnequipped = false;
         if (_inventory.TryGetContainerSlotEnumerator(component.Wearer.Value, out var enumerator))
         {
             while (enumerator.MoveNext(out var slot))
             {
                 if (_inventory.TryGetSlotEntity(component.Wearer.Value, slot.ID, out var slotEntity) && slotEntity == partUid.Value)
                 {
-                    _inventory.TryUnequip(component.Wearer.Value, slot.ID, force: true);
-                    break; // Only unequip once
+                    _inventory.TryUnequip(component.Wearer.Value, slot.ID, force: true, silent: true);
+                    wasUnequipped = true;
+                    break;
                 }
             }
         }
 
-        // Store in container
-        var container = _container.EnsureContainer<Container>(uid, containerId);
-        _container.Insert(partUid.Value, container);
+        // Only insert into container if we actually unequipped it and it's not already in a container
+        if (wasUnequipped && !_container.TryGetContainingContainer(partUid.Value, out _))
+        {
+            var container = _container.EnsureContainer<Container>(uid, containerId);
+            _container.Insert(partUid.Value, container);
+        }
     }
 
     public void SetActive(EntityUid uid, ModsuitControlComponent component, bool active, EntityUid? user = null)
@@ -378,7 +397,11 @@ public sealed class SharedModsuitSystem : EntitySystem
             UnsealPartSequential(uid, component, component.Boots, 1.5f);
             
             // Allow control unit removal after delay
-            Timer.Spawn(TimeSpan.FromSeconds(2f), () => RemCompDeferred<UnremoveableComponent>(uid));
+            Timer.Spawn(TimeSpan.FromSeconds(2f), () => 
+            {
+                if (Exists(uid))
+                    RemComp<UnremoveableComponent>(uid);
+            });
         }
 
         // Update movement speed
@@ -454,10 +477,10 @@ public sealed class SharedModsuitSystem : EntitySystem
         if (component.ActivateActionEntity == null)
             return;
 
-        // Change icon based on primed state
+        // Change icon based on primed state - activate-ready when primed, activate when not
         var icon = new SpriteSpecifier.Rsi(
             new ResPath("Interface/Actions/actions_mod.rsi"),
-            primed ? "activate" : "activate-ready"
+            primed ? "activate-ready" : "activate"
         );
         
         _actions.SetIcon(component.ActivateActionEntity.Value, icon);
