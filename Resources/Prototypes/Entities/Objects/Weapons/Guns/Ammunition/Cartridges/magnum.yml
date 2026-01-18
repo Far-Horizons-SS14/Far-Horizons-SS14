@@ -1,4 +1,6 @@
 - type: entity
+  abstract: true
+  parent: [ BaseCartridge, BaseSecurityContraband ]
   id: BaseCartridgeMagnum
   name: Cartridge (.44 Magnum) #FH
   parent: [ BaseCartridge, BaseSecuritySalvageContraband ] #Starlight
@@ -66,6 +68,7 @@
         color: "#B68F0E"
 
 - type: entity
+  parent: BaseCartridgeMagnum
   id: CartridgeMagnumAP
   name: Cartridge (.44 Magnum AP) #FH
   parent: BaseCartridgeMagnum
@@ -112,6 +115,7 @@
         color: "#BFC8CA"
 
 - type: entity
+  parent: BaseCartridgeMagnum
   id: CartridgeMagnumUranium
   name: Cartridge (.44 Magnum Uranium) #FH
   parent: BaseCartridgeMagnum

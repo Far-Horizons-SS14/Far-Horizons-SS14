@@ -57,6 +57,41 @@ public sealed partial class IdCardConsoleComponent : Component
     [AutoNetworkedField]
     public ProtoId<AccessGroupPrototype>? CurrentAccessGroup;
     // Starlight-edit: End
+    public List<ProtoId<AccessLevelPrototype>> AccessLevels = new()
+    {
+        "Armory",
+        "Atmospherics",
+        "Bar",
+        "Brig",
+        "Detective",
+        "Captain",
+        "Cargo",
+        "Chapel",
+        "Chemistry",
+        "ChiefEngineer",
+        "ChiefMedicalOfficer",
+        "Command",
+        "Cryogenics",
+        "Engineering",
+        "External",
+        "GenpopEnter",
+        "GenpopLeave",
+        "HeadOfPersonnel",
+        "HeadOfSecurity",
+        "Hydroponics",
+        "Janitor",
+        "Kitchen",
+        "Lawyer",
+        "Maintenance",
+        "Medical",
+        "Quartermaster",
+        "Research",
+        "ResearchDirector",
+        "Salvage",
+        "Security",
+        "Service",
+        "Theatre",
+    };
 
     [Serializable, NetSerializable]
     public sealed class IdCardConsoleBoundUserInterfaceState : BoundUserInterfaceState

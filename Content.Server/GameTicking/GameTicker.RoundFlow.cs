@@ -8,6 +8,7 @@ using Content.Server.Roles;
 using Content.Shared.CCVar;
 using Content.Shared.Database;
 using Content.Shared.GameTicking;
+using Content.Shared.Maps;
 using Content.Shared.Mind;
 using Content.Shared.Players;
 using Content.Shared.Roles.Components;
@@ -391,6 +392,18 @@ namespace Content.Server.GameTicking
 
                 readyPlayers.Add(session);
                 readyPlayerIds.Add(userId);
+                HumanoidCharacterProfile profile;
+                if (_prefsManager.TryGetCachedPreferences(userId, out var preferences))
+                {
+                    profile = (HumanoidCharacterProfile)preferences.SelectedCharacter;
+                }
+                else
+                {
+                    var speciesToBlacklist =
+                        new HashSet<string>(_cfg.GetCVar(CCVars.ICNewAccountSpeciesBlacklist).Split(","));
+                    profile = HumanoidCharacterProfile.Random(speciesToBlacklist);
+                }
+                readyPlayerProfiles.Add(userId, profile);
             }
 
             DebugTools.AssertEqual(readyPlayers.Count, ReadyPlayerCount());

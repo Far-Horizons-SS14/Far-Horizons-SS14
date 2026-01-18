@@ -1,4 +1,6 @@
 - type: entity
+  abstract: true
+  parent: BaseCartridge
   id: BaseShellShotgun
   name: 12 gauge shotgun shell # Starlight change: .50 -> 12 gauge
   parent: BaseCartridge
@@ -18,6 +20,7 @@
     tip: true
 
 - type: entity
+  parent: [ BaseShellShotgun, BaseSecurityBartenderContraband ]
   id: ShellShotgunBeanbag
   name: 12 gauge beanbag slug # Starlight change: .50 -> 12 gauge
   parent: [ BaseShellShotgun, BaseSecurityBartenderContraband ]
@@ -42,6 +45,7 @@
     proto: PelletShotgunBeanbagTrace
 
 - type: entity
+  parent: [ BaseShellShotgun, BaseSecurityContraband]
   id: ShellShotgunSlug
   name: 12 gauge slug # Starlight change: .50 -> 12 gauge
   parent: [ BaseShellShotgun, BaseSecurityContraband]
@@ -62,6 +66,7 @@
     proto: PelletShotgunSlugTrace
 
 - type: entity
+  parent: BaseShellShotgun
   id: ShellShotgunFlare
   name: 12 gauge flare # Starlight change: .50 -> 12 gauge
   parent: BaseShellShotgun
@@ -87,6 +92,7 @@
       collection: ShellEject
 
 - type: entity
+  parent: [ BaseShellShotgun, BaseSecurityContraband ]
   id: ShellShotgun
   name: 12 gauge buckshot # Starlight change: .50 -> 12 gauge
   parent: [ BaseShellShotgun, BaseSecurityContraband ]
@@ -107,6 +113,7 @@
     proto: PelletShotgunSpreadTrace
 
 - type: entity
+  parent: [ BaseShellShotgun, BaseSecurityContraband ]
   id: ShellShotgunIncendiary
   name: 12 gauge incendiary buckshot # Starlight change: .50 -> 12 gauge
   parent: [ BaseShellShotgun, BaseSecurityContraband ]
@@ -128,6 +135,7 @@
     proto: PelletShotgunIncendiarySpreadTrace
 
 - type: entity
+  parent: [ BaseShellShotgun, BaseSecurityContraband ]
   id: ShellShotgunPractice
   name: 12 gauge blank # Starlight change: .50 -> 12 gauge
   parent: [ BaseShellShotgun, BaseSecurityContraband ]
@@ -148,6 +156,7 @@
     proto: PelletShotgunPracticeSpreadTrace
 
 - type: entity
+  parent: [ BaseShellShotgun, BaseSecurityContraband ]
   id: ShellTranquilizer
   name: 12 gauge tranquilizer slug # Starlight change: .50 -> 12 gauge
   parent: [ BaseShellShotgun, BaseSecurityContraband ]
@@ -179,6 +188,7 @@
     maxTransferAmount: 3.5
 
 - type: entity
+  parent: [ BaseShellShotgun, BaseSecurityContraband ]
   id: ShellShotgunImprovised
   name: improvised 12 gauge shell # Starlight change: .50 -> 12 gauge
   description: A homemade shotgun shell that shoots painful glass shrapnel. The spread is so wide that it couldn't hit the broad side of a barn.
@@ -207,6 +217,7 @@
     proto: PelletShotgunImprovisedSpreadTrace
 
 - type: entity
+  parent: [ BaseShellShotgun, BaseSecurityContraband ]
   id: ShellShotgunUranium
   name: 12 gauge uranium buckshot shell # Starlight change: .50 -> 12 gauge
   parent: [ BaseShellShotgun, BaseSecurityContraband ]

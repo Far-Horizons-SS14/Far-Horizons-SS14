@@ -1,4 +1,6 @@
 - type: entity
+  abstract: true
+  parent: [ BaseItem, BaseSecurityContraband ]
   id: BaseSpeedLoaderMagnum
   name: "Speed loader (.44 Magnum)" #FH
   parent: [ BaseItem, BaseSecurityContraband ]
@@ -34,6 +36,7 @@
   - type: Appearance
 
 - type: entity
+  parent: SpeedLoaderMagnum
   id: SpeedLoaderMagnumEmpty
   name: "Speed loader (.44 Magnum any)" #FH
   parent: BaseSpeedLoaderMagnum
@@ -106,6 +109,7 @@
         color: "#C7B458"
 
 - type: entity
+  parent: BaseSpeedLoaderMagnum
   id: SpeedLoaderMagnumPractice
   name: "Speed loader (.44 Magnum Practice)" #FH
   parent: BaseSpeedLoaderMagnum
@@ -137,6 +141,7 @@
         color: "#ea5800"
 
 - type: entity
+  parent: BaseSpeedLoaderMagnum
   id: SpeedLoaderMagnumAP
   name: "Speed loader (.44 Magnum AP)" #FH
   parent: BaseSpeedLoaderMagnum
@@ -174,6 +179,7 @@
         color: "#BFC8CA"
 
 - type: entity
+  parent: BaseSpeedLoaderMagnum
   id: SpeedLoaderMagnumUranium
   name: "Speed loader (.44 Magnum Uranium)" #FH
   parent: BaseSpeedLoaderMagnum

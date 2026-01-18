@@ -24,6 +24,9 @@ namespace Content.Server.GameTicking.Commands
         [Dependency] private readonly IConfigurationManager _cfg = default!;
         [Dependency] private readonly IServerPreferencesManager _preferencesManager = default!;
         [Dependency] private readonly IServerFactionManager _factions = default!; // Far Horizons
+        [Dependency] private readonly ILogManager _logManager = default!;
+
+        private readonly ISawmill _sawmill;
 
         public string Command => "joingame";
         public string Description => "";
@@ -32,7 +35,10 @@ namespace Content.Server.GameTicking.Commands
         public JoinGameCommand()
         {
             IoCManager.InjectDependencies(this);
+
+            _sawmill = _logManager.GetSawmill("security");
         }
+
         public void Execute(IConsoleShell shell, string argStr, string[] args)
         {
             if (args.Length != 4) // Far Horizons - +1 argument for faction
@@ -50,6 +56,13 @@ namespace Content.Server.GameTicking.Commands
 
             var ticker = _entManager.System<GameTicker>();
             var stationJobs = _entManager.System<StationJobsSystem>();
+
+            if (ticker.PlayerGameStatuses.TryGetValue(player.UserId, out var status) && status == PlayerGameStatus.JoinedGame)
+            {
+                _sawmill.Info($"{player.Name} ({player.UserId}) attempted to latejoin while in-game.");
+                shell.WriteError($"{player.Name} is not in the lobby. This incident will be reported.");
+                return;
+            }
 
             if (ticker.RunLevel == GameRunLevel.PreRoundLobby)
             {

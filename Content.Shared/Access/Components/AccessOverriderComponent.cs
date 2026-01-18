@@ -13,6 +13,12 @@ public sealed partial class AccessOverriderComponent : Component
 {
     public static string PrivilegedIdCardSlotId = "AccessOverrider-privilegedId";
 
+    /// <summary>
+    /// If the Access Overrider UI will show info about the privileged ID
+    /// </summary>
+    [DataField]
+    public bool ShowPrivilegedId = true;
+
     [DataField]
     public ItemSlot PrivilegedIdSlot = new();
 
@@ -76,6 +82,7 @@ public sealed partial class AccessOverriderComponent : Component
         public readonly string PrivilegedIdName;
         public readonly bool IsPrivilegedIdPresent;
         public readonly bool IsPrivilegedIdAuthorized;
+        public readonly bool ShowPrivilegedIdGrid;
         public readonly ProtoId<AccessLevelPrototype>[]? AvailableAccessLevels; // Starlight edit
         public readonly ProtoId<AccessLevelPrototype>[]? PressedAccessLevels; // Starlight edit
         public readonly ProtoId<AccessLevelPrototype>[]? MissingPrivilegesList;
@@ -96,8 +103,9 @@ public sealed partial class AccessOverriderComponent : Component
             // Starlight-edit: Start
             Color targetLabelColor,
             ProtoId<AccessGroupPrototype>[]? accessGroups,
-            ProtoId<AccessGroupPrototype>? currentAccessGroup)
+            ProtoId<AccessGroupPrototype>? currentAccessGroup,
             // Starlight-edit: End
+            bool showPrivilegedIdGrid)
         {
             IsPrivilegedIdPresent = isPrivilegedIdPresent;
             IsPrivilegedIdAuthorized = isPrivilegedIdAuthorized;
@@ -115,6 +123,7 @@ public sealed partial class AccessOverriderComponent : Component
             AccessGroups = accessGroups;
             CurrentAccessGroup = currentAccessGroup;
             // Starlight-edit: End
+            ShowPrivilegedIdGrid = showPrivilegedIdGrid;
         }
     }
 

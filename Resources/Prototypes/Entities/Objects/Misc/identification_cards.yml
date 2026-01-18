@@ -822,8 +822,6 @@
     - sprite: *icon-rsi
       offset: *icon-offset
       state: Boxer
-  - type: PresetIdCard
-    job: Boxer
 
 - type: entity
   parent: IDCardStandard
@@ -840,8 +838,6 @@
     - sprite: *icon-rsi
       offset: *icon-offset
       state: Zookeeper
-  - type: PresetIdCard
-    job: Zookeeper
 
 #Supply
 
@@ -1105,6 +1101,18 @@
 #     - state: idcluwne
 #   - type: IdCard
 #     jobTitle: job-title-cluwne
+
+- type: entity
+  parent: IDCardStandard
+  id: XenoborgIDCard
+  name: xenoborg ID card
+  components:
+  - type: Sprite
+    layers:
+    - state: default
+  - type: Access
+    tags:
+    - Xenoborg
 
 - type: entity
   parent: IDCardStandard

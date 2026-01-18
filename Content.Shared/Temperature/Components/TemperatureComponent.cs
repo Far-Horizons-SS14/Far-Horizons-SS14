@@ -1,15 +1,10 @@
-using Content.Shared.Alert;
 using Content.Shared.Atmos;
-using Content.Shared.Damage;
-using Content.Shared.FixedPoint;
-using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Temperature.Components;
 
 /// <summary>
 /// Handles changing temperature,
-/// informing others of the current temperature,
-/// and taking fire damage from high temperature.
+/// informing others of the current temperature.
 /// </summary>
 [RegisterComponent]
 public sealed partial class TemperatureComponent : Component
@@ -19,24 +14,6 @@ public sealed partial class TemperatureComponent : Component
     /// </summary>
     [DataField, ViewVariables(VVAccess.ReadWrite)]
     public float CurrentTemperature = Atmospherics.T20C;
-
-    [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public float HeatDamageThreshold = 360f;
-
-    [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public float ColdDamageThreshold = 260f;
-
-    /// <summary>
-    /// Overrides HeatDamageThreshold if the entity's within a parent with the TemperatureDamageThresholdsComponent component.
-    /// </summary>
-    [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public float? ParentHeatDamageThreshold;
-
-    /// <summary>
-    /// Overrides ColdDamageThreshold if the entity's within a parent with the TemperatureDamageThresholdsComponent component.
-    /// </summary>
-    [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public float? ParentColdDamageThreshold;
 
     /// <summary>
     /// Heat capacity per kg of mass.

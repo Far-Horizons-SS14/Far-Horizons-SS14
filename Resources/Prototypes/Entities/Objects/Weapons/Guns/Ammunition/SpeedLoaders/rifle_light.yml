@@ -1,11 +1,9 @@
 - type: entity
+  parent: [ BaseItem, BaseSecurityContraband ]
   id: SpeedLoaderLightRifle
   name: "Speed loader (.44 Magnum)" #FH
   parent: [ BaseItem, BaseMinorContraband ]
   components:
-  - type: Tag
-    tags:
-      - SpeedLoaderRifle
   - type: SpeedLoader
   - type: BallisticAmmoProvider
     mayTransfer: true

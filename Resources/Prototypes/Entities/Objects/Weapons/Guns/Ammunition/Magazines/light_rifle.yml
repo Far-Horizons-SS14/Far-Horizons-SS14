@@ -1,9 +1,9 @@
 # Empty mags
 - type: entity
+  abstract: true
+  parent: [ BaseItem, BaseSecurityContraband ]
   id: BaseMagazineLightRifle
   name: "magazine (.30 rifle)"
-  parent: [ BaseItem, BaseSecurityContraband ]
-  abstract: true
   components:
   - type: Tag
     tags:
@@ -143,10 +143,10 @@
       - state: inhand-right-mag
 
 - type: entity
+  parent: BaseMagazineLightRifle
   id: MagazineLightRiflePractice
   name: "magazine (.30 rifle practice)"
-  parent: BaseMagazineLightRifle
-  description: Curved 30-round double stack magazine for combat rifles. Intended to hold non-harmful chalk ammunition.
+  description: Curved 30-round double stack magazine for combat rifles. Intended to hold harmless practice ammunition.
   components:
   - type: BallisticAmmoProvider
     proto: CartridgeLightRiflePractice
@@ -170,9 +170,9 @@
         color: "#dbdbdb"
 
 - type: entity
+  parent: BaseMagazineLightRifle
   id: MagazineLightRifleUranium
   name: "magazine (.30 rifle uranium)"
-  parent: BaseMagazineLightRifle
   description: Curved 30-round double stack magazine for combat rifles. Intended to hold exotic uranium-core ammunition.
   components:
   - type: BallisticAmmoProvider
@@ -197,6 +197,7 @@
         color: "#00cd42"
 
 - type: entity
+  parent: MagazineLightRifle
   id: MagazineLightRifleIncendiary
   name: "magazine (.30 rifle incendiary)"
   parent: BaseMagazineLightRifle

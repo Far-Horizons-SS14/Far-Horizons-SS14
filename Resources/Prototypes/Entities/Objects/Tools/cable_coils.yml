@@ -46,6 +46,17 @@
       path: /Audio/_Starlight/Medical/Surgery/retractor2.ogg
   - type: SurgeryTool
   #FarHorizons End
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
 
 - type: entity
   id: CableHVStack
