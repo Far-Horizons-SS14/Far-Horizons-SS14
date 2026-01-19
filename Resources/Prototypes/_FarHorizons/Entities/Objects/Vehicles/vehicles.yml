@@ -426,20 +426,6 @@
   - type: Hitch
 
 - type: entity
-  id: VehicleATVFueled
-  parent: VehicleATV
-  suffix: Fueled
-  components: 
-    - type: ContainerContainer
-    - type: SolutionContainerManager
-      solutions:
-        fueltank:
-          reagents:
-          - ReagentId: WeldingFuel
-            Quantity: 150
-          maxVol: 150
-
-- type: entity
   id: VehicleATVFueledwithKeys
   parent: VehicleATV
   suffix: Fueled, Keys
@@ -700,3 +686,118 @@
         - VehicleKeyClowncar
         vehicle_mods_container:
         - ATVHeadlight
+
+- type: entity
+  id: VehicleJanicart
+  parent: BaseVehicleRideableDamageable
+  name: Janicart
+  description: The janitor's trusty steed.
+  components:
+  - type: Vehicle
+    acceleration: 2
+    friction: 4.5
+    frictionNoInput: 4.5
+    requireIgnition: true 
+    baseState: vehicle
+    brokenState: destroyed
+    startupTime: 2
+    handsNeeded: 2
+    riderWhitelist:
+      components:
+        - HumanoidAppearance
+    disallowWielding: true
+    allowGunKnockback: true
+    soundHit:
+      collection: MetalThud
+  - type: VehicleBuckle
+    unbuckleTime: 2
+    dismountOnStun: true
+    dismountOnKnockdown: true
+    armorAffectsVehicle: true
+    northOffset: "0, -0.12"
+    southOffset: "0, -0.12"
+    eastOffset: "0, -0.2"
+    westOffset: "-0, -0.2"
+    northDrawDepth: BelowMobs
+    southDrawDepth: OverMobs
+    eastDrawDepth: OverMobs
+    westDrawDepth: OverMobs
+  - type: Sprite
+    drawdepth: OverMobs
+    sprite: Objects/Vehicles/janicart.rsi
+    layers:
+    - state: vehicle
+      map: ["enum.VehicleVisualLayers.Base"]
+    noRot: true
+  - type: Strap
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.4
+        density: 100
+        restitution: 0.0
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2
+    baseSprintSpeed: 5.5
+  - type: ItemSlots
+    slots:
+      key_slot:
+        name: Keys
+        whitelist:
+          requireAll: true
+          tags:
+          - VehicleKey
+          - JanicartKeys
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        disableEject: true
+      trashbag_slot:
+        name: janitorial-trolley-slot-component-slot-name-trashbag
+        whitelist:
+          tags:
+            - TrashBag
+  - type: ContainerContainer
+    containers:
+      key_slot: !type:ContainerSlot
+      cell_slot: !type:ContainerSlot
+      vehicle_mods_container: !type:Container
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+    fitsInCharger: false
+  - type: PowerCellDraw
+    drawRate: 1
+    enabled: false
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/Effects/Footsteps/borgwalk4.ogg
+      params:
+        pitch: 1.15
+        variation: 0.05
+  - type: ItemMapper
+    mapLayers:
+      storage:
+        whitelist:
+          tags:
+            - TrashBag
+    sprite: Objects/Vehicles/janicart.rsi
+  - type: FloorBuffer
+
+- type: entity
+  id: VehicleJanicartBatterywithKeys
+  parent: VehicleJanicart
+  suffix: Battery, Keys
+  components: 
+    - type: ContainerFill
+      containers:
+        cell_slot:
+        - PowerCellMedium
+        key_slot:
+        - VehicleKeyJanicart
+        vehicle_mods_container:
+        - SecwayLight
