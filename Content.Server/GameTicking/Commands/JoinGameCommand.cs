@@ -57,13 +57,6 @@ namespace Content.Server.GameTicking.Commands
             var ticker = _entManager.System<GameTicker>();
             var stationJobs = _entManager.System<StationJobsSystem>();
 
-            if (ticker.PlayerGameStatuses.TryGetValue(player.UserId, out var status) && status == PlayerGameStatus.JoinedGame)
-            {
-                _sawmill.Info($"{player.Name} ({player.UserId}) attempted to latejoin while in-game.");
-                shell.WriteError($"{player.Name} is not in the lobby. This incident will be reported.");
-                return;
-            }
-
             if (ticker.RunLevel == GameRunLevel.PreRoundLobby)
             {
                 shell.WriteLine("Round has not started.");

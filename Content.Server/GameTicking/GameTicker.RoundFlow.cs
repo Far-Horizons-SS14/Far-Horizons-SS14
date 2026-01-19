@@ -25,7 +25,8 @@ using Robust.Shared.Player;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
 using System.Text.RegularExpressions;
-using Content.Server._Starlight.BugReports; // Starlight
+using Content.Server._Starlight.BugReports;
+using Content.Shared.Preferences; // Starlight
 
 namespace Content.Server.GameTicking
 {
@@ -392,18 +393,6 @@ namespace Content.Server.GameTicking
 
                 readyPlayers.Add(session);
                 readyPlayerIds.Add(userId);
-                HumanoidCharacterProfile profile;
-                if (_prefsManager.TryGetCachedPreferences(userId, out var preferences))
-                {
-                    profile = (HumanoidCharacterProfile)preferences.SelectedCharacter;
-                }
-                else
-                {
-                    var speciesToBlacklist =
-                        new HashSet<string>(_cfg.GetCVar(CCVars.ICNewAccountSpeciesBlacklist).Split(","));
-                    profile = HumanoidCharacterProfile.Random(speciesToBlacklist);
-                }
-                readyPlayerProfiles.Add(userId, profile);
             }
 
             DebugTools.AssertEqual(readyPlayers.Count, ReadyPlayerCount());

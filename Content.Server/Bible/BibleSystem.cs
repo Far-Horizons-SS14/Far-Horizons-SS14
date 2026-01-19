@@ -144,15 +144,18 @@ namespace Content.Server.Bible
                 return;
             }
 
+            string othersMessage;
+            string selfMessage;
+
             //Damage unholy creatures
             if (HasComp<UnholyComponent>(args.Target))
             {
                 _damageableSystem.TryChangeDamage(args.Target.Value, component.DamageUnholy, true, origin: uid);
 
-                var othersMessage = Loc.GetString(component.LocPrefix + "-damage-unholy-others", ("user", Identity.Entity(args.User, EntityManager)), ("target", Identity.Entity(args.Target.Value, EntityManager)), ("bible", uid));
+                 othersMessage = Loc.GetString(component.LocPrefix + "-damage-unholy-others", ("user", Identity.Entity(args.User, EntityManager)), ("target", Identity.Entity(args.Target.Value, EntityManager)), ("bible", uid));
                 _popupSystem.PopupEntity(othersMessage, args.User, Filter.PvsExcept(args.User), true, PopupType.MediumCaution);
 
-                var selfMessage = Loc.GetString(component.LocPrefix + "-damage-unholy-self", ("target", Identity.Entity(args.Target.Value, EntityManager)), ("bible", uid));
+                selfMessage = Loc.GetString(component.LocPrefix + "-damage-unholy-self", ("target", Identity.Entity(args.Target.Value, EntityManager)), ("bible", uid));
                 _popupSystem.PopupEntity(selfMessage, args.User, args.User, PopupType.LargeCaution);
 
                 _delay.TryResetDelay((uid, useDelay));
@@ -162,6 +165,7 @@ namespace Content.Server.Bible
 
             var userEnt = Identity.Entity(args.User, EntityManager);
             var targetEnt = Identity.Entity(args.Target.Value, EntityManager);
+            
 
             // This only has a chance to fail if the target is not wearing anything on their head and is not a familiar.
             if (!_invSystem.TryGetSlotEntity(args.Target.Value, "head", out _) && !HasComp<FamiliarComponent>(args.Target.Value))
@@ -215,8 +219,6 @@ namespace Content.Server.Bible
                 }
             }
             //#endregion
-            string othersMessage;
-            string selfMessage;
 
             if (_damageableSystem.TryChangeDamage(args.Target.Value, component.Damage, true, origin: uid))
             {

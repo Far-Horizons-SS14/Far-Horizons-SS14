@@ -81,7 +81,7 @@ namespace Content.Server.Chemistry.EntitySystems
 
             var state = new ChemMasterBoundUserInterfaceState(
                 chemMaster.Mode, chemMaster.SortingType, BuildInputContainerInfo(inputContainer), BuildOutputContainerInfo(outputContainer),
-                bufferReagents, bufferCurrentVolume, chemMaster.PillType, chemMaster.PillDosageLimit, chemMaster.PatchDosageLimit, updateLabel); // Starlight-edit
+                bufferReagents, bufferCurrentVolume, chemMaster.PillType, chemMaster.PillDosageLimit, chemMaster.PatchDosageLimit, updateLabel, chemMaster.DrawSource); // Starlight-edit
 
             _userInterfaceSystem.SetUiState(owner, ChemMasterUiKey.Key, state);
         }
@@ -327,6 +327,44 @@ namespace Content.Server.Chemistry.EntitySystems
 
             UpdateUiState(chemMaster);
             ClickSound(chemMaster);
+        }
+
+        private bool WithdrawFromBeaker( // Starlight-edit
+            Entity<ChemMasterComponent> chemMaster,
+            FixedPoint2 neededVolume, EntityUid? user,
+            [NotNullWhen(returnValue: true)] out Solution? outputSolution)
+        {
+            outputSolution = null;
+            // Starlight-Start
+            var container = _itemSlotsSystem.GetItemOrNull(chemMaster, SharedChemMaster.InputSlotName); // Changes to take solution from Beaker, same line as Transfer Reagant/Discard Reagant
+            if (container == null) // Checks if there's no beaker
+            {
+                return false;
+            }
+            if (!_solutionContainerSystem.TryGetFitsInDispenser(container.Value, out var beakerSolution, out var solution))
+            {
+                return false;
+            }
+            // Starlight-End
+
+            if (solution.Volume == 0)
+            {
+                if (user.HasValue)
+                    _popupSystem.PopupCursor(Loc.GetString("chem-master-window-beaker-empty-text"), user.Value); // Starlight-edit
+                return false;
+            }
+
+            // ReSharper disable once InvertIf
+            if (neededVolume > solution.Volume)
+            {
+                if (user.HasValue)
+                    _popupSystem.PopupCursor(Loc.GetString("chem-master-window-beaker-low-text"), user.Value); // Starlight-edit
+                return false;
+            }
+
+            outputSolution = solution.SplitSolution(neededVolume);
+            _solutionContainerSystem.UpdateChemicals(beakerSolution.Value); // Starlight-edit Update the beaker solution to reflect the new amount of chemicals in it. Taken from metabolising system.
+            return true;
         }
 
         private bool WithdrawFromBuffer(

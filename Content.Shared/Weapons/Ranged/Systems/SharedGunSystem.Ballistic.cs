@@ -268,7 +268,7 @@ public abstract partial class SharedGunSystem
             EntityUid? ammoEntity = null;
             if (component.Entities.Count > 0)
             {
-                entity = component.Entities[^1];
+                var entity = component.Entities[^1];
 
                 args.Ammo.Add((entity, EnsureShootable(entity)));
 
@@ -292,7 +292,7 @@ public abstract partial class SharedGunSystem
             {
                 component.UnspawnedCount--;
                 DirtyField(uid, component, nameof(BallisticAmmoProviderComponent.UnspawnedCount));
-                entity = Spawn(component.Proto, args.Coordinates);
+                var entity = Spawn(component.Proto, args.Coordinates);
 
                 if (TryComp<GunComponent>(uid, out var gun))
                 {

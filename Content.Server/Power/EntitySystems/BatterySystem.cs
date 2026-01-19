@@ -19,9 +19,6 @@ public sealed class BatterySystem : SharedBatterySystem
 
     protected override void OnStartup(Entity<BatteryComponent> ent, ref ComponentStartup args)
     {
-        //starlight edit, add prototype readout
-        TryComp(ent, out MetaDataComponent? metadataComponent);
-        DebugTools.Assert(!HasComp<PredictedBatteryComponent>(ent), $"{ent} has both BatteryComponent and PredictedBatteryComponent. Entity name: {metadataComponent?.EntityPrototype?.ID}");
         // Debug assert to prevent anyone from killing their networking performance by dirtying a battery's charge every single tick.
         // This checks for components that interact with the power network, have a charge rate that ramps up over time and therefore
         // have to set the charge in an update loop instead of using a <see cref="RefreshChargeRateEvent"/> subscription.

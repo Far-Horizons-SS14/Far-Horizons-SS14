@@ -608,7 +608,7 @@ public abstract class SharedBloodstreamSystem : EntitySystem
             return Color.Red; // default blood color
         }
 
-        return ent.Comp.BloodReagents.GetColor(null);
+        return bloodSolution.GetColor(null);
     }
     //starlight end
 }

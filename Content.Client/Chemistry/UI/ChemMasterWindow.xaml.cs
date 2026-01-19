@@ -454,12 +454,6 @@ namespace Content.Client.Chemistry.UI
             get => LabelLineEdit.Text;
             set => LabelLineEdit.Text = value;
         }
-
-        private void SetBufferText(FixedPoint2? volume, string text)
-        {
-            BufferCurrentVolume.Text = $" {volume ?? FixedPoint2.Zero}u";
-            DrawSource.Text = Loc.GetString(text);
-        }
     }
 
     public sealed class ReagentButton : Button
