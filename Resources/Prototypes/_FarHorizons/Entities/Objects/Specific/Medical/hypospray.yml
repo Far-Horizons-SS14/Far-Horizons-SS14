@@ -69,14 +69,10 @@
     sprite: _FarHorizons/Objects/Specific/Medical/syringe.rsi
     size: Tiny
   - type: Injector
-    injectOnly: false
-    transferAmounts:
-    - 5
-    - 10
-    - 15
-    toggleState: Draw
-    delay: 2.5
-    delayPerVolume: 0
+    activeModeProtoId: SyringeDrawMode
+    allowedModes:
+    - SyringeDrawMode
+    - SyringeInjectMode
     injectorInjectingStartDescription: "hypoinjector-component-injecting-user"
     injectorDrawingStartDescription: "hypoinjector-component-drawing-user"
   - type: SolutionContainerVisuals

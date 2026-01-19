@@ -1,8 +1,8 @@
 # Empty mags
 - type: entity
-  abstract: true
-  parent: [ BaseItem, BaseSecurityContraband ]
   id: BaseMagazineLightRifle
+  parent: [ BaseItem, BaseSecurityContraband ]
+  abstract: true
   name: "magazine (.30 rifle)"
   components:
   - type: Tag
@@ -36,7 +36,7 @@
 # Magazines
 - type: entity
   id: MagazineLightRifleBoxSP
-  name: "L6 SAW magazine box (.30 rifle SP)"
+  name: L6 SAW magazine box (.30 rifle SP)
   parent: BaseMagazineLightRifle
   description: Box containing a 100-round belt of linked .30 rifle rounds, used by light machine guns such as the L6. Intended to hold general-purpose kinetic ammunition.
   components:
@@ -197,7 +197,6 @@
         color: "#00cd42"
 
 - type: entity
-  parent: MagazineLightRifle
   id: MagazineLightRifleIncendiary
   name: "magazine (.30 rifle incendiary)"
   parent: BaseMagazineLightRifle

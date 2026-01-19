@@ -3,9 +3,6 @@
   name: 12 gauge slug # Starlight change: .50 -> 12 gauge
   categories: [ HideSpawnMenu ]
   parent: BaseBullet
-  id: PelletShotgunSlug
-  categories: [ HideSpawnMenu ]
-  name: pellet (.50 slug)
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
@@ -21,9 +18,6 @@
   name: 12 gauge beanbag slug # Starlight change: .50 -> 12 gauge
   categories: [ HideSpawnMenu ]
   parent: BaseBullet
-  id: PelletShotgunBeanbag
-  categories: [ HideSpawnMenu ]
-  name: beanbag (.50)
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
@@ -41,9 +35,6 @@
   name: 12 gage buckshot # Starlight change: .50 -> 12 gauge
   categories: [ HideSpawnMenu ]
   parent: BaseBullet
-  id: PelletShotgun
-  categories: [ HideSpawnMenu ]
-  name: pellet (.50)
   components:
   - type: Projectile
     damage:
@@ -66,9 +57,6 @@
   name: 12 gauge incendiary buckshot # Starlight change: .50 -> 12 gauge
   categories: [ HideSpawnMenu ]
   parent: BaseBulletIncendiary
-  id: PelletShotgunIncendiary
-  categories: [ HideSpawnMenu ]
-  name: pellet (.50 incendiary)
   components:
   - type: Projectile
     damage:
@@ -93,9 +81,6 @@
   name: 12 gauge blank # Starlight change: .50 -> 12 gauge
   categories: [ HideSpawnMenu ]
   parent: BaseBulletPractice
-  id: PelletShotgunPractice
-  categories: [ HideSpawnMenu ]
-  name: pellet (.50 practice)
   components:
   - type: Projectile
     damage:
@@ -144,9 +129,6 @@
   name: 12 gauge traunquilizer slug # Starlight change: .50 -> 12 gauge
   categories: [ HideSpawnMenu ]
   parent: BaseBulletPractice
-  id: PelletShotgunTranquilizer
-  categories: [ HideSpawnMenu ]
-  name: pellet (.50 tranquilizer)
   components:
   - type: Projectile
     damage:
@@ -164,7 +146,6 @@
   id: PelletShotgunFlare
   name: 12 gauge flare # Starlight change: .50 -> 12 gauge
   categories: [ HideSpawnMenu ]
-  name: pellet (.50 flare)
   components:
   - type: Physics
     bodyType: Dynamic
@@ -213,9 +194,6 @@
   name: 12 gauge uranium buckshot # Starlight change: .50 -> 12 gauge
   categories: [ HideSpawnMenu ]
   parent: BaseBulletUranium
-  id: PelletShotgunUranium
-  categories: [ HideSpawnMenu ]
-  name: pellet (.50 uranium)
   components:
   - type: Projectile
     damage:

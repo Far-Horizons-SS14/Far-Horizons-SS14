@@ -3,8 +3,6 @@
   parent: [ BaseItem, BaseSecurityContraband ]
   id: BaseMagazineShotgun
   name: 12 gauge ammo drum # Starlight change: .50 -> 12 gauge
-  parent: [ BaseItem, BaseSecurityContraband ]
-  abstract: true
   components:
   - type: Tag
     tags:
@@ -58,7 +56,6 @@
   parent: BaseMagazineShotgun
   id: MagazineShotgun
   name: 12 gauge buckshot drum # Starlight change: .50 -> 12 gauge
-  parent: BaseMagazineShotgun
   components:
   - type: BallisticAmmoProvider
     proto: ShellShotgun

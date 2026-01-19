@@ -389,68 +389,74 @@
     prototypes: [ ERTSecurityGearArmedRifle ]
     roleLoadout: [ RoleSurvivalMilitaryDouble ]
 
-- type: entity
-  parent: RandomHumanoidSpawnerERTSecurityEVA
-  id: RandomHumanoidSpawnerERTSecurityArmedGrenade
-  name: ERT security grenadier
-  suffix: ERTRole, Armed, EVA
-  components:
-  - type: RandomHumanoidSpawner
-    settings: ERTSecurityArmedGrenade
+# Loadout gone, guess I'm disablin this (it's probably somewhere with different name idk)
+# - type: entity
+#   parent: RandomHumanoidSpawnerERTSecurityEVA
+#   id: RandomHumanoidSpawnerERTSecurityArmedGrenade
+#   name: ERT security grenadier
+#   suffix: ERTRole, Armed, EVA
+#   components:
+#   - type: RandomHumanoidSpawner
+#     settings: ERTSecurityArmedGrenade
 
-- type: randomHumanoidSettings
-  parent: ERTSecurityEVA
-  id: ERTSecurityArmedGrenade
-  components:
-  - type: RandomMetadata
-    nameSegments:
-    - NamesMilitaryLast
-    nameFormat: name-format-ert-grenade
-  - type: Loadout
-    prototypes: [ ERTSecurityGearArmedGrenade ]
-    roleLoadout: [ RoleSurvivalMilitaryDouble ]
+# Loadout gone, guess I'm disablin this
+# - type: randomHumanoidSettings
+#   parent: ERTSecurityEVA
+#   id: ERTSecurityArmedGrenade
+#   components:
+#   - type: RandomMetadata
+#     nameSegments:
+#     - NamesMilitaryLast
+#     nameFormat: name-format-ert-grenade
+#   - type: Loadout
+#     prototypes: [ ERTSecurityGearArmedGrenade ]
+#     roleLoadout: [ RoleSurvivalMilitaryDouble ]
 
-- type: entity
-  parent: RandomHumanoidSpawnerERTSecurityEVA
-  id: RandomHumanoidSpawnerERTSecurityArmedVanguard
-  name: ERT security vanguard
-  suffix: ERTRole, Armed, EVA
-  components:
-  - type: RandomHumanoidSpawner
-    settings: ERTSecurityArmedVanguard
+# Loadout gone, guess I'm disablin this
+# - type: entity
+#   parent: RandomHumanoidSpawnerERTSecurityEVA
+#   id: RandomHumanoidSpawnerERTSecurityArmedVanguard
+#   name: ERT security vanguard
+#   suffix: ERTRole, Armed, EVA
+#   components:
+#   - type: RandomHumanoidSpawner
+#     settings: ERTSecurityArmedVanguard
 
-- type: randomHumanoidSettings
-  parent: ERTSecurityEVA
-  id: ERTSecurityArmedVanguard
-  components:
-  - type: RandomMetadata
-    nameSegments:
-    - NamesMilitaryLast
-    nameFormat: name-format-ert-vanguard
-  - type: Loadout
-    prototypes: [ ERTSecurityGearArmedVanguard ]
-    roleLoadout: [ RoleSurvivalMilitaryDouble ]
+# Loadout gone, guess I'm disablin this
+# - type: randomHumanoidSettings
+#   parent: ERTSecurityEVA
+#   id: ERTSecurityArmedVanguard
+#   components:
+#   - type: RandomMetadata
+#     nameSegments:
+#     - NamesMilitaryLast
+#     nameFormat: name-format-ert-vanguard
+#   - type: Loadout
+#     prototypes: [ ERTSecurityGearArmedVanguard ]
+#     roleLoadout: [ RoleSurvivalMilitaryDouble ]
 
-- type: entity
-  parent: RandomHumanoidSpawnerERTSecurityEVA
-  id: RandomHumanoidSpawnerERTSecurityArmedShotgun
-  name: ERT security breacher
-  suffix: ERTRole, Armed, EVA
-  components:
-  - type: RandomHumanoidSpawner
-    settings: ERTSecurityArmedShotgun
+# Loadout gone, guess I'm disablin this
+# - type: entity
+#   parent: RandomHumanoidSpawnerERTSecurityEVA
+#   id: RandomHumanoidSpawnerERTSecurityArmedShotgun
+#   name: ERT security breacher
+#   suffix: ERTRole, Armed, EVA
+#   components:
+#   - type: RandomHumanoidSpawner
+#     settings: ERTSecurityArmedShotgun
 
-- type: randomHumanoidSettings
-  parent: ERTSecurityEVA
-  id: ERTSecurityArmedShotgun
-  components:
-  - type: RandomMetadata
-    nameSegments:
-    - NamesMilitaryLast
-    nameFormat: name-format-ert-pointman
-  - type: Loadout
-    prototypes: [ ERTSecurityGearArmedShotgun ]
-    roleLoadout: [ RoleSurvivalMilitaryDouble ]
+# Loadout gone, guess I'm disablin this
+# - type: randomHumanoidSettings
+#   parent: ERTSecurityEVA
+#   id: ERTSecurityArmedShotgun
+#   components:
+#   - type: RandomMetadata
+#     nameSegments:
+#     - NamesMilitaryLast
+#     nameFormat: name-format-ert-pointman
+#   - type: Loadout
+#     prototypes: [ ERTSecurityGearArmedShotgun ]
+#     roleLoadout: [ RoleSurvivalMilitaryDouble ]
 
 ## ERT Medic
 

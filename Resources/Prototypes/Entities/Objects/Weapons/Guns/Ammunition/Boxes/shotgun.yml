@@ -1,7 +1,7 @@
 - type: entity
-  abstract: true
-  parent: BaseItem
   id: BaseAmmoProvider
+  parent: BaseItem
+  abstract: true
   components:
   - type: ContainerContainer
     containers:
@@ -16,7 +16,6 @@
   parent: BaseAmmoProvider
   id: AmmoProviderShotgunShell
   description: 16-shell box of .50 Shotgun ammunition. #Far Horizons
-  abstract: true
   components:
     - type: Sprite
       sprite: Objects/Weapons/Guns/Ammunition/Boxes/shotgun.rsi
@@ -59,7 +58,6 @@
   name: box of 12 gauge buckshot # Starlight change: .50 -> 12 gauge
   parent: AmmoProviderShotgunShell
   id: BoxLethalshot
-  name: ammunition box (.50 pellet)
   description: A cardboard box of .50 shotgun shells. Intended to hold general-purpose kinetic ammunition.
   components:
     - type: BallisticAmmoProvider
@@ -76,7 +74,6 @@
   name: box of 12 gauge slugs # Starlight change: .50 -> 12 gauge
   parent: AmmoProviderShotgunShell
   id: BoxShotgunSlug
-  name: ammunition box (.50 slug)
   description: A cardboard box of .50 shotgun shells. Intended to hold long-ranged slug ammunition.
   components:
     - type: BallisticAmmoProvider
@@ -97,7 +94,6 @@
   name: box of 12 gauge flares # Starlight change: .50 -> 12 gauge
   parent: AmmoProviderShotgunShell
   id: BoxShotgunFlare
-  name: ammunition box (.50 flare)
   description: A cardboard box of .50 shotgun shells. Intended to hold illuminating flare ammunition.
   components:
     - type: BallisticAmmoProvider
@@ -118,7 +114,6 @@
   name: box of 12 gauge incendiary buckshot # Starlight change: .50 -> 12 gauge
   parent: AmmoProviderShotgunShell
   id: BoxShotgunIncendiary
-  name: ammunition box (.50 incendiary)
   description: A cardboard box of .50 shotgun shells. Intended to hold self-igniting incendiary ammunition.
   components:
     - type: BallisticAmmoProvider
@@ -139,7 +134,6 @@
   name: box of 12 gauge uranium buckshot # Starlight change: .50 -> 12 gauge
   parent: AmmoProviderShotgunShell
   id: BoxShotgunUranium
-  name: ammunition box (.50 uranium)
   description: A cardboard box of .50 shotgun shells. Intended to hold exotic uranium-core ammunition.
   components:
     - type: BallisticAmmoProvider
@@ -160,7 +154,6 @@
   name: box of 12 gauge blanks # Starlight change: .50 -> 12 gauge
   parent: AmmoProviderShotgunShell
   id: BoxShotgunPractice
-  name: ammunition box (.50 practice)
   description: A cardboard box of .50 shotgun shells. Intended to hold harmless practice ammunition.
   components:
     - type: BallisticAmmoProvider
@@ -181,7 +174,6 @@
   name: box of 12 gauge tranquilizer slugs # Starlight change: .50 -> 12 gauge
   parent: AmmoProviderShotgunShell
   id: BoxShellTranquilizer
-  name: ammunition box (.50 tranquilizer)
   description: A cardboard box of .50 shotgun shells. Intended to hold nonlethal tranquilizer ammunition.
   components:
     - type: BallisticAmmoProvider

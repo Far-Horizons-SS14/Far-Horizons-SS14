@@ -115,7 +115,7 @@
       - id: PlushieLizardJobMime #
       - id: PlushieLizardJobMusician
       - id: PlushieLizardJobParamedic
-      - id: PlushieLizardJobPassenger
+      - id: PlushieLizardJobAssistant
       - id: PlushieLizardJobPsychologist
       - id: PlushieLizardJobQuartermaster
       - id: PlushieLizardJobReporter
@@ -162,8 +162,7 @@
     - id: ToyFigurineSecurity
     # Service
     - id: ToyFigurineHeadOfPersonnel
-    - id: ToyFigurinePassenger
-    - id: ToyFigurineGreytider
+    - id: ToyFigurineAssistant
     - id: ToyFigurineClown # :o)
     - id: ToyFigurineMime #
     - id: ToyFigurineMusician
@@ -351,7 +350,7 @@
       - id: Whistle
         weight: 5
       - id: SecurityWhistle
-      - id: SyndicateWhistle
+      - id: CommanderWhistle
         weight: 0.5 # 1 in 143
     - !type:NestedSelector # The original
       tableId: RandomBikeHornTable

@@ -85,42 +85,42 @@
         nodeGroupID: HVPower
   - type: Anchorable
 
-- type: entity
-  id: DebugBatteryDischarger
-  name: battery discharger
-  suffix: DEBUG
-  placement:
-    mode: SnapgridCenter
-  components:
-  - type: Clickable
-  - type: PowerNetworkBattery
-  - type: InteractionOutline
-  - type: Physics
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeAabb
-          bounds: "-0.5,-0.5,0.5,0.5"
-        layer: [MobMask, Opaque]
-  - type: Transform
-    anchored: true
-  - type: Sprite
-    sprite: Structures/Power/power.rsi
-    state: provider
-  - type: Battery
-    # Very important:
-    # Disable networking to prevent the battery getting continuously dirtied every tick as it interacts with the power network.
-    # This can not be done by changing the charge rate as the power supply ramps up over time.
-    # This disables prediction for this battery.
-    netsync: false
-  - type: NodeContainer
-    nodes:
-      input:
-        !type:CableDeviceNode
-        nodeGroupID: HVPower
-  - type: BatteryDischarger
-  - type: Anchorable
+# - type: entity
+#   id: DebugBatteryDischarger
+#   name: battery discharger
+#   suffix: DEBUG
+#   placement:
+#     mode: SnapgridCenter
+#   components:
+#   - type: Clickable
+#   - type: PowerNetworkBattery
+#   - type: InteractionOutline
+#   - type: Physics
+#   - type: Fixtures
+#     fixtures:
+#       fix1:
+#         shape:
+#           !type:PhysShapeAabb
+#           bounds: "-0.5,-0.5,0.5,0.5"
+#         layer: [MobMask, Opaque]
+#   - type: Transform
+#     anchored: true
+#   - type: Sprite
+#     sprite: Structures/Power/power.rsi
+#     state: provider
+#   - type: Battery
+#     # Very important:
+#     # Disable networking to prevent the battery getting continuously dirtied every tick as it interacts with the power network.
+#     # This can not be done by changing the charge rate as the power supply ramps up over time.
+#     # This disables prediction for this battery.
+#     netsync: false
+#   - type: NodeContainer
+#     nodes:
+#       input:
+#         !type:CableDeviceNode
+#         nodeGroupID: HVPower
+#   - type: BatteryDischarger
+#   - type: Anchorable
 
 - type: entity
   parent: BaseSMES

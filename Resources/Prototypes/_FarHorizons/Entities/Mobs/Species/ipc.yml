@@ -125,10 +125,10 @@
     damageContainer: Biological
     damageModifierSet: IPC
   - type: Bloodstream
-    bloodReagents:
+    bloodReferenceSolution:
       reagents:
       - ReagentId: Oil
-        Quantity: 1
+        Quantity: 300
   - type: Icon
     sprite: _FarHorizons/Mobs/Species/IPC/parts.rsi
     state: full
@@ -326,15 +326,15 @@
     - enum.IPCUiKey.Key
   # Thermals
   - type: Temperature
+    currentTemperature: 313
+    specificHeat: 10 # IPC's metal body has very low heat capacity. Fast to heat and fast to cool
+  - type: TemperatureDamage
     heatDamageThreshold: 373 # ~100C
-    coldDamageThreshold: 253 # Temperature alert works funky, basically requred for "ideal temperature" to be in the middle between 2
+    coldDamageThreshold: 285 # Temperature alert works funky, basically requred for "ideal temperature" to be in the middle between 2
     coldDamage: {} # Since we had to set treshold for damage, but we don't actually want any damage
-    disableAlerts: true
     heatDamage:
       types:
         Heat: 2.5 #per second, scales with temperature & other constants
-    currentTemperature: 313
-    specificHeat: 10 # IPC's metal body has very low heat capacity. Fast to heat and fast to cool
   - type: IPCThermalRegulation
     produceHeat: 2000 # How much heat generated inside the body per second (only when on)
     radiateHeat: 300 # Passive heat loss, even when dead and/or spaced
