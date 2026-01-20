@@ -1,0 +1,76 @@
+﻿- type: entity
+  parent: BoxCardboard
+  id: TwinPointerBox
+  name: twinpointer kit
+  description: A box containing a pair of twinpointers. For right when you left your right hand left.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Storage/boxes.rsi
+      state: box-twinpointer
+    - type: Item
+      size: Large
+      shape:
+        - 0,0,1,1
+    - type: Storage
+      maxItemSize: Small
+      grid:
+        - 0,0,1,1
+    - type: EntityTableContainerFill
+      containers:
+        storagebase: !type:AllSelector
+          children:
+            - id: TwinPointerLeft
+            - id: TwinPointerRight
+    - type: TwinPointer # this does the linking of left/right twinpointers
+
+- type: entity
+  name: left twinpointer
+  description: The left half of a pair of twinpointers. Great when you're never right.
+  id: TwinPointerLeft
+  parent: PinpointerBase
+  components:
+    - type: Sprite
+      noRot: True
+      sprite: Objects/Devices/pinpointer.rsi
+      layers:
+        - state: twinpointer-left
+          map: ["enum.PinpointerLayers.Base"]
+        - state: pinonnull
+          map: ["enum.PinpointerLayers.Screen"]
+          shader: unshaded
+          visible: false
+    - type: Icon
+      sprite: Objects/Devices/pinpointer.rsi
+      state: twinpointer-left
+    - type: Item
+      sprite: Objects/Devices/pinpointer.rsi
+    - type: Pinpointer
+    - type: Tag
+      tags:
+        - TwinPointer
+        
+- type: entity
+  name: right twinpointer
+  description: The right half of a pair of twinpointers. Perfect when you have nothing left.
+  id: TwinPointerRight
+  parent: PinpointerBase
+  components:
+    - type: Sprite
+      noRot: True
+      sprite: Objects/Devices/pinpointer.rsi
+      layers:
+        - state: twinpointer-right
+          map: ["enum.PinpointerLayers.Base"]
+        - state: pinonnull
+          map: ["enum.PinpointerLayers.Screen"]
+          shader: unshaded
+          visible: false
+    - type: Icon
+      sprite: Objects/Devices/pinpointer.rsi
+      state: twinpointer-right
+    - type: Item
+      sprite: Objects/Devices/pinpointer.rsi
+    - type: Pinpointer
+    - type: Tag
+      tags:
+        - TwinPointer
