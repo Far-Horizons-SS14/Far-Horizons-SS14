@@ -516,6 +516,9 @@ public sealed class TurbineSystem : SharedTurbineSystem
 
     private void OnEjectAttempt(EntityUid uid, TurbineComponent comp, ref ItemSlotEjectAttemptEvent args)
     {
+        if (args.Cancelled)
+            return;
+
         if (comp.RPM < 1)
             return;
 
@@ -524,6 +527,9 @@ public sealed class TurbineSystem : SharedTurbineSystem
 
     private void OnInsertAttempt(EntityUid uid, TurbineComponent comp, ref ItemSlotInsertAttemptEvent args)
     {
+        if (args.Cancelled)
+            return;
+            
         if (comp.RPM < 1)
             return;
 
