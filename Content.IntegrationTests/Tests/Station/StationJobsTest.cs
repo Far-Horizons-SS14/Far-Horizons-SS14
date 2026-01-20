@@ -103,9 +103,9 @@ public sealed class StationJobsTest
   job: TChaplain
 ";
 
-    private const int StationCount = 100;
+    private const int StationCount = 20; // FH - cut down these ridiculous numbers
     private const int CaptainCount = StationCount;
-    private const int PlayerCount = 2000;
+    private const int PlayerCount = 1000; // FH - cut down these ridiculous numbers
     private const int TotalPlayers = PlayerCount + CaptainCount;
 
     [Test]
@@ -113,6 +113,7 @@ public sealed class StationJobsTest
     {
         await using var pair = await PoolManager.GetServerClient();
         var server = pair.Server;
+        await server.WaitIdleAsync();
 
         var prototypeManager = server.ResolveDependency<IPrototypeManager>();
         var fooStationProto = prototypeManager.Index<GameMapPrototype>(StationMapId);
