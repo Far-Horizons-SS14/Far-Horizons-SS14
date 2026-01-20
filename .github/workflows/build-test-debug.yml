@@ -42,7 +42,6 @@ jobs:
 
     - name: Run Content.IntegrationTests
       env:
-        DOTNET_gcServer: "0"
-        DOTNET_GCHeapHardLimitPercent: "65"
+        DOTNET_gcServer: "1"
       run: dotnet test --no-build -c DebugOpt Content.IntegrationTests/Content.IntegrationTests.csproj --settings .farhorizons/.integrationtests
 
