@@ -34,8 +34,6 @@ using Content.Shared.DeviceNetwork;
 using Content.Shared.Random;
 using Content.Shared.Random.Helpers;
 using Content.Shared.Throwing;
-using NAudio.CoreAudioApi;
-using System.Diagnostics.CodeAnalysis;
 using Content.Shared.Damage.Systems;
 
 namespace Content.Server._FarHorizons.Power.Generation.FissionGenerator;
@@ -69,6 +67,7 @@ public sealed class NuclearReactorSystem : SharedNuclearReactorSystem
     [Dependency] private readonly ThrowingSystem _throwingSystem = default!;
     [Dependency] private readonly TransformSystem _transformSystem = default!;
     [Dependency] private readonly SharedPointLightSystem _lightSystem = default!;
+    [Dependency] private readonly AmbientSoundSystem _ambientSoundSystem = default!;
 
     public override void Initialize()
     {
@@ -114,6 +113,13 @@ public sealed class NuclearReactorSystem : SharedNuclearReactorSystem
         comp.NeutronGrid = new int[gridWidth, gridHeight];
 
         ApplyPrefab(uid, comp);
+
+        // I hate everything about this, but it ensures the audio doesn't just stop if you don't look at it
+        comp.AlarmAudioHighThermal = SpawnAttachedTo("ReactorAlarmEntity", new(uid, 0, 0));
+        comp.AlarmAudioHighTemp = SpawnAttachedTo("ReactorAlarmEntity", new(uid, 0, 0));
+        _ambientSoundSystem.SetSound(comp.AlarmAudioHighTemp.Value, new SoundPathSpecifier("/Audio/_FarHorizons/Machines/reactor_alarm_2.ogg"));
+        comp.AlarmAudioHighRads = SpawnAttachedTo("ReactorAlarmEntity", new(uid, 0, 0));
+        _ambientSoundSystem.SetSound(comp.AlarmAudioHighRads.Value, new SoundPathSpecifier("/Audio/_FarHorizons/Machines/reactor_alarm_3.ogg"));
     }
 
     #region Prefab
@@ -626,46 +632,13 @@ public sealed class NuclearReactorSystem : SharedNuclearReactorSystem
     private void UpdateAudio(Entity<NuclearReactorComponent> ent)
     {
         var comp = ent.Comp;
-        var uid = ent.Owner;
 
-        // Stop Alarms after meltdown
-        if(comp.Melted)
-        {
-            if (_audio.IsPlaying(comp.AlarmAudioHighThermal))
-                comp.AlarmAudioHighThermal = _audio.Stop(comp.AlarmAudioHighThermal);
-            if (_audio.IsPlaying(comp.AlarmAudioHighTemp))
-                comp.AlarmAudioHighTemp = _audio.Stop(comp.AlarmAudioHighTemp);
-            if (_audio.IsPlaying(comp.AlarmAudioHighRads))
-                comp.AlarmAudioHighRads = _audio.Stop(comp.AlarmAudioHighRads);
-            return;
-        }
-
-        if (comp.ThermalPower > comp.MaximumThermalPower)
-        {
-            if (!_audio.IsPlaying(comp.AlarmAudioHighThermal))
-                comp.AlarmAudioHighThermal = _audio.PlayPvs(new SoundPathSpecifier("/Audio/_FarHorizons/Machines/reactor_alarm_1.ogg"), uid, AudioParams.Default.WithLoop(true).WithVolume(-3))?.Entity;
-        }
-        else
-            if (_audio.IsPlaying(comp.AlarmAudioHighThermal))
-            comp.AlarmAudioHighThermal = _audio.Stop(comp.AlarmAudioHighThermal);
-
-        if (comp.Temperature > comp.ReactorOverheatTemp)
-        {
-            if (!_audio.IsPlaying(comp.AlarmAudioHighTemp))
-                comp.AlarmAudioHighTemp = _audio.PlayPvs(new SoundPathSpecifier("/Audio/_FarHorizons/Machines/reactor_alarm_2.ogg"), uid, AudioParams.Default.WithLoop(true).WithVolume(-3))?.Entity;
-        }
-        else
-            if (_audio.IsPlaying(comp.AlarmAudioHighTemp))
-            comp.AlarmAudioHighTemp = _audio.Stop(comp.AlarmAudioHighTemp);
-
-        if (comp.RadiationLevel > comp.MaximumRadiation * 0.5)
-        {
-            if (!_audio.IsPlaying(comp.AlarmAudioHighRads))
-                comp.AlarmAudioHighRads = _audio.PlayPvs(new SoundPathSpecifier("/Audio/_FarHorizons/Machines/reactor_alarm_3.ogg"), uid, AudioParams.Default.WithLoop(true).WithVolume(-3))?.Entity;
-        }
-        else
-            if (_audio.IsPlaying(comp.AlarmAudioHighRads))
-            comp.AlarmAudioHighRads = _audio.Stop(comp.AlarmAudioHighRads);
+        if(Exists(comp.AlarmAudioHighThermal))
+            _ambientSoundSystem.SetAmbience(comp.AlarmAudioHighThermal.Value, !comp.Melted && comp.ThermalPower > comp.MaximumThermalPower);
+        if(Exists(comp.AlarmAudioHighTemp))
+            _ambientSoundSystem.SetAmbience(comp.AlarmAudioHighTemp.Value, !comp.Melted && comp.Temperature > comp.ReactorOverheatTemp);
+        if(Exists(comp.AlarmAudioHighRads))
+            _ambientSoundSystem.SetAmbience(comp.AlarmAudioHighRads.Value, !comp.Melted && comp.RadiationLevel > comp.MaximumRadiation * 0.5);
     }
 
     private void UpdateRadio(Entity<NuclearReactorComponent> ent)
