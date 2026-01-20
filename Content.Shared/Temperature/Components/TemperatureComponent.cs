@@ -53,8 +53,4 @@ public sealed partial class TemperatureComponent : Component
 
     // // [DataField]
     // // public ProtoId<AlertPrototype> ColdAlert = "Cold";
-
-    // // Far Horizons, silent temperature alerts
-    // [DataField]
-    // public bool DisableAlerts = false;
 }
