@@ -41,11 +41,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      - run: |
-          sudo fallocate -l 4G /swapfile
-          sudo chmod 600 /swapfile
-          sudo mkswap /swapfile
-          sudo swapon /swapfile
       - uses: ./.github/actions/setup-test-env
       - run: dotnet test --no-build -c DebugOpt Content.IntegrationTests/Content.IntegrationTests.csproj --settings .farhorizons/.integrationtests
         env:
