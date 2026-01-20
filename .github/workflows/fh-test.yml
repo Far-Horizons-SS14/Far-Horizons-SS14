@@ -1,0 +1,66 @@
+name: Test
+
+on:
+  pull_request:
+    types: [ opened, reopened, synchronize, ready_for_review ]
+    branches: [ Far-Horizons ]
+    paths:
+      - '**.cs'
+      - '**.csproj'
+      - '**.sln'
+      - '**.slnx'
+      - '**.yml'
+      - '**.yaml'
+
+concurrency:
+  group: pr-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    if: "!contains(github.event.pull_request.labels.*.name, 'automated pr') && github.actor != 'github-actions[bot]' && github.event.pull_request.draft == false"
+    runs-on: ubuntu-24.04
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup-test-env
+      - uses: actions/upload-artifact@v4
+        with:
+          name: build-pr-${{ github.event.pull_request.number }}
+          path: bin/
+          retention-days: 1
+  
+  yaml-lint:
+    needs: build
+    runs-on: ubuntu-24.04
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v5
+        with:
+          name: build-pr-${{ github.event.pull_request.number }}
+      - run: dotnet run --no-build -c DebugOpt --project Content.YAMLLinter/Content.YAMLLinter.csproj
+  
+  unit-tests:
+    needs: build
+    runs-on: ubuntu-24.04
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v5
+        with:
+          name: build-pr-${{ github.event.pull_request.number }}
+      - run: dotnet test --no-build -c DebugOpt Content.Tests/Content.Tests.csproj --settings .farhorizons/.integrationtests
+  
+  integration-tests:
+    needs: build
+    runs-on: ubuntu-24.04
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v5
+        with:
+          name: build-pr-${{ github.event.pull_request.number }}
+      - run: dotnet test --no-build -c DebugOpt Content.IntegrationTests/Content.IntegrationTests.csproj --settings .farhorizons/.integrationtests
+        env:
+          DOTNET_gcServer: "1"
