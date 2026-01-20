@@ -42,6 +42,12 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Replays;
 using Robust.Shared.Utility;
+// Starlight Start
+using Content.Shared.Speech;
+using Content.Server._Starlight.Language;
+using Content.Shared._Starlight.Chat;
+using Content.Shared._Starlight.Language;
+using Content.Shared.Popups;
 // Starlight End
 
 namespace Content.Server.Chat.Systems;
@@ -702,13 +708,12 @@ public sealed partial class ChatSystem : SharedChatSystem
         (!CultureInfo.CurrentCulture.IsNeutralCulture && CultureInfo.CurrentCulture.Parent.Name == "en")
         || (CultureInfo.CurrentCulture.IsNeutralCulture && CultureInfo.CurrentCulture.Name == "en")); // Starlight
 
-
         // Far Horizons Start - skip local whisper when using subdermal radio
         if (channel == null
             || !TryComp<IntrinsicRadioTransmitterComponent>(source, out var subdermalRadio)
             || !subdermalRadio.Channels.Contains(channel.ID))
         {
-            foreach (var (session, data) in GetRecipients(source, WhisperMuffledRange))
+            foreach (var (session, data) in GetRecipients(source, WhisperMuffledRange, true)) // Starlight-edit
             {
                 if (session.AttachedEntity is not { Valid: true } listener) // Starlight-edit: Languages
                     continue;
@@ -721,17 +726,25 @@ public sealed partial class ChatSystem : SharedChatSystem
                 // How the entity perceives the message depends on whether it can understand its language
                 var perceivedMessage = canUnderstandLanguage ? message.Text : languageObfuscatedMessage; // Starlight
                 var obfuscated = canUnderstandLanguage != true;
+            
+            var whisperClearRange = WhisperClearRange;
+            var whisperMuffledRange = WhisperMuffledRange;
+            if (TryComp<ChatListenerRangeComponent>(listener, out var rangeComp))
+            {
+                whisperClearRange = rangeComp.WhisperClearRange;
+                whisperMuffledRange = rangeComp.WhisperMuffledRange;
+            }
 
                 // Result is the intermediate message derived from the perceived one via obfuscation
                 // Wrapped message is the result wrapped in an "x says y" string
                 string result, wrappedMessage;
-                if (data.Range <= WhisperClearRange || data.Observer)
+                if (data.Range <= whisperClearRange || data.Observer)
                 {
                     // Scenario 1: the listener can clearly understand the message
                     result = perceivedMessage;
                     wrappedMessage = WrapWhisperMessage(source, "chat-manager-entity-whisper-wrap-message", name, result, language, obfuscated);
                 }
-                else if (_examineSystem.InRangeUnOccluded(source, listener, WhisperMuffledRange))
+                else if (_examineSystem.InRangeUnOccluded(source, listener, whisperMuffledRange))
                 {
                     // Scenario 2: if the listener is too far, they only hear fragments of the message
                     result = ObfuscateMessageReadability(perceivedMessage);
