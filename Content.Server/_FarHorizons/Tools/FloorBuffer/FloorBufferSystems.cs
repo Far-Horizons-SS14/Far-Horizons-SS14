@@ -16,8 +16,7 @@ using Content.Shared.Toggleable;
 using Content.Shared.Movement.Systems;
 using Content.Shared._FarHorizons.ReagantDraw.Components;
 using Content.Server._FarHorizons.ReagantDraw.EntitySystems;
-using Content.Shared._FarHorizons.Vehicles.Components;
-using Content.Shared.Movement.Components;
+using Content.Shared.Hands;
 
 namespace Content.Server._FarHorizons.Tools.FloorBuffer.Systems;
 
@@ -34,11 +33,17 @@ public sealed class FloorBufferSystem : EntitySystem
     public override void Initialize()
     {
         SubscribeLocalEvent<FloorBufferComponent, ComponentStartup>(OnCompStart);
+        SubscribeLocalEvent<FloorBufferComponent, GetItemActionsEvent>(OnGetActions);
         SubscribeLocalEvent<FloorBufferComponent, ToggleActionEvent>(OnToggleAction);
+        SubscribeLocalEvent<FloorBufferComponent, HeldRelayedEvent<RefreshMovementSpeedModifiersEvent>>(OnMovementRefreshHeld);
         SubscribeLocalEvent<FloorBufferComponent, RefreshMovementSpeedModifiersEvent>(OnMovementRefresh);
         base.Initialize();
     }
-    private void OnCompStart(Entity<FloorBufferComponent> ent, ref ComponentStartup args) => _actions.AddAction(ent.Owner, ref ent.Comp.ToggleActionEntity, ent.Comp.ToggleAction, ent.Owner);
+    private void OnCompStart(Entity<FloorBufferComponent> ent, ref ComponentStartup args) 
+        => _actions.AddAction(ent.Owner, ref ent.Comp.ToggleActionEntity, ent.Comp.ToggleAction, ent.Owner);
+
+    private void OnGetActions(EntityUid ent, FloorBufferComponent component, GetItemActionsEvent args) 
+        => args.AddAction(ref component.ToggleActionEntity, component.ToggleAction);
 
     public override void Update(float frameTime)
     {
@@ -49,6 +54,15 @@ public sealed class FloorBufferSystem : EntitySystem
         {
             if (!floorComp.Enabled)
                 continue;
+
+            var moveTarget = uid;
+            if(xForm.ParentUid != xForm.GridUid && TryComp<PhysicsComponent>(xForm.ParentUid, out var Phys2))
+            {
+                moveTarget = xForm.ParentUid;
+                xForm = Transform(xForm.ParentUid);
+                Phys = Phys2;
+            }
+
             if(!TryComp<MapGridComponent>(xForm.GridUid, out var grid))
                 continue;
                         
@@ -58,7 +72,7 @@ public sealed class FloorBufferSystem : EntitySystem
                 floorComp.Enabled = false;
                 rdComp.Enabled = false;
                 Dirty(uid, rdComp);
-                _movementSpeed.RefreshMovementSpeedModifiers(uid);
+                _movementSpeed.RefreshMovementSpeedModifiers(moveTarget);
             }
 
             if ((Phys.LinearVelocity.Equals(Vector2.Zero) && Phys.AngularVelocity.Equals(0f)) || Phys.BodyStatus == BodyStatus.InAir)
@@ -81,20 +95,25 @@ public sealed class FloorBufferSystem : EntitySystem
         }
 
         component.Enabled = !component.Enabled;
-        _movementSpeed.RefreshMovementSpeedModifiers(uid);
+        if(args.Performer == Transform(uid).ParentUid)
+            _movementSpeed.RefreshMovementSpeedModifiers(args.Performer);
+        else
+            _movementSpeed.RefreshMovementSpeedModifiers(uid);
         args.Handled = true;
+    }
+
+    private void OnMovementRefreshHeld(Entity<FloorBufferComponent> ent, ref HeldRelayedEvent<RefreshMovementSpeedModifiersEvent> args)
+    {
+        if(ent.Comp.Enabled)
+            args.Args.ModifySpeed(ent.Comp.SpeedReduction);
     }
 
     private void OnMovementRefresh(Entity<FloorBufferComponent> ent, ref RefreshMovementSpeedModifiersEvent args)
     {
         if(ent.Comp.Enabled)
-            args.ModifySpeed(ent.Comp.SpeedReduction, ent.Comp.SpeedReduction);
-        else
-            if(TryComp<VehicleComponent>(ent.Owner, out var vehicle) && vehicle.Rider!= null && TryComp<MovementSpeedModifierComponent>(vehicle.Rider.Value, out var msmComp))
-                args.ModifySpeed(msmComp.WalkSpeedModifier, msmComp.SprintSpeedModifier);
-            else
-                args.ModifySpeed(1.0f, 1.0f);
+            args.ModifySpeed(ent.Comp.SpeedReduction);
     }
+
     private void CleanDecalssandPuddles(TileRef tile, MapGridComponent grid)
     {
         if(TryComp<DecalGridComponent>(tile.GridUid, out var decalGrid))
