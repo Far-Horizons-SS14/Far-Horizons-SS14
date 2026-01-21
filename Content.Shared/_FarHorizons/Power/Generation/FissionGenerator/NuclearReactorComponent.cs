@@ -59,7 +59,7 @@ public sealed partial class NuclearReactorComponent : Component
     public float RadiationLevel = 0;
 
     /// <summary>
-    /// Gas mixtrue currently in the reactor
+    /// Gas mixture currently in the reactor
     /// </summary>
     public GasMixture? AirContents;
 
