@@ -186,9 +186,9 @@
   description: An old yet faithful design, and a favorite among irregular forces of many worlds. Uses .50 shotgun shells and suffers from a slow pump-action. #Another FH Change
   components: # intend for Kammerer to have tighter choke for slower fire rate and/or manual cycling
   - type: Item
-    sprite: Objects/Weapons/Guns/Shotguns/pump_inhands_64x.rsi
+    sprite: _FarHorizons/Objects/Weapons/Guns/Shotguns/pump_inhands_64x.rsi # FH - Edit
   - type: Gun
-    spread: 10 # FH Changes Start!!
+    spread: 10 # FH - Edit
     pump: true
     fireRate: 1
   - type: BallisticAmmoProvider
@@ -198,11 +198,11 @@
     capacity: 4
     proto: ShellShotgun
     soundInsert:
-      path: /Audio/Weapons/Guns/MagIn/shotgun_insert.ogg # FH Changes End!!
+      path: /Audio/Weapons/Guns/MagIn/shotgun_insert.ogg
   - type: Sprite
-    sprite: _FarHorizons/Objects/Weapons/Guns/Shotguns/pump.rsi # Far Horizons
+    sprite: _FarHorizons/Objects/Weapons/Guns/Shotguns/pump.rsi # FH - Edit
   - type: Clothing
-    sprite: _FarHorizons/Objects/Weapons/Guns/Shotguns/pump.rsi # Far Horizons
+    sprite: _FarHorizons/Objects/Weapons/Guns/Shotguns/pump.rsi # FH - Edit
   - type: GunRequiresWield #remove when inaccuracy on spreads is fixed
   - type: Tag
     tags:

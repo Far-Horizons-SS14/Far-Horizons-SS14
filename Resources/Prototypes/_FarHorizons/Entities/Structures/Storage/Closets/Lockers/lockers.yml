@@ -56,7 +56,7 @@
     stateDoorOpen: sec_open
     stateDoorClosed: sec_door
   - type: AccessReader
-    access: [["Security"]]
+    access: [["Security"], ["Cadet"]]
 
 - type: entity
   id: LockerSecurityLargeFH
@@ -71,7 +71,7 @@
     stateDoorOpen: sec_open
     stateDoorClosed: sec_door
   - type: AccessReader
-    access: [["Security"]]
+    access: [["Security"], ["Cadet"]]
 
 - type: entity
   id: LockerSecurityLargeFHL
@@ -86,7 +86,7 @@
     stateDoorOpen: sec_L_open
     stateDoorClosed: sec_L_door
   - type: AccessReader
-    access: [["Security"]]
+    access: [["Security"], ["Cadet"]]
   - type: EntityStorage
     capacity: 50 # Big lockers tend to have more than 30 items in them
 
@@ -103,7 +103,7 @@
     stateDoorOpen: sec_M_open
     stateDoorClosed: sec_M_door
   - type: AccessReader
-    access: [["Security"]]
+    access: [["Security"], ["Cadet"]]
   - type: EntityStorage
     capacity: 50 # Big lockers tend to have more than 30 items in them
 
@@ -120,7 +120,7 @@
     stateDoorOpen: sec_R_open
     stateDoorClosed: sec_R_door
   - type: AccessReader
-    access: [["Security"]]
+    access: [["Security"], ["Cadet"]]
   - type: EntityStorage
     capacity: 50 # Big lockers tend to have more than 30 items in them
 

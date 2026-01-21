@@ -1,0 +1,61 @@
+- type: entity
+  parent: BaseAction
+  id: ActionTurnKeys
+  name: Turn Keys
+  description: Turn the keys to start or stop the vehicle
+  components:
+  - type: Action
+    icon:
+      sprite: Objects/Vehicles/atv.rsi
+      state: keys
+    priority: -1
+    checkCanInteract: false
+    itemIconStyle: BigAction
+  - type: InstantAction
+    event: !type:TurnKeysEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionVehicleHorn
+  name: Honk
+  description: Honk!
+  components:
+  - type: Action  
+    useDelay: 4
+    icon:
+      sprite: Objects/Fun/bikehorn.rsi
+      state: icon
+    checkCanInteract: false
+    itemIconStyle: BigAction
+  - type: InstantAction
+    event: !type:HornActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionVehicleToggleSecuritySiren
+  name: Toggle Security Siren
+  description: Toggles the security siren on and off.
+  components:
+  - type: Action
+    icon:
+      sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/security.rsi
+      state: siren
+    useDelay: 1
+    itemIconStyle: BigAction
+  - type: InstantAction
+    event: !type:ToggleSirenActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionToggleTrunk
+  name: Unlocks/Lock Trunk
+  components:
+  - type: Action  
+    useDelay: 4
+    icon:
+      sprite: Structures/Storage/Crates/generic.rsi
+      state: icon
+    checkCanInteract: false
+    itemIconStyle: BigAction
+  - type: InstantAction
+    event: !type:ToggleTrunkActionEvent

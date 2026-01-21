@@ -1,7 +1,6 @@
 using Content.Shared._FarHorizons.Silicons.IPC.Components;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Ninja.Components;
-using Content.Shared.PowerCell;
 using Content.Shared.PowerCell.Components;
 using Content.Shared.Verbs;
 using Content.Shared.Wires;
@@ -12,13 +11,8 @@ namespace Content.Shared._FarHorizons.Silicons.IPC;
 
 public abstract partial class SharedIPCSystem
 {
-    [Dependency] private readonly ILogManager _logs = default!;
-    protected ISawmill _sawmill = default!;
-
     protected virtual void SetupBattery()
     {
-        _sawmill = _logs.GetSawmill("IPC");
-
         SubscribeLocalEvent<IPCBatteryComponent, ComponentStartup>(OnBatteryStartup);
         SubscribeLocalEvent<IPCBatteryComponent, ItemSlotInsertAttemptEvent>(OnItemSlotInsertAttempt);
         SubscribeLocalEvent<IPCBatteryComponent, ItemSlotEjectAttemptEvent>(OnItemSlotEjectAttempt);

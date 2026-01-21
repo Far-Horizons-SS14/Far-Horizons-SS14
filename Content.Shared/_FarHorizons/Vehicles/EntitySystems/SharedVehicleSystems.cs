@@ -5,9 +5,12 @@ using Content.Shared.Lock;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Timing;
 using Robust.Shared.Audio;
-using Content.Shared.Damage;
 using Content.Shared.Examine;
 using Content.Shared.Damage.Components;
+using Content.Shared.Item.ItemToggle.Components;
+using Content.Shared.Toggleable;
+using Content.Shared.Interaction;
+using Content.Shared.Light.Components;
 
 namespace Content.Shared._FarHorizons.Vehicles.EntitySystems;
 
@@ -26,6 +29,7 @@ public abstract partial class SharedVehicleSystems : EntitySystem
         SubscribeLocalEvent<VehicleComponent, StartCollideEvent>(HandleCollide);
         SubscribeLocalEvent<VehicleComponent, CanDropTargetEvent>(OnCanDragDrop);
         SubscribeLocalEvent<VehicleComponent, ExaminedEvent>(OnExamine);
+        SubscribeLocalEvent<ItemToggleComponent, ToggleSirenActionEvent>(OnSirenToggle);
     }
 
     protected virtual void OnTurnKeysEvent(Entity<VehicleComponent> ent, ref TurnKeysEvent args)
@@ -117,5 +121,14 @@ public abstract partial class SharedVehicleSystems : EntitySystem
 
         if(ent.Comp.isBroken)
             args.PushMarkup(Loc.GetString("vehicle-examine-broken"));
+    }
+
+    private void OnSirenToggle(Entity<ItemToggleComponent> ent, ref ToggleSirenActionEvent args)
+    {
+        if(!HasComp<UnpoweredFlashlightComponent>(ent.Owner) && !HasComp<ItemToggleComponent>(ent.Owner)) return;
+        var evToggle = new ToggleActionEvent();
+        var evActivate = new ActivateInWorldEvent(args.Performer, ent.Owner, false);
+        RaiseLocalEvent(ent.Owner, evToggle);
+        RaiseLocalEvent(ent.Owner, evActivate);
     }
 }

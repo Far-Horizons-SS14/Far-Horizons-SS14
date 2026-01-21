@@ -109,6 +109,7 @@ public sealed class CriminalRecordsConsoleSystem : SharedCriminalRecordsConsoleS
         // prevent malf client violating wanted/reason nullability
         if (msg.Status == SecurityStatus.Wanted != (msg.Reason != null) &&
             msg.Status == SecurityStatus.Suspected != (msg.Reason != null) &&
+            msg.Status == SecurityStatus.AoS != (msg.Reason != null) && // FH
             msg.Status == SecurityStatus.Hostile != (msg.Reason != null))
             return;
 
@@ -174,6 +175,7 @@ public sealed class CriminalRecordsConsoleSystem : SharedCriminalRecordsConsoleS
         {
             (_, SecurityStatus.Hostile) => "hostile",
             (_, SecurityStatus.Eliminated) => "eliminated",
+            (_, SecurityStatus.AoS) => "arrest-on-sight", // FH
             // person has been detained
             (_, SecurityStatus.Detained) => "detained",
             // person did something sus
@@ -186,6 +188,7 @@ public sealed class CriminalRecordsConsoleSystem : SharedCriminalRecordsConsoleS
             (_, SecurityStatus.Wanted) => "wanted",
             (SecurityStatus.Hostile, SecurityStatus.None) => "not-hostile",
             (SecurityStatus.Eliminated, SecurityStatus.None) => "not-eliminated",
+            (SecurityStatus.AoS, SecurityStatus.None) => "not-arrest-on-sight", // FH
             // person is no longer sus
             (SecurityStatus.Suspected, SecurityStatus.None) => "not-suspected",
             // going from wanted to none, must have been a mistake

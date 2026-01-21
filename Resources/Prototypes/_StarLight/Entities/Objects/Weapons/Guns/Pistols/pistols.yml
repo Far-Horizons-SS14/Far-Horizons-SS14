@@ -237,12 +237,31 @@
     fireRate: 5
     soundGunshot:
       path: /Audio/_Starlight/Weapons/Guns/Gunshots/deagle.ogg
+  - type: ItemSlots # FH - Fixed not firing .44
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineMagnum
+        insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazineMagnum
+        whitelistFailPopup: gun-magazine-whitelist-fail
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeMagnumSP
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgeMagnum
 
 - type: entity
   name: m1911
   parent: [BaseWeaponPistol, BaseSecurityContraband] # FH - Changed inheritance from N1984 to Pistol
   id: WeaponPistolM1911
-  description: A classic .45 handgun with a small magazine capacity.
+  description: A classic .44 handgun with a small magazine capacity. #FH - Edit
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Guns/Pistols/m1911.rsi
@@ -256,6 +275,25 @@
     fireRate: 7
     soundGunshot:
       path: /Audio/_Starlight/Weapons/Guns/Gunshots/colt.ogg
+  - type: ItemSlots # FH - Fixed not firing .44
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineMagnum
+        insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazineMagnum
+        whitelistFailPopup: gun-magazine-whitelist-fail
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeMagnumSP
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgeMagnum
 
 # Doesn't work and idk why
 

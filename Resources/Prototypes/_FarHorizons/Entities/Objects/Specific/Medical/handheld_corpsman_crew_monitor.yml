@@ -1,7 +1,7 @@
 - type: entity
   name: CorpBuddy™ 6001
   parent: [ BaseHandheldComputer, BaseSecurityContraband ]
-  id: HandheldCorpsmanCrewMonitor
+  id: HandheldCorpsmanCrewMonitor 
   description: The device advertises itself as a "new and improved brigbuddy™" but the only notable thing about it is the fresh coat of black paint..
   components:
   - type: Tag
@@ -15,8 +15,11 @@
   - type: UserInterface
     interfaces:
       enum.CrewMonitoringUIKey.Key:
-        type: BrigmedicCrewMonitoringBoundUserInterface
+        type: CrewMonitoringBoundUserInterface
   - type: CrewMonitoringConsole
+  - type: CrewMonitoringFilter
+    shownDepartments:
+    - Security
   - type: DeviceNetwork
     deviceNetId: Wireless
     receiveFrequencyId: CrewMonitor

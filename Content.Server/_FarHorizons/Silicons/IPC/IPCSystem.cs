@@ -6,7 +6,6 @@ using Content.Server.EUI;
 using Content.Server.Hands.Systems;
 using Content.Server.Ninja.Systems;
 using Content.Server.Popups;
-using Content.Server.Power.EntitySystems;
 using Content.Shared.PowerCell;
 using Content.Server.Temperature.Systems;
 using Content.Shared._FarHorizons.Silicons.IPC;
@@ -22,6 +21,7 @@ using Robust.Shared.Configuration;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
 using Content.Shared.Damage.Systems;
+using Content.Shared.Power.EntitySystems;
 
 namespace Content.Server._FarHorizons.Silicons.IPC;
 
@@ -43,7 +43,7 @@ public sealed partial class IPCSystem : SharedIPCSystem
     [Dependency] private readonly DoAfterSystem _doAfter = default!;
     [Dependency] private readonly MobThresholdSystem _mobThreshold = default!;
     [Dependency] private readonly EuiManager _euiManager = default!;
-    [Dependency] private readonly BatterySystem _battery = default!;
+    [Dependency] private readonly PredictedBatterySystem _battery = default!;
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
     [Dependency] private readonly IConfigurationManager _cfgManager = default!;
     [Dependency] private readonly MetaDataSystem _metaData = default!;

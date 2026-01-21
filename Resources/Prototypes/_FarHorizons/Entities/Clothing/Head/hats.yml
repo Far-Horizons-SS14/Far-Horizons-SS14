@@ -1,47 +1,4 @@
-- type: entity
-  parent: ClothingHeadBase
-  id: ClothingHeadHatBeretVirologist
-  name: Virology Beret
-  description: A sterile green beret.
-  components:
-  - type: Sprite
-    sprite: _FarHorizons/Clothing/Head/Hats/beret_virology.rsi
-  - type: Clothing
-    sprite: _FarHorizons/Clothing/Head/Hats/beret_virology.rsi
-  - type: Tag
-    tags:
-    - PetWearable
-    - CorgiWearable
-
-- type: entity
-  parent: ClothingHeadBase
-  id: ClothingHeadHatBeretChemist
-  name: Chemist Beret
-  description: A sterile orange beret.
-  components:
-  - type: Sprite
-    sprite: _FarHorizons/Clothing/Head/Hats/beret_chemist.rsi
-  - type: Clothing
-    sprite: _FarHorizons/Clothing/Head/Hats/beret_chemist.rsi
-  - type: Tag
-    tags:
-    - PetWearable
-    - CorgiWearable
-
-- type: entity
-  parent: ClothingHeadBase
-  id: ClothingHeadHatBeretAtmos
-  name: Atmospherics Beret
-  description: A brightly colored yellow beret.
-  components:
-  - type: Sprite
-    sprite: _FarHorizons/Clothing/Head/Hats/beret_atmos.rsi
-  - type: Clothing
-    sprite: _FarHorizons/Clothing/Head/Hats/beret_atmos.rsi
-  - type: Tag
-    tags:
-    - PetWearable
-    - CorgiWearable
+#region Command
 
 - type: entity
   parent: ClothingHeadBase
@@ -53,21 +10,6 @@
     sprite: _FarHorizons/Clothing/Head/Hats/beret_CE.rsi
   - type: Clothing
     sprite: _FarHorizons/Clothing/Head/Hats/beret_CE.rsi
-  - type: Tag
-    tags:
-    - PetWearable
-    - CorgiWearable
-
-- type: entity
-  parent: ClothingHeadBase
-  id: ClothingHeadHatBeretScience
-  name: Scientist Beret
-  description: A purple colored beret.
-  components:
-  - type: Sprite
-    sprite: _FarHorizons/Clothing/Head/Hats/beret_sci.rsi
-  - type: Clothing
-    sprite: _FarHorizons/Clothing/Head/Hats/beret_sci.rsi
   - type: Tag
     tags:
     - PetWearable
@@ -98,6 +40,89 @@
     sprite: _FarHorizons/Clothing/Head/Hats/magistratecap.rsi
   - type: Clothing
     sprite: _FarHorizons/Clothing/Head/Hats/magistratecap.rsi
+  - type: Tag
+    tags:
+    - PetWearable
+    - CorgiWearable
+
+#region Engineering
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatBeretAtmos
+  name: Atmospherics Beret
+  description: A brightly colored yellow beret.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Head/Hats/beret_atmos.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Head/Hats/beret_atmos.rsi
+  - type: Tag
+    tags:
+    - PetWearable
+    - CorgiWearable
+
+#region Medical
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatBeretChemist
+  name: Chemist Beret
+  description: A sterile orange beret.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Head/Hats/beret_chemist.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Head/Hats/beret_chemist.rsi
+  - type: Tag
+    tags:
+    - PetWearable
+    - CorgiWearable
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatBeretVirologist
+  name: Virology Beret
+  description: A sterile green beret.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Head/Hats/beret_virology.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Head/Hats/beret_virology.rsi
+  - type: Tag
+    tags:
+    - PetWearable
+    - CorgiWearable
+
+#region Science
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatBeretScience
+  name: Scientist Beret
+  description: A purple colored beret.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Head/Hats/beret_sci.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Head/Hats/beret_sci.rsi
+  - type: Tag
+    tags:
+    - PetWearable
+    - CorgiWearable
+
+#region Security
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatCapSecurity
+  name: Security Cap
+  description: A dark blue security cap to show you mean business.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Head/Hats/securitycap.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Head/Hats/securitycap.rsi
   - type: Tag
     tags:
     - PetWearable

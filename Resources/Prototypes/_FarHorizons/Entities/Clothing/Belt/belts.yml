@@ -1,47 +1,9 @@
-#region Base
-
-- type: entity
-  parent: [ClothingBeltStorageBase, ContentsExplosionResistanceBase]
-  id: ClothingBeltWebbingBase
-  name: Webbing
-  description: Can hold bits and bobs, but it's main purpose is to hold spare magazines and grenades.
-  components:
-  - type: Sprite
-    sprite: Clothing/Belt/securitywebbing.rsi
-  - type: Clothing
-    sprite: Clothing/Belt/securitywebbing.rsi
-  - type: ExplosionResistance # Prevents unwanted detonation of contents, i.e grenades.
-    damageCoefficient: 0.1
-  - type: Storage
-    grid:
-    - 0,0,3,1
-    - 0,3,3,4
-    whitelist:
-      tags:
-        - CigPack
-        - MagazinePistol
-        - MagazineMagnum
-        - CombatKnife
-        - HandGrenade
-        - Radio
-        - Knife
-        - Cartridge
-      components:
-        - DoorRemote
-        - Whistle
-        - BallisticAmmoProvider
-        - CartridgeAmmo
-  - type: Appearance
-  - type: Tag
-    tags: 
-    - Webbing
-
 #region Cargo
 
 - type: entity
   parent: ClothingBeltStorageBase
   id: ClothingBeltCargo
-  name: cargo utility belt
+  name: Cargo Utility Belt
   description: Can hold a various amount of lo- required gear used by Cargo.
   components:
   - type: Sprite
@@ -91,99 +53,7 @@
       - id: WeaponMeleeBoxcutter
       - id: AppraisalTool
   - type: ItemMapper
-    mapLayers:
-      drill:
-        whitelist:
-          tags:
-          - Powerdrill
-      cutters_red:
-        whitelist:
-          tags:
-          - Wirecutter
-          - ImprovisedWirecutter
-      crowbar:
-        whitelist:
-          tags:
-          - Crowbar
-          - ImprovisedCrowbar
-      crowbar_red:
-        whitelist:
-          tags:
-          - CrowbarRed
-      jaws:
-        whitelist:
-          tags:
-          - JawsOfLife
-      screwdriver_nuke:
-        whitelist:
-          tags:
-          - Screwdriver
-          - ImprovisedScrewdriver
-      multitool:
-        whitelist:
-          tags:
-            - Multitool
-            - ImprovisedMultitool
-      wrench:
-        whitelist:
-          tags:
-          - Wrench
-          - ImprovisedWrench
-    sprite: Clothing/Belt/belt_overlay.rsi
-
-- type: entity
-  parent: ClothingBeltStorageBase
-  id: ClothingBeltSalvageWebbing
-  name: salvage utility rig
-  description: When the salvage wrecks weren't enough, the salvage team stole these rigs from their cargo technician friends.
-  components:
-  - type: Sprite
-    sprite: _FarHorizons/Clothing/Belt/salvagewebbing.rsi
-  - type: Clothing
-    sprite: _FarHorizons/Clothing/Belt/salvagewebbing.rsi
-  - type: Storage
-    whitelist:
-      tags:
-        - Wirecutter
-        - Crowbar
-        - Screwdriver
-        - Flashlight
-        - Wrench
-        - GeigerCounter
-        - Flare
-        - CableCoil
-        - Powerdrill
-        - JawsOfLife
-        - CigPack
-        - Radio
-        - HolofanProjector
-        - Multitool
-        - AppraisalTool
-        - GPS
-        - WeldingMask
-        - RemoteSignaller
-        - ImprovisedCrowbar
-        - ImprovisedScrewdriver
-        - ImprovisedWirecutter
-        - ImprovisedWrench
-        - ImprovisedMultitool
-        - Knife
-      components:
-        - StationMap
-        - SprayPainter
-        - SprayPainterAmmo
-        - NetworkConfigurator
-        - Welder
-        - PowerCell
-        - Geiger
-        - TrayScanner
-        - GasAnalyzer
-        - HandLabeler
-  - type: StorageFill
-    contents:
-      - id: SurvivalKnife
-      - id: AppraisalTool
-  - type: ItemMapper
+    sprite: &BeltOverlay Clothing/Belt/belt_overlay.rsi
     mapLayers:
       drill:
         whitelist:
@@ -228,7 +98,7 @@
 - type: entity
   parent: ClothingBeltStorageBase
   id: ClothingBeltHoP
-  name: head of personnel belt
+  name: Head Of Personnel Belt
   description: A very clean belt with some wear on some lesser seen parts. Can fit plenty of paperwork and writing implements inside.
   components:
   - type: Sprite
@@ -282,6 +152,7 @@
       - id: Paper
         amount: 4
   - type: ItemMapper
+    sprite: *BeltOverlay
     mapLayers:
       drill:
         whitelist:
@@ -320,16 +191,13 @@
           tags:
           - Wrench
           - ImprovisedWrench
-    sprite: Clothing/Belt/belt_overlay.rsi
-  
-
 
 #region Science
 
 - type: entity
   parent: ClothingBeltStorageBase
   id: ClothingBeltScience
-  name: science belt
+  name: Science Belt
   description: Can hold various scientific things.
   components:
   - type: Sprite
@@ -381,6 +249,7 @@
       - id: AnomalyScanner
       - id: NodeScanner
   - type: ItemMapper
+    sprite: *BeltOverlay
     mapLayers:
       drill:
         whitelist:
@@ -419,7 +288,6 @@
           tags:
           - Wrench
           - ImprovisedWrench
-    sprite: Clothing/Belt/belt_overlay.rsi
 
 - type: entity
   id: ClothingBeltScienceRoboticist
@@ -450,6 +318,8 @@
       - id: Multitool
       - id: AnomalyScanner
       - id: NodeScanner
+
+#region Security
 
 #region Syndicate Station #####
 
@@ -612,64 +482,3 @@
     containers:
       storagebase: !type:NestedSelector
         tableId: BeltSecurityEntityTable
-
-- type: entity
-  parent: ClothingBeltWebbingBase
-  id: ClothingBeltSecurityWebbingSyndi
-  name: Security Carrier
-  description: Unique and versatile chest rig, can hold security gear.
-  components:
-  - type: Sprite
-    sprite: _FarHorizons/Clothing/Belt/securitywebbingsyndi.rsi
-  - type: Clothing
-    sprite: _FarHorizons/Clothing/Belt/securitywebbingsyndi.rsi
-
-# region Nukies
-
-- type: entity
-  parent: [ClothingBeltStorageBase, ContentsExplosionResistanceBase, BaseMajorContraband]
-  id: ClothingBeltMilitaryWebbing
-  name: Assault Belt
-  description: A hefty belt that can store just about anything, typically utilized by not-so friendly boarding parties.
-  components:
-  - type: Storage
-    grid:
-    - 0,0,1,0 #left
-    - 0,1,0,1 #left - cube
-    - 3,0,10,1
-    - 12,0,13,0 #right
-    - 12,1,12,1 #right - cube
-  - type: Sprite
-    sprite: Clothing/Belt/assault.rsi
-  - type: Clothing
-    sprite: Clothing/Belt/assault.rsi
-  - type: ExplosionResistance
-    damageCoefficient: 0.1
-  - type: StaticPrice
-    price: 500
-
-- type: entity
-  parent: [ClothingBeltWebbingBase, BaseMajorContraband]
-  id: ClothingBeltMilitaryWebbingMed
-  name: Medical Chest Rig
-  description: A set of tactical webbing worn by various military corpsmen.
-  components:
-  - type: Sprite
-    sprite: _FarHorizons/Clothing/Belt/paramedicwebbing.rsi
-  - type: Clothing
-    sprite: _FarHorizons/Clothing/Belt/paramedicwebbing.rsi
-  - type: Item
-    size: Huge
-
-- type: entity
-  parent: [ClothingBeltWebbingBase, ContentsExplosionResistanceBase, BaseMajorContraband]
-  id: ClothingBeltMilitaryRig
-  name: Chest Rig
-  description: A set of tactical webbing worn by various militant boarding parties.
-  components:
-  - type: Sprite
-    sprite: Clothing/Belt/militarywebbing.rsi
-  - type: Clothing
-    sprite: Clothing/Belt/militarywebbing.rsi
-  - type: StaticPrice
-    price: 500

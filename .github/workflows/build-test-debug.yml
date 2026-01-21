@@ -12,6 +12,10 @@ on:
       - '**.yml'
       - '**.yaml'
 
+concurrency:
+  group: pr-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
 jobs:
   unit-tests:
     if: "!contains(github.event.pull_request.labels.*.name, 'automated pr') && github.actor != 'github-actions[bot]' && github.event.pull_request.draft == false"
@@ -28,7 +32,7 @@ jobs:
   
   integration-tests:
     if: "!contains(github.event.pull_request.labels.*.name, 'automated pr') && github.actor != 'github-actions[bot]' && github.event.pull_request.draft == false"
-
+    needs: unit-tests
     runs-on: ubuntu-24.04
 
     steps:
@@ -39,6 +43,6 @@ jobs:
     - name: Run Content.IntegrationTests
       env:
         DOTNET_gcServer: "0"
-        DOTNET_GCHeapHardLimitPercent: "70"
+        DOTNET_GCHeapHardLimitPercent: "65"
       run: dotnet test --no-build -c DebugOpt Content.IntegrationTests/Content.IntegrationTests.csproj --settings .farhorizons/.integrationtests
 

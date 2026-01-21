@@ -40,7 +40,8 @@ namespace Content.Server.Radio.EntitySystems;
 /// <summary>
 ///     This system handles intrinsic radios and the general process of converting radio messages into chat messages.
 /// </summary>
-public sealed class RadioSystem : EntitySystem
+/// Far Horizons - made partial
+public sealed partial class RadioSystem : EntitySystem
 {
     [Dependency] private readonly INetManager _netMan = default!;
     [Dependency] private readonly IReplayRecordingManager _replay = default!;
@@ -138,6 +139,11 @@ public sealed class RadioSystem : EntitySystem
         RaiseLocalEvent(messageSource, evt);
 
         var name = evt.VoiceName;
+
+        // Far Horizons
+        if (channel.Anonymous)
+            name = ObfuscateName(channel, messageSource);
+
         if (string.IsNullOrEmpty(name))
             name = entityName;
         if (name == null)
@@ -287,6 +293,10 @@ public sealed class RadioSystem : EntitySystem
             languageColor = Color.InterpolateBetween(Color.White, colorOverride, colorOverride.A); // Changed first param to Color.White so it shows color correctly.
 
         var (iconId, jobName) = GetJobIcon(source);
+        // Far Horizons
+        if (channel.Anonymous)
+            (iconId, jobName) = (channel.AnonymousIcon, "");
+
 
         var namestring = $"[icon src=\"{iconId}\" tooltip=\"{jobName}\"] {name}";
         if (_language.GetLanguageIcon(language, obfuscated))

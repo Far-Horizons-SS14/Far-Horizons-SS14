@@ -58,7 +58,7 @@ public abstract partial class SharedBorgSystem
             return;
 
         _adminLog.Add(LogType.Action, LogImpact.High, $"{args.Actor} set borg \"{chassis.Owner}\"'s name to: {name}");
-        _metaData.SetEntityName(chassis, name, metaData);
+        _metaData.SetEntityName(chassis, name, metaData, false); // Far Horizons - changed raiseEvents to false so borgis don't get free ID rename
     }
 
     private void OnRemoveModuleBuiMessage(Entity<BorgChassisComponent> chassis, ref BorgRemoveModuleBuiMessage args)
