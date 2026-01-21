@@ -180,6 +180,7 @@ namespace Content.IntegrationTests.Tests
         {
             await using var pair = await PoolManager.GetServerClient();
             var server = pair.Server;
+            await server.WaitIdleAsync();
 
             var entManager = server.ResolveDependency<IEntityManager>();
             var resMan = server.ResolveDependency<IResourceManager>();
@@ -188,27 +189,17 @@ namespace Content.IntegrationTests.Tests
             var cfg = server.ResolveDependency<IConfigurationManager>();
             Assert.That(cfg.GetCVar(CCVars.GridFill), Is.False);
 
-            var shuttleFolder = new ResPath("/Maps/Shuttles");
+            // Far Horizons - only testing our stuff
+            var shuttleFolder = new ResPath("/Maps/_FarHorizons/Shuttles");
             var shuttles = resMan
                 .ContentFindFiles(shuttleFolder)
                 .Where(filePath =>
                     filePath.Extension == "yml" && !filePath.Filename.StartsWith(".", StringComparison.Ordinal))
                 .ToArray();
 
-            //starlight shuttles
-            var starlightShuttleFolder = new ResPath("/Maps/_Starlight/Shuttles");
-            var starlightShuttles = resMan
-                .ContentFindFiles(starlightShuttleFolder)
-                .Where(filePath =>
-                    filePath.Extension == "yml" && !filePath.Filename.StartsWith(".", StringComparison.Ordinal))
-                .ToArray();
-            
-            shuttles = shuttles.Concat(starlightShuttles).ToArray();
-
             await server.WaitPost(() =>
             {
-                Assert.Multiple(() =>
-                {
+                using (Assert.EnterMultipleScope())
                     foreach (var path in shuttles)
                     {
                         mapSystem.CreateMap(out var mapId);
@@ -224,7 +215,6 @@ namespace Content.IntegrationTests.Tests
                         }
                         mapSystem.DeleteMap(mapId);
                     }
-                });
             });
             await server.WaitRunTicks(1);
 
@@ -408,6 +398,7 @@ namespace Content.IntegrationTests.Tests
                 Dirty = true // Stations spawn a bunch of nullspace entities and maps like centcomm.
             });
             var server = pair.Server;
+            await server.WaitIdleAsync();
 
             var mapManager = server.ResolveDependency<IMapManager>();
             var entManager = server.ResolveDependency<IEntityManager>();
