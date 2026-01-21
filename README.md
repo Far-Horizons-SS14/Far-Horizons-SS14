@@ -32,9 +32,15 @@ Space-Station 14 has [docs site](https://docs.spacestation14.io/) documentation 
 ## License
 
 > [!CAUTION]
-> Unless stated otherwise in the file, the repository code is licensed both under MIT - this applies to Space Wizards Federation code - and under modified MIT - this applies to our changes.
+> Unless stated otherwise in the file, the repository code is licensed under one of two licenses: [MIT](https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/blob/Far-Horizons/LICENSE.TXT) - this applies to original code by Space Wizards Federation and later Far Horizons changes; And [modified MIT](https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/blob/Far-Horizons/LICENSE-Starlight.TXT) - this applies to changes originally forked and later ported from StarLight. As well as all submissions to this repository prior to commit commitID.
 
-p.s. please note that reactor-related code was taken from goonstation, and therefore licensed under CC-BY-NC-SA-3.0
+> [!CAUTION]
+> Prior to commit commitID, every code submission in this repository was licensed under [modified MIT](https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/blob/Far-Horizons/LICENSE-Starlight.TXT). These additions were not retroactively relicensed.
+
+Please note that assets are licensed separately from code and specify their license in their respective metadata or attributions file.
+
+List of non-MIT code additions:
+- Nuclear reactor-related code was taken from goonstation, and therefore licensed under CC-BY-NC-SA-3.0
 
 ### Click each banner for further information
 
