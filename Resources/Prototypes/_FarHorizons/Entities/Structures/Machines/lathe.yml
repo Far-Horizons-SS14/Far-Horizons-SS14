@@ -19,7 +19,7 @@
   description: It produces basic items using metal and glass. Has the ability to process blueprints to print new recipes.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Structures/Machines/Syndicate/autofab.rsi #TODO: CUSTOM SPRITE
+    sprite: _FarHorizons/Structures/Machines/NS/autofab.rsi #TODO: CUSTOM SPRITE
     snapCardinals: true
     layers:
     - state: icon
@@ -86,9 +86,9 @@
   description: A highly-experimental Autofab that harnesses the power of extreme Cold to slowly create objects more cost-effectively.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Structures/Machines/Syndicate/autofab.rsi #TODO: CUSTOM SPRITE
+    sprite: _FarHorizons/Structures/Machines/NS/autofab.rsi #TODO: CUSTOM SPRITE
   - type: Machine
-    board: AutofabSubzeroMachineCircuitboards
+    board: AutofabSubzeroMachineCircuitboard
 
 - type: entity
   id: Protofab
@@ -97,7 +97,7 @@
   description: Converts raw materials into advanced items.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Structures/Machines/Syndicate/protofab.rsi #TODO: CUSTOM SPRITE
+    sprite: _FarHorizons/Structures/Machines/NS/protofab.rsi #TODO: CUSTOM SPRITE
     snapCardinals: true
     layers:
     - state: icon
@@ -161,7 +161,7 @@
   description: A highly-experimental Protofab that harnesses the power of extreme Cold to slowly create objects more cost-effectively.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Structures/Machines/Syndicate/protofab.rsi #TODO: CUSTOM SPRITE
+    sprite: _FarHorizons/Structures/Machines/NS/protofab.rsi #TODO: CUSTOM SPRITE
   - type: Machine
     board: ProtofabSubzeroMachineCircuitboard
 
@@ -189,8 +189,8 @@
     idleState: icon
     runningState: building
     staticPacks:
-    - SyndicateScienceBoardsStatic
-    - SyndicateServiceBoardsStatic
+    - NSScienceBoardsStatic
+    - NSServiceBoardsStatic
     - CargoBoardsStatic #Should Syndi have this?
     - MedicalBoardsStatic
     - EngineeringBoardsStatic
@@ -200,7 +200,7 @@
     - CargoBoards
     - MedicalBoards
     - ServiceBoards
-    - SyndicateScienceBoards
+    - NSScienceBoards
     - CameraBoards
     - MechBoards
     - ShuttleBoards
@@ -226,7 +226,7 @@
 - type: entity
   id: BoardEngraverSubzero
   parent: [BoardEngraver, BaseSubzerofab]
-  name: Subzero BoardEngraver
+  name: Subzero Board Engraver
   description: A highly-experimental circuit imprinter that harnesses the power of extreme heat to slowly create objects more cost-effectively.
   components:
   - type: Sprite
@@ -294,7 +294,7 @@
   description: Prints equipment for use by Overwatch crew.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Structures/Machines/Syndicate/techfab.rsi
+    sprite: _FarHorizons/Structures/Machines/NS/techfab.rsi
     layers:
     - state: icon
       map: ["enum.LatheVisualLayers.IsRunning"]
@@ -350,7 +350,7 @@
   description: Prints equipment for use by the medbay.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Structures/Machines/Syndicate/techfab.rsi
+    sprite: _FarHorizons/Structures/Machines/NS/techfab.rsi
     layers:
     - state: icon
       map: ["enum.LatheVisualLayers.IsRunning"]
@@ -390,8 +390,8 @@
 
 - type: entity
   parent: BaseLathe
-  id: SyndicateUniformPrinter
-  name: Syndicate Uniform Printer
+  id: NSUniformPrinter
+  name: NeoSol Uniform Printer
   description: Prints new or replacement uniforms.
   components:
   - type: Transform
@@ -410,18 +410,18 @@
     runningState: building
     staticPacks: #TODO: Syndie Uniform Packs
     - ClothingCivilian
-    - ClothingCargo #should Syndicate have cargo clothing?
-    - ClothingCommandSyndicate
-    - ClothingEngineeringSyndicate #Only has Head Uniform
-#    - ClothingMedicalSyndicate
+    - ClothingCargo #should NeoSol have cargo clothing?
+    - ClothingCommandNS
+    - ClothingEngineeringNS #Only has Head Uniform
+#    - ClothingMedicalNS
 #    - ClothingScience
-    - ClothingSecuritySyndicate
-#    - ClothingServiceSyndicate
-    - WinterCoatsSyndicate
-    - TiesSyndicate
+    - ClothingSecurityNS
+#    - ClothingServiceNS
+    - WinterCoatsNS
+    - TiesNS
     - Scarves
     - Carpets
-    - BedsheetsSyndicate
+    - BedsheetsNS
     dynamicPacks:
     - StarlightUniformPrinterLootable
 #  - type: EmagLatheRecipes #TODO: NT THEMED EMAG PACKS

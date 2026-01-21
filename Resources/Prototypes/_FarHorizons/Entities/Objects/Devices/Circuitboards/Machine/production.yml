@@ -147,12 +147,12 @@
 #      stealGroup: MedicalTechFabCircuitboard
 
 - type: entity
-  id: SyndicateUniformPrinterMachineCircuitboard
+  id: NSUniformPrinterMachineCircuitboard
   parent: BaseMachineCircuitboard
-  name: Syndicate Uniform Printer Machine Board
-  description: A machine printed circuit board for a Syndicate Uniform Printer.
+  name: NeoSol Uniform Printer Machine Board
+  description: A machine printed circuit board for a NeoSol Uniform Printer.
   components:
   - type: MachineBoard
-    prototype: SyndicateUniformPrinter
+    prototype: NSUniformPrinter
     stackRequirements:
       Manipulator: 3
