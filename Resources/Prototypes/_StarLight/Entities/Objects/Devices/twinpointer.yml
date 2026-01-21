@@ -35,13 +35,15 @@
       sprite: Objects/Devices/pinpointer.rsi
       layers:
         - state: twinpointer-left
+          sprite: _Starlight/Objects/Devices/pinpointer.rsi
           map: ["enum.PinpointerLayers.Base"]
         - state: pinonnull
+          sprite: Objects/Devices/pinpointer.rsi
           map: ["enum.PinpointerLayers.Screen"]
           shader: unshaded
           visible: false
     - type: Icon
-      sprite: Objects/Devices/pinpointer.rsi
+      sprite: _Starlight/Objects/Devices/pinpointer.rsi
       state: twinpointer-left
     - type: Item
       sprite: Objects/Devices/pinpointer.rsi
@@ -59,13 +61,14 @@
       sprite: Objects/Devices/pinpointer.rsi
       layers:
         - state: twinpointer-right
+          sprite: _Starlight/Objects/Devices/pinpointer.rsi
           map: ["enum.PinpointerLayers.Base"]
         - state: pinonnull
           map: ["enum.PinpointerLayers.Screen"]
           shader: unshaded
           visible: false
     - type: Icon
-      sprite: Objects/Devices/pinpointer.rsi
+      sprite: _Starlight/Objects/Devices/pinpointer.rsi
       state: twinpointer-right
     - type: Item
       sprite: Objects/Devices/pinpointer.rsi
