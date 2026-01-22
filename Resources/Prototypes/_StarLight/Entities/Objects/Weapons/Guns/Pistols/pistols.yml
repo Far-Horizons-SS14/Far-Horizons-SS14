@@ -122,9 +122,9 @@
   parent: [BaseWeaponPistol, BaseSecurityContraband] # FH - Changed inheritance from MK to Pistol
   id: WeaponPistolSP8T
   components:
-  - type: Gun
-    soundGunshot:
-      path: /Audio/_Starlight/Weapons/Guns/Gunshots/sp8t.ogg
+  # - type: Gun
+  #   soundGunshot:
+  #     path: /Audio/_Starlight/Weapons/Guns/Gunshots/sp8t.ogg # stereo sound crashes client
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Guns/Pistols/sp8t.rsi
   - type: ChamberMagazineAmmoProvider

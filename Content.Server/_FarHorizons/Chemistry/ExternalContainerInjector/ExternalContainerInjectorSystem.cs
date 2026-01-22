@@ -3,7 +3,6 @@ using Robust.Server.Audio;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Chemistry;
 using Content.Shared.Chemistry.EntitySystems;
-using Content.Shared.Chemistry.Hypospray.Events;
 using Content.Shared.Database;
 using Content.Shared.FixedPoint;
 using Content.Shared.Forensics;
@@ -16,6 +15,7 @@ using Content.Shared.Chemistry.Components;
 using Robust.Shared.Prototypes;
 using Content.Shared.Containers.ItemSlots;
 using Robust.Shared.Containers;
+using Content.Shared.Chemistry.Events;
 
 namespace Content.Server._Starlight.Chemistry.ExternalContainerInjector;
 
@@ -78,13 +78,13 @@ public sealed partial class ExternalContainerInjectorSystem : SharedExternalCont
         string? msgFormat = null;
 
         // Self event
-        var selfEvent = new SelfBeforeHyposprayInjectsEvent(user, entity.Owner, target);
+        var selfEvent = new SelfBeforeInjectEvent(user, entity.Owner, target);
         RaiseLocalEvent(user, selfEvent);
 
         if (selfEvent.Cancelled)
         {
             _popup.PopupEntity(
-                Loc.GetString(selfEvent.InjectMessageOverride ?? "hypospray-cant-inject",
+                Loc.GetString(selfEvent.OverrideMessage ?? "hypospray-cant-inject",
                     ("owner", Identity.Entity(target, EntityManager))), target, user);
             return false;
         }
@@ -95,13 +95,13 @@ public sealed partial class ExternalContainerInjectorSystem : SharedExternalCont
             return false;
 
         // Target event
-        var targetEvent = new TargetBeforeHyposprayInjectsEvent(user, entity.Owner, target);
-        RaiseLocalEvent(target, targetEvent);
+        var targetEvent = new TargetBeforeInjectEvent(user, entity.Owner, target);
+        RaiseLocalEvent(target, ref targetEvent);
 
         if (targetEvent.Cancelled)
         {
             _popup.PopupEntity(
-                Loc.GetString(targetEvent.InjectMessageOverride ?? "hypospray-cant-inject",
+                Loc.GetString(targetEvent.OverrideMessage ?? "hypospray-cant-inject",
                     ("owner", Identity.Entity(target, EntityManager))), target, user);
             return false;
         }
@@ -112,10 +112,8 @@ public sealed partial class ExternalContainerInjectorSystem : SharedExternalCont
             return false;
 
         // The target event gets priority for the overriden message.
-        if (targetEvent.InjectMessageOverride != null)
-            msgFormat = targetEvent.InjectMessageOverride;
-        else if (selfEvent.InjectMessageOverride != null)
-            msgFormat = selfEvent.InjectMessageOverride;
+        if (targetEvent.OverrideMessage != null)
+            msgFormat = targetEvent.OverrideMessage;
         else if (target == user)
             msgFormat = "hypospray-component-inject-self-message";
 

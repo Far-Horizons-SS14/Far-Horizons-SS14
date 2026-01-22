@@ -15,10 +15,11 @@ loadout-group-survival-clown = Clown Survival Box
 loadout-group-survival-medical = Medical Survival Box
 loadout-group-survival-security = Security Survival Box
 loadout-group-survival-syndicate = Github is forcing me to write text that is literally twice-impossible for the player to ever see, send help
-loadout-group-breath-tool = Species-Dependent Breath Tools
-loadout-group-tank-harness = Species-Specific Survival Equipment
-loadout-group-EVA-tank = Species-Specific Gas Tank
-loadout-group-vox-tank = Vox-Specific Gas Tank
+loadout-group-survival-military = See line 14, no one will ever see this so :3
+loadout-group-breath-tool = Species-dependent breath tools
+loadout-group-tank-harness = Species-specific survival equipment
+loadout-group-EVA-tank = Species-specific gas tank
+loadout-group-vox-tank = Vox-specific gas tank
 loadout-group-pocket-tank-double = Species-specific double emergency tank in pocket
 loadout-group-survival-mime = Mime Survival Box
 

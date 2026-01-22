@@ -1,8 +1,8 @@
 - type: entity
+  abstract: true
+  parent: BaseCartridge
   id: BaseShellShotgun
   name: 12 gauge shotgun shell # Starlight change: .50 -> 12 gauge
-  parent: BaseCartridge
-  abstract: true
   components:
   - type: Tag
     tags:
@@ -18,9 +18,9 @@
     tip: true
 
 - type: entity
+  parent: [ BaseShellShotgun, BaseSecurityBartenderContraband ]
   id: ShellShotgunBeanbag
   name: 12 gauge beanbag slug # Starlight change: .50 -> 12 gauge
-  parent: [ BaseShellShotgun, BaseSecurityBartenderContraband ]
   components:
   - type: Tag
     tags:
@@ -42,9 +42,9 @@
     proto: PelletShotgunBeanbagTrace
 
 - type: entity
+  parent: [ BaseShellShotgun, BaseSecurityContraband]
   id: ShellShotgunSlug
   name: 12 gauge slug # Starlight change: .50 -> 12 gauge
-  parent: [ BaseShellShotgun, BaseSecurityContraband]
   components:
   - type: Sprite
     layers:
@@ -62,9 +62,9 @@
     proto: PelletShotgunSlugTrace
 
 - type: entity
+  parent: BaseShellShotgun
   id: ShellShotgunFlare
   name: 12 gauge flare # Starlight change: .50 -> 12 gauge
-  parent: BaseShellShotgun
   components:
   - type: Tag
     tags:
@@ -88,8 +88,8 @@
 
 - type: entity
   id: ShellShotgun
-  name: 12 gauge buckshot # Starlight change: .50 -> 12 gauge
   parent: [ BaseShellShotgun, BaseSecurityContraband ]
+  name: 12 gauge buckshot # Starlight change: .50 -> 12 gauge
   components:
   - type: Sprite
     layers:
@@ -108,8 +108,8 @@
 
 - type: entity
   id: ShellShotgunIncendiary
-  name: 12 gauge incendiary buckshot # Starlight change: .50 -> 12 gauge
   parent: [ BaseShellShotgun, BaseSecurityContraband ]
+  name: 12 gauge incendiary buckshot # Starlight change: .50 -> 12 gauge
   components:
   - type: Sprite
     layers:

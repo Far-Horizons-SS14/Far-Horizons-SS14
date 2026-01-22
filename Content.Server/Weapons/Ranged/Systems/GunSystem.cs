@@ -50,7 +50,6 @@ using Content.Shared.Stunnable;
 using Content.Shared.Weapons.Reflect;
 using Content.Shared._Starlight.Weapon.Components;
 using Content.Shared._Starlight.Weapon;
-using Microsoft.CodeAnalysis.Elfie.Diagnostics;
 using Robust.Server.GameObjects;
 using Robust.Shared.Containers;
 using Robust.Shared.Maths;

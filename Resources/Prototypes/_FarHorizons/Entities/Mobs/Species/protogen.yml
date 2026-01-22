@@ -144,17 +144,18 @@
       - AnomalyHost
       - Protogen
       - SiliconEmotesFH 
-  - type: Temperature # Similar to vulp becasue they are ALSO a furred race
+  - type: TemperatureDamage # Similar to vulp becasue they are ALSO a furred race
     heatDamageThreshold: 325
     coldDamageThreshold: 230
-    currentTemperature: 310.15
-    specificHeat: 46
     coldDamage:
       types:
         Cold : 0.1 #per second, scales with temperature & other constants
     heatDamage:
       types:
         Heat : 1.5 #per second, scales with temperature & other constants
+  - type: Temperature
+    currentTemperature: 310.15
+    specificHeat: 46
   - type: TemperatureSpeed
     thresholds:
       280: 0.9
@@ -356,10 +357,10 @@
       Burn:
         sprite: Mobs/Effects/burn_damage.rsi
   - type: Bloodstream
-    bloodReagents:
+    bloodReferenceSolution:
       reagents:
       - ReagentId: AmmoniaBlood
-        Quantity: 1
+        Quantity: 300
   - type: Sprite # Need to redefine the whole order to draw the tail over their gas tank
     layers:
     - map: [ "enum.HumanoidVisualLayers.Chest" ]
@@ -788,10 +789,10 @@
       Burn:
         sprite: Mobs/Effects/burn_damage.rsi
   - type: Bloodstream
-    bloodReagents:
+    bloodReferenceSolution:
       reagents:
       - ReagentId: Slime
-        Quantity: 1
+        Quantity: 300
   - type: Barotrauma
     damage:
       types:
@@ -1050,10 +1051,11 @@
     - type: DarkenedVision
     # Other
     - type: Temperature
-      heatDamageThreshold: 325
-      coldDamageThreshold: 260
       currentTemperature: 310.15
       specificHeat: 42
+    - type: TemperatureDamage
+      heatDamageThreshold: 325
+      coldDamageThreshold: 260
       coldDamage:
         types:
           Cold: 0.1 #per second, scales with temperature & other constants
@@ -1144,10 +1146,10 @@
       Burn:
         sprite: Mobs/Effects/Resomi/burn_damage.rsi
   - type: Bloodstream
-    bloodReagents:
+    bloodReferenceSolution:
       reagents:
       - ReagentId: ResomiBlood
-        Quantity: 1
+        Quantity: 300
   - type: FireVisuals
     sprite: Mobs/Effects/onfire.rsi
     normalState: Resomi_minor_burning
@@ -1513,10 +1515,11 @@
     damageContainer: Biological
     damageModifierSet: ProtoReptile
   - type: Temperature
-    heatDamageThreshold: 400
-    coldDamageThreshold: 285
     currentTemperature: 310.15
     specificHeat: 42
+  - type: TemperatureDamage
+    heatDamageThreshold: 400
+    coldDamageThreshold: 285
     coldDamage:
       types:
         Cold : 1.5 #per second, scales with temperature & other constants
@@ -1651,10 +1654,10 @@
     - id: FoodMeat
       amount: 5
   - type: Bloodstream
-    bloodReagents:
+    bloodReferenceSolution:
       reagents:
       - ReagentId: InsectBlood
-        Quantity: 1
+        Quantity: 300
   - type: DamageVisuals
     damageOverlayGroups:
       Brute:
@@ -1672,10 +1675,11 @@
       types:
         Heat: 2.5
   - type: Temperature
-    heatDamageThreshold: 320
-    coldDamageThreshold: 230
     currentTemperature: 310.15
     specificHeat: 46
+  - type: TemperatureDamage
+    heatDamageThreshold: 320
+    coldDamageThreshold: 230
     coldDamage:
       types:
         Cold : 0.05 #per second, scales with temperature & other constants
@@ -2272,10 +2276,10 @@
       - id: FoodMeatPlant
         amount: 5
   - type: Bloodstream
-    bloodReagents:
+    bloodReferenceSolution:
       reagents:
       - ReagentId: Sap
-        Quantity: 1
+        Quantity: 300
   - type: Reactive
     groups:
       Flammable: [ Touch ]
@@ -2434,10 +2438,10 @@
   - type: Sprite
     scale: 1.08, 1.08
   - type: Bloodstream
-    bloodReagents:
+    bloodReferenceSolution:
       reagents:
       - ReagentId: CopperBlood
-        Quantity: 1
+        Quantity: 300
   - type: Inventory
     speciesId: cyclorite
     templateId: protocyclops
@@ -2665,15 +2669,16 @@
           sprite: Mobs/Effects/brute_damage.rsi
           color: "#6C3BAA"
     - type: Bloodstream
-      bloodReagents:
+      bloodReferenceSolution:
         reagents:
         - ReagentId: AvaliBlood
-          Quantity: 1
+          Quantity: 300
     - type: Temperature
-      heatDamageThreshold: 310
-      coldDamageThreshold: 223
       currentTemperature: 261
       specificHeat: 48
+    - type: TemperatureDamage
+      heatDamageThreshold: 310
+      coldDamageThreshold: 223
     - type: ThermalRegulator
       metabolismHeat: 400 # icebirb go brrr
       radiatedHeat: 100
@@ -2783,10 +2788,10 @@
       - !type:WashCreamPie
   # Damage (Self)
   - type: Bloodstream
-    bloodReagents:
+    bloodReferenceSolution:
         reagents:
         - ReagentId: CopperBlood
-          Quantity: 1
+          Quantity: 300
   # Damage (Others)
   - type: MeleeWeapon
     animation: WeaponArcBite

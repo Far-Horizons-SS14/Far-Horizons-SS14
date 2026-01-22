@@ -34,7 +34,7 @@ accent-italian-words-9 = could
 accent-italian-words-replace-9 = could-a
 
 accent-italian-words-10 = dad
-accent-italian-words-replace-10 = pappa
+accent-italian-words-replace-10 = papà
 
 accent-italian-words-11 = good
 accent-italian-words-replace-11 = molto bene
@@ -112,7 +112,7 @@ accent-italian-words-35 = traitor
 accent-italian-words-replace-35 = mafioso
 
 accent-italian-words-36 = traitors
-accent-italian-words-replace-36 = mafioso
+accent-italian-words-replace-36 = mafiosi
 
 accent-italian-words-37 = use
 accent-italian-words-replace-37 = use-a

@@ -3,7 +3,7 @@
 namespace Content.Shared._FarHorizons.DiscordLink;
 
 [Prototype("discordRole")]
-public sealed class DiscordRolePrototype : IPrototype
+public sealed partial class DiscordRolePrototype : IPrototype
 {
     [ViewVariables]
     [IdDataField]

@@ -19,8 +19,8 @@ public sealed partial class IPCSystem
         base.SetupBattery();
         
         SubscribeLocalEvent<IPCBatteryComponent, PowerCellChangedEvent>((uid, comp, ev) => UpdateDeathTimer((uid, comp), ev));
-        SubscribeLocalEvent<IPCBatteryComponent, PredictedBatteryChargeChangedEvent>((uid, comp, _) => UpdateDeathTimer((uid, comp)));
-        SubscribeLocalEvent<IPCBatteryComponent, PredictedBatteryStateChangedEvent>((uid, comp, _) => UpdateDeathTimer((uid, comp)));
+        SubscribeLocalEvent<IPCBatteryComponent, ChargeChangedEvent>((uid, comp, _) => UpdateDeathTimer((uid, comp)));
+        SubscribeLocalEvent<IPCBatteryComponent, BatteryStateChangedEvent>((uid, comp, _) => UpdateDeathTimer((uid, comp)));
 
         SubscribeLocalEvent<IPCBatteryComponent, PowerCellSlotEmptyEvent>(OnPowerCellSlotEmpty);
         SubscribeLocalEvent<IPCBatteryComponent, MobStateChangedEvent>(OnBatteryStateChange);
@@ -116,7 +116,7 @@ public sealed partial class IPCSystem
             return;
         
         if (_powerCell.TryGetBatteryFromSlot(ent.Owner, out var battery) && 
-            (battery.Value.Comp.State != BatteryState.Empty || TryComp<PredictedBatterySelfRechargerComponent>(battery, out _)))
+            (battery.Value.Comp.State != BatteryState.Empty || TryComp<BatterySelfRechargerComponent>(battery, out _)))
             return;
         
         ent.Comp.TimerActive = true;

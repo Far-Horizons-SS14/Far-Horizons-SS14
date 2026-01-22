@@ -5,13 +5,13 @@ using System.Text.RegularExpressions;
 using YamlDotNet.RepresentationModel;
 using Content.Server.Administration.Systems;
 using Content.Server.GameTicking;
-using Content.Server.Maps;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Systems;
 using Content.Server.Spawners.Components;
 using Content.Server.Station.Components;
 using Content.Shared.Shuttles.Components; //Starlight-edit
 using Content.Shared.CCVar;
+using Content.Shared.Maps;
 using Content.Shared.Roles;
 using Content.Shared.Station.Components;
 using Robust.Shared.Configuration;
@@ -180,6 +180,7 @@ namespace Content.IntegrationTests.Tests
         {
             await using var pair = await PoolManager.GetServerClient();
             var server = pair.Server;
+            await server.WaitIdleAsync();
 
             var entManager = server.ResolveDependency<IEntityManager>();
             var resMan = server.ResolveDependency<IResourceManager>();
@@ -188,27 +189,17 @@ namespace Content.IntegrationTests.Tests
             var cfg = server.ResolveDependency<IConfigurationManager>();
             Assert.That(cfg.GetCVar(CCVars.GridFill), Is.False);
 
-            var shuttleFolder = new ResPath("/Maps/Shuttles");
+            // Far Horizons - only testing our stuff
+            var shuttleFolder = new ResPath("/Maps/_FarHorizons/Shuttles");
             var shuttles = resMan
                 .ContentFindFiles(shuttleFolder)
                 .Where(filePath =>
                     filePath.Extension == "yml" && !filePath.Filename.StartsWith(".", StringComparison.Ordinal))
                 .ToArray();
 
-            //starlight shuttles
-            var starlightShuttleFolder = new ResPath("/Maps/_Starlight/Shuttles");
-            var starlightShuttles = resMan
-                .ContentFindFiles(starlightShuttleFolder)
-                .Where(filePath =>
-                    filePath.Extension == "yml" && !filePath.Filename.StartsWith(".", StringComparison.Ordinal))
-                .ToArray();
-            
-            shuttles = shuttles.Concat(starlightShuttles).ToArray();
-
             await server.WaitPost(() =>
             {
-                Assert.Multiple(() =>
-                {
+                using (Assert.EnterMultipleScope())
                     foreach (var path in shuttles)
                     {
                         mapSystem.CreateMap(out var mapId);
@@ -224,7 +215,6 @@ namespace Content.IntegrationTests.Tests
                         }
                         mapSystem.DeleteMap(mapId);
                     }
-                });
             });
             await server.WaitRunTicks(1);
 
@@ -236,12 +226,13 @@ namespace Content.IntegrationTests.Tests
         {
             await using var pair = await PoolManager.GetServerClient();
             var server = pair.Server;
+            await server.WaitIdleAsync();
 
             var resourceManager = server.ResolveDependency<IResourceManager>();
             var protoManager = server.ResolveDependency<IPrototypeManager>();
             var loader = server.System<MapLoaderSystem>();
 
-            var mapFolder = new ResPath("/Maps");
+            var mapFolder = new ResPath("/Maps/_FarHorizons"); // Far Horizons - we only care about our own maps
             var maps = resourceManager
                 .ContentFindFiles(mapFolder)
                 .Where(filePath => filePath.Extension == "yml" && !filePath.Filename.StartsWith(".", StringComparison.Ordinal))
@@ -407,6 +398,7 @@ namespace Content.IntegrationTests.Tests
                 Dirty = true // Stations spawn a bunch of nullspace entities and maps like centcomm.
             });
             var server = pair.Server;
+            await server.WaitIdleAsync();
 
             var mapManager = server.ResolveDependency<IMapManager>();
             var entManager = server.ResolveDependency<IEntityManager>();
@@ -586,6 +578,7 @@ namespace Content.IntegrationTests.Tests
         {
             await using var pair = await PoolManager.GetServerClient();
             var server = pair.Server;
+            await server.WaitIdleAsync();
 
             var mapLoader = server.ResolveDependency<IEntitySystemManager>().GetEntitySystem<MapLoaderSystem>();
             var resourceManager = server.ResolveDependency<IResourceManager>();
@@ -595,7 +588,7 @@ namespace Content.IntegrationTests.Tests
 
             var gameMaps = protoManager.EnumeratePrototypes<GameMapPrototype>().Select(o => o.MapPath).ToHashSet();
 
-            var mapFolder = new ResPath("/Maps");
+            var mapFolder = new ResPath("/Maps/_FarHorizons"); // Far Horizons - we only care about our own maps
             var maps = resourceManager
                 .ContentFindFiles(mapFolder)
                 .Where(filePath => filePath.Extension == "yml" && !filePath.Filename.StartsWith(".", StringComparison.Ordinal))
