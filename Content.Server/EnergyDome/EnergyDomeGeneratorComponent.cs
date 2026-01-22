@@ -82,4 +82,6 @@ public sealed partial class EnergyDomeGeneratorComponent : Component
 
     [DataField]
     public ProtoId<SinkPortPrototype> OffPort = "Off";
+
+    public float rechargeRate = 0;
 }

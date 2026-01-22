@@ -111,7 +111,7 @@ public sealed partial class VehicleSystems : SharedVehicleSystems
         SubscribeLocalEvent<VehicleComponent, TurnKeysDoAfter>(OnTurnKeysDoAfter);
         SubscribeLocalEvent<VehicleComponent, ReagantContainerSlotEmptyEvent>(OnEmptyReagantContainer);
         SubscribeLocalEvent<VehicleComponent, PowerCellSlotEmptyEvent>(OnPowerCellEmpty);
-        SubscribeLocalEvent<VehicleComponent, RepairFinishedEvent>(OnRepairFinished);
+        SubscribeLocalEvent<VehicleComponent, RepairedEvent>(OnRepairFinished);
         SubscribeLocalEvent<VehicleComponent, EmpPulseEvent>(OnEmpPulse);
         SubscribeLocalEvent<VehicleComponent, BreakageEventArgs>(OnBreakageEvent);
 
@@ -389,7 +389,7 @@ public sealed partial class VehicleSystems : SharedVehicleSystems
             TurnOffVehicle(ent.Owner, ent.Comp);
     }
 
-    private void OnRepairFinished(Entity<VehicleComponent> ent, ref RepairFinishedEvent args)
+    private void OnRepairFinished(Entity<VehicleComponent> ent, ref RepairedEvent args)
     {
         _adminLogger.Add(Shared.Database.LogType.Action, Shared.Database.LogImpact.Low, $"{ToPrettyString(args.User)} repaired the vehicle {ToPrettyString(ent.Owner)}");
         ent.Comp.isBroken = false;

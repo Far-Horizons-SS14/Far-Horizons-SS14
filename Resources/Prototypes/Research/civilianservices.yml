@@ -13,16 +13,13 @@
   - SeedExtractorMachineCircuitboard
   - HydroponicsTrayMachineCircuitboard
   - ReagentGrinderIndustrialMachineCircuitboard
-  radioChannels:
-  - Service
-
 
 - type: technology
   id: CritterMechs
   name: research-technology-critter-mechs
   icon:
-    sprite: Objects/Specific/Mech/Mechs/Basic/hamtr.rsi
-    state: base-open
+    sprite: Objects/Specific/Mech/mecha.rsi
+    state: hamtr
   discipline: CivilianServices
   tier: 1
   cost: 7500
@@ -55,8 +52,6 @@
   - SurveillanceWirelessCameraMonitorCircuitboard
   - TelecomServerCircuitboard
   - HolopadMachineCircuitboard
-  radioChannels:
-  - Service
 
 - type: technology
   id: AdvancedEntertainment
@@ -73,8 +68,6 @@
     - DawInstrumentMachineCircuitboard
     - MassMediaCircuitboard
     - JukeboxCircuitBoard
-  radioChannels:
-  - Service
 
 - type: technology
   id: MeatManipulation
@@ -89,9 +82,6 @@
   - FatExtractorMachineCircuitboard
   - BiofabricatorMachineCircuitboard
   - BiomassReclaimerMachineCircuitboard
-  - SlopDispenserMachineCircuitboard #SL
-  radioChannels:
-  - Service
 
 # Tier 2
 
@@ -114,36 +104,6 @@
   - FauxTileAstroSnow
   - FauxTileAstroAsteroidSand
   - FauxTileDesertAstroSand
-  radioChannels:
-  - Service
-
-# Starlight - moved from civilian to medical
-#- type: technology
-#  id: BiochemicalStasis
-#  name: research-technology-biochemical-stasis
-#  icon:
-#    sprite: Structures/Machines/stasis_bed.rsi
-#    state: icon
-#  discipline: CivilianServices
-#  tier: 2
-#  cost: 7500
-#  recipeUnlocks:
-#  - StasisBedMachineCircuitboard
-#  - CryoPodMachineCircuitboard
-#  - CryostasisBeaker
-#  - SyringeCryostasis
-#
-#- type: technology # Merge with other T2 medical research if possible!
-#  id: MechanizedTreatment
-#  name: research-technology-mechanized-treatment
-#  icon:
-#    sprite: Mobs/Silicon/chassis.rsi
-#    state: medical
-#  discipline: CivilianServices
-#  tier: 2
-#  cost: 5000
-#  recipeUnlocks:
-#  - BorgModuleAdvancedChemical
 
 - type: technology
   id: AdvancedCleaning
@@ -158,15 +118,13 @@
   - AdvMopItem
   - MegaSprayBottle
   - BorgModuleAdvancedCleaning
-  radioChannels:
-  - Service
 
 - type: technology
   id: HONKMech
   name: research-technology-honk-mech
   icon:
-    sprite: Objects/Specific/Mech/Mechs/Basic/honker.rsi
-    state: base
+    sprite: Objects/Specific/Mech/mecha.rsi
+    state: honker
   discipline: CivilianServices
   tier: 2
   cost: 7500
@@ -182,19 +140,6 @@
   - MechEquipmentHorn
 
 - type: technology
-  id: HONKWeapons
-  name: research-technology-honk-weapons
-  icon:
-    sprite: Objects/Specific/Mech/mecha_equipment.rsi
-    state: mecha_bananamrtr
-  discipline: CivilianServices
-  tier: 2
-  cost: 6000
-  recipeUnlocks:
-  - MechEquipmentHonkerBananaMortar
-  - MechEquipmentHonkerMousetrapMortar
-
-- type: technology
   id: AdvancedSpray
   name: research-technology-advanced-spray
   icon:
@@ -206,8 +151,6 @@
   recipeUnlocks:
   - WeaponSprayNozzle
   - ClothingBackpackWaterTank
-  radioChannels:
-  - Service
 
 - type: technology
   id: BluespaceCargoTransport
@@ -220,8 +163,6 @@
   cost: 15000
   recipeUnlocks:
   - CargoTelepadMachineCircuitboard
-  radioChannels:
-  - Supply
 
 - type: technology
   id: PushHorn
@@ -249,5 +190,3 @@
   cost: 10000
   recipeUnlocks:
   - ClothingShoesBootsSpeed
-  radioChannels:
-  - Service

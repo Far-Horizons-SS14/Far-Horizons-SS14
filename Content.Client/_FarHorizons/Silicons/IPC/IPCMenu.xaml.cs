@@ -35,7 +35,7 @@ public sealed partial class IPCMenu : FancyWindow
     public VectorFont ConsoleFont;
     private readonly NameModifierSystem _nameModifier;
     private readonly PowerCellSystem _powerCell;
-    private readonly PredictedBatterySystem _batterySystem;
+    private readonly SharedBatterySystem _batterySystem;
 
     public Action? BrainButtonPressed;
     public Action? EjectBatteryButtonPressed;
@@ -119,7 +119,7 @@ public sealed partial class IPCMenu : FancyWindow
 
         _nameModifier = _entity.System<NameModifierSystem>();
         _powerCell = _entity.System<PowerCellSystem>();
-        _batterySystem = _entity.System<PredictedBatterySystem>();
+        _batterySystem = _entity.System<SharedBatterySystem>();
 
         _maxNameLength = _cfgManager.GetCVar(CCVars.MaxNameLength);
 
@@ -197,7 +197,7 @@ public sealed partial class IPCMenu : FancyWindow
 
         var batteryInserted = false;
         float batteryCharge = 0;
-        if (_powerCell.TryGetBatteryFromSlot(Entity, out var batteryEnt) && batteryEnt is Entity<PredictedBatteryComponent> checkedBattery)
+        if (_powerCell.TryGetBatteryFromSlot(Entity, out var batteryEnt) && batteryEnt is Entity<BatteryComponent> checkedBattery)
         {
             batteryInserted = true;
             batteryCharge = _batterySystem.GetChargeLevel((checkedBattery.Owner, checkedBattery.Comp));

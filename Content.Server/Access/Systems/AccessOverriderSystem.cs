@@ -259,7 +259,8 @@ public sealed class AccessOverriderSystem : SharedAccessOverriderSystem
             targetLabel,
             targetLabelColor,
             groupsArray,
-            component.CurrentAccessGroup); // Starlight
+            component.CurrentAccessGroup, // Starlight
+            component.ShowPrivilegedId);
 
         _userInterface.SetUiState(uid, AccessOverriderUiKey.Key, newState);
     }

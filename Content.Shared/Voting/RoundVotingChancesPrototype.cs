@@ -7,7 +7,7 @@ public sealed partial class RoundVotingChancesPrototype : IPrototype
 {
     [ViewVariables]
     [IdDataField]
-    public string ID { get; } = default!;
+    public string ID { get; private set; } = default!;
     
     [DataField("chances")] 
     public Dictionary<string, float> Chances { get; private set; } = new();

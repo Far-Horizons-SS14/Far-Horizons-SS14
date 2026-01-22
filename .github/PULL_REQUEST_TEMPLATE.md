@@ -17,15 +17,13 @@ If your PR contains in-game changes you must provide screenshots/videos of the c
 - [ ] I do not require assistance to complete the PR.
 - [ ] Before posting/requesting review of a PR, I have verified that the changes work.
 - [ ] I have added screenshots/videos of the changes, or this PR does not change in-game mechanics.
-- [ ] I affirm that my changes are licensed under the [Starlight Fork License](https://github.com/ss14Starlight/space-station-14/blob/Starlight/LICENSE-Starlight.TXT) and grant permission for use in this repository under its conditions.
+- [ ] I affirm that my changes are licensed under the [MIT license](https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/blob/Far-Horizons/LICENSE.TXT).
 
+<!-- This is a placeholder. Replace "FAR HORIZONS TEAM" with your name and the rest with your changelog! -->
 **Changelog**
-<!--
-If you want the players to know about changes made in this PR, specify them using the template outside the comment. Short and informative.
 
 :cl: FAR HORIZONS TEAM
-- add: Added Starlight.
-- remove: Removed SS13.
-- tweak: Changed SS14.
-- fix: Fixed Rinary.
--->
+- add: Added fun.
+- remove: Removed things that annoy me personally.
+- tweak: Changed nothing important.
+- fix: Fixed the game.

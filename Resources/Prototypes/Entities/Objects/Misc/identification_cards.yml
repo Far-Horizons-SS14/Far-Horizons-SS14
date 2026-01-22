@@ -1108,6 +1108,18 @@
 
 - type: entity
   parent: IDCardStandard
+  id: XenoborgIDCard
+  name: Xenoborg ID Card
+  components:
+  - type: Sprite
+    layers:
+    - state: default
+  - type: Access
+    tags:
+    - Xenoborg
+
+- type: entity
+  parent: IDCardStandard
   id: WizardIDCard
   name: Wizard ID Card #Far Horizons - The Great Capitalization Crusade
   components:

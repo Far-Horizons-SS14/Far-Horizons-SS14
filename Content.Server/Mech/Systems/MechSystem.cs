@@ -14,6 +14,7 @@ using Content.Shared.Damage.Systems;
 using Content.Shared.DoAfter;
 using Content.Shared.FixedPoint;
 using Content.Shared.Hands.Components;
+using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
 using Content.Shared.Mech;
 using Content.Shared.Mech.Components;
@@ -44,6 +45,7 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Content.Shared.Atmos.Components;
+using System.Linq;
 
 namespace Content.Server.Mech.Systems;
 
@@ -56,7 +58,7 @@ public sealed partial class MechSystem : SharedMechSystem
     [Dependency] private readonly AtmosphereSystem _atmosphere = default!;
     [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
     [Dependency] private readonly SharedActionsSystem _actions = default!;
-    [Dependency] private readonly PredictedBatterySystem _battery = default!;
+    [Dependency] private readonly SharedBatterySystem _battery = default!;
     [Dependency] private readonly ContainerSystem _container = default!;
     [Dependency] private readonly DamageableSystem _damageable = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
@@ -135,7 +137,8 @@ public sealed partial class MechSystem : SharedMechSystem
             if (!_battery.TryUseCharge(mechComp.BatterySlot.ContainedEntity.Value, comp.DrawRate))
                 continue;
 
-            var ev = new ChargeChangedEvent(battery.CurrentCharge, battery.MaxCharge);
+            var currCharge = _battery.GetCharge((mechComp.BatterySlot.ContainedEntity.Value, battery));
+            var ev = new ChargeChangedEvent(currCharge, currCharge - battery.LastCharge, battery.ChargeRate, battery.MaxCharge);
             RaiseLocalEvent(uid, ref ev);
         }
     }
@@ -167,7 +170,7 @@ public sealed partial class MechSystem : SharedMechSystem
 
         if (component.BatterySlot.ContainedEntity == null
             || !TryComp<BatteryComponent>(component.BatterySlot.ContainedEntity, out var battery)
-            || battery.CurrentCharge <= 0)
+            || _battery.GetCharge((component.BatterySlot.ContainedEntity.Value, battery)) <= 0)
             return;
 
         args.Handled = true;
@@ -223,10 +226,10 @@ public sealed partial class MechSystem : SharedMechSystem
 
     private void OnChargeChanged(EntityUid uid, MechComponent component, ref ChargeChangedEvent args)
     {
-        if (args.Charge == 0 && component.Light)
+        if (args.CurrentCharge == 0 && component.Light)
             ToggleLight(uid, component);
 
-        component.Energy = args.Charge;
+        component.Energy = args.CurrentCharge;
         component.MaxEnergy = args.MaxCharge;
 
         UpdateCanMove(uid, component); // Starlight-edit: fix movement block
@@ -242,10 +245,10 @@ public sealed partial class MechSystem : SharedMechSystem
 
         var mech = component.Mech;
 
-        if (args.Charge == 0 && mechComp.Light)
+        if (args.CurrentCharge == 0 && mechComp.Light)
             ToggleLight(mech, mechComp);
 
-        mechComp.Energy = args.Charge;
+        mechComp.Energy = args.CurrentCharge;
         mechComp.MaxEnergy = args.MaxCharge;
 
         UpdateCanMove(mech, mechComp);
@@ -279,7 +282,7 @@ public sealed partial class MechSystem : SharedMechSystem
         if (TryComp<WiresPanelComponent>(uid, out var panel) && !panel.Open)
             return;
 
-        if (component.BatterySlot.ContainedEntity == null && TryComp<PredictedBatteryComponent>(args.Used, out var battery))
+        if (component.BatterySlot.ContainedEntity == null && TryComp<BatteryComponent>(args.Used, out var battery))
         {
             InsertBattery(uid, args.Used, component, battery);
             UpdateCanMove(uid, component); // Starlight-edit: fix movement block
@@ -318,7 +321,7 @@ public sealed partial class MechSystem : SharedMechSystem
     private void OnInsertEquipment(EntityUid uid, MechComponent component, EntInsertedIntoContainerMessage args)
     {
         UpdateUserInterface(uid, component); // Starlight-edit: Correct equipment update
-        if (!(args.Container != component.BatterySlot || !TryComp<PredictedBatteryComponent>(args.Entity, out var battery)))
+        if (!(args.Container != component.BatterySlot || !TryComp<BatteryComponent>(args.Entity, out var battery)))
         {
             component.Energy = battery.LastCharge;
             component.MaxEnergy = battery.MaxCharge;
@@ -475,7 +478,7 @@ public sealed partial class MechSystem : SharedMechSystem
                     {
                         BreakOnMove = true,
                     };
-                    _popup.PopupEntity(Loc.GetString("mech-eject-pilot-alert", ("item", uid), ("user", args.User)), uid, PopupType.Large);
+                    _popup.PopupEntity(Loc.GetString("mech-eject-pilot-alert", ("item", uid), ("user", Identity.Entity(args.User, EntityManager))), uid, PopupType.Large);
 
                     _doAfter.TryStartDoAfter(doAfterEventArgs);
                 }
@@ -491,7 +494,7 @@ public sealed partial class MechSystem : SharedMechSystem
 
         if (_whitelistSystem.IsWhitelistFail(component.PilotWhitelist, args.User))
         {
-            _popup.PopupEntity(Loc.GetString("mech-no-enter", ("item", uid)), args.User);
+            _popup.PopupEntity(Loc.GetString("mech-no-enter", ("item", uid)), Identity.Entity(args.User, EntityManager));
             return;
         }
 
@@ -600,7 +603,7 @@ public sealed partial class MechSystem : SharedMechSystem
         if (battery == null)
             return false;
 
-        if (!TryComp<PredictedBatteryComponent>(battery, out var batteryComp))
+        if (!TryComp<BatteryComponent>(battery, out var batteryComp))
             return false;
 
         _battery.SetCharge(battery.Value, _battery.GetCharge(battery.Value) + delta.Float());
@@ -626,7 +629,7 @@ public sealed partial class MechSystem : SharedMechSystem
         _container.Insert(toInsert, component.GasTankSlot);
         Dirty(uid, component);
     }
-    public void InsertBattery(EntityUid uid, EntityUid toInsert, MechComponent? component = null, PredictedBatteryComponent? battery = null)
+    public void InsertBattery(EntityUid uid, EntityUid toInsert, MechComponent? component = null, BatteryComponent? battery = null)
     {
         if (!Resolve(uid, ref component, false))
             return;
