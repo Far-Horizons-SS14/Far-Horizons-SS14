@@ -1,13 +1,13 @@
 - type: entity
   id: ReinforcedUraniumWindow
-  name: reinforced uranium window
+  name: Reinforced Uranium Window #FH CRUSADE
   parent: [BaseDeltaPressureReinforcedPlasma, WindowRCDResistant]
   components:
   - type: Sprite
     drawdepth: WallTops
-    sprite: Structures/Windows/reinforced_uranium_window.rsi
+    sprite: _FarHorizons/Structures/Windows/reinforced_uranium_window.rsi #FH
   - type: Icon
-    sprite: Structures/Windows/reinforced_uranium_window.rsi
+    sprite: _FarHorizons/Structures/Windows/reinforced_uranium_window.rsi #FH
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: RGlass
@@ -56,7 +56,7 @@
 - type: entity
   id: UraniumReinforcedWindowDirectional
   parent: [BaseDeltaPressureReinforcedPlasmaQuarter, WindowDirectionalRCDResistant]
-  name: directional reinforced uranium window
+  name: Directional Reinforced Uranium Window #FH CRUSADE
   description: Don't smudge up the glass down there.
   placement:
     mode: SnapgridCenter
@@ -64,10 +64,10 @@
     - Window
   components:
   - type: Sprite
-    sprite: _FarHorizons/Structures/Windows/directional.rsi
+    sprite: _FarHorizons/Structures/Windows/directional.rsi #FH
     state: uranium_reinforced_window
   - type: Icon
-    sprite: _FarHorizons/Structures/Windows/directional.rsi
+    sprite: _FarHorizons/Structures/Windows/directional.rsi #FH
     state: uranium_reinforced_window
   - type: Construction
     graph: WindowDirectional
