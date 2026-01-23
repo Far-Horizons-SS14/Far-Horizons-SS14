@@ -19,5 +19,6 @@ public enum VehicleVisualState : byte
 {
     Normal,
     Moving,
-    Broken
+    Broken,
+    Folded
 }

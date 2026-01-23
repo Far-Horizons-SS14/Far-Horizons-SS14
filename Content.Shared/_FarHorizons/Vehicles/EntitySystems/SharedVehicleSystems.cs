@@ -11,6 +11,7 @@ using Content.Shared.Item.ItemToggle.Components;
 using Content.Shared.Toggleable;
 using Content.Shared.Interaction;
 using Content.Shared.Light.Components;
+using Content.Shared.Foldable;
 
 namespace Content.Shared._FarHorizons.Vehicles.EntitySystems;
 
@@ -29,6 +30,7 @@ public abstract partial class SharedVehicleSystems : EntitySystem
         SubscribeLocalEvent<VehicleComponent, StartCollideEvent>(HandleCollide);
         SubscribeLocalEvent<VehicleComponent, CanDropTargetEvent>(OnCanDragDrop);
         SubscribeLocalEvent<VehicleComponent, ExaminedEvent>(OnExamine);
+        SubscribeLocalEvent<VehicleComponent, FoldAttemptEvent>(OnFoldAttempt);
         SubscribeLocalEvent<ItemToggleComponent, ToggleActionEvent>(OnSirenToggle);
     }
 
@@ -65,6 +67,10 @@ public abstract partial class SharedVehicleSystems : EntitySystem
         else if (entity.Comp.isBroken)
         {
             finalState = VehicleVisualState.Broken;
+        }
+        else if (entity.Comp.isFolded)
+        {
+            finalState = VehicleVisualState.Folded;
         }
 
         _appearance.SetData(entity.Owner, VehicleVisuals.VisualState, finalState);
@@ -123,6 +129,17 @@ public abstract partial class SharedVehicleSystems : EntitySystem
 
         if(ent.Comp.isBroken)
             args.PushMarkup(Loc.GetString("vehicle-examine-broken"));
+    }
+
+    private void OnFoldAttempt(Entity<VehicleComponent> ent, ref FoldAttemptEvent args)
+    {
+        if(ent.Comp.isBroken)
+            args.Cancelled = true;
+        
+        if(!TryComp<FoldableComponent>(ent, out var foldComp)) return;
+
+        ent.Comp.isFolded = foldComp.IsFolded;
+        Dirty(ent.Owner, ent.Comp);
     }
 
     private void OnSirenToggle(Entity<ItemToggleComponent> ent, ref ToggleActionEvent args)

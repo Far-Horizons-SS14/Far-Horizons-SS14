@@ -51,10 +51,16 @@ public sealed partial class VehicleComponent : Component
     public bool isMoving = false;
 
     /// <summary>
-    /// just to check for if the vehicle is moving for other things
+    /// just to check for if the vehicle is broken
     /// </summary>
     [DataField, AutoNetworkedField]
     public bool isBroken = false;
+
+    /// <summary>
+    /// just to check for if the vehicle is folded
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public bool isFolded = false;
 
     /// <summary>
     /// How many hands are blocked by the vehicle
