@@ -35,7 +35,7 @@ public abstract class SharedTurbineSystem : EntitySystem
         SubscribeLocalEvent<TurbineComponent, ExaminedEvent>(OnExamined);
 
         SubscribeLocalEvent<TurbineComponent, InteractUsingEvent>(RepairTurbine);
-        SubscribeLocalEvent<TurbineComponent, RepairFinishedEvent>(OnRepairTurbineFinished);
+        SubscribeLocalEvent<TurbineComponent, RepairedEvent>(OnRepairTurbineFinished);
     }
 
     private void OnExamined(Entity<TurbineComponent> ent, ref ExaminedEvent args)
@@ -168,16 +168,13 @@ public abstract class SharedTurbineSystem : EntitySystem
             if (comp.BladeHealth >= comp.BladeHealthMax && !comp.Ruined)
                 return;
 
-            args.Handled = _toolSystem.UseTool(args.Used, args.User, uid, comp.RepairDelay, comp.RepairTool, new RepairFinishedEvent(), comp.RepairFuelCost);
+            args.Handled = _toolSystem.UseTool(args.Used, args.User, uid, comp.RepairDelay, comp.RepairTool, new RepairDoAfterEvent(), comp.RepairFuelCost);
         }
     }
 
     //Gotta love server/client desync
-    protected virtual void OnRepairTurbineFinished(EntityUid uid, TurbineComponent comp, ref RepairFinishedEvent args)
+    protected virtual void OnRepairTurbineFinished(EntityUid uid, TurbineComponent comp, ref RepairedEvent args)
     {
-        if (args.Cancelled)
-            return;
-
         if (comp.Ruined)
         {
             comp.Ruined = false;

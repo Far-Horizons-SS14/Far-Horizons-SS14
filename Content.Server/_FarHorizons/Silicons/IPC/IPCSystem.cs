@@ -43,7 +43,7 @@ public sealed partial class IPCSystem : SharedIPCSystem
     [Dependency] private readonly DoAfterSystem _doAfter = default!;
     [Dependency] private readonly MobThresholdSystem _mobThreshold = default!;
     [Dependency] private readonly EuiManager _euiManager = default!;
-    [Dependency] private readonly PredictedBatterySystem _battery = default!;
+    [Dependency] private readonly SharedBatterySystem _battery = default!;
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
     [Dependency] private readonly IConfigurationManager _cfgManager = default!;
     [Dependency] private readonly MetaDataSystem _metaData = default!;

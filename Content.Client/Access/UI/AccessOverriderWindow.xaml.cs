@@ -70,6 +70,8 @@ namespace Content.Client.Access.UI
 
         public void UpdateState(IPrototypeManager protoManager, AccessOverriderBoundUserInterfaceState state)
         {
+            PrivilegedIdGrid.Visible = state.ShowPrivilegedIdGrid;
+
             PrivilegedIdLabel.Text = state.PrivilegedIdName;
             PrivilegedIdButton.Text = state.IsPrivilegedIdPresent
                 ? Loc.GetString("access-overrider-window-eject-button")

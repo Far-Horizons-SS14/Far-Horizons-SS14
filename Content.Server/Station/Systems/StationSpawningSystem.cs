@@ -209,18 +209,16 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
         }
         // Starlight end
 
-        /* Starlight - add comment
-        if (loadout != null)
-        {
-            EquipRoleLoadout(entity.Value, loadout, roleProto!, profile); // Starlight edit
-        }
+        // if (loadout != null)
+        // {
+        //     EquipRoleLoadout(entity.Value, loadout, roleProto!, profile); // Starlight edit
+        // }
 
-        if (prototype?.StartingGear != null)
-        {
-            var startingGear = _prototypeManager.Index<StartingGearPrototype>(_factions.OverrideJobStartingGear((factionProto?.ID, prototype))!); // Far Horizons starting gear faction override
-            EquipStartingGear(entity.Value, startingGear, raiseEvent: false);
-        }
-        */ // Starlight - add end of comment
+        // if (prototype?.StartingGear != null)
+        // {
+        //     var startingGear = _prototypeManager.Index<StartingGearPrototype>(_factions.OverrideJobStartingGear((factionProto?.ID, prototype))!); // Far Horizons starting gear faction override
+        //     EquipStartingGear(entity.Value, startingGear, raiseEvent: false);
+        // }
 
         // Far Horizons species loadouts
         if (species.Loadout != null && _prototypeManager.TryIndex(species.Loadout.Value, out var speciesLoadoutProto) && profile != null && profile.SpeciesLoadout != null)

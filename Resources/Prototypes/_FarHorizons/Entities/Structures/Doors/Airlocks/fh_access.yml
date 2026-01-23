@@ -598,6 +598,14 @@
       board: [ DoorElectronicsRobotics ]
 
 - type: entity
+  parent: FHAirlockRoboticsLocked
+  id: FHAirlockMaintRoboticsLocked
+  suffix: Robotics, Locked, Maint
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/maint.rsi
+
+- type: entity
   parent: FHAirlockMedicalScienceLocked
   id: FHAirlockMaintRnDMedLocked
   suffix: Medical/Science, Locked, Maint

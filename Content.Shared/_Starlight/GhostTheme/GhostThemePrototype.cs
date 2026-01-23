@@ -10,10 +10,10 @@ using Robust.Shared.Utility;
 namespace Content.Shared.Starlight.GhostTheme;
 
 [Prototype("ghostTheme")]
-public sealed class GhostThemePrototype : IPrototype
+public sealed partial class GhostThemePrototype : IPrototype
 {
     [IdDataField]
-    public string ID { get; } = default!;
+    public string ID { get; private set; } = default!;
     
     [DataField("name")]
     public string Name { get; private set; } = string.Empty;

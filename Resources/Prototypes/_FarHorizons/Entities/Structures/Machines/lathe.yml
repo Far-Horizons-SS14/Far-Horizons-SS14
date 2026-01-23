@@ -1,0 +1,437 @@
+- type: entity
+  abstract: true
+  id: BaseSubzerofab
+  components:
+  - type: Lathe
+    materialUseMultiplier: 0.5
+    timeMultiplier: 1.5
+  - type: LatheHeatProducing #TODO: Find balanced Value for Subzero 
+    energyPerSecond: -40000
+  - type: ReagentSpeed
+    modifiers:
+      SpaceLube: 0.8
+      SpaceGlue: 5
+
+- type: entity
+  id: Autofab
+  parent: BaseLatheLube
+  name: Autofab 
+  description: It produces basic items using metal and glass. Has the ability to process blueprints to print new recipes.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Machines/NS/autofab.rsi #TODO: CUSTOM SPRITE
+    snapCardinals: true
+    layers:
+    - state: icon
+      map: ["enum.LatheVisualLayers.IsRunning"]
+    - state: unlit
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+    - state: inserting
+      map: ["enum.MaterialStorageVisualLayers.Inserting"]
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: Machine
+    board: AutofabMachineCircuitboard
+  - type: MaterialStorage
+    whitelist:
+      tags:
+        - Sheet
+        - RawMaterial
+        - Ingot
+  - type: OreSiloClient
+  - type: Lathe
+    idleState: icon
+    runningState: building
+    unlitIdleState: unlit
+    unlitRunningState: unlit-building
+    staticPacks:
+    - ToolsStatic 
+    - PartsStatic 
+    - AtmosStatic
+    - CablesStatic
+    - PaperworkStatic
+    - CargoStatic
+    - MaterialsStatic
+    - BasicChemistryStatic
+    - RollerBedsStatic
+    - LightsStatic
+    - ServiceStatic
+    - PowerCellsStatic
+    - ElectronicsStatic
+    dynamicPacks:
+    - StarlightAutolatheLootable
+  - type: EmagLatheRecipes #TODO: NT THEMED EMAG PACKS
+    emagStaticPacks:
+    - StarlightSecurityEmagWeaponsStatic
+    - StarlightSecurityAmmoStatic
+    - StarlightSecurityAmmoEmagStatic
+  - type: BlueprintReceiver
+    whitelist:
+      tags:
+      - BlueprintAutolathe
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+      blueprint: !type:Container
+  - type: EmptyOnMachineDeconstruct
+    containers:
+    - blueprint
+
+- type: entity
+  id: AutofabSubzero
+  parent: [Autofab, BaseSubzerofab]
+  name: Subzero Autofab
+  description: A highly-experimental Autofab that harnesses the power of extreme cold to slowly create objects more cost-effectively.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Machines/NS/autofab.rsi #TODO: CUSTOM SPRITE
+  - type: Machine
+    board: AutofabSubzeroMachineCircuitboard
+
+- type: entity
+  id: Protofab
+  parent: BaseLatheLube
+  name: Protofab
+  description: Converts raw materials into advanced items.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Machines/NS/protofab.rsi #TODO: CUSTOM SPRITE
+    snapCardinals: true
+    layers:
+    - state: icon
+      map: ["enum.LatheVisualLayers.IsRunning"]
+    - state: unlit
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+    - state: inserting
+      map: ["enum.MaterialStorageVisualLayers.Inserting"]
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: Machine
+    board: ProtofabMachineCircuitboard
+  - type: MaterialStorage
+    whitelist:
+      tags:
+        - Sheet
+        - RawMaterial
+        - Ingot
+  - type: OreSiloClient
+  - type: Lathe
+    idleState: icon
+    runningState: building
+    unlitIdleState: unlit
+    unlitRunningState: unlit-building
+    staticPacks:
+    - ChemistryStatic
+    dynamicPacks: #TODO: SYNDI TECH
+    - AdvancedTools
+    - ScienceEquipment
+    - ScienceExplosives
+    - ScienceClothing
+    - PowerCells
+    - ScienceWeapons
+    - Mining
+    - AtmosTools
+    - EngineeringWeapons
+    - Chemistry
+    - Janitor
+    - Instruments
+    - Equipment
+    - StarlightProtolatheLootable
+  - type: EmagLatheRecipes
+    emagDynamicPacks: #TODO: NT THEMED EMAG PACKS
+    - StarlightSurgeryDynamic
+    - StarlightCyberlimbDynamic
+    - StarlightCyberOrgansDynamic
+    - StarlightImplantDynamic
+    - StarlightBudgetCyberOrgansDynamic
+
+    - StarlightSecurityAmmoDynamic
+    - StarlightSecurityExplosives
+    - StarlightSecurityEquipment
+    - StarlightSecurityWeapons
+    - StarlightDefenseStatic
+
+- type: entity
+  id: ProtofabSubzero
+  parent: [Protofab, BaseSubzerofab]
+  name: Subzero Protofab
+  description: A highly-experimental Protofab that harnesses the power of extreme cold to slowly create objects more cost-effectively.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Machines/NS/protofab.rsi #TODO: CUSTOM SPRITE
+  - type: Machine
+    board: ProtofabSubzeroMachineCircuitboard
+
+- type: entity
+  id: BoardEngraver
+  parent: BaseLatheLube
+  name: Board Engraver
+  description: Prints circuit boards for machines.
+  components:
+  - type: Sprite
+    sprite: Structures/Machines/circuit_imprinter.rsi #TODO: CUSTOM SPRITE
+    snapCardinals: true
+    layers:
+    - state: icon
+      map: ["enum.LatheVisualLayers.IsRunning"]
+    - state: unlit
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: Machine
+    board: BoardEngraverMachineCircuitboard
+  - type: Lathe
+    producingSound: /Audio/Machines/circuitprinter.ogg #TODO: CUSTOM SOUND
+    idleState: icon
+    runningState: building
+    staticPacks:
+    - NSScienceBoardsStatic
+    - NSServiceBoardsStatic
+    - CargoBoardsStatic #Should Syndi have this?
+    - MedicalBoardsStatic
+    - EngineeringBoardsStatic
+#    - StarlightVendorBoards #TODO: Figure out what to do with all the vending machines
+    dynamicPacks: #TODO: SYNDI TECH
+    - EngineeringBoards
+    - CargoBoards
+    - MedicalBoards
+    - ServiceBoards
+    - NSScienceBoards
+    - CameraBoards
+    - MechBoards
+    - ShuttleBoards
+    - StarlightMechBoards
+    - StarlightLawboards
+    - StarlightCircuitImprinterLootable
+    - ReactorCircuitboards
+  - type: EmagLatheRecipes
+    emagDynamicPacks: #TODO: NT THEMED EMAG PACKS
+    - StarlightSecurityBoards
+    emagStaticPacks:
+    - StarlightDangerousLawboards
+    - StarlightSyndicateVendorBoards
+  - type: MaterialStorage
+    whitelist:
+      tags:
+        - Sheet
+        - RawMaterial
+        - Ingot
+  - type: OreSiloClient
+  - type: RequireProjectileTarget
+
+- type: entity
+  id: BoardEngraverSubzero
+  parent: [BoardEngraver, BaseSubzerofab]
+  name: Subzero Board Engraver
+  description: A highly-experimental Board Engraver that harnesses the power of extreme cold to slowly create objects more cost-effectively.
+  components:
+  - type: Sprite
+    sprite: Structures/Machines/circuit_imprinter_hypercon.rsi
+  - type: Machine
+    board: BoardEngraverSubzeroMachineCircuitboard
+  - type: MaterialStorage
+    whitelist:
+      tags:
+        - Sheet
+        - RawMaterial
+        - Ingot
+
+- type: entity
+  id: CybersunAssembler
+  parent: BaseLatheLube
+  name: Cybersun Assembler
+  description: Creates parts for robotics and other mechanical needs.
+  components:
+  - type: Sprite
+    sprite: Structures/Machines/exosuit_fabricator.rsi #TOOD: CUSTOM SPRITE
+    layers:
+    - state: fab-idle
+      map: ["enum.LatheVisualLayers.IsRunning"]
+    - state: fab-load
+      map: ["enum.MaterialStorageVisualLayers.Inserting"]
+    - state: fab-o
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: Machine
+    board: CybersunAssemblerMachineCircuitboard
+  - type: Lathe
+    idleState: fab-idle
+    runningState: fab-active
+    staticPacks: #TODO: Syndi Borgs
+    - RoboticsStatic
+    - BorgModulesStatic
+    - BorgLimbsStatic
+    dynamicPacks: #TODO: SYNDI TECH
+    - Robotics
+    - BorgModules
+    - MechParts
+    - MechEquipment
+    - StarlightMechEquipment
+    - StarlightSecurityMechs
+    - StarlightMechParts
+  - type: EmagLatheRecipes #TODO: NT THEMED EMAG PACKS
+    emagStaticPacks:
+    - StarlightMechWeapon
+    - StarlightSyndicateModules
+  - type: MaterialStorage
+    whitelist:
+      tags:
+      - Sheet
+      - RawMaterial
+      - Ingot
+  - type: OreSiloClient
+  - type: GuideHelp
+    guides:
+    - Robotics
+
+- type: entity
+  id: OverwatchTechFab
+  parent: BaseLatheLube
+  name: Overwatch Techfab
+  description: Prints equipment for use by Overwatch crew.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Machines/NS/techfab.rsi
+    layers:
+    - state: icon
+      map: ["enum.LatheVisualLayers.IsRunning"]
+    - state: sec
+    - state: unlit
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+    - state: inserting
+      map: ["enum.MaterialStorageVisualLayers.Inserting"]
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: Machine
+    board: OverwatchTechFabCircuitboard
+  - type: Lathe
+    idleState: icon
+    runningState: icon
+    staticPacks: #TODO Syndie Themed SEC PACKS
+    - SecurityEquipmentStatic
+    - SecurityPracticeStatic
+    - StarlightSecurityAmmoStatic
+    - SecurityDisablers
+    - StarlightSecurityAmmoEmagStatic
+    - SecurityWeaponsStatic
+    dynamicPacks:
+    - SalvageSecurityBoards
+    - SalvageSecurityWeapons
+    - StarlightDefenseStatic
+    - StarlightSecurityEquipment
+    - StarlightSecurityBoards
+    - StarlightSecurityExplosives
+    - StarlightSecurityAmmoDynamic
+    - StarlightSecurityWeapons
+    - SecurityCyberLimbs
+    - StarlightSecurityMechsWeapons
+    - FarHorizonsSecBorgRecipePack
+  - type: EmagLatheRecipes #TODO: NT THEMED EMAG PACKS
+    emagStaticPacks: 
+    - StarlightSyndicateModulesSecfab
+  - type: MaterialStorage
+    whitelist:
+      tags:
+        - Sheet
+        - RawMaterial
+        - Ingot
+  - type: OreSiloClient
+
+#Ammotechfab isnt needed yet and doesnt even have a sprite anyways
+
+- type: entity
+  id: InterdyneTechFab
+  parent: BaseLatheLube
+  name: Interdyne Techfab
+  description: Prints equipment for use by the medbay.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Machines/NS/techfab.rsi
+    layers:
+    - state: icon
+      map: ["enum.LatheVisualLayers.IsRunning"]
+    - state: med
+    - state: unlit
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+    - state: inserting
+      map: ["enum.MaterialStorageVisualLayers.Inserting"]
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: Lathe
+    idleState: icon
+    runningState: icon
+    staticPacks:
+    - TopicalsStatic
+    - ChemistryStatic
+    - MedicalStatic
+    - RollerBedsStatic
+    - MedicalClothingStatic
+    - EmptyMedkitsStatic
+    - StarlightMedicalStatic
+    dynamicPacks: #TODO: NT THEMED MEDICAL DYNAMICS
+    - StarlightSurgeryDynamic
+    - StarlightCyberlimbDynamic
+    - StarlightCyberOrgansDynamic
+    - StarlightImplantDynamic
+    - Chemistry
+    - StarlightBudgetCyberOrgansDynamic
+    - FarHorizonsMedContainersDynamic
+    - FarHorizonsMedSyringeDynamic
+  - type: Machine
+    board: InterdyneTechFabCircuitboard
+#  - type: StealTarget #TODO: Figure out steal target stuff
+#    stealGroup: MedicalTechFabCircuitboard
+  - type: OreSiloClient
+
+- type: entity
+  parent: BaseLathe
+  id: NSUniformPrinter
+  name: NeoSol Uniform Printer
+  description: Prints new or replacement uniforms.
+  components:
+  - type: Transform
+    noRot: false
+  - type: Sprite
+    sprite: Structures/Machines/uniform_printer.rsi
+    snapCardinals: false
+    layers:
+    - state: icon
+      map: ["enum.LatheVisualLayers.IsRunning"]
+  - type: Machine
+    board: NSUniformPrinterMachineCircuitboard
+  - type: Lathe
+    producingSound: /Audio/Machines/uniformprinter.ogg
+    idleState: icon
+    runningState: building
+    staticPacks: #TODO: Syndie Uniform Packs
+    - ClothingCivilian
+    - ClothingCargo #should NeoSol have cargo clothing?
+    - ClothingCommandNS
+    - ClothingEngineeringNS #Only has Head Uniform
+#    - ClothingMedicalNS
+#    - ClothingScience
+    - ClothingSecurityNS
+#    - ClothingServiceNS
+    - WinterCoatsNS
+    - TiesNS
+    - Scarves
+    - Carpets
+    - BedsheetsNS
+    dynamicPacks:
+    - StarlightUniformPrinterLootable
+#  - type: EmagLatheRecipes #TODO: NT THEMED EMAG PACKS
+#    emagStaticPacks:
+#    - ClothingCentComm
+#    - ClothingSyndie
+  - type: MaterialStorage
+    whitelist:
+      tags:
+        - Sheet
+        - RawMaterial
+        - Ingot
+  - type: OreSiloClient

@@ -27,11 +27,10 @@
     implants: [ MindShieldImplant, DeathRattleImplantCentcomm ]
 
 - type: startingGear
+  parent: ERTLeaderGearEVA
   id: ERTLeaderGear
   equipment:
-    jumpsuit: ClothingUniformJumpsuitERTLeader
-    back: ClothingBackpackERTLeader
-    shoes: ClothingShoesBootsCombatFilled
+    shoes: ClothingShoesBootsJackFilled
     head: ClothingHeadHelmetERTLeader
     eyes: ClothingEyesGlassesCentComm
     gloves: ClothingHandsGlovesCombat
@@ -41,21 +40,13 @@
     belt: ClothingBeltSecurityFilled
     pocket1: WeaponPistolN1984
     pocket2: FlashlightSeclite
-  storage:
-    back:
-    - WeaponDisabler
-    - MedicatedSuture
-    - RegenerativeMesh
-    - BoxZiptie
-    - CrowbarRed
-    - MagazineMagnum
 
 - type: startingGear
   id: ERTLeaderGearEVA
   equipment:
     jumpsuit: ClothingUniformJumpsuitERTLeader
     back: ClothingBackpackERTLeader
-    shoes: ClothingShoesBootsMagAdv
+    shoes: ClothingShoesBootsMagERT
     mask: ClothingMaskGasERT
     eyes: ClothingEyesGlassesCentComm
     gloves: ClothingHandsGlovesCombat
@@ -67,15 +58,19 @@
     pocket2: FlashlightSeclite
   storage:
     back:
-    - WeaponDisabler
-    - MedicatedSuture
-    - RegenerativeMesh
-    - BoxZiptie
-    - CrowbarRed
-    - MagazineMagnum
+    - Binoculars
+    - HoloprojectorField
+    - PhoneInstrument
+    - PinpointerNuclear
+    - PowerCellHigh
+    - PowerCellHigh
+    - MedkitCombatFilled # End of first line
+    - MedkitCombatFilled
+    - TelescopicShield
 
 - type: startingGear
-  id: ERTLeaderGearEVALecter
+  parent: ERTLeaderGearEVA
+  id: ERTLeaderGearArmed
   equipment:
     jumpsuit: ClothingUniformJumpsuitERTLeader
     back: ClothingBackpackERTLeader
@@ -140,11 +135,10 @@
     implants: [ MindShieldImplant, DeathRattleImplantCentcomm ]
 
 - type: startingGear
+  parent: ERTChaplainGearEVA
   id: ERTChaplainGear
   equipment:
-    jumpsuit: ClothingUniformJumpsuitERTChaplain
-    back: ClothingBackpackERTChaplain
-    shoes: ClothingShoesLeather
+    shoes: ClothingShoesBootsJackFilled
     head: ClothingHeadHatFez
     eyes: ClothingEyesGlassesCentComm
     neck: ClothingNeckStoleChaplain
@@ -175,7 +169,7 @@
   equipment:
     jumpsuit: ClothingUniformJumpsuitERTChaplain
     back: ClothingBackpackERTChaplain
-    shoes: ClothingShoesBootsMagAdv
+    shoes: ClothingShoesBootsMagERT
     mask: ClothingMaskGasERT
     eyes: ClothingEyesGlassesCentComm
     neck: ClothingNeckStoleChaplain
@@ -189,17 +183,23 @@
   storage:
     back:
     - BoxCandle
-    - BoxBodyBag
-    - DrinkWaterMelonJuiceJug
-    - Lantern
-    - Lantern
+    - BodyBagFolded
+    - BodyBagFolded
+    - JugWater
+    - JugBlood # End of first row
+    - FoodBakedBunHotX
+    - FoodBakedBunHotX
+    - FoodBakedBunHotX
+    - FoodBakedBunHotX
+    belt:
     - Bible
+    - Lantern
+    - Lantern
+    - Lantern
     - CrowbarRed
-    - FoodBakedBunHotX
-    - FoodBakedBunHotX
-    - FoodBakedBunHotX
-    - FoodBakedBunHotX
-    - Lighter
+    - WeaponPistolMk58
+    - MagazinePistolSP
+    - FlippoEngravedLighter
 
 - type: chameleonOutfit
   id: ERTChaplainChameleonOutfit
@@ -237,11 +237,10 @@
     implants: [ MindShieldImplant, DeathRattleImplantCentcomm ]
 
 - type: startingGear
+  parent: ERTEngineerGearEVA
   id: ERTEngineerGear
   equipment:
-    jumpsuit: ClothingUniformJumpsuitERTEngineer
-    back: ClothingBackpackERTEngineer
-    shoes: ClothingShoesBootsWork
+    shoes: ClothingShoesBootsJackFilled
     head: ClothingHeadHelmetERTEngineer
     eyes: ClothingEyesGlassesMeson
     gloves: ClothingHandsGlovesCombat
@@ -253,7 +252,6 @@
     pocket2: GasAnalyzer
   storage:
     back:
-    - trayScanner
     - RCD
     - RCDAmmo
     - RCDAmmo
@@ -269,9 +267,9 @@
   equipment:
     jumpsuit: ClothingUniformJumpsuitERTEngineer
     back: ClothingBackpackERTEngineer
-    shoes: ClothingShoesBootsMagAdv
+    shoes: ClothingShoesBootsMagERT
     mask: ClothingMaskGasERT
-    eyes: ClothingEyesGlassesMeson
+    eyes: ClothingEyesHudDiagnostic
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterHardsuitERTEngineer
     id: ERTEngineerPDA
@@ -281,16 +279,39 @@
     pocket2: GasAnalyzer
   storage:
     back:
-    - trayScanner
     - RCD
+    - GasAnalyzer
+    - trayScanner
+    - HolofanProjector
+    - PartRodMetal
+    - SheetPlasteel # End of first line
+    - MiningDrillDiamond
     - RCDAmmo
     - RCDAmmo
-    - CableMVStack
-    - CableHVStack
-    - CableApcStack
-    - SheetPlasteel
-    - SheetSteel
-    - SheetGlass
+    - RCDAmmo
+    - RCDAmmo
+    - MetalFoamGrenade
+    - AirGrenade
+
+- type: startingGear
+  parent: ERTEngineerGearEVA
+  id: ERTEngineerGearArmed
+  equipment:
+    suitstorage: WeaponShotgunEnforcer
+  storage:
+    back:
+    - RCD
+    - GasAnalyzer
+    - HolofanProjector
+    - MiningDrillDiamond
+    - BoxLethalshot
+    - BoxShotgunSlug # End of first line
+    - RCDAmmo
+    - RCDAmmo
+    - RCDAmmo
+    - RCDAmmo
+    - CableDetStack
+    - BoxDetonator
 
 - type: chameleonOutfit
   id: ERTEngineerChameleonOutfit
@@ -326,11 +347,10 @@
     implants: [ MindShieldImplant, DeathRattleImplantCentcomm ]
 
 - type: startingGear
+  parent: ERTSecurityGearEVA
   id: ERTSecurityGear
   equipment:
-    jumpsuit: ClothingUniformJumpsuitERTSecurity
-    back: ClothingBackpackERTSecurity
-    shoes: ClothingShoesBootsCombatFilled
+    shoes: ClothingShoesBootsJackFilled
     head: ClothingHeadHelmetERTSecurity
     eyes: ClothingEyesGlassesCentComm
     gloves: ClothingHandsGlovesCombat
@@ -354,10 +374,11 @@
   equipment:
     jumpsuit: ClothingUniformJumpsuitERTSecurity
     back: ClothingBackpackERTSecurity
-    shoes: ClothingShoesBootsMag
+    shoes: ClothingShoesBootsMagERT
     mask: ClothingMaskGasERT
     eyes: ClothingEyesGlassesCentComm
     gloves: ClothingHandsGlovesCombat
+    neck: SecurityWhistle
     outerClothing: ClothingOuterHardsuitERTSecurity
     id: ERTSecurityPDA
     ears: ClothingHeadsetCentCom #Starlight
@@ -366,19 +387,21 @@
     pocket2: FlashlightSeclite
   storage:
     back:
-    - WeaponDisabler
-    - MedicatedSuture
-    - RegenerativeMesh
     - BoxZiptie
-    - CrowbarRed
-    - MagazinePistolSP
+    - Flash
+    - GrenadeFlashBang
+    - TearGasGrenade
+    - GrenadeStinger
+    - MedkitCombatFilled # End of first line
+    - TelescopicShield
+    - HoloprojectorSecurity
+    - PowerCellHigh
 
 - type: startingGear
-  id: ERTSecurityGearEVALecter
+  id: ERTSecurityGearArmedRifle
   equipment:
     jumpsuit: ClothingUniformJumpsuitERTSecurity
-    back: ClothingBackpackERTSecurity
-    shoes: ClothingShoesBootsMag
+    shoes: ClothingShoesBootsMagERT
     mask: ClothingMaskGasERT
     eyes: ClothingEyesGlassesCentComm
     gloves: ClothingHandsGlovesCombat
@@ -436,11 +459,10 @@
     implants: [ MindShieldImplant, DeathRattleImplantCentcomm ]
 
 - type: startingGear
+  parent: ERTMedicalGearEVA
   id: ERTMedicalGear
   equipment:
-    jumpsuit: ClothingUniformJumpsuitERTMedic
-    back: ClothingBackpackERTMedical
-    shoes: ClothingShoesBootsCombatFilled
+    shoes: ClothingShoesBootsJackFilled
     head: ClothingHeadHelmetERTMedic
     eyes: ClothingEyesGlassesCentComm
     gloves: ClothingHandsGlovesNitrile
@@ -464,7 +486,7 @@
   equipment:
     jumpsuit: ClothingUniformJumpsuitERTMedic
     back: ClothingBackpackERTMedical
-    shoes: ClothingShoesBootsMag
+    shoes: ClothingShoesBootsMagERT
     mask: ClothingMaskGasERT
     eyes: ClothingEyesHudCentComm
     gloves: ClothingHandsGlovesNitrile
@@ -476,12 +498,36 @@
   storage:
     back:
     - Hypospray
-    - MedkitCombatFilled
-    - MedkitCombatFilled
-    - CrowbarRed
+    - BeakerSmallBruiz
+    - BeakerSmallLace
+    - JugPunctTranex
+    - JugPyraDerma
+    - JugDexPlusSaline # End of first line
+    - JugTrico
+    - BeakerSmallArith
+    - BeakerSmallDiph
+    - BeakerSmallSigy
+    - ClothingEyesGlassesChemical
     - ChemistryBottleOmnizine
-    - ChemistryBottleEpinephrine
-    - ChemistryBottleEpinephrine
+
+- type: startingGear
+  parent: ERTMedicalGearEVA
+  id: ERTMedicalGearArmed
+  equipment:
+    suitstorage: WeaponRifleLecter
+    pocket2: WeaponDisabler
+  storage:
+    back:
+    - Hypospray
+    - JugPunctTranex
+    - JugPyraDerma
+    - JugDexPlusSaline
+    - JugTrico # End of first line
+    - BeakerSmallArith
+    - DefibrillatorCompact
+    - MedkitCombatFilled
+    - ClothingEyesGlassesChemical
+    - ChemistryBottleOmnizine
 
 - type: chameleonOutfit
   id: ERTMedicalChameleonOutfit
@@ -517,10 +563,9 @@
     implants: [ MindShieldImplant, DeathRattleImplantCentcomm ]
 
 - type: startingGear
+  parent: ERTJanitorGearEVA
   id: ERTJanitorGear
   equipment:
-    jumpsuit: ClothingUniformJumpsuitERTJanitor
-    back: ClothingBackpackERTJanitor
     shoes: ClothingShoesGaloshes
     head: ClothingHeadHelmetERTJanitor
     gloves: ClothingHandsGlovesColorPurple
@@ -543,9 +588,10 @@
   equipment:
     jumpsuit: ClothingUniformJumpsuitERTJanitor
     back: ClothingBackpackERTJanitor
-    shoes: ClothingShoesBootsMag
+    shoes: ClothingShoesBootsMagERT
     mask: ClothingMaskGasERT
-    gloves: ClothingHandsGlovesColorPurple
+    eyes: ClothingEyesGlassesChemical
+    gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterHardsuitERTJanitor
     id: ERTJanitorPDA
     ears: ClothingHeadsetCentCom #Starlight
@@ -553,12 +599,17 @@
     pocket1: Flare
   storage:
     back:
-    - LightReplacer
-    - BoxLightMixed
-    - BoxLightMixed
-    - Soap
-    - CrowbarRed
-    - AdvMopItem
+    - TrashBag
+    - SoapNT
+    - Plunger
+    - Screwdriver
+    - AdvMopItem # End of first line
+    - GrenadeCleanade
+    - GrenadeCleanade
+    - GrenadeCleanade
+    - GrenadeCleanade
+    - GrenadeCleanade
+    - GrenadeCleanade
 
 - type: chameleonOutfit
   id: ERTJanitorChameleonOutfit

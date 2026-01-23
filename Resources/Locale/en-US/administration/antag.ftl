@@ -10,6 +10,7 @@ admin-verb-make-paradox-clone = Create a Paradox Clone ghost role of the target.
 admin-verb-make-changeling-wip = Make the target into a (upstream) Changeling.
 admin-verb-make-vampire = Make the target into a vampire.
 admin-verb-make-wizard = Make the target into a Wizard.
+admin-verb-make-space-ninja = Make the target into a Space Ninja.
 admin-verb-make-changeling = Make the target into a Changeling.
 
 

@@ -63,6 +63,9 @@ public sealed partial class EnergyDomeSystem : EntitySystem
     {
         if (generator.Comp.CanDeviceNetworkUse)
             _signalSystem.EnsureSinkPorts(generator, generator.Comp.TogglePort, generator.Comp.OnPort, generator.Comp.OffPort);
+
+        if (TryComp<BatterySelfRechargerComponent>(generator, out var recharger))
+            generator.Comp.rechargeRate = recharger.AutoRechargeRate;
     }
 
     //different ways of use
@@ -152,7 +155,7 @@ public sealed partial class EnergyDomeSystem : EntitySystem
 
     private void OnChargeChanged(Entity<EnergyDomeGeneratorComponent> generator, ref ChargeChangedEvent args)
     {
-        if (args.Charge == 0)
+        if (args.CurrentCharge == 0)
             TurnOff(generator, true);
     }
     private void OnDomeDamaged(Entity<EnergyDomeComponent> dome, ref DamageChangedEvent args)
@@ -189,7 +192,7 @@ public sealed partial class EnergyDomeSystem : EntitySystem
         if (TryComp<BatteryComponent>(generatorUid, out var battery)) {
             _battery.UseCharge(generatorUid, energyLeak);
 
-            if (battery.CurrentCharge == 0)
+            if (_battery.GetCharge((generatorUid, battery)) == 0)
                 TurnOff((generatorUid, generatorComp), true);
         }
     }
@@ -245,7 +248,7 @@ public sealed partial class EnergyDomeSystem : EntitySystem
 
         if (TryComp<BatteryComponent>(generator, out var battery))
         {
-            if (battery.CurrentCharge == 0)
+            if (_battery.GetCharge((generator, battery)) == 0)
             {
                 _audio.PlayPvs(generator.Comp.TurnOffSound, generator);
                 _popup.PopupEntity(
@@ -294,7 +297,7 @@ public sealed partial class EnergyDomeSystem : EntitySystem
         }
 
         if (TryComp<BatterySelfRechargerComponent>(generator, out var recharger)) {
-            recharger.AutoRecharge = true;
+            recharger.AutoRechargeRate = generator.Comp.rechargeRate;
         }
 
         generator.Comp.SpawnedDome = newDome;
@@ -316,7 +319,7 @@ public sealed partial class EnergyDomeSystem : EntitySystem
         }
         if (TryComp<BatterySelfRechargerComponent>(generator, out var recharger))
         {
-            recharger.AutoRecharge = false;
+            recharger.AutoRechargeRate = 0;
         }
 
         _audio.PlayPvs(generator.Comp.TurnOffSound, generator);

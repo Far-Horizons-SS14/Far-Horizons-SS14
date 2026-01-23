@@ -1,8 +1,8 @@
 - type: entity
   id: BaseCartridgeMagnum
-  name: Cartridge (.44 Magnum) #FH
-  parent: [ BaseCartridge, BaseSecuritySalvageContraband ] #Starlight
   abstract: true
+  parent: [ BaseCartridge, BaseSecuritySalvageContraband ] #Starlight
+  name: Cartridge (.44 Magnum) #FH
   components:
   - type: Tag
     tags:
