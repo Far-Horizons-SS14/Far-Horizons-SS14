@@ -31,8 +31,6 @@
   categories: [ HideSpawnMenu ]
   components:
     - type: Sprite
-      noRot: True
-      sprite: Objects/Devices/pinpointer.rsi
       layers:
         - state: twinpointer-left
           sprite: _Starlight/Objects/Devices/pinpointer.rsi
@@ -45,9 +43,6 @@
     - type: Icon
       sprite: _Starlight/Objects/Devices/pinpointer.rsi
       state: twinpointer-left
-    - type: Item
-      sprite: Objects/Devices/pinpointer.rsi
-    - type: Pinpointer
         
 - type: entity
   name: right twinpointer
@@ -57,8 +52,6 @@
   categories: [ HideSpawnMenu ]
   components:
     - type: Sprite
-      noRot: True
-      sprite: Objects/Devices/pinpointer.rsi
       layers:
         - state: twinpointer-right
           sprite: _Starlight/Objects/Devices/pinpointer.rsi
@@ -70,6 +63,3 @@
     - type: Icon
       sprite: _Starlight/Objects/Devices/pinpointer.rsi
       state: twinpointer-right
-    - type: Item
-      sprite: Objects/Devices/pinpointer.rsi
-    - type: Pinpointer
