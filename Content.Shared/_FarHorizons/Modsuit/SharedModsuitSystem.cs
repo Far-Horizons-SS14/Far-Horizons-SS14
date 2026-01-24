@@ -396,7 +396,7 @@ public sealed class SharedModsuitSystem : EntitySystem
             UnsealPartSequential(uid, component, component.Gauntlets, 1f);
             UnsealPartSequential(uid, component, component.Boots, 1.5f);
             
-            // Allow control unit removal after delay
+            // Allow control unit removal after delaye
             Timer.Spawn(TimeSpan.FromSeconds(2f), () => 
             {
                 if (Exists(uid))
