@@ -1,4 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using Content.Server.Administration.Logs;
 using Content.Server.DeviceLinking.Systems;
 using Content.Shared._FarHorizons.Power.Generation.FissionGenerator;
@@ -102,28 +103,31 @@ public sealed partial class GasTurbineMonitorSystem : EntitySystem
         if (_accumulator > _threshold)
         {
             AccUpdate();
+            UpdateLogs();
             _accumulator = 0;
         }
-        
-        var toRemove = new List<KeyValuePair<EntityUid, EntityUid>>();
-        foreach (var log in _logQueue)
+
+        return;
+
+        void UpdateLogs()
         {
-            if ((_gameTiming.RealTime - log.Value.CreationTime).TotalSeconds < 2)
-                continue;
+            var toRemove = new List<KeyValuePair<EntityUid, EntityUid>>();
+            foreach (var log in _logQueue.Where(log => !((_gameTiming.RealTime - log.Value.CreationTime).TotalSeconds < 2)))
+            {
+                toRemove.Add(log.Key);
 
-            toRemove.Add(log.Key);
+                if (log.Value.SetFlowRate != null)
+                    _adminLogger.Add(LogType.AtmosVolumeChanged, LogImpact.Medium,
+                        $"{ToPrettyString(log.Key.Key):player} set the flow rate on {ToPrettyString(log.Value.Turbine):device} to {log.Value.SetFlowRate} through {ToPrettyString(log.Key.Value):monitor}");
 
-            if (log.Value.SetFlowRate != null)
-                _adminLogger.Add(LogType.AtmosVolumeChanged, LogImpact.Medium,
-                    $"{ToPrettyString(log.Key.Key):player} set the flow rate on {ToPrettyString(log.Value.Turbine):device} to {log.Value.SetFlowRate} through {ToPrettyString(log.Key.Value):monitor}");
+                if (log.Value.SetStatorLoad != null)
+                    _adminLogger.Add(LogType.AtmosDeviceSetting, LogImpact.Medium,
+                        $"{ToPrettyString(log.Key.Key):player} set the stator load on {ToPrettyString(log.Value.Turbine):device} to {log.Value.SetStatorLoad} through {ToPrettyString(log.Key.Value):monitor}");
+            }
 
-            if (log.Value.SetStatorLoad != null)
-                _adminLogger.Add(LogType.AtmosDeviceSetting, LogImpact.Medium,
-                    $"{ToPrettyString(log.Key.Key):player} set the stator load on {ToPrettyString(log.Value.Turbine):device} to {log.Value.SetStatorLoad} through {ToPrettyString(log.Key.Value):monitor}");
+            foreach (var kvp in toRemove)
+                _logQueue.Remove(kvp);
         }
-
-        foreach (var uid in toRemove)
-            _logQueue.Remove(uid);
     }
 
     private void AccUpdate()

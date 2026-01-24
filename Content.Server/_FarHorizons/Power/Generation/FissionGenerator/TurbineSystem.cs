@@ -26,6 +26,7 @@ using Content.Shared.Damage.Systems;
 using Content.Server.Audio;
 using Content.Shared.Audio;
 using Robust.Shared.Timing;
+using System.Linq;
 
 namespace Content.Server._FarHorizons.Power.Generation.FissionGenerator;
 
@@ -455,27 +456,39 @@ public sealed class TurbineSystem : SharedTurbineSystem
         }
     }
 
+    private float _accumulator = 0f;
+    private readonly float _threshold = 0.5f;
+
     public override void Update(float frameTime)
     {
-        var toRemove = new List<KeyValuePair<EntityUid, EntityUid>>();
-        foreach (var log in _logQueue)
+        _accumulator += frameTime;
+        if (_accumulator > _threshold)
         {
-            if ((_gameTiming.RealTime - log.Value.CreationTime).TotalSeconds < 2)
-                continue;
-
-            toRemove.Add(log.Key);
-
-            if (log.Value.SetFlowRate != null)
-                _adminLogger.Add(LogType.AtmosVolumeChanged, LogImpact.Medium,
-                    $"{ToPrettyString(log.Key.Key):player} set the flow rate on {ToPrettyString(log.Key.Value):device} to {log.Value.SetFlowRate}");
-
-            if (log.Value.SetStatorLoad != null)
-                _adminLogger.Add(LogType.AtmosDeviceSetting, LogImpact.Medium,
-                    $"{ToPrettyString(log.Key.Key):player} set the stator load on {ToPrettyString(log.Key.Value):device} to {log.Value.SetStatorLoad}");
+            UpdateLogs();
+            _accumulator = 0;
         }
 
-        foreach (var uid in toRemove)
-            _logQueue.Remove(uid);
+        return;
+
+        void UpdateLogs()
+        {
+            var toRemove = new List<KeyValuePair<EntityUid, EntityUid>>();
+            foreach (var log in _logQueue.Where(log => !((_gameTiming.RealTime - log.Value.CreationTime).TotalSeconds < 2)))
+            {
+                toRemove.Add(log.Key);
+
+                if (log.Value.SetFlowRate != null)
+                    _adminLogger.Add(LogType.AtmosVolumeChanged, LogImpact.Medium,
+                        $"{ToPrettyString(log.Key.Key):player} set the flow rate on {ToPrettyString(log.Key.Value):device} to {log.Value.SetFlowRate}");
+
+                if (log.Value.SetStatorLoad != null)
+                    _adminLogger.Add(LogType.AtmosDeviceSetting, LogImpact.Medium,
+                        $"{ToPrettyString(log.Key.Key):player} set the stator load on {ToPrettyString(log.Key.Value):device} to {log.Value.SetStatorLoad}");
+            }
+
+            foreach (var kvp in toRemove)
+                _logQueue.Remove(kvp);
+        }
     }
     #endregion
 

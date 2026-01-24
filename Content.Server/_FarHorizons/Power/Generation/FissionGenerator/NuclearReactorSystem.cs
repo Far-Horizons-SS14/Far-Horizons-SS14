@@ -842,22 +842,34 @@ public sealed class NuclearReactorSystem : SharedNuclearReactorSystem
         UpdateUI(ent.Owner, ent.Comp);
     }
 
+    private float _accumulator = 0f;
+    private readonly float _threshold = 0.5f;
+
     public override void Update(float frameTime)
     {
-        var toRemove = new List<KeyValuePair<EntityUid, EntityUid>>();
-        foreach (var log in _logQueue)
+        _accumulator += frameTime;
+        if (_accumulator > _threshold)
         {
-            if ((_gameTiming.RealTime - log.Value.CreationTime).TotalSeconds < 2)
-                continue;
-
-            toRemove.Add(log.Key);
-
-            if (log.Value.SetControlRodInsertion != null)
-                _adminLog.Add(LogType.Action, $"{ToPrettyString(log.Key.Key):actor} set control rod insertion of {ToPrettyString(log.Key.Value):target} to {log.Value.SetControlRodInsertion}");
+            UpdateLogs();
+            _accumulator = 0;
         }
 
-        foreach (var uid in toRemove)
-            _logQueue.Remove(uid);
+        return;
+
+        void UpdateLogs()
+        {
+            var toRemove = new List<KeyValuePair<EntityUid, EntityUid>>();
+            foreach (var log in _logQueue.Where(log => !((_gameTiming.RealTime - log.Value.CreationTime).TotalSeconds < 2)))
+            {
+                toRemove.Add(log.Key);
+
+                if (log.Value.SetControlRodInsertion != null)
+                    _adminLog.Add(LogType.Action, $"{ToPrettyString(log.Key.Key):actor} set control rod insertion of {ToPrettyString(log.Key.Value):target} to {log.Value.SetControlRodInsertion}");
+            }
+
+            foreach (var kvp in toRemove)
+                _logQueue.Remove(kvp);
+        }
     }
     #endregion
 

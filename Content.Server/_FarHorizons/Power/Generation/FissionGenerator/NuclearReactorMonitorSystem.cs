@@ -1,4 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using Content.Server.Administration.Logs;
 using Content.Server.DeviceLinking.Systems;
 using Content.Shared._FarHorizons.Power.Generation.FissionGenerator;
@@ -100,24 +101,28 @@ public sealed partial class NuclearReactorMonitorSystem : EntitySystem
         if (_accumulator > _threshold)
         {
             AccUpdate();
+            UpdateLogs();
             _accumulator = 0;
         }
 
-        var toRemove = new List<KeyValuePair<EntityUid, EntityUid>>();
-        foreach (var log in _logQueue)
+        return;
+
+        void UpdateLogs()
         {
-            if ((_gameTiming.RealTime - log.Value.CreationTime).TotalSeconds < 2)
-                continue;
+            var toRemove = new List<KeyValuePair<EntityUid, EntityUid>>();
+            foreach (var log in _logQueue.Where(log => !((_gameTiming.RealTime - log.Value.CreationTime).TotalSeconds < 2)))
+            {
+                toRemove.Add(log.Key);
 
-            toRemove.Add(log.Key);
+                if (log.Value.SetControlRodInsertion != null)
+                    _adminLog.Add(LogType.Action, $"{ToPrettyString(log.Key.Key):actor} set control rod insertion of {ToPrettyString(log.Value.Reactor):target} to {log.Value.SetControlRodInsertion} through {ToPrettyString(log.Key.Value):monitor}");
+            }
 
-            if (log.Value.SetControlRodInsertion != null)
-                _adminLog.Add(LogType.Action, $"{ToPrettyString(log.Key.Key):actor} set control rod insertion of {ToPrettyString(log.Value.Reactor):target} to {log.Value.SetControlRodInsertion} through {ToPrettyString(log.Key.Value):monitor}");
+            foreach (var kvp in toRemove)
+                _logQueue.Remove(kvp);
         }
-
-        foreach (var uid in toRemove)
-            _logQueue.Remove(uid);
     }
+
     private void AccUpdate()
     {
         var query = EntityQueryEnumerator<NuclearReactorMonitorComponent>();
