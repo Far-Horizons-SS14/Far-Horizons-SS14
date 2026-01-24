@@ -31,6 +31,8 @@
         15.0
       MaximumIdleTime: !type:Single
         30.0
+      MeleeMissChance: !type:Single
+        0.15 # Default was 0.3, lowering it to take into account lower attack speed these mobs have
       IdleRange: !type:Single
         5.5
   - type: Prying
@@ -42,6 +44,7 @@
   - type: NpcFactionMember
     factions:
     - DungeonSilicon
+  - type: NPCRetaliation
   - type: Hands
   - type: ComplexInteraction
   - type: Fixtures
@@ -115,6 +118,8 @@
   - type: Vocalizer
     minVocalizeInterval: 240
     maxVocalizeInterval: 360
+  - type: ProtectedFromStepTriggers
+    protectionKey: "dungeon_exploding_borg"
       
 
 # Base borg. Normal speed, attacks with a wrench. Unrobust
@@ -130,7 +135,8 @@
   - type: MeleeWeapon
     altDisarm: false
     attackRate: 0.75
-    angle: 90
+    angle: 60
+    autoAttack: true
     soundHit:
      collection: MetalThud
     animation: WeaponArcWrench
@@ -166,7 +172,8 @@
   - type: MeleeWeapon
     altDisarm: false
     attackRate: 0.75
-    angle: 90
+    angle: 60
+    autoAttack: true
     soundHit:
       path: /Audio/Weapons/Guns/Hits/energy_meat1.ogg
     animation: WeaponArcWelder
@@ -205,7 +212,8 @@
   - type: MeleeWeapon
     altDisarm: false
     attackRate: 4
-    angle: 15
+    angle: 30
+    autoAttack: true
     soundHit:
       path: /Audio/Items/drill_hit.ogg
     wideAnimationRotation: -90
@@ -245,7 +253,8 @@
   - type: MeleeWeapon
     altDisarm: false
     attackRate: 0.4
-    angle: 90
+    angle: 60
+    autoAttack: true
     soundHit:
       collection: MetalThud
     wideAnimationRotation: -90
@@ -286,7 +295,8 @@
   - type: MeleeWeapon
     altDisarm: false
     attackRate: 1.2
-    angle: 90
+    angle: 60
+    autoAttack: true
     soundHit:
       collection: AlienClaw
     animation: WeaponArcClaw
@@ -402,6 +412,8 @@
       requiredTriggeredSpeed: 0
       intersectRatio: 0.1
       ignoreWeightless: true
+    - type: PreventableStepTrigger
+      protectionKey: "dungeon_exploding_borg"
     - type: TriggerOnStepTrigger
     - type: Slippery
       slipData:
