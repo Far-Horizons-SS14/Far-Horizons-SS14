@@ -1,15 +1,15 @@
-# Secured Advanced Syndicate Crate "Hydra"
+# Syndicate M81A1 Crate
 
 - type: entity
   parent: [ CrateBaseSecure, BaseSyndicateContraband ]
-  id: CrateSyndicateHydra
-  name: syndicate hydra crate
-  description: A reinforced crate emblazoned with Syndicate markings, this crate is known to contain advanced weaponry and equipment. Access is restricted to authorized Syndicate personnel only, one can only imagine what horrors lies within.
+  id: CrateSyndicateM81A1
+  name: Syndicate M81A1 Crate
+  description: A reinforced crate emblazoned with Syndicate markings known to contain advanced weaponry and equipment. Access is restricted to authorized Syndicate personnel only. One can only imagine what horrors lies within.
   components:
   - type: Icon
-    sprite: /Textures/_FarHorizons/Structures/Storage/Crates/hydra_crate.rsi
+    sprite: /Textures/_FarHorizons/Structures/Storage/Crates/syndicate_m81a1_crate.rsi
   - type: Sprite
-    sprite: /Textures/_FarHorizons/Structures/Storage/Crates/hydra_crate.rsi
+    sprite: /Textures/_FarHorizons/Structures/Storage/Crates/syndicate_m81a1_crate.rsi
   - type: AccessReader
     access: [["SyndicateAgent"]]
   - type: Destructible

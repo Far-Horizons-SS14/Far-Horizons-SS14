@@ -28,7 +28,7 @@
 # Launcher projectiles (Rockets)
 - type: entity
   id: Bullet120mmRocketHE
-  name: HE rocket
+  name: HE Rocket
   description: Why are are you looking at this? Move!
   parent: BaseBulletTrigger
   categories: [ HideSpawnMenu ]
@@ -51,7 +51,7 @@
 
 - type: entity
   id: Bullet120mmRocketAP
-  name: AP rocket
+  name: AP Rocket
   description: Why are you looking at this? Move!
   parent: BaseBulletTrigger
   categories: [ HideSpawnMenu ]
@@ -71,7 +71,7 @@
 
 - type: entity
   id: Bullet120mmRocketIncindiary
-  name: Dragon's Breath rocket
+  name: Dragon's Breath Rocket
   description: Why are you looking at this? Move!
   parent: BaseBulletTrigger
   categories: [ HideSpawnMenu ]
@@ -91,7 +91,7 @@
 
 - type: entity
   id: Bullet120mmRocketShrapnel
-  name: Shrapnel rocket
+  name: Shrapnel Rocket
   description: Why are you looking at this? Move!
   parent: BaseBulletTrigger
   categories: [ HideSpawnMenu ]
@@ -114,7 +114,7 @@
 
 - type: entity
   id: PelletClusterAP
-  name: pellet (ball, AP)
+  name: Pellet (Ball, AP)
   categories: [ HideSpawnMenu ]
   parent: BaseBullet
   components:
@@ -132,7 +132,7 @@
 
 - type: entity
   id: PelletClusterDragonsBreath
-  name: pellet (ball, dragon's breath)
+  name: Pellet (Ball, Dragon's Breath)
   categories: [ HideSpawnMenu ]
   parent: BaseBulletIncendiary
   components:
@@ -153,7 +153,7 @@
 
 - type: entity
   id: PelletClusterShrapnel
-  name: pellet (ball, shrapnel)
+  name: Pellet (Ball, Shrapnel)
   categories: [ HideSpawnMenu ]
   parent: BaseBullet
   components:

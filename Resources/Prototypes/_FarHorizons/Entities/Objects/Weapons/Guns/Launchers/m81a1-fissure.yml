@@ -4,7 +4,7 @@
   id: WeaponLauncherM81A1Fissure
   description: A large, shoulder-fired rocket launcher developed by the Syndicate to provide nuclear operatives with a solution for taking out a large grouping of hostiles or heavily armored targets. The launcher is designed to fire 120mm rockets, which can be equipped with all kinds of modified warheads, however, said rockets are quite expensive. Truly, this is what telecrystals can buy for when it comes to total annihilation.
   components:
-  - type: KnockbackByUserTag # Starlight
+  - type: KnockbackByUserTag
     doestContain:
       Skating:
         knockback: 2.5
@@ -28,13 +28,13 @@
   - type: Gun
     fireRate: 0.83
     soundGunshot:
-      path: /Audio/_FarHorizons/Weapon/Fissure.ogg
+      path: /Audio/_FarHorizons/Weapons/Guns/Fissure.ogg
   - type: GunRequiresWield
   - type: BallisticAmmoProvider
     whitelist:
       tags:
         - RocketAmmo120mm
-    prototype: RocketAmmo120mmHE
+    prototype: RocketAmmo120mmHE 
     capacity: 1
     soundInsert:
       path: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
