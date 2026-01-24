@@ -4,46 +4,20 @@ using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
 using Content.Server.EUI;
 using Content.Server.GameTicking;
-using Content.Server.Ghost.Roles.Components;
-using Content.Server.Ghost.Roles.Events;
 using Content.Server.Ghost.Roles.UI;
-using Content.Server.Mind.Commands;
-using Content.Server.Popups;
-using Content.Server.RoundEnd;
 using Content.Shared.Administration;
-using Content.Shared.CCVar;
-using Content.Shared.Database;
-using Content.Shared.Follower;
-using Content.Shared.GameTicking;
-using Content.Shared.Ghost.Roles.Components;
-using Content.Shared.Ghost.Roles.Raffles;
-using Content.Shared.Ghost.Roles;
 using Content.Shared.Ghost;
-using Content.Shared.Mind.Components;
-using Content.Shared.Mind;
-using Content.Shared.Mobs;
-using Content.Shared.Players;
-using Content.Shared.Roles;
 using Content.Shared.Starlight.GhostTheme;
 using Content.Shared.Starlight;
-using Content.Shared.Verbs;
-using Content.Shared.Weapons.Ranged.Systems;
-using Content.Shared._NullLink;
 using JetBrains.Annotations;
 using Robust.Server.GameObjects;
 using Robust.Server.Player;
-using Robust.Shared.Collections;
-using Robust.Shared.Configuration;
 using Robust.Shared.Console;
-using Robust.Shared.Enums;
-using Robust.Shared.GameObjects;
-using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Random;
-using Robust.Shared.Timing;
-using Robust.Shared.Utility;
 using System.Linq;
+using Content.Server.Players.PlayTimeTracking;
+using Content.Shared.Players.PlayTimeTracking;
 
 namespace Content.Server.Ghost.Roles;
 
@@ -57,6 +31,7 @@ public sealed class GhostThemeSystem : EntitySystem
     [Dependency] private readonly IPlayerRolesManager _playerRoles = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly IDiscordLinkManager _discordLinkManager = default!;
+    [Dependency] private readonly PlayTimeTrackingManager _playTimeTracking = default!;  // Far Horizons
 
     public override void Initialize()
     {
@@ -81,20 +56,19 @@ public sealed class GhostThemeSystem : EntitySystem
 
         HashSet<string> availableThemes = [];
 
+        // Far Horizons start
         foreach (var ghostTheme in _prototypeManager.EnumeratePrototypes<GhostThemePrototype>())
         {
-            if(ghostTheme.Requirements.Count == 0 || ghostTheme.Requirements.All(x => x.Handle(session)))
+            if (ghostTheme.Requirements.Count == 0) 
                 availableThemes.Add(ghostTheme.ID);
 
-            if (ghostTheme.Requirement is { } req)
-            {
-                if (_discordLinkManager.HasPermission(session.UserId.UserId, req))  // Far Horizons
-                    availableThemes.Add(ghostTheme.ID);
+            if (!_playTimeTracking.TryGetTrackerTimes(session,out var time))
                 continue;
-            }
-            availableThemes.Add(ghostTheme.ID);
-        }
 
+            if(ghostTheme.Requirements.All(x => x.Check(EntityManager, session, _prototypeManager, null, time, out _)))
+                availableThemes.Add(ghostTheme.ID);
+        }
+        // Far Horizons end
 
         var eui = _openUis[session] = new GhostThemeEui(availableThemes);
 
@@ -137,7 +111,13 @@ public sealed class GhostThemeSystem : EntitySystem
         if(!_prototypeManager.TryIndex<GhostThemePrototype>(theme, out var proto))
             return;
 
-        if (proto.Requirements.Count != 0 && proto.Requirements.Any(x => !x.Handle(session)))
+        // Far Horizons
+        if (
+            proto.Requirements.Count != 0 && (
+                !_playTimeTracking.TryGetTrackerTimes(session,out var time) 
+                || proto.Requirements.Any(x => !x.Check(EntityManager, session, _prototypeManager, null, time, out _))
+            )
+        )
             return;
 
         themes.SelectedGhostTheme = theme;
@@ -171,7 +151,13 @@ public sealed class GhostThemeSystem : EntitySystem
                 || !_playerManager.TryGetSessionByEntity(uid, out var session))
                 return;
 
-            if (proto.Requirements.Count != 0 && proto.Requirements.Any(x => !x.Handle(session)))
+            // Far Horizons
+            if (
+                proto.Requirements.Count != 0 && (
+                    !_playTimeTracking.TryGetTrackerTimes(session,out var time) 
+                    || proto.Requirements.Any(x => !x.Check(EntityManager, session, _prototypeManager, null, time, out _))
+                )
+            )
                 return;
 
             theme.SelectedGhostTheme = playerData.GhostTheme;

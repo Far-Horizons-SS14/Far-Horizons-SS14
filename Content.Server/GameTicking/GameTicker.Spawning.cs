@@ -33,7 +33,6 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
-using Content.Server._NullLink.PlayerData;
 using Content.Shared._Starlight.Language.Components;
 using Content.Shared._Starlight.Language.Systems;
 using Content.Shared._FarHorizons.Factions;
@@ -47,7 +46,6 @@ namespace Content.Server.GameTicking
         [Dependency] private readonly SharedJobSystem _jobs = default!;
         [Dependency] private readonly AdminSystem _admin = default!;
         [Dependency] private readonly NewLifeSystem _newLifeSystem = default!; //🌟Starlight🌟
-        [Dependency] private readonly INullLinkPlayerManager _playerRolesManager = default!; //🌟Starlight🌟
         [Dependency] private readonly PolymorphSystem _polymorphSystem = default!;
 
         public static readonly EntProtoId ObserverPrototypeName = "MobObserver";

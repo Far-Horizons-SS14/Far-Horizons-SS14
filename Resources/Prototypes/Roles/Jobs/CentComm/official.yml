@@ -4,8 +4,8 @@
   description: job-description-centcomoff
   playTimeTracker: JobCentralCommandOfficial
   requirements:
-  - !type:RolesRequirement
-    proto: StaffAndMentorOnlyRolesReq
+  - !type:PermissionRequirement
+    permission: CCSHC
   setPreference: false
   startingGear: CentcomGear
   icon: "JobIconCentComm"

@@ -30,8 +30,6 @@ using System.Text.Json.Serialization;
 using System.Text.Json;
 using System.Text.RegularExpressions;
 using Content.Server.Discord;
-using Content.Server._NullLink.Core;
-using Content.Server._NullLink.Helpers;
 using Content.Shared.Starlight.CCVar;
 using Robust.Shared;
 using CCVars = Content.Shared.CCVar.CCVars;
@@ -41,7 +39,6 @@ namespace Content.Server.Administration.Managers;
 
 public sealed partial class BanManager : IBanManager, IPostInjectInit
 {
-    [Dependency] private readonly IActorRouter _actor = default!; // nulllink
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly IChatManager _chat = default!;
     [Dependency] private readonly IServerDbManager _db = default!;
@@ -550,27 +547,8 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
         foreach (var role in roles)
             rolesString += $"\n> `{role}`";
 
-        // nulllink start
         string? adminDiscordId = null;
         string? targetDiscordId = null;
-
-        try
-        {
-            if (_actor.TryGetServerGrain(out var serverGrain))
-            {
-                if (banDef.BanningAdmin != null)
-                    adminDiscordId = await serverGrain.GetPlayerDiscordId(banDef.BanningAdmin.Value)
-                        .Then(x => x != 0 ? x.ToString() : null);
-
-                if (banDef.UserId != null)
-                    targetDiscordId = await serverGrain.GetPlayerDiscordId(banDef.UserId.Value)
-                        .Then(x => x != 0 ? x.ToString() : null);
-            }
-        }
-        catch (Exception)
-        {
-        }
-        // nulllink end
 
         var adminLink = "";
         var targetLink = "";
@@ -667,28 +645,8 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
         var serverName = _serverName[..Math.Min(_serverName.Length, 1500)];
         var timeNow = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time"));
 
-        // nulllink start
         string? adminDiscordId = null;
         string? targetDiscordId = null;
-
-        try
-        {
-            if (_actor.TryGetServerGrain(out var serverGrain))
-            {
-                if (banDef.BanningAdmin != null)
-                    adminDiscordId = await serverGrain.GetPlayerDiscordId(banDef.BanningAdmin.Value)
-                        .Then(x => x != 0 ? x.ToString() : null);
-
-                if (banDef.UserId != null)
-                    targetDiscordId = await serverGrain.GetPlayerDiscordId(banDef.UserId.Value)
-                        .Then(x => x != 0 ? x.ToString() : null);
-            }
-        }
-        catch (Exception)
-        {
-        }
-
-        // nulllink end
 
         var adminLink = "";
         var targetLink = "";

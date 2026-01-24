@@ -1,46 +1,22 @@
 ﻿using System.Linq;
-using Content.Server._NullLink.PlayerData;
 using Content.Server.Administration.Managers;
 using Content.Server.Chat.Managers;
-using Content.Server.Chat.Systems;
-using Content.Server.GameTicking;
 using Content.Server.GameTicking.Events;
-using Content.Server.Hands.Systems;
 using Content.Server.Mind;
 using Content.Server.Roles;
-using Content.Server.Stack;
-using Content.Server.Starlight;
-using Content.Server.Station.Components;
-using Content.Shared._NullLink;
 using Content.Shared.Chat;
-using Content.Shared.Damage;
-using Content.Shared.Interaction;
-using Content.Shared.Mind;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
-using Content.Shared.Pinpointer;
-using Content.Shared.Roles;
-using Content.Shared.Stacks;
-using Content.Shared.Starlight.Antags.Abductor;
-using Content.Shared.Starlight.Medical.Surgery.Effects.Step;
-using Content.Shared.UserInterface;
-using NAudio.CoreAudioApi;
-using Robust.Server.GameObjects;
 using Robust.Server.Player;
-using Robust.Shared.Audio.Systems;
-using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
-using Robust.Shared.Utility;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace Content.Shared.Starlight.Economy;
 public sealed partial class SalarySystem : SharedSalarySystem
 {
     [Dependency] private readonly IEntityManager _entityManager = default!;
-    [Dependency] private readonly INullLinkPlayerManager _nullLinkRoles = default!;
     [Dependency] private readonly IPlayerRolesManager _playerRolesManager = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
@@ -107,13 +83,6 @@ public sealed partial class SalarySystem : SharedSalarySystem
     private int CalculateSalaryWithBonuses(int baseSalary, ICommonSession session)
     {
         var bonusMultiplier = 1.0;
-
-        if (!_nullLinkRoles.TryGetPlayerData(session.UserId, out var playerData))
-            return baseSalary;
-
-        foreach (var bonus in _prototypes.EnumeratePrototypes<SalaryRoleBonusPrototype>())
-            if(bonus.Roles.Any(playerData.Roles.Contains))
-                bonusMultiplier += bonus.Multiplayer;
 
         return (int)Math.Ceiling(baseSalary * bonusMultiplier);
     }

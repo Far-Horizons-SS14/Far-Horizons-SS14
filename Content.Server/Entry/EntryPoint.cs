@@ -1,8 +1,4 @@
 using Content.Server._FarHorizons.DiscordLink;
-using Content.Server._NullLink;
-using Content.Server._NullLink.Core;
-using Content.Server._NullLink.EventBus;
-using Content.Server._NullLink.PlayerData;
 using Content.Server._Starlight.BugReports; // Staright
 using Content.Server.Acz;
 using Content.Server.Administration;
@@ -31,7 +27,6 @@ using Content.Server.ServerInfo;
 using Content.Server.ServerUpdates;
 using Content.Server.Starlight.TextToSpeech;
 using Content.Server.Voting.Managers;
-using Content.Shared._NullLink;
 using Content.Shared._Starlight.DocumentManager;
 using Content.Shared.CCVar;
 using Content.Shared.Kitchen;
@@ -96,12 +91,6 @@ namespace Content.Server.Entry
         [Dependency] private readonly IPlayerRolesManager _playerRoles = default!;
 #endregion Starlight
 
-#region Nulllink
-        [Dependency] private readonly IActorRouter _actorRouter = default!;
-        [Dependency] private readonly ISharedNullLinkPlayerRolesReqManager _sharedNullLinkPlayerRolesReq = default!;
-        [Dependency] private readonly INullLinkEventBusManager _nullLinkEventBus = default!;
-        [Dependency] private readonly INullLinkPlayerManager _nullLinkPlayerManager = default!;
-#endregion Nulllink
 
         public override void PreInit()
         {
@@ -206,13 +195,6 @@ namespace Content.Server.Entry
             _multiServerKick.Initialize();
             _cvarCtrl.Initialize();
 
-            // NullLink start
-            _actorRouter.Initialize();
-            _sharedNullLinkPlayerRolesReq.Initialize();
-            _nullLinkEventBus.Initialize();
-            _nullLinkPlayerManager.Initialize();
-            // NullLink end
-
             // Far Horizons
             IoCManager.Resolve<IDiscordLinkManager>().Initialize();
         }
@@ -253,9 +235,6 @@ namespace Content.Server.Entry
             _discordLink.Shutdown();
             _discordChatLink.Shutdown();
             // Nullink start
-            _nullLinkPlayerManager.Shutdown();
-            _nullLinkEventBus.Shutdown();
-            _actorRouter.Shutdown();
             _bugReport.Shutdown();
             // Nullink end
 

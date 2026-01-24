@@ -197,7 +197,6 @@ public sealed partial class GameTicker //🌟Starlight🌟
         };
         embed.Fields[0] = embed.Fields[0] with { Value = $"{_playerManager.PlayerCount}/{_playerManager.MaxPlayers}" };
         embed.Fields[1] = embed.Fields[1] with { Value = $"{_adminManager.ActiveAdmins.Count()}/{_adminManager.AllAdmins.Count()}" };
-        embed.Fields[2] = embed.Fields[2] with { Value = _playerRolesManager.Mentors.Count().ToString() };
         embed.Fields[3] = embed.Fields[3] with { Value = mapName };
         embed.Fields[4] = embed.Fields[4] with { Value = preset };
         embed.Fields[5] = embed.Fields[5] with { Value = RoundDuration().ToString("hh\\:mm\\:ss") };

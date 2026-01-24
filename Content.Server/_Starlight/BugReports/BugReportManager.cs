@@ -1,6 +1,4 @@
 using System.Linq;
-using Content.Server._NullLink.Core;
-using Content.Server._NullLink.Helpers;
 using Content.Server.Administration.Logs;
 using Content.Server.GameTicking;
 using Content.Server.Maps;
@@ -9,7 +7,6 @@ using Content.Shared._Starlight.BugReport;
 using Content.Shared.CCVar;
 using Content.Shared.Database;
 using Content.Shared.Starlight.CCVar;
-using Orleans;
 using Robust.Server.Player;
 using Robust.Shared;
 using Robust.Shared.Configuration;
@@ -30,7 +27,6 @@ public sealed class BugReportManager : IBugReportManager, IPostInjectInit
     [Dependency] private readonly IGameMapManager _map = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly ILogManager _log = default!;
-    [Dependency] private readonly IActorRouter _actors = default!;
 
     private ISawmill _sawmill = default!;
 
@@ -76,9 +72,6 @@ public sealed class BugReportManager : IBugReportManager, IPostInjectInit
         if (!_cfg.GetCVar(StarlightCCVars.EnablePlayerBugReports))
             return;
 
-        if (!_actors.TryGetServerGrain(out var serverActor))
-            return;
-
         var netId = message.MsgChannel.UserId;
         var userName = message.MsgChannel.UserName;
         var report = message.ReportInformation;
@@ -110,11 +103,6 @@ public sealed class BugReportManager : IBugReportManager, IPostInjectInit
             metadata.Add("map", _map.GetSelectedMap()?.MapName ?? Loc.GetString("bug-report-report-unknown"));
         }
 
-        serverActor.BugReport(
-            message.MsgChannel.UserName,
-            message.ReportInformation.BugReportTitle.Trim(),
-            message.ReportInformation.BugReportDescription.Trim(),
-            metadata).FireAndForget();
     }
 
     /// <summary>

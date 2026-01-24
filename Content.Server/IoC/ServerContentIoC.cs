@@ -1,8 +1,4 @@
 using Content.Server._FarHorizons.DiscordLink;
-using Content.Server._NullLink;
-using Content.Server._NullLink.Core;
-using Content.Server._NullLink.EventBus;
-using Content.Server._NullLink.PlayerData;
 using Content.Server._Starlight.BugReports; // Starlight
 using Content.Server.Administration;
 using Content.Server.Administration.Logs;
@@ -47,16 +43,9 @@ using Content.Server.Economy;
 using Content.Shared._Starlight.DocumentManager;
 #endregion Starlight
 
-#region Nulllink
-using Content.Server._NullLink;
-using Content.Server._NullLink.Core;
-using Content.Server._NullLink.EventBus;
-using Content.Server._NullLink.PlayerData;
-using Content.Shared._NullLink;
-#endregion Nulllink
 using Content.Shared._FarHorizons.Factions;
 using Content.Server._FarHorizons.Factions;
-using Content.Shared._FarHorizons.DiscordLink; // Far Horizons edit
+using Content.Shared._FarHorizons.DiscordLink;
 
 namespace Content.Server.IoC;
 
@@ -119,14 +108,6 @@ internal static class ServerContentIoC
         deps.Register<IBugReportManager, BugReportManager>();
         deps.Register<PreWrittenDocumentManager>();
         // 🌟Starlight🌟 end
-        // nulllink start
-        deps.Register<IActorRouter, ActorRouter>(); 
-        deps.Register<NullLinkPlayerManager>();
-        deps.Register<INullLinkPlayerManager, NullLinkPlayerManager>();
-        deps.Register<INullLinkPlayTimeManager, NullLinkPlayTimeManager>();
-        deps.Register<INullLinkEventBusManager, NullLinkEventBusManager>();
-        deps.Register<ISharedNullLinkPlayerRolesReqManager, PlayerRolesReqManager>();
-        // nulllink end
         // Far Horizons start
         deps.Register<IServerFactionManager, ServerFactionManager>();
         deps.Register<ISharedFactionManager, ServerFactionManager>();

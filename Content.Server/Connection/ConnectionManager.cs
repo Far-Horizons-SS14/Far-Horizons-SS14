@@ -3,8 +3,6 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using Content.Server._FarHorizons.DiscordLink;
-using Content.Server._NullLink.Core;
-using Content.Server._NullLink.PlayerData;
 using Content.Server.Administration.Managers;
 using Content.Server.Chat.Managers;
 using Content.Server.Connection.IPIntel;
@@ -12,10 +10,8 @@ using Content.Server.Database;
 using Content.Server.Discord.DiscordLink;
 using Content.Server.GameTicking;
 using Content.Server.Preferences.Managers;
-using Content.Shared._NullLink;
 using Content.Shared.CCVar;
 using Content.Shared.GameTicking;
-using Content.Shared.NullLink.CCVar;
 using Content.Shared.Players.PlayTimeTracking;
 using Content.Shared.Starlight;
 using Robust.Server.Player;
@@ -57,8 +53,6 @@ namespace Content.Server.Connection
     /// </summary>
     public sealed partial class ConnectionManager : IConnectionManager
     {
-        [Dependency] private readonly IActorRouter _actors = default!; // NullLink
-        [Dependency] private readonly INullLinkPlayerManager _nullLinkPlayerManager = default!; // NullLink
         [Dependency] private readonly IPlayerManager _plyMgr = default!;
         [Dependency] private readonly IPlayerRolesManager _plyRoles = default!;
         [Dependency] private readonly IServerNetManager _netMgr = default!;
@@ -81,12 +75,9 @@ namespace Content.Server.Connection
         private readonly Dictionary<NetUserId, TimeSpan> _temporaryBypasses = [];
         private IPIntel.IPIntel _ipintel = default!;
 
-        private RoleRequirementPrototype? _roleReqPeacefulBypass;
         public void PostInit()
         {
             InitializeWhitelist();
-            _cfg.OnValueChanged(NullLinkCCVars.RoleReqPeacefulBypass, reqProtoId 
-                => _roleReqPeacefulBypass = _prototypeManager.Index<RoleRequirementPrototype>(reqProtoId), true); // NullLink
         }
 
         public void Initialize()
@@ -167,9 +158,6 @@ namespace Content.Server.Connection
                 var properties = new Dictionary<string, object>();
                 if (reason == ConnectionDenyReason.Full)
                     properties["delay"] = _cfg.GetCVar(CCVars.GameServerFullReconnectDelay);
-
-                //NullLink discord link
-                properties["discord"] = _nullLinkPlayerManager.GetDiscordAuthUrl(e.UserId.ToString());
 
                 e.Deny(new NetDenyReason(msg, properties));
             }
@@ -271,19 +259,6 @@ namespace Content.Server.Connection
                 var validAccountAge = record != null &&
                                       record.FirstSeenTime.CompareTo(DateTimeOffset.UtcNow - TimeSpan.FromMinutes(minMinutesAge)) <= 0;
                 var bypassAllowed = _cfg.GetCVar(CCVars.BypassBunkerWhitelist) && await _db.GetWhitelistStatusAsync(userId);
-
-                // NullLink Bypass start
-                try
-                {
-                    if (!validAccountAge
-                        && _roleReqPeacefulBypass is not null
-                        && _actors.TryGetServerGrain(out var serverGrain))
-                        validAccountAge = await serverGrain.HasPlayerAnyRole(userId, _roleReqPeacefulBypass.Roles);
-                }
-                catch (Exception)
-                {
-                }
-                // NullLink Bypass end
 
                 // Use the custom reason if it exists & they don't have the minimum account age
                 if (customReason != string.Empty && !validAccountAge && !bypassAllowed)

@@ -12,7 +12,6 @@ using Content.Shared.Starlight.Medical.Surgery;
 using Robust.Server.Containers;
 using Robust.Shared.Prototypes;
 using Content.Shared.Tag;
-using Orleans.Serialization.WireProtocol; //FarHorizons
 
 namespace Content.Server._Starlight.Medical.Limbs;
 public sealed partial class LimbSystem : SharedLimbSystem

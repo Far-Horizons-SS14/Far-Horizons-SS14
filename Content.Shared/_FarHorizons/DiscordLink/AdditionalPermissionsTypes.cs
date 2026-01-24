@@ -7,4 +7,5 @@ public enum AdditionalPermissionsTypes : ushort  // only 16 are allowed with ush
     AlphaTesterGhost = 1 << 1,
     PeacefulBypass = 1 << 2,
     RoleRequirementBypass = 1 << 3,
+    CCSHC =  1 << 4,
 }

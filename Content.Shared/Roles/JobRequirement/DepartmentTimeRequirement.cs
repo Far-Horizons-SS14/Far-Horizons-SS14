@@ -1,6 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
 using Content.Shared._FarHorizons.DiscordLink;
-using Content.Shared._NullLink;
 using Content.Shared.Localizations;
 using Content.Shared.Preferences;
 using Content.Shared.Starlight;
@@ -42,11 +41,6 @@ public sealed partial class DepartmentTimeRequirement : JobRequirement
             return true;
 
         var playtime = TimeSpan.Zero;
-
-        //NullLink start
-        if (player is not null && IoCManager.Resolve<ISharedNullLinkPlayerRolesReqManager>().IsAllRolesAvailable(player))
-            return true;
-        //NullLink end
         
         //FarHorizons
         if (player is not null && IoCManager.Resolve<IDiscordLinkManagerShared>().HasPermission(player.UserId.UserId, AdditionalPermissionsTypes.RoleRequirementBypass))

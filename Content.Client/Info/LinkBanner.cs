@@ -1,6 +1,4 @@
 ﻿using Content.Client._FarHorizons.DiscordLink;
-using Content.Client._Starlight.Managers;
-using Content.Client.Administration.Managers;
 using Content.Client.Changelog;
 using Content.Client.UserInterface.Systems.EscapeMenu;
 using Content.Client.UserInterface.Systems.Guidebook;
@@ -9,14 +7,12 @@ using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Collections;
 using Robust.Shared.Configuration;
-using Robust.Shared.Localization;
 
 namespace Content.Client.Info
 {
     public sealed class LinkBanner : BoxContainer
     {
         private readonly IConfigurationManager _cfg;
-        private readonly INullLinkPlayerRolesManager _playerRoles;// NullLink
         private readonly DiscordLinkManager _discordLinkManager; // Far Horizons
 
         private ValueList<(CVarDef<string> cVar, Button button)> _infoLinks;
@@ -31,7 +27,6 @@ namespace Content.Client.Info
 
             var uriOpener = IoCManager.Resolve<IUriOpener>();
             _cfg = IoCManager.Resolve<IConfigurationManager>();
-            _playerRoles = IoCManager.Resolve<INullLinkPlayerRolesManager>(); // NullLink
             _discordLinkManager = IoCManager.Resolve<DiscordLinkManager>(); // Far Horizons
             var rulesButton = new Button() {Text = Loc.GetString("server-info-rules-button")};
             rulesButton.OnPressed += args => new RulesAndInfoWindow().Open();
@@ -43,7 +38,7 @@ namespace Content.Client.Info
             AddInfoButton("server-info-forum-button", CCVars.InfoLinksForum);
             AddInfoButton("server-info-telegram-button", CCVars.InfoLinksTelegram);
 
-            // NullLink start
+            // ~~NullLink~~ DiscordLink start
             var button = new Button { Text = Loc.GetString("server-info-connect-discord-button") };
             button.OnPressed += _ => {
                 var link = _discordLinkManager.GetDiscordLink(); // Far Horizons
@@ -51,7 +46,7 @@ namespace Content.Client.Info
                     uriOpener.OpenUri(link);
             };
             buttons.AddChild(button);
-            // NullLink end
+            // ~~NullLink~~ DiscordLink end
 
             var guidebookController = UserInterfaceManager.GetUIController<GuidebookUIController>();
             var guidebookButton = new Button() { Text = Loc.GetString("server-info-guidebook-button") };

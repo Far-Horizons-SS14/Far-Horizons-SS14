@@ -22,7 +22,6 @@ using Content.Client.Screenshot;
 using Content.Client.Stylesheets;
 using Content.Client.Viewport;
 using Content.Client.Voting;
-using Content.Shared._NullLink;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Administration.Managers;
 using Content.Shared.Chat;
@@ -30,7 +29,6 @@ using Content.Shared.IoC;
 using Content.Shared.Players.PlayTimeTracking;
 using Content.Shared.Players.RateLimiting;
 using Content.Shared.Starlight;
-using Content.Client._NullLink;
 using Content.Shared._FarHorizons.Factions;
 using Content.Client._FarHorizons.Factions;
 using Content.Shared._Starlight.DocumentManager;
@@ -73,12 +71,6 @@ namespace Content.Client.IoC
             collection.Register<SharedPlayerRateLimitManager, PlayerRateLimitManager>();
             collection.Register<TitleWindowManager>();
             collection.Register<ClientsidePlaytimeTrackingManager>();
-
-            // NullLink start
-            collection.Register<INullLinkPlayerRolesManager, NullLinkPlayerRolesManager>();  
-            collection.Register<ISharedNullLinkPlayerRolesReqManager, PlayerRolesReqManager>();
-            collection.Register<INullLinkPlayTimeManager, NullLinkPlayTimeManager>();
-            // NullLink end
 
             // Far Horizons start
             collection.Register<ISharedFactionManager, ClientFactionManager>();

@@ -22,7 +22,6 @@ namespace Content.Client.Launcher
         private const float RedialWaitTimeSeconds = 15f;
         private readonly LauncherConnecting _state;
         private float _waitTime;
-        private string? _discord; //NullLink
 
         // Pressing reconnect will redial instead of simply reconnecting.
         private bool _redial;
@@ -125,14 +124,6 @@ namespace Content.Client.Launcher
             else
             {
                 _redial = reason.RedialFlag;
-                //NullLink start
-                if (reason.Message.StringOf("discord") is { } link)
-                {
-                    _discord = link;
-                    LinkDiscordButton.Visible = true;
-                    LinkDiscordButton.OnPressed += _ => IoCManager.Resolve<IUriOpener>().OpenUri(link);
-                }
-                //NullLink end
 
                 if (reason.Message.Int32Of("delay") is { } delay)
                 {

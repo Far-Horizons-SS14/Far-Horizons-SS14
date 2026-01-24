@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Runtime.InteropServices;
 using Content.Server._FarHorizons.DiscordLink;
-using Content.Server._NullLink.PlayerData;
 using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
 using Content.Server.Administration.Systems;
@@ -41,7 +40,6 @@ internal sealed partial class ChatManager : IChatManager
     [Dependency] private readonly IReplayRecordingManager _replay = default!;
     [Dependency] private readonly IServerNetManager _netManager = default!;
     [Dependency] private readonly IAdminManager _adminManager = default!;
-    [Dependency] private readonly INullLinkPlayerManager _playerRoles = default!; // NullLink
     [Dependency] private readonly IAdminLogManager _adminLogger = default!;
     [Dependency] private readonly IServerPreferencesManager _preferencesManager = default!;
     [Dependency] private readonly IConfigurationManager _configurationManager = default!;
@@ -296,9 +294,6 @@ internal sealed partial class ChatManager : IChatManager
 
         var playerName = player.Name;
         var playerTitle = "";
-
-        if(_playerRoles.TryGetPlayerData(player.UserId, out var playerData))
-            playerTitle = playerData.Title ?? "";
 
         if (_adminManager.HasAdminFlag(player, AdminFlags.NameColor))
         {

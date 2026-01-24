@@ -1,11 +1,6 @@
-using System.Numerics;
-using Content.Shared._FarHorizons.DiscordLink;
-using Content.Shared._NullLink;
-using Content.Shared._Starlight.Abstract.Conditions;
-using Content.Shared.Starlight;
+using Content.Shared.Roles;
 using Content.Shared.Starlight.Utility;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Utility;
 
 namespace Content.Shared.Starlight.GhostTheme;
 
@@ -24,9 +19,6 @@ public sealed partial class GhostThemePrototype : IPrototype
     [DataField("spriteSpecifier", required: true)]
     public ExtendedSpriteSpecifier SpriteSpecifier { get; private set; } = default!;
     
-    [DataField("requirement")]
-    public AdditionalPermissionsTypes? Requirement;  // Far Horizons
-    
     [DataField("requiredCkey")]
     public string? Ckey = null;
     
@@ -37,5 +29,5 @@ public sealed partial class GhostThemePrototype : IPrototype
     public bool Private = false;
 
     [DataField("requirements")]
-    public List<BaseRequirement> Requirements = [];
+    public List<JobRequirement> Requirements = [];  // Far Horizons
 }

@@ -1,8 +1,6 @@
 ﻿using Content.Client._FarHorizons.DiscordLink;
 using Content.Client._Starlight.Managers;
-using Content.Client.Administration.Managers;
 using Content.Client.Gameplay;
-using Content.Client.UserInterface.Controls;
 using Content.Client.UserInterface.Systems.Guidebook;
 using Content.Client.UserInterface.Systems.Info;
 using Content.Shared.CCVar;
@@ -23,7 +21,6 @@ public sealed class EscapeUIController : UIController, IOnStateEntered<GameplayS
 {
     [Dependency] private readonly IClientConsoleHost _console = default!;
     [Dependency] private readonly IClientPlayerRolesManager _player = default!;
-    [Dependency] private readonly INullLinkPlayerRolesManager _playerRoles = default!; // NullLink
     [Dependency] private readonly IUriOpener _uri = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly ChangelogUIController _changelog = default!;

@@ -111,7 +111,7 @@ public sealed partial class GhostThemeWindow : DefaultWindow
             //         ("discord", Loc.GetString(req.Discord)),
             //         ("roles", Loc.GetString(req.RolesLoc)));
             // }
-            var toolTipText = string.Join(", ", ghostTheme.Requirements.Select(x=>x.GetRequirementDescription()));
+            var toolTipText = ghostTheme.Description; // Far Horizons
 
             var ghostPicker = new GhostPicker(_sprites,
                 ghostTheme.SpriteSpecifier.Sprite,

@@ -27,15 +27,12 @@ using Robust.Shared.Input.Binding;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Utility;
-using Content.Shared._NullLink;
 
 namespace Content.Client.UserInterface.Systems.Bwoink;
 
 [UsedImplicitly]
 public sealed class MHelpUIController : UIController, IOnSystemChanged<MentorSystem>, IOnStateChanged<GameplayState>, IOnStateChanged<LobbyState>
 {
-    [Dependency] private readonly INullLinkPlayerRolesManager _playerRoles = default!;
-    [Dependency] private readonly ISharedNullLinkPlayerRolesReqManager _playerRolesReq = default!;
     [Dependency] private readonly IClientAdminManager _adminManager = default!;
     [Dependency] private readonly IConfigurationManager _config = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
@@ -58,7 +55,6 @@ public sealed class MHelpUIController : UIController, IOnSystemChanged<MentorSys
 
         SubscribeNetworkEvent<MHelpTypingUpdated>(OnTypingUpdated);
 
-        _playerRoles.PlayerRolesChanged += OnPlayerStatusUpdated;
         _config.OnValueChanged(StarlightCCVars.MHelpSound, v => _mHelpSound = v, true);
     }
     public void UnloadButton()
