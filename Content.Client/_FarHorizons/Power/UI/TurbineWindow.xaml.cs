@@ -117,14 +117,14 @@ public sealed partial class TurbineWindow : FancyWindow
 
         void FlowTextChanged(bool suppress = false)
         {
-            if (float.TryParse(TurbineFlowRateLabel.Text, out var num))
+            if (float.TryParse(TurbineFlowRateLabel.Text, out var num) && !float.IsNaN(num))
                 TurbineFlowRateChanged?.Invoke(num);
             _suppressFlowUpdate = suppress;
         }
 
         void StatorTextChanged(bool suppress = false)
         {
-            if (float.TryParse(TurbineStatorLoadLabel.Text, out var num))
+            if (float.TryParse(TurbineStatorLoadLabel.Text, out var num) && !float.IsNaN(num))
                 TurbineStatorLoadChanged?.Invoke(num);
             _suppressStatorUpdate = suppress;
         }

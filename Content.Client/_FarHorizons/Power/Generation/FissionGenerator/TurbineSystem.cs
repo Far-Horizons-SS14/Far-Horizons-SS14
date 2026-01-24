@@ -35,10 +35,12 @@ public sealed class TurbineSystem : SharedTurbineSystem
         SubscribeLocalEvent<TurbineComponent, ItemSlotEjectAttemptEvent>(OnEjectAttempt);
     }
 
-    protected override void OnRepairTurbineFinished(EntityUid uid, TurbineComponent comp, ref RepairedEvent args)
+    protected override void OnRepairTurbineFinished(EntityUid uid, TurbineComponent comp, ref RepairDoAfterEvent args)
     {
-        // Sorry I broke something here. Different event now has no tool in it.
-        _popupSystem.PopupClient(Loc.GetString("turbine-repair", ("target", uid), ("tool", "")), uid, args.User);
+        if (args.Cancelled)
+            return;
+
+        _popupSystem.PopupClient(Loc.GetString("turbine-repair", ("target", uid), ("tool", args.Used!)), uid, args.User);
     }
 
     private void TurbineExamined(EntityUid uid, TurbineComponent comp, ClientExaminedEvent args) => Spawn(comp.ArrowPrototype, new EntityCoordinates(uid, 0, 0));
