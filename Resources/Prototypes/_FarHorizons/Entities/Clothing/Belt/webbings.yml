@@ -318,3 +318,74 @@
   - type: Tag
     tags: 
     - Webbing
+
+# Rocket Ammo Rig (For "Fissure" Rocket Launcher)
+
+- type: entity
+  parent: [ClothingBeltBase, BaseSyndicateContraband]
+  id: ClothingBeltM81RocketLoaderChestRig
+  name: M81 Loader Chest Rig
+  description: A large, modified rig for carrying multiple 120mm rockets, designed specifically to be paired along with the M81A1. This chest rig has a capacity of up to seven potential 120mm rockets.
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Clothing/Belt/rocketloaderwebvest.rsi
+    - type: Clothing
+      sprite: _FarHorizons/Clothing/Belt/rocketloaderwebvest.rsi
+    - type: ItemSlots
+      slots: 
+        120mmrocket_slot7: 
+          name: rocket-loader-webvest-slot-component-slot-name-120mmrocket
+          whitelist:
+            tags:
+              - RocketAmmo120mm
+          priority: 7
+        120mmrocket_slot6: 
+          name: rocket-loader-webvest-slot-component-slot-name-120mmrocket
+          whitelist:
+            tags:
+              - RocketAmmo120mm
+          priority: 6
+        120mmrocket_slot5:
+          name: rocket-loader-webvest-slot-component-slot-name-120mmrocket
+          whitelist:
+            tags:
+              - RocketAmmo120mm
+          priority: 5
+        120mmrocket_slot4:
+          name: rocket-loader-webvest-slot-component-slot-name-120mmrocket
+          whitelist:
+            tags:
+              - RocketAmmo120mm
+          priority: 4
+        120mmrocket_slot3:
+          name: rocket-loader-webvest-slot-component-slot-name-120mmrocket
+          whitelist:
+            tags:
+              - RocketAmmo120mm
+          priority: 3
+        120mmrocket_slot2:
+          name: rocket-loader-webvest-slot-component-slot-name-120mmrocket
+          whitelist:
+            tags:
+              - RocketAmmo120mm
+          priority: 2
+        120mmrocket_slot1:
+          name: rocket-loader-webvest-slot-component-slot-name-120mmrocket
+          whitelist:
+            tags:
+              - RocketAmmo120mm
+          priority: 1
+    - type: ContainerContainer
+      containers:
+        storagebase: !type:Container
+          ents: []
+        120mmrocket_slot7: !type:ContainerSlot {}
+        120mmrocket_slot6: !type:ContainerSlot {}
+        120mmrocket_slot5: !type:ContainerSlot {}
+        120mmrocket_slot4: !type:ContainerSlot {}
+        120mmrocket_slot3: !type:ContainerSlot {}
+        120mmrocket_slot2: !type:ContainerSlot {}
+        120mmrocket_slot1: !type:ContainerSlot {}
+    - type: Tag
+      tags: 
+      - Webbing

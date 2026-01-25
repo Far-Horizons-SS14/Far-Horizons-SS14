@@ -1,0 +1,53 @@
+- type: entity
+  name: M81A1 "Fissure"
+  parent: [ BaseWeaponLauncher, BaseGunWieldable, BaseSyndicateContraband]
+  id: WeaponLauncherM81A1Fissure
+  description: A large, shoulder-fired rocket launcher developed by the Syndicate to provide nuclear operatives with a solution for taking out a large grouping of hostiles or heavily armored targets. The launcher is designed to fire 120mm rockets, which can be equipped with all kinds of modified warheads, however, said rockets are quite expensive. Truly, this is what telecrystals can buy for when it comes to total annihilation.
+  components:
+  - type: KnockbackByUserTag
+    doestContain:
+      Skating:
+        knockback: 2.5
+      Resomi:
+        knockback: 5
+      Avali:
+        knockback: 2.5 # half of what resomi take
+      Felionoid:
+        knockback: 2.5 # half of what resomi take
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/Launchers/m81a1_fissure.rsi
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-0
+        map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: _FarHorizons/Objects/Weapons/Guns/Launchers/m81a1_fissure.rsi
+  - type: Item
+    size: Ginormous
+  - type: Gun
+    fireRate: 0.83
+    soundGunshot:
+      path: /Audio/_FarHorizons/Weapons/Guns/Fissure.ogg
+  - type: GunRequiresWield
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+        - RocketAmmo120mm
+    proto: RocketAmmo120mmHE
+    capacity: 1
+    soundInsert:
+      path: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+  - type: HeldSpeedModifier
+    walkModifier: 0.8
+    sprintModifier: 0.8
+  - type: SpeedModifiedOnWield
+    walkModifier: 0.5
+    sprintModifier: 0.5
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+  - type: StaticPrice
+    price: 12000
