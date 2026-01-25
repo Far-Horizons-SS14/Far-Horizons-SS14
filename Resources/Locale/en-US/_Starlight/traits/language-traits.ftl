@@ -59,3 +59,6 @@ trait-language-grumbakul-desc = You have mastered the language of Dwarfkind, or 
 
 trait-language-aielic-name = Aielic
 trait-language-aielic-desc = The beautiful language of the queli is ideally suited to poetry, but make one mistake and you'll never live it down.
+
+trait-language-lagomorphian-name = Lagomorphian
+trait-language-lagomorphian-desc = The lynarxical tongue, developed as an integration language for the Lagomorph's differing vocal structure.

@@ -6,4 +6,5 @@ species-name-felionoid = Felionoid
 species-name-lagomorph = Lagomorph
 species-name-resomi = Resomi
 species-name-shadekin = Shadekin
+species-name-lagomorph = Lagomorph
 species-name-thaven = Thaven

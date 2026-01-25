@@ -1129,7 +1129,7 @@ public sealed partial class ChatSystem : SharedChatSystem
     /// <summary>
     ///     Returns list of players and ranges for all players withing some range. Also returns observers with a range of -1.
     /// </summary>
-    private Dictionary<ICommonSession, ICChatRecipientData> GetRecipients(EntityUid source, float voiceGetRange)
+    private Dictionary<ICommonSession, ICChatRecipientData> GetRecipients(EntityUid source, float voiceGetRange, bool isWhisper = false) // Starlight-edit
     {
         // TODO proper speech occlusion
 
@@ -1152,9 +1152,23 @@ public sealed partial class ChatSystem : SharedChatSystem
                 continue;
 
             var observer = ghostHearing.HasComponent(playerEntity);
+            
+            //Starlight begin | Check what's larger, the passed voice range or, if it exists, the voice range on ChatListenerRangeComponent
+            var distanceToCheck = voiceGetRange;
+            if(TryComp<ChatListenerRangeComponent>(playerEntity, out var rangeComp))
+                if (rangeComp.AllowExtendListenRange)
+                {
+                    distanceToCheck = isWhisper switch
+                    {
+                        true when rangeComp.WhisperMuffledRange > distanceToCheck => rangeComp.WhisperMuffledRange,
+                        false when rangeComp.VoiceRange > distanceToCheck => rangeComp.VoiceRange,
+                        _ => distanceToCheck
+                    };
+                }
+            //Starlight end
 
             // even if they are a ghost hearer, in some situations we still need the range
-            if (sourceCoords.TryDistance(EntityManager, transformEntity.Coordinates, out var distance) && distance < voiceGetRange)
+            if (sourceCoords.TryDistance(EntityManager, transformEntity.Coordinates, out var distance) && distance < distanceToCheck) // Starlight-edit
             {
                 recipients.Add(player, new ICChatRecipientData(distance, observer));
                 continue;
