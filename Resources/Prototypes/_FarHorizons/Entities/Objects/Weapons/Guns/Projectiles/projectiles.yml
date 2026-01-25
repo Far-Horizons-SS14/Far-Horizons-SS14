@@ -64,6 +64,9 @@
     triggerKey: trigger
     fillPrototype: PelletClusterAP
     capacity: 22
+  - type: ContainerContainer
+    containers:
+      cluster-payload: !type:Container
   - type: PointLight
     radius: 3.5
     color: green
@@ -84,6 +87,9 @@
     triggerKey: trigger
     fillPrototype: PelletClusterDragonsBreath
     capacity: 28
+  - type: ContainerContainer
+    containers:
+      cluster-payload: !type:Container
   - type: PointLight
     radius: 4.5
     color: orange
@@ -104,6 +110,9 @@
     triggerKey: trigger
     fillPrototype: PelletClusterShrapnel
     capacity: 24
+  - type: ContainerContainer
+    containers:
+      cluster-payload: !type:Container
   - type: PointLight
     radius: 4.0
     color: yellow
