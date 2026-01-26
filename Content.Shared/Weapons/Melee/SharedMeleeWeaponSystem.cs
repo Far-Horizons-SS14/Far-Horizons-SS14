@@ -206,7 +206,7 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
 
     private void OnLightAttack(LightAttackEvent msg, EntitySessionEventArgs args)
     {
-        if (args.SenderSession.AttachedEntity is not {} user)
+        if (args.SenderSession.AttachedEntity is not {} user || !user.Valid) // FH - Seen some weird logs on the server with someone spamming these events without a valid entity. Server shouldn't trust the client in these matters anyways
             return;
 
         if (!TryGetWeapon(user, out var weaponUid, out var weapon) ||
@@ -220,7 +220,7 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
 
     private void OnHeavyAttack(HeavyAttackEvent msg, EntitySessionEventArgs args)
     {
-        if (args.SenderSession.AttachedEntity is not {} user)
+        if (args.SenderSession.AttachedEntity is not {} user || !user.Valid) // FH - Seen some weird logs on the server with someone spamming these events without a valid entity. Server shouldn't trust the client in these matters anyways
             return;
 
         if (!TryGetWeapon(user, out var weaponUid, out var weapon) ||
@@ -234,7 +234,7 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
 
     private void OnDisarmAttack(DisarmAttackEvent msg, EntitySessionEventArgs args)
     {
-        if (args.SenderSession.AttachedEntity is not {} user)
+        if (args.SenderSession.AttachedEntity is not {} user || !user.Valid) // FH - Seen some weird logs on the server with someone spamming these events without a valid entity. Server shouldn't trust the client in these matters anyways
             return;
 
         if (TryGetWeapon(user, out var weaponUid, out var weapon))
