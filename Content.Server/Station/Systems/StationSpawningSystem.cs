@@ -128,8 +128,8 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
         EntityUid? station,
         EntityUid? entity = null)
     {
-        _prototypeManager.Resolve(faction ?? string.Empty, out var factionProto); // Far Horizons
-        _prototypeManager.Resolve(job ?? string.Empty, out var prototype);
+        _prototypeManager.TryIndex(faction, out var factionProto); // Far Horizons
+        _prototypeManager.TryIndex(job, out var prototype);
         RoleLoadout? loadout = null;
 
         // Need to get the loadout up-front to handle names if we use an entity spawn override.
