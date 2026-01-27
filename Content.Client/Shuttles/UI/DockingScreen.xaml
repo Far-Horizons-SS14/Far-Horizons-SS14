@@ -17,6 +17,11 @@
                            Align="Center"
                            Margin="5 0 5 5"
                            Orientation="Vertical">
+        <!-- Far Horizons start -->
+        <controls:Button Name="FHAutoDock"
+                        Text="{controls:Loc 'shuttle-console-autodock'}"
+                        TextAlign="Center"/>
+        <!-- Far Horizons end -->
         <controls1:StripeBack MinSize="48 48">
             <controls:Label Name="DockingPortsLabel" Text="{controls:Loc 'shuttle-console-docks-label'}" HorizontalAlignment="Center"/>
         </controls1:StripeBack>
