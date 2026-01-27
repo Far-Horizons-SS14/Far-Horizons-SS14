@@ -190,6 +190,15 @@
     - !type:GroupLoadoutEffect
       proto: MasterDet
 
+- type: loadout
+  id: SecurityRevolverInstigatorDet # Detective gets it as his starting firearm instead of the MK.
+  dummyEntity: WeaponRevolverInstigator
+  storage:
+    back:
+    - WeaponRevolverInstigator
+    - SpeedLoaderPistol40SP
+    - SpeedLoaderPistol40SP
+    - SpeedLoaderPistol40Rubber
 #region Sec Officer
 
 # Sidearm
