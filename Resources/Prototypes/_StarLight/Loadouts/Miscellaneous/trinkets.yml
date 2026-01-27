@@ -476,6 +476,18 @@
   storage:
     back: 
       - LeftArmCyberRipper
+      
+- type: loadout #FH addition begin
+  id: rightmechwrightarm 
+  effects: 
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:DepartmentTimeRequirement
+        department: DepartmentEngineering
+        time: 72000 #20 hours in engineering
+  storage:
+    back: 
+      - RightArmCyberMechwright #FH addition end      
 
 - type: loadout
   id: CigPackBub
