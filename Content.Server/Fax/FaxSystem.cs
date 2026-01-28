@@ -6,8 +6,6 @@ using Content.Server.Popups;
 using Content.Server.Power.Components;
 using Content.Server.Tools;
 using Content.Shared.Administration.Logs;
-using Content.Shared.Cargo.Components;
-using Content.Shared.Cargo.Prototypes;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Database;
 using Content.Shared.DeviceNetwork;
@@ -26,7 +24,6 @@ using Content.Shared.Paper;
 using Content.Shared.Power;
 using Content.Shared.Tools;
 using Content.Shared.UserInterface;
-using Microsoft.EntityFrameworkCore.Query;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
@@ -35,6 +32,7 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 
 #region Starlight
+using Content.Shared.Cargo.Components;
 using Content.Server.Storage.EntitySystems;
 using Content.Shared.Ghost;
 using Content.Shared.Inventory;
@@ -261,6 +259,7 @@ public sealed class FaxSystem : EntitySystem
         });
 
         args.Handled = true;
+        
     }
 
     private void OnEmagged(EntityUid uid, FaxMachineComponent component, ref GotEmaggedEvent args)
@@ -316,14 +315,29 @@ public sealed class FaxSystem : EntitySystem
                     args.Data.TryGetValue(FaxConstants.FaxPaperStampedByData, out List<StampDisplayInfo>? stampedBy);
                     args.Data.TryGetValue(FaxConstants.FaxPaperPrototypeData, out string? prototypeId);
                     args.Data.TryGetValue(FaxConstants.FaxPaperLockedData, out bool? locked);
-                    args.Data.TryGetValue(FaxConstants.FaxSlipProduct, out string? slipProduct);
+                    // Starlight-start
+                    args.Data.TryGetValue(FaxConstants.FaxSlipProduct, out string? slipProduct); 
                     args.Data.TryGetValue(FaxConstants.FaxSlipRequester,  out string? slipRequester);
                     args.Data.TryGetValue(FaxConstants.FaxSlipReason, out string? slipReason);
                     args.Data.TryGetValue(FaxConstants.FaxSlipOrderQuantity, out int? slipOrderQuantity);
                     args.Data.TryGetValue(FaxConstants.FaxSlipOrderAccount, out string? slipAccount);
-                    
+                    // Starlight-end
 
-                    var printout = new FaxPrintout(content, name, label, prototypeId, stampState, stampedBy, locked ?? false, slipProduct, slipRequester, slipReason, slipOrderQuantity, slipAccount);
+
+                    var printout = new FaxPrintout(
+                        content,
+                        name,
+                        label,
+                        prototypeId,
+                        stampState,
+                        stampedBy,
+                        locked ?? false,
+                        // Starlight-start
+                        slipProduct,
+                        slipRequester,
+                        slipReason,
+                        slipOrderQuantity,
+                        slipAccount); // Starlight-end
                     Receive(uid, printout, args.SenderAddress);
 
                     break;
@@ -487,7 +501,7 @@ public sealed class FaxSystem : EntitySystem
             return;
 
         TryComp<LabelComponent>(sendEntity, out var labelComponent);
-        TryComp<CargoSlipComponent>(sendEntity, out var cargoSlipComponent);
+        TryComp<CargoSlipComponent>(sendEntity, out var cargoSlipComponent); // Starlight-edit this is a starlight compoent
         TryComp<NameModifierComponent>(sendEntity, out var nameMod);
 
         // TODO: See comment in 'Send()' about not being able to copy whole entities
@@ -498,11 +512,12 @@ public sealed class FaxSystem : EntitySystem
                                        paper.StampState,
                                        paper.StampedBy,
                                        paper.EditingDisabled,
+                                       //starlight-start
                                        cargoSlipComponent?.Product.Id,
                                        cargoSlipComponent?.Requester,
                                        cargoSlipComponent?.Reason,
                                        cargoSlipComponent?.OrderQuantity,
-                                       cargoSlipComponent?.Account);
+                                       cargoSlipComponent?.Account); //starlight-end
 
         component.PrintingQueue.Enqueue(printout);
         component.SendTimeoutRemaining += component.SendTimeout;
