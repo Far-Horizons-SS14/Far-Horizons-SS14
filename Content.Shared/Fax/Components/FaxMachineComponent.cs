@@ -1,3 +1,4 @@
+using Content.Shared.Cargo.Prototypes;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Paper;
 using Robust.Shared.Audio;
@@ -160,12 +161,40 @@ public sealed partial class FaxPrintout
 
     [DataField]
     public bool Locked { get; private set; }
+    
+    [DataField]
+    public string? Product{ get; private set; } 
+    
+    [DataField]
+    public string? Requester{ get; private set; }  
+    
+    [DataField]
+    public string? Reason{ get; private set; }  
+    
+    [DataField]
+    public int? OrderQuantity{ get; private set; }  
+    
+    [DataField]
+    public string? Account{ get; private set; }  
 
     private FaxPrintout()
     {
     }
 
-    public FaxPrintout(string content, string name, string? label = null, string? prototypeId = null, string? stampState = null, List<StampDisplayInfo>? stampedBy = null, bool locked = false)
+    public FaxPrintout(
+        string content,
+        string name,
+        string? label = null,
+        string? prototypeId = null,
+        string? stampState = null,
+        List<StampDisplayInfo>? stampedBy = null,
+        bool locked = false,
+        string? product = null,
+        string? requester = null,
+        string? reason = null,
+        int? orderQuantity = null,
+        string? account = null
+        )
     {
         Content = content;
         Name = name;
@@ -174,5 +203,15 @@ public sealed partial class FaxPrintout
         StampState = stampState;
         StampedBy = stampedBy ?? new List<StampDisplayInfo>();
         Locked = locked;
+        Product = product;
+        Requester = requester;
+        Reason = reason;
+        OrderQuantity = orderQuantity;
+        Account = account;
+        
+
     }
+            
+        
 }
+

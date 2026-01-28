@@ -6,6 +6,8 @@ using Content.Server.Popups;
 using Content.Server.Power.Components;
 using Content.Server.Tools;
 using Content.Shared.Administration.Logs;
+using Content.Shared.Cargo.Components;
+using Content.Shared.Cargo.Prototypes;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Database;
 using Content.Shared.DeviceNetwork;
@@ -24,6 +26,7 @@ using Content.Shared.Paper;
 using Content.Shared.Power;
 using Content.Shared.Tools;
 using Content.Shared.UserInterface;
+using Microsoft.EntityFrameworkCore.Query;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
@@ -313,8 +316,14 @@ public sealed class FaxSystem : EntitySystem
                     args.Data.TryGetValue(FaxConstants.FaxPaperStampedByData, out List<StampDisplayInfo>? stampedBy);
                     args.Data.TryGetValue(FaxConstants.FaxPaperPrototypeData, out string? prototypeId);
                     args.Data.TryGetValue(FaxConstants.FaxPaperLockedData, out bool? locked);
+                    args.Data.TryGetValue(FaxConstants.FaxSlipProduct, out string? slipProduct);
+                    args.Data.TryGetValue(FaxConstants.FaxSlipRequester,  out string? slipRequester);
+                    args.Data.TryGetValue(FaxConstants.FaxSlipReason, out string? slipReason);
+                    args.Data.TryGetValue(FaxConstants.FaxSlipOrderQuantity, out int? slipOrderQuantity);
+                    args.Data.TryGetValue(FaxConstants.FaxSlipOrderAccount, out string? slipAccount);
+                    
 
-                    var printout = new FaxPrintout(content, name, label, prototypeId, stampState, stampedBy, locked ?? false);
+                    var printout = new FaxPrintout(content, name, label, prototypeId, stampState, stampedBy, locked ?? false, slipProduct, slipRequester, slipReason, slipOrderQuantity, slipAccount);
                     Receive(uid, printout, args.SenderAddress);
 
                     break;
@@ -478,6 +487,7 @@ public sealed class FaxSystem : EntitySystem
             return;
 
         TryComp<LabelComponent>(sendEntity, out var labelComponent);
+        TryComp<CargoSlipComponent>(sendEntity, out var cargoSlipComponent);
         TryComp<NameModifierComponent>(sendEntity, out var nameMod);
 
         // TODO: See comment in 'Send()' about not being able to copy whole entities
@@ -487,7 +497,12 @@ public sealed class FaxSystem : EntitySystem
                                        metadata.EntityPrototype?.ID ?? component.PrintPaperId,
                                        paper.StampState,
                                        paper.StampedBy,
-                                       paper.EditingDisabled);
+                                       paper.EditingDisabled,
+                                       cargoSlipComponent?.Product.Id,
+                                       cargoSlipComponent?.Requester,
+                                       cargoSlipComponent?.Reason,
+                                       cargoSlipComponent?.OrderQuantity,
+                                       cargoSlipComponent?.Account);
 
         component.PrintingQueue.Enqueue(printout);
         component.SendTimeoutRemaining += component.SendTimeout;
@@ -533,7 +548,8 @@ public sealed class FaxSystem : EntitySystem
         TryComp<NameModifierComponent>(sendEntity, out var nameMod);
 
         TryComp<LabelComponent>(sendEntity, out var labelComponent);
-
+        
+        
         var payload = new NetworkPayload()
         {
             { DeviceNetworkConstants.Command, FaxConstants.FaxPrintCommand },
@@ -557,6 +573,21 @@ public sealed class FaxSystem : EntitySystem
             payload[FaxConstants.FaxPaperStampStateData] = paper.StampState;
             payload[FaxConstants.FaxPaperStampedByData] = paper.StampedBy;
         }
+        
+        //starlight start
+        //This feels bad and hacky, probably better ways to do this...
+        //chnaged faxConstants.cs and FaxMachineComponent.cs with hacky
+        if (TryComp<CargoSlipComponent>(sendEntity, out var cargoSlipComponent))
+        {
+            payload[FaxConstants.FaxSlipProduct] = cargoSlipComponent?.Product.Id;
+            payload[FaxConstants.FaxSlipRequester] = cargoSlipComponent?.Requester;
+            payload[FaxConstants.FaxSlipReason] = cargoSlipComponent?.Reason;
+            payload[FaxConstants.FaxSlipOrderQuantity] = cargoSlipComponent?.OrderQuantity;
+            payload[FaxConstants.FaxSlipOrderAccount] = cargoSlipComponent?.Account.Id;
+        }
+        
+        
+        //starlight end
 
         _deviceNetworkSystem.QueuePacket(uid, component.DestinationFaxAddress, payload);
 
@@ -605,7 +636,7 @@ public sealed class FaxSystem : EntitySystem
 
         var entityToSpawn = printout.PrototypeId.Length == 0 ? component.PrintPaperId.ToString() : printout.PrototypeId;
         var printed = Spawn(entityToSpawn, Transform(uid).Coordinates);
-
+        
         if (TryComp<PaperComponent>(printed, out var paper))
         {
             _paperSystem.SetContent((printed, paper), printout.Content);
@@ -620,6 +651,7 @@ public sealed class FaxSystem : EntitySystem
             }
 
             paper.EditingDisabled = printout.Locked;
+            
         }
 
         _metaData.SetEntityName(printed, printout.Name);
@@ -628,7 +660,19 @@ public sealed class FaxSystem : EntitySystem
         {
             _labelSystem.Label(printed, label);
         }
-
+        
+        // Starlight Start || this is such a hack T-T
+        if (printout.Product != null && printout.Requester != null && printout.Reason != null && printout.OrderQuantity != null && printout.Account != null)
+        {
+            var slip = EnsureComp<CargoSlipComponent>(printed);
+            slip.Product = printout.Product;
+            slip.Requester = printout.Requester;
+            slip.Reason = printout.Reason;
+            slip.OrderQuantity = printout.OrderQuantity.Value;
+            slip.Account = printout.Account;
+        }
+        // Starlight end
+        
         _adminLogger.Add(LogType.Action, LogImpact.Low, $"\"{component.FaxName}\" {ToPrettyString(uid):tool} printed {ToPrettyString(printed):subject}: {printout.Content}");
     }
 
