@@ -837,6 +837,8 @@
     - IPCExternalCooling # Far Horizons
   - type: StaticPrice
     price: 5000
+  - type: SpaceRescuePingSender # Far Horizons
+    hidden: true
 
 # Syndicate Medic Hardsuit
 - type: entity
@@ -940,6 +942,8 @@
     - Hardsuit
     - WhitelistChameleon
     - IPCExternalCooling # Far Horizons
+  - type: SpaceRescuePingSender # Far Horizons
+    hidden: true
 
 #Syndicate Commander Hardsuit
 - type: entity
@@ -999,6 +1003,8 @@
     - Hardsuit
     - WhitelistChameleon
     - IPCExternalCooling # Far Horizons
+  - type: SpaceRescuePingSender # Far Horizons
+    hidden: true
 
 
 #Cybersun Juggernaut Hardsuit
@@ -1074,6 +1080,8 @@
     - WhitelistChameleon
     - IPCExternalCooling # Far Horizons
     - RequiredForLmgTag #Starlight
+  - type: SpaceRescuePingSender # Far Horizons
+    hidden: true
 
 #Wizard Hardsuit
 - type: entity
@@ -1117,6 +1125,8 @@
     - Hardsuit
     - WhitelistChameleon
     - IPCExternalCooling # Far Horizons
+  - type: SpaceRescuePingSender # Far Horizons
+    hidden: true
 
 #Ling Space Suit
 - type: entity
@@ -1151,6 +1161,8 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitLing
+  - type: SpaceRescuePingSender # Far Horizons
+    hidden: true
 
 #Pirate EVA Suit (Deep Space EVA Suit)
 #Despite visually appearing like a softsuit, it functions exactly like a hardsuit would (parents off of base hardsuit, has resistances and toggleable clothing, etc.) so it goes here.
@@ -1187,6 +1199,8 @@
     clothingPrototype: ClothingHeadHelmetHardsuitPirateEVA
   - type: StaticPrice
     price: 0
+  - type: SpaceRescuePingSender # Far Horizons
+    hidden: true
 
 #Pirate Captain Hardsuit
 - type: entity
@@ -1224,6 +1238,8 @@
     clothingPrototype: ClothingHeadHelmetHardsuitPirateCap
   - type: StaticPrice
     price: 0
+  - type: SpaceRescuePingSender # Far Horizons
+    hidden: true
 
 #CENTCOMM / ERT HARDSUITS
 #ERT Leader Hardsuit
@@ -1435,6 +1451,8 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitDeathsquad
+  - type: SpaceRescuePingSender # Far Horizons
+    hidden: true
 
 #CBURN Hardsuit
 - type: entity
@@ -1479,6 +1497,8 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetCBURN
+  - type: SpaceRescuePingSender # Far Horizons
+    hidden: true
 
 #MISC. HARDSUITS
 #Clown Hardsuit
