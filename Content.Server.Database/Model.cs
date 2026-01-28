@@ -125,7 +125,7 @@ namespace Content.Server.Database
 
             //starlight start
             modelBuilder.Entity<JobPriorityEntry>()
-                .HasIndex(e => new { e.PreferenceId, e.JobName })
+                .HasIndex(e => new { e.PreferenceId, e.JobName, e.FactionName }) // Far Horizons - idex priorities by faction as well as job
                 .HasDatabaseName("UX_JobPriorityEntry_Pref_Job")
                 .IsUnique();
             //starlight end

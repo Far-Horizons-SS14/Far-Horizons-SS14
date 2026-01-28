@@ -287,7 +287,8 @@ public sealed partial class GunSystem : SharedGunSystem
 
     private void ShootOrThrow(EntityUid uid, Vector2 mapDirection, Vector2 gunVelocity, GunComponent gun, EntityUid gunUid, EntityUid? user)
     {
-        if (gun.Target is { } target && !TerminatingOrDeleted(target))
+        var isHitscan = HasComp<HitscanAmmoComponent>(uid); // FH - just so I don't have to call it twice
+        if (!isHitscan && gun.Target is { } target && !TerminatingOrDeleted(target)) // FH - added check for hitscan, because TargetedProjectileComponent is only ever used in collision checks, which raycasts don't run. And I'm pretty sure this component's update cycle is responsible for server lag
         {
             var targeted = EnsureComp<TargetedProjectileComponent>(uid);
             targeted.Target = target;
@@ -295,7 +296,7 @@ public sealed partial class GunSystem : SharedGunSystem
         }
         
         // Starlight start - cartridges can hold hitscans
-        if (HasComp<HitscanAmmoComponent>(uid))
+        if (isHitscan) // FH - reusing bool
         {
             var hitscanEv = new HitscanTraceEvent
             {
