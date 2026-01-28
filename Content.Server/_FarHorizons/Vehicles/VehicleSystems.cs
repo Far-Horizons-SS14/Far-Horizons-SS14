@@ -493,6 +493,7 @@ public sealed partial class VehicleSystems : SharedVehicleSystems
             _doAfter.TryStartDoAfter(doAfter);
         }
     }
+    
     private void OnUnstrapped(Entity<VehicleBuckleComponent> ent, ref UnstrappedEvent args)
     {
         if(!TryComp<VehicleComponent>(ent, out var vehicleComp)) return;
