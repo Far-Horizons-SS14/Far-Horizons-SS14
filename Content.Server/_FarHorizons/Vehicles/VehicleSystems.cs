@@ -11,7 +11,6 @@ using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Events;
 using Content.Shared.Movement.Systems;
-using Content.Shared.Pulling.Events;
 using Content.Shared.Stunnable;
 using Content.Shared.Tag;
 using Robust.Shared.Physics.Components;
@@ -130,7 +129,6 @@ public sealed partial class VehicleSystems : SharedVehicleSystems
         SubscribeLocalEvent<VehicleContainerComponent, DamageChangedEvent>(OnDamageChanged);
         SubscribeLocalEvent<VehicleContainerComponent, EntInsertedIntoContainerMessage>(OnEntInserted);
 
-        SubscribeLocalEvent<RiderComponent, BeingPulledAttemptEvent>(OnPullAttempt);
         SubscribeLocalEvent<RiderComponent, StunnedEvent>(OnStunned);
         SubscribeLocalEvent<RiderComponent, KnockedDownEvent>(OnKnockdown);
         SubscribeLocalEvent<RiderComponent, UpdateCanMoveEvent>(OnUpdateCanMoveEvent);
@@ -637,11 +635,6 @@ public sealed partial class VehicleSystems : SharedVehicleSystems
 
     #endregion
     #region Rider Events
-    private void OnPullAttempt(Entity<RiderComponent> ent, ref BeingPulledAttemptEvent args)
-    {
-        if (ent.Owner != args.Puller)
-            args.Cancel();
-    }
 
     private void OnStunned(Entity<RiderComponent> ent, ref StunnedEvent args)
     { 

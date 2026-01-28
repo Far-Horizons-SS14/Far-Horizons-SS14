@@ -10,6 +10,7 @@ using Content.Shared.Damage.Components;
 using Content.Shared.Item.ItemToggle.Components;
 using Content.Shared.Toggleable;
 using Content.Shared.Light.Components;
+using Content.Shared.Movement.Pulling.Events;
 
 namespace Content.Shared._FarHorizons.Vehicles.EntitySystems;
 
@@ -28,6 +29,9 @@ public abstract partial class SharedVehicleSystems : EntitySystem
         SubscribeLocalEvent<VehicleComponent, StartCollideEvent>(HandleCollide);
         SubscribeLocalEvent<VehicleComponent, CanDropTargetEvent>(OnCanDragDrop);
         SubscribeLocalEvent<VehicleComponent, ExaminedEvent>(OnExamine);
+
+        SubscribeLocalEvent<RiderComponent, PullAttemptEvent>(OnPullAttempt);
+
         SubscribeLocalEvent<ItemToggleComponent, ToggleActionEvent>(OnSirenToggle);
     }
 
@@ -123,6 +127,8 @@ public abstract partial class SharedVehicleSystems : EntitySystem
         if(ent.Comp.isBroken)
             args.PushMarkup(Loc.GetString("vehicle-examine-broken"));
     }
+
+    private void OnPullAttempt(Entity<RiderComponent> ent, ref PullAttemptEvent args) => args.Cancelled = true;
 
     private void OnSirenToggle(Entity<ItemToggleComponent> ent, ref ToggleActionEvent args)
     {
