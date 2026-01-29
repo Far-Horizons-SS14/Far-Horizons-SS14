@@ -70,6 +70,9 @@ public sealed class HitscanBasicRaycastSystem : EntitySystem
             var ridden = rider.Riding;
             rayCastResults.RemoveAll(x => x.HitEntity == ridden.Value);
         }
+
+        if (args.OutputTrace != null)
+            rayCastResults.RemoveAll(x => x.Distance < 0.75); // This is hacky, but for some reason passing ignoredEnt to _physics.IntersectRay doesn't prevent ricochet from escaping the wall it was spawned from, remove this when this fixed in engine
         //FarHorizons-edit end
 
         var target = args.Target;
@@ -115,6 +118,7 @@ public sealed class HitscanBasicRaycastSystem : EntitySystem
             Gun = args.Gun,
             Shooter = args.Shooter,
             HitEntity = result?.HitEntity,
+            HitPosition = result?.HitPos, // Far Horizons - uuuuh, someone forgot to put it here
             OutputTrace = args.OutputTrace, // Starlight
         };
 

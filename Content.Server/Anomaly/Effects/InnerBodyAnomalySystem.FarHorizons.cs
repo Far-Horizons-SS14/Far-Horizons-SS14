@@ -28,6 +28,7 @@ public sealed partial class InnerBodyAnomalySystem
 
     private void RemoveComponentsCarefully(EntityUid target, ComponentRegistry components)
     {
+        ComponentRegistry unhandled = [];
         foreach (var comp in components)
         {
             switch(comp.Key) 
@@ -36,11 +37,14 @@ public sealed partial class InnerBodyAnomalySystem
                     if (comp.Value.Component is ActionGrantComponent actionGrantComp)
                         HandleActionGrantRemove(target, actionGrantComp);
                     break;
-                default: 
-                    EntityManager.RemoveComponent(target, comp.Value.Component);
+                default:
+                    unhandled.Add(comp.Key, comp.Value);
                     break;
             }
         }
+
+        EntityManager.RemoveComponents(target, unhandled);
+
     }
 
     private void HandleActionGrantAdd(EntityUid target, ActionGrantComponent component)
@@ -57,8 +61,11 @@ public sealed partial class InnerBodyAnomalySystem
     private void HandleActionGrantRemove(EntityUid target, ActionGrantComponent component)
     {
         if (!TryComp<ActionGrantComponent>(target, out var comp))
+            return;
+        
+        if (comp.Actions == component.Actions)
         {
-            EntityManager.AddComponent(target, component);
+            EntityManager.RemoveComponent<ActionGrantComponent>(target);
             return;
         }
 
