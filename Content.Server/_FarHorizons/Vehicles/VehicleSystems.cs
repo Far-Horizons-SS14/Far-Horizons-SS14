@@ -431,7 +431,7 @@ public sealed partial class VehicleSystems : SharedVehicleSystems
         }
         else if(HasComp<VehicleBuckleComponent>(ent) && component.Rider != null)
         {
-            _damageable.TryChangeDamage(component.Rider.Value, args.DamageDelta, ignoreResistances: true, origin: args.Origin);
+            _damageable.TryChangeDamage(component.Rider.Value, args.DamageDelta, origin: args.Origin);
             _color.RaiseEffect(Color.Red, new List<EntityUid>() { component.Rider.Value, }, Filter.Pvs(component.Rider.Value, entityManager: EntityManager));
         }
     }
