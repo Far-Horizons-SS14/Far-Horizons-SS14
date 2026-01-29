@@ -65,6 +65,7 @@ public sealed class VehicleSystems : SharedVehicleSystems
         {
             case VehicleVisualState.Normal:
                 SetLayerState(VehicleVisualLayers.Base, component.BaseState, (uid, sprite));
+                _sprite.LayerSetAnimationTime((uid, sprite), 0, 0f);
                 break;
 
             case VehicleVisualState.Moving:

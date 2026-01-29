@@ -389,7 +389,7 @@
   components:
   - type: MovementSpeedModifier
     baseWalkSpeed: 7.5
-    baseSprintSpeed: 10
+    baseSprintSpeed: 12
   - type: Vehicle
     cellPowered: false
     acceleration: 4
@@ -399,7 +399,7 @@
     allowCrashing: true
     crashingSpeed: 8
     baseState: vehicle
-    brokenState: vehicle
+    brokenState: vehicle_broken
     startupTime: 2
     startUp: 
       path: /Audio/Effects/Vehicle/vehiclestartup.ogg
@@ -429,7 +429,7 @@
     westDrawDepth: BelowMobs
   - type: Sprite
     drawdepth: OverMobs
-    sprite: Objects/Vehicles/motorbike.rsi
+    sprite: _FarHorizons/Objects/Vehicles/motorbike.rsi
     layers:
     - state: vehicle
       map: ["enum.VehicleVisualLayers.Base"]
