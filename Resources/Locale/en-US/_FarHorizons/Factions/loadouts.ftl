@@ -45,6 +45,7 @@ loadout-group-technical-lead-head = Technical Lead Hat
 loadout-group-technical-lead-headset = Technical Lead Headset
 loadout-group-technical-lead-neck = Technical Lead Neck
 loadout-group-technical-lead-uniform = Technical Lead Uniform
+loadout-group-technical-lead-outerclothing = Technical Lead Outer Clothing
 loadout-group-technical-lead-shoes = Technical Lead Shoes
 
 #### Engineering
