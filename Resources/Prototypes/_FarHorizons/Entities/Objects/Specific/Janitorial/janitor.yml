@@ -1,6 +1,6 @@
 - type: entity
   name: Floor Buffer
-  id: FloorBuffer
+  id: FloorCleaner
   parent: BaseItem
   description: Quickly clean anything in your way by just running over it!
   components:
@@ -37,3 +37,6 @@
       range: 10
       volume: -5
       enabled: false
+    - type: Actions
+    - type: ActionsContainer
+    - type: ContainerContainer
