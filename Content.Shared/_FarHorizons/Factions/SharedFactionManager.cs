@@ -11,7 +11,7 @@ namespace Content.Shared._FarHorizons.Factions;
 
 public partial class SharedFactionManager : ISharedFactionManager
 {
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] protected readonly IPrototypeManager _prototypeManager = default!;
 
     public static readonly string FallbackFaction = "FactionNT";
 

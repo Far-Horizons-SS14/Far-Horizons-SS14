@@ -2,6 +2,7 @@ using System.Collections.Specialized;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
+using Content.Server._FarHorizons.Factions;
 using Content.Server.Administration;
 using Content.Server.Administration.Managers;
 using Content.Server.Discord.WebhookMessages;
@@ -9,6 +10,8 @@ using Content.Server.GameTicking;
 using Content.Server.GameTicking.Presets;
 using Content.Server.Roles;
 using Content.Server.RoundEnd;
+using Content.Shared._FarHorizons.CCVar;
+using Content.Shared._FarHorizons.Factions;
 using Content.Shared.Starlight.CCVar;
 using Content.Shared.CCVar;
 using Content.Shared.Chat;
@@ -31,6 +34,7 @@ namespace Content.Server.Voting.Managers
         [Dependency] private readonly ILogManager _logManager = default!;
         [Dependency] private readonly IBanManager _bans = default!;
         [Dependency] private readonly VoteWebhooks _voteWebhooks = default!;
+        [Dependency] private readonly IServerFactionManager _factions = default!; // Far Horizons
 
         private VotingSystem? _votingSystem;
         private RoleSystem? _roleSystem;
@@ -69,6 +73,9 @@ namespace Content.Server.Voting.Managers
                     break;
                 case StandardVoteType.Map:
                     CreateMapVote(initiator);
+                    break;
+                case StandardVoteType.Faction:
+                    CreateFactionVote(initiator);
                     break;
                 case StandardVoteType.Votekick:
                     timeoutVote = false; // Allows the timeout to be updated manually in the create method
@@ -380,6 +387,63 @@ namespace Content.Server.Voting.Managers
                 }
             };
         }
+        
+        // Far Horizons start
+        private void CreateFactionVote(ICommonSession? initiator)
+        {
+            var enabledFactions = _factions.ListEnabledFactions();
+            var factions = enabledFactions.ToDictionary(faction => faction.Name);
+            
+            var alone = _playerManager.PlayerCount == 1 && initiator != null;
+            var options = new VoteOptions
+            {
+                Title = Loc.GetString("ui-vote-faction-title"),
+                Duration = alone
+                    ? TimeSpan.FromSeconds(_cfg.GetCVar(CCVars.VoteTimerAlone))
+                    : TimeSpan.FromSeconds(_cfg.GetCVar(FHCCVars.VoteTimerFaction))
+            };
+
+            if (alone)
+                options.InitiatorTimeout = TimeSpan.FromSeconds(10);
+
+            foreach (var (k, v) in factions) options.Options.Add((k, v));
+
+            WirePresetVoteInitiator(options, initiator);
+
+            var vote = CreateVote(options);
+
+            vote.OnFinished += (_, args) =>
+            {
+                FactionPrototype picked;
+                if (args.Winner == null)
+                {
+                    picked = (FactionPrototype) _random.Pick(args.Winners);
+                    _chatManager.DispatchServerAnnouncement(
+                        Loc.GetString("ui-vote-faction-tie"));
+                }
+                else
+                {
+                    picked = (FactionPrototype) args.Winner;
+                }
+                _chatManager.DispatchServerAnnouncement(Loc.GetString("ui-vote-map-win"));
+
+                _adminLogger.Add(LogType.Vote, LogImpact.Medium, $"Faction vote finished: {picked.Name}");
+                var ticker = _entityManager.EntitySysManager.GetEntitySystem<GameTicker>();
+                if (!ticker.CanUpdateMap() || !_factions.SetCurrentFaction(picked)) // bc it makes no sense to vote for faction when you cannot set map even
+                {
+                    if (ticker.RoundPreloadTime <= TimeSpan.Zero)
+                    {
+                        _chatManager.DispatchServerAnnouncement(Loc.GetString("ui-vote-faction-notlobby"));
+                    }
+                    else
+                    {
+                        var timeString = $"{ticker.RoundPreloadTime.Minutes:0}:{ticker.RoundPreloadTime.Seconds:00}";
+                        _chatManager.DispatchServerAnnouncement(Loc.GetString("ui-vote-faction-notlobby-time", ("time", timeString)));
+                    }
+                }
+            };
+        }
+        // Far Horizons end
 
         private async void CreateVotekickVote(ICommonSession? initiator, string[]? args)
         {
