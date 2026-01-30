@@ -2,30 +2,29 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
+using YamlDotNet.RepresentationModel;
 using Content.Server.Administration.Systems;
 using Content.Server.GameTicking;
-using Content.Server.Maps;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Systems;
 using Content.Server.Spawners.Components;
 using Content.Server.Station.Components;
 using Content.Shared.Shuttles.Components; //Starlight-edit
 using Content.Shared.CCVar;
+using Content.Shared.Maps;
 using Content.Shared.Roles;
+using Content.Shared.Station.Components;
 using Robust.Shared.Configuration;
 using Robust.Shared.ContentPack;
-using Robust.Shared.GameObjects;
-using Robust.Shared.Map;
-using Robust.Shared.Map.Components;
-using Robust.Shared.Prototypes;
-using Content.Shared.Station.Components;
 using Robust.Shared.EntitySerialization;
 using Robust.Shared.EntitySerialization.Systems;
+using Robust.Shared.GameObjects;
 using Robust.Shared.IoC;
-using Robust.Shared.Utility;
-using YamlDotNet.RepresentationModel;
+using Robust.Shared.Map;
+using Robust.Shared.Map.Components;
 using Robust.Shared.Map.Events;
-
+using Robust.Shared.Prototypes;
+using Robust.Shared.Utility;
 namespace Content.IntegrationTests.Tests
 {
     [TestFixture]
@@ -39,6 +38,7 @@ namespace Content.IntegrationTests.Tests
             "CentComm",
             "StarlightCentCommG24", //starlight
             "StarlightCentCommSC17", //starlight
+            "StarlightCentCommGNT9", //starlight
             "Dart"
         };
 
@@ -47,6 +47,7 @@ namespace Content.IntegrationTests.Tests
             "/Maps/centcomm.yml",
             //"/Maps/_Starlight/Centcomms/CC_Outpost_G24",
             //"/Maps/_Starlight/Centcomms/CC_Outpost_SC17",
+            //"/Maps/_Starlight/Centcomms/CC_Outpost_GNT9",
             AdminTestArenaSystem.ArenaMapPath
         };
 
@@ -86,6 +87,7 @@ namespace Content.IntegrationTests.Tests
             "/Maps/_Starlight/nukieplanet.yml", //starlight nukie spawn map
             "/Maps/_Starlight/Centcomms/CC_Outpost_G24.yml", //starlight centcomm map
             "/Maps/_Starlight/Centcomms/CC_Outpost_SC17.yml", //starlight centcomm map
+            "/Maps/_Starlight/Centcomms/CC_Outpost_GNT9.yml", //starlight centcomm map
             "/Maps/_Starlight/Dungeon/syndie.yml",
             "/Maps/_Starlight/Shuttles/Radiotower.yml",
             "/Maps/_Starlight/Shuttles/scarletSHCdefenderFinal.yml",
@@ -105,6 +107,8 @@ namespace Content.IntegrationTests.Tests
             "/Maps/_FarHorizons/Centcomms/CC_Outpost_G24.yml", //starlight centcomm map edited for FarHorizons
             "/Maps/_FarHorizons/Centcomms/CC_Outpost_SC17.yml", //starlight centcomm map edited for FarHorizons
             "/Maps/_FarHorizons/SHCs/shc.yml", //Syndicate high command
+            "/Maps/_FarHorizons/Non-Stations/GSL.yml", //Gemini Stellar Logistics
+            "/Maps/_FarHorizons/Non-Stations/ListeningOutpost.yml", //the all new listen ops :ear emoji:
             #endregion
         };
 
@@ -117,61 +121,7 @@ namespace Content.IntegrationTests.Tests
 
         private static readonly string[] GameMaps =
         {
-            "Dev",
-            "TestTeg",
-            "Fland",
-            "Packed",
-            "Bagel",
-            "CentComm",
-            "Box",
-            "Marathon",
-            "MeteorArena",
-            "Saltern",
-            "Reach",
-            "Oasis",
-            "Amber",
-            "Plasma",
-            "Elkridge",
-            "Relic",
-            "dm01-entryway",
-            "Exo",
-            "dm01-entryway",
-            "StarlightBarratry",
-            "StarlightCork",
-            "StarlightKiloton",
-            "StarlightLagan",
-            "StarlightLobster",
-            "StarlightManor",
-            #region Starlight
-            "Gateway",
-            "StarlightLeth",
-            "StarlightMing",
-            "StarlightOrigin",
-            "StarlightOrwell",
-            "StarlightPrism",
-            "StarlightRemix",
-            "StarlightStarboard",
-            "StarlightAmber",
-            "StarlightBagel",
-            "StarlightBox",
-            "StarlightCentCommG24",
-            "StarlightCentCommSC17",
-            "StarlightCog",
-            "StarlightCore",
-            "StarlightCrescent",
-            "StarlightElkridge",
-            "StarlightExo",
-            "StarlightHotel",
-            "StarlightMarathon",
-            "StarlightOasis",
-            "StarlightOmega",
-            "StarlightPacked",
-            "StarlightReach",
-            "StarlightSaltern",
-            "StarlightSilica",
-            "StarlightCluster",
-            "StarlightFland",
-            #endregion
+            // Far Horizons - disabled all non FH maps
             #region Far Horizons
             "FHMeta",
             "FHFland",
@@ -230,6 +180,7 @@ namespace Content.IntegrationTests.Tests
         {
             await using var pair = await PoolManager.GetServerClient();
             var server = pair.Server;
+            await server.WaitIdleAsync();
 
             var entManager = server.ResolveDependency<IEntityManager>();
             var resMan = server.ResolveDependency<IResourceManager>();
@@ -238,27 +189,17 @@ namespace Content.IntegrationTests.Tests
             var cfg = server.ResolveDependency<IConfigurationManager>();
             Assert.That(cfg.GetCVar(CCVars.GridFill), Is.False);
 
-            var shuttleFolder = new ResPath("/Maps/Shuttles");
+            // Far Horizons - only testing our stuff
+            var shuttleFolder = new ResPath("/Maps/_FarHorizons/Shuttles");
             var shuttles = resMan
                 .ContentFindFiles(shuttleFolder)
                 .Where(filePath =>
                     filePath.Extension == "yml" && !filePath.Filename.StartsWith(".", StringComparison.Ordinal))
                 .ToArray();
 
-            //starlight shuttles
-            var starlightShuttleFolder = new ResPath("/Maps/_Starlight/Shuttles");
-            var starlightShuttles = resMan
-                .ContentFindFiles(starlightShuttleFolder)
-                .Where(filePath =>
-                    filePath.Extension == "yml" && !filePath.Filename.StartsWith(".", StringComparison.Ordinal))
-                .ToArray();
-            
-            shuttles = shuttles.Concat(starlightShuttles).ToArray();
-
             await server.WaitPost(() =>
             {
-                Assert.Multiple(() =>
-                {
+                using (Assert.EnterMultipleScope())
                     foreach (var path in shuttles)
                     {
                         mapSystem.CreateMap(out var mapId);
@@ -274,7 +215,6 @@ namespace Content.IntegrationTests.Tests
                         }
                         mapSystem.DeleteMap(mapId);
                     }
-                });
             });
             await server.WaitRunTicks(1);
 
@@ -286,12 +226,13 @@ namespace Content.IntegrationTests.Tests
         {
             await using var pair = await PoolManager.GetServerClient();
             var server = pair.Server;
+            await server.WaitIdleAsync();
 
             var resourceManager = server.ResolveDependency<IResourceManager>();
             var protoManager = server.ResolveDependency<IPrototypeManager>();
             var loader = server.System<MapLoaderSystem>();
 
-            var mapFolder = new ResPath("/Maps");
+            var mapFolder = new ResPath("/Maps/_FarHorizons"); // Far Horizons - we only care about our own maps
             var maps = resourceManager
                 .ContentFindFiles(mapFolder)
                 .Where(filePath => filePath.Extension == "yml" && !filePath.Filename.StartsWith(".", StringComparison.Ordinal))
@@ -457,6 +398,7 @@ namespace Content.IntegrationTests.Tests
                 Dirty = true // Stations spawn a bunch of nullspace entities and maps like centcomm.
             });
             var server = pair.Server;
+            await server.WaitIdleAsync();
 
             var mapManager = server.ResolveDependency<IMapManager>();
             var entManager = server.ResolveDependency<IEntityManager>();
@@ -612,6 +554,7 @@ namespace Content.IntegrationTests.Tests
         }
 
         [Test]
+        [Ignore("Test disabled on Far Horizons due to us not testing all existing maps")]
         public async Task AllMapsTested()
         {
             await using var pair = await PoolManager.GetServerClient();
@@ -635,6 +578,7 @@ namespace Content.IntegrationTests.Tests
         {
             await using var pair = await PoolManager.GetServerClient();
             var server = pair.Server;
+            await server.WaitIdleAsync();
 
             var mapLoader = server.ResolveDependency<IEntitySystemManager>().GetEntitySystem<MapLoaderSystem>();
             var resourceManager = server.ResolveDependency<IResourceManager>();
@@ -644,7 +588,7 @@ namespace Content.IntegrationTests.Tests
 
             var gameMaps = protoManager.EnumeratePrototypes<GameMapPrototype>().Select(o => o.MapPath).ToHashSet();
 
-            var mapFolder = new ResPath("/Maps");
+            var mapFolder = new ResPath("/Maps/_FarHorizons"); // Far Horizons - we only care about our own maps
             var maps = resourceManager
                 .ContentFindFiles(mapFolder)
                 .Where(filePath => filePath.Extension == "yml" && !filePath.Filename.StartsWith(".", StringComparison.Ordinal))

@@ -1,0 +1,122 @@
+- type: entity
+  parent: BaseItem
+  id: VehicleKeyBase
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: Objects/Vehicles/atv.rsi
+    state: keys
+
+- type: entity
+  parent: [VehicleKeyBase, BaseSecurityContraband]
+  id: VehicleKeySecway
+  name: Secway Electronic Key
+  description: The USB to the future.
+  suffix: NT
+  components:
+  - type: Tag
+    tags:
+    - VehicleKey
+    - SecwayKeys
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Vehicles/secway.rsi
+    state: keys
+
+- type: entity
+  parent: [VehicleKeyBase, BaseSecurityContraband]
+  id: VehicleKeySecwayS
+  name: Secway Electronic Key
+  description: The EVIL USB to the future.
+  suffix: S
+  components:
+  - type: Tag
+    tags:
+    - VehicleKey
+    - SecwayKeys
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Vehicles/syndicatesecway.rsi
+    state: keys
+
+- type: entity
+  parent: [VehicleKeyBase, BaseSecurityContraband]
+  id: VehicleKeySecwayTurbo
+  name: Secway Turbo Electronic Key
+  description: Enforcing justice at the speed of sound. Not compatible with Secways due to software differences.
+  suffix: NT
+  components:
+  - type: Tag
+    tags:
+    - VehicleKey
+    - SecwayTurboKeys
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Vehicles/secway_turbo.rsi
+    state: keys
+
+- type: entity
+  parent: VehicleKeyBase
+  id: VehicleKeyATV
+  name: ATV Key
+  description: Think this looks like just one key? ATV keys means "actually two vehicle keys."
+  components:
+  - type: Tag
+    tags:
+    - VehicleKey
+    - ATVKeys
+
+- type: entity
+  parent: [VehicleKeyBase, BaseSecurityContraband]
+  id: VehicleKeySTV
+  name: STV Key
+  description: Universal STV key, does not fit in ATVs.
+  suffix: NT
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Vehicles/sectv.rsi
+    state: keys
+  - type: Tag
+    tags:
+    - VehicleKey
+    - STVKeys
+
+- type: entity
+  parent: VehicleKeyBase
+  id: VehicleKeyClowncar
+  name: Clowncar Key
+  description: The keys to an incomprehensible evil...
+  components:
+  - type: Tag
+    tags:
+    - VehicleKey
+    - ClowncarKeys
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Vehicles/clowncar.rsi
+    state: keys
+
+- type: entity
+  parent: VehicleKeyBase
+  id: VehicleKeyJanicart
+  name: Janicart Key
+  description: The keys to the cleanest steed in the station.
+  components:
+  - type: Tag
+    tags:
+    - VehicleKey
+    - JanicartKeys
+  - type: Sprite
+    sprite: Objects/Vehicles/janicart.rsi
+    state: keys
+
+- type: entity
+  parent: VehicleKeyBase
+  id: VehicleKeyMotorcycle
+  name: Motorcycle Key
+  description: The keys to a bad ass vehicle.
+  components:
+  - type: Tag
+    tags:
+    - VehicleKey
+    - MotorcycleKeys
+  - type: Sprite
+    sprite: Objects/Vehicles/motorbike.rsi
+    state: keys

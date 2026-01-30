@@ -88,10 +88,13 @@ wanted-list-unknown-initiator-label = unknown initiator
 
 wanted-list-status-label = [color=darkgray]status:[/color] {$status ->
         [suspected] [color=yellow]suspected[/color]
-        [wanted] [color=red]wanted[/color]
+        [wanted] [color=blue]wanted[/color]
+        [arrest-on-sight] [color=red]arrest on sight[/color]
         [detained] [color=#b18644]detained[/color]
         [paroled] [color=green]paroled[/color]
         [discharged] [color=green]discharged[/color]
+        [hostile] [color=darkred]hostile[/color]
+        [eliminated] [color=gray]eliminated[/color]
         *[other] none
     }
 

@@ -27,6 +27,7 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 using Robust.Shared.Timing;
+using Content.Shared._FarHorizons.Vehicles.Components;
 
 namespace Content.Shared.Damage.Systems;
 
@@ -100,6 +101,9 @@ public abstract partial class SharedStaminaSystem : EntitySystem
 
     private void OnStartup(Entity<StaminaComponent> entity, ref ComponentStartup args)
     {
+        // Set the base threshold here since ModifiedCritThreshold can't be modified via yaml.
+        entity.Comp.CritThreshold = entity.Comp.BaseCritThreshold;
+
         UpdateStaminaVisuals(entity);
     }
 
@@ -163,14 +167,18 @@ public abstract partial class SharedStaminaSystem : EntitySystem
         var stamQuery = GetEntityQuery<StaminaComponent>();
         var toHit = new List<(EntityUid Entity, StaminaComponent Component)>();
 
-        // Split stamina damage between all eligible targets.
+        // Split stamina damage between all eligible targets. //Far Horizons-edit Start
         foreach (var ent in args.HitEntities)
         {
-            if (!stamQuery.TryGetComponent(ent, out var stam))
+            var target = ent;
+            if(TryComp<VehicleComponent>(target, out var vehicle) && HasComp<VehicleBuckleComponent>(target) && vehicle.Rider != null)
+                target = vehicle.Rider.Value;
+            if (!stamQuery.TryGetComponent(target, out var stam))
                 continue;
 
-            toHit.Add((ent, stam));
+            toHit.Add((target, stam));
         }
+        //Far Horizons-edit End
 
         var hitEvent = new StaminaMeleeHitEvent(toHit);
         RaiseLocalEvent(uid, hitEvent);
@@ -446,7 +454,7 @@ public abstract partial class SharedStaminaSystem : EntitySystem
         {
             var key = thres.Key.Float();
 
-            if (ent.Comp.StaminaDamage >= key && key > closest && closest < ent.Comp.CritThreshold)
+            if ((ent.Comp.StaminaDamage / ent.Comp.CritThreshold) >= key && key > closest && closest < 1f)
                 closest = thres.Key;
         }
 

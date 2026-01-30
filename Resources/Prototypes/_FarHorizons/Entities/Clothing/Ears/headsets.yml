@@ -1,12 +1,22 @@
 
 
-## Syndicate Station
+#region Syndicate
 
+
+
+
+
+
+
+
+
+#region Command
 
 - type: entity
   parent: [ClothingHeadset, BaseCommandContraband]
   id: ClothingHeadsetCommandSyndi
-  name: command headset
+  name: Command Headset
+  suffix: S
   description: A headset with a commanding channel.
   components:
   - type: ContainerFill
@@ -20,3 +30,190 @@
   - type: RadioChime
     sound:
       path: /Audio/_Starlight/Effects/Radio/captain.ogg
+
+- type: entity
+  parent: [ClothingHeadsetAlt, BaseCommandContraband]
+  id: ClothingHeadsetAltCommandSyndi
+  name: Command Over-Ear Headset
+  suffix: S
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyStationMaster
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Ears/Headsets/syndicommand.rsi #Far Horizons
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Ears/Headsets/syndicommand.rsi #Far Horizons
+  - type: RadioChime
+    sound:
+      path: /Audio/_Starlight/Effects/Radio/captain.ogg
+
+- type: entity
+  parent: [ClothingHeadset, BaseCommandContraband]
+  id: ClothingHeadsetSecurityHoSSyndi
+  name: Security Overwatch's Headset
+  suffix: S
+  description: This is used by the Security Overwatch in their line of duty.
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeySecurity
+      - EncryptionKeyCommand
+      - EncryptionKeyCommon
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Ears/Headsets/security-syndi.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Ears/Headsets/security-syndi.rsi
+  - type: RadioChime
+    sound:
+      path: /Audio/_Starlight/Effects/Radio/hos.ogg
+
+- type: entity
+  parent: [ClothingHeadsetAlt, BaseCommandContraband]
+  id: ClothingHeadsetAltSecurityHoSSyndi
+  name: Security Overwatch's Over-Ear Headset
+  suffix: S
+  description: This is used by the Security Overwatch in their line of duty. Helps to muffle all of the nonsense the clown is spouting off.
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeySecurity
+      - EncryptionKeyCommand
+      - EncryptionKeyCommon
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Ears/Headsets/security-syndi.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Ears/Headsets/security-syndi.rsi
+  - type: RadioChime
+    sound:
+      path: /Audio/_Starlight/Effects/Radio/hos.ogg
+
+#region Security
+
+
+- type: entity
+  parent: [ClothingHeadset, BaseSecurityContraband]
+  id: ClothingHeadsetSecuritySyndi
+  name: Security Headset
+  suffix: S
+  description: This is used by your elite security force.
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeySecurity
+      - EncryptionKeyCommon
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Ears/Headsets/security-syndi.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Ears/Headsets/security-syndi.rsi
+  - type: RadioChime
+    sound:
+      path: /Audio/_Starlight/Effects/Radio/secoff.ogg
+
+- type: entity
+  parent: [ClothingHeadsetAlt, BaseSecurityContraband]
+  id: ClothingHeadsetAltSecuritySyndi
+  name: Security Over-Ear Headset
+  suffix: S
+  description: This is used by your elite security force.
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeySecurity
+      - EncryptionKeyCommon
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Ears/Headsets/security-syndi.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Ears/Headsets/security-syndi.rsi
+  - type: RadioChime
+    sound:
+      path: /Audio/_Starlight/Effects/Radio/secoff.ogg
+
+# Guardian (Warden)
+
+- type: entity
+  parent: [ ClothingHeadset, BaseSecurityContraband ]
+  id: ClothingHeadsetSecurityWardenSyndi
+  name: Guardian's Headset
+  suffix: S
+  description: This is used by your elite Guardian.
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeySecurity
+      - EncryptionKeyCommon
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Ears/Headsets/security-syndi.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Ears/Headsets/security-syndi.rsi
+  - type: RadioChime
+    sound:
+      path: /Audio/_Starlight/Effects/Radio/warden.ogg
+
+- type: entity
+  parent: [ ClothingHeadsetAlt, BaseSecurityContraband ]
+  id: ClothingHeadsetAltSecurityWardenSyndi
+  name: Guardian's Over-Ear Headset
+  suffix: S
+  description: This is used by your elite Guardian. Helps to muffle the tortured screams in the brig.
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeySecurity
+      - EncryptionKeyCommon
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Ears/Headsets/security-syndi.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Ears/Headsets/security-syndi.rsi
+  - type: RadioChime
+    sound:
+      path: /Audio/_Starlight/Effects/Radio/warden.ogg
+
+# Medical Officer (Brigmedic) + Combat Medic (Corpsman)
+
+- type: entity
+  parent: [ClothingHeadset, BaseSecurityContraband]
+  id: ClothingHeadsetSecMedSyndi
+  name: Security Medical Headset
+  suffix: S
+  description: A headset that helps to hear the death cries.
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeySecurityMedical
+      - EncryptionKeyCommon
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Ears/Headsets/secmed-syndi.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Ears/Headsets/secmed-syndi.rsi
+  - type: RadioChime
+    sound:
+      path: /Audio/_Starlight/Effects/Radio/brigmedic.ogg
+
+- type: entity
+  parent: [ClothingHeadsetAlt, BaseSecurityContraband]
+  id: ClothingHeadsetAltSecMedSyndi
+  name: Security Medical Over-Ear Headset
+  suffix: S
+  description: A headset that helps to hear the death cries.
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeySecurityMedical
+      - EncryptionKeyCommon
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Ears/Headsets/secmed-syndi.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Ears/Headsets/secmed-syndi.rsi
+  - type: RadioChime
+    sound:
+      path: /Audio/_Starlight/Effects/Radio/brigmedic.ogg

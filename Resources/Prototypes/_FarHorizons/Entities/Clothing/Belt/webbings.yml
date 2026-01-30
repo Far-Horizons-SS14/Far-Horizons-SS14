@@ -1,0 +1,391 @@
+#region Base
+
+- type: entity
+  parent: [ClothingBeltStorageBase, ContentsExplosionResistanceBase]
+  id: ClothingBeltWebbingBase
+  name: Webbing
+  description: Can hold bits and bobs, but it's main purpose is to hold spare magazines and grenades.
+  components:
+  - type: Sprite
+    sprite: Clothing/Belt/securitywebbing.rsi
+  - type: Clothing
+    sprite: Clothing/Belt/securitywebbing.rsi
+  - type: ExplosionResistance # Prevents unwanted detonation of contents, i.e grenades.
+    damageCoefficient: 0 # Even with fucking 90% it explodes, putting my foot down and preventing explosion at all.
+  - type: Storage
+    grid:
+    - 0,0,3,1
+    - 0,3,3,4
+    whitelist:
+      tags:
+        - CigPack
+        - MagazinePistol
+        - MagazineMagnum
+        - CombatKnife
+        - HandGrenade
+        - Radio
+        - Knife
+        - Cartridge
+      components:
+        - DoorRemote
+        - Whistle
+        - BallisticAmmoProvider
+        - CartridgeAmmo
+  - type: Appearance
+  - type: Tag
+    tags: 
+    - Webbing
+
+#region NanoTransen Security
+- type: entity
+  parent: ClothingBeltWebbingBase
+  id: ClothingBeltSecurityWebbing
+  name: Security Carrier
+  description: Unique and versatile chest rig, can hold spare magazines.
+  components:
+  - type: Sprite
+    sprite: Clothing/Belt/securitywebbing.rsi
+  - type: Clothing
+    sprite: Clothing/Belt/securitywebbing.rsi
+
+- type: entity
+  parent: ClothingBeltStorageBase
+  id: ClothingBeltHolster
+  name: Shoulder Holster
+  description: 'A holster to carry a handgun and ammo. WARNING: Badasses only.'
+  components:
+  - type: Sprite
+    sprite: Clothing/Belt/holster.rsi
+  - type: Clothing
+    sprite: Clothing/Belt/holster.rsi
+  - type: Storage
+    grid:
+    - 0,0,3,1
+  - type: Tag
+    tags: 
+    - Webbing
+
+- type: entity
+  parent: ClothingBeltWebbingBase
+  id: ClothingBeltBrigmedicWeb
+  name: Tactical Trauma Rig
+  description: A stylish alternative to the belt.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Belt/brigmedicwebbing.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Belt/brigmedicwebbing.rsi
+  - type: Appearance
+
+#region NanoTransen Service
+- type: entity
+  parent: [ClothingBeltAmmoProviderBase, BaseSecurityBartenderContraband]
+  id: ClothingBeltBandolier
+  name: Bandolier
+  description: A bandolier for holding shotgun ammunition.
+  components:
+  - type: Sprite
+    sprite: Clothing/Belt/bandolier.rsi
+  - type: Clothing
+    sprite: Clothing/Belt/bandolier.rsi
+  - type: Item
+    size: Huge
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+        - ShellShotgun
+    capacity: 14
+  - type: Tag
+    tags: 
+    - Webbing
+
+#region Cargo
+
+- type: entity
+  parent: ClothingBeltWebbingBase
+  id: ClothingBeltSalvageWebbing
+  name: Salvage Utility Rig
+  description: When the salvage wrecks weren't enough, the salvage team stole these rigs from their cargo technician friends.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Belt/salvagewebbing.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Belt/salvagewebbing.rsi
+  - type: StorageFill
+    contents:
+      - id: SurvivalKnife
+
+- type: entity
+  parent: [ ClothingBeltWebbingBase, BaseSalvageContraband ]
+  id: ClothingBeltMercWebbing
+  name: Mercenary Webbing
+  description: Ideal for storing spare ammo, grenades and other bits and bobs.
+  components:
+  - type: Sprite
+    sprite: Clothing/Belt/mercwebbing.rsi
+  - type: Clothing
+    sprite: Clothing/Belt/mercwebbing.rsi
+
+- type: entity
+  parent: [BaseSalvageContraband, ClothingBeltWebbingBase]
+  id: ClothingBeltSalvageMercWebbing
+  name: Scrapper Webbing
+  description: Ideal for storing spare ammo, some small items and the totally not contraband grenades.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Belt/salvage.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Belt/salvage.rsi
+#region Syndi/NT split
+
+
+
+
+
+
+
+#region Syndicate Security
+
+- type: entity
+  parent: ClothingBeltWebbingBase
+  id: ClothingBeltSecurityWebbingSyndi
+  name: Security Carrier
+  description: Unique and versatile chest rig, can hold security gear.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Belt/securitywebbingsyndi.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Belt/securitywebbingsyndi.rsi
+
+# region Syndicate Nukies
+
+- type: entity
+  parent: [ClothingBeltStorageBase, ContentsExplosionResistanceBase, BaseMajorContraband]
+  id: ClothingBeltMilitaryWebbing
+  name: Assault Belt
+  description: A hefty belt that can store just about anything, typically utilized by not-so friendly boarding parties.
+  components:
+  - type: Storage
+    grid:
+    - 0,0,1,0 #left
+    - 0,1,0,1 #left - cube
+    - 3,0,10,1
+    - 12,0,13,0 #right
+    - 12,1,12,1 #right - cube
+  - type: Sprite
+    sprite: Clothing/Belt/assault.rsi
+  - type: Clothing
+    sprite: Clothing/Belt/assault.rsi
+  - type: ExplosionResistance
+    damageCoefficient: 0.1
+  - type: StaticPrice
+    price: 500
+
+- type: entity
+  parent: [ClothingBeltWebbingBase, BaseMajorContraband]
+  id: ClothingBeltMilitaryWebbingMed
+  name: Medical Chest Rig
+  description: A set of tactical webbing worn by various military corpsmen.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Belt/paramedicwebbing.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Belt/paramedicwebbing.rsi
+  - type: Item
+    size: Huge
+
+- type: entity
+  parent: [ClothingBeltWebbingBase, ContentsExplosionResistanceBase, BaseMajorContraband]
+  id: ClothingBeltMilitaryRig
+  name: Chest Rig
+  description: A set of tactical webbing worn by various militant boarding parties.
+  components:
+  - type: Sprite
+    sprite: Clothing/Belt/militarywebbing.rsi
+  - type: Clothing
+    sprite: Clothing/Belt/militarywebbing.rsi
+  - type: StaticPrice
+    price: 500
+
+- type: entity
+  id: ClothingBeltOperativeWebbingGrenadeFilled
+  parent: ClothingBeltWebbingBase
+  name: Grenadier Operative Webbing
+  suffix: Filled
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Belt/militarywebbing_dark.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Belt/militarywebbing_dark.rsi
+  - type: Item
+    size: Ginormous
+  - type: StorageFill
+    contents:
+      - id: ExGrenade
+        amount: 4
+      - id: SyndieMiniBomb
+        amount: 2
+      - id: EmpGrenade
+        amount: 2
+
+- type: entity
+  id: ClothingBeltOperativeWebbingMedFilled
+  parent: ClothingBeltMilitaryWebbing
+  suffix: Filled
+  components:
+  - type: StorageFill
+    contents:
+      - id: ChemistryBottleEpinephrine
+        amount: 2
+      - id: ChemistryBottleEphedrine
+        amount: 2
+      - id: ChemistryBottleOmnizine
+      - id: MedkitCombatFilled
+
+- type: entity
+  parent: [ClothingBeltWebbingBase, ContentsExplosionResistanceBase, BaseMajorContraband]
+  id: ClothingBeltOperativeWebbing
+  name: Operative Webbing
+  description: Standard-rendered in a low-vis to mid-vis B3 pattern, this module is a streamlined workhorse and a go-to pick for various galactic paramilitaries that operate within the black market.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Belt/militarywebbing_dark.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Belt/militarywebbing_dark.rsi
+
+#region Syndicate Traitors
+- type: entity
+  parent: [ClothingBeltStorageBase, BaseSyndicateContraband]
+  id: ClothingBeltSyndieHolster
+  name: Syndicate Shoulder Holster
+  description: A deep shoulder holster capable of holding many types of ballistics.
+  components:
+  - type: Sprite
+    sprite: Clothing/Belt/syndieholster.rsi
+  - type: Clothing
+    sprite: Clothing/Belt/syndieholster.rsi
+  - type: Storage
+    maxItemSize: Huge
+    grid:
+    - 0,0,3,3
+    whitelist:
+      components:
+      - Gun
+      - BallisticAmmoProvider
+      - CartridgeAmmo
+  - type: StaticPrice
+    price: 500
+  - type: Tag
+    tags: 
+    - Webbing
+
+#region USSP
+- type: entity
+  parent: [ClothingBeltWebbingBase, ContentsExplosionResistanceBase, BaseSovietContraband]
+  id: ClothingBeltSovietMarineWebbing
+  name: SSF Marine Chest Rig
+  description:  A set of tactical webbing worn by the iconic soviet elite marines.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Belt/soviet_webbing.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Belt/soviet_webbing.rsi
+
+- type: entity
+  parent: ClothingBeltSovietMarineWebbing
+  id: ClothingBeltSovietMarineWebbingLoadout
+  name: SSF Marine Chest Rig
+  description:  A set of tactical webbing worn by the iconic soviet elite marines.
+
+- type: entity
+  parent: [ClothingBeltAmmoProviderBase, BaseSovietContraband]
+  id: ClothingSovietBandolier
+  name: Marine Bandolier
+  description: Smells of oil, sweat, and questionable decisions.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Belt/soviet_bandolier.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Belt/soviet_bandolier.rsi
+  - type: Item
+    size: Normal
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+        - Cartridge
+    mayTransfer: true
+    capacity: 100
+  - type: Tag
+    tags: 
+    - Webbing
+
+# Rocket Ammo Rig (For "Fissure" Rocket Launcher)
+
+- type: entity
+  parent: [ClothingBeltBase, BaseSyndicateContraband]
+  id: ClothingBeltM81RocketLoaderChestRig
+  name: M81 Loader Chest Rig
+  description: A large, modified rig for carrying multiple 120mm rockets, designed specifically to be paired along with the M81A1. This chest rig has a capacity of up to seven potential 120mm rockets.
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Clothing/Belt/rocketloaderwebvest.rsi
+    - type: Clothing
+      sprite: _FarHorizons/Clothing/Belt/rocketloaderwebvest.rsi
+    - type: ItemSlots
+      slots: 
+        120mmrocket_slot7: 
+          name: rocket-loader-webvest-slot-component-slot-name-120mmrocket
+          whitelist:
+            tags:
+              - RocketAmmo120mm
+          priority: 7
+        120mmrocket_slot6: 
+          name: rocket-loader-webvest-slot-component-slot-name-120mmrocket
+          whitelist:
+            tags:
+              - RocketAmmo120mm
+          priority: 6
+        120mmrocket_slot5:
+          name: rocket-loader-webvest-slot-component-slot-name-120mmrocket
+          whitelist:
+            tags:
+              - RocketAmmo120mm
+          priority: 5
+        120mmrocket_slot4:
+          name: rocket-loader-webvest-slot-component-slot-name-120mmrocket
+          whitelist:
+            tags:
+              - RocketAmmo120mm
+          priority: 4
+        120mmrocket_slot3:
+          name: rocket-loader-webvest-slot-component-slot-name-120mmrocket
+          whitelist:
+            tags:
+              - RocketAmmo120mm
+          priority: 3
+        120mmrocket_slot2:
+          name: rocket-loader-webvest-slot-component-slot-name-120mmrocket
+          whitelist:
+            tags:
+              - RocketAmmo120mm
+          priority: 2
+        120mmrocket_slot1:
+          name: rocket-loader-webvest-slot-component-slot-name-120mmrocket
+          whitelist:
+            tags:
+              - RocketAmmo120mm
+          priority: 1
+    - type: ContainerContainer
+      containers:
+        storagebase: !type:Container
+          ents: []
+        120mmrocket_slot7: !type:ContainerSlot {}
+        120mmrocket_slot6: !type:ContainerSlot {}
+        120mmrocket_slot5: !type:ContainerSlot {}
+        120mmrocket_slot4: !type:ContainerSlot {}
+        120mmrocket_slot3: !type:ContainerSlot {}
+        120mmrocket_slot2: !type:ContainerSlot {}
+        120mmrocket_slot1: !type:ContainerSlot {}
+    - type: Tag
+      tags: 
+      - Webbing

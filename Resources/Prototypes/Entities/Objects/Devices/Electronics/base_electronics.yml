@@ -10,19 +10,19 @@
   - type: Sprite
     sprite: Objects/Misc/module.rsi
     state: generic
-  - type: StaticPrice
-    price: 100
   - type: PhysicalComposition
     materialComposition:
-      Glass: 200
+      Glass: 150 # FH reduced so price isn't too high with added solutionss
     chemicalComposition:
       Silicon: 20
   - type: Circuitboard
-  - type: Food #FH - Start
+  - type: Edible
     requiresSpecialDigestion: true
-    solution: food
     delay: 4
     forceFeedDelay: 10
+  - type: FlavorProfile
+    flavors:
+      - shocking
   - type: SolutionContainerManager
     solutions:
       food:

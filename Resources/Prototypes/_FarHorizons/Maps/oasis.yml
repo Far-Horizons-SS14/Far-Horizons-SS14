@@ -2,7 +2,8 @@
   id: FHOasis
   mapName: 'Oasis'
   mapPath: /Maps/_FarHorizons/Stations/Oasis.yml
-  minPlayers: 65
+  minPlayers: 50
+  maxPlayers: 150
   stations:
     StarlightOasis:
       stationProto: StandardNanotrasenStation
@@ -16,7 +17,7 @@
           emergencyShuttlePath: /Maps/Shuttles/emergency_accordia.yml
         - type: StationJobs
           availableJobs:
-            #service
+            #service - 20 people
             Captain: [ 1, 1 ]
             HeadOfPersonnel: [ 1, 1 ]
             Bartender: [ 2, 2 ]
@@ -28,12 +29,12 @@
             ServiceWorker: [ 3, 3 ]
             Zookeeper: [ 1, 1 ]
             Reporter: [ 1, 2 ]
-            #engineering
+            #engineering - 14 people
             ChiefEngineer: [ 1, 1 ]
             AtmosphericTechnician: [ 3, 3 ]
             StationEngineer: [ 6, 6 ]
             TechnicalAssistant: [ 4, 4 ]
-            #medical
+            #medical - 13 people
             ChiefMedicalOfficer: [ 1, 1 ]
             Chemist: [ 2, 2 ]
             MedicalDoctor: [ 6, 6 ]
@@ -41,20 +42,20 @@
             MedicalIntern: [ 4, 4 ]
             Psychologist: [ 1, 1 ]
             Surgeon: [ 2, 2 ]
-            #science
+            #science - 13 people
             ResearchDirector: [ 1, 1 ]
             Scientist: [ 6, 6 ]
             ResearchAssistant: [ 5, 5 ]
             Roboticist: [ 2, 2 ]
-            #security
+            #security - 16 Total / 14 Responders w/Cadets / 11 Avaliable w/o Cadets v 8 Antags
             HeadOfSecurity: [ 1, 1 ]
             Warden: [ 1, 1 ]
-            SecurityOfficer: [ 10, 10 ]
+            SecurityOfficer: [ 7, 7 ]
             Detective: [ 1, 1 ]
-            SecurityCadet: [ 5, 5 ]
+            SecurityCadet: [ 3, 3 ]
             Brigmedic: [ 1, 1 ]
-            Corpsman: [1,1] #Far Horizons
-            SecBorg: [1,1] #Far Horizons
+            Corpsman: [ 1, 1 ]
+            SecBorg: [ 1, 1 ]
             #supply
             Quartermaster: [ 1, 1 ]
             SalvageLead: [ 1, 1 ]
@@ -62,17 +63,17 @@
             MiningSpecialist: [ 3, 3 ]
             CargoTechnician: [ 4, 4 ]
             MailTech: [ 1, 2 ]
-            #civilian
+            #civilian - 3 people
             Assistant: [ -1, -1 ]
             Clown: [ 1, 1 ]
             Mime: [ 1, 1 ]
             Musician: [ 1, 2 ]
-            #silicon
+            #silicon - 5 people
             StationAi: [ 1, 1 ]
             Borg: [ 3, 4 ]
-            #law
+            #law - 3 people
             Magistrate: [ 1, 1 ]
             IAA: [ 2, 2 ]
-            #Representives
+            #Representives - 2 people
             BlueShield: [ 1, 1 ]
             NanoTrasenRepresentative: [ 1, 1 ]

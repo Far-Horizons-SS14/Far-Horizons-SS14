@@ -16,6 +16,8 @@ public sealed partial class DockingScreen : BoxContainer
 {
     [Dependency] private readonly IEntityManager _entManager = default!;
     private readonly SharedShuttleSystem _shuttles;
+    private readonly SharedTransformSystem _transform; // Far Horizons
+    private readonly SharedDockingSystem _dock; // Far Horizons
 
     /// <summary>
     /// Stored by GridID then by docks
@@ -35,6 +37,8 @@ public sealed partial class DockingScreen : BoxContainer
         RobustXamlLoader.Load(this);
         IoCManager.InjectDependencies(this);
         _shuttles = _entManager.System<SharedShuttleSystem>();
+        _transform = _entManager.System<SharedTransformSystem>(); // Far Horizons
+        _dock = _entManager.System<SharedDockingSystem>(); // Far Horizons
 
         DockingControl.OnViewDock += OnView;
         DockingControl.DockRequest += (entity, netEntity) =>
@@ -45,6 +49,8 @@ public sealed partial class DockingScreen : BoxContainer
         {
             UndockRequest?.Invoke(entity);
         };
+
+        InitAutodock(); // Far Horizons
     }
 
     private void OnView(NetEntity obj)
@@ -70,6 +76,8 @@ public sealed partial class DockingScreen : BoxContainer
         // DockedWith.RemoveAllChildren();
         DockPorts.RemoveAllChildren();
         _ourDockButtons.Clear();
+
+        SetAutodockState(shuttle); // Far Horizons
 
         if (shuttle == null)
         {

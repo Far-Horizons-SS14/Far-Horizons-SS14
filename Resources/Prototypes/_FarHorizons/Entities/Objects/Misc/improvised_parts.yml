@@ -1,0 +1,17 @@
+- type: entity
+  parent: BaseItem
+  id: UnfinishedEnforcinator
+  name: Enforcinator Parts
+  description: ..What are you doing? Needs welding.
+  components:
+  - type: Item
+    size: Huge
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/Pistols/Enforcinatorx64/enforcinator_x64.rsi
+    state: unfinished
+  - type: ToolRefinable
+    refineResult:
+    - id: WeaponPistolEnforcinator
+  - type: Construction
+    graph: EnforcinatorGraph
+    node: doublepistol

@@ -25,3 +25,29 @@
     layers:
       - state: green
       - state: corpsman
+
+# readd boxer
+- type: entity
+  id: SpawnPointBoxer
+  parent: SpawnPointJobBase
+  name: boxer
+  components:
+  - type: SpawnPoint
+    job_id: Boxer
+  - type: Sprite
+    layers:
+      - state: green
+      - state: boxer
+
+# readd zookeeper
+- type: entity
+  id: SpawnPointZookeeper
+  parent: SpawnPointJobBase
+  name: zookeeper
+  components:
+  - type: SpawnPoint
+    job_id: Zookeeper
+  - type: Sprite
+    layers:
+      - state: green
+      - state: zookeeper

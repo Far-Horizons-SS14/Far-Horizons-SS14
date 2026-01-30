@@ -99,74 +99,27 @@
   parent: [ WeaponPistolMk58, BaseSecurityContraband ]
   id: WeaponPistolGoldenMk58
   components:
-  - type: Sprite
-    sprite: _Starlight/Objects/Weapons/Guns/Pistols/golden_mk58.rsi
+  - type: Sprite #FH - start
+    sprite: _FarHorizons/Objects/Weapons/Guns/Pistols/mk78.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: base-overlay
+      shader: unshaded
+      visible: false
+      map: [ "light" ]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"] #FH - end
   - type: Clothing
     sprite: _Starlight/Objects/Weapons/Guns/Pistols/golden_mk58.rsi
 
-- type: entity
-  name: enforcer
-  parent: [ BaseWeaponPistol, BaseSecurityContraband ]
-  id: WeaponPistolEnforcer
-  description: A pistol of modern design.
-  components:
-  - type: Sprite
-    sprite: _Starlight/Objects/Weapons/Guns/Pistols/enforcer.rsi
-  - type: Gun
-    fireRate: 6
-    availableModes:
-    - SemiAuto
-  - type: ChamberMagazineAmmoProvider
-    availablePrefixes:
-    - ""
-    - redgrip
-    - red
-    - tangrip
-    - green
-    - black
-    - tan
-    - grey
-    - greengrip
+# FH - Removal of "Enforcer" Moved to _FarHorizons/pistols.yml
 
-- type: entity
-  name: Due Process
-  parent: [BaseWeaponPistol, BaseSecurityContraband]
-  id: WeaponPistolDP
-  description: A pistol that packs a punch for brig defense, just as NanoTransen intended.
-  components:
-  - type: Sprite
-    sprite: _Starlight/Objects/Weapons/Guns/Pistols/dp.rsi
-  - type: Clothing
-    sprite: _Starlight/Objects/Weapons/Guns/Pistols/dp.rsi
-  - type: Gun
-    fireRate: 5
-    availableModes:
-    - SemiAuto
-    soundGunshot:
-      path: /Audio/_Starlight/Weapons/Guns/Gunshots/dp.ogg
-  - type: ItemSlots
-    slots:
-      gun_magazine:
-        name: Magazine
-        startingItem: MagazinePistol40SP
-        insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
-        ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
-        priority: 2
-        whitelist:
-          tags:
-            - MagazinePistolDP
-        whitelistFailPopup: gun-magazine-whitelist-fail
-      gun_chamber:
-        name: Chamber
-        startingItem: CartridgePistol40SP
-        priority: 1
-        whitelist:
-          tags:
-            - CartridgePistolDP
+# FH - Removal of "Due Process" Moved to _FarHorizons/pistols.yml
 
 - type: entity
   name: sp-8t
-  parent: [WeaponPistolDP, BaseSecurityContraband]
+  parent: [BaseWeaponPistol, BaseSecurityContraband] # FH - Changed inheritance from MK to Pistol
   id: WeaponPistolSP8T
   components:
   - type: Gun
@@ -181,7 +134,7 @@
 
 - type: entity
   name: sp-8ar
-  parent: [WeaponPistolDP, BaseSecurityContraband]
+  parent: [BaseWeaponPistol, BaseSecurityContraband] # FH - Changed inheritance from MK to Pistol
   id: WeaponPistolSP8AR
   components:
   - type: Gun
@@ -195,7 +148,7 @@
 
 - type: entity
   name: stechkin pistol
-  parent: [BaseSecurityContraband, WeaponPistolMk58]
+  parent: [BaseWeaponPistol, BaseSecurityContraband] # FH - Changed inheritance from MK to Pistol
   id: WeaponPistolStechkin
   description: A small, easily concealable .40 handgun. Has a threaded barrel for suppressors. Uses .40 ammo.
   components:
@@ -228,7 +181,7 @@
 
 - type: entity
   name: Stechkin APS
-  parent: [WeaponPistolMk58, BaseSovietContraband]
+  parent: [BaseWeaponPistol, BaseSovietContraband] # FH - Changed inheritance from MK to Pistol
   id: WeaponPistolAPS
   description: A high quality firearm issued to SNKVD elites and high ranking officials. It's half pistol, half closing argument. Uses .40 ammo.
   components:
@@ -268,7 +221,7 @@
 
 - type: entity
   name: Jungle Hawk
-  parent: [ BaseSyndicateContraband, WeaponPistolN1984 ]
+  parent: [ BaseSyndicateContraband, BaseWeaponPistol] # FH - Changed inheritance from N1984 to Pistol
   id: WeaponPistolDeagle
   description: A high-caliber handgun designed for putting down large game.
   components:
@@ -284,12 +237,31 @@
     fireRate: 5
     soundGunshot:
       path: /Audio/_Starlight/Weapons/Guns/Gunshots/deagle.ogg
+  - type: ItemSlots # FH - Fixed not firing .44
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineMagnum
+        insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazineMagnum
+        whitelistFailPopup: gun-magazine-whitelist-fail
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeMagnumSP
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgeMagnum
 
 - type: entity
   name: m1911
-  parent: [WeaponPistolN1984, BaseSecurityContraband]
+  parent: [BaseWeaponPistol, BaseSecurityContraband] # FH - Changed inheritance from N1984 to Pistol
   id: WeaponPistolM1911
-  description: A classic .45 handgun with a small magazine capacity.
+  description: A classic .44 handgun with a small magazine capacity. #FH - Edit
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Guns/Pistols/m1911.rsi
@@ -303,6 +275,25 @@
     fireRate: 7
     soundGunshot:
       path: /Audio/_Starlight/Weapons/Guns/Gunshots/colt.ogg
+  - type: ItemSlots # FH - Fixed not firing .44
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineMagnum
+        insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazineMagnum
+        whitelistFailPopup: gun-magazine-whitelist-fail
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeMagnumSP
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgeMagnum
 
 # Doesn't work and idk why
 

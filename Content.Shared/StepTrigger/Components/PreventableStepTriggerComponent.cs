@@ -7,4 +7,8 @@ namespace Content.Shared.StepTrigger.Components;
 /// This is used for marking step trigger events that require the user to wear shoes or have protection of some sort, such as for glass shards.
 /// </summary>
 [RegisterComponent, NetworkedComponent]
-public sealed partial class PreventableStepTriggerComponent : Component;
+public sealed partial class PreventableStepTriggerComponent : Component
+{
+    // Far Horizons - add ability for PreventableStepTriggerComponent to be used for anything other than barefoot and glass shards
+    [DataField] public string ProtectionKey = "default";
+}

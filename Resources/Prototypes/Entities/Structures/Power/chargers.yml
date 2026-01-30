@@ -13,6 +13,8 @@
   - type: Appearance
   - type: Charger
     slotId: charger_slot
+  - type: ApcPowerReceiver
+    powerLoad: 1 # same as draw given in ChargerComponent.PassiveDraw; increased when it is actually charging something
   - type: Anchorable
     delay: 1
   - type: Destructible
@@ -71,7 +73,7 @@
 - type: entity
   parent: BaseItemRecharger
   id: PowerCellRecharger
-  name: cell recharger
+  name: Cell Recharger #Far Horizons - The Great Capitalization Crusade
   description: An older model recharger that can recharge power cells.
   components:
   - type: Sprite
@@ -113,7 +115,7 @@
 - type: entity
   parent: [ BaseItemRecharger, ConstructibleMachine ]
   id: PowerCageRecharger
-  name: cage recharger
+  name: Cage Recharger #Far Horizons - The Great Capitalization Crusade
   description: A specialized machine made for recharging the heavy cage batteries used by ship-mounted weapons.
   components:
   - type: Fixtures
@@ -154,7 +156,7 @@
 - type: entity
   parent: BaseItemRecharger
   id: WeaponCapacitorRecharger
-  name: recharger
+  name: Recharger #Far Horizons - The Great Capitalization Crusade
   description: A modern recharging station that can fit both power cells and small electronic devices.
   components:
   - type: Sprite
@@ -167,8 +169,7 @@
         ejectOnInteract: true
         whitelist:
           components:
-          - HitscanBatteryAmmoProvider
-          - ProjectileBatteryAmmoProvider
+          - BatteryAmmoProvider
           - Stunbaton
           - PowerCell
         blacklist:
@@ -178,7 +179,7 @@
 - type: entity
   parent: BaseItemRecharger
   id: TurboItemRecharger
-  name: turbo recharger
+  name: Turbo Recharger #Far Horizons - The Great Capitalization Crusade
   description: An overclocked recharger. Not recommended for use around asthmatics.
   components:
   - type: Sprite
@@ -193,8 +194,7 @@
         ejectOnInteract: true
         whitelist:
           components:
-          - HitscanBatteryAmmoProvider
-          - ProjectileBatteryAmmoProvider
+          - BatteryAmmoProvider
           - Stunbaton
           - PowerCell
         blacklist:
@@ -204,11 +204,11 @@
 - type: entity
   parent: [ BaseItemRecharger, BaseWallmount ]
   id: WallWeaponCapacitorRecharger
-  name: wall recharger
+  name: Wall Recharger #Far Horizons - The Great Capitalization Crusade
   description: A compact wall-mounted recharger. It can only recharge electronic devices and has no space for power cells.
   components:
   - type: Sprite
-    sprite: Structures/Power/wall_recharger.rsi
+    sprite: _FarHorizons/Structures/Power/wall_recharger.rsi #Far Horizons
     layers:
     - map: ["enum.PowerChargerVisualLayers.Base"]
       state: "empty"
@@ -223,8 +223,7 @@
         ejectOnInteract: true
         whitelist:
           components:
-          - HitscanBatteryAmmoProvider
-          - ProjectileBatteryAmmoProvider
+          - BatteryAmmoProvider
           - Stunbaton
         blacklist:
           tags:
@@ -233,7 +232,7 @@
 - type: entity
   parent: BaseRecharger
   id: BorgCharger
-  name: cyborg recharging station
+  name: Cyborg Recharging Station #Far Horizons - The Great Capitalization Crusade
   description: A stationary charger for various robotic and cyborg entities. Surprisingly spacious.
   components:
   - type: Sprite
@@ -309,3 +308,12 @@
       entity_storage: !type:Container
       machine_board: !type:Container
       machine_parts: !type:Container
+
+- type: entity
+  parent: BorgCharger
+  id: BorgChargerXenoborg
+  name: xenoborg recharging station
+  description: A stationary charger for xenoborgs. Feels claustrophobic.
+  components:
+  - type: Sprite
+    sprite: Structures/Power/xenoborg_charger.rsi

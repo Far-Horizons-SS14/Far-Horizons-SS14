@@ -6,6 +6,7 @@ using Content.Shared.Movement.Components;
 using Content.Shared.Popups;
 using Robust.Shared.Network;
 using Robust.Shared.Timing;
+using Content.Shared._FarHorizons.Vehicles.Components;//Far Horizons
 
 namespace Content.Shared.CombatMode;
 
@@ -92,6 +93,13 @@ public abstract class SharedCombatModeSystem : EntitySystem
             {
                 EnsureComp<NoRotateOnMoveComponent>(mechPilot.Mech);
             }
+            //FarHorizons Start
+            if (TryComp<RiderComponent>(uid, out var riderComp) && !HasComp<NoRotateOnMoveComponent>(riderComp.Riding))
+            {
+                if(riderComp.Riding != null)
+                    EnsureComp<NoRotateOnMoveComponent>(riderComp.Riding.Value);
+            }
+            //FarHorizons End
             
             EnsureComp<MouseRotatorComponent>(uid);
             EnsureComp<NoRotateOnMoveComponent>(uid);
@@ -102,6 +110,13 @@ public abstract class SharedCombatModeSystem : EntitySystem
             {
                 RemComp<NoRotateOnMoveComponent>(mechPilot.Mech);
             }
+            //FarHorizons Start
+            if (TryComp<RiderComponent>(uid, out var riderComp) && HasComp<NoRotateOnMoveComponent>(riderComp.Riding))
+            {
+                if(riderComp.Riding != null)
+                    RemComp<NoRotateOnMoveComponent>(riderComp.Riding.Value);
+            }
+            //FarHorizons End
             
             RemComp<MouseRotatorComponent>(uid);
             RemComp<NoRotateOnMoveComponent>(uid);

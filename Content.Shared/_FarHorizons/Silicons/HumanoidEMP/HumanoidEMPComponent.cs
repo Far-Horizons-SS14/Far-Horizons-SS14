@@ -64,7 +64,12 @@ public sealed partial class HumanoidEMPComponent : Component
 {
     [DataField]
     [AutoNetworkedField]
-    public HumanoidEMPEffect Effect;
+    public HumanoidEMPEffect Effect = new();
+
+    [DataField]
+    public TimeSpan EffectCooldown = TimeSpan.FromSeconds(0);
+
+    public TimeSpan NextEffect = TimeSpan.FromSeconds(0);
 }
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]

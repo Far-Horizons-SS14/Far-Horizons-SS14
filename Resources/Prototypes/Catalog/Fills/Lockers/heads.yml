@@ -5,29 +5,21 @@
     - id: ClothingNeckCloakQmElite
     - id: BoxEncryptionKeyCargo
     - id: BoxFolderQmClipboard
-    - id: CargoBountyComputerCircuitboard
-    - id: CargoRequestComputerCircuitboard
-    - id: CargoSaleComputerCircuitboard
-    - id: CargoShuttleConsoleCircuitboard
-    - id: SalvageMagnetMachineCircuitboard
-    - id: SalvageJobBoardComputerCircuitboard
+    - id: BoxQMCircuitboards
+    - id: BoxQMStamps
     - id: CigPackGreen
       prob: 0.50
     - id: ClothingHeadsetAltCargo
     - id: DoorRemoteCargo
-    - id: RubberStampApproved
-    - id: RubberStampDenied
-    - id: RubberStampQm
     - id: AstroNavCartridge
     - id: ClothingHandsKnuckleDustersQM
-    - id: MailTeleporterMachineCircuitboard
     - id: PlushieLance #starlight
     - id: RadioHandheldExpedition #starlight
     - id: ClothingOuterHardsuitLuxmax #starlight
     - id: SalvageShuttleConsoleCircuitboard #starlight
     - id: ShipLabeler # Far Horizons
     - id: MiningShuttleConsoleCircuitboard #starlight
-    - id: EncryptionKeySalvage #starlight
+    # - id: EncryptionKeySalvage # Far Horizons - removed
     - id: PrintedDocumentGreenshiftAlert #SL
       conditions: #SL
       - !type:GamemodeCondition #SL
@@ -87,7 +79,7 @@
     - id: ClothingBeltSheathFilled
     - id: ClothingHeadsetAltCommand
     - id: ClothingOuterArmorCaptainCarapace
-    - id: CommsComputerCircuitboard
+    - id: BoxCaptainCircuitboards
     - id: DoorRemoteCustom
     - id: MedalCase
     - id: NukeDisk
@@ -98,7 +90,7 @@
     - id: SpaceCash1000
     - id: ClothingEyesGlassesCommand
     - id: ClothingEyesHudCommand
-    - id: EncryptionKeyExpedition #starlight
+    # - id: EncryptionKeyExpedition # Far Horizons - removed
     - id: HeadSkeleton # A skull to accompany your skeleton crew
       conditions:
       - !type:PlayerCountCondition
@@ -185,6 +177,8 @@
     - id: BoxEncryptionKeyAssistant
     - id: BoxEncryptionKeyService
     - id: BoxHeadset
+    - id: BoxHoPCircuitboards
+    - id: BoxHoPStamps
     - id: BoxID
     - id: BoxPDA
     - id: CigarGoldCase
@@ -240,6 +234,7 @@
     - id: DoorRemoteEngineering
     - id: CargoRequestEngineeringComputerCircuitboard
     - id: ShipyardRCD # Far Horizons
+    - id: BoxCECircuitboards
     - id: RCDAmmo
     - id: RubberStampCE
     - id: MetalFoamGrenade
@@ -300,17 +295,14 @@
     - id: ClothingCloakCmoElite
     - id: BoxEncryptionKeyMedical
     - id: ClothingBackpackDuffelSurgeryFilled
-    - id: ClothingCloakCmo
     - id: ClothingEyesHudMedical
     - id: ClothingHandsGlovesNitrile
-    - id: ClothingHeadHatBeretCmo
     - id: ClothingHeadsetAltMedical
     - id: ClothingMaskSterile
     - id: DoorRemoteMedical
     - id: HandheldCrewMonitor
     - id: Hypospray
-    - id: MedicalTechFabCircuitboard
-    - id: CargoRequestMedicalComputerCircuitboard
+    - id: BoxCMOCircuitboards
     - id: MedkitFilled
     - id: RubberStampCMO
     - id: MedTekCartridge
@@ -368,15 +360,11 @@
     - id: ClothingNeckCloakRdElite
     - id: Intellicard
     - id: BoxEncryptionKeyScience
-    - id: CircuitImprinterMachineCircuitboard
+    - id: BoxRDCircuitboards
     - id: ClothingBeltUtilityFilled
     - id: ClothingHeadsetAltScience
     - id: DoorRemoteResearch
     - id: HandTeleporter
-    - id: ProtolatheMachineCircuitboard
-    - id: ResearchComputerCircuitboard
-    - id: CargoRequestScienceComputerCircuitboard
-    - id: StationAiFixerCircuitboard
     - id: RubberStampRd
     - id: RDDiploma #STARLIGHT
     - id: PrintedDocumentGreenshiftAlert #SL
@@ -432,25 +420,26 @@
   id: LockerFillHeadOfSecurityNoHardsuit
   table: !type:AllSelector
     children:
-    - id: ClothingNeckCloakHosElite
-    - id: WeaponEnergySMG
+    - id: ClothingNeckCloakHosElite # Starlight
+    - id: WeaponEnergySMG # Starlight
+    # - id: WeaponEnergyMagnum # Starlight - Removed, given to det
     - id: BookSpaceLaw
     - id: BoxEncryptionKeySecurity
     - id: CigarGoldCase
       prob: 0.50
     - id: ClothingBeltSecurityFilled
     - id: ClothingEyesGlassesSecurity
-    - id: ClothingEyesHudSecurity
+    - id: ClothingEyesHudSecurity # Starlight
     - id: ClothingHeadsetAltSecurity
-    - id: ClothingMaskNeckGaiter
     - id: ClothingOuterCoatHoSTrench
     - id: ClothingShoesBootsJack
+    - id: FlashlightSeclite
     - id: DoorRemoteSecurity
     - id: HoloprojectorSecurity
     - id: RubberStampHos
-    - id: SecurityTechFabCircuitboard
-    - id: CargoRequestSecurityComputerCircuitboard
+    - id: BoxHoSCircuitboards
     - id: WeaponDisabler
+    - id: WeaponTaser
     - id: WantedListCartridge
     - id: DrinkHosFlask
     - id: SecurityShuttleConsoleCircuitboard #SL
@@ -499,17 +488,24 @@
         - !type:NestedSelector
           tableId: FillHeadOfSecurityHardsuit
 
-- type: entity
-  id: LockerFreezerVaultFilled
-  suffix: Vault, Locked
-  parent: LockerFreezerBase
-  components:
-  - type: AccessReader
-    access: [ [ "Command" ] ]
-  - type: StorageFill
-    contents:
+- type: entityTable
+  id: LockerFillVault
+  table: !type:AllSelector
+    children:
     - id: WeaponRevolverDeckard
     - id: JetpackBlue
     - id: SpaceCash1000
     - id: BeachBall
     - id: BikeHorn
+
+- type: entity
+  id: LockerFreezerVaultFilled
+  suffix: Vault, Filled
+  parent: LockerFreezerBase
+  components:
+  - type: AccessReader
+    access: [ [ "Command" ] ]
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: LockerFillVault

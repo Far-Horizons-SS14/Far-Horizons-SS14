@@ -22,6 +22,7 @@ using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+using Content.Shared._FarHorizons.Vehicles.Components; // FarHorizons
 
 namespace Content.Shared.Buckle;
 
@@ -83,6 +84,7 @@ public abstract partial class SharedBuckleSystem
 
     private void OnPullStarted(Entity<BuckleComponent> ent, ref PullStartedMessage args)
     {
+        if(HasComp<RiderComponent>(ent.Owner)) return; //FarHorizons
         Unbuckle(ent!, args.PullerUid);
     }
 
@@ -136,6 +138,8 @@ public abstract partial class SharedBuckleSystem
             return;
         }
 
+        if(HasComp<RiderComponent>(buckle.Owner)) return; //FarHorizons
+        
         var delta = (xform.LocalPosition - strapComp.BuckleOffset).LengthSquared();
         if (delta > 1e-5)
             Unbuckle(buckle, (strapUid, strapComp), null);
@@ -175,8 +179,9 @@ public abstract partial class SharedBuckleSystem
 
     private void OnBuckleUpdateCanMove(EntityUid uid, BuckleComponent component, UpdateCanMoveEvent args)
     {
-        if (component.Buckled)
-            args.Cancel();
+        if (component.Buckled) 
+            if(!HasComp<RiderComponent>(uid)) //FarHorizons
+                args.Cancel();
     }
 
     public bool IsBuckled(EntityUid uid, BuckleComponent? component = null)
@@ -235,7 +240,7 @@ public abstract partial class SharedBuckleSystem
 
         // Does it pass the Whitelist
         if (_whitelistSystem.IsWhitelistFail(strapComp.Whitelist, buckleUid) ||
-            _whitelistSystem.IsBlacklistPass(strapComp.Blacklist, buckleUid))
+            _whitelistSystem.IsWhitelistPass(strapComp.Blacklist, buckleUid))
         {
             if (popup)
                 _popup.PopupClient(Loc.GetString("buckle-component-cannot-fit-message"), user, PopupType.Medium);
@@ -467,7 +472,7 @@ public abstract partial class SharedBuckleSystem
             // TODO: This is doing 4 moveevents this is why I left the warning in, if you're going to remove it make it only do 1 moveevent.
             if (strap.Comp.BuckleOffset != Vector2.Zero)
             {
-                buckleXform.Coordinates = oldBuckledXform.Coordinates.Offset(strap.Comp.BuckleOffset);
+                _transform.SetCoordinates(buckle, buckleXform, oldBuckledXform.Coordinates.Offset(strap.Comp.BuckleOffset));
             }
         }
 

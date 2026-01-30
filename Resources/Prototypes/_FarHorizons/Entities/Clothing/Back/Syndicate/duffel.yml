@@ -1,0 +1,29 @@
+- type: entity
+  parent: [ClothingBackpackDuffel, BaseSyndicateContraband]
+  id: ClothingBackpackDuffelSyndicateSecurity
+  name: Security Duffel Bag
+  suffix: S
+  description: A large duffel bag for holding extra security related goods.
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Clothing/Back/Duffels/Syndicate/security.rsi
+    - type: Tag
+      tags:
+        - Syndicate
+        - WhitelistChameleon
+        - Backpack
+
+- type: entity
+  parent: [ClothingBackpackDuffel, BaseSyndicateContraband]
+  id: ClothingBackpackDuffelSyndicateBrigmedic
+  name: Medical Officer Duffel Bag
+  suffix: S
+  description: A large duffel bag for holding extra medical related goods.
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Clothing/Back/Duffels/Syndicate/brigmedic.rsi
+    - type: Tag
+      tags:
+        - Syndicate
+        - WhitelistChameleon
+        - Backpack

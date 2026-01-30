@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Client._FarHorizons.DiscordLink;
 using Content.Client._Starlight.Managers;
 using Content.Client._Starlight.MHelp;
 using Content.Client.Administration.Managers;
@@ -26,21 +27,19 @@ using Robust.Shared.Input.Binding;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Utility;
-using Content.Shared._NullLink;
 
 namespace Content.Client.UserInterface.Systems.Bwoink;
 
 [UsedImplicitly]
 public sealed class MHelpUIController : UIController, IOnSystemChanged<MentorSystem>, IOnStateChanged<GameplayState>, IOnStateChanged<LobbyState>
 {
-    [Dependency] private readonly INullLinkPlayerRolesManager _playerRoles = default!;
-    [Dependency] private readonly ISharedNullLinkPlayerRolesReqManager _playerRolesReq = default!;
     [Dependency] private readonly IClientAdminManager _adminManager = default!;
     [Dependency] private readonly IConfigurationManager _config = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly IClyde _clyde = default!;
     [Dependency] private readonly IUserInterfaceManager _uiManager = default!;
     [UISystemDependency] private readonly AudioSystem _audio = default!;
+    [Dependency] private readonly DiscordLinkManager _discordLinkManager = default!;  // Far Horizons
 
     private MentorSystem? _mentorSystem;
     private Controls.MenuButton? GameMHelpButton => UIManager.GetActiveUIWidgetOrNull<GameTopMenuBar>()?.MHelpButton;
@@ -56,7 +55,6 @@ public sealed class MHelpUIController : UIController, IOnSystemChanged<MentorSys
 
         SubscribeNetworkEvent<MHelpTypingUpdated>(OnTypingUpdated);
 
-        _playerRoles.PlayerRolesChanged += OnPlayerStatusUpdated;
         _config.OnValueChanged(StarlightCCVars.MHelpSound, v => _mHelpSound = v, true);
     }
     public void UnloadButton()
@@ -156,7 +154,8 @@ public sealed class MHelpUIController : UIController, IOnSystemChanged<MentorSys
     public void EnsureUIHelper()
     {
 
-        var isMentor = _playerManager.LocalSession is { } local && _playerRolesReq.IsMentor(local);
+        // Far Horizons
+        var isMentor = _playerManager.LocalSession is { } local && _discordLinkManager.IsMentor();
         var isAdmin = _adminManager.HasFlag(AdminFlags.Adminhelp);
 
         if (UIHelper != null && UIHelper.IsMentor == (isMentor || isAdmin))
@@ -202,15 +201,15 @@ public sealed class MHelpUIController : UIController, IOnSystemChanged<MentorSys
 
     private void UnreadMHelpReceived()
     {
-        GameMHelpButton?.StyleClasses.Add(Controls.MenuButton.StyleClassRedTopButton);
-        LobbyMHelpButton?.StyleClasses.Add(StyleNano.StyleClassButtonColorRed);
+        GameMHelpButton?.StyleClasses.Add(StyleClass.Negative);
+        LobbyMHelpButton?.StyleClasses.Add(StyleClass.Negative);
         _hasUnreadMHelp = true;
     }
 
     private void UnreadMHelpRead()
     {
-        GameMHelpButton?.StyleClasses.Remove(Controls.MenuButton.StyleClassRedTopButton);
-        LobbyMHelpButton?.StyleClasses.Remove(StyleNano.StyleClassButtonColorRed);
+        GameMHelpButton?.StyleClasses.Remove(StyleClass.Negative);
+        LobbyMHelpButton?.StyleClasses.Remove(StyleClass.Negative);
         _hasUnreadMHelp = false;
     }
 

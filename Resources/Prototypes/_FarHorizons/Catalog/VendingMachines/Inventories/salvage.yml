@@ -12,6 +12,18 @@
     stock: 5
   - !type:BuyerAccessCondition
 
+- type: listing
+  id: VendorVehicleSkeletonMotorcycle
+  productEntity: VehicleSkeletonMotorcycleFueledwithKEys
+  cost:
+    SalvageTicket: 800
+  categories:
+  - SalvageEquipment
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 5
+  - !type:BuyerAccessCondition
+
 #Weapons
 - type: listing
   id: VendorWeaponMark1Rifle

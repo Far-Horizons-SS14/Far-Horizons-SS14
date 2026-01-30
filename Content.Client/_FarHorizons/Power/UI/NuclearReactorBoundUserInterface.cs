@@ -10,6 +10,7 @@ namespace Content.Client._FarHorizons.Power.UI;
 [UsedImplicitly]
 public sealed class NuclearReactorBoundUserInterface : BoundUserInterface
 {
+    [Dependency] private readonly IEntityManager _entityManager = default!;
 
     [ViewVariables]
     private NuclearReactorWindow? _window;
@@ -20,10 +21,23 @@ public sealed class NuclearReactorBoundUserInterface : BoundUserInterface
 
     protected override void Open()
     {
+        EntityUid? reactorUid = null;
+        if (_entityManager.TryGetComponent<NuclearReactorMonitorComponent>(Owner, out var reactorMonitorComponent))
+        {
+            if (!_entityManager.TryGetEntity(reactorMonitorComponent.reactor, out reactorUid) || reactorUid == null
+                || !_entityManager.TryGetComponent<NuclearReactorComponent>(reactorUid, out var monitoredReactorComponent) || monitoredReactorComponent.Melted)
+                return;
+        }
+        else if (!_entityManager.TryGetComponent<NuclearReactorComponent>(Owner, out var reactorComponent) || reactorComponent.Melted)
+            return;
+
         base.Open();
 
         _window = this.CreateWindow<NuclearReactorWindow>();
-        _window.SetEntity(Owner);
+        if (_entityManager.EntityExists(reactorUid))
+            _window.SetEntity(reactorUid.Value, Owner);
+        else
+            _window.SetEntity(Owner);
 
         _window.ItemActionButtonPressed += OnActionButtonPressed;
         _window.EjectButtonPressed += OnEjectButtonPressed;

@@ -1,4 +1,4 @@
-# Command
+#region General
 
 - type: loadout
   id: CommandGlasses
@@ -20,7 +20,54 @@
   equipment:
     eyes: ClothingEyesHudCommandSyndi
 
-# Magistrate
+
+#region HOP
+
+- type: loadout
+  id: HoPCoat
+  equipment:
+    outerClothing: ClothingOuterCoatHoP
+
+- type: loadout
+  id: HoPBeret
+  equipment:
+    head: ClothingHeadHatBeretHoP
+
+#region HOS
+
+- type: loadout
+  id: SecurityPistolN1984
+  dummyEntity: WeaponPistolN1984
+  effects:
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:RoleTimeRequirement
+        role: JobHeadOfSecurity
+        time: 36000 # Needs to be earned
+  storage:
+    back:
+    - WeaponPistolN1984
+    - MagazineMagnum
+    - MagazineMagnum
+    - MagazineMagnumRubber
+
+- type: loadout
+  id: SecurityPistolEnforcerFH
+  dummyEntity: WeaponPistolEnforcer
+  effects:
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:RoleTimeRequirement
+        role: JobHeadOfSecurity
+        time: 36000 # Needs to be earned
+  storage:
+    back:
+    - WeaponPistolEnforcer
+    - MagazinePistolSP
+    - MagazinePistolSP
+    - MagazinePistolRubber
+    
+#region Magistrate
 
 - type: loadout
   id: MagistrateCowboy
@@ -46,6 +93,11 @@
   id: MagistrateGlasses
   equipment:
     eyes: ClothingEyesGlassesMagistrate
+
+- type: loadout
+  id: MagistrateHUD
+  equipment:
+    eyes: ClothingEyesHudCommandMagistrate
 
 - type: loadout
   id: MagistrateJumpsuit
@@ -87,7 +139,7 @@
   equipment:
     outerClothing: ClothingOuterRobesJudge
 
-# NTR
+#region NTR
 
 - type: loadout
   id: NTRJumpskirtCC
@@ -114,19 +166,7 @@
   equipment:
     jumpsuit: ClothingOuterCoatNtrep
 
-# Head of Personnel
-
-- type: loadout
-  id: HoPCoat
-  equipment:
-    outerClothing: ClothingOuterCoatHoP
-
-- type: loadout
-  id: HoPBeret
-  equipment:
-    head: ClothingHeadHatBeretHoP
-
-# Quartermaster
+#region Quartermaster
 
 - type: loadout
   id: QMFormalSkirt

@@ -71,7 +71,7 @@ public sealed class SalvageMissionObjectiveSystem : EntitySystem
         var objective = _protoMan.Index<SalvageMissionObjectivePrototype>(ent.Comp.parentObjective);
         
         if(ent.Comp.TotalReward > 0 && _transform.TryGetMapOrGridCoordinates(ent, out var pos))
-            _stack.SpawnMultiple(objective.RewardProto, ent.Comp.TotalReward, pos.Value);
+            _stack.SpawnMultipleAtPosition(objective.RewardProto, ent.Comp.TotalReward, pos.Value);
         EntityManager.RemoveComponent<SalvageMissionRewardComponent>(ent);
 
         _chat.TrySendInGameICMessage(

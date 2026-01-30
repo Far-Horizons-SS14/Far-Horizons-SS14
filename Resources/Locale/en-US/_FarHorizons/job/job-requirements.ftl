@@ -1,0 +1,1 @@
+﻿role-insufficient-permissions = You require [color=violet]{permission}[/color] permission for this role.

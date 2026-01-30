@@ -1,6 +1,6 @@
 - type: entity
-  parent: BaseItem
   id: BaseAmmoProvider
+  parent: BaseItem
   abstract: true
   components:
   - type: ContainerContainer
@@ -12,10 +12,10 @@
     sprite: Objects/Storage/boxes.rsi
 
 - type: entity
+  abstract: true
   parent: BaseAmmoProvider
   id: AmmoProviderShotgunShell
   description: 16-shell box of .50 Shotgun ammunition. #Far Horizons
-  abstract: true
   components:
     - type: Sprite
       sprite: Objects/Weapons/Guns/Ammunition/Boxes/shotgun.rsi
@@ -30,12 +30,15 @@
       steps: 5
       zeroVisible: false
     - type: Appearance
+    - type: Tag #FH
+      tags: #FH
+      - ShotgunBoxAmmo #FH
 
 # Shotgun Shells
 - type: entity
   parent: AmmoProviderShotgunShell
   id: BoxBeanbag
-  name: ammunition box (.50 beanbag)
+  name: box of 12 gauge beanbag slugs # Starlight change: .50 -> 12 gauge
   components:
     - type: BallisticAmmoProvider
       proto: ShellShotgunBeanbag
@@ -52,9 +55,10 @@
       - state: beanbag
 
 - type: entity
-  name: ammunition box (.50 pellet)
+  name: box of 12 gauge buckshot # Starlight change: .50 -> 12 gauge
   parent: AmmoProviderShotgunShell
   id: BoxLethalshot
+  description: A cardboard box of .50 shotgun shells. Intended to hold general-purpose kinetic ammunition.
   components:
     - type: BallisticAmmoProvider
       proto: ShellShotgun
@@ -67,9 +71,10 @@
       - state: lethal
 
 - type: entity
-  name: ammunition box (.50 slug)
+  name: box of 12 gauge slugs # Starlight change: .50 -> 12 gauge
   parent: AmmoProviderShotgunShell
   id: BoxShotgunSlug
+  description: A cardboard box of .50 shotgun shells. Intended to hold long-ranged slug ammunition.
   components:
     - type: BallisticAmmoProvider
       proto: ShellShotgunSlug
@@ -86,9 +91,10 @@
       - state: slug
 
 - type: entity
-  name: ammunition box (.50 flare)
+  name: box of 12 gauge flares # Starlight change: .50 -> 12 gauge
   parent: AmmoProviderShotgunShell
   id: BoxShotgunFlare
+  description: A cardboard box of .50 shotgun shells. Intended to hold illuminating flare ammunition.
   components:
     - type: BallisticAmmoProvider
       proto: ShellShotgunFlare
@@ -105,9 +111,10 @@
       - state: flare
 
 - type: entity
-  name: ammunition box (.50 incendiary)
+  name: box of 12 gauge incendiary buckshot # Starlight change: .50 -> 12 gauge
   parent: AmmoProviderShotgunShell
   id: BoxShotgunIncendiary
+  description: A cardboard box of .50 shotgun shells. Intended to hold self-igniting incendiary ammunition.
   components:
     - type: BallisticAmmoProvider
       proto: ShellShotgunIncendiary
@@ -124,9 +131,10 @@
       - state: incendiary
 
 - type: entity
-  name: ammunition box (.50 uranium)
+  name: box of 12 gauge uranium buckshot # Starlight change: .50 -> 12 gauge
   parent: AmmoProviderShotgunShell
   id: BoxShotgunUranium
+  description: A cardboard box of .50 shotgun shells. Intended to hold exotic uranium-core ammunition.
   components:
     - type: BallisticAmmoProvider
       proto: ShellShotgunUranium
@@ -143,9 +151,10 @@
       - state: uranium
 
 - type: entity
-  name: ammunition box (.50 practice)
+  name: box of 12 gauge blanks # Starlight change: .50 -> 12 gauge
   parent: AmmoProviderShotgunShell
   id: BoxShotgunPractice
+  description: A cardboard box of .50 shotgun shells. Intended to hold harmless practice ammunition.
   components:
     - type: BallisticAmmoProvider
       proto: ShellShotgunPractice
@@ -162,9 +171,10 @@
       - state: practice
 
 - type: entity
-  name: ammunition box (.50 tranquilizer)
+  name: box of 12 gauge tranquilizer slugs # Starlight change: .50 -> 12 gauge
   parent: AmmoProviderShotgunShell
   id: BoxShellTranquilizer
+  description: A cardboard box of .50 shotgun shells. Intended to hold nonlethal tranquilizer ammunition.
   components:
     - type: BallisticAmmoProvider
       proto: ShellTranquilizer

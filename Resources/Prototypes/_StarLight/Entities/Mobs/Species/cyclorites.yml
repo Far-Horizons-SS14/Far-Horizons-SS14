@@ -69,7 +69,10 @@
   - type: Sprite
     scale: 1.08, 1.08
   - type: Bloodstream
-    bloodReagent: CopperBlood
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: CopperBlood
+        Quantity: 300
   - type: Vocal
     sounds:
       Male: MaleCyclorite
@@ -129,6 +132,13 @@
           32:
             sprite: _Starlight/Mobs/Species/Cyclorite/displacement.rsi
             state: outer
+  - type: Tag  # Far Horizons
+    tags:
+      - CanPilot
+      - FootstepSound
+      - DoorBumpOpener
+      - AnomalyHost
+      - Cyclorite  
 
 - type: entity
   parent: BaseSpeciesDummy

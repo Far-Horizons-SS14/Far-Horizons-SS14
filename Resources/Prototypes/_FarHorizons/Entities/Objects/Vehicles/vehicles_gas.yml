@@ -1,0 +1,530 @@
+- type: entity
+  id: VehicleATV
+  parent: BaseVehicleRideableDamageable
+  name: ATV
+  description: All-Tile Vehicle.
+  components:
+  - type: RandomMetadata
+    descriptionSegments: [DescriptionsATV]
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 7.5
+    baseSprintSpeed: 10
+  - type: Vehicle
+    cellPowered: false
+    acceleration: 4
+    friction: 4.5
+    frictionNoInput: 4.5
+    requireIgnition: true
+    allowCrashing: true
+    crashingSpeed: 8
+    baseState: vehicle
+    brokenState: vehicle_broken
+    startupTime: 2
+    startUp: 
+      path: /Audio/Effects/Vehicle/vehiclestartup.ogg
+      params:
+        volume: -3
+    hornSound: 
+      path: /Audio/Effects/Vehicle/carhorn.ogg
+      params:
+        volume: -3
+    riderWhitelist:
+      components:
+        - HumanoidAppearance
+    soundHit:
+      collection: MetalThud
+  - type: VehicleBuckle
+    unbuckleTime: 2
+    dismountOnStun: true
+    dismountOnKnockdown: true
+    ejectOnCrash: true
+    northOffset: "0, -0.12"
+    southOffset: "0, -0.12"
+    eastOffset: "0, -0.2"
+    westOffset: "-0, -0.2"
+    northDrawDepth: OverMobs
+    southDrawDepth: OverMobs
+    eastDrawDepth: BelowMobs
+    westDrawDepth: BelowMobs
+  - type: Sprite
+    drawdepth: OverMobs
+    sprite: _FarHorizons/Objects/Vehicles/atv.rsi
+    layers:
+    - state: vehicle
+      map: ["enum.VehicleVisualLayers.Base"]
+    noRot: true
+  - type: Strap
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.4
+        density: 360
+        restitution: 0.0
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: ItemSlots
+    slots:
+      key_slot:
+        name: Keys
+        whitelist:
+          requireAll: true
+          tags:
+          - VehicleKey
+          - ATVKeys
+  - type: ContainerContainer
+    containers:
+      key_slot: !type:ContainerSlot
+      vehicle_mods_container: !type:Container
+  - type: SolutionContainerManager
+    solutions:
+      fueltank:
+        maxVol: 150
+  - type: RefillableSolution
+    solution: fueltank
+  - type: ExaminableSolution
+    solution: fueltank
+    exactVolume: true
+  - type: ReagantDraw
+    enabled: false
+    solutionContainer: fueltank
+    whitelistedReagants: 
+    - WeldingFuel
+    drainRate: 0.25
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/_FarHorizons/Vehicles/atvwalk.ogg
+      params:
+        volume: -11
+        pitch: 1.15
+        variation: 0.10
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:DoActsBehavior
+        acts: ["Breakage"]
+      - !type:EmptyContainersBehaviour
+        containers:
+        - storagebase
+  - type: Hitch
+
+- type: entity
+  id: VehicleATVFueledwithKeys
+  parent: VehicleATV
+  suffix: Fueled, Keys
+  components: 
+    - type: SolutionContainerManager
+      solutions:
+        fueltank:
+          reagents:
+          - ReagentId: WeldingFuel
+            Quantity: 150
+          maxVol: 150
+    - type: ContainerFill
+      containers:
+        key_slot:
+        - VehicleKeyATV
+        vehicle_mods_container:
+        - ATVHeadlight
+
+- type: entity
+  id: VehicleATVFueledwithKeysNTSec
+  parent: [VehicleATV, BaseSecurityContraband]
+  name: STV
+  suffix: Fueled, Keys, NT
+  description: Law enforcement variant of the ATV, comes included with sirens to blare at Tiders. 
+  components:
+    - type: Sprite
+      drawdepth: OverMobs
+      sprite: _FarHorizons/Objects/Vehicles/sectv.rsi
+      layers:
+      - state: vehicle
+        map: ["enum.VehicleVisualLayers.Base"]
+      noRot: true
+    - type: ContainerContainer
+      containers:
+        key_slot: !type:ContainerSlot
+        storagebase: !type:Container
+          ents: []
+        vehicle_mods_container: !type:Container
+    - type: Vehicle
+      cellPowered: false
+      acceleration: 4
+      friction: 4.5
+      frictionNoInput: 4.5
+      requireIgnition: true
+      allowCrashing: true
+      crashingSpeed: 10 
+      baseState: vehicle
+      brokenState: vehicle_broken
+      startupTime: 2
+      startUp: 
+        path: /Audio/Effects/Vehicle/vehiclestartup.ogg
+        params:
+          volume: -3
+      hornSound: 
+        path: /Audio/Effects/Vehicle/carhorn.ogg
+        params:
+          volume: -3
+      riderWhitelist:
+        components:
+          - HumanoidAppearance
+      soundHit:
+        collection: MetalThud
+    - type: UserInterface
+      interfaces:
+        enum.StorageUiKey.Key:
+          type: StorageBoundUserInterface
+    - type: Storage
+      grid:
+      - 0,0,6,4
+      maxItemSize: Huge
+      openOnActivate: false
+      clickInsert: false
+    - type: UseDelay
+      delay: 0.5
+    - type: LockedStorage
+    - type: Lock
+      locked: true
+      showLockVerbs: false
+      unlockOnClick: false
+      popupMessage: false
+      showExamine: false
+    - type: SolutionContainerManager
+      solutions:
+        fueltank:
+          reagents:
+          - ReagentId: WeldingFuel
+            Quantity: 150
+          maxVol: 150
+    - type: ItemSlots
+      slots:
+        key_slot:
+          name: Keys
+          whitelist:
+            requireAll: true
+            tags:
+            - VehicleKey
+            - STVKeys
+    - type: ContainerFill
+      containers:
+        key_slot:
+        - VehicleKeySTV
+        vehicle_mods_container:
+        - ATVHeadlight
+        - SecSiren
+
+- type: entity
+  id: VehicleClownCar
+  parent: BaseVehicleRideableDamageable
+  name: Clown Car
+  description: What sort of horrors lie within...
+  components:
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 7.5
+    baseSprintSpeed: 10
+  - type: Vehicle
+    cellPowered: false
+    acceleration: 4
+    friction: 4.5
+    frictionNoInput: 2
+    requireIgnition: true 
+    allowCrashing: true
+    crashingSpeed: 8 
+    baseState: vehicle
+    brokenState: vehicle_broken
+    startupTime: 2
+    startUp: 
+      path: /Audio/Effects/Vehicle/vehiclestartup.ogg
+      params:
+        volume: -3
+    hornSound: 
+      path: /Audio/Items/Toys/pushHornHonk.ogg
+      params:
+        volume: -3
+    riderWhitelist:
+      components:
+        - HumanoidAppearance
+    soundHit:
+      collection: MetalThud
+  - type: VehicleContainer
+    seats: 8
+    passengerWhitelist:
+      components:
+        - Body
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _FarHorizons/Objects/Vehicles/clowncar.rsi
+    scale: 0.75, 0.75
+    layers:
+    - state: vehicle
+      map: ["enum.VehicleVisualLayers.Base"]
+    noRot: true
+  - type: ItemSlots
+    slots:
+      key_slot:
+        name: Keys
+        whitelist:
+          requireAll: true
+          tags:
+          - VehicleKey
+          - ClowncarKeys
+  - type: ContainerContainer
+    containers:
+      key_slot: !type:ContainerSlot
+      passenger_slot: !type:Container
+      storagebase: !type:Container
+      vehicle_mods_container: !type:Container
+        ents: []
+  - type: SolutionContainerManager
+    solutions:
+      fueltank:
+        maxVol: 150
+  - type: RefillableSolution
+    solution: fueltank
+  - type: ExaminableSolution
+    solution: fueltank
+    exactVolume: true
+  - type: ReagantDraw
+    enabled: false
+    solutionContainer: fueltank
+    whitelistedReagants: 
+    - WeldingFuel
+    drainRate: 0.25
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/_FarHorizons/Vehicles/atvwalk.ogg
+      params:
+        volume: -11
+        pitch: 1.15
+        variation: 0.10
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.4
+        density: 1000
+        restitution: 0.0
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: UserInterface
+    interfaces:
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 300
+    intensitySlope: 5
+    maxIntensity: 8
+    canCreateVacuum: false
+    deleteAfterExplosion: false
+  - type: Storage
+    grid:
+    - 0,0,9,4
+    maxItemSize: Huge
+    openOnActivate: false
+    clickInsert: false
+  - type: UseDelay
+    delay: 0.5
+  - type: LockedStorage
+  - type: Lock
+    locked: true
+    showLockVerbs: false
+    unlockOnClick: false
+    popupMessage: false
+    showExamine: false
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:DoActsBehavior
+        acts: ["Breakage"]
+      - !type:ExplodeBehavior
+      - !type:EmptyContainersBehaviour
+        containers:
+        - passenger_slot
+        - storagebase
+
+- type: entity
+  id: VehicleClownCarFueledwithKeys
+  parent: VehicleClownCar
+  suffix: Fueled, Keys
+  components: 
+    - type: SolutionContainerManager
+      solutions:
+        fueltank:
+          reagents:
+          - ReagentId: WeldingFuel
+            Quantity: 150
+          maxVol: 150
+    - type: ContainerFill
+      containers:
+        key_slot:
+        - VehicleKeyClowncar
+        vehicle_mods_container:
+        - ATVHeadlight
+
+- type: entity
+  id: VehicleSkeletonMotorcycle
+  parent: BaseVehicleRideableDamageable
+  name: Motorcycle
+  description: Bad to the bone.
+  components:
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 7.5
+    baseSprintSpeed: 12
+  - type: Vehicle
+    cellPowered: false
+    acceleration: 4
+    friction: 4.5
+    frictionNoInput: 4.5
+    requireIgnition: true
+    allowCrashing: true
+    crashingSpeed: 8
+    baseState: vehicle
+    brokenState: vehicle_broken
+    startupTime: 2
+    startUp: 
+      path: /Audio/Effects/Vehicle/vehiclestartup.ogg
+      params:
+        volume: -3
+    hornSound: 
+      path: /Audio/Effects/Vehicle/carhorn.ogg
+      params:
+        volume: -3
+    riderWhitelist:
+      components:
+        - HumanoidAppearance
+    soundHit:
+      collection: MetalThud
+  - type: VehicleBuckle
+    unbuckleTime: 2
+    dismountOnStun: true
+    dismountOnKnockdown: true
+    ejectOnCrash: true
+    northOffset: "0, -0.12"
+    southOffset: "0, -0.12"
+    eastOffset: "0, -0.2"
+    westOffset: "-0, -0.2"
+    northDrawDepth: BelowMobs
+    southDrawDepth: OverMobs
+    eastDrawDepth: BelowMobs
+    westDrawDepth: BelowMobs
+  - type: Sprite
+    drawdepth: OverMobs
+    sprite: _FarHorizons/Objects/Vehicles/motorbike.rsi
+    layers:
+    - state: vehicle
+      map: ["enum.VehicleVisualLayers.Base"]
+    noRot: true
+  - type: Strap
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.4
+        density: 360
+        restitution: 0.0
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: ItemSlots
+    slots:
+      key_slot:
+        name: Keys
+        whitelist:
+          requireAll: true
+          tags:
+          - VehicleKey
+          - MotorcycleKeys
+  - type: ContainerContainer
+    containers:
+      key_slot: !type:ContainerSlot
+      vehicle_mods_container: !type:Container
+  - type: SolutionContainerManager
+    solutions:
+      fueltank:
+        maxVol: 150
+  - type: RefillableSolution
+    solution: fueltank
+  - type: ExaminableSolution
+    solution: fueltank
+    exactVolume: true
+  - type: ReagantDraw
+    enabled: false
+    solutionContainer: fueltank
+    whitelistedReagants: 
+    - WeldingFuel
+    drainRate: 0.33
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/_FarHorizons/Vehicles/atvwalk.ogg
+      params:
+        volume: -11
+        pitch: 1.15
+        variation: 0.10
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:DoActsBehavior
+        acts: ["Breakage"]
+      - !type:EmptyContainersBehaviour
+        containers:
+        - storagebase
+  - type: Hitch
+  - type: UserInterface
+    interfaces:
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
+  - type: Storage
+    grid:
+    - 0,0,1,5
+    - 3,0,6,5
+    - 8,0,9,5
+    maxItemSize: Huge
+    openOnActivate: false
+    clickInsert: false
+
+- type: entity
+  id: VehicleSkeletonMotorcycleFueledwithKEys
+  parent: VehicleSkeletonMotorcycle
+  suffix: Fueled, Keys
+  components: 
+    - type: SolutionContainerManager
+      solutions:
+        fueltank:
+          reagents:
+          - ReagentId: WeldingFuel
+            Quantity: 150
+          maxVol: 150
+    - type: ContainerFill
+      containers:
+        key_slot:
+        - VehicleKeyMotorcycle
+        vehicle_mods_container:
+        - ATVHeadlight

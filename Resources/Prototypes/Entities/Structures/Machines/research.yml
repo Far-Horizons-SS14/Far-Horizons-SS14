@@ -18,8 +18,8 @@
   - type: PointLight
     enabled: false
     castShadows: false
-    radius: 1.5
-    energy: 1.6
+    radius: 1.2
+    energy: 3.0
     color: "#b211b2"
   - type: LitOnPowered
   - type: ResearchServer
@@ -30,6 +30,22 @@
     - Experimental
     - CivilianServices
     - Biochemical
+  - type: FHResearchTree # Far Horizons
+    tree: ResearchTreeNT
+    maxQueueSize: 3
+    bankCapacity: 15000
+    pointBleed: 1000 #When current amount of banked poins more than bankCapacity, this much is removed every second
+    warningFrequency: 60
+    announceTo:
+      - Science
+  - type: ActiveRadio # Far Horizons
+    channels:
+    - Security
+    - Science
+    - Service
+    - Supply
+    - Medical
+    - Engineering
   - type: ApcPowerReceiver
     powerLoad: 200
   - type: ExtensionCableReceiver
@@ -96,7 +112,7 @@
     active: true
   - type: PointLight
     radius: 1.5
-    energy: 1.6
+    energy: 3.0
     color: "#3db83b"
   - type: ActivatableUI
     key: enum.ResearchClientUiKey.Key

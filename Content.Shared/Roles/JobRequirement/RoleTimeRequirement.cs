@@ -1,5 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
-using Content.Shared._NullLink;
+using Content.Shared._FarHorizons.DiscordLink;
 using Content.Shared.Localizations;
 using Content.Shared.Players.PlayTimeTracking;
 using Content.Shared.Preferences;
@@ -40,12 +40,11 @@ public sealed partial class RoleTimeRequirement : JobRequirement
         if (playTimes == null)
             return true;
 
-        string proto = Role;
-        //NullLink start
-        if (player is not null && IoCManager.Resolve<ISharedNullLinkPlayerRolesReqManager>().IsAllRolesAvailable(player))
+        //FarHorizons
+        if (player is not null && IoCManager.Resolve<IDiscordLinkManagerShared>().HasPermission(player.UserId.UserId, AdditionalPermissionsTypes.RoleRequirementBypass))
             return true;
-        //NullLink end
 
+        string proto = Role;
         playTimes.TryGetValue(proto, out var roleTime);
         var roleDiffSpan = Time - roleTime;
         var roleDiff = roleDiffSpan.TotalMinutes;

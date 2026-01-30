@@ -7,22 +7,24 @@
       sprite: _Starlight/Objects/Misc/id_cards.rsi
       layers:
         - state: silver
-        - state: idmagistrate
+        - sprite: &icon-rsi _FarHorizons/Interface/Misc/job_icons.rsi #Far Horizons
+          offset: &icon-offset -0.09375, 0.0625 #3 pixels left, 2 pixels up
+          state: Magistrate
     - type: PresetIdCard
       job: Magistrate
 
-- type: entity
-  parent: [ IDCardStandard, BaseSecurityContraband ]
-  id: BrigmedicIDCard
-  name: brigmedic ID card
-  components:
-    - type: Sprite
-      sprite: _FarHorizons/Objects/Misc/id_cards.rsi #FH
-      layers:
-        - state: default
-        - state: idbrigmedic
-    - type: PresetIdCard
-      job: Brigmedic
+# - type: entity
+#   parent: [ IDCardStandard, BaseSecurityContraband ]
+#   id: BrigmedicIDCard
+#   name: brigmedic ID card
+#   components:
+#     - type: Sprite
+#       sprite: _FarHorizons/Objects/Misc/id_cards.rsi #FH
+#       layers:
+#         - state: default
+#         - state: idbrigmedic
+#     - type: PresetIdCard
+#       job: Brigmedic
 
 - type: entity
   parent: [ IDCardStandard, BaseCentcommContraband ]
@@ -30,8 +32,19 @@
   name: centcomm operator ID card
   components:
   - type: Sprite
+    sprite: _Starlight/Objects/Misc/id_cards.rsi
     layers:
-    - state: centcom
+    - sprite: &id-rsi Objects/Misc/id_cards.rsi
+      state: centcom
+    - sprite: *id-rsi
+      state: stripe_top
+      color: &color-centcomm-top "#134975"
+    - sprite: *id-rsi
+      state: stripe_bottom
+      color: &color-centcomm-bottom "#0d304d"
+    - sprite: *icon-rsi #Far Horizons
+      offset: *icon-offset
+      state: CentCommOperator
   - type: Item
     heldPrefix: blue
   - type: PresetIdCard
@@ -45,7 +58,13 @@
   - type: Sprite
     layers:
     - state: default
-    - state: idroboticist
+    - state: stripe_top
+      color: &color-science-top "#a53aaa"
+    - state: stripe_bottom
+      color: &color-science-bottom "#652368"
+    - sprite: *icon-rsi #Far Horizons
+      offset: *icon-offset
+      state: Roboticist
   - type: PresetIdCard
     job: Roboticist
 
@@ -55,8 +74,19 @@
   name: NanoTrasen Representative ID Card
   components:
   - type: Sprite
+    sprite: _Starlight/Objects/Misc/id_cards.rsi
     layers:
-    - state: ert_commander
+    - sprite: *id-rsi
+      state: centcom
+    - sprite: *id-rsi
+      state: stripe_top
+      color: *color-centcomm-top
+    - sprite: *id-rsi
+      state: stripe_bottom
+      color: *color-centcomm-bottom
+    - sprite: *icon-rsi
+      offset: *icon-offset
+      state: Nanotrasen
   - type: PresetIdCard
     job: NanoTrasenRepresentative
 
@@ -69,7 +99,9 @@
     sprite: _Starlight/Objects/Misc/id_cards.rsi
     layers:
     - state: silver
-    - state: idiaa
+    - sprite: *icon-rsi #Far Horizons
+      offset: *icon-offset
+      state: IAA
   - type: PresetIdCard
     job: IAA
 
@@ -81,8 +113,16 @@
   - type: Sprite
     sprite: _Starlight/Objects/Misc/id_cards.rsi
     layers:
-    - state: silver
-    - state: idblueshield
+    - state: silver 
+    - sprite: *id-rsi
+      state: stripe_top
+      color: "#1b67a5"
+    - sprite: *id-rsi
+      state: stripe_bottom
+      color: "#1b67a5"
+    - sprite: *icon-rsi #Far Horizons
+      offset: *icon-offset
+      state: BlueShield
   - type: PresetIdCard
     job: BlueShield
 
@@ -95,7 +135,15 @@
     sprite: _Starlight/Objects/Misc/id_cards.rsi
     layers:
     - state: gold
-    - state: idblueshield
+    - sprite: *id-rsi
+      state: stripe_top
+      color: "#1b67a5"
+    - sprite: *id-rsi
+      state: stripe_bottom
+      color: "#1b67a5"
+    - sprite: *icon-rsi #Far Horizons
+      offset: *icon-offset
+      state: NTNCBlueShield
   - type: PresetIdCard
     job: NTNCBlueshield
 
@@ -104,13 +152,21 @@
   id: SalvageLeadIDCard
   name: salvage lead ID card
   components:
-    - type: Sprite
-      sprite: _Starlight/Objects/Misc/id_cards.rsi
-      layers:
-        - state: default
-        - state: idsalvagelead
-    - type: PresetIdCard
-      job: SalvageLead
+  - type: Sprite
+    sprite: _Starlight/Objects/Misc/id_cards.rsi
+    layers:
+    - state: default
+    - sprite: *id-rsi
+      state: stripe_top
+      color: &color-supply-top "#b18644"
+    - sprite: *id-rsi
+      state: stripe_bottom
+      color: &color-supply-bottom "#5b4523"
+    - sprite: *icon-rsi #Far Horizons
+      offset: *icon-offset
+      state: SalvageLead
+  - type: PresetIdCard
+    job: SalvageLead
 
 - type: entity
   parent: [ IDCardStandard, BaseCargoContraband ]
@@ -121,7 +177,15 @@
     sprite: _Starlight/Objects/Misc/id_cards.rsi
     layers:
     - state: default
-    - state: idstationminer
+    - sprite: *id-rsi
+      state: stripe_top
+      color: *color-supply-top
+    - sprite: *id-rsi
+      state: stripe_bottom
+      color: *color-supply-bottom
+    - sprite: *icon-rsi
+      offset: *icon-offset
+      state: ShaftMiner
   - type: PresetIdCard
     job: MiningSpecialist
 
@@ -134,7 +198,15 @@
     sprite: _Starlight/Objects/Misc/id_cards.rsi
     layers:
     - state: default
-    - state: idmailtech
+    - sprite: *id-rsi
+      state: stripe_top
+      color: *color-supply-top
+    - sprite: *id-rsi
+      state: stripe_bottom
+      color: *color-supply-bottom
+    - sprite: *icon-rsi #Far Horizons
+      offset: *icon-offset
+      state: MailTech
   - type: PresetIdCard
     job: MailTech
 
@@ -157,7 +229,9 @@
       sprite: _Starlight/Objects/Misc/id_cards.rsi
       layers:
         - state: syndi
-        - state: idcommander
+        - sprite: *icon-rsi #Far Horizons
+          offset: *icon-offset
+          state: Commander
     - type: Access
       tags:
         - Maintenance
@@ -181,7 +255,9 @@
       sprite: _Starlight/Objects/Misc/id_cards.rsi
       layers:
         - state: syndi
-        - state: idsyndiagent
+        - sprite: *icon-rsi #Far Horizons
+          offset: *icon-offset
+          state: SyndicateAgent
     - type: Access
       tags:
         - Maintenance
@@ -205,7 +281,9 @@
       sprite: _Starlight/Objects/Misc/id_cards.rsi
       layers:
         - state: syndi
-        - state: idoperative
+        - sprite: *icon-rsi #Far Horizons
+          offset: *icon-offset
+          state: Operative
     - type: Access
       tags:
         - Maintenance
@@ -229,7 +307,9 @@
   - type: Sprite
     layers:
     - state: default
-    - state: idassistant
+    - sprite: *icon-rsi
+      offset: *icon-offset
+      state: Assistant
   - type: IdCard
     jobTitle: job-title-borgi
     jobIcon: JobIconBorg
@@ -243,3 +323,54 @@
     - Research
     - Engineering
     - Atmospherics
+
+- type: entity
+  parent: IDCardStandard
+  id: CentcomIDCardNTSF
+  name: NTSF ID card
+  components:
+  - type: Sprite
+    layers:
+    - sprite: *id-rsi
+      state: centcom
+    - sprite: *id-rsi
+      state: stripe_top
+      color: *color-centcomm-top
+    - sprite: *id-rsi
+      state: stripe_bottom
+      color: *color-centcomm-bottom
+    - sprite: *icon-rsi
+      offset: *icon-offset
+      state: Nanotrasen
+  - type: Item
+    heldPrefix: blue
+  - type: PresetIdCard
+    job: NanoTrasenSpecialForces
+
+- type: entity
+  parent: IDCardStandard
+  id: CentcomIDCardDecimus
+  name: ERROR ID card
+  components:
+  - type: Sprite
+    layers:
+    - state: black
+  - type: Item
+    heldPrefix: blue
+  - type: PresetIdCard
+    job: Decimus
+
+- type: entity
+  parent: IDCardStandard
+  id: CluwneBeastIDCard
+  name: cluwne ID card
+  suffix: Unremoveable
+  components:
+  - type: Sprite
+    layers:
+    - state: default
+    - sprite: *icon-rsi
+      offset: *icon-offset
+      state: Cluwne
+  - type: IdCard
+    jobTitle: job-title-cluwne

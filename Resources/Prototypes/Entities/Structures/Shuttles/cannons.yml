@@ -92,7 +92,7 @@
           tags:
             - PowerCell
             - PowerCellSmall
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: RedLightLaser
     fireCost: 50
 
@@ -148,7 +148,7 @@
         whitelist:
           tags:
             - PowerCage
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: RedShuttleLaser
     fireCost: 150
 
@@ -348,7 +348,7 @@
       params:
         variation: 0.12
   - type: RechargeBasicEntityAmmo
-    rechargeCooldown: 2
+    rechargeCooldown: 1 #FH edit
     rechargeSound:
       path: /Audio/Weapons/Guns/Bolt/lmg_bolt_closed.ogg
       params:

@@ -37,6 +37,7 @@
     accent: zombieMoth
   - type: Speech
     speechVerb: Moth
+    speechSounds: UnisexMoth # Starlight: Add talk sounds
     allowedEmotes: ['Chitter', 'Squeak', 'FlapWings'] # Starlight: Add wing flap
   - type: TypingIndicator
     proto: moth
@@ -46,7 +47,10 @@
     - id: FoodMeat
       amount: 5
   - type: Bloodstream
-    bloodReagent: InsectBlood
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: InsectBlood
+        Quantity: 300
   - type: DamageVisuals
     damageOverlayGroups:
       Brute:
@@ -69,12 +73,13 @@
   - type: Flammable
     damage:
       types:
-        Heat: 2.5 # moths burn more easily
+        Heat: 4.5 # #Starlight: bring back the glory days of moths fearing fire
   - type: Temperature # Moths hate the heat and thrive in the cold.
-    heatDamageThreshold: 320
-    coldDamageThreshold: 230
     currentTemperature: 310.15
     specificHeat: 46
+  - type: TemperatureDamage # Moths hate the heat and thrive in the cold.
+    heatDamageThreshold: 320
+    coldDamageThreshold: 230
     coldDamage:
       types:
         Cold : 0.05 #per second, scales with temperature & other constants
@@ -187,6 +192,13 @@
           32:
             sprite: Mobs/Species/Moth/displacement.rsi
             state: shoes
+  - type: Tag  # Far Horizons
+    tags:
+      - CanPilot
+      - FootstepSound
+      - DoorBumpOpener
+      - AnomalyHost
+      - Moth
 
 - type: entity
   parent: BaseSpeciesDummy

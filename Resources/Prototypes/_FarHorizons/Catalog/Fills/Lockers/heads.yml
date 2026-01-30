@@ -1,12 +1,75 @@
 
+# Head of Security
 
-## Syndicate Station
+- type: entity
+  id: LockerHeadOfSecurityFHFilled
+  suffix: NT, Filled
+  parent: LockerHeadOfSecurityFH
+  components:
+  - type: StorageFill
+    contents:
+    - id: ClothingNeckCloakHosElite
+    - id: WeaponEnergySMG
+    - id: BookSpaceLaw
+    - id: BoxEncryptionKeySecurity
+    - id: CigarGoldCase
+    - id: ClothingBeltSecurityFilled
+    - id: ClothingEyesGlassesSecurity
+    - id: ClothingEyesHudSecurity
+    - id: ClothingHeadsetAltSecurity
+    - id: ClothingMaskNeckGaiter
+    - id: ClothingOuterCoatHoSTrench
+    - id: ClothingShoesBootsJack
+    - id: DoorRemoteSecurity
+    - id: HoloprojectorSecurity
+    - id: RubberStampHos
+    - id: SecurityTechFabCircuitboard
+    - id: CargoRequestSecurityComputerCircuitboard
+    - id: WeaponDisabler
+    - id: WantedListCartridge
+    - id: DrinkHosFlask
+
+- type: entity
+  id: LockerHeadOfSecurityFHFilledHardsuit
+  suffix: NT, Filled, Hardsuit
+  parent: LockerHeadOfSecurityFH
+  components:
+  - type: StorageFill
+    contents:
+    - id: ClothingNeckCloakHosElite
+    - id: WeaponEnergySMG
+    - id: BookSpaceLaw
+    - id: BoxEncryptionKeySecurity
+    - id: CigarGoldCase
+    - id: ClothingBeltSecurityFilled
+    - id: ClothingEyesGlassesSecurity
+    - id: ClothingEyesHudSecurity
+    - id: ClothingHeadsetAltSecurity
+    - id: ClothingMaskNeckGaiter
+    - id: ClothingOuterCoatHoSTrench
+    - id: ClothingShoesBootsJack
+    - id: DoorRemoteSecurity
+    - id: HoloprojectorSecurity
+    - id: RubberStampHos
+    - id: SecurityTechFabCircuitboard
+    - id: CargoRequestSecurityComputerCircuitboard
+    - id: WeaponDisabler
+    - id: WantedListCartridge
+    - id: DrinkHosFlask
+    - id: ClothingMaskGasSwat
+    - id: ClothingOuterHardsuitSecurityRed
+    - id: JetpackSecurityFilled
+    - id: OxygenTankFilled
+    - id: NitrogenTankFilled
+    - id: ClothingShoesBootsMagSec
+
+#region Syndicate Station
 
 # Commander (Captain)
 
 - type: entity
   id: LockerCommanderFilledNoLaser
-  suffix: Filled
+  suffix: S, Filled
   parent: LockerCommander
   components:
   - type: EntityTableContainerFill
@@ -36,7 +99,7 @@
     - id: SpaceCash1000
     - id: ClothingEyesGlassesCommandSyndi
     - id: ClothingEyesHudCommandSyndi
-    - id: EncryptionKeyExpedition
+    - id: EncryptionKeyCargo # Far Horizons - replaced with cargo key
     - id: HeadSkeleton
       conditions:
       - !type:PlayerCountCondition
@@ -50,7 +113,7 @@
 
 - type: entity
   id: LockerCommanderFilled
-  suffix: Filled, AntiqueLaser
+  suffix: S, Filled, AntiqueLaser
   parent: LockerCommander
   components:
   - type: EntityTableContainerFill
@@ -68,7 +131,7 @@
 
 - type: entity
   id: LockerCommanderFilledHardsuit
-  suffix: Filled, Hardsuit
+  suffix: S, Filled, Hardsuit
   parent: LockerCommander
   components:
   - type: EntityTableContainerFill
@@ -84,7 +147,7 @@
 
 - type: entity
   id: LockerPersonnelChiefFilled
-  suffix: Filled
+  suffix: S, Filled
   parent: LockerPersonnelChief
   components:
   - type: EntityTableContainerFill
@@ -120,6 +183,102 @@
     - id: RubberStampHop
     - id: ClothingEyesGlassesCommandSyndi
     - id: ClothingEyesHudCommandSyndi
+    - id: PrintedDocumentGreenshiftAlert
+      conditions:
+      - !type:GamemodeCondition
+        presets:
+        - Greenshift
+        - Sandbox
+
+# Security Overwatch (HoS)
+
+
+# No Hardsuit
+- type: entity
+  id: LockerSecurityOverwatchFilled
+  suffix: S, Filled
+  parent: LockerSecurityOverwatch
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: LockerFillSecurityOverwatchNoHardsuit
+
+- type: entityTable
+  id: LockerFillSecurityOverwatchNoHardsuit
+  table: !type:AllSelector
+    children:
+    - id: ClothingNeckCloakHosEliteSyndi
+    - id: WeaponEnergySMG
+    - id: BookSpaceLaw
+    - id: BoxEncryptionKeySecurity
+    - id: CigarGoldCase
+      prob: 0.50
+    - id: ClothingBeltSecuritySyndiFilled
+    - id: ClothingEyesGlassesSecuritySyndi
+    - id: ClothingEyesHudSecuritySyndi
+    - id: ClothingHeadsetAltSecurityHoSSyndi
+    - id: ClothingMaskNeckGaiter
+    - id: ClothingOuterCoatHoSTrenchSyndi
+    - id: ClothingShoesBootsJackSyndiFilled
+    - id: DoorRemoteSecurity
+    - id: HoloprojectorSecurity
+    - id: RubberStampHos
+    - id: SecurityTechFabCircuitboard
+    - id: CargoRequestSecurityComputerCircuitboard
+    - id: WeaponDisabler
+    - id: WantedListCartridge
+    - id: DrinkHosFlask
+    - id: SecurityShuttleConsoleCircuitboard
+    - id: PrintedDocumentGreenshiftAlert
+      conditions:
+      - !type:GamemodeCondition
+        presets:
+        - Greenshift
+        - Sandbox
+
+# Hardsuit
+
+- type: entity
+  id: LockerSecurityOverwatchHardsuitFilled
+  suffix: S, Filled, Hardsuit
+  parent: LockerSecurityOverwatch
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: LockerFillSecurityOverwatchHardsuit
+
+- type: entityTable
+  id: LockerFillSecurityOverwatchHardsuit
+  table: !type:AllSelector
+    children:
+    - id: ClothingNeckCloakHosEliteSyndi
+    - id: WeaponEnergySMG
+    - id: BookSpaceLaw
+    - id: BoxEncryptionKeySecurity
+    - id: CigarGoldCase
+    - id: ClothingBeltSecuritySyndiFilled
+    - id: ClothingEyesGlassesSecuritySyndi
+    - id: ClothingEyesHudSecuritySyndi
+    - id: ClothingHeadsetAltSecurityHoSSyndi
+    - id: ClothingMaskNeckGaiter
+    - id: ClothingOuterCoatHoSTrenchSyndi
+    - id: ClothingShoesBootsJackSyndiFilled
+    - id: DoorRemoteSecurity
+    - id: HoloprojectorSecurity
+    - id: RubberStampHos
+    - id: SecurityTechFabCircuitboard
+    - id: CargoRequestSecurityComputerCircuitboard
+    - id: WeaponDisabler
+    - id: WantedListCartridge
+    - id: DrinkHosFlask
+    - id: ClothingMaskGasSwat
+    - id: ClothingOuterHardsuitSecurityRedSyndi
+    - id: JetpackSecurityFilled
+    - id: OxygenTankFilled
+    - id: NitrogenTankFilled
+    - id: ClothingShoesBootsMagSec
     - id: PrintedDocumentGreenshiftAlert
       conditions:
       - !type:GamemodeCondition

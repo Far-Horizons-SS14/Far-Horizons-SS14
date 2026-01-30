@@ -1,0 +1,88 @@
+# Rockets
+
+- type: entity
+  id: RocketAmmo120mmHE
+  name: 120mm High-Explosive Rocket
+  parent: [BaseItem, BaseSyndicateContraband]
+  description: Specially made rockets originally used for artillery, now attached to a ramjet for use with the M81A1. This one appears to have a high-explosive warhead.
+  components:
+  - type: Tag
+    tags:
+      - RocketAmmo120mmHE
+      - RocketAmmo120mm
+  - type: Item
+    size: Ginormous
+  - type: CartridgeAmmo
+    proto: Bullet120mmRocketHE
+    deleteOnSpawn: true
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Explosives/120mm_explosives.rsi
+    state: 120mm_HE
+  - type: StaticPrice
+    price: 20
+
+- type: entity
+  id: RocketAmmo120mmAP
+  name: 120mm Armor-Piercing Rocket
+  parent: [BaseItem, BaseSyndicateContraband]
+  description: Specially made rockets origianlly used for artillery, now attached with a ramjet and remade for the M81A1 "Fissure" rocket launcher. This one appears to have been attached with an armor-piercing warhead.
+  components:
+  - type: Tag
+    tags:
+      - RocketAmmo120mmAP
+      - RocketAmmo120mm
+  - type: Item
+    size: Ginormous
+  - type: CartridgeAmmo
+    proto: Bullet120mmRocketAP
+    deleteOnSpawn: true
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Explosives/120mm_explosives.rsi
+    state: 120mm_AP
+  - type: StaticPrice
+    price: 25
+
+- type: entity
+  id: RocketAmmo120mmIncendiary
+  name: 120mm Incendiary Rocket 
+  parent: [BaseItem, BaseSyndicateContraband]
+  description: Specially made rockets originally used for artillery, now attached to a ramjet for use with the M81A1. This one appears to have an incendiary warhead, designed to ignite flammable materials upon detonation. Commonly used by pyromaniacs, the title of this warhead has been deamed "Dragon's Breath".
+  components:
+  - type: Tag
+    tags:
+      - RocketAmmo120mmIncendiary
+      - RocketAmmo120mm
+  - type: Item
+    size: Ginormous
+  - type: CartridgeAmmo
+    proto: Bullet120mmRocketIncindiary
+    deleteOnSpawn: true
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Explosives/120mm_explosives.rsi
+    state: 120mm_incendiary
+  - type: StaticPrice
+    price: 30
+
+- type: entity
+  id: RocketAmmo120mmShrapnel
+  name: 120mm Shrapnel Rocket
+  parent: [BaseItem, BaseSyndicateContraband]
+  description: Specially made rockets originally used for artillery, now attached to a ramjet for use with the M81A1 "Fissure". This one appears to have a shrapnel warhead, designed to spray deadly fragments upon detonation. A lesser model compared to the AP warhead.
+  components:
+  - type: Tag
+    tags:
+      - RocketAmmo120mmShrapnel
+      - RocketAmmo120mm
+  - type: Item
+    size: Ginormous
+  - type: CartridgeAmmo
+    proto: Bullet120mmRocketShrapnel
+    deleteOnSpawn: true
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Explosives/120mm_explosives.rsi
+    state: 120mm_shrapnel
+  - type: StaticPrice
+    price: 15
+
+# - Type: entity
+#   id: RocketAmmo120mmEMP

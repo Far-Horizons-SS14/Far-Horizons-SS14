@@ -7,6 +7,7 @@ using Content.Shared.Materials;
 using Content.Shared.DeviceLinking;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 using Robust.Shared.Serialization;
+using System.Numerics;
 
 namespace Content.Shared._FarHorizons.Power.Generation.FissionGenerator;
 
@@ -17,8 +18,18 @@ namespace Content.Shared._FarHorizons.Power.Generation.FissionGenerator;
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class NuclearReactorComponent : Component
 {
-    public static int ReactorGridWidth = 7;
-    public static int ReactorGridHeight = 7;
+    /// <summary>
+    /// Width of the reactor grid
+    /// </summary>
+    [DataField, ViewVariables(VVAccess.ReadOnly)]
+    public int ReactorGridWidth = 7;
+
+    /// <summary>
+    /// Height of the reactor grid
+    /// </summary>
+    [DataField, ViewVariables(VVAccess.ReadOnly)]
+    public int ReactorGridHeight = 7;
+
     public readonly int ReactorOverheatTemp = 1200;
     public readonly int ReactorFireTemp = 1500;
     public readonly int ReactorMeltdownTemp = 2000;
@@ -27,7 +38,7 @@ public sealed partial class NuclearReactorComponent : Component
     /// <summary>
     /// 2D grid of reactor components, or null where there are no components. Size is ReactorGridWidth x ReactorGridHeight
     /// </summary>
-    public ReactorPartComponent?[,] ComponentGrid = new ReactorPartComponent[ReactorGridWidth, ReactorGridHeight];
+    public ReactorPartComponent?[,] ComponentGrid;
 
     /// <summary>
     /// Dictionary of data that determines the reactor grid's visuals
@@ -39,7 +50,7 @@ public sealed partial class NuclearReactorComponent : Component
     /// <summary>
     /// 2D grid of lists of neutrons in each grid slot of the component grid
     /// </summary>
-    public List<ReactorNeutron>[,] FluxGrid = new List<ReactorNeutron>[ReactorGridWidth, ReactorGridHeight];
+    public List<ReactorNeutron>[,] FluxGrid;
 
     /// <summary>
     /// Number of neutrons that hit the edge of the reactor grid last tick
@@ -48,14 +59,14 @@ public sealed partial class NuclearReactorComponent : Component
     public float RadiationLevel = 0;
 
     /// <summary>
-    /// Gas mixtrue currently in the reactor
+    /// Gas mixture currently in the reactor
     /// </summary>
     public GasMixture? AirContents;
 
     /// <summary>
     /// Reactor casing temperature
     /// </summary>
-    [DataField]
+    [ViewVariables(VVAccess.ReadWrite)]
     public float Temperature = Atmospherics.T20C;
 
     /// <summary>
@@ -85,13 +96,13 @@ public sealed partial class NuclearReactorComponent : Component
     /// <summary>
     /// Flag indicating total meltdown has happened
     /// </summary>
-    [ViewVariables]
+    [DataField, ViewVariables, AutoNetworkedField]
     public bool Melted = false;
 
     /// <summary>
     /// The set insertion level of the control rods
     /// </summary>
-    [DataField]
+    [ViewVariables(VVAccess.ReadWrite)]
     public float ControlRodInsertion = 2;
 
     /// <summary>
@@ -130,6 +141,32 @@ public sealed partial class NuclearReactorComponent : Component
     public string MeltdownAlertLevel = "yellow";
 
     /// <summary>
+    /// The minimum radiation from the melted reactor
+    /// </summary>
+    [DataField]
+    public float MeltdownRadiation = 10;
+
+    /// <summary>
+    /// How quickly radiation decreases
+    /// </summary>
+    /// <remarks>Cannot be less than 1</remarks>
+    [DataField]
+    public float RadiationStability = 2;
+
+    /// <summary>
+    /// The soft maximum radiation the reactor is expected to produce, beyond which radiation increases logarithmically. Also used for alarms and UI.
+    /// </summary>
+    [DataField]
+    public float MaximumRadiation = 50;
+
+    /// <summary>
+    /// The maximum thermal power the reactor is expected to produce
+    /// </summary>
+    /// <remarks>This will NOT stop the reactor from making more than this value</remarks>
+    [DataField]
+    public float MaximumThermalPower = 10000000;
+
+    /// <summary>
     /// The estimated thermal power the reactor is making
     /// </summary>
     [ViewVariables(VVAccess.ReadOnly)]
@@ -150,18 +187,18 @@ public sealed partial class NuclearReactorComponent : Component
     /// <summary>
     /// Grid of temperature values
     /// </summary>
-    public double[,] TemperatureGrid = new double[ReactorGridWidth, ReactorGridHeight];
+    public double[,] TemperatureGrid;
 
     /// <summary>
     /// Grid of neutron counts
     /// </summary>
-    public int[,] NeutronGrid = new int[ReactorGridWidth, ReactorGridHeight];
+    public int[,] NeutronGrid;
 
     /// <summary>
     /// The selected prefab
     /// </summary>
     [DataField]
-    public string Prefab = "normal";
+    public string Prefab = "ReactorPrefab7x7Normal";
 
     /// <summary>
     /// Flag indicating the reactor should apply the selected prefab
@@ -170,23 +207,110 @@ public sealed partial class NuclearReactorComponent : Component
     public bool ApplyPrefab = false;
 
     /// <summary>
+    /// Chance that a reactor slot is filled when applying the random prefab
+    /// </summary>
+    [DataField]
+    public float RandomPrefabFill = 0.3f;
+
+    /// <summary>
     /// Material the reactor is made out of
     /// </summary>
     [DataField("material")]
     public ProtoId<MaterialPrototype> Material = "Steel";
 
+    /// <summary>
+    /// Determines the spacing and position of the visual grid. Measured in pixels.
+    /// </summary>
+    /// <remarks>
+    /// [0] Spacing along the x axis<br/>
+    /// [1] Spacing along the y axis<br/>
+    /// [2] Offset of the center along the x axis<br/>
+    /// [3] Offset of the center along the y axis
+    /// </remarks>
+    [DataField]
+    public int[] Gridbounds = [ 18, 15, 0, 5 ];
+
+    #region Pipe Connections
+    /// <summary>
+    /// Name of the pipe node
+    /// </summary>
     [DataField]
     public string PipeName { get; set; } = "pipe";
+
+    /// <summary>
+    /// Inlet entity
+    /// </summary>
     [ViewVariables]
     public EntityUid? InletEnt;
+
+    /// <summary>
+    /// Position of the inlet entity
+    /// </summary>
+    [DataField]
+    public Vector2 InletPos = new(-2, -1);
+
+    /// <summary>
+    /// Rotation of the inlet entity, in degrees
+    /// </summary>
+    [DataField]
+    public float InletRot = -90;
+
+    /// <summary>
+    /// Outlet entity
+    /// </summary>
     [ViewVariables]
     public EntityUid? OutletEnt;
 
+    /// <summary>
+    /// Position of the outlet entity
+    /// </summary>
+    [DataField]
+    public Vector2 OutletPos = new(2, 1);
+
+    /// <summary>
+    /// Rotation of the outlet entity, in degrees
+    /// </summary>
+    [DataField]
+    public float OutletRot = 90;
+
+    /// <summary>
+    /// Name of the prototype of the arrows that indicate flow on inspect
+    /// </summary>
+    [DataField]
+    public EntProtoId ArrowPrototype = "ReactorFlowArrow";
+
+    /// <summary>
+    /// Name of the prototype of the pipes the reactor uses to connect to the pipe network
+    /// </summary>
+    [DataField]
+    public EntProtoId PipePrototype = "ReactorGasPipe";
+    #endregion
+
+    #region Device Network
+    /// <summary>
+    /// The proto ID of the "Retract Control Rods" sink port
+    /// </summary>
     [DataField("controlRodRetractPort", customTypeSerializer: typeof(PrototypeIdSerializer<SinkPortPrototype>))]
     public string ControlRodRetractPort = "RetractControlRods";
 
+    /// <summary>
+    /// The proto ID of the "Insert Control Rods" sink port
+    /// </summary>
     [DataField("controlRodInsertPort", customTypeSerializer: typeof(PrototypeIdSerializer<SinkPortPrototype>))]
     public string ControlRodInsertPort = "InsertControlRods";
+
+    /// <summary>
+    /// The signal state of the retract control rods port
+    /// </summary>
+    [ViewVariables(VVAccess.ReadWrite)]
+    public SignalState RetractPortState = SignalState.Low;
+
+    /// <summary>
+    /// The signal state of the insert control rods port
+    /// </summary>
+    [ViewVariables(VVAccess.ReadWrite)]
+    public SignalState InsertPortState = SignalState.Low;
+    #endregion
 
     #region Debug
     [ViewVariables(VVAccess.ReadOnly)]

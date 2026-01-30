@@ -1,4 +1,5 @@
-﻿using Content.Client._Starlight.Managers;
+﻿using Content.Client._FarHorizons.DiscordLink;
+using Content.Client._Starlight.Managers;
 using Content.Client.Administration.Managers;
 using Content.Client.Changelog;
 using Content.Client.Chat.Managers;
@@ -24,7 +25,7 @@ using Content.Client.Stylesheets;
 using Content.Client.UserInterface;
 using Content.Client.Viewport;
 using Content.Client.Voting;
-using Content.Shared._NullLink;
+using Content.Shared._Starlight.DocumentManager;
 using Content.Shared.Ame.Components;
 using Content.Shared._FarHorizons.Factions;
 using Content.Shared.Gravity;
@@ -81,29 +82,31 @@ namespace Content.Client.Entry
         [Dependency] private readonly TitleWindowManager _titleWindowManager = default!;
         [Dependency] private readonly IEntitySystemManager _entitySystemManager = default!;
         [Dependency] private readonly ClientsidePlaytimeTrackingManager _clientsidePlaytimeManager = default!;
-       	[Dependency] private readonly INullLinkPlayerRolesManager _nullLinkPlayerRolesManager = default!; //NullLink
-       	[Dependency] private readonly ISharedNullLinkPlayerRolesReqManager _sharedNullLinkPlayer = default!; //NullLink
         [Dependency] private readonly ISharedFactionManager _factions = default!; //Far Horizons
+        [Dependency] private readonly DiscordLinkManager _discordLinkManager = default!; // Far Horizons
+        [Dependency] private readonly PreWrittenDocumentManager _documentManager = default!; // Starlight
 
-        public override void Init()
+        public override void PreInit()
         {
-            ClientContentIoC.Register();
+            ClientContentIoC.Register(Dependencies);
 
             foreach (var callback in TestingCallbacks)
             {
                 var cast = (ClientModuleTestingCallbacks) callback;
                 cast.ClientBeforeIoC?.Invoke();
             }
+        }
 
-            IoCManager.BuildGraph();
-            IoCManager.InjectDependencies(this);
+        public override void Init()
+        {
+            Dependencies.BuildGraph();
+            Dependencies.InjectDependencies(this);
 
             _contentLoc.Initialize();
             _componentFactory.DoAutoRegistrations();
             _componentFactory.IgnoreMissingComponents();
 
             // Do not add to these, they are legacy.
-            _componentFactory.RegisterClass<SharedGravityGeneratorComponent>();
             _componentFactory.RegisterClass<SharedAmeControllerComponent>();
             // Do not add to the above, they are legacy
 
@@ -118,7 +121,6 @@ namespace Content.Client.Entry
             _prototypeManager.RegisterIgnore("htnPrimitive");
             _prototypeManager.RegisterIgnore("gameMap");
             _prototypeManager.RegisterIgnore("gameMapPool");
-            //_prototypeManager.RegisterIgnore("lobbyBackground"); //starlight, disabled for main menu art credits
             _prototypeManager.RegisterIgnore("gamePreset");
             _prototypeManager.RegisterIgnore("noiseChannel");
             _prototypeManager.RegisterIgnore("playerConnectionWhitelist");
@@ -138,6 +140,8 @@ namespace Content.Client.Entry
             _prototypeManager.RegisterIgnore("salvageMissionObjectiveHandler"); // Far Horizons
             
             _prototypeManager.RegisterIgnore("onSignActions"); //🌟Starlight🌟
+
+            _documentManager.Initialize(); // Starlight
 
             _componentFactory.GenerateNetIds();
             _adminManager.Initialize();
@@ -166,7 +170,7 @@ namespace Content.Client.Entry
         public override void Shutdown()
         {
             base.Shutdown();
-            _titleWindowManager.Shutdown();
+            //_titleWindowManager.Shutdown();
 
             //Far Horizons
             _factions.Shutdown();
@@ -203,10 +207,8 @@ namespace Content.Client.Entry
                 }
             };
 
-            // NullLink start
-            _nullLinkPlayerRolesManager.Initialize();
-            _sharedNullLinkPlayer.Initialize();
-            // NullLink end
+            // Far Horizons
+            _discordLinkManager.Initialize();
 
             // Disable engine-default viewport since we use our own custom viewport control.
             _userInterfaceManager.MainViewport.Visible = false;

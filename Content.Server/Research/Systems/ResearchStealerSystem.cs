@@ -1,3 +1,5 @@
+using Content.Server._FarHorizons.Research;
+using Content.Shared._FarHorizons.Research.Components;
 using Content.Shared.Research.Components;
 using Content.Shared.Research.Systems;
 using Robust.Shared.Random;
@@ -6,7 +8,7 @@ namespace Content.Server.Research.Systems;
 
 public sealed class ResearchStealerSystem : SharedResearchStealerSystem
 {
-    [Dependency] private readonly SharedResearchSystem _research = default!;
+    [Dependency] private readonly FHResearchSystem _fhResearch = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
 
     public override void Initialize()
@@ -23,18 +25,18 @@ public sealed class ResearchStealerSystem : SharedResearchStealerSystem
 
         var target = args.Target.Value;
 
-        if (!TryComp<TechnologyDatabaseComponent>(target, out var database))
+        if (!TryComp<FHResearchTreeComponent>(target, out var tree)) // Far Horizons
             return;
 
         var ev = new ResearchStolenEvent(uid, target, new());
         var count = _random.Next(comp.MinToSteal, comp.MaxToSteal + 1);
         for (var i = 0; i < count; i++)
         {
-            if (database.UnlockedTechnologies.Count == 0)
+            if (tree.Researched.Count == 0) // Far Horizons
                 break;
 
-            var toRemove = _random.Pick(database.UnlockedTechnologies);
-            if (_research.TryRemoveTechnology((target, database), toRemove))
+            var toRemove = _random.Pick(_fhResearch.GetRemovableReseach((target, tree))); // Far Horizons
+            if (_fhResearch.TryRemoveResearchedNode((target, tree), toRemove)) // Far Horizons
                 ev.Techs.Add(toRemove);
         }
         RaiseLocalEvent(uid, ref ev);

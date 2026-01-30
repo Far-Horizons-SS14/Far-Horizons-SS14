@@ -1,7 +1,7 @@
 - type: entity
   id: LockerBooze
   parent: LockerBase
-  name: booze storage
+  name: Booze Storage #Far Horizons - The Great Capitalization Crusade
   description: This is where the bartender keeps the booze.
   components:
   - type: Appearance
@@ -24,7 +24,7 @@
 - type: entity
   id: LockerSteel
   parent: LockerBaseSecure
-  name: secure closet
+  name: Secure Closet #Far Horizons - The Great Capitalization Crusade
   suffix: Mapping # Starlight-edit
 #  components: Starlight-edit: Moved to LockerBaseSecure
 #  - type: Appearance
@@ -37,7 +37,7 @@
 - type: entity
   id: LockerQuarterMaster
   parent: LockerBaseSecure
-  name: quartermaster's locker
+  name: Quartermaster's Locker #Far Horizons - The Great Capitalization Crusade
   components:
   - type: Appearance
   - type: EntityStorageVisuals
@@ -52,14 +52,14 @@
 - type: entity
   id: LockerSalvageSpecialist
   parent: LockerBase
-  name: salvage specialist's equipment
+  name: Salvage Specialist's Equipment #Far Horizons - The Great Capitalization Crusade
   description: Nevermind the pickaxe.
   components:
   - type: Appearance
   - type: EntityStorageVisuals
     stateBaseClosed: mining
     stateDoorOpen: mining_open
-    stateDoorClosed: mining_door
+    stateDoorClosed: salvage_door # Far Horizons
   - type: AccessReader
     access: [["Salvage"]]
 
@@ -67,7 +67,7 @@
 - type: entity
   id: LockerCaptain
   parent: LockerBaseSecure
-  name: captain's locker
+  name: Captain's Locker #Far Horizons - The Great Capitalization Crusade
   components:
   - type: Appearance
   - type: EntityStorageVisuals
@@ -82,7 +82,7 @@
 - type: entity
   id: LockerHeadOfPersonnel
   parent: LockerBaseSecure
-  name: head of personnel's locker
+  name: Head Of Personnel's Locker #Far Horizons - The Great Capitalization Crusade
   components:
   - type: Appearance
   - type: EntityStorageVisuals
@@ -98,7 +98,7 @@
 - type: entity
   id: LockerChiefEngineer
   parent: LockerBaseSecure
-  name: chief engineer's locker
+  name: Chief Engineer's Locker #Far Horizons - The Great Capitalization Crusade
   components:
   - type: Appearance
   - type: EntityStorageVisuals
@@ -114,7 +114,7 @@
 - type: entity
   id: LockerElectricalSupplies
   parent: LockerBase
-  name: electrical supplies locker
+  name: Electrical Supplies Locker #Far Horizons - The Great Capitalization Crusade
   components:
   - type: Appearance
   - type: EntityStorageVisuals
@@ -128,7 +128,7 @@
 - type: entity
   id: LockerWeldingSupplies
   parent: LockerBase
-  name: welding supplies locker
+  name: Welding Supplies Locker #Far Horizons - The Great Capitalization Crusade
   components:
   - type: Appearance
   - type: EntityStorageVisuals
@@ -142,7 +142,7 @@
 - type: entity
   id: LockerAtmospherics
   parent: LockerBase
-  name: atmospheric technician's locker
+  name: Atmospheric Technician's Locker #Far Horizons - The Great Capitalization Crusade
   components:
   - type: Appearance
   - type: EntityStorageVisuals
@@ -156,7 +156,7 @@
 - type: entity
   id: LockerEngineer
   parent: LockerBase
-  name: engineer's locker
+  name: Engineer's Locker #Far Horizons - The Great Capitalization Crusade
   components:
   - type: Appearance
   - type: EntityStorageVisuals
@@ -170,7 +170,7 @@
 - type: entity
   parent: LockerBase
   id: LockerEvacRepair
-  name: emergency shuttle emergency locker
+  name: Emergency Shuttle Emergency Locker #Far Horizons - The Great Capitalization Crusade
   description: It's emergencies all the way down.
   components:
   - type: Appearance
@@ -185,7 +185,7 @@
 - type: entity
   id: LockerFreezerBase
   parent: LockerBase
-  name: freezer
+  name: Freezer #Far Horizons - The Great Capitalization Crusade
   suffix: No Access
   components:
   - type: Appearance
@@ -207,7 +207,7 @@
 - type: entity
   id: LockerFreezer
   parent: LockerFreezerBase
-  name: freezer
+  name: Freezer #Far Horizons - The Great Capitalization Crusade
   suffix: Kitchen, Locked
   components:
   - type: AccessReader
@@ -217,7 +217,7 @@
 - type: entity
   id: LockerBotanist
   parent: LockerBase
-  name: botanist's locker
+  name: Botanist's Locker #Far Horizons - The Great Capitalization Crusade
   components:
   - type: Appearance
   - type: EntityStorageVisuals
@@ -231,7 +231,7 @@
 - type: entity
   id: LockerMedicine
   parent: LockerBase
-  name: medicine locker
+  name: Medicine Locker #Far Horizons - The Great Capitalization Crusade
   description: Filled to the brim with medical junk.
   components:
   - type: Appearance
@@ -246,7 +246,7 @@
 - type: entity
   id: LockerMedical
   parent: LockerBase
-  name: medical doctor's locker
+  name: Medical Doctor's Locker #Far Horizons - The Great Capitalization Crusade
   components:
   - type: Appearance
   - type: EntityStorageVisuals
@@ -260,7 +260,7 @@
 - type: entity
   id: LockerParamedic
   parent: LockerBase
-  name: paramedic's locker
+  name: Paramedic's Locker #Far Horizons - The Great Capitalization Crusade
   components:
   - type: Appearance
   - type: EntityStorageVisuals
@@ -275,7 +275,7 @@
 - type: entity
   id: LockerChemistry
   parent: LockerBase
-  name: chemical locker
+  name: Chemical Locker #Far Horizons - The Great Capitalization Crusade
   components:
   - type: Appearance
   - type: EntityStorageVisuals
@@ -289,7 +289,7 @@
 - type: entity
   id: LockerChiefMedicalOfficer
   parent: LockerBaseSecure
-  name: chief medical officer's locker
+  name: Chief Medical Officer's Locker #Far Horizons - The Great Capitalization Crusade
   components:
   - type: Appearance
   - type: EntityStorageVisuals
@@ -305,7 +305,7 @@
 - type: entity
   id: LockerResearchDirector
   parent: LockerBase
-  name: research director's locker
+  name: Research Director's Locker #Far Horizons - The Great Capitalization Crusade
   components:
   - type: Appearance
   - type: EntityStorageVisuals
@@ -320,7 +320,7 @@
 - type: entity
   id: LockerScientist
   parent: LockerBase
-  name: scientist's locker
+  name: Scientist's Locker #Far Horizons - The Great Capitalization Crusade
   components:
   - type: Appearance
   - type: EntityStorageVisuals
@@ -334,7 +334,7 @@
 - type: entity
   id: LockerHeadOfSecurity
   parent: LockerBaseSecure
-  name: head of security's locker
+  name: Head Of Security's Locker #Far Horizons - The Great Capitalization Crusade
   components:
   - type: Appearance
   - type: EntityStorageVisuals
@@ -350,7 +350,7 @@
 - type: entity
   id: LockerWarden
   parent: LockerBaseSecure
-  name: warden's locker
+  name: Warden's Locker #Far Horizons - The Great Capitalization Crusade
   components:
   - type: Appearance
   - type: EntityStorageVisuals
@@ -366,12 +366,12 @@
 - type: entity
   id: LockerBrigmedic
   parent: LockerBaseSecure
-  name: brigmedic locker
+  name: Brigmedic Locker #Far Horizons - The Great Capitalization Crusade
   components:
   - type: Appearance
   - type: EntityStorageVisuals
     stateBaseClosed: brigmedic
-    stateDoorOpen: armory_open
+    stateDoorOpen: cmo_open #Far Horizons - Using blue door
     stateDoorClosed: brigmedic_door
   - type: AccessReader
     access: [["Brigmedic"]]
@@ -380,7 +380,7 @@
 - type: entity
   id: LockerSecurity
   parent: LockerBaseSecure
-  name: security officer's locker
+  name: Security Officer's Locker #Far Horizons - The Great Capitalization Crusade
   components:
   - type: Appearance
   - type: EntityStorageVisuals
@@ -388,12 +388,12 @@
     stateDoorOpen: sec_open
     stateDoorClosed: sec_door
   - type: AccessReader
-    access: [["Security"]]
+    access: [["Security"], ["Cadet"]] # Starlight: add cadet
 
 - type: entity
   id: GunSafe
   parent: LockerBaseSecure
-  name: gun safe
+  name: Gun Safe #Far Horizons - The Great Capitalization Crusade
   components:
   - type: Appearance
   - type: EntityStorageVisuals
@@ -446,7 +446,7 @@
 - type: entity
   parent: [ GenpopBase , LockerBaseSecure ]
   id: LockerPrisoner
-  name: prisoner closet
+  name: Prisoner Closet #Far Horizons - The Great Capitalization Crusade
   description: It's a secure locker for an inmate's personal belongings during their time in prison.
   suffix: 1
   components:
@@ -528,11 +528,21 @@
   - type: EntityStorageVisuals
     stateDoorClosed: genpop_door_8
 
+#Far Horizons-Start
+- type: entity
+  parent: LockerPrisoner
+  id: LockerPrisoner9
+  suffix: 9
+  components:
+  - type: EntityStorageVisuals
+    stateDoorClosed: genpop_door_9
+#Far Horizons-End
+
 # Detective
 - type: entity
   id: LockerDetective
   parent: LockerBooze
-  name: detective's cabinet
+  name: Detective's Cabinet #Far Horizons - The Great Capitalization Crusade
   description: Usually cold and empty... like your heart.
   components:
   - type: AccessReader
@@ -541,7 +551,7 @@
 - type: entity
   id: LockerEvidence
   parent: LockerSecurity
-  name: evidence locker
+  name: Evidence Locker #Far Horizons - The Great Capitalization Crusade
   description: To store bags of bullet casings and detainee belongings.
   components:
   - type: AccessReader
@@ -550,21 +560,24 @@
 # Syndicate
 - type: entity
   id: LockerSyndicatePersonal
-  name: armory closet
+  name: Armory Closet #Far Horizons - The Great Capitalization Crusade
   parent: LockerBaseSecure
-  description: It's a personal storage unit for operative gear.
+  description: It's a personal storage unit with a blood-red design.
+  suffix: "Locked"
   components:
   - type: Appearance
   - type: EntityStorageVisuals
     stateBaseClosed: syndicate
     stateDoorOpen: syndicate_open
     stateDoorClosed: syndicate_door
+  - type: AccessReader
+    access: [["SyndicateAgent"]]
 
 # Bluespace
 - type: entity
   id: LockerBluespaceStation
-  name: bluespace locker
-  suffix: once to station
+  name: Bluespace Locker #Far Horizons - The Great Capitalization Crusade
+  suffix: Once To Station #Far Horizons - The Great Capitalization Crusade
   parent: LockerSyndicatePersonal
   description: Advanced locker technology.
   components:
@@ -590,7 +603,7 @@
 # Clown
 - type: entity
   id: LockerClown
-  name: clown locker
+  name: Clown Locker #Far Horizons - The Great Capitalization Crusade
   parent: LockerBaseSecure
   components:
   - type: Appearance
@@ -604,7 +617,7 @@
 # Mime
 - type: entity
   id: LockerMime
-  name: mime locker
+  name: Mime Locker #Far Horizons - The Great Capitalization Crusade
   parent: LockerBaseSecure
   components:
   - type: Appearance
@@ -618,12 +631,12 @@
 # Representative
 - type: entity
   id: LockerRepresentative
-  name: representative locker
+  name: Representative Locker #Far Horizons - The Great Capitalization Crusade
   parent: LockerBaseSecure
   components:
   - type: Appearance
   - type: AccessReader
-    access: [["Command"]]
+    access: [["Ntrep"]] # Starlight
   - type: EntityStorageVisuals
     stateBaseClosed: hop
     stateDoorOpen: hop_open

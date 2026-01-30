@@ -1,7 +1,9 @@
+#region Shared
+
 - type: entity
   parent: ClothingUniformSkirtBase
   id: ClothingUniformJumpskirtBrightPerformer
-  name: bright performer's jumpskirt
+  name: Bright Performer's Jumpskirt
   description: The lesser known AI, but that hasn't stopped her from making a name for herself!
   components:
   - type: Sprite
@@ -9,12 +11,40 @@
   - type: Clothing
     sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/brightperformer.rsi
 
+#region GSL
+
+# QM
+
+- type: entity
+  parent: [ ClothingUniformSkirtBase, BaseCommandContraband ]
+  id: ClothingUniformJumpskirtQMFormal
+  name: Quartermaster's Formal Jumpskirt
+  description: For only the highest nobility within CentComm's representatives. May they be dazzled by your brilliance.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/qmformal.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/qmformal.rsi
+
+#region NanoTrasen
+
+
+
+
+
+
+
+
+
+
+#region Command
+
 # Magistrate
 
 - type: entity
   parent: [ ClothingUniformSkirtBase, BaseCommandContraband ]
   id: ClothingUniformJumpskirtTurtleneckMagistrate
-  name: magistrate's turtleneck jumpskirt
+  name: Magistrate's Turtleneck Jumpskirt
   description: A state of the art turtleneck jumpskirt that the CFA supplies their law justicars.
   components:
   - type: Sprite
@@ -27,7 +57,7 @@
 - type: entity
   parent: [ ClothingUniformSkirtBase, BaseCommandContraband ]
   id: ClothingUniformJumpskirtNtrepCentComm
-  name: nt representive's centcomm jumpskirt
+  name: NT Representive's Centcomm Jumpskirt
   description: When you somehow want to look even more official than you did before.
   components:
   - type: Sprite
@@ -38,7 +68,7 @@
 - type: entity
   parent: [ ClothingUniformSkirtBase, BaseCommandContraband ]
   id: ClothingUniformJumpskirtNtrepFormal
-  name: nt representive's formal jumpskirt
+  name: NT Representive's Formal Jumpskirt
   description: For when CentComm tells you to dress to the nines, the NTR takes it to the tens instead.
   components:
   - type: Sprite
@@ -49,7 +79,7 @@
 - type: entity
   parent: [ ClothingUniformSkirtBase, BaseCommandContraband ]
   id: ClothingUniformJumpskirtNtrepNoble
-  name: nt representive's noble jumpskirt
+  name: NT Representive's Noble Jumpskirt
   description: For only the highest nobility within CentComm's representatives. May they be dazzled by your brilliance.
   components:
   - type: Sprite
@@ -57,27 +87,49 @@
   - type: Clothing
     sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/ntrepnoble.rsi
 
-# QM
+#region Security
 
 - type: entity
-  parent: [ ClothingUniformSkirtBase, BaseCommandContraband ]
-  id: ClothingUniformJumpskirtQMFormal
-  name: quartermaster's formal jumpskirt
-  description: For only the highest nobility within CentComm's representatives. May they be dazzled by your brilliance.
+  parent: [ClothingUniformSkirtBase, BaseSecurityContraband]
+  id: ClothingUniformJumpskirtSecCadet
+  name: Security Cadet Jumpskirt 
+  description: A jumpskirt made of strong material, providing robust protection for the newest members of security.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/qmformal.rsi
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/security_cadet.rsi
   - type: Clothing
-    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/qmformal.rsi
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/security_cadet.rsi
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      - state: overlay-inhand-left
+      right:
+      - state: inhand-right
+      - state: overlay-inhand-right
 
-## Syndicate Station
+#region Syndicate
+
+
+
+
+
+
+
+
+
+
+
+#region Command
+
+
 
 # Commander (Captain)
 
 - type: entity
   parent: [ClothingUniformSkirtBase, BaseCommandContraband]
   id: ClothingUniformJumpskirtCaptainSyndi
-  name: commander's jumpskirt
+  name: Commander's Jumpskirt
   description: It's a black jumpskirt with some gold markings denoting the rank of "Commander".
   components:
   - type: Sprite
@@ -88,7 +140,7 @@
 - type: entity
   parent: ClothingUniformSkirtBase
   id: ClothingUniformJumpskirtCapFormalDressSyndi
-  name: commander's formal dress
+  name: Commander's Formal Dress
   description: A dress for special occasions.
   components:
   - type: Sprite
@@ -101,7 +153,7 @@
 - type: entity
   parent: [ClothingUniformSkirtBase, BaseCommandContraband]
   id: ClothingUniformJumpskirtHoPSyndi
-  name: personnel chief's jumpskirt
+  name: Personnel Chief's Jumpskirt
   description: Rather bland and inoffensive. Perfect for vanishing off the face of the universe.
   components:
   - type: Sprite
@@ -112,10 +164,179 @@
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformJumpskirtHoPTurtleneckSyndi
-  name: personnel chief's turtleneck
+  name: Personnel Chief's Turtleneck
   description: It's the Personnel Chief's turtleneck.
   components:
   - type: Sprite
     sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/syndihop_turtleneck.rsi
   - type: Clothing
     sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/syndihop_turtleneck.rsi
+
+# Security Overwatch (HoS)
+
+- type: entity
+  parent: [ClothingUniformSkirtBase, BaseCommandContraband]
+  id: ClothingUniformJumpskirtHoSSyndi
+  name: Security Overwatch's Jumpskirt
+  suffix: S
+  description: It's half red, half black and rather crisp, much like security's victims tend to be.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/hos-syndi.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/hos-syndi.rsi
+
+- type: entity
+  parent: [ClothingUniformSkirtBase, BaseCommandContraband]
+  id: ClothingUniformJumpskirtHoSAltSyndi
+  name: Security Overwatch's Turtleneck
+  description: It's a turtleneck worn by those strong and disciplined enough to achieve the position of Security Overwatch.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/hos_alt-syndi.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/hos_alt-syndi.rsi
+
+- type: entity
+  parent: [ClothingUniformSkirtBase, BaseCommandContraband]
+  id: ClothingUniformJumpskirtHosFormalSyndi
+  name: Security Overwatch's Formal Dress
+  suffix: S
+  description: A dress for special occasions.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/hos_formal-syndi.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/hos_formal-syndi.rsi
+
+- type: entity
+  parent: [ClothingUniformSkirtBase, BaseCommandContraband]
+  id: ClothingUniformJumpskirtHoSParadeMaleSyndi
+  name: Security Overwatch's Parade Uniform
+  suffix: S
+  description: A security overwatch's luxury-wear, for special occasions.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/hos_parade-syndi.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/hos_parade-syndi.rsi
+
+#region Security
+
+
+# Guardian (Warden)
+
+- type: entity
+  parent: [ClothingUniformSkirtBase, BaseSecurityContraband]
+  id: ClothingUniformJumpskirtWardenSyndi
+  name: Guardian's Jumpskirt
+  description: A formal security suit for officers complete with Syndicate belt buckle.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/warden-syndi.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/warden-syndi.rsi
+  
+# Inspector (Detective)
+
+- type: entity
+  parent: [ClothingUniformSkirtBase, BaseSecurityContraband]
+  id: ClothingUniformJumpskirtDetectiveSyndi
+  name: Hard-Worn Suitskirt
+  suffix: S
+  description: Someone who wears this means business.
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/detective-syndi.rsi
+    - type: Clothing
+      sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/detective-syndi.rsi
+
+- type: entity
+  parent: [ClothingUniformSkirtBase, BaseSecurityContraband]
+  id: ClothingUniformJumpskirtDetectiveGreySyndi
+  name: Noir Suitskirt
+  suffix: S
+  description: A hard-boiled private investigator's grey suit, complete with tie clip.
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/detective_grey-syndi.rsi
+    - type: Clothing
+      sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/detective_grey-syndi.rsi
+
+# Law Enforcer (Security Officer)
+
+- type: entity
+  parent: [ClothingUniformSkirtBase, BaseSecurityContraband]
+  id: ClothingUniformJumpskirtSecSyndi
+  name: Security Jumpskirt
+  suffix: S
+  description: A jumpskirt made of strong material, providing robust protection.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/security-syndi.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/security-syndi.rsi
+
+- type: entity
+  parent: [ClothingUniformSkirtBase, BaseSecurityContraband]
+  id: ClothingUniformJumpskirtSecGreySyndi
+  name: Grey Security Jumpskirt
+  suffix: S
+  description: A tactical relic of years past where the colors have faded over time. 
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/security_grey-syndi.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/security_grey-syndi.rsi
+
+- type: entity
+  parent: [ClothingUniformSkirtBase, BaseSecurityContraband]
+  id: ClothingUniformJumpskirtSecurityTrooperSyndi
+  name: Trooper Uniform
+  suffix: S
+  description: A formal uniform issued to the Syndicate Troopers, usually it comes with a car.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/security_trooper-syndi.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/security_trooper-syndi.rsi
+
+- type: entity
+  parent: [ClothingUniformSkirtBase, BaseSecurityContraband]
+  id: ClothingUniformJumpskirtSeniorOfficerSyndi
+  name: Senior Law Enforcer Jumpskirt
+  suffix: S
+  description: A sign of skill and prestige within the security department.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/senior_officer-syndi.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/senior_officer-syndi.rsi
+      
+# Medical Officer (Brigmedic)
+
+- type: entity
+  parent: [ClothingUniformSkirtBase, BaseSecurityContraband]
+  id: ClothingUniformJumpskirtBrigmedicSyndi
+  name: Medical Officer Jumpskirt
+  suffix: S
+  description: This uniform is issued to qualified personnel who have been trained. No one cares that the training took half a day.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/brigmedic-syndi.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/brigmedic-syndi.rsi
+
+# Recruit (Cadet)
+
+- type: entity
+  parent: [ClothingUniformSkirtBase, BaseSecurityContraband]
+  id: ClothingUniformJumpskirtSecCadetSyndi
+  name: Security Recruit Jumpskirt
+  suffix: S
+  description: A jumpskirt made of strong material, providing robust protection.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/security_cadet-syndi.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/security_cadet-syndi.rsi

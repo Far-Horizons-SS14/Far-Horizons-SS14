@@ -10,13 +10,14 @@
     - Anchorable
   - type: Rotatable
   - type: Sprite
-    sprite: Structures/plastic_flaps.rsi
-    state: plasticflaps
+    sprite: _FarHorizons/Structures/plastic_flaps.rsi #FH
+    state: plasticflaps #FH
     drawdepth: Mobs
   - type: Physics
     bodyType: Static
   - type: Transform
     anchored: true
+    noRot: false #FH
   - type: Fixtures
     fixtures:
       fix1:
@@ -45,7 +46,7 @@
 - type: entity
   id: PlasticFlapsClear
   parent: PlasticFlapsBase
-  name: plastic flaps
+  name: Plastic Flaps #FH CRUSADE
   suffix: Clear
   description: Heavy duty, plastic flaps. Definitely can't get past those. No way.
   components:
@@ -56,7 +57,7 @@
 - type: entity
   id: PlasticFlapsOpaque
   parent: PlasticFlapsBase
-  name: plastic flaps
+  name: Plastic Flaps  #FH CRUSADE
   suffix: Opaque
   description: Heavy duty, plastic flaps. Definitely can't get past those. No way.
   components:
@@ -80,7 +81,7 @@
 - type: entity
   id: PlasticFlapsAirtightClear
   parent: PlasticFlapsBase
-  name: airtight plastic flaps
+  name: Airtight Plastic Flaps  #FH CRUSADE
   suffix: Airtight, Clear
   description: Heavy duty, slightly stronger, airtight plastic flaps. Definitely can't get past those. No way.
   components:
@@ -99,7 +100,7 @@
 - type: entity
   id: PlasticFlapsAirtightOpaque
   parent: PlasticFlapsBase
-  name: airtight plastic flaps
+  name: Airtight Plastic Flaps  #FH CRUSADE
   suffix: Airtight, Opaque
   description: Heavy duty, slightly stronger, airtight plastic flaps. Definitely can't get past those. No way.
   components:
@@ -114,3 +115,4 @@
   - type: Airtight
   - type: StaticPrice
     price: 100
+  - type: Occluder #FH

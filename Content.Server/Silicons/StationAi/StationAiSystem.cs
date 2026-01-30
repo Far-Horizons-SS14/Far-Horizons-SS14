@@ -1,13 +1,11 @@
-using System.Collections.Generic; // Starlight
 using Content.Server.Chat.Systems;
-using Content.Shared._Starlight.Silicons.Borgs; // Starlight
 using Content.Server.Construction;
 using Content.Server.Destructible;
 using Content.Server.Ghost;
+using Content.Server.Ghost.Roles;
+using Content.Server.Ghost.Roles.Components;
 using Content.Server.Mind;
-using Content.Server.Medical.SuitSensors;
 using Content.Server.Power.Components;
-using Content.Server.Power.EntitySystems;
 using Content.Server.Roles;
 using Content.Server.Spawners.Components;
 using Content.Server.Spawners.EntitySystems;
@@ -15,37 +13,46 @@ using Content.Server.Station.Systems;
 using Content.Shared.Alert;
 using Content.Shared.Chat.Prototypes;
 using Content.Shared.Containers.ItemSlots;
-using Content.Shared.Damage;
+using Content.Shared.Damage.Components;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Destructible;
 using Content.Shared.DeviceNetwork.Components;
 using Content.Shared.DoAfter;
-using Content.Shared.Follower; // Starlight
-using Content.Shared.Follower.Components; // Starlight
 using Content.Shared.Mobs;
-using Content.Shared.Mobs.Components; // Starlight
 using Content.Shared.Mobs.Systems;
-using Content.Shared.Medical.SuitSensor; // Starlight
-using Content.Shared.Medical.SuitSensors; // Starlight
 using Content.Shared.Popups;
+using Content.Shared.Power;
+using Content.Shared.Power.EntitySystems;
 using Content.Shared.Power.Components;
 using Content.Shared.Rejuvenate;
 using Content.Shared.Roles;
 using Content.Shared.Silicons.StationAi;
-using Content.Shared.Humanoid; // Starlight
 using Content.Shared.Speech.Components;
 using Content.Shared.StationAi;
 using Content.Shared.Turrets;
 using Content.Shared.Weapons.Ranged.Events;
-using Content.Shared.Warps; // Starlight
 using Robust.Server.Containers;
 using Robust.Shared.Containers;
-using Robust.Shared.Map; // Starlight
 using Robust.Shared.Map.Components;
-using Robust.Shared.Log; // Starlight
-using Robust.Shared.Localization; // Starlight
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using static Content.Server.Chat.Systems.ChatSystem;
+
+#region Starlight
+using Content.Server.Medical.SuitSensors;
+using Content.Shared.Follower.Components;
+using Content.Shared.Follower;
+using Content.Shared.Humanoid;
+using Content.Shared.Medical.SuitSensor;
+using Content.Shared.Medical.SuitSensors;
+using Content.Shared.Mobs.Components;
+using Content.Shared.Warps;
+using Content.Shared._Starlight.Silicons.Borgs;
+using Robust.Shared.Localization;
+using Robust.Shared.Log;
+using Robust.Shared.Map;
+using System.Collections.Generic;
+#endregion Starlight
 
 namespace Content.Server.Silicons.StationAi;
 
@@ -58,9 +65,10 @@ public sealed class StationAiSystem : SharedStationAiSystem
     [Dependency] private readonly RoleSystem _roles = default!;
     [Dependency] private readonly ItemSlotsSystem _slots = default!;
     [Dependency] private readonly GhostSystem _ghost = default!;
+    [Dependency] private readonly ToggleableGhostRoleSystem _ghostrole = default!;
     [Dependency] private readonly AlertsSystem _alerts = default!;
     [Dependency] private readonly DestructibleSystem _destructible = default!;
-    [Dependency] private readonly BatterySystem _battery = default!;
+    [Dependency] private readonly SharedBatterySystem _battery = default!;
     [Dependency] private readonly DamageableSystem _damageable = default!;
     [Dependency] private readonly SharedPopupSystem _popups = default!;
     [Dependency] private readonly StationSystem _station = default!;
@@ -68,18 +76,22 @@ public sealed class StationAiSystem : SharedStationAiSystem
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly IMapManager _map = default!; // Starlight
-    [Dependency] private readonly SuitSensorSystem _suitSensors = default!; // Starlight
-    [Dependency] private readonly FollowerSystem _followerSystem = default!; // Starlight
-
-    private readonly ISawmill _warpSawmill = Logger.GetSawmill("stationai.warp"); // Starlight
+    // Starlight Start
+    [Dependency] private readonly IMapManager _map = default!;
+    [Dependency] private readonly SuitSensorSystem _suitSensors = default!;
+    [Dependency] private readonly FollowerSystem _followerSystem = default!;
+    [Dependency] private readonly StationAiVisionSystem _aiVision = default!;
+    // Starlight End
 
     private readonly HashSet<Entity<StationAiCoreComponent>> _stationAiCores = new();
 
     // Starlight-start
     private readonly Dictionary<EntityUid, EntityUid> _activeFollowTargets = new();
+    private readonly List<EntityUid> _followTargetsToRemove = new();
+    private readonly ISawmill _warpSawmill = Logger.GetSawmill("stationai.warp");
+    private float _followCheckAccumulator;
+    private const float FollowCheckInterval = 1f;
     // Starlight-end
-
 
     private readonly ProtoId<ChatNotificationPrototype> _turretIsAttackingChatNotificationPrototype = "TurretIsAttacking";
     private readonly ProtoId<ChatNotificationPrototype> _aiWireSnippedChatNotificationPrototype = "AiWireSnipped";
@@ -87,9 +99,9 @@ public sealed class StationAiSystem : SharedStationAiSystem
     private readonly ProtoId<ChatNotificationPrototype> _aiCriticalPowerChatNotificationPrototype = "AiCriticalPower";
 
     private readonly ProtoId<JobPrototype> _stationAiJob = "StationAi";
-    private readonly EntProtoId _stationAiBrain = "StationAiBrain";
+    private readonly EntProtoId _stationAiBrain = "StationAiBrainConstructed"; // SL edit
 
-    private readonly ProtoId<AlertPrototype> _batteryAlert = "BorgBattery";
+    private readonly ProtoId<AlertPrototype> _batteryAlert = "AiBattery";
     private readonly ProtoId<AlertPrototype> _damageAlert = "BorgHealth";
 
     public override void Initialize()
@@ -113,7 +125,47 @@ public sealed class StationAiSystem : SharedStationAiSystem
         SubscribeNetworkEvent<StationAiWarpToTargetEvent>(OnStationAiWarpToTarget); // Starlight
     }
 
-    // Starlight-start
+    // Starlight Start: AI warping
+    #region Starlight
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+
+        _followCheckAccumulator += frameTime;
+        if (_followCheckAccumulator < FollowCheckInterval)
+            return;
+
+        _followCheckAccumulator -= FollowCheckInterval;
+
+        // Early exit if no one is being followed
+        if (_activeFollowTargets.Count == 0)
+            return;
+
+        // Check if any followed targets are outside camera view
+        _followTargetsToRemove.Clear();
+
+        foreach (var (target, follower) in _activeFollowTargets)
+        {
+            if (!Exists(target) || !Exists(follower))
+            {
+                _followTargetsToRemove.Add(target);
+                continue;
+            }
+
+            // Check if target is outside AI camera view
+            if (_aiVision.IsOutsideCameraView(target))
+            {
+                _followerSystem.StopFollowingEntity(follower, target);
+                _followTargetsToRemove.Add(target);
+            }
+        }
+
+        foreach (var target in _followTargetsToRemove)
+        {
+            _activeFollowTargets.Remove(target);
+        }
+    }
+
     private void OnStationAiWarpRequest(StationAiWarpRequestEvent msg, EntitySessionEventArgs args)
     {
         if (args.SenderSession.AttachedEntity is not { Valid: true } actor || !HasComp<StationAiHeldComponent>(actor))
@@ -192,6 +244,10 @@ public sealed class StationAiSystem : SharedStationAiSystem
                 if (ownerStation != station)
                     continue;
             }
+
+            // Don't show crew members outside of camera view
+            if (_aiVision.IsOutsideCameraView(ownerUid))
+                continue;
 
             var display = string.IsNullOrWhiteSpace(status.Job)
                 ? status.Name
@@ -317,12 +373,10 @@ public sealed class StationAiSystem : SharedStationAiSystem
         {
             var orbit = !HasComp<StationAiHeldComponent>(user);
             _followerSystem.StartFollowingEntity(remoteEye, target, orbit);
-            // Starlight-start
             if (!orbit)
                 _activeFollowTargets[target] = remoteEye;
             else
                 _activeFollowTargets.Remove(target);
-            // Starlight-end
             return true;
         }
 
@@ -332,16 +386,13 @@ public sealed class StationAiSystem : SharedStationAiSystem
             if (parent.IsValid())
             {
                 _followerSystem.StopFollowingEntity(remoteEye, parent);
-                // Starlight-start
                 if (_activeFollowTargets.TryGetValue(parent, out var follower) && follower == remoteEye)
                     _activeFollowTargets.Remove(parent);
-                // Starlight-end
             }
         }
 
         return TryWarpEyeToCoordinates(user, Transform(target).Coordinates, popupOnFailure);
     }
-    // Starlight-start
 
     private void OnSuitSensorModeChanged(Entity<SuitSensorComponent> ent, ref SuitSensorModeChangedEvent args)
     {
@@ -362,7 +413,9 @@ public sealed class StationAiSystem : SharedStationAiSystem
         if (_activeFollowTargets.TryGetValue(args.Following, out var follower) && follower == args.Follower)
             _activeFollowTargets.Remove(args.Following);
     }
+    #endregion
     // Starlight-end
+
     private void AfterConstructionChangeEntity(Entity<StationAiCoreComponent> ent, ref AfterConstructionChangeEntityEvent args)
     {
         if (!_container.TryGetContainer(ent, StationAiCoreComponent.BrainContainer, out var container) ||
@@ -372,14 +425,30 @@ public sealed class StationAiSystem : SharedStationAiSystem
         }
 
         var brain = container.ContainedEntities[0];
+        var hasMind = _mind.TryGetMind(brain, out var mindId, out var mind);
 
-        if (_mind.TryGetMind(brain, out var mindId, out var mind))
+        if (hasMind || HasComp<GhostRoleComponent>(brain))
         {
-            // Found an existing mind to transfer into the AI core
             var aiBrain = Spawn(_stationAiBrain, Transform(ent.Owner).Coordinates);
-            _roles.MindAddJobRole(mindId, mind, false, _stationAiJob);
-            _mind.TransferTo(mindId, aiBrain);
 
+            if (hasMind)
+            {
+                // Found an existing mind to transfer into the AI core
+                _roles.MindAddJobRole(mindId, mind, false, _stationAiJob);
+                _mind.TransferTo(mindId, aiBrain);
+            }
+            else
+            {
+                // If the brain had a ghost role attached, activate the station AI ghost role
+                _ghostrole.ActivateGhostRole(aiBrain);
+
+                // Set the new AI brain to the 'rebooting' state
+                if (TryComp<StationAiCustomizationComponent>(aiBrain, out var customization))
+                    SetStationAiState((aiBrain, customization), StationAiState.Rebooting);
+                
+            }
+
+            // Delete the new AI brain if it cannot be inserted into the core
             if (!TryComp<StationAiHolderComponent>(ent, out var targetHolder) ||
                 !_slots.TryInsert(ent, targetHolder.Slot, aiBrain, null))
             {
@@ -400,13 +469,10 @@ public sealed class StationAiSystem : SharedStationAiSystem
         // into an AI core that has a full battery and full integrity.
         if (TryComp<BatteryComponent>(ent, out var battery))
         {
-            _battery.SetCharge(ent, battery.MaxCharge);
+            _battery.SetCharge((ent, battery), battery.MaxCharge);
         }
 
-        if (TryComp<DamageableComponent>(ent, out var damageable))
-        {
-            _damageable.SetAllDamage(ent, damageable, 0);
-        }
+        _damageable.ClearAllDamage(ent.Owner);
     }
 
     protected override void OnAiInsert(Entity<StationAiCoreComponent> ent, ref EntInsertedIntoContainerMessage args)
@@ -498,6 +564,7 @@ public sealed class StationAiSystem : SharedStationAiSystem
         UpdateDamagedAccent(entity);
     }
 
+    // TODO: This should just read the current damage and charge when speaking instead of updating the component all the time even if we don't even use it.
     private void UpdateDamagedAccent(Entity<StationAiCoreComponent> ent)
     {
         if (!TryGetHeld((ent.Owner, ent.Comp), out var held))
@@ -507,7 +574,7 @@ public sealed class StationAiSystem : SharedStationAiSystem
             return;
 
         if (TryComp<BatteryComponent>(ent, out var battery))
-            accent.OverrideChargeLevel = battery.CurrentCharge / battery.MaxCharge;
+            accent.OverrideChargeLevel = _battery.GetChargeLevel((ent.Owner, battery));
 
         if (TryComp<DamageableComponent>(ent, out var damageable))
             accent.OverrideTotalDamage = damageable.TotalDamage;
@@ -529,7 +596,7 @@ public sealed class StationAiSystem : SharedStationAiSystem
         if (!_proto.TryIndex(_batteryAlert, out var proto))
             return;
 
-        var chargePercent = battery.CurrentCharge / battery.MaxCharge;
+        var chargePercent = _battery.GetChargeLevel((ent.Owner, battery));
         var chargeLevel = Math.Round(chargePercent * proto.MaxSeverity);
 
         _alerts.ShowAlert(held.Value, _batteryAlert, (short)Math.Clamp(chargeLevel, 0, proto.MaxSeverity));

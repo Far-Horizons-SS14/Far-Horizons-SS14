@@ -1,4 +1,13 @@
-﻿
+﻿# Accessory Time
+- type: loadoutEffectGroup
+  id: NoviceOfficer
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobSecurityOfficer
+      time: 18000 # 5 hrs
+
 # Non-Lethal Weapons
 - type: loadout
   id: SecurityDominator
@@ -16,9 +25,10 @@
   dummyEntity: WeaponPistolMk58
   storage:
     back:
-      - WeaponPistolMk58Nonlethal #Far Horizons
+      - WeaponPistolMk58 #Far Horizons
+      - MagazinePistolSP #Far Horizons
       - MagazinePistolRubber #Far Horizons
-      - MagazinePistolSP
+      - MagazinePistolRubber #Far Horizons
 
 - type: loadout
   id: SecurityPistolDP

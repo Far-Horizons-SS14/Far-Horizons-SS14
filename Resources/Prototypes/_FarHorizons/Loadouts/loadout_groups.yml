@@ -1,95 +1,34 @@
-# Atmos
+#region GSL
+
+# Mining Specialist
 
 - type: loadoutGroup
-  id: AtmosTechHead
-  name: loadout-group-atmos-tech-hat
+  id: MiningSpecialistHead
+  name: loadout-group-mining-head
   minLimit: 0
   loadouts:
-  - AtmosTechBeret
-  - AtmosTechHardhat
-
-# Chemist
+  - MiningHardhat
+  - CargoTechnicianHead
 
 - type: loadoutGroup
-  id: ChemistHead
-  name: loadout-group-chemist-hat
+  id: MiningSpecialistBackpack
+  name: loadout-group-mining-backpack
+  loadouts:
+  - MiningBackpack
+  - MiningDuffel
+  - MiningSatchel
+
+# Salvage Specialist
+
+- type: loadoutGroup
+  id: SalvageHead
+  name: loadout-group-salvage-head
   minLimit: 0
   loadouts:
-  - ChemistBeret
-  - MedicalBeret
+  - SalvageHelmet
+  - CargoTechnicianHead
 
-# Chief Medical Officer
-
-- type: loadoutGroup
-  id: CMOBackpack
-  name: loadout-group-cmo-backpack
-  loadouts:
-    - MedicalDoctorBackpack
-    - MedicalDoctorDuffel
-    - MedicalDoctorSatchel
-    - ChemistBackpack
-    - ChemistDuffel
-    - ChemistSatchel
-    - ParamedicBackpack
-    - ParamedicDuffel
-    - ParamedicSatchel
-    - VirologyBackpack
-    - VirologyDuffel
-    - VirologySatchel
-    - LeatherSatchel
-
-# Corpsman #
-
-- type: loadoutGroup
-  id: CorpsmanHead
-  name: loadout-group-corpsman-head
-  minLimit: 0
-  loadouts:
-  - SecurityHelmet
-  - CorpsmanBeret
-
-- type: loadoutGroup
-  id: CorpsmanJumpsuit
-  name: loadout-group-corpsman-jumpsuit
-  loadouts:
-  - JumpsuitCorpsman
-  - JumpskirtCorpsman
-
-- type: loadoutGroup
-  id: CorpsmanBackpack
-  name: loadout-group-corpsman-backpack
-  loadouts:
-  - CorpsmanBackpack
-  - CorpsmanSatchel
-  - CorpsmanDuffel
-
-- type: loadoutGroup
-  id: CorpsmanOuterClothing
-  name: loadout-group-corpsman-outerclothing
-  loadouts:
-  - SecurityOfficerWintercoat
-  - CorpsmanCoat
-
-- type: loadoutGroup
-  id: CorpsmanEyewear
-  name: loadout-group-corpsman-eyewear
-  loadouts:
-  - CorpsmanGlasses
-  - CorpsmanHud
-  - CorpsmanVisor
-
-- type: loadoutGroup
-  id: CorpsmanBelt
-  name: loadout-group-corpsman-belt
-  loadouts:
-  - CorpsmanBelt
-
-- type: loadoutGroup
-  id: CorpsmanGloves
-  name: loadout-group-corpsman-gloves
-  loadouts:
-  - Nitrile
-  - BlackNitrile
+#region CFA/Law
 
 # IAA
 
@@ -103,21 +42,8 @@
   - GlassesJensen
   - CheapSunnies
   - AssistantNoirGlasses
-  
-# Doctor
 
-- type: loadoutGroup
-  id: DoctorBackpack
-  name: loadout-group-doctor-backpack
-  loadouts:
-    - MedicalDoctorBackpack
-    - MedicalDoctorDuffel
-    - MedicalDoctorSatchel
-    - VirologyBackpack
-    - VirologyDuffel
-    - VirologySatchel
-
-# Magistrate #
+# Magistrate
 
 - type: loadoutGroup
   id: MagistrateHead
@@ -157,29 +83,51 @@
 - type: loadoutGroup
   id: MagistrateEyewear
   name: loadout-group-magistrate-eyewear
-  minLimit: 0
   loadouts:
   - MagistrateGlasses
+  - MagistrateHUD
+
+#region NanoTrasen ##
+
+
+
+
+
+
+
+
+
+
+
+#region Command
+
+
+- type: loadoutGroup
+  id: CommandEyewear
+  name: loadout-group-command-eyewear
+  loadouts:
   - CommandGlasses
   - CommandHud
 
-# Mining Specialist
+# Chief Medical Officer
 
 - type: loadoutGroup
-  id: MiningSpecialistHead
-  name: loadout-group-mining-head
-  minLimit: 0
+  id: CMOBackpack
+  name: loadout-group-cmo-backpack
   loadouts:
-  - MiningHardhat
-  - CargoTechnicianHead
-
-- type: loadoutGroup
-  id: MiningSpecialistBackpack
-  name: loadout-group-mining-backpack
-  loadouts:
-  - MiningBackpack
-  - MiningDuffel
-  - MiningSatchel
+    - MedicalDoctorBackpack
+    - MedicalDoctorDuffel
+    - MedicalDoctorSatchel
+    - ChemistBackpack
+    - ChemistDuffel
+    - ChemistSatchel
+    - ParamedicBackpack
+    - ParamedicDuffel
+    - ParamedicSatchel
+    - VirologyBackpack
+    - VirologyDuffel
+    - VirologySatchel
+    - LeatherSatchel
 
 # NTR
 
@@ -190,49 +138,58 @@
   loadouts:
   - NTRCoat
 
-# Command
+# HOS
 
 - type: loadoutGroup
-  id: CommandEyewear
-  name: loadout-group-command-eyewear
+  id: HoSSidearm
+  name: loadout-group-security-sidearm
+  loadouts:
+  - SecurityRevolverInspectorM500
+  - SecurityRevolverInspector
+  - SecurityRevolverOathbreaker
+  - SecurityRevolverInstigator
+  - SecurityPistolN1984
+  - SecurityPistolDueProcess
+  - SecurityPistolEnforcerFH
+  - SecurityPistolPathology
+  - SecurityMk58
+
+#region Engineering
+
+# Atmos
+
+- type: loadoutGroup
+  id: AtmosTechHead
+  name: loadout-group-atmos-tech-hat
   minLimit: 0
   loadouts:
-  - CommandGlasses
-  - CommandHud
+  - AtmosTechBeret
+  - AtmosTechHardhat
+
+#region Medical
+
+# Chemist
 
 - type: loadoutGroup
-  id: CommandEyewearSyndi
-  name: loadout-group-command-eyewear-syndi
+  id: ChemistHead
+  name: loadout-group-chemist-hat
   minLimit: 0
   loadouts:
-  - CommandGlassesSyndi
-  - CommandHudSyndi
-  
-# Musician
+  - ChemistBeret
+  - MedicalBeret
+
+# Doctor
 
 - type: loadoutGroup
-  id: MusicianHead
-  name: loadout-group-musician-head
-  minLimit: 0
+  id: DoctorBackpack
+  name: loadout-group-doctor-backpack
   loadouts:
-    - MusicianHatPerformer
-    - MusicianHatPerformerBright
-    - MusicianHatPerformerDark
-
-- type: loadoutGroup
-  id: MusicianShoes
-  name: loadout-group-musician-shoes
-  minLimit: 1
-  loadouts:
-  - BlackShoes
-  - WhiteShoes
-  - GreenShoes
-  - LeatherShoes
-  - Heels
-  - LaceupShoes
-  - MusicianShoesPerformer
-  - MusicianShoesPerformerBright
-  - MusicianShoesPerformerDark
+    - MedicalDoctorBackpack
+    - MedicalDoctorDuffel
+    - MedicalDoctorSatchel
+    - VirologyBackpack
+    - VirologyDuffel
+    - VirologySatchel
 
 # Paramedic
 
@@ -243,27 +200,6 @@
     - ParamedicBackpack
     - ParamedicDuffel
     - ParamedicSatchel
-
-# Salvage Specialist
-
-- type: loadoutGroup
-  id: SalvageHead
-  name: loadout-group-salvage-head
-  minLimit: 0
-  loadouts:
-  - SalvageHelmet
-  - CargoTechnicianHead
-
-# Virologist
-
-- type: loadoutGroup
-  id: VirologistBag
-  name: loadout-group-virologist-backpack
-  minLimit: 0
-  loadouts:
-    - VirologyBackpack
-    - VirologyDuffel
-    - VirologySatchel
 
 #Surgeon
 
@@ -329,3 +265,175 @@
   - SurgeonDuffel
   - SurgeonEquipment
 
+# Virologist
+
+- type: loadoutGroup
+  id: VirologistBag
+  name: loadout-group-virologist-backpack
+  minLimit: 0
+  loadouts:
+    - VirologyBackpack
+    - VirologyDuffel
+    - VirologySatchel
+
+#region Security
+
+# Brigmedic
+
+- type: loadoutGroup
+  id: BrigmedicSidearm  
+  name: loadout-group-security-sidearm
+  loadouts:
+  - SecurityRevolverOathbreaker
+  - SecurityMk58
+  - SecurityRevolverInstigator
+
+# Cadet
+
+- type: loadoutGroup
+  id: CadetUniform
+  name: loadout-group-cadet-uniform
+  loadouts:
+    - CadetSuit
+    - CadetSkirt
+
+# Corpsman #
+
+- type: loadoutGroup
+  id: CorpsmanHead
+  name: loadout-group-corpsman-head
+  minLimit: 0
+  loadouts:
+  - SecurityHelmet
+  - CorpsmanBeret
+
+- type: loadoutGroup
+  id: CorpsmanJumpsuit
+  name: loadout-group-corpsman-jumpsuit
+  loadouts:
+  - JumpsuitCorpsman
+  - JumpskirtCorpsman
+
+- type: loadoutGroup
+  id: CorpsmanBackpack
+  name: loadout-group-corpsman-backpack
+  loadouts:
+  - CorpsmanBackpack
+  - CorpsmanSatchel
+  - CorpsmanDuffel
+
+- type: loadoutGroup
+  id: CorpsmanOuterClothing
+  name: loadout-group-corpsman-outerclothing
+  loadouts:
+  - SecurityOfficerWintercoat
+  - CorpsmanCoat
+
+- type: loadoutGroup
+  id: CorpsmanEyewear
+  name: loadout-group-corpsman-eyewear
+  loadouts:
+  - CorpsmanGlasses
+  - CorpsmanHud
+  - CorpsmanVisor
+
+- type: loadoutGroup
+  id: CorpsmanBelt
+  name: loadout-group-corpsman-belt
+  loadouts:
+  - CorpsmanBelt
+
+- type: loadoutGroup
+  id: CorpsmanGloves
+  name: loadout-group-corpsman-gloves
+  loadouts:
+  - Nitrile
+  - BlackNitrile
+
+- type: loadoutGroup
+  id: CorpsmanSidearm  
+  name: loadout-group-security-sidearm
+  loadouts:
+  - SecurityPistolPathology
+  - SecurityMk58
+  - SecurityRevolverInstigator
+
+# Detective
+
+- type: loadoutGroup
+  id: DetectiveSidearm 
+  name: loadout-group-security-sidearm
+  loadouts:
+  - SecurityRevolverInspectorM500
+  - SecurityRevolverInspector
+  - SecurityRevolverInstigatorDet
+
+# Warden
+
+- type: loadoutGroup
+  id: WardenSidearm 
+  name: loadout-group-security-sidearm
+  loadouts:
+  - SecurityPistolDueProcess
+  - SecurityMk58
+  - SecurityRevolverInstigator
+  
+#region Service
+
+# Musician
+
+- type: loadoutGroup
+  id: MusicianHead
+  name: loadout-group-musician-head
+  minLimit: 0
+  loadouts:
+    - MusicianHatPerformer
+    - MusicianHatPerformerBright
+    - MusicianHatPerformerDark
+
+- type: loadoutGroup
+  id: MusicianShoes
+  name: loadout-group-musician-shoes
+  minLimit: 1
+  loadouts:
+  - BlackShoes
+  - WhiteShoes
+  - GreenShoes
+  - LeatherShoes
+  - Heels
+  - LaceupShoes
+  - MusicianShoesPerformer
+  - MusicianShoesPerformerBright
+  - MusicianShoesPerformerDark
+
+# Boxer gone from upstream, readding it here
+- type: loadoutGroup
+  id: BoxerJumpsuit
+  name: loadout-group-boxer-jumpsuit
+  loadouts:
+  - BoxerShorts
+  - BoxerShortsWithTop
+
+- type: loadoutGroup
+  id: BoxerGloves
+  name: loadout-group-boxer-gloves
+  loadouts:
+  - RedBoxingGloves
+  - BlueBoxingGloves
+  - GreenBoxingGloves
+  - YellowBoxingGloves
+
+- type: loadoutGroup
+  id: BoxerJobTrinkets
+  name: loadout-group-jobtrinkets
+  minLimit: 0
+  loadouts:
+  - LizardPlushieBoxer
+
+# Zookeeper gone from upstream, readding it here
+- type: loadoutGroup
+  id: ZookeeperJobTrinkets
+  name: loadout-group-jobtrinkets
+  minLimit: 0
+  loadouts:
+  - LizardPlushieZookeeper

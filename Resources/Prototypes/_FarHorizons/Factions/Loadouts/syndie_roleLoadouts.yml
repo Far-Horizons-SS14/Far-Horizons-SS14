@@ -1,4 +1,4 @@
-# Command
+#region Command
 
 - type: roleLoadout
   id: SyndieCaptain
@@ -16,24 +16,22 @@
 - type: roleLoadout
   id: SyndieHeadOfSecurity
   groups:
-  - HeadofSecurityHead
-  - HeadofSecurityNeck
-  - HeadofSecurityJumpsuit
-  - SecurityBackpack
-  - SecurityBelt
+  - SecurityOverwatchHead
+  - SOHeadset
+  - SecurityEyesSyndi
+  - SONeck
+  - SOUniform
+  - SecurityBackpackSyndi
+  - SecurityBeltSyndi
   - SecurityNonLethalWeapon
-  - HeadofSecurityOuterClothing
-  - SecurityEyewear
-  - SecurityShoes
+  - SOOuterClothing
+  - SecurityShoesSyndi
   - SurvivalSecurity
   - Trinkets
-  - SecurityStar
-  - GroupSpeciesBreathToolSecurity
 
 - type: roleLoadout
   id: SyndieChiefEngineer
   groups:
-  - GroupTankHarness
   - ChiefEngineerHead
   - ChiefEngineerJumpsuit
   - StationEngineerBackpack
@@ -42,12 +40,10 @@
   - ChiefEngineerShoes
   - SurvivalExtended
   - Trinkets
-  - GroupSpeciesBreathTool
 
 - type: roleLoadout
   id: SyndieChiefMedicalOfficer
   groups:
-  - GroupTankHarness
   - ChiefMedicalOfficerHead
   - MedicalMask
   - ChiefMedicalOfficerJumpsuit
@@ -59,12 +55,10 @@
   - MedicalEyewear
   - SurvivalMedical
   - Trinkets
-  - GroupSpeciesBreathToolMedical
 
 - type: roleLoadout
   id: SyndieResearchDirector
   groups:
-  - GroupTankHarness
   - ResearchDirectorHead
   - ResearchDirectorNeck
   - ResearchDirectorJumpsuit
@@ -75,12 +69,10 @@
   - Glasses
   - Survival
   - Trinkets
-  - GroupSpeciesBreathTool
 
 - type: roleLoadout
   id: SyndieHeadOfPersonnel
   groups:
-  - GroupTankHarness
   - PCHead
   - PCNeck
   - PCJumpsuit
@@ -90,7 +82,6 @@
   - CommandEyewearSyndi
   - Survival
   - Trinkets
-  - GroupSpeciesBreathTool
 
 
 - type: roleLoadout
@@ -104,7 +95,6 @@
   - CommandEyewearSyndi
   - Survival
   - Trinkets
-  - GroupSpeciesBreathTool
 
 - type: roleLoadout
   id: SyndieNanoTrasenRepresentative
@@ -115,9 +105,8 @@
   - NanotrasenRepresentativeShoes
   - Trinkets
   - Survival
-  - GroupSpeciesBreathTool
 
-# Law
+#region Law
 
 - type: roleLoadout
   id: SyndieIAA
@@ -128,14 +117,12 @@
   - LawyerShoes
   - Trinkets
   - Survival
-  - GroupSpeciesBreathTool
 
-# Engineering
+#region Engineering
 
 - type: roleLoadout
   id: SyndieAtmosphericTechnician
   groups:
-  - GroupTankHarness
   - AtmosTechHead
   - AtmosphericTechnicianJumpsuit
   - AtmosphericTechnicianBackpack
@@ -143,12 +130,10 @@
   - AtmosphericTechnicianShoes
   - SurvivalExtended
   - Trinkets
-  - GroupSpeciesBreathTool
 
 - type: roleLoadout
   id: SyndieStationEngineer
   groups:
-  - GroupTankHarness
   - StationEngineerHead
   - StationEngineerJumpsuit
   - StationEngineerBackpack
@@ -157,24 +142,20 @@
   - StationEngineerID
   - SurvivalExtended
   - Trinkets
-  - GroupSpeciesBreathTool
 
 - type: roleLoadout
   id: SyndieTechnicalAssistant
   groups:
-  - GroupTankHarness
   - TechnicalAssistantJumpsuit
   - StationEngineerBackpack
   - SurvivalExtended
   - Trinkets
-  - GroupSpeciesBreathTool
 
-# Medical
+#region Medical
 
 - type: roleLoadout
   id: SyndieSurgeon
   groups:
-  - GroupTankHarness
   - MedicalDoctorHead
   - MedicalMask
   - MedicalDoctorJumpsuit
@@ -186,13 +167,11 @@
   - MedicalEyewear
   - SurvivalMedical
   - Trinkets
-  - GroupSpeciesBreathToolMedical
 
 - type: roleLoadout
   id: SyndieChemist
   groups:
   - ChemistHead
-  - GroupTankHarness
   - MedicalMask
   - ChemistJumpsuit
   - MedicalGloves
@@ -201,12 +180,10 @@
   - MedicalShoes
   - SurvivalMedical
   - Trinkets
-  - GroupSpeciesBreathToolMedical
 
 - type: roleLoadout
   id: SyndieParamedic
   groups:
-  - GroupTankHarness
   - ParamedicHead
   - MedicalMask
   - ParamedicJumpsuit
@@ -217,12 +194,10 @@
   - MedicalEyewear
   - SurvivalMedical
   - Trinkets
-  - GroupSpeciesBreathToolMedical
 
 - type: roleLoadout
   id: SyndieMedicalDoctor
   groups:
-  - GroupTankHarness
   - MedicalDoctorHead
   - MedicalMask
   - MedicalDoctorJumpsuit
@@ -234,32 +209,28 @@
   - MedicalEyewear
   - SurvivalMedical
   - Trinkets
-  - GroupSpeciesBreathToolMedical
 
 - type: roleLoadout
   id: SyndieMedicalIntern
   groups:
-  - GroupTankHarness
   - MedicalInternJumpsuit
   - MedicalBackpack
   - MedicalEyewear
   - SurvivalMedical
   - Trinkets
-  - GroupSpeciesBreathToolMedical
 
 - type: roleLoadout
   id: SyndiePsychologist
   groups:
-  - GroupTankHarness
   - PsychologistJumpsuit
   - MedicalBackpack
   - CivilianShoes
   - Glasses
   - Survival
   - Trinkets
-  - GroupSpeciesBreathTool
 
-# Science
+#region Science
+
 - type: roleLoadout
   id: SyndieRoboticist
   groups:
@@ -272,12 +243,10 @@
   - RoboticistShoes
   - Survival
   - Trinkets
-  - GroupSpeciesBreathTool
 
 - type: roleLoadout
   id: SyndieScientist
   groups:
-  - GroupTankHarness
   - ScientistHead
   - ScientistNeck
   - ScientistJumpsuit
@@ -289,127 +258,116 @@
   - Glasses
   - Survival
   - Trinkets
-  - GroupSpeciesBreathTool
 
 - type: roleLoadout
   id: SyndieResearchAssistant
   groups:
-  - GroupTankHarness
   - ResearchAssistantJumpsuit
   - ScientistBackpack
   - Glasses
   - Survival
   - Trinkets
-  - GroupSpeciesBreathTool
 
-# Security
+#region Security
 
 - type: roleLoadout
-  id: SyndieWarden
+  id: SyndieWarden #Guardian
   groups:
-  - WardenHead
-  - WardenJumpsuit
-  - SecurityBackpack
-  - SecurityBelt
-  - WardenOuterClothing
-  - SecurityEyewear
-  - SecurityShoes
+  - GuardianHead
+  - SecurityHeadsetSyndi
+  - SecurityEyesSyndi
+  - GuardianUniform
+  - GuardianOuterClothing
+  - SecurityBackpackSyndi
+  - SecurityBeltSyndi
+  - SecurityShoesSyndi
   - SurvivalSecurity
   - Trinkets
-  - SecurityStar
-  - GroupSpeciesBreathToolSecurity
 
 - type: roleLoadout
-  id: SyndieCorpsman
+  id: SyndieCorpsman #Combat Medic
   groups:
-    - CorpsmanHead
+    - CMHead
+    - SecMedHeadsetSyndi
+    - SecMedEyesSyndi
     - CorpsmanJumpsuit
     - CorpsmanBackpack
     - CorpsmanOuterClothing
-    - CorpsmanBelt
+    - CMBelt
     - CorpsmanGloves
-    - CorpsmanEyewear
-    - SecurityShoes
+    - SecurityShoesSyndi
     - SecurityNonLethalWeapon
     - SecuritySidearm
     - SurvivalSecurity
     - Trinkets
-    - SecurityStar
-    - GroupSpeciesBreathToolSecurity
 
 - type: roleLoadout
-  id: SyndieBrigmedic
+  id: SyndieBrigmedic #Medical Officer
   groups:
-    - BrigmedicHead
-    - BrigmedicJumpsuit
-    - BrigmedicBackpack
-    - BrigmedicOuterClothing
-    - BrigmedicBelt
-    - BrigmedicGloves
-    - BrigmedicEyewear
-    - SecurityShoes
+    - MOHead
+    - SecMedHeadsetSyndi
+    - SecMedEyesSyndi
+    - MOUniform
+    - MOOuterClothing
+    - MedicalOfficerBackpack
+    - MOGloves
+    - MOBelt
     - SecurityNonLethalWeapon
     - SecuritySidearm
+    - SecurityShoesSyndi
     - SurvivalSecurity
     - Trinkets
-    - SecurityStar
-    - GroupSpeciesBreathToolSecurity
 
 - type: roleLoadout
-  id: SyndieDetective
+  id: SyndieDetective #Inspector
   groups:
-  - DetectiveHead
-  - DetectiveNeck
-  - DetectiveJumpsuit
-  - SecurityBackpack
-  - SecurityEyewear
-  - DetectiveOuterClothing
-  - DetectiveShoes
+  - InspectorHead
+  - SecurityHeadsetSyndi
+  - SecurityEyesSyndi
+  - InspectorNeck
+  - InspectorUniform
+  - SecurityBackpackSyndi
+  - InspectorOuterClothing
+  - InspectorShoes
   - SurvivalSecurity
   - Trinkets
-  - SecurityStar
-  - GroupSpeciesBreathToolSecurity
 
 - type: roleLoadout
-  id: SyndieSecurityOfficer
+  id: SyndieSecurityOfficer #Law Enforcer
   groups:
-  - SecurityHead
-  - SecurityJumpsuit
-  - SecurityBackpack
-  - SecurityEyewear
-  - SecurityOuterClothing
-  - SecurityShoes
+  - SecurityHeadSyndi
+  - SecurityHeadsetSyndi
+  - SecurityEyesSyndi
+  - LEUniform
+  - LEOuterClothing
+  - SecurityBackpackSyndi
+  - SecurityBeltSyndi
   - SecurityPDA
-  - SecurityBelt
   - SecurityNonLethalWeapon
   - SecuritySidearm
+  - SecurityShoesSyndi
   - SurvivalSecurity
   - Trinkets
-  - SecurityStar
-  - GroupSpeciesBreathToolSecurity
 
 - type: roleLoadout
-  id: SyndieSecurityCadet
+  id: SyndieSecurityCadet #Recruit
   groups:
-  - SecurityCadetJumpsuit
-  - SecurityBackpack
+  - RecruitUniform
+  - SecurityBackpackSyndi
   - SecurityNonLethalWeapon
-  - SecurityEyewear
   - SurvivalSecurity
   - Trinkets
-  - GroupSpeciesBreathToolSecurity
 
-# Syndie Jobs
+#region SHC
 
 - type: roleLoadout
-  id: SyndieBlueShield
+  id: SyndieBlueShield #Operative "Red Sword"
   groups:
   - BlueShieldJumpsuit
   - BlueShieldBackpack
   - BlueShieldOuterclothing
-  - BlueShieldShoes
+  - RedSwordShoes
   - BlueShieldNeck
   - BlueShieldEyewear
   - Trinkets
   - SurvivalSecurity
-  - GroupSpeciesBreathToolSecurity

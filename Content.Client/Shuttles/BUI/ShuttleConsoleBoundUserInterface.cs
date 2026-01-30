@@ -1,4 +1,5 @@
 using Content.Client.Shuttles.UI;
+using Content.Shared._FarHorizons.Shuttles;
 using Content.Shared.Shuttles.BUIStates;
 using Content.Shared.Shuttles.Events;
 using JetBrains.Annotations;
@@ -81,4 +82,17 @@ public sealed class ShuttleConsoleBoundUserInterface : BoundUserInterface
 
         _window?.UpdateState(Owner, cState);
     }
+
+    // Far Horizons start
+    protected override void ReceiveMessage(BoundUserInterfaceMessage message)
+    {
+        if (_window == null)
+            return;
+
+        if (message is not SpaceRescuePingMessage ping)
+            return;
+
+        _window.RescuePing(ping);
+    }
+    // Far Horizons end
 }

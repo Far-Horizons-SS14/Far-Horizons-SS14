@@ -7,21 +7,21 @@
       slotFlags: FEET
       stripTime: 3
       uiWindowPos: 1,0
-      strippingWindowPos: 1,3
+      strippingWindowPos: 1,4
       displayName: Shoes
     - name: jumpsuit
       slotTexture: uniform
       slotFlags: INNERCLOTHING
       stripTime: 6
       uiWindowPos: 0,1
-      strippingWindowPos: 0,2
+      strippingWindowPos: 0,3
       displayName: Jumpsuit
     - name: outerClothing
       slotTexture: suit
       slotFlags: OUTERCLOTHING
       stripTime: 6
       uiWindowPos: 2,1
-      strippingWindowPos: 2,2
+      strippingWindowPos: 2,3
       displayName: Suit
       blacklist:
         tags:
@@ -31,7 +31,7 @@
       slotFlags: OUTERCLOTHING
       stripTime: 6
       uiWindowPos: 1,1
-      strippingWindowPos: 1,2
+      strippingWindowPos: 1,3
       displayName: Protogen Cybernetics
       whitelist:
         tags:
@@ -40,18 +40,27 @@
       slotTexture: gloves
       slotFlags: GLOVES
       uiWindowPos: 2,2
-      strippingWindowPos: 2,1
+      strippingWindowPos: 2,2
       displayName: Gloves
     - name: neck
       slotTexture: neck
       slotFlags: NECK
       uiWindowPos: 0,2
-      strippingWindowPos: 0,1
+      strippingWindowPos: 0,2
       displayName: Neck
+    - name: pin
+      slotTexture: pin
+      slotFlags: NECK
+      uiWindowPos: 1,2
+      strippingWindowPos: 1,2
+      displayName: Pins
+      whitelist:
+        tags:
+        - GenderPin
     - name: mask
       slotTexture: mask
       slotFlags: MASK
-      uiWindowPos: 1,2
+      uiWindowPos: 1,3
       strippingWindowPos: 1,1
       displayName: Mask
     - name: eyes
@@ -59,19 +68,19 @@
       slotFlags: EYES
       stripTime: 3
       uiWindowPos: 0,3
-      strippingWindowPos: 0,0
+      strippingWindowPos: 0,1
       displayName: Eyes
     - name: ears
       slotTexture: ears
       slotFlags: EARS
       stripTime: 3
       uiWindowPos: 2,3
-      strippingWindowPos: 2,0
+      strippingWindowPos: 2,1
       displayName: Ears
     - name: head
       slotTexture: head
       slotFlags: HEAD
-      uiWindowPos: 1,3
+      uiWindowPos: 1,4
       strippingWindowPos: 1,0
       displayName: Head
     - name: pocket1
@@ -81,7 +90,7 @@
       slotGroup: MainHotbar
       stripTime: 3
       uiWindowPos: 0,3
-      strippingWindowPos: 0,4
+      strippingWindowPos: 0,5
       dependsOn: jumpsuit
       displayName: Pocket 1
       stripHidden: true
@@ -92,7 +101,7 @@
       slotGroup: MainHotbar
       stripTime: 3
       uiWindowPos: 2,3
-      strippingWindowPos: 1,4
+      strippingWindowPos: 1,5
       dependsOn: jumpsuit
       displayName: Pocket 2
       stripHidden: true
@@ -102,7 +111,7 @@
       slotGroup: MainHotbar
       stripTime: 3
       uiWindowPos: 2,0
-      strippingWindowPos: 2,5
+      strippingWindowPos: 2,6
       dependsOn: outerClothing
       dependsOnComponents:
       - type: AllowSuitStorage
@@ -113,7 +122,7 @@
       slotGroup: MainHotbar
       stripTime: 3
       uiWindowPos: 2,4
-      strippingWindowPos: 1,6
+      strippingWindowPos: 2,7
       dependsOn: outerClothing
       dependsOnComponents:
       - type: AllowSuitStorage
@@ -128,7 +137,7 @@
       slotGroup: SecondHotbar
       stripTime: 6
       uiWindowPos: 2,1
-      strippingWindowPos: 2,4
+      strippingWindowPos: 2,5
       dependsOn: jumpsuit
       displayName: ID
     - name: belt
@@ -137,9 +146,24 @@
       slotFlags: BELT
       slotGroup: SecondHotbar
       stripTime: 6
+      uiWindowPos: 2,1
+      strippingWindowPos: 1,7
+      displayName: belt
+      blacklist:
+        tags:
+        - Webbing
+    - name: rig
+      slotTexture: rig
+      fullTextureName: template_small
+      slotFlags: BELT
+      slotGroup: SecondHotbar
+      stripTime: 6
       uiWindowPos: 3,1
-      strippingWindowPos: 1,5
-      displayName: Belt
+      strippingWindowPos: 1,6
+      displayName: Chest Rig
+      whitelist:
+        tags:
+        - Webbing
     - name: back
       slotTexture: back
       fullTextureName: template_small
@@ -147,7 +171,7 @@
       slotGroup: SecondHotbar
       stripTime: 6
       uiWindowPos: 3,0
-      strippingWindowPos: 0,5
+      strippingWindowPos: 0,6
       displayName: Back
       blacklist:
         tags:
@@ -163,14 +187,14 @@
       slotFlags: INNERCLOTHING
       stripTime: 6
       uiWindowPos: 0,1
-      strippingWindowPos: 0,2
+      strippingWindowPos: 0,3
       displayName: Jumpsuit
     - name: outerClothing
       slotTexture: suit
       slotFlags: OUTERCLOTHING
       stripTime: 6
       uiWindowPos: 2,1
-      strippingWindowPos: 2,2
+      strippingWindowPos: 2,3
       displayName: Suit
       blacklist:
         tags:
@@ -180,7 +204,7 @@
       slotFlags: OUTERCLOTHING
       stripTime: 6
       uiWindowPos: 1,1
-      strippingWindowPos: 1,2
+      strippingWindowPos: 1,3
       displayName: Protogen Cybernetics
       whitelist:
         tags:
@@ -189,18 +213,27 @@
       slotTexture: gloves
       slotFlags: GLOVES
       uiWindowPos: 2,2
-      strippingWindowPos: 2,1
+      strippingWindowPos: 2,2
       displayName: Gloves
     - name: neck
       slotTexture: neck
       slotFlags: NECK
       uiWindowPos: 0,2
-      strippingWindowPos: 0,1
+      strippingWindowPos: 0,2
       displayName: Neck
+    - name: pin
+      slotTexture: pin
+      slotFlags: NECK
+      uiWindowPos: 1,2
+      strippingWindowPos: 1,2
+      displayName: Pins
+      whitelist:
+        tags:
+        - GenderPin
     - name: mask
       slotTexture: mask
       slotFlags: MASK
-      uiWindowPos: 1,2
+      uiWindowPos: 1,3
       strippingWindowPos: 1,1
       displayName: Mask
     - name: eyes
@@ -208,19 +241,19 @@
       slotFlags: EYES
       stripTime: 3
       uiWindowPos: 0,3
-      strippingWindowPos: 0,0
+      strippingWindowPos: 0,1
       displayName: Eyes
     - name: ears
       slotTexture: ears
       slotFlags: EARS
       stripTime: 3
       uiWindowPos: 2,3
-      strippingWindowPos: 2,0
+      strippingWindowPos: 2,1
       displayName: Ears
     - name: head
       slotTexture: head
       slotFlags: HEAD
-      uiWindowPos: 1,3
+      uiWindowPos: 1,4
       strippingWindowPos: 1,0
       displayName: Head
     - name: pocket1
@@ -230,7 +263,7 @@
       slotGroup: MainHotbar
       stripTime: 3
       uiWindowPos: 0,3
-      strippingWindowPos: 0,4
+      strippingWindowPos: 0,5
       dependsOn: jumpsuit
       displayName: Pocket 1
       stripHidden: true
@@ -241,7 +274,7 @@
       slotGroup: MainHotbar
       stripTime: 3
       uiWindowPos: 2,3
-      strippingWindowPos: 1,4
+      strippingWindowPos: 1,5
       dependsOn: jumpsuit
       displayName: Pocket 2
       stripHidden: true
@@ -251,7 +284,7 @@
       slotGroup: MainHotbar
       stripTime: 3
       uiWindowPos: 2,0
-      strippingWindowPos: 2,5
+      strippingWindowPos: 2,6
       dependsOn: outerClothing
       dependsOnComponents:
       - type: AllowSuitStorage
@@ -262,7 +295,7 @@
       slotGroup: MainHotbar
       stripTime: 3
       uiWindowPos: 2,4
-      strippingWindowPos: 1,6
+      strippingWindowPos: 2,7
       dependsOn: outerClothing
       dependsOnComponents:
       - type: AllowSuitStorage
@@ -277,7 +310,7 @@
       slotGroup: SecondHotbar
       stripTime: 6
       uiWindowPos: 2,1
-      strippingWindowPos: 2,4
+      strippingWindowPos: 2,5
       dependsOn: jumpsuit
       displayName: ID
     - name: belt
@@ -286,9 +319,24 @@
       slotFlags: BELT
       slotGroup: SecondHotbar
       stripTime: 6
+      uiWindowPos: 2,1
+      strippingWindowPos: 1,7
+      displayName: belt
+      blacklist:
+        tags:
+        - Webbing
+    - name: rig
+      slotTexture: rig
+      fullTextureName: template_small
+      slotFlags: BELT
+      slotGroup: SecondHotbar
+      stripTime: 6
       uiWindowPos: 3,1
-      strippingWindowPos: 1,5
-      displayName: Belt
+      strippingWindowPos: 1,6
+      displayName: Chest Rig
+      whitelist:
+        tags:
+        - Webbing
     - name: back
       slotTexture: back
       fullTextureName: template_small
@@ -296,7 +344,7 @@
       slotGroup: SecondHotbar
       stripTime: 6
       uiWindowPos: 3,0
-      strippingWindowPos: 0,5
+      strippingWindowPos: 0,6
       displayName: Back
       blacklist:
         tags:
@@ -312,21 +360,21 @@
       slotFlags: FEET
       stripTime: 3
       uiWindowPos: 1,0
-      strippingWindowPos: 1,3
+      strippingWindowPos: 1,4
       displayName: Shoes
     - name: jumpsuit
       slotTexture: uniform
       slotFlags: INNERCLOTHING
       stripTime: 6
       uiWindowPos: 0,1
-      strippingWindowPos: 0,2
+      strippingWindowPos: 0,3
       displayName: Jumpsuit
     - name: outerClothing
       slotTexture: suit
       slotFlags: OUTERCLOTHING
       stripTime: 6
       uiWindowPos: 2,1
-      strippingWindowPos: 2,2
+      strippingWindowPos: 2,3
       displayName: Suit
       blacklist:
         tags:
@@ -336,7 +384,7 @@
       slotFlags: OUTERCLOTHING
       stripTime: 6
       uiWindowPos: 1,1
-      strippingWindowPos: 1,2
+      strippingWindowPos: 1,3
       displayName: Protogen Cybernetics
       whitelist:
         tags:
@@ -345,18 +393,27 @@
       slotTexture: gloves
       slotFlags: GLOVES
       uiWindowPos: 2,2
-      strippingWindowPos: 2,1
+      strippingWindowPos: 2,2
       displayName: Gloves
     - name: neck
       slotTexture: neck
       slotFlags: NECK
       uiWindowPos: 0,2
-      strippingWindowPos: 0,1
+      strippingWindowPos: 0,2
       displayName: Neck
+    - name: pin
+      slotTexture: pin
+      slotFlags: NECK
+      uiWindowPos: 1,2
+      strippingWindowPos: 1,2
+      displayName: Pins
+      whitelist:
+        tags:
+        - GenderPin
     - name: mask
       slotTexture: mask
       slotFlags: MASK
-      uiWindowPos: 1,2
+      uiWindowPos: 1,3
       strippingWindowPos: 1,1
       displayName: Mask
     - name: eyes
@@ -364,19 +421,19 @@
       slotFlags: EYES
       stripTime: 3
       uiWindowPos: 0,3
-      strippingWindowPos: 0,0
+      strippingWindowPos: 0,1
       displayName: Eyes
     - name: ears
       slotTexture: ears
       slotFlags: EARS
       stripTime: 3
       uiWindowPos: 2,3
-      strippingWindowPos: 2,0
+      strippingWindowPos: 2,1
       displayName: Ears
     - name: head
       slotTexture: head
       slotFlags: HEAD
-      uiWindowPos: 1,3
+      uiWindowPos: 1,4
       strippingWindowPos: 1,0
       displayName: Head
     - name: pocket1
@@ -386,7 +443,7 @@
       slotGroup: MainHotbar
       stripTime: 3
       uiWindowPos: 0,3
-      strippingWindowPos: 0,4
+      strippingWindowPos: 0,5
       dependsOn: jumpsuit
       displayName: Pocket 1
       stripHidden: true
@@ -397,7 +454,7 @@
       slotGroup: MainHotbar
       stripTime: 3
       uiWindowPos: 2,3
-      strippingWindowPos: 1,4
+      strippingWindowPos: 1,5
       dependsOn: jumpsuit
       displayName: Pocket 2
       stripHidden: true
@@ -407,7 +464,7 @@
       slotGroup: MainHotbar
       stripTime: 3
       uiWindowPos: 2,0
-      strippingWindowPos: 2,5
+      strippingWindowPos: 2,6
       dependsOn: outerClothing
       dependsOnComponents:
       - type: AllowSuitStorage
@@ -419,7 +476,7 @@
       slotGroup: MainHotbar
       stripTime: 3
       uiWindowPos: 2,4
-      strippingWindowPos: 1,6
+      strippingWindowPos: 2,8
       dependsOn: outerClothing
       dependsOnComponents:
       - type: AllowSuitStorage
@@ -434,7 +491,7 @@
       slotGroup: MainHotbar
       stripTime: 3
       uiWindowPos: 2,5
-      strippingWindowPos: 2,6
+      strippingWindowPos: 2,7
       dependsOn: outerClothing
       dependsOnComponents:
       - type: AllowSuitStorage
@@ -446,7 +503,7 @@
       slotGroup: SecondHotbar
       stripTime: 6
       uiWindowPos: 2,1
-      strippingWindowPos: 2,4
+      strippingWindowPos: 2,5
       dependsOn: jumpsuit
       displayName: ID
     - name: belt
@@ -455,9 +512,24 @@
       slotFlags: BELT
       slotGroup: SecondHotbar
       stripTime: 6
+      uiWindowPos: 2,1
+      strippingWindowPos: 1,7
+      displayName: belt
+      blacklist:
+        tags:
+        - Webbing
+    - name: rig
+      slotTexture: rig
+      fullTextureName: template_small
+      slotFlags: BELT
+      slotGroup: SecondHotbar
+      stripTime: 6
       uiWindowPos: 3,1
-      strippingWindowPos: 1,5
-      displayName: Belt
+      strippingWindowPos: 1,6
+      displayName: Chest Rig
+      whitelist:
+        tags:
+        - Webbing
     - name: back
       slotTexture: back
       fullTextureName: template_small
@@ -465,7 +537,7 @@
       slotGroup: SecondHotbar
       stripTime: 6
       uiWindowPos: 3,0
-      strippingWindowPos: 0,5
+      strippingWindowPos: 0,6
       displayName: Back
 
 #region ARACHNID
@@ -478,31 +550,40 @@
       slotFlags: FEET
       stripTime: 3
       uiWindowPos: 1,0
-      strippingWindowPos: 1,3
+      strippingWindowPos: 1,4
       displayName: Shoes
     - name: jumpsuit
       slotTexture: uniform
       slotFlags: INNERCLOTHING
       stripTime: 6
       uiWindowPos: 0,1
-      strippingWindowPos: 0,2
+      strippingWindowPos: 0,3
       displayName: Jumpsuit
     - name: gloves
       slotTexture: gloves
       slotFlags: GLOVES
       uiWindowPos: 2,2
-      strippingWindowPos: 2,1
+      strippingWindowPos: 2,2
       displayName: Gloves
     - name: neck
       slotTexture: neck
       slotFlags: NECK
       uiWindowPos: 0,2
-      strippingWindowPos: 0,1
+      strippingWindowPos: 0,2
       displayName: Neck
+    - name: pin
+      slotTexture: pin
+      slotFlags: NECK
+      uiWindowPos: 1,2
+      strippingWindowPos: 1,2
+      displayName: Pins
+      whitelist:
+        tags:
+        - GenderPin
     - name: mask
       slotTexture: mask
       slotFlags: MASK
-      uiWindowPos: 1,2
+      uiWindowPos: 1,3
       strippingWindowPos: 1,1
       displayName: Mask
     - name: eyes
@@ -510,19 +591,19 @@
       slotFlags: EYES
       stripTime: 3
       uiWindowPos: 0,3
-      strippingWindowPos: 0,0
+      strippingWindowPos: 0,1
       displayName: Eyes
     - name: ears
       slotTexture: ears
       slotFlags: EARS
       stripTime: 3
       uiWindowPos: 2,3
-      strippingWindowPos: 2,0
+      strippingWindowPos: 2,1
       displayName: Ears
     - name: head
       slotTexture: head
       slotFlags: HEAD
-      uiWindowPos: 1,3
+      uiWindowPos: 1,4
       strippingWindowPos: 1,0
       displayName: Head
     - name: id
@@ -532,7 +613,7 @@
       slotGroup: SecondHotbar
       stripTime: 6
       uiWindowPos: 2,1
-      strippingWindowPos: 2,4
+      strippingWindowPos: 2,5
       dependsOn: jumpsuit
       displayName: ID
     - name: belt
@@ -541,9 +622,24 @@
       slotFlags: BELT
       slotGroup: SecondHotbar
       stripTime: 6
+      uiWindowPos: 2,1
+      strippingWindowPos: 1,7
+      displayName: belt
+      blacklist:
+        tags:
+        - Webbing
+    - name: rig
+      slotTexture: rig
+      fullTextureName: template_small
+      slotFlags: BELT
+      slotGroup: SecondHotbar
+      stripTime: 6
       uiWindowPos: 3,1
-      strippingWindowPos: 1,5
-      displayName: Belt
+      strippingWindowPos: 1,6
+      displayName: Chest Rig
+      whitelist:
+        tags:
+        - Webbing
     - name: back
       slotTexture: back
       fullTextureName: template_small
@@ -551,7 +647,7 @@
       slotGroup: SecondHotbar
       stripTime: 6
       uiWindowPos: 3,0
-      strippingWindowPos: 0,5
+      strippingWindowPos: 0,6
       displayName: Back
       blacklist:
         tags:
@@ -564,7 +660,7 @@
       slotGroup: MainHotbar
       stripTime: 3
       uiWindowPos: 2,4
-      strippingWindowPos: 2,3
+      strippingWindowPos: 2,4
       displayName: Pocket 4
     - name: pocket3
       slotTexture: web
@@ -573,14 +669,14 @@
       slotGroup: MainHotbar
       stripTime: 3
       uiWindowPos: 0,4
-      strippingWindowPos: 0,3
+      strippingWindowPos: 0,4
       displayName: Pocket 3
     - name: outerClothing
       slotTexture: suit
       slotFlags: OUTERCLOTHING
       stripTime: 6
       uiWindowPos: 2,1
-      strippingWindowPos: 2,2
+      strippingWindowPos: 2,3
       displayName: Suit
       blacklist:
         tags:
@@ -590,7 +686,7 @@
       slotFlags: OUTERCLOTHING
       stripTime: 6
       uiWindowPos: 1,1
-      strippingWindowPos: 1,2
+      strippingWindowPos: 1,3
       displayName: Protogen Cybernetics
       whitelist:
         tags:
@@ -602,7 +698,7 @@
       slotGroup: MainHotbar
       stripTime: 3
       uiWindowPos: 0,3
-      strippingWindowPos: 0,4
+      strippingWindowPos: 0,5
       dependsOn: jumpsuit
       displayName: Pocket 1
       stripHidden: true
@@ -613,7 +709,7 @@
       slotGroup: MainHotbar
       stripTime: 3
       uiWindowPos: 2,3
-      strippingWindowPos: 1,4
+      strippingWindowPos: 1,5
       dependsOn: jumpsuit
       displayName: Pocket 2
       stripHidden: true
@@ -623,8 +719,22 @@
       slotGroup: MainHotbar
       stripTime: 3
       uiWindowPos: 2,0
-      strippingWindowPos: 2,5
+      strippingWindowPos: 2,6
       dependsOn: outerClothing
       dependsOnComponents:
       - type: AllowSuitStorage
       displayName: Suit Storage
+    - name: suitstorage2
+      slotTexture: tank
+      slotFlags:   SUITSTORAGE
+      slotGroup: MainHotbar
+      stripTime: 3
+      uiWindowPos: 2,4
+      strippingWindowPos: 2,7
+      dependsOn: outerClothing
+      dependsOnComponents:
+      - type: AllowSuitStorage
+      displayName: Tank Storage
+      whitelist:
+        tags:
+        - GasTank

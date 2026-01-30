@@ -5,6 +5,11 @@
   components:
   # Core power behavior
   - type: Battery
+    # Very important:
+    # Disable networking to prevent the battery getting continuously dirtied every tick as it interacts with the power network.
+    # This can not be done by changing the charge rate as the power supply ramps up over time.
+    # This disables prediction for this battery.
+    netsync: false
   - type: ExaminableBattery
   - type: NodeContainer
     examinable: true
@@ -60,7 +65,7 @@
   # Ambient sound
   - type: AmbientOnPowered
   - type: AmbientSound
-    volume: -5
+    volume: -4 #SL edit -5 -> -4
     sound:
       path: /Audio/Ambience/Objects/buzzing.ogg
 
@@ -69,13 +74,13 @@
   abstract: true
   id: BaseSubstation
   parent: [ CoreSubstation, BaseMachine, ConstructibleMachine ]
-  name: substation
+  name: Substation #Far Horizons - The Great Capitalization Crusade
   description: Reduces the voltage of electricity put into it.
   placement:
     mode: SnapgridCenter
   components:
   - type: Sprite # TODO: add sprite for maintenance panel open
-    sprite: Structures/Power/substation.rsi
+    sprite: _FarHorizons/Structures/Power/substation.rsi #Far Horizons
     snapCardinals: true
     layers:
     - state: substation
@@ -92,7 +97,7 @@
     color: "#ff6900"
     castShadows: false
   - type: PowerMonitoringDevice
-    sprite: Structures/Power/substation.rsi
+    sprite: _FarHorizons/Structures/Power/substation.rsi #Far Horizons
     state: substation_static
   - type: Destructible
     thresholds:
@@ -146,7 +151,7 @@
   id: BaseSubstationWall
   parent: CoreSubstation
   categories: [ HideSpawnMenu ]
-  name: wallmount substation
+  name: Wallmount Substation #Far Horizons - The Great Capitalization Crusade
   description: A substation designed for compact shuttles and spaces.
   placement:
     mode: SnapgridCenter
@@ -176,7 +181,7 @@
     anchored: true
   - type: Sprite # TODO: add sprite for maintenance panel open
     drawdepth: WallMountedItems
-    sprite: Structures/Power/substation.rsi
+    sprite: _FarHorizons/Structures/Power/substation.rsi #Far Horizons
     layers:
     - state: substation_wall
     - state: screen_wall
@@ -185,7 +190,7 @@
     maxCharge: 2000000
     startingCharge: 0
   - type: PowerMonitoringDevice
-    sprite: Structures/Power/substation.rsi
+    sprite: _FarHorizons/Structures/Power/substation.rsi #Far Horizons
     state: substation_wall_static
   - type: Destructible
     thresholds:
@@ -257,7 +262,7 @@
 - type: entity
   id: BaseSubstationWallFrame
   categories: [ HideSpawnMenu ]
-  name: wallmount substation frame
+  name: Wallmount Substation Frame #Far Horizons - The Great Capitalization Crusade
   description: A substation frame for construction.
   placement:
     mode: SnapgridCenter
@@ -272,7 +277,7 @@
     anchored: true
   - type: Sprite
     drawdepth: WallMountedItems
-    sprite: Structures/Power/substation.rsi
+    sprite: _FarHorizons/Structures/Power/substation.rsi #Far Horizons
     layers:
     - state: substation_wall
   - type: Construction

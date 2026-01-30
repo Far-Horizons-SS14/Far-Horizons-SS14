@@ -1,3 +1,4 @@
+using Content.Client._FarHorizons.DiscordLink;
 using Content.Client._Starlight.Managers;
 using Content.Client.Administration.Managers;
 using Content.Client.Changelog;
@@ -21,25 +22,25 @@ using Content.Client.Screenshot;
 using Content.Client.Stylesheets;
 using Content.Client.Viewport;
 using Content.Client.Voting;
-using Content.Shared._NullLink;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Administration.Managers;
 using Content.Shared.Chat;
+using Content.Shared.IoC;
 using Content.Shared.Players.PlayTimeTracking;
 using Content.Shared.Players.RateLimiting;
 using Content.Shared.Starlight;
-using Content.Client._NullLink;
 using Content.Shared._FarHorizons.Factions;
 using Content.Client._FarHorizons.Factions;
+using Content.Shared._Starlight.DocumentManager;
+using Content.Shared._FarHorizons.DiscordLink;
 
 namespace Content.Client.IoC
 {
     internal static class ClientContentIoC
     {
-        public static void Register()
+        public static void Register(IDependencyCollection collection)
         {
-            var collection = IoCManager.Instance!;
-
+            SharedContentIoC.Register(collection);
             collection.Register<IParallaxManager, ParallaxManager>();
             collection.Register<GeneratedParallaxCache>();
             collection.Register<IChatManager, ChatManager>();
@@ -71,14 +72,12 @@ namespace Content.Client.IoC
             collection.Register<TitleWindowManager>();
             collection.Register<ClientsidePlaytimeTrackingManager>();
 
-            // NullLink start
-            collection.Register<INullLinkPlayerRolesManager, NullLinkPlayerRolesManager>();  
-            collection.Register<ISharedNullLinkPlayerRolesReqManager, PlayerRolesReqManager>();
-            // NullLink end
-
             // Far Horizons start
             collection.Register<ISharedFactionManager, ClientFactionManager>();
+            collection.Register<IDiscordLinkManagerShared, DiscordLinkManager>();  // double-registered for compatibility
+            collection.Register<DiscordLinkManager>();  
             // Far Horizons end
+            collection.Register<PreWrittenDocumentManager>(); // Starlight
         }
     }
 }

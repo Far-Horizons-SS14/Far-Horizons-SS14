@@ -12,11 +12,11 @@
     BlueShield: 110
     NanoTrasenRepresentative: 165
 
-    Chemist: 90
+    Chemist: 80 #Far Horizons - They are making a little too much.
     Paramedic: 50
     MedicalDoctor: 58
     MedicalIntern: 23
-    Surgeon: 90
+    Surgeon: 70 #Far Horizons - They are making a little too much for what they currently do.
 
     AtmosphericTechnician: 90
     StationEngineer: 54
@@ -24,7 +24,10 @@
 
     Warden: 90
     Detective: 80
-    Brigmedic: 73
+    #Far Horizons-Start
+    Brigmedic: 90
+    Corpsman: 100
+    #Far Horizons-End
     SecurityOfficer: 64
     SecurityCadet: 23
 
@@ -68,7 +71,7 @@
 - type: SalaryRoleBonus
   id: MentorshipBonus
   roles:
-  - 1294132218918207639 # Mentor
+  - 1407078878786359348 # Mentor ##Far Horizons Edited
   multiplayer: 0.25
 
 - type: SalaryRoleBonus

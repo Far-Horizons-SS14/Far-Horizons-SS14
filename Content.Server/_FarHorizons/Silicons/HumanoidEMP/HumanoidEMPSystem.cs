@@ -1,11 +1,12 @@
 using Content.Server.Body.Systems;
-using Content.Server.Emp;
 using Content.Server.Hands.Systems;
 using Content.Server.Stunnable;
 using Content.Shared._FarHorizons.Silicons.HumanoidEMP;
-using Content.Shared.Damage;
+using Content.Shared.Damage.Systems;
+using Content.Shared.Emp;
 using Content.Shared.Movement.Systems;
 using Content.Shared.StatusEffectNew;
+using Robust.Shared.Timing;
 
 namespace Content.Server._FarHorizons.Silicons.HumanoidEMP;
 
@@ -17,25 +18,29 @@ public sealed partial class HumanoidEMPSystem : EntitySystem
     [Dependency] private readonly DamageableSystem _damageable = default!;
     [Dependency] private readonly StatusEffectsSystem _status = default!;
     [Dependency] private readonly HandsSystem _hands = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
     public override void Initialize()
     {
         base.Initialize();
 
         SubscribeLocalEvent<HumanoidEMPComponent, EmpPulseEvent>(OnHumanoidEMP);
-        SubscribeLocalEvent<HumanoidEMPCompositeComponent, EmpPulseEvent>(OnHumanoidEMPComposite);
     }
 
     private void OnHumanoidEMP(Entity<HumanoidEMPComponent> ent, ref EmpPulseEvent args)
     {
         if (args.Disabled)
             return;
+        
+        if (_timing.CurTime < ent.Comp.NextEffect)
+            return;
+        
+        ent.Comp.NextEffect = _timing.CurTime + ent.Comp.EffectCooldown;
 
-        ApplyEffect(ent, ent.Comp.Effect);
-    }
-    private void OnHumanoidEMPComposite(Entity<HumanoidEMPCompositeComponent> ent, ref EmpPulseEvent args)
-    {
-        if (!args.Disabled)
-            ApplyEffect(ent, CompositeEffect(ent));
+        var effect = ent.Comp.Effect;
+        if (TryComp(ent, out HumanoidEMPCompositeComponent? composite))
+            effect = CompositeEffect((ent, composite));
+
+        ApplyEffect(ent, effect);
     }
 
     public HumanoidEMPEffect CompositeEffect(Entity<HumanoidEMPCompositeComponent> ent)

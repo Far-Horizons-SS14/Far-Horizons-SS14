@@ -10,6 +10,7 @@ using Content.Shared.Tag;
 using Content.Shared.Weapons.Melee.Events;
 using Robust.Shared.Collections;
 using Robust.Shared.Prototypes;
+using Content.Shared._FarHorizons.Vehicles.Components;
 
 namespace Content.Server.Chemistry.EntitySystems;
 
@@ -89,11 +90,15 @@ public sealed class SolutionInjectOnCollideSystem : EntitySystem
 
         // Build a list of bloodstreams to inject into
         var targetBloodstreams = new ValueList<Entity<BloodstreamComponent>>();
-        foreach (var target in targets)
+        foreach (var targeting in targets)//FarHorizons
         {
+            var target = targeting; //FarHorizons
             if (Deleted(target))
                 continue;
-
+            //FarHorizons Start
+            if(TryComp<VehicleComponent>(target, out var vehicle) && HasComp<VehicleBuckleComponent>(target) && vehicle.Rider != null)
+                target = vehicle.Rider.Value;
+            //FarHorizons End
             // Yuck, this is way to hardcodey for my tastes
             // TODO blocking injection with a hardsuit should probably done with a cancellable event or something
             if (!injector.Comp.PierceArmor && _inventory.TryGetSlotEntity(target, "outerClothing", out var suit) && _tag.HasTag(suit.Value, HardsuitTag))
@@ -148,7 +153,7 @@ public sealed class SolutionInjectOnCollideSystem : EntitySystem
             // Take our portion of the adjusted solution for this target
             var individualInjection = solutionToInject.SplitSolution(volumePerBloodstream);
             // Inject our portion into the target's bloodstream
-            if (_bloodstream.TryAddToChemicals(targetBloodstream.AsNullable(), individualInjection))
+            if (_bloodstream.TryAddToBloodstream(targetBloodstream.AsNullable(), individualInjection))
                 anySuccess = true;
         }
 

@@ -10,6 +10,8 @@ using Content.Server._Starlight.Language;
 using Content.Server.Chat.Systems;
 using Content.Shared.Verbs;
 using Content.Server.Popups;
+using Content.Shared._Starlight.Language;
+using Content.Shared._Starlight.Language.Components;
 
 namespace Content.Server._FarHorizons.Tools.HandheldRadio;
 
@@ -37,9 +39,7 @@ public sealed class HandheldRadioSystem : EntitySystem
         SubscribeLocalEvent<HandheldRadioComponent, ListenEvent>(OnListen);
         SubscribeLocalEvent<HandheldRadioComponent, GetVerbsEvent<AlternativeVerb>>(OnGetAlternativeVerb);
 
-        var query = EntityQueryEnumerator<HandheldRadioComponent>();
-        while (query.MoveNext(out var uid, out var comp))
-            AddFrequencyCache((uid, comp));
+        RefreshCache();
     }
 
     public override void Update(float frameTime)
@@ -99,13 +99,9 @@ public sealed class HandheldRadioSystem : EntitySystem
         if (ent.Comp.CurrentFrequency == args.Frequency)
             return;
 
-        RemoveFrequencyCache(ent);
-
         ent.Comp.CurrentFrequency = args.Frequency;
         Dirty(ent);
-
-        if (ent.Comp.SpeakerEnabled)
-            AddFrequencyCache(ent);
+        RefreshCache();
     }
 
     private void OnStateChange(Entity<HandheldRadioComponent> ent, ref HandheldRadioStateChange args){
@@ -121,17 +117,12 @@ public sealed class HandheldRadioSystem : EntitySystem
                 _appearance.SetData(ent, HandheldRadioVisuals.Microphone, args.value);
                 break;
             case HandheldRadioState.Speaker:
-                if (!ent.Comp.SpeakerEnabled && args.value)
-                    AddFrequencyCache(ent, true);
-                
-                if (ent.Comp.SpeakerEnabled && !args.value)
-                    RemoveFrequencyCache(ent);
-                
                 ent.Comp.SpeakerEnabled = args.value;
                 _appearance.SetData(ent, HandheldRadioVisuals.Speaker, args.value);
                 break;
         }
         Dirty(ent);
+        RefreshCache();
     }
 
     private void OnDropped(Entity<HandheldRadioComponent> ent, ref DroppedEvent args)
@@ -173,45 +164,46 @@ public sealed class HandheldRadioSystem : EntitySystem
     private void OnListen(Entity<HandheldRadioComponent> ent, ref ListenEvent args)
     {
         if (_recentlySent.Add((ent.Comp.CurrentFrequency, args.Source, args.Message)))
-            RelayMessage(ent.Comp.CurrentFrequency, args.Source, ent, args.Message);
+            RelayMessage(ent, args.Source, args.Message);
     }
 
-    private void RelayMessage(float frequency, EntityUid source, Entity<HandheldRadioComponent> sender, string message){
-        if (!_frequencyCache.TryGetValue(frequency, out var freq) || freq is null || !TryComp(sender, out TransformComponent? senderTransform) )
+    private void RelayMessage(Entity<HandheldRadioComponent> radio, EntityUid source, string message)
+    {
+        if (!_frequencyCache.TryGetValue(radio.Comp.CurrentFrequency, out var freq) || 
+            freq == null || 
+            !TryComp(radio, out TransformComponent? senderTf) ||
+            !TryComp(source, out MetaDataComponent? sourceMeta))
             return;
-
-        foreach (var radio in freq)
+        
+        foreach (var targetRadio in freq)
         {
-            if (radio.Owner == sender.Owner)
+            if (targetRadio == radio ||
+                !targetRadio.Comp.SpeakerEnabled ||
+                !TryComp(targetRadio, out TransformComponent? targetTf) ||
+                !TryComp(targetRadio, out MetaDataComponent? targetMeta))
                 continue;
 
-            if (TryComp(radio.Owner, out TransformComponent? ownerTransform) && senderTransform.MapID != ownerTransform.MapID && !radio.Comp.RecievesFromAnyMap)
+            if (senderTf.MapID != targetTf.MapID && !targetRadio.Comp.RecievesFromAnyMap)
                 continue;
-
-            var name = Loc.GetString("speech-name-relay", ("speaker", Name(radio.Owner)), ("originalName", Name(source)));
-            var language = _language.GetLanguage(source);
-            _chat.TrySendInGameICMessage(radio.Owner, message, InGameICChatType.Whisper, ChatTransmitRange.GhostRangeLimit, nameOverride: name, checkRadioPrefix: false, languageOverride: language);
+            
+            var name = Loc.GetString("speech-name-relay", ("speaker", Name(radio, targetMeta)), ("originalName", Name(source, sourceMeta)));
+            LanguagePrototype? language = null;
+            if (TryComp(source, out LanguageSpeakerComponent? sourceLang))
+                language = _language.GetLanguage((source, sourceLang));
+            _chat.TrySendInGameICMessage(targetRadio, message, InGameICChatType.Whisper, ChatTransmitRange.GhostRangeLimit, nameOverride: name, checkRadioPrefix: false, languageOverride: language);
         }
     }
 
-    private void AddFrequencyCache(Entity<HandheldRadioComponent> radio, bool force = false){
-        if (!radio.Comp.SpeakerEnabled && !force)
-            return;
-
-        if (!_frequencyCache.TryGetValue(radio.Comp.CurrentFrequency, out var value) || value is null)
-            _frequencyCache[radio.Comp.CurrentFrequency] = [];
-
-        _frequencyCache[radio.Comp.CurrentFrequency].Add(radio);
+    private void RefreshCache()
+    {
+        _frequencyCache.Clear();
+        var query = EntityQueryEnumerator<HandheldRadioComponent>();
+        while (query.MoveNext(out var uid, out var comp))
+        {
+            if (!_frequencyCache.TryGetValue(comp.CurrentFrequency, out var value) || value is null)
+                _frequencyCache[comp.CurrentFrequency] = [];
+            
+            _frequencyCache[comp.CurrentFrequency].Add((uid, comp));
+        }
     }
-
-    private void RemoveFrequencyCache(Entity<HandheldRadioComponent> radio){
-        if (!_frequencyCache.TryGetValue(radio.Comp.CurrentFrequency, out var freq) || freq is null ||
-            !freq.Contains(radio))
-            return;
-        freq.Remove(radio);
-
-        if (freq.Count == 0)
-            _frequencyCache.Remove(radio.Comp.CurrentFrequency);
-    }
-
 }

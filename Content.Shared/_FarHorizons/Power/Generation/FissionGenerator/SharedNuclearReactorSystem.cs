@@ -16,9 +16,6 @@ public abstract class SharedNuclearReactorSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly EntityManager _entityManager = default!;
 
-    protected static readonly int _gridWidth = NuclearReactorComponent.ReactorGridWidth;
-    protected static readonly int _gridHeight = NuclearReactorComponent.ReactorGridHeight;
-
     public override void Initialize()
     {
         base.Initialize();
@@ -37,25 +34,17 @@ public abstract class SharedNuclearReactorSystem : EntitySystem
 
     protected bool ReactorTryGetSlot(EntityUid uid, string slotID, out ItemSlot? itemSlot) => _slotsSystem.TryGetSlot(uid, slotID, out itemSlot);
 
-    protected static ReactorPartComponent?[,] SelectPrefab(string select) => select switch
-    {
-        "normal" => NuclearReactorPrefabs.Normal,
-        "debug" => NuclearReactorPrefabs.Debug,
-        "meltdown" => NuclearReactorPrefabs.Meltdown,
-        "alignment" => NuclearReactorPrefabs.Alignment,
-        "arachne" => NuclearReactorPrefabs.Arachne,
-        "lens" => NuclearReactorPrefabs.Lens,
-        _ => NuclearReactorPrefabs.Empty,
-    };
-
     public void UpdateGridVisual(Entity<NuclearReactorComponent> ent)
     {
         var comp = ent.Comp;
         var uid = ent.Owner;
 
-        for (var x = 0; x < _gridWidth; x++)
+        if (comp.ComponentGrid == null)
+            return;
+
+        for (var x = 0; x < comp.ReactorGridWidth; x++)
         {
-            for (var y = 0; y < _gridHeight; y++)
+            for (var y = 0; y < comp.ReactorGridHeight; y++)
             {
                 var gridComp = comp.ComponentGrid[x, y];
                 var vector = new Vector2i(x, y);
@@ -121,7 +110,7 @@ public abstract class SharedNuclearReactorSystem : EntitySystem
         }
     }
 
-    protected static bool AdjustControlRods(NuclearReactorComponent comp, float change) { 
+    public static bool AdjustControlRods(NuclearReactorComponent comp, float change) { 
         var newSet = Math.Clamp(comp.ControlRodInsertion + change, 0, 2);
         if (comp.ControlRodInsertion != newSet)
         {
@@ -130,187 +119,4 @@ public abstract class SharedNuclearReactorSystem : EntitySystem
         }
         return false; 
     }
-}
-
-public static class NuclearReactorPrefabs
-{
-    private static readonly ReactorPartComponent c = BaseReactorComponents.ControlRod;
-    private static readonly ReactorPartComponent f = BaseReactorComponents.FuelRod;
-    private static readonly ReactorPartComponent g = BaseReactorComponents.GasChannel;
-    private static readonly ReactorPartComponent h = BaseReactorComponents.HeatExchanger;
-
-    public static readonly ReactorPartComponent?[,] Empty =
-    {
-        {
-            null, null, null, null, null, null, null
-        },
-        {
-            null, null, null, null, null, null, null
-        },
-        {
-            null, null, null, null, null, null, null
-        },
-        {
-            null, null, null, null, null, null, null
-        },
-        {
-            null, null, null, null, null, null, null
-        },
-        {
-            null, null, null, null, null, null, null
-        },
-        {
-            null, null, null, null, null, null, null
-        }
-    };
-
-    public static readonly ReactorPartComponent?[,] Normal =
-    {
-        {
-            null, null, null, null, null, null, null
-        },
-        {
-            null, null, null, null, null, null, null
-        },
-        {
-            g, h, g, h, g, h, g
-        },
-        {
-            h, null, c, null, c, null, h
-        },
-        {
-            g, h, g, h, g, h, g
-        },
-        {
-            null, null, null, null, null, null, null
-        },
-        {
-            null, null, null, null, null, null, null
-        }
-    };
-
-    public static readonly ReactorPartComponent?[,] Debug =
-    {
-        {
-            null, null, null, null, null, null, null
-        },
-        {
-            null, null, null, null, null, null, null
-        },
-        {
-            g, h, g, h, g, h, g
-        },
-        {
-            h, f, c, f, c, f, h
-        },
-        {
-            g, h, g, h, g, h, g
-        },
-        {
-            null, null, null, null, null, null, null
-        },
-        {
-            null, null, null, null, null, null, null
-        }
-    };
-
-    public static readonly ReactorPartComponent?[,] Meltdown =
-    {
-        {
-            f, f, f, f, f, f, f
-        },
-        {
-            f, f, f, f, f, f, f
-        },
-        {
-            f, f, f, f, f, f, f
-        },
-        {
-            f, f, f, f, f, f, f
-        },
-        {
-            f, f, f, f, f, f, f
-        },
-        {
-            f, f, f, f, f, f, f
-        },
-        {
-            f, f, f, f, f, f, f
-        },
-    };
-
-    public static readonly ReactorPartComponent?[,] Alignment =
-    {
-        {
-            null, null, null, null, null, null, c
-        },
-        {
-            null, null, null, null, null, c, null
-        },
-        {
-            null, null, null, null, c, null, null
-        },
-        {
-            null, null, null, c, null, null, null
-        },
-        {
-            null, null, c, null, c, null, null
-        },
-        {
-            null, c, null, null, null, c, null
-        },
-        {
-            c, null, null, null, null, null, c
-        }
-    };
-
-    public static readonly ReactorPartComponent?[,] Arachne =
-    {
-        {
-            g, h, g, h, g, h, g
-        },
-        {
-            h, f, c, f, c, f, h
-        },
-        {
-            g, c, c, g, c, c, g
-        },
-        {
-            h, f, g, c, g, f, h
-        },
-        {
-            g, c, c, g, c, c, g
-        },
-        {
-            h, f, c, f, c, f, h
-        },
-        {
-            g, h, g, h, g, h, g
-        }
-    };
-
-    public static readonly ReactorPartComponent?[,] Lens =
-    {
-        {
-            g, h, g, h, g, h, g
-        },
-        {
-            h, f, c, g, c, f, h
-        },
-        {
-            g, c, c, h, c, c, g
-        },
-        {
-            h, g, h, f, h, g, h
-        },
-        {
-            g, c, c, h, c, c, g
-        },
-        {
-            h, f, c, g, c, f, h
-        },
-        {
-            g, h, g, h, g, h, g
-        }
-    };
 }

@@ -14,14 +14,15 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 //Far Horizons Start
-using Content.Shared.Buckle.Components;
-using Content.Shared.DeviceLinking;
-using Content.Shared.Research.Components;
-using Content.Shared.Research.Systems;
-using Content.Shared.Research.Prototypes;
 using Content.Shared.Verbs;
 using Content.Server.Hands.Systems;
+using Content.Server._FarHorizons.Research;
+using Content.Server._FarHorizons.Medical.SurgeryOverhaul.Systems;
+using Content.Shared._FarHorizons.Research;
 //Far Horizons End
+using Content.Server.Administration.Systems;
+using Content.Shared.Damage.Systems;
+
 namespace Content.Server.Starlight.Medical.Surgery;
 // Based on the RMC14.
 // https://github.com/RMC-14/RMC-14
@@ -34,7 +35,8 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
     [Dependency] private readonly ContainerSystem _containers = default!;
-    [Dependency] private readonly SharedResearchSystem _research = default!; //Far Horizons
+    [Dependency] private readonly FHResearchSystem _fhResearch = default!; //Far Horizons
+    [Dependency] private readonly SurgeryOverhaulSystem _surgeryOverhaul = default!; // Far Horizons
     [Dependency] private readonly HandsSystem _handsSystem = default!;
 
     private readonly List<EntProtoId> _surgeries = [];
@@ -159,16 +161,13 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
     }
     private string GetResearchLevel(EntityUid body)
     {
-        if (TryComp(body, out BuckleComponent? buckle) &&
-            TryComp(buckle.BuckledTo, out DeviceLinkSinkComponent? linkComp) &&
-            linkComp.LinkedSources.Count > 0 &&
-            TryComp(linkComp.LinkedSources.First(), out TechnologyDatabaseComponent? techComp))
+        if (_surgeryOverhaul.TryGetConnectedResearchServer(body, out var server))
         {
-            var AdvSurgeryTechProto = _prototypes.Index<TechnologyPrototype>("SurgeryTechAdvanced");
-            var SurgeryTechProto = _prototypes.Index<TechnologyPrototype>("SurgeryTech");
-            if (_research.IsTechnologyUnlocked(body, AdvSurgeryTechProto, techComp))
+            ProtoId<ResearchTreeUnlockFlagPrototype> AdvSurgeryFlag = "UnlockFlagSurgerySpeed2"; // TODO: make not cringe
+            ProtoId<ResearchTreeUnlockFlagPrototype> SurgeryFlag = "UnlockFlagSurgerySpeed1";
+            if (_fhResearch.IsFlagUnlocked((server.Value, server.Value.Comp), AdvSurgeryFlag))
                 return "Advanced Surgery";
-            if (_research.IsTechnologyUnlocked(body, SurgeryTechProto, techComp))
+            if (_fhResearch.IsFlagUnlocked((server.Value, server.Value.Comp), SurgeryFlag))
                 return "Basic Surgery";
         }
         return "None";

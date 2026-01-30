@@ -65,6 +65,7 @@ public sealed partial class ATMSystem : SharedATMSystem
             QueueDel(ent);
             _uiSystem.SetUiState(args.Target.Value, ATMUIKey.Key, new ATMBuiState() { Balance = playerData.Balance });
             _audioSystem.PlayPvs(atm.DepositSound, args.Target.Value);
+            args.Handled = true; // Far Horizons, don't continue with the rest of interaction after deleting money
         }
     }
 

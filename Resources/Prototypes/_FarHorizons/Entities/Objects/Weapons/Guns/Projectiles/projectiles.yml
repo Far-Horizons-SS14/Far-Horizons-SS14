@@ -24,3 +24,156 @@
     proto: PelletKinetic
     count: 5
     spread: 25
+
+# Launcher projectiles (Rockets)
+- type: entity
+  id: Bullet120mmRocketHE
+  name: HE Rocket
+  description: Why are are you looking at this? Move!
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/Projectiles/120mm_rockets.rsi
+    layers:
+      - state: base_2
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 100
+    intensitySlope: 8
+    totalIntensity: 350
+    maxTileBreak: 4
+  - type: PointLight
+    radius: 5
+    color: red
+    energy: 4.5
+
+- type: entity
+  id: Bullet120mmRocketAP
+  name: AP Rocket
+  description: Why are you looking at this? Move!
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/Projectiles/120mm_rockets.rsi
+    layers:
+      - state: base_1
+  - type: ProjectileGrenade
+    triggerKey: trigger
+    fillPrototype: PelletClusterAP
+    capacity: 22
+  - type: ContainerContainer
+    containers:
+      cluster-payload: !type:Container
+  - type: PointLight
+    radius: 3.5
+    color: green
+    energy: 3.5
+
+- type: entity
+  id: Bullet120mmRocketIncindiary
+  name: Dragon's Breath Rocket
+  description: Why are you looking at this? Move!
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/Projectiles/120mm_rockets.rsi
+    layers:
+      - state: base_3
+  - type: ProjectileGrenade
+    triggerKey: trigger
+    fillPrototype: PelletClusterDragonsBreath
+    capacity: 28
+  - type: ContainerContainer
+    containers:
+      cluster-payload: !type:Container
+  - type: PointLight
+    radius: 4.5
+    color: orange
+    energy: 4.0
+
+- type: entity
+  id: Bullet120mmRocketShrapnel
+  name: Shrapnel Rocket
+  description: Why are you looking at this? Move!
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/Projectiles/120mm_rockets.rsi
+    layers:
+      - state: base_4
+  - type: ProjectileGrenade
+    triggerKey: trigger
+    fillPrototype: PelletClusterShrapnel
+    capacity: 24
+  - type: ContainerContainer
+    containers:
+      cluster-payload: !type:Container
+  - type: PointLight
+    radius: 4.0
+    color: yellow
+    energy: 3.8
+
+
+# Rocket Projectiles (Cluster Pellets)
+
+- type: entity
+  id: PelletClusterAP
+  name: Pellet (Ball, AP)
+  categories: [ HideSpawnMenu ]
+  parent: BaseBullet
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    state: buckshot
+  - type: Projectile
+    deleteOnCollide: false
+    damage:
+      types:
+        Piercing: 25
+    ignoreResistances: true
+  - type: TimedDespawn
+    lifetime: 0.25
+
+- type: entity
+  id: PelletClusterDragonsBreath
+  name: Pellet (Ball, Dragon's Breath)
+  categories: [ HideSpawnMenu ]
+  parent: BaseBulletIncendiary
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    state: buckshot-flare
+  - type: Projectile
+    deleteOnCollide: false
+    damage:
+      types:
+        Blunt: 2
+        Heat: 75
+  - type: IgniteOnCollide
+    fireStacks: 1
+    count: 10
+  - type: TimedDespawn
+    lifetime: 0.15
+
+- type: entity
+  id: PelletClusterShrapnel
+  name: Pellet (Ball, Shrapnel)
+  categories: [ HideSpawnMenu ]
+  parent: BaseBullet
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    state: buckshot
+  - type: Projectile
+    deleteOnCollide: false
+    damage:
+      types:
+        Piercing: 35
+    ignoreResistances: false
+  - type: TimedDespawn
+    lifetime: 0.20

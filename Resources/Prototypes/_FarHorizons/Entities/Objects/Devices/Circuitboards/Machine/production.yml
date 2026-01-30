@@ -1,0 +1,160 @@
+- type: entity
+  id: AutofabMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: Autofab Machine Board
+  description: A machine printed circuit board for an Autofab.
+  components:
+    - type: MachineBoard
+      prototype: Autofab
+      stackRequirements:
+        Manipulator: 4
+        Glass: 1
+
+- type: entity
+  parent: BaseMachineCircuitboard
+  id: AutofabSubzeroMachineCircuitboard
+  name: Subzero Autofab Machine Board
+  description: A machine printed circuit board for a Subzero Autofab.
+  components:
+  - type: MachineBoard
+    prototype: AutofabSubzero
+    stackRequirements:
+      Manipulator: 3
+      Glass: 1
+      Cable: 10
+
+- type: entity
+  id: ProtofabMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: Protofab Machine Board
+  description: A machine printed circuit board for a Protofab.
+  components:
+  - type: Sprite
+    state: science
+  - type: MachineBoard
+    prototype: Protofab
+    stackRequirements:
+      Manipulator: 4
+    tagRequirements:
+      GlassBeaker:
+        amount: 2
+        defaultPrototype: Beaker
+
+- type: entity
+  parent: BaseMachineCircuitboard
+  id: ProtofabSubzeroMachineCircuitboard
+  name: Subzero Protofab Machine Board
+  description: A machine printed circuit board for a Subzero Protofab.
+  components:
+  - type: Sprite
+    state: science
+  - type: MachineBoard
+    prototype: ProtofabSubzero
+    stackRequirements:
+      Manipulator: 4
+      Cable: 10
+    tagRequirements:
+      GlassBeaker:
+        amount: 2
+        defaultPrototype: Beaker
+
+- type: entity
+  id: BoardEngraverMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: Board Engraver Machine Board
+  description: A machine printed circuit board for a Board Engraver.
+  components:
+  - type: Sprite
+    state: science
+  - type: MachineBoard
+    prototype: BoardEngraver
+    stackRequirements:
+      Manipulator: 2
+    tagRequirements:
+      GlassBeaker:
+        amount: 2
+        defaultPrototype: Beaker
+
+- type: entity
+  parent: BaseMachineCircuitboard
+  id: BoardEngraverSubzeroMachineCircuitboard
+  name: Subzero Board Engraver Machine Board
+  description: A machine printed circuit board for a Subzero Board Engraver.
+  components:
+  - type: Sprite
+    state: science
+  - type: MachineBoard
+    prototype: BoardEngraverSubzero
+    stackRequirements:
+      Manipulator: 2
+      Cable: 10
+    tagRequirements:
+      GlassBeaker:
+        amount: 2
+        defaultPrototype: Beaker
+
+- type: entity
+  id: CybersunAssemblerMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: Cybersun Assembler Machine Board
+  description: A machine printed circuit board for a Cybersun Assembler.
+  components:
+  - type: Sprite
+    state: science
+  - type: MachineBoard
+    prototype: CybersunAssembler
+    stackRequirements:
+      Manipulator: 4
+      Glass: 5
+  - type: GuideHelp
+    guides:
+    - Robotics
+
+- type: entity
+  id: OverwatchTechFabCircuitboard
+  parent: BaseMachineCircuitboard
+  name: Overwatch TechFab Machine Board
+  description: A machine printed circuit board for an Overwatch TechFab.
+  components:
+    - type: Sprite
+      state: security
+    - type: MachineBoard
+      prototype: OverwatchTechFab
+      stackRequirements:
+        Manipulator: 4
+      tagRequirements:
+        GlassBeaker:
+          amount: 2
+          defaultPrototype: Beaker
+
+#Ammotechfab isnt needed yet
+
+- type: entity
+  id: InterdyneTechFabCircuitboard
+  parent: BaseMachineCircuitboard
+  name: Interdyne Techfab Machine Board
+  description: A machine printed circuit board for an Interdyne Techfab.
+  components:
+    - type: Sprite
+      state: medical
+    - type: MachineBoard
+      prototype: InterdyneTechFab
+      stackRequirements:
+        Manipulator: 4
+      tagRequirements:
+        GlassBeaker:
+          amount: 2
+          defaultPrototype: Beaker
+#    - type: StealTarget #TODO: Figure out steal target stuff
+#      stealGroup: MedicalTechFabCircuitboard
+
+- type: entity
+  id: NSUniformPrinterMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: NeoSol Uniform Printer Machine Board
+  description: A machine printed circuit board for a NeoSol Uniform Printer.
+  components:
+  - type: MachineBoard
+    prototype: NSUniformPrinter
+    stackRequirements:
+      Manipulator: 3

@@ -17,6 +17,7 @@ using Content.Shared.FixedPoint;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
+using Content.Shared._FarHorizons.Vehicles.Components;
 
 namespace Content.Shared._Starlight.Combat.OnHit;
 
@@ -78,8 +79,13 @@ public abstract class SharedOnHitSystem : EntitySystem
         if (ev.Cancelled)
             return;
 
-        foreach (var target in args.HitEntities)
+        foreach (var targeting in args.HitEntities)//FarHorizons-edit 
         {
+            //FarHorizons-edit Start
+            var target = targeting;
+            if(TryComp<VehicleComponent>(target, out var vehicle) && HasComp<VehicleBuckleComponent>(target) && vehicle.Rider != null)
+                target = vehicle.Rider.Value;
+            //FarHorizons-edit End
             if (_solutionContainers.TryGetInjectableSolution(target, out var targetSoln, out var targetSolution))
             {
                 var solution = new Solution(ent.Comp.Reagents);

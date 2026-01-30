@@ -31,6 +31,7 @@
   desc: salvage-dungeon-mod-soviet-stronghold
   proto: ShipWreckDungeon
   biomes:
+    #- LowDesert # Far Horizons
     - Grasslands
   difficulties: 
     - Challenging
@@ -45,8 +46,10 @@
   biomes:
     - Lava
     - Grasslands
+    - LowDesert # Far Horizons
     - Caves
     - Snow
+    - Mountains # Far Horizons
   difficulties: 
     - Difficult
 
@@ -73,7 +76,7 @@
   desc: salvage-dungeon-mod-experiment
   proto: Experiment
   biomes:
-    #- LowDesert
+    - LowDesert # Far Horizons
     - Abyss
     - Grasslands
   difficulties: 
@@ -109,6 +112,7 @@
   proto: SnowyLabs
   biomes:
     - Snow
+    - Mountains # Far Horizons
   difficulties: 
     - Challenging
     - Moderate
@@ -140,7 +144,7 @@
   temperature: 323.15 # 50C
   biomes:
     - Caves
-    #- LowDesert
+    - LowDesert # Far Horizons
     - Grasslands
     - Lava
   difficulties: 
@@ -155,7 +159,7 @@
   temperature: 423.15 # 200C
   biomes:
     - Caves
-    #- LowDesert
+    - LowDesert # Far Horizons
     - Lava
   difficulties: 
     - Challenging
@@ -178,9 +182,9 @@
   temperature: 275.15 # 2C
   biomes:
     - Caves
-    #- LowDesert
     - Grasslands
     - Snow
+    - Mountains # Far Horizons
   difficulties: 
     - Challenging
     - Moderate
@@ -194,6 +198,7 @@
   biomes:
     - Caves
     - Snow
+    - Mountains # Far Horizons
   difficulties: 
     - Challenging
     - Moderate
@@ -205,6 +210,7 @@
   temperature: 123.15 # -150C
   biomes:
     - Snow
+    - Mountains # Far Horizons
   difficulties: 
     - Challenging
 
@@ -245,8 +251,9 @@
     - 10 # nitrous oxide
   biomes:
     - Caves
-    #- LowDesert
+    - LowDesert # Far Horizons
     - Snow
+    - Mountains # Far Horizons
     - Grasslands
     - Lava
   difficulties: 
@@ -255,7 +262,7 @@
  
 - type: salvageAirMod
   id: Poisoned
-  cost: 2
+  cost: 1 # Far Horizons
   desc: salvage-air-mod-dangerous-atmosphere
   gases:
     - 21.824779 # oxygen
@@ -263,8 +270,9 @@
     - 10 # carbon dioxide
   biomes:
     - Caves
-    #- LowDesert
+    - LowDesert # Far Horizons
     - Snow
+    - Mountains # Far Horizons
     - Grasslands
     - Lava
   difficulties: 
@@ -273,7 +281,7 @@
  
 - type: salvageAirMod
   id: Poison
-  cost: 3
+  cost: 2 # Far Horizons
   desc: salvage-air-mod-toxic-atmosphere
   gases:
     - 21.824779 # oxygen
@@ -282,14 +290,14 @@
   biomes:
     - Caves
     - Snow
+    - Mountains # Far Horizons
     - Lava
   difficulties: 
     - Challenging
     - Moderate
- 
 - type: salvageAirMod
   id: Plasma
-  cost: 4
+  cost: 4 # Far Horizons, this is to make sure this doesn't happen
   desc: salvage-air-mod-toxic-atmosphere
   gases:
     - 0

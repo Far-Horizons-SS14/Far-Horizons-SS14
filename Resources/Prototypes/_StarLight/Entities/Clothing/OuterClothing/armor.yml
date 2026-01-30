@@ -1,7 +1,7 @@
 - type: entity
   parent: [ClothingOuterArmorBase, BaseCommandContraband]
   id: ClothingOuterArmorBlueShield
-  name: blueshield officer's bulletproof vest
+  name: Blueshield Officer's Bulletproof Vest #Far Horizons - The Great Capitalization Crusade
   description: Much better than a standard type-1 security vest. Don't lose it, you will NOT get a replacement.
   components:
   - type: Sprite
@@ -26,80 +26,80 @@
     size: Normal
 
 - type: entity
-  parent: [ ClothingOuterArmorBasic, BaseMajorContraband ]
+  parent: [BaseMajorContraband, ClothingOuterArmorBasic]
   id: ClothingOuterArmorAbductor
-  name: agent vest
+  name: Agent Vest #Far Horizons - The Great Capitalization Crusade
   components:
-  - type: Sprite
-    sprite: _Starlight/Clothing/OuterClothing/Armor/abductor.rsi
-  - type: Clothing
-    sprite: _Starlight/Clothing/OuterClothing/Armor/abductor.rsi
-    equippedPrefix: stealth
-  - type: Item
-    size: Normal
-  - type: AbductorVest
-  - type: ItemSwitch
-    state: stealth
-    states:
-      Stealth: !type:ItemSwitchState
-        verb: Stealth
-        hiden: true
-        sprite:
-          sprite: _Starlight/Clothing/OuterClothing/Armor/abductor.rsi
-          state: icon
-        components:
-        - type: Pierceable
-          level: Metal
-        - type: Armor
-          modifiers:
-            coefficients:
-              Blunt: 0.85
-              Slash: 0.85
-              Heat: 0.85
-              Piercing: 0.85
-              Radiation: 0.85
-              Caustic: 0.25
-          staminaModifier: 0.85
-        - type: ExplosionResistance
-          damageCoefficient: 0.85
+    - type: Sprite
+      sprite: _Starlight/Clothing/OuterClothing/Armor/abductor.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/OuterClothing/Armor/abductor.rsi
+      equippedPrefix: stealth
+    - type: Item
+      size: Normal
+    - type: AbductorVest
+    - type: ItemSwitch
+      state: stealth
+      states:
+        Stealth: !type:ItemSwitchState
+          verb: Stealth
+          hiden: true
+          sprite:
+            sprite: _Starlight/Clothing/OuterClothing/Armor/abductor.rsi
+            state: icon
+          components:
+            - type: Pierceable
+              level: Metal
+            - type: Armor
+              modifiers:
+                coefficients:
+                  Blunt: 0.85
+                  Slash: 0.85
+                  Heat: 0.85
+                  Piercing: 0.85
+                  Radiation: 0.85
+                  Caustic: 0.25
+              staminaModifier: 0.85
+            - type: ExplosionResistance
+              damageCoefficient: 0.85
 
-      Combat: !type:ItemSwitchState
-        verb: Combat
-        hiden: true
-        sprite:
-          sprite: _Starlight/Clothing/OuterClothing/Armor/abductor.rsi
-          state: combat-icon
-        components:
-        - type: Pierceable
-          level: Metal
-        - type: Armor
-          modifiers:
-            flatReductions: #FH
-              Piercing: 5 #FH
-              Heat: 4 #FH
-            coefficients:
-              Blunt: 0.5
-              Slash: 0.5
-              Heat: 0.5
-              Piercing: 0.5
-              Radiation: 0.5
-              Caustic: 0.1
-          staminaModifier: 0.5
-        - type: ExplosionResistance
-          damageCoefficient: 0.5
+        Combat: !type:ItemSwitchState
+          verb: Combat
+          hiden: true
+          sprite:
+            sprite: _Starlight/Clothing/OuterClothing/Armor/abductor.rsi
+            state: combat-icon
+          components:
+          - type: Pierceable
+            level: Metal
+          - type: Armor
+            modifiers:
+              flatReductions: #FH
+                Piercing: 5 #FH
+                Heat: 4 #FH
+              coefficients:
+                Blunt: 0.5
+                Slash: 0.5
+                Heat: 0.5
+                Piercing: 0.5
+                Radiation: 0.5
+                Caustic: 0.1
+            staminaModifier: 0.5
+          - type: ExplosionResistance
+            damageCoefficient: 0.5
 
 - type: entity
   parent: [ClothingOuterArmorBase, BaseSecurityContraband]
   id: ClothingOuterArmorPlate
-  name: plate carrier
+  name: Plate Carrier #Far Horizons - The Great Capitalization Crusade
   description: A standard Type II armored vest that provides good protection against bullets and lasers with the help of a plate inserted in the back and front, but not much else.
   components:
   - type: Pierceable
     level: Metal
   - type: Sprite
-    sprite: _Starlight/Clothing/OuterClothing/Armor/platecarrier.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Armor/platecarrier.rsi #Far Horizons
   - type: Clothing
-    sprite: _Starlight/Clothing/OuterClothing/Armor/platecarrier.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Armor/platecarrier.rsi #Far Horizons
   - type: Armor
     modifiers:
       flatReductions: #FH
@@ -115,27 +115,27 @@
 - type: entity
   parent: [ClothingOuterArmorBase, BaseSecurityContraband]
   id: ClothingOuterArmorStab
-  name: stabproof vest
+  name: Stabproof Vest #Far Horizons - The Great Capitalization Crusade
   description: Contrary to it's name, it's just a Type II armored vest that provides good protection against stabs and punches, but not much else.
   components:
-  - type: Pierceable
-    level: Metal
-  - type: Sprite
-    sprite: _Starlight/Clothing/OuterClothing/Armor/stabvest.rsi
-  - type: Clothing
-    sprite: _Starlight/Clothing/OuterClothing/Armor/stabvest.rsi
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.55
-        Slash: 0.55
-        Piercing: 0.85
-        Heat: 0.85
+    - type: Pierceable
+      level: Metal
+    - type: Sprite
+      sprite: _FarHorizons/Clothing/OuterClothing/Armor/stabvest.rsi #Far Horizons
+    - type: Clothing
+      sprite: _FarHorizons/Clothing/OuterClothing/Armor/stabvest.rsi #Far Horizons
+    - type: Armor
+      modifiers:
+        coefficients:
+          Blunt: 0.55
+          Slash: 0.55
+          Piercing: 0.85
+          Heat: 0.85
 
 - type: entity
   parent: [ClothingOuterArmorBase, BaseSecurityContraband]
   id: ClothingOuterArmorHeatAbsorb
-  name: heat absorbent vest
+  name: Heat Absorbent Vest #Far Horizons - The Great Capitalization Crusade
   description: Advanced vest designed to absorb heat rather than reflect it, but still has some reflective properties itself. Not good against bullets or blunt impacts due to the fragile material.
   components:
   - type: Pierceable
@@ -157,56 +157,60 @@
 - type: entity
   parent: [ClothingOuterArmorForged, BaseMinorContraband]
   id: ClothingOuterArmorMakeshift
-  name: makeshift vest
+  name: Makeshift Vest #Far Horizons - The Great Capitalization Crusade
   description: Might catch a bullet. Might.
   components:
-  - type: Sprite
-    sprite: _Starlight/Clothing/OuterClothing/Armor/makeshift.rsi
-  - type: Clothing
-    sprite: _Starlight/Clothing/OuterClothing/Armor/makeshift.rsi
-  - type: Armor 
-    modifiers:
-      coefficients:
-        Blunt: 0.90
-        Slash: 0.80
-        Piercing: 0.90
-        Heat: 0.95
-  - type: ClothingSpeedModifier
-    walkModifier: 0.90
-    sprintModifier: 0.90
-  - type: ExplosionResistance
-    damageCoefficient: 0.95
-  - type: Construction
-    graph: ClothingOuterArmorMakeshiftGraph
-    node: vest
+    - type: Sprite
+      sprite: _Starlight/Clothing/OuterClothing/Armor/makeshift.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/OuterClothing/Armor/makeshift.rsi
+    - type: Armor
+      modifiers:
+        coefficients:
+          Blunt: 0.90
+          Slash: 0.80
+          Piercing: 0.90
+          Heat: 0.95
+    - type: ClothingSpeedModifier
+      walkModifier: 0.90
+      sprintModifier: 0.90
+    - type: ExplosionResistance
+      damageCoefficient: 0.95
+    - type: Construction
+      graph: ClothingOuterArmorMakeshiftGraph
+      node: vest
 
 - type: entity
   parent: [ClothingOuterArmorForged, BaseMinorContraband]
   id: ClothingOuterArmorImprovised
-  name: improvised vest
+  name: Improvised Vest #Far Horizons - The Great Capitalization Crusade
   description: Interlocking metal plates ensure you're decently protected against stabs, but not much else.
   components:
-  - type: Sprite
-    sprite: _Starlight/Clothing/OuterClothing/Armor/improvised.rsi
-  - type: Clothing
-    sprite: _Starlight/Clothing/OuterClothing/Armor/improvised.rsi
-  - type: Armor 
-    modifiers:
-      coefficients:
-        Blunt: 0.85
-        Slash: 0.70
-        Piercing: 0.85
-        Heat: 0.90
-  - type: ClothingSpeedModifier
-    walkModifier: 0.95
-    sprintModifier: 0.95
-  - type: ExplosionResistance
-    damageCoefficient: 0.95
+    - type: Sprite
+      sprite: _Starlight/Clothing/OuterClothing/Armor/improvised.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/OuterClothing/Armor/improvised.rsi
+    - type: Armor
+      modifiers:
+        coefficients:
+          Blunt: 0.85
+          Slash: 0.70
+          Piercing: 0.85
+          Heat: 0.90
+    - type: ClothingSpeedModifier
+      walkModifier: 0.95
+      sprintModifier: 0.95
+    - type: ExplosionResistance
+      damageCoefficient: 0.95
 
 - type: entity
-  parent: [ClothingOuterBaseMedium, AllowSuitStorageClothing, BaseMinorContraband] #BaseSecurityContraband overwrites BaseMinorContraband, annoyingly enough.
+  parent: [
+      ClothingOuterBaseMedium,
+      AllowSuitStorageClothing,
+      BaseMinorContraband,
+    ] #BaseSecurityContraband overwrites BaseMinorContraband, annoyingly enough.
   id: ClothingOuterArmorForged
-  name: forged vest
+  name: Forged Vest #Far Horizons - The Great Capitalization Crusade
   description: A product of high-quality tidesmithing, the additional leather padding and the swap for plasteel over steel ensures the armor is lightweight and effective.
   components:
   - type: Sprite
@@ -228,9 +232,10 @@
     damageCoefficient: 0.90
 
 - type: entity
-  parent: [ClothingOuterBaseMedium, AllowSuitStorageClothing, BaseMajorContraband]
+  parent:
+    [ClothingOuterBaseMedium, AllowSuitStorageClothing, BaseMajorContraband]
   id: ClothingOuterArmorPaladin
-  name: paladin suit
+  name: Paladin Suit #Far Horizons - The Great Capitalization Crusade
   description: Be the paladin you want to be! Swing swords in maints at the terrified security officer! Battle MONSTERS that are totally not vent creatures! Get shot by lasers and die-! Wait what?
   components:
   - type: Sprite
@@ -255,9 +260,10 @@
     damageCoefficient: 0.85
 
 - type: entity
-  parent: [ClothingOuterStorageBase, AllowSuitStorageClothing, BaseCentcommContraband]
+  parent:
+    [ClothingOuterStorageBase, AllowSuitStorageClothing, BaseCentcommContraband]
   id: ClothingOuterVestWebEliteCentcomm
-  name: central command web vest
+  name: Central Command Web Vest #Far Horizons - The Great Capitalization Crusade
   description: A synthetic armor vest redesignated for use by the Corporate Consortium, webbing and heat resistant fibers included.
   components:
   - type: Sprite
@@ -288,26 +294,117 @@
 - type: entity
   parent: [ClothingOuterArmorBase, BaseCentcommContraband]
   id: ClothingOuterVestNTNC
-  name: nt-nc naval officer's vest
+  name: NT-NC Naval Officer's Vest #Far Horizons - The Great Capitalization Crusade
   description: Much better than a standard type-1 security vest. Don't lose it, you will NOT get a replacement.
   components:
-  - type: Sprite
-    sprite: _Starlight/Clothing/OuterClothing/Vests/ntnc_vest.rsi
-  - type: Clothing
-    sprite: _Starlight/Clothing/OuterClothing/Vests/ntnc_vest.rsi
+    - type: Sprite
+      sprite: _Starlight/Clothing/OuterClothing/Vests/ntnc_vest.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/OuterClothing/Vests/ntnc_vest.rsi
+    - type: Pierceable
+      level: Metal
+    - type: Armor
+      modifiers:
+        coefficients:
+          Blunt: 0.6
+          Slash: 0.6
+          Piercing: 0.6
+          Heat: 0.7
+    - type: ExplosionResistance
+      damageCoefficient: 0.80
+    - type: Item
+      size: Normal
+
+- type: entity
+  parent: [BaseSalvageContraband, ClothingOuterVestWeb] #web vest so it should have some pockets for ammo
+  id: ClothingOuterVestWebSalvageMerc
+  name: Scrapper Web Vest #Far Horizons - The Great Capitalization Crusade
+  description: A versatile armored vest, popular among salvagers for its protective yet lightweight design.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/OuterClothing/Vests/salvagevest.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/OuterClothing/Vests/salvagevest.rsi
+    - type: Pierceable
+      level: Metal
+    - type: Armor
+      modifiers:
+        flatReductions: #FH - Edit
+          Piercing: 5 #FH - Edit
+        coefficients:
+          Blunt: 0.7 #slightly better overall protection but slightly worse than bulletproof armor against bullets seems sensible
+          Slash: 0.7
+          Piercing: 0.6
+          Heat: 0.9
+      staminaModifier: 0.85
+    - type: ExplosionResistance
+      damageCoefficient: 0.9
+
+- type: entity
+  parent: [BaseGrandTheftContraband, ClothingOuterArmorBase]
+  id: ClothingOuterReactiveArmourShell
+  name: Reactive Armour Shell #Far Horizons - The Great Capitalization Crusade
+  description: An experimental suit of armour, awaiting installation of an anomaly core.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/OuterClothing/Armor/reactive.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/OuterClothing/Armor/reactive.rsi
+      equippedPrefix: inactive
+    - type: ContainerContainer
+      containers:
+        core_slot: !type:ContainerSlot {}
+    - type: ItemSlots
+      slots:
+        core_slot:
+          name: anomaly-core-slot-component-slot-name-default
+          whitelist:
+            tags:
+              - ForceableFollow
+    - type: ItemSwitch
+      state: inactive
+      states:
+        inactive: !type:ItemSwitchState
+          verb: Inactive
+          hiden: true
+          sprite:
+            sprite: _Starlight/Clothing/OuterClothing/Armor/reactive.rsi
+            state: icon
+        active: !type:ItemSwitchState
+          verb: Active
+          hiden: true
+          sprite:
+            sprite: _Starlight/Clothing/OuterClothing/Armor/reactive.rsi
+            state: active-icon
+
+- type: entity
+  parent: ClothingOuterReactiveArmourShell
+  id: ClothingOuterReactiveArmourShellRandom
+  suffix: Random Core
+  
+- type: entity
+  parent: [ClothingOuterBaseMedium, BaseSovietContraband, AllowSuitStorageClothing ] #"ClothingOuterArmorBase" is stupid and overrides any contraband level.
+  id: ClothingOuterArmorSovietFlak
+  name: Soviet Flak Vest #Far Horizons - The Great Capitalization Crusade
+  description: An old Soviet-era flak vest designed to mitigate damage from explosives, with minor penetration resistance. However, it's just a cheap reproduction model. quality may vary.
+  components:
   - type: Pierceable
     level: Metal
+  - type: Sprite
+    sprite: _Starlight/Clothing/OuterClothing/Armor/sovietflak.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/OuterClothing/Armor/sovietflak.rsi
   - type: Armor
     modifiers:
       flatReductions: #FH
         Piercing: 5 #FH
         Heat: 4 #FH
       coefficients:
-        Blunt: 0.6
-        Slash: 0.6
-        Piercing: 0.6
-        Heat: 0.7
+        Blunt: 0.90
+        Slash: 0.90
+        Piercing: 0.80
+        Heat: 0.80
   - type: ExplosionResistance
-    damageCoefficient: 0.80
-  - type: Item
-    size: Normal
+    damageCoefficient: 0.60
+  - type: ClothingSpeedModifier
+    sprintModifier: 0.85

@@ -2,7 +2,7 @@
   abstract: true
   parent: [ClothingOuterBaseMedium, AllowSuitStorageClothing]
   id: ClothingOuterArmorBaseFH
-  name: armor base
+  name: Armor Base
   description: The normal armor base has a sec contra label, which means anything inhereting takes it. Please use this one instead!
   components:
   - type: Sprite
@@ -22,7 +22,8 @@
     damageCoefficient: 0.90
   - type: ArmorSparkEffect
 
-#### Proto-Armor ####
+#region Proto-Armor
+
 - type: entity
   parent: ClothingOuterArmorBaseFH
   id: ClothingOuterArmorProtogenBase
@@ -90,17 +91,359 @@
   - type: ExplosionResistance
     damageCoefficient: 0.80
 
+
+#region Syndicate
+
+
+
+
+
+
+
+
+
+
+
+#region General Armor
+
 - type: entity
-  parent: [ClothingOuterArmorBaseCarapace, BaseCommandContraband]
+  parent: [ ClothingOuterArmorBaseFHSyndi, BaseSecurityContraband ]
+  id: ClothingOuterArmorReflectiveSyndi
+  name: Reflective Vest
+  suffix: S
+  description: An armored vest with advanced shielding to protect against energy weapons.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/Armor/armor_reflec-syndi.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/Armor/armor_reflec-syndi.rsi
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      flatReductions:
+        Heat: 4
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.4 # this technically means it protects against fires pretty well? -heat is just for lasers and stuff, not atmos temperature
+  - type: Reflect
+    reflectProb: 1
+    reflects:
+      - Energy
+    reflectingInHands: false
+  - type: Tag
+    tags:
+    - ReflectArmor
+
+#region Command
+
+# Commander (Captain)
+
+- type: entity
+  parent: [ ClothingOuterArmorBaseCarapace, BaseCommandContraband ]
   id: ClothingOuterArmorCaptainCarapaceSyndi
-  name: commander's carapace
+  name: Commander's Carapace
+  suffix: S
   description: An armored chestpiece that provides protection whilst still offering maximum mobility and flexibility. Issued only to the station's finest.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/OuterClothing/Armor/syndicaptain_carapace.rsi #Far Horizons
+    sprite: _FarHorizons/Clothing/OuterClothing/Armor/captain_carapace-syndi.rsi
   - type: Clothing
-    sprite: _FarHorizons/Clothing/OuterClothing/Armor/syndicaptain_carapace.rsi #Far Horizons
+    sprite: _FarHorizons/Clothing/OuterClothing/Armor/captain_carapace-syndi.rsi
   - type: Tag
     tags:
     - CorgiWearable
     - WhitelistChameleon
+
+#region Security
+
+# General Armor
+
+
+- type: entity
+  parent: ClothingOuterArmorBasic
+  id: ClothingOuterArmorBasicSlimSyndi
+  name: Armor Vest Slim
+  suffix: S, Slim
+  description: A slim Type I armored vest that provides decent protection against most types of damage.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/Armor/security_slim-syndi.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/Armor/security_slim-syndi.rsi
+
+- type: entity
+  abstract: true
+  parent: [ ClothingOuterBaseMedium, AllowSuitStorageClothing ]
+  id: ClothingOuterArmorBaseFHSyndi
+  name: Armor Base
+  description: The normal armor base has a sec contra label, which means anything inhereting takes it. Please use this one instead!
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/Armor/security-syndi.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/Armor/security-syndi.rsi
+  - type: Pierceable
+    level: Metal
+  - type: Armor #Based on /tg/ but slightly compensated to fit the fact that armor stacks in SS14.
+    modifiers:
+      coefficients:
+        Blunt: 0.70
+        Slash: 0.70
+        Piercing: 0.70 #Can save you, but bullets will still hurt. Will take about 10 shots from a Viper before critting, as opposed to 7 while unarmored and 16~ with a bulletproof vest.
+        Heat: 0.80
+  - type: ExplosionResistance
+    damageCoefficient: 0.90
+  - type: ArmorSparkEffect
+
+- type: entity
+  parent: [ BaseSecurityBartenderContraband, ClothingOuterArmorBaseFHSyndi ]
+  id: ClothingOuterArmorBasicSyndi
+  suffix: S
+  components:
+  - type: Tag
+    tags:
+    - CorgiWearable
+    - WhitelistChameleon
+  - type: Armor
+    modifiers:
+      flatReductions:
+        Piercing: 5
+        Heat: 4
+      coefficients:
+        Blunt: 0.70
+        Slash: 0.70
+        Piercing: 0.70
+        Heat: 0.80
+
+- type: entity
+  parent: [ ClothingOuterArmorBaseFHSyndi, BaseSecurityContraband ]
+  id: ClothingOuterArmorBulletproofSyndi
+  name: Bulletproof Vest
+  suffix: S
+  description: A Type III heavy bulletproof vest that excels in protecting the wearer against traditional projectile weaponry and explosives to a minor extent.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/Armor/bulletproof-syndi.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/Armor/bulletproof-syndi.rsi
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      flatReductions:
+        Piercing: 5
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.4
+        Heat: 0.9
+  - type: ExplosionResistance
+    damageCoefficient: 0.80
+  - type: Tag
+    tags:
+    - BulletproofArmor
+
+- type: entity
+  parent: [ ClothingOuterArmorBaseFHSyndi, BaseSecurityContraband ]
+  id: ClothingOuterArmorPlateSyndi
+  name: Plate Carrier
+  suffix: S
+  description: A standard Type II armored vest that provides good protection against bullets and lasers with the help of a plate inserted in the back and front, but not much else.
+  components:
+  - type: Pierceable
+    level: Metal
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/Armor/platecarrier-syndi.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/Armor/platecarrier-syndi.rsi
+  - type: Armor
+    modifiers:
+      flatReductions:
+        Piercing: 5
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.55
+        Heat: 0.85
+  - type: ExplosionResistance
+    damageCoefficient: 0.85
+
+- type: entity
+  parent: [ ClothingOuterArmorBaseFHSyndi, BaseSecurityContraband ]
+  id: ClothingOuterArmorStabSyndi
+  name: Stabproof Vest
+  suffix: S
+  description: Contrary to it's name, it's just a Type II armored vest that provides good protection against stabs and punches, but not much else.
+  components:
+  - type: Pierceable
+    level: Metal
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/Armor/stabvest-syndi.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/Armor/stabvest-syndi.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.55
+        Slash: 0.55
+        Piercing: 0.85
+        Heat: 0.85
+
+- type: entity
+  parent: [ClothingOuterArmorBaseFHSyndi, BaseSecurityContraband]
+  id: ClothingOuterArmorHeatAbsorbSyndi
+  name: Heat Absorbent Vest
+  suffix: S
+  description: Advanced vest designed to absorb heat rather than reflect it, but still has some reflective properties itself. Not good against bullets or blunt impacts due to the fragile material.
+  components:
+  - type: Pierceable
+    level: Metal
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/Armor/armor_reflec-syndi.rsi #Needs updating eventually to not use the reflective vest sprites.
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/Armor/armor_reflec-syndi.rsi #Needs updating eventually to not use the reflective vest sprites.
+  - type: Armor
+    modifiers:
+      flatReductions:
+        Heat: 4
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.85
+        Heat: 0.55
+
+# Inspector (Detective)
+
+- type: entity
+  parent: [ ClothingOuterArmorBaseFHSyndi, BaseSecurityContraband ]
+  id: ClothingOuterVestDetectiveSyndi
+  name: Inspector's Vest
+  suffix: S
+  description: A hard-boiled private investigator's armored vest.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/Vests/detvest-syndi.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/Vests/detvest-syndi.rsi
+  - type: Armor
+    modifiers:
+      flatReductions:
+        Piercing: 5
+        Heat: 4
+      coefficients:
+        Blunt: 0.70
+        Slash: 0.70
+        Piercing: 0.70
+        Heat: 0.80
+
+# Law Enforcer (Security Officer)
+
+
+- type: entity
+  parent: [ClothingOuterStorageFoldableBase, AllowSuitStorageClothing, BaseSecurityContraband]
+  id: ClothingOuterWindbreakerSecuritySyndi
+  name: Security Windbreaker
+  description: A stylish red windbreaker with additional inserted plate padding for security usage.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/OuterClothing/Coats/windbreaker_security
+  - type: Clothing
+    sprite: _Starlight/Clothing/OuterClothing/Coats/windbreaker_security
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.65
+        Slash: 0.80
+        Piercing: 0.70 
+        Heat: 0.90
+  - type: ZombificationResistance
+    zombificationResistanceCoefficient: 0.75
+
+- type: entity
+  parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterWindbreakerSecuritySyndi]
+  id: ClothingOuterWindbreakerSecuritySyndiOpened
+  name: Security Windbreaker
+
+- type: entity
+  parent: [ClothingOuterWinterCoatToggleable, BaseSecurityContraband, AllowSuitStorageClothing]
+  id: ClothingOuterWinterSecSyndi
+  name: Security Winter Coat
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/WinterCoats/coat.rsi #Far Horizons
+    layers:
+    - state: SEC-icon
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: SEC-inhand-left
+      right:
+      - state: SEC-inhand-right
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.75
+        Piercing: 0.95
+        Heat: 0.65
+  - type: ExplosionResistance
+    damageCoefficient: 0.85
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/WinterCoats/coat.rsi #Far Horizons
+    clothingVisuals:
+      outerClothing:
+      - state: SEC-equipped-OUTERCLOTHING
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHatHoodWinterSec
+
+- type: entity
+  parent: [ClothingOuterStorageFoldableBase, AllowSuitStorageClothing, BaseSecurityContraband]
+  id: ClothingOuterSecurityBomberSyndi
+  name: Security Bomber
+  description: A regular bomber, but with armored inserts.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/OuterClothing/Coats/security_bomber.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/OuterClothing/Coats/security_bomber.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.75
+        Piercing: 0.95
+        Heat: 0.65
+  - type: ExplosionResistance
+    damageCoefficient: 0.85
+
+- type: entity
+  parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterSecurityBomberSyndi]
+  id: ClothingOuterSecurityBomberSyndiOpened
+  name: Security Bomber
+
+# Medical Officer (Brigmedic) - They didn't have an armor before, but okay. Take this reskinned detective armor.
+
+- type: entity
+  parent: [ ClothingOuterArmorBaseFHSyndi, BaseSecurityContraband ]
+  id: ClothingOuterVestBrigmedicSyndi
+  name: Medical Officer's Vest
+  suffix: S
+  description: An armored vest made for the station's Medical Officer.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/Vests/brigmedic-syndi.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/Vests/brigmedic-syndi.rsi
+  - type: Armor
+    modifiers:
+      flatReductions:
+        Piercing: 5
+        Heat: 4
+      coefficients:
+        Blunt: 0.70
+        Slash: 0.70
+        Piercing: 0.70
+        Heat: 0.80

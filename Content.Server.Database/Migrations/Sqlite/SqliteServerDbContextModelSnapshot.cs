@@ -15,7 +15,7 @@ namespace Content.Server.Database.Migrations.Sqlite
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "9.0.1");
+            modelBuilder.HasAnnotation("ProductVersion", "10.0.0");
 
             modelBuilder.Entity("Content.Server.Database.Admin", b =>
                 {
@@ -754,7 +754,7 @@ namespace Content.Server.Database.Migrations.Sqlite
 
                     b.HasIndex("PreferenceId");
 
-                    b.HasIndex("PreferenceId", "JobName")
+                    b.HasIndex("PreferenceId", "JobName", "FactionName")
                         .IsUnique()
                         .HasDatabaseName("UX_JobPriorityEntry_Pref_Job");
 
@@ -1583,6 +1583,31 @@ namespace Content.Server.Database.Migrations.Sqlite
                         .HasName("PK_uploaded_resource_log");
 
                     b.ToTable("uploaded_resource_log", (string)null);
+                });
+
+            modelBuilder.Entity("Content.Server.Database.UserDiscord", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("user_discord_id");
+
+                    b.Property<string>("DiscordId")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("discord_id");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("user_id");
+
+                    b.HasKey("Id")
+                        .HasName("PK_user_discord");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
+
+                    b.ToTable("user_discord", (string)null);
                 });
 
             modelBuilder.Entity("Content.Server.Database.Whitelist", b =>

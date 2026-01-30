@@ -35,7 +35,6 @@ namespace Content.Server.Database
     public abstract partial class ServerDbBase
     {
         private readonly ISawmill _opsLog;
-
         public event Action<DatabaseNotification>? OnNotificationReceived;
 
         /// <param name="opsLog">Sawmill to trace log database operations to.</param>
@@ -77,7 +76,12 @@ namespace Content.Server.Database
             if (prefs is null)
                 return null;
 
-            var maxSlot = prefs.Profiles.Max(p => p.Slot) + 1;
+            // 🌟Starlight🌟 start : hotfix
+            var maxSlot = prefs.Profiles.Count > 0 
+                ? prefs.Profiles.Max(p => p.Slot) + 1 
+                : 0;
+            // 🌟Starlight🌟 end
+
             var profiles = new Dictionary<int, ICharacterProfile>(maxSlot);
             foreach (var profile in prefs.Profiles)
             {
@@ -524,6 +528,45 @@ namespace Content.Server.Database
         }
         #endregion
         
+        // Far Horizons
+        #region UserDiscord
+
+        public async Task UpsertUserDiscordAsync(NetUserId netUserId, string discordId)
+        {
+            await using var db = await GetDb();
+            var existing = await GetUserDiscordAsync(netUserId, CancellationToken.None);
+            if (existing == null)
+            {
+                db.DbContext.UserDiscord.Add(new UserDiscord{UserId = netUserId.UserId, DiscordId = discordId});
+            }
+            else
+            {
+                existing.DiscordId = discordId;
+                db.DbContext.UserDiscord.Update(existing);
+            }
+
+            await db.DbContext.SaveChangesAsync();
+        }
+
+        public async Task RemoveUserDiscordAsync(NetUserId netUserId, CancellationToken cancel)
+        {
+            await using var db = await GetDb(cancel);
+
+            var userDiscord = await db.DbContext.UserDiscord.SingleAsync(m => m.UserId == netUserId.UserId, cancel);
+            db.DbContext.UserDiscord.Remove(userDiscord);
+
+            await db.DbContext.SaveChangesAsync(cancel);
+        }
+
+        public async Task<UserDiscord?> GetUserDiscordAsync(NetUserId netUserId, CancellationToken cancel)
+        {
+            await using var db = await GetDb(cancel);
+            return await db.DbContext.UserDiscord
+                .SingleOrDefaultAsync(w => w.UserId == netUserId.UserId, cancel);
+        }
+        
+        #endregion
+
         #region Mentors
 
         public async Task AddMentorAsync(NetUserId netUserId)
@@ -1565,7 +1608,7 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
                 ban.LastEditedAt,
                 ban.ExpirationTime,
                 ban.Hidden,
-                new[] { ban.RoleId.Replace(BanManager.JobPrefix, null) },
+                new [] { ban.RoleId.Replace(BanManager.PrefixJob, null).Replace(BanManager.PrefixAntag, null) },
                 MakePlayerRecord(unbanningAdmin),
                 ban.Unban?.UnbanTime);
         }
@@ -1865,7 +1908,7 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
                     NormalizeDatabaseTime(firstBan.LastEditedAt),
                     NormalizeDatabaseTime(firstBan.ExpirationTime),
                     firstBan.Hidden,
-                    banGroup.Select(ban => ban.RoleId.Replace(BanManager.JobPrefix, null)).ToArray(),
+                    banGroup.Select(ban => ban.RoleId.Replace(BanManager.PrefixJob, null).Replace(BanManager.PrefixAntag, null)).ToArray(),
                     MakePlayerRecord(unbanningAdmin),
                     NormalizeDatabaseTime(firstBan.Unban?.UnbanTime)));
             }

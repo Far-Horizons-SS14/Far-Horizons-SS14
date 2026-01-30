@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Server._FarHorizons.Administration.UI;
 using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
 using Content.Server.Administration.UI;
@@ -11,6 +12,7 @@ using Content.Server.Preferences.Managers;
 using Content.Server.Silicons.Laws;
 using Content.Server.Station.Systems;
 using Content.Shared.Administration;
+using Content.Shared.Administration.Systems;
 using Content.Shared.Chemistry.Components.SolutionManager;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Configurable;
@@ -528,6 +530,21 @@ namespace Content.Server.Administration.Systems
                     },
                     Impact = LogImpact.High,
                     ConfirmationPopup = true
+                };
+                args.Verbs.Add(verb);
+            }
+            
+            // Far Horizons
+            // set mind job verb
+            if (_groupController.CanCommand(player, "setmindjob") && TryComp(args.Target, out ActorComponent? _))
+            {
+                Verb verb = new()
+                {
+                    Text = Loc.GetString("set-mind-job-verb-get-data-text"),
+                    Category = VerbCategory.Debug,
+                    Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/outfit.svg.192dpi.png")),
+                    Act = () => _euiManager.OpenEui(new SetMindJobEui(player.UserId), player),
+                    Impact = LogImpact.Medium
                 };
                 args.Verbs.Add(verb);
             }

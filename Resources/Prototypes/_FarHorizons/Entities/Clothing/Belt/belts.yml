@@ -1,15 +1,15 @@
-# Science
+#region Cargo
 
 - type: entity
   parent: ClothingBeltStorageBase
-  id: ClothingBeltScience
-  name: science belt
-  description: Can hold various scientific things.
+  id: ClothingBeltCargo
+  name: Cargo Utility Belt
+  description: Can hold a various amount of lo- required gear used by Cargo.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/Belt/sciencebelt.rsi
+    sprite: _FarHorizons/Clothing/Belt/cargoutility.rsi
   - type: Clothing
-    sprite: _FarHorizons/Clothing/Belt/sciencebelt.rsi
+    sprite: _FarHorizons/Clothing/Belt/cargoutility.rsi
   - type: Storage
     whitelist:
       tags:
@@ -36,9 +36,7 @@
         - ImprovisedWirecutter
         - ImprovisedWrench
         - ImprovisedMultitool
-        - AnomalyScanner
-        - NodeScanner
-        - AnomalyLocator
+        - Knife
       components:
         - StationMap
         - SprayPainter
@@ -52,9 +50,10 @@
         - HandLabeler
   - type: StorageFill
     contents:
-      - id: AnomalyScanner
-      - id: NodeScanner
+      - id: WeaponMeleeBoxcutter
+      - id: AppraisalTool
   - type: ItemMapper
+    sprite: &BeltOverlay Clothing/Belt/belt_overlay.rsi
     mapLayers:
       drill:
         whitelist:
@@ -93,42 +92,13 @@
           tags:
           - Wrench
           - ImprovisedWrench
-    sprite: Clothing/Belt/belt_overlay.rsi
 
-- type: entity
-  id: ClothingBeltScienceRoboticist
-  parent: ClothingBeltScience
-  suffix: Roboticist
-  components:
-  - type: StorageFill
-    contents:
-      - id: CrowbarYellow
-      - id: Wrench
-      - id: Screwdriver
-      - id: Wirecutter
-      - id: Welder
-      - id: Multitool
-
-- type: entity
-  id: ClothingBeltScienceRD
-  parent: ClothingBeltScience
-  suffix: ResearchDirector
-  components:
-  - type: StorageFill
-    contents:
-      - id: CrowbarYellow
-      - id: Wrench
-      - id: Screwdriver
-      - id: Wirecutter
-      - id: Welder
-      - id: Multitool
-      - id: AnomalyScanner
-      - id: NodeScanner
+#region Command
 
 - type: entity
   parent: ClothingBeltStorageBase
   id: ClothingBeltHoP
-  name: head of personnel belt
+  name: Head Of Personnel Belt
   description: A very clean belt with some wear on some lesser seen parts. Can fit plenty of paperwork and writing implements inside.
   components:
   - type: Sprite
@@ -182,6 +152,7 @@
       - id: Paper
         amount: 4
   - type: ItemMapper
+    sprite: *BeltOverlay
     mapLayers:
       drill:
         whitelist:
@@ -220,20 +191,19 @@
           tags:
           - Wrench
           - ImprovisedWrench
-    sprite: Clothing/Belt/belt_overlay.rsi
-    
-# Cargo
+
+#region Science
 
 - type: entity
   parent: ClothingBeltStorageBase
-  id: ClothingBeltCargo
-  name: cargo utility belt
-  description: Can hold a various amount of lo- required gear used by Cargo.
+  id: ClothingBeltScience
+  name: Science Belt
+  description: Can hold various scientific things.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/Belt/cargoutility.rsi
+    sprite: _FarHorizons/Clothing/Belt/sciencebelt.rsi
   - type: Clothing
-    sprite: _FarHorizons/Clothing/Belt/cargoutility.rsi
+    sprite: _FarHorizons/Clothing/Belt/sciencebelt.rsi
   - type: Storage
     whitelist:
       tags:
@@ -260,7 +230,9 @@
         - ImprovisedWirecutter
         - ImprovisedWrench
         - ImprovisedMultitool
-        - Knife
+        - AnomalyScanner
+        - NodeScanner
+        - AnomalyLocator
       components:
         - StationMap
         - SprayPainter
@@ -274,9 +246,10 @@
         - HandLabeler
   - type: StorageFill
     contents:
-      - id: WeaponMeleeBoxcutter
-      - id: AppraisalTool
+      - id: AnomalyScanner
+      - id: NodeScanner
   - type: ItemMapper
+    sprite: *BeltOverlay
     mapLayers:
       drill:
         whitelist:
@@ -315,110 +288,56 @@
           tags:
           - Wrench
           - ImprovisedWrench
-    sprite: Clothing/Belt/belt_overlay.rsi
 
 - type: entity
-  parent: ClothingBeltStorageBase
-  id: ClothingBeltSalvageWebbing
-  name: salvage utility rig
-  description: When the salvage wrecks weren't enough, the salvage team stole these rigs from their cargo technician friends.
+  id: ClothingBeltScienceRoboticist
+  parent: ClothingBeltScience
+  suffix: Roboticist
   components:
-  - type: Sprite
-    sprite: _FarHorizons/Clothing/Belt/salvagewebbing.rsi
-  - type: Clothing
-    sprite: _FarHorizons/Clothing/Belt/salvagewebbing.rsi
-  - type: Storage
-    whitelist:
-      tags:
-        - Wirecutter
-        - Crowbar
-        - Screwdriver
-        - Flashlight
-        - Wrench
-        - GeigerCounter
-        - Flare
-        - CableCoil
-        - Powerdrill
-        - JawsOfLife
-        - CigPack
-        - Radio
-        - HolofanProjector
-        - Multitool
-        - AppraisalTool
-        - GPS
-        - WeldingMask
-        - RemoteSignaller
-        - ImprovisedCrowbar
-        - ImprovisedScrewdriver
-        - ImprovisedWirecutter
-        - ImprovisedWrench
-        - ImprovisedMultitool
-        - Knife
-      components:
-        - StationMap
-        - SprayPainter
-        - SprayPainterAmmo
-        - NetworkConfigurator
-        - Welder
-        - PowerCell
-        - Geiger
-        - TrayScanner
-        - GasAnalyzer
-        - HandLabeler
   - type: StorageFill
     contents:
-      - id: SurvivalKnife
-      - id: AppraisalTool
-  - type: ItemMapper
-    mapLayers:
-      drill:
-        whitelist:
-          tags:
-          - Powerdrill
-      cutters_red:
-        whitelist:
-          tags:
-          - Wirecutter
-          - ImprovisedWirecutter
-      crowbar:
-        whitelist:
-          tags:
-          - Crowbar
-          - ImprovisedCrowbar
-      crowbar_red:
-        whitelist:
-          tags:
-          - CrowbarRed
-      jaws:
-        whitelist:
-          tags:
-          - JawsOfLife
-      screwdriver_nuke:
-        whitelist:
-          tags:
-          - Screwdriver
-          - ImprovisedScrewdriver
-      multitool:
-        whitelist:
-          tags:
-            - Multitool
-            - ImprovisedMultitool
-      wrench:
-        whitelist:
-          tags:
-          - Wrench
-          - ImprovisedWrench
+      - id: CrowbarYellow
+      - id: Wrench
+      - id: Screwdriver
+      - id: Wirecutter
+      - id: Welder
+      - id: Multitool
+
+- type: entity
+  id: ClothingBeltScienceRD
+  parent: ClothingBeltScience
+  suffix: ResearchDirector
+  components:
+  - type: StorageFill
+    contents:
+      - id: CrowbarYellow
+      - id: Wrench
+      - id: Screwdriver
+      - id: Wirecutter
+      - id: Welder
+      - id: Multitool
+      - id: AnomalyScanner
+      - id: NodeScanner
+
+#region Security
+
+#region Syndicate Station #####
 
 
-## Syndicate Station
 
+
+
+
+
+
+#region Command
 
 # Commander (Captain)
 
 - type: entity
   parent: [ClothingBeltBase, ClothingSlotBase, BaseCommandContraband]
   id: ClothingBeltSheathSyndi
-  name: sabre sheath
+  name: Sabre Sheath
   description: An ornate sheath designed to hold an officer's blade.
   components:
   - type: Sprite
@@ -452,7 +371,7 @@
 - type: entity
   parent: ClothingBeltHoP
   id: ClothingBeltHoPSyndi
-  name: personnel chief belt
+  name: Personnel Chief Belt
   description: A very clean belt with some wear on some lesser seen parts. Can fit plenty of paperwork and writing implements inside.
   components:
   - type: Sprite
@@ -460,3 +379,106 @@
     state: icon
   - type: Clothing
     sprite: _FarHorizons/Clothing/Belt/syndihop.rsi
+
+#region Security
+
+# Combat Medic (Corpsman)
+
+- type: entity
+  parent: ClothingBeltBrigmedic
+  id: ClothingBeltCorpsmanSyndi
+  name: Combat Medic Belt
+  description: A tactical belt with as many pockets and bags to hold all the medical items you need!
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Belt/corpsmansyndi.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Belt/corpsmansyndi.rsi
+  - type: Appearance
+
+- type: entity
+  id: ClothingBeltCorpsmanSyndiFilled
+  parent: ClothingBeltCorpsmanSyndi
+  suffix: Filled
+  components:
+  - type: StorageFill
+    contents:
+      - id: Stunbaton
+      - id: Handcuffs    
+      - id: Brutepack
+      - id: Ointment
+      - id: Gauze
+
+# Medical Officer (Brigmedic)
+
+- type: entity
+  parent: ClothingBeltBrigmedic
+  id: ClothingBeltBrigmedicWebSyndi
+  name: Tactical Trauma Rig
+  description: A stylish alternative to the belt.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Belt/brigmedicwebbing-syndi.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Belt/brigmedicwebbing-syndi.rsi
+  - type: Appearance
+
+- type: entity
+  id: ClothingBeltBrigmedicWebSyndiFilled
+  parent: ClothingBeltBrigmedicWebSyndi
+  suffix: Filled
+  components:
+  - type: StorageFill
+    contents:
+      - id: Stunbaton
+      - id: Handcuffs    
+      - id: Brutepack
+      - id: Ointment
+      - id: Gauze
+
+- type: entity
+  parent: ClothingBeltBrigmedic
+  id: ClothingBeltBrigmedicSyndi
+  name: Tactical Trauma Belt
+  description: Because why choose between being a medic or a security guard when you can be both?
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Belt/tactical_trauma.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Belt/tactical_trauma.rsi
+
+- type: entity
+  id: ClothingBeltBrigmedicSyndiFilled
+  parent: ClothingBeltBrigmedicSyndi
+  suffix: Filled
+  components:
+  - type: StorageFill
+    contents:
+      - id: Stunbaton
+      - id: Handcuffs    
+      - id: Brutepack
+      - id: Ointment
+      - id: Gauze
+
+# General Security
+
+- type: entity
+  parent: [ClothingBeltStorageBase, ContentsExplosionResistanceBase, BaseSecurityContraband]
+  id: ClothingBeltSecuritySyndi
+  name: Security Belt
+  description: Can hold security gear like handcuffs and flashes.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Belt/securitysyndi.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Belt/securitysyndi.rsi
+
+- type: entity
+  id: ClothingBeltSecuritySyndiFilled
+  parent: ClothingBeltSecuritySyndi
+  suffix: Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:NestedSelector
+        tableId: BeltSecurityEntityTable

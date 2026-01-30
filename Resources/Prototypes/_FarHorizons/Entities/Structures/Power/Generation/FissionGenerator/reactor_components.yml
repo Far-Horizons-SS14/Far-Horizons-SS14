@@ -21,13 +21,13 @@
 # Fuel Rods
 - type: entity
   id: BaseReactorFuelRod
-  parent: BaseReactorPart
+  parent: [ BaseReactorPart, BaseEngineeringContraband ]
   categories: [ HideSpawnMenu ]
   name: fuel rod
   description: A fuel rod for a nuclear reactor.
   components:
   - type: ReactorPart
-    rodType: FuelRod
+    rodType: 1
     iconStateInserted: "fuel"
     iconStateCap: "fuel_cap"
     neutronCrossSection: 1.0
@@ -53,6 +53,9 @@
         canReact: false
   - type: StealTarget
     stealGroup: ReactorFuelRodSteal
+  - type: SentienceTarget
+    flavorKind: station-event-random-sentience-flavor-inanimate
+    weight: 0.2
 
 - type: entity
   id: CerenkiteReactorFuelRod
@@ -77,6 +80,18 @@
   components:
   - type: ReactorPart
     material: Plutonium
+  - type: GhostRole
+    makeSentient: true
+    allowSpeech: true
+    allowMovement: false
+    name: ghost-role-information-plutonium-rod-name
+    description: ghost-role-information-plutonium-rod-description
+    rules: ghost-role-information-plutonium-rod-rules
+    mindRoles:
+    - MindRoleGhostRoleFreeAgentHarmless
+  - type: GhostTakeoverAvailable
+  - type: SentienceTarget
+    weight: 2
 
 - type: entity
   id: BananiumReactorFuelRod
@@ -103,6 +118,21 @@
   - type: ReactorPart
     material: UraniumGlass
 
+- type: entity
+  id: MeatReactorFuelRod
+  parent: BaseReactorFuelRod
+  name: meat fuel rod
+  description: A fuel rod fo- wait, is it alive?
+  components:
+  - type: ReactorPart
+    material: Meaterial
+    properties:
+      electrical: 4
+      hard: 1
+      density: 3
+      flammable: 3
+      radioactive: 5
+
 # Control Rods
 - type: entity
   id: BaseReactorControlRod
@@ -112,11 +142,14 @@
   description: A control rod assembly for a nuclear reactor.
   components:
   - type: ReactorPart
-    rodType: ControlRod
+    rodType: 2
     iconStateInserted: "control"
     iconStateCap: "control_cap"
     isControlRod: true
     neutronCrossSection: 2.0
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 250
 
 - type: entity
   id: BohrumReactorControlRod
@@ -125,6 +158,10 @@
   components:
   - type: ReactorPart
     material: Bohrum
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 500
+      Plasteel: 250
 
 - type: entity
   id: SteelReactorControlRod
@@ -133,6 +170,9 @@
   components:
   - type: ReactorPart
     material: Steel
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 1500
 
 - type: entity
   id: GoldReactorControlRod
@@ -141,6 +181,10 @@
   components:
   - type: ReactorPart
     material: Gold
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 250
+      Gold: 500
 
 - type: entity
   id: SilverReactorControlRod
@@ -149,6 +193,10 @@
   components:
   - type: ReactorPart
     material: Silver
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 250
+      Silver: 500
 
 - type: entity
   id: BrassReactorControlRod
@@ -157,6 +205,10 @@
   components:
   - type: ReactorPart
     material: Brass
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 250
+      Brass: 500
 
 - type: entity
   id: PlasteelReactorControlRod
@@ -165,6 +217,10 @@
   components:
   - type: ReactorPart
     material: Plasteel
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 250
+      Plasteel: 500
 
 - type: entity
   id: GlassReactorControlRod
@@ -173,6 +229,10 @@
   components:
   - type: ReactorPart
     material: Glass
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 250
+      Glass: 500
 
 - type: entity
   id: PlasmaGlassReactorControlRod
@@ -181,6 +241,10 @@
   components:
   - type: ReactorPart
     material: PlasmaGlass
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 250
+      PlasmaGlass: 500
 
 - type: entity
   id: DiamondReactorControlRod
@@ -189,6 +253,10 @@
   components:
   - type: ReactorPart
     material: Diamond
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 250
+      Diamond: 500
 
 # Gas Channel Rods
 - type: entity
@@ -199,12 +267,15 @@
   description: A gas channel for a nuclear reactor.
   components:
   - type: ReactorPart
-    rodType: GasChannel
+    rodType: 4
     iconStateInserted: "gas"
     iconStateCap: "gas_cap"
     thermalCrossSection: 15
     gasVolume: 100
     thermalMass: 21000
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 250
 
 - type: entity
   id: SteelReactorGasChannel
@@ -213,6 +284,9 @@
   components:
   - type: ReactorPart
     material: Steel
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 500
 
 - type: entity
   id: GoldReactorGasChannel
@@ -221,6 +295,10 @@
   components:
   - type: ReactorPart
     material: Gold
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 250
+      Gold: 250
 
 - type: entity
   id: SilverReactorGasChannel
@@ -229,6 +307,10 @@
   components:
   - type: ReactorPart
     material: Silver
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 250
+      Silver: 250
 
 - type: entity
   id: BrassReactorGasChannel
@@ -237,6 +319,10 @@
   components:
   - type: ReactorPart
     material: Brass
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 250
+      Brass: 250
 
 - type: entity
   id: PlasteelReactorGasChannel
@@ -245,6 +331,10 @@
   components:
   - type: ReactorPart
     material: Plasteel
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 250
+      Plasteel: 250
 
 - type: entity
   id: GlassReactorGasChannel
@@ -253,6 +343,10 @@
   components:
   - type: ReactorPart
     material: Glass
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 250
+      Glass: 250
 
 - type: entity
   id: PlasmaGlassReactorGasChannel
@@ -261,6 +355,10 @@
   components:
   - type: ReactorPart
     material: PlasmaGlass
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 250
+      PlasmaGlass: 250
 
 - type: entity
   id: DiamondReactorGasChannel
@@ -269,6 +367,10 @@
   components:
   - type: ReactorPart
     material: Diamond
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 250
+      Diamond: 250
 
 # Heat Exchanger Rods
 - type: entity
@@ -279,11 +381,13 @@
   description: A heat exchanger for a nuclear reactor.
   components:
   - type: ReactorPart
-    rodType: HeatExchanger
     iconStateInserted: "heat"
     iconStateCap: "heat_cap"
     neutronCrossSection: 0.1
     thermalCrossSection: 25
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 250
 
 - type: entity
   id: SteelReactorHeatExchanger
@@ -292,6 +396,9 @@
   components:
   - type: ReactorPart
     material: Steel
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 625
 
 - type: entity
   id: GoldReactorHeatExchanger
@@ -300,6 +407,10 @@
   components:
   - type: ReactorPart
     material: Gold
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 250
+      Gold: 275
 
 - type: entity
   id: SilverReactorHeatExchanger
@@ -308,6 +419,10 @@
   components:
   - type: ReactorPart
     material: Silver
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 250
+      Silver: 275
 
 - type: entity
   id: BrassReactorHeatExchanger
@@ -316,6 +431,10 @@
   components:
   - type: ReactorPart
     material: Brass
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 250
+      Brass: 275
 
 - type: entity
   id: PlasteelReactorHeatExchanger
@@ -324,6 +443,10 @@
   components:
   - type: ReactorPart
     material: Plasteel
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 250
+      Plasteel: 275
 
 - type: entity
   id: GlassReactorHeatExchanger
@@ -332,6 +455,10 @@
   components:
   - type: ReactorPart
     material: Glass
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 250
+      Glass: 275
 
 - type: entity
   id: PlasmaGlassReactorHeatExchanger
@@ -340,6 +467,10 @@
   components:
   - type: ReactorPart
     material: PlasmaGlass
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 250
+      PlasmaGlass: 275
 
 - type: entity
   id: DiamondReactorHeatExchanger
@@ -348,3 +479,47 @@
   components:
   - type: ReactorPart
     material: Diamond
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 250
+      Diamond: 275
+
+# Parts to chose from for a random prefab
+- type: weightedRandom
+  id: NuclearReactorRandomParts
+  weights:
+    # Fuel rods (0.125 total)
+    CerenkiteReactorFuelRod: 0.0625
+    UraniumReactorFuelRod: 0.03125
+    PlutoniumReactorFuelRod: 0.0015625
+    BananiumReactorFuelRod: 0.00625
+    PlasmaReactorFuelRod: 0.015625
+    UraniumGlassReactorFuelRod: 0.0078125
+    # Control rods (5 total)
+    BohrumReactorControlRod: 1.25
+    SteelReactorControlRod: 1.25
+    GoldReactorControlRod: 0.125
+    SilverReactorControlRod: 0.25
+    BrassReactorControlRod: 0.5
+    PlasteelReactorControlRod: 0.75
+    GlassReactorControlRod: 0.5
+    PlasmaGlassReactorControlRod: 0.25
+    DiamondReactorControlRod: 0.125
+    # Gas channels (40 total)
+    SteelReactorGasChannel: 20
+    GoldReactorGasChannel: 1
+    SilverReactorGasChannel: 2
+    BrassReactorGasChannel: 4
+    PlasteelReactorGasChannel: 6
+    GlassReactorGasChannel: 4
+    PlasmaGlassReactorGasChannel: 2
+    DiamondReactorGasChannel: 1
+    # Heat exchangers (40 total)
+    SteelReactorHeatExchanger: 20
+    GoldReactorHeatExchanger: 1
+    SilverReactorHeatExchanger: 2
+    BrassReactorHeatExchanger: 4
+    PlasteelReactorHeatExchanger: 6
+    GlassReactorHeatExchanger: 4
+    PlasmaGlassReactorHeatExchanger: 2
+    DiamondReactorHeatExchanger: 1
