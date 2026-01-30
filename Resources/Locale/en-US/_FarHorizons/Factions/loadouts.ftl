@@ -3,7 +3,15 @@
 ## Specific Roles
 
 #### Command
+
 loadout-group-command-eyewear = Command Eyewear
+
+loadout-group-chief-engineer-headset = Chief Engineer Headset
+loadout-group-chief-engineer-eyewear = Chief Engineer Eyewear
+
+#### Engineering
+
+loadout-group-nt-engi-eyewear = Engineering Eyewear
 
 #### Security
 
