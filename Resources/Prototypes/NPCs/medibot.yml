@@ -19,14 +19,15 @@
             targetMoveKey: TargetCoordinates
 
         - !type:HTNPrimitiveTask
+          operator: !type:MoveToOperator
+            pathfindInPlanning: false
+        
+        #Starlight: Moved to after pathing
+        - !type:HTNPrimitiveTask
           operator: !type:SpeakOperator
             speech: !type:SingleSpeakOperatorSpeech
               line: medibot-start-inject
             hidden: true
-
-        - !type:HTNPrimitiveTask
-          operator: !type:MoveToOperator
-            pathfindInPlanning: false
 
         - !type:HTNPrimitiveTask
           operator: !type:SetFloatOperator
