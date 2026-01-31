@@ -280,3 +280,40 @@
     sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/security-warden-syndi.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitWardenSyndi
+
+#region SHC
+
+# Syndicate Operations Agent (NTR)
+
+- type: entity
+  parent: [ClothingOuterHardsuitBase, BaseCommandContraband]
+  id: ClothingOuterHardsuitNtrepSyndi
+  name: Syndicate Operations Agent Hardsuit
+  description: This hardsuit was designed by Syndicate High Command to really make sure people understand who's in charge.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/ntrep-syndi.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/ntrep-syndi.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.525
+    lowPressureMultiplier: 10000
+  - type: ClothingSpeedModifier
+    walkModifier: 0.95
+    sprintModifier: 0.95
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9
+        Radiation: 0.25
+        Caustic: 0.9
+    staminaModifier: 0.8
+  - type: ExplosionResistance
+    damageCoefficient: 0.9
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitNtrepSyndi
