@@ -1,3 +1,4 @@
+using Content.Server._Starlight.Traits;
 using Content.Server.Antag;
 using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Humanoid;
@@ -62,7 +63,8 @@ public sealed class AntagLoadProfileRuleSystem : GameRuleSystem<AntagLoadProfile
         {
             _visualBody.ApplyProfileTo(args.Entity.Value, humanoidProfile);
             _humanoidProfile.ApplyProfileTo(args.Entity.Value, humanoidProfile);
-            _sLSharedCharacterInfoSystem.ApplyCharacterInfo(args.Entity.Value, profile); // Starlight
+            if (args.Session is not null)
+                _traitSystem.ApplyTraits(args.Entity.Value, profile, args.Session);
         }
     }
 }

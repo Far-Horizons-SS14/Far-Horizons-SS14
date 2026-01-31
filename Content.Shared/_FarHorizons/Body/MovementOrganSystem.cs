@@ -54,7 +54,23 @@ public sealed partial class MovementOrganSystem : EntitySystem
         }
             
         else if (HasComp<LegsParalyzedComponent>(ent))
-            RemComp<LegsParalyzedComponent>(ent);
+        {
+            if(TryComp<HumanoidCharacterProfileComponent>(ent, out var hcpComp) && hcpComp.Profile != null)
+            {
+                var traits = hcpComp.Profile.TraitPreferences;
+                var paralyzed = false;
+                foreach( var trait in traits)
+                {
+                    if(trait == "WheelchairBound")
+                    {
+                        paralyzed = true;
+                        break;
+                    }
+                }
+                if(!paralyzed)
+                    RemComp<LegsParalyzedComponent>(ent);
+            }
+        }
         
         args.ModifySpeed(totalWalkModifier, totalSprintModifier);
     }

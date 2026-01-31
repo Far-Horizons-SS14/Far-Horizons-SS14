@@ -42,6 +42,9 @@ trait-language-voxpidgin-desc = You know the language of the Vox, a language mos
 trait-language-moffic-name = Moffic
 trait-language-moffic-desc = The language of the moth-people, Moffic is basically completely unintelligible to all but yourself and its native speakers.
 
+trait-language-thaveyan-name = Thaveyan
+trait-language-thaveyan-desc = You've been around the fish people long enough to master the rhythm of their tongue, though perhaps not their erratic moods.
+
 trait-language-darktongue-name = Darktongue
 trait-language-darktongue-desc = This simple, crude language of ne'er-do-wells and crazed fanatics is easy to pick up, but don't let Security hear you speaking it...
 
