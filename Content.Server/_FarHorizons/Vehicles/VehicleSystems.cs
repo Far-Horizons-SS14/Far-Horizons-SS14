@@ -60,6 +60,7 @@ using Content.Shared.Coordinates;
 using Content.Shared.CombatMode.Pacification;
 using Content.Shared.Weapons.Ranged.Events;
 using Content.Shared.Hands;
+using Content.Shared.Actions.Components;
 
 namespace Content.Server._FarHorizons.Vehicle;
 
@@ -120,6 +121,7 @@ public sealed partial class VehicleSystems : SharedVehicleSystems
         SubscribeLocalEvent<VehicleBuckleComponent, UnstrapAttemptEvent>(OnUnstrapAttempt);
         SubscribeLocalEvent<VehicleBuckleComponent, VehicleUnbuckleDoAfter>(OnUnbuckleDoAfter);
         SubscribeLocalEvent<VehicleBuckleComponent, RefreshMovementSpeedModifiersEvent>(OnMovementSpeedRefreshVehicleEvent);
+        SubscribeLocalEvent<VehicleBuckleComponent, MoveInputEvent>(OnMoveInputEvent);
 
         SubscribeLocalEvent<VehicleContainerComponent, DragDropTargetEvent>(OnDragDrop);
         SubscribeLocalEvent<VehicleContainerComponent, VehicleEntryDoAfter>(OnVehicleEntryDoAfter);
@@ -523,6 +525,17 @@ public sealed partial class VehicleSystems : SharedVehicleSystems
 
     }
 
+    private void OnMoveInputEvent(Entity<VehicleBuckleComponent> ent, ref MoveInputEvent args)
+    {
+        if(!TryComp<VehicleComponent>(ent.Owner, out var vehicleComp)) return;
+        if(!vehicleComp.Started && vehicleComp.requireIgnition) return;
+        if(args.Dir == Direction.Invalid) return;
+        if(args.Dir == vehicleComp.currentDirection) return;
+        vehicleComp.currentDirection = args.Dir;
+        Dirty(ent.Owner, vehicleComp);
+        TryUpdateVisualState((ent, vehicleComp));
+    }
+
     #endregion
     #region VehicleContainer Events
 
@@ -914,7 +927,8 @@ public sealed partial class VehicleSystems : SharedVehicleSystems
         if(component.Sirenlight != null && HasComp<PointLightComponent>(component.Sirenlight))
             _actions.AddAction(rider, component.ToggleSirenAction, component.Sirenlight.Value);
 
-        _actions.GrantContainedActions(rider, vehicle);
+        if(HasComp<ActionsContainerComponent>(vehicle))
+            _actions.GrantContainedActions(rider, vehicle);
     }
 
     private bool TryInsert(EntityUid? Rider, EntityUid Vehicle, VehicleContainerComponent? component=null)

@@ -95,7 +95,6 @@ public sealed class VehicleSystems : SharedVehicleSystems
         if(args.Dir == Direction.Invalid) return;
         if(args.Dir == vehicleComp.currentDirection) return;
         vehicleComp.currentDirection = args.Dir;
-        Dirty(ent.Owner, vehicleComp);
 
         switch(args.Dir)
         {
