@@ -286,7 +286,7 @@ public sealed partial class VehicleSystems : SharedVehicleSystems
         if(!ent.Comp.Started)
         {
             if((ent.Comp.CellPowered && HasComp<PowerCellDrawComponent>(ent.Owner) && !_powerCell.HasDrawCharge(ent.Owner)) 
-            || (!ent.Comp.CellPowered && HasComp<ReagantDrawComponent>(ent.Owner) && !_reagantDraw.HasDrawReagant(ent.Owner)))
+            ^ (!ent.Comp.CellPowered && HasComp<ReagantDrawComponent>(ent.Owner) && !_reagantDraw.HasDrawReagant(ent.Owner)))
                 return;
 
             for (var i = 0; i < ent.Comp.HandsNeeded; i++)
@@ -700,8 +700,8 @@ public sealed partial class VehicleSystems : SharedVehicleSystems
         TryComp<ReagantDrawComponent>(riding, out var rdComp);
 
         var noPower =
-            (pcdComp != null && !_powerCell.HasDrawCharge(riding)) ||
-            (rdComp != null && !_reagantDraw.HasDrawReagant(riding));
+            (vehicleComp.CellPowered && pcdComp != null && !_powerCell.HasDrawCharge(riding)) ^
+            (!vehicleComp.CellPowered && rdComp != null && !_reagantDraw.HasDrawReagant(riding));
 
         if (!noPower) return;
 
