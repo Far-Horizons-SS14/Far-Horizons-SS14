@@ -285,3 +285,76 @@
         presets:
         - Greenshift
         - Sandbox
+
+# Technical Lead (Chief Engineer)
+
+# No hardsuit table
+- type: entityTable
+  id: LockerFillChiefEngineerNoHardsuitSyndi
+  table: !type:AllSelector
+    children:
+    #- id: ClothingNeckCloakCeElite
+    - id: AccessConfigurator
+    - id: BoxEncryptionKeyEngineering
+    - id: CigarCase
+      prob: 0.15
+    - id: ClothingBeltChiefEngineerFilledSyndi
+    - id: ClothingEyesGlassesMesonSyndi
+    - id: ClothingHandsGlovesColorYellow
+    - id: ClothingHeadsetAltCESyndi
+    - id: DoorRemoteEngineering
+    - id: CargoRequestEngineeringComputerCircuitboard
+    - id: ShipyardRCD
+    - id: BoxCECircuitboards
+    - id: RCDAmmo
+    - id: RubberStampCE
+    - id: MetalFoamGrenade
+    - id: PlushieMatthew
+      prob: 0.15
+    - id: IntegrityAnalyzer
+    - id: HullSenseCartridge
+    - id: ShipLabeler
+    - id: PrintedDocumentGreenshiftAlert
+      conditions:
+      - !type:GamemodeCondition
+        presets:
+        - Greenshift
+        - Sandbox
+
+# Hardsuit table, used for suit storage as well
+- type: entityTable
+  id: FillChiefEngineerHardsuitSyndi
+  table: !type:AllSelector
+    children:
+    - id: ClothingMaskGasAtmos
+    - id: ClothingOuterHardsuitEngineeringWhiteSyndi
+    - id: ClothingShoesBootsMagAdvSyndi
+    - id: JetpackVoidFilled
+    - id: OxygenTankFilled
+    - id: NitrogenTankFilled
+
+# No hardsuit locker
+- type: entity
+  id: LockerChiefEngineerFilledSyndi
+  suffix: S, Filled
+  parent: LockerChiefEngineerSyndi
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: LockerFillChiefEngineerNoHardsuitSyndi
+
+# No hardsuit + hardsuit locker
+- type: entity
+  id: LockerChiefEngineerFilledHardsuitSyndi
+  suffix: S, Filled, Hardsuit
+  parent: LockerChiefEngineerSyndi
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - !type:NestedSelector
+          tableId: LockerFillChiefEngineerNoHardsuitSyndi
+        - !type:NestedSelector
+          tableId: FillChiefEngineerHardsuitSyndi

@@ -219,6 +219,8 @@
 
 
 
+
+
 #region Command
 
 # Commander (Captain)
@@ -292,6 +294,115 @@
     access: [["HeadOfSecurity"]]
   - type: WiresPanelSecurity
     securityLevel: medSecurity
+
+# Technical Lead (Chief Engineer)
+
+- type: entity
+  id: LockerChiefEngineerSyndi
+  parent: LockerBaseSecure
+  name: Technical Lead's Locker
+  components:
+  - type: Appearance
+  - type: EntityStorageVisuals
+    stateBaseClosed: ce
+    stateDoorOpen: ce_open
+    stateDoorClosed: ce_door
+  - type: AccessReader
+    access: [ [ "ChiefEngineer" ] ]
+  - type: WiresPanelSecurity
+    securityLevel: medSecurity
+
+#region Engineering
+
+# Atmos tech
+- type: entity
+  id: LockerAtmosphericsSyndi
+  parent: LockerBase
+  name: Environmental Technician's Locker
+  components:
+  - type: Appearance
+  - type: EntityStorageVisuals
+    stateBaseClosed: atmos
+    stateDoorOpen: atmos_open
+    stateDoorClosed: atmos_door
+  - type: AccessReader
+    access: [ [ "Atmospherics" ] ]
+
+# Engineer
+- type: entity
+  id: LockerEngineerSyndi
+  parent: LockerBase
+  name: Architect's Locker
+  components:
+  - type: Appearance
+  - type: EntityStorageVisuals
+    stateBaseClosed: eng_secure
+    stateDoorOpen: eng_secure_open
+    stateDoorClosed: eng_secure_door
+  - type: AccessReader
+    access: [ [ "Engineering" ] ]
+
+# Electrical supplies
+- type: entity
+  id: LockerElectricalSuppliesSyndi
+  parent: LockerBase
+  name: Electrical Supplies Locker
+  suffix: S
+  components:
+  - type: Appearance
+  - type: EntityStorageVisuals
+    stateBaseClosed: eng
+    stateDoorOpen: eng_open
+    stateDoorClosed: eng_elec_door
+  - type: AccessReader
+    access: [ [ "Engineering" ] ]
+
+# Evac Repair
+- type: entity
+  parent: LockerBase
+  id: LockerEvacRepairSyndi
+  name: Emergency Shuttle Emergency Locker
+  suffix: S
+  description: It's emergencies all the way down.
+  components:
+  - type: Appearance
+  - type: EntityStorageVisuals
+    stateBaseClosed: eng
+    stateDoorOpen: eng_open
+    stateDoorClosed: eng_evac_door
+  - type: AccessReader
+    access: [ [ "Engineering" ] ]
+
+#Evac Repair Wall Locker
+- type: entity
+  parent: BaseWallLocker
+  id: LockerWallEvacRepairSyndi
+  name: Emergency Shuttle Emergency Wall Locker
+  suffix: S
+  description: It's emergencies all the way down.
+  components:
+  - type: EntityStorageVisuals
+    stateBaseClosed: eng
+    stateDoorOpen: eng_open
+    stateDoorClosed: eng_evac_door
+  - type: AccessReader
+    access: [["Engineering"]]
+
+# Welding supplies
+- type: entity
+  id: LockerWeldingSuppliesSyndi
+  suffix: S
+  parent: LockerBase
+  name: Welding Supplies Locker
+  components:
+  - type: Appearance
+  - type: EntityStorageVisuals
+    stateBaseClosed: eng
+    stateDoorOpen: eng_open
+    stateDoorClosed: eng_weld_door
+  - type: AccessReader
+    access: [ [ "Engineering" ] ]
+
 
 #region Security
 

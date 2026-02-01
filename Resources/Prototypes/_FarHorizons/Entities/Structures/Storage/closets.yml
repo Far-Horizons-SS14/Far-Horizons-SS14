@@ -1,0 +1,41 @@
+
+#region Syndicate
+
+
+
+
+
+
+
+
+
+
+
+#region Engineering
+
+# Tool closet
+- type: entity
+  id: ClosetToolSyndi
+  name: Tool Closet
+  parent: ClosetSteelBase
+  description: It's a storage unit for tools.
+  components:
+  - type: Appearance
+  - type: EntityStorageVisuals
+    stateBaseClosed: eng
+    stateDoorOpen: eng_open
+    stateDoorClosed: eng_tool_door
+
+# Radiation suit closet
+- type: entity
+  id: ClosetRadiationSuitSyndi
+  name: Radiation Suit Closet
+  suffix: S
+  parent: ClosetSteelBase
+  description: "More comfortable than radiation poisioning."
+  components:
+  - type: Appearance
+  - type: EntityStorageVisuals
+    stateBaseClosed: eng
+    stateDoorOpen: eng_open
+    stateDoorClosed: eng_rad_door

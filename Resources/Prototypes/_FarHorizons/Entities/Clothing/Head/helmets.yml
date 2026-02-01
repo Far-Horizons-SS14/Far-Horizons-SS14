@@ -20,6 +20,42 @@
 
 
 
+
+#region Engineering
+
+#Atmos Fire Helmet
+- type: entity
+  parent: [ClothingHeadLightBase, BaseEngineeringContraband]
+  id: ClothingHeadHelmetAtmosFireSyndi
+  name: Environmental Fire Helmet
+  description: An environmental fire helmet, able to keep the user cool in any situation.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Head/Helmets/atmos_firehelmet-syndi.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Head/Helmets/atmos_firehelmet-syndi.rsi
+    quickEquip: true
+  - type: IngestionBlocker
+  - type: TemperatureProtection
+    heatingCoefficient: 0.3
+    coolingCoefficient: 0.8
+  - type: FireProtection
+    reduction: 0.2
+  - type: PressureProtection
+    highPressureMultiplier: 0.25
+    lowPressureMultiplier: 1000
+  - type: IdentityBlocker
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - FireHelmet
+    - CorgiWearable
+  - type: HideLayerClothing
+    layers:
+      Hair: HEAD
+      Snout: HEAD
+  - type: BreathMask
+
 #region Security
 
 - type: entity

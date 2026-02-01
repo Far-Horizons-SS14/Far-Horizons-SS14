@@ -5,7 +5,8 @@
 - type: entity
   parent: [ClothingOuterHardsuitBase, BaseEngineeringContraband]
   id: ClothingOuterHardsuitAtmos
-  name: Atmos Hardsuit #Far Horizons - The Great Capitalization Crusade
+  name: Atmospheric Hardsuit #Far Horizons - The Great Capitalization Crusade
+  suffix: NT #Far Horizons - Dual Station Clarity
   description: A special suit that protects against hazardous, low pressure environments. Has thermal shielding.
   components:
   - type: Sprite
@@ -50,6 +51,7 @@
   parent: [ClothingOuterHardsuitBase, BaseEngineeringContraband]
   id: ClothingOuterHardsuitEngineering
   name: Engineering Hardsuit #Far Horizons - The Great Capitalization Crusade
+  suffix: NT #Far Horizons - Dual Station Clarity
   description: A special suit that protects against hazardous, low pressure environments. Has radiation shielding.
   components:
   - type: Sprite
@@ -90,6 +92,7 @@
   parent: [ClothingOuterHardsuitBase, BaseCargoContraband]
   id: ClothingOuterHardsuitSpatio
   name: Spationaut Hardsuit #Far Horizons - The Great Capitalization Crusade
+  suffix: NT #Far Horizons - Dual Station Clarity
   description: A lightweight hardsuit designed for industrial EVA in zero gravity.
   components:
   - type: Sprite
@@ -284,6 +287,7 @@
   parent: [ClothingOuterHardsuitBase, BaseSecurityContraband]
   id: ClothingOuterHardsuitSecurity
   name: Security Hardsuit #Far Horizons - The Great Capitalization Crusade
+  suffix: NT #Far Horizons - Dual Station Clarity
   description: A special suit that protects against hazardous, low pressure environments. Has an additional layer of armor.
   components:
   - type: Sprite
@@ -354,6 +358,7 @@
   parent: [ClothingOuterHardsuitBase, BaseSecurityContraband]
   id: ClothingOuterHardsuitBrigmedic
   name: Brigmedic Hardsuit #Far Horizons - The Great Capitalization Crusade
+  suffix: NT #Far Horizons - Dual Station Clarity
   description: Special hardsuit of the guardian angel of the brig. It is the medical version of the security hardsuit.
   components:
   - type: Sprite
@@ -420,6 +425,7 @@
   parent: [ClothingOuterHardsuitBase, BaseSecurityContraband]
   id: ClothingOuterHardsuitWarden
   name: Warden's Hardsuit #Far Horizons - The Great Capitalization Crusade
+  suffix: NT #Far Horizons - Dual Station Clarity
   description: A specialized, heavy riot suit geared to combat low pressure environments.
   components:
   - type: Sprite
@@ -484,6 +490,7 @@
   parent: [ClothingOuterHardsuitBase, BaseCommandContraband]
   id: ClothingOuterHardsuitCap
   name: Captain's Armored Spacesuit #Far Horizons - The Great Capitalization Crusade
+  suffix: NT #Far Horizons - Dual Station Clarity
   description: A formal armored spacesuit, made for the station's captain.
   components:
   - type: Sprite
@@ -529,6 +536,7 @@
   parent: [ClothingOuterHardsuitBase, BaseCommandContraband]
   id: ClothingOuterHardsuitEngineeringWhite
   name: Chief Engineer's Hardsuit #Far Horizons - The Great Capitalization Crusade
+  suffix: NT #Far Horizons - Dual Station Clarity
   description: A special hardsuit that protects against hazardous, low pressure environments, made for the chief engineer of the station.
   components:
   - type: Sprite
@@ -571,6 +579,7 @@
   parent: [ClothingOuterHardsuitBase, BaseCommandContraband]
   id: ClothingOuterHardsuitMedical
   name: Chief Medical Officer's Hardsuit #Far Horizons - The Great Capitalization Crusade
+  suffix: NT #Far Horizons - Dual Station Clarity
   description: A special suit that protects against hazardous, low pressure environments. Built with lightweight materials for easier movement.
   components:
   - type: Sprite
@@ -606,6 +615,7 @@
   parent: [ClothingOuterHardsuitBase, BaseGrandTheftContraband]
   id: ClothingOuterHardsuitRd
   name: Experimental Research Hardsuit #Far Horizons - The Great Capitalization Crusade
+  suffix: NT #Far Horizons - Dual Station Clarity
   description: A special suit that protects against hazardous, low pressure environments. Has an additional layer of armor.
   components:
   - type: Sprite
@@ -655,6 +665,7 @@
   parent: [ClothingOuterHardsuitBase, BaseCommandContraband]
   id: ClothingOuterHardsuitSecurityRed
   name: Head Of Security's Hardsuit #Far Horizons - The Great Capitalization Crusade
+  suffix: NT #Far Horizons - Dual Station Clarity
   description: A special suit that protects against hazardous, low pressure environments. Has an additional layer of armor.
   components:
   - type: Sprite
@@ -742,6 +753,7 @@
   parent: ClothingOuterHardsuitBase
   id: ClothingOuterHardsuitLuxury #DO NOT MAP - https://github.com/space-wizards/space-station-14/pull/19738#issuecomment-1703486738
   name: Luxury Mining Hardsuit #Far Horizons - The Great Capitalization Crusade
+  suffix: GSL #Far Horizons - Dual Station Clarity
   description: A refurbished mining hardsuit, fashioned after the Quartermaster's colors. Graphene lining provides less protection, but is much easier to move.
   categories: [ DoNotMap ]
   components:
@@ -778,6 +790,7 @@
   parent: [ ClothingOuterHardsuitBase, BaseSyndicateContraband ]
   id: ClothingOuterHardsuitSyndie
   name: Blood-Red Hardsuit #Far Horizons - The Great Capitalization Crusade
+  suffix: S #Far Horizons - Dual Station Clarity
   description: A heavily armored hardsuit designed for work in special operations. Property of Gorlex Marauders.
   components:
   - type: Sprite
@@ -845,6 +858,7 @@
   parent: [ClothingOuterHardsuitSyndie, BaseSyndicateContraband]
   id: ClothingOuterHardsuitSyndieMedic
   name: Blood-Red Medic Hardsuit #Far Horizons - The Great Capitalization Crusade
+  suffix: S #Far Horizons - Dual Station Clarity
   description: A heavily armored and agile advanced hardsuit specifically designed for field medic operations.
   components:
   - type: Sprite
@@ -866,6 +880,7 @@
   parent: [ClothingOuterHardsuitBase, BaseSyndicateContraband]
   id: ClothingOuterHardsuitSyndieElite
   name: Syndicate Elite Hardsuit #Far Horizons - The Great Capitalization Crusade
+  suffix: S #Far Horizons - Dual Station Clarity
   description: An elite version of the blood-red hardsuit, with improved radiation resistance and fireproofing. Property of Gorlex Marauders.
   components:
   - type: Sprite
@@ -950,6 +965,7 @@
   parent: [ClothingOuterHardsuitBase, BaseSyndicateContraband]
   id: ClothingOuterHardsuitSyndieCommander
   name: Syndicate Commander Hardsuit #Far Horizons - The Great Capitalization Crusade
+  suffix: S #Far Horizons - Dual Station Clarity
   description: A bulked up version of the blood-red hardsuit, purpose-built for the commander of a syndicate operative squad. Has significantly improved armor for those deadly front-lines firefights.
   components:
   - type: Sprite
@@ -1012,6 +1028,7 @@
   parent: [ClothingOuterHardsuitBase, BaseSyndicateContraband]
   id: ClothingOuterHardsuitJuggernaut
   name: Cybersun Juggernaut Suit #Far Horizons - The Great Capitalization Crusade
+  suffix: S #Far Horizons - Dual Station Clarity
   description: A suit made by the cutting edge R&D department at cybersun to be hyper resilient.
   components:
   - type: Sprite
@@ -1412,6 +1429,7 @@
   parent: [ BaseCentcommContraband, ClothingOuterHardsuitBase ]
   id: ClothingOuterHardsuitDeathsquad
   name: Death Squad Hardsuit #Far Horizons - The Great Capitalization Crusade
+  suffix: NT #Far Horizons - Dual Station Clarity
   description: An advanced hardsuit favored by commandos for use in special operations.
   components:
   - type: Sprite

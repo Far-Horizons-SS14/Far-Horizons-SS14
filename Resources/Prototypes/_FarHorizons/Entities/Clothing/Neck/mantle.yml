@@ -24,6 +24,19 @@
 
 #region Command
 
+# Lead Technician (CE)
+
+- type: entity
+  parent: [ClothingNeckBase, BaseCommandContraband]
+  id: ClothingNeckMantleCESyndi
+  name: Technical Lead's Mantle
+  description: High visibility, check. RIG system, check. High capacity cell, check. Everything a chief engineer could need in a stylish mantle.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Neck/Mantles/cemantle-syndi.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Neck/Mantles/cemantle-syndi.rsi
+
 # Personnel Chief (HoP)
 
 - type: entity

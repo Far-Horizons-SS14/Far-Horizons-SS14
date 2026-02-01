@@ -1,7 +1,7 @@
 #region Command
 
 - type: roleLoadout
-  id: SyndieCaptain
+  id: SyndieCaptain #Commander
   groups:
   - CommanderHead
   - CommanderNeck
@@ -14,7 +14,7 @@
   - Trinkets
 
 - type: roleLoadout
-  id: SyndieHeadOfSecurity
+  id: SyndieHeadOfSecurity #Security Overwatch
   groups:
   - SecurityOverwatchHead
   - SOHeadset
@@ -30,19 +30,21 @@
   - Trinkets
 
 - type: roleLoadout
-  id: SyndieChiefEngineer
+  id: SyndieChiefEngineer #Technical Lead
   groups:
-  - ChiefEngineerHead
-  - ChiefEngineerJumpsuit
+  - TLHead
+  - TLHeadset
+  - EngiSyndiGoggles
+  - TLNeck
+  - TLUniform
   - StationEngineerBackpack
-  - ChiefEngineerNeck
-  - ChiefEngineerOuterClothing
-  - ChiefEngineerShoes
+  #- ChiefEngineerOuterClothing 
+  - TLShoes
   - SurvivalExtended
   - Trinkets
 
 - type: roleLoadout
-  id: SyndieChiefMedicalOfficer
+  id: SyndieChiefMedicalOfficer #Medical Director
   groups:
   - ChiefMedicalOfficerHead
   - MedicalMask
@@ -57,7 +59,7 @@
   - Trinkets
 
 - type: roleLoadout
-  id: SyndieResearchDirector
+  id: SyndieResearchDirector #Head of Research
   groups:
   - ResearchDirectorHead
   - ResearchDirectorNeck
@@ -71,7 +73,7 @@
   - Trinkets
 
 - type: roleLoadout
-  id: SyndieHeadOfPersonnel
+  id: SyndieHeadOfPersonnel #Personnel Chief
   groups:
   - PCHead
   - PCNeck
@@ -97,7 +99,7 @@
   - Trinkets
 
 - type: roleLoadout
-  id: SyndieNanoTrasenRepresentative
+  id: SyndieNanoTrasenRepresentative #Syndicate Operations Agent
   groups:
   - NanoTrasenRepresentativeJumpsuit
   - NanoTrasenRepresentativeEyewear
@@ -121,30 +123,32 @@
 #region Engineering
 
 - type: roleLoadout
-  id: SyndieAtmosphericTechnician
+  id: SyndieAtmosphericTechnician #Environmental Technician
   groups:
-  - AtmosTechHead
-  - AtmosphericTechnicianJumpsuit
+  - EnviroHead
+  - EngiSyndiGoggles
+  - EnviroUniform
   - AtmosphericTechnicianBackpack
-  - AtmosphericTechnicianOuterClothing
-  - AtmosphericTechnicianShoes
+  - EnviroOuterClothing
+  - EnviroShoes
   - SurvivalExtended
   - Trinkets
 
 - type: roleLoadout
-  id: SyndieStationEngineer
+  id: SyndieStationEngineer #Station Architect
   groups:
-  - StationEngineerHead
-  - StationEngineerJumpsuit
+  - StationArchitectHead
+  - EngiSyndiGoggles
+  - StationArchitectUniform
   - StationEngineerBackpack
-  - StationEngineerOuterClothing
-  - StationEngineerShoes
+  - StationArchitectOuterClothing
+  - StationArchitectShoes
   - StationEngineerID
   - SurvivalExtended
   - Trinkets
 
 - type: roleLoadout
-  id: SyndieTechnicalAssistant
+  id: SyndieTechnicalAssistant #Trainee Architect
   groups:
   - TechnicalAssistantJumpsuit
   - StationEngineerBackpack
@@ -154,7 +158,7 @@
 #region Medical
 
 - type: roleLoadout
-  id: SyndieSurgeon
+  id: SyndieSurgeon #Physician
   groups:
   - MedicalDoctorHead
   - MedicalMask
@@ -169,7 +173,7 @@
   - Trinkets
 
 - type: roleLoadout
-  id: SyndieChemist
+  id: SyndieChemist #Pharmacist
   groups:
   - ChemistHead
   - MedicalMask
@@ -182,7 +186,7 @@
   - Trinkets
 
 - type: roleLoadout
-  id: SyndieParamedic
+  id: SyndieParamedic #Medic
   groups:
   - ParamedicHead
   - MedicalMask
@@ -196,7 +200,7 @@
   - Trinkets
 
 - type: roleLoadout
-  id: SyndieMedicalDoctor
+  id: SyndieMedicalDoctor #Clinician
   groups:
   - MedicalDoctorHead
   - MedicalMask
@@ -211,7 +215,7 @@
   - Trinkets
 
 - type: roleLoadout
-  id: SyndieMedicalIntern
+  id: SyndieMedicalIntern #Nursing Assistant
   groups:
   - MedicalInternJumpsuit
   - MedicalBackpack
@@ -220,7 +224,7 @@
   - Trinkets
 
 - type: roleLoadout
-  id: SyndiePsychologist
+  id: SyndiePsychologist #Psychoanalyst
   groups:
   - PsychologistJumpsuit
   - MedicalBackpack
@@ -232,7 +236,7 @@
 #region Science
 
 - type: roleLoadout
-  id: SyndieRoboticist
+  id: SyndieRoboticist #Robotics Engineer
   groups:
   - RoboticistHead
   - RoboticistGoggles
@@ -245,7 +249,7 @@
   - Trinkets
 
 - type: roleLoadout
-  id: SyndieScientist
+  id: SyndieScientist #Researcher
   groups:
   - ScientistHead
   - ScientistNeck
@@ -260,7 +264,7 @@
   - Trinkets
 
 - type: roleLoadout
-  id: SyndieResearchAssistant
+  id: SyndieResearchAssistant #Undergraduate
   groups:
   - ResearchAssistantJumpsuit
   - ScientistBackpack

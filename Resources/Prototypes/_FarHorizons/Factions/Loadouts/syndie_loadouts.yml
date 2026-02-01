@@ -47,6 +47,47 @@
   equipment:
     head: ClothingHeadHatSecurityOverwatchHat
 
+- type: loadout
+  id: TLBeret
+  equipment:
+    head: ClothingHeadHatBeretCESyndi
+
+- type: loadout
+  id: TLHardhat
+  equipment:
+    head: ClothingHeadHatHardhatWhite
+  
+# Engineering
+
+- type: loadout
+  id: EnviroBeret
+  equipment:
+    head: ClothingHeadHatBeretAtmosSyndi
+
+- type: loadout
+  id: ArchitectBeret
+  equipment:
+    head: ClothingHeadHatBeretEngineeringSyndi
+
+- type: loadout
+  id: EnviroHardhat
+  equipment:
+    head: ClothingHeadHatHardhatAtmosSyndi
+
+- type: loadout
+  id: SyndiHardhatYellow
+  equipment:
+    head: ClothingHeadHatHardhatYellow
+
+- type: loadout
+  id: SyndiHardhatOrange
+  equipment:
+    head: ClothingHeadHatHardhatOrangeSyndi
+
+- type: loadout
+  id: SyndiHardhatRed
+  equipment:
+    head: ClothingHeadHatHardhatRedSyndi
 # Security
 
 - type: loadout
@@ -111,6 +152,30 @@
 
 #region Ears / Headsets
 
+# Command
+
+- type: loadout
+  id: SOHeadsetRegular
+  equipment:
+    ears: ClothingHeadsetSecurityHoSSyndi
+
+- type: loadout
+  id: SOHeadsetAlt
+  equipment:
+    ears: ClothingHeadsetAltSecurityHoSSyndi
+
+- type: loadout
+  id: TLHeadset
+  equipment:
+    ears: ClothingHeadsetCESyndi
+
+- type: loadout
+  id: TLHeadsetAlt
+  equipment:
+    ears: ClothingHeadsetAltCESyndi
+
+# Engineering
+
 # Security
 
 - type: loadout
@@ -143,16 +208,6 @@
   equipment:
     ears: ClothingHeadsetAltSecurityWardenSyndi
 
-- type: loadout
-  id: SOHeadsetRegular
-  equipment:
-    ears: ClothingHeadsetSecurityHoSSyndi
-
-- type: loadout
-  id: SOHeadsetAlt
-  equipment:
-    ears: ClothingHeadsetAltSecurityHoSSyndi
-
 #region Eyes
 
 # Command
@@ -166,6 +221,13 @@
   id: CommanderHud
   equipment:
     eyes: ClothingEyesHudCommandSyndi
+
+# Engineering
+
+- type: loadout
+  id: EngineeringSyndiGoggles
+  equipment:
+    eyes: ClothingEyesGlassesMesonSyndi
 
 # Security
 
@@ -254,6 +316,18 @@
     neck: ClothingNeckCloakHosEliteSyndi
 
 - type: loadout
+  id: TLCloak
+  equipment:
+    neck: ClothingNeckCloakCeSyndi
+
+- type: loadout
+  id: TLMantle
+  equipment:
+    neck: ClothingNeckMantleCESyndi
+
+# Security
+
+- type: loadout
   id: InspectorTie
   equipment:
     neck: ClothingNeckTieDetSyndi
@@ -280,7 +354,7 @@
   equipment:
     jumpsuit: ClothingUniformJumpskirtSyndieFormalDress
 
-##Command
+# Command
 
 - type: loadout
   id: CommanderJumpskirt
@@ -361,6 +435,68 @@
   id: SOParade
   equipment:
     jumpsuit: ClothingUniformJumpskirtHoSParadeMaleSyndi
+
+- type: loadout
+  id: TLJumpsuit
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitChiefEngineerSyndi
+
+- type: loadout
+  id: TLJumpskirt
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtChiefEngineerSyndi
+
+- type: loadout
+  id: TLTurtleneck
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitChiefEngineerTurtleSyndi
+
+- type: loadout
+  id: TLTurtleneckSkirt
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtChiefEngineerTurtleSyndi
+
+- type: loadout
+  id: TLJumpsuitWhite
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitChiefEngineerBrightSyndi
+
+- type: loadout
+  id: TLJumpskirtWhite
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtChiefEngineerBrightSyndi
+
+# Engineering
+
+- type: loadout
+  id: EnviroJumpsuit
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitAtmosSyndi
+
+- type: loadout
+  id: EnviroJumpskirt
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtAtmosSyndi
+
+- type: loadout
+  id: EnviroCasualJumpsuit
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitAtmosCasualSyndi
+
+- type: loadout
+  id: EnviroCasualJumpskirt
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtAtmosCasualSyndi
+
+- type: loadout
+  id: ArchitectJumpsuit
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitEngineeringSyndi
+
+- type: loadout
+  id: ArchitectJumpskirt
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtEngineeringSyndi
 
 # Security
 
@@ -580,6 +716,15 @@
   equipment:
     outerClothing: ClothingOuterCoatHoSTrenchSyndi
 
+# Engineering
+
+- type: loadout
+  id: HazardVest
+  equipment:
+    outerClothing: ClothingOuterVestHazard
+
+# Security
+
 - type: loadout
   id: GuardianArmoredWinterCoat
   equipment:
@@ -609,7 +754,6 @@
   id: InspectorNoirTrench
   equipment:
     outerClothing: ClothingOuterCoatDetectiveLoadoutGreySyndi
-
 
 - type: loadout
   id: LEArmorVest
@@ -667,3 +811,8 @@
   id: JackBootsSyndi
   equipment:
     shoes: ClothingShoesBootsJackSyndiFilled
+
+- type: loadout
+  id: WorkBootsSyndi
+  equipment:
+    shoes: ClothingShoesBootsWorkSyndi

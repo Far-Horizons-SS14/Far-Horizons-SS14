@@ -1,3 +1,12 @@
+#region NanoTrasen
+
+
+
+
+
+
+
+
 
 #region Command
 
@@ -142,7 +151,9 @@
     clothingPrototype: ClothingHeadHelmetHardsuitCorpsman
 
 
-#region Syndicate
+#region Syndicate 
+
+
 
 
 
@@ -232,6 +243,139 @@
     sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/security-red-syndi.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitSecurityRedSyndi
+
+# Technical Lead (CE)
+- type: entity
+  parent: [ClothingOuterHardsuitBase, BaseCommandContraband]
+  id: ClothingOuterHardsuitEngineeringWhiteSyndi
+  name: Technical Lead's Hardsuit
+  suffix: S
+  description: A special hardsuit that protects against hazardous, low pressure environments, made for the technical lead of the station.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/engineering-white-syndi.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/engineering-white-syndi.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.02
+    lowPressureMultiplier: 1000
+  - type: FireProtection
+    reduction: 0.8
+  - type: ExplosionResistance
+    damageCoefficient: 0.2
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.8
+        Heat: 0.4
+        Radiation: 0.0
+        Caustic: 0.7
+  - type: ClothingSpeedModifier
+    walkModifier: 0.8
+    sprintModifier: 0.8
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitEngineeringWhiteSyndi
+  - type: Tag
+    tags:
+    #- CorgiWearable
+    - Hardsuit
+    - WhitelistChameleon
+    - IPCExternalCooling
+
+#region Engineering
+
+# Environmental Technician (Atmos) Hardsuit
+
+- type: entity
+  parent: [ClothingOuterHardsuitBase, BaseEngineeringContraband]
+  id: ClothingOuterHardsuitAtmosSyndi
+  name: Environmental Hardsuit
+  suffix: S
+  description: A special suit that protects against hazardous, low pressure environments. Has thermal shielding.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/atmospherics-syndi.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/atmospherics-syndi.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.02
+    lowPressureMultiplier: 1000
+  - type: TemperatureProtection
+    heatingCoefficient: 0.001
+    coolingCoefficient: 0.001
+  - type: FireProtection
+    reduction: 0.8
+  - type: ExplosionResistance
+    damageCoefficient: 0.5
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.8
+        Radiation: 0.5
+  - type: ClothingSpeedModifier
+    walkModifier: 0.7
+    sprintModifier: 0.7
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitAtmosSyndi
+  - type: Tag
+    tags:
+    #- CorgiWearable
+    - Hardsuit
+    - WhitelistChameleon
+    - IPCExternalCooling
+
+# Station Architect (Engineering) Hardsuit
+
+- type: entity
+  parent: [ClothingOuterHardsuitBase, BaseEngineeringContraband]
+  id: ClothingOuterHardsuitEngineeringSyndi
+  name: Architectural Hardsuit
+  suffix: S
+  description: A special suit that protects against hazardous, low pressure environments. Has radiation shielding.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/engineering-syndi.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/engineering-syndi.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.04
+    lowPressureMultiplier: 1000
+  - type: ExplosionResistance
+    damageCoefficient: 0.5
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Shock: 0.8
+        Caustic: 0.5
+        Radiation: 0.2
+  - type: ClothingSpeedModifier
+    walkModifier: 0.7
+    sprintModifier: 0.7
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitEngineeringSyndi
+  - type: Tag
+    tags:
+    #- CorgiWearable
+    - Hardsuit
+    - WhitelistChameleon
+    - IPCExternalCooling
 
 #region Security
 

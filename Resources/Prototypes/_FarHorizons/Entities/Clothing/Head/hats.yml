@@ -301,6 +301,61 @@
     - HamsterWearable
     - WhitelistChameleon
 
+# Technical Lead (Chief Engineer)
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatBeretCESyndi
+  name: Technical Lead's Beret
+  suffix: S
+  description: A red colored beret for the head of engineering.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Head/Hats/beret_CE-syndi.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Head/Hats/beret_CE-syndi.rsi
+  - type: Tag
+    tags:
+    - PetWearable
+    - CorgiWearable
+
+#region Engineering
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatBeretAtmosSyndi
+  name: Environmental Beret
+  description: A brightly colored yellow beret with red accent.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Head/Hats/beret_atmos-syndi.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Head/Hats/beret_atmos-syndi.rsi
+  - type: Tag
+    tags:
+    - PetWearable
+    - CorgiWearable
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatBeretEngineeringSyndi
+  name: Architectural Beret
+  suffix: S
+  description: A beret with the engineering department's insignia. For engineers that are more inclined towards style than safety.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Head/Hats/beret_engineering-syndi.rsi #Far Horizons
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Head/Hats/beret_engineering-syndi.rsi #Far Horizons
+  - type: Tag
+    tags:
+    - PetWearable
+    - CorgiWearable
+    - ClothMade
+    - Recyclable
+    - HamsterWearable
+    - WhitelistChameleon
+
 #region Security
 
 - type: entity
