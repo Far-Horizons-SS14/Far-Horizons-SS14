@@ -136,14 +136,14 @@ public sealed partial class VehicleSystems : SharedVehicleSystems
         SubscribeLocalEvent<RiderComponent, WieldAttemptEvent>(OnWieldAttemptEvent);
         SubscribeLocalEvent<RiderComponent, ShooterImpulseEvent>(OnShooterEvent);
         SubscribeLocalEvent<RiderComponent, RefreshMovementSpeedModifiersEvent>(OnMovementSpeedRefreshRiderEvent);
-        SubscribeLocalEvent<RiderComponent, DidEquipHandEvent>(OnHandEquipped);
+        SubscribeLocalEvent<RiderComponent, DidEquipHandEvent>(OnHandEquippedRider);
 
         SubscribeLocalEvent<GunComponent, ItemWieldedEvent>(OnGunWielded);
         SubscribeLocalEvent<GunComponent, ItemUnwieldedEvent>(OnGunUnwielded);
         SubscribeLocalEvent<GunComponent, GunRefreshModifiersEvent>(OnGunRefreshModifiers);
 
         SubscribeLocalEvent<TransformComponent, JetJumpActionEvent>(OnJetJumpActionEvent);
-
+        SubscribeLocalEvent<DidEquipHandEvent>(OnHandEquipped);
         _transform.OnGlobalMoveEvent += OnMoveEvent;
     }
 
@@ -750,7 +750,7 @@ public sealed partial class VehicleSystems : SharedVehicleSystems
         if(ent.Comp.Riding == null) return;
         Timer.Spawn(0, () => _movementSpeed.RefreshMovementSpeedModifiers(ent.Comp.Riding.Value)); // Race conditions :strangle:
     }
-    private void OnHandEquipped(Entity<RiderComponent> ent, ref DidEquipHandEvent args)
+    private void OnHandEquippedRider(Entity<RiderComponent> ent, ref DidEquipHandEvent args)
     {
         if(!HasComp<GunComponent>(args.Equipped)) return;
         _gun.RefreshModifiers(args.Equipped);
@@ -798,6 +798,15 @@ public sealed partial class VehicleSystems : SharedVehicleSystems
     {
         if(!TryComp<BuckleComponent>(ent.Comp.ParentUid, out var buckleComp)) return;
         _buckle.Unbuckle((ent.Comp.ParentUid, buckleComp), ent.Comp.ParentUid);
+    }
+
+    //The pickable races check...
+    private void OnHandEquipped(DidEquipHandEvent ev)
+    {
+        if(!TryComp<RiderComponent>(ev.Equipped, out var riderComp) 
+            || riderComp.Riding != null 
+            || !TryComp<VehicleComponent>(riderComp.Riding, out var vehicleComp)) return;
+        RemoveRider(ev.Equipped, riderComp.Riding.Value, vehicleComp);
     }
 
     private void OnMoveEvent(ref MoveEvent ev)
