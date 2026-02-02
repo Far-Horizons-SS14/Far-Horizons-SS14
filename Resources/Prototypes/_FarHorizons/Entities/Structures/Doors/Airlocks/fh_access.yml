@@ -136,6 +136,92 @@
       board: [ DoorElectronicsHydroponics ]
 
 - type: entity
+  parent: FHAirlockExternal
+  id: FHAirlockExternalLocked
+  suffix: External, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsExternal ]
+
+- type: entity
+  parent: FHAirlockExternal
+  id: FHAirlockExternalCargoLocked
+  suffix: External, Cargo, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsCargo ]
+  - type: Wires
+    layoutId: AirlockCargo
+
+- type: entity
+  parent: FHAirlockExternal
+  id: FHAirlockExternalEngineeringLocked
+  suffix: External, Engineering, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsEngineering ]
+  - type: Wires
+    layoutId: AirlockEngineering
+
+- type: entity
+  parent: FHAirlockExternal
+  id: FHAirlockExternalCommandLocked
+  suffix: External, Command, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsCommand ]
+  - type: Wires
+    layoutId: AirlockCommand
+
+- type: entity
+  parent: FHAirlockExternalGlass
+  id: FHAirlockExternalGlassCommandLocked
+  suffix: External, Glass, Command, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsCommand ]
+  - type: Wires
+    layoutId: AirlockCommand
+
+- type: entity
+  parent: FHAirlockExternal
+  id: FHAirlockExternalAtmosphericsLocked
+  suffix: External, Atmospherics, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsAtmospherics ]
+  - type: Wires
+    layoutId: AirlockEngineering
+
+- type: entity
+  parent: FHAirlockExternal
+  id: FHAirlockExternalSyndicateLocked
+  suffix: External, Syndicate, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSyndicateAgent ]
+  - type: Wires
+    layoutId: AirlockSecurity
+
+- type: entity
+  parent: FHAirlockExternal
+  id: FHAirlockExternalNukeopLocked
+  suffix: External, Nukeop, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNukeop ]
+  - type: Wires
+    layoutId: AirlockSecurity
+
+- type: entity
   parent: FHAirlockEngineering
   id: FHAirlockEngineeringLocked
   suffix: Engineering, Locked
@@ -723,6 +809,70 @@
         board: [ DoorElectronicsService ]
     - type: Wires
       layoutId: AirlockService
+
+- type: entity
+  parent: FHAirlockExternalGlass
+  id: FHAirlockExternalGlassLocked
+  suffix: External, Glass, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsExternal ]
+
+- type: entity
+  parent: FHAirlockExternalGlass
+  id: FHAirlockExternalGlassCargoLocked
+  suffix: External, Glass, Cargo, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsCargo ]
+  - type: Wires
+    layoutId: AirlockCargo
+
+- type: entity
+  parent: FHAirlockExternalGlass
+  id: FHAirlockExternalGlassSyndicateLocked
+  suffix: External, Glass, Syndicate, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSyndicateAgent ]
+  - type: Wires
+    layoutId: AirlockSecurity
+
+- type: entity
+  parent: FHAirlockExternalGlass
+  id: FHAirlockExternalGlassNukeopLocked
+  suffix: External, Glass, Nukeop, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNukeop ]
+  - type: Wires
+    layoutId: AirlockSecurity
+
+- type: entity
+  parent: FHAirlockExternalGlass
+  id: FHAirlockExternalGlassEngineeringLocked
+  suffix: External, Glass, Engineering, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsEngineering ]
+  - type: Wires
+    layoutId: AirlockEngineering
+
+- type: entity
+  parent: FHAirlockExternalGlass
+  id: FHAirlockExternalGlassAtmosphericsLocked
+  suffix: External, Glass, Atmospherics, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsAtmospherics ]
+  - type: Wires
+    layoutId: AirlockEngineering
 
 - type: entity
   parent: FHAirlockServiceGlassLocked
