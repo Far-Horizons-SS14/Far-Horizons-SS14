@@ -1,0 +1,125 @@
+- type: entity
+  parent: BaseStructure
+  id: HolographicFieldGenerator
+  name: Holographic Field Generator
+  description: A machine that generates a Holographic Field when powered by an emitter. Keeps the air where it belongs.
+  components:
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.4
+        density: 190
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+  - type: InteractionOutline
+  - type: Anchorable
+  - type: Sprite
+    sprite: Structures/Power/Generation/Singularity/containment.rsi
+    state: icon
+    noRot: true
+    layers:
+      - state: icon
+      - state: p1
+        map: ["powerLight"]
+        visible: false
+        shader: unshaded
+      - state: a1
+        map: ["fieldLight"]
+        visible: false
+        shader: unshaded
+      - state: on
+        map: ["connectedLight"]
+        visible: false
+        shader: unshaded
+  - type: Icon
+    sprite: Structures/Power/Generation/Singularity/containment.rsi
+    state: icon
+  - type: ContainmentFieldGenerator
+    createdField: HolographicField
+    powerLoss: 5
+  - type: PointLight
+    enabled: false
+    color: "#4080FF"
+    radius: 32
+    energy: 2.0
+    softness: 32.0
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.ContainmentFieldGeneratorVisuals.PowerLight:
+        powerLight:
+          NoPower: {visible: false}
+          LowPower: {visible: true, state: p1}
+          MediumPower: {visible: true, state: p3}
+          HighPower: {visible: true, state: p6}
+      enum.ContainmentFieldGeneratorVisuals.FieldLight:
+        fieldLight:
+          NoLevel: {visible: false}
+          On: {visible: true, state: a1}
+          OneField: {visible: true, state: a2}
+          MultipleFields: {visible: true, state: a3}
+      enum.ContainmentFieldGeneratorVisuals.OnLight:
+        connectedLight:
+          True: { visible: true }
+          False: { visible: false }
+  - type: Airtight
+    noAirWhenFullyAirBlocked: true
+#  - type: GuideHelp
+#    guides:
+#    - SingularityTeslaEngine
+#    - SingularityEngine
+#    - Power
+
+- type: entity
+  id: HolographicField
+  name: Holographic Field
+  description: A Holographic Field that blocks airflow.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: InteractionOutline
+  - type: Clickable
+  - type: Physics
+    bodyType: Static
+    canCollide: false
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        mask:
+        - FullTileMask
+        layer:
+        - GlassLayer
+  - type: Sprite
+    sprite: Structures/Power/Generation/Singularity/containment_field.rsi
+    state: field
+    noRot: true
+  - type: Icon
+    sprite: Structures/Power/Generation/Singularity/containment_field.rsi
+    state: field
+  - type: SyncSprite
+  - type: Airtight
+    noAirWhenFullyAirBlocked: false
+  - type: RadiationBlocker
+    resistance: 50
+  - type: ContainmentField
+    throwForce: 0
+    maxMass: 0 
+    destroyGarbage: false
+  - type: Transform
+    anchored: true
+  - type: BlockWeather
+  - type: Tag
+    tags:
+    - Wall
+#  - type: GuideHelp
+#    guides:
+#    - SingularityTeslaEngine
+#    - SingularityEngine
+#    - Power
