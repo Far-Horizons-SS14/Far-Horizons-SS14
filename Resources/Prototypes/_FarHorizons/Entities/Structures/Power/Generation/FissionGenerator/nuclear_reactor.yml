@@ -376,6 +376,14 @@
     gridbounds: [ 12, 11, 0, 0 ]
 
 - type: entity
+  id: NuclearReactorSmallEmptySalvage
+  parent: NuclearReactorSmallSalvage
+  suffix: "Empty, Salvage"
+  components:
+  - type: NuclearReactor
+    prefab: ReactorPrefabEmpty
+
+- type: entity
   id: NuclearReactorSmallRandomSalvage
   parent: NuclearReactorSmallSalvage
   suffix: "Random, Salvage"
