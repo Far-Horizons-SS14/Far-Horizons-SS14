@@ -76,9 +76,6 @@
         visible: false
       noRot: true
     - type: Vehicle
-      acceleration: 2 # higher acceleration the faster it reaches max baseSpeed
-      friction: 2 # higher friction counteracts the current speed so higher makes it easier to turn but has the inverse effect also it counter acts acceleration
-      frictionNoInput: 2 # same as friction but for when the user doesn't input anything so lower friction means it will take them longer to stop
       requireIgnition: false 
       baseState: wheelchair
       handsNeeded: 0
@@ -103,6 +100,8 @@
     - type: MovementSpeedModifier
       baseSprintSpeed: 4.5
       baseWalkSpeed: 2.5
+      baseAcceleration: 2 
+      baseFriction: 0.25 #Friction is dynamically updated apparently eugh
     - type: Strap
     - type: Fixtures
       fixtures:
@@ -150,8 +149,6 @@
         visible: false
       noRot: true
     - type: Vehicle
-      acceleration: 1 
-      friction: 0.8
       requireIgnition: false 
       baseState: vehicle
       handsNeeded: 0
@@ -178,6 +175,8 @@
     - type: MovementSpeedModifier
       baseSprintSpeed: 4.5
       baseWalkSpeed: 2.5
+      baseAcceleration: 1 
+      baseFriction: 0.1
     - type: Strap
     - type: Fixtures
       fixtures:

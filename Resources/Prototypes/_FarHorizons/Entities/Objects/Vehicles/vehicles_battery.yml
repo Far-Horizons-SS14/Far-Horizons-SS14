@@ -6,9 +6,6 @@
   suffix: NT
   components:
   - type: Vehicle
-    acceleration: 2
-    friction: 4.5
-    frictionNoInput: 4.5
     requireIgnition: true 
     baseState: vehicle
     brokenState: vehicle_broken
@@ -57,6 +54,8 @@
   - type: MovementSpeedModifier
     baseWalkSpeed: 2
     baseSprintSpeed: 5.5 #4.5 is default, so this is 1 faster than normal run
+    baseAcceleration: 2
+    baseFriction: 0.56
   - type: ItemSlots
     slots:
       key_slot:
@@ -179,9 +178,6 @@
   description: The janitor's trusty steed.
   components:
   - type: Vehicle
-    acceleration: 2
-    friction: 4.5
-    frictionNoInput: 4.5
     requireIgnition: true 
     baseState: vehicle
     brokenState: destroyed
@@ -230,6 +226,8 @@
   - type: MovementSpeedModifier
     baseWalkSpeed: 2
     baseSprintSpeed: 5.5
+    baseAcceleration: 2
+    baseFriction: 0.56
   - type: ItemSlots
     slots:
       key_slot:

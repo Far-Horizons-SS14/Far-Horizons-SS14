@@ -750,6 +750,7 @@ public sealed partial class VehicleSystems : SharedVehicleSystems
         if(ent.Comp.Riding == null) return;
         Timer.Spawn(0, () => _movementSpeed.RefreshMovementSpeedModifiers(ent.Comp.Riding.Value)); // Race conditions :strangle:
     }
+
     private void OnHandEquippedRider(Entity<RiderComponent> ent, ref DidEquipHandEvent args)
     {
         if(!HasComp<GunComponent>(args.Equipped)) return;

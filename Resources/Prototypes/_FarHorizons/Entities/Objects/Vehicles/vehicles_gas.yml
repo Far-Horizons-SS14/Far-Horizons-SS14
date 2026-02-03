@@ -9,11 +9,10 @@
   - type: MovementSpeedModifier
     baseWalkSpeed: 10
     baseSprintSpeed: 7.5
+    baseAcceleration: 4
+    baseFriction: 0.56
   - type: Vehicle
     cellPowered: false
-    acceleration: 4
-    friction: 4.5
-    frictionNoInput: 4.5
     requireIgnition: true
     allowCrashing: true
     crashingSpeed: 8
@@ -158,9 +157,6 @@
         vehicle_mods_container: !type:Container
     - type: Vehicle
       cellPowered: false
-      acceleration: 4
-      friction: 4.5
-      frictionNoInput: 4.5
       requireIgnition: true
       allowCrashing: true
       crashingSpeed: 10 
@@ -232,11 +228,10 @@
   - type: MovementSpeedModifier
     baseWalkSpeed: 10 
     baseSprintSpeed: 7.5
+    baseAcceleration: 4
+    baseFriction: 0.25
   - type: Vehicle
     cellPowered: false
-    acceleration: 4
-    friction: 4.5
-    frictionNoInput: 2
     requireIgnition: true 
     allowCrashing: true
     crashingSpeed: 8 
@@ -390,11 +385,10 @@
   - type: MovementSpeedModifier
     baseWalkSpeed: 12
     baseSprintSpeed: 7.5
+    baseAcceleration: 4
+    baseFriction: 0.56
   - type: Vehicle
     cellPowered: false
-    acceleration: 4
-    friction: 4.5
-    frictionNoInput: 4.5
     requireIgnition: true
     allowCrashing: true
     crashingSpeed: 8

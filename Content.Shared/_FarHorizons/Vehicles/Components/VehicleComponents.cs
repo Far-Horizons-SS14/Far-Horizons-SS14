@@ -17,8 +17,8 @@ public sealed partial class VehicleComponent : Component
     /// <summary>
     /// check if a vehicle requires ignition before allowing it to move
     /// </summary>
-    [DataField("requireIgnition"), AutoNetworkedField]
-    public bool requireIgnition = false;
+    [DataField, AutoNetworkedField]
+    public bool RequireIgnition = false;
 
     /// <summary>
     /// check if a vehicle requires ignition before allowing it to move
@@ -74,25 +74,7 @@ public sealed partial class VehicleComponent : Component
     [DataField("timeToStealKeys"), AutoNetworkedField]
     public TimeSpan timeToStealKeys = TimeSpan.FromSeconds(3);
 
-    /// <summary>
-    /// the levels of friction the wearer is subected to, higher the number the more friction.
-    /// </summary>
-    [DataField, AutoNetworkedField]
-    public float Friction = 2;
-
-    /// <summary>
-    /// Determines the turning ability of the wearer, Higher the number the less control of their turning ability.
-    /// </summary>
-    [DataField, AutoNetworkedField]
-    public float FrictionNoInput = 6;
-
-    /// <summary>
-    /// Sets the speed in which the wearer accelerates to full speed, higher the number the quicker the acceleration.
-    /// </summary>
-    [DataField, AutoNetworkedField]
-    public float Acceleration = 2;
-
-    [DataField, AutoNetworkedField]
+    [ViewVariables, AutoNetworkedField]
     public Direction? currentDirection;
 
     /// <summary>
@@ -133,40 +115,4 @@ public sealed partial class VehicleComponent : Component
 
     [DataField, AutoNetworkedField]
     public string? BrokenState;
-
-    [DataField, AutoNetworkedField]
-    public EntProtoId HornVehicleAction = "ActionVehicleHorn";
-    
-    [DataField, AutoNetworkedField] public EntityUid? HornVehicleActionEntity;
-
-    [DataField, AutoNetworkedField]
-    public EntProtoId TurnKeysAction = "ActionTurnKeys";
-    
-    [DataField, AutoNetworkedField] public EntityUid? TurnKeysActionEntity;
-
-    [DataField, AutoNetworkedField]
-    public EntProtoId ToggleTrunkAction = "ActionToggleTrunk";
-    
-    [DataField, AutoNetworkedField] public EntityUid? ToggleTrunkActionEntity;
-
-    /// <summary>
-    /// UID for the invisible headlight
-    /// </summary>
-    [DataField, AutoNetworkedField]
-    public EntityUid? Headlight;
-    
-    [DataField, AutoNetworkedField]
-    public EntProtoId ToggleSirenAction = "ActionVehicleToggleSecuritySiren";
-
-    /// <summary>
-    /// UID for the invisible sirenlight
-    /// </summary>
-    [DataField, AutoNetworkedField]
-    public EntityUid? Sirenlight;
-
-    /// <summary>
-    /// Container that holds all the equipment for a vehicle
-    /// </summary>
-    [DataField, AutoNetworkedField]
-    public string VehicleModsSlot = "vehicle_mods_container";
 }
