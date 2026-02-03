@@ -164,7 +164,7 @@ public sealed partial class NuclearReactorComponent : Component
     /// </summary>
     /// <remarks>This will NOT stop the reactor from making more than this value</remarks>
     [DataField]
-    public float MaximumThermalPower = 10000000;
+    public float MaximumThermalPower = 20000000;
 
     /// <summary>
     /// The estimated thermal power the reactor is making
@@ -310,21 +310,6 @@ public sealed partial class NuclearReactorComponent : Component
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite)]
     public SignalState InsertPortState = SignalState.Low;
-    #endregion
-
-    #region Debug
-    [ViewVariables(VVAccess.ReadOnly)]
-    public int NeutronCount = 0;
-    [ViewVariables(VVAccess.ReadOnly)]
-    public int MeltedParts = 0;
-    [ViewVariables(VVAccess.ReadOnly)]
-    public int DetectedControlRods = 0;
-    [ViewVariables(VVAccess.ReadOnly)]
-    public float TotalNRads = 0;
-    [ViewVariables(VVAccess.ReadOnly)]
-    public float TotalRads = 0;
-    [ViewVariables(VVAccess.ReadOnly)]
-    public float TotalSpent = 0;
     #endregion
 }
 

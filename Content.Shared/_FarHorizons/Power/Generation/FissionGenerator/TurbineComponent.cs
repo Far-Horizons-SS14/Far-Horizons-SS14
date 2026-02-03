@@ -277,8 +277,6 @@ public sealed partial class TurbineComponent : Component
 
     #region Debug
     [ViewVariables(VVAccess.ReadOnly)]
-    public bool HasPipes = false;
-    [ViewVariables(VVAccess.ReadOnly)]
     public float SupplierMaxSupply = 0;
     [ViewVariables(VVAccess.ReadOnly)]
     public float SupplierLastSupply = 0;

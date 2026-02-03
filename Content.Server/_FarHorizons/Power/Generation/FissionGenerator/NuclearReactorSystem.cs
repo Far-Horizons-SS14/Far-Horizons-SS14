@@ -260,13 +260,6 @@ public sealed class NuclearReactorSystem : EntitySystem
         var AvgControlRodInsertion = 0f;
         var TempChange = 0f;
 
-        // Debug Vars
-        var NeutronCount = 0;
-        var MeltedComps = 0;
-        var TotalNRads = 0f;
-        var TotalRads = 0f;
-        var TotalSpent = 0f;
-
         var transferVolume = CalculateTransferVolume(inlet.Air.Volume, inlet, outlet, args.dt);
         var GasInput = inlet.Air.RemoveVolume(transferVolume);
 
@@ -291,45 +284,37 @@ public sealed class NuclearReactorSystem : EntitySystem
             {
                 var ReactorComp = comp.ComponentGrid[x, y];
 
-                if (ReactorComp == null)
+                if (ReactorComp != null)
+                {
+                    var gas = _partSystem.ProcessGas(ReactorComp, ent, GasInput);
+                    GasInput.Volume -= ReactorComp.GasVolume;
+
+                    if (gas != null)
+                        _atmosphereSystem.Merge(outlet.Air, gas);
+
+                    _partSystem.ProcessHeat(ReactorComp, ent, GetGridNeighbors(comp, x, y), this);
+                    comp.TemperatureGrid[x, y] = ReactorComp.Temperature;
+
+                    if (ReactorComp.HasRodType(ReactorPartComponent.RodTypes.ControlRod) && ReactorComp.IsControlRod)
+                    {
+                        ReactorComp.ConfiguredInsertionLevel = comp.ControlRodInsertion;
+                        ControlRods++;
+                    }
+
+                    comp.FluxGrid[x, y] = _partSystem.ProcessNeutrons(ReactorComp, comp.FluxGrid[x, y], out var deltaT);
+                    TempChange += deltaT;
+
+                    // Second check so that AvgControlRodInsertion represents the present instead of 1 tick in the past
+                    if (ReactorComp.HasRodType(ReactorPartComponent.RodTypes.ControlRod) && ReactorComp.IsControlRod)
+                        AvgControlRodInsertion += ReactorComp.NeutronCrossSection;
+                }
+                else
                 {
                     comp.TemperatureGrid[x, y] = 0;
-                    continue;
                 }
-
-                var gas = _partSystem.ProcessGas(ReactorComp, ent, GasInput);
-                GasInput.Volume -= ReactorComp.GasVolume;
-
-                if (gas != null)
-                    _atmosphereSystem.Merge(outlet.Air, gas);
-
-                _partSystem.ProcessHeat(ReactorComp, ent, GetGridNeighbors(comp, x, y), this);
-                comp.TemperatureGrid[x, y] = ReactorComp.Temperature;
-
-                if (ReactorComp.HasRodType(ReactorPartComponent.RodTypes.ControlRod) && ReactorComp.IsControlRod)
-                {
-                    ReactorComp.ConfiguredInsertionLevel = comp.ControlRodInsertion;
-                    ControlRods++;
-                }
-
-                if (ReactorComp.Melted)
-                    MeltedComps++;
-
-                comp.FluxGrid[x, y] = _partSystem.ProcessNeutrons(ReactorComp, comp.FluxGrid[x, y], out var deltaT);
-                TempChange += deltaT;
-
-                // Second check so that AvgControlRodInsertion represents the present instead of 1 tick in the past
-                if (ReactorComp.HasRodType(ReactorPartComponent.RodTypes.ControlRod) && ReactorComp.IsControlRod)
-                    AvgControlRodInsertion += ReactorComp.NeutronCrossSection;
-
-                TotalNRads += ReactorComp.Properties.NeutronRadioactivity;
-                TotalRads += ReactorComp.Properties.Radioactivity;
-                TotalSpent += ReactorComp.Properties.FissileIsotopes;
 
                 foreach (var neutron in comp.FluxGrid[x, y])
                 {
-                    NeutronCount++;
-
                     var dir = neutron.dir.AsFlag();
                     // Bit abuse
                     var xmod = ((dir & DirectionFlag.East) == DirectionFlag.East ? 1 : 0) - ((dir & DirectionFlag.West) == DirectionFlag.West ? 1 : 0);
@@ -375,17 +360,11 @@ public sealed class NuclearReactorSystem : EntitySystem
 
         comp.RadiationLevel = Math.Max(comp.RadiationLevel + TempRads, 0);
 
-        comp.NeutronCount = NeutronCount;
-        comp.MeltedParts = MeltedComps;
-        comp.DetectedControlRods = ControlRods;
         comp.AvgInsertion = AvgControlRodInsertion;
-        comp.TotalNRads = TotalNRads;
-        comp.TotalRads = TotalRads;
-        comp.TotalSpent = TotalSpent;
 
         if (comp.ThermalPowerCount < comp.ThermalPowerPrecision)
             comp.ThermalPowerCount++;
-        comp.ThermalPower += (TempChange - comp.ThermalPower) / Math.Min(comp.ThermalPowerCount, comp.ThermalPowerPrecision);
+        comp.ThermalPower += ((TempChange / args.dt) - comp.ThermalPower) / Math.Min(comp.ThermalPowerCount, comp.ThermalPowerPrecision);
 
         if (comp.Temperature > comp.ReactorMeltdownTemp) // Disabled the explode if over 1000 rads thing, hope the server survives
         {

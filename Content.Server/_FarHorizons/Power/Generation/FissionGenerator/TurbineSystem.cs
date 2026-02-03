@@ -231,8 +231,8 @@ public sealed class TurbineSystem : EntitySystem
 
         if (!comp.Ruined && AirContents != null)
         {
-            var InputStartingEnergy = _atmosphereSystem.GetThermalEnergy(AirContents);
             var InputHeatCap = _atmosphereSystem.GetHeatCapacity(AirContents, true);
+            var InputStartingEnergy = InputHeatCap * AirContents.Temperature;
 
             // Prevents div by 0 if it would come up
             if (InputStartingEnergy <= 0)
@@ -249,33 +249,19 @@ public sealed class TurbineSystem : EntitySystem
                 AirContents.Temperature = (float)Math.Max((InputStartingEnergy - ((InputStartingEnergy - (InputHeatCap * Atmospherics.T20C)) * 0.8)) / InputHeatCap, Atmospherics.T20C);
             }
 
-            var OutputStartingEnergy = _atmosphereSystem.GetThermalEnergy(AirContents);
+            var OutputStartingEnergy = InputHeatCap * AirContents.Temperature;
             var EnergyGenerated = comp.StatorLoad * (comp.RPM / 60);
 
             var DeltaE = InputStartingEnergy - OutputStartingEnergy;
-            float NewRPM;
-
-            if (DeltaE - EnergyGenerated > 0)
-            {
-                NewRPM = comp.RPM + (float)Math.Sqrt(2 * (Math.Max(DeltaE - EnergyGenerated, 0) / comp.TurbineMass));
-            }
-            else
-            {
-                NewRPM = comp.RPM - (float)Math.Sqrt(2 * (Math.Max(EnergyGenerated - DeltaE, 0) / comp.TurbineMass));
-            }
-
+            var NewRPM = DeltaE - EnergyGenerated > 0
+                ? comp.RPM + (float)Math.Sqrt(2 * (Math.Max(DeltaE - EnergyGenerated, 0) / comp.TurbineMass))
+                : comp.RPM - (float)Math.Sqrt(2 * (Math.Max(EnergyGenerated - DeltaE, 0) / comp.TurbineMass));
+            
             var NextGen = comp.StatorLoad * (Math.Max(NewRPM, 0) / 60);
-            float NextRPM;
-
-            if (DeltaE - NextGen > 0)
-            {
-                NextRPM = comp.RPM + (float)Math.Sqrt(2 * (Math.Max(DeltaE - NextGen, 0) / comp.TurbineMass));
-            }
-            else
-            {
-                NextRPM = comp.RPM - (float)Math.Sqrt(2 * (Math.Max(NextGen - DeltaE, 0) / comp.TurbineMass));
-            }
-
+            var NextRPM = DeltaE - NextGen > 0
+                ? comp.RPM + (float)Math.Sqrt(2 * (Math.Max(DeltaE - NextGen, 0) / comp.TurbineMass))
+                : comp.RPM - (float)Math.Sqrt(2 * (Math.Max(NextGen - DeltaE, 0) / comp.TurbineMass));
+            
             if (NewRPM < 0 || NextRPM < 0)
             {
                 // Stator load is too high
@@ -299,7 +285,7 @@ public sealed class TurbineSystem : EntitySystem
             }
 
             // Calculate power generation
-            comp.LastGen = comp.PowerMultiplier * comp.StatorLoad * (comp.RPM / 30) * (float)(1 / Math.Cosh(0.01 * (comp.RPM - comp.BestRPM)));
+            comp.LastGen = comp.PowerMultiplier * comp.StatorLoad * (comp.RPM / (60 * args.dt)) * (float)(1 / Math.Cosh(0.01 * (comp.RPM - comp.BestRPM)));
 
             if (float.IsNaN(comp.LastGen))
                 throw new NotFiniteNumberException("Turbine made NaN power");
