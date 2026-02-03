@@ -1,7 +1,6 @@
 ﻿using Content.Server._FarHorizons.Factions;
 using Content.Server.Hands.Systems;
 using Content.Server.Preferences.Managers;
-using Content.Server.Storage.EntitySystems;
 using Content.Shared.Access.Components;
 using Content.Shared.Clothing;
 using Content.Shared.Hands.Components;
@@ -32,7 +31,6 @@ public sealed class OutfitSystem : EntitySystem
     [Dependency] private readonly SharedHumanoidAppearanceSystem _appearance = default!; //Starlight
     [Dependency] private readonly IServerFactionManager _factions = default!; // Far Horizons
     [Dependency] private readonly ContainerSystem _container = default!; // Far Horizons
-    [Dependency] private readonly StorageSystem _storage = default!; // Far Horizons
 
     public bool SetOutfit(EntityUid target, string gear, Action<EntityUid, EntityUid>? onEquipped = null, bool unremovable = false)
     {
@@ -81,24 +79,12 @@ public sealed class OutfitSystem : EntitySystem
             if (entProtos.Count == 0)
                 continue;
 
-            EntityUid? slotEnt = null;
-            StorageComponent? storage = null;
-            BaseContainer? container = null;
+            if (!_container.TryGetContainer(target, slotName, out var container)) continue;
 
-            if ((inventoryComponent != null &&
-                _invSystem.TryGetSlotEntity(target, slotName, out slotEnt, inventoryComponent: inventoryComponent) &&
-                TryComp(slotEnt, out storage) ||
-                _container.TryGetContainer(target, slotName, out container)))
+            foreach (var entProto in entProtos)
             {
-                foreach (var entProto in entProtos)
-                {
-                    var spawnedEntity = Spawn(entProto, spawnCoords);
-
-                    if (container != null)
-                        _container.Insert(spawnedEntity, container);
-                    else
-                        _storage.Insert(slotEnt!.Value, spawnedEntity, out _, storageComp: storage!, playSound: false);
-                }
+                var spawnedEntity = Spawn(entProto, spawnCoords);
+                _container.Insert(spawnedEntity, container);
             }
         }
         // Far Horizons end
