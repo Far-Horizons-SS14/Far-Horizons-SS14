@@ -63,7 +63,7 @@
     - id: NitrogenTankFilled
     - id: ClothingShoesBootsMagSec
 
-#region Syndicate Station
+#region Syndicate
 
 # Commander (Captain)
 
@@ -358,3 +358,43 @@
           tableId: LockerFillChiefEngineerNoHardsuitSyndi
         - !type:NestedSelector
           tableId: FillChiefEngineerHardsuitSyndi
+          
+#region SHC
+
+#Syndicate Operations Agent (NTR)
+
+- type: entity
+  id: LockerRepresentativeFilledSyndi
+  suffix: S, Filled
+  parent: LockerRepresentative
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ClothingEyesHudCommandSyndi
+        - id: ClothingEyesGlassesCommandSyndi
+        #- id: ClothingHeadHatCapNtrep
+        #- id: ClothingUniformJumpsuitNtrepFormal
+        #- id: ClothingUniformJumpskirtNtrep
+        #- id: ClothingUniformJumpsuitNtrep
+        #- id: ClothingOuterCoatNtrep
+        - id: ClothingShoesBootsLaceup
+        - id: ClothingHeadsetAltCommandSyndi
+        - id: WeaponDisabler
+        - id: LuxuryPen
+        - id: BoxFolderClipboardFilled
+        - id: PrinterDocFlatpack
+        - id: FaxMachineFlatpack
+        - id: PlushieEmmie
+        - id: ClothingOuterHardsuitNtrepSyndi
+
+- type: entity
+  id: LockerRepresentativeFilledBluespacedSyndi
+  suffix: S, Filled, Bluespaced
+  parent: LockerRepresentativeFilledSyndi
+  categories: [ Spawner ]
+  components:
+  - type: TriggerOnSpawn
+  - type: SpawnOnTrigger
+    proto: EffectFlashBluespace

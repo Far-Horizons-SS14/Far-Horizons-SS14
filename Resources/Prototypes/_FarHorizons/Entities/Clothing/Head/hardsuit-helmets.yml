@@ -488,3 +488,23 @@
   - type: PressureProtection
     highPressureMultiplier: 0.6
     lowPressureMultiplier: 1000
+
+#region SHC
+
+# Syndicate Operations Agent (NTR)
+
+- type: entity
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
+  id: ClothingHeadHelmetHardsuitNtrepSyndi
+  categories: [ HideSpawnMenu ]
+  name: Syndicate Operations Agent's Hardsuit Helmet
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Head/Hardsuits/ntrep-syndi.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Head/Hardsuits/ntrep-syndi.rsi
+  - type: PointLight
+    color: "#adeeff"
+  - type: PressureProtection
+    highPressureMultiplier: 0.45
+    lowPressureMultiplier: 10000
