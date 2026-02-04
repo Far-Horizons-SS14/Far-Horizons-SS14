@@ -41,6 +41,7 @@ namespace Content.Client.Voting.UI
             { StandardVoteType.Restart, new CreateVoteOption("ui-vote-type-restart", new(), false, null) },
             { StandardVoteType.Preset, new CreateVoteOption("ui-vote-type-gamemode", new(), false, null) },
             { StandardVoteType.Map, new CreateVoteOption("ui-vote-type-map", new(), false, null) },
+            { StandardVoteType.Faction, new CreateVoteOption("ui-vote-type-faction", new(), false, null) },
             { StandardVoteType.Votekick, new CreateVoteOption("ui-vote-type-votekick", new(), true, 0) }
         };
 

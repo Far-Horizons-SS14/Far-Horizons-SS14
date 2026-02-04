@@ -12,8 +12,8 @@ public sealed class FHCCVars
     /// <summary>
     ///     List of factions enabled for vote.
     /// </summary>
-    public static readonly CVarDef<string> EnabledFactions =
-        CVarDef.Create("factions.enabled_factions", "FactionNT", CVar.SERVER | CVar.REPLICATED);
+    public static readonly CVarDef<string> VotableFactions =
+        CVarDef.Create("factions.votable_factions", "FactionNT", CVar.SERVER | CVar.REPLICATED);
 
     /// <summary>
     ///     Sets the duration of the faction vote timer.

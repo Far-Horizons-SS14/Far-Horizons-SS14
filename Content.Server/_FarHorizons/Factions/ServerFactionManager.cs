@@ -29,7 +29,7 @@ public sealed partial class ServerFactionManager : SharedFactionManager, IServer
         _sawmill = _logManager.GetSawmill("factions");
     }
 
-    public void PostInit() => _cfg.OnValueChanged(FHCCVars.EnabledFactions, UpdateEnabled, true);
+    public void PostInit() => _cfg.OnValueChanged(FHCCVars.VotableFactions, UpdateEnabled, true);
 
     private void UpdateEnabled(string factions)
     {
