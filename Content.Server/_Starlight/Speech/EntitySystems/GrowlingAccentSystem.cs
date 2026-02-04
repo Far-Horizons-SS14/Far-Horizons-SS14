@@ -4,7 +4,7 @@ using Robust.Shared.Random;
 
 namespace Content.Shared._Starlight.Speech.Components;
 
-public sealed class GrowlingAccentSystem : EntitySystem
+public sealed partial class GrowlingAccentSystem : EntitySystem
 {
     [Dependency] private readonly IRobustRandom _random = default!;
 
@@ -16,21 +16,20 @@ public sealed class GrowlingAccentSystem : EntitySystem
 
     private void OnAccent(EntityUid uid, GrowlingAccentComponent component, AccentGetEvent args)
     {
-        var message = args.Message;
+        var message = args.Message.Text;
 
         // r => rrr
-        message = Regex.Replace(
-            message,
-            "r+",
-            _random.Pick(new List<string> { "rr", "rrr" })
-        );
+        message = Regexr().Replace(message, _random.Pick(new List<string> { "rr", "rrr" })
+);
         // R => RRR
-        message = Regex.Replace(
-            message,
-            "R+",
-            _random.Pick(new List<string> { "RR", "RRR" })
-        );
+        message = RegexR().Replace(message, _random.Pick(new List<string> { "RR", "RRR" })
+);
 
-        args.Message = message;
+        args.Message.Text = message;
     }
+
+    [GeneratedRegex("r+")]
+    private static partial Regex Regexr();
+    [GeneratedRegex("R+")]
+    private static partial Regex RegexR();
 }

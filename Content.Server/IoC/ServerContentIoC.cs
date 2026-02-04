@@ -39,10 +39,10 @@ using Content.Shared.Players.RateLimiting;
 using Content.Server._Starlight.BugReports;
 using Content.Server.Holiday;
 using Content.Server.Starlight;
-using Content.Server.Starlight.TextToSpeech;
 using Content.Shared.Starlight;
 using Content.Server.Economy;
 using Content.Shared._Starlight.DocumentManager;
+using Content.Server._Starlight.TextToSpeech;
 #endregion Starlight
 
 using Content.Shared._FarHorizons.Factions;
@@ -107,7 +107,7 @@ internal static class ServerContentIoC
         // 🌟Starlight🌟 start
         deps.Register<ISharedPlayersRoleManager, PlayerRolesManager>(); 
         deps.Register<IPlayerRolesManager, PlayerRolesManager>();     
-        deps.Register<ITTSManager, TTSManager>();
+        deps.Register<ITTSClient, TTSClient>();
         deps.Register<ItemPriceManager, ItemPriceManager>();
         deps.Register<IBugReportManager, BugReportManager>();
         deps.Register<PreWrittenDocumentManager>();

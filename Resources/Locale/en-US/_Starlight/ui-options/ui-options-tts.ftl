@@ -8,3 +8,7 @@ ui-options-tts-announce-volume = Announcement Volume:
 ui-options-tts-enabled = Text-To-Speech Enabled
 ui-options-tts-radio-queue-enabled = Queue Radio TTS
 ui-options-radio-chime-mute = Mute Radio Chimes
+
+tts-examinable-verb-text = Voice
+tts-examinable-verb-message = Examine the voice.
+tts-examine = {SUBJECT($ent)} sounds like [color=Pink]{$voice}[/color].
