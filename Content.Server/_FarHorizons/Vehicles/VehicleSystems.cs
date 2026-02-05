@@ -854,7 +854,7 @@ public sealed partial class VehicleSystems : SharedVehicleSystems
         }
 
         if(_whitelist.IsWhitelistFail(vehicleComp.RiderWhitelist, rider)) return;
-        if(!vehicleComp.hasKeys) return;
+        if(!vehicleComp.hasKeys && vehicleComp.RequireIgnition) return;
         
         _actions.GrantContainedActions(rider, vehicle);
         UpdateActions(rider, true);
