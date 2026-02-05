@@ -18,26 +18,6 @@ public sealed partial class ReactorPartSystem : EntitySystem
     [Dependency] private readonly IRobustRandom _random = default!;
 
     /// <summary>
-    /// Changes the overall rate of events
-    /// </summary>
-    private readonly float _rate = 5;
-
-    /// <summary>
-    /// Changes the likelyhood of neutron interactions
-    /// </summary>
-    private readonly float _bias = 1.5f;
-
-    /// <summary>
-    /// The amount of a property consumed by a reaction
-    /// </summary>
-    private readonly float _reactant = 0.01f;
-
-    /// <summary>
-    /// The amount of a property resultant from a reaction
-    /// </summary>
-    private readonly float _product = 0.005f;
-
-    /// <summary>
     /// Processes gas flowing through a reactor part.
     /// </summary>
     /// <param name="reactorPart">The reactor part.</param>
@@ -59,7 +39,7 @@ public sealed partial class ReactorPartSystem : EntitySystem
             var DeltaTr = (compTemp + gasTemp) * (compTemp - gasTemp) * (Math.Pow(compTemp, 2) + Math.Pow(gasTemp, 2));
 
             var k = MaterialSystem.CalculateHeatTransferCoefficient(reactorPart.Properties, null);
-            var A = reactorPart.GasThermalCrossSection * (0.4 * 8);
+            var A = reactorPart.GasThermalCrossSection * ProcMult;
 
             var ThermalEnergy = _atmosphereSystem.GetThermalEnergy(reactorPart.AirContents);
 
@@ -133,8 +113,8 @@ public sealed partial class ReactorPartSystem : EntitySystem
             var k = MaterialSystem.CalculateHeatTransferCoefficient(reactorPart.Properties, RC.Properties);
             var A = Math.Min(reactorPart.ThermalCrossSection, RC.ThermalCrossSection);
 
-            reactorPart.Temperature = (float)(reactorPart.Temperature - (k * A * (0.5 * 8) / reactorPart.ThermalMass * DeltaT));
-            RC.Temperature = (float)(RC.Temperature - (k * A * (0.5 * 8) / RC.ThermalMass * -DeltaT));
+            reactorPart.Temperature = (float)(reactorPart.Temperature - (k * A * ProcMult / reactorPart.ThermalMass * DeltaT));
+            RC.Temperature = (float)(RC.Temperature - (k * A * ProcMult / RC.ThermalMass * -DeltaT));
 
             if (RC.Temperature < 0 || reactorPart.Temperature < 0)
                 throw new Exception("ReactorPart-ReactorPart temperature calculation resulted in sub-zero value.");
@@ -151,8 +131,8 @@ public sealed partial class ReactorPartSystem : EntitySystem
             var k = MaterialSystem.CalculateHeatTransferCoefficient(reactorPart.Properties, _proto.Index(reactor.Material).Properties);
             var A = reactorPart.ThermalCrossSection;
 
-            reactorPart.Temperature = (float)(reactorPart.Temperature - (k * A * (0.5 * 8) / reactorPart.ThermalMass * DeltaT));
-            reactor.Temperature = (float)(reactor.Temperature - (k * A * (0.5 * 8) / reactor.ThermalMass * -DeltaT));
+            reactorPart.Temperature = (float)(reactorPart.Temperature - (k * A * ProcMult / reactorPart.ThermalMass * DeltaT));
+            reactor.Temperature = (float)(reactor.Temperature - (k * A * ProcMult / reactor.ThermalMass * -DeltaT));
 
             if (reactor.Temperature < 0 || reactorPart.Temperature < 0)
                 throw new Exception("Reactor-ReactorPart temperature calculation resulted in sub-zero value.");
@@ -234,33 +214,33 @@ public sealed partial class ReactorPartSystem : EntitySystem
 
         foreach (var neutron in flux)
         {
-            if (Prob(reactorPart.Properties.Density * _rate * reactorPart.NeutronCrossSection * _bias))
+            if (Prob(reactorPart.Properties.Density * ReactionRate * reactorPart.NeutronCrossSection * NeutronReactionBias))
             {
-                if (neutron.velocity <= 1 && Prob(_rate * reactorPart.Properties.NeutronRadioactivity * _bias)) // neutron stimulated emission
+                if (neutron.velocity <= 1 && Prob(ReactionRate * reactorPart.Properties.NeutronRadioactivity * NeutronReactionBias)) // neutron stimulated emission
                 {
-                    reactorPart.Properties.NeutronRadioactivity -= _reactant;
-                    reactorPart.Properties.Radioactivity += _product;
-                    for (var i = 0; i < _random.Next(3, 5 + 1); i++) // was 1, 5+1
+                    reactorPart.Properties.NeutronRadioactivity -= ReactionReactant;
+                    reactorPart.Properties.Radioactivity += ReactionProduct;
+                    for (var i = 0; i < _random.Next(1, 5 + 1); i++)
                     {
                         neutrons.Add(new() { dir = _random.NextAngle().GetDir(), velocity = _random.Next(2, 3 + 1) });
                     }
                     neutrons.Remove(neutron);
-                    reactorPart.Temperature += 75f; // Was 50, increased to make neutron reactions stronger
+                    reactorPart.Temperature += 50f * StimulatedHeatingFactor;
                 }
-                else if (neutron.velocity <= 5 && Prob(_rate * reactorPart.Properties.Radioactivity * _bias)) // stimulated emission
+                else if (neutron.velocity <= 5 && Prob(ReactionRate * reactorPart.Properties.Radioactivity * NeutronReactionBias)) // stimulated emission
                 {
-                    reactorPart.Properties.Radioactivity -= _reactant;
-                    reactorPart.Properties.FissileIsotopes += _product;
-                    for (var i = 0; i < _random.Next(3, 5 + 1); i++)// was 1, 5+1
+                    reactorPart.Properties.Radioactivity -= ReactionReactant;
+                    reactorPart.Properties.FissileIsotopes += ReactionProduct;
+                    for (var i = 0; i < _random.Next(1, 5 + 1); i++)
                     {
                         neutrons.Add(new() { dir = _random.NextAngle().GetDir(), velocity = _random.Next(1, 3 + 1) });
                     }
                     neutrons.Remove(neutron);
-                    reactorPart.Temperature += 50f; // Was 25, increased to make neutron reactions stronger
+                    reactorPart.Temperature += 25f * StimulatedHeatingFactor;
                 }
                 else
                 {
-                    if (Prob(_rate * reactorPart.Properties.Hardness)) // reflection, based on hardness
+                    if (Prob(ReactionRate * reactorPart.Properties.Hardness)) // reflection, based on hardness
                         // A really complicated way of saying do a 180 or a 180+/-45
                         neutron.dir = (neutron.dir.GetOpposite().ToAngle() + (_random.NextAngle() / 4) - (MathF.Tau / 8)).GetDir();
                     else if (reactorPart.IsControlRod)
@@ -271,33 +251,31 @@ public sealed partial class ReactorPartSystem : EntitySystem
                     if (neutron.velocity <= 0)
                         neutrons.Remove(neutron);
 
-                    reactorPart.Temperature += 1; // ... not worth the adjustment
+                    reactorPart.Temperature += 1f; // ... not worth the adjustment
                 }
             }
         }
-        if (Prob(reactorPart.Properties.NeutronRadioactivity * _rate * reactorPart.NeutronCrossSection))
+        if (Prob(reactorPart.Properties.NeutronRadioactivity * ReactionRate * reactorPart.NeutronCrossSection))
         {
-            var count = _random.Next(1, 5 + 1); // Was 3+1
+            var count = _random.Next(1, 3 + 1);
             for (var i = 0; i < count; i++)
             {
                 neutrons.Add(new() { dir = _random.NextAngle().GetDir(), velocity = 3 });
             }
-            reactorPart.Properties.NeutronRadioactivity -= _reactant / 2;
-            reactorPart.Properties.Radioactivity += _product / 2;
-            //This code has been deactivated so neutrons would have a bigger impact
-            //reactorPart.Temperature += 13; // 20 * 0.65
+            reactorPart.Properties.NeutronRadioactivity -= ReactionReactant * SpontaneousReactionConsumptionMultiplier;
+            reactorPart.Properties.Radioactivity += ReactionProduct * SpontaneousReactionConsumptionMultiplier;
+            reactorPart.Temperature += 20f * SpontaneousHeatingFactor; 
         }
-        if (Prob(reactorPart.Properties.Radioactivity * _rate * reactorPart.NeutronCrossSection))
+        if (Prob(reactorPart.Properties.Radioactivity * ReactionRate * reactorPart.NeutronCrossSection))
         {
-            var count = _random.Next(1, 5 + 1); // Was 3+1
+            var count = _random.Next(1, 3 + 1);
             for (var i = 0; i < count; i++)
             {
                 neutrons.Add(new() { dir = _random.NextAngle().GetDir(), velocity = _random.Next(1, 3 + 1) });
             }
-            reactorPart.Properties.Radioactivity -= _reactant / 2;
-            reactorPart.Properties.FissileIsotopes += _product / 2;
-            //This code has been deactivated so neutrons would have a bigger impact
-            //reactorPart.Temperature += 6.5f; // 10 * 0.65
+            reactorPart.Properties.Radioactivity -= ReactionReactant * SpontaneousReactionConsumptionMultiplier;
+            reactorPart.Properties.FissileIsotopes += ReactionProduct * SpontaneousReactionConsumptionMultiplier;
+            reactorPart.Temperature += 10f * SpontaneousHeatingFactor;
         }
 
         if (reactorPart.HasRodType(ReactorPartComponent.RodTypes.ControlRod))

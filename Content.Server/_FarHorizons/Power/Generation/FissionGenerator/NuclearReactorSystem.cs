@@ -438,7 +438,7 @@ public sealed class NuclearReactorSystem : EntitySystem
             var DeltaTr = Math.Pow(reactor.Temperature, 4) - Math.Pow(reactor.AirContents.Temperature, 4);
 
             var k = MaterialSystem.CalculateHeatTransferCoefficient(_protoMan.Index(reactor.Material).Properties, null);
-            var A = 1 * (0.4 * 8);
+            var A = 1 * _partSystem.ProcMult;
 
             var ThermalEnergy = _atmosphereSystem.GetThermalEnergy(reactor.AirContents);
 
