@@ -1,3 +1,7 @@
+###### GSL
+
+loadout-group-mining-belt = Mining Specialist Belt
+
 ###### NanoTrasen
 
 ## Specific Roles
