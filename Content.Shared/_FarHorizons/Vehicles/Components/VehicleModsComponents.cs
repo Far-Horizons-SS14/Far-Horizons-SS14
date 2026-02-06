@@ -18,4 +18,7 @@ public sealed partial class VehicleModsComponent : Component
 
     [ViewVariables]
     public HashSet<EntityUid> SpawnedEquipment = new();
+
+    [ViewVariables]
+    public EntityUid? GasTank;
 }

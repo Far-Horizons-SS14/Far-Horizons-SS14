@@ -640,6 +640,8 @@ public sealed partial class VehicleSystems : SharedVehicleSystems
 
     private void OnEntInserted(EntityUid ent, VehicleContainerComponent component, EntInsertedIntoContainerMessage args)
     {
+        if(args.Container != component.PassengerSlot) return;
+        
         if(_whitelist.IsWhitelistFail(component.PassengerWhitelist, args.Entity))
         {
             if(HasComp<RiderComponent>(args.Entity) && TryComp<VehicleComponent>(ent, out var vehicleComp))

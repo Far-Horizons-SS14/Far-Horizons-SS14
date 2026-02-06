@@ -7,6 +7,7 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Containers;
 using Content.Shared.Item.ItemToggle.Components;
 using Content.Shared.Toggleable;
+using Content.Shared.Atmos.Components;
 
 namespace Content.Server._FarHorizons.Vehicle.Equipment;
 public sealed partial class VehicleEquipmentSystems : EntitySystem
@@ -18,14 +19,14 @@ public sealed partial class VehicleEquipmentSystems : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<VehicleModsComponent, MapInitEvent>(OnMapInit);
+        SubscribeLocalEvent<VehicleModsComponent, ComponentInit>(OnCompInit);
         SubscribeLocalEvent<RiderComponent, AddRiderActions>(OnAddActions);
         SubscribeLocalEvent<RiderComponent, RemoveRiderActions>(OnRemoveActions);
 
         SubscribeLocalEvent<ItemToggleComponent, ToggleActionEvent>(OnSirenToggle);
     }
 
-    private void OnMapInit(Entity<VehicleModsComponent> ent, ref MapInitEvent args)
+    private void OnCompInit(Entity<VehicleModsComponent> ent, ref ComponentInit args)
     {
         ent.Comp.ModSlot = _container.EnsureContainer<Container>(ent.Owner, ent.Comp.ModContainer);
 
@@ -40,6 +41,9 @@ public sealed partial class VehicleEquipmentSystems : EntitySystem
                 _container.Insert(item, ent.Comp.ModSlot);
 
             ent.Comp.SpawnedEquipment.Add(item);
+            if(HasComp<GasTankComponent>(item))
+                ent.Comp.GasTank = item;
+            RaiseNetworkEvent(new InstalledVehicleEquipment{Part = GetNetEntity(item)});
         }
         Dirty(ent.Owner, ent.Comp);
     }
