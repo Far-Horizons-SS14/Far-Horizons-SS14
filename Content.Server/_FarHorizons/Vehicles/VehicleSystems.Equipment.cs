@@ -1,14 +1,19 @@
 using Content.Shared._FarHorizons.Vehicles;
 using Content.Shared._FarHorizons.Vehicles.Components;
+using Content.Shared.Actions;
+using Content.Shared.Light.Components;
 using Content.Shared.Coordinates;
 using Robust.Server.GameObjects;
 using Robust.Shared.Containers;
+using Content.Shared.Item.ItemToggle.Components;
+using Content.Shared.Toggleable;
 
 namespace Content.Server._FarHorizons.Vehicle.Equipment;
 public sealed partial class VehicleEquipmentSystems : EntitySystem
 {
     [Dependency] private readonly SharedContainerSystem _container = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly SharedActionsSystem _actions = default!;
     public override void Initialize()
     {
         base.Initialize();
@@ -16,6 +21,8 @@ public sealed partial class VehicleEquipmentSystems : EntitySystem
         SubscribeLocalEvent<VehicleModsComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<RiderComponent, AddRiderActions>(OnAddActions);
         SubscribeLocalEvent<RiderComponent, RemoveRiderActions>(OnRemoveActions);
+
+        SubscribeLocalEvent<ItemToggleComponent, ToggleActionEvent>(OnSirenToggle);
     }
 
     private void OnMapInit(Entity<VehicleModsComponent> ent, ref MapInitEvent args)
@@ -39,12 +46,40 @@ public sealed partial class VehicleEquipmentSystems : EntitySystem
 
     private void OnAddActions(Entity<RiderComponent> ent, ref AddRiderActions args)
     {
-        Log.Info("Weh");
-        Log.Info($"{args.Rider}");
+        if(ent.Comp.Riding == null) return;
+        var vehicle = ent.Comp.Riding.Value;
+        if(!TryComp<VehicleModsComponent>(vehicle, out var vmComp) || vmComp.SpawnedEquipment.Count == 0) return;
+        foreach(var item in vmComp.SpawnedEquipment)
+        {
+            if(!TryComp<VehicleEquipmentComponent>(item, out var veComp) || veComp.ActionEntity != null)
+                continue;
+            _actions.AddAction(ent.Owner, ref veComp.ActionEntity, veComp.ActionProto, item);
+            Dirty(item, vmComp);   
+        }
     }
     private void OnRemoveActions(Entity<RiderComponent> ent, ref RemoveRiderActions args)
     {
-        Log.Info("Hew");
-        Log.Info($"{args.Rider}");
+        if(ent.Comp.Riding == null) return;
+        var vehicle = ent.Comp.Riding.Value;
+        if(!TryComp<VehicleModsComponent>(vehicle, out var vmComp) || vmComp.SpawnedEquipment.Count == 0) return;
+        foreach(var item in vmComp.SpawnedEquipment)
+        {
+            if(!TryComp<VehicleEquipmentComponent>(item, out var veComp) || veComp.ActionEntity == null)
+                continue;
+            _actions.RemoveAction(ent.Owner, veComp.ActionEntity);   
+            QueueDel(veComp.ActionEntity);
+            veComp.ActionEntity = null;
+            Dirty(item, vmComp);
+        }
+    }
+
+    private void OnSirenToggle(Entity<ItemToggleComponent> ent, ref ToggleActionEvent args)
+    {
+        if(args.Handled) return;
+        if(!TryComp<UnpoweredFlashlightComponent>(ent.Owner, out var flashComp) || !HasComp<ItemToggleComponent>(ent.Owner)) return;
+        flashComp.LightOn = !flashComp.LightOn; 
+        var toggleUsed = new ItemToggledEvent(false, Activated: flashComp.LightOn, args.Performer);
+        RaiseLocalEvent(ent.Owner, ref toggleUsed);
+        args.Handled = true;
     }
 }

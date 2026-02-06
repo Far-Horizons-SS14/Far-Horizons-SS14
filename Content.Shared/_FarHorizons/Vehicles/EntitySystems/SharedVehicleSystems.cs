@@ -9,7 +9,6 @@ using Content.Shared.Examine;
 using Content.Shared.Damage.Components;
 using Content.Shared.Item.ItemToggle.Components;
 using Content.Shared.Toggleable;
-using Content.Shared.Light.Components;
 using Content.Shared.Movement.Pulling.Events;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Buckle;
@@ -34,8 +33,6 @@ public abstract partial class SharedVehicleSystems : EntitySystem
         SubscribeLocalEvent<VehicleComponent, ExaminedEvent>(OnExamine);
 
         SubscribeLocalEvent<RiderComponent, PullAttemptEvent>(OnPullAttempt);
-
-        SubscribeLocalEvent<ItemToggleComponent, ToggleActionEvent>(OnSirenToggle);
     }
 
     protected virtual void OnTurnKeysEvent(Entity<VehicleComponent> ent, ref TurnKeysEvent args)
@@ -79,6 +76,7 @@ public abstract partial class SharedVehicleSystems : EntitySystem
     protected virtual void OnToggleTrunk(Entity<VehicleComponent> ent, ref ToggleTrunkActionEvent args)
     {
         if(args.Handled) return;
+        if(!_gameTiming.IsFirstTimePredicted) return;
         if(!TryComp<LockComponent>(ent.Owner, out var lockComp)) return;
 
         if(!_lock.IsLocked(ent.Owner))
@@ -142,14 +140,5 @@ public abstract partial class SharedVehicleSystems : EntitySystem
             return;
         }
         args.Cancelled = true;
-    }
-
-    private void OnSirenToggle(Entity<ItemToggleComponent> ent, ref ToggleActionEvent args)
-    {
-        if(args.Handled) return;
-        if(!TryComp<UnpoweredFlashlightComponent>(ent.Owner, out var flashComp) || !HasComp<ItemToggleComponent>(ent.Owner)) return;
-        var toggleUsed = new ItemToggledEvent(true, Activated: flashComp.LightOn, args.Performer);
-        RaiseLocalEvent(ent.Owner, ref toggleUsed);
-        args.Handled = true;
     }
 }

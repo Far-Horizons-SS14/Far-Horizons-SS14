@@ -121,9 +121,6 @@
         - PowerCellMedium
         key_slot:
         - VehicleKeySecway
-        vehicle_mods_container:
-        - SecwayLight
-        - SecSiren
 
 - type: entity
   id: VehicleSecwayTurboBatterywithKeys
@@ -165,9 +162,6 @@
         - PowerCellMedium
         key_slot:
         - VehicleKeySecwayTurbo
-        vehicle_mods_container:
-        - SecwayLight
-        - SecSiren
 
 - type: entity
   id: VehicleJanicart
@@ -198,7 +192,6 @@
     eastOffset: "0, -0.2"
     westOffset: "-0, -0.2"
     northDrawDepth: BelowMobs
-
   - type: Sprite
     drawdepth: OverMobs
     sprite: Objects/Vehicles/janicart.rsi
@@ -287,6 +280,9 @@
     range: 10
     volume: -5
     enabled: false
+  - type: VehicleMods
+    startingEquipment:
+      - SecwayLight
 
 - type: entity
   id: VehicleJanicartBatterywithKeys
@@ -306,5 +302,3 @@
         - PowerCellMedium
         key_slot:
         - VehicleKeyJanicart
-        vehicle_mods_container:
-        - SecwayLight

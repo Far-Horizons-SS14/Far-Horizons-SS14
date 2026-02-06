@@ -17,7 +17,9 @@
       layers:
         - map: [ enum.LightBulbVisualLayers.Base ]
           state: normal
-          
+    - type: VehicleEquipment
+      actionProto: ActionToggleLight
+        
 - type: entity
   id: SecwayLight
   parent: BaseItem
@@ -37,6 +39,8 @@
       layers:
         - map: [ enum.LightBulbVisualLayers.Base ]
           state: normal
+    - type: VehicleEquipment
+      actionProto: ActionToggleLight
 
 - type: entity
   id: SecSiren
@@ -44,6 +48,7 @@
   name: Security Siren
   description: Turn this thing on and those tiders will scatter like roaches, or they will jump you... Who knows?
   components:
+    - type: UnpoweredFlashlight
     - type: ItemToggle
       onUse: false
       soundActivate:
@@ -66,3 +71,5 @@
         path: /Audio/Effects/Vehicle/policesiren.ogg
         params:
           volume: -4
+    - type: VehicleEquipment
+      actionProto: ActionVehicleToggleSecuritySiren

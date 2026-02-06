@@ -113,6 +113,9 @@
         containers:
         - storagebase
   - type: Hitch
+  - type: VehicleMods
+    startingEquipment:
+      - ATVHeadlight
 
 - type: entity
   id: VehicleATVFueledwithKeys
@@ -130,8 +133,6 @@
       containers:
         key_slot:
         - VehicleKeyATV
-        vehicle_mods_container:
-        - ATVHeadlight
 
 - type: entity
   id: VehicleATVFueledwithKeysNTSec
@@ -214,6 +215,10 @@
         key_slot:
         - VehicleKeySTV
         vehicle_mods_container:
+        - ATVHeadlight
+        - SecSiren
+    - type: VehicleMods
+      startingEquipment:
         - ATVHeadlight
         - SecSiren
 
@@ -354,6 +359,9 @@
         containers:
         - passenger_slot
         - storagebase
+    - type: VehicleMods
+      startingEquipment:
+        - ATVHeadlight
 
 - type: entity
   id: VehicleClownCarFueledwithKeys
@@ -371,8 +379,6 @@
       containers:
         key_slot:
         - VehicleKeyClowncar
-        vehicle_mods_container:
-        - ATVHeadlight
 
 - type: entity
   id: VehicleSkeletonMotorcycle
@@ -500,6 +506,9 @@
     maxItemSize: Huge
     openOnActivate: false
     clickInsert: false
+  - type: VehicleMods
+    startingEquipment:
+      - ATVHeadlight
 
 - type: entity
   id: VehicleSkeletonMotorcycleFueledwithKEys
@@ -517,5 +526,3 @@
       containers:
         key_slot:
         - VehicleKeyMotorcycle
-        vehicle_mods_container:
-        - ATVHeadlight

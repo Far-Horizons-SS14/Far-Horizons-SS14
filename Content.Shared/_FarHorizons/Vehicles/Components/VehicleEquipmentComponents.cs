@@ -7,7 +7,7 @@ namespace Content.Shared._FarHorizons.Vehicles.Components;
 public sealed partial class VehicleEquipmentComponent : Component
 {
     [DataField]
-    public EntProtoId? ActionId;
+    public EntProtoId? ActionProto;
     
     [ViewVariables, AutoNetworkedField] 
     public EntityUid? ActionEntity;
