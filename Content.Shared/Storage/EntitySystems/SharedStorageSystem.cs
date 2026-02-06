@@ -172,6 +172,7 @@ public abstract class SharedStorageSystem : EntitySystem
         CommandBinds.Builder
             .Bind(ContentKeyFunctions.OpenBackpack, InputCmdHandler.FromDelegate(HandleOpenBackpack, handle: false))
             .Bind(ContentKeyFunctions.OpenBelt, InputCmdHandler.FromDelegate(HandleOpenBelt, handle: false))
+            .Bind(ContentKeyFunctions.OpenRig, InputCmdHandler.FromDelegate(HandleOpenRig, handle: false)) // Far Horizons
             .Register<SharedStorageSystem>();
 
         Subs.CVar(_cfg, CCVars.NestedStorage, OnNestedStorageCvar, true);
@@ -1923,6 +1924,8 @@ public abstract class SharedStorageSystem : EntitySystem
     {
         HandleToggleSlotUI(session, "belt");
     }
+
+    private void HandleOpenRig(ICommonSession? session) => HandleToggleSlotUI(session, "rig"); // Far Horizons
 
     private void HandleToggleSlotUI(ICommonSession? session, string slot)
     {

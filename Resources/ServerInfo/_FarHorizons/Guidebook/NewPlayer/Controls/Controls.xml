@@ -34,7 +34,9 @@
   - [bold]hand[/bold] slots — you can think of them as transfer slots,
   - [bold]pocket[/bold] slots — useful for storing small items for easy access,
   - [bold]suit storage[/bold] slot — usable only when wearing a space suit, hardsuit or armor.
-  Meant for air tanks and jetpacks, but can also hold guns.
+  Meant to hold guns and other equipment.
+  - [bold]tank storage[/bold] slot — usable only when wearing a space suit, hardsuit or armor.
+  Meant for air tanks.
 
   [italic]Note: non-humanoid species may have slightly different slots.[/italic]
 
@@ -157,15 +159,16 @@
   To [color=cyan]halve[/color] a stack of items, use [color=yellow][bold][keybind="AltActivateItemInWorld"][/bold][/color].
 
   ### Back and belt slots
-  If you have a bag or a belt, open their inventories with [color=yellow][bold][keybind="ActivateItemInWorld"][/bold][/color] or by clicking the mini-icons in the [bold]bottom right[/bold] of their icons.
-  You can also use the [color=yellow][bold][keybind="OpenBackpack"][/bold][/color] and [color=yellow][bold][keybind="OpenBelt"][/bold][/color] hotkeys for that.
+  If you have a bag a belt or a rig, open their inventories with [color=yellow][bold][keybind="ActivateItemInWorld"][/bold][/color] or by clicking the mini-icons in the [bold]bottom right[/bold] of their icons.
+  You can also use the [color=yellow][bold][keybind="OpenBackpack"][/bold][/color], [color=yellow][bold][keybind="OpenBelt"][/bold][/color] and [color=yellow][bold][keybind="OpenRig"][/bold][/color] hotkeys for that.
 
   ### Smart-equipping
   You can [color=cyan]quick-move[/color] items between your active hand and a corresponding slot. If that slot has a container in it, this action will [color=cyan]quick-store[/color] or [color=cyan]quick-take[/color] the most recent item from that container (signified with a golden star icon in the container).
 
   - [color=yellow][bold][keybind="SmartEquipBackpack"][/bold][/color] smart-equips the back slot.
   - [color=yellow][bold][keybind="SmartEquipBelt"][/bold][/color] smart-equips the belt slot.
-  - [color=yellow][bold][keybind="SmartEquipPocket1"][/bold][/color], [color=yellow][bold][keybind="SmartEquipPocket2"][/bold][/color], and [color=yellow][bold][keybind="SmartEquipSuitStorage"][/bold][/color] smart-equip the left pocket, right pocket, and suit storage slots, respectively.
+  - [color=yellow][bold][keybind="SmartEquipRig"][/bold][/color] smart-equips the rig slot.
+  - [color=yellow][bold][keybind="SmartEquipPocket1"][/bold][/color], [color=yellow][bold][keybind="SmartEquipPocket2"][/bold][/color], [color=yellow][bold][keybind="SmartEquipSuitStorage"][/bold][/color] and [color=yellow][bold][keybind="SmartEquipTankStorage"][/bold][/color] smart-equip the left pocket, right pocket, suit storage and tank slots, respectively.
 
   ### Organizing grid inventories
   [color=cyan]Rearrange[/color] items by dragging them with [color=yellow][bold][keybind="MoveStoredItem"][/bold][/color].

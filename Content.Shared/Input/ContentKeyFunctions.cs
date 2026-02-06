@@ -139,5 +139,11 @@ namespace Content.Shared.Input
 
         // 🌟Starlight🌟
         public static readonly BoundKeyFunction Jump = "Jump";
+
+        // Far Horizons start
+        public static readonly BoundKeyFunction SmartEquipRig = "SmartEquipRig";
+        public static readonly BoundKeyFunction SmartEquipTankStorage = "SmartEquipTankStorage";
+        public static readonly BoundKeyFunction OpenRig = "OpenRig";
+        // Far Horizons end
     }
 }

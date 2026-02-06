@@ -190,11 +190,14 @@ namespace Content.Client.Options.UI.Tabs
             AddHeader("ui-options-header-interaction-adv");
             AddButton(ContentKeyFunctions.SmartEquipBackpack);
             AddButton(ContentKeyFunctions.SmartEquipBelt);
+            AddButton(ContentKeyFunctions.SmartEquipRig); // Far Horizons
             AddButton(ContentKeyFunctions.SmartEquipPocket1);
             AddButton(ContentKeyFunctions.SmartEquipPocket2);
             AddButton(ContentKeyFunctions.SmartEquipSuitStorage);
+            AddButton(ContentKeyFunctions.SmartEquipTankStorage); // Far Horizons
             AddButton(ContentKeyFunctions.OpenBackpack);
             AddButton(ContentKeyFunctions.OpenBelt);
+            AddButton(ContentKeyFunctions.OpenRig); // Far Horizons
             AddButton(ContentKeyFunctions.ThrowItemInHand);
             AddButton(ContentKeyFunctions.TryPullObject);
             AddButton(ContentKeyFunctions.MovePulledObject);
