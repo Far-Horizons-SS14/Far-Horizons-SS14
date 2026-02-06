@@ -28,6 +28,7 @@ using Content.Shared.Radio;
 using Content.Shared.Random;
 using Content.Shared.Random.Helpers;
 using Content.Shared.Throwing;
+using NAudio.CoreAudioApi;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
@@ -103,6 +104,7 @@ public sealed class NuclearReactorSystem : EntitySystem
         SubscribeLocalEvent<NuclearReactorComponent, ReactorItemActionMessage>(OnItemActionMessage);
         SubscribeLocalEvent<NuclearReactorComponent, ReactorControlRodModifyMessage>(OnControlRodMessage);
         SubscribeLocalEvent<NuclearReactorComponent, ReactorEjectItemMessage>(OnEjectItemMessage);
+        SubscribeLocalEvent<NuclearReactorComponent, BoundUIOpenedEvent>(OnUIOpened);
 
         // Signal events
         SubscribeLocalEvent<NuclearReactorComponent, SignalReceivedEvent>(OnSignalReceived);
@@ -122,7 +124,6 @@ public sealed class NuclearReactorSystem : EntitySystem
 
         comp.ComponentGrid = new ReactorPartComponent[gridWidth, gridHeight];
         comp.FluxGrid = new List<ReactorNeutron>[gridWidth, gridHeight];
-        comp.TemperatureGrid = new double[gridWidth, gridHeight];
         comp.NeutronGrid = new int[gridWidth, gridHeight];
 
         ApplyPrefab(uid, comp);
@@ -293,7 +294,6 @@ public sealed class NuclearReactorSystem : EntitySystem
                         _atmosphereSystem.Merge(outlet.Air, gas);
 
                     _partSystem.ProcessHeat(ReactorComp, ent, GetGridNeighbors(comp, x, y), this);
-                    comp.TemperatureGrid[x, y] = ReactorComp.Temperature;
 
                     if (ReactorComp.HasRodType(ReactorPartComponent.RodTypes.ControlRod) && ReactorComp.IsControlRod)
                     {
@@ -307,10 +307,6 @@ public sealed class NuclearReactorSystem : EntitySystem
                     // Second check so that AvgControlRodInsertion represents the present instead of 1 tick in the past
                     if (ReactorComp.HasRodType(ReactorPartComponent.RodTypes.ControlRod) && ReactorComp.IsControlRod)
                         AvgControlRodInsertion += ReactorComp.NeutronCrossSection;
-                }
-                else
-                {
-                    comp.TemperatureGrid[x, y] = 0;
                 }
 
                 foreach (var neutron in comp.FluxGrid[x, y])
@@ -552,7 +548,6 @@ public sealed class NuclearReactorSystem : EntitySystem
         // Reset grids
         comp.ComponentGrid = new ReactorPartComponent[comp.ReactorGridWidth, comp.ReactorGridHeight]; // Not Array.Clear due to ammonia
         Array.Clear(comp.NeutronGrid);
-        Array.Clear(comp.TemperatureGrid);
         Array.Clear(comp.FluxGrid);
 
         // This will Dirty() the reactor, so no need to declare it explicitly
@@ -772,6 +767,11 @@ public sealed class NuclearReactorSystem : EntitySystem
     #endregion
 
     #region BUI
+    private void OnUIOpened(EntityUid uid, NuclearReactorComponent reactor, ref BoundUIOpenedEvent args)
+    {
+        UpdateUI(uid, reactor);
+    }
+
     public void UpdateUI(EntityUid uid, NuclearReactorComponent reactor)
     {
         if (!_uiSystem.IsUiOpen(uid, NuclearReactorUiKey.Key))
@@ -782,6 +782,10 @@ public sealed class NuclearReactorSystem : EntitySystem
             _uiSystem.CloseUi(uid, NuclearReactorUiKey.Key);
             return;
         }
+
+        // Something's gone wrong. Probably an admin's fault. Do not update the UI.
+        if(reactor.ComponentGrid == null || reactor.NeutronGrid == null)
+            return;
 
         var gridWidth = reactor.ReactorGridWidth;
         var gridHeight = reactor.ReactorGridHeight;
@@ -802,7 +806,7 @@ public sealed class NuclearReactorSystem : EntitySystem
 
                 dict.Add(new(x, y), new ReactorSlotBUIData
                 {
-                    Temperature = reactor.TemperatureGrid[x, y],
+                    Temperature = reactorPart.Temperature,
                     NeutronCount = reactor.NeutronGrid[x, y],
                     IconName = reactorPart.IconStateInserted,
                     PartName = _protoMan.Index(reactorPart.ProtoId).Name,

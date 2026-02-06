@@ -185,11 +185,6 @@ public sealed partial class NuclearReactorComponent : Component
     public ItemSlot PartSlot = new();
 
     /// <summary>
-    /// Grid of temperature values
-    /// </summary>
-    public double[,] TemperatureGrid;
-
-    /// <summary>
     /// Grid of neutron counts
     /// </summary>
     public int[,] NeutronGrid;
