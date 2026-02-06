@@ -41,7 +41,7 @@ namespace Content.Server._FarHorizons.Power.Generation.FissionGenerator;
 // CC-BY-NC-SA-3.0
 // https://github.com/goonstation/goonstation/blob/ff86b044/code/obj/nuclearreactor/turbine.dm
 
-public sealed class TurbineSystem : EntitySystem
+public sealed class GasTurbineSystem : EntitySystem
 {
     [Dependency] private readonly AmbientSoundSystem _ambientSoundSystem = default!;
     [Dependency] private readonly AtmosphereSystem _atmosphereSystem = default!;
@@ -83,37 +83,37 @@ public sealed class TurbineSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeLocalEvent<TurbineComponent, MapInitEvent>(OnInit);
-        SubscribeLocalEvent<TurbineComponent, ComponentShutdown>(OnShutdown);
+        SubscribeLocalEvent<GasTurbineComponent, MapInitEvent>(OnInit);
+        SubscribeLocalEvent<GasTurbineComponent, ComponentShutdown>(OnShutdown);
 
-        SubscribeLocalEvent<TurbineComponent, DamageChangedEvent>(OnDamaged);
+        SubscribeLocalEvent<GasTurbineComponent, DamageChangedEvent>(OnDamaged);
 
-        SubscribeLocalEvent<TurbineComponent, ItemSlotInsertAttemptEvent>(OnInsertAttempt);
-        SubscribeLocalEvent<TurbineComponent, ItemSlotEjectAttemptEvent>(OnEjectAttempt);
-        SubscribeLocalEvent<TurbineComponent, EntInsertedIntoContainerMessage>(OnPartInserted);
-        SubscribeLocalEvent<TurbineComponent, EntRemovedFromContainerMessage>(OnPartEjected);
+        SubscribeLocalEvent<GasTurbineComponent, ItemSlotInsertAttemptEvent>(OnInsertAttempt);
+        SubscribeLocalEvent<GasTurbineComponent, ItemSlotEjectAttemptEvent>(OnEjectAttempt);
+        SubscribeLocalEvent<GasTurbineComponent, EntInsertedIntoContainerMessage>(OnPartInserted);
+        SubscribeLocalEvent<GasTurbineComponent, EntRemovedFromContainerMessage>(OnPartEjected);
 
-        SubscribeLocalEvent<TurbineComponent, AtmosDeviceUpdateEvent>(OnUpdate);
-        SubscribeLocalEvent<TurbineComponent, GasAnalyzerScanEvent>(OnAnalyze);
-        SubscribeLocalEvent<TurbineComponent, ExaminedEvent>(OnExamined);
+        SubscribeLocalEvent<GasTurbineComponent, AtmosDeviceUpdateEvent>(OnUpdate);
+        SubscribeLocalEvent<GasTurbineComponent, GasAnalyzerScanEvent>(OnAnalyze);
+        SubscribeLocalEvent<GasTurbineComponent, ExaminedEvent>(OnExamined);
 
-        SubscribeLocalEvent<TurbineComponent, TurbineChangeFlowRateMessage>(OnTurbineFlowRateChanged);
-        SubscribeLocalEvent<TurbineComponent, TurbineChangeStatorLoadMessage>(OnTurbineStatorLoadChanged);
+        SubscribeLocalEvent<GasTurbineComponent, GasTurbineChangeFlowRateMessage>(OnTurbineFlowRateChanged);
+        SubscribeLocalEvent<GasTurbineComponent, GasTurbineChangeStatorLoadMessage>(OnTurbineStatorLoadChanged);
 
-        SubscribeLocalEvent<TurbineComponent, SignalReceivedEvent>(OnSignalReceived);
-        SubscribeLocalEvent<TurbineComponent, PortDisconnectedEvent>(OnPortDisconnected);
+        SubscribeLocalEvent<GasTurbineComponent, SignalReceivedEvent>(OnSignalReceived);
+        SubscribeLocalEvent<GasTurbineComponent, PortDisconnectedEvent>(OnPortDisconnected);
 
-        SubscribeLocalEvent<TurbineComponent, AnchorStateChangedEvent>(OnAnchorChanged);
-        SubscribeLocalEvent<TurbineComponent, UnanchorAttemptEvent>(OnUnanchorAttempt);
+        SubscribeLocalEvent<GasTurbineComponent, AnchorStateChangedEvent>(OnAnchorChanged);
+        SubscribeLocalEvent<GasTurbineComponent, UnanchorAttemptEvent>(OnUnanchorAttempt);
         
-        SubscribeLocalEvent<TurbineComponent, InteractUsingEvent>(RepairTurbine);
-        SubscribeLocalEvent<TurbineComponent, RepairDoAfterEvent>(OnRepairTurbineFinished);
+        SubscribeLocalEvent<GasTurbineComponent, InteractUsingEvent>(RepairTurbine);
+        SubscribeLocalEvent<GasTurbineComponent, RepairDoAfterEvent>(OnRepairTurbineFinished);
     }
 
     private const string BladeContainer = "blade_slot";
     private const string StatorContainer = "stator_slot";
 
-    private void OnInit(EntityUid uid, TurbineComponent comp, ref MapInitEvent args)
+    private void OnInit(EntityUid uid, GasTurbineComponent comp, ref MapInitEvent args)
     {
         _signal.EnsureSourcePorts(uid, comp.SpeedHighPort, comp.SpeedLowPort, comp.TurbineDataPort);
         _signal.EnsureSinkPorts(uid, comp.StatorLoadIncreasePort, comp.StatorLoadDecreasePort);
@@ -141,7 +141,7 @@ public sealed class TurbineSystem : EntitySystem
         return true;
     }
 
-    private void OnAnalyze(EntityUid uid, TurbineComponent comp, ref GasAnalyzerScanEvent args)
+    private void OnAnalyze(EntityUid uid, GasTurbineComponent comp, ref GasAnalyzerScanEvent args)
     {
         if (!comp.InletEnt.HasValue || !comp.OutletEnt.HasValue)
             return;
@@ -165,14 +165,14 @@ public sealed class TurbineSystem : EntitySystem
         }
     }
 
-    private void OnShutdown(EntityUid uid, TurbineComponent comp, ref ComponentShutdown args)
+    private void OnShutdown(EntityUid uid, GasTurbineComponent comp, ref ComponentShutdown args)
     {
         QueueDel(comp.InletEnt);
         QueueDel(comp.OutletEnt);
     }
 
     #region Main Loop
-    private void OnUpdate(EntityUid uid, TurbineComponent comp, ref AtmosDeviceUpdateEvent args)
+    private void OnUpdate(EntityUid uid, GasTurbineComponent comp, ref AtmosDeviceUpdateEvent args)
     {
         var supplier = Comp<PowerSupplierComponent>(uid);
         comp.SupplierMaxSupply = supplier.MaxSupply;
@@ -209,7 +209,7 @@ public sealed class TurbineSystem : EntitySystem
 
             // This does rely on the alarm existing, but if it doesn't then there are bigger problems
             if (!comp.Ruined && _entityManager.TryGetComponent<AmbientSoundComponent>(comp.AlarmAudioOvertemp, out var ambience) && !ambience.Enabled)
-                _popupSystem.PopupEntity(Loc.GetString("turbine-overheat", ("owner", uid)), uid, PopupType.LargeCaution);
+                _popupSystem.PopupEntity(Loc.GetString("gas-turbine-overheat", ("owner", uid)), uid, PopupType.LargeCaution);
 
             // Prevent power from being generated by residual gasses
             AirContents.Clear();
@@ -246,7 +246,7 @@ public sealed class TurbineSystem : EntitySystem
 
             if (AirContents.Temperature > comp.MinTemp)
             {
-                AirContents.Temperature = (float)Math.Max((InputStartingEnergy - ((InputStartingEnergy - (InputHeatCap * Atmospherics.T20C)) * 0.8)) / InputHeatCap, Atmospherics.T20C);
+                AirContents.Temperature = (float)Math.Max((InputStartingEnergy - ((InputStartingEnergy - (InputHeatCap * Atmospherics.T20C)) * comp.ThermalEfficiency)) / InputHeatCap, Atmospherics.T20C);
             }
 
             var OutputStartingEnergy = InputHeatCap * AirContents.Temperature;
@@ -285,10 +285,10 @@ public sealed class TurbineSystem : EntitySystem
             }
 
             // Calculate power generation
-            comp.LastGen = comp.PowerMultiplier * comp.StatorLoad * (comp.RPM / (60 * args.dt)) * (float)(1 / Math.Cosh(0.01 * (comp.RPM - comp.BestRPM)));
+            comp.LastGen = comp.PowerMultiplier * comp.StatorLoad * (comp.RPM / (60 * args.dt)) * (float)(1 / Math.Cosh(0.01 * (comp.RPM - comp.BestRPM))) * comp.ElectricalEfficiency;
 
             if (float.IsNaN(comp.LastGen))
-                throw new NotFiniteNumberException("Turbine made NaN power");
+                throw new NotFiniteNumberException("Gas Turbine made NaN power");
 
             comp.Overspeed = comp.RPM > comp.BestRPM * 1.2;
 
@@ -318,18 +318,18 @@ public sealed class TurbineSystem : EntitySystem
         UpdateUI(uid, comp);
     }
 
-    private void UpdateAppearance(EntityUid uid, TurbineComponent? comp = null, AppearanceComponent? appearance = null)
+    private void UpdateAppearance(EntityUid uid, GasTurbineComponent? comp = null, AppearanceComponent? appearance = null)
     {
         if (!Resolve(uid, ref comp, ref appearance, false))
             return;
 
-        _appearance.SetData(uid, TurbineVisuals.TurbineRuined, comp.Ruined);
+        _appearance.SetData(uid, GasTurbineVisuals.TurbineRuined, comp.Ruined);
 
-        _appearance.SetData(uid, TurbineVisuals.DamageSpark, comp.IsSparking);
-        _appearance.SetData(uid, TurbineVisuals.DamageSmoke, comp.IsSmoking);
+        _appearance.SetData(uid, GasTurbineVisuals.DamageSpark, comp.IsSparking);
+        _appearance.SetData(uid, GasTurbineVisuals.DamageSmoke, comp.IsSmoking);
     }
 
-    private float CalculateTransferVolume(TurbineComponent comp, PipeNode inlet, PipeNode outlet, float dt)
+    private float CalculateTransferVolume(GasTurbineComponent comp, PipeNode inlet, PipeNode outlet, float dt)
     {
         var wantToTransfer = comp.FlowRate * _atmosphereSystem.PumpSpeedup() * dt;
         var transferVolume = Math.Min(inlet.Air.Volume, wantToTransfer);
@@ -339,7 +339,7 @@ public sealed class TurbineSystem : EntitySystem
         return Math.Max(0, actualMolesTransfered * inlet.Air.Temperature * Atmospherics.R / inlet.Air.Pressure);
     }
 
-    private static bool AdjustStatorLoad(TurbineComponent turbine, float change)
+    private static bool AdjustStatorLoad(GasTurbineComponent turbine, float change)
     { 
         var newSet = Math.Max(turbine.StatorLoad + change, 1000f);
         if (turbine.StatorLoad != newSet)
@@ -350,10 +350,10 @@ public sealed class TurbineSystem : EntitySystem
         return false; 
     }
 
-    private void TearApart(EntityUid uid, TurbineComponent comp)
+    private void TearApart(EntityUid uid, GasTurbineComponent comp)
     {
         _audio.PlayPvs(new SoundPathSpecifier("/Audio/Effects/metal_break5.ogg"), uid, AudioParams.Default);
-        _popupSystem.PopupEntity(Loc.GetString("turbine-explode", ("owner", uid)), uid, PopupType.LargeCaution);
+        _popupSystem.PopupEntity(Loc.GetString("gas-turbine-explode", ("owner", uid)), uid, PopupType.LargeCaution);
 
         _explosion.QueueExplosion(uid, "Default", comp.RPM / 10, 15, 5, 0, canCreateVacuum: false);
 
@@ -381,13 +381,13 @@ public sealed class TurbineSystem : EntitySystem
     #endregion
 
     #region BUI
-    public void UpdateUI(EntityUid uid, TurbineComponent turbine)
+    public void UpdateUI(EntityUid uid, GasTurbineComponent turbine)
     {
-        if (!_uiSystem.IsUiOpen(uid, TurbineUiKey.Key))
+        if (!_uiSystem.IsUiOpen(uid, GasTurbineUiKey.Key))
             return;
 
-        _uiSystem.SetUiState(uid, TurbineUiKey.Key,
-           new TurbineBuiState
+        _uiSystem.SetUiState(uid, GasTurbineUiKey.Key,
+           new GasTurbineBuiState
            {
                Overspeed = turbine.Overspeed,
                Stalling = turbine.Stalling,
@@ -415,7 +415,7 @@ public sealed class TurbineSystem : EntitySystem
            });
     }
 
-    private void OnTurbineFlowRateChanged(EntityUid uid, TurbineComponent turbine, TurbineChangeFlowRateMessage args)
+    private void OnTurbineFlowRateChanged(EntityUid uid, GasTurbineComponent turbine, GasTurbineChangeFlowRateMessage args)
     {
         if(TrySetFlowRate())
         {
@@ -447,7 +447,7 @@ public sealed class TurbineSystem : EntitySystem
         }
     }
 
-    private void OnTurbineStatorLoadChanged(EntityUid uid, TurbineComponent turbine, TurbineChangeStatorLoadMessage args)
+    private void OnTurbineStatorLoadChanged(EntityUid uid, GasTurbineComponent turbine, GasTurbineChangeStatorLoadMessage args)
     {
         if (TrySetStatorLoad())
         {
@@ -515,7 +515,7 @@ public sealed class TurbineSystem : EntitySystem
     }
     #endregion
 
-    private void OnSignalReceived(EntityUid uid, TurbineComponent comp, ref SignalReceivedEvent args)
+    private void OnSignalReceived(EntityUid uid, GasTurbineComponent comp, ref SignalReceivedEvent args)
     {
         var state = SignalState.Momentary;
         args.Data?.TryGetValue(DeviceNetworkConstants.LogicState, out state);
@@ -534,7 +534,7 @@ public sealed class TurbineSystem : EntitySystem
         _adminLogger.Add(LogType.Action, $"{ToPrettyString(args.Trigger):trigger} set the stator load on {ToPrettyString(uid):target} to {logtext}");
     }
 
-    private void OnPortDisconnected(EntityUid uid, TurbineComponent comp, ref PortDisconnectedEvent args)
+    private void OnPortDisconnected(EntityUid uid, GasTurbineComponent comp, ref PortDisconnectedEvent args)
     {
         if (args.Port == comp.StatorLoadIncreasePort)
             comp.IncreasePortState = SignalState.Low;
@@ -543,7 +543,7 @@ public sealed class TurbineSystem : EntitySystem
     }
 
     #region Anchoring
-    private void OnAnchorChanged(EntityUid uid, TurbineComponent comp, ref AnchorStateChangedEvent args)
+    private void OnAnchorChanged(EntityUid uid, GasTurbineComponent comp, ref AnchorStateChangedEvent args)
     {
         if (!args.Anchored)
         {
@@ -552,16 +552,16 @@ public sealed class TurbineSystem : EntitySystem
         }
     }
 
-    private void OnUnanchorAttempt(EntityUid uid, TurbineComponent comp, ref UnanchorAttemptEvent args)
+    private void OnUnanchorAttempt(EntityUid uid, GasTurbineComponent comp, ref UnanchorAttemptEvent args)
     {
         if (comp.RPM>1)
         {
-            _popupSystem.PopupEntity(Loc.GetString("turbine-unanchor-warning"), args.User, args.User, PopupType.LargeCaution);
+            _popupSystem.PopupEntity(Loc.GetString("gas-turbine-unanchor-warning"), args.User, args.User, PopupType.LargeCaution);
             args.Cancel();
         }
     }
 
-    private bool GetPipes(EntityUid uid, TurbineComponent comp, [NotNullWhen(true)] out PipeNode? inlet, [NotNullWhen(true)] out PipeNode? outlet)
+    private bool GetPipes(EntityUid uid, GasTurbineComponent comp, [NotNullWhen(true)] out PipeNode? inlet, [NotNullWhen(true)] out PipeNode? outlet)
     {
         inlet = null;
         outlet = null;
@@ -576,7 +576,7 @@ public sealed class TurbineSystem : EntitySystem
 
         if (!Transform(comp.InletEnt.Value).Anchored || !Transform(comp.OutletEnt.Value).Anchored)
         {
-            _popupSystem.PopupEntity(Loc.GetString("turbine-anchor-warning"), uid, PopupType.MediumCaution);
+            _popupSystem.PopupEntity(Loc.GetString("gas-turbine-anchor-warning"), uid, PopupType.MediumCaution);
             CleanUp(comp);
             _transform.Unanchor(uid);
             return false;
@@ -586,7 +586,7 @@ public sealed class TurbineSystem : EntitySystem
     }
     #endregion
 
-    private void CleanUp(TurbineComponent comp)
+    private void CleanUp(GasTurbineComponent comp)
     {
         QueueDel(comp.InletEnt);
         QueueDel(comp.OutletEnt);
@@ -594,7 +594,7 @@ public sealed class TurbineSystem : EntitySystem
         QueueDel(comp.AlarmAudioUnderspeed);
     }
 
-    private void OnDamaged(EntityUid uid, TurbineComponent comp, ref DamageChangedEvent args)
+    private void OnDamaged(EntityUid uid, GasTurbineComponent comp, ref DamageChangedEvent args)
     {
         if (comp.Ruined)
             return;
@@ -625,7 +625,7 @@ public sealed class TurbineSystem : EntitySystem
         comp.Ruined = true;
     }
 
-    private void OnEjectAttempt(EntityUid uid, TurbineComponent comp, ref ItemSlotEjectAttemptEvent args)
+    private void OnEjectAttempt(EntityUid uid, GasTurbineComponent comp, ref ItemSlotEjectAttemptEvent args)
     {
         if (args.Cancelled)
             return;
@@ -636,7 +636,7 @@ public sealed class TurbineSystem : EntitySystem
         args.Cancelled = true;
     }
 
-    private void OnInsertAttempt(EntityUid uid, TurbineComponent comp, ref ItemSlotInsertAttemptEvent args)
+    private void OnInsertAttempt(EntityUid uid, GasTurbineComponent comp, ref ItemSlotInsertAttemptEvent args)
     {
         if (args.Cancelled)
             return;
@@ -647,7 +647,7 @@ public sealed class TurbineSystem : EntitySystem
         args.Cancelled = true;
     }
 
-    private void OnPartInserted(EntityUid uid, TurbineComponent comp, ref EntInsertedIntoContainerMessage args)
+    private void OnPartInserted(EntityUid uid, GasTurbineComponent comp, ref EntInsertedIntoContainerMessage args)
     {
         switch (args.Container.ID)
         {
@@ -663,7 +663,7 @@ public sealed class TurbineSystem : EntitySystem
         UpdatePartValues(comp);
     }
 
-    private void OnPartEjected(EntityUid uid, TurbineComponent comp, ref EntRemovedFromContainerMessage args)
+    private void OnPartEjected(EntityUid uid, GasTurbineComponent comp, ref EntRemovedFromContainerMessage args)
     {
         switch (args.Container.ID)
         {
@@ -679,7 +679,7 @@ public sealed class TurbineSystem : EntitySystem
         UpdatePartValues(comp);
     }
 
-    private void UpdatePartValues(TurbineComponent comp)
+    private void UpdatePartValues(GasTurbineComponent comp)
     {
         _entityManager.TryGetComponent<GasTurbineBladeComponent>(comp.CurrentBlade, out var bladeComp);
         _entityManager.TryGetComponent<GasTurbineStatorComponent>(comp.CurrentStator, out var statorComp);
@@ -698,13 +698,13 @@ public sealed class TurbineSystem : EntitySystem
     }
 
     
-    private void OnExamined(Entity<TurbineComponent> ent, ref ExaminedEvent args)
+    private void OnExamined(Entity<GasTurbineComponent> ent, ref ExaminedEvent args)
     {
         var comp = ent.Comp;
         if (!Comp<TransformComponent>(ent).Anchored || !args.IsInDetailsRange) // Not anchored? Out of range? No status.
             return;
 
-        using (args.PushGroup(nameof(TurbineComponent)))
+        using (args.PushGroup(nameof(GasTurbineComponent)))
         {
             if(comp.CurrentStator == null)
                 args.PushMarkup(Loc.GetString("gas-turbine-examine-stator-null"));
@@ -716,19 +716,19 @@ public sealed class TurbineSystem : EntitySystem
                 switch (comp.RPM)
                 {
                     case float n when n is >= 0 and <= 1:
-                        args.PushMarkup(Loc.GetString("turbine-spinning-0")); // " The blades are not spinning."
+                        args.PushMarkup(Loc.GetString("gas-turbine-spinning-0")); // " The blades are not spinning."
                         break;
                     case float n when n is > 1 and <= 60:
-                        args.PushMarkup(Loc.GetString("turbine-spinning-1")); // " The blades are turning slowly."
+                        args.PushMarkup(Loc.GetString("gas-turbine-spinning-1")); // " The blades are turning slowly."
                         break;
                     case float n when n > 60 && n <= comp.BestRPM * 0.5:
-                        args.PushMarkup(Loc.GetString("turbine-spinning-2")); // " The blades are spinning."
+                        args.PushMarkup(Loc.GetString("gas-turbine-spinning-2")); // " The blades are spinning."
                         break;
                     case float n when n > comp.BestRPM * 0.5 && n <= comp.BestRPM * 1.2:
-                        args.PushMarkup(Loc.GetString("turbine-spinning-3")); // " The blades are spinning quickly."
+                        args.PushMarkup(Loc.GetString("gas-turbine-spinning-3")); // " The blades are spinning quickly."
                         break;
                     case float n when n > comp.BestRPM * 1.2 && n <= float.PositiveInfinity:
-                        args.PushMarkup(Loc.GetString("turbine-spinning-4")); // " The blades are spinning out of control!"
+                        args.PushMarkup(Loc.GetString("gas-turbine-spinning-4")); // " The blades are spinning out of control!"
                         break;
                     default:
                         break;
@@ -737,29 +737,29 @@ public sealed class TurbineSystem : EntitySystem
 
             if (comp.Ruined)
             {
-                args.PushMarkup(Loc.GetString("turbine-ruined")); // " It's completely broken!"
+                args.PushMarkup(Loc.GetString("gas-turbine-ruined")); // " It's completely broken!"
             }
             else if (comp.BladeHealth <= 0.25 * comp.BladeHealthMax)
             {
-                args.PushMarkup(Loc.GetString("turbine-damaged-3")); // " It's critically damaged!"
+                args.PushMarkup(Loc.GetString("gas-turbine-damaged-3")); // " It's critically damaged!"
             }
             else if (comp.BladeHealth <= 0.5 * comp.BladeHealthMax)
             {
-                args.PushMarkup(Loc.GetString("turbine-damaged-2")); // " The turbine looks badly damaged."
+                args.PushMarkup(Loc.GetString("gas-turbine-damaged-2")); // " The turbine looks badly damaged."
             }
             else if (comp.BladeHealth <= 0.75 * comp.BladeHealthMax)
             {
-                args.PushMarkup(Loc.GetString("turbine-damaged-1")); // " The turbine looks a bit scuffed."
+                args.PushMarkup(Loc.GetString("gas-turbine-damaged-1")); // " The turbine looks a bit scuffed."
             }
             else
             {
-                args.PushMarkup(Loc.GetString("turbine-damaged-0")); // " It appears to be in good condition."
+                args.PushMarkup(Loc.GetString("gas-turbine-damaged-0")); // " It appears to be in good condition."
             }
         }
     }
 
     #region Repairs
-    private void RepairTurbine(EntityUid uid, TurbineComponent comp, ref InteractUsingEvent args)
+    private void RepairTurbine(EntityUid uid, GasTurbineComponent comp, ref InteractUsingEvent args)
     {
         if (args.Handled)
             return;
@@ -787,28 +787,40 @@ public sealed class TurbineSystem : EntitySystem
         }
     }
 
-    private void OnRepairTurbineFinished(EntityUid uid, TurbineComponent comp, ref RepairDoAfterEvent args)
+    private void OnRepairTurbineFinished(EntityUid uid, GasTurbineComponent comp, ref RepairDoAfterEvent args)
     {
         if (args.Cancelled)
             return;
 
+        var str = "";
         if (comp.Ruined)
         {
             comp.Ruined = false;
             if (comp.BladeHealth <= 0) { comp.BladeHealth = 1; }
             UpdateHealthIndicators(uid, comp);
+            str = Loc.GetString("gas-turbine-repair-ruined", ("target", uid), ("tool", args.Used!));
         }
         else if (comp.BladeHealth < comp.BladeHealthMax)
         {
             comp.BladeHealth++;
             UpdateHealthIndicators(uid, comp);
+            if(comp.BladeHealth < comp.BladeHealthMax)
+                str = Loc.GetString("gas-turbine-repair-partial", ("target", uid), ("tool", args.Used!));
+            else
+                str = Loc.GetString("gas-turbine-repair-complete", ("target", uid), ("tool", args.Used!));
         }
         else if (comp.BladeHealth >= comp.BladeHealthMax)
         {
             // This should technically never occur, but just in case...
+            str = Loc.GetString("gas-turbine-repair-no-damage", ("target", uid), ("tool", args.Used!));
         }
 
-        _popupSystem.PopupClient(Loc.GetString("turbine-repair", ("target", uid), ("tool", args.Used!)), uid, args.User);
+        args.Repeat = comp.BladeHealth < comp.BladeHealthMax || comp.Ruined;
+        args.Args.Event.Repeat = args.Repeat;
+        args.Handled = true;
+
+        _popupSystem.PopupEntity(str, uid, args.User);
+        _adminLogger.Add(LogType.Healed, $"{ToPrettyString(args.User):user} repaired {ToPrettyString(uid):target}");
 
         if (!_entityManager.TryGetComponent<DamageableComponent>(uid, out var damageableComponent))
             return;
@@ -816,29 +828,29 @@ public sealed class TurbineSystem : EntitySystem
         _damageableSystem.SetAllDamage((uid, damageableComponent), 0);
     }
 
-    private void UpdateHealthIndicators(EntityUid uid, TurbineComponent comp)
+    private void UpdateHealthIndicators(EntityUid uid, GasTurbineComponent comp)
     {
         if (comp.BladeHealth <= 0.75 * comp.BladeHealthMax && !comp.IsSparking)
         {
             comp.IsSparking = true;
             _audio.PlayPvs(new SoundPathSpecifier("/Audio/Effects/PowerSink/electric.ogg"), uid, AudioParams.Default.WithPitchScale(0.75f));
-            _popupSystem.PopupEntity(Loc.GetString("turbine-spark", ("owner", uid)), uid, PopupType.MediumCaution);
+            _popupSystem.PopupEntity(Loc.GetString("gas-turbine-spark", ("owner", uid)), uid, PopupType.MediumCaution);
         }
         else if (comp.BladeHealth > 0.75 * comp.BladeHealthMax && comp.IsSparking)
         {
             comp.IsSparking = false;
-            _popupSystem.PopupEntity(Loc.GetString("turbine-spark-stop", ("owner", uid)), uid, PopupType.Medium);
+            _popupSystem.PopupEntity(Loc.GetString("gas-turbine-spark-stop", ("owner", uid)), uid, PopupType.Medium);
         }
 
         if (comp.BladeHealth <= 0.5 * comp.BladeHealthMax && !comp.IsSmoking)
         {
             comp.IsSmoking = true;
-            _popupSystem.PopupEntity(Loc.GetString("turbine-smoke", ("owner", uid)), uid, PopupType.MediumCaution);
+            _popupSystem.PopupEntity(Loc.GetString("gas-turbine-smoke", ("owner", uid)), uid, PopupType.MediumCaution);
         }
         else if (comp.BladeHealth > 0.5 * comp.BladeHealthMax && comp.IsSmoking)
         {
             comp.IsSmoking = false;
-            _popupSystem.PopupEntity(Loc.GetString("turbine-smoke-stop", ("owner", uid)), uid, PopupType.Medium);
+            _popupSystem.PopupEntity(Loc.GetString("gas-turbine-smoke-stop", ("owner", uid)), uid, PopupType.Medium);
         }
 
         _entityManager.EnsureComponent<ElectrifiedComponent>(uid).Enabled = comp.IsSparking;

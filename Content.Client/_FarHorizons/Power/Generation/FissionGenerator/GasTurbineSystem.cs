@@ -7,7 +7,7 @@ using Robust.Shared.Map;
 
 namespace Content.Client._FarHorizons.Power.Generation.FissionGenerator;
 
-public sealed class TurbineSystem : EntitySystem
+public sealed class GasTurbineSystem : EntitySystem
 {
     [Dependency] private readonly AnimationPlayerSystem _animationPlayer = default!;
     [Dependency] private readonly SpriteSystem _sprite = default!;
@@ -19,18 +19,18 @@ public sealed class TurbineSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<TurbineComponent, ClientExaminedEvent>(TurbineExamined);
+        SubscribeLocalEvent<GasTurbineComponent, ClientExaminedEvent>(TurbineExamined);
 
-        SubscribeLocalEvent<TurbineComponent, AnimationCompletedEvent>(OnAnimationCompleted);
+        SubscribeLocalEvent<GasTurbineComponent, AnimationCompletedEvent>(OnAnimationCompleted);
 
-        SubscribeLocalEvent<TurbineComponent, ItemSlotInsertAttemptEvent>(OnInsertAttempt);
-        SubscribeLocalEvent<TurbineComponent, ItemSlotEjectAttemptEvent>(OnEjectAttempt);
+        SubscribeLocalEvent<GasTurbineComponent, ItemSlotInsertAttemptEvent>(OnInsertAttempt);
+        SubscribeLocalEvent<GasTurbineComponent, ItemSlotEjectAttemptEvent>(OnEjectAttempt);
     }
 
-    private void TurbineExamined(EntityUid uid, TurbineComponent comp, ClientExaminedEvent args) => Spawn(comp.ArrowPrototype, new EntityCoordinates(uid, 0, 0));
+    private void TurbineExamined(EntityUid uid, GasTurbineComponent comp, ClientExaminedEvent args) => Spawn(comp.ArrowPrototype, new EntityCoordinates(uid, 0, 0));
 
     #region Animation
-    private void OnAnimationCompleted(EntityUid uid, TurbineComponent comp, ref AnimationCompletedEvent args) => PlayAnimation(uid, comp);
+    private void OnAnimationCompleted(EntityUid uid, GasTurbineComponent comp, ref AnimationCompletedEvent args) => PlayAnimation(uid, comp);
 
     public override void FrameUpdate(float frameTime)
     {
@@ -44,7 +44,7 @@ public sealed class TurbineSystem : EntitySystem
 
     private void AccUpdate()
     {
-        var query = EntityQueryEnumerator<TurbineComponent>();
+        var query = EntityQueryEnumerator<GasTurbineComponent>();
         while (query.MoveNext(out var uid, out var component))
         {
             // Makes sure the anim doesn't get stuck at low RPM
@@ -52,9 +52,9 @@ public sealed class TurbineSystem : EntitySystem
         }
     }
 
-    private void PlayAnimation(EntityUid uid, TurbineComponent comp)
+    private void PlayAnimation(EntityUid uid, GasTurbineComponent comp)
     {
-        if (!TryComp<SpriteComponent>(uid, out var sprite) || !_sprite.TryGetLayer((uid,sprite), TurbineVisualLayers.TurbineSpeed, out var layer, false))
+        if (!TryComp<SpriteComponent>(uid, out var sprite) || !_sprite.TryGetLayer((uid,sprite), GasTurbineVisualLayers.TurbineSpeed, out var layer, false))
             return;
 
         var state = "speedanim";
@@ -73,7 +73,7 @@ public sealed class TurbineSystem : EntitySystem
             return;
 
         comp.AnimRPM = comp.RPM;
-        var layerKey = TurbineVisualLayers.TurbineSpeed;
+        var layerKey = GasTurbineVisualLayers.TurbineSpeed;
         var time = 0.5f * comp.BestRPM / comp.RPM;
         var timestep = time / 12;
         var animation = new Animation
@@ -107,7 +107,7 @@ public sealed class TurbineSystem : EntitySystem
     }
     #endregion
 
-    private void OnEjectAttempt(EntityUid uid, TurbineComponent comp, ref ItemSlotEjectAttemptEvent args)
+    private void OnEjectAttempt(EntityUid uid, GasTurbineComponent comp, ref ItemSlotEjectAttemptEvent args)
     {
         if (args.Cancelled)
             return;
@@ -118,7 +118,7 @@ public sealed class TurbineSystem : EntitySystem
         args.Cancelled = true;
     }
 
-    private void OnInsertAttempt(EntityUid uid, TurbineComponent comp, ref ItemSlotInsertAttemptEvent args)
+    private void OnInsertAttempt(EntityUid uid, GasTurbineComponent comp, ref ItemSlotInsertAttemptEvent args)
     {
         if (args.Cancelled)
             return;

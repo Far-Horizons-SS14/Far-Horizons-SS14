@@ -7,32 +7,32 @@
   description: A large turbine used for generating power using hot gas.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Structures/Power/Generation/FissionGenerator/turbine.rsi
+    sprite: _FarHorizons/Structures/Power/Generation/FissionGenerator/gas_turbine.rsi
     layers:
     - state: turbine
       visible: true
-      map: [ "enum.TurbineVisualLayers.TurbineSpeed" ]
+      map: [ "enum.GasTurbineVisualLayers.TurbineSpeed" ]
     - state: turbinebroken
       visible: false
-      map: [ "enum.TurbineVisualLayers.TurbineRuined" ]
+      map: [ "enum.GasTurbineVisualLayers.TurbineRuined" ]
     - state: turbine_sparks
       visible: false
-      map: [ "enum.TurbineVisualLayers.DamageSpark" ]
+      map: [ "enum.GasTurbineVisualLayers.DamageSpark" ]
     - state: turbine_smoke
       visible: false
-      map: [ "enum.TurbineVisualLayers.DamageSmoke" ]
+      map: [ "enum.GasTurbineVisualLayers.DamageSmoke" ]
   - type: GenericVisualizer
     visuals:
-      enum.TurbineVisuals.TurbineRuined:
-        enum.TurbineVisualLayers.TurbineRuined:
+      enum.GasTurbineVisuals.TurbineRuined:
+        enum.GasTurbineVisualLayers.TurbineRuined:
           True: { visible: true }
           False: { visible: false }
-      enum.TurbineVisuals.DamageSpark:
-        enum.TurbineVisualLayers.DamageSpark:
+      enum.GasTurbineVisuals.DamageSpark:
+        enum.GasTurbineVisualLayers.DamageSpark:
           True: { visible: true }
           False: { visible: false }
-      enum.TurbineVisuals.DamageSmoke:
-        enum.TurbineVisualLayers.DamageSmoke:
+      enum.GasTurbineVisuals.DamageSmoke:
+        enum.GasTurbineVisualLayers.DamageSmoke:
           True: { visible: true }
           False: { visible: false }
   - type: Appearance
@@ -65,7 +65,7 @@
   - type: PowerMonitoringDevice
     group: Generator
     loadNode: output
-    sprite: _FarHorizons/Structures/Power/Generation/FissionGenerator/turbine.rsi
+    sprite: _FarHorizons/Structures/Power/Generation/FissionGenerator/gas_turbine.rsi
     state: static
   - type: PowerSupplier
     supplyRampRate: 75000
@@ -92,7 +92,7 @@
         whitelist:
           components:
             - GasTurbineStator
-  - type: Turbine
+  - type: GasTurbine
   - type: DeviceNetwork
     deviceNetId: Wireless
     receiveFrequencyId: BasicDevice
@@ -101,20 +101,20 @@
   - type: DeviceLinkSource
     range: 50
     ports:
-      - TurbineSpeedHigh
-      - TurbineSpeedLow
+      - GasTurbineSpeedHigh
+      - GasTurbineSpeedLow
       - GasTurbineDataSender
   - type: DeviceLinkSink
     ports:
       - IncreaseStatorLoad
       - DecreaseStatorLoad
   - type: ActivatableUI
-    key: enum.TurbineUiKey.Key
+    key: enum.GasTurbineUiKey.Key
   - type: ActivatableUIRequiresAnchor
   - type: UserInterface
     interfaces:
-      enum.TurbineUiKey.Key:
-        type: TurbineBoundUserInterface
+      enum.GasTurbineUiKey.Key:
+        type: GasTurbineBoundUserInterface
   - type: GuideHelp
     guides:
     - NuclearReactor
@@ -128,7 +128,7 @@
   description: A small turbine used for generating power using hot gas.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Structures/Power/Generation/FissionGenerator/small_turbine.rsi
+    sprite: _FarHorizons/Structures/Power/Generation/FissionGenerator/small_gas_turbine.rsi
     offset: 0, -0.5
   - type: Fixtures
     fixtures:
@@ -142,10 +142,8 @@
         layer:
         - MachineLayer
   - type: PowerMonitoringDevice
-    sprite: _FarHorizons/Structures/Power/Generation/FissionGenerator/small_turbine.rsi
-  - type: Turbine
-    turbineMass: 400
-    powerMultiplier: 0.4
+    sprite: _FarHorizons/Structures/Power/Generation/FissionGenerator/small_gas_turbine.rsi
+  - type: GasTurbine
     inletPos: 1, -1
     inletRot: 0 
     outletPos: -1, -1
