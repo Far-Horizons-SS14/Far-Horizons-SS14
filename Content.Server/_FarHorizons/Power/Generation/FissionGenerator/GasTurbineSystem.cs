@@ -554,9 +554,9 @@ public sealed class GasTurbineSystem : EntitySystem
 
     private void OnUnanchorAttempt(EntityUid uid, GasTurbineComponent comp, ref UnanchorAttemptEvent args)
     {
-        if (comp.RPM>1)
+        if (comp.RPM > 1)
         {
-            _popupSystem.PopupEntity(Loc.GetString("gas-turbine-unanchor-warning"), args.User, args.User, PopupType.LargeCaution);
+            _popupSystem.PopupEntity(Loc.GetString("gas-turbine-unanchor-warning", ("owner", uid)), uid, args.User, PopupType.LargeCaution);
             args.Cancel();
         }
     }
@@ -576,7 +576,7 @@ public sealed class GasTurbineSystem : EntitySystem
 
         if (!Transform(comp.InletEnt.Value).Anchored || !Transform(comp.OutletEnt.Value).Anchored)
         {
-            _popupSystem.PopupEntity(Loc.GetString("gas-turbine-anchor-warning"), uid, PopupType.MediumCaution);
+            _popupSystem.PopupEntity(Loc.GetString("gas-turbine-anchor-warning"), uid, PopupType.LargeCaution);
             CleanUp(comp);
             _transform.Unanchor(uid);
             return false;

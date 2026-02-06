@@ -982,14 +982,14 @@ public sealed class NuclearReactorSystem : EntitySystem
         // One does not simply move a reactor that has welded itself in place
         if (comp.Melted)
         {
-            _popupSystem.PopupEntity(Loc.GetString("reactor-unanchor-melted"), args.User, args.User, PopupType.LargeCaution);
+            _popupSystem.PopupEntity(Loc.GetString("reactor-unanchor-melted", ("owner", uid)), uid, args.User, PopupType.LargeCaution);
             args.Cancel();
             return;
         }
 
         if (comp.Temperature >= Atmospherics.T0C + 80 || !CheckEmpty(comp))
         {
-            _popupSystem.PopupEntity(Loc.GetString("reactor-unanchor-warning"), args.User, args.User, PopupType.LargeCaution);
+            _popupSystem.PopupEntity(Loc.GetString("reactor-unanchor-warning", ("owner", uid)), uid, args.User, PopupType.LargeCaution);
             args.Cancel();
         }
     }
@@ -1018,7 +1018,7 @@ public sealed class NuclearReactorSystem : EntitySystem
 
         if (!Transform(comp.InletEnt.Value).Anchored || !Transform(comp.OutletEnt.Value).Anchored)
         {
-            _popupSystem.PopupEntity(Loc.GetString("reactor-unanchor-warning"), uid, PopupType.MediumCaution);
+            _popupSystem.PopupEntity(Loc.GetString("reactor-anchor-warning"), uid, PopupType.LargeCaution);
             CleanUp(comp);
             _transform.Unanchor(uid);
             return false;

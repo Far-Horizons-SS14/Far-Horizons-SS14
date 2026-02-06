@@ -40,7 +40,7 @@ gas-turbine-repair-complete = You finish repairing {THE($target)} with {THE($too
 gas-turbine-repair-no-damage = There is no damage to repair on {THE($target)} using {THE($tool)}.
 
 # Anchoring warnings
-gas-turbine-unanchor-warning = You cannot unanchor the gas turbine while the turbine is spinning!
+gas-turbine-unanchor-warning = You cannot unanchor {THE($owner)} while the turbine is spinning!
 gas-turbine-anchor-warning = Invalid anchor position.
 
 gas-turbine-eject-fail-speed = You cannot remove turbine parts while the turbine is spinning!
