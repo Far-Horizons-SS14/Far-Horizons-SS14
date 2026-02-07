@@ -36,6 +36,7 @@
   - type: ClothingSpeedModifier
     walkModifier: 0.7
     sprintModifier: 0.7
+    requireActivated: false #FH cuz item toggle.
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitAtmos
@@ -77,6 +78,7 @@
   - type: ClothingSpeedModifier
     walkModifier: 0.7
     sprintModifier: 0.7
+    requireActivated: false #FH cuz item toggle.
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitEngineering
@@ -115,6 +117,7 @@
   - type: ClothingSpeedModifier
     walkModifier: 0.8
     sprintModifier: 0.8
+    requireActivated: false #FH cuz item toggle.
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitSpatio
@@ -158,6 +161,7 @@
   - type: ClothingSpeedModifier
     walkModifier: 0.75
     sprintModifier: 0.75
+    requireActivated: false #FH cuz item toggle.
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitSalvage
@@ -199,6 +203,7 @@
   - type: ClothingSpeedModifier
     walkModifier: 0.8
     sprintModifier: 0.8
+    requireActivated: false #FH cuz item toggle.
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitGoliath
@@ -243,7 +248,8 @@
         Caustic: 0.8 
   - type: ClothingSpeedModifier
     walkModifier: 0.85
-    sprintModifier: 0.85 
+    sprintModifier: 0.85
+    requireActivated: false #FH cuz item toggle.
   - type: ExplosionResistance
     damageCoefficient: 0.4 
     # end region starlight
@@ -524,6 +530,7 @@
   - type: ClothingSpeedModifier
     walkModifier: 0.8
     sprintModifier: 0.8
+    requireActivated: false #FH cuz item toggle.
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitCap
@@ -567,6 +574,7 @@
   - type: ClothingSpeedModifier
     walkModifier: 0.8
     sprintModifier: 0.8
+    requireActivated: false #FH cuz item toggle.
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitEngineeringWhite
@@ -603,6 +611,7 @@
   - type: ClothingSpeedModifier
     walkModifier: 1.0 # Starlight Edit
     sprintModifier: 1.0 # Starlight Edit
+    requireActivated: false #FH cuz item toggle.
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitMedical
@@ -644,6 +653,7 @@
   - type: ClothingSpeedModifier
     walkModifier: 0.75
     sprintModifier: 0.75
+    requireActivated: false #FH cuz item toggle.
   - type: HeldSpeedModifier
   - type: Item
     size: Huge
@@ -784,6 +794,7 @@
   - type: ClothingSpeedModifier
     walkModifier: 0.9
     sprintModifier: 0.9
+    requireActivated: false #FH cuz item toggle.
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitLuxury
@@ -835,6 +846,7 @@
   - type: ClothingSpeedModifier
     walkModifier: 0.9
     sprintModifier: 0.9
+    requireActivated: false #FH cuz item toggle.
   - type: HeldSpeedModifier
   - type: FootstepModifier # STARLIGHT
     footstepSoundCollection:
@@ -946,6 +958,7 @@
   - type: ClothingSpeedModifier
     walkModifier: 0.9
     sprintModifier: 0.9
+    requireActivated: false #FH cuz item toggle.
   - type: HeldSpeedModifier
   - type: FootstepModifier # STARLIGHT
     footstepSoundCollection:
@@ -1008,6 +1021,7 @@
   - type: ClothingSpeedModifier
     walkModifier: 0.95
     sprintModifier: 0.95
+    requireActivated: false #FH cuz item toggle.
   - type: HeldSpeedModifier
   - type: FootstepModifier # STARLIGHT
     footstepSoundCollection:
@@ -1083,6 +1097,7 @@
   - type: ClothingSpeedModifier
     walkModifier: 0.65
     sprintModifier: 0.65
+    requireActivated: false #FH cuz item toggle.
   - type: HeldSpeedModifier
   - type: FootstepModifier #starlight
     footstepSoundCollection:
@@ -1137,6 +1152,7 @@
   - type: ClothingSpeedModifier
     walkModifier: 0.8
     sprintModifier: 0.8
+    requireActivated: false #FH cuz item toggle.
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitWizard
@@ -1179,6 +1195,7 @@
   - type: ClothingSpeedModifier
     walkModifier: 0.8
     sprintModifier: 0.8
+    requireActivated: false #FH cuz item toggle.
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitLing
@@ -1215,6 +1232,7 @@
   - type: ClothingSpeedModifier
     walkModifier: 0.6
     sprintModifier: 0.6
+    requireActivated: false #FH cuz item toggle.
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitPirateEVA
@@ -1254,6 +1272,7 @@
   - type: ClothingSpeedModifier
     walkModifier: 0.8
     sprintModifier: 0.8
+    requireActivated: false #FH cuz item toggle.
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitPirateCap
@@ -1470,6 +1489,7 @@
   - type: ClothingSpeedModifier
     walkModifier: 1.0
     sprintModifier: 1.0
+    requireActivated: false #FH cuz item toggle.
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitDeathsquad
@@ -1516,6 +1536,7 @@
   - type: ClothingSpeedModifier
     walkModifier: 1.0
     sprintModifier: 1.0
+    requireActivated: false #FH cuz item toggle.
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetCBURN
@@ -1552,6 +1573,7 @@
   - type: ClothingSpeedModifier
     walkModifier: 0.9
     sprintModifier: 0.9
+    requireActivated: false #FH cuz item toggle.
   - type: HeldSpeedModifier
   - type: Construction
     graph: ClownHardsuit
@@ -1604,6 +1626,7 @@
   - type: ClothingSpeedModifier
     walkModifier: 0.9
     sprintModifier: 0.9
+    requireActivated: false #FH cuz item toggle.
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitSanta
@@ -1639,5 +1662,6 @@
   - type: ClothingSpeedModifier
     walkModifier: 0.9
     sprintModifier: 0.9
+    requireActivated: false #FH cuz item toggle.
   - type: HeldSpeedModifier
   - type: Unremoveable
