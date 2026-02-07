@@ -1319,3 +1319,109 @@
     - type: ContainerFill
       containers:
         board: [ DoorElectronicsArmory ]
+
+#region Shuttle
+
+# Standard
+- type: entity
+  parent: FHAirlockShuttle
+  id: FHAirlockExternalShuttleLocked
+  suffix: External, Docking, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsExternal ]
+
+- type: entity
+  parent: FHAirlockShuttleSyndicate
+  id: FHAirlockExternalShuttleSyndicateLocked
+  suffix: External, Docking, Syndicate, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSyndicateAgent ]
+
+- type: entity
+  parent: FHAirlockShuttleSyndicate
+  id: FHAirlockExternalShuttleNukeopLocked
+  suffix: External, Docking, Nukeop, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNukeop ]
+
+- type: entity
+  parent: FHAirlockShuttleXenoborg
+  id: FHAirlockGlassShuttleXenoborgLocked
+  suffix: External, Docking, Xenoborg, Locked
+  components:
+  - type: StationAiWhitelist
+    enabled: false
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsXenoborg ]
+
+# Glass
+
+- type: entity
+  parent: FHAirlockGlassShuttle
+  id: FHAirlockExternalGlassShuttleLocked
+  suffix: External, Glass, Docking, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsExternal ]
+
+- type: entity
+  parent: FHAirlockGlassShuttleSyndicate
+  id: FHAirlockExternalGlassShuttleSyndicateLocked
+  suffix: Syndicate, Locked, Glass
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSyndicateAgent ]
+
+- type: entity
+  parent: FHAirlockGlassShuttleSyndicate
+  id: FHAirlockExternalGlassShuttleNukeopLocked
+  suffix: Nukeop, Locked, Glass
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNukeop ]
+
+- type: entity
+  parent: FHAirlockGlassShuttle
+  id: FHAirlockExternalGlassShuttleEmergencyLocked
+  suffix: External, Emergency, Glass, Docking, Locked
+  components:
+  - type: PriorityDock
+    tag: DockEmergency
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsExternal ]
+
+- type: entity
+  parent: FHAirlockGlassShuttle
+  id: FHAirlockExternalGlassShuttleArrivals
+  suffix: External, Arrivals, Glass, Docking
+  components:
+  - type: PriorityDock
+    tag: DockArrivals
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsExternal ]
+
+- type: entity
+  parent: FHAirlockGlassShuttle
+  id: FHAirlockExternalGlassShuttleEscape
+  suffix: External, Escape 3x4, Glass, Docking
+  components:
+  - type: GridFill
+    addComponents:
+    - type: IFF
+      flags:
+      - HideLabel
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsExternal ]

@@ -1,7 +1,7 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Sprited by ItsAbby for FarHorizons",
+  "copyright": "Sprited by ItsAbby for FarHorizons, Some unlit lights done by CorruptOmega",
   "size": {
     "x": 32,
     "y": 32
@@ -12,8 +12,39 @@
       "directions": 4
     },
     {
+      "name": "bolted_unlit",
+      "directions": 4
+    },
+    {
       "name": "closed",
       "directions": 4
+    },
+    {
+      "name": "closed_unlit",
+      "directions": 4
+    },
+    {
+      "name": "closing_unlit",
+      "directions": 4
+    },
+    {
+      "name": "deny_unlit",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    },
+    {
+      "name": "emergency_unlit",
+      "delays": [
+        [
+          0.4,
+          0.4
+        ]
+      ]
     },
     {
       "name": "locked",
@@ -54,6 +85,14 @@
           0.1,
           0.1,
           0.1
+        ]
+      ]
+    },
+    {
+      "name": "opening_unlit",
+      "delays": [
+        [
+          0.2
         ]
       ]
     },
