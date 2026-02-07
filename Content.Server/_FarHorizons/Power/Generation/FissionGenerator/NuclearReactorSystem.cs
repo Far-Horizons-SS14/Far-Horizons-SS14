@@ -767,10 +767,7 @@ public sealed class NuclearReactorSystem : EntitySystem
     #endregion
 
     #region BUI
-    private void OnUIOpened(EntityUid uid, NuclearReactorComponent reactor, ref BoundUIOpenedEvent args)
-    {
-        UpdateUI(uid, reactor);
-    }
+    private void OnUIOpened(EntityUid uid, NuclearReactorComponent reactor, ref BoundUIOpenedEvent args) => UpdateUI(uid, reactor);
 
     public void UpdateUI(EntityUid uid, NuclearReactorComponent reactor)
     {
@@ -835,6 +832,8 @@ public sealed class NuclearReactorSystem : EntitySystem
 
                GridWidth = gridWidth,
                GridHeight = gridHeight,
+
+               ReactionRatio = _partSystem.ReactionRatio,
            });
     }
 

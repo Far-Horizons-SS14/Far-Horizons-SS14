@@ -33,7 +33,6 @@ comp-nuclear-reactor-ui-eject-button = Eject
 comp-nuclear-reactor-ui-view-change = Change View
 comp-nuclear-reactor-ui-view-temp = Temperature View
 comp-nuclear-reactor-ui-view-neutron = Neutron View
-comp-nuclear-reactor-ui-view-target = Target View
 comp-nuclear-reactor-ui-view-fuel = Fuel View
 
 comp-nuclear-reactor-ui-status-panel = Reactor Status
@@ -44,4 +43,4 @@ comp-nuclear-reactor-ui-reactor-control = Control Rods
 comp-nuclear-reactor-ui-therm-format = { POWERWATTS($power) }t
 
 comp-nuclear-reactor-ui-footer-left = Danger: high radiation.
-comp-nuclear-reactor-ui-footer-right = 0.8 REV 3
+comp-nuclear-reactor-ui-footer-right = 1.0 REV 1
