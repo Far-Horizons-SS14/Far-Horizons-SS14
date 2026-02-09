@@ -84,13 +84,13 @@ public sealed partial class NuclearReactorComponent : Component
     /// <summary>
     /// Flag indicating the reactor is overheating
     /// </summary>
-    [ViewVariables]
+    [ViewVariables, AutoNetworkedField]
     public bool IsSmoking = false;
 
     /// <summary>
     /// Flag indicating the reactor is on fire
     /// </summary>
-    [ViewVariables]
+    [ViewVariables, AutoNetworkedField]
     public bool IsBurning = false;
 
     /// <summary>

@@ -732,6 +732,7 @@ public sealed class NuclearReactorSystem : EntitySystem
     {
         var comp = ent.Comp;
         var uid = ent.Owner;
+        var change = false;
 
         if (comp.Temperature >= comp.ReactorOverheatTemp)
         {
@@ -740,18 +741,21 @@ public sealed class NuclearReactorSystem : EntitySystem
                 comp.IsSmoking = true;
                 _appearance.SetData(uid, ReactorVisuals.Smoke, true);
                 _popupSystem.PopupEntity(Loc.GetString("reactor-smoke-start", ("owner", uid)), uid, PopupType.MediumCaution);
+                change = true;
             }
             if (comp.Temperature >= comp.ReactorFireTemp && !comp.IsBurning)
             {
                 comp.IsBurning = true;
                 _appearance.SetData(uid, ReactorVisuals.Fire, true);
                 _popupSystem.PopupEntity(Loc.GetString("reactor-fire-start", ("owner", uid)), uid, PopupType.MediumCaution);
+                change = true;
             }
             else if (comp.Temperature < comp.ReactorFireTemp && comp.IsBurning)
             {
                 comp.IsBurning = false;
                 _appearance.SetData(uid, ReactorVisuals.Fire, false);
                 _popupSystem.PopupEntity(Loc.GetString("reactor-fire-stop", ("owner", uid)), uid, PopupType.Medium);
+                change = true;
             }
         }
         else
@@ -761,8 +765,12 @@ public sealed class NuclearReactorSystem : EntitySystem
                 comp.IsSmoking = false;
                 _appearance.SetData(uid, ReactorVisuals.Smoke, false);
                 _popupSystem.PopupEntity(Loc.GetString("reactor-smoke-stop", ("owner", uid)), uid, PopupType.Medium);
+                change = true;
             }
         }
+
+        if (change)
+            Dirty(ent);
     }
     #endregion
 

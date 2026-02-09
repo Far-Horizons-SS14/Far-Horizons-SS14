@@ -4,13 +4,18 @@ using Content.Shared.Containers.ItemSlots;
 using Robust.Client.Animations;
 using Robust.Client.GameObjects;
 using Robust.Shared.Map;
+using Robust.Shared.Map.Components;
+using Robust.Shared.Random;
 
 namespace Content.Client._FarHorizons.Power.Generation.FissionGenerator;
 
 public sealed class GasTurbineSystem : EntitySystem
 {
     [Dependency] private readonly AnimationPlayerSystem _animationPlayer = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly SharedMapSystem _mapSystem = default!;
     [Dependency] private readonly SpriteSystem _sprite = default!;
+    [Dependency] private readonly TransformSystem _transformSystem = default!;
 
     private readonly float _threshold = 1f;
     private float _accumulator = 0;
@@ -49,6 +54,8 @@ public sealed class GasTurbineSystem : EntitySystem
         {
             // Makes sure the anim doesn't get stuck at low RPM
             PlayAnimation(uid, component);
+
+            UpdateParticles(uid, component);
         }
     }
 
@@ -106,6 +113,37 @@ public sealed class GasTurbineSystem : EntitySystem
         _animationPlayer.Play(uid, animation, state);
     }
     #endregion
+
+    // If there was a particle system, I would use it, for now I'm just stealing the jetpack's system like I'm not supposed to
+    private void UpdateParticles(EntityUid uid, GasTurbineComponent comp)
+    {
+        if(!comp.IsSmoking && !comp.IsSparking)
+            return;
+
+        var uidXform = Transform(uid);
+
+        var coordinates = uidXform.Coordinates;
+        var gridUid = _transformSystem.GetGrid(coordinates);
+
+        if (TryComp<MapGridComponent>(gridUid, out var grid))
+        {
+            coordinates = new EntityCoordinates(gridUid.Value, _mapSystem.WorldToLocal(gridUid.Value, grid, _transformSystem.ToMapCoordinates(coordinates).Position));
+        }
+        else if (uidXform.MapUid != null)
+        {
+            coordinates = new EntityCoordinates(uidXform.MapUid.Value, _transformSystem.GetWorldPosition(uidXform));
+        }
+        else
+        {
+            return;
+        }
+
+        if(comp.IsSparking)
+            Spawn("GasTurbineSparkEffect", coordinates.Offset(new(_random.NextFloat(-1, 1),_random.NextFloat(-1, 1))));
+
+        if(comp.IsSmoking)
+            Spawn("GasTurbineSmokeEffect", coordinates.Offset(new(_random.NextFloat(-1, 1),_random.NextFloat(-1, 1))));
+    }
 
     private void OnEjectAttempt(EntityUid uid, GasTurbineComponent comp, ref ItemSlotEjectAttemptEvent args)
     {

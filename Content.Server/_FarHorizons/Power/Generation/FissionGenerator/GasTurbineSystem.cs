@@ -282,6 +282,11 @@ public sealed class GasTurbineSystem : EntitySystem
                 // Sacrifices must be made to have a smooth ramp up:
                 // This will generate 2 audio streams every second with up to 4 of them playing at once... surely this can't go wrong :clueless:
                 _audio.PlayPvs(new SoundPathSpecifier("/Audio/_FarHorizons/Ambience/Objects/turbine_room.ogg"), uid, AudioParams.Default.WithPitchScale(comp.RPM / comp.BestRPM).WithVolume(-2));
+
+                var healthPercent = (float)comp.BladeHealth / comp.BladeHealthMax;
+                if (healthPercent < 1)
+                    _audio.PlayPvs(new SoundPathSpecifier("/Audio/_FarHorizons/Ambience/Objects/bad_bearing_2.ogg"), uid, AudioParams.Default.WithPitchScale(comp.RPM / comp.BestRPM)
+                        .WithVolume((healthPercent * -6f) - 2));
             }
 
             // Calculate power generation

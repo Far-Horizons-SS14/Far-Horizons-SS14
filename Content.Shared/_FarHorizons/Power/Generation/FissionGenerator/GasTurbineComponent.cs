@@ -101,13 +101,13 @@ public sealed partial class GasTurbineComponent : Component
     /// <summary>
     /// Flag indicating the turbine is sparking
     /// </summary>
-    [ViewVariables]
+    [ViewVariables, AutoNetworkedField]
     public bool IsSparking = false;
 
     /// <summary>
     /// Flag indicating the turbine is smoking
     /// </summary>
-    [ViewVariables]
+    [ViewVariables, AutoNetworkedField]
     public bool IsSmoking = false;
 
     /// <summary>
