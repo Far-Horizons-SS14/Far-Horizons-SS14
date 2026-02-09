@@ -3,7 +3,7 @@
   id: BaseGasTurbine
   parent: BaseStructure
   abstract: true
-  name: gas turbine
+  name: Gas Turbine
   description: A large turbine used for generating power using hot gas.
   components:
   - type: Sprite
@@ -124,7 +124,7 @@
   id: BaseGasTurbineSmall
   parent: BaseGasTurbine
   abstract: true
-  name: small gas turbine
+  name: Small Gas Turbine
   description: A small turbine used for generating power using hot gas.
   components:
   - type: Sprite
@@ -274,7 +274,8 @@
 
 - type: entity
   id: GasTurbineBladeShrapnel
-  name: gas turbine blade
+  name: Gas Turbine Blade
+  description: Uh oh.
   categories: [ HideSpawnMenu ]
   components:
   - type: FlyBySound

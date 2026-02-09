@@ -3,7 +3,7 @@
   id: BaseNuclearReactor
   parent: BaseStructure
   abstract: true
-  name: nuclear reactor
+  name: Nuclear Reactor
   description: A nuclear reactor vessel, with slots for fuel rods and other components. Hey wait, didn't one of these explode once?
   components:
   - type: Sprite
@@ -147,7 +147,7 @@
   id: BaseNuclearReactorSmall
   parent: BaseNuclearReactor
   abstract: true
-  name: small nuclear reactor
+  name: Small Nuclear Reactor
   components:
   - type: Sprite
     sprite: _FarHorizons/Structures/Power/Generation/FissionGenerator/small_nuclear_reactor.rsi
@@ -247,17 +247,17 @@
 - type: entity
   id: NuclearReactorEmpty
   parent: [BaseNuclearReactor, NuclearReactorCrew, ReactorPrefabEmpty]
-  suffix: Empty
+  suffix: "Empty"
 
 - type: entity
   id: NuclearReactorRandom
   parent: [BaseNuclearReactor, NuclearReactorCrew, ReactorPrefabRandom]
-  suffix: Random
+  suffix: "Random"
 
 - type: entity
   id: NuclearReactorMeltdown
   parent: [BaseNuclearReactor, NuclearReactorCrew, ReactorPrefab7x7Meltdown]
-  suffix: Meltdown
+  suffix: "Meltdown"
 #endregion
 
 #region Crew Small Nuclear Reactors
@@ -268,49 +268,49 @@
 - type: entity
   id: NuclearReactorSmallRandom
   parent: [BaseNuclearReactorSmall, NuclearReactorCrew, ReactorPrefabRandom]
-  suffix: Random
+  suffix: "Random"
 #endregion
 
 #region Salvage Nuclear Reactors
 - type: entity
   id: NuclearReactorNormalSalvage
   parent: [BaseNuclearReactor, NuclearReactorSalvage]
-  suffix: Salvage
+  suffix: "Salvage"
 
 - type: entity
   id: NuclearReactorEmptySalvage
   parent: [BaseNuclearReactor, NuclearReactorSalvage, ReactorPrefabEmpty]
-  suffix: "Empty, Salvage"
+  suffix: "Salvage, Empty"
 
 - type: entity
   id: NuclearReactorRandomSalvage
   parent: [BaseNuclearReactor, NuclearReactorSalvage, ReactorPrefabRandom]
-  suffix: "Random, Salvage"
+  suffix: "Salvage, Random"
 #endregion
 
 #region Salvage Small Nuclear Reactors
 - type: entity
   id: NuclearReactorSmallSalvage
   parent: [BaseNuclearReactorSmall, NuclearReactorSalvage, ReactorPrefab5x5Normal]
-  suffix: Salvage
+  suffix: "Salvage"
 
 - type: entity
   id: NuclearReactorSmallRandomSalvage
   parent: [BaseNuclearReactorSmall, NuclearReactorSalvage, ReactorPrefabRandom]
-  suffix: "Random, Salvage"
+  suffix: "Salvage, Random"
 
 - type: entity
   id: NuclearReactorSmallEmptySalvage
   parent: [BaseNuclearReactorSmall, NuclearReactorSalvage, ReactorPrefabEmpty]
-  suffix: "Empty, Salvage"
+  suffix: "Salvage, Empty"
 #endregion
 
 #region Melted Reactors
 - type: entity
   id: NuclearReactorMelted # This is more of a decoration than anything else
   parent: BaseStructure
-  suffix: Melted
-  name: nuclear reactor
+  suffix: "Melted"
+  name: Nuclear Reactor
   description: A broken nuclear reactor vessel. It glows with heat and radiation.
   components:
   - type: Sprite
@@ -342,8 +342,8 @@
 - type: entity
   id: NuclearReactorSmallMelted
   parent: NuclearReactorMelted
-  suffix: Melted
-  name: small nuclear reactor
+  suffix: "Melted"
+  name: Small Nuclear Reactor
   description: A broken nuclear reactor vessel. It glows with heat and radiation.
   components:
   - type: Sprite
@@ -368,7 +368,7 @@
 - type: entity
   id: NuclearReactorMeltedSalvage
   parent: NuclearReactorMelted
-  suffix: "Melted, Salvage"
+  suffix: "Salvage, Melted"
   description: A nuclear reactor vessel, long since melted down. It still glows with residual heat and radiation.
   components:
   - type: RadiationSource
@@ -379,7 +379,7 @@
 - type: entity
   id: NuclearReactorSmallMeltedSalvage
   parent: NuclearReactorSmallMelted
-  suffix: "Melted, Salvage"
+  suffix: "Salvage, Melted"
   description: A nuclear reactor vessel, long since melted down. It still glows with residual heat and radiation.
   components:
   - type: RadiationSource
@@ -393,7 +393,7 @@
 - type: entity
   id: NuclearDebrisChunk
   parent: BaseItem
-  name: nuclear debris
+  name: Nuclear Debris
   description: You do not see the graphite on the floor. You're in shock. Report to medical.
   categories: [ HideSpawnMenu ]
   components:
