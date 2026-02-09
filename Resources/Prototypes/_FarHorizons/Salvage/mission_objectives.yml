@@ -1,8 +1,26 @@
 - type: salvageMissionObjective
   id: MissionObjectiveFree
+  handlerId: "MissionObjectiveFreeHandler"
   name: salvage-mission-objective-name-free
   description: salvage-mission-objective-description-free
   announcement: salvage-mission-objective-announcement-free
+  numTargets:
+    Easy: 15 # Instead of mission targets, this is a number of spawned bodies
+    Moderate: 20
+    Challenging: 30
+  allowedDifficulties:
+    - Easy
+    - Moderate
+    - Challenging
+
+- type: salvageMissionObjective
+  id: MissionObjectiveFreeDanger
+  name: salvage-mission-objective-name-free-danger
+  description: salvage-mission-objective-description-free-danger
+  announcement: salvage-mission-objective-announcement-free-danger
+  allowedDifficulties:
+    - Difficult
+    - Impossible
 
 - type: salvageMissionObjective
   id: MissionObjectiveRecover
@@ -14,12 +32,17 @@
     Easy: 700
     Moderate: 900
     Challenging: 1100
+  cashMultiplier: 5.5
   numTargets:
     Easy: 2
     Moderate: 4
     Challenging: 6
   bonus: 225
   bonusCap: 4
+  allowedDifficulties:
+    - Easy
+    - Moderate
+    - Challenging
   allowedDungeons:
     - Experiment
     - LavaBrig
@@ -39,12 +62,17 @@
     Easy: 1000
     Moderate: 1150
     Challenging: 1350
+  cashMultiplier: 6
   numTargets:
     Easy: 1
     Moderate: 2
     Challenging: 2
   bonus: 375
   bonusCap: 5
+  allowedDifficulties:
+    - Easy
+    - Moderate
+    - Challenging
   allowedFactions:
     - Xenos
     - Carps
@@ -59,12 +87,17 @@
     Easy: 950
     Moderate: 1100
     Challenging: 1250
+  cashMultiplier: 4
   numTargets:
     Easy: 2
     Moderate: 2
     Challenging: 3
   bonus: 450
   bonusCap: 3
+  allowedDifficulties:
+    - Easy
+    - Moderate
+    - Challenging
   allowedDungeons:
     - Experiment
     - LavaBrig
@@ -81,12 +114,17 @@
     Easy: 800
     Moderate: 1050
     Challenging: 1200
+  cashMultiplier: 4
   numTargets:
     Easy: 4
     Moderate: 5
     Challenging: 6
   bonus: 275
   bonusCap: 2
+  allowedDifficulties:
+    - Easy
+    - Moderate
+    - Challenging
   allowedDungeons:
     - Experiment
     - LavaBrig
@@ -103,12 +141,17 @@
     Easy: 850
     Moderate: 1150
     Challenging: 1300
+  cashMultiplier: 5.5
   numTargets:
     Easy: 2
     Moderate: 3
     Challenging: 4
   bonus: 345
   bonusCap: 3
+  allowedDifficulties:
+    - Easy
+    - Moderate
+    - Challenging
   allowedDungeons:
     - Experiment
     - LavaBrig

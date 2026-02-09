@@ -1,0 +1,51 @@
+#region Station Management
+
+- type: guideEntry
+  id: station-management-sop-intro
+  name: guide-entry-station-management-sop-intro
+  text: "/ServerInfo/_FarHorizons/Guidebook/SOP/Station-Management-SOP/SM-Intro.xml"
+  priority: 4
+  children:
+      - station-management-sop-general-procedures-intro
+      - station-management-sop-staff-intro
+
+- type: guideEntry
+  id: station-management-sop-general-procedures-intro
+  name: guide-entry-station-management-sop-general-procedures-intro
+  text: "/ServerInfo/_FarHorizons/Guidebook/SOP/Station-Management-SOP/SM-General-Procedures.xml"
+  priority: 1
+
+- type: guideEntry
+  id: station-management-sop-staff-intro
+  name: guide-entry-station-management-sop-staff-intro
+  text: "/ServerInfo/_FarHorizons/Guidebook/SOP/Station-Management-SOP/SM-Staff-Intro.xml"
+  priority: 2
+  children:
+      - station-management-sop-nanotrasen-rep
+      - station-management-sop-blueshield-officer
+      - station-management-sop-magistrate
+      - station-management-sop-affairs-offical
+
+- type: guideEntry
+  id: station-management-sop-nanotrasen-rep
+  name: guide-entry-station-management-sop-nanotrasen-rep
+  text: "/ServerInfo/_FarHorizons/Guidebook/SOP/Station-Management-SOP/SM-NanoTrasen-Representative.xml"
+  priority: 1
+
+- type: guideEntry
+  id: station-management-sop-blueshield-officer
+  name: guide-entry-station-management-sop-blueshield-officer
+  text: "/ServerInfo/_FarHorizons/Guidebook/SOP/Station-Management-SOP/SM-Blueshield-Officer.xml"
+  priority: 2
+
+- type: guideEntry
+  id: station-management-sop-magistrate
+  name: guide-entry-station-management-sop-magistrate
+  text: "/ServerInfo/_FarHorizons/Guidebook/SOP/Station-Management-SOP/SM-Magistrate.xml"
+  priority: 3
+
+- type: guideEntry
+  id: station-management-sop-affairs-offical
+  name: guide-entry-station-management-sop-affairs-offical
+  text: "/ServerInfo/_FarHorizons/Guidebook/SOP/Station-Management-SOP/SM-Affairs-Offical.xml"
+  priority: 4

@@ -68,8 +68,13 @@ public sealed class CoefficientQueryEvent : EntityEventArgs, IInventoryRelayEven
     /// </summary>
     public DamageModifierSet DamageModifiers { get; set; } = new DamageModifierSet();
 
-    public CoefficientQueryEvent(SlotFlags slots)
+    /// Far Horizons-Start - Changeling/Protogen Armor Bypass
+     public CoefficientQueryEvent(SlotFlags slots, bool ignoreUnremovable = false)
     {
         TargetSlots = slots;
+        IgnoreUnremovable = ignoreUnremovable;
     }
+
+    public bool IgnoreUnremovable = false;
+    /// Far Horizons-End
 }

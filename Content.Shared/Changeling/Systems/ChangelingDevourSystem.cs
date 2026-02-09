@@ -106,7 +106,7 @@ public sealed class ChangelingDevourSystem : EntitySystem
     /// <returns>Is the target Protected from the attack</returns>
     private bool IsTargetProtected(EntityUid target, Entity<ChangelingDevourComponent> ent)
     {
-        var ev = new CoefficientQueryEvent(SlotFlags.OUTERCLOTHING);
+        var ev = new CoefficientQueryEvent(SlotFlags.OUTERCLOTHING, true); ///Far Horizons - Changeling/Protogen Armor Bypass
 
         RaiseLocalEvent(target, ev);
 

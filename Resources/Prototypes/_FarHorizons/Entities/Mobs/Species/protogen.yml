@@ -2690,6 +2690,16 @@
     - type: Stasis
       enterStasisAction: ActionStasisEnter
       exitStasisAction: ActionStasisExit
+      updateInterval: 1s
+      healingPerUpdate:
+        types:
+          Heat: 2
+          Cold: 2
+        groups:
+          Brute: 6
+      bleedHealPerUpdate: 1.0
+      critHealingModifier: 0.5
+      stasisDamageReduction: 0.7
 
 - type: entity
   parent: BaseSpeciesDummy

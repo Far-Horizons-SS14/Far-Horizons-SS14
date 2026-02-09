@@ -151,6 +151,8 @@
     denyGameRules:
     - AbductorsSpawn
   - type: DynamicRule
+    minRuleInterval: 18000 # Far Horizons - set to 5 hours to avoid regenerating nukie bases
+    maxRuleInterval: 18000 # Far Horizons - set to 5 hours to avoid regenerating nukie bases
     table: !type:GroupSelector
       children:
       - id: NukiePlanetSpawn

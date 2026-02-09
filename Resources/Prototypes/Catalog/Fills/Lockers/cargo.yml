@@ -12,13 +12,15 @@
   id: LockerFillSalvageSpecialist
   table: !type:AllSelector
     children:
-    - id: ClothingBeltUtilityFilled
+    - id: ClothingBeltSalvage #Far Horizons
+    - id: ClothingBeltSalvageWebbing #Far Horizons
     - id: SurvivalKnife
     - id: HandheldGPSBasic
 #    - id: RadioHandheld # Starlight - radio replaced with expedition radio
     - id: RadioHandheldExpedition # Starlight
     - id: AppraisalTool
-    - id: FireExtinguisher
+    - id: FireExtinguisherMini #Far Horizons - They can throw this in their rig.
+    - id: FireExtinguisher #Far Horizons - Just in case they want the larger one instead.
     - id: Flare
       prob: 0.3
       rolls: !type:ConstantNumberSelector

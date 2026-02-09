@@ -1,13 +1,3 @@
-- type: entity
-  id: ClothingBeltSheathFilledSyndi
-  parent: ClothingBeltSheathSyndi
-  suffix: Filled
-  components:
-  - type: ContainerFill
-    containers:
-      item:
-      - CaptainSabre
-
 # M81 Rocket Loader Chest Rig (Filled)
 
 - type: entity
@@ -31,3 +21,80 @@
         - RocketAmmo120mmHE
       120mmrocket_slot1:
         - RocketAmmo120mmShrapnel
+        
+#region Syndicate
+
+
+
+
+
+
+
+
+
+#region Command
+
+# Commander(Captain)
+
+- type: entity
+  id: ClothingBeltSheathFilledSyndi
+  parent: ClothingBeltSheathSyndi
+  suffix: Filled
+  components:
+  - type: ContainerFill
+    containers:
+      item:
+      - CaptainSabre
+
+# Technical Lead (Chief Engineer)
+
+- type: entity
+  id: ClothingBeltChiefEngineerFilledSyndi
+  parent: ClothingBeltChiefEngineerSyndi
+  suffix: S, Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: PowerDrill
+        - id: JawsOfLife
+        - id: WelderExperimental
+        - id: Multitool
+        - id: HolofanProjector
+        - id: GasAnalyzer
+        - id: trayScanner
+
+#region Engineering
+
+- type: entity
+  id: ClothingBeltUtilityFilledSyndi
+  parent: ClothingBeltUtilitySyndi
+  suffix: S, Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: Crowbar
+        - id: Wrench
+        - id: Screwdriver
+        - id: Wirecutter
+        - id: Welder
+        - id: NetworkConfigurator
+
+- type: entity
+  id: ClothingBeltUtilityEngineeringSyndi
+  parent: ClothingBeltUtilitySyndi
+  suffix: S, Engineering
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: CrowbarYellow
+        - id: Wrench
+        - id: Screwdriver
+        - id: Wirecutter
+        - id: Welder
+        - id: Multitool

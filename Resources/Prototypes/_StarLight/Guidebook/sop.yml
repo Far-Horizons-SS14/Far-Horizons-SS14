@@ -202,13 +202,14 @@
   text: "/ServerInfo/Guidebook/StarlightSOP/departmental-sop-intro.xml"
   priority: 2
   children:
+    - station-management-sop-intro #FH
     - command-sop
     - security-sop-intro
-    - legal-sop-intro
+#    - legal-sop-intro #FH
     - engineering-sop-intro
     - cargo-sop-intro
     - science-sop-intro
-    - nano-trasen-employee-sop-intro
+# FH, moved to top
     - service-sop-intro
     - medical-sop-intro
 
@@ -315,75 +316,79 @@
   text: "/ServerInfo/Guidebook/StarlightSOP/SecuritySOP/PermitAcquisition.xml"
   priority: 9
 
-- type: guideEntry
-  id: legal-sop-intro
-  name: guide-entry-sl-legal-sop-intro
-  text: "/ServerInfo/Guidebook/StarlightSOP/LegalSOP/legal-sop-intro.xml"
-  priority: 3
+# Legal does not exist in the same way and is covered by Station Management SOP - FH
+#- type: guideEntry
+#  id: legal-sop-intro
+#  name: guide-entry-sl-legal-sop-intro
+#  text: "/ServerInfo/Guidebook/StarlightSOP/LegalSOP/legal-sop-intro.xml"
+#  priority: 3
 
 
+# Replaced by our own - FH
+#- type: guideEntry
+#  id: nano-trasen-employee-sop-intro
+#  name: guide-entry-sl-nano-trasen-employee-sop-intro
+#  text: "/ServerInfo/Guidebook/StarlightSOP/NanoTrasenEmployeeSOP/nano-trasen-employee-sop-intro.xml"
+#  priority: 4
+#  children:
+#      - nano-trasen-employee-sop-genproc-intro
+#      - nano-trasen-employee-sop-staff-intro
 
-- type: guideEntry
-  id: nano-trasen-employee-sop-intro
-  name: guide-entry-sl-nano-trasen-employee-sop-intro
-  text: "/ServerInfo/Guidebook/StarlightSOP/NanoTrasenEmployeeSOP/nano-trasen-employee-sop-intro.xml"
-  priority: 4
-  children:
-      - nano-trasen-employee-sop-genproc-intro
-      - nano-trasen-employee-sop-staff-intro
+# Replaced by our own - FH
+#- type: guideEntry
+#  id: nano-trasen-employee-sop-genproc-intro
+#  name: guide-entry-sl-nano-trasen-employee-sop-genproc-intro
+#  text: "/ServerInfo/Guidebook/StarlightSOP/NanoTrasenEmployeeSOP/nano-trasen-employee-sop-genproc-intro.xml"
+#  priority: 1
+#  children:
+#      - nano-trasen-employee-sop-safety-protocol
 
+# Replaced by our own - FH
+#- type: guideEntry
+#  id: nano-trasen-employee-sop-safety-protocol
+#  name: guide-entry-sl-nano-trasen-employee-sop-safety-protocol
+#  text: "/ServerInfo/Guidebook/StarlightSOP/NanoTrasenEmployeeSOP/nano-trasen-employee-sop-safety-protocol.xml"
+#  priority: 1
 
-- type: guideEntry
-  id: nano-trasen-employee-sop-genproc-intro
-  name: guide-entry-sl-nano-trasen-employee-sop-genproc-intro
-  text: "/ServerInfo/Guidebook/StarlightSOP/NanoTrasenEmployeeSOP/nano-trasen-employee-sop-genproc-intro.xml"
-  priority: 1
-  children:
-      - nano-trasen-employee-sop-safety-protocol
+# Replaced by our own - FH
+#- type: guideEntry
+#  id: nano-trasen-employee-sop-staff-intro
+#  name: guide-entry-sl-nano-trasen-employee-sop-staff-intro
+#  text: "/ServerInfo/Guidebook/StarlightSOP/NanoTrasenEmployeeSOP/nano-trasen-employee-sop-staff-intro.xml"
+#  priority: 2
+#  children:
+#      - nano-trasen-employee-sop-nt-rep
+#      - nano-trasen-employee-sop-bso
+#      - nano-trasen-employee-sop-magistrate
+#      - nano-trasen-employee-sop-iaa
 
+# Replaced by our own - FH
+#- type: guideEntry
+#  id: nano-trasen-employee-sop-nt-rep
+#  name: guide-entry-sl-nano-trasen-employee-sop-nt-rep
+#  text: "/ServerInfo/Guidebook/StarlightSOP/NanoTrasenEmployeeSOP/nano-trasen-employee-sop-nt-rep.xml"
+#  priority: 1
 
-- type: guideEntry
-  id: nano-trasen-employee-sop-safety-protocol
-  name: guide-entry-sl-nano-trasen-employee-sop-safety-protocol
-  text: "/ServerInfo/Guidebook/StarlightSOP/NanoTrasenEmployeeSOP/nano-trasen-employee-sop-safety-protocol.xml"
-  priority: 1
+# Replaced by our own - FH
+#- type: guideEntry
+#  id: nano-trasen-employee-sop-bso
+#  name: guide-entry-sl-nano-trasen-employee-sop-bso
+#  text: "/ServerInfo/Guidebook/StarlightSOP/NanoTrasenEmployeeSOP/nano-trasen-employee-sop-bso.xml"
+#  priority: 2
 
+# Replaced by our own - FH
+#- type: guideEntry
+#  id: nano-trasen-employee-sop-magistrate
+#  name: guide-entry-sl-nano-trasen-employee-sop-magistrate
+#  text: "/ServerInfo/Guidebook/StarlightSOP/NanoTrasenEmployeeSOP/nano-trasen-employee-sop-magistrate.xml"
+#  priority: 3
 
-- type: guideEntry
-  id: nano-trasen-employee-sop-staff-intro
-  name: guide-entry-sl-nano-trasen-employee-sop-staff-intro
-  text: "/ServerInfo/Guidebook/StarlightSOP/NanoTrasenEmployeeSOP/nano-trasen-employee-sop-staff-intro.xml"
-  priority: 2
-  children:
-      - nano-trasen-employee-sop-nt-rep
-      - nano-trasen-employee-sop-bso
-      - nano-trasen-employee-sop-magistrate
-      - nano-trasen-employee-sop-iaa
-
-
-- type: guideEntry
-  id: nano-trasen-employee-sop-nt-rep
-  name: guide-entry-sl-nano-trasen-employee-sop-nt-rep
-  text: "/ServerInfo/Guidebook/StarlightSOP/NanoTrasenEmployeeSOP/nano-trasen-employee-sop-nt-rep.xml"
-  priority: 1
-
-- type: guideEntry
-  id: nano-trasen-employee-sop-bso
-  name: guide-entry-sl-nano-trasen-employee-sop-bso
-  text: "/ServerInfo/Guidebook/StarlightSOP/NanoTrasenEmployeeSOP/nano-trasen-employee-sop-bso.xml"
-  priority: 2
-
-- type: guideEntry
-  id: nano-trasen-employee-sop-magistrate
-  name: guide-entry-sl-nano-trasen-employee-sop-magistrate
-  text: "/ServerInfo/Guidebook/StarlightSOP/NanoTrasenEmployeeSOP/nano-trasen-employee-sop-magistrate.xml"
-  priority: 3
-
-- type: guideEntry
-  id: nano-trasen-employee-sop-iaa
-  name: guide-entry-sl-nano-trasen-employee-sop-iaa
-  text: "/ServerInfo/Guidebook/StarlightSOP/NanoTrasenEmployeeSOP/nano-trasen-employee-sop-iaa.xml"
-  priority: 4
+# Replaced by our own - FH
+#- type: guideEntry
+#  id: nano-trasen-employee-sop-iaa
+#  name: guide-entry-sl-nano-trasen-employee-sop-iaa
+#  text: "/ServerInfo/Guidebook/StarlightSOP/NanoTrasenEmployeeSOP/nano-trasen-employee-sop-iaa.xml"
+#  priority: 4
 
 
 

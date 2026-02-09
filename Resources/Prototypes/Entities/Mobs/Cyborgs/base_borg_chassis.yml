@@ -296,6 +296,8 @@
     intensitySlope: 20
     maxIntensity: 20
     canCreateVacuum: false # its for killing the borg not the station
+  - type: SpaceRescuePingSender # Far Horizons
+    color: "#2f88ff"
 
 - type: entity
   abstract: true
@@ -316,6 +318,8 @@
     intensitySlope: 20
     maxIntensity: 100
     canCreateVacuum: false
+  - type: SpaceRescuePingSender # Far Horizons
+    hidden: true
 
 - type: entity
   id: BaseBorgChassisNT

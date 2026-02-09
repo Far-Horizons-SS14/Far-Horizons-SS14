@@ -13,6 +13,7 @@ using Content.Shared.Preferences;
 using Content.Shared.Preferences.Loadouts;
 using Content.Shared.Roles;
 using Content.Shared.Station;
+using Robust.Server.Containers;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 
@@ -27,6 +28,7 @@ public sealed class OutfitSystem : EntitySystem
     [Dependency] private readonly SharedStationSpawningSystem _spawningSystem = default!;
     [Dependency] private readonly SharedHumanoidAppearanceSystem _appearance = default!; //Starlight
     [Dependency] private readonly IServerFactionManager _factions = default!; // Far Horizons
+    [Dependency] private readonly ContainerSystem _container = default!; // Far Horizons
 
     public bool SetOutfit(EntityUid target, string gear, Action<EntityUid, EntityUid>? onEquipped = null, bool unremovable = false)
     {
@@ -42,6 +44,8 @@ public sealed class OutfitSystem : EntitySystem
             profile = _appearance.GetBaseProfile((target, appearanceComponent));
         #endregion Starlight
 
+        var spawnCoords = EntityManager.GetComponent<TransformComponent>(target).Coordinates; // Far Horizons
+
         if (_invSystem.TryGetSlots(target, out var slots))
         {
             foreach (var slot in slots)
@@ -51,7 +55,7 @@ public sealed class OutfitSystem : EntitySystem
                 if (gearStr == string.Empty)
                     continue;
 
-                var equipmentEntity = EntityManager.SpawnEntity(gearStr, EntityManager.GetComponent<TransformComponent>(target).Coordinates);
+                var equipmentEntity = EntityManager.SpawnEntity(gearStr, spawnCoords); // Far Horizons
                 if (slot.Name == "id" &&
                     EntityManager.TryGetComponent(equipmentEntity, out PdaComponent? pdaComponent) &&
                     EntityManager.TryGetComponent<IdCardComponent>(pdaComponent.ContainedId, out var id))
@@ -66,6 +70,22 @@ public sealed class OutfitSystem : EntitySystem
                 onEquipped?.Invoke(target, equipmentEntity);
             }
         }
+
+        // Far Horizons start
+        foreach (var (slotName, entProtos) in startingGear.Storage)
+        {
+            if (entProtos.Count == 0)
+                continue;
+
+            if (!_container.TryGetContainer(target, slotName, out var container)) continue;
+
+            foreach (var entProto in entProtos)
+            {
+                var spawnedEntity = Spawn(entProto, spawnCoords);
+                _container.Insert(spawnedEntity, container);
+            }
+        }
+        // Far Horizons end
 
         if (EntityManager.TryGetComponent(target, out HandsComponent? handsComponent))
         {

@@ -1,4 +1,5 @@
 using Content.Client.Shuttles.UI;
+using Content.Shared._FarHorizons.Shuttles;
 using Content.Shared.Shuttles.BUIStates;
 using JetBrains.Annotations;
 using Robust.Client.GameObjects;
@@ -32,4 +33,17 @@ public sealed class RadarConsoleBoundUserInterface : BoundUserInterface
 
         _window?.UpdateState(cState.State);
     }
+
+    // Far Horizons start
+    protected override void ReceiveMessage(BoundUserInterfaceMessage message)
+    {
+        if (_window == null)
+            return;
+
+        if (message is not SpaceRescuePingMessage ping)
+            return;
+
+        _window.RescuePing(ping);
+    }
+    // Far Horizons end
 }

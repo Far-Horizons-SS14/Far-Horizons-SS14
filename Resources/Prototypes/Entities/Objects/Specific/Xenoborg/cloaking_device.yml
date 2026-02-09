@@ -15,7 +15,7 @@
       minVisibility: 0.1
       lastVisibility: 0.1
   - type: PowerCellDraw
-    drawRate: 3.6 # 100 seconds
+    drawRate: 19 # 100 seconds #Far Horizons
   - type: ToggleCellDraw
   - type: PowerCellSlot
     cellSlotId: cell_slot
@@ -26,7 +26,7 @@
     slots:
       cell_slot:
         name: power-cell-slot-component-slot-name-default
-        startingItem: PowerCellSmallNuclear
+        startingItem: PowerCellMicroreactor #Far Horizons
         disableEject: true
         swap: false
 
@@ -43,4 +43,4 @@
       minVisibility: -1
       lastVisibility: -1
   - type: PowerCellDraw
-    drawRate: 12 # 30 seconds
+    drawRate: 36 # 30 seconds #Far Horizons

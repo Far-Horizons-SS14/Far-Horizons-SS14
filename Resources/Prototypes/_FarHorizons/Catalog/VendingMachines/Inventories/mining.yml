@@ -23,3 +23,15 @@
   - !type:ListingLimitedStockCondition
     stock: 4
   - !type:BuyerAccessCondition
+
+- type: listing
+  id: VendorVehicleSkeletonMotorcycleMining
+  productEntity: VehicleSkeletonMotorcycleFueledwithKEys
+  cost:
+    SalvageTicket: 800
+  categories:
+  - MiningEquipment
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 2
+  - !type:BuyerAccessCondition

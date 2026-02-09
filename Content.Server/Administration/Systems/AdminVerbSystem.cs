@@ -121,30 +121,33 @@ namespace Content.Server.Administration.Systems
 
                 if (TryComp(args.Target, out ActorComponent? targetActor))
                 {
-                    // AdminHelp
-                    Verb verb = new();
-                    verb.Text = Loc.GetString("ahelp-verb-get-data-text");
-                    verb.Category = VerbCategory.Admin;
-                    verb.Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/gavel.svg.192dpi.png"));
-                    verb.Act = () =>
-                        _console.RemoteExecuteCommand(player, $"openahelp \"{targetActor.PlayerSession.UserId}\"");
-                    verb.Impact = LogImpact.Low;
-                    args.Verbs.Add(verb);
-
-                    // Subtle Messages
-                    Verb prayerVerb = new();
-                    prayerVerb.Text = Loc.GetString("prayer-verbs-subtle-message");
-                    prayerVerb.Category = VerbCategory.Admin;
-                    prayerVerb.Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/pray.svg.png"));
-                    prayerVerb.Act = () =>
+                    if (adminData.HasFlag(AdminFlags.Adminhelp))  // Far Horizons
                     {
-                        _quickDialog.OpenDialog(player, "Subtle Message", "Message", "Popup Message", (string message, string popupMessage) =>
+                        // AdminHelp
+                        Verb verb = new();
+                        verb.Text = Loc.GetString("ahelp-verb-get-data-text");
+                        verb.Category = VerbCategory.Admin;
+                        verb.Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/gavel.svg.192dpi.png"));
+                        verb.Act = () =>
+                            _console.RemoteExecuteCommand(player, $"openahelp \"{targetActor.PlayerSession.UserId}\"");
+                        verb.Impact = LogImpact.Low;
+                        args.Verbs.Add(verb);
+
+                        // Subtle Messages
+                        Verb prayerVerb = new();
+                        prayerVerb.Text = Loc.GetString("prayer-verbs-subtle-message");
+                        prayerVerb.Category = VerbCategory.Admin;
+                        prayerVerb.Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/pray.svg.png"));
+                        prayerVerb.Act = () =>
                         {
-                            _prayerSystem.SendSubtleMessage(targetActor.PlayerSession, player, message, popupMessage == "" ? Loc.GetString("prayer-popup-subtle-default") : popupMessage);
-                        });
-                    };
-                    prayerVerb.Impact = LogImpact.Low;
-                    args.Verbs.Add(prayerVerb);
+                            _quickDialog.OpenDialog(player, "Subtle Message", "Message", "Popup Message", (string message, string popupMessage) =>
+                            {
+                                _prayerSystem.SendSubtleMessage(targetActor.PlayerSession, player, message, popupMessage == "" ? Loc.GetString("prayer-popup-subtle-default") : popupMessage);
+                            });
+                        };
+                        prayerVerb.Impact = LogImpact.Low;
+                        args.Verbs.Add(prayerVerb);
+                    }
 
                     // Spawn - Like respawn but on the spot.
                     var pref = _prefsManager.GetPreferences(targetActor.PlayerSession.UserId);

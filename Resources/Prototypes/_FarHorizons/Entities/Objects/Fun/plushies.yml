@@ -1,8 +1,8 @@
 - type: entity
   parent: BaseLizardPlushie
-  id: PlushieBreaks
-  name: Breaks Plushie
-  description: Your least favorite protector. Dont blame him... He is just a lil guy!
+  id: PlushieBreaks 
+  name: Guards Plushie # far horizons | im gonna fucking loose it
+  description: Guarding your sector at the low cost of your sanity! #yeah my sanitys gone too
   components:
   - type: Item
     size: Small
@@ -12,7 +12,7 @@
     state: icon
   - type: EmitSoundOnUse
     sound:
-      path: /Audio/Animals/lizard_happy.ogg
+      path: /Audio/Animals/wawa_yawn.ogg # far horizons | changing this because of wizden removing liz happy cus copyright
   - type: EmitSoundOnLand
     sound:
       path: /Audio/Voice/Reptilian/reptilian_scream.ogg

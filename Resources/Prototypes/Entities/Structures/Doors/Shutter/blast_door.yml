@@ -1,13 +1,13 @@
 ﻿- type: entity
   id: BlastDoor
   parent: BaseShutter
-  name: blast door
+  name: Blast Door #FH CRUSADE
   description: This one says 'BLAST DONGER'.
   components:
   - type: AccessReader
     containerAccessProvider: board
   - type: Sprite
-    sprite: Structures/Doors/Shutters/blastdoor.rsi
+    sprite: _FarHorizons/Structures/Doors/Shutters/blastdoor.rsi #FH
     layers:
     - state: closed
       map: ["enum.DoorVisualLayers.Base"]
@@ -18,8 +18,8 @@
     closeTimeTwo: 0.4
     openTimeOne: 0.4
     openTimeTwo: 0.4
-    openingAnimationTime: 1.0
-    closingAnimationTime: 1.0
+    openingAnimationTime: 0.5 #FH
+    closingAnimationTime: 0.5 #FH
     canPry: false
     crushDamage:
       types:
@@ -70,11 +70,11 @@
 - type: entity
   id: BlastDoorFrame
   parent: BaseStructureDynamic
-  name: blast door frame
+  name: Blast Door Frame #FH CRUSADE
   description: This one says 'BLAST DONGER'.
   components:
   - type: Sprite
-    sprite: Structures/Doors/Shutters/blastdoor.rsi
+    sprite: _FarHorizons/Structures/Doors/Shutters/blastdoor.rsi #FH
     state: assembly
   - type: InteractionOutline
   - type: Damageable
@@ -103,7 +103,7 @@
         layer:
         - HighImpassable
   - type: Transform
-    noRot: true
+    noRot: false #FH
   - type: Construction
     graph: BlastDoor
     node: frame1
@@ -113,7 +113,7 @@
 - type: entity
   parent: BlastDoor
   id: BlastDoorXeno
-  name: xeno blast door
+  name: Xeno Blast Door #FH CRUSADE
   description: Don't lose an arm!
   components:
   - type: Sprite
@@ -155,7 +155,7 @@
 - type: entity
   parent: BaseStructureDynamic
   id: BlastDoorXenoFrame
-  name: xeno blast door frame
+  name: Xeno Blast Door Frame #FH CRUSADE
   description: This one says 'BLAST DONGER'.
   components:
   - type: Sprite
@@ -198,7 +198,7 @@
 - type: entity
   parent: BlastDoor
   id: BlastDoorXenoborg
-  name: xenoborg blast door
+  name: Xenoborg Blast Door #FH CRUSADE
   description: Don't lose a head!
   components:
   - type: Sprite
