@@ -1,4 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Numerics;
 using Content.Server.Cargo.Components;
@@ -813,10 +813,10 @@ public sealed partial class AdminVerbSystem
             Priority = (int)TricksVerbPriorities.ToggleOverlays,
         };
         args.Verbs.Add(toggleOverlays);
-
-        // Reaper arm verb
+        
         if (TryComp<BodyComponent>(args.Target, out var bodyComp))
         {
+            // Reaper arm verb
             Verb reaperArm = new()
             {
                 Text = "Replace the right hand with a Reaper arm.",
@@ -849,8 +849,8 @@ public sealed partial class AdminVerbSystem
                 Priority = (int)TricksVerbPriorities.SetBulletAmount,
             };
             args.Verbs.Add(reaperArm);
+            
         }
-
 
         if (TryComp<ThavenMoodsComponent>(args.Target, out var moods))
         {

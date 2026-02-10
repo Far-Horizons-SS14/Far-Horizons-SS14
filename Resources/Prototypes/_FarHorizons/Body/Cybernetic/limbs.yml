@@ -1152,3 +1152,46 @@
       interfaces:
         enum.StorageUiKey.Key:
           type: StorageBoundUserInterface
+
+# Speed legs
+- type: entity
+  id: LeftLegCyberSpeed
+  name: Left Cyber Speed
+  parent: [ OrganCyberLegLeft, WithLeftCyberFoot ]
+  description: Gotta Go Fast!
+  components:
+    - type: VisualOrgan
+      data:
+        sprite: _Starlight/Mobs/Species/Cyberlimbs/speedlegs.rsi
+        state: l_leg
+    - type: Sprite
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/speedlegs.rsi
+      state: l_leg
+    - type: MovementOrgan
+      sprintSpeedModifier: 1.5
+    - type: FootstepModifier
+      footstepSoundCollection:
+        path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
+        params:
+          volume: -10
+
+- type: entity
+  id: RightLegCyberSpeed
+  name: Right Cyber Speed
+  parent: [ OrganCyberLegRight, WithRightCyberFoot ]
+  description: Gotta Go Fast!
+  components:
+    - type: VisualOrgan
+      data:
+        sprite: _Starlight/Mobs/Species/Cyberlimbs/speedlegs.rsi
+        state: r_leg
+    - type: Sprite
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/speedlegs.rsi
+      state: r_leg
+    - type: MovementOrgan
+      sprintSpeedModifier: 1.5
+    - type: FootstepModifier
+      footstepSoundCollection:
+        path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
+        params:
+          volume: -10
