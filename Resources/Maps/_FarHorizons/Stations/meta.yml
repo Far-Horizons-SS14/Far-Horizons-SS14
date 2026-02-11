@@ -4,8 +4,8 @@ meta:
   engineVersion: 270.1.0
   forkId: ""
   forkVersion: ""
-  time: 02/07/2026 09:01:16
-  entityCount: 30094
+  time: 02/10/2026 21:51:32
+  entityCount: 30093
 maps:
 - 1
 grids:
@@ -4255,10 +4255,6 @@ entities:
             6367: -2,-60
             6368: -2,-59
             6369: -2,-58
-        - node:
-            color: '#0082D993'
-            id: MiniTileDiagonalCheckerBOverlay
-          decals:
             6422: -3,-58
         - node:
             color: '#0082D993'
@@ -11722,6 +11718,7 @@ entities:
       - 362
       - 17408
       - 17208
+      - 25950
     - type: Fixtures
       fixtures: {}
   - uid: 146
@@ -12710,10 +12707,13 @@ entities:
       parent: 2
     - type: DeviceLinkSource
       linkedPorts:
-        29228:
+        29226:
         - - DockStatus
-          - Trigger
+          - Toggle
         29751:
+        - - DockStatus
+          - Toggle
+        29227:
         - - DockStatus
           - Toggle
     - type: GridFill
@@ -79901,7 +79901,7 @@ entities:
       pos: 60.5,29.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -39066.816
+      secondsUntilStateChange: -39250.793
       state: Opening
     - type: DeviceLinkSource
       linkedPorts:
@@ -81827,6 +81827,11 @@ entities:
       parent: 2
 - proto: FHAirlockSecurityLocked
   entities:
+  - uid: 10103
+    components:
+    - type: Transform
+      pos: 0.5,-66.5
+      parent: 2
   - uid: 12356
     components:
     - type: Transform
@@ -83481,6 +83486,14 @@ entities:
       deviceLists:
       - 172
       - 12455
+  - uid: 25950
+    components:
+    - type: Transform
+      pos: 0.5,-66.5
+      parent: 2
+    - type: DeviceNetwork
+      deviceLists:
+      - 145
   - uid: 26734
     components:
     - type: Transform
@@ -137540,28 +137553,6 @@ entities:
       parent: 2
 - proto: Paper
   entities:
-  - uid: 10103
-    components:
-    - type: MetaData
-      name: '"What is that annoying sound?!"'
-    - type: Transform
-      pos: -7.212061,30.321753
-      parent: 2
-    - type: Paper
-      stampState: paper_stamp-hos
-      stampedBy:
-      - font: /Fonts/NotoSans/NotoSans-Regular.ttf
-        type: RubberStamp
-        stampedColor: '#CC0000FF'
-        stampedName: Central Security Division
-      content: >-
-        Is the alarm beeping at the start of the shift? Inherent issue with the alarm system. Just press the button to reset it!
-
-
-        Alarm beeping at any other time? Someone's stolen the security ship.
-
-
-        Go get it, in one piece preferably.
   - uid: 19679
     components:
     - type: Transform
@@ -144845,6 +144836,8 @@ entities:
     - type: Transform
       pos: 9.5,38.5
       parent: 2
+    - type: DeviceLinkSink
+      invokeCounter: 1
   - uid: 29751
     components:
     - type: Transform
@@ -154663,29 +154656,6 @@ entities:
       parent: 2
     - type: GasValve
       open: False
-- proto: SignalTimer
-  entities:
-  - uid: 29228
-    components:
-    - type: MetaData
-      desc: Extends the range of links. Ignore the fact it has a timer.
-      name: Range Extender
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 12.5,43.5
-      parent: 2
-    - type: SignalTimer
-      delay: 0
-    - type: DeviceLinkSource
-      linkedPorts:
-        29227:
-        - - Timer
-          - Toggle
-        29226:
-        - - Timer
-          - Toggle
-    - type: Fixtures
-      fixtures: {}
 - proto: SignAnomaly
   entities:
   - uid: 22247
@@ -177713,11 +177683,6 @@ entities:
     components:
     - type: Transform
       pos: 1.5,-66.5
-      parent: 2
-  - uid: 25950
-    components:
-    - type: Transform
-      pos: 0.5,-66.5
       parent: 2
   - uid: 25951
     components:
