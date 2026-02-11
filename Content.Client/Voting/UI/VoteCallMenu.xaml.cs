@@ -1,5 +1,6 @@
 using System.Linq;
 using System.Numerics;
+using Content.Client.Administration.Managers;
 using Content.Client.Gameplay;
 using Content.Client.Stylesheets;
 using Content.Shared.Administration;
@@ -31,6 +32,7 @@ namespace Content.Client.Voting.UI
         [Dependency] private readonly IEntityNetworkManager _entNetManager = default!;
         [Dependency] private readonly IConfigurationManager _cfg = default!;
         [Dependency] private readonly IStateManager _state = default!;
+        [Dependency] private readonly IClientAdminManager _admin = default!;  // Far Horizons
 
         private VotingSystem _votingSystem;
 
@@ -74,7 +76,8 @@ namespace Content.Client.Voting.UI
                 //starlight start
                 //ignore preset and map
                 //not a fan of this but I cant be arsed to make a cvar for it
-                if (voteType is StandardVoteType.Preset or StandardVoteType.Map)
+                // Far Horizons addition - admins still can call out this votes
+                if (!_admin.IsAdmin(true) && (voteType is StandardVoteType.Preset or StandardVoteType.Map))
                     continue;
                 //starlight end
                 VoteTypeButton.AddItem(Loc.GetString(option.Name), (int)voteType);
