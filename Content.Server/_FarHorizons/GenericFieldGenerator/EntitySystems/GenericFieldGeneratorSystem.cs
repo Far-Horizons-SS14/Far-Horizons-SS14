@@ -12,6 +12,11 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Events;
+using Content.Shared.PowerCell;
+using Content.Shared.Power;
+using Content.Shared.Power.Components;
+using Content.Shared.Power.EntitySystems;
+using Content.Server.Power.Components;
 
 namespace Content.Server._FarHorizons.GenericFieldGenerator.EntitySystems;
 
@@ -29,7 +34,6 @@ public sealed class GenericFieldGeneratorSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<GenericFieldGeneratorComponent, StartCollideEvent>(HandleGeneratorCollide);
         SubscribeLocalEvent<GenericFieldGeneratorComponent, ExaminedEvent>(OnExamine);
         SubscribeLocalEvent<GenericFieldGeneratorComponent, ActivateInWorldEvent>(OnActivate);
         SubscribeLocalEvent<GenericFieldGeneratorComponent, AnchorStateChangedEvent>(OnAnchorChanged);
@@ -38,26 +42,8 @@ public sealed class GenericFieldGeneratorSystem : EntitySystem
         SubscribeLocalEvent<GenericFieldGeneratorComponent, ComponentRemove>(OnComponentRemoved);
         SubscribeLocalEvent<GenericFieldGeneratorComponent, EventHorizonAttemptConsumeEntityEvent>(PreventBreach);
         SubscribeLocalEvent<GenericFieldGeneratorComponent, MapInitEvent>(OnMapInit);
-    }
-
-    public override void Update(float frameTime)
-    {
-        base.Update(frameTime);
-
-        var query = EntityQueryEnumerator<GenericFieldGeneratorComponent>();
-        while (query.MoveNext(out var uid, out var generator))
-        {
-            if (generator.PowerBuffer <= 0) //don't drain power if there's no power, or if it's somehow less than 0.
-                continue;
-
-            generator.Accumulator += frameTime;
-
-            if (generator.Accumulator >= generator.Threshold)
-            {
-                LosePower((uid, generator), generator.PowerLoss);
-                generator.Accumulator -= generator.Threshold;
-            }
-        }
+        SubscribeLocalEvent<GenericFieldGeneratorComponent, BatteryStateChangedEvent>(OnBatteryStateChanged);
+        SubscribeLocalEvent<GenericFieldGeneratorComponent, RefreshChargeRateEvent>(OnRefreshChargeRate);
     }
 
     #region Events
@@ -67,20 +53,6 @@ public sealed class GenericFieldGeneratorSystem : EntitySystem
         if (generator.Comp.Enabled)
             ChangeFieldVisualizer(generator);
     }
-
-    /// <summary>
-    /// A generator receives power from a source colliding with it.
-    /// </summary>
-    private void HandleGeneratorCollide(Entity<GenericFieldGeneratorComponent> generator, ref StartCollideEvent args)
-    {
-        if (args.OtherFixtureId == generator.Comp.SourceFixtureId &&
-            _tags.HasTag(args.OtherEntity, generator.Comp.IDTag))
-        {
-            ReceivePower(generator.Comp.PowerReceived, generator);
-            generator.Comp.Accumulator = 0f;
-        }
-    }
-
     private void OnExamine(EntityUid uid, GenericFieldGeneratorComponent component, ExaminedEvent args)
     {
         if (component.Enabled)
@@ -97,15 +69,20 @@ public sealed class GenericFieldGeneratorSystem : EntitySystem
 
         if (TryComp(generator, out TransformComponent? transformComp) && transformComp.Anchored)
         {
-            if (!generator.Comp.Enabled)
-                TurnOn(generator);
-            else if (generator.Comp.Enabled && generator.Comp.IsConnected)
-            {
-                _popupSystem.PopupEntity(Loc.GetString("comp-containment-toggle-warning"), args.User, args.User, PopupType.LargeCaution);
-                return;
+            if (TryComp<PowerNetworkBatteryComponent>(generator, out var batteryComponent)){
+                if (!generator.Comp.Enabled)
+                    {//TurnOn
+                        generator.Comp.Enabled = true;
+                        batteryComponent.MaxChargeRate = generator.Comp.ChargeRate;
+                        _popupSystem.PopupEntity(Loc.GetString("comp-containment-turned-on"), generator);
+                    }
+                else
+                    {//TurnOff
+                        generator.Comp.Enabled = false;
+                        batteryComponent.MaxChargeRate = 0;
+                        _popupSystem.PopupEntity(Loc.GetString("comp-containment-turned-off"), generator);
+                    }
             }
-            else
-                TurnOff(generator);
         }
         args.Handled = true;
     }
@@ -133,14 +110,27 @@ public sealed class GenericFieldGeneratorSystem : EntitySystem
 
     private void TurnOn(Entity<GenericFieldGeneratorComponent> generator)
     {
-        generator.Comp.Enabled = true;
+        var component = generator.Comp;
+        var genXForm = Transform(generator);
+        generator.Comp.Charged = true;
         ChangeFieldVisualizer(generator);
         _popupSystem.PopupEntity(Loc.GetString("comp-containment-turned-on"), generator);
+        var directions = Enum.GetValues<Direction>().Length;
+            for (int i = 0; i < directions-1; i+=2)
+            {
+                var dir = (Direction)i;
+
+                if (component.Connections.ContainsKey(dir))
+                    continue; // This direction already has an active connection
+
+                TryGenerateFieldConnection(dir, generator, genXForm);
+            }
     }
 
     private void TurnOff(Entity<GenericFieldGeneratorComponent> generator)
     {
-        generator.Comp.Enabled = false;
+        generator.Comp.Charged = false;
+        RemoveConnections(generator);
         ChangeFieldVisualizer(generator);
         _popupSystem.PopupEntity(Loc.GetString("comp-containment-turned-off"), generator);
     }
@@ -181,50 +171,23 @@ public sealed class GenericFieldGeneratorSystem : EntitySystem
         _adminLogger.Add(LogType.FieldGeneration, LogImpact.Medium, $"{ToPrettyString(uid)} lost field connections"); // Ideally LogImpact would depend on if there is a singulo nearby
     }
 
+    private void OnBatteryStateChanged(Entity<GenericFieldGeneratorComponent> ent, ref BatteryStateChangedEvent args)
+    {
+        if (args.OldState != BatteryState.Empty && args.NewState == BatteryState.Empty)
+        {
+            TurnOff(ent);
+        }
+        if (args.OldState != BatteryState.Full && args.NewState == BatteryState.Full)
+        {
+            TurnOn(ent);
+        }
+    }
+
+//Oh god what the fuck jhrushbe
+private void OnRefreshChargeRate(EntityUid uid, GenericFieldGeneratorComponent comp, ref RefreshChargeRateEvent args) => args.NewChargeRate = comp.Enabled ? comp.ChargeRate : 0;
     #endregion
 
     #region Connections
-
-    /// <summary>
-    /// Stores power in the generator. If it hits the threshold, it tries to establish a connection.
-    /// </summary>
-    /// <param name="power">The power that this generator received from the collision in <see cref="HandleGeneratorCollide"/></param>
-    public void ReceivePower(int power, Entity<GenericFieldGeneratorComponent> generator)
-    {
-        var component = generator.Comp;
-        component.PowerBuffer += power;
-
-        var genXForm = Transform(generator);
-
-        if (component.PowerBuffer >= component.PowerMinimum)
-        {
-            var directions = Enum.GetValues<Direction>().Length;
-            for (int i = 0; i < directions-1; i+=2)
-            {
-                var dir = (Direction)i;
-
-                if (component.Connections.ContainsKey(dir))
-                    continue; // This direction already has an active connection
-
-                TryGenerateFieldConnection(dir, generator, genXForm);
-            }
-        }
-
-        ChangePowerVisualizer(power, generator);
-    }
-
-    public void LosePower(Entity<GenericFieldGeneratorComponent> generator, int power)
-    {
-        var component = generator.Comp;
-        component.PowerBuffer -= power;
-
-        if (component.PowerBuffer < component.PowerMinimum && component.Connections.Count != 0)
-        {
-            RemoveConnections(generator);
-        }
-
-        ChangePowerVisualizer(power, generator);
-    }
 
     /// <summary>
     /// This will attempt to establish a connection of fields between two generators.
@@ -372,24 +335,24 @@ public sealed class GenericFieldGeneratorSystem : EntitySystem
     /// </summary>
     /// <param name="power"></param>
     /// <param name="generator"></param>
-    private void ChangePowerVisualizer(int power, Entity<GenericFieldGeneratorComponent> generator)
+    private void ChangePowerVisualizer(int power, Entity<GenericFieldGeneratorComponent> generator) // TODO: CONVERT VISUALS TO NEW SYSTEM, COMMENTED OUT FOR NOW
     {
-        var component = generator.Comp;
-        _visualizer.SetData(generator, GenericFieldGeneratorVisuals.PowerLight, component.PowerBuffer switch
-        {
-            <= 0 => PowerLevelVisuals.NoPower,
-            >= 25 => PowerLevelVisuals.HighPower,
-            _ => (component.PowerBuffer < component.PowerMinimum)
-                ? PowerLevelVisuals.LowPower
-                : PowerLevelVisuals.MediumPower
-        });
+//        var component = generator.Comp;
+//       _visualizer.SetData(generator, GenericFieldGeneratorVisuals.PowerLight, component.PowerBuffer switch
+//        {
+//            <= 0 => PowerLevelVisuals.NoPower,
+//            >= 25 => PowerLevelVisuals.HighPower,
+//            _ => (component.PowerBuffer < component.PowerMinimum)
+//                ? PowerLevelVisuals.LowPower
+//                : PowerLevelVisuals.MediumPower
+//        });
     }
 
     /// <summary>
     /// Check if a field has any or no connections and if it's enabled to toggle the field level light
     /// </summary>
     /// <param name="generator"></param>
-    private void ChangeFieldVisualizer(Entity<GenericFieldGeneratorComponent> generator)
+    private void ChangeFieldVisualizer(Entity<GenericFieldGeneratorComponent> generator) // St
     {
         _visualizer.SetData(generator, GenericFieldGeneratorVisuals.FieldLight, generator.Comp.Connections.Count switch
         {

@@ -1,8 +1,7 @@
 - type: entity
   parent: BaseStructure
-  id: HolographicFieldGenerator
-  name: Holographic Field Generator
-  description: A machine that generates a Holographic Field when powered by an emitter. Keeps the air where it belongs.
+  id: GenericFieldGeneratorBase
+  abstract: true
   components:
   - type: Fixtures
     fixtures:
@@ -41,6 +40,7 @@
   - type: GenericFieldGenerator
     createdField: HolographicField
     powerLoss: 5
+    chargeRate: 100
   - type: PointLight
     enabled: false
     color: "#4080FF"
@@ -68,11 +68,45 @@
           False: { visible: false }
   - type: Airtight
     noAirWhenFullyAirBlocked: true
-#  - type: GuideHelp
-#    guides:
-#    - SingularityTeslaEngine
-#    - SingularityEngine
-#    - Power
+  - type: NodeContainer
+    examinable: true
+    nodes:
+      input:
+        !type:CableDeviceNode
+        nodeGroupID: MVPower
+  - type: ExaminableBattery
+  - type: BatteryCharger
+    voltage: Medium
+  - type: WiresPanel
+  - type: Battery
+    netsync: false
+    maxCharge: 1500
+    startingCharge: 0
+  - type: Electrified
+    onHandInteract: false
+    onInteractUsing: false
+    onBump: false
+    requirePower: true
+    mediumVoltageNode: input
+  - type: PowerNetworkBattery
+    maxChargeRate: 0 #Should always be 0, set by GenericFieldGenerator
+
+- type: entity
+  parent: GenericFieldGeneratorBase
+  id: HolographicFieldGenerator
+  name: Holographic Field Generator
+  description: A machine that generates a Holographic Field when powered by an emitter. Keeps the air where it belongs.
+  components:
+  - type: GenericFieldGenerator
+    createdField: HolographicField
+    powerLoss: 5
+  - type: Lock
+    locked: false
+  - type: LockVisuals
+  - type: LockedAnchorable
+  - type: AccessReader
+    access: [[ "Engineering" ]]
+
 
 - type: entity
   id: HolographicField
@@ -118,8 +152,3 @@
   - type: Tag
     tags:
     - Wall
-#  - type: GuideHelp
-#    guides:
-#    - SingularityTeslaEngine
-#    - SingularityEngine
-#    - Power

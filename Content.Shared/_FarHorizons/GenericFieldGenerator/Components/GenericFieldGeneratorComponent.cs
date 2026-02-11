@@ -10,50 +10,12 @@ namespace Content.Shared._FarHorizons.GenericFieldGenerator.Components;
 [RegisterComponent, NetworkedComponent]
 public sealed partial class GenericFieldGeneratorComponent : Component
 {
-        private int _powerBuffer;
-
     /// <summary>
-    /// Store power with a cap. Decrease over time if not being powered from source.
-    /// </summary>
-    [DataField("powerBuffer")]
-    public int PowerBuffer
-    {
-        get => _powerBuffer;
-        set => _powerBuffer = Math.Clamp(value, 0, 25); //have this decrease over time if not hit by a bolt
-    }
-
-    /// <summary>
-    /// The minimum the field generator needs to start generating a connection
+    /// How much power should this field generator consume?
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite)]
-    [DataField("powerMinimum")]
-    public int PowerMinimum = 6;
-
-    /// <summary>
-    /// How much power should this field generator receive from a collision
-    /// </summary>
-    [ViewVariables(VVAccess.ReadWrite)]
-    [DataField("power")]
-    public int PowerReceived = 3;
-
-    /// <summary>
-    /// How much power should this field generator lose if not powered?
-    /// </summary>
-    [ViewVariables(VVAccess.ReadWrite)]
-    [DataField("powerLoss")]
-    public int PowerLoss = 2;
-
-    /// <summary>
-    /// Used to check if it's received power recently.
-    /// </summary>
-    [DataField("accumulator")]
-    public float Accumulator;
-
-    /// <summary>
-    /// How many seconds should the generators wait before losing power?
-    /// </summary>
-    [DataField("threshold")]
-    public float Threshold = 20f;
+    [DataField("powerDrain")]
+    public int PowerDrain = 100;
 
     /// <summary>
     /// How many tiles should this field check before giving up?
@@ -62,25 +24,16 @@ public sealed partial class GenericFieldGeneratorComponent : Component
     public float MaxLength = 8F;
 
     /// <summary>
-    /// What collision should power this generator?
-    /// It really shouldn't be anything but an emitter bolt but it's here for fun.
-    /// </summary>
-    [ViewVariables(VVAccess.ReadWrite)]
-    [DataField("idTag", customTypeSerializer: typeof(PrototypeIdSerializer<TagPrototype>))]
-    public string IDTag = "EmitterBolt";
-
-    /// <summary>
-    /// Which fixture ID should test collision with from the entity that powers the generator?
-    /// Prevents the generator from being powered by fly-by fixtures.
-    /// </summary>
-    [DataField]
-    public string SourceFixtureId = "projectile";
-
-    /// <summary>
     /// Is the generator toggled on?
     /// </summary>
     [DataField]
     public bool Enabled;
+
+    /// <summary>
+    /// Is the generator Charged?
+    /// </summary>
+    [DataField]
+    public bool Charged;
 
     /// <summary>
     /// Is this generator connected to fields?
@@ -107,6 +60,12 @@ public sealed partial class GenericFieldGeneratorComponent : Component
     [ViewVariables(VVAccess.ReadWrite)]
     [DataField("createdField", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
     public string CreatedField = "ContainmentField";
+
+    /// <summary>
+    /// How fast should the generator charge?
+    /// </summary>
+    [DataField]
+    public int ChargeRate = 100;
 }
 
 [Serializable, NetSerializable]
