@@ -28,16 +28,17 @@ using Content.Shared.Radio;
 using Content.Shared.Random;
 using Content.Shared.Random.Helpers;
 using Content.Shared.Throwing;
-using NAudio.CoreAudioApi;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
+using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Numerics;
 
 namespace Content.Server._FarHorizons.Power.Generation.FissionGenerator;
 
@@ -67,6 +68,7 @@ public sealed class NuclearReactorSystem : EntitySystem
     [Dependency] private readonly ServerGlobalSoundSystem _soundSystem = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly SharedContainerSystem _containerSystem = default!;
     [Dependency] private readonly SharedPointLightSystem _lightSystem = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly StationSystem _station = default!;
@@ -118,6 +120,9 @@ public sealed class NuclearReactorSystem : EntitySystem
     private void OnInit(EntityUid uid, NuclearReactorComponent comp, ref MapInitEvent args)
     {
         _signal.EnsureSinkPorts(uid, comp.ControlRodInsertPort, comp.ControlRodRetractPort);
+        
+        _slotsSystem.TryGetSlot(uid, "part_slot", out comp.PartSlot!);
+        _containerSystem.TryGetContainer(uid, "part_storage", out comp.PartStorage!, null);
 
         var gridWidth = comp.ReactorGridWidth;
         var gridHeight = comp.ReactorGridHeight;
@@ -139,7 +144,10 @@ public sealed class NuclearReactorSystem : EntitySystem
     #region Prefab
     private void ApplyPrefab(EntityUid uid, NuclearReactorComponent comp)
     {
-        var prefab = comp.Prefab == "random" ? GenerateRandomPrefab(comp) : GetPrefabFromProto(comp);
+        comp.GridEntities.Clear();
+        _containerSystem.CleanContainer(comp.PartStorage);
+
+        var prefab = comp.Prefab == "random" ? GenerateRandomPrefab(uid, comp) : GetPrefabFromProto(uid, comp);
         for (var x = 0; x < comp.ReactorGridWidth; x++)
             for (var y = 0; y < comp.ReactorGridHeight; y++)
             {
@@ -151,45 +159,69 @@ public sealed class NuclearReactorSystem : EntitySystem
         UpdateGridVisual((uid, comp));
     }
 
-    private Dictionary<Vector2i, ReactorPartComponent> GenerateRandomPrefab(NuclearReactorComponent comp)
+    private Dictionary<Vector2i, ReactorPartComponent> GenerateRandomPrefab(EntityUid uid, NuclearReactorComponent comp)
     {
         var exportDict = new Dictionary<Vector2i, ReactorPartComponent>();
+
+        var transform = Transform(uid);
+        var coords = new EntityCoordinates(uid, Vector2.Zero);
+
         for (var x = 0; x < comp.ReactorGridWidth; x++)
             for (var y = 0; y < comp.ReactorGridHeight; y++)
                 if (_random.Prob(comp.RandomPrefabFill))
-                    exportDict.Add(new Vector2i(x, y), RandomComponent());
+                    RandomComponent(new Vector2i(x, y));
         return exportDict;
+
+        void RandomComponent(Vector2i pos)
+        {
+            var source = "NuclearReactorRandomParts";
+            var protoID = _protoMan.Index<WeightedRandomPrototype>(source).Pick(_random);
+            
+            var partEnt = Spawn(protoID, coords);
+            if(!_containerSystem.Insert(partEnt, comp.PartStorage, transform))
+            {
+                QueueDel(partEnt);
+                return;
+            }
+
+            if(!_entityManager.TryGetComponent<ReactorPartComponent>(partEnt, out var reactorPart))
+            {
+                QueueDel(partEnt);
+                return;
+            }
+
+            exportDict.Add(pos, reactorPart);
+            comp.GridEntities.Add(pos, partEnt);
+        }
     }
 
-    private ReactorPartComponent RandomComponent()
-    {
-        var compName = Factory.GetComponentName<ReactorPartComponent>();
-        var source = "NuclearReactorRandomParts";
-        var protoID = _protoMan.Index<WeightedRandomPrototype>(source).Pick(_random);
-        if (!_protoMan.TryIndex(protoID, out var entProto)
-                || !entProto.TryGetComponent<ReactorPartComponent>(compName, out var comp))
-            return new();
-        comp.ProtoId = protoID;
-        return comp;
-    }
-
-    private Dictionary<Vector2i, ReactorPartComponent> GetPrefabFromProto(NuclearReactorComponent comp)
+    private Dictionary<Vector2i, ReactorPartComponent> GetPrefabFromProto(EntityUid uid, NuclearReactorComponent comp)
     {
         var exportDict = new Dictionary<Vector2i, ReactorPartComponent>();
 
         if (!_protoMan.TryIndex<NuclearReactorPrefabPrototype>(comp.Prefab, out var proto) || proto.ReactorComponents == null)
             return exportDict;
 
-        var compName = Factory.GetComponentName<ReactorPartComponent>();
+        var transform = Transform(uid);
+        var coords = new EntityCoordinates(uid, Vector2.Zero);
 
         foreach (var pair in proto.ReactorComponents)
         {
-            if (!_protoMan.TryIndex(pair.Value, out var entProto)
-                || !entProto.TryGetComponent<ReactorPartComponent>(compName, out var reactorPart))
+            var partEnt = Spawn(pair.Value, coords);
+            if(!_containerSystem.Insert(partEnt, comp.PartStorage, transform))
+            {
+                QueueDel(partEnt);
                 continue;
+            }
 
-            reactorPart.ProtoId = pair.Value;
+            if(!_entityManager.TryGetComponent<ReactorPartComponent>(partEnt, out var reactorPart))
+            {
+                QueueDel(partEnt);
+                continue;
+            }
+
             exportDict.Add(pair.Key, reactorPart);
+            comp.GridEntities.Add(pair.Key, partEnt);
         }
 
         return exportDict;
@@ -220,11 +252,7 @@ public sealed class NuclearReactorSystem : EntitySystem
         }
     }
 
-    private void OnPartChanged(EntityUid uid, NuclearReactorComponent component, ContainerModifiedMessage args) 
-    {
-        _slotsSystem.TryGetSlot(uid, "part_slot", out component.PartSlot!);
-        UpdateUI(uid, component);
-    }
+    private void OnPartChanged(EntityUid uid, NuclearReactorComponent component, ContainerModifiedMessage args) => UpdateUI(uid, component);
 
     private void OnShutdown(Entity<NuclearReactorComponent> ent, ref ComponentShutdown args) => CleanUp(ent.Comp);
 
@@ -822,7 +850,7 @@ public sealed class NuclearReactorSystem : EntitySystem
                     Temperature = reactorPart.Temperature,
                     NeutronCount = reactor.NeutronGrid[x, y],
                     IconName = reactorPart.IconStateInserted,
-                    PartName = _protoMan.Index(reactorPart.ProtoId).Name,
+                    PartName = Identity.Name(reactor.GridEntities[new(x, y)], _entityManager),
                     NeutronRadioactivity = reactorPart.Properties.NeutronRadioactivity,
                     Radioactivity = reactorPart.Properties.Radioactivity,
                     SpentFuel = reactorPart.Properties.FissileIsotopes
@@ -853,11 +881,10 @@ public sealed class NuclearReactorSystem : EntitySystem
            });
     }
 
-    private void OnItemActionMessage(Entity<NuclearReactorComponent> ent, ref ReactorItemActionMessage args)
+    private void OnItemActionMessage(EntityUid uid, NuclearReactorComponent comp, ref ReactorItemActionMessage args)
     {
-        var comp = ent.Comp;
         var pos = args.Position;
-        var part = comp.ComponentGrid[(int)pos.X, (int)pos.Y];
+        var part = comp.ComponentGrid[pos.X, pos.Y];
 
         if (comp.PartSlot.Item == null == (part == null))
             return;
@@ -866,33 +893,37 @@ public sealed class NuclearReactorSystem : EntitySystem
         {
             if (part!.Melted) // No removing a part if it's melted
             {
-                _audio.PlayPvs(new SoundPathSpecifier("/Audio/Machines/custom_deny.ogg"), ent.Owner);
+                _audio.PlayPvs(new SoundPathSpecifier("/Audio/Machines/custom_deny.ogg"), uid);
                 return;
             }
 
-            var item = SpawnInContainerOrDrop(part!.ProtoId, ent.Owner, "part_slot");
-            _entityManager.RemoveComponent<ReactorPartComponent>(item);
-            _entityManager.AddComponent(item, new ReactorPartComponent(part!));
+            var item = comp.GridEntities[pos];
+            _containerSystem.Remove(item, comp.PartStorage);
+            _slotsSystem.TryInsert(uid, comp.PartSlot, item, null, suppressSound: true);
 
-            _adminLog.Add(LogType.Action, $"{ToPrettyString(args.Actor):actor} removed {ToPrettyString(item):item} from position {pos.Y},{pos.X} in {ToPrettyString(ent):target}");
-            comp.ComponentGrid[(int)pos.X, (int)pos.Y] = null;
+            _adminLog.Add(LogType.Action, $"{ToPrettyString(args.Actor):actor} removed {ToPrettyString(item):item} from position {pos.Y},{pos.X} in {ToPrettyString(uid):target}");
+            comp.ComponentGrid[pos.X, pos.Y] = null;
+            comp.GridEntities.Remove(pos);
         }
         else
         {
-            if (TryComp(comp.PartSlot.Item, out ReactorPartComponent? reactorPart))
-                comp.ComponentGrid[(int)pos.X, (int)pos.Y] = new ReactorPartComponent(reactorPart);
-            else
+            if (!TryComp(comp.PartSlot.Item, out ReactorPartComponent? reactorPart))
                 return;
 
-            _adminLog.Add(LogType.Action, $"{ToPrettyString(args.Actor):actor} added {ToPrettyString(comp.PartSlot.Item):item} to position {pos.Y},{pos.X} in {ToPrettyString(ent):target}");
-            var proto = _entityManager.GetComponent<MetaDataComponent>(comp.PartSlot.Item.Value).EntityPrototype;
-            comp.ComponentGrid[(int)pos.X, (int)pos.Y]!.ProtoId = proto != null ? proto.ID : "BaseReactorPart";
-            _entityManager.DeleteEntity(comp.PartSlot.Item);
+            if(!_slotsSystem.TryEject(uid, comp.PartSlot, null, out var item))
+                return;
+
+            _containerSystem.Insert(item.Value, comp.PartStorage);
+            
+            _adminLog.Add(LogType.Action, $"{ToPrettyString(args.Actor):actor} added {ToPrettyString(item):item} to position {pos.Y},{pos.X} in {ToPrettyString(uid):target}");
+
+            comp.ComponentGrid[pos.X, pos.Y] = reactorPart;
+            comp.GridEntities.Add(pos, item.Value);
         }
 
-        UpdateGridVisual(ent);
+        UpdateGridVisual((uid, comp));
         UpdateGasVolume(comp);
-        UpdateUI(ent.Owner, comp);
+        UpdateUI(uid, comp);
     }
 
     private void OnControlRodMessage(Entity<NuclearReactorComponent> ent, ref ReactorControlRodModifyMessage args)
@@ -1071,14 +1102,14 @@ public sealed class NuclearReactorSystem : EntitySystem
                     if (reactorPart == null)
                         continue;
 
-                    EntityUid item;
+                    var item = comp.GridEntities[new(x, y)];
+                    _containerSystem.Remove(item, comp.PartStorage);
+                    comp.GridEntities.Remove(new(x, y));
+
                     if (_random.Prob(0.5f) || reactorPart.Melted)
-                        item = Spawn("NuclearDebrisChunk", coords);
-                    else
                     {
-                        item = Spawn(reactorPart.ProtoId, coords);
-                        _entityManager.RemoveComponent<ReactorPartComponent>(item);
-                        _entityManager.AddComponent(item, new ReactorPartComponent(reactorPart));
+                        QueueDel(item);
+                        item = Spawn("NuclearDebrisChunk", coords);
                     }
 
                     _throwingSystem.TryThrow(item, _random.NextAngle().ToVec().Normalized(), _random.NextFloat(8, 16), uid);

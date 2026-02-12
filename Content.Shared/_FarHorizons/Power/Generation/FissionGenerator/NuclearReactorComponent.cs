@@ -3,6 +3,7 @@ using Content.Shared.Containers.ItemSlots;
 using Content.Shared.DeviceLinking;
 using Content.Shared.Materials;
 using Robust.Shared.Audio;
+using Robust.Shared.Containers;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
@@ -39,6 +40,12 @@ public sealed partial class NuclearReactorComponent : Component
     /// 2D grid of reactor components, or null where there are no components. Size is ReactorGridWidth x ReactorGridHeight
     /// </summary>
     public ReactorPartComponent?[,] ComponentGrid;
+
+    /// <summary>
+    /// Dictionary of the entities all the parts in the component grid belong to
+    /// </summary>
+    [AutoNetworkedField]
+    public Dictionary<Vector2i, EntityUid> GridEntities = [];
 
     /// <summary>
     /// Dictionary of data that determines the reactor grid's visuals
@@ -183,6 +190,9 @@ public sealed partial class NuclearReactorComponent : Component
 
     [ViewVariables]
     public ItemSlot PartSlot = new();
+
+    [ViewVariables]
+    public BaseContainer PartStorage;
 
     /// <summary>
     /// Grid of neutron counts
