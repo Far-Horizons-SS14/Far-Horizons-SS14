@@ -1,7 +1,8 @@
 using Content.Server.Administration.Managers;
 using Content.Server.Polymorph.Systems;
 ///Far Horizons-Start
-using Content.Client._FarHorizons.DiscordLink;
+using Content.Server._FarHorizons.DiscordLink;
+using Content.Shared._FarHorizons.DiscordLink;
 ///Far Horizons-End
 using Content.Shared.Database;
 using Content.Shared.Ghost;
@@ -35,7 +36,7 @@ public sealed class AdminMouseSystem : EntitySystem
             Verb admin = new()
             {
                 Text = adminName,
-                Category = VerbCategory.Smite,
+                Category = VerbCategory.Tricks,
                 Icon = new SpriteSpecifier.Rsi(new ResPath("/Textures/_FarHorizons/Mobs/Animals/mouse.rsi"), "mouse-admin"),
                 Act = () =>
                 {
@@ -47,13 +48,13 @@ public sealed class AdminMouseSystem : EntitySystem
             args.Verbs.Add(admin);
         }
 
-        if (_playerRoles.IsMentor(user))
+        if (_playerRoles.HasPermission(user, AdditionalPermissionsTypes.Mentor))
         {
             var mentorName = Loc.GetString("admin-verb-text-make-mentormouse");
             Verb mentor = new()
             {
                 Text = mentorName,
-                Category = VerbCategory.Smite,
+                Category = VerbCategory.Tricks,
                 Icon = new SpriteSpecifier.Rsi(new ResPath("/Textures/_FarHorizons/Mobs/Animals/mouse.rsi"), "mouse-mentor"),
                 Act = () =>
                 {
