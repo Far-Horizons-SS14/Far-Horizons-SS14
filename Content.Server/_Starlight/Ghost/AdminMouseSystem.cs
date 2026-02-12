@@ -30,7 +30,7 @@ public sealed class AdminMouseSystem : EntitySystem
         if (args.Target != user || !HasComp<GhostComponent>(user))
             return;
 
-        if (_admin.IsAdmin(user, true))
+        if (_playerRoles.HasPermission(user, AdditionalPermissionsTypes.AdminSkins)) ///Far Horizons
         {
             var adminName = Loc.GetString("admin-verb-text-make-adminmouse-nanotrasen"); ///Far Horizons
             Verb admin = new()
@@ -49,7 +49,7 @@ public sealed class AdminMouseSystem : EntitySystem
             args.Verbs.Add(admin);
         }
 
-        if (_admin.IsAdmin(user, true))
+        if (_playerRoles.HasPermission(user, AdditionalPermissionsTypes.AdminSkins))
         {
             var adminName = Loc.GetString("admin-verb-text-make-adminmouse-neosol");
             Verb admin = new()
