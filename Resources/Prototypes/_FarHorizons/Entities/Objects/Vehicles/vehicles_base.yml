@@ -22,6 +22,11 @@
   components:
   - type: InputMover
   - type: MobMover
+  - type: MovementSpeedModifier
+    baseSprintSpeed: 1
+    baseWalkSpeed: 1
+    baseAcceleration: 1 
+    baseFriction: 1
   - type: InteractionOutline
   - type: Pullable
   - type: Physics

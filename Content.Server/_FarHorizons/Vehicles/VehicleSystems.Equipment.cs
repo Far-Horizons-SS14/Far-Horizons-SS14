@@ -8,8 +8,9 @@ using Robust.Shared.Containers;
 using Content.Shared.Item.ItemToggle.Components;
 using Content.Shared.Toggleable;
 using Robust.Shared.Prototypes;
-using System.Numerics;
 using System.Linq;
+using Content.Shared.Movement.Systems;
+using Content.Shared.Movement.Components;
 
 namespace Content.Server._FarHorizons.Vehicle.Equipment;
 public sealed partial class VehicleEquipmentSystems : EntitySystem
@@ -18,13 +19,18 @@ public sealed partial class VehicleEquipmentSystems : EntitySystem
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
+    [Dependency] private readonly MovementSpeedModifierSystem _movementSpeed = default!;
     public override void Initialize()
     {
         base.Initialize();
 
         SubscribeLocalEvent<VehicleModsComponent, ComponentInit>(OnCompInit);
+        SubscribeLocalEvent<VehicleModsComponent, RefreshFrictionModifiersEvent>(OnRefreshFriction);
+
         SubscribeLocalEvent<RiderComponent, AddRiderActions>(OnAddActions);
         SubscribeLocalEvent<RiderComponent, RemoveRiderActions>(OnRemoveActions);
+
+        SubscribeLocalEvent<MovementSpeedModifierComponent, InstalledVehicleEquipment>(OnMovementInstalled);
 
         SubscribeLocalEvent<ItemToggleComponent, ToggleActionEvent>(OnSirenToggle);
     }
@@ -59,11 +65,23 @@ public sealed partial class VehicleEquipmentSystems : EntitySystem
                     _container.Insert(item, ent.Comp.ModSlot);
                 ent.Comp.SpawnedEquipment.Add(item);
                 var ev = new InstalledVehicleEquipment{Part =  GetNetEntity(item)};
-                RaiseLocalEvent(ev);
+                RaiseLocalEvent(item, ev);
                 RaiseNetworkEvent(ev);
             }
         }
         Dirty(ent.Owner, ent.Comp);
+    }
+
+    private void OnRefreshFriction(Entity<VehicleModsComponent> ent, ref RefreshFrictionModifiersEvent args)
+    {
+        var tires = ent.Comp.Equipment[EquipmentType.TIRES];
+        if(tires == null || !TryComp<MovementSpeedModifierComponent>(tires, out var msmComp)) return;
+        
+
+        Log.Info($"{ent.Owner}, {msmComp.BaseAcceleration}, {msmComp.BaseFriction}");
+        Log.Info($"{args.Acceleration}, {args.Friction}, {args.FrictionNoInput}");
+        args.ModifyAcceleration(msmComp.BaseAcceleration);
+        args.ModifyFriction(msmComp.BaseFriction);
     }
 
     private bool CheckandAssign(EntityUid item, VehicleModsComponent vmComp, VehicleEquipmentComponent? veComp=null)
@@ -119,5 +137,15 @@ public sealed partial class VehicleEquipmentSystems : EntitySystem
         var toggleUsed = new ItemToggledEvent(false, Activated: flashComp.LightOn, args.Performer);
         RaiseLocalEvent(ent.Owner, ref toggleUsed);
         args.Handled = true;
+    }
+
+    private void OnMovementInstalled(Entity<MovementSpeedModifierComponent> ent, ref InstalledVehicleEquipment args)
+    {
+        var xForm = Transform(ent.Owner);
+        if(xForm.ParentUid == xForm.GridUid) return;
+        if(!TryComp<VehicleEquipmentComponent>(ent.Owner, out var veComp)) return;
+
+        if(veComp.Slot == EquipmentType.TIRES)
+            _movementSpeed.RefreshFrictionModifiers(xForm.ParentUid);
     }
 }

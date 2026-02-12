@@ -6,11 +6,6 @@
   components:
   - type: RandomMetadata
     descriptionSegments: [DescriptionsATV]
-  - type: MovementSpeedModifier
-    baseWalkSpeed: 10
-    baseSprintSpeed: 7.5
-    baseAcceleration: 4
-    baseFriction: 0.56
   - type: Vehicle
     cellPowered: false
     requireIgnition: true
@@ -230,11 +225,7 @@
   name: Clown Car
   description: What sort of horrors lie within...
   components:
-  - type: MovementSpeedModifier
-    baseWalkSpeed: 10 
-    baseSprintSpeed: 7.5
-    baseAcceleration: 4
-    baseFriction: 0.25
+
   - type: Vehicle
     cellPowered: false
     requireIgnition: true 
@@ -389,11 +380,6 @@
   name: Motorcycle
   description: Bad to the bone.
   components:
-  - type: MovementSpeedModifier
-    baseWalkSpeed: 12
-    baseSprintSpeed: 7.5
-    baseAcceleration: 4
-    baseFriction: 0.56
   - type: Vehicle
     cellPowered: false
     requireIgnition: true

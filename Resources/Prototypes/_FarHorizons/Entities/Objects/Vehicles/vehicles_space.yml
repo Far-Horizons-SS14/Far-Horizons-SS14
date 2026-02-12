@@ -4,11 +4,6 @@
   name: Transporter
   description: Basic space faring vehicle dedicated to the transport of good or exploration.
   components:
-  - type: MovementSpeedModifier
-    baseWalkSpeed: 10
-    baseSprintSpeed: 7.5
-    baseAcceleration: 4
-    baseFriction: 0.56
   - type: Vehicle
     cellPowered: false
     requireIgnition: true
@@ -104,7 +99,6 @@
         containers:
         - storagebase
   - type: Hitch
-  - type: MovementIgnoreGravity
   - type: VehicleMods
     startingEquipment:
       - ATVHeadlight

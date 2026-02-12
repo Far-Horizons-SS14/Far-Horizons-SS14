@@ -39,6 +39,7 @@
     startingEquipment:
       - SecwayLight
       - SecSiren
+      - StandardTires
     equipmentSlots: [tires, engine, headlight, lightbar]
   - type: Strap
   - type: Fixtures
@@ -53,11 +54,6 @@
         - MobMask
         layer:
         - MobLayer
-  - type: MovementSpeedModifier
-    baseWalkSpeed: 2
-    baseSprintSpeed: 5.5 #4.5 is default, so this is 1 faster than normal run
-    baseAcceleration: 2
-    baseFriction: 0.56
   - type: ItemSlots
     slots:
       key_slot:
@@ -130,9 +126,6 @@
   suffix: Battery, Keys, NT
   description: An upgraded Secway, it is better in every single aspect.
   components:
-    - type: MovementSpeedModifier
-      baseWalkSpeed: 6
-      baseSprintSpeed: 9
     - type: Sprite
       drawdepth: OverMobs
       sprite: _FarHorizons/Objects/Vehicles/secway_turbo.rsi
@@ -213,11 +206,6 @@
         - MobMask
         layer:
         - MobLayer
-  - type: MovementSpeedModifier
-    baseWalkSpeed: 2
-    baseSprintSpeed: 5.5
-    baseAcceleration: 2
-    baseFriction: 0.56
   - type: ItemSlots
     slots:
       key_slot:

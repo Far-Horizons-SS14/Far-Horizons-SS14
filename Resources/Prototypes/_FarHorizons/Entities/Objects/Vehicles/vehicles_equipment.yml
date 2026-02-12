@@ -76,3 +76,18 @@
     - type: VehicleEquipment
       actionProto: ActionVehicleToggleSecuritySiren
       slot: lightbar
+
+- type: entity
+  id: StandardTires
+  parent: BaseItem
+  name: Standard Tires
+  description: Basic tires that have basic acceleration and traction. 
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Objects/Vehicles/vehiclemods.rsi
+      state: tire
+    - type: VehicleEquipment
+      slot: tires
+    - type: MovementSpeedModifier
+      baseAcceleration: 2 
+      baseFriction: 0.56
