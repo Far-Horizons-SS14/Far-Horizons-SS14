@@ -5,6 +5,8 @@ using Robust.Shared.Prototypes;
 namespace Content.Server._FarHorizons.Factions;
 
 public interface IServerFactionManager : ISharedFactionManager {
+    public void PostInit();
+
     /// <summary>
     /// Sets current faction to default if it's null, then returns current faction
     /// </summary>
@@ -17,4 +19,8 @@ public interface IServerFactionManager : ISharedFactionManager {
     /// Attempts to guess which faction a job could belong to in the current round
     /// </summary>
     public ProtoId<FactionPrototype>? DecideFactionForJob(ProtoId<JobPrototype> job);
+    /// <summary>
+    /// Lists currently enabled factions (that can be selected via vote)
+    /// </summary>
+    public IEnumerable<FactionPrototype> ListEnabledFactions();
 }

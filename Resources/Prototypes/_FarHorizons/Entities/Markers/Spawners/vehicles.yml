@@ -57,6 +57,21 @@
       - VehicleATVFueledwithKeysNTSec
 
 - type: entity
+  name: STV Spawner
+  id: SpawnVehicleSTVNoKeys
+  parent: MarkerBase
+  suffix: No keys
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: _FarHorizons/Objects/Vehicles/sectv.rsi
+        state: vehicle
+  - type: ConditionalSpawner
+    prototypes:
+      - VehicleATVFueledNTSec
+
+- type: entity
   name: Wheelchair Spawner
   id: SpawnVehicleWheelchair
   parent: MarkerBase

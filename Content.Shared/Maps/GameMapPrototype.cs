@@ -2,6 +2,7 @@ using JetBrains.Annotations;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using System.Diagnostics;
+using Content.Shared._FarHorizons.Factions;
 using Content.Shared.Station;
 
 namespace Content.Shared.Maps;
@@ -46,6 +47,12 @@ public sealed partial class GameMapPrototype : IPrototype
 
     [DataField("stations", required: true)]
     private Dictionary<string, StationConfig> _stations = new();
+
+    /// <summary>
+    /// Faction this map is for.
+    /// </summary>
+    [DataField]
+    public ProtoId<FactionPrototype>? Faction = null;  // Far Horizons
 
     /// <summary>
     /// The stations this map contains. The names should match with the BecomesStation components.

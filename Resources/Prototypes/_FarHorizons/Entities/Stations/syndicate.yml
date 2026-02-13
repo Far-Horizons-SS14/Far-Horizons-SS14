@@ -1,0 +1,45 @@
+﻿- type: entity
+  id: BaseSyndicateHighCommand
+  abstract: true
+  components:
+    - type: StationCentcomm
+      maps:
+        - "/Maps/_FarHorizons/SHCs/shc.yml"
+
+- type: entity
+  id: StandardSyndicateStation
+  parent:
+    - BaseStation
+    - BaseStationNews
+    - BaseStationCargo
+    - BaseStationJobsSpawning
+    - BaseStationRecords
+    - BaseStationArrivals
+    - BaseStationGateway
+    - BaseStationShuttles
+    - BaseSyndicateHighCommand
+    - BaseStationEvacuation
+    - BaseStationAlertLevels
+    - BaseStationMagnet
+    - BaseStationExpeditions
+    - BaseStationSalvageJobs
+    - BaseStationSiliconLawCrewsimov
+    - BaseStationAllEventsEligible
+    - BaseStationSyndicate
+    - BaseStationDeliveries
+    - BaseStationCryoTeleportation #Starlight
+    - BaseStationAlertArmories #Starlight
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Transform
+
+- type: entity
+  id: SyndicateHighCommand
+  parent:
+    - BaseStation
+    - BaseStationAlertLevels
+    - BaseStationSyndicate
+    - BaseStationCryoTeleportation
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Transform

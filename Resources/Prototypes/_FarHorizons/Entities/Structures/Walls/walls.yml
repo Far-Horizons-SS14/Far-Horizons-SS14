@@ -218,3 +218,46 @@
         layer:
         - WallLayer
         density: 2000
+
+- type: entity
+  parent: BaseWall
+  id: WallFakeNT
+  name: Solid Wall
+  suffix: Fake, NT
+  description: This wall feels.. hollow. Some signage reads "Break in event of Emergency!"
+  components:
+  - type: Sprite
+    sprite: Structures/Walls/solid.rsi
+  - type: WallReplacementMarker
+  - type: Icon
+    sprite: Structures/Walls/solid.rsi
+  - type: RCDDeconstructable
+    cost: 6
+    delay: 8
+    fx: EffectRCDDeconstruct8
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: FlimsyMetallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100 # ~12 hits with a standard toolbox, which I feel is fair
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalSlam
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalSlam
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: IconSmooth
+    key: walls
+    base: solid

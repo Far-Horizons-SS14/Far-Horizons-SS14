@@ -1,0 +1,16 @@
+- type: entity
+  id: PoweredStrobeLightShuttleSiren
+  name: Siren
+  suffix: "Shuttle Theft Siren"
+  parent: PoweredStrobeLightEmpty
+  description: "If you're hearing this, the Security Ship has likely been stolen. You uhhhh, you should do something about that probably."
+  components:
+  - type: PoweredLight
+    bulb: Bulb
+    on: false
+    hasLampOnSpawn: LightBulbCrystalRed
+  - type: AmbientSound
+    volume: 0
+    range: 10
+    sound:
+      path: "/Audio/Misc/gamma.ogg"

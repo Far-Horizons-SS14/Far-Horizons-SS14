@@ -8,4 +8,5 @@ public enum AdditionalPermissionsTypes : ushort  // only 16 are allowed with ush
     PeacefulBypass = 1 << 2,
     RoleRequirementBypass = 1 << 3,
     CCSHC =  1 << 4,
+    AdminSkins = 1 << 5,
 }

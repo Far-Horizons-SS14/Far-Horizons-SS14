@@ -45,3 +45,15 @@
         - FullTileMask
         layer:     #removed opaque from the layer, allowing lasers to pass through glass airlocks
         - GlassAirlockLayer
+
+- type: entity
+  parent: FHAirlockExternalGlass
+  id: FHAirlockExternalGlassLong
+  suffix: Glass, External
+  components:
+  - type: DeviceLinkSource
+    range: 200 #For airlocks that need a lot of range.
+    ports:
+      - DoorStatus
+    lastSignals:
+      DoorStatus: false

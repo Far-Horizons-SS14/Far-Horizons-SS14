@@ -1,0 +1,92 @@
+- type: entity
+  name: Smart Scurret
+  id: MobBaseScurretUnrestricted # Allows equipping of normal items - mainly used for the detective scurret as being in security necessitates the ability to defend yourself and to hold items
+  parent: MobBaseScurret
+  abstract: true
+  components:
+  - type: Inventory
+    speciesId: scurret
+    templateId: smartscurret
+    displacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: Mobs/Animals/scurret/displacement.rsi
+            state: jumpsuit
+      id:
+        sizeMaps:
+          32:
+            sprite: Mobs/Animals/scurret/displacement.rsi
+            state: id
+      gloves:
+        sizeMaps:
+          32:
+            sprite: Mobs/Animals/scurret/displacement.rsi
+            state: gloves
+      neck:
+        sizeMaps:
+          32:
+            sprite: Mobs/Animals/scurret/displacement.rsi
+            state: neck
+      ears:
+        sizeMaps:
+          32:
+            sprite: Mobs/Animals/scurret/displacement.rsi
+            state: ears
+      eyes:
+        sizeMaps:
+          32:
+            sprite: Mobs/Animals/scurret/displacement.rsi
+            state: eyes
+      head:
+        sizeMaps:
+          32:
+            sprite: Mobs/Animals/scurret/displacement.rsi
+            state: head
+      mask:
+        sizeMaps:
+          32:
+            sprite: Mobs/Animals/scurret/displacement.rsi
+            state: mask
+      back:
+        sizeMaps:
+          32:
+            sprite: Mobs/Animals/scurret/displacement.rsi
+            state: back
+      outerClothing:
+        sizeMaps:
+          32:
+            sprite: Mobs/Animals/scurret/displacement.rsi
+            state: outerClothing
+
+- type: entity
+  name: Detective Inquisitive Tethers
+  id: MobDetectiveScurret
+  parent: MobBaseScurretUnrestricted
+  abstract: false
+  description: The best sidekick a detective could have! Gets upset when you shorten their full name in any way when you talk to them.
+  components:
+    - type: LanguageKnowledge
+      speaks:
+      - ScurretSign
+      - Sign
+      understands:
+      - ScurretSign
+      - Sign
+      - GalacticCommon
+    - type: Loadout
+      prototypes: [ DetectiveScurretGear ]
+    - type: GhostTakeoverAvailable
+    - type: AutoImplant
+      implants:
+      - MindShieldImplant
+    - type: GhostRole
+      name: ghost-role-information-detective-scurret-name
+      description: ghost-role-information-detective-scurret-description
+      rules: ghost-role-information-familiar-rules
+      makeSentient: true
+      allowSpeech: true
+      allowMovement: true
+      job: Detective
+    - type: NameIdentifier
+      group: null

@@ -1,5 +1,5 @@
 - type: entity
-  name: riot shotgun
+  name: Riot Shotgun #Far Horizons - The Great Capitalization Crusade
   parent: [BaseWeaponShotgun, BaseGunWieldable, BaseSecurityContraband]
   id: WeaponShotgunRiot
   description: A sturdy shotgun with a longer magazine and a fixed tactical stock designed for non-lethal riot control.
@@ -26,7 +26,7 @@
     - RiotShotgun #FH
 
 - type: entity
-  name: sawn-off riot shotgun
+  name: Sawn-Off Riot Shotgun #Far Horizons - The Great Capitalization Crusade
   parent: [BaseWeaponShotgun, BaseSecurityContraband]
   id: WeaponShotgunRiotSawn
   description: Come with me if you want to live.
@@ -96,7 +96,7 @@
 #      revolver-ammo: !type:Container
 
 - type: entity
-  name: cycler shotgun
+  name: Cycler Shotgun #Far Horizons - The Great Capitalization Crusade
   parent: [BaseWeaponShotgunAny, BaseGunWieldable, BaseSecuritySalvageContraband]
   id: WeaponShotgunCycler
   description: An advanced shotgun with two separate magazine tubes, allowing you to quickly toggle between ammo types.
@@ -129,7 +129,7 @@
       revolver-ammo: !type:Container
       
 - type: entity
-  name: Tkach Ya-Sui GA 12 revolver
+  name: Tkach Ya-Sui GA 12 Revolver #Far Horizons - The Great Capitalization Crusade
   parent: [BaseWeaponShotgunAny, BaseSecuritySalvageContraband]
   id: WeaponShotgunGA12
   description: An outdated sidearm rarely seen in use by certain PMCs that operate throughout the frontier systems, featuring a three-shell cylinder. Thats right, shell, this one shoots twelve gauge.
@@ -232,7 +232,7 @@
   - type: Appearance
 
 - type: entity
-  name: forged double-barrel shotgun
+  name: Forged Double-Barrel Shotgun #Far Horizons - The Great Capitalization Crusade
   parent: [BaseWeaponShotgun, BaseGunWieldable, BaseMinorContraband]
   id: WeaponShotgunForged
   description: Decently made double-barrel shotgun, reinforced with mixed steel and plasteel plates to keep it together. Not as accurate as a real gun.
@@ -255,7 +255,7 @@
     proto: null
 
 - type: entity
-  name: makeshift shotgun
+  name: Makeshift Shotgun #Far Horizons - The Great Capitalization Crusade
   parent: [WeaponFlareGunSecurity, BaseMinorContraband]
   id: WeaponShotgunMakeshift
   description: A small hand-cannon that fires .50 shotgun shells. Has no cloth to hold it together, so it has a high chance of falling apart with every shot.
@@ -342,7 +342,7 @@
 - type: entity
   parent: WeaponShotgunToz106
   id: WeaponShotgunToz106Extended
-  suffix: extended mag
+  suffix: Extended Mag #Far Horizons - The Great Capitalization Crusade
   components:
   - type: ItemSlots
     slots:
