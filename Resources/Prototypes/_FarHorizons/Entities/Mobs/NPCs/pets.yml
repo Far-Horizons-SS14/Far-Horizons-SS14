@@ -1,0 +1,24 @@
+- type: entity
+  parent: MobAdminMouse
+  id: MobAdminMouseSyndi
+  name: NeoSol Admin Mouse
+  components:
+  - type: Sprite
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base", "movement"]
+      state: mouse-adminsyndie
+  - type: SpriteMovement
+    movementLayers:
+      movement:
+        state: mouse-moving-adminsyndicate
+    noMovementLayers:
+      movement:
+        state: mouse-adminsyndie
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: mouse-adminsyndie
+      Critical:
+        Base: dead-adminsyndicate
+      Dead:
+        Base: dead-adminsyndicate
