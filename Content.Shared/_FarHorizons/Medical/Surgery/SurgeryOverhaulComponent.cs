@@ -2,7 +2,7 @@ using Robust.Shared.GameStates;
 using Content.Shared.Damage;
 using Robust.Shared.Prototypes;
 using Content.Shared.Chat.Prototypes;
-using Content.Shared.Research.Prototypes;
+using Content.Shared._FarHorizons.Research;
 
 namespace Content.Shared._FarHorizons.Medical.SurgeryOverhaul.Components;
 
@@ -70,8 +70,8 @@ public sealed partial class NecrosisSurgeryStepComponent : Component
 public sealed partial class SurgeryTechnologyComponent : Component
 {
     [DataField(required: false)]
-    public ProtoId<TechnologyPrototype>? RequiredTechnology;
+    public ProtoId<ResearchTreeUnlockFlagPrototype>? RequiredTechnology;
     
     [DataField]
-    public Dictionary<ProtoId<TechnologyPrototype>, long> TechnologyModifier = new();
+    public Dictionary<ProtoId<ResearchTreeUnlockFlagPrototype>, long> TechnologyModifier = new();
 }

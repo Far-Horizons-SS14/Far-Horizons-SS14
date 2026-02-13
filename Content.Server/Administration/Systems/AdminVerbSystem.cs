@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Server._FarHorizons.Administration.UI;
 using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
 using Content.Server.Administration.UI;
@@ -11,6 +12,7 @@ using Content.Server.Preferences.Managers;
 using Content.Server.Silicons.Laws;
 using Content.Server.Station.Systems;
 using Content.Shared.Administration;
+using Content.Shared.Administration.Systems;
 using Content.Shared.Chemistry.Components.SolutionManager;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Configurable;
@@ -119,30 +121,33 @@ namespace Content.Server.Administration.Systems
 
                 if (TryComp(args.Target, out ActorComponent? targetActor))
                 {
-                    // AdminHelp
-                    Verb verb = new();
-                    verb.Text = Loc.GetString("ahelp-verb-get-data-text");
-                    verb.Category = VerbCategory.Admin;
-                    verb.Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/gavel.svg.192dpi.png"));
-                    verb.Act = () =>
-                        _console.RemoteExecuteCommand(player, $"openahelp \"{targetActor.PlayerSession.UserId}\"");
-                    verb.Impact = LogImpact.Low;
-                    args.Verbs.Add(verb);
-
-                    // Subtle Messages
-                    Verb prayerVerb = new();
-                    prayerVerb.Text = Loc.GetString("prayer-verbs-subtle-message");
-                    prayerVerb.Category = VerbCategory.Admin;
-                    prayerVerb.Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/pray.svg.png"));
-                    prayerVerb.Act = () =>
+                    if (adminData.HasFlag(AdminFlags.Adminhelp))  // Far Horizons
                     {
-                        _quickDialog.OpenDialog(player, "Subtle Message", "Message", "Popup Message", (string message, string popupMessage) =>
+                        // AdminHelp
+                        Verb verb = new();
+                        verb.Text = Loc.GetString("ahelp-verb-get-data-text");
+                        verb.Category = VerbCategory.Admin;
+                        verb.Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/gavel.svg.192dpi.png"));
+                        verb.Act = () =>
+                            _console.RemoteExecuteCommand(player, $"openahelp \"{targetActor.PlayerSession.UserId}\"");
+                        verb.Impact = LogImpact.Low;
+                        args.Verbs.Add(verb);
+
+                        // Subtle Messages
+                        Verb prayerVerb = new();
+                        prayerVerb.Text = Loc.GetString("prayer-verbs-subtle-message");
+                        prayerVerb.Category = VerbCategory.Admin;
+                        prayerVerb.Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/pray.svg.png"));
+                        prayerVerb.Act = () =>
                         {
-                            _prayerSystem.SendSubtleMessage(targetActor.PlayerSession, player, message, popupMessage == "" ? Loc.GetString("prayer-popup-subtle-default") : popupMessage);
-                        });
-                    };
-                    prayerVerb.Impact = LogImpact.Low;
-                    args.Verbs.Add(prayerVerb);
+                            _quickDialog.OpenDialog(player, "Subtle Message", "Message", "Popup Message", (string message, string popupMessage) =>
+                            {
+                                _prayerSystem.SendSubtleMessage(targetActor.PlayerSession, player, message, popupMessage == "" ? Loc.GetString("prayer-popup-subtle-default") : popupMessage);
+                            });
+                        };
+                        prayerVerb.Impact = LogImpact.Low;
+                        args.Verbs.Add(prayerVerb);
+                    }
 
                     // Spawn - Like respawn but on the spot.
                     var pref = _prefsManager.GetPreferences(targetActor.PlayerSession.UserId);
@@ -528,6 +533,21 @@ namespace Content.Server.Administration.Systems
                     },
                     Impact = LogImpact.High,
                     ConfirmationPopup = true
+                };
+                args.Verbs.Add(verb);
+            }
+            
+            // Far Horizons
+            // set mind job verb
+            if (_groupController.CanCommand(player, "setmindjob") && TryComp(args.Target, out ActorComponent? _))
+            {
+                Verb verb = new()
+                {
+                    Text = Loc.GetString("set-mind-job-verb-get-data-text"),
+                    Category = VerbCategory.Debug,
+                    Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/outfit.svg.192dpi.png")),
+                    Act = () => _euiManager.OpenEui(new SetMindJobEui(player.UserId), player),
+                    Impact = LogImpact.Medium
                 };
                 args.Verbs.Add(verb);
             }

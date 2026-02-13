@@ -1,3 +1,4 @@
+using Content.Shared._FarHorizons.Research.Components;
 using Content.Shared.DoAfter;
 using Content.Shared.Interaction;
 using Content.Shared.Ninja.Systems;
@@ -30,14 +31,13 @@ public abstract class SharedResearchStealerSystem : EntitySystem
         if (args.Handled || !_gloves.AbilityCheck(uid, args, out var target))
             return;
 
-        // can only hack the server, not a random console
-        if (!TryComp<TechnologyDatabaseComponent>(target, out var database) || HasComp<ResearchClientComponent>(target))
+        if (!TryComp<FHResearchTreeComponent>(target, out var tree)) // Far Horizons
             return;
 
         args.Handled = true;
 
         // fail fast if theres no techs to steal right now
-        if (database.UnlockedTechnologies.Count == 0)
+        if (tree.Researched.Count == 0) // Far Horizons
         {
             _popup.PopupClient(Loc.GetString("ninja-download-fail"), uid, uid);
             return;

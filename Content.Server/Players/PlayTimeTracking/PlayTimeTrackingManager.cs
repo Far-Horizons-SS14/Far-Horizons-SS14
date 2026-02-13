@@ -1,10 +1,8 @@
 using System.Diagnostics.CodeAnalysis;
-using System.Linq; // NullLink
+using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
-using Content.Server._NullLink.Core; // NullLink
-using Content.Server._NullLink.Helpers; // NullLink
 using Content.Server.Database;
 using Content.Shared.CCVar;
 using Content.Shared.Players.PlayTimeTracking;
@@ -16,8 +14,6 @@ using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
-using Starlight.NullLink; // NullLink
-using PlayTime = Starlight.NullLink.PlayTime; // NullLink
 
 namespace Content.Server.Players.PlayTimeTracking;
 
@@ -62,7 +58,6 @@ public delegate void CalcPlayTimeTrackersCallback(ICommonSession player, HashSet
 public sealed class PlayTimeTrackingManager : ISharedPlaytimeManager, IPostInjectInit
 {
     [Dependency] private readonly IServerDbManager _db = default!;
-    [Dependency] private readonly IActorRouter _actor = default!; // NullLink
     [Dependency] private readonly IServerNetManager _net = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
@@ -289,25 +284,6 @@ public sealed class PlayTimeTrackingManager : ISharedPlaytimeManager, IPostInjec
         // This means that if you're playing on two servers at the same time, they'll step on each other's feet.
         // This is considered fine.
         await _db.UpdatePlayTimes(log);
-        // NullLink shared playtime start
-        if (_actor.TryGetServerGrain(out var server))
-        {
-            Pipe.RunInBackgroundVT
-            (
-                ()=> server.UpdatePlayersPlayTime([.. log
-                    .GroupBy(x => x.User)
-                    .Select(x => new PlayerPlayTime
-                    {
-                        Player = x.Key,
-                        PlayTimes = [.. x.Select(pt => new PlayTime
-                        {
-                            Time = pt.Time,
-                            Tracker = pt.Tracker,
-                        })]
-                    })])
-            );
-        }
-        // NullLink end
 
         _sawmill.Debug($"Saved {log.Count} trackers");
     }
@@ -329,26 +305,6 @@ public sealed class PlayTimeTrackingManager : ISharedPlaytimeManager, IPostInjec
         // This means that if you're playing on two servers at the same time, they'll step on each other's feet.
         // This is considered fine.
         await _db.UpdatePlayTimes(log);
-
-        // NullLink shared playtime start
-        if (_actor.TryGetServerGrain(out var server))
-        {
-            Pipe.RunInBackgroundVT
-            (
-                () => server.UpdatePlayersPlayTime([.. log
-                    .GroupBy(x => x.User)
-                    .Select(x => new PlayerPlayTime
-                    {
-                        Player = x.Key,
-                        PlayTimes = [.. x.Select(pt => new PlayTime
-                        {
-                            Time = pt.Time,
-                            Tracker = pt.Tracker,
-                        })]
-                    })])
-            );
-        }
-        // NullLink end
 
         _sawmill.Debug($"Saved {log.Count} trackers for {session.Name}");
     }

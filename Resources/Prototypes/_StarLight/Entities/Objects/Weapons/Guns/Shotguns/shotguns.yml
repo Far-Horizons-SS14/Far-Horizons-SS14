@@ -1,5 +1,5 @@
 - type: entity
-  name: riot shotgun
+  name: Riot Shotgun #Far Horizons - The Great Capitalization Crusade
   parent: [BaseWeaponShotgun, BaseGunWieldable, BaseSecurityContraband]
   id: WeaponShotgunRiot
   description: A sturdy shotgun with a longer magazine and a fixed tactical stock designed for non-lethal riot control.
@@ -26,7 +26,7 @@
     - RiotShotgun #FH
 
 - type: entity
-  name: sawn-off riot shotgun
+  name: Sawn-Off Riot Shotgun #Far Horizons - The Great Capitalization Crusade
   parent: [BaseWeaponShotgun, BaseSecurityContraband]
   id: WeaponShotgunRiotSawn
   description: Come with me if you want to live.
@@ -63,29 +63,40 @@
     node: shotgunsawn
     deconstructionTarget: null
 
+# OFF BECAUSE I NEED TO REWRITE HOW IT WORKS ENTIRELY IN THE _FH SECTION
+#- type: entity
+#  name: combat shotgun
+#  parent: [BaseWeaponShotgun, BaseGunWieldable, BaseSecurityContraband]
+#  id: WeaponShotgunCombat
+#  description: A semi automatic shotgun with a shellholder allowing for much faster reloads. Holds eight rounds. #FH
+#  components:
+#  - type: Item
+#    sprite: _FarHorizons/Objects/Weapons/Guns/Shotguns/cshotgunfolded.rsi_inhands_64x.rsi #FH
+#  - type: Gun
+#    spread: 20
+#  - type: Sprite
+#    sprite: _FarHorizons/Objects/Weapons/Guns/Shotguns/cshotgunfolded.rsi #FH
+#  - type: Clothing
+#    sprite: _FarHorizons/Objects/Weapons/Guns/Shotguns/cshotgunfolded.rsi #FH
+#  - type: GunRequiresWield
+#  - type: RevolverAmmoProvider #FH Start - Allows instant speedloader inserts.
+#    whitelist:
+#      tags:
+#      - ShellShotgun
+#      - SpeedLoaderShotgun
+#      - ShotgunBoxAmmo
+#    proto: ShellShotgun
+#    capacity: 8
+#    chambers: [ True, True, True, True, True, True, True, True ]
+#    ammoSlots: [ null, null, null, null, null, null, null, null ]
+#    soundInsert:
+#      path: /Audio/Weapons/Guns/MagIn/shotgun_insert.ogg #FH End
+#  - type: ContainerContainer
+#    containers:
+#      revolver-ammo: !type:Container
+
 - type: entity
-  name: combat shotgun
-  parent: [BaseWeaponShotgun, BaseGunWieldable, BaseSecurityContraband]
-  id: WeaponShotgunCombat
-  description: A semi automatic shotgun with tactical furniture and a seven-shell capacity underneath.
-  components:
-  - type: Item
-    sprite: _Starlight/Objects/Weapons/Guns/Shotguns/cshotgun_inhands_64x.rsi
-  - type: Gun
-    spread: 20
-  - type: Sprite
-    sprite: _Starlight/Objects/Weapons/Guns/Shotguns/cshotgun.rsi
-  - type: Clothing
-    sprite: _Starlight/Objects/Weapons/Guns/Shotguns/cshotgun.rsi
-  - type: GunRequiresWield
-  - type: BallisticAmmoProvider
-    capacity: 7
-  - type: Tag #FH
-    tags: #FH
-    - CombatShotgun #FH
-  
-- type: entity
-  name: cycler shotgun
+  name: Cycler Shotgun #Far Horizons - The Great Capitalization Crusade
   parent: [BaseWeaponShotgunAny, BaseGunWieldable, BaseSecuritySalvageContraband]
   id: WeaponShotgunCycler
   description: An advanced shotgun with two separate magazine tubes, allowing you to quickly toggle between ammo types.
@@ -118,7 +129,7 @@
       revolver-ammo: !type:Container
       
 - type: entity
-  name: Tkach Ya-Sui GA 12 revolver
+  name: Tkach Ya-Sui GA 12 Revolver #Far Horizons - The Great Capitalization Crusade
   parent: [BaseWeaponShotgunAny, BaseSecuritySalvageContraband]
   id: WeaponShotgunGA12
   description: An outdated sidearm rarely seen in use by certain PMCs that operate throughout the frontier systems, featuring a three-shell cylinder. Thats right, shell, this one shoots twelve gauge.
@@ -170,7 +181,7 @@
   name: "AS-12 'Minotaur' Shotgun"
   parent: [BaseWeaponShotgunAny, BaseGunWieldable, BaseSyndicateContraband]
   id: WeaponShotgunMinotaur
-  description: Smooth, powerful, highly illegal. The newest full auto shotgun available at the market, utilizes standard 12g drum mags. Property of Gorlex Marauders.
+  description: Smooth, powerful, highly illegal. The newest full auto shotgun available at the market, utilizes standard shotgun slug drum mags. #FH
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Guns/Shotguns/minotaur.rsi
@@ -200,7 +211,7 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazineShotgun
+        startingItem: MagazineShotgunSlug #FH
         priority: 2
         whitelist:
           tags:
@@ -221,7 +232,7 @@
   - type: Appearance
 
 - type: entity
-  name: forged double-barrel shotgun
+  name: Forged Double-Barrel Shotgun #Far Horizons - The Great Capitalization Crusade
   parent: [BaseWeaponShotgun, BaseGunWieldable, BaseMinorContraband]
   id: WeaponShotgunForged
   description: Decently made double-barrel shotgun, reinforced with mixed steel and plasteel plates to keep it together. Not as accurate as a real gun.
@@ -244,7 +255,7 @@
     proto: null
 
 - type: entity
-  name: makeshift shotgun
+  name: Makeshift Shotgun #Far Horizons - The Great Capitalization Crusade
   parent: [WeaponFlareGunSecurity, BaseMinorContraband]
   id: WeaponShotgunMakeshift
   description: A small hand-cannon that fires .50 shotgun shells. Has no cloth to hold it together, so it has a high chance of falling apart with every shot.
@@ -276,3 +287,64 @@
       - id: RifleStock
         launchAngle: 180
         prob: 0.80
+
+# it's the TOZ!
+- type: entity
+  name: ZOZ-106
+  parent: [BaseWeaponShotgunAny, BaseGunWieldable, BaseSovietContraband]
+  id: WeaponShotgunToz106
+  description: A cheap Soviet shotgun that received an indifferent welcome from hunters. Aim at the head and eyes for best results. Uses less-powerful .42 shotgun shells.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Shotguns/toz.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: _Starlight/Objects/Weapons/Guns/Shotguns/toz.rsi
+  - type: GunRequiresWield
+  - type: Gun
+    spread: 10
+    fireRate: 2
+  - type: Item
+    sprite: _Starlight/Objects/Weapons/Guns/Shotguns/toz.rsi
+    size: Normal
+    shape:
+    - 0,0,3,0
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineShotgunToz
+        priority: 2
+        whitelist:
+          tags:
+          - MagazineShotgunToz
+        whitelistFailPopup: gun-magazine-whitelist-fail
+        insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: ChamberMagazineAmmoProvider
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+  - type: StaticPrice
+    price: 400
+
+# TOZ with extended mag already inserted:
+- type: entity
+  parent: WeaponShotgunToz106
+  id: WeaponShotgunToz106Extended
+  suffix: Extended Mag #Far Horizons - The Great Capitalization Crusade
+  components:
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        startingItem: MagazineShotgunTozExtended

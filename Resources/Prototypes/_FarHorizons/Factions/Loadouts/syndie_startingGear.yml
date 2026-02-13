@@ -1,4 +1,4 @@
-# Command
+#region Command
 
 - type: startingGear
   id: SyndieCaptain
@@ -15,10 +15,8 @@
 - type: startingGear
   id: SyndieHoSGear
   equipment:
-    eyes: ClothingEyesGlassesSecurity
     id: HoSPDA
     gloves: ClothingHandsGlovesCombat
-    ears: ClothingHeadsetAltSecurity
   storage:
     back:
     - Flash
@@ -27,9 +25,7 @@
   id: SyndieChiefEngineerGear
   equipment:
     id: CEPDA
-    eyes: ClothingEyesGlassesMeson
-    ears: ClothingHeadsetCE
-    belt: ClothingBeltUtilityEngineering
+    belt: ClothingBeltUtilityEngineeringSyndi
   storage:
     back:
     - Flash
@@ -95,7 +91,7 @@
     - RubberStampNtrep
     - CaneNT
 
-# Law
+#region Law
 
 - type: startingGear
   id: SyndieIAAGear
@@ -110,33 +106,31 @@
     back:
       - BookSpaceLaw
 
-# Engineering
+#region Engineering
 
 - type: startingGear
   id: SyndieAtmosphericTechnicianGear
   equipment:
-    eyes: ClothingEyesGlassesMeson
     id: AtmosPDA
-    belt: ClothingBeltUtilityEngineering
-    ears: ClothingHeadsetEngineering
+    belt: ClothingBeltUtilityEngineeringSyndi
+    ears: ClothingHeadsetEngineeringSyndi
 
 - type: startingGear
   id: SyndieStationEngineerGear
   equipment:
-    eyes: ClothingEyesGlassesMeson
-    belt: ClothingBeltUtilityEngineering
-    ears: ClothingHeadsetEngineering
+    belt: ClothingBeltUtilityEngineeringSyndi
+    ears: ClothingHeadsetEngineeringSyndi
 
 - type: startingGear
   id: SyndieTechnicalAssistantGear
   equipment:
-    shoes: ClothingShoesBootsWork
+    shoes: ClothingShoesBootsWorkSyndi
     id: TechnicalAssistantPDA
-    belt: ClothingBeltUtilityEngineering
-    ears: ClothingHeadsetEngineering
+    belt: ClothingBeltUtilityEngineeringSyndi
+    ears: ClothingHeadsetEngineeringSyndi
     pocket2: BookEngineersHandbook
 
-# Medical
+#region Medical
 
 - type: startingGear
   id: SyndieSurgeonGear
@@ -190,7 +184,7 @@
     back:
     - RubberStampPsychologist
 
-# Science
+#region Science
 
 - type: startingGear
   id: SyndieRoboticistGear
@@ -214,13 +208,12 @@
     pocket2: BookScientistsGuidebook
     belt: ClothingBeltScience
 
-# Security
+#region Security
 
 - type: startingGear
   id: SyndieWardenGear
   equipment:
     id: WardenPDA
-    ears: ClothingHeadsetSecurityWarden
     pocket1: WeaponPistolDP
   storage:
     back:
@@ -231,7 +224,6 @@
 - type: startingGear
   id: SyndieCorpsmanGear
   equipment:
-    ears: ClothingHeadsetBrigmedic
     neck: ClothingNeckTieBlue
     pocket2: HandheldCorpsmanCrewMonitor
     id: CorpsmanPDA
@@ -244,7 +236,6 @@
 - type: startingGear
   id: SyndieBrigmedicGear
   equipment:
-    ears: ClothingHeadsetBrigmedic
     neck: ClothingNeckTieRed
     pocket2: HandheldBrigmedicCrewMonitor
     mask: ClothingMaskBreathMedicalSecurity
@@ -257,7 +248,6 @@
   id: SyndieDetectiveGear
   equipment:
     id: DetectivePDA
-    ears: ClothingHeadsetSecurity
     belt: ClothingBeltHolsterFilled
   storage:
     back:
@@ -267,8 +257,6 @@
 
 - type: startingGear
   id: SyndieSecurityOfficerGear
-  equipment:
-    ears: ClothingHeadsetSecurity
   storage:
     back:
     - Flash
@@ -276,11 +264,13 @@
 - type: startingGear
   id: SyndieSecurityCadetGear
   equipment:
+    head: ClothingHeadHatSecurityCapSyndi
+    eyes: ClothingEyesGlassesSecuritySyndi
     shoes: ClothingShoesBootsJackFilled
     outerClothing: ClothingOuterArmorBasic
     id: SecurityCadetPDA
-    ears: ClothingHeadsetSecurity
-    belt: ClothingBeltSecurityFilled
+    ears: ClothingHeadsetSecuritySyndi
+    belt: ClothingBeltSecuritySyndiFilled
     pocket2: BookSecurity
   storage:
     back:

@@ -1,8 +1,8 @@
 - type: entity
-  id: BaseMagazineShotgun
-  name: ammo drum (.50 shells)
-  parent: [ BaseItem, BaseSecurityContraband ]
   abstract: true
+  parent: [ BaseItem, BaseSecurityContraband ]
+  id: BaseMagazineShotgun
+  name: 12 gauge ammo drum # Starlight change: .50 -> 12 gauge
   components:
   - type: Tag
     tags:
@@ -44,17 +44,18 @@
 
 - type: entity
   id: MagazineShotgunEmpty
-  name: ammo drum (.50 shells any)
+  name: 12 gauge ammo drum # Starlight change: .50 -> 12 gauge
   suffix: empty
+  description: A large drum magazine used by some military-grade automatic shotguns.
   parent: BaseMagazineShotgun
   components:
   - type: BallisticAmmoProvider
     proto: null
 
 - type: entity
-  id: MagazineShotgun
-  name: ammo drum (.50 pellet)
   parent: BaseMagazineShotgun
+  id: MagazineShotgun
+  name: 12 gauge buckshot drum # Starlight change: .50 -> 12 gauge
   components:
   - type: BallisticAmmoProvider
     proto: ShellShotgun
@@ -77,8 +78,9 @@
 
 - type: entity
   id: MagazineShotgunBeanbag
-  name: ammo drum (.50 beanbags)
+  name: 12 gauge beanbag drum # Starlight change: .50 -> 12 gauge
   parent: BaseMagazineShotgun
+  description: A large drum magazine used by some military-grade automatic shotguns. Intended to hold less-than-lethal beanbag ammunition.
   components:
   - type: BallisticAmmoProvider
     proto: ShellShotgunBeanbag
@@ -100,9 +102,9 @@
         color: "#30722d"
 
 - type: entity
-  id: MagazineShotgunSlug
-  name: ammo drum (.50 slug)
   parent: BaseMagazineShotgun
+  id: MagazineShotgunSlug
+  name: 12 gauge slug drum # Starlight change: .50 -> 12 gauge
   components:
   - type: BallisticAmmoProvider
     proto: ShellShotgunSlug
@@ -125,7 +127,7 @@
 
 - type: entity
   id: MagazineShotgunIncendiary
-  name: ammo drum (.50 incendiary)
+  name: 12 gauge incendiary drum # Starlight change: .50 -> 12 gauge
   parent: BaseMagazineShotgun
   components:
   - type: BallisticAmmoProvider
@@ -149,7 +151,7 @@
 
 - type: entity
   id: MagazineShotgunBreach
-  name: ammo drum (.50 breaching)
+  name: 12 gauge breaching drum # Starlight change: .50 -> 12 gauge
   parent: BaseMagazineShotgun
   components:
   - type: BallisticAmmoProvider

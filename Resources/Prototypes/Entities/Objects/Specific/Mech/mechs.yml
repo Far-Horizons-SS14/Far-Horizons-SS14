@@ -180,8 +180,7 @@
         acts: ["Destruction"]
   - type: PowerCellDraw
     enabled: false
-    drawRate: 1
-    delay: 3
+    drawRate: 0.333333333 #Starlight, delay was 3 seconds per draw
   - type: ActiveInputMover
 # 🌟Starlight-start🌟
   - type: Prying
@@ -200,10 +199,10 @@
   - type: Sprite
     drawdepth: Mobs
     noRot: true
-    sprite: Objects/Specific/Mech/Mechs/Basic/ripley.rsi
+    sprite: Objects/Specific/Mech/mecha.rsi
     layers:
     - map: [ "enum.MechVisualLayers.Base" ]
-      state: base
+      state: ripley
   - type: FootstepModifier
     footstepSoundCollection:
       path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
@@ -212,9 +211,9 @@
       tags:
       - IndustrialMech
       - RipleyMKIIUpgradeKit
-    baseState: base
-    openState: base-open
-    brokenState: base-broken
+    baseState: ripley
+    openState: ripley-open
+    brokenState: ripley-broken
     mechToPilotDamageMultiplier: 0.75
     pilotWhitelist:
       components:

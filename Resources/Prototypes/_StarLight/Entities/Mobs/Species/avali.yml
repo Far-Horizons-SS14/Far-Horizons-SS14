@@ -24,6 +24,7 @@
       species: Avali
       hideLayersOnEquip:
       - Tail
+      - HeadTop
     - type: Hunger # on 2x more
       thresholds:
         Overfed: 250
@@ -114,9 +115,9 @@
         Female: FemaleAvali
         Unsexed: MaleAvali
     - type: MovementSpeedModifier
-      weightlessAcceleration: 1.6 # Avalis are specifically built to fly in low-g environments
-      weightlessFriction: 1
-      weightlessModifier: 1
+      baseWeightlessAcceleration: 1.6 # Avalis are specifically built to fly in low-g environments
+      baseWeightlessFriction: 1
+      baseWeightlessModifier: 1
     - type: Damageable
       damageContainer: Biological
       damageModifierSet: Avali
@@ -126,7 +127,10 @@
           sprite: Mobs/Effects/brute_damage.rsi
           color: "#6C3BAA"
     - type: Bloodstream
-      bloodReagent: AvaliBlood
+      bloodReferenceSolution:
+        reagents:
+        - ReagentId: AvaliBlood
+          Quantity: 300
     - type: MeleeWeapon
       soundHit:
         path: /Audio/Weapons/pierce.ogg
@@ -135,9 +139,10 @@
       damage:
         types:
           Slash: 6.25
-    - type: Temperature
+    - type: TemperatureDamage
       heatDamageThreshold: 310
       coldDamageThreshold: 223
+    - type: Temperature
       currentTemperature: 261
       specificHeat: 48
     - type: ThermalRegulator
@@ -151,6 +156,18 @@
     - type: Stasis
       enterStasisAction: ActionStasisEnter
       exitStasisAction: ActionStasisExit
+      updateInterval: 1s
+      healingPerUpdate:
+        types:
+          Heat: 2
+          Cold: 2
+        groups:
+          Brute: 6
+      bleedHealPerUpdate: 1.0
+      # FarHorizon edit start
+      critHealingModifier: 0.5 
+      stasisDamageReduction: 0.7
+      # FarHorizon edit end
 
 # Chirp!
 

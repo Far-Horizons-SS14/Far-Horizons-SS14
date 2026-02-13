@@ -125,7 +125,10 @@
     damageContainer: Biological
     damageModifierSet: IPC
   - type: Bloodstream
-    bloodReagent: Oil
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: Oil
+        Quantity: 300
   - type: Icon
     sprite: _FarHorizons/Mobs/Species/IPC/parts.rsi
     state: full
@@ -234,8 +237,9 @@
     damage:
       groups:
         Brute: -30 # 10 for each type
-  - type: HumanoidEMPComposite # Composite effect will include HumanoidEMP values, but also collect values from all limbs/organs
-  - type: HumanoidEMP
+  - type: HumanoidEMPComposite # HumanoidEMPComposite is used to gather EMP effects from HumanoidEMPCompositeElement components on all limbs and organs. These effects added in addition to effects in HumanoidEMP and won't work without it
+  - type: HumanoidEMP # HumanoidEMP is needed to receive EMP effects, it may carry its own innate effects, but doesn't have to
+    effectCooldown: 2
     effect:
       stunAmount: 2.5
       slowdownAmount: 5.0
@@ -322,15 +326,16 @@
     - enum.IPCUiKey.Key
   # Thermals
   - type: Temperature
-    heatDamageThreshold: 373 # ~100C
-    coldDamageThreshold: 253 # Temperature alert works funky, basically requred for "ideal temperature" to be in the middle between 2
-    coldDamage: {} # Since we had to set treshold for damage, but we don't actually want any damage
+    currentTemperature: 313
+    specificHeat: 10 # IPC's metal body has very low heat capacity. Fast to heat and fast to cool
+  - type: TemperatureDamage
     disableAlerts: true
+    heatDamageThreshold: 373 # ~100C
+    coldDamageThreshold: 285 # Temperature alert works funky, basically requred for "ideal temperature" to be in the middle between 2
+    coldDamage: {} # Since we had to set treshold for damage, but we don't actually want any damage
     heatDamage:
       types:
         Heat: 2.5 #per second, scales with temperature & other constants
-    currentTemperature: 313
-    specificHeat: 10 # IPC's metal body has very low heat capacity. Fast to heat and fast to cool
   - type: IPCThermalRegulation
     produceHeat: 2000 # How much heat generated inside the body per second (only when on)
     radiateHeat: 300 # Passive heat loss, even when dead and/or spaced

@@ -33,6 +33,8 @@ using Content.Server.StationEvents.Components;
 using Content.Server.Mind;
 using Content.Shared.Tag; 
 //FarHorizons End
+using Content.Shared.Damage.Components;
+
 
 namespace Content.Server.Starlight.Medical.Surgery;
 // Based on the RMC14.
@@ -158,14 +160,12 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
             if (TryComp<RottingComponent>(args.Body, out var rotting) && TryComp<PerishableComponent>(args.Body, out var perishable))
             {
                 long ResearchModifier = 50;
-                if (surgProto.TryGetComponent<SurgeryTechnologyComponent>(out var techvar) && TryComp(args.Body, out BuckleComponent? buckle)
-                && TryComp(buckle.BuckledTo, out DeviceLinkSinkComponent? linkComp) && linkComp.LinkedSources.Count > 0 &&
-                TryComp<TechnologyDatabaseComponent>(linkComp.LinkedSources.First(), out var techComp))
+                if (surgProto.TryGetComponent<SurgeryTechnologyComponent>(out var techvar) && 
+                    _surgeryOverhaul.TryGetConnectedResearchServer(args.Body, out var server))
                 {
                     foreach (var (key, value) in techvar.TechnologyModifier!)
                     {
-                        var TechProto = _prototypes.Index<TechnologyPrototype>(key.Id);
-                        if (_research.IsTechnologyUnlocked(args.Body, TechProto, techComp) && ResearchModifier > value)
+                        if (_fhResearch.IsFlagUnlocked((server.Value, server.Value.Comp), key) && ResearchModifier > value)
                             ResearchModifier = value;
                     }
                 }
@@ -221,7 +221,7 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
     private void OnStepEmoteEffectComplete(Entity<SurgeryStepEmoteEffectComponent> ent, ref SurgeryStepEvent args)
     {
 
-        if (!HasComp<PainNumbnessComponent>(args.Body) && !HasComp<SleepingComponent>(args.Body))
+        if (!HasComp<PainNumbnessStatusEffectComponent>(args.Body) && !HasComp<SleepingComponent>(args.Body))
             _chat.TryEmoteWithChat(args.Body, ent.Comp.Emote);
         else
             _sleeping.TryWaking(args.Body); // If the patient sleeping without n2o or reagents, wake them up.
@@ -279,14 +279,12 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
                     if (TryComp<RottingComponent>(args.Body, out var rotting) && TryComp<PerishableComponent>(args.Body, out var perishable))
                     {
                         long ResearchModifier = 50;
-                        if (surgProto.TryGetComponent<SurgeryTechnologyComponent>(out var techvar) && TryComp(args.Body, out BuckleComponent? buckle)
-                        && TryComp(buckle.BuckledTo, out DeviceLinkSinkComponent? linkComp) && linkComp.LinkedSources.Count > 0 &&
-                        TryComp<TechnologyDatabaseComponent>(linkComp.LinkedSources.First(), out var techComp))
+                        if (surgProto.TryGetComponent<SurgeryTechnologyComponent>(out var techvar) && 
+                            _surgeryOverhaul.TryGetConnectedResearchServer(args.Body, out var server))
                         {
                             foreach (var (key, value) in techvar.TechnologyModifier!)
                             {
-                                var TechProto = _prototypes.Index<TechnologyPrototype>(key.Id);
-                                if (_research.IsTechnologyUnlocked(args.Body, TechProto, techComp) && ResearchModifier > value)
+                                if (_fhResearch.IsFlagUnlocked((server.Value, server.Value.Comp), key) && ResearchModifier > value)
                                     ResearchModifier = value;
                             }
                         }

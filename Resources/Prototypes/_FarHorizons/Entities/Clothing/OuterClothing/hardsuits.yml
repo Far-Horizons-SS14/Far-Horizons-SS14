@@ -1,77 +1,14 @@
-# Magistrate Hardsuit
+#region NanoTrasen
 
-- type: entity
-  parent: [ClothingOuterHardsuitBase, BaseCommandContraband]
-  id: ClothingOuterHardsuitMagistrate
-  name: Magistate Hardsuit
-  description: In order to uphold the law, Concord Frontier Authority has seen fit to supply their magistrates a state of the art hardsuit.
-  components:
-  - type: Sprite
-    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/magistrate.rsi
-  - type: Clothing
-    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/magistrate.rsi
-  - type: PressureProtection
-    highPressureMultiplier: 0.525
-    lowPressureMultiplier: 10000
-  - type: ClothingSpeedModifier
-    walkModifier: 0.95
-    sprintModifier: 0.95
-  - type: Pierceable
-    level: Metal
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.9
-        Slash: 0.9
-        Piercing: 0.9
-        Heat: 0.9
-        Radiation: 0.25
-        Caustic: 0.9
-    staminaModifier: 0.8
-  - type: ExplosionResistance
-    damageCoefficient: 0.9
-  - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitMagistrate
 
-# Corpsman Hardsuit
 
-- type: entity
-  parent: [ClothingOuterHardsuitBase, BaseSecurityContraband]
-  id: ClothingOuterHardsuitCorpsman
-  name: Corpsman Hardsuit
-  description: A reinforced version of the medical security hardsuit, designed to take incoming fire while providing on-field triage.
-  components:
-  - type: Sprite
-    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/corpsman.rsi
-  - type: Clothing
-    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/corpsman.rsi
-  - type: PressureProtection
-    highPressureMultiplier: 0.3
-    lowPressureMultiplier: 1000
-  - type: ExplosionResistance
-    damageCoefficient: 0.5
-  - type: Pierceable
-    level: Metal
-  - type: Armor
-    modifiers:
-      flatReductions: #FH
-        Piercing: 5 #FH
-        Heat: 4 #FH
-      coefficients:
-        Blunt: 0.65
-        Slash: 0.65
-        Piercing: 0.55
-        Heat: 0.55
-        Caustic: 0.65
-    staminaModifier: 0.6
-  - type: ZombificationResistance
-    zombificationResistanceCoefficient: 0.5
-  - type: ClothingSpeedModifier
-    walkModifier: 0.80
-    sprintModifier: 0.80
-  - type: HeldSpeedModifier
-  - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitCorpsman
+
+
+
+
+
+
+#region Command
 
 # Head of Personnel Hardsuit
 
@@ -79,6 +16,7 @@
   parent: [ClothingOuterHardsuitBase, BaseCommandContraband]
   id: ClothingOuterHardsuitHoP
   name: Head of Personnel Hardsuit
+  suffix: NT
   description: A hardsuit which somehow just seems to be covered in papercuts. How that even happened on this is astounding.
   components:
   - type: Sprite
@@ -105,18 +43,138 @@
   - type: ClothingSpeedModifier
     walkModifier: 0.80
     sprintModifier: 0.80
+    requireActivated: false
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitHoP
 
-## Syndicate Station
+# Magistrate Hardsuit
 
+- type: entity
+  parent: [ClothingOuterHardsuitBase, BaseCommandContraband]
+  id: ClothingOuterHardsuitMagistrate
+  name: Magistate Hardsuit
+  suffix: NT
+  description: In order to uphold the law, Concord Frontier Authority has seen fit to supply their magistrates a state of the art hardsuit.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/magistrate.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/magistrate.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.525
+    lowPressureMultiplier: 10000
+  - type: ClothingSpeedModifier
+    walkModifier: 0.95
+    sprintModifier: 0.95
+    requireActivated: false
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9
+        Radiation: 0.25
+        Caustic: 0.9
+    staminaModifier: 0.8
+  - type: ExplosionResistance
+    damageCoefficient: 0.9
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitMagistrate
+
+#region Security
+
+# Corpsman Hardsuit
+
+- type: entity
+  parent: [ClothingOuterHardsuitBase, BaseSecurityContraband]
+  id: ClothingOuterHardsuitCorpsman
+  name: Corpsman Hardsuit
+  suffix: NT
+  description: A reinforced version of the medical security hardsuit, designed to take incoming fire while providing on-field triage.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/corpsman.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/corpsman.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.3
+    lowPressureMultiplier: 1000
+  - type: ItemToggle
+    onUse: false
+    soundActivate:
+      path: /Audio/Items/flashlight_on.ogg
+    soundDeactivate:
+      path: /Audio/Items/flashlight_off.ogg
+  - type: ItemToggleActiveSound
+    activeSound:
+      path: /Audio/Effects/Vehicle/policesiren.ogg
+      params:
+        volume: -4
+  - type: UseDelay
+    delay: 1.0
+  - type: ToggleClothing
+    action: ActionToggleSecuritySiren
+  - type: ItemTogglePointLight
+  - type: PointLight
+    enabled: false
+    radius: 2
+    energy: 4
+    color: blue
+    mask: /Textures/Effects/LightMasks/double_cone.png
+  - type: RotatingLight
+    speed: 360
+  - type: ExplosionResistance
+    damageCoefficient: 0.5
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      flatReductions: #FH
+        Piercing: 5 #FH
+        Heat: 4 #FH
+      coefficients:
+        Blunt: 0.65
+        Slash: 0.65
+        Piercing: 0.55
+        Heat: 0.55
+        Caustic: 0.65
+    staminaModifier: 0.6
+    ignoreKnockdown: true # Taser no worky on combat hardsuits
+  - type: ZombificationResistance
+    zombificationResistanceCoefficient: 0.5
+  - type: ClothingSpeedModifier
+    walkModifier: 0.80
+    sprintModifier: 0.80
+    requireActivated: false
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitCorpsman
+
+
+#region Syndicate 
+
+
+
+
+
+
+
+
+
+
+
+#region Command
 
 # Commander (Captain)
 
 - type: entity
   parent: [ClothingOuterHardsuitBase, BaseCommandContraband]
   id: ClothingOuterHardsuitCapSyndi
-  name: commander's armored spacesuit
+  name: Commander's Armored Spacesuit
+  suffix: S
   description: A formal armored spacesuit, made for the station's commander.
   components:
   - type: Sprite
@@ -143,9 +201,11 @@
         Radiation: 0.5
         Caustic: 0.6
     staminaModifier: 0.6
+    ignoreKnockdown: true # Taser no worky on combat hardsuits
   - type: ClothingSpeedModifier
     walkModifier: 0.8
     sprintModifier: 0.8
+    requireActivated: false
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitCapSyndi
@@ -162,6 +222,7 @@
   parent: ClothingOuterHardsuitHoP
   id: ClothingOuterHardsuitHoPSyndi
   name: Personnel Chief Hardsuit
+  suffix: S
   description: A hardsuit which somehow just seems to be covered in papercuts. How that even happened on this is astounding.
   components:
   - type: Sprite
@@ -170,3 +231,241 @@
     sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/syndihopspace.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitHoPSyndi
+
+# Security Overwatch (HoS)
+
+- type: entity
+  parent: ClothingOuterHardsuitSecurityRed
+  id: ClothingOuterHardsuitSecurityRedSyndi
+  name: Security Overwatch Hardsuit
+  suffix: S
+  description: A special suit that protects against hazardous, low pressure environments. Has an additional layer of armor.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/security-red-syndi.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/security-red-syndi.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitSecurityRedSyndi
+
+# Technical Lead (CE)
+- type: entity
+  parent: [ClothingOuterHardsuitBase, BaseCommandContraband]
+  id: ClothingOuterHardsuitEngineeringWhiteSyndi
+  name: Technical Lead's Hardsuit
+  suffix: S
+  description: A special hardsuit that protects against hazardous, low pressure environments, made for the technical lead of the station.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/engineering-white-syndi.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/engineering-white-syndi.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.02
+    lowPressureMultiplier: 1000
+  - type: FireProtection
+    reduction: 0.8
+  - type: ExplosionResistance
+    damageCoefficient: 0.2
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.8
+        Heat: 0.4
+        Radiation: 0.0
+        Caustic: 0.7
+  - type: ClothingSpeedModifier
+    walkModifier: 0.8
+    sprintModifier: 0.8
+    requireActivated: false
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitEngineeringWhiteSyndi
+  - type: Tag
+    tags:
+    #- CorgiWearable
+    - Hardsuit
+    - WhitelistChameleon
+    - IPCExternalCooling
+
+#region Engineering
+
+# Environmental Technician (Atmos) Hardsuit
+
+- type: entity
+  parent: [ClothingOuterHardsuitBase, BaseEngineeringContraband]
+  id: ClothingOuterHardsuitAtmosSyndi
+  name: Environmental Hardsuit
+  suffix: S
+  description: A special suit that protects against hazardous, low pressure environments. Has thermal shielding.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/atmospherics-syndi.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/atmospherics-syndi.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.02
+    lowPressureMultiplier: 1000
+  - type: TemperatureProtection
+    heatingCoefficient: 0.001
+    coolingCoefficient: 0.001
+  - type: FireProtection
+    reduction: 0.8
+  - type: ExplosionResistance
+    damageCoefficient: 0.5
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.8
+        Radiation: 0.5
+  - type: ClothingSpeedModifier
+    walkModifier: 0.7
+    sprintModifier: 0.7
+    requireActivated: false
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitAtmosSyndi
+  - type: Tag
+    tags:
+    #- CorgiWearable
+    - Hardsuit
+    - WhitelistChameleon
+    - IPCExternalCooling
+
+# Station Architect (Engineering) Hardsuit
+
+- type: entity
+  parent: [ClothingOuterHardsuitBase, BaseEngineeringContraband]
+  id: ClothingOuterHardsuitEngineeringSyndi
+  name: Architectural Hardsuit
+  suffix: S
+  description: A special suit that protects against hazardous, low pressure environments. Has radiation shielding.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/engineering-syndi.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/engineering-syndi.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.04
+    lowPressureMultiplier: 1000
+  - type: ExplosionResistance
+    damageCoefficient: 0.5
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Shock: 0.8
+        Caustic: 0.5
+        Radiation: 0.2
+  - type: ClothingSpeedModifier
+    walkModifier: 0.7
+    sprintModifier: 0.7
+    requireActivated: false
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitEngineeringSyndi
+  - type: Tag
+    tags:
+    #- CorgiWearable
+    - Hardsuit
+    - WhitelistChameleon
+    - IPCExternalCooling
+
+#region Security
+
+# General Security
+
+- type: entity
+  parent: ClothingOuterHardsuitSecurity
+  id: ClothingOuterHardsuitSecuritySyndi
+  name: Security Hardsuit
+  suffix: S
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/security-syndi.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/security-syndi.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitSecuritySyndi
+
+# Medical Officer (Brigmedic)
+
+- type: entity
+  parent: ClothingOuterHardsuitBrigmedic
+  id: ClothingOuterHardsuitBrigmedicSyndi
+  name: Medical Officer Hardsuit
+  suffix: S
+  description: Special hardsuit of the guardian angel of the brig. It is the medical version of the security hardsuit.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/brigmedic-syndi.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/brigmedic-syndi.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitBrigmedicSyndi
+  
+# Guardian (Warden)
+
+- type: entity
+  parent: ClothingOuterHardsuitWarden
+  id: ClothingOuterHardsuitWardenSyndi
+  name: Guardian's Hardsuit
+  suffix: S
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/security-warden-syndi.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/security-warden-syndi.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitWardenSyndi
+
+#region SHC
+
+# Syndicate Operations Agent (NTR)
+
+- type: entity
+  parent: [ClothingOuterHardsuitBase, BaseCommandContraband]
+  id: ClothingOuterHardsuitNtrepSyndi
+  name: Syndicate Operations Agent Hardsuit
+  description: This hardsuit was designed by Syndicate High Command to really make sure people understand who's in charge.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/ntrep-syndi.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/ntrep-syndi.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.525
+    lowPressureMultiplier: 10000
+  - type: ClothingSpeedModifier
+    walkModifier: 0.95
+    sprintModifier: 0.95
+    requireActivated: false
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9
+        Radiation: 0.25
+        Caustic: 0.9
+    staminaModifier: 0.8
+  - type: ExplosionResistance
+    damageCoefficient: 0.9
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitNtrepSyndi

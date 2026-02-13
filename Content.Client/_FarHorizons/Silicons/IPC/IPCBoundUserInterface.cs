@@ -3,12 +3,10 @@ using Robust.Client.UserInterface;
 
 namespace Content.Client._FarHorizons.Silicons.IPC;
 
-public sealed partial class IPCBoundUserInterface : BoundUserInterface
+public sealed partial class IPCBoundUserInterface(EntityUid owner, Enum uiKey) : BoundUserInterface(owner, uiKey)
 {
     [ViewVariables]
     private IPCMenu? _menu;
-
-    public IPCBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey){}
 
     protected override void Open()
     {
@@ -31,14 +29,5 @@ public sealed partial class IPCBoundUserInterface : BoundUserInterface
         {
             SendMessage(new IPCSetNameBuiMessage(name));
         };
-    }
-
-    protected override void UpdateState(BoundUserInterfaceState state)
-    {
-        base.UpdateState(state);
-
-        if (state is not IPCBuiState msg)
-            return;
-        _menu?.UpdateState(msg);
     }
 }

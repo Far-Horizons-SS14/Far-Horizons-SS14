@@ -63,9 +63,9 @@
 
   # Starlight-start: Requirements
   requirements:
-  - !type:RoleTimeRequirement
-    role: JobTechnicalAssistant
-    time: 3600 # 1 hour as Technical Assistant
+  - !type:DepartmentTimeRequirement
+    department: Engineering
+    time: 0 # Far Horizons - Temporary
   # Starlight-end
 
 
@@ -104,9 +104,9 @@
 
   # Starlight-start: Requirements
   requirements:
-  - !type:RoleTimeRequirement
-    role: JobCargoTechnician
-    time: 5400 # 1 hour 30 minutes as Cargo Technician
+  - !type:DepartmentTimeRequirement
+    department: Cargo
+    time: 0 # Far Horizons - Temporary
   # Starlight-end
 
 
@@ -125,7 +125,6 @@
     - BorgModuleJanitor
 
   defaultModules:
-  - BorgModuleTool
   - BorgModuleCleaning
   - BorgModuleCustodial
 
@@ -158,7 +157,6 @@
     - BorgModuleMedical
 
   defaultModules:
-  - BorgModuleTool
   - BorgModuleChemical
   - BorgModuleTopicals
 
@@ -190,9 +188,9 @@
 
   # Starlight-start: Requirements
   requirements:
-  - !type:RoleTimeRequirement
-    role: JobMedicalIntern
-    time: 3600 # 1 hour as Medical Intern
+  - !type:DepartmentTimeRequirement
+    department: Medical
+    time: 0 # Far Horizons - Temporary
   # Starlight-end
 
 
@@ -211,12 +209,15 @@
     - BorgModuleService
 
   defaultModules:
-  - BorgModuleTool
   - BorgModuleMusique
-  - BorgModuleService
+  # Starlight start 
+  - BorgModuleBartending
+  - BorgModuleCooking
+  - BorgModuleBotany
+  - BorgModuleBooks
+  # Starlight end
   - BorgModuleClowning
-  - BorgModuleGardening
-  - BorgModuleHarvesting
+  
   radioChannels:
   - Science
   - Service

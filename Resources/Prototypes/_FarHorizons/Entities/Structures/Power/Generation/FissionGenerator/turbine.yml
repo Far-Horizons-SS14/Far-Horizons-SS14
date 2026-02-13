@@ -37,8 +37,7 @@
   - type: Physics
     bodyType: Static
   - type: InteractionOutline
-  - type: Transform
-    noRot: true
+  - type: Rotatable
   - type: Fixtures
     fixtures:
       fix1:
@@ -50,7 +49,11 @@
         - MachineMask
         layer:
         - MachineLayer
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: StructuralMetallicStrong
   - type: Anchorable
+    delay: 10
   - type: NodeContainer
     examinable: true
     nodes:
@@ -68,13 +71,25 @@
   - type: AtmosDevice
   - type: AtmosMonitoringConsoleDevice
     navMapBlip: Thermoregulator
-  - type: Explosive
-    explosionType: Default
-    tileBreakScale: 0
-    canCreateVacuum: false
-    intensitySlope: 15
-    maxIntensity: 70
-    repeatable: true
+  - type: Electrified
+    enabled: false
+    requirePower: false
+  - type: ContainerContainer
+    containers:
+      blade_slot: !type:ContainerSlot {}
+      stator_slot: !type:ContainerSlot {}
+  - type: ItemSlots
+    slots:
+      blade_slot:
+        startingItem: SteelGasTurbineBlade
+        whitelist:
+          components:
+            - GasTurbineBlade
+      stator_slot:
+        startingItem: SteelGasTurbineStator
+        whitelist:
+          components:
+            - GasTurbineStator
   - type: Turbine
   - type: DeviceNetwork
     deviceNetId: Wireless
@@ -82,9 +97,11 @@
   - type: WirelessNetworkConnection
     range: 200
   - type: DeviceLinkSource
+    range: 50
     ports:
       - TurbineSpeedHigh
       - TurbineSpeedLow
+      - GasTurbineDataSender
   - type: DeviceLinkSink
     ports:
       - IncreaseStatorLoad
@@ -104,6 +121,37 @@
     guides:
     - NuclearReactor
     - Power
+
+- type: entity
+  id: TurbineSmall
+  parent: Turbine
+  name: small gas turbine
+  description: A small turbine used for generating power using hot gas.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Power/Generation/FissionGenerator/small_turbine.rsi
+    offset: 0, -0.5
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-1.5,-1.5,1.5,0.5"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: PowerMonitoringDevice
+    sprite: _FarHorizons/Structures/Power/Generation/FissionGenerator/small_turbine.rsi
+  - type: Turbine
+    turbineMass: 400
+    powerMultiplier: 0.4
+    inletPos: 1, -1
+    inletRot: 0 
+    outletPos: -1, -1
+    outletRot: 0 
+    arrowPrototype: TurbineSmallFlowArrow
   
 # Arrow to indicate flow
 - type: entity
@@ -126,22 +174,28 @@
       tags:
         - HideContextMenu
 
+- type: entity
+  id: TurbineSmallFlowArrow
+  parent: TurbineFlowArrow
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Sprite
+      layers:
+        - state: arrow
+          rotation: 180
+          offset: 1, -2
+        - state: arrow
+          rotation: 0
+          offset: -1, -2
+
 # Pipes the turbine uses to connect to the pipe network
 - type: entity
-  parent: GasPipeBase
   id: TurbineGasPipe
   categories: [ HideSpawnMenu ]
-  placement:
-    mode: AlignAtmosPipeLayers
   components:
-  - type: Sprite
-    layers:
-    - state: pipeHalf
-      map: [ "enum.PipeVisualLayers.Pipe" ]
-      visible: false
+  - type: Transform
+    anchored: true
   - type: Anchorable
-    flags: 
-    - Anchorable
   - type: NodeContainer
     nodes:
       pipe:
@@ -149,6 +203,37 @@
         nodeGroupID: Pipe
         pipeDirection: South
         volume: 1000
+        pipeLayer: 0
+      pipe1:
+        !type:PipeNode
+        nodeGroupID: Pipe
+        pipeDirection: South
+        volume: 1000
+        pipeLayer: 1
+      pipe2:
+        !type:PipeNode
+        nodeGroupID: Pipe
+        pipeDirection: South
+        volume: 1000
+        pipeLayer: 2
+  - type: GasPipeManifold
+    inlets:
+    - pipe1
+    - pipe2
+    outlets:
+    - pipe
+  - type: PipeRestrictOverlap
   - type: Tag
     tags:
       - HideContextMenu
+
+- type: entity
+  id: GasTurbineAlarmEntity
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: AmbientSound
+    volume: -2
+    range: 15
+    enabled: false
+    sound:
+      path: /Audio/_FarHorizons/Machines/alarm_buzzer.ogg

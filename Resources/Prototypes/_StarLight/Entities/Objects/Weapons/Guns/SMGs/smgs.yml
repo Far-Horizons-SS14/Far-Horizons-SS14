@@ -25,13 +25,13 @@
               - CartridgePistol
             
 - type: entity
-  name: SP-91-RC
+  name: P2-91 # Far Horizons
   parent: [BaseWeaponSubMachineGun, BaseSecurityContraband]
   id: WeaponSubMachineGunSP91RC
-  description: Compact submachine gun designed for riot control.
+  description: The cheaper version of the WT and modern take on the P90, it's a reliable Personal Defense Weapon with decent accuracy in one hand. # Far Horizons
   components:
   - type: Sprite
-    sprite: _Starlight/Objects/Weapons/Guns/SMGs/sp91rc.rsi
+    sprite: _FarHorizons/Objects/Weapons/Guns/SMGs/p91.rsi # Far Horizons
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -40,14 +40,21 @@
   - type: Wieldable
     unwieldOnUse: false
   - type: GunWieldBonus
-    minAngle: -19
-    maxAngle: -16
+    minAngle: -2 # Far Horizons
+    maxAngle: -4 # Far Horizons
   - type: Gun
-    fireRate: 13
-    selectedMode: Burst
-    shotsPerBurst: 5
+    fireRate: 6 # Far Horizons
+    minAngle: 4 # Far Horizons
+    maxAngle: 12 # Far Horizons
+    angleIncrease: 1.5 # Far Horizons
+    angleDecay: 6 # Far Horizons
+    selectedMode: FullAuto # Far Horizons
+    shotsPerBurst: 3 # Far Horizons
+    burstCooldown: 0.2 # Far Horizons
+    burstFireRate: 8 # Far Horizons
     availableModes:
-      - Burst
+    - Burst # Far Horizons
+    - FullAuto # Far Horizons
     soundGunshot:
       path: /Audio/_Starlight/Weapons/Guns/Gunshots/1sp_91.ogg
   - type: MagazineVisuals

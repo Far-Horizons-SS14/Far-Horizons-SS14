@@ -12,9 +12,6 @@
   recipeUnlocks:
   - WeaponProtoKineticAccelerator
   - ShuttleGunKineticCircuitboard
-  - MechEquipmentKineticAccelerator
-  radioChannels:
-  - Supply
   # These are roundstart but not replenishable for salvage
 
 - type: technology
@@ -38,11 +35,6 @@
   - MagazineBoxMagnumIncendiary
   - MagazineBoxLightRifleIncendiary
   - MagazineBoxRifleIncendiary
-  - LightRifleHeavyMagazineIncendiary
-  - MagazinePistolSubMachineGunIncendiary
-  - SpeedLoaderShotgunIncendiary
-  radioChannels:
-  - Security
 
 - type: technology
   id: WeaponizedLaserManipulation
@@ -55,37 +47,6 @@
   cost: 7500
   recipeUnlocks:
   - WeaponLaserCarbine
-  - WeaponMechCombatFiredartLaser
-  radioChannels:
-  - Security
-
-#FarHorizons: Roundstart tech
-#- type: technology
-#  id: NonlethalAmmunition
-#  name: research-technology-nonlethal-ammunition
-#  icon:
-#    sprite: Objects/Weapons/Guns/Ammunition/Magazine/Shotgun/m12.rsi
-#    state: beanbag
-#  discipline: Arsenal
-#  tier: 1
-#  cost: 5000
-#  recipeUnlocks:
-#  - MagazineShotgunBeanbag
-#  - BoxShellTranquilizer
-#  - BoxBeanbag
-#  - WeaponDisabler
-#  - WeaponMechCombatDisabler
-#  - WeaponMechCombatFlashbangLauncher
-#  - CartridgePistolRubber
-#  - CartridgeMagnumRubber
-#  - CartridgeLightRifleRubber
-#  - CartridgeRifleRubber
-#  - MagazineBoxPistolRubber
-#  - MagazineBoxMagnumRubber
-#  - MagazineBoxLightRifleRubber
-#  - MagazineBoxRifleRubber
-#  radioChannels:
-#  - Security
 
 - type: technology
   id: UraniumMunitions
@@ -107,11 +68,6 @@
   - MagazineBoxLightRifleUranium
   - MagazineBoxRifleUranium
   - BoxShotgunUranium
-  - LightRifleHeavyMagazineUranium
-  - MagazinePistolSubMachineGunUranium
-  - SpeedLoaderShotgunUranium
-  radioChannels:
-  - Security
 
 - type: technology
   id: AdvancedRiotControl
@@ -126,9 +82,6 @@
   - Truncheon
   - TelescopicShield
   - HoloprojectorSecurity
-#  - WeaponDisablerSMG - FH, remove recipe
-  radioChannels:
-  - Security
 
 - type: technology
   id: ExplosiveTechnology
@@ -147,8 +100,8 @@
   - FlashPayload
   - ExplosivePayload
   - ChemicalPayload
-  radioChannels:
-  - Security
+  - CableDetStack1
+  - EmptyDetonator
 
 - type: technology
   id: SpecialMeans
@@ -161,8 +114,6 @@
   cost: 5000
   recipeUnlocks:
   - ClothingBackpackElectropack
-  radioChannels:
-  - Security
 
 # Tier 2
 
@@ -177,10 +128,6 @@
   cost: 10000
   recipeUnlocks:
   - WeaponLaserCannon
-  - WeaponMechCombatSolarisLaser
-  - WeaponLaserImmolator
-  radioChannels:
-  - Security
 
 - type: technology
   id: WaveParticleHarnessing
@@ -193,10 +140,7 @@
   cost: 10000
   recipeUnlocks:
   - WeaponXrayCannon
-  - WeaponMechCombatXray # 🌟Starlight-change🌟
-  radioChannels:
-  - Security
-  
+
 - type: technology
   id: KineticModifications
   name: research-technology-kinetic-modifications
@@ -232,8 +176,6 @@
   - ShuttleGunFriendshipCircuitboard
   technologyPrerequisites:
   - SalvageWeapons
-  radioChannels:
-  - Security
 
 - type: technology
   id: DualWieldingTechnology
@@ -261,10 +203,6 @@
   recipeUnlocks:
   - WeaponAdvancedLaser
   - PortableRecharger
-  - WeaponMechCombatImmolationGun
-  - WeaponMechCombatAMLG90 # 🌟Starlight-change🌟
-  radioChannels:
-  - Security
 
 - type: technology
   id: ThermalWeaponry
@@ -276,10 +214,7 @@
   tier: 3
   cost: 15000
   recipeUnlocks:
-  - WeaponLaserSvalinn
   - WeaponTemperatureGun
-  radioChannels:
-  - Security
 
 - type: technology
   id: AdvancedShuttleWeapon
@@ -296,5 +231,3 @@
   - ShuttleGunDusterCircuitboard
   technologyPrerequisites:
   - BasicShuttleArmament
-  radioChannels:
-  - Security

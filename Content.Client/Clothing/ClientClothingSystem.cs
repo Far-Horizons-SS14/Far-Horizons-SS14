@@ -36,7 +36,9 @@ public sealed class ClientClothingSystem : ClothingSystem
         {"outerClothing", "OUTERCLOTHING"},
         {Jumpsuit, "INNERCLOTHING"},
         {"neck", "NECK"},
+        {"pin", "NECK"}, // FarHorizons: Neck Slot
         {"back", "BACKPACK"},
+        {"rig", "BELT"}, // FarHorizons: BELT
         {"belt", "BELT"},
         {"gloves", "HAND"},
         {"shoes", "FEET"},
@@ -44,6 +46,7 @@ public sealed class ClientClothingSystem : ClothingSystem
         {"pocket1", "POCKET1"},
         {"pocket2", "POCKET2"},
         {"suitstorage", "SUITSTORAGE"},
+        {"suitstorage2", "SUITSTORAGE"} // FarHorizons: SUITSTORAGE
     };
 
     [Dependency] private readonly IResourceCache _cache = default!;
@@ -329,7 +332,7 @@ public sealed class ClientClothingSystem : ClothingSystem
             if (displacementData is not null)
             {
                 //Checking that the state is not tied to the current race. In this case we don't need to use the displacement maps.
-                if (layerData.State is not null && inventory.SpeciesId is not null && layerData.State.EndsWith(inventory.SpeciesId))
+                if (!inventory.ForceDisplacements && layerData.State is not null && inventory.SpeciesId is not null && layerData.State.EndsWith(inventory.SpeciesId)) // Starlight edit | Add !inventory.ForceDisplacements.
                     continue;
 
                 if (_displacement.TryAddDisplacement(displacementData, (equipee, sprite), index, key, out var displacementKey))

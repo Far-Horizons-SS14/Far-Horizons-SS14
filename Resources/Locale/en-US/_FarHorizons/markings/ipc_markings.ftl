@@ -133,3 +133,7 @@ marking-MarkingZenghuRLeg = 'Zenghu' Right Robotic Leg
 marking-MarkingZenghuRFoot = 'Zenghu' Right Robotic Foot
 marking-MarkingZenghuLLeg = 'Zenghu' Left Robotic Leg
 marking-MarkingZenghuLFoot = 'Zenghu' Left Robotic Foot
+
+marking-IPCWingsRobotic-robotic_base = Robotic Wings (Base)
+marking-IPCWingsRobotic-robotic_light = Robotic Wings (Light)
+marking-IPCWingsRobotic = Robotic Wings

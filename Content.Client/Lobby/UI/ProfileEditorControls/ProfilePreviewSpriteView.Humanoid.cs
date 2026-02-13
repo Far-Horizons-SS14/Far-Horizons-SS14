@@ -13,6 +13,7 @@ using Robust.Shared.Prototypes;
 using Content.Shared.Body.Part;
 using Content.Shared.Starlight;
 using Content.Shared._FarHorizons.Factions;
+using Robust.Shared.Utility; // Starlight
 
 namespace Content.Client.Lobby.UI.ProfileEditorControls;
 
@@ -52,11 +53,47 @@ public sealed partial class ProfilePreviewSpriteView
     /// <param name="job">Faction and job to force job clothes override -- don't use job preferences</param>
     /// <param name="showClothes">Add job clothes or just spawn a species doll</param>
     /// Far Horizons
-    private void LoadHumanoidEntity(HumanoidCharacterProfile humanoid, (FactionPrototype faction, JobPrototype job)? job, bool showClothes)
+    private void LoadHumanoidEntity(HumanoidCharacterProfile humanoid, (FactionPrototype faction, JobPrototype job)? job, bool showClothes, ProtoId<AntagPrototype>? antagOverride = null)
     {
         ProfileName = humanoid.Name;
         JobName = null;
         LoadoutName = null;
+
+        // Starlight Start: Antag Loadouts
+        // If an antag override is provided, display that antag's loadout
+        if (antagOverride != null && _prototypeManager.TryIndex(antagOverride.Value, out var antagProto))
+        {
+            PreviewDummy = EntMan.SpawnEntity(
+                _prototypeManager.Index(humanoid.Species).DollPrototype,
+                MapCoordinates.Nullspace);
+
+            ReloadHumanoidEntity(humanoid);
+
+            if (!showClothes)
+                return;
+
+            JobName = Loc.GetString(antagProto.Name);
+
+            // Then apply roleLoadout on top (which can override specific slots)
+            if (antagProto.RoleLoadout != null && antagProto.RoleLoadout.Count > 0)
+            {
+                var antagLoadoutProtoId = antagProto.RoleLoadout.First();
+                if (_prototypeManager.HasIndex<RoleLoadoutPrototype>(antagLoadoutProtoId))
+                {
+                    var antagLoadout = humanoid.GetLoadoutOrDefault(
+                        antagLoadoutProtoId,
+                        _playerManager.LocalSession,
+                        humanoid.Species,
+                        EntMan,
+                        _prototypeManager);
+
+                    LoadoutName = GetLoadoutName(antagLoadout);
+                    GiveDummyLoadout(PreviewDummy, antagLoadout);
+                }
+            }
+            return;
+        }
+        // Starlight End
 
         job ??= GetPreferredJob(humanoid);
 
@@ -108,18 +145,44 @@ public sealed partial class ProfilePreviewSpriteView
         if (job == null && humanoid.JobPreferences.Count == 0)
         {
             // Search the preferences for an antag with "PreviewStartingGear" defined
-            foreach(var antag in humanoid.AntagPreferences)
+            foreach (var antag in humanoid.AntagPreferences)
             {
-                if (!_prototypeManager.TryIndex(antag, out var antagProto))
-                    continue;
-                if (!antagProto.PreviewStartingGear.HasValue)
+                if (!_prototypeManager.TryIndex(antag, out var selectedAntagProto))
                     continue;
 
-                // We found an antag to dress as! Set it and return.
-                GiveDummyAntagLoadout(antagProto);
-                JobName = Loc.GetString(antagProto.Name);
+                var antagLoadoutId = selectedAntagProto.RoleLoadout?.FirstOrDefault();
 
-                return;
+                // Brighteye Color Valid
+                if (selectedAntagProto.PreviewStartingGear.HasValue || antagLoadoutId is not null)
+                    if (selectedAntagProto.ID == "Brighteye")
+                    {
+                        humanoid.Appearance.EyeColor = EyeColor.MakeBrighteyeValid(humanoid.Appearance.EyeColor);
+                        humanoid.Appearance.EyeGlowing = true;
+                    }
+
+                if (antagLoadoutId is not null)
+                {
+                    loadout = humanoid.GetLoadoutOrDefault(
+                        antagLoadoutId,
+                        _playerManager.LocalSession,
+                        humanoid.Species,
+                        EntMan,
+                        _prototypeManager);
+
+                    LoadoutName = GetLoadoutName(loadout);
+
+                    GiveDummyLoadout(PreviewDummy, loadout);
+                    JobName = Loc.GetString(selectedAntagProto.Name);
+                    return;
+                }
+
+                if (selectedAntagProto.PreviewStartingGear.HasValue)
+                {
+                    // We found an antag to dress as! Set it and return.
+                    GiveDummyAntagLoadout(selectedAntagProto);
+                    JobName = Loc.GetString(selectedAntagProto.Name);
+                    return;
+                }
             }
         }
 
@@ -166,7 +229,7 @@ public sealed partial class ProfilePreviewSpriteView
         else
         {
             var priorities = _preferencesManager.Preferences?.JobPriorities ?? [];
-            foreach (var priority in new List<JobPriority>{JobPriority.High, JobPriority.Medium, JobPriority.Low})
+            foreach (var priority in new List<JobPriority> { JobPriority.High, JobPriority.Medium, JobPriority.Low })
             {
                 highPriorityJob = profile.JobPreferences.FirstOrDefault(p => priorities.GetValueOrDefault(p) == priority);
                 if (highPriorityJob.faction.Id != null && highPriorityJob.job.Id != null)
@@ -225,7 +288,7 @@ public sealed partial class ProfilePreviewSpriteView
                         // Try startinggear first
                         if (_prototypeManager.TryIndex(loadoutProto.StartingGear, out var loadoutGear))
                         {
-                            var itemType = ((IEquipmentLoadout) loadoutGear).GetGear(slot.Name);
+                            var itemType = ((IEquipmentLoadout)loadoutGear).GetGear(slot.Name);
 
                             if (inventorySys.TryUnequip(dummy, slot.Name, out var unequippedItem, silent: true, force: true, reparent: false))
                             {
@@ -240,7 +303,7 @@ public sealed partial class ProfilePreviewSpriteView
                         }
                         else
                         {
-                            var itemType = ((IEquipmentLoadout) loadoutProto).GetGear(slot.Name);
+                            var itemType = ((IEquipmentLoadout)loadoutProto).GetGear(slot.Name);
 
                             if (inventorySys.TryUnequip(dummy, slot.Name, out var unequippedItem, silent: true, force: true, reparent: false))
                             {
@@ -263,7 +326,7 @@ public sealed partial class ProfilePreviewSpriteView
 
         foreach (var slot in slots)
         {
-            var itemType = ((IEquipmentLoadout) gear).GetGear(slot.Name);
+            var itemType = ((IEquipmentLoadout)gear).GetGear(slot.Name);
 
             if (inventorySys.TryUnequip(dummy, slot.Name, out var unequippedItem, silent: true, force: true, reparent: false))
             {
@@ -306,12 +369,15 @@ public sealed partial class ProfilePreviewSpriteView
     /// </summary>
     private Dictionary<HumanoidVisualLayers, CustomBaseLayerInfo> GetCyberneticsLayers(HumanoidCharacterProfile humanoid)
     {
-        return humanoid.Cybernetics.Select(p => {
+        return humanoid.Cybernetics.Select(p =>
+        {
             var _cyberneticEnt = _prototypeManager.Index<EntityPrototype>(p);
-            if(_cyberneticEnt.TryGetComponent<BodyPartComponent>(out var part, EntMan.ComponentFactory) && 
-               _cyberneticEnt.TryGetComponent<BaseLayerIdComponent>(out var layer, EntMan.ComponentFactory)){
+            if (_cyberneticEnt.TryGetComponent<BodyPartComponent>(out var part, EntMan.ComponentFactory) &&
+               _cyberneticEnt.TryGetComponent<BaseLayerIdComponent>(out var layer, EntMan.ComponentFactory))
+            {
                 return (CyberneticImplant.LayerFromBodypart(part), new(layer.Layer));
-            } else { return (HumanoidVisualLayers.Special, new CustomBaseLayerInfo()); }
+            }
+            else { return (HumanoidVisualLayers.Special, new CustomBaseLayerInfo()); }
         }).Where(p => p.Item1 != HumanoidVisualLayers.Special).ToDictionary();
-    }  
+    }
 }

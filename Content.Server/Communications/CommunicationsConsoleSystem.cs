@@ -22,7 +22,10 @@ using Robust.Shared.Configuration;
 // Starlight Start
 using System;
 using System.Collections.Generic;
+using Content.Server.Shuttles.Components;
 using Content.Shared.Speech;
+using Content.Shared.Station.Components;
+using Robust.Shared.Player;
 using Robust.Shared.Timing;
 // Starlight End
 
@@ -103,6 +106,13 @@ namespace Content.Server.Communications
         {
             comp.AnnouncementCooldownRemaining = comp.InitialDelay;
             UpdateCommsConsoleInterface(uid, comp);
+            
+            //Starlight begin
+            if (!TryComp<StationMemberComponent>(Transform(uid).GridUid, out var stationMember)) return;
+            if (!TryComp<StationCentcommComponent>(stationMember.Station, out var ccComp)) return;
+            if (ccComp.Entity is null) return;
+            comp.AdditionalGrids.Add(ccComp.Entity.Value);
+            //Starlight end
         }
 
         /// <summary>
@@ -270,6 +280,7 @@ namespace Content.Server.Communications
             if (stationUid != null)
             {
                 _alertLevelSystem.SetLevel(stationUid.Value, message.Level, true, true);
+                _adminLogger.Add(LogType.Action, LogImpact.Extreme, $"{ToPrettyString(message.Actor):player} has set {message.Level} alert level");  // Far Horizons
             }
         }
 

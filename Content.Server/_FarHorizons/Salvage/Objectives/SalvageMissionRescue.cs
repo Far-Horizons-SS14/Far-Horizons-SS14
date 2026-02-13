@@ -3,14 +3,15 @@ using System.Linq;
 using Content.Server.Humanoid;
 using Content.Server.Station.Systems;
 using Content.Shared._FarHorizons.Factions;
+using Content.Shared.Atmos.Rotting;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Inventory;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Preferences;
 using Content.Shared.Preferences.Loadouts;
-using Microsoft.CodeAnalysis;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
@@ -20,7 +21,6 @@ namespace Content.Server._FarHorizons.Salvage.Objectives;
 public sealed partial class SalvageMissionRescue : BaseSalvageMissionObjectiveHandler
 {
     const int DecoyBodies = 20;
-    const int TotalDamageForBonus = 100;
     static readonly EntProtoId GasMask = "ClothingMaskGas";
     const string MaskSlot = "mask";
 
@@ -53,8 +53,7 @@ public sealed partial class SalvageMissionRescue : BaseSalvageMissionObjectiveHa
         var allTargets = GetAllMarkedEntitiesOnShuttle(shuttle);
         var numBonus = 0;
         foreach (var uid in allTargets)
-            if(EntMan.TryGetComponent<DamageableComponent>(uid, out var damage) &&
-               damage.TotalDamage <= TotalDamageForBonus)
+            if(!EntMan.HasComponent<RottingComponent>(uid))
                 numBonus++;
         numBonus = Math.Min(numBonus, Objective.BonusCap);
 
@@ -162,8 +161,12 @@ public sealed partial class SalvageMissionRescue : BaseSalvageMissionObjectiveHa
             stationSpawning.EquipRoleLoadout(ent, loadout, loadoutProto);
 
             if (inventory != null)
+            {
                 if (inventory.TryUnequip(ent, "id", out var id, true, true))
                     EntMan.DeleteEntity(id);
+                if (inventory.TryUnequip(ent, "ears", out var ears, true, true))
+                    EntMan.DeleteEntity(ears);
+            }
         }
 
         return ent;

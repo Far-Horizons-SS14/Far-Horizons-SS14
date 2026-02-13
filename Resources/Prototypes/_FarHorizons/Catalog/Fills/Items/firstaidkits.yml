@@ -10,21 +10,67 @@
         amount: 8
 
 - type: entity
-  id: SecurityMedkitFHFilled
-  suffix: Filled
+  id: SecurityMedkitFHFilledBrigmedic
+  suffix: Filled, Brigmedic
   parent: SecurityMedkitFH
   components:
   - type: StorageFill
     contents:
+        # Top #
       - id: RedBrutePack
-        amount: 1
+      - id: MedicatedSuture
+      - id: RegenerativeMesh
       - id: RedOintment
-        amount: 1
       - id: Bloodpack
-        amount: 1
       - id: AmmoniaPack
-        amount: 1
+        # Bottom #
       - id: AutoMenderBruteFilled
-        amount: 1
       - id: AutoMenderBurnFilled
-        amount: 1
+      - id: PillCanisterTricordrazineCharcoal
+      - id: PillCanisterDexalinDylovene
+      - id: AntiPoisonMedipen
+      - id: EmergencyMedipen
+
+- type: entity
+  id: SecurityMedkitFHFilledCorpsman
+  suffix: Filled, Corpsman
+  parent: SecurityMedkitFH
+  components:
+  - type: StorageFill
+    contents:
+        # Top #
+      - id: RedBrutePack
+      - id: MedicatedSuture
+      - id: RegenerativeMesh
+      - id: RedOintment
+      - id: Bloodpack
+      - id: AmmoniaPack
+        # Bottom #
+      - id: AutoMenderBruteFilled
+      - id: AutoMenderBurnFilled
+      - id: AntiPoisonMedipen
+      - id: EmergencyMedipen
+      - id: BruteAutoInjector
+      - id: BurnAutoInjector
+
+- type: entity
+  id: SecurityMedkitFHFilledBSO
+  suffix: Filled, Blueshield Officer
+  parent: SecurityMedkitFH
+  components:
+  - type: StorageFill
+    contents:
+        # Top #
+      - id: MedicatedSuture
+      - id: MedicatedSuture
+      - id: RegenerativeMesh
+      - id: RegenerativeMesh
+      - id: Bloodpack
+      - id: AmmoniaPack
+        # Bottom #
+      - id: AutoMenderBruteFilled
+      - id: AutoMenderBurnFilled
+      - id: BruteAutoInjector
+      - id: BruteAutoInjector
+      - id: BurnAutoInjector
+      - id: BurnAutoInjector

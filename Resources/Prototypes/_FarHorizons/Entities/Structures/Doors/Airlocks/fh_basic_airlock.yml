@@ -17,7 +17,7 @@
           map: ["enum.ElectrifiedLayers.Sparks"]
         - state: closed
           map: [ "enum.DoorVisualLayers.Base" ]
-        - state: unlit
+        - state: closed_unlit
           map: ["enum.DoorVisualLayers.BaseUnlit"]
         - state: welded
           map: [ "enum.WeldableLayers.BaseWelded" ]
@@ -48,7 +48,7 @@
 - type: entity
   parent: [ CMBaseDoor, FHBaseDoorConstructible ]
   id: FHAirlock
-  name: airlock
+  name: Airlock
   description: It opens, it closes, and maybe crushes you.
   placement:
     mode: SnapgridCenter
@@ -78,7 +78,7 @@
 - type: entity
   id: FHAirlockGlass
   parent: FHAirlock
-  name: glass airlock
+  name: Glass Airlock
   components:
     - type: MeleeSound
       soundGroups:

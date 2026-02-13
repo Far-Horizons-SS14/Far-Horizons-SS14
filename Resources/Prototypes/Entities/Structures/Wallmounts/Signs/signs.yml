@@ -105,7 +105,16 @@
   description: A direction sign, pointing out which way evac is.
   components:
   - type: Sprite
-    state: direction_evac
+    sprite: Structures/Wallmounts/signs.rsi #Far Horizons unresprite
+    layers:
+    - state: direction_evac
+    - state: direction_evac_glow
+      shader: unshaded
+    - state: direction_evac_glow
+      shader: shaded
+      #This is a neat trick I found to sort of "hack" an emissive map into ss14. Basically, the direction_evac_glow texture has an alpha channel.
+      #Alpha doesn't work for unshaded, but for *shaded* it does, and by putting a shaded texture infront of the unshaded, we can dim the unshaded texture, effectively allowing brightness control.
+      #I am re-using this from my high-vis vest PR, where I go further into detail, https://github.com/space-wizards/space-station-14/pull/37869
 
 - type: entity
   parent: BaseSignDirectional
@@ -300,6 +309,16 @@
     - state: armory
       shader: unshaded
       map: ["enum.PowerDeviceVisualLayers.Powered"] #Far Horizons end
+
+- type: entity
+  parent: BaseSign
+  id: SignArrivals
+  name: arrivals sign
+  description: A sign indicating where the Arrivals shuttle will dock.
+  components:
+  - type: Sprite
+    sprite: Structures/Wallmounts/signs.rsi #Far Horizons unresprite
+    state: arrivals
 
 - type: entity
   parent: BaseSign

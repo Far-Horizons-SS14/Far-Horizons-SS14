@@ -2,7 +2,7 @@
 - type: entity
   parent: [ ClothingHeadHelmetBase, BaseMajorContraband ]
   id: ClothingHeadHelmetAbductor
-  name: helmet
+  name: Helmet #Far Horizons - The Great Capitalization Crusade
   components:
   - type: Pierceable
     level: Metal
@@ -32,7 +32,7 @@
 - type: entity
   parent: [ClothingHeadHelmetBase, BaseSecurityContraband]
   id: ClothingHeadHelmetDredd
-  name: helmet
+  name: Helmet #Far Horizons - The Great Capitalization Crusade
   description: I AM THE LAW!
   components:
   - type: Sprite
@@ -47,16 +47,16 @@
 - type: entity
   parent: [ClothingHeadBase, BaseSecurityContraband, BaseToggleClothing]
   id: ClothingHeadHelmetBulletProof
-  name: bulletproof helmet
+  name: Bulletproof Helmet #Far Horizons - The Great Capitalization Crusade
   description: Protects the face against bullets, can flip up and down.
   components:
   - type: Sprite
-    sprite: _Starlight/Clothing/Head/Helmets/bulletproof.rsi
+    sprite: _FarHorizons/Clothing/Head/Helmets/bulletproof.rsi #Far Horizons
     layers:
     - state: icon
       map: [ "enum.ToggleableVisuals.Layer" ]
   - type: Clothing
-    sprite: _Starlight/Clothing/Head/Helmets/bulletproof.rsi
+    sprite: _FarHorizons/Clothing/Head/Helmets/bulletproof.rsi #Far Horizons
   - type: Item
     storedRotation: 0  
   - type: ItemToggle # Welding mask starts in an activated state
@@ -95,13 +95,13 @@
 - type: entity
   parent: [ClothingHeadHelmetBase, BaseSecurityContraband]
   id: ClothingHeadHelmetReflective
-  name: reflective helmet
+  name: Reflective Helmet #Far Horizons - The Great Capitalization Crusade
   description: A shiny helmet for your equally shiny vest.
   components:
   - type: Sprite
-    sprite: _Starlight/Clothing/Head/Helmets/reflect.rsi
+    sprite: _FarHorizons/Clothing/Head/Helmets/reflect.rsi #Far Horizons
   - type: Clothing
-    sprite: _Starlight/Clothing/Head/Helmets/reflect.rsi
+    sprite: _FarHorizons/Clothing/Head/Helmets/reflect.rsi #Far Horizons
   - type: Armor
     modifiers:
       coefficients:
@@ -121,13 +121,13 @@
 - type: entity
   parent: [ClothingHeadHelmetBase, BaseSecurityContraband]
   id: ClothingHeadHelmetPlate
-  name: plate helmet
+  name: Plate Helmet #Far Horizons - The Great Capitalization Crusade
   description: A modified security helmet with a ceramic plate insert, which means less padding for blunt hits.
   components:
   - type: Sprite
-    sprite: _Starlight/Clothing/Head/Helmets/plate.rsi
+    sprite: _FarHorizons/Clothing/Head/Helmets/plate.rsi #Far Horizons
   - type: Clothing
-    sprite: _Starlight/Clothing/Head/Helmets/plate.rsi
+    sprite: _FarHorizons/Clothing/Head/Helmets/plate.rsi #Far Horizons
   - type: Armor
     modifiers:
       coefficients:
@@ -142,13 +142,13 @@
 - type: entity
   parent:  [ClothingHeadHelmetBase, BaseSecurityContraband ]
   id: ClothingHeadHelmetStabproof
-  name: stabproof helmet
+  name: Stabproof Helmet #Far Horizons - The Great Capitalization Crusade
   description: The most "comfortable" security helmet, as rated by officers. Will take a blow to the head nicely, but a bullet'll go right through it.
   components:
   - type: Sprite
-    sprite: _Starlight/Clothing/Head/Helmets/stabproof.rsi
+    sprite: _FarHorizons/Clothing/Head/Helmets/stabproof.rsi #Far Horizons
   - type: Clothing
-    sprite: _Starlight/Clothing/Head/Helmets/stabproof.rsi
+    sprite: _FarHorizons/Clothing/Head/Helmets/stabproof.rsi #Far Horizons
   - type: Armor
     modifiers:
       coefficients:
@@ -163,13 +163,13 @@
 - type: entity
   parent: [ ClothingHeadHelmetBase, BaseSecurityContraband ]
   id: ClothingHeadHelmetHeatAbsorbent
-  name: heat absorbent helmet
+  name: Heat Absorbent Helmet #Far Horizons - The Great Capitalization Crusade
   description: Advanced helmet best paired with the vest for pure style, has minor reflective properties and can absorb heat fairly well.
   components:
   - type: Sprite
-    sprite: _Starlight/Clothing/Head/Helmets/heatabsorbent.rsi
+    sprite: _FarHorizons/Clothing/Head/Helmets/heatabsorbent.rsi #Far Horizons
   - type: Clothing
-    sprite: _Starlight/Clothing/Head/Helmets/heatabsorbent.rsi
+    sprite: _FarHorizons/Clothing/Head/Helmets/heatabsorbent.rsi #Far Horizons
   - type: Armor
     modifiers:
       coefficients:
@@ -184,7 +184,7 @@
 - type: entity
   parent: [ClothingHeadHelmetBase, BaseMinorContraband]
   id: ClothingHeadHelmetMakeshift
-  name: makeshift helmet
+  name: Makeshift Helmet #Far Horizons - The Great Capitalization Crusade
   description: Cobbled together steel held together with lv cables in the vauge shape of a helmet. Barely does anything.
   components:
   - type: Armor
@@ -205,7 +205,7 @@
 - type: entity
   parent: [ClothingHeadHelmetBase, BaseMinorContraband]
   id: ClothingHeadHelmetImprovised
-  name: improvised helmet
+  name: Improvised Helmet #Far Horizons - The Great Capitalization Crusade
   description: Interlocking steel plates provides some decent protection, but is still barely better than nothing.
   components:
   - type: Armor
@@ -223,7 +223,7 @@
 - type: entity
   parent: [ClothingHeadHelmetBase, BaseMinorContraband]
   id: ClothingHeadHelmetForged
-  name: forged helmet
+  name: Forged Helmet #Far Horizons - The Great Capitalization Crusade
   description: A high-quality helmet made by some of the best Tidersmiths, it is finally worthwhile to have it on your head.
   components:
   - type: Armor
@@ -241,7 +241,7 @@
 - type: entity
   parent: [ClothingHeadHelmetBase, BaseMajorContraband]
   id: ClothingHeadHelmetPaladin
-  name: paladin helmet
+  name: Paladin Helmet #Far Horizons - The Great Capitalization Crusade
   description: No true paladin can go without their helmet!
   components:
   - type: Armor
@@ -259,7 +259,7 @@
 - type: entity
   parent: ClothingHeadHelmetERTLeader
   id: ClothingHeadHelmetNTNCConsortium
-  name: nt-nc naval helmet
+  name: NT-NC Naval Helmet #Far Horizons - The Great Capitalization Crusade
   description: An in-atmosphere helmet worn by NT-NC Naval Officers.
   components:
   - type: Sprite
@@ -273,7 +273,7 @@
 - type: entity
   parent: ClothingHeadBase
   id: ClothingHeadHelmetRisk
-  name: station daredevil's helmet
+  name: Station Daredevil's Helmet #Far Horizons - The Great Capitalization Crusade
   description: A strong helmet with a cool red line in the middle.
   components:
   - type: Sprite
@@ -286,3 +286,17 @@
         Blunt: 0.95
   - type: ExplosionResistance
     damageCoefficient: 0.95
+
+- type: entity
+  parent: [ ClothingHeadHelmetArmoredBase, BaseSalvageContraband ]
+  id: ClothingHeadHelmetSalvageMerc
+  name: Scrapper Helmet #Far Horizons - The Great Capitalization Crusade
+  description: A durable, lightweight helmet favored by salvagers.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Head/Helmets/salvage.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Head/Helmets/salvage.rsi
+    - type: HideLayerClothing
+      layers:
+        Hair: HEAD

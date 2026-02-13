@@ -6,7 +6,8 @@
   id: BaseCorpsmanStealObjective
   components:
   - type: NotJobRequirement
-    job: Corpsman
+    jobs: 
+      - Corpsman
   - type: StealCondition
     owner: job-name-corpsman
 

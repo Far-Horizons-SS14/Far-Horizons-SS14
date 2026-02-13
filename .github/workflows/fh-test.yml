@@ -1,0 +1,55 @@
+name: Test
+
+on:
+  pull_request:
+    types: [ opened, reopened, synchronize, ready_for_review ]
+    branches: [ Far-Horizons ]
+    paths:
+      - '**.cs'
+      - '**.csproj'
+      - '**.sln'
+      - '**.slnx'
+      - '**.yml'
+      - '**.yaml'
+
+concurrency:
+  group: pr-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:  
+  yaml-lint:
+    if: "!contains(github.event.pull_request.labels.*.name, 'automated pr') && github.actor != 'github-actions[bot]' && github.event.pull_request.draft == false"
+    runs-on: ubuntu-24.04
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup-test-env
+      - run: dotnet run --no-build -c DebugOpt --project Content.YAMLLinter/Content.YAMLLinter.csproj
+  
+  unit-tests:
+    if: "!contains(github.event.pull_request.labels.*.name, 'automated pr') && github.actor != 'github-actions[bot]' && github.event.pull_request.draft == false"
+    runs-on: ubuntu-24.04
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup-test-env
+      - run: dotnet test --no-build -c DebugOpt Content.Tests/Content.Tests.csproj --settings .farhorizons/.integrationtests
+  
+  integration-tests:
+    if: "!contains(github.event.pull_request.labels.*.name, 'automated pr') && github.actor != 'github-actions[bot]' && github.event.pull_request.draft == false"
+    runs-on: ubuntu-24.04
+
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          SWAP_PATH="/tmp/runner-swap"
+          sudo swapoff $SWAP_PATH || true
+
+          sudo fallocate -l 4G $SWAP_PATH
+          sudo chmod 600 $SWAP_PATH
+          sudo mkswap $SWAP_PATH
+          sudo swapon $SWAP_PATH
+      - uses: ./.github/actions/setup-test-env
+      - run: dotnet test --no-build -c DebugOpt Content.IntegrationTests/Content.IntegrationTests.csproj --settings .farhorizons/.integrationtests
+        env:
+          DOTNET_gcServer: "0"

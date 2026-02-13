@@ -4,6 +4,7 @@ using Content.Shared.Tools;
 using Content.Shared.Atmos;
 using Content.Shared.DeviceLinking;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
+using System.Numerics;
 
 namespace Content.Shared._FarHorizons.Power.Generation.FissionGenerator;
 
@@ -27,9 +28,15 @@ public sealed partial class TurbineComponent : Component
     public float StatorLoad = 35000;
 
     /// <summary>
+    /// Maximum setting of stator load
+    /// </summary>
+    // [DataField]
+    // public float StatorLoadMax = 500000; 
+
+    /// <summary>
     /// Current RPM of turbine
     /// </summary>
-    [ViewVariables, AutoNetworkedField]
+    [ViewVariables(VVAccess.ReadWrite), AutoNetworkedField]
     public float RPM = 0;
 
     /// <summary>
@@ -88,7 +95,7 @@ public sealed partial class TurbineComponent : Component
     /// <summary>
     /// If the turbine is functional or not
     /// </summary>
-    [ViewVariables]
+    [DataField, ViewVariables, AutoNetworkedField]
     public bool Ruined = false;
 
     /// <summary>
@@ -116,13 +123,13 @@ public sealed partial class TurbineComponent : Component
     public bool Overspeed = false;
 
     /// <summary>
-    /// Flag for gas tempurature being > MaxTemp - 500
+    /// Flag for gas temperature being > MaxTemp - 500
     /// </summary>
     [ViewVariables]
     public bool Overtemp = false;
 
     /// <summary>
-    /// Flag for gas tempurature being < MinTemp
+    /// Flag for gas temperature being < MinTemp
     /// </summary>
     [ViewVariables]
     public bool Undertemp = false;
@@ -156,30 +163,125 @@ public sealed partial class TurbineComponent : Component
     [DataField]
     public ProtoId<ToolQualityPrototype> RepairTool = "Welding";
 
+    /// <summary>
+    /// The blade currently installed in the turbine
+    /// </summary>
+    [ViewVariables, AutoNetworkedField]
+    public EntityUid? CurrentBlade;
+
+    /// <summary>
+    /// The stator currently installed in the turbine
+    /// </summary>
+    [ViewVariables, AutoNetworkedField]
+    public EntityUid? CurrentStator;
+
+    #region Pipe Connections
+    /// <summary>
+    /// Name of the pipe node
+    /// </summary>
     [DataField]
     public string PipeName { get; set; } = "pipe";
+
+    /// <summary>
+    /// Inlet entity
+    /// </summary>
     [ViewVariables]
     public EntityUid? InletEnt;
+
+    /// <summary>
+    /// Position of the inlet entity
+    /// </summary>
+    [DataField]
+    public Vector2 InletPos = new(-1, -1);
+
+    /// <summary>
+    /// Rotation of the inlet entity, in degrees
+    /// </summary>
+    [DataField]
+    public float InletRot = -90;
+
+    /// <summary>
+    /// Outlet entity
+    /// </summary>
     [ViewVariables]
     public EntityUid? OutletEnt;
 
+    /// <summary>
+    /// Position of the outlet entity
+    /// </summary>
+    [DataField]
+    public Vector2 OutletPos = new(1, -1);
+
+    /// <summary>
+    /// Rotation of the outlet entity, in degrees
+    /// </summary>
+    [DataField]
+    public float OutletRot = 90;
+
+    /// <summary>
+    /// Name of the prototype of the arrows that indicate flow on inspect
+    /// </summary>
+    [DataField]
+    public EntProtoId ArrowPrototype = "TurbineFlowArrow";
+
+    /// <summary>
+    /// Name of the prototype of the pipes the turbine uses to connect to the pipe network
+    /// </summary>
+    [DataField]
+    public EntProtoId PipePrototype = "TurbineGasPipe";
+    #endregion
+
+    #region Device Network
+    /// <summary>
+    /// The proto ID of the "Speed: High" source port
+    /// </summary>
     [DataField("speedHighPort", customTypeSerializer: typeof(PrototypeIdSerializer<SourcePortPrototype>))]
     public string SpeedHighPort = "TurbineSpeedHigh";
 
+    /// <summary>
+    /// The proto ID of the "Speed: Low" source port
+    /// </summary>
     [DataField("speedLowPort", customTypeSerializer: typeof(PrototypeIdSerializer<SourcePortPrototype>))]
     public string SpeedLowPort = "TurbineSpeedLow";
 
+    /// <summary>
+    /// The proto ID of the "Turbine Data" source port
+    /// </summary>
+    [DataField("turbineDataPort", customTypeSerializer: typeof(PrototypeIdSerializer<SourcePortPrototype>))]
+    public string TurbineDataPort = "GasTurbineDataSender";
+
+    /// <summary>
+    /// The proto ID of the "Increase Stator Load" sink port
+    /// </summary>
     [DataField("statorLoadIncreasePort", customTypeSerializer: typeof(PrototypeIdSerializer<SinkPortPrototype>))]
     public string StatorLoadIncreasePort = "IncreaseStatorLoad";
 
+    /// <summary>
+    /// The proto ID of the "Decrease Stator Load" sink port
+    /// </summary>
     [DataField("statorLoadDecreasePort", customTypeSerializer: typeof(PrototypeIdSerializer<SinkPortPrototype>))]
     public string StatorLoadDecreasePort = "DecreaseStatorLoad";
+
+    /// <summary>
+    /// The signal state of the increase stator load port
+    /// </summary>
+    [ViewVariables(VVAccess.ReadWrite)]
+    public SignalState IncreasePortState = SignalState.Low;
+
+    /// <summary>
+    /// The signal state of the decrease stator load port
+    /// </summary>
+    [ViewVariables(VVAccess.ReadWrite)]
+    public SignalState DecreasePortState = SignalState.Low;
+    #endregion
 
     #region Debug
     [ViewVariables(VVAccess.ReadOnly)]
     public bool HasPipes = false;
     [ViewVariables(VVAccess.ReadOnly)]
     public float SupplierMaxSupply = 0;
+    [ViewVariables(VVAccess.ReadOnly)]
+    public float SupplierLastSupply = 0;
     [ViewVariables(VVAccess.ReadOnly)]
     public float LastVolumeTransfer = 0;
     #endregion

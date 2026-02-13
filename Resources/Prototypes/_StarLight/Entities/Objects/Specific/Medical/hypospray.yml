@@ -1,6 +1,6 @@
 - type: entity
   name: gorlex hypospray
-  parent: [BaseItem, BaseSyndicateContraband]
+  parent: [BaseHypospray, BaseSyndicateContraband]
   description: An adaptation of the Gorlex Hypospray for cyborgs.
   id: SyndiBorgHypo
   components:
@@ -20,10 +20,5 @@
         maxVol: 20
   - type: RefillableSolution
     solution: hypospray
-  - type: ExaminableSolution
-    solution: hypospray
-    exactVolume: true
-  - type: Hypospray
-    onlyAffectsMobs: false
   - type: UseDelay
     delay: 0.5

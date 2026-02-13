@@ -5,6 +5,7 @@ loadout-group-species-restriction = This item is not available for your current 
 
 # Miscellaneous
 loadout-group-trinkets = Trinkets
+loadout-group-jobtrinkets = Job trinkets
 loadout-group-glasses = Glasses
 loadout-group-backpack = Backpack
 loadout-group-instruments = Instruments
@@ -14,10 +15,11 @@ loadout-group-survival-clown = Clown Survival Box
 loadout-group-survival-medical = Medical Survival Box
 loadout-group-survival-security = Security Survival Box
 loadout-group-survival-syndicate = Github is forcing me to write text that is literally twice-impossible for the player to ever see, send help
-loadout-group-breath-tool = Species-Dependent Breath Tools
-loadout-group-tank-harness = Species-Specific Survival Equipment
-loadout-group-EVA-tank = Species-Specific Gas Tank
-loadout-group-vox-tank = Vox-Specific Gas Tank
+loadout-group-survival-military = See line 14, no one will ever see this so :3
+loadout-group-breath-tool = Species-dependent breath tools
+loadout-group-tank-harness = Species-specific survival equipment
+loadout-group-EVA-tank = Species-specific gas tank
+loadout-group-vox-tank = Vox-specific gas tank
 loadout-group-pocket-tank-double = Species-specific double emergency tank in pocket
 loadout-group-survival-mime = Mime Survival Box
 
@@ -47,6 +49,7 @@ loadout-group-assistant-id = Assistant PDA
 loadout-group-bartender-head = Bartender Head
 loadout-group-bartender-jumpsuit = Bartender Jumpsuit
 loadout-group-bartender-outerclothing = Bartender Outer Clothing
+loadout-group-bartender-shaker = Bartender shaker
 
 loadout-group-chef-head = Chef Head
 loadout-group-chef-mask = Chef Mask

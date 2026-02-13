@@ -1,11 +1,11 @@
 ﻿- type: entity
   parent: [BaseStructure, ConstructibleMachine] # Not a BaseMachinePowered since we don't want the anchorable component
   id: CryoPod
-  name: cryo pod
+  name: Cryo Pod  #FH CRUSADE
   description: A special machine intended to create a safe environment for the use of chemicals that react in cold environments.
   components:
   - type: Sprite
-    sprite: Structures/Machines/Medical/cryopod.rsi
+    sprite: _FarHorizons/Structures/Machines/Medical/cryopod.rsi #FH
     drawdepth: Mobs
     noRot: true
     offset: 0, 0.5
@@ -111,7 +111,7 @@
   - type: CryoPodAir
   - type: Climbable # so that ejected bodies don't get stuck
     vaultable: false
-  - type: ContainerTemperatureDamageThresholds
+  - type: ContainerTemperature
     coldDamageThreshold: 10
   - type: GuideHelp
     guides:
@@ -120,11 +120,11 @@
 - type: entity
   parent: BaseMachine
   id: CryoPodDestroyed
-  name: destroyed cryo pod
+  name: Destroyed Cryo Pod  #FH CRUSADE
   description: A cryo pod that has seen better days. It's entirely inoperable; not good for anything but scrap.
   components:
   - type: Sprite
-    sprite: Structures/Machines/Medical/cryopod.rsi
+    sprite: _FarHorizons/Structures/Machines/Medical/cryopod.rsi #FH
     drawdepth: Mobs
     noRot: true
     offset: 0, 0.5

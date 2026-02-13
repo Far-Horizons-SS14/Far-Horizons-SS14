@@ -1,0 +1,14 @@
+name: Setup dotnet testing environment
+
+runs:
+  using: composite
+  steps:
+    - run: git submodule update --init --recursive
+      shell: bash
+    - uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 10.0.x
+    - shell: bash
+      run: |
+        dotnet restore
+        dotnet build -c DebugOpt --no-restore /m

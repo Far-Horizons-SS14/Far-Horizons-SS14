@@ -187,8 +187,8 @@ public abstract class SharedSprayPainterSystem : EntitySystem
         // Valid paint target.
         args.Handled = true;
 
-        // Starlight-edit: Start
-        if (TryComp<LimitedChargesComponent>(args.Used, out var charges))
+        if (TryComp<LimitedChargesComponent>(args.Used, out var charges)
+            && Charges.GetCurrentCharges((args.Used, charges)) < targetGroup.Cost)
         {
             if (!Charges.TryUseCharges((args.Used, charges), targetGroup.Cost))
             {

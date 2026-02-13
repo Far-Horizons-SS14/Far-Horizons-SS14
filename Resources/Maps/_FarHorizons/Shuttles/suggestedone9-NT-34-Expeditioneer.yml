@@ -4,8 +4,8 @@ meta:
   engineVersion: 267.3.0
   forkId: ""
   forkVersion: ""
-  time: 12/06/2025 11:11:46
-  entityCount: 439
+  time: 12/16/2025 03:17:21
+  entityCount: 440
 maps: []
 grids:
 - 2
@@ -531,6 +531,13 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -1.5,0.5
+      parent: 2
+- proto: BoxBodyBag
+  entities:
+  - uid: 440
+    components:
+    - type: Transform
+      pos: -1.477756,-7.398177
       parent: 2
 - proto: CableApcExtension
   entities:
@@ -1347,6 +1354,8 @@ entities:
       parent: 2
     - type: Fixtures
       fixtures: {}
+    missingComponents:
+    - AccessReader
 - proto: FloorDrain
   entities:
   - uid: 129

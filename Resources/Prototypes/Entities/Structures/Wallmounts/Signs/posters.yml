@@ -1122,6 +1122,27 @@
   - type: Sprite
     state: poster55_legit
 
+#Far Horizons - Start
+- type: entity
+  parent: PosterBase
+  id: PosterKSDP
+  name: K.S.D.P Warning
+  description: "A poster warning crew to get proper training before using shuttles, citing the 'Killer Safety Driving Protocol' warning to not be like someone called 'Killer Tamashi'"
+  components:
+  - type: Sprite
+    state: poster56_legit
+#Far Horizons - End
+
+- type: entity
+  parent: PosterBase
+  id: PosterLegitBotanyFear
+  name: "Fear of hydroponics"
+  description: "Think three times before opening the airlock to hydroponics, a red threat might be hiding there."
+  components:
+  - type: Sprite
+    sprite: Structures/Wallmounts/posters.rsi #Far Horizons un-resprite poster
+    state: poster56_legit
+
 #maps
 
 - type: entity

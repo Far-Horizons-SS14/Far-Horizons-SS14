@@ -20,12 +20,15 @@ public enum SlotFlags
     NECK = 1 << 7,
     BACK = 1 << 8,
     BELT = 1 << 9,
-    GLOVES = 1 << 10,
-    IDCARD = 1 << 11,
-    POCKET = 1 << 12,
-    LEGS = 1 << 13,
-    FEET = 1 << 14,
-    SUITSTORAGE = 1 << 15,
+    RIG = 1 << 10, // FarHorizons
+    GLOVES = 1 << 11,
+    IDCARD = 1 << 12,
+    POCKET = 1 << 13,
+    LEGS = 1 << 14,
+    FEET = 1 << 15,
+    SUITSTORAGE = 1 << 16,
+    SUITSTORAGE2 = 1 << 17, // FarHorizons
+    PIN = 1 << 18, // FarHorizons
     All = ~NONE,
 
     WITHOUT_POCKET = All & ~POCKET

@@ -7,7 +7,8 @@ using Content.Shared.Ninja.Components;
 using Content.Shared.Ninja.Systems;
 using Content.Shared.Popups;
 using Content.Shared.PowerCell;
-using Content.Shared.PowerCell.Components;
+using Content.Shared.Power;
+using Content.Shared.Power.Components;
 
 namespace Content.Server._FarHorizons.Silicons.IPC;
 
@@ -17,7 +18,10 @@ public sealed partial class IPCSystem
     {
         base.SetupBattery();
         
-        SubscribeLocalEvent<IPCBatteryComponent, PowerCellChangedEvent>(OnPowerCellChanged);
+        SubscribeLocalEvent<IPCBatteryComponent, PowerCellChangedEvent>((uid, comp, ev) => UpdateDeathTimer((uid, comp), ev));
+        SubscribeLocalEvent<IPCBatteryComponent, ChargeChangedEvent>((uid, comp, _) => UpdateDeathTimer((uid, comp)));
+        SubscribeLocalEvent<IPCBatteryComponent, BatteryStateChangedEvent>((uid, comp, _) => UpdateDeathTimer((uid, comp)));
+
         SubscribeLocalEvent<IPCBatteryComponent, PowerCellSlotEmptyEvent>(OnPowerCellSlotEmpty);
         SubscribeLocalEvent<IPCBatteryComponent, MobStateChangedEvent>(OnBatteryStateChange);
 
@@ -58,7 +62,6 @@ public sealed partial class IPCSystem
     private void OnBatteryStateChange(Entity<IPCBatteryComponent> ent, ref MobStateChangedEvent args)
     {
         _powerCell.SetDrawEnabled(ent.Owner, !_state.IsDead(ent));
-        UpdateUI(ent);
     }
 
     protected override void UpdateBattery(float frameTime)
@@ -94,26 +97,26 @@ public sealed partial class IPCSystem
         }
     }
 
-    private void OnPowerCellSlotEmpty(Entity<IPCBatteryComponent> ent, ref PowerCellSlotEmptyEvent args)
-    {
+    private void OnPowerCellSlotEmpty(Entity<IPCBatteryComponent> ent, ref PowerCellSlotEmptyEvent args) =>
         StartDeathTimer(ent);
-        UpdateBatteryAlert(ent);
-        UpdateUI(ent);
-    }
-    private void OnPowerCellChanged(Entity<IPCBatteryComponent> ent, ref PowerCellChangedEvent args)
+
+    private void UpdateDeathTimer(Entity<IPCBatteryComponent> ent, PowerCellChangedEvent? slotChangedEv = null)
     {
-        if(!_powerCell.HasDrawCharge(ent))
+        if(!_powerCell.HasDrawCharge(ent.Owner))
             StartDeathTimer(ent);
         else
             StopDeathTimer(ent);
         
-        _drainer.SetBattery((ent, ent.Comp.BatteryDrainer), ent.Comp.BatteryContainerSlot.ContainedEntity);
-        UpdateBatteryAlert(ent);
-        UpdateUI(ent);
+        if (slotChangedEv != null && !slotChangedEv.Value.Ejected)
+            _drainer.SetBattery((ent, ent.Comp.BatteryDrainer), ent.Comp.BatteryContainerSlot.ContainedEntity);
     }
 
     public void StartDeathTimer(Entity<IPCBatteryComponent> ent){
         if (ent.Comp.TimerActive)
+            return;
+        
+        if (_powerCell.TryGetBatteryFromSlot(ent.Owner, out var battery) && 
+            (battery.Value.Comp.State != BatteryState.Empty || TryComp<BatterySelfRechargerComponent>(battery, out _)))
             return;
         
         ent.Comp.TimerActive = true;
@@ -146,27 +149,6 @@ public sealed partial class IPCSystem
         };
 
         _doAfter.TryStartDoAfter(doAfterArgs);
-    }
-
-    private void UpdateBatteryAlert(Entity<IPCBatteryComponent> ent)
-    {
-        if (_state.IsAlive(ent) && ent.Comp.TimerActive && !_powerCell.HasDrawCharge(ent)){
-            _alerts.ClearAlertCategory(ent.Owner, ent.Comp.BatteryAlertsCategory);
-            _alerts.ShowAlert(ent.Owner, ent.Comp.ChargeCritical);
-            return;
-        }
-
-        if (!_powerCell.TryGetBatteryFromSlot(ent, out var battery, ent.Comp.PowerCellSlot))
-        {
-            _alerts.ClearAlertCategory(ent.Owner, ent.Comp.BatteryAlertsCategory);
-            _alerts.ShowAlert(ent.Owner, ent.Comp.NoBatteryAlert);
-            return;
-        }
-
-        var chargePercent = (short) MathF.Round(battery.CurrentCharge / battery.MaxCharge * 10f);
-
-        _alerts.ClearAlertCategory(ent.Owner, ent.Comp.BatteryAlertsCategory);
-        _alerts.ShowAlert(ent.Owner, ent.Comp.BatteryAlert, chargePercent);
     }
 
     public void DrainBattery(Entity<IPCBatteryComponent?> ent)

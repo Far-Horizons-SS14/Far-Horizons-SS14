@@ -18,7 +18,7 @@
     sprite: Mobs/Species/Human/parts.rsi
     state: head_m
   - type: SurgeryTechnology
-    requiredTechnology: SurgeryTech 
+    requiredTechnology: UnlockFlagSurgeryPlastic 
 
 - type: entity
   parent: SurgeryBase
@@ -39,8 +39,8 @@
     - IPC
   - type: SurgeryTechnology
     technologyModifier:
-      SurgeryTech : 50
-      SurgeryTechAdvanced : 25
+      UnlockFlagSurgerySpeed1 : 50
+      UnlockFlagSurgerySpeed2 : 25
 
 - type: entity
   parent: SurgeryBase
@@ -61,8 +61,8 @@
     - IPC
   - type: SurgeryTechnology
     technologyModifier:
-      SurgeryTech : 50
-      SurgeryTechAdvanced : 25
+      UnlockFlagSurgerySpeed1 : 50
+      UnlockFlagSurgerySpeed2 : 25
     
 - type: entity
   parent: SurgeryBase

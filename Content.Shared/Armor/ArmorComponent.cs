@@ -17,9 +17,6 @@ public sealed partial class ArmorComponent : Component
     [DataField(required: true)]
     public DamageModifierSet Modifiers = default!;
     
-    [DataField("staminaModifier")]
-    public float StaminaDamageModifier = 1.0f;
-    
     /// <summary>
     /// A multiplier applied to the calculated point value
     /// to determine the monetary value of the armor
@@ -32,6 +29,21 @@ public sealed partial class ArmorComponent : Component
     /// </summary>
     [DataField]
     public bool ShowArmorOnExamine = true;
+
+    #region Starlight
+
+    /// <summary>
+    /// If true, ignores knockdown from tasers.
+    /// </summary>
+    [DataField]
+    public bool IgnoreKnockdown = false;
+
+    /// <summary>
+    /// Stamina damage reduction
+    /// </summary>
+    [DataField("staminaModifier")]
+    public float StaminaDamageModifier = 1.0f;
+    #endregion
 }
 
 /// <summary>
@@ -56,8 +68,13 @@ public sealed class CoefficientQueryEvent : EntityEventArgs, IInventoryRelayEven
     /// </summary>
     public DamageModifierSet DamageModifiers { get; set; } = new DamageModifierSet();
 
-    public CoefficientQueryEvent(SlotFlags slots)
+    /// Far Horizons-Start - Changeling/Protogen Armor Bypass
+     public CoefficientQueryEvent(SlotFlags slots, bool ignoreUnremovable = false)
     {
         TargetSlots = slots;
+        IgnoreUnremovable = ignoreUnremovable;
     }
+
+    public bool IgnoreUnremovable = false;
+    /// Far Horizons-End
 }

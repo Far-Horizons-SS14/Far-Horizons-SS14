@@ -18,3 +18,10 @@
   - type: Tag
     tags:
       - PowerCellTiny
+  - type: GenericVisualizer #TODO: make these real states
+    visuals:
+      enum.BatteryVisuals.State:
+        enum.PowerCellVisualLayers.Unshaded:
+          Full: {visible: false}
+          Neither: {visible: false}
+          Empty: {visible: false}

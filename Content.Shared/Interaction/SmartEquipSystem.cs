@@ -36,7 +36,11 @@ public sealed class SmartEquipSystem : EntitySystem
         CommandBinds.Builder
             .Bind(ContentKeyFunctions.SmartEquipBackpack, InputCmdHandler.FromDelegate(HandleSmartEquipBackpack, handle: false, outsidePrediction: false))
             .Bind(ContentKeyFunctions.SmartEquipBelt, InputCmdHandler.FromDelegate(HandleSmartEquipBelt, handle: false, outsidePrediction: false))
-            .Bind(ContentKeyFunctions.SmartEquipSuitStorage, InputCmdHandler.FromDelegate(HandleSmartEquipSuitStorage, handle: false, outsidePrediction: false)) // Starlight edit - Suit storage Equip
+            .Bind(ContentKeyFunctions.SmartEquipPocket1, InputCmdHandler.FromDelegate(HandleSmartEquipPocket1, handle: false, outsidePrediction: false))
+            .Bind(ContentKeyFunctions.SmartEquipPocket2, InputCmdHandler.FromDelegate(HandleSmartEquipPocket2, handle: false, outsidePrediction: false))
+            .Bind(ContentKeyFunctions.SmartEquipSuitStorage, InputCmdHandler.FromDelegate(HandleSmartEquipSuitStorage, handle: false, outsidePrediction: false))
+            .Bind(ContentKeyFunctions.SmartEquipTankStorage, InputCmdHandler.FromDelegate(HandleSmartEquipTankStorage, handle: false, outsidePrediction: false)) // Far Horizons
+            .Bind(ContentKeyFunctions.SmartEquipRig, InputCmdHandler.FromDelegate(HandleSmartEquipRig, handle: false, outsidePrediction: false)) // Far Horizons
             .Register<SmartEquipSystem>();
     }
 
@@ -57,13 +61,24 @@ public sealed class SmartEquipSystem : EntitySystem
         HandleSmartEquip(session, "belt");
     }
 
-    // Starlight Start - Suit storage equip
+    private void HandleSmartEquipPocket1(ICommonSession? session)
+    {
+        HandleSmartEquip(session, "pocket1");
+    }
+
+    private void HandleSmartEquipPocket2(ICommonSession? session)
+    {
+        HandleSmartEquip(session, "pocket2");
+    }
+
     private void HandleSmartEquipSuitStorage(ICommonSession? session)
     {
-        HandleSmartEquip(session, SuitStorageSlot);
+        HandleSmartEquip(session, "suitstorage");
     }
-    // Starlight End
-    
+
+    private void HandleSmartEquipTankStorage(ICommonSession? session) => HandleSmartEquip(session, "suitstorage2"); // Far Horizons
+    private void HandleSmartEquipRig(ICommonSession? session) => HandleSmartEquip(session, "rig"); // Far Horizons
+
     private void HandleSmartEquip(ICommonSession? session, string equipmentSlot)
     {
         if (session is not { } playerSession)

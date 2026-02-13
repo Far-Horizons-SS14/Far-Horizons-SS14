@@ -29,9 +29,11 @@
   petFailureString: petting-failure-security-cyborg
 
   requirements:
+  - !type:OverallPlaytimeRequirement #Far Horizons
+    time: 14400 # 4 Hours Far Horizons - Temporary //
   - !type:DepartmentTimeRequirement
     department: Security
-    time: 36000 #10 hrs
+    time: 0 # Far Horizons - Temporary // 36000 #10 hrs Starlight
 
 # Syndicate borgs
 

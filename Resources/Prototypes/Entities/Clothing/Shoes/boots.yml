@@ -1,7 +1,7 @@
 - type: entity
   parent: ClothingShoesBaseButcherable
   id: ClothingShoesBootsWork
-  name: workboots
+  name: Workboots #Far Horizons - The Great Capitalization Crusade
   description: Engineering lace-up work boots for the especially blue-collar.
   components:
   - type: Sprite
@@ -13,20 +13,20 @@
 - type: entity
   parent: [ClothingShoesMilitaryBase, BaseSecurityContraband]
   id: ClothingShoesBootsJack
-  name: jackboots
+  name: Jackboots #Far Horizons - The Great Capitalization Crusade
   description: Nanotrasen-issue Security combat boots for combat scenarios or combat situations. All combat, all the time.
   components:
   - type: Sprite
-    sprite: Clothing/Shoes/Boots/jackboots.rsi
+    sprite: _FarHorizons/Clothing/Shoes/Boots/jackboots.rsi #Far Horizons
   - type: Clothing
-    sprite: Clothing/Shoes/Boots/jackboots.rsi
+    sprite: _FarHorizons/Clothing/Shoes/Boots/jackboots.rsi #Far Horizons
   - type: ClothingSlowOnDamageModifier
     modifier: 0.5
 
 - type: entity
   parent: ClothingShoesBaseButcherable
   id: ClothingShoesBootsSalvage
-  name: salvage boots
+  name: Salvage Boots #Far Horizons - The Great Capitalization Crusade
   description: Steel-toed salvage boots for salvaging in hazardous environments.
   components:
   - type: Sprite
@@ -38,7 +38,7 @@
 - type: entity
   parent: ClothingShoesBaseButcherable
   id: ClothingShoesBootsPerformer
-  name: performer's boots
+  name: Performer's Boots #Far Horizons - The Great Capitalization Crusade
   description: These boots provide great traction for when you're up on stage.
   components:
   - type: Sprite
@@ -49,20 +49,20 @@
 - type: entity
   parent: [ClothingShoesMilitaryBase, BaseSecurityContraband]
   id: ClothingShoesBootsCombat
-  name: combat boots
+  name: Combat Boots #Far Horizons - The Great Capitalization Crusade
   description: Robust combat boots for combat scenarios or combat situations. All combat, all the time.
   components:
   - type: Sprite
-    sprite: Clothing/Shoes/Boots/combatboots.rsi
+    sprite: _FarHorizons/Clothing/Shoes/Boots/combatboots.rsi #Far Horizons
   - type: Clothing
-    sprite: Clothing/Shoes/Boots/combatboots.rsi
+    sprite: _FarHorizons/Clothing/Shoes/Boots/combatboots.rsi #Far Horizons
   - type: ClothingSlowOnDamageModifier
     modifier: 0.5
 
 - type: entity
   parent: ClothingShoesMilitaryBase
   id: ClothingShoesHighheelBoots
-  name: high-heeled boots
+  name: High-Heeled Boots #Far Horizons - The Great Capitalization Crusade
   description: Snazy boots for when you want to be stylish, yet prepared.
   components:
   - type: MeleeWeapon
@@ -81,9 +81,9 @@
         variation: 0.09
 
 - type: entity
-  parent: [ ClothingShoesMilitaryBase, BaseSalvageContraband ] #Starlight salvContra
+  parent: ClothingShoesMilitaryBase
   id: ClothingShoesBootsMerc
-  name: mercenary boots
+  name: Mercenary Boots #Far Horizons - The Great Capitalization Crusade
   description: Boots that have gone through many conflicts and that have proven their combat reliability.
   components:
   - type: Sprite
@@ -94,7 +94,7 @@
 - type: entity
   parent: ClothingShoesBaseButcherable
   id: ClothingShoesBootsLaceup
-  name: laceup shoes
+  name: Laceup Shoes #Far Horizons - The Great Capitalization Crusade
   description: The height of fashion, and they're pre-polished!
   components:
   - type: Sprite
@@ -105,7 +105,7 @@
 - type: entity
   parent: ClothingShoesBaseWinterBoots
   id: ClothingShoesBootsWinter
-  name: winter boots
+  name: Winter Boots #Far Horizons - The Great Capitalization Crusade
   components:
   - type: Sprite
     sprite: Clothing/Shoes/Boots/winterboots.rsi
@@ -115,7 +115,7 @@
 - type: entity
   parent: ClothingShoesBaseWinterBoots
   id: ClothingShoesBootsWinterCargo
-  name: cargo winter boots
+  name: Cargo Winter Boots #Far Horizons - The Great Capitalization Crusade
   components:
   - type: Sprite
     sprite: Clothing/Shoes/Boots/winterbootscargo.rsi
@@ -125,7 +125,7 @@
 - type: entity
   parent: ClothingShoesBaseWinterBoots
   id: ClothingShoesBootsWinterEngi
-  name: engineering winter boots
+  name: Engineering Winter Boots #Far Horizons - The Great Capitalization Crusade
   components:
   - type: Sprite
     sprite: Clothing/Shoes/Boots/winterbootsengi.rsi
@@ -135,7 +135,7 @@
 - type: entity
   parent: ClothingShoesBaseWinterBoots
   id: ClothingShoesBootsWinterMed
-  name: medical winter boots
+  name: Medical Winter Boots #Far Horizons - The Great Capitalization Crusade
   components:
   - type: Sprite
     sprite: Clothing/Shoes/Boots/winterbootsmed.rsi
@@ -145,7 +145,7 @@
 - type: entity
   parent: ClothingShoesBaseWinterBoots
   id: ClothingShoesBootsWinterSci
-  name: science winter boots
+  name: Science Winter Boots #Far Horizons - The Great Capitalization Crusade
   components:
   - type: Sprite
     sprite: Clothing/Shoes/Boots/winterbootssci.rsi
@@ -155,7 +155,7 @@
 - type: entity
   parent: [ClothingShoesBaseWinterBoots, ClothingShoesMilitaryBase, BaseSecurityContraband]
   id: ClothingShoesBootsWinterSec
-  name: security winter boots
+  name: Security Winter Boots #Far Horizons - The Great Capitalization Crusade
   components:
   - type: Sprite
     sprite: Clothing/Shoes/Boots/winterbootssec.rsi
@@ -167,7 +167,7 @@
 - type: entity
   parent: [ClothingShoesBaseWinterBoots, BaseSyndicateContraband]
   id: ClothingShoesBootsWinterSyndicate
-  name: syndicate's winter boots
+  name: Syndicate's Winter Boots #Far Horizons - The Great Capitalization Crusade
   description: Durable heavy boots, looks like merch from "Syndieland".
   components:
   - type: Sprite
@@ -178,7 +178,7 @@
 - type: entity
   parent: ClothingShoesBaseWinterBoots
   id: ClothingShoesBootsWinterWeb
-  name: web winter boots
+  name: Web Winter Boots #Far Horizons - The Great Capitalization Crusade
   description: Boots made out of dense webbing to help survive even the coldest of winters.
   components:
   - type: Sprite
@@ -208,7 +208,7 @@
 - type: entity
   parent: ClothingShoesMilitaryBase
   id: ClothingShoesBootsCowboyBrown
-  name: brown cowboy boots
+  name: Brown Cowboy Boots #Far Horizons - The Great Capitalization Crusade
   description: They got spurs that jingle and/or jangle.
   components:
   - type: Sprite
@@ -225,7 +225,7 @@
 - type: entity
   parent: ClothingShoesBootsCowboyBrown
   id: ClothingShoesBootsCowboyBlack
-  name: black cowboy boots
+  name: Black Cowboy Boots #Far Horizons - The Great Capitalization Crusade
   components:
   - type: Sprite
     sprite: Clothing/Shoes/Boots/cowboybootsblack.rsi
@@ -235,7 +235,7 @@
 - type: entity
   parent: ClothingShoesBootsCowboyBrown
   id: ClothingShoesBootsCowboyWhite
-  name: white cowboy boots
+  name: White Cowboy Boots #Far Horizons - The Great Capitalization Crusade
   components:
   - type: Sprite
     sprite: Clothing/Shoes/Boots/cowboybootswhite.rsi
@@ -245,7 +245,7 @@
 - type: entity
   parent: ClothingShoesBootsCowboyBrown
   id: ClothingShoesBootsCowboyFancy
-  name: fancy cowboy boots
+  name: Fancy Cowboy Boots #Far Horizons - The Great Capitalization Crusade
   components:
   - type: Sprite
     sprite: Clothing/Shoes/Boots/cowboybootsfancy.rsi

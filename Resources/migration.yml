@@ -55,7 +55,7 @@ MagazineBoxLightRifleHighVelocity: MagazineBoxLightRifleFMJ
 MagazineBoxMagnumHighVelocity: MagazineBoxMagnumSP
 MagazineBoxPistolHighVelocity: MagazineBoxPistolFMJ
 MagazineBoxRifleHighVelocity: MagazineBoxRifleFMJ
-MagazineCaselessRifleHighVelocity: MagazineCaselessRifle
+MagazineCaselessRifleHighVelocity: null # FH - Remove broken prototype
 MagazineCaselessRifleShortHighVelocity: null
 MagazineLightRifleHighVelocity: MagazineLightRifleFMJ
 MagazineMagnumSubMachineGunHighVelocity: MagazineMagnumSubMachineGun
@@ -65,7 +65,7 @@ MagazinePistolHighVelocity: MagazinePistolFMJ
 MagazinePistolSubMachineGunHighVelocity: MagazinePistolSubMachineGunSP
 MagazineRifleHighVelocity: MagazineRifleFMJ
 SpeedLoaderMagnumHighVelocity: SpeedLoaderMagnumFMJ
-SpeedLoaderPistolHighVelocity: SpeedLoaderPistol
+SpeedLoaderPistolHighVelocity: SpeedLoaderPistol40FMJ # FH - fix broken prototype
 
 # 2023-08-07
 #If the name is anything to go off of, these are presumably just CEV-Eris versions of the snow rock (which we already have.)
@@ -178,33 +178,38 @@ SpyCrewMonitorEmpty: null
 SyndiCrewMonitor: null
 SyndiCrewMonitorEmpty: null
 
-SpawnVehicleWheelchair: null
-SpawnVehicleWheelchairFolded: null
-VehicleWheelchair: null
-VehicleWheelchairFolded: null
-VehicleSecwayStealObjective: null
-VehicleKeyJanicart: null
-VehicleKeySecway: null
-VehicleKeyATV: null
+##FarHorizons Start
+
+#SpawnVehicleWheelchair: null
+#SpawnVehicleWheelchairFolded: null
+#VehicleWheelchair: null
+#VehicleWheelchairFolded: null
+#VehicleSecwayStealObjective: null
+#VehicleKeySecway: null
+#VehicleKeyATV: null
+#VehicleSecway: null
+#VehicleATV: null
+#VehicleSyndicateSegway: null
+#ActionVehicleHorn: null
+#CrateFunATV: null
+# MobSupplyBot: null
+#SpawnVehicleMotobike: null
+#SpawnVehicleATV: null
+#SpawnVehicleSecway: null
+#SpawnVehicleJanicart: null
+#VehicleJanicart: null
+#VehicleKeyJanicart: null
+#VehicleUnicycle: null
+#VehicleUnicycleFolded: null
+
+##FarHorizons End
+
 VehicleKeySkeleton: null
 VehicleKeySyndicateSegway: null
 VehicleKeySkeletonMotorcycle: null
-VehicleSecway: null
-VehicleATV: null
-VehicleSyndicateSegway: null
 VehicleSkeletonMotorcycle: null
-VehicleUnicycle: null
-VehicleUnicycleFolded: null
-ActionVehicleHorn: null
-CrateFunATV: null
 CrateFunSyndicateSegway: null
 MobTaxiBot: null
-# MobSupplyBot: null
-SpawnVehicleMotobike: null
-SpawnVehicleATV: null
-SpawnVehicleSecway: null
-SpawnVehicleJanicart: null
-VehicleJanicart: null
 VehicleJanicartDestroyed: null
 
 # 2024-02-01
@@ -301,9 +306,9 @@ MagazinePistolSubMachineGunRubber: MagazinePistolSubMachineGunSP
 MagazinePistolCaselessRifleRubber: MagazinePistolCaselessRifle
 MagazineMagnumRubber: MagazineMagnum
 MagazineMagnumSubMachineGunRubber: MagazineMagnumSubMachineGun
-MagazineCaselessRifleRubber: MagazineCaselessRifle
+MagazineCaselessRifleRubber: null # FH - remove broken prototype
 MagazineCaselessRifleShortRubber: null
-SpeedLoaderPistolRubber: SpeedLoaderPistol
+SpeedLoaderPistolRubber: SpeedLoaderPistol40FMJ # FH - fix broken prototype
 # RIP box of magnum rubbers 202X to 2024
 MagazineBoxMagnumRubber: MagazineBoxMagnumSP
 MagazineBoxRifleRubber: MagazineBoxRifleSP
@@ -647,7 +652,6 @@ WeaponEnergyTurretStationMachineCircuitboard: WeaponEnergyTurretSecurityMachineC
 # 2025-05-30
 SpawnHonkBot: SpawnMobHonkBot
 
-
 # 2025-06-03
 FloorTileItemGCircuit4: FloorTileItemGCircuit
 FloorTileItemBCircuit4: FloorTileItemBCircuit
@@ -715,3 +719,42 @@ ClothingUniformJumpsuitParamedicNT: ClothingUniformJumpsuitParamedic
 
 # 2025-08-29
 PrefilledSyringe: Syringe
+
+# 2025-10-6
+#BibleTanakh: null # Unremove I guess? I'm confused, don't think I touched bibles during this pull?
+#BibleSatanic: null
+
+# 2025-10-08
+ClothingBeltAssault: ClothingBeltMilitaryWebbing
+WarpPointBombing: null
+
+# 2025-10-13
+ToyGriffin: ToyFigurineGriffin
+ToyOwlman: ToyFigurineOwlman
+ToySkeleton: ToyFigurineSkeleton
+
+# 2025-10-28
+DrinkKiraSpecial: DrinkOrangeLimeSodaGlass
+
+# 2025-11-08
+DebugSMES: SMESBasicEmpty
+DebugSubstation: SubstationBasicEmpty
+DebugSubstationWall: BaseSubstationWall
+DebugAPC: BaseAPC
+MagazineCaselessRifle: MagazinePistolCaselessRifle
+MagazineCaselessRiflePractice: MagazinePistolCaselessRiflePractice
+SpeedLoaderPistol: null
+SpeedLoaderPistolPractice: null
+
+# 2025-12-05
+GlowstickBase: GlowstickGreen
+
+# 2025-12-06
+#SpawnPointZookeeper: null
+#SpawnPointBoxer: null
+# Far Horizons unremoved
+
+# 2025-12-07
+FigureSpawner: MechFigurineSpawner50
+ToySpawner: PlushieSpawner50
+SpacemenFigureSpawner: SpacemenFigurineSpawner90

@@ -1,3 +1,41 @@
+# M81 Rocket Loader Chest Rig (Filled)
+
+- type: entity
+  id: ClothingBeltM81RocketLoaderChestRigFilled
+  parent: ClothingBeltM81RocketLoaderChestRig
+  suffix: Filled
+  components:
+  - type: ContainerFill
+    containers:
+      120mmrocket_slot7:
+        - RocketAmmo120mmShrapnel
+      120mmrocket_slot6:
+        - RocketAmmo120mmHE
+      120mmrocket_slot5: 
+        - RocketAmmo120mmAP
+      120mmrocket_slot4: 
+        - RocketAmmo120mmHE
+      120mmrocket_slot3:
+        - RocketAmmo120mmAP
+      120mmrocket_slot2:
+        - RocketAmmo120mmHE
+      120mmrocket_slot1:
+        - RocketAmmo120mmShrapnel
+        
+#region Syndicate
+
+
+
+
+
+
+
+
+
+#region Command
+
+# Commander(Captain)
+
 - type: entity
   id: ClothingBeltSheathFilledSyndi
   parent: ClothingBeltSheathSyndi
@@ -7,3 +45,56 @@
     containers:
       item:
       - CaptainSabre
+
+# Technical Lead (Chief Engineer)
+
+- type: entity
+  id: ClothingBeltChiefEngineerFilledSyndi
+  parent: ClothingBeltChiefEngineerSyndi
+  suffix: S, Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: PowerDrill
+        - id: JawsOfLife
+        - id: WelderExperimental
+        - id: Multitool
+        - id: HolofanProjector
+        - id: GasAnalyzer
+        - id: trayScanner
+
+#region Engineering
+
+- type: entity
+  id: ClothingBeltUtilityFilledSyndi
+  parent: ClothingBeltUtilitySyndi
+  suffix: S, Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: Crowbar
+        - id: Wrench
+        - id: Screwdriver
+        - id: Wirecutter
+        - id: Welder
+        - id: NetworkConfigurator
+
+- type: entity
+  id: ClothingBeltUtilityEngineeringSyndi
+  parent: ClothingBeltUtilitySyndi
+  suffix: S, Engineering
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: CrowbarYellow
+        - id: Wrench
+        - id: Screwdriver
+        - id: Wirecutter
+        - id: Welder
+        - id: Multitool

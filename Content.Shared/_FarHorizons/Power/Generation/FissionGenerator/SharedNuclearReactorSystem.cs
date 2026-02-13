@@ -1,6 +1,5 @@
 using Content.Shared.Popups;
 using Content.Shared.Containers.ItemSlots;
-using Content.Shared.Administration.Logs;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared._FarHorizons.Power.Generation.FissionGenerator;
@@ -11,11 +10,11 @@ namespace Content.Shared._FarHorizons.Power.Generation.FissionGenerator;
 
 public abstract class SharedNuclearReactorSystem : EntitySystem
 {
-    [Dependency] private readonly EntityManager _entityManager = default!;
     [Dependency] private readonly ItemSlotsSystem _slotsSystem = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
+    [Dependency] private readonly EntityManager _entityManager = default!;
 
     public override void Initialize()
     {
@@ -35,62 +34,44 @@ public abstract class SharedNuclearReactorSystem : EntitySystem
 
     protected bool ReactorTryGetSlot(EntityUid uid, string slotID, out ItemSlot? itemSlot) => _slotsSystem.TryGetSlot(uid, slotID, out itemSlot);
 
-    public void UpdateGridVisual(NuclearReactorComponent comp)
+    public void UpdateGridVisual(Entity<NuclearReactorComponent> ent)
     {
-        for (var x = 0; x < NuclearReactorComponent.ReactorGridWidth; x++)
+        var comp = ent.Comp;
+        var uid = ent.Owner;
+
+        if (comp.ComponentGrid == null)
+            return;
+
+        for (var x = 0; x < comp.ReactorGridWidth; x++)
         {
-            for (var y = 0; y < NuclearReactorComponent.ReactorGridHeight; y++)
+            for (var y = 0; y < comp.ReactorGridHeight; y++)
             {
-                var entId = _entityManager.GetEntity(comp.VisualGrid[x, y]);
                 var gridComp = comp.ComponentGrid[x, y];
+                var vector = new Vector2i(x, y);
+
                 if (gridComp == null)
                 {
-                    _appearance.SetData(entId, ReactorCapVisuals.Sprite, ReactorCaps.Base);
-                    continue;
+                    comp.VisualData.Remove(vector);
                 }
                 else
                 {
-                    if (_entityManager.TryGetComponent<ReactorPartVisualComponent>(entId, out var visual))
-                    {
-                        visual.color = _proto.Index(gridComp.Material).Color;
-                        Dirty(entId, visual);
-                    }
-                    _appearance.SetData(entId, ReactorCapVisuals.Sprite, ChooseSprite(gridComp.IconStateCap));
+                    var data = new ReactorCapVisualData { cap = gridComp.IconStateCap, color = _proto.Index(gridComp.Material).Color };
+                    if (!comp.VisualData.TryAdd(vector, data))
+                        comp.VisualData[vector] = data;
                 }
             }
         }
+        Dirty(ent);
+
+        // Sanity check to make sure there is actually an appearance component (nullpointer hell)
+        if (!_entityManager.HasComponent<AppearanceComponent>(uid))
+            return;
+
+        // The data being set doesn't really matter, it just has to trigger AppearanceChangeEvent and the client will handle the rest
+        if (!_appearance.TryGetData(uid, ReactorCapVisuals.Sprite, out bool prevValue))
+            _appearance.SetData(uid, ReactorCapVisuals.Sprite, true);
+        _appearance.SetData(uid, ReactorCapVisuals.Sprite, !prevValue);
     }
-
-    private static ReactorCaps ChooseSprite(string capName) => capName switch
-    {
-        "base_cap" => ReactorCaps.Base,
-
-        "control_cap" => ReactorCaps.Control,
-        "control_cap_melted_1" => ReactorCaps.ControlM1,
-        "control_cap_melted_2" => ReactorCaps.ControlM2,
-        "control_cap_melted_3" => ReactorCaps.ControlM3,
-        "control_cap_melted_4" => ReactorCaps.ControlM4,
-
-        "fuel_cap" => ReactorCaps.Fuel,
-        "fuel_cap_melted_1" => ReactorCaps.FuelM1,
-        "fuel_cap_melted_2" => ReactorCaps.FuelM2,
-        "fuel_cap_melted_3" => ReactorCaps.FuelM3,
-        "fuel_cap_melted_4" => ReactorCaps.FuelM4,
-
-        "gas_cap" => ReactorCaps.Gas,
-        "gas_cap_melted_1" => ReactorCaps.GasM1,
-        "gas_cap_melted_2" => ReactorCaps.GasM2,
-        "gas_cap_melted_3" => ReactorCaps.GasM3,
-        "gas_cap_melted_4" => ReactorCaps.GasM4,
-
-        "heat_cap" => ReactorCaps.Heat,
-        "heat_cap_melted_1" => ReactorCaps.HeatM1,
-        "heat_cap_melted_2" => ReactorCaps.HeatM2,
-        "heat_cap_melted_3" => ReactorCaps.HeatM3,
-        "heat_cap_melted_4" => ReactorCaps.HeatM4,
-
-        _ => ReactorCaps.Base,
-    };
 
     protected void UpdateTempIndicators(Entity<NuclearReactorComponent> ent)
     {
@@ -129,188 +110,13 @@ public abstract class SharedNuclearReactorSystem : EntitySystem
         }
     }
 
-    protected static void AdjustControlRods(NuclearReactorComponent comp, float change) => comp.ControlRodInsertion = Math.Clamp(comp.ControlRodInsertion + change, 0, 2);
-}
-
-public static class NuclearReactorPrefabs
-{
-    private static readonly ReactorPartComponent c = BaseReactorComponents.ControlRod;
-    private static readonly ReactorPartComponent f = BaseReactorComponents.FuelRod;
-    private static readonly ReactorPartComponent g = BaseReactorComponents.GasChannel;
-    private static readonly ReactorPartComponent h = BaseReactorComponents.HeatExchanger;
-
-    public static readonly ReactorPartComponent?[,] Empty =
-    {
+    public static bool AdjustControlRods(NuclearReactorComponent comp, float change) { 
+        var newSet = Math.Clamp(comp.ControlRodInsertion + change, 0, 2);
+        if (comp.ControlRodInsertion != newSet)
         {
-            null, null, null, null, null, null, null
-        },
-        {
-            null, null, null, null, null, null, null
-        },
-        {
-            null, null, null, null, null, null, null
-        },
-        {
-            null, null, null, null, null, null, null
-        },
-        {
-            null, null, null, null, null, null, null
-        },
-        {
-            null, null, null, null, null, null, null
-        },
-        {
-            null, null, null, null, null, null, null
+            comp.ControlRodInsertion = newSet;
+            return true;
         }
-    };
-
-    public static readonly ReactorPartComponent?[,] Normal =
-    {
-        {
-            null, null, null, null, null, null, null
-        },
-        {
-            null, null, null, null, null, null, null
-        },
-        {
-            g, h, g, h, g, h, g
-        },
-        {
-            h, null, c, null, c, null, h
-        },
-        {
-            g, h, g, h, g, h, g
-        },
-        {
-            null, null, null, null, null, null, null
-        },
-        {
-            null, null, null, null, null, null, null
-        }
-    };
-
-    public static readonly ReactorPartComponent?[,] Debug =
-    {
-        {
-            null, null, null, null, null, null, null
-        },
-        {
-            null, null, null, null, null, null, null
-        },
-        {
-            g, h, g, h, g, h, g
-        },
-        {
-            h, f, c, f, c, f, h
-        },
-        {
-            g, h, g, h, g, h, g
-        },
-        {
-            null, null, null, null, null, null, null
-        },
-        {
-            null, null, null, null, null, null, null
-        }
-    };
-
-    public static readonly ReactorPartComponent?[,] Meltdown =
-    {
-        {
-            f, f, f, f, f, f, f
-        },
-        {
-            f, f, f, f, f, f, f
-        },
-        {
-            f, f, f, f, f, f, f
-        },
-        {
-            f, f, f, f, f, f, f
-        },
-        {
-            f, f, f, f, f, f, f
-        },
-        {
-            f, f, f, f, f, f, f
-        },
-        {
-            f, f, f, f, f, f, f
-        },
-    };
-
-    public static readonly ReactorPartComponent?[,] Alignment =
-    {
-        {
-            null, null, null, null, null, null, c
-        },
-        {
-            null, null, null, null, null, c, null
-        },
-        {
-            null, null, null, null, c, null, null
-        },
-        {
-            null, null, null, c, null, null, null
-        },
-        {
-            null, null, c, null, c, null, null
-        },
-        {
-            null, c, null, null, null, c, null
-        },
-        {
-            c, null, null, null, null, null, c
-        }
-    };
-
-    public static readonly ReactorPartComponent?[,] Arachne =
-    {
-        {
-            g, h, g, h, g, h, g
-        },
-        {
-            h, f, c, f, c, f, h
-        },
-        {
-            g, c, c, g, c, c, g
-        },
-        {
-            h, f, g, c, g, f, h
-        },
-        {
-            g, c, c, g, c, c, g
-        },
-        {
-            h, f, c, f, c, f, h
-        },
-        {
-            g, h, g, h, g, h, g
-        }
-    };
-
-    public static readonly ReactorPartComponent?[,] Lens =
-    {
-        {
-            g, h, g, h, g, h, g
-        },
-        {
-            h, f, c, g, c, f, h
-        },
-        {
-            g, c, c, h, c, c, g
-        },
-        {
-            h, g, h, f, h, g, h
-        },
-        {
-            g, c, c, h, c, c, g
-        },
-        {
-            h, f, c, g, c, f, h
-        },
-        {
-            g, h, g, h, g, h, g
-        }
-    };
+        return false; 
+    }
 }

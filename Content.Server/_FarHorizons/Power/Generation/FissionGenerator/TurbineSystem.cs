@@ -9,7 +9,6 @@ using Content.Shared._FarHorizons.Power.Generation.FissionGenerator;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Atmos;
 using Content.Shared.Database;
-using Content.Shared.Explosion.Components;
 using Content.Shared.Popups;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
@@ -18,7 +17,16 @@ using Content.Server.NodeContainer.Nodes;
 using Content.Shared.DeviceLinking.Events;
 using Content.Server.DeviceLinking.Systems;
 using Content.Shared.Construction.Components;
-using Robust.Shared.Physics;
+using Content.Shared.DeviceLinking;
+using Content.Shared.DeviceNetwork;
+using Content.Shared.Containers.ItemSlots;
+using Robust.Shared.Containers;
+using System.Diagnostics.CodeAnalysis;
+using Content.Shared.Damage.Systems;
+using Content.Server.Audio;
+using Content.Shared.Audio;
+using Robust.Shared.Timing;
+using System.Linq;
 
 namespace Content.Server._FarHorizons.Power.Generation.FissionGenerator;
 
@@ -39,11 +47,10 @@ public sealed class TurbineSystem : SharedTurbineSystem
     [Dependency] private readonly UserInterfaceSystem _uiSystem = null!;
     [Dependency] private readonly DeviceLinkSystem _signal = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
-
-    public event Action<string>? TurbineRepairMessage;
-
-    private readonly float _threshold = 0.5f;
-    private float _accumulator = 0f;
+    [Dependency] private readonly EntityManager _entityManager = default!;
+    [Dependency] private readonly SharedContainerSystem _containerSystem = default!;
+    [Dependency] private readonly AmbientSoundSystem _ambientSoundSystem = default!;
+    [Dependency] private readonly IGameTiming _gameTiming = default!;
 
     private readonly List<string> _damageSoundList = [
         "/Audio/_FarHorizons/Effects/engine_grump1.ogg",
@@ -53,25 +60,70 @@ public sealed class TurbineSystem : SharedTurbineSystem
         "/Audio/Effects/metal_scrape2.ogg"
     ];
 
+    private sealed class LogData
+    {
+        public TimeSpan CreationTime;
+        public float? SetFlowRate;
+        public float? SetStatorLoad;
+    }
+
+    private readonly Dictionary<KeyValuePair<EntityUid, EntityUid>, LogData> _logQueue = [];
+
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeLocalEvent<TurbineComponent, ComponentInit>(OnInit);
+        SubscribeLocalEvent<TurbineComponent, MapInitEvent>(OnInit);
         SubscribeLocalEvent<TurbineComponent, ComponentShutdown>(OnShutdown);
+
+        SubscribeLocalEvent<TurbineComponent, DamageChangedEvent>(OnDamaged);
+
+        SubscribeLocalEvent<TurbineComponent, ItemSlotInsertAttemptEvent>(OnInsertAttempt);
+        SubscribeLocalEvent<TurbineComponent, ItemSlotEjectAttemptEvent>(OnEjectAttempt);
+        SubscribeLocalEvent<TurbineComponent, EntInsertedIntoContainerMessage>(OnPartInserted);
+        SubscribeLocalEvent<TurbineComponent, EntRemovedFromContainerMessage>(OnPartEjected);
 
         SubscribeLocalEvent<TurbineComponent, AtmosDeviceUpdateEvent>(OnUpdate);
         SubscribeLocalEvent<TurbineComponent, GasAnalyzerScanEvent>(OnAnalyze);
 
+        SubscribeLocalEvent<TurbineComponent, TurbineChangeFlowRateMessage>(OnTurbineFlowRateChanged);
+        SubscribeLocalEvent<TurbineComponent, TurbineChangeStatorLoadMessage>(OnTurbineStatorLoadChanged);
+
         SubscribeLocalEvent<TurbineComponent, SignalReceivedEvent>(OnSignalReceived);
+        SubscribeLocalEvent<TurbineComponent, PortDisconnectedEvent>(OnPortDisconnected);
 
         SubscribeLocalEvent<TurbineComponent, AnchorStateChangedEvent>(OnAnchorChanged);
         SubscribeLocalEvent<TurbineComponent, UnanchorAttemptEvent>(OnUnanchorAttempt);
     }
 
-    private void OnInit(EntityUid uid, TurbineComponent comp, ref ComponentInit args)
+    private const string BladeContainer = "blade_slot";
+    private const string StatorContainer = "stator_slot";
+
+    private void OnInit(EntityUid uid, TurbineComponent comp, ref MapInitEvent args)
     {
-        _signal.EnsureSourcePorts(uid, comp.SpeedHighPort, comp.SpeedLowPort);
+        _signal.EnsureSourcePorts(uid, comp.SpeedHighPort, comp.SpeedLowPort, comp.TurbineDataPort);
         _signal.EnsureSinkPorts(uid, comp.StatorLoadIncreasePort, comp.StatorLoadDecreasePort);
+
+        TryGetPart(uid, BladeContainer, out comp.CurrentBlade);
+        TryGetPart(uid, StatorContainer, out comp.CurrentStator);
+
+        UpdatePartValues(comp);
+
+        comp.AlarmAudioOvertemp = SpawnAttachedTo("GasTurbineAlarmEntity", new(uid, 0, 0));
+        comp.AlarmAudioUnderspeed = SpawnAttachedTo("GasTurbineAlarmEntity", new(uid, 0, 0));
+        _ambientSoundSystem.SetSound(comp.AlarmAudioUnderspeed.Value, new SoundPathSpecifier("/Audio/_FarHorizons/Machines/alarm_beep.ogg"));
+        _ambientSoundSystem.SetVolume(comp.AlarmAudioUnderspeed.Value, -4);
+    }
+
+    private bool TryGetPart(EntityUid uid, string slot, [NotNullWhen(true)] out EntityUid? part)
+    {
+        part = null;
+
+        if (!_containerSystem.TryGetContainer(uid, slot, out var container) || container.ContainedEntities.Count == 0)
+            return false;
+
+        part = container.ContainedEntities[0];
+
+        return true;
     }
 
     private void OnAnalyze(EntityUid uid, TurbineComponent comp, ref GasAnalyzerScanEvent args)
@@ -109,20 +161,15 @@ public sealed class TurbineSystem : SharedTurbineSystem
     {
         var supplier = Comp<PowerSupplierComponent>(uid);
         comp.SupplierMaxSupply = supplier.MaxSupply;
+        comp.SupplierLastSupply = supplier.CurrentSupply;
 
         supplier.MaxSupply = comp.LastGen;
 
-        if (!comp.InletEnt.HasValue || EntityManager.Deleted(comp.InletEnt.Value))
-            comp.InletEnt = SpawnAttachedTo("TurbineGasPipe", new(uid, -1, -1), rotation: Angle.FromDegrees(-90));
-        if (!comp.OutletEnt.HasValue || EntityManager.Deleted(comp.OutletEnt.Value))
-            comp.OutletEnt = SpawnAttachedTo("TurbineGasPipe", new(uid, 1, -1), rotation: Angle.FromDegrees(90));
-
-        CheckAnchoredPipes(uid, comp);
-
-        if (!_nodeContainer.TryGetNode(comp.InletEnt.Value, comp.PipeName, out PipeNode? inlet))
+        if(!GetPipes(uid, comp, out var inlet, out var outlet))
             return;
-        if (!_nodeContainer.TryGetNode(comp.OutletEnt.Value, comp.PipeName, out PipeNode? outlet))
-            return;
+
+        if (comp.CurrentBlade == null || comp.CurrentStator == null)
+            comp.Ruined = true;
 
         UpdateAppearance(uid, comp);
 
@@ -145,19 +192,27 @@ public sealed class TurbineSystem : SharedTurbineSystem
                 _atmosphereSystem.Merge(tile, AirContents);
             }
 
-            if (!comp.Ruined && !_audio.IsPlaying(comp.AlarmAudioOvertemp))
-            {
-                comp.AlarmAudioOvertemp = _audio.PlayPvs(new SoundPathSpecifier("/Audio/_FarHorizons/Machines/alarm_buzzer.ogg"), uid, AudioParams.Default.WithLoop(true))?.Entity;
+            // This does rely on the alarm existing, but if it doesn't then there are bigger problems
+            if (!comp.Ruined && _entityManager.TryGetComponent<AmbientSoundComponent>(comp.AlarmAudioOvertemp, out var ambience) && !ambience.Enabled)
                 _popupSystem.PopupEntity(Loc.GetString("turbine-overheat", ("owner", uid)), uid, PopupType.LargeCaution);
-            }
 
             // Prevent power from being generated by residual gasses
             AirContents.Clear();
         }
-        else
-        {
-            comp.AlarmAudioOvertemp = _audio.Stop(comp.AlarmAudioOvertemp);
-        }
+
+        if(Exists(comp.AlarmAudioOvertemp))
+            _ambientSoundSystem.SetAmbience(comp.AlarmAudioOvertemp.Value, !comp.Ruined && AirContents.Temperature >= comp.MaxTemp);
+
+        // Update stator load based on device network
+        if (comp.IncreasePortState != SignalState.Low)
+            AdjustStatorLoad(comp, 1000);
+        if (comp.DecreasePortState != SignalState.Low)
+            AdjustStatorLoad(comp, -1000);
+
+        if (comp.IncreasePortState == SignalState.Momentary)
+            comp.IncreasePortState = SignalState.Low;
+        if (comp.DecreasePortState == SignalState.Momentary)
+            comp.DecreasePortState = SignalState.Low;
 
         if (!comp.Ruined && AirContents != null)
         {
@@ -217,11 +272,9 @@ public sealed class TurbineSystem : SharedTurbineSystem
                 comp.Stalling = false;
                 comp.RPM = NextRPM;
             }
-            
-            if (!_audio.IsPlaying(comp.AlarmAudioUnderspeed) && !comp.Undertemp && comp.FlowRate > 0 && comp.Stalling)
-                 PlayAudio(new SoundPathSpecifier("/Audio/_FarHorizons/Machines/alarm_beep.ogg"), uid, out comp.AlarmAudioUnderspeed, AudioParams.Default.WithLoop(true).WithVolume(-4));
-            else if (_audio.IsPlaying(comp.AlarmAudioUnderspeed) && (comp.FlowRate <= 0 || comp.Undertemp || comp.RPM > 10))
-                comp.AlarmAudioUnderspeed = _audio.Stop(comp.AlarmAudioUnderspeed);
+
+            if(Exists(comp.AlarmAudioUnderspeed))
+                _ambientSoundSystem.SetAmbience(comp.AlarmAudioUnderspeed.Value, !comp.Ruined && comp.Stalling && !comp.Undertemp && comp.FlowRate > 0);
 
             if (comp.RPM > 10)
             {
@@ -257,12 +310,11 @@ public sealed class TurbineSystem : SharedTurbineSystem
         }
 
         // Send signals to device network
-        if (comp.RPM > comp.BestRPM*1.05)
-            _signal.InvokePort(uid, comp.SpeedHighPort);
-        else if (comp.RPM < comp.BestRPM*0.95)
-            _signal.InvokePort(uid, comp.SpeedLowPort);
+        _signal.SendSignal(uid, comp.SpeedHighPort, comp.RPM > comp.BestRPM * 1.05);
+        _signal.SendSignal(uid, comp.SpeedLowPort, comp.RPM < comp.BestRPM * 0.95);
 
         Dirty(uid, comp);
+        UpdateUI(uid, comp);
     }
 
     private float CalculateTransferVolume(TurbineComponent comp, PipeNode inlet, PipeNode outlet, float dt)
@@ -279,11 +331,19 @@ public sealed class TurbineSystem : SharedTurbineSystem
     {
         _audio.PlayPvs(new SoundPathSpecifier("/Audio/Effects/metal_break5.ogg"), uid, AudioParams.Default);
         _popupSystem.PopupEntity(Loc.GetString("turbine-explode", ("owner", uid)), uid, PopupType.LargeCaution);
-        _explosion.TriggerExplosive(uid, Comp<ExplosiveComponent>(uid), false, comp.RPM/10, 5);
-        ShootShrapnel(uid);
+
+        _explosion.QueueExplosion(uid, "Default", comp.RPM / 10, 15, 5, 0, canCreateVacuum: false);
+
+        if (comp.RPM > comp.BestRPM / 6) // If it's barely moving then there's not really reason it would throw shrapnel
+            ShootShrapnel(uid);
+
         _adminLogger.Add(LogType.Explosion, LogImpact.High, $"{ToPrettyString(uid)} destroyed by overspeeding for too long");
+
         comp.Ruined = true;
         comp.RPM = 0;
+        _entityManager.QueueDeleteEntity(comp.CurrentBlade);
+        comp.CurrentBlade = null;
+
         UpdateAppearance(uid, comp);
     }
 
@@ -298,27 +358,7 @@ public sealed class TurbineSystem : SharedTurbineSystem
     #endregion
 
     #region BUI
-    public override void Update(float frameTime)
-    {
-        _accumulator += frameTime;
-        if (_accumulator > _threshold)
-        {
-            AccUpdate();
-            _accumulator = 0;
-        }
-    }
-
-    private void AccUpdate()
-    {
-        var query = EntityQueryEnumerator<TurbineComponent>();
-
-        while (query.MoveNext(out var uid, out var turbine))
-        {
-            UpdateUI(uid, turbine);
-        }
-    }
-
-    protected override void UpdateUI(EntityUid uid, TurbineComponent turbine)
+    public void UpdateUI(EntityUid uid, TurbineComponent turbine)
     {
         if (!_uiSystem.IsUiOpen(uid, TurbineUiKey.Key))
             return;
@@ -339,26 +379,154 @@ public sealed class TurbineSystem : SharedTurbineSystem
                FlowRate = turbine.FlowRate,
 
                StatorLoadMin = 1000,
-               StatorLoadMax = 500000,
                StatorLoad = turbine.StatorLoad,
+
+               PowerGeneration = turbine.SupplierMaxSupply,
+               PowerSupply = turbine.SupplierLastSupply,
+
+               Health = turbine.BladeHealth,
+               HealthMax = turbine.BladeHealthMax,
+
+               Blade = _entityManager.GetNetEntity(turbine.CurrentBlade),
+               Stator = _entityManager.GetNetEntity(turbine.CurrentStator),
            });
+    }
+
+    private void OnTurbineFlowRateChanged(EntityUid uid, TurbineComponent turbine, TurbineChangeFlowRateMessage args)
+    {
+        if(TrySetFlowRate())
+        {
+            // Data is sent to a log queue to avoid spamming the admin log when adjusting values rapidly
+            var key = new KeyValuePair<EntityUid, EntityUid>(args.Actor, uid);
+            if(!_logQueue.TryGetValue(key, out var value))
+                _logQueue.Add(key, new LogData
+                {
+                    CreationTime = _gameTiming.RealTime,
+                    SetFlowRate = turbine.FlowRate
+                });
+            else
+                value.SetFlowRate = turbine.FlowRate;
+        }
+            
+        UpdateUI(uid, turbine);
+
+        return;
+
+        bool TrySetFlowRate()
+        {
+            var newSet = Math.Clamp(args.FlowRate, 0f, turbine.FlowRateMax);
+            if (turbine.FlowRate != newSet)
+            {
+                turbine.FlowRate = newSet;
+                return true;
+            }
+            return false; 
+        }
+    }
+
+    private void OnTurbineStatorLoadChanged(EntityUid uid, TurbineComponent turbine, TurbineChangeStatorLoadMessage args)
+    {
+        if (TrySetStatorLoad())
+        {
+            // Data is sent to a log queue to avoid spamming the admin log when adjusting values rapidly
+            var key = new KeyValuePair<EntityUid, EntityUid>(args.Actor, uid);
+            if (!_logQueue.TryGetValue(key, out var value))
+                _logQueue.Add(key, new LogData
+                {
+                    CreationTime = _gameTiming.RealTime,
+                    SetStatorLoad = turbine.StatorLoad
+                });
+            else
+                value.SetStatorLoad = turbine.StatorLoad;
+        }
+
+        UpdateUI(uid, turbine);
+
+        return;
+
+        bool TrySetStatorLoad()
+        {
+            var newSet = Math.Max(args.StatorLoad, 1000f);
+            if (turbine.StatorLoad != newSet)
+            {
+                turbine.StatorLoad = newSet;
+                return true;
+            }
+            return false; 
+        }
+    }
+
+    private float _accumulator = 0f;
+    private readonly float _threshold = 0.5f;
+
+    public override void Update(float frameTime)
+    {
+        _accumulator += frameTime;
+        if (_accumulator > _threshold)
+        {
+            UpdateLogs();
+            _accumulator = 0;
+        }
+
+        return;
+
+        void UpdateLogs()
+        {
+            var toRemove = new List<KeyValuePair<EntityUid, EntityUid>>();
+            foreach (var log in _logQueue.Where(log => !((_gameTiming.RealTime - log.Value.CreationTime).TotalSeconds < 2)))
+            {
+                toRemove.Add(log.Key);
+
+                if (log.Value.SetFlowRate != null)
+                    _adminLogger.Add(LogType.AtmosVolumeChanged, LogImpact.Medium,
+                        $"{ToPrettyString(log.Key.Key):player} set the flow rate on {ToPrettyString(log.Key.Value):device} to {log.Value.SetFlowRate}");
+
+                if (log.Value.SetStatorLoad != null)
+                    _adminLogger.Add(LogType.AtmosDeviceSetting, LogImpact.Medium,
+                        $"{ToPrettyString(log.Key.Key):player} set the stator load on {ToPrettyString(log.Key.Value):device} to {log.Value.SetStatorLoad}");
+            }
+
+            foreach (var kvp in toRemove)
+                _logQueue.Remove(kvp);
+        }
     }
     #endregion
 
     private void OnSignalReceived(EntityUid uid, TurbineComponent comp, ref SignalReceivedEvent args)
     {
+        var state = SignalState.Momentary;
+        args.Data?.TryGetValue(DeviceNetworkConstants.LogicState, out state);
+        
         if (args.Port == comp.StatorLoadIncreasePort)
-            AdjustStatorLoad(comp, 1000);
+            comp.IncreasePortState = state;
         else if (args.Port == comp.StatorLoadDecreasePort)
-            AdjustStatorLoad(comp, -1000);
+            comp.DecreasePortState = state;
 
-        _adminLogger.Add(LogType.Action, $"{ToPrettyString(args.Trigger):trigger} set the stator load on {ToPrettyString(uid):target} to {comp.StatorLoad}");
+        var logtext = "maintain";
+        if (comp.IncreasePortState != SignalState.Low && comp.DecreasePortState == SignalState.Low)
+            logtext = "increase";
+        else if (comp.DecreasePortState != SignalState.Low && comp.IncreasePortState == SignalState.Low)
+            logtext = "decrease";
+
+        _adminLogger.Add(LogType.Action, $"{ToPrettyString(args.Trigger):trigger} set the stator load on {ToPrettyString(uid):target} to {logtext}");
     }
 
+    private void OnPortDisconnected(EntityUid uid, TurbineComponent comp, ref PortDisconnectedEvent args)
+    {
+        if (args.Port == comp.StatorLoadIncreasePort)
+            comp.IncreasePortState = SignalState.Low;
+        if (args.Port == comp.StatorLoadDecreasePort)
+            comp.DecreasePortState = SignalState.Low;
+    }
+
+    #region Anchoring
     private void OnAnchorChanged(EntityUid uid, TurbineComponent comp, ref AnchorStateChangedEvent args)
     {
         if (!args.Anchored)
+        {
             CleanUp(comp);
+            return;
+        }
     }
 
     private void OnUnanchorAttempt(EntityUid uid, TurbineComponent comp, ref UnanchorAttemptEvent args)
@@ -370,22 +538,142 @@ public sealed class TurbineSystem : SharedTurbineSystem
         }
     }
 
-    private void CheckAnchoredPipes(EntityUid uid, TurbineComponent comp)
+    private bool GetPipes(EntityUid uid, TurbineComponent comp, [NotNullWhen(true)] out PipeNode? inlet, [NotNullWhen(true)] out PipeNode? outlet)
     {
+        inlet = null;
+        outlet = null;
+
+        if (!comp.InletEnt.HasValue || EntityManager.Deleted(comp.InletEnt.Value))
+            comp.InletEnt = SpawnAttachedTo(comp.PipePrototype, new(uid, comp.InletPos), rotation: Angle.FromDegrees(comp.InletRot));
+        if (!comp.OutletEnt.HasValue || EntityManager.Deleted(comp.OutletEnt.Value))
+            comp.OutletEnt = SpawnAttachedTo(comp.PipePrototype, new(uid, comp.OutletPos), rotation: Angle.FromDegrees(comp.OutletRot));
+
         if (comp.InletEnt == null || comp.OutletEnt == null)
-            return;
+            return false;
 
         if (!Transform(comp.InletEnt.Value).Anchored || !Transform(comp.OutletEnt.Value).Anchored)
         {
             _popupSystem.PopupEntity(Loc.GetString("turbine-anchor-warning"), uid, PopupType.MediumCaution);
             CleanUp(comp);
             _transform.Unanchor(uid);
+            return false;
         }
+
+        if (!_nodeContainer.TryGetNode(comp.InletEnt.Value, comp.PipeName, out inlet))
+            return false;
+        if (!_nodeContainer.TryGetNode(comp.OutletEnt.Value, comp.PipeName, out outlet))
+            return false;
+
+        return true;
     }
+    #endregion
 
     private void CleanUp(TurbineComponent comp)
     {
         QueueDel(comp.InletEnt);
         QueueDel(comp.OutletEnt);
+    }
+
+    private void OnDamaged(EntityUid uid, TurbineComponent comp, ref DamageChangedEvent args)
+    {
+        if (comp.Ruined)
+            return;
+
+        if (!args.DamageIncreased || args.DamageDelta == null)
+            return;
+
+        var damage = (float)args.DamageDelta.GetTotal();
+        var threshold = 50;
+        var ratio = damage / threshold;
+
+        if(ratio < 1)
+        {
+            comp.BladeHealth -= _random.Next(1, (int)(3f * ratio) + 1);
+            UpdateHealthIndicators(uid, comp);
+            return;
+        }
+
+        if (comp.RPM > comp.BestRPM / 6)
+            TearApart(uid, comp);
+        _entityManager.QueueDeleteEntity(comp.CurrentBlade);
+        comp.CurrentBlade = null;
+        if (_random.Prob(Math.Clamp(ratio - 1f, 0, 1)))
+        {
+            _entityManager.QueueDeleteEntity(comp.CurrentStator);
+            comp.CurrentStator = null;
+        }
+        comp.Ruined = true;
+    }
+
+    private void OnEjectAttempt(EntityUid uid, TurbineComponent comp, ref ItemSlotEjectAttemptEvent args)
+    {
+        if (args.Cancelled)
+            return;
+
+        if (comp.RPM < 1)
+            return;
+
+        args.Cancelled = true;
+    }
+
+    private void OnInsertAttempt(EntityUid uid, TurbineComponent comp, ref ItemSlotInsertAttemptEvent args)
+    {
+        if (args.Cancelled)
+            return;
+            
+        if (comp.RPM < 1)
+            return;
+
+        args.Cancelled = true;
+    }
+
+    private void OnPartInserted(EntityUid uid, TurbineComponent comp, ref EntInsertedIntoContainerMessage args)
+    {
+        switch (args.Container.ID)
+        {
+            case BladeContainer:
+                comp.CurrentBlade = args.Container.ContainedEntities[0];
+                break;
+            case StatorContainer:
+                comp.CurrentStator = args.Container.ContainedEntities[0];
+                break;
+            default:
+                return;
+        }
+        UpdatePartValues(comp);
+    }
+
+    private void OnPartEjected(EntityUid uid, TurbineComponent comp, ref EntRemovedFromContainerMessage args)
+    {
+        switch (args.Container.ID)
+        {
+            case BladeContainer:
+                comp.CurrentBlade = null;
+                break;
+            case StatorContainer:
+                comp.CurrentStator = null;
+                break;
+            default:
+                return;
+        }
+        UpdatePartValues(comp);
+    }
+
+    private void UpdatePartValues(TurbineComponent comp)
+    {
+        _entityManager.TryGetComponent<GasTurbineBladeComponent>(comp.CurrentBlade, out var bladeComp);
+        _entityManager.TryGetComponent<GasTurbineStatorComponent>(comp.CurrentStator, out var statorComp);
+
+        if (bladeComp != null)
+        {
+            comp.TurbineMass = Math.Max(200, 200 * bladeComp.Properties.Density);
+            comp.BladeHealthMax = (int)Math.Max(1, 5 * bladeComp.Properties.Hardness);
+            comp.BladeHealth = comp.BladeHealthMax;
+        }
+
+        if (statorComp != null)
+        {
+            comp.PowerMultiplier = (float)Math.Max(0.2, 0.2 * statorComp.Properties.ElectricalConductivity);
+        }
     }
 }

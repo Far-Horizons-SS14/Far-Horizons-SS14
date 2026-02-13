@@ -23,7 +23,12 @@ public enum StandardVoteType : byte
     /// <summary>
     /// Vote to kick a player.
     /// </summary>
-    Votekick
+    Votekick,
+
+    /// <summary>
+    /// Vote to change the faction for the next round.
+    /// </summary>
+    Faction,
 }
 
 /// <summary>

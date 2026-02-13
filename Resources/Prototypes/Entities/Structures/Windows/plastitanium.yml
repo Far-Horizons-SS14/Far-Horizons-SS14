@@ -2,7 +2,7 @@
   id: PlastitaniumWindowBase
   parent: BaseStructure
   abstract: true
-  name: plastitanium window
+  name: Plastitanium Window #FH CRUSADE
   description: Don't smudge up the glass down there.
   placement:
     mode: SnapgridCenter
@@ -49,17 +49,17 @@
 - type: entity
   id: PlastitaniumWindowSquareBase
   abstract: true
-  name: plastitanium window
+  name: Plastitanium Window #FH CRUSADE
   parent: PlastitaniumWindowBase
   components:
   - type: Sprite
     drawdepth: WallTops
-    sprite: Structures/Windows/plastitanium_window.rsi
+    sprite: _FarHorizons/Structures/Windows/plastitanium_window.rsi #FH
   - type: Icon
-    sprite: Structures/Windows/plastitanium_window.rsi
+    sprite: _FarHorizons/Structures/Windows/plastitanium_window.rsi #FH
     state: full
   - type: IconSmooth
-    key: windows
+    key: walls #Far Horizons
     base: ptwindow
   - type: Airtight
   - type: Fixtures
@@ -74,7 +74,7 @@
 
 - type: entity
   id: PlastitaniumWindowIndestructible
-  name: plastitanium window
+  name: Plastitanium Window #FH CRUSADE
   parent: PlastitaniumWindowSquareBase
   suffix: indestructible
   components:
@@ -83,7 +83,7 @@
 
 - type: entity
   id: PlastitaniumWindow
-  name: plastitanium window
+  name: Plastitanium Window #FH CRUSADE
   parent: PlastitaniumWindowSquareBase
   components:
   - type: Destructible
@@ -127,7 +127,7 @@
 - type: entity
   id: PlastitaniumWindowDiagonalBase
   abstract: true
-  name: plastitanium window
+  name: Plastitanium Window #FH CRUSADE
   parent: PlastitaniumWindowBase
   suffix: diagonal
   components:
@@ -168,7 +168,7 @@
 
 - type: entity
   id: PlastitaniumWindowDiagonalIndestructible
-  name: plastitanium window
+  name: Plastitanium Window #FH CRUSADE
   parent: PlastitaniumWindowDiagonalBase
   suffix: diagonal, indestructible
   components:
@@ -177,7 +177,7 @@
 
 - type: entity
   id: PlastitaniumWindowDiagonal
-  name: plastitanium window
+  name: Plastitanium Window #FH CRUSADE
   parent: PlastitaniumWindowDiagonalBase
   suffix: diagonal
   components:

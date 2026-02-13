@@ -49,7 +49,10 @@ chat-manager-send-hook-ooc-wrap-message = OOC: [bold](D){$senderName}:[/bold] {$
 chat-manager-send-hook-admin-wrap-message = ADMIN: [bold](D){$senderName}:[/bold] {$message}
 
 chat-manager-dead-channel-name = DEAD
-chat-manager-admin-channel-name = ADMIN
+#Far Horizons-Start Editing
+chat-manager-admin-channel-name = Admin
+chat-manager-staff-channel-name = Staff
+#Far Horizons-End Editing
 
 chat-manager-rate-limited = You are sending messages too quickly!
 chat-manager-rate-limit-admin-announcement = Rate limit warning: { $player }

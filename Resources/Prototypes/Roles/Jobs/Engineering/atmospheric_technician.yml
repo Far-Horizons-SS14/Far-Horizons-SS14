@@ -4,9 +4,9 @@
   description: job-description-atmostech
   playTimeTracker: JobAtmosphericTechnician
   requirements:
-    - !type:DepartmentTimeRequirement
-      department: Engineering
-      time: 54000 # 15 hrs
+  - !type:DepartmentTimeRequirement
+    department: Engineering
+    time: 15h # Starlight
   weight: 0 # Starlight
   startingGear: AtmosphericTechnicianGear
   icon: "JobIconAtmosphericTechnician"
@@ -24,7 +24,7 @@
 - type: startingGear
   id: AtmosphericTechnicianGear
   equipment:
-    eyes: ClothingEyesGlassesMeson
+    #eyes: ClothingEyesGlassesMeson #Far Horizons - Put into loadout because factions made things funny.
     id: AtmosPDA
     belt: ClothingBeltUtilityEngineering
     ears: ClothingHeadsetEngineering

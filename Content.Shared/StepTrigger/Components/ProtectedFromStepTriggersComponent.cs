@@ -13,4 +13,7 @@ public sealed partial class ProtectedFromStepTriggersComponent : Component, IClo
 {
     [DataField]
     public SlotFlags Slots { get; set; } = SlotFlags.FEET;
+
+    // Far Horizons - add ability for PreventableStepTriggerComponent to be used for anything other than barefoot and glass shards
+    [DataField] public string ProtectionKey = "default";
 }

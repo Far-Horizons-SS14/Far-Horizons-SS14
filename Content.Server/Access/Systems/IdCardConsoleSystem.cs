@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Server.Chat.Systems;
 using Content.Server.Containers;
@@ -10,6 +11,7 @@ using Content.Shared.Administration.Logs;
 using Content.Shared.Construction;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Damage;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Database;
 using Content.Shared.Roles;
 using Content.Shared.StationRecords;
@@ -101,14 +103,14 @@ public sealed class IdCardConsoleSystem : SharedIdCardConsoleSystem
 
         List<ProtoId<AccessGroupPrototype>> availableGroups = new();
         bool isHighPrivilege = false;
-        
+
         if (possibleAccess.Count > 0)
         {
             var allPossibleAccess = _prototype.EnumeratePrototypes<AccessLevelPrototype>()
                 .Where(a => a.CanAddToIdCard)
                 .Select(a => a.ID)
                 .ToHashSet();
-            
+
             isHighPrivilege = possibleAccess.Count >= allPossibleAccess.Count * 0.8f;
 
             foreach (var groupId in component.AccessGroups.ToList())
@@ -116,16 +118,16 @@ public sealed class IdCardConsoleSystem : SharedIdCardConsoleSystem
                 if (!_prototype.TryIndex<AccessGroupPrototype>(groupId, out var groupPrototype))
                     continue;
 
-                var groupTags = groupPrototype.Tags.Where(tag => 
-                    _prototype.TryIndex<AccessLevelPrototype>(tag, out var accessProto) && 
+                var groupTags = groupPrototype.Tags.Where(tag =>
+                    _prototype.TryIndex<AccessLevelPrototype>(tag, out var accessProto) &&
                     accessProto.CanAddToIdCard).ToList();
-                
+
                 if (groupTags.Count == 0)
                     continue;
-                
+
                 var matchingTags = groupTags.Count(tag => possibleAccess.Contains(tag));
                 var threshold = Math.Max(1, Math.Min(3, groupTags.Count / 2));
-                
+
                 if (matchingTags >= threshold)
                 {
                     availableGroups.Add(groupId);
@@ -144,14 +146,14 @@ public sealed class IdCardConsoleSystem : SharedIdCardConsoleSystem
                 var selectedGroup = preferredGroups
                     .Select(name => (ProtoId<AccessGroupPrototype>)name)
                     .FirstOrDefault(group => availableGroups.Contains(group));
-                
+
                 currentGroup = availableGroups.Contains(selectedGroup) ? selectedGroup : availableGroups.First();
             }
             else
             {
                 currentGroup = component.AccessGroups.FirstOrDefault();
             }
-            
+
             component.CurrentAccessGroup = currentGroup;
         }
 
@@ -164,7 +166,7 @@ public sealed class IdCardConsoleSystem : SharedIdCardConsoleSystem
         {
             newState = new IdCardConsoleBoundUserInterfaceState(
                 component.PrivilegedIdSlot.HasItem,
-                PrivilegedIdIsAuthorized(uid, component),
+                PrivilegedIdIsAuthorized(uid, component, out _),
                 false,
                 null,
                 null,
@@ -175,7 +177,7 @@ public sealed class IdCardConsoleSystem : SharedIdCardConsoleSystem
                 string.Empty,
                 // Starlight-edit: Start
                 currentGroup.HasValue ? currentGroup.Value : component.AccessGroups.FirstOrDefault(),
-                availableGroups); 
+                availableGroups);
                 // Starlight-edit: End
         }
         else
@@ -193,7 +195,7 @@ public sealed class IdCardConsoleSystem : SharedIdCardConsoleSystem
 
             newState = new IdCardConsoleBoundUserInterfaceState(
                 component.PrivilegedIdSlot.HasItem,
-                PrivilegedIdIsAuthorized(uid, component),
+                PrivilegedIdIsAuthorized(uid, component, out _),
                 true,
                 targetIdComponent.FullName,
                 targetIdComponent.LocalizedJobTitle,
@@ -226,7 +228,7 @@ public sealed class IdCardConsoleSystem : SharedIdCardConsoleSystem
         if (!Resolve(uid, ref component))
             return;
 
-        if (component.TargetIdSlot.Item is not { Valid: true } targetId || !PrivilegedIdIsAuthorized(uid, component))
+        if (component.TargetIdSlot.Item is not { Valid: true } targetId || !PrivilegedIdIsAuthorized(uid, component, out var privilegedId))
             return;
 
         _idCard.TryChangeFullName(targetId, newFullName, player: player);
@@ -249,8 +251,6 @@ public sealed class IdCardConsoleSystem : SharedIdCardConsoleSystem
         }
 
         // Starlight-edit: Start
-        // Instead of only updating the currently selected group, update all groups.
-        var oldTags = _access.TryGetTags(targetId)?.ToHashSet() ?? new HashSet<ProtoId<AccessLevelPrototype>>();
 
         // Collect all access tags from all groups
         var allGroupTags = new HashSet<ProtoId<AccessLevelPrototype>>();
@@ -267,10 +267,9 @@ public sealed class IdCardConsoleSystem : SharedIdCardConsoleSystem
             return;
         }
 
-        var privilegedId = component.PrivilegedIdSlot.Item;
+        var oldTags = _access.TryGetTags(targetId)?.ToHashSet() ?? new HashSet<ProtoId<AccessLevelPrototype>>(); // Starlight - keep oldTags as a hashset instead of a list
         // Starlight-edit: Start
         var privilegedPerms = _accessReader.FindAccessTags(privilegedId!.Value).ToHashSet();
-
         // For each group, update the tags for that group with the ones from newAccessList
         var finalTags = oldTags.Except(allGroupTags).ToHashSet(); // preserve tags not in any group
         foreach (var group in component.AccessGroups.ToList())
@@ -293,34 +292,31 @@ public sealed class IdCardConsoleSystem : SharedIdCardConsoleSystem
             return;
         }
 
-        /*TODO: ECS SharedIdCardConsoleComponent and then log on card ejection, together with the save.
-        This current implementation is pretty shit as it logs 27 entries (27 lines) if someone decides to give themselves AA*/
         // Starlight-edit: Start
         var addedTags = finalTags.Except(oldTags).Select(tag => "+" + tag).ToList();
         var removedTags = oldTags.Except(finalTags).Select(tag => "-" + tag).ToList();
         _access.TrySetTags(targetId, finalTags);
         // Starlight-edit: End
-
-        _adminLogger.Add(LogType.Action, LogImpact.Medium,
-            $"{ToPrettyString(player):player} has modified {ToPrettyString(targetId):entity} with the following accesses: [{string.Join(", ", addedTags.Union(removedTags))}] [{string.Join(", ", newAccessList)}]");
+        /*TODO: ECS SharedIdCardConsoleComponent and then log on card ejection, together with the save.
+        This current implementation is pretty shit as it logs 27 entries (27 lines) if someone decides to give themselves AA*/
+        _adminLogger.Add(LogType.Action,
+            $"{player} has modified {targetId} with the following accesses: [{string.Join(", ", addedTags.Union(removedTags))}] [{string.Join(", ", newAccessList)}]");
     }
 
     /// <summary>
     /// Returns true if there is an ID in <see cref="IdCardConsoleComponent.PrivilegedIdSlot"/> and said ID satisfies the requirements of <see cref="AccessReaderComponent"/>.
     /// </summary>
-    /// <remarks>
-    /// Other code relies on the fact this returns false if privileged Id is null. Don't break that invariant.
-    /// </remarks>
-    private bool PrivilegedIdIsAuthorized(EntityUid uid, IdCardConsoleComponent? component = null)
+    private bool PrivilegedIdIsAuthorized(EntityUid uid, IdCardConsoleComponent component, [NotNullWhen(true)] out EntityUid? id)
     {
-        if (!Resolve(uid, ref component))
-            return true;
+        id = null;
+        if (component.PrivilegedIdSlot.Item == null)
+            return false;
 
+        id = component.PrivilegedIdSlot.Item;
         if (!TryComp<AccessReaderComponent>(uid, out var reader))
             return true;
 
-        var privilegedId = component.PrivilegedIdSlot.Item;
-        return privilegedId != null && _accessReader.IsAllowed(privilegedId.Value, uid, reader);
+        return _accessReader.IsAllowed(id.Value, uid, reader);
     }
 
     private void UpdateStationRecord(EntityUid uid, EntityUid targetId, string newFullName, ProtoId<AccessLevelPrototype> newJobTitle, JobPrototype? newJobProto)

@@ -74,24 +74,28 @@ public sealed class SalvageExpeditionConsoleBoundUserInterface : BoundUserInterf
                 FontColorOverride = objectiveProto.Color,
                 HorizontalAlignment = Control.HAlignment.Left,
                 Margin = new Thickness(0f, 0f, 0f, 5f),
+                StyleClasses = { StyleClass.LabelKeyText }
             });
 
             offering.AddContent(new Label(){ Text = Loc.GetString("salvage-expedition-window-objective-description") });
             offering.AddContent(new RichTextLabel
             {
-                Text = $"[color={StyleNano.NanoGold.ToHex()}]{Loc.GetString(objectiveProto.Description)}[/color]",
+                Text = $"[color={StyleNano.NanoGold.ToHex()}][bold]{Loc.GetString(objectiveProto.Description)}[/bold][/color]",
                 MaxWidth = 200,
                 HorizontalAlignment = Control.HAlignment.Left,
-                Margin = new Thickness(0f, 0f, 0f, 5f),
+                Margin = new Thickness(0f, 0f, 0f, 5f)
             });
+
+            var ticketReward = objectiveProto.BaseReward.GetValueOrDefault(difficultyId, 0);
 
             offering.AddContent(new Label(){ Text = Loc.GetString("salvage-expedition-window-objective-reward") });
             offering.AddContent(new Label
             {
-                Text = objectiveProto.BaseReward.GetValueOrDefault(difficultyId, 0).ToString() + " tickets",
+                Text = $"{ticketReward} tickets | ${ticketReward * objectiveProto.CashMultiplier}",
                 FontColorOverride = StyleNano.NanoGold,
                 HorizontalAlignment = Control.HAlignment.Left,
                 Margin = new Thickness(0f, 0f, 0f, 5f),
+                StyleClasses = { StyleClass.LabelKeyText }
             });
             // Far Horizons end
 
@@ -110,6 +114,7 @@ public sealed class SalvageExpeditionConsoleBoundUserInterface : BoundUserInterf
                 FontColorOverride = difficultyColor,
                 HorizontalAlignment = Control.HAlignment.Left,
                 Margin = new Thickness(0f, 0f, 0f, 5f),
+                StyleClasses = { StyleClass.LabelKeyText }, // Far Horizons - uniform style
             });
 
             // Far Horizons - freeing some visual space in UI
@@ -140,9 +145,9 @@ public sealed class SalvageExpeditionConsoleBoundUserInterface : BoundUserInterf
                 Text = string.IsNullOrWhiteSpace(Loc.GetString(_protoManager.Index<SalvageFactionPrototype>(faction).Description))
                         ? LogAndReturnDefaultFactionDescription(faction)
                         : Loc.GetString(_protoManager.Index<SalvageFactionPrototype>(faction).Description),
-                FontColorOverride = StyleNano.NanoGold,
                 HorizontalAlignment = Control.HAlignment.Left,
                 Margin = new Thickness(0f, 0f, 0f, 5f),
+                StyleClasses = { StyleClass.LabelKeyText },
             });
 
             string LogAndReturnDefaultFactionDescription(string faction)
@@ -179,9 +184,9 @@ public sealed class SalvageExpeditionConsoleBoundUserInterface : BoundUserInterf
                 Text = string.IsNullOrWhiteSpace(Loc.GetString(_protoManager.Index<SalvageBiomeModPrototype>(biome).Description))
                         ? LogAndReturnDefaultBiomDescription(biome)
                         : Loc.GetString(_protoManager.Index<SalvageBiomeModPrototype>(biome).Description),
-                FontColorOverride = StyleNano.NanoGold,
                 HorizontalAlignment = Control.HAlignment.Left,
                 Margin = new Thickness(0f, 0f, 0f, 5f),
+                StyleClasses = { StyleClass.LabelKeyText },
             });
 
             string LogAndReturnDefaultBiomDescription(string biome)
@@ -201,9 +206,9 @@ public sealed class SalvageExpeditionConsoleBoundUserInterface : BoundUserInterf
             offering.AddContent(new Label
             {
                 Text = string.Join("\n", mods.Select(o => "- " + o)).TrimEnd(),
-                FontColorOverride = StyleNano.NanoGold,
                 HorizontalAlignment = Control.HAlignment.Left,
                 Margin = new Thickness(0f, 0f, 0f, 5f),
+                StyleClasses = { StyleClass.LabelKeyText },
             });
 
             offering.ClaimPressed += args =>

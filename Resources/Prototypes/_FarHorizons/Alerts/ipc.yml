@@ -136,6 +136,7 @@
   description: alerts-battery-desc
   minSeverity: 0
   maxSeverity: 10
+  clientHandled: true
 
 - type: alert
   id: IPCBatteryCrit
@@ -145,6 +146,7 @@
     state: battery-crit
   name: alerts-battery-crit-name
   description: alerts-battery-crit-desc
+  clientHandled: true
 
 - type: alert
   id: IPCBatteryNone
@@ -154,6 +156,7 @@
     state: battery-none
   name: alerts-no-battery-name
   description: alerts-no-battery-desc
+  clientHandled: true
 
 - type: alert
   id: IPCHealth

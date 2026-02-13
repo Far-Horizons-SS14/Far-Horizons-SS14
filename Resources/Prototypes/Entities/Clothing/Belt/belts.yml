@@ -1,229 +1,8 @@
 # Belts that need/have visualizers
-
-- type: entity
-  parent: ClothingBeltStorageBase
-  id: ClothingBeltUtility
-  name: utility belt
-  description: Can hold various things.
-  components:
-  - type: Sprite
-    sprite: _FarHorizons/Clothing/Belt/utility.rsi #Far Horizons
-  - type: Clothing
-    sprite: _FarHorizons/Clothing/Belt/utility.rsi #Far Horizons
-  - type: Storage
-    maxItemSize: Normal
-    # Don't add more than absolutely needed to this whitelist!
-    # Utility belts shouldn't just be free extra storage.
-    # This is only intended for basic engineering equipment.
-    whitelist:
-      tags:
-        - Powerdrill
-        - Wirecutter
-        - Crowbar
-        - Screwdriver
-        - Flashlight
-        - Wrench
-        - GeigerCounter
-        - Flare
-        - CableCoil
-        - CigPack
-        - Radio
-        - HolofanProjector
-        - Multitool
-        - AppraisalTool
-        - JawsOfLife
-        - GPS
-        - WeldingMask
-        - RemoteSignaller
-
-        #Starlight
-        - ImprovisedCrowbar
-        - ImprovisedScrewdriver
-        - ImprovisedWirecutter
-        - ImprovisedWrench
-        - ImprovisedMultitool
-      components:
-        - StationMap
-        - SprayPainter
-        - SprayPainterAmmo
-        - NetworkConfigurator
-        - RCD
-        - RCDAmmo
-        - Welder
-        - PowerCell
-        - Geiger
-        - TrayScanner
-        - GasAnalyzer
-        - HandLabeler
-  - type: ItemMapper
-    mapLayers:
-      drill:
-        whitelist:
-          tags:
-          - Powerdrill
-      cutters_red:
-        whitelist:
-          tags:
-          - Wirecutter
-
-          #Starlight
-          - ImprovisedWirecutter
-      crowbar:
-        whitelist:
-          tags:
-          - Crowbar
-
-          #Starlight
-          - ImprovisedCrowbar
-      crowbar_red:
-        whitelist:
-          tags:
-          - CrowbarRed
-      jaws:
-        whitelist:
-          tags:
-          - JawsOfLife
-      screwdriver_nuke:
-        whitelist:
-          tags:
-          - Screwdriver
-
-          #Starlight
-          - ImprovisedScrewdriver
-      wrench:
-        whitelist:
-          tags:
-          - Wrench
-
-          #Starlight
-          - ImprovisedWrench
-      multitool:
-        whitelist:
-          tags:
-            - Multitool
-
-            #Starlight
-            - ImprovisedMultitool
-    sprite: Clothing/Belt/belt_overlay.rsi
-  - type: Appearance
-  - type: Tag
-    tags:
-    - UtilityBelt
-    - WhitelistChameleon
-
-- type: entity
-  parent: ClothingBeltStorageBase
-  id: ClothingBeltChiefEngineer
-  name: chief engineer's toolbelt
-  description: Holds tools, looks snazzy.
-  components:
-  - type: Sprite
-    sprite: Clothing/Belt/ce.rsi
-  - type: Clothing
-    sprite: Clothing/Belt/ce.rsi
-  - type: Storage
-    grid:
-    - 0,0,9,1
-    # TODO: Fill this out more.
-    whitelist:
-      tags:
-        - Wirecutter
-        - Crowbar
-        - Screwdriver
-        - Flashlight
-        - Wrench
-        - GeigerCounter
-        - Flare
-        - CableCoil
-        - Powerdrill
-        - JawsOfLife
-        - CigPack
-        - Radio
-        - HolofanProjector
-        - Multitool
-        - AppraisalTool
-        - GPS
-        - WeldingMask
-        - RemoteSignaller
-        
-        #Starlight
-        - ImprovisedCrowbar
-        - ImprovisedScrewdriver
-        - ImprovisedWirecutter
-        - ImprovisedWrench
-        - ImprovisedMultitool
-      components:
-        - StationMap
-        - SprayPainter
-        - SprayPainterAmmo
-        - NetworkConfigurator
-        - RCD
-        - RCDAmmo
-        - Welder
-        - Flash
-        - Handcuff
-        - PowerCell
-        - Geiger
-        - TrayScanner
-        - GasAnalyzer
-  - type: ItemMapper
-    mapLayers:
-      drill:
-        whitelist:
-          tags:
-          - Powerdrill
-      cutters_red:
-        whitelist:
-          tags:
-          - Wirecutter
-          
-          #Starlight
-          - ImprovisedWirecutter
-      crowbar:
-        whitelist:
-          tags:
-          - Crowbar
-
-          #Starlight
-          - ImprovisedCrowbar
-      crowbar_red:
-        whitelist:
-          tags:
-          - CrowbarRed
-      jaws:
-        whitelist:
-          tags:
-          - JawsOfLife
-      screwdriver_nuke:
-        whitelist:
-          tags:
-          - Screwdriver
-          
-          #Starlight
-          - ImprovisedScrewdriver
-      multitool:
-        whitelist:
-          tags:
-            - Multitool
-            
-            #Starlight
-            - ImprovisedMultitool
-      wrench:
-        whitelist:
-          tags:
-          - Wrench
-          
-          #Starlight
-          - ImprovisedWrench
-    sprite: Clothing/Belt/belt_overlay.rsi
-  - type: Appearance
-  - type: StealTarget
-    stealGroup: ChiefEngineerToolBelt
-
 - type: entity
   parent: ClothingBeltStorageBase
   id: ClothingBeltAssault
-  name: assault belt
+  name: Assault Belt #Far Horizons - The Great Capitalization Crusade
   description: A tactical assault belt.
   components:
   - type: Sprite
@@ -263,326 +42,9 @@
   - type: Appearance
 
 - type: entity
-  parent: ClothingBeltStorageBase
-  id: ClothingBeltJanitor
-  name: janibelt
-  description: A belt used to hold most janitorial supplies.
-  components:
-  - type: Sprite
-    sprite: Clothing/Belt/janitor.rsi
-  - type: Clothing
-    sprite: Clothing/Belt/janitor.rsi
-  - type: Storage
-    whitelist:
-      tags:
-        - Wrench
-        - Bottle
-        - Spray
-        - Soap
-        - Flashlight
-        - CigPack
-        - TrashBag
-        - WetFloorSign
-        - HolosignProjector
-        - Plunger
-        - GoldenPlunger
-        - WireBrush
-      components:
-        - LightReplacer
-        - SmokeOnTrigger
-    maxItemSize: Large
-  - type: ItemMapper
-    mapLayers:
-      bottle:
-        whitelist:
-          tags:
-          - Bottle
-      bottle_spray:
-        whitelist:
-          tags:
-          - Spray
-      wrench:
-        whitelist:
-          tags:
-          - Wrench
-    sprite: Clothing/Belt/belt_overlay.rsi
-  - type: Appearance
-
-- type: entity
-  parent: ClothingBeltStorageBase
-  id: ClothingBeltMedical
-  name: medical belt
-  description: Can hold various medical equipment.
-  components:
-  - type: Sprite
-    sprite: _FarHorizons/Clothing/Belt/medical.rsi #Far Horizons
-  - type: Clothing
-    sprite: _FarHorizons/Clothing/Belt/medical.rsi #Far Horizons
-  - type: Storage
-    whitelist:
-      tags:
-        - Wrench
-        - Bottle
-        - Spray
-        - Brutepack
-        - Bloodpack
-        - AmmoniaPack #Far Horizons
-        - Gauze
-        - Ointment
-        - CigPack
-        - PillCanister
-        - Radio
-        - DiscreteHealthAnalyzer
-        - SurgeryTool
-        - Dropper
-      components:
-        - Hypospray
-        - Injector
-        - Pill
-        - HandLabeler
-  - type: ItemMapper
-    mapLayers:
-      bottle:
-        whitelist:
-          tags:
-          - Bottle
-      hypo:
-        whitelist:
-          components:
-          - Hypospray
-      pill:
-        whitelist:
-          components:
-          - Pill
-          tags:
-          - PillCanister
-      bottle_spray:
-        whitelist:
-          tags:
-          - Spray
-      # spray_med:
-      #   whitelist:
-      #     tags:
-      #     - SprayMedical
-      # wrench_medical:
-      #   whitelist:
-      #     tags:
-      #     - WrenchMedical
-      wrench:
-        whitelist:
-          tags:
-          - Wrench
-    sprite: Clothing/Belt/belt_overlay.rsi
-  - type: Appearance
-
-- type: entity
-  parent: ClothingBeltMedical
-  id: ClothingBeltMedicalEMT
-  name: EMT belt
-  description: Perfect for holding various equipment for medical emergencies.
-  components:
-  - type: Sprite
-    sprite: _FarHorizons/Clothing/Belt/emt.rsi #Far Horizons
-  - type: Clothing
-    sprite: _FarHorizons/Clothing/Belt/emt.rsi #Far Horizons
-
-- type: entity
-  parent: ClothingBeltStorageBase
-  id: ClothingBeltPlant
-  name: botanical belt
-  description: A belt used to hold most hydroponics supplies. Suprisingly, not green.
-  components:
-  - type: Sprite
-    sprite: Clothing/Belt/plant.rsi
-  - type: Clothing
-    sprite: Clothing/Belt/plant.rsi
-  - type: Storage
-    whitelist:
-      tags:
-        # - PlantAnalyzer
-        - PlantSampleTaker
-        - BotanyShovel
-        - BotanyHoe
-        - BotanyHatchet
-        - PlantSampleTaker
-        - PlantBGone
-        - Bottle
-        - Syringe
-        - CigPack
-        - Dropper
-      components:
-        - Seed
-        - Smokable
-        - HandLabeler
-  - type: ItemMapper
-    mapLayers:
-      hatchet:
-        whitelist:
-          tags:
-          - BotanyHatchet
-      # hydro:
-      #   whitelist:
-      #     tags:
-      #     - PlantAnalyzer # Dunno what to put here, should be aight.
-      hoe:
-        whitelist:
-          tags:
-          - BotanyHoe
-      secateurs: # We don't have secateurs and this looks similar enough.
-        whitelist:
-          tags:
-          - BotanyShovel
-      plantbgone:
-        whitelist:
-          tags:
-          - PlantBGone
-      bottle:
-        whitelist:
-          tags:
-          - Bottle
-    sprite: Clothing/Belt/belt_overlay.rsi
-  - type: Appearance
-
-- type: entity
-  parent: ClothingBeltStorageBase
-  id: ClothingBeltChef
-  name: chef belt
-  description: A belt used to hold kitchen knives and condiments for quick access.
-  components:
-  - type: Sprite
-    sprite: Clothing/Belt/chef.rsi
-  - type: Clothing
-    sprite: Clothing/Belt/chef.rsi
-  - type: Storage
-    whitelist:
-      tags:
-        - KitchenKnife
-        - Cleaver
-        - RollingPin
-        - Coldsauce
-        - Enzyme
-        - Hotsauce
-        - Ketchup
-        - BBQsauce
-        - SaltShaker
-        - PepperShaker
-        - CigPack
-        - Packet
-        - Skewer
-        - MonkeyCube
-        - Mayo
-      components:
-        - Mousetrap
-        - Smokable
-        - Utensil
-  - type: ItemMapper
-    mapLayers:
-      kitchenknife:
-        whitelist:
-          tags:
-          - KitchenKnife
-      cleaver:
-        whitelist:
-          tags:
-          - Cleaver
-      rollingpin:
-        whitelist:
-          tags:
-          - RollingPin
-      coldsauce:
-        whitelist:
-          tags:
-          - Coldsauce
-      enzyme:
-        whitelist:
-          tags:
-          - Enzyme
-      hotsauce:
-        whitelist:
-          tags:
-          - Hotsauce
-      ketchup:
-        whitelist:
-          tags:
-          - Ketchup
-      bbqsauce:
-        whitelist:
-          tags:
-          - BBQsauce
-      saltshaker:
-        whitelist:
-          tags:
-          - SaltShaker
-      peppershaker:
-        whitelist:
-          tags:
-          - PepperShaker
-    sprite: Clothing/Belt/belt_overlay.rsi
-  - type: Appearance
-
-- type: entity
-  parent: [ClothingBeltStorageBase, ContentsExplosionResistanceBase, BaseSecurityContraband]
-  id: ClothingBeltSecurity
-  name: security belt
-  description: Can hold security gear like handcuffs and flashes.
-  components:
-  - type: Sprite
-    sprite: Clothing/Belt/security.rsi
-  - type: Clothing
-    sprite: Clothing/Belt/security.rsi
-  - type: ExplosionResistance
-    damageCoefficient: 0.9
-  - type: Storage
-    grid: # Starlight
-    - 0,0,1,0 #left
-    - 0,1,0,1 #left - cube
-    - 3,0,10,1
-    - 12,0,13,0 #right
-    - 12,1,12,1 #right - cube
-    whitelist:
-      tags:
-        - CigPack
-        - Taser
-        - SecBeltEquip
-        - Radio
-        - Sidearm
-        - MagazinePistol
-        - MagazineMagnum
-        - CombatKnife
-        - Truncheon
-        - HandGrenade
-      components:
-        - Stunbaton
-        - FlashOnTrigger
-        - SmokeOnTrigger
-        - Flash
-        - Handcuff
-        - BallisticAmmoProvider
-        - CartridgeAmmo
-        - DoorRemote
-        - Whistle
-        - BalloonPopper
-  - type: ItemMapper
-    mapLayers:
-      flashbang:
-        whitelist:
-          components:
-          - FlashOnTrigger
-      stunbaton:
-        whitelist:
-          components:
-          - Stunbaton
-      tear_gas_grenade:
-        whitelist:
-          components:
-          - SmokeOnTrigger
-    sprite: Clothing/Belt/belt_overlay.rsi
-  - type: Appearance
-
-- type: entity
   parent: [ClothingBeltBase, ClothingSlotBase, BaseCommandContraband]
   id: ClothingBeltSheath
-  name: sabre sheath
+  name: Sabre Sheath #Far Horizons - The Great Capitalization Crusade
   description: An ornate sheath designed to hold an officer's blade.
   components:
   - type: Sprite
@@ -611,105 +73,151 @@
           - CaptainSabre
   - type: Appearance
 
-# Belts without visualizers
-
-- type: entity
-  parent: [ClothingBeltAmmoProviderBase, BaseSecurityBartenderContraband]
-  id: ClothingBeltBandolier
-  name: bandolier
-  description: A bandolier for holding shotgun ammunition.
-  components:
-  - type: Sprite
-    sprite: Clothing/Belt/bandolier.rsi
-  - type: Clothing
-    sprite: Clothing/Belt/bandolier.rsi
-  - type: Item
-    size: Huge
-  - type: BallisticAmmoProvider
-    whitelist:
-      tags:
-        - ShellShotgun
-    capacity: 14
-
-- type: entity
-  parent: ClothingBeltBase
-  id: ClothingBeltChampion
-  name: championship belt
-  description: Proves to the world that you are the strongest!
-  components:
-  - type: Sprite
-    sprite: Clothing/Belt/champion.rsi
-  - type: Clothing
-    sprite: Clothing/Belt/champion.rsi
-    quickEquip: true
-  - type: Tag
-    tags:
-    - Kangaroo
-
 - type: entity
   parent: ClothingBeltStorageBase
-  id: ClothingBeltHolster
-  name: shoulder holster
-  description: 'A holster to carry a handgun and ammo. WARNING: Badasses only.'
+  id: ClothingBeltQuiver
+  name: Quiver #Far Horizons - The Great Capitalization Crusade
+  description: Can hold up to 15 arrows, and fits snug around your waist.
   components:
   - type: Sprite
-    sprite: Clothing/Belt/holster.rsi
+    sprite: Clothing/Belt/quiver.rsi
+    layers:
+    - state: icon
+    - map: [ "enum.StorageContainerVisualLayers.Fill" ]
+      visible: false
   - type: Clothing
-    sprite: Clothing/Belt/holster.rsi
   - type: Storage
     grid:
-    - 0,0,3,1
-
-- type: entity
-  parent: [ClothingBeltStorageBase, BaseSyndicateContraband]
-  id: ClothingBeltSyndieHolster
-  name: syndicate shoulder holster
-  description: A deep shoulder holster capable of holding many types of ballistics.
-  components:
-  - type: Sprite
-    sprite: Clothing/Belt/syndieholster.rsi
-  - type: Clothing
-    sprite: Clothing/Belt/syndieholster.rsi
-  - type: Item
-    size: Ginormous
-  - type: Storage
-    maxItemSize: Huge
-    grid:
-    - 0,0,3,3
+    - 0,0,7,3
+    maxItemSize: Small
     whitelist:
-      components:
-        - Gun
-        - BallisticAmmoProvider
-        - CartridgeAmmo
-  - type: StaticPrice
-    price: 500
+      tags:
+      - Arrow
+      - Plunger
+  - type: Appearance
+  - type: StorageContainerVisuals
+    maxFillLevels: 3
+    fillBaseName: fill-
+  - type: Construction
+    graph: Quiver
+    node: Quiver
+
+## Belts without visualizers
+
+# FH - Moved to webbings.rsi
+#- type: entity
+#  parent: [ClothingBeltAmmoProviderBase, BaseSecurityBartenderContraband]
+#  id: ClothingBeltBandolier
+#  name: bandolier
+#  description: A bandolier for holding shotgun ammunition.
+#  components:
+#  - type: Sprite
+#    sprite: Clothing/Belt/bandolier.rsi
+#  - type: Clothing
+#    sprite: Clothing/Belt/bandolier.rsi
+#  - type: Item
+#    size: Huge
+#  - type: BallisticAmmoProvider
+#    whitelist:
+#      tags:
+#        - ShellShotgun
+#    capacity: 14
+#  - type: Tag #FH
+#    tags: 
+#    - Webbing
 
 - type: entity
-  parent: ClothingBeltSecurity
-  id: ClothingBeltSecurityWebbing
-  name: security carrier
-  description: Unique and versatile chest rig, can hold security gear.
+  parent: [ ClothingBeltStorageBase, BaseMagicalContraband ]
+  id: ClothingBeltWand
+  name: Wand Belt #Far Horizons - The Great Capitalization Crusade
+  description: A belt designed to hold various rods of power. A veritable fanny pack of exotic magic.
   components:
   - type: Sprite
-    sprite: Clothing/Belt/securitywebbing.rsi
+    sprite: Clothing/Belt/wand.rsi
   - type: Clothing
-    sprite: Clothing/Belt/securitywebbing.rsi
-
-- type: entity
-  parent: [ ClothingBeltStorageBase, BaseSalvageContraband ] #Starlight salvContra
-  id: ClothingBeltMercWebbing
-  name: mercenary webbing
-  description: Ideal for storing everything from ammo to weapons and combat essentials.
-  components:
-  - type: Storage #Starlight
+    sprite: Clothing/Belt/wand.rsi
+  - type: Storage
     grid:
-    - 0,0,1,0 #left
-    - 0,1,0,1 #left - cube
-    - 3,0,10,1
-  - type: Sprite
-    sprite: Clothing/Belt/mercwebbing.rsi
-  - type: Clothing
-    sprite: Clothing/Belt/mercwebbing.rsi
+    - 0,0,15,1
+    whitelist:
+      tags:
+      - WizardWand
+      - WhitelistChameleon
+
+## Holsters
+
+# FH - Moved to webbings.rsi
+#- type: entity
+#  parent: ClothingBeltStorageBase
+#  id: ClothingBeltHolster
+#  name: shoulder holster
+#  description: 'A holster to carry a handgun and ammo. WARNING: Badasses only.'
+#  components:
+#  - type: Sprite
+#    sprite: Clothing/Belt/holster.rsi
+#  - type: Clothing
+#    sprite: Clothing/Belt/holster.rsi
+#  - type: Storage
+#    grid:
+#    - 0,0,3,1
+#  - type: Tag #FH
+#    tags: 
+#    - Webbing
+
+# FH - Moved to webbings.rsi
+#- type: entity
+#  parent: [ClothingBeltStorageBase, BaseSyndicateContraband]
+#  id: ClothingBeltSyndieHolster
+#  name: syndicate shoulder holster
+#  description: A deep shoulder holster capable of holding many types of ballistics.
+#  components:
+#  - type: Sprite
+#    sprite: Clothing/Belt/syndieholster.rsi
+#  - type: Clothing
+#    sprite: Clothing/Belt/syndieholster.rsi
+#  - type: Storage
+#    maxItemSize: Huge
+#    grid:
+#    - 0,0,3,3
+#    whitelist:
+#      components:
+#      - Gun
+#      - BallisticAmmoProvider
+#      - CartridgeAmmo
+#  - type: StaticPrice
+#    price: 500
+#  - type: Tag #FH
+#    tags: 
+#    - Webbing
+
+## Webbing
+
+# Weirdly the only webbing with a storage whitelist and item mapper.
+# Might be worth making less common (armory only?) and removing the whitelist to eliminate the inconsistency.
+# FH - Moved to webbings.rsi
+#- type: entity
+#  parent: ClothingBeltWebbingBase #FarHorizons
+#  id: ClothingBeltSecurityWebbing
+#  name: security carrier
+#  description: Unique and versatile chest rig, can hold spare magazines. #FH
+#  components:
+#  - type: Sprite
+#    sprite: Clothing/Belt/securitywebbing.rsi
+#  - type: Clothing
+#    sprite: Clothing/Belt/securitywebbing.rsi
+
+# FH - Moved to webbings.rsi
+#- type: entity
+#  parent: [ ClothingBeltWebbingBase, BaseSalvageContraband ] #FarHorizons
+#  id: ClothingBeltMercWebbing
+#  name: mercenary webbing
+#  description: Ideal for storing spare ammo, grenades and other bits and bobs. #FH - Edit
+#  components:
+# FH - Removal
+#  - type: Sprite
+#    sprite: Clothing/Belt/mercwebbing.rsi
+#  - type: Clothing
+#    sprite: Clothing/Belt/mercwebbing.rsi
 
 #Far Horizons-Start - I reject your Salvage Webbing and substitute my own.
 #- type: entity
@@ -724,89 +232,50 @@
 #    sprite: Clothing/Belt/salvagewebbing.rsi
 #Far Horizons-End
 
-- type: entity
-  parent: [ClothingBeltStorageBase, ContentsExplosionResistanceBase, BaseMajorContraband]
-  id: ClothingBeltMilitaryWebbing
-  name: chest rig
-  description: A set of tactical webbing worn by various militant boarding parties.
-  components:
-  - type: Storage #Starlight
-    grid:
-    - 0,0,1,0 #left
-    - 0,1,0,1 #left - cube
-    - 3,0,10,1
-    - 12,0,13,0 #right
-    - 12,1,12,1 #right - cube
-  - type: Sprite
-    sprite: Clothing/Belt/militarywebbing.rsi
-  - type: Clothing
-    sprite: Clothing/Belt/militarywebbing.rsi
-  - type: ExplosionResistance
-    damageCoefficient: 0.1
-  - type: StaticPrice
-    price: 500
+#Far Horizons-Start - Turned off
+#- type: entity
+#  parent: [ClothingBeltStorageBase, ContentsExplosionResistanceBase, BaseMajorContraband]
+#  id: ClothingBeltMilitaryWebbing
+#  name: chest rig
+#  description: A set of tactical webbing worn by various militant boarding parties.
+#  components:
+#  - type: Storage #Starlight
+#    grid:
+#    - 0,0,1,0 #left
+#    - 0,1,0,1 #left - cube
+#    - 3,0,10,1
+#    - 12,0,13,0 #right
+#    - 12,1,12,1 #right - cube
+#  - type: Sprite
+#    sprite: Clothing/Belt/militarywebbing.rsi
+#  - type: Clothing
+#    sprite: Clothing/Belt/militarywebbing.rsi
+#  - type: ExplosionResistance
+#    damageCoefficient: 0.1
+#  - type: StaticPrice
+#    price: 500
+#Far Horizons-End
 
-- type: entity
-  parent: ClothingBeltMilitaryWebbing
-  id: ClothingBeltMilitaryWebbingMed
-  name: medical chest rig
-  description: A set of tactical webbing worn by various military corpsmen.
-  components:
-  - type: Storage #Starlight
-    grid:
-    - 0,0,1,0 #left
-    - 0,1,0,1 #left - cube
-    - 3,0,10,1
-    - 12,0,13,0 #right
-    - 12,1,12,1 #right - cube
-  - type: Sprite
-    sprite: _FarHorizons/Clothing/Belt/paramedicwebbing.rsi #Far Horizons
-  - type: Clothing
-    sprite: _FarHorizons/Clothing/Belt/paramedicwebbing.rsi #Far Horizons
-  - type: Item
-    size: Huge
-  - type: ExplosionResistance
-    damageCoefficient: 0.1
-
-- type: entity
-  parent: ClothingBeltBase
-  id: ClothingBeltSuspendersRed
-  name: red suspenders
-  description: For holding your pants up.
-  components:
-  - type: Tag
-    tags:
-    - MimeBelt
-  - type: Sprite
-    sprite: Clothing/Belt/suspenders_red.rsi
-    state: icon
-  - type: Clothing
-    sprite: Clothing/Belt/suspenders_red.rsi
-    quickEquip: true
-
-- type: entity
-  parent: ClothingBeltSuspendersRed
-  id: ClothingBeltSuspendersBlack
-  name: black suspenders
-  components:
-  - type: Sprite
-    sprite: Clothing/Belt/suspenders_black.rsi
-  - type: Clothing
-    sprite: Clothing/Belt/suspenders_black.rsi
-
-- type: entity
-  parent: [ ClothingBeltStorageBase, BaseMagicalContraband ]
-  id: ClothingBeltWand
-  name: wand belt
-  description: A belt designed to hold various rods of power. A veritable fanny pack of exotic magic.
-  components:
-  - type: Sprite
-    sprite: Clothing/Belt/wand.rsi
-  - type: Clothing
-    sprite: Clothing/Belt/wand.rsi
-  - type: Storage
-    grid:
-    - 0,0,15,1
-    whitelist:
-      tags:
-      - WizardWand
+#Far Horizons-Start - Turned off
+#- type: entity
+#  parent: ClothingBeltMilitaryWebbing
+#  id: ClothingBeltMilitaryWebbingMed
+#  name: medical chest rig
+#  description: A set of tactical webbing worn by various military corpsmen.
+#  components:
+#  - type: Storage #Starlight
+#    grid:
+#    - 0,0,1,0 #left
+#    - 0,1,0,1 #left - cube
+#    - 3,0,10,1
+#    - 12,0,13,0 #right
+#    - 12,1,12,1 #right - cube
+#  - type: Sprite
+#    sprite: _FarHorizons/Clothing/Belt/paramedicwebbing.rsi #Far Horizons
+#  - type: Clothing
+#   sprite: _FarHorizons/Clothing/Belt/paramedicwebbing.rsi #Far Horizons
+#  - type: Item
+#    size: Huge
+#  - type: ExplosionResistance
+#    damageCoefficient: 0.1
+#Far Horizons-End

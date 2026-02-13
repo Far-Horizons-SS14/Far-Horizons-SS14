@@ -76,8 +76,9 @@ public sealed partial class ProfilePreviewSpriteView : SpriteView
     /// <param name="profile">Character profile to load, currently only supports <see cref="HumanoidCharacterProfile"/></param>
     /// <param name="jobOverride">If null, attempt to find the character's preferred job, otherwise use this value</param>
     /// <param name="showClothes">If false, render the dummy without clothes</param>
+    /// <param name="antagOverride"> Starlight: Optional antag prototype override to preview</param>
     /// <exception cref="ArgumentException">Throws if something other than <see cref="HumanoidCharacterProfile"/> is passed in</exception>
-    public void LoadPreview(ICharacterProfile profile, (FactionPrototype, JobPrototype)? jobOverride = null, bool showClothes = true)
+    public void LoadPreview(ICharacterProfile profile, (FactionPrototype, JobPrototype)? jobOverride = null, bool showClothes = true, ProtoId<AntagPrototype>? antagOverride = null)
     {
         EntMan.DeleteEntity(PreviewDummy);
         PreviewDummy = EntityUid.Invalid;
@@ -85,7 +86,7 @@ public sealed partial class ProfilePreviewSpriteView : SpriteView
         switch (profile)
         {
             case HumanoidCharacterProfile humanoid:
-                LoadHumanoidEntity(humanoid, jobOverride, showClothes);
+                LoadHumanoidEntity(humanoid, jobOverride, showClothes, antagOverride); // Starlight edit: Antag Loadouts
                 break;
             default:
                 throw new ArgumentException("Only humanoid profiles are implemented in ProfilePreviewSpriteView");

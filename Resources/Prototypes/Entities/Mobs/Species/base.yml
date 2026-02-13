@@ -40,10 +40,12 @@
     - map: [ "ears" ]
     - map: [ "eyes" ]
     - map: [ "outerClothing" ] # Starlight
+    - map: [ "rig" ] #FarHorizons
     - map: [ "belt" ]
     - map: [ "id" ]
     - map: [ "back" ]
     - map: [ "neck" ]
+    - map: [ "pin" ] #FarHorizons
     - map: [ "enum.HumanoidVisualLayers.SnoutCover" ]
     - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
     - map: [ "enum.HumanoidVisualLayers.Hair" ]
@@ -127,7 +129,7 @@
     - reagents: [Water, SpaceCleaner]
       methods: [Touch]
       effects:
-      - !type:WashCreamPieReaction
+      - !type:WashCreamPie
   - type: StatusEffects
     allowed:
     - Friction
@@ -137,7 +139,6 @@
     - Muted
     - TemporaryBlindness
     - Pacified
-    - StaminaModifier
     - Flashed
     - RadiationProtection
     - Adrenaline
@@ -186,6 +187,9 @@
     factions:
     - NanoTrasen
   - type: CreamPied
+  - type: ParcelWrapOverride
+    parcelPrototype: WrappedParcelHumanoid
+    wrapDelay: 5
   - type: Stripping
   - type: UserInterface
     interfaces:
@@ -234,6 +238,7 @@
     - Pet
     - Boop
   # Starlight End
+  - type: AutoImplanter # Far Horizons
 
 - type: entity
   save: false
@@ -265,10 +270,11 @@
   - type: DarkenedVision
   # Other
   - type: Temperature
-    heatDamageThreshold: 325
-    coldDamageThreshold: 260
     currentTemperature: 310.15
     specificHeat: 42
+  - type: TemperatureDamage
+    heatDamageThreshold: 325
+    coldDamageThreshold: 260
     coldDamage:
       types:
         Cold: 0.1 #per second, scales with temperature & other constants
@@ -304,7 +310,9 @@
   - type: FireVisuals
     alternateState: Standing
   - type: StunVisuals
-  - type: HumanoidEMPComposite # Far Horizons - just like HumanoidEMP, except the effect is combined from HumanoidEMPCompositeElement components on all limbs and organs
+  - type: HumanoidEMP # Far Horizons - HumanoidEMP is needed to receive EMP effects, it may carry its own innate effects, but doesn't have to
+    effectCooldown: 2
+  - type: HumanoidEMPComposite # Far Horizons - HumanoidEMPComposite is used to gather EMP effects from HumanoidEMPCompositeElement components on all limbs and organs. These effects added in addition to effects in HumanoidEMP and won't work without it
 
 - type: entity
   save: false

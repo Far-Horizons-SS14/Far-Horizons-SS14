@@ -1,13 +1,275 @@
 - type: entity
   parent: [ ClothingHeadHelmetBase, BaseSalvageContraband ]
   id: ClothingHeadHelmetSalvage
-  name: salvage helmet
+  name: Salvage Helmet
   description: A generic helmet given to all of GSL's salvage teams. Clearly the money that was supposed to armor it went somewhere's else.
   components:
   - type: Sprite
     sprite: _FarHorizons/Clothing/Head/Helmets/salvagerhelmet.rsi
   - type: Clothing
     sprite: _FarHorizons/Clothing/Head/Helmets/salvagerhelmet.rsi
+  - type: HideLayerClothing
+    layers:
+      Hair: HEAD
+
+#region Syndicate
+
+
+
+
+
+
+
+
+#region Engineering
+
+#Atmos Fire Helmet
+- type: entity
+  parent: [ClothingHeadLightBase, BaseEngineeringContraband]
+  id: ClothingHeadHelmetAtmosFireSyndi
+  name: Environmental Fire Helmet
+  description: An environmental fire helmet, able to keep the user cool in any situation.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Head/Helmets/atmos_firehelmet-syndi.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Head/Helmets/atmos_firehelmet-syndi.rsi
+    quickEquip: true
+  - type: IngestionBlocker
+  - type: TemperatureProtection
+    heatingCoefficient: 0.3
+    coolingCoefficient: 0.8
+  - type: FireProtection
+    reduction: 0.2
+  - type: PressureProtection
+    highPressureMultiplier: 0.25
+    lowPressureMultiplier: 1000
+  - type: IdentityBlocker
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - FireHelmet
+    - CorgiWearable
+  - type: HideLayerClothing
+    layers:
+      Hair: HEAD
+      Snout: HEAD
+  - type: BreathMask
+
+#region Security
+
+- type: entity
+  parent: [ClothingHeadHelmetArmoredBase, BaseSecurityContraband, ClothingHeadSuitWithLightBase ]
+  id: ClothingHeadHelmetSecuritySyndi
+  name: Security Helmet
+  suffix: S
+  description: Standard security gear. Protects the head from impacts.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Head/Helmets/security-syndi.rsi
+    layers:
+      - state: icon
+      - state: icon-light
+        shader: unshaded
+        map: [ "light" ]
+  - type: Appearance
+  - type: ToggleableVisuals
+    spriteLayer: light
+    clothingVisuals:
+      head:
+      - state: equipped-head-light
+      head-vox:
+      - state: equipped-head-light-vox
+      head-vulpkanin:
+  - type: Clothing
+    clothingVisuals:
+      head:
+      - state: equipped-head
+      head-vox:
+      - state: equipped-head-vox
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - SecurityHelmet
+  - type: PointLight
+    color: "#03fc03"
+    enabled: false
+    falloff: 20
+    radius: 2
+    mask: null
+    energy: 4
+  #- type: HideLayerClothing
+  #  layers:
+  #    Hair: HEAD-
+
+- type: entity
+  parent: [ClothingHeadBase, BaseSecurityContraband, BaseToggleClothing]
+  id: ClothingHeadHelmetBulletProofSyndi
+  name: Bulletproof Helmet
+  suffix: S
+  description: Protects the face against bullets, can flip up and down.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Head/Helmets/bulletproof-syndi.rsi
+    layers:
+    - state: icon
+      map: [ "enum.ToggleableVisuals.Layer" ]
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Head/Helmets/bulletproof-syndi.rsi
+  - type: Item
+    storedRotation: 0  
+  - type: ItemToggle # Welding mask starts in an activated state
+    activated: true
+  - type: Appearance
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.95
+        Slash: 0.95
+        Piercing: 0.80
+  - type: ToggleClothing
+    action: ActionToggleWeldingMask
+  - type: WeldingMask  
+  - type: HideLayerClothing
+    slots:
+    - Snout
+    hideOnToggle: true
+  - type: GenericVisualizer
+    visuals:
+      enum.ToggleableVisuals.Enabled:
+        enum.ToggleableVisuals.Layer:
+          True: {state: icon}
+          False: {state: icon-up}
+  - type: ComponentToggler
+    components:
+    - type: IngestionBlocker
+    - type: FlashImmunity
+    - type: IdentityBlocker
+  - type: Tag
+    tags:
+    - BulletproofArmor
+
+- type: entity
+  parent: [ ClothingHeadHelmetBase, BaseSecurityContraband ]
+  id: ClothingHeadHelmetHeatAbsorbentSyndi
+  name: Heat Absorbent Helmet
+  suffix: S
+  description: Advanced helmet best paired with the vest for pure style, has minor reflective properties and can absorb heat fairly well.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Head/Helmets/heatabsorbent-syndi.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Head/Helmets/heatabsorbent-syndi.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.93
+        Slash: 0.93
+        Piercing: 0.93
+        Heat: 0.87
+  - type: Tag
+    tags:
+    - SecurityHelmet
+
+- type: entity
+  parent: [ClothingHeadHelmetBase, BaseSecurityContraband]
+  id: ClothingHeadHelmetPlateSyndi
+  name: Plate Helmet
+  suffix: S
+  description: A modified security helmet with a ceramic plate insert, which means less padding for blunt hits.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Head/Helmets/plate-syndi.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Head/Helmets/plate-syndi.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.93
+        Slash: 0.93
+        Piercing: 0.87
+        Heat: 0.93
+  - type: Tag
+    tags:
+    - SecurityHelmet
+
+- type: entity
+  parent: [ClothingHeadHelmetBase, BaseSecurityContraband]
+  id: ClothingHeadHelmetReflectiveSyndi
+  name: Reflective Helmet
+  suffix: S
+  description: A shiny helmet for your equally shiny vest.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Head/Helmets/reflect-syndi.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Head/Helmets/reflect-syndi.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.95
+        Slash: 0.95
+        Piercing: 0.95
+        Heat: 0.80
+  - type: Reflect
+    reflectProb: 0.2
+    reflects:
+      - Energy  
+  - type: Tag
+    tags:
+    - SecurityHelmet
+    - ReflectArmor
+
+- type: entity
+  parent:  [ClothingHeadHelmetBase, BaseSecurityContraband ]
+  id: ClothingHeadHelmetStabproofSyndi
+  name: Stabproof Helmet
+  suffix: S
+  description: The most "comfortable" security helmet, as rated by officers. Will take a blow to the head nicely, but a bullet'll go right through it.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Head/Helmets/stabproof-syndi.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Head/Helmets/stabproof-syndi.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.87
+        Slash: 0.87
+        Piercing: 0.93
+        Heat: 0.93
+  - type: Tag
+    tags:
+    - SecurityHelmet
+
+# SWAT Helmet
+
+- type: entity
+  parent: [ClothingHeadHelmetBase, BaseSecurityContraband]
+  id: ClothingHeadHelmetSwatSyndi
+  name: SWAT Helmet
+  suffix: S
+  description: An extremely robust helmet, commonly used by paramilitary forces. This one has the Syndicate logo emblazoned on the top.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Head/Helmets/swat-syndi.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Head/Helmets/swat-syndi.rsi
+  - type: Pierceable
+    level: Metal
+  - type: Armor #This is intentionally not spaceproof, when the time comes to port the values from SS13 this should be buffed from what it was.
+    modifiers:
+      coefficients:
+        Blunt: 0.80
+        Slash: 0.80
+        Piercing: 0.80
+        Heat: 0.80
+        Radiation: 0.80
+        Caustic: 0.95
+  - type: ExplosionResistance
+    damageCoefficient: 0.75
   - type: HideLayerClothing
     layers:
       Hair: HEAD

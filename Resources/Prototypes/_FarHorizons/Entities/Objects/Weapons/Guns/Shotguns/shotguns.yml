@@ -1,0 +1,176 @@
+- type: entity
+  name: Kammerer Citadel
+  parent: [BaseWeaponShotgun, BaseGunWieldable, BaseSecurityContraband]
+  id: WeaponShotgunKammererCitadel
+  description: An old faithful design refurbished for modern applications, and a personal favorite amongst many NanoTransen security forces. Uses .50 Shotgun Shells.
+  components:
+  - type: Item
+    sprite: _FarHorizons/Objects/Weapons/Guns/Shotguns/securitypump_inhands_64x.rsi
+  - type: Gun
+    spread: 10
+    pump: true
+    fireRate: 2
+  - type: BallisticAmmoProvider
+    capacity: 6
+    proto: ShellShotgun
+    soundInsert:
+      path: /Audio/Weapons/Guns/MagIn/shotgun_insert.ogg
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/Shotguns/securitypump.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Objects/Weapons/Guns/Shotguns/securitypump.rsi
+  - type: GunRequiresWield
+  - type: Tag
+    tags:
+    - ShotgunKammererCitadel
+
+- type: entity
+  name: Kammerer 5001
+  parent: [BaseWeaponShotgun, BaseGunWieldable, BaseSecurityContraband]
+  id: WeaponShotgunKammerer5001
+  description: A highly advanced shotgun in the "Kammerer" series, typically employed in riot control. #It can quickly toggle between lethal and non-lethal rounds thanks to it's dual chamber. ##Pending rework to allow this
+  components:
+  - type: Item
+    sprite: _FarHorizons/Objects/Weapons/Guns/Shotguns/kammerer5001_inhands_64x.rsi
+  - type: Gun
+    spread: 20
+  - type: BallisticAmmoProvider
+    capacity: 8 # To be changed to 5/5 when dual chamber guns become a thing
+    proto: ShellShotgun
+    soundInsert:
+      path: /Audio/Weapons/Guns/MagIn/shotgun_insert.ogg
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/Shotguns/kammerer5001.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Objects/Weapons/Guns/Shotguns/kammerer5001.rsi
+  - type: GunRequiresWield
+  - type: Tag
+    tags:
+    - ShotgunKammerer5001
+
+# Bit of an odd one, inherets from revolver to have instant speedloader reloads - a cheap way to include the shellholder on the sprite.
+- type: entity
+  name: Combat Shotgun
+  parent: [BaseWeaponRevolver, BaseGunWieldable, BaseSecurityContraband]
+  id: WeaponShotgunCombat
+  description: A semi automatic shotgun with a shellholder allowing for much faster reloads. Holds eight rounds.
+  components:
+  - type: Item
+    sprite: _FarHorizons/Objects/Weapons/Guns/Shotguns/cshotgunfolded_inhands_64x.rsi
+    size: Large
+    shape:
+    - 0,0,4,0
+  - type: Gun
+    fireRate: 2
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/shotgun.ogg
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/empty.ogg
+    spread: 20
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/Shotguns/cshotgunfolded.rsi
+    layers:
+    - state: icon
+      map: [ "enum.GunVisualLayers.Base" ]
+  - type: Clothing
+    sprite: _FarHorizons/Objects/Weapons/Guns/Shotguns/cshotgunfolded.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: GunRequiresWield
+  - type: RevolverAmmoProvider
+    whitelist:
+      tags:
+      - ShellShotgun
+      - SpeedLoaderShotgun
+    proto: ShellShotgun
+    capacity: 8
+    chambers: [ True, True, True, True, True, True, True, True ]
+    ammoSlots: [ null, null, null, null, null, null, null, null ]
+    soundInsert:
+      path: /Audio/Weapons/Guns/MagIn/shotgun_insert.ogg
+  - type: ContainerContainer
+    containers:
+      revolver-ammo: !type:Container
+  - type: KnockbackByUserTag
+    doestContain:
+      Resomi:
+        knockback: 3
+        staminaMultiplier: 20
+      Avali:
+        knockback: 1
+        staminaMultiplier: 20
+      Felionoid:
+        knockback: 1.5
+        staminaMultiplier: 20
+  - type: StaticPrice
+    price: 500
+  - type: Tag
+    tags:
+    - CombatShotgun
+
+- type: entity
+  name: Sentinel
+  parent: [BaseWeaponShotgunAny, BaseGunWieldable, BaseSecurityContraband]
+  id: WeaponShotgunEnforcer
+  description: An odd magazine-fed pump action shotgun that is the result of a regulatory compromise. Fires as fast as you can pump it, loads .50 shotgun shells.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/Shotguns/sentinel.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    sprite: _FarHorizons/Objects/Weapons/Guns/Shotguns/sentinel_inhands_64x.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Objects/Weapons/Guns/Shotguns/sentinel.rsi
+  - type: GunRequiresWield
+  - type: Gun
+    spread: 15
+    fireRate: 2
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/shotgun.ogg
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Gunshots/shotgun.ogg #"/Audio/Weapons/Guns/Empty/empty.ogg" is the proper sound for it, but because of buggy guncode this was deemed the "lesser evil" as this is the sound you hear while firing most of the time
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineShotgun
+        priority: 2
+        whitelist:
+          tags:
+          - MagazineShotgun
+        whitelistFailPopup: gun-magazine-whitelist-fail
+        insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+      gun_chamber:
+        name: Chamber
+        startingItem: ShellShotgun
+        priority: 1
+        whitelist:
+          tags:
+          - ShellShotgun
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: ChamberMagazineAmmoProvider
+    autoCycle: false
+    canRack: false
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: true
+  - type: Appearance
+  - type: StaticPrice
+    price: 500
+  - type: Tag
+    tags:
+    - ShotgunSentinel

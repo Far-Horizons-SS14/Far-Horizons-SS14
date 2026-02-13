@@ -1,4 +1,8 @@
 - type: salvageMissionObjectiveHandler
+  id: MissionObjectiveFreeHandler
+  handler: !type:SalvageMissionFree
+
+- type: salvageMissionObjectiveHandler
   id: MissionObjectiveRecoverHandler
   handler: !type:SalvageMissionRecovery
 

@@ -20,7 +20,6 @@
   roles:
   - Bartender
   - Botanist
-  - Boxer
   - Chaplain
   - Chef
   - Clown
@@ -32,8 +31,9 @@
   - Assistant
   - Reporter
   - Visitor
-  - Zookeeper
   - ServiceWorker
+  - Zookeeper # FH - return zookeper and boxer
+  - Boxer # FH - return zookeper and boxer
 
 - type: department
   id: CentralCommand
@@ -50,7 +50,11 @@
   - ERTSecurity
   - ERTEngineer
   - DeathSquad
+  - CentralCommandOperator # Starlight Addition
   - NTNCBlueshield ## Starlight Addition
+  - CC-CADOfficial ## Far Horizons
+  - CC-CIDOfficial ## Far Horizons
+  - CC-CSDOfficial ## Far Horizons
   editorHidden: true
   weight: 120
 
@@ -117,10 +121,10 @@
   - SecurityCadet
   - SecurityOfficer
   - Brigmedic
-  - Corpsman #FH edit
+  - Corpsman # Far Horizons edit
   - Detective
   - Warden
-  - SecBorg # Far Horizon-edit
+  - SecBorg # Far Horizons -edit
 
 - type: department
   id: Science
@@ -141,3 +145,14 @@
   roles:
   - Borg
   - StationAi
+
+- type: department
+  id: Specific
+  name: department-Specific
+  description: department-Specific-description
+  color: "#9FED58"
+  weight: 10
+  roles:
+  - Reporter
+  - Psychologist
+  primary: false

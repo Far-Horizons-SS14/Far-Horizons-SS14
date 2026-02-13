@@ -1,13 +1,24 @@
 
 
-## Syndicate Station
+#region Syndicate
+
+
+
+
+
+
+
+
+
+#region Command
 
 # Commander (Captain)
 
 - type: entity
   parent: [ClothingNeckBase, BaseCommandContraband]
   id: ClothingNeckCloakCapFormalSyndi
-  name: commander's formal cloak
+  name: Commander's Formal Cloak
+  suffix: S
   description: A lavish and decorated cloak for special occasions.
   components:
   - type: Sprite
@@ -18,10 +29,55 @@
 - type: entity
   parent: [ClothingNeckBase, BaseCommandContraband]
   id: ClothingNeckCloakCapSyndi
-  name: commander's cloak
+  name: Commander's Cloak
+  suffix: S
   description: A pompous and comfy blue cloak with a nice gold trim, while not particularly valuable as your other possessions, it sure is fancy.
   components:
   - type: Sprite
     sprite: _FarHorizons/Clothing/Neck/Cloaks/syndicap.rsi
   - type: StealTarget
     stealGroup: HeadCloak
+
+# Security Overwatch (HoS)
+
+- type: entity
+  parent: [ ClothingNeckBase, BaseCommandContraband ]
+  id: ClothingNeckCloakHosSyndi
+  name: Security Overwatch's Cloak
+  suffix: S
+  description: An exquisite dark and red cloak fitting for those who can assert dominance over wrongdoers. Take a stab at being civil in prosecution!
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Neck/Cloaks/hos-syndi.rsi
+  - type: StealTarget
+    stealGroup: HeadCloak
+
+- type: entity
+  parent:  [ ClothingNeckBase, BaseCommandContraband ]
+  id: ClothingNeckCloakHosEliteSyndi
+  name: Elite Security Overwatch's Cloak
+  description: An elite security overwatch's cloak crafted from the latest composite glowing fabric. Only for a true paladin.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Neck/Cloaks/hos_elite-syndi.rsi
+  - type: StealTarget
+    stealGroup: HeadCloak
+  - type: PointLight
+    radius: 2
+    energy: 4
+    color: "#ab0000"
+  - type: StaticPrice
+    price: 2000
+
+# Technical Lead (Chief Engineer)
+
+- type: entity
+  parent: [ClothingNeckBase, BaseCommandContraband]
+  id: ClothingNeckCloakCeSyndi
+  name: Technical Lead's cloak
+  description: A dark green cloak with light blue ornaments, given to those who proved themselves to master the precise art of engineering.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Neck/Cloaks/ce.rsi # This still needs to be resprited.
+  #- type: StealTarget - Temporarily disabled, I can't be bothered to add steal target currently.
+  #  stealGroup: HeadCloak

@@ -10,7 +10,7 @@
   parent: SecurityIcon
   id: SecurityIconDischarged
   icon:
-    sprite: /Textures/Interface/Misc/security_icons.rsi
+    sprite: /Textures/_FarHorizons/Interface/Misc/security_icons.rsi # FH
     state: hud_discharged
 
 - type: securityIcon
@@ -33,12 +33,26 @@
   icon:
     sprite: /Textures/Interface/Misc/security_icons.rsi
     state: hud_suspected
+  
+- type: securityIcon
+  parent: SecurityIcon
+  id: SecurityIconHostile
+  icon:
+    sprite: /Textures/_FarHorizons/Interface/Misc/security_icons.rsi # FH
+    state: hud_kill # FH
+
+- type: securityIcon
+  parent: SecurityIcon
+  id: SecurityIconEliminated
+  icon:
+    sprite: /Textures/_FarHorizons/Interface/Misc/security_icons.rsi # FH
+    state: hud_dead # FH
 
 - type: securityIcon
   parent: SecurityIcon
   id: SecurityIconWanted
   icon:
-    sprite: /Textures/Interface/Misc/security_icons.rsi
+    sprite: /Textures/_FarHorizons/Interface/Misc/security_icons.rsi # FH
     state: hud_wanted
 
 - type: securityIcon

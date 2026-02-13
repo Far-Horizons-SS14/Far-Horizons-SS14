@@ -8,6 +8,7 @@ using Robust.Server.GameObjects;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Actions;
 using Content.Shared._FarHorizons.CartridgeLoader.Cartridges;
+using Content.Shared.Damage.Components;
 
 namespace Content.Server.CartridgeLoader.Cartridges;
 

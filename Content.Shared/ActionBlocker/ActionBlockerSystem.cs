@@ -1,4 +1,5 @@
 ﻿using Content.Shared.Starlight.Antags.Abductor;
+using Content.Shared._Starlight.Railroading; /// Far Horizons -  You try finding a component that can be paired with AIEye so Netrunners stop interacting with the station that the AI doesn't also share.
 using Content.Shared.Silicons.StationAi;
 using Content.Shared.Body.Events;
 using Content.Shared.Emoting;
@@ -32,15 +33,11 @@ namespace Content.Shared.ActionBlocker
             base.Initialize();
 
             _complexInteractionQuery = GetEntityQuery<ComplexInteractionComponent>();
-
-            SubscribeLocalEvent<InputMoverComponent, ComponentStartup>(OnMoverStartup);
         }
 
-        private void OnMoverStartup(EntityUid uid, InputMoverComponent component, ComponentStartup args)
-        {
-            UpdateCanMove(uid, component);
-        }
-
+        // These two methods should probably both live in SharedMoverController
+        // but they're called in a million places and I'm not doing that
+        // refactor right now.
         public bool CanMove(EntityUid uid, InputMoverComponent? component = null)
         {
             return Resolve(uid, ref component, false) && component.CanMove;
@@ -86,7 +83,7 @@ namespace Content.Shared.ActionBlocker
             if (!CanConsciouslyPerformAction(user))
                 return false;
             
-            if (HasComp<StationAiOverlayComponent>(user) && HasComp<AbductorScientistComponent>(user) || HasComp<StationAiOverlayComponent>(user) && HasComp<AbductorAgentComponent>(user))
+            if (HasComp<StationAiOverlayComponent>(user) && HasComp<AbductorScientistComponent>(user) || HasComp<StationAiOverlayComponent>(user) && HasComp<AbductorAgentComponent>(user) || HasComp<StationAiOverlayComponent>(user) && HasComp<RailroadableComponent>(user)) /// Far Horizons - Added StationAIOverlay and Railroadable to stop people using the netrunner eye to mess up station.
                 return false;
 
             var ev = new InteractionAttemptEvent(user, target);
@@ -181,15 +178,21 @@ namespace Content.Shared.ActionBlocker
             return !ev.Cancelled;
         }
 
-        public bool CanPickup(EntityUid user, EntityUid item)
+        /// <summary>
+        /// Whether a user can pickup the given item.
+        /// </summary>
+        /// <param name="user">The mob trying to pick up the item.</param>
+        /// <param name="item">The item being picked up.</param>
+        /// <param name="showPopup">Whether or not to show a popup to the player telling them why the attempt failed.</param>
+        public bool CanPickup(EntityUid user, EntityUid item, bool showPopup = false)
         {
-            var userEv = new PickupAttemptEvent(user, item);
+            var userEv = new PickupAttemptEvent(user, item, showPopup);
             RaiseLocalEvent(user, userEv);
 
             if (userEv.Cancelled)
                 return false;
 
-            var itemEv = new GettingPickedUpAttemptEvent(user, item);
+            var itemEv = new GettingPickedUpAttemptEvent(user, item, showPopup);
             RaiseLocalEvent(item, itemEv);
 
             return !itemEv.Cancelled;

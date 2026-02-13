@@ -1,4 +1,5 @@
-﻿using Content.Shared.Interaction;
+﻿using Content.Shared._FarHorizons.Vehicles.Components; //FarHorizons
+using Content.Shared.Interaction;
 using Content.Shared.Mech.Components;
 
 namespace Content.Shared.MouseRotator;
@@ -38,7 +39,16 @@ public abstract class SharedMouseRotatorSystem : EntitySystem
                 target = mechPilot.Mech;
                 xform = Transform(mechPilot.Mech);
             }
-
+            //FarHorizons Start
+            if (TryComp<RiderComponent>(uid, out var riderComp))
+            {
+                if(riderComp.Riding != null)
+                {
+                    target = riderComp.Riding.Value;
+                    xform = Transform(riderComp.Riding.Value);
+                }
+            }
+            //FarHorizons End
             if (_rotate.TryRotateTo(
                     target,
                     rotator.GoalRotation.Value,

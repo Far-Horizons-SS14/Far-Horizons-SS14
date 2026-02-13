@@ -17,7 +17,9 @@ public sealed class StepTriggerImmuneSystem : EntitySystem
 
     private void OnStepTriggerClothingAttempt(Entity<PreventableStepTriggerComponent> ent, ref StepTriggerAttemptEvent args)
     {
-        if (HasComp<ProtectedFromStepTriggersComponent>(args.Tripper) || _inventory.TryGetInventoryEntity<ProtectedFromStepTriggersComponent>(args.Tripper, out _))
+        // Far Horizons adding ProtectionKey value so ProtectedFromStepTriggersComponent can be used for more things than just glass shards and boots
+        if ((TryComp<ProtectedFromStepTriggersComponent>(args.Tripper, out var protectionComp) && protectionComp.ProtectionKey == ent.Comp.ProtectionKey) || 
+            (_inventory.TryGetInventoryEntity<ProtectedFromStepTriggersComponent>(args.Tripper, out var invProtectionItem) && invProtectionItem.Comp!.ProtectionKey == ent.Comp.ProtectionKey))
         {
             args.Cancelled = true;
         }

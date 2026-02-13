@@ -115,7 +115,7 @@
   - type: Appearance
   - type: Gun
     soundGunshot:
-      path: /Audio/_Starlight/Weapons/Guns/Gunshots/lmg2.ogg
+      path: /Audio/_FarHorizons/Items/Weapons/L6SAW/L6SAW.ogg # Far Horizons!
       params:
         variation: 0.05
         volume: -4
@@ -203,12 +203,11 @@
         ballistic-ammo: !type:Container
         gun_magazine: !type:ContainerSlot
         gun_chamber: !type:ContainerSlot
-    - type: ProjectileBatteryAmmoProvider
+    - type: BatteryAmmoProvider
       proto: CartridgeLightRifleFMJ
       fireCost: 100
     - type: Battery
       maxCharge: 10000
       startingCharge: 10000
     - type: BatterySelfRecharger
-      autoRecharge: true
       autoRechargeRate: 25

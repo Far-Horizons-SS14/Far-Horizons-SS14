@@ -6,31 +6,40 @@
       slotFlags: FEET
       stripTime: 3
       uiWindowPos: 1,0
-      strippingWindowPos: 1,3
+      strippingWindowPos: 1,4 #FH
       displayName: Shoes
     - name: jumpsuit
       slotTexture: uniform
       slotFlags: INNERCLOTHING
       stripTime: 6
       uiWindowPos: 0,1
-      strippingWindowPos: 0,2
+      strippingWindowPos: 0,3 #FH
       displayName: Jumpsuit
     - name: gloves
       slotTexture: gloves
       slotFlags: GLOVES
       uiWindowPos: 2,1
-      strippingWindowPos: 2,2
+      strippingWindowPos: 2,3 #FH
       displayName: Gloves
     - name: neck
       slotTexture: neck
       slotFlags: NECK
       uiWindowPos: 0,2
-      strippingWindowPos: 0,1
+      strippingWindowPos: 0,2 #FH
       displayName: Neck
+    - name: pin #FH
+      slotTexture: pin
+      slotFlags: NECK
+      uiWindowPos: 1,2
+      strippingWindowPos: 1,2
+      displayName: Pins
+      whitelist:
+        tags:
+        - GenderPin
     - name: mask
       slotTexture: mask
       slotFlags: MASK
-      uiWindowPos: 1,2
+      uiWindowPos: 1,3 #FH
       strippingWindowPos: 1,1
       displayName: Mask
     - name: eyes
@@ -38,19 +47,19 @@
       slotFlags: EYES
       stripTime: 3
       uiWindowPos: 0,3
-      strippingWindowPos: 0,0
+      strippingWindowPos: 0,1 #FH
       displayName: Eyes
     - name: ears
       slotTexture: ears
       slotFlags: EARS
       stripTime: 3
       uiWindowPos: 2,2
-      strippingWindowPos: 2,0
+      strippingWindowPos: 2,1 #FH
       displayName: Ears
     - name: head
       slotTexture: head
       slotFlags: HEAD
-      uiWindowPos: 1,3
+      uiWindowPos: 1,4 #FH
       strippingWindowPos: 1,0
       displayName: Head
     - name: id
@@ -60,18 +69,33 @@
       slotGroup: SecondHotbar
       stripTime: 6
       uiWindowPos: 2,1
-      strippingWindowPos: 2,4
+      strippingWindowPos: 2,5 #FH
       dependsOn: jumpsuit
       displayName: ID
     - name: belt
       slotTexture: belt
+      fullTextureName: template_small #FH
+      slotFlags: BELT #FH
+      slotGroup: SecondHotbar #FH
+      stripTime: 6 #FH
+      uiWindowPos: 2,1 #FH
+      strippingWindowPos: 1,7 #FH
+      displayName: belt
+      blacklist: #FH
+        tags:
+        - Webbing
+    - name: rig #FH
+      slotTexture: rig #FH
       fullTextureName: template_small
       slotFlags: BELT
       slotGroup: SecondHotbar
       stripTime: 6
       uiWindowPos: 3,1
-      strippingWindowPos: 1,5
-      displayName: Belt
+      strippingWindowPos: 1,6 #FH
+      displayName: Chest Rig
+      whitelist:
+        tags:
+        - Webbing
     - name: back
       slotTexture: back
       fullTextureName: template_small
@@ -79,7 +103,7 @@
       slotGroup: SecondHotbar
       stripTime: 6
       uiWindowPos: 3,0
-      strippingWindowPos: 0,5
+      strippingWindowPos: 0,6 #FH
       displayName: Back
       blacklist:
         tags:
@@ -92,7 +116,7 @@
       slotGroup: MainHotbar
       stripTime: 3
       uiWindowPos: 2,4
-      strippingWindowPos: 2,3
+      strippingWindowPos: 2,4 #FH
       displayName: Pocket 4
     - name: pocket3
       slotTexture: web
@@ -101,14 +125,14 @@
       slotGroup: MainHotbar
       stripTime: 3
       uiWindowPos: 0,4
-      strippingWindowPos: 0,3
+      strippingWindowPos: 0,4 #FH
       displayName: Pocket 3
     - name: outerClothing
       slotTexture: suit
       slotFlags: OUTERCLOTHING
       stripTime: 6
       uiWindowPos: 1,1
-      strippingWindowPos: 1,2
+      strippingWindowPos: 1,3 #FH
       displayName: Suit
     - name: pocket1
       slotTexture: pocket
@@ -117,7 +141,7 @@
       slotGroup: MainHotbar
       stripTime: 3
       uiWindowPos: 0,3
-      strippingWindowPos: 0,4
+      strippingWindowPos: 0,5 #FH
       dependsOn: jumpsuit
       displayName: Pocket 1
       stripHidden: true
@@ -128,7 +152,7 @@
       slotGroup: MainHotbar
       stripTime: 3
       uiWindowPos: 2,3
-      strippingWindowPos: 1,4
+      strippingWindowPos: 1,5 #FH
       dependsOn: jumpsuit
       displayName: Pocket 2
       stripHidden: true
@@ -138,7 +162,7 @@
       slotGroup: MainHotbar
       stripTime: 3
       uiWindowPos: 2,0
-      strippingWindowPos: 2,5
+      strippingWindowPos: 2,6 #FH
       dependsOn: outerClothing
       dependsOnComponents:
       - type: AllowSuitStorage
@@ -150,7 +174,7 @@
       slotGroup: MainHotbar
       stripTime: 3
       uiWindowPos: 2,5
-      strippingWindowPos: 1,6
+      strippingWindowPos: 2,7 #FH
       dependsOn: outerClothing
       dependsOnComponents:
       - type: AllowSuitStorage
