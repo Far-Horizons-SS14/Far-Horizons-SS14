@@ -11,11 +11,11 @@ namespace Content.Shared._FarHorizons.GenericFieldGenerator.Components;
 public sealed partial class GenericFieldGeneratorComponent : Component
 {
     /// <summary>
-    /// How much power should this field generator consume?
+    /// How much power should this field generator consume every 1/5th of a second?
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite)]
     [DataField("powerDrain")]
-    public int PowerDrain = 100;
+    public float PowerDrain = 10f;
 
     /// <summary>
     /// How many tiles should this field check before giving up?
@@ -66,6 +66,24 @@ public sealed partial class GenericFieldGeneratorComponent : Component
     /// </summary>
     [DataField]
     public int ChargeRate = 100;
+
+    /// <summary>
+    /// Used to check if it's received power recently.
+    /// </summary>
+    [DataField("accumulator")]
+    public float Accumulator;
+
+    /// <summary>
+    /// Used to retry connection when fully charged, but not connected
+    /// </summary>
+    [DataField("retryWait")]
+    public float RetryWait;
+
+    /// <summary>
+    /// How many seconds should the generator wait to drain power?
+    /// </summary>
+    [DataField("threshold")]
+    public float Threshold = 0.2f;
 }
 
 [Serializable, NetSerializable]

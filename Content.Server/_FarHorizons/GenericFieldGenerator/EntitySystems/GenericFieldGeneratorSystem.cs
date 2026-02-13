@@ -17,6 +17,7 @@ using Content.Shared.Power;
 using Content.Shared.Power.Components;
 using Content.Shared.Power.EntitySystems;
 using Content.Server.Power.Components;
+using Content.Server.Power.EntitySystems;
 
 namespace Content.Server._FarHorizons.GenericFieldGenerator.EntitySystems;
 
@@ -28,7 +29,7 @@ public sealed class GenericFieldGeneratorSystem : EntitySystem
     [Dependency] private readonly PopupSystem _popupSystem = default!;
     [Dependency] private readonly SharedPointLightSystem _light = default!;
     [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
-    [Dependency] private readonly TagSystem _tags = default!;
+    [Dependency] private readonly BatterySystem _battery = default!;
 
     public override void Initialize()
     {
@@ -40,10 +41,40 @@ public sealed class GenericFieldGeneratorSystem : EntitySystem
         SubscribeLocalEvent<GenericFieldGeneratorComponent, ReAnchorEvent>(OnReanchorEvent);
         SubscribeLocalEvent<GenericFieldGeneratorComponent, UnanchorAttemptEvent>(OnUnanchorAttempt);
         SubscribeLocalEvent<GenericFieldGeneratorComponent, ComponentRemove>(OnComponentRemoved);
-        SubscribeLocalEvent<GenericFieldGeneratorComponent, EventHorizonAttemptConsumeEntityEvent>(PreventBreach);
         SubscribeLocalEvent<GenericFieldGeneratorComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<GenericFieldGeneratorComponent, BatteryStateChangedEvent>(OnBatteryStateChanged);
-        SubscribeLocalEvent<GenericFieldGeneratorComponent, RefreshChargeRateEvent>(OnRefreshChargeRate);
+    }
+
+public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+        
+        var query = EntityQueryEnumerator<GenericFieldGeneratorComponent>();
+        while (query.MoveNext(out var uid, out var generator))
+        {
+            if (generator.IsConnected)
+            {
+                generator.Accumulator += frameTime;
+                if (generator.Accumulator >= generator.Threshold)
+                {
+                    if(TryComp<BatteryComponent>(uid, out var batteryComponent))
+                    {                    
+                        _battery.UseCharge(uid, generator.PowerDrain);
+                        generator.Accumulator -= generator.Threshold;
+//                        ChangePowerVisualizer(batteryComponent.LastCharge, generator); //Gotta figure this out before merging
+                    }
+                }
+            }
+            else if (TryComp<BatteryComponent>(uid, out var batteryComponent) && batteryComponent.MaxCharge <= batteryComponent.LastCharge) 
+            //try to connect again if not connected and fully charged. might be a bad idea for performance, but I want having both connected to power for redundancy to be viable.
+            {
+                generator.RetryWait += frameTime;
+                if (generator.RetryWait >= 1)
+                {
+                    _battery.UseCharge(uid, 20f); //bit jank, but I couldnt get TurnOn() to work here. works by draining the battery by a small ammount, which causes OnBatteryStateChanged() to trigger again
+                }
+            }
+        }
     }
 
     #region Events
@@ -114,7 +145,6 @@ public sealed class GenericFieldGeneratorSystem : EntitySystem
         var genXForm = Transform(generator);
         generator.Comp.Charged = true;
         ChangeFieldVisualizer(generator);
-        _popupSystem.PopupEntity(Loc.GetString("comp-containment-turned-on"), generator);
         var directions = Enum.GetValues<Direction>().Length;
             for (int i = 0; i < directions-1; i+=2)
             {
@@ -132,7 +162,6 @@ public sealed class GenericFieldGeneratorSystem : EntitySystem
         generator.Comp.Charged = false;
         RemoveConnections(generator);
         ChangeFieldVisualizer(generator);
-        _popupSystem.PopupEntity(Loc.GetString("comp-containment-turned-off"), generator);
     }
 
     private void OnComponentRemoved(Entity<GenericFieldGeneratorComponent> generator, ref ComponentRemove args)
@@ -169,22 +198,21 @@ public sealed class GenericFieldGeneratorSystem : EntitySystem
         ChangeOnLightVisualizer(generator);
         ChangeFieldVisualizer(generator);
         _adminLogger.Add(LogType.FieldGeneration, LogImpact.Medium, $"{ToPrettyString(uid)} lost field connections"); // Ideally LogImpact would depend on if there is a singulo nearby
+        //this logging should work fine for this system aswell
     }
 
     private void OnBatteryStateChanged(Entity<GenericFieldGeneratorComponent> ent, ref BatteryStateChangedEvent args)
     {
-        if (args.OldState != BatteryState.Empty && args.NewState == BatteryState.Empty)
+        if (args.OldState != BatteryState.Empty && args.NewState == BatteryState.Empty && ent.Comp.Charged) //Checks if already charged to stop repeated activation when changing states rapidly
         {
             TurnOff(ent);
         }
-        if (args.OldState != BatteryState.Full && args.NewState == BatteryState.Full)
+        if (args.OldState != BatteryState.Full && args.NewState == BatteryState.Full && (!ent.Comp.Charged || !ent.Comp.IsConnected)) // also checks if not connected yet
         {
             TurnOn(ent);
         }
     }
 
-//Oh god what the fuck jhrushbe
-private void OnRefreshChargeRate(EntityUid uid, GenericFieldGeneratorComponent comp, ref RefreshChargeRateEvent args) => args.NewChargeRate = comp.Enabled ? comp.ChargeRate : 0;
     #endregion
 
     #region Connections
@@ -200,6 +228,7 @@ private void OnRefreshChargeRate(EntityUid uid, GenericFieldGeneratorComponent c
     private bool TryGenerateFieldConnection(Direction dir, Entity<GenericFieldGeneratorComponent> generator, TransformComponent gen1XForm)
     {
         var component = generator.Comp;
+        component.RetryWait = 0; //reset wait time after trying
         if (!component.Enabled)
             return false;
 
@@ -335,50 +364,33 @@ private void OnRefreshChargeRate(EntityUid uid, GenericFieldGeneratorComponent c
     /// </summary>
     /// <param name="power"></param>
     /// <param name="generator"></param>
-    private void ChangePowerVisualizer(int power, Entity<GenericFieldGeneratorComponent> generator) // TODO: CONVERT VISUALS TO NEW SYSTEM, COMMENTED OUT FOR NOW
-    {
-//        var component = generator.Comp;
-//       _visualizer.SetData(generator, GenericFieldGeneratorVisuals.PowerLight, component.PowerBuffer switch
-//        {
-//            <= 0 => PowerLevelVisuals.NoPower,
-//            >= 25 => PowerLevelVisuals.HighPower,
-//            _ => (component.PowerBuffer < component.PowerMinimum)
-//                ? PowerLevelVisuals.LowPower
-//                : PowerLevelVisuals.MediumPower
-//        });
-    }
+    //    private void ChangePowerVisualizer(int power, Entity<GenericFieldGeneratorComponent> generator) // TODO: CONVERT VISUALS TO NEW SYSTEM, COMMENTED OUT FOR NOW
+    //    {
+    //        var component = generator.Comp;
+    //       _visualizer.SetData(generator, GenericFieldGeneratorVisuals.PowerLight, component.PowerBuffer switch
+    //        {
+    //            <= 0 => PowerLevelVisuals.NoPower,
+    //            >= 25 => PowerLevelVisuals.HighPower,
+    //            _ => (component.PowerBuffer < component.PowerMinimum)
+    //                ? PowerLevelVisuals.LowPower
+    //                : PowerLevelVisuals.MediumPower
+    //        });
+    //    }
 
     /// <summary>
     /// Check if a field has any or no connections and if it's enabled to toggle the field level light
     /// </summary>
     /// <param name="generator"></param>
-    private void ChangeFieldVisualizer(Entity<GenericFieldGeneratorComponent> generator) // St
+    private void ChangeFieldVisualizer(Entity<GenericFieldGeneratorComponent> generator) => _visualizer.SetData(generator, GenericFieldGeneratorVisuals.FieldLight, generator.Comp.Connections.Count switch
     {
-        _visualizer.SetData(generator, GenericFieldGeneratorVisuals.FieldLight, generator.Comp.Connections.Count switch
-        {
-            >1 => FieldLevelVisuals.MultipleFields,
-            1 => FieldLevelVisuals.OneField,
-            _ => generator.Comp.Enabled ? FieldLevelVisuals.On : FieldLevelVisuals.NoLevel
-        });
-    }
+        > 1 => FieldLevelVisuals.MultipleFields,
+        1 => FieldLevelVisuals.OneField,
+        _ => generator.Comp.Enabled ? FieldLevelVisuals.On : FieldLevelVisuals.NoLevel
+    }); // Does it need this? maybe
 
     private void ChangeOnLightVisualizer(Entity<GenericFieldGeneratorComponent> generator)
     {
         _visualizer.SetData(generator, GenericFieldGeneratorVisuals.OnLight, generator.Comp.IsConnected);
     }
     #endregion
-
-    /// <summary>
-    /// Prevents singularities from breaching containment if the containment field generator is connected.
-    /// </summary>
-    /// <param name="uid">The entity the singularity is trying to eat.</param>
-    /// <param name="comp">The containment field generator the singularity is trying to eat.</param>
-    /// <param name="args">The event arguments.</param>
-    private void PreventBreach(EntityUid uid, GenericFieldGeneratorComponent comp, ref EventHorizonAttemptConsumeEntityEvent args)
-    {
-        if (args.Cancelled)
-            return;
-        if (comp.IsConnected && !args.EventHorizon.CanBreachContainment)
-            args.Cancelled = true;
-    }
 }
