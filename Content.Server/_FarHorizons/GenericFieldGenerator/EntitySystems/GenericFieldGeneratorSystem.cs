@@ -84,16 +84,26 @@ public override void Update(float frameTime)
 
     private void OnMapInit(Entity<GenericFieldGeneratorComponent> generator, ref MapInitEvent args)
     {
-        if (generator.Comp.Enabled)
-            ChangeFieldVisualizer(generator);
+        if (TryComp<PowerNetworkBatteryComponent>(generator, out var batteryComponent))
+        {
+            if (generator.Comp.Enabled)
+                {//TurnOn
+                    batteryComponent.MaxChargeRate = generator.Comp.ChargeRate;
+                }
+            else
+                {//TurnOff
+                    batteryComponent.MaxChargeRate = 0;
+                }
+        }
+        ChangeFieldVisualizer(generator);
     }
     private void OnExamine(EntityUid uid, GenericFieldGeneratorComponent component, ExaminedEvent args)
     {
         if (component.Enabled)
-            args.PushMarkup(Loc.GetString("comp-containment-on"));
+            args.PushMarkup(Loc.GetString("comp-genericfield-on"));
 
         else
-            args.PushMarkup(Loc.GetString("comp-containment-off"));
+            args.PushMarkup(Loc.GetString("comp-genericfield-off"));
     }
 
     private void OnActivate(Entity<GenericFieldGeneratorComponent> generator, ref ActivateInWorldEvent args)
@@ -108,13 +118,13 @@ public override void Update(float frameTime)
                     {//TurnOn
                         generator.Comp.Enabled = true;
                         batteryComponent.MaxChargeRate = generator.Comp.ChargeRate;
-                        _popupSystem.PopupEntity(Loc.GetString("comp-containment-turned-on"), generator);
+                        _popupSystem.PopupEntity(Loc.GetString("comp-genericfield-turned-on"), generator);
                     }
                 else
                     {//TurnOff
                         generator.Comp.Enabled = false;
                         batteryComponent.MaxChargeRate = 0;
-                        _popupSystem.PopupEntity(Loc.GetString("comp-containment-turned-off"), generator);
+                        _popupSystem.PopupEntity(Loc.GetString("comp-genericfield-turned-off"), generator);
                     }
             }
         }
@@ -137,7 +147,7 @@ public override void Update(float frameTime)
     {
         if (component.Enabled || component.IsConnected)
         {
-            _popupSystem.PopupEntity(Loc.GetString("comp-containment-anchor-warning"), args.User, args.User, PopupType.LargeCaution);
+            _popupSystem.PopupEntity(Loc.GetString("comp-genericfield-anchor-warning"), args.User, args.User, PopupType.LargeCaution);
             args.Cancel();
         }
     }
@@ -196,7 +206,7 @@ public override void Update(float frameTime)
         }
         component.Connections.Clear();
         if (component.IsConnected)
-            _popupSystem.PopupEntity(Loc.GetString("comp-containment-disconnected"), uid, PopupType.LargeCaution);
+            _popupSystem.PopupEntity(Loc.GetString("comp-genericfield-disconnected"), uid, PopupType.LargeCaution);
         component.IsConnected = false;
         ChangeOnLightVisualizer(generator);
         ChangeFieldVisualizer(generator);
@@ -226,27 +236,27 @@ public override void Update(float frameTime)
                 {//TurnOn
                     generator.Comp.Enabled = true;
                     batteryComponent.MaxChargeRate = generator.Comp.ChargeRate;
-                    _popupSystem.PopupEntity(Loc.GetString("comp-containment-turned-on"), generator);
+                    _popupSystem.PopupEntity(Loc.GetString("comp-genericfield-turned-on"), generator);
                 }
                 if (args.Port == generator.Comp.OffPort)
                 {//TurnOff
                     generator.Comp.Enabled = false;
                     batteryComponent.MaxChargeRate = 0;
-                    _popupSystem.PopupEntity(Loc.GetString("comp-containment-turned-off"), generator);
+                    _popupSystem.PopupEntity(Loc.GetString("comp-genericfield-turned-off"), generator);
                 }
-                if (args.Port == generator.Comp.TogglePort)
+                if (args.Port == generator.Comp.TogglePort) // Toggle
                 {
                     if (!generator.Comp.Enabled)
                     {//TurnOn
                         generator.Comp.Enabled = true;
                         batteryComponent.MaxChargeRate = generator.Comp.ChargeRate;
-                        _popupSystem.PopupEntity(Loc.GetString("comp-containment-turned-on"), generator);
+                        _popupSystem.PopupEntity(Loc.GetString("comp-genericfield-turned-on"), generator);
                     }
                     else
                     {//TurnOff
                         generator.Comp.Enabled = false;
                         batteryComponent.MaxChargeRate = 0;
-                        _popupSystem.PopupEntity(Loc.GetString("comp-containment-turned-off"), generator);
+                        _popupSystem.PopupEntity(Loc.GetString("comp-genericfield-turned-off"), generator);
                     }
                 }
             }
@@ -326,7 +336,7 @@ public override void Update(float frameTime)
 
         ChangeFieldVisualizer(generator);
         UpdateConnectionLights(generator);
-        _popupSystem.PopupEntity(Loc.GetString("comp-containment-connected"), generator);
+        _popupSystem.PopupEntity(Loc.GetString("comp-genericfield-connected"), generator);
         return true;
     }
 
@@ -426,7 +436,7 @@ public override void Update(float frameTime)
         > 1 => FieldLevelVisuals.MultipleFields,
         1 => FieldLevelVisuals.OneField,
         _ => generator.Comp.Enabled ? FieldLevelVisuals.On : FieldLevelVisuals.NoLevel
-    }); // Does it need this? maybe
+    });
 
     private void ChangeOnLightVisualizer(Entity<GenericFieldGeneratorComponent> generator)
     {

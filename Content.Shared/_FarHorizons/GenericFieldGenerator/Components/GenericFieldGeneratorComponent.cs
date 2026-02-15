@@ -27,7 +27,7 @@ public sealed partial class GenericFieldGeneratorComponent : Component
     /// <summary>
     /// Is the generator toggled on?
     /// </summary>
-    [DataField]
+    [DataField("enabled")]
     public bool Enabled;
 
     /// <summary>

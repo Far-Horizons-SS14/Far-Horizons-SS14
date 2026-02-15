@@ -7,8 +7,8 @@
     fixtures:
       fix1:
         shape:
-          !type:PhysShapeCircle
-          radius: 0.4
+          !type:PhysShapeAabb
+          bounds: "-0.49,-0.49,0.49,0.49"
         density: 190
         mask:
         - FullTileMask
@@ -89,17 +89,20 @@
     requirePower: true
     mediumVoltageNode: input
   - type: PowerNetworkBattery
-    maxChargeRate: 0 #Should always be 0, set by GenericFieldGenerator
+    maxChargeRate: 0 #Should always be 0 when using GenericFieldGenerator component
   - type: DeviceNetwork
     deviceNetId: Wireless
     receiveFrequencyId: BasicDevice
   - type: WirelessNetworkConnection
-    range: 200
+    range: 200 #needs long range for various remote controls
   - type: DeviceLinkSink
     ports:
     - Toggle
     - On
     - Off
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
   - type: Destructible
     thresholds:
     - trigger:
@@ -108,22 +111,35 @@
       behaviors:
         - !type:DoActsBehavior
           acts: [ "Destruction" ]
+  - type: Ricochetable
+    chance: 0.2
+  - type: RangedDamageSound
+    soundGroups:
+      Brute:
+        collection:
+          MetalBulletImpact
+    soundTypes:
+      Heat:
+        collection:
+          MetalLaserImpact
 
 - type: entity
   parent: GenericFieldGeneratorBase
   id: HolographicFieldGenerator
   name: Holographic Field Generator
-  description: A machine that generates a Holographic Field when powered by an emitter. Keeps the air where it belongs.
+  description: A machine that generates a Holographic Field when powered. Keeps the air where it belongs.
   components:
   - type: GenericFieldGenerator
     createdField: HolographicField
-    powerLoss: 5
+    enabled: true #starts enabled for mapping
   - type: Lock
-    locked: false
+    locked: true #starts locked for mapping
   - type: LockVisuals
   - type: LockedAnchorable
   - type: AccessReader
     access: [[ "Engineering" ]]
+  - type: StaticPrice
+    price: 150
 
 
 - type: entity
