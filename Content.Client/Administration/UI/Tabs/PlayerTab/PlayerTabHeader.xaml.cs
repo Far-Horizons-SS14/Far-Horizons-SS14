@@ -20,6 +20,7 @@ public sealed partial class PlayerTabHeader : Control
         JobLabel.OnKeyBindDown += JobClicked;
         RoleTypeLabel.OnKeyBindDown += RoleTypeClicked;
         PlaytimeLabel.OnKeyBindDown += PlaytimeClicked;
+        CCApprovedLabel.OnKeyBindDown += CCApprovedClicked;  // Far Horizons
     }
 
     public Label GetHeader(Header header)
@@ -31,6 +32,7 @@ public sealed partial class PlayerTabHeader : Control
             Header.Job => JobLabel,
             Header.RoleType => RoleTypeLabel,
             Header.Playtime => PlaytimeLabel,
+            Header.CCApproved => CCApprovedLabel,
             _ => throw new ArgumentOutOfRangeException(nameof(header), header, null)
         };
     }
@@ -79,6 +81,8 @@ public sealed partial class PlayerTabHeader : Control
     {
         HeaderClicked(args, Header.Playtime);
     }
+    
+    private void CCApprovedClicked(GUIBoundKeyEventArgs args) => HeaderClicked(args, Header.CCApproved);  // Far Horizons
 
     protected override void Dispose(bool disposing)
     {
@@ -91,6 +95,7 @@ public sealed partial class PlayerTabHeader : Control
             JobLabel.OnKeyBindDown -= JobClicked;
             RoleTypeLabel.OnKeyBindDown -= RoleTypeClicked;
             PlaytimeLabel.OnKeyBindDown -= PlaytimeClicked;
+            CCApprovedLabel.OnKeyBindDown -=  CCApprovedClicked;  // Far Horizons
         }
     }
 
@@ -100,6 +105,7 @@ public sealed partial class PlayerTabHeader : Control
         Character,
         Job,
         RoleType,
-        Playtime
+        Playtime,
+        CCApproved,  // Far Horizons
     }
 }

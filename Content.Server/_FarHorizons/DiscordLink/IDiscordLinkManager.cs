@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Content.Shared._FarHorizons.DiscordLink;
+using Robust.Shared.Network;
 using Robust.Shared.Player;
 
 namespace Content.Server._FarHorizons.DiscordLink;
@@ -13,4 +14,5 @@ public interface IDiscordLinkManager: IDiscordLinkManagerShared
     public OAuthStateInfo? GetState(string state);
     IEnumerable<ICommonSession> Mentors { get; }
     public List<string> ListMentorsNames();
+    public AdditionalPermissionsTypes GetPermissionsBytes(NetUserId userId);
 }

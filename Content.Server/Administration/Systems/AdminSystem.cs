@@ -9,6 +9,7 @@ using Content.Server.Popups;
 using Content.Server.StationRecords.Systems;
 // Cosmatic Drift Record System-start
 using Content.Server._CD.Records;
+using Content.Server._FarHorizons.DiscordLink;
 // Cosmatic Drift Record System-end
 using Content.Shared.Administration;
 using Content.Shared.Administration.Events;
@@ -59,6 +60,7 @@ public sealed class AdminSystem : EntitySystem
     [Dependency] private readonly StationRecordsSystem _stationRecords = default!;
     [Dependency] private readonly TransformSystem _transform = default!;
     [Dependency] private readonly CharacterRecordsSystem _characterRecords = default!; // Cosmatic Drift Record System: erase-ban helper
+    [Dependency] private readonly IDiscordLinkManager _discordLink = default!; // Far Horizons
 
     private readonly Dictionary<NetUserId, PlayerInfo> _playerList = new();
 
@@ -268,6 +270,8 @@ public sealed class AdminSystem : EntitySystem
             overallPlaytime = playTime;
         }
 
+        var permissions = _discordLink.GetPermissionsBytes(data.UserId);  // Far Horizons
+
         return new PlayerInfo(
             name,
             entityName,
@@ -281,7 +285,8 @@ public sealed class AdminSystem : EntitySystem
             data.UserId,
             connected,
             _roundActivePlayers.Contains(data.UserId),
-            overallPlaytime);
+            overallPlaytime,
+            permissions);  // Far Horizons
     }
 
     private void OnPanicBunkerChanged(bool enabled)

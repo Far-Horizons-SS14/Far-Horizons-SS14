@@ -3,6 +3,7 @@ using System.Linq;
 using System.Numerics;
 using Content.Client.Administration.Systems;
 using Content.Client.Stylesheets;
+using Content.Shared._FarHorizons.DiscordLink;
 using Content.Shared.Administration;
 using Content.Shared.CCVar;
 using Content.Shared.Ghost;
@@ -266,6 +267,14 @@ internal sealed class AdminNameOverlay : Overlay
                 : text;
             args.ScreenHandle.DrawString(_fontBold, screenCoordinates + currentOffset, label, uiScale, color);
             currentOffset += lineoffset;
+
+            // Far Horizons start
+            if (playerInfo.CombinedPermissions.HasFlag(AdditionalPermissionsTypes.CCSHC))
+            {
+                args.ScreenHandle.DrawString(_font, screenCoordinates + currentOffset, "CC/SHC", uiScale, color);
+                currentOffset += lineoffset;
+            }
+            // Far Horizons end
 
             //Save the coordinates and size of the text block, for stack merge check
             drawnOverlays.Add((screenCoordinatesCenter, currentOffset));
