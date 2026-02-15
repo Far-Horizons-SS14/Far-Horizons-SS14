@@ -6849,5 +6849,158 @@ Entries:
   id: 79105
   time: '2026-02-13T19:06:44.000000+00:00'
   url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/791
+- author: jhrushbe
+  changes:
+  - message: Added CVars to the nuclear reactor. As a consequence, the nuclear reactor's
+      behavior has been significantly altered.
+    type: Add
+  id: 76300
+  time: '2026-02-15T02:14:22.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/763
+- author: jhrushbe
+  changes:
+  - message: Added the unlimited range bug back to the nuclear reactor monitor. Can
+      only be activated by an admin.
+    type: Add
+  id: 76301
+  time: '2026-02-15T02:14:22.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/763
+- author: jhrushbe
+  changes:
+  - message: Added rudimentary particles to the nuclear reactor and gas turbine.
+    type: Add
+  id: 76302
+  time: '2026-02-15T02:14:22.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/763
+- author: jhrushbe
+  changes:
+  - message: Added a damaged sound to the gas turbine.
+    type: Add
+  id: 76303
+  time: '2026-02-15T02:14:22.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/763
+- author: jhrushbe
+  changes:
+  - message: The nuclear reactor's default maximum safe thermal power has been increased
+      from 10MW to 20MW.
+    type: Tweak
+  id: 76304
+  time: '2026-02-15T02:14:22.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/763
+- author: jhrushbe
+  changes:
+  - message: The nuclear reactor and gas turbine now agree on the definition of a
+      watt.
+    type: Tweak
+  id: 76305
+  time: '2026-02-15T02:14:22.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/763
+- author: jhrushbe
+  changes:
+  - message: Reworked nuclear reactor and gas turbine prototypes.
+    type: Tweak
+  id: 76306
+  time: '2026-02-15T02:14:22.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/763
+- author: jhrushbe
+  changes:
+  - message: Gas turbine repairs will now automatically repeat.
+    type: Tweak
+  id: 76307
+  time: '2026-02-15T02:14:22.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/763
+- author: jhrushbe
+  changes:
+  - message: The nuclear reactor's UI will now show the target on all views.
+    type: Tweak
+  id: 76308
+  time: '2026-02-15T02:14:22.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/763
+- author: jhrushbe
+  changes:
+  - message: Broke up the guidebook entry for the nuclear reactor so that it is easier
+      to read.
+    type: Tweak
+  id: 76309
+  time: '2026-02-15T02:14:22.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/763
+- author: jhrushbe
+  changes:
+  - message: Hot reactor rods will now heat the room according to the gas's heat capacity,
+      this also makes them much stronger.
+    type: Tweak
+  id: 76310
+  time: '2026-02-15T02:14:22.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/763
+- author: jhrushbe
+  changes:
+  - message: A nuclear meltdown is now reversible by an admin.
+    type: Tweak
+  id: 76311
+  time: '2026-02-15T02:14:22.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/763
+- author: jhrushbe
+  changes:
+  - message: Nuclear reactor prefabs will now auto-apply when selected.
+    type: Tweak
+  id: 76312
+  time: '2026-02-15T02:14:22.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/763
+- author: jhrushbe
+  changes:
+  - message: Reactor parts are no longer deleted when inserted into the nuclear reactor.
+      The plutonium ghost role description has been changed to reflect this.
+    type: Tweak
+  id: 76313
+  time: '2026-02-15T02:14:22.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/763
+- author: jhrushbe
+  changes:
+  - message: Fixed a bug where the gas turbine would spam popups when trying to repair
+      without a blade/stator.
+    type: Fix
+  id: 76314
+  time: '2026-02-15T02:14:22.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/763
+- author: jhrushbe
+  changes:
+  - message: Fixed a bug where the gas turbine would show give the correct popups
+      while being repaired.
+    type: Fix
+  id: 76315
+  time: '2026-02-15T02:14:22.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/763
+- author: jhrushbe
+  changes:
+  - message: Fixed a bug where the nuclear reactor would show the wrong popup when
+      attempting to anchor in an invalid position.
+    type: Fix
+  id: 76316
+  time: '2026-02-15T02:14:22.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/763
+- author: jhrushbe
+  changes:
+  - message: Fixed a bug where the nuclear reactor's UI would be non-functional in
+      expeditions.
+    type: Fix
+  id: 76317
+  time: '2026-02-15T02:14:22.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/763
+- author: jhrushbe
+  changes:
+  - message: Fixed a bug where the nuclear reactor and gas turbine would be unable
+      to sound alarms after being unanchored.
+    type: Fix
+  id: 76318
+  time: '2026-02-15T02:14:22.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/763
+- author: jhrushbe
+  changes:
+  - message: Definitively fixed a bug where a melted-down nuclear reactor would use
+      ammonia to cut holes in space-time.
+    type: Fix
+  id: 76319
+  time: '2026-02-15T02:14:22.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/763
 Order: -1
 
