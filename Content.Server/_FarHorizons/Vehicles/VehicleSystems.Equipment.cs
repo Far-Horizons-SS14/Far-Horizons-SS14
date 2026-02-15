@@ -14,6 +14,7 @@ using Content.Shared.Movement.Components;
 using Robust.Shared.Timing;
 using Content.Shared.PowerCell.Components;
 using Content.Shared.PowerCell;
+using Content.Shared._FarHorizons.ReagantDraw.Components;
 
 namespace Content.Server._FarHorizons.Vehicle.Equipment;
 public sealed partial class VehicleEquipmentSystems : EntitySystem
@@ -35,7 +36,7 @@ public sealed partial class VehicleEquipmentSystems : EntitySystem
 
         SubscribeLocalEvent<MovementSpeedModifierComponent, InstalledVehicleEquipment>(OnMovementInstalled);
         SubscribeLocalEvent<PowerCellDrawComponent, InstalledVehicleEquipment>(OnElectricEngineInstalled);
-
+        SubscribeLocalEvent<ReagantDrawComponent, InstalledVehicleEquipment>(OnGasEngineInstalled);
         SubscribeLocalEvent<ItemToggleComponent, ToggleActionEvent>(OnSirenToggle);
     }
 
@@ -162,5 +163,14 @@ public sealed partial class VehicleEquipmentSystems : EntitySystem
         var xForm = Transform(ent.Owner);
         if(xForm.ParentUid == xForm.GridUid) return;
         _powerCell.SetDrawRate(xForm.ParentUid, ent.Comp.DrawRate);
+    }
+
+    private void OnGasEngineInstalled(Entity<ReagantDrawComponent> ent, ref InstalledVehicleEquipment args)
+    {
+        var xForm = Transform(ent.Owner);
+        if(xForm.ParentUid == xForm.GridUid) return;
+        if(!TryComp<ReagantDrawComponent>(xForm.ParentUid, out var rdComp)) return;
+        rdComp.DrainRate = ent.Comp.DrainRate;
+        Dirty(xForm.ParentUid, rdComp);
     }
 }

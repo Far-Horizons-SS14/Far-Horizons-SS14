@@ -85,7 +85,6 @@
     solutionContainer: fueltank
     whitelistedReagants: 
     - WeldingFuel
-    drainRate: 0.25
   - type: FootstepModifier
     footstepSoundCollection:
       path: /Audio/_FarHorizons/Vehicles/atvwalk.ogg
@@ -112,6 +111,7 @@
     vehicleType: Gas
     startingEquipment:
       - ATVHeadlight
+      - BasicEngine
     equipmentSlots: [tires, engine, headlight]
 
 - type: entity
@@ -219,6 +219,7 @@
       startingEquipment:
         - ATVHeadlight
         - SecSiren
+        - BasicEngine
       equipmentSlots: [tires, engine, headlight, lightbar]
 
 - type: entity
@@ -240,7 +241,6 @@
   name: Clown Car
   description: What sort of horrors lie within...
   components:
-
   - type: Vehicle
     cellPowered: false
     requireIgnition: true 
@@ -305,7 +305,6 @@
     solutionContainer: fueltank
     whitelistedReagants: 
     - WeldingFuel
-    drainRate: 0.25
   - type: FootstepModifier
     footstepSoundCollection:
       path: /Audio/_FarHorizons/Vehicles/atvwalk.ogg
@@ -371,6 +370,7 @@
       vehicleType: Gas
       startingEquipment:
         - ATVHeadlight
+        - BasicEngine
       equipmentSlots: [tires, engine, headlight]
 
 - type: entity
@@ -476,7 +476,6 @@
     solutionContainer: fueltank
     whitelistedReagants: 
     - WeldingFuel
-    drainRate: 0.33
   - type: FootstepModifier
     footstepSoundCollection:
       path: /Audio/_FarHorizons/Vehicles/atvwalk.ogg
@@ -515,6 +514,7 @@
     vehicleType: Gas
     startingEquipment:
       - ATVHeadlight
+      - BasicEngine
     equipmentSlots: [tires, engine, headlight]
 
 - type: entity
