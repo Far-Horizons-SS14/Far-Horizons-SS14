@@ -4,8 +4,8 @@ meta:
   engineVersion: 270.1.0
   forkId: ""
   forkVersion: ""
-  time: 02/12/2026 08:51:49
-  entityCount: 16072
+  time: 02/16/2026 09:00:40
+  entityCount: 16090
 maps:
 - 1
 grids:
@@ -4728,7 +4728,8 @@ entities:
           -11,-3:
             0: 63726
           -11,-2:
-            0: 8191
+            0: 7679
+            4: 512
           -11,-1:
             0: 3003
           -11,0:
@@ -4856,10 +4857,10 @@ entities:
             1: 2048
           -12,4:
             3: 546
-            4: 2184
+            5: 2184
           -13,4:
             3: 2184
-            5: 546
+            6: 546
           -12,6:
             3: 16
           -13,7:
@@ -4871,7 +4872,7 @@ entities:
           -11,7:
             0: 17
           -11,4:
-            6: 546
+            7: 546
             0: 34824
           -11,3:
             0: 34823
@@ -5218,6 +5219,11 @@ entities:
         - volume: 2500
           temperature: 293.15
           moles: {}
+        - volume: 2500
+          temperature: 293.14975
+          moles:
+            Oxygen: 21.824879
+            Nitrogen: 82.10312
         - volume: 2500
           temperature: 293.15
           moles:
@@ -6697,134 +6703,6 @@ entities:
     components:
     - type: Transform
       pos: -34.5,-2.5
-      parent: 2
-- proto: AirlockExternalGlassShuttleArrivals
-  entities:
-  - uid: 210
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -7.5,-50.5
-      parent: 2
-  - uid: 211
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -7.5,-43.5
-      parent: 2
-- proto: AirlockExternalGlassShuttleEmergencyLocked
-  entities:
-  - uid: 212
-    components:
-    - type: Transform
-      pos: 49.5,-6.5
-      parent: 2
-  - uid: 213
-    components:
-    - type: Transform
-      pos: 47.5,-6.5
-      parent: 2
-  - uid: 214
-    components:
-    - type: Transform
-      pos: 57.5,-6.5
-      parent: 2
-  - uid: 215
-    components:
-    - type: Transform
-      pos: 55.5,-6.5
-      parent: 2
-- proto: AirlockExternalGlassShuttleEscape
-  entities:
-  - uid: 216
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -13.5,-39.5
-      parent: 2
-  - uid: 217
-    components:
-    - type: Transform
-      pos: -47.5,-26.5
-      parent: 2
-  - uid: 218
-    components:
-    - type: Transform
-      pos: 34.5,-5.5
-      parent: 2
-- proto: AirlockExternalGlassShuttleLocked
-  entities:
-  - uid: 219
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 23.5,27.5
-      parent: 2
-  - uid: 220
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 23.5,25.5
-      parent: 2
-  - uid: 221
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 55.5,1.5
-      parent: 2
-  - uid: 222
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 57.5,1.5
-      parent: 2
-  - uid: 223
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 49.5,1.5
-      parent: 2
-  - uid: 224
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 47.5,1.5
-      parent: 2
-  - uid: 225
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -14.5,-43.5
-      parent: 2
-  - uid: 226
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -14.5,-50.5
-      parent: 2
-  - uid: 227
-    components:
-    - type: Transform
-      pos: -11.5,-59.5
-      parent: 2
-    - type: DeviceLinkSource
-      linkedPorts:
-        195:
-        - - DoorStatus
-          - Close
-    - type: DeviceLinkSink
-      invokeCounter: 1
-  - uid: 228
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 65.5,-1.5
-      parent: 2
-  - uid: 229
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 65.5,-3.5
       parent: 2
 - proto: AirlockGlassShuttleSecurityPlastitanium
   entities:
@@ -37309,7 +37187,7 @@ entities:
   - uid: 5236
     components:
     - type: Transform
-      pos: 19.574245,21.55511
+      pos: 20.008131,21.523903
       parent: 2
   - uid: 5237
     components:
@@ -37683,7 +37561,7 @@ entities:
   - uid: 5303
     components:
     - type: Transform
-      pos: -22.35473,0.53885174
+      pos: -22.176111,0.60588515
       parent: 2
   - uid: 5304
     components:
@@ -39086,19 +38964,6 @@ entities:
         moles:
           Oxygen: 1.6033952
           Nitrogen: 6.031821
-  - uid: 5502
-    components:
-    - type: Transform
-      pos: -29.5,-9.5
-      parent: 2
-    - type: EntityStorage
-      air:
-        volume: 200
-        immutable: False
-        temperature: 293.14957
-        moles:
-          Oxygen: 1.6033952
-          Nitrogen: 6.031821
   - uid: 5503
     components:
     - type: Transform
@@ -39112,6 +38977,11 @@ entities:
         moles:
           Oxygen: 1.6033952
           Nitrogen: 6.031821
+  - uid: 16074
+    components:
+    - type: Transform
+      pos: -45.5,-13.5
+      parent: 2
 - proto: CrateEngineeringCableHV
   entities:
   - uid: 5504
@@ -43343,7 +43213,7 @@ entities:
   - uid: 6204
     components:
     - type: Transform
-      pos: 4.5,-1.5
+      pos: 2.5,-6.5
       parent: 2
   - uid: 6205
     components:
@@ -45682,6 +45552,134 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -35.5,41.5
       parent: 2
+- proto: FHAirlockExternalGlassShuttleArrivals
+  entities:
+  - uid: 210
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -7.5,-50.5
+      parent: 2
+  - uid: 211
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -7.5,-43.5
+      parent: 2
+- proto: FHAirlockExternalGlassShuttleEmergencyLocked
+  entities:
+  - uid: 212
+    components:
+    - type: Transform
+      pos: 49.5,-6.5
+      parent: 2
+  - uid: 213
+    components:
+    - type: Transform
+      pos: 47.5,-6.5
+      parent: 2
+  - uid: 214
+    components:
+    - type: Transform
+      pos: 57.5,-6.5
+      parent: 2
+  - uid: 215
+    components:
+    - type: Transform
+      pos: 55.5,-6.5
+      parent: 2
+- proto: FHAirlockExternalGlassShuttleEscape
+  entities:
+  - uid: 216
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -13.5,-39.5
+      parent: 2
+  - uid: 217
+    components:
+    - type: Transform
+      pos: -47.5,-26.5
+      parent: 2
+  - uid: 218
+    components:
+    - type: Transform
+      pos: 34.5,-5.5
+      parent: 2
+- proto: FHAirlockExternalGlassShuttleLocked
+  entities:
+  - uid: 219
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 23.5,27.5
+      parent: 2
+  - uid: 220
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 23.5,25.5
+      parent: 2
+  - uid: 221
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 55.5,1.5
+      parent: 2
+  - uid: 222
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 57.5,1.5
+      parent: 2
+  - uid: 223
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 49.5,1.5
+      parent: 2
+  - uid: 224
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 47.5,1.5
+      parent: 2
+  - uid: 225
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -14.5,-43.5
+      parent: 2
+  - uid: 226
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -14.5,-50.5
+      parent: 2
+  - uid: 227
+    components:
+    - type: Transform
+      pos: -11.5,-59.5
+      parent: 2
+    - type: DeviceLinkSource
+      linkedPorts:
+        195:
+        - - DoorStatus
+          - Close
+    - type: DeviceLinkSink
+      invokeCounter: 1
+  - uid: 228
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 65.5,-1.5
+      parent: 2
+  - uid: 229
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 65.5,-3.5
+      parent: 2
 - proto: FHAirlockExternalLocked
   entities:
   - uid: 230
@@ -46477,6 +46475,8 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 10.5,-25.5
       parent: 2
+    - type: AccessReader
+      accessListsOriginal: []
   - uid: 363
     components:
     - type: Transform
@@ -46503,7 +46503,7 @@ entities:
       pos: 12.5,-29.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -11915.853
+      secondsUntilStateChange: -12401.598
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -47812,7 +47812,7 @@ entities:
   - uid: 6427
     components:
     - type: Transform
-      pos: -30.416489,-7.3276486
+      pos: -31.830095,-7.1982627
       parent: 2
 - proto: FirelockGlass
   entities:
@@ -47927,7 +47927,7 @@ entities:
       pos: -7.5,27.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -18864.701
+      secondsUntilStateChange: -19350.447
       state: Closing
     - type: Firelock
       emergencyCloseCooldown: 391.7662769
@@ -48135,7 +48135,7 @@ entities:
       pos: 8.5,-22.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -12080.519
+      secondsUntilStateChange: -12566.264
       state: Closing
   - uid: 6487
     components:
@@ -74068,7 +74068,7 @@ entities:
   - uid: 9858
     components:
     - type: Transform
-      pos: 19.5,21.5
+      pos: 20.040747,21.727745
       parent: 2
 - proto: MechFigurineSpawner50
   entities:
@@ -75049,7 +75049,7 @@ entities:
   - uid: 10022
     components:
     - type: Transform
-      pos: -22.475502,3.5391276
+      pos: -22.604181,0.4101956
       parent: 2
   - uid: 10023
     components:
@@ -75061,7 +75061,7 @@ entities:
   - uid: 10024
     components:
     - type: Transform
-      pos: -8.549381,-7.3677278
+      pos: -7.724539,-7.3529687
       parent: 2
 - proto: PhoneInstrument
   entities:
@@ -76130,14 +76130,6 @@ entities:
     - type: Transform
       pos: -7.5,4.5
       parent: 2
-  - uid: 10167
-    components:
-    - type: Transform
-      pos: -17.5,1.5
-      parent: 2
-    - type: ContainerContainer
-      containers:
-        stash: !type:ContainerSlot {}
   - uid: 10168
     components:
     - type: Transform
@@ -76259,6 +76251,41 @@ entities:
     - type: Transform
       pos: -34.610252,29.572338
       parent: 2
+  - uid: 16073
+    components:
+    - type: Transform
+      pos: -30.374655,-7.4306436
+      parent: 2
+  - uid: 16075
+    components:
+    - type: Transform
+      pos: -8.382328,-28.450815
+      parent: 2
+  - uid: 16078
+    components:
+    - type: Transform
+      pos: 11.617438,-28.489908
+      parent: 2
+  - uid: 16081
+    components:
+    - type: Transform
+      pos: 4.579108,-1.4449618
+      parent: 2
+  - uid: 16084
+    components:
+    - type: Transform
+      pos: 19.609282,21.526272
+      parent: 2
+  - uid: 16087
+    components:
+    - type: Transform
+      pos: -8.348299,-7.4997363
+      parent: 2
+  - uid: 16090
+    components:
+    - type: Transform
+      pos: -22.322878,3.5534592
+      parent: 2
 - proto: PowerCellRecharger
   entities:
   - uid: 10175
@@ -76349,6 +76376,30 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -18.5,-20.5
+      parent: 2
+  - uid: 16080
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 4.5,-1.5
+      parent: 2
+  - uid: 16083
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 19.5,21.5
+      parent: 2
+  - uid: 16086
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -8.5,-7.5
+      parent: 2
+  - uid: 16089
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -22.5,3.5
       parent: 2
 - proto: PowerDrill
   entities:
@@ -87007,6 +87058,56 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -33.5,29.5
+      parent: 2
+- proto: SpawnVehicleSegway
+  entities:
+  - uid: 5502
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -29.5,-9.5
+      parent: 2
+  - uid: 10167
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -19.5,1.5
+      parent: 2
+  - uid: 16076
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -9.5,-27.5
+      parent: 2
+  - uid: 16077
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 11.5,-27.5
+      parent: 2
+  - uid: 16079
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 6.5,-7.5
+      parent: 2
+  - uid: 16082
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 20.5,20.5
+      parent: 2
+  - uid: 16085
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -9.5,-8.5
+      parent: 2
+  - uid: 16088
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -17.5,1.5
       parent: 2
 - proto: SpawnVehicleSTVNoKeys
   entities:
@@ -101341,7 +101442,7 @@ entities:
   - uid: 14163
     components:
     - type: Transform
-      pos: -8.252506,-7.3833528
+      pos: -8.018073,-7.408007
       parent: 2
 - proto: Welder
   entities:

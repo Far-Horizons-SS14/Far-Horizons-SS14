@@ -4,8 +4,8 @@ meta:
   engineVersion: 270.1.0
   forkId: ""
   forkVersion: ""
-  time: 02/12/2026 21:25:30
-  entityCount: 30115
+  time: 02/16/2026 08:41:24
+  entityCount: 30163
 maps:
 - 1
 grids:
@@ -66877,7 +66877,7 @@ entities:
   - uid: 10013
     components:
     - type: Transform
-      pos: 34.495964,-23.407356
+      pos: 34.75834,-23.216797
       parent: 2
 - proto: ClothingHeadHatUshanka
   entities:
@@ -79801,7 +79801,7 @@ entities:
       pos: 60.5,29.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -39916.953
+      secondsUntilStateChange: -40330.89
       state: Opening
     - type: DeviceLinkSource
       linkedPorts:
@@ -119622,6 +119622,16 @@ entities:
     - type: Transform
       pos: 6.5,-52.5
       parent: 2
+- proto: GasTurbineNormal
+  entities:
+  - uid: 24215
+    components:
+    - type: Transform
+      pos: 73.5,6.5
+      parent: 2
+    - type: AccessReader
+      accessListsOriginal:
+      - - Engineering
 - proto: GasValve
   entities:
   - uid: 17033
@@ -136512,7 +136522,7 @@ entities:
   - uid: 19515
     components:
     - type: Transform
-      pos: -7.4230328,-35.233772
+      pos: -7.018007,-35.20925
       parent: 2
   - uid: 19516
     components:
@@ -140352,6 +140362,71 @@ entities:
     - type: Transform
       pos: 8.223263,28.751509
       parent: 2
+  - uid: 30122
+    components:
+    - type: Transform
+      pos: -33.345703,21.537695
+      parent: 2
+  - uid: 30123
+    components:
+    - type: Transform
+      pos: -33.345703,20.49198
+      parent: 2
+  - uid: 30126
+    components:
+    - type: Transform
+      pos: -7.384925,-35.404938
+      parent: 2
+  - uid: 30129
+    components:
+    - type: Transform
+      pos: 34.611572,-23.418602
+      parent: 2
+  - uid: 30133
+    components:
+    - type: Transform
+      pos: 32.656082,-11.415304
+      parent: 2
+  - uid: 30140
+    components:
+    - type: Transform
+      pos: 49.658226,24.558264
+      parent: 2
+  - uid: 30141
+    components:
+    - type: Transform
+      pos: 49.676567,25.548943
+      parent: 2
+  - uid: 30146
+    components:
+    - type: Transform
+      pos: 5.659694,-46.211746
+      parent: 2
+  - uid: 30147
+    components:
+    - type: Transform
+      pos: 5.6230025,-46.431896
+      parent: 2
+  - uid: 30158
+    components:
+    - type: Transform
+      pos: 29.628296,13.521641
+      parent: 2
+  - uid: 30161
+    components:
+    - type: Transform
+      pos: 29.640526,14.549011
+      parent: 2
+  - uid: 30162
+    components:
+    - type: Transform
+      pos: 29.652758,15.527458
+      parent: 2
+  - uid: 30163
+    components:
+    - type: Transform
+      pos: 29.677217,16.59152
+      parent: 2
 - proto: PowerCellMediumPrinted
   entities:
   - uid: 20052
@@ -140471,6 +140546,78 @@ entities:
     components:
     - type: Transform
       pos: 52.5,-3.5
+      parent: 2
+  - uid: 30120
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -33.5,21.5
+      parent: 2
+  - uid: 30121
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -33.5,20.5
+      parent: 2
+  - uid: 30125
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -7.5,-35.5
+      parent: 2
+  - uid: 30128
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 34.5,-23.5
+      parent: 2
+  - uid: 30132
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 32.5,-11.5
+      parent: 2
+  - uid: 30138
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 49.5,25.5
+      parent: 2
+  - uid: 30139
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 49.5,24.5
+      parent: 2
+  - uid: 30145
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 5.5,-46.5
+      parent: 2
+  - uid: 30156
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 29.5,16.5
+      parent: 2
+  - uid: 30157
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 29.5,15.5
+      parent: 2
+  - uid: 30159
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 29.5,14.5
+      parent: 2
+  - uid: 30160
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 29.5,13.5
       parent: 2
 - proto: PowerCellSmall
   entities:
@@ -152189,7 +152336,7 @@ entities:
     - type: MetaData
       name: garage door remote
     - type: Transform
-      pos: -7.21983,-35.47767
+      pos: -6.981315,-35.45386
       parent: 2
     - type: DeviceLinkSource
       linkedPorts:
@@ -159821,6 +159968,86 @@ entities:
     - type: Transform
       pos: 5.5,28.5
       parent: 2
+- proto: SpawnVehicleSegway
+  entities:
+  - uid: 30118
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -34.5,21.5
+      parent: 2
+  - uid: 30119
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -34.5,20.5
+      parent: 2
+  - uid: 30124
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -8.5,-35.5
+      parent: 2
+  - uid: 30127
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 29.5,-24.5
+      parent: 2
+  - uid: 30130
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 33.5,-11.5
+      parent: 2
+  - uid: 30134
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 49.5,19.5
+      parent: 2
+  - uid: 30135
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 49.5,20.5
+      parent: 2
+  - uid: 30142
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 4.5,-46.5
+      parent: 2
+  - uid: 30143
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 6.5,-46.5
+      parent: 2
+  - uid: 30148
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 28.5,16.5
+      parent: 2
+  - uid: 30149
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 28.5,15.5
+      parent: 2
+  - uid: 30150
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 28.5,14.5
+      parent: 2
+  - uid: 30151
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 28.5,13.5
+      parent: 2
 - proto: SpawnVehicleSTVNoKeys
   entities:
   - uid: 29811
@@ -164885,6 +165112,64 @@ entities:
     - type: Transform
       pos: -51.5,-4.5
       parent: 2
+  - uid: 30116
+    components:
+    - type: Transform
+      pos: -33.5,21.5
+      parent: 2
+  - uid: 30117
+    components:
+    - type: Transform
+      pos: -33.5,20.5
+      parent: 2
+  - uid: 30131
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 32.5,-11.5
+      parent: 2
+  - uid: 30136
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 49.5,25.5
+      parent: 2
+  - uid: 30137
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 49.5,24.5
+      parent: 2
+  - uid: 30144
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 5.5,-46.5
+      parent: 2
+  - uid: 30152
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 29.5,16.5
+      parent: 2
+  - uid: 30153
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 29.5,15.5
+      parent: 2
+  - uid: 30154
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 29.5,14.5
+      parent: 2
+  - uid: 30155
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 29.5,13.5
+      parent: 2
 - proto: TableCarpet
   entities:
   - uid: 23663
@@ -167998,16 +168283,6 @@ entities:
     - type: Transform
       pos: 40.5,-8.5
       parent: 2
-- proto: GasTurbineNormal
-  entities:
-  - uid: 24215
-    components:
-    - type: Transform
-      pos: 73.5,6.5
-      parent: 2
-    - type: AccessReader
-      accessListsOriginal:
-      - - Engineering
 - proto: TurnstileGenpopEnter
   entities:
   - uid: 24216
