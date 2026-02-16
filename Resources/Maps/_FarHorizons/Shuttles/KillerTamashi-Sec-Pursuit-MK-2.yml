@@ -4,7 +4,7 @@ meta:
   engineVersion: 270.1.0
   forkId: ""
   forkVersion: ""
-  time: 02/16/2026 10:16:18
+  time: 02/16/2026 10:43:15
   entityCount: 1683
 maps: []
 grids:
@@ -1142,7 +1142,7 @@ entities:
       lastSignals:
         DoorStatus: True
     - type: Door
-      secondsUntilStateChange: -5488.8115
+      secondsUntilStateChange: -5662.397
       state: Opening
 - proto: AirSensor
   entities:
@@ -4853,7 +4853,7 @@ entities:
       pos: -6.5,0.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -22842.057
+      secondsUntilStateChange: -23015.643
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -4936,7 +4936,7 @@ entities:
       pos: 0.5,9.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -28841.066
+      secondsUntilStateChange: -29014.652
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -4968,7 +4968,7 @@ entities:
       pos: -6.5,-4.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -8480.917
+      secondsUntilStateChange: -8654.502
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -4992,7 +4992,7 @@ entities:
       pos: -9.5,-12.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -28219.266
+      secondsUntilStateChange: -28392.852
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -5021,6 +5021,8 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -3.5,-11.5
       parent: 1
+    - type: RadiationBlocker
+      resistance: 10
     - type: DeviceNetwork
       deviceLists:
       - 20
@@ -9543,18 +9545,24 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -3.5,-10.5
       parent: 1
+    - type: RadiationBlocker
+      resistance: 10
   - uid: 1219
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -3.5,-9.5
       parent: 1
+    - type: RadiationBlocker
+      resistance: 10
   - uid: 1220
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -3.5,-8.5
       parent: 1
+    - type: RadiationBlocker
+      resistance: 10
   - uid: 1221
     components:
     - type: Transform
@@ -11349,12 +11357,16 @@ entities:
       rot: 3.141592653589793 rad
       pos: -6.5,-7.5
       parent: 1
+    - type: RadiationBlocker
+      resistance: 10
   - uid: 1485
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -3.5,-7.5
       parent: 1
+    - type: RadiationBlocker
+      resistance: 10
   - uid: 1486
     components:
     - type: Transform
@@ -11367,12 +11379,16 @@ entities:
       rot: 3.141592653589793 rad
       pos: -5.5,-7.5
       parent: 1
+    - type: RadiationBlocker
+      resistance: 10
   - uid: 1488
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -4.5,-7.5
       parent: 1
+    - type: RadiationBlocker
+      resistance: 10
   - uid: 1489
     components:
     - type: Transform
@@ -11974,6 +11990,8 @@ entities:
     - type: Transform
       pos: -7.5,-5.5
       parent: 1
+    - type: RadiationBlocker
+      resistance: 10
   - uid: 1591
     components:
     - type: Transform
@@ -12028,6 +12046,8 @@ entities:
       rot: 3.141592653589793 rad
       pos: -7.5,-6.5
       parent: 1
+    - type: RadiationBlocker
+      resistance: 10
   - uid: 1600
     components:
     - type: Transform
@@ -12260,6 +12280,8 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -7.5,-7.5
       parent: 1
+    - type: RadiationBlocker
+      resistance: 10
   - uid: 1639
     components:
     - type: Transform
