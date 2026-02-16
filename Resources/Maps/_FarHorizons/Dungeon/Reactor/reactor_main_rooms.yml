@@ -10605,7 +10605,7 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 43.5,2.5
       parent: 1
-- proto: NuclearReactorEmptySalvage
+- proto: NuclearReactorRandomSalvage
   entities:
   - uid: 3
     components:
@@ -10627,7 +10627,7 @@ entities:
     - type: Transform
       pos: 35.5,3.5
       parent: 1
-- proto: NuclearReactorSmallEmptySalvage
+- proto: NuclearReactorSmallRandomSalvage
   entities:
   - uid: 595
     components:
@@ -13356,7 +13356,7 @@ entities:
     - type: Transform
       pos: 48.678364,28.189432
       parent: 1
-- proto: Turbine
+- proto: GasTurbineNormalSalvage
   entities:
   - uid: 36
     components:
@@ -13389,7 +13389,7 @@ entities:
       parent: 1
     missingComponents:
     - AccessReader
-- proto: TurbineSmall
+- proto: GasTurbineSmallSalvage
   entities:
   - uid: 658
     components:
