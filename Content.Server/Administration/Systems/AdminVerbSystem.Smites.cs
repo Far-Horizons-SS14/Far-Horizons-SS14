@@ -1094,11 +1094,7 @@ public sealed partial class AdminVerbSystem
             Text = fuelRodifyName,
             Category = VerbCategory.Smite,
             Icon = new SpriteSpecifier.Rsi(new("/Textures/_FarHorizons/Objects/Power/FissionGenerator/reactor_parts.rsi"), "default_rod"),
-            Act = () =>
-            {
-                _bodySystem.GibBody(args.Target);
-                _polymorphSystem.PolymorphEntity(args.Target, "AdminFuelRodSmite");
-            },
+            Act = () => _polymorphSystem.PolymorphEntity(args.Target, "AdminFuelRodSmite"),
             Impact = LogImpact.Extreme,
             Message = string.Join(": ", fuelRodifyName, Loc.GetString("admin-smite-become-fuelrod-description"))
         };
