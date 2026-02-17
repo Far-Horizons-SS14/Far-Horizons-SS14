@@ -128,6 +128,7 @@ public override void Update(float frameTime)
                     }
             }
         }
+        ChangeFieldVisualizer(generator);
         args.Handled = true;
     }
 
@@ -259,6 +260,7 @@ public override void Update(float frameTime)
                         _popupSystem.PopupEntity(Loc.GetString("comp-genericfield-turned-off"), generator);
                     }
                 }
+                ChangeFieldVisualizer(generator);
             }
         }
     }
@@ -433,7 +435,7 @@ public override void Update(float frameTime)
     /// <param name="generator"></param>
     private void ChangeFieldVisualizer(Entity<GenericFieldGeneratorComponent> generator) => _visualizer.SetData(generator, GenericFieldGeneratorVisuals.FieldLight, generator.Comp.Connections.Count switch
     {
-        > 1 => FieldLevelVisuals.MultipleFields,
+        > 1 => FieldLevelVisuals.MultipleFields, //might have to rewrite this entirely
         1 => FieldLevelVisuals.OneField,
         _ => generator.Comp.Enabled ? FieldLevelVisuals.On : FieldLevelVisuals.NoLevel
     });

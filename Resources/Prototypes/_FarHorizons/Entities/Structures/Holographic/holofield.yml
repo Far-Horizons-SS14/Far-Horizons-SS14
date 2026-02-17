@@ -1,5 +1,5 @@
 - type: entity
-  parent: BaseStructure
+  parent: [BaseStructure, ConstructibleMachine]
   id: GenericFieldGeneratorBase
   abstract: true
   components:
@@ -8,18 +8,18 @@
       fix1:
         shape:
           !type:PhysShapeAabb
-          bounds: "-0.49,-0.49,0.49,0.49"
+          bounds: "-0.45,-0.45,0.45,0.45"
         density: 190
         mask:
-        - FullTileMask
+        - MachineMask
         layer:
-        - WallLayer
+        - MachineLayer
   - type: InteractionOutline
   - type: Anchorable
   - type: Sprite
     sprite: Structures/Power/Generation/Singularity/containment.rsi
     state: icon
-    noRot: true
+    noRot: false
     layers:
       - state: icon
       - state: p1
@@ -68,6 +68,7 @@
           False: { visible: false }
   - type: Airtight
     noAirWhenFullyAirBlocked: true
+  - type: Occluder
   - type: NodeContainer
     examinable: true
     nodes:
@@ -107,10 +108,24 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
+        damage: 400
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalSlam
+    - trigger:
+        !type:DamageTrigger
         damage: 200
       behaviors:
-        - !type:DoActsBehavior
-          acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:ChangeConstructionNodeBehavior
+        node: machineFrame
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
   - type: Ricochetable
     chance: 0.2
   - type: RangedDamageSound
@@ -127,20 +142,71 @@
   parent: GenericFieldGeneratorBase
   id: HolographicFieldGenerator
   name: Holographic Field Generator
-  description: A machine that generates a Holographic Field when powered. Keeps the air where it belongs.
+  suffix: Engineering
+  description: A machine that generates a Holographic Field when powered; Keeps the air where it belongs.
   components:
   - type: GenericFieldGenerator
     createdField: HolographicField
-    enabled: true #starts enabled for mapping
+    maxLength: 16
+  - type: Machine
+    board: HolographicFieldGeneratorCircuitboard
   - type: Lock
-    locked: true #starts locked for mapping
+    locked: false
   - type: LockVisuals
   - type: LockedAnchorable
+  - type: LockedWiresPanel
   - type: AccessReader
     access: [[ "Engineering" ]]
   - type: StaticPrice
     price: 150
 
+- type: entity
+  parent: HolographicFieldGenerator
+  id: HolographicFieldGeneratorPrefab
+  suffix: Engineering, Mapping
+  components:
+  - type: Lock
+    locked: true
+  - type: GenericFieldGenerator
+    enabled: true
+  - type: Battery
+    startingCharge: 1500
+
+- type: entity
+  parent: GenericFieldGeneratorBase
+  id: HolographicBarrierGenerator
+  name: Holographic Barrier Generator
+  suffix: Security
+  description: A machine that generates a Holographic Barrier when powered; Keeps the crew where they belong.
+  components:
+  - type: GenericFieldGenerator
+    createdField: HolographicFieldBarrier
+    maxLength: 100
+  - type: Machine
+    board: HolographicBarrierGeneratorCircuitboard
+  - type: Lock
+    locked: false
+  - type: LockVisuals
+  - type: LockedAnchorable
+  - type: LockedWiresPanel
+  - type: AccessReader
+    access: [[ "Security" ]]
+  - type: StaticPrice
+    price: 150
+
+- type: entity
+  parent: HolographicBarrierGenerator
+  id: HolographicBarrierGeneratorPrefab
+  suffix: Security, Mapping
+  components:
+  - type: Lock
+    locked: true
+  - type: GenericFieldGenerator
+    enabled: true
+  - type: Battery
+    startingCharge: 1500
+
+### Fields
 
 - type: entity
   id: HolographicField
@@ -175,14 +241,81 @@
   - type: Airtight
     noAirWhenFullyAirBlocked: false
   - type: RadiationBlocker
-    resistance: 50
-  - type: ContainmentField
-    throwForce: 0
-    maxMass: 0 
-    destroyGarbage: false
+    resistance: 5
   - type: Transform
     anchored: true
   - type: BlockWeather
   - type: Tag
     tags:
     - Wall
+  - type: PointLight
+    enabled: true
+    radius: 3
+    color: blue
+
+- type: entity
+  id: HolographicFieldBarrier
+  name: Holographic Barrier
+  description: A Holographic Barrier that blocks projectiles and crew.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: InteractionOutline
+  - type: Clickable
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+  - type: Sprite
+    sprite: Structures/Holo/security.rsi
+    state: icon
+  - type: Icon
+    sprite: Structures/Power/Generation/Singularity/containment_field.rsi
+    state: field
+    norot: true
+  - type: SyncSprite
+  - type: Transform
+    anchored: true
+  - type: BlockWeather
+  - type: Tag
+    tags:
+    - Wall
+  - type: PointLight
+    enabled: true
+    radius: 3
+    color: red
+  - type: RangedDamageSound
+    soundGroups:
+      Brute:
+        collection:
+          BulletMiss
+    soundTypes:
+      Heat:
+        collection:
+          EnergyMiss
+  - type: Damageable
+    damageContainer: Shield
+    damageModifierSet: HardLightBarrier
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1000
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassCrack
+  - type: ContainmentField
+    throwForce: 1
+    maxMass: 0 
+    destroyGarbage: false
