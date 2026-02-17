@@ -6,6 +6,10 @@ salvage-mission-objective-name-free = Found coordinates
 salvage-mission-objective-description-free = Anomalus signature detected. Explore at your own peril.
 salvage-mission-objective-announcement-free = There are no objectives for this expedition.
 
+salvage-mission-objective-name-free-danger = Warning: Avoid
+salvage-mission-objective-description-free-danger = GSL will not be liable to perform rescue operations near these coordinates.
+salvage-mission-objective-announcement-free-danger = There are no objectives for this expedition.
+
 salvage-mission-objective-name-recover = Recovery
 salvage-mission-objective-description-recover = Important cargo has been left behind. Looking for freelancers to recover it.
 salvage-mission-objective-announcement-recover = Your mission is to collect {$numTargets} lost crates and bring them with you when you leave. You will also be paid for up to {$bonusCap} additional crates you find.
@@ -26,5 +30,5 @@ salvage-mission-objective-name-shutdown = Shutdown
 salvage-mission-objective-description-shutdown = Rogue devices detected on the ground. Shut them down.
 salvage-mission-objective-announcement-shutdown = Your mission is to find and destroy {$numTargets} suspicious devices. You will be paid extra for any additional devices you destroy.
 
-salvage-mission-objective-completed-message = Salvage mission completed. {$bonus}/{$maxBonus} bonus objectives completed. Total payout: {$totalReward} tickets
+salvage-mission-objective-completed-message = Salvage mission completed. {$bonus}/{$maxBonus} bonus objectives completed. Total payout: {$totalReward} tickets and {$totalCash} spesos.
 salvage-mission-objective-failed-message = Salvage mission failed.

@@ -231,6 +231,22 @@
       amount: 2
 
 - type: entity
+  id: ShelfArmoryMixedLaserFilled
+  parent: ShelfArmoryMixedLaser
+  suffix: Sec Armory Lowpop, Filled
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponDominatorRifle
+      amount: 2
+    - id: WeaponDominator
+      amount: 2
+    - id: WeaponLaserCarbine
+      amount: 2
+    - id: WeaponLaserPistol
+      amount: 2
+
+- type: entity
   id: ShelfArmoryDominatorLargeFilled
   parent: ShelfArmoryDominatorLarge
   suffix: Sec Armory Med-Highpop, Filled

@@ -186,6 +186,156 @@
     - SOArmoredTrenchCoat
     - SOArmoredWinterCoat
 
+# Technical Lead
+
+- type: loadoutGroup
+  id: TLHead
+  name: loadout-group-technical-lead-head
+  minLimit: 0
+  loadouts:
+  - TLBeret
+  - TLHardhat
+  - SyndiHardhatYellow
+  - SyndiHardhatOrange
+  - SyndiHardhatRed
+
+- type: loadoutGroup
+  id: TLHeadset
+  name: loadout-group-technical-lead-headset
+  loadouts:
+  - TLHeadsetAlt
+  - TLHeadset
+
+- type: loadoutGroup
+  id: TLNeck
+  name: loadout-group-technical-lead-neck
+  minLimit: 0
+  loadouts:
+  - TLCloak
+  - TLMantle
+
+- type: loadoutGroup
+  id: TLUniform
+  name: loadout-group-technical-lead-uniform
+  loadouts:
+  - TLJumpsuit
+  - TLJumpskirt
+  - TLTurtleneck
+  - TLTurtleneckSkirt
+  - TLJumpsuitWhite
+  - TLJumpskirtWhite
+
+- type: loadoutGroup
+  id: TLOuterClothing
+  name: loadout-group-technical-lead-outerclothing
+  minLimit: 0
+  loadouts:
+  - HazardVest
+  #- ChiefEngineerWintercoat #Needs respriting
+
+- type: loadoutGroup
+  id: TLShoes
+  name: loadout-group-technical-lead-shoes
+  loadouts:
+  - BrownShoes
+  - WorkBootsSyndi
+  #- EngineeringWinterBoots #Needs respriting
+  - Heels
+
+#region Engineering
+
+- type: loadoutGroup
+  id: EngiSyndiGoggles
+  name: loadout-group-engineering-syndi-glasses
+  loadouts:
+  - EngineeringSyndiGoggles
+
+# Environmental Technician (Atmos)
+
+- type: loadoutGroup
+  id: EnviroHead
+  name: loadout-group-environmental-technician-head
+  minLimit: 0
+  loadouts:
+  - EnviroBeret
+  - EnviroHardhat
+  - SyndiHardhatYellow
+  - SyndiHardhatOrange
+  - SyndiHardhatRed
+
+- type: loadoutGroup
+  id: EnviroUniform
+  name: loadout-group-environmental-technician-uniform
+  loadouts:
+  - EnviroJumpsuit
+  - EnviroJumpskirt
+  - EnviroCasualJumpsuit
+  - EnviroCasualJumpskirt
+
+- type: loadoutGroup
+  id: EnviroOuterClothing
+  name: loadout-group-environmental-technician-outerclothing
+  loadouts:
+  - HazardVest
+  #- AtmosphericTechnicianWintercoat #Needs respriting
+
+- type: loadoutGroup
+  id: EnviroShoes
+  name: loadout-group-environmental-technician-shoes
+  loadouts:
+  - WhiteShoes
+  - WorkBootsSyndi
+  #- EngineeringWinterBoots #Needs respriting
+  - Heels
+
+# Station Architect (Engineer)
+
+- type: loadoutGroup
+  id: StationArchitectHead
+  name: loadout-group-station-architect-head
+  minLimit: 0
+  loadouts:
+  - ArchitectBeret
+  - SyndiHardhatYellow
+  - SyndiHardhatOrange
+  - SyndiHardhatRed
+
+- type: loadoutGroup
+  id: StationArchitectUniform
+  name: loadout-group-station-architect-uniform
+  loadouts:
+  - ArchitectJumpsuit
+  - ArchitectJumpskirt
+  #- StationEngineerHazardsuit # All of these need to be resprited
+  #- SeniorEngineerJumpsuit
+  #- SeniorEngineerJumpskirt
+
+- type: loadoutGroup
+  id: StationArchitectOuterClothing
+  name: loadout-group-station-architect-outerclothing
+  loadouts:
+  - HazardVest
+  #- StationEngineerOuterVest # All of these need to be resprited
+  #- StationEngineerWintercoat
+  #- WindbreakerEngineering
+
+- type: loadoutGroup
+  id: StationArchitectShoes
+  name: loadout-group-station-architect-shoes
+  loadouts:
+  - WorkBootsSyndi
+  #- EngineeringWinterBoots #Needs respriting
+  - Heels
+
+# Trainee Architect
+
+- type: loadoutGroup
+  id: TraineeArchUniform
+  name: loadout-group-trainee-architect-uniform
+  loadouts:
+  - YellowJumpsuit
+  - YellowJumpskirt
+
 #region Security
 
 # General Security

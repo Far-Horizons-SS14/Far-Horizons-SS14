@@ -9,6 +9,8 @@ using Content.Server.GameTicking;
 using Content.Server.GameTicking.Presets;
 using Content.Server.Roles;
 using Content.Server.RoundEnd;
+using Content.Shared._FarHorizons.CCVar;
+using Content.Shared._FarHorizons.Factions;
 using Content.Shared.Starlight.CCVar;
 using Content.Shared.CCVar;
 using Content.Shared.Chat;
@@ -69,6 +71,9 @@ namespace Content.Server.Voting.Managers
                     break;
                 case StandardVoteType.Map:
                     CreateMapVote(initiator);
+                    break;
+                case StandardVoteType.Faction:
+                    CreateFactionVote(initiator);
                     break;
                 case StandardVoteType.Votekick:
                     timeoutVote = false; // Allows the timeout to be updated manually in the create method

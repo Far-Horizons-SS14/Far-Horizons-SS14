@@ -93,12 +93,119 @@
           - Wrench
           - ImprovisedWrench
 
+- type: entity
+  parent: ClothingBeltStorageBase
+  id: ClothingBeltSalvage
+  name: Salvage Utility Belt
+  description: Can hold a various amount of lo- required gear used by the Salvage and Mining teams.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Belt/cargoutility.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Belt/cargoutility.rsi
+  - type: Storage
+    grid:
+    - 0,0,0,0 #left
+    - 0,1,0,1 #left vertical label
+    - 2,0,9,1
+    - 11,0,12,0 #right
+    - 11,1,11,1 #right - grapple
+    whitelist:
+      tags:
+        - Wirecutter
+        - Crowbar
+        - Screwdriver
+        - Flashlight
+        - Wrench
+        - GeigerCounter
+        - Flare
+        - CableCoil
+        - Powerdrill
+        - JawsOfLife
+        - CigPack
+        - Radio
+        - HolofanProjector
+        - Multitool
+        - AppraisalTool
+        - GPS
+        - WeldingMask
+        - RemoteSignaller
+        - ImprovisedCrowbar
+        - ImprovisedScrewdriver
+        - ImprovisedWirecutter
+        - ImprovisedWrench
+        - ImprovisedMultitool
+        - Knife
+        - GrappleGun
+        - Write
+        - Paper
+      components:
+        - StationMap
+        - SprayPainter
+        - SprayPainterAmmo
+        - NetworkConfigurator
+        - Welder
+        - PowerCell
+        - Geiger
+        - TrayScanner
+        - GasAnalyzer
+        - HandLabeler
+  - type: StorageFill
+    contents:
+      - id: HandLabeler
+      - id: Crowbar
+      - id: Wrench
+      - id: Screwdriver
+      - id: Wirecutter
+      - id: Welder
+      - id: NetworkConfigurator 
+  - type: ItemMapper
+    sprite: *BeltOverlay
+    mapLayers:
+      drill:
+        whitelist:
+          tags:
+          - Powerdrill
+      cutters_red:
+        whitelist:
+          tags:
+          - Wirecutter
+          - ImprovisedWirecutter
+      crowbar:
+        whitelist:
+          tags:
+          - Crowbar
+          - ImprovisedCrowbar
+      crowbar_red:
+        whitelist:
+          tags:
+          - CrowbarRed
+      jaws:
+        whitelist:
+          tags:
+          - JawsOfLife
+      screwdriver_nuke:
+        whitelist:
+          tags:
+          - Screwdriver
+          - ImprovisedScrewdriver
+      multitool:
+        whitelist:
+          tags:
+            - Multitool
+            - ImprovisedMultitool
+      wrench:
+        whitelist:
+          tags:
+          - Wrench
+          - ImprovisedWrench
+
 #region Command
 
 - type: entity
   parent: ClothingBeltStorageBase
   id: ClothingBeltHoP
-  name: Head Of Personnel Belt
+  name: head of personnel belt
   description: A very clean belt with some wear on some lesser seen parts. Can fit plenty of paperwork and writing implements inside.
   components:
   - type: Sprite
@@ -191,6 +298,8 @@
           tags:
           - Wrench
           - ImprovisedWrench
+  
+
 
 #region Science
 
@@ -321,7 +430,22 @@
 
 #region Security
 
-#region Syndicate Station #####
+
+
+
+
+
+
+
+
+
+
+
+
+#region Syndicate
+
+
+
 
 
 
@@ -380,6 +504,142 @@
   - type: Clothing
     sprite: _FarHorizons/Clothing/Belt/syndihop.rsi
 
+# Technical Lead (Chief Engineer)
+
+- type: entity
+  parent: BaseClothingBeltEngineeringSyndi
+  id: ClothingBeltChiefEngineerSyndi
+  name: Technical Lead's Toolbelt
+  description: Holds tools, looks snazzy.
+  components:
+  - type: Sprite
+    sprite: Clothing/Belt/ce.rsi # Needs to be resprited
+  - type: Clothing
+    sprite: Clothing/Belt/ce.rsi
+  - type: Storage
+    grid:
+    - 0,0,9,1
+  #- type: StealTarget - Disabling for now, cause I don't feel like going through steal targets currently.
+  #  stealGroup: ChiefEngineerToolBelt
+
+#region Engineering
+
+- type: entity
+  abstract: true
+  parent: ClothingBeltStorageBase
+  id: BaseClothingBeltEngineeringSyndi
+  components:
+  - type: Storage
+    # Don't add more than absolutely needed to this whitelist!
+    # Utility belts shouldn't just be free extra storage.
+    # This is only intended for basic engineering equipment.
+    whitelist:
+      tags:
+      - Powerdrill
+      - Wirecutter
+      - Crowbar
+      - Screwdriver
+      - Flashlight
+      - Wrench
+      - GeigerCounter
+      - Flare
+      - CableCoil
+      - CigPack
+      - Radio
+      - HolofanProjector
+      - Multitool
+      - AppraisalTool
+      - JawsOfLife
+      - GPS
+      - WeldingMask
+      - RemoteSignaller
+      - UtilityKnife
+      - ImprovisedCrowbar
+      - ImprovisedScrewdriver
+      - ImprovisedWirecutter
+      - ImprovisedWrench
+      - ImprovisedMultitool
+      - SyndicateJawsOfLife
+      - PrototypeJawsOfLife
+      components:
+      - StationMap
+      - SprayPainter
+      - SprayPainterAmmo
+      - NetworkConfigurator
+      - RCD
+      - RCDAmmo
+      - Welder
+      - PowerCell
+      - Geiger
+      - TrayScanner
+      - GasAnalyzer
+      - HandLabeler
+  - type: ItemMapper
+    sprite: *BeltOverlay
+    mapLayers:
+      drill:
+        whitelist:
+          tags:
+          - Powerdrill
+      cutters_red:
+        whitelist:
+          tags:
+          - Wirecutter
+          - ImprovisedWirecutter          
+      crowbar:
+        whitelist:
+          tags:
+          - Crowbar
+          - ImprovisedCrowbar
+      crowbar_red:
+        whitelist:
+          tags:
+          - CrowbarRed
+      jaws:
+        whitelist:
+          tags:
+          - JawsOfLife
+      syn_jaws:
+        whitelist:
+          tags:
+          - SyndicateJawsOfLife
+      proto_jaws:
+        whitelist:
+          tags:
+          - PrototypeJawsOfLife
+      screwdriver_nuke:
+        whitelist:
+          tags:
+          - Screwdriver
+          - ImprovisedScrewdriver
+      wrench:
+        whitelist:
+          tags:
+          - Wrench
+          - ImprovisedWrench
+      multitool:
+        whitelist:
+          tags:
+          - Multitool
+          - ImprovisedMultitool
+  - type: Appearance
+
+- type: entity
+  parent: BaseClothingBeltEngineeringSyndi
+  id: ClothingBeltUtilitySyndi
+  name: Utility Belt
+  suffix: S
+  description: Can hold various things.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Belt/utility.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Belt/utility.rsi
+  - type: Tag
+    tags:
+    - UtilityBelt
+    - WhitelistChameleon
+    
 #region Security
 
 # Combat Medic (Corpsman)

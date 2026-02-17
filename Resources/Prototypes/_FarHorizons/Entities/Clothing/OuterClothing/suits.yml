@@ -1,7 +1,7 @@
 - type: entity
   parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing]
   id: ClothingOuterCoverallsEngi
-  name: engineering coveralls 
+  name: Engineering Coveralls 
   description: A soft suit for engineering that allows items to be holstered on the back.
   components:
   - type: RollUpSleeves
@@ -35,7 +35,7 @@
 - type: entity
   parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing]
   id: ClothingOuterCoverallsAtmos
-  name: atmospherics coveralls 
+  name: Atmospherics Coveralls 
   description: A soft suit for atmospherics that allows items to be holstered on the back.
   components:
   - type: RollUpSleeves
@@ -43,6 +43,131 @@
     sprite: _FarHorizons/Clothing/OuterClothing/Suits/atmos-coveralls.rsi
   - type: Clothing
     sprite: _FarHorizons/Clothing/OuterClothing/Suits/atmos-coveralls.rsi
+    equipSound: /Audio/Items/jumpsuit_equip.ogg
+    unequipSound: /Audio/Items/jumpsuit_equip.ogg
+    equipDelay: 1
+    unequipDelay: 1
+  - type: PressureProtection
+    highPressureMultiplier: 0.04
+  - type: TemperatureProtection
+    heatingCoefficient: 0.005
+    coolingCoefficient: 0.05
+  - type: Pierceable
+    level: Wood
+  - type: Armor
+    modifiers:
+      coefficients:
+        Slash: 0.9
+        Heat: 0.6
+        Cold: 0.6
+  - type: ClothingSpeedModifier
+    walkModifier: 0.95
+    sprintModifier: 0.95
+  - type: HeldSpeedModifier
+  - type: GroupExamine
+
+  #region Syndicate
+
+
+
+
+
+
+
+
+
+#region Engineering
+
+# Station Architect
+
+- type: entity
+  parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing]
+  id: ClothingOuterCoverallsEngiSyndi
+  name: Architectural Coveralls 
+  description: A soft suit for architects that allows items to be holstered on the back.
+  components:
+  - type: RollUpSleeves
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/Suits/engi-coveralls-syndi.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/Suits/engi-coveralls-syndi.rsi
+    equipSound: /Audio/Items/jumpsuit_equip.ogg
+    unequipSound: /Audio/Items/jumpsuit_equip.ogg
+    equipDelay: 1
+    unequipDelay: 1
+  - type: PressureProtection
+    highPressureMultiplier: 0.04
+  - type: TemperatureProtection
+    heatingCoefficient: 0.005
+    coolingCoefficient: 0.05
+  - type: Pierceable
+    level: Wood
+  - type: Armor
+    modifiers:
+      coefficients:
+        Slash: 0.9
+        Heat: 0.8
+        Cold: 0.8
+  - type: ClothingSpeedModifier
+    walkModifier: 0.95
+    sprintModifier: 0.95
+  - type: HeldSpeedModifier
+  - type: GroupExamine
+
+# Environmental Technician
+
+- type: entity
+  parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing]
+  id: ClothingOuterSuitAtmosFireSyndi
+  name: Environmental Fire Suit
+  description: An expensive firesuit that protects against even the most deadly of station fires. Designed to protect even if the wearer is set aflame.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/Suits/atmos_firesuit-syndi.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/Suits/atmos_firesuit-syndi.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.02
+    lowPressureMultiplier: 1000
+  - type: TemperatureProtection
+    heatingCoefficient: 0.001
+    coolingCoefficient: 0.05
+  - type: FireProtection
+    reduction: 0.8 # atmos firesuit offers best protection, hardsuits are a little vulnerable
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      coefficients:
+        Slash: 0.9
+        Heat: 0.8
+        Cold: 0.8
+  - type: ClothingSpeedModifier
+    walkModifier: 0.8
+    sprintModifier: 0.8
+  - type: HeldSpeedModifier
+  - type: GroupExamine
+  - type: ProtectedFromStepTriggers
+    slots: WITHOUT_POCKET
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - IPCExternalCooling
+  - type: HideLayerClothing
+    slots:
+    - Tail
+
+- type: entity
+  parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing]
+  id: ClothingOuterCoverallsAtmosSyndi
+  name: Environmental Coveralls 
+  description: A soft suit for atmospherics that allows items to be holstered on the back.
+  components:
+  - type: RollUpSleeves
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/Suits/atmos-coveralls-syndi.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/Suits/atmos-coveralls-syndi.rsi
     equipSound: /Audio/Items/jumpsuit_equip.ogg
     unequipSound: /Audio/Items/jumpsuit_equip.ogg
     equipDelay: 1

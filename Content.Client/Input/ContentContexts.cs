@@ -94,6 +94,11 @@ namespace Content.Client.Input
             human.AddFunction(ContentKeyFunctions.Arcade1);
             human.AddFunction(ContentKeyFunctions.Arcade2);
             human.AddFunction(ContentKeyFunctions.Arcade3);
+            // Far Horizons start
+            human.AddFunction(ContentKeyFunctions.SmartEquipRig);
+            human.AddFunction(ContentKeyFunctions.SmartEquipTankStorage);
+            human.AddFunction(ContentKeyFunctions.OpenRig);
+            // Far Horizons end
 
             // actions should be common (for ghosts, mobs, etc)
             common.AddFunction(ContentKeyFunctions.OpenActionsMenu);

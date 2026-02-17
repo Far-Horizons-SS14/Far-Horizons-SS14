@@ -2,7 +2,8 @@
   id: FHFland
   mapName: 'Fland Installation'
   mapPath: /Maps/_FarHorizons/Stations/fland.yml
-  minPlayers: 65
+  minPlayers: 60
+# maxplayers: 80 - Balanced for 80pop
   stations:
     FHFland:
       stationProto: StandardNanotrasenStation
@@ -46,15 +47,15 @@
             Scientist: [ 5, 5 ]
             ResearchAssistant: [ 6, 6 ]
             Roboticist: [ 1, 2 ]
-            #security
+            #security - 16 Total / 14 Responders w/Cadets / 11 Avaliable w/o Cadets v 8 Antags
             HeadOfSecurity: [ 1, 1 ]
             Warden: [ 1, 1 ]
-            SecurityOfficer: [ 9, 9 ]
-            Detective: [ 2, 2 ]
-            SecurityCadet: [ 4, 4 ]
+            SecurityOfficer: [ 7, 7 ]
+            Detective: [ 1, 1 ]
+            SecurityCadet: [ 3, 3 ]
             Brigmedic: [ 1, 1 ]
-            Corpsman: [ 1, 1] #Far Horizons
-            SecBorg: [ 1, 1] #Far Horizons
+            Corpsman: [ 1, 1 ]
+            SecBorg: [ 1, 1 ]
             #supply
             Quartermaster: [ 1, 1 ]
             SalvageLead: [ 1, 1 ]

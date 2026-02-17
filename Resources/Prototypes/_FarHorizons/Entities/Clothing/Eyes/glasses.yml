@@ -45,6 +45,7 @@
 
 #region NanoTrasen ##
 
+
 - type: entity
   parent: [ClothingEyesBase, ShowSecurityIcons, BaseSecurityContraband]
   id: ClothingEyesGlassesCorpsman
@@ -103,6 +104,46 @@
   - type: IdentityBlocker
     coverage: EYES
   - type: ShowJobIcons
+
+#region Engineering
+
+- type: entity
+  parent: [ ClothingEyesBase, BaseEngineeringSalvageContraband ]
+  id: ClothingEyesGlassesMesonSyndi
+  name: Engineering Goggles
+  suffix: S
+  description: Yellow-tinted goggles using a proprietary polymer that provides protection from eye damage of all types.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Eyes/Glasses/meson-syndi.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Eyes/Glasses/meson-syndi.rsi
+  - type: EyeProtection
+  - type: IdentityBlocker
+    coverage: EYES
+  - type: Tag
+    tags:
+    - PetWearable
+    - WhitelistChameleon
+
+- type: entity
+  parent: ClothingEyesBase
+  id: ClothingEyesGlassesThermalSyndi
+  name: Optical Thermal Scanner
+  suffix: S
+  description: Thermals in the shape of glasses.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Eyes/Glasses/thermalsyndi.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Eyes/Glasses/thermalsyndi.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Heat: 0.95
+  - type: GroupExamine
+  - type: IdentityBlocker
+    coverage: EYES
 
 #region Security
 

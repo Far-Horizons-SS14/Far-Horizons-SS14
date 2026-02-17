@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using Content.Server._FarHorizons.Factions;
 using Content.Server.GameTicking;
 using Content.Server.Holiday;
 using Content.Shared.CCVar;
@@ -23,6 +24,7 @@ public sealed class GameMapManager : IGameMapManager
     [Dependency] private readonly IResourceManager _resMan = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly HolidaySystem _holiday = default!;
+    [Dependency] private readonly IServerFactionManager _factions = default!; // Far Horizons
 
     [ViewVariables(VVAccess.ReadOnly)]
     private readonly Queue<string> _previousMaps = new();
@@ -201,7 +203,10 @@ public sealed class GameMapManager : IGameMapManager
 
     private bool IsMapEligible(GameMapPrototype map)
     {
-        return map.MaxPlayers >= _playerManager.PlayerCount &&
+        var faction = _factions.GetCurrentFaction() ?? _factions.GetDefaultFaction(); // Far Horizons
+
+        return ((map.Faction ?? _factions.GetDefaultFaction()) == faction) && // Far Horizons
+               map.MaxPlayers >= _playerManager.PlayerCount &&
                map.MinPlayers <= _playerManager.PlayerCount &&
                map.Conditions.All(x => x.Check(map)) &&
                _entityManager.System<GameTicker>().IsMapEligible(map);

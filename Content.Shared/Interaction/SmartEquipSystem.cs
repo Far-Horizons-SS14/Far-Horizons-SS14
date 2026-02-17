@@ -39,6 +39,8 @@ public sealed class SmartEquipSystem : EntitySystem
             .Bind(ContentKeyFunctions.SmartEquipPocket1, InputCmdHandler.FromDelegate(HandleSmartEquipPocket1, handle: false, outsidePrediction: false))
             .Bind(ContentKeyFunctions.SmartEquipPocket2, InputCmdHandler.FromDelegate(HandleSmartEquipPocket2, handle: false, outsidePrediction: false))
             .Bind(ContentKeyFunctions.SmartEquipSuitStorage, InputCmdHandler.FromDelegate(HandleSmartEquipSuitStorage, handle: false, outsidePrediction: false))
+            .Bind(ContentKeyFunctions.SmartEquipTankStorage, InputCmdHandler.FromDelegate(HandleSmartEquipTankStorage, handle: false, outsidePrediction: false)) // Far Horizons
+            .Bind(ContentKeyFunctions.SmartEquipRig, InputCmdHandler.FromDelegate(HandleSmartEquipRig, handle: false, outsidePrediction: false)) // Far Horizons
             .Register<SmartEquipSystem>();
     }
 
@@ -73,6 +75,9 @@ public sealed class SmartEquipSystem : EntitySystem
     {
         HandleSmartEquip(session, "suitstorage");
     }
+
+    private void HandleSmartEquipTankStorage(ICommonSession? session) => HandleSmartEquip(session, "suitstorage2"); // Far Horizons
+    private void HandleSmartEquipRig(ICommonSession? session) => HandleSmartEquip(session, "rig"); // Far Horizons
 
     private void HandleSmartEquip(ICommonSession? session, string equipmentSlot)
     {

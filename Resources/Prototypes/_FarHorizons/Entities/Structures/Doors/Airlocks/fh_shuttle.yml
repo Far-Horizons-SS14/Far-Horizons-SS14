@@ -1,0 +1,10 @@
+- type: entity
+  parent: AirlockShuttle
+  id: AirlockGlassShuttleSecurityPlastitanium
+  suffix: External, Docking, Security, Locked
+  components:
+  - type: Sprite
+    sprite: Structures/Doors/Airlocks/Glass/shuttle_syndicate.rsi
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSecurity ]

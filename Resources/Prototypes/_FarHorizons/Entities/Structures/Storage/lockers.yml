@@ -1,0 +1,575 @@
+
+#region Command
+
+# Magistrate
+
+- type: entity
+  id: LockerMagistrate
+  parent: LockerBaseSecure
+  name: Magistrate's Locker
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Storage/closet.rsi
+  - type: EntityStorageVisuals
+    stateBaseClosed: alien #This is pinkish purple. I'll take it.
+    stateDoorOpen: alien_open
+    stateDoorClosed: alien_door
+  - type: AccessReader
+    access: [["Magistrate"]]
+  - type: WiresPanelSecurity
+    securityLevel: medSecurity
+
+# HoS
+
+- type: entity
+  id: LockerHeadOfSecurityFH
+  parent: LockerLargeBaseSecure
+  name: Head Of Security's Locker
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Storage/closet.rsi
+  - type: EntityStorageVisuals
+    stateBaseClosed: hos
+    stateDoorOpen: hos_open
+    stateDoorClosed: hos_door
+  - type: AccessReader
+    access: [["HeadOfSecurity"]]
+  - type: WiresPanelSecurity
+    securityLevel: medSecurity
+
+#region Security
+
+# Security Officer
+
+- type: entity
+  id: LockerSecurityFH
+  parent: LockerBaseSecure
+  name: Security Officer's Locker
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Storage/closet.rsi
+  - type: EntityStorageVisuals
+    stateBaseClosed: sec
+    stateDoorOpen: sec_open
+    stateDoorClosed: sec_door
+  - type: AccessReader
+    access: [["Security"], ["Cadet"]]
+
+- type: entity
+  id: LockerSecurityLargeFH
+  parent: LockerBaseSecure
+  name: Large Security Officer's Locker
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Storage/closet-large.rsi
+  - type: EntityStorageVisuals
+    stateBaseClosed: sec
+    stateDoorOpen: sec_open
+    stateDoorClosed: sec_door
+  - type: AccessReader
+    access: [["Security"], ["Cadet"]]
+
+- type: entity
+  id: LockerSecurityLargeFHL
+  parent: LockerBaseSecure
+  name: Large Security Officer Lockers
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Storage/closet-left-large.rsi
+  - type: EntityStorageVisuals
+    stateBaseClosed: sec_L
+    stateDoorOpen: sec_L_open
+    stateDoorClosed: sec_L_door
+  - type: AccessReader
+    access: [["Security"], ["Cadet"]]
+  - type: EntityStorage
+    capacity: 50 # Big lockers tend to have more than 30 items in them
+
+- type: entity
+  id: LockerSecurityLargeFHM
+  parent: LockerBaseSecure
+  name: Large Security Officer Lockers
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Storage/closet-middle-large.rsi
+  - type: EntityStorageVisuals
+    stateBaseClosed: sec_M
+    stateDoorOpen: sec_M_open
+    stateDoorClosed: sec_M_door
+  - type: AccessReader
+    access: [["Security"], ["Cadet"]]
+  - type: EntityStorage
+    capacity: 50 # Big lockers tend to have more than 30 items in them
+
+- type: entity
+  id: LockerSecurityLargeFHR
+  parent: LockerBaseSecure
+  name: Large Security Officer Lockers
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Storage/closet-right-large.rsi
+  - type: EntityStorageVisuals
+    stateBaseClosed: sec_R
+    stateDoorOpen: sec_R_open
+    stateDoorClosed: sec_R_door
+  - type: AccessReader
+    access: [["Security"], ["Cadet"]]
+  - type: EntityStorage
+    capacity: 50 # Big lockers tend to have more than 30 items in them
+
+# Warden
+
+- type: entity
+  id: LockerWardenFH
+  parent: LockerLargeBaseSecure
+  name: Warden's Locker
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Storage/closet.rsi
+  - type: EntityStorageVisuals
+    stateBaseClosed: warden
+    stateDoorOpen: sec_open
+    stateDoorClosed: warden_door
+  - type: AccessReader
+    access: [["Armory"]]
+  - type: WiresPanelSecurity
+    securityLevel: medSecurity
+
+- type: entity
+  id: LockerWardenLargeFH
+  parent: LockerLargeBaseSecure
+  name: Large Warden's Locker
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Storage/closet-large.rsi
+  - type: EntityStorageVisuals
+    stateBaseClosed: warden
+    stateDoorOpen: sec_open
+    stateDoorClosed: warden_door
+  - type: AccessReader
+    access: [["Armory"]]
+  - type: WiresPanelSecurity
+    securityLevel: medSecurity
+  
+# Brigmedic
+
+- type: entity
+  id: LockerBrigmedicFH
+  parent: LockerLargeBaseSecure
+  name: Brigmedic's Locker
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Storage/closet.rsi
+  - type: EntityStorageVisuals
+    stateBaseClosed: brigmedic
+    stateDoorOpen: sec_open
+    stateDoorClosed: brigmedic_door
+  - type: AccessReader
+    access: [["Brigmedic"]]
+
+- type: entity
+  id: LockerBrigmedicLargeFH
+  parent: LockerLargeBaseSecure
+  name: Large Brigmedic's Locker
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Storage/closet-large.rsi
+  - type: EntityStorageVisuals
+    stateBaseClosed: brigmedic
+    stateDoorOpen: sec_open
+    stateDoorClosed: brigmedic_door
+  - type: AccessReader
+    access: [["Brigmedic"]]
+
+# Corpsman
+
+- type: entity
+  id: LockerCorpsman
+  parent: LockerLargeBaseSecure
+  name: Corpsman's Locker
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Storage/closet.rsi
+  - type: EntityStorageVisuals
+    stateBaseClosed: brigmedic
+    stateDoorOpen: sec_open
+    stateDoorClosed: corpsman_door
+  - type: AccessReader
+    access: [["Brigmedic"]]
+
+
+
+#region Syndicate ---v
+
+
+
+
+
+
+
+
+
+#region Command
+
+# Commander (Captain)
+
+- type: entity
+  id: LockerCommander
+  parent: LockerBaseSecure
+  name: Commander's Locker
+  components:
+  - type: Appearance
+  - type: EntityStorageVisuals
+    stateBaseClosed: cap
+    stateDoorOpen: cap_open
+    stateDoorClosed: cap_door
+  - type: AccessReader
+    access: [["Captain"]]
+  - type: WiresPanelSecurity # Maintenance panel
+    securityLevel: medSecurity
+
+# Corporate Arbiter (Magistrate)
+
+- type: entity
+  id: LockerCorporateArbiter
+  parent: LockerBaseSecure
+  name: Corporate Arbiter's Locker
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Storage/closet.rsi
+  - type: EntityStorageVisuals
+    stateBaseClosed: hos
+    stateDoorOpen: hos_open
+    stateDoorClosed: hos_door
+  - type: AccessReader
+    access: [["Magistrate"]]
+  - type: WiresPanelSecurity
+    securityLevel: medSecurity
+    
+# Personnel Chief (Head of Personnel)
+
+- type: entity
+  id: LockerPersonnelChief
+  parent: LockerBaseSecure
+  name: Personnel Chief's Locker
+  components:
+  - type: Appearance
+  - type: EntityStorageVisuals
+    stateBaseClosed: hop
+    stateDoorOpen: hop_open
+    stateDoorClosed: hop_door
+  - type: AccessReader
+    access: [["HeadOfPersonnel"]]
+  - type: WiresPanelSecurity # Maintenance panel
+    securityLevel: medSecurity 
+
+# Security Overwatch (Head of Security)
+
+- type: entity
+  id: LockerSecurityOverwatch
+  parent: LockerLargeBaseSecure
+  name: Security Overwatch's Locker
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Storage/closet.rsi
+  - type: EntityStorageVisuals
+    stateBaseClosed: hos
+    stateDoorOpen: hos_open
+    stateDoorClosed: hos_door
+  - type: AccessReader
+    access: [["HeadOfSecurity"]]
+  - type: WiresPanelSecurity
+    securityLevel: medSecurity
+
+# Technical Lead (Chief Engineer)
+
+- type: entity
+  id: LockerChiefEngineerSyndi
+  parent: LockerBaseSecure
+  name: Technical Lead's Locker
+  components:
+  - type: Appearance
+  - type: EntityStorageVisuals
+    stateBaseClosed: ce
+    stateDoorOpen: ce_open
+    stateDoorClosed: ce_door
+  - type: AccessReader
+    access: [ [ "ChiefEngineer" ] ]
+  - type: WiresPanelSecurity
+    securityLevel: medSecurity
+
+#region Engineering
+
+# Atmos tech
+- type: entity
+  id: LockerAtmosphericsSyndi
+  parent: LockerBase
+  name: Environmental Technician's Locker
+  components:
+  - type: Appearance
+  - type: EntityStorageVisuals
+    stateBaseClosed: atmos
+    stateDoorOpen: atmos_open
+    stateDoorClosed: atmos_door
+  - type: AccessReader
+    access: [ [ "Atmospherics" ] ]
+
+# Engineer
+- type: entity
+  id: LockerEngineerSyndi
+  parent: LockerBase
+  name: Architect's Locker
+  components:
+  - type: Appearance
+  - type: EntityStorageVisuals
+    stateBaseClosed: eng_secure
+    stateDoorOpen: eng_secure_open
+    stateDoorClosed: eng_secure_door
+  - type: AccessReader
+    access: [ [ "Engineering" ] ]
+
+# Electrical supplies
+- type: entity
+  id: LockerElectricalSuppliesSyndi
+  parent: LockerBase
+  name: Electrical Supplies Locker
+  suffix: S
+  components:
+  - type: Appearance
+  - type: EntityStorageVisuals
+    stateBaseClosed: eng
+    stateDoorOpen: eng_open
+    stateDoorClosed: eng_elec_door
+  - type: AccessReader
+    access: [ [ "Engineering" ] ]
+
+# Evac Repair
+- type: entity
+  parent: LockerBase
+  id: LockerEvacRepairSyndi
+  name: Emergency Shuttle Emergency Locker
+  suffix: S
+  description: It's emergencies all the way down.
+  components:
+  - type: Appearance
+  - type: EntityStorageVisuals
+    stateBaseClosed: eng
+    stateDoorOpen: eng_open
+    stateDoorClosed: eng_evac_door
+  - type: AccessReader
+    access: [ [ "Engineering" ] ]
+
+#Evac Repair Wall Locker
+- type: entity
+  parent: BaseWallLocker
+  id: LockerWallEvacRepairSyndi
+  name: Emergency Shuttle Emergency Wall Locker
+  suffix: S
+  description: It's emergencies all the way down.
+  components:
+  - type: EntityStorageVisuals
+    stateBaseClosed: eng
+    stateDoorOpen: eng_open
+    stateDoorClosed: eng_evac_door
+  - type: AccessReader
+    access: [["Engineering"]]
+
+# Welding supplies
+- type: entity
+  id: LockerWeldingSuppliesSyndi
+  suffix: S
+  parent: LockerBase
+  name: Welding Supplies Locker
+  components:
+  - type: Appearance
+  - type: EntityStorageVisuals
+    stateBaseClosed: eng
+    stateDoorOpen: eng_open
+    stateDoorClosed: eng_weld_door
+  - type: AccessReader
+    access: [ [ "Engineering" ] ]
+
+
+#region Security
+
+# Security Officer
+
+- type: entity
+  id: LockerSecurityFHSyndi
+  parent: LockerBaseSecure
+  name: Law Enforcer's Locker
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Storage/closet.rsi
+  - type: EntityStorageVisuals
+    stateBaseClosed: sec
+    stateDoorOpen: sec_open
+    stateDoorClosed: sec_door
+  - type: AccessReader
+    access: [["Security"]]
+
+- type: entity
+  id: LockerSecurityLargeFHSyndi
+  parent: LockerBaseSecure
+  name: Large Law Enforcer's Locker
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Storage/closet-large.rsi
+  - type: EntityStorageVisuals
+    stateBaseClosed: sec
+    stateDoorOpen: sec_open
+    stateDoorClosed: sec_door
+  - type: AccessReader
+    access: [["Security"]]
+
+- type: entity
+  id: LockerSecurityLargeFHLSyndi
+  parent: LockerBaseSecure
+  name: Large Law Enforcer's Locker
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Storage/closet-left-large.rsi
+  - type: EntityStorageVisuals
+    stateBaseClosed: sec_L
+    stateDoorOpen: sec_L_open
+    stateDoorClosed: sec_L_door
+  - type: AccessReader
+    access: [["Security"]]
+  - type: EntityStorage
+    capacity: 50 # Big lockers tend to have more than 30 items in them
+
+- type: entity
+  id: LockerSecurityLargeFHMSyndi
+  parent: LockerBaseSecure
+  name: Large Law Enforcer's Locker
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Storage/closet-middle-large.rsi
+  - type: EntityStorageVisuals
+    stateBaseClosed: sec_M
+    stateDoorOpen: sec_M_open
+    stateDoorClosed: sec_M_door
+  - type: AccessReader
+    access: [["Security"]]
+  - type: EntityStorage
+    capacity: 50 # Big lockers tend to have more than 30 items in them
+
+- type: entity
+  id: LockerSecurityLargeFHRSyndi
+  parent: LockerBaseSecure
+  name: Large Law Enforcer's Locker
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Storage/closet-right-large.rsi
+  - type: EntityStorageVisuals
+    stateBaseClosed: sec_R
+    stateDoorOpen: sec_R_open
+    stateDoorClosed: sec_R_door
+  - type: AccessReader
+    access: [["Security"]]
+  - type: EntityStorage
+    capacity: 50 # Big lockers tend to have more than 30 items in them
+
+# Warden
+
+- type: entity
+  id: LockerWardenFHSyndi
+  parent: LockerLargeBaseSecure
+  name: Guardian's Locker
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Storage/closet.rsi
+  - type: EntityStorageVisuals
+    stateBaseClosed: warden
+    stateDoorOpen: sec_open
+    stateDoorClosed: warden_door
+  - type: AccessReader
+    access: [["Armory"]]
+  - type: WiresPanelSecurity
+    securityLevel: medSecurity
+
+- type: entity
+  id: LockerWardenLargeFHSyndi
+  parent: LockerLargeBaseSecure
+  name: Large Guardian's Locker
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Storage/closet-large.rsi
+  - type: EntityStorageVisuals
+    stateBaseClosed: warden
+    stateDoorOpen: sec_open
+    stateDoorClosed: warden_door
+  - type: AccessReader
+    access: [["Armory"]]
+  - type: WiresPanelSecurity
+    securityLevel: medSecurity
+  
+# Brigmedic
+
+- type: entity
+  id: LockerBrigmedicFHSyndi
+  parent: LockerLargeBaseSecure
+  name: Medical Officer's Locker
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Storage/closet.rsi
+  - type: EntityStorageVisuals
+    stateBaseClosed: brigmedic
+    stateDoorOpen: sec_open
+    stateDoorClosed: brigmedic_door
+  - type: AccessReader
+    access: [["Brigmedic"]]
+
+- type: entity
+  id: LockerBrigmedicLargeFHSyndi
+  parent: LockerLargeBaseSecure
+  name: Large Medical Officer's Locker
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Storage/closet-large.rsi
+  - type: EntityStorageVisuals
+    stateBaseClosed: brigmedic
+    stateDoorOpen: sec_open
+    stateDoorClosed: brigmedic_door
+  - type: AccessReader
+    access: [["Brigmedic"]]
+
+# Corpsman
+
+- type: entity
+  id: LockerCorpsmanFHSyndi
+  parent: LockerLargeBaseSecure
+  name: Combat Medic's Locker
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Storage/closet.rsi
+  - type: EntityStorageVisuals
+    stateBaseClosed: brigmedic
+    stateDoorOpen: sec_open
+    stateDoorClosed: corpsman_door
+  - type: AccessReader
+    access: [["Brigmedic"]]

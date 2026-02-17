@@ -9,12 +9,22 @@
   - type: Clothing
     sprite: _FarHorizons/Clothing/Shoes/Boots/bright-performer.rsi
 
+#region NanoDerpsen
+
+
+
+
+
+
+
+
 #region Cargo
 
 - type: entity
   parent: ClothingShoesBaseButcherable
   id: ClothingShoesBootsCargo
   name: Cargo Boots
+  suffix: NT
   description: Some rugged boots for giving the cargo department plenty of traction.
   components:
   - type: Sprite
@@ -33,6 +43,21 @@
 
 
 
+
+#region Engineering
+
+- type: entity
+  parent: ClothingShoesBaseButcherable
+  id: ClothingShoesBootsWorkSyndi
+  name: Workboots
+  suffix: S
+  description: Engineering lace-up work boots for the especially blue-collar.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Shoes/Boots/workbootssyndi.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Shoes/Boots/workbootssyndi.rsi
+  - type: Matchbox
 
 #region Security
 

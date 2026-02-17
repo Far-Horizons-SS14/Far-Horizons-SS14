@@ -68,3 +68,16 @@
     color: "#ab0000"
   - type: StaticPrice
     price: 2000
+
+# Technical Lead (Chief Engineer)
+
+- type: entity
+  parent: [ClothingNeckBase, BaseCommandContraband]
+  id: ClothingNeckCloakCeSyndi
+  name: Technical Lead's cloak
+  description: A dark green cloak with light blue ornaments, given to those who proved themselves to master the precise art of engineering.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Neck/Cloaks/ce.rsi # This still needs to be resprited.
+  #- type: StealTarget - Temporarily disabled, I can't be bothered to add steal target currently.
+  #  stealGroup: HeadCloak

@@ -1,7 +1,7 @@
 - type: entity
   parent: ClothingHeadHatHardhatBase
   id: ClothingHeadHatHardhatAtmos
-  name: atmospheric technician hard hat
+  name: Atmospheric Technician Hard Hat
   description: A hard hat, painted in blue, used in dangerous working conditions to protect the head. Comes with a built-in flashlight.
   components:
   - type: Sprite
@@ -12,10 +12,45 @@
 - type: entity
   parent: ClothingHeadHatHardhatBase
   id: ClothingHeadHatHardhatMiner
-  name: mining specialist hard hat
+  name: Mining Specialist Hard Hat
   description: A hard hat used in dangerous working conditions to protect the head. Comes with a built-in flashlight.
   components:
   - type: Sprite
     sprite: _FarHorizons/Clothing/Head/Hardhats/minerhardhat.rsi
   - type: Clothing
     sprite: _FarHorizons/Clothing/Head/Hardhats/minerhardhat.rsi
+
+#region Syndicate
+
+- type: entity
+  parent: ClothingHeadHatHardhatBase
+  id: ClothingHeadHatHardhatAtmosSyndi
+  name: Environmental Hard Hat
+  description: A hard hat, painted in red, highlighted in yellow and blue, used in dangerous working conditions to protect the head. Comes with a built-in flashlight and partial face cover.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Head/Hardhats/atmos-syndi.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Head/Hardhats/atmos-syndi.rsi
+
+- type: entity
+  parent: ClothingHeadHatHardhatBase
+  id: ClothingHeadHatHardhatOrangeSyndi
+  name: Red and Orange Hard Hat
+  description: A hard hat, painted in red and orange, used in dangerous working conditions to protect the head. Comes with a built-in flashlight.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Head/Hardhats/orange-syndi.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Head/Hardhats/orange-syndi.rsi
+
+- type: entity
+  parent: ClothingHeadHatHardhatBase
+  id: ClothingHeadHatHardhatRedSyndi
+  name: Red and Yellow Hard Hat
+  description: A hard hat, painted in red and highlighted in yellow, used in dangerous working conditions to protect the head. Comes with a built-in flashlight.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Head/Hardhats/red-syndi.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Head/Hardhats/red-syndi.rsi

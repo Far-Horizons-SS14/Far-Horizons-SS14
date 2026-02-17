@@ -7,8 +7,8 @@
   - type: RandomMetadata
     descriptionSegments: [DescriptionsATV]
   - type: MovementSpeedModifier
-    baseWalkSpeed: 7.5
-    baseSprintSpeed: 10
+    baseWalkSpeed: 10
+    baseSprintSpeed: 7.5
   - type: Vehicle
     cellPowered: false
     acceleration: 4
@@ -224,14 +224,27 @@
         - SecSiren
 
 - type: entity
+  id: VehicleATVFueledNTSec
+  parent: VehicleATVFueledwithKeysNTSec
+  name: STV
+  suffix: Fueled, NT
+  description: Law enforcement variant of the ATV, comes included with sirens to blare at Tiders. 
+  components:
+    - type: ContainerFill
+      containers:
+        vehicle_mods_container:
+        - ATVHeadlight
+        - SecSiren
+
+- type: entity
   id: VehicleClownCar
   parent: BaseVehicleRideableDamageable
   name: Clown Car
   description: What sort of horrors lie within...
   components:
   - type: MovementSpeedModifier
-    baseWalkSpeed: 7.5
-    baseSprintSpeed: 10
+    baseWalkSpeed: 10 
+    baseSprintSpeed: 7.5
   - type: Vehicle
     cellPowered: false
     acceleration: 4
@@ -388,8 +401,8 @@
   description: Bad to the bone.
   components:
   - type: MovementSpeedModifier
-    baseWalkSpeed: 7.5
-    baseSprintSpeed: 12
+    baseWalkSpeed: 12
+    baseSprintSpeed: 7.5
   - type: Vehicle
     cellPowered: false
     acceleration: 4

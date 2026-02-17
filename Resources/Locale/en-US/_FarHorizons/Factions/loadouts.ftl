@@ -1,9 +1,21 @@
+###### GSL
+
+loadout-group-mining-belt = Mining Specialist Belt
+
 ###### NanoTrasen
 
 ## Specific Roles
 
 #### Command
+
 loadout-group-command-eyewear = Command Eyewear
+
+loadout-group-chief-engineer-headset = Chief Engineer Headset
+loadout-group-chief-engineer-eyewear = Chief Engineer Eyewear
+
+#### Engineering
+
+loadout-group-nt-engi-eyewear = Engineering Eyewear
 
 #### Security
 
@@ -40,6 +52,29 @@ loadout-group-so-headset = Security Overwatch Headset
 loadout-group-so-neck = Security Overwatch Neck
 loadout-group-so-uniform = Security Overwatch Uniform
 loadout-group-so-outerclothing = Security Overwatch Outer Clothing
+
+loadout-group-technical-lead-head = Technical Lead Hat
+loadout-group-technical-lead-headset = Technical Lead Headset
+loadout-group-technical-lead-neck = Technical Lead Neck
+loadout-group-technical-lead-uniform = Technical Lead Uniform
+loadout-group-technical-lead-outerclothing = Technical Lead Outer Clothing
+loadout-group-technical-lead-shoes = Technical Lead Shoes
+
+#### Engineering
+
+loadout-group-engineering-syndi-glasses = Engineering Glasses
+
+loadout-group-environmental-technician-head = Environmental Technician Hat
+loadout-group-environmental-technician-uniform = Environmental Technician Uniform
+loadout-group-environmental-technician-outerclothing = Environmental Technician Outer Clothing
+loadout-group-environmental-technician-shoes = Environmental Technician Shoes
+
+loadout-group-station-architect-head = Station Architect Hat
+loadout-group-station-architect-uniform = Station Architect Uniform
+loadout-group-station-architect-outerclothing = Station Architect Outer Clothing
+loadout-group-station-architect-shoes = Station Architect Shoes
+
+loadout-group-trainee-architect-uniform = Trainee Architect Uniform
 
 #### Security
 

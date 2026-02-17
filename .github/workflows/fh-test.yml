@@ -42,13 +42,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: |
-          sudo fallocate -l 4G /swapfile
-          sudo chmod 600 /swapfile
-          sudo mkswap /swapfile
-          sudo swapon /swapfile
+          SWAP_PATH="/tmp/runner-swap"
+          sudo swapoff $SWAP_PATH || true
+
+          sudo fallocate -l 4G $SWAP_PATH
+          sudo chmod 600 $SWAP_PATH
+          sudo mkswap $SWAP_PATH
+          sudo swapon $SWAP_PATH
       - uses: ./.github/actions/setup-test-env
       - run: dotnet test --no-build -c DebugOpt Content.IntegrationTests/Content.IntegrationTests.csproj --settings .farhorizons/.integrationtests
         env:
           DOTNET_gcServer: "0"
-      - if: failure() # Check for OOMKiller on fail
-        run: dmesg | grep -i "out of memory" || true

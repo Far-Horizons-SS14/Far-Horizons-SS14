@@ -7,9 +7,11 @@
   guides: [ SpaceNinja ]
   previewStartingGear: SpaceNinjaGear
   requirements:
-  - !type:DepartmentTimeRequirement
-    department: Security
-    time: 10800 # 3h STARLIGHT
+  - !type:OverallPlaytimeRequirement #Far Horizons
+    time: 7200 # 2 hours - Far Horizons
+#  - !type:DepartmentTimeRequirement #Far Horizons
+#    department: Security
+#    time: 10800 # 3h STARLIGHT
 
 #Ninja Gear
 - type: startingGear

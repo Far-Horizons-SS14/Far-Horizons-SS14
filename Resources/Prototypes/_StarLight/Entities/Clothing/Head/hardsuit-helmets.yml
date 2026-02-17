@@ -317,8 +317,61 @@
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/Head/Hardsuits/experimental_security.rsi
+  #Far Horizons-Start
+  - type: ToggleableVisuals
+    clothingVisuals:
+      head:
+        - state: on-equipped-HELMET 
+          shader: unshaded
+      head-avali:
+        - state: on-equipped-HELMET-avali
+          shader: unshaded
+      #head-dog:
+      #  - state: on-equipped-HELMET-dog
+      #    shader: unshaded
+      #head-reptilian:
+      #  - state: on-equipped-HELMET-reptilian
+      #    shader: unshaded
+      #head-resomi:
+      #  - state: on-equipped-HELMET-resomi
+      #    shader: unshaded
+      head-vox:
+        - state: on-equipped-HELMET-vox
+          shader: unshaded
+      head-vulpkanin:
+        - state: on-equipped-HELMET-vulpkanin
+          shader: unshaded
   - type: Clothing
     sprite: _Starlight/Clothing/Head/Hardsuits/experimental_security.rsi
+    clothingVisuals:
+      head:
+        - state: off-equipped-HELMET
+      #  - state: equipped-head-unshaded
+      #    shader: unshaded
+      head-avali:
+        - state: off-equipped-HELMET-avali
+          shader: unshaded
+      #head-dog:
+      #  - state: off-equipped-HELMET-dog
+      #  - state: equipped-head-unshaded-dog
+      #    shader: unshaded
+      #head-reptilian:
+      #  - state: off-equipped-HELMET-reptilian
+      #  - state: equipped-head-unshaded-reptilian
+      #    shader: unshaded
+      #head-resomi:
+      #  - state: off-equipped-HELMET-resomi
+      #  - state: equipped-head-unshaded-resomi
+      #    shader: unshaded # Starlight end🌟
+      head-vox:
+        - state: off-equipped-HELMET-vox
+      #  - state: equipped-head-unshaded-vox
+      #    shader: unshaded
+      head-vulpkanin:
+        - state: off-equipped-HELMET-vulpkanin
+      #  - state: equipped-head-unshaded-vulpkanin
+      #    shader: unshaded
+# Far Horizons-End
   - type: PointLight
     color: "#ffeead"
     radius: 7

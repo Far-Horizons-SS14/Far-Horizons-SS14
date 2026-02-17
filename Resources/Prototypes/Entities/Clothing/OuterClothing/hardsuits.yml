@@ -5,7 +5,8 @@
 - type: entity
   parent: [ClothingOuterHardsuitBase, BaseEngineeringContraband]
   id: ClothingOuterHardsuitAtmos
-  name: Atmos Hardsuit #Far Horizons - The Great Capitalization Crusade
+  name: Atmospheric Hardsuit #Far Horizons - The Great Capitalization Crusade
+  suffix: NT #Far Horizons - Dual Station Clarity
   description: A special suit that protects against hazardous, low pressure environments. Has thermal shielding.
   components:
   - type: Sprite
@@ -35,6 +36,7 @@
   - type: ClothingSpeedModifier
     walkModifier: 0.7
     sprintModifier: 0.7
+    requireActivated: false #FH cuz item toggle.
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitAtmos
@@ -50,6 +52,7 @@
   parent: [ClothingOuterHardsuitBase, BaseEngineeringContraband]
   id: ClothingOuterHardsuitEngineering
   name: Engineering Hardsuit #Far Horizons - The Great Capitalization Crusade
+  suffix: NT #Far Horizons - Dual Station Clarity
   description: A special suit that protects against hazardous, low pressure environments. Has radiation shielding.
   components:
   - type: Sprite
@@ -75,6 +78,7 @@
   - type: ClothingSpeedModifier
     walkModifier: 0.7
     sprintModifier: 0.7
+    requireActivated: false #FH cuz item toggle.
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitEngineering
@@ -90,6 +94,7 @@
   parent: [ClothingOuterHardsuitBase, BaseCargoContraband]
   id: ClothingOuterHardsuitSpatio
   name: Spationaut Hardsuit #Far Horizons - The Great Capitalization Crusade
+  suffix: NT #Far Horizons - Dual Station Clarity
   description: A lightweight hardsuit designed for industrial EVA in zero gravity.
   components:
   - type: Sprite
@@ -112,6 +117,7 @@
   - type: ClothingSpeedModifier
     walkModifier: 0.8
     sprintModifier: 0.8
+    requireActivated: false #FH cuz item toggle.
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitSpatio
@@ -155,6 +161,7 @@
   - type: ClothingSpeedModifier
     walkModifier: 0.75
     sprintModifier: 0.75
+    requireActivated: false #FH cuz item toggle.
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitSalvage
@@ -196,6 +203,7 @@
   - type: ClothingSpeedModifier
     walkModifier: 0.8
     sprintModifier: 0.8
+    requireActivated: false #FH cuz item toggle.
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitGoliath
@@ -240,7 +248,8 @@
         Caustic: 0.8 
   - type: ClothingSpeedModifier
     walkModifier: 0.85
-    sprintModifier: 0.85 
+    sprintModifier: 0.85
+    requireActivated: false #FH cuz item toggle.
   - type: ExplosionResistance
     damageCoefficient: 0.4 
     # end region starlight
@@ -284,6 +293,7 @@
   parent: [ClothingOuterHardsuitBase, BaseSecurityContraband]
   id: ClothingOuterHardsuitSecurity
   name: Security Hardsuit #Far Horizons - The Great Capitalization Crusade
+  suffix: NT #Far Horizons - Dual Station Clarity
   description: A special suit that protects against hazardous, low pressure environments. Has an additional layer of armor.
   components:
   - type: Sprite
@@ -339,6 +349,7 @@
   - type: ClothingSpeedModifier
     walkModifier: 0.75
     sprintModifier: 0.75
+    requireActivated: false #FH cuz item toggle.
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitSecurity
@@ -354,6 +365,7 @@
   parent: [ClothingOuterHardsuitBase, BaseSecurityContraband]
   id: ClothingOuterHardsuitBrigmedic
   name: Brigmedic Hardsuit #Far Horizons - The Great Capitalization Crusade
+  suffix: NT #Far Horizons - Dual Station Clarity
   description: Special hardsuit of the guardian angel of the brig. It is the medical version of the security hardsuit.
   components:
   - type: Sprite
@@ -411,6 +423,7 @@
   - type: ClothingSpeedModifier
     walkModifier: 0.85 #FH edit
     sprintModifier: 0.85 #FH edit
+    requireActivated: false #FH cuz item toggle.
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitBrigmedic
@@ -420,6 +433,7 @@
   parent: [ClothingOuterHardsuitBase, BaseSecurityContraband]
   id: ClothingOuterHardsuitWarden
   name: Warden's Hardsuit #Far Horizons - The Great Capitalization Crusade
+  suffix: NT #Far Horizons - Dual Station Clarity
   description: A specialized, heavy riot suit geared to combat low pressure environments.
   components:
   - type: Sprite
@@ -475,6 +489,7 @@
   - type: ClothingSpeedModifier
     walkModifier: 0.7
     sprintModifier: 0.7
+    requireActivated: false #FH cuz item toggle.
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitWarden
@@ -484,6 +499,7 @@
   parent: [ClothingOuterHardsuitBase, BaseCommandContraband]
   id: ClothingOuterHardsuitCap
   name: Captain's Armored Spacesuit #Far Horizons - The Great Capitalization Crusade
+  suffix: NT #Far Horizons - Dual Station Clarity
   description: A formal armored spacesuit, made for the station's captain.
   components:
   - type: Sprite
@@ -514,6 +530,7 @@
   - type: ClothingSpeedModifier
     walkModifier: 0.8
     sprintModifier: 0.8
+    requireActivated: false #FH cuz item toggle.
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitCap
@@ -529,6 +546,7 @@
   parent: [ClothingOuterHardsuitBase, BaseCommandContraband]
   id: ClothingOuterHardsuitEngineeringWhite
   name: Chief Engineer's Hardsuit #Far Horizons - The Great Capitalization Crusade
+  suffix: NT #Far Horizons - Dual Station Clarity
   description: A special hardsuit that protects against hazardous, low pressure environments, made for the chief engineer of the station.
   components:
   - type: Sprite
@@ -556,6 +574,7 @@
   - type: ClothingSpeedModifier
     walkModifier: 0.8
     sprintModifier: 0.8
+    requireActivated: false #FH cuz item toggle.
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitEngineeringWhite
@@ -571,6 +590,7 @@
   parent: [ClothingOuterHardsuitBase, BaseCommandContraband]
   id: ClothingOuterHardsuitMedical
   name: Chief Medical Officer's Hardsuit #Far Horizons - The Great Capitalization Crusade
+  suffix: NT #Far Horizons - Dual Station Clarity
   description: A special suit that protects against hazardous, low pressure environments. Built with lightweight materials for easier movement.
   components:
   - type: Sprite
@@ -591,6 +611,7 @@
   - type: ClothingSpeedModifier
     walkModifier: 1.0 # Starlight Edit
     sprintModifier: 1.0 # Starlight Edit
+    requireActivated: false #FH cuz item toggle.
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitMedical
@@ -606,6 +627,7 @@
   parent: [ClothingOuterHardsuitBase, BaseGrandTheftContraband]
   id: ClothingOuterHardsuitRd
   name: Experimental Research Hardsuit #Far Horizons - The Great Capitalization Crusade
+  suffix: NT #Far Horizons - Dual Station Clarity
   description: A special suit that protects against hazardous, low pressure environments. Has an additional layer of armor.
   components:
   - type: Sprite
@@ -631,6 +653,7 @@
   - type: ClothingSpeedModifier
     walkModifier: 0.75
     sprintModifier: 0.75
+    requireActivated: false #FH cuz item toggle.
   - type: HeldSpeedModifier
   - type: Item
     size: Huge
@@ -655,6 +678,7 @@
   parent: [ClothingOuterHardsuitBase, BaseCommandContraband]
   id: ClothingOuterHardsuitSecurityRed
   name: Head Of Security's Hardsuit #Far Horizons - The Great Capitalization Crusade
+  suffix: NT #Far Horizons - Dual Station Clarity
   description: A special suit that protects against hazardous, low pressure environments. Has an additional layer of armor.
   components:
   - type: Sprite
@@ -709,6 +733,7 @@
   - type: ClothingSpeedModifier
     walkModifier: 0.8
     sprintModifier: 0.8
+    requireActivated: false #FH cuz item toggle.
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitSecurityRed
@@ -742,6 +767,7 @@
   parent: ClothingOuterHardsuitBase
   id: ClothingOuterHardsuitLuxury #DO NOT MAP - https://github.com/space-wizards/space-station-14/pull/19738#issuecomment-1703486738
   name: Luxury Mining Hardsuit #Far Horizons - The Great Capitalization Crusade
+  suffix: GSL #Far Horizons - Dual Station Clarity
   description: A refurbished mining hardsuit, fashioned after the Quartermaster's colors. Graphene lining provides less protection, but is much easier to move.
   categories: [ DoNotMap ]
   components:
@@ -768,6 +794,7 @@
   - type: ClothingSpeedModifier
     walkModifier: 0.9
     sprintModifier: 0.9
+    requireActivated: false #FH cuz item toggle.
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitLuxury
@@ -778,6 +805,7 @@
   parent: [ ClothingOuterHardsuitBase, BaseSyndicateContraband ]
   id: ClothingOuterHardsuitSyndie
   name: Blood-Red Hardsuit #Far Horizons - The Great Capitalization Crusade
+  suffix: S #Far Horizons - Dual Station Clarity
   description: A heavily armored hardsuit designed for work in special operations. Property of Gorlex Marauders.
   components:
   - type: Sprite
@@ -818,6 +846,7 @@
   - type: ClothingSpeedModifier
     walkModifier: 0.9
     sprintModifier: 0.9
+    requireActivated: false #FH cuz item toggle.
   - type: HeldSpeedModifier
   - type: FootstepModifier # STARLIGHT
     footstepSoundCollection:
@@ -845,6 +874,7 @@
   parent: [ClothingOuterHardsuitSyndie, BaseSyndicateContraband]
   id: ClothingOuterHardsuitSyndieMedic
   name: Blood-Red Medic Hardsuit #Far Horizons - The Great Capitalization Crusade
+  suffix: S #Far Horizons - Dual Station Clarity
   description: A heavily armored and agile advanced hardsuit specifically designed for field medic operations.
   components:
   - type: Sprite
@@ -866,6 +896,7 @@
   parent: [ClothingOuterHardsuitBase, BaseSyndicateContraband]
   id: ClothingOuterHardsuitSyndieElite
   name: Syndicate Elite Hardsuit #Far Horizons - The Great Capitalization Crusade
+  suffix: S #Far Horizons - Dual Station Clarity
   description: An elite version of the blood-red hardsuit, with improved radiation resistance and fireproofing. Property of Gorlex Marauders.
   components:
   - type: Sprite
@@ -927,6 +958,7 @@
   - type: ClothingSpeedModifier
     walkModifier: 0.9
     sprintModifier: 0.9
+    requireActivated: false #FH cuz item toggle.
   - type: HeldSpeedModifier
   - type: FootstepModifier # STARLIGHT
     footstepSoundCollection:
@@ -950,6 +982,7 @@
   parent: [ClothingOuterHardsuitBase, BaseSyndicateContraband]
   id: ClothingOuterHardsuitSyndieCommander
   name: Syndicate Commander Hardsuit #Far Horizons - The Great Capitalization Crusade
+  suffix: S #Far Horizons - Dual Station Clarity
   description: A bulked up version of the blood-red hardsuit, purpose-built for the commander of a syndicate operative squad. Has significantly improved armor for those deadly front-lines firefights.
   components:
   - type: Sprite
@@ -988,6 +1021,7 @@
   - type: ClothingSpeedModifier
     walkModifier: 0.95
     sprintModifier: 0.95
+    requireActivated: false #FH cuz item toggle.
   - type: HeldSpeedModifier
   - type: FootstepModifier # STARLIGHT
     footstepSoundCollection:
@@ -1012,6 +1046,7 @@
   parent: [ClothingOuterHardsuitBase, BaseSyndicateContraband]
   id: ClothingOuterHardsuitJuggernaut
   name: Cybersun Juggernaut Suit #Far Horizons - The Great Capitalization Crusade
+  suffix: S #Far Horizons - Dual Station Clarity
   description: A suit made by the cutting edge R&D department at cybersun to be hyper resilient.
   components:
   - type: Sprite
@@ -1027,12 +1062,12 @@
         - state: equipped-OUTERCLOTHING
       outerClothing-vox:
         - state: equipped-OUTERCLOTHING-vox
-      outerClothing-cyclorite:
-        - state: equipped-OUTERCLOTHING-cyclorite
-      outerClothing-vulpkanin:
-        - state: equipped-OUTERCLOTHING-vulpkanin
-      outerClothing-felionoid:
-        - state: equipped-OUTERCLOTHING-felionoids
+      #outerClothing-cyclorite: #Far Horizons - Didn't get resprited?
+      #  - state: equipped-OUTERCLOTHING-cyclorite
+      #outerClothing-vulpkanin:  #Far Horizons - Didn't get resprited?
+      #  - state: equipped-OUTERCLOTHING-vulpkanin
+      #outerClothing-felionoid:  #Far Horizons - Didn't get resprited?
+      #  - state: equipped-OUTERCLOTHING-felionoids
       outerClothing-resomi:
         - state: equipped-OUTERCLOTHING-resomi
       outerClothing-avali:
@@ -1062,6 +1097,7 @@
   - type: ClothingSpeedModifier
     walkModifier: 0.65
     sprintModifier: 0.65
+    requireActivated: false #FH cuz item toggle.
   - type: HeldSpeedModifier
   - type: FootstepModifier #starlight
     footstepSoundCollection:
@@ -1116,6 +1152,7 @@
   - type: ClothingSpeedModifier
     walkModifier: 0.8
     sprintModifier: 0.8
+    requireActivated: false #FH cuz item toggle.
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitWizard
@@ -1158,6 +1195,7 @@
   - type: ClothingSpeedModifier
     walkModifier: 0.8
     sprintModifier: 0.8
+    requireActivated: false #FH cuz item toggle.
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitLing
@@ -1194,6 +1232,7 @@
   - type: ClothingSpeedModifier
     walkModifier: 0.6
     sprintModifier: 0.6
+    requireActivated: false #FH cuz item toggle.
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitPirateEVA
@@ -1233,6 +1272,7 @@
   - type: ClothingSpeedModifier
     walkModifier: 0.8
     sprintModifier: 0.8
+    requireActivated: false #FH cuz item toggle.
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitPirateCap
@@ -1412,6 +1452,7 @@
   parent: [ BaseCentcommContraband, ClothingOuterHardsuitBase ]
   id: ClothingOuterHardsuitDeathsquad
   name: Death Squad Hardsuit #Far Horizons - The Great Capitalization Crusade
+  suffix: NT #Far Horizons - Dual Station Clarity
   description: An advanced hardsuit favored by commandos for use in special operations.
   components:
   - type: Sprite
@@ -1448,6 +1489,7 @@
   - type: ClothingSpeedModifier
     walkModifier: 1.0
     sprintModifier: 1.0
+    requireActivated: false #FH cuz item toggle.
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitDeathsquad
@@ -1494,6 +1536,7 @@
   - type: ClothingSpeedModifier
     walkModifier: 1.0
     sprintModifier: 1.0
+    requireActivated: false #FH cuz item toggle.
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetCBURN
@@ -1530,6 +1573,7 @@
   - type: ClothingSpeedModifier
     walkModifier: 0.9
     sprintModifier: 0.9
+    requireActivated: false #FH cuz item toggle.
   - type: HeldSpeedModifier
   - type: Construction
     graph: ClownHardsuit
@@ -1582,6 +1626,7 @@
   - type: ClothingSpeedModifier
     walkModifier: 0.9
     sprintModifier: 0.9
+    requireActivated: false #FH cuz item toggle.
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitSanta
@@ -1617,5 +1662,6 @@
   - type: ClothingSpeedModifier
     walkModifier: 0.9
     sprintModifier: 0.9
+    requireActivated: false #FH cuz item toggle.
   - type: HeldSpeedModifier
   - type: Unremoveable

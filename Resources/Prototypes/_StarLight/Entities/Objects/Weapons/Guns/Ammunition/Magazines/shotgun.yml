@@ -2,7 +2,7 @@
 
 - type: entity
   id: BaseMagazineShotgunToz
-  name: magazine (.42 shells)
+  name: Magazine (.42 Shells) #Far Horizons - The Great Capitalization Crusade
   parent: [ BaseItem, BaseSecurityContraband ]
   abstract: true
   components:
@@ -42,8 +42,8 @@
 
 - type: entity
   id: MagazineShotgunTozEmpty
-  name: magazine (.42 shells any)
-  suffix: empty
+  name: Magazine (.42 Shells) #Far Horizons - The Great Capitalization Crusade
+  suffix: Empty #Far Horizons - The Great Capitalization Crusade
   parent: BaseMagazineShotgunToz
   components:
   - type: BallisticAmmoProvider
@@ -51,7 +51,7 @@
 
 - type: entity
   id: MagazineShotgunToz
-  name: magazine (.42 pellet)
+  name: Magazine (.42 Pellet) #Far Horizons - The Great Capitalization Crusade
   parent: BaseMagazineShotgunToz
   components:
   - type: BallisticAmmoProvider
@@ -65,8 +65,8 @@
 
 - type: entity
   id: MagazineShotgunTozExtendedEmpty
-  name: magazine (.42 shells any)
-  suffix: empty
+  name: Magazine (.42 Shells) #Far Horizons - The Great Capitalization Crusade
+  suffix: Extended, Empty #Far Horizons - The Great Capitalization Crusade
   parent: BaseMagazineShotgunToz
   components:
   - type: BallisticAmmoProvider
@@ -81,7 +81,8 @@
 
 - type: entity
   id: MagazineShotgunTozExtended
-  name: magazine (.42 pellet)
+  name: Magazine (.42 Pellet) #Far Horizons - The Great Capitalization Crusade
+  suffix: Extended #Far Horizons
   parent: BaseMagazineShotgunToz
   components:
   - type: BallisticAmmoProvider

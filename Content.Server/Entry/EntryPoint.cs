@@ -197,6 +197,7 @@ namespace Content.Server.Entry
 
             // Far Horizons
             IoCManager.Resolve<IDiscordLinkManager>().Initialize();
+            IoCManager.Resolve<IServerFactionManager>().PostInit();
         }
 
         public override void Update(ModUpdateLevel level, FrameEventArgs frameEventArgs)
