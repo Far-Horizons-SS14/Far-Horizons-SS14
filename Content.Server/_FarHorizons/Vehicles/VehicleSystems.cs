@@ -255,6 +255,12 @@ public sealed partial class VehicleSystems : SharedVehicleSystems
     {
         if(args.Handled) return;
         if(ent.Comp.Rider == null) return;
+        if(!TryComp<MovementSpeedModifierComponent>(ent.Owner, out var msmComp) || msmComp.BaseSprintSpeed <= 0)
+        {
+            args.Handled = true;
+            _popup.PopupEntity(Loc.GetString("vehicle-turn-keys-fail"), ent.Owner, PopupType.SmallCaution);
+            return;
+        }
         if(!ent.Comp.Started)
         {
             _popup.PopupEntity(Loc.GetString("vehicle-turn-keys-start"), ent.Owner, PopupType.Medium);
