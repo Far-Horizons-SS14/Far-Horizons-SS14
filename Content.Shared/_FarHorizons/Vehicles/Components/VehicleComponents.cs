@@ -79,9 +79,6 @@ public sealed partial class VehicleComponent : Component
     [DataField("timeToStealKeys"), AutoNetworkedField]
     public TimeSpan timeToStealKeys = TimeSpan.FromSeconds(3);
 
-    [ViewVariables, AutoNetworkedField]
-    public Direction? currentDirection;
-
     /// <summary>
     /// Trigger crash?
     /// </summary>

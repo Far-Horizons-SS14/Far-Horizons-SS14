@@ -117,7 +117,6 @@ public sealed partial class VehicleSystems : SharedVehicleSystems
         SubscribeLocalEvent<VehicleBuckleComponent, UnstrapAttemptEvent>(OnUnstrapAttempt);
         SubscribeLocalEvent<VehicleBuckleComponent, VehicleUnbuckleDoAfter>(OnUnbuckleDoAfter);
         SubscribeLocalEvent<VehicleBuckleComponent, RefreshMovementSpeedModifiersEvent>(OnMovementSpeedRefreshVehicleEvent);
-        SubscribeLocalEvent<VehicleBuckleComponent, MoveInputEvent>(OnMoveInputEvent);
 
         SubscribeLocalEvent<VehicleContainerComponent, DragDropTargetEvent>(OnDragDrop);
         SubscribeLocalEvent<VehicleContainerComponent, VehicleEntryDoAfter>(OnVehicleEntryDoAfter);
@@ -532,17 +531,6 @@ public sealed partial class VehicleSystems : SharedVehicleSystems
         if(!TryComp<MovementSpeedModifierComponent>(vehicleComp.Rider.Value, out var msmComp)) return;
         args.ModifySpeed(msmComp.WalkSpeedModifier, msmComp.SprintSpeedModifier);
 
-    }
-
-    private void OnMoveInputEvent(Entity<VehicleBuckleComponent> ent, ref MoveInputEvent args)
-    {
-        if(!TryComp<VehicleComponent>(ent.Owner, out var vehicleComp)) return;
-        if(!vehicleComp.Started && vehicleComp.RequireIgnition) return;
-        if(args.Dir == Direction.Invalid) return;
-        if(args.Dir == vehicleComp.currentDirection) return;
-        vehicleComp.currentDirection = args.Dir;
-        Dirty(ent.Owner, vehicleComp);
-        TryUpdateVisualState((ent, vehicleComp));
     }
 
     #endregion
