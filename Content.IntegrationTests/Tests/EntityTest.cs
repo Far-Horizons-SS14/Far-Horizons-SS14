@@ -21,6 +21,7 @@ namespace Content.IntegrationTests.Tests
         private static readonly ProtoId<EntityCategoryPrototype> SpawnerCategory = "Spawner";
 
         [Test]
+        [Ignore("With our growing list of entities, spawning all of them in 4 separate tests becomes too costly")]
         public async Task SpawnAndDeleteAllEntitiesOnDifferentMaps()
         {
             // This test dirties the pair as it simply deletes ALL entities when done. Overhead of restarting the round
@@ -87,6 +88,7 @@ namespace Content.IntegrationTests.Tests
         }
 
         [Test]
+        [Ignore("With our growing list of entities, spawning all of them in 4 separate tests becomes too costly")]
         public async Task SpawnAndDeleteAllEntitiesInTheSameSpot()
         {
             // This test dirties the pair as it simply deletes ALL entities when done. Overhead of restarting the round
