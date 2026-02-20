@@ -237,17 +237,24 @@ public sealed class VehicleAtmosphereSystem : EntitySystem
         }
         args.Handled = true;
     }
-
+    
     private VehicleFanModComponent? GetFanModule(EntityUid ent)
     {
-
+        // Direct component case
         if (TryComp<VehicleFanModComponent>(ent, out var fanModule))
             return fanModule;
-        else if (TryComp<VehicleModsComponent>(ent, out var vmComp) 
-            && TryComp(vmComp.Equipment[EquipmentType.VENTFAN], out fanModule))
-            return fanModule;
 
-        return null;
+        // Equipment case
+        if (!TryComp<VehicleModsComponent>(ent, out var vmComp))
+            return null;
+
+        if (!vmComp.Equipment.TryGetValue(EquipmentType.VENTFAN, out var fanUid))
+            return null;
+
+        if (!TryComp(fanUid, out fanModule))
+            return null;
+
+        return fanModule;
     }
 
     #endregion
