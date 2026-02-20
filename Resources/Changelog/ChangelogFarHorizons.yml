@@ -6794,5 +6794,573 @@ Entries:
   id: 79004
   time: '2026-02-13T02:32:58.000000+00:00'
   url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/790
+- author: CorruptOmega
+  changes:
+  - message: Tweaked a bunch of antag role timers that were missed previously so maybe
+      we'll get more antags.
+    type: Tweak
+  id: 79700
+  time: '2026-02-13T18:42:05.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/797
+- author: Killer Tamashi
+  changes:
+  - message: Added new Security Ship (Every map except Manor & Omega)
+    type: Add
+  id: 79100
+  time: '2026-02-13T19:06:44.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/791
+- author: Killer Tamashi
+  changes:
+  - message: Added miscellaneous mapping tools for Security (Filled mugs, station
+      beacons.. other things I can't remember)
+    type: Add
+  id: 79101
+  time: '2026-02-13T19:06:44.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/791
+- author: Killer Tamashi
+  changes:
+  - message: Added Fake Walls, currently exclusively used for Sec Checkpoint workaround
+      routes.
+    type: Add
+  id: 79102
+  time: '2026-02-13T19:06:44.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/791
+- author: Killer Tamashi
+  changes:
+  - message: Added "Smart" Slugcats, currently only used for the scug called Inquisitive
+      Tethers. They can utilize most weapons and gear, as well as speak galcommon
+      sign.
+    type: Add
+  id: 79103
+  time: '2026-02-13T19:06:44.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/791
+- author: Killer Tamashi
+  changes:
+  - message: Added missing displacement maps for Slugcats (outerClothing)
+    type: Add
+  id: 79104
+  time: '2026-02-13T19:06:44.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/791
+- author: Killer Tamashi
+  changes:
+  - message: Added breaching hammers for security (This is, mechanically, a fireaxe
+      but for sec)
+    type: Add
+  id: 79105
+  time: '2026-02-13T19:06:44.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/791
+- author: jhrushbe
+  changes:
+  - message: Added CVars to the nuclear reactor. As a consequence, the nuclear reactor's
+      behavior has been significantly altered.
+    type: Add
+  id: 76300
+  time: '2026-02-15T02:14:22.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/763
+- author: jhrushbe
+  changes:
+  - message: Added the unlimited range bug back to the nuclear reactor monitor. Can
+      only be activated by an admin.
+    type: Add
+  id: 76301
+  time: '2026-02-15T02:14:22.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/763
+- author: jhrushbe
+  changes:
+  - message: Added rudimentary particles to the nuclear reactor and gas turbine.
+    type: Add
+  id: 76302
+  time: '2026-02-15T02:14:22.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/763
+- author: jhrushbe
+  changes:
+  - message: Added a damaged sound to the gas turbine.
+    type: Add
+  id: 76303
+  time: '2026-02-15T02:14:22.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/763
+- author: jhrushbe
+  changes:
+  - message: The nuclear reactor's default maximum safe thermal power has been increased
+      from 10MW to 20MW.
+    type: Tweak
+  id: 76304
+  time: '2026-02-15T02:14:22.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/763
+- author: jhrushbe
+  changes:
+  - message: The nuclear reactor and gas turbine now agree on the definition of a
+      watt.
+    type: Tweak
+  id: 76305
+  time: '2026-02-15T02:14:22.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/763
+- author: jhrushbe
+  changes:
+  - message: Reworked nuclear reactor and gas turbine prototypes.
+    type: Tweak
+  id: 76306
+  time: '2026-02-15T02:14:22.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/763
+- author: jhrushbe
+  changes:
+  - message: Gas turbine repairs will now automatically repeat.
+    type: Tweak
+  id: 76307
+  time: '2026-02-15T02:14:22.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/763
+- author: jhrushbe
+  changes:
+  - message: The nuclear reactor's UI will now show the target on all views.
+    type: Tweak
+  id: 76308
+  time: '2026-02-15T02:14:22.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/763
+- author: jhrushbe
+  changes:
+  - message: Broke up the guidebook entry for the nuclear reactor so that it is easier
+      to read.
+    type: Tweak
+  id: 76309
+  time: '2026-02-15T02:14:22.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/763
+- author: jhrushbe
+  changes:
+  - message: Hot reactor rods will now heat the room according to the gas's heat capacity,
+      this also makes them much stronger.
+    type: Tweak
+  id: 76310
+  time: '2026-02-15T02:14:22.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/763
+- author: jhrushbe
+  changes:
+  - message: A nuclear meltdown is now reversible by an admin.
+    type: Tweak
+  id: 76311
+  time: '2026-02-15T02:14:22.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/763
+- author: jhrushbe
+  changes:
+  - message: Nuclear reactor prefabs will now auto-apply when selected.
+    type: Tweak
+  id: 76312
+  time: '2026-02-15T02:14:22.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/763
+- author: jhrushbe
+  changes:
+  - message: Reactor parts are no longer deleted when inserted into the nuclear reactor.
+      The plutonium ghost role description has been changed to reflect this.
+    type: Tweak
+  id: 76313
+  time: '2026-02-15T02:14:22.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/763
+- author: jhrushbe
+  changes:
+  - message: Fixed a bug where the gas turbine would spam popups when trying to repair
+      without a blade/stator.
+    type: Fix
+  id: 76314
+  time: '2026-02-15T02:14:22.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/763
+- author: jhrushbe
+  changes:
+  - message: Fixed a bug where the gas turbine would show give the correct popups
+      while being repaired.
+    type: Fix
+  id: 76315
+  time: '2026-02-15T02:14:22.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/763
+- author: jhrushbe
+  changes:
+  - message: Fixed a bug where the nuclear reactor would show the wrong popup when
+      attempting to anchor in an invalid position.
+    type: Fix
+  id: 76316
+  time: '2026-02-15T02:14:22.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/763
+- author: jhrushbe
+  changes:
+  - message: Fixed a bug where the nuclear reactor's UI would be non-functional in
+      expeditions.
+    type: Fix
+  id: 76317
+  time: '2026-02-15T02:14:22.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/763
+- author: jhrushbe
+  changes:
+  - message: Fixed a bug where the nuclear reactor and gas turbine would be unable
+      to sound alarms after being unanchored.
+    type: Fix
+  id: 76318
+  time: '2026-02-15T02:14:22.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/763
+- author: jhrushbe
+  changes:
+  - message: Definitively fixed a bug where a melted-down nuclear reactor would use
+      ammonia to cut holes in space-time.
+    type: Fix
+  id: 76319
+  time: '2026-02-15T02:14:22.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/763
+- author: Killer Tamashi
+  changes:
+  - message: Added Scurret Sign as a 1 point language you can pick on character creation
+    type: Add
+  id: 80100
+  time: '2026-02-15T02:19:12.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/801
+- author: Killer Tamashi
+  changes:
+  - message: Added Scurret Sign to both Silicons and Liberians to follow theme of
+      them knowing everything
+    type: Add
+  id: 80101
+  time: '2026-02-15T02:19:12.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/801
+- author: Killer Tamashi
+  changes:
+  - message: Changed Galcommon Sign to 1 point
+    type: Tweak
+  id: 80102
+  time: '2026-02-15T02:19:12.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/801
+- author: Killer Tamashi
+  changes:
+  - message: Changed Language trait picks to 3 (Allowing you to choose a species specific
+      language like, say, scratch and an additional non-species specific one like,
+      say, sign.)
+    type: Tweak
+  id: 80103
+  time: '2026-02-15T02:19:12.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/801
+- author: princess_gurchi
+  changes:
+  - message: Replaced infinite spawners of ghostrole slimes in dungeons with normal
+      mob slimes
+    type: Fix
+  id: 80200
+  time: '2026-02-15T02:22:34.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/802
+- author: CyberCheburek
+  changes:
+  - message: Syndicate Battleship `GMN-BB-Hetman Class-Starbreaker`
+    type: Add
+  id: 78400
+  time: '2026-02-17T04:21:07.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/784
+- author: R3v3l4t1on
+  changes:
+  - message: The Yorktown has gone through a significant redesign. Also now has startup
+      instructions for the reactor.
+    type: Tweak
+  id: 78200
+  time: '2026-02-18T20:05:54.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/782
+- author: ScorchFollower
+  changes:
+  - message: Added new locker sprites for Magistrate's locker, addition of their suit-storage
+      unit as well. Rejoice Magistrate mains! Rejoice!
+    type: Add
+  id: 80800
+  time: '2026-02-19T17:02:17.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/808
+- author: jhrushbe
+  changes:
+  - message: The rejuvenate command will now reset nuclear reactors and gas turbines.
+    type: Add
+  id: 80900
+  time: '2026-02-19T17:05:32.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/809
+- author: jhrushbe
+  changes:
+  - message: Removed the mention of target view in the nuclear reactor's guidebook.
+    type: Remove
+  id: 80901
+  time: '2026-02-19T17:05:32.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/809
+- author: jhrushbe
+  changes:
+  - message: Fixed a bug where the nuclear reactor would not delete the parts inside
+      it after a meltdown.
+    type: Fix
+  id: 80902
+  time: '2026-02-19T17:05:32.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/809
+- author: jhrushbe
+  changes:
+  - message: Fixed a bug where the nuclear reactor would leak heat into its surroundings.
+    type: Fix
+  id: 80903
+  time: '2026-02-19T17:05:32.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/809
+- author: jhrushbe
+  changes:
+  - message: Fixed a bug where the fuel rod smite would not correctly polymorph the
+      target, at the sacrifice of some VFX.
+    type: Fix
+  id: 80904
+  time: '2026-02-19T17:05:32.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/809
+- author: Killer Tamashi
+  changes:
+  - message: Added Taser (Melee) - Hits very fast, is less lethal but also takes longer
+      to stun.
+    type: Add
+  id: 81300
+  time: '2026-02-19T17:56:20.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/813
+- author: Killer Tamashi
+  changes:
+  - message: Renamed Taser (Ranged) to Taser Pistol
+    type: Tweak
+  id: 81301
+  time: '2026-02-19T17:56:20.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/813
+- author: Killer Tamashi
+  changes:
+  - message: Finally gave Taser Pistol a new sprite.
+    type: Tweak
+  id: 81302
+  time: '2026-02-19T17:56:20.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/813
+- author: Killer Tamashi
+  changes:
+  - message: Nerfed Taser Pistol's Capacity from 5 -> 2
+    type: Tweak
+  id: 81303
+  time: '2026-02-19T17:56:20.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/813
+- author: Killer Tamashi
+  changes:
+  - message: Nerfed Taser Pistol's Stun Damage from 33 -> 0 (pending rework that allows
+      stun over time)
+    type: Tweak
+  id: 81304
+  time: '2026-02-19T17:56:20.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/813
+- author: Killer Tamashi
+  changes:
+  - message: Buffed Taser Pistol's Knockdown Timer from 1 -> 3 (seconds)
+    type: Tweak
+  id: 81305
+  time: '2026-02-19T17:56:20.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/813
+- author: Killer Tamashi
+  changes:
+  - message: Separated Rubber bullets into proper ammo categories
+    type: Tweak
+  id: 81306
+  time: '2026-02-19T17:56:20.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/813
+- author: Killer Tamashi
+  changes:
+  - message: .44 Rubber now does 25 stamina damage from 20
+    type: Tweak
+  id: 81307
+  time: '2026-02-19T17:56:20.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/813
+- author: Killer Tamashi
+  changes:
+  - message: .38 Rubber now does 17 stamina damage from 20
+    type: Tweak
+  id: 81308
+  time: '2026-02-19T17:56:20.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/813
+- author: Killer Tamashi
+  changes:
+  - message: .35 Rubber now does 13 stamina damage from 20
+    type: Tweak
+  id: 81309
+  time: '2026-02-19T17:56:20.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/813
+- author: Killer Tamashi
+  changes:
+  - message: .20 Rubber now does 8 stamina damage from 20
+    type: Tweak
+  id: 81310
+  time: '2026-02-19T17:56:20.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/813
+- author: Killer Tamashi
+  changes:
+  - message: Removed Advanced Taser, pending code rework. It's redundant, unfortunately.
+    type: Remove
+  id: 81311
+  time: '2026-02-19T17:56:20.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/813
+- author: Killer Tamashi
+  changes:
+  - message: Fixed BSO Locker spawning with unused firearm (SP-8T) and has been given
+      the Due Process.
+    type: Fix
+  id: 81312
+  time: '2026-02-19T17:56:20.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/813
+- author: katte, Rhetorica, AlokenMaloken, CrazyPhantom
+  changes:
+  - message: Deep fryers.
+    type: Add
+  id: 80700
+  time: '2026-02-19T21:28:58.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/807
+- author: katte, Rhetorica, AlokenMaloken, CrazyPhantom
+  changes:
+  - message: Deep fryer machine board.
+    type: Add
+  id: 80701
+  time: '2026-02-19T21:28:58.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/807
+- author: katte, Rhetorica, AlokenMaloken, CrazyPhantom
+  changes:
+  - message: mozzarella sticks.
+    type: Add
+  id: 80702
+  time: '2026-02-19T21:28:58.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/807
+- author: katte, Rhetorica, AlokenMaloken, CrazyPhantom
+  changes:
+  - message: motharella sticks.
+    type: Add
+  id: 80703
+  time: '2026-02-19T21:28:58.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/807
+- author: katte, Rhetorica, AlokenMaloken, CrazyPhantom
+  changes:
+  - message: Funnel cake.
+    type: Add
+  id: 80704
+  time: '2026-02-19T21:28:58.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/807
+- author: katte, Rhetorica, AlokenMaloken, CrazyPhantom
+  changes:
+  - message: Fried ice cream.
+    type: Add
+  id: 80705
+  time: '2026-02-19T21:28:58.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/807
+- author: katte, Rhetorica, AlokenMaloken, CrazyPhantom
+  changes:
+  - message: Fish Sticks.
+    type: Add
+  id: 80706
+  time: '2026-02-19T21:28:58.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/807
+- author: katte, Rhetorica, AlokenMaloken, CrazyPhantom
+  changes:
+  - message: Corndog.
+    type: Add
+  id: 80707
+  time: '2026-02-19T21:28:58.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/807
+- author: katte, Rhetorica, AlokenMaloken, CrazyPhantom
+  changes:
+  - message: Added 2 jugs of corn oil in the chefvend.
+    type: Add
+  id: 80708
+  time: '2026-02-19T21:28:58.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/807
+- author: katte, Rhetorica, AlokenMaloken, CrazyPhantom
+  changes:
+  - message: animal organs can now be processed in a reagent grinder
+    type: Tweak
+  id: 80709
+  time: '2026-02-19T21:28:58.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/807
+- author: katte, Rhetorica, AlokenMaloken, CrazyPhantom
+  changes:
+  - message: Haggis, made of an animal stomach and some uncooked protein
+    type: Add
+  id: 80710
+  time: '2026-02-19T21:28:58.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/807
+- author: katte, Rhetorica, AlokenMaloken, CrazyPhantom
+  changes:
+  - message: Black Pudding, made of blood, water, and fat
+    type: Add
+  id: 80711
+  time: '2026-02-19T21:28:58.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/807
+- author: katte, Rhetorica, AlokenMaloken, CrazyPhantom
+  changes:
+  - message: Raw Sausage, made of uncooked protein and 1u of enzyme as a
+    type: Add
+  id: 80712
+  time: '2026-02-19T21:28:58.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/807
+- author: Killer Tamashi
+  changes:
+  - message: Added Secway Armor Kit (Light) - T1 Research
+    type: Add
+  id: 81000
+  time: '2026-02-20T17:23:34.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/810
+- author: Killer Tamashi
+  changes:
+  - message: Added Lightly Armored Secway
+    type: Add
+  id: 81001
+  time: '2026-02-20T17:23:34.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/810
+- author: Killer Tamashi
+  changes:
+  - message: Added Syndicate Segway
+    type: Add
+  id: 81002
+  time: '2026-02-20T17:23:34.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/810
+- author: Killer Tamashi
+  changes:
+  - message: Added Lightly Armored Syndicate Segway
+    type: Add
+  id: 81003
+  time: '2026-02-20T17:23:34.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/810
+- author: Killer Tamashi
+  changes:
+  - message: Added Segway
+    type: Add
+  id: 81004
+  time: '2026-02-20T17:23:34.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/810
+- author: Killer Tamashi
+  changes:
+  - message: Changed all maps in rotation (minus manor) to have 1-2 segways per department,
+      and 2-4 in common area/dorms
+    type: Tweak
+  id: 81005
+  time: '2026-02-20T17:23:34.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/810
+- author: Killer Tamashi
+  changes:
+  - message: 'Reduced # of Laser Carbines & Laser Pistols on Security Ship (3 -> 2)
+      each'
+    type: Tweak
+  id: 81006
+  time: '2026-02-20T17:23:34.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/810
+- author: Killer Tamashi
+  changes:
+  - message: Shuffled Security Shuttle Engineering area to not lead directly into
+      the highly radioactive reactor
+    type: Tweak
+  id: 81007
+  time: '2026-02-20T17:23:34.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/810
+- author: Killer Tamashi
+  changes:
+  - message: Changed some Security Shuttle Doors to Blast Doors instead (Engi Exterior
+      Airlocks / Armory Door) to make tiding in harder. Still possible, but not _as_
+      hilariously easy.
+    type: Tweak
+  id: 81008
+  time: '2026-02-20T17:23:34.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/810
+- author: Killer Tamashi
+  changes:
+  - message: Fixed Oasis substation's engineering door at arrivals not having a lock
+      on it
+    type: Fix
+  id: 81009
+  time: '2026-02-20T17:23:34.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/810
 Order: -1
 

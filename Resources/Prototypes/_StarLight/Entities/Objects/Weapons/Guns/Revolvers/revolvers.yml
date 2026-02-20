@@ -101,17 +101,20 @@
     size: Small
   - type: Clothing
     sprite: Objects/Weapons/Guns/Revolvers/snub.rsi
-  - type: RevolverAmmoProvider
+#  - type: RevolverAmmoProvider - FH edit
   - type: Gun
-    fireRate: 2.5
+    selectedMode: SemiAuto # FH Edit
+    fireRate: 1.5 # FH Edit
     availableModes:
     - SemiAuto
-    minAngle: 5
-    maxAngle: 30
-    angleIncrease: 10
-    angleDecay: 6
-    selectedMode: SemiAuto
     soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/revolver.ogg # FH Edit
+    minAngle: 20 # FH Edit
+    maxAngle: 30 # FH Edit
+#    angleIncrease: 10 - FH edit
+#    angleDecay: 6 - FH edit
+#    selectedMode: SemiAuto - FH edit
+#    soundGunshot: - FH edit
     #path: /Audio/Weapons/Guns/Gunshots/revolver.ogg
     #capacity: 6
     #chambers: [ True, True, True, True, True, True ]

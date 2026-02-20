@@ -1,0 +1,14 @@
+- type: entity
+  parent: MarkerBase
+  id: SpawnMobDetectiveScurret
+  name: Detective WaWa Spawner
+  suffix: Detective Pet
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Mobs/Animals/scurret/scurret.rsi
+        state: scurret
+  - type: ConditionalSpawner
+    prototypes:
+    - MobDetectiveScurret

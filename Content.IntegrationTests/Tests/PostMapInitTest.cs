@@ -109,6 +109,7 @@ namespace Content.IntegrationTests.Tests
             "/Maps/_FarHorizons/SHCs/shc.yml", //Syndicate high command
             "/Maps/_FarHorizons/Non-Stations/GSL.yml", //Gemini Stellar Logistics
             "/Maps/_FarHorizons/Non-Stations/ListeningOutpost.yml", //the all new listen ops :ear emoji:
+            "/Maps/_FarHorizons/Shuttles/GMN-Starbreaker-Battleship.yml", //Syndicate Battleship
             #endregion
         };
 

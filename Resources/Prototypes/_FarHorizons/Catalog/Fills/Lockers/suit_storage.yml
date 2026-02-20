@@ -19,6 +19,29 @@
     - id: OxygenTankFilled
     - id: NitrogenTankFilled
 
+# Hardsuit table for Magistrate's Suit-Storage Unit
+
+- type: entity
+  id: SuitStorageMagistrate
+  parent: SuitStorageBase
+  suffix: Magistrate
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: FillMagistrateHardsuit
+  - type: AccessReader
+
+
+- type: entityTable
+  id: FillMagistrateHardsuit
+  table: !type:AllSelector
+    children:
+    - id: ClothingOuterHardsuitMagistrate
+    - id: ClothingMaskBreath
+    - id: OxygenTankFilled
+    - id: NitrogenTankFilled
+
 
 
 #region Syndicate

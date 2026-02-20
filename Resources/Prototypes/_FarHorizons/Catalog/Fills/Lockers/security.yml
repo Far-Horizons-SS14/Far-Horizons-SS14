@@ -9,6 +9,7 @@
     contents:
       - id: FlashlightSeclite
       - id: WeaponDisabler
+      - id: WeaponHeldTaser
       - id: ClothingUniformJumpsuitSecGrey
         prob: 0.3
       - id: ClothingHeadHelmetBasic
@@ -26,15 +27,15 @@
   
 - type: entity
   id: LockerSecurityLargeFHFilled
-  suffix: NT, Filled
+  suffix: NT, Filled 
   parent: LockerSecurityLargeFH
   components:
   - type: StorageFill
     contents:
       - id: FlashlightSeclite
         amount: 2
+      - id: WeaponHeldTaser
       - id: WeaponDisabler
-        amount: 2
       - id: ClothingUniformJumpsuitSecGrey
         prob: 0.6
       - id: ClothingHeadHelmetBasic
@@ -70,8 +71,8 @@
     contents:
       - id: FlashlightSeclite
         amount: 2
+      - id: WeaponHeldTaser
       - id: WeaponDisabler
-        amount: 2
       - id: ClothingUniformJumpsuitSecGrey
         prob: 0.6
       - id: ClothingHeadHelmetBasic
@@ -107,8 +108,9 @@
     contents:
       - id: FlashlightSeclite
         amount: 3
+      - id: WeaponHeldTaser
       - id: WeaponDisabler
-        amount: 3
+        amount: 2
       - id: ClothingUniformJumpsuitSecGrey
         prob: 0.9
       - id: ClothingHeadHelmetBasic
@@ -144,8 +146,8 @@
     contents:
       - id: FlashlightSeclite
         amount: 2
+      - id: WeaponHeldTaser
       - id: WeaponDisabler
-        amount: 2
       - id: ClothingUniformJumpsuitSecGrey
         prob: 0.6
       - id: ClothingHeadHelmetBasic
@@ -200,6 +202,8 @@
       - id: RemoteSignaller
         amount: 2
       - id: Binoculars
+      - id: VehicleKeySTV
+        amount: 2 # In case the first set gets lost/stolen
 
 - type: entity
   id: LockerWardenLargeFHFilled
@@ -245,6 +249,8 @@
         amount: 4
       - id: Binoculars
         amount: 2
+      - id: VehicleKeySTV
+        amount: 2 # In case the first set gets lost/stolen
 
 - type: entity
   id: LockerBrigmedicLargeFHFilled

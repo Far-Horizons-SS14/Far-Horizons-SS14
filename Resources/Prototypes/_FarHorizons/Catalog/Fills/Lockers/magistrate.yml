@@ -1,16 +1,25 @@
-# Hardsuit table, used for suit storage as well
+# Locker & Hardsuit table for Magistrate's Locker
 - type: entityTable
-  id: FillMagistrateHardsuit
+  id: FillMagistrateLockerHardsuit
   table: !type:AllSelector
     children:
+    - id: ClothingHeadHatMagistrateCap
+    - id: ClothingHeadsetMagistrate
+    - id: ClothingEyesGlassesMagistrate
+    - id: ClothingHeadHatCowboyBlack
+    - id: MagistrateUniformSkirt
+    - id: MagistrateUniformSuit
+    - id: ClothingHeadHatPwig
+    - id: WeaponDisabler
+    - id: LuxuryPen
+    - id: BoxFolderClipboardFilled
+    - id: BoxFolderBlack
+    - id: BoxFolderRed
+    # Start of Magistrate's Suit-Storage table
     - id: ClothingOuterHardsuitMagistrate
     - id: ClothingMaskBreath
     - id: OxygenTankFilled
     - id: NitrogenTankFilled
-    - id: MagistrateUniformSkirt
-    - id: MagistrateUniformSuit
-    - id: ClothingHeadHatCowboyBlack
-    - id: ClothingHeadHatPwig
 
 - type: entity
   id: LockerMagistrateFilledHardsuit
@@ -22,4 +31,34 @@
       entity_storage: !type:AllSelector
         children:
         - !type:NestedSelector
-          tableId: FillMagistrateHardsuit
+          tableId: FillMagistrateLockerHardsuit
+
+# Locker table for Magistrate's Locker
+
+- type: entityTable
+  id: FillMagistrateLocker
+  table: !type:AllSelector
+    children:
+    - id: ClothingHeadHatMagistrateCap
+    - id: ClothingHeadsetMagistrate
+    - id: ClothingEyesGlassesMagistrate
+    - id: ClothingHeadHatCowboyBlack
+    - id: MagistrateUniformSkirt
+    - id: MagistrateUniformSuit
+    - id: ClothingShoesBootsLaceup
+    - id: ClothingHeadHatPwig
+    - id: WeaponDisabler
+    - id: LuxuryPen
+    - id: BoxFolderClipboardFilled
+    - id: BoxFolderBlack
+    - id: BoxFolderRed
+
+- type: entity
+  id: LockerMagistrateFilled
+  parent: LockerMagistrate
+  suffix: Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: FillMagistrateLocker

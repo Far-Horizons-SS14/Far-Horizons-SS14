@@ -69,32 +69,6 @@
       types:
         Blunt: 20000
 
-- type: entity
-  id: RubberBulletTrace
-  parent: BulletTrace
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: HitscanBasicDamage
-    damage:
-      types:
-        Blunt: 5
-  - type: HitscanStaminaDamage
-    staminaDamage: 20   
-  - type: HitscanBasicVisuals
-    muzzleFlash:
-      sprite: _Starlight/Objects/Weapons/Guns/Projectiles/projectiles.rsi
-      state: muzzle
-    travelFlash:
-      sprite: _Starlight/Objects/Weapons/Guns/Projectiles/projectiles.rsi
-      state: trace
-    impactFlash:
-      sprite: _Starlight/Objects/Weapons/Guns/Projectiles/projectiles.rsi
-      state: impact
-    bullet:
-      sprite:
-        sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
-        state: rubber
-
 ### magnum
 
 - type: entity

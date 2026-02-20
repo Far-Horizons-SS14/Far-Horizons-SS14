@@ -146,6 +146,17 @@
 
 - type: entity
   parent: FHAirlockExternal
+  id: FHAirlockExternalSecurityLocked
+  suffix: External, Security, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSecurity ]
+  - type: Wires
+    layoutId: AirlockSecurity
+
+- type: entity
+  parent: FHAirlockExternal
   id: FHAirlockExternalCargoLocked
   suffix: External, Cargo, Locked
   components:
@@ -187,6 +198,17 @@
       board: [ DoorElectronicsCommand ]
   - type: Wires
     layoutId: AirlockCommand
+
+- type: entity
+  parent: FHAirlockExternalGlassLong
+  id: FHAirlockExternalGlassSecurityLocked
+  suffix: External, Glass, Security, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSecurity ]
+  - type: Wires
+    layoutId: AirlockSecurity
 
 - type: entity
   parent: FHAirlockExternal

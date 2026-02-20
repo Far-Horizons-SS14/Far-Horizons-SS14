@@ -12,9 +12,9 @@
   - type: Sprite
     sprite: _FarHorizons/Structures/Storage/closet.rsi
   - type: EntityStorageVisuals
-    stateBaseClosed: alien #This is pinkish purple. I'll take it.
-    stateDoorOpen: alien_open
-    stateDoorClosed: alien_door
+    stateBaseClosed: magistrate # New sprites by ScorchFollower following this PR: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/808
+    stateDoorOpen: magistrate_open
+    stateDoorClosed: magistrate_door
   - type: AccessReader
     access: [["Magistrate"]]
   - type: WiresPanelSecurity

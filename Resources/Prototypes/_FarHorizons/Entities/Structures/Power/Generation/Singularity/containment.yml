@@ -1,0 +1,8 @@
+- type: entity
+  parent: ContainmentFieldGenerator
+  id: ContainmentFieldGeneratorShip
+  name: Ship Containment Field Generator
+  description: A machine that generates a containment field when powered by an emitter. Flings would be ship thieves into deep space.
+  components:
+  - type: ContainmentFieldGenerator
+    maxLength: 50

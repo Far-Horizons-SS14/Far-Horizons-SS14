@@ -21,6 +21,20 @@
         - RocketAmmo120mmHE
       120mmrocket_slot1:
         - RocketAmmo120mmShrapnel
+
+#Scug Belt
+- type: entity
+  id: ClothingBeltHolsterScugFilled
+  parent: ClothingBeltHolster
+  suffix: Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: SpeedLoaderMagnumRubber
+        - id: SpeedLoaderMagnumSP
+        - id: WeaponRevolverSnubRevolver
         
 #region Syndicate
 

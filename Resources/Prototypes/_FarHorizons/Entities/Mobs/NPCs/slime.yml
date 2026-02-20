@@ -1,0 +1,65 @@
+- type: entity
+  parent: BaseMobAdultSlimes
+  id: MobAdultSlimesDungeon
+  abstract: true
+  name: basic slime
+  description: It looks so much like jelly. I wonder what it tastes like?
+  suffix: No Ghostrole
+  components:
+  - type: NpcFactionMember
+    factions:
+    - SimpleHostile
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 6
+        Structural: 4
+        Caustic: 1
+        Poison: 4
+
+- type: entity
+  parent: MobAdultSlimesDungeon
+  id: MobAdultSlimesDungeonBlue
+  name: Blue Slime
+  components:
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: blue_adult_slime
+      Dead:
+        Base: blue_adult_slime_dead
+
+- type: entity
+  parent: MobAdultSlimesDungeon
+  id: MobAdultSlimesDungeonGreen
+  name: Green Slime
+  components:
+    - type: Sprite
+      layers:
+      - map: [ "enum.DamageStateVisualLayers.Base" ]
+        state: green_adult_slime
+    - type: DamageStateVisuals
+      states:
+        Alive:
+          Base: green_adult_slime
+        Dead:
+          Base: green_adult_slime_dead
+
+- type: entity
+  parent: MobAdultSlimesDungeon
+  id: MobAdultSlimesDungeonYellow
+  name: Yellow Slime
+  components:
+    - type: Sprite
+      layers:
+      - map: [ "enum.DamageStateVisualLayers.Base" ]
+        state: yellow_adult_slime
+    - type: DamageStateVisuals
+      states:
+        Alive:
+          Base: yellow_adult_slime
+        Dead:
+          Base: yellow_adult_slime_dead

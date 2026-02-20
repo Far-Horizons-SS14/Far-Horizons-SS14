@@ -549,27 +549,25 @@
 
 # HEAVILY MODIFIED BY FH.
 - type: entity
-  name: Taser #Far Horizons - The Great Capitalization Crusade
+  name: Taser Pistol #Far Horizons - The Great Capitalization Crusade
   parent: [WeaponDisablerPractice, BaseSecurityCommandContraband]
   id: WeaponDisabler
   suffix: FH SEC
-  description: A standard-issue taser that exhausts organic targets, weakening them until they collapse.
+  description: A standard-issue taser that sends strong electrical impulses into the target's central nervous system, temporarily disabling them.
   components:
   - type: Tag
     tags:
     - Taser
     - Sidearm
   - type: Sprite
-    sprite: Objects/Weapons/Guns/Battery/taser.rsi
+    sprite: _FarHorizons/Objects/Weapons/Guns/Battery/taser.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
-    - state: mag-unshaded-0
+    - state: stun-unshaded-0
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
   - type: Appearance
-  - type: Item
-    heldPrefix: taser4
   - type: Clothing
     quickEquip: false
     slots:
@@ -578,12 +576,12 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/taser.ogg
   - type: MagazineVisuals
-    magState: mag
-    steps: 5
+    magState: stun
+    steps: 3
     zeroVisible: true
   - type: BatteryAmmoProvider
     proto: BoltTaserFH
-    fireCost: 200
+    fireCost: 500
   - type: GuideHelp
     guides:
     - Security

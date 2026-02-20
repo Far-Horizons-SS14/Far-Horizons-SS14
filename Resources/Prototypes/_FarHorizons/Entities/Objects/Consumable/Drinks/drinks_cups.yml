@@ -1,0 +1,19 @@
+- type: entity
+  parent: DrinkMugBlue
+  id: DrinkHotCoffeeBlue
+  name: coffee
+  suffix: Full
+  description: Coffee is a brewed drink prepared from roasted seeds, commonly called coffee beans, of the coffee plant.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        reagents:
+        - ReagentId: Coffee
+          Quantity: 20
+  - type: Sprite
+    sprite: Objects/Consumable/Drinks/mug_blue.rsi
+    layers:
+    - state: icon
+    - state: fill-3
+      map: ["enum.SolutionContainerLayers.Fill"]

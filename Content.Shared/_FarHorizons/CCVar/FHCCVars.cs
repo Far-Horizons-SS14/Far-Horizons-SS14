@@ -3,7 +3,7 @@
 namespace Content.Shared._FarHorizons.CCVar;
 
 [CVarDefs]
-public sealed class FHCCVars
+public sealed partial class FHCCVars
 {
     
     public static readonly CVarDef<string> ServerName =

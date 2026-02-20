@@ -877,6 +877,53 @@
         - LaserWeapon
 
 - type: entity
+  id: ShelfArmoryMixedLaser
+  parent: ShelfArmoryBase
+  name: Mixed Laser Rack
+  description: Holds two special-issue Dominator Rifles & Dominator Pistols and two normal-issue Laser Rifles & Laser Pistols
+  components:
+  - type: EntityStorageVisuals
+    stateBaseClosed: shotguncase
+    stateDoorOpen: shotguncase_open
+    stateDoorClosed: shotguncase_door
+#  - type: Sprite
+#    sprite: _Afterlight/Structures/Storage/closet-large.rsi
+#    layers:
+#    - state: lasercase
+#      map: ["enum.StorageVisualLayers.Base"]
+#    - state: unlocked
+#      shader: unshaded
+#    - state: laser-0
+#    - map: ["enum.StorageFillLayers.Fill"]
+#    - state: closed
+#      map: ["enum.StorageVisualLayers.Door"]
+#    - state: locked
+#      map: ["enum.LockVisualLayers.Lock"]
+#      shader: unshaded
+#  - type: StorageFillVisualizer
+#    maxFillLevels: 5
+#    fillBaseName: laser
+  - type: Storage
+    grid:
+    - 0,0,1,3 #Long 1
+    - 3,0,4,3 #Long 2
+    - 6,0,7,3 #Long 3
+    - 9,0,10,3 #Long 4
+    - 0,5,1,5 #Pistol 1
+    - 0,6,0,6 #Pistol Bottom 1
+    - 3,5,4,5 #Pistol 2
+    - 3,6,3,6 #Pistol Bottom 2
+    - 6,5,7,5 #Pistol 3
+    - 6,6,6,6 #Pistol Bottom 3
+    - 9,5,10,5 #Pistol 4
+    - 9,6,9,6 #Pistol Bottom 4
+    whitelist:
+      tags:
+        - Sidearm
+        - Dominator
+        - LaserWeapon
+
+- type: entity
   id: ShelfArmoryDominatorLarge
   parent: ShelfArmoryBase
   name: Large Dominator Rack

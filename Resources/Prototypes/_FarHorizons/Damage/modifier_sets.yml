@@ -1,3 +1,5 @@
+#region Biological
+
 - type: damageModifierSet
   id: IPC
   coefficients:
@@ -128,6 +130,17 @@
     Cold: 0.3 # Two reasons- Literally cold blooded, as in, blood below freezing, and supreme insulation. 
     Heat: 1.4
 
+#region Vehicles
+
+- type: damageModifierSet
+  id: VehicleLightArmor
+  coefficients:
+    Blunt: 0.70
+    Slash: 0.70
+    Piercing: 0.70
+    Heat: 0.80
+
+#region Structures
 - type: damageModifierSet
   id: StructuralReactorCasing # StructuralMetallicStrong(er), it's going to take more than a mere baseball bat to do any real damage
   coefficients:

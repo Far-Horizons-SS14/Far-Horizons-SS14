@@ -81,3 +81,31 @@
     whitelist:
       tags:
       - NukeOpsUplink
+
+- type: listing
+  id: UplinkSyndicateSecway
+  name: uplink-syndicate-secway-name
+  description: uplink-syndicate-secway-description
+  icon: { sprite: /Textures/_FarHorizons/Objects/Vehicles/syndicate_segway.rsi, state: icon}
+  productEntity: VehicleSegwayBatterywithKeysNST
+  cost:
+    Telecrystal: 2 # What's more loud than a bloodred? A red segway. Plus, not that useful in the grand theme of things, asides from the universal key you get.. Funny though.
+  categories:
+    - UplinkVehicles
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 3 # Fun for the whole family
+
+- type: listing
+  id: UplinkSyndicateSecwayArmoredLight
+  name: uplink-syndicate-secway-armored-light-name
+  description: uplink-syndicate-secway-armored-light-description
+  icon: { sprite: /Textures/_FarHorizons/Objects/Vehicles/Armored/syndicate_segway_armored_light.rsi, state: icon}
+  productEntity: VehicleSegwayArmoredLightBatterywithKeysNST
+  cost:
+    Telecrystal: 4 # May I introduce you to it's slightly less useless cousin?
+  categories:
+    - UplinkVehicles
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 2 # It's not THAT strong.

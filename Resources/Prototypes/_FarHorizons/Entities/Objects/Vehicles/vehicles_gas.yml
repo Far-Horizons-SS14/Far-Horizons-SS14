@@ -224,6 +224,19 @@
         - SecSiren
 
 - type: entity
+  id: VehicleATVFueledNTSec
+  parent: VehicleATVFueledwithKeysNTSec
+  name: STV
+  suffix: Fueled, NT
+  description: Law enforcement variant of the ATV, comes included with sirens to blare at Tiders. 
+  components:
+    - type: ContainerFill
+      containers:
+        vehicle_mods_container:
+        - ATVHeadlight
+        - SecSiren
+
+- type: entity
   id: VehicleClownCar
   parent: BaseVehicleRideableDamageable
   name: Clown Car

@@ -1,3 +1,12 @@
+#Base Prototypes
+
+- type: latheRecipe
+  abstract: true
+  id: BaseArmorRecipe
+  completetime: 6
+  categories:
+  - Armor
+
 - type: latheRecipe
   parent: BaseGoldBorgModuleRecipe
   id: BorgModuleLaserCarbine
@@ -130,3 +139,14 @@
     Uranium: 100
     Silver: 200
     Gold: 50
+
+- type: latheRecipe
+  parent: BaseArmorRecipe
+  id: SecwayArmorLightKit
+  result: SecwayArmorLightKit
+  categories:
+  - LatheArmor
+  materials:
+    ReinforcedGlass: 1000
+    Steel: 500
+    Plastic: 500

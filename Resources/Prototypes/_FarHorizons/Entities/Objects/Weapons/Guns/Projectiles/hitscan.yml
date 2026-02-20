@@ -8,11 +8,9 @@
   - type: HitscanBasicDamage
     damage:
       types:
-        Shock: 2
-  - type: HitscanStaminaDamage
-    staminaDamage: 33
+        Shock: 5
   - type: HitscanCrawlerTargetEffects
-    knockdownDuration: 1 #in seconds
+    knockdownDuration: 3 #in seconds
   - type: HitscanBasicRaycast
     maxDistance: 5 #tiles
   - type: HitscanBasicVisuals
@@ -236,3 +234,80 @@
   - type: HitscanReflect
     reflectiveType: NonEnergy
     maxReflections: 20 # This is the recursion depth for reflect, ricochet, and pierce
+
+#region Rubber Rounds
+
+#base
+- type: entity
+  id: RubberBulletTrace
+  parent: BulletTrace
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HitscanBasicDamage
+    damage:
+      types:
+        Blunt: 5
+  - type: HitscanStaminaDamage
+    staminaDamage: 1  
+  - type: HitscanBasicVisuals
+    muzzleFlash:
+      sprite: _Starlight/Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: muzzle
+    travelFlash:
+      sprite: _Starlight/Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: trace
+    impactFlash:
+      sprite: _Starlight/Objects/Weapons/Guns/Projectiles/projectiles.rsi
+      state: impact
+    bullet:
+      sprite:
+        sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+        state: rubber
+
+- type: entity
+  id: RubberBulletMagnumTrace
+  parent: RubberBulletTrace
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HitscanBasicDamage
+    damage:
+      types:
+        Blunt: 5 # ~ 20 blunt
+  - type: HitscanStaminaDamage
+    staminaDamage: 25 # ~ 4 shots
+
+- type: entity
+  id: RubberBulletPistolTrace38
+  parent: RubberBulletTrace
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HitscanBasicDamage
+    damage:
+      types:
+        Blunt: 3 # ~ 18 blunt
+  - type: HitscanStaminaDamage
+    staminaDamage: 17 # ~ 6 shots
+
+- type: entity
+  id: RubberBulletPistolTrace
+  parent: RubberBulletTrace
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HitscanBasicDamage
+    damage:
+      types:
+        Blunt: 1
+  - type: HitscanStaminaDamage
+    staminaDamage: 13 # ~ 8 shots
+
+- type: entity
+  id: RubberBulletRifleTrace
+  parent: RubberBulletTrace
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HitscanBasicDamage
+    damage:
+      types:
+        Blunt: 1.2 # ~ 15.6 blunt
+  - type: HitscanStaminaDamage
+    staminaDamage: 8 # ~ 13 shots

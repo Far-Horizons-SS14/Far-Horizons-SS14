@@ -1,0 +1,46 @@
+- type: entity
+  name: Breaching Hammer
+  parent: [BaseItem, BaseSecurityContraband]
+  id: Breachinghammer
+  description: Provides swift and efficent removal of doors in your way. Also people too!
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Melee/breaching_hammer.rsi # Todo- Make FH Sprite. Placeholder sprite taken from Floof Station for now.
+    state: icon
+  - type: MeleeWeapon
+    wideAnimationRotation: 135
+    swingLeft: true
+    attackRate: 0.5
+    damage:
+      types:
+        Blunt: 18
+        Structural: 15
+    soundHit:
+      collection: MetalThud
+  - type: Wieldable
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Blunt: 27 # ~ Axe DPS for this is 22.5/s, this calculates to 22.5/s as well - I feel axe damage is very good for it.
+        Structural: 65 # ~ Axe DPS for this is 37.5/s, this calculates to 40/s - A sledgehammer -should- be better.
+  - type: Item
+    size: Large
+  - type: Clothing
+    sprite: _FarHorizons/Objects/Weapons/Melee/breaching_hammer.rsi # Todo- Make FH Sprite. Placeholder sprite taken from Floof Station for now.
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: Tool
+    qualities:
+      - Prying
+    useSound:
+      path: /Audio/Items/crowbar.ogg
+  - type: ToolTileCompatible
+  - type: Prying
+    speedModifier: 1.5
+    pryPowered: true
+    useSound:
+      path: /Audio/Items/crowbar.ogg
+  - type: UseDelay
+    delay: 1

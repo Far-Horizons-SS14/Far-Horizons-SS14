@@ -12,3 +12,9 @@ uplink-rocket-ammo-120mm-incendiary-desc = A robust rocket ammo that is designed
 
 uplink-rocket-ammo-120mm-shrapnel-name = 120mm Shrapnel Rocket
 uplink-rocket-ammo-120mm-shrapnel-desc = A toned-down variant of the 120mm armor-piercing rocket, can't pierce any size of armor.
+
+uplink-syndicate-secway-name = Segway
+uplink-syndicate-secway-description = Outspeed security on this BLISTERINGLY fast one horsepower segway!
+
+uplink-syndicate-secway-armored-light-name = Lightly Armored Segway
+uplink-syndicate-secway-armored-light-description = Outspeed security on this BLISTERINGLY fast one horsepower segway! Now with the same protection as Type I vest.
