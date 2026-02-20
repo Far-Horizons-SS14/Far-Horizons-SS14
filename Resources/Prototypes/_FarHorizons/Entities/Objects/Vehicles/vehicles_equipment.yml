@@ -241,6 +241,7 @@
       slot: VENTFAN
       allowedVehicles: Spaceship
     - type: VehicleFanMod
+      gasProcessingRate: 100
       filterGases: [ Plasma, CarbonDioxide, NitrousOxide ]
 
 - type: entity
@@ -269,6 +270,5 @@
     - type: Sprite
       sprite: Objects/Specific/Mech/mecha_equipment.rsi
       state: ripleyupgrade
-      allowedVehicles: [Electric, Gas, Spaceship]
     - type: Damageable
       damageModifierSet: Metallic
