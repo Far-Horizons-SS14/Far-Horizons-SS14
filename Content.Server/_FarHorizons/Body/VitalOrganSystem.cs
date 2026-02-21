@@ -17,6 +17,7 @@ public sealed partial class VitalOrganSystem : EntitySystem
 
     private void OnVitalOrganRemoved(Entity<VitalOrganComponent> ent, ref OrganGotRemovedEvent args)
     {
+        if (TerminatingOrDeleted(ent)) return;
         if (!TryComp<DamageableComponent>(args.Target, out var damageable)) return;
 
         _damage.ChangeDamage((args.Target, damageable), ent.Comp.Damage, true);
