@@ -85,6 +85,13 @@ public sealed class DiscordLinkManager : IDiscordLinkManager
             .Distinct()
             .ToArray() ?? [];
     }
+
+    public AdditionalPermissionsTypes GetPermissionsBytes(NetUserId userId)
+    {
+        var permissions = GetPermissions(userId.UserId);
+        if (permissions.Length == 0) return (AdditionalPermissionsTypes)0;
+        return permissions.Aggregate((a, b) => a | b);
+    }
     
     public bool HasPermission(Guid userId, AdditionalPermissionsTypes permission)
     {

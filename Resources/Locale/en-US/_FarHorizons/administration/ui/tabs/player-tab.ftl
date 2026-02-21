@@ -1,0 +1,1 @@
+﻿player-tab-cc-approved = CC Approved

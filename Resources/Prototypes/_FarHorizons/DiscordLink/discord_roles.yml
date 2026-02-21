@@ -24,14 +24,14 @@
   discordRoleId: 1407078784611385534
   playerTitle: "Admin"
   order: 4
-  additionalPermissions: [PeacefulBypass, RoleRequirementBypass, CCSHC, AdminSkins]
+  additionalPermissions: [PeacefulBypass, RoleRequirementBypass, AdminSkins]
 
 - type: discordRole
   id: DevAdmin
   discordRoleId: 1415515150123012219
   playerTitle: "Dev Admin"
   order: 5
-  additionalPermissions: [RoleRequirementBypass, CCSHC, AdminSkins]
+  additionalPermissions: [RoleRequirementBypass, AdminSkins]
 
 - type: discordRole
   id: TrialAdmin
@@ -41,15 +41,22 @@
   additionalPermissions: [AdminSkins]
 
 - type: discordRole
+  id: CCSHC
+  discordRoleId: 1456857344393613354
+  playerTitle: "CC-op"
+  order: 7
+  additionalPermissions: [CCSHC]
+
+- type: discordRole
   id: Mentor
   discordRoleId: 1407078878786359348
   playerTitle: "Mentor"
-  order: 7
-  additionalPermissions: [Mentor, CCSHC]
+  order: 8
+  additionalPermissions: [Mentor]
 
 - type: discordRole
   id: AlphaTester
   discordRoleId: 1408159176571617453
   playerTitle: "α"
-  order: 8
+  order: 9
   additionalPermissions: [AlphaTesterGhost]

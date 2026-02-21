@@ -39,5 +39,15 @@
                Text="{Loc player-tab-playtime}"
                MouseFilter="Pass"
                ToolTip="{Loc player-tab-entry-tooltip}"/>
+        <cc:VSeparator/>
+        <!-- Far Horizons start -->
+        <Label Name="CCApprovedLabel"
+               SizeFlagsStretchRatio="1"
+               HorizontalExpand="True"
+               ClipText="True"
+               Text="{Loc player-tab-cc-approved}"
+               MouseFilter="Pass"/>
+        <cc:VSeparator/>
+        <!-- Far Horizons end -->
     </BoxContainer>
 </Control>

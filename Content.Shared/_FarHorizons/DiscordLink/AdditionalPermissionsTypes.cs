@@ -1,4 +1,6 @@
-﻿namespace Content.Shared._FarHorizons.DiscordLink;
+﻿using Robust.Shared.Network;
+
+namespace Content.Shared._FarHorizons.DiscordLink;
 
 [Flags]
 public enum AdditionalPermissionsTypes : ushort  // only 16 are allowed with ushort, change type when we will need more 
@@ -9,4 +11,11 @@ public enum AdditionalPermissionsTypes : ushort  // only 16 are allowed with ush
     RoleRequirementBypass = 1 << 3,
     CCSHC =  1 << 4,
     AdminSkins = 1 << 5,
+}
+
+public static class AdditionalPermissionsTypesExtensions
+{
+    public static bool HasPermission(this AdditionalPermissionsTypes combinedPermissions,
+        AdditionalPermissionsTypes permission) =>
+        combinedPermissions.HasFlag(permission);
 }
