@@ -297,10 +297,10 @@ namespace Content.Server.Database
                     markingsList.Add(parsed);
                 }
 
-                if (Marking.ParseFromDbString($"{profile.HairName}@{profile.HairColor}") is { } facialMarking)
+                if (Marking.ParseFromDbString($"{profile.FacialHairName}@{profile.FacialHairColor}@{profile.FacialHairGlowing}") is { } facialMarking)
                     markingsList.Add(facialMarking);
 
-                if (Marking.ParseFromDbString($"{profile.HairName}@{profile.HairColor}") is { } hairMarking)
+                if (Marking.ParseFromDbString($"{profile.HairName}@{profile.HairColor}@{profile.HairGlowing}") is { } hairMarking)
                     markingsList.Add(hairMarking);
 
                 var completion = new TaskCompletionSource();
