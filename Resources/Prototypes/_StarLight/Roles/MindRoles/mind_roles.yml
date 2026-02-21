@@ -89,27 +89,25 @@
     subtype: role-subtype-ratking
     sortWeight: 50
 
-#Far Horizons-Start - Disabling cause don't have pirates currently.
-#- type: entity
-#  parent: BaseMindRoleAntag
-#  id: MindRolePirate
-#  name: Pirate Role
-#  components:
-#  - type: MindRole
-#    antag: true
-#    antagPrototype: Pirate
-#    roleType: TeamAntagonist
-#    subtype: role-subtype-pirate
-#  - type: PirateRole
+- type: entity
+  parent: BaseMindRoleAntag
+  id: MindRolePirate
+  name: Pirate Role
+  components:
+  - type: MindRole
+    antag: true
+    antagPrototype: Pirate
+    roleType: TeamAntagonist
+    subtype: role-subtype-pirate
+  - type: PirateRole
 
-#- type: entity
-#  parent: MindRolePirate
-#  id: MindRolePirateCaptain
-#  name: Pirate Captain Role
-#  components:
-#  - type: MindRole
-#    antagPrototype: PirateCaptain
-#Far Horizons-End
+- type: entity
+  parent: MindRolePirate
+  id: MindRolePirateCaptain
+  name: Pirate Captain Role
+  components:
+  - type: MindRole
+    antagPrototype: PirateCaptain
 
 - type: entity
   parent: BaseMindRoleAntag
