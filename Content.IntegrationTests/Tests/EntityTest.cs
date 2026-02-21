@@ -18,7 +18,7 @@ namespace Content.IntegrationTests.Tests
     [TestOf(typeof(EntityUid))]
     public sealed class EntityTest
     {
-        private const int BatchSize = 4000; // Far Horizons - Spawning all entities at once and only deleting them after last one is spawned means 
+        private const int BatchSize = 4000; // Far Horizons - Spawning all entities at once and only deleting them after last one is spawned means GC can't free the memory. Whis was always the root cause why we had to disable agressive server GC before. Without batching, github runner runs ouf of memory as it has to kep over 14k entities on over 14k maps spawned for the entire duration of the test.
         private static readonly ProtoId<EntityCategoryPrototype> SpawnerCategory = "Spawner";
 
         [Test]
