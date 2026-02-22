@@ -95,6 +95,9 @@
   - type: BatteryAmmoProvider
     proto: RedLightLaser
     fireCost: 50
+  - type: ControlledTurret # FH edit
+    rotationSpeed: 200
+    angleBounds: 45
 
 - type: entity
   id: ShuttleGunPerforator
@@ -151,6 +154,9 @@
   - type: BatteryAmmoProvider
     proto: RedShuttleLaser
     fireCost: 150
+  - type: ControlledTurret # FH edit
+    rotationSpeed: 20
+    angleBounds: 15
 
 # ---- Launchers ----
 # naming: EXP (Explosion) + conventional power + suffix (g for Grenade, c for RPG Cartridge) + Name
@@ -209,6 +215,7 @@
     magState: mag
     steps: 8
     zeroVisible: false
+  - type: ControlledTurret # FH edit
 
 - type: entity
   id: ShuttleGunDuster
@@ -268,6 +275,8 @@
           params:
             pitch: 2
         ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+  - type: ControlledTurret # FH edit
+    rotationSpeed: 40
 
 # ---- Other weapon ----
 

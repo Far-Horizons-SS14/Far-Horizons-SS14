@@ -12,3 +12,6 @@ signal-port-description-gas-turbine-speed-low = Speed is lower than optimal.
 
 signal-port-name-gas-turbine-data-sender = Gas Turbine
 signal-port-description-gas-turbine-data-sender = Sending info about a gas turbine to a monitor.
+
+signal-port-name-turret-control-server-data-sender = Turret Control Server
+signal-port-description-turret-control-server-data-sender = Data to be sent to a peripheral device.

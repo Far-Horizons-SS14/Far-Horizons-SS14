@@ -27,3 +27,10 @@
   name: signal-port-name-gas-turbine-data-sender
   description: signal-port-description-gas-turbine-data-sender
   defaultLinks: [ GasTurbineDataReceiver ]
+
+# Turret Control
+- type: sourcePort
+  id: TurretControlServerDataSender
+  name: signal-port-name-turret-control-server-data-sender
+  description: signal-port-description-turret-control-server-data-sender
+  defaultLinks: [ TurretControlConsoleDataReceiver ]

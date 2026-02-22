@@ -171,3 +171,44 @@
       board: !type:Container
       machine_board: !type:Container
       machine_parts: !type:Container
+
+- type: entity
+  parent: BaseComputerAiAccess
+  id: TurretControlConsole
+  name: Turret Control Console
+  description: Yes Hoven, Kaboom.
+  components:
+  - type: ApcPowerReceiver
+    powerLoad: 500
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#c9c042"
+  - type: Sprite
+    sprite: Structures/Machines/computers.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerScreen"]
+      state: request-sec
+  - type: RadarConsole
+  - type: TurretControlConsole
+  - type: ActivatableUI
+    key: enum.RadarConsoleUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.RadarConsoleUiKey.Key:
+        type: TurretControlConsoleBoundUserInterface
+  - type: DeviceList
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+  - type: DeviceLinkSink
+    ports:
+      - TurretControlConsoleDataReceiver
+  - type: Computer
+    board: TurretControlConsoleCircuitboard
+  - type: ContainerContainer
+    containers:
+      board: !type:Container
+      machine_board: !type:Container
+      machine_parts: !type:Container

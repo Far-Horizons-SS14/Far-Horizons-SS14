@@ -1,0 +1,13 @@
+- type: entity
+  id: TurretControlServerCircuitboard
+  parent: BaseMachineCircuitboard
+  name: Turret Control Server Board
+  description: A machine printed circuit board for a turret control server.
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: TurretControlServer
+    stackRequirements:
+      Cable: 10
+      Steel: 1
