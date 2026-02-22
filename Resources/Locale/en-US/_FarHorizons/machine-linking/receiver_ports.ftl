@@ -22,5 +22,5 @@ signal-port-description-gas-turbine-receiver-decrease = Decreases the stator loa
 signal-port-name-gas-turbine-data-receiver = Turbine Monitor
 signal-port-description-gas-turbine-data-receiver = Receiving info about a gas turbine.
 
-signal-port-name-turret-control-console-data-receiver = Console
+signal-port-name-turret-control-console-data-receiver = Turret Control Console
 signal-port-description-turret-control-console-data-receiver = Data connection to a Turret Control Server.
