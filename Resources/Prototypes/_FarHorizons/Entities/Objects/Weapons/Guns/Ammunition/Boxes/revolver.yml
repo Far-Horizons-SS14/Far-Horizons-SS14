@@ -1,0 +1,153 @@
+#region .38
+- type: entity
+  parent: BaseItem
+  id: BaseMagazineBoxRevolver38
+  name: Ammunition box (.38 Special)
+  abstract: true
+  components:
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeRevolver38
+    proto: CartridgeRevolver38SP
+    capacity: 40
+  - type: Item
+    size: Small
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Ammunition/Boxes/pistol.rsi
+  - type: MagazineVisuals
+    magState: mag
+    steps: 4
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  parent: BaseMagazineBoxRevolver38
+  id: MagazineBoxRevolver38SP
+  name: Ammunition box (.38 Special SP)
+  components:
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    proto: CartridgeRevolver38SP
+  - type: Sprite    
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: sp
+
+- type: entity
+  parent: BaseMagazineBoxRevolver38
+  id: MagazineBoxRevolver38HP
+  name: Ammunition box (.38 Special HP)
+  components:
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    proto: CartridgeRevolver38HP
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  parent: BaseMagazineBoxRevolver38
+  id: MagazineBoxRevolver38FMJ
+  name: Ammunition box (.38 Special FMJ)
+  components:
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    proto: CartridgeRevolver38FMJ
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: fmj
+
+- type: entity
+  parent: BaseMagazineBoxRevolver38
+  id: MagazineBoxRevolver38Incendiary
+  name: Ammunition box (.38 Special Incendiary)
+  description: A cardboard box of .38 special rounds. Intended to hold self-igniting incendiary ammunition.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRevolver38Incendiary
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: incendiary
+
+- type: entity
+  parent: BaseMagazineBoxRevolver38
+  id: MagazineBoxRevolver38Uranium
+  name: Ammunition box (.38 Special Uranium)
+  description: A cardboard box of .38 special rounds. Intended to hold exotic uranium-core ammunition.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRevolver38Uranium
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: uranium
+
+- type: entity
+  parent: BaseMagazineBoxRevolver38
+  id: MagazineBoxRevolver38AP
+  name: Ammunition box (.38 Special AP)
+  components:
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    proto: CartridgeRevolver38AP
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: ap
+
+- type: entity
+  parent: BaseMagazineBoxRevolver38
+  id: MagazineBoxRevolver38Practice
+  name: Ammunition box (.38 Special Practice)
+  description: A cardboard box of .38 special rounds. Intended to hold non-harmful chalk ammunition.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRevolver38Practice
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: practice
+
+- type: entity
+  parent: BaseMagazineBoxRevolver38
+  id: MagazineBoxRevolver38Rubber
+  name: Ammunition box (.38 Special Rubber)
+  description: A cardboard box of .38 special rounds. Intended to hold non-lethal rubber rounds.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRevolver38Rubber
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: rubber

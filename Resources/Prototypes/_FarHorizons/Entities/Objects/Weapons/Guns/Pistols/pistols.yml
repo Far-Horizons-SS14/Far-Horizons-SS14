@@ -140,21 +140,21 @@
         startingItem: PowerCellMedium
       gun_magazine:
         name: Magazine
-        startingItem: MagazinePistol40SP
+        startingItem: MagazinePistol38SP
         insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
         priority: 2
         whitelist:
           tags:
-            - MagazinePistolDP
+            - MagazinePistol38
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
-        startingItem: CartridgePistol40SP
+        startingItem: CartridgeRevolver38SP
         priority: 1
         whitelist:
           tags:
-            - CartridgePistolDP
+            - CartridgeRevolver38
   - type: Clothing
     sprite: _FarHorizons/Objects/Weapons/Guns/Pistols/dp.rsi
   - type: Item
