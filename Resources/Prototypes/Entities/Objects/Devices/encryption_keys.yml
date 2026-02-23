@@ -7,9 +7,9 @@
   components:
   - type: EncryptionKey
   - type: Item
-    sprite: /_FarHorizons/Objects/Devices/encryption_keys.rsi # Far Horizons
+    sprite: /Textures/_FarHorizons/Objects/Devices/encryption_keys.rsi # Far Horizons
   - type: Sprite
-    sprite: /_FarHorizons/Objects/Devices/encryption_keys.rsi # Far Horizons
+    sprite: /Textures/_FarHorizons/Objects/Devices/encryption_keys.rsi # Far Horizons
 
 - type: entity
   parent: EncryptionKey
@@ -257,7 +257,7 @@
     - state: ai_label
 
 - type: entity
-  parent: [ EncryptionKey, BaseSyndicateContraband ]
+  parent: [ EncryptionKeySyndi, BaseSyndicateContraband ]
   id: EncryptionKeyBinarySyndicate
   name: Binary Translator Key # Far Horizons Capitilization
   description: A syndicate encryption key that translates binary signals used by silicons.

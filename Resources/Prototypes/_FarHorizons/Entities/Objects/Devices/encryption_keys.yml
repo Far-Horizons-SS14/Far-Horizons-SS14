@@ -9,9 +9,9 @@
   components:
   - type: EncryptionKey
   - type: Item
-    sprite: /_FarHorizons/Objects/Devices/syndicate_encryption_keys.rsi
+    sprite: /Textures/_FarHorizons/Objects/Devices/syndicate_encryption_keys.rsi
   - type: Sprite
-    sprite: /_FarHorizons/Objects/Devices/syndicate_encryption_keys.rsi
+    sprite: /Textures/_FarHorizons/Objects/Devices/syndicate_encryption_keys.rsi
 
 #region misc stuff
 
@@ -44,7 +44,7 @@
   - type: Sprite
     layers:
     - state: crypt_gray
-    - sprite: _FarHorizons/Objects/Devices/encryption_keys.rsi
+    - state: _FarHorizons/Objects/Devices/encryption_keys.rsi
 
 #region Syndi Station Comms
 
@@ -61,7 +61,7 @@
   - type: Sprite
     layers:
     - state: crypt_gold
-    - sprite: com_label
+    - state: com_label
 
 - type: entity
   parent: [ EncryptionKeySyndi, BaseSecurityContraband ]
@@ -76,7 +76,7 @@
   - type: Sprite
     layers:
     - state: crypt_red
-    - sprite: sec_label
+    - state: sec_label
 
 - type: entity
   parent: [ EncryptionKeySyndi, BaseSecurityContraband ]
@@ -91,7 +91,7 @@
   - type: Sprite
     layers:
     - state: crypt_silver
-    - sprite: sci_label
+    - state: sci_label
 
 - type: entity
   parent: [ EncryptionKeySyndi, BaseSecurityContraband ]
@@ -106,7 +106,7 @@
   - type: Sprite
     layers:
     - state: crypt_silver
-    - sprite: med_label
+    - state: med_label
 
 - type: entity
   parent: [ EncryptionKeySyndi, BaseSecurityContraband ]
@@ -121,7 +121,7 @@
   - type: Sprite
     layers:
     - state: crypt_orange
-    - sprite: eng_label
+    - state: eng_label
 
 - type: entity
   parent: [ EncryptionKeySyndi, BaseSecurityContraband ]
@@ -136,7 +136,7 @@
   - type: Sprite
     layers:
     - state: crypt_gray
-    - sprite: service_label
+    - state: service_label
 
 - type: entity
   parent: [ EncryptionKeySyndi, BaseSecurityContraband ]
@@ -151,7 +151,7 @@
   - type: Sprite
     layers:
     - state: crypt_gray
-    - sprite: common_label
+    - state: common_label
 
 # stupid multi-dep comms
 
@@ -169,7 +169,7 @@
   - type: Sprite
     layers:
     - state: crypt_silver
-    - sprite: medsci_label
+    - state: medsci_label
 
 - type: entity
   parent: [ EncryptionKeySyndi, BaseSecurityContraband ]
@@ -185,7 +185,7 @@
   - type: Sprite
     layers:
     - state: crypt_silver
-    - sprite: medsec_label
+    - state: medsec_label
 
 
 #region High Command Comms
@@ -215,7 +215,7 @@
     channels:
     - GMN
     defaultChannel: GMN
-  - type: Sprite
+  - type: state
     layers:
     - state: crypt_red
     - state: synd_label
