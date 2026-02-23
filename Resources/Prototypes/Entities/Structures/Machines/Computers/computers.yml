@@ -1711,7 +1711,7 @@
   parent: BaseComputerAiAccess
   id: ComputerRoboticsControl
   name: Robotics Control Console #Far Horizons - The Great Capitalization Crusade
-  description: Used to remotely monitor, disable and destroy the station's cyborgs.
+  description: Used to remotely monitor, disable, and destroy the station's cyborgs. #FH
   components:
   - type: Sprite
     sprite: _FarHorizons/Structures/Machines/Computers/robotics.rsi #Far Horizons
@@ -1727,7 +1727,7 @@
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
   - type: RoboticsConsole
-    allowBorgControl: false
+    allowBorgControl: true #FH
   - type: ActiveRadio
     channels:
     - Science
