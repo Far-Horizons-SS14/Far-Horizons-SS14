@@ -195,10 +195,7 @@ public sealed partial class VehicleEquipmentSystems : EntitySystem
         => _damage.SetDamageModifierSetId(args.Vehicle, ent.Comp.DamageModifierSetId);
 
     private void OnLightInstalled(Entity<PointLightComponent> ent, ref InstalledVehicleEquipment args)
-    {
-        Log.Info($"{ent.Owner}");
-        _appearance.SetData(ent.Owner, EquipmentVisuals.Hidden, true);
-    }
+        => _appearance.SetData(ent.Owner, EquipmentVisuals.Hidden, true);
 
     private void GridUiChanged(Entity<VehicleModsComponent> ent, ref GridUidChangedEvent args)
         => _movementSpeed.RefreshWeightlessModifiers(ent.Owner);

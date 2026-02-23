@@ -15,7 +15,6 @@ public sealed partial class VehicleEquipmentSystems : EntitySystem
     
     private void OnAppearanceChange(EntityUid uid, VehicleEquipmentComponent component, ref AppearanceChangeEvent args)
     {
-        Log.Info($"{uid}");
         if (args.Sprite == null)
             return;
         
