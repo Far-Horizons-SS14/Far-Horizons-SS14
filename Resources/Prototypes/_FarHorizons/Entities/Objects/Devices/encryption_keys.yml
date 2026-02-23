@@ -50,6 +50,28 @@
 
 - type: entity
   parent: [ EncryptionKeySyndi, BaseSecurityContraband ]
+  id: EncryptionKeySyndiMaster
+  name: Station-Executive Encryption Key
+  description: An encryption key used by someone very high up working at a NeoSol Station.
+  components:
+  - type: EncryptionKey
+    channels:
+    - SyndiCommand
+    - SyndiSec
+    - SyndiEngi
+    - SyndiSci
+    - SyndiMed
+    - SyndiService
+    - SyndiCommon
+    defaultChannel: SyndiCommand
+  - type: Sprite
+    layers:
+    - state: crypt_gold
+    - state: cap_label
+
+
+- type: entity
+  parent: [ EncryptionKeySyndi, BaseSecurityContraband ]
   id: EncryptionKeySyndiCommand
   name: Command Encryption Key
   description: An encryption key used by someone who is a executive within the syndicate.
