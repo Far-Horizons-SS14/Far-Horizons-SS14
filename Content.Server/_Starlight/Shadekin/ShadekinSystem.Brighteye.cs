@@ -3,15 +3,13 @@ using Content.Shared._Starlight.Shadekin;
 using Content.Shared.Humanoid;
 using Content.Shared.Rejuvenate;
 using Content.Shared.Popups;
-using Content.Shared.Starlight.Medical.Surgery.Events;
-using Content.Shared.Body.Components;
 using Content.Shared.Mobs;
 using Content.Shared.Inventory;
 using Content.Server.Spawners.Components;
 using Content.Server._Starlight.Bluespace;
+using Content.Shared._FarHorizons.Body;
 using Content.Shared.Body;
 using Content.Shared.Zombies;
-using Content.Shared.Starlight.Medical.Surgery.Steps.Parts;
 
 namespace Content.Server._Starlight.Shadekin;
 
@@ -167,7 +165,7 @@ public sealed partial class ShadekinSystem
         if (body.Organs == null)
             return;
         
-        foreach (var eyes in body.Organs.ContainedEntities.Where(HasComp<OrganEyesComponent>))
+        foreach (var eyes in body.Organs.ContainedEntities.Where(HasComp<VisionOrganComponent>))
         {
             if (!TryComp<VisualOrganComponent>(eyes, out var eyeOrgan))
                 continue;
@@ -193,7 +191,7 @@ public sealed partial class ShadekinSystem
         if (body.Organs == null)
             return;
         
-        foreach (var eyes in body.Organs.ContainedEntities.Where(HasComp<OrganEyesComponent>))
+        foreach (var eyes in body.Organs.ContainedEntities.Where(HasComp<VisionOrganComponent>))
         {
             if (!TryComp<VisualOrganComponent>(eyes, out var eyeOrgan))
                 continue;

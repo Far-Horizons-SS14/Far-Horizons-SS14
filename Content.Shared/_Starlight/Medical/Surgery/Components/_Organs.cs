@@ -14,15 +14,6 @@ public sealed partial class OrganTongueComponent : Component
     public bool IsMuted;
 }
 
-[RegisterComponent, NetworkedComponent] 
-public sealed partial class OrganEyesComponent : Component
-{
-    [DataField]
-    public int? EyeDamage;
-    [DataField]
-    public int? MinDamage;
-}
-
 [RegisterComponent, NetworkedComponent, Access(typeof(SharedSurgerySystem))] 
 public sealed partial class FunctionalOrganComponent : Component
 {

@@ -1,5 +1,5 @@
+using Content.Shared.Body;
 using Content.Shared.Damage;
-using Content.Shared.Movement.Components;
 using Robust.Shared.Containers;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
@@ -7,7 +7,14 @@ using Robust.Shared.Prototypes;
 namespace Content.Shared._FarHorizons.Body;
 
 [RegisterComponent, NetworkedComponent]
-public sealed partial class EyesNotRequiredForVisionComponent : Component;
+public sealed partial class VisionOrganRequiredForVisionComponent : Component;
+
+[RegisterComponent, NetworkedComponent]
+public sealed partial class VisionOrganComponent : Component
+{
+    public int EyeDamage;
+    public int MinDamage;
+}
 
 [RegisterComponent, NetworkedComponent]
 public sealed partial class CustomOrganComponent : Component;

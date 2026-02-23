@@ -1,8 +1,6 @@
 ﻿using Content.Shared.Body;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
-using Content.Shared.Eye.Blinding.Components;
-using Content.Shared.Eye.Blinding.Systems;
 using Content.Shared.Speech.Muting;
 using Content.Shared.Starlight.Antags.Abductor;
 using Content.Shared.Starlight.Medical.Surgery.Steps.Parts;
@@ -11,8 +9,6 @@ using Content.Shared.VentCraw;
 namespace Content.Server._Starlight.Medical.Surgery;
 public sealed partial class OrganSystem : EntitySystem
 {
-
-    [Dependency] private readonly BlindableSystem _blindable = default!;
     [Dependency] private readonly DamageableSystem _damageableSystem = default!;
     [Dependency] private readonly IComponentFactory _compFactory = default!;
 
@@ -21,9 +17,6 @@ public sealed partial class OrganSystem : EntitySystem
         base.Initialize();
         SubscribeLocalEvent<FunctionalOrganComponent, OrganGotInsertedEvent>(OnFunctionalOrganImplanted);
         SubscribeLocalEvent<FunctionalOrganComponent, OrganGotRemovedEvent>(OnFunctionalOrganExtracted);
-
-        SubscribeLocalEvent<OrganEyesComponent, OrganGotInsertedEvent>(OnEyeImplanted);
-        SubscribeLocalEvent<OrganEyesComponent, OrganGotRemovedEvent>(OnEyeExtracted);
 
         SubscribeLocalEvent<OrganTongueComponent, OrganGotInsertedEvent>(OnTongueImplanted);
         SubscribeLocalEvent<OrganTongueComponent, OrganGotRemovedEvent>(OnTongueExtracted);
@@ -107,24 +100,5 @@ public sealed partial class OrganSystem : EntitySystem
         if (TerminatingOrDeleted(ent)) return;
         ent.Comp.IsMuted = HasComp<MutedComponent>(args.Target);
         EnsureComp<MutedComponent>(args.Target);
-    }
-
-    //
-
-    private void OnEyeExtracted(Entity<OrganEyesComponent> ent, ref OrganGotRemovedEvent args)
-    {
-        if (TerminatingOrDeleted(ent)) return;
-        if (!TryComp<BlindableComponent>(args.Target, out var blindable)) return;
-
-        ent.Comp.EyeDamage = blindable.EyeDamage;
-        ent.Comp.MinDamage = blindable.MinDamage;
-        _blindable.UpdateIsBlind((args.Target, blindable));
-    }
-    private void OnEyeImplanted(Entity<OrganEyesComponent> ent, ref OrganGotInsertedEvent args)
-    {
-        if (!TryComp<BlindableComponent>(args.Target, out var blindable)) return;
-
-        _blindable.SetMinDamage((args.Target, blindable), ent.Comp.MinDamage ?? 0);
-        _blindable.AdjustEyeDamage((args.Target, blindable), (ent.Comp.EyeDamage ?? 0) - blindable.MaxDamage);
     }
 }
