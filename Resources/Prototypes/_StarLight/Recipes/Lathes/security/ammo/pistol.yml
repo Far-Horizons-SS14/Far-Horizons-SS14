@@ -138,40 +138,40 @@
   materials:
     Steel: 25
 
-############ MAGAZINES (.40) ############
+############ MAGAZINES (.38) ############ FH Edit
 
 - type: latheRecipe
   parent: BaseEmptyAmmoRecipe
-  id: MagazinePistol40Empty
-  result: MagazinePistol40Empty
+  id: MagazinePistol38Empty # FH Edit
+  result: MagazinePistol38Empty # FH Edit
   materials:
     Steel: 37
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
-  id: MagazinePistol40SP
-  result: MagazinePistol40SP
+  id: MagazinePistol38SP # FH Edit
+  result: MagazinePistol38SP # FH Edit
   materials:
     Steel: 167
     
 - type: latheRecipe
   parent: BaseAmmoRecipe
-  id: MagazinePistol40HP
-  result: MagazinePistol40HP
+  id: MagazinePistol38HP # FH Edit
+  result: MagazinePistol38HP # FH Edit
   materials:
     Steel: 167
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
-  id: MagazinePistol40FMJ
-  result: MagazinePistol40FMJ
+  id: MagazinePistol38FMJ # FH Edit
+  result: MagazinePistol38FMJ # FH Edit
   materials:
     Steel: 167
     
 - type: latheRecipe
   parent: BaseAmmoRecipe
-  id: MagazinePistol40AP
-  result: MagazinePistol40AP
+  id: MagazinePistol38AP # FH Edit
+  result: MagazinePistol38AP # FH Edit
   materials:
     Steel: 90
     Uranium: 90
@@ -240,35 +240,3 @@
     Plastic: 300
     Steel: 300
     Uranium: 600
-
-############ BOXES (.40) ############
-
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: MagazineBoxPistol40SP
-  result: MagazineBoxPistol40SP
-  materials:
-    Steel: 668 #FH
-    
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: MagazineBoxPistol40HP
-  result: MagazineBoxPistol40HP
-  materials:
-    Steel: 668 #FH
-
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: MagazineBoxPistol40FMJ
-  result: MagazineBoxPistol40FMJ
-  materials:
-    Steel: 668 #FH
-    
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: MagazineBoxPistol40AP
-  result: MagazineBoxPistol40AP
-  materials:
-    Steel: 360 #FH
-    Uranium: 360 #FH
-    Plastic: 520 #FH

@@ -1,0 +1,125 @@
+#region .38
+        
+- type: entity
+  id: CartridgeRevolver38SP
+  name: Cartridge (.38 Special SP)
+  parent: BaseCartridgePistol
+  components:
+  - type: CartridgeAmmo
+    proto: BulletRevolverTrace38SP
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#326ec8"
+  - type: Tag
+    tags:
+      - Cartridge
+      - CartridgeRevolver38
+      
+- type: entity
+  id: CartridgeRevolver38HP
+  name: Cartridge (.38 Special HP)
+  parent: CartridgeRevolver38SP
+  components:
+  - type: CartridgeAmmo
+    proto: BulletRevolverTrace38HP
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#000000"
+
+- type: entity
+  id: CartridgeRevolver38FMJ
+  name: Cartridge (.38 Special FMJ)
+  parent: CartridgeRevolver38SP
+  components:
+  - type: CartridgeAmmo
+    proto: BulletRevolverTrace38FMJ
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#B68F0E"
+
+- type: entity
+  id: CartridgeRevolver38Incendiary
+  name: Cartridge (.38 Special Incendiary)
+  parent: CartridgeRevolver38SP
+  components:
+  - type: CartridgeAmmo
+    proto: BulletRevolverTrace38Incendiary
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#BFC8CA"
+
+- type: entity
+  id: CartridgeRevolver38Uranium
+  name: Cartridge (.38 Special Uranium)
+  parent: CartridgeRevolver38SP
+  components:
+  - type: CartridgeAmmo
+    proto: BulletRevolverTrace38Uranium
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#65fe08"
+
+- type: entity
+  id: CartridgeRevolver38AP
+  name: Cartridge (.38 Special AP)
+  parent: CartridgeRevolver38SP
+  components:
+  - type: CartridgeAmmo
+    proto: BulletRevolverTrace38AP
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#1A8C1A"
+
+- type: entity
+  id: CartridgeRevolver38Practice
+  name: Cartridge (.38 Special Practice)
+  parent: CartridgeRevolver38SP
+  components:
+  - type: CartridgeAmmo
+    proto: BulletRevolverTrace38Practice
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#D86E2C"
+
+- type: entity
+  id: CartridgeRevolver38Rubber
+  name: Cartridge (.38 Special Rubber)
+  parent: CartridgeRevolver38SP
+  components:
+  - type: CartridgeAmmo
+    proto: RubberBulletRevolverTrace38
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#43c4f7"
