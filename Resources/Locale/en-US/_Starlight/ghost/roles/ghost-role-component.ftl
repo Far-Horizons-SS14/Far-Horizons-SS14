@@ -35,3 +35,16 @@ ghost-role-information-syndicate-cyborg-stealth-name = Syndicate Stealth Cyborg
 ghost-role-information-xenomoproach-name = Xenomoproach
 ghost-role-information-xenomoproach-description = You are a small Xenoborg wearing the skin of a moproach as a disguise.
 ghost-role-information-xenomoproach-rules = You are a [color={role-type-team-antagonist-color}][bold]{role-type-team-antagonist-name}[/bold][/color] with all other xenoborgs. Your goal is not to attack organic beings, rather you are tasked with being cute and distracting the organics while gathering intel.
+
+
+ghost-role-information-derelict-purrfus-cyborg-name = Derelict Purrfus Cyborg
+ghost-role-information-derelict-purrfus-cyborg-description = You are a purrfus cyborg that got lost in space. After years of exposure to ion storms you find yourself near a space station. ERR urrfus lo-es you purrfus loves you puRrfus loves yo- ERR
+
+
+
+
+
+
+
+
+

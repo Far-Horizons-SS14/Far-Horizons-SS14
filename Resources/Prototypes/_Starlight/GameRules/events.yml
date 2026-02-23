@@ -357,3 +357,28 @@
   - type: LoadMapRule
     mapPath: /Maps/_Starlight/TheDark/Hideout.yml
     mapTag: TheDark
+
+
+# Derelict Cyborgs
+
+- type: entity
+  parent: BaseGameRule
+  id: DerelictPurrfusCyborgSpawn
+  components:
+  - type: StationEvent
+    globalAnnouncement: false # Starlight
+    weight: 2.5
+    earliestStart: 15
+    reoccurrenceDelay: 20
+    minimumPlayers: 4
+    duration: null
+  - type: SpaceSpawnRule
+    spawnDistance: 0
+  - type: AntagSpawner
+    prototype: PlayerPurrfusBorgDerelictGhostRole
+  - type: AntagSelection
+    definitions:
+    - spawnerPrototype: SpawnPointGhostDerelictPurrfusCyborg
+      min: 1
+      max: 1
+      pickPlayer: false
