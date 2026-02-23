@@ -1,4 +1,3 @@
-using Content.Shared._FarHorizons.Vehicles;
 using Content.Shared._FarHorizons.Vehicles.Components;
 using Content.Shared.Actions;
 using Content.Shared.Light.Components;
@@ -18,9 +17,10 @@ using Content.Shared._FarHorizons.ReagantDraw.Components;
 using Content.Shared.UserInterface;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
-using Content.Server._FarHorizons.Vehicle.Atmos;
+using Content.Server._FarHorizons.Vehicles.Atmos;
+using Content.Shared._FarHorizons.Vehicles.Events;
 
-namespace Content.Server._FarHorizons.Vehicle.Equipment;
+namespace Content.Server._FarHorizons.Vehicles.Equipment;
 public sealed partial class VehicleEquipmentSystems : EntitySystem
 {
     [Dependency] private readonly SharedContainerSystem _container = default!;

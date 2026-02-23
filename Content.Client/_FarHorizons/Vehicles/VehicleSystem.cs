@@ -1,10 +1,8 @@
 using Content.Shared._FarHorizons.Vehicles;
 using Content.Shared._FarHorizons.Vehicles.Components;
-using Content.Shared._FarHorizons.Vehicles.EntitySystems;
 using Robust.Client.GameObjects;
 using Content.Shared.Buckle.Components;
 using Robust.Client.Graphics;
-using Robust.Shared.Timing;
 
 namespace Content.Client._FarHorizons.Vehicles;
 
@@ -13,7 +11,6 @@ public sealed class VehicleSystems : SharedVehicleSystems
     [Dependency] private readonly SpriteSystem _sprite = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly IEyeManager _eye = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
     public override void Initialize()
     {
         base.Initialize();

@@ -1,4 +1,4 @@
-using Content.Shared._FarHorizons.Vehicles.EntitySystems;
+using Content.Shared._FarHorizons.Vehicles;
 using Content.Shared._FarHorizons.Vehicles.Components;
 using Content.Shared._Starlight.Actions.Events;
 using Content.Shared.Access.Components;
@@ -17,7 +17,6 @@ using Robust.Shared.Prototypes;
 using System.Numerics;
 using System.Linq;
 using Content.Shared.PowerCell;
-using Content.Shared._FarHorizons.Vehicles;
 using Robust.Shared.Physics.Events;
 using Content.Server.Stunnable;
 using Content.Shared.Projectiles;
@@ -57,8 +56,9 @@ using Content.Shared.PowerCell.Components;
 using Content.Shared.CombatMode.Pacification;
 using Content.Shared.Weapons.Ranged.Events;
 using Content.Shared.Hands;
+using Content.Shared._FarHorizons.Vehicles.Events;
 
-namespace Content.Server._FarHorizons.Vehicle;
+namespace Content.Server._FarHorizons.Vehicles;
 
 public sealed partial class VehicleSystems : SharedVehicleSystems
 {    
@@ -71,7 +71,7 @@ public sealed partial class VehicleSystems : SharedVehicleSystems
     [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private readonly TagSystem _tags = default!;
     [Dependency] private readonly PowerCellSystem _powerCell = default!;
-    [Dependency] private readonly SharedReagantDrawSystem _reagantDraw = default!;
+    [Dependency] private readonly ReagantDrawSystem _reagantDraw = default!;
     [Dependency] private readonly StunSystem _stun = default!;
     [Dependency] private readonly ThrowingSystem _throwing = default!;
     [Dependency] private readonly SharedAmbientSoundSystem _ambientSound = default!;

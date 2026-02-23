@@ -2,7 +2,7 @@
 using Content.Shared._FarHorizons.Vehicles.Components;
 using Robust.Client.GameObjects;
 
-namespace Content.Client._FarHorizons.Vehicle.Equipment;
+namespace Content.Client._FarHorizons.Vehicles.Equipment;
 public sealed partial class VehicleEquipmentSystems : EntitySystem
 {    
     [Dependency] private readonly SpriteSystem _sprite = default!;

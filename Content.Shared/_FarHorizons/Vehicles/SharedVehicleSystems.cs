@@ -11,8 +11,9 @@ using Content.Shared.Movement.Pulling.Events;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Buckle;
 using Content.Shared.Movement.Components;
+using Content.Shared._FarHorizons.Vehicles.Events;
 
-namespace Content.Shared._FarHorizons.Vehicles.EntitySystems;
+namespace Content.Shared._FarHorizons.Vehicles;
 
 public abstract partial class SharedVehicleSystems : EntitySystem
 {
