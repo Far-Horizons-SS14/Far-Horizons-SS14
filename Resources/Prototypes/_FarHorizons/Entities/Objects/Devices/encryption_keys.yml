@@ -48,7 +48,7 @@
 
 #region Syndi Station Comms
 
-- type: entity
+- type: entity 
   parent: [ EncryptionKeySyndi, BaseSecurityContraband ]
   id: EncryptionKeySyndiMaster
   name: Station-Executive Encryption Key
@@ -237,7 +237,7 @@
     channels:
     - GMN
     defaultChannel: GMN
-  - type: state
+  - type: Sprite
     layers:
     - state: crypt_red
     - state: synd_label
