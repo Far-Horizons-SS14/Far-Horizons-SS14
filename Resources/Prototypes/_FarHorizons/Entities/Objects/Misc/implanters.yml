@@ -5,3 +5,21 @@
   components:
   - type: Implanter
     implant: RadioImplantTrinary
+
+# ntnc
+  - type: entity
+  id: NTNCImplanter
+  name: NTNC Communications Implanter
+  parent: BaseImplantOnlyImplanter
+  components:
+  - type: Implanter
+    implant: RadioImplantNTNC
+
+#SHC
+  - type: entity
+  id: SHCImplanter
+  name: SHC Communications Implanter
+  parent: BaseImplantOnlyImplanterSyndi
+  components:
+  - type: Implanter
+    implant: RadioImplantSHC

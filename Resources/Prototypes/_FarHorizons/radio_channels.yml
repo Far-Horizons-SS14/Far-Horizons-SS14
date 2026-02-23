@@ -1,11 +1,11 @@
-# Misc 
+#region Misc 
 
 - type: radioChannel
   id: GSL
-  name: GSL
-  keycode: ""
-  frequency:
-  color: ""
+  name: chat-radio-gemini-stellar-logistics
+  keycode: "u"
+  frequency: 5786
+  color: "#b48b57"
 
 - type: radioChannel
   id: Trinary
@@ -14,79 +14,79 @@
   frequency: 6907
   color: "#1fb0ff"
 
-# Syndicate Comm Sets
+#region Syndicate Comm Sets
 
 - type: radioChannel
   id: SyndiCommand
-  name: Command
+  name: chat-radio-syndi-command
   keycode: "c"
-  frequency: 1214
-  color: "#ff0000"
+  frequency: 3368
+  color: "#8f0b0b"
 
 - type: radioChannel
   id: SyndiSec
-  name: Sec
+  name: chat-radio-syndi-security
   keycode: "s"
-  frequency: 1214
-  color: "#ff0000"
+  frequency: 3325
+  color: "#8a1313"
 
 - type: radioChannel
   id: SyndiSci
-  name: Sci
+  name: chat-radio-syndi-science
   keycode: "n"
-  frequency: 1214
-  color: "#ff0000"
+  frequency: 3371
+  color: "#821b27"
 
 - type: radioChannel
   id: SyndiMed
-  name: Medi
+  name: chat-radio-syndi-medical
   keycode: "m"
-  frequency: 1214
-  color: "#ff0000"
+  frequency: 3333
+  color: "#211075"
 
 - type: radioChannel
   id: SyndiEngi
-  name: engi
+  name: chat-radio-syndi-engineering
   keycode: "e"
-  frequency: 1214
-  color: "#ff0000"
+  frequency: 3364
+  color: "#8f3d1f"
 
 - type: radioChannel
-  id: Service
-  name: Service
+  id: SyndiService
+  name: chat-radio-syndi-service
   keycode: 'v'
-  frequency: 1349
-  color: "#539c00"
+  frequency: 3337
+  color: "#9e861c"
 
 - type: radioChannel
-  id: Common
-  name: Common
+  id: SyndiCommon
+  name: chat-radio-syndi-common
   keycode: ";"
-  frequency: 1459
+  frequency: 3465
   color: "#2cdb2c"
 
-# High Command Shit Yo
+#region High Command Shit Yo
 
 - type: radioChannel
   id: SHC
-  name: SHC
+  name: chat-radio-syndicate-high-command
   keycode: "r"
-  frequency: 1214
+  frequency: 3214
   color: "#ff0000"
   longRange: true
 
 - type: radioChannel
   id: GMN
-  name: GMN
+  name: chat-radio-gorlex-marauder-navy
   keycode: "g"
-  frequency: 1215
+  frequency: 3584
   color: "#990000"
   longRange: true
 
 - type: radioChannel
   id: NTNC
-  name: NTNC
+  name: chat-radio-nanotrasen-navy-corps
   keycode: "i"
-  frequency: 1338
+  frequency: 1339
   color: "#00FFFF"
   longRange: true

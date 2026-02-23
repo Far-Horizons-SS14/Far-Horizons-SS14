@@ -13,19 +13,6 @@
   - type: Sprite
     sprite: /_FarHorizons/Objects/Devices/syndicate_encryption_keys.rsi
 
-- type: entity
-  abstract: true
-  parent: BaseItem
-  id: EncryptionKeySyndi
-  name: encryption key
-  description: A small cypher chip for headsets.
-  components:
-  - type: EncryptionKey
-  - type: Item
-    sprite: /_FarHorizons/Objects/Devices/syndicate_encryption_keys.rsi
-  - type: Sprite
-    sprite: /_FarHorizons/Objects/Devices/syndicate_encryption_keys.rsi
-
 #region misc stuff
 
 - type: entity
@@ -63,18 +50,143 @@
 
 - type: entity
   parent: [ EncryptionKeySyndi, BaseSecurityContraband ]
-  id: EncryptionKeySecurityMedical
-  name: sec-med encryption key
-  description: An encryption key used by someone who both takes and saves lives.
+  id: EncryptionKeySyndiCommand
+  name: Command Encryption Key
+  description: An encryption key used by someone who is a executive within the syndicate.
   components:
   - type: EncryptionKey
     channels:
-    - Security
-    defaultChannel: Security
+    - SyndiCommand
+    defaultChannel: SyndiCommand
+  - type: Sprite
+    layers:
+    - state: crypt_gold
+    - sprite: com_label
+
+  - type: entity
+  parent: [ EncryptionKeySyndi, BaseSecurityContraband ]
+  id: EncryptionKeySyndiSecurity
+  name: Security Encryption Key
+  description: An encryption key used by someone who enforces justice.
+  components:
+  - type: EncryptionKey
+    channels:
+    - SyndiSec
+    defaultChannel: SyndiSec
+  - type: Sprite
+    layers:
+    - state: crypt_red
+    - sprite: sec_label
+
+  - type: entity
+  parent: [ EncryptionKeySyndi, BaseSecurityContraband ]
+  id: EncryptionKeySyndiSci
+  name: Science Encryption Key
+  description: An encryption key to talk about dangerous experiments.
+  components:
+  - type: EncryptionKey
+    channels:
+    - SyndiSci
+    defaultChannel: SyndiSci
+  - type: Sprite
+    layers:
+    - state: crypt_silver
+    - sprite: sci_label
+
+  - type: entity
+  parent: [ EncryptionKeySyndi, BaseSecurityContraband ]
+  id: EncryptionKeySyndiMed
+  name: Medical Encryption Key
+  description: An encryption key used by someone who saves lives.
+  components:
+  - type: EncryptionKey
+    channels:
+    - SyndiMed
+    defaultChannel: SyndiMed
+  - type: Sprite
+    layers:
+    - state: crypt_silver
+    - sprite: med_label
+
+  - type: entity
+  parent: [ EncryptionKeySyndi, BaseSecurityContraband ]
+  id: EncryptionKeySyndiEngi
+  name: Engineering Encryption Key
+  description: An encryption key made to co-ordinate fixing of the artifact room within the first 10 minutes
+  components:
+  - type: EncryptionKey
+    channels:
+    - SyndiEngi
+    defaultChannel: SyndiEngi
+  - type: Sprite
+    layers:
+    - state: crypt_orange
+    - sprite: eng_label
+
+  - type: entity
+  parent: [ EncryptionKeySyndi, BaseSecurityContraband ]
+  id: EncryptionKeySyndiService
+  name: Service Encryption Key
+  description: An encryption designed with the intention of complaining about departmental cleanliness.
+  components:
+  - type: EncryptionKey
+    channels:
+    - SyndiService
+    defaultChannel: SyndiService
   - type: Sprite
     layers:
     - state: crypt_gray
-    - sprite: 
+    - sprite: service_label
+
+  - type: entity
+  parent: [ EncryptionKeySyndi, BaseSecurityContraband ]
+  id: EncryptionKeySyndiCommon
+  name: Common Encryption Key
+  description: A encryption key specifically designed so that you mean screams out obscene comments at your co-workers.
+  components:
+  - type: EncryptionKey
+    channels:
+    - SyndiCommon
+    defaultChannel: SyndiCommon
+  - type: Sprite
+    layers:
+    - state: crypt_gray
+    - sprite: common_label
+
+# stupid multi-dep comms
+
+  - type: entity
+  parent: [ EncryptionKeySyndi, BaseSecurityContraband ]
+  id: EncryptionKeySyndiMedSci
+  name: Med-Sci Encryption Key
+  description: A encryption key made to coordiante saviour of advancements in technology relating to the medicinal field.
+  components:
+  - type: EncryptionKey
+    channels:
+    - SyndiMed
+    - SyndiSci
+    defaultChannel: SyndiMed
+  - type: Sprite
+    layers:
+    - state: crypt_silver
+    - sprite: medsci_label
+
+- type: entity
+  parent: [ EncryptionKeySyndi, BaseSecurityContraband ]
+  id: EncryptionKeySyndiSecMed
+  name: Sec-Med Encryption Key
+  description: A encryption used by someone who both takes and saves lives.
+  components:
+  - type: EncryptionKey
+    channels:
+    - SyndiSec
+    - SyndiMed
+    defaultChannel: SyndiMed
+  - type: Sprite
+    layers:
+    - state: crypt_silver
+    - sprite: medsec_label
+
 
 #region High Command Comms
 
@@ -90,8 +202,8 @@
     defaultChannel: SHC
   - type: Sprite
     layers:
-    - state: crypt_red
-    - state: synd_label
+    - state: crypt_gold
+    - state: shc_label
 
 - type: entity
   parent: [ EncryptionKeySyndi, BaseSyndicateContraband ]
