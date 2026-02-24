@@ -4,6 +4,14 @@
   parent: MobBaseScurret
   abstract: true
   components:
+  - type: MovementSpeedModifier # He gave up his speed to be smart, o7
+    baseWalkSpeed: 2.5
+    baseSprintSpeed: 4.5
+  - type: MobThresholds # Buffed a bit to compensate for lack of speed. Still less sturdy than a normal person. Something something "underwent physical training"
+    thresholds:
+      0: Alive
+      80: Critical
+      145: Dead
   - type: Inventory
     speciesId: scurret
     templateId: smartscurret

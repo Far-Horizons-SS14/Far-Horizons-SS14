@@ -1,6 +1,7 @@
 using Content.Server.Ghost;
 using Content.Shared.Light.Components;
 using Content.Shared.Light.EntitySystems;
+using Content.Shared._FarHorizons.Light; /// Far Horizons
 
 #region Starlight
 using Content.Server.Administration.Logs;
@@ -65,8 +66,8 @@ public sealed class PoweredLightSystem : SharedPoweredLightSystem
     #region Starlight
     private void OnAlertLevelChanged(AlertLevelChangedEvent args)
     {
-        var query = EntityQueryEnumerator<PoweredLightComponent>();
-        while (query.MoveNext(out var uid, out var light))
+        var query = EntityQueryEnumerator<PoweredLightComponent, ToggleLightWithAlertsComponent>(); /// FarHorizons
+        while (query.MoveNext(out var uid, out var light, out _)) /// FarHorizons
         {
             if (args.AlertLevel == "delta" || args.AlertLevel == "epsilon")
                 SetState(uid, false, light);
