@@ -9,7 +9,7 @@ public sealed partial class HumanoidCharacterProfile
 {
     private static readonly Regex RestrictedCustomSpecieNameRegex = new(@"[^A-Za-z0-9 '\-,]|\B\s+|\s+\B"); //Starlight
 
-    [DataField] public string SiliconVoice { get; set; } = "";
+    public string SiliconVoice { get; set; } = ""; // Far Horizon - removed datafield. Clean up unused fields in character export
 
     [DataField] public string PersonalityDescription { get; set; } = string.Empty;
 
@@ -30,7 +30,7 @@ public sealed partial class HumanoidCharacterProfile
     /// <summary>
     /// Detailed text that can appear for the character if <see cref="CCVars.FlavorText"/> is enabled.
     /// </summary>
-    [DataField]
+    /// Far Horizons - removed datafield. Obsolete field, cleanup character profile export
     [Obsolete("Use PhysicalDescription instead!")]
     public string FlavorText
     {

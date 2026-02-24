@@ -21,6 +21,7 @@ using Robust.Shared.Serialization.Markdown;
 using Robust.Shared.Serialization;
 using Robust.Shared.Utility;
 using Content.Shared._FarHorizons.Factions;
+using Content.Shared._FarHorizons.Humanoid;
 using Robust.Shared;
 using YamlDotNet.RepresentationModel;
 
@@ -59,7 +60,7 @@ namespace Content.Shared.Preferences
         /// <summary>
         /// Is this character enabled? (Should it be considered for round start selection?)
         /// </summary>
-        [DataField]
+        // Far Horizon - removed datafield. Clean up fields in character export. This one makes no sense to be exported/imported
         public bool Enabled;
 
         /// <summary>
@@ -73,7 +74,7 @@ namespace Content.Shared.Preferences
         [DataField]
         public string Name { get; set; } = "John Doe";
 
-        [DataField]
+        // Far Horizon - removed datafield. Clean up unused fields in character export
         public string Voice { get; set; } = "";
         /// <summary>
         /// Associated <see cref="SpeciesPrototype"/> for this profile.
@@ -887,7 +888,7 @@ namespace Content.Shared.Preferences
             IoCManager.Resolve(ref serialization);
             IoCManager.Resolve(ref configuration);
 
-            var export = new HumanoidProfileExportV2()
+            var export = new HumanoidProfileExportFH()
             {
                 ForkId = configuration.GetCVar(CVars.BuildForkId),
                 Profile = this,
@@ -897,35 +898,36 @@ namespace Content.Shared.Preferences
             return dataNode;
         }
 
-        public static HumanoidCharacterProfile FromStream(Stream stream, ICommonSession session, ISerializationManager? serialization = null, IConfigurationManager? configuration = null)
-        {
-            IoCManager.Resolve(ref serialization);
-            IoCManager.Resolve(ref configuration);
+        // Far Horizons - moved to Far Horizons file
+        // public static HumanoidCharacterProfile FromStream(Stream stream, ICommonSession session, ISerializationManager? serialization = null, IConfigurationManager? configuration = null)
+        // {
+        //     IoCManager.Resolve(ref serialization);
+        //     IoCManager.Resolve(ref configuration);
 
-            using var reader = new StreamReader(stream, EncodingHelpers.UTF8);
-            var yamlStream = new YamlStream();
-            yamlStream.Load(reader);
+        //     using var reader = new StreamReader(stream, EncodingHelpers.UTF8);
+        //     var yamlStream = new YamlStream();
+        //     yamlStream.Load(reader);
 
-            var root = yamlStream.Documents[0].RootNode;
-            HumanoidCharacterProfile profile;
-            if (root["version"].Equals(new YamlScalarNode("1")))
-            {
-                var export = serialization.Read<HumanoidProfileExportV1>(root.ToDataNode(), notNullableOverride: true);
-                profile = export.ToV2().Profile;
-            }
-            else if (root["version"].Equals(new YamlScalarNode("2")))
-            {
-                var export = serialization.Read<HumanoidProfileExportV2>(root.ToDataNode(), notNullableOverride: true);
-                profile = export.Profile;
-            }
-            else
-            {
-                throw new InvalidOperationException($"Unknown version {root["version"]}");
-            }
+        //     var root = yamlStream.Documents[0].RootNode;
+        //     HumanoidCharacterProfile profile;
+        //     if (root["version"].Equals(new YamlScalarNode("1")))
+        //     {
+        //         var export = serialization.Read<HumanoidProfileExportV1>(root.ToDataNode(), notNullableOverride: true);
+        //         profile = export.ToV2().Profile;
+        //     }
+        //     else if (root["version"].Equals(new YamlScalarNode("2")))
+        //     {
+        //         var export = serialization.Read<HumanoidProfileExportV2>(root.ToDataNode(), notNullableOverride: true);
+        //         profile = export.Profile;
+        //     }
+        //     else
+        //     {
+        //         throw new InvalidOperationException($"Unknown version {root["version"]}");
+        //     }
 
-            var collection = IoCManager.Instance;
-            profile.EnsureValid(session, collection!);
-            return profile;
-        }
+        //     var collection = IoCManager.Instance;
+        //     profile.EnsureValid(session, collection!);
+        //     return profile;
+        // }
     }
 }
