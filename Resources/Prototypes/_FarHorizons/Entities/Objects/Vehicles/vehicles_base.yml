@@ -64,6 +64,12 @@
       - !type:EmptyContainersBehaviour
         containers:
         - storagebase
+  - type: ActivatableUI
+    key: enum.VehicleEquipmentUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.VehicleEquipmentUiKey.Key:
+        type: VehicleEquipmentBoundUserInterface
 
 - type: entity
   id: VehicleWheelchair
