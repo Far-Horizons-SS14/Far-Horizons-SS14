@@ -21,29 +21,6 @@
       color: "#ffff33"
 
 - type: entity
-  id: HighBoltTaserFH
-  name: High Power Taser
-  parent: BasicHitscanNoBeam
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: HitscanBasicDamage
-    damage:
-      types:
-        Shock: 6
-  - type: HitscanStaminaDamage
-    staminaDamage: 20
-  - type: HitscanCrawlerTargetEffects
-    knockdownDuration: 2
-  - type: HitscanBasicRaycast
-    maxDistance: 5
-  - type: HitscanBasicVisuals
-    bullet:
-      sprite:
-        sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
-        state: spark
-      color: "#ffff33"
-
-- type: entity
   id: BoltTaserRifle #Use in rifles exclusively
   name: Taser Bolt
   parent: BasicHitscanNoBeam

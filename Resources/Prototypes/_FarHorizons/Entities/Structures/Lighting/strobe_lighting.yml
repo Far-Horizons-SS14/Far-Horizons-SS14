@@ -1,16 +1,27 @@
 - type: entity
   id: PoweredStrobeLightShuttleSiren
-  name: Siren
-  suffix: "Shuttle Theft Siren"
+  name: Alarm
+  suffix: "Shuttle Theft Alarm"
   parent: PoweredStrobeLightEmpty
-  description: "If you're hearing this, the Security Ship has likely been stolen. You uhhhh, you should do something about that probably."
+  description: "Green good, red bad. If it is red, the Security Ship has likely been stolen. You uhhhh, you should do something about that probably."
   components:
+  - type: Sprite
+    sprite: Structures/Wallmounts/Lighting/strobe_light.rsi
+    drawdepth: WallMountedItems
+    layers:
+    - map: ["enum.PoweredLightLayers.Base"]
+      state: base
+      color: "#7CFC00"
+    - map: ["enum.PoweredLightLayers.Glow"]
+      state: glow
+      shader: unshaded
   - type: PoweredLight
-    bulb: Bulb
     on: false
-    hasLampOnSpawn: LightBulbCrystalRed
+    hasLampOnSpawn: LightBulbAlarmRed
+  - type: RotatingLight
+    speed: 200
   - type: AmbientSound
-    volume: 0
-    range: 10
+    volume: -8
+    range: 8
     sound:
-      path: "/Audio/Misc/gamma.ogg"
+      path: "/Audio/Machines/warning_buzzer.ogg"
