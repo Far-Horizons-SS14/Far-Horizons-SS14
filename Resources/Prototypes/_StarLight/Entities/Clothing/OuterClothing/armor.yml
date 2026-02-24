@@ -294,8 +294,8 @@
 - type: entity
   parent: [ClothingOuterArmorBase, BaseCentcommContraband]
   id: ClothingOuterVestNTNC
-  name: NT-NC Naval Officer's Vest #Far Horizons - The Great Capitalization Crusade
-  description: Much better than a standard type-1 security vest. Don't lose it, you will NOT get a replacement.
+  name: NanoTransen Naval Officer's Vest #FH
+  description: Much better than a standard type-1 security vest. #FH
   components:
     - type: Sprite
       sprite: _Starlight/Clothing/OuterClothing/Vests/ntnc_vest.rsi
@@ -305,6 +305,9 @@
       level: Metal
     - type: Armor
       modifiers:
+        flatReductions: #FH
+          Piercing: 5 #FH
+          Heat: 4 #FH
         coefficients:
           Blunt: 0.6
           Slash: 0.6
