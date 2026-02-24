@@ -16,7 +16,7 @@ public sealed partial class SalvageSystem
 {
     [Dependency] private readonly IRuntimeLog _runtimeLog = default!;
 
-    private static readonly ProtoId<RadioChannelPrototype> MagnetChannel = "Supply";
+    private static readonly ProtoId<RadioChannelPrototype> MagnetChannel = "GSL"; /// Far Horizons - Changed supply to GSL
 
     private EntityQuery<SalvageMobRestrictionsComponent> _salvMobQuery;
     private EntityQuery<MobStateComponent> _mobStateQuery;

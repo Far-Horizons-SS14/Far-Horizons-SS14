@@ -2,19 +2,19 @@
   abstract: true
   parent: BaseItem
   id: EncryptionKey
-  name: encryption key
+  name: Encryption Key # Far Horizons Capitilization
   description: A small cypher chip for headsets.
   components:
   - type: EncryptionKey
   - type: Item
-    sprite: Objects/Devices/encryption_keys.rsi
+    sprite: /Textures/_FarHorizons/Objects/Devices/encryption_keys.rsi # Far Horizons
   - type: Sprite
-    sprite: Objects/Devices/encryption_keys.rsi
+    sprite: /Textures/_FarHorizons/Objects/Devices/encryption_keys.rsi # Far Horizons
 
 - type: entity
   parent: EncryptionKey
   id: EncryptionKeyCommon
-  name: common encryption key
+  name: Common Encryption Key # Far Horizons Capitilization
   description: An encryption key used by anyone.
   components:
   - type: EncryptionKey
@@ -31,17 +31,17 @@
 
 - type: entity
   parent: [ EncryptionKey, BaseCargoContraband ]
-  id: EncryptionKeyCargo
-  name: cargo encryption key
-  description: An encryption key used by supply employees.
+  id: EncryptionKeyCargo # I would change this but I dont want to fix another 500 errors.
+  name: GSL Encryption Key # Far Horizons Capitilization
+  description: An encryption key used by Gemini Stellar Logistics employees. # Far Horizons
   components:
   - type: EncryptionKey
     channels:
-    - Supply
-    defaultChannel: Supply
+    - GSL # Far Horizons
+    defaultChannel: GSL # Far Horizons
   - type: Sprite
     layers:
-    - state: crypt_gray
+    - state: crypt_gsl # Far Horizons
     - state: cargo_label
   - type: Tag
     tags:
@@ -50,7 +50,7 @@
 - type: entity
   parent: [ EncryptionKey, BaseCentcommContraband ]
   id: EncryptionKeyCentCom
-  name: central command encryption key
+  name: Central Command Encryption Key # Far Horizons Capitilization
   description: An encryption key used by captain's bosses.
   components:
   - type: EncryptionKey
@@ -65,7 +65,7 @@
 - type: entity
   parent: [ EncryptionKey, BaseCentcommCommandContraband ]
   id: EncryptionKeyStationMaster
-  name: station master encryption key
+  name: Station Master Encryption Key # Far Horizons Capitilization
   description: An encryption key used by station's bosses.
   components:
   - type: EncryptionKey
@@ -77,7 +77,7 @@
     - Science
     - Security
     - Service
-    - Supply
+    - GSL # Far Horizons
     - Law
     defaultChannel: Command
   - type: Sprite
@@ -88,7 +88,7 @@
 - type: entity
   parent: [ EncryptionKey, BaseCommandContraband ]
   id: EncryptionKeyCommand
-  name: command encryption key
+  name: Command Encryption Key # Far Horizons Capitilization
   description: An encryption key used by crew's bosses.
   components:
   - type: EncryptionKey
@@ -106,7 +106,7 @@
 - type: entity
   parent: [ EncryptionKey, BaseEngineeringContraband ]
   id: EncryptionKeyEngineering
-  name: engineering encryption key
+  name: Engineering Encryption Key # Far Horizons Capitilization
   description: An encryption key used by the engineers.
   components:
   - type: EncryptionKey
@@ -124,7 +124,7 @@
 - type: entity
   parent: [ EncryptionKey, BaseMedicalContraband ]
   id: EncryptionKeyMedical
-  name: medical encryption key
+  name: Medical Encryption Key # Far Horizons Capitilization
   description: An encryption key used by those who save lives.
   components:
   - type: EncryptionKey
@@ -142,7 +142,7 @@
 - type: entity
   parent: [ EncryptionKey, BaseMedicalScienceContraband ]
   id: EncryptionKeyMedicalScience
-  name: med-sci encryption key
+  name: Med-Sci Encryption Key # Far Horizons Capitilization
   description: An encryption key used by someone who hasn't decided which side to take.
   components:
   - type: EncryptionKey
@@ -158,7 +158,7 @@
 - type: entity
   parent: [ EncryptionKey, BaseScienceContraband ]
   id: EncryptionKeyScience
-  name: science encryption key
+  name: Science Encryption Key # Far Horizons Capitilization
   description: An encryption key used by scientists. Maybe it is plasmaproof?
   components:
   - type: EncryptionKey
@@ -176,7 +176,7 @@
 - type: entity
   parent: [ EncryptionKey, BaseScienceContraband ]
   id: EncryptionKeyRobo
-  name: robotech encryption key
+  name: Robotech Encryption Key # Far Horizons Capitilization
   description: An encryption key used by robototech engineers. Maybe it has a LAH-6000 on it?
   components:
   - type: EncryptionKey
@@ -190,8 +190,8 @@
 
 - type: entity
   parent: [ EncryptionKey, BaseSecurityLawyerContraband ]
-  id: EncryptionKeySecurity
-  name: security encryption key
+  id: EncryptionKeySecurity 
+  name: Security Encryption Key # Far Horizons Capitilization
   description: An encryption key used by security.
   components:
   - type: EncryptionKey
@@ -200,7 +200,7 @@
     defaultChannel: Security
   - type: Sprite
     layers:
-    - state: crypt_gray
+    - state: crypt_blue # Far Horizons
     - state: sec_label
   - type: Tag
     tags:
@@ -209,7 +209,7 @@
 - type: entity
   parent: [ EncryptionKey, BaseCivilianContraband ]
   id: EncryptionKeyService
-  name: service encryption key
+  name: Service Encryption Key # Far Horizons Capitilization
   description: An encryption key used by the service staff, tasked with keeping the station full, happy and clean.
   components:
   - type: EncryptionKey
@@ -225,9 +225,9 @@
     - EncryptionService
 
 - type: entity
-  parent: [ EncryptionKey, BaseSyndicateContraband ]
+  parent: [ EncryptionKeySyndi, BaseSyndicateContraband ] #FH Parent Change
   id: EncryptionKeySyndie
-  name: blood-red encryption key
+  name: Blood-Red Encryption Key # Far Horizons Capitilization
   description: An encryption key used by... wait... Who is the owner of this chip?
   components:
   - type: EncryptionKey
@@ -244,7 +244,7 @@
 - type: entity
   parent: [ EncryptionKey, BaseSiliconScienceContraband ]
   id: EncryptionKeyBinary
-  name: binary translator key
+  name: Binary Translator Key # Far Horizons Capitilization
   description: An encryption key that translates binary signals used by silicons.
   components:
   - type: EncryptionKey
@@ -257,9 +257,9 @@
     - state: ai_label
 
 - type: entity
-  parent: [ EncryptionKey, BaseSyndicateContraband ]
+  parent: [ EncryptionKeySyndi, BaseSyndicateContraband ] #FH Parent Change
   id: EncryptionKeyBinarySyndicate
-  name: binary translator key
+  name: Binary Translator Key # Far Horizons Capitilization
   description: A syndicate encryption key that translates binary signals used by silicons.
   components:
   - type: EncryptionKey
@@ -276,7 +276,7 @@
 - type: entity
   parent: EncryptionKey
   id: EncryptionKeyFreelance
-  name: freelancer encryption key
+  name: Freelancer Encryption Key # Far Horizons Capitilization
   description: An encryption key used by freelancers, who may or may not have an affiliation. It looks like it's worn out.
   components:
     - type: EncryptionKey

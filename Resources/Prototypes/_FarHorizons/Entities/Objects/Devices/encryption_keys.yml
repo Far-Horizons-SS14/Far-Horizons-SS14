@@ -1,3 +1,20 @@
+#region Base
+
+- type: entity
+  abstract: true
+  parent: BaseItem
+  id: EncryptionKeySyndi
+  name: Encryption Key
+  description: A small cipher chip for headsets.
+  components:
+  - type: EncryptionKey
+  - type: Item
+    sprite: /Textures/_FarHorizons/Objects/Devices/syndicate_encryption_keys.rsi
+  - type: Sprite
+    sprite: /Textures/_FarHorizons/Objects/Devices/syndicate_encryption_keys.rsi
+
+#region misc stuff
+
 - type: entity
   parent: EncryptionKey
   id: EncryptionKeyTrinary
@@ -27,4 +44,215 @@
   - type: Sprite
     layers:
     - state: crypt_gray
-    - sprite: _FarHorizons/Objects/Devices/encryption_keys.rsi
+    - state: secmed_label
+
+#region Syndi Station Comms
+
+- type: entity 
+  parent: [ EncryptionKeySyndi, BaseSecurityContraband ]
+  id: EncryptionKeySyndiMaster
+  name: Station-Executive Encryption Key
+  description: An encryption key used by someone working very high up at a NeoSol Station.
+  components:
+  - type: EncryptionKey
+    channels:
+    - SyndiCommand
+    - SyndiSec
+    - SyndiEngi
+    - SyndiSci
+    - SyndiMed
+    - SyndiService
+    - SyndiCommon
+    defaultChannel: SyndiCommand
+  - type: Sprite
+    layers:
+    - state: crypt_gold
+    - state: cap_label
+
+
+- type: entity
+  parent: [ EncryptionKeySyndi, BaseSecurityContraband ]
+  id: EncryptionKeySyndiCommand
+  name: Command Encryption Key
+  description: An encryption key used by someone who is an executive within NeoSol command.
+  components:
+  - type: EncryptionKey
+    channels:
+    - SyndiCommand
+    defaultChannel: SyndiCommand
+  - type: Sprite
+    layers:
+    - state: crypt_gold
+    - state: com_label
+
+- type: entity
+  parent: [ EncryptionKeySyndi, BaseSecurityContraband ]
+  id: EncryptionKeySyndiSecurity
+  name: Security Encryption Key
+  description: An encryption key used by someone who enforces justice.
+  components:
+  - type: EncryptionKey
+    channels:
+    - SyndiSec
+    defaultChannel: SyndiSec
+  - type: Sprite
+    layers:
+    - state: crypt_red
+    - state: sec_label
+
+- type: entity
+  parent: [ EncryptionKeySyndi, BaseSecurityContraband ]
+  id: EncryptionKeySyndiSci
+  name: Science Encryption Key
+  description: An encryption key to talk about dangerous experiments.
+  components:
+  - type: EncryptionKey
+    channels:
+    - SyndiSci
+    defaultChannel: SyndiSci
+  - type: Sprite
+    layers:
+    - state: crypt_silver
+    - state: sci_label
+
+- type: entity
+  parent: [ EncryptionKeySyndi, BaseSecurityContraband ]
+  id: EncryptionKeySyndiMed
+  name: Medical Encryption Key
+  description: An encryption key used by someone who saves lives.
+  components:
+  - type: EncryptionKey
+    channels:
+    - SyndiMed
+    defaultChannel: SyndiMed
+  - type: Sprite
+    layers:
+    - state: crypt_silver
+    - state: med_label
+
+- type: entity
+  parent: [ EncryptionKeySyndi, BaseSecurityContraband ]
+  id: EncryptionKeySyndiEngi
+  name: Engineering Encryption Key
+  description: An encryption key made to coordinate with engineering to fix the artifact room within the first 10 minutes.
+  components:
+  - type: EncryptionKey
+    channels:
+    - SyndiEngi
+    defaultChannel: SyndiEngi
+  - type: Sprite
+    layers:
+    - state: crypt_orange
+    - state: eng_label
+
+- type: entity
+  parent: [ EncryptionKeySyndi, BaseSecurityContraband ]
+  id: EncryptionKeySyndiService
+  name: Service Encryption Key
+  description: An encryption key designed with the intention of complaining about departmental cleanliness.
+  components:
+  - type: EncryptionKey
+    channels:
+    - SyndiService
+    defaultChannel: SyndiService
+  - type: Sprite
+    layers:
+    - state: crypt_gray
+    - state: service_label
+
+- type: entity
+  parent: [ EncryptionKeySyndi, BaseSecurityContraband ]
+  id: EncryptionKeySyndiCommon
+  name: Common Encryption Key
+  description: An encryption key specifically designed for inter-departmental communications where you scream out obscenities at each other.
+  components:
+  - type: EncryptionKey
+    channels:
+    - SyndiCommon
+    defaultChannel: SyndiCommon
+  - type: Sprite
+    layers:
+    - state: crypt_gray
+    - state: common_label
+
+# stupid multi-dep comms
+
+- type: entity
+  parent: [ EncryptionKeySyndi, BaseSecurityContraband ]
+  id: EncryptionKeySyndiMedSci
+  name: Med-Sci Encryption Key
+  description: An encryption key made to coordinate the advancements of technologies relating to the medicinal field.
+  components:
+  - type: EncryptionKey
+    channels:
+    - SyndiMed
+    - SyndiSci
+    defaultChannel: SyndiMed
+  - type: Sprite
+    layers:
+    - state: crypt_silver
+    - state: medsci_label
+
+- type: entity
+  parent: [ EncryptionKeySyndi, BaseSecurityContraband ]
+  id: EncryptionKeySyndiSecMed
+  name: Sec-Med Encryption Key
+  description: An encryption key used by someone who both saves lives and takes them when needed.
+  components:
+  - type: EncryptionKey
+    channels:
+    - SyndiSec
+    - SyndiMed
+    defaultChannel: SyndiMed
+  - type: Sprite
+    layers:
+    - state: crypt_silver
+    - state: medsec_label
+
+
+#region High Command Comms
+
+- type: entity
+  parent: [ EncryptionKeySyndi, BaseSyndicateContraband ]
+  id: EncryptionKeySHC
+  name: NeoSol High Command Encryption Key
+  description: An encryption key used by someone who is very evil.
+  components:
+  - type: EncryptionKey
+    channels:
+    - SHC
+    defaultChannel: SHC
+  - type: Sprite
+    layers:
+    - state: crypt_gold
+    - state: shc_label
+
+- type: entity
+  parent: [ EncryptionKeySyndi, BaseSyndicateContraband ]
+  id: EncryptionKeyGMN
+  name: Gorlex Marauder Navy Encryption Key
+  description: An encryption key used by elite Gorlex Marines.
+  components:
+  - type: EncryptionKey
+    channels:
+    - GMN
+    defaultChannel: GMN
+  - type: Sprite
+    layers:
+    - state: crypt_red
+    - state: synd_label
+
+- type: entity
+  parent: [ EncryptionKey, BaseCentcommContraband ]
+  id: EncryptionKeyNTNC
+  name: NanoTrasen Navy Corps Encryption Key
+  description: An encryption key used by the elite NT-NC forces.
+  components:
+  - type: EncryptionKey
+    channels:
+    - NTNC
+    defaultChannel: NTNC
+  - type: Sprite
+    layers:
+    - state: crypt_blue
+    - state: com_label

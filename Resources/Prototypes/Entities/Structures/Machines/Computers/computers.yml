@@ -1071,7 +1071,7 @@
     removeLimitAccess: [ "Quartermaster" ]
   - type: ActiveRadio
     channels:
-    - Supply
+    - GSL # Far Horizons
   - type: ActivatableUI
     key: enum.CargoConsoleUiKey.Orders
   - type: UserInterface
@@ -1409,7 +1409,7 @@
     - map: ["computerLayerKeyboard"]
       state: generic_keyboard
     - map: ["computerLayerScreen"]
-      state: salvjob # givin em a salvjob like hawk tuah
+      state: salvjob # givin em a salvjob like hawk tuah - Im sorry what the actual fuck.
     - map: ["computerLayerKeys"]
       state: generic_keys
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
@@ -1424,7 +1424,7 @@
       enum.WiresUiKey.Key:
         type: WiresBoundUserInterface
   - type: ActiveRadio
-    channels: [ Supply ]
+    channels: [ GSL ] # Far Horizons
   - type: Computer
     board: SalvageJobBoardComputerCircuitboard
   - type: PointLight

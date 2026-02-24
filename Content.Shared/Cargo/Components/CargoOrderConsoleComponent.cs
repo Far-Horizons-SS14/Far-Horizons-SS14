@@ -96,12 +96,12 @@ public sealed partial class CargoOrderConsoleComponent : Component
     /// Radio channel on which order approval announcements are transmitted
     /// </summary>
     [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public ProtoId<RadioChannelPrototype> AnnouncementChannel = "Supply";
+    public ProtoId<RadioChannelPrototype> AnnouncementChannel = "GSL"; /// Far Horizons - Changed supply to GSL
 
     /// <summary>
     /// Secondary radio channel which always receives order announcements.
     /// </summary>
-    public static readonly ProtoId<RadioChannelPrototype> BaseAnnouncementChannel = "Supply";
+    public static readonly ProtoId<RadioChannelPrototype> BaseAnnouncementChannel = "GSL"; /// Far Horizons - Changed supply to GSL
 
     /// <summary>
     /// The behaviour of the cargo console regarding orders
