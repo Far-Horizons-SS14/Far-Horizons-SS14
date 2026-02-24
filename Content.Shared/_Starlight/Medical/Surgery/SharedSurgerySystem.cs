@@ -1,9 +1,7 @@
 using Content.Server.Administration.Systems;
-using Content.Shared.Body.Part;
-using Content.Shared.Body.Systems;
+using Content.Shared.Body;
 using Content.Shared.Buckle.Components;
 using Content.Shared.Tag;
-using Content.Shared.Damage;
 using Content.Shared.DoAfter;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
@@ -19,7 +17,6 @@ using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Reflection;
 using Robust.Shared.Serialization.Manager;
-using Robust.Shared.Timing;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Damage.Systems;
 
@@ -39,7 +36,6 @@ public abstract partial class SharedSurgerySystem : EntitySystem
     [Dependency] private readonly RotateToFaceSystem _rotateToFace = default!;
     [Dependency] private readonly StandingStateSystem _standing = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly SharedBodySystem _body = default!;
     [Dependency] private readonly IReflectionManager _reflectionManager = default!;
     [Dependency] private readonly ISerializationManager _serialization = default!;
     [Dependency] private readonly DamageableSystem _damageableSystem = default!;
@@ -49,6 +45,7 @@ public abstract partial class SharedSurgerySystem : EntitySystem
     [Dependency] private readonly StarlightEntitySystem _entitySystem = default!;
     [Dependency] private readonly SharedSolutionContainerSystem _solutionContainerSystem = default!;
     [Dependency] private readonly SharedInteractionSystem _interaction = default!;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -64,7 +61,7 @@ public abstract partial class SharedSurgerySystem : EntitySystem
             EntProtoId surgery,
             EntProtoId stepId,
             out Entity<SurgeryComponent> surgeryEnt,
-            out Entity<BodyPartComponent> partEnt,
+            out Entity<OrganComponent> partEnt,
             out EntityUid step
         )
     {

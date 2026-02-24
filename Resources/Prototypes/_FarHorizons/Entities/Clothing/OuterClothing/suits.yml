@@ -78,12 +78,13 @@
 
 #region Engineering
 
-# Station Architect
+# Station Engineer
 
 - type: entity
   parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing]
   id: ClothingOuterCoverallsEngiSyndi
-  name: Architectural Coveralls 
+  name: Engineering Coveralls
+  suffix: S
   description: A soft suit for architects that allows items to be holstered on the back.
   components:
   - type: RollUpSleeves
@@ -114,12 +115,13 @@
   - type: HeldSpeedModifier
   - type: GroupExamine
 
-# Environmental Technician
+# Atmospheric Technician
 
 - type: entity
   parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing]
   id: ClothingOuterSuitAtmosFireSyndi
-  name: Environmental Fire Suit
+  name: Atmospheric Fire Suit
+  suffix: S
   description: An expensive firesuit that protects against even the most deadly of station fires. Designed to protect even if the wearer is set aflame.
   components:
   - type: Sprite
@@ -160,7 +162,8 @@
 - type: entity
   parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing]
   id: ClothingOuterCoverallsAtmosSyndi
-  name: Environmental Coveralls 
+  name: Atmospheric Coveralls
+  suffix: S
   description: A soft suit for atmospherics that allows items to be holstered on the back.
   components:
   - type: RollUpSleeves

@@ -235,7 +235,7 @@ public sealed class StationAiSystem : SharedStationAiSystem
             if (!processed.Add(ownerUid))
                 continue;
 
-            if (!HasComp<HumanoidAppearanceComponent>(ownerUid))
+            if (!HasComp<HumanoidProfileComponent>(ownerUid))
                 continue;
 
             if (aiStation is { } station)

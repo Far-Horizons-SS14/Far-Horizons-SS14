@@ -36,45 +36,45 @@ loadout-group-command-eyewear-syndi = Command Eyewear
 
 #### Command
 
-loadout-group-commander-head = Commander Hat
-loadout-group-commander-eyewear = Commander Eyewear
-loadout-group-commander-neck = Commander Neck
-loadout-group-commander-jumpsuit = Commander Uniform
-loadout-group-commander-outerclothing = Commander Outer Clothing
+loadout-group-commandant-head = Commandant Hat
+loadout-group-commandant-eyewear = Commandant Eyewear
+loadout-group-commandant-neck = Commandant Neck
+loadout-group-commandant-jumpsuit = Commandant Uniform
+loadout-group-commandant-outerclothing = Commandant Outer Clothing
 
-loadout-group-pc-head = Personnel Chief Hat
-loadout-group-pc-neck = Personnel Chief Neck
-loadout-group-pc-jumpsuit = Personnel Chief Uniform
-loadout-group-pc-outerclothing = Personnel Chief Outer Clothing
+loadout-group-pm-head = Personnel Manager Hat
+loadout-group-pm-neck = Personnel Manager Neck
+loadout-group-pm-jumpsuit = Personnel Manager Uniform
+loadout-group-pm-outerclothing = Personnel Manager Outer Clothing
 
-loadout-group-so-head = Security Overwatch Hat
-loadout-group-so-headset = Security Overwatch Headset
-loadout-group-so-neck = Security Overwatch Neck
-loadout-group-so-uniform = Security Overwatch Uniform
-loadout-group-so-outerclothing = Security Overwatch Outer Clothing
+loadout-group-marshal-head = Marshal Hat
+loadout-group-marshal-headset = Marshal Headset
+loadout-group-marshal-neck = Marshal Neck
+loadout-group-marshal-uniform = Marshal Uniform
+loadout-group-marshal-outerclothing = Marshall Outer Clothing
 
-loadout-group-technical-lead-head = Technical Lead Hat
-loadout-group-technical-lead-headset = Technical Lead Headset
-loadout-group-technical-lead-neck = Technical Lead Neck
-loadout-group-technical-lead-uniform = Technical Lead Uniform
-loadout-group-technical-lead-outerclothing = Technical Lead Outer Clothing
-loadout-group-technical-lead-shoes = Technical Lead Shoes
+loadout-group-foreman-head = Foreman Hat
+loadout-group-foreman-headset = Foreman Headset
+loadout-group-foreman-neck = Foreman Neck
+loadout-group-foreman-uniform = Foreman Uniform
+loadout-group-foreman-outerclothing = Foreman Outer Clothing
+loadout-group-foreman-shoes = Foreman Shoes
 
 #### Engineering
 
 loadout-group-engineering-syndi-glasses = Engineering Glasses
 
-loadout-group-environmental-technician-head = Environmental Technician Hat
-loadout-group-environmental-technician-uniform = Environmental Technician Uniform
-loadout-group-environmental-technician-outerclothing = Environmental Technician Outer Clothing
-loadout-group-environmental-technician-shoes = Environmental Technician Shoes
+loadout-group-atmos-tech-syndi-head = Atmospheric Technician Hat
+loadout-group-atmos-tech-syndi-uniform = Atmospheric Technician Uniform
+loadout-group-atmos-tech-syndi-outerclothing = Atmospheric Technician Outer Clothing
+loadout-group-atmos-tech-syndi-shoes = Atmospheric Technician Shoes
 
-loadout-group-station-architect-head = Station Architect Hat
-loadout-group-station-architect-uniform = Station Architect Uniform
-loadout-group-station-architect-outerclothing = Station Architect Outer Clothing
-loadout-group-station-architect-shoes = Station Architect Shoes
+loadout-group-station-engi-syndi-head = Station Engineer Hat
+loadout-group-station-engi-syndi-uniform = Station Engineer Uniform
+loadout-group-station-engi-syndi-outerclothing = Station Engineer Outer Clothing
+loadout-group-station-engi-syndi-shoes = Station Engineer Shoes
 
-loadout-group-trainee-architect-uniform = Trainee Architect Uniform
+loadout-group-tech-assist-syndi-uniform = Technical Assistant Uniform
 
 #### Security
 
@@ -83,13 +83,13 @@ loadout-group-secmed-headset = Security Medical Headset
 loadout-group-sec-syndi-eyewear = Security Eyewear
 loadout-group-sec-med-syndi-eyewear = Security Medical Eyewear
 
-loadout-group-cm-head = Combat Medic Hat
-loadout-group-cm-belt = Combat Medic Belt
+loadout-group-corpsman-syndi-head = Corpsman Hat
+loadout-group-corpsman-syndi-belt = Corpsman Belt
 
-loadout-group-guard-head = Guardian Hat
-loadout-group-guard-headset = Guardian Headset
-loadout-group-guard-uniform = Guardian Uniform
-loadout-group-guard-outerclothing = Guardian Outer Clothing
+loadout-group-constable-head = Constable Hat
+loadout-group-constable-headset = Constable Headset
+loadout-group-constable-uniform = Constable Uniform
+loadout-group-constable-outerclothing = Constable Outer Clothing
 
 loadout-group-inspector-head = Inspector Hat
 loadout-group-inspector-neck = Inspector Neck
@@ -97,15 +97,15 @@ loadout-group-inspector-uniform = Inspector Uniform
 loadout-group-inspector-outerclothing = Inspector Outer Clothing
 loadout-group-inspector-shoes = Inspector Shoes
 
-loadout-group-le-uniform = Law Enforcer Uniform
-loadout-group-le-outerclothing = Law Enforcer Outer Clothing
+loadout-group-enforcer-uniform = Enforcer Uniform
+loadout-group-enforcer-outerclothing = Enforcer Outer Clothing
 
-loadout-group-mo-head = Medical Officer Hat
-loadout-group-mo-uniform = Medical Officer Uniform
-loadout-group-mo-outerclothing = Medical Officer Outer Clothing
-loadout-group-mo-backpack = Medical Officer Backpack
-loadout-group-mo-gloves = Medical Officer Gloves
-loadout-group-mo-belt = Medical Officer Belt
+loadout-group-brigsyndi-head = Brigmedic Hat
+loadout-group-brigsyndi-uniform = Brigmedic Uniform
+loadout-group-brigsyndi-outerclothing = Brigmedic Outer Clothing
+loadout-group-brigsyndi-backpack = Brigmedic Backpack
+loadout-group-brigsyndi-gloves = Brigmedic Gloves
+loadout-group-brigsyndi-belt = Brigmedic Belt
 
 loadout-group-recruit-uniform = Recruit Uniform
 

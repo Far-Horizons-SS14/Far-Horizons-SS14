@@ -1,0 +1,285 @@
+- type: markingsGroup
+  parent: Undergarments
+  id: Cyclorite
+  onlyGroupWhitelisted: true
+  limits:
+    enum.HumanoidVisualLayers.Hair:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.FacialHair:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.Head:
+      limit: 3
+      required: false
+    enum.HumanoidVisualLayers.Snout:
+      limit: 1
+      required: true
+    enum.HumanoidVisualLayers.Chest:
+      limit: 3
+      required: false
+    enum.HumanoidVisualLayers.LArm:
+      limit: 2
+      required: false
+    enum.HumanoidVisualLayers.RArm:
+      limit: 2
+      required: false
+    enum.HumanoidVisualLayers.LHand:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RHand:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LLeg:
+      limit: 2
+      required: false
+    enum.HumanoidVisualLayers.RLeg:
+      limit: 2
+      required: false
+    enum.HumanoidVisualLayers.LFoot:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RFoot:
+      limit: 1
+      required: false
+
+- type: entity
+  parent: BaseSpeciesAppearance
+  id: AppearanceCyclorite
+  name: Cyclorite Appearance
+  components:
+  - type: Inventory
+    speciesId: cyclorite
+    templateId: cyclorite
+    displacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Cyclorite/displacement.rsi
+            state: jumpsuit
+      eyes:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Cyclorite/displacement.rsi
+            state: eyes
+      gloves:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Cyclorite/displacement.rsi
+            state: hand
+      head:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Cyclorite/displacement.rsi
+            state: head
+      back:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Cyclorite/displacement.rsi
+            state: back
+      ears:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Cyclorite/displacement.rsi
+            state: ears
+      shoes:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Cyclorite/displacement.rsi
+            state: shoes
+  - type: InitialBody
+    organs:
+      Torso: OrganCycloriteTorso
+      Head: OrganCycloriteHead
+      ArmLeft: OrganCycloriteArmLeft
+      ArmRight: OrganCycloriteArmRight
+      HandRight: OrganCycloriteHandRight
+      HandLeft: OrganCycloriteHandLeft
+      LegLeft: OrganCycloriteLegLeft
+      LegRight: OrganCycloriteLegRight
+      FootLeft: OrganCycloriteFootLeft
+      FootRight: OrganCycloriteFootRight
+      Brain: OrganCycloriteBrain
+      Eyes: OrganCycloriteEyes
+      Tongue: OrganCycloriteTongue
+      Ears: OrganCycloriteEars
+      Lungs: OrganCycloriteLungs
+      Heart: OrganCycloriteHeart
+      Stomach: OrganCycloriteStomach
+      Liver: OrganCycloriteLiver
+      Kidneys: OrganCycloriteKidneys
+  - type: HumanoidProfile
+    species: Cyclorite
+
+- type: entity
+  parent:
+  - AppearanceCyclorite
+  - BaseMobCyclorite
+  id: MobCyclorite
+  name: Urist Cyclorite
+
+# Organs
+
+- type: entity
+  parent: OrganBase
+  id: OrganCyclorite
+  abstract: true
+  suffix: Cyclorite
+  components:
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: Fat
+        Quantity: 10
+      - ReagentId: CopperBlood
+        Quantity: 20
+  - type: Tag
+    tags:
+      - Organic
+
+- type: entity
+  id: OrganCycloriteMetabolizer
+  abstract: true
+  components:
+  - type: Metabolizer
+    metabolizerTypes: [ Slime ]
+
+- type: entity
+  parent: OrganCyclorite
+  id: OrganCycloriteInternal
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _Starlight/Mobs/Species/Cyclorite/organs.rsi
+  - type: Tag
+    tags:
+      - Meat
+      - Organic
+
+- type: entity
+  parent: OrganCyclorite
+  id: OrganCycloriteExternal
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _Starlight/Mobs/Species/Cyclorite/parts.rsi
+  - type: VisualOrgan
+    data:
+      sprite: _Starlight/Mobs/Species/Cyclorite/parts.rsi
+  - type: VisualOrganMarkings
+    markingData:
+      group: Cyclorite
+
+# Limbs
+
+- type: entity
+  parent: [ OrganBaseTorso, OrganCycloriteExternal ]
+  id: OrganCycloriteTorso
+
+- type: entity
+  parent: [ OrganBaseHead, OrganCycloriteExternal ]
+  id: OrganCycloriteHead
+
+- type: entity
+  parent: [ OrganBaseArmLeft, OrganCycloriteExternal ]
+  id: OrganCycloriteArmLeft
+
+- type: entity
+  parent: [ OrganBaseArmRight, OrganCycloriteExternal ]
+  id: OrganCycloriteArmRight
+
+- type: entity
+  parent: [ OrganBaseHandLeft, OrganCycloriteExternal ]
+  id: OrganCycloriteHandLeft
+
+- type: entity
+  parent: [ OrganBaseHandRight, OrganCycloriteExternal ]
+  id: OrganCycloriteHandRight
+
+- type: entity
+  parent: [ OrganBaseLegLeft, OrganCycloriteExternal ]
+  id: OrganCycloriteLegLeft
+  components:
+  - type: MovementOrgan
+    sprintSpeedModifier: 0.9
+
+- type: entity
+  parent: [ OrganBaseLegRight, OrganCycloriteExternal ]
+  id: OrganCycloriteLegRight
+  components:
+  - type: MovementOrgan
+    sprintSpeedModifier: 0.9
+
+- type: entity
+  parent: [ OrganBaseFootLeft, OrganCycloriteExternal ]
+  id: OrganCycloriteFootLeft
+
+- type: entity
+  parent: [ OrganBaseFootRight, OrganCycloriteExternal ]
+  id: OrganCycloriteFootRight
+
+# Internal
+
+- type: entity
+  parent: [ OrganBaseBrain, OrganCycloriteInternal ]
+  id: OrganCycloriteBrain
+
+- type: entity
+  parent: [ OrganBaseEyes, OrganCycloriteInternal, OrganCycloriteExternal ]
+  id: OrganCycloriteEyes
+  name: Cybernetic Eyes
+  description: "It's still focusing on you.. Creepy."
+  components:
+  - type: VisualOrgan
+    data:
+      sprite: _Starlight/Mobs/Species/Cyclorite/parts.rsi
+      state: eyes
+  - type: Sprite
+    layers:
+      - state: eyeball
+  - type: FunctionalOrgan
+    comps: 
+    - type: CycloriteVision
+    - type: NightVision
+
+- type: entity
+  parent: [ OrganBaseTongue, OrganCycloriteInternal ]
+  id: OrganCycloriteTongue
+
+- type: entity
+  parent: [ OrganBaseEars, OrganCycloriteInternal ]
+  id: OrganCycloriteEars
+
+- type: entity
+  parent: [ OrganBaseLungs, OrganCycloriteInternal, OrganCycloriteMetabolizer ]
+  id: OrganCycloriteLungs
+  name: lungs
+  description: "Cyclorite lungs filter nitrogen from the atmosphere to breathe."
+  components:
+  - type: Lung
+    alert: LowNitrogen
+  - type: Metabolizer
+    solutionOnBody: false
+    metabolizerTypes: [ Slime ]
+  - type: SolutionContainerManager
+    solutions:
+      food: {}
+      Lung:
+        maxVol: 100.0
+        canReact: false
+
+- type: entity
+  parent: [ OrganBaseHeart, OrganCycloriteInternal, OrganCycloriteMetabolizer ]
+  id: OrganCycloriteHeart
+
+- type: entity
+  parent: [ OrganBaseStomach, OrganCycloriteInternal, OrganCycloriteMetabolizer ]
+  id: OrganCycloriteStomach
+
+- type: entity
+  parent: [ OrganBaseLiver, OrganCycloriteInternal, OrganCycloriteMetabolizer ]
+  id: OrganCycloriteLiver
+
+- type: entity
+  parent: [ OrganBaseKidneys, OrganCycloriteInternal, OrganCycloriteMetabolizer ]
+  id: OrganCycloriteKidneys

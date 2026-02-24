@@ -133,7 +133,7 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
             {
                 // Starlight Start
 
-                _roundEnd.CancelRoundEndCountdown(null, false);
+                _roundEnd.CancelRoundEndCountdown(null, null, false);
 
                 // Play the revolutionary end sound globally
                 var filter = Filter.Broadcast();
@@ -147,7 +147,7 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
                 {
                     // If the shuttle is already called, we need to recall it
                     // Cancel the current shuttle call - force it with false for checkCooldown
-                    _roundEnd.CancelRoundEndCountdown(null, false);
+                    _roundEnd.CancelRoundEndCountdown(null, null, false);
                 }
 
                 // Use a safer approach for scheduling the announcements
@@ -350,7 +350,7 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
             HasComp<MindShieldComponent>(ev.Target) ||
             HasComp<BrighteyeComponent>(ev.Target) || // Starlight Addtion
             HasComp<BorgChassisComponent>(ev.Target) || // Starlight Addition - Borgis should be emagged not flashed
-            !HasComp<HumanoidAppearanceComponent>(ev.Target) &&
+            !HasComp<HumanoidProfileComponent>(ev.Target) &&
             !alwaysConvertible ||
             !_mobState.IsAlive(ev.Target) ||
             HasComp<ZombieComponent>(ev.Target))

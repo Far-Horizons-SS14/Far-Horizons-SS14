@@ -1,0 +1,100 @@
+- type: organCategory
+  id: Torso
+  surgeryTargetable: true # Far Horizons
+
+- type: organCategory
+  id: Head
+  connectsTo: Torso # Far Horizons
+  surgeryTargetable: true # Far Horizons
+
+- type: organCategory
+  id: ArmLeft
+  connectsTo: Torso # Far Horizons
+  surgeryTargetable: true # Far Horizons
+
+- type: organCategory
+  id: ArmRight
+  connectsTo: Torso # Far Horizons
+  surgeryTargetable: true # Far Horizons
+
+- type: organCategory
+  id: HandRight
+  connectsTo: ArmRight # Far Horizons
+  surgeryTargetable: true # Far Horizons
+
+- type: organCategory
+  id: HandLeft
+  connectsTo: ArmLeft # Far Horizons
+  surgeryTargetable: true # Far Horizons
+
+- type: organCategory
+  id: LegLeft
+  connectsTo: Torso # Far Horizons
+  surgeryTargetable: true # Far Horizons
+
+- type: organCategory
+  id: LegRight
+  connectsTo: Torso # Far Horizons
+  surgeryTargetable: true # Far Horizons
+
+- type: organCategory
+  id: FootLeft
+  connectsTo: LegLeft # Far Horizons
+  surgeryTargetable: true # Far Horizons
+
+- type: organCategory
+  id: FootRight
+  connectsTo: LegRight # Far Horizons
+  surgeryTargetable: true # Far Horizons
+
+- type: organCategory
+  id: Brain
+  connectsTo: Head # Far Horizons
+
+- type: organCategory
+  id: Eyes
+  connectsTo: Head # Far Horizons
+
+- type: organCategory
+  id: Tongue
+  connectsTo: Head # Far Horizons
+
+- type: organCategory
+  id: Appendix
+  connectsTo: Torso # Far Horizons
+
+- type: organCategory
+  id: Ears
+  connectsTo: Torso # Far Horizons
+
+- type: organCategory
+  id: Lungs
+  connectsTo: Torso # Far Horizons
+
+- type: organCategory
+  id: Heart
+  connectsTo: Torso # Far Horizons
+
+- type: organCategory
+  id: Stomach
+  connectsTo: Torso # Far Horizons
+
+- type: organCategory
+  id: Liver
+  connectsTo: Torso # Far Horizons
+
+- type: organCategory
+  id: Kidneys
+  connectsTo: Torso # Far Horizons
+
+# Far Horizons start
+
+- type: organCategory
+  id: EyeImplant
+  connectsTo: Head # I know it doesn't make sense, but surgery and organ system in general currently exists with just a single layer of dependencies. Having to handle organs that connect to organs that connect to organs isn't something we support right now
+
+- type: organCategory
+  id: Cavity
+  connectsTo: Torso
+
+# Far Horizons end

@@ -2,16 +2,19 @@
   id: SpaceNinja
   name: roles-antag-space-ninja-name
   antagonist: true
-  setPreference: true
+  setPreference: true # Starlight - allow setting pref for ninja
   objective: roles-antag-space-ninja-objective
   guides: [ SpaceNinja ]
+  # Starlight start
   previewStartingGear: SpaceNinjaGear
   requirements:
   - !type:OverallPlaytimeRequirement #Far Horizons
     time: 7200 # 2 hours - Far Horizons
 #  - !type:DepartmentTimeRequirement #Far Horizons
 #    department: Security
-#    time: 10800 # 3h STARLIGHT
+#    time: 3h
+  playTimeTracker: AntagNinja
+  # Starlight end
 
 #Ninja Gear
 - type: startingGear
@@ -48,6 +51,7 @@
 - type: chameleonOutfit
   id: NinjaChameleonOutfit
   name: roles-antag-space-ninja-name
+  icon: "JobIconNinja"
   startingGear: SpaceNinjaGear
   equipment:
     id: AssistantPDA

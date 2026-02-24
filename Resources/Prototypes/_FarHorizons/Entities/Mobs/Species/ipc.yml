@@ -1,5 +1,5 @@
 - type: entity
-  parent: [MobBloodstream, MobFlammable, BaseMobSpecies]
+  parent: [MobBloodstream, MobFlammable, BaseSpeciesMob]
   id: BaseMobIPC
   name: Urist McRobot
   abstract: true
@@ -135,8 +135,6 @@
   - type: Body
     prototype: IPC
     requiredLegs: 2
-  - type: HumanoidAppearance
-    species: IPC
   - type: ZombieImmune
   - type: TypingIndicator
     proto: robot
@@ -152,6 +150,7 @@
       Male: MaleIPC
       Female: FemaleIPC
       Unsexed: MaleIPC
+  - type: VisionOrganRequiredForVision
   # IPC slots
   - type: ContainerContainer
     containers:
@@ -385,11 +384,6 @@
         examineText: ipc-thermals-examine-extreme
         diagnosticsText: ipc-thermals-diagnostics-extreme
         modeAlert: IPCFansSpeedExtreme
-
-- type: entity
-  parent: BaseSpeciesDummy
-  id: MobIPCDummy
-  categories: [ HideSpawnMenu ]
 
 - type: entity
   parent: BaseMentalAction

@@ -1,0 +1,242 @@
+- type: markingsGroup
+  parent: Undergarments
+  id: Shadekin
+  onlyGroupWhitelisted: true
+  limits:
+    enum.HumanoidVisualLayers.Hair:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.FacialHair:
+      limit: 0
+      required: false
+    enum.HumanoidVisualLayers.Tail:
+      limit: 1
+      required: true
+      default: [ TailShadekin ]
+    enum.HumanoidVisualLayers.HeadTop:
+      limit: 1
+      required: true
+      default: [EarsShadekin]
+    enum.HumanoidVisualLayers.Chest:
+      limit: 2
+      required: false
+    enum.HumanoidVisualLayers.LArm:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RArm:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LHand:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RHand:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LLeg:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RLeg:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LFoot:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RFoot:
+      limit: 1
+      required: false
+
+- type: entity
+  parent: BaseSpeciesAppearance
+  id: AppearanceShadekin
+  name: Shadekin Appearance
+  components:
+  - type: InitialBody
+    organs:
+      Torso: OrganShadekinTorso
+      Head: OrganShadekinHead
+      ArmLeft: OrganShadekinArmLeft
+      ArmRight: OrganShadekinArmRight
+      HandRight: OrganShadekinHandRight
+      HandLeft: OrganShadekinHandLeft
+      LegLeft: OrganShadekinLegLeft
+      LegRight: OrganShadekinLegRight
+      FootLeft: OrganShadekinFootLeft
+      FootRight: OrganShadekinFootRight
+      Brain: OrganShadekinBrain
+      Eyes: OrganShadekinEyes
+      Tongue: OrganShadekinTongue
+      #Ears: OrganShadekinEars
+      Lungs: OrganShadekinCore
+      Heart: OrganShadekinHeart
+      Stomach: OrganShadekinStomach
+      Liver: OrganShadekinLiver
+      Kidneys: OrganShadekinKidneys
+  - type: HumanoidProfile
+    species: Shadekin
+
+- type: entity
+  parent:
+  - AppearanceShadekin
+  - BaseMobShadekin
+  id: MobShadekin
+  name: Urist McShadow
+
+# Organs
+
+- type: entity
+  parent: OrganBase
+  id: OrganShadekin
+  abstract: true
+  suffix: Shadekin
+  components:
+  - type: Tag
+    tags:
+      - Organic
+
+- type: entity
+  id: OrganShadekinMetabolizer
+  abstract: true
+  components:
+  - type: Metabolizer
+    metabolizerTypes: [ Human ]
+
+- type: entity
+  parent: OrganShadekin
+  id: OrganShadekinInternal
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _Starlight/Mobs/Species/Shadekin/organs.rsi
+  - type: Tag
+    tags:
+      - Meat
+      - Organic
+
+- type: entity
+  parent: OrganShadekin
+  id: OrganShadekinExternal
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _Starlight/Mobs/Species/Shadekin/parts.rsi
+  - type: VisualOrgan
+    data:
+      sprite: _Starlight/Mobs/Species/Shadekin/parts.rsi
+  - type: VisualOrganMarkings
+    markingData:
+      group: Shadekin
+
+# Limbs
+
+- type: entity
+  parent: [ OrganBaseTorsoSexed, OrganBaseTorso, OrganShadekinExternal ]
+  id: OrganShadekinTorso
+
+- type: entity
+  parent: [ OrganBaseHeadSexed, OrganBaseHead, OrganShadekinExternal ]
+  id: OrganShadekinHead
+
+- type: entity
+  parent: [ OrganBaseArmLeft, OrganShadekinExternal ]
+  id: OrganShadekinArmLeft
+
+- type: entity
+  parent: [ OrganBaseArmRight, OrganShadekinExternal ]
+  id: OrganShadekinArmRight
+
+- type: entity
+  parent: [ OrganBaseHandLeft, OrganShadekinExternal ]
+  id: OrganShadekinHandLeft
+
+- type: entity
+  parent: [ OrganBaseHandRight, OrganShadekinExternal ]
+  id: OrganShadekinHandRight
+
+- type: entity
+  parent: [ OrganBaseLegLeft, OrganShadekinExternal ]
+  id: OrganShadekinLegLeft
+
+- type: entity
+  parent: [ OrganBaseLegRight, OrganShadekinExternal ]
+  id: OrganShadekinLegRight
+
+- type: entity
+  parent: [ OrganBaseFootLeft, OrganShadekinExternal ]
+  id: OrganShadekinFootLeft
+
+- type: entity
+  parent: [ OrganBaseFootRight, OrganShadekinExternal ]
+  id: OrganShadekinFootRight
+
+# Internal
+
+- type: entity
+  parent: [ OrganBaseBrain, OrganShadekinInternal ]
+  id: OrganShadekinBrain
+  description: "The source of incredible, unending intelligence. Marr."
+
+- type: entity
+  parent: [ OrganBaseEyes, OrganShadekinInternal, OrganShadekinExternal ]
+  id: OrganShadekinEyes
+  suffix: Shadekin
+  description: "Eyes of a BlackEye shadekin that can never see their home reality again."
+  components:
+  - type: Sprite
+    layers:
+      - state: eyes
+  - type: VisualOrgan
+    data:
+      sprite: _Starlight/Mobs/Species/Shadekin/parts.rsi
+      state: eyes
+  - type: FunctionalOrgan
+    comps:
+    - type: NightVision
+
+- type: entity
+  parent: [ OrganBaseTongue, OrganShadekinInternal ]
+  id: OrganShadekinTongue
+
+# - type: entity
+#   parent: [ OrganBaseEars, OrganShadekinInternal ]
+#   id: OrganShadekinEars
+
+- type: entity
+  parent: [ OrganBaseHeart, OrganShadekinInternal, OrganShadekinMetabolizer ]
+  id: OrganShadekinHeart
+  components:
+  - type: Sprite
+    layers:
+    - state: heart
+
+- type: entity
+  parent: [ OrganBaseStomach, OrganShadekinInternal, OrganShadekinMetabolizer ]
+  id: OrganShadekinStomach
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      food: {}
+      stomach:
+        maxVol: 40
+
+- type: entity
+  parent: [ OrganBaseLiver, OrganShadekinInternal, OrganShadekinMetabolizer ]
+  id: OrganShadekinLiver
+
+- type: entity
+  parent: [ OrganBaseKidneys, OrganShadekinInternal, OrganShadekinMetabolizer ]
+  id: OrganShadekinKidneys
+  components:
+  - type: Sprite
+    layers:
+      - state: kidneys
+
+- type: entity
+  parent: OrganShadekinInternal
+  id: OrganShadekinCore
+  name: shadekin core
+  description: A core of a shadekin, a mysterious and powerful organ that seems to be the source of their energy.
+  components:
+  - type: OrganShadekinCore
+  - type: Sprite
+    layers:
+      - state: core

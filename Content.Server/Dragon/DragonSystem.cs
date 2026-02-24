@@ -1,10 +1,9 @@
-using Content.Server.Body.Systems;
 using Content.Server.Objectives.Components;
 using Content.Server.Objectives.Systems;
 using Content.Server.Popups;
-using Content.Server.Roles;
 using Content.Shared.Actions;
 using Content.Shared.Dragon;
+using Content.Shared.Gibbing;
 using Content.Shared.Maps;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
@@ -14,7 +13,6 @@ using Content.Shared.Movement.Systems;
 using Content.Shared.NPC.Systems;
 using Content.Shared.Zombies;
 using Robust.Shared.Audio.Systems;
-using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 
 namespace Content.Server.Dragon;
@@ -31,7 +29,7 @@ public sealed partial class DragonSystem : EntitySystem
     [Dependency] private readonly SharedMapSystem _map = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly TurfSystem _turf = default!;
-    [Dependency] private readonly BodySystem _body = default!; //starlight
+    [Dependency] private readonly GibbingSystem _gibbing = default!; // Far Horizons
 
     private EntityQuery<CarpRiftsConditionComponent> _objQuery;
 
@@ -104,7 +102,7 @@ public sealed partial class DragonSystem : EntitySystem
             {
                 var xform = Transform(uid);
                 Spawn(comp.NoRiftDeathEffect, _transform.GetMapCoordinates(uid, xform: xform));
-                _body.GibBody(uid, gibOrgans: false); // REND HIS FLESH!!!!!!!!!!!!!
+                _gibbing.Gib(uid, false); // Far Horizons
             }
             //starlight end
         }

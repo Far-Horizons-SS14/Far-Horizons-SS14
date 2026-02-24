@@ -5,15 +5,12 @@ using Content.Shared.IdentityManagement;
 using Content.Shared.Preferences;
 using Content.Shared.Damage;
 using Content.Shared.Research.Components;
-using Content.Shared.Research.Systems;
-using Content.Shared.Research.Prototypes;
 using Content.Shared.Buckle.Components;
 using Content.Shared.DeviceLinking;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using Content.Shared.Prototypes;
 using Robust.Shared.Random;
-using Content.Shared.Random.Helpers;
 using System.Linq;
 using Content.Server.Administration.Systems;
 using Content.Shared.Eye.Blinding.Systems;
@@ -21,21 +18,24 @@ using Content.Shared.Eye.Blinding.Components;
 using Content.Shared.Atmos.Rotting;
 using Content.Shared.Medical.Healing;
 using Robust.Shared.Containers;
-using Content.Shared.Body.Systems;
-using Content.Shared.Body.Components;
 using Content.Shared.Tag;
 using Content.Server._FarHorizons.Research;
 using Content.Shared._FarHorizons.Research.Components;
 using System.Diagnostics.CodeAnalysis;
+using Content.Server.Body;
+using Content.Shared._FarHorizons.Body;
+using Content.Shared.Body;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Damage.Components;
+using Robust.Shared.Utility;
 
 namespace Content.Server._FarHorizons.Medical.SurgeryOverhaul.Systems;
 
 public sealed partial class SurgeryOverhaulSystem : EntitySystem
 {
     [Dependency] private readonly MetaDataSystem _metaData = default!;
-    [Dependency] private readonly SharedHumanoidAppearanceSystem _humanoidAppearance = default!;
+    [Dependency] private readonly VisualBodySystem _visualBody = default!;
+    [Dependency] private readonly HumanoidProfileSystem _profile = default!;
     [Dependency] private readonly IdentitySystem _identity = default!;
     [Dependency] private readonly INetManager _net = default!;
     [Dependency] private readonly DamageableSystem _damageableSystem = default!;
@@ -65,7 +65,34 @@ public sealed partial class SurgeryOverhaulSystem : EntitySystem
         SubscribeLocalEvent<RequireOrganicPartComponent, SurgeryValidEvent>(OnRequireOrganicPartValid);
         SubscribeLocalEvent<RequireInorganicPartComponent, SurgeryValidEvent>(OnRequireInorganicPartValid);
 
+        SubscribeLocalEvent<SurgeryStepCustomOrganInsertComponent, SurgeryStepEvent>(OnStepCustomOrganInsertComplete);
+
         LoadSurgeriesForRotten();
+    }
+
+    private void OnStepCustomOrganInsertComplete(Entity<SurgeryStepCustomOrganInsertComponent> ent, ref SurgeryStepEvent args)
+    {
+        if (args.Tools.Count == 0
+            || !(args.Tools.FirstOrDefault() is var item)
+            || !TryComp<BodyComponent>(args.Body, out var bodyComp)
+            || HasComp<OrganComponent>(item))
+        {
+            args.IsCancelled = true;
+            return;
+        }
+
+        var comp = EnsureComp<OrganComponent>(item);
+        comp.Category = ent.Comp.CustomCategory;
+        EnsureComp<CustomOrganComponent>(item);
+
+        if (bodyComp.Organs == null ||
+            !_containers.CanInsert(item, bodyComp.Organs))
+        {
+            args.IsCancelled = true;
+            return;
+        }
+
+        _containers.Insert(item, bodyComp.Organs);
     }
 
     public bool TryGetConnectedResearchServer
@@ -94,14 +121,15 @@ public sealed partial class SurgeryOverhaulSystem : EntitySystem
         if (_net.IsClient) return;
         var target = args.Body;
 
-        if (!TryComp<HumanoidAppearanceComponent>(target, out var humanoid))
+        if (!TryComp<HumanoidCharacterProfileComponent>(target, out var humanoid) || humanoid.Profile == null)
             return;
 
         if (_net.IsClient)
             return;
 
-        var newProfile = HumanoidCharacterProfile.RandomWithSpecies(humanoid.Species);
-        _humanoidAppearance.LoadProfile(target, newProfile, humanoid);
+        var newProfile = HumanoidCharacterProfile.RandomWithSpecies(humanoid.Profile.Species);
+        _visualBody.ApplyProfileTo(target, newProfile);
+        _profile.ApplyProfileTo(target, newProfile);
         _metaData.SetEntityName(target, newProfile.Name, raiseEvents: false);
         _identity.QueueIdentityUpdate(target);
     }
@@ -221,20 +249,18 @@ public sealed partial class SurgeryOverhaulSystem : EntitySystem
         if (args.Cancelled) return;
 
         args.Cancelled = !(TryComp<BodyComponent>(args.Body, out var bodyComp) &&
-        bodyComp.RootContainer?.ContainedEntity is { } rootEnt &&
-        _containers.TryGetContainer(rootEnt, SharedBodySystem.GetPartSlotContainerId(ent.Comp.Slot), out var container) &&
-        container.ContainedEntities.Count > 0);
+        bodyComp.Organs is not null &&
+        bodyComp.Organs.ContainedEntities.Any(p => TryComp<OrganComponent>(p, out var organComp) && organComp.Category == ent.Comp.Slot));
     } 
     
     private void OnRequireSpecifiOrganicPartValid(Entity<RequireSpecificOrganicPartComponent> ent, ref SurgeryValidEvent args)
     {
         if (args.Cancelled) return;
         
-        if (TryComp<BodyComponent>(args.Body, out var bodyComp) &&
-        bodyComp.RootContainer?.ContainedEntity is { } rootEnt &&
-        _containers.TryGetContainer(rootEnt, ent.Comp.Slot, out var container) &&
-        container.ContainedEntities.Count > 0)
-            if (!_tag.HasTag(container.ContainedEntities.First(), "Organic"))
+        if (TryComp<BodyComponent>(args.Body, out var bodyComp) && 
+            bodyComp.Organs is not null &&
+            bodyComp.Organs.ContainedEntities.Where(p => TryComp<OrganComponent>(p, out var organComp) && organComp.Category == ent.Comp.Slot).FirstOrNull() is {} targetOrgan)
+            if (!_tag.HasTag(targetOrgan, "Organic"))
                 args.Cancelled = true;
     } 
 

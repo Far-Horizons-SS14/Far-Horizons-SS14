@@ -8,7 +8,7 @@ using Content.Shared.Teleportation.Components;
 
 namespace Content.Server._Starlight.Shadekin;
 
-public sealed partial class ShadekinSystem : EntitySystem
+public sealed partial class ShadekinSystem
 {
     [Dependency] private readonly DoAfterSystem _doAfterSystem = default!;
     public void InitializeAbilities()

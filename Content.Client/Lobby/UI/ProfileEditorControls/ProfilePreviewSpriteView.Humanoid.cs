@@ -1,8 +1,6 @@
-﻿using System.Linq;
-using Content.Client.Humanoid;
+using System.Linq;
 using Content.Client.Station;
-using Content.Shared.Clothing;
-using Content.Shared.GameTicking;
+using Content.Shared.Body;
 using Content.Shared.Humanoid;
 using Content.Shared.Inventory;
 using Content.Shared.Preferences;
@@ -10,10 +8,7 @@ using Content.Shared.Preferences.Loadouts;
 using Content.Shared.Roles;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
-using Content.Shared.Body.Part;
-using Content.Shared.Starlight;
 using Content.Shared._FarHorizons.Factions;
-using Robust.Shared.Utility; // Starlight
 
 namespace Content.Client.Lobby.UI.ProfileEditorControls;
 
@@ -22,38 +17,20 @@ public sealed partial class ProfilePreviewSpriteView
     /// <summary>
     /// A slim reload that only updates the entity itself and not any of the job entities, etc.
     /// </summary>
-    /// <param name="humanoid">Profile to apply to the dummy</param>
     private void ReloadHumanoidEntity(HumanoidCharacterProfile humanoid)
     {
         if (!EntMan.EntityExists(PreviewDummy) ||
-            !EntMan.HasComponent<HumanoidAppearanceComponent>(PreviewDummy))
+            !EntMan.HasComponent<VisualBodyComponent>(PreviewDummy))
             return;
 
-        EntMan.System<HumanoidAppearanceSystem>().LoadProfile(PreviewDummy, humanoid);
-
-        // Starlight
-        var layers = GetCyberneticsLayers(humanoid);
-        EntMan.System<HumanoidAppearanceSystem>().AddCustomBaseLayers(PreviewDummy, layers);
-
-        // Far Horizons
-        if (_prototypeManager.Index(humanoid.Species).Loadout != null)
-        {
-            var loadout = humanoid.GetSpeciesLoadoutOrDefault(_playerManager.LocalSession, _prototypeManager);
-            GiveDummyLoadout(PreviewDummy, loadout);
-        }
+        EntMan.System<SharedVisualBodySystem>().ApplyProfileTo(PreviewDummy, humanoid);
     }
 
     /// <summary>
-    /// Reloads the entire dummy entity for preview.
+    /// Loads the profile onto a dummy entity.
     /// </summary>
-    /// <remarks>
-    /// This is expensive so not recommended to run if you have a slider.
-    /// </remarks>
-    /// <param name="humanoid">Profile to load</param>
-    /// <param name="job">Faction and job to force job clothes override -- don't use job preferences</param>
-    /// <param name="showClothes">Add job clothes or just spawn a species doll</param>
-    /// Far Horizons
-    private void LoadHumanoidEntity(HumanoidCharacterProfile humanoid, (FactionPrototype faction, JobPrototype job)? job, bool showClothes, ProtoId<AntagPrototype>? antagOverride = null)
+    /// Far Horizons - heavily edited
+    private void LoadHumanoidEntity(HumanoidCharacterProfile humanoid, (FactionPrototype faction, JobPrototype job)? job, bool jobClothes, ProtoId<AntagPrototype>? antagOverride)
     {
         ProfileName = humanoid.Name;
         JobName = null;
@@ -69,7 +46,7 @@ public sealed partial class ProfilePreviewSpriteView
 
             ReloadHumanoidEntity(humanoid);
 
-            if (!showClothes)
+            if (!jobClothes)
                 return;
 
             JobName = Loc.GetString(antagProto.Name);
@@ -88,18 +65,19 @@ public sealed partial class ProfilePreviewSpriteView
                         _prototypeManager);
 
                     LoadoutName = GetLoadoutName(antagLoadout);
-                    GiveDummyLoadout(PreviewDummy, antagLoadout);
+                    GiveDummyLoadout(antagLoadout);
                 }
             }
             return;
         }
         // Starlight End
 
+        EntProtoId? previewEntity = null;
         job ??= GetPreferredJob(humanoid);
+        
 
         RoleLoadout? loadout;
-
-        if(job is (FactionPrototype faction, JobPrototype jobProto))
+        if (job is ({ } faction, { } jobProto))
         {
             try
             {
@@ -110,37 +88,33 @@ public sealed partial class ProfilePreviewSpriteView
                     EntMan,
                     _prototypeManager);
             }
-            catch (UnknownPrototypeException e)
+            catch (UnknownPrototypeException)
             {
                 loadout = new RoleLoadout();
             }
 
-            // If the job has a preview specific entity or a job specific entity use that
-            // Far Horizons override job (preview)entity
-            var previewEntity = _factions.OverrideJobPreviewEntity((faction, jobProto)) ?? _factions.OverrideJobEntity((faction, jobProto));
+            previewEntity = _factions.OverrideJobPreviewEntity((faction, jobProto)) ??
+                            _factions.OverrideJobEntity((faction, jobProto));
 
             if (previewEntity != null)
             {
-                // This is currently for borg and AI
+                // Special type like borg or AI, do not spawn a human just spawn the entity.
                 PreviewDummy = EntMan.SpawnEntity(previewEntity, MapCoordinates.Nullspace);
                 JobName = _factions.OverrideLocalizedJobName((faction, jobProto));
-                // Grab the loadout specific name too!
                 LoadoutName = GetLoadoutName(loadout);
                 return;
             }
         }
 
-        // No job specific entities, we should spawn a humanoid
-        PreviewDummy = EntMan.SpawnEntity(
-            _prototypeManager.Index(humanoid.Species).DollPrototype,
-            MapCoordinates.Nullspace);
-
-        ReloadHumanoidEntity(humanoid);
+        var dummy = _prototypeManager.Index(humanoid.Species).DollPrototype;
+        PreviewDummy = EntMan.SpawnEntity(dummy, MapCoordinates.Nullspace);
+        LoadCybernetics(humanoid);
+        EntMan.System<SharedVisualBodySystem>().ApplyProfileTo(PreviewDummy, humanoid);
 
         // Bail now if all we need is the naked doll
-        if (!showClothes)
+        if (!jobClothes)
             return;
-
+        
         // If we don't have an overridden job and the profile has NO job perefences, check for an antag preview
         if (job == null && humanoid.JobPreferences.Count == 0)
         {
@@ -171,7 +145,7 @@ public sealed partial class ProfilePreviewSpriteView
 
                     LoadoutName = GetLoadoutName(loadout);
 
-                    GiveDummyLoadout(PreviewDummy, loadout);
+                    GiveDummyLoadout(loadout);
                     JobName = Loc.GetString(selectedAntagProto.Name);
                     return;
                 }
@@ -187,18 +161,12 @@ public sealed partial class ProfilePreviewSpriteView
         }
 
         if (job == null)
-        {
             // We STILL don't have a job, use fallback and don't set "JobName" (we don't want to display Passenger)
             job = _factions.GetDefaultWithJob();
-        }
         else
-        {
             JobName = _factions.OverrideLocalizedJobName((job.Value.faction, job.Value.job));
-        }
-        GiveDummyJobClothes(PreviewDummy, humanoid, job.Value.job);
 
-        if (!_prototypeManager.HasIndex<RoleLoadoutPrototype>(_factions.OverrideJobLoadout(job.Value)))
-            return;
+        GiveDummyJobClothes(humanoid, job.Value.job);
 
         loadout = humanoid.GetLoadoutOrDefault(
             _factions.OverrideJobLoadout((job.Value.faction, job.Value.job)),
@@ -209,16 +177,12 @@ public sealed partial class ProfilePreviewSpriteView
 
         LoadoutName = GetLoadoutName(loadout);
 
-        GiveDummyLoadout(PreviewDummy, loadout);
+        GiveDummyLoadout(loadout);
     }
 
     /// <summary>
     /// Gets the highest priority job for the profile.
-    /// If there is one job set, always return that.
-    /// Otherwise, from the set of enabled jobs on this profile, return "High" priority job, otherwise,
-    ///     the first "Medium" priority job found, etc.
     /// </summary>
-    /// <param name="profile">Profile to get job for</param>
     private (FactionPrototype, JobPrototype)? GetPreferredJob(HumanoidCharacterProfile profile)
     {
         (ProtoId<FactionPrototype> faction, ProtoId<JobPrototype> job) highPriorityJob = default;
@@ -236,18 +200,106 @@ public sealed partial class ProfilePreviewSpriteView
                     break;
             }
         }
-        // ReSharper disable once NullCoalescingConditionIsAlwaysNotNullAccordingToAPIContract (what is resharper smoking?)
-        return highPriorityJob.faction.Id == null || highPriorityJob.job.Id == null ? 
-            null : 
-            (_prototypeManager.Index(highPriorityJob.faction), _prototypeManager.Index(highPriorityJob.job));
+        return highPriorityJob.faction.Id == null || highPriorityJob.job.Id == null
+            ? null
+            : (_prototypeManager.Index(highPriorityJob.faction), _prototypeManager.Index(highPriorityJob.job));
     }
 
-    private string? GetLoadoutName(RoleLoadout loadout)
+    private void GiveDummyLoadout(RoleLoadout? roleLoadout)
     {
-        if (_prototypeManager.TryIndex(loadout.Role, out var roleLoadoutPrototype) &&
-            roleLoadoutPrototype.CanCustomizeName)
-            return loadout.EntityName;
-        return null;
+        if (roleLoadout == null)
+            return;
+
+        var spawnSys = EntMan.System<StationSpawningSystem>();
+
+        foreach (var group in roleLoadout.SelectedLoadouts.Values)
+        {
+            foreach (var loadout in group)
+            {
+                if (!_prototypeManager.Resolve(loadout.Prototype, out var loadoutProto))
+                    continue;
+
+                spawnSys.EquipStartingGear(PreviewDummy, loadoutProto);
+            }
+        }
+    }
+
+    /// <summary>
+    /// Applies the specified job's clothes to the dummy.
+    /// </summary>
+    private void GiveDummyJobClothes(HumanoidCharacterProfile profile, JobPrototype job)
+    {
+        var inventorySys = EntMan.System<InventorySystem>();
+        if (!inventorySys.TryGetSlots(PreviewDummy, out var slots))
+            return;
+
+        // Apply loadout
+        if (profile.Loadouts.TryGetValue(job.ID, out var jobLoadout))
+        {
+            foreach (var loadouts in jobLoadout.SelectedLoadouts.Values)
+            {
+                foreach (var loadout in loadouts)
+                {
+                    if (!_prototypeManager.Resolve(loadout.Prototype, out var loadoutProto))
+                        continue;
+
+                    // TODO: Need some way to apply starting gear to an entity and replace existing stuff coz holy fucking shit dude.
+                    foreach (var slot in slots)
+                    {
+                        // Try startinggear first
+                        if (_prototypeManager.Resolve(loadoutProto.StartingGear, out var loadoutGear))
+                        {
+                            var itemType = ((IEquipmentLoadout) loadoutGear).GetGear(slot.Name);
+
+                            if (inventorySys.TryUnequip(PreviewDummy, slot.Name, out var unequippedItem, silent: true, force: true, reparent: false))
+                            {
+                                EntMan.DeleteEntity(unequippedItem.Value);
+                            }
+
+                            if (itemType != string.Empty)
+                            {
+                                var item = EntMan.SpawnEntity(itemType, MapCoordinates.Nullspace);
+                                inventorySys.TryEquip(PreviewDummy, item, slot.Name, true, true);
+                            }
+                        }
+                        else
+                        {
+                            var itemType = ((IEquipmentLoadout) loadoutProto).GetGear(slot.Name);
+
+                            if (inventorySys.TryUnequip(PreviewDummy, slot.Name, out var unequippedItem, silent: true, force: true, reparent: false))
+                            {
+                                EntMan.DeleteEntity(unequippedItem.Value);
+                            }
+
+                            if (itemType != string.Empty)
+                            {
+                                var item = EntMan.SpawnEntity(itemType, MapCoordinates.Nullspace);
+                                inventorySys.TryEquip(PreviewDummy, item, slot.Name, true, true);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        if (!_prototypeManager.Resolve(job.StartingGear, out var gear))
+            return;
+
+        foreach (var slot in slots)
+        {
+            var itemType = ((IEquipmentLoadout) gear).GetGear(slot.Name);
+
+            if (inventorySys.TryUnequip(PreviewDummy, slot.Name, out var unequippedItem, silent: true, force: true, reparent: false))
+            {
+                EntMan.DeleteEntity(unequippedItem.Value);
+            }
+
+            if (itemType != string.Empty)
+            {
+                var item = EntMan.SpawnEntity(itemType, MapCoordinates.Nullspace);
+                inventorySys.TryEquip(PreviewDummy, item, slot.Name, true, true);
+            }
+        }
     }
 
     /// <summary>
@@ -263,121 +315,11 @@ public sealed partial class ProfilePreviewSpriteView
         spawnSys.EquipStartingGear(PreviewDummy, antag.PreviewStartingGear);
     }
 
-    /// <summary>
-    /// Applies the specified job's clothes to the dummy.
-    /// </summary>
-    private void GiveDummyJobClothes(EntityUid dummy, HumanoidCharacterProfile profile, JobPrototype job)
+    private string? GetLoadoutName(RoleLoadout loadout)
     {
-        var inventorySys = EntMan.System<InventorySystem>();
-        if (!inventorySys.TryGetSlots(dummy, out var slots))
-            return;
-
-        // Apply loadout
-        if (profile.Loadouts.TryGetValue(job.ID, out var jobLoadout))
-        {
-            foreach (var loadouts in jobLoadout.SelectedLoadouts.Values)
-            {
-                foreach (var loadout in loadouts)
-                {
-                    if (!_prototypeManager.TryIndex(loadout.Prototype, out var loadoutProto))
-                        continue;
-
-                    // TODO: Need some way to apply starting gear to an entity and replace existing stuff coz holy fucking shit dude.
-                    foreach (var slot in slots)
-                    {
-                        // Try startinggear first
-                        if (_prototypeManager.TryIndex(loadoutProto.StartingGear, out var loadoutGear))
-                        {
-                            var itemType = ((IEquipmentLoadout)loadoutGear).GetGear(slot.Name);
-
-                            if (inventorySys.TryUnequip(dummy, slot.Name, out var unequippedItem, silent: true, force: true, reparent: false))
-                            {
-                                EntMan.DeleteEntity(unequippedItem.Value);
-                            }
-
-                            if (itemType != string.Empty)
-                            {
-                                var item = EntMan.SpawnEntity(itemType, MapCoordinates.Nullspace);
-                                inventorySys.TryEquip(dummy, item, slot.Name, true, true);
-                            }
-                        }
-                        else
-                        {
-                            var itemType = ((IEquipmentLoadout)loadoutProto).GetGear(slot.Name);
-
-                            if (inventorySys.TryUnequip(dummy, slot.Name, out var unequippedItem, silent: true, force: true, reparent: false))
-                            {
-                                EntMan.DeleteEntity(unequippedItem.Value);
-                            }
-
-                            if (itemType != string.Empty)
-                            {
-                                var item = EntMan.SpawnEntity(itemType, MapCoordinates.Nullspace);
-                                inventorySys.TryEquip(dummy, item, slot.Name, true, true);
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        if (!_prototypeManager.TryIndex(job.StartingGear, out var gear))
-            return;
-
-        foreach (var slot in slots)
-        {
-            var itemType = ((IEquipmentLoadout)gear).GetGear(slot.Name);
-
-            if (inventorySys.TryUnequip(dummy, slot.Name, out var unequippedItem, silent: true, force: true, reparent: false))
-            {
-                EntMan.DeleteEntity(unequippedItem.Value);
-            }
-
-            if (itemType != string.Empty)
-            {
-                var item = EntMan.SpawnEntity(itemType, MapCoordinates.Nullspace);
-                inventorySys.TryEquip(dummy, item, slot.Name, true, true);
-            }
-        }
-    }
-
-    /// <summary>
-    /// Give player's role loadout to the dummy.
-    /// </summary>
-    private void GiveDummyLoadout(EntityUid uid, RoleLoadout? roleLoadout)
-    {
-        if (roleLoadout == null)
-            return;
-
-        var spawnSys = EntMan.System<StationSpawningSystem>();
-
-        foreach (var group in roleLoadout.SelectedLoadouts.Values)
-        {
-            foreach (var loadout in group)
-            {
-                if (!_prototypeManager.TryIndex(loadout.Prototype, out var loadoutProto))
-                    continue;
-
-                spawnSys.EquipStartingGear(uid, loadoutProto);
-            }
-        }
-    }
-
-    /// Starlight
-    /// <summary>
-    /// Extracts cybernetics IDs from humanoid profile, returns all their visual layers
-    /// </summary>
-    private Dictionary<HumanoidVisualLayers, CustomBaseLayerInfo> GetCyberneticsLayers(HumanoidCharacterProfile humanoid)
-    {
-        return humanoid.Cybernetics.Select(p =>
-        {
-            var _cyberneticEnt = _prototypeManager.Index<EntityPrototype>(p);
-            if (_cyberneticEnt.TryGetComponent<BodyPartComponent>(out var part, EntMan.ComponentFactory) &&
-               _cyberneticEnt.TryGetComponent<BaseLayerIdComponent>(out var layer, EntMan.ComponentFactory))
-            {
-                return (CyberneticImplant.LayerFromBodypart(part), new(layer.Layer));
-            }
-            else { return (HumanoidVisualLayers.Special, new CustomBaseLayerInfo()); }
-        }).Where(p => p.Item1 != HumanoidVisualLayers.Special).ToDictionary();
+        if (_prototypeManager.TryIndex(loadout.Role, out var roleLoadoutPrototype) &&
+            roleLoadoutPrototype.CanCustomizeName)
+            return loadout.EntityName;
+        return null;
     }
 }

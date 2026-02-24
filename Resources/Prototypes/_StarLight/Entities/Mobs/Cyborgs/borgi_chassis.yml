@@ -4,25 +4,33 @@
   name: derelict borgi
   description: even after all these years. still loves chasing it's tail.
   components:
-    - type: ContainerFill
+    - type: EntityTableContainerFill
       containers:
-        borg_brain:
-          - PositronicBrain
-        borg_module:
-          - BorgModuleTool
-          - BorgModuleFireExtinguisher
-        ears:
-          - ClothingHeadsetAssistant
-        head:
-          - ClothingHeadHelmetEVALarge
-        outerClothing:
-          - ClothingOuterHardsuitEVA
-        mask:
-          - ClothingMaskBreath
-        suitstorage:
-          - OxygenTankFilled
-        id:
-          - BorgiClearPDA
+        borg_brain: !type:AllSelector
+          children:
+            - id: PositronicBrain
+        borg_module: !type:AllSelector
+          children:
+            - id: BorgModuleTool
+            - id: BorgModuleFireExtinguisher
+        ears: !type:AllSelector
+          children:
+            - id: ClothingHeadsetAssistant
+        head: !type:AllSelector
+          children:
+            - id: ClothingHeadHelmetEVALarge
+        outerClothing: !type:AllSelector
+          children:
+            - id: ClothingOuterHardsuitEVA
+        mask: !type:AllSelector
+          children:
+            - id: ClothingMaskBreath
+        suitstorage: !type:AllSelector
+          children:
+            - id: OxygenTankFilled
+        id: !type:AllSelector
+          children:
+            - id: BorgiClearPDA
     - type: ItemSlots
       slots:
         cell_slot:
@@ -43,10 +51,11 @@
         cell_slot:
           name: power-cell-slot-component-slot-name-default
           startingItem: PowerCellHigh
-    - type: ContainerFill
+    - type: EntityTableContainerFill
       containers:
-        borg_brain:
-          - PositronicBrain
+        borg_brain: !type:AllSelector
+          children:
+          - id: PositronicBrain
 
 - type: entity
   parent: BaseStationBorgiChassis
@@ -62,10 +71,11 @@
         cell_slot:
           name: power-cell-slot-component-slot-name-default
           startingItem: PowerCellHigh
-    - type: ContainerFill
+    - type: EntityTableContainerFill
       containers:
-        borg_brain:
-          - PositronicBrain
+        borg_brain: !type:AllSelector
+          children:
+          - id: PositronicBrain
 
 - type: entity
   parent: SmartSubwooferBorgiChassis
@@ -78,10 +88,11 @@
         cell_slot:
           name: power-cell-slot-component-slot-name-default
           startingItem: PowerCellHigh
-    - type: ContainerFill
+    - type: EntityTableContainerFill
       containers:
-        borg_brain:
-          - PositronicBrain
+        borg_brain: !type:AllSelector
+          children:
+          - id: PositronicBrain
 
 # Syndicate Borgi
 
@@ -92,14 +103,16 @@
   suffix: Antag, L6 Esword
   description: An unusually smart dog, but hell bent on MURDER.
   components:
-    - type: ContainerFill
+    - type: EntityTableContainerFill
       containers:
-        borg_brain:
-        - PositronicBrain
-        borg_module:
-        - BorgModuleOperative
-        - BorgModuleL6C
-        - BorgModuleEsword # We're not giving the double e-sword to the borgi. Buy the proper borg.
+        borg_brain: !type:AllSelector
+          children:
+          - id: PositronicBrain
+        borg_module: !type:AllSelector
+          children:
+            - id: BorgModuleOperative
+            - id: BorgModuleL6C
+            - id: BorgModuleEsword
 
 - type: entity
   parent: BaseSyndicateBorgiChassis
@@ -117,13 +130,15 @@
         tags:
         - BorgModuleSyndicate
         - BorgModuleGeneric
-    - type: ContainerFill
+    - type: EntityTableContainerFill
       containers:
-        borg_brain:
-        - PositronicBrain
-        borg_module:
-        - BorgModuleOperative
-        - BorgModuleSyndicateWeapon
+        borg_brain: !type:AllSelector
+          children:
+          - id: PositronicBrain
+        borg_module: !type:AllSelector
+          children:
+            - id: BorgModuleOperative
+            - id: BorgModuleSyndicateWeapon
 
 - type: entity
   parent: [ BaseXenoborgChassis, BaseXenoborgTransponder, BaseBorgiChassis ]
@@ -172,13 +187,14 @@
     - type: RandomMetadata
       nameSegments:
       - NamesShadowBorgi
-    - type: ContainerFill
+    - type: EntityTableContainerFill
       containers:
-        borg_module:
-        - XenoborgModuleBasic
-        - XenoborgModuleTool
-        - BorgModuleSyndicateWeapon
-        - BorgModuleTopicals
+        borg_module: !type:AllSelector
+          children:
+            - id: XenoborgModuleBasic
+            - id: XenoborgModuleTool
+            - id: BorgModuleSyndicateWeapon
+            - id: BorgModuleTopicals
     - type: Barotrauma # borgis largely do not have access to hardsuits so nerf the space damage they take
       maxDamage: 1
       damage:
@@ -220,29 +236,38 @@
   id: XenoBorgiPrinted
   suffix: Cell
   components:
-    - type: ContainerFill
+    - type: EntityTableContainerFill
       containers:
-        borg_brain:
-          - MMI
-        borg_module:
-          - XenoborgModuleBasic
-          - XenoborgModuleTool
-          - BorgModuleSyndicateWeapon
-          - BorgModuleTopicals
-        ears:
-          - ClothingHeadsetAssistant
-        head:
-          - ClothingHeadHelmetEVALarge
-        outerClothing:
-          - ClothingOuterHardsuitEVA
-        mask:
-          - ClothingMaskBreath
-        suitstorage:
-          - OxygenTankFilled
-        id:
-          - BorgiClearPDA
-        back:
-          - ClothingBagPet
+        borg_brain: !type:AllSelector
+          children:
+            - id: MMI
+        borg_module: !type:AllSelector
+          children:
+            - id: XenoborgModuleBasic
+            - id: XenoborgModuleTool
+            - id: BorgModuleSyndicateWeapon
+            - id: BorgModuleTopicals
+        ears: !type:AllSelector
+          children:
+            - id: ClothingHeadsetAssistant
+        head: !type:AllSelector
+          children:
+            - id: ClothingHeadHelmetEVALarge
+        outerClothing: !type:AllSelector
+          children:
+            - id: ClothingOuterHardsuitEVA
+        mask: !type:AllSelector
+          children:
+            - id: ClothingMaskBreath
+        suitstorage: !type:AllSelector
+          children:
+            - id: OxygenTankFilled
+        id: !type:AllSelector
+          children:
+            - id: BorgiClearPDA
+        back: !type:AllSelector
+          children:
+            - id: ClothingBagPet
     - type: ItemSlots
       slots:
         cell_slot:
@@ -262,26 +287,8 @@
       raffle:
         settings: default
     - type: GhostTakeoverAvailable
-    - type: ContainerFill
+    - type: EntityTableContainerFill
       containers:
-        borg_brain:
-          - MMIFilled
-        borg_module:
-          - XenoborgModuleBasic
-          - XenoborgModuleTool
-          - BorgModuleSyndicateWeapon
-          - BorgModuleTopicals
-        ears:
-          - ClothingHeadsetAssistant
-        head:
-          - ClothingHeadHelmetEVALarge
-        outerClothing:
-          - ClothingOuterHardsuitEVA
-        mask:
-          - ClothingMaskBreath
-        suitstorage:
-          - OxygenTankFilled
-        id:
-          - BorgiClearPDA
-        back:
-          - ClothingBagPet
+        borg_brain: !type:AllSelector
+          children:
+            - id: MMIFilled

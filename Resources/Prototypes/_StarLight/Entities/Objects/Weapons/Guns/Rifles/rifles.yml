@@ -252,21 +252,21 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazineRifle40SP # Far Horizons
+        startingItem: MagazineRifle38SP # Far Horizons
         insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
         priority: 2
         whitelist:
           tags:
-          - MagazineRifle40 # Far Horizons
+          - MagazineRifle38 # Far Horizons
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
-        startingItem: CartridgePistol40SP # Far Horizons
+        startingItem: CartridgeRevolver38SP # Far Horizons
         priority: 1
         whitelist:
           tags:
-          - CartridgePistolDP # Far Horizons
+          - CartridgeRevolver38 # Far Horizons
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot ""

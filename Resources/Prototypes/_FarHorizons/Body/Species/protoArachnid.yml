@@ -1,0 +1,107 @@
+- type: markingsGroup
+  parent: [ BaseProtogen, Arachnid ]
+  id: ProtoArachnid
+  limits:
+    enum.HumanoidVisualLayers.FaceCover:
+      limit: 1
+      required: true
+      default: [ ProtoArachnidVisor ]
+
+- type: entity
+  parent: AppearanceArachnid
+  id: AppearanceProtoArachnid
+  name: ProtoArachnid Appearance
+  components:
+  - type: InitialBody
+    organs:
+      Torso: OrganProtoArachnidTorso
+      Head: OrganProtoArachnidHead
+      ArmLeft: OrganProtoArachnidArmLeft
+      ArmRight: OrganProtoArachnidArmRight
+      HandRight: OrganProtoArachnidHandRight
+      HandLeft: OrganProtoArachnidHandLeft
+      LegLeft: OrganProtoArachnidLegLeft
+      LegRight: OrganProtoArachnidLegRight
+      FootLeft: OrganProtoArachnidFootLeft
+      FootRight: OrganProtoArachnidFootRight
+      Brain: OrganProtogenBrain
+      Eyes: OrganProtogenEyes
+      Tongue: OrganProtogenTongue
+      Ears: OrganProtogenEars
+      Lungs: OrganProtogenLungs
+      Heart: OrganProtoArachnidHeart
+      Stomach: OrganProtogenStomach
+      Liver: OrganProtogenLiver
+      Kidneys: OrganProtogenKidneys
+  - type: HumanoidProfile
+    species: ProtoArachnid
+
+- type: entity
+  parent:
+  - AppearanceProtoArachnid
+  - BaseMobProtoArachnid
+  id: MobProtoArachnid
+  name: Urist McWebster
+
+# Organs
+
+- type: entity
+  parent: OrganArachnidExternal
+  id: OrganProtoArachnidExternal
+  abstract: true
+  components:
+  - type: VisualOrganMarkings
+    markingData:
+      group: ProtoArachnid
+
+# Limbs
+
+- type: entity
+  parent: [ OrganProtoArachnidExternal, OrganArachnidTorso ]
+  id: OrganProtoArachnidTorso
+
+- type: entity
+  parent: [ OrganProtoArachnidExternal, OrganArachnidHead ]
+  id: OrganProtoArachnidHead
+
+- type: entity
+  parent: [ OrganProtoArachnidExternal, OrganArachnidArmLeft ]
+  id: OrganProtoArachnidArmLeft
+
+- type: entity
+  parent: [ OrganProtoArachnidExternal, OrganArachnidArmRight ]
+  id: OrganProtoArachnidArmRight
+
+- type: entity
+  parent: [ OrganProtoArachnidExternal, OrganArachnidHandLeft ]
+  id: OrganProtoArachnidHandLeft
+
+- type: entity
+  parent: [ OrganProtoArachnidExternal, OrganArachnidHandRight ]
+  id: OrganProtoArachnidHandRight
+
+- type: entity
+  parent: [ OrganProtoArachnidExternal, OrganArachnidLegLeft ]
+  id: OrganProtoArachnidLegLeft
+
+- type: entity
+  parent: [ OrganProtoArachnidExternal, OrganArachnidLegRight ]
+  id: OrganProtoArachnidLegRight
+
+- type: entity
+  parent: [ OrganProtoArachnidExternal, OrganArachnidFootLeft ]
+  id: OrganProtoArachnidFootLeft
+
+- type: entity
+  parent: [ OrganProtoArachnidExternal, OrganArachnidFootRight ]
+  id: OrganProtoArachnidFootRight
+
+# Internal
+
+- type: entity
+  parent: OrganProtogenHeart
+  id: OrganProtoArachnidHeart
+  components:
+  - type: Metabolizer
+    updateInterval: 1.5
+    metabolizerTypes: [Arachnid]

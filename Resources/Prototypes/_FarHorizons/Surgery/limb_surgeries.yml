@@ -1,0 +1,639 @@
+# Base
+
+- type: entity
+  id: SurgeryLimbAmputate
+  abstract: true
+  name: Amputate
+  components:
+    - type: Sprite
+      sprite: Objects/Specific/Medical/Surgery/saw.rsi
+      state: saw
+
+- type: entity
+  id: SurgeryLimbAttach
+  abstract: true
+  components:
+    - type: Sprite
+      sprite: Objects/Specific/Medical/medical.rsi
+      state: medicated-suture
+
+- type: entity
+  id: SurgeryLimbBase
+  abstract: true
+  categories:
+  - HideSpawnMenu
+  components:
+  - type: Surgery
+    requirement:
+    - SurgeryOpenIncision
+  - type: SurgerySpeciesCondition
+    speciesBlacklist:
+    - SlimePerson
+
+- type: entity
+  id: SurgeryLimbBaseSlime
+  abstract: true
+  categories:
+  - HideSpawnMenu
+  components:
+  - type: Surgery
+    requirement:
+    - SurgeryOpenIncisionSlime
+  - type: SurgerySpeciesCondition
+    speciesWhitelist:
+    - SlimePerson
+
+# Head
+
+- type: entity
+  parent: [ SurgeryLimbBase, SurgeryLimbAmputate ]
+  id: SurgeryAmputateHead
+  components:
+  - type: Surgery
+    steps:
+    - SurgeryStepDeepIncision
+    - SurgeryStepExposeSkull
+    - SurgeryStepExposeNerves
+    - SurgeryStepExposeBloodVessels
+    - SurgeryStepAmputateHead
+  - type: SurgeryPartCondition
+    parts: [ Head ]
+
+- type: entity
+  parent: [ SurgeryLimbBase, SurgeryLimbAttach ]
+  id: SurgeryAttachHead
+  name: Limb Attachment Head
+  components:
+  - type: Surgery
+    steps:
+    - SurgeryStepExposeNerves
+    - SurgeryStepExposeBloodVessels
+    - SurgeryStepAttachHead
+    - SurgeryStepRejoinNerves
+    - SurgeryStepRejoinBloodVessels
+    - SurgeryStepRestoreCartilage
+  - type: SurgeryPartCondition
+    parts: [ Torso ]
+  - type: SurgeryOrganDontExistCondition
+    category: Head
+
+## Slime
+
+- type: entity
+  parent: [ SurgeryLimbBaseSlime, SurgeryLimbAmputate ]
+  id: SurgeryAmputateHeadSlime
+  components:
+  - type: Surgery
+    steps:
+    - SurgeryStepDeepIncision
+    - SurgeryStepExposeNerves
+    - SurgeryStepExposeBloodVessels
+    - SurgeryStepAmputateHeadSlime
+  - type: SurgeryPartCondition
+    parts: [ Head ]
+
+- type: entity
+  parent: [ SurgeryLimbBaseSlime, SurgeryLimbAttach ]
+  id: SurgeryAttachHeadSlime
+  name: Limb Attachment Head
+  components:
+  - type: Surgery
+    steps:
+    - SurgeryStepExposeNerves
+    - SurgeryStepExposeBloodVessels
+    - SurgeryStepAttachHead
+    - SurgeryStepRejoinNerves
+    - SurgeryStepRejoinBloodVessels
+    - SurgeryStepRestoreCartilage
+  - type: SurgeryPartCondition
+    parts: [ Torso ]
+  - type: SurgeryOrganDontExistCondition
+    category: Head
+
+# LArm
+
+- type: entity
+  parent: [ SurgeryLimbBase, SurgeryLimbAmputate ]
+  id: SurgeryAmputateLeftArm
+  components:
+  - type: Surgery
+    steps:
+    - SurgeryStepInciseCartilage
+    - SurgeryStepExposeNerves
+    - SurgeryStepExposeBloodVessels
+    - SurgeryStepAmputateLeftArm
+  - type: SurgeryPartCondition
+    parts: [ ArmLeft ]
+
+- type: entity
+  parent: [ SurgeryLimbBase, SurgeryLimbAttach ]
+  id: SurgeryAttachLeftArm
+  name: Limb Attachment Left Arm
+  components:
+  - type: Surgery
+    steps:
+    - SurgeryStepExposeNerves
+    - SurgeryStepExposeBloodVessels
+    - SurgeryStepAttachLeftArm
+    - SurgeryStepRejoinNerves
+    - SurgeryStepRejoinBloodVessels
+    - SurgeryStepRestoreCartilage
+  - type: SurgeryPartCondition
+    parts: [ Torso ]
+  - type: SurgeryOrganDontExistCondition
+    category: ArmLeft
+
+## Slime
+
+- type: entity
+  parent: [ SurgeryLimbBaseSlime, SurgeryLimbAmputate ]
+  id: SurgeryAmputateLeftArmSlime
+  components:
+  - type: Surgery
+    steps:
+    - SurgeryStepInciseCartilage
+    - SurgeryStepExposeNerves
+    - SurgeryStepExposeBloodVessels
+    - SurgeryStepAmputateLeftArmSlime
+  - type: SurgeryPartCondition
+    parts: [ ArmLeft ]
+
+- type: entity
+  parent: [ SurgeryLimbBaseSlime, SurgeryLimbAttach ]
+  id: SurgeryAttachLeftArmSlime
+  name: Limb Attachment Left Arm
+  components:
+  - type: Surgery
+    steps:
+    - SurgeryStepExposeNerves
+    - SurgeryStepExposeBloodVessels
+    - SurgeryStepAttachLeftArm
+    - SurgeryStepRejoinNerves
+    - SurgeryStepRejoinBloodVessels
+    - SurgeryStepRestoreCartilage
+  - type: SurgeryPartCondition
+    parts: [ Torso ]
+  - type: SurgeryOrganDontExistCondition
+    category: ArmLeft
+
+# RArm
+
+- type: entity
+  parent: [ SurgeryLimbBase, SurgeryLimbAmputate ]
+  id: SurgeryAmputateRightArm
+  components:
+  - type: Surgery
+    steps:
+    - SurgeryStepInciseCartilage
+    - SurgeryStepExposeNerves
+    - SurgeryStepExposeBloodVessels
+    - SurgeryStepAmputateRightArm
+  - type: SurgeryPartCondition
+    parts: [ ArmRight ]
+
+- type: entity
+  parent: [ SurgeryLimbBase, SurgeryLimbAttach ]
+  id: SurgeryAttachRightArm
+  name: Limb Attachment Right Arm
+  components:
+  - type: Surgery
+    steps:
+    - SurgeryStepExposeNerves
+    - SurgeryStepExposeBloodVessels
+    - SurgeryStepAttachRightArm
+    - SurgeryStepRejoinNerves
+    - SurgeryStepRejoinBloodVessels
+    - SurgeryStepRestoreCartilage
+  - type: SurgeryPartCondition
+    parts: [ Torso ]
+  - type: SurgeryOrganDontExistCondition
+    category: ArmRight
+
+## Slime
+
+- type: entity
+  parent: [ SurgeryLimbBaseSlime, SurgeryLimbAmputate ]
+  id: SurgeryAmputateRightArmSlime
+  components:
+  - type: Surgery
+    steps:
+    - SurgeryStepInciseCartilage
+    - SurgeryStepExposeNerves
+    - SurgeryStepExposeBloodVessels
+    - SurgeryStepAmputateRightArmSlime
+  - type: SurgeryPartCondition
+    parts: [ ArmRight ]
+
+- type: entity
+  parent: [ SurgeryLimbBaseSlime, SurgeryLimbAttach ]
+  id: SurgeryAttachRightArmSlime
+  name: Limb Attachment Right Arm
+  components:
+  - type: Surgery
+    steps:
+    - SurgeryStepExposeNerves
+    - SurgeryStepExposeBloodVessels
+    - SurgeryStepAttachRightArm
+    - SurgeryStepRejoinNerves
+    - SurgeryStepRejoinBloodVessels
+    - SurgeryStepRestoreCartilage
+  - type: SurgeryPartCondition
+    parts: [ Torso ]
+  - type: SurgeryOrganDontExistCondition
+    category: ArmRight
+
+# LHand
+
+- type: entity
+  parent: [ SurgeryLimbBase, SurgeryLimbAmputate ]
+  id: SurgeryAmputateLeftHand
+  components:
+  - type: Surgery
+    steps:
+    - SurgeryStepInciseCartilage
+    - SurgeryStepExposeNerves
+    - SurgeryStepExposeBloodVessels
+    - SurgeryStepAmputateLeftHand
+  - type: SurgeryPartCondition
+    parts: [ HandLeft ]
+
+- type: entity
+  parent: [ SurgeryLimbBase, SurgeryLimbAttach ]
+  id: SurgeryAttachLeftHand
+  name: Limb Attachment Left Hand
+  components:
+  - type: Surgery
+    steps:
+    - SurgeryStepExposeNerves
+    - SurgeryStepExposeBloodVessels
+    - SurgeryStepAttachLeftHand
+    - SurgeryStepRejoinNerves
+    - SurgeryStepRejoinBloodVessels
+    - SurgeryStepRestoreCartilage
+  - type: SurgeryPartCondition
+    parts: [ ArmLeft ]
+  - type: SurgeryOrganDontExistCondition
+    category: HandLeft
+
+## Slime
+
+- type: entity
+  parent: [ SurgeryLimbBaseSlime, SurgeryLimbAmputate ]
+  id: SurgeryAmputateLeftHandSlime
+  components:
+  - type: Surgery
+    steps:
+    - SurgeryStepInciseCartilage
+    - SurgeryStepExposeNerves
+    - SurgeryStepExposeBloodVessels
+    - SurgeryStepAmputateLeftHandSlime
+  - type: SurgeryPartCondition
+    parts: [ HandLeft ]
+
+- type: entity
+  parent: [ SurgeryLimbBaseSlime, SurgeryLimbAttach ]
+  id: SurgeryAttachLeftHandSlime
+  name: Limb Attachment Left Hand
+  components:
+  - type: Surgery
+    steps:
+    - SurgeryStepExposeNerves
+    - SurgeryStepExposeBloodVessels
+    - SurgeryStepAttachLeftHand
+    - SurgeryStepRejoinNerves
+    - SurgeryStepRejoinBloodVessels
+    - SurgeryStepRestoreCartilage
+  - type: SurgeryPartCondition
+    parts: [ ArmLeft ]
+  - type: SurgeryOrganDontExistCondition
+    category: HandLeft
+
+# RHand
+
+- type: entity
+  parent: [ SurgeryLimbBase, SurgeryLimbAmputate ]
+  id: SurgeryAmputateRightHand
+  components:
+  - type: Surgery
+    steps:
+    - SurgeryStepInciseCartilage
+    - SurgeryStepExposeNerves
+    - SurgeryStepExposeBloodVessels
+    - SurgeryStepAmputateRightHand
+  - type: SurgeryPartCondition
+    parts: [ HandRight ]
+
+- type: entity
+  parent: [ SurgeryLimbBase, SurgeryLimbAttach ]
+  id: SurgeryAttachRightHand
+  name: Limb Attachment Right Hand
+  components:
+  - type: Surgery
+    steps:
+    - SurgeryStepExposeNerves
+    - SurgeryStepExposeBloodVessels
+    - SurgeryStepAttachRightHand
+    - SurgeryStepRejoinNerves
+    - SurgeryStepRejoinBloodVessels
+    - SurgeryStepRestoreCartilage
+  - type: SurgeryPartCondition
+    parts: [ ArmRight ]
+  - type: SurgeryOrganDontExistCondition
+    category: HandRight
+
+## Slime
+
+- type: entity
+  parent: [ SurgeryLimbBaseSlime, SurgeryLimbAmputate ]
+  id: SurgeryAmputateRightHandSlime
+  components:
+  - type: Surgery
+    steps:
+    - SurgeryStepInciseCartilage
+    - SurgeryStepExposeNerves
+    - SurgeryStepExposeBloodVessels
+    - SurgeryStepAmputateRightHandSlime
+  - type: SurgeryPartCondition
+    parts: [ HandRight ]
+
+- type: entity
+  parent: [ SurgeryLimbBaseSlime, SurgeryLimbAttach ]
+  id: SurgeryAttachRightHandSlime
+  name: Limb Attachment Right Hand
+  components:
+  - type: Surgery
+    steps:
+    - SurgeryStepExposeNerves
+    - SurgeryStepExposeBloodVessels
+    - SurgeryStepAttachRightHand
+    - SurgeryStepRejoinNerves
+    - SurgeryStepRejoinBloodVessels
+    - SurgeryStepRestoreCartilage
+  - type: SurgeryPartCondition
+    parts: [ ArmRight ]
+  - type: SurgeryOrganDontExistCondition
+    category: HandRight
+
+# LLeg
+
+- type: entity
+  parent: [ SurgeryLimbBase, SurgeryLimbAmputate ]
+  id: SurgeryAmputateLeftLeg
+  components:
+  - type: Surgery
+    steps:
+    - SurgeryStepInciseCartilage
+    - SurgeryStepExposeNerves
+    - SurgeryStepExposeBloodVessels
+    - SurgeryStepAmputateLeftLeg
+  - type: SurgeryPartCondition
+    parts: [ LegLeft ]
+
+- type: entity
+  parent: [ SurgeryLimbBase, SurgeryLimbAttach ]
+  id: SurgeryAttachLeftLeg
+  name: Limb Attachment Left Leg
+  components:
+  - type: Surgery
+    steps:
+    - SurgeryStepExposeNerves
+    - SurgeryStepExposeBloodVessels
+    - SurgeryStepAttachLeftLeg
+    - SurgeryStepRejoinNerves
+    - SurgeryStepRejoinBloodVessels
+    - SurgeryStepRestoreCartilage
+  - type: SurgeryPartCondition
+    parts: [ Torso ]
+  - type: SurgeryOrganDontExistCondition
+    category: LegLeft
+
+## Slime
+
+- type: entity
+  parent: [ SurgeryLimbBaseSlime, SurgeryLimbAmputate ]
+  id: SurgeryAmputateLeftLegSlime
+  components:
+  - type: Surgery
+    steps:
+    - SurgeryStepInciseCartilage
+    - SurgeryStepExposeNerves
+    - SurgeryStepExposeBloodVessels
+    - SurgeryStepAmputateLeftLegSlime
+  - type: SurgeryPartCondition
+    parts: [ LegLeft ]
+
+- type: entity
+  parent: [ SurgeryLimbBaseSlime, SurgeryLimbAttach ]
+  id: SurgeryAttachLeftLegSlime
+  name: Limb Attachment Left Leg
+  components:
+  - type: Surgery
+    steps:
+    - SurgeryStepExposeNerves
+    - SurgeryStepExposeBloodVessels
+    - SurgeryStepAttachLeftLeg
+    - SurgeryStepRejoinNerves
+    - SurgeryStepRejoinBloodVessels
+    - SurgeryStepRestoreCartilage
+  - type: SurgeryPartCondition
+    parts: [ Torso ]
+  - type: SurgeryOrganDontExistCondition
+    category: LegLeft
+
+# RLeg
+
+- type: entity
+  parent: [ SurgeryLimbBase, SurgeryLimbAmputate ]
+  id: SurgeryAmputateRightLeg
+  components:
+  - type: Surgery
+    steps:
+    - SurgeryStepInciseCartilage
+    - SurgeryStepExposeNerves
+    - SurgeryStepExposeBloodVessels
+    - SurgeryStepAmputateRightLeg
+  - type: SurgeryPartCondition
+    parts: [ LegRight ]
+
+- type: entity
+  parent: [ SurgeryLimbBase, SurgeryLimbAttach ]
+  id: SurgeryAttachRightLeg
+  name: Limb Attachment Right Leg
+  components:
+  - type: Surgery
+    steps:
+    - SurgeryStepExposeNerves
+    - SurgeryStepExposeBloodVessels
+    - SurgeryStepAttachRightLeg
+    - SurgeryStepRejoinNerves
+    - SurgeryStepRejoinBloodVessels
+    - SurgeryStepRestoreCartilage
+  - type: SurgeryPartCondition
+    parts: [ Torso ]
+  - type: SurgeryOrganDontExistCondition
+    category: LegRight
+
+## Slime
+
+- type: entity
+  parent: [ SurgeryLimbBaseSlime, SurgeryLimbAmputate ]
+  id: SurgeryAmputateRightLegSlime
+  components:
+  - type: Surgery
+    steps:
+    - SurgeryStepInciseCartilage
+    - SurgeryStepExposeNerves
+    - SurgeryStepExposeBloodVessels
+    - SurgeryStepAmputateRightLegSlime
+  - type: SurgeryPartCondition
+    parts: [ LegRight ]
+
+- type: entity
+  parent: [ SurgeryLimbBaseSlime, SurgeryLimbAttach ]
+  id: SurgeryAttachRightLegSlime
+  name: Limb Attachment Right Leg
+  components:
+  - type: Surgery
+    steps:
+    - SurgeryStepExposeNerves
+    - SurgeryStepExposeBloodVessels
+    - SurgeryStepAttachRightLeg
+    - SurgeryStepRejoinNerves
+    - SurgeryStepRejoinBloodVessels
+    - SurgeryStepRestoreCartilage
+  - type: SurgeryPartCondition
+    parts: [ Torso ]
+  - type: SurgeryOrganDontExistCondition
+    category: LegRight
+
+# LFoot
+
+- type: entity
+  parent: [ SurgeryLimbBase, SurgeryLimbAmputate ]
+  id: SurgeryAmputateLeftFoot
+  components:
+  - type: Surgery
+    steps:
+    - SurgeryStepInciseCartilage
+    - SurgeryStepExposeNerves
+    - SurgeryStepExposeBloodVessels
+    - SurgeryStepAmputateLeftFoot
+  - type: SurgeryPartCondition
+    parts: [ FootLeft ]
+
+- type: entity
+  parent: [ SurgeryLimbBase, SurgeryLimbAttach ]
+  id: SurgeryAttachLeftFoot
+  name: Limb Attachment Left Foot
+  components:
+  - type: Surgery
+    steps:
+    - SurgeryStepExposeNerves
+    - SurgeryStepExposeBloodVessels
+    - SurgeryStepAttachLeftFoot
+    - SurgeryStepRejoinNerves
+    - SurgeryStepRejoinBloodVessels
+    - SurgeryStepRestoreCartilage
+  - type: SurgeryPartCondition
+    parts: [ LegLeft ]
+  - type: SurgeryOrganDontExistCondition
+    category: FootLeft
+
+## Slime
+
+- type: entity
+  parent: [ SurgeryLimbBaseSlime, SurgeryLimbAmputate ]
+  id: SurgeryAmputateLeftFootSlime
+  components:
+  - type: Surgery
+    steps:
+    - SurgeryStepInciseCartilage
+    - SurgeryStepExposeNerves
+    - SurgeryStepExposeBloodVessels
+    - SurgeryStepAmputateLeftFootSlime
+  - type: SurgeryPartCondition
+    parts: [ FootLeft ]
+
+- type: entity
+  parent: [ SurgeryLimbBaseSlime, SurgeryLimbAttach ]
+  id: SurgeryAttachLeftFootSlime
+  name: Limb Attachment Left Foot
+  components:
+  - type: Surgery
+    steps:
+    - SurgeryStepExposeNerves
+    - SurgeryStepExposeBloodVessels
+    - SurgeryStepAttachLeftFoot
+    - SurgeryStepRejoinNerves
+    - SurgeryStepRejoinBloodVessels
+    - SurgeryStepRestoreCartilage
+  - type: SurgeryPartCondition
+    parts: [ LegLeft ]
+  - type: SurgeryOrganDontExistCondition
+    category: FootLeft
+
+# RFoot
+
+- type: entity
+  parent: [ SurgeryLimbBase, SurgeryLimbAmputate ]
+  id: SurgeryAmputateRightFoot
+  components:
+  - type: Surgery
+    steps:
+    - SurgeryStepInciseCartilage
+    - SurgeryStepExposeNerves
+    - SurgeryStepExposeBloodVessels
+    - SurgeryStepAmputateRightFoot
+  - type: SurgeryPartCondition
+    parts: [ FootRight ]
+
+- type: entity
+  parent: [ SurgeryLimbBase, SurgeryLimbAttach ]
+  id: SurgeryAttachRightFoot
+  name: Limb Attachment Right Foot
+  components:
+  - type: Surgery
+    steps:
+    - SurgeryStepExposeNerves
+    - SurgeryStepExposeBloodVessels
+    - SurgeryStepAttachRightFoot
+    - SurgeryStepRejoinNerves
+    - SurgeryStepRejoinBloodVessels
+    - SurgeryStepRestoreCartilage
+  - type: SurgeryPartCondition
+    parts: [ LegRight ]
+  - type: SurgeryOrganDontExistCondition
+    category: FootRight
+
+## Slime
+
+- type: entity
+  parent: [ SurgeryLimbBaseSlime, SurgeryLimbAmputate ]
+  id: SurgeryAmputateRightFootSlime
+  components:
+  - type: Surgery
+    steps:
+    - SurgeryStepInciseCartilage
+    - SurgeryStepExposeNerves
+    - SurgeryStepExposeBloodVessels
+    - SurgeryStepAmputateRightFootSlime
+  - type: SurgeryPartCondition
+    parts: [ FootRight ]
+
+- type: entity
+  parent: [ SurgeryLimbBaseSlime, SurgeryLimbAttach ]
+  id: SurgeryAttachRightFootSlime
+  name: Limb Attachment Right Foot
+  components:
+  - type: Surgery
+    steps:
+    - SurgeryStepExposeNerves
+    - SurgeryStepExposeBloodVessels
+    - SurgeryStepAttachRightFoot
+    - SurgeryStepRejoinNerves
+    - SurgeryStepRejoinBloodVessels
+    - SurgeryStepRestoreCartilage
+  - type: SurgeryPartCondition
+    parts: [ LegRight ]
+  - type: SurgeryOrganDontExistCondition
+    category: FootRight

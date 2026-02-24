@@ -1,7 +1,7 @@
 # Shared - Thief / Traitor Items
 
 - type: stealTargetGroup
-  id: ClothingHeadHatGuardian
+  id: ClothingHeadHatConstable
   name: steal-target-groups-clothing-head-hat-guardian
   sprite:
     sprite: _FarHorizons/Clothing/Head/Hats/warden_cap-syndi.rsi
@@ -37,4 +37,13 @@
   name: steal-target-groups-secway
   sprite:
     sprite: Objects/Vehicles/secway.rsi
+    state: icon
+
+# Upstream removed
+
+- type: stealTargetGroup
+  id: ClothingEyesHudBeer
+  name: steal-target-groups-clothing-eyes-hud-beer
+  sprite:
+    sprite: Clothing/Eyes/Hud/beergoggles.rsi
     state: icon

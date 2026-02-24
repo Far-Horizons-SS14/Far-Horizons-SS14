@@ -210,42 +210,6 @@
 
 - type: entity
   parent: SurgeryStepBase
-  id: SurgeryStepRobotAmputation
-  name: Unweld Limb
-  components:
-  - type: SurgeryStep
-    duration: 16 
-    tools:
-    - type: WelderSurgery
-  - type: Sprite
-    sprite: Objects/Tools/welder.rsi
-    state: icon
-  - type: SurgeryStepAmputationEffect
-  - type: OnFailDamage
-    damage: 
-      types:
-        Heat: 10
-
-- type: entity
-  parent: SurgeryStepBase
-  id: SurgeryStepUnweldSkull
-  name: Unweld Skull
-  components:
-    - type: SurgeryStep
-      duration: 20
-      tools:
-      - type: WelderSurgery
-    - type: Sprite
-      sprite: Objects/Tools/welder.rsi
-      state: icon
-    - type: SurgeryStepAmputationEffect
-    - type: OnFailDamage
-      damage: 
-        types:
-          Heat: 10
-
-- type: entity
-  parent: SurgeryStepBase
   id: SurgeryStepRemoveInnerPlating
   name: Remove Inner Plating
   components:
@@ -291,9 +255,7 @@
     sprite: Objects/Tools/screwdriver.rsi
     state: screwdriver-map
   - type: SurgeryStepOrganExtract
-    organ:
-    - type: Item
-    slot: cavity
+    slot: Cavity
   - type: OnFailDamage
     damage: 
       types:
@@ -326,8 +288,7 @@
     tools:
     - type: ScrewdriverSurgery
   - type: SurgeryStepOrganExtract
-    organ:
-    - type: EyeImplant
+    slot: EyeImplant
   - type: Sprite
     sprite: Objects/Tools/screwdriver.rsi
     state: screwdriver-map
@@ -380,8 +341,7 @@
     tools:
     - type: ScrewdriverSurgery
   - type: SurgeryStepOrganExtract
-    organ:
-    - type: OrganEyes
+    slot: Eyes
   - type: Sprite
     sprite: Objects/Tools/screwdriver.rsi
     state: screwdriver-map
@@ -417,8 +377,7 @@
     tools:
     - type: ScrewdriverSurgery
   - type: SurgeryStepOrganExtract
-    organ:
-    - type: OrganTongue
+    slot: Tongue
   - type: Sprite
     sprite: Objects/Tools/screwdriver.rsi
     state: screwdriver-map
@@ -469,11 +428,11 @@
   - type: SurgeryStep
     duration: 2
     tools:
-    - type: OrganTongue
+    - type: Organ
+    organCategory: Tongue
     bodyRemove:
     - type: Muted
   - type: SurgeryStepOrganInsert
-    slot: tongue
   - type: Sprite
     sprite: _FarHorizons/Mobs/Species/IPC/organs.rsi
     state: tongue

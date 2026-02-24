@@ -1,0 +1,299 @@
+- type: markingsGroup
+  id: Resomi
+  onlyGroupWhitelisted: true
+  limits:
+    enum.HumanoidVisualLayers.Tail:
+      limit: 1
+      required: true
+      default: [ ResomiTail ]
+    enum.HumanoidVisualLayers.TailCover:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.HeadSide:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.Hair:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.Eyes:
+      limit: 2
+      required: false
+    enum.HumanoidVisualLayers.Chest:
+      limit: 3
+      required: false
+    enum.HumanoidVisualLayers.UndergarmentTop:
+      limit: 1
+      required: false
+      nudityDefault: [ UndergarmentTopTanktopResomi ]
+    enum.HumanoidVisualLayers.UndergarmentBottom:
+      limit: 1
+      required: false
+      nudityDefault: [ UndergarmentBottomBoxersResomi ]
+
+- type: entity
+  parent: BaseSpeciesAppearance
+  id: AppearanceResomi
+  name: Resomi Appearance
+  components:
+  - type: Inventory
+    displacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Resomi/displacement.rsi
+            state: jumpsuit
+      eyes:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Resomi/displacement.rsi
+            state: eyes
+      gloves:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Resomi/displacement.rsi
+            state: hands
+      head:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Resomi/displacement.rsi
+            state: head
+      back:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Resomi/displacement.rsi
+            state: back
+      ears:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Resomi/displacement.rsi
+            state: ears
+      shoes:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Resomi/displacement.rsi
+            state: feet
+      neck:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Resomi/displacement.rsi
+            state: neck
+      mask:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Resomi/displacement.rsi
+            state: mask
+      outerClothing:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Resomi/displacement.rsi
+            state: outerClothing
+      suitstorage:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Resomi/displacement.rsi
+            state: suitStorage
+      belt:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Resomi/displacement.rsi
+            state: belt
+    femaleDisplacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Resomi/displacement.rsi
+            state: jumpsuit
+      eyes:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Resomi/displacement.rsi
+            state: eyes
+      gloves:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Resomi/displacement.rsi
+            state: hands
+      head:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Resomi/displacement.rsi
+            state: head
+      back:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Resomi/displacement.rsi
+            state: back
+      ears:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Resomi/displacement.rsi
+            state: ears
+      shoes:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Resomi/displacement.rsi
+            state: feet
+      neck:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Resomi/displacement.rsi
+            state: neck
+      mask:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Resomi/displacement.rsi
+            state: mask
+      outerClothing:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Resomi/displacement.rsi
+            state: outerClothing
+      suitstorage:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Resomi/displacement.rsi
+            state: suitStorage
+      belt:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Resomi/displacement.rsi
+            state: belt
+  - type: InitialBody
+    organs:
+      Torso: OrganResomiTorso
+      Head: OrganResomiHead
+      ArmLeft: OrganResomiArmLeft
+      ArmRight: OrganResomiArmRight
+      HandRight: OrganResomiHandRight
+      HandLeft: OrganResomiHandLeft
+      LegLeft: OrganResomiLegLeft
+      LegRight: OrganResomiLegRight
+      FootLeft: OrganResomiFootLeft
+      FootRight: OrganResomiFootRight
+      Brain: OrganHumanBrain
+      Eyes: OrganResomiEyes
+      Tongue: OrganHumanTongue
+      Ears: OrganHumanEars
+      Lungs: OrganHumanLungs
+      Heart: OrganResomiHeart
+      Stomach: OrganHumanStomach
+      Liver: OrganHumanLiver
+      Kidneys: OrganHumanKidneys
+  - type: HumanoidProfile
+    species: Resomi
+
+- type: entity
+  parent:
+  - AppearanceResomi
+  - BaseMobResomi
+  id: MobResomi
+  name: Urist McRaptor
+
+# Organs
+
+- type: entity
+  parent: OrganBase
+  id: OrganResomi
+  abstract: true
+  suffix: Resomi
+  components:
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: Fat
+        Quantity: 10
+      - ReagentId: AmmoniaBlood
+        Quantity: 20
+  - type: Tag
+    tags:
+      - Organic
+
+- type: entity
+  id: OrganResomiMetabolizer
+  abstract: true
+  components:
+  - type: Metabolizer
+    maxReagents: 2
+    metabolizerTypes: [ Resomi ]
+
+- type: entity
+  parent: OrganResomi
+  id: OrganResomiExternal
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: Mobs/Species/Resomi/parts.rsi
+  - type: VisualOrgan
+    data:
+      sprite: Mobs/Species/Resomi/parts.rsi
+  - type: VisualOrganMarkings
+    markingData:
+      group: Resomi
+
+# Limbs
+
+- type: entity
+  parent: [ OrganBaseTorsoSexed, OrganBaseTorso, OrganResomiExternal ]
+  id: OrganResomiTorso
+
+- type: entity
+  parent: [ OrganBaseHeadSexed, OrganBaseHead, OrganResomiExternal ]
+  id: OrganResomiHead
+
+- type: entity
+  parent: [ OrganBaseArmLeft, OrganResomiExternal ]
+  id: OrganResomiArmLeft
+
+- type: entity
+  parent: [ OrganBaseArmRight, OrganResomiExternal ]
+  id: OrganResomiArmRight
+
+- type: entity
+  parent: [ OrganBaseHandLeft, OrganResomiExternal ]
+  id: OrganResomiHandLeft
+
+- type: entity
+  parent: [ OrganBaseHandRight, OrganResomiExternal ]
+  id: OrganResomiHandRight
+
+- type: entity
+  parent: [ OrganBaseLegLeft, OrganResomiExternal ]
+  id: OrganResomiLegLeft
+  components:
+  - type: MovementOrgan
+    sprintSpeedModifier: 1.06
+
+- type: entity
+  parent: [ OrganBaseLegRight, OrganResomiExternal ]
+  id: OrganResomiLegRight
+  components:
+  - type: MovementOrgan
+    sprintSpeedModifier: 1.06
+
+- type: entity
+  parent: [ OrganBaseFootLeft, OrganResomiExternal ]
+  id: OrganResomiFootLeft
+
+- type: entity
+  parent: [ OrganBaseFootRight, OrganResomiExternal ]
+  id: OrganResomiFootRight
+
+# Internal
+
+- type: entity
+  parent: [ OrganBaseEyes, OrganHumanInternal, OrganResomiExternal ]
+  id: OrganResomiEyes
+  components:
+  - type: VisualOrgan
+    data:
+      sprite: Mobs/Customization/eyes.rsi
+      state: resomi
+  - type: FunctionalOrgan
+    comps: 
+    - type: NightVision
+    - type: FlashModifier
+      modifier: 2
+
+- type: entity
+  parent: [ OrganBaseHeart, OrganHumanInternal, OrganResomiMetabolizer ]
+  id: OrganResomiHeart

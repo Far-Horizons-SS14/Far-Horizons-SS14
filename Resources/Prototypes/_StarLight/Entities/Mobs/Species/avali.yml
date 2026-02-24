@@ -1,7 +1,7 @@
 - type: entity
   save: false
   name: Urist McAvali
-  parent: [ BaseMobSpeciesOrganic, BaseSpeciesPickupable ]
+  parent: [ BaseSpeciesMobOrganic, BaseSpeciesPickupable ]
   id: BaseMobAvali
   abstract: true
   components:
@@ -20,11 +20,6 @@
         - AnomalyHost
         - Avali
     - type: Absorbable
-    - type: HumanoidAppearance
-      species: Avali
-      hideLayersOnEquip:
-      - Tail
-      - HeadTop
     - type: Hunger # on 2x more
       thresholds:
         Overfed: 250
@@ -168,56 +163,6 @@
       critHealingModifier: 0.5 
       stasisDamageReduction: 0.7
       # FarHorizon edit end
-
-# Chirp!
-
-- type: entity
-  parent: BaseSpeciesDummy
-  id: MobAvaliDummy
-  categories: [ HideSpawnMenu ]
-  description: A dummy avali meant to be used in character setup.
-  components:
-    - type: HumanoidAppearance
-      species: Avali
-      undergarmentTop: UndergarmentTopTanktopAvali
-      undergarmentBottom: UndergarmentBottomBoxersAvali
-    - type: Inventory
-      speciesId: Avali
-      displacements:
-        jumpsuit:
-          sizeMaps:
-            32:
-              sprite: _Starlight/Mobs/Species/Avali/displacement.rsi
-              state: jumpsuit
-        outerClothing:
-          sizeMaps:
-            32:
-              sprite: _Starlight/Mobs/Species/Avali/displacement.rsi
-              state: outerclothing
-        shoes: # DM only for colored shoes!
-          sizeMaps:
-            32:
-              sprite: _Starlight/Mobs/Species/Avali/displacement.rsi
-              state: shoes
-        head:
-          sizeMaps:
-            32:
-              sprite: _Starlight/Mobs/Species/Avali/displacement.rsi
-              state: head
-        hand:
-          sizeMaps:
-            32:
-              sprite: _Starlight/Mobs/Species/Avali/displacement.rsi
-              state: hand
-        back:
-          sizeMaps:
-            32:
-              sprite: _Starlight/Mobs/Species/Avali/displacement.rsi
-              state: back
-        gloves:
-          sizeMaps:
-            32:
-              sprite: _Starlight/Mobs/Species/Avali/displacement.rsi
-              state: gloves
+    - type: VisionOrganRequiredForVision # Far Horizons
 
 # Chirp!

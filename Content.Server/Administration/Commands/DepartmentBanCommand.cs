@@ -1,3 +1,5 @@
+using System.Collections.Immutable;
+using System.Linq;
 using Content.Server.Administration.Managers;
 using Content.Shared.Administration;
 using Content.Shared.CCVar;
@@ -99,13 +101,22 @@ public sealed class DepartmentBanCommand : IConsoleCommand
         // If you are trying to remove the following variable, please don't. It's there because the note system groups role bans by time, reason and banning admin.
         // Without it the note list will get needlessly cluttered.
         var now = DateTimeOffset.UtcNow;
-        var roles = new List<string>();
+        var banInfo = new CreateRoleBanInfo(reason);
+        if (minutes > 0)
+            banInfo.WithMinutes(minutes);
+        banInfo.AddUser(targetUid, located.Username);
+        banInfo.WithBanningAdmin(shell.Player?.UserId);
+        banInfo.AddHWId(targetHWid);
+        banInfo.WithSeverity(severity);
+
         foreach (var job in departmentProto.Roles)
         {
-            _banManager.CreateRoleBan(targetUid, located.Username, shell.Player?.UserId, null, targetHWid, job, minutes, severity, reason, now);
-            roles.Add(job.Id);
+            banInfo.AddJob(job);
         }
-        _banManager.WebhookUpdateRoleBans(targetUid, located.Username, shell.Player?.UserId, null, targetHWid, roles, minutes, severity, reason, now);
+
+        _banManager.CreateRoleBan(banInfo);
+        ImmutableArray<BanRoleDef>? roleDefs = [.. departmentProto.Roles.Select(entry => new BanRoleDef("Job", entry))];
+        _banManager.WebhookUpdateRoleBans(targetUid, located.Username, shell.Player?.UserId, null, targetHWid, departmentProto.Roles.Select(p=>(string)p).ToList(), minutes, severity, reason, now, roleDefs);
     }
 
     public CompletionResult GetCompletion(IConsoleShell shell, string[] args)

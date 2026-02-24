@@ -1,6 +1,4 @@
-﻿using Content.Shared.Body.Part;
-using Content.Shared.Body.Systems;
-using Content.Shared.Buckle.Components;
+﻿using Content.Shared.Buckle.Components;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.DoAfter;
 using Content.Shared.Interaction;
@@ -16,6 +14,7 @@ using Robust.Shared.Random;
 using System.Linq;
 //FarHorizons Start
 using Content.Shared._FarHorizons.Medical.SurgeryOverhaul.Components;
+using Content.Shared.Body;
 using Content.Shared.Stunnable;
 using Content.Shared.Medical.Healing;
 using Content.Shared.Damage;
@@ -36,7 +35,6 @@ public abstract partial class SharedSurgerySystem
         SubscribeLocalEvent<SurgeryClearProgressComponent, SurgeryStepCompleteEvent>(OnClearProgressStep);
         SubscribeLocalEvent<SurgeryStepComponent, SurgeryStepEvent>(OnStep);
         SubscribeLocalEvent<SurgeryTargetComponent, SurgeryDoAfterEvent>(OnTargetDoAfter);
-        SubscribeLocalEvent<SurgeryTargetComponent, AccessibleOverrideEvent>(OnOverrideAccess);
 
         SubscribeLocalEvent<SurgeryStepComponent, SurgeryCanPerformStepEvent>(OnCanPerformStep);
         Subs.BuiEvents<SurgeryTargetComponent>(SurgeryUIKey.Key, subs => subs.Event<SurgeryStepChosenBuiMsg>(OnSurgeryTargetStepChosen));
@@ -48,22 +46,22 @@ public abstract partial class SharedSurgerySystem
             args.Target is not { } target ||
             !IsSurgeryValid(ent, target, args.Surgery, args.Step, out var surgery, out var part, out var step) ||
             !PreviousStepsComplete(ent, part, surgery, args.Step) ||
-            !CanPerformStep(args.User, ent, part.Comp.PartType, step, false))
+            !CanPerformStep(args.User, ent, part.Comp.Category, step, false))
         {
             Log.Warning($"{ToPrettyString(args.User)} tried to start invalid surgery.");
             Dirty(ent);
-            if (args.Target.HasValue && TryComp<BodyPartComponent>(args.Target.Value, out var dirtyPart))
+            if (args.Target.HasValue && TryComp<OrganComponent>(args.Target.Value, out var dirtyPart))
                 Dirty(args.Target.Value, dirtyPart, Comp<MetaDataComponent>(args.Target.Value));
             return;
         }
         //Far Horizons Start
         if (args.DidSurgeryFail)
         {
-            var StepProto = _prototypes.Index<EntityPrototype>(args.Step);
-            if (StepProto.TryGetComponent<OnFailDamageComponent>(out var comp, _compFactory) && TryComp<BodyPartComponent>(args.Target, out var bodyComp))
+            var stepProto = _prototypes.Index<EntityPrototype>(args.Step);
+            if (stepProto.TryGetComponent<OnFailDamageComponent>(out var comp, _compFactory) && TryComp<OrganComponent>(args.Target, out var organComp))
             {
-                _damageableSystem.TryChangeDamage(bodyComp.Body!.Value, comp.Damage!);
-                TryEmoteWithChat(bodyComp.Body!.Value, comp.Emote);
+                _damageableSystem.TryChangeDamage(organComp.Body!.Value, comp.Damage!);
+                TryEmoteWithChat(organComp.Body!.Value, comp.Emote);
             }
             _popup.PopupEntity("Because of a careless tool, your hand shook and you damaged your patient. You need to start this step all over again!", args.User, PopupType.SmallCaution);
             args.Handled = true;
@@ -149,6 +147,11 @@ public abstract partial class SharedSurgerySystem
         {
             var tool = args.Tools.FirstOrDefault(x => HasComp(x, reg.Component.GetType()));
             if (tool == default) return;
+            if (reg.Component is OrganComponent &&
+                ent.Comp.OrganCategory != null &&
+                TryComp<OrganComponent>(tool, out var organ) &&
+                organ.Category != ent.Comp.OrganCategory)
+                return;
             
             var specificToolComp = EntityManager.GetComponents(tool)
                 .OfType<ISurgeryToolComponent>();
@@ -188,24 +191,6 @@ public abstract partial class SharedSurgerySystem
 
         foreach (var reg in (ent.Comp.BodyRemove ?? []).Values)
             RemComp(args.Body, reg.Component.GetType());
-    }
-
-    private void OnOverrideAccess(Entity<SurgeryTargetComponent> ent, ref AccessibleOverrideEvent args)
-    {
-        // Check if the entity is the target to avoid giving the hooked entity access to everything.
-        // If we already have access we don't need to run more code.
-        if (args.Accessible || args.Target != ent.Owner)
-            return;
-
-        var xform = Transform(ent);
-        var root = _containers.GetContainingContainers((ent, xform)).FirstOrDefault(x => x.ID == SharedBodySystem.BodyRootContainerId); //get the root container
-        if (root == null)
-            return;
-        if (!_interaction.CanAccess(args.User, root.Owner))
-            return;
-
-        args.Accessible = true;
-        args.Handled = true;
     }
 
     private void OnCanPerformStep(Entity<SurgeryStepComponent> ent, ref SurgeryCanPerformStepEvent args)
@@ -258,16 +243,26 @@ public abstract partial class SharedSurgerySystem
                 return;
             }
             //Far Horizons Start
-            else if (_hands.GetActiveItem(args.User) != tool && !_tag.HasTag(tool, "CyberHandItem"))
+            if (reg.Component is OrganComponent &&
+                ent.Comp.OrganCategory != null &&
+                TryComp<OrganComponent>(tool, out var organ) &&
+                organ.Category != ent.Comp.OrganCategory)
             {
-                    args.Invalid = StepInvalidReason.MissingTool;
+                args.Invalid = StepInvalidReason.MissingTool;
+                return;
+            }
 
-                    if (reg.Component is ISurgeryToolComponent toolComp)
-                        args.Popup = $"You need {toolComp.ToolName} on your main hand to perform this step!";
-                    return;
+            if (_hands.GetActiveItem(args.User) != tool && !_tag.HasTag(tool, "CyberHandItem"))
+            {
+                args.Invalid = StepInvalidReason.MissingTool;
+
+                if (reg.Component is ISurgeryToolComponent toolComp)
+                    args.Popup = $"You need {toolComp.ToolName} on your main hand to perform this step!";
+                return;
             }
             //Far Horizons End
-            else if (TryComp<ItemToggleComponent>(tool, out var togglable) && !togglable.Activated)
+
+            if (TryComp<ItemToggleComponent>(tool, out var togglable) && !togglable.Activated)
             {
                 args.Invalid = StepInvalidReason.DisabledTool;
 
@@ -276,12 +271,14 @@ public abstract partial class SharedSurgerySystem
 
                 return;
             }
-            else if (TryComp<SurgeryItemSizeConditionComponent>(ent, out var itemSizeComp) && TryComp<ItemComponent>(tool, out var item) && _item.GetSizePrototype(item.Size) > _item.GetSizePrototype(itemSizeComp.Size))
+
+            if (TryComp<SurgeryItemSizeConditionComponent>(ent, out var itemSizeComp) && TryComp<ItemComponent>(tool, out var item) && _item.GetSizePrototype(item.Size) > _item.GetSizePrototype(itemSizeComp.Size))
             {
                 args.Invalid = StepInvalidReason.TooHigh;
                 return;
             }
-            else if (ent.Comp.ReagentId != null && _solutionContainerSystem.GetTotalPrototypeQuantity(tool, ent.Comp.ReagentId) < ent.Comp.ReagentQuantity)
+
+            if (ent.Comp.ReagentId != null && _solutionContainerSystem.GetTotalPrototypeQuantity(tool, ent.Comp.ReagentId) < ent.Comp.ReagentQuantity)
             {
                 args.Invalid = StepInvalidReason.NotEnoughReagent;
                 if (reg.Component is ISurgeryToolComponent toolComp)
@@ -301,7 +298,8 @@ public abstract partial class SharedSurgerySystem
             || !IsSurgeryValid(body, targetPart, args.Surgery, args.Step, out var surgery, out var part, out var step)
             || !_entitySystem.TryGetSingleton(args.Step, out var stepEnt)
             || !TryComp(stepEnt, out SurgeryStepComponent? stepComp)
-            || !CanPerformStep(user, body, part.Comp.PartType, step, true, out _, out _, out var validTools))
+            || part.Comp.Category is not {} category
+            || !CanPerformStep(user, body, category, step, true, out _, out _, out var validTools))
         {
             return;
         }
@@ -376,6 +374,7 @@ public abstract partial class SharedSurgerySystem
         var doAfter = new DoAfterArgs(EntityManager, user, duration, ev, body, part)
         {
             //FarHorizons Start
+            DistanceThreshold = null, // it checks whether body part is accessible or not which it's not inside of its container. Have to set it to false here for a weird workaround
             NeedHand = true,
             BreakOnHandChange = true,
             //FarHorizons End
@@ -448,19 +447,17 @@ public abstract partial class SharedSurgerySystem
         return true;
     }
 
-    public bool CanPerformStep(EntityUid user, EntityUid body, BodyPartType part, EntityUid step, bool doPopup) => CanPerformStep(user, body, part, step, doPopup, out _, out _, out _);
-    public bool CanPerformStep(EntityUid user, EntityUid body, BodyPartType part, EntityUid step, bool doPopup, out string? popup, out StepInvalidReason reason, out HashSet<EntityUid> validTools)
+    public bool CanPerformStep(EntityUid user, EntityUid body, ProtoId<OrganCategoryPrototype>? part, EntityUid step, bool doPopup) => CanPerformStep(user, body, part, step, doPopup, out _, out _, out _);
+    public bool CanPerformStep(EntityUid user, EntityUid body, ProtoId<OrganCategoryPrototype>? part, EntityUid step, bool doPopup, out string? popup, out StepInvalidReason reason, out HashSet<EntityUid> validTools)
     {
-        var slot = part switch
+        var slot = part.ToString() switch
         {
-            BodyPartType.Head => SlotFlags.HEAD | SlotFlags.MASK | SlotFlags.EYES,
-            BodyPartType.Torso => SlotFlags.OUTERCLOTHING | SlotFlags.INNERCLOTHING,
-            BodyPartType.Arm => SlotFlags.OUTERCLOTHING | SlotFlags.INNERCLOTHING,
-            BodyPartType.Hand => SlotFlags.GLOVES,
-            BodyPartType.Leg => SlotFlags.OUTERCLOTHING | SlotFlags.LEGS,
-            BodyPartType.Foot => SlotFlags.FEET,
-            BodyPartType.Tail => SlotFlags.NONE,
-            BodyPartType.Other => SlotFlags.NONE,
+            "Head" => SlotFlags.HEAD | SlotFlags.MASK | SlotFlags.EYES,
+            "Torso" => SlotFlags.OUTERCLOTHING | SlotFlags.INNERCLOTHING,
+            "ArmLeft" or "ArmRight" => SlotFlags.OUTERCLOTHING | SlotFlags.INNERCLOTHING,
+            "HandLeft" or "HandRight" => SlotFlags.GLOVES,
+            "LegLeft" or "LegRight" => SlotFlags.OUTERCLOTHING | SlotFlags.LEGS,
+            "FootLeft" or "FootRight" => SlotFlags.FEET,
             _ => SlotFlags.NONE
         };
 

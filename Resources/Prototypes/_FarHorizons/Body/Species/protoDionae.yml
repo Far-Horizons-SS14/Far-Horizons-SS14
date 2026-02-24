@@ -1,0 +1,96 @@
+- type: markingsGroup
+  parent: [ Diona, BaseProtogen ]
+  id: ProtoDionae
+  limits:
+    enum.HumanoidVisualLayers.FaceCover:
+      limit: 1
+      required: true
+      default: [ ProtoDionaeVisor ]
+    enum.HumanoidVisualLayers.BodyCover:
+      limit: 1
+      required: true
+      default: [ ProtoDionaeMediumArmor ]
+
+- type: entity
+  parent: AppearanceDiona
+  id: AppearanceProtoDionae
+  name: ProtoDionae Appearance
+  components:
+  - type: InitialBody
+    organs:
+      Torso: OrganProtoDionaeTorso
+      Head: OrganProtoDionaeHead
+      ArmLeft: OrganProtoDionaeArmLeft
+      ArmRight: OrganProtoDionaeArmRight
+      HandRight: OrganProtoDionaeHandRight
+      HandLeft: OrganProtoDionaeHandLeft
+      LegLeft: OrganProtoDionaeLegLeft
+      LegRight: OrganProtoDionaeLegRight
+      FootLeft: OrganProtoDionaeFootLeft
+      FootRight: OrganProtoDionaeFootRight
+      Brain: OrganDionaBrainNymphing
+      Eyes: OrganDionaEyes
+      Lungs: OrganDionaLungsNymphing
+      Stomach: OrganDionaStomachNymphing
+  - type: HumanoidProfile
+    species: ProtoDionae
+
+- type: entity
+  parent:
+  - AppearanceProtoDionae
+  - BaseMobProtoDionae
+  id: MobProtoDionae
+  name: Urist McPlantster
+
+# Organs
+
+- type: entity
+  parent: OrganDionaExternal
+  id: OrganProtoDionaeExternal
+  abstract: true
+  components:
+  - type: VisualOrganMarkings
+    markingData:
+      group: ProtoDionae
+
+# Limbs
+
+- type: entity
+  parent: [ OrganProtoDionaeExternal, OrganDionaTorso ]
+  id: OrganProtoDionaeTorso
+
+- type: entity
+  parent: [ OrganProtoDionaeExternal, OrganDionaHead ]
+  id: OrganProtoDionaeHead
+
+- type: entity
+  parent: [ OrganProtoDionaeExternal, OrganDionaArmLeft ]
+  id: OrganProtoDionaeArmLeft
+
+- type: entity
+  parent: [ OrganProtoDionaeExternal, OrganDionaArmRight ]
+  id: OrganProtoDionaeArmRight
+
+- type: entity
+  parent: [ OrganProtoDionaeExternal, OrganDionaHandLeft ]
+  id: OrganProtoDionaeHandLeft
+
+- type: entity
+  parent: [ OrganProtoDionaeExternal, OrganDionaHandRight ]
+  id: OrganProtoDionaeHandRight
+
+- type: entity
+  parent: [ OrganProtoDionaeExternal, OrganDionaLegLeft ]
+  id: OrganProtoDionaeLegLeft
+
+- type: entity
+  parent: [ OrganProtoDionaeExternal, OrganDionaLegRight ]
+  id: OrganProtoDionaeLegRight
+
+- type: entity
+  parent: [ OrganProtoDionaeExternal, OrganDionaFootLeft ]
+  id: OrganProtoDionaeFootLeft
+
+- type: entity
+  parent: [ OrganProtoDionaeExternal, OrganDionaFootRight ]
+  id: OrganProtoDionaeFootRight

@@ -1,6 +1,3 @@
-using Content.Shared.Starlight.Medical.Surgery.Steps.Parts;
-using Content.Shared.Body.Components;
-using Content.Shared.Body.Systems;
 using Content.Shared.Camera;
 using Content.Shared.Eye.Blinding.Components;
 using Content.Shared.Inventory;
@@ -13,7 +10,6 @@ public sealed class BlindableSystem : EntitySystem
 {
     [Dependency] private readonly BlurryVisionSystem _blurriness = default!;
     [Dependency] private readonly EyeClosingSystem _eyelids = default!;
-    [Dependency] private readonly SharedBodySystem _bodySystem = default!;
 
     public override void Initialize()
     {
@@ -48,22 +44,15 @@ public sealed class BlindableSystem : EntitySystem
     }
 
     [PublicAPI]
-    public void UpdateIsBlind(Entity<BlindableComponent?> blindable, bool bypass = false) // Starlight-edit: add bypass option
+    public void UpdateIsBlind(Entity<BlindableComponent?> blindable)
     {
         if (!Resolve(blindable, ref blindable.Comp, false))
             return;
 
         var old = blindable.Comp.IsBlind;
 
-        var forceBlind = false;
-        if(TryComp<BodyComponent>(blindable.Owner, out var body))
-        {
-            var eyes = _bodySystem.GetBodyOrganEntityComps<OrganEyesComponent>((blindable.Owner, body));
-            forceBlind = eyes.Count == 0;
-        }
-
         // Don't bother raising an event if the eye is too damaged.
-        if ((blindable.Comp.EyeDamage >= blindable.Comp.MaxDamage || forceBlind) && !bypass) // Starlight-edit: add bypass option
+        if (blindable.Comp.EyeDamage >= blindable.Comp.MaxDamage)
         {
             blindable.Comp.IsBlind = true;
         }

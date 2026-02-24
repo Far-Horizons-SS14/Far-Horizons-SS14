@@ -29,7 +29,7 @@
 - type: entity
   parent: [ClothingNeckBase, BaseCommandContraband]
   id: ClothingNeckMantleCESyndi
-  name: Technical Lead's Mantle
+  name: Foreman's Mantle
   description: High visibility, check. RIG system, check. High capacity cell, check. Everything a chief engineer could need in a stylish mantle.
   components:
   - type: Sprite
@@ -37,12 +37,12 @@
   - type: Clothing
     sprite: _FarHorizons/Clothing/Neck/Mantles/cemantle-syndi.rsi
 
-# Personnel Chief (HoP)
+# Personnel Manager (HoP)
 
 - type: entity
   parent: [ClothingNeckBase, BaseCommandContraband]
   id: ClothingNeckMantleHOPSyndi
-  name: Personnel Chief's Mantle
+  name: Personnel Manager's Mantle
   suffix: S
   description: A good PC knows that paper pushing is only half the job... petting your dog and looking fashionable is the other half.
   components:
@@ -51,12 +51,12 @@
   - type: Clothing
     sprite: _FarHorizons/Clothing/Neck/Mantles/syndihopmantle.rsi
 
-# Security Overwatch (HoS)
+# Marshal (HoS)
 
 - type: entity
   parent: [ClothingNeckBase, BaseCommandContraband]
   id: ClothingNeckMantleHOSSyndi
-  name: Security Overwatch's Mantle
+  name: Marshal's Mantle
   suffix: S
   description: Shootouts with nanotrasen agents are just another Tuesday for this SO. This mantle is a symbol of commitment to the station.
   components:

@@ -168,14 +168,14 @@
 
 #region Command
 
-# Commander (Captain)
+# Commandant (Captain)
 
 - type: entity
   parent: [ClothingOuterHardsuitBase, BaseCommandContraband]
   id: ClothingOuterHardsuitCapSyndi
-  name: Commander's Armored Spacesuit
+  name: Commandant's Armored Spacesuit
   suffix: S
-  description: A formal armored spacesuit, made for the station's commander.
+  description: A formal armored spacesuit, made for the station's Commandant.
   components:
   - type: Sprite
     sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/syndicapspace.rsi #Far Horizons
@@ -216,12 +216,12 @@
     - WhitelistChameleon
     - IPCExternalCooling
 
-# Personnel Chief (HoP)
+# Personnel Manager (HoP)
 
 - type: entity
   parent: ClothingOuterHardsuitHoP
   id: ClothingOuterHardsuitHoPSyndi
-  name: Personnel Chief Hardsuit
+  name: Personnel Manager Hardsuit
   suffix: S
   description: A hardsuit which somehow just seems to be covered in papercuts. How that even happened on this is astounding.
   components:
@@ -232,12 +232,12 @@
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitHoPSyndi
 
-# Security Overwatch (HoS)
+# Marshal (HoS)
 
 - type: entity
   parent: ClothingOuterHardsuitSecurityRed
   id: ClothingOuterHardsuitSecurityRedSyndi
-  name: Security Overwatch Hardsuit
+  name: Marshal Hardsuit
   suffix: S
   description: A special suit that protects against hazardous, low pressure environments. Has an additional layer of armor.
   components:
@@ -248,11 +248,11 @@
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitSecurityRedSyndi
 
-# Technical Lead (CE)
+# Foreman (CE)
 - type: entity
   parent: [ClothingOuterHardsuitBase, BaseCommandContraband]
   id: ClothingOuterHardsuitEngineeringWhiteSyndi
-  name: Technical Lead's Hardsuit
+  name: Foreman's Hardsuit
   suffix: S
   description: A special hardsuit that protects against hazardous, low pressure environments, made for the technical lead of the station.
   components:
@@ -294,12 +294,12 @@
 
 #region Engineering
 
-# Environmental Technician (Atmos) Hardsuit
+# Atmospheric Technician (Atmos) Hardsuit
 
 - type: entity
   parent: [ClothingOuterHardsuitBase, BaseEngineeringContraband]
   id: ClothingOuterHardsuitAtmosSyndi
-  name: Environmental Hardsuit
+  name: Atmospheric Hardsuit
   suffix: S
   description: A special suit that protects against hazardous, low pressure environments. Has thermal shielding.
   components:
@@ -341,12 +341,12 @@
     - WhitelistChameleon
     - IPCExternalCooling
 
-# Station Architect (Engineering) Hardsuit
+# Station Engineer (Engineering) Hardsuit
 
 - type: entity
   parent: [ClothingOuterHardsuitBase, BaseEngineeringContraband]
   id: ClothingOuterHardsuitEngineeringSyndi
-  name: Architectural Hardsuit
+  name: Engineering Hardsuit
   suffix: S
   description: A special suit that protects against hazardous, low pressure environments. Has radiation shielding.
   components:
@@ -401,12 +401,12 @@
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitSecuritySyndi
 
-# Medical Officer (Brigmedic)
+# Brigmedic (Brigmedic)
 
 - type: entity
   parent: ClothingOuterHardsuitBrigmedic
   id: ClothingOuterHardsuitBrigmedicSyndi
-  name: Medical Officer Hardsuit
+  name: Brigmedic Hardsuit
   suffix: S
   description: Special hardsuit of the guardian angel of the brig. It is the medical version of the security hardsuit.
   components:
@@ -417,12 +417,12 @@
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitBrigmedicSyndi
   
-# Guardian (Warden)
+# Constable (Warden)
 
 - type: entity
   parent: ClothingOuterHardsuitWarden
   id: ClothingOuterHardsuitWardenSyndi
-  name: Guardian's Hardsuit
+  name: Constable's Hardsuit
   suffix: S
   components:
   - type: Sprite
@@ -434,12 +434,13 @@
 
 #region SHC
 
-# Syndicate Operations Agent (NTR)
+# NeoSol Representative (NTR)
 
 - type: entity
   parent: [ClothingOuterHardsuitBase, BaseCommandContraband]
   id: ClothingOuterHardsuitNtrepSyndi
-  name: Syndicate Operations Agent Hardsuit
+  name: NeoSol Representative Hardsuit
+  suffix: S
   description: This hardsuit was designed by Syndicate High Command to really make sure people understand who's in charge.
   components:
   - type: Sprite

@@ -181,7 +181,7 @@ namespace Content.Server.Administration.Systems
                 }
 
                 // Check if the user has been banned
-                var ban = await _dbManager.GetServerBanAsync(null, e.Session.UserId, null, null);
+                var ban = await _dbManager.GetBanAsync(null, e.Session.UserId, null, null);
                 if (ban != null)
                 {
                     var banMessage = Loc.GetString("bwoink-system-player-banned", ("banReason", ban.Reason));
@@ -660,9 +660,15 @@ namespace Content.Server.Administration.Systems
 
             if (IsOnCooldown(message.UserId, currentTime) && senderAdmin == null)
                 return;
-            
+
             if (IsSpam(message.UserId, message.Text) && senderAdmin == null)
-                _banManager.CreateServerBan(senderSession.UserId, senderSession.Name, null, null, null, 0, NoteSeverity.High, "Automatic AHELP Antispam system Ban, If this ban is wrong, file an appeal.");
+            {
+                var createBan = new CreateServerBanInfo("Automatic AHELP Antispam system Ban, If this ban is wrong, file an appeal.");
+                createBan.AddUser(senderSession.UserId, senderSession.Name);
+                createBan.WithSeverity(NoteSeverity.High);
+                _banManager.CreateServerBan(createBan);
+            }
+                
 
             AddToRecentMessages(message.UserId, message.Text, currentTime);
 

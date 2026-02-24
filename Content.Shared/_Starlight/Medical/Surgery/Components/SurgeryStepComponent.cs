@@ -1,4 +1,5 @@
-﻿using Robust.Shared.GameStates;
+﻿using Content.Shared.Body;
+using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Content.Shared.FixedPoint;
 using Content.Shared.Chemistry.Reagent;
@@ -31,6 +32,8 @@ public sealed partial class SurgeryStepComponent : Component
     //FarHorizons Start
     [DataField]
     public bool Repeatable = false;
+
+    [DataField] public ProtoId<OrganCategoryPrototype>? OrganCategory; // If Tools is set to "Organ" type - only this category of organ will be considered
     //FarHorizons End
 
     [DataField]

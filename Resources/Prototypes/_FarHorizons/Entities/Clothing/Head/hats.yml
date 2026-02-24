@@ -157,14 +157,14 @@
 
 #region Command
 
-# Commander (Captain)
+# Commandant (Captain)
 
 - type: entity
   parent: [ ClothingHeadBase, BaseCommandContraband ]
   id: ClothingHeadHatCapcapSyndi
   name: Com Cap
   suffix: S
-  description: A grand, stylish cap worn by the Commander. Shows the station who's in charge.
+  description: A grand, stylish cap worn by the Commandant. Shows the station who's in charge.
   components:
   - type: Sprite
     sprite: _FarHorizons/Clothing/Head/Hats/syndicapcap.rsi
@@ -188,7 +188,7 @@
 - type: entity
   parent: [ ClothingHeadBase, BaseCommandContraband ]
   id: ClothingHeadHatCaptainSyndi
-  name: Commander's Hardhat
+  name: Commandant's Hardhat
   suffix: S
   description: Feels good being the king.
   components:
@@ -205,14 +205,14 @@
     - HamsterWearable
     - WhitelistChameleon
 
-# Personnel Chief (HoP)
+# Personnel Manager (HoP)
 
 - type: entity
   parent: [ ClothingHeadHatHopcap, BaseCommandContraband ]
   id: ClothingHeadHatHopcapSyndi
-  name: Personnel Chief's Cap
+  name: Personnel Manager's Cap
   suffix: S
-  description: A stylish cap worn by the Personnel Chief. Shows paperwork who's in charge.
+  description: A stylish cap worn by the Personnel Manager. Shows paperwork who's in charge.
   components:
   - type: Sprite
     sprite: _FarHorizons/Clothing/Head/Hats/syndihopcap.rsi
@@ -230,21 +230,21 @@
 - type: entity
   parent: [ ClothingHeadHatBeretHoP, BaseCommandContraband ]
   id: ClothingHeadHatBeretHoPSyndi
-  name: Personnel Chief's Beret
+  name: Personnel Manager's Beret
   suffix: S
-  description: A simplistic but rugged red beret for the Personnel Chief.
+  description: A simplistic but rugged red beret for the Personnel Manager.
   components:
   - type: Sprite
     sprite: _FarHorizons/Clothing/Head/Hats/syndiberet_hop.rsi
   - type: Clothing
     sprite: _FarHorizons/Clothing/Head/Hats/syndiberet_hop.rsi
 
-# Security Overwatch (Head of Security)
+# Marshal (Head of Security)
 
 - type: entity
   parent: [ClothingHeadBase, BaseCommandContraband]
-  id: ClothingHeadHatBeretSecurityOverwatch
-  name: Security Overwatch's Beret
+  id: ClothingHeadHatBeretMarshal
+  name: Marshal's Beret
   suffix: S
   description: A black beret with a commander's rank emblem. For officers that are more inclined towards style than safety.
   components:
@@ -263,8 +263,8 @@
 
 - type: entity
   parent: [ClothingHeadBase, BaseCommandContraband]
-  id: ClothingHeadHatSheriffSecurityOverwatch
-  name: Security Overwatch's Sheriff Hat
+  id: ClothingHeadHatSheriffMarshal
+  name: Marshal's Sheriff Hat
   suffix: S
   description: A black sherriff hat with gold lacing. This station aint big enough for enemies of the syndicate.
   components:
@@ -283,10 +283,10 @@
 
 - type: entity
   parent: [ClothingHeadBase, BaseCommandContraband]
-  id: ClothingHeadHatSecurityOverwatchHat
-  name: Security Overwatch's Hat
+  id: ClothingHeadHatMarshalHat
+  name: Marshal's Hat
   suffix: S
-  description: The robust hat of the Security Overwatch. For showing the officers who's the real boss.
+  description: The robust hat of the Marshal. For showing the officers who's the real boss.
   components:
   - type: Sprite
     sprite: _FarHorizons/Clothing/Head/Hats/hoshat-syndi.rsi
@@ -301,12 +301,12 @@
     - HamsterWearable
     - WhitelistChameleon
 
-# Technical Lead (Chief Engineer)
+# Foreman (Chief Engineer)
 
 - type: entity
   parent: ClothingHeadBase
   id: ClothingHeadHatBeretCESyndi
-  name: Technical Lead's Beret
+  name: Foreman's Beret
   suffix: S
   description: A red colored beret for the head of engineering.
   components:
@@ -324,7 +324,8 @@
 - type: entity
   parent: ClothingHeadBase
   id: ClothingHeadHatBeretAtmosSyndi
-  name: Environmental Beret
+  name: Atmospheric Beret
+  suffix: S
   description: A brightly colored yellow beret with red accent.
   components:
   - type: Sprite
@@ -339,7 +340,7 @@
 - type: entity
   parent: ClothingHeadBase
   id: ClothingHeadHatBeretEngineeringSyndi
-  name: Architectural Beret
+  name: Engineering Beret
   suffix: S
   description: A beret with the engineering department's insignia. For engineers that are more inclined towards style than safety.
   components:
@@ -410,12 +411,12 @@
     - ClothMade
     - WhitelistChameleon
 
-# Guardian (Warden)
+# Constable (Warden)
 
 - type: entity
   parent: [ ClothingHeadBase, BaseSecurityContraband ]
-  id: ClothingHeadHatGuardianCap
-  name: Guardian's Cap
+  id: ClothingHeadHatConstableCap
+  name: Constable's Cap
   suffix: S
   description: This hat emphasizes that you are THE LAW. If you look closely you can see some blood splatter...
   components:
@@ -424,7 +425,7 @@
   - type: Clothing
     sprite: _FarHorizons/Clothing/Head/Hats/warden_cap-syndi.rsi
   #- type: StealTarget    - Omega: Temporarily disabled till I can sort it out another time.
-  #  stealGroup: ClothingHeadHatGuardian
+  #  stealGroup: ClothingHeadHatConstable
   - type: Tag
     tags:
     - PetWearable
@@ -432,8 +433,8 @@
 
 - type: entity
   parent: ClothingHeadBase
-  id: ClothingHeadHatBeretGuardian
-  name: Guardian's Beret
+  id: ClothingHeadHatBeretConstable
+  name: Constable's Beret
   suffix: S
   description: A faded red beret with a guardian's rank emblem. For officers that are more inclined towards style than safety.
   components:
@@ -446,14 +447,14 @@
     - PetWearable
     - CorgiWearable
 
-# Medical Officer (Brigmedic)
+# Brigmedic (Brigmedic)
 
 - type: entity
   parent: ClothingHeadBase
-  id: ClothingHeadHatBeretMedicalOfficer
-  name: Medical Officer Beret
+  id: ClothingHeadHatBeretBrigSyndi
+  name: Brigmedic Beret
   suffix: S
-  description: A white beret for Medical Officers.
+  description: A white beret for Brigmedics.
   components:
   - type: Sprite
     sprite: _FarHorizons/Clothing/Head/Hats/beret_brigmedic-syndi.rsi

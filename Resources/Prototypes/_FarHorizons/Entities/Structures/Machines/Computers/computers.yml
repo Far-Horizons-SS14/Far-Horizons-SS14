@@ -37,8 +37,6 @@
   name: Vitals Monitor
   description: A device that monitors the vitals of whoever is laying next to it.
   components:
-  - type: ApcPowerReceiver
-    powerLoad: 500
   - type: PointLight
     radius: 1.5
     energy: 1.6
@@ -90,8 +88,6 @@
   name: Nuclear Reactor Monitor
   description: A device that monitors the state of a connected nuclear reactor.
   components:
-  - type: ApcPowerReceiver
-    powerLoad: 500
   - type: PointLight
     radius: 1.5
     energy: 1.6
@@ -134,8 +130,6 @@
   name: Gas Turbine Monitor
   description: A device that monitors the state of a connected gas turbine.
   components:
-  - type: ApcPowerReceiver
-    powerLoad: 500
   - type: PointLight
     radius: 1.5
     energy: 1.6

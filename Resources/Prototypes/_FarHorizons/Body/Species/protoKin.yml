@@ -1,0 +1,121 @@
+- type: markingsGroup
+  parent: [ Shadekin, BaseProtogen ]
+  id: ProtoKin
+  limits:
+    enum.HumanoidVisualLayers.FaceCover:
+      limit: 1
+      required: true
+      default: [ ProtoKinVisor ]
+    enum.HumanoidVisualLayers.BodyCover:
+      limit: 1
+      required: true
+      default: [ ProtoKinMediumArmor ]
+
+- type: entity
+  parent: AppearanceShadekin
+  id: AppearanceProtoKin
+  name: ProtoKin Appearance
+  components:
+  - type: InitialBody
+    organs:
+      Torso: OrganProtoKinTorso
+      Head: OrganProtoKinHead
+      ArmLeft: OrganProtoKinArmLeft
+      ArmRight: OrganProtoKinArmRight
+      HandRight: OrganProtoKinHandRight
+      HandLeft: OrganProtoKinHandLeft
+      LegLeft: OrganProtoKinLegLeft
+      LegRight: OrganProtoKinLegRight
+      FootLeft: OrganProtoKinFootLeft
+      FootRight: OrganProtoKinFootRight
+      Brain: OrganProtogenBrain
+      Eyes: OrganProtogenEyes
+      Tongue: OrganProtoKinTongue
+      Ears: OrganProtogenEars
+      Lungs: OrganProtogenLungs
+      Heart: OrganProtoKinCore
+      Stomach: OrganProtogenStomach
+      Liver: OrganProtogenLiver
+      Kidneys: OrganProtogenKidneys
+  - type: HumanoidProfile
+    species: ProtoKin
+
+- type: entity
+  parent:
+  - AppearanceProtoKin
+  - BaseMobProtoKin
+  id: MobProtoKin
+  name: Urist McDuskin #pronounced Dusk-Kin
+
+# Organs
+
+- type: entity
+  parent: OrganShadekinExternal
+  id: OrganProtoKinExternal
+  abstract: true
+  components:
+  - type: VisualOrganMarkings
+    markingData:
+      group: ProtoKin
+
+# Limbs
+
+- type: entity
+  parent: [ OrganProtoKinExternal, OrganShadekinTorso ]
+  id: OrganProtoKinTorso
+
+- type: entity
+  parent: [ OrganProtoKinExternal, OrganShadekinHead ]
+  id: OrganProtoKinHead
+
+- type: entity
+  parent: [ OrganProtoKinExternal, OrganShadekinArmLeft ]
+  id: OrganProtoKinArmLeft
+
+- type: entity
+  parent: [ OrganProtoKinExternal, OrganShadekinArmRight ]
+  id: OrganProtoKinArmRight
+
+- type: entity
+  parent: [ OrganProtoKinExternal, OrganShadekinHandLeft ]
+  id: OrganProtoKinHandLeft
+
+- type: entity
+  parent: [ OrganProtoKinExternal, OrganShadekinHandRight ]
+  id: OrganProtoKinHandRight
+
+- type: entity
+  parent: [ OrganProtoKinExternal, OrganShadekinLegLeft ]
+  id: OrganProtoKinLegLeft
+
+- type: entity
+  parent: [ OrganProtoKinExternal, OrganShadekinLegRight ]
+  id: OrganProtoKinLegRight
+
+- type: entity
+  parent: [ OrganProtoKinExternal, OrganShadekinFootLeft ]
+  id: OrganProtoKinFootLeft
+
+- type: entity
+  parent: [ OrganProtoKinExternal, OrganShadekinFootRight ]
+  id: OrganProtoKinFootRight
+
+# Internal
+
+- type: entity
+  parent: OrganProtogenTongue
+  id: OrganProtoKinTongue
+  name: Forked Cybernetic Tongue
+  description: "A completely glowing organ commonly used for lying or self-expression. Sometimes both. Now split in two."
+  components:
+  - type: Sprite
+    state: tongueforked
+
+- type: entity
+  parent: OrganProtogenHeart
+  id: OrganProtoKinCore
+  name: Cybernetic Shadekin Core
+  description: "The result of a one-time operation to restore a shadekin's core, it is bright once more- but not as bright as it could've been."
+  components:
+  - type: Sprite
+    state: core

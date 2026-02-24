@@ -42,7 +42,8 @@ using Robust.Shared.Utility;
 using static Content.Shared.Configurable.ConfigurationComponent;
 using Content.Shared._Starlight.Thaven.Components; //Starlight
 using Content.Server._Starlight.Thaven; //Starlight
-using Content.Server.Traits; // Starlight
+using Content.Server.Traits;
+using Content.Shared._FarHorizons.Body; // Starlight
 using Content.Shared._Starlight.Character.Info; //Starlight
 
 namespace Content.Server.Administration.Systems
@@ -74,7 +75,6 @@ namespace Content.Server.Administration.Systems
         [Dependency] private readonly AdminFrozenSystem _freeze = default!;
         [Dependency] private readonly IPlayerManager _playerManager = default!;
         [Dependency] private readonly SiliconLawSystem _siliconLawSystem = default!;
-        [Dependency] private readonly SharedHumanoidAppearanceSystem _humanoidAppearance = default!;
         [Dependency] private readonly IServerPreferencesManager _prefsManager = default!;
         [Dependency] private readonly ThavenMoodsSystem _moods = default!; //Starlight
         [Dependency] private readonly TraitSystem _traitSystem = default!; //Starlight
@@ -201,7 +201,9 @@ namespace Content.Server.Administration.Systems
                                 }
 
                             var stationUid = _stations.GetOwningStation(args.Target);
-                            var profile = _humanoidAppearance.GetBaseProfile(args.Target);
+                            if (!TryComp<HumanoidCharacterProfileComponent>(args.Target, out var profileComp))
+                                return;
+                            var profile = profileComp.Profile;
                             var mobUid = _spawning.SpawnPlayerMob(coords.Value, null, null, profile, stationUid);
                             if (profile is HumanoidCharacterProfile humanoid) // Starlight
                             {

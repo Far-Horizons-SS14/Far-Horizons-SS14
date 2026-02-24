@@ -77,7 +77,7 @@ public sealed class PrayerSystem : EntitySystem
     /// <param name="source">The IPlayerSession that sent the message</param>
     /// <param name="messageString">The main message sent to the player via the chatbox</param>
     /// <param name="popupMessage">The popup to notify the player, also prepended to the messageString</param>
-    public void SendSubtleMessage(ICommonSession target, ICommonSession source, string messageString, string popupMessage)
+    public void SendSubtleMessage(ICommonSession target, ICommonSession? source, string messageString, string popupMessage)
     {
         if (target.AttachedEntity == null)
             return;
@@ -86,7 +86,7 @@ public sealed class PrayerSystem : EntitySystem
 
         _popupSystem.PopupEntity(popupMessage, target.AttachedEntity.Value, target, PopupType.Large);
         _chatManager.ChatMessageToOne(ChatChannel.Local, messageString, message, EntityUid.Invalid, false, target.Channel);
-        _adminLogger.Add(LogType.AdminMessage, LogImpact.Low, $"{ToPrettyString(target.AttachedEntity.Value):player} received subtle message from {source.Name}: {message}");
+        _adminLogger.Add(LogType.AdminMessage, LogImpact.Low, $"{ToPrettyString(target.AttachedEntity.Value):player} received subtle message from {source?.Name ?? "unknown source"}: {message}");
     }
 
     /// <summary>
@@ -110,40 +110,3 @@ public sealed class PrayerSystem : EntitySystem
         _adminLogger.Add(LogType.AdminMessage, LogImpact.Low, $"{ToPrettyString(sender.AttachedEntity.Value):player} sent prayer ({Loc.GetString(comp.NotificationPrefix)}): {message}");
     }
 }
-
-// Begin Starlight (upstream #39080)
-[ToolshedCommand, AdminCommand(AdminFlags.Fun)]
-public sealed class SubtleMessageCommand : ToolshedCommand
-{
-    private PrayerSystem? _prayer;
-
-    [CommandImplementation]
-    public EntityUid? Send(
-        IInvocationContext ctx,
-        [PipedArgument] EntityUid input,
-        string message,
-        string popup)
-    {
-        if (ctx.Session is null)
-            return null;
-
-        _prayer ??= GetSys<PrayerSystem>();
-
-        if (!TryComp(input, out ActorComponent? actor))
-            return null;
-
-        _prayer.SendSubtleMessage(actor.PlayerSession, ctx.Session, message, popup);
-        return input;
-    }
-
-    [CommandImplementation]
-    public IEnumerable<EntityUid> Send(
-        IInvocationContext ctx,
-        [PipedArgument] IEnumerable<EntityUid> input,
-        string message,
-        string popup)
-    {
-        return input.Select(e => Send(ctx, e, message, popup)).Where(e => e != null).Cast<EntityUid>();
-    }
-}
-// End Starlight (upstream #39080)

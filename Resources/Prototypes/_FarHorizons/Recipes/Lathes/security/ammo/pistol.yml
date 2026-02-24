@@ -1,7 +1,7 @@
-############ MAGAZINES (.40) ############
+############ MAGAZINES (.38) ############
 - type: latheRecipe
-  id: MagazinePistol40Rubber
-  result: MagazinePistol40Rubber
+  id: MagazinePistol38Rubber
+  result: MagazinePistol38Rubber
   categories:
   - Ammo
   completetime: 1
@@ -11,130 +11,24 @@
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
-  id: MagazinePistol40Practice
-  result: MagazinePistol40Practice
+  id: MagazinePistol38Practice
+  result: MagazinePistol38Practice
   materials:
     Steel: 87
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
-  id: MagazinePistol40Incendiary
-  result: MagazinePistol40Incendiary
+  id: MagazinePistol38Incendiary
+  result: MagazinePistol38Incendiary
   materials:
     Steel: 37
     Plastic: 135
     
 - type: latheRecipe
   parent: BaseAmmoRecipe
-  id: MagazinePistol40Uranium
-  result: MagazinePistol40Uranium
+  id: MagazinePistol38Uranium
+  result: MagazinePistol38Uranium
   materials:
     Steel: 37
     Plastic: 107
     Uranium: 115
-############ SPEEDLOADERS (.40) ############
-- type: latheRecipe
-  parent: BaseEmptyAmmoRecipe
-  id: SpeedLoaderPistol40Empty
-  result: SpeedLoaderPistol40Empty
-  materials:
-    Steel: 29
-
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: SpeedLoaderPistol40SP
-  result: SpeedLoaderPistol40SP
-  materials:
-    Steel: 133
-    
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: SpeedLoaderPistol40HP
-  result: SpeedLoaderPistol40HP
-  materials:
-    Steel: 133
-
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: SpeedLoaderPistol40FMJ
-  result: SpeedLoaderPistol40FMJ
-  materials:
-    Steel: 133
-
-- type: latheRecipe
-  id: SpeedLoaderPistol40Rubber
-  result: SpeedLoaderPistol40Rubber
-  categories:
-  - Ammo
-  completetime: 1
-  materials:
-    Steel: 80
-    Plastic: 40
-
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: SpeedLoaderPistol40Practice
-  result: SpeedLoaderPistol40Practice
-  materials:
-    Steel: 69
-
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: SpeedLoaderPistol40Incendiary
-  result: SpeedLoaderPistol40Incendiary
-  materials:
-    Steel: 29
-    Plastic: 108
-    
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: SpeedLoaderPistol40Uranium
-  result: SpeedLoaderPistol40Uranium
-  materials:
-    Steel: 29
-    Plastic: 85
-    Uranium: 92
-
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: SpeedLoaderPistol40AP
-  result: SpeedLoaderPistol40AP
-  materials:
-    Steel: 72
-    Uranium: 72
-    Plastic: 104
-############ BOXES (.40) ############
-
-- type: latheRecipe
-  id: MagazineBoxPistol40Rubber
-  result: MagazineBoxPistol40Rubber
-  categories:
-  - Ammo
-  completetime: 5
-  materials:
-    Steel: 200
-    Plastic: 100
-
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: MagazineBoxPistol40Practice
-  result: MagazineBoxPistol40Practice
-  materials:
-    Steel: 200
-
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: MagazineBoxPistol40Incendiary
-  result: MagazineBoxPistol40Incendiary
-  materials:
-    Steel: 80
-    Plastic: 540
-    
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: MagazineBoxPistol40Uranium
-  result: MagazineBoxPistol40Uranium
-  materials:
-    Steel: 80
-    Plastic: 428
-    Uranium: 460

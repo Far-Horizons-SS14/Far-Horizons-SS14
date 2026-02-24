@@ -1,7 +1,7 @@
 - type: entity
   save: false
   name: Urist McEars
-  parent: BaseMobSpeciesOrganic
+  parent: BaseSpeciesMobOrganic
   id: BaseMobThaven
   abstract: true
   components:
@@ -67,11 +67,6 @@
       Unsexed: MaleThaven
   - type: Speech
     speechSounds: Alto
-  - type: HumanoidAppearance
-    species: Thaven
-    hideLayersOnEquip:
-    - Hair
-    - Snout
   - type: LanguageKnowledge
     speaks:
       - GalacticCommon
@@ -130,55 +125,4 @@
       - DoorBumpOpener
       - AnomalyHost
       - Thaven
-
-
-- type: entity
-  parent: BaseSpeciesDummy
-  id: MobThavenDummy
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Sprite
-    scale: 1, 1
-  - type: Inventory
-    templateId: human # FH replaced with human - it was just a copy of human anyways
-    displacements:
-      jumpsuit:
-        sizeMaps:
-          32:
-            sprite: _Starlight/Mobs/Species/Thaven/displacement.rsi
-            state: jumpsuit
-      head:
-        sizeMaps:
-          32:
-            sprite: _Starlight/Mobs/Species/Thaven/displacement.rsi
-            state: head
-      eyes:
-        sizeMaps:
-          32:
-            sprite: _Starlight/Mobs/Species/Thaven/displacement.rsi
-            state: eyes
-      ears:
-        sizeMaps:
-          32:
-            sprite: _Starlight/Mobs/Species/Thaven/displacement.rsi
-            state: head
-      mask:
-        sizeMaps:
-          32:
-            sprite: _Starlight/Mobs/Species/Thaven/displacement.rsi
-            state: mask
-      neck:
-        sizeMaps:
-          32:
-            sprite: _Starlight/Mobs/Species/Thaven/displacement.rsi
-            state: neck
-      outerClothing:
-        sizeMaps:
-          32:
-            sprite: _Starlight/Mobs/Species/Thaven/displacement.rsi
-            state: outerclothing_hardsuit
-      gloves:
-        sizeMaps:
-          32:
-            sprite: _Starlight/Mobs/Species/Thaven/displacement.rsi
-            state: hands
+  - type: VisionOrganRequiredForVision # Far Horizons

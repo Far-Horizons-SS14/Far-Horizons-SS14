@@ -1,19 +1,5 @@
 ﻿- type: entity
   parent: SurgeryStepBase
-  id: SurgeryLimbAttachmentStep
-  name: attach a limb
-  components:
-  - type: SurgeryStep
-    duration: 4 
-    tools:
-    - type: MetaData
-  - type: Sprite
-    sprite: Objects/Consumable/Food/Baked/pizza.rsi
-    state: meat-slice
-  - type: SurgeryStepAttachLimbEffect
-
-- type: entity
-  parent: SurgeryStepBase
   id: SurgeryStepRejoinNerves
   name: Rejoin Nerves
   components:

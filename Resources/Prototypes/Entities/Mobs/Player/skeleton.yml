@@ -1,15 +1,4 @@
 - type: entity
-  save: false
-  parent: BaseMobSkeletonPerson
-  id: MobSkeletonPerson
-  components:
-  - type: InteractionPopup
-    successChance: 1
-    interactSuccessString: hugging-success-generic
-    interactSuccessSound: /Audio/Effects/thudswoosh.ogg
-    messagePerceivedByOthers: hugging-success-generic-others
-
-- type: entity
   name: skeleton pirate
   parent: MobSkeletonPerson
   id: MobSkeletonPirate
@@ -19,7 +8,7 @@
     description: ghost-role-information-skeleton-pirate-description
     rules: ghost-role-information-freeagent-rules
     mindRoles:
-    - MindRoleGhostRoleFreeAgent
+    - MindRoleGhostRoleFreeAgentSkeleton # Starlight-edit - FreeAgent -> FreeAgentSkeleton
     raffle:
       settings: default
   - type: GhostTakeoverAvailable
@@ -38,7 +27,7 @@
     description: ghost-role-information-skeleton-biker-description
     rules: ghost-role-information-freeagent-rules
     mindRoles:
-    - MindRoleGhostRoleFreeAgent
+    - MindRoleGhostRoleFreeAgentSkeleton # Starlight-edit - FreeAgent -> FreeAgentSkeleton
     raffle:
       settings: default
   - type: GhostTakeoverAvailable
@@ -74,7 +63,7 @@
     description: ghost-role-information-closet-skeleton-description
     rules: ghost-role-information-freeagent-rules
     mindRoles:
-    - MindRoleGhostRoleFreeAgent
+    - MindRoleGhostRoleFreeAgentSkeleton # Starlight-edit - FreeAgent -> FreeAgentSkeleton
     raffle:
       settings: default
   - type: GhostTakeoverAvailable

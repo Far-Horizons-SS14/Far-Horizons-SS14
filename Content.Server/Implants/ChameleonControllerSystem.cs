@@ -1,5 +1,6 @@
 ﻿using Content.Server.Clothing.Systems;
 using Content.Server.Preferences.Managers;
+using Content.Shared._FarHorizons.Body;
 using Content.Shared.Clothing;
 using Content.Shared.Clothing.Components;
 using Content.Shared.Humanoid;
@@ -22,7 +23,6 @@ public sealed class ChameleonControllerSystem : SharedChameleonControllerSystem
     [Dependency] private readonly ChameleonClothingSystem _chameleonClothingSystem = default!;
     [Dependency] private readonly IServerPreferencesManager _preferences = default!;
     [Dependency] private readonly UseDelaySystem _delay = default!;
-    [Dependency] private readonly SharedHumanoidAppearanceSystem _humanoidAppearanceSystem = default!;
 
     public override void Initialize()
     {
@@ -82,7 +82,10 @@ public sealed class ChameleonControllerSystem : SharedChameleonControllerSystem
 
         _proto.Resolve(jobPrototype.StartingGear, out jobStartingGearPrototype);
 
-        var profile = _humanoidAppearanceSystem.GetBaseProfile(user);
+        if (!TryComp<HumanoidCharacterProfileComponent>(user, out var profileComp))
+            return;
+
+        var profile = profileComp.Profile;
 
         if (profile is null)
             return;

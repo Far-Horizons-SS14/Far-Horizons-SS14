@@ -1,6 +1,6 @@
 using Content.Shared._FarHorizons.Silicons.IPC.Components;
-using Content.Shared.Body.Events;
 using Content.Shared.Database;
+using Content.Shared.Gibbing;
 using Content.Shared.Interaction;
 using Content.Shared.Mind.Components;
 using Content.Shared.Silicons.Borgs.Components;

@@ -1,5 +1,5 @@
 ﻿- type: entity
-  parent: [BaseMobSpeciesOrganic, BaseSpeciesPickupable]
+  parent: [BaseSpeciesMobOrganic, BaseSpeciesPickupable]
   id: BaseMobFelionoid
   abstract: true
   components:
@@ -28,8 +28,6 @@
   - type: Body
     prototype: Felionoid
     requiredLegs: 2
-  - type:  HumanoidAppearance
-    species: Felionoid
   - type: OwOAccent
   - type: MobThresholds
     thresholds:
@@ -131,51 +129,4 @@
           32:
             sprite: _Starlight/Mobs/Species/Felionoid/displacement.rsi
             state: shoes
-
-- type: entity
-  parent: BaseSpeciesDummy
-  id: MobFelionoidDummy
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: HumanoidAppearance
-    species: Felionoid
-  - type: Body
-    prototype: Felionoid
-  - type: Inventory
-    speciesId: felionoid
-    displacements:
-      jumpsuit:
-        sizeMaps:
-          32:
-            sprite: _Starlight/Mobs/Species/Felionoid/displacement.rsi
-            state: jumpsuit
-      eyes:
-        sizeMaps:
-          32:
-            sprite: _Starlight/Mobs/Species/Felionoid/displacement.rsi
-            state: eyes
-      gloves:
-        sizeMaps:
-          32:
-            sprite: _Starlight/Mobs/Species/Felionoid/displacement.rsi
-            state: hand
-      head:
-        sizeMaps:
-          32:
-            sprite: _Starlight/Mobs/Species/Felionoid/displacement.rsi
-            state: head
-      back:
-        sizeMaps:
-          32:
-            sprite: _Starlight/Mobs/Species/Felionoid/displacement.rsi
-            state: back
-      ears:
-        sizeMaps:
-          32:
-            sprite: _Starlight/Mobs/Species/Felionoid/displacement.rsi
-            state: ears
-      shoes:
-        sizeMaps:
-          32:
-            sprite: _Starlight/Mobs/Species/Felionoid/displacement.rsi
-            state: shoes
+  - type: VisionOrganRequiredForVision # Far Horizons

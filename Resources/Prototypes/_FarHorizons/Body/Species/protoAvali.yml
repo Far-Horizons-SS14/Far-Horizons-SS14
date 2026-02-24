@@ -1,0 +1,124 @@
+- type: markingsGroup
+  parent: [ Avali, BaseProtogen ]
+  id: ProtoAvali
+  limits:
+    enum.HumanoidVisualLayers.FaceCover:
+      limit: 1
+      required: true
+      default: [ ProtoAvaliVisor ]
+    enum.HumanoidVisualLayers.BodyCover:
+      limit: 1
+      required: true
+      default: [ ProtoAvaliMediumArmor ]
+
+- type: entity
+  parent: AppearanceAvali
+  id: AppearanceProtoAvali
+  name: ProtoAvali Appearance
+  components:
+  - type: InitialBody
+    organs:
+      Torso: OrganProtoAvaliTorso
+      Head: OrganProtoAvaliHead
+      ArmLeft: OrganProtoAvaliArmLeft
+      ArmRight: OrganProtoAvaliArmRight
+      HandRight: OrganProtoAvaliHandRight
+      HandLeft: OrganProtoAvaliHandLeft
+      LegLeft: OrganProtoAvaliLegLeft
+      LegRight: OrganProtoAvaliLegRight
+      FootLeft: OrganProtoAvaliFootLeft
+      FootRight: OrganProtoAvaliFootRight
+      Brain: OrganProtogenBrain
+      Eyes: OrganProtogenEyes
+      Tongue: OrganProtogenTongue
+      Ears: OrganProtogenEars
+      Lungs: OrganProtogenLungs
+      Heart: OrganProtoAvaliHeart
+      Stomach: OrganProtoAvaliStomach
+      Liver: OrganProtoAvaliLiver
+      Kidneys: OrganProtogenKidneys
+  - type: HumanoidProfile
+    species: ProtoAvali
+
+- type: entity
+  parent:
+  - AppearanceProtoAvali
+  - BaseMobProtoAvali
+  id: MobProtoAvali
+  name: Urist McAvalister
+
+# Organs
+
+- type: entity
+  parent: OrganAvaliExternal
+  id: OrganProtoAvaliExternal
+  abstract: true
+  components:
+  - type: VisualOrganMarkings
+    markingData:
+      group: ProtoAvali
+
+# Limbs
+
+- type: entity
+  parent: [ OrganProtoAvaliExternal, OrganAvaliTorso ]
+  id: OrganProtoAvaliTorso
+
+- type: entity
+  parent: [ OrganProtoAvaliExternal, OrganAvaliHead ]
+  id: OrganProtoAvaliHead
+
+- type: entity
+  parent: [ OrganProtoAvaliExternal, OrganAvaliArmLeft ]
+  id: OrganProtoAvaliArmLeft
+
+- type: entity
+  parent: [ OrganProtoAvaliExternal, OrganAvaliArmRight ]
+  id: OrganProtoAvaliArmRight
+
+- type: entity
+  parent: [ OrganProtoAvaliExternal, OrganAvaliHandLeft ]
+  id: OrganProtoAvaliHandLeft
+
+- type: entity
+  parent: [ OrganProtoAvaliExternal, OrganAvaliHandRight ]
+  id: OrganProtoAvaliHandRight
+
+- type: entity
+  parent: [ OrganProtoAvaliExternal, OrganAvaliLegLeft ]
+  id: OrganProtoAvaliLegLeft
+
+- type: entity
+  parent: [ OrganProtoAvaliExternal, OrganAvaliLegRight ]
+  id: OrganProtoAvaliLegRight
+
+- type: entity
+  parent: [ OrganProtoAvaliExternal, OrganAvaliFootLeft ]
+  id: OrganProtoAvaliFootLeft
+
+- type: entity
+  parent: [ OrganProtoAvaliExternal, OrganAvaliFootRight ]
+  id: OrganProtoAvaliFootRight
+
+# Internal
+
+- type: entity
+  parent: OrganProtogenHeart
+  id: OrganProtoAvaliHeart
+  components:
+  - type: Metabolizer
+    maxReagents: 2
+    metabolizerTypes: [Avali]
+
+- type: entity
+  parent: OrganProtogenStomach
+  id: OrganProtoAvaliStomach
+
+- type: entity
+  parent: OrganProtogenLiver
+  id: OrganProtoAvaliLiver
+  components:
+  - type: Metabolizer # The liver metabolizes certain chemicals only, like alcohol.
+    updateInterval: 1.5
+    maxReagents: 1
+    metabolizerTypes: [Avali]

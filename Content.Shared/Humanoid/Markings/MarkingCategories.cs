@@ -20,7 +20,12 @@ namespace Content.Shared.Humanoid.Markings
         Arms,
         Legs,
         Tail,
-        Overlay
+        Overlay,
+        FaceCover, // Far Horizons
+        FaceCoverCover, // Far Horizons
+        BodyCover, // Far Horizons
+        BodyCoverCover, // Far Horizons
+        TailCover, // Far Horizons
     }
 
     public static class MarkingCategoriesConversion
@@ -49,6 +54,11 @@ namespace Content.Shared.Humanoid.Markings
                 HumanoidVisualLayers.LFoot => MarkingCategories.Legs,
                 HumanoidVisualLayers.RFoot => MarkingCategories.Legs,
                 HumanoidVisualLayers.Tail => MarkingCategories.Tail,
+                HumanoidVisualLayers.FaceCover => MarkingCategories.FaceCover,
+                HumanoidVisualLayers.FaceCoverCover => MarkingCategories.FaceCoverCover,
+                HumanoidVisualLayers.BodyCover => MarkingCategories.BodyCover,
+                HumanoidVisualLayers.BodyCoverCover => MarkingCategories.BodyCoverCover,
+                HumanoidVisualLayers.TailCover => MarkingCategories.TailCover,
                 _ => MarkingCategories.Overlay
             };
         }

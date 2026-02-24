@@ -1,6 +1,6 @@
 # Shared - Thieves / Traitors Items
 
-steal-target-groups-clothing-head-hat-guardian = Guardian's Cap
+steal-target-groups-clothing-head-hat-guardian = Constable's Cap
 
 # Traitor Single Items
 
@@ -12,6 +12,8 @@ steal-target-groups-brigmedicbedsheet = Strange Brigmedic's Bedsheet
 steal-target-groups-reactorfuelrod = reactor fuel rod
 
 # Thief Single Item
+
+steal-target-groups-clothing-eyes-hud-beer = beer goggles
 
 # Thief Structures
 

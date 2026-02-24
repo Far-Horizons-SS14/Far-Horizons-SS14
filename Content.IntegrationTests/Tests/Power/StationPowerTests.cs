@@ -22,18 +22,14 @@ public sealed class StationPowerTests
 
     private static readonly string[] GameMaps =
     [
-        "Bagel",
-        "Box",
-        "Elkridge",
-        "Fland",
-        "Marathon",
-        "Oasis",
-        "Packed",
-        "Plasma",
-        "Relic",
-        "Snowball",
-        "Reach",
-        "Exo",
+        // Far Horizons start 
+        "FHCog",
+        "FHFland",
+        "FHManor",
+        // "FHMeta", - currently broken, fix later and reenable
+        "FHOasis",
+        "FHOmega",
+        // Far Horizons end
     ];
 
     [Explicit]

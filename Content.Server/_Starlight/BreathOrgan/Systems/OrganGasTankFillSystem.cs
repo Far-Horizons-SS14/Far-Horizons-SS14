@@ -1,11 +1,9 @@
 using Content.Shared.Atmos.Components;
 using Content.Shared.Atmos.Piping.Unary.Components;
-using Content.Shared.Body.Components;
-using Content.Shared.Body.Systems;
 using Content.Shared.Verbs;
 using Content.Server.Atmos.EntitySystems;
-using Content.Shared.Body.Organ;
 using Content.Shared._Starlight.BreathOrgan.Components;
+using Content.Shared.Body;
 using Robust.Shared.Audio.Systems;
 
 namespace Content.Server._Starlight.BreathOrgan.Systems;
@@ -18,7 +16,7 @@ public sealed class OrganGasTankFillSystem : EntitySystem
 {
     [Dependency] private readonly AtmosphereSystem _atmos = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedBodySystem _body = default!;
+    [Dependency] private readonly BodySystem _body = default!;
 
     public override void Initialize()
     {
@@ -35,16 +33,18 @@ public sealed class OrganGasTankFillSystem : EntitySystem
         if (!TryComp<BodyComponent>(args.User, out var body))
             return;
 
-        var allOrganTanks = _body.GetBodyOrganEntityComps<GasTankComponent>((args.User, body));
+        if (!_body.TryGetOrgansWithComponent<GasTankComponent>((args.User, body), out var allOrganTanks))
+            return;
+        
         var organTanks = new List<Entity<GasTankComponent, OrganGasTankFillableComponent, OrganComponent>>();
         
         foreach (var organTank in allOrganTanks)
         {
-            var (tankEntity, gasTank, organ) = organTank;
-            if (TryComp<OrganGasTankFillableComponent>(tankEntity, out var fillable))
-            {
-                organTanks.Add((tankEntity, gasTank, fillable, organ));
-            }
+            var (tankEntity, gasTank) = organTank;
+            if (!TryComp<OrganComponent>(tankEntity, out var organComp))
+                continue;
+            if (TryComp<OrganGasTankFillableComponent>(tankEntity, out var fillable)) 
+                organTanks.Add((tankEntity, gasTank, fillable, organComp));
         }
         
         // Check if we have any organs to refill

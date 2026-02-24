@@ -21,7 +21,7 @@ public sealed partial class SubjectSpeciesCondition : BaseCondition
     public override bool Handle(EntityUid @subject, EntityUid @object)
     {
         base.Handle(@subject, @object);
-        return Ent.TryGetComponent<HumanoidAppearanceComponent>(@subject, out var appearance)
+        return Ent.TryGetComponent<HumanoidProfileComponent>(@subject, out var appearance)
             && (Blacklist == null || !Blacklist.Contains(appearance.Species))
             && (Whitelist == null || Whitelist.Contains(appearance.Species));
     }

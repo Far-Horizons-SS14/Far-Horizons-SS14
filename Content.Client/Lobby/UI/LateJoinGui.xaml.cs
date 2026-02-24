@@ -96,7 +96,7 @@ namespace Content.Client.Lobby.UI
                 if (profile is not HumanoidCharacterProfile humanoid)
                     continue;
                 var characterPickerButton =
-                    new CharacterPickerButton(_preferencesManager, _prototypeManager, _playerManager, _factions, group, humanoid, isSelected, true); // Far Horizons
+                    new CharacterPickerButton(group, humanoid, isSelected, true); // Far Horizons
                 CharacterList.AddChild(characterPickerButton);
 
                 if (isSelected && _selectedSlot != slot)

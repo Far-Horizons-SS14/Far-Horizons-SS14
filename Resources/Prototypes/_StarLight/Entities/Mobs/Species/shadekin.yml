@@ -1,7 +1,7 @@
 - type: entity
   save: false
   name: Urist McShadow
-  parent: [MobBloodstream, MobAtmosStandard, MobFlammable, BaseMobSpecies]
+  parent: [MobBloodstream, MobAtmosStandard, MobFlammable, BaseSpeciesMob]
   id: BaseMobShadekin
   abstract: true
   components:
@@ -23,8 +23,6 @@
     - type: Absorbable
     - type: Hunger
     - type: Thirst
-    - type: HumanoidAppearance
-      species: Shadekin
     - type: Icon
       sprite: _Starlight/Mobs/Species/Shadekin/parts.rsi
       state: full
@@ -110,8 +108,6 @@
                   min: 1
                   max: 1
             - !type:BurnBodyBehavior {}
-
-    # BaseMobSpeciesOrganic // Because we dont want respirator to be used.
     - type: Barotrauma
       damage:
         types:
@@ -154,6 +150,10 @@
           amount: 5
     - type: FireVisuals
       alternateState: Standing
+    - type: StunVisuals
+    - type: HumanoidEMP # Far Horizons - HumanoidEMP is needed to receive EMP effects, it may carry its own innate effects, but doesn't have to
+      effectCooldown: 2
+    - type: HumanoidEMPComposite # Far Horizons - HumanoidEMPComposite is used to gather EMP effects from HumanoidEMPCompositeElement components on all limbs and organs. These effects added in addition to effects in HumanoidEMP and won't work without it
     - type: Tag  # Far Horizons
       tags:
         - CanPilot
@@ -161,13 +161,4 @@
         - DoorBumpOpener
         - AnomalyHost
         - Shadekin
-
-- type: entity
-  save: false
-  parent: BaseSpeciesDummy
-  id: MobShadekinDummy
-  categories: [HideSpawnMenu]
-  description: A dummy shadekin meant to be used in character setup.
-  components:
-    - type: HumanoidAppearance
-      species: Shadekin
+    - type: VisionOrganRequiredForVision # Far Horizons

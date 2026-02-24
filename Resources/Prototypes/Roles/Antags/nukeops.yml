@@ -12,6 +12,7 @@
     time: 0 # Far Horizons - Temporary // 21600 # 6h STARLIGHT
   guides: [ NuclearOperatives ]
   previewStartingGear: SyndicateOperativeGearFull
+  playTimeTracker: AntagNukeops # Starlight
 
 - type: antag
   id: NukeopsMedic
@@ -43,6 +44,7 @@
 
   guides: [ NuclearOperatives ]
   previewStartingGear: SyndicateOperativeMedicFull
+  playTimeTracker: AntagNukeopsMedic # Starlight
 
 - type: antag
   id: NukeopsCommander
@@ -62,6 +64,7 @@
   # should be changed to nukie playtime when thats tracked (wyci)
   guides: [ NuclearOperatives ]
   previewStartingGear: SyndicateCommanderGearFull
+  playTimeTracker: AntagNukeopsCommander # Starlight
 
 - type: startingGear
   id: SyndicateOperativeGearFullNoUplink
@@ -96,7 +99,7 @@
   id: NukeopsOutfit
   name: roles-antag-nuclear-operative-name
   startingGear: SyndicateOperativeGearFullNoUplink
-  icon: "JobIconSyndicate"
+  icon: "JobIconSyndicateOperative"
   equipment:
     head: ClothingHeadHelmetHardsuitSyndie
     neck: ClothingNeckScarfStripedSyndieRed
@@ -117,7 +120,7 @@
   id: NukeopsCommanderOutfit
   name: roles-antag-nuclear-operative-commander-name
   startingGear: SyndicateCommanderGearFull
-  icon: "JobIconSyndicate"
+  icon: "JobIconSyndicateCommander"
   equipment:
     head: ClothingHeadHelmetHardsuitSyndieCommander
     neck: ClothingNeckScarfStripedSyndieGreen
@@ -151,7 +154,7 @@
   id: NukeopsMedicOutfit
   name: roles-antag-nuclear-operative-agent-name
   startingGear: SyndicateOperativeMedicFull
-  icon: "JobIconSyndicate"
+  icon: "JobIconSyndicateCorpsman"
   equipment:
     head: ClothingHeadHelmetHardsuitSyndieMedic
     neck: ClothingNeckScarfStripedLightBlue

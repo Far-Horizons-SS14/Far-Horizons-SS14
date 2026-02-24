@@ -1,24 +1,25 @@
 using System.Threading.Tasks;
 using System.Linq;
-using Content.Server.Body.Systems;
 using Content.Server.Explosion.EntitySystems;
 using Content.Server.Popups;
 using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
+using Content.Shared.Body;
 using Content.Shared.Interaction.Components;
 using Content.Shared.Inventory.Events;
 using Content.Shared.Popups;
 using Robust.Server.Audio;
+using Content.Shared.Gibbing;
 
 namespace Content.Server.Starlight.FactionClothingBlockerSystem;
 
 public sealed class AccessClothingBlockerSystem : EntitySystem
 {
     [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly BodySystem _bodySystem = default!;
     [Dependency] private readonly ExplosionSystem _explosionSystem = default!;
     [Dependency] private readonly AudioSystem _audioSystem = default!;
     [Dependency] private readonly AccessReaderSystem _accessReader = default!;
+    [Dependency] private readonly GibbingSystem _gibbing = default!;
 
     public override void Initialize()
     {
@@ -48,7 +49,7 @@ public sealed class AccessClothingBlockerSystem : EntitySystem
 
         EntityManager.EnsureComponent<UnremoveableComponent>(uid);
         await PopupWithDelays(uid, component);
-        _bodySystem.GibBody(args.Equipee, true);
+        _gibbing.Gib(args.Equipee);
         _explosionSystem.QueueExplosion(uid, "Default", 50, 5, 30, canCreateVacuum: false);
     }
 

@@ -1,0 +1,63 @@
+- type: entity
+  parent: AppearanceDwarf
+  id: AppearanceProtoDawi
+  name: ProtoDawi Appearance
+  components:
+  - type: InitialBody
+    organs:
+      Torso: OrganProtoHumieTorso
+      Head: OrganProtoHumieHead
+      ArmLeft: OrganProtoHumieArmLeft
+      ArmRight: OrganProtoHumieArmRight
+      HandRight: OrganProtoHumieHandRight
+      HandLeft: OrganProtoHumieHandLeft
+      LegLeft: OrganProtoHumieLegLeft
+      LegRight: OrganProtoHumieLegRight
+      FootLeft: OrganProtoHumieFootLeft
+      FootRight: OrganProtoHumieFootRight
+      Brain: OrganProtogenBrain
+      Eyes: OrganProtogenEyes
+      Tongue: OrganProtogenTongue
+      Ears: OrganProtogenEars
+      Lungs: OrganProtogenLungs
+      Heart: OrganProtoDawiHeart
+      Stomach: OrganProtoDawiStomach
+      Liver: OrganProtoDawiLiver
+      Kidneys: OrganProtogenKidneys
+  - type: HumanoidProfile
+    species: ProtoDawi
+
+- type: entity
+  parent:
+  - AppearanceProtoDawi
+  - BaseMobProtoDawi
+  id: MobProtoDawi
+  name: Urist McHands The ProtoDawi
+
+# Organs
+
+- type: entity
+  parent: OrganProtogenHeart
+  id: OrganProtoDawiHeart
+  components:
+  - type: Metabolizer
+    metabolizerTypes: [ Dwarf ]
+
+- type: entity
+  parent: OrganProtogenStomach
+  id: OrganProtoDawiStomach
+  components:
+  - type: Metabolizer
+    metabolizerTypes: [ Dwarf ]
+  - type: SolutionContainerManager
+    solutions:
+      food: {}
+      stomach:
+        maxVol: 75
+
+- type: entity
+  parent: OrganProtogenLiver
+  id: OrganProtoDawiLiver
+  components:
+  - type: Metabolizer
+    metabolizerTypes: [ Dwarf ]

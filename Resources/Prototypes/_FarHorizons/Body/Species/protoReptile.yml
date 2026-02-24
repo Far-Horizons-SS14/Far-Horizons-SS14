@@ -1,0 +1,97 @@
+- type: markingsGroup
+  parent: [ Reptilian, BaseProtogen ]
+  id: ProtoReptile
+  limits:
+    enum.HumanoidVisualLayers.FaceCover:
+      limit: 1
+      required: true
+      default: [ ProtoVulpVisor ]
+
+- type: entity
+  parent: AppearanceReptilian
+  id: AppearanceProtoReptile
+  name: ProtoReptile Appearance
+  components:
+  - type: InitialBody
+    organs:
+      Torso: OrganProtoReptileTorso
+      Head: OrganProtoReptileHead
+      ArmLeft: OrganProtoReptileArmLeft
+      ArmRight: OrganProtoReptileArmRight
+      HandRight: OrganProtoReptileHandRight
+      HandLeft: OrganProtoReptileHandLeft
+      LegLeft: OrganProtoReptileLegLeft
+      LegRight: OrganProtoReptileLegRight
+      FootLeft: OrganProtoReptileFootLeft
+      FootRight: OrganProtoReptileFootRight
+      Brain: OrganProtogenBrain
+      Eyes: OrganProtogenEyes
+      Tongue: OrganProtogenTongue
+      Ears: OrganProtogenEars
+      Lungs: OrganProtogenLungs
+      Heart: OrganProtogenHeart
+      Stomach: OrganProtogenStomach
+      Liver: OrganProtogenLiver
+      Kidneys: OrganProtogenKidneys
+  - type: HumanoidProfile
+    species: ProtoReptile
+
+- type: entity
+  parent:
+  - AppearanceProtoReptile
+  - BaseMobProtoReptile
+  id: MobProtoReptile
+  name: Urisst' Mztosster
+
+# Organs
+
+- type: entity
+  parent: OrganReptilianExternal
+  id: OrganProtoReptileExternal
+  abstract: true
+  components:
+  - type: VisualOrganMarkings
+    markingData:
+      group: ProtoReptile
+
+# Limbs
+
+- type: entity
+  parent: [ OrganProtoReptileExternal, OrganReptilianTorso ]
+  id: OrganProtoReptileTorso
+
+- type: entity
+  parent: [ OrganProtoReptileExternal, OrganReptilianHead ]
+  id: OrganProtoReptileHead
+
+- type: entity
+  parent: [ OrganProtoReptileExternal, OrganReptilianArmLeft ]
+  id: OrganProtoReptileArmLeft
+
+- type: entity
+  parent: [ OrganProtoReptileExternal, OrganReptilianArmRight ]
+  id: OrganProtoReptileArmRight
+
+- type: entity
+  parent: [ OrganProtoReptileExternal, OrganReptilianHandLeft ]
+  id: OrganProtoReptileHandLeft
+
+- type: entity
+  parent: [ OrganProtoReptileExternal, OrganReptilianHandRight ]
+  id: OrganProtoReptileHandRight
+
+- type: entity
+  parent: [ OrganProtoReptileExternal, OrganReptilianLegLeft ]
+  id: OrganProtoReptileLegLeft
+
+- type: entity
+  parent: [ OrganProtoReptileExternal, OrganReptilianLegRight ]
+  id: OrganProtoReptileLegRight
+
+- type: entity
+  parent: [ OrganProtoReptileExternal, OrganReptilianFootLeft ]
+  id: OrganProtoReptileFootLeft
+
+- type: entity
+  parent: [ OrganProtoReptileExternal, OrganReptilianFootRight ]
+  id: OrganProtoReptileFootRight

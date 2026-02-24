@@ -1,0 +1,103 @@
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepBaseRobotAmputation
+  abstract: true
+  name: Unweld Limb
+  components:
+  - type: SurgeryStep
+    duration: 16 
+    tools:
+    - type: WelderSurgery
+  - type: Sprite
+    sprite: Objects/Tools/welder.rsi
+    state: icon
+  - type: OnFailDamage
+    damage: 
+      types:
+        Slash: 10
+
+# Head
+
+- type: entity
+  parent: SurgeryStepBaseRobotAmputation
+  id: SurgeryStepUnweldSkull
+  name: Unweld Skull
+  components:
+  - type: SurgeryStep
+    duration: 20
+    tools:
+    - type: WelderSurgery
+  - type: SurgeryStepOrganExtract
+    slot: Head
+
+# LArm
+
+- type: entity
+  parent: SurgeryStepBaseRobotAmputation
+  id: SurgeryStepRobotAmputateLeftArm
+  components:
+  - type: SurgeryStepOrganExtract
+    slot: ArmLeft
+
+# RArm
+
+- type: entity
+  parent: SurgeryStepBaseRobotAmputation
+  id: SurgeryStepRobotAmputateRightArm
+  components:
+  - type: SurgeryStepOrganExtract
+    slot: ArmRight
+
+# LHand
+
+- type: entity
+  parent: SurgeryStepBaseRobotAmputation
+  id: SurgeryStepRobotAmputateLeftHand
+  components:
+  - type: SurgeryStepOrganExtract
+    slot: HandLeft
+
+# RHand
+
+- type: entity
+  parent: SurgeryStepBaseRobotAmputation
+  id: SurgeryStepRobotAmputateRightHand
+  components:
+  - type: SurgeryStepOrganExtract
+    slot: HandRight
+
+# LLeg
+
+- type: entity
+  parent: SurgeryStepBaseRobotAmputation
+  id: SurgeryStepRobotAmputateLeftLeg
+  components:
+  - type: SurgeryStepOrganExtract
+    slot: LegLeft
+
+# RLeg
+
+- type: entity
+  parent: SurgeryStepBaseRobotAmputation
+  id: SurgeryStepRobotAmputateRightLeg
+  components:
+  - type: SurgeryStepOrganExtract
+    slot: LegRight
+
+# LFoot
+
+- type: entity
+  parent: SurgeryStepBaseRobotAmputation
+  id: SurgeryStepRobotAmputateLeftFoot
+  components:
+  - type: SurgeryStepOrganExtract
+    slot: FootLeft
+
+# RFoot
+
+- type: entity
+  parent: SurgeryStepBaseRobotAmputation
+  id: SurgeryStepRobotAmputateRightFoot
+  components:
+  - type: SurgeryStepOrganExtract
+    slot: FootRight

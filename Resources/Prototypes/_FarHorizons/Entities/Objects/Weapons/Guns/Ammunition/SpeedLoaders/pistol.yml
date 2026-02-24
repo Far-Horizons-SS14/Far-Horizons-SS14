@@ -1,17 +1,17 @@
 - type: entity
-  id: BaseSpeedLoaderPistol40
+  id: BaseSpeedLoaderRevolver38
   name: "Speed loader (.38 Special)"
   parent: [BaseItem, BaseSecurityContraband]
   abstract: true
   components:
   - type: Tag
     tags:
-      - SpeedLoaderPistol
+      - SpeedLoaderRevolver38
   - type: SpeedLoader
   - type: BallisticAmmoProvider
     whitelist:
       tags:
-        - CartridgePistolDP
+        - CartridgeRevolver38
     capacity: 8
   - type: Sprite
     sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Speedloaders/Pistol/38_speed_loader.rsi
@@ -24,9 +24,9 @@
     steps: 9
 
 - type: entity
-  id: SpeedLoaderPistol40Empty
+  id: SpeedLoaderRevolver38Empty
   name: "Speed loader (.38 Special any)"
-  parent: BaseSpeedLoaderPistol40
+  parent: BaseSpeedLoaderRevolver38
   components:
   - type: BallisticAmmoProvider
     proto: null
@@ -42,12 +42,12 @@
   - type: Appearance
 
 - type: entity
-  id: SpeedLoaderPistol40SP
+  id: SpeedLoaderRevolver38SP
   name: "Speed loader (.38 Special SP)"
-  parent: BaseSpeedLoaderPistol40
+  parent: BaseSpeedLoaderRevolver38
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgePistol40SP
+    proto: CartridgeRevolver38SP
   - type: Sprite
     layers:
     - state: base
@@ -60,12 +60,12 @@
   - type: Appearance
 
 - type: entity
-  id: SpeedLoaderPistol40HP
+  id: SpeedLoaderRevolver38HP
   name: "Speed loader (.38 Special HP)"
-  parent: BaseSpeedLoaderPistol40
+  parent: BaseSpeedLoaderRevolver38
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgePistol40HP
+    proto: CartridgeRevolver38HP
   - type: Sprite
     layers:
     - state: base
@@ -78,12 +78,12 @@
   - type: Appearance
 
 - type: entity
-  id: SpeedLoaderPistol40FMJ
+  id: SpeedLoaderRevolver38FMJ
   name: "Speed loader (.38 Special FMJ)"
-  parent: BaseSpeedLoaderPistol40
+  parent: BaseSpeedLoaderRevolver38
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgePistol40FMJ
+    proto: CartridgeRevolver38FMJ
   - type: Sprite
     layers:
     - state: base
@@ -96,12 +96,12 @@
   - type: Appearance
 
 - type: entity
-  id: SpeedLoaderPistol40Incendiary
+  id: SpeedLoaderRevolver38Incendiary
   name: "Speed loader (.38 Special Incendiary)"
-  parent: BaseSpeedLoaderPistol40
+  parent: BaseSpeedLoaderRevolver38
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgePistol40Incendiary
+    proto: CartridgeRevolver38Incendiary
   - type: Sprite
     layers:
     - state: base
@@ -114,12 +114,12 @@
   - type: Appearance
 
 - type: entity
-  id: SpeedLoaderPistol40Uranium
+  id: SpeedLoaderRevolver38Uranium
   name: "Speed loader (.38 Special Uranium)"
-  parent: BaseSpeedLoaderPistol40
+  parent: BaseSpeedLoaderRevolver38
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgePistol40Uranium
+    proto: CartridgeRevolver38Uranium
   - type: Sprite
     layers:
     - state: base
@@ -132,12 +132,12 @@
   - type: Appearance
 
 - type: entity
-  id: SpeedLoaderPistol40AP
+  id: SpeedLoaderRevolver38AP
   name: "Speed loader (.38 Special AP)"
-  parent: BaseSpeedLoaderPistol40
+  parent: BaseSpeedLoaderRevolver38
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgePistol40AP
+    proto: CartridgeRevolver38AP
   - type: Sprite
     layers:
     - state: base
@@ -150,12 +150,12 @@
   - type: Appearance
 
 - type: entity
-  id: SpeedLoaderPistol40Practice
+  id: SpeedLoaderRevolver38Practice
   name: "Speed loader (.38 Special Practice)"
-  parent: BaseSpeedLoaderPistol40
+  parent: BaseSpeedLoaderRevolver38
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgePistol40Practice
+    proto: CartridgeRevolver38Practice
   - type: Sprite
     layers:
     - state: base
@@ -168,12 +168,12 @@
   - type: Appearance
 
 - type: entity
-  id: SpeedLoaderPistol40Rubber
+  id: SpeedLoaderRevolver38Rubber
   name: "Speed loader (.38 Special Rubber)"
-  parent: BaseSpeedLoaderPistol40
+  parent: BaseSpeedLoaderRevolver38
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgePistol40Rubber
+    proto: CartridgeRevolver38Rubber
   - type: Sprite
     layers:
     - state: base

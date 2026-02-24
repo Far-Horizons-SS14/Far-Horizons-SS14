@@ -1,0 +1,259 @@
+# Base
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepBaseAmputation
+  abstract: true
+  name: Saw Through Bone
+  components:
+  - type: SurgeryStep
+    duration: 16 
+    tools:
+    - type: BoneSaw
+  - type: Sprite
+    sprite: Objects/Specific/Medical/Surgery/saw.rsi
+    state: saw
+  - type: SurgeryStepEmoteEffect
+  - type: SurgeryStepBleedEffect
+    damage:
+      types:
+        Slash: 10
+  - type: OnFailDamage
+    damage: 
+      types:
+        Slash: 10
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepBaseAttach
+  abstract: true
+  name: Attach Part
+  components:
+  - type: SurgeryStep
+    duration: 4 
+    tools:
+    - type: Organ
+  - type: Sprite
+    sprite: Objects/Consumable/Food/Baked/pizza.rsi
+    state: meat-slice
+  - type: SurgeryStepOrganInsert
+
+- type: entity
+  parent: SurgeryStepBaseAmputation
+  id: SurgeryStepBaseAmputationSlime
+  abstract: true
+  name: Separate Part
+  components:
+  - type: SurgeryStep
+    duration: 20
+    tools:
+    - type: Retractor # What are we sawing?
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/scissors.rsi
+    state: retractor
+# Head
+
+- type: entity
+  parent: SurgeryStepBaseAmputation
+  id: SurgeryStepAmputateHead
+  components:
+  - type: SurgeryStepOrganExtract
+    slot: Head
+
+- type: entity
+  parent: SurgeryStepBaseAmputationSlime
+  id: SurgeryStepAmputateHeadSlime
+  components:
+  - type: SurgeryStepOrganExtract
+    slot: Head
+
+- type: entity
+  parent: SurgeryStepBaseAttach
+  id: SurgeryStepAttachHead
+  components:
+  - type: SurgeryStep
+    organCategory: Head
+
+# LArm
+
+- type: entity
+  parent: SurgeryStepBaseAmputation
+  id: SurgeryStepAmputateLeftArm
+  components:
+  - type: SurgeryStepOrganExtract
+    slot: ArmLeft
+
+- type: entity
+  parent: SurgeryStepBaseAmputationSlime
+  id: SurgeryStepAmputateLeftArmSlime
+  components:
+  - type: SurgeryStepOrganExtract
+    slot: ArmLeft
+
+- type: entity
+  parent: SurgeryStepBaseAttach
+  id: SurgeryStepAttachLeftArm
+  components:
+  - type: SurgeryStep
+    organCategory: ArmLeft
+
+# RArm
+
+- type: entity
+  parent: SurgeryStepBaseAmputation
+  id: SurgeryStepAmputateRightArm
+  components:
+  - type: SurgeryStepOrganExtract
+    slot: ArmRight
+
+- type: entity
+  parent: SurgeryStepBaseAmputationSlime
+  id: SurgeryStepAmputateRightArmSlime
+  components:
+  - type: SurgeryStepOrganExtract
+    slot: ArmRight
+
+- type: entity
+  parent: SurgeryStepBaseAttach
+  id: SurgeryStepAttachRightArm
+  components:
+  - type: SurgeryStep
+    organCategory: ArmRight
+
+# LHand
+
+- type: entity
+  parent: SurgeryStepBaseAmputation
+  id: SurgeryStepAmputateLeftHand
+  components:
+  - type: SurgeryStepOrganExtract
+    slot: HandLeft
+
+- type: entity
+  parent: SurgeryStepBaseAmputationSlime
+  id: SurgeryStepAmputateLeftHandSlime
+  components:
+  - type: SurgeryStepOrganExtract
+    slot: HandLeft
+
+- type: entity
+  parent: SurgeryStepBaseAttach
+  id: SurgeryStepAttachLeftHand
+  components:
+  - type: SurgeryStep
+    organCategory: HandLeft
+
+# RHand
+
+- type: entity
+  parent: SurgeryStepBaseAmputation
+  id: SurgeryStepAmputateRightHand
+  components:
+  - type: SurgeryStepOrganExtract
+    slot: HandRight
+
+- type: entity
+  parent: SurgeryStepBaseAmputationSlime
+  id: SurgeryStepAmputateRightHandSlime
+  components:
+  - type: SurgeryStepOrganExtract
+    slot: HandRight
+
+- type: entity
+  parent: SurgeryStepBaseAttach
+  id: SurgeryStepAttachRightHand
+  components:
+  - type: SurgeryStep
+    organCategory: HandRight
+
+# LLeg
+
+- type: entity
+  parent: SurgeryStepBaseAmputation
+  id: SurgeryStepAmputateLeftLeg
+  components:
+  - type: SurgeryStepOrganExtract
+    slot: LegLeft
+
+- type: entity
+  parent: SurgeryStepBaseAmputationSlime
+  id: SurgeryStepAmputateLeftLegSlime
+  components:
+  - type: SurgeryStepOrganExtract
+    slot: LegLeft
+
+- type: entity
+  parent: SurgeryStepBaseAttach
+  id: SurgeryStepAttachLeftLeg
+  components:
+  - type: SurgeryStep
+    organCategory: LegLeft
+
+# RLeg
+
+- type: entity
+  parent: SurgeryStepBaseAmputation
+  id: SurgeryStepAmputateRightLeg
+  components:
+  - type: SurgeryStepOrganExtract
+    slot: LegRight
+
+- type: entity
+  parent: SurgeryStepBaseAmputationSlime
+  id: SurgeryStepAmputateRightLegSlime
+  components:
+  - type: SurgeryStepOrganExtract
+    slot: LegRight
+
+- type: entity
+  parent: SurgeryStepBaseAttach
+  id: SurgeryStepAttachRightLeg
+  components:
+  - type: SurgeryStep
+    organCategory: LegRight
+
+# LFoot
+
+- type: entity
+  parent: SurgeryStepBaseAmputation
+  id: SurgeryStepAmputateLeftFoot
+  components:
+  - type: SurgeryStepOrganExtract
+    slot: FootLeft
+
+- type: entity
+  parent: SurgeryStepBaseAmputationSlime
+  id: SurgeryStepAmputateLeftFootSlime
+  components:
+  - type: SurgeryStepOrganExtract
+    slot: FootLeft
+
+- type: entity
+  parent: SurgeryStepBaseAttach
+  id: SurgeryStepAttachLeftFoot
+  components:
+  - type: SurgeryStep
+    organCategory: FootLeft
+
+# RFoot
+
+- type: entity
+  parent: SurgeryStepBaseAmputation
+  id: SurgeryStepAmputateRightFoot
+  components:
+  - type: SurgeryStepOrganExtract
+    slot: FootRight
+
+- type: entity
+  parent: SurgeryStepBaseAmputationSlime
+  id: SurgeryStepAmputateRightFootSlime
+  components:
+  - type: SurgeryStepOrganExtract
+    slot: FootRight
+
+- type: entity
+  parent: SurgeryStepBaseAttach
+  id: SurgeryStepAttachRightFoot
+  components:
+  - type: SurgeryStep
+    organCategory: FootRight

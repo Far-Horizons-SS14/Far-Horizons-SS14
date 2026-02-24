@@ -139,12 +139,12 @@
 
 #region Command
 
-# Commander (Captain)
+# Commandant (Captain)
 
 - type: entity
   parent: [ ClothingOuterArmorBaseCarapace, BaseCommandContraband ]
   id: ClothingOuterArmorCaptainCarapaceSyndi
-  name: Commander's Carapace
+  name: Commandant's Carapace
   suffix: S
   description: An armored chestpiece that provides protection whilst still offering maximum mobility and flexibility. Issued only to the station's finest.
   components:
@@ -339,7 +339,7 @@
         Piercing: 0.70
         Heat: 0.80
 
-# Law Enforcer (Security Officer)
+# Enforcer (Security Officer)
 
 
 - type: entity
@@ -424,14 +424,14 @@
   id: ClothingOuterSecurityBomberSyndiOpened
   name: Security Bomber
 
-# Medical Officer (Brigmedic) - They didn't have an armor before, but okay. Take this reskinned detective armor.
+# Brigmedic (Brigmedic) - They didn't have an armor before, but okay. Take this reskinned detective armor.
 
 - type: entity
   parent: [ ClothingOuterArmorBaseFHSyndi, BaseSecurityContraband ]
   id: ClothingOuterVestBrigmedicSyndi
-  name: Medical Officer's Vest
+  name: Brigmedic's Vest
   suffix: S
-  description: An armored vest made for the station's Medical Officer.
+  description: An armored vest made for the station's Brigmedic.
   components:
   - type: Sprite
     sprite: _FarHorizons/Clothing/OuterClothing/Vests/brigmedic-syndi.rsi

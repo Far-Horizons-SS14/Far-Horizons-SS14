@@ -85,31 +85,30 @@ public sealed partial class GunSystem : SharedGunSystem
         SubscribeLocalEvent<BallisticAmmoProviderComponent, PriceCalculationEvent>(OnBallisticPrice);
     }
 
-
-    private void OnBallisticPrice(EntityUid uid, BallisticAmmoProviderComponent component, ref PriceCalculationEvent args)
+    private void OnBallisticPrice(Entity<BallisticAmmoProviderComponent> ent, ref PriceCalculationEvent args)
     {
-        if (string.IsNullOrEmpty(component.Proto) || component.UnspawnedCount == 0)
+        if (string.IsNullOrEmpty(ent.Comp.Proto) || ent.Comp.UnspawnedCount == 0)
             return;
 
-        if (!ProtoManager.TryIndex<EntityPrototype>(component.Proto, out var proto))
+        if (!ProtoManager.TryIndex<EntityPrototype>(ent.Comp.Proto, out var proto))
         {
-            Log.Error($"Unable to find fill prototype for price on {component.Proto} on {ToPrettyString(uid)}");
+            Log.Error($"Unable to find fill prototype for price on {ent.Comp.Proto} on {ToPrettyString(ent)}");
             return;
         }
 
         // Probably good enough for most.
         var price = _pricing.GetEstimatedPrice(proto);
-        args.Price += price * component.UnspawnedCount;
+        args.Price += price * ent.Comp.UnspawnedCount;
     }
 
-    public override void Shoot(EntityUid gunUid, GunComponent gun, List<(EntityUid? Entity, IShootable Shootable)> ammo,
+    public override void Shoot(Entity<GunComponent> gun, List<(EntityUid? Entity, IShootable Shootable)> ammo,
         EntityCoordinates fromCoordinates, EntityCoordinates toCoordinates, out bool userImpulse, EntityUid? user = null, bool throwItems = false)
     {
         userImpulse = true;
 
         if (user != null)
         {
-            var selfEvent = new SelfBeforeGunShotEvent(user.Value, (gunUid, gun), ammo);
+            var selfEvent = new SelfBeforeGunShotEvent(user.Value, gun, ammo);
             RaiseLocalEvent(user.Value, selfEvent);
             if (selfEvent.Cancelled)
             {
@@ -143,7 +142,7 @@ public sealed partial class GunSystem : SharedGunSystem
             // pneumatic cannon doesn't shoot bullets it just throws them, ignore ammo handling
             if (throwItems && ent != null)
             {
-                ShootOrThrow(ent.Value, mapDirection, gunVelocity, gun, gunUid, user);
+                ShootOrThrow(ent.Value, mapDirection, gunVelocity, gun, user);
                 continue;
             }
 
@@ -170,11 +169,11 @@ public sealed partial class GunSystem : SharedGunSystem
                     else
                     {
                         userImpulse = false;
-                        Audio.PlayPredicted(gun.SoundEmpty, gunUid, user);
+                        Audio.PlayPredicted(gun.Comp.SoundEmpty, gun, user);
                     }
 
                     // Something like ballistic might want to leave it in the container still
-                    if (!cartridge.DeleteOnSpawn && !Containers.IsEntityInContainer(ent!.Value) && !gun.Pump)
+                    if (!cartridge.DeleteOnSpawn && !Containers.IsEntityInContainer(ent!.Value) && !gun.Comp.Pump)
                         EjectCartridge(ent.Value, angle);
 
                     Dirty(ent!.Value, cartridge);
@@ -194,22 +193,22 @@ public sealed partial class GunSystem : SharedGunSystem
                     {
                         FromCoordinates = fromCoordinates,
                         ShotDirection = mapDirection.Normalized(),
-                        Gun = gunUid,
+                        Gun = gun,
                         Shooter = user,
-                        Target = gun.Target,
+                        Target = gun.Comp.Target,
                     };
                     RaiseLocalEvent(ent.Value, ref hitscanEv);
 
                     Del(ent);
 
-                    Audio.PlayPredicted(gun.SoundGunshotModified, gunUid, user);
+                    Audio.PlayPredicted(gun.Comp.SoundGunshotModified, gun, user);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
         }
 
-        RaiseLocalEvent(gunUid, new AmmoShotEvent()
+        RaiseLocalEvent(gun, new AmmoShotEvent()
         {
             FiredProjectiles = shotProjectiles,
             Shooter = user, //starlight
@@ -241,7 +240,7 @@ public sealed partial class GunSystem : SharedGunSystem
             if (TryComp<ProjectileSpreadComponent>(ammoEnt, out var ammoSpreadComp))
             {
                 var spreadEvent = new GunGetAmmoSpreadEvent(ammoSpreadComp.Spread);
-                RaiseLocalEvent(gunUid, ref spreadEvent);
+                RaiseLocalEvent(gun, ref spreadEvent);
 
                 var angles = LinearSpread(mapAngle - spreadEvent.Spread / 2,
                     mapAngle + spreadEvent.Spread / 2, ammoSpreadComp.Count);
@@ -252,7 +251,7 @@ public sealed partial class GunSystem : SharedGunSystem
                     _transform.SetCoordinates(ammoEnt, Transform(ammoEnt), spawn);
                 }
                 // Startlight-edit: end
-                ShootOrThrow(ammoEnt, angles[0].ToVec(), gunVelocity, gun, gunUid, user);
+                ShootOrThrow(ammoEnt, angles[0].ToVec(), gunVelocity, gun, user);
                 shotProjectiles.Add(ammoEnt);
 
                 for (var i = 1; i < ammoSpreadComp.Count; i++)
@@ -261,7 +260,7 @@ public sealed partial class GunSystem : SharedGunSystem
                     var spawn = isMechShooter ? SpawnFrom(angles[i]) : fromEnt;
                     var newuid = Spawn(ammoSpreadComp.Proto, spawn);
                     // Startlight-edit: end
-                    ShootOrThrow(newuid, angles[i].ToVec(), gunVelocity, gun, gunUid, user);
+                    ShootOrThrow(newuid, angles[i].ToVec(), gunVelocity, gun, user);
                     shotProjectiles.Add(newuid);
                 }
             }
@@ -274,19 +273,19 @@ public sealed partial class GunSystem : SharedGunSystem
                     _transform.SetCoordinates(ammoEnt, Transform(ammoEnt), spawn);
                 }
                 // Startlight-edit: end
-                ShootOrThrow(ammoEnt, mapDirection, gunVelocity, gun, gunUid, user);
+                ShootOrThrow(ammoEnt, mapDirection, gunVelocity, gun, user);
                 shotProjectiles.Add(ammoEnt);
             }
 
-            MuzzleFlash(gunUid, ammoComp, mapDirection.ToAngle(), user);
-            Audio.PlayPredicted(gun.SoundGunshotModified, gunUid, user);
+            MuzzleFlash(gun, ammoComp, mapDirection.ToAngle(), user);
+            Audio.PlayPredicted(gun.Comp.SoundGunshotModified, gun, user);
         }
     }
 
-    private void ShootOrThrow(EntityUid uid, Vector2 mapDirection, Vector2 gunVelocity, GunComponent gun, EntityUid gunUid, EntityUid? user)
+    private void ShootOrThrow(EntityUid uid, Vector2 mapDirection, Vector2 gunVelocity, Entity<GunComponent> gun, EntityUid? user)
     {
         var isHitscan = HasComp<HitscanAmmoComponent>(uid); // FH - just so I don't have to call it twice
-        if (!isHitscan && gun.Target is { } target && !TerminatingOrDeleted(target)) // FH - added check for hitscan, because TargetedProjectileComponent is only ever used in collision checks, which raycasts don't run. And I'm pretty sure this component's update cycle is responsible for server lag
+        if (!isHitscan && gun.Comp.Target is { } target && !TerminatingOrDeleted(target)) // FH - added check for hitscan, because TargetedProjectileComponent is only ever used in collision checks, which raycasts don't run. And I'm pretty sure this component's update cycle is responsible for server lag
         {
             var targeted = EnsureComp<TargetedProjectileComponent>(uid);
             targeted.Target = target;
@@ -300,9 +299,9 @@ public sealed partial class GunSystem : SharedGunSystem
             {
                 FromCoordinates = EntityManager.GetComponent<TransformComponent>(uid).Coordinates,
                 ShotDirection = mapDirection.Normalized(),
-                Gun = gunUid,
+                Gun = gun,
                 Shooter = user,
-                Target = gun.Target,
+                Target = gun.Comp.Target,
             };
             RaiseLocalEvent(uid, ref hitscanEv);
 
@@ -316,11 +315,11 @@ public sealed partial class GunSystem : SharedGunSystem
         {
             RemoveShootable(uid);
             // TODO: Someone can probably yeet this a billion miles so need to pre-validate input somewhere up the call stack.
-            ThrowingSystem.TryThrow(uid, mapDirection, gun.ProjectileSpeedModified, user);
+            ThrowingSystem.TryThrow(uid, mapDirection, gun.Comp.ProjectileSpeedModified, user);
             return;
         }
 
-        ShootProjectile(uid, mapDirection, gunVelocity, gunUid, user, gun.ProjectileSpeedModified);
+        ShootProjectile(uid, mapDirection, gunVelocity, gun, user, gun.Comp.ProjectileSpeedModified);
     }
 
     /// <summary>

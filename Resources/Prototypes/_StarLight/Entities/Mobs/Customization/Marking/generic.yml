@@ -2,8 +2,7 @@
 - type: marking
   id: HeadHeavyTattoos
   bodyPart: Head
-  markingCategory: Head
-  speciesRestriction: [Human, Dwarf, Arachnid, SlimePerson, Reptilian]
+  groupWhitelist: [Human, Arachnid, Slime, Reptilian]
   coloring:
     default:
       type:
@@ -19,10 +18,8 @@
 - type: marking
   id: HeadEarrings
   bodyPart: HeadTop
-  markingCategory: HeadTop
-  speciesRestriction: [Human, Dwarf, SlimePerson]
+  groupWhitelist: [Human, Slime]
   forcedColoring: false
-  followSkinColor: false
   coloring:
     default:
       type:
@@ -37,10 +34,8 @@
 - type: marking
   id: HeadEarringsDrop
   bodyPart: HeadTop
-  markingCategory: HeadTop
-  speciesRestriction: [Human, Dwarf, SlimePerson]
+  groupWhitelist: [Human, Slime]
   forcedColoring: false
-  followSkinColor: false
   coloring:
     default:
       type:
@@ -55,10 +50,8 @@
 - type: marking
   id: HeadEarringsWeights
   bodyPart: HeadTop
-  markingCategory: HeadTop
-  speciesRestriction: [Human, Dwarf, SlimePerson]
+  groupWhitelist: [Human, Slime]
   forcedColoring: false
-  followSkinColor: false
   coloring:
     default:
       type:
@@ -74,10 +67,8 @@
 - type: marking
   id: HeadSeptum
   bodyPart: Snout
-  markingCategory: Snout
-  speciesRestriction: [Human, Dwarf]
+  groupWhitelist: [Human]
   forcedColoring: false
-  followSkinColor: false
   coloring:
     default:
       type:
@@ -91,10 +82,8 @@
 - type: marking
   id: ChestNecklace
   bodyPart: Chest
-  markingCategory: Chest
-  speciesRestriction: [Human, Dwarf, Arachnid, SlimePerson, Reptilian, Vulpkanin, Thaven]
+  groupWhitelist: [Human, Arachnid, Slime, Reptilian, Vulpkanin, Thaven]
   forcedColoring: false
-  followSkinColor: false
   coloring:
     default:
       type:
@@ -107,8 +96,7 @@
 - type: marking
   id: ChestCutHere
   bodyPart: Chest
-  markingCategory: Chest
-  speciesRestriction: [Human, Dwarf, Arachnid, SlimePerson, Reptilian, Vulpkanin, Thaven]
+  groupWhitelist: [Human, Arachnid, Slime, Reptilian, Vulpkanin, Thaven]
   coloring:
     default:
       type:
@@ -121,8 +109,7 @@
 - type: marking
   id: ChestHeavyTattoos
   bodyPart: Chest
-  markingCategory: Chest
-  speciesRestriction: [Human, Dwarf, Arachnid, SlimePerson, Reptilian]
+  groupWhitelist: [Human, Arachnid, Slime, Reptilian]
   coloring:
     default:
       type:
@@ -139,8 +126,7 @@
 - type: marking
   id: BodyHairChest
   bodyPart: Chest
-  markingCategory: Chest
-  speciesRestriction: [Human, Dwarf, Arachnid, SlimePerson]
+  groupWhitelist: [Human, Arachnid, Slime]
   sprites:
     - sprite: _Starlight/Mobs/Customization/human_body_hair.rsi
       state: hair_chest
@@ -148,8 +134,7 @@
 - type: marking
   id: BodyHairBack
   bodyPart: Chest
-  markingCategory: Chest
-  speciesRestriction: [Human, Dwarf, Arachnid, SlimePerson]
+  groupWhitelist: [Human, Arachnid, Slime]
   sprites:
     - sprite: _Starlight/Mobs/Customization/human_body_hair.rsi
       state: hair_back
@@ -158,10 +143,8 @@
 - type: marking
   id: HandBraceletLeft
   bodyPart: LHand
-  markingCategory: Arms
-  speciesRestriction: [Human, Dwarf, Arachnid, SlimePerson, Reptilian, Vulpkanin]
+  groupWhitelist: [Human, Arachnid, Slime, Reptilian, Vulpkanin]
   forcedColoring: false
-  followSkinColor: false
   coloring:
     default:
       type:
@@ -174,10 +157,8 @@
 - type: marking
   id: HandBraceletRight
   bodyPart: RHand
-  markingCategory: Arms
-  speciesRestriction: [Human, Dwarf, Arachnid, SlimePerson, Reptilian, Vulpkanin]
+  groupWhitelist: [Human, Arachnid, Slime, Reptilian, Vulpkanin]
   forcedColoring: false
-  followSkinColor: false
   coloring:
     default:
       type:
@@ -190,10 +171,8 @@
 - type: marking
   id: HandRingsLeft
   bodyPart: LHand
-  markingCategory: Arms
-  speciesRestriction: [Human, Dwarf, Arachnid, SlimePerson, Reptilian, Vulpkanin]
+  groupWhitelist: [Human, Arachnid, Slime, Reptilian, Vulpkanin]
   forcedColoring: false
-  followSkinColor: false
   coloring:
     default:
       type:
@@ -208,10 +187,8 @@
 - type: marking
   id: HandRingsRight
   bodyPart: RHand
-  markingCategory: Arms
-  speciesRestriction: [Human, Dwarf, Arachnid, SlimePerson, Reptilian, Vulpkanin]
+  groupWhitelist: [Human, Arachnid, Slime, Reptilian, Vulpkanin]
   forcedColoring: false
-  followSkinColor: false
   coloring:
     default:
       type:
@@ -226,8 +203,7 @@
 - type: marking
   id: ArmDollJointsTattooLeft
   bodyPart: LArm
-  markingCategory: Arms
-  speciesRestriction: [Human, Dwarf, Arachnid, SlimePerson, Reptilian, Vulpkanin]
+  groupWhitelist: [Human, Arachnid, Slime, Reptilian, Vulpkanin]
   coloring:
     default:
       type:
@@ -240,8 +216,7 @@
 - type: marking
   id: ArmDollJointsTattooRight
   bodyPart: RArm
-  markingCategory: Arms
-  speciesRestriction: [Human, Dwarf, Arachnid, SlimePerson, Reptilian, Vulpkanin]
+  groupWhitelist: [Human, Arachnid, Slime, Reptilian, Vulpkanin]
   coloring:
     default:
       type:
@@ -254,8 +229,7 @@
 - type: marking
   id: HandDollJointsTattooLeft
   bodyPart: LHand
-  markingCategory: Arms
-  speciesRestriction: [Human, Dwarf, Arachnid, SlimePerson, Reptilian, Vulpkanin]
+  groupWhitelist: [Human, Arachnid, Slime, Reptilian, Vulpkanin]
   coloring:
     default:
       type:
@@ -268,8 +242,7 @@
 - type: marking
   id: HandDollJointsTattooRight
   bodyPart: RHand
-  markingCategory: Arms
-  speciesRestriction: [Human, Dwarf, Arachnid, SlimePerson, Reptilian, Vulpkanin]
+  groupWhitelist: [Human, Arachnid, Slime, Reptilian, Vulpkanin]
   coloring:
     default:
       type:
@@ -282,8 +255,7 @@
 - type: marking
   id: ArmHeavyTattoosLeft
   bodyPart: LArm
-  markingCategory: Arms
-  speciesRestriction: [Human, Dwarf, Arachnid, SlimePerson, Reptilian, Vulpkanin]
+  groupWhitelist: [Human, Arachnid, Slime, Reptilian, Vulpkanin]
   coloring:
     default:
       type:
@@ -298,8 +270,7 @@
 - type: marking
   id: ArmHeavyTattoosRight
   bodyPart: RArm
-  markingCategory: Arms
-  speciesRestriction: [Human, Dwarf, Arachnid, SlimePerson, Reptilian, Vulpkanin]
+  groupWhitelist: [Human, Arachnid, Slime, Reptilian, Vulpkanin]
   coloring:
     default:
       type:
@@ -314,8 +285,7 @@
 - type: marking
   id: HandHeavyTattoosLeft
   bodyPart: LHand
-  markingCategory: Arms
-  speciesRestriction: [Human, Dwarf, Arachnid, SlimePerson, Reptilian, Vulpkanin]
+  groupWhitelist: [Human, Arachnid, Slime, Reptilian, Vulpkanin]
   coloring:
     default:
       type:
@@ -330,8 +300,7 @@
 - type: marking
   id: HandHeavyTattoosRight
   bodyPart: RHand
-  markingCategory: Arms
-  speciesRestriction: [Human, Dwarf, Arachnid, SlimePerson, Reptilian, Vulpkanin]
+  groupWhitelist: [Human, Arachnid, Slime, Reptilian, Vulpkanin]
   coloring:
     default:
       type:
@@ -346,8 +315,7 @@
 - type: marking
   id: BodyHairLeftArm
   bodyPart: LArm
-  markingCategory: Arms
-  speciesRestriction: [Human, Dwarf, Arachnid, SlimePerson]
+  groupWhitelist: [Human, Arachnid, Slime]
   sprites:
     - sprite: _Starlight/Mobs/Customization/human_body_hair.rsi
       state: hair_left_arm
@@ -355,8 +323,7 @@
 - type: marking
   id: BodyHairRightArm
   bodyPart: RArm
-  markingCategory: Arms
-  speciesRestriction: [Human, Dwarf, Arachnid, SlimePerson]
+  groupWhitelist: [Human, Arachnid, Slime]
   sprites:
     - sprite: _Starlight/Mobs/Customization/human_body_hair.rsi
       state: hair_right_arm
@@ -365,8 +332,7 @@
 - type: marking
   id: LegDollJointsTattooLeft
   bodyPart: LLeg
-  markingCategory: Legs
-  speciesRestriction: [Human, Dwarf, Arachnid, SlimePerson, Reptilian]
+  groupWhitelist: [Human, Arachnid, Slime, Reptilian]
   coloring:
     default:
       type:
@@ -379,8 +345,7 @@
 - type: marking
   id: LegDollJointsTattooRight
   bodyPart: RLeg
-  markingCategory: Legs
-  speciesRestriction: [Human, Dwarf, Arachnid, SlimePerson, Reptilian]
+  groupWhitelist: [Human, Arachnid, Slime, Reptilian]
   coloring:
     default:
       type:
@@ -393,8 +358,7 @@
 - type: marking
   id: FootDollJointsTattooLeft
   bodyPart: LFoot
-  markingCategory: Legs
-  speciesRestriction: [Human, Dwarf, Arachnid, SlimePerson]
+  groupWhitelist: [Human, Arachnid, Slime]
   coloring:
     default:
       type:
@@ -407,8 +371,7 @@
 - type: marking
   id: FootDollJointsTattooRight
   bodyPart: RFoot
-  markingCategory: Legs
-  speciesRestriction: [Human, Dwarf, Arachnid, SlimePerson]
+  groupWhitelist: [Human, Arachnid, Slime]
   coloring:
     default:
       type:
@@ -421,8 +384,7 @@
 - type: marking
   id: LegHeavyTattoosLeft
   bodyPart: LLeg
-  markingCategory: Legs
-  speciesRestriction: [Human, Dwarf, Arachnid, SlimePerson, Reptilian]
+  groupWhitelist: [Human, Arachnid, Slime, Reptilian]
   coloring:
     default:
       type:
@@ -437,8 +399,7 @@
 - type: marking
   id: LegHeavyTattoosRight
   bodyPart: RLeg
-  markingCategory: Legs
-  speciesRestriction: [Human, Dwarf, Arachnid, SlimePerson, Reptilian]
+  groupWhitelist: [Human, Arachnid, Slime, Reptilian]
   coloring:
     default:
       type:
@@ -453,8 +414,7 @@
 - type: marking
   id: FootHeavyTattoosLeft
   bodyPart: LFoot
-  markingCategory: Legs
-  speciesRestriction: [Human, Dwarf, Arachnid, SlimePerson]
+  groupWhitelist: [Human, Arachnid, Slime]
   coloring:
     default:
       type:
@@ -469,8 +429,7 @@
 - type: marking
   id: FootHeavyTattoosRight
   bodyPart: RFoot
-  markingCategory: Legs
-  speciesRestriction: [Human, Dwarf, Arachnid, SlimePerson]
+  groupWhitelist: [Human, Arachnid, Slime]
   coloring:
     default:
       type:
@@ -485,8 +444,7 @@
 - type: marking
   id: BodyHairLeftLeg
   bodyPart: LLeg
-  markingCategory: Legs
-  speciesRestriction: [Human, Dwarf, Arachnid, SlimePerson]
+  groupWhitelist: [Human, Arachnid, Slime]
   sprites:
     - sprite: _Starlight/Mobs/Customization/human_body_hair.rsi
       state: hair_left_leg
@@ -494,8 +452,7 @@
 - type: marking
   id: BodyHairRightLeg
   bodyPart: RLeg
-  markingCategory: Legs
-  speciesRestriction: [Human, Dwarf, Arachnid, SlimePerson]
+  groupWhitelist: [Human, Arachnid, Slime]
   sprites:
     - sprite: _Starlight/Mobs/Customization/human_body_hair.rsi
       state: hair_right_leg

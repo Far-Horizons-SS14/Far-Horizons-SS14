@@ -192,7 +192,7 @@ public abstract partial class SharedChatSystem
         {
             if (speech.LateCalc)
             {
-                _speechSystem.AddMarkingEmotes(source, speech);
+                //_speechSystem.AddMarkingEmotes(source, speech); // Far Horizons - moved to event
                 speech.LateCalc = false; //cause apperently on the server it is ALWAYS out of order.
                                          //on the client it works just fine
                                          //but NOT serverside

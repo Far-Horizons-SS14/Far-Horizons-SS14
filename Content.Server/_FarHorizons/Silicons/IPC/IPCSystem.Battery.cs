@@ -1,6 +1,6 @@
 using Content.Shared._FarHorizons.Silicons.IPC.Components;
-using Content.Shared.Body.Events;
 using Content.Shared.DoAfter;
+using Content.Shared.Gibbing;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Ninja.Components;

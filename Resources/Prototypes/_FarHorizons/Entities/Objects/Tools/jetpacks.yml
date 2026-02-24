@@ -2,19 +2,19 @@
 
 ## Syndicate Station
 
-# Commander (Captain)
+# Commandant (Captain)
 
 - type: entity
-  id: JetpackCommander
+  id: JetpackCommandant
   parent: JetpackCaptain
-  name: commander's jetpack
-  suffix: Empty
+  name: Commandant's jetpack
+  suffix: S, Empty
 
 - type: entity
-  id: JetpackCommanderFilled
-  parent: JetpackCommander
-  name: commander's jetpack
-  suffix: Filled
+  id: JetpackCommandantFilled
+  parent: JetpackCommandant
+  name: Commandant's jetpack
+  suffix: S, Filled
   components:
   - type: GasTank
     outputPressure: 42.6

@@ -64,178 +64,178 @@
 
 #region Command
 
- #Commander (Captain)
+ #Commandant (Captain)
 
 - type: loadoutGroup
-  id: CommanderHead
-  name: loadout-group-commander-head
+  id: CommandantHead
+  name: loadout-group-commandant-head
   minLimit: 0
   loadouts:
-  - CommanderHead
-  - CommanderCap
+  - CommandantHead
+  - CommandantCap
 
 - type: loadoutGroup
-  id: CommanderEyewear
-  name: loadout-group-commander-eyewear
+  id: CommandantEyewear
+  name: loadout-group-commandant-eyewear
   loadouts:
-  - CommanderGlasses
-  - CommanderHud
+  - CommandantGlasses
+  - CommandantHud
 
 - type: loadoutGroup
-  id: CommanderNeck
-  name: loadout-group-commander-neck
+  id: CommandantNeck
+  name: loadout-group-commandant-neck
   minLimit: 0
   loadouts:
-  - CommanderCloak
-  - CommanderCloakFormal
+  - CommandantCloak
+  - CommandantCloakFormal
 
 - type: loadoutGroup
-  id: CommanderOuterClothing
-  name: loadout-group-commander-outerclothing
+  id: CommandantOuterClothing
+  name: loadout-group-commandant-outerclothing
   loadouts:
-  - CommanderCarapace
+  - CommandantCarapace
 
 - type: loadoutGroup
-  id: CommanderJumpsuit
-  name: loadout-group-commander-jumpsuit
+  id: CommandantJumpsuit
+  name: loadout-group-commandant-jumpsuit
   loadouts:
-  - CommanderJumpsuit
-  - CommanderJumpskirt
-  - CommanderFormalSuit
-  - CommanderFormalSkirt
+  - CommandantJumpsuit
+  - CommandantJumpskirt
+  - CommandantFormalSuit
+  - CommandantFormalSkirt
 
-# Personnel Chief (HoP)
+# Personnel Manager (HoP)
 
 - type: loadoutGroup
-  id: PCHead
-  name: loadout-group-pc-head
+  id: PMHead
+  name: loadout-group-pm-head
   minLimit: 0
   loadouts:
-    - PCCap
-    - PCBeret
+    - PMCap
+    - PMBeret
 
 - type: loadoutGroup
-  id: PCNeck
-  name: loadout-group-pc-neck
+  id: PMNeck
+  name: loadout-group-pm-neck
   minLimit: 0
   loadouts:
     - HoPCloak
-    - PCMantle
+    - PMMantle
 
 - type: loadoutGroup
-  id: PCJumpsuit
-  name: loadout-group-pc-jumpsuit
+  id: PMJumpsuit
+  name: loadout-group-pm-jumpsuit
   loadouts:
-    - PCJumpsuit
-    - PCJumpskirt
-    - PCTurtleneckJumpsuit
-    - PCTurtleneckJumpskirt
+    - PMJumpsuit
+    - PMJumpskirt
+    - PMTurtleneckJumpsuit
+    - PMTurtleneckJumpskirt
 
 - type: loadoutGroup
-  id: PCOuterClothing
-  name: loadout-group-pc-outerclothing
+  id: PMOuterClothing
+  name: loadout-group-pm-outerclothing
   minLimit: 0
   loadouts:
-    - PCCoat
+    - PMCoat
 
-# Security Overwatch (Head of Security)
+# Marshal (Head of Security)
 
 - type: loadoutGroup
-  id: SecurityOverwatchHead
-  name: loadout-group-so-head
+  id: MarshalHead
+  name: loadout-group-marshal-head
   minLimit: 0
   loadouts:
-    - SOHat
-    - SOSheriff
-    - SOBeret
+    - MarshalHat
+    - MarshalSheriff
+    - MarshalBeret
 
 - type: loadoutGroup
-  id: SOHeadset
-  name: loadout-group-so-headset
+  id: MarshalHeadset
+  name: loadout-group-marshal-headset
   loadouts:
-    - SOHeadsetRegular
-    - SOHeadsetAlt
+    - MarshalHeadsetRegular
+    - MarshalHeadsetAlt
 
 - type: loadoutGroup
-  id: SONeck
-  name: loadout-group-so-neck
+  id: MarshalNeck
+  name: loadout-group-marshal-neck
   minLimit: 0
   loadouts:
-    - SOCloak
-    - SOMantle
-    - SOEliteCloak
+    - MarshalCloak
+    - MarshalMantle
+    - MarshalEliteCloak
 
 - type: loadoutGroup
-  id: SOUniform
-  name: loadout-group-so-uniform
+  id: MarshalUniform
+  name: loadout-group-marshal-uniform
   loadouts:
-    - SOJumpsuit
-    - SOJumpskirt
-    - SOTurtleneckSuit
-    - SOTurtleneckSkirt
-    #- SOGreySuit # Disabled for now because it's the same sprite as the parade.
-    - SOFormalSuit
-    - SOFormalSkirt
-    - SOParade
+    - MarshalJumpsuit
+    - MarshalJumpskirt
+    - MarshalTurtleneckSuit
+    - MarshalTurtleneckSkirt
+    #- MarshalGreySuit # Disabled for now because it's the same sprite as the parade.
+    - MarshalFormalSuit
+    - MarshalFormalSkirt
+    - MarshalParade
 
 - type: loadoutGroup
-  id: SOOuterClothing
-  name: loadout-group-so-outerclothing
+  id: MarshalOuterClothing
+  name: loadout-group-marshal-outerclothing
   minLimit: 0
   loadouts:
-    - SOArmoredTrenchCoat
-    - SOArmoredWinterCoat
+    - MarshalArmoredTrenchCoat
+    - MarshalArmoredWinterCoat
 
-# Technical Lead
+# Foreman
 
 - type: loadoutGroup
-  id: TLHead
-  name: loadout-group-technical-lead-head
+  id: ForemanHead
+  name: loadout-group-foreman-head
   minLimit: 0
   loadouts:
-  - TLBeret
-  - TLHardhat
+  - ForemanBeret
+  - ForemanHardhat
   - SyndiHardhatYellow
   - SyndiHardhatOrange
   - SyndiHardhatRed
 
 - type: loadoutGroup
-  id: TLHeadset
-  name: loadout-group-technical-lead-headset
+  id: ForemanHeadset
+  name: loadout-group-foreman-headset
   loadouts:
-  - TLHeadsetAlt
-  - TLHeadset
+  - ForemanHeadsetAlt
+  - ForemanHeadset
 
 - type: loadoutGroup
-  id: TLNeck
-  name: loadout-group-technical-lead-neck
+  id: ForemanNeck
+  name: loadout-group-foreman-neck
   minLimit: 0
   loadouts:
-  - TLCloak
-  - TLMantle
+  - ForemanCloak
+  - ForemanMantle
 
 - type: loadoutGroup
-  id: TLUniform
-  name: loadout-group-technical-lead-uniform
+  id: ForemanUniform
+  name: loadout-group-foreman-uniform
   loadouts:
-  - TLJumpsuit
-  - TLJumpskirt
-  - TLTurtleneck
-  - TLTurtleneckSkirt
-  - TLJumpsuitWhite
-  - TLJumpskirtWhite
+  - ForemanJumpsuit
+  - ForemanJumpskirt
+  - ForemanTurtleneck
+  - ForemanTurtleneckSkirt
+  - ForemanJumpsuitWhite
+  - ForemanJumpskirtWhite
 
 - type: loadoutGroup
-  id: TLOuterClothing
-  name: loadout-group-technical-lead-outerclothing
+  id: ForemanOuterClothing
+  name: loadout-group-foreman-outerclothing
   minLimit: 0
   loadouts:
   - HazardVest
   #- ChiefEngineerWintercoat #Needs respriting
 
 - type: loadoutGroup
-  id: TLShoes
-  name: loadout-group-technical-lead-shoes
+  id: ForemanShoes
+  name: loadout-group-foreman-shoes
   loadouts:
   - BrownShoes
   - WorkBootsSyndi
@@ -250,11 +250,11 @@
   loadouts:
   - EngineeringSyndiGoggles
 
-# Environmental Technician (Atmos)
+# Atmospheric Technician (Atmos)
 
 - type: loadoutGroup
   id: EnviroHead
-  name: loadout-group-environmental-technician-head
+  name: loadout-group-atmos-tech-syndi-head
   minLimit: 0
   loadouts:
   - EnviroBeret
@@ -265,7 +265,7 @@
 
 - type: loadoutGroup
   id: EnviroUniform
-  name: loadout-group-environmental-technician-uniform
+  name: loadout-group-atmos-tech-syndi-uniform
   loadouts:
   - EnviroJumpsuit
   - EnviroJumpskirt
@@ -274,45 +274,45 @@
 
 - type: loadoutGroup
   id: EnviroOuterClothing
-  name: loadout-group-environmental-technician-outerclothing
+  name: loadout-group-atmos-tech-syndi-outerclothing
   loadouts:
   - HazardVest
   #- AtmosphericTechnicianWintercoat #Needs respriting
 
 - type: loadoutGroup
   id: EnviroShoes
-  name: loadout-group-environmental-technician-shoes
+  name: loadout-group-atmos-tech-syndi-shoes
   loadouts:
   - WhiteShoes
   - WorkBootsSyndi
   #- EngineeringWinterBoots #Needs respriting
   - Heels
 
-# Station Architect (Engineer)
+# Station Engineer (Engineer)
 
 - type: loadoutGroup
-  id: StationArchitectHead
-  name: loadout-group-station-architect-head
+  id: StationEngiSyndiHead
+  name: loadout-group-station-engi-syndi-head
   minLimit: 0
   loadouts:
-  - ArchitectBeret
+  - EngiSyndiBeret
   - SyndiHardhatYellow
   - SyndiHardhatOrange
   - SyndiHardhatRed
 
 - type: loadoutGroup
-  id: StationArchitectUniform
-  name: loadout-group-station-architect-uniform
+  id: StationEngiSyndiUniform
+  name: loadout-group-station-engi-syndi-uniform
   loadouts:
-  - ArchitectJumpsuit
-  - ArchitectJumpskirt
+  - EngiSyndiJumpsuit
+  - EngiSyndiJumpskirt
   #- StationEngineerHazardsuit # All of these need to be resprited
   #- SeniorEngineerJumpsuit
   #- SeniorEngineerJumpskirt
 
 - type: loadoutGroup
-  id: StationArchitectOuterClothing
-  name: loadout-group-station-architect-outerclothing
+  id: StationEngiSyndiOuterClothing
+  name: loadout-group-station-engi-syndi-outerclothing
   loadouts:
   - HazardVest
   #- StationEngineerOuterVest # All of these need to be resprited
@@ -320,18 +320,18 @@
   #- WindbreakerEngineering
 
 - type: loadoutGroup
-  id: StationArchitectShoes
-  name: loadout-group-station-architect-shoes
+  id: StationEngiSyndiShoes
+  name: loadout-group-station-engi-syndi-shoes
   loadouts:
   - WorkBootsSyndi
   #- EngineeringWinterBoots #Needs respriting
   - Heels
 
-# Trainee Architect
+# Technical Assistant
 
 - type: loadoutGroup
-  id: TraineeArchUniform
-  name: loadout-group-trainee-architect-uniform
+  id: TechAssistSyndiUniform
+  name: loadout-group-tech-assist-syndi-uniform
   loadouts:
   - YellowJumpsuit
   - YellowJumpskirt
@@ -396,51 +396,51 @@
   - CombatBootsSyndi
   - HighHeelBootsFilled
 
-# Combat Medic (Corpsman)
+# Corpsman (Corpsman)
 
 - type: loadoutGroup
-  id: CMBelt
-  name: loadout-group-cm-belt
+  id: CorpsmanSyndiBelt
+  name: loadout-group-corpsman-syndi-belt
   loadouts:
-    - CMBelt
+    - CorpsmanSyndiBelt
 
 - type: loadoutGroup
-  id: CMHead
-  name: loadout-group-cm-head
+  id: CorpsmanSyndiHead
+  name: loadout-group-corpsman-syndi-head
   loadouts:
   - SecHelmetSyndi
-  - CMBeret
+  - CorpsmanSyndiBeret
 
-# Guardian (Warden)
+# Constable (Warden)
 
 - type: loadoutGroup
-  id: GuardianHead
-  name: loadout-group-guard-head
+  id: ConstableHead
+  name: loadout-group-constable-head
   minLimit: 0
   loadouts:
-    - GuardianBeret
-    - GuardianCap
+    - ConstableBeret
+    - ConstableCap
 
 - type: loadoutGroup
-  id: GuardianHeadset
-  name: loadout-group-guard-headset
+  id: ConstableHeadset
+  name: loadout-group-constable-headset
   loadouts:
-    - GuardianHeadsetRegular
-    - GuardianHeadsetAlt
+    - ConstableHeadsetRegular
+    - ConstableHeadsetAlt
 
 - type: loadoutGroup
-  id: GuardianUniform
-  name: loadout-group-guard-uniform
+  id: ConstableUniform
+  name: loadout-group-constable-uniform
   loadouts:
-    - GuardSuit
-    - GuardSkirt
+    - ConstableSuit
+    - ConstableSkirt
 
 - type: loadoutGroup
-  id: GuardianOuterClothing
-  name: loadout-group-guard-outerclothing
+  id: ConstableOuterClothing
+  name: loadout-group-constable-outerclothing
   loadouts:
-    - GuardianArmoredCoat
-    - GuardianArmoredWinterCoat
+    - ConstableArmoredCoat
+    - ConstableArmoredWinterCoat
 
 # Inspector (Detective)
 
@@ -488,7 +488,7 @@
   - CombatBootsSyndi
   - HighHeelBootsFilled
 
-# Law Enforcer (Security Officer)
+# Enforcer (Security Officer)
 
 - type: loadoutGroup
   id: SecurityHeadSyndi
@@ -504,77 +504,77 @@
   - SecurityTrooperHatSyndi
 
 - type: loadoutGroup
-  id: LEUniform
-  name: loadout-group-le-uniform
+  id: EnforcerUniform
+  name: loadout-group-enforcer-uniform
   loadouts:
-    - LESuit
-    - LESkirt
-    - LEGreySuit
-    - LEGreySkirt
-    - LETrooperSuit
-    - LETrooperSkirt
-    - LESeniorSuit
-    - LESeniorSkirt
+    - EnforcerSuit
+    - EnforcerSkirt
+    - EnforcerGreySuit
+    - EnforcerGreySkirt
+    - EnforcerTrooperSuit
+    - EnforcerTrooperSkirt
+    - EnforcerSeniorSuit
+    - EnforcerSeniorSkirt
 
 - type: loadoutGroup
-  id: LEOuterClothing
-  name: loadout-group-le-outerclothing
+  id: EnforcerOuterClothing
+  name: loadout-group-enforcer-outerclothing
   loadouts:
-  - LEArmorVest
-  - LEArmorVestSlim
-  - LEArmorVestPlate
-  - LEArmorVestStab
-  - LEArmorVestHeatAbsorb
-  - LEWindbreaker
-  - LEBomber
-  #- LEWintercoat -Omega: Disabled currently because it's blue from incorrect base texture folder.
+  - EnforcerArmorVest
+  - EnforcerArmorVestSlim
+  - EnforcerArmorVestPlate
+  - EnforcerArmorVestStab
+  - EnforcerArmorVestHeatAbsorb
+  - EnforcerWindbreaker
+  - EnforcerBomber
+  #- EnforcerWintercoat -Omega: Disabled currently because it's blue from incorrect base texture folder.
 
 
-# Medical Officer (Brigmedic)
+# Brigmedic (Brigmedic)
 
 - type: loadoutGroup
-  id: MOHead
-  name: loadout-group-mo-head
+  id: BrigSyndiHead
+  name: loadout-group-brigsyndi-head
   minLimit: 0
   loadouts:
-    - MOBeret
+    - BrigSyndiBeret
     - SecHelmetSyndi
 
 - type: loadoutGroup
-  id: MOUniform
-  name: loadout-group-mo-uniform
+  id: BrigSyndiUniform
+  name: loadout-group-brigsyndi-uniform
   loadouts:
-    - MOSuit
-    - MOSkirt
+    - BrigSyndiSuit
+    - BrigSyndiSkirt
 
 - type: loadoutGroup
-  id: MOOuterClothing
-  name: loadout-group-mo-outerclothing
+  id: BrigSyndiOuterClothing
+  name: loadout-group-brigsyndi-outerclothing
   minLimit: 0
   loadouts:
-    - MOArmoredMedGown
+    - BrigSyndiArmoredMedGown
 
 - type: loadoutGroup
-  id: MedicalOfficerBackpack
-  name: loadout-group-mo-backpack
+  id: BrigmedicSyndiBackpack
+  name: loadout-group-brigsyndi-backpack
   loadouts:
-  - MOBackpack
-  - MODuffel
-  - MOSatchel
+  - BrigSyndiBackpack
+  - BrigSyndiDuffel
+  - BrigSyndiSatchel
   - LeatherSatchel
 
 - type: loadoutGroup
-  id: MOGloves
-  name: loadout-group-mo-gloves
+  id: BrigSyndiGloves
+  name: loadout-group-brigsyndi-gloves
   loadouts:
   - Nitrile
 
 - type: loadoutGroup
-  id: MOBelt
-  name: loadout-group-mo-belt
+  id: BrigSyndiBelt
+  name: loadout-group-brigsyndi-belt
   loadouts:
-    - MOBelt
-    - MOWebbing
+    - BrigSyndiBelt
+    - BrigSyndiWebbing
 
 # Recruit (Security Cadet)
 

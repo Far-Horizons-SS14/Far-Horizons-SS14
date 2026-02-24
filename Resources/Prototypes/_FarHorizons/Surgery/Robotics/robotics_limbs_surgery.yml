@@ -1,0 +1,312 @@
+# Base
+
+- type: entity
+  id: SurgeryRobotLimbBase
+  abstract: true
+  categories:
+  - HideSpawnMenu
+  components:
+  - type: Surgery
+    requirement:
+    - SurgeryRemovePlating
+  - type: SurgerySpeciesCondition
+    speciesWhitelist:
+    - IPC
+
+# Head
+
+- type: entity
+  parent: [ SurgeryRobotLimbBase, SurgeryLimbAmputate ]
+  id: SurgeryAmputateRobotHead
+  components:
+  - type: Surgery
+    steps:
+    - SurgeryStepRemoveInnerScrews
+    - SurgeryStepRemoveInnerPlating
+    - SurgeryStepExposeWiringConnections
+    - SurgeryStepExposeCoolantChannels
+    - SurgeryStepUnweldSkull
+  - type: SurgeryPartCondition
+    parts: [ Head ]
+
+- type: entity
+  parent: [ SurgeryRobotLimbBase, SurgeryLimbAttach ]
+  id: SurgeryAttachRobotHead
+  name: Limb Attachment Head
+  components:
+  - type: Surgery
+    steps:
+    - SurgeryStepExposeWiringConnections
+    - SurgeryStepExposeCoolantChannels
+    - SurgeryStepAttachHead
+    - SurgeryStepConnectWiringConnections
+    - SurgeryStepConnectCoolantChannels
+    - SurgeryStepRestoreInnerScrews
+  - type: SurgeryPartCondition
+    parts: [ Torso ]
+  - type: SurgeryOrganDontExistCondition
+    category: Head
+
+# LArm
+
+- type: entity
+  parent: [ SurgeryRobotLimbBase, SurgeryLimbAmputate ]
+  id: SurgeryAmputateRobotLeftArm
+  components:
+  - type: Surgery
+    steps:
+    - SurgeryStepRemoveInnerScrews
+    - SurgeryStepExposeWiringConnections
+    - SurgeryStepExposeCoolantChannels
+    - SurgeryStepRobotAmputateLeftArm
+  - type: SurgeryPartCondition
+    parts: [ ArmLeft ]
+
+- type: entity
+  parent: [ SurgeryRobotLimbBase, SurgeryLimbAttach ]
+  id: SurgeryAttachRobotLeftArm
+  name: Limb Attachment Left Arm
+  components:
+  - type: Surgery
+    steps:
+    - SurgeryStepExposeWiringConnections
+    - SurgeryStepExposeCoolantChannels
+    - SurgeryStepAttachLeftArm
+    - SurgeryStepConnectWiringConnections
+    - SurgeryStepConnectCoolantChannels
+    - SurgeryStepRestoreInnerScrews
+  - type: SurgeryPartCondition
+    parts: [ Torso ]
+  - type: SurgeryOrganDontExistCondition
+    category: ArmLeft
+
+# RArm
+
+- type: entity
+  parent: [ SurgeryRobotLimbBase, SurgeryLimbAmputate ]
+  id: SurgeryAmputateRobotRightArm
+  components:
+  - type: Surgery
+    steps:
+    - SurgeryStepRemoveInnerScrews
+    - SurgeryStepExposeWiringConnections
+    - SurgeryStepExposeCoolantChannels
+    - SurgeryStepRobotAmputateRightArm
+  - type: SurgeryPartCondition
+    parts: [ ArmRight ]
+
+- type: entity
+  parent: [ SurgeryRobotLimbBase, SurgeryLimbAttach ]
+  id: SurgeryAttachRobotRightArm
+  name: Limb Attachment Right Arm
+  components:
+  - type: Surgery
+    steps:
+    - SurgeryStepExposeWiringConnections
+    - SurgeryStepExposeCoolantChannels
+    - SurgeryStepAttachRightArm
+    - SurgeryStepConnectWiringConnections
+    - SurgeryStepConnectCoolantChannels
+    - SurgeryStepRestoreInnerScrews
+  - type: SurgeryPartCondition
+    parts: [ Torso ]
+  - type: SurgeryOrganDontExistCondition
+    category: ArmRight
+
+# LHand
+
+- type: entity
+  parent: [ SurgeryRobotLimbBase, SurgeryLimbAmputate ]
+  id: SurgeryAmputateRobotLeftHand
+  components:
+  - type: Surgery
+    steps:
+    - SurgeryStepRemoveInnerScrews
+    - SurgeryStepExposeWiringConnections
+    - SurgeryStepExposeCoolantChannels
+    - SurgeryStepRobotAmputateLeftHand
+  - type: SurgeryPartCondition
+    parts: [ HandLeft ]
+
+- type: entity
+  parent: [ SurgeryRobotLimbBase, SurgeryLimbAttach ]
+  id: SurgeryAttachRobotLeftHand
+  name: Limb Attachment Left Hand
+  components:
+  - type: Surgery
+    steps:
+    - SurgeryStepExposeWiringConnections
+    - SurgeryStepExposeCoolantChannels
+    - SurgeryStepAttachLeftHand
+    - SurgeryStepConnectWiringConnections
+    - SurgeryStepConnectCoolantChannels
+    - SurgeryStepRestoreInnerScrews
+  - type: SurgeryPartCondition
+    parts: [ ArmLeft ]
+  - type: SurgeryOrganDontExistCondition
+    category: HandLeft
+
+# RHand
+
+- type: entity
+  parent: [ SurgeryRobotLimbBase, SurgeryLimbAmputate ]
+  id: SurgeryAmputateRobotRightHand
+  components:
+  - type: Surgery
+    steps:
+    - SurgeryStepRemoveInnerScrews
+    - SurgeryStepExposeWiringConnections
+    - SurgeryStepExposeCoolantChannels
+    - SurgeryStepRobotAmputateRightHand
+  - type: SurgeryPartCondition
+    parts: [ HandRight ]
+
+- type: entity
+  parent: [ SurgeryRobotLimbBase, SurgeryLimbAttach ]
+  id: SurgeryAttachRobotRightHand
+  name: Limb Attachment Right Hand
+  components:
+  - type: Surgery
+    steps:
+    - SurgeryStepExposeWiringConnections
+    - SurgeryStepExposeCoolantChannels
+    - SurgeryStepAttachRightHand
+    - SurgeryStepConnectWiringConnections
+    - SurgeryStepConnectCoolantChannels
+    - SurgeryStepRestoreInnerScrews
+  - type: SurgeryPartCondition
+    parts: [ ArmRight ]
+  - type: SurgeryOrganDontExistCondition
+    category: HandRight
+
+# LLeg
+
+- type: entity
+  parent: [ SurgeryRobotLimbBase, SurgeryLimbAmputate ]
+  id: SurgeryAmputateRobotLeftLeg
+  components:
+  - type: Surgery
+    steps:
+    - SurgeryStepRemoveInnerScrews
+    - SurgeryStepExposeWiringConnections
+    - SurgeryStepExposeCoolantChannels
+    - SurgeryStepRobotAmputateLeftLeg
+  - type: SurgeryPartCondition
+    parts: [ LegLeft ]
+
+- type: entity
+  parent: [ SurgeryRobotLimbBase, SurgeryLimbAttach ]
+  id: SurgeryAttachRobotLeftLeg
+  name: Limb Attachment Left Leg
+  components:
+  - type: Surgery
+    steps:
+    - SurgeryStepExposeWiringConnections
+    - SurgeryStepExposeCoolantChannels
+    - SurgeryStepAttachLeftLeg
+    - SurgeryStepConnectWiringConnections
+    - SurgeryStepConnectCoolantChannels
+    - SurgeryStepRestoreInnerScrews
+  - type: SurgeryPartCondition
+    parts: [ Torso ]
+  - type: SurgeryOrganDontExistCondition
+    category: LegLeft
+
+# RLeg
+
+- type: entity
+  parent: [ SurgeryRobotLimbBase, SurgeryLimbAmputate ]
+  id: SurgeryAmputateRobotRightLeg
+  components:
+  - type: Surgery
+    steps:
+    - SurgeryStepRemoveInnerScrews
+    - SurgeryStepExposeWiringConnections
+    - SurgeryStepExposeCoolantChannels
+    - SurgeryStepRobotAmputateRightLeg
+  - type: SurgeryPartCondition
+    parts: [ LegRight ]
+
+- type: entity
+  parent: [ SurgeryRobotLimbBase, SurgeryLimbAttach ]
+  id: SurgeryAttachRobotRightLeg
+  name: Limb Attachment Right Leg
+  components:
+  - type: Surgery
+    steps:
+    - SurgeryStepExposeWiringConnections
+    - SurgeryStepExposeCoolantChannels
+    - SurgeryStepAttachRightLeg
+    - SurgeryStepConnectWiringConnections
+    - SurgeryStepConnectCoolantChannels
+    - SurgeryStepRestoreInnerScrews
+  - type: SurgeryPartCondition
+    parts: [ Torso ]
+  - type: SurgeryOrganDontExistCondition
+    category: LegRight
+
+# LFoot
+
+- type: entity
+  parent: [ SurgeryRobotLimbBase, SurgeryLimbAmputate ]
+  id: SurgeryAmputateRobotLeftFoot
+  components:
+  - type: Surgery
+    steps:
+    - SurgeryStepRemoveInnerScrews
+    - SurgeryStepExposeWiringConnections
+    - SurgeryStepExposeCoolantChannels
+    - SurgeryStepRobotAmputateLeftFoot
+  - type: SurgeryPartCondition
+    parts: [ FootLeft ]
+
+- type: entity
+  parent: [ SurgeryRobotLimbBase, SurgeryLimbAttach ]
+  id: SurgeryAttachRobotLeftFoot
+  name: Limb Attachment Left Foot
+  components:
+  - type: Surgery
+    steps:
+    - SurgeryStepExposeWiringConnections
+    - SurgeryStepExposeCoolantChannels
+    - SurgeryStepAttachLeftFoot
+    - SurgeryStepConnectWiringConnections
+    - SurgeryStepConnectCoolantChannels
+    - SurgeryStepRestoreInnerScrews
+  - type: SurgeryPartCondition
+    parts: [ LegLeft ]
+  - type: SurgeryOrganDontExistCondition
+    category: FootLeft
+
+# RFoot
+
+- type: entity
+  parent: [ SurgeryRobotLimbBase, SurgeryLimbAmputate ]
+  id: SurgeryAmputateRobotRightFoot
+  components:
+  - type: Surgery
+    steps:
+    - SurgeryStepRemoveInnerScrews
+    - SurgeryStepExposeWiringConnections
+    - SurgeryStepExposeCoolantChannels
+    - SurgeryStepRobotAmputateRightFoot
+  - type: SurgeryPartCondition
+    parts: [ FootRight ]
+
+- type: entity
+  parent: [ SurgeryRobotLimbBase, SurgeryLimbAttach ]
+  id: SurgeryAttachRobotRightFoot
+  name: Limb Attachment Right Foot
+  components:
+  - type: Surgery
+    steps:
+    - SurgeryStepExposeWiringConnections
+    - SurgeryStepExposeCoolantChannels
+    - SurgeryStepAttachRightFoot
+    - SurgeryStepConnectWiringConnections
+    - SurgeryStepConnectCoolantChannels
+    - SurgeryStepRestoreInnerScrews
+  - type: SurgeryPartCondition
+    parts: [ LegRight ]
+  - type: SurgeryOrganDontExistCondition
+    category: FootRight

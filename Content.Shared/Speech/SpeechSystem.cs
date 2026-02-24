@@ -1,6 +1,7 @@
 //#region starlight
 using System.Linq;
-using Content.Shared.Humanoid;
+using Content.Shared._FarHorizons.Body;
+using Content.Shared.Body;
 using Content.Shared.Humanoid.Markings;
 using Robust.Shared.Prototypes;
 //#endregion
@@ -17,7 +18,7 @@ namespace Content.Shared.Speech
             base.Initialize();
 
             SubscribeLocalEvent<SpeakAttemptEvent>(OnSpeakAttempt);
-            SubscribeLocalEvent<SpeechComponent, ComponentInit>(OnSpeechComponentInit);//#starlight
+            SubscribeLocalEvent<HumanoidCharacterProfileComponent, ApplyOrganMarkingsEvent>(OnAppearanceEmotes);// Far Horizons
         }
 
         public void SetSpeech(EntityUid uid, bool value, SpeechComponent? component = null)
@@ -41,17 +42,25 @@ namespace Content.Shared.Speech
                 args.Cancel();
         }
 
-        //#region starlight
-        public void AddMarkingEmotes(EntityUid uid, SpeechComponent component)
+        // Far Horizons start
+        private void OnAppearanceEmotes(Entity<HumanoidCharacterProfileComponent> ent, ref ApplyOrganMarkingsEvent args)
         {
-            if (!TryComp<HumanoidAppearanceComponent>(uid, out var humanoidAppearance))
-                return; // no humanoid appearance so no emotes to add.
-            List<MarkingPrototype> markings = [];
-            foreach (var protoId in humanoidAppearance.MarkingSet.Markings.SelectMany(markingSet => markingSet.Value.Select(marking => marking.MarkingId)))
-            {
-                if (_prototypeManager.TryIndex<MarkingPrototype>((ProtoId<MarkingPrototype>)protoId, out MarkingPrototype? markingPrototype))
-                    markings.Add(markingPrototype!);
-            }
+            // Fun fact, ApplyOrganMarkingsEvent only has markings in it on the client, on server it's empty. How fun!
+            if (!TryComp<SpeechComponent>(ent, out var speech) || ent.Comp.Profile == null)
+                return;
+            
+            var markings = ent.Comp.Profile.Appearance.Markings.Values
+                .SelectMany(inner => inner.Values)
+                .SelectMany(markingsList => markingsList)
+                .Select(marking => _prototypeManager.Index<MarkingPrototype>(marking.MarkingId))
+                .ToList();
+            AddMarkingEmotes((ent.Owner, speech), markings);
+        }
+        // Far Horizons end
+
+        #region starlight
+        public void AddMarkingEmotes(Entity<SpeechComponent> ent, List<MarkingPrototype> markings)
+        {
             HashSet<string> AttachedIds = new();
             foreach (var marking in markings)
             {
@@ -67,7 +76,7 @@ namespace Content.Shared.Speech
                     if (emote.RequiredMarkings == null ||
                         AttachedIds.IsSupersetOf(emote.RequiredMarkings.Select(i => i.Id)))
                     {
-                        component.AllowedEmotes.Add(emote.EmotePrototype.Id);
+                        ent.Comp.AllowedEmotes.Add(emote.EmotePrototype.Id);
                     }
 
                     if (emote.RequiredMarkingsAny != null)
@@ -76,18 +85,13 @@ namespace Content.Shared.Speech
                         {
                             if (AttachedIds.Contains(required.Id))
                             {
-                                component.AllowedEmotes.Add(emote.EmotePrototype.Id);
+                                ent.Comp.AllowedEmotes.Add(emote.EmotePrototype.Id);
                             }
                         }
                     }
                 }
             }
         }
-
-        private void OnSpeechComponentInit(EntityUid uid, SpeechComponent component, ComponentInit args)
-        {
-            AddMarkingEmotes(uid, component);
-        }
-        //#endregion starlight
+        #endregion starlight
     }
 }

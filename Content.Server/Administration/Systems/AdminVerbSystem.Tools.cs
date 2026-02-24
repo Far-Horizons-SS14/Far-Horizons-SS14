@@ -1,14 +1,9 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Numerics;
-using Content.Server._Starlight.Medical.Limbs;
-using Content.Server.Administration.Components;
 using Content.Server.Cargo.Components;
 using Content.Server.Doors.Systems;
 using Content.Server.Hands.Systems;
-using Content.Server._Starlight.Thaven; // 🌟Starlight🌟
-using Content.Server.Power.Components;
-using Content.Server.Power.EntitySystems;
 using Content.Server.Stack;
 using Content.Server.Station.Systems;
 using Content.Server.Weapons.Ranged.Systems;
@@ -18,11 +13,8 @@ using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
 using Content.Shared.Administration;
 using Content.Shared.Administration.Components;
-using Content.Shared.Administration.Systems;
 using Content.Shared.Atmos;
 using Content.Shared.Atmos.Components;
-using Content.Shared.Body.Components;
-using Content.Shared.Body.Part;
 using Content.Shared.Construction.Components;
 using Content.Shared.Damage.Components;
 using Content.Shared.Database;
@@ -48,8 +40,9 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using Content.Shared.Overlays;
 using Content.Shared.Contraband; // 🌟Starlight🌟
-using Content.Shared.Humanoid; // 🌟Starlight🌟
 using Content.Server._FarHorizons.Research;
+using Content.Shared.Body;
+using Robust.Server.Containers;
 
 namespace Content.Server.Administration.Systems;
 
@@ -68,11 +61,11 @@ public sealed partial class AdminVerbSystem
     [Dependency] private readonly SharedBatterySystem _batterySystem = default!;
     [Dependency] private readonly MetaDataSystem _metaSystem = default!;
     [Dependency] private readonly GunSystem _gun = default!;
+    [Dependency] private readonly ContainerSystem _container = default!;
 
     [Dependency] private readonly FHResearchSystem _research = default!;  // Far Horizons
 
     #region Starlight
-    [Dependency] private readonly LimbSystem _limbSystem = default!;
     [Dependency] private readonly StarlightEntitySystem _entitySystem = default!;
     #endregion
 
@@ -764,7 +757,7 @@ public sealed partial class AdminVerbSystem
                             return;
 
                         _gun.SetBallisticUnspawned((args.Target, ballisticAmmo), result);
-                        _gun.UpdateBallisticAppearance(args.Target, ballisticAmmo);
+                        _gun.UpdateBallisticAppearance((args.Target, ballisticAmmo));
                     });
                 },
                 Impact = LogImpact.Medium,
@@ -835,19 +828,25 @@ public sealed partial class AdminVerbSystem
                 Icon = new SpriteSpecifier.Rsi(new("/Textures/_Starlight/Mobs/Species/Cyberlimbs/parts.rsi"), "r_silver_arm"),
                 Act = () =>
                 {
-                    var torso = _bodySystem.GetBodyChildrenOfType(args.Target, BodyPartType.Torso).FirstOrDefault();
-                    var rightArm = _bodySystem.GetBodyChildrenOfType(args.Target, BodyPartType.Arm).FirstOrDefault(part => part.Component.Symmetry == BodyPartSymmetry.Right);
-                    if (torso == default || rightArm == default)
-                        return;
+                    // Far Horizons start
+                    if (bodyComp.Organs == null) return;
+                    List<string> targets = ["ArmRight", "HandRight"];
+                    var targetEnts = bodyComp.Organs.ContainedEntities
+                        .Where(p =>
+                            TryComp<OrganComponent>(p, out var organ) &&
+                            organ.Category != null &&
+                            targets.Contains(organ.Category.Value)
+                        ).ToList();
 
-                    if (_entitySystem.TryEntity<TransformComponent, HumanoidAppearanceComponent, BodyComponent>(args.Target, out var body)
-                    && _entitySystem.TryEntity<TransformComponent, MetaDataComponent, BodyPartComponent>(rightArm.Id, out var partEnt))
+                    foreach (var part in targetEnts)
                     {
-                        _limbSystem.Amputatate(body, partEnt);
-                        var reaper = Spawn("RightArmCyberReaper", body.Comp1.Coordinates);
-                        if (_entitySystem.TryEntity<BodyPartComponent>(reaper, out var reaperEnt))
-                            _limbSystem.AttachLimb((body.Owner, body.Comp2), "right arm", torso, reaperEnt);
+                        _container.Remove(part, bodyComp.Organs, false);
+                        QueueDel(part);
                     }
+
+                    var reaper = Spawn("RightArmCyberReaper", MapCoordinates.Nullspace);
+                    _container.Insert(reaper, bodyComp.Organs);
+                    // Far Horizons end
                 },
                 Impact = LogImpact.Medium,
                 Message = "Replace the right hand with a Reaper arm.",

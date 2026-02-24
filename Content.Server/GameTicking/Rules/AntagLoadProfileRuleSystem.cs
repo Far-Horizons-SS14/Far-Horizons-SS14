@@ -2,6 +2,7 @@ using Content.Server.Antag;
 using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Humanoid;
 using Content.Server.Preferences.Managers;
+using Content.Shared.Body;
 using Content.Server.Traits;
 using Content.Shared._Starlight.Character.Info;
 using Content.Shared.Humanoid;
@@ -13,9 +14,10 @@ namespace Content.Server.GameTicking.Rules;
 
 public sealed class AntagLoadProfileRuleSystem : GameRuleSystem<AntagLoadProfileRuleComponent>
 {
-    [Dependency] private readonly HumanoidAppearanceSystem _humanoid = default!;
+    [Dependency] private readonly HumanoidProfileSystem _humanoidProfile = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly IServerPreferencesManager _prefs = default!;
+    [Dependency] private readonly SharedVisualBodySystem _visualBody = default!;
     [Dependency] private readonly MetaDataSystem _metaSystem = default!; // Starlight
     [Dependency] private readonly TraitSystem _traitSystem = default!; //Starlight
     [Dependency] private readonly SLSharedCharacterInfoSystem _sLSharedCharacterInfoSystem = default!; //Starlight
@@ -42,7 +44,7 @@ public sealed class AntagLoadProfileRuleSystem : GameRuleSystem<AntagLoadProfile
         }
 
         // Startlight - Start (Changing fully so RandomWithSpecies loads with a specieID)
-        var species = _proto.Index(SharedHumanoidAppearanceSystem.DefaultSpecies);
+        var species = _proto.Index(HumanoidCharacterProfile.DefaultSpecies);
         if (profile is not null)
             species = _proto.Index(profile.Species);
 
@@ -56,14 +58,11 @@ public sealed class AntagLoadProfileRuleSystem : GameRuleSystem<AntagLoadProfile
             profile = HumanoidCharacterProfile.RandomWithSpecies(species.ID);
 
         args.Entity = Spawn(species.Prototype);
-        _humanoid.LoadProfile(args.Entity.Value, profile?.WithSpecies(species.ID));
-
-        if (ent.Comp.ApplyCharacterProfile && profile is not null)
+        if (profile?.WithSpecies(species.ID) is { } humanoidProfile)
         {
-            _metaSystem.SetEntityName(args.Entity.Value, profile.Name);
-            _traitSystem.ApplyTraits(args.Entity.Value, profile);
-            _sLSharedCharacterInfoSystem.ApplyCharacterInfo(args.Entity.Value, profile);
+            _visualBody.ApplyProfileTo(args.Entity.Value, humanoidProfile);
+            _humanoidProfile.ApplyProfileTo(args.Entity.Value, humanoidProfile);
+            _sLSharedCharacterInfoSystem.ApplyCharacterInfo(args.Entity.Value, profile); // Starlight
         }
-        // Starlight - End
     }
 }

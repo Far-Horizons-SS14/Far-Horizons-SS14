@@ -32,10 +32,12 @@ using Content.Server.Charges;
 using Content.Shared.Charges.Components;
 using Content.Shared.Actions.Components;
 using Content.Server.Administration.Systems;
+using Content.Shared.Body;
 using Content.Shared.Maps;
 using Content.Shared.Nutrition.EntitySystems;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Damage.Components;
+using Content.Shared.Metabolism;
 
 namespace Content.Server.Vampire;
 
@@ -60,7 +62,7 @@ public sealed partial class VampireSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly IEntityManager _entityManager = default!;
     [Dependency] private readonly SharedActionsSystem _action = default!;
-    [Dependency] private readonly SharedBodySystem _body = default!;
+    [Dependency] private readonly BodySystem _body = default!;
     [Dependency] private readonly SharedSolutionContainerSystem _solution = default!;
     [Dependency] private readonly SharedStunSystem _stun = default!;
     [Dependency] private readonly DamageableSystem _damageableSystem = default!;

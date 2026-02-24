@@ -74,11 +74,12 @@ public sealed class HealthAnalyzerSystem : EntitySystem
             var patientCoordinates = Transform(patient).Coordinates;
             if (component.MaxScanRange != null && !_transformSystem.InRange(patientCoordinates, transform.Coordinates, component.MaxScanRange.Value))
             {
-                //Range too far, disable updates
-                StopAnalyzingEntity((uid, component), patient);
+                //Range too far, disable updates until they are back in range
+                PauseAnalyzingEntity((uid, component), patient);
                 continue;
             }
 
+            component.IsAnalyzerActive = true;
             UpdateScannedUser(uid, patient, true);
         }
     }
@@ -184,6 +185,21 @@ public sealed class HealthAnalyzerSystem : EntitySystem
         UpdateScannedUser(healthAnalyzer, target, false);
     }
 
+
+    /// <summary>
+    /// If the scanner is active, sends one last update and sets it to inactive.
+    /// </summary>
+    /// <param name="healthAnalyzer">The health analyzer that's receiving the updates</param>
+    /// <param name="target">The entity to analyze</param>
+    private void PauseAnalyzingEntity(Entity<HealthAnalyzerComponent> healthAnalyzer, EntityUid target)
+    {
+        if (!healthAnalyzer.Comp.IsAnalyzerActive)
+            return;
+
+        UpdateScannedUser(healthAnalyzer, target, false);
+        healthAnalyzer.Comp.IsAnalyzerActive = false;
+    }
+
     /// <summary>
     /// Send an update for the target to the healthAnalyzer
     /// </summary>
@@ -192,36 +208,55 @@ public sealed class HealthAnalyzerSystem : EntitySystem
     /// <param name="scanMode">True makes the UI show ACTIVE, False makes the UI show INACTIVE</param>
     public void UpdateScannedUser(EntityUid healthAnalyzer, EntityUid target, bool scanMode)
     {
-        if (!_uiSystem.HasUi(healthAnalyzer, HealthAnalyzerUiKey.Key) || !TryComp<HealthAnalyzerComponent>(healthAnalyzer, out var healthComp)) // Starlight-edit
+        if (!_uiSystem.HasUi(healthAnalyzer, HealthAnalyzerUiKey.Key)
+            || !TryComp<HealthAnalyzerComponent>(healthAnalyzer, out var healthComp))
             return;
 
-        if (!HasComp<DamageableComponent>(target))
-            return;
+        var uiState = GetHealthAnalyzerUiState(target, (healthAnalyzer, healthComp), scanMode);
+        uiState.ScanMode = scanMode;
 
+        _uiSystem.ServerSendUiMessage(
+            healthAnalyzer,
+            HealthAnalyzerUiKey.Key,
+            new HealthAnalyzerScannedUserMessage(uiState)
+        );
+    }
+
+    /// <summary>
+    /// Creates a HealthAnalyzerState based on the current state of an entity.
+    /// </summary>
+    /// <param name="target">The entity being scanned</param>
+    /// <returns></returns>
+    public HealthAnalyzerUiState GetHealthAnalyzerUiState(EntityUid? target, Entity<HealthAnalyzerComponent>? analyzer = null, bool scanMode = true)
+    {
+        if (!target.HasValue || !TryComp<DamageableComponent>(target, out var damageable))
+            return new HealthAnalyzerUiState();
+
+        var entity = target.Value;
         var bodyTemperature = float.NaN;
 
-        if (TryComp<TemperatureComponent>(target, out var temp))
+        if (TryComp<TemperatureComponent>(entity, out var temp))
             bodyTemperature = temp.CurrentTemperature;
 
         var bloodAmount = float.NaN;
         var bleeding = false;
         var unrevivable = false;
 
-        if (TryComp<BloodstreamComponent>(target, out var bloodstream) &&
-            _solutionContainerSystem.ResolveSolution(target, bloodstream.BloodSolutionName,
+        if (TryComp<BloodstreamComponent>(entity, out var bloodstream) &&
+            _solutionContainerSystem.ResolveSolution(entity, bloodstream.BloodSolutionName,
                 ref bloodstream.BloodSolution, out var bloodSolution))
         {
-            bloodAmount = _bloodstreamSystem.GetBloodLevel(target);
+            bloodAmount = _bloodstreamSystem.GetBloodLevel(entity);
             bleeding = bloodstream.BleedAmount > 0;
         }
 
-        if (TryComp<UnrevivableComponent>(target, out var unrevivableComp) && unrevivableComp.Analyzable)
+        if (TryComp<UnrevivableComponent>(entity, out var unrevivableComp) && unrevivableComp.Analyzable)
             unrevivable = true;
 
         // Starlight begin - Get a list of metabolizing chemicals
         List<(string ReagentId, FixedPoint2 Quantity)>? metabolizingReagents = null;
         if (TryComp<BloodstreamComponent>(target, out var bloodstreamComp) &&
-            _solutionContainerSystem.TryGetSolution(target, bloodstreamComp.BloodSolutionName, out _, out var chemicalsSolution))
+            _solutionContainerSystem.TryGetSolution(target.Value, bloodstreamComp.BloodSolutionName, out _, out var chemicalsSolution))
         {
             metabolizingReagents = new List<(string, FixedPoint2)>();
             foreach (var (reagent, quantity) in chemicalsSolution.Contents)
@@ -245,23 +280,30 @@ public sealed class HealthAnalyzerSystem : EntitySystem
         // Starlight end
 
         // Starlight-start: Talking health analyzer
-        if (healthComp.Talk && healthComp.NextTalk < _timing.CurTime && TryComp<DamageableComponent>(target, out var damageable) && scanMode)
+        if (analyzer != null)
         {
-            healthComp.NextTalk = _timing.CurTime + healthComp.TalkInterval;
-            
-            var bloodLevel = !float.IsNaN(bloodAmount) ? $"{bloodAmount * 100:F1} %" : Loc.GetString("health-analyzer-window-entity-unknown-value-text");
-            _chat.TrySendInGameICMessage(healthAnalyzer, Loc.GetString(healthComp.TalkMessage, ("damage", damageable.TotalDamage.ToString()), ("blood", bloodLevel)), InGameICChatType.Speak, hideChat: true);
+            if (analyzer.Value.Comp.Talk && analyzer.Value.Comp.NextTalk < _timing.CurTime && scanMode)
+            {
+                analyzer.Value.Comp.NextTalk = _timing.CurTime + analyzer.Value.Comp.TalkInterval;
+
+                var bloodLevel = !float.IsNaN(bloodAmount)
+                    ? $"{bloodAmount * 100:F1} %"
+                    : Loc.GetString("health-analyzer-window-entity-unknown-value-text");
+                _chat.TrySendInGameICMessage(analyzer.Value,
+                    Loc.GetString(analyzer.Value.Comp.TalkMessage, ("damage", damageable.TotalDamage.ToString()),
+                        ("blood", bloodLevel)), InGameICChatType.Speak, hideChat: true);
+            }
         }
         // Starlight-end
 
-        _uiSystem.ServerSendUiMessage(healthAnalyzer, HealthAnalyzerUiKey.Key, new HealthAnalyzerScannedUserMessage(
+        return new HealthAnalyzerUiState(
             GetNetEntity(target),
             bodyTemperature,
             bloodAmount,
-            scanMode,
+            null,
             bleeding,
             unrevivable,
             metabolizingReagents // Starlight - add metabolizing chemicals to ui message 
-        ));
+        );
     }
 }

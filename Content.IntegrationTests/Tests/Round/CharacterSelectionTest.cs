@@ -3,7 +3,6 @@ using System.Linq;
 using Content.Client.Lobby;
 using Content.Server.Antag;
 using Content.Server.GameTicking;
-using Content.Server.Humanoid;
 using Content.Shared.CCVar;
 using Content.Shared._FarHorizons.Factions;
 using Content.Shared.GameTicking;
@@ -12,6 +11,7 @@ using Content.Shared.Roles;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
+using Content.Shared._FarHorizons.Body;
 
 namespace Content.IntegrationTests.Tests.Round;
 
@@ -398,8 +398,9 @@ public sealed class CharacterSelectionTest
             {
                 Assert.That(antags.Count, Is.EqualTo(0));
             }
-            var humanoidAppearanceSystem = pair.Server.System<HumanoidAppearanceSystem>();
-            var spawnedProfile = humanoidAppearanceSystem.GetBaseProfile(pair.Player!.AttachedEntity.Value);
+            Assert.That(pair.Server.EntMan.TryGetComponent<HumanoidCharacterProfileComponent>(pair.Player!.AttachedEntity.Value,
+                out var profileComp), "No HumanoidCharacterProfileComponent attached to spawned entity");
+            var spawnedProfile = profileComp!.Profile ?? new HumanoidCharacterProfile();
             spawnedProfile.AssertEquals(expectedCharacterProfile); //Starlight FUCK IT WE ASSERT.
             //Assert.That(spawnedProfile.MemberwiseEquals(expectedCharacterProfile), Is.True);
         }
@@ -448,7 +449,6 @@ public sealed class CharacterSelectionTest
         });
 
         HashSet<int> selectedCharacterSlots = new();
-        var humanoidAppearanceSystem = pair.Server.System<HumanoidAppearanceSystem>();
 
         foreach (var i in Enumerable.Range(0, 48))
         {
@@ -462,7 +462,9 @@ public sealed class CharacterSelectionTest
             await pair.RunTicksSync(30);
 
             Assert.That(ticker.PlayerGameStatuses[pair.Client.User!.Value], Is.EqualTo(PlayerGameStatus.JoinedGame));
-            var baseProfile = humanoidAppearanceSystem.GetBaseProfile(pair.Player!.AttachedEntity.Value);
+            pair.Server.EntMan.TryGetComponent<HumanoidCharacterProfileComponent>(pair.Player!.AttachedEntity.Value,
+                out var profileComp);
+            var baseProfile = profileComp.Profile ?? new HumanoidCharacterProfile();
             var foundSlot = cPref.Preferences.Characters.FirstOrNull(kvp => kvp.Value.MemberwiseEquals(baseProfile))?.Key;
 
             Assert.That(foundSlot, Is.Not.Null);

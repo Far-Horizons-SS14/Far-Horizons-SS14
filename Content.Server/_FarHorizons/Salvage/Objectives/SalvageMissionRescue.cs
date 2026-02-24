@@ -1,12 +1,13 @@
 
 using System.Linq;
-using Content.Server.Humanoid;
+using Content.Server.Body;
 using Content.Server.Station.Systems;
 using Content.Shared._FarHorizons.Factions;
 using Content.Shared.Atmos.Rotting;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.Damage.Systems;
+using Content.Shared.Humanoid;
 using Content.Shared.Inventory;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Systems;
@@ -71,7 +72,8 @@ public sealed partial class SalvageMissionRescue : BaseSalvageMissionObjectiveHa
     public override void OnMapCreated()
     {
         var factions = IoCManager.Resolve<ISharedFactionManager>();
-        var humanoid = EntMan.System<HumanoidAppearanceSystem>();
+        var visualBody = EntMan.System<VisualBodySystem>();
+        var profile = EntMan.System<HumanoidProfileSystem>();
         var metadata = EntMan.System<MetaDataSystem>();
         var state = EntMan.System<MobStateSystem>();
         var damageable = EntMan.System<DamageableSystem>();
@@ -89,7 +91,7 @@ public sealed partial class SalvageMissionRescue : BaseSalvageMissionObjectiveHa
                 return;
 
             var damage = RandomDamage(ProtoMan, Rand, 100, 200, 4);
-            var body = SpawnRandomBody(ProtoMan, EntMan, Rand, pos, humanoid, metadata, state, damageable, factions, stationSpawning, inventory, selectedFaction, true, damage, true);
+            var body = SpawnRandomBody(ProtoMan, EntMan, Rand, pos, visualBody, profile, metadata, state, damageable, factions, stationSpawning, inventory, selectedFaction, true, damage, true);
 
             if (Rand.Prob(0.4))
             {
@@ -111,7 +113,8 @@ public sealed partial class SalvageMissionRescue : BaseSalvageMissionObjectiveHa
         IEntityManager EntMan,
         Random Rand,
         EntityCoordinates pos, 
-        HumanoidAppearanceSystem humanoidAppearance, 
+        VisualBodySystem visualBody,
+        HumanoidProfileSystem profile,
         MetaDataSystem metadata,
         MobStateSystem? state = null,
         DamageableSystem? damageable = null,
@@ -127,7 +130,8 @@ public sealed partial class SalvageMissionRescue : BaseSalvageMissionObjectiveHa
         var species = ProtoMan.Index(character.Species);
 
         var ent = EntMan.SpawnAtPosition(species.Prototype, pos);
-        humanoidAppearance.LoadProfile(ent, character);
+        visualBody.ApplyProfileTo(ent, character);
+        profile.ApplyProfileTo(ent, character);
         metadata.SetEntityName(ent, character.Name);
 
         if (dead && state != null)

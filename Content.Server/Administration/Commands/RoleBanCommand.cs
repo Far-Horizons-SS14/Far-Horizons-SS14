@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using System.Text;
+﻿using System.Collections.Immutable;
 using Content.Server.Administration.Managers;
 using Content.Shared.Administration;
 using Content.Shared.CCVar;
@@ -99,25 +98,39 @@ public sealed class RoleBanCommand : IConsoleCommand
         var targetUid = located.UserId;
         var targetHWid = located.LastHWId;
 
+        var banInfo = new CreateRoleBanInfo(reason);
+        if (minutes > 0)
+            banInfo.WithMinutes(minutes);
+        banInfo.AddUser(targetUid, located.Username);
+        banInfo.WithBanningAdmin(shell.Player?.UserId);
+        banInfo.AddHWId(targetHWid);
+        banInfo.WithSeverity(severity);
+
         var success = true; // Starlight - track success of lookup
 
+        ImmutableArray<BanRoleDef>? banRoleDefs;
         if (_proto.HasIndex<JobPrototype>(role))
-            _bans.CreateRoleBan<JobPrototype>(targetUid, located.Username, shell.Player?.UserId, null, targetHWid, role, minutes, severity, reason, DateTimeOffset.UtcNow);
-        else if (_proto.HasIndex<AntagPrototype>(role))
-            _bans.CreateRoleBan<AntagPrototype>(targetUid, located.Username, shell.Player?.UserId, null, targetHWid, role, minutes, severity, reason, DateTimeOffset.UtcNow);
-        else
-        { // Starlight - capture failure state
-            shell.WriteError(Loc.GetString("cmd-roleban-job-parse", ("job", role)));
-            success = false; // Starlight - capture failure state
-        } // Starlight - capture failure state
-
-        // Starlight start - webhook for bans
-        if (success)
         {
-            HashSet<string>? roles = new() { role }; // Used for updating webhook
-            _bans.WebhookUpdateRoleBans(targetUid, located.Username, shell.Player?.UserId, null, targetHWid, roles, minutes, severity, reason, DateTimeOffset.UtcNow);
+            banInfo.AddJob(new ProtoId<JobPrototype>(role));
+            banRoleDefs = [new BanRoleDef("Job", role)];
         }
-        // Starlight end - webhook for bans
+        else if (_proto.HasIndex<AntagPrototype>(role))
+        {
+            banInfo.AddAntag(new ProtoId<AntagPrototype>(role));
+            banRoleDefs = [new BanRoleDef("Antag", role)];
+        }
+        else
+        {
+            shell.WriteError(Loc.GetString("cmd-roleban-job-parse", ("job", role)));
+            return;
+        }
+
+        _bans.CreateRoleBan(banInfo);
+            
+        
+        HashSet<string>? roles = new() { role }; // Used for updating webhook
+        _bans.WebhookUpdateRoleBans(targetUid, located.Username, shell.Player?.UserId, null, targetHWid, roles, minutes, severity, reason, DateTimeOffset.UtcNow, banRoleDefs);
+        
     }
 
     public CompletionResult GetCompletion(IConsoleShell shell, string[] args)

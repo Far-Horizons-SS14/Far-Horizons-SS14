@@ -17,7 +17,7 @@
       UnlockFlagSurgerySpeed1 : 25
       UnlockFlagSurgerySpeed2 : 15
   - type: RequireSpecificOrganicPart
-    slot: "body_organ_slot_liver"
+    slot: Liver
 
 - type: entity
   parent: SurgeryExtractKidneys
@@ -38,7 +38,7 @@
       UnlockFlagSurgerySpeed1 : 25
       UnlockFlagSurgerySpeed2 : 15
   - type: RequireSpecificOrganicPart
-    slot: "body_organ_slot_kidneys"
+    slot: Kidneys
 
 - type: entity
   parent: SurgeryExtractStomach
@@ -59,7 +59,7 @@
       UnlockFlagSurgerySpeed1 : 25
       UnlockFlagSurgerySpeed2 : 15
   - type: RequireSpecificOrganicPart
-    slot: "body_organ_slot_stomach"
+    slot: Stomach
 
 - type: entity
   parent: SurgeryExtractLungs
@@ -80,7 +80,7 @@
       UnlockFlagSurgerySpeed1 : 25
       UnlockFlagSurgerySpeed2 : 15
   - type: RequireSpecificOrganicPart
-    slot: "body_organ_slot_lungs"
+    slot: Lungs
 
 - type: entity
   parent: SurgeryExtractLungsSlime
@@ -101,7 +101,7 @@
       UnlockFlagSurgerySpeed1 : 25
       UnlockFlagSurgerySpeed2 : 15
   - type: RequireSpecificOrganicPart
-    slot: "body_organ_slot_lungs"
+    slot: Lungs
 
 - type: entity
   parent: SurgeryExtractHeart
@@ -122,31 +122,10 @@
       UnlockFlagSurgerySpeed1 : 25
       UnlockFlagSurgerySpeed2 : 15
   - type: RequireSpecificOrganicPart
-    slot: "body_organ_slot_heart"
+    slot: Heart
 
 - type: entity
-  parent: SurgeryExtractHeartSlime
-  id: SurgeryExtractHeartSlimeNecrosis
-  name: Remove Rotten Slime Heart
-  description: Surgical removal of rotten slime heart.
-  components:
-  - type: Surgery
-    requirement: 
-      - SurgeryReverseNecrosis
-  - type: SurgeryPartCondition
-    parts: 
-    - Torso
-  - type: NecrosisSurgeryStep
-  - type: DisableSurgery
-  - type: SurgeryTechnology
-    technologyModifier:
-      UnlockFlagSurgerySpeed1 : 25
-      UnlockFlagSurgerySpeed2 : 15
-  - type: RequireSpecificOrganicPart
-    slot: "body_organ_slot_heart"
-
-- type: entity
-  parent: SurgeryAmputation
+  parent: SurgeryAmputateLeftArm
   id: SurgeryAmputationArmLNecrosis
   name: Amputate Rotten Left Arm
   description: Surgical removal of rotten arm.
@@ -154,23 +133,20 @@
   - type: Surgery
     requirement: 
     - SurgeryReverseNecrosis
-  - type: SurgeryPartCondition
-    parts: 
-    - Torso
   - type: NecrosisSurgeryStep
-    target: "body_part_slot_left arm"
+    target: ArmLeft
   - type: DisableSurgery
   - type: SurgeryTechnology
     technologyModifier:
       UnlockFlagSurgerySpeed1 : 25
       UnlockFlagSurgerySpeed2 : 15
-  - type: SurgeryLimbExistCondition
-    slot: left arm
+  - type: SurgeryOrganExistCondition
+    category: ArmLeft
   - type: RequireSpecificOrganicPart
-    slot: "body_part_slot_left arm"
+    slot: ArmLeft
 
 - type: entity
-  parent: SurgeryAmputation
+  parent: SurgeryAmputateRightArm
   id: SurgeryAmputationArmRNecrosis
   name: Amputate Rotten Right Arm
   description: Surgical removal of rotten arm.
@@ -178,23 +154,20 @@
   - type: Surgery
     requirement: 
     - SurgeryReverseNecrosis
-  - type: SurgeryPartCondition
-    parts: 
-    - Torso
   - type: NecrosisSurgeryStep
-    target: "body_part_slot_right arm"
+    target: ArmRight
   - type: DisableSurgery
   - type: SurgeryTechnology
     technologyModifier:
       UnlockFlagSurgerySpeed1 : 25
       UnlockFlagSurgerySpeed2 : 15
-  - type: SurgeryLimbExistCondition
-    slot: right arm
+  - type: SurgeryOrganExistCondition
+    category: ArmRight
   - type: RequireSpecificOrganicPart
-    slot: "body_part_slot_right arm"
+    slot: ArmRight
 
 - type: entity
-  parent: SurgeryAmputation
+  parent: SurgeryAmputateLeftLeg
   id: SurgeryAmputationLegLNecrosis
   name: Amputate Rotten Left Leg
   description: Surgical removal of rotten leg.
@@ -202,23 +175,20 @@
   - type: Surgery
     requirement: 
     - SurgeryReverseNecrosis
-  - type: SurgeryPartCondition
-    parts: 
-    - Torso
   - type: NecrosisSurgeryStep
-    target: "body_part_slot_left leg"
+    target: LegLeft
   - type: DisableSurgery
   - type: SurgeryTechnology
     technologyModifier:
       UnlockFlagSurgerySpeed1 : 25
       UnlockFlagSurgerySpeed2 : 15
-  - type: SurgeryLimbExistCondition
-    slot: left leg
+  - type: SurgeryOrganExistCondition
+    category: LegLeft
   - type: RequireSpecificOrganicPart
-    slot: "body_part_slot_left leg"
+    slot: LegLeft
 
 - type: entity
-  parent: SurgeryAmputation
+  parent: SurgeryAmputateRightLeg
   id: SurgeryAmputationLegRNecrosis
   name: Amputate Rotten Right Leg
   description: Surgical removal of rotten leg.
@@ -226,23 +196,20 @@
   - type: Surgery
     requirement: 
     - SurgeryReverseNecrosis
-  - type: SurgeryPartCondition
-    parts: 
-    - Torso
   - type: NecrosisSurgeryStep
-    target: "body_part_slot_right leg"
+    target: LegRight
   - type: DisableSurgery
   - type: SurgeryTechnology
     technologyModifier:
       UnlockFlagSurgerySpeed1 : 25
       UnlockFlagSurgerySpeed2 : 15
-  - type: SurgeryLimbExistCondition
-    slot: right leg
+  - type: SurgeryOrganExistCondition
+    category: LegRight
   - type: RequireSpecificOrganicPart
-    slot: "body_part_slot_right leg"
+    slot: LegRight
 
 - type: entity
-  parent: SurgeryAmputationSlime
+  parent: SurgeryAmputateLeftArmSlime
   id: SurgeryAmputationArmLNecrosisSlime
   name: Amputate Rotten Left Arm
   description: Surgical removal of rotten arm.
@@ -250,23 +217,20 @@
   - type: Surgery
     requirement: 
     - SurgeryReverseNecrosis
-  - type: SurgeryPartCondition
-    parts: 
-    - Torso
   - type: NecrosisSurgeryStep
-    target: "body_part_slot_left arm"
+    target: ArmLeft
   - type: DisableSurgery
   - type: SurgeryTechnology
     technologyModifier:
       UnlockFlagSurgerySpeed1 : 25
       UnlockFlagSurgerySpeed2 : 15
-  - type: SurgeryLimbExistCondition
-    slot: left arm
+  - type: SurgeryOrganExistCondition
+    category: ArmLeft
   - type: RequireSpecificOrganicPart
-    slot: "body_part_slot_left arm"
+    slot: ArmLeft
 
 - type: entity
-  parent: SurgeryAmputationSlime
+  parent: SurgeryAmputateRightArmSlime
   id: SurgeryAmputationArmRNecrosisSlime
   name: Amputate Rotten Right Arm
   description: Surgical removal of rotten arm.
@@ -274,23 +238,20 @@
   - type: Surgery
     requirement: 
     - SurgeryReverseNecrosis
-  - type: SurgeryPartCondition
-    parts: 
-    - Torso
   - type: NecrosisSurgeryStep
-    target: "body_part_slot_right arm"
+    target: ArmRight
   - type: DisableSurgery
   - type: SurgeryTechnology
     technologyModifier:
       UnlockFlagSurgerySpeed1 : 25
       UnlockFlagSurgerySpeed2 : 15
-  - type: SurgeryLimbExistCondition
-    slot: right arm
+  - type: SurgeryOrganExistCondition
+    category: ArmRight
   - type: RequireSpecificOrganicPart
-    slot: "body_part_slot_right arm"
+    slot: ArmRight
 
 - type: entity
-  parent: SurgeryAmputationSlime
+  parent: SurgeryAmputateLeftLegSlime
   id: SurgeryAmputationLegLNecrosisSlime
   name: Amputate Rotten Left Leg
   description: Surgical removal of rotten leg.
@@ -298,23 +259,20 @@
   - type: Surgery
     requirement: 
     - SurgeryReverseNecrosis
-  - type: SurgeryPartCondition
-    parts: 
-    - Torso
   - type: NecrosisSurgeryStep
-    target: body_part_slot_left leg
+    target: LegLeft
   - type: DisableSurgery
   - type: SurgeryTechnology
     technologyModifier:
       UnlockFlagSurgerySpeed1 : 25
       UnlockFlagSurgerySpeed2 : 15
-  - type: SurgeryLimbExistCondition
-    slot: left leg
+  - type: SurgeryOrganExistCondition
+    category: LegLeft
   - type: RequireSpecificOrganicPart
-    slot: "body_part_slot_left leg"
+    slot: LegLeft
 
 - type: entity
-  parent: SurgeryAmputationSlime
+  parent: SurgeryAmputateRightLegSlime
   id: SurgeryAmputationLegRNecrosisSlime
   name: Amputate Rotten Right Leg
   description: Surgical removal of rotten leg.
@@ -322,17 +280,14 @@
   - type: Surgery
     requirement: 
     - SurgeryReverseNecrosis
-  - type: SurgeryPartCondition
-    parts: 
-    - Torso
   - type: NecrosisSurgeryStep
-    target: "body_part_slot_right leg"
+    target: LegRight
   - type: DisableSurgery
   - type: SurgeryTechnology
     technologyModifier:
       UnlockFlagSurgerySpeed1 : 25
       UnlockFlagSurgerySpeed2 : 15
-  - type: SurgeryLimbExistCondition
-    slot: right leg
+  - type: SurgeryOrganExistCondition
+    category: LegRight
   - type: RequireSpecificOrganicPart
-    slot: "body_part_slot_right leg"
+    slot: LegRight

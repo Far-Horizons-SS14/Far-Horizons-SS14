@@ -156,7 +156,7 @@ public sealed partial class TTSSystem : EntitySystem
         if (!_prototypeManager.TryIndex(component.VoicePrototypeId ?? "", out VoicePrototype? proto))
         {
             var voices = _prototypeManager.TryGetInstances<VoicePrototype>(out var v) ? v.AsEnumerable() : [];
-            if (TryComp<HumanoidAppearanceComponent>(uid, out var humanoidAppearanceComponent)
+            if (TryComp<HumanoidProfileComponent>(uid, out var humanoidAppearanceComponent)
                 && humanoidAppearanceComponent?.Sex is Sex sex)
             {
                 var voicePrototypes = voices.Where(x => !x.Value.Silicon

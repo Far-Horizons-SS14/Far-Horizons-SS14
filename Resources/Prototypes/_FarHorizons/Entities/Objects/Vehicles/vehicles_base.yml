@@ -102,7 +102,7 @@
     handsNeeded: 1
     riderWhitelist:
       components:
-        - HumanoidAppearance
+        - HumanoidProfile
     disallowWielding: true
     allowGunKnockback: true
     soundHit:
@@ -200,7 +200,7 @@
       handsNeeded: 0
       riderWhitelist:
         components:
-          - HumanoidAppearance
+          - HumanoidProfile
       soundHit:
         collection: MetalThud
     - type: VehicleBuckle
@@ -273,7 +273,7 @@
       handsNeeded: 0
       riderWhitelist:
         components:
-          - HumanoidAppearance
+          - HumanoidProfile
       hornSound: 
         path: /Audio/Effects/Vehicle/bicyclebell.ogg
       soundHit:

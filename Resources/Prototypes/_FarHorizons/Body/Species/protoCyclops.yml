@@ -1,0 +1,101 @@
+- type: markingsGroup
+  parent: [ Cyclorite, BaseProtogen ]
+  id: ProtoCyclops
+  limits:
+    enum.HumanoidVisualLayers.FaceCover:
+      limit: 1
+      required: true
+      default: [ ProtoCyclopsVisor ]
+    enum.HumanoidVisualLayers.BodyCover:
+      limit: 1
+      required: true
+      default: [ ProtoCyclopsMediumArmor ]
+
+- type: entity
+  parent: AppearanceCyclorite
+  id: AppearanceProtoCyclops
+  name: ProtoCyclops Appearance
+  components:
+  - type: InitialBody
+    organs:
+      Torso: OrganProtoCyclopsTorso
+      Head: OrganProtoCyclopsHead
+      ArmLeft: OrganProtoCyclopsArmLeft
+      ArmRight: OrganProtoCyclopsArmRight
+      HandRight: OrganProtoCyclopsHandRight
+      HandLeft: OrganProtoCyclopsHandLeft
+      LegLeft: OrganProtoCyclopsLegLeft
+      LegRight: OrganProtoCyclopsLegRight
+      FootLeft: OrganProtoCyclopsFootLeft
+      FootRight: OrganProtoCyclopsFootRight
+      Brain: OrganProtogenBrain
+      Eyes: OrganProtogenEyes
+      Tongue: OrganProtogenTongue
+      Ears: OrganProtogenEars
+      Lungs: OrganProtogenLungs
+      Heart: OrganProtogenHeart
+      Stomach: OrganProtogenStomach
+      Liver: OrganProtogenLiver
+      Kidneys: OrganProtogenKidneys
+  - type: HumanoidProfile
+    species: ProtoCyclops
+
+- type: entity
+  parent:
+  - AppearanceProtoCyclops
+  - BaseMobProtoCyclops
+  id: MobProtoCyclops
+  name: Urist McCyclopster
+
+# Organs
+
+- type: entity
+  parent: OrganCycloriteExternal
+  id: OrganProtoCyclopsExternal
+  abstract: true
+  components:
+  - type: VisualOrganMarkings
+    markingData:
+      group: ProtoCyclops
+
+# Limbs
+
+- type: entity
+  parent: [ OrganProtoCyclopsExternal, OrganCycloriteTorso ]
+  id: OrganProtoCyclopsTorso
+
+- type: entity
+  parent: [ OrganProtoCyclopsExternal, OrganCycloriteHead ]
+  id: OrganProtoCyclopsHead
+
+- type: entity
+  parent: [ OrganProtoCyclopsExternal, OrganCycloriteArmLeft ]
+  id: OrganProtoCyclopsArmLeft
+
+- type: entity
+  parent: [ OrganProtoCyclopsExternal, OrganCycloriteArmRight ]
+  id: OrganProtoCyclopsArmRight
+
+- type: entity
+  parent: [ OrganProtoCyclopsExternal, OrganCycloriteHandLeft ]
+  id: OrganProtoCyclopsHandLeft
+
+- type: entity
+  parent: [ OrganProtoCyclopsExternal, OrganCycloriteHandRight ]
+  id: OrganProtoCyclopsHandRight
+
+- type: entity
+  parent: [ OrganProtoCyclopsExternal, OrganCycloriteLegLeft ]
+  id: OrganProtoCyclopsLegLeft
+
+- type: entity
+  parent: [ OrganProtoCyclopsExternal, OrganCycloriteLegRight ]
+  id: OrganProtoCyclopsLegRight
+
+- type: entity
+  parent: [ OrganProtoCyclopsExternal, OrganCycloriteFootLeft ]
+  id: OrganProtoCyclopsFootLeft
+
+- type: entity
+  parent: [ OrganProtoCyclopsExternal, OrganCycloriteFootRight ]
+  id: OrganProtoCyclopsFootRight

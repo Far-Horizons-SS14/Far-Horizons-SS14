@@ -1,0 +1,117 @@
+- type: markingsGroup
+  parent: [ Vulpkanin, BaseProtogen ]
+  id: ProtoVulp
+  limits:
+    enum.HumanoidVisualLayers.FaceCover:
+      limit: 1
+      required: true
+      default: [ ProtoVulpVisor ]
+    enum.HumanoidVisualLayers.BodyCover:
+      limit: 1
+      required: true
+      default: [ ProtoVulpMediumArmor ]
+
+- type: entity
+  parent: AppearanceVulpkanin
+  id: AppearanceProtoVulp
+  name: ProtoVulp Appearance
+  components:
+  - type: InitialBody
+    organs:
+      Torso: OrganProtoVulpTorso
+      Head: OrganProtoVulpHead
+      ArmLeft: OrganProtoVulpArmLeft
+      ArmRight: OrganProtoVulpArmRight
+      HandRight: OrganProtoVulpHandRight
+      HandLeft: OrganProtoVulpHandLeft
+      LegLeft: OrganProtoVulpLegLeft
+      LegRight: OrganProtoVulpLegRight
+      FootLeft: OrganProtoVulpFootLeft
+      FootRight: OrganProtoVulpFootRight
+      Brain: OrganProtogenBrain
+      Eyes: OrganProtogenEyes
+      Tongue: OrganProtogenTongue
+      Ears: OrganProtogenEars
+      Lungs: OrganProtogenLungs
+      Heart: OrganProtogenHeart
+      Stomach: OrganProtogenStomach
+      Liver: OrganProtogenLiver
+      Kidneys: OrganProtogenKidneys
+  - type: HumanoidProfile
+    species: ProtoVulp
+
+- type: entity
+  parent:
+  - AppearanceProtoVulp
+  - BaseMobProtoVulp
+  id: MobProtoVulp
+  name: Urist McVulpster
+
+# Organs
+
+- type: entity
+  parent: OrganProtogen
+  id: OrganProtoVulpExternal
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Mobs/Species/Proto-Vulp/parts.rsi
+  - type: VisualOrgan
+    data:
+      sprite: _FarHorizons/Mobs/Species/Proto-Vulp/parts.rsi
+  - type: VisualOrganMarkings
+    markingData:
+      group: ProtoVulp
+
+# Limbs
+
+- type: entity
+  parent: [ OrganBaseTorsoSexed, OrganBaseTorso, OrganProtoVulpExternal ]
+  id: OrganProtoVulpTorso
+
+- type: entity
+  parent: [ OrganBaseHeadSexed, OrganBaseHead, OrganProtoVulpExternal ]
+  id: OrganProtoVulpHead
+  components:
+  - type: VisualOrganMarkings
+    hideableLayers:
+    - enum.HumanoidVisualLayers.Snout
+    - enum.HumanoidVisualLayers.HeadTop
+    - enum.HumanoidVisualLayers.HeadSide
+    - enum.HumanoidVisualLayers.Hair
+    - enum.HumanoidVisualLayers.FacialHair
+    dependentHidingLayers:
+      enum.HumanoidVisualLayers.Snout:
+      - enum.HumanoidVisualLayers.SnoutCover
+
+- type: entity
+  parent: [ OrganBaseArmLeft, OrganProtoVulpExternal ]
+  id: OrganProtoVulpArmLeft
+
+- type: entity
+  parent: [ OrganBaseArmRight, OrganProtoVulpExternal ]
+  id: OrganProtoVulpArmRight
+
+- type: entity
+  parent: [ OrganBaseHandLeft, OrganProtoVulpExternal ]
+  id: OrganProtoVulpHandLeft
+
+- type: entity
+  parent: [ OrganBaseHandRight, OrganProtoVulpExternal ]
+  id: OrganProtoVulpHandRight
+
+- type: entity
+  parent: [ OrganBaseLegLeft, OrganProtoVulpExternal ]
+  id: OrganProtoVulpLegLeft
+
+- type: entity
+  parent: [ OrganBaseLegRight, OrganProtoVulpExternal ]
+  id: OrganProtoVulpLegRight
+
+- type: entity
+  parent: [ OrganBaseFootLeft, OrganProtoVulpExternal ]
+  id: OrganProtoVulpFootLeft
+
+- type: entity
+  parent: [ OrganBaseFootRight, OrganProtoVulpExternal ]
+  id: OrganProtoVulpFootRight

@@ -68,18 +68,22 @@ public sealed partial class CyberneticsPicker : Control
         PopulateUI();
     }
 
-    private Dictionary<string, SpriteSpecifier.Rsi> GetIconsList() {
-        return CollectionAllCybernetics.ToDictionary(
+    // Far Horizons start
+    private Dictionary<string, SpriteSpecifier.Rsi> GetIconsList() =>
+        CollectionAllCybernetics.ToDictionary(
             p => p.ID,
-            p => {
-                if (_prototypeManager.Index(p.ID).Components.TryGetValue("Icon", out var icon) && icon.Component is IconComponent iconComp){
-                    return iconComp.Icon;
-                } else {
-                    return new SpriteSpecifier.Rsi(new ResPath("Textures/Objects/Fun/bikehorn.rsi"), "icon");
-                }
+            p =>
+            {
+                if (_prototypeManager.Index(p.ID).Components.TryGetValue("Sprite", out var sprite) &&
+                    sprite.Component is SpriteComponent { BaseRSI: not null } spriteComp &&
+                    spriteComp.AllLayers.Count() > 0 &&
+                    spriteComp.AllLayers.First().ActualRsi != null)
+                    return new SpriteSpecifier.Rsi(spriteComp.AllLayers.First().ActualRsi!.Path, spriteComp.AllLayers.First().RsiState.Name ?? "");
+
+                return new SpriteSpecifier.Rsi(new ResPath("Objects/Fun/bikehorn.rsi"), "icon");
             }
         );
-    }
+    // Far Horizons end
 
     // Installs parts, also installs attached parts
     private void InstallPart(CyberneticImplant part){

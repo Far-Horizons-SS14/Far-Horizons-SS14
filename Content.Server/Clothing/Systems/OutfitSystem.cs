@@ -1,6 +1,7 @@
 ﻿using Content.Server._FarHorizons.Factions;
 using Content.Server.Hands.Systems;
 using Content.Server.Preferences.Managers;
+using Content.Shared._FarHorizons.Body;
 using Content.Shared.Access.Components;
 using Content.Shared.Clothing;
 using Content.Shared.Hands.Components;
@@ -26,7 +27,6 @@ public sealed class OutfitSystem : EntitySystem
     [Dependency] private readonly HandsSystem _handSystem = default!;
     [Dependency] private readonly InventorySystem _invSystem = default!;
     [Dependency] private readonly SharedStationSpawningSystem _spawningSystem = default!;
-    [Dependency] private readonly SharedHumanoidAppearanceSystem _appearance = default!; //Starlight
     [Dependency] private readonly IServerFactionManager _factions = default!; // Far Horizons
     [Dependency] private readonly ContainerSystem _container = default!; // Far Horizons
 
@@ -40,8 +40,8 @@ public sealed class OutfitSystem : EntitySystem
 
         #region Starlight
         HumanoidCharacterProfile? profile = null;
-        if (TryComp<HumanoidAppearanceComponent>(target, out var appearanceComponent))
-            profile = _appearance.GetBaseProfile((target, appearanceComponent));
+        if (TryComp<HumanoidCharacterProfileComponent>(target, out var profileComp))
+            profile = profileComp.Profile;
         #endregion Starlight
 
         var spawnCoords = EntityManager.GetComponent<TransformComponent>(target).Coordinates; // Far Horizons
@@ -114,8 +114,8 @@ public sealed class OutfitSystem : EntitySystem
 
 
             // Don't require a player, so this works on Urists
-            profile ??= EntityManager.TryGetComponent<HumanoidAppearanceComponent>(target, out var comp)
-                ? HumanoidCharacterProfile.DefaultWithSpecies(comp.Species)
+            profile ??= EntityManager.TryGetComponent<HumanoidProfileComponent>(target, out var comp)
+                ? HumanoidCharacterProfile.DefaultWithSpecies(comp.Species, comp.Sex)
                 : new HumanoidCharacterProfile();
             // Try to get the user's existing loadout for the role
             profile.Loadouts.TryGetValue(jobProtoId, out var roleLoadout);

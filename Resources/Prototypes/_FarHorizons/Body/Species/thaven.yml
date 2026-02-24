@@ -1,0 +1,222 @@
+- type: markingsGroup
+  parent: Undergarments
+  id: Thaven
+  onlyGroupWhitelisted: true
+  limits:
+    enum.HumanoidVisualLayers.Hair:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.HeadTop:
+      limit: 2
+      required: false
+    enum.HumanoidVisualLayers.HeadSide:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.Head:
+      limit: 4
+      required: false
+    enum.HumanoidVisualLayers.Snout:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.Chest:
+      limit: 4
+      required: false
+    enum.HumanoidVisualLayers.Overlay:
+      limit: 6
+      required: false
+    enum.HumanoidVisualLayers.LArm:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RArm:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LHand:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RHand:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LLeg:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RLeg:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LFoot:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RFoot:
+      limit: 1
+      required: false
+
+- type: entity
+  parent: BaseSpeciesAppearance
+  id: AppearanceThaven
+  name: Thaven Appearance
+  components:
+  - type: Inventory
+    templateId: human
+    displacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Thaven/displacement.rsi
+            state: jumpsuit
+      head:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Thaven/displacement.rsi
+            state: head
+      eyes:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Thaven/displacement.rsi
+            state: eyes
+      ears:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Thaven/displacement.rsi
+            state: head
+      mask:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Thaven/displacement.rsi
+            state: mask
+      neck:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Thaven/displacement.rsi
+            state: neck
+      outerClothing:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Thaven/displacement.rsi
+            state: outerclothing_hardsuit
+      gloves:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Thaven/displacement.rsi
+            state: hands
+  - type: InitialBody
+    organs:
+      Torso: OrganThavenTorso
+      Head: OrganThavenHead
+      ArmLeft: OrganThavenArmLeft
+      ArmRight: OrganThavenArmRight
+      HandRight: OrganThavenHandRight
+      HandLeft: OrganThavenHandLeft
+      LegLeft: OrganThavenLegLeft
+      LegRight: OrganThavenLegRight
+      FootLeft: OrganThavenFootLeft
+      FootRight: OrganThavenFootRight
+      Brain: OrganThavenBrain
+      Eyes: OrganThavenEyes
+      Tongue: OrganHumanTongue
+      Ears: OrganHumanEars
+      Lungs: OrganHumanLungs
+      Heart: OrganHumanHeart
+      Stomach: OrganHumanStomach
+      Liver: OrganHumanLiver
+      Kidneys: OrganHumanKidneys
+  - type: HumanoidProfile
+    species: Thaven
+
+- type: entity
+  parent:
+  - AppearanceThaven
+  - BaseMobThaven
+  id: MobThaven
+  name: Urist McEars
+
+# Organs
+
+- type: entity
+  parent: OrganBase
+  id: OrganThaven
+  abstract: true
+  suffix: Thaven
+  components:
+  - type: Tag
+    tags:
+      - Organic
+
+- type: entity
+  parent: OrganThaven
+  id: OrganThavenExternal
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _Starlight/Mobs/Species/Thaven/parts.rsi
+  - type: VisualOrgan
+    data:
+      sprite: _Starlight/Mobs/Species/Thaven/parts.rsi
+  - type: VisualOrganMarkings
+    markingData:
+      group: Thaven
+
+# Limbs
+
+- type: entity
+  parent: [ OrganBaseTorso, OrganThavenExternal ]
+  id: OrganThavenTorso
+
+- type: entity
+  parent: [ OrganBaseHead, OrganThavenExternal ]
+  id: OrganThavenHead
+
+- type: entity
+  parent: [ OrganBaseArmLeft, OrganThavenExternal ]
+  id: OrganThavenArmLeft
+
+- type: entity
+  parent: [ OrganBaseArmRight, OrganThavenExternal ]
+  id: OrganThavenArmRight
+
+- type: entity
+  parent: [ OrganBaseHandLeft, OrganThavenExternal ]
+  id: OrganThavenHandLeft
+
+- type: entity
+  parent: [ OrganBaseHandRight, OrganThavenExternal ]
+  id: OrganThavenHandRight
+
+- type: entity
+  parent: [ OrganBaseLegLeft, OrganThavenExternal ]
+  id: OrganThavenLegLeft
+
+- type: entity
+  parent: [ OrganBaseLegRight, OrganThavenExternal ]
+  id: OrganThavenLegRight
+
+- type: entity
+  parent: [ OrganBaseFootLeft, OrganThavenExternal ]
+  id: OrganThavenFootLeft
+
+- type: entity
+  parent: [ OrganBaseFootRight, OrganThavenExternal ]
+  id: OrganThavenFootRight
+
+# Internal
+
+- type: entity
+  id: OrganThavenBrain
+  parent: [ OrganBaseBrain, OrganThaven ]
+  name: thaven brain
+  description: "An organic positronic brain. Quite remarkable, really."
+  components:
+    - type: BorgBrain
+    - type: Sprite
+      sprite: _Starlight/Mobs/Species/Thaven/organs.rsi
+      layers:
+      - state: brain-thaven
+
+- type: entity
+  parent: [ OrganBaseEyes, OrganThavenExternal ]
+  id: OrganThavenEyes
+  components:
+  - type: VisualOrgan
+    data:
+      sprite: _Starlight/Mobs/Species/Thaven/parts.rsi
+      state: eyes
+  - type: Sprite
+    sprite: Mobs/Species/Human/organs.rsi

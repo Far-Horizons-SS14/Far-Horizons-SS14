@@ -1,0 +1,416 @@
+# Base
+
+- type: entity
+  id: ConnectedOrganBase
+  abstract: true
+  components:
+    - type: ContainerContainer
+      containers:
+        connected_organs: !type:Container
+    - type: ConnectedOrgan
+
+- type: entity
+  parent: ConnectedOrganBase
+  id: WithLeftCyberHand
+  abstract: true
+  components:
+    - type: ConnectedOrgan
+      roundstart:
+        - LeftHandCyber
+
+- type: entity
+  parent: ConnectedOrganBase
+  id: WithRightCyberHand
+  abstract: true
+  components:
+    - type: ConnectedOrgan
+      roundstart:
+        - RightHandCyber
+
+- type: entity
+  parent: ConnectedOrganBase
+  id: WithLeftCyberFoot
+  abstract: true
+  components:
+    - type: ConnectedOrgan
+      roundstart:
+        - LeftFootCyber
+
+- type: entity
+  parent: ConnectedOrganBase
+  id: WithRightCyberFoot
+  abstract: true
+  components:
+    - type: ConnectedOrgan
+      roundstart:
+        - RightFootCyber
+
+# Limbs
+
+- type: entity
+  parent: [ OrganCyberArmLeft, WithLeftCyberHand ]
+  id: LeftArmCyber
+  components:
+    - type: RoundstartImplantable
+      cost: 1
+
+- type: entity
+  parent: [ OrganCyberArmRight, WithRightCyberHand ]
+  id: RightArmCyber
+  components:
+    - type: RoundstartImplantable
+      cost: 1
+
+- type: entity
+  parent: OrganCyberHandLeft
+  id: LeftHandCyber
+  components:
+    - type: RoundstartImplantable
+      cost: 1
+
+- type: entity
+  parent: OrganCyberHandRight
+  id: RightHandCyber
+  components:
+    - type: RoundstartImplantable
+      cost: 1
+
+- type: entity
+  parent: [ OrganCyberLegLeft, WithLeftCyberFoot ]
+  id: LeftLegCyber
+  components:
+    - type: MovementOrgan
+      sprintSpeedModifier: 1.05 # +5%
+    - type: RoundstartImplantable
+      cost: 2
+
+- type: entity
+  parent: [ OrganCyberLegRight, WithRightCyberFoot ]
+  id: RightLegCyber
+  components:
+    - type: MovementOrgan
+      sprintSpeedModifier: 1.05 # +5%
+    - type: RoundstartImplantable
+      cost: 2
+
+- type: entity
+  parent: OrganCyberFootLeft
+  id: LeftFootCyber
+  components:
+    - type: RoundstartImplantable
+      cost: 1
+
+- type: entity
+  parent: OrganCyberFootRight
+  id: RightFootCyber
+  components:
+    - type: RoundstartImplantable
+      cost: 1
+      
+#reaper
+- type: entity
+  parent: [ OrganCyberArmLeft, WithLeftCyberHand ]
+  id: LeftArmCyberReaper
+  name: Left Reaper Arm
+  components:
+    - type: VisualOrgan
+      data:
+        sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+        state: "l_silver_arm"
+    - type: Sprite
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "l_silver_arm"
+    - type: LimbItemStorage
+      items:
+        - ScalpelCyber
+        - RetractorCyber
+        - CauteryCyber
+        - DrillCyber
+        - SawCyber
+        - HemostatCyber
+        - BoneSetterCyber
+        - BoneGel
+    - type: LimbItemDeployer
+      action: ActionToggleCyberHandLeft
+      sound: 
+        path: /Audio/_Starlight/Medical/Cyber/deploy.ogg
+      handWhitelist:
+        tags:
+          - CyberHandItem
+          - BoneGel
+      stateOn: l_silver_arm_SURG
+      stateOff: l_silver_arm
+
+- type: entity
+  parent: [ OrganCyberArmRight, WithRightCyberHand ]
+  id: RightArmCyberReaper
+  name: Right Reaper Arm
+  components:
+    - type: VisualOrgan
+      data:
+        sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+        state: "r_silver_arm"
+    - type: Sprite
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "r_silver_arm"
+    - type: LimbItemStorage
+      items:
+        - ScalpelCyber
+        - RetractorCyber
+        - CauteryCyber
+        - DrillCyber
+        - SawCyber
+        - HemostatCyber
+        - BoneSetterCyber
+        - BoneGel
+    - type: LimbItemDeployer
+      action: ActionToggleCyberHandRight
+      sound: 
+        path: /Audio/_Starlight/Medical/Cyber/deploy.ogg
+      handWhitelist:
+        tags:
+          - CyberHandItem
+          - BoneGel
+      stateOn: r_silver_arm_SURG
+      stateOff: r_silver_arm
+
+#Mechwright
+- type: entity
+  parent: [ OrganCyberArmLeft, WithLeftCyberHand ]
+  id: LeftArmCyberMechwright
+  name: Left Mechwright Arm
+  components:
+    - type: VisualOrgan
+      data:
+        sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+        state: "l_steel_arm"
+    - type: Sprite
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "l_steel_arm"
+    - type: LimbItemStorage
+      items:
+        - WrenchCyber
+        - ScrewdriverCyber
+        - CrowbarCyber
+        - WirecutterCyber
+        - WelderCyber
+    - type: LimbItemDeployer
+      action: ActionToggleCyberHandLeft
+      sound: 
+        path: /Audio/_Starlight/Medical/Cyber/deploy.ogg
+      handWhitelist:
+        tags:
+          - CyberHandItem
+      stateOn: l_steel_arm_TOOLS
+      stateOff: l_steel_arm
+
+- type: entity
+  parent: [ OrganCyberArmRight, WithRightCyberHand ]
+  id: RightArmCyberMechwright
+  name: Right Mechwright Arm
+  components:
+    - type: VisualOrgan
+      data:
+        sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+        state: "r_steel_arm"
+    - type: Sprite
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "r_steel_arm"
+    - type: LimbItemStorage
+      items:
+        - WrenchCyber
+        - ScrewdriverCyber
+        - CrowbarCyber
+        - WirecutterCyber
+        - WelderCyber
+    - type: LimbItemDeployer
+      action: ActionToggleCyberHandRight
+      sound: 
+        path: /Audio/_Starlight/Medical/Cyber/deploy.ogg
+      handWhitelist:
+        tags:
+          - CyberHandItem
+      stateOn: r_steel_arm_TOOLS
+      stateOff: r_steel_arm
+
+
+#Bulwark 
+- type: entity
+  parent: [ OrganCyberArmLeft, BaseSecurityContraband, WithLeftCyberHand ]
+  id: LeftArmCyberBulwark
+  name: Left Bulwark Arm
+  components:
+    - type: VisualOrgan
+      data:
+        sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+        state: "l_bulwark_arm"
+    - type: Sprite
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "l_bulwark_arm"
+    - type: LimbItemStorage
+      items:
+        - EnergyShieldCyber
+        - CyberEnergyChainsword
+    - type: LimbItemDeployer
+      action: ActionToggleCyberHandLeft
+      sound: 
+        path: /Audio/_Starlight/Medical/Cyber/deploy.ogg
+      handWhitelist:
+        tags:
+          - CyberHandItem
+      stateOn: l_bulwark_arm_TOOLS
+      stateOff: l_bulwark_arm
+
+- type: entity
+  parent: [ OrganCyberArmRight, BaseSecurityContraband, WithRightCyberHand ]
+  id: RightArmCyberBulwark
+  name: Right Bulwark Arm
+  components:
+    - type: VisualOrgan
+      data:
+        sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+        state: "r_bulwark_arm"
+    - type: Sprite
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "r_bulwark_arm"
+    - type: LimbItemStorage
+      items:
+        - EnergyShieldCyber
+        - CyberEnergyChainsword
+    - type: LimbItemDeployer
+      action: ActionToggleCyberHandRight
+      sound: 
+        path: /Audio/_Starlight/Medical/Cyber/deploy.ogg
+      handWhitelist:
+        tags:
+          - CyberHandItem
+      stateOn: r_bulwark_arm_TOOLS
+      stateOff: r_bulwark_arm
+
+#Mantis Blade
+- type: entity
+  parent: [ OrganCyberArmLeft, BaseSyndicateContraband, WithLeftCyberHand ]
+  id: LeftArmCyberMantisBlade
+  name: Left Mantis Blade Arm
+  components:
+    - type: VisualOrgan
+      data:
+        sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+        state: "l_mantis_blade_arm"
+    - type: Sprite
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "l_mantis_blade_arm"
+    - type: LimbItemStorage
+      items:
+        - CyberMantisBlade
+    - type: LimbItemDeployer
+      action: ActionToggleCyberHandLeft
+      sound:
+        path: /Audio/Effects/metal_scrape1.ogg
+      handWhitelist:
+        tags:
+          - CyberHandItem
+      stateOn: l_mantis_blade_arm_BLADE
+      stateOff: l_mantis_blade_arm
+
+- type: entity
+  parent: [ OrganCyberArmRight, BaseSecurityContraband, WithRightCyberHand ]
+  id: RightArmCyberMantisBlade
+  name: Right Mantis Blade Arm
+  components:
+    - type: VisualOrgan
+      data:
+        sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+        state: "r_mantis_blade_arm"
+    - type: Sprite
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "r_mantis_blade_arm"
+    - type: LimbItemStorage
+      items:
+        - CyberMantisBlade
+    - type: LimbItemDeployer
+      action: ActionToggleCyberHandRight
+      sound:
+        path: /Audio/Effects/metal_scrape1.ogg
+      handWhitelist:
+        tags:
+          - CyberHandItem
+      stateOn: r_mantis_blade_arm_BLADE
+      stateOff: r_mantis_blade_arm
+
+#ripperdoc
+- type: entity
+  parent: [ OrganCyberArmLeft, WithLeftCyberHand ]
+  id: LeftArmCyberRipper
+  name: Left Ripperdoc Arm
+  components:
+    - type: VisualOrgan
+      data:
+        sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+        state: "l_ripper_arm"
+    - type: Sprite
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "l_ripper_arm"
+    - type: LimbItemStorage
+      items:
+        - ScalpelRipper
+        - RetractorRipper
+        - CauteryRipper
+        - DrillRipper
+        - SawRipper
+        - HemostatRipper
+        - BoneSetterRipper
+        - BoneGelRipper
+    - type: LimbItemDeployer
+      action: ActionToggleCyberHandLeft
+      sound: 
+        path: /Audio/Effects/metal_scrape1.ogg
+      handWhitelist:
+        tags:
+          - CyberHandItem
+          - BoneGel
+      stateOn: l_ripper_arm_SURG
+      stateOff: l_ripper_arm
+    - type: RoundstartImplantable
+      cost: 2
+    - type: Construction
+      graph: RipperLeftGraph
+      node: left
+
+- type: entity
+  parent: [ OrganCyberArmRight, WithRightCyberHand ]
+  id: RightArmCyberRipper
+  name: Right Ripperdoc Arm
+  components:
+    - type: VisualOrgan
+      data:
+        sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+        state: "r_ripper_arm"
+    - type: Sprite
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      state: "r_ripper_arm"
+    - type: LimbItemStorage
+      items:
+        - ScalpelRipper
+        - RetractorRipper
+        - CauteryRipper
+        - DrillRipper
+        - SawRipper
+        - HemostatRipper
+        - BoneSetterRipper
+        - BoneGelRipper
+    - type: LimbItemDeployer
+      action: ActionToggleCyberHandRight
+      sound: 
+        path: /Audio/Effects/metal_scrape1.ogg
+      handWhitelist:
+        tags:
+          - CyberHandItem
+          - BoneGel
+      stateOn: r_ripper_arm_SURG
+      stateOff: r_ripper_arm
+    - type: RoundstartImplantable
+      cost: 2
+    - type: Construction
+      graph: RipperRightGraph
+      node: right

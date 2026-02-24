@@ -60,7 +60,7 @@
 
 # Mentor / Admin Mouse
 - type: entity
-  parent: BaseSimpleMob
+  parent: [ BaseSimpleMob, BaseMobAnimal ]
   id: MobAdminMouse
   name: NanoTrasen Admin Mouse #Far Horizons
   description: A troublemaking mouse that will most probably contribute to your death, one way or another.
@@ -79,8 +79,6 @@
     - hand_left
   - type: ComplexInteraction
   - type: Puller
-  - type: Body
-    prototype: Mouse
   - type: Speech
     speechSounds: Squeak
     speechVerb: SmallMob

@@ -58,7 +58,12 @@ using Content.Shared.Mobs.Components;
 using Content.Server.Stunnable;
 using Content.Shared.Jittering;
 using System.Linq;
-using Content.Shared.Radio;
+using Content.Server.Body;
+using Content.Shared._FarHorizons.Body;
+// Starlight edit start
+using Content.Shared.Body.Components;
+using Content.Shared.Chemistry.Reagent;
+// Starlight edit end
 using Content.Shared.Zombies;
 
 namespace Content.Server.Changeling;
@@ -82,7 +87,6 @@ public sealed partial class ChangelingSystem : EntitySystem
     [Dependency] private readonly BloodstreamSystem _blood = default!;
     [Dependency] private readonly ISerializationManager _serialization = default!;
     [Dependency] private readonly MetaDataSystem _metaData = default!;
-    [Dependency] private readonly HumanoidAppearanceSystem _humanoid = default!;
     [Dependency] private readonly SharedSolutionContainerSystem _solution = default!;
     [Dependency] private readonly TransformSystem _transform = default!;
     [Dependency] private readonly FlashSystem _flash = default!;
@@ -104,6 +108,7 @@ public sealed partial class ChangelingSystem : EntitySystem
     [Dependency] private readonly SharedJitteringSystem _jitter = default!;
     [Dependency] private readonly NpcFactionSystem _factionSystem = default!;
     [Dependency] private readonly MovementModStatusSystem _movementMod = default!;
+    [Dependency] private readonly VisualBodySystem _visualBody = default!;
 
     public EntProtoId FakeArmbladePrototype = "FakeArmBladeChangeling";
 
@@ -375,7 +380,7 @@ public sealed partial class ChangelingSystem : EntitySystem
 
     public bool TryStealDNA(EntityUid uid, EntityUid target, ChangelingComponent comp, bool countObjective = false)
     {
-        if (!TryComp<HumanoidAppearanceComponent>(target, out var appearance)
+        if (!TryComp<HumanoidCharacterProfileComponent>(target, out var appearance)
         || !TryComp<MetaDataComponent>(target, out var metadata)
         || !TryComp<DnaComponent>(target, out var dna) 
         || dna.DNA == null
@@ -440,9 +445,9 @@ public sealed partial class ChangelingSystem : EntitySystem
 
         if (data != null)
         {
-            if (!_proto.TryIndex(data.Appearance.Species, out var species))
+            if (!_proto.TryIndex(data.Appearance.Profile?.Species, out var species))
                 return null;
-            pid = species.Prototype;
+            pid = species.ID;
         }
         else if (protoId != null)
             pid = protoId;
@@ -450,7 +455,7 @@ public sealed partial class ChangelingSystem : EntitySystem
 
         var config = new PolymorphConfiguration()
         {
-            Entity = (EntProtoId) pid,
+            Entity = (EntProtoId) pid!,
             TransferDamage = true,
             Forced = true,
             Inventory = PolymorphInventoryChange.Transfer,
@@ -468,7 +473,7 @@ public sealed partial class ChangelingSystem : EntitySystem
         {
             Comp<FingerprintComponent>(newEnt).Fingerprint = data.Fingerprint;
             Comp<DnaComponent>(newEnt).DNA = data.DNA;
-            _humanoid.CloneAppearance(data.Appearance.Owner, newEnt);
+            _visualBody.CopyAppearanceFrom(data.Appearance.Owner, newEnt);
             _metaData.SetEntityName(newEnt, data.Name);
             var message = Loc.GetString("changeling-transform-finish", ("target", data.Name));
             _popup.PopupEntity(message, newEnt, newEnt);
@@ -578,7 +583,13 @@ public sealed partial class ChangelingSystem : EntitySystem
         UpdateBiomass(uid, comp, 0);
 
         // make their blood unreal
-        _blood.ChangeBloodReagent(uid, "BloodChangeling");
+        // Starlight edit start - remove deprecated method
+        if (TryComp<BloodstreamComponent>(uid, out var bloodstream) &&
+            bloodstream.BloodReferenceSolution is { } originalBlood)
+        {
+            _blood.ChangeBloodReagents(uid, new Solution([new ReagentQuantity("BloodChangeling", originalBlood.Volume)]));
+        }
+        // Starlight edit end
     }
 
     private void OnMobStateChange(EntityUid uid, ChangelingComponent comp, ref MobStateChangedEvent args)

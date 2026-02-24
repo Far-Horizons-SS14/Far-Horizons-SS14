@@ -48,14 +48,14 @@
         emptyLabel: borg-slot-uppies-empty
         whitelist:
           components:
-          - HumanoidAppearance
+          - HumanoidProfile
     - forceRemovable: true
       hand:
         emptyRepresentative: MobResomi
         emptyLabel: borg-slot-uppies-empty
         whitelist:
           components:
-          - HumanoidAppearance
+          - HumanoidProfile
   - type: BorgModuleIcon
     icon: { sprite: _Starlight/Interface/Actions/actions_borg.rsi, state: hands }
 
@@ -336,7 +336,7 @@
     - state: icon-chemist
   - type: ItemBorgModule
     hands:
-    - item: HandheldHealthAnalyzerUnpowered
+    - item: HandheldHealthAnalyzer
     - item: SyndiBorgHypo
     - item: AutoMenderBrute
     - item: AutoMenderBurn
@@ -391,7 +391,7 @@
     - state: icon-defib
   - type: ItemBorgModule
     hands:
-    - item: HandheldHealthAnalyzerUnpowered
+    - item: HandheldHealthAnalyzer
     - item: DefibrillatorSyndicateOneHandedUnpowered
     - item: BorgFireExtinguisher
     - item: BorgHandheldGPSBasic
@@ -470,6 +470,6 @@
           - Organ
           - OrganDamage
           - FunctionalOrgan
-          - BodyPart
+          - VisualOrgan
   - type: BorgModuleIcon
     icon: { sprite: _Starlight/Interface/Actions/actions_borg.rsi, state: surgery-module }

@@ -1,8 +1,10 @@
 using System.Linq;
+using Content.Server.Body;
 using Content.Server.Humanoid;
 using Content.Server.Station.Systems;
 using Content.Shared._FarHorizons.Factions;
 using Content.Shared.Damage.Systems;
+using Content.Shared.Humanoid;
 using Content.Shared.Inventory;
 using Content.Shared.Mobs.Systems;
 
@@ -20,7 +22,8 @@ public sealed partial class SalvageMissionFree : BaseSalvageMissionObjectiveHand
     public override void OnMapCreated()
     {
         var factions = IoCManager.Resolve<ISharedFactionManager>();
-        var humanoid = EntMan.System<HumanoidAppearanceSystem>();
+        var visualBody = EntMan.System<VisualBodySystem>();
+        var profile = EntMan.System<HumanoidProfileSystem>();
         var metadata = EntMan.System<MetaDataSystem>();
         var state = EntMan.System<MobStateSystem>();
         var damageable = EntMan.System<DamageableSystem>();
@@ -36,7 +39,7 @@ public sealed partial class SalvageMissionFree : BaseSalvageMissionObjectiveHand
                 return;
 
             var damage = SalvageMissionRescue.RandomDamage(ProtoMan, Rand, 100, 200, 4);
-            SalvageMissionRescue.SpawnRandomBody(ProtoMan, EntMan, Rand, pos, humanoid, metadata, state, damageable, factions, stationSpawning, inventory, selectedFaction, true, damage, true);
+            SalvageMissionRescue.SpawnRandomBody(ProtoMan, EntMan, Rand, pos, visualBody, profile, metadata, state, damageable, factions, stationSpawning, inventory, selectedFaction, true, damage, true);
         }
     }
 

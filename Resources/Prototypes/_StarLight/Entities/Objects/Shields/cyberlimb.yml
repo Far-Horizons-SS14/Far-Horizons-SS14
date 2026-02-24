@@ -31,11 +31,9 @@
       size: Small
       sprite: _Starlight/Objects/Weapons/Melee/cybershield.rsi
       heldPrefix: cybershield
-    - type: ToggleableVisuals
-      spriteLayer: shield
     - type: UseDelay
       delay: 0.5
-    - type: ToggleableLightVisuals
+    - type: ToggleableVisuals
       spriteLayer: shield
     - type: PointLight
       netsync: false
