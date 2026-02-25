@@ -50,18 +50,18 @@
 # Organs
 
 - type: entity
-  parent: OrganProtogen
   id: OrganProtoVoxExternalUnsprited
   abstract: true
+  suffix: Protogen
   components:
   - type: VisualOrganMarkings
     markingData:
       group: ProtoVox
 
 - type: entity
-  parent: OrganProtoVoxExternalUnsprited
   id: OrganProtoVoxExternal
   abstract: true
+  suffix: Protogen
   components:
   - type: Sprite
     sprite: _FarHorizons/Mobs/Species/Proto-Vox/parts.rsi
@@ -71,6 +71,9 @@
   - type: VisualOrganMarkings
     markingData:
       group: ProtoVox
+  - type: Tag
+    tags:
+      - Organic
 
 # Limbs
 

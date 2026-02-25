@@ -32,8 +32,8 @@
       Eyes: OrganProtogenEyes
       Tongue: OrganProtoKinTongue
       Ears: OrganProtogenEars
-      Lungs: OrganProtogenLungs
-      Heart: OrganProtoKinCore
+      Lungs: OrganProtoKinCore
+      Heart: OrganProtogenHeart
       Stomach: OrganProtogenStomach
       Liver: OrganProtogenLiver
       Kidneys: OrganProtogenKidneys
@@ -50,9 +50,9 @@
 # Organs
 
 - type: entity
-  parent: OrganShadekinExternal
   id: OrganProtoKinExternal
   abstract: true
+  suffix: Protogen
   components:
   - type: VisualOrganMarkings
     markingData:
@@ -112,10 +112,10 @@
     state: tongueforked
 
 - type: entity
-  parent: OrganProtogenHeart
+  parent: OrganShadekinCore
   id: OrganProtoKinCore
   name: Cybernetic Shadekin Core
   description: "The result of a one-time operation to restore a shadekin's core, it is bright once more- but not as bright as it could've been."
   components:
   - type: Sprite
-    state: core
+    sprite: _FarHorizons/Mobs/Species/Protogen/organs.rsi
