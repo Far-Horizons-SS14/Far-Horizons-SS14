@@ -86,6 +86,7 @@
       - NotekeeperCartridge
       - NanoTaskCartridge
       - NewsReaderCartridge
+      - NanoChatCartridge # CD
     cartridgeSlot:
       priority: -1
       name: device-pda-slot-component-slot-name-cartridge
@@ -160,6 +161,7 @@
     - NanoTaskCartridge
     - NewsReaderCartridge
     - WantedListCartridge
+    - NanoChatCartridge # CD
 
 - type: entity
   parent: BasePDA
@@ -174,6 +176,24 @@
       - NanoTaskCartridge
       - NewsReaderCartridge
       - MedTekCartridge
+      - NanoChatCartridge # CD
+
+#FarHorizons Start
+- type: entity
+  parent: BasePDA
+  id: BaseEngineerPDA
+  abstract: true 
+  components:
+  - type: CartridgeLoader
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NanoTaskCartridge
+      - NewsReaderCartridge
+      - HullSenseCartridge
+      - AstroNavCartridge #FH
+#FarHorizons End
 
 #FarHorizons Start
 - type: entity
@@ -534,6 +554,7 @@
     - NanoTaskCartridge
     - NewsReaderCartridge
     - AstroNavCartridge
+    - NanoChatCartridge # CD
 
 - type: entity
   parent: BasePDA
@@ -580,6 +601,7 @@
       - NanoTaskCartridge
       - NewsReaderCartridge
       - AstroNavCartridge
+      - NanoChatCartridge # CD
 
 - type: entity
   parent: BasePDA
@@ -925,6 +947,7 @@
     - NewsReaderCartridge
     - WantedListCartridge
     - LogProbeCartridge
+    - NanoChatCartridge # CD
 
 - type: entity
   parent: BaseSecurityPDA
@@ -1001,6 +1024,7 @@
       - LogProbeCartridge
       - AstroNavCartridge
       - HullSenseCartridge #FarHorizons
+      - NanoChatCartridge # CD
 
 - type: entity
   parent: CentcomPDA
@@ -1028,6 +1052,7 @@
       - MedTekCartridge
       - AstroNavCartridge
       - HullSenseCartridge #FarHorizons
+      - NanoChatCartridge # CD
   - type: Tag #  Ignore Chameleon tags
     tags:
     - DoorBumpOpener
@@ -1151,6 +1176,7 @@
     preinstalled:
       - NotekeeperCartridge
       - NanoTaskCartridge
+      - NanoChatCartridge # CD
 
 - type: entity
   parent: [ SyndiPDA, BaseSyndicateContraband ]
@@ -1192,6 +1218,7 @@
       - NotekeeperCartridge
       - NanoTaskCartridge
       - MedTekCartridge
+      - NanoChatCartridge # CD
 
 - type: entity
   parent: [ SyndiOperativePDA, BaseSyndicateContraband ]
@@ -1241,6 +1268,7 @@
       - LogProbeCartridge
       - AstroNavCartridge
       - HullSenseCartridge #FarHorizons
+      - NanoChatCartridge # CD
 
 - type: entity
   parent: ERTLeaderPDA
@@ -1410,6 +1438,7 @@
     - NewsReaderCartridge
     - WantedListCartridge
     - LogProbeCartridge
+    - NanoChatCartridge # CD
 
 - type: entity
   parent: BaseMedicalPDA
@@ -1437,6 +1466,7 @@
     - NewsReaderCartridge
     - WantedListCartridge
     - MedTekCartridge
+    - NanoChatCartridge # CD
 
 - type: entity
   parent: ClownPDA
