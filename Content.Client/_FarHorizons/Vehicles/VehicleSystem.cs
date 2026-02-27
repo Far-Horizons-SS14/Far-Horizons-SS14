@@ -84,35 +84,36 @@ public sealed class VehicleSystems : SharedVehicleSystems
         {
             case Direction.North:
                 _sprite.SetDrawDepth((target, spriteComp), vbComp.northDrawDepth);
-                _sprite.LayerSetOffset((target, spriteComp), (int)VehicleVisuals.VisualState, vbComp.NorthOffset);
+                _sprite.SetOffset((target, spriteComp), vbComp.NorthOffset);
                 break;
             case Direction.South:
                 _sprite.SetDrawDepth((target, spriteComp), vbComp.southDrawDepth);
-                _sprite.LayerSetOffset((target, spriteComp), (int)VehicleVisuals.VisualState, vbComp.SouthOffset);
+                _sprite.SetOffset((target, spriteComp), vbComp.SouthOffset);
                 break;
             case Direction.West:
                 _sprite.SetDrawDepth((target, spriteComp), vbComp.westDrawDepth);
-                _sprite.LayerSetOffset((target, spriteComp), (int)VehicleVisuals.VisualState, vbComp.WestOffset);
+                _sprite.SetOffset((target, spriteComp), vbComp.WestOffset);
                 break;
             case Direction.East:
                 _sprite.SetDrawDepth((target, spriteComp), vbComp.eastDrawDepth);
-                _sprite.LayerSetOffset((target, spriteComp), (int)VehicleVisuals.VisualState, vbComp.EastOffset);
+                _sprite.SetOffset((target, spriteComp), vbComp.EastOffset);
                 break;
             case Direction.NorthWest:
                 _sprite.SetDrawDepth((target, spriteComp), vbComp.westDrawDepth);
-                _sprite.LayerSetOffset((target, spriteComp), (int)VehicleVisuals.VisualState, vbComp.WestOffset);
+                _sprite.SetOffset((target, spriteComp), vbComp.WestOffset);
                 break;
             case Direction.NorthEast:
                 _sprite.SetDrawDepth((target, spriteComp), vbComp.eastDrawDepth);
-                _sprite.LayerSetOffset((target, spriteComp), (int)VehicleVisuals.VisualState, vbComp.EastOffset);
+                _sprite.SetOffset((target, spriteComp), vbComp.EastOffset);
                 break;
             case Direction.SouthWest:
                 _sprite.SetDrawDepth((target, spriteComp), vbComp.westDrawDepth);
-                _sprite.LayerSetOffset((target, spriteComp), (int)VehicleVisuals.VisualState, vbComp.WestOffset);
+                _sprite.SetOffset((target, spriteComp), vbComp.WestOffset);
                 break;
             case Direction.SouthEast:
                 _sprite.SetDrawDepth((target, spriteComp), vbComp.eastDrawDepth);
-                _sprite.LayerSetOffset((target, spriteComp), (int)VehicleVisuals.VisualState, vbComp.EastOffset);
-                break;        }
+                _sprite.SetOffset((target, spriteComp), vbComp.EastOffset);
+                break;        
+        }
     }
 }
