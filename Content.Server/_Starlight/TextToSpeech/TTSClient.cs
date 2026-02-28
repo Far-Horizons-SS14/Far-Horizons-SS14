@@ -67,6 +67,12 @@ public sealed class TTSClient : ITTSClient
     {
         try
         {
+            if (string.IsNullOrEmpty(connectionString))
+            {
+                _sawmill.Warning("Redis TTS connection string is null, skipping connection");
+                return;
+            }
+
             _redis?.Dispose();
             _redis = ConnectionMultiplexer.Connect(connectionString);
             _db = _redis.GetDatabase();
@@ -159,7 +165,7 @@ public sealed class TTSClient : ITTSClient
             else if (data.Length > 1)
             {
                 var seq = data[0];
-                pending[seq] = data[1..]; 
+                pending[seq] = data[1..];
             }
         });
 
