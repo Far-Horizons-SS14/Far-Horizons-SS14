@@ -1,3 +1,4 @@
+using System.Collections.Immutable;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
@@ -153,7 +154,22 @@ public sealed class BanPanelEui : BaseEui
                         .Select(entry => entry.ToString())
                 )
                 .ToList();
-            _banManager.WebhookUpdateRoleBans(targetUid, ban.Target, Player.UserId, addressRange, targetHWid, roles, ban.BanDurationMinutes, ban.Severity, ban.Reason, DateTimeOffset.UtcNow);
+            
+            // Far Horizons start
+            ImmutableArray<BanRoleDef>? roleDefs =
+            [
+                ..
+                (ban.BannedJobs ?? [])
+                .Select(entry => new BanRoleDef("Job", entry.Id)).ToList(),
+
+                ..
+                (ban.BannedAntags ?? [])
+                .Select(entry => new BanRoleDef("Antag", entry.Id)).ToList()
+            ];
+            _banManager.CreateRoleBan(roleBanInfo); // somehow it wasn't here :skull:
+            // Far Horizons end
+
+            _banManager.WebhookUpdateRoleBans(targetUid, ban.Target, Player.UserId, addressRange, targetHWid, roles, ban.BanDurationMinutes, ban.Severity, ban.Reason, DateTimeOffset.UtcNow, roleDefs);
             // Starlight end - construct a list of role strings and send to webhook
         }
         else

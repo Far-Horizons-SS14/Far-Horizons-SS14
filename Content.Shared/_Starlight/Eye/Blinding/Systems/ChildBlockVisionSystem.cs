@@ -25,7 +25,12 @@ public sealed class ChildBlockVisionSystem : EntitySystem
         SubscribeLocalEvent<ParentCanBlockVisionComponent, EntParentChangedMessage>(OnChangeParent);
     }
 
-    private void OnChangeParent(Entity<ParentCanBlockVisionComponent> ent, ref EntParentChangedMessage args) => _blindable.UpdateIsBlind(ent.Owner);
+    private void OnChangeParent(Entity<ParentCanBlockVisionComponent> ent, ref EntParentChangedMessage args)
+    {
+        if (!Initialized(ent) || args.OldParent == null) return; // Far Horizons - I wish I had a better explaination, but somehow calling this on spawn makes everything blind
+
+        _blindable.UpdateIsBlind(ent.Owner);
+    }
 
     private void OnSeeAttempt(Entity<ParentCanBlockVisionComponent> ent, ref CanSeeAttemptEvent args)
     {
