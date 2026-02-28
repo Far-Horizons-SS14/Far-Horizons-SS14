@@ -158,7 +158,6 @@ public sealed partial class TTSSystem : EntitySystem
         try
         {
             var text = CleanText(args.Message.Tts);
-            _chime.TryGetSenderHeadsetChime(args.Source, out var chime);
             var filter = GetFilter(uid, args);
             var voice = GetOrAssignVoice(args.Source);
             var effect = args.Message.Modifier switch
@@ -168,7 +167,7 @@ public sealed partial class TTSSystem : EntitySystem
                 _ => TTSEffect.None
             };
 
-            await GenerateAndStream(TTSType.IG, voice, text, filter, effect, volume: args.IsWhisper ? WhisperVoiceVolumeModifier : 1f);
+            await GenerateAndStream(TTSType.IG, voice, text, filter, effect, null, uid, volume: args.IsWhisper ? WhisperVoiceVolumeModifier : 1f);
         }
         catch (Exception ex)
         {
