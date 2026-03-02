@@ -39,6 +39,7 @@ public sealed class GenericFieldGeneratorSystem : EntitySystem
         SubscribeLocalEvent<GenericFieldGeneratorComponent, ComponentRemove>(OnComponentRemoved);
         SubscribeLocalEvent<GenericFieldGeneratorComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<GenericFieldGeneratorComponent, BatteryStateChangedEvent>(OnBatteryStateChanged);
+        SubscribeLocalEvent<GenericFieldGeneratorComponent, ChargeChangedEvent>(OnChargeChanged);
         SubscribeLocalEvent<GenericFieldGeneratorComponent, SignalReceivedEvent>(OnSignalReceived);
     }
 
@@ -58,7 +59,6 @@ public sealed class GenericFieldGeneratorSystem : EntitySystem
                     {
                         _battery.UseCharge(uid, generator.PowerDrain);
                         generator.Accumulator -= generator.Threshold;
-                        //                        ChangePowerVisualizer(batteryComponent.LastCharge, generator); //Gotta figure this out before merging
                     }
                 }
             }
@@ -82,7 +82,7 @@ public sealed class GenericFieldGeneratorSystem : EntitySystem
         {
             batteryComponent.MaxChargeRate = generator.Comp.Enabled ? generator.Comp.ChargeRate : 0;
         }
-        ChangeFieldVisualizer(generator);
+        ChangePowerVisualizer(generator);
     }
     private void OnExamine(EntityUid uid, GenericFieldGeneratorComponent component, ExaminedEvent args)
     {
@@ -115,7 +115,6 @@ public sealed class GenericFieldGeneratorSystem : EntitySystem
                 }
             }
         }
-        ChangeFieldVisualizer(generator);
         args.Handled = true;
     }
 
@@ -141,7 +140,6 @@ public sealed class GenericFieldGeneratorSystem : EntitySystem
         var component = generator.Comp;
         var genXForm = Transform(generator);
         generator.Comp.Charged = true;
-        ChangeFieldVisualizer(generator);
         var dir = (Direction)genXForm.LocalRotation.GetCardinalDir();
 
         if (component.Connections.ContainsKey(dir))
@@ -154,7 +152,6 @@ public sealed class GenericFieldGeneratorSystem : EntitySystem
     {
         generator.Comp.Charged = false;
         RemoveConnections(generator);
-        ChangeFieldVisualizer(generator);
     }
 
     private void OnComponentRemoved(Entity<GenericFieldGeneratorComponent> generator, ref ComponentRemove args) => RemoveConnections(generator);
@@ -178,15 +175,12 @@ public sealed class GenericFieldGeneratorSystem : EntitySystem
                 value.Item1.Comp.IsConnected = false;
                 ChangeOnLightVisualizer(value.Item1);
             }
-
-            ChangeFieldVisualizer(value.Item1);
         }
         component.Connections.Clear();
         if (component.IsConnected)
             _popupSystem.PopupEntity(Loc.GetString("comp-genericfield-disconnected"), uid, PopupType.LargeCaution);
         component.IsConnected = false;
         ChangeOnLightVisualizer(generator);
-        ChangeFieldVisualizer(generator);
         _adminLogger.Add(LogType.FieldGeneration, LogImpact.Medium, $"{ToPrettyString(uid)} lost field connections"); // Ideally LogImpact would depend on if there is a singulo nearby
         //this logging should work fine for this system aswell
     }
@@ -236,7 +230,6 @@ public sealed class GenericFieldGeneratorSystem : EntitySystem
                         _popupSystem.PopupEntity(Loc.GetString("comp-genericfield-turned-off"), generator);
                     }
                 }
-                ChangeFieldVisualizer(generator);
             }
         }
     }
@@ -253,6 +246,8 @@ public sealed class GenericFieldGeneratorSystem : EntitySystem
         }
         RemoveConnections(generator);
     }
+
+    private void OnChargeChanged(Entity<GenericFieldGeneratorComponent> generator, ref ChargeChangedEvent args) => ChangePowerVisualizer(generator);
 
     #endregion
 
@@ -321,7 +316,6 @@ public sealed class GenericFieldGeneratorSystem : EntitySystem
 
         component.Connections[dir] = (otherFieldGenerator, fields);
         otherFieldGeneratorComponent.Connections[dir.GetOpposite()] = (generator, fields);
-        ChangeFieldVisualizer(otherFieldGenerator);
 
         if (!component.IsConnected)
         {
@@ -335,7 +329,6 @@ public sealed class GenericFieldGeneratorSystem : EntitySystem
             ChangeOnLightVisualizer(otherFieldGenerator);
         }
 
-        ChangeFieldVisualizer(generator);
         UpdateConnectionLights(generator);
         _popupSystem.PopupEntity(Loc.GetString("comp-genericfield-connected"), generator);
         return true;
@@ -419,29 +412,22 @@ public sealed class GenericFieldGeneratorSystem : EntitySystem
     /// </summary>
     /// <param name="power"></param>
     /// <param name="generator"></param>
-    //    private void ChangePowerVisualizer(int power, Entity<GenericFieldGeneratorComponent> generator) // TODO: CONVERT VISUALS TO NEW SYSTEM, COMMENTED OUT FOR NOW
-    //    {
-    //        var component = generator.Comp;
-    //       _visualizer.SetData(generator, GenericFieldGeneratorVisuals.PowerLight, component.PowerBuffer switch
-    //        {
-    //            <= 0 => PowerLevelVisuals.NoPower,
-    //            >= 25 => PowerLevelVisuals.HighPower,
-    //            _ => (component.PowerBuffer < component.PowerMinimum)
-    //                ? PowerLevelVisuals.LowPower
-    //                : PowerLevelVisuals.MediumPower
-    //        });
-    //    }
-
-    /// <summary>
-    /// Check if a field has any or no connections and if it's enabled to toggle the field level light
-    /// </summary>
-    /// <param name="generator"></param>
-    private void ChangeFieldVisualizer(Entity<GenericFieldGeneratorComponent> generator) => _visualizer.SetData(generator, GenericFieldGeneratorVisuals.FieldLight, generator.Comp.Connections.Count switch
+    private void ChangePowerVisualizer(Entity<GenericFieldGeneratorComponent> generator)
     {
-        > 1 => FieldLevelVisuals.MultipleFields, //might have to rewrite this entirely
-        1 => FieldLevelVisuals.OneField,
-        _ => generator.Comp.Enabled ? FieldLevelVisuals.On : FieldLevelVisuals.NoLevel
-    });
+        if (!TryComp<BatteryComponent>(generator, out var batteryComponent))
+            return;
+        var charge = batteryComponent.LastCharge;
+        _visualizer.SetData(generator, GenericFieldGeneratorVisuals.PowerLight, charge switch //I dont like hardcoding these values, but I also dont feel like having a giant pile of if statments
+        {
+            <= 0 => PowerLevelVisuals.NoPower,
+            >= 1450 => PowerLevelVisuals.FullPower,
+            >= 1200 => PowerLevelVisuals.VeryHighPower,
+            >= 900 => PowerLevelVisuals.HighPower,
+            >= 600 => PowerLevelVisuals.MediumPower,
+            >= 300 => PowerLevelVisuals.LowPower,
+            _ => PowerLevelVisuals.MinimalPower
+        });
+    }
 
     private void ChangeOnLightVisualizer(Entity<GenericFieldGeneratorComponent> generator) => _visualizer.SetData(generator, GenericFieldGeneratorVisuals.OnLight, generator.Comp.IsConnected);
     #endregion

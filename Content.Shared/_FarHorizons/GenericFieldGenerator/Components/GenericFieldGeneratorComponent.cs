@@ -101,7 +101,6 @@ public sealed partial class GenericFieldGeneratorComponent : Component
 public enum GenericFieldGeneratorVisuals : byte
 {
     PowerLight,
-    FieldLight,
     OnLight,
 }
 
@@ -109,16 +108,10 @@ public enum GenericFieldGeneratorVisuals : byte
 public enum PowerLevelVisuals : byte
 {
     NoPower,
+    MinimalPower,
     LowPower,
     MediumPower,
     HighPower,
-}
-
-[Serializable, NetSerializable]
-public enum FieldLevelVisuals : byte
-{
-    NoLevel,
-    On,
-    OneField,
-    MultipleFields,
+    VeryHighPower,
+    FullPower,
 }

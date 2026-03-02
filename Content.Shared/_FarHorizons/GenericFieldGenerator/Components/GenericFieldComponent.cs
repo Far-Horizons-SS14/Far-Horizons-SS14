@@ -11,7 +11,7 @@ namespace Content.Shared._FarHorizons.GenericFieldGenerator.Components;
 public sealed partial class GenericFieldComponent : Component
 {
     /// <summary>
-    /// What made this field?
+    /// What made this entity?
     /// </summary>
     [ViewVariables]
     public Entity<GenericFieldGeneratorComponent>? SourceGen;

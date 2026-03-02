@@ -17,17 +17,13 @@
   - type: InteractionOutline
   - type: Anchorable
   - type: Sprite
-    sprite: Structures/Power/Generation/Singularity/containment.rsi
-    state: icon
+    sprite: _FarHorizons/Structures/Machines/HolographicGenerators/holographic_field_generator.rsi
+    state: machine
     noRot: false
     layers:
-      - state: icon
+      - state: machine
       - state: p1
         map: ["powerLight"]
-        visible: false
-        shader: unshaded
-      - state: a1
-        map: ["fieldLight"]
         visible: false
         shader: unshaded
       - state: on
@@ -35,7 +31,7 @@
         visible: false
         shader: unshaded
   - type: Icon
-    sprite: Structures/Power/Generation/Singularity/containment.rsi
+    sprite: _FarHorizons/Structures/Machines/HolographicGenerators/holographic_field_generator.rsi
     state: icon
   - type: GenericFieldGenerator
     createdField: HolographicField
@@ -53,15 +49,12 @@
       enum.GenericFieldGeneratorVisuals.PowerLight:
         powerLight:
           NoPower: {visible: false}
-          LowPower: {visible: true, state: p1}
+          MinimalPower : {visible: true, state: p1}
+          LowPower: {visible: true, state: p2}
           MediumPower: {visible: true, state: p3}
-          HighPower: {visible: true, state: p6}
-      enum.GenericFieldGeneratorVisuals.FieldLight:
-        fieldLight:
-          NoLevel: {visible: false}
-          On: {visible: true, state: a1}
-          OneField: {visible: true, state: a2}
-          MultipleFields: {visible: true, state: a3}
+          HighPower: {visible: true, state: p4}
+          VeryHighPower: {visible: true, state: p5}
+          FullPower: {visible: true, state: p6}
       enum.GenericFieldGeneratorVisuals.OnLight:
         connectedLight:
           True: { visible: true }
@@ -197,6 +190,8 @@
     access: [[ "Security" ]]
   - type: StaticPrice
     price: 150
+  - type: PointLight
+    color: red
 
 - type: entity
   parent: HolographicBarrierGenerator
@@ -235,11 +230,11 @@
         layer:
         - GlassLayer
   - type: Sprite
-    sprite: Structures/Power/Generation/Singularity/containment_field.rsi
+    sprite: _FarHorizons/Structures/Holo/holographic_field.rsi
     state: field
     noRot: true
   - type: Icon
-    sprite: Structures/Power/Generation/Singularity/containment_field.rsi
+    sprite: _FarHorizons/Structures/Holo/holographic_field.rsi
     state: field
   - type: SyncSprite
   - type: Airtight
