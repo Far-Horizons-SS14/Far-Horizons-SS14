@@ -1,3 +1,4 @@
+using Content.Shared.FixedPoint;
 using Content.Shared.Mobs;
 using Robust.Shared.Serialization;
 
@@ -7,16 +8,6 @@ namespace Content.Shared._FarHorizons.Silicons.IPC;
 public enum IPCUiKey : byte
 {
     Key
-}
-
-[Serializable, NetSerializable]
-public sealed class IPCBuiState(float chargePercent, bool hasBattery, MobState mobState) : BoundUserInterfaceState
-{
-    public float ChargePercent = chargePercent;
-
-    public bool HasBattery = hasBattery;
-
-    public MobState MobState = mobState;
 }
 
 [Serializable, NetSerializable]
@@ -32,4 +23,7 @@ public sealed class IPCSetNameBuiMessage(string name) : BoundUserInterfaceMessag
 }
 
 [Serializable, NetSerializable]
-public sealed class IPCRequestUpdateBuiMessage : BoundUserInterfaceMessage;
+public sealed class IPCHealthMessage(FixedPoint2 bloodLevel) : BoundUserInterfaceMessage
+{
+    public FixedPoint2 BloodLevel = bloodLevel;
+}

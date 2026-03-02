@@ -56,5 +56,8 @@ public abstract partial class SharedIPCSystem : EntitySystem
 
         UpdateBattery(frameTime);
         UpdateThermals(frameTime);
+        UpdateUI(frameTime);
     }
+
+    protected virtual void UpdateUI(float frameTime) { }
 }
