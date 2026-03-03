@@ -137,6 +137,8 @@
       reagents:
       - ReagentId: Oil
         Quantity: 300
+    bleedReductionAmount: 0 # No natural wound closing whatsoever
+    bloodlossThreshold: 0.75 # Everyone else start taking bloodloss damage at 90%, but with no natural bleeding stop - IPC can last for a bit longer
   - type: IPCWeldClosesWounds
   - type: Icon
     sprite: _FarHorizons/Mobs/Species/IPC/parts.rsi
