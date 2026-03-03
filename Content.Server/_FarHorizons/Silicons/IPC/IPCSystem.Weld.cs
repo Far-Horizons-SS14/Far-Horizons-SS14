@@ -13,7 +13,7 @@ public sealed partial class IPCSystem
 
     private void OnIPCRepaired(Entity<IPCWeldClosesWoundsComponent> ent, ref RepairDoAfterEvent args)
     {
-        if (!TryComp<BloodstreamComponent>(ent.Owner, out var bloodstream)) return;
+        if (args.Cancelled || !TryComp<BloodstreamComponent>(ent.Owner, out var bloodstream)) return;
 
         _bloodstream.TryModifyBleedAmount((ent, bloodstream), ent.Comp.BloodlossModifier);
     }
