@@ -1,3 +1,4 @@
+#region .38 Special
 ## Empty mags
 - type: entity
   id: BaseMagazineRifle38
@@ -243,3 +244,326 @@
       - state: inhand-right-mag
       - state: inhand-right-stripe
         color: "#28E7DC"
+
+#region 5.56 Heavy
+
+- type: entity
+  id: Rifle5.56HeavyBase
+  name: "5.56 Box Magazine (Rifle)"
+  parent: BaseMagazineBoxLightRifle
+  description: 100 round box of 5.56 Ammuntion.
+  components:
+  - type: Tag
+    tags:
+      - Rifle5.56Heavy
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifle5.56SP
+    capacity: 100
+  - type: Item
+    size: Small
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Magazine/LMG/M492.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 11
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  id: Rifle5.56HeavyMagazineEmpty
+  name: "5.56 Box Magazine (Rifle Any)"
+  suffix: empty
+  parent: Rifle5.56HeavyBase
+  components:
+  - type: BallisticAmmoProvider
+    proto: null
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+
+- type: entity
+  id: Rifle5.56HeavyMagazineSP
+  name: "5.56 Box Magazine (Rifle SP)"
+  parent: Rifle5.56HeavyBase
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifle5.56SP
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: sp
+
+- type: entity
+  id: Rifle5.56HeavyMagazineHP
+  name: "5.56 Box Magazine (Rifle HP)"
+  parent: Rifle5.56HeavyBase
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifle5.56HP
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: hp
+
+- type: entity
+  id: Rifle5.56HeavyMagazineFMJ
+  name: "5.56 Box Magazine (Rifle FMJ)"
+  parent: Rifle5.56HeavyBase
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifle5.56FMJ
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: fmj
+
+- type: entity
+  id: Rifle5.56HeavyMagazineIncendiary
+  name: "5.56 Box Magazine (Rifle Incendiary)"
+  parent: Rifle5.56HeavyBase
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifle5.56Incendiary
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: incendiary
+
+- type: entity
+  id: Rifle5.56HeavyMagazineUranium
+  name: "5.56 Box Magazine (Rifle Uranium)"
+  parent: Rifle5.56HeavyBase
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifle5.56Uranium
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: uranium
+
+- type: entity
+  id: Rifle5.56HeavyMagazineAP
+  name: "5.56 Box Magazine (Rifle AP)"
+  parent: Rifle5.56HeavyBase
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifle5.56AP
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: ap
+
+- type: entity
+  id: Rifle5.56HeavyMagazinePractice
+  name: "5.56 Box Magazine (Rifle Practice)"
+  parent: Rifle5.56HeavyBase
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifle5.56Practice
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: practice
+
+- type: entity
+  id: Rifle5.56HeavyMagazineRubber
+  name: "5.56 Box Magazine (Rifle Rubber)"
+  parent: Rifle5.56HeavyBase
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifle5.56Rubber
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: rubber
+
+#region 5.56
+
+# Empty mags
+- type: entity
+  id: BaseMagazineRifle5.56
+  name: "5.56 Magazine (Rifle)"
+  parent: [ BaseItem, BaseSecurityContraband ]
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - MagazineRifle5.56
+  - type: Item
+    size: Small
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeRifle5.56
+    capacity: 25
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Magazine/Rifle/lecter.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 6
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  id: MagazineRifle5.56SP
+  name: "5.56 Magazine (Rifle SP)"
+  parent: BaseMagazineRifle5.56
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifle5.56SP
+  - type: Sprite
+    layers:
+    - state: sp
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  id: MagazineRifle5.56HP
+  name: "5.56 Magazine (Rifle HP)"
+  parent: BaseMagazineRifle5.56
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifle5.56HP
+  - type: Sprite
+    layers:
+    - state: red
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  id: MagazineRifle5.56FMJ
+  name: "5.56 Magazine (Rifle FMJ)"
+  parent: BaseMagazineRifle5.56
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifle5.56FMJ
+  - type: Sprite
+    layers:
+    - state: fmj
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  id: MagazineRifle5.56AP
+  name: "5.56 Magazine (Rifle AP)"
+  parent: BaseMagazineRifle5.56
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifle5.56AP
+  - type: Sprite
+    layers:
+    - state: ap
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  id: MagazineRifle5.56Empty
+  name: "5.56 Magazine (Rifle Any)"
+  suffix: empty
+  parent: MagazineRifle5.56SP
+  components:
+  - type: BallisticAmmoProvider
+    proto: null
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+
+- type: entity
+  id: MagazineRifle5.56Incendiary
+  name: "5.56 Magazine (Rifle Incendiary)"
+  parent: MagazineRifle5.56SP
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifle5.56Incendiary
+  - type: Sprite
+    layers:
+    - state: incendiary
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+        
+- type: entity
+  id: MagazineRifle5.56Practice
+  name: "5.56 Magazine (Rifle Practice)"
+  parent: BaseMagazineRifle5.56
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifle5.56Practice
+  - type: Sprite
+    layers:
+    - state: practice
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  id: MagazineRifle5.56Uranium
+  name: "5.56 Magazine (Rifle Uranium)"
+  parent: BaseMagazineRifle5.56
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifle5.56Uranium
+  - type: Sprite
+    layers:
+    - state: uranium
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  id: MagazineRifle5.56Rubber
+  name: "5.56 Magazine (Rifle Rubber)"
+  parent: BaseMagazineRifle5.56
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifle5.56Rubber
+  - type: Sprite
+    layers:
+    - state: rubber
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]

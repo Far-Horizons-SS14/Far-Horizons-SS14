@@ -82,7 +82,10 @@
   - type: StaticPrice
     price: 500
   - type: UseDelay
-    delay: 1
+    delay: 2 #FH
+  - type: SpeedModifiedOnWield #FH
+    walkModifier: 0.90 #FH - ADS Update
+    sprintModifier: 0.90 #FH
 
 - type: entity
   name: L6 SAW

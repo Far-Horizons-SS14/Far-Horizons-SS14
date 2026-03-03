@@ -54,6 +54,11 @@
         ents: []
   - type: StaticPrice
     price: 500
+  - type: UseDelay #FH
+    delay: 1.5 #FH - Long and Unwieldly
+  - type: SpeedModifiedOnWield #FH
+    walkModifier: 0.90 #FH - ADS Update
+    sprintModifier: 0.90 #FH
 
 - type: entity
   parent: BaseWeaponShotgunAny

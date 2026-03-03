@@ -1,4 +1,4 @@
-############ MAGAZINES (.40) ############
+#region .38 Rifle
 - type: latheRecipe
   parent: BaseEmptyAmmoRecipe
   id: MagazineRifle38Empty
@@ -69,3 +69,73 @@
   result: MagazineRifle38Practice
   materials:
     Steel: 100
+
+#region 5.56 LMG
+
+- type: latheRecipe
+  parent: BaseEmptyAmmoRecipe
+  id: Rifle5.56HeavyMagazineEmpty
+  result: Rifle5.56HeavyMagazineEmpty
+  materials:
+    Steel: 50
+
+- type: latheRecipe
+  parent: BaseEmptyAmmoRecipe
+  id: Rifle5.56HeavyMagazinePractice
+  result: Rifle5.56HeavyMagazinePractice
+  materials:
+    Steel: 700
+
+- type: latheRecipe
+  parent: BaseEmptyAmmoRecipe
+  id: Rifle5.56HeavyMagazineRubber
+  result: Rifle5.56HeavyMagazineRubber
+  materials:
+    Plastic: 400
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: Rifle5.56HeavyMagazineSP
+  result: Rifle5.56HeavyMagazineSP
+  materials:
+    Steel: 1820
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: Rifle5.56HeavyMagazineHP
+  result: Rifle5.56HeavyMagazineHP
+  materials:
+    Steel: 1820
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: Rifle5.56HeavyMagazineFMJ
+  result: Rifle5.56HeavyMagazineFMJ
+  materials:
+    Steel: 1820
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: Rifle5.56HeavyMagazineUranium
+  result: Rifle5.56HeavyMagazineUranium
+  materials:
+    Steel: 50
+    Plastic: 1200
+    Uranium: 1200
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: Rifle5.56HeavyMagazineIncendiary
+  result: Rifle5.56HeavyMagazineIncendiary
+  materials:
+    Steel: 50
+    Plastic: 400 # yeah uh. They're just really cheap for some reason? Idk man. Can't make it more expensive than the actual cost
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: Rifle5.56HeavyMagazineAP
+  result: Rifle5.56HeavyMagazineAP
+  materials:
+    Plastic: 400
+    Steel: 1200
+    Uranium: 1200

@@ -57,6 +57,15 @@
         ents: []
   - type: StaticPrice
     price: 500
+  - type: CursorOffsetRequiresWield
+  - type: EyeCursorOffset # FH Snipers inherently get a bit of extra range w/o attachements
+    maxOffset: 1 #FH
+    pvsIncrease: 0.3 #FH
+  - type: UseDelay #FH
+    delay: 2 #FH - Long and Unwieldly
+  - type: SpeedModifiedOnWield #FH
+    walkModifier: 0.90 #FH - ADS Update
+    sprintModifier: 0.90 #FH
 
 - type: entity
   name: Kardashev-Mosin

@@ -63,6 +63,11 @@
       gun_chamber: !type:ContainerSlot
   - type: StaticPrice
     price: 500
+  - type: UseDelay #FH
+    delay: 0.5 #FH - SMGs are light & compact
+  - type: SpeedModifiedOnWield #FH
+    walkModifier: 0.95 #FH - Light, easy to aim
+    sprintModifier: 0.95 #FH
 
 - type: entity
   name: Atreides

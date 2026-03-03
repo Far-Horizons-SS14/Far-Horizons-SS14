@@ -68,6 +68,11 @@
       gun_chamber: !type:ContainerSlot ""
   - type: StaticPrice
     price: 500
+  - type: UseDelay #FH
+    delay: 1 #FH
+  - type: SpeedModifiedOnWield #FH
+    walkModifier: 0.90 #FH - ADS Update
+    sprintModifier: 0.90 #FH
 
 - type: entity
   name: AKMS
@@ -175,10 +180,18 @@
     - state: mag-0
       map: [ "enum.GunVisualLayers.Mag" ]
   - type: Clothing
-    sprite: Objects/Weapons/Guns/Rifles/lecter.rsi
+    sprite: _FarHorizons/Objects/Weapons/Guns/Rifles/lecter.rsi #FH
   - type: Gun
+    minAngle: 20 #FH
+    maxAngle: 32 #FH
+    angleIncrease: 0.5 #FH
+    angleDecay: 4 #FH
+    fireRate: 5 #FH
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/ltrifle.ogg
+  - type: GunWieldBonus #FH 5-10 Deviation (stock)
+    minAngle: -15 #FH
+    maxAngle: -22 #FH
   - type: ItemSlots
     slots:
       gun_magazine:
@@ -203,7 +216,7 @@
       gun_chamber: !type:ContainerSlot ""
   - type: MagazineVisuals
     magState: mag
-    steps: 5
+    steps: 4 #FH
     zeroVisible: true
   - type: Appearance
   - type: Tag #FH

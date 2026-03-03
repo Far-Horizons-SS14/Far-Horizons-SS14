@@ -56,3 +56,76 @@
     steps: 1
     zeroVisible: true
   - type: Appearance
+
+- type: entity
+  name: Lecter Type-T
+  parent: WeaponRifleLecter
+  id: WeaponRifleLecterNT
+  description: "A modifed Lecter platform utilized by NanoTrasen with a simple angled grip and holographic sights for easy target acquisition, as well as electronic status lights. Feeds from 5.56 Magazines."
+  suffix: NT
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/Rifles/nt_lecter.rsi
+    layers:
+    - state: base
+      map: [ "enum.GunVisualLayers.Base" ]
+    - state: mag-0
+      map: [ "enum.GunVisualLayers.Mag" ]
+  - type: GunWieldBonus #FH 1-5 Deviation / Holo-Sights
+    minAngle: -20 #FH
+    maxAngle: -27 #FH
+  - type: Clothing
+    sprite: _FarHorizons/Objects/Weapons/Guns/Rifles/nt_lecter.rsi
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: true
+  - type: EyeCursorOffset # Holo-Sights
+    maxOffset: 0.5
+    pvsIncrease: 0.3
+  - type: UseDelay # Grip
+    delay: 0.5
+  - type: SpeedModifiedOnWield # Light Stock
+    walkModifier: 0.95
+    sprintModifier: 0.95
+
+- type: entity
+  name: Lecter Type-S
+  parent: WeaponRifleLecter
+  id: WeaponRifleLecterNS
+  description: "A modifed Lecter platform utilized by NeoSol with a longer barrel for greater accuracy and an attached gunsword to make crewmembers think twice about challenging an officer with this weapon. Feeds from 5.56 Magazines."
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/Rifles/NS_Lecter/ns_lecter_x64.rsi
+    layers:
+    - state: base
+      map: [ "enum.GunVisualLayers.Base" ]
+    - state: mag-0
+      map: [ "enum.GunVisualLayers.Mag" ]
+  - type: GunWieldBonus #FH 1-2 Deviation / Long Barrel
+    minAngle: -19 #FH
+    maxAngle: -31 #FH
+  - type: Clothing
+    sprite: _FarHorizons/Objects/Weapons/Guns/Rifles/NS_Lecter/ns_lecter_x32.rsi
+  - type: MagazineVisuals
+    magState: mag
+    steps: 4
+    zeroVisible: true
+  - type: Sharp
+  - type: MeleeWeapon
+    wideAnimationRotation: -90
+    attackRate: 1
+    damage:
+      types:
+        Slash: 20 # Slightly better than combat knife which clocks in at 18 damage/s
+    soundHit: /Audio/Weapons/bladeslice.ogg
+    angle: 0
+    animation: WeaponArcThrust
+  - type: AltFireMelee
+    attackType: Heavy
+  - type: UseDelay # Long Barrel / Gunsword
+    delay: 1.5
+  - type: SpeedModifiedOnWield
+    walkModifier: 0.90
+    sprintModifier: 0.90

@@ -46,6 +46,11 @@
     - SemiAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg
+  - type: UseDelay #FH
+    delay: 2 #FH
+  - type: SpeedModifiedOnWield #FH
+    walkModifier: 0.90 #FH - ADS Update
+    sprintModifier: 0.90 #FH
 
 - type: entity
   name: china lake

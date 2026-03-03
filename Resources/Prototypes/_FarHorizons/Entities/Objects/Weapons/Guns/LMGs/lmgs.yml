@@ -4,6 +4,20 @@
   parent: [BaseWeaponLightMachineGun, BaseSecurityContraband]
   description: A high tech non-traditional LMG built specifically for combating the big threats among us. Uses 5.56 ammo.
   components:
+  - type: KnockbackByUserTag # TODO - Put this on suit instead of gun. Fine for now since you can't use gun without suit anyway.
+    doestContain:
+      Skating:
+        knockback: 0
+        staminaMultiplier: 0
+      Resomi:
+        knockback: 0
+        staminaMultiplier: 0
+      Avali:
+        knockback: 0 # half of what resomi take
+        staminaMultiplier: 0
+      Felionoid:
+        knockback: 0 #half of what resomi take
+        staminaMultiplier: 0
   - type: Sprite
     sprite: _FarHorizons/Objects/Weapons/Guns/LMGs/M492_x64.rsi
     layers:
@@ -23,31 +37,46 @@
     steps: 5
     zeroVisible: true
   - type: Gun
-    minAngle: 20
+    minAngle: 15
     maxAngle: 35
     angleIncrease: 2
     angleDecay: 10
-    fireRate: 6  
+    fireRate: 6
+    # Burst - Allows for min. angle shots for increased accuracy.
+    burstFireRate: 5 
+    shotsPerBurst: 5
+    burstCooldown: 1
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    - Burst
   - type: Appearance
   - type: RestrictByEquippedTag
     requiredTag: "RequiredForLmgTag"
     denialMessage: "lmg-restricted-to-hardsuit-message"
     denialSound: /Audio/Machines/custom_deny.ogg
-  - type: ItemSlots #change when not half dead
+  - type: ItemSlots
     slots:
       gun_chamber:
         name: Chamber
-        startingItem: CartridgeLightRifleSP
+        startingItem: CartridgeRifle5.56SP
         priority: 1
         whitelist:
           tags:
-            - CartridgeLightRifle
+            - CartridgeRifle5.56
       gun_magazine:
         name: Magazine
-        startingItem: LightRifleHeavyMagazineSP
+        startingItem: Rifle5.56HeavyMagazineSP
         whitelist:
           tags:
-            - LightRifleHeavy
+            - Rifle5.56Heavy
+  - type: CursorOffsetRequiresWield
+  - type: EyeCursorOffset # Smart Scope
+    maxOffset: 2
+    pvsIncrease: 0.3
+  - type: SpeedModifiedOnWield # Slowdown already handled by suit(s)
+    walkModifier: 1 # ADS Update
+    sprintModifier: 1
   - type: Tag
     tags:
     - SLMG
