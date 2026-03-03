@@ -131,6 +131,12 @@
   id: LockerFillParamedic
   table: !type:AllSelector
     children:
+    - id: ClothingOuterHardsuitVoidParamed # Far Horizons - upstream removed
+    - id: ClothingOuterCoatParamedicWB # Far Horizons - upstream removed
+    - id: ClothingHeadHatParamedicsoft # Far Horizons - upstream removed
+    - id: ClothingOuterWinterPara # Far Horizons - upstream removed
+    - id: ClothingUniformJumpsuitParamedic # Far Horizons - upstream removed
+    - id: ClothingUniformJumpskirtParamedic # Far Horizons - upstream removed
     - id: ClothingEyesHudMedical
     - id: ClothingHandsGlovesLatex
     - id: ClothingHeadsetMedical
@@ -154,7 +160,7 @@
 - type: entity
   parent: LockerParamedic
   id: LockerParamedicFilled
-  suffix: Filled
+  suffix: Filled, Hardsuit #FH
   components:
   - type: EntityTableContainerFill
     containers:
