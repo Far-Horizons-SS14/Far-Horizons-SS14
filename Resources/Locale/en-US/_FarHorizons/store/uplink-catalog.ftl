@@ -18,3 +18,6 @@ uplink-syndicate-secway-description = Outspeed security on this BLISTERINGLY fas
 
 uplink-syndicate-secway-armored-light-name = Lightly Armored Segway
 uplink-syndicate-secway-armored-light-description = Outspeed security on this BLISTERINGLY fast one horsepower segway! Now with the same protection as Type I vest.
+
+uplink-lecter-type-w-name = Lecter Type-W
+uplink-lecter-type-w-description = A simple wooden lecter with a short barrel and stock to enable ease of handling. Also comes with an underbarrel chainsaw and two 5.56 SP & FMJ mags.

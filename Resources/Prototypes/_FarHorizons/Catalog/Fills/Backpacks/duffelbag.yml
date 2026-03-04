@@ -1,0 +1,15 @@
+- type: entity
+  parent: ClothingBackpackDuffelSyndicateBundle
+  id: ClothingBackpackDuffelSyndicateFilledLecterW
+  name: Lecter Type-W bundle
+  description: "A simple wooden lecter with a short barrel and stock to enable ease of handling. Also comes with an underbarrel chainsaw and two 5.56 SP & FMJ mags."
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: WeaponRifleLecterS
+        - id: MagazineRifle5.56SP
+          amount: 2
+        - id: MagazineRifle5.56FMJ
+          amount: 2

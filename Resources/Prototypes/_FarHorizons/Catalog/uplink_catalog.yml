@@ -110,6 +110,17 @@
   - !type:ListingLimitedStockCondition
     stock: 2 # It's not THAT strong.
 
+- type: listing
+  id: UplinkWeaponRifleLecterS
+  name: uplink-lecter-type-w-name
+  description: uplink-lecter-type-w-description
+  icon: { sprite: /Textures/_FarHorizons/Objects/Weapons/Guns/Rifles/s_lecter.rsi, state: icon}
+  productEntity: WeaponRifleLecterS
+  cost:
+    Telecrystal: 20
+  categories:
+    - UplinkWeaponry
+
 # Restored wizden content
 
 - type: listing
