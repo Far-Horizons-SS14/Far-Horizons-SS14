@@ -1,8 +1,8 @@
-#region .38
+#region .38 Special
 - type: entity
   parent: BaseItem
   id: BaseMagazineBoxRevolver38
-  name: Ammunition box (.38 Special)
+  name: .38 Special Ammunition Box (Revolver)
   abstract: true
   components:
   - type: BallisticAmmoProvider
@@ -28,7 +28,7 @@
 - type: entity
   parent: BaseMagazineBoxRevolver38
   id: MagazineBoxRevolver38SP
-  name: Ammunition box (.38 Special SP)
+  name: .38 Special Ammunition Box (Revolver SP)
   components:
   - type: BallisticAmmoProvider
     mayTransfer: true
@@ -44,7 +44,7 @@
 - type: entity
   parent: BaseMagazineBoxRevolver38
   id: MagazineBoxRevolver38HP
-  name: Ammunition box (.38 Special HP)
+  name: .38 Special Ammunition Box (Revolver HP)
   components:
   - type: BallisticAmmoProvider
     mayTransfer: true
@@ -59,7 +59,7 @@
 - type: entity
   parent: BaseMagazineBoxRevolver38
   id: MagazineBoxRevolver38FMJ
-  name: Ammunition box (.38 Special FMJ)
+  name: .38 Special Ammunition Box (Revolver FMJ)
   components:
   - type: BallisticAmmoProvider
     mayTransfer: true
@@ -75,7 +75,7 @@
 - type: entity
   parent: BaseMagazineBoxRevolver38
   id: MagazineBoxRevolver38Incendiary
-  name: Ammunition box (.38 Special Incendiary)
+  name: .38 Special Ammunition Box (Revolver Incendiary)
   description: A cardboard box of .38 special rounds. Intended to hold self-igniting incendiary ammunition.
   components:
   - type: BallisticAmmoProvider
@@ -91,7 +91,7 @@
 - type: entity
   parent: BaseMagazineBoxRevolver38
   id: MagazineBoxRevolver38Uranium
-  name: Ammunition box (.38 Special Uranium)
+  name: .38 Special Ammunition Box (Revolver Uranium)
   description: A cardboard box of .38 special rounds. Intended to hold exotic uranium-core ammunition.
   components:
   - type: BallisticAmmoProvider
@@ -107,7 +107,7 @@
 - type: entity
   parent: BaseMagazineBoxRevolver38
   id: MagazineBoxRevolver38AP
-  name: Ammunition box (.38 Special AP)
+  name: .38 Special Ammunition Box (Revolver AP)
   components:
   - type: BallisticAmmoProvider
     mayTransfer: true
@@ -123,7 +123,7 @@
 - type: entity
   parent: BaseMagazineBoxRevolver38
   id: MagazineBoxRevolver38Practice
-  name: Ammunition box (.38 Special Practice)
+  name: .38 Special Ammunition Box (Revolver Practice)
   description: A cardboard box of .38 special rounds. Intended to hold non-harmful chalk ammunition.
   components:
   - type: BallisticAmmoProvider
@@ -139,7 +139,7 @@
 - type: entity
   parent: BaseMagazineBoxRevolver38
   id: MagazineBoxRevolver38Rubber
-  name: Ammunition box (.38 Special Rubber)
+  name: .38 Special Ammunition Box (Revolver Rubber)
   description: A cardboard box of .38 special rounds. Intended to hold non-lethal rubber rounds.
   components:
   - type: BallisticAmmoProvider

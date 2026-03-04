@@ -364,43 +364,6 @@
       tags:
         - BioSec
 
-# Armory - Lecter
-- type: entity
-  id: ShelfArmoryLecterLarge
-  parent: ShelfArmoryBase
-  name: large lecter rack
-  description: Holds four Lecter Rifles and Enforcer Pistols.
-  components:
-  - type: EntityStorageVisuals
-    stateBaseClosed: shotguncase
-    stateDoorOpen: shotguncase_open
-    stateDoorClosed: shotguncase_door
-#  - type: Sprite
-#    sprite: _Afterlight/Structures/Storage/closet-large.rsi
-#    layers:
-#    - state: lectercase
-#      map: ["enum.StorageVisualLayers.Base"]
-#    - state: unlocked
-#      shader: unshaded
-#    - state: lecter-0
-#    - map: ["enum.StorageFillLayers.Fill"]
-#    - state: closed
-#      map: ["enum.StorageVisualLayers.Door"]
-#    - state: locked
-#      map: ["enum.LockVisualLayers.Lock"]
-#      shader: unshaded
-#  - type: StorageFillVisualizer
-#    maxFillLevels: 5
-#    fillBaseName: lecter
-  - type: Storage
-    whitelist:
-      tags:
-        - Sidearm
-        - MagazinePistol
-        - MagazineMagnum
-        - Lecter
-        - MagazineRifle5.56 #FH
-
 # Armory - Leikha
 - type: entity
   id: ShelfArmoryLeikhaLarge
@@ -1042,9 +1005,11 @@
     - 0,0,4,4
     - 6,1,7,3
     - 9,0,13,3
+    - 9,4,12,5
     whitelist:
       tags:
         - HeavySecSuit
         - HeavySecSuitGloves
         - HeavySecSuitBoots
         - SLMG
+        - Rifle5.56Heavy

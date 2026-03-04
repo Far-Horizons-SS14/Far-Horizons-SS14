@@ -1,0 +1,35 @@
+#region Armory
+
+#lecter
+- type: entity
+  id: ShelfArmoryLecterLarge
+  parent: ShelfArmoryBase
+  name: large lecter rack
+  description: Holds four Lecter Rifles and Enforcer Pistols.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Storage/racks.rsi
+    scale: 0.5, 0.5
+    layers:
+    - state: lectercase
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: unlocked
+      shader: unshaded
+    - state: lecter-0
+    - map: ["enum.StorageFillLayers.Fill"]
+    - state: closed
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+      shader: unshaded
+  - type: StorageFillVisualizer
+    maxFillLevels: 5
+    fillBaseName: lecter
+  - type: Storage
+    whitelist:
+      tags:
+        - Sidearm
+        - MagazinePistol
+        - MagazineMagnum
+        - Lecter
+        - MagazineRifle5.56

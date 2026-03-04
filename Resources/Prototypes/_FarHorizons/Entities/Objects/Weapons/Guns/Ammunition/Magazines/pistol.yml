@@ -1,7 +1,7 @@
 #region .38
 - type: entity
   id: BaseMagazinePistol38
-  name: "Pistol magazine (.38 Special)"
+  name: ".38 Special Magazine (Pistol)"
   parent: BaseMagazinePistol
   components:
   - type: BallisticAmmoProvider
@@ -38,7 +38,7 @@
 
 - type: entity
   id: MagazinePistol38Empty
-  name: "Pistol magazine (.38 Special any)"
+  name: ".38 Special Magazine (Pistol Any)"
   suffix: empty
   parent: BaseMagazinePistol38
   components:
@@ -57,7 +57,7 @@
 
 - type: entity
   id: MagazinePistol38SP
-  name: "Pistol magazine (.38 Special SP)"
+  name: ".38 Special Magazine (Pistol SP)"
   parent: BaseMagazinePistol38
   components:
   - type: BallisticAmmoProvider
@@ -81,7 +81,7 @@
 
 - type: entity
   id: MagazinePistol38HP
-  name: "Pistol magazine (.38 Special HP)"
+  name: ".38 Special Magazine (Pistol HP)"
   parent: BaseMagazinePistol38
   components:
   - type: BallisticAmmoProvider
@@ -105,7 +105,7 @@
 
 - type: entity
   id: MagazinePistol38FMJ
-  name: "Pistol magazine (.38 Special FMJ)"
+  name: ".38 Special Magazine (Pistol FMJ)"
   parent: BaseMagazinePistol38
   components:
   - type: BallisticAmmoProvider
@@ -129,7 +129,7 @@
 
 - type: entity
   id: MagazinePistol38Incendiary
-  name: Pistol magazine (.38 Special Incendiary)
+  name: .38 Special Magazine (Pistol Incendiary)
   parent: BaseMagazinePistol38
   components:
   - type: BallisticAmmoProvider
@@ -153,7 +153,7 @@
 
 - type: entity
   id: MagazinePistol38Uranium
-  name: Pistol magazine (.38 Special Uranium)
+  name: .38 Special Magazine (Pistol Uranium)
   parent: BaseMagazinePistol38
   description: 10-round single-stack magazine for pistols. Intended to hold exotic uranium-core ammunition.
   components:
@@ -178,7 +178,7 @@
 
 - type: entity
   id: MagazinePistol38AP
-  name: "Pistol magazine (.38 Special AP)"
+  name: ".38 Special Magazine (Pistol AP)"
   parent: BaseMagazinePistol38
   components:
   - type: BallisticAmmoProvider
@@ -202,7 +202,7 @@
 
 - type: entity
   id: MagazinePistol38Practice
-  name: Pistol magazine (.38 Special Practice)
+  name: .38 Special Magazine (Pistol Practice)
   parent: BaseMagazinePistol38
   description: 10-round single-stack magazine for pistols. Intended to hold non-harmful chalk ammunition.
   components:
@@ -227,7 +227,7 @@
 
 - type: entity
   id: MagazinePistol38Rubber
-  name: Pistol magazine (.38 Special Rubber)
+  name: .38 Special Magazine (Pistol Rubber)
   parent: BaseMagazinePistol38
   components:
   - type: BallisticAmmoProvider
@@ -252,7 +252,7 @@
 #region Crafted
 - type: entity
   id: MagazinePistolDouble
-  name: "Double pistol magazine (.35)"
+  name: "Double .35 Magazine (Pistol)"
   description: Just two pistol magazines side-by-side. Only fits in the Enforcinator.
   parent: [BaseItem, BaseSecurityContraband]
   components:
@@ -295,7 +295,7 @@
 
 - type: entity
   id: MagazinePistolDoubleFilled
-  name: "Double pistol magazine (.35)"
+  name: "Double .35 Magazine (Pistol)"
   suffix: Filled
   parent: [BaseItem, BaseSecurityContraband]
   components:

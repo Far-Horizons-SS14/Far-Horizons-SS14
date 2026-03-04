@@ -2,7 +2,7 @@
 ## Empty mags
 - type: entity
   id: BaseMagazineRifle38
-  name: "Magazine (.38 Special)"
+  name: ".38 Special Magazine (Rifle)"
   parent: [ BaseItem, BaseSecurityContraband ]
   abstract: true
   components:
@@ -35,7 +35,7 @@
 
 - type: entity
   id: MagazineRifle38Empty
-  name: "Magazine (.38 Special any)"
+  name: ".38 Special Magazine (Rifle Any)"
   suffix: empty
   parent: MagazineRifle38SP
   components:
@@ -55,7 +55,7 @@
 ## Magazines
 - type: entity
   id: MagazineRifle38SP
-  name: "Magazine (.38 Special SP)"
+  name: ".38 Special Magazine (Rifle SP)"
   parent: BaseMagazineRifle38
   components:
   - type: BallisticAmmoProvider
@@ -79,7 +79,7 @@
 
 - type: entity
   id: MagazineRifle38HP
-  name: "Magazine (.38 Special HP)"
+  name: ".38 Special Magazine (Rifle HP)"
   parent: BaseMagazineRifle38
   components:
   - type: BallisticAmmoProvider
@@ -103,7 +103,7 @@
 
 - type: entity
   id: MagazineRifle38FMJ
-  name: "Magazine (.38 Special FMJ)"
+  name: ".38 Special Magazine (Rifle FMJ)"
   parent: BaseMagazineRifle38
   components:
   - type: BallisticAmmoProvider
@@ -127,7 +127,7 @@
 
 - type: entity
   id: MagazineRifle38AP
-  name: "Magazine (.38 Special AP)"
+  name: ".38 Special Magazine (Rifle AP)"
   parent: BaseMagazineRifle38
   components:
   - type: BallisticAmmoProvider
@@ -151,7 +151,7 @@
 
 - type: entity
   id: MagazineRifle38Incendiary
-  name: "Magazine (.38 Special Incendiary)"
+  name: ".38 Special Magazine (Rifle Incendiary)"
   parent: BaseMagazineRifle38
   components:
   - type: BallisticAmmoProvider
@@ -175,7 +175,7 @@
         
 - type: entity
   id: MagazineRifle38Practice
-  name: "Magazine (.38 Special Practice)"
+  name: ".38 Special Magazine (Rifle Practice)"
   parent: BaseMagazineRifle38
   components:
   - type: BallisticAmmoProvider
@@ -199,7 +199,7 @@
 
 - type: entity
   id: MagazineRifle38Uranium
-  name: "Magazine (.38 Special Uranium)"
+  name: ".38 Special Magazine (Rifle Uranium)"
   parent: BaseMagazineRifle38
   components:
   - type: BallisticAmmoProvider
@@ -223,7 +223,7 @@
 
 - type: entity
   id: MagazineRifle38Rubber
-  name: Magazine (.38 Special Rubber)
+  name: .38 Special Magazine (Rifle Rubber)
   parent: BaseMagazineRifle38
   components:
   - type: BallisticAmmoProvider
@@ -261,6 +261,8 @@
     capacity: 100
   - type: Item
     size: Small
+    shape:
+    - 0,0,1,0
   - type: Sprite
     sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Magazine/LMG/M492.rsi
     layers:
