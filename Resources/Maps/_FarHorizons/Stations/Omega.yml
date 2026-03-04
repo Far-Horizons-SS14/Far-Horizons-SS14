@@ -4,8 +4,8 @@ meta:
   engineVersion: 272.0.0
   forkId: ""
   forkVersion: ""
-  time: 02/23/2026 10:05:58
-  entityCount: 16090
+  time: 03/04/2026 03:30:09
+  entityCount: 16088
 maps:
 - 1
 grids:
@@ -37737,15 +37737,6 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-- proto: ClothingOuterHardsuitSecurityHeavy
-  entities:
-  - uid: 9812
-    components:
-    - type: Transform
-      parent: 9811
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
 - proto: ClothingOuterHardsuitSpatio
   entities:
   - uid: 5331
@@ -46513,7 +46504,7 @@ entities:
       pos: 12.5,-29.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -12451.401
+      secondsUntilStateChange: -12506.023
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -47937,7 +47928,7 @@ entities:
       pos: -7.5,27.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -19400.252
+      secondsUntilStateChange: -19454.873
       state: Closing
     - type: Firelock
       emergencyCloseCooldown: 391.7662769
@@ -48145,7 +48136,7 @@ entities:
       pos: 8.5,-22.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -12616.067
+      secondsUntilStateChange: -12670.689
       state: Closing
   - uid: 6487
     components:
@@ -71254,36 +71245,6 @@ entities:
     - type: Transform
       pos: -0.5,-56.5
       parent: 2
-- proto: GunSafeBaseSecure
-  entities:
-  - uid: 9811
-    components:
-    - type: Transform
-      pos: -37.5,22.5
-      parent: 2
-    - type: EntityStorage
-      air:
-        volume: 200
-        immutable: False
-        temperature: 293.1462
-        moles:
-          Oxygen: 1.606311
-          Nitrogen: 6.042789
-    - type: ContainerContainer
-      containers:
-        entity_storage: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 9812
-          - 9813
-          - 10532
-          - 10779
-          - 11062
-        paper_label: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
 - proto: Handcuffs
   entities:
   - uid: 9555
@@ -72868,31 +72829,6 @@ entities:
     - type: Transform
       pos: -23.51768,-6.333922
       parent: 2
-- proto: Rifle5.56HeavyMagazineHP
-  entities:
-  - uid: 10532
-    components:
-    - type: Transform
-      parent: 9811
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-  - uid: 10779
-    components:
-    - type: Transform
-      parent: 9811
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-- proto: Rifle5.56HeavyMagazineSP
-  entities:
-  - uid: 9813
-    components:
-    - type: Transform
-      parent: 9811
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
 - proto: LiveLetLiveCircuitBoard
   entities:
   - uid: 9754
@@ -83233,6 +83169,11 @@ entities:
       parent: 2
 - proto: SheetGlass
   entities:
+  - uid: 9813
+    components:
+    - type: Transform
+      pos: -38.38082,22.604145
+      parent: 2
   - uid: 11214
     components:
     - type: Transform
@@ -83340,6 +83281,11 @@ entities:
       parent: 2
 - proto: SheetPlastic
   entities:
+  - uid: 9812
+    components:
+    - type: Transform
+      pos: -38.625435,22.591915
+      parent: 2
   - uid: 11233
     components:
     - type: Transform
@@ -83352,6 +83298,11 @@ entities:
       parent: 2
 - proto: SheetSteel
   entities:
+  - uid: 10532
+    components:
+    - type: Transform
+      pos: -38.662125,22.347301
+      parent: 2
   - uid: 11235
     components:
     - type: Transform
@@ -83446,6 +83397,15 @@ entities:
     - type: AccessReader
       accessListsOriginal:
       - - Armory
+    - type: Fixtures
+      fixtures: {}
+- proto: ShelfArmoryHeavyArmsFilled
+  entities:
+  - uid: 9811
+    components:
+    - type: Transform
+      pos: -37.5,22.5
+      parent: 2
     - type: Fixtures
       fixtures: {}
 - proto: ShelfArmoryMixedLaserFilled
@@ -101407,15 +101367,6 @@ entities:
     - type: Transform
       pos: -28.235346,44.90055
       parent: 2
-- proto: WeaponLightMachineGunM492
-  entities:
-  - uid: 11062
-    components:
-    - type: Transform
-      parent: 9811
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
 - proto: WeaponSubMachineGunWt550
   entities:
   - uid: 14158

@@ -50,8 +50,30 @@
     - Hair
     - Snout
 
-
-
+- type: entity
+  parent: [ClothingMaskGas, BaseSecurityContraband]
+  id: ClothingMaskGasSecurityNoHailer
+  name: Damaged Security Gas Mask
+  description: A standard issue Security gas mask. Seems to have it's hailer violently torn out with a sticky note slapped on it reading "USE THIS!"
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: Clothing/Mask/gassecurity.rsi
+  - type: Clothing
+    sprite: Clothing/Mask/gassecurity.rsi
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.95
+        Slash: 0.95
+        Piercing: 0.95
+        Heat: 0.95
+  - type: Tag
+    tags:
+    - HeavySecSuit
 
 ## Syndicate Station
 

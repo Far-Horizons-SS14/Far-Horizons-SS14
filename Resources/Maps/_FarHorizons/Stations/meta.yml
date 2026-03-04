@@ -1,11 +1,11 @@
 meta:
   format: 7
   category: Map
-  engineVersion: 270.1.0
+  engineVersion: 272.0.0
   forkId: ""
   forkVersion: ""
-  time: 02/16/2026 08:41:24
-  entityCount: 30163
+  time: 03/04/2026 03:27:47
+  entityCount: 30160
 maps:
 - 1
 grids:
@@ -8180,7 +8180,8 @@ entities:
           0,10:
             0: 30503
           -1,10:
-            0: 65287
+            0: 65285
+            5: 2
           0,11:
             0: 30583
           -1,11:
@@ -8903,34 +8904,34 @@ entities:
             1: 257
           16,-4:
             1: 8738
-            5: 136
-            6: 32768
+            6: 136
+            7: 32768
           16,-3:
             1: 8738
-            6: 32904
+            7: 32904
           16,-2:
             1: 57890
-            6: 136
+            7: 136
           16,-5:
             1: 8738
-            5: 32768
-            6: 136
+            6: 32768
+            7: 136
           17,-4:
-            5: 51
-            6: 12288
+            6: 51
+            7: 12288
             0: 2176
             1: 32768
           17,-3:
-            6: 12339
+            7: 12339
             1: 34952
           17,-2:
-            6: 51
+            7: 51
             1: 55432
             0: 8192
           17,-5:
-            5: 12288
+            6: 12288
             0: 34816
-            6: 51
+            7: 51
             1: 136
           18,-4:
             0: 3975
@@ -8964,7 +8965,7 @@ entities:
             1: 61440
           16,-6:
             1: 8928
-            6: 32768
+            7: 32768
           16,-9:
             0: 61166
             1: 1
@@ -8976,7 +8977,7 @@ entities:
             0: 61991
           17,-6:
             1: 35037
-            6: 12288
+            7: 12288
             0: 34
           17,-9:
             0: 65535
@@ -9314,7 +9315,7 @@ entities:
           3,-16:
             1: 3745
           3,-14:
-            6: 3822
+            7: 3822
             0: 16384
           4,-15:
             0: 53070
@@ -10093,6 +10094,11 @@ entities:
         - volume: 2500
           temperature: 293.15
           moles:
+            Oxygen: 21.823984
+            Nitrogen: 82.09976
+        - volume: 2500
+          temperature: 293.15
+          moles:
             Plasma: 6666.982
         - volume: 2500
           temperature: 293.15
@@ -10110,6 +10116,8 @@ entities:
     - type: ImplicitRoof
     - type: NavMap
     - type: ExplosionAirtightGrid
+    - type: TileHistory
+      chunkHistory: {}
   - uid: 5
     mapInit: true
     paused: true
@@ -67484,53 +67492,6 @@ entities:
       canCollide: False
     - type: InsideEntityStorage
       storage: 10112
-- proto: ClothingOuterHardsuitSecurityHeavy
-  entities:
-  - uid: 858
-    components:
-    - type: Transform
-      parent: 854
-    - type: GroupExamine
-      group:
-      - hoverMessage: ""
-        contextText: verb-examine-group-other
-        icon: /Textures/Interface/examine-star.png
-        components:
-        - Armor
-        - ClothingSpeedModifier
-        entries:
-        - message: This decreases your speed by [color=yellow]40%[/color].
-          priority: 0
-          component: ClothingSpeedModifier
-        - message: >-
-            It provides the following protection:
-
-            - [color=yellow]Blunt[/color] damage reduced by [color=lightblue]50%[/color].
-
-            - [color=yellow]Slash[/color] damage reduced by [color=lightblue]50%[/color].
-
-            - [color=yellow]Piercing[/color] damage reduced by [color=lightblue]50%[/color].
-
-            - [color=yellow]Heat[/color] damage reduced by [color=lightblue]40%[/color].
-
-            - [color=yellow]Caustic[/color] damage reduced by [color=lightblue]30%[/color].
-
-            - [color=blue]Stamina[/color] damage reduced by [color=lightblue]70%[/color].
-
-            - [color=yellow]Piercing[/color] damage reduced by [color=lightblue]5[/color].
-
-            - [color=yellow]Heat[/color] damage reduced by [color=lightblue]4[/color].
-
-            - [color=violet]Infection[/color] chance reduced by [color=lightblue]50%[/color].
-
-            - [color=orange]Explosion[/color] damage reduced by [color=lightblue]70%[/color].
-          priority: 0
-          component: Armor
-        title: null
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-      storage: 854
 - proto: ClothingOuterHoodieBlack
   entities:
   - uid: 10120
@@ -79801,7 +79762,7 @@ entities:
       pos: 60.5,29.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -40330.89
+      secondsUntilStateChange: -40387.05
       state: Opening
     - type: DeviceLinkSource
       linkedPorts:
@@ -132433,41 +132394,6 @@ entities:
     - type: Transform
       pos: 31.677748,21.795935
       parent: 2
-- proto: GunSafeBaseSecure
-  entities:
-  - uid: 854
-    components:
-    - type: Transform
-      pos: -2.5,40.5
-      parent: 2
-    - type: Pullable
-      prevFixedRotation: True
-    - type: AccessReader
-      accessListsOriginal:
-      - - Armory
-    - type: EntityStorage
-      air:
-        volume: 200
-        immutable: False
-        temperature: 293.14673
-        moles:
-          Oxygen: 1.8968438
-          Nitrogen: 7.1357465
-    - type: ContainerContainer
-      containers:
-        entity_storage: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 860
-          - 859
-          - 861
-          - 862
-          - 858
-        paper_label: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
 - proto: Handcuffs
   entities:
   - uid: 19092
@@ -134368,34 +134294,6 @@ entities:
     - type: Transform
       pos: 42.475327,0.6797509
       parent: 2
-- proto: Rifle5.56HeavyMagazineHP
-  entities:
-  - uid: 859
-    components:
-    - type: Transform
-      parent: 854
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-      storage: 854
-- proto: Rifle5.56HeavyMagazineSP
-  entities:
-  - uid: 860
-    components:
-    - type: Transform
-      parent: 854
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-      storage: 854
-  - uid: 861
-    components:
-    - type: Transform
-      parent: 854
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-      storage: 854
 - proto: LiveLetLiveCircuitBoard
   entities:
   - uid: 19352
@@ -152890,6 +152788,11 @@ entities:
       parent: 2
 - proto: SheetGlass
   entities:
+  - uid: 858
+    components:
+    - type: Transform
+      pos: 0.3139608,37.530384
+      parent: 2
   - uid: 22003
     components:
     - type: Transform
@@ -153061,6 +152964,11 @@ entities:
       parent: 2
 - proto: SheetPlastic
   entities:
+  - uid: 859
+    components:
+    - type: Transform
+      pos: 0.30173016,37.554848
+      parent: 2
   - uid: 22034
     components:
     - type: Transform
@@ -153252,6 +153160,15 @@ entities:
     - type: AccessReader
       accessListsOriginal:
       - - Armory
+    - type: Fixtures
+      fixtures: {}
+- proto: ShelfArmoryHeavyArmsFilled
+  entities:
+  - uid: 854
+    components:
+    - type: Transform
+      pos: -2.5,40.5
+      parent: 2
     - type: Fixtures
       fixtures: {}
 - proto: ShelfArmoryLecterLargeFilled
@@ -188433,16 +188350,6 @@ entities:
     - type: Transform
       pos: 18.633293,39.634094
       parent: 2
-- proto: WeaponLightMachineGunM492
-  entities:
-  - uid: 862
-    components:
-    - type: Transform
-      parent: 854
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-      storage: 854
 - proto: WeaponShotgunDoubleBarreled
   entities:
   - uid: 27897
