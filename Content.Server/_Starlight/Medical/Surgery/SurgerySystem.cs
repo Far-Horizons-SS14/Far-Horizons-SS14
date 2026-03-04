@@ -1,13 +1,9 @@
 ﻿using System.Linq;
-using Content.Server.Body.Systems;
 using Content.Server.Chat.Systems;
 using Content.Server.Popups;
-using Content.Shared.Body.Part;
 using Content.Shared.Starlight.Medical.Surgery;
 using Content.Shared.Starlight.Medical.Surgery.Effects.Step;
 using Content.Shared.Starlight.Medical.Surgery.Events;
-using Content.Shared.Damage;
-using Content.Shared.Interaction;
 using Content.Shared.Prototypes;
 using Robust.Server.Containers;
 using Robust.Server.GameObjects;
@@ -20,7 +16,7 @@ using Content.Server._FarHorizons.Research;
 using Content.Server._FarHorizons.Medical.SurgeryOverhaul.Systems;
 using Content.Shared._FarHorizons.Research;
 //Far Horizons End
-using Content.Server.Administration.Systems;
+using Content.Shared.Body;
 using Content.Shared.Damage.Systems;
 
 namespace Content.Server.Starlight.Medical.Surgery;
@@ -57,17 +53,21 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
             return;
 
         var surgeries = new Dictionary<NetEntity, List<(EntProtoId, string suffix, bool isCompleted)>>();
-        if (HasComp<BodyPartComponent>(body))
+        // Far Horizons start
+        if (TryComp<BodyComponent>(body, out var bodyComp) && bodyComp.Organs != null)
         {
-            AddSurgeries(body, body, surgeries);
-        }
-        else
-        {
-            foreach (var part in _body.GetBodyChildren(body))
+            foreach (var part in bodyComp.Organs.ContainedEntities)
             {
-                AddSurgeries(part.Id, body, surgeries);
+                if (!TryComp<OrganComponent>(part, out var organ) ||
+                    organ.Category == null ||
+                    !_prototypes.TryIndex(organ.Category.Value, out var category) ||
+                    !category.SurgeryTargetable)
+                    continue;
+                
+                AddSurgeries(part, body, surgeries);
             }
         }
+        // Far Horizons end
         var researchLevel = GetResearchLevel(body);
         _ui.SetUiState(body, SurgeryUIKey.Key, new SurgeryBuiState() { Choices = surgeries, ResearchLevel = researchLevel });
     }

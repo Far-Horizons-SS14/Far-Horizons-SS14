@@ -28,3 +28,5 @@ store-caregory-spellbook-events = Event Spells
 store-ling-category-combat = Combat
 store-ling-category-sting = Stings
 store-ling-category-utility = Utility
+# Nukie Delivery
+store-category-nukie-delivery = Offers

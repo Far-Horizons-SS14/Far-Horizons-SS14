@@ -25,10 +25,10 @@
     - type: MagnetPickup
       requiresEquipping: false  # Starlight Edit - make it work even without being equipped
   - type: Sprite
-    sprite: _FarHorizons/Objects/Specific/Mining/ore_bag.rsi #Far Horizons
+    sprite: _Starlight/Objects/Specific/Mining/ore_bag.rsi # Starlight edit
     state: icon
   - type: Clothing
-    sprite: _FarHorizons/Objects/Specific/Mining/ore_bag.rsi #Far Horizons
+    sprite: _Starlight/Objects/Specific/Mining/ore_bag.rsi # Starlight edit
     quickEquip: false
     slots:
     - belt
@@ -51,7 +51,7 @@
     visuals:
       enum.ToggleableVisuals.Enabled:
         enum.ToggleableVisuals.Layer:
-          True: { state: "icon" } #Far Horizons - Idk where this magical icon-on was hiding, but we don't got that.
+          True: { state: "magnet" } #Starlight
           False: { state: "icon" }
   # Starlight Edit End
 

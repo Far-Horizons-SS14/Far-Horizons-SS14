@@ -3,11 +3,10 @@ using Content.Shared.Actions.Components;
 using Content.Shared.Atmos.Components;
 using Content.Shared.Atmos.EntitySystems;
 using Content.Shared.Body.Components;
-using Content.Shared.Body.Events;
-using Content.Shared.Body.Organ;
 using Content.Shared.Interaction;
 using Content.Shared.UserInterface;
 using Content.Shared._Starlight.BreathOrgan.Components;
+using Content.Shared.Body;
 using Content.Shared.Body.Systems;
 
 namespace Content.Shared._Starlight.BreathOrgan.Systems;
@@ -17,7 +16,7 @@ public sealed class OrganBreathToolSystem : EntitySystem
     [Dependency] private readonly ActionContainerSystem _actionContainer = default!;
     [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private readonly SharedAtmosphereSystem _atmos = default!;
-    [Dependency] private readonly SharedBodySystem _body = default!;
+    [Dependency] private readonly BodySystem _body = default!;
     [Dependency] private readonly SharedGasTankSystem _gasTank = default!;
     [Dependency] private readonly SharedInternalsSystem _internals = default!;
     [Dependency] private readonly SharedUserInterfaceSystem _ui = default!;
@@ -25,8 +24,8 @@ public sealed class OrganBreathToolSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeLocalEvent<OrganBreathToolComponent, OrganAddedToBodyEvent>(OnOrganBreathToolAddedToBody);
-        SubscribeLocalEvent<OrganBreathToolComponent, OrganRemovedFromBodyEvent>(OnOrganBreathToolRemovedFromBody);
+        SubscribeLocalEvent<OrganBreathToolComponent, OrganGotInsertedEvent>(OnOrganBreathToolAddedToBody);
+        SubscribeLocalEvent<OrganBreathToolComponent, OrganGotRemovedEvent>(OnOrganBreathToolRemovedFromBody);
         SubscribeLocalEvent<BodyComponent, OpenUiActionEvent>(OnBodyOpenUiAction);
         SubscribeLocalEvent<OrganBreathToolComponent, AccessibleOverrideEvent>(OnOrganAccessibleOverride);
     }
@@ -54,7 +53,9 @@ public sealed class OrganBreathToolSystem : EntitySystem
         if (args.Key == null || !args.Key.Equals(SharedGasTankUiKey.OrganKey))
             return;
 
-        var organTanks = _body.GetBodyOrganEntityComps<GasTankComponent>((body.Owner, body.Comp));
+        if (!_body.TryGetOrgansWithComponent<GasTankComponent>(body.AsNullable(), out var organTanks))
+            return;
+        
         foreach (var organTank in organTanks)
         {
             if (HasComp<OrganBreathToolComponent>(organTank.Owner) &&
@@ -69,27 +70,27 @@ public sealed class OrganBreathToolSystem : EntitySystem
     /// <summary>
     /// Initialize the organ
     /// </summary>
-    private void OnOrganBreathToolAddedToBody(Entity<OrganBreathToolComponent> ent, ref OrganAddedToBodyEvent args)
+    private void OnOrganBreathToolAddedToBody(Entity<OrganBreathToolComponent> ent, ref OrganGotInsertedEvent args)
     {
         // Add breath tool to the body, allows us to breathe without a mask
         if (TryComp<BreathToolComponent>(ent.Owner, out var breathTool) && 
-            TryComp(args.Body, out InternalsComponent? internals))
+            TryComp(args.Target, out InternalsComponent? internals))
         {
-            breathTool.ConnectedInternalsEntity = args.Body;
-            _internals.ConnectBreathTool((args.Body, internals), ent.Owner);
+            breathTool.ConnectedInternalsEntity = args.Target;
+            _internals.ConnectBreathTool((args.Target, internals), ent.Owner);
         }
         
         
         if (TryComp<GasTankComponent>(ent.Owner, out var gasTank))
         {
-            var actionsComp = EnsureComp<ActionsComponent>(args.Body);
+            var actionsComp = EnsureComp<ActionsComponent>(args.Target);
             
             // Add action to toggle internals
             _actionContainer.EnsureAction(ent.Owner, ref gasTank.ToggleActionEntity, ent.Comp.ToggleAction);
             
             if (gasTank.ToggleActionEntity != null && TryComp<ActionsContainerComponent>(ent.Owner, out var actionContainer))
             {
-                _actions.AddAction((args.Body, actionsComp), gasTank.ToggleActionEntity.Value, (ent.Owner, actionContainer));
+                _actions.AddAction((args.Target, actionsComp), gasTank.ToggleActionEntity.Value, (ent.Owner, actionContainer));
             }
             
             // Add action to view the gas tank UI
@@ -97,15 +98,15 @@ public sealed class OrganBreathToolSystem : EntitySystem
             
             if (ent.Comp.ViewGasTankActionEntity != null && TryComp<ActionsContainerComponent>(ent.Owner, out var actionContainer2))
             {
-                _actions.AddAction((args.Body, actionsComp), ent.Comp.ViewGasTankActionEntity.Value, (ent.Owner, actionContainer2));
+                _actions.AddAction((args.Target, actionsComp), ent.Comp.ViewGasTankActionEntity.Value, (ent.Owner, actionContainer2));
             }
             
             Dirty(ent);
             
             // If organ is intended to start activated, immediately turn on internals, e.g. Vox lungs so they don't die.
-            if (ent.Comp.StartActivated && TryComp(args.Body, out InternalsComponent? bodyInternals) && bodyInternals.BreathTools.Count > 0)
+            if (ent.Comp.StartActivated && TryComp(args.Target, out InternalsComponent? bodyInternals) && bodyInternals.BreathTools.Count > 0)
             {
-                _gasTank.ConnectToInternals((ent.Owner, gasTank), user: args.Body);
+                _gasTank.ConnectToInternals((ent.Owner, gasTank), user: args.Target);
             }
         }
     }
@@ -113,8 +114,9 @@ public sealed class OrganBreathToolSystem : EntitySystem
     /// <summary>
     /// Deinitialize the organ
     /// </summary>
-    private void OnOrganBreathToolRemovedFromBody(Entity<OrganBreathToolComponent> ent, ref OrganRemovedFromBodyEvent args)
+    private void OnOrganBreathToolRemovedFromBody(Entity<OrganBreathToolComponent> ent, ref OrganGotRemovedEvent args)
     {
+        if (TerminatingOrDeleted(ent)) return;
         // Remove the breathing tool
         if (TryComp<BreathToolComponent>(ent.Owner, out var breathTool))
         {
@@ -122,18 +124,18 @@ public sealed class OrganBreathToolSystem : EntitySystem
         }
         
         if (TryComp<GasTankComponent>(ent.Owner, out var gasTank) && 
-            TryComp<ActionsComponent>(args.OldBody, out var actionsComp))
+            TryComp<ActionsComponent>(args.Target, out var actionsComp))
         {
             // Remove the toggle internals button
             if (gasTank.ToggleActionEntity != null)
             {
-                _actions.RemoveAction((args.OldBody, actionsComp), gasTank.ToggleActionEntity.Value);
+                _actions.RemoveAction((args.Target, actionsComp), gasTank.ToggleActionEntity.Value);
             }
             
             // Remove the gas tank UI preview button
             if (ent.Comp.ViewGasTankActionEntity != null)
             {
-                _actions.RemoveAction((args.OldBody, actionsComp), ent.Comp.ViewGasTankActionEntity.Value);
+                _actions.RemoveAction((args.Target, actionsComp), ent.Comp.ViewGasTankActionEntity.Value);
             }
         }
         

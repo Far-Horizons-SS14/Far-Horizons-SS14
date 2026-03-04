@@ -13,6 +13,7 @@ using Content.Client.UserInterface.Systems.Guidebook;
 using Content.Client._CD.Records.UI;
 using Content.Shared._CD.Records;
 // Cosmatic Drift Record System-end
+using Content.Shared.Body;
 using Content.Shared.CCVar;
 using Content.Shared.Clothing;
 using Content.Shared.Guidebook;
@@ -139,6 +140,8 @@ namespace Content.Client.Lobby.UI
         private readonly RecordEditorGui _recordsTab; // Tracks CD records UI state
         // Cosmatic Drift Record System-end
 
+        private MarkingsViewModel _markingsModel = new();
+
         public HumanoidProfileEditor(
             IClientPreferencesManager preferencesManager,
             IConfigurationManager configurationManager,
@@ -176,6 +179,7 @@ namespace Content.Client.Lobby.UI
             OOCInfoTab.Visible = _allowRPNotes;
             ICInfoTab.Visible = _allowFlavorText || _allowExploitables || _allowCharacterSecrets;
             //end starlight
+            Markings.SetModel(_markingsModel);
 
             ImportButton.OnPressed += args =>
             {
@@ -272,7 +276,6 @@ namespace Content.Client.Lobby.UI
             {
                 SpeciesButton.SelectId(args.Id);
                 SetSpecies(_species[args.Id].ID);
-                UpdateHairPickers();
                 OnSkinColorOnValueChanged();
                 UpdateCustomSpecieNameEdit(); // Starlight
             };
@@ -283,7 +286,6 @@ namespace Content.Client.Lobby.UI
             {
                 SubspeciesButton.SelectId(args.Id);
                 SetSpecies(_subspecies[args.Id].ID);
-                UpdateHairPickers();
                 UpdateCustomSpecieNameEdit(); // Starlight
             };
             // Far Horizons end
@@ -332,137 +334,6 @@ namespace Content.Client.Lobby.UI
 
             #endregion
 
-            #region Hair
-
-            HairStylePicker.OnMarkingSelect += newStyle =>
-            {
-                if (Profile is null)
-                    return;
-                Profile = Profile.WithCharacterAppearance(
-                    Profile.Appearance.WithHairStyleName(newStyle.id));
-                ReloadPreview();
-            };
-
-            HairStylePicker.OnColorChanged += newColor =>
-            {
-                if (Profile is null)
-                    return;
-                Profile = Profile.WithCharacterAppearance(
-                    Profile.Appearance.WithHairColor(newColor.marking.MarkingColors[0]));
-                UpdateCMarkingsHair();
-                ReloadPreview();
-            };
-
-            //starlight start
-            HairStylePicker.OnGlowingChanged += newColor =>
-            {
-                if (Profile is null)
-                    return;
-                Profile = Profile.WithCharacterAppearance(
-                    Profile.Appearance.WithHairGlowing(newColor.marking.IsGlowing));
-                Logger.Info(newColor.marking.IsGlowing.ToString());
-                UpdateCMarkingsHair();
-                ReloadPreview();
-            };
-            //starlight end
-
-            FacialHairPicker.OnMarkingSelect += newStyle =>
-            {
-                if (Profile is null)
-                    return;
-                Profile = Profile.WithCharacterAppearance(
-                    Profile.Appearance.WithFacialHairStyleName(newStyle.id));
-                ReloadPreview();
-            };
-
-            FacialHairPicker.OnColorChanged += newColor =>
-            {
-                if (Profile is null)
-                    return;
-                Profile = Profile.WithCharacterAppearance(
-                    Profile.Appearance.WithFacialHairColor(newColor.marking.MarkingColors[0]));
-                UpdateCMarkingsFacialHair();
-                ReloadPreview();
-            };
-
-            //starlight start
-            FacialHairPicker.OnGlowingChanged += newColor =>
-            {
-                if (Profile is null)
-                    return;
-                Profile = Profile.WithCharacterAppearance(
-                    Profile.Appearance.WithFacialHairGlowing(newColor.marking.IsGlowing));
-                UpdateCMarkingsFacialHair();
-                ReloadPreview();
-            };
-            //starlight end
-
-            HairStylePicker.OnSlotRemove += _ =>
-            {
-                if (Profile is null)
-                    return;
-                Profile = Profile.WithCharacterAppearance(
-                    Profile.Appearance.WithHairStyleName(HairStyles.DefaultHairStyle)
-                );
-                UpdateHairPickers();
-                UpdateCMarkingsHair();
-                ReloadPreview();
-            };
-
-            FacialHairPicker.OnSlotRemove += _ =>
-            {
-                if (Profile is null)
-                    return;
-                Profile = Profile.WithCharacterAppearance(
-                    Profile.Appearance.WithFacialHairStyleName(HairStyles.DefaultFacialHairStyle)
-                );
-                UpdateHairPickers();
-                UpdateCMarkingsFacialHair();
-                ReloadPreview();
-            };
-
-            HairStylePicker.OnSlotAdd += delegate ()
-            {
-                if (Profile is null)
-                    return;
-
-                var hair = _markingManager.MarkingsByCategoryAndSpecies(MarkingCategories.Hair, Profile.Species).Keys
-                    .FirstOrDefault();
-
-                if (string.IsNullOrEmpty(hair))
-                    return;
-
-                Profile = Profile.WithCharacterAppearance(
-                    Profile.Appearance.WithHairStyleName(hair)
-                );
-
-                UpdateHairPickers();
-                UpdateCMarkingsHair();
-                ReloadPreview();
-            };
-
-            FacialHairPicker.OnSlotAdd += delegate ()
-            {
-                if (Profile is null)
-                    return;
-
-                var hair = _markingManager.MarkingsByCategoryAndSpecies(MarkingCategories.FacialHair, Profile.Species).Keys
-                    .FirstOrDefault();
-
-                if (string.IsNullOrEmpty(hair))
-                    return;
-
-                Profile = Profile.WithCharacterAppearance(
-                    Profile.Appearance.WithFacialHairStyleName(hair)
-                );
-
-                UpdateHairPickers();
-                UpdateCMarkingsFacialHair();
-                ReloadPreview();
-            };
-
-            #endregion Hair
-
             #region SpawnPriority
 
             foreach (var value in Enum.GetValues<SpawnPriorityPreference>())
@@ -486,7 +357,7 @@ namespace Content.Client.Lobby.UI
                     return;
                 Profile = Profile.WithCharacterAppearance(
                     Profile.Appearance.WithEyeColor(newColor));
-                Markings.CurrentEyeColor = Profile.Appearance.EyeColor;
+                _markingsModel.SetOrganEyeColor(Profile.Appearance.EyeColor, Profile.Appearance.EyeGlowing); // Far Horizons
                 ReloadProfilePreview();
             };
 
@@ -497,7 +368,7 @@ namespace Content.Client.Lobby.UI
                     return;
                 Profile = Profile.WithCharacterAppearance(
                     Profile.Appearance.WithEyeGlowing(newColor));
-                Markings.CurrentEyeColor = Profile.Appearance.EyeColor;
+                _markingsModel.SetOrganEyeColor(Profile.Appearance.EyeColor, Profile.Appearance.EyeGlowing); // Far Horizons
                 ReloadProfilePreview();
             };
             //starlight end
@@ -524,10 +395,8 @@ namespace Content.Client.Lobby.UI
 
 
 
-            Markings.OnMarkingAdded += OnMarkingChange;
-            Markings.OnMarkingRemoved += OnMarkingChange;
-            Markings.OnMarkingColorChange += OnMarkingChange;
-            Markings.OnMarkingRankChange += OnMarkingChange;
+            _markingsModel.MarkingsChanged += (_, _) => OnMarkingChange();
+            _markingsModel.MarkingsReset += OnMarkingChange;
 
             #endregion Markings
 
@@ -557,35 +426,36 @@ namespace Content.Client.Lobby.UI
             UpdateSpeciesGuidebookIcon();
             IsDirty = false;
 
-            //🌟Starlight🌟
-            _voices = _prototypeManager
-                .EnumeratePrototypes<VoicePrototype>()
-                .Where(o => !o.Silicon)
-                .ToList();
+            // Far Horizons - Disabled voices in UI only
+            // //🌟Starlight🌟
+            // _voices = _prototypeManager
+            //     .EnumeratePrototypes<VoicePrototype>()
+            //     .Where(o => !o.Silicon)
+            //     .ToList();
 
-            VoiceButton.OnItemSelected += args =>
-            {
-                VoiceButton.SelectId(args.Id);
-                Profile = Profile?.WithVoice(_voices[args.Id].ID);
-                IsDirty = true;
-            };
-            VoicePreviewButton.OnPressed +=
-                _ => _entManager.System<TextToSpeechSystem>().RequestPreviewTts(Profile?.Voice ?? "");
+            // VoiceButton.OnItemSelected += args =>
+            // {
+            //     VoiceButton.SelectId(args.Id);
+            //     Profile = Profile?.WithVoice(_voices[args.Id].ID);
+            //     IsDirty = true;
+            // };
+            // VoicePreviewButton.OnPressed +=
+            //     _ => _entManager.System<TextToSpeechSystem>().RequestPreviewTts(Profile?.Voice ?? "");
 
-            // 🌟Starlight🌟 start
-            _siliconVoices = _prototypeManager
-                .EnumeratePrototypes<VoicePrototype>()
-                .Where(o => o.Silicon)
-                .ToList();
+            // // 🌟Starlight🌟 start
+            // _siliconVoices = _prototypeManager
+            //     .EnumeratePrototypes<VoicePrototype>()
+            //     .Where(o => o.Silicon)
+            //     .ToList();
 
-            SiliconVoiceButton.OnItemSelected += args =>
-            {
-                SiliconVoiceButton.SelectId(args.Id);
-                Profile = Profile?.WithSiliconVoice(_siliconVoices[args.Id].ID);
-                IsDirty = true;
-            };
-            SiliconVoicePreviewButton.OnPressed +=
-                _ => _entManager.System<TextToSpeechSystem>().RequestPreviewTts(Profile?.SiliconVoice ?? "");
+            // SiliconVoiceButton.OnItemSelected += args =>
+            // {
+            //     SiliconVoiceButton.SelectId(args.Id);
+            //     Profile = Profile?.WithSiliconVoice(_siliconVoices[args.Id].ID);
+            //     IsDirty = true;
+            // };
+            // SiliconVoicePreviewButton.OnPressed +=
+            //     _ => _entManager.System<TextToSpeechSystem>().RequestPreviewTts(Profile?.SiliconVoice ?? "");
 
             SetupTabs();
             // Cosmatic Drift Record System-start
@@ -595,33 +465,33 @@ namespace Content.Client.Lobby.UI
             RefreshCharacterInfo();
             // 🌟Starlight🌟 end
         }
-        private void UpdateVoicesControls()
-        {
-            if (Profile is null)
-                return;
+        // private void UpdateVoicesControls()
+        // {
+        //     if (Profile is null)
+        //         return;
 
-            VoiceButton.Clear();
+        //     VoiceButton.Clear();
 
-            for (var i = 0; i < _voices.Count; i++)
-            {
-                var voice = _voices[i];
+        //     for (var i = 0; i < _voices.Count; i++)
+        //     {
+        //         var voice = _voices[i];
 
-                VoiceButton.AddItem($"[{voice.Sex}] {Loc.GetString(voice.Name)}", i);
-            }
+        //         VoiceButton.AddItem($"[{voice.Sex}] {Loc.GetString(voice.Name)}", i);
+        //     }
 
-            if (string.IsNullOrEmpty(Profile.Voice))
-            {
-                var available = _voices.ToArray();
-                if (available.Length > 0)
-                {
-                    var index = new Random().Next(0, available.Length);
-                    Profile.Voice = available[index].ID;
-                }
-            }
-            var voiceChoiceId = _voices.FindIndex(x => x.ID == Profile.Voice);
-            if (voiceChoiceId != -1)
-                VoiceButton.TrySelectId(voiceChoiceId);
-        }
+        //     if (string.IsNullOrEmpty(Profile.Voice))
+        //     {
+        //         var available = _voices.ToArray();
+        //         if (available.Length > 0)
+        //         {
+        //             var index = new Random().Next(0, available.Length);
+        //             Profile.Voice = available[index].ID;
+        //         }
+        //     }
+        //     var voiceChoiceId = _voices.FindIndex(x => x.ID == Profile.Voice);
+        //     if (voiceChoiceId != -1)
+        //         VoiceButton.TrySelectId(voiceChoiceId);
+        // }
         // 🌟Starlight🌟 Start
 
         private void SetupTabs()
@@ -652,34 +522,34 @@ namespace Content.Client.Lobby.UI
         }
         // Cosmatic Drift Record System-end
 
-        private void UpdateSiliconVoicesControls()
-        {
-            if (Profile is null)
-                return;
+        // private void UpdateSiliconVoicesControls()
+        // {
+        //     if (Profile is null)
+        //         return;
 
-            SiliconVoiceButton.Clear();
+        //     SiliconVoiceButton.Clear();
 
-            for (var i = 0; i < _siliconVoices.Count; i++)
-            {
-                var voice = _siliconVoices[i];
+        //     for (var i = 0; i < _siliconVoices.Count; i++)
+        //     {
+        //         var voice = _siliconVoices[i];
 
-                SiliconVoiceButton.AddItem($"[{voice.Sex}] {Loc.GetString(voice.Name)}", i);
-            }
+        //         SiliconVoiceButton.AddItem($"[{voice.Sex}] {Loc.GetString(voice.Name)}", i);
+        //     }
 
-            if (string.IsNullOrEmpty(Profile.SiliconVoice))
-            {
-                var available = _siliconVoices.ToArray();
-                if (available.Length > 0)
-                {
-                    var index = new Random().Next(0, available.Length);
-                    Profile.SiliconVoice = available[index].ID;
-                }
-            }
+        //     if (string.IsNullOrEmpty(Profile.SiliconVoice))
+        //     {
+        //         var available = _siliconVoices.ToArray();
+        //         if (available.Length > 0)
+        //         {
+        //             var index = new Random().Next(0, available.Length);
+        //             Profile.SiliconVoice = available[index].ID;
+        //         }
+        //     }
 
-            var siliconVoiceChoiceId = _siliconVoices.FindIndex(x => x.ID == Profile.SiliconVoice);
-            if (siliconVoiceChoiceId != -1)
-                SiliconVoiceButton.TrySelectId(siliconVoiceChoiceId);
-        }
+        //     var siliconVoiceChoiceId = _siliconVoices.FindIndex(x => x.ID == Profile.SiliconVoice);
+        //     if (siliconVoiceChoiceId != -1)
+        //         SiliconVoiceButton.TrySelectId(siliconVoiceChoiceId);
+        // }
 
 
         private void SetupInfoEditors()
@@ -861,7 +731,7 @@ namespace Content.Client.Lobby.UI
                 var parentSpecies = _species.Find(p => p.ID == Profile?.Species)?.SubspeciesOf ?? Profile.Species;
                 if (!speciesIds.Contains(parentSpecies))
                 {
-                    SetSpecies(SharedHumanoidAppearanceSystem.DefaultSpecies);
+                    SetSpecies(HumanoidCharacterProfile.DefaultSpecies);
                 }
             }
         }
@@ -992,7 +862,11 @@ namespace Content.Client.Lobby.UI
         /// </remarks>
         private void ReloadPreview()
         {
+            if (Profile == null)
+                return;
+
             Preview.ReloadPreview();
+
             // Check and set the dirty flag to enable the save/reset buttons as appropriate.
             SetDirty();
         }
@@ -1029,11 +903,11 @@ namespace Content.Client.Lobby.UI
             UpdateEyePickers();
             UpdateSaveButton();
             UpdateMarkings();
-            UpdateHairPickers();
-            UpdateCMarkingsHair();
-            UpdateCMarkingsFacialHair();
-            UpdateVoicesControls();
-            UpdateSiliconVoicesControls(); // 🌟Starlight🌟
+            //UpdateHairPickers();
+            //UpdateCMarkingsHair();
+            //UpdateCMarkingsFacialHair();
+            //UpdateVoicesControls();
+            //UpdateSiliconVoicesControls(); // 🌟Starlight🌟
             UpdateCybernetics(); // Starlight
             UpdateSpeciesLoadout(); // Far Horizons
 
@@ -1070,7 +944,11 @@ namespace Content.Client.Lobby.UI
         /// </summary>
         private void ReloadProfilePreview()
         {
+            if (Profile == null)
+                return;
+
             Preview.ReloadProfilePreview();
+
             // Check and set the dirty flag to enable the save/reset buttons as appropriate.
             SetDirty();
         }
@@ -1083,7 +961,7 @@ namespace Content.Client.Lobby.UI
 
             var guidebookController = UserInterfaceManager.GetUIController<GuidebookUIController>();
             // Far Horizons start
-            var speciesId = Profile?.Species ?? SharedHumanoidAppearanceSystem.DefaultSpecies;
+            var speciesId = Profile?.Species ?? HumanoidCharacterProfile.DefaultSpecies;
             var speciesProto = _species.Find(p => p.ID == speciesId) ?? _species.First();
             var species = speciesProto.SubspeciesOf ?? speciesProto.ID;
             // Far Horizons end
@@ -1454,13 +1332,14 @@ namespace Content.Client.Lobby.UI
 
         //starlight end
 
-        private void OnMarkingChange(MarkingSet markings)
+        private void OnMarkingChange()
         {
             if (Profile is null)
                 return;
 
-            Profile = Profile.WithCharacterAppearance(Profile.Appearance.WithMarkings(markings.GetForwardEnumerator().ToList()));
+            Profile = Profile.WithCharacterAppearance(Profile.Appearance.WithMarkings(_markingsModel.Markings));
             ReloadProfilePreview();
+            SetDirty();
         }
 
         private void OnSkinColorOnValueChanged()
@@ -1473,35 +1352,35 @@ namespace Content.Client.Lobby.UI
             switch (strategy.InputType)
             {
                 case SkinColorationStrategyInput.Unary:
+                {
+                    if (!Skin.Visible)
                     {
-                        if (!Skin.Visible)
-                        {
-                            Skin.Visible = true;
-                            RgbSkinColorContainer.Visible = false;
-                        }
-
-                        var color = strategy.FromUnary(Skin.Value);
-
-                        Markings.CurrentSkinColor = color;
-                        Profile = Profile.WithCharacterAppearance(Profile.Appearance.WithSkinColor(color));
-
-                        break;
+                        Skin.Visible = true;
+                        RgbSkinColorContainer.Visible = false;
                     }
+
+                    var color = strategy.FromUnary(Skin.Value);
+
+                    _markingsModel.SetOrganSkinColor(color);
+                    Profile = Profile.WithCharacterAppearance(Profile.Appearance.WithSkinColor(color));
+                    break;
+                }
+                
                 case SkinColorationStrategyInput.Color:
+                {
+                    if (!RgbSkinColorContainer.Visible)
                     {
-                        if (!RgbSkinColorContainer.Visible)
-                        {
-                            Skin.Visible = false;
-                            RgbSkinColorContainer.Visible = true;
-                        }
-
-                        var color = strategy.ClosestSkinColor(_rgbSkinColorSelector.Color);
-
-                        Markings.CurrentSkinColor = color;
-                        Profile = Profile.WithCharacterAppearance(Profile.Appearance.WithSkinColor(color));
-
-                        break;
+                        Skin.Visible = false;
+                        RgbSkinColorContainer.Visible = true;
                     }
+
+                    var color = strategy.ClosestSkinColor(_rgbSkinColorSelector.Color);
+
+                    _markingsModel.SetOrganSkinColor(color);
+                    Profile = Profile.WithCharacterAppearance(Profile.Appearance.WithSkinColor(color));
+
+                    break;
+                }
             }
 
             ReloadProfilePreview();
@@ -1527,7 +1406,6 @@ namespace Content.Client.Lobby.UI
         private void SetAge(int newAge)
         {
             Profile = Profile?.WithAge(newAge);
-            ReloadPreview();
         }
 
         private void SetSex(Sex newSex)
@@ -1548,16 +1426,15 @@ namespace Content.Client.Lobby.UI
             }
 
             UpdateGenderControls();
-            Markings.SetSex(newSex);
-            ReloadPreview();
-            UpdateVoicesControls();
-            UpdateSiliconVoicesControls(); // 🌟Starlight🌟
+            _markingsModel.SetOrganSexes(newSex);
+            ReloadProfilePreview();
+            //UpdateVoicesControls();
+            //UpdateSiliconVoicesControls(); // 🌟Starlight🌟
         }
 
         private void SetGender(Gender newGender)
         {
             Profile = Profile?.WithGender(newGender);
-            ReloadPreview();
         }
 
         //starlight start
@@ -1579,7 +1456,7 @@ namespace Content.Client.Lobby.UI
             if (Profile is null) return;
             Profile.Appearance = Profile.Appearance.WithWidth(newWidth);
             UpdateSizeText();
-            ReloadPreview();
+            ReloadProfilePreview();
         }
 
         private void SetHeight(float newHeight)
@@ -1587,7 +1464,7 @@ namespace Content.Client.Lobby.UI
             if (Profile is null) return;
             Profile.Appearance = Profile.Appearance.WithHeight(newHeight);
             UpdateSizeText();
-            ReloadPreview();
+            ReloadProfilePreview();
         }
         //starlight end
 
@@ -1596,7 +1473,9 @@ namespace Content.Client.Lobby.UI
             Profile = Profile?.WithSpecies(newSpecies);
             UpdateSubspecies(); // Far Horizons
             OnSkinColorOnValueChanged(); // Species may have special color prefs, make sure to update it.
-            Markings.SetSpecies(newSpecies); // Repopulate the markings tab as well.
+            _markingsModel.Markings = []; // Far Horizons
+            UpdateMarkings(); // Far Horizons
+            _markingsModel.ValidateMarkings();
             // In case there's job restrictions for the species
             RefreshJobs();
             // In case there's species restrictions for loadouts
@@ -1613,10 +1492,10 @@ namespace Content.Client.Lobby.UI
             Profile = Profile?.WithName(newName);
             SetDirty();
 
-            if (!IsDirty)
-                return;
+            // if (!IsDirty)
+            //     return;
 
-            ReloadPreview();
+            // SpriteView.SetName(newName);
         }
 
         // Starlight - Start
@@ -1817,9 +1696,9 @@ namespace Content.Client.Lobby.UI
                 return;
             }
 
-            Markings.SetData(Profile.Appearance.Markings, Profile.Species,
-                Profile.Sex, Profile.Appearance.SkinColor, Profile.Appearance.EyeColor
-            );
+            _markingsModel.OrganData = _markingManager.GetMarkingData(Profile.Species);
+            _markingsModel.OrganProfileData = _markingManager.GetProfileData(Profile.Species, Profile.Sex, Profile.Appearance.SkinColor, Profile.Appearance.EyeColor, Profile.Appearance.EyeGlowing, Profile.Appearance.Width, Profile.Appearance.Height); // Far Horizons
+            _markingsModel.Markings = Profile.Appearance.Markings;
         }
 
         private void UpdateGenderControls()
@@ -1842,99 +1721,6 @@ namespace Content.Client.Lobby.UI
             SpawnPriorityButton.SelectId((int)Profile.SpawnPriority);
         }
 
-        private void UpdateHairPickers()
-        {
-            if (Profile == null)
-            {
-                return;
-            }
-            var hairMarking = Profile.Appearance.HairStyleId == HairStyles.DefaultHairStyle
-                ? new List<Marking>()
-                : new() { new(Profile.Appearance.HairStyleId, new List<Color>() { Profile.Appearance.HairColor }, Profile.Appearance.HairGlowing) };
-
-            var facialHairMarking = Profile.Appearance.FacialHairStyleId == HairStyles.DefaultFacialHairStyle
-                ? new List<Marking>()
-                : new() { new(Profile.Appearance.FacialHairStyleId, new List<Color>() { Profile.Appearance.FacialHairColor }, Profile.Appearance.FacialHairGlowing) };
-
-            HairStylePicker.UpdateData(
-                hairMarking,
-                Profile.Species,
-                1);
-            FacialHairPicker.UpdateData(
-                facialHairMarking,
-                Profile.Species,
-                1);
-        }
-
-        private void UpdateCMarkingsHair()
-        {
-            if (Profile == null)
-            {
-                return;
-            }
-
-            // hair color
-            Color? hairColor = null;
-            if (Profile.Appearance.HairStyleId != HairStyles.DefaultHairStyle &&
-                _markingManager.Markings.TryGetValue(Profile.Appearance.HairStyleId, out var hairProto)
-            )
-            {
-                if (_markingManager.CanBeApplied(Profile.Species, Profile.Sex, hairProto, _prototypeManager))
-                {
-                    if (_markingManager.MustMatchSkin(Profile.Species, HumanoidVisualLayers.Hair, out var _, _prototypeManager))
-                    {
-                        hairColor = Profile.Appearance.SkinColor;
-                    }
-                    else
-                    {
-                        hairColor = Profile.Appearance.HairColor;
-                    }
-                }
-            }
-            if (hairColor != null)
-            {
-                Markings.HairMarking = new(Profile.Appearance.HairStyleId, new List<Color>() { hairColor.Value }, Profile.Appearance.HairGlowing); //starlight glowing
-            }
-            else
-            {
-                Markings.HairMarking = null;
-            }
-        }
-
-        private void UpdateCMarkingsFacialHair()
-        {
-            if (Profile == null)
-            {
-                return;
-            }
-
-            // facial hair color
-            Color? facialHairColor = null;
-            if (Profile.Appearance.FacialHairStyleId != HairStyles.DefaultFacialHairStyle &&
-                _markingManager.Markings.TryGetValue(Profile.Appearance.FacialHairStyleId, out var facialHairProto))
-            {
-                if (_markingManager.CanBeApplied(Profile.Species, Profile.Sex, facialHairProto, _prototypeManager))
-                {
-                    if (_markingManager.MustMatchSkin(Profile.Species, HumanoidVisualLayers.Hair, out var _, _prototypeManager))
-                    {
-                        facialHairColor = Profile.Appearance.SkinColor;
-                    }
-                    else
-                    {
-                        facialHairColor = Profile.Appearance.FacialHairColor;
-                    }
-                }
-            }
-            if (facialHairColor != null)
-            {
-                Markings.FacialHairMarking = new(Profile.Appearance.FacialHairStyleId, new List<Color>() { facialHairColor.Value }, Profile.Appearance.FacialHairGlowing); //starlight glowing
-            }
-            else
-            {
-                Markings.FacialHairMarking = null;
-            }
-        }
-
         private void UpdateEyePickers()
         {
             if (Profile == null)
@@ -1942,8 +1728,8 @@ namespace Content.Client.Lobby.UI
                 return;
             }
 
-            Markings.CurrentEyeColor = Profile.Appearance.EyeColor;
-            EyeColorPicker.SetData(Profile.Appearance.EyeColor, Profile.Appearance.EyeGlowing); //starlight glowing
+            _markingsModel.SetOrganEyeColor(Profile.Appearance.EyeColor);
+            EyeColorPicker.SetData(Profile.Appearance.EyeColor, Profile.Appearance.EyeGlowing); // Far Horizons
         }
 
         // Starlight
@@ -1977,6 +1763,19 @@ namespace Content.Client.Lobby.UI
             UpdateNameEdit();
         }
 
+        // private async void ExportImage()
+        // {
+        //     if (_imaging)
+        //         return;
+
+        //     var dir = SpriteView.OverrideDirection ?? Direction.South;
+
+        //     // I tried disabling the button but it looks sorta goofy as it only takes a frame or two to save
+        //     _imaging = true;
+        //     await _entManager.System<ContentSpriteSystem>().Export(SpriteView.PreviewDummy, dir, includeId: false);
+        //     _imaging = false;
+        // }
+
         private async void ImportProfile()
         {
             if (_exporting || CharacterSlot == null || Profile == null)
@@ -1993,7 +1792,7 @@ namespace Content.Client.Lobby.UI
 
             try
             {
-                var profile = _entManager.System<HumanoidAppearanceSystem>().FromStream(file, _playerManager.LocalSession!);
+                var profile = HumanoidCharacterProfile.FromStream(file, _playerManager.LocalSession!);
                 var oldProfile = Profile;
                 SetProfile(profile, CharacterSlot);
 
@@ -2025,7 +1824,7 @@ namespace Content.Client.Lobby.UI
 
             try
             {
-                var dataNode = _entManager.System<HumanoidAppearanceSystem>().ToDataNode(Profile);
+                var dataNode = Profile.ToDataNode();
                 await using var writer = new StreamWriter(file.Value.fileStream);
                 dataNode.Write(writer);
             }

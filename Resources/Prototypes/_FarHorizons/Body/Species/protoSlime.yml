@@ -1,0 +1,94 @@
+- type: markingsGroup
+  parent: [ Slime, BaseProtogen ]
+  id: ProtoSlimePerson
+  limits:
+    enum.HumanoidVisualLayers.FaceCover:
+      limit: 1
+      required: true
+      default: [ ProtoSlimePersonVisor ]
+    enum.HumanoidVisualLayers.BodyCover:
+      limit: 1
+      required: true
+      default: [ ProtoSlimePersonMediumArmor ]
+
+- type: entity
+  parent: AppearanceSlimePerson
+  id: AppearanceProtoSlimePerson
+  name: ProtoSlimePerson Appearance
+  components:
+  - type: InitialBody
+    organs:
+      Torso: OrganProtoSlimePersonTorso
+      Head: OrganProtoSlimePersonHead
+      ArmLeft: OrganProtoSlimePersonArmLeft
+      ArmRight: OrganProtoSlimePersonArmRight
+      HandRight: OrganProtoSlimePersonHandRight
+      HandLeft: OrganProtoSlimePersonHandLeft
+      LegLeft: OrganProtoSlimePersonLegLeft
+      LegRight: OrganProtoSlimePersonLegRight
+      FootLeft: OrganProtoSlimePersonFootLeft
+      FootRight: OrganProtoSlimePersonFootRight
+      Brain: OrganSlimePersonCore
+      Lungs: OrganSlimePersonLungs
+  - type: HumanoidProfile
+    species: ProtoSlimePerson
+
+- type: entity
+  parent:
+  - AppearanceProtoSlimePerson
+  - BaseMobProtoSlimePerson
+  id: MobProtoSlimePerson
+  name: Urist McSlimester
+
+# Organs
+
+- type: entity
+  id: OrganProtoSlimePersonExternal
+  abstract: true
+  suffix: Protogen
+  components:
+  - type: VisualOrganMarkings
+    markingData:
+      group: ProtoSlimePerson
+
+# Limbs
+
+- type: entity
+  parent: [ OrganProtoSlimePersonExternal, OrganSlimePersonTorso ]
+  id: OrganProtoSlimePersonTorso
+
+- type: entity
+  parent: [ OrganProtoSlimePersonExternal, OrganSlimePersonHead ]
+  id: OrganProtoSlimePersonHead
+
+- type: entity
+  parent: [ OrganProtoSlimePersonExternal, OrganSlimePersonArmLeft ]
+  id: OrganProtoSlimePersonArmLeft
+
+- type: entity
+  parent: [ OrganProtoSlimePersonExternal, OrganSlimePersonArmRight ]
+  id: OrganProtoSlimePersonArmRight
+
+- type: entity
+  parent: [ OrganProtoSlimePersonExternal, OrganSlimePersonHandLeft ]
+  id: OrganProtoSlimePersonHandLeft
+
+- type: entity
+  parent: [ OrganProtoSlimePersonExternal, OrganSlimePersonHandRight ]
+  id: OrganProtoSlimePersonHandRight
+
+- type: entity
+  parent: [ OrganProtoSlimePersonExternal, OrganSlimePersonLegLeft ]
+  id: OrganProtoSlimePersonLegLeft
+
+- type: entity
+  parent: [ OrganProtoSlimePersonExternal, OrganSlimePersonLegRight ]
+  id: OrganProtoSlimePersonLegRight
+
+- type: entity
+  parent: [ OrganProtoSlimePersonExternal, OrganSlimePersonFootLeft ]
+  id: OrganProtoSlimePersonFootLeft
+
+- type: entity
+  parent: [ OrganProtoSlimePersonExternal, OrganSlimePersonFootRight ]
+  id: OrganProtoSlimePersonFootRight

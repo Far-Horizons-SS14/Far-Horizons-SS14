@@ -43,8 +43,7 @@
     state: scalpel
   - type: SurgeryStepEmoteEffect
   - type: SurgeryStepOrganExtract
-    organ:
-    - type: OrganLiver
+    slot: Liver
   #FarHorizons Start
   - type: OnFailDamage
     damage: 
@@ -92,8 +91,7 @@
     state: scalpel
   - type: SurgeryStepEmoteEffect
   - type: SurgeryStepOrganExtract
-    organ:
-    - type: OrganAppendix
+    slot: Appendix
 
 # kidneys
 - type: entity
@@ -142,8 +140,7 @@
     state: scalpel
   - type: SurgeryStepEmoteEffect
   - type: SurgeryStepOrganExtract
-    organ:
-    - type: OrganKidneys
+    slot: Kidneys
   #FarHorizons Start
   - type: OnFailDamage
     damage: 
@@ -196,8 +193,7 @@
     state: scalpel
   - type: SurgeryStepEmoteEffect
   - type: SurgeryStepOrganExtract
-    organ:
-    - type: OrganStomach
+    slot: Stomach
   #FarHorizons Start
   - type: OnFailDamage
     damage: 
@@ -251,8 +247,7 @@
     state: scalpel
   - type: SurgeryStepEmoteEffect
   - type: SurgeryStepOrganExtract
-    organ:
-    - type: OrganLungs
+    slot: Lungs
   #FarHorizons Start
   - type: OnFailDamage
     damage: 
@@ -306,8 +301,7 @@
     state: scalpel
   - type: SurgeryStepEmoteEffect
   - type: SurgeryStepOrganExtract
-    organ:
-    - type: OrganHeart
+    slot: Heart
   #FarHorizons Start
   - type: OnFailDamage
     damage: 
@@ -358,8 +352,7 @@
     - type: Scalpel
   - type: SurgeryStepEmoteEffect
   - type: SurgeryStepOrganExtract
-    organ:
-    - type: OrganEyes
+    slot: Eyes
   - type: Sprite
     sprite: Objects/Specific/Medical/Surgery/scalpel.rsi
     state: scalpel
@@ -394,8 +387,7 @@
     - type: Scalpel
   - type: SurgeryStepEmoteEffect
   - type: SurgeryStepOrganExtract
-    organ:
-    - type: EyeImplant
+    slot: EyeImplant
   - type: Sprite
     sprite: Objects/Specific/Medical/Surgery/scalpel.rsi
     state: scalpel
@@ -437,8 +429,7 @@
     - type: Scalpel
   - type: SurgeryStepEmoteEffect
   - type: SurgeryStepOrganExtract
-    organ:
-    - type: OrganTongue
+    slot: Tongue
   - type: Sprite
     sprite: Objects/Specific/Medical/Surgery/scalpel.rsi
     state: scalpel
@@ -716,8 +707,7 @@
     bodyAdd:
     - type: Uncryoable
   - type: SurgeryStepOrganExtract
-    organ:
-    - type: OrganBrain
+    slot: Brain
   - type: Sprite
     sprite: _Starlight/Objects/Specific/Medical/scissors.rsi
     state: retractor
@@ -759,12 +749,12 @@
   - type: SurgeryStep
     duration: 3
     tools:
-    - type: OrganLiver
+    - type: Organ
+    organCategory: Liver
   - type: Sprite
     sprite: Mobs/Species/Human/organs.rsi
     state: liver
   - type: SurgeryStepOrganInsert
-    slot: liver
 
 - type: entity
   parent: SurgeryStepBase
@@ -814,14 +804,14 @@
   - type: SurgeryStep
     duration: 3
     tools:
-    - type: OrganKidneys
+    - type: Organ
+    organCategory: Kidneys
   - type: Sprite
     sprite: Mobs/Species/Human/organs.rsi
     layers:
       - state: kidney-l
       - state: kidney-r
   - type: SurgeryStepOrganInsert
-    slot: kidneys
 
 - type: entity
   parent: SurgeryStepBase
@@ -871,12 +861,12 @@
   - type: SurgeryStep
     duration: 3
     tools:
-    - type: OrganStomach
+    - type: Organ
+    organCategory: Stomach
   - type: Sprite
     sprite: Mobs/Species/Human/organs.rsi
     state: stomach
   - type: SurgeryStepOrganInsert
-    slot: stomach
 
 - type: entity
   parent: SurgeryStepBase
@@ -926,12 +916,12 @@
   - type: SurgeryStep
     duration: 3
     tools:
-    - type: OrganLungs
+    - type: Organ
+    organCategory: Lungs
   - type: Sprite
     sprite: Mobs/Species/Human/organs.rsi
     state: lung-l
   - type: SurgeryStepOrganInsert
-    slot: lungs
 
 - type: entity
   parent: SurgeryStepBase
@@ -981,12 +971,12 @@
   - type: SurgeryStep
     duration: 3
     tools:
-    - type: OrganHeart
+    - type: Organ
+    organCategory: Heart
   - type: Sprite
     sprite: Mobs/Species/Human/organs.rsi
     state: heart-on
   - type: SurgeryStepOrganInsert
-    slot: heart
 
 - type: entity
   parent: SurgeryStepBase
@@ -1036,9 +1026,9 @@
   - type: SurgeryStep
     duration: 2
     tools:
-    - type: OrganEyes
+    - type: Organ
+    organCategory: Eyes
   - type: SurgeryStepOrganInsert
-    slot: eyes
   - type: Sprite
     sprite: Mobs/Species/Human/organs.rsi
     layers:
@@ -1076,7 +1066,6 @@
     tools:
     - type: EyeImplant
   - type: SurgeryStepOrganInsert
-    slot: eye_implant
   - type: Sprite
     sprite: _Starlight/Objects/Specific/Medical/implants.rsi
     layers:
@@ -1117,11 +1106,11 @@
   - type: SurgeryStep
     duration: 2
     tools:
-    - type: OrganTongue
+    - type: Organ
+    organCategory: Tongue
     bodyRemove:
     - type: Muted
   - type: SurgeryStepOrganInsert
-    slot: tongue
   - type: Sprite
     sprite: Mobs/Species/Human/organs.rsi
     state: tongue
@@ -1213,11 +1202,11 @@
   - type: SurgeryStep
     duration: 5
     tools:
-    - type: OrganBrain
+    - type: Organ
+    organCategory: Brain
     bodyRemove:
     - type: Uncryoable
   - type: SurgeryStepOrganInsert
-    slot: brain
   - type: Sprite
     sprite: Mobs/Species/Human/organs.rsi
     state: brain
@@ -1339,6 +1328,12 @@
     duration: 4
     tools:
     - type: Cautery
+    #FH-Start
+    remove:
+    - type: SkinRetracted
+    - type: BleedersClamped
+    - type: IncisionOpen
+    #FH-End
   - type: Sprite
     sprite: Objects/Specific/Medical/Surgery/cautery.rsi
     state: cautery
@@ -1400,9 +1395,7 @@
     state: torso_m
   - type: SurgeryStepEmoteEffect
   - type: SurgeryStepOrganExtract
-    organ:
-    - type: Item
-    slot: cavity
+    slot: Cavity
   #FarHorizons Start
   - type: OnFailDamage
     damage: 
@@ -1442,8 +1435,8 @@
     sprite: Mobs/Species/Human/parts.rsi
     state: torso_m
   - type: SurgeryItemSizeCondition
-  - type: SurgeryStepOrganInsert
-    slot: cavity
+  - type: SurgeryStepCustomOrganInsert
+    customCategory: Cavity
 
 # Shadekin Core
 
@@ -1468,7 +1461,6 @@
     tools:
     - type: OrganShadekinCore
   - type: SurgeryStepOrganInsert
-    slot: core
   - type: Sprite
     sprite: _Starlight/Mobs/Species/Shadekin/organs.rsi
     state: core
@@ -1483,8 +1475,7 @@
     tools:
     - type: Retractor
   - type: SurgeryStepOrganExtract
-    organ:
-    - type: OrganShadekinCore
+    slot: Lungs
   - type: Sprite
     sprite: Objects/Specific/Medical/Surgery/scissors.rsi
     state: retractor

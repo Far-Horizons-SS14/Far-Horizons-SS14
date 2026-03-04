@@ -23,7 +23,7 @@
     - RadarConsoleCircuitboard
     - HandHeldMassScanner
   announceTo:
-    - Supply
+    - GSL # Far Horizons
 
 # Industry
 
@@ -74,7 +74,7 @@
     - RipleyPeripheralsElectronics
     - MechEquipmentGrabber
   announceTo:
-    - Supply
+    - GSL # Far Horizons
 
 # Sec
 
@@ -139,10 +139,10 @@
     - MagazinePistolSubMachineGunIncendiary
     - SpeedLoaderShotgunIncendiary
     - MagazineMagnumIncendiary
-    - MagazinePistol40Incendiary
-    - MagazineBoxPistol40Incendiary
-    - MagazineRifle40Incendiary
-    - SpeedLoaderPistol40Incendiary
+    - MagazinePistol38Incendiary
+    - MagazineBoxRevolver38Incendiary
+    - MagazineRifle38Incendiary
+    - SpeedLoaderRevolver38Incendiary
     - MagazineRifleUranium
     - MagazinePistolUranium
     - MagazinePistolSubMachineGunUranium
@@ -157,10 +157,10 @@
     - MagazinePistolSubMachineGunUranium
     - SpeedLoaderShotgunUranium
     - MagazineMagnumUranium
-    - MagazinePistol40Uranium
-    - MagazineBoxPistol40Uranium
-    - MagazineRifle40Uranium
-    - SpeedLoaderPistol40Uranium
+    - MagazinePistol38Uranium
+    - MagazineBoxRevolver38Uranium
+    - MagazineRifle38Uranium
+    - SpeedLoaderRevolver38Uranium
   announceTo:
     - Security
 
@@ -589,7 +589,7 @@
     - MechEquipmentDrillDiamond
     - BorgModuleAdvancedMining
   announceTo:
-    - Supply
+    - GSL # Far Horizons
 
 - type: researchTreeNode
   id: RecreationalMech
@@ -645,7 +645,7 @@
     - RipleyMKIIHarness
     - RipleyUpgradeKit
   announceTo:
-    - Supply
+    - GSL # Far Horizons
 
 # Sec
 
@@ -665,7 +665,7 @@
     - PKAUpgradeFireRate
   announceTo:
     - Security
-    - Supply
+    - GSL # Far Horizons
 
 - type: researchTreeNode
   id: APAmmo
@@ -680,12 +680,12 @@
   unlocks:
     - SpeedLoaderMagnumAP
     - MagazinePistolAP
-    - MagazinePistol40AP
+    - MagazinePistol38AP
     - MagazineRifleAP
     - MagazineLightRifleAP
     - MagazineBoxMagnumAP
     - MagazineBoxPistolAP
-    - MagazineBoxPistol40AP
+    - MagazineBoxRevolver38AP
     - MagazineBoxRifleAP
     - MagazineBoxLightRifleAP
     - LightRifleHeavyMagazineAP
@@ -726,7 +726,7 @@
     - GyroscopeMachineCircuitboard
     - MiniGravityGeneratorCircuitboard
   announceTo:
-    - Supply
+    - GSL # Far Horizons
     - Engineering
 
 - type: researchTreeNode
@@ -743,7 +743,7 @@
     - WeaponTurretPointDefenseMachineCircuitboard
   announceTo:
     - Security
-    - Supply
+    - GSL # Far Horizons
     - Engineering
 
 - type: researchTreeNode
@@ -768,7 +768,7 @@
     - ShuttleGunFriendshipCircuitboard
   announceTo:
     - Security
-    - Supply
+    - GSL # Far Horizons
     - Engineering
 
 # Lasers
@@ -1115,7 +1115,7 @@
   requires:
     - AILawboards
   unlocks:
-    - BorgModuleAdvancedChemical
+    - BorgModuleAdvancedTopical
   announceTo:
     - Medical
 
@@ -1294,7 +1294,7 @@
     - ShuttleGunDusterCircuitboard
   announceTo:
     - Security
-    - Supply
+    - GSL # Far Horizons
     - Engineering
 
 # Power
@@ -1432,7 +1432,7 @@
     - OreBagOfHolding
     - DeviceDesynchronizer
   announceTo:
-    - Supply
+    - GSL # Far Horizons
     - Medical
     - Service
 

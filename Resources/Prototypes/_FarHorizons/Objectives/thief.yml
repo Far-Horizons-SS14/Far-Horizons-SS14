@@ -27,10 +27,10 @@
 
 #- type: entity           Disabling for now till someone can work on syndicate side thief targets.
 #  parent: BaseThiefStealObjective
-#  id: ClothingHeadHatGuardianStealObjective
+#  id: ClothingHeadHatConstableStealObjective
 #  components:
 #  - type: StealCondition
-#    stealGroup: ClothingHeadHatGuardianCap
+#    stealGroup: ClothingHeadHatConstableCap
 #  - type: Objective
 #    difficulty: 1.2
 
@@ -46,3 +46,15 @@
     verifyMapExistence: false
   - type: Objective
     difficulty: 1
+
+# Upstream removed this, moving it here
+- type: entity
+  parent: BaseThiefStealObjective
+  id: ClothingEyesHudBeerStealObjective
+  components:
+  - type: NotJobRequirement
+    jobs: [ Bartender, ServiceWorker ]
+  - type: StealCondition
+    stealGroup: ClothingEyesHudBeer
+  - type: Objective
+    difficulty: 0.3

@@ -1,5 +1,6 @@
 using Content.Server.Administration.Logs;
 using Content.Server.Atmos.EntitySystems;
+using Content.Server.Body.Systems;
 using Content.Server.Chat.Systems;
 using Content.Server.DoAfter;
 using Content.Server.EUI;
@@ -52,6 +53,7 @@ public sealed partial class IPCSystem : SharedIPCSystem
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly AtmosphereSystem _atmos = default!;
     [Dependency] private readonly TagSystem _tag = default!;
+    [Dependency] private readonly BloodstreamSystem _bloodstream = default!;
     
 
     public override void Initialize()
@@ -59,6 +61,7 @@ public sealed partial class IPCSystem : SharedIPCSystem
         base.Initialize();
 
         InitializeUI();
+        InitializeWeld();
 
         SubscribeLocalEvent<GetVerbsEvent<Verb>>(AddVerbs);
     }

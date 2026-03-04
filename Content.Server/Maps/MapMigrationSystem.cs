@@ -18,9 +18,9 @@ namespace Content.Server.Maps;
 /// </summary>
 public sealed class MapMigrationSystem : EntitySystem
 {
-#pragma warning disable CS0414
+#if DEBUG
     [Dependency] private readonly IPrototypeManager _protoMan = default!;
-#pragma warning restore CS0414
+#endif
     [Dependency] private readonly IResourceManager _resMan = default!;
 
     // Starlight-edit
@@ -84,6 +84,8 @@ public sealed class MapMigrationSystem : EntitySystem
                 ev.RenamedPrototypes.Add(key, valueNode.Value);
         }
     }
+
+    #if DEBUG
     private void ValidateMigrations(string file) //🌟Starlight🌟
     {
         if (!TryReadFile(file, out var mappings))
@@ -97,4 +99,5 @@ public sealed class MapMigrationSystem : EntitySystem
                 DebugTools.Assert(_protoMan.HasIndex<EntityPrototype>(newId), $"{newId} is not an entity prototype.");
         }
     }
+    #endif
 }

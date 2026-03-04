@@ -1,0 +1,268 @@
+- type: markingsGroup
+  parent: Undergarments
+  id: Avali
+  onlyGroupWhitelisted: true
+  limits:
+    enum.HumanoidVisualLayers.Hair:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.Tail:
+      limit: 1
+      required: true
+      default: [ AvaliTailBase ]
+    enum.HumanoidVisualLayers.Overlay:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.Head:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.Eyes:
+      limit: 2
+      required: false
+    enum.HumanoidVisualLayers.HeadTop:
+      limit: 4
+      required: false
+    enum.HumanoidVisualLayers.HeadSide:
+      limit: 1
+      required: true
+      default: [ AvaliEarsBase ]
+    enum.HumanoidVisualLayers.Chest:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LArm:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RArm:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LHand:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RHand:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LLeg:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RLeg:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LFoot:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RFoot:
+      limit: 1
+      required: false
+
+- type: entity
+  parent: BaseSpeciesAppearance
+  id: AppearanceAvali
+  name: Avali Appearance
+  components:
+  - type: Inventory
+    speciesId: Avali
+    displacements:
+        jumpsuit:
+          sizeMaps:
+            32:
+              sprite: _Starlight/Mobs/Species/Avali/displacement.rsi
+              state: jumpsuit
+        outerClothing:
+          sizeMaps:
+            32:
+              sprite: _Starlight/Mobs/Species/Avali/displacement.rsi
+              state: outerclothing
+        shoes: # DM only for colored shoes!
+          sizeMaps:
+            32:
+              sprite: _Starlight/Mobs/Species/Avali/displacement.rsi
+              state: shoes
+        head:
+          sizeMaps:
+            32:
+              sprite: _Starlight/Mobs/Species/Avali/displacement.rsi
+              state: head
+        hand:
+          sizeMaps:
+            32:
+              sprite: _Starlight/Mobs/Species/Avali/displacement.rsi
+              state: hand
+        back:
+          sizeMaps:
+            32:
+              sprite: _Starlight/Mobs/Species/Avali/displacement.rsi
+              state: back
+        gloves:
+          sizeMaps:
+            32:
+              sprite: _Starlight/Mobs/Species/Avali/displacement.rsi
+              state: gloves
+  - type: InitialBody
+    organs:
+      Torso: OrganAvaliTorso
+      Head: OrganAvaliHead
+      ArmLeft: OrganAvaliArmLeft
+      ArmRight: OrganAvaliArmRight
+      HandRight: OrganAvaliHandRight
+      HandLeft: OrganAvaliHandLeft
+      LegLeft: OrganAvaliLegLeft
+      LegRight: OrganAvaliLegRight
+      FootLeft: OrganAvaliFootLeft
+      FootRight: OrganAvaliFootRight
+      Brain: OrganHumanBrain
+      Eyes: OrganAvaliEyes
+      Tongue: OrganHumanTongue
+      Ears: OrganHumanEars
+      Lungs: OrganAvaliLungs
+      Heart: OrganAvaliHeart
+      Stomach: OrganAvaliStomach
+      Liver: OrganAvaliLiver
+      Kidneys: OrganAvaliKidneys
+  - type: HumanoidProfile
+    species: Avali
+
+- type: entity
+  parent:
+  - AppearanceAvali
+  - BaseMobAvali
+  id: MobAvali
+  name: Urist McAvali
+
+# Organs
+
+- type: entity
+  parent: OrganBase
+  id: OrganAvali
+  abstract: true
+  suffix: Avali
+  components:
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: Fat
+        Quantity: 10
+      - ReagentId: AmmoniaBlood
+        Quantity: 20
+  - type: Tag
+    tags:
+      - Organic
+
+- type: entity
+  parent: OrganAvali
+  id: OrganAvaliExternal
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _Starlight/Mobs/Species/Avali/parts.rsi
+  - type: VisualOrgan
+    data:
+      sprite: _Starlight/Mobs/Species/Avali/parts.rsi
+  - type: VisualOrganMarkings
+    markingData:
+      group: Avali
+
+# Limbs
+
+- type: entity
+  parent: [ OrganBaseTorsoSexed, OrganBaseTorso, OrganAvaliExternal ]
+  id: OrganAvaliTorso
+
+- type: entity
+  parent: [ OrganBaseHeadSexed, OrganBaseHead, OrganAvaliExternal ]
+  id: OrganAvaliHead
+  components:
+  - type: VisualOrganMarkings
+    hideableLayers:
+    - enum.HumanoidVisualLayers.Head
+    - enum.HumanoidVisualLayers.HeadTop
+    - enum.HumanoidVisualLayers.HeadSide
+    - enum.HumanoidVisualLayers.Hair
+
+- type: entity
+  parent: [ OrganBaseArmLeft, OrganAvaliExternal ]
+  id: OrganAvaliArmLeft
+
+- type: entity
+  parent: [ OrganBaseArmRight, OrganAvaliExternal ]
+  id: OrganAvaliArmRight
+
+- type: entity
+  parent: [ OrganBaseHandLeft, OrganAvaliExternal ]
+  id: OrganAvaliHandLeft
+
+- type: entity
+  parent: [ OrganBaseHandRight, OrganAvaliExternal ]
+  id: OrganAvaliHandRight
+
+- type: entity
+  parent: [ OrganBaseLegLeft, OrganAvaliExternal ]
+  id: OrganAvaliLegLeft
+  components:
+  - type: MovementOrgan
+    sprintSpeedModifier: 1.06
+
+- type: entity
+  parent: [ OrganBaseLegRight, OrganAvaliExternal ]
+  id: OrganAvaliLegRight
+  components:
+  - type: MovementOrgan
+    sprintSpeedModifier: 1.06
+
+- type: entity
+  parent: [ OrganBaseFootLeft, OrganAvaliExternal ]
+  id: OrganAvaliFootLeft
+
+- type: entity
+  parent: [ OrganBaseFootRight, OrganAvaliExternal ]
+  id: OrganAvaliFootRight
+
+# Internal
+
+- type: entity
+  parent: [ OrganBaseEyes, OrganHumanInternal, OrganAvaliExternal ]
+  id: OrganAvaliEyes
+  components:
+  - type: VisualOrgan
+    data:
+      sprite: _Starlight/Mobs/Species/Avali/parts.rsi
+      state: eyes
+
+- type: entity
+  parent: [ OrganHumanLungs, OrganAvali ]
+  id: OrganAvaliLungs
+  name: lungs
+
+- type: entity
+  parent: [ OrganHumanHeart, OrganAvali ]
+  id: OrganAvaliHeart
+  description: "The heart of an avali."
+  components:
+  - type: Metabolizer
+    maxReagents: 2
+    metabolizerTypes: [ Avali ]
+
+- type: entity
+  parent: [ OrganAnimalStomach, OrganAvali]
+  id: OrganAvaliStomach
+  description: "The stomach of an avali, on closer inspection, actually consists of two stomachs."
+  components:
+  - type: Stomach
+    specialDigestible:
+      tags:
+      - Meat
+      - Pill
+      - Crayon
+      - Paper
+      - AvianFood
+
+- type: entity
+  parent: [ OrganHumanLiver, OrganAvali]
+  id: OrganAvaliLiver
+  components:
+  - type: Metabolizer
+    maxReagents: 1
+    metabolizerTypes: [Avali]
+
+- type: entity
+  parent: [ OrganHumanKidneys, OrganAvali ]
+  id: OrganAvaliKidneys

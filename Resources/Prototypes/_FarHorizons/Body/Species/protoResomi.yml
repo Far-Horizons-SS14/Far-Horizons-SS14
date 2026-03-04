@@ -1,0 +1,101 @@
+- type: markingsGroup
+  parent: [ Resomi, BaseProtogen ]
+  id: ProtoResomi
+  limits:
+    enum.HumanoidVisualLayers.FaceCover:
+      limit: 1
+      required: true
+      default: [ ProtoResomiVisor ]
+    enum.HumanoidVisualLayers.BodyCover:
+      limit: 1
+      required: true
+      default: [ ProtoResomiMediumArmor ]
+
+- type: entity
+  parent: AppearanceResomi
+  id: AppearanceProtoResomi
+  name: ProtoResomi Appearance
+  components:
+  - type: InitialBody
+    organs:
+      Torso: OrganProtoResomiTorso
+      Head: OrganProtoResomiHead
+      ArmLeft: OrganProtoResomiArmLeft
+      ArmRight: OrganProtoResomiArmRight
+      HandRight: OrganProtoResomiHandRight
+      HandLeft: OrganProtoResomiHandLeft
+      LegLeft: OrganProtoResomiLegLeft
+      LegRight: OrganProtoResomiLegRight
+      FootLeft: OrganProtoResomiFootLeft
+      FootRight: OrganProtoResomiFootRight
+      Brain: OrganProtogenBrain
+      Eyes: OrganProtogenEyes
+      Tongue: OrganProtogenTongue
+      Ears: OrganProtogenEars
+      Lungs: OrganProtogenLungs
+      Heart: OrganProtoAvaliHeart
+      Stomach: OrganProtogenStomach
+      Liver: OrganProtogenLiver
+      Kidneys: OrganProtogenKidneys
+  - type: HumanoidProfile
+    species: ProtoResomi
+
+- type: entity
+  parent:
+  - AppearanceProtoResomi
+  - BaseMobProtoResomi
+  id: MobProtoResomi
+  name: Urist McRapster
+
+# Organs
+
+- type: entity
+  id: OrganProtoResomiExternal
+  abstract: true
+  suffix: Protogen
+  components:
+  - type: VisualOrganMarkings
+    markingData:
+      group: ProtoResomi
+
+# Limbs
+
+- type: entity
+  parent: [ OrganProtoResomiExternal, OrganResomiTorso ]
+  id: OrganProtoResomiTorso
+
+- type: entity
+  parent: [ OrganProtoResomiExternal, OrganResomiHead ]
+  id: OrganProtoResomiHead
+
+- type: entity
+  parent: [ OrganProtoResomiExternal, OrganResomiArmLeft ]
+  id: OrganProtoResomiArmLeft
+
+- type: entity
+  parent: [ OrganProtoResomiExternal, OrganResomiArmRight ]
+  id: OrganProtoResomiArmRight
+
+- type: entity
+  parent: [ OrganProtoResomiExternal, OrganResomiHandLeft ]
+  id: OrganProtoResomiHandLeft
+
+- type: entity
+  parent: [ OrganProtoResomiExternal, OrganResomiHandRight ]
+  id: OrganProtoResomiHandRight
+
+- type: entity
+  parent: [ OrganProtoResomiExternal, OrganResomiLegLeft ]
+  id: OrganProtoResomiLegLeft
+
+- type: entity
+  parent: [ OrganProtoResomiExternal, OrganResomiLegRight ]
+  id: OrganProtoResomiLegRight
+
+- type: entity
+  parent: [ OrganProtoResomiExternal, OrganResomiFootLeft ]
+  id: OrganProtoResomiFootLeft
+
+- type: entity
+  parent: [ OrganProtoResomiExternal, OrganResomiFootRight ]
+  id: OrganProtoResomiFootRight

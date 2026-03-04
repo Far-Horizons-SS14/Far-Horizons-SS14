@@ -251,10 +251,11 @@
     - type: RandomMetadata
       nameSegments:
       - NamesSyndiBorgi
-    - type: ContainerFill
+    - type: EntityTableContainerFill
       containers:
-        borg_brain:
-        - PositronicBrain
+        borg_brain: !type:AllSelector
+          children:
+            - id: PositronicBrain
     - type: NpcFactionMember
       factions:
       - Syndicate

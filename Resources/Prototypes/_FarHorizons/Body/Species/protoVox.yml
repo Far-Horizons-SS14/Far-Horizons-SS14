@@ -1,0 +1,140 @@
+- type: markingsGroup
+  parent: [ Vox, BaseProtogen ]
+  id: ProtoVox
+  limits:
+    enum.HumanoidVisualLayers.FaceCover:
+      limit: 1
+      required: true
+      default: [ ProtoVoxVisor ]
+    enum.HumanoidVisualLayers.BodyCover:
+      limit: 1
+      required: true
+      default: [ ProtoVoxMediumArmor ]
+
+- type: entity
+  parent: AppearanceVox
+  id: AppearanceProtoVox
+  name: ProtoVox Appearance
+  components:
+  - type: InitialBody
+    organs:
+      Torso: OrganProtoVoxTorso
+      Head: OrganProtoVoxHead
+      ArmLeft: OrganProtoVoxArmLeft
+      ArmRight: OrganProtoVoxArmRight
+      HandRight: OrganProtoVoxHandRight
+      HandLeft: OrganProtoVoxHandLeft
+      LegLeft: OrganProtoVoxLegLeft
+      LegRight: OrganProtoVoxLegRight
+      FootLeft: OrganProtoVoxFootLeft
+      FootRight: OrganProtoVoxFootRight
+      Brain: OrganProtogenBrain
+      Eyes: OrganProtogenEyes
+      Tongue: OrganProtogenTongue
+      Ears: OrganProtogenEars
+      Lungs: OrganProtogenLungs
+      Heart: OrganProtoVoxHeart
+      Stomach: OrganProtoVoxStomach
+      Liver: OrganProtogenLiver
+      Kidneys: OrganProtogenKidneys
+  - type: HumanoidProfile
+    species: ProtoVox
+
+- type: entity
+  parent:
+  - AppearanceProtoVox
+  - BaseMobProtoVox
+  id: MobProtoVox
+  name: Urist McVoxster
+
+# Organs
+
+- type: entity
+  id: OrganProtoVoxExternalUnsprited
+  abstract: true
+  suffix: Protogen
+  components:
+  - type: VisualOrganMarkings
+    markingData:
+      group: ProtoVox
+
+- type: entity
+  id: OrganProtoVoxExternal
+  abstract: true
+  suffix: Protogen
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Mobs/Species/Proto-Vox/parts.rsi
+  - type: VisualOrgan
+    data:
+      sprite: _FarHorizons/Mobs/Species/Proto-Vox/parts.rsi
+  - type: VisualOrganMarkings
+    markingData:
+      group: ProtoVox
+  - type: Tag
+    tags:
+      - Organic
+
+# Limbs
+
+- type: entity
+  parent: [ OrganProtoVoxExternalUnsprited, OrganVoxTorso ]
+  id: OrganProtoVoxTorso
+
+- type: entity
+  parent: [ OrganProtoVoxExternalUnsprited, OrganVoxHead ]
+  id: OrganProtoVoxHead
+
+- type: entity
+  parent: [ OrganProtoVoxExternalUnsprited, OrganVoxArmLeft ]
+  id: OrganProtoVoxArmLeft
+
+- type: entity
+  parent: [ OrganProtoVoxExternalUnsprited, OrganVoxArmRight ]
+  id: OrganProtoVoxArmRight
+
+- type: entity
+  parent: [ OrganProtoVoxExternal, OrganBaseHandLeft ]
+  id: OrganProtoVoxHandLeft
+
+- type: entity
+  parent: [ OrganProtoVoxExternal, OrganBaseHandRight ]
+  id: OrganProtoVoxHandRight
+
+- type: entity
+  parent: [ OrganProtoVoxExternalUnsprited, OrganVoxLegLeft ]
+  id: OrganProtoVoxLegLeft
+
+- type: entity
+  parent: [ OrganProtoVoxExternalUnsprited, OrganVoxLegRight ]
+  id: OrganProtoVoxLegRight
+
+- type: entity
+  parent: [ OrganProtoVoxExternal, OrganBaseFootLeft ]
+  id: OrganProtoVoxFootLeft
+
+- type: entity
+  parent: [ OrganProtoVoxExternal, OrganBaseFootRight ]
+  id: OrganProtoVoxFootRight
+
+# Internal
+
+- type: entity
+  parent: OrganProtogenHeart
+  id: OrganProtoVoxHeart
+  components:
+  - type: Metabolizer
+    metabolizerTypes: [Vox]
+
+- type: entity
+  parent: OrganProtogenStomach
+  id: OrganProtoVoxStomach
+  components:
+  - type: Metabolizer
+    metabolizerTypes: [Vox]
+  - type: Stomach
+    specialDigestible:
+      tags:
+      - RamChip
+      - Trash
+    isSpecialDigestibleExclusive: false

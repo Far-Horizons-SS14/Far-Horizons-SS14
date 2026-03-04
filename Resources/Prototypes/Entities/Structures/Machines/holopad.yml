@@ -17,7 +17,10 @@
   - type: Physics #Far Horizons - Stop blocking hallways and everything else you punk.
     canCollide: false #Far Horizons - That's right. No more collisions for you punk.
   - type: ApcPowerReceiver
-    powerLoad: 300
+    powerLoad: 5
+  - type: PowerState
+    idlePowerDraw: 5
+    workingPowerDraw: 300
   - type: StationAiVision
     range: 1
     needsAnchoring: true

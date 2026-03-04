@@ -1,36 +1,39 @@
-faction-syndicate-job-captain = Commander
-faction-syndicate-job-hos = Security Overwatch
-faction-syndicate-job-ce = Technical Lead
+faction-syndicate-job-captain = Commandant
+faction-syndicate-job-hos = Marshal
+faction-syndicate-job-ce = Foreman
 faction-syndicate-job-cmo = Medical Director
-faction-syndicate-job-rd = Head of Research
-faction-syndicate-job-hop = Personnel Chief
-faction-syndicate-job-magistrate = Corporate Arbiter
-faction-syndicate-job-rep = Syndicate Operations Agent
+faction-syndicate-job-rd = Epistemics Provost
+faction-syndicate-job-hop = Personnel Manager
+faction-syndicate-job-magistrate = Magistrate
+faction-syndicate-job-rep = NeoSol Representative
 
-faction-syndicate-job-warden = Guardian
-faction-syndicate-job-corpsman = Combat Medic
-faction-syndicate-job-brigmed = Medical Officer
+faction-syndicate-job-warden = Constable
+faction-syndicate-job-corpsman = Corpsman
+faction-syndicate-job-brigmed = Brigmedic
 faction-syndicate-job-detective = Inspector
-faction-syndicate-job-officer = Law Enforcer
+faction-syndicate-job-officer = Enforcer
 faction-syndicate-job-cadet = Recruit
 faction-syndicate-job-secborg = L.E.A.D.
 ## Law Enforcement Assault Droid
 
-faction-syndicate-job-bso = Operative "Red Sword"
+faction-syndicate-job-bso = Red Shield Operative
 
-faction-syndicate-job-atmos = Environmental Technician
-faction-syndicate-job-engineer = Station Architect
-faction-syndicate-job-ta = Trainee Architect
+faction-syndicate-job-janitor = Custodian
+faction-syndicate-job-reporter = Journalist
 
-faction-syndicate-job-surgeon = Physician
+faction-syndicate-job-atmos = Atmospheric Technician
+faction-syndicate-job-engineer = Station Engineer
+faction-syndicate-job-ta = Technical Assistant
+
+faction-syndicate-job-surgeon = Surgeon
 faction-syndicate-job-chemist = Pharmacist
-faction-syndicate-job-paramedic = Medic
-faction-syndicate-job-doctor = Clinician
-faction-syndicate-job-intern = Nursing Assistant
-faction-syndicate-job-psychologist = Psychoanalyst
+faction-syndicate-job-paramedic = Paramedic
+faction-syndicate-job-doctor = Medical Doctor
+faction-syndicate-job-intern = Medical Intern
+faction-syndicate-job-psychologist = Psychologist
 
-faction-syndicate-job-roboticist = Robotics Engineer
-faction-syndicate-job-scientist = Researcher
-faction-syndicate-job-ra = Undergraduate
+faction-syndicate-job-roboticist = Mechanist
+faction-syndicate-job-scientist = Academic
+faction-syndicate-job-ra = Lab Technician
 
 faction-syndicate-job-borg = Droid

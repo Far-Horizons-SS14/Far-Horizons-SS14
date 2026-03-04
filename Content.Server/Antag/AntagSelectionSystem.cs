@@ -16,7 +16,7 @@ using Content.Server.Players.PlayTimeTracking;
 using Content.Server.Preferences.Managers;
 using Content.Server.Roles;
 using Content.Server.Roles.Jobs;
-using Content.Server.Shuttles.Components;
+using Content.Server.Shuttles.Systems;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Antag;
 using Content.Server.Bible.Components; 
@@ -41,6 +41,8 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
 using Content.Server._FarHorizons.Factions;
+using Content.Shared._FarHorizons.Body;
+using Content.Shared.Body;
 // Starlight Start
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Preferences;
@@ -66,7 +68,7 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
     [Dependency] private readonly EntityWhitelistSystem _whitelist = default!;
     [Dependency] private readonly BodySystem _body = default!;
     [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly SharedHumanoidAppearanceSystem _appearance = default!;
+    [Dependency] private readonly ArrivalsSystem _arrivals = default!;
     [Dependency] private readonly IServerFactionManager _factions = default!; // Far Horizons
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!; // Starlight
 
@@ -183,6 +185,15 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
         if (!args.LateJoin)
             return;
 
+        TryMakeLateJoinAntag(args.Player);
+    }
+
+    /// <summary>
+    /// Attempt to make this player be a late-join antag.
+    /// </summary>
+    /// <param name="session">The session to attempt to make antag.</param>
+    public void TryMakeLateJoinAntag(ICommonSession session)
+    {
         // TODO: this really doesn't handle multiple latejoin definitions well
         // eventually this should probably store the players per definition with some kind of unique identifier.
         // something to figure out later.
@@ -212,7 +223,7 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
             if (!TryGetNextAvailableDefinition((uid, antag), out var def, players))
                 continue;
 
-            if (TryMakeAntag((uid, antag), args.Player, def.Value))
+            if (TryMakeAntag((uid, antag), session, def.Value))
                 break;
         }
     }
@@ -325,7 +336,7 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
                     if (playerEntity == null 
                         || HasComp<BibleUserComponent>(playerEntity)
                         || !TryComp<BodyComponent>(playerEntity, out var body) 
-                        || !_body.TryGetBodyOrganEntityComps<StomachComponent>((playerEntity.Value, body), out var stomachs))
+                        || !_body.TryGetOrgansWithComponent<StomachComponent>((playerEntity.Value, body), out var stomachs))
                         continue;
                 }
             }
@@ -556,15 +567,14 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
 
         HumanoidCharacterProfile? profile = null;
 
-        if (TryComp<HumanoidAppearanceComponent>(player, out var humanoid))
+        if (TryComp<HumanoidCharacterProfileComponent>(player, out var humanoid))
         {
-            profile = _appearance.GetBaseProfile((player, humanoid));
+            profile = humanoid.Profile;
         }
 
         if (profile == null && _pref.TryGetCachedPreferences(session.UserId, out var pref))
         {
             profile = pref.Characters.Values
-                .OfType<HumanoidCharacterProfile>()
                 .FirstOrDefault(p => p.Enabled);
         }
 
@@ -661,14 +671,17 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
         if (entity == null)
             return true;
 
-        if (HasComp<PendingClockInComponent>(entity))
+        if (_arrivals.IsOnArrivals((entity.Value, null)))
             return false;
 
-        if (!def.AllowNonHumans && !HasComp<HumanoidAppearanceComponent>(entity))
+        if (!def.AllowNonHumans && !HasComp<HumanoidProfileComponent>(entity))
             return false;
 
         // Ensure that the profile has the antag preference set, if this is a late join this hasn't been checked!
-        var baseProfile = _appearance.GetBaseProfile(entity.Value);
+        if (!TryComp<HumanoidCharacterProfileComponent>(entity.Value, out var profile))
+            return false;
+        
+        var baseProfile = profile.Profile;
         if (baseProfile is not null)
         {
             if (!def.PrefRoles.ToHashSet().Overlaps(baseProfile.AntagPreferences) &&

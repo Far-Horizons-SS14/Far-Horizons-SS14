@@ -4,6 +4,14 @@
   parent: MobBaseScurret
   abstract: true
   components:
+  - type: MovementSpeedModifier # He gave up most of his speed to be smart, o7
+    baseWalkSpeed: 2.5
+    baseSprintSpeed: 5 # a bit more as a treat
+  - type: MobThresholds # Buffed a bit to compensate for lack of speed compared to normal scurret. Still less sturdy than a normal person. Something something "underwent physical training"
+    thresholds:
+      0: Alive
+      80: Critical
+      145: Dead
   - type: Inventory
     speciesId: scurret
     templateId: smartscurret
@@ -64,7 +72,7 @@
   id: MobDetectiveScurret
   parent: MobBaseScurretUnrestricted
   abstract: false
-  description: The best sidekick a detective could have! Gets upset when you shorten their full name in any way when you talk to them.
+  description: The best sidekick a detective could have! Gets upset when you shorten their full name in any way when you talk to them. Moves slower compared to other Scurrets to try not to outpace their partner.
   components:
     - type: LanguageKnowledge
       speaks:

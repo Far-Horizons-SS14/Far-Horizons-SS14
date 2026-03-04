@@ -30,4 +30,7 @@ public sealed partial class LimbItemDeployerComponent  : Component, IWithAction
 
     [DataField]
     public EntityWhitelist HandWhitelist;
+
+    [DataField(required: true)] public string StateOn;
+    [DataField(required: true)] public string StateOff;
 }

@@ -223,12 +223,12 @@
 
 #region Command
 
-# Commander (Captain)
+# Commandant (Captain)
 
 - type: entity
-  id: LockerCommander
-  parent: LockerBaseSecure
-  name: Commander's Locker
+  id: LockerCommandant
+  parent: LockerBaseSecureSyndi
+  name: Commandant's Locker
   components:
   - type: Appearance
   - type: EntityStorageVisuals
@@ -240,12 +240,12 @@
   - type: WiresPanelSecurity # Maintenance panel
     securityLevel: medSecurity
 
-# Corporate Arbiter (Magistrate)
+# Magistrate (Magistrate)
 
 - type: entity
-  id: LockerCorporateArbiter
-  parent: LockerBaseSecure
-  name: Corporate Arbiter's Locker
+  id: LockerMagistrateSyndi
+  parent: LockerBaseSecureSyndi
+  name: Magistrate's Locker
   components:
   - type: Appearance
   - type: Sprite
@@ -259,12 +259,12 @@
   - type: WiresPanelSecurity
     securityLevel: medSecurity
     
-# Personnel Chief (Head of Personnel)
+# Personnel Manager (Head of Personnel)
 
 - type: entity
-  id: LockerPersonnelChief
-  parent: LockerBaseSecure
-  name: Personnel Chief's Locker
+  id: LockerPersonnelManager
+  parent: LockerBaseSecureSyndi
+  name: Personnel Manager's Locker
   components:
   - type: Appearance
   - type: EntityStorageVisuals
@@ -276,12 +276,12 @@
   - type: WiresPanelSecurity # Maintenance panel
     securityLevel: medSecurity 
 
-# Security Overwatch (Head of Security)
+# Marshal (Head of Security)
 
 - type: entity
-  id: LockerSecurityOverwatch
-  parent: LockerLargeBaseSecure
-  name: Security Overwatch's Locker
+  id: LockerMarshal
+  parent: LockerLargeBaseSecureSyndi
+  name: Marshal's Locker
   components:
   - type: Appearance
   - type: Sprite
@@ -295,12 +295,12 @@
   - type: WiresPanelSecurity
     securityLevel: medSecurity
 
-# Technical Lead (Chief Engineer)
+# Foreman (Chief Engineer)
 
 - type: entity
   id: LockerChiefEngineerSyndi
-  parent: LockerBaseSecure
-  name: Technical Lead's Locker
+  parent: LockerBaseSecureSyndi
+  name: Foreman's Locker
   components:
   - type: Appearance
   - type: EntityStorageVisuals
@@ -318,7 +318,7 @@
 - type: entity
   id: LockerAtmosphericsSyndi
   parent: LockerBase
-  name: Environmental Technician's Locker
+  name: Atmospheric Technician's Locker
   components:
   - type: Appearance
   - type: EntityStorageVisuals
@@ -332,7 +332,8 @@
 - type: entity
   id: LockerEngineerSyndi
   parent: LockerBase
-  name: Architect's Locker
+  name: Engineer's Locker
+  suffix: S
   components:
   - type: Appearance
   - type: EntityStorageVisuals
@@ -410,8 +411,8 @@
 
 - type: entity
   id: LockerSecurityFHSyndi
-  parent: LockerBaseSecure
-  name: Law Enforcer's Locker
+  parent: LockerBaseSecureSyndi
+  name: Enforcer's Locker
   components:
   - type: Appearance
   - type: Sprite
@@ -425,8 +426,8 @@
 
 - type: entity
   id: LockerSecurityLargeFHSyndi
-  parent: LockerBaseSecure
-  name: Large Law Enforcer's Locker
+  parent: LockerBaseSecureSyndi
+  name: Large Enforcer's Locker
   components:
   - type: Appearance
   - type: Sprite
@@ -440,8 +441,8 @@
 
 - type: entity
   id: LockerSecurityLargeFHLSyndi
-  parent: LockerBaseSecure
-  name: Large Law Enforcer's Locker
+  parent: LockerBaseSecureSyndi
+  name: Large Enforcer's Locker
   components:
   - type: Appearance
   - type: Sprite
@@ -457,8 +458,8 @@
 
 - type: entity
   id: LockerSecurityLargeFHMSyndi
-  parent: LockerBaseSecure
-  name: Large Law Enforcer's Locker
+  parent: LockerBaseSecureSyndi
+  name: Large Enforcer's Locker
   components:
   - type: Appearance
   - type: Sprite
@@ -474,8 +475,8 @@
 
 - type: entity
   id: LockerSecurityLargeFHRSyndi
-  parent: LockerBaseSecure
-  name: Large Law Enforcer's Locker
+  parent: LockerBaseSecureSyndi
+  name: Large Enforcer's Locker
   components:
   - type: Appearance
   - type: Sprite
@@ -493,8 +494,8 @@
 
 - type: entity
   id: LockerWardenFHSyndi
-  parent: LockerLargeBaseSecure
-  name: Guardian's Locker
+  parent: LockerLargeBaseSecureSyndi
+  name: Constable's Locker
   components:
   - type: Appearance
   - type: Sprite
@@ -510,8 +511,8 @@
 
 - type: entity
   id: LockerWardenLargeFHSyndi
-  parent: LockerLargeBaseSecure
-  name: Large Guardian's Locker
+  parent: LockerLargeBaseSecureSyndi
+  name: Large Constable's Locker
   components:
   - type: Appearance
   - type: Sprite
@@ -529,8 +530,9 @@
 
 - type: entity
   id: LockerBrigmedicFHSyndi
-  parent: LockerLargeBaseSecure
-  name: Medical Officer's Locker
+  parent: LockerLargeBaseSecureSyndi
+  name: Brigmedic's Locker
+  suffix: S
   components:
   - type: Appearance
   - type: Sprite
@@ -544,8 +546,9 @@
 
 - type: entity
   id: LockerBrigmedicLargeFHSyndi
-  parent: LockerLargeBaseSecure
-  name: Large Medical Officer's Locker
+  parent: LockerLargeBaseSecureSyndi
+  name: Large Brigmedic's Locker
+  suffix: S
   components:
   - type: Appearance
   - type: Sprite
@@ -561,8 +564,9 @@
 
 - type: entity
   id: LockerCorpsmanFHSyndi
-  parent: LockerLargeBaseSecure
-  name: Combat Medic's Locker
+  parent: LockerLargeBaseSecureSyndi
+  name: Corpsman's Locker
+  suffix: S
   components:
   - type: Appearance
   - type: Sprite

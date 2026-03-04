@@ -68,7 +68,7 @@ public sealed class DeepFriedVisualizerSystem : EntitySystem
         {
             Shared._TP.Kitchen.Components.SharedDeepFriedComponent.FriedLevel.LightlyFried => Color.FromHex("#FFD580"),
             Shared._TP.Kitchen.Components.SharedDeepFriedComponent.FriedLevel.Fried => Color.FromHex("#954535"),
-            Shared._TP.Kitchen.Components.SharedDeepFriedComponent.FriedLevel.Burnt => Color.FromHex("#0E0504"),
+            Shared._TP.Kitchen.Components.SharedDeepFriedComponent.FriedLevel.Burnt => Color.FromHex("#492119"), //FarHorizons-Edit
             _ => Color.White
         };
 

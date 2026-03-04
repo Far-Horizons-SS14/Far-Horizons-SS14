@@ -22,7 +22,7 @@ public abstract class SharedInternalsSystem : EntitySystem
 {
     [Dependency] private readonly AlertsSystem _alerts = default!;
     [Dependency] private readonly InventorySystem _inventory = default!;
-    [Dependency] private readonly SharedBodySystem _body = default!; // Starlight edit
+    [Dependency] private readonly BodySystem _body = default!; // Starlight edit
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly SharedGasTankSystem _gasTank = default!;
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
@@ -279,16 +279,16 @@ public abstract class SharedInternalsSystem : EntitySystem
             TryComp<InternalsComponent>(user.Owner, out var internals) &&
             internals.BreathTools.Count > 0)
         {
-            var organTanks = _body.GetBodyOrganEntityComps<GasTankComponent>((user.Owner, body));
+            _body.TryGetOrgansWithComponent<GasTankComponent>((user.Owner, body), out var organTanks);
             foreach (var organTank in organTanks)
             {
-                if (organTank.Comp1.IsConnected && organTank.Comp1.User == user.Owner)
+                if (organTank.Comp.IsConnected && organTank.Comp.User == user.Owner)
                 {
-                    return (organTank.Owner, organTank.Comp1);
+                    return (organTank.Owner, organTank.Comp);
                 }
-                else if (_gasTank.CanConnectToInternals((organTank.Owner, organTank.Comp1)))
+                else if (_gasTank.CanConnectToInternals((organTank.Owner, organTank.Comp)))
                 {
-                    return (organTank.Owner, organTank.Comp1);
+                    return (organTank.Owner, organTank.Comp);
                 }
             }
         }

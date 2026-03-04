@@ -1,35 +1,44 @@
+using Content.Server.Body;
 using Content.Shared._Starlight.Medical.Limbs;
-using Content.Shared.Body.Part;
+using Content.Shared.Actions.Components;
+using Content.Shared.Body;
 using Content.Shared.Hands.Components;
-using Content.Shared.Humanoid;
 using Content.Shared.Interaction.Components;
 using Content.Shared.Starlight;
 using Robust.Shared.Containers;
 using Robust.Shared.Physics.Components;
-using static Content.Server._Starlight.Actions.EntitySystems.SLActionSystem;
 
 namespace Content.Server._Starlight.Medical.Limbs;
 public sealed partial class CyberLimbSystem : EntitySystem
 {
+    [Dependency] private readonly VisualBodySystem _visBody = default!;
+
     public void InitializeLimbWithItems()
     {
         SubscribeLocalEvent<LimbItemDeployerComponent, ToggleLimbEvent>(OnLimbToggle);
-        SubscribeLocalEvent<LimbItemDeployerComponent, LimbPreDetachEvent>(LimbWithItemsRemoved);
+        SubscribeLocalEvent<LimbItemDeployerComponent, OrganGotInsertedEvent>(LimbWithItemsInserted);
+        SubscribeLocalEvent<LimbItemDeployerComponent, OrganGotRemovedEvent>(LimbWithItemsRemoved);
     }
 
-    private void LimbWithItemsRemoved(Entity<LimbItemDeployerComponent> ent, ref LimbPreDetachEvent args)
+    private void LimbWithItemsInserted(Entity<LimbItemDeployerComponent> ent, ref OrganGotInsertedEvent args) => 
+        _actions.GrantContainedActions(_slEnt.Entity<ActionsComponent>(args.Target), _slEnt.Entity<ActionsContainerComponent>(ent));
+
+    private void LimbWithItemsRemoved(Entity<LimbItemDeployerComponent> ent, ref OrganGotRemovedEvent args)
     {
+        if (TerminatingOrDeleted(ent)) return;
         if (ent.Comp.Toggled)
         {
             var toggleLimbEvent = new ToggleLimbEvent()
             {
                 Performer = ent.Owner,
             };
-            OnLimbToggle((args.Limb, ent.Comp), ref toggleLimbEvent);
+            OnLimbToggle((args.Target, ent.Comp), ref toggleLimbEvent);
         }
+
+        _actions.RemoveProvidedActions(args.Target, ent);
     }
 
-    private void OnLimbToggle(Entity<LimbItemDeployerComponent > ent, ref ToggleLimbEvent args)
+    private void OnLimbToggle(Entity<LimbItemDeployerComponent> ent, ref ToggleLimbEvent args)
     {
         if (!TryComp<LimbItemStorageComponent>(ent, out var storage))
             return;
@@ -59,9 +68,11 @@ public sealed partial class CyberLimbSystem : EntitySystem
             }
         }
 
-        if (_slEnt.TryEntity<BaseLayerIdComponent, BaseLayerIdToggledComponent, BodyPartComponent>(ent.Owner, out var limb, false)
-            && _slEnt.TryEntity<HumanoidAppearanceComponent>(args.Performer, out var performer, false))
-            _limb.ToggleLimbVisual(performer, limb, ent.Comp.Toggled);
+        if (TryComp<VisualOrganComponent>(ent, out var visualOrgan))
+        {
+            visualOrgan.Data.State = ent.Comp.Toggled ? ent.Comp.StateOn : ent.Comp.StateOff;
+            Dirty<VisualOrganComponent>((ent.Owner, visualOrgan));
+        }
 
         _audio.PlayPvs(ent.Comp.Sound, args.Performer);
 

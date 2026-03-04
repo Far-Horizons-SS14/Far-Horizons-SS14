@@ -1,0 +1,209 @@
+- type: markingsGroup
+  parent: Undergarments
+  id: Felionoid
+  onlyGroupWhitelisted: true
+  limits:
+    enum.HumanoidVisualLayers.Hair:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.FacialHair:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.Head:
+      limit: 1
+      required: true
+    enum.HumanoidVisualLayers.Snout:
+      limit: 1
+      required: true
+    enum.HumanoidVisualLayers.Chest:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.Tail:
+      limit: 1
+      required: true
+      default: [ FelionoidTailAnimated ]
+    enum.HumanoidVisualLayers.LArm:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RArm:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LHand:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RHand:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LLeg:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RLeg:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LFoot:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RFoot:
+      limit: 1
+      required: false
+
+- type: entity
+  parent: BaseSpeciesAppearance
+  id: AppearanceFelionoid
+  name: Felionoid Appearance
+  components:
+  - type: Inventory
+    speciesId: felionoid
+    displacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Felionoid/displacement.rsi
+            state: jumpsuit
+      eyes:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Felionoid/displacement.rsi
+            state: eyes
+      gloves:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Felionoid/displacement.rsi
+            state: hand
+      head:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Felionoid/displacement.rsi
+            state: head
+      back:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Felionoid/displacement.rsi
+            state: back
+      ears:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Felionoid/displacement.rsi
+            state: ears
+      shoes:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Felionoid/displacement.rsi
+            state: shoes
+  - type: InitialBody
+    organs:
+      Torso: OrganFelionoidTorso
+      Head: OrganFelionoidHead
+      ArmLeft: OrganFelionoidArmLeft
+      ArmRight: OrganFelionoidArmRight
+      HandRight: OrganFelionoidHandRight
+      HandLeft: OrganFelionoidHandLeft
+      LegLeft: OrganFelionoidLegLeft
+      LegRight: OrganFelionoidLegRight
+      FootLeft: OrganFelionoidFootLeft
+      FootRight: OrganFelionoidFootRight
+      Brain: OrganHumanBrain
+      Eyes: OrganFelionoidEyes
+      Tongue: OrganHumanTongue
+      Ears: OrganHumanEars
+      Lungs: OrganHumanLungs
+      Heart: OrganAnimalHeart
+      Stomach: OrganReptilianStomach
+      Liver: OrganHumanLiver
+      Kidneys: OrganHumanKidneys
+  - type: HumanoidProfile
+    species: Felionoid
+
+- type: entity
+  parent:
+  - AppearanceFelionoid
+  - BaseMobFelionoid
+  id: MobFelionoid
+  name: Urist Felionoid
+
+# Organs
+
+- type: entity
+  parent: OrganBase
+  id: OrganFelionoid
+  abstract: true
+  suffix: Felionoid
+  components:
+  - type: Tag
+    tags:
+      - Organic
+
+- type: entity
+  parent: OrganFelionoid
+  id: OrganFelionoidExternal
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _Starlight/Mobs/Species/Felionoid/parts.rsi
+  - type: VisualOrgan
+    data:
+      sprite: _Starlight/Mobs/Species/Felionoid/parts.rsi
+  - type: VisualOrganMarkings
+    markingData:
+      group: Felionoid
+
+# Limbs
+
+- type: entity
+  parent: [ OrganBaseTorso, OrganFelionoidExternal ]
+  id: OrganFelionoidTorso
+
+- type: entity
+  parent: [ OrganBaseHead, OrganFelionoidExternal ]
+  id: OrganFelionoidHead
+
+- type: entity
+  parent: [ OrganBaseArmLeft, OrganFelionoidExternal ]
+  id: OrganFelionoidArmLeft
+
+- type: entity
+  parent: [ OrganBaseArmRight, OrganFelionoidExternal ]
+  id: OrganFelionoidArmRight
+
+- type: entity
+  parent: [ OrganBaseHandLeft, OrganFelionoidExternal ]
+  id: OrganFelionoidHandLeft
+
+- type: entity
+  parent: [ OrganBaseHandRight, OrganFelionoidExternal ]
+  id: OrganFelionoidHandRight
+
+- type: entity
+  parent: [ OrganBaseLegLeft, OrganFelionoidExternal ]
+  id: OrganFelionoidLegLeft
+  components:
+  - type: MovementOrgan
+    sprintSpeedModifier: 1.25
+    shoesNegate: true
+
+- type: entity
+  parent: [ OrganBaseLegRight, OrganFelionoidExternal ]
+  id: OrganFelionoidLegRight
+  components:
+  - type: MovementOrgan
+    sprintSpeedModifier: 1.25
+    shoesNegate: true
+
+- type: entity
+  parent: [ OrganBaseFootLeft, OrganFelionoidExternal ]
+  id: OrganFelionoidFootLeft
+
+- type: entity
+  parent: [ OrganBaseFootRight, OrganFelionoidExternal ]
+  id: OrganFelionoidFootRight
+
+# Internal
+
+- type: entity
+  parent: [ OrganBaseEyes, OrganHumanInternal, OrganFelionoidExternal ]
+  id: OrganFelionoidEyes
+  components:
+  - type: VisualOrgan
+    data:
+      sprite: _Starlight/Mobs/Species/Felionoid/parts.rsi
+      state: eyes

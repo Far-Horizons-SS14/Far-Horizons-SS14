@@ -30,4 +30,20 @@ public sealed partial class IPCBoundUserInterface(EntityUid owner, Enum uiKey) :
             SendMessage(new IPCSetNameBuiMessage(name));
         };
     }
+
+    // This is cringe
+    // Sadly cringe is how this game runs
+    // Eventually prediction for bloodstream will be fixed, and we will once again remove this and switch to 100% client side UI
+    // Then something else will break and make me do this shit again
+    // And so the cycle continues
+    protected override void ReceiveMessage(BoundUserInterfaceMessage message)
+    {
+        if (_menu == null)
+            return;
+
+        if (message is not IPCHealthMessage cast)
+            return;
+
+        _menu.SetHealth(cast);
+    }
 }

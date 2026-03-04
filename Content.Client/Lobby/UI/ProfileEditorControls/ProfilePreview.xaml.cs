@@ -49,7 +49,7 @@ public sealed partial class ProfilePreview : BoxContainer
     {
         _editor = profileEditor;
         _entityManager = entMan;
-        SpriteView.Initialize(prefMan, protoMan, playerMan, factionMan); // Far Horizons
+        //SpriteView.Initialize(prefMan, protoMan, playerMan, factionMan); // Far Horizons - disabled initial sprite generation, to offset the work client has to do to draw all characters player has
     }
 
     private void OnRotateLeft(BaseButton.ButtonEventArgs obj)

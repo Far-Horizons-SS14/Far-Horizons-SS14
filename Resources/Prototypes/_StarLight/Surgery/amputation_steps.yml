@@ -1,30 +1,5 @@
 ﻿- type: entity
   parent: SurgeryStepBase
-  id: SurgeryAmputationStep
-  name: Saw Through Limb
-  components:
-  - type: SurgeryStep
-    duration: 16 
-    tools:
-    - type: BoneSaw
-  - type: Sprite
-    sprite: Objects/Specific/Medical/Surgery/saw.rsi
-    state: saw
-  - type: SurgeryStepEmoteEffect
-  - type: SurgeryStepBleedEffect
-    damage:
-      types:
-        Slash: 10
-  - type: SurgeryStepAmputationEffect
-  #FarHorizons Start
-  - type: OnFailDamage
-    damage: 
-      types:
-        Slash: 10
-  #FarHorizons End
-
-- type: entity
-  parent: SurgeryStepBase
   id: SurgeryStepExposeSkull
   name: Expose Skull
   components:
@@ -68,30 +43,6 @@
 
 - type: entity
   parent: SurgeryStepBase
-  id: SurgeryStepSawSkull
-  name: Saw Skull
-  components:
-    - type: SurgeryStep
-      duration: 20
-      tools:
-      - type: BoneSaw
-    - type: Sprite
-      sprite: Objects/Specific/Medical/Surgery/saw.rsi
-      state: saw
-    - type: SurgeryStepBleedEffect
-      damage:
-        types:
-          Slash: 15
-    - type: SurgeryStepAmputationEffect
-    #FarHorizons Start
-    - type: OnFailDamage
-      damage: 
-        types:
-          Slash: 10
-    #FarHorizons End
-
-- type: entity
-  parent: SurgeryStepBase
   id: SurgeryStepInciseCartilage
   name: Incise Cartilage
   components:
@@ -107,9 +58,3 @@
       types:
         Slash: 10
   #FarHorizons End
-
-
-- type: entity
-  parent: SurgeryStepSawSkull
-  id: SurgeryStepHeadFinalizeSeparation
-  name: Finalize Separation

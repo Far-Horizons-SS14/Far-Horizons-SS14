@@ -1,6 +1,6 @@
 using System.Linq;
+using Content.Client.Body;
 using Content.Client.Guidebook;
-using Content.Client.Humanoid;
 using Content.Client.Inventory;
 using Content.Client.Lobby.UI;
 using Content.Client.Players.PlayTimeTracking;
@@ -41,7 +41,7 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
     [Dependency] private readonly JobRequirementsManager _requirements = default!;
     [Dependency] private readonly MarkingManager _markings = default!;
     [Dependency] private readonly ISharedFactionManager _factions = default!; // Far Horizons
-    [UISystemDependency] private readonly HumanoidAppearanceSystem _humanoid = default!;
+    //[UISystemDependency] private readonly HumanoidAppearanceSystem _humanoid = default!; NuBody removal
     [UISystemDependency] private readonly ClientInventorySystem _inventory = default!;
     [UISystemDependency] private readonly StationSpawningSystem _spawn = default!;
     [UISystemDependency] private readonly GuidebookSystem _guide = default!;
@@ -179,11 +179,14 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
     /// <summary>
     /// Reloads every single character setup control.
     /// </summary>
-    public void ReloadCharacterSetup()
+    /// Far Horizons
+    public void ReloadCharacterSetup(bool loadPickers = false)
     {
         RefreshLobbyPreview();
         var (characterGui, profileEditor) = EnsureGui();
-        characterGui.ReloadCharacterPickers();
+         // Far Horizons - don't load all character sprites right away, only load them when they are needed. This is mostly to prevent tests from crashing when client is stalling on generating every single character multiple times
+        if (loadPickers)
+            characterGui.ReloadCharacterPickers();
         profileEditor.ResetToDefault();
         _jobPriorityEditor?.LoadJobPriorities();
     }
@@ -242,7 +245,7 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
         _preferencesManager.UpdateCharacter(fixedProfile, EditedSlot.Value);
         OnAnyCharacterOrJobChange?.Invoke();
         _profileEditor?.SetProfile(EditedSlot.Value);
-        ReloadCharacterSetup();
+        ReloadCharacterSetup(true); // Far Horizons
     }
 
     private void CloseProfileEditor()
@@ -344,7 +347,7 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
             _profileEditor.SetProfile(args);
             if (_characterSetup != null)
                 _characterSetup.SelectedCharacterSlot = args;
-            ReloadCharacterSetup();
+            ReloadCharacterSetup(true); // Far Horizons
         };
 
         _characterSetup.DeleteCharacter += args =>
@@ -354,7 +357,7 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
             // Reload everything
             if (EditedSlot == args)
             {
-                ReloadCharacterSetup();
+                ReloadCharacterSetup(true); // Far Horizons
             }
             else
             {
@@ -497,63 +500,6 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
                 _inventory.TryEquip(dummy, item, slot.Name, true, true);
             }
         }
-    }
-
-    /// <summary>
-    /// Loads the profile onto a dummy entity.
-    /// </summary>
-    public EntityUid LoadProfileEntity(HumanoidCharacterProfile? humanoid, JobPrototype? job, bool jobClothes)
-    {
-        EntityUid dummyEnt;
-
-        EntProtoId? previewEntity = null;
-        if (humanoid != null && jobClothes)
-        {
-            job ??= GetPreferredJob(humanoid);
-
-            previewEntity = job.JobPreviewEntity ?? (EntProtoId?)job?.JobEntity;
-        }
-
-        if (previewEntity != null)
-        {
-            // Special type like borg or AI, do not spawn a human just spawn the entity.
-            dummyEnt = EntityManager.SpawnEntity(previewEntity, MapCoordinates.Nullspace);
-            return dummyEnt;
-        }
-        else if (humanoid is not null)
-        {
-            var dummy = _prototypeManager.Index<SpeciesPrototype>(humanoid.Species).DollPrototype;
-            dummyEnt = EntityManager.SpawnEntity(dummy, MapCoordinates.Nullspace);
-        }
-        else
-        {
-            dummyEnt = EntityManager.SpawnEntity(_prototypeManager.Index<SpeciesPrototype>(SharedHumanoidAppearanceSystem.DefaultSpecies).DollPrototype, MapCoordinates.Nullspace);
-        }
-
-        _humanoid.LoadProfile(dummyEnt, humanoid);
-
-        // Far Horizons start
-        if (humanoid != null)
-        {
-            var loadout = humanoid.GetSpeciesLoadoutOrDefault(_playerManager.LocalSession, _prototypeManager);
-            GiveDummyLoadout(dummyEnt, loadout);
-        }
-        // Far Horizons end
-
-        if (humanoid != null && jobClothes)
-        {
-            DebugTools.Assert(job != null);
-
-            GiveDummyJobClothes(dummyEnt, humanoid, job);
-
-            if (_prototypeManager.HasIndex<RoleLoadoutPrototype>(LoadoutSystem.GetJobPrototype(job.ID)))
-            {
-                var loadout = humanoid.GetLoadoutOrDefault(LoadoutSystem.GetJobPrototype(job.ID), _playerManager.LocalSession, humanoid.Species, EntityManager, _prototypeManager);
-                GiveDummyLoadout(dummyEnt, loadout);
-            }
-        }
-
-        return dummyEnt;
     }
 
     #endregion

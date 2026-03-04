@@ -1,0 +1,101 @@
+- type: markingsGroup
+  parent: [ Thaven, BaseProtogen ]
+  id: ProtoThaven
+  limits:
+    enum.HumanoidVisualLayers.FaceCover:
+      limit: 1
+      required: true
+      default: [ ProtoThavenVisor ]
+    enum.HumanoidVisualLayers.BodyCover:
+      limit: 1
+      required: true
+      default: [ ProtoThavenMediumArmor ]
+
+- type: entity
+  parent: AppearanceThaven
+  id: AppearanceProtoThaven
+  name: ProtoThaven Appearance
+  components:
+  - type: InitialBody
+    organs:
+      Torso: OrganProtoThavenTorso
+      Head: OrganProtoThavenHead
+      ArmLeft: OrganProtoThavenArmLeft
+      ArmRight: OrganProtoThavenArmRight
+      HandRight: OrganProtoThavenHandRight
+      HandLeft: OrganProtoThavenHandLeft
+      LegLeft: OrganProtoThavenLegLeft
+      LegRight: OrganProtoThavenLegRight
+      FootLeft: OrganProtoThavenFootLeft
+      FootRight: OrganProtoThavenFootRight
+      Brain: OrganProtogenBrain
+      Eyes: OrganProtogenEyes
+      Tongue: OrganProtogenTongue
+      Ears: OrganProtogenEars
+      Lungs: OrganProtogenLungs
+      Heart: OrganProtogenHeart
+      Stomach: OrganProtogenStomach
+      Liver: OrganProtogenLiver
+      Kidneys: OrganProtogenKidneys
+  - type: HumanoidProfile
+    species: ProtoThaven
+
+- type: entity
+  parent:
+  - AppearanceProtoThaven
+  - BaseMobProtoThaven
+  id: MobProtoThaven
+  name: Urist McEarster
+
+# Organs
+
+- type: entity
+  id: OrganProtoThavenExternal
+  abstract: true
+  suffix: Protogen
+  components:
+  - type: VisualOrganMarkings
+    markingData:
+      group: ProtoThaven
+
+# Limbs
+
+- type: entity
+  parent: [ OrganProtoThavenExternal, OrganThavenTorso ]
+  id: OrganProtoThavenTorso
+
+- type: entity
+  parent: [ OrganProtoThavenExternal, OrganThavenHead ]
+  id: OrganProtoThavenHead
+
+- type: entity
+  parent: [ OrganProtoThavenExternal, OrganThavenArmLeft ]
+  id: OrganProtoThavenArmLeft
+
+- type: entity
+  parent: [ OrganProtoThavenExternal, OrganThavenArmRight ]
+  id: OrganProtoThavenArmRight
+
+- type: entity
+  parent: [ OrganProtoThavenExternal, OrganThavenHandLeft ]
+  id: OrganProtoThavenHandLeft
+
+- type: entity
+  parent: [ OrganProtoThavenExternal, OrganThavenHandRight ]
+  id: OrganProtoThavenHandRight
+
+- type: entity
+  parent: [ OrganProtoThavenExternal, OrganThavenLegLeft ]
+  id: OrganProtoThavenLegLeft
+
+- type: entity
+  parent: [ OrganProtoThavenExternal, OrganThavenLegRight ]
+  id: OrganProtoThavenLegRight
+
+- type: entity
+  parent: [ OrganProtoThavenExternal, OrganThavenFootLeft ]
+  id: OrganProtoThavenFootLeft
+
+- type: entity
+  parent: [ OrganProtoThavenExternal, OrganThavenFootRight ]
+  id: OrganProtoThavenFootRight

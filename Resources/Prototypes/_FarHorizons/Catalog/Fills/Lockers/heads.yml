@@ -65,20 +65,20 @@
 
 #region Syndicate
 
-# Commander (Captain)
+# Commandant (Captain)
 
 - type: entity
-  id: LockerCommanderFilledNoLaser
+  id: LockerCommandantFilledNoLaser
   suffix: S, Filled
-  parent: LockerCommander
+  parent: LockerCommandant
   components:
   - type: EntityTableContainerFill
     containers:
       entity_storage: !type:NestedSelector
-        tableId: LockerFillCommanderNoLaser
+        tableId: LockerFillCommandantNoLaser
 
 - type: entityTable
-  id: LockerFillCommanderNoLaser
+  id: LockerFillCommandantNoLaser
   table: !type:AllSelector
     children:
     - id: ClothingNeckCloakCapFormalSyndi
@@ -100,7 +100,7 @@
     - id: ClothingEyesGlassesCommandSyndi
     - id: ClothingEyesHudCommandSyndi
     - id: EncryptionKeyCargo # Far Horizons - replaced with cargo key
-    - id: HeadSkeleton
+    - id: OrganSkeletonPersonHead
       conditions:
       - !type:PlayerCountCondition
         max: 15
@@ -112,17 +112,17 @@
         - Sandbox
 
 - type: entity
-  id: LockerCommanderFilled
+  id: LockerCommandantFilled
   suffix: S, Filled, AntiqueLaser
-  parent: LockerCommander
+  parent: LockerCommandant
   components:
   - type: EntityTableContainerFill
     containers:
       entity_storage: !type:NestedSelector
-        tableId: LockerFillCommanderLaser
+        tableId: LockerFillCommandantLaser
 
 - type: entityTable
-  id: LockerFillCommanderLaser
+  id: LockerFillCommandantLaser
   table: !type:AllSelector
     children:
     - !type:NestedSelector
@@ -130,33 +130,33 @@
     - id: WeaponAntiqueLaser
 
 - type: entity
-  id: LockerCommanderFilledHardsuit
+  id: LockerCommandantFilledHardsuit
   suffix: S, Filled, Hardsuit
-  parent: LockerCommander
+  parent: LockerCommandant
   components:
   - type: EntityTableContainerFill
     containers:
       entity_storage: !type:AllSelector
         children:
         - !type:NestedSelector
-          tableId: LockerFillCommanderLaser
+          tableId: LockerFillCommandantLaser
         - !type:NestedSelector
-          tableId: FillCommanderHardsuit
+          tableId: FillCommandantHardsuit
 
-# Personnel Chief (HoP)
+# Personnel Manager (HoP)
 
 - type: entity
-  id: LockerPersonnelChiefFilled
+  id: LockerPersonnelManagerFilled
   suffix: S, Filled
-  parent: LockerPersonnelChief
+  parent: LockerPersonnelManager
   components:
   - type: EntityTableContainerFill
     containers:
       entity_storage: !type:NestedSelector
-        tableId: LockerFillPersonnelChief
+        tableId: LockerFillPersonnelManager
 
 - type: entityTable
-  id: LockerFillPersonnelChief
+  id: LockerFillPersonnelManager
   table: !type:AllSelector
     children:
     - id: ClothingNeckMantleHOPSyndi
@@ -190,22 +190,22 @@
         - Greenshift
         - Sandbox
 
-# Security Overwatch (HoS)
+# Marshal (HoS)
 
 
 # No Hardsuit
 - type: entity
-  id: LockerSecurityOverwatchFilled
+  id: LockerMarshalFilled
   suffix: S, Filled
-  parent: LockerSecurityOverwatch
+  parent: LockerMarshal
   components:
   - type: EntityTableContainerFill
     containers:
       entity_storage: !type:NestedSelector
-        tableId: LockerFillSecurityOverwatchNoHardsuit
+        tableId: LockerFillMarshalNoHardsuit
 
 - type: entityTable
-  id: LockerFillSecurityOverwatchNoHardsuit
+  id: LockerFillMarshalNoHardsuit
   table: !type:AllSelector
     children:
     - id: ClothingNeckCloakHosEliteSyndi
@@ -240,17 +240,17 @@
 # Hardsuit
 
 - type: entity
-  id: LockerSecurityOverwatchHardsuitFilled
+  id: LockerMarshalHardsuitFilled
   suffix: S, Filled, Hardsuit
-  parent: LockerSecurityOverwatch
+  parent: LockerMarshal
   components:
   - type: EntityTableContainerFill
     containers:
       entity_storage: !type:NestedSelector
-        tableId: LockerFillSecurityOverwatchHardsuit
+        tableId: LockerFillMarshalHardsuit
 
 - type: entityTable
-  id: LockerFillSecurityOverwatchHardsuit
+  id: LockerFillMarshalHardsuit
   table: !type:AllSelector
     children:
     - id: ClothingNeckCloakHosEliteSyndi
@@ -286,7 +286,7 @@
         - Greenshift
         - Sandbox
 
-# Technical Lead (Chief Engineer)
+# Foreman (Chief Engineer)
 
 # No hardsuit table
 - type: entityTable
@@ -361,7 +361,7 @@
           
 #region SHC
 
-#Syndicate Operations Agent (NTR)
+#NeoSol Representative (NTR)
 
 - type: entity
   id: LockerRepresentativeFilledSyndi

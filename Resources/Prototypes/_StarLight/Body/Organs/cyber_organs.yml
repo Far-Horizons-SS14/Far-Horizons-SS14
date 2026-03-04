@@ -1,44 +1,16 @@
 - type: entity
-  id: OrganCyber
-  parent: BaseItem
-  name: "cyber organ"
-  abstract: true
-  components:
-  - type: Sprite
-    sprite: Mobs/Species/Human/organs.rsi
-  - type: Organ
-  - type: Extractable
-    juiceSolution:
-      reagents:
-      - ReagentId: Iron
-        Quantity: 30
-  # Far Horizons - EMP effects from installed cybernetics
-  - type: HumanoidEMPCompositeElement
-    effect:
-      stunAmount: 0.5
-      damageAmount:
-        types:
-          Shock: 5
-  - type: Tag
-    tags:
-      - Inorganic
-#FarHorizons End
-
-- type: entity
   id: CyberEyeNightVision
   name: NightVision cyber eyes
   description: Enables you to see in the dark.
-  parent: [OrganCyber, BaseOrganEyes]
+  parent: [ OrganCyber, OrganHumanEyes ]
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Specific/Medical/implants.rsi
-    state: eyes_night
+    layers:
+      - state: eyes_night
   - type: FunctionalOrgan
     comps: 
     - type: NightVision
-  - type: OrganVisualization
-    layer: Eyes
-    prototype: CyberEyesNightVision
   # Far Horizons - EMP effects from installed cybernetics
   - type: HumanoidEMPCompositeElement
     effect:
@@ -53,17 +25,15 @@
   id: CyberEyeThermal
   name: ThermalVision cyber eyes
   description: Enables you to see in the dark and detect warm objects through walls.
-  parent: [OrganCyber, BaseOrganEyes]
+  parent: [ OrganCyber, OrganHumanEyes ]
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Specific/Medical/implants.rsi
-    state: eyes_thermal
+    layers:
+      - state: eyes_thermal
   - type: FunctionalOrgan
     comps: 
     - type: ThermalVision
-  - type: OrganVisualization
-    layer: Eyes
-    prototype: CyberEyesThermalVision
   # Far Horizons - EMP effects from installed cybernetics
   - type: HumanoidEMPCompositeElement
     effect:
@@ -78,7 +48,7 @@
   id: BudgetCyberEyes
   name: Budget CyberEyes
   description: Cold and soulless. Just as depressing to look out of as to look into.
-  parent: [OrganCyber, BaseOrganEyes]
+  parent: [ OrganCyber, OrganHumanEyes ]
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Specific/Medical/budget_cyber_organs.rsi
@@ -88,9 +58,6 @@
   - type: FunctionalOrgan
     comps: 
     - type: NoirOverlay
-  - type: OrganVisualization
-    layer: Eyes
-    prototype: MobHumanoidEyes
   # Far Horizons - EMP effects from installed cybernetics
   - type: HumanoidEMPCompositeElement
     effect:
@@ -105,11 +72,10 @@
   id: BudgetCyberTongue
   name: Budget CyberTongue
   description: An artificial tongue with full range of movement. Taste buds not included.
-  parent: [OrganCyber, BaseOrganTongue]
+  parent: [ OrganCyber, OrganHumanTongue ]
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Specific/Medical/budget_cyber_organs.rsi
-    state: tongue
   - type: FunctionalOrgan
     comps: 
     - type: UnableToTaste
@@ -118,7 +84,7 @@
   id: BudgetCyberLiver
   name: Budget CyberLiver
   description: "Design so reliable, it didn't have to be changed for the last 237 years! Warning: This product isn't meant for recreational drinking!"
-  parent: [OrganCyber, OrganHumanLiver]
+  parent: [ OrganCyber, OrganHumanLiver ]
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Specific/Medical/budget_cyber_organs.rsi
@@ -126,15 +92,13 @@
   - type: Metabolizer # The liver metabolizes certain chemicals only, like alcohol.
     maxReagents: 1
     metabolizerTypes: [BudgetCyber]
-    groups:
-    - id: Alcohol
-      rateModifier: 0.2 # removes alcohol very slowly along with the stomach removing it as a drink
+    updateInterval: 0.2 # removes alcohol very slowly along with the stomach removing it as a drink
 
 - type: entity
   id: BudgetCyberStomach
   name: Budget CyberStomach
   description: An artifical stomach. Its lack of elasticity is a desired feature for those who want to control their eating habits.
-  parent: [OrganCyber, OrganHumanStomach]
+  parent: [ OrganCyber, OrganHumanStomach ]
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Specific/Medical/budget_cyber_organs.rsi
@@ -151,15 +115,12 @@
   - type: Metabolizer
     maxReagents: 3
     metabolizerTypes: [BudgetCyber]
-    groups:
-    - id: Food
-    - id: Drink
 
 - type: entity
   id: BudgetCyberKidneys
   name: Budget CyberKidneys
   description: A pair of artificial kidneys. Due to cheap materials used, they waste significantly more water than organic ones.
-  parent: [OrganCyber, OrganHumanKidneys]
+  parent: [ OrganCyber, OrganHumanKidneys ]
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Specific/Medical/budget_cyber_organs.rsi
@@ -175,7 +136,7 @@
   id: CyberRebreather
   name: Cyber Rebreather
   description: Artificial lungs with an integrated gas tank system. Can be filled with any breathable gas mixture.
-  parent: [OrganCyber, OrganHumanLungs]
+  parent: [ OrganCyber, OrganHumanLungs ]
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Specific/Medical/breathable_cyber_lungs.rsi
@@ -214,6 +175,12 @@
         type: GasTankBoundUserInterface
       enum.SharedGasTankUiKey.OrganKey:
         type: BreathableOrganBoundUserInterface
+  - type: SolutionContainerManager
+    solutions:
+      Lung:
+        maxVol: 100.0
+        canReact: false
+      food: {}
   - type: Tag
     tags:
     - GasTank

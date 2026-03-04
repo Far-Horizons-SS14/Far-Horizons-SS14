@@ -14,6 +14,8 @@ using Content.Shared.Vampire.Components;
 using Content.Shared.Weapons.Melee;
 using Robust.Shared.Audio;
 using Content.Shared.Actions.Components;
+using Content.Shared.Body;
+using Content.Shared.Metabolism;
 
 namespace Content.Server.Vampire;
 
@@ -68,16 +70,17 @@ public sealed partial class VampireSystem
             }
         }
 
-        if (!TryComp<BodyComponent>(vampire, out var bodyComponent))
+        if (!TryComp<BodyComponent>(vampire, out var bodyComponent) || 
+            bodyComponent.Organs == null)
             return;
 
         //Add vampire and bloodsucker to all metabolizing organs
         //And restrict diet to Pills (and liquids)
-        foreach (var organ in _body.GetBodyOrgans(vampire, bodyComponent))
+        foreach (var organ in bodyComponent.Organs.ContainedEntities)
         {
-            if (TryComp<MetabolizerComponent>(organ.Id, out var metabolizer))
+            if (TryComp<MetabolizerComponent>(organ, out var metabolizer))
             {
-                if (TryComp<StomachComponent>(organ.Id, out var stomachComponent))
+                if (TryComp<StomachComponent>(organ, out var stomachComponent))
                 {
                     //Override the stomach, prevents humans getting sick when ingesting blood
                     _metabolism.ClearMetabolizerTypes(metabolizer);
@@ -120,32 +123,5 @@ public sealed partial class VampireSystem
         }
 
         UpdateBloodDisplay(vampire);
-    }
-
-    //Remove weakeness to holy items
-    private void MakeImmuneToHoly(EntityUid vampire)
-    {
-        if (!TryComp<BodyComponent>(vampire, out var bodyComponent))
-            return;
-
-        //Add vampire and bloodsucker to all metabolizing organs
-        //And restrict diet to Pills (and liquids)
-        foreach (var organ in _body.GetBodyOrgans(vampire, bodyComponent))
-        {
-            if (TryComp<MetabolizerComponent>(organ.Id, out var metabolizer))
-            {
-                _metabolism.TryRemoveMetabolizerType(metabolizer, VampireComponent.MetabolizerVampire);
-            }
-        }
-
-        if (TryComp<ReactiveComponent>(vampire, out var reactive))
-        {
-            if (reactive.ReactiveGroups == null)
-                return;
-
-            reactive.ReactiveGroups.Remove("Unholy");
-        }
-
-        RemComp<UnholyComponent>(vampire);
     }
 }

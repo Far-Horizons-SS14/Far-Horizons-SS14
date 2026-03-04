@@ -105,20 +105,6 @@
                                     <Control HorizontalExpand="True"/>
                                     <OptionButton Name="SpawnPriorityButton" HorizontalAlignment="Right" />
                                 </BoxContainer>
-                                <BoxContainer HorizontalExpand="True">
-                                    <Label Text="{Loc 'humanoid-profile-editor-voice-label'}" />
-                                    <Control HorizontalExpand="True"/>
-                                    <OptionButton Name="VoiceButton" HorizontalAlignment="Left" />
-                                    <Button Name="VoicePreviewButton" Text="{Loc 'humanoid-profile-editor-voice-play'}" MaxWidth="80" />
-                                </BoxContainer>
-                                <!--Starlight Start-->
-                                <BoxContainer HorizontalExpand="True">
-                                    <Label Text="{Loc 'humanoid-profile-editor-silicon-voice-label'}" />
-                                    <Control HorizontalExpand="True"/>
-                                    <OptionButton Name="SiliconVoiceButton" HorizontalAlignment="Left" />
-                                    <Button Name="SiliconVoicePreviewButton" Text="{Loc 'humanoid-profile-editor-voice-play'}" MaxWidth="80" />
-                                </BoxContainer>
-                                <!--Starlight End-->
                                 <!--Far Horizons species loadouts-->
                                 <BoxContainer HorizontalExpand="True" Name="CSpeciesLoadout">
                                     <Label Text="{Loc 'humanoid-profile-editor-species-loadout'}" />
@@ -144,11 +130,6 @@
                                 <Label Text="{Loc 'humanoid-profile-editor-skin-color-label'}" />
                                 <Slider HorizontalExpand="True" Name="Skin" MinValue="0" MaxValue="100" Value="20" />
                                 <BoxContainer Name="RgbSkinColorContainer" Visible="False" Orientation="Vertical" HorizontalExpand="True"></BoxContainer>
-                            </BoxContainer>
-                            <!-- Hair -->
-                            <BoxContainer Margin="10" Orientation="Horizontal">
-                                <humanoid:SingleMarkingPicker Name="HairStylePicker" Category="Hair" />
-                                <humanoid:SingleMarkingPicker Name="FacialHairPicker" Category="FacialHair" />
                             </BoxContainer>
                             <!-- Eyes -->
                             <BoxContainer Margin="10" Orientation="Vertical">
@@ -177,9 +158,7 @@
                 </BoxContainer>
                 <BoxContainer Name="MarkingsTab" Orientation="Vertical" Margin="10">
                     <!-- Markings -->
-                    <ScrollContainer VerticalExpand="True">
-                        <humanoid:MarkingPicker Name="Markings" IgnoreCategories="Hair,FacialHair" />
-                    </ScrollContainer>
+                    <humanoid:MarkingPicker Name="Markings" HorizontalExpand="True" VerticalExpand="True" />
                 </BoxContainer>
                 <!-- Starlight -->
                 <BoxContainer Name="CyberneticsTab" Orientation="Vertical" Margin="10">

@@ -6,7 +6,8 @@
   components:
   - type: Sprite
     sprite: _Starlight/Mobs/Species/Cyberlimbs/dubious-organs.rsi
-    state: health
+    layers:
+    - state: health
   - type: AbductorOrgan
     organ: Health
 
@@ -18,7 +19,8 @@
   components:
   - type: Sprite
     sprite: _Starlight/Mobs/Species/Cyberlimbs/dubious-organs.rsi
-    state: gland
+    layers:
+    - state: gland
   - type: AbductorOrgan
     organ: NitrousOxide
 
@@ -30,7 +32,8 @@
   components:
   - type: Sprite
     sprite: _Starlight/Mobs/Species/Cyberlimbs/dubious-organs.rsi
-    state: slime
+    layers:
+    - state: slime
   - type: AbductorOrgan
     organ: Gravity
     
@@ -42,7 +45,8 @@
   components:
   - type: Sprite
     sprite: _Starlight/Mobs/Species/Cyberlimbs/dubious-organs.rsi
-    state: egg
+    layers:
+    - state: egg
   - type: AbductorOrgan
     organ: Egg
     
@@ -54,7 +58,8 @@
   components:
   - type: Sprite
     sprite: _Starlight/Mobs/Species/Cyberlimbs/dubious-organs.rsi
-    state: spider
+    layers:
+    - state: spider
   - type: AbductorOrgan
     organ: Spider
     
@@ -66,7 +71,8 @@
   components:
   - type: Sprite
     sprite: _Starlight/Mobs/Species/Cyberlimbs/dubious-organs.rsi
-    state: vent
+    layers:
+    - state: vent
   - type: AbductorOrgan
     organ: Vent
 
@@ -77,7 +83,8 @@
   components:
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/dubious-organs.rsi
-      state: vent
+      layers:
+      - state: vent
     - type: EntityTableSpawner
       deleteSpawnerAfterSpawn: true
       table: !type:NestedSelector

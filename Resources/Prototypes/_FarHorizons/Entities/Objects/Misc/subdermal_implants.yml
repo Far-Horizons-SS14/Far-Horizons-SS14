@@ -9,3 +9,27 @@
   - type: RadioImplant
     radioChannels:
     - Trinary
+
+- type: entity
+  parent: BaseSubdermalImplant
+  id: RadioImplantNTNC
+  name: NanoTrasen Navy Corps Radio Implant
+  description: This implant grants access to secure communications used by elite NTNC Forces.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SubdermalImplant
+  - type: RadioImplant
+    radioChannels:
+    - NTNC
+
+- type: entity
+  parent: BaseSubdermalImplant
+  id: RadioImplantSHC
+  name: NeoSol High Command Radio Implant
+  description: This implant grants access to the secure communications of the powerful NeoSol High Command.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SubdermalImplant
+  - type: RadioImplant
+    radioChannels:
+    - SHC

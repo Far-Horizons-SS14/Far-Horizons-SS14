@@ -12,3 +12,5 @@ guide-entry-station-management-sop-nanotrasen-rep = NanoTrasen Representative
 guide-entry-station-management-sop-blueshield-officer = Blueshield Officer
 guide-entry-station-management-sop-magistrate = Magistrate
 guide-entry-station-management-sop-affairs-offical = Affairs Offical (IAA)
+
+guide-entry-fried-foods-recipes = Fried Foods

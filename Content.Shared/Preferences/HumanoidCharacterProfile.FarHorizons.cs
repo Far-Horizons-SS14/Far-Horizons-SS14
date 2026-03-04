@@ -1,9 +1,16 @@
+using System.IO;
 using System.Linq;
 using Content.Shared._FarHorizons.Factions;
+using Content.Shared._FarHorizons.Humanoid;
 using Content.Shared.Preferences.Loadouts;
 using Content.Shared.Roles;
+using Robust.Shared.Configuration;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization.Manager;
+using Robust.Shared.Serialization.Markdown;
+using Robust.Shared.Utility;
+using YamlDotNet.RepresentationModel;
 
 namespace Content.Shared.Preferences;
 
@@ -65,5 +72,37 @@ public sealed partial class HumanoidCharacterProfile
         }
 
         return true;
+    }
+
+    public static HumanoidCharacterProfile FromStream(Stream stream, ICommonSession session, ISerializationManager? serialization = null, IConfigurationManager? configuration = null)
+    {
+        IoCManager.Resolve(ref serialization);
+        IoCManager.Resolve(ref configuration);
+
+        using var reader = new StreamReader(stream, EncodingHelpers.UTF8);
+        var yamlStream = new YamlStream();
+        yamlStream.Load(reader);
+
+        var root = yamlStream.Documents[0].RootNode;
+        HumanoidCharacterProfile profile;
+
+        if (root is not YamlMappingNode rootMap) throw new InvalidOperationException("Failed to parse file");
+
+        if (rootMap.AllNodes.Any(node => node is YamlScalarNode { Value: "fhVersion" })) // Far Horizons file, just parse it
+        {
+            var export = serialization.Read<HumanoidProfileExportFH>(rootMap.ToDataNode(), notNullableOverride: true);
+            profile = export.Profile;
+        }
+        else
+        {
+            var protoMan = IoCManager.Resolve<IPrototypeManager>();
+            var factions = IoCManager.Resolve<ISharedFactionManager>();
+
+            profile = FHProfileExportHelpers.BuildProfileFromExport(rootMap, protoMan, factions, serialization);
+        }
+
+        var collection = IoCManager.Instance;
+        profile.EnsureValid(session, collection!);
+        return profile;
     }
 }

@@ -1,8 +1,8 @@
 using System.Linq;
 using Content.Client.Stylesheets;
 using Content.Client.UserInterface.Controls;
+using Content.Shared._FarHorizons.Silicons.IPC;
 using Content.Shared._FarHorizons.Silicons.IPC.Components;
-using Content.Shared.Body.Components;
 using Content.Shared.CCVar;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
@@ -54,6 +54,7 @@ public sealed partial class IPCMenu : FancyWindow
 
     public EntityUid Entity;
 
+    private float _bloodLevel;
 
     private DamageableComponent? _damage = null;
     public DamageableComponent? Damage
@@ -67,13 +68,6 @@ public sealed partial class IPCMenu : FancyWindow
     {
         get => _blind ?? TryGetAssignComp(_entity, Entity, ref _blind);
         set => _blind = value;
-    }
-
-    private BloodstreamComponent? _blood = null;
-    public BloodstreamComponent? Blood
-    {
-        get => _blood ?? TryGetAssignComp(_entity, Entity, ref _blood);
-        set => _blood = value;
     }
 
     private MobStateComponent? _state = null;
@@ -133,6 +127,9 @@ public sealed partial class IPCMenu : FancyWindow
         NameLineEdit.OnFocusExit += OnNameFocusExit;
     }
 
+    public void SetHealth(IPCHealthMessage healthMessage) =>
+        _bloodLevel = (float)healthMessage.BloodLevel;
+
     public void SetEntity(EntityUid entity)
     {
         Entity = entity;
@@ -173,10 +170,6 @@ public sealed partial class IPCMenu : FancyWindow
         if (Blind != null)
             eyeDamage = Blind.EyeDamage;
 
-        var bloodLevel = 0f;
-        if (Blood != null && Blood.BloodSolution != null)
-            bloodLevel = Blood.BloodSolution.Value.Comp.Solution.FillFraction;
-
         var damage = new DamageSpecifier();
         if (Damage != null)
             damage = Damage.Damage;
@@ -203,7 +196,7 @@ public sealed partial class IPCMenu : FancyWindow
             batteryCharge = _batterySystem.GetChargeLevel((checkedBattery.Owner, checkedBattery.Comp));
         }
 
-        FullText = PrintConsole(LastKnownState.ToString(), batteryInserted, batteryCharge, eyeDamage, bloodLevel, temp, fanMode, fansEfficiency, Brain, damage);
+        FullText = PrintConsole(LastKnownState.ToString(), batteryInserted, batteryCharge, eyeDamage, _bloodLevel, temp, fanMode, fansEfficiency, Brain, damage);
         UpdateBrainButton(Brain);
         EjectBatteryButton.Disabled = !batteryInserted;
         ChargeBar.Value = batteryCharge;

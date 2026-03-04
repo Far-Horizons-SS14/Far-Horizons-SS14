@@ -50,6 +50,6 @@ jobs:
           sudo mkswap $SWAP_PATH
           sudo swapon $SWAP_PATH
       - uses: ./.github/actions/setup-test-env
-      - run: dotnet test --no-build -c DebugOpt Content.IntegrationTests/Content.IntegrationTests.csproj --settings .farhorizons/.integrationtests
+      - run: dotnet test --no-build -c DebugOpt Content.IntegrationTests/Content.IntegrationTests.csproj --settings .farhorizons/.integrationtests --logger "console;verbosity=normal"
         env:
-          DOTNET_gcServer: "0"
+          DOTNET_gcServer: "1"

@@ -1,0 +1,277 @@
+- type: markingsGroup
+  id: BaseProtogen
+  limits:
+    enum.HumanoidVisualLayers.FaceCover:
+      limit: 1
+      required: true
+      default: [ ProtogenVisor ]
+    enum.HumanoidVisualLayers.FaceCoverCover:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.BodyCover:
+      limit: 1
+      required: true
+      default: [ ProtogenMediumArmor ]
+    enum.HumanoidVisualLayers.BodyCoverCover:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.Tail:
+      limit: 1
+      required: false
+
+- type: markingsGroup
+  parent: [ Undergarments, BaseProtogen ]
+  id: Protogen
+  limits:
+    enum.HumanoidVisualLayers.Hair:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.Tail:
+      limit: 1
+      required: true
+      default: [ ProtogenTail ]
+    enum.HumanoidVisualLayers.HeadTop:
+      limit: 1
+      required: true
+      default: [ ProtogenEars ]
+    enum.HumanoidVisualLayers.HeadSide:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LArm:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RArm:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LHand:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RHand:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LLeg:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RLeg:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LFoot:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RFoot:
+      limit: 1
+      required: false
+
+- type: entity
+  parent: BaseSpeciesAppearance
+  id: AppearanceProtogen
+  name: Protogen Appearance
+  components:
+  - type: Inventory
+    femaleDisplacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: _FarHorizons/Mobs/Species/Protogen/displacement.rsi
+            state: jumpsuit-female
+  - type: InitialBody
+    organs:
+      Torso: OrganProtogenTorso
+      Head: OrganProtogenHead
+      ArmLeft: OrganProtogenArmLeft
+      ArmRight: OrganProtogenArmRight
+      HandRight: OrganProtogenHandRight
+      HandLeft: OrganProtogenHandLeft
+      LegLeft: OrganProtogenLegLeft
+      LegRight: OrganProtogenLegRight
+      FootLeft: OrganProtogenFootLeft
+      FootRight: OrganProtogenFootRight
+      Brain: OrganProtogenBrain
+      Eyes: OrganProtogenEyes
+      Tongue: OrganProtogenTongue
+      Ears: OrganProtogenEars
+      Lungs: OrganProtogenLungs
+      Heart: OrganProtogenHeart
+      Stomach: OrganProtogenStomach
+      Liver: OrganProtogenLiver
+      Kidneys: OrganProtogenKidneys
+  - type: HumanoidProfile
+    species: Protogen
+
+- type: entity
+  parent:
+  - AppearanceProtogen
+  - BaseMobProtogen
+  id: MobProtogen
+  name: Urist McToaster
+  components:  # had to put it there because BaseMobProtogen is actually used by all other protogens
+    - type: Tag
+      tags:
+        - CanPilot
+        - FootstepSound
+        - DoorBumpOpener
+        - AnomalyHost
+        - Protogen
+        - SiliconEmotesFH
+        - TrueProtogen  # because of that
+
+# Organs
+
+- type: entity
+  parent: OrganBase
+  id: OrganProtogen
+  abstract: true
+  suffix: Protogen
+  components:
+  - type: Tag
+    tags:
+      - Organic
+
+- type: entity
+  id: OrganProtogenMetabolizer
+  abstract: true
+  components:
+  - type: Metabolizer
+    metabolizerTypes: [ Human ]
+
+- type: entity
+  parent: OrganProtogen
+  id: OrganProtogenInternal
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Mobs/Species/Protogen/organs.rsi
+  - type: Tag
+    tags:
+      - Meat
+      - Organic
+
+- type: entity
+  parent: OrganProtogen
+  id: OrganProtogenExternal
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Mobs/Species/Protogen/parts.rsi
+  - type: VisualOrgan
+    data:
+      sprite: _FarHorizons/Mobs/Species/Protogen/parts.rsi
+  - type: VisualOrganMarkings
+    markingData:
+      group: Protogen
+
+# Limbs
+
+- type: entity
+  parent: [ OrganBaseTorsoSexed, OrganBaseTorso, OrganProtogenExternal ]
+  id: OrganProtogenTorso
+
+- type: entity
+  parent: [ OrganBaseHeadSexed, OrganBaseHead, OrganProtogenExternal ]
+  id: OrganProtogenHead
+  components:
+  - type: VisualOrganMarkings
+
+- type: entity
+  parent: [ OrganBaseArmLeft, OrganProtogenExternal ]
+  id: OrganProtogenArmLeft
+
+- type: entity
+  parent: [ OrganBaseArmRight, OrganProtogenExternal ]
+  id: OrganProtogenArmRight
+
+- type: entity
+  parent: [ OrganBaseHandLeft, OrganProtogenExternal ]
+  id: OrganProtogenHandLeft
+
+- type: entity
+  parent: [ OrganBaseHandRight, OrganProtogenExternal ]
+  id: OrganProtogenHandRight
+
+- type: entity
+  parent: [ OrganBaseLegLeft, OrganProtogenExternal ]
+  id: OrganProtogenLegLeft
+
+- type: entity
+  parent: [ OrganBaseLegRight, OrganProtogenExternal ]
+  id: OrganProtogenLegRight
+
+- type: entity
+  parent: [ OrganBaseFootLeft, OrganProtogenExternal ]
+  id: OrganProtogenFootLeft
+
+- type: entity
+  parent: [ OrganBaseFootRight, OrganProtogenExternal ]
+  id: OrganProtogenFootRight
+
+# Internal
+
+- type: entity
+  parent: [ OrganBaseBrain, OrganProtogenInternal ]
+  id: OrganProtogenBrain
+  name: Cybernetic Brain
+  description: "The source of incredible, unending intelligence. 01201020 02102111 01201210 02121012 20121210"
+
+- type: entity
+  parent: [ OrganBaseEyes, OrganProtogenInternal, OrganProtogenExternal ]
+  id: OrganProtogenEyes
+  name: Cybernetic Eyes
+  description: "It's still focusing on you.. Creepy."
+  components:
+  - type: VisualOrgan
+    data:
+      sprite: Mobs/Customization/eyes.rsi
+      state: no_eyes
+
+- type: entity
+  parent: [ OrganBaseTongue, OrganProtogenInternal ]
+  id: OrganProtogenTongue
+  name: Cybernetic Tongue
+  description: "A completely glowing organ commonly used for lying or self-expression. Sometimes both."
+
+- type: entity
+  parent: [ OrganBaseEars, OrganProtogenInternal ]
+  id: OrganProtogenEars
+  name: Cybernetic Ears
+  description: "Process audio at a higher quality than most humanoids, allowing for greater appreciation of techno music"
+
+- type: entity
+  parent: [ OrganBaseLungs, OrganProtogenInternal, OrganProtogenMetabolizer ]
+  id: OrganProtogenLungs
+  name: Cybernetic Lungs
+  description: "Filters oxygen from an atmosphere, which is then sent into the bloodstream to be used as an electron carrier. Entirely cybernetic in nature, working in tandem with the visor's filtration system."
+
+- type: entity
+  parent: [ OrganBaseHeart, OrganProtogenInternal, OrganProtogenMetabolizer ]
+  id: OrganProtogenHeart
+  name: Cybernetic Heart
+  description: "Doesn't actually need to beat, simply mimics the movement to provide comfort for the user."
+
+- type: entity
+  parent: [ OrganBaseStomach, OrganProtogenInternal, OrganProtogenMetabolizer ]
+  id: OrganProtogenStomach
+  name: Biological Reactor
+  description: "Some call it over-engineered, but it's vital to the function of a protogen. Turns organic matter into organic and electrical energy to power the protogen's cybernetics and flesh."
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      food: {}
+      stomach:
+        maxVol: 50
+  - type: Stomach
+    specialDigestible:
+      tags:
+      - RamChip
+    isSpecialDigestibleExclusive: false
+
+- type: entity
+  parent: [ OrganBaseLiver, OrganProtogenInternal, OrganProtogenMetabolizer ]
+  id: OrganProtogenLiver
+  name: Cybernetic Liver
+  description: "Pairing suggestion: fermented RAM sticks and CPU drives."
+
+- type: entity
+  parent: [ OrganBaseKidneys, OrganProtogenInternal, OrganProtogenMetabolizer ]
+  id: OrganProtogenKidneys
+  name: Cybernetic Kidneys
+  description: "Pumps toxins out of the bloodstream and serves as a minor biological battery for electrical components"

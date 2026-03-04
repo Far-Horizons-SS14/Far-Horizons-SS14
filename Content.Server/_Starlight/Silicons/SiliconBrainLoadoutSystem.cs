@@ -1,6 +1,5 @@
 using Content.Shared._Starlight.Silicons;
-using Content.Shared.Body.Components;
-using Content.Shared.Body.Prototypes;
+using Content.Shared.Body;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Preferences;
 using Content.Shared.Preferences.Loadouts;
@@ -67,20 +66,17 @@ public sealed partial class SiliconBrainLoadoutSystem : EntitySystem
         if (brainProto == null && profile != null &&
             _proto.TryIndex<SpeciesPrototype>(profile.Species, out var species) &&
             _proto.TryIndex<EntityPrototype>(species.Prototype, out var entityProto) &&
-            entityProto.TryGetComponent<BodyComponent>(out var bodyComp, _compFactory) &&
-            bodyComp.Prototype != null &&
-            _proto.TryIndex<BodyPrototype>(bodyComp.Prototype.Value, out var body))
+            entityProto.TryGetComponent<InitialBodyComponent>(out var initBodyComp, _compFactory))
         {
-            foreach (var (_, slot) in body.Slots)
+            foreach (var (slot, organ) in initBodyComp.Organs)
             {
-                if (slot.Organs.TryGetValue("brain", out var organProto))
-                {
-                    brainProto = organProto;
-                    // Check if brain has BorgBrain component
-                    if (brainProto != null && _proto.TryIndex<EntityPrototype>(brainProto.Value, out var brainEnt))
-                        useMMI = !brainEnt.Components.ContainsKey(_compFactory.GetComponentName(typeof(BorgBrainComponent)));
-                    break;
-                }
+                if (slot != "Brain")
+                    continue;
+                
+                brainProto = organ;
+                // Check if brain has BorgBrain component
+                if (_proto.TryIndex<EntityPrototype>(brainProto.Value, out var brainEnt))
+                    useMMI = !brainEnt.Components.ContainsKey(_compFactory.GetComponentName(typeof(BorgBrainComponent)));
             }
         }
 

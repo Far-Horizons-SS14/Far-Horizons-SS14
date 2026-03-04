@@ -456,7 +456,7 @@
 
 #region Command
 
-# Commander (Captain)
+# Commandant (Captain)
 
 - type: entity
   parent: [ClothingBeltBase, ClothingSlotBase, BaseCommandContraband]
@@ -490,12 +490,12 @@
           - CaptainSabre
   - type: Appearance
 
-# Personnel Chief (HoP)
+# Personnel Manager (HoP)
 
 - type: entity
   parent: ClothingBeltHoP
   id: ClothingBeltHoPSyndi
-  name: Personnel Chief Belt
+  name: Personnel Manager Belt
   description: A very clean belt with some wear on some lesser seen parts. Can fit plenty of paperwork and writing implements inside.
   components:
   - type: Sprite
@@ -504,12 +504,12 @@
   - type: Clothing
     sprite: _FarHorizons/Clothing/Belt/syndihop.rsi
 
-# Technical Lead (Chief Engineer)
+# Foreman (Chief Engineer)
 
 - type: entity
   parent: BaseClothingBeltEngineeringSyndi
   id: ClothingBeltChiefEngineerSyndi
-  name: Technical Lead's Toolbelt
+  name: Foreman's Toolbelt
   description: Holds tools, looks snazzy.
   components:
   - type: Sprite
@@ -642,12 +642,12 @@
     
 #region Security
 
-# Combat Medic (Corpsman)
+# Corpsman (Corpsman)
 
 - type: entity
   parent: ClothingBeltBrigmedic
   id: ClothingBeltCorpsmanSyndi
-  name: Combat Medic Belt
+  name: Corpsman Belt
   description: A tactical belt with as many pockets and bags to hold all the medical items you need!
   components:
   - type: Sprite
@@ -669,7 +669,7 @@
       - id: Ointment
       - id: Gauze
 
-# Medical Officer (Brigmedic)
+# Brigmedic (Brigmedic)
 
 - type: entity
   parent: ClothingBeltBrigmedic

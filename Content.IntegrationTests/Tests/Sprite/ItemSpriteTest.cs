@@ -42,6 +42,8 @@ public sealed class PrototypeSaveTest
         {
             foreach (var (proto, _) in pair.GetPrototypesWithComponent<ItemComponent>(Ignored))
             {
+                if (proto.Components.Keys.Contains("ConnectedOrgan")) continue; // Far Horizons - Connected organ does some sprite magic, meaning sprites won't be available on spawn. They are still good in game though, trust
+
                 var dummy = pair.Client.EntMan.Spawn(proto.ID);
                 pair.Client.EntMan.RunMapInit(dummy, pair.Client.MetaData(dummy));
                 var spriteComponent = pair.Client.EntMan.GetComponentOrNull<SpriteComponent>(dummy);

@@ -532,10 +532,10 @@
       - id: BookSpaceLaw
         amount: 2
 
-# Guardian (Warden)
+# Constable (Warden)
 
 - type: entityTable
-  id: FillLockerGuardianHarduit
+  id: FillLockerConstableHarduit
   table: !type:AllSelector
     children:
     - id: ClothingOuterHardsuitWardenSyndi
@@ -544,7 +544,7 @@
     - id: ClothingMaskBreath
 
 - type: entityTable
-  id: FillLockerGuardian
+  id: FillLockerConstable
   table: !type:AllSelector
     children:
     - id: WeaponEnergyShotgun
@@ -571,7 +571,7 @@
     - id: Binoculars
 
 - type: entity
-  id: LockerGuardianFilledHardsuit
+  id: LockerConstableFilledHardsuit
   suffix: Filled, Hardsuit
   parent: LockerWardenFHSyndi
   components:
@@ -580,13 +580,13 @@
       entity_storage: !type:AllSelector
         children:
         - !type:NestedSelector
-          tableId: FillLockerGuardian
+          tableId: FillLockerConstable
         - !type:NestedSelector
-          tableId: FillLockerGuardianHarduit
+          tableId: FillLockerConstableHarduit
 
 
 
-# Medical Officer (Brigmedic)
+# Brigmedic (Brigmedic)
 
 - type: entity
   id: LockerBrigmedicLargeFHFilledSyndi
@@ -606,7 +606,7 @@
       - id: ClothingOuterHardsuitBrigmedicSyndi
         amount: 2
       - id: BoxSterileMask
-      - id: ClothingHeadHatBeretMedicalOfficer
+      - id: ClothingHeadHatBeretBrigmedic
       #- id: ClothingOuterCoatAMG
       - id: ClothingUniformJumpsuitBrigmedicSyndi
       - id: ClothingUniformJumpskirtBrigmedicSyndi
@@ -638,7 +638,7 @@
         amount: 2
       - id: ClothingOuterHardsuitBrigmedicSyndi
       - id: BoxSterileMask
-      - id: ClothingHeadHatBeretMedicalOfficer
+      - id: ClothingHeadHatBeretBrigmedic
       #- id: ClothingOuterCoatAMG
       - id: ClothingUniformJumpsuitBrigmedicSyndi
       - id: ClothingUniformJumpskirtBrigmedicSyndi
@@ -656,7 +656,7 @@
         prob: 0.35
       - id: RubberStampBrigmedic
 
-# Combat Medic (Corpsman)
+# Corpsman (Corpsman)
 
 - type: entity
   id: LockerCorpsmanFilledSyndi

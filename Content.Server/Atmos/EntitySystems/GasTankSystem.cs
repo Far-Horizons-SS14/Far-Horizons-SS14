@@ -3,7 +3,7 @@ using Content.Server.Explosion.EntitySystems;
 using Content.Shared.Atmos;
 using Content.Shared.Atmos.Components;
 using Content.Shared.Atmos.EntitySystems;
-using Content.Shared.Body.Organ; // Starlight edit - Breathable organs
+using Content.Shared.Body;
 using Content.Shared.Cargo;
 using Content.Shared.Throwing;
 using JetBrains.Annotations;

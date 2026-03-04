@@ -1,14 +1,17 @@
-﻿using Content.Server.Actions; //Starlight
 using Content.Server.Humanoid;
 using Content.Shared.Cloning.Events;
 using Content.Shared._Starlight.Humanoid.Markings;
 using Content.Shared.Actions;
 using Content.Shared.Humanoid;
+using Content.Server.Actions;
+using Content.Shared.Body;
+using Content.Shared.Cloning.Events;
 using Content.Shared.Humanoid.Markings;
 using Content.Shared.Mobs;
 using Content.Shared.Toggleable;
 using Content.Shared.Wagging;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Utility;
 
 namespace Content.Server.Wagging;
 
@@ -18,7 +21,7 @@ namespace Content.Server.Wagging;
 public sealed class WaggingSystem : EntitySystem
 {
     [Dependency] private readonly ActionsSystem _actions = default!;
-    [Dependency] private readonly HumanoidAppearanceSystem _humanoidAppearance = default!;
+    [Dependency] private readonly SharedVisualBodySystem _visualBody = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
 
     [Dependency] private readonly StarlightMarkingSystem _starlightMarking = default!; //starlight edit
@@ -27,6 +30,7 @@ public sealed class WaggingSystem : EntitySystem
     {
         base.Initialize();
 
+        //SubscribeLocalEvent<WaggingComponent, MapInitEvent>(OnWaggingMapInit);
         SubscribeLocalEvent<WaggingComponent, ComponentShutdown>(OnWaggingShutdown);
         SubscribeLocalEvent<WaggingComponent, ToggleActionEvent>(OnWaggingToggle);
         SubscribeLocalEvent<WaggingComponent, MobStateChangedEvent>(OnMobStateChanged);
@@ -41,59 +45,85 @@ public sealed class WaggingSystem : EntitySystem
         EnsureComp<WaggingComponent>(args.CloneUid);
     }
 
-    private void OnWaggingShutdown(EntityUid uid, WaggingComponent component, ComponentShutdown args)
+    // private void OnWaggingMapInit(Entity<WaggingComponent> ent, ref MapInitEvent args)
+    // {
+    //     _actions.AddAction(ent, ref ent.Comp.ActionEntity, ent.Comp.Action, ent);
+    // }
+
+    private void OnWaggingShutdown(Entity<WaggingComponent> ent, ref ComponentShutdown args)
     {
-        _actions.RemoveAction(uid, component.ActionEntity);
+        _actions.RemoveAction(ent.Owner, ent.Comp.ActionEntity);
     }
 
-    private void OnWaggingToggle(EntityUid uid, WaggingComponent component, ref ToggleActionEvent args)
+    private void OnWaggingToggle(Entity<WaggingComponent> ent, ref ToggleActionEvent args)
     {
         if (args.Handled)
             return;
 
-        TryToggleWagging(uid, wagging: component);
+        TryToggleWagging(ent.AsNullable());
     }
 
-    private void OnMobStateChanged(EntityUid uid, WaggingComponent component, MobStateChangedEvent args)
+    private void OnMobStateChanged(Entity<WaggingComponent> ent, ref MobStateChangedEvent args)
     {
-        if (component.Wagging)
-            TryToggleWagging(uid, wagging: component);
+        if (ent.Comp.Wagging)
+            TryToggleWagging(ent.AsNullable());
     }
 
-    public bool TryToggleWagging(EntityUid uid, WaggingComponent? wagging = null, HumanoidAppearanceComponent? humanoid = null)
+    private bool TryToggleWagging(Entity<WaggingComponent?> ent)
     {
-        if (!Resolve(uid, ref wagging, ref humanoid))
+        if (!Resolve(ent, ref ent.Comp))
             return false;
 
-        if (!humanoid.MarkingSet.Markings.TryGetValue(MarkingCategories.Tail, out var markings))
-            return false;
-
-        if (markings.Count == 0)
-            return false;
-
-        wagging.Wagging = !wagging.Wagging;
-
-        // starlight start
-        string? target;
-        if (wagging.Wagging)
+        if (!_visualBody.TryGatherMarkingsData(ent.Owner,
+                [ent.Comp.Layer],
+                out _,
+                out _,
+                out var applied))
         {
-            _starlightMarking.TryGetWaggingId(markings[0].MarkingId, out target);
-        }
-        else
-        {
-            _starlightMarking.TryGetStaticId(markings[0].MarkingId, out target);
-        }
-
-        if (target == null)
-        {
-            Log.Error($"Unable to find corresponding wagging or static ID for {markings[0].MarkingId}?");
             return false;
         }
 
-        _humanoidAppearance.SetMarkingId(uid, MarkingCategories.Tail, 0, target,
-            humanoid: humanoid);
-        // starlight end
+        if (!applied.TryGetValue(ent.Comp.Organ, out var markingsSet))
+            return false;
 
+        ent.Comp.Wagging = !ent.Comp.Wagging;
+
+        markingsSet = markingsSet.ShallowClone();
+        foreach (var (layers, markings) in markingsSet)
+        {
+            markingsSet[layers] = markingsSet[layers].ShallowClone();
+            var layerMarkings = markingsSet[layers];
+
+            for (int i = 0; i < layerMarkings.Count; i++)
+            {
+                var currentMarkingId = layerMarkings[i].MarkingId;
+                string? newMarkingId;
+
+                if (ent.Comp.Wagging)
+                {
+                    _starlightMarking.TryGetWaggingId(currentMarkingId, out newMarkingId);
+                }
+                else
+                {   
+                    _starlightMarking.TryGetStaticId(markings[0].MarkingId, out newMarkingId);
+                }
+
+                newMarkingId ??= currentMarkingId;
+
+                if (!_prototype.HasIndex<MarkingPrototype>(newMarkingId))
+                {
+                    Log.Warning($"{ToPrettyString(ent):ent} tried toggling wagging but {newMarkingId} marking doesn't exist");
+                    continue;
+                }
+
+                layerMarkings[i] = new Marking(newMarkingId, layerMarkings[i].MarkingColors, layerMarkings[i].IsGlowing);
+            }
+        }
+
+        _visualBody.ApplyMarkings(ent, new()
+        {
+            [ent.Comp.Organ] = markingsSet
+        });
         return true;
     }
 }

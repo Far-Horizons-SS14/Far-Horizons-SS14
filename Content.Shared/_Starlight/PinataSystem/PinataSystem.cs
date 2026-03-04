@@ -3,7 +3,6 @@
 
 using Content.Shared.Body.Events;
 using Content.Shared.Damage;
-using Content.Shared.Gibbing.Events;
 using Content.Shared.Throwing;
 using Content.Shared.EntityTable;
 using Content.Shared.EntityTable.EntitySelectors;
@@ -11,6 +10,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Network;
 using Content.Shared.Damage.Systems;
+using Content.Shared.Gibbing;
 
 namespace Content.Server._Starlight.PinataSystem;
 
@@ -28,14 +28,9 @@ public sealed class PinataSystem : EntitySystem
 
         SubscribeLocalEvent<PinataComponent, DamageModifyEvent>(OnHit);
         SubscribeLocalEvent<PinataComponent, BeingGibbedEvent>(OnGib);
-        SubscribeLocalEvent<PinataComponent, EntityGibbedEvent>(OnGibAlt);
     }
 
-    //This is from most explicit gib effects
-    private void OnGibAlt(Entity<PinataComponent> ent, ref EntityGibbedEvent args) => RemoveGibbedParts(ent, args.DroppedEntities);
-
-    //This is from taking too much damage and gibbing.
-    private void OnGib(Entity<PinataComponent> ent, ref BeingGibbedEvent args) => RemoveGibbedParts(ent, args.GibbedParts);
+    private void OnGib(Entity<PinataComponent> ent, ref BeingGibbedEvent args) => RemoveGibbedParts(ent, args.Giblets);
 
     private void RemoveGibbedParts(Entity<PinataComponent> ent, ICollection<EntityUid> guts)
     {

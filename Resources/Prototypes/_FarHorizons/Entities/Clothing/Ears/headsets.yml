@@ -86,9 +86,9 @@
 - type: entity
   parent: [ClothingHeadset, BaseCommandContraband]
   id: ClothingHeadsetSecurityHoSSyndi
-  name: Security Overwatch's Headset
+  name: Marshal's Headset
   suffix: S
-  description: This is used by the Security Overwatch in their line of duty.
+  description: This is used by the Marshal in their line of duty.
   components:
   - type: ContainerFill
     containers:
@@ -107,9 +107,9 @@
 - type: entity
   parent: [ClothingHeadsetAlt, BaseCommandContraband]
   id: ClothingHeadsetAltSecurityHoSSyndi
-  name: Security Overwatch's Over-Ear Headset
+  name: Marshal's Over-Ear Headset
   suffix: S
-  description: This is used by the Security Overwatch in their line of duty. Helps to muffle all of the nonsense the clown is spouting off.
+  description: This is used by the Marshal in their line of duty. Helps to muffle all of the nonsense the clown is spouting off.
   components:
   - type: ContainerFill
     containers:
@@ -128,7 +128,7 @@
 - type: entity
   parent: [ClothingHeadset, BaseCommandContraband]
   id: ClothingHeadsetCESyndi
-  name: Technical Lead Headset
+  name: Foreman Headset
   suffix: S
   description: A headset for the technical lead to ignore all emergency calls on.
   components:
@@ -149,7 +149,7 @@
 - type: entity
   parent: [ClothingHeadsetAlt, BaseCommandContraband]
   id: ClothingHeadsetAltCESyndi
-  name: Technical Lead Over-Ear Headset
+  name: Foreman Over-Ear Headset
   suffix: S
   description: A headset for the technical lead to ignore all emergency calls on.
   components:
@@ -229,14 +229,14 @@
     sound:
       path: /Audio/_Starlight/Effects/Radio/secoff.ogg
 
-# Guardian (Warden)
+# Constable (Warden)
 
 - type: entity
   parent: [ ClothingHeadset, BaseSecurityContraband ]
   id: ClothingHeadsetSecurityWardenSyndi
-  name: Guardian's Headset
+  name: Constable's Headset
   suffix: S
-  description: This is used by your elite Guardian.
+  description: This is used by your elite Constable.
   components:
   - type: ContainerFill
     containers:
@@ -254,9 +254,9 @@
 - type: entity
   parent: [ ClothingHeadsetAlt, BaseSecurityContraband ]
   id: ClothingHeadsetAltSecurityWardenSyndi
-  name: Guardian's Over-Ear Headset
+  name: Constable's Over-Ear Headset
   suffix: S
-  description: This is used by your elite Guardian. Helps to muffle the tortured screams in the brig.
+  description: This is used by your elite Constable. Helps to muffle the tortured screams in the brig.
   components:
   - type: ContainerFill
     containers:
@@ -271,7 +271,7 @@
     sound:
       path: /Audio/_Starlight/Effects/Radio/warden.ogg
 
-# Medical Officer (Brigmedic) + Combat Medic (Corpsman)
+# Brigmedic (Brigmedic) + Corpsman (Corpsman)
 
 - type: entity
   parent: [ClothingHeadset, BaseSecurityContraband]

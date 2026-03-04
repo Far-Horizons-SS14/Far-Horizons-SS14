@@ -226,13 +226,11 @@ public sealed class NukeOpsTest
         Assert.That(total, Is.GreaterThan(3));
 
         // Check the nukie commander passed basic training and figured out how to breathe.
-        // Starlight edit Start: Who needs to breathe anyway?
         if (entMan.TryGetComponent<RespiratorComponent>(player, out var resp))
         {
             var totalSeconds = 30;
-            var totalTicks = (int) Math.Ceiling(totalSeconds / server.Timing.TickPeriod.TotalSeconds);
+            var totalTicks = (int)Math.Ceiling(totalSeconds / server.Timing.TickPeriod.TotalSeconds);
             var increment = 5;
-            // var resp = entMan.GetComponent<RespiratorComponent>(player);
             var damage = entMan.GetComponent<DamageableComponent>(player);
             for (var tick = 0; tick < totalTicks; tick += increment)
             {

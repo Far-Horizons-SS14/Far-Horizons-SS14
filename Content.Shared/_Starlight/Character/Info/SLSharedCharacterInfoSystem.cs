@@ -47,7 +47,7 @@ public abstract class SLSharedCharacterInfoSystem : EntitySystem
         SubscribeLocalEvent<ActivateImplantEvent>(OnActivateImplant);
 
         SubscribeLocalEvent<ExploitableInfoComponent, GetVerbsEvent<ExamineVerb>>(OnExamineExploitableInfo);
-        SubscribeLocalEvent<HumanoidAppearanceComponent, GetVerbsEvent<ExamineVerb>>(OnExamineCharacter);
+        SubscribeLocalEvent<HumanoidProfileComponent, GetVerbsEvent<ExamineVerb>>(OnExamineCharacter);
         SubscribeLocalEvent<MindSecretsComponent, ComponentGetStateAttemptEvent>(AttemptSyncMindSecrets);
     }
 
@@ -142,7 +142,7 @@ public abstract class SLSharedCharacterInfoSystem : EntitySystem
         args.Cancelled = playerMind != uid;
     }
 
-    private void OnExamineCharacter(Entity<HumanoidAppearanceComponent> ent, ref GetVerbsEvent<ExamineVerb> args)
+    private void OnExamineCharacter(Entity<HumanoidProfileComponent> ent, ref GetVerbsEvent<ExamineVerb> args)
     {
         if (Identity.Name(args.Target, EntityManager) != MetaData(args.Target).EntityName)
             return;

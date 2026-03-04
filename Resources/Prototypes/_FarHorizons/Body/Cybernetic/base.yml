@@ -1,0 +1,207 @@
+- type: markingsGroup
+  id: Cybernetics
+  onlyGroupWhitelisted: true
+
+- type: entity
+  parent: OrganBase
+  id: OrganCyber
+  name: Cyber Organ
+  suffix: Cyber
+  abstract: true
+  components:
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: Iron
+        Quantity: 30
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 5
+        reagents:
+        - ReagentId: Oil
+          Quantity: 10
+  - type: HumanoidEMPCompositeElement
+    effect:
+      stunAmount: 0.5
+      damageAmount:
+        types:
+          Shock: 5
+  - type: Tag
+    tags:
+      - Inorganic
+
+- type: entity
+  parent: OrganCyber
+  id: OrganCyberExternal
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+  - type: VisualOrgan
+    data:
+      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+  - type: VisualOrganMarkings
+    markingData:
+      group: Cybernetics
+
+
+- type: entity
+  parent: [ OrganBaseArmRight, OrganCyberExternal ]
+  id: OrganCyberArmRight
+  abstract: true
+  name: Right Cyber Arm
+  components:
+    - type: HumanoidEMPCompositeElement
+      effect:
+        stunAmount: 1.0
+        dropItemsFrom:
+        - body_part_slot_right hand
+        damageAmount:
+          types:
+            Shock: 10
+    - type: VisualOrganMarkings
+      markingData:
+        layers:
+        - RArm
+
+- type: entity
+  parent: [ OrganBaseArmLeft, OrganCyberExternal ]
+  id: OrganCyberArmLeft
+  abstract: true
+  name: Left Cyber Arm
+  components:
+    - type: HumanoidEMPCompositeElement
+      effect:
+        stunAmount: 1.0
+        dropItemsFrom:
+        - body_part_slot_left hand
+        damageAmount:
+          types:
+            Shock: 10
+    - type: VisualOrganMarkings
+      markingData:
+        layers:
+        - LArm
+
+- type: entity
+  parent: [ OrganBaseHandRight, OrganCyberExternal ]
+  id: OrganCyberHandRight
+  abstract: true
+  name: Right Cyber Hand
+  components:
+    - type: HumanoidEMPCompositeElement
+      effect:
+        stunAmount: 0.5
+        dropItemsFrom:
+        - body_part_slot_right hand
+        damageAmount:
+          types:
+            Shock: 5
+    - type: VisualOrganMarkings
+      markingData:
+        layers:
+        - RHand
+
+- type: entity
+  parent: [ OrganBaseHandLeft, OrganCyberExternal ]
+  id: OrganCyberHandLeft
+  abstract: true
+  name: Left Cyber Hand
+  components:
+    - type: HumanoidEMPCompositeElement
+      effect:
+        stunAmount: 0.5
+        dropItemsFrom:
+        - body_part_slot_left hand
+        damageAmount:
+          types:
+            Shock: 5
+    - type: VisualOrganMarkings
+      markingData:
+        layers:
+        - LHand
+
+- type: entity
+  parent: [ OrganBaseLegRight, OrganCyberExternal ]
+  id: OrganCyberLegRight
+  abstract: true
+  name: Right Cyber Leg
+  components:
+    - type: HumanoidEMPCompositeElement
+      effect:
+        stunAmount: 1.0
+        knockdownAmount: 1.0
+        slowdownAmount: 1.0
+        walkSpeedModifier: 0.6
+        sprintSpeedModifier: 0.6
+        damageAmount:
+          types:
+            Shock: 10
+    - type: VisualOrganMarkings
+      markingData:
+        layers:
+        - RLeg
+
+- type: entity
+  parent: [ OrganBaseLegLeft, OrganCyberExternal ]
+  id: OrganCyberLegLeft
+  abstract: true
+  name: Left Cyber Leg
+  components:
+    - type: HumanoidEMPCompositeElement
+      effect:
+        stunAmount: 1.0
+        knockdownAmount: 1.0
+        slowdownAmount: 1.0
+        walkSpeedModifier: 0.6
+        sprintSpeedModifier: 0.6
+        damageAmount:
+          types:
+            Shock: 10
+    - type: VisualOrganMarkings
+      markingData:
+        layers:
+        - LLeg
+
+- type: entity
+  parent: [ OrganBaseFootRight, OrganCyberExternal ]
+  id: OrganCyberFootRight
+  abstract: true
+  name: Right Cyber Foot
+  components:
+    - type: HumanoidEMPCompositeElement
+      effect:
+        stunAmount: 0.5
+        knockdownAmount: 0.5
+        slowdownAmount: 0.5
+        walkSpeedModifier: 0.8
+        sprintSpeedModifier: 0.8
+        damageAmount:
+          types:
+            Shock: 5
+    - type: VisualOrganMarkings
+      markingData:
+        layers:
+        - RFoot
+
+- type: entity
+  parent: [ OrganBaseFootLeft, OrganCyberExternal ]
+  id: OrganCyberFootLeft
+  abstract: true
+  name: Left Cyber Foot
+  components:
+    - type: HumanoidEMPCompositeElement
+      effect:
+        stunAmount: 0.5
+        knockdownAmount: 0.5
+        slowdownAmount: 0.5
+        walkSpeedModifier: 0.8
+        sprintSpeedModifier: 0.8
+        damageAmount:
+          types:
+            Shock: 5
+    - type: VisualOrganMarkings
+      markingData:
+        layers:
+        - LFoot

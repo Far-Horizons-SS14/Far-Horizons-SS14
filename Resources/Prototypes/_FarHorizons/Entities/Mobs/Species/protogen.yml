@@ -1,7 +1,7 @@
 #region PROTOGEN ####
 
 - type: entity
-  parent: BaseMobSpeciesOrganic
+  parent: BaseSpeciesMobOrganic
   id: BaseMobProtogen
   name: Urist McToaster
   abstract: true
@@ -14,54 +14,6 @@
     - GalacticCommon
     - Machine
     - Trinary
-  - type: Sprite
-    layers:
-    - map: [ "enum.HumanoidVisualLayers.Chest" ]
-    - map: [ "enum.HumanoidVisualLayers.Head" ]
-    - map: [ "enum.HumanoidVisualLayers.Snout" ]
-    - map: [ "enum.HumanoidVisualLayers.Eyes" ]
-    - map: [ "enum.HumanoidVisualLayers.RArm" ]
-    - map: [ "enum.HumanoidVisualLayers.LArm" ]
-    - map: [ "enum.HumanoidVisualLayers.RLeg" ]
-    - map: [ "enum.HumanoidVisualLayers.LLeg" ]
-    - map: [ "enum.HumanoidVisualLayers.UndergarmentBottom" ]
-    - map: [ "enum.HumanoidVisualLayers.UndergarmentTop" ]
-    - map: ["jumpsuit"]
-    - map: ["enum.HumanoidVisualLayers.LFoot"]
-    - map: ["enum.HumanoidVisualLayers.RFoot"]
-    - map: ["enum.HumanoidVisualLayers.LHand"]
-    - map: [ "outerClothing2" ]
-    - map: ["enum.HumanoidVisualLayers.RHand"]
-    - map: [ "gloves" ]
-    - map: [ "shoes" ]
-    - map: [ "ears" ]
-    - map: [ "eyes" ]
-    - map: [ "outerClothing" ]
-    - map: [ "rig" ]
-    - map: [ "belt" ]
-    - map: [ "id" ]
-    - map: [ "back" ]
-    - map: [ "neck" ]
-    - map: [ "pin" ]
-    - map: [ "enum.HumanoidVisualLayers.SnoutCover" ]
-    - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
-    - map: [ "enum.HumanoidVisualLayers.Hair" ]
-    - map: [ "enum.HumanoidVisualLayers.HeadSide" ]
-    - map: [ "enum.HumanoidVisualLayers.HeadTop" ]
-    - map: [ "enum.HumanoidVisualLayers.Tail" ]
-    - map: [ "mask" ]
-    - map: [ "head" ]
-    - map: [ "pocket1" ]
-    - map: [ "pocket2" ]
-    - map: ["enum.HumanoidVisualLayers.Handcuffs"]
-      color: "#ffffff"
-      sprite: Objects/Misc/handcuffs.rsi
-      state: body-overlay-2
-      visible: false
-    - map: [ "clownedon" ] # Dynamically generated
-      sprite: "Effects/creampie.rsi"
-      state: "creampie_human"
-      visible: false
   - type: Repairable # So welder is just a special little snowflake in the code. I tried making healing with welder work through ConditionalHealing component, but it would require too many changes in too many places. So we will keep on the trend and have brute healing defined here. /shrug
     doAfterDelay: 1 # Faster than normal so using welding to heal isn't absolute ass for protogens
     allowSelfRepair: true
@@ -161,10 +113,6 @@
       280: 0.9
       250: 0.8
       230: 0.7
-  - type: HumanoidAppearance
-    species: Protogen
-    hideLayersOnEquip:
-    - Hair
   - type: Inventory
     speciesId: protogen #to be replaced with proto[species] when new sprites are made
     templateId: protogen
@@ -191,21 +139,7 @@
       Unsexed: MaleProtogen
   - type: UniversalHealModifier
     modifier: 0.5
-
-- type: entity
-  parent: BaseSpeciesDummy
-  id: MobProtogenDummy
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Inventory
-    speciesId: protogen #to be replaced with proto[species] when new sprites are made
-    templateId: protogen
-    femaleDisplacements:
-      jumpsuit:
-        sizeMaps:
-          32:
-            sprite: _FarHorizons/Mobs/Species/Protogen/displacement.rsi
-            state: jumpsuit-female
+  - type: VisionOrganRequiredForVision
 
 #region VULPKANIN ####
 
@@ -245,10 +179,6 @@
   - type: Body
     prototype: ProtoVulp
     requiredLegs: 2
-  - type: HumanoidAppearance
-    species: ProtoVulp
-    hideLayersOnEquip:
-    - Hair
   - type: Inventory
     speciesId: protovulp #to be replaced with proto[species] when new sprites are made
     templateId: protogen
@@ -285,26 +215,7 @@
       - SiliconEmotesFH
       - Protogen
       - Vulpkanin
-
-- type: entity
-  parent: BaseSpeciesDummy
-  id: MobProtoVulpDummy
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Inventory
-    speciesId: protovulp #to be replaced with proto[species] when new sprites are made
-    templateId: protogen
-    displacements: 
-      jumpsuit:
-        sizeMaps:
-          32:
-            sprite: _FarHorizons/Mobs/Species/Proto-Vulp/displacement.rsi
-            state: jumpsuit
-      shoes:
-        sizeMaps:
-          32:
-            sprite: _FarHorizons/Mobs/Species/Proto-Vulp/displacement.rsi
-            state: shoes
+  - type: VisionOrganRequiredForVision
 
 #region VOX ####
 
@@ -361,64 +272,6 @@
       reagents:
       - ReagentId: AmmoniaBlood
         Quantity: 300
-  - type: Sprite # Need to redefine the whole order to draw the tail over their gas tank
-    layers:
-    - map: [ "enum.HumanoidVisualLayers.Chest" ]
-    - map: [ "enum.HumanoidVisualLayers.Head" ]
-    - map: [ "enum.HumanoidVisualLayers.Snout" ]
-    - map: [ "enum.HumanoidVisualLayers.Eyes" ]
-    - map: [ "enum.HumanoidVisualLayers.RArm" ]
-    - map: [ "enum.HumanoidVisualLayers.LArm" ]
-    - map: [ "enum.HumanoidVisualLayers.RLeg" ]
-    - map: [ "enum.HumanoidVisualLayers.LLeg" ]
-    - map: [ "enum.HumanoidVisualLayers.UndergarmentBottom" ]
-    - map: [ "enum.HumanoidVisualLayers.UndergarmentTop" ]
-    - map: [ "jumpsuit" ]
-    - map: [ "enum.HumanoidVisualLayers.LFoot" ]
-    - map: [ "enum.HumanoidVisualLayers.RFoot" ]
-    - map: [ "enum.HumanoidVisualLayers.LHand" ]
-    - map: [ "enum.HumanoidVisualLayers.RHand" ]
-    - map: [ "gloves" ]
-    - map: [ "shoes" ]
-    - map: [ "ears" ]
-    - map: [ "eyes" ]
-    - map: [ "outerClothing" ]
-    - map: [ "rig" ]
-    - map: [ "belt" ]
-    - map: [ "id" ]
-    - map: [ "back" ]
-    - map: [ "neck" ]
-    - map: [ "pin" ]
-    - map: [ "suitstorage" ]
-    - map: [ "enum.HumanoidVisualLayers.SnoutCover" ]
-    - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
-    - map: [ "enum.HumanoidVisualLayers.Hair" ]
-    - map: [ "enum.HumanoidVisualLayers.HeadSide" ]
-    - map: [ "enum.HumanoidVisualLayers.HeadTop" ]
-    - map: [ "enum.HumanoidVisualLayers.Tail" ]
-    - map: [ "mask" ]
-    - map: [ "head" ]
-    - map: [ "pocket1" ]
-    - map: [ "pocket2" ]
-    - map: [ "enum.HumanoidVisualLayers.Handcuffs" ]
-      color: "#ffffff"
-      sprite: Objects/Misc/handcuffs.rsi
-      state: body-overlay-2
-      visible: false
-    - map: [ "clownedon" ]
-      sprite: "Effects/creampie.rsi"
-      state: "creampie_vox" # Not default
-      visible: false
-  - type: HumanoidAppearance
-    species: ProtoVox
-    hideLayersOnEquip:
-    - Hair
-    markingsDisplacement:
-      Hair:
-        sizeMaps:
-          32:
-            sprite: Mobs/Species/Vox/displacement.rsi
-            state: hair
   - type: Inventory
     speciesId: vox #to be replaced with proto[species] when new sprites are made
     templateId: protogen
@@ -483,72 +336,7 @@
       - SiliconEmotesFH
       - Protogen
       - Vox
-
-- type: entity
-  parent: BaseSpeciesDummy
-  id: MobProtoVoxDummy
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: HumanoidAppearance
-    species: ProtoVox #to be replaced with proto[species] when new sprites are made
-    markingsDisplacement:
-      Hair:
-        sizeMaps:
-          32:
-            sprite: Mobs/Species/Vox/displacement.rsi
-            state: hair
-  - type: Body
-    prototype: ProtoVox
-  - type: Inventory
-    speciesId: vox
-    templateId: protogen
-    displacements:
-      jumpsuit:
-        sizeMaps:
-          32:
-            sprite: Mobs/Species/Vox/displacement.rsi
-            state: jumpsuit
-      eyes:
-        sizeMaps:
-          32:
-            sprite: Mobs/Species/Vox/displacement.rsi
-            state: eyes
-      gloves:
-        sizeMaps:
-          32:
-            sprite: Mobs/Species/Vox/displacement.rsi
-            state: hand
-      head:
-        sizeMaps:
-          32:
-            sprite: Mobs/Species/Vox/displacement.rsi
-            state: head
-      back:
-        sizeMaps:
-          32:
-            sprite: Mobs/Species/Vox/displacement.rsi
-            state: back
-      ears:
-        sizeMaps:
-          32:
-            sprite: Mobs/Species/Vox/displacement.rsi
-            state: ears
-      shoes:
-        sizeMaps:
-          32:
-            sprite: Mobs/Species/Vox/displacement.rsi
-            state: shoes
-  - type: Hands
-    leftHandDisplacement:
-      sizeMaps:
-        32:
-          sprite: Mobs/Species/Vox/displacement.rsi
-          state: hand_l
-    rightHandDisplacement:
-      sizeMaps:
-        32:
-          sprite: Mobs/Species/Vox/displacement.rsi
-          state: hand_r
+  - type: VisionOrganRequiredForVision
 
 #region THAVEN ####
 
@@ -578,10 +366,6 @@
   - type: Body
     prototype: ProtoThaven
     requiredLegs: 2
-  - type: HumanoidAppearance
-    species: ProtoThaven
-    hideLayersOnEquip:
-    - Hair
   - type: MeleeWeapon
     attackRate: 0.55
     soundHit:
@@ -653,58 +437,7 @@
       - SiliconEmotesFH
       - Protogen
       - Thaven
-
-
-- type: entity
-  parent: BaseSpeciesDummy
-  id: MobProtoThavenDummy
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Sprite
-    scale: 1, 1
-  - type: Inventory
-    templateId: protogen
-    displacements:
-      jumpsuit:
-        sizeMaps:
-          32:
-            sprite: _Starlight/Mobs/Species/Thaven/displacement.rsi
-            state: jumpsuit
-      head:
-        sizeMaps:
-          32:
-            sprite: _Starlight/Mobs/Species/Thaven/displacement.rsi
-            state: head
-      eyes:
-        sizeMaps:
-          32:
-            sprite: _Starlight/Mobs/Species/Thaven/displacement.rsi
-            state: eyes
-      ears:
-        sizeMaps:
-          32:
-            sprite: _Starlight/Mobs/Species/Thaven/displacement.rsi
-            state: head
-      mask:
-        sizeMaps:
-          32:
-            sprite: _Starlight/Mobs/Species/Thaven/displacement.rsi
-            state: mask
-      neck:
-        sizeMaps:
-          32:
-            sprite: _Starlight/Mobs/Species/Thaven/displacement.rsi
-            state: neck
-      outerClothing:
-        sizeMaps:
-          32:
-            sprite: _Starlight/Mobs/Species/Thaven/displacement.rsi
-            state: outerclothing_hardsuit
-      gloves:
-        sizeMaps:
-          32:
-            sprite: _Starlight/Mobs/Species/Thaven/displacement.rsi
-            state: hands
+  - type: VisionOrganRequiredForVision
 
 #region LASPI ####
 
@@ -725,10 +458,6 @@
     - Machine
     - Trinary
     - Bubblish
-  - type: HumanoidAppearance
-    species: ProtoSlimePerson
-    hideLayersOnEquip:
-    - Hair
   - type: UserInterface
     interfaces:
       enum.StorageUiKey.Key:
@@ -853,29 +582,13 @@
       - Protogen
       - SlimePerson
 
-- type: entity
-  parent: MobHumanDummy
-  id: MobProtoSlimePersonDummy
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: HumanoidAppearance
-    species: ProtoSlimePerson
-  - type: Inventory
-    templateId: protogen
-    femaleDisplacements:
-      jumpsuit:
-        sizeMaps:
-          32:
-            sprite: Mobs/Species/Human/displacement.rsi
-            state: jumpsuit-female
-
 #region SHADEKIN ####
 # Todo: Give unique abilites maybe? I could totally see them trying to "fix" themselves with cybernetics, with limited success perhaps.
 
 - type: entity
   save: false
   name: Urist McDuskin #pronounced Dusk-Kin
-  parent: [MobBloodstream, MobAtmosStandard, MobFlammable, BaseMobSpecies] #These fucks have no lungs, can't just inherent from protogen..
+  parent: [MobBloodstream, MobAtmosStandard, MobFlammable, BaseSpeciesMob] #These fucks have no lungs, can't just inherent from protogen..
   id: BaseMobProtoKin
   abstract: true
   components:
@@ -906,10 +619,6 @@
     - type: Absorbable
     - type: Hunger
     - type: Thirst
-    - type: HumanoidAppearance 
-      species: ProtoKin
-      hideLayersOnEquip:
-      - Hair
     - type: Icon
       sprite: _FarHorizons/Mobs/Species/Proto-Kin/parts.rsi
       state: full
@@ -1094,16 +803,7 @@
         - SiliconEmotesFH
         - Protogen
         - Shadekin
-
-- type: entity
-  save: false
-  parent: BaseSpeciesDummy
-  id: MobProtoKinDummy
-  categories: [HideSpawnMenu]
-  description: A dummy protokin meant to be used in character setup.
-  components:
-    - type: HumanoidAppearance
-      species: ProtoKin
+    - type: VisionOrganRequiredForVision
 
 #region RESOMI ####
 
@@ -1157,10 +857,6 @@
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: ProtoResomi
-  - type: HumanoidAppearance
-    species: ProtoResomi
-    hideLayersOnEquip:
-    - Hair
   - type: Fixtures
     fixtures: 
       fix1:
@@ -1338,140 +1034,7 @@
   - type: NightVision
   - type: FlashModifier
     modifier: 2
-    
-- type: entity
-  parent: BaseSpeciesDummy
-  id: MobProtoResomiDummy
-  categories: [ HideSpawnMenu ]
-  description: A dummy proto-resomi meant to be used in character setup.
-  components:
-  - type: HumanoidAppearance
-    species: ProtoResomi
-  - type: Inventory
-    speciesId: resomi #to be replaced with proto[species] when new sprites are made
-    templateId: protogen
-    displacements:
-      jumpsuit:
-        sizeMaps:
-          32:
-            sprite: Mobs/Species/Resomi/displacement.rsi
-            state: jumpsuit
-      eyes:
-        sizeMaps:
-          32:
-            sprite: Mobs/Species/Resomi/displacement.rsi
-            state: eyes
-      gloves:
-        sizeMaps:
-          32:
-            sprite: Mobs/Species/Resomi/displacement.rsi
-            state: hands
-      head:
-        sizeMaps:
-          32:
-            sprite: Mobs/Species/Resomi/displacement.rsi
-            state: head
-      back:
-        sizeMaps:
-          32:
-            sprite: Mobs/Species/Resomi/displacement.rsi
-            state: back
-      ears:
-        sizeMaps:
-          32:
-            sprite: Mobs/Species/Resomi/displacement.rsi
-            state: ears
-      shoes:
-        sizeMaps:
-          32:
-            sprite: Mobs/Species/Resomi/displacement.rsi
-            state: feet
-      neck:
-        sizeMaps:
-          32:
-            sprite: Mobs/Species/Resomi/displacement.rsi
-            state: neck
-      mask:
-        sizeMaps:
-          32:
-            sprite: Mobs/Species/Resomi/displacement.rsi
-            state: mask
-      outerClothing:
-        sizeMaps:
-          32:
-            sprite: Mobs/Species/Resomi/displacement.rsi
-            state: outerClothing
-      suitstorage:
-        sizeMaps:
-          32:
-            sprite: Mobs/Species/Resomi/displacement.rsi
-            state: suitStorage
-      belt:
-        sizeMaps:
-          32:
-            sprite: Mobs/Species/Resomi/displacement.rsi
-            state: belt
-    femaleDisplacements:
-      jumpsuit:
-        sizeMaps:
-          32:
-            sprite: Mobs/Species/Resomi/displacement.rsi
-            state: jumpsuit
-      eyes:
-        sizeMaps:
-          32:
-            sprite: Mobs/Species/Resomi/displacement.rsi
-            state: eyes
-      gloves:
-        sizeMaps:
-          32:
-            sprite: Mobs/Species/Resomi/displacement.rsi
-            state: hands
-      head:
-        sizeMaps:
-          32:
-            sprite: Mobs/Species/Resomi/displacement.rsi
-            state: head
-      back:
-        sizeMaps:
-          32:
-            sprite: Mobs/Species/Resomi/displacement.rsi
-            state: back
-      ears:
-        sizeMaps:
-          32:
-            sprite: Mobs/Species/Resomi/displacement.rsi
-            state: ears
-      shoes:
-        sizeMaps:
-          32:
-            sprite: Mobs/Species/Resomi/displacement.rsi
-            state: feet
-      neck:
-        sizeMaps:
-          32:
-            sprite: Mobs/Species/Resomi/displacement.rsi
-            state: neck
-      mask:
-        sizeMaps:
-          32:
-            sprite: Mobs/Species/Resomi/displacement.rsi
-            state: mask
-      outerClothing:
-        sizeMaps:
-          32:
-            sprite: Mobs/Species/Resomi/displacement.rsi
-            state: outerClothing
-      suitstorage:
-        sizeMaps:
-          32:
-            sprite: Mobs/Species/Resomi/displacement.rsi
-            state: suitStorage
-      belt:
-        sizeMaps:
-          32:
-            sprite: Mobs/Species/Resomi/displacement.rsi
-            state: belt
+  - type: VisionOrganRequiredForVision
 
 #region REPTILIAN ####
 
@@ -1493,10 +1056,6 @@
     - Machine
     - Trinary
     - Draconic
-  - type: HumanoidAppearance
-    species: ProtoReptile
-    hideLayersOnEquip:
-    - Hair
   - type: Puller
     needsHands: false
   - type: Icon
@@ -1570,45 +1129,8 @@
       - SiliconEmotesFH
       - Protogen
       - Reptilian
-
-- type: entity
-  parent: BaseSpeciesDummy
-  id: MobProtoReptileDummy
-  categories: [ HideSpawnMenu ]
-  description: A dummy proto-reptile meant to be used in character setup.
-  components:
-  - type: HumanoidAppearance
-    species: ProtoReptile
-  - type: Inventory
-    speciesId: reptilian
-    templateId: protogen
-    femaleDisplacements:
-      jumpsuit:
-        sizeMaps:
-          32:
-            sprite: Mobs/Species/Reptilian/displacement.rsi
-            state: jumpsuit-female
-      head:
-        sizeMaps:
-          32:
-            sprite: Mobs/Species/Reptilian/displacement.rsi
-            state: head
-      mask:
-        sizeMaps:
-          32:
-            sprite: Mobs/Species/Reptilian/displacement.rsi
-            state: mask
-    displacements:
-      head:
-        sizeMaps:
-          32:
-            sprite: Mobs/Species/Reptilian/displacement.rsi
-            state: head
-      mask:
-        sizeMaps:
-          32:
-            sprite: Mobs/Species/Reptilian/displacement.rsi
-            state: mask
+  - type: VisionOrganRequiredForVision
+  - type: Wagging
 
 #region MOTH ####
 
@@ -1633,10 +1155,6 @@
     - Mothroach
   - type: Jump
     action: JumpMoth
-  - type: HumanoidAppearance
-    species: ProtoMoth
-    hideLayersOnEquip:
-    - Hair
   - type: Icon
     sprite: _FarHorizons/Mobs/Species/Proto-Moth/parts.rsi
     state: full
@@ -1691,56 +1209,6 @@
       289: 0.9
       275: 0.8
       250: 0.7
-  - type: Sprite
-    noRot: true
-    drawdepth: Mobs
-    layers:
-      - map: [ "enum.HumanoidVisualLayers.Chest" ]
-      - map: [ "enum.HumanoidVisualLayers.Head" ]
-      - map: [ "enum.HumanoidVisualLayers.Snout" ]
-      - map: [ "enum.HumanoidVisualLayers.Eyes" ]
-      - map: [ "enum.HumanoidVisualLayers.RArm" ]
-      - map: [ "enum.HumanoidVisualLayers.LArm" ]
-      - map: [ "enum.HumanoidVisualLayers.RLeg" ]
-      - map: [ "enum.HumanoidVisualLayers.LLeg" ]
-      - map: [ "enum.HumanoidVisualLayers.UndergarmentBottom" ]
-      - map: [ "enum.HumanoidVisualLayers.UndergarmentTop" ]
-      - map: [ "jumpsuit" ]
-      - map: [ "enum.HumanoidVisualLayers.LHand" ]
-      - map: [ "enum.HumanoidVisualLayers.RHand" ]
-      - map: [ "enum.HumanoidVisualLayers.LFoot" ]
-      - map: [ "outerClothing2" ]
-      - map: [ "enum.HumanoidVisualLayers.RFoot" ]
-      - map: [ "enum.HumanoidVisualLayers.Handcuffs" ]
-        color: "#ffffff"
-        sprite: Objects/Misc/handcuffs.rsi
-        state: body-overlay-2
-        visible: false
-      - map: [ "gloves" ]
-      - map: [ "shoes" ]
-      - map: [ "ears" ]
-      - map: [ "eyes" ]
-      - map: [ "outerClothing" ]
-      - map: [ "rig" ]
-      - map: [ "belt" ]
-      - map: [ "id" ]
-      - map: [ "enum.HumanoidVisualLayers.Tail" ]
-      - map: [ "back" ]
-      - map: [ "neck" ]
-      - map: [ "pin" ]
-      - map: [ "enum.HumanoidVisualLayers.SnoutCover" ]
-      - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
-      - map: [ "enum.HumanoidVisualLayers.Hair" ]
-      - map: [ "enum.HumanoidVisualLayers.HeadSide" ]
-      - map: [ "enum.HumanoidVisualLayers.HeadTop" ]
-      - map: [ "mask" ]
-      - map: [ "head" ]
-      - map: [ "pocket1" ]
-      - map: [ "pocket2" ]
-      - map: [ "clownedon" ]
-        sprite: "Effects/creampie.rsi"
-        state: "creampie_moth"
-        visible: false
   - type: Inventory
     speciesId: moth
     templateId: protogen
@@ -1805,69 +1273,7 @@
       - SiliconEmotesFH
       - Protogen
       - Moth
-
-- type: entity
-  parent: BaseSpeciesDummy
-  id: MobProtoMothDummy
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: HumanoidAppearance
-    species: ProtoMoth
-  - type: Inventory
-    speciesId: moth
-    templateId: protogen
-    femaleDisplacements:
-      jumpsuit:
-        sizeMaps:
-          32:
-            sprite: Mobs/Species/Moth/displacement.rsi
-            state: jumpsuit-female
-      back:
-        sizeMaps:
-          32:
-            sprite: Mobs/Species/Moth/displacement.rsi
-            state: back
-      outerClothing:
-        sizeMaps:
-          32:
-            sprite: Mobs/Species/Moth/displacement.rsi
-            state: outerclothing
-      gloves:
-        sizeMaps:
-          32:
-            sprite: Mobs/Species/Moth/displacement.rsi
-            state: hand
-      shoes:
-        sizeMaps:
-          32:
-            sprite: Mobs/Species/Moth/displacement.rsi
-            state: shoes
-    displacements:
-      jumpsuit:
-        sizeMaps:
-          32:
-            sprite: Mobs/Species/Moth/displacement.rsi
-            state: jumpsuit-male
-      back:
-        sizeMaps:
-          32:
-            sprite: Mobs/Species/Moth/displacement.rsi
-            state: back
-      outerClothing:
-        sizeMaps:
-          32:
-            sprite: Mobs/Species/Moth/displacement.rsi
-            state: outerclothing
-      gloves:
-        sizeMaps:
-          32:
-            sprite: Mobs/Species/Moth/displacement.rsi
-            state: hand
-      shoes:
-        sizeMaps:
-          32:
-            sprite: Mobs/Species/Moth/displacement.rsi
-            state: shoes
+  - type: VisionOrganRequiredForVision
 
 #region HUMAN ####
 
@@ -1908,10 +1314,6 @@
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: ProtoHumie
-  - type: HumanoidAppearance
-    species: ProtoHumie
-    hideLayersOnEquip:
-    - Hair
   - type: Inventory
     templateId: protogen
     femaleDisplacements:
@@ -1930,21 +1332,7 @@
       - SiliconEmotesFH
       - Protogen
       - Human
-
-
-- type: entity
-  parent: BaseSpeciesDummy
-  id: MobProtoHumieDummy
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Inventory
-    templateId: protogen
-    femaleDisplacements:
-      jumpsuit:
-        sizeMaps:
-          32:
-            sprite: Mobs/Species/Human/displacement.rsi
-            state: jumpsuit-female
+  - type: VisionOrganRequiredForVision
 
 #region FELIONOID ####
 
@@ -1966,10 +1354,6 @@
     - Trinary
     - Nekomimetic
     - Cat
-  - type: HumanoidAppearance
-    species: ProtoFeline
-    hideLayersOnEquip:
-    - Hair
   - type: Icon
     sprite: _FarHorizons/Mobs/Species/Proto-Feline/parts.rsi
     state: fullcat
@@ -2029,6 +1413,7 @@
     - Felionoid
     - SiliconEmotesFH 
     - Protogen
+  - type: VisionOrganRequiredForVision
   - type: Fixtures
     fixtures:
       fix1:
@@ -2044,55 +1429,6 @@
   - type: Inventory
     speciesId: felionoid # Change when there's unique sprites
     templateId: protogen
-    displacements:
-      jumpsuit:
-        sizeMaps:
-          32:
-            sprite: _Starlight/Mobs/Species/Felionoid/displacement.rsi
-            state: jumpsuit
-      eyes:
-        sizeMaps:
-          32:
-            sprite: _Starlight/Mobs/Species/Felionoid/displacement.rsi
-            state: eyes
-      gloves:
-        sizeMaps:
-          32:
-            sprite: _Starlight/Mobs/Species/Felionoid/displacement.rsi
-            state: hand
-      head:
-        sizeMaps:
-          32:
-            sprite: _Starlight/Mobs/Species/Felionoid/displacement.rsi
-            state: head
-      back:
-        sizeMaps:
-          32:
-            sprite: _Starlight/Mobs/Species/Felionoid/displacement.rsi
-            state: back
-      ears:
-        sizeMaps:
-          32:
-            sprite: _Starlight/Mobs/Species/Felionoid/displacement.rsi
-            state: ears
-      shoes:
-        sizeMaps:
-          32:
-            sprite: _Starlight/Mobs/Species/Felionoid/displacement.rsi
-            state: shoes
-
-- type: entity
-  parent: BaseSpeciesDummy
-  id: MobProtoFelineDummy
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: HumanoidAppearance
-    species: ProtoFeline
-  - type: Body
-    prototype: ProtoFeline
-  - type: Inventory
-    templateId: protogen
-    speciesId: felionoid #Change when there's unique sprites
     displacements:
       jumpsuit:
         sizeMaps:
@@ -2183,10 +1519,6 @@
         - MobLayer
   - type: ReplacementAccent
     accent: dwarf
-  - type: HumanoidAppearance
-    species: ProtoDawi
-    hideLayersOnEquip:
-    - Hair
   - type: Inventory
     templateId: protogen
     femaleDisplacements:
@@ -2204,20 +1536,7 @@
       - SiliconEmotesFH
       - Protogen
       - Dwarf
-
-- type: entity
-  parent: BaseSpeciesDummy
-  id: MobProtoDawiDummy
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Inventory
-    templateId: protogen
-    femaleDisplacements:
-      jumpsuit:
-        sizeMaps:
-          32:
-            sprite: Mobs/Species/Human/displacement.rsi
-            state: jumpsuit-female
+  - type: VisionOrganRequiredForVision
 
 #region DIONA ####
 
@@ -2248,8 +1567,6 @@
     - Diona
     - SiliconEmotesFH 
     - Protogen
-  - type: HumanoidAppearance
-    species: ProtoDionae
   - type: Hunger
     baseDecayRate: 0.0083
   - type: Thirst
@@ -2347,22 +1664,7 @@
             sprite: Mobs/Species/Human/displacement.rsi
             state: jumpsuit-female
   - type: Rootable
-
-- type: entity
-  parent: BaseSpeciesDummy
-  id: MobProtoDionaeDummy
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: HumanoidAppearance
-    species: ProtoDionae
-  - type: Inventory
-    templateId: protodionae
-    femaleDisplacements:
-      jumpsuit:
-        sizeMaps:
-          32:
-            sprite: Mobs/Species/Human/displacement.rsi
-            state: jumpsuit-female
+  - type: VisionOrganRequiredForVision
 
 #region CYCLORITE ####
 
@@ -2393,10 +1695,6 @@
     spawned:
     - id: FoodMeatHuman
       amount: 10
-  - type: HumanoidAppearance
-    species: ProtoCyclops
-    hideLayersOnEquip:
-    - Hair
   - type: Body
     prototype: ProtoCyclops
     requiredLegs: 2
@@ -2505,55 +1803,7 @@
       - SiliconEmotesFH
       - Protogen
       - Cyclorite
-
-- type: entity
-  parent: BaseSpeciesDummy
-  id: MobProtoCyclopsDummy
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: HumanoidAppearance
-    species: ProtoCyclops
-  - type: Body
-    prototype: ProtoCyclops
-  - type: Inventory
-    speciesId: cyclorite
-    templateId: protocyclops
-    displacements:
-      jumpsuit:
-        sizeMaps:
-          32:
-            sprite: _Starlight/Mobs/Species/Cyclorite/displacement.rsi
-            state: jumpsuit
-      eyes:
-        sizeMaps:
-          32:
-            sprite: _Starlight/Mobs/Species/Cyclorite/displacement.rsi
-            state: eyes
-      gloves:
-        sizeMaps:
-          32:
-            sprite: _Starlight/Mobs/Species/Cyclorite/displacement.rsi
-            state: hand
-      head:
-        sizeMaps:
-          32:
-            sprite: _Starlight/Mobs/Species/Cyclorite/displacement.rsi
-            state: head
-      back:
-        sizeMaps:
-          32:
-            sprite: _Starlight/Mobs/Species/Cyclorite/displacement.rsi
-            state: back
-      ears:
-        sizeMaps:
-          32:
-            sprite: _Starlight/Mobs/Species/Cyclorite/displacement.rsi
-            state: ears
-      shoes:
-        sizeMaps:
-          32:
-            sprite: _Starlight/Mobs/Species/Cyclorite/displacement.rsi
-            state: shoes
+  - type: VisionOrganRequiredForVision
 
 #region AVALI ####
 
@@ -2584,8 +1834,6 @@
         - Avali
         - SiliconEmotesFH 
         - Protogen
-    - type: HumanoidAppearance
-      species: ProtoAvali
     - type: Hunger # on 2x more
       thresholds:
         Overfed: 250
@@ -2657,9 +1905,9 @@
           layer:
             - MobLayer
     - type: MovementSpeedModifier
-      weightlessAcceleration: 1.7 # Avalis are specifically built to fly in low-g environments
-      weightlessFriction: 1
-      weightlessModifier: 1
+      baseWeightlessAcceleration: 1.6 # Avalis are specifically built to fly in low-g environments
+      baseWeightlessFriction: 1
+      baseWeightlessModifier: 1
     - type: Damageable
       damageContainer: Biological
       damageModifierSet: ProtoAvali
@@ -2700,44 +1948,7 @@
       bleedHealPerUpdate: 1.0
       critHealingModifier: 0.5
       stasisDamageReduction: 0.7
-
-- type: entity
-  parent: BaseSpeciesDummy
-  id: MobProtoAvaliDummy
-  categories: [ HideSpawnMenu ]
-  description: A dummy proto-avali meant to be used in character setup.
-  components:
-    - type: HumanoidAppearance
-      species: ProtoAvali
-    - type: Inventory
-      speciesId: Avali
-      templateId: protogen
-      displacements:
-        jumpsuit:
-          sizeMaps:
-            32:
-              sprite: _Starlight/Mobs/Species/Avali/displacement.rsi
-              state: jumpsuit
-        shoes:
-          sizeMaps:
-            32:
-              sprite: _Starlight/Mobs/Species/Avali/displacement.rsi
-              state: shoes
-        head:
-          sizeMaps:
-            32:
-              sprite: _Starlight/Mobs/Species/Avali/displacement.rsi
-              state: head
-        hand:
-          sizeMaps:
-            32:
-              sprite: _Starlight/Mobs/Species/Avali/displacement.rsi
-              state: hand
-        back:
-          sizeMaps:
-            32:
-              sprite: _Starlight/Mobs/Species/Avali/displacement.rsi
-              state: back
+    - type: VisionOrganRequiredForVision
 
 #region ARACHNID ####
 
@@ -2763,8 +1974,6 @@
   - type: Body
     prototype: ProtoArachnid
     requiredLegs: 2
-  - type: HumanoidAppearance
-    species: ProtoArachnid
   - type: Sericulture
     productionLength: 2
     entityProduced: MaterialWebSilk1
@@ -2818,66 +2027,7 @@
         color: "#162581"
       Burn:
         sprite: Mobs/Effects/burn_damage.rsi
-  - type: Sprite
-    layers:
-      - map: [ "enum.HumanoidVisualLayers.Chest" ]
-      - map: [ "enum.HumanoidVisualLayers.Head" ]
-      - map: [ "enum.HumanoidVisualLayers.Snout" ]
-      - map: [ "enum.HumanoidVisualLayers.Eyes" ]
-      - map: [ "enum.HumanoidVisualLayers.RArm" ]
-      - map: [ "enum.HumanoidVisualLayers.LArm" ]
-      - map: [ "enum.HumanoidVisualLayers.RLeg" ]
-      - map: [ "enum.HumanoidVisualLayers.LLeg" ]
-      - map: [ "enum.HumanoidVisualLayers.UndergarmentBottom" ]
-      - map: [ "enum.HumanoidVisualLayers.UndergarmentTop" ]
-      - map: ["jumpsuit"]
-      - map: ["enum.HumanoidVisualLayers.LFoot"]
-      - map: ["enum.HumanoidVisualLayers.RFoot"]
-      - map: ["enum.HumanoidVisualLayers.LHand"]
-      - map: [ "outerClothing2" ] # FH
-      - map: ["enum.HumanoidVisualLayers.RHand"]
-      - map: [ "gloves" ]
-      - map: [ "shoes" ]
-      - map: [ "outerClothing" ]
-      - map: [ "rig" ]
-      - map: [ "belt" ]
-      - map: [ "id" ]
-      - map: [ "enum.HumanoidVisualLayers.Tail" ]
-      - map: [ "back" ]
-      - map: [ "neck" ]
-      - map: [ "pin" ]
-      - map: [ "enum.HumanoidVisualLayers.SnoutCover" ]
-      - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
-      - map: [ "enum.HumanoidVisualLayers.Hair" ]
-      - map: [ "enum.HumanoidVisualLayers.HeadSide" ]
-      - map: [ "ears" ]
-      - map: [ "eyes" ]
-      - map: [ "enum.HumanoidVisualLayers.HeadTop" ]
-      - map: [ "mask" ]
-      - map: [ "head" ]
-      - map: [ "pocket1" ]
-      - map: [ "pocket2" ]
-      - map: ["enum.HumanoidVisualLayers.Handcuffs"]
-        color: "#ffffff"
-        sprite: Objects/Misc/handcuffs.rsi
-        state: body-overlay-2
-        visible: false
-      - map: [ "clownedon" ]
-        sprite: "Effects/creampie.rsi"
-        state: "creampie_arachnid"
-        visible: false
   - type: Inventory
     templateId: protoarachnid
     speciesId: arachnid
-
-
-- type: entity
-  parent: BaseSpeciesDummy
-  id: MobProtoArachnidDummy
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: HumanoidAppearance
-    species: Arachnid
-  - type: Inventory
-    templateId: protoarachnid
-    speciesId: arachnid
+  - type: VisionOrganRequiredForVision

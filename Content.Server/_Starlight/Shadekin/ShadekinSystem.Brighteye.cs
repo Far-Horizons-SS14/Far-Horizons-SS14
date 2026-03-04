@@ -1,18 +1,19 @@
+using System.Linq;
 using Content.Shared._Starlight.Shadekin;
 using Content.Shared.Humanoid;
 using Content.Shared.Rejuvenate;
 using Content.Shared.Popups;
-using Content.Shared.Starlight.Medical.Surgery.Events;
-using Content.Shared.Body.Components;
 using Content.Shared.Mobs;
 using Content.Shared.Inventory;
 using Content.Server.Spawners.Components;
 using Content.Server._Starlight.Bluespace;
+using Content.Shared._FarHorizons.Body;
+using Content.Shared.Body;
 using Content.Shared.Zombies;
 
 namespace Content.Server._Starlight.Shadekin;
 
-public sealed partial class ShadekinSystem : EntitySystem
+public sealed partial class ShadekinSystem
 {
     public void InitializeBrighteye()
     {
@@ -23,8 +24,7 @@ public sealed partial class ShadekinSystem : EntitySystem
         SubscribeLocalEvent<BrighteyeComponent, NullSpaceShuntEvent>(NullSpaceShunt);
         SubscribeLocalEvent<BrighteyeComponent, EntityZombifiedEvent>(OnZombified);
 
-        SubscribeLocalEvent<OrganShadekinCoreComponent, SurgeryOrganImplantationCompleted>(OnCoreOrganImplanted);
-        SubscribeLocalEvent<OrganShadekinCoreComponent, SurgeryOrganExtracted>(OnCoreOrganExtracted);
+        SubscribeLocalEvent<OrganShadekinCoreComponent, OrganGotRemovedEvent>(OnCoreOrganExtracted);
     }
 
     private void OnInit(EntityUid uid, BrighteyeComponent component, ComponentStartup args)
@@ -32,27 +32,23 @@ public sealed partial class ShadekinSystem : EntitySystem
         _alerts.ShowAlert(uid, component.BrighteyeAlert);
         _alerts.ShowAlert(uid, component.PortalAlert);
 
-        if (TryComp<BodyComponent>(uid, out var body))
-            foreach (var core in _bodySystem.GetBodyOrganEntityComps<OrganShadekinCoreComponent>((uid, body)))
-                core.Comp1.Damaged = false;
-
-        if (TryComp<HumanoidAppearanceComponent>(uid, out var humanoid))
-            SetBrighteyes(uid, humanoid);
+        if (TryComp<BodyComponent>(uid, out var body) &&
+            _bodySystem.TryGetOrgansWithComponent<OrganShadekinCoreComponent>((uid, body), out var cores))
+            foreach (var core in cores)
+            {
+                core.Comp.Damaged = false;
+                SetBrighteyes(uid, body);
+            }
 
         _actionsSystem.AddAction(uid, ref component.PortalAction, component.BrighteyePortalAction, uid);
         _actionsSystem.AddAction(uid, ref component.PhaseAction, component.BrighteyePhaseAction, uid);
     }
 
-    private void OnCoreOrganImplanted(Entity<OrganShadekinCoreComponent> ent, ref SurgeryOrganImplantationCompleted args)
+    private void OnCoreOrganExtracted(Entity<OrganShadekinCoreComponent> ent, ref OrganGotRemovedEvent args)
     {
-        if (!ent.Comp.Damaged && ent.Comp.OrganOwner == args.Body)
-            EnsureComp<BrighteyeComponent>(args.Body);
-    }
-
-    private void OnCoreOrganExtracted(Entity<OrganShadekinCoreComponent> ent, ref SurgeryOrganExtracted args)
-    {
-        if (HasComp<BrighteyeComponent>(args.Body) && !ent.Comp.Damaged)
-            RemComp<BrighteyeComponent>(args.Body);
+        if (TerminatingOrDeleted(ent)) return;
+        if (HasComp<BrighteyeComponent>(args.Target) && !ent.Comp.Damaged)
+            RemComp<BrighteyeComponent>(args.Target);
     }
 
     // No Phasing, Almost Unkillable Zombie... We get zombified as a Brighteye we get burned!
@@ -73,12 +69,13 @@ public sealed partial class ShadekinSystem : EntitySystem
             QueueDel(component.Portal.Value);
         }
 
-        if (TryComp<BodyComponent>(uid, out var body))
-            foreach (var core in _bodySystem.GetBodyOrganEntityComps<OrganShadekinCoreComponent>((uid, body)))
-                core.Comp1.Damaged = true;
-
-        if (TryComp<HumanoidAppearanceComponent>(uid, out var humanoid))
-            SetBlackeyes(uid, humanoid);
+        if (TryComp<BodyComponent>(uid, out var body) &&
+            _bodySystem.TryGetOrgansWithComponent<OrganShadekinCoreComponent>((uid, body), out var cores))
+        {
+            foreach (var core in cores)
+                core.Comp.Damaged = true;
+            SetBlackeyes(uid, body);
+        }
 
         _actionsSystem.RemoveAction(uid, component.PortalAction);
         _actionsSystem.RemoveAction(uid, component.PhaseAction);
@@ -161,25 +158,52 @@ public sealed partial class ShadekinSystem : EntitySystem
     /// Change the humanoid eye to be bright and glow!
     /// </summary>
     /// <param name="uid"></param>
-    /// <param name="humanoid"></param>
-    public void SetBrighteyes(EntityUid uid, HumanoidAppearanceComponent humanoid)
+    /// <param name="body"></param>
+    /// Far Horizons - updated for nubody
+    public void SetBrighteyes(EntityUid uid, BodyComponent body)
     {
-        humanoid.EyeColor = EyeColor.MakeBrighteyeValid(humanoid.EyeColor);
-        humanoid.EyeGlowing = true;
-        Dirty(uid, humanoid);
+        if (body.Organs == null)
+            return;
+        
+        foreach (var eyes in body.Organs.ContainedEntities.Where(HasComp<VisionOrganComponent>))
+        {
+            if (!TryComp<VisualOrganComponent>(eyes, out var eyeOrgan))
+                continue;
+
+            var profile = new OrganProfileData()
+            {
+                EyeColor = EyeColor.MakeBrighteyeValid(eyeOrgan.Profile.EyeColor),
+                Sex = eyeOrgan.Profile.Sex,
+                SkinColor = eyeOrgan.Profile.SkinColor
+            };
+            _visualBody.ApplyProfile(eyes, profile);
+        }
     }
 
     /// <summary>
     /// Change the humanoid eye to be validated by HumanoidEyeColor.Shadekin (Blackeyes)
     /// </summary>
     /// <param name="uid"></param>
-    /// <param name="humanoid"></param>
-    public void SetBlackeyes(EntityUid uid, HumanoidAppearanceComponent humanoid)
+    /// <param name="body"></param>
+    /// Far Horizons - updated for nubody
+    public void SetBlackeyes(EntityUid uid, BodyComponent body)
     {
-        humanoid.EyeColor = EyeColor.MakeShadekinValid(humanoid.EyeColor);
-        humanoid.EyeGlowing = false;
+        if (body.Organs == null)
+            return;
+        
+        foreach (var eyes in body.Organs.ContainedEntities.Where(HasComp<VisionOrganComponent>))
+        {
+            if (!TryComp<VisualOrganComponent>(eyes, out var eyeOrgan))
+                continue;
 
-        Dirty(uid, humanoid);
+            var profile = new OrganProfileData()
+            {
+                EyeColor = EyeColor.MakeShadekinValid(eyeOrgan.Profile.EyeColor),
+                Sex = eyeOrgan.Profile.Sex,
+                SkinColor = eyeOrgan.Profile.SkinColor
+            };
+            _visualBody.ApplyProfile(eyes, profile);
+        }
     }
 
     /// <summary>

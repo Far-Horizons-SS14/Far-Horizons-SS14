@@ -71,14 +71,14 @@
 
 #region Command
 
-# Commander (Captain)
+# Commandant (Captain)
 
 - type: entity
   parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetHardsuitCapSyndi
-  name: Commander's Hardsuit Helmet
+  name: Commandant's Hardsuit Helmet
   suffix: S
-  description: Special hardsuit helmet, made for the commander of the station.
+  description: Special hardsuit helmet, made for the Commandant of the station.
   components:
   - type: Sprite
     sprite: _FarHorizons/Clothing/Head/Hardsuits/syndicapspace.rsi #Far Horizons
@@ -96,13 +96,13 @@
     - CorgiWearable
     - WhitelistChameleon
 
-# Personnel Chief (HoP)
+# Personnel Manager (HoP)
 
 - type: entity
   parent: ClothingHeadHelmetHardsuitHoP
   id: ClothingHeadHelmetHardsuitHoPSyndi
   categories: [ HideSpawnMenu ]
-  name: Personnel Chief Hardsuit Helmet
+  name: Personnel Manager Hardsuit Helmet
   suffix: S
   components:
   - type: Sprite
@@ -114,12 +114,12 @@
     radius: 3.5
     energy: 5
 
-# Security Overwatch (HoS)
+# Marshal (HoS)
 
 - type: entity
   parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetHardsuitSecurityRedSyndi
-  name: Security Overwatch's Hardsuit Helmet
+  name: Marshal's Hardsuit Helmet
   suffix: S
   description: Security hardsuit helmet with the latest top secret Syndi-HUD software. Belongs to the SO.
   components:
@@ -140,12 +140,12 @@
         Piercing: 0.9
         Heat: 0.9
 
-#Technical Lead's (CE) Hardsuit
+#Foreman's (CE) Hardsuit
 
 - type: entity
   parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetHardsuitEngineeringWhiteSyndi
-  name: Technical Lead's Hardsuit Helmet
+  name: Foreman's Hardsuit Helmet
   suffix: S
   description: Special hardsuit helmet, made for the technical lead of the station.
   components:
@@ -229,12 +229,12 @@
 
 #region Engineering
 
-# Environmental Technician (Atmos) Hardsuit
+# Atmospheric Technician (Atmos) Hardsuit
 
 - type: entity
   parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetHardsuitAtmosSyndi
-  name: Environmental Hardsuit Helmet
+  name: Atmospheric Hardsuit Helmet
   suffix: S
   description: A special hardsuit helmet designed for working in low-pressure, high thermal environments.
   components:
@@ -319,12 +319,12 @@
     #- CorgiWearable
     - WhitelistChameleon
 
-# Station Architect (Engineering) Hardsuit
+# Station Engineer (Engineering) Hardsuit
 
 - type: entity
   parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetHardsuitEngineeringSyndi
-  name: Architectural Hardsuit Helmet
+  name: Engineer Hardsuit Helmet
   suffix: S
   description: An architectural hardsuit helmet designed for working in low-pressure, high radioactive environments.
   components:
@@ -434,11 +434,11 @@
     - CorgiWearable
     - WhitelistChameleon
 
-# Guardian (Warden)
+# Constable (Warden)
 - type: entity
   parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetHardsuitWardenSyndi
-  name: Guardian's Hardsuit Helmet
+  name: Constable's Hardsuit Helmet
   suffix: S
   description: A modified riot helmet. Oddly comfortable.
   components:
@@ -459,12 +459,12 @@
         Piercing: 0.9
         Heat: 0.9
 
-#Medical Officer (Brigmedic)
+#Brigmedic (Brigmedic)
 
 - type: entity
   parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetHardsuitBrigmedicSyndi
-  name: Medical Officer Hardsuit Helmet
+  name: Brigmedic Hardsuit Helmet
   suffix: S
   description: The lightweight helmet of the medical officer hardsuit. Protects against viruses, and clowns.
   components:
@@ -491,13 +491,14 @@
 
 #region SHC
 
-# Syndicate Operations Agent (NTR)
+# NeoSol Representative (NTR)
 
 - type: entity
   parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetHardsuitNtrepSyndi
   categories: [ HideSpawnMenu ]
-  name: Syndicate Operations Agent's Hardsuit Helmet
+  name: NeoSol Representative's Hardsuit Helmet
+  suffix: S
   components:
   - type: Sprite
     sprite: _FarHorizons/Clothing/Head/Hardsuits/ntrep-syndi.rsi

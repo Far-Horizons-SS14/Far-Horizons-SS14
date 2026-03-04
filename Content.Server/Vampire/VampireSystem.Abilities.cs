@@ -29,6 +29,7 @@ using Robust.Shared.Utility;
 using System.Collections.Frozen;
 using System.Diagnostics.CodeAnalysis;
 using Content.Shared.Bed.Sleep;
+using Content.Shared.Body;
 using Content.Shared.Flash.Components;
 using Content.Shared.Storage.Components;
 using Content.Shared.Damage.Components;
@@ -221,7 +222,7 @@ public sealed partial class VampireSystem
     }
     private void OnInteractHandEvent(EntityUid uid, VampireComponent component, BeforeInteractHandEvent args)
     {
-        if (!HasComp<HumanoidAppearanceComponent>(args.Target))
+        if (!HasComp<HumanoidProfileComponent>(args.Target))
             return;
 
         if (args.Target == uid)
@@ -416,7 +417,7 @@ public sealed partial class VampireSystem
             if (entity == vampire.Owner)
                 continue;
 
-            if (!HasComp<HumanoidAppearanceComponent>(entity))
+            if (!HasComp<HumanoidProfileComponent>(entity))
                 continue;
 
             if (_rotting.IsRotten(entity))
@@ -781,10 +782,10 @@ public sealed partial class VampireSystem
     private bool TryIngestBlood(Entity<VampireComponent> vampire, Solution ingestedSolution, bool force = false)
     {
         //Get all stomaches
-        if (TryComp<BodyComponent>(vampire.Owner, out var body) && _body.TryGetBodyOrganEntityComps<StomachComponent>((vampire.Owner, body), out var stomachs))
+        if (TryComp<BodyComponent>(vampire.Owner, out var body) && _body.TryGetOrgansWithComponent<StomachComponent>((vampire.Owner, body), out var stomachs))
         {
             //Pick the first one that has space available
-            var firstStomach = stomachs.FirstOrNull(stomach => _stomach.CanTransferSolution(stomach.Owner, ingestedSolution, stomach.Comp1));
+            var firstStomach = stomachs.FirstOrNull(stomach => _stomach.CanTransferSolution(stomach.Owner, ingestedSolution, stomach.Comp));
             if (firstStomach == null)
             {
                 //We are full
@@ -792,7 +793,7 @@ public sealed partial class VampireSystem
                 return false;
             }
             //Fill the stomach with that delicious blood
-            return _stomach.TryTransferSolution(firstStomach.Value.Owner, ingestedSolution, firstStomach.Value.Comp1);
+            return _stomach.TryTransferSolution(firstStomach.Value.Owner, ingestedSolution, firstStomach.Value.Comp);
         }
 
         //No stomach

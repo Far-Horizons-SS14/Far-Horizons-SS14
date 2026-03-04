@@ -1,19 +1,19 @@
 using Content.Shared.Starlight.Antags.Abductor;
 using Content.Shared.Administration.Logs;
+using Content.Shared.Body;
 using Content.Shared.Database;
 using Content.Shared.Interaction;
 using Content.Shared.Starlight.Medical.Surgery;
 using Content.Shared.DoAfter;
 using Content.Shared.Body.Systems;
 using Content.Shared.Starlight.Medical.Surgery.Steps.Parts;
-using Content.Shared.Body.Organ;
 
 namespace Content.Server.Starlight.Antags.Abductor;
 
 public sealed partial class AbductorSystem : SharedAbductorSystem
 {
     
-    [Dependency] private readonly SharedBodySystem _body = default!;
+    [Dependency] private readonly BodySystem _body = default!;
     [Dependency] private readonly ISharedAdminLogManager _admin = default!;
     
     public void InitializeExtractor()
@@ -27,7 +27,7 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
     {
         if (!_actionBlockerSystem.CanInstrumentInteract(args.User, args.Used, args.Target) 
             || !args.Target.HasValue 
-            || !_body.TryGetBodyOrganEntityComps<OrganHeartComponent>(args.Target.Value, out var hearts) 
+            || !_body.TryGetOrgansWithComponent<OrganHeartComponent>(args.Target.Value, out var hearts) 
             || hearts.Count < 1)
             return;
 
@@ -53,11 +53,14 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
     {
         if (args.Target == null || args.User == null) return;
         
-        if (!_body.TryGetBodyOrganEntityComps<OrganHeartComponent>(args.Target.Value, out var hearts))
+        if (!TryComp<BodyComponent>(args.Target.Value, out var body) ||
+            body.Organs == null ||
+            !_body.TryGetOrgansWithComponent<OrganHeartComponent>((args.Target.Value, body), out var hearts))
             return;
         
         _admin.Add(LogType.InteractUsing, LogImpact.Low, $"Heart successfully extracted from {ToPrettyString(args.Target.Value)} using {ToPrettyString(ent.Owner)} by {ToPrettyString(args.User)}");
         foreach (var heart in hearts)
-            _body.RemoveOrgan(heart, _entityManager.GetComponent<OrganComponent>(heart));
+            if (_container.CanRemove(heart, body.Organs))
+                _container.Remove(heart.Owner, body.Organs);
     }
 }

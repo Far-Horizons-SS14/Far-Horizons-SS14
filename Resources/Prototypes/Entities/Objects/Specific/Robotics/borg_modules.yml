@@ -842,6 +842,7 @@
   - type: ItemBorgModule
     hands:
     - item: MopItem
+    - item: WireBrush
     - item: BorgBucket
     - item: BorgSprayBottle
     - item: HoloprojectorBorg
@@ -861,6 +862,7 @@
   - type: ItemBorgModule
     hands:
     - item: AdvMopItem
+    - item: WireBrushElectrical
     - item: BorgMegaSprayBottle
     - item: HoloprojectorBorg
     - item: BorgDropper
@@ -888,7 +890,7 @@
     - state: icon-diagnosis
   - type: ItemBorgModule
     hands:
-    - item: HandheldHealthAnalyzerUnpowered
+    - item: HandheldHealthAnalyzer
     - item: ClothingNeckStethoscope
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: diagnosis-module }
@@ -896,7 +898,7 @@
 - type: entity
   id: BorgModuleTopicals
   parent: [ BaseBorgModuleMedical, BaseProviderBorgModule ]
-  name: topicals cyborg module
+  name: first aid cyborg module
   components:
   - type: Sprite
     layers:
@@ -904,8 +906,9 @@
     - state: icon-treatment
   - type: ItemBorgModule
     hands:
-    - item: HandheldHealthAnalyzerUnpowered
     - item: DefibrillatorOneHandedUnpowered
+    - item: HandheldHealthAnalyzer
+    - item: AdvancedJetInjector
     - item: Gauze
       hand:
         emptyLabel: borg-slot-topicals-empty
@@ -927,13 +930,6 @@
         whitelist:
           components:
           - Healing
-    - item: Bloodpack
-      hand:
-        emptyLabel: borg-slot-topicals-empty
-        emptyRepresentative: Bloodpack
-        whitelist:
-          components:
-          - Healing
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: treatment-module }
 
@@ -948,12 +944,11 @@
     - state: icon-defib
   - type: ItemBorgModule
     hands:
-    - item: HandheldHealthAnalyzerUnpowered
+    - item: HandheldHealthAnalyzer
     - item: DefibrillatorOneHandedUnpowered
     - item: Crowbar
     - item: BorgFireExtinguisher
     - item: BorgHandheldGPSBasic
-    - item: HandLabeler
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: defib-module }
 
@@ -965,10 +960,10 @@
   - type: Sprite
     layers:
     - state: medical
-    - state: icon-chem
+    - state: icon-chemist
   - type: ItemBorgModule
     hands:
-    - item: HandheldHealthAnalyzerUnpowered
+    - item: HandLabeler
     - item: Syringe
       hand: #Starlight start
         emptyLabel: borg-slot-syringe-empty
@@ -976,45 +971,50 @@
         whitelist:
           tags:
           - Syringe #Starlight end
-    - item: BorgDropper
-    - item: BaseChemistryEmptyVial
+    - item: PillCanister
       hand:
         emptyLabel: borg-slot-small-containers-empty
-        emptyRepresentative: BaseChemistryEmptyVial
+        emptyRepresentative: PillCanister
+        whitelist:
+          tags:
+          - PillCanister
+          - Bottle
+          - Pill
+    - item: Beaker
+      hand:
+        emptyLabel: borg-slot-chemical-containers-empty
+        emptyRepresentative: Beaker
         whitelist:
           components:
           - FitsInDispenser
-    - item: BaseChemistryEmptyVial
+          tags:
+          - ChemDispensable
+    - item: Beaker
       hand:
-        emptyLabel: borg-slot-small-containers-empty
-        emptyRepresentative: BaseChemistryEmptyVial
+        emptyLabel: borg-slot-chemical-containers-empty
+        emptyRepresentative: Beaker
         whitelist:
           components:
           - FitsInDispenser
-    - item: BaseChemistryEmptyVial
-      hand:
-        emptyLabel: borg-slot-small-containers-empty
-        emptyRepresentative: BaseChemistryEmptyVial
-        whitelist:
-          components:
-          - FitsInDispenser
+          tags:
+          - ChemDispensable
     - item: HandLabeler
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: chem-module }
 
 - type: entity
-  id: BorgModuleAdvancedChemical
+  id: BorgModuleAdvancedTopical
   parent: [ BaseBorgModuleMedical, BaseProviderBorgModule ]
-  name: advanced chemical cyborg module
+  name: advanced first aid cyborg module
   description: Advanced medical module containing the cyborg adaptation of the highly coveted hypospray. Now your cyborgs can inject crew-harmers with chloral hydrate even faster!
   components:
   - type: Sprite
     layers:
     - state: medical
-    - state: icon-chemist
+    - state: icon-chem
   - type: ItemBorgModule
     hands:
-    - item: HandheldHealthAnalyzerUnpowered
+    - item: HandheldHealthAnalyzer
     - item: BorgHypo
     - item: AutoMenderBrute
     - item: AutoMenderBurn
@@ -1027,32 +1027,27 @@
           - Syringe #Starlight end
     - item: BorgDropper
     - item: Beaker
+    - item: Gauze
       hand:
-        emptyLabel: borg-slot-chemical-containers-empty
-        emptyRepresentative: Beaker
+        emptyLabel: borg-slot-topicals-empty
+        emptyRepresentative: Gauze
         whitelist:
           components:
-          - FitsInDispenser
-          tags:
-          - ChemDispensable
-    - item: Beaker
+          - Healing
+    - item: Brutepack
       hand:
-        emptyLabel: borg-slot-chemical-containers-empty
-        emptyRepresentative: Beaker
+        emptyLabel: borg-slot-topicals-empty
+        emptyRepresentative: Brutepack
         whitelist:
           components:
-          - FitsInDispenser
-          tags:
-          - ChemDispensable
-    - item: Beaker
+          - Healing
+    - item: Ointment
       hand:
-        emptyLabel: borg-slot-chemical-containers-empty
-        emptyRepresentative: Beaker
+        emptyLabel: borg-slot-topicals-empty
+        emptyRepresentative: Ointment
         whitelist:
           components:
-          - FitsInDispenser
-          tags:
-          - ChemDispensable
+          - Healing
     - item: HandLabeler
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: adv-chem-module }
@@ -1074,10 +1069,10 @@
     - item: SprayBottle
     - item: GasAnalyzer
     - item: BorgDropper
-    - item: BaseChemistryEmptyVial
+    - item: ChemistryEmptyVial
       hand:
         emptyLabel: borg-slot-small-containers-empty
-        emptyRepresentative: BaseChemistryEmptyVial
+        emptyRepresentative: ChemistryEmptyVial
         whitelist:
           components:
           - FitsInDispenser
@@ -1731,7 +1726,7 @@
     - state: icon-xenoborg-projector
   - type: ItemBorgModule
     hands:
-    - item: ChameleonProjector
+    - item: ChameleonProjectorNoBattery
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-projector-module }
 

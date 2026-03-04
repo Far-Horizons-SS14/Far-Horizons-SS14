@@ -1,7 +1,7 @@
-using Content.Server.Body.Systems;
 using Content.Server.Hands.Systems;
 using Content.Server.Stunnable;
 using Content.Shared._FarHorizons.Silicons.HumanoidEMP;
+using Content.Shared.Body;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Emp;
 using Content.Shared.Movement.Systems;
@@ -49,13 +49,12 @@ public sealed partial class HumanoidEMPSystem : EntitySystem
 
         if (TryComp<HumanoidEMPComponent>(ent, out var empComp))
             composite = empComp.Effect;
-
-        foreach (var part in _body.GetBodyChildren(ent))
-            if(TryComp<HumanoidEMPCompositeElementComponent>(part.Id, out var compositeElement))
-                composite += compositeElement.Effect;
         
-        foreach (var organ in _body.GetBodyOrgans(ent))
-            if(TryComp<HumanoidEMPCompositeElementComponent>(organ.Id, out var compositeElement))
+        if (!TryComp<BodyComponent>(ent, out var bodyComp) || bodyComp.Organs == null)
+            return composite;
+        
+        foreach (var organ in bodyComp.Organs.ContainedEntities)
+            if(TryComp<HumanoidEMPCompositeElementComponent>(organ, out var compositeElement))
                 composite += compositeElement.Effect;
 
         return composite;

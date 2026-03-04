@@ -2,6 +2,7 @@
 using Content.Shared._Starlight.Railroading; /// Far Horizons -  You try finding a component that can be paired with AIEye so Netrunners stop interacting with the station that the AI doesn't also share.
 using Content.Shared.Silicons.StationAi;
 using Content.Shared.Body.Events;
+using Content.Shared._Starlight.Body.Events; // Starlight edit
 using Content.Shared.Emoting;
 using Content.Shared.Hands;
 using Content.Shared.Interaction;
@@ -263,5 +264,15 @@ namespace Content.Shared.ActionBlocker
 
             return !ev.Cancelled;
         }
+
+        // Starlight edit start - Allow us to block heat radiation
+        public bool CanRadiateHeat(EntityUid uid)
+        {
+            var ev = new RadiateHeatAttemptEvent(uid);
+            RaiseLocalEvent(uid, ref ev);
+
+            return !ev.Cancelled;
+        }
+        // Starlight edit end
     }
 }

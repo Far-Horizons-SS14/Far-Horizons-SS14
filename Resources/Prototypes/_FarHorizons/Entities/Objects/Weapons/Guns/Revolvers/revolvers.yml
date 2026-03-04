@@ -12,13 +12,13 @@
     storedOffset: 0,-2
   - type: RevolverAmmoProvider
     capacity: 8
-    proto: CartridgePistol40SP
+    proto: CartridgeRevolver38SP
     chambers: [ True, True, True, True, True, True, True, True ]
     ammoSlots: [ null, null, null, null, null, null, null, null ]
     whitelist:
       tags:
-        - CartridgePistolDP
-        - SpeedLoaderPistol
+        - CartridgeRevolver38
+        - SpeedLoaderRevolver38
 
 - type: entity
   name: Inspector M500
@@ -39,6 +39,35 @@
     - SemiAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/revolver.ogg
+  - type: RevolverAmmoProvider
+    capacity: 6
+    chambers: [ True, True, True, True, True, True ]
+    ammoSlots: [ null, null, null, null, null, null ]
+
+- type: entity
+  name: Initiator
+  parent: [BaseWeaponRevolver, BaseSecurityContraband]
+  id: WeaponRevolverInitiator
+  description: The snubnose version of the Inspector, typically used by civilians for a strong yet inaccurate easily concealable firearm. This one in particular appears to be specially fitted for Scurret hands.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/Revolvers/initiator.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Objects/Weapons/Guns/Revolvers/initiator.rsi
+  - type: Item
+    size: Small
+    shape:
+    - 0,0,1,0
+    storedOffset: 0,-1
+  - type: Gun
+    selectedMode: SemiAuto
+    fireRate: 1.5
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/revolver.ogg
+    minAngle: 20
+    maxAngle: 30
   - type: RevolverAmmoProvider
     capacity: 6
     chambers: [ True, True, True, True, True, True ]

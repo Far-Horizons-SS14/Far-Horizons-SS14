@@ -5,6 +5,7 @@ using Content.Server.Power.EntitySystems;
 using Content.Shared._TP.Kitchen;
 using Content.Shared._TP.Kitchen.Components;
 using Content.Shared._TP.Kitchen.Events;
+using Content.Shared.Body;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
@@ -23,7 +24,6 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 
 namespace Content.Server._TP.Kitchen.Systems;
-
 
 public sealed class DeepFryerSystem : EntitySystem
 {
@@ -458,8 +458,13 @@ public sealed class DeepFryerSystem : EntitySystem
             _container.InsertOrDrop(friedEntUid, container);
             _cookingStartTimes.Remove(friedEntUid);
 
-            QueueDel(friedEntUid);
-            Spawn("FoodBadRecipe", Transform(fryerEntUid).Coordinates);
+            //FarHorizons-Start
+            if(!HasComp<BodyComponent>(friedEntUid))
+            {
+                QueueDel(friedEntUid);
+                Spawn("FoodBadRecipe", Transform(fryerEntUid).Coordinates);
+            }
+            //FarHorizons-End
         }
         else
         {

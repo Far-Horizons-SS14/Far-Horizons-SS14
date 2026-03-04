@@ -1,4 +1,3 @@
-using Content.Shared.Humanoid;
 using Content.Shared.Alert;
 using System.Linq;
 using Robust.Server.GameObjects;
@@ -17,9 +16,6 @@ using Robust.Shared.Prototypes;
 using Content.Shared.Actions;
 using Content.Shared.Station;
 using Content.Shared.Popups;
-using Content.Shared.Body.Systems;
-using Content.Shared.Body.Events;
-using Content.Shared.Body.Components;
 using Content.Shared.Inventory;
 using Content.Shared.Tag;
 using Robust.Shared.Random;
@@ -27,7 +23,7 @@ using Content.Shared.Bed.Sleep;
 using Content.Server._Starlight.NullSpace;
 using Content.Server._Starlight.Bluespace;
 using Content.Server.Stunnable;
-using Content.Server.Body.Systems;
+using Content.Shared.Body;
 using Content.Shared.Damage.Systems;
 
 namespace Content.Server._Starlight.Shadekin;
@@ -45,7 +41,7 @@ public sealed partial class ShadekinSystem : EntitySystem
     [Dependency] private readonly SharedActionsSystem _actionsSystem = default!;
     [Dependency] private readonly SharedStationSystem _station = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SharedBodySystem _bodySystem = default!;
+    [Dependency] private readonly BodySystem _bodySystem = default!;
     [Dependency] private readonly InventorySystem _inventorySystem = default!;
     [Dependency] private readonly TagSystem _tag = default!;
     [Dependency] private readonly SharedMapSystem _mapSystem = default!;
@@ -53,6 +49,7 @@ public sealed partial class ShadekinSystem : EntitySystem
     [Dependency] private readonly SleepingSystem _sleeping = default!;
     [Dependency] private readonly NullSpacePhaseSystem _nullspace = default!;
     [Dependency] private readonly StunSystem _stunSystem = default!;
+    [Dependency] private readonly SharedVisualBodySystem _visualBody = default!;
 
     private static readonly ProtoId<TagPrototype> _theDarkTag = "TheDark";
 
@@ -79,9 +76,9 @@ public sealed partial class ShadekinSystem : EntitySystem
     {
         base.Initialize();
         SubscribeLocalEvent<OrganShadekinCoreComponent, ExaminedEvent>(OnExamined);
-        SubscribeLocalEvent<OrganShadekinCoreComponent, OrganAddedToBodyEvent>(CoreOrganInit);
+        SubscribeLocalEvent<OrganShadekinCoreComponent, OrganGotInsertedEvent>(CoreOrganInit);
 
-        SubscribeLocalEvent<ShadekinComponent, EyeColorInitEvent>(OnEyeColorChange);
+        //SubscribeLocalEvent<ShadekinComponent, EyeColorInitEvent>(OnEyeColorChange);
         SubscribeLocalEvent<ShadekinComponent, RefreshMovementSpeedModifiersEvent>(OnRefreshMovementSpeedModifiers);
         SubscribeLocalEvent<ShadekinComponent, NullSpaceShuntEvent>(NullSpaceShunt);
 
@@ -89,10 +86,13 @@ public sealed partial class ShadekinSystem : EntitySystem
         InitializeAbilities();
     }
 
-    private void CoreOrganInit(EntityUid uid, OrganShadekinCoreComponent component, OrganAddedToBodyEvent args)
+    private void CoreOrganInit(EntityUid uid, OrganShadekinCoreComponent component, OrganGotInsertedEvent args)
     {
         if (component.OrganOwner is null)
-            component.OrganOwner = args.Body;
+            component.OrganOwner = args.Target;
+        
+        if (!component.Damaged && component.OrganOwner == args.Target)
+            EnsureComp<BrighteyeComponent>(args.Target);
     }
 
     private void OnExamined(EntityUid uid, OrganShadekinCoreComponent component, ref ExaminedEvent args)
@@ -104,18 +104,18 @@ public sealed partial class ShadekinSystem : EntitySystem
             args.PushMarkup(Loc.GetString("shadekin-core-owner"));
     }
 
-    private void OnEyeColorChange(EntityUid uid, ShadekinComponent component, EyeColorInitEvent args)
-    {
-        if (!TryComp<HumanoidAppearanceComponent>(uid, out var humanoid))
-            return;
+    // private void OnEyeColorChange(EntityUid uid, ShadekinComponent component, EyeColorInitEvent args)
+    // {
+    //     if (!TryComp<HumanoidAppearanceComponent>(uid, out var humanoid))
+    //         return;
 
-        humanoid.EyeGlowing = false;
-        Dirty(uid, humanoid);
-    }
+    //     humanoid.EyeGlowing = false;
+    //     Dirty(uid, humanoid);
+    // }
 
     private void NullSpaceShunt(EntityUid uid, ShadekinComponent component, NullSpaceShuntEvent args)
     {
-        if (TryComp<BodyComponent>(uid, out var body) && _bodySystem.TryGetBodyOrganEntityComps<OrganShadekinCoreComponent>((uid, body), out _))
+        if (TryComp<BodyComponent>(uid, out var body) && _bodySystem.TryGetOrgansWithComponent<OrganShadekinCoreComponent>((uid, body), out _))
         {
             _popup.PopupEntity(Loc.GetString("shadekin-shunt"), uid, uid, PopupType.LargeCaution);
             _stunSystem.TryKnockdown(uid, TimeSpan.FromSeconds(1), autoStand: false);
@@ -337,9 +337,10 @@ public sealed partial class ShadekinSystem : EntitySystem
             if (component.CurrentState == ShadekinState.Extreme)
                 ApplyLightDamage(uid, 1);
 
-            if (TryComp<BodyComponent>(uid, out var body))
-                foreach (var core in _bodySystem.GetBodyOrganEntityComps<OrganShadekinCoreComponent>((uid, body)))
-                    if (core.Comp1.OrganOwner != uid)
+            if (TryComp<BodyComponent>(uid, out var body) && 
+                _bodySystem.TryGetOrgansWithComponent<OrganShadekinCoreComponent>((uid, body), out var cores))
+                foreach (var core in cores)
+                    if (core.Comp.OrganOwner != uid)
                         ApplyCoreDamage(uid, 1);
 
             if (TryComp<BrighteyeComponent>(uid, out var brighteye))

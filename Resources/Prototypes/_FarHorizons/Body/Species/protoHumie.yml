@@ -1,0 +1,97 @@
+- type: markingsGroup
+  parent: [ Human, BaseProtogen ]
+  id: ProtoHumie
+  limits:
+    enum.HumanoidVisualLayers.FaceCover:
+      limit: 1
+      required: true
+      default: [ ProtogenVisorRound ]
+
+- type: entity
+  parent: AppearanceHuman
+  id: AppearanceProtoHumie
+  name: ProtoHumie Appearance
+  components:
+  - type: InitialBody
+    organs:
+      Torso: OrganProtoHumieTorso
+      Head: OrganProtoHumieHead
+      ArmLeft: OrganProtoHumieArmLeft
+      ArmRight: OrganProtoHumieArmRight
+      HandRight: OrganProtoHumieHandRight
+      HandLeft: OrganProtoHumieHandLeft
+      LegLeft: OrganProtoHumieLegLeft
+      LegRight: OrganProtoHumieLegRight
+      FootLeft: OrganProtoHumieFootLeft
+      FootRight: OrganProtoHumieFootRight
+      Brain: OrganProtogenBrain
+      Eyes: OrganProtogenEyes
+      Tongue: OrganProtogenTongue
+      Ears: OrganProtogenEars
+      Lungs: OrganProtogenLungs
+      Heart: OrganProtogenHeart
+      Stomach: OrganProtogenStomach
+      Liver: OrganProtogenLiver
+      Kidneys: OrganProtogenKidneys
+  - type: HumanoidProfile
+    species: ProtoHumie
+
+- type: entity
+  parent:
+  - AppearanceProtoHumie
+  - BaseMobProtoHumie
+  id: MobProtoHumie
+  name: Urist McHandster
+
+# Organs
+
+- type: entity
+  id: OrganProtoHumieExternal
+  abstract: true
+  suffix: Protogen
+  components:
+  - type: VisualOrganMarkings
+    markingData:
+      group: ProtoHumie
+
+# Limbs
+
+- type: entity
+  parent: [ OrganProtoHumieExternal, OrganHumanTorso ]
+  id: OrganProtoHumieTorso
+
+- type: entity
+  parent: [ OrganProtoHumieExternal, OrganHumanHead ]
+  id: OrganProtoHumieHead
+
+- type: entity
+  parent: [ OrganProtoHumieExternal, OrganHumanArmLeft ]
+  id: OrganProtoHumieArmLeft
+
+- type: entity
+  parent: [ OrganProtoHumieExternal, OrganHumanArmRight ]
+  id: OrganProtoHumieArmRight
+
+- type: entity
+  parent: [ OrganProtoHumieExternal, OrganHumanHandLeft ]
+  id: OrganProtoHumieHandLeft
+
+- type: entity
+  parent: [ OrganProtoHumieExternal, OrganHumanHandRight ]
+  id: OrganProtoHumieHandRight
+
+- type: entity
+  parent: [ OrganProtoHumieExternal, OrganHumanLegLeft ]
+  id: OrganProtoHumieLegLeft
+
+- type: entity
+  parent: [ OrganProtoHumieExternal, OrganHumanLegRight ]
+  id: OrganProtoHumieLegRight
+
+- type: entity
+  parent: [ OrganProtoHumieExternal, OrganHumanFootLeft ]
+  id: OrganProtoHumieFootLeft
+
+- type: entity
+  parent: [ OrganProtoHumieExternal, OrganHumanFootRight ]
+  id: OrganProtoHumieFootRight

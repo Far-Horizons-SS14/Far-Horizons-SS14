@@ -1,5 +1,5 @@
 - type: entity
-  parent: BaseMobSpeciesOrganic
+  parent: BaseSpeciesMobOrganic
   id: BaseMobCyclorite
   abstract: true
   components:
@@ -23,11 +23,6 @@
     spawned:
     - id: FoodMeatHuman #todo
       amount: 10
-  - type: HumanoidAppearance
-    species: Cyclorite
-    hideLayersOnEquip:
-    - Hair
-    - Snout
   - type: Body
     prototype: Cyclorite
     requiredLegs: 2
@@ -138,53 +133,5 @@
       - FootstepSound
       - DoorBumpOpener
       - AnomalyHost
-      - Cyclorite  
-
-- type: entity
-  parent: BaseSpeciesDummy
-  id: MobCycloriteDummy
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: HumanoidAppearance
-    species: Cyclorite
-  - type: Body
-    prototype: Cyclorite
-  - type: Inventory
-    speciesId: cyclorite
-    templateId: cyclorite
-    displacements:
-      jumpsuit:
-        sizeMaps:
-          32:
-            sprite: _Starlight/Mobs/Species/Cyclorite/displacement.rsi
-            state: jumpsuit
-      eyes:
-        sizeMaps:
-          32:
-            sprite: _Starlight/Mobs/Species/Cyclorite/displacement.rsi
-            state: eyes
-      gloves:
-        sizeMaps:
-          32:
-            sprite: _Starlight/Mobs/Species/Cyclorite/displacement.rsi
-            state: hand
-      head:
-        sizeMaps:
-          32:
-            sprite: _Starlight/Mobs/Species/Cyclorite/displacement.rsi
-            state: head
-      back:
-        sizeMaps:
-          32:
-            sprite: _Starlight/Mobs/Species/Cyclorite/displacement.rsi
-            state: back
-      ears:
-        sizeMaps:
-          32:
-            sprite: _Starlight/Mobs/Species/Cyclorite/displacement.rsi
-            state: ears
-      shoes:
-        sizeMaps:
-          32:
-            sprite: _Starlight/Mobs/Species/Cyclorite/displacement.rsi
-            state: shoes
+      - Cyclorite
+  - type: VisionOrganRequiredForVision # Far Horizons

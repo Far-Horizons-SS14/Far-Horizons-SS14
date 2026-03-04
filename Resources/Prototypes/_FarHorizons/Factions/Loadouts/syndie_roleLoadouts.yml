@@ -1,45 +1,45 @@
 #region Command
 
 - type: roleLoadout
-  id: SyndieCaptain #Commander
+  id: SyndieCaptain #Commandant
   groups:
-  - CommanderHead
-  - CommanderNeck
-  - CommanderJumpsuit
+  - CommandantHead
+  - CommandantNeck
+  - CommandantJumpsuit
   - CaptainBackpack
-  - CommanderOuterClothing
+  - CommandantOuterClothing
   - CaptainShoes
-  - CommanderEyewear
+  - CommandantEyewear
   - SurvivalExtended
   - Trinkets
 
 - type: roleLoadout
-  id: SyndieHeadOfSecurity #Security Overwatch
+  id: SyndieHeadOfSecurity #Marshal
   groups:
-  - SecurityOverwatchHead
-  - SOHeadset
+  - MarshalHead
+  - MarshalHeadset
   - SecurityEyesSyndi
-  - SONeck
-  - SOUniform
+  - MarshalNeck
+  - MarshalUniform
   - SecurityBackpackSyndi
   - SecurityBeltSyndi
   - SecurityNonLethalWeapon
-  - SOOuterClothing
+  - MarshalOuterClothing
   - SecurityShoesSyndi
   - SurvivalSecurity
   - Trinkets
 
 - type: roleLoadout
-  id: SyndieChiefEngineer #Technical Lead
+  id: SyndieChiefEngineer #Foreman
   groups:
-  - TLHead
-  - TLHeadset
+  - ForemanHead
+  - ForemanHeadset
   - EngiSyndiGoggles
-  - TLNeck
-  - TLUniform
+  - ForemanNeck
+  - ForemanUniform
   - StationEngineerBackpack
   #- ChiefEngineerOuterClothing 
-  - TLShoes
+  - ForemanShoes
   - SurvivalExtended
   - Trinkets
 
@@ -73,13 +73,13 @@
   - Trinkets
 
 - type: roleLoadout
-  id: SyndieHeadOfPersonnel #Personnel Chief
+  id: SyndieHeadOfPersonnel #Personnel Manager
   groups:
-  - PCHead
-  - PCNeck
-  - PCJumpsuit
+  - PMHead
+  - PMNeck
+  - PMJumpsuit
   - HoPBackpack
-  - PCOuterClothing
+  - PMOuterClothing
   - HoPShoes
   - CommandEyewearSyndi
   - Survival
@@ -99,7 +99,7 @@
   - Trinkets
 
 - type: roleLoadout
-  id: SyndieNanoTrasenRepresentative #Syndicate Operations Agent
+  id: SyndieNanoTrasenRepresentative #NeoSol Representative
   groups:
   - NanoTrasenRepresentativeJumpsuit
   - NanoTrasenRepresentativeEyewear
@@ -123,7 +123,7 @@
 #region Engineering
 
 - type: roleLoadout
-  id: SyndieAtmosphericTechnician #Environmental Technician
+  id: SyndieAtmosphericTechnician #Atmospheric Technician
   groups:
   - EnviroHead
   - EngiSyndiGoggles
@@ -135,20 +135,20 @@
   - Trinkets
 
 - type: roleLoadout
-  id: SyndieStationEngineer #Station Architect
+  id: SyndieStationEngineer #Station Engineer
   groups:
-  - StationArchitectHead
+  - StationEngiSyndiHead
   - EngiSyndiGoggles
-  - StationArchitectUniform
+  - StationEngiSyndiUniform
   - StationEngineerBackpack
-  - StationArchitectOuterClothing
-  - StationArchitectShoes
+  - StationEngiSyndiOuterClothing
+  - StationEngiSyndiShoes
   - StationEngineerID
   - SurvivalExtended
   - Trinkets
 
 - type: roleLoadout
-  id: SyndieTechnicalAssistant #Trainee Architect
+  id: SyndieTechnicalAssistant #Technical Assistant
   groups:
   - TechnicalAssistantJumpsuit
   - StationEngineerBackpack
@@ -275,13 +275,13 @@
 #region Security
 
 - type: roleLoadout
-  id: SyndieWarden #Guardian
+  id: SyndieWarden #Constable
   groups:
-  - GuardianHead
+  - ConstableHead
   - SecurityHeadsetSyndi
   - SecurityEyesSyndi
-  - GuardianUniform
-  - GuardianOuterClothing
+  - ConstableUniform
+  - ConstableOuterClothing
   - SecurityBackpackSyndi
   - SecurityBeltSyndi
   - SecurityShoesSyndi
@@ -289,15 +289,15 @@
   - Trinkets
 
 - type: roleLoadout
-  id: SyndieCorpsman #Combat Medic
+  id: SyndieCorpsman #Corpsman
   groups:
-    - CMHead
+    - CorpsmanSyndiHead
     - SecMedHeadsetSyndi
     - SecMedEyesSyndi
     - CorpsmanJumpsuit
     - CorpsmanBackpack
     - CorpsmanOuterClothing
-    - CMBelt
+    - CorpsmanSyndiBelt
     - CorpsmanGloves
     - SecurityShoesSyndi
     - SecurityNonLethalWeapon
@@ -306,16 +306,16 @@
     - Trinkets
 
 - type: roleLoadout
-  id: SyndieBrigmedic #Medical Officer
+  id: SyndieBrigmedic #Brigmedic
   groups:
-    - MOHead
+    - BrigSyndiHead
     - SecMedHeadsetSyndi
     - SecMedEyesSyndi
-    - MOUniform
-    - MOOuterClothing
-    - MedicalOfficerBackpack
-    - MOGloves
-    - MOBelt
+    - BrigSyndiUniform
+    - BrigSyndiOuterClothing
+    - BrigmedicSyndiBackpack
+    - BrigSyndiGloves
+    - BrigSyndiBelt
     - SecurityNonLethalWeapon
     - SecuritySidearm
     - SecurityShoesSyndi
@@ -337,13 +337,13 @@
   - Trinkets
 
 - type: roleLoadout
-  id: SyndieSecurityOfficer #Law Enforcer
+  id: SyndieSecurityOfficer #Enforcer
   groups:
   - SecurityHeadSyndi
   - SecurityHeadsetSyndi
   - SecurityEyesSyndi
-  - LEUniform
-  - LEOuterClothing
+  - EnforcerUniform
+  - EnforcerOuterClothing
   - SecurityBackpackSyndi
   - SecurityBeltSyndi
   - SecurityPDA
@@ -365,7 +365,7 @@
 #region SHC
 
 - type: roleLoadout
-  id: SyndieBlueShield #Operative "Red Sword"
+  id: SyndieBlueShield #"Red Shield" Operative
   groups:
   - BlueShieldJumpsuit
   - BlueShieldBackpack

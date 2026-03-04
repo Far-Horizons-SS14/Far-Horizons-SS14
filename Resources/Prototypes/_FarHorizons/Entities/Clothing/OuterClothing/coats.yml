@@ -111,12 +111,12 @@
 
 #region Command
 
-# Personnel Chief (HoP)
+# Personnel Manager (HoP)
 
 - type: entity
   parent: ClothingOuterCoatHoP
   id: ClothingOuterCoatHoPSyndi
-  name: Personnel Chief's Jacket
+  name: Personnel Manager's Jacket
   suffix: S
   description: A sleek coat for the administrative arm of the station.
   components:
@@ -128,14 +128,14 @@
       outerClothing:
       - state: equipped-OUTERCLOTHING
 
-# Security Overwatch (HoS)
+# Marshal (HoS)
 
 - type: entity
   parent: [ ClothingOuterArmorHoS, ClothingOuterWinterCoat, BaseSecurityCommandContraband ]
   id: ClothingOuterWinterHoSSyndi
-  name: Security Overwatch's Armored Winter Coat
+  name: Marshal's Armored Winter Coat
   suffix: S
-  description: A sturdy, utilitarian winter coat designed to protect the security overwatch from any threats and hypothermic events.
+  description: A sturdy, utilitarian winter coat designed to protect the Marshal from any threats and hypothermic events.
   components:
   - type: Sprite
     sprite: _FarHorizons/Clothing/OuterClothing/WinterCoats/coat-hos-armored-syndi.rsi
@@ -145,7 +145,7 @@
 - type: entity
   parent: [ClothingOuterArmorHoS, ClothingOuterStorageBase, BaseSecurityCommandContraband]
   id: ClothingOuterCoatHoSTrenchSyndi
-  name: Security Overwatch's Armored Trenchcoat
+  name: Marshal's Armored Trenchcoat
   suffix: S
   description: A greatcoat enhanced with a special alloy for some extra protection and style for those with a commanding presence.
   components:
@@ -157,12 +157,12 @@
 #region Security
 
 
-# Guardian (Warden)
+# Constable (Warden)
 
 - type: entity
   parent: [ClothingOuterArmorWarden, ClothingOuterWinterCoat, BaseSecurityContraband]
   id: ClothingOuterWinterWardenSyndi
-  name: Guardian's Armored Winter Coat
+  name: Constable's Armored Winter Coat
   suffix: S
   description: A sturdy, utilitarian winter coat designed to protect a warden from any brig-bound threats and hypothermic events.
   components:
@@ -174,7 +174,7 @@
 - type: entity
   parent: [ ClothingOuterArmorWarden, ClothingOuterStorageBase, BaseSecurityContraband ]
   id: ClothingOuterCoatWardenSyndi
-  name: Guardian's Armored Jacket
+  name: Constable's Armored Jacket
   suffix: S
   description: A sturdy, utilitarian jacket designed to protect a guardian from any brig-bound threats.
   components:
@@ -221,9 +221,9 @@
   - type: ExplosionResistance
     damageCoefficient: 1 #its a coat. it doesnt do shit
 
-# Law Enforcer (Security Officer)
+# Enforcer (Security Officer)
 
-# Medical Officer (Brigmedic)
+# Brigmedic (Brigmedic)
 
 - type: entity
   parent: [ClothingOuterStorageBase, AllowSuitStorageClothing]

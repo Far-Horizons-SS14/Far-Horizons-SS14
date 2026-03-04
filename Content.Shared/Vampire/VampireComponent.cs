@@ -1,10 +1,7 @@
-using Content.Shared.Body.Prototypes;
-using Content.Shared.StatusIcon;
 using Content.Shared.Chat.Prototypes;
-using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Damage;
 using Content.Shared.FixedPoint;
-using Content.Shared.StatusEffect;
+using Content.Shared.Metabolism;
 using Content.Shared.Store;
 using Content.Shared.Whitelist;
 using Robust.Shared.Audio;

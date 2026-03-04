@@ -237,7 +237,7 @@ public sealed class JobRequirementsTest
 
         pair.AssertJob(("FactionNT", "SeniorCitizen"));
         Assert.That(pair.Client.AttachedEntity, Is.Not.Null);
-        pair.Server.EntMan.TryGetComponent<HumanoidAppearanceComponent>(pair.ToServerUid(pair.Client.AttachedEntity.Value), out var appearance);
+        pair.Server.EntMan.TryGetComponent<HumanoidProfileComponent>(pair.ToServerUid(pair.Client.AttachedEntity.Value), out var appearance);
         Assert.That(appearance, Is.Not.Null);
         Assert.That(appearance.Age, Is.EqualTo(75));
 

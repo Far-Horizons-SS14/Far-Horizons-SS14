@@ -401,6 +401,11 @@
     sprite: _FarHorizons/Clothing/OuterClothing/WinterCoats/coathosarmored.rsi #Far Horizons
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHatHoodWinterHOS
+  - type: ContainerContainer
+    containers:
+      toggleable-clothing: !type:ContainerSlot { }
+      storagebase: !type:Container
+        ents: [ ]
 ##########################################################
 
 - type: entity
@@ -789,6 +794,11 @@
     sprite: _FarHorizons/Clothing/OuterClothing/WinterCoats/coatwardenarmored.rsi #Far Horizons
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHatHoodWinterWarden
+  - type: ContainerContainer
+    containers:
+      toggleable-clothing: !type:ContainerSlot { }
+      storagebase: !type:Container
+        ents: [ ]
 ################################################################
 
 - type: entity

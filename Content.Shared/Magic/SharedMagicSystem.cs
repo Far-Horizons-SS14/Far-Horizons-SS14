@@ -4,6 +4,7 @@ using Content.Shared._Starlight.Language;
 using Content.Shared._Starlight.Language.Components;
 using Content.Shared._Starlight.Language.Systems;
 using Content.Shared._Starlight.Magic.Events;
+using Content.Shared.Body;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Systems;
 using Content.Shared.Charges.Components;
@@ -14,6 +15,7 @@ using Content.Shared.Damage.Systems;
 using Content.Shared.Doors.Components;
 using Content.Shared.Doors.Systems;
 using Content.Shared.Examine;
+using Content.Shared.Gibbing;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
@@ -62,7 +64,7 @@ public abstract class SharedMagicSystem : EntitySystem
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly INetManager _net = default!;
-    [Dependency] private readonly SharedBodySystem _body = default!;
+    [Dependency] private readonly GibbingSystem _gibbing = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly SharedDoorSystem _door = default!;
     [Dependency] private readonly InventorySystem _inventory = default!;
@@ -486,7 +488,7 @@ public abstract class SharedMagicSystem : EntitySystem
             return;
 
         if (TryComp<BasicEntityAmmoProviderComponent>(wand, out var basicAmmoComp) && basicAmmoComp.Count != null)
-            _gunSystem.UpdateBasicEntityAmmoCount(wand.Value, basicAmmoComp.Count.Value + ev.Charge, basicAmmoComp);
+            _gunSystem.UpdateBasicEntityAmmoCount((wand.Value, basicAmmoComp), basicAmmoComp.Count.Value + ev.Charge);
         else if (TryComp<LimitedChargesComponent>(wand, out var charges))
             _charges.AddCharges((wand.Value, charges), ev.Charge);
     }

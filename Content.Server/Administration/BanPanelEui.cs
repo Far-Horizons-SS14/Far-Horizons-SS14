@@ -1,3 +1,4 @@
+using System.Collections.Immutable;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
@@ -27,8 +28,8 @@ public sealed class BanPanelEui : BaseEui
     private string PlayerName { get; set; } = string.Empty;
     private IPAddress? LastAddress { get; set; }
     private ImmutableTypedHwid? LastHwid { get; set; }
-    private const int Ipv4_CIDR = 32;
-    private const int Ipv6_CIDR = 64;
+    private const int Ipv4_CIDR = CreateBanInfo.DefaultMaskIpv4;
+    private const int Ipv6_CIDR = CreateBanInfo.DefaultMaskIpv6;
 
     public BanPanelEui()
     {
@@ -74,6 +75,15 @@ public sealed class BanPanelEui : BaseEui
             return;
         }
 
+        var isRoleBan = ban.BannedJobs?.Length > 0 || ban.BannedAntags?.Length > 0;
+
+        CreateBanInfo banInfo = isRoleBan ? new CreateRoleBanInfo(ban.Reason) : new CreateServerBanInfo(ban.Reason);
+
+        banInfo.WithBanningAdmin(Player.UserId);
+        banInfo.WithSeverity(ban.Severity);
+        if (ban.BanDurationMinutes > 0)
+            banInfo.WithMinutes(ban.BanDurationMinutes);
+
         (IPAddress, int)? addressRange = null;
         if (ban.IpAddress is not null)
         {
@@ -114,39 +124,25 @@ public sealed class BanPanelEui : BaseEui
             targetHWid = ban.UseLastHwid ? located.LastHWId : ban.Hwid;
         }
 
-        if (ban.BannedJobs?.Length > 0 || ban.BannedAntags?.Length > 0)
+        if (addressRange != null)
+            banInfo.AddAddressRange(addressRange.Value);
+
+        if (targetUid != null)
+            banInfo.AddUser(targetUid.Value, ban.Target!);
+
+        banInfo.AddHWId(targetHWid);
+
+        if (isRoleBan)
         {
-            var now = DateTimeOffset.UtcNow;
-            foreach (var role in ban.BannedJobs ?? [])
+            var roleBanInfo = (CreateRoleBanInfo)banInfo;
+            foreach (var row in ban.BannedJobs ?? [])
             {
-                _banManager.CreateRoleBan(
-                    targetUid,
-                    ban.Target,
-                    Player.UserId,
-                    addressRange,
-                    targetHWid,
-                    role,
-                    ban.BanDurationMinutes,
-                    ban.Severity,
-                    ban.Reason,
-                    now
-                );
+                roleBanInfo.AddJob(row);
             }
 
-            foreach (var role in ban.BannedAntags ?? [])
+            foreach (var row in ban.BannedAntags ?? [])
             {
-                _banManager.CreateRoleBan(
-                    targetUid,
-                    ban.Target,
-                    Player.UserId,
-                    addressRange,
-                    targetHWid,
-                    role,
-                    ban.BanDurationMinutes,
-                    ban.Severity,
-                    ban.Reason,
-                    now
-                );
+                roleBanInfo.AddAntag(row);
             }
 
             // Starlight start - construct a list of role strings and send to webook
@@ -158,37 +154,41 @@ public sealed class BanPanelEui : BaseEui
                         .Select(entry => entry.ToString())
                 )
                 .ToList();
-            _banManager.WebhookUpdateRoleBans(targetUid, ban.Target, Player.UserId, addressRange, targetHWid, roles, ban.BanDurationMinutes, ban.Severity, ban.Reason, now);
+            
+            // Far Horizons start
+            ImmutableArray<BanRoleDef>? roleDefs =
+            [
+                ..
+                (ban.BannedJobs ?? [])
+                .Select(entry => new BanRoleDef("Job", entry.Id)).ToList(),
+
+                ..
+                (ban.BannedAntags ?? [])
+                .Select(entry => new BanRoleDef("Antag", entry.Id)).ToList()
+            ];
+            _banManager.CreateRoleBan(roleBanInfo); // somehow it wasn't here :skull:
+            // Far Horizons end
+
+            _banManager.WebhookUpdateRoleBans(targetUid, ban.Target, Player.UserId, addressRange, targetHWid, roles, ban.BanDurationMinutes, ban.Severity, ban.Reason, DateTimeOffset.UtcNow, roleDefs);
             // Starlight end - construct a list of role strings and send to webhook
-
-            Close();
-
-            return;
         }
-
-        if (ban.Erase && targetUid is not null)
+        else
         {
-            try
+            if (ban.Erase && targetUid is not null)
             {
-                if (_entities.TrySystem(out AdminSystem? adminSystem))
-                    adminSystem.Erase(targetUid.Value);
+                try
+                {
+                    if (_entities.TrySystem(out AdminSystem? adminSystem))
+                        adminSystem.Erase(targetUid.Value);
+                }
+                catch (Exception e)
+                {
+                    _sawmill.Error($"Error while erasing banned player:\n{e}");
+                }
             }
-            catch (Exception e)
-            {
-                _sawmill.Error($"Error while erasing banned player:\n{e}");
-            }
-        }
 
-        _banManager.CreateServerBan(
-            targetUid,
-            ban.Target,
-            Player.UserId,
-            addressRange,
-            targetHWid,
-            ban.BanDurationMinutes,
-            ban.Severity,
-            ban.Reason
-        );
+            _banManager.CreateServerBan((CreateServerBanInfo)banInfo);
+        }
 
         Close();
     }

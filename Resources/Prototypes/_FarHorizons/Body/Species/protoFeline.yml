@@ -1,0 +1,101 @@
+- type: markingsGroup
+  parent: [ Felionoid, BaseProtogen ]
+  id: ProtoFeline
+  limits:
+    enum.HumanoidVisualLayers.FaceCover:
+      limit: 1
+      required: true
+      default: [ ProtoFelineVisor ]
+    enum.HumanoidVisualLayers.BodyCover:
+      limit: 1
+      required: true
+      default: [ ProtoFelineMediumArmor ]
+
+- type: entity
+  parent: AppearanceFelionoid
+  id: AppearanceProtoFeline
+  name: ProtoFeline Appearance
+  components:
+  - type: InitialBody
+    organs:
+      Torso: OrganProtoFelineTorso
+      Head: OrganProtoFelineHead
+      ArmLeft: OrganProtoFelineArmLeft
+      ArmRight: OrganProtoFelineArmRight
+      HandRight: OrganProtoFelineHandRight
+      HandLeft: OrganProtoFelineHandLeft
+      LegLeft: OrganProtoFelineLegLeft
+      LegRight: OrganProtoFelineLegRight
+      FootLeft: OrganProtoFelineFootLeft
+      FootRight: OrganProtoFelineFootRight
+      Brain: OrganProtogenBrain
+      Eyes: OrganProtogenEyes
+      Tongue: OrganProtogenTongue
+      Ears: OrganProtogenEars
+      Lungs: OrganProtogenLungs
+      Heart: OrganProtogenHeart
+      Stomach: OrganProtogenStomach
+      Liver: OrganProtogenLiver
+      Kidneys: OrganProtogenKidneys
+  - type: HumanoidProfile
+    species: ProtoFeline
+
+- type: entity
+  parent:
+  - AppearanceProtoFeline
+  - BaseMobProtoFeline
+  id: MobProtoFeline
+  name: Urist McFelinster
+
+# Organs
+
+- type: entity
+  id: OrganProtoFelineExternal
+  abstract: true
+  suffix: Protogen
+  components:
+  - type: VisualOrganMarkings
+    markingData:
+      group: ProtoFeline
+
+# Limbs
+
+- type: entity
+  parent: [ OrganProtoFelineExternal, OrganFelionoidTorso ]
+  id: OrganProtoFelineTorso
+
+- type: entity
+  parent: [ OrganProtoFelineExternal, OrganFelionoidHead ]
+  id: OrganProtoFelineHead
+
+- type: entity
+  parent: [ OrganProtoFelineExternal, OrganFelionoidArmLeft ]
+  id: OrganProtoFelineArmLeft
+
+- type: entity
+  parent: [ OrganProtoFelineExternal, OrganFelionoidArmRight ]
+  id: OrganProtoFelineArmRight
+
+- type: entity
+  parent: [ OrganProtoFelineExternal, OrganFelionoidHandLeft ]
+  id: OrganProtoFelineHandLeft
+
+- type: entity
+  parent: [ OrganProtoFelineExternal, OrganFelionoidHandRight ]
+  id: OrganProtoFelineHandRight
+
+- type: entity
+  parent: [ OrganProtoFelineExternal, OrganFelionoidLegLeft ]
+  id: OrganProtoFelineLegLeft
+
+- type: entity
+  parent: [ OrganProtoFelineExternal, OrganFelionoidLegRight ]
+  id: OrganProtoFelineLegRight
+
+- type: entity
+  parent: [ OrganProtoFelineExternal, OrganFelionoidFootLeft ]
+  id: OrganProtoFelineFootLeft
+
+- type: entity
+  parent: [ OrganProtoFelineExternal, OrganFelionoidFootRight ]
+  id: OrganProtoFelineFootRight

@@ -30,6 +30,7 @@ using Robust.Shared.Timing;
 using System.Linq;
 using Content.Server.AlertLevel; // starlight
 using Content.Server.Station.Systems;
+using Content.Shared.Humanoid;
 using Content.Shared.Starlight.CCVar; // starlight
 using Robust.Shared.Audio;
 using Robust.Shared.Player;
@@ -224,7 +225,7 @@ public sealed class RevSupplyRiftSystem : EntitySystem
             if (TryComp<TransformComponent>(uid, out var riftTransform))
             {
                 // Get all entities with HumanoidAppearanceComponent within a small radius
-                var nearbyHumanoids = EntityManager.EntityQuery<Content.Shared.Humanoid.HumanoidAppearanceComponent, TransformComponent>()
+                var nearbyHumanoids = EntityManager.EntityQuery<HumanoidProfileComponent, TransformComponent>()
                     .Where(pair => 
                     {
                         var (_, otherTransform) = pair;

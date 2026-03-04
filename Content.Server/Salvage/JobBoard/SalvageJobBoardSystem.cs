@@ -33,7 +33,7 @@ public sealed class SalvageJobBoardSystem : EntitySystem
     /// <summary>
     /// Radio channel that unlock messages are broadcast on.
     /// </summary>
-    private static readonly ProtoId<RadioChannelPrototype> UnlockChannel = "Supply";
+    private static readonly ProtoId<RadioChannelPrototype> UnlockChannel = "GSL"; /// Far Horizons - Changed supply to GSL
 
     /// <inheritdoc/>
     public override void Initialize()

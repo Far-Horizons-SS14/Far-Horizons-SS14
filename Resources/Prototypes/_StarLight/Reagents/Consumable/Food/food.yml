@@ -6,7 +6,7 @@
   flavor: medicine
   color: "#9d42d5"
   metabolisms:
-    Food:
+    Digestion:
       effects:
       - !type:HealthChange
         damage:
@@ -26,7 +26,7 @@
   flavor: chalky
   color: "#94622d" # medium brown
   metabolisms:
-    Food:
+    Digestion:
       effects:
       - !type:HealthChange
         probability: 0.25
@@ -56,7 +56,7 @@
   tileReactions:
     - !type:SpillTileReaction
   metabolisms:
-    Food:
+    Digestion:
       effects:
       - !type:SatiateHunger
         factor: 6.0
@@ -76,7 +76,7 @@
   flavor: greasy
   color: "#643205" # yup, another generic medium brown
   metabolisms:
-    Food:
+    Digestion:
       effects:
       - !type:HealthChange
         probability: 0.25
@@ -102,7 +102,7 @@
   flavor: punishment
   color: "#7d7d3c" # ew
   metabolisms:
-    Poison:
+    Bloodstream:
       effects:
       - !type:PopupMessage
         type: Local

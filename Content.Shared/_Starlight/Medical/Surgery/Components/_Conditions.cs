@@ -1,4 +1,4 @@
-﻿using Content.Shared.Body.Part;
+﻿using Content.Shared.Body;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Item;
 using Robust.Shared.GameStates;
@@ -8,15 +8,7 @@ using Robust.Shared.Prototypes;
 namespace Content.Shared.Starlight.Medical.Surgery.Effects.Step;
 
 [RegisterComponent, NetworkedComponent, Access(typeof(SharedSurgerySystem))] public sealed partial class SurgeryAnyAccentConditionComponent : Component;
-[RegisterComponent, NetworkedComponent, Access(typeof(SharedSurgerySystem))] public sealed partial class SurgeryAnyLimbSlotConditionComponent : Component;
 [RegisterComponent, NetworkedComponent, Access(typeof(SharedSurgerySystem))] public sealed partial class SurgeryOperatingTableConditionComponent : Component;
-
-[RegisterComponent, NetworkedComponent, Access(typeof(SharedSurgerySystem))]
-public sealed partial class SurgeryLimbSlotConditionComponent : Component
-{
-    [DataField]
-    public string Slot;
-}
 
 [RegisterComponent, NetworkedComponent, Access(typeof(SharedSurgerySystem))]
 public sealed partial class SurgeryItemSizeConditionComponent : Component
@@ -29,7 +21,7 @@ public sealed partial class SurgeryItemSizeConditionComponent : Component
 public sealed partial class SurgeryPartConditionComponent : Component
 {
     [DataField]
-    public List<BodyPartType> Parts = [];
+    public List<ProtoId<OrganCategoryPrototype>> Parts = [];
 }
 [RegisterComponent, NetworkedComponent, Access(typeof(SharedSurgerySystem))]
 public sealed partial class SurgerySpeciesConditionComponent : Component
@@ -48,6 +40,8 @@ public sealed partial class SurgeryOrganExistConditionComponent : Component
     
     [DataField]
     public string? Container;
+
+    [DataField] public ProtoId<OrganCategoryPrototype>? Category;
 }
 [RegisterComponent, NetworkedComponent, Access(typeof(SharedSurgerySystem))]
 public sealed partial class SurgeryHasCompConditionComponent : Component
@@ -60,7 +54,6 @@ public sealed partial class SurgeryOrganDontExistConditionComponent : Component
 {
     [DataField]
     public ComponentRegistry? Organ;
-    
-    [DataField]
-    public string? Container;
+
+    [DataField] public ProtoId<OrganCategoryPrototype>? Category;
 }

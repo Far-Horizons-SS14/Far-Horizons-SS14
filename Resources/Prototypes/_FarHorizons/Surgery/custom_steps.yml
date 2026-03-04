@@ -97,6 +97,10 @@
   - type: SurgeryStep
     tools:
     - type: Cautery
+    remove:
+    - type: SkinRetracted
+    - type: BleedersClamped
+    - type: IncisionOpen
   - type: Sprite
     sprite: Objects/Specific/Medical/Surgery/cautery.rsi
     state: cautery
@@ -143,6 +147,9 @@
     duration: 10
     remove:
     - type: NecrosisSurgeryTarget
+    - type: SkinRetracted
+    - type: BleedersClamped
+    - type: IncisionOpen
   - type: SurgeryClearProgress
 
 - type: entity

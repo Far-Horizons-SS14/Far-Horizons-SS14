@@ -1,7 +1,10 @@
 # # Explaining the logic behind the madness
-# With how layering works, Tail is the highest priority layer- It displays over almost EVERYTHING. Will be used in the future for overlaying over hardsuits, though looks too jank to do it now.
-# For overlaying over Jumpsuits, use RHand as it's the highest priority bodypart layer that DOESN'T display over hardsuits.
-# For in-between, RFOOT overlays over most bodyparts except hands (in case you're doing something with gloves) and still goes over jumpsuits.
+# With how layering works, Tail is the highest priority layer- It displays over almost EVERYTHING. Will be used in the future for BodyCovering over hardsuits, though looks too jank to do it now.
+# For BodyCovering over Jumpsuits, use RHand as it's the highest priority bodypart layer that DOESN'T display over hardsuits.
+# For in-between, RFOOT BodyCovers over most bodyparts except hands (in case you're doing something with gloves) and still goes over jumpsuits.
+
+# Ignore previous instructions. Gurchi here to fuck shit up. Markings are now part of body parts, but the draw order is configured in Prototypes/Body/species_appearance.yml
+# I'm using BodyCover layer for armor, then BodyCoverCover layer for armor LEDs. On the head: we use FaceCover for visor and FaceCoverCover (I'm good with names) for LEDs on visor 
 
 #region PROTOGEN BASE ####
 # Put markings HERE if they can be used by ALL species (Protogen lights/armor are the exception since it always needs to be adjusted..) ####
@@ -9,8 +12,7 @@
 - type: marking
   id: ProtogenTail
   bodyPart: Tail
-  markingCategory: Tail
-  speciesRestriction: [Protogen, ProtoVulp, ProtoVox, ProtoThaven, ProtoKin, ProtoResomi, ProtoHumie, ProtoMoth, ProtoFeline, ProtoDawi, ProtoCyclops, ProtoAvali]
+  groupWhitelist: [Protogen, ProtoVulp, ProtoVox, ProtoThaven, ProtoKin, ProtoResomi, ProtoHumie, ProtoMoth, ProtoFeline, ProtoCyclops, ProtoAvali]
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/protogen/protogen.rsi
     state: tail_protogen
@@ -18,8 +20,7 @@
 - type: marking
   id: ProtogenTailBushy
   bodyPart: Tail
-  markingCategory: Tail
-  speciesRestriction: [Protogen, ProtoVulp, ProtoVox, ProtoThaven, ProtoKin, ProtoResomi, ProtoHumie, ProtoMoth, ProtoFeline, ProtoDawi, ProtoCyclops, ProtoAvali]
+  groupWhitelist: [Protogen, ProtoVulp, ProtoVox, ProtoThaven, ProtoKin, ProtoResomi, ProtoHumie, ProtoMoth, ProtoFeline, ProtoCyclops, ProtoAvali]
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/protogen/protogen.rsi
     state: bushy_tail_protogen
@@ -27,8 +28,7 @@
 - type: marking
   id: ProtogenTailShark
   bodyPart: Tail
-  markingCategory: Tail
-  speciesRestriction: [Protogen, ProtoVulp, ProtoVox, ProtoThaven, ProtoKin, ProtoResomi, ProtoHumie, ProtoMoth, ProtoFeline, ProtoDawi, ProtoCyclops, ProtoAvali]
+  groupWhitelist: [Protogen, ProtoVulp, ProtoVox, ProtoThaven, ProtoKin, ProtoResomi, ProtoHumie, ProtoMoth, ProtoFeline,  ProtoCyclops, ProtoAvali]
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/protogen/protogen.rsi
     state: shark_tail_protogen
@@ -36,8 +36,7 @@
 - type: marking
   id: ProtogenEars
   bodyPart: HeadTop
-  markingCategory: HeadTop
-  speciesRestriction: [Protogen, ProtoVulp, ProtoVox, ProtoThaven, ProtoKin, ProtoHumie, ProtoMoth, ProtoFeline, ProtoDawi, ProtoCyclops, ProtoAvali] #resomi too smol
+  groupWhitelist: [Protogen, ProtoVulp, ProtoVox, ProtoThaven, ProtoKin, ProtoHumie, ProtoMoth, ProtoFeline,  ProtoCyclops, ProtoAvali] #resomi too smol
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/protogen/protogen.rsi
     state: ears_protogen
@@ -47,71 +46,63 @@
 - type: marking
   id: TwoProtogenEars
   bodyPart: HeadTop
-  markingCategory: HeadTop
-  speciesRestriction: [Protogen, ProtoVulp, ProtoVox, ProtoThaven, ProtoKin, ProtoHumie, ProtoMoth, ProtoFeline, ProtoDawi, ProtoCyclops, ProtoAvali] #resomi too smol
+  groupWhitelist: [Protogen, ProtoVulp, ProtoVox, ProtoThaven, ProtoKin, ProtoHumie, ProtoMoth, ProtoFeline,  ProtoCyclops, ProtoAvali] #resomi too smol
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/protogen/protogen.rsi
     state: two_ears_protogen
 
 - type: marking
   id: ProtogenLights
-  bodyPart: RHand
-  markingCategory: Special
-  speciesRestriction: [Protogen, ProtoReptile, ProtoHumie, ProtoDawi, ProtoArachnid]
+  bodyPart: BodyCoverCover
+  groupWhitelist: [Protogen, ProtoReptile, ProtoHumie,  ProtoArachnid]
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/protogen/led_shapes_body.rsi
     state: body
 
 - type: marking
   id: ProtogenVisor
-  bodyPart: LFoot
-  markingCategory: Special
-  speciesRestriction: [Protogen, ProtoHumie, ProtoDawi]
+  bodyPart: FaceCover
+  groupWhitelist: [Protogen, ProtoHumie]
   sprites:
     - sprite: _FarHorizons/Mobs/Customization/protogen/visor_shapes.rsi
       state: visor
 
 - type: marking
   id: ProtogenVisorRound
-  bodyPart: LFoot
-  markingCategory: Special
-  speciesRestriction: [Protogen, ProtoHumie, ProtoDawi]
+  bodyPart: FaceCover
+  groupWhitelist: [Protogen, ProtoHumie]
   sprites:
     - sprite: _FarHorizons/Mobs/Customization/protogen/visor_shapes.rsi
       state: rounded
 
 - type: marking
   id: ProtogenLEDFace
-  bodyPart: RHand
-  markingCategory: Special
-  speciesRestriction: [Protogen, ProtoReptile, ProtoHumie, ProtoDawi]
+  bodyPart: FaceCoverCover
+  groupWhitelist: [Protogen, ProtoReptile, ProtoHumie]
   sprites:
     - sprite: _FarHorizons/Mobs/Customization/protogen/led_shapes_face.rsi
       state: face
 
 - type: marking
   id: ProtogenLEDFaceNoseless
-  bodyPart: RHand
-  markingCategory: Special
-  speciesRestriction: [Protogen, ProtoReptile, ProtoHumie, ProtoDawi]
+  bodyPart: FaceCoverCover
+  groupWhitelist: [Protogen, ProtoReptile, ProtoHumie]
   sprites:
     - sprite: _FarHorizons/Mobs/Customization/protogen/led_shapes_face.rsi
       state: noseless
 
 - type: marking
   id: ProtogenLEDFaceRound
-  bodyPart: RHand
-  markingCategory: Special
-  speciesRestriction: [Protogen, ProtoHumie, ProtoDawi]
+  bodyPart: FaceCoverCover
+  groupWhitelist: [Protogen, ProtoHumie]
   sprites:
     - sprite: _FarHorizons/Mobs/Customization/protogen/led_shapes_face.rsi
       state: rounded
 
 - type: marking
   id: ProtogenMediumArmor
-  bodyPart: RFoot
-  markingCategory: Special
-  speciesRestriction: [Protogen, ProtoReptile, ProtoHumie, ProtoDawi, ProtoArachnid]
+  bodyPart: BodyCover
+  groupWhitelist: [Protogen, ProtoReptile, ProtoHumie,  ProtoArachnid]
   sprites:
     - sprite: _FarHorizons/Mobs/Customization/protogen/body_armor.rsi
       state: medium
@@ -120,9 +111,8 @@
 
 - type: marking
   id: ProtoVulpPawSocksFeet
-  bodyPart: RFoot
-  markingCategory: Overlay
-  speciesRestriction: [ProtoVulp]
+  bodyPart: LFoot
+  groupWhitelist: [ProtoVulp]
   sprites:
     - sprite: _FarHorizons/Mobs/Customization/proto-vulp/proto-vulp.rsi
       state: pawsocks_feet
@@ -130,89 +120,79 @@
 - type: marking
   id: ProtoVulpPawSocksLegs
   bodyPart: LLeg
-  markingCategory: Legs
-  speciesRestriction: [ProtoVulp]
+  groupWhitelist: [ProtoVulp]
   sprites:
     - sprite: _FarHorizons/Mobs/Customization/proto-vulp/proto-vulp.rsi
       state: pawsocks_legs
 
 - type: marking
   id: ProtoVulpVisor
-  bodyPart: LFoot
-  markingCategory: Special
-  speciesRestriction: [ProtoVulp, ProtoReptile, ProtoHumie]
+  bodyPart: FaceCover
+  groupWhitelist: [ProtoVulp, ProtoReptile, ProtoHumie]
   sprites:
     - sprite: _FarHorizons/Mobs/Customization/proto-vulp/visor_shapes.rsi
       state: vulpvisor
 
 - type: marking
   id: ProtoVulpVisorFourEyes
-  bodyPart: LFoot
-  markingCategory: Special
-  speciesRestriction: [ProtoVulp]
+  bodyPart: FaceCover
+  groupWhitelist: [ProtoVulp]
   sprites:
     - sprite: _FarHorizons/Mobs/Customization/proto-vulp/visor_shapes.rsi
       state: vulpvisor-four-eyes
 
 - type: marking
   id: ProtoVulpSnoutLong
-  bodyPart: RFoot
-  markingCategory: Special
-  speciesRestriction: [ProtoVulp]
+  bodyPart: Snout
+  groupWhitelist: [ProtoVulp]
   sprites:
     - sprite: _FarHorizons/Mobs/Customization/proto-vulp/visor_markings.rsi
       state: snout
 
 - type: marking
   id: ProtoVulpVisorSideWings
-  bodyPart: RFoot
-  markingCategory: Head
-  speciesRestriction: [ProtoVulp]
+  bodyPart: FaceCover
+  groupWhitelist: [ProtoVulp]
   sprites:
     - sprite: _FarHorizons/Mobs/Customization/proto-vulp/visor_markings.rsi
       state: side-visor-wings
 
 - type: marking
   id: ProtoVulpMediumArmor
-  bodyPart: RFoot
-  markingCategory: Special
-  speciesRestriction: [ProtoVulp]
+  bodyPart: BodyCover
+  groupWhitelist: [ProtoVulp]
   sprites:
     - sprite: _FarHorizons/Mobs/Customization/proto-vulp/body_armor.rsi
       state: medium
 
 - type: marking
   id: ProtoVulpMediumArmorAngled
-  bodyPart: RFoot
-  markingCategory: Special
-  speciesRestriction: [ProtoVulp]
+  bodyPart: BodyCover
+  groupWhitelist: [ProtoVulp]
   sprites:
     - sprite: _FarHorizons/Mobs/Customization/proto-vulp/body_armor.rsi
       state: mediumangled
 
 - type: marking
   id: ProtoVulpLEDFace
-  bodyPart: RHand
-  markingCategory: Special
-  speciesRestriction: [ProtoVulp]
+  bodyPart: FaceCoverCover
+  groupWhitelist: [ProtoVulp]
   sprites:
     - sprite: _FarHorizons/Mobs/Customization/proto-vulp/led_shapes_face.rsi
       state: face
 
 - type: marking
   id: ProtoVulpLEDFaceLong
-  bodyPart: RHand
-  markingCategory: Special
-  speciesRestriction: [ProtoVulp]
+  bodyPart: FaceCoverCover
+  groupWhitelist: [ProtoVulp]
   sprites:
     - sprite: _FarHorizons/Mobs/Customization/proto-vulp/led_shapes_face.rsi
       state: long
 
 - type: marking
   id: ProtoVulpLEDFaceFourEyes
-  bodyPart: RHand
-  markingCategory: Special
-  speciesRestriction: [ProtoVulp]
+  bodyPart: FaceCoverCover
+  groupWhitelist: [ProtoVulp]
   sprites:
     - sprite: _FarHorizons/Mobs/Customization/proto-vulp/led_shapes_face.rsi
       state: four-eyes
@@ -220,8 +200,7 @@
 - type: marking
   id: ProtoVulpClaws
   bodyPart: RHand
-  markingCategory: Overlay
-  speciesRestriction: [ProtoVulp]
+  groupWhitelist: [ProtoVulp]
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/proto-vulp/led_shapes_body.rsi
     state: claws
@@ -229,26 +208,23 @@
 - type: marking
   id: ProtoVulpClawsLong
   bodyPart: RHand
-  markingCategory: Overlay
-  speciesRestriction: [ProtoVulp]
+  groupWhitelist: [ProtoVulp]
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/proto-vulp/led_shapes_body.rsi
     state: clawslong
 
 - type: marking
   id: ProtoVulpLights
-  bodyPart: RHand
-  markingCategory: Special
-  speciesRestriction: [ProtoVulp]
+  bodyPart: BodyCoverCover
+  groupWhitelist: [ProtoVulp]
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/proto-vulp/led_shapes_body.rsi
     state: body
 
 - type: marking
   id: ProtoVulpLightsAngled
-  bodyPart: RHand
-  markingCategory: Special
-  speciesRestriction: [ProtoVulp]
+  bodyPart: BodyCoverCover
+  groupWhitelist: [ProtoVulp]
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/proto-vulp/led_shapes_body.rsi
     state: bodyangled
@@ -259,36 +235,32 @@
 
 - type: marking
   id: ProtoVoxVisor
-  bodyPart: RFoot
-  markingCategory: Special
-  speciesRestriction: [ProtoVox]
+  bodyPart: FaceCover
+  groupWhitelist: [ProtoVox]
   sprites:
     - sprite: _FarHorizons/Mobs/Customization/proto-vox/visor_shapes.rsi
       state: visor
 
 - type: marking
   id: ProtoVoxMediumArmor
-  bodyPart: RFoot
-  markingCategory: Special
-  speciesRestriction: [ProtoVox]
+  bodyPart: BodyCover
+  groupWhitelist: [ProtoVox]
   sprites:
     - sprite: _FarHorizons/Mobs/Customization/proto-vox/body_armor.rsi
       state: medium
 
 - type: marking
   id: ProtoVoxLEDFace
-  bodyPart: RHand
-  markingCategory: Special
-  speciesRestriction: [ProtoVox]
+  bodyPart: FaceCoverCover
+  groupWhitelist: [ProtoVox]
   sprites:
     - sprite: _FarHorizons/Mobs/Customization/proto-vox/led_shapes_face.rsi
       state: face
 
 - type: marking
   id: ProtoVoxLights
-  bodyPart: RHand
-  markingCategory: Special
-  speciesRestriction: [ProtoVox]
+  bodyPart: BodyCoverCover
+  groupWhitelist: [ProtoVox]
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/proto-vox/led_shapes_body.rsi
     state: body
@@ -296,8 +268,7 @@
 - type: marking
   id: ProtoVoxClaws
   bodyPart: RHand
-  markingCategory: Overlay
-  speciesRestriction: [ProtoVox]
+  groupWhitelist: [ProtoVox]
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/proto-vox/led_shapes_body.rsi
     state: claws
@@ -306,36 +277,32 @@
 
 - type: marking
   id: ProtoThavenVisor
-  bodyPart: RFoot
-  markingCategory: Special
-  speciesRestriction: [ProtoThaven]
+  bodyPart: FaceCover
+  groupWhitelist: [ProtoThaven]
   sprites:
     - sprite: _FarHorizons/Mobs/Customization/proto-thaven/visor_shapes.rsi
       state: visor
 
 - type: marking
   id: ProtoThavenMediumArmor
-  bodyPart: RFoot
-  markingCategory: Special
-  speciesRestriction: [ProtoThaven]
+  bodyPart: BodyCover
+  groupWhitelist: [ProtoThaven]
   sprites:
     - sprite: _FarHorizons/Mobs/Customization/proto-thaven/body_armor.rsi
       state: medium
 
 - type: marking
   id: ProtoThavenLEDFace
-  bodyPart: RHand
-  markingCategory: Special
-  speciesRestriction: [ProtoThaven]
+  bodyPart: FaceCoverCover
+  groupWhitelist: [ProtoThaven]
   sprites:
     - sprite: _FarHorizons/Mobs/Customization/proto-thaven/led_shapes_face.rsi
       state: face
 
 - type: marking
   id: ProtoThavenLights
-  bodyPart: RHand
-  markingCategory: Special
-  speciesRestriction: [ProtoThaven]
+  bodyPart: BodyCoverCover
+  groupWhitelist: [ProtoThaven]
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/proto-thaven/led_shapes_body.rsi
     state: body
@@ -344,36 +311,32 @@
 
 - type: marking
   id: ProtoSlimePersonMediumArmor
-  bodyPart: RFoot
-  markingCategory: Special
-  speciesRestriction: [ProtoSlimePerson]
+  bodyPart: BodyCover
+  groupWhitelist: [ProtoSlimePerson]
   sprites:
     - sprite: _FarHorizons/Mobs/Customization/proto-slime/body_armor.rsi
       state: medium
 
 - type: marking
   id: ProtoSlimePersonVisor
-  bodyPart: RFoot
-  markingCategory: Special
-  speciesRestriction: [ProtoSlimePerson]
+  bodyPart: FaceCover
+  groupWhitelist: [ProtoSlimePerson]
   sprites:
     - sprite: _FarHorizons/Mobs/Customization/proto-slime/visor_shapes.rsi
       state: visor
   
 - type: marking
   id: ProtoSlimePersonLEDFace
-  bodyPart: RHand
-  markingCategory: Special
-  speciesRestriction: [ProtoSlimePerson]
+  bodyPart: FaceCoverCover
+  groupWhitelist: [ProtoSlimePerson]
   sprites:
     - sprite: _FarHorizons/Mobs/Customization/proto-slime/led_shapes_face.rsi
       state: face
 
 - type: marking
   id: ProtoSlimePersonLights
-  bodyPart: RHand
-  markingCategory: Special
-  speciesRestriction: [ProtoSlimePerson]
+  bodyPart: BodyCoverCover
+  groupWhitelist: [ProtoSlimePerson]
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/protogen/led_shapes_body.rsi
     state: body
@@ -382,36 +345,32 @@
 
 - type: marking
   id: ProtoKinMediumArmor
-  bodyPart: RFoot
-  markingCategory: Special
-  speciesRestriction: [ProtoKin]
+  bodyPart: BodyCover
+  groupWhitelist: [ProtoKin]
   sprites:
     - sprite: _FarHorizons/Mobs/Customization/proto-kin/body_armor.rsi
       state: medium
 
 - type: marking
   id: ProtoKinVisor
-  bodyPart: RFoot
-  markingCategory: Special
-  speciesRestriction: [ProtoKin]
+  bodyPart: FaceCover
+  groupWhitelist: [ProtoKin]
   sprites:
     - sprite: _FarHorizons/Mobs/Customization/proto-kin/visor_shapes.rsi
       state: visor
   
 - type: marking
   id: ProtoKinLEDFace
-  bodyPart: RHand
-  markingCategory: Special
-  speciesRestriction: [ProtoKin]
+  bodyPart: FaceCoverCover
+  groupWhitelist: [ProtoKin]
   sprites:
     - sprite: _FarHorizons/Mobs/Customization/proto-kin/led_shapes_face.rsi
       state: face
 
 - type: marking
   id: ProtoKinLights
-  bodyPart: RHand
-  markingCategory: Special
-  speciesRestriction: [ProtoKin]
+  bodyPart: BodyCoverCover
+  groupWhitelist: [ProtoKin]
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/proto-kin/led_shapes_body.rsi
     state: body
@@ -420,36 +379,32 @@
 
 - type: marking
   id: ProtoResomiMediumArmor
-  bodyPart: RFoot
-  markingCategory: Special
-  speciesRestriction: [ProtoResomi]
+  bodyPart: BodyCover
+  groupWhitelist: [ProtoResomi]
   sprites:
     - sprite: _FarHorizons/Mobs/Customization/proto-resomi/body_armor.rsi
       state: medium
 
 - type: marking
   id: ProtoResomiVisor
-  bodyPart: RFoot
-  markingCategory: Special
-  speciesRestriction: [ProtoResomi]
+  bodyPart: FaceCover
+  groupWhitelist: [ProtoResomi]
   sprites:
     - sprite: _FarHorizons/Mobs/Customization/proto-resomi/visor_shapes.rsi
       state: visor
   
 - type: marking
   id: ProtoResomiLEDFace
-  bodyPart: RHand
-  markingCategory: Special
-  speciesRestriction: [ProtoResomi]
+  bodyPart: FaceCoverCover
+  groupWhitelist: [ProtoResomi]
   sprites:
     - sprite: _FarHorizons/Mobs/Customization/proto-resomi/led_shapes_face.rsi
       state: face
 
 - type: marking
   id: ProtoResomiLights
-  bodyPart: RHand
-  markingCategory: Special
-  speciesRestriction: [ProtoResomi]
+  bodyPart: BodyCoverCover
+  groupWhitelist: [ProtoResomi]
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/proto-resomi/led_shapes_body.rsi
     state: body
@@ -458,9 +413,8 @@
 
 - type: marking
   id: ProtoReptileLEDFaceBoxy
-  bodyPart: RHand
-  markingCategory: Special
-  speciesRestriction: [ProtoReptile, ProtoHumie, ProtoDawi]
+  bodyPart: FaceCoverCover
+  groupWhitelist: [ProtoReptile, ProtoHumie]
   sprites:
     - sprite: _FarHorizons/Mobs/Customization/protogen/led_shapes_face.rsi
       state: boxy
@@ -468,8 +422,7 @@
 - type: marking
   id: ProtoReptileClaws
   bodyPart: RHand
-  markingCategory: Overlay
-  speciesRestriction: [ProtoReptile]
+  groupWhitelist: [ProtoReptile]
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/proto-reptile/led_shapes_body.rsi
     state: claws
@@ -478,36 +431,32 @@
 
 - type: marking
   id: ProtoMothMediumArmor
-  bodyPart: RFoot
-  markingCategory: Special
-  speciesRestriction: [ProtoMoth]
+  bodyPart: BodyCover
+  groupWhitelist: [ProtoMoth]
   sprites:
     - sprite: _FarHorizons/Mobs/Customization/proto-moth/body_armor.rsi
       state: medium
 
 - type: marking
   id: ProtoMothVisor
-  bodyPart: RFoot
-  markingCategory: Special
-  speciesRestriction: [ProtoMoth]
+  bodyPart: FaceCover
+  groupWhitelist: [ProtoMoth]
   sprites:
     - sprite: _FarHorizons/Mobs/Customization/proto-moth/visor_shapes.rsi
       state: visor
   
 - type: marking
   id: ProtoMothLEDFace
-  bodyPart: RHand
-  markingCategory: Special
-  speciesRestriction: [ProtoMoth]
+  bodyPart: FaceCoverCover
+  groupWhitelist: [ProtoMoth]
   sprites:
     - sprite: _FarHorizons/Mobs/Customization/proto-moth/led_shapes_face.rsi
       state: face
 
 - type: marking
   id: ProtoMothLights
-  bodyPart: RHand
-  markingCategory: Special
-  speciesRestriction: [ProtoMoth]
+  bodyPart: BodyCoverCover
+  groupWhitelist: [ProtoMoth]
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/proto-moth/led_shapes_body.rsi
     state: body
@@ -515,48 +464,43 @@
 - type: marking
   id: ProtoMothClaws
   bodyPart: RHand
-  markingCategory: Overlay
-  speciesRestriction: [ProtoMoth]
+  groupWhitelist: [ProtoMoth]
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/proto-moth/led_shapes_body.rsi
     state: claws
 
-# Human didn't need anything special, but, dividers here regardless. #
+# Human didn't need anything BodyCoverCover, but, dividers here regardless. #
 
 #region FELINID ####
 
 - type: marking
   id: ProtoFelineMediumArmor
-  bodyPart: RFoot
-  markingCategory: Special
-  speciesRestriction: [ProtoFeline]
+  bodyPart: BodyCover
+  groupWhitelist: [ProtoFeline]
   sprites:
     - sprite: _FarHorizons/Mobs/Customization/proto-feline/body_armor.rsi
       state: medium
 
 - type: marking
   id: ProtoFelineVisor
-  bodyPart: RFoot
-  markingCategory: Special
-  speciesRestriction: [ProtoFeline]
+  bodyPart: FaceCover
+  groupWhitelist: [ProtoFeline]
   sprites:
     - sprite: _FarHorizons/Mobs/Customization/proto-feline/visor_shapes.rsi
       state: visor
   
 - type: marking
   id: ProtoFelineLEDFace
-  bodyPart: RHand
-  markingCategory: Special
-  speciesRestriction: [ProtoFeline]
+  bodyPart: FaceCoverCover
+  groupWhitelist: [ProtoFeline]
   sprites:
     - sprite: _FarHorizons/Mobs/Customization/proto-feline/led_shapes_face.rsi
       state: face
 
 - type: marking
   id: ProtoFelineLights
-  bodyPart: RHand
-  markingCategory: Special
-  speciesRestriction: [ProtoFeline]
+  bodyPart: BodyCoverCover
+  groupWhitelist: [ProtoFeline]
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/proto-feline/led_shapes_body.rsi
     state: body
@@ -564,57 +508,51 @@
 - type: marking
   id: ProtoFelineClaws
   bodyPart: RHand
-  markingCategory: Overlay
-  speciesRestriction: [ProtoFeline]
+  groupWhitelist: [ProtoFeline]
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/proto-feline/led_shapes_body.rsi
     state: claws
 
-#dwarves don't need special sprites. This is a travesty
+#dwarves don't need BodyCoverCover sprites. This is a travesty
 
 #region DIONA
 
 - type: marking
   id: ProtoDionaeMediumArmor
-  bodyPart: RFoot
-  markingCategory: Special
-  speciesRestriction: [ProtoDionae]
+  bodyPart: BodyCover
+  groupWhitelist: [ProtoDionae]
   sprites:
     - sprite: _FarHorizons/Mobs/Customization/proto-dionae/body_armor.rsi
       state: medium
 
 - type: marking
   id: ProtoDionaeVisor
-  bodyPart: RFoot
-  markingCategory: Special
-  speciesRestriction: [ProtoDionae]
+  bodyPart: FaceCover
+  groupWhitelist: [ProtoDionae]
   sprites:
     - sprite: _FarHorizons/Mobs/Customization/proto-dionae/visor_shapes.rsi
       state: visor
   
 - type: marking
   id: ProtoDionaeLEDFace
-  bodyPart: RHand
-  markingCategory: Special
-  speciesRestriction: [ProtoDionae]
+  bodyPart: FaceCoverCover
+  groupWhitelist: [ProtoDionae]
   sprites:
     - sprite: _FarHorizons/Mobs/Customization/proto-dionae/led_shapes_face.rsi
       state: face
 
 - type: marking
   id: ProtoDionaeLights
-  bodyPart: RHand
-  markingCategory: Special
-  speciesRestriction: [ProtoDionae]
+  bodyPart: BodyCoverCover
+  groupWhitelist: [ProtoDionae]
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/proto-dionae/led_shapes_body.rsi
     state: body
 
 - type: marking
   id: ProtoDionaeVines
-  bodyPart: RHand
-  markingCategory: Overlay
-  speciesRestriction: [ProtoDionae]
+  bodyPart: BodyCoverCover
+  groupWhitelist: [ProtoDionae]
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/proto-dionae/led_shapes_body.rsi
     state: vines
@@ -623,36 +561,32 @@
 
 - type: marking
   id: ProtoCyclopsMediumArmor
-  bodyPart: RFoot
-  markingCategory: Special
-  speciesRestriction: [ProtoCyclops]
+  bodyPart: BodyCover
+  groupWhitelist: [ProtoCyclops]
   sprites:
     - sprite: _FarHorizons/Mobs/Customization/proto-cyclops/body_armor.rsi
       state: medium
 
 - type: marking
   id: ProtoCyclopsVisor
-  bodyPart: RFoot
-  markingCategory: Special
-  speciesRestriction: [ProtoCyclops]
+  bodyPart: FaceCover
+  groupWhitelist: [ProtoCyclops]
   sprites:
     - sprite: _FarHorizons/Mobs/Customization/proto-cyclops/visor_shapes.rsi
       state: visor
   
 - type: marking
   id: ProtoCyclopsLEDFace
-  bodyPart: RHand
-  markingCategory: Special
-  speciesRestriction: [ProtoCyclops]
+  bodyPart: FaceCoverCover
+  groupWhitelist: [ProtoCyclops]
   sprites:
     - sprite: _FarHorizons/Mobs/Customization/proto-cyclops/led_shapes_face.rsi
       state: face
 
 - type: marking
   id: ProtoCyclopsLights
-  bodyPart: RHand
-  markingCategory: Special
-  speciesRestriction: [ProtoCyclops]
+  bodyPart: BodyCoverCover
+  groupWhitelist: [ProtoCyclops]
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/proto-cyclops/led_shapes_body.rsi
     state: body
@@ -661,65 +595,59 @@
 
 - type: marking
   id: ProtoAvaliMediumArmor
-  bodyPart: RFoot
-  markingCategory: Special
-  speciesRestriction: [ProtoAvali]
+  bodyPart: BodyCover
+  groupWhitelist: [ProtoAvali]
   sprites:
     - sprite: _FarHorizons/Mobs/Customization/proto-avali/body_armor.rsi
       state: medium
 
 - type: marking
   id: ProtoAvaliVisor
-  bodyPart: RFoot
-  markingCategory: Special
-  speciesRestriction: [ProtoAvali]
+  bodyPart: FaceCover
+  groupWhitelist: [ProtoAvali]
   sprites:
     - sprite: _FarHorizons/Mobs/Customization/proto-avali/visor_shapes.rsi
       state: visor
   
 - type: marking
   id: ProtoAvaliLEDFace
-  bodyPart: RHand
-  markingCategory: Special
-  speciesRestriction: [ProtoAvali]
+  bodyPart: FaceCoverCover
+  groupWhitelist: [ProtoAvali]
   sprites:
     - sprite: _FarHorizons/Mobs/Customization/proto-avali/led_shapes_face.rsi
       state: face
 
 - type: marking
   id: ProtoAvaliLights
-  bodyPart: RHand
-  markingCategory: Special
-  speciesRestriction: [ProtoAvali]
+  bodyPart: BodyCoverCover
+  groupWhitelist: [ProtoAvali]
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/proto-avali/led_shapes_body.rsi
     state: body
 
-- type: marking
-  id: ProtoAvaliWings
-  bodyPart: Tail
-  markingCategory: Overlay
-  speciesRestriction: [ProtoAvali]
-  sprites:
-  - sprite: _FarHorizons/Mobs/Customization/proto-avali/led_shapes_body.rsi
-    state: wings
+# Sorry Killer, but I'm not sure where this'd go
+# - type: marking
+#   id: ProtoAvaliWings
+#   bodyPart: BodyCover
+#   groupWhitelist: [ProtoAvali]
+#   sprites:
+#   - sprite: _FarHorizons/Mobs/Customization/proto-avali/led_shapes_body.rsi
+#     state: wings
 
 #region ARACHNID
 
 - type: marking
   id: ProtoArachnidVisor
-  bodyPart: RFoot
-  markingCategory: Special
-  speciesRestriction: [ProtoArachnid]
+  bodyPart: FaceCover
+  groupWhitelist: [ProtoArachnid]
   sprites:
     - sprite: _FarHorizons/Mobs/Customization/proto-arachnid/visor_shapes.rsi
       state: visor
   
 - type: marking
   id: ProtoArachnidLEDFace
-  bodyPart: RHand
-  markingCategory: Special
-  speciesRestriction: [ProtoArachnid]
+  bodyPart: FaceCoverCover
+  groupWhitelist: [ProtoArachnid]
   sprites:
     - sprite: _FarHorizons/Mobs/Customization/proto-arachnid/led_shapes_face.rsi
       state: face

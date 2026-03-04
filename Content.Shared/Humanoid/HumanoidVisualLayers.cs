@@ -27,10 +27,16 @@ namespace Content.Shared.Humanoid
         LLeg,
         RFoot,
         LFoot,
+        Overlay,
         Handcuffs,
         StencilMask,
         Ensnare,
         Fire,
+        FaceCover, // Far Horizons
+        FaceCoverCover, // Far Horizons
+        BodyCover, // Far Horizons
+        BodyCoverCover, // Far Horizons
+        TailCover, // Far Horizons
         
         Other
     }

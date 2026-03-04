@@ -3,6 +3,7 @@ using Content.Shared.Damage;
 using Robust.Shared.Prototypes;
 using Content.Shared.Chat.Prototypes;
 using Content.Shared._FarHorizons.Research;
+using Content.Shared.Body;
 
 namespace Content.Shared._FarHorizons.Medical.SurgeryOverhaul.Components;
 
@@ -46,7 +47,7 @@ public sealed partial class SurgeryLimbExistConditionComponent : Component
 public sealed partial class RequireSpecificOrganicPartComponent : Component
 {
     [DataField]
-    public string Slot;
+    public ProtoId<OrganCategoryPrototype> Slot;
 }
 
 [RegisterComponent, NetworkedComponent]
@@ -61,7 +62,7 @@ public sealed partial class RequireInorganicPartComponent : Component;
 public sealed partial class NecrosisSurgeryStepComponent : Component
 {
     [DataField]
-    public string Target = "bodypart";
+    public ProtoId<OrganCategoryPrototype> Target = "Torso";
     [DataField("seconds")]
     public double time = 120;
 }
@@ -74,4 +75,10 @@ public sealed partial class SurgeryTechnologyComponent : Component
     
     [DataField]
     public Dictionary<ProtoId<ResearchTreeUnlockFlagPrototype>, long> TechnologyModifier = new();
+}
+
+[RegisterComponent, NetworkedComponent]
+public sealed partial class SurgeryStepCustomOrganInsertComponent : Component
+{
+    [DataField] public ProtoId<OrganCategoryPrototype>? CustomCategory;
 }

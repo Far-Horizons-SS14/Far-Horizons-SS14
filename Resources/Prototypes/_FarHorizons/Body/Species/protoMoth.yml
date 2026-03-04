@@ -1,0 +1,116 @@
+- type: markingsGroup
+  parent: [ Moth, BaseProtogen ]
+  id: ProtoMoth
+  limits:
+    enum.HumanoidVisualLayers.FaceCover:
+      limit: 1
+      required: true
+      default: [ ProtoMothVisor ]
+    enum.HumanoidVisualLayers.BodyCover:
+      limit: 1
+      required: true
+      default: [ ProtoMothMediumArmor ]
+
+- type: entity
+  parent: AppearanceMoth
+  id: AppearanceProtoMoth
+  name: ProtoMoth Appearance
+  components:
+  - type: InitialBody
+    organs:
+      Torso: OrganProtoMothTorso
+      Head: OrganProtoMothHead
+      ArmLeft: OrganProtoMothArmLeft
+      ArmRight: OrganProtoMothArmRight
+      HandRight: OrganProtoMothHandRight
+      HandLeft: OrganProtoMothHandLeft
+      LegLeft: OrganProtoMothLegLeft
+      LegRight: OrganProtoMothLegRight
+      FootLeft: OrganProtoMothFootLeft
+      FootRight: OrganProtoMothFootRight
+      Brain: OrganProtogenBrain
+      Eyes: OrganProtogenEyes
+      Tongue: OrganProtogenTongue
+      Ears: OrganProtogenEars
+      Lungs: OrganProtogenLungs
+      Heart: OrganProtogenHeart
+      Stomach: OrganProtoMothStomach
+      Liver: OrganProtogenLiver
+      Kidneys: OrganProtogenKidneys
+  - type: HumanoidProfile
+    species: ProtoMoth
+
+- type: entity
+  parent:
+  - AppearanceProtoMoth
+  - BaseMobProtoMoth
+  id: MobProtoMoth
+  name: Urist McFluffster
+
+# Organs
+
+- type: entity
+  id: OrganProtoMothExternal
+  abstract: true
+  suffix: Protogen
+  components:
+  - type: VisualOrganMarkings
+    markingData:
+      group: ProtoMoth
+
+# Limbs
+
+- type: entity
+  parent: [ OrganProtoMothExternal, OrganMothTorso ]
+  id: OrganProtoMothTorso
+
+- type: entity
+  parent: [ OrganProtoMothExternal, OrganMothHead ]
+  id: OrganProtoMothHead
+
+- type: entity
+  parent: [ OrganProtoMothExternal, OrganMothArmLeft ]
+  id: OrganProtoMothArmLeft
+
+- type: entity
+  parent: [ OrganProtoMothExternal, OrganMothArmRight ]
+  id: OrganProtoMothArmRight
+
+- type: entity
+  parent: [ OrganProtoMothExternal, OrganMothHandLeft ]
+  id: OrganProtoMothHandLeft
+
+- type: entity
+  parent: [ OrganProtoMothExternal, OrganMothHandRight ]
+  id: OrganProtoMothHandRight
+
+- type: entity
+  parent: [ OrganProtoMothExternal, OrganMothLegLeft ]
+  id: OrganProtoMothLegLeft
+
+- type: entity
+  parent: [ OrganProtoMothExternal, OrganMothLegRight ]
+  id: OrganProtoMothLegRight
+
+- type: entity
+  parent: [ OrganProtoMothExternal, OrganMothFootLeft ]
+  id: OrganProtoMothFootLeft
+
+- type: entity
+  parent: [ OrganProtoMothExternal, OrganMothFootRight ]
+  id: OrganProtoMothFootRight
+
+# Internal
+
+- type: entity
+  parent: OrganProtogenStomach
+  id: OrganProtoMothStomach
+  name: Biological Reactor
+  description: "Some call it over-engineered, but it's vital to the function of a protogen. Turns organic matter into organic and electrical energy to power the protogen's cybernetics and flesh."
+  components:
+  - type: Stomach
+    specialDigestible:
+      tags:
+      - ClothMade
+      - RamChip
+    isSpecialDigestibleExclusive: false

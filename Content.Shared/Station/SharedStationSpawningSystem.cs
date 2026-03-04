@@ -184,38 +184,27 @@ public abstract class SharedStationSpawningSystem : EntitySystem
                 EntityUid? slotEnt = null;
                 StorageComponent? storage = null;
                 BaseContainer? container = null;
+                ItemSlotsComponent? itemSlots = null;
 
-                if ((inventoryComp != null &&
-                    InventorySystem.TryGetSlotEntity(entity, slotName, out slotEnt, inventoryComponent: inventoryComp) &&
-                    _storageQuery.TryComp(slotEnt, out storage) || 
-                    _container.TryGetContainer(entity, slotName, out container)))
+                if ((inventoryComp == null ||
+                     !InventorySystem.TryGetSlotEntity(entity, slotName, out slotEnt,
+                         inventoryComponent: inventoryComp) ||
+                    !_itemSlotsQuery.TryComp(slotEnt, out itemSlots) &&
+                    !_storageQuery.TryComp(slotEnt, out storage)) &&
+                    !_container.TryGetContainer(entity, slotName, out container)) continue;
+                
+                foreach (var entProto in entProtos)
                 {
-                    foreach (var entProto in entProtos)
-                    {
-                        var spawnedEntity = Spawn(entProto, coords);
+                    var spawnedEntity = Spawn(entProto, coords);
 
-                        if (container != null)
-                            _container.Insert(spawnedEntity, container);
-                        else
-                            _storage.Insert(slotEnt!.Value, spawnedEntity, out _, storageComp: storage!, playSound: false);
-                    }
+                    if (itemSlots != null)
+                        InsertIntoItemSlots((slotEnt!.Value, itemSlots), spawnedEntity);
+                    else if (container != null)
+                        _container.Insert(spawnedEntity, container);
+                    else
+                        _storage.Insert(slotEnt!.Value, spawnedEntity, out _, storageComp: storage!, playSound: false);
                 }
                 // Far Horizons end
-                // Starlight start
-                else if (inventoryComp != null &&
-                    InventorySystem.TryGetSlotEntity(entity, slotName, out var slotEnt2, inventoryComponent: inventoryComp) &&
-                    _itemSlotsQuery.TryComp(slotEnt2, out var itemSlots))
-                {
-
-                    foreach (var entProto in entProtos)
-                    {
-                        var spawnedEntity = Spawn(entProto, coords);
-                        // Because we need an Entity<ItemSlotsComponent?>
-                        Entity<ItemSlotsComponent?> typed = (slotEnt2.Value, itemSlots);
-                        InsertIntoItemSlots(typed, spawnedEntity);
-                    }
-                }
-                // Starlight end
             }
         }
 
@@ -348,36 +337,27 @@ public abstract class SharedStationSpawningSystem : EntitySystem
                 EntityUid? slotEnt = null;
                 StorageComponent? storage = null;
                 BaseContainer? container = null;
+                ItemSlotsComponent? itemSlots = null;
 
-                if ((inventoryComp != null &&
-                    InventorySystem.TryGetSlotEntity(entity, slotName, out slotEnt, inventoryComponent: inventoryComp) &&
-                    _storageQuery.TryComp(slotEnt, out storage) || 
-                    _container.TryGetContainer(entity, slotName, out container)))
+                if ((inventoryComp == null ||
+                     !InventorySystem.TryGetSlotEntity(entity, slotName, out slotEnt,
+                         inventoryComponent: inventoryComp) ||
+                    !_itemSlotsQuery.TryComp(slotEnt, out itemSlots) &&
+                    !_storageQuery.TryComp(slotEnt, out storage)) &&
+                    !_container.TryGetContainer(entity, slotName, out container)) continue;
+                
+                foreach (var entProto in entProtos)
                 {
-                    foreach (var entProto in entProtos)
-                    {
-                        var spawnedEntity = Spawn(entProto, coords);
+                    var spawnedEntity = Spawn(entProto, coords);
 
-                        if (container != null)
-                            _container.Insert(spawnedEntity, container);
-                        else
-                            _storage.Insert(slotEnt!.Value, spawnedEntity, out _, storageComp: storage!, playSound: false);
-                    }
+                    if (itemSlots != null)
+                        InsertIntoItemSlots((slotEnt!.Value, itemSlots), spawnedEntity);
+                    else if (container != null)
+                        _container.Insert(spawnedEntity, container);
+                    else
+                        _storage.Insert(slotEnt!.Value, spawnedEntity, out _, storageComp: storage!, playSound: false);
                 }
                 // Far Horizons end
-                else if (inventoryComp != null &&
-                    InventorySystem.TryGetSlotEntity(entity, slotName, out var slotEnt2, inventoryComponent: inventoryComp) &&
-                    _itemSlotsQuery.TryComp(slotEnt2, out var itemSlots))
-                {
-
-                    foreach (var entProto in entProtos)
-                    {
-                        var spawnedEntity = Spawn(entProto, coords);
-                        // Because we need an Entity<ItemSlotsComponent?>
-                        Entity<ItemSlotsComponent?> typed = (slotEnt2.Value, itemSlots);
-                        InsertIntoItemSlots(typed, spawnedEntity);
-                    }
-                }
             }
         }
         return true;

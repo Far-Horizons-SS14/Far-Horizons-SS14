@@ -62,7 +62,7 @@ namespace Content.Client.Lobby.UI
                         RightSide.Visible = false;
                     }
 
-                    UserInterfaceManager.GetUIController<LobbyUIController>().ReloadCharacterSetup();
+                    UserInterfaceManager.GetUIController<LobbyUIController>().ReloadCharacterSetup(true); // Far Horizons
 
                     break;
             }

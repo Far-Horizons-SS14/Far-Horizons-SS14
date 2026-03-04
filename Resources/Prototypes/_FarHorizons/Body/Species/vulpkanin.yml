@@ -1,0 +1,94 @@
+# Organs
+
+- type: entity
+  parent: OrganVulpkanin
+  id: OrganVulpkaninExternal
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _Starlight/Mobs/Species/Vulpkanin/parts.rsi
+  - type: VisualOrgan
+    data:
+      sprite: _Starlight/Mobs/Species/Vulpkanin/parts.rsi
+  - type: VisualOrganMarkings
+    markingData:
+      group: Vulpkanin
+
+# Limbs
+
+- type: entity
+  parent: [ OrganBaseTorsoSexed, OrganBaseTorso, OrganVulpkaninExternal ]
+  id: OrganVulpkaninTorso
+
+- type: entity
+  parent: [ OrganBaseHeadSexed, OrganBaseHead, OrganVulpkaninExternal ]
+  id: OrganVulpkaninHead
+  components:
+  - type: VisualOrganMarkings
+    hideableLayers:
+    - enum.HumanoidVisualLayers.Snout
+    - enum.HumanoidVisualLayers.HeadTop
+    - enum.HumanoidVisualLayers.HeadSide
+    - enum.HumanoidVisualLayers.Hair
+    - enum.HumanoidVisualLayers.FacialHair
+    dependentHidingLayers:
+      enum.HumanoidVisualLayers.Snout:
+      - enum.HumanoidVisualLayers.SnoutCover
+
+- type: entity
+  parent: [ OrganBaseArmLeft, OrganVulpkaninExternal ]
+  id: OrganVulpkaninArmLeft
+
+- type: entity
+  parent: [ OrganBaseArmRight, OrganVulpkaninExternal ]
+  id: OrganVulpkaninArmRight
+
+- type: entity
+  parent: [ OrganBaseHandLeft, OrganVulpkaninExternal ]
+  id: OrganVulpkaninHandLeft
+
+- type: entity
+  parent: [ OrganBaseHandRight, OrganVulpkaninExternal ]
+  id: OrganVulpkaninHandRight
+
+- type: entity
+  parent: [ OrganBaseLegLeft, OrganVulpkaninExternal ]
+  id: OrganVulpkaninLegLeft
+  components:
+  - type: MovementOrgan
+    walkSpeedModifier: 1.08
+
+- type: entity
+  parent: [ OrganBaseLegRight, OrganVulpkaninExternal ]
+  id: OrganVulpkaninLegRight
+  components:
+  - type: MovementOrgan
+    walkSpeedModifier: 1.08
+
+- type: entity
+  parent: [ OrganBaseFootLeft, OrganVulpkaninExternal ]
+  id: OrganVulpkaninFootLeft
+
+- type: entity
+  parent: [ OrganBaseFootRight, OrganVulpkaninExternal ]
+  id: OrganVulpkaninFootRight
+
+# Internal
+
+- type: entity
+  parent: [ OrganHumanEyes, OrganVulpkaninExternal ]
+  id: OrganVulpkaninEyes
+
+- type: entity
+  parent: [ OrganBaseHeart, OrganVulpkaninInternal, OrganVulpkaninMetabolizer ]
+  id: OrganVulpkaninHeart
+  components:
+    - type: Metabolizer
+      updateInterval: 0.8
+
+- type: entity
+  parent: [ OrganBaseStomach, OrganVulpkaninInternal, OrganVulpkaninMetabolizer ]
+  id: OrganVulpkaninStomach
+  components:
+  - type: Metabolizer
+    updateInterval: 1.5

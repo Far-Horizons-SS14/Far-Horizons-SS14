@@ -68,5 +68,19 @@
 
 //         [DataField("angularDamping"), ViewVariables(VVAccess.ReadWrite)]
 //         public float AngularDamping = 0.05f;
+//
+//         /// <summary>
+//         /// Final Damping Modifier for a shuttle.
+//         /// This value is set to 0 during FTL. And to BodyModifier when not in FTL.
+//         /// </summary>
+//         [DataField]
+//         public float DampingModifier;
+
+//         /// <summary>
+//         /// Optional override for the FTL cooldown for this shuttle.
+//         /// If not null, then the value will be used instead of the shuttle.cooldown CCVar.
+//         /// </summary>
+//         [DataField]
+//         public TimeSpan? FTLCooldownOverride = null;
 //     }
 // }

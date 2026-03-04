@@ -21,29 +21,6 @@
       color: "#ffff33"
 
 - type: entity
-  id: HighBoltTaserFH
-  name: High Power Taser
-  parent: BasicHitscanNoBeam
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: HitscanBasicDamage
-    damage:
-      types:
-        Shock: 6
-  - type: HitscanStaminaDamage
-    staminaDamage: 20
-  - type: HitscanCrawlerTargetEffects
-    knockdownDuration: 2
-  - type: HitscanBasicRaycast
-    maxDistance: 5
-  - type: HitscanBasicVisuals
-    bullet:
-      sprite:
-        sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
-        state: spark
-      color: "#ffff33"
-
-- type: entity
   id: BoltTaserRifle #Use in rifles exclusively
   name: Taser Bolt
   parent: BasicHitscanNoBeam
@@ -174,8 +151,8 @@
 
 #region Bullets
 - type: entity
-  id: BulletPistolTrace40Practice
-  name: .40 Practice Round #Far Horizons - The Great Capitalization Crusade
+  id: BulletRevolverTrace38Practice
+  name: .38 Special Practice Round
   parent: BulletTrace
   categories: [ HideSpawnMenu ]
   components:
@@ -194,8 +171,8 @@
     maxReflections: 20 # This is the recursion depth for reflect, ricochet, and pierce
 
 - type: entity
-  id: BulletPistolTrace40Incendiary
-  name: .40 Incendiary Round
+  id: BulletRevolverTrace38Incendiary
+  name: .38 Special Incendiary Round
   parent: BulletTrace
   categories: [ HideSpawnMenu ]
   components:
@@ -214,8 +191,8 @@
     maxReflections: 20 # This is the recursion depth for reflect, ricochet, and pierce
 
 - type: entity
-  id: BulletPistolTrace40Uranium
-  name: .40 Uranium Round
+  id: BulletRevolverTrace38Uranium
+  name: .38 Special Uranium Round
   parent: BulletTrace
   categories: [ HideSpawnMenu ]
   components:
@@ -234,6 +211,100 @@
   - type: HitscanReflect
     reflectiveType: NonEnergy
     maxReflections: 20 # This is the recursion depth for reflect, ricochet, and pierce
+
+- type: entity
+  id: BulletRevolverTrace38SP
+  parent: BulletTrace
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HitscanBasicDamage
+    armorPenetration: -0.13
+    damage:
+      types:
+        Piercing: 25
+  - type: HitscanStaminaDamage
+    staminaDamage: 3
+  - type: HitscanPierce
+    chance: 0.40
+    deviation: 0.12
+  - type: HitscanRicochet
+    chance: 0.30
+  - type: HitscanBasicVisuals
+    bullet:
+      sprite:
+        sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+        state: sp
+  
+- type: entity
+  id: BulletRevolverTrace38HP
+  parent: BulletTrace
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HitscanBasicDamage
+    armorPenetration: -1.00
+    damage:
+      types:
+        Piercing: 33
+  - type: HitscanStaminaDamage
+    staminaDamage: 7.5
+  - type: HitscanPierce
+    chance: 0.03
+    deviation: 0.12
+  - type: HitscanRicochet
+    chance: 0.15
+  - type: HitscanBasicVisuals
+    bullet:
+      sprite:
+        sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+        state: bullet
+  
+- type: entity
+  id: BulletRevolverTrace38FMJ
+  parent: BulletTrace
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HitscanBasicDamage
+    armorPenetration: 0.25
+    damage:
+      types:
+        Piercing: 20
+  - type: HitscanStaminaDamage
+    staminaDamage: 13
+  - type: HitscanPierce
+    chance: 0.69
+    deviation: 0.12
+    pierceLevel: HardenedMetal
+  - type: HitscanRicochet
+    chance: 0.80
+  - type: HitscanBasicVisuals
+    bullet:
+      sprite:
+        sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+        state: fmj
+  
+- type: entity
+  id: BulletRevolverTrace38AP
+  parent: BulletTrace
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HitscanBasicDamage
+    armorPenetration: 0.69
+    damage:
+      types:
+        Piercing: 20
+  - type: HitscanStaminaDamage
+    staminaDamage: 10
+  - type: HitscanPierce
+    chance: 0.63
+    deviation: 0.15
+    pierceLevel: HardenedMetal
+  - type: HitscanRicochet
+    chance: 0.35
+  - type: HitscanBasicVisuals
+    bullet:
+      sprite:
+        sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+        state: ap
 
 #region Rubber Rounds
 
@@ -277,7 +348,7 @@
     staminaDamage: 25 # ~ 4 shots
 
 - type: entity
-  id: RubberBulletPistolTrace38
+  id: RubberBulletRevolverTrace38
   parent: RubberBulletTrace
   categories: [ HideSpawnMenu ]
   components:

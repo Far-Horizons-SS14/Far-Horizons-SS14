@@ -4,7 +4,7 @@
   parent:
   - MobBloodstream
   - MobFlammable
-  - BaseMobSpecies
+  - BaseSpeciesMob
   id: BaseMobAbductor
   abstract: true
   components:
@@ -12,8 +12,6 @@
     templateId: abductor
   #- type: Absorbable Starlight: Done on purpose so the abductors don't get absorbed.
   - type: Muted
-  - type: HumanoidAppearance
-    species: Abductor
   - type: Icon
     sprite: _Starlight/Mobs/Species/Abductor/parts.rsi
     state: full
@@ -52,11 +50,3 @@
       reagents:
       - ReagentId: AbductorBlood
         Quantity: 300
-
-- type: entity
-  parent: BaseSpeciesDummy
-  id: MobAbductorDummy
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: HumanoidAppearance
-    species: Abductor
