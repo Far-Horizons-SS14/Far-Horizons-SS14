@@ -34,6 +34,10 @@
         map: ["onLight"]
         visible: false
         shader: unshaded
+      - state: charger
+        map: ["chargerLight"]
+        visible: false
+        shader: unshaded
       - state: lock
         map: ["enum.LockVisualLayers.Lock"]
         visible: false
@@ -68,6 +72,10 @@
           False: { visible: false }
       enum.GenericFieldGeneratorVisuals.OnLight:
         onLight:
+          True: { visible: true }
+          False: { visible: false }
+      enum.GenericFieldGeneratorVisuals.ChargeLight:
+        chargerLight:
           True: { visible: true }
           False: { visible: false }
   - type: Airtight

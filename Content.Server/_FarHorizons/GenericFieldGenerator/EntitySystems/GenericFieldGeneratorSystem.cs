@@ -434,8 +434,21 @@ public sealed class GenericFieldGeneratorSystem : EntitySystem
             >= 300 => PowerLevelVisuals.LowPower,
             _ => PowerLevelVisuals.MinimalPower
         });
+        if (TryComp<BatteryChargerComponent>(generator, out _))
+            _visualizer.SetData(generator, GenericFieldGeneratorVisuals.ChargeLight, CheckHasPower<BatteryChargerComponent>(generator.Owner));
     }
 
+    bool CheckHasPower<TComp>(EntityUid entity) where TComp : BasePowerNetComponent // Taken from BatteryInterfaceSystem
+    {
+        if (!TryComp(entity, out TComp? comp))
+            return false;
+
+        if (comp.Net == null)
+            return false;
+
+        return comp.Net.NetworkNode.LastCombinedMaxSupply > 0;
+    }
+        
     private void ChangeConnectionLightVisualizer(Entity<GenericFieldGeneratorComponent> generator) => _visualizer.SetData(generator, GenericFieldGeneratorVisuals.ConnectionLight, generator.Comp.IsConnected);
 
     private void ChangeOnLightVisualizer(Entity<GenericFieldGeneratorComponent> generator) => _visualizer.SetData(generator, GenericFieldGeneratorVisuals.OnLight, generator.Comp.Enabled);

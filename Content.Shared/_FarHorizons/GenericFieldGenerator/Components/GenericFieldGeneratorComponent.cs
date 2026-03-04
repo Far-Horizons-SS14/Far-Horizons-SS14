@@ -103,6 +103,7 @@ public enum GenericFieldGeneratorVisuals : byte
     PowerLight,
     ConnectionLight,
     OnLight,
+    ChargeLight,
 }
 
 [Serializable, NetSerializable]
