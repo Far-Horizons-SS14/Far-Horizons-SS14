@@ -21,10 +21,10 @@ public sealed partial class ReactorPartSystem : EntitySystem
     /// Processes gas flowing through a reactor part.
     /// </summary>
     /// <param name="reactorPart">The reactor part.</param>
-    /// <param name="reactorEnt">The entity representing the reactor this part is inserted into.</param>
+    /// <param name="reactor">The entity representing the reactor this part is inserted into.</param>
     /// <param name="inGas">The gas to be processed.</param>
     /// <returns></returns>
-    public GasMixture? ProcessGas(ReactorPartComponent reactorPart, Entity<NuclearReactorComponent> reactorEnt, GasMixture inGas)
+    public GasMixture? ProcessGas(ReactorPartComponent reactorPart, EntityUid reactor, GasMixture inGas)
     {
         if (!reactorPart.HasRodType(ReactorPartComponent.RodTypes.GasChannel))
             return null;
@@ -61,7 +61,7 @@ public sealed partial class ReactorPartSystem : EntitySystem
 
             if (reactorPart.Melted)
             {
-                var T = _atmosphereSystem.GetTileMixture(reactorEnt.Owner, excite: true);
+                var T = _atmosphereSystem.GetTileMixture(reactor, excite: true);
                 if (T != null)
                     _atmosphereSystem.Merge(T, reactorPart.AirContents);
             }
