@@ -80,12 +80,12 @@
 - type: entity
   name: Box of 5.56 Rifle (Rubber) Magazines #FH
   parent: BoxMagazine
-  id: BoxMagazineRifle5.56Rubber #FH
+  id: BoxMagazineRifle556Rubber #FH
   description: A box full of 5.56 rifle (Rubber) magazines. #FH
   components:
   - type: EntityTableContainerFill
     containers:
       storagebase: !type:AllSelector
         children:
-        - id: MagazineRifle5.56Rubber #FH
+        - id: MagazineRifle556Rubber #FH
           amount: 4

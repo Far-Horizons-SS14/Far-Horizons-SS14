@@ -1,12 +1,12 @@
 - type: entity
   abstract: true
   parent: [ BaseCartridge, BaseSecurityContraband ]
-  id: BaseCartridgeRifle5.56 #FH
+  id: BaseCartridgeRifle556 #FH
   name: 5.56 Cartridge (Rifle) #FH
   components:
   - type: Tag
     tags:
-      - CartridgeRifle5.56 #FH
+      - CartridgeRifle556 #FH
   - type: CartridgeAmmo
     proto: BulletRifleTrace
   - type: Sprite
@@ -18,9 +18,9 @@
   - type: SpentAmmoVisuals
 
 - type: entity
-  id: CartridgeRifle5.56SP #FH
+  id: CartridgeRifle556SP #FH
   name: 5.56 Cartridge (Rifle SP) #FH
-  parent: BaseCartridgeRifle5.56 #FH
+  parent: BaseCartridgeRifle556 #FH
   description: A modern intermediate cartridge for combat rifles. Standard kinetic ammunition is common and useful in most situations.
   components:
   - type: CartridgeAmmo
@@ -34,9 +34,9 @@
         color: "#3F47DB"
 
 - type: entity
-  id: CartridgeRifle5.56HP #FH
+  id: CartridgeRifle556HP #FH
   name: 5.56 Cartridge (Rifle HP) #FH
-  parent: BaseCartridgeRifle5.56 #FH
+  parent: BaseCartridgeRifle556 #FH
   description: A modern intermediate cartridge for combat rifles. Standard kinetic ammunition is common and useful in most situations.
   components:
   - type: CartridgeAmmo
@@ -50,9 +50,9 @@
         color: "#000000"
 
 - type: entity
-  id: CartridgeRifle5.56FMJ #FH
+  id: CartridgeRifle556FMJ #FH
   name: 5.56 Cartridge (Rifle FMJ) #FH
-  parent: BaseCartridgeRifle5.56 #FH
+  parent: BaseCartridgeRifle556 #FH
   components:
   - type: CartridgeAmmo
     proto: BulletRifleTraceFMJ
@@ -65,9 +65,9 @@
         color: "#B68F0E"
         
 - type: entity
-  id: CartridgeRifle5.56AP #FH
+  id: CartridgeRifle556AP #FH
   name: 5.56 Cartridge (Rifle AP) #FH
-  parent: BaseCartridgeRifle5.56 #FH
+  parent: BaseCartridgeRifle556 #FH
   components:
   - type: CartridgeAmmo
     proto: BulletRifleTraceAP
@@ -80,8 +80,8 @@
         color: "#1A8C1A"
 
 - type: entity
-  parent: BaseCartridgeRifle5.56 #FH
-  id: CartridgeRifle5.56Practice #FH
+  parent: BaseCartridgeRifle556 #FH
+  id: CartridgeRifle556Practice #FH
   name: 5.56 Cartridge (Rifle practice) #FH
   description: A modern intermediate cartridge for combat rifles. Practice ammunition fires a chalk projectile that stings a little, but otherwise causes no lasting damage.
   components:
@@ -96,8 +96,8 @@
         color: "#D86E2C"
 
 - type: entity
-  parent: BaseCartridgeRifle5.56 #FH
-  id: CartridgeRifle5.56Incendiary #FH
+  parent: BaseCartridgeRifle556 #FH
+  id: CartridgeRifle556Incendiary #FH
   name: 5.56 Cartridge (Rifle incendiary) #FH
   description: A modern intermediate cartridge for combat rifles. Incendiary ammunition contains a self-igniting compound that sets targets ablaze.
   components:
@@ -112,8 +112,8 @@
         color: "#BFC8CA"
 
 - type: entity
-  parent: BaseCartridgeRifle5.56 #FH
-  id: CartridgeRifle5.56Uranium #FH
+  parent: BaseCartridgeRifle556 #FH
+  id: CartridgeRifle556Uranium #FH
   name: 5.56 Cartridge (Rifle Uranium) #FH
   description: A modern intermediate cartridge for combat rifles. Uranium ammunition replaces the lead core of the bullet with fissile material, irradiating targets from the inside.
   components:

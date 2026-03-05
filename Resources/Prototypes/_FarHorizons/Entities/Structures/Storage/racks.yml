@@ -9,14 +9,11 @@
   components:
   - type: Sprite
     sprite: _FarHorizons/Structures/Storage/racks.rsi
-    scale: 0.5, 0.5
     layers:
     - state: lectercase
       map: ["enum.StorageVisualLayers.Base"]
-    - state: unlocked
-      shader: unshaded
     - state: lecter-0
-    - map: ["enum.StorageFillLayers.Fill"]
+      map: ["enum.StorageFillLayers.Fill"]
     - state: closed
       map: ["enum.StorageVisualLayers.Door"]
     - state: locked
@@ -32,4 +29,4 @@
         - MagazinePistol
         - MagazineMagnum
         - Lecter
-        - MagazineRifle5.56
+        - MagazineRifle556

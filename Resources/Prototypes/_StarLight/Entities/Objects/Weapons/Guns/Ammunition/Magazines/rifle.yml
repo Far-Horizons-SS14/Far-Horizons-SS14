@@ -1,15 +1,15 @@
 # M-52
 
 - type: entity
-  id: BaseMagazineRifle5.56M52 #FH
-  parent: BaseMagazineRifle5.56 #FH
+  id: BaseMagazineRifle556M52 #FH
+  parent: BaseMagazineRifle556 #FH
   abstract: true
   components:
   - type: BallisticAmmoProvider
     capacity: 24
   - type: Tag
     tags:
-      - MagazineRifle5.56M52 #FH
+      - MagazineRifle556M52 #FH
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Guns/Ammunition/Magazine/Rifle/m-52.rsi
   - type: MagazineVisuals
@@ -18,12 +18,12 @@
     zeroVisible: false
     
 - type: entity
-  id: MagazineRifle5.56M52SP #FH
+  id: MagazineRifle556M52SP #FH
   name: "5.56 Magazine (Rifle SP)" #FH
-  parent: BaseMagazineRifle5.56M52 #FH
+  parent: BaseMagazineRifle556M52 #FH
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgeRifle5.56SP #FH
+    proto: CartridgeRifle556SP #FH
   - type: Sprite
     layers:
     - state: sp
@@ -42,12 +42,12 @@
         color: "#575EF5"
 
 - type: entity
-  id: MagazineRifle5.56M52HP #FH
+  id: MagazineRifle556M52HP #FH
   name: "5.56 Magazine (Rifle HP)" #FH
-  parent: BaseMagazineRifle5.56M52 #FH
+  parent: BaseMagazineRifle556M52 #FH
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgeRifle5.56HP #FH
+    proto: CartridgeRifle556HP #FH
   - type: Sprite
     layers:
     - state: red
@@ -66,12 +66,12 @@
         color: "#F5514C"
 
 - type: entity
-  id: MagazineRifle5.56M52FMJ #FH
+  id: MagazineRifle556M52FMJ #FH
   name: "5.56 Magazine (Rifle FMJ)" #FH
-  parent: BaseMagazineRifle5.56M52 #FH
+  parent: BaseMagazineRifle556M52 #FH
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgeRifle5.56FMJ #FH
+    proto: CartridgeRifle556FMJ #FH
   - type: Sprite
     layers:
     - state: fmj
@@ -90,12 +90,12 @@
         color: "#080706"
 
 - type: entity
-  id: MagazineRifle5.56M52AP #FH
+  id: MagazineRifle556M52AP #FH
   name: "5.56 Magazine (Rifle AP)" #FH
-  parent: BaseMagazineRifle5.56M52 #FH
+  parent: BaseMagazineRifle556M52 #FH
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgeRifle5.56AP #FH
+    proto: CartridgeRifle556AP #FH
   - type: Sprite
     layers:
     - state: ap
@@ -114,10 +114,10 @@
         color: "#72E374"
 
 - type: entity
-  id: MagazineRifle5.56M52Empty #FH
+  id: MagazineRifle556M52Empty #FH
   name: "5.56 Magazine (Rifle Any)" #FH
   suffix: empty
-  parent: BaseMagazineRifle5.56M52 #FH
+  parent: BaseMagazineRifle556M52 #FH
   components:
   - type: BallisticAmmoProvider
     proto: null
@@ -133,12 +133,12 @@
       - state: inhand-right-mag
 
 - type: entity
-  id: MagazineRifle5.56M52Incendiary #FH
+  id: MagazineRifle556M52Incendiary #FH
   name: "5.56 Magazine (Rifle Incendiary)" #FH
-  parent: BaseMagazineRifle5.56M52 #FH
+  parent: BaseMagazineRifle556M52 #FH
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgeRifle5.56Incendiary #FH
+    proto: CartridgeRifle556Incendiary #FH
   - type: Sprite
     layers:
     - state: incendiary
@@ -155,12 +155,12 @@
         color: "#E7EEEE"
 
 - type: entity
-  id: MagazineRifle5.56M52Practice #FH
+  id: MagazineRifle556M52Practice #FH
   name: "5.56 Magazine (Rifle Practice)" #FH
-  parent: BaseMagazineRifle5.56M52 #FH
+  parent: BaseMagazineRifle556M52 #FH
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgeRifle5.56Practice #FH
+    proto: CartridgeRifle556Practice #FH
   - type: Sprite
     layers:
     - state: practice
@@ -179,12 +179,12 @@
         color: "#F08B4B"
 
 - type: entity
-  id: MagazineRifle5.56M52Uranium #FH
+  id: MagazineRifle556M52Uranium #FH
   name: "5.56 Magazine (Rifle Uranium)" #FH
-  parent: BaseMagazineRifle5.56M52 #FH
+  parent: BaseMagazineRifle556M52 #FH
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgeRifle5.56Uranium #FH
+    proto: CartridgeRifle556Uranium #FH
   - type: Sprite
     layers:
     - state: uranium

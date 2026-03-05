@@ -59,17 +59,17 @@
     slots:
       gun_chamber:
         name: Chamber
-        startingItem: CartridgeRifle5.56SP
+        startingItem: CartridgeRifle556SP
         priority: 1
         whitelist:
           tags:
-            - CartridgeRifle5.56
+            - CartridgeRifle556
       gun_magazine:
         name: Magazine
-        startingItem: Rifle5.56HeavyMagazineSP
+        startingItem: Rifle556HeavyMagazineSP
         whitelist:
           tags:
-            - Rifle5.56Heavy
+            - Rifle556Heavy
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset # Smart Scope
     maxOffset: 2

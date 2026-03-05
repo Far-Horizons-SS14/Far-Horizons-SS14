@@ -142,20 +142,20 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazineRifle5.56FMJ #FH
+        startingItem: MagazineRifle556FMJ #FH
         insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
         priority: 2
         whitelist:
           tags:
-          - MagazineRifle5.56 #FH
+          - MagazineRifle556 #FH
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
         priority: 1
         whitelist:
           tags:
-          - CartridgeRifle5.56 #FH
+          - CartridgeRifle556 #FH
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot ""
@@ -196,20 +196,20 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazineRifle5.56SP #FH
+        startingItem: MagazineRifle556SP #FH
         insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
         priority: 2
         whitelist:
           tags:
-          - MagazineRifle5.56 #FH
+          - MagazineRifle556 #FH
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
         priority: 1
         whitelist:
           tags:
-          - CartridgeRifle5.56 #FH
+          - CartridgeRifle556 #FH
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot ""
@@ -283,20 +283,20 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazineRifle5.56SP #FH
+        startingItem: MagazineRifle556SP #FH
         insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
         priority: 2
         whitelist:
           tags:
-          - MagazineRifle5.56 #FH
+          - MagazineRifle556 #FH
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
         priority: 1
         whitelist:
           tags:
-          - CartridgeRifle5.56 #FH
+          - CartridgeRifle556 #FH
   - type: SpeedModifiedOnWield
     walkModifier: 0.75
     sprintModifier: 0.75
