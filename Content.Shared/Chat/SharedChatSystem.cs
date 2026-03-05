@@ -50,7 +50,8 @@ public abstract partial class SharedChatSystem : EntitySystem
 
     public static readonly char[] ICDisallowedCharacters = ['[', ']', '\\']; // Starlight
 
-    public static readonly ProtoId<RadioChannelPrototype> CommonChannel = "Common";
+    public static readonly ProtoId<RadioChannelPrototype> DefaultCommonChannel = "Common"; // Far Horizons
+    public static readonly List<ProtoId<RadioChannelPrototype>> CommonChannels = new() { "Common", "SyndiCommon" }; // Far Horizons
 
     public static readonly string DefaultChannelPrefix = $"{RadioChannelPrefix}{DefaultChannelKey}";
     public static readonly ProtoId<SpeechVerbPrototype> DefaultSpeechVerb = "Default";
@@ -71,7 +72,8 @@ public abstract partial class SharedChatSystem : EntitySystem
     /// <summary>
     /// Cache of the keycodes for faster lookup.
     /// </summary>
-    private FrozenDictionary<char, RadioChannelPrototype> _keyCodes = default!;
+    /// Far Horizons - moved to separate file
+    // private FrozenDictionary<char, RadioChannelPrototype> _keyCodes = default!;
     
     private FrozenDictionary<char, CollectiveMindPrototype> _mindKeyCodes = default!;
 
@@ -79,7 +81,8 @@ public abstract partial class SharedChatSystem : EntitySystem
     {
         base.Initialize();
 
-        DebugTools.Assert(_prototypeManager.HasIndex(CommonChannel));
+        foreach (var commonChannel in CommonChannels) // Far Horizons
+            DebugTools.Assert(_prototypeManager.HasIndex(commonChannel));
 
         SubscribeLocalEvent<PrototypesReloadedEventArgs>(OnPrototypeReload);
         CacheRadios();
@@ -100,11 +103,12 @@ public abstract partial class SharedChatSystem : EntitySystem
             CacheCollectiveMinds(); // Starlight
     }
 
-    private void CacheRadios()
-    {
-        _keyCodes = _prototypeManager.EnumeratePrototypes<RadioChannelPrototype>()
-            .ToFrozenDictionary(x => x.KeyCode);
-    }
+    // Far Horizons - moved to separate file
+    // private void CacheRadios()
+    // {
+    //     _keyCodes = _prototypeManager.EnumeratePrototypes<RadioChannelPrototype>()
+    //         .ToFrozenDictionary(x => x.KeyCode);
+    // }
     
     private void CacheCollectiveMinds()
     {
@@ -192,7 +196,7 @@ public abstract partial class SharedChatSystem : EntitySystem
         if (input.StartsWith(RadioCommonPrefix))
         {
             output = SanitizeMessageCapital(input[1..].TrimStart());
-            channel = _prototypeManager.Index<RadioChannelPrototype>(CommonChannel);
+            channel = GetBestMatchingChannel(source, CommonChannels, output, out output); // Far Horizons
             return true;
         }
 
@@ -221,11 +225,14 @@ public abstract partial class SharedChatSystem : EntitySystem
             return true;
         }
 
-        if (!_keyCodes.TryGetValue(channelKey, out channel) && !quiet)
+        if (!_keyCodes.TryGetValue(channelKey, out var channels) && !quiet) // Far Horizons - match channel list
         {
             var msg = Loc.GetString("chat-manager-no-such-channel", ("key", channelKey));
             _popup.PopupEntity(msg, source, source);
         }
+
+        if (channels != null)
+            channel = GetBestMatchingChannel(source, channels, output, out output); // Far Horizons
 
         return true;
     }

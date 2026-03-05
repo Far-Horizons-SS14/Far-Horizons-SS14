@@ -168,6 +168,7 @@ public sealed class SiliconLawSystem : SharedSiliconLawSystem
             if (TryComp(uid, out ActiveRadioComponent? activeRadio))
             {
                 activeRadio.Channels.UnionWith(emag.ChannelAdd);
+                Dirty<ActiveRadioComponent>((uid, activeRadio)); // Far Horizons
             }
             if (TryComp(uid, out IntrinsicRadioTransmitterComponent? transmitter))
             {

@@ -35,6 +35,8 @@ public sealed partial class IPCSystem
                 ent.Comp.RadioTransmitter.Channels.UnionWith(keyComp.Channels);
                 ent.Comp.RadioReceiver.Channels.UnionWith(keyComp.Channels);
             }
+
+        Dirty<ActiveRadioComponent>((ent, ent.Comp.RadioReceiver));
     }
 
     private void OnRadioStartingGear(Entity<IPCRadioComponent> ent, ref StartingGearEquippedEvent args)

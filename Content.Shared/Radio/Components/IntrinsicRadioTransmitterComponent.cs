@@ -12,5 +12,5 @@ namespace Content.Shared.Radio.Components;
 public sealed partial class IntrinsicRadioTransmitterComponent : Component
 {
     [DataField]
-    public HashSet<ProtoId<RadioChannelPrototype>> Channels = new() { SharedChatSystem.CommonChannel };
+    public HashSet<ProtoId<RadioChannelPrototype>> Channels = new() { SharedChatSystem.DefaultCommonChannel };
 }

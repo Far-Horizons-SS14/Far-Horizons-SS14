@@ -320,6 +320,8 @@ public abstract partial class SharedBorgSystem : EntitySystem
                 {
                     activeRadio.Channels.Add(channel);
                 }
+
+                Dirty<ActiveRadioComponent>((ent, activeRadio)); // Far Horizons
             }
             if (TryComp(ent, out IntrinsicRadioTransmitterComponent? transmitter))
             {

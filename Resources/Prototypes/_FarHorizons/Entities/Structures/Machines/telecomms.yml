@@ -7,3 +7,96 @@
     containers:
       key_slots:
       - EncryptionKeyTrinary
+
+---
+
+# Syndicate
+# Todo: add sprites for syndie channels on screen
+
+- type: entity
+  parent: TelecomServer
+  id: TelecomServerFilledSyndi
+  suffix: Filled All S
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeySyndiCommon
+      - EncryptionKeyCargo
+      - EncryptionKeySyndiEngi
+      - EncryptionKeySyndiMed
+      - EncryptionKeySyndiSci
+      - EncryptionKeySyndiSecurity
+      - EncryptionKeySyndiService
+      - EncryptionKeySyndiCommand
+      - EncryptionKeyTrinary #FH
+
+- type: entity
+  parent: TelecomServer
+  id: TelecomServerFilledSyndiCommon
+  suffix: Common S
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeySyndiCommon
+
+- type: entity
+  parent: TelecomServer
+  id: TelecomServerFilledSyndiEngineering
+  suffix: Engineering S
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeySyndiEngi
+
+- type: entity
+  parent: TelecomServer
+  id: TelecomServerFilledSyndiMedical
+  suffix: Medical S
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeySyndiMed
+
+- type: entity
+  parent: TelecomServer
+  id: TelecomServerFilledSyndiScience
+  suffix: Science S
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeySyndiSci
+
+- type: entity
+  parent: TelecomServer
+  id: TelecomServerFilledSyndiSecurity
+  suffix: Security S
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeySyndiSecurity
+
+- type: entity
+  parent: TelecomServer
+  id: TelecomServerFilledSyndiService
+  suffix: Service S
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeySyndiService
+
+- type: entity
+  parent: TelecomServer
+  id: TelecomServerFilledSyndiCommand
+  suffix: Command S
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeySyndiCommand

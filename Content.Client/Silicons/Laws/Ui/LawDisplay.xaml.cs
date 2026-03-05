@@ -1,3 +1,4 @@
+using System.Linq;
 using Content.Client.Chat.Managers;
 using Content.Client.Message;
 using Content.Shared.Chat;
@@ -65,6 +66,9 @@ public sealed partial class LawDisplay : Control
 
         if (radioChannels == null)
             return;
+        
+        var radioChannelProtos = radioChannels.Select(id => _prototypeManager.Index(id)).ToHashSet(); // Far Horizons
+        var keyCodes = SharedChatSystem.GetIndexedKeycodes(radioChannelProtos); // Far Horizons
 
         foreach (var radioChannel in radioChannels)
         {
@@ -84,13 +88,13 @@ public sealed partial class LawDisplay : Control
 
             radioChannelButton.OnPressed += _ =>
             {
-                if (radioChannel == SharedChatSystem.CommonChannel)
+                if (SharedChatSystem.CommonChannels.Contains(radioChannel)) // Far Horizons
                 {
-                    _chatManager.SendMessage($"{SharedChatSystem.RadioCommonPrefix} {lawIdentifierPlaintext}: {lawDescriptionPlaintext}", ChatSelectChannel.Radio);
+                    _chatManager.SendMessage($"{keyCodes[radioChannel]} {lawIdentifierPlaintext}: {lawDescriptionPlaintext}", ChatSelectChannel.Radio); // Far Horizons
                 }
                 else
                 {
-                    _chatManager.SendMessage($"{SharedChatSystem.RadioChannelPrefix}{radioChannelProto.KeyCode} {lawIdentifierPlaintext}: {lawDescriptionPlaintext}", ChatSelectChannel.Radio);
+                    _chatManager.SendMessage($"{SharedChatSystem.RadioChannelPrefix}{keyCodes[radioChannel]} {lawIdentifierPlaintext}: {lawDescriptionPlaintext}", ChatSelectChannel.Radio); // Far Horizons
                 }
                 _nextAllowedPress[radioChannelButton] = _timing.CurTime + PressCooldown;
             };
