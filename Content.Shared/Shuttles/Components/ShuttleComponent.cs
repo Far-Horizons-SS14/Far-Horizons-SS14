@@ -22,7 +22,7 @@ namespace Content.Shared.Shuttles.Components
         /// Maximum velocity assuming unupgraded, tier 1 thrusters
         /// </summary>
         [ViewVariables(VVAccess.ReadWrite), AutoNetworkedField]
-        public float BaseMaxLinearVelocity = 60f;
+        public float BaseMaxLinearVelocity = 100f; ///FarHorizons - Fast shuttle pursuits
 
         public const float MaxAngularVelocity = 4f;
 

@@ -98,7 +98,7 @@ public sealed partial class CCVars
     ///     How much time in seconds that needs to pass before a non-arrivals shuttle can FTL again.
     /// </summary>
     public static readonly CVarDef<float> FTLCooldown =
-        CVarDef.Create("shuttle.cooldown", 60f, CVar.SERVERONLY);
+        CVarDef.Create("shuttle.cooldown", 180f, CVar.SERVERONLY); /// FarHorizons Modification, FTL spam prevention. 1 min isn't long enough for shipside cannons when factoring in time spent traveling to location a shuttled FTL'd to.
 
     /// <summary>
     ///     How much time in seconds that needs to pass before the arrivals shuttle can FTL again.

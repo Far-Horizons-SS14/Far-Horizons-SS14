@@ -488,22 +488,22 @@
       - !type:PopupMessage
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [ Animal, Vox, Vampire ] # SL - add Vampire
+          type: [ Animal, Vox, Vampire, Protogen ] # FH - add Protogen
           inverted: true
         type: Local
         visualType: MediumCaution
         messages: [ "generic-reagent-effect-sick" ]
         probability: 0.5
       - !type:Vomit
-        probability: 0.1
+        probability: 0.1 
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [ Animal, Vox, Plant, Vampire ] # StarLight - add Vampire
+          type: [ Animal, Vox, Plant, Vampire, Protogen  ] # FH - add Protogen
           inverted: true
       - !type:HealthChange
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [ Animal, Vox, Plant, Vampire ] # StarLight - add Vampire
+          type: [ Animal, Vox, Plant, Vampire, Protogen  ] # FH - add Protogen
           inverted: true
         damage:
           types:
@@ -533,6 +533,12 @@
           type: [ Vampire ]
         reagent: Protein
         amount: 0.5
+      - !type:AdjustReagent #FH
+        conditions: #FH
+        - !type:MetabolizerTypeCondition #FH
+          type: [ Protogen ] #FH
+        reagent: Protein #FH
+        amount: 0.5 #FH
 
 - type: reagent
   id: Allicin
@@ -596,7 +602,7 @@
       - !type:HealthChange
         conditions:
         - !type:ReagentCondition
-          reagent: Honk
+          reagent: Honk 
           min: 1
         - !type:MetabolizerTypeCondition
           type: [ Animal ]
