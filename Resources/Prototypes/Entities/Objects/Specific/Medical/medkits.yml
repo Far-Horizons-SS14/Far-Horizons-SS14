@@ -100,8 +100,11 @@
   parent: Medkit
   id: MedkitCombat
   components:
-  #Starlight start
+  #Starlight start 
   - type: Storage
+    grid: #FH
+    - 0,0,4,1 #FH
+    - 4,0,5,0 #FH
     whitelist:
        tags:
         - GlassBeaker
@@ -123,6 +126,8 @@
         - Vial
         - AutoMender
         - Hypospray
+        - ExternalContainerInjectorVial #FH
+        - OilPack #FH
        components:
         - Injector
         - Pill
