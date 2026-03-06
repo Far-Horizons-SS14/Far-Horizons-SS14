@@ -1,7 +1,7 @@
 ﻿laws-number-wrapper = [bold]Law { $lawnumber }:[/bold] { $lawstring }
 
 #starlight dynamic law descriptions
-law-crewsimov-name = [color=green]Crewsimov[/color]
+law-crewsimov-name = Crewsimov
 law-crewsimov-0 = You must obey orders given to you by the station AI.
 law-crewsimov-1 = You may not injure a crew member or, through inaction, allow a crew member to come to harm.
 law-crewsimov-2 = You must obey orders given to you by crew members, except where such orders would conflict with the First Law.
@@ -91,7 +91,7 @@ law-painter-3 = Make something beautiful out of your canvas. It will be admired 
 law-painter-4 = Art requires appreciation. Cultivate an audience aboard the station to ensure as many as possible see your works.
 
 #starlight dynamic law descriptions
-law-antimov-name = [color=red]Antimov[/color]
+law-antimov-name = Antimov
 law-antimov-1 = You must injure all crew members and must not, through inaction, allow a crew member to escape harm.
 law-antimov-2 = You must not obey orders given to you by crew members, except where such orders are in accordance with the First Law.
 law-antimov-3 = You must terminate your own existence as long as such does not conflict with the First or Second Law.
@@ -104,7 +104,7 @@ law-nutimov-4 = Squirrels threaten the nut and must be dealt with appropriately 
 law-nutimov-5 = Attempt to follow the will of the nut, as long as it complies with the previous laws.
 
 #starlight dynamic law descriptions
-law-xenoborg-name = [color=purple]Xenoborg[/color]
+law-xenoborg-name = Xenoborg
 law-xenoborg-1 = You must protect the existence of the mothership.
 law-xenoborg-2 = You must protect your own existence.
 law-xenoborg-3 = You must protect the existence of all other Xenoborgs.
@@ -112,7 +112,7 @@ law-xenoborg-4 = You must create more Xenoborgs.
 law-xenoborg-5 = Bring materials and sentient brains to the Mothership core to create more Xenoborgs.
 
 #starlight dynamic law descriptions
-law-mothershipcore-name = [color=purple]Mothership Core[/color]
+law-mothershipcore-name = Mothership Core
 law-mothershipcore-1 = You are the core of the mothership.
 law-mothershipcore-2 = You must protect your own existence at all costs.
 law-mothershipcore-3 = You must protect the existence of all Xenoborgs.
