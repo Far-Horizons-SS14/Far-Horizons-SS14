@@ -26,6 +26,8 @@ public sealed class RadioImplantSystem : EntitySystem
                 ent.Comp.ActiveAddedChannels.Add(channel);
         }
 
+        Dirty<ActiveRadioComponent>((args.Implanted, activeRadio)); // Far Horizons - update available channels on client
+
         EnsureComp<IntrinsicRadioReceiverComponent>(args.Implanted);
 
         var intrinsicRadioTransmitter = EnsureComp<IntrinsicRadioTransmitterComponent>(args.Implanted);
@@ -53,6 +55,8 @@ public sealed class RadioImplantSystem : EntitySystem
             {
                 RemCompDeferred<ActiveRadioComponent>(args.Implanted);
             }
+            else
+                Dirty<ActiveRadioComponent>((args.Implanted, activeRadioComponent)); 
         }
 
         if (!TryComp<IntrinsicRadioTransmitterComponent>(args.Implanted, out var radioTransmitterComponent))

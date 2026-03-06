@@ -20,7 +20,7 @@ public sealed partial class RadioSpeakerComponent : Component
     public bool ToggleOnInteract = true;
 
     [DataField]
-    public HashSet<ProtoId<RadioChannelPrototype>> Channels = new() { SharedChatSystem.CommonChannel };
+    public HashSet<ProtoId<RadioChannelPrototype>> Channels = new() { SharedChatSystem.DefaultCommonChannel };
 
     [DataField, AutoNetworkedField]
     public bool Enabled;

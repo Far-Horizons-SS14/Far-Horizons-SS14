@@ -43,7 +43,13 @@ public sealed class HeadsetSystem : SharedHeadsetSystem
         if (keyHolder.Channels.Count == 0)
             RemComp<ActiveRadioComponent>(uid);
         else
-            EnsureComp<ActiveRadioComponent>(uid).Channels = new(keyHolder.Channels);
+        // Far Horizons start
+        {
+            var activeRadio = EnsureComp<ActiveRadioComponent>(uid);
+            activeRadio.Channels = new(keyHolder.Channels);
+            Dirty<ActiveRadioComponent>((uid, activeRadio));
+        }
+        // Far Horizons end
     }
 
     private void OnSpeak(EntityUid uid, WearingHeadsetComponent component, EntitySpokeEvent args)
@@ -62,7 +68,11 @@ public sealed class HeadsetSystem : SharedHeadsetSystem
         base.OnGotEquipped(uid, component, args);
         if (component.IsEquipped && component.Enabled)
         {
-            EnsureComp<WearingHeadsetComponent>(args.Equipee).Headset = uid;
+            // Far Horizons start
+            var wearingHeadset = EnsureComp<WearingHeadsetComponent>(args.Equipee);
+            wearingHeadset.Headset = uid;
+            Dirty<WearingHeadsetComponent>((args.Equipee, wearingHeadset));
+            // Far Horizons end
             UpdateRadioChannels(uid, component);
         }
     }
@@ -94,7 +104,12 @@ public sealed class HeadsetSystem : SharedHeadsetSystem
         }
         else if (component.IsEquipped)
         {
-            EnsureComp<WearingHeadsetComponent>(Transform(uid).ParentUid).Headset = uid;
+            // Far Horizons start
+            var parentEnt = Transform(uid).ParentUid;
+            var wearingHeadset = EnsureComp<WearingHeadsetComponent>(parentEnt);
+            wearingHeadset.Headset = uid;
+            Dirty<WearingHeadsetComponent>((parentEnt, wearingHeadset));
+            // Far Horizons end
             UpdateRadioChannels(uid, component);
         }
     }

@@ -75,7 +75,13 @@ public sealed class RadioDeviceSystem : SharedRadioDeviceSystem
     private void OnSpeakerInit(EntityUid uid, RadioSpeakerComponent component, ComponentInit args)
     {
         if (component.Enabled)
-            EnsureComp<ActiveRadioComponent>(uid).Channels.UnionWith(component.Channels);
+        // Far Horizons start
+        {
+            var activeRadio = EnsureComp<ActiveRadioComponent>(uid);
+            activeRadio.Channels.UnionWith(component.Channels);
+            Dirty<ActiveRadioComponent>((uid, activeRadio));
+        }
+        // Far Horizons end
         else
             RemCompDeferred<ActiveRadioComponent>(uid);
     }

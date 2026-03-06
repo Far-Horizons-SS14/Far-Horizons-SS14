@@ -6,13 +6,13 @@ namespace Content.Shared.Radio.Components;
 /// <summary>
 ///     This component is required to receive radio message events.
 /// </summary>
-[RegisterComponent, NetworkedComponent]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class ActiveRadioComponent : Component
 {
     /// <summary>
     ///     The channels that this radio is listening on.
     /// </summary>
-    [DataField]
+    [DataField, AutoNetworkedField] // Far Horizons - make field auto networked
     public HashSet<ProtoId<RadioChannelPrototype>> Channels = new();
 
     /// <summary>

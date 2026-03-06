@@ -209,23 +209,25 @@ public sealed partial class EncryptionKeySystem : EntitySystem
     /// <param name="channelFTLPattern">String that provide id of pattern in .ftl files to format channel with variables of it.</param>
     public void AddChannelsExamine(HashSet<ProtoId<RadioChannelPrototype>> channels, string? defaultChannel, ExaminedEvent examineEvent, IPrototypeManager protoManager, string channelFTLPattern)
     {
-        RadioChannelPrototype? proto;
-        foreach (var id in channels)
-        {
-            proto = _protoManager.Index<RadioChannelPrototype>(id);
+        // Far Horizons start
+        var radioChannels = channels.Select(id => _protoManager.Index(id)).ToHashSet();
+        var keyCodes = SharedChatSystem.GetIndexedKeycodes(radioChannels);
 
-            var key = id == SharedChatSystem.CommonChannel
-                ? SharedChatSystem.RadioCommonPrefix.ToString()
-                : $"{SharedChatSystem.RadioChannelPrefix}{proto.KeyCode}";
+        foreach (var channel in radioChannels)
+        {
+            var key = SharedChatSystem.CommonChannels.Contains(channel.ID)
+                ? keyCodes[channel.ID]
+                : $"{SharedChatSystem.RadioChannelPrefix}{keyCodes[channel.ID]}";
 
             examineEvent.PushMarkup(Loc.GetString(channelFTLPattern,
-                ("color", proto.Color),
+                ("color", channel.Color),
                 ("key", key),
-                ("id", proto.LocalizedName),
-                ("freq", proto.Frequency / 10f)));
+                ("id", channel.LocalizedName),
+                ("freq", channel.Frequency / 10f)));
         }
+        // Far Horizons end
 
-        if (defaultChannel != null && _protoManager.TryIndex(defaultChannel, out proto))
+        if (defaultChannel != null && _protoManager.TryIndex(defaultChannel, out RadioChannelPrototype? proto))
         {
             if (HasComp<HeadsetComponent>(examineEvent.Examined))
             {

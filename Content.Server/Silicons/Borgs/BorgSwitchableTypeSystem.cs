@@ -26,7 +26,10 @@ public sealed class BorgSwitchableTypeSystem : SharedBorgSwitchableTypeSystem
             transmitter.Channels = [.. radioChannels];
 
         if (TryComp(ent, out ActiveRadioComponent? activeRadio))
+        {
             activeRadio.Channels = [.. radioChannels];
+            Dirty<ActiveRadioComponent>((ent, activeRadio)); // Far Horizons
+        }
 
         // Borg transponder for the robotics console
         if (TryComp(ent, out BorgTransponderComponent? transponder))
