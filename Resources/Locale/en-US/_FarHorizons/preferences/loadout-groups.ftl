@@ -43,3 +43,5 @@ loadout-group-Surgeon-backpack = Surgeon Backpack
 loadout-group-Surgeon-id = Surgeon PDA
 loadout-group-Surgeon-shoes = Surgeon Shoes
 loadout-group-Surgeon-equipment = Surgical Equipment
+
+loadout-group-survival = Survival Case
