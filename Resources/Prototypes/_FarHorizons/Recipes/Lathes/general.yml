@@ -1,0 +1,60 @@
+#region Bags
+- type: latheRecipe
+  id: BaseSoftPouchRecipe
+  completetime: 1
+  abstract: true
+  categories:
+  - General
+  materials:
+    Steel: 100
+    Cloth: 400
+
+- type: latheRecipe
+  id: BaseHardPouchRecipe
+  completetime: 2
+  abstract: true
+  categories:
+  - General
+  materials:
+    Steel: 400
+    Durathread: 200
+
+- type: latheRecipe
+  parent: BaseSoftPouchRecipe
+  id: SoftPouchScience
+  result: SoftPouchScience
+
+- type: latheRecipe
+  parent: BaseHardPouchRecipe
+  id: HardPouchScience
+  result: HardPouchScience
+
+- type: latheRecipe
+  parent: BaseSoftPouchRecipe
+  id: SoftPouchService
+  result: SoftPouchService
+
+- type: latheRecipe
+  parent: BaseHardPouchRecipe
+  id: HardPouchService
+  result: HardPouchService
+
+- type: latheRecipe
+  parent: BaseSoftPouchRecipe
+  id: SoftPouchEngineering
+  result: SoftPouchEngineering
+
+- type: latheRecipe
+  parent: BaseHardPouchRecipe
+  id: HardPouchEngineering
+  result: HardPouchEngineering
+
+- type: latheRecipe
+  parent: BaseSoftPouchRecipe
+  id: SoftPouchCargo
+  result: SoftPouchCargo
+
+- type: latheRecipe
+  parent: BaseHardPouchRecipe
+  id: HardPouchCargo
+  result: HardPouchCargo

@@ -1,4 +1,4 @@
-#Base Prototypes
+#region Base
 
 - type: latheRecipe
   abstract: true
@@ -7,6 +7,7 @@
   categories:
   - Armor
 
+#region Weapons
 - type: latheRecipe
   parent: BaseGoldBorgModuleRecipe
   id: BorgModuleLaserCarbine
@@ -140,6 +141,7 @@
     Silver: 200
     Gold: 50
 
+#region Armor
 - type: latheRecipe
   parent: BaseArmorRecipe
   id: SecwayArmorLightKit
@@ -150,3 +152,14 @@
     ReinforcedGlass: 1000
     Steel: 500
     Plastic: 500
+
+#region Bags
+- type: latheRecipe
+  parent: BaseSoftPouchRecipe
+  id: SoftPouchSecurity
+  result: SoftPouchSecurity
+
+- type: latheRecipe
+  parent: BaseHardPouchRecipe
+  id: HardPouchSecurity
+  result: HardPouchSecurity
