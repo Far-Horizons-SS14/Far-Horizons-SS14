@@ -21,6 +21,12 @@ public sealed partial class VehicleEquipmentComponent : Component
 
     [DataField]
     public TimeSpan InstallandRemoveTime = TimeSpan.FromSeconds(5);
+
+    [DataField]
+    public int Health = 100;
+
+    [DataField]
+    public float damageTransfer = 0.3f;
 }
 
 public static class EquipmentTypeExtensions

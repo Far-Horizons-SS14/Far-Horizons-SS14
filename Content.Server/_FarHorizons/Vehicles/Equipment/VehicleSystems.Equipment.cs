@@ -79,6 +79,7 @@ public sealed partial class VehicleEquipmentSystems : EntitySystem
         SubscribeLocalEvent<VehicleModsComponent, RefreshFrictionModifiersEvent>(OnFrictionRefresh);
         SubscribeLocalEvent<VehicleModsComponent, RefreshWeightlessModifiersEvent>(OnWeightlessRefresh);
         SubscribeLocalEvent<VehicleModsComponent, TurnOffVehicleEvent>(OnVehicleShutoff);
+        SubscribeLocalEvent<VehicleModsComponent, DamageChangedEvent>(OnDamageChanged);
     }
 
     private void OnCompInit(Entity<VehicleModsComponent> ent, ref ComponentInit args)
@@ -128,7 +129,7 @@ public sealed partial class VehicleEquipmentSystems : EntitySystem
 
             if (_ui.IsUiOpen(uid, VehicleEquipmentUiKey.Key))
             {
-                _ui.SetUiState(uid, VehicleEquipmentUiKey.Key, new VehicleEquipmentUiState(GetNetEntity(uid), GetRemainingPower(uid, component), GetRemainingPower(uid, component)));
+                _ui.SetUiState(uid, VehicleEquipmentUiKey.Key, new VehicleEquipmentUiState(GetNetEntity(uid), GetRemainingPower(uid, component), GetIntegrity(uid, component)));
             }
         }
     }
@@ -341,8 +342,11 @@ public sealed partial class VehicleEquipmentSystems : EntitySystem
     #endregion
 
     #region Functions
-    private int GetRemainingPower(EntityUid uid, VehicleComponent Comp)
+    private int GetRemainingPower(EntityUid uid, VehicleComponent? Comp=null)
     {
+        if(!Resolve(uid, ref Comp))
+            return 0;
+
         if(Comp.CellPowered)
         {
             if(!TryComp<PowerCellSlotComponent>(uid, out var slotComp))
@@ -361,6 +365,14 @@ public sealed partial class VehicleEquipmentSystems : EntitySystem
             
             return (int)Math.Round(SharedSolutionContainerSystem.PercentFull(solution));
         }
+    }
+
+    private int GetIntegrity(EntityUid uid, VehicleComponent? comp=null)
+    {
+        if(!Resolve(uid, ref comp) || !TryComp<DamageableComponent>(uid, out var damageComp))
+            return 0;
+
+        return (int) ((comp.Health-damageComp.TotalDamage) / comp.Health * 100);
     }
 
     private bool CheckandAssign(EntityUid item, VehicleModsComponent vmComp, VehicleEquipmentComponent? veComp=null)
@@ -423,5 +435,20 @@ public sealed partial class VehicleEquipmentSystems : EntitySystem
 
     private void GridUiChanged(Entity<VehicleModsComponent> ent, ref GridUidChangedEvent args)
         => _movementSpeed.RefreshWeightlessModifiers(ent.Owner);
+
+    private void OnDamageChanged(Entity<VehicleModsComponent> ent, ref DamageChangedEvent args)
+    {
+        if(!args.DamageIncreased || args.DamageDelta == null) return;
+        if(ent.Comp.Equipment.Count > 0)
+        {
+            foreach (var (slot, item) in ent.Comp.Equipment)
+            {
+                if(item == null || !TryComp<VehicleEquipmentComponent>(item, out var veComp))
+                    continue;
+                _damage.TryChangeDamage(item.Value, args.DamageDelta*veComp.damageTransfer, true);
+            }
+        }
+    }
+
     #endregion
 }

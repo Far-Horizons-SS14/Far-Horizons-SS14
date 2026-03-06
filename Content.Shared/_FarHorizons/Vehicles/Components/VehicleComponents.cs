@@ -68,6 +68,12 @@ public sealed partial class VehicleComponent : Component
     public int HandsNeeded = 2;
 
     /// <summary>
+    /// Vehicle health for integrity sake match it to the breakage trigger.
+    /// </summary>
+    [DataField("health")]
+    public int Health = 150;
+
+    /// <summary>
     /// how long does it take the vehicle to start
     /// </summary>
     [DataField("startupTime"), AutoNetworkedField]

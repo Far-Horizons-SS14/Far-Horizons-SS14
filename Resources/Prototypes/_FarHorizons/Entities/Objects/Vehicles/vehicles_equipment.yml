@@ -1,7 +1,28 @@
+- type: entity
+  id: VehicleEquipmentBase
+  parent: BaseItem
+  abstract: true
+  components:
+    - type: Appearance
+    - type: Damageable
+      damageModifierSet: VehicleLightArmor
+      damageContainer: StructuralInorganic
+    - type: Destructible
+      thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 100
+        behaviors:
+        - !type:PlaySoundBehavior
+          sound:
+            collection: MetalBreak
+        - !type:DoActsBehavior
+          acts: ["Breakage"]
+
 #region Headlights
 - type: entity
   id: ATVHeadlight
-  parent: BaseItem
+  parent: VehicleEquipmentBase
   name: ATV Headlight
   description: Standard headlight for ATVs. Mostly used to distract tiders as you run over them like they're deer in the middle of the road. 
   components:
@@ -22,11 +43,10 @@
       actionProto: ActionToggleLight
       slot: headlight
       allowedVehicles: [Electric, Gas, Spaceship]
-    - type: Appearance
 
 - type: entity
   id: SecwayLight
-  parent: BaseItem
+  parent: VehicleEquipmentBase
   name: Secway Light
   description: Standard light for Secways. Excellent for seeing those maints grilles before you crash into them! 
   components:
@@ -51,7 +71,7 @@
 
 - type: entity
   id: SecwayLightBright
-  parent: BaseItem
+  parent: VehicleEquipmentBase
   name: Bright Secway Light
   description: Upgraded light for Secways and Segways alike. Excellent for seeing those maints grilles before you crash into them! 
   components:
@@ -73,7 +93,7 @@
 #region Lightbars
 - type: entity
   id: SecSiren
-  parent: BaseItem
+  parent: VehicleEquipmentBase
   name: Security Siren
   description: Turn this thing on and those tiders will scatter like roaches, or they will jump you... Who knows?
   components:
@@ -109,7 +129,7 @@
 #region Tires
 - type: entity
   id: StandardTires
-  parent: BaseItem
+  parent: VehicleEquipmentBase
   name: Standard Tires
   description: Basic tires that have basic acceleration and traction. 
   components:
@@ -122,10 +142,11 @@
     - type: MovementSpeedModifier
       baseAcceleration: 2 
       baseFriction: 0.5625
+
 #region Engines
 - type: entity
   id: BasicEngine
-  parent: BaseItem
+  parent: VehicleEquipmentBase
   name: Basic Engine
   description: A basic engine with basic speed.
   components:
@@ -167,7 +188,7 @@
 
 - type: entity
   id: ElectricEngine
-  parent: BaseItem
+  parent: VehicleEquipmentBase
   name: Electric Motor
   description: A cheap electric motor capable of decent power output.
   components:
@@ -198,7 +219,7 @@
 #region Thrusters
 - type: entity
   id: BasicThrusters
-  parent: BaseItem
+  parent: VehicleEquipmentBase
   name: Basic Thrusters
   description: A a mass produced thruster with spaceflight capabilities but no FTL.
   components:
@@ -216,7 +237,7 @@
 #region Airtanks
 - type: entity
   id: VehicleAirTank
-  parent: BaseItem
+  parent: VehicleEquipmentBase
   name: Vehicle Air Tank
   description: A special air canister capable of holding a large amount of air.
   components:
@@ -257,7 +278,7 @@
 #region Ventfans
 - type: entity
   id: VentFan
-  parent: BaseItem
+  parent: VehicleEquipmentBase
   name: Vent Fan
   description: A special fan that pumps gas in and out of the vehicle cabin.
   components:
@@ -277,8 +298,8 @@
 #region Armor
 - type: entity
   id: BasicArmorKit
-  parent: BaseItem
-  name: Basic Armor Upgrade Kit
+  parent: VehicleEquipmentBase
+  name: Basic Armor Kit
   description: This kit allows you to upgrade most vehicle's armor to tier I.
   components:
     - type: Item
@@ -296,7 +317,7 @@
 - type: entity
   id: LightArmorKit
   parent: BasicArmorKit
-  name: Light Armor Upgrade Kit
+  name: Light Armor Kit
   description: This kit allows you to upgrade most vehicle's armor to tier II.
   components:
     - type: Sprite
