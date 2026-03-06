@@ -1,0 +1,139 @@
+#region Command
+- type: loadout
+  id: EmergencyOxygenExtendedCommand02
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: OxygenBreather
+  storage:
+    back:
+    - CaseSurvivalCommandFilled02
+
+- type: loadout
+  id: EmergencyNitrogenExtendedCommandN2
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: NitrogenBreather
+  storage:
+    back:
+    - CaseSurvivalCommandFilledN2
+
+- type: loadout
+  id: EmergencyNonBreatherExtendedCommandNone
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: NonBreather
+  storage:
+    back:
+    - CaseSurvivalCommandFilledNone
+
+#region Science
+- type: loadout
+  id: EmergencyOxygenScience
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: OxygenBreather
+  storage:
+    back:
+    - CaseSurvivalScienceFilled02
+
+- type: loadout
+  id: EmergencyNitrogenScience
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: NitrogenBreather
+  storage:
+    back:
+    - CaseSurvivalScienceFilledN2
+
+- type: loadout
+  id: EmergencyNonBreatherScience
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: NonBreather
+  storage:
+    back:
+    - CaseSurvivalScienceFilledNone
+
+#region Service
+- type: loadout
+  id: EmergencyOxygenService
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: OxygenBreather
+  storage:
+    back:
+    - CaseSurvivalServiceFilled02
+
+- type: loadout
+  id: EmergencyNitrogenService
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: NitrogenBreather
+  storage:
+    back:
+    - CaseSurvivalServiceFilledN2
+
+- type: loadout
+  id: EmergencyNonBreatherService
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: NonBreather
+  storage:
+    back:
+    - CaseSurvivalServiceFilledNone
+
+#region Cargo
+- type: loadout
+  id: EmergencyOxygenCargo
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: OxygenBreather
+  storage:
+    back:
+    - CaseSurvivalCargoFilled02
+
+- type: loadout
+  id: EmergencyNitrogenCargo
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: NitrogenBreather
+  storage:
+    back:
+    - CaseSurvivalCargoFilledN2
+
+- type: loadout
+  id: EmergencyNonBreatherCargo
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: NonBreather
+  storage:
+    back:
+    - CaseSurvivalCargoFilledNone
+
+#region Station Management
+- type: loadout
+  id: EmergencyOxygenStationManagement
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: OxygenBreather
+  storage:
+    back:
+    - CaseSurvivalStationManagementFilled02
+
+- type: loadout
+  id: EmergencyNitrogenStationManagement
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: NitrogenBreather
+  storage:
+    back:
+    - CaseSurvivalStationManagementFilledN2
+
+- type: loadout
+  id: EmergencyNonBreatherStationManagement
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: NonBreather
+  storage:
+    back:
+    - CaseSurvivalStationManagementFilledNone

@@ -1,5 +1,27 @@
 #region GSL
 
+- type: loadoutGroup
+  id: SurvivalCargo
+  name: loadout-group-survival
+  minLimit: 2
+  hidden: true
+  loadouts:
+  - EmergencyOxygenCargo
+  - EmergencyNitrogenCargo
+  - EmergencyNonBreatherCargo
+
+# Quartermaster
+
+- type: loadoutGroup
+  id: SurvivalQuartermaster
+  name: loadout-group-survival
+  minLimit: 2
+  hidden: true
+  loadouts:
+  - EmergencyOxygenExtendedCommand02
+  - EmergencyNitrogenExtendedCommandN2
+  - EmergencyNonBreatherExtendedCommandNone
+
 # Mining Specialist
 
 - type: loadoutGroup
@@ -101,14 +123,55 @@
 
 
 
-
-
-
+#region Station Management
+##TODO - Eventually seperate into BSO/NTR/MAGI/IAA(s) when unique survival kit loadouts are thought up for them.
+- type: loadoutGroup
+  id: SurvivalStationManagement
+  name: loadout-group-survival
+  minLimit: 2
+  hidden: true
+  loadouts:
+  - EmergencyOxygenStationManagement
+  - EmergencyNitrogenStationManagement
+  - EmergencyNonBreatherStationManagement
 
 
 #region Command
 
+# Captain
+- type: loadoutGroup
+  id: SurvivalCaptain
+  name: loadout-group-survival
+  minLimit: 2
+  hidden: true
+  loadouts:
+  - EmergencyOxygenExtendedCommand02
+  - EmergencyNitrogenExtendedCommandN2
+  - EmergencyNonBreatherExtendedCommandNone
 
+# Head of Personnel
+- type: loadoutGroup
+  id: SurvivalHeadOfPersonnel
+  name: loadout-group-survival
+  minLimit: 2
+  hidden: true
+  loadouts:
+  - EmergencyOxygenExtendedCommand02
+  - EmergencyNitrogenExtendedCommandN2
+  - EmergencyNonBreatherExtendedCommandNone
+
+# Research Director
+- type: loadoutGroup
+  id: SurvivalResearchDirector
+  name: loadout-group-survival
+  minLimit: 2
+  hidden: true
+  loadouts:
+  - EmergencyOxygenExtendedCommand02
+  - EmergencyNitrogenExtendedCommandN2
+  - EmergencyNonBreatherExtendedCommandNone
+
+# General Command
 - type: loadoutGroup
   id: CommandEyewear
   name: loadout-group-command-eyewear
@@ -125,6 +188,15 @@
   - CEHeadsetAlt
   - CEHeadset
 
+- type: loadoutGroup
+  id: SurvivalChiefEngineer
+  name: loadout-group-survival
+  minLimit: 2
+  hidden: true
+  loadouts:
+  - EmergencyOxygenExtendedCommand02
+  - EmergencyNitrogenExtendedCommandN2
+  - EmergencyNonBreatherExtendedCommandNone
 # Chief Medical Officer
 
 - type: loadoutGroup
@@ -145,6 +217,15 @@
     - VirologySatchel
     - LeatherSatchel
 
+- type: loadoutGroup
+  id: SurvivalChiefMedicalOfficer
+  name: loadout-group-survival
+  minLimit: 2
+  hidden: true
+  loadouts:
+  - EmergencyOxygenExtendedCommand02
+  - EmergencyNitrogenExtendedCommandN2
+  - EmergencyNonBreatherExtendedCommandNone
 # NTR
 
 - type: loadoutGroup
@@ -169,6 +250,28 @@
   - SecurityPistolEnforcerFH
   - SecurityPistolPathology
   - SecurityMk58
+
+- type: loadoutGroup
+  id: SurvivalHeadOfSecurity
+  name: loadout-group-survival
+  minLimit: 2
+  hidden: true
+  loadouts:
+  - EmergencyOxygenExtendedCommand02
+  - EmergencyNitrogenExtendedCommandN2
+  - EmergencyNonBreatherExtendedCommandNone
+
+#region Research
+
+- type: loadoutGroup
+  id: SurvivalResearch
+  name: loadout-group-survival
+  minLimit: 2
+  hidden: true
+  loadouts:
+  - EmergencyOxygenScience
+  - EmergencyNitrogenScience
+  - EmergencyNonBreatherScience
 
 #region Engineering
 
@@ -459,3 +562,13 @@
   minLimit: 0
   loadouts:
   - LizardPlushieZookeeper
+
+- type: loadoutGroup
+  id: SurvivalService
+  name: loadout-group-survival
+  minLimit: 2
+  hidden: true
+  loadouts:
+  - EmergencyOxygenService
+  - EmergencyNitrogenService
+  - EmergencyNonBreatherService

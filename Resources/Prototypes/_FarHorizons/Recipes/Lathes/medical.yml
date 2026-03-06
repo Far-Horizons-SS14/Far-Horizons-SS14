@@ -1,4 +1,4 @@
-# Blast-Proof Containers
+#region Blast-Proof
 
 - type: latheRecipe
   id: JugReinforced
@@ -42,7 +42,18 @@
   materials:
     ReinforcedGlass: 400
 
-# The lonely syringe
+#region Bags
+- type: latheRecipe
+  parent: BaseSoftPouchRecipe
+  id: SoftPouchMedical
+  result: SoftPouchMedical
+
+- type: latheRecipe
+  parent: BaseHardPouchRecipe
+  id: HardPouchMedical
+  result: HardPouchMedical
+
+#region Misc
 
 - type: latheRecipe
   id: SlowAutoinjector

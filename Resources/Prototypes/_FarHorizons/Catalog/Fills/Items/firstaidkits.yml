@@ -74,3 +74,25 @@
       - id: BruteAutoInjector
       - id: BurnAutoInjector
       - id: BurnAutoInjector
+
+- type: entity
+  id: ParamedicMedkitFilled
+  suffix: Filled
+  parent: ParamedicMedkit
+  components:
+  - type: StorageFill
+    contents:
+        # Top #
+      - id: Bluebrutepack20
+        amount: 2
+      - id: Blueointment20
+        amount: 2
+      - id: Bloodpack
+      - id: AmmoniaPack
+        # Bottom #
+      - id: EmergencyMedipen
+        amount: 4
+      - id: BruteAutoInjector
+      - id: BurnAutoInjector
+      - id: AntiPoisonMedipen
+      - id: RadAutoInjector

@@ -1,5 +1,11 @@
 #region Static recipes
 
+- type: latheRecipePack
+  id: FarHorizonsSecurityGeneralEquipmentStatic
+  recipes:
+  - SoftPouchSecurity
+  - HardPouchSecurity
+
 # Practice ammo/mags and practice weapons
 - type: latheRecipePack
   id: FarHorizonsSecurityPracticeStatic
@@ -99,7 +105,7 @@
   - Rifle556HeavyMagazineFMJ
   - Rifle556HeavyMagazineEmpty
 
-## Dynamic recipes
+#region Dynamic recipes
 - type: latheRecipePack
   id: FarHorizonsSecurityWeaponsDynamic
   recipes:

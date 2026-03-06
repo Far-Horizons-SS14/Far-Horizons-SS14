@@ -5,7 +5,7 @@
   id: Medkit
   components:
   - type: Sprite
-    sprite: _Starlight/Objects/Specific/Medical/firstaidkits.rsi
+    sprite: _FarHorizons/Objects/Specific/Medical/firstaidkits.rsi #FH
     state: firstaid
   - type: Storage
     maxItemSize: Small
@@ -13,7 +13,7 @@
     - 0,0,3,1
   - type: Item
     size: Large
-    sprite: _Starlight/Objects/Specific/Medical/firstaidkits.rsi
+    sprite: _Starlight/Objects/Specific/Medical/firstaidkits.rsi #FH
     heldPrefix: firstaid
   - type: PhysicalComposition
     materialComposition:
@@ -29,9 +29,11 @@
   id: MedkitBurn
   components:
   - type: Sprite
-    sprite: _Starlight/Objects/Specific/Medical/firstaidkits.rsi
+    sprite: _FarHorizons/Objects/Specific/Medical/firstaidkits.rsi #FH
     state: burnkit
   - type: Item
+    size: Large #FH
+    sprite: _Starlight/Objects/Specific/Medical/firstaidkits.rsi #FH
     heldPrefix: burnkit
 
 - type: entity
@@ -41,9 +43,11 @@
   id: MedkitToxin
   components:
   - type: Sprite
-    sprite: _Starlight/Objects/Specific/Medical/firstaidkits.rsi
+    sprite: _FarHorizons/Objects/Specific/Medical/firstaidkits.rsi #FH
     state: toxinkit
   - type: Item
+    size: Large #FH
+    sprite: _Starlight/Objects/Specific/Medical/firstaidkits.rsi #FH
     heldPrefix: toxinkit
 
 - type: entity
@@ -53,9 +57,11 @@
   id: MedkitO2
   components:
   - type: Sprite
-    sprite: _Starlight/Objects/Specific/Medical/firstaidkits.rsi
+    sprite: _FarHorizons/Objects/Specific/Medical/firstaidkits.rsi #FH
     state: o2kit
   - type: Item
+    size: Large #FH
+    sprite: _Starlight/Objects/Specific/Medical/firstaidkits.rsi #FH
     heldPrefix: o2kit
 
 - type: entity
@@ -65,9 +71,11 @@
   id: MedkitBrute
   components:
   - type: Sprite
-    sprite: _Starlight/Objects/Specific/Medical/firstaidkits.rsi
+    sprite: _FarHorizons/Objects/Specific/Medical/firstaidkits.rsi #FH
     state: brutekit
   - type: Item
+    size: Large #FH
+    sprite: _Starlight/Objects/Specific/Medical/firstaidkits.rsi #FH
     heldPrefix: brutekit
 
 - type: entity
@@ -76,10 +84,38 @@
   parent: Medkit
   id: MedkitAdvanced
   components:
+  #FarHorizons start
+  - type: Storage
+    whitelist:
+       tags:
+        - GlassBeaker
+        - Patch
+        - Bottle
+        - Spray
+        - Brutepack
+        - Bloodpack
+        - Gauze
+        - Ointment
+        - CigPack
+        - PillCanister
+        - Radio
+        - DiscreteHealthAnalyzer
+        - SurgeryTool
+        - Dropper
+        - AmmoniaPack
+        - AutoMender
+        - Hypospray
+       components:
+        - Injector
+        - Pill
+        - HandLabeler
+    #FarHorizons end
   - type: Sprite
-    sprite: _Starlight/Objects/Specific/Medical/firstaidkits.rsi
+    sprite: _FarHorizons/Objects/Specific/Medical/firstaidkits.rsi #FH
     state: advkit
   - type: Item
+    size: Normal #FH
+    sprite: _FarHorizons/Objects/Specific/Medical/firstaidkits.rsi #FH
     heldPrefix: advkit
 
 - type: entity
@@ -89,9 +125,11 @@
   id: MedkitRadiation
   components:
   - type: Sprite
-    sprite: _Starlight/Objects/Specific/Medical/firstaidkits.rsi
+    sprite: _FarHorizons/Objects/Specific/Medical/firstaidkits.rsi #FH
     state: radkit
   - type: Item
+    size: Large #FH
+    sprite: _Starlight/Objects/Specific/Medical/firstaidkits.rsi #FH
     heldPrefix: radkit
 
 - type: entity
@@ -134,9 +172,9 @@
         - HandLabeler
     #Starlight end
   - type: Sprite
-    sprite: _Starlight/Objects/Specific/Medical/firstaidkits.rsi
+    sprite: _FarHorizons/Objects/Specific/Medical/firstaidkits.rsi #FH
     state: blackkit
   - type: Item
     heldPrefix: blackkit
+    sprite: _Starlight/Objects/Specific/Medical/firstaidkits.rsi #FH
     size: Normal
-

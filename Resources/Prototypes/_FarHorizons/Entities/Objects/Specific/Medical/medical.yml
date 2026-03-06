@@ -7,6 +7,11 @@
   - type: Sprite
     sprite: _FarHorizons/Objects/Specific/Medical/firstaidkits.rsi
     state: BrigKube
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    damage:
+      types:
+        Blunt: 8 #Chonky - Crowbar damage, for reference.
   - type: Storage
     whitelist:
       tags:
@@ -38,6 +43,53 @@
   - type: Tag
     tags:
     - Medkit
+
+- type: entity
+  name: Responder Kit
+  description: A heavy duty version of the advanced first aid kit typically utilized by paramedical staff.
+  parent: BaseStorageItem
+  id: ParamedicMedkit
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Specific/Medical/firstaidkits.rsi
+    state: ResponderKit
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    damage:
+      types:
+        Blunt: 8
+  - type: Storage
+    whitelist:
+      tags:
+        - GlassBeaker
+        - Patch
+        - Bottle
+        - Spray
+        - Brutepack
+        - Bloodpack
+        - Gauze
+        - Ointment
+        - CigPack
+        - PillCanister
+        - Radio
+        - DiscreteHealthAnalyzer
+        - SurgeryTool
+        - Dropper
+        - AmmoniaPack
+        - AutoMender
+        - Hypospray
+      components:
+        - Injector
+        - Pill
+        - HandLabeler
+    grid:
+    - 0,1,0,2
+    - 1,0,4,3
+    - 5,1,5,2
+  - type: Item
+    size: Normal
+    sprite: _FarHorizons/Objects/Specific/Medical/firstaidkits.rsi
+    heldPrefix: responderkit
 
 - type: entity
   name: Miniature Hypospray Case

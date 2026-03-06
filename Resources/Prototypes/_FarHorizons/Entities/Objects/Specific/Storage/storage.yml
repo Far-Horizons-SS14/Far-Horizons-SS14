@@ -1,0 +1,586 @@
+#region Hard Pouches
+- type: entity
+  name: Hard Pouch Base
+  parent: BaseStorageItem
+  description: "A metallic pouch used for storing items efficently."
+  id: BaseHardPouch
+  abstract: true
+  components:
+  - type: Storage
+    maxItemSize: Normal
+    grid:
+    - 0,0,3,1
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Storage/Departmental/medical.rsi
+    state: med_hardpouch
+  - type: Item
+    size: Normal
+    heldPrefix: medhard
+
+- type: entity
+  name: Medical Hard Pouch
+  parent: BaseHardPouch
+  description: "A metallic pouch used for storing medical items efficently."
+  id: HardPouchMedical
+  components:
+  - type: Storage
+    whitelist:
+       tags:
+        - GlassBeaker
+        - Patch
+        - Bottle
+        - Spray
+        - Brutepack
+        - Bloodpack
+        - Gauze
+        - Ointment
+        - CigPack
+        - PillCanister
+        - Radio
+        - DiscreteHealthAnalyzer
+        - SurgeryTool
+        - Dropper
+        - AmmoniaPack
+        - AutoMender
+        - Hypospray
+       components:
+        - Injector
+        - Pill
+        - HandLabeler
+
+- type: entity
+  name: Security Hard Pouch
+  parent: [BaseHardPouch, BaseSecurityContraband]
+  description: "A metallic pouch used for storing security related items efficently."
+  id: HardPouchSecurity
+  components:
+  - type: Storage
+    whitelist:
+      tags:
+      - CigPack
+      - Taser
+      - SecBeltEquip
+      - Radio
+      - Sidearm
+      - MagazinePistol
+      - MagazineMagnum
+      - CombatKnife
+      - Truncheon
+      - HandGrenade 
+      components:
+      - Stunbaton
+      - FlashOnTrigger
+      - SmokeOnTrigger
+      - Flash
+      - Handcuff
+      - BallisticAmmoProvider
+      - CartridgeAmmo
+      - DoorRemote
+      - Whistle
+      - BalloonPopper
+      - Injector
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Storage/Departmental/security.rsi
+    state: sec_hardpouch
+  - type: Item
+    size: Normal
+    heldPrefix: sechard
+
+- type: entity
+  name: Science Hard Pouch
+  parent: BaseHardPouch
+  description: "A metallic pouch used for storing scientific items efficently."
+  id: HardPouchScience
+  components:
+  - type: Storage
+    whitelist:
+      tags:
+        - Wirecutter
+        - Crowbar
+        - Screwdriver
+        - Flashlight
+        - Wrench
+        - GeigerCounter
+        - Flare
+        - CableCoil
+        - Powerdrill
+        - JawsOfLife
+        - CigPack
+        - Radio
+        - HolofanProjector
+        - Multitool
+        - AppraisalTool
+        - GPS
+        - WeldingMask
+        - RemoteSignaller
+        - ImprovisedCrowbar
+        - ImprovisedScrewdriver
+        - ImprovisedWirecutter
+        - ImprovisedWrench
+        - ImprovisedMultitool
+        - AnomalyScanner
+        - NodeScanner
+        - AnomalyLocator
+      components:
+        - StationMap
+        - SprayPainter
+        - SprayPainterAmmo
+        - NetworkConfigurator
+        - Welder
+        - PowerCell
+        - Geiger
+        - TrayScanner
+        - GasAnalyzer
+        - HandLabeler
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Storage/Departmental/science.rsi
+    state: sci_hardpouch
+  - type: Item
+    size: Normal
+    heldPrefix: scihard
+
+- type: entity #Sec techfab maybe? Need a techfab that- OH HOP
+  name: Command Hard Pouch
+  parent: [BaseHardPouch, BaseCommandContraband]
+  description: "A metallic pouch used for storing command's things efficently."
+  id: HardPouchCommand
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Storage/Departmental/command.rsi
+    state: com_hardpouch
+  - type: Item
+    size: Normal
+    heldPrefix: comhard
+
+- type: entity
+  name: Service Hard Pouch
+  parent: BaseHardPouch
+  description: "A metallic pouch used for storing service-related items efficently."
+  id: HardPouchService
+  components:
+  - type: Storage
+    whitelist:
+      tags:
+        - DrinkBottle
+        - PlantSampleTaker
+        - BotanyShovel
+        - BotanyHoe
+        - BotanyHatchet
+        - PlantBGone
+        - Bottle
+        - Syringe
+        - CigPack
+        - Dropper
+      components:
+        - Seed
+        - Smokable
+        - HandLabeler
+        - Produce
+        - Edible
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Storage/Departmental/service.rsi
+    state: service_hardpouch
+  - type: Item
+    size: Normal
+    heldPrefix: servicehard
+
+- type: entity
+  name: Engineering Hard Pouch
+  parent: BaseHardPouch
+  description: "A metallic pouch used for storing engineering tools and materials efficently."
+  id: HardPouchEngineering
+  components:
+  - type: Storage
+    whitelist:
+      tags:
+      - Powerdrill
+      - Wirecutter
+      - Crowbar
+      - Screwdriver
+      - Flashlight
+      - Wrench
+      - GeigerCounter
+      - Flare
+      - CableCoil
+      - CigPack
+      - Radio
+      - HolofanProjector
+      - Multitool
+      - AppraisalTool
+      - JawsOfLife
+      - GPS
+      - WeldingMask
+      - RemoteSignaller
+      - UtilityKnife
+      - ImprovisedCrowbar
+      - ImprovisedScrewdriver
+      - ImprovisedWirecutter
+      - ImprovisedWrench
+      - ImprovisedMultitool
+      - SyndicateJawsOfLife
+      - PrototypeJawsOfLife
+      - ConstructionMaterial
+      - Sheet
+      components:
+      - StationMap
+      - SprayPainter
+      - SprayPainterAmmo
+      - NetworkConfigurator
+      - RCD
+      - RCDAmmo
+      - Welder
+      - PowerCell
+      - Geiger
+      - TrayScanner
+      - GasAnalyzer
+      - HandLabeler
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Storage/Departmental/engineering.rsi
+    state: engi_hardpouch
+  - type: Item
+    size: Normal
+    heldPrefix: engihard
+
+- type: entity
+  name: Cargo Hard Pouch
+  parent: BaseHardPouch
+  description: "A metallic pouch used for storing cargo related tools and materials efficently."
+  id: HardPouchCargo
+  components:
+  - type: Storage
+    whitelist:
+      tags:
+      - Wirecutter
+      - Crowbar
+      - Screwdriver
+      - Flashlight
+      - Wrench
+      - GeigerCounter
+      - Flare
+      - CableCoil
+      - Powerdrill
+      - JawsOfLife
+      - CigPack
+      - Radio
+      - HolofanProjector
+      - Multitool
+      - AppraisalTool
+      - GPS
+      - WeldingMask
+      - RemoteSignaller
+      - ImprovisedCrowbar
+      - ImprovisedScrewdriver
+      - ImprovisedWirecutter
+      - ImprovisedWrench
+      - ImprovisedMultitool
+      - Knife
+      - GrappleGun
+      - Write
+      - Paper
+      - ConstructionMaterial
+      - Sheet
+      components:
+      - StationMap
+      - SprayPainter
+      - SprayPainterAmmo
+      - NetworkConfigurator
+      - Welder
+      - PowerCell
+      - Geiger
+      - TrayScanner
+      - GasAnalyzer
+      - HandLabeler
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Storage/Departmental/cargo.rsi
+    state: cargo_hardpouch
+  - type: Item
+    size: Normal
+    heldPrefix: cargohard
+
+#region Soft Pouches
+- type: entity
+  name: Soft Pouch Base
+  parent: BaseStorageItem
+  description: "A threaded pouch used for storing small items efficently."
+  id: BaseSoftPouch
+  abstract: true
+  components:
+  - type: Storage
+    maxItemSize: Tiny
+    grid:
+    - 0,0,1,2
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Storage/Departmental/medical.rsi
+    state: med_pouch
+  - type: Item
+    size: Small
+    heldPrefix: medsoft
+
+- type: entity
+  name: Medical Soft Pouch
+  parent: BaseSoftPouch
+  id: SoftPouchMedical
+
+- type: entity
+  name: Security Soft Pouch
+  parent: [BaseSoftPouch, BaseSecurityContraband]
+  id: SoftPouchSecurity
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Storage/Departmental/security.rsi
+    state: sec_pouch
+  - type: Item
+    size: Small
+    heldPrefix: secsoft
+
+- type: entity
+  name: Science Soft Pouch
+  parent: BaseSoftPouch
+  id: SoftPouchScience
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Storage/Departmental/science.rsi
+    state: sci_pouch
+  - type: Item
+    size: Small
+    heldPrefix: scisoft
+
+- type: entity
+  name: Command Soft Pouch
+  parent: [BaseSoftPouch, BaseCommandContraband]
+  id: SoftPouchCommand
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Storage/Departmental/command.rsi
+    state: com_pouch
+  - type: Item
+    size: Small
+    heldPrefix: comsoft
+
+- type: entity
+  name: Service Soft Pouch
+  parent: BaseSoftPouch
+  id: SoftPouchService
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Storage/Departmental/service.rsi
+    state: service_pouch
+  - type: Item
+    size: Small
+    heldPrefix: servicesoft
+
+- type: entity
+  name: Engineering Soft Pouch
+  parent: BaseSoftPouch
+  id: SoftPouchEngineering
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Storage/Departmental/engineering.rsi
+    state: engi_pouch
+  - type: Item
+    size: Small
+    heldPrefix: engisoft
+
+- type: entity
+  name: Cargo Soft Pouch
+  parent: BaseSoftPouch
+  id: SoftPouchCargo
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Storage/Departmental/cargo.rsi
+    state: cargo_pouch
+  - type: Item
+    size: Small
+    heldPrefix: cargosoft
+
+#region Survial Cases
+- type: entity
+  name: Metal Case
+  parent: BaseStorageItem
+  id: BaseCaseSurvival
+  description: A large metal case for storing survival essentials.
+  abstract: true
+  components:
+  - type: Storage
+    maxItemSize: Normal
+    grid:
+    - 0,0,4,1
+    - 0,3,4,4
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 300
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Storage/Departmental/medical.rsi
+    state: med_survival
+  - type: Item
+    size: Large
+    heldPrefix: medsurv
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    damage:
+      types:
+        Blunt: 10
+
+- type: entity
+  name: Medical Survival Case # Mask / 2 Epi / 1 Spacepen / MRE & Flask / Tank / Gauze / Brute Pack / Tourniquet / Red & Purple Blood Bag
+  parent: BaseCaseSurvival
+  id: CaseSurvivalMedical
+  components:
+  - type: Storage
+    whitelist:
+      tags:
+      - SurvivalKitItems
+      - FoodSnack
+      - Tourniquet
+      - Brutepack
+      - Bloodpack
+      - Gauze
+      - AmmoniaPack
+      components:
+      - Injector
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Storage/Departmental/medical.rsi
+    state: med_survival
+  - type: Item
+    size: Large
+    heldPrefix: medsurv
+
+- type: entity
+  name: Security Survival Case # Mask / Extended Tank / Donut & Flask & Mre / Tourniquet / Epi & Spacepen / 2 shotgun lethal / 3 shotgun flare / Sec flaregun
+  parent: [BaseCaseSurvival, BaseSecurityContraband]
+  id: CaseSurvivalSecurity
+  components:
+  - type: Storage
+    whitelist:
+      tags:
+      - SurvivalKitItems
+      - ShellShotgun
+      - FoodSnack
+      - Tourniquet
+      - Donut
+      components:
+      - Injector
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Storage/Departmental/security.rsi
+    state: sec_survival
+  - type: Item
+    size: Large
+    heldPrefix: secsurv
+
+- type: entity
+  name: Science Survival Case # Mask / Tank / Flask & Mre / Epi & 2 spacepen / APE board / 30 lv cables / Ointment / 2 modular machine part / brownie / portable fire extinqiusher
+  parent: BaseCaseSurvival
+  id: CaseSurvivalScience
+  components:
+  - type: Storage
+    whitelist:
+      tags:
+      - SurvivalKitItems
+      - FoodSnack
+      - CableCoil
+      - Ointment
+      - PocketFireExtinguish
+      - RamChip
+      - MicroManipulatorStockPart
+      components:
+      - Injector
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Storage/Departmental/science.rsi
+    state: sci_survival
+  - type: Item
+    size: Large
+    heldPrefix: scisurv
+
+- type: entity
+  name: Command Survival Case
+  parent: [BaseCaseSurvival, BaseCommandContraband]
+  id: CaseSurvivalCommand
+  components:
+  - type: Storage
+    whitelist:
+      tags:
+      - SurvivalKitItems
+      - FoodSnack
+      - ShellShotgun
+      components:
+      - Injector
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Storage/Departmental/command.rsi
+    state: com_survival
+  - type: Item
+    size: Large
+    heldPrefix: comsurv
+
+- type: entity
+  name: Service Survival Case
+  parent: BaseCaseSurvival
+  id: CaseSurvivalService
+  components:
+  - type: Storage
+    whitelist:
+      tags:
+      - SurvivalKitItems
+      - FoodSnack
+      - ShellShotgun
+      - DrinkBottle
+      - Pie
+      components:
+      - Injector
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Storage/Departmental/service.rsi
+    state: service_survival
+  - type: Item
+    size: Large
+    heldPrefix: servicesurv
+
+- type: entity
+  name: Engineering Survival Case
+  parent: BaseCaseSurvival
+  id: CaseSurvivalEngineering
+  components:
+  - type: Storage
+    whitelist:
+      tags:
+      - SurvivalKitItems
+      - FoodSnack
+      - Inflatable
+      components:
+      - Injector
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Storage/Departmental/engineering.rsi
+    state: engi_survival
+  - type: Item
+    size: Large
+    heldPrefix: engisurv
+
+- type: entity
+  name: Cargo Survival Case
+  parent: BaseCaseSurvival
+  id: CaseSurvivalCargo
+  components:
+  - type: Storage
+    whitelist:
+      tags:
+      - SurvivalKitItems
+      - FoodSnack
+      - ShellShotgun
+      components:
+      - Injector
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Storage/Departmental/cargo.rsi
+    state: cargo_survival
+  - type: Item
+    size: Large
+    heldPrefix: cargosurv
+
+- type: entity
+  name: Station Management Survival Case
+  parent: CaseSurvivalCommand
+  id: CaseSurvivalStationManagement
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Storage/Departmental/station_management.rsi
+    state: mang_surv
+  - type: Item
+    size: Large
+    heldPrefix: mangsurv

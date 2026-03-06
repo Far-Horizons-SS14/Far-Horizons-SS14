@@ -1,0 +1,556 @@
+## Todo - Make some of these a bit less generic. I don't play most of the depts here, need to shape contents based on player feedback..
+
+#region Medical
+- type: entity
+  parent: CaseSurvivalMedical
+  id: CaseSurvivalMedicalFilled02
+  suffix: Standard 02
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: EmergencyOxygenTankFilled
+        - id: EmergencyMedipen
+          amount: 2
+        - id: SpaceMedipen
+        - id: ClothingMaskBreathMedical
+        - id: FoodSnackNutribrick
+        - id: DrinkMREFlask
+        - id: Gauze
+        - id: Tourniquet
+        - id: Brutepack
+        - id: Bloodpack
+        - id: AmmoniaPack
+
+- type: entity
+  parent: CaseSurvivalMedical
+  id: CaseSurvivalMedicalFilledN2
+  suffix: Standard N2
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: EmergencyNitrogenTankFilled
+        - id: EmergencyMedipen
+          amount: 2
+        - id: SpaceMedipen
+        - id: ClothingMaskBreathMedical
+        - id: FoodSnackNutribrick
+        - id: DrinkMREFlask
+        - id: Gauze
+        - id: Tourniquet
+        - id: Brutepack
+        - id: Bloodpack
+        - id: AmmoniaPack
+
+- type: entity
+  parent: CaseSurvivalMedical
+  id: CaseSurvivalMedicalFilledNone
+  suffix: Standard Nonbreather
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: EmergencyMedipen
+          amount: 2
+        - id: SpaceMedipen
+        - id: FoodSnackNutribrick
+          amount: 2
+        - id: DrinkMREFlask
+        - id: FoodSnackMREBrownie
+        - id: Gauze
+        - id: Tourniquet
+        - id: Brutepack
+        - id: Bloodpack
+        - id: AmmoniaPack
+
+#region Security
+- type: entity
+  parent: CaseSurvivalSecurity
+  id: CaseSurvivalSecurityFilled02
+  suffix: Standard 02
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ExtendedEmergencyOxygenTankFilled
+        - id: EmergencyMedipen
+        - id: SpaceMedipen
+        - id: ClothingMaskGasSecurity
+        - id: FoodSnackNutribrick
+        - id: DrinkMREFlask
+        - id: FoodDonutHomer
+        - id: Tourniquet
+        - id: WeaponFlareGunSecurity
+        - id: ShellShotgunFlare
+          amount: 3
+        - id: ShellShotgun
+          amount: 2
+
+- type: entity
+  parent: CaseSurvivalSecurity
+  id: CaseSurvivalSecurityFilledN2
+  suffix: Standard N2
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ExtendedEmergencyNitrogenTankFilled
+        - id: EmergencyMedipen
+        - id: SpaceMedipen
+        - id: ClothingMaskGasSecurity
+        - id: FoodSnackNutribrick
+        - id: DrinkMREFlask
+        - id: FoodDonutHomer
+        - id: Tourniquet
+        - id: WeaponFlareGunSecurity
+        - id: ShellShotgunFlare
+          amount: 3
+        - id: ShellShotgun
+          amount: 2
+
+- type: entity
+  parent: CaseSurvivalSecurity
+  id: CaseSurvivalSecurityFilledNone
+  suffix: Standard Nonbreather
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: EmergencyMedipen
+        - id: SpaceMedipen
+        - id: ClothingMaskGasSecurity
+        - id: FoodSnackNutribrick
+        - id: DrinkMREFlask
+        - id: FoodDonutJellyHomer
+        - id: FoodDonutJellyScurret
+        - id: FoodDonutJellyChocolate
+        - id: Tourniquet
+        - id: WeaponFlareGunSecurity
+        - id: ShellShotgunFlare
+          amount: 3
+        - id: ShellShotgun
+          amount: 2
+
+#region Service
+- type: entity
+  parent: CaseSurvivalService
+  id: CaseSurvivalServiceFilled02
+  suffix: Extended 02
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingMaskBreath
+        - id: EmergencyFunnyOxygenTankFilled
+        - id: EmergencyMedipen
+        - id: SpaceMedipen
+        - id: FoodSnackNutribrick
+        - id: FoodSnackMREBrownie
+        - id: DrinkMREFlask
+        - id: CannabisSeeds
+        - id: RealCapfruitSeeds
+        - id: FoodPieBananaCream
+        - id: DrinkSilencerGlass
+        - id: DrinkShaker
+        - id: KoboldCubeWrapped
+        - id: MonkeyCubeWrapped
+
+- type: entity
+  parent: CaseSurvivalService
+  id: CaseSurvivalServiceFilledN2
+  suffix: Extended N2
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingMaskBreath
+        - id: EmergencyNitrogenTankFilled
+        - id: EmergencyMedipen
+        - id: SpaceMedipen
+        - id: FoodSnackNutribrick
+        - id: FoodSnackMREBrownie
+        - id: DrinkMREFlask
+        - id: CannabisSeeds
+        - id: RealCapfruitSeeds
+        - id: FoodPieBananaCream
+        - id: DrinkSilencerGlass
+        - id: DrinkShaker
+        - id: KoboldCubeWrapped
+        - id: MonkeyCubeWrapped
+
+- type: entity
+  parent: CaseSurvivalService
+  id: CaseSurvivalServiceFilledNone
+  suffix: Standard Nonbreather
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: EmergencyMedipen
+        - id: SpaceMedipen
+        - id: FoodSnackNutribrick
+          amount: 2
+        - id: FoodSnackMREBrownie
+          amount: 2
+        - id: DrinkMREFlask
+        - id: CannabisSeeds
+        - id: RealCapfruitSeeds
+        - id: FoodPieBananaCream
+        - id: DrinkSilencerGlass
+        - id: DrinkShaker
+        - id: KoboldCubeWrapped
+        - id: MonkeyCubeWrapped
+
+#region Science
+- type: entity
+  parent: CaseSurvivalScience
+  id: CaseSurvivalScienceFilled02
+  suffix: Standard 02
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingMaskBreath
+        - id: EmergencyOxygenTankFilled
+        - id: EmergencyMedipen
+        - id: SpaceMedipen
+          amount: 2
+        - id: FoodSnackNutribrick
+        - id: DrinkMREFlask
+        - id: CableApcStack
+        - id: FireExtinguisherMini
+        - id: Ointment
+        - id: APECircuitboard
+        - id: MicroManipulatorStockPart
+          amount: 2
+
+- type: entity
+  parent: CaseSurvivalScience
+  id: CaseSurvivalScienceFilledN2
+  suffix: Standard N2
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingMaskBreath
+        - id: EmergencyNitrogenTankFilled
+        - id: EmergencyMedipen
+        - id: SpaceMedipen
+          amount: 2
+        - id: FoodSnackNutribrick
+        - id: DrinkMREFlask
+        - id: CableApcStack
+        - id: FireExtinguisherMini
+        - id: Ointment
+        - id: APECircuitboard
+        - id: MicroManipulatorStockPart
+          amount: 2
+
+- type: entity
+  parent: CaseSurvivalScience
+  id: CaseSurvivalScienceFilledNone
+  suffix: Standard Nonbreather
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: FoodSnackMREBrownie
+        - id: EmergencyMedipen
+        - id: SpaceMedipen
+          amount: 2
+        - id: FoodSnackNutribrick
+          amount: 2
+        - id: DrinkMREFlask
+        - id: CableApcStack
+        - id: FireExtinguisherMini
+        - id: Ointment
+        - id: APECircuitboard
+        - id: MicroManipulatorStockPart
+          amount: 2
+
+#region Command
+- type: entity
+  parent: CaseSurvivalCommand
+  id: CaseSurvivalCommandFilled02
+  suffix: Standard 02
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingMaskBreath
+        - id: ExtendedEmergencyOxygenTankFilled
+        - id: EmergencyMedipen
+        - id: SpaceMedipen
+        - id: FoodSnackNutribrick
+        - id: DrinkMREFlask
+        - id: WeaponFlareGun
+        - id: ShellShotgunFlare
+          amount: 3
+        - id: BoxFolderNanoTrasenClipboard
+        - id: RubberStampApproved
+        - id: RubberStampDenied
+        - id: FoodSnackMREBrownie
+
+- type: entity
+  parent: CaseSurvivalCommand
+  id: CaseSurvivalCommandFilledN2
+  suffix: Standard N2
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingMaskBreath
+        - id: ExtendedEmergencyNitrogenTankFilled
+        - id: EmergencyMedipen
+        - id: SpaceMedipen
+        - id: FoodSnackNutribrick
+        - id: DrinkMREFlask
+        - id: WeaponFlareGun
+        - id: ShellShotgunFlare
+          amount: 3
+        - id: BoxFolderNanoTrasenClipboard
+        - id: RubberStampApproved
+        - id: RubberStampDenied
+        - id: FoodSnackMREBrownie
+
+- type: entity
+  parent: CaseSurvivalCommand
+  id: CaseSurvivalCommandFilledNone
+  suffix: Standard Nonbreather
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: EmergencyMedipen
+        - id: SpaceMedipen
+        - id: FoodSnackNutribrick
+          amount: 2
+        - id: DrinkMREFlask
+        - id: WeaponFlareGun
+        - id: ShellShotgunFlare
+          amount: 3
+        - id: BoxFolderNanoTrasenClipboard
+        - id: RubberStampApproved
+        - id: RubberStampDenied
+        - id: FoodSnackMREBrownie
+          amount: 2
+
+#region Engineering
+- type: entity
+  parent: CaseSurvivalEngineering
+  id: CaseSurvivalEngineeringFilled02
+  suffix: Extended 02
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingMaskBreath
+        - id: ExtendedEmergencyOxygenTankFilled
+        - id: EmergencyMedipen
+        - id: SpaceMedipen
+        - id: FoodSnackNutribrick
+        - id: DrinkMREFlask
+        - id: FoodSnackMREBrownie
+        - id: RCD
+        - id: RCDAmmo
+        - id: InflatableWallStack
+        - id: InflatableDoorStack
+
+- type: entity
+  parent: CaseSurvivalEngineering
+  id: CaseSurvivalEngineeringFilledN2
+  suffix: Extended N2
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingMaskBreath
+        - id: ExtendedEmergencyNitrogenTankFilled
+        - id: EmergencyMedipen
+        - id: SpaceMedipen
+        - id: FoodSnackNutribrick
+        - id: DrinkMREFlask
+        - id: FoodSnackMREBrownie
+        - id: RCD
+        - id: RCDAmmo
+        - id: InflatableWallStack
+        - id: InflatableDoorStack
+
+- type: entity
+  parent: CaseSurvivalEngineering
+  id: CaseSurvivalEngineeringFilledNone
+  suffix: Standard Nonbreather
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: EmergencyMedipen
+        - id: SpaceMedipen
+        - id: FoodSnackNutribrick
+          amount: 2
+        - id: DrinkMREFlask
+        - id: FoodSnackMREBrownie
+          amount: 2
+        - id: RCD
+        - id: RCDAmmo
+        - id: InflatableWallStack
+        - id: InflatableDoorStack
+
+#region Cargo
+- type: entity
+  parent: CaseSurvivalCargo
+  id: CaseSurvivalCargoFilled02
+  suffix: Standard 02
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingMaskBreath
+        - id: EmergencyOxygenTankFilled
+        - id: EmergencyMedipen
+        - id: SpaceMedipen
+        - id: FoodSnackNutribrick
+        - id: DrinkMREFlask
+        - id: WeaponFlareGun
+        - id: ShellShotgunFlare
+          amount: 3
+        - id: BoxFolderClipboardFilled
+        - id: RubberStampApproved
+        - id: RubberStampDenied
+        - id: FoodSnackMREBrownie
+
+- type: entity
+  parent: CaseSurvivalCargo
+  id: CaseSurvivalCargoFilledN2
+  suffix: Standard N2
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingMaskBreath
+        - id: EmergencyNitrogenTankFilled
+        - id: EmergencyMedipen
+        - id: SpaceMedipen
+        - id: FoodSnackNutribrick
+        - id: DrinkMREFlask
+        - id: WeaponFlareGun
+        - id: ShellShotgunFlare
+          amount: 3
+        - id: BoxFolderClipboardFilled
+        - id: RubberStampApproved
+        - id: RubberStampDenied
+        - id: FoodSnackMREBrownie
+
+- type: entity
+  parent: CaseSurvivalCargo
+  id: CaseSurvivalCargoFilledNone
+  suffix: Standard Nonbreather
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: EmergencyMedipen
+        - id: SpaceMedipen
+        - id: FoodSnackNutribrick
+          amount: 2
+        - id: DrinkMREFlask
+        - id: WeaponFlareGun
+        - id: ShellShotgunFlare
+          amount: 3
+        - id: BoxFolderClipboardFilled
+        - id: RubberStampApproved
+        - id: RubberStampDenied
+        - id: FoodSnackMREBrownie
+          amount: 2
+
+#region Station Management
+- type: entity
+  parent: CaseSurvivalStationManagement
+  id: CaseSurvivalStationManagementFilled02
+  suffix: Standard 02
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingMaskBreath
+        - id: ExtendedEmergencyOxygenTankFilled
+        - id: EmergencyMedipen
+        - id: SpaceMedipen
+        - id: FoodSnackNutribrick
+        - id: DrinkMREFlask
+        - id: WeaponFlareGun
+        - id: ShellShotgunFlare
+          amount: 3
+        - id: BoxFolderNanoTrasenClipboard
+        - id: RubberStampApproved
+        - id: RubberStampDenied
+        - id: FoodSnackMREBrownie
+
+- type: entity
+  parent: CaseSurvivalStationManagement
+  id: CaseSurvivalStationManagementFilledN2
+  suffix: Standard N2
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingMaskBreath
+        - id: ExtendedEmergencyNitrogenTankFilled
+        - id: EmergencyMedipen
+        - id: SpaceMedipen
+        - id: FoodSnackNutribrick
+        - id: DrinkMREFlask
+        - id: WeaponFlareGun
+        - id: ShellShotgunFlare
+          amount: 3
+        - id: BoxFolderNanoTrasenClipboard
+        - id: RubberStampApproved
+        - id: RubberStampDenied
+        - id: FoodSnackMREBrownie
+
+- type: entity
+  parent: CaseSurvivalStationManagement
+  id: CaseSurvivalStationManagementFilledNone
+  suffix: Standard Nonbreather
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: EmergencyMedipen
+        - id: SpaceMedipen
+        - id: FoodSnackNutribrick
+          amount: 2
+        - id: DrinkMREFlask
+        - id: WeaponFlareGun
+        - id: ShellShotgunFlare
+          amount: 3
+        - id: BoxFolderNanoTrasenClipboard
+        - id: RubberStampApproved
+        - id: RubberStampDenied
+        - id: FoodSnackMREBrownie
+          amount: 2
