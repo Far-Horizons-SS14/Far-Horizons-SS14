@@ -4,7 +4,7 @@
   id: SuitStorageHoP
   parent: SuitStorageBaseFH
   name: Personal Suit Storage Unit
-  description: A standard-issue suit storage unit. 
+  description: A standard-issue suit storage unit. The most basic looking out of the other personal storage units for all command members.
   suffix: Head of Personnel
   components:
   - type: EntityTableContainerFill
@@ -46,7 +46,7 @@
   id: SuitStorageQM
   parent: SuitStorageBaseFH
   name: Personal Suit Storage Unit
-  description: Standard issued by NT, however, it's clear that it has been altered to meet the needs of the Quartermaster onboard. There's a branding on the side of it, "Made with love. - Gemini Service Logistics".
+  description: Standard issued by NT, however, it's clear that it has been altered to meet the needs of the Quartermaster onboard. There's a branding on the side of it, "Made with love. - Gemini Stellar Logistics".
   suffix: Quartermaster
   components:
   - type: EntityTableContainerFill
@@ -88,7 +88,7 @@
   id: SuitStorageMagistrate
   parent: SuitStorageBaseFH
   name: High-Tech Suit Storage Unit
-  description: A high-tech storage unit for space suits, meant for the use of the Magistrate. It has a built-in computer screen for checking suit status and inventory, as well as a special compartment for storing the Magistrate's personal hardsuit.
+  description: A high-tech suit storage unit, this one appears to have been fresh-out of the factory, it's clearly been designed by the top artists in the sector. On the side of it is a large label that states, "For CFA Magistrate use only. - Concord Frontier Authority".
   suffix: Magistrate
   components:
   - type: EntityTableContainerFill
@@ -130,7 +130,7 @@
   id: SuitStorageNtrep
   parent: SuitStorageBaseFH
   name: High-Tech Suit Storage Unit
-  description: A high-tech storage unit made for storing advanced suits such as the Nanotrasen Representative's hardsuit.
+  description: A high-tech suit storage unit, it's clear that this one has been through a lot, there's papers and documents plastered all over it with the use of very cheap thumbtacks. This only increases the already unprofessional look of the storage unit. Truly, whoever is assigned to this unit is obviously deranged on paperwork.
   suffix: Nanotrasen Representative
   components:
   - type: EntityTableContainerFill
@@ -150,7 +150,7 @@
     - state: locked
       map: ["enum.LockVisualLayers.Lock"]
       shader: unshaded
-    - state: screen-sec
+    - state: screen-nt
       map: ["computerLayerScreen"]
   - type: EntityStorageVisuals
     stateDoorOpen: ntrep

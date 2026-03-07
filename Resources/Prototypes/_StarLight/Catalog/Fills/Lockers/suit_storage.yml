@@ -3,7 +3,7 @@
   id: SuitStorageBlueShield
   parent: SuitStorageBaseFH
   name: High-Tech Suit Storage Unit
-  description: A high-tech storage unit made for storing advanced suits such as the Blueshield's hardsuit.
+  description: A high-tech suit storage unit designed for storing the Officer Blueshield's hardsuit and other related equipment. It's plated with heavily reinforced steel along with iron trimmings on the side to truly brand the unit. 
   suffix: BlueShield
   components:
   - type: EntityTableContainerFill
@@ -28,7 +28,7 @@
     - state: locked
       map: ["enum.LockVisualLayers.Lock"]
       shader: unshaded
-    - state: screen-sec
+    - state: screen-bso
       map: ["computerLayerScreen"]
   - type: EntityStorageVisuals
     stateDoorOpen: bso
