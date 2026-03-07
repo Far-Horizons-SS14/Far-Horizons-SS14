@@ -30,6 +30,7 @@ using Content.Shared.Interaction;
 using Content.Shared.Popups;
 using Content.Shared.Destructible;
 using Robust.Shared.Random;
+using Content.Server.Destructible;
 
 namespace Content.Server._FarHorizons.Vehicles.Equipment;
 public sealed partial class VehicleEquipmentSystems : EntitySystem
@@ -291,7 +292,11 @@ public sealed partial class VehicleEquipmentSystems : EntitySystem
         => _damage.SetDamageModifierSetId(args.Vehicle, null);
 
     private void OnLightUnInstalled(Entity<PointLightComponent> ent, ref UnInstalledVehicleEquipment args)
-        => _appearance.SetData(ent.Owner, EquipmentVisuals.Hidden, false);
+    {
+        var xForm = Transform(ent.Owner);
+        if(!HasComp<VehicleModsComponent>(xForm.ParentUid))
+            _appearance.SetData(ent.Owner, EquipmentVisuals.Hidden, false);
+    }
 
     #endregion
 
@@ -304,6 +309,8 @@ public sealed partial class VehicleEquipmentSystems : EntitySystem
         foreach(var item in vmComp.SpawnedEquipment)
         {
             if(!TryComp<VehicleEquipmentComponent>(item, out var veComp) || veComp.ActionEntity != null)
+                continue;
+            if(TryComp<DestructibleComponent>(item, out var destructibleComp) && destructibleComp.IsBroken)
                 continue;
             _actions.AddAction(ent.Owner, ref veComp.ActionEntity, veComp.ActionProto, item);
             Dirty(item, vmComp);   
@@ -321,8 +328,9 @@ public sealed partial class VehicleEquipmentSystems : EntitySystem
             _actions.RemoveAction(ent.Owner, veComp.ActionEntity);   
             QueueDel(veComp.ActionEntity);
             veComp.ActionEntity = null;
-            Dirty(item, vmComp);
+            Dirty(item, veComp);
         }
+        Dirty(vehicle, vmComp);
     }
 
     private void OnSirenToggle(Entity<ItemToggleComponent> ent, ref ToggleActionEvent args)
@@ -462,6 +470,18 @@ public sealed partial class VehicleEquipmentSystems : EntitySystem
         var xForm = Transform(ent.Owner);
         if(xForm.GridUid == xForm.ParentUid)
             return;
+         
+        if(ent.Comp.ActionEntity != null && TryComp<VehicleComponent>(ent.Owner, out var vehicleComp))
+        {
+            if(vehicleComp.Rider != null)
+                _actions.RemoveAction(vehicleComp.Rider.Value, ent.Comp.ActionEntity);   
+            QueueDel(ent.Comp.ActionEntity);
+            ent.Comp.ActionEntity = null;
+            Dirty(ent.Owner, ent.Comp);
+        }
+
+        if(TryComp<DestructibleComponent>(ent.Owner, out var destructible))
+            destructible.IsBroken = true;
 
         var ev = new UnInstalledVehicleEquipment{Vehicle =  xForm.ParentUid};
         RaiseLocalEvent(ent.Owner, ev);
