@@ -2,13 +2,30 @@
 #Basic EVA
 - type: entity
   id: SuitStorageEVA
-  parent: SuitStorageBase
+  parent: SuitStorageBaseFH
   suffix: EVA
   components:
   - type: EntityTableContainerFill
     containers:
       entity_storage: !type:NestedSelector
         tableId: FillSuitStorageEVA
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Storage/suit_storage.rsi
+    layers:
+    - state: eva
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: door
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+      shader: unshaded
+    - state: screen-eva
+      map: ["computerLayerScreen"]
+  - type: EntityStorageVisuals
+    stateDoorOpen: eva
 
 - type: entityTable
   id: FillSuitStorageEVA
@@ -23,13 +40,30 @@
 #Basic EVA (Big Ass Helmet)
 - type: entity
   id: SuitStorageEVAAlternate
-  parent: SuitStorageBase
+  parent: SuitStorageBaseFH
   suffix: EVA, Large Helmet
   components:
   - type: EntityTableContainerFill
     containers:
       entity_storage: !type:NestedSelector
         tableId: FillSuitStorageEVAAlternate
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Storage/suit_storage.rsi
+    layers:
+    - state: eva
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: door
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+      shader: unshaded
+    - state: screen-eva
+      map: ["computerLayerScreen"]
+  - type: EntityStorageVisuals
+    stateDoorOpen: eva
 
 - type: entityTable
   id: FillSuitStorageEVAAlternate
@@ -44,7 +78,7 @@
 #Emergency EVA
 - type: entity
   id: SuitStorageEVAEmergency
-  parent: SuitStorageBase
+  parent: SuitStorageBaseFH
   suffix: Emergency EVA
   components:
   - type: EntityTableContainerFill
@@ -64,7 +98,7 @@
 #Prisoner EVA
 - type: entity
   id: SuitStorageEVAPrisoner
-  parent: SuitStorageBase
+  parent: SuitStorageBaseFH
   suffix: Prisoner EVA
   components:
   - type: EntityTableContainerFill
@@ -85,7 +119,7 @@
 #Syndicate EVA
 - type: entity
   id: SuitStorageEVASyndicate
-  parent: SuitStorageBase
+  parent: SuitStorageBaseFH
   suffix: Syndicate EVA
   components:
   - type: EntityTableContainerFill
@@ -106,7 +140,7 @@
 #Pirate EVA
 - type: entity
   id: SuitStorageEVAPirate
-  parent: SuitStorageBase
+  parent: SuitStorageBaseFH
   suffix: Pirate EVA
   components:
   - type: EntityTableContainerFill
@@ -126,7 +160,7 @@
 #NTSRA Voidsuit
 - type: entity
   id: SuitStorageNTSRA
-  parent: SuitStorageBase
+  parent: SuitStorageBaseFH
   suffix: Ancient EVA
   components:
   - type: EntityTableContainerFill
@@ -147,39 +181,91 @@
 #Engineering hardsuit
 - type: entity
   id: SuitStorageEngi
-  parent: SuitStorageBase
+  parent: SuitStorageBaseFH
+  name: Suit Storage Unit
   suffix: Station Engineer
   components:
   - type: EntityTableContainerFill
     containers:
       entity_storage: !type:NestedSelector
         tableId: FillEngineerHardsuit
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Storage/suit_storage.rsi
+    layers:
+    - state: engi
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: door
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+      shader: unshaded
+    - state: screen-green
+      map: ["computerLayerScreen"]
+  - type: EntityStorageVisuals
+    stateDoorOpen: engi
   - type: AccessReader
     access: [["Engineering"]]
 
 #Atmospherics hardsuit
 - type: entity
   id: SuitStorageAtmos
-  parent: SuitStorageBase
+  parent: SuitStorageBaseFH
   suffix: Atmospheric Technician
   components:
   - type: EntityTableContainerFill
     containers:
       entity_storage: !type:NestedSelector
         tableId: FillAtmosphericsHardsuit
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Storage/suit_storage.rsi
+    layers:
+    - state: atmos
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: door
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+      shader: unshaded
+    - state: screen-green
+      map: ["computerLayerScreen"]
+  - type: EntityStorageVisuals
+    stateDoorOpen: atmos
   - type: AccessReader
     access: [["Atmospherics"]]
 
 #Security hardsuit
 - type: entity
   id: SuitStorageSec
-  parent: SuitStorageBase
+  parent: SuitStorageBaseFH
   suffix: Security
   components:
   - type: EntityTableContainerFill
     containers:
       entity_storage: !type:NestedSelector
         tableId: FillSuitStorageSecurity
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Storage/suit_storage.rsi
+    layers:
+    - state: sec
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: door
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+      shader: unshaded
+    - state: screen-sec
+      map: ["computerLayerScreen"]
+  - type: EntityStorageVisuals
+    stateDoorOpen: sec
   - type: AccessReader
     access: [["Security"], ["Cadet"]] # Starlight: add cadet
 
@@ -196,91 +282,220 @@
 #CE's hardsuit
 - type: entity
   id: SuitStorageCE
-  parent: SuitStorageBase
+  parent: SuitStorageBaseFH
+  name: Personal Suit Storage Unit
+  description: A standard-issue suit storage unit. It's covered in soot and other materials. It's strangely glowing green, are you sure you want to stay so close to it?
   suffix: Chief Engineer
   components:
   - type: EntityTableContainerFill
     containers:
       entity_storage: !type:NestedSelector
         tableId: FillChiefEngineerHardsuit
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Storage/suit_storage.rsi
+    layers:
+    - state: ce
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: door
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+      shader: unshaded
+    - state: screen-green
+      map: ["computerLayerScreen"]
+  - type: EntityStorageVisuals
+    stateDoorOpen: ce
   - type: AccessReader
     access: [["ChiefEngineer"]]
 
 #CMO's hardsuit
 - type: entity
   id: SuitStorageCMO
-  parent: SuitStorageBase
+  parent: SuitStorageBaseFH
+  name: Personal Suit Storage Unit
+  description: A standard-issue suit storage unit. It reeks of chemicals and other hazardous materials. There's a note on the side that reads "Please, don't store chemicals in here." It's signage is scratched out.
   suffix: Chief Medical Officer
   components:
   - type: EntityTableContainerFill
     containers:
       entity_storage: !type:NestedSelector
         tableId: FillChiefMedicalOfficerHardsuit
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Storage/suit_storage.rsi
+    layers:
+    - state: cmo
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: door
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+      shader: unshaded
+    - state: screen-sec
+      map: ["computerLayerScreen"]
+  - type: EntityStorageVisuals
+    stateDoorOpen: cmo
   - type: AccessReader
     access: [ [ "ChiefMedicalOfficer" ] ]
 
 #RD's hardsuit
 - type: entity
   id: SuitStorageRD
-  parent: SuitStorageBase
+  parent: SuitStorageBaseFH
+  name: Personal Suit Storage Unit
+  description: A standard-issue suit storage unit. It has burn and explosion markings all over, are you sure it's a new one?
   suffix: Research Director
   components:
   - type: EntityTableContainerFill
     containers:
       entity_storage: !type:NestedSelector
         tableId: FillResearchDirectorHardsuit
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Storage/suit_storage.rsi
+    layers:
+    - state: rd
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: door
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+      shader: unshaded
+    - state: screen-sec
+      map: ["computerLayerScreen"]
+  - type: EntityStorageVisuals
+    stateDoorOpen: rd
   - type: AccessReader
     access: [ [ "ResearchDirector" ] ]
 
 #HOS's hardsuit
 - type: entity
   id: SuitStorageHOS
-  parent: SuitStorageBase
+  parent: SuitStorageBaseFH
+  name: Personal Suit Storage Unit
+  description: A standard-issue suit storage unit. This one's cabling has been modified to allow faster access, ready for rapid deployment at a moment's notice.
   suffix: Head of Security
   components:
   - type: EntityTableContainerFill
     containers:
       entity_storage: !type:NestedSelector
         tableId: FillHeadOfSecurityHardsuit
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Storage/suit_storage.rsi
+    layers:
+    - state: hos
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: door
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+      shader: unshaded
+    - state: screen-sec
+      map: ["computerLayerScreen"]
+  - type: EntityStorageVisuals
+    stateDoorOpen: hos
   - type: AccessReader
     access: [["HeadOfSecurity"]]
 
 #Warden's hardsuit
 - type: entity
   id: SuitStorageWarden
-  parent: SuitStorageBase
+  parent: SuitStorageBaseFH
   suffix: Warden
   components:
   - type: EntityTableContainerFill
     containers:
       entity_storage: !type:NestedSelector
         tableId: FillLockerWardenHarduit
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Storage/suit_storage.rsi
+    layers:
+    - state: warden
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: door
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+      shader: unshaded
+    - state: screen-sec
+      map: ["computerLayerScreen"]
+  - type: EntityStorageVisuals
+    stateDoorOpen: warden
   - type: AccessReader
     access: [["Armory"]]
 
 #Captain's hardsuit
 - type: entity
   id: SuitStorageCaptain
-  parent: SuitStorageBase
+  parent: SuitStorageBaseFH
+  name: Personal Suit Storage Unit
+  description: A standard-issue suit storage unit. This one has a nameplate that reads "Captain" on the front, clearly someone's egotistic.
   suffix: Captain
   components:
   - type: EntityTableContainerFill
     containers:
       entity_storage: !type:NestedSelector
         tableId: FillCaptainHardsuit
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Storage/suit_storage.rsi
+    layers:
+    - state: cap
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: door
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+      shader: unshaded
+    - state: screen-sec
+      map: ["computerLayerScreen"]
+  - type: EntityStorageVisuals
+    stateDoorOpen: cap
   - type: AccessReader
     access: [["Captain"]]
 
 #Salvage hardsuit
 - type: entity
   id: SuitStorageSalv
-  parent: SuitStorageBase
+  parent: SuitStorageBaseFH
   suffix: Salvage
   components:
   - type: EntityTableContainerFill
     containers:
       entity_storage: !type:NestedSelector
         tableId: FillSalvageSpecialistHardsuitSpatio
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Storage/suit_storage.rsi
+    layers:
+    - state: salvage
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: door
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+      shader: unshaded
+    - state: screen-sec
+      map: ["computerLayerScreen"]
+  - type: EntityStorageVisuals
+    stateDoorOpen: salvage
   - type: AccessReader
     access: [["Salvage"]]
 

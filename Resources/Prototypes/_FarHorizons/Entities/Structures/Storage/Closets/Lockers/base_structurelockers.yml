@@ -57,3 +57,31 @@
       behaviors:
       - !type:DoActsBehavior
         acts: ["Destruction"]
+
+# Base Suit Storage Locker for Far Horizons SS14
+- type: entity
+  id: SuitStorageBaseFH # Decided to make a whole new base due to the YML code structures required.
+  parent: SuitStorageBase
+  name: Suit Storage Unit 
+  description: A fancy hi-tech storage unit made for storing space suits.
+  components:
+  - type: EntityStorage
+    closeSound: /Audio/_FarHorizons/Machines/suit_storage_close.ogg
+    openSound: /Audio/_FarHorizons/Machines/suit_storage_open.ogg
+  - type: Lock
+    unlockSound: /Audio/_FarHorizons/Machines/suit_storage_unlock.ogg
+    locksound: /Audio/_FarHorizons/Machines/suit_storage_unlock.ogg
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Storage/suit_storage.rsi
+    layers:
+    - state: base
+    - state: door
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+      shader: unshaded
+    - state: screen-eva
+      map: ["computerLayerScreen"]
