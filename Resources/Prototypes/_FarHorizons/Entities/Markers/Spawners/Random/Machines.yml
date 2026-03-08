@@ -1,0 +1,206 @@
+- type: entity
+  name: Engine Generator Spawner
+  id: SpawnerEngineGenerator
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Structures\Power\Generation\Singularity\generator.rsi
+      state: icon
+  - type: RandomSpawner
+    prototypes:
+    - SingularityGenerator
+    - TeslaGenerator
+    offset: 0.0
+
+- type: entity
+  name: Engine Generator Spawner
+  id: SpawnerEngineGenerator70
+  suffix: 70%
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Structures\Power\Generation\Singularity\generator.rsi
+      state: icon
+  - type: RandomSpawner
+    prototypes:
+    - SingularityGenerator
+    - TeslaGenerator
+    chance: 0.7
+    offset: 0.0
+
+- type: entity
+  name: Rad Collector Spawner
+  id: SpawnerRadCollectorTank
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Structures\Power\Generation\Singularity\collector.rsi
+      state: ca_off
+  - type: RandomSpawner
+    rarePrototypes:
+    - RadiationCollectorFullTank
+    rareChance: 0.3
+    prototypes:
+    - RadiationCollector
+    - RadiationCollectorNoTank 
+    offset: 0.0
+
+- type: entity
+  name: Rad Collector Spawner
+  id: SpawnerRadCollectorr70
+  suffix: 70%
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Structures\Power\Generation\Singularity\collector.rsi
+      state: ca_off
+  - type: RandomSpawner
+    rarePrototypes:
+    - RadiationCollectorFullTank
+    rareChance: 0.1
+    prototypes:
+    - RadiationCollector
+    - RadiationCollectorNoTank 
+    chance: 0.6
+    offset: 0.0
+
+- type: entity
+  name: Rad Collector Spawner
+  id: SpawnerRadCollectorr50
+  suffix: 50%
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Structures\Power\Generation\Singularity\collector.rsi
+      state: ca_off
+  - type: RandomSpawner
+    rarePrototypes:
+    - RadiationCollectorFullTank
+    rareChance: 0.1
+    prototypes:
+    - RadiationCollector
+    - RadiationCollectorNoTank 
+    chance: 0.4
+    offset: 0.0
+
+- type: entity
+  name: Rad Collector Spawner
+  id: SpawnerRadCollectorr30
+  suffix: 30%
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Structures\Power\Generation\Singularity\collector.rsi
+      state: ca_off
+  - type: RandomSpawner
+    rarePrototypes:
+    - RadiationCollectorFullTank
+    rareChance: 0.1
+    prototypes:
+    - RadiationCollector
+    - RadiationCollectorNoTank 
+    chance: 0.2
+    offset: 0.0
+
+- type: entity
+  name: TeslaCoil Spawner
+  id: SpawnerTeslaCoil70
+  suffix: 70%
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Structures\Power\Generation\Tesla\coil.rsi
+      state: coil
+  - type: RandomSpawner
+    prototypes:
+    - TeslaCoil
+    chance: 0.7
+    offset: 0.0
+
+- type: entity
+  name: TeslaCoil Spawner
+  id: SpawnerTeslaCoil50
+  suffix: 50%
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Structures\Power\Generation\Tesla\coil.rsi
+      state: coil
+  - type: RandomSpawner
+    prototypes:
+    - TeslaCoil
+    chance: 0.5
+    offset: 0.0
+
+- type: entity
+  name: TeslaCoil Spawner
+  id: SpawnerTeslaCoil30
+  suffix: 30%
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Structures\Power\Generation\Tesla\coil.rsi
+      state: coil
+  - type: RandomSpawner
+    prototypes:
+    - TeslaCoil
+    chance: 0.3
+    offset: 0.0
+
+- type: entity
+  name: Artifact Analyzer Spawner
+  id: SpawnerMachineArtifactAnalyzer80
+  suffix: 80%
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Structures\Machines\artifact_analyzer.rsi
+      state: display
+  - type: RandomSpawner
+    rarePrototypes:
+    - MachineFrame
+    rareChance: 0.1
+    prototypes:
+    - MachineArtifactAnalyzer
+    chance: 0.8
+    offset: 0.0
+
+- type: entity
+  name: Analysis Console Spawner
+  id: SpawnerComputerAnalysisConsole80
+  suffix: 80%
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Structures\Machines\computers.rsi
+      state: computer
+  - type: RandomSpawner
+    rarePrototypes:
+    - ComputerFrame
+    rareChance: 0.1
+    prototypes:
+    - ComputerAnalysisConsole
+    chance: 0.8
+    offset: 0.0
