@@ -177,6 +177,128 @@
   - type: Sprite
     sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/robotics.rsi
 
+#region Standard Syndicate
+
+- type: entity
+  parent: FHAirlockEngineering
+  id: FHAirlockEngineeringSyndie
+  suffix: Syndicate, Engineering
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/engineering_syndie.rsi
+
+- type: entity
+  parent: FHAirlockAtmospherics
+  id: FHAirlockAtmosphericsSyndie
+  suffix: Syndicate, Atmospherics
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/atmospherics_syndie.rsi
+
+- type: entity
+  parent: FHAirlockHydroponics
+  id: FHAirlockHydroponicsSyndie
+  suffix: Syndicate, Hydroponics
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/hydroponics_syndie.rsi
+
+- type: entity
+  parent: FHAirlockMedical
+  id: FHAirlockMedicalSyndie
+  suffix: Syndicate, Medical
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/medical_syndie.rsi
+
+- type: entity
+  parent: FHAirlockVirology
+  id: FHAirlockVirologySyndie
+  suffix: Syndicate, Virology
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/virology_syndie.rsi
+
+- type: entity
+  parent: FHAirlockChemistry
+  id: FHAirlockChemistrySyndie
+  suffix: Syndicate, Chemistry
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/chemistry_syndie.rsi
+
+- type: entity
+  parent: FHAirlockScience
+  id: FHAirlockScienceSyndie
+  suffix: Syndicate, Science
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/science_syndie.sci
+
+- type: entity
+  parent: FHAirlockCommand
+  id: FHAirlockCommandSyndie
+  suffix: Syndicate, Command
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/command_syndie.rsi
+
+- type: entity
+  parent: FHAirlockSecurity
+  id: FHAirlockSecuritySyndie
+  suffix: Syndicate, Security
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/security_syndie.rsi
+
+- type: entity
+  parent: FHAirlockMaint
+  id: FHAirlockMaintSyndie
+  suffix: Syndicate, Maintenance
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/maint_syndie.rsi
+
+- type: entity
+  parent: FHAirlockCentralCommand
+  id: FHAirlockSHC
+  suffix: SHC
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/SHC.rsi
+
+- type: entity
+  parent: FHAirlockSurgery
+  id: FHAirlockSurgerySyndie
+  suffix: Syndicate, Surgery
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/surgeon_syndie.rsi
+
+- type: entity
+  parent: FHAirlockRobotics
+  id: FHAirlockRoboticsSyndie
+  suffix: Syndicate, Robotics
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/robotics_syndie.sci
+
+- type: entity
+  parent: FHAirlockMedical
+  id: FHAirlockParamedicSyndie
+  suffix: Syndicate, Paramedic
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/paramedic_syndie.rsi
+
+- type: entity
+  parent: FHAirlock
+  id: FHAirlockBasicSyndie
+  suffix: Syndicate
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/basic_syndie.rsi
+
 #region Glass
 
 - type: entity
@@ -352,3 +474,125 @@
   components:
   - type: Sprite
     sprite: _FarHorizons/Structures/Doors/Airlocks/Glass/robotics.rsi
+
+#region Glass Syndicate
+
+- type: entity
+  parent: FHAirlockStandardGlass
+  id: FHAirlockBasicGlassSyndie
+  suffix: Syndicate
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Structures/Doors/Airlocks/Glass/basic_syndie.rsi
+
+- type: entity
+  parent: FHAirlockEngineeringGlass
+  id: FHAirlockEngineeringGlassSyndie
+  suffix: Syndicate, Engineering
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Structures/Doors/Airlocks/Glass/engineering_syndie.rsi
+
+- type: entity
+  parent: FHAirlockMaintGlass
+  id: FHAirlockMaintGlassSyndie
+  suffix: Syndicate, Maintenance
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Structures/Doors/Airlocks/Glass/maint_syndie.rsi
+
+- type: entity
+  parent: FHAirlockAtmosphericsGlass
+  id: FHAirlockAtmosphericsGlassSyndie
+  suffix: Syndicate, Atmospherics
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Structures/Doors/Airlocks/Glass/atmospherics_syndie.rsi
+
+- type: entity
+  parent: FHAirlockHydroponicsGlass
+  id: FHAirlockHydroponicsGlassSyndie
+  suffix: Syndicate, Hydroponics
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Structures/Doors/Airlocks/Glass/hydroponics_syndie.rsi
+
+- type: entity
+  parent: FHAirlockMedicalGlass
+  id: FHAirlockMedicalGlassSyndie
+  suffix: Syndicate, Medical
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Structures/Doors/Airlocks/Glass/medical_syndie.rsi
+
+- type: entity
+  parent: FHAirlockChemistryGlass
+  id: FHAirlockChemistryGlassSyndie
+  suffix: Syndicate, Chemistry
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Structures/Doors/Airlocks/Glass/chemistry_syndie.rsi
+
+- type: entity
+  parent: FHAirlockVirologyGlass
+  id: FHAirlockVirologyGlassSyndie
+  suffix: Syndicate, Virology
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Structures/Doors/Airlocks/Glass/virology_syndie.rsi
+
+- type: entity
+  parent: FHAirlockScienceGlass
+  id: FHAirlockScienceGlassSyndie
+  suffix: Syndicate, Science
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Structures/Doors/Airlocks/Glass/science_syndie.sci
+
+- type: entity
+  parent: FHAirlockCommandGlass
+  id: FHAirlockCommandGlassSyndie
+  suffix: Syndicate, Command
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Structures/Doors/Airlocks/Glass/command_syndie.rsi
+
+- type: entity
+  parent: FHAirlockSecurityGlass
+  id: FHAirlockSecurityGlassSyndie
+  suffix: Syndicate, Security
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Structures/Doors/Airlocks/Glass/security_syndie.rsi
+
+- type: entity
+  parent: FHAirlockCentralCommandGlass
+  id: FHAirlockSHCGlass
+  suffix: SHC
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Structures/Doors/Airlocks/Glass/SHC.rsi
+
+- type: entity
+  parent: FHAirlockSurgeryGlass
+  id: FHAirlockSurgeryGlassSyndie
+  suffix: Syndicate, Surgery
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Structures/Doors/Airlocks/Glass/surgery_syndie.rsi
+
+- type: entity
+  parent: FHAirlockRoboticsGlass
+  id: FHAirlockRoboticsGlassSyndie
+  suffix: Syndicate, Robotics
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Structures/Doors/Airlocks/Glass/robotics_syndie.sci
+
+- type: entity
+  parent: FHAirlockMedicalGlass
+  id: FHAirlockParamedicGlassSyndie
+  suffix: Syndicate, Paramedic
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Structures/Doors/Airlocks/Glass/paramedic_syndie.rsi
