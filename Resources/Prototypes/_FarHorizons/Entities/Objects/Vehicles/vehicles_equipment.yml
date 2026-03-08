@@ -21,34 +21,10 @@
 
 #region Headlights
 - type: entity
-  id: ATVHeadlight
+  id: BasicHeadlight
   parent: VehicleEquipmentBase
-  name: ATV Headlight
-  description: Standard headlight for ATVs. Mostly used to distract tiders as you run over them like they're deer in the middle of the road. 
-  components:
-    - type: UnpoweredFlashlight
-    - type: PointLight
-      enabled: false
-      radius: 10
-      softness: 2
-      mask: /Textures/Effects/LightMasks/cone.png
-      autoRot: true
-      containerOccluded: true
-    - type: Sprite
-      sprite: Objects/Power/light_bulb.rsi
-      layers:
-        - map: [ enum.LightBulbVisualLayers.Base ]
-          state: normal
-    - type: VehicleEquipment
-      actionProto: ActionToggleLight
-      slot: headlight
-      allowedVehicles: [Electric, Gas, Spaceship]
-
-- type: entity
-  id: SecwayLight
-  parent: VehicleEquipmentBase
-  name: Secway Light
-  description: Standard light for Secways. Excellent for seeing those maints grilles before you crash into them! 
+  name: Basic Headlights
+  description: Standard light for most vehicles. Excellent for seeing those maints grilles before you crash into them! 
   components:
     - type: UnpoweredFlashlight
     - type: PointLight
@@ -70,10 +46,10 @@
     - type: Appearance
 
 - type: entity
-  id: SecwayLightBright
+  id: HeadlightLED
   parent: VehicleEquipmentBase
-  name: Bright Secway Light
-  description: Upgraded light for Secways and Segways alike. Excellent for seeing those maints grilles before you crash into them! 
+  name: LED Headlights
+  description: Upgraded light for most vehicles. Excellent for seeing those maints grilles before you crash into them! 
   components:
     - type: UnpoweredFlashlight
     - type: PointLight
@@ -128,9 +104,9 @@
 
 #region Tires
 - type: entity
-  id: StandardTires
+  id: BasicTires
   parent: VehicleEquipmentBase
-  name: Standard Tires
+  name: Basic Tires
   description: Basic tires that have basic acceleration and traction. 
   components:
     - type: Sprite

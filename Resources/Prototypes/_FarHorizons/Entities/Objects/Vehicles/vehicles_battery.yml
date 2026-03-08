@@ -50,7 +50,6 @@
       unbuckleTime: 2
       dismountOnStun: true
       dismountOnKnockdown: true
-      armorAffectsVehicle: true
       northOffset: "0, -0.12"
       southOffset: "0, -0.12"
       eastOffset: "0, -0.2"
@@ -88,6 +87,8 @@
     - state: vehicle
       map: ["enum.VehicleVisualLayers.Base"]
     noRot: true
+  - type: VehicleBuckle
+    armorAffectsVehicle: true
   - type: VehicleMods
     vehicleType: Electric
     equipmentSlots: [tires, engine, armor, headlight, lightbar]
@@ -118,10 +119,10 @@
         - VehicleKeySecway
     - type: VehicleMods
       startingEquipment:
-        - StandardTires
+        - BasicTires
         - ElectricEngine
         - BasicArmorKit
-        - SecwayLight
+        - BasicHeadlight
         - SecSiren
 
 - type: entity
@@ -137,10 +138,10 @@
         - VehicleKeySecway
     - type: VehicleMods
       startingEquipment:
-        - StandardTires
+        - BasicTires
         - ElectricEngine
         - LightArmorKit
-        - SecwayLight
+        - BasicHeadlight
         - SecSiren
 
 - type: entity
@@ -184,10 +185,10 @@
         - VehicleKeySecway
     - type: VehicleMods
       startingEquipment:
-        - StandardTires
+        - BasicTires
         - ElectricTurboEngine
         - BasicArmorKit
-        - SecwayLight
+        - HeadlightLED
         - SecSiren
 
 #region Syndicate
@@ -217,10 +218,10 @@
         - VehicleKeySecway
     - type: VehicleMods
       startingEquipment:
-        - StandardTires
+        - BasicTires
         - ElectricEngine
         - BasicArmorKit
-        - SecwayLight
+        - BasicHeadlight
         - SecSiren
 
 - type: entity
@@ -237,6 +238,8 @@
       - state: vehicle
         map: ["enum.VehicleVisualLayers.Base"]
       noRot: true
+    - type: VehicleBuckle
+      armorAffectsVehicle: true
     - type: VehicleMods
       vehicleType: Electric
       equipmentSlots: [tires, engine, armor, headlight, lightbar]
@@ -260,10 +263,10 @@
         - VehicleKeyElectronicNST
     - type: VehicleMods
       startingEquipment:
-        - StandardTires
+        - BasicTires
         - ElectricEngine
         - BasicArmorKit
-        - SecwayLight
+        - BasicHeadlight
   
 - type: entity
   id: VehicleSegwayArmoredLightNST
@@ -278,10 +281,10 @@
         - VehicleKeyElectronicNST
     - type: VehicleMods
       startingEquipment:
-        - StandardTires
+        - BasicTires
         - ElectricEngine
         - LightArmorKit
-        - SecwayLightBright
+        - BasicHeadlightBright
 
 #region Civilian
 - type: entity
@@ -309,6 +312,8 @@
           name: power-cell-slot-component-slot-name-default
           disableEject: true
           swap: false 
+    - type: VehicleBuckle
+      armorAffectsVehicle: true
     - type: VehicleMods
       vehicleType: Electric
       equipmentSlots: [tires, engine, armor, headlight, lightbar]
@@ -332,9 +337,9 @@
         - VehicleKeySegway
     - type: VehicleMods
       startingEquipment:
-        - StandardTires
+        - BasicTires
         - ElectricEngine
-        - SecwayLight
+        - BasicHeadlight
         
 - type: entity
   id: VehicleJanicart
@@ -342,6 +347,8 @@
   name: Janicart
   description: The janitor's trusty steed.
   components:
+  - type: VehicleBuckle
+    armorAffectsVehicle: true
   - type: Vehicle
     brokenState: destroyed
     handsNeeded: 2
@@ -417,9 +424,9 @@
     - type: VehicleMods
       vehicleType: Electric
       startingEquipment:
-        - StandardTires
+        - BasicTires
         - ElectricEngine
-        - SecwayLight
+        - BasicHeadlight
 
 #region Container Vehicles
 # if there were any lmao

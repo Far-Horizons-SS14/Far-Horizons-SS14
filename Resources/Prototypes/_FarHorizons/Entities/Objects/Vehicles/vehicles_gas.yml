@@ -111,6 +111,8 @@
           - VehicleKey
           - ATVKeys
   - type: Hitch
+  - type: VehicleBuckle
+    armorAffectsVehicle: true
   - type: VehicleMods
     vehicleType: Gas
     equipmentSlots: [tires, engine, armor, headlight]
@@ -133,9 +135,9 @@
         - VehicleKeyATV
     - type: VehicleMods
       startingEquipment:
-        - StandardTires
+        - BasicTires
         - BasicEngine
-        - ATVHeadlight
+        - BasicHeadlight
 
 - type: entity
   id: VehicleATVNTSec
@@ -186,6 +188,8 @@
             tags:
             - VehicleKey
             - STVKeys
+    - type: VehicleBuckle
+      armorAffectsVehicle: true
     - type: VehicleMods
       vehicleType: Gas
       equipmentSlots: [tires, engine, armor, headlight, lightbar]
@@ -204,10 +208,10 @@
           maxVol: 150
     - type: VehicleMods
       startingEquipment:
-        - StandardTires
+        - BasicTires
         - BasicEngine
         - BasicArmorKit
-        - ATVHeadlight
+        - BasicHeadlight
         - SecSiren
 
 - type: entity
@@ -260,6 +264,8 @@
     maxItemSize: Huge
     openOnActivate: false
     clickInsert: false
+  - type: VehicleBuckle
+    armorAffectsVehicle: true
   - type: VehicleMods
     vehicleType: Gas
 
@@ -282,10 +288,10 @@
     - type: VehicleMods
       vehicleType: Gas
       startingEquipment:
-        - StandardTires
+        - BasicTires
         - BasicEngine
         - BasicArmorKit
-        - ATVHeadlight
+        - BasicHeadlight
 
 #region Container Vehicles
 - type: entity
@@ -449,7 +455,7 @@
         - VehicleKeyClowncar
     - type: VehicleMods
       startingEquipment:
-        - StandardTires
+        - BasicTires
         - BasicEngine
         - BasicArmorKit
-        - ATVHeadlight
+        - BasicHeadlight
