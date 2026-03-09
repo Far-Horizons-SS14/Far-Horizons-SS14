@@ -103,10 +103,18 @@
         250: Dead
     - type: MeleeSpeech
       Battlecry: Gorilla punch!
+    #FarHorizons Start
     - type: UserInterface
       interfaces:
+        enum.SurgeryUIKey.Key:
+          type: SurgeryBui
+        enum.StrippingUiKey.Key:
+          type: StrippableBoundUserInterface
         enum.MeleeSpeechUiKey.Key:
           type: MeleeSpeechBoundUserInterface
+    - type: Blindable
+    - type: DarkenedVision
+    #FarHorizons End
     - type: Speech
       speechVerb: Monkey
     - type: Damageable

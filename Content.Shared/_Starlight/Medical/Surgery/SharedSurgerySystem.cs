@@ -69,7 +69,7 @@ public abstract partial class SharedSurgerySystem : EntitySystem
         partEnt = default;
         step = default;
 
-        if (!HasComp<SurgeryTargetComponent>(body) 
+        if (!HasComp<BodyComponent>(body) 
              || !IsLyingDown(body) 
              || !_entitySystem.TryEntity(targetPart, out partEnt) 
              || !_entitySystem.TryGetSingleton(surgery, out var surgeryEntId) 

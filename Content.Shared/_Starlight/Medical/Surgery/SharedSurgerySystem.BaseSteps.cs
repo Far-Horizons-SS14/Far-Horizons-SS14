@@ -34,12 +34,12 @@ public abstract partial class SharedSurgerySystem
         SubscribeLocalEvent<SurgeryStepComponent, SurgeryStepCompleteEvent>(OnStepComplete);
         SubscribeLocalEvent<SurgeryClearProgressComponent, SurgeryStepCompleteEvent>(OnClearProgressStep);
         SubscribeLocalEvent<SurgeryStepComponent, SurgeryStepEvent>(OnStep);
-        SubscribeLocalEvent<SurgeryTargetComponent, SurgeryDoAfterEvent>(OnTargetDoAfter);
+        SubscribeLocalEvent<BodyComponent, SurgeryDoAfterEvent>(OnTargetDoAfter);
 
         SubscribeLocalEvent<SurgeryStepComponent, SurgeryCanPerformStepEvent>(OnCanPerformStep);
-        Subs.BuiEvents<SurgeryTargetComponent>(SurgeryUIKey.Key, subs => subs.Event<SurgeryStepChosenBuiMsg>(OnSurgeryTargetStepChosen));
+        Subs.BuiEvents<BodyComponent>(SurgeryUIKey.Key, subs => subs.Event<SurgeryStepChosenBuiMsg>(OnSurgeryTargetStepChosen));
     }
-    private void OnTargetDoAfter(Entity<SurgeryTargetComponent> ent, ref SurgeryDoAfterEvent args)
+    private void OnTargetDoAfter(Entity<BodyComponent> ent, ref SurgeryDoAfterEvent args)
     {
         if (args.Cancelled ||
             args.Handled ||
@@ -290,7 +290,7 @@ public abstract partial class SharedSurgerySystem
         }
     }
 
-    private void OnSurgeryTargetStepChosen(Entity<SurgeryTargetComponent> ent, ref SurgeryStepChosenBuiMsg args)
+    private void OnSurgeryTargetStepChosen(Entity<BodyComponent> ent, ref SurgeryStepChosenBuiMsg args)
     {
         var user = args.Actor;
         if (GetEntity(args.Entity) is not { Valid: true } body
