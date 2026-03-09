@@ -32,7 +32,6 @@ public sealed partial class NecrosisSurgeryTargetComponent : Component
 [RegisterComponent, NetworkedComponent] public sealed partial class DisableSurgeryComponent : Component;
 [RegisterComponent, NetworkedComponent] public sealed partial class SurgeryAlterAppearanceComponent : Component;
 [RegisterComponent, NetworkedComponent] public sealed partial class SurgeryRepairEyesComponent : Component;
-[RegisterComponent, NetworkedComponent] public sealed partial class AnimalBypassComponent : Component;
 
 // Valid Events
 

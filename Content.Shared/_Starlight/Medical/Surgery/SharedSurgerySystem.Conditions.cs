@@ -80,25 +80,29 @@ public abstract partial class SharedSurgerySystem
     }
     private void OnSpeciesConditionValid(Entity<SurgerySpeciesConditionComponent> ent, ref SurgeryValidEvent args)
     {
-        if (args.Cancelled ||
-            (EntityManager.HasComponent<AnimalBypassComponent>(ent) && _tag.HasTag(args.Body, "VimPilot"))) return;
+        if (args.Cancelled) return;
         
-        if (!EntityManager.TryGetComponent<HumanoidProfileComponent>(args.Body, out var humanoidProfileComponent))
+        if (EntityManager.TryGetComponent<HumanoidProfileComponent>(args.Body, out var humanoidProfileComponent))
         {
-            args.Cancelled = true;
-            return;
-        }
+            if (ent.Comp.SpeciesBlacklist.Contains(humanoidProfileComponent.Species))
+            {
+                args.Cancelled = true;
+                return;
+            }
 
-        if (ent.Comp.SpeciesBlacklist.Contains(humanoidProfileComponent.Species))
-        {
-            args.Cancelled = true;
-            return;
+            if (ent.Comp.SpeciesWhitelist.Count > 0 && !ent.Comp.SpeciesWhitelist.Contains(humanoidProfileComponent.Species))
+            {
+                args.Cancelled = true;
+                return;
+            }
         }
-
-        if (ent.Comp.SpeciesWhitelist.Count > 0 && !ent.Comp.SpeciesWhitelist.Contains(humanoidProfileComponent.Species))
+        else
         {
-            args.Cancelled = true;
-            return;
+            if (ent.Comp.SpeciesWhitelist.Count > 0)
+            {
+                args.Cancelled = true;
+                return;
+            }
         }
     }
     private void OnAnyAccentConditionValid(Entity<SurgeryAnyAccentConditionComponent> ent, ref SurgeryValidEvent args)
