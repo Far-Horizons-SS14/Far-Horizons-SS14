@@ -118,7 +118,7 @@
 # Atmospheric Technician
 
 - type: entity
-  parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing]
+  parent: [ClothingOuterStorageBase, AllowSuitStorageClothing]
   id: ClothingOuterSuitAtmosFireSyndi
   name: Atmospheric Fire Suit
   suffix: S
@@ -136,6 +136,10 @@
     coolingCoefficient: 0.05
   - type: FireProtection
     reduction: 0.8 # atmos firesuit offers best protection, hardsuits are a little vulnerable
+  - type: Item
+    size: Huge
+    shape:
+    - 0,0,3,3
   - type: Pierceable
     level: Metal
   - type: Armor

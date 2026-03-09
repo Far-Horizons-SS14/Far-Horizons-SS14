@@ -1,29 +1,77 @@
+# Locker & Hardsuit table for Nanotrasen Rep's Locker
+# Suit Storage Unit (NT Rep Addition) - START -
+- type: entityTable
+  id: FillNanotrasenRepLockerHardsuit
+  table: !type:AllSelector
+    children:
+    - id: ClothingEyesHudSkills
+    - id: ClothingEyesSunGlassesHudSkill
+    - id: ClothingHeadHatCapNtrep
+    - id: ClothingUniformJumpsuitNtrepFormal
+    - id: ClothingUniformJumpskirtNtrep
+    - id: ClothingUniformJumpsuitNtrep
+    - id: ClothingOuterCoatNtrep
+    - id: ClothingShoesBootsLaceup
+    - id: ClothingHeadsetAltCommand
+    - id: WeaponDisabler
+    - id: LuxuryPen
+    - id: BoxFolderClipboardFilled
+    - id: PrinterDocFlatpack
+    - id: FaxMachineFlatpack
+    - id: PlushieEmmie
+    # Start of Nanotrasen Rep's Suit-Storage table
+    - id: ClothingOuterHardsuitNtrep
+    - id: ClothingMaskBreath
+    - id: OxygenTankFilled
+    - id: NitrogenTankFilled
+# Suit Storage Unit (NT Rep Addition) - END -
+
 - type: entity
-  id: LockerRepresentativeFilled
-  suffix: Filled
+  id: LockerRepresentativeFilledHardsuit # FH
+  suffix: Filled, Hardsuit # FH
   parent: LockerRepresentative
   components:
   - type: EntityTableContainerFill
     containers:
       entity_storage: !type:AllSelector
-        children:
-        - id: ClothingEyesHudSkills
-        - id: ClothingEyesSunGlassesHudSkill
-        - id: ClothingHeadHatCapNtrep
-        - id: ClothingUniformJumpsuitNtrepFormal
-        - id: ClothingUniformJumpskirtNtrep
-        - id: ClothingUniformJumpsuitNtrep
-        - id: ClothingOuterCoatNtrep
-        - id: ClothingShoesBootsLaceup
-        - id: ClothingHeadsetAltCommand
-        - id: WeaponDisabler
-        - id: LuxuryPen
-        - id: BoxFolderClipboardFilled
-        - id: PrinterDocFlatpack
-        - id: FaxMachineFlatpack
-        - id: PlushieEmmie
-        - id: ClothingOuterHardsuitNtrep
-  
+        children: 
+        - !type:NestedSelector
+          tableId: FillNanotrasenRepLockerHardsuit # FH
+# FH, Suit Storage Unit Changes - START -
+# Locker table for Nanotrasen Rep's Locker
+
+- type: entityTable
+  id: FillNanotrasenRepLocker
+  table: !type:AllSelector
+    children:
+    - id: ClothingEyesHudSkills
+    - id: ClothingEyesSunGlassesHudSkill
+    - id: ClothingHeadHatCapNtrep
+    - id: ClothingUniformJumpsuitNtrepFormal
+    - id: ClothingUniformJumpskirtNtrep
+    - id: ClothingUniformJumpsuitNtrep
+    - id: ClothingOuterCoatNtrep
+    - id: ClothingShoesBootsLaceup
+    - id: ClothingHeadsetAltCommand
+    - id: WeaponDisabler
+    - id: LuxuryPen
+    - id: BoxFolderClipboardFilled
+    - id: PrinterDocFlatpack
+    - id: FaxMachineFlatpack
+    - id: PlushieEmmie
+
+- type: entity
+  id: LockerRepresentativeFilled
+  parent: LockerRepresentative
+  suffix: Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: FillNanotrasenRepLocker
+
+# Nanotrasen Rep's Bluespace Varient:
+# FH, Suit Storage Unit Changes - END -
 - type: entity
   id: LockerRepresentativeFilledBluespaced
   suffix: Filled, Bluespaced

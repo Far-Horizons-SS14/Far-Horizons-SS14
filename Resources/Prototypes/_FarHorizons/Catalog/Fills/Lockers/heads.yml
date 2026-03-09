@@ -63,6 +63,85 @@
     - id: NitrogenTankFilled
     - id: ClothingShoesBootsMagSec
 
+# Locker & Hardsuit table for QM's locker
+
+- type: entityTable 
+  id: LockerFillQuarterMasterHardsuit # You can find the commits for why the locker has these items over at "LockerFillQuarterMaster"
+  table: !type:AllSelector
+    children:
+    - id: ClothingNeckCloakQmElite
+    - id: BoxEncryptionKeyCargo
+    - id: BoxFolderQmClipboard
+    - id: BoxQMCircuitboards
+    - id: BoxQMStamps
+    - id: CigPackGreen
+      prob: 0.50
+    - id: ClothingHeadsetAltCargo
+    - id: DoorRemoteCargo
+    - id: AstroNavCartridge
+    - id: ClothingHandsKnuckleDustersQM
+    - id: PlushieLance 
+    - id: RadioHandheldExpedition 
+    - id: ClothingBeltSalvage 
+    - id: ClothingBeltSalvageWebbing 
+    - id: SalvageShuttleConsoleCircuitboard 
+    - id: ShipLabeler 
+    - id: MiningShuttleConsoleCircuitboard 
+    - id: PrintedDocumentGreenshiftAlert
+      conditions: 
+      - !type:GamemodeCondition 
+        presets: 
+        - Greenshift 
+        - Sandbox 
+    - id: SpaceCash1000 
+      conditions:
+      - !type:GamemodeCondition
+        presets: 
+        - Greenshift 
+        - Sandbox 
+    - id: SpaceCash1000 
+      conditions: 
+      - !type:GamemodeCondition 
+        presets: 
+        - Greenshift 
+        - Sandbox 
+    - id: SpaceCash1000 
+      conditions: 
+      - !type:GamemodeCondition 
+        presets: 
+        - Greenshift
+        - Sandbox
+    - id: SpaceCash1000
+      conditions: 
+      - !type:GamemodeCondition 
+        presets: 
+        - Greenshift 
+        - Sandbox 
+    - id: SpaceCash1000 
+      conditions: 
+      - !type:GamemodeCondition 
+        presets: 
+        - Greenshift 
+        - Sandbox 
+    - id: PlushieLizardJobQuartermaster
+      prob: 0.02
+    # Start of Quartermaster's Suit-Storage table
+    - id: ClothingOuterHardsuitLuxmax
+    - id: ClothingMaskBreath
+    - id: OxygenTankFilled
+    - id: NitrogenTankFilled
+
+- type: entity
+  id: LockerQuarterMasterFilledHardsuit
+  suffix: Filled, Hardsuit
+  parent: LockerQuarterMaster
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: LockerFillQuarterMasterHardsuit
+
+
 #region Syndicate
 
 # Commandant (Captain)
