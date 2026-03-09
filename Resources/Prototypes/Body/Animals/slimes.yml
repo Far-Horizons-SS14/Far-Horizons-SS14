@@ -3,9 +3,10 @@
   abstract: true
   components:
   - type: Body
-  - type: EntityTableContainerFill
-    containers:
-      body_organs: !type:AllSelector
-        children:
-        - id: OrganSlimePersonCore
-        - id: OrganSlimePersonLungs
+  #Far-Horizons Start
+  - type: InitialBody
+    organs:
+      Brain: OrganSlimePersonCore
+      Lungs: OrganSlimePersonLungs
+
+  #Far-Horizons End

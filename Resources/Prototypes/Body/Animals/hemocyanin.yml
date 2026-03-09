@@ -3,12 +3,12 @@
   abstract: true
   components:
   - type: Body
-  - type: EntityTableContainerFill
-    containers:
-      body_organs: !type:AllSelector
-        children:
-        - id: OrganAnimalLungs
-        - id: OrganArachnidHeart
-        - id: OrganAnimalStomach
-        - id: OrganAnimalLiver
-        - id: OrganAnimalKidneys
+  #Far-Horizons Start
+  - type: InitialBody
+    organs:
+      Lungs: OrganAnimalLungs
+      Heart: OrganArachnidHeart
+      Stomach: OrganAnimalStomach
+      Liver: OrganAnimalLiver
+      Kidneys: OrganAnimalKidneys
+  #Far-Horizons End

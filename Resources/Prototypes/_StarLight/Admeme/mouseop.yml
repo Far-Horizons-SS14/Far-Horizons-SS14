@@ -125,15 +125,15 @@
   - type: Stamina
     baseCritThreshold: 200
   - type: Body
-  - type: EntityTableContainerFill
-    containers:
-      body_organs: !type:AllSelector
-        children:
-        - id: OrganAnimalLungs
-        - id: OrganAnimalHeart
-        - id: OrganAnimalStomach
-        - id: OrganAnimalLiver
-        - id: OrganAnimalKidneys
+  #Far-Horizons Start
+  - type: InitialBody
+    organs:
+      Lungs: OrganAnimalLungs
+      Heart: OrganAnimalHeart
+      Stomach: OrganAnimalStomach
+      Liver: OrganAnimalLiver
+      Kidneys: OrganAnimalKidneys
+  #Far-Horizons End
   - type: Inventory
     templateId: InvMouseops
   - type: IdExaminable

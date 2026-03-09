@@ -2,8 +2,7 @@
 
 - type: entity
   parent: [BaseSpeciesMobOrganic, BaseSpeciesPickupableLarge]
-  id: BaseMobProtogen
-  name: Urist McToaster
+  id: BaseMobProtogenNoVision
   abstract: true
   components:
   - type: LanguageKnowledge
@@ -142,6 +141,13 @@
       Unsexed: MaleProtogen
   - type: UniversalHealModifier
     modifier: 0.5
+
+- type: entity
+  parent: BaseMobProtogenNoVision
+  id: BaseMobProtogen
+  name: Urist McToaster
+  abstract: true
+  components:
   - type: VisionOrganRequiredForVision
 
 #region VULPKANIN ####
@@ -442,10 +448,10 @@
       - Thaven
   - type: VisionOrganRequiredForVision
 
-#region LASPI ####
+#region LAPSI ####
 
 - type: entity
-  parent: BaseMobProtogen
+  parent: BaseMobProtogenNoVision
   id: BaseMobProtoSlimePerson
   name: Urist McSlimester
   abstract: true
