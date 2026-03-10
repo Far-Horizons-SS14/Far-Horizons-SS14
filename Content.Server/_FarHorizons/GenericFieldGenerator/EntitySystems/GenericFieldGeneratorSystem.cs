@@ -14,6 +14,9 @@ using Content.Shared.Power.Components;
 using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
 using Content.Shared.DeviceLinking.Events;
+using Content.Shared.Maps;
+using Robust.Shared.Map;
+using Robust.Shared.Map.Components;
 
 namespace Content.Server._FarHorizons.GenericFieldGenerator.EntitySystems;
 
@@ -26,6 +29,10 @@ public sealed class GenericFieldGeneratorSystem : EntitySystem
     [Dependency] private readonly SharedPointLightSystem _light = default!;
     [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
     [Dependency] private readonly BatterySystem _battery = default!;
+    [Dependency] private readonly ITileDefinitionManager _tiledef = default!;
+    [Dependency] private readonly TileSystem _tile = default!;
+    [Dependency] private readonly SharedMapSystem _mapSystem = default!;
+    [Dependency] private readonly GenericFieldSystem _genericfield = default!;
 
     public override void Initialize()
     {
@@ -169,6 +176,8 @@ public sealed class GenericFieldGeneratorSystem : EntitySystem
         {
             foreach (var field in value.Item2)
             {
+                if (TryComp<GenericFieldComponent>(field, out var fieldComp))
+                    _genericfield.TempTileCleanup((field, fieldComp));
                 QueueDel(field);
             }
             value.Item1.Comp.Connections.Remove(direction.GetOpposite());
@@ -187,7 +196,6 @@ public sealed class GenericFieldGeneratorSystem : EntitySystem
         ChangeConnectionLightVisualizer(generator);
         UpdateConnectionLights(generator);
         _adminLogger.Add(LogType.FieldGeneration, LogImpact.Medium, $"{ToPrettyString(uid)} lost field connections"); // Ideally LogImpact would depend on if there is a singulo nearby
-        //this logging should work fine for this system aswell
     }
 
     private void OnBatteryStateChanged(Entity<GenericFieldGeneratorComponent> ent, ref BatteryStateChangedEvent args)
@@ -250,6 +258,7 @@ public sealed class GenericFieldGeneratorSystem : EntitySystem
         {
             _battery.UseCharge(generator.Owner, batteryComponent.MaxCharge);
         }
+        _adminLogger.Add(LogType.FieldGeneration, LogImpact.High, $"{ToPrettyString(generator)} had a field destroyed"); //fields dont break randomly, usually antag activity
         RemoveConnections(generator);
     }
 
@@ -374,11 +383,31 @@ public sealed class GenericFieldGeneratorSystem : EntitySystem
             }
             fieldList.Add(newField);
             currentOffset += dirVec;
-            if (TryComp<GenericFieldComponent>(newField, out var FieldComp))
+            if (TryComp<GenericFieldComponent>(newField, out var fieldComp))// TODO: remember to tell GenericFieldComponent what tile it has to remove
             {
-                FieldComp.SourceGen = firstGen;
-            }
-            _transformSystem.AnchorEntity(newField);
+                fieldComp.SourceGen = firstGen;
+                if (!_transformSystem.AnchorEntity(newField)) //check if entity can anchor normally first
+                {
+                    if (!_tiledef.TryGetDefinition("HolographicTile", out var tileDef))
+                        break;
+
+                    var gridUid = Transform(firstGen).ParentUid;
+                    fieldComp.GridUid = gridUid;
+
+                    if (!TryComp<MapGridComponent>(gridUid, out var mapGrid)) 
+                        break;
+
+                    fieldComp.MapGrid = mapGrid;
+
+                    var tile = _mapSystem.GetTileRef(gridUid, mapGrid, _transformSystem.GetMapCoordinates(newField, fieldXForm));
+                    fieldComp.Tileref = tile; //GenericFieldComponent needs to know what tile it is
+
+                    _tile.ReplaceTile(tile, (ContentTileDefinition)tileDef, gridUid, mapGrid);
+                    fieldComp.TempTile = true;
+                    if (!_transformSystem.AnchorEntity(newField)) // if this fails to anchor, something has gone horribly wrong
+                        RemoveConnections(firstGen); //remove connection and so it can try again
+                }
+            }  
         }
         return fieldList;
     }
@@ -414,10 +443,10 @@ public sealed class GenericFieldGeneratorSystem : EntitySystem
     #endregion
 
     #region VisualizerHelpers
+
     /// <summary>
     /// Check if a fields power falls between certain ranges to update the field gen visual for power.
     /// </summary>
-    /// <param name="power"></param>
     /// <param name="generator"></param>
     private void ChangePowerVisualizer(Entity<GenericFieldGeneratorComponent> generator)
     {

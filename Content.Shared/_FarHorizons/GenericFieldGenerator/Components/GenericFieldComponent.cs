@@ -1,9 +1,6 @@
-using Content.Shared.Physics;
-using Content.Shared.Tag;
 using Robust.Shared.GameStates;
-using Robust.Shared.Prototypes;
-using Robust.Shared.Serialization;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
+using Robust.Shared.Map;
+using Robust.Shared.Map.Components;
 
 namespace Content.Shared._FarHorizons.GenericFieldGenerator.Components;
 
@@ -15,4 +12,28 @@ public sealed partial class GenericFieldComponent : Component
     /// </summary>
     [ViewVariables]
     public Entity<GenericFieldGeneratorComponent>? SourceGen;
+
+    /// <summary>
+    /// was a temporary tile made with this entity?
+    /// </summary>
+    [ViewVariables]
+    public bool TempTile = false;
+
+    /// <summary>
+    /// what tile was made with the entity?
+    /// </summary>
+    [ViewVariables]
+    public TileRef Tileref;
+
+    /// <summary>
+    /// MapGrid for tile that was made with the entity
+    /// </summary>
+    [ViewVariables]
+    public MapGridComponent MapGrid;
+
+    /// <summary>
+    /// GridUid for tile that was made with the entity
+    /// </summary>
+    [ViewVariables]
+    public EntityUid GridUid;
 }
