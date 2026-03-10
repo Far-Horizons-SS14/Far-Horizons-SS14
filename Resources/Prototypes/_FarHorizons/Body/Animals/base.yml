@@ -1,0 +1,211 @@
+- type: entity
+  parent: OrganBase
+  id: OrganAnimalBaseTorso
+  name: torso
+  abstract: true
+  components:
+  - type: Organ
+    category: Torso
+  - type: Sprite
+    state: torso
+  - type: VisualOrgan
+    layer: enum.HumanoidVisualLayers.Chest
+    data:
+      state: torso
+    scaleSource: true
+
+- type: entity
+  parent: OrganBase
+  id: OrganAnimalBaseHead
+  name: head
+  abstract: true
+  components:
+  - type: Organ
+    category: Head
+  - type: Sprite
+    state: head
+  - type: VisualOrgan
+    layer: enum.HumanoidVisualLayers.Head
+    data:
+      state: head
+
+- type: entity
+  parent: OrganBase
+  id: OrganAnimalBaseArmLeft
+  name: left arm
+  abstract: true
+  components:
+  - type: Organ
+    category: ArmLeft
+  - type: Sprite
+    state: l_arm
+  - type: VisualOrgan
+    layer: enum.HumanoidVisualLayers.LArm
+    data:
+      state: l_arm
+
+- type: entity
+  parent: OrganBase
+  id: OrganAnimalBaseArmRight
+  name: right arm
+  abstract: true
+  components:
+  - type: Organ
+    category: ArmRight
+  - type: Sprite
+    state: r_arm
+  - type: VisualOrgan
+    layer: enum.HumanoidVisualLayers.RArm
+    data:
+      state: r_arm
+
+- type: entity
+  parent: OrganBase
+  id: OrganAnimalBaseHandLeft
+  name: left hand
+  abstract: true
+  components:
+  - type: Organ
+    category: HandLeft
+  - type: HandOrgan
+    handID: left
+    data:
+      location: Left
+  - type: Sprite
+    state: l_hand
+  - type: VisualOrgan
+    layer: enum.HumanoidVisualLayers.LHand
+    data:
+      state: l_hand
+
+- type: entity
+  parent: OrganBase
+  id: OrganAnimalBaseHandRight
+  name: right hand
+  abstract: true
+  components:
+  - type: Organ
+    category: HandRight
+  - type: HandOrgan
+    handID: right
+    data:
+      location: Right
+  - type: Sprite
+    state: r_hand
+  - type: VisualOrgan
+    layer: enum.HumanoidVisualLayers.RHand
+    data:
+      state: r_hand
+
+- type: entity
+  parent: OrganBase
+  id: OrganAnimalBaseLegLeft
+  name: left leg
+  abstract: true
+  components:
+  - type: Organ
+    category: LegLeft
+  - type: Sprite
+    state: l_leg
+  - type: VisualOrgan
+    layer: enum.HumanoidVisualLayers.LLeg
+    data:
+      state: l_leg
+  - type: MovementOrgan
+
+- type: entity
+  parent: OrganBase
+  id: OrganAnimalBaseLegRight
+  name: right leg
+  abstract: true
+  components:
+  - type: Organ
+    category: LegRight
+  - type: Sprite
+    state: r_leg
+  - type: VisualOrgan
+    layer: enum.HumanoidVisualLayers.RLeg
+    data:
+      state: r_leg
+  - type: MovementOrgan
+
+- type: entity
+  parent: OrganBase
+  id: OrganAnimalBaseFootLeft
+  name: left foot
+  abstract: true
+  components:
+  - type: Organ
+    category: FootLeft
+  - type: Sprite
+    state: l_foot
+  - type: VisualOrgan
+    layer: enum.HumanoidVisualLayers.LFoot
+    data:
+      state: l_foot
+
+- type: entity
+  parent: OrganBase
+  id: OrganAnimalBaseFootRight
+  name: right foot
+  abstract: true
+  components:
+  - type: Organ
+    category: FootRight
+  - type: Sprite
+    state: r_foot
+  - type: VisualOrgan
+    layer: enum.HumanoidVisualLayers.RFoot
+    data:
+      state: r_foot
+
+- type: entity
+  parent: OrganBase
+  id: OrganAnimalBaseTail
+  name: tail
+  abstract: true
+  components:
+  - type: Organ
+    category: Tail
+  - type: Sprite
+    state: tail
+  - type: VisualOrgan
+    layer: enum.HumanoidVisualLayers.Tail
+    data:
+      state: tail
+
+- type: entity
+  parent: OrganBase
+  id: OrganAnimalBaseEyes
+  name: eyes
+  abstract: true
+  components:
+  - type: GibbableOrgan
+  - type: VisionOrgan 
+  - type: DetachedOrganVisualsExcluded
+  - type: OrganDamage
+    damage:
+      types:
+        Poison: 10
+        Cellular: 10
+        Bloodloss: 10
+        Radiation: 10
+        Caustic: 10
+  - type: Damageable
+    damageContainer: Biological
+  - type: Organ
+    category: Eyes
+  - type: Sprite
+    layers:
+    - state: eyeball-l
+    - state: eyeball-r
+  - type: VisualOrgan
+    layer: enum.HumanoidVisualLayers.Eyes
+    data:
+      sprite: Mobs/Customization/eyes.rsi
+      state: eyes
+
+- type: entity
+  parent: [ OrganBaseBrain, OrganHumanInternal ]
+  id: OrganAnimalBrain
+  suffix: animal

@@ -1,5 +1,5 @@
 - type: entity
-  parent: OrganAnimal
+  parent: OrganMonkey
   id: OrganMonkeyExternal
   abstract: true
   components:
@@ -8,3 +8,89 @@
   - type: VisualOrgan
     data:
       sprite: _FarHorizons/Mobs/Animals/monkey.rsi
+
+- type: entity
+  parent: OrganBase
+  id: OrganMonkey
+  abstract: true
+  suffix: Monkey
+  components:
+  - type: Tag
+    tags:
+      - Organic
+
+- type: entity
+  parent: BaseSpeciesAppearance
+  id: AppearanceMonkey
+  name: monkey appearance
+  components:
+  - type: InitialBody
+    organs:
+      Torso: OrganMonkeyTorso
+      Head: OrganMonkeyHead
+      ArmLeft: OrganMonkeyArmLeft
+      ArmRight: OrganMonkeyArmRight
+      HandRight: OrganMonkeyHandRight
+      HandLeft: OrganMonkeyHandLeft
+      LegLeft: OrganMonkeyLegLeft
+      LegRight: OrganMonkeyLegRight
+      FootLeft: OrganMonkeyFootLeft
+      FootRight: OrganMonkeyFootRight
+      Tail: OrganMonkeyTail
+      Brain: OrganAnimalBrain
+      Eyes: OrganMonkeyEyes
+      Tongue: OrganHumanTongue
+      Lungs: OrganAnimalLungs
+      Heart: OrganAnimalHeart
+      Stomach: OrganHumanStomach
+      Liver: OrganAnimalLiver
+      Kidneys: OrganAnimalKidneys
+
+- type: entity
+  parent: [ OrganAnimalBaseTorso, OrganMonkeyExternal ]
+  id: OrganMonkeyTorso
+
+- type: entity
+  parent: [ OrganAnimalBaseHead, OrganMonkeyExternal ]
+  id: OrganMonkeyHead
+
+- type: entity
+  parent: [ OrganAnimalBaseArmLeft, OrganMonkeyExternal ]
+  id: OrganMonkeyArmLeft
+
+- type: entity
+  parent: [ OrganAnimalBaseArmRight, OrganMonkeyExternal ]
+  id: OrganMonkeyArmRight
+
+- type: entity
+  parent: [ OrganAnimalBaseHandLeft, OrganMonkeyExternal ]
+  id: OrganMonkeyHandLeft
+
+- type: entity
+  parent: [ OrganAnimalBaseHandRight, OrganMonkeyExternal ]
+  id: OrganMonkeyHandRight
+
+- type: entity
+  parent: [ OrganAnimalBaseLegLeft, OrganMonkeyExternal ]
+  id: OrganMonkeyLegLeft
+
+- type: entity
+  parent: [ OrganAnimalBaseLegRight, OrganMonkeyExternal ]
+  id: OrganMonkeyLegRight
+
+- type: entity
+  parent: [ OrganAnimalBaseFootLeft, OrganMonkeyExternal ]
+  id: OrganMonkeyFootLeft
+
+- type: entity
+  parent: [ OrganAnimalBaseFootRight, OrganMonkeyExternal ]
+  id: OrganMonkeyFootRight
+
+- type: entity
+  parent: [ OrganAnimalBaseTail, OrganMonkeyExternal ]
+  id: OrganMonkeyTail
+
+- type: entity
+  parent: [ OrganHumanInternal, OrganMonkeyExternal, OrganAnimalBaseEyes ]
+  id: OrganMonkeyEyes
+  suffic: monkey
