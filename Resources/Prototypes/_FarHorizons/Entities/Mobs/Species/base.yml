@@ -12,3 +12,11 @@
   - type: MultiHandedItem
   - type: CanEscapeInventory
     baseResistTime: 2
+  - type: VisualPickupable
+
+- type: entity
+  id: VisualPickupableCloneEntity
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Sprite
+    - type: PickupableVisuals
