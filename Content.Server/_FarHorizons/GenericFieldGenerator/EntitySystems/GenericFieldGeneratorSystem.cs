@@ -17,6 +17,7 @@ using Content.Shared.DeviceLinking.Events;
 using Content.Shared.Maps;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
+using Content.Server.DeviceLinking.Systems;
 
 namespace Content.Server._FarHorizons.GenericFieldGenerator.EntitySystems;
 
@@ -33,6 +34,7 @@ public sealed class GenericFieldGeneratorSystem : EntitySystem
     [Dependency] private readonly TileSystem _tile = default!;
     [Dependency] private readonly SharedMapSystem _mapSystem = default!;
     [Dependency] private readonly GenericFieldSystem _genericfield = default!;
+    [Dependency] private readonly DeviceLinkSystem _signalSystem = default!;
 
     public override void Initialize()
     {
@@ -172,6 +174,8 @@ public sealed class GenericFieldGeneratorSystem : EntitySystem
     /// </summary>
     private void RemoveConnections(Entity<GenericFieldGeneratorComponent> generator)
     {
+        _signalSystem.SendSignal(generator, generator.Comp.ConnectionStatusPort, false);
+        _signalSystem.InvokePort(generator, generator.Comp.FieldDisconnectedPort);
         var (uid, component) = generator;
         foreach (var (direction, value) in component.Connections)
         {
@@ -185,6 +189,8 @@ public sealed class GenericFieldGeneratorSystem : EntitySystem
 
             if (value.Item1.Comp.Connections.Count == 0) //Change isconnected only if there's no more connections
             {
+                _signalSystem.SendSignal(value.Item1, generator.Comp.ConnectionStatusPort, false);
+                _signalSystem.InvokePort(value.Item1, generator.Comp.FieldDisconnectedPort);
                 value.Item1.Comp.IsConnected = false;
                 ChangeConnectionLightVisualizer(value.Item1);
                 UpdateConnectionLights(value.Item1);
@@ -359,6 +365,10 @@ public sealed class GenericFieldGeneratorSystem : EntitySystem
     /// <returns></returns>
     private List<EntityUid> GenerateFieldConnection(Entity<GenericFieldGeneratorComponent> firstGen, Entity<GenericFieldGeneratorComponent> secondGen)
     {
+        _signalSystem.SendSignal(firstGen, firstGen.Comp.ConnectionStatusPort, true);
+        _signalSystem.SendSignal(secondGen, secondGen.Comp.ConnectionStatusPort, true);
+        _signalSystem.InvokePort(firstGen, firstGen.Comp.FieldConnectedPort);
+        _signalSystem.InvokePort(secondGen, secondGen.Comp.FieldConnectedPort);
         var fieldList = new List<EntityUid>();
         var gen1Coords = Transform(firstGen).Coordinates;
         var gen2Coords = Transform(secondGen).Coordinates;

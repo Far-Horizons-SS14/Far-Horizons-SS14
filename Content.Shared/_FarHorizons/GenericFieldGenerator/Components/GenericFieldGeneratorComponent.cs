@@ -1,5 +1,4 @@
 using Content.Shared.Physics;
-using Content.Shared.Tag;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
@@ -95,6 +94,12 @@ public sealed partial class GenericFieldGeneratorComponent : Component
 
     [DataField]
     public ProtoId<SinkPortPrototype> OffPort = "Off";
+
+    public ProtoId<SourcePortPrototype> ConnectionStatusPort = "ConnectionStatus";
+    
+    public ProtoId<SourcePortPrototype> FieldConnectedPort = "FieldConnected";
+
+    public ProtoId<SourcePortPrototype> FieldDisconnectedPort = "FieldDisconnected";
 }
 
 [Serializable, NetSerializable]

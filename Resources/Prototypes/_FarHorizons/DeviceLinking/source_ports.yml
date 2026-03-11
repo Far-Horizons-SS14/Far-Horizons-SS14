@@ -27,3 +27,19 @@
   name: signal-port-name-gas-turbine-data-sender
   description: signal-port-description-gas-turbine-data-sender
   defaultLinks: [ GasTurbineDataReceiver ]
+
+  # Holographic Generator
+- type: sourcePort
+  id: ConnectionStatus
+  name: Field Status #TODO: locale
+  description: signal-port-description-doorstatus #TODO: locale
+
+- type: sourcePort
+  id: FieldConnected
+  name: Field Connected #TODO: locale
+  description: signal-port-description-doorstatus #TODO: locale
+
+- type: sourcePort
+  id: FieldDisconnected
+  name: Field Disconnected #TODO: locale
+  description: signal-port-description-doorstatus #TODO: locale
