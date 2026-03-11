@@ -1,4 +1,28 @@
+#region Nanotrasen
 
+#NTNC
+- type: entity
+  parent: [ ClothingNeckBase, BaseCentralCommandContraband ]
+  id: ClothingNeckMantleDecoratedMarineSergeant
+  name: Nanotrasen Marine Sergeant's Pauldron
+  description: Used by Nanotrasen Marines to indicate rank. This one indicates the wearer is at least a Sergeant.
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Clothing/Neck/Mantles/sergeantpauldron-ntnc.rsi
+    - type: Clothing
+      sprite: _FarHorizons/Clothing/Neck/Mantles/sergeantpauldron-ntnc.rsi
+
+
+- type: entity
+  parent: [ ClothingNeckBase, BaseCentralCommandContraband ]
+  id: ClothingNeckMantleDecoratedMarineMajor
+  name: Nanotrasen Marine Major's Pauldron
+  description: Used by Nanotrasen Marines to indicate rank. This one indicates the wearer is at least a Major.
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Clothing/Neck/Mantles/majorpauldron-ntnc.rsi
+    - type: Clothing
+      sprite: _FarHorizons/Clothing/Neck/Mantles/majorpauldron-ntnc.rsi
 
 #region Syndicate
 
