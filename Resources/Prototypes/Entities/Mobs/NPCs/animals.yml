@@ -1357,12 +1357,13 @@
 #    sprite: "Effects/creampie.rsi"
 #    state: "creampie_human"
 #      visible: false
+#
+# - type: Hands
+#    activeHandId: Hand
+#    hands:
+#      Hand:
+#        location: Left
 #FarHorizons End
-  - type: Hands
-    activeHandId: Hand
-    hands:
-      Hand:
-        location: Left
   - type: ComplexInteraction
   - type: GenericVisualizer
     visuals:
@@ -1431,32 +1432,10 @@
     bounds: -0.5,-0.5,0.5,0.5
   - type: JobStatus # marks them as crew
 
-#FarHorizons Start
-- type: entity
-  id: MobBaseNuBody
-  abstract: true
-  components:
-  - type: UserInterface
-    interfaces:
-      enum.SurgeryUIKey.Key:
-        type: SurgeryBui
-      enum.StrippingUiKey.Key:
-        type: StrippableBoundUserInterface
-  - type: Blindable
-  - type: DarkenedVision
-  - type: VisionOrganRequiredForVision
-  - type: GenericVisualizer
-    visuals:
-      enum.CreamPiedVisuals.Creamed:
-        clownedon:
-          True: { visible: true }
-          False: { visible: false }
-#FarHorizons End
-
 - type: entity
   name: monkey
   id: MobMonkey
-  parent: [ AppearanceMonkey, MobBaseNuBody, MobBaseAncestor, BaseSpeciesPickupable] #Far Horizons
+  parent: [ AppearanceMonkey, MobBaseAncestor, BaseSpeciesPickupable] #Far Horizons
   description: New church of neo-darwinists actually believe that EVERY animal evolved from a monkey. Tastes like pork, and killing them is both fun and relaxing.
   components:
   - type: NameIdentifier
@@ -1490,7 +1469,7 @@
 - type: entity
   name: monkey
   id: MobBaseSyndicateMonkey
-  parent: [ AppearanceMonkey, MobBaseNuBody, MobBaseAncestor ] #FarHorizons
+  parent: [ AppearanceMonkey, MobBaseAncestor ] #FarHorizons
   description: New church of neo-darwinists actually believe that EVERY animal evolved from a monkey. Tastes like pork, and killing them is both fun and relaxing.
   suffix: syndicate base
   components:
@@ -1541,7 +1520,7 @@
 - type: entity
   name: kobold
   id: MobBaseKobold
-  parent: [ MobBaseAncestor, BaseSpeciesPickupable] #FarHorizons
+  parent: [ AppearanceKobold, MobBaseAncestor, BaseSpeciesPickupable] #FarHorizons
   description: Cousins to the sentient race of lizard people, kobolds blend in with their natural habitat and are as nasty as monkeys; ready to pull out your hair and stab you to death.
   abstract: true
   components:
@@ -1601,47 +1580,49 @@
   - type: TemperatureDamage
     heatDamageThreshold: 360
     coldDamageThreshold: 285
-  - type: Sprite
-    drawdepth: Mobs
-    layers:
-    - map: ["enum.DamageStateVisualLayers.Base"]
-      sprite: Mobs/Animals/kobold.rsi
-      state: kobold
-    - map: [ "outline" ]
-      sprite: Mobs/Animals/kobold.rsi
-      state: outline
-    - map: [ "horns" ]
-      sprite: Mobs/Customization/reptilian_parts.rsi
-      state: horns_short
-    - map: [ "enum.HumanoidVisualLayers.Handcuffs" ]
-      color: "#ffffff"
-      sprite: Objects/Misc/handcuffs.rsi
-      state: body-overlay-2
-      visible: false
-    - map: [ "ears" ]
-    - map: [ "id" ]
-    - map: [ "mask" ]
-    - map: [ "head" ]
-    - map: [ "clownedon" ]
-      sprite: "Effects/creampie.rsi"
-      state: "creampie_human"
-      visible: false
-  - type: RandomSprite
-    getAllGroups: true
-    available:
-      - enum.DamageStateVisualLayers.Base:
-          kobold: KoboldColors
-      - horns:
-          horns_curled: KoboldHornColors
-          horns_ram: KoboldHornColors
-          horns_short: KoboldHornColors
-          horns_myrsore: KoboldHornColors
-          horns_bighorn: KoboldHornColors
-          horns_argali: KoboldHornColors
-          horns_ayrshire: KoboldHornColors
-          horns_floppy_kobold_ears: Inherit
-          horns_double: Inherit
-          horns_kobold_ears: Inherit
+  #FarHorizons Start
+#  - type: Sprite
+#    drawdepth: Mobs
+#    layers:
+#    - map: ["enum.DamageStateVisualLayers.Base"]
+#      sprite: Mobs/Animals/kobold.rsi
+#      state: kobold
+#    - map: [ "outline" ]
+#      sprite: Mobs/Animals/kobold.rsi
+#      state: outline
+#    - map: [ "horns" ]
+#      sprite: Mobs/Customization/reptilian_parts.rsi
+#     state: horns_short
+#    - map: [ "enum.HumanoidVisualLayers.Handcuffs" ]
+#      color: "#ffffff"
+#      sprite: Objects/Misc/handcuffs.rsi
+#      state: body-overlay-2
+#      visible: false
+#    - map: [ "ears" ]
+#    - map: [ "id" ]
+#    - map: [ "mask" ]
+#    - map: [ "head" ]
+#    - map: [ "clownedon" ]
+#      sprite: "Effects/creampie.rsi"
+#      state: "creampie_human"
+#      visible: false
+#  - type: RandomSprite
+#    getAllGroups: true
+#    available:
+#      - enum.DamageStateVisualLayers.Base:
+#          kobold: KoboldColors
+#      - horns:
+#          horns_curled: KoboldHornColors
+#          horns_ram: KoboldHornColors
+#          horns_short: KoboldHornColors
+#          horns_myrsore: KoboldHornColors
+#          horns_bighorn: KoboldHornColors
+#          horns_argali: KoboldHornColors
+#          horns_ayrshire: KoboldHornColors
+#          horns_floppy_kobold_ears: Inherit
+#          horns_double: Inherit
+#          horns_kobold_ears: Inherit
+  #FarHorizons End
   - type: Butcherable
     butcheringType: Spike
     spawned:

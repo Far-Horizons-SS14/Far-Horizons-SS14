@@ -1,13 +1,44 @@
-- type: entity
-  parent: OrganMonkey
-  id: OrganMonkeyExternal
-  abstract: true
-  components:
-  - type: Sprite
-    sprite: _FarHorizons/Mobs/Animals/monkey.rsi
-  - type: VisualOrgan
-    data:
-      sprite: _FarHorizons/Mobs/Animals/monkey.rsi
+- type: markingsGroup
+  parent: Undergarments
+  id: Monkey
+  onlyGroupWhitelisted: true
+  limits:
+    enum.HumanoidVisualLayers.Hair:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.Head:
+      limit: 3
+      required: false
+    enum.HumanoidVisualLayers.Chest:
+      limit: 2
+      required: false
+    enum.HumanoidVisualLayers.LArm:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RArm:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LHand:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RHand:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LLeg:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RLeg:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LFoot:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RFoot:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.Tail:
+      limit: 1
+      required: false
 
 - type: entity
   parent: OrganBase
@@ -20,7 +51,21 @@
       - Organic
 
 - type: entity
-  parent: BaseSpeciesAppearance
+  parent: OrganMonkey
+  id: OrganMonkeyExternal
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Mobs/Animals/monkey.rsi
+  - type: VisualOrgan
+    data:
+      sprite: _FarHorizons/Mobs/Animals/monkey.rsi
+  - type: VisualOrganMarkings
+    markingData:
+      group: Monkey
+
+- type: entity
+  parent: BaseAnimalNubody
   id: AppearanceMonkey
   name: monkey appearance
   components:
@@ -37,7 +82,7 @@
       FootLeft: OrganMonkeyFootLeft
       FootRight: OrganMonkeyFootRight
       Tail: OrganMonkeyTail
-      Brain: OrganAnimalBrain
+      Brain: OrganHumanBrain
       Eyes: OrganMonkeyEyes
       Tongue: OrganHumanTongue
       Lungs: OrganAnimalLungs
@@ -47,50 +92,50 @@
       Kidneys: OrganAnimalKidneys
 
 - type: entity
-  parent: [ OrganAnimalBaseTorso, OrganMonkeyExternal ]
+  parent: [ OrganBaseTorso, OrganMonkeyExternal ]
   id: OrganMonkeyTorso
 
 - type: entity
-  parent: [ OrganAnimalBaseHead, OrganMonkeyExternal ]
+  parent: [ OrganBaseHead, OrganMonkeyExternal ]
   id: OrganMonkeyHead
 
 - type: entity
-  parent: [ OrganAnimalBaseArmLeft, OrganMonkeyExternal ]
+  parent: [ OrganBaseArmLeft, OrganMonkeyExternal ]
   id: OrganMonkeyArmLeft
 
 - type: entity
-  parent: [ OrganAnimalBaseArmRight, OrganMonkeyExternal ]
+  parent: [ OrganBaseArmRight, OrganMonkeyExternal ]
   id: OrganMonkeyArmRight
 
 - type: entity
-  parent: [ OrganAnimalBaseHandLeft, OrganMonkeyExternal ]
+  parent: [ OrganBaseHandLeft, OrganMonkeyExternal ]
   id: OrganMonkeyHandLeft
 
 - type: entity
-  parent: [ OrganAnimalBaseHandRight, OrganMonkeyExternal ]
+  parent: [ OrganBaseHandRight, OrganMonkeyExternal ]
   id: OrganMonkeyHandRight
 
 - type: entity
-  parent: [ OrganAnimalBaseLegLeft, OrganMonkeyExternal ]
+  parent: [ OrganBaseLegLeft, OrganMonkeyExternal ]
   id: OrganMonkeyLegLeft
 
 - type: entity
-  parent: [ OrganAnimalBaseLegRight, OrganMonkeyExternal ]
+  parent: [ OrganBaseLegRight, OrganMonkeyExternal ]
   id: OrganMonkeyLegRight
 
 - type: entity
-  parent: [ OrganAnimalBaseFootLeft, OrganMonkeyExternal ]
+  parent: [ OrganBaseFootLeft, OrganMonkeyExternal ]
   id: OrganMonkeyFootLeft
 
 - type: entity
-  parent: [ OrganAnimalBaseFootRight, OrganMonkeyExternal ]
+  parent: [ OrganBaseFootRight, OrganMonkeyExternal ]
   id: OrganMonkeyFootRight
 
 - type: entity
-  parent: [ OrganAnimalBaseTail, OrganMonkeyExternal ]
-  id: OrganMonkeyTail
-
-- type: entity
-  parent: [ OrganHumanInternal, OrganMonkeyExternal, OrganAnimalBaseEyes ]
+  parent: [ OrganHumanInternal, OrganMonkeyExternal, OrganBaseEyes ]
   id: OrganMonkeyEyes
   suffic: monkey
+
+- type: entity
+  parent: [ OrganBaseTail, OrganMonkeyExternal ]
+  id: OrganMonkeyTail
