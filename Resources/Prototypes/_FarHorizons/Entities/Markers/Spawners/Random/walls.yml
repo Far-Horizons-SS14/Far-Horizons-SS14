@@ -1,0 +1,203 @@
+- type: entity
+  name: Syndicate Wall Spawner
+  id: SpawnerWallSolidSyndicate70
+  suffix: 70%
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: _FarHorizons/Structures/Walls/solid_syndie.rsi
+      state: full
+  - type: RandomSpawner
+    prototypes:
+    - WallSolidSyndicate
+    chance: 0.7
+    offset: 0.0
+
+- type: entity
+  name: Syndicate Wall Spawner
+  id: SpawnerWallSolidSyndicate50
+  suffix: 50%
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: _FarHorizons/Structures/Walls/solid_syndie.rsi
+      state: full
+  - type: RandomSpawner
+    prototypes:
+    - WallSolidSyndicate
+    chance: 0.5
+    offset: 0.0
+
+- type: entity
+  name: Syndicate Wall Spawner
+  id: SpawnerWallSolidSyndicate30
+  suffix: 30%
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: _FarHorizons/Structures/Walls/solid_syndie.rsi
+      state: full
+  - type: RandomSpawner
+    prototypes:
+    - WallSolidSyndicate
+    chance: 0.3
+    offset: 0.0
+
+- type: entity
+  name: Syndicate Reinforced Wall Spawner
+  id: SpawnerWallReinforcedSyndicate70
+  suffix: 70%
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: _FarHorizons/Structures/Walls/solid_syndie.rsi
+      state: rgeneric
+  - type: RandomSpawner
+    prototypes:
+    - WallReinforcedSyndicate
+    chance: 0.7
+    offset: 0.0
+
+- type: entity
+  name: Syndicate Reinforced Wall Spawner
+  id: SpawnerWallReinforcedSyndicate50
+  suffix: 50%
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: _FarHorizons/Structures/Walls/solid_syndie.rsi
+      state: rgeneric
+  - type: RandomSpawner
+    prototypes:
+    - WallReinforcedSyndicate
+    chance: 0.5
+    offset: 0.0
+
+- type: entity
+  name: Syndicate Reinforced Wall Spawner
+  id: SpawnerWallReinforcedSyndicate30
+  suffix: 30%
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: _FarHorizons/Structures/Walls/solid_syndie.rsi
+      state: rgeneric
+  - type: RandomSpawner
+    prototypes:
+    - WallReinforcedSyndicate
+    chance: 0.3
+    offset: 0.0
+
+- type: entity
+  name: Wall Spawner
+  id: SpawnerWallSolid70
+  suffix: 70%
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Structures/Walls/solid.rsi
+      state: full
+  - type: RandomSpawner
+    prototypes:
+    - WallSolid
+    chance: 0.7
+    offset: 0.0
+
+- type: entity
+  name: Wall Spawner
+  id: SpawnerWallSolid50
+  suffix: 50%
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Structures/Walls/solid.rsi
+      state: full
+  - type: RandomSpawner
+    prototypes:
+    - WallSolid
+    chance: 0.5
+    offset: 0.0
+
+- type: entity
+  name: Wall Spawner
+  id: SpawnerWallSolid30
+  suffix: 30%
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Structures/Walls/solid.rsi
+      state: full
+  - type: RandomSpawner
+    prototypes:
+    - WallSolid
+    chance: 0.3
+    offset: 0.0
+
+- type: entity
+  name: Reinforced Wall Spawner
+  id: SpawnerWallReinforced70
+  suffix: 70%
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Structures/Walls/solid.rsi
+      state: rgeneric
+  - type: RandomSpawner
+    prototypes:
+    - WallReinforced
+    chance: 0.7
+    offset: 0.0
+
+- type: entity
+  name: Reinforced Wall Spawner
+  id: SpawnerWallReinforced50
+  suffix: 50%
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Structures/Walls/solid.rsi
+      state: rgeneric
+  - type: RandomSpawner
+    prototypes:
+    - WallReinforced
+    chance: 0.5
+    offset: 0.0
+
+- type: entity
+  name: Reinforced Wall Spawner
+  id: SpawnerWallReinforced30
+  suffix: 30%
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Structures/Walls/solid.rsi
+      state: rgeneric
+  - type: RandomSpawner
+    prototypes:
+    - WallReinforced
+    chance: 0.3
+    offset: 0.0

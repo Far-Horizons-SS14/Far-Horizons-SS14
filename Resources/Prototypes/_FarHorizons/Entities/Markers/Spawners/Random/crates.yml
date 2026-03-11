@@ -1,0 +1,35 @@
+- type: entity
+  name: Engineering Engine Crate Spawner
+  id: SpawnerEngineeringEngineCrate
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Structures/Storage/Crates/engineering.rsi
+      state: icon
+  - type: RandomSpawner
+    prototypes:
+    - CrateEngineeringSingularityGenerator
+    - CrateEngineeringTeslaGenerator
+    offset: 0.0
+
+- type: entity
+  name: Engineering Engine Crate Spawner
+  id: SpawnerEngineeringEngineCrate70
+  suffix: 70%
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Structures/Storage/Crates/engineering.rsi
+      state: icon
+  - type: RandomSpawner
+    rarePrototypes:
+    - CrateEngineeringSecure
+    rareChance: 0.3
+    prototypes:
+    - CrateEngineeringSingularityGenerator
+    - CrateEngineeringTeslaGenerator
+    offset: 0.0
