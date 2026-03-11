@@ -160,8 +160,41 @@ public sealed partial class HumanoidCharacterAppearance : IEquatable<HumanoidCha
         var newHeight = random.NextFloat(speciesPrototype.MinHeight, speciesPrototype.MaxHeight);
         //starlight end
 
+        Dictionary<HumanoidVisualLayers, List<Marking>> newMarkings = new ();
+
+        foreach(var organ in markingManager.GetOrgans(species))
+        {
+            if(!markingManager.TryGetMarkingData(organ.Value, out var markingData))
+                continue;
+            if(markingData.Value.Layers.Count == 0)
+                continue;
+            
+            Logger.Info($"{organ}");
+            foreach(var layer in markingData.Value.Layers)
+            {
+                if(!_randomizableLayers.Contains(layer))
+                    continue;
+                Logger.Info($"{layer}");
+                var markings = markingManager.MarkingsByLayerAndGroupAndSex(layer, markingData.Value.Group, sex);
+                if(markings.Count == 0)
+                    continue;
+            }
+        }
+
         return new HumanoidCharacterAppearance(newEyeColor, false, newSkinColor, new (), newWidth, newHeight); //starlight, glowing
     }
+
+    private static readonly HashSet<HumanoidVisualLayers> _randomizableLayers =
+    [
+        HumanoidVisualLayers.Tail,
+        HumanoidVisualLayers.Hair,
+        HumanoidVisualLayers.Head,
+        HumanoidVisualLayers.Snout,
+        HumanoidVisualLayers.HeadSide,
+        HumanoidVisualLayers.HeadTop,
+        HumanoidVisualLayers.Eyes,
+        HumanoidVisualLayers.FacialHair
+    ];
 
     public static Color ClampColor(Color color)
     {

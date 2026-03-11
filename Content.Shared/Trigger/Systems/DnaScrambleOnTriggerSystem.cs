@@ -35,6 +35,7 @@ public sealed class DnaScrambleOnTriggerSystem : XOnTriggerSystem<DnaScrambleOnT
         var newProfile = HumanoidCharacterProfile.RandomWithSpecies(humanoid.Species);
         _visualBody.ApplyProfileTo(target, newProfile);
         _humanoidProfile.ApplyProfileTo(target, newProfile);
+        _visualBody.MatchMarkingsToSkinColor(target, newProfile); //FarHorizons
         _metaData.SetEntityName(target, newProfile.Name, raiseEvents: false); // raising events would update ID card, station record, etc.
 
         // If the entity has the respective components, then scramble the dna and fingerprint strings.

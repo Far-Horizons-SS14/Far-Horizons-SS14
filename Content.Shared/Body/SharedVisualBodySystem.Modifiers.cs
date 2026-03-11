@@ -155,4 +155,28 @@ public abstract partial class SharedVisualBodySystem
         var profileEvt = new ApplyOrganProfileDataEvent(null, profiles);
         RaiseLocalEvent(ent, ref profileEvt);
     }
+
+    //FarHorizons Start
+    public void MatchMarkingsToSkinColor(Entity<VisualBodyComponent?> ent, HumanoidCharacterProfile profile)
+    {
+        if(!TryComp<BodyComponent>(ent.Owner, out var body) || body.Organs == null || body.Organs.ContainedEntities.Count < 0)
+            return;
+        foreach(var organ in body.Organs.ContainedEntities)
+        {
+            if(!TryComp<VisualOrganMarkingsComponent>(organ, out var markingComp))
+                continue;
+            foreach(var (layer, markings) in markingComp.Markings)
+            {
+                foreach(var marking in markings)
+                {
+                    if(marking.Equals(MarkingCategories.Hair) || marking.Equals(MarkingCategories.FacialHair))
+                        continue;
+                    marking.SetColor(profile.Appearance.SkinColor);
+                }
+            }
+            Dirty(organ, markingComp);
+        }
+
+        //FarHorizons End
+    }
 }

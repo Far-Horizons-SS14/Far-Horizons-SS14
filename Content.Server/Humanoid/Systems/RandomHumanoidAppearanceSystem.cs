@@ -1,6 +1,7 @@
 using Content.Server.Humanoid.Components;
 using Content.Shared.Body;
 using Content.Shared.Humanoid;
+using Content.Shared.Humanoid.Markings;
 using Content.Shared.Preferences;
 
 namespace Content.Server.Humanoid.Systems;
@@ -28,6 +29,7 @@ public sealed class RandomHumanoidAppearanceSystem : EntitySystem
 
         _visualBody.ApplyProfileTo(uid, profile);
         _humanoidProfile.ApplyProfileTo(uid, profile);
+        _visualBody.MatchMarkingsToSkinColor(uid, profile); //FarHorizons
 
         if (component.RandomizeName)
             _metaData.SetEntityName(uid, profile.Name);

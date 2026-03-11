@@ -130,6 +130,7 @@ public sealed partial class SurgeryOverhaulSystem : EntitySystem
         var newProfile = HumanoidCharacterProfile.RandomWithSpecies(humanoid.Species);
         _visualBody.ApplyProfileTo(target, newProfile);
         _profile.ApplyProfileTo(target, newProfile);
+        _visualBody.MatchMarkingsToSkinColor(target, newProfile);
         _metaData.SetEntityName(target, newProfile.Name, raiseEvents: false);
         _identity.QueueIdentityUpdate(target);
     }
