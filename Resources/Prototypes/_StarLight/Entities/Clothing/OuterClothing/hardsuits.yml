@@ -188,14 +188,14 @@
   parent: [ BaseCentcommContraband, ClothingOuterHardsuitBlueshield ] #FH Change - Why the fuck did it parent the Elite Suit?
   id: ClothingOuterHardsuitNTNCConsortium
   name: NanoTrasen Marine Hardsuit #FH
-  description: A protective hardsuit worn by NanoTrasen Naval Officers. #FH
+  description: A protective hardsuit worn by NanoTrasen Marines. #FH
   components:
   - type: Sprite
-    sprite: _Starlight/Clothing/OuterClothing/Hardsuits/ntnc_hardsuit.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/ntnc_hardsuit.rsi # FH
     layers: # STARLIGHT
       - state: icon
   - type: Clothing
-    sprite: _Starlight/Clothing/OuterClothing/Hardsuits/ntnc_hardsuit.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/ntnc_hardsuit.rsi # FH
     clothingVisuals:
       outerClothing:
         - state: equipped-OUTERCLOTHING
