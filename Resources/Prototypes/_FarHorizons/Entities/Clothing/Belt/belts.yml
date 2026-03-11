@@ -438,7 +438,7 @@
 #region NTNC
 - type: entity
   id: ClothingBeltNTNC
-  parent: ClothingBeltNTNCRig
+  parent: [ClothingBeltBase, ContentsExplosionResistanceBase, BaseCentcommContraband]
   name: Nanotrasen Marine Belt
   description: A military belt worn by Nanotrasen Marines
   components: # TODO maybe give this unique inventory & shit
