@@ -18,6 +18,7 @@ using Content.Shared.Maps;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Content.Server.DeviceLinking.Systems;
+using Content.Shared.DeviceLinking;
 
 namespace Content.Server._FarHorizons.GenericFieldGenerator.EntitySystems;
 
@@ -94,6 +95,8 @@ public sealed class GenericFieldGeneratorSystem : EntitySystem
         ChangePowerVisualizer(generator);
         ChangeOnLightVisualizer(generator);
         UpdateConnectionLights(generator);
+        _signalSystem.EnsureSinkPorts(generator, generator.Comp.TogglePort, generator.Comp.OnPort, generator.Comp.OffPort);
+        _signalSystem.EnsureSourcePorts(generator, generator.Comp.ConnectionStatusPort, generator.Comp.FieldConnectedPort, generator.Comp.FieldDisconnectedPort);
     }
     private void OnExamine(EntityUid uid, GenericFieldGeneratorComponent component, ExaminedEvent args)
     {
@@ -153,7 +156,7 @@ public sealed class GenericFieldGeneratorSystem : EntitySystem
         var component = generator.Comp;
         var genXForm = Transform(generator);
         generator.Comp.Charged = true;
-        var dir = (Direction)genXForm.LocalRotation.GetCardinalDir();
+        var dir = genXForm.LocalRotation.GetCardinalDir();
 
         if (component.Connections.ContainsKey(dir))
             return; // This direction already has an active connection
@@ -174,8 +177,11 @@ public sealed class GenericFieldGeneratorSystem : EntitySystem
     /// </summary>
     private void RemoveConnections(Entity<GenericFieldGeneratorComponent> generator)
     {
+        if (TryComp<DeviceLinkSourceComponent>(generator, out _))
+        {
         _signalSystem.SendSignal(generator, generator.Comp.ConnectionStatusPort, false);
         _signalSystem.InvokePort(generator, generator.Comp.FieldDisconnectedPort);
+        }
         var (uid, component) = generator;
         foreach (var (direction, value) in component.Connections)
         {
@@ -189,8 +195,12 @@ public sealed class GenericFieldGeneratorSystem : EntitySystem
 
             if (value.Item1.Comp.Connections.Count == 0) //Change isconnected only if there's no more connections
             {
-                _signalSystem.SendSignal(value.Item1, generator.Comp.ConnectionStatusPort, false);
-                _signalSystem.InvokePort(value.Item1, generator.Comp.FieldDisconnectedPort);
+                if (TryComp<DeviceLinkSourceComponent>(value.Item1, out _))
+                {
+                    _signalSystem.SendSignal(value.Item1, generator.Comp.ConnectionStatusPort, false);
+                    _signalSystem.InvokePort(value.Item1, generator.Comp.FieldDisconnectedPort);
+                }
+
                 value.Item1.Comp.IsConnected = false;
                 ChangeConnectionLightVisualizer(value.Item1);
                 UpdateConnectionLights(value.Item1);
@@ -365,10 +375,14 @@ public sealed class GenericFieldGeneratorSystem : EntitySystem
     /// <returns></returns>
     private List<EntityUid> GenerateFieldConnection(Entity<GenericFieldGeneratorComponent> firstGen, Entity<GenericFieldGeneratorComponent> secondGen)
     {
-        _signalSystem.SendSignal(firstGen, firstGen.Comp.ConnectionStatusPort, true);
-        _signalSystem.SendSignal(secondGen, secondGen.Comp.ConnectionStatusPort, true);
-        _signalSystem.InvokePort(firstGen, firstGen.Comp.FieldConnectedPort);
-        _signalSystem.InvokePort(secondGen, secondGen.Comp.FieldConnectedPort);
+        if (TryComp<DeviceLinkSourceComponent>(firstGen, out _))
+        {
+            _signalSystem.SendSignal(firstGen, firstGen.Comp.ConnectionStatusPort, true);
+            _signalSystem.SendSignal(secondGen, secondGen.Comp.ConnectionStatusPort, true);
+            _signalSystem.InvokePort(firstGen, firstGen.Comp.FieldConnectedPort);
+            _signalSystem.InvokePort(secondGen, secondGen.Comp.FieldConnectedPort);
+        }
+
         var fieldList = new List<EntityUid>();
         var gen1Coords = Transform(firstGen).Coordinates;
         var gen2Coords = Transform(secondGen).Coordinates;
