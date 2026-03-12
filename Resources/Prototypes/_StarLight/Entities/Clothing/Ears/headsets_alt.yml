@@ -1,5 +1,5 @@
 - type: entity
-  parent: [ClothingHeadsetAlt, BaseCommandContraband]
+  parent: [ClothingHeadsetAlt, BaseCentcommContraband]
   id: ClothingHeadsetAltCentCom
   name: centcom over-ear headset
   components:
@@ -17,9 +17,9 @@
       path: /Audio/_Starlight/Effects/Radio/cc.ogg
 
 - type: entity
-  parent: [ClothingHeadsetAlt, BaseCommandContraband]
-  id: ClothingHeadsetAltCentComNTNC
-  name: centcom over-ear headset
+  parent: [ClothingHeadsetAlt, BaseCentcommContraband]
+  id: ClothingHeadsetAltNTNC
+  name: ntnc headset
   components:
   - type: ContainerFill
     containers:
@@ -28,9 +28,9 @@
       - EncryptionKeyCommon
       - EncryptionKeySecurity
   - type: Sprite
-    sprite: Clothing/Ears/Headsets/centcom.rsi
+    sprite: _Starlight/Clothing/Ears/Headsets/ntnc.rsi
   - type: Clothing
-    sprite: Clothing/Ears/Headsets/centcom.rsi
+    sprite: _Starlight/Clothing/Ears/Headsets/ntnc.rsi
   - type: RadioChime
     sound:
       path: /Audio/_Starlight/Effects/Radio/cc.ogg

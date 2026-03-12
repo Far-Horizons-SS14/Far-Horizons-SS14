@@ -196,6 +196,28 @@
   - type: Clothing
     sprite: _Starlight/Clothing/Uniforms/ntcc_fatigues.rsi
 
+- type: entity
+  parent: [ ClothingUniformSkirtBase, BaseCentcommContraband ]
+  id: ClothingUniformJumpsuitNTNCOfficer
+  name: nanotrasen navy officer's jumpsuit
+  description: Standard issue NanoTrasen Navy Marine jumpsuit. This one's for an officer.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/ntnc-officer.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/ntnc-officer.rsi
+
+- type: entity
+  parent: [ ClothingUniformSkirtBase, BaseCentcommContraband ]
+  id: ClothingUniformJumpsuitNTNCEnsign
+  name: nanotrasen navy ensign's jumpsuit
+  description: Standard issue NanoTrasen Navy Marine jumpsuit. This one's for an ensign.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/ntnc-officer.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/ntnc-officer.rsi
+
 # Fashion-O-Mat, not obtainable any other way, unless mapped
 
 - type: entity

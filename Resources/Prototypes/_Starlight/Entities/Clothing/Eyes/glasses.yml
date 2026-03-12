@@ -1,0 +1,160 @@
+- type: entity
+  parent: [ClothingEyesBase, ShowSecurityIcons, BaseSecurityContraband]
+  id: ClothingEyesGlassesBrigmedic
+  name: Brigmedic Glasses #Far Horizons - The Great Capitalization Crusade
+  description: Tamashi-upgraded glasses. Yes. Brigmedic ones.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Eyes/Glasses/brigmedicglasses.rsi #Far Horizons
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Eyes/Glasses/brigmedicglasses.rsi #Far Horizons
+  - type: FlashImmunity
+  - type: SolutionScanner
+  - type: EyeProtection
+    protectionTime: 5
+  - type: ShowHealthBars
+  - type: Construction
+    graph: GlassesSecHUD
+    node: glassesSec
+  - type: Tag
+    tags:
+    - HamsterWearable
+    - WhitelistChameleon
+  - type: IdentityBlocker
+    coverage: EYES
+
+- type: entity
+  parent: ClothingEyesBase
+  id: ClothingEyesGlassesJensenChemical
+  name: Advanced Jensen Glasses #Far Horizons - The Great Capitalization Crusade
+  description: A pair of magenta tinted folding glasses that can scan the chemical composition of a solution. You specifically asked for these.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Eyes/Glasses/advancedjensen.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Eyes/Glasses/advancedjensen.rsi
+  - type: SolutionScanner
+  - type: IdentityBlocker
+    coverage: EYES
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+
+- type: entity
+  parent: ClothingEyesBase
+  id: ClothingEyesSunGlassesHudSkill
+  name: Skills Sunglasses #Far Horizons - The Great Capitalization Crusade
+  description: Sunglasses with a build-in skills HUD, showing the employment history of nearby NT crew members.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Eyes/Glasses/sunhudskill.rsi #Far Horizons
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Eyes/Glasses/sunhudskill.rsi #Far Horizons
+  - type: FlashImmunity
+  - type: ShowJobIcons
+  - type: ShowMindShieldIcons
+  - type: ShowCriminalRecordIcons
+  - type: EyeProtection
+    protectionTime: 5
+
+- type: entity
+  parent: [ClothingEyesBase, BaseCommandContraband]
+  id: ClothingEyesGlassesBlueShield
+  name: Blueshield Officer's Glasses #Far Horizons - The Great Capitalization Crusade
+  description: The innovative blue lenses hide your eyes from light flashes and have a built-in visor.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Eyes/Glasses/blueshield.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Eyes/Glasses/blueshield.rsi
+  - type: FlashImmunity
+  - type: ShowJobIcons
+  - type: ShowMindShieldIcons
+  - type: ShowCriminalRecordIcons
+  - type: ShowHealthBars
+    damageContainers:
+    - Biological
+  - type: ShowHealthIcons
+    damageContainers:
+    - Biological
+  - type: Tag
+    tags:
+    - HudMedical
+  - type: EyeProtection
+    protectionTime: 5
+
+- type: entity
+  parent: [ClothingEyesBase, BaseCentcommContraband]
+  id: ClothingEyesGlassesCentComm
+  name: Centcomm Officer's Glasses #Far Horizons - The Great Capitalization Crusade
+  description: The innovative green lenses hide your eyes from light flashes and have a built-in visor.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Eyes/Glasses/centcomm.rsi #Far Horizons
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Eyes/Glasses/centcomm.rsi #Far Horizons
+  - type: FlashImmunity
+  - type: ShowJobIcons
+  - type: ShowMindShieldIcons
+  - type: ShowCriminalRecordIcons
+  - type: ShowHealthBars
+    damageContainers:
+    - Biological
+  - type: ShowHealthIcons
+    damageContainers:
+    - Biological
+  - type: Tag
+    tags:
+    - HudMedical
+  - type: EyeProtection
+    protectionTime: 5
+
+# USSP
+
+- type: entity
+  parent: ClothingEyesBase
+  id: ClothingEyesGlassesSKBGlasses
+  name: Cheap Sunglasses #Far Horizons - The Great Capitalization Crusade
+  description: A pair of black sunglasses. Doesn't block light well, more of an accessory than something useful.
+  suffix: SKB
+  components:
+  - type: Sprite
+    sprite: Clothing/Eyes/Glasses/sunglasses.rsi
+  - type: Clothing
+    sprite: Clothing/Eyes/Glasses/sunglasses.rsi
+  - type: Tag
+    tags:
+    - HamsterWearable
+    - WhitelistChameleon
+  - type: IdentityBlocker
+    coverage: EYES
+  - type: ShowMindShieldIcons
+
+# Shadekin
+
+- type: entity
+  parent: [ClothingEyesBase]
+  id: ClothingEyesGlassesNullSpace
+  name: Nullspace Goggles #Far Horizons - The Great Capitalization Crusade
+  description: An unusual pair of goggles developed during a time of inhumane experimentation involving Shadekin. They are designed to allow the wearer to peer into NullSpace.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Eyes/Glasses/nullspacegoogles.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Eyes/Glasses/nullspacegoogles.rsi
+  - type: ShowNullSpace
+
+- type: entity
+  parent: [ ClothingEyesBase, BaseSalvageContraband ]
+  id: ClothingEyesGlassesSalvageMercenary
+  name: Scrapper Glasses #Far Horizons - The Great Capitalization Crusade
+  description: Glasses made for salvaging. They provide protection from welding and flashes.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Eyes/Glasses/salvage.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Eyes/Glasses/salvage.rsi
+    - type: FlashImmunity
+    - type: EyeProtection
+    - type: IdentityBlocker
+      coverage: EYES

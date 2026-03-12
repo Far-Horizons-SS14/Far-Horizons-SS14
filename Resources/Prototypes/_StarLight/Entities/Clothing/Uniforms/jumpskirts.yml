@@ -530,3 +530,25 @@
     sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/magistrate.rsi #Far Horizons
   - type: Clothing
     sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/magistrate.rsi #Far Horizons
+
+- type: entity
+  parent: [ ClothingUniformSkirtBase, BaseCentcommContraband ]
+  id: ClothingUniformJumpskirtNTNCOfficer
+  name: nanotrasen navy officer's jumpskirt
+  description: Standard issue NanoTrasen Navy Marine jumpskirt. This one's for an officer.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/ntnc-officer.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/ntnc-officer.rsi
+
+- type: entity
+  parent: [ ClothingUniformSkirtBase, BaseCentcommContraband ]
+  id: ClothingUniformJumpskirtNTNCEnsign
+  name: nanotrasen navy ensign's jumpskirt
+  description: Standard issue NanoTrasen Navy Marine jumpskirt. This one's for an ensign.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/ntnc-officer.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/ntnc-officer.rsi
