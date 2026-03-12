@@ -575,6 +575,14 @@
       job: Brigmedic
 
 - type: entity
+  parent: DetectiveIDCard
+  id: DetectiveIDCardScurret
+  components:
+  - type: PresetIdCard
+    job: Detective
+    name: Detective Inquisitive Tethers
+
+- type: entity
   parent: [ AssistantIDCard, BaseSecurityContraband ]
   id: SecurityCadetIDCard
   name: Security Cadet ID Card

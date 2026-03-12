@@ -203,7 +203,7 @@ public abstract class SharedWieldableSystem : EntitySystem
             args.Handled = true;
         }
 
-        if (HasComp<UseDelayComponent>(uid) && !component.UseDelayOnWield)
+        if (HasComp<UseDelayComponent>(uid) && (!component.UseDelayOnWield || component.Wielded)) /// FH Edit
             args.ApplyDelay = false;
     }
 
