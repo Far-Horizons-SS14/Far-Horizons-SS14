@@ -31,6 +31,8 @@ using Content.Shared.Popups;
 using Content.Shared.Destructible;
 using Robust.Shared.Random;
 using Content.Server.Destructible;
+using Content.Shared.CCVar;
+using Robust.Shared.Configuration;
 
 namespace Content.Server._FarHorizons.Vehicles.Equipment;
 public sealed partial class VehicleEquipmentSystems : EntitySystem
@@ -52,6 +54,10 @@ public sealed partial class VehicleEquipmentSystems : EntitySystem
     [Dependency] private readonly SharedHandsSystem _hands = default!;
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly IConfigurationManager _configManager = default!;
+
+    private float _frictionModifier;
+    private float _airfrictionModifier;
     public override void Initialize()
     {
         base.Initialize();
@@ -85,6 +91,9 @@ public sealed partial class VehicleEquipmentSystems : EntitySystem
         SubscribeLocalEvent<VehicleModsComponent, TurnOffVehicleEvent>(OnVehicleShutoff);
         SubscribeLocalEvent<VehicleModsComponent, DamageChangedEvent>(OnDamageChanged);
         SubscribeLocalEvent<VehicleEquipmentComponent, BreakageEventArgs>(OnBreakageEvent);
+
+        Subs.CVar(_configManager, CCVars.TileFrictionModifier, value => _frictionModifier = value, true);
+        Subs.CVar(_configManager, CCVars.AirFriction, value => _airfrictionModifier = value, true);
     }
 
     private void OnCompInit(Entity<VehicleModsComponent> ent, ref ComponentInit args)
@@ -420,8 +429,8 @@ public sealed partial class VehicleEquipmentSystems : EntitySystem
         {
             if(!TryComp<MovementSpeedModifierComponent>(ent.Comp.Equipment[EquipmentType.TIRES], out var msmComp)) return;
             args.Acceleration = msmComp.BaseAcceleration;
-            args.Friction = msmComp.BaseFriction;
-            args.FrictionNoInput = msmComp.BaseFriction;   
+            args.Friction = msmComp.BaseFriction/_frictionModifier;
+            args.FrictionNoInput = msmComp.BaseFriction/_frictionModifier;   
         }
     }
 
@@ -434,8 +443,8 @@ public sealed partial class VehicleEquipmentSystems : EntitySystem
         {
             args.WeightlessAcceleration = msmComp.BaseWeightlessAcceleration;
             args.WeightlessModifier = msmComp.BaseWeightlessModifier;
-            args.WeightlessFriction = msmComp.BaseWeightlessFriction*5;
-            args.WeightlessFrictionNoInput = msmComp.BaseWeightlessFriction*5;
+            args.WeightlessFriction = msmComp.BaseWeightlessFriction/_airfrictionModifier;
+            args.WeightlessFrictionNoInput = msmComp.BaseWeightlessFriction/_airfrictionModifier;
         }
     }
 

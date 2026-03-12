@@ -7,6 +7,14 @@
     - type: Damageable
       damageModifierSet: VehicleLightArmor
       damageContainer: StructuralInorganic
+    - type: Item
+      size: Large
+      shape:
+      - 0, 0, 2, 2
+    - type: MultiHandedItem
+    - type: HeldSpeedModifier
+      sprintModifier: 0.7
+      walkModifier: 0.7
     - type: Destructible
       thresholds:
       - trigger:
@@ -117,7 +125,7 @@
       allowedVehicles: [Electric, Gas, Spaceship]
     - type: MovementSpeedModifier
       baseAcceleration: 2 
-      baseFriction: 0.5625
+      baseFriction: 4.5
 
 #region Engines
 - type: entity
@@ -129,6 +137,7 @@
     - type: Sprite
       sprite: _FarHorizons/Objects/Vehicles/vehiclemods.rsi
       state: gas_engine
+      scale: 0.7, 0.7
     - type: VehicleEquipment
       slot: ENGINE
       allowedVehicles: [Gas, Spaceship]
@@ -171,6 +180,7 @@
     - type: Sprite
       sprite: _FarHorizons/Objects/Vehicles/vehiclemods.rsi
       state: electric_engine
+      scale: 0.7, 0.7
     - type: VehicleEquipment
       slot: ENGINE
       allowedVehicles: Electric
@@ -207,7 +217,7 @@
       allowedVehicles: Spaceship
     - type: MovementSpeedModifier
       baseWeightlessAcceleration: 2
-      baseWeightlessFriction: 2
+      baseWeightlessFriction: 3
       baseWeightlessModifier: 3
 
 #region Airtanks

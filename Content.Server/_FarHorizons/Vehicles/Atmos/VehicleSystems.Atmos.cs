@@ -163,20 +163,10 @@ public sealed class VehicleAtmosphereSystem : EntitySystem
         {
             var removedInternal = cabin.Air.RemoveVolume(transferVolume);
             {
-                Log.Info($"Start");
-                foreach(var removedInternalgas in removedInternal)
-                    Log.Info($"{removedInternalgas}");
                 if(fanModule is { FilterGases.Count: > 0 })
                 {
                     var filtered = new GasMixture { Temperature = removedInternal.Temperature };
                     _atmosphere.ScrubInto(removedInternal, filtered, fanModule.FilterGases);
-                    Log.Info($"Filtered");
-                    
-                    foreach(var filteredgas in filtered)
-                        Log.Info($"{filteredgas}");
-                    Log.Info($"Internal");
-                    foreach(var removedInternalgas in removedInternal)
-                        Log.Info($"{removedInternalgas}");
 
                     if(external != null)
                         _atmosphere.Merge(external, filtered);
