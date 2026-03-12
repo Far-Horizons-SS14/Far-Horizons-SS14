@@ -1,7 +1,7 @@
 - type: entity
   id: SLVendingMachine
   parent: BaseMachinePowered
-  name: vending machine
+  name: Vending Machine #Far Horizons - The Great Capitalization Crusade
   description: Just add capitalism!
   abstract: true
   components:
@@ -93,10 +93,10 @@
 - type: entity
   parent: SLVendingMachine
   id: SLVendingMachineHugDispenser
-  name: hug dispenser
+  name: Hug Dispenser #Far Horizons - The Great Capitalization Crusade
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Machines/VendingMachines/plushiemat.rsi
+    sprite: _FarHorizons/Structures/Machines/CreditVendingMachines/plushiemat.rsi #FH
   - type: Store
     name: vendor-hug-dispenser
     categories:
@@ -111,7 +111,7 @@
   description: Happiness should be expensive.
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Machines/VendingMachines/fashionmat.rsi
+    sprite: _FarHorizons/Structures/Machines/CreditVendingMachines/fashionmat.rsi #FH
   - type: Store
     name: vendor-fashion-o-mat
     categories:
@@ -123,12 +123,12 @@
 - type: entity
   parent: SLVendingMachine
   id: SLVendingMachineMedical
-  name: medical dispenser
+  name: Medical Dispenser #Far Horizons - The Great Capitalization Crusade
   components:
   - type: AccessReader
     access: [["Medical"]]
   - type: Sprite
-    sprite: _Starlight/Structures/Machines/VendingMachines/medical.rsi
+    sprite: _FarHorizons/Structures/Machines/CreditVendingMachines/medical.rsi #FH
   - type: Store
     name: vendor-medical-dispenser
     categories:
@@ -139,12 +139,12 @@
 - type: entity
   parent: SLVendingMachine
   id: SLVendingMachineEngi
-  name: engi dispenser
+  name: Engi Dispenser #Far Horizons - The Great Capitalization Crusade
   components:
   - type: AccessReader
     access: [["Engineering"]]
   - type: Sprite
-    sprite: _Starlight/Structures/Machines/VendingMachines/engi.rsi
+    sprite: _FarHorizons/Structures/Machines/CreditVendingMachines/engi.rsi #FH
   - type: Store
     name: vendor-engineering-dispenser
     categories:
@@ -163,17 +163,17 @@
     categories:
     - SLClown
   - type: Sprite
-    sprite: _Starlight/Structures/Machines/VendingMachines/hohohonkers.rsi
+    sprite: _FarHorizons/Structures/Machines/CreditVendingMachines/hohohonkers.rsi #FH
 
 - type: entity
   parent: SLVendingMachine
   id: SLVendingMachineSecurity
-  name: security dispenser
+  name: Security Dispenser #Far Horizons - The Great Capitalization Crusade
   components:
   - type: AccessReader
     access: [["Security"], ["Cadet"]]
   - type: Sprite
-    sprite: _Starlight/Structures/Machines/VendingMachines/security.rsi
+    sprite: _FarHorizons/Structures/Machines/CreditVendingMachines/security.rsi #FH
   - type: Store
     name: vendor-security-dispenser
     categories:
@@ -183,7 +183,7 @@
 - type: entity
   parent: SLVendingMachine
   id: SLVendingMachineSalvage
-  name: salvage ticket machine
+  name: Salvage Ticket Machine #Far Horizons - The Great Capitalization Crusade
   components:
   - type: AccessReader
     access: [["Salvage"]]
@@ -202,7 +202,7 @@
 - type: entity
   parent: SLVendingMachine
   id: SLVendingMachineMining
-  name: mining ticket machine
+  name: Mining Ticket Machine #Far Horizons - The Great Capitalization Crusade
   components:
     - type: AccessReader
       access: [["Mining"]]
@@ -219,7 +219,7 @@
 - type: entity
   parent: VendingMachine
   id: VendingMachineAbductorDispenser
-  name: alien dispenser
+  name: Alien Dispenser #Far Horizons - The Great Capitalization Crusade
   description: Dispenses something weird.
   components:
     - type: VendingMachine

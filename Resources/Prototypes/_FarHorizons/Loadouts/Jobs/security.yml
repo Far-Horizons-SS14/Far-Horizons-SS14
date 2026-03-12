@@ -50,6 +50,24 @@
 
 #region Corpsman
 
+# PDA
+
+- type: loadout
+  id: CorpsmanPDA
+  equipment:
+    id: CorpsmanPDA
+
+- type: loadout
+  id: VeteranCorpsmanPDA
+  effects:
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:RoleTimeRequirement
+        role: JobCorpsman
+        time: 216000
+  equipment:
+    id: VeteranCorpsmanPDA
+
 # Head
 
 - type: loadout
