@@ -1484,6 +1484,9 @@
           32:
             sprite: _Starlight/Mobs/Species/Felionoid/displacement.rsi
             state: shoes
+  - type: VisualPickupable
+    offsetFront: 0.0, -0.2
+    offsetBack: 0.0, 0.05
 
 #region DWARF ####
 
@@ -1978,6 +1981,8 @@
       critHealingModifier: 0.5
       stasisDamageReduction: 0.7
     - type: VisionOrganRequiredForVision
+    - type: VisualPickupable
+      offsetFront: 0.0, -0.15
 
 #region ARACHNID ####
 

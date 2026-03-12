@@ -1,3 +1,4 @@
+using System.Numerics;
 using Robust.Shared.GameStates;
 
 namespace Content.Shared._FarHorizons.VisualPickupable;
@@ -6,6 +7,11 @@ namespace Content.Shared._FarHorizons.VisualPickupable;
 public sealed partial class VisualPickupableComponent : Component
 {
     [ViewVariables] public EntityUid? ClonedVisuals = null;
+
+    [DataField] public Vector2 OffsetFront = new Vector2(0, -0.1f);
+    [DataField] public Vector2 OffsetBack = new Vector2(0, 0.1f);
+    [DataField] public float AngleDegrees = 90;
+
 }
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState(true)]
