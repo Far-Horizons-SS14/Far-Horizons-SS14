@@ -34,6 +34,8 @@ public sealed class VisualPickupableSystem : SharedVisualPickupableSystem
 
     public override void FrameUpdate(float frameTime)
     {
+        HashSet<Entity<PickupableVisualsComponent>> toDelete = new();
+
         var spriteQuery = GetEntityQuery<SpriteComponent>();
         var metaQuery = GetEntityQuery<MetaDataComponent>();
         var transformQuery = GetEntityQuery<TransformComponent>();
@@ -42,15 +44,17 @@ public sealed class VisualPickupableSystem : SharedVisualPickupableSystem
         {
             if (!spriteQuery.TryGetComponent(ent, out var targetSprite) ||
                 !spriteQuery.TryGetComponent(ent.Comp.Source, out var sourceSprite) ||
-                (metaQuery.GetComponent(ent).Flags & MetaDataFlags.Detached) != 0)
+                !metaQuery.TryGetComponent(ent, out var targetMeta) ||
+                (targetMeta.Flags & MetaDataFlags.Detached) != 0 ||
+                !transformQuery.TryGetComponent(ent.Comp.Source, out var sourceTransform) ||
+                !transformQuery.TryGetComponent(sourceTransform.ParentUid, out var parentTransform) ||
+                !visualPickupableQuery.TryGetComponent(ent.Comp.Source, out var visualPickupable))
+            {
+                toDelete.Add(ent);
                 continue;
+            }
 
             _sprite.CopySprite((ent.Comp.Source.Value, sourceSprite), (ent, targetSprite));
-
-            if (!transformQuery.TryGetComponent(ent.Comp.Source, out var sourceTransform) ||
-                !transformQuery.TryGetComponent(sourceTransform.ParentUid, out var parentTransform) ||
-                !visualPickupableQuery.TryGetComponent(ent.Comp.Source, out var visualPickupable)) return;
-            
             _sprite.SetRotation((ent, targetSprite), Angle.FromDegrees(visualPickupable.AngleDegrees));
 
             // It's very stupid and 100% won't cause any problems in the future:
@@ -63,5 +67,7 @@ public sealed class VisualPickupableSystem : SharedVisualPickupableSystem
             else
                 _sprite.SetOffset((ent, targetSprite), visualPickupable.OffsetFront);
         }
+
+        _trackedEntities.ExceptWith(toDelete);
     }
 }
