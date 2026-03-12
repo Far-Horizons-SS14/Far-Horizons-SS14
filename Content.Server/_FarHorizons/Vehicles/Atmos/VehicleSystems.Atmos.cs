@@ -135,14 +135,7 @@ public sealed class VehicleAtmosphereSystem : EntitySystem
             return false;
         }
 
-        if (ent.Comp.Equipment[EquipmentType.WASTETANK] == null 
-            || !TryComp<GasTankComponent>(ent.Comp.Equipment[EquipmentType.WASTETANK], out var wasteComp))
-        {
-            SetFanState(ent, fanModule, FanState.Off);
-            return false;
-        }
-
-        return ProcessFanOperation(ent, fanModule, tankComp, tankAir, wasteComp.Air, frameTime);
+        return ProcessFanOperation(ent, fanModule, tankComp, tankAir, frameTime);
     }
 
     private (GasTankComponent? tank, GasMixture? air) GetGasTank(Entity<VehicleModsComponent> ent)
@@ -157,13 +150,42 @@ public sealed class VehicleAtmosphereSystem : EntitySystem
         VehicleFanModComponent fanModule,
         GasTankComponent tankComp,
         GasMixture tankAir,
-        GasMixture wasteAir,
         float frameTime)
     {        
         var external = _atmosphere.GetContainingMixture(ent.Owner);
-        
-        if(TryComp<VehicleCabinAirComponent>(ent.Owner, out var vcaComp))
-            _atmosphere.ScrubInto(vcaComp.Air, wasteAir, fanModule.FilterGases);
+
+        var transferVolume = fanModule.GasProcessingRate * frameTime;
+
+        if (transferVolume <= 0)
+            return false;
+
+        if(TryComp<VehicleCabinAirComponent>(ent.Owner, out var cabin) && cabin.Air != null)
+        {
+            var removedInternal = cabin.Air.RemoveVolume(transferVolume);
+            {
+                Log.Info($"Start");
+                foreach(var removedInternalgas in removedInternal)
+                    Log.Info($"{removedInternalgas}");
+                if(fanModule is { FilterGases.Count: > 0 })
+                {
+                    var filtered = new GasMixture { Temperature = removedInternal.Temperature };
+                    _atmosphere.ScrubInto(removedInternal, filtered, fanModule.FilterGases);
+                    Log.Info($"Filtered");
+                    
+                    foreach(var filteredgas in filtered)
+                        Log.Info($"{filteredgas}");
+                    Log.Info($"Internal");
+                    foreach(var removedInternalgas in removedInternal)
+                        Log.Info($"{removedInternalgas}");
+
+                    if(external != null)
+                        _atmosphere.Merge(external, filtered);
+                    else
+                        filtered.Clear();
+                }
+            }
+            _atmosphere.Merge(cabin.Air, removedInternal);
+        }
 
         if (external == null
             || external.Pressure <= MinExternalPressure
@@ -173,25 +195,19 @@ public sealed class VehicleAtmosphereSystem : EntitySystem
             return false;
         }
 
-        var success = ProcessFilteredTransfer(external, tankAir, wasteAir, fanModule, frameTime);
+        var success = ProcessFilteredTransfer(external, tankAir, fanModule, transferVolume);
         SetFanState(ent, fanModule, success ? FanState.On : FanState.Idle);
         return success;
     }
 
     private bool ProcessFilteredTransfer(GasMixture external,
         GasMixture tankAir,
-        GasMixture wasteAir,
         VehicleFanModComponent fanModule,
-        float frameTime)
+        float transferVolume)
     {
         // Calculate transfer volume based on processing rate.
-        var transferVolume = fanModule.GasProcessingRate * frameTime;
         if (transferVolume <= 0)
             return false;
-
-        var wasteRemoved = wasteAir.RemoveVolume(transferVolume);
-        if(wasteRemoved.TotalMoles >= 0)
-            _atmosphere.Merge(external, wasteRemoved);
 
         // Remove gas from external environment.
         var removed = external.RemoveVolume(transferVolume);

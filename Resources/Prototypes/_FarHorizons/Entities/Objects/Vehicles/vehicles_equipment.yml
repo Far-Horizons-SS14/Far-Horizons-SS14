@@ -111,7 +111,7 @@
   components:
     - type: Sprite
       sprite: _FarHorizons/Objects/Vehicles/vehiclemods.rsi
-      state: tire
+      state: tires
     - type: VehicleEquipment
       slot: tires
       allowedVehicles: [Electric, Gas, Spaceship]
@@ -128,7 +128,7 @@
   components:
     - type: Sprite
       sprite: _FarHorizons/Objects/Vehicles/vehiclemods.rsi
-      state: engine
+      state: gas_engine
     - type: VehicleEquipment
       slot: ENGINE
       allowedVehicles: [Gas, Spaceship]
@@ -170,7 +170,7 @@
   components:
     - type: Sprite
       sprite: _FarHorizons/Objects/Vehicles/vehiclemods.rsi
-      state: engine
+      state: electric_engine
     - type: VehicleEquipment
       slot: ENGINE
       allowedVehicles: Electric
@@ -201,7 +201,7 @@
   components:
     - type: Sprite
       sprite: _FarHorizons/Objects/Vehicles/vehiclemods.rsi
-      state: engine
+      state: gas_engine
     - type: VehicleEquipment
       slot: THURSTERS
       allowedVehicles: Spaceship
@@ -235,7 +235,7 @@
         temperature: 293.15
       tankLowPressure: 30.0
     - type: VehicleEquipment
-      slot: [AIRTANK, WASTETANK]
+      slot: [AIRTANK]
       allowedVehicles: Spaceship
 
 - type: entity

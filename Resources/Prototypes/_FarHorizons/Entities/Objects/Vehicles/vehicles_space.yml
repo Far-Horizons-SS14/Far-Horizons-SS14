@@ -111,12 +111,12 @@
   - type: Hitch
   - type: VehicleMods
     vehicleType: Spaceship
-    equipmentSlots: [TIRES, ENGINE, ARMOR, HEADLIGHT, AIRTANK, WASTETANK, VENTFAN, THURSTERS, BOOSTER]
+    equipmentSlots: [TIRES, ENGINE, ARMOR, HEADLIGHT, AIRTANK, VENTFAN, THURSTERS, BOOSTER]
 
 - type: entity
   id: VehicleTransportFueledwithKeys
   parent: VehicleTransport
-  suffix: Fueled, Keys
+  suffix: Filled
   components: 
     - type: SolutionContainerManager
       solutions:
@@ -131,7 +131,6 @@
         - GroundEngine
         - HeadlightLED
         - VehicleAirTankFilled
-        - VehicleAirTank
         - VentFan
         - BasicThrusters
     - type: ContainerFill

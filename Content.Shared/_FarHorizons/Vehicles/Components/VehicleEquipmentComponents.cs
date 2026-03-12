@@ -63,9 +63,8 @@ public enum EquipmentType
     HEADLIGHT = 1 << 2,
     LIGHTBAR = 1 << 3,
     AIRTANK = 1 << 4,
-    WASTETANK = 1 << 5,
-    VENTFAN = 1 << 6,
-    THURSTERS = 1 << 7,
-    BOOSTER = 1 << 8,
-    ARMOR = 1 << 9
+    VENTFAN = 1 << 5,
+    THURSTERS = 1 << 6,
+    BOOSTER = 1 << 7,
+    ARMOR = 1 << 8
 }
