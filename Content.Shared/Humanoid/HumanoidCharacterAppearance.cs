@@ -196,7 +196,7 @@ public sealed partial class HumanoidCharacterAppearance : IEquatable<HumanoidCha
                         if (random.Prob(0.20f))
                             continue;
                     if (layer is HumanoidVisualLayers.Tail)
-                        if (random.Prob(0.70f))
+                        if (random.Prob(0.90f))
                             continue;
                     if(layer is HumanoidVisualLayers.FacialHair)
                         if(random.Prob(sex == Sex.Female ? 0.90f : 0.70f))
