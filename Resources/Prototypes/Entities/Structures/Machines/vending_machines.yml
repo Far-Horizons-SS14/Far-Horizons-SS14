@@ -920,7 +920,7 @@
   components:
   - type: VendingMachine
     pack: NanoMedCivilianInventory
-    offState: off-civilian
+    offState: off #FH
     brokenState: broken
     normalState: normal-unshaded
     ejectState: eject-unshaded
@@ -932,11 +932,11 @@
   - type: SpeakOnUIClosed
     pack: GenericVendGoodbyes
   - type: Sprite
-    sprite: Structures/Machines/VendingMachines/medical.rsi
+    sprite: _FarHorizons/Structures/Machines/VendingMachines/medical_civilian.rsi #FH
     layers:
-    - state: "off-civilian"
+    - state: "off" #FH
       map: ["enum.VendingMachineVisualLayers.Base"]
-    - state: "off-civilian"
+    - state: "off" #FH
       map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
       shader: unshaded
     - state: panel
@@ -961,6 +961,7 @@
   - type: Machine # Starlight-edit: Vending Machine boards
     board: VendingMachineMedicalCircuitboard # Starlight-edit: Vending Machine boards
   - type: Sprite
+    sprite: _FarHorizons/Structures/Machines/VendingMachines/medical.rsi #FH
     layers:
     - state: "off"
       map: ["enum.VendingMachineVisualLayers.Base"]
@@ -2360,7 +2361,7 @@
   - type: Machine # Starlight-edit: Vending Machine boards
     board: VendingMachineChemicalsCircuitboard # Starlight-edit: Vending Machine boards
   - type: Sprite
-    sprite: Structures/Machines/VendingMachines/chemvend.rsi
+    sprite: _FarHorizons/Structures/Machines/VendingMachines/chemvend.rsi #FH
     layers:
     - state: "off"
       map: ["enum.VendingMachineVisualLayers.Base"]

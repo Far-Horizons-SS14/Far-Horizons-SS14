@@ -11,7 +11,7 @@
        !type:String
        pda
   - type: Sprite
-    sprite: Objects/Devices/pda.rsi
+    sprite: _FarHorizons/Objects/Devices/pda.rsi #FH
     layers:
     - map: [ "enum.PdaVisualLayers.Base" ]
       state: "pda"
@@ -24,7 +24,7 @@
       shader: "unshaded"
       visible: false
   - type: Icon
-    sprite: Objects/Devices/pda.rsi
+    sprite: _FarHorizons/Objects/Devices/pda.rsi #FH
     state: pda
   - type: Pda
     paiSlot:
@@ -134,7 +134,7 @@
   abstract: true
   components:
   - type: Sprite
-    sprite: Objects/Devices/pda.rsi
+    sprite: _FarHorizons/Objects/Devices/pda.rsi #FH
     layers:
     - map: [ "enum.PdaVisualLayers.Base" ]
       state: "pda"
@@ -199,7 +199,7 @@
   - type: Pda
     id: AssistantIDCard
   - type: PdaBorderColor
-    borderColor: "#717059"
+    borderColor: "#151524" #FH
 
 - type: entity
   parent: AssistantPDA
@@ -247,8 +247,7 @@
        !type:String
        pda-interntech
   - type: PdaBorderColor
-    borderColor: "#717059"
-    accentVColor: "#949137"
+    borderColor: "#151524" #FH
   - type: Icon
     state: pda-interntech
 
@@ -266,8 +265,7 @@
        !type:String
        pda-internmed
   - type: PdaBorderColor
-    borderColor: "#717059"
-    accentVColor: "#447987"
+    borderColor: "#151524" #FH
   - type: Icon
     state: pda-internmed
   - type: GuideHelp
@@ -288,8 +286,8 @@
        !type:String
        pda-interncadet
   - type: PdaBorderColor
-    borderColor: "#717059"
-    accentVColor: "#A32D26"
+    borderColor: "#151524" #FH
+    accentVColor: "#004cae" #FH
   - type: Icon
     state: pda-interncadet
 
@@ -307,8 +305,8 @@
        !type:String
        pda-internsci
   - type: PdaBorderColor
-    borderColor: "#717059"
-    accentVColor: "#8900c9"
+    borderColor: "#151524" #FH
+    accentHColor: "#6342a7" #FH
   - type: Icon
     state: pda-internsci
 
@@ -326,8 +324,7 @@
        !type:String
        pda-internservice
   - type: PdaBorderColor
-    borderColor: "#717059"
-    accentVColor: "#00cc35"
+    borderColor: "#151524" #FH
   - type: Icon
     state: pda-internservice
 
@@ -345,7 +342,7 @@
        !type:String
        pda-cook
   - type: PdaBorderColor
-    borderColor: "#d7d7d0"
+    borderColor: "#434346" #FH
   - type: Icon
     state: pda-cook
   - type: ReplacementAccent # for random sentience event
@@ -365,8 +362,8 @@
        !type:String
        pda-hydro
   - type: PdaBorderColor
-    borderColor: "#44843c"
-    accentVColor: "#00cc35"
+    borderColor: "#1b361a" #FH
+    accentHColor: "#00cc35" #FH
   - type: Icon
     state: pda-hydro
 
@@ -393,7 +390,7 @@
        !type:String
        pda-clown
   - type: PdaBorderColor
-    borderColor: "#C18199"
+    borderColor: "#9822a5" #FH
   - type: Icon
     state: pda-clown
   - type: Slippery # secretly made of bananium
@@ -473,8 +470,8 @@
        !type:String
        pda-mime
   - type: PdaBorderColor
-    borderColor: "#d7d7d0"
-    accentHColor: "#333333"
+    borderColor: "#0f0f10" #FH
+    accentHColor: "#afafaf" #FH
   - type: Icon
     state: pda-mime
   - type: Muted # for random sentience event
@@ -493,7 +490,7 @@
        !type:String
        pda-chaplain
   - type: PdaBorderColor
-    borderColor: "#333333"
+    borderColor: "#151524" #FH
   - type: Icon
     state: pda-chaplain
 
@@ -522,8 +519,9 @@
        !type:String
        pda-qm
   - type: PdaBorderColor
-    borderColor: "#e39751"
-    accentVColor: "#a23e3e"
+    borderColor: "#5b4829" #FH
+    accentVColor: "#660000" #FH
+    accentHColor: "#c17733" #FH
   - type: Icon
     state: pda-qm
   - type: CartridgeLoader
@@ -548,7 +546,8 @@
        !type:String
        pda-cargo
   - type: PdaBorderColor
-    borderColor: "#e39751"
+    borderColor: "#5b4829" #FH
+    accentHColor: "#e39751" #FH
   - type: Icon
     state: pda-cargo
 
@@ -566,8 +565,8 @@
        !type:String
        pda-miner
   - type: PdaBorderColor
-    borderColor: "#af9366"
-    accentVColor: "#8900c9"
+    borderColor: "#5b4829" #FH
+    accentHColor: "#8f36c6" #FH
   - type: Icon
     state: pda-miner
   - type: CartridgeLoader
@@ -593,7 +592,7 @@
        !type:String
        pda-bartender
   - type: PdaBorderColor
-    borderColor: "#333333"
+    borderColor: "#232531" #FH
   - type: Icon
     state: pda-bartender
 
@@ -617,7 +616,7 @@
        !type:String
        pda-library
   - type: PdaBorderColor
-    borderColor: "#858585"
+    borderColor: "#151524" #FH
   - type: Icon
     state: pda-library
 
@@ -652,7 +651,7 @@
        !type:String
        pda-lawyer
   - type: PdaBorderColor
-    borderColor: "#6f6192"
+    borderColor: "#4f4270" #FH
   - type: Icon
     state: pda-lawyer
 
@@ -681,7 +680,7 @@
        !type:String
        pda-janitor
   - type: PdaBorderColor
-    borderColor: "#5D2D56"
+    borderColor: "#50165e" #FH
   - type: Icon
     state: pda-janitor
 
@@ -705,7 +704,7 @@
        !type:String
        pda-captain
   - type: PdaBorderColor
-    borderColor: "#7C5D00"
+    borderColor: "#c1c167" #FH
   - type: Icon
     state: pda-captain
 
@@ -729,8 +728,8 @@
        !type:String
        pda-hop
   - type: PdaBorderColor
-    borderColor: "#789876"
-    accentHColor: "#447987"
+    borderColor: "#242a22" #FH
+    accentHColor: "#919119" #FH
   - type: Icon
     state: pda-hop
 
@@ -748,8 +747,8 @@
        !type:String
        pda-ce
   - type: PdaBorderColor
-    borderColor: "#949137"
-    accentHColor: "#447987"
+    borderColor: "#2e2909" #FH
+    accentHColor: "#07405f" #FH
   - type: Icon
     state: pda-ce
 
@@ -767,8 +766,7 @@
        !type:String
        pda-engineer
   - type: PdaBorderColor
-    borderColor: "#949137"
-    accentVColor: "#A32D26"
+    borderColor: "#2e2909" #FH
   - type: Icon
     state: pda-engineer
 
@@ -786,9 +784,8 @@
        !type:String
        pda-cmo
   - type: PdaBorderColor
-    borderColor: "#d7d7d0"
-    accentHColor: "#447987"
-    accentVColor: "#447987"
+    borderColor: "#b6b5b5" #FH
+    accentHColor: "#919119" #FH
   - type: Icon
     state: pda-cmo
 
@@ -806,8 +803,7 @@
        !type:String
        pda-medical
   - type: PdaBorderColor
-    borderColor: "#d7d7d0"
-    accentVColor: "#447987"
+    borderColor: "#b6b5b5" #FH
   - type: Icon
     state: pda-medical
   - type: GuideHelp
@@ -839,8 +835,7 @@
        !type:String
        pda-paramedic
   - type: PdaBorderColor
-    borderColor: "#d7d7d0"
-    accentVColor: "#2a4b5b"
+    borderColor: "#141633" #FH
   - type: Icon
     state: pda-paramedic
 
@@ -858,8 +853,8 @@
        !type:String
        pda-chemistry
   - type: PdaBorderColor
-    borderColor: "#d7d7d0"
-    accentVColor: "#B34200"
+    borderColor: "#b6b5b5" #FH
+    accentHColor: "#ea6400" #FH
   - type: Icon
     state: pda-chemistry
 
@@ -877,9 +872,8 @@
        !type:String
        pda-rd
   - type: PdaBorderColor
-    borderColor: "#d7d7d0"
-    accentHColor: "#447987"
-    accentVColor: "#8900c9"
+    borderColor: "#3c3c42" #FH
+    accentHColor: "#6342a7" #FH
   - type: Icon
     state: pda-rd
 
@@ -897,8 +891,8 @@
        !type:String
        pda-science
   - type: PdaBorderColor
-    borderColor: "#d7d7d0"
-    accentVColor: "#8900c9"
+    borderColor: "#3c3c42" #FH
+    accentHColor: "#6342a7" #FH
   - type: Icon
     state: pda-science
 
@@ -916,8 +910,8 @@
        !type:String
        pda-hos
   - type: PdaBorderColor
-    borderColor: "#A32D26"
-    accentHColor: "#447987"
+    borderColor: "#111230" #FH
+    accentHColor: "#004cae" #FH
   - type: Icon
     state: pda-hos
   - type: CartridgeLoader
@@ -943,8 +937,8 @@
        !type:String
        pda-warden
   - type: PdaBorderColor
-    borderColor: "#A32D26"
-    accentVColor: "#949137"
+    borderColor: "#111230" #FH
+    accentHColor: "#004cae" #FH
   - type: Icon
     state: pda-warden
 
@@ -962,7 +956,8 @@
        !type:String
        pda-security
   - type: PdaBorderColor
-    borderColor: "#A32D26"
+    borderColor: "#111230" #FH
+    accentHColor: "#004cae" #FH
   - type: Icon
     state: pda-security
 
@@ -987,6 +982,8 @@
        pda-centcom
   - type: PdaBorderColor
     borderColor: "#00842e"
+    accentHColor: "#a99d3d" #FH
+    accentVColor: "#a99d3d" #FH
   - type: Icon
     state: pda-centcom
   - type: CartridgeLoader
@@ -1062,7 +1059,7 @@
        !type:String
        pda-musician
   - type: PdaBorderColor
-    borderColor: "#333333"
+    borderColor: "#151524" #FH
   - type: Icon
     state: pda-musician
   - type: Instrument
@@ -1096,8 +1093,7 @@
        !type:String
        pda-atmos
   - type: PdaBorderColor
-    borderColor: "#949137"
-    accentVColor: "#447987"
+    borderColor: "#3b3e13" #FH
   - type: Icon
     state: pda-atmos
 
@@ -1115,7 +1111,7 @@
        !type:String
        pda-clear
   - type: PdaBorderColor
-    borderColor: "#288e4d"
+    borderColor: "#0e6044" #FH
   - type: Icon
     state: pda-clear
 
@@ -1144,7 +1140,7 @@
        !type:String
        pda-syndi
   - type: PdaBorderColor
-    borderColor: "#891417"
+    borderColor: "#221314" #FH
   - type: Icon
     state: pda-syndi
   - type: CartridgeLoader
@@ -1182,6 +1178,9 @@
      enum.PdaVisuals.PdaType:
        !type:String
        pda-syndi-agent
+  - type: PdaBorderColor #FH
+    borderColor: "#221314" #FH
+    accentVColor: "#b3c5ce" #FH
   - type: Icon
     state: pda-syndi-agent
   - type: CartridgeLoader
@@ -1318,7 +1317,7 @@
        pda-medical
   - type: PdaBorderColor
     borderColor: "#d7d7d0"
-    accentVColor: "#447987"
+#    accentVColor: "#447987" #FH
   - type: Icon
     state: pda-medical
 
@@ -1342,7 +1341,7 @@
        !type:String
        pda-reporter
   - type: PdaBorderColor
-    borderColor: "#3f3f74"
+    borderColor: "#111134" #FH
   - type: Icon
     state: pda-reporter
 
@@ -1378,8 +1377,7 @@
        !type:String
        pda-boxer
   - type: PdaBorderColor
-    borderColor: "#333333"
-    accentVColor: "#390504"
+    borderColor: "#232531" #FH
   - type: Icon
     state: pda-boxer
 
@@ -1397,7 +1395,8 @@
        !type:String
        pda-detective
   - type: PdaBorderColor
-    borderColor: "#774705"
+    borderColor: "#111112" #FH
+    accentHColor: "#004cae" #FH
   - type: Icon
     state: pda-detective
   - type: CartridgeLoader
@@ -1423,9 +1422,8 @@
        !type:String
        pda-brigmedic
   - type: PdaBorderColor
-    borderColor: "#A32D26"
-    accentHColor: "#d7d7d0"
-    accentVColor: "#d7d7d0"
+    borderColor: "#111230" #FH
+    accentHColor: "#004cae" #FH
   - type: Icon
     state: pda-brigmedic
   - type: CartridgeLoader
@@ -1459,7 +1457,7 @@
        !type:String
        pda-cluwne
   - type: PdaBorderColor
-    borderColor: "#1c8f4d"
+    borderColor: "#4fa571" #FH
   - type: Icon
     state: pda-cluwne
   - type: Unremoveable
@@ -1494,7 +1492,7 @@
        !type:String
        pda-cluwne
   - type: PdaBorderColor
-    borderColor: "#1c8f4d"
+    borderColor: "#4fa571" #FH
   - type: Icon
     state: pda-cluwne
   - type: Unremoveable
@@ -1513,8 +1511,9 @@
        !type:String
        pda-seniorengineer
   - type: PdaBorderColor
-    borderColor: "#949137"
-    accentVColor: "#CD6900"
+    borderColor: "#2e2909" #FH
+    accentHColor: "#943b00" #FH
+    accentVColor: "#943b00" #FH
   - type: Icon
     state: pda-seniorengineer
 
@@ -1532,9 +1531,9 @@
        !type:String
        pda-seniorresearcher
   - type: PdaBorderColor
-    borderColor: "#d7d7d0"
-    accentHColor: "#8900c9"
-    accentVColor: "#8900c9"
+    borderColor: "#3c3c42" #FH
+    accentHColor: "#9dae00" #FH
+    accentVColor: "#6342a7" #FH
   - type: Icon
     state: pda-seniorresearcher
 
@@ -1552,9 +1551,9 @@
        !type:String
        pda-seniorphysician
   - type: PdaBorderColor
-    borderColor: "#d7d7d0"
-    accentHColor: "#447987"
-    accentVColor: "#B34200"
+    borderColor: "#b6b5b5" #FH
+    accentHColor: "#278ba6" #FH
+    accentVColor: "#ea6400" #FH
   - type: Icon
     state: pda-seniorphysician
 
@@ -1572,8 +1571,9 @@
        !type:String
        pda-seniorofficer
   - type: PdaBorderColor
-    borderColor: "#A32D26"
-    accentVColor: "#DFDFDF"
+    borderColor: "#111230" #FH
+    accentVColor: "#cacaca" #FH
+    accentHColor: "#004cae" #FH
   - type: Icon
     state: pda-seniorofficer
 
@@ -1589,12 +1589,12 @@
     appearanceDataInit:
      enum.PdaVisuals.PdaType:
        !type:String
-       pda-seniorcourier
+       pda-cargo #FH
   - type: PdaBorderColor
-    borderColor: "#e39751"
-    accentVColor: "#DFDFDF"
+    borderColor: "#5b4829" #FH
+    accentHColor: "#e39751" #FH
   - type: Icon
-    state: pda-seniorcourier
+    state: pda-cargo #FH
 
 # - type: entity
 #   parent: [ BaseHighlyIllegalContraband, BasePDA ]
@@ -1625,6 +1625,8 @@
      enum.PdaVisuals.PdaType:
        !type:String
        pda-pirate
+  - type: PdaBorderColor #FH
+    borderColor: "#251e09" #FH
   - type: Icon
     state: pda-pirate
 
@@ -1687,7 +1689,7 @@
        !type:String
        pda-wizard
   - type: PdaBorderColor
-    borderColor: "#7F3300"
+    borderColor: "#ffffff" #FH
   - type: Icon
     state: pda-wizard
 

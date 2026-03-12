@@ -1,4 +1,26 @@
+- type: loadoutEffectGroup
+  id: VeteranBlueshield
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobBlueShield
+      time: 30h
+
 - type: loadout
   id: BlueShieldVisor
   equipment:
     eyes: ClothingEyesVisorBlueShield
+
+- type: loadout
+  id: BlueShieldPDA
+  equipment:
+    id: BlueShieldPDA
+
+- type: loadout
+  id: VeteranBlueShieldPDA
+  effects:
+    - !type:GroupLoadoutEffect
+        proto: VeteranBlueshield
+  equipment:
+    id: VeteranBlueShieldPDA
