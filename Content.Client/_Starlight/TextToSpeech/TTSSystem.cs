@@ -171,6 +171,7 @@ public sealed class TextToSpeechSystem : EntitySystem
             if (audioBytes.Length < 10 || (sourceUid != null && sourceUid.Value.Id == 0))
                 return null;
 
+            // var silencePadding = 1f; // Far Horizons - Remove padding
             var @params = audioParams ?? AudioParams.Default;
             var audioStream = _audioManager.LoadAudioOggVorbis(new MemoryStream(audioBytes));
 
