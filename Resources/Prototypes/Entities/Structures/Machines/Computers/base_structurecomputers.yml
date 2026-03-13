@@ -37,6 +37,19 @@
       state: generic_keys
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
+  # Starlight Start
+  - type: EdgeConnection
+    connectionKey: computers
+    allowedDirections: East, West
+  - type: ItemSlots
+    slots:
+      pai_slot:
+        name: Personal AI Device
+        ejectOnInteract: true
+        whitelist:
+          components:
+          - PAI
+  # Starlight End
   - type: Appearance
   - type: GenericVisualizer
     visuals:

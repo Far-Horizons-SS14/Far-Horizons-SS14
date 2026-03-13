@@ -175,11 +175,13 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
 
     private bool TryPilot(EntityUid user, EntityUid uid)
     {
+        var canUseConsole = _blocker.CanInteract(user, uid) || IsSlottedPAI(user, uid); // Starlight-edit: PAI's can be slotted into consoles, including shuttle consoles.
+
         if (!_tags.HasTag(user, CanPilotTag) ||
             !TryComp<ShuttleConsoleComponent>(uid, out var component) ||
             !this.IsPowered(uid, EntityManager) ||
             !Transform(uid).Anchored ||
-            !_blocker.CanInteract(user, uid))
+            !canUseConsole)
         {
             return false;
         }
@@ -301,7 +303,9 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
             if (comp.Console == null)
                 continue;
 
-            if (!_blocker.CanInteract(uid, comp.Console))
+            var canUseConsole = _blocker.CanInteract(uid, comp.Console.Value) || IsSlottedPAI(uid, comp.Console.Value); // Starlight-edit: PAI's can be slotted into consoles, including shuttle consoles.
+
+            if (!canUseConsole)
             {
                 toRemove.Add((uid, comp));
             }
