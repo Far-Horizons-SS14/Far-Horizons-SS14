@@ -8,13 +8,9 @@
       damageModifierSet: VehicleLightArmor
       damageContainer: StructuralInorganic
     - type: Item
-      size: Large
+      size: Normal
       shape:
-      - 0, 0, 2, 2
-    - type: MultiHandedItem
-    - type: HeldSpeedModifier
-      sprintModifier: 0.7
-      walkModifier: 0.7
+      - 0, 0, 1, 1
     - type: Destructible
       thresholds:
       - trigger:
@@ -26,6 +22,20 @@
             collection: MetalBreak
         - !type:DoActsBehavior
           acts: ["Breakage"]
+
+- type: entity
+  id: VehicleEquipmentBaseBig
+  parent: VehicleEquipmentBase
+  abstract: true
+  components:
+    - type: Item
+      size: Large
+      shape:
+      - 0, 0, 2, 2
+    - type: MultiHandedItem
+    - type: HeldSpeedModifier
+      sprintModifier: 0.7
+      walkModifier: 0.7
 
 #region Headlights
 - type: entity
@@ -117,7 +127,7 @@
 #region Tires
 - type: entity
   id: BasicTires
-  parent: VehicleEquipmentBase
+  parent: VehicleEquipmentBaseBig
   name: Basic Tires
   description: Basic tires that have basic acceleration and traction. 
   components:
@@ -134,7 +144,7 @@
 #region Engines
 - type: entity
   id: BasicEngine
-  parent: VehicleEquipmentBase
+  parent: VehicleEquipmentBaseBig
   name: Basic Engine
   description: A basic engine with basic speed.
   components:
@@ -177,7 +187,7 @@
 
 - type: entity
   id: ElectricEngine
-  parent: VehicleEquipmentBase
+  parent: VehicleEquipmentBaseBig
   name: Electric Motor
   description: A cheap electric motor capable of decent power output.
   components:
@@ -209,7 +219,7 @@
 #region Thrusters
 - type: entity
   id: BasicThrusters
-  parent: VehicleEquipmentBase
+  parent: VehicleEquipmentBaseBig
   name: Basic Thrusters
   description: A a mass produced thruster with spaceflight capabilities but no FTL.
   components:
@@ -288,7 +298,7 @@
 #region Armor
 - type: entity
   id: BasicArmorKit
-  parent: VehicleEquipmentBase
+  parent: VehicleEquipmentBaseBig
   name: Basic Armor Kit
   description: This kit allows you to upgrade most vehicle's armor to tier I.
   components:

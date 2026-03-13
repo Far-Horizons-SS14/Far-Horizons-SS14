@@ -78,6 +78,7 @@ public sealed partial class VehicleEquipmentSystems : EntitySystem
 
         SubscribeLocalEvent<VehicleModsComponent, UninstallPartMessage>(OnUninstallPart);
         SubscribeLocalEvent<VehicleModsComponent, UninstallDoAfter>(OnUninstallDoAfter);
+        SubscribeLocalEvent<VehicleEquipmentComponent, UnInstalledVehicleEquipment>(OnVehicleEquipmentUnInstalled);
         SubscribeLocalEvent<MovementSpeedModifierComponent, UnInstalledVehicleEquipment>(OnMovementUnInstalled);
         SubscribeLocalEvent<PowerCellDrawComponent, UnInstalledVehicleEquipment>(OnElectricEngineUnInstalled);
         SubscribeLocalEvent<ReagantDrawComponent, UnInstalledVehicleEquipment>(OnGasEngineUnInstalled);
@@ -295,13 +296,21 @@ public sealed partial class VehicleEquipmentSystems : EntitySystem
 
             var ev = new UnInstalledVehicleEquipment{Vehicle =  ent.Owner};
             RaiseLocalEvent(part, ev);
-
-            if(!TryComp<VehicleEquipmentComponent>(part, out var veComp) || veComp.ActionEntity == null)
-                return;
-            _actions.RemoveAction(veComp.ActionEntity.Value);
-            veComp.ActionEntity = null;
-            Dirty(part, veComp);
         }
+    }
+
+    private void OnVehicleEquipmentUnInstalled(Entity<VehicleEquipmentComponent> ent, ref UnInstalledVehicleEquipment args)
+    {
+        if(ent.Comp.ActionEntity == null)
+            return;
+
+        var xForm = Transform(ent.Owner);
+        if(TryComp<VehicleComponent>(xForm.ParentUid, out var vehicle) && vehicle.Rider != null)
+            _actions.GrantContainedAction(vehicle.Rider.Value, ent.Owner, ent.Comp.ActionEntity.Value);
+
+        _actions.RemoveAction(ent.Comp.ActionEntity.Value);
+        ent.Comp.ActionEntity = null;
+        Dirty(ent.Owner, ent.Comp);
     }
 
     private void OnMovementUnInstalled(Entity<MovementSpeedModifierComponent> ent, ref UnInstalledVehicleEquipment args)
@@ -374,7 +383,6 @@ public sealed partial class VehicleEquipmentSystems : EntitySystem
                 continue;
             _actions.RemoveProvidedAction(ent.Owner, item, veComp.ActionEntity.Value);
         }
-        Dirty(vehicle, vmComp);
     }
 
     private void OnSirenToggle(Entity<ItemToggleComponent> ent, ref ToggleActionEvent args)
@@ -461,11 +469,14 @@ public sealed partial class VehicleEquipmentSystems : EntitySystem
     #region Events
     private void OnFrictionRefresh(Entity<VehicleModsComponent> ent, ref RefreshFrictionModifiersEvent args)
     {
-        if(ent.Comp.Equipment[EquipmentType.TIRES] == null)
+        if(!TryComp<DestructibleComponent>(ent.Owner, out var destructible))
+            return;
+
+        if(ent.Comp.Equipment[EquipmentType.TIRES] == null || destructible.IsBroken)
         {
-            args.Acceleration = 0.1f;
-            args.Friction = 2;
-            args.FrictionNoInput = 2; 
+            args.Acceleration = 0.5f;
+            args.Friction = 16/_frictionModifier;
+            args.FrictionNoInput = 16/_frictionModifier; 
         }
         else
         {
