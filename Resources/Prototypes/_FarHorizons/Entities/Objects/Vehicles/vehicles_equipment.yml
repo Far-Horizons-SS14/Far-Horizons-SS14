@@ -72,6 +72,10 @@
       layers:
         - map: [ enum.LightBulbVisualLayers.Base ]
           state: normal
+    - type: VehicleEquipment
+      actionProto: ActionToggleLight
+      slot: headlight
+      allowedVehicles: [Electric, Gas, Spaceship]
     - type: Appearance
 
 #region Lightbars

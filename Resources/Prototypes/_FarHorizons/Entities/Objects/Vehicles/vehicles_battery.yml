@@ -249,6 +249,15 @@
           whitelist:
             tags:
               - VehicleLightArmor
+    - type: ItemSlots
+      slots:
+        key_slot:
+          name: Keys
+          whitelist:
+            requireAll: true
+            tags:
+            - VehicleKey
+            - SyndicateSegwayKeys
 
 - type: entity
   id: VehicleSegwayNSTFilled

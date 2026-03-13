@@ -65,10 +65,11 @@ public sealed partial class VehicleEquipmentSystems : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<VehicleModsComponent, ComponentInit>(OnCompInit);
+        SubscribeLocalEvent<VehicleModsComponent, ComponentStartup>(OnCompStartup);
 
         SubscribeLocalEvent<VehicleModsComponent, InteractUsingEvent>(OnInstallAttempt);
         SubscribeLocalEvent<VehicleModsComponent, InstallDoAfter>(OnInstallDoAfter);
+        SubscribeLocalEvent<VehicleEquipmentComponent, InstalledVehicleEquipment>(OnVehicleEquipmentInstalled);
         SubscribeLocalEvent<MovementSpeedModifierComponent, InstalledVehicleEquipment>(OnMovementInstalled);
         SubscribeLocalEvent<PowerCellDrawComponent, InstalledVehicleEquipment>(OnElectricEngineInstalled);
         SubscribeLocalEvent<ReagantDrawComponent, InstalledVehicleEquipment>(OnGasEngineInstalled);
@@ -100,7 +101,7 @@ public sealed partial class VehicleEquipmentSystems : EntitySystem
         Subs.CVar(_configManager, CCVars.AirFriction, value => _airfrictionModifier = value, true);
     }
 
-    private void OnCompInit(Entity<VehicleModsComponent> ent, ref ComponentInit args)
+    private void OnCompStartup(Entity<VehicleModsComponent> ent, ref ComponentStartup args)
     {
         ent.Comp.ModSlot = _container.EnsureContainer<Container>(ent.Owner, ent.Comp.ModContainer);
 
@@ -184,12 +185,33 @@ public sealed partial class VehicleEquipmentSystems : EntitySystem
         if (part is { } uid)
         {
             if(CheckandAssign(uid, ent.Comp))
-                _container.Insert(uid, ent.Comp.ModSlot);
+                if(HasComp<PointLightComponent>(part))
+                {
+                    _transform.SetParent(part, ent.Owner);
+                    _transform.SetLocalRotation(part, Angle.Zero);
+                }
+                else
+                    _container.Insert(part, ent.Comp.ModSlot);
 
             var ev = new InstalledVehicleEquipment{Vehicle =  ent.Owner};
             RaiseLocalEvent(uid, ev);
             Dirty(ent.Owner, ent.Comp);
         }
+    }
+
+    private void OnVehicleEquipmentInstalled(Entity<VehicleEquipmentComponent> ent, ref InstalledVehicleEquipment args)
+    {
+            _actions.AddAction(ent.Owner, ref ent.Comp.ActionEntity, ent.Comp.ActionProto);
+            Dirty(ent.Owner, ent.Comp);
+            
+            if(ent.Comp.ActionEntity == null)
+                return;
+            if(TryComp<DestructibleComponent>(ent.Owner, out var destructibleComp) && destructibleComp.IsBroken)
+                return;
+            var xForm = Transform(ent.Owner);
+            if(!TryComp<VehicleComponent>(xForm.ParentUid, out var vehicle) || vehicle.Rider == null)
+                return;
+            _actions.GrantContainedAction(vehicle.Rider.Value, ent.Owner, ent.Comp.ActionEntity.Value);
     }
 
     private void OnMovementInstalled(Entity<MovementSpeedModifierComponent> ent, ref InstalledVehicleEquipment args)
@@ -228,7 +250,11 @@ public sealed partial class VehicleEquipmentSystems : EntitySystem
         => _damage.SetDamageModifierSetId(args.Vehicle, ent.Comp.DamageModifierSetId);
 
     private void OnLightInstalled(Entity<PointLightComponent> ent, ref InstalledVehicleEquipment args)
-        => _appearance.SetData(ent.Owner, EquipmentVisuals.Hidden, true);
+    {
+        var xForm = Transform(ent.Owner);
+        if(HasComp<VehicleModsComponent>(xForm.ParentUid))
+            _appearance.SetData(ent.Owner, EquipmentVisuals.Hidden, true);
+    }
 
     #endregion
 
@@ -269,6 +295,12 @@ public sealed partial class VehicleEquipmentSystems : EntitySystem
 
             var ev = new UnInstalledVehicleEquipment{Vehicle =  ent.Owner};
             RaiseLocalEvent(part, ev);
+
+            if(!TryComp<VehicleEquipmentComponent>(part, out var veComp) || veComp.ActionEntity == null)
+                return;
+            _actions.RemoveAction(veComp.ActionEntity.Value);
+            veComp.ActionEntity = null;
+            Dirty(part, veComp);
         }
     }
 
@@ -324,12 +356,11 @@ public sealed partial class VehicleEquipmentSystems : EntitySystem
         if(!TryComp<VehicleModsComponent>(vehicle, out var vmComp) || vmComp.SpawnedEquipment.Count == 0) return;
         foreach(var item in vmComp.SpawnedEquipment)
         {
-            if(!TryComp<VehicleEquipmentComponent>(item, out var veComp) || veComp.ActionEntity != null)
+            if(!TryComp<VehicleEquipmentComponent>(item, out var veComp) || veComp.ActionEntity == null)
                 continue;
             if(TryComp<DestructibleComponent>(item, out var destructibleComp) && destructibleComp.IsBroken)
                 continue;
-            _actions.AddAction(ent.Owner, ref veComp.ActionEntity, veComp.ActionProto, item);
-            Dirty(item, vmComp);   
+            _actions.GrantContainedAction(ent.Owner, item, veComp.ActionEntity.Value);
         }
     }
     private void OnRemoveActions(Entity<RiderComponent> ent, ref RemoveRiderActions args)
@@ -341,10 +372,7 @@ public sealed partial class VehicleEquipmentSystems : EntitySystem
         {
             if(!TryComp<VehicleEquipmentComponent>(item, out var veComp) || veComp.ActionEntity == null)
                 continue;
-            _actions.RemoveAction(ent.Owner, veComp.ActionEntity);   
-            QueueDel(veComp.ActionEntity);
-            veComp.ActionEntity = null;
-            Dirty(item, veComp);
+            _actions.RemoveProvidedAction(ent.Owner, item, veComp.ActionEntity.Value);
         }
         Dirty(vehicle, vmComp);
     }
