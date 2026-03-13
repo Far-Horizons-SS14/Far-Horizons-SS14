@@ -1,4 +1,4 @@
-﻿using System.Collections.Concurrent;
+using System.Collections.Concurrent;
 using System.IO;
 using Content.Client._Starlight.Radio.Systems;
 using Content.Client._Starlight.TextToSpeech;
@@ -171,15 +171,17 @@ public sealed class TextToSpeechSystem : EntitySystem
             if (audioBytes.Length < 10 || (sourceUid != null && sourceUid.Value.Id == 0))
                 return null;
 
-            var silencePadding = 1f;
             var @params = audioParams ?? AudioParams.Default;
             var audioStream = _audioManager.LoadAudioOggVorbis(new MemoryStream(audioBytes));
 
-            if (previous is var (eid, audio, tts))
-                silencePadding = Math.Clamp(1f - (float)(tts.AudioLength.TotalSeconds - audio.PlaybackPosition), 0f, 1f);
-
-            // _sawmill.Debug($"Play TTS chunk: {audioBytes.Length}, prependSilence: {silencePadding:F3}s");
-            @params = @params.WithPlayOffset(silencePadding);
+            // Far Horizons start - only apply offset when there is a previous chunk
+            if (previous is { } prev)
+            {
+                var (eid, audio, tts) = prev;
+                var silencePadding = Math.Clamp(1f - (float)(tts.AudioLength.TotalSeconds - audio.PlaybackPosition), 0f, 1f);
+                @params = @params.WithPlayOffset(silencePadding);
+            }
+            // Far Horizons end
             var ent = sourceUid != null && sourceUid != _player.LocalEntity
                 ? _audio.PlayEntity(audioStream, sourceUid.Value, null, @params)
                 : _audio.PlayGlobal(audioStream, null, @params);
