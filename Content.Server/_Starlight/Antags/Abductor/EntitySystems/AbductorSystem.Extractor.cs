@@ -8,6 +8,7 @@ using Content.Shared.DoAfter;
 using Content.Shared.Body.Systems;
 using Content.Shared.Starlight.Medical.Surgery.Steps.Parts;
 using Content.Shared._FarHorizons.Body;
+using Content.Shared.Humanoid;
 
 namespace Content.Server.Starlight.Antags.Abductor;
 
@@ -32,7 +33,7 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
             || hearts.Count < 1)
             return;
 
-        if (HasComp<HumanoidCharacterProfileComponent>(args.Target))
+        if (HasComp<HumanoidProfileComponent>(args.Target))
             Extract(ent, args.Target.Value, args.User);
     }
 
