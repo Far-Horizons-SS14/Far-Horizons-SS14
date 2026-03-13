@@ -8,3 +8,8 @@ comp-genericfield-connected = The Holographic Field Generator establishes a conn
 comp-genericfield-disconnected = The Holographic Field fizzles out and vanishes
 
 comp-genericfield-anchor-warning = You cannot unanchor the Holographic Field Generator while it's on or connected!
+
+comp-genericfield-damaged-1 = It appears to be holding steady.
+comp-genericfield-damaged-2 = [color=yellow]The field is slightly distorted.[/color]
+comp-genericfield-damaged-3 = [color=orange]The field is badly distorted.[/color]
+comp-genericfield-damaged-4 = [color=red]The field looks like its about to fizzle out![/color]

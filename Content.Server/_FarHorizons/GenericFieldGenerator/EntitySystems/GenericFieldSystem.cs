@@ -1,4 +1,6 @@
 using Content.Shared._FarHorizons.GenericFieldGenerator.Components;
+using Content.Shared.Damage.Components;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Destructible;
 using Content.Shared.Maps;
 using Robust.Shared.Map;
@@ -10,6 +12,7 @@ public sealed class GenericFieldSystem : EntitySystem
     [Dependency] private readonly GenericFieldGeneratorSystem _genericgen = default!;
     [Dependency] private readonly TileSystem _tile = default!;
     [Dependency] private readonly ITileDefinitionManager _tiledef = default!;
+    [Dependency] private readonly DamageableSystem _damageable = default!;
     public override void Initialize()
     {
         base.Initialize();
@@ -17,6 +20,23 @@ public sealed class GenericFieldSystem : EntitySystem
         SubscribeLocalEvent<GenericFieldComponent, DestructionEventArgs>(OnDestructionEvent);
         SubscribeLocalEvent<GenericFieldComponent, AnchorStateChangedEvent>(OnAnchorChanged);
         SubscribeLocalEvent<GenericFieldComponent, ComponentRemove>(OnComponentRemoved);
+    }
+    
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+
+        var query = EntityQueryEnumerator<GenericFieldComponent>();
+        while (query.MoveNext(out var uid, out var field))
+        {
+            field.Accumulator += frameTime;
+            if (field.Accumulator >= field.Threshold)
+            {
+                if (TryComp<DamageableComponent>(uid, out _))
+                    _damageable.HealEvenly(uid, field.RegenRate);
+                field.Accumulator -= field.Threshold;
+            }
+        }
     }
 
     private void OnDestructionEvent(Entity<GenericFieldComponent> field, ref DestructionEventArgs args)
