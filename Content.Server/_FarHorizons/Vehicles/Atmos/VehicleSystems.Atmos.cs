@@ -1,4 +1,5 @@
 using Content.Server.Atmos.EntitySystems;
+using Content.Server.Atmos.Piping.Components;
 using Content.Server.Body.Systems;
 using Content.Shared._FarHorizons.Vehicles.Components;
 using Content.Shared.Atmos;
@@ -18,6 +19,7 @@ public sealed class VehicleAtmosphereSystem : EntitySystem
     /// <inheritdoc/>
     public override void Initialize()
     {        
+        SubscribeLocalEvent<VehicleModsComponent, AtmosDeviceUpdateEvent>(OnAtmosUpdate);
         SubscribeLocalEvent<VehicleEquipmentComponent, VehicleFanToggle>(OnFanToggle);
 
         SubscribeLocalEvent<RiderComponent, InhaleLocationEvent>(OnInhale);
@@ -25,16 +27,10 @@ public sealed class VehicleAtmosphereSystem : EntitySystem
         SubscribeLocalEvent<RiderComponent, AtmosExposedGetAirEvent>(OnExpose);
     }
 
-    public override void Update(float frameTime)
+    private void OnAtmosUpdate(Entity<VehicleModsComponent> ent, ref AtmosDeviceUpdateEvent args)
     {
-        base.Update(frameTime);
-
-        var query = EntityQueryEnumerator<VehicleModsComponent>();
-        while (query.MoveNext(out var uid, out var component))
-        {
-            UpdateFanModule((uid, component), frameTime);
-            UpdateCabinPressure((uid, component));
-        }
+        UpdateFanModule(ent, args.dt);
+        UpdateCabinPressure(ent);
     }
 
     #region Cabin
@@ -65,9 +61,8 @@ public sealed class VehicleAtmosphereSystem : EntitySystem
     private void OnInhale(Entity<RiderComponent> ent, ref InhaleLocationEvent args)
     {
         if(ent.Comp.Riding == null) return;
-        if (!TryComp<VehicleComponent>(ent.Comp.Riding, out var vehicleComp))
+        if (!HasComp<VehicleComponent>(ent.Comp.Riding))
             return;
-        // Meter a single breath from the cabin using a tank-like regulator pressure.
         if (TryComp<VehicleCabinAirComponent>(ent.Comp.Riding, out var cabin))
         {
             var vol = args.Respirator.BreathVolume;
