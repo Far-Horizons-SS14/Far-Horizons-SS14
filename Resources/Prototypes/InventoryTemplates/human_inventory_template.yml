@@ -34,17 +34,14 @@
       uiWindowPos: 0,2
       strippingWindowPos: 0,2 #FH
       displayName: Neck
-    - name: pin #FH
+      # Far Horizons-Start add pin slot
+    - name: pin
       slotTexture: pin
-      slotFlags: NECK
+      slotFlags: PIN
       uiWindowPos: 1,2
       strippingWindowPos: 1,2
       displayName: Pins
-      whitelist:
-        tags:
-        - GenderPin
-        - Pin
-        - Medal
+      # Far Horizons-End
     - name: mask
       slotTexture: mask
       slotFlags: MASK
@@ -107,18 +104,15 @@
       #Far Horizons-Start Breathable Tank Storage
     - name: suitstorage2
       slotTexture: tank
-      slotFlags:   SUITSTORAGE
+      slotFlags:   SUITSTORAGE2
       slotGroup: MainHotbar
       stripTime: 3
       uiWindowPos: 2,4
-      strippingWindowPos: 2,7 #FH
+      strippingWindowPos: 2,7
       dependsOn: outerClothing
       dependsOnComponents:
       - type: AllowSuitStorage
       displayName: Tank Storage
-      whitelist:
-        tags:
-        - GasTank
       #Far Horizons-End
     - name: id
       slotTexture: id
@@ -132,28 +126,24 @@
       displayName: ID
     - name: belt
       slotTexture: belt
-      fullTextureName: template_small #FH
-      slotFlags: BELT #FH
-      slotGroup: SecondHotbar #FH
-      stripTime: 6 #FH
-      uiWindowPos: 2,1 #FH
-      strippingWindowPos: 1,7 #FH
-      displayName: belt
-      blacklist: #FH
-        tags:
-        - Webbing
-    - name: rig #FH
-      slotTexture: rig #FH
       fullTextureName: template_small
       slotFlags: BELT
       slotGroup: SecondHotbar
       stripTime: 6
+      uiWindowPos: 2,1 #FH
+      strippingWindowPos: 1,7 #FH
+      displayName: belt
+      # Far Horizons-Start Rig slot
+    - name: rig
+      slotTexture: rig
+      fullTextureName: template_small
+      slotFlags: RIG
+      slotGroup: SecondHotbar
+      stripTime: 6
       uiWindowPos: 3,1
-      strippingWindowPos: 1,6 #FH
+      strippingWindowPos: 1,6
       displayName: Chest Rig
-      whitelist:
-        tags:
-        - Webbing
+      # Far Horizons-End
     - name: back
       slotTexture: back
       fullTextureName: template_small
