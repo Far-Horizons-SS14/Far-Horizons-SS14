@@ -20,6 +20,10 @@ using Content.Shared.Body;
 using Content.Shared.Body.Components;
 using Content.Shared.Tag;
 using Content.Shared.Damage.Components;
+using Content.Server.Ghost.Roles.Components;
+using Content.Server.NPC.HTN;
+using Content.Shared._Starlight.Language.Components;
+using Content.Shared.Mind.Components;
 
 namespace Content.Server.Starlight.Medical.Surgery;
 // Based on the RMC14.
@@ -88,7 +92,7 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
         if (args.Tools.Count == 0
             || !(args.Tools.FirstOrDefault() is var organId)
             || !TryComp<BodyComponent>(args.Body, out var bodyComp)
-            || !TryComp<OrganComponent>(organId, out var organComp))
+            || !HasComp<OrganComponent>(organId))
             return;
 
         if (bodyComp.Organs == null ||
@@ -100,9 +104,21 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
 
         _containers.Insert(organId, bodyComp.Organs);
 
-        if (HasComp<BrainComponent>(organId) && _tag.HasTag(args.Body, _vimTag))
+        if (HasComp<BrainComponent>(organId))
         {
-            _mind.MakeSentient(args.Body);
+            CopyAndPaste<NPCRetaliationComponent>(organId, args.Body);
+            CopyAndPaste<NpcFactionMemberComponent>(organId, args.Body);
+            CopyAndPaste<GhostTakeoverAvailableComponent>(organId, args.Body);
+            CopyAndPaste<GhostRoleComponent>(organId, args.Body);
+            CopyAndPaste<ActiveNPCComponent>(organId, args.Body);
+            CopyAndPaste<SentienceTargetComponent>(organId, args.Body);
+            CopyAndPaste<HTNComponent>(organId, args.Body);
+            CopyAndPaste<LanguageKnowledgeComponent>(organId, args.Body);
+            CopyAndPaste<LanguageSpeakerComponent>(organId, args.Body);
+            CopyAndPaste<ParacusiaComponent>(organId, args.Body);
+            
+            if(TryComp<MindContainerComponent>(organId, out var mind) && mind != null)
+                _mind.MakeSentient(args.Body);
         }
     }
 
@@ -144,22 +160,32 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
 
             _containers.Remove(organ.Value.Owner, body.Organs);
 
-            if (HasComp<BrainComponent>(organ) && _tag.HasTag(args.Body, _vimTag))
+            if (HasComp<BrainComponent>(organ))
             {
-                if (HasComp<NPCRetaliationComponent>(args.Body))
-                    RemComp<NPCRetaliationComponent>(args.Body);
-                if (HasComp<NpcFactionMemberComponent>(args.Body))
-                    RemComp<NpcFactionMemberComponent>(args.Body);
-                if (HasComp<ActiveNPCComponent>(args.Body))
-                    RemComp<ActiveNPCComponent>(args.Body);
-                if (HasComp<SentienceTargetComponent>(args.Body))
-                    RemComp<SentienceTargetComponent>(args.Body);
+                CopyAndPaste<NPCRetaliationComponent>(args.Body, organ.Value);
+                CopyAndPaste<NpcFactionMemberComponent>(args.Body, organ.Value);
+                CopyAndPaste<GhostTakeoverAvailableComponent>(args.Body, organ.Value);
+                CopyAndPaste<GhostRoleComponent>(args.Body, organ.Value);
+                CopyAndPaste<ActiveNPCComponent>(args.Body, organ.Value);
+                CopyAndPaste<SentienceTargetComponent>(args.Body, organ.Value);
+                CopyAndPaste<HTNComponent>(args.Body, organ.Value);
+                CopyAndPaste<LanguageKnowledgeComponent>(args.Body, organ.Value);
+                CopyAndPaste<LanguageSpeakerComponent>(args.Body, organ.Value);
+                CopyAndPaste<ParacusiaComponent>(args.Body, organ.Value);
             }
 
             return;
         }
-        // Far Horizons end
     }
+    private void CopyAndPaste<T>(EntityUid from, EntityUid to) where T : IComponent
+    {
+        if (!TryComp<T>(from, out var comp))
+            return;
+
+        CopyComp(from, to, comp);
+        RemComp<T>(from);
+    }
+    // Far Horizons end
 
     private void OnRemoveAccent(Entity<SurgeryRemoveAccentComponent> ent, ref SurgeryStepEvent args)
     {
