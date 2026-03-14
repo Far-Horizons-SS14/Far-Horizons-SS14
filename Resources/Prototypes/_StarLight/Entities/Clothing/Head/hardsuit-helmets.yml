@@ -256,41 +256,6 @@
     tags:
     - WhitelistChameleon
 
-##ntcc-medics
-
-- type: entity
-  parent: [ BaseCentcommContraband, ClothingHeadHelmetHardsuitSyndie ]
-  id: ClothingHeadHelmetHardsuitNTNCConsortiumMedic
-  name: nt-nc naval medic hardsuit helmet
-  description: A protective hardsuit helmet worn by NT-NC Naval medical personnel.
-  components:
-  - type: Sprite
-    sprite: _Starlight/Clothing/Head/Hardsuits/ntnc_med_hardsuit_helmet.rsi
-  - type: Clothing
-    sprite: _Starlight/Clothing/Head/Hardsuits/ntnc_med_hardsuit_helmet.rsi
-    clothingVisuals: # FH: hardsuit fixes
-      head:
-        - state: off-equipped-HELMET
-  - type: PointLight
-    color: "#addbff"
-  - type: Pierceable
-    level: HardenedMetal
-  - type: Armor
-    modifiers:
-      coefficients:
-        Heat: 0.9
-  - type: ToggleableVisuals  # FH: hardsuit fixes
-    clothingVisuals:
-      head:
-        - state: on-equipped-HELMET  # needs an actual sprite here
-  - type: Hailer # FH: hardsuit fixes
-    hailMessage: "Stop."
-    hailSound:
-      path: /Audio/_FarHorizons/Effects/stop.ogg
-      params:
-        variation: 0.125
-    cooldownDuration: 5
-
 - type: entity
   parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetHardsuitLuxmax
