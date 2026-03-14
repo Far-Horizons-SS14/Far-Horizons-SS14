@@ -3929,7 +3929,7 @@
         Base: reindeer_doe_dead
 
 - type: entity
-  parent: MobCorgiBase
+  parent: [BaseMobAnimalwithHands, MobCorgiBase] #FarHorizons
   id: MobCorgiSmart
   name: smart corgi
   description: An unusually smart dog.
@@ -3960,6 +3960,8 @@
         type: StrippableBoundUserInterface
       enum.StorageUiKey.Key:
         type: StorageBoundUserInterface
+      enum.SurgeryUIKey.Key:
+        type: SurgeryBui
   # Custom inventory template
   - type: Inventory
     speciesId: dog
@@ -3980,13 +3982,15 @@
           32:
             sprite: Mobs/Pets/displacements.rsi
             state: corgi_head_displacement
+  #FarHorizons Start
   - type: Hands # HANDS!
-    activeHandId: Right
-    hands:
-      Right:
-        location: Right
-      Left:
-        location: Left
+  #  activeHandId: Right
+  #  hands:
+  #    Right:
+  #      location: Right
+  #    Left:
+  #     location: Left
+  #FarHorizons End
   - type: Puller
   - type: Cuffable # bad dog!
   - type: BlockWriting # dogs can't write, paws unwieldy; mouth-writing is a myth

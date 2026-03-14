@@ -102,6 +102,7 @@ public sealed class SurgeryBui : BoundUserInterface
                 => (string)(part.Comp.Category ?? "") switch
                 {
                     "Head" => 1,
+                    "AnimalHead" =>1,
                     "Torso" => 2,
                     "ArmRight" => 3,
                     "HandRight" => 4,

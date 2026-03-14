@@ -51,6 +51,9 @@
   #Far-Horizons Start
   - type: InitialBody
     organs:
+      Brain: OrganHumanBrain
+      Eyes: OrganAnimalEyes
+      Tongue: OrganHumanTongue
       Lungs: OrganAnimalLungs
       Heart: OrganAnimalHeart
       Stomach: OrganAnimalStomach
@@ -61,10 +64,41 @@
       ArmLeft: OrganAnimalArmLeft
       ArmRight: OrganAnimalArmRight
       LegLeft: OrganAnimalLegLeft
-      LegRight: OrganAnimalLegRight
+      LegRight: OrganAnimalLegRight\
+  - type: Blindable
+  - type: DarkenedVision
+  - type: VisionOrganRequiredForVision
 
 - type: entity
-  parent: OrganBase
+  id: BaseMobAnimalwithHands
+  abstract: true
+  components:
+  - type: Body
+  #Far-Horizons Start
+  - type: InitialBody
+    organs:
+      Brain: OrganHumanBrain
+      Eyes: OrganAnimalEyes
+      Tongue: OrganHumanTongue
+      Lungs: OrganAnimalLungs
+      Heart: OrganAnimalHeart
+      Stomach: OrganAnimalStomach
+      Liver: OrganAnimalLiver
+      Kidneys: OrganAnimalKidneys
+      Torso: OrganAnimalTorso
+      Head: OrganAnimalHead
+      ArmLeft: OrganAnimalArmLeft
+      ArmRight: OrganAnimalArmRight
+      HandLeft: OrganAnimalHandLeft
+      HandRight: OrganAnimalHandRight
+      LegLeft: OrganAnimalLegLeft
+      LegRight: OrganAnimalLegRight  
+  - type: Blindable
+  - type: DarkenedVision
+  - type: VisionOrganRequiredForVision
+
+- type: entity
+  parent: OrganAnimal
   id: OrganAnimalTorso
   name: torso
   components:
@@ -75,7 +109,7 @@
     state: torso_m
 
 - type: entity
-  parent: OrganBase
+  parent: OrganAnimal
   id: OrganAnimalHead
   name: head
   components:
@@ -86,7 +120,7 @@
     state: head_m
 
 - type: entity
-  parent: OrganBase
+  parent: OrganAnimal
   id: OrganAnimalArmLeft
   name: left arm
   components:
@@ -97,7 +131,7 @@
     state: l_arm
 
 - type: entity
-  parent: OrganBase
+  parent: OrganAnimal
   id: OrganAnimalArmRight
   name: right arm
   components:
@@ -108,7 +142,7 @@
     state: r_arm
 
 - type: entity
-  parent: OrganBase
+  parent: OrganAnimal
   id: OrganAnimalLegLeft
   name: left leg
   components:
@@ -119,7 +153,7 @@
     state: l_leg
 
 - type: entity
-  parent: OrganBase
+  parent: OrganAnimal
   id: OrganAnimalLegRight
   name: right leg
   components:
@@ -128,4 +162,60 @@
   - type: Sprite
     sprite: Mobs/Species/Human/parts.rsi
     state: r_leg
+
+- type: entity
+  parent: OrganBase
+  id: OrganAnimalHandLeft
+  name: left hand
+  components:
+  - type: Organ
+    category: HandLeft
+  - type: HandOrgan
+    handID: left
+    data:
+      location: Left
+  - type: Sprite
+    sprite: Mobs/Species/Human/parts.rsi
+    state: l_hand
+
+- type: entity
+  parent: OrganBase
+  id: OrganAnimalHandRight
+  name: right hand
+  components:
+  - type: Organ
+    category: HandRight
+  - type: HandOrgan
+    handID: right
+    data:
+      location: Right
+  - type: Sprite
+    sprite: Mobs/Species/Human/parts.rsi
+    state: r_hand
+    
+- type: entity
+  parent: OrganBase
+  id: OrganAnimalEyes
+  name: eyes
+  components:
+  - type: GibbableOrgan
+  - type: VisionOrgan # Far Horizons
+  - type: DetachedOrganVisualsExcluded
+  - type: OrganDamage
+    damage:
+      types:
+        Poison: 10
+        Cellular: 10
+        Bloodloss: 10
+        Radiation: 10
+        Caustic: 10
+  - type: Damageable
+    damageContainer: Biological
+  - type: Organ
+    category: Eyes
+  - type: Sprite
+    sprite: Mobs/Species/Human/organs.rsi
+    layers:
+    - state: eyeball-l
+    - state: eyeball-r
   #Far-Horizons End

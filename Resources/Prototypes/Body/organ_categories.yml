@@ -102,10 +102,6 @@
   connectsTo: Torso
 
 - type: organCategory
-  id: AnimalHead
-  connectsTo: Torso 
-
-- type: organCategory
   id: AnimalArmLeft
   connectsTo: Torso 
 
@@ -120,5 +116,10 @@
 - type: organCategory
   id: AnimalLegRight
   connectsTo: Torso
+
+- type: organCategory
+  id: AnimalHead
+  connectsTo: Torso
+  surgeryTargetable: true 
 
 # Far Horizons end

@@ -193,7 +193,7 @@
     speciesBlacklist:
     - SlimePerson
   - type: SurgeryOrganDontExistCondition
-    category: Liver
+    category: [ Liver ]
   - type: SurgeryPartCondition
     parts: [ Torso ]
   - type: Sprite
@@ -266,7 +266,7 @@
     speciesBlacklist:
     - SlimePerson
   - type: SurgeryOrganDontExistCondition
-    category: Kidneys
+    category: [ Kidneys ]
   - type: SurgeryPartCondition
     parts: [ Torso ]
   - type: Sprite
@@ -316,7 +316,7 @@
     speciesBlacklist:
     - SlimePerson
   - type: SurgeryOrganDontExistCondition
-    category: Stomach
+    category: [ Stomach ]
   - type: SurgeryPartCondition
     parts: [ Torso ]
   - type: Sprite
@@ -372,7 +372,7 @@
     - ProtoKin
   #FarHorizons End
   - type: SurgeryOrganDontExistCondition
-    category: Lungs
+    category: [ Lungs ]
   - type: SurgeryPartCondition
     parts: [ Torso ]
   - type: Sprite
@@ -424,7 +424,7 @@
     speciesWhitelist:
     - SlimePerson
   - type: SurgeryOrganDontExistCondition
-    category: Lungs
+    category: [ Lungs ]
   - type: SurgeryPartCondition
     parts: [ Torso ]
   - type: Sprite
@@ -472,7 +472,7 @@
     speciesBlacklist:
     - SlimePerson
   - type: SurgeryOrganDontExistCondition
-    category: Heart
+    category: [ Heart ]
   - type: SurgeryPartCondition
     parts: [ Torso ]
   - type: Sprite
@@ -495,7 +495,7 @@
   - type: SurgeryOrganExistCondition
     category: Eyes
   - type: SurgeryPartCondition
-    parts: [ Head ]
+    parts: [ Head, AnimalHead ]
   - type: Sprite
     sprite: Mobs/Species/Human/organs.rsi
     layers:
@@ -516,9 +516,9 @@
     - SurgeryStepInsertEyes
     - SurgeryStepConnectOpticNerve
   - type: SurgeryOrganDontExistCondition
-    category: Eyes
+    category: [ Eyes ]
   - type: SurgeryPartCondition
-    parts: [ Head ]
+    parts: [ Head, AnimalHead ]
   - type: Sprite
     sprite: Mobs/Species/Human/organs.rsi
     layers:
@@ -542,7 +542,7 @@
   - type: SurgeryOrganExistCondition
     category: EyeImplant
   - type: SurgeryPartCondition
-    parts: [ Head ]
+    parts: [ Head, AnimalHead ]
   - type: Sprite
     sprite: _Starlight/Objects/Specific/Medical/implants.rsi
     layers:
@@ -562,9 +562,9 @@
     - SurgeryStepInsertEyeImplant
     - SurgeryStepConnectOpticNerve
   - type: SurgeryOrganDontExistCondition
-    category: EyeImplant
+    category: [ EyeImplant ]
   - type: SurgeryPartCondition
-    parts: [ Head ]
+    parts: [ Head, AnimalHead ]
   - type: Sprite
     sprite: _Starlight/Objects/Specific/Medical/implants.rsi
     layers:
@@ -582,7 +582,7 @@
   - type: SurgeryOrganExistCondition
     category: Tongue
   - type: SurgeryPartCondition
-    parts: [ Head ]
+    parts: [ Head, AnimalHead ]
   - type: Sprite
     sprite: Mobs/Species/Human/organs.rsi
     state: tongue
@@ -603,9 +603,9 @@
     - SurgeryStepPositionTongue
     - SurgeryStepAttachTongue
   - type: SurgeryOrganDontExistCondition
-    category: Tongue
+    category: [ Tongue ]
   - type: SurgeryPartCondition
-    parts: [ Head ]
+    parts: [ Head, AnimalHead ]
   - type: Sprite
     sprite: Mobs/Species/Human/organs.rsi
     state: tongue
@@ -646,7 +646,7 @@
   - type: SurgeryOrganExistCondition
     category: Brain
   - type: SurgeryPartCondition
-    parts: [ Head ]
+    parts: [ Head, AnimalHead ]
   - type: Sprite
     sprite: Mobs/Species/Human/organs.rsi
     state: brain
@@ -685,9 +685,9 @@
     - IPC
   #FarHorizons End
   - type: SurgeryOrganDontExistCondition
-    category: Brain
+    category: [ Brain ]
   - type: SurgeryPartCondition
-    parts: [ Head ]
+    parts: [ Head, AnimalHead ]
   - type: Sprite
     sprite: Mobs/Species/Human/organs.rsi
     state: brain
@@ -740,7 +740,7 @@
     speciesWhitelist:
     - SlimePerson
   - type: SurgeryOrganDontExistCondition
-    category: Brain
+    category: [ Brain ]
   - type: SurgeryPartCondition
     parts: [ Torso ]
   - type: Sprite
@@ -809,7 +809,7 @@
     parts:
     - Torso
   - type: SurgeryOrganDontExistCondition
-    category: Cavity
+    category: [ Cavity ]
   - type: Sprite
     sprite: Mobs/Species/Human/parts.rsi
     state: torso_m
@@ -862,7 +862,7 @@
     parts:
     - Torso
   - type: SurgeryOrganDontExistCondition
-    category: Lungs #FH
+    category: [ Lungs ] #FH
   - type: Sprite
     sprite: _Starlight/Mobs/Species/Shadekin/organs.rsi
     state: core
