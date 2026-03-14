@@ -264,8 +264,9 @@
       state: no_eyes
   - type: HumanoidEMPCompositeElement
     effect:
+      glitchDuration: 10.0
       additionalEffects:
-        StatusEffectBlinded: 10.0
+        StatusEffectBlinded: 2.0
       damageAmount:
         types:
           Shock: 1
