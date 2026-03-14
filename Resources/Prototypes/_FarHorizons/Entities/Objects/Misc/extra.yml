@@ -1,0 +1,81 @@
+- type: entity
+  parent: BaseItem
+  id: WeaponAdrianHead
+  name: Adrian Butler's Head
+  description: Seems like he got a little ahead of himself and lost his mind. His head feels awfully dense.
+  components:
+  - type: Sprite
+    layers:
+    - sprite: Mobs/Species/Human/parts.rsi
+      state: head_m
+      color: '#E6BFA2FF'
+    - sprite: Mobs/Customization/eyes.rsi
+      state: eyes
+      color: '#0C753AFF'
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: a
+      color: '#734D3EFF'
+    - sprite: Mobs/Customization/scars.rsi
+      state: scar_neck
+      color: '#EDC8AEFF'
+  - type: Item
+    size: Normal
+    layers:
+    - sprite: Mobs/Species/Human/parts.rsi
+      state: head_m
+      color: '#E6BFA2FF'
+    - sprite: Mobs/Customization/eyes.rsi
+      state: eyes
+      color: '#0C753AFF'
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: a
+      color: '#734D3EFF'
+    - sprite: Mobs/Customization/scars.rsi
+      state: scar_neck
+      color: '#EDC8AEFF'
+  - type: MeleeWeapon
+    angle: 60
+    wideAnimationRotation: -135
+    animation: WeaponArcFist
+    attackRate: .5
+    damage:
+      types:
+        Blunt: 2
+    bluntStaminaDamageFactor: 5.0
+    soundHit:
+      collection: BoxingHit
+  - type: StaminaDamageOnHit
+    damage: 20
+  - type: DamageOtherOnHit
+    ignoreResistances: false
+    damage:
+      types:
+        Blunt: 5
+  - type: ThrowingAngle
+    angle: 225
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 10
+        reagents:
+        - ReagentId: Blood
+          Quantity: 10
+  - type: Spillable
+    solution: beaker
+  - type: SolutionRegeneration
+    solution: beaker
+    generated:
+      reagents:
+      - ReagentId: Blood
+        Quantity: 10
+  - type: DrainableSolution
+    solution: pool
+  - type: SentienceTarget
+    flavorKind: station-event-random-sentience-flavor-inanimate
+    weight: 0.05
+  - type: ScottishAccent
+  
+
+      
+    
+
