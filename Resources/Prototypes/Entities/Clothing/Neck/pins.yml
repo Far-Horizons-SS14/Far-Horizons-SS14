@@ -5,11 +5,15 @@
   name: pin
   description: Be nothing do crime.
   components:
+  - type: Clothing
+    sprite: Clothing/Neck/Misc/pins.rsi
+    quickEquip: true
+    slots:
+      - neck
+      - pin
   - type: Item
     size: Tiny
   - type: Sprite
-    sprite: Clothing/Neck/Misc/pins.rsi
-  - type: Clothing
     sprite: Clothing/Neck/Misc/pins.rsi
   - type: Tag #FH Edit
     tags:
@@ -284,6 +288,7 @@
     quickEquip: true
     slots:
     - neck
+    - pin
   - type: EquipSpray
     verbLocId: equip-spray-verb-press
   - type: SolutionContainerManager
