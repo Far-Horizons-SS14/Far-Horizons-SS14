@@ -284,7 +284,7 @@
   parent: ClothingHeadLightBase
   id: ClothingHeadHelmetFire
   name: Fire Helmet #Far Horizons - The Great Capitalization Crusade
-  description: An atmos tech's best friend. Provides some heat resistance and looks cool.
+  description: An emergency fire suit helmet, not the best but it might keep you alive. #FH
   components:
   - type: Sprite
     sprite: Clothing/Head/Helmets/firehelmet.rsi
@@ -319,6 +319,8 @@
   - type: Clothing
     sprite: Clothing/Head/Helmets/atmos_firehelmet.rsi
     quickEquip: true
+  - type: PointLight #FH - parity with hardsuit light
+    radius: 6 #FH
   - type: IngestionBlocker
   - type: TemperatureProtection
     heatingCoefficient: 0.3

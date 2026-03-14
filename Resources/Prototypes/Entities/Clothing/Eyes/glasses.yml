@@ -57,12 +57,13 @@
   id: ClothingEyesGlassesMeson
   name: Engineering Goggles #Less Confusion #Far Horizons - The Great Capitalization Crusade
   suffix: NT #Far Horizons - Dual Station Clarity
-  description: Green-tinted goggles using a proprietary polymer that provides protection from eye damage of all types.
+  description: Green-tinted goggles using a proprietary polymer that provides protection from eye damage of all types, it has a small switch on the side to enable an inbuilt tray scanner. #FH
   components:
   - type: Sprite
     sprite: _FarHorizons/Clothing/Eyes/Glasses/meson.rsi #Far Horizons
   - type: Clothing
     sprite: _FarHorizons/Clothing/Eyes/Glasses/meson.rsi #Far Horizons
+  - type: TrayScanner #FH
   - type: EyeProtection
   - type: IdentityBlocker
     coverage: EYES

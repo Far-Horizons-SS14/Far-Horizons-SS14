@@ -31,11 +31,13 @@
         Blunt: 0.9
         Slash: 0.9
         Piercing: 0.9
-        Heat: 0.8
-        Radiation: 0.5
+        Shock: 0.8 #FH
+        Heat: 0.65 #FH
+        Radiation: 0.3 #FH
+        Caustic: 0.5 #FH
   - type: ClothingSpeedModifier
-    walkModifier: 0.7
-    sprintModifier: 0.7
+    walkModifier: 0.85 #FH
+    sprintModifier: 0.85 #FH
     requireActivated: false #FH cuz item toggle.
   - type: HeldSpeedModifier
   - type: ToggleableClothing
@@ -63,7 +65,7 @@
     highPressureMultiplier: 0.04
     lowPressureMultiplier: 1000
   - type: ExplosionResistance
-    damageCoefficient: 0.5
+    damageCoefficient: 0.35 #FH
   - type: Pierceable
     level: Metal
   - type: Armor
@@ -72,12 +74,13 @@
         Blunt: 0.9
         Slash: 0.9
         Piercing: 0.9
-        Shock: 0.8
+        Heat: 0.8 #FH
+        Shock: 0.6 #FH
         Caustic: 0.5
         Radiation: 0.2
   - type: ClothingSpeedModifier
-    walkModifier: 0.7
-    sprintModifier: 0.7
+    walkModifier: 0.9 #FH
+    sprintModifier: 0.9 #FH THIS SUIT SUCKED SO FUCKING BADDDD
     requireActivated: false #FH cuz item toggle.
   - type: HeldSpeedModifier
   - type: ToggleableClothing
@@ -572,8 +575,8 @@
         Radiation: 0.0
         Caustic: 0.7
   - type: ClothingSpeedModifier
-    walkModifier: 0.8
-    sprintModifier: 0.8
+    walkModifier: 0.9 #FH
+    sprintModifier: 0.9 #FH
     requireActivated: false #FH cuz item toggle.
   - type: HeldSpeedModifier
   - type: ToggleableClothing

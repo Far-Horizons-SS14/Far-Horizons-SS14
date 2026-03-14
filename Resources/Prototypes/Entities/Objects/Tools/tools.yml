@@ -1,5 +1,5 @@
 - type: entity
-  name: wirecutter
+  name: Wirecutter #Far Horizons - The Great Capitalization Crusade
   parent: BaseItem
   id: Wirecutter
   description: This kills the wire.
@@ -62,7 +62,7 @@
   # 🌟Starlight-end🌟
 
 - type: entity
-  name: screwdriver
+  name: Screwdriver #Far Horizons - The Great Capitalization Crusade
   parent: BaseItem
   id: Screwdriver
   description: Industrial grade torque in a small screwdriving package.
@@ -120,7 +120,7 @@
   # FarHorizons End
 
 - type: entity
-  name: wrench
+  name: Wrench #Far Horizons - The Great Capitalization Crusade
   parent: BaseItem
   id: Wrench
   description: 'A common tool for assembly and disassembly. Remember: lefty latchy, righty removey.'
@@ -172,7 +172,7 @@
   # FarHorizons End
 
 - type: entity
-  name: multitool
+  name: Multitool #Far Horizons - The Great Capitalization Crusade
   parent: BaseItem
   id: Multitool
   description: An advanced tool to copy, store, and send electrical pulses and signals through wires and machines.
@@ -232,7 +232,7 @@
   # FarHorizons End
 
 - type: entity
-  name: network configurator
+  name: Network Configurator #Far Horizons - The Great Capitalization Crusade
   parent: BaseItem
   id: NetworkConfigurator
   description: A tool for linking devices together. Has two modes, a list mode for mass linking devices and a linking mode for advanced device linking.
@@ -285,7 +285,7 @@
 #Power tools
 #Later on these should switch probably switch damage when changing the tool behavior.
 - type: entity
-  name: power drill
+  name: Power Drill #Far Horizons - The Great Capitalization Crusade
   parent: BaseItem
   id: PowerDrill
   description: A simple powered hand drill.
@@ -386,7 +386,7 @@
     sprite: Objects/Tools/rcd.rsi
     state: icon
   - type: Item
-    size: Normal
+    size: Small #FH
   - type: Clothing
     sprite: Objects/Tools/rcd.rsi
     quickEquip: false
@@ -420,7 +420,7 @@
 - type: entity
   id: RCDRecharging
   parent: RCD
-  name: experimental RCD
+  name: Experimental RCD #Far Horizons - The Great Capitalization Crusade
   description: Cyborg-mounted Rapid Construction Device which creates compressed matter on the fly using an internal fabricator.
   suffix: AutoRecharge
   components:
@@ -433,14 +433,14 @@
   id: RCDExperimental
   parent: RCD
   suffix: Admeme
-  name: experimental RCD
+  name: Experimental RCD #Far Horizons - The Great Capitalization Crusade
   description: A bluespace-enhanced rapid construction device that passively generates its own compressed matter.
   components:
   - type: AutoRecharge
     rechargeDuration: 1
 
 - type: entity
-  name: compressed matter
+  name: Compressed Matter #Far Horizons - The Great Capitalization Crusade
   parent: BaseItem
   id: RCDAmmo
   description: A cartridge of raw matter compacted by bluespace technology. Used in rapid construction devices.
@@ -463,7 +463,7 @@
     - SurvivalKitItems #FH
 
 - type: entity
-  name: omnitool
+  name: Omnitool #Far Horizons - The Great Capitalization Crusade
   parent: BaseItem
   id: Omnitool
   description: A drone's best friend.
@@ -529,7 +529,7 @@
 
 #Other
 - type: entity
-  name: shovel
+  name: Shovel #Far Horizons - The Great Capitalization Crusade
   parent: BaseItem
   id: Shovel
   description: A large tool for digging and moving dirt.
@@ -558,7 +558,7 @@
 - type: entity
   parent: BaseItem
   id: RollingPin
-  name: rolling pin
+  name: Rolling Pin #Far Horizons - The Great Capitalization Crusade
   description: A tool used to shape and flatten dough.
   components:
   - type: Sprite
