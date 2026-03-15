@@ -36,16 +36,18 @@ public sealed partial class TTSSystem : EntitySystem
 
     private const int DefaultAnnounceVoice = 2001;
     private const int DefaultVoice = 0;
-    private const int MaxChars = 200;
+    // private const int MaxChars = 200; // Far Horizons - Change to a CVar
     private const float WhisperVoiceVolumeModifier = 0.6f;
     private readonly ISawmill _sawmill = Logger.GetSawmill(nameof(TTSSystem));
     private readonly List<ICommonSession> _ignoredRecipients = [];
 
     private bool _isEnabled;
+    private int _maxChars; // Far Horizons - Add max characters length as a CVar
 
     public override void Initialize()
     {
         _cfg.OnValueChanged(StarlightCCVars.TTSEnabled, v => _isEnabled = v, true);
+        _cfg.OnValueChanged(StarlightCCVars.TTSMaxLengthMessage, v => _maxChars = v, true); // Far Horizons - Add max characters length as a CVar
 
         SubscribeNetworkEvent<PreviewTTSRequestEvent>(OnRequestPreviewTTS);
         SubscribeNetworkEvent<ClientOptionTTSEvent>(OnClientOptionTTS);
@@ -83,11 +85,12 @@ public sealed partial class TTSSystem : EntitySystem
 
     private async void OnRadioReceiveEvent(RadioSpokeEvent args)
     {
-        args.Message.Tts ??= args.Message.Text;
+        // Far Horizons Start - add logic to shorten the message instead of rejecting when its too long
+        args.Message.Tts ??= ShortenMessage(args.Message.Text);
         if (!_isEnabled
-            || args.Message.Tts.Length > MaxChars
             || args.SuppressTTS)
             return;
+        // Far Horizons End
 
         await Task.Yield();
         try
@@ -112,14 +115,15 @@ public sealed partial class TTSSystem : EntitySystem
 
     private async void OnCollectiveMindReceiveEvent(CollectiveMindSpokeEvent args)
     {
-        if (!_isEnabled
-            || args.Message.Length > MaxChars)
+        // Far Horizons Start - add logic to shorten the message instead of rejecting when its too long
+        if (!_isEnabled)
             return;
 
         await Task.Yield();
         try
         {
-            var text = CleanText(args.Message);
+            var text = ShortenMessage(CleanText(args.Message));
+        // Far Horizons End
             var filter = Filter.Entities(args.Receivers).RemovePlayers(_ignoredRecipients);
             var voice = GetOrAssignVoice(args.Source);
 
@@ -137,14 +141,15 @@ public sealed partial class TTSSystem : EntitySystem
 
     private async void OnAnnouncementSpoke(AnnouncementSpokeEvent args)
     {
-        if (!_isEnabled
-            || args.Message.Text.Length > MaxChars * 2)
+        // Far Horizons Start - add logic to shorten the message instead of rejecting when its too long
+        if (!_isEnabled)
             return;
 
         await Task.Yield();
         try
         {
-            var text = CleanText(args.Message.Tts ?? args.Message.Text);
+            var text = ShortenMessage(CleanText(args.Message.Tts ?? args.Message.Text));
+        // Far Horizons End
             var filter = args.Receivers.RemovePlayers(_ignoredRecipients);
             var voice = args.SpeakerUid.HasValue
                 ? GetOrAssignVoice(GetEntity(args.SpeakerUid.Value), fallbackVoice: DefaultAnnounceVoice)
@@ -164,11 +169,12 @@ public sealed partial class TTSSystem : EntitySystem
 
     private async void OnEntitySpoke(EntityUid uid, TextToSpeechComponent component, EntitySpokeEvent args)
     {
-        args.Message.Tts ??= args.Message.Text;
+        // Far Horizons Start - add logic to shorten the message instead of rejecting when its too long
+        args.Message.Tts ??= ShortenMessage(args.Message.Text);
         if (!_isEnabled
-            || args.Message.Tts.Length > MaxChars
             || !args.Language.SpeechOverride.RequireSpeech)
             return;
+        // Far Horizons End
 
         await Task.Yield();
         try
@@ -264,4 +270,8 @@ public sealed partial class TTSSystem : EntitySystem
 
     [GeneratedRegex(@"\[[^\]]*\]")]
     private static partial Regex TagStripperRegex();
+    
+    // Far Horizons-Start shorten all messages for TTS to 50 characters
+    private string ShortenMessage(string text) => text.Substring(0, Math.Min(text.Length, _maxChars));
+    // Far Horizons-End
 }
