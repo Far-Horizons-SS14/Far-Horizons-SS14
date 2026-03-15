@@ -118,12 +118,12 @@ public sealed partial class TTSSystem : EntitySystem
         // Far Horizons Start - add logic to shorten the message instead of rejecting when its too long
         if (!_isEnabled)
             return;
+        // Far Horizons End
 
         await Task.Yield();
         try
         {
-            var text = ShortenMessage(CleanText(args.Message));
-        // Far Horizons End
+            var text = ShortenMessage(CleanText(args.Message)); // Far Horizons - shorten the message to the max length
             var filter = Filter.Entities(args.Receivers).RemovePlayers(_ignoredRecipients);
             var voice = GetOrAssignVoice(args.Source);
 
@@ -144,12 +144,12 @@ public sealed partial class TTSSystem : EntitySystem
         // Far Horizons Start - add logic to shorten the message instead of rejecting when its too long
         if (!_isEnabled)
             return;
+        // Far Horizons End
 
         await Task.Yield();
         try
         {
-            var text = ShortenMessage(CleanText(args.Message.Tts ?? args.Message.Text));
-        // Far Horizons End
+            var text = ShortenMessage(CleanText(args.Message.Tts ?? args.Message.Text)); // Far Horizons - shorten the message to the max length
             var filter = args.Receivers.RemovePlayers(_ignoredRecipients);
             var voice = args.SpeakerUid.HasValue
                 ? GetOrAssignVoice(GetEntity(args.SpeakerUid.Value), fallbackVoice: DefaultAnnounceVoice)
