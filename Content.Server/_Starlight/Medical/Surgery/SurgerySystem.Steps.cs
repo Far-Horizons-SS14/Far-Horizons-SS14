@@ -11,19 +11,8 @@ using Robust.Shared.Timing;
 using Robust.Shared.Prototypes;
 using Content.Shared._FarHorizons.Medical.SurgeryOverhaul.Components;
 using Content.Shared.Atmos.Rotting;
-using Content.Server.NPC.Components;
-using Content.Shared.NPC.Components;
-using Content.Shared.NPC;
-using Content.Server.StationEvents.Components;
-using Content.Server.Mind;
 using Content.Shared.Body;
-using Content.Shared.Body.Components;
-using Content.Shared.Tag;
 using Content.Shared.Damage.Components;
-using Content.Server.Ghost.Roles.Components;
-using Content.Server.NPC.HTN;
-using Content.Shared._Starlight.Language.Components;
-using Content.Shared.Mind.Components;
 
 namespace Content.Server.Starlight.Medical.Surgery;
 // Based on the RMC14.
@@ -39,11 +28,7 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
     [Dependency] private readonly SharedBloodstreamSystem _bloodstreamSystem = default!;
     [Dependency] private readonly SharedRottingSystem _rottingSystem = default!;
     [Dependency] private readonly SleepingSystem _sleeping = default!;
-    [Dependency] private readonly MindSystem _mind = default!;
-    [Dependency] private readonly TagSystem _tag = default!;
     [Dependency] private readonly IComponentFactory _compFactory = default!;
-
-    private readonly string _vimTag = "VimPilot";
 
     public void InitializeSteps()
     {
@@ -103,23 +88,6 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
         }
 
         _containers.Insert(organId, bodyComp.Organs);
-
-        if (HasComp<BrainComponent>(organId))
-        {
-            CopyAndPaste<NPCRetaliationComponent>(organId, args.Body);
-            CopyAndPaste<NpcFactionMemberComponent>(organId, args.Body);
-            CopyAndPaste<GhostTakeoverAvailableComponent>(organId, args.Body);
-            CopyAndPaste<GhostRoleComponent>(organId, args.Body);
-            CopyAndPaste<ActiveNPCComponent>(organId, args.Body);
-            CopyAndPaste<SentienceTargetComponent>(organId, args.Body);
-            CopyAndPaste<HTNComponent>(organId, args.Body);
-            CopyAndPaste<LanguageKnowledgeComponent>(organId, args.Body);
-            CopyAndPaste<LanguageSpeakerComponent>(organId, args.Body);
-            CopyAndPaste<ParacusiaComponent>(organId, args.Body);
-            
-            if(TryComp<MindContainerComponent>(organId, out var mind) && mind != null)
-                _mind.MakeSentient(args.Body);
-        }
     }
 
     private void OnStepOrganExtractComplete(Entity<SurgeryStepOrganExtractComponent> ent, ref SurgeryStepEvent args)
@@ -157,35 +125,10 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
         foreach (var organ in organsToRemove)
         {
             if (!_containers.CanRemove(organ!.Value.Owner, body.Organs)) continue;
-
             _containers.Remove(organ.Value.Owner, body.Organs);
-
-            if (HasComp<BrainComponent>(organ))
-            {
-                CopyAndPaste<NPCRetaliationComponent>(args.Body, organ.Value);
-                CopyAndPaste<NpcFactionMemberComponent>(args.Body, organ.Value);
-                CopyAndPaste<GhostTakeoverAvailableComponent>(args.Body, organ.Value);
-                CopyAndPaste<GhostRoleComponent>(args.Body, organ.Value);
-                CopyAndPaste<ActiveNPCComponent>(args.Body, organ.Value);
-                CopyAndPaste<SentienceTargetComponent>(args.Body, organ.Value);
-                CopyAndPaste<HTNComponent>(args.Body, organ.Value);
-                CopyAndPaste<LanguageKnowledgeComponent>(args.Body, organ.Value);
-                CopyAndPaste<LanguageSpeakerComponent>(args.Body, organ.Value);
-                CopyAndPaste<ParacusiaComponent>(args.Body, organ.Value);
-            }
-
             return;
         }
     }
-    private void CopyAndPaste<T>(EntityUid from, EntityUid to) where T : IComponent
-    {
-        if (!TryComp<T>(from, out var comp))
-            return;
-
-        CopyComp(from, to, comp);
-        RemComp<T>(from);
-    }
-    // Far Horizons end
 
     private void OnRemoveAccent(Entity<SurgeryRemoveAccentComponent> ent, ref SurgeryStepEvent args)
     {

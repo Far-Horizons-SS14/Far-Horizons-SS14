@@ -20,6 +20,12 @@ public sealed partial class VisionOrganComponent : Component
 public sealed partial class CustomOrganComponent : Component;
 
 [RegisterComponent, NetworkedComponent]
+public sealed partial class HeadOrganComponent : Component
+{
+    public string NameBackup = "";
+}
+
+[RegisterComponent, NetworkedComponent]
 public sealed partial class MovementOrganExpectedToMoveComponent : Component
 {
     [DataField] public int ExpectedAmount = 2;
