@@ -32,10 +32,14 @@
     - DoorBumpOpener
     - StunImmune
   - type: Blindable
+#FarHorizons Start
+  - type: DarkenedVision
+  - type: VisionOrganRequiredForVision
   - type: UserInterface
     interfaces:
       enum.SurgeryUIKey.Key:
         type: SurgeryBui
+#FarHorizons End
         
 - type: entity
   abstract: true
