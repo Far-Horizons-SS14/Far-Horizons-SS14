@@ -138,6 +138,11 @@
         Radiation: 0.25
   - type: ToggleableClothing
     slot: head
+  - type: Clothing #FH
+    equipSound: /Audio/Mecha/mechmove03.ogg 
+    unequipSound: /Audio/Mecha/mechmove03.ogg
+    equipDelay: 0.5 
+    unequipDelay: 0.5 
   - type: ContainerContainer
     containers:
       toggleable-clothing: !type:ContainerSlot {}

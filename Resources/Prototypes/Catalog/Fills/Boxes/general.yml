@@ -1,7 +1,7 @@
 - type: entity
   parent: BoxBase
   id: BoxCardboard
-  name: cardboard box
+  name: Cardboard Box #Far Horizons - The Great Capitalization Crusade
   description: A cardboard box for storing things.
   components:
   - type: Construction
@@ -21,7 +21,7 @@
 - type: entity
   parent: BoxBaseSmall
   id: BoxCardboardSmall
-  name: small cardboard box
+  name: Small Cardboard Box #Far Horizons - The Great Capitalization Crusade
   description: A small cardboard box for storing things.
   components:
   - type: Construction
@@ -39,7 +39,7 @@
     - BoxCardboard
 
 - type: entity
-  name: mousetrap box
+  name: Mousetrap Box #Far Horizons - The Great Capitalization Crusade
   parent: BoxCardboard
   id: BoxMousetrap
   description: This box is filled with mousetraps. Try not to get your hand stuck in one.
@@ -55,7 +55,7 @@
       - state: mousetraps
 
 - type: entity
-  name: lightbulb box
+  name: Lightbulb Box #Far Horizons - The Great Capitalization Crusade
   parent: BoxCardboard
   id: BoxLightbulb
   description: This box is shaped on the inside so that only light tubes and bulbs fit.
@@ -77,7 +77,7 @@
         amount: 12
 
 - type: entity
-  name: lightbulb box warm
+  name: Lightbulb Box Warm #Far Horizons - The Great Capitalization Crusade
   parent: BoxLightbulb
   id: BoxWarmLightbulb
   components:
@@ -88,7 +88,7 @@
         amount: 12
 
 - type: entity
-  name: lighttube box
+  name: Lighttube Box #Far Horizons - The Great Capitalization Crusade
   parent: BoxLightbulb
   id: BoxLighttube
   components:
@@ -103,7 +103,7 @@
         amount: 12
 
 - type: entity
-  name: mixed lights box
+  name: Mixed Lights Box #Far Horizons - The Great Capitalization Crusade
   parent: BoxLightbulb
   id: BoxLightMixed
   components:
@@ -121,7 +121,7 @@
           amount: 6
 
 - type: entity
-  name: holiday lighttube box
+  name: Holiday Lighttube Box #Far Horizons - The Great Capitalization Crusade
   parent: BoxLightbulb
   id: BoxLighttubeHoliday
   components:
@@ -134,7 +134,7 @@
         rolls: 6 # Rolls instead of amounts to alternate.
 
 - type: entity
-  name: PDA box
+  name: PDA Box #Far Horizons - The Great Capitalization Crusade
   parent: BoxCardboard
   id: BoxPDA
   description: A box of spare PDA microcomputers.
@@ -150,7 +150,7 @@
       - state: pda
 
 - type: entity
-  name: ID card box
+  name: ID Card Box #Far Horizons - The Great Capitalization Crusade
   parent: BoxCardboard
   id: BoxID
   description: A box of spare blank ID cards.
@@ -166,7 +166,7 @@
       - state: pda
 
 - type: entity
-  name: headset box
+  name: Headset Box #Far Horizons - The Great Capitalization Crusade
   parent: BoxCardboard
   id: BoxHeadset
   description: A box of spare assistant headsets.
@@ -184,7 +184,7 @@
 - type: entity
   parent: BoxCardboardSmall
   id: BoxStamps
-  name: stamp box
+  name: Stamp Box #Far Horizons - The Great Capitalization Crusade
   description: A small box containing stamps.
   components: # Baking a "default" EntityTableContainerFill into this prototype seems like bad practice, so this is currently an empty box. If you need a new type of prefilled stamp box, create a new child prototype with the appropriate stamps!
   - type: Sprite
@@ -193,7 +193,7 @@
       - state: stamp
 
 - type: entity
-  name: meson box
+  name: Meson Box #Far Horizons - The Great Capitalization Crusade
   parent: BoxCardboard
   id: BoxMesonScanners
   description: A box of spare meson goggles.
@@ -239,7 +239,7 @@
         amount: 3
 
 - type: entity
-  name: inflatable wall box
+  name: Inflatable Wall Box #Far Horizons - The Great Capitalization Crusade
   parent: BoxCardboard
   id: BoxInflatable
   description: Inflatable walls are not to be used as floatation devices.
@@ -258,7 +258,7 @@
       - state: inflatable
 
 - type: entity
-  name: hatsune miku day bag
+  name: Hatsune Miku Day Bag #Far Horizons - The Great Capitalization Crusade
   parent: ClothingBackpackDuffel
   id: BoxPerformer
   description: Happy Hatsune Miku Day!
@@ -274,23 +274,30 @@
           amount: 2
 
 - type: entity
-  name: flare box
+  name: Flare Box #Far Horizons - The Great Capitalization Crusade
   parent: BoxCardboard
   id: BoxFlare
   description: A box of flares. Party time.
   components:
+  - type: Item #FH
+    size: Small
+    shape: 
+    - 0,0,1,1 
   - type: EntityTableContainerFill
     containers:
       storagebase:
         id: Flare
-        amount: 6
+        amount: 9 #FH god gave me the whole box imma fill the whole box
   - type: Sprite
     layers:
       - state: box
       - state: flare
+  - type: Tag #FH
+    tags: 
+    - Flare
 
 - type: entity
-  name: trashbag box
+  name: Trashbag Box #Far Horizons - The Great Capitalization Crusade
   parent: BoxCardboard
   id: BoxTrashbag
   description: A box of trashbags. Happy janitor noises.
@@ -313,7 +320,7 @@
       - state: trashbag
 
 - type: entity
-  name: assistant encryption key box
+  name: Assistant Encryption Key Box #Far Horizons - The Great Capitalization Crusade
   parent: BoxCardboard
   id: BoxEncryptionKeyAssistant
   description: A box of spare encryption keys.
@@ -333,7 +340,7 @@
       - EncryptionKey
 
 - type: entity
-  name: cargo encryption key box
+  name: Cargo Encryption Key Box #Far Horizons - The Great Capitalization Crusade
   parent: BoxEncryptionKeyAssistant
   id: BoxEncryptionKeyCargo
   components:
@@ -344,7 +351,7 @@
         amount: 4
 
 - type: entity
-  name: engineering encryption key box
+  name: Engineering Encryption Key Box #Far Horizons - The Great Capitalization Crusade
   parent: BoxEncryptionKeyAssistant
   id: BoxEncryptionKeyEngineering
   components:
@@ -355,7 +362,7 @@
         amount: 4
 
 - type: entity
-  name: med-sci encryption key box
+  name: Med-Sci Encryption Key Box #Far Horizons - The Great Capitalization Crusade
   parent: BoxEncryptionKeyAssistant
   id: BoxEncryptionKeyMedicalScience
   components:
@@ -366,7 +373,7 @@
         amount: 4
 
 - type: entity
-  name: medical encryption key box
+  name: Medical Encryption Key Box #Far Horizons - The Great Capitalization Crusade
   parent: BoxEncryptionKeyAssistant
   id: BoxEncryptionKeyMedical
   components:
@@ -377,7 +384,7 @@
         amount: 4
 
 - type: entity
-  name: robotech encryption key box
+  name: Robotech Encryption Key Box #Far Horizons - The Great Capitalization Crusade
   parent: BoxEncryptionKeyAssistant
   id: BoxEncryptionKeyRobo
   components:
@@ -388,7 +395,7 @@
         amount: 4
 
 - type: entity
-  name: science encryption key box
+  name: Science Encryption Key Box #Far Horizons - The Great Capitalization Crusade
   parent: BoxEncryptionKeyAssistant
   id: BoxEncryptionKeyScience
   components:
@@ -399,7 +406,7 @@
         amount: 4
 
 - type: entity
-  name: security encryption key box
+  name: Security Encryption Key Box #Far Horizons - The Great Capitalization Crusade
   parent: BoxEncryptionKeyAssistant
   id: BoxEncryptionKeySecurity
   components:
@@ -410,7 +417,7 @@
         amount: 4
 
 - type: entity
-  name: service encryption key box
+  name: Service Encryption Key Box #Far Horizons - The Great Capitalization Crusade
   parent: BoxEncryptionKeyAssistant
   id: BoxEncryptionKeyService
   components:
@@ -421,7 +428,7 @@
         amount: 4
 
 - type: entity
-  name: syndicate encryption key box
+  name: Syndicate Encryption Key Box #Far Horizons - The Great Capitalization Crusade
   parent: [BoxEncryptionKeyAssistant, BaseSyndicateContraband]
   id: BoxEncryptionKeySyndie
   description: Two syndicate encryption keys for the price of one. Miniaturized for ease of use.
@@ -436,7 +443,7 @@
   - type: Storage
 
 - type: entity
-  name: lead-lined box
+  name: Lead-Lined Box #Far Horizons - The Great Capitalization Crusade
   parent: BoxCardboard
   suffix: DEBUG
   id: BoxLeadLined
@@ -448,7 +455,7 @@
     resistance: 2
 
 - type: entity
-  name: candle box
+  name: Candle Box #Far Horizons - The Great Capitalization Crusade
   parent: BoxCardboard
   id: BoxCandle
   description: This box is specifically moulded to only carry candles.
@@ -479,7 +486,7 @@
           amount: 2
 
 - type: entity
-  name: small candle box
+  name: Small Candle Box #Far Horizons - The Great Capitalization Crusade
   parent: BoxCandle
   id: BoxCandleSmall
   components:
@@ -501,7 +508,7 @@
 - type: entity
   parent: BoxCardboard
   id: BoxDarts
-  name: darts box
+  name: Darts Box #Far Horizons - The Great Capitalization Crusade
   description: A box filled with colorful darts.
   components:
   - type: Item
@@ -528,7 +535,7 @@
           amount: 2
 
 - type: entity
-  name: envelope box
+  name: Envelope Box #Far Horizons - The Great Capitalization Crusade
   parent: BoxCardboard
   id: BoxEnvelope
   description: A box filled with envelopes.
@@ -544,7 +551,7 @@
         amount: 9
 
 - type: entity
-  name: utensil box
+  name: Utensil Box #Far Horizons - The Great Capitalization Crusade
   parent: BoxCardboard
   id: BoxUtensil
   description: A box filled with forks and spoons.
