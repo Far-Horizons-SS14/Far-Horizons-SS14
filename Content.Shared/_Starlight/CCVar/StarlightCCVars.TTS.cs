@@ -11,7 +11,16 @@ public sealed partial class StarlightCCVars
 
     public static readonly CVarDef<string> TTSConnectionString =
         CVarDef.Create("tts.connection_string", "", CVar.SERVERONLY | CVar.CONFIDENTIAL);
-
+    
+    // Far Horizons Start - Create a new CVar to change max length of a message
+    /// <summary>
+    /// This value defines max length of a message to be pronounced by a TTS system,
+    /// messages longer than this will be shortened to this length.
+    /// </summary>
+    public static readonly CVarDef<int> TTSMaxLengthMessage =
+        CVarDef.Create("tts.max_length_message", 50, CVar.ARCHIVE | CVar.SERVER);
+    // Far Horizons End
+    
     /// <summary>
     /// Option to disable TTS events for client
     /// </summary>
