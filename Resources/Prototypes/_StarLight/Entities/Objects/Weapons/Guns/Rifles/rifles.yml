@@ -276,10 +276,22 @@
     steps: 5
     zeroVisible: true
   - type: Appearance
-  - type: CursorOffsetRequiresWield
-  - type: EyeCursorOffset
-    maxOffset: 1.5
-    pvsIncrease: 0.15
+  # Far Horizons Start - Use better scoping
+  - type: Scope
+    canUseInsideContainer: true
+    canUseNightVision: true
+    zoomLevels:
+      - name: 1x
+        zoom: 1
+        offset: 7
+        doAfter: 0
+        allowMovement: true
+      - name: 1.5x
+        zoom: 1.5
+        offset: 7
+        doAfter: 0
+        allowMovement: true
+  # Far Horizons End
   - type: Tag #FH
     tags: #FH
     - Leikha #FH
