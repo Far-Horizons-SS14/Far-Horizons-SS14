@@ -60,26 +60,25 @@ public sealed class GenericFieldGeneratorSystem : EntitySystem
         var query = EntityQueryEnumerator<GenericFieldGeneratorComponent>();
         while (query.MoveNext(out var uid, out var generator))
         {
+            generator.Accumulator += frameTime;
+
+            if (!(generator.Accumulator >= 0.2f))
+                continue;
+            generator.Accumulator -= 0.2f;
+                
+            if (!TryComp<BatteryComponent>(uid, out var batteryComponent))
+                continue;
+
             if (generator.IsConnected)
-            {
-                generator.Accumulator += frameTime;
-                if (generator.Accumulator >= generator.Threshold)
-                {
-                    if (TryComp<BatteryComponent>(uid, out _))
-                    {
-                        _battery.UseCharge(uid, generator.PowerDrain);
-                        generator.Accumulator -= generator.Threshold;
-                    }
-                }
-            }
-            else if (TryComp<BatteryComponent>(uid, out var batteryComponent) && batteryComponent.MaxCharge <= batteryComponent.LastCharge)
+                //Drain the internal battery
+                _battery.UseCharge(uid, generator.PowerDrain);
+            
+            else if (batteryComponent.MaxCharge <= batteryComponent.LastCharge)
             //try to connect again if not connected and fully charged. might be a bad idea for performance, but I want having both connected to power for redundancy to be viable.
             {
-                generator.RetryWait += frameTime;
-                if (generator.RetryWait >= 1)
-                {
-                    _battery.UseCharge(uid, 20f); //bit jank, but I couldnt get TurnOn() to work here. works by draining the battery by a small ammount, which causes OnBatteryStateChanged() to trigger again
-                }
+                generator.RetryWait += 1;
+                if (generator.RetryWait >= 5)
+                    TurnOn((uid, generator));
             }
         }
     }
@@ -235,13 +234,15 @@ public sealed class GenericFieldGeneratorSystem : EntitySystem
             if (TryComp<PowerNetworkBatteryComponent>(generator, out var batteryComponent))
             {
                 if (args.Port == generator.Comp.OnPort)
-                {//TurnOn
+                {
+                    //TurnOn
                     generator.Comp.Enabled = true;
                     batteryComponent.MaxChargeRate = generator.Comp.ChargeRate;
                     _popupSystem.PopupEntity(Loc.GetString("comp-genericfield-turned-on"), generator);
                 }
                 if (args.Port == generator.Comp.OffPort)
-                {//TurnOff
+                {
+                    //TurnOff
                     generator.Comp.Enabled = false;
                     batteryComponent.MaxChargeRate = 0;
                     _popupSystem.PopupEntity(Loc.GetString("comp-genericfield-turned-off"), generator);
@@ -249,13 +250,15 @@ public sealed class GenericFieldGeneratorSystem : EntitySystem
                 if (args.Port == generator.Comp.TogglePort) // Toggle
                 {
                     if (!generator.Comp.Enabled)
-                    {//TurnOn
+                    {
+                        //TurnOn
                         generator.Comp.Enabled = true;
                         batteryComponent.MaxChargeRate = generator.Comp.ChargeRate;
                         _popupSystem.PopupEntity(Loc.GetString("comp-genericfield-turned-on"), generator);
                     }
                     else
-                    {//TurnOff
+                    {
+                        //TurnOff
                         generator.Comp.Enabled = false;
                         batteryComponent.MaxChargeRate = 0;
                         _popupSystem.PopupEntity(Loc.GetString("comp-genericfield-turned-off"), generator);
@@ -304,10 +307,10 @@ public sealed class GenericFieldGeneratorSystem : EntitySystem
         if (!gen1XForm.Anchored)
             return false;
 
-        var (WorldPosition, WorldRotation) = _transformSystem.GetWorldPositionRotation(gen1XForm);
-        var dirRad = WorldRotation - Angle.FromDegrees(90d); //needs to be like this for the raycast to work properly; changed to just use World Rotation and a fixed value
+        var (worldPosition, worldRotation) = _transformSystem.GetWorldPositionRotation(gen1XForm);
+        var dirRad = worldRotation - Angle.FromDegrees(90d); //needs to be like this for the raycast to work properly; changed to just use World Rotation and a fixed value
 
-        var ray = new CollisionRay(WorldPosition, dirRad.ToVec(), component.CollisionMask);
+        var ray = new CollisionRay(worldPosition, dirRad.ToVec(), component.CollisionMask);
         var rayCastResults = _physics.IntersectRay(gen1XForm.MapID, ray, component.MaxLength, generator, false);
         var genQuery = GetEntityQuery<GenericFieldGeneratorComponent>();
 
