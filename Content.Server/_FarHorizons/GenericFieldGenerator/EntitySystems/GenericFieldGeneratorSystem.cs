@@ -156,12 +156,11 @@ public sealed class GenericFieldGeneratorSystem : EntitySystem
         var component = generator.Comp;
         var genXForm = Transform(generator);
         generator.Comp.Charged = true;
-        var dir = genXForm.LocalRotation.GetCardinalDir();
 
-        if (component.Connections.ContainsKey(dir))
-            return; // This direction already has an active connection
+        if (component.Connections != null)
+            return; // Already has an active connection
 
-        TryGenerateFieldConnection(dir, generator, genXForm);
+        TryGenerateFieldConnection(generator, genXForm);
     }
 
     private void TurnOff(Entity<GenericFieldGeneratorComponent> generator)
@@ -182,31 +181,35 @@ public sealed class GenericFieldGeneratorSystem : EntitySystem
         _signalSystem.SendSignal(generator, generator.Comp.ConnectionStatusPort, false);
         _signalSystem.InvokePort(generator, generator.Comp.FieldDisconnectedPort);
         }
+
         var (uid, component) = generator;
-        foreach (var (direction, value) in component.Connections)
+
+        if (component.Connections == null)
+            return;
+
+        var value = component.Connections.Value;
+            
+        foreach (var field in value.Item2)
         {
-            foreach (var field in value.Item2)
-            {
-                if (TryComp<GenericFieldComponent>(field, out var fieldComp))
-                    _genericfield.TempTileCleanup((field, fieldComp));
-                QueueDel(field);
-            }
-            value.Item1.Comp.Connections.Remove(direction.GetOpposite());
-
-            if (value.Item1.Comp.Connections.Count == 0) //Change isconnected only if there's no more connections
-            {
-                if (TryComp<DeviceLinkSourceComponent>(value.Item1, out _))
-                {
-                    _signalSystem.SendSignal(value.Item1, generator.Comp.ConnectionStatusPort, false);
-                    _signalSystem.InvokePort(value.Item1, generator.Comp.FieldDisconnectedPort);
-                }
-
-                value.Item1.Comp.IsConnected = false;
-                ChangeConnectionLightVisualizer(value.Item1);
-                UpdateConnectionLights(value.Item1);
-            }
+            if (TryComp<GenericFieldComponent>(field, out var fieldComp))
+                _genericfield.TempTileCleanup((field, fieldComp));
+            QueueDel(field);
         }
-        component.Connections.Clear();
+
+        value.Item1.Comp.Connections = null;
+
+        if (TryComp<DeviceLinkSourceComponent>(value.Item1, out _))
+        {
+            _signalSystem.SendSignal(value.Item1, generator.Comp.ConnectionStatusPort, false);
+            _signalSystem.InvokePort(value.Item1, generator.Comp.FieldDisconnectedPort);
+        }
+
+        value.Item1.Comp.IsConnected = false;
+        ChangeConnectionLightVisualizer(value.Item1);
+        UpdateConnectionLights(value.Item1);
+
+        component.Connections = null;
+
         if (component.IsConnected)
             _popupSystem.PopupEntity(Loc.GetString("comp-genericfield-disconnected"), uid, PopupType.LargeCaution);
         component.IsConnected = false;
@@ -293,11 +296,10 @@ public sealed class GenericFieldGeneratorSystem : EntitySystem
     /// This will attempt to establish a connection of fields between two generators.
     /// If all the checks pass and fields spawn, it will store this connection on each respective generator.
     /// </summary>
-    /// <param name="dir">The field generator establishes a connection in this direction.</param>
     /// <param name="generator">The field generator component</param>
     /// <param name="gen1XForm">The transform component for the first generator</param>
     /// <returns></returns>
-    private bool TryGenerateFieldConnection(Direction dir, Entity<GenericFieldGeneratorComponent> generator, TransformComponent gen1XForm)
+    private bool TryGenerateFieldConnection(Entity<GenericFieldGeneratorComponent> generator, TransformComponent gen1XForm)
     {
         var component = generator.Comp;
         component.RetryWait = 0; //reset wait time after trying
@@ -350,8 +352,8 @@ public sealed class GenericFieldGeneratorSystem : EntitySystem
         var otherFieldGenerator = (ent, otherFieldGeneratorComponent);
         var fields = GenerateFieldConnection(generator, otherFieldGenerator);
 
-        component.Connections[dir] = (otherFieldGenerator, fields);
-        otherFieldGeneratorComponent.Connections[dir.GetOpposite()] = (generator, fields);
+        component.Connections = (otherFieldGenerator, fields);
+        otherFieldGeneratorComponent.Connections = (generator, fields);
 
         if (!component.IsConnected)
         {
@@ -457,16 +459,16 @@ public sealed class GenericFieldGeneratorSystem : EntitySystem
     /// </summary>
     public void GridCheck(Entity<GenericFieldGeneratorComponent> generator)
     {
+        if (generator.Comp.Connections == null)
+            return;
+        
         var xFormQuery = GetEntityQuery<TransformComponent>();
 
-        foreach (var (_, generators) in generator.Comp.Connections)
-        {
-            var gen1ParentGrid = xFormQuery.GetComponent(generator).ParentUid;
-            var gent2ParentGrid = xFormQuery.GetComponent(generators.Item1).ParentUid;
+        var gen1ParentGrid = xFormQuery.GetComponent(generator).ParentUid;
+        var gent2ParentGrid = xFormQuery.GetComponent(generator.Comp.Connections.Value.Item1).ParentUid;
 
-            if (gen1ParentGrid != gent2ParentGrid)
-                RemoveConnections(generator);
-        }
+        if (gen1ParentGrid != gent2ParentGrid)
+            RemoveConnections(generator);
     }
 
     #endregion

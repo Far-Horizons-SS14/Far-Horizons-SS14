@@ -52,7 +52,7 @@ public sealed partial class GenericFieldGeneratorComponent : Component
     /// Stores a list of fields connected between generators in this direction.
     /// </summary>
     [ViewVariables]
-    public Dictionary<Direction, (Entity<GenericFieldGeneratorComponent>, List<EntityUid>)> Connections = new();
+    public (Entity<GenericFieldGeneratorComponent>, List<EntityUid>)? Connections;
 
     /// <summary>
     /// What fields should this spawn?
@@ -78,12 +78,6 @@ public sealed partial class GenericFieldGeneratorComponent : Component
     /// </summary>
     [DataField("retryWait")]
     public float RetryWait;
-
-    /// <summary>
-    /// How many seconds should the generator wait to drain power?
-    /// </summary>
-    [DataField("threshold")]
-    public float Threshold = 0.2f;
 
     //Ports
     [DataField]
