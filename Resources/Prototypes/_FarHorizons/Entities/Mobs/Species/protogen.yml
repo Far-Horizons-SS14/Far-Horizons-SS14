@@ -139,6 +139,7 @@
       Unsexed: MaleProtogen
   - type: UniversalHealModifier
     modifier: 0.5
+  - type: Absorbable
 
 - type: entity
   parent: BaseMobProtogenNoVision
@@ -808,6 +809,8 @@
         - SiliconEmotesFH
         - Protogen
         - Shadekin
+    - type: Inventory
+      templateId: protogen
     - type: VisionOrganRequiredForVision
 
 #region RESOMI ####

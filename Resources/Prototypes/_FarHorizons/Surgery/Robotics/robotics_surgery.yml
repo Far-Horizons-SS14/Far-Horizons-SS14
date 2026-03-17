@@ -70,7 +70,7 @@
     parts:
     - Torso
   - type: SurgeryOrganDontExistCondition
-    category: Cavity
+    category: [ Cavity ]
   - type: Sprite
     sprite: Mobs/Species/Human/parts.rsi
     state: torso_m
@@ -117,7 +117,7 @@
     parts:
     - Head
   - type: SurgeryOrganDontExistCondition
-    category: EyeImplant
+    category: [ EyeImplant ]
   - type: Sprite
     sprite: _Starlight/Objects/Specific/Medical/implants.rsi
     layers:
@@ -167,7 +167,7 @@
     - SurgeryStepInsertEyes
     - SurgeryStepConnectOpticWire
   - type: SurgeryOrganDontExistCondition
-    category: Eyes
+    category: [ Eyes ]
   - type: SurgeryPartCondition
     parts: [ Head ]
   - type: Sprite
@@ -216,7 +216,7 @@
     - SurgeryStepScrewModulator
     - SurgeryStepConnectModulator
   - type: SurgeryOrganDontExistCondition
-    category: Tongue
+    category: [ Tongue ]
   - type: SurgeryPartCondition
     parts: [ Head ]
   - type: Sprite

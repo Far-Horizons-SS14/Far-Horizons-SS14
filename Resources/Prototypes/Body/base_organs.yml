@@ -46,7 +46,7 @@
 - type: entity
   parent: OrganBase
   id: OrganBaseTorso
-  name: torso
+  name: Torso #FarHorizons Capitalization
   abstract: true
   components:
   - type: Organ
@@ -74,7 +74,7 @@
 - type: entity
   parent: OrganBase
   id: OrganBaseHead
-  name: head
+  name: Head #FarHorizons Capitalization
   abstract: true
   components:
   - type: Organ
@@ -100,11 +100,12 @@
       - FaceCover # Far Horizons
       - FaceCoverCover # Far Horizons
   - type: VitalOrgan # Far Horizons - deal damage to body when removed (by any means)
+  - type: HeadOrgan # Far Horizons
 
 - type: entity
   parent: OrganBase
   id: OrganBaseArmLeft
-  name: left arm
+  name: Left Arm #FarHorizons Capitalization
   abstract: true
   components:
   - type: Organ
@@ -123,7 +124,7 @@
 - type: entity
   parent: OrganBase
   id: OrganBaseArmRight
-  name: right arm
+  name: Right Arm #FarHorizons Capitalization
   abstract: true
   components:
   - type: Organ
@@ -142,7 +143,7 @@
 - type: entity
   parent: OrganBase
   id: OrganBaseHandLeft
-  name: left hand
+  name: Left Hand #FarHorizons Capitalization
   abstract: true
   components:
   - type: Organ
@@ -165,7 +166,7 @@
 - type: entity
   parent: OrganBase
   id: OrganBaseHandRight
-  name: right hand
+  name: Right Hand #FarHorizons Capitalization
   abstract: true
   components:
   - type: Organ
@@ -188,7 +189,7 @@
 - type: entity
   parent: OrganBase
   id: OrganBaseLegLeft
-  name: left leg
+  name: Left Leg #FarHorizons Capitalization
   abstract: true
   components:
   - type: Organ
@@ -208,7 +209,7 @@
 - type: entity
   parent: OrganBase
   id: OrganBaseLegRight
-  name: right leg
+  name: Right Leg #FarHorizons Capitalization
   abstract: true
   components:
   - type: Organ
@@ -228,7 +229,7 @@
 - type: entity
   parent: OrganBase
   id: OrganBaseFootLeft
-  name: left foot
+  name: Left Foot #FarHorizons Capitalization
   abstract: true
   components:
   - type: Organ
@@ -247,7 +248,7 @@
 - type: entity
   parent: OrganBase
   id: OrganBaseFootRight
-  name: right foot
+  name: Right Foot #FarHorizons Capitalization
   abstract: true
   components:
   - type: Organ
@@ -266,7 +267,7 @@
 - type: entity
   parent: OrganBase
   id: OrganBaseBrain
-  name: brain
+  name: Brain #FarHorizons Capitalization
   abstract: true
   components:
   - type: GibbableOrgan
@@ -280,6 +281,7 @@
   - type: Input
     context: "ghost"
   - type: Brain
+  - type: BrainExtra #FarHorizons
   - type: InputMover
   - type: Examiner
   - type: BlockMovement
@@ -292,7 +294,7 @@
 - type: entity
   parent: OrganBase
   id: OrganBaseEyes
-  name: eyes
+  name: Eyes #FarHorizons Capitalization
   abstract: true
   components:
   - type: GibbableOrgan
@@ -327,7 +329,7 @@
 - type: entity
   parent: OrganBase
   id: OrganBaseTongue
-  name: tongue
+  name: Tongue #FarHorizons Capitalization
   abstract: true
   components:
   - type: GibbableOrgan
@@ -351,7 +353,7 @@
 - type: entity
   parent: OrganBase
   id: OrganBaseAppendix
-  name: appendix
+  name: Appendix #FarHorizons Capitalization
   abstract: true
   components:
   - type: GibbableOrgan
@@ -373,7 +375,7 @@
 - type: entity
   parent: OrganBase
   id: OrganBaseEars
-  name: ears
+  name: Ears #FarHorizons Capitalization
   abstract: true
   components:
   - type: GibbableOrgan
@@ -389,7 +391,7 @@
 - type: entity
   parent: OrganBase
   id: OrganBaseLungs
-  name: lungs
+  name: Lungs #FarHorizons Capitalization
   abstract: true
   components:
   - type: GibbableOrgan
@@ -423,7 +425,7 @@
 - type: entity
   parent: OrganBase
   id: OrganBaseHeart
-  name: heart
+  name: Heart #FarHorizons Capitalization
   abstract: true
   components:
   - type: GibbableOrgan
@@ -451,7 +453,7 @@
 - type: entity
   parent: OrganBase
   id: OrganBaseStomach
-  name: stomach
+  name: Stomach #FarHorizons Capitalization
   abstract: true
   components:
   - type: GibbableOrgan
@@ -485,7 +487,7 @@
 - type: entity
   parent: OrganBase
   id: OrganBaseLiver
-  name: liver
+  name: Liver #FarHorizons Capitalization
   abstract: true
   components:
   - type: GibbableOrgan
@@ -513,7 +515,7 @@
 - type: entity
   parent: OrganBase
   id: OrganBaseKidneys
-  name: kidneys
+  name: Kidneys #FarHorizons Capitalization
   abstract: true
   components:
   - type: GibbableOrgan

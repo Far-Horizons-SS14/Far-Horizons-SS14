@@ -20,6 +20,18 @@ public sealed partial class VisionOrganComponent : Component
 public sealed partial class CustomOrganComponent : Component;
 
 [RegisterComponent, NetworkedComponent]
+public sealed partial class HeadOrganComponent : Component
+{
+    public string NameBackup = "";
+}
+[RegisterComponent, NetworkedComponent]
+public sealed partial class BrainExtraComponent : Component
+{
+    [DataField]
+    public ComponentRegistry StoredComponents = new();
+}
+
+[RegisterComponent, NetworkedComponent]
 public sealed partial class MovementOrganExpectedToMoveComponent : Component
 {
     [DataField] public int ExpectedAmount = 2;
@@ -62,3 +74,8 @@ public sealed partial class DetachedOrganVisualsExcludedComponent : Component;
 public readonly record struct OnDisconnectedVisualOrganState;
 [ByRefEvent]
 public readonly record struct OnDisconnectedVisualMarkingsOrganState;
+
+[ByRefEvent]
+public readonly record struct BrainInserted(EntityUid Body);
+[ByRefEvent]
+public readonly record struct BrainRemoved(EntityUid Body);

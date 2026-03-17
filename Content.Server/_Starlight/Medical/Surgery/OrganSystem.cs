@@ -89,7 +89,7 @@ public sealed partial class OrganSystem : EntitySystem
 
     private void OnTongueImplanted(Entity<OrganTongueComponent> ent, ref OrganGotInsertedEvent args)
     {
-        if (HasComp<AbductorComponent>(args.Target) || !ent.Comp.IsMuted) return;
+        if (HasComp<AbductorComponent>(args.Target) || ent.Comp.IsMuted) return;
 
         if (HasComp<MutedComponent>(args.Target))
             RemComp<MutedComponent>(args.Target);

@@ -1,6 +1,7 @@
 using System.Linq;
 using Content.Shared._FarHorizons.Body;
 using Content.Shared.Body;
+using Content.Server.Mind;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server._FarHorizons.Body;
@@ -8,7 +9,8 @@ namespace Content.Server._FarHorizons.Body;
 public sealed partial class ConnectedOrganSystem : SharedConnectedOrganSystem
 {
     [Dependency] private readonly IPrototypeManager _protoMan = default!;
-
+    [Dependency] private readonly MindSystem _mind = default!;
+    [Dependency] private readonly MetaDataSystem _metaData = default!;
     public override void Initialize()
     {
         base.Initialize();
@@ -39,11 +41,22 @@ public sealed partial class ConnectedOrganSystem : SharedConnectedOrganSystem
         
         var connectedOrgans = body.Organs.ContainedEntities.Where(p => TryComp<OrganComponent>(p, out var organ) && organ.Category != null && connectedCategories.Contains(organ.Category!.Value)).ToList();
 
-
         var connectedComp = EnsureComp<ConnectedOrganComponent>(ent);
         foreach (var connectedOrgan in connectedOrgans)
             if (connectedComp.Organs != null)
                 _container.Insert(connectedOrgan, connectedComp.Organs, organTransform, true);
+
+        if(HasComp<VisualOrganComponent>(ent))
+        {
+            var entName = MetaData(args.Target).EntityName;
+            _metaData.SetEntityName(ent, $"{entName}'s {GetPartName(ent.Owner)}");
+
+            if(TryComp<HeadOrganComponent>(ent, out var head))
+            {
+                head.NameBackup = $"{entName}";
+                _metaData.SetEntityName(args.Target, "Unknown");
+            }
+        }
     }
 
     private void OnConnectedInserted(Entity<ConnectedOrganComponent> ent, ref OrganGotInsertedEvent args)
@@ -56,7 +69,40 @@ public sealed partial class ConnectedOrganSystem : SharedConnectedOrganSystem
         if (!ent.Comp.Initialized) return;
 
         foreach (var connected in ent.Comp.Organs.ContainedEntities.ToList()
-                     .Where(connected => _container.CanInsert(connected, body.Organs)))
-            _container.Insert(connected, body.Organs, Transform(args.Target), true);
+            .Where(connected => _container.CanInsert(connected, body.Organs)))
+                _container.Insert(connected, body.Organs, Transform(args.Target), true);
+
+        if(HasComp<VisualOrganComponent>(ent))
+        {
+            _metaData.SetEntityName(ent, $"{GetPartName(ent.Owner)}");
+
+            if(TryComp<HeadOrganComponent>(ent, out var head))
+            {
+                _metaData.SetEntityName(args.Target, head.NameBackup);
+                head.NameBackup = "";
+            }
+        }
+    }
+
+    private string GetPartName(EntityUid ent)
+    {
+        if (!TryComp<OrganComponent>(ent, out var organ) || organ.Category == null)
+            return "";
+
+        return (string)organ.Category switch
+        {
+            "Head" => "Head",
+            "AnimalHead" => "Head",
+            "Torso" => "Torso",
+            "ArmRight" => "Right Arm",
+            "HandRight" => "Right Hand",
+            "ArmLeft" => "Left Arm",
+            "HandLeft" => "Left Hand",
+            "LegRight" => "Right Leg",
+            "FootRight" => "Right Foot",
+            "LegLeft" => "Left Leg",
+            "FootLeft" => "Left Foot",
+            _ => "",
+        };
     }
 }
