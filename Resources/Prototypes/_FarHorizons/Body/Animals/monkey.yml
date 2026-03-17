@@ -131,9 +131,13 @@
   id: OrganMonkeyFootRight
 
 - type: entity
-  parent: [ OrganHumanInternal, OrganMonkeyExternal, OrganBaseEyes ]
+  parent: [ OrganBaseEyes, OrganHumanInternal, OrganMonkeyExternal ]
   id: OrganMonkeyEyes
   suffix: monkey
+  components:
+  - type: VisualOrgan
+    data:
+      sprite: _FarHorizons/Mobs/Animals/monkey.rsi
 
 - type: entity
   parent: [ OrganBaseTail, OrganMonkeyExternal ]

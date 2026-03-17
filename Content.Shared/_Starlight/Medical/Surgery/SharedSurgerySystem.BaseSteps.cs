@@ -1,7 +1,6 @@
 ﻿using Content.Shared.Buckle.Components;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.DoAfter;
-using Content.Shared.Interaction;
 using Content.Shared.Inventory;
 using Content.Shared.Item;
 using Content.Shared.Item.ItemToggle.Components;
@@ -17,7 +16,6 @@ using Content.Shared._FarHorizons.Medical.SurgeryOverhaul.Components;
 using Content.Shared.Body;
 using Content.Shared.Stunnable;
 using Content.Shared.Medical.Healing;
-using Content.Shared.Damage;
 using Robust.Shared.Audio;
 using Content.Shared.Damage.Components;
 //FarHorizons End
@@ -29,6 +27,8 @@ public abstract partial class SharedSurgerySystem
 {
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly HealingSystem _healing = default!;
+    private readonly string _surgeryCompTag = "SurgeryCompatibleArmor";
+    private readonly string _cyberHandTag = "CyberHandItem";
     private void InitializeSteps()
     {
         SubscribeLocalEvent<SurgeryStepComponent, SurgeryStepCompleteEvent>(OnStepComplete);
@@ -215,7 +215,7 @@ public abstract partial class SharedSurgerySystem
             while (enumerator.MoveNext(out var con))
             {
                 total++;
-                if (con.ContainedEntity != null && !_tag.HasTag(con.ContainedEntity.Value, "SurgeryCompatibleArmor"))
+                if (con.ContainedEntity != null && !_tag.HasTag(con.ContainedEntity.Value, _surgeryCompTag))
                     items++;
             }
 
@@ -252,7 +252,7 @@ public abstract partial class SharedSurgerySystem
                 return;
             }
 
-            if (_hands.GetActiveItem(args.User) != tool && !_tag.HasTag(tool, "CyberHandItem"))
+            if (_hands.GetActiveItem(args.User) != tool && !_tag.HasTag(tool, _cyberHandTag))
             {
                 args.Invalid = StepInvalidReason.MissingTool;
 
