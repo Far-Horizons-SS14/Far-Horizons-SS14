@@ -178,6 +178,12 @@
   - type: Lock
   - type: LockVisuals
   - type: AccessReader
+# FH - Start
+  - type: DeviceLinkSource
+    range: 200
+    ports:
+    - Pressed
+# FH - End
   - type: Sprite
     drawdepth: WallMountedItems
     sprite: Structures/Wallmounts/locked_switch.rsi

@@ -166,6 +166,92 @@
     - id: OxygenTankFilled
     - id: NitrogenTankFilled
 
+# Brigmedic's Suit Storage Unit
+
+- type: entity
+  id: SuitStorageBrigmedic
+  parent: SuitStorageBaseFH
+  name: High-Tech Suit Storage Unit
+  description: A high-tech suit storage unit. Seems to be made for the on-station Brigmedic.
+  suffix: NT, Brigmedic
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: FillBrigmedicHardsuit
+  - type: Sprite        
+    sprite: _FarHorizons/Structures/Storage/suit_storage.rsi
+    layers:
+    - state: brigmedic
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: door
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+      shader: unshaded
+    - state: screen-sec
+      map: ["computerLayerScreen"]
+  - type: EntityStorageVisuals
+    stateDoorOpen: brigmedic
+  - type: AccessReader
+    access: [["Brigmedic"]]
+
+- type: entityTable
+  id: FillBrigmedicHardsuit
+  table: !type:AllSelector
+    children:
+    - id: ClothingOuterHardsuitBrigmedic
+    - id: ClothingShoesBootsMagSec
+    - id: ClothingMaskBreathMedicalSecurity
+    - id: OxygenTankFilled
+    - id: NitrogenTankFilled
+
+# Corpsman's Suit Storage Unit
+
+- type: entity
+  id: SuitStorageCorpsman
+  parent: SuitStorageBaseFH
+  name: High-Tech Suit Storage Unit
+  description: A high-tech suit storage unit. Seems to be made for the on-station Corpsman.
+  suffix: NT, Corpsman
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: FillCorpsmanHardsuit
+  - type: Sprite        
+    sprite: _FarHorizons/Structures/Storage/suit_storage.rsi
+    layers:
+    - state: corpsman
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: door
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+      shader: unshaded
+    - state: screen-sec
+      map: ["computerLayerScreen"]
+  - type: EntityStorageVisuals
+    stateDoorOpen: corpsman
+  - type: AccessReader
+    access: [["Brigmedic"]]
+
+- type: entityTable
+  id: FillCorpsmanHardsuit
+  table: !type:AllSelector
+    children:
+    - id: ClothingOuterHardsuitCorpsman
+    - id: ClothingShoesBootsMagSec
+    - id: ClothingMaskGasCorpsman
+    - id: OxygenTankFilled
+    - id: NitrogenTankFilled
+
 
 
 #region Syndicate
