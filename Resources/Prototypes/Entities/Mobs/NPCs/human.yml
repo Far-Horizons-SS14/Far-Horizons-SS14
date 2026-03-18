@@ -79,8 +79,11 @@
   name: unidentified corpse
   description: I think they're dead.
   components:
+  #FarHorizons Start
+  - type: RandomSpecies
   - type: RandomHumanoidAppearance
-    randomizeName: false
+    randomizeName: false 
+  #FarHorizons End
   - type: Damageable
     damage:
       types:

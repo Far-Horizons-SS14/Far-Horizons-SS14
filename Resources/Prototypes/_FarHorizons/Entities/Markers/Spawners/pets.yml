@@ -12,3 +12,18 @@
   - type: ConditionalSpawner
     prototypes:
     - MobDetectiveScurret
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnMobSlimeFrown
+  name: Frown Slime Spawner
+  suffix: Frown Pet
+  components:
+    - type: Sprite
+      layers:
+        - state: green
+        - sprite: _FarHorizons/Mobs/Pets/Frown/frown.rsi
+          state: evil_baby_slime
+    - type: ConditionalSpawner
+      prototypes:
+        - MobSlimesPetFrown
