@@ -1,9 +1,37 @@
 - type: entity
   id: PoweredStrobeLightShuttleSiren
-  name: Alarm
-  suffix: "Shuttle Theft Alarm"
+  name: Shuttle Theft Alarm
   parent: PoweredStrobeLightEmpty
-  description: "Green good, red bad. If it is red, the Security Ship has likely been stolen. You uhhhh, you should do something about that probably."
+  suffix: Not Empty
+  description: "Green means the shuttle is safe, flashing red means the shuttle is not. Press button attached to the console to mute if it's getting annoying."
+  components:
+  - type: Sprite
+    sprite: Structures/Wallmounts/Lighting/strobe_light.rsi
+    drawdepth: WallMountedItems
+    layers:
+    - map: ["enum.PoweredLightLayers.Base"]
+      state: base
+      color: "#7CFC00"
+    - map: ["enum.PoweredLightLayers.Glow"]
+      state: glow
+      shader: unshaded
+  - type: PoweredLight
+    on: false
+    hasLampOnSpawn: LightBulbAlarmRed
+  - type: RotatingLight
+    speed: 200
+  - type: AmbientSound
+    volume: -5
+    range: 8
+    sound:
+      path: "/Audio/Misc/gamma.ogg"
+
+- type: entity
+  id: PoweredStrobeLightHolobarrierSiren
+  name: Holobarrier Alarm
+  parent: PoweredStrobeLightEmpty
+  suffix: Not Empty
+  description: "Green means the security shuttle holobarrier barrier is active, flashing red means it is not. Press button attached to the console to mute if it's getting annoying."
   components:
   - type: Sprite
     sprite: Structures/Wallmounts/Lighting/strobe_light.rsi
