@@ -199,30 +199,28 @@ public sealed class GenericFieldGeneratorSystem : EntitySystem
             QueueDel(field);
         }
 
-
-
-        if (TryComp<DeviceLinkSourceComponent>(generator, out _))
+        if (TryComp<DeviceLinkSourceComponent>(uid, out _))
         {
-            _signalSystem.SendSignal(generator, generator.Comp.ConnectionStatusPort, false);
-            _signalSystem.InvokePort(generator, generator.Comp.FieldDisconnectedPort);
+            _signalSystem.SendSignal(uid, component.ConnectionStatusPort, false);
+            _signalSystem.InvokePort(uid, component.FieldDisconnectedPort);
         }
 
-        if (TryComp<DeviceLinkSourceComponent>(value.Item1, out _))
+        if (TryComp<DeviceLinkSourceComponent>(otheruid, out _))
         {
-            _signalSystem.SendSignal(value.Item1, othercomponent.ConnectionStatusPort, false);
-            _signalSystem.InvokePort(value.Item1, othercomponent.FieldDisconnectedPort);
+            _signalSystem.SendSignal(otheruid, othercomponent.ConnectionStatusPort, false);
+            _signalSystem.InvokePort(otheruid, othercomponent.FieldDisconnectedPort);
         }
 
         ChangeConnectionLightVisualizer(value.Item1);
         UpdateConnectionLights(value.Item1);
 
-        value.Item1.Comp.Connections = null;
+        othercomponent.Connections = null;
         component.Connections = null;
 
         if (component.IsConnected)
             _popupSystem.PopupEntity(Loc.GetString("comp-genericfield-disconnected"), uid, PopupType.LargeCaution);
 
-        if (value.Item1.Comp.IsConnected)
+        if (othercomponent.IsConnected)
             _popupSystem.PopupEntity(Loc.GetString("comp-genericfield-disconnected"), otheruid, PopupType.LargeCaution);
 
         component.IsConnected = false;
