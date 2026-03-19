@@ -15,3 +15,6 @@ signal-port-description-gas-turbine-data-sender = Sending info about a gas turbi
 
 signal-port-name-gunnery-console-turret-control = Gunnery Console
 signal-port-description-gunnery-console-turret-control = Connect to a turret to allow the console to control it.
+
+signal-port-name-ammo-receiver-port = Ammo Receiver
+signal-port-description-ammo-receiver-port = Collects ammunition from a distributor.
