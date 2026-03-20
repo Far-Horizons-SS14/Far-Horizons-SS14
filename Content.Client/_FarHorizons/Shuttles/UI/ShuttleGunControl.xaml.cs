@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Numerics;
 using Content.Client.Shuttles.UI;
 using Content.Shared._FarHorizons.Shuttles;
@@ -66,6 +67,7 @@ public sealed class ShuttleGunControl : ShuttleNavControl
 
         var mousePos = _inputs.MouseScreenPosition;
         var mouseLocalPos = GetLocalPosition(mousePos);
+        Vector2? mouseNullablePos = null;
 
         if (mousePos.Window != WindowId.Invalid)
         {
@@ -75,7 +77,9 @@ public sealed class ShuttleGunControl : ShuttleNavControl
             {
                 var color = Color.Red;
 
-                handle.DrawDottedLine(MidPointVector, mouseLocalPos, color, (float) realTime.TotalSeconds * 30f);
+                mouseNullablePos = mouseLocalPos;
+                if(!_gunPositions.Any(p => p.fill))
+                    handle.DrawDottedLine(MidPointVector, mouseLocalPos, color, (float) realTime.TotalSeconds * 30f);
 
                 var mouseVerts = GetCursorObject(mouseLocalPos, Angle.Zero, scale: MinimapScale);
 
@@ -92,7 +96,7 @@ public sealed class ShuttleGunControl : ShuttleNavControl
         }
 
         
-        DrawGuns(handle, worldToShuttle * shuttleToView);
+        DrawGuns(handle, worldToShuttle * shuttleToView, mouseNullablePos, (float) realTime.TotalSeconds * 30f);
         DrawTracers(handle, worldToShuttle * shuttleToView);
     }
 
@@ -144,8 +148,8 @@ public sealed class ShuttleGunControl : ShuttleNavControl
             : InverseMapPosition(mouseLocalPos) + _xformSystem.GetMapCoordinates(shuttleXform).Position;
     }
 
-    private void DrawGuns(DrawingHandleScreen handle, Matrix3x2 worldToView)
-    {
+    private void DrawGuns(DrawingHandleScreen handle, Matrix3x2 worldToView, Vector2? mousePos, float dotOffset)
+    {   
         foreach (var (gunPos, fill) in _gunPositions)
         {
             var gunLocalPos = Vector2.Transform(_xformSystem.ToWorldPosition(gunPos), worldToView);
@@ -154,7 +158,11 @@ public sealed class ShuttleGunControl : ShuttleNavControl
             handle.DrawPrimitives(DrawPrimitiveTopology.LineLoop, gunVerts.Span, Color.Orange);
 
             if(fill)
+            {
                 handle.DrawPrimitives(DrawPrimitiveTopology.TriangleFan, gunVerts.Span, Color.Orange.WithAlpha(0.05f));
+                if(mousePos != null)
+                    handle.DrawDottedLine(gunLocalPos, mousePos.Value, Color.Orange, dotOffset);
+            }
         }
     }
 
