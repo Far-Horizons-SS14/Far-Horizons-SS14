@@ -1,0 +1,16 @@
+- type: roleLoadout
+  id: NexusLoadout
+  groups:
+    - NexusTelecomms
+
+- type: loadoutGroup
+  id: NexusTelecomms
+  name: loadout-group-nexus-telecomms
+  loadouts:
+    - NexusImplant
+
+- type: loadout
+  id: NexusImplant
+  storage:
+    autoImplant:
+      - NexusImplanter

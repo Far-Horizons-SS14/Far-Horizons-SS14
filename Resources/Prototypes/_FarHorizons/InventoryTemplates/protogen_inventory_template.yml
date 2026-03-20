@@ -50,15 +50,10 @@
       displayName: Neck
     - name: pin
       slotTexture: pin
-      slotFlags: NECK
+      slotFlags: PIN
       uiWindowPos: 1,2
       strippingWindowPos: 1,2
       displayName: Pins
-      whitelist:
-        tags:
-        - GenderPin
-        - Pin
-        - Medal
     - name: mask
       slotTexture: mask
       slotFlags: MASK
@@ -120,7 +115,7 @@
       displayName: Suit Storage
     - name: suitstorage2
       slotTexture: tank
-      slotFlags:   SUITSTORAGE
+      slotFlags:   SUITSTORAGE2
       slotGroup: MainHotbar
       stripTime: 3
       uiWindowPos: 2,4
@@ -129,9 +124,6 @@
       dependsOnComponents:
       - type: AllowSuitStorage
       displayName: Tank Storage
-      whitelist:
-        tags:
-        - GasTank
     - name: id
       slotTexture: id
       fullTextureName: template_small
@@ -151,21 +143,15 @@
       uiWindowPos: 2,1
       strippingWindowPos: 1,7
       displayName: belt
-      blacklist:
-        tags:
-        - Webbing
     - name: rig
       slotTexture: rig
       fullTextureName: template_small
-      slotFlags: BELT
+      slotFlags: RIG
       slotGroup: SecondHotbar
       stripTime: 6
       uiWindowPos: 3,1
       strippingWindowPos: 1,6
       displayName: Chest Rig
-      whitelist:
-        tags:
-        - Webbing
     - name: back
       slotTexture: back
       fullTextureName: template_small
@@ -225,15 +211,10 @@
       displayName: Neck
     - name: pin
       slotTexture: pin
-      slotFlags: NECK
+      slotFlags: PIN
       uiWindowPos: 1,2
       strippingWindowPos: 1,2
       displayName: Pins
-      whitelist:
-        tags:
-        - GenderPin
-        - Pin
-        - Medal
     - name: mask
       slotTexture: mask
       slotFlags: MASK
@@ -295,7 +276,7 @@
       displayName: Suit Storage
     - name: suitstorage2
       slotTexture: tank
-      slotFlags:   SUITSTORAGE
+      slotFlags:   SUITSTORAGE2
       slotGroup: MainHotbar
       stripTime: 3
       uiWindowPos: 2,4
@@ -304,9 +285,6 @@
       dependsOnComponents:
       - type: AllowSuitStorage
       displayName: Tank Storage
-      whitelist:
-        tags:
-        - GasTank
     - name: id
       slotTexture: id
       fullTextureName: template_small
@@ -326,21 +304,15 @@
       uiWindowPos: 2,1
       strippingWindowPos: 1,7
       displayName: belt
-      blacklist:
-        tags:
-        - Webbing
     - name: rig
       slotTexture: rig
       fullTextureName: template_small
-      slotFlags: BELT
+      slotFlags: RIG
       slotGroup: SecondHotbar
       stripTime: 6
       uiWindowPos: 3,1
       strippingWindowPos: 1,6
       displayName: Chest Rig
-      whitelist:
-        tags:
-        - Webbing
     - name: back
       slotTexture: back
       fullTextureName: template_small
@@ -407,15 +379,10 @@
       displayName: Neck
     - name: pin
       slotTexture: pin
-      slotFlags: NECK
+      slotFlags: PIN
       uiWindowPos: 1,2
       strippingWindowPos: 1,2
       displayName: Pins
-      whitelist:
-        tags:
-        - GenderPin
-        - Pin
-        - Medal
     - name: mask
       slotTexture: mask
       slotFlags: MASK
@@ -475,10 +442,9 @@
       dependsOnComponents:
       - type: AllowSuitStorage
       displayName: Suit Storage
-      #Far Horizons-Start Breathable Tank Storage
     - name: suitstorage2
       slotTexture: tank
-      slotFlags:   SUITSTORAGE
+      slotFlags:   SUITSTORAGE2
       slotGroup: MainHotbar
       stripTime: 3
       uiWindowPos: 2,4
@@ -487,10 +453,6 @@
       dependsOnComponents:
       - type: AllowSuitStorage
       displayName: Tank Storage
-      whitelist:
-        tags:
-        - GasTank
-      #Far Horizons-End
     - name: suitstorage3
       slotTexture: suit_storage
       slotFlags:   SUITSTORAGE
@@ -521,21 +483,15 @@
       uiWindowPos: 2,1
       strippingWindowPos: 1,7
       displayName: belt
-      blacklist:
-        tags:
-        - Webbing
     - name: rig
       slotTexture: rig
       fullTextureName: template_small
-      slotFlags: BELT
+      slotFlags: RIG
       slotGroup: SecondHotbar
       stripTime: 6
       uiWindowPos: 3,1
       strippingWindowPos: 1,6
       displayName: Chest Rig
-      whitelist:
-        tags:
-        - Webbing
     - name: back
       slotTexture: back
       fullTextureName: template_small
@@ -579,15 +535,10 @@
       displayName: Neck
     - name: pin
       slotTexture: pin
-      slotFlags: NECK
+      slotFlags: PIN
       uiWindowPos: 1,2
       strippingWindowPos: 1,2
       displayName: Pins
-      whitelist:
-        tags:
-        - GenderPin
-        - Pin
-        - Medal
     - name: mask
       slotTexture: mask
       slotFlags: MASK
@@ -633,21 +584,15 @@
       uiWindowPos: 2,1
       strippingWindowPos: 1,7
       displayName: belt
-      blacklist:
-        tags:
-        - Webbing
     - name: rig
       slotTexture: rig
       fullTextureName: template_small
-      slotFlags: BELT
+      slotFlags: RIG
       slotGroup: SecondHotbar
       stripTime: 6
       uiWindowPos: 3,1
       strippingWindowPos: 1,6
       displayName: Chest Rig
-      whitelist:
-        tags:
-        - Webbing
     - name: back
       slotTexture: back
       fullTextureName: template_small
@@ -734,7 +679,7 @@
       displayName: Suit Storage
     - name: suitstorage2
       slotTexture: tank
-      slotFlags:   SUITSTORAGE
+      slotFlags:   SUITSTORAGE2
       slotGroup: MainHotbar
       stripTime: 3
       uiWindowPos: 2,4
@@ -743,6 +688,3 @@
       dependsOnComponents:
       - type: AllowSuitStorage
       displayName: Tank Storage
-      whitelist:
-        tags:
-        - GasTank

@@ -4,6 +4,13 @@
   id: MobSovietComrade
   categories: [ Spawner ]
   components:
+    #FarHorizons Start
+    - type: RandomSpecies
+    - type: RandomHumanoidAppearance
+      randomizeName: true 
+      namePrefix: Comrade 
+      lastNameOnly: true 
+    #FarHorizons End
     - type: Prying
       pryPowered: true
       force: true

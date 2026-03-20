@@ -29,20 +29,30 @@ public abstract partial class SharedSurgerySystem
     {
         if (args.Cancelled ||
             !TryComp<BodyComponent>(args.Body, out var body) ||
-            body.Organs == null) return;
-        
-        var filteredOrgans = body.Organs.ContainedEntities
-            .Where(p => TryComp<OrganComponent>(p, out var organ) && organ.Category == ent.Comp.Category).ToList();
+            body.Organs == null)
+            return;
 
-        if (ent.Comp.Organ?.Count != 1)
+        var organs = body.Organs.ContainedEntities
+            .Where(p => TryComp<OrganComponent>(p, out _))
+            .ToList();
+
+        if (ent.Comp.Organ?.Count == 1)
         {
-            args.Cancelled = filteredOrgans.Any();
+            var type = ent.Comp.Organ.Values.First().Component.GetType();
+            args.Cancelled = organs.Any(p => HasComp(p, type));
             return;
         }
 
-        var type = ent.Comp.Organ.Values.First().Component.GetType();
+        if (ent.Comp.Category != null)
+        {
+            args.Cancelled = organs.Any(p =>
+            {
+                if (!TryComp<OrganComponent>(p, out var organ) || organ.Category == null)
+                    return false;
 
-        args.Cancelled = filteredOrgans.Any(p => HasComp(p, type));
+                return ent.Comp.Category.Contains(organ.Category.Value);
+            });
+        }
     }
     
     private void OnOrganExistConditionValid(Entity<SurgeryOrganExistConditionComponent> ent, ref SurgeryValidEvent args)
@@ -80,25 +90,29 @@ public abstract partial class SharedSurgerySystem
     }
     private void OnSpeciesConditionValid(Entity<SurgerySpeciesConditionComponent> ent, ref SurgeryValidEvent args)
     {
-        if (args.Cancelled ||
-            (EntityManager.HasComponent<AnimalBypassComponent>(ent) && _tag.HasTag(args.Body, "VimPilot"))) return;
+        if (args.Cancelled) return;
         
-        if (!EntityManager.TryGetComponent<HumanoidProfileComponent>(args.Body, out var humanoidProfileComponent))
+        if (EntityManager.TryGetComponent<HumanoidProfileComponent>(args.Body, out var humanoidProfileComponent))
         {
-            args.Cancelled = true;
-            return;
-        }
+            if (ent.Comp.SpeciesBlacklist.Contains(humanoidProfileComponent.Species))
+            {
+                args.Cancelled = true;
+                return;
+            }
 
-        if (ent.Comp.SpeciesBlacklist.Contains(humanoidProfileComponent.Species))
-        {
-            args.Cancelled = true;
-            return;
+            if (ent.Comp.SpeciesWhitelist.Count > 0 && !ent.Comp.SpeciesWhitelist.Contains(humanoidProfileComponent.Species))
+            {
+                args.Cancelled = true;
+                return;
+            }
         }
-
-        if (ent.Comp.SpeciesWhitelist.Count > 0 && !ent.Comp.SpeciesWhitelist.Contains(humanoidProfileComponent.Species))
+        else
         {
-            args.Cancelled = true;
-            return;
+            if (ent.Comp.SpeciesWhitelist.Count > 0)
+            {
+                args.Cancelled = true;
+                return;
+            }
         }
     }
     private void OnAnyAccentConditionValid(Entity<SurgeryAnyAccentConditionComponent> ent, ref SurgeryValidEvent args)

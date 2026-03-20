@@ -91,6 +91,32 @@
   - type: Clothing
     sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/ntrepnoble.rsi
 
+#region Civilian
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpskirtAncient
+  name: Ancient Jumpskirt
+  suffix: NT
+  description: A terribly ragged and frayed grey jumpskirt. It looks like it hasn't been washed in over a decade.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/ancient.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/ancient.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpskirtGreytide
+  name: Assistant Jumpskirt
+  suffix: NT
+  description: A tasteful grey jumpskirt that has carried you through all of your good days.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/greytide.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/greytide.rsi
+
 #region Security
 
 - type: entity
@@ -270,6 +296,32 @@
     sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/ce_turtle-syndi.rsi
   - type: Clothing
     sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/ce_turtle-syndi.rsi
+
+#region Civilian
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpskirtAncientSyndi
+  name: Ancient Jumpskirt
+  suffix: NS
+  description: A terribly ragged and frayed grey jumpskirt. It looks like it hasn't been washed in over a decade.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/ancient-syndi.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/ancient-syndi.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpskirtGreytideSyndi
+  name: Assistant Jumpskirt
+  suffix: NS
+  description: A tasteful grey jumpskirt that has carried you through all of your good days.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/greytide-syndi.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/greytide-syndi.rsi
 
 #region Engineering
 

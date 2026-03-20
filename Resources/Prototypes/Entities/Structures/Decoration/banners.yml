@@ -1,160 +1,269 @@
-- type: entity
-  id: BannerBase
-  parent: BaseStructureDynamic
-  name: base banner
-  description: It's the concept of a banner, you shouldn't be seeing this.
-  abstract: true
-  components:
-  - type: Sprite
-    sprite: Structures/Decoration/banner.rsi
-    state: banner
-    noRot: true
-  - type: Transform
-    noRot: true
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeCircle
-          radius: 0.2
-        density: 190
-        mask:
-        - MachineMask
-        layer:
-        - Opaque
-        - MidImpassable
-        - HighImpassable
-        - BulletImpassable
-  - type: InteractionOutline
-  - type: Damageable
-    damageContainer: StructuralInorganic
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 100
-      behaviors:
-      - !type:DoActsBehavior
-        acts: [ "Destruction" ]
+# Far Horizons - Moved base banner to our directory.
+#- type: entity
+#  id: BannerBase
+#  parent: BaseStructureDynamic
+#  name: base banner
+#  description: It's the concept of a banner, you shouldn't be seeing this.
+#  abstract: true
+#  components:
+#  - type: Sprite
+#    sprite: Structures/Decoration/banner.rsi
+#    state: banner
+#    noRot: true
+#  - type: Transform
+#    noRot: true
+#  - type: Fixtures
+#    fixtures:
+#      fix1:
+#        shape:
+#          !type:PhysShapeCircle
+#          radius: 0.2
+#        density: 190
+#        mask:
+#        - MachineMask
+#        layer:
+#        - Opaque
+#        - MidImpassable
+#        - HighImpassable
+#        - BulletImpassable
+#  - type: InteractionOutline
+#  - type: Damageable
+#    damageContainer: StructuralInorganic
+#  - type: Destructible
+#    thresholds:
+#    - trigger:
+#        !type:DamageTrigger
+#        damage: 100
+#      behaviors:
+#      - !type:DoActsBehavior
+#        acts: [ "Destruction" ]
 
 - type: entity
   id: BannerNanotrasen
   parent: BannerBase
-  name: nanotrasen banner
+  name: Nanotrasen Banner #Far Horizons - The Great Capitalization Crusade
   description: A banner displaying the Nanotrasen logo. It looks rather cheap.
   components:
+  - type: GenericVisualizer #FH
+    visuals:
+      enum.FoldedVisuals.State:
+        foldedLayer:
+          True: { state: banner_NT }
+          False: { state: banner_NT_rolled }
   - type: Sprite
-    sprite: Structures/Decoration/banner.rsi
-    state: banner
+    sprite: _FarHorizons/Structures/Decoration/banner.rsi #FH
+    noRot: true #FH
+    layers: #FH
+        - state: banner_NT
+          map: [ "foldedLayer" ]
 
 - type: entity
   id: BannerCargo
   parent: BannerBase
-  name: cargo banner
-  description: A banner displaying the colors of the cargo department. Not. Cargonia.
+  name: GSL Banner #Far Horizons - The Great Capitalization Crusade
+  description: A banner displaying the Gemini Stellar Logistics logo. #FH
   components:
+  - type: GenericVisualizer #FH
+    visuals:
+      enum.FoldedVisuals.State:
+        foldedLayer:
+          True: { state: banner_GSL }
+          False: { state: banner_GSL_rolled }
   - type: Sprite
-    sprite: Structures/Decoration/banner.rsi
-    state: banner_cargo
+    sprite: _FarHorizons/Structures/Decoration/banner.rsi #FH
+    noRot: true #FH
+    layers: #FH
+        - state: banner_GSL
+          map: [ "foldedLayer" ]
 
 - type: entity
   id: BannerEngineering
   parent: BannerBase
-  name: engineering banner
+  name: Engineering Banner #Far Horizons - The Great Capitalization Crusade
   description: A banner displaying the colors of the engineering department. Scrungularty.
   components:
+  - type: GenericVisualizer #FH
+    visuals:
+      enum.FoldedVisuals.State:
+        foldedLayer:
+          True: { state: banner_engineering }
+          False: { state: banner_engineering_rolled }
   - type: Sprite
-    sprite: Structures/Decoration/banner.rsi
-    state: banner_engineering
+    sprite: _FarHorizons/Structures/Decoration/banner.rsi #FH
+    noRot: true #FH
+    layers: #FH
+        - state: banner_engineering
+          map: [ "foldedLayer" ]
 
 - type: entity
   id: BannerMedical
   parent: BannerBase
-  name: medical banner
+  name: Medical Banner #Far Horizons - The Great Capitalization Crusade
   description: A banner displaying the colors of the medical department. How sterile.
   components:
+  - type: GenericVisualizer #FH
+    visuals:
+      enum.FoldedVisuals.State:
+        foldedLayer:
+          True: { state: banner_medical }
+          False: { state: banner_medical_rolled }
   - type: Sprite
-    sprite: Structures/Decoration/banner.rsi
-    state: banner_medical
+    sprite: _FarHorizons/Structures/Decoration/banner.rsi #FH
+    noRot: true #FH
+    layers: #FH
+        - state: banner_medical
+          map: [ "foldedLayer" ]
 
 - type: entity
   id: BannerRevolution
   parent: BannerBase
-  name: revolution banner
+  name: Revolution Banner #Far Horizons - The Great Capitalization Crusade
   description: A banner displaying revolution. Viva!
   components:
+  - type: GenericVisualizer #FH
+    visuals:
+      enum.FoldedVisuals.State:
+        foldedLayer:
+          True: { state: banner_revolution }
+          False: { state: banner_revolution_rolled }
   - type: Sprite
-    sprite: Structures/Decoration/banner.rsi
-    state: banner_revolution
+    sprite: _FarHorizons/Structures/Decoration/banner.rsi #FH
+    noRot: true #FH
+    layers: #FH
+        - state: banner_revolution
+          map: [ "foldedLayer" ]
 
 - type: entity
   id: BannerSyndicate
   parent: BannerBase
-  name: syndicate banner
-  description: A banner from which, according to the syndicate, you should feel hatred for NT.
+  name: NeoSol Banner #Far Horizons - The Great Capitalization Crusade
+  description: A banner displaying the NeoSol logo. #FH
   components:
+  - type: GenericVisualizer #FH
+    visuals:
+      enum.FoldedVisuals.State:
+        foldedLayer:
+          True: { state: banner_NeoSol }
+          False: { state: banner_NeoSol_rolled }
   - type: Sprite
-    sprite: Structures/Decoration/banner.rsi
-    state: banner_syndicate
+    sprite: _FarHorizons/Structures/Decoration/banner.rsi #FH
+    noRot: true #FH
+    layers: #FH
+        - state: banner_NeoSol
+          map: [ "foldedLayer" ]
 
 - type: entity
   id: BannerScience
   parent: BannerBase
-  name: science banner
+  name: Science Banner #Far Horizons - The Great Capitalization Crusade
   description: A banner displaying the colors of the science department. Where science has no bounds, and regulations are rarely followed.
   components:
+  - type: GenericVisualizer #FH
+    visuals:
+      enum.FoldedVisuals.State:
+        foldedLayer:
+          True: { state: banner_science }
+          False: { state: banner_science_rolled }
   - type: Sprite
-    sprite: Structures/Decoration/banner.rsi
-    state: banner_science
+    sprite: _FarHorizons/Structures/Decoration/banner.rsi #FH
+    noRot: true #FH
+    layers: #FH
+        - state: banner_science
+          map: [ "foldedLayer" ]
 
 - type: entity
   id: BannerSecurity
   parent: BannerBase
-  name: security banner
+  name: Security Banner #Far Horizons - The Great Capitalization Crusade
   description: A banner displaying the colors of the security department. You're surprised it's not vandalised.
   components:
+  - type: GenericVisualizer #FH
+    visuals:
+      enum.FoldedVisuals.State:
+        foldedLayer:
+          True: { state: banner_security }
+          False: { state: banner_security_rolled }
   - type: Sprite
-    sprite: Structures/Decoration/banner.rsi
-    state: banner_security
+    sprite: _FarHorizons/Structures/Decoration/banner.rsi #FH
+    noRot: true #FH
+    layers: #FH
+        - state: banner_security
+          map: [ "foldedLayer" ]
 
 - type: entity
   id: BannerBlue
   parent: BannerBase
-  name: blue banner
+  name: Blue Banner #Far Horizons - The Great Capitalization Crusade
   description: A banner displaying the color blue. Dabudidabudai.
   components:
+  - type: GenericVisualizer #FH
+    visuals:
+      enum.FoldedVisuals.State:
+        foldedLayer:
+          True: { state: banner_blue }
+          False: { state: banner_blue_rolled }
   - type: Sprite
-    sprite: Structures/Decoration/banner.rsi
-    state: banner-blue
+    sprite: _FarHorizons/Structures/Decoration/banner.rsi #FH
+    noRot: true #FH
+    layers: #FH
+        - state: banner_blue
+          map: [ "foldedLayer" ]
 
 - type: entity
   id: BannerRed
   parent: BannerBase
-  name: red banner
+  name: Red Banner #Far Horizons - The Great Capitalization Crusade
   description: A banner displaying the color red. The edgy one.
   components:
+  - type: GenericVisualizer #FH
+    visuals:
+      enum.FoldedVisuals.State:
+        foldedLayer:
+          True: { state: banner_red }
+          False: { state: banner_red_rolled }
   - type: Sprite
-    sprite: Structures/Decoration/banner.rsi
-    state: banner-red
+    sprite: _FarHorizons/Structures/Decoration/banner.rsi #FH
+    noRot: true #FH
+    layers: #FH
+        - state: banner_red
+          map: [ "foldedLayer" ]
 
 - type: entity
   id: BannerYellow
   parent: BannerBase
-  name: yellow banner
+  name: Yellow Banner #Far Horizons - The Great Capitalization Crusade
   description: A banner displaying the color yellow. Reminds you of ducks and lemon stands.
   components:
+  - type: GenericVisualizer #FH
+    visuals:
+      enum.FoldedVisuals.State:
+        foldedLayer:
+          True: { state: banner_yellow }
+          False: { state: banner_yellow_rolled }
   - type: Sprite
-    sprite: Structures/Decoration/banner.rsi
-    state: banner-yellow
+    sprite: _FarHorizons/Structures/Decoration/banner.rsi #FH
+    noRot: true #FH
+    layers: #FH
+        - state: banner_yellow
+          map: [ "foldedLayer" ]
 
 - type: entity
   id: BannerGreen
   parent: BannerBase
-  name: green banner
+  name: Green Banner #Far Horizons - The Great Capitalization Crusade
   description: A banner displaying the color green. Grass, leaves, guacamole.
   components:
+  - type: GenericVisualizer #FH
+    visuals:
+      enum.FoldedVisuals.State:
+        foldedLayer:
+          True: { state: banner_green }
+          False: { state: banner_green_rolled }
   - type: Sprite
-    sprite: Structures/Decoration/banner.rsi
-    state: banner-green
+    sprite: _FarHorizons/Structures/Decoration/banner.rsi #FH
+    noRot: true #FH
+    layers: #FH
+        - state: banner_green
+          map: [ "foldedLayer" ]
 
 

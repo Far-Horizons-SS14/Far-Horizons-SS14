@@ -1,0 +1,50 @@
+- type: entity
+  parent: OrganBase
+  id: OrganBaseTail
+  name: tail
+  abstract: true
+  components:
+  - type: Organ
+    category: Tail
+  - type: Sprite
+    state: tail
+  - type: VisualOrgan
+    layer: enum.HumanoidVisualLayers.Tail
+    data:
+      state: tail
+  - type: VisualOrganMarkings
+    markingData:
+      layers:
+      - Tail
+      - TailCover 
+
+- type: entity
+  id: BaseAnimalNubody
+  parent:
+  - InventoryBase
+  - BaseSpeciesLayers
+  abstract: true
+  save: false
+  components:
+  - type: Body
+  - type: VisualBody
+  - type: ComplexInteraction
+  - type: Hands
+  - type: ContainerContainer
+  - type: Appearance
+  - type: MovementOrganExpectedToMove # Far Horizons
+  - type: UserInterface
+    interfaces:
+      enum.SurgeryUIKey.Key:
+        type: SurgeryBui
+      enum.StrippingUiKey.Key:
+        type: StrippableBoundUserInterface
+  - type: Blindable
+  - type: DarkenedVision
+  - type: VisionOrganRequiredForVision
+  - type: GenericVisualizer
+    visuals:
+      enum.CreamPiedVisuals.Creamed:
+        clownedon:
+          True: { visible: true }
+          False: { visible: false }

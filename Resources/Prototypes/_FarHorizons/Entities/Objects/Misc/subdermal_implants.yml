@@ -9,6 +9,18 @@
   - type: RadioImplant
     radioChannels:
     - Trinary
+      
+- type: entity
+  parent: BaseSubdermalImplant
+  id: RadioImplantNexus
+  name: Nexus radio implant
+  description: This implant grants access to the Nexus channel. Restricted to Avali and Resomi.
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: SubdermalImplant
+    - type: RadioImplant
+      radioChannels:
+        - Nexus
 
 - type: entity
   parent: BaseSubdermalImplant

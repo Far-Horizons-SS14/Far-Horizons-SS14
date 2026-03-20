@@ -10,6 +10,8 @@
     sprite: Clothing/Belt/securitywebbing.rsi
   - type: Clothing
     sprite: Clothing/Belt/securitywebbing.rsi
+    slots:
+      - rig
   - type: ExplosionResistance # Prevents unwanted detonation of contents, i.e grenades.
     damageCoefficient: 0 # Even with fucking 90% it explodes, putting my foot down and preventing explosion at all.
   - type: Storage
@@ -58,6 +60,8 @@
     sprite: Clothing/Belt/holster.rsi
   - type: Clothing
     sprite: Clothing/Belt/holster.rsi
+    slots:
+      - rig
   - type: Storage
     grid:
     - 0,0,3,1
@@ -88,6 +92,8 @@
     sprite: Clothing/Belt/bandolier.rsi
   - type: Clothing
     sprite: Clothing/Belt/bandolier.rsi
+    slots:
+      - rig
   - type: Item
     size: Huge
   - type: BallisticAmmoProvider
@@ -198,6 +204,8 @@
     sprite: Clothing/Belt/assault.rsi
   - type: Clothing
     sprite: Clothing/Belt/assault.rsi
+    slots:
+      - rig
   - type: ExplosionResistance
     damageCoefficient: 0.1
   - type: StaticPrice
@@ -286,6 +294,8 @@
     sprite: Clothing/Belt/syndieholster.rsi
   - type: Clothing
     sprite: Clothing/Belt/syndieholster.rsi
+    slots:
+      - rig
   - type: Storage
     maxItemSize: Huge
     grid:
@@ -329,6 +339,8 @@
     sprite: _Starlight/Clothing/Belt/soviet_bandolier.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Belt/soviet_bandolier.rsi
+    slots:
+      - rig
   - type: Item
     size: Normal
   - type: BallisticAmmoProvider
@@ -353,6 +365,8 @@
       sprite: _FarHorizons/Clothing/Belt/rocketloaderwebvest.rsi
     - type: Clothing
       sprite: _FarHorizons/Clothing/Belt/rocketloaderwebvest.rsi
+      slots:
+        - rig
     - type: ItemSlots
       slots: 
         120mmrocket_slot7: 

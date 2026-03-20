@@ -11,17 +11,8 @@ using Robust.Shared.Timing;
 using Robust.Shared.Prototypes;
 using Content.Shared._FarHorizons.Medical.SurgeryOverhaul.Components;
 using Content.Shared.Atmos.Rotting;
-using Content.Server.NPC.Components;
-using Content.Shared.NPC.Components;
-using Content.Shared.NPC;
-using Content.Server.Ghost.Roles.Components;
-using Content.Server.StationEvents.Components;
-using Content.Server.Mind;
 using Content.Shared.Body;
-using Content.Shared.Body.Components;
-using Content.Shared.Tag;
 using Content.Shared.Damage.Components;
-
 
 namespace Content.Server.Starlight.Medical.Surgery;
 // Based on the RMC14.
@@ -32,13 +23,12 @@ namespace Content.Server.Starlight.Medical.Surgery;
 //However, I don’t want to touch the official systems, so I need to come up with extensions for them.
 public sealed partial class SurgerySystem : SharedSurgerySystem
 {
-    [Dependency] private readonly IGameTiming Timing = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly StarlightEntitySystem _entity = default!;
     [Dependency] private readonly SharedBloodstreamSystem _bloodstreamSystem = default!;
     [Dependency] private readonly SharedRottingSystem _rottingSystem = default!;
     [Dependency] private readonly SleepingSystem _sleeping = default!;
-    [Dependency] private readonly MindSystem _mind = default!;
-    [Dependency] private readonly TagSystem _tag = default!;
+    [Dependency] private readonly IComponentFactory _compFactory = default!;
 
     public void InitializeSteps()
     {
@@ -61,10 +51,10 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
         var query = EntityQueryEnumerator<IncisionOpenComponent>();
         while (query.MoveNext(out var uid, out var incision))
         {
-            if (!TryComp<OrganComponent>(uid, out var organ) || organ.Body == null || Timing.CurTime < incision.NextUpdate) // Far Horizons - check if the organ is attached
+            if (!TryComp<OrganComponent>(uid, out var organ) || organ.Body == null || _timing.CurTime < incision.NextUpdate) // Far Horizons - check if the organ is attached
                 continue;
             
-            incision.NextUpdate = Timing.CurTime + incision.UpdateInterval;
+            incision.NextUpdate = _timing.CurTime + incision.UpdateInterval;
             
             _bloodstreamSystem.TryModifyBleedAmount(organ.Body.Value, 0.1f); // Far Horizons - apply bleed to body and not to a random dude holding the arm
         }
@@ -87,7 +77,7 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
         if (args.Tools.Count == 0
             || !(args.Tools.FirstOrDefault() is var organId)
             || !TryComp<BodyComponent>(args.Body, out var bodyComp)
-            || !TryComp<OrganComponent>(organId, out var organComp))
+            || !HasComp<OrganComponent>(organId))
             return;
 
         if (bodyComp.Organs == null ||
@@ -98,11 +88,6 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
         }
 
         _containers.Insert(organId, bodyComp.Organs);
-
-        if (HasComp<BrainComponent>(organId) && _tag.HasTag(args.Body, "VimPilot"))
-        {
-            _mind.MakeSentient(args.Body);
-        }
     }
 
     private void OnStepOrganExtractComplete(Entity<SurgeryStepOrganExtractComponent> ent, ref SurgeryStepEvent args)
@@ -112,11 +97,11 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
 
         //Far Horizons Start
         var surgProto = _prototypes.Index<EntityPrototype>(args.SurgeryProto);
-        if (surgProto.TryGetComponent<NecrosisSurgeryStepComponent>(out var surgComp))
+        if (surgProto.TryGetComponent<NecrosisSurgeryStepComponent>(out var surgComp, _compFactory))
             if (TryComp<RottingComponent>(args.Body, out var rotting) && TryComp<PerishableComponent>(args.Body, out var perishable))
             {
                 long ResearchModifier = 50;
-                if (surgProto.TryGetComponent<SurgeryTechnologyComponent>(out var techvar) && 
+                if (surgProto.TryGetComponent<SurgeryTechnologyComponent>(out var techvar, _compFactory) && 
                     _surgeryOverhaul.TryGetConnectedResearchServer(args.Body, out var server))
                 {
                     foreach (var (key, value) in techvar.TechnologyModifier!)
@@ -140,28 +125,9 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
         foreach (var organ in organsToRemove)
         {
             if (!_containers.CanRemove(organ!.Value.Owner, body.Organs)) continue;
-
             _containers.Remove(organ.Value.Owner, body.Organs);
-
-            if (HasComp<BrainComponent>(organ) && _tag.HasTag(args.Body, "VimPilot"))
-            {
-                if (HasComp<NPCRetaliationComponent>(args.Body))
-                    RemComp<NPCRetaliationComponent>(args.Body);
-                if (HasComp<NpcFactionMemberComponent>(args.Body))
-                    RemComp<NpcFactionMemberComponent>(args.Body);
-                if (HasComp<ActiveNPCComponent>(args.Body))
-                    RemComp<ActiveNPCComponent>(args.Body);
-                if (HasComp<GhostTakeoverAvailableComponent>(args.Body))
-                    RemComp<GhostTakeoverAvailableComponent>(args.Body);
-                if (HasComp<GhostRoleComponent>(args.Body))
-                    RemComp<GhostRoleComponent>(args.Body);
-                if (HasComp<SentienceTargetComponent>(args.Body))
-                    RemComp<SentienceTargetComponent>(args.Body);
-            }
-
             return;
         }
-        // Far Horizons end
     }
 
     private void OnRemoveAccent(Entity<SurgeryRemoveAccentComponent> ent, ref SurgeryStepEvent args)

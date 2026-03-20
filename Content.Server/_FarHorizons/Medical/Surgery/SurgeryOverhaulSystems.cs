@@ -49,6 +49,8 @@ public sealed partial class SurgeryOverhaulSystem : EntitySystem
     [Dependency] private readonly SharedContainerSystem _containers = default!;
     [Dependency] private readonly TagSystem _tag = default!;
     private readonly List<EntProtoId> _surgeriesForRotten = [];
+    private readonly string _organicTag = "Organic";
+    private readonly string _inorganicTag = "Inorganic";
 
     public override void Initialize()
     {
@@ -121,15 +123,16 @@ public sealed partial class SurgeryOverhaulSystem : EntitySystem
         if (_net.IsClient) return;
         var target = args.Body;
 
-        if (!TryComp<HumanoidCharacterProfileComponent>(target, out var humanoid) || humanoid.Profile == null)
+        if (!TryComp<HumanoidProfileComponent>(target, out var humanoid))
             return;
 
         if (_net.IsClient)
             return;
 
-        var newProfile = HumanoidCharacterProfile.RandomWithSpecies(humanoid.Profile.Species);
+        var newProfile = HumanoidCharacterProfile.RandomWithSpecies(humanoid.Species);
         _visualBody.ApplyProfileTo(target, newProfile);
         _profile.ApplyProfileTo(target, newProfile);
+        _visualBody.MatchMarkingsToSkinColorAndRandomHair(target, newProfile);
         _metaData.SetEntityName(target, newProfile.Name, raiseEvents: false);
         _identity.QueueIdentityUpdate(target);
     }
@@ -220,8 +223,8 @@ public sealed partial class SurgeryOverhaulSystem : EntitySystem
             return;
         }
 
+        var metaComp = MetaData(ent.Owner);
         if (HasComp<DisableSurgeryComponent>(ent.Owner)
-            && TryComp<MetaDataComponent>(ent.Owner, out var metaComp)
             && TryComp<NecrosisSurgeryTargetComponent>(args.Part, out var necroComp)
             && metaComp.EntityPrototype != null
             && necroComp.RequiredSurgeries.Count >= necroComp.AmountOfSurgeries
@@ -260,7 +263,7 @@ public sealed partial class SurgeryOverhaulSystem : EntitySystem
         if (TryComp<BodyComponent>(args.Body, out var bodyComp) && 
             bodyComp.Organs is not null &&
             bodyComp.Organs.ContainedEntities.Where(p => TryComp<OrganComponent>(p, out var organComp) && organComp.Category == ent.Comp.Slot).FirstOrNull() is {} targetOrgan)
-            if (!_tag.HasTag(targetOrgan, "Organic"))
+            if (!_tag.HasTag(targetOrgan, _organicTag))
                 args.Cancelled = true;
     } 
 
@@ -268,7 +271,7 @@ public sealed partial class SurgeryOverhaulSystem : EntitySystem
     {
         if (args.Cancelled) return;
         
-        if (!_tag.HasTag(args.Part, "Organic"))
+        if (!_tag.HasTag(args.Part, _organicTag))
             args.Cancelled = true;
     } 
 
@@ -276,7 +279,7 @@ public sealed partial class SurgeryOverhaulSystem : EntitySystem
     {
         if (args.Cancelled) return;
         
-        if (!_tag.HasTag(args.Part, "Inorganic"))
+        if (!_tag.HasTag(args.Part, _inorganicTag))
             args.Cancelled = true;
     } 
             

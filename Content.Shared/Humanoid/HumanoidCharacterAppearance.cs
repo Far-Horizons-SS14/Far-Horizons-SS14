@@ -160,8 +160,87 @@ public sealed partial class HumanoidCharacterAppearance : IEquatable<HumanoidCha
         var newHeight = random.NextFloat(speciesPrototype.MinHeight, speciesPrototype.MaxHeight);
         //starlight end
 
-        return new HumanoidCharacterAppearance(newEyeColor, false, newSkinColor, new (), newWidth, newHeight); //starlight, glowing
+        //FarHorizons Start
+        Dictionary<ProtoId<OrganCategoryPrototype>, Dictionary<HumanoidVisualLayers, List<Marking>>> newMarkings = new();
+
+        foreach (var organ in markingManager.GetOrgans(species))
+        {
+            if (!markingManager.TryGetMarkingData(organ.Value, out var markingData))
+                continue;
+
+            if (markingData.Value.Layers.Count == 0)
+                continue;
+
+            var layers = markingData.Value.Layers
+                .Where(l => _randomizableLayers.Contains(l))
+                .ToList();
+
+            if (layers.Count == 0)
+                continue;
+
+            var layerCount = random.Next(0, layers.Count + 1);
+            var chosenLayers = random.GetItems(layers, layerCount, false);
+
+            var categoryMarkings = new Dictionary<HumanoidVisualLayers, List<Marking>>();
+
+            foreach (var layer in layers)
+            {
+                var group = protoMan.Index(markingData.Value.Group);
+
+                if (!group.Limits.TryGetValue(layer, out var limitData))
+                    continue;
+
+                if(limitData.Default == null || limitData.Default.Count == 0)
+                {
+                    if(layer is HumanoidVisualLayers.Hair)
+                        if (random.Prob(0.20f))
+                            continue;
+                    if (layer is HumanoidVisualLayers.Tail)
+                        if (random.Prob(0.90f))
+                            continue;
+                    if(layer is HumanoidVisualLayers.FacialHair)
+                        if(random.Prob(sex == Sex.Female ? 0.90f : 0.70f))
+                            continue;
+                }
+
+                var markings = markingManager
+                    .MarkingsByLayerAndGroupAndSex(layer, markingData.Value.Group, sex)
+                    .ToList();
+
+                if (markings.Count == 0)
+                    continue;
+
+                var markCount = random.Next(1, limitData.Limit + 1);
+                var chosenMarkings = random.GetItems(markings, markCount, false);
+
+                var newMarkingList = new List<Marking>();
+                foreach (var chosenMarking in chosenMarkings)
+                {
+                    newMarkingList.Add(new Marking(chosenMarking.Key, 3));
+                }
+
+                categoryMarkings[layer] = newMarkingList;
+            }
+
+            if (categoryMarkings.Count > 0)
+                newMarkings[organ.Key] = categoryMarkings;
+        }
+        //FarHorizons End
+        return new HumanoidCharacterAppearance(newEyeColor, false, newSkinColor, newMarkings, newWidth, newHeight); //FarHorizons randomized Markings
     }
+
+    //FarHorizons Start
+    private static readonly HashSet<HumanoidVisualLayers> _randomizableLayers =
+    [
+        HumanoidVisualLayers.Tail,
+        HumanoidVisualLayers.Hair,
+        HumanoidVisualLayers.Head,
+        HumanoidVisualLayers.Snout,
+        HumanoidVisualLayers.HeadTop,
+        HumanoidVisualLayers.FacialHair,
+        HumanoidVisualLayers.Chest
+    ];
+    //FarHorizons End
 
     public static Color ClampColor(Color color)
     {

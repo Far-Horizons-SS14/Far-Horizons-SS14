@@ -11,6 +11,7 @@ loadout-group-corpsman-outerclothing = Corpsman Outer Clothing
 loadout-group-corpsman-eyewear = Corpsman Eyewear
 loadout-group-corpsman-belt = Corpsman Belt
 loadout-group-corpsman-gloves = Corpsman Gloves
+loadout-group-corpsman-id = Corpsman ID
 
 loadout-group-doctor-backpack = Medical Doctor Backpack
 
@@ -26,6 +27,8 @@ loadout-group-mining-head = Mining Specialist Head
 loadout-group-mining-backpack = Mining Specialist Backpack
 
 loadout-group-ntr-outer = NanoTrasen Representatives Outer Clothing
+
+loadout-group-blueshield-id = BlueShield Officer ID
 
 loadout-group-musician-head = Musician Head
 loadout-group-musician-shoes = Musician Shoes

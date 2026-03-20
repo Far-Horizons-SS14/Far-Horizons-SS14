@@ -11,7 +11,7 @@ namespace Content.Server.StationEvents.Events;
 public sealed class IonStormRule : StationEventSystem<IonStormRuleComponent>
 {
     [Dependency] private readonly IonStormSystem _ionStorm = default!;
-    [Dependency] private readonly GlitchOnIonStormSystem _glitchOnIonStorm = default!; // Far Horizons
+    [Dependency] private readonly GlitchingSystem _glitching = default!; // Far Horizons
 
     protected override void Started(EntityUid uid, IonStormRuleComponent comp, GameRuleComponent gameRule, GameRuleStartedEvent args)
     {
@@ -34,7 +34,7 @@ public sealed class IonStormRule : StationEventSystem<IonStormRuleComponent>
         // this entire thing should be events...
         var query2 = EntityQueryEnumerator<GlitchOnIonStormComponent>();
         while (query2.MoveNext(out var ent, out var glitch))
-            _glitchOnIonStorm.TriggerIonStorm((ent, glitch));
+            _glitching.TriggerIonStorm((ent, glitch));
         // Far Horizons end
     }
 }

@@ -9,24 +9,18 @@ public sealed partial class StarlightCCVars
     public static readonly CVarDef<bool> TTSEnabled =
         CVarDef.Create("tts.enabled", false, CVar.SERVER | CVar.REPLICATED | CVar.ARCHIVE);
 
+    public static readonly CVarDef<string> TTSConnectionString =
+        CVarDef.Create("tts.connection_string", "", CVar.SERVERONLY | CVar.CONFIDENTIAL);
+    
+    // Far Horizons Start - Create a new CVar to change max length of a message
     /// <summary>
-    /// URL of the TTS server API.
+    /// This value defines max length of a message to be pronounced by a TTS system,
+    /// messages longer than this will be shortened to this length.
     /// </summary>
-    public static readonly CVarDef<string> TTSApiUrl =
-        CVarDef.Create("tts.api_url", "", CVar.SERVERONLY | CVar.CONFIDENTIAL);
-
-    /// <summary>
-    /// Auth token of the TTS server API.
-    /// </summary>
-    public static readonly CVarDef<string> TTSApiToken =
-        CVarDef.Create("tts.api_token", "", CVar.SERVERONLY | CVar.CONFIDENTIAL);
-
-    /// <summary>
-    /// Amount of seconds before timeout for API
-    /// </summary>
-    public static readonly CVarDef<int> TTSApiTimeout =
-        CVarDef.Create("tts.api_timeout", 5, CVar.SERVERONLY | CVar.ARCHIVE);
-
+    public static readonly CVarDef<int> TTSMaxLengthMessage =
+        CVarDef.Create("tts.max_length_message", 50, CVar.ARCHIVE | CVar.SERVER);
+    // Far Horizons End
+    
     /// <summary>
     /// Option to disable TTS events for client
     /// </summary>
@@ -43,11 +37,14 @@ public sealed partial class StarlightCCVars
         CVarDef.Create("tts.radio_volume", 0.50f, CVar.CLIENTONLY | CVar.ARCHIVE);
     
     public static readonly CVarDef<bool> TTSRadioQueueEnabled =
-        CVarDef.Create("tts.radio_queue_enabled", false, CVar.CLIENTONLY | CVar.ARCHIVE);
+        CVarDef.Create("tts.radio_queue_enabled", true, CVar.CLIENTONLY | CVar.ARCHIVE);
 
     public static readonly CVarDef<float> TTSAnnounceVolume =
         CVarDef.Create("tts.announce_volume", 0.50f, CVar.CLIENTONLY | CVar.ARCHIVE);
-        
+
+    public static readonly CVarDef<float> TTSChimeVolume =
+        CVarDef.Create("tts.chime_volume", 0.50f, CVar.CLIENTONLY | CVar.ARCHIVE);
+
     /// <summary>
     /// Option to mute radio chime sounds
     /// </summary>

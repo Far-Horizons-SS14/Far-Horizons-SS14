@@ -14,6 +14,7 @@ using Content.Shared.Tag;
 using Content.Shared.Popups;
 using System;
 using Content.Shared.ActionBlocker;
+using Content.Shared.Humanoid;
 
 namespace Content.Server.Starlight.Antags.Abductor;
 
@@ -35,7 +36,7 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
     {
         if (args.HitEntities.Count != 1) return;
         var target = args.HitEntities[0];
-        if (!HasComp<SurgeryTargetComponent>(target)) return;
+        if (!HasComp<HumanoidProfileComponent>(target)) return;
         GizmoUse(ent, target, args.User);
     }
 
@@ -53,7 +54,7 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
             return;
         }
 
-        if (HasComp<SurgeryTargetComponent>(args.Target))
+        if (HasComp<HumanoidProfileComponent>(args.Target))
             GizmoUse(ent, args.Target.Value, args.User);
     }
 

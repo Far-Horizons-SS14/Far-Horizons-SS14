@@ -11,7 +11,7 @@ public sealed partial class CollectiveMindComponent : Component
     public Dictionary<CollectiveMindPrototype, CollectiveMindMemberData> Minds = new();
 
     [DataField]
-    public bool BlockWhenUnconscious = false;
+    public bool BlockWhenUnconscious = true; // Far Horizons - Block nexus while crit or asleep
 
     [DataField]
     public bool CorruptWhenUnconscious = true;

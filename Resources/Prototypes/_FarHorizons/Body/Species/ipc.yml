@@ -144,7 +144,6 @@
   components:
   - type: HumanoidEMPCompositeElement
     effect:
-      stunAmount: 0.25
       dropItemsFrom:
       - body_part_slot_left hand
       damageAmount:
@@ -158,7 +157,6 @@
   components:
   - type: HumanoidEMPCompositeElement
     effect:
-      stunAmount: 0.25
       dropItemsFrom:
       - body_part_slot_right hand
       damageAmount:
@@ -172,7 +170,6 @@
   components:
   - type: HumanoidEMPCompositeElement
     effect:
-      stunAmount: 0.25
       dropItemsFrom:
       - body_part_slot_left hand
       damageAmount:
@@ -186,7 +183,6 @@
   components:
   - type: HumanoidEMPCompositeElement
     effect:
-      stunAmount: 0.25
       dropItemsFrom:
       - body_part_slot_right hand
       damageAmount:
@@ -200,8 +196,7 @@
   components:
   - type: HumanoidEMPCompositeElement
     effect:
-      stunAmount: 0.25
-      knockdownAmount: 0.5
+      knockdownAmount: 0.25
       slowdownAmount: 2.5
       walkSpeedModifier: 0.5
       sprintSpeedModifier: 0.5
@@ -216,8 +211,7 @@
   components:
   - type: HumanoidEMPCompositeElement
     effect:
-      stunAmount: 0.25
-      knockdownAmount: 0.5
+      knockdownAmount: 0.25
       slowdownAmount: 2.5
       walkSpeedModifier: 0.5
       sprintSpeedModifier: 0.5
@@ -232,8 +226,7 @@
   components:
   - type: HumanoidEMPCompositeElement
     effect:
-      stunAmount: 0.25
-      knockdownAmount: 0.5
+      knockdownAmount: 0.25
       slowdownAmount: 2.5
       walkSpeedModifier: 0.5
       sprintSpeedModifier: 0.5
@@ -248,8 +241,7 @@
   components:
   - type: HumanoidEMPCompositeElement
     effect:
-      stunAmount: 0.25
-      knockdownAmount: 0.5
+      knockdownAmount: 0.25
       slowdownAmount: 2.5
       walkSpeedModifier: 0.5
       sprintSpeedModifier: 0.5
@@ -272,9 +264,9 @@
       state: no_eyes
   - type: HumanoidEMPCompositeElement
     effect:
-      stunAmount: 0.5
+      glitchDuration: 10.0
       additionalEffects:
-        StatusEffectBlinded: 10.0
+        StatusEffectBlinded: 2.0
       damageAmount:
         types:
           Shock: 1

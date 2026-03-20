@@ -55,5 +55,5 @@ public sealed partial class SurgeryOrganDontExistConditionComponent : Component
     [DataField]
     public ComponentRegistry? Organ;
 
-    [DataField] public ProtoId<OrganCategoryPrototype>? Category;
+    [DataField] public List<ProtoId<OrganCategoryPrototype>>? Category;
 }

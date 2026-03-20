@@ -50,6 +50,14 @@
       reagents:
       - ReagentId: Ipecac
         Quantity: 0.1
+  # Far Horizons start - please dont make this into basically a hypopen???????
+  - type: Injector
+    solutionName: hypospray
+    currentTransferAmount: 10
+    activeModeProtoId: HyposprayInjectMode
+    allowedModes:
+    - HyposprayInjectMode
+  # Far Horizons end
   - type: UseDelay
     delay: 0.5
 

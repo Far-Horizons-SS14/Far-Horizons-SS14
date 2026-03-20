@@ -4,8 +4,8 @@ meta:
   engineVersion: 272.0.0
   forkId: ""
   forkVersion: ""
-  time: 03/04/2026 03:27:47
-  entityCount: 30160
+  time: 03/15/2026 20:11:38
+  entityCount: 30161
 maps:
 - 1
 grids:
@@ -81,6 +81,8 @@ entities:
     - type: GridTree
     - type: Broadphase
     - type: OccluderTree
+    - type: Parallax
+      parallax: OriginStation
   - uid: 2
     components:
     - type: MetaData
@@ -79762,7 +79764,7 @@ entities:
       pos: 60.5,29.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -40387.05
+      secondsUntilStateChange: -40594.94
       state: Opening
     - type: DeviceLinkSource
       linkedPorts:
@@ -153265,11 +153267,6 @@ entities:
     - type: Transform
       pos: -7.5,-13.5
       parent: 2
-  - uid: 22073
-    components:
-    - type: Transform
-      pos: -31.5,14.5
-      parent: 2
 - proto: ShowcaseRobotMarauder
   entities:
   - uid: 22074
@@ -160950,6 +160947,20 @@ entities:
     - type: Transform
       pos: 6.5,45.5
       parent: 2
+- proto: SuitStorageNtrep
+  entities:
+  - uid: 862
+    components:
+    - type: Transform
+      pos: -47.5,-11.5
+      parent: 2
+- proto: SuitStorageQM
+  entities:
+  - uid: 860
+    components:
+    - type: Transform
+      pos: -31.5,14.5
+      parent: 2
 - proto: SuitStorageRD
   entities:
   - uid: 23148
@@ -164992,12 +165003,6 @@ entities:
     - type: Transform
       pos: 26.5,-12.5
       parent: 2
-  - uid: 23657
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 28.5,-9.5
-      parent: 2
   - uid: 23658
     components:
     - type: Transform
@@ -168093,6 +168098,13 @@ entities:
     components:
     - type: Transform
       pos: 29.50509,42.15952
+      parent: 2
+- proto: TP14KitchenDeepFryer
+  entities:
+  - uid: 861
+    components:
+    - type: Transform
+      pos: 28.5,-9.5
       parent: 2
 - proto: TrackingImplanter
   entities:

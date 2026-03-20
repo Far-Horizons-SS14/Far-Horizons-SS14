@@ -1,5 +1,6 @@
 using Content.Server._FarHorizons.DiscordLink;
 using Content.Server._Starlight.BugReports; // Staright
+using Content.Server._Starlight.TextToSpeech;
 using Content.Server.Acz;
 using Content.Server.Administration;
 using Content.Server.Administration.Logs;
@@ -26,7 +27,6 @@ using Content.Server.Players.RateLimiting;
 using Content.Server.Preferences.Managers;
 using Content.Server.ServerInfo;
 using Content.Server.ServerUpdates;
-using Content.Server.Starlight.TextToSpeech;
 using Content.Server.Voting.Managers;
 using Content.Shared._Starlight.DocumentManager;
 using Content.Shared.CCVar;
@@ -88,7 +88,7 @@ namespace Content.Server.Entry
         [Dependency] private readonly ServerFeedbackManager _feedbackManager = null!;
 
 #region Starlight
-        [Dependency] private readonly ITTSManager _ittsManager = default!;
+        [Dependency] private readonly ITTSClient _ttsClient = default!;
         [Dependency] private readonly HolidaySystem _holidaySystem = default!;
         [Dependency] private readonly IBugReportManager _bugReport = default!;
         [Dependency] private readonly PreWrittenDocumentManager _preWrittenDocument = default!;
@@ -153,8 +153,8 @@ namespace Content.Server.Entry
             _rateLimit.Initialize();
 
             //🌟Starlight🌟 start
-			_ittsManager.Initialize();
-			_holidaySystem.Initialize();
+            _ttsClient.Initialize();
+            _holidaySystem.Initialize();
 			_bugReport.Initialize();
 			_preWrittenDocument.Initialize();
             //🌟Starlight🌟 end

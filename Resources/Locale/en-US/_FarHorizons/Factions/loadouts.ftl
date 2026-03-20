@@ -1,8 +1,12 @@
-###### GSL
+###### 
+### GSL
+######
 
 loadout-group-mining-belt = Mining Specialist Belt
 
-###### NanoTrasen
+###### 
+### NanoTrasen
+######
 
 ## Specific Roles
 
@@ -13,6 +17,8 @@ loadout-group-command-eyewear = Command Eyewear
 loadout-group-chief-engineer-headset = Chief Engineer Headset
 loadout-group-chief-engineer-eyewear = Chief Engineer Eyewear
 
+#### Civilian
+
 #### Engineering
 
 loadout-group-nt-engi-eyewear = Engineering Eyewear
@@ -21,7 +27,9 @@ loadout-group-nt-engi-eyewear = Engineering Eyewear
 
 loadout-group-cadet-uniform = Cadet Uniform
 
-###### Syndicate
+######
+### Syndicate
+######
 
 loadout-group-syndie-generic-backpack = Syndicate Backpack
 loadout-group-syndie-generic-head = Syndicate Hat

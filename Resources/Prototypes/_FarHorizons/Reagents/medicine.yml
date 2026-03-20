@@ -71,8 +71,8 @@
           - !type:MetabolizerTypeCondition
            type: [ Avali, Resomi ]
           damage:
-            types: # It's artifical blood with the lethal things diluted. Doesn't make it any less deadly- just that the damage types are different and easier to heal.
-              Poison: 6
+            types: # It's artifical blood with the lethal things diluted. Doesn't make it any less deadly- just that the damage types are different and easier to heal. Crit: 5u / Lethal: 10u (Blood-bags hold 10u)
+              Poison: 3
               Caustic: 2
-              Slash: 1
-              Asphyxiation: 8 # Heart Attack-inducing.
+              Slash: 2
+              Asphyxiation: 6 # Heart Attack-inducing.

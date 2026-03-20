@@ -112,12 +112,13 @@
   id: ClothingEyesGlassesMesonSyndi
   name: Engineering Goggles
   suffix: S
-  description: Yellow-tinted goggles using a proprietary polymer that provides protection from eye damage of all types.
+  description: Yellow-tinted goggles using a proprietary polymer that provides protection from eye damage of all types, it has a small switch on the side to enable an inbuilt tray scanner.
   components:
   - type: Sprite
     sprite: _FarHorizons/Clothing/Eyes/Glasses/meson-syndi.rsi
   - type: Clothing
     sprite: _FarHorizons/Clothing/Eyes/Glasses/meson-syndi.rsi
+  - type: TrayScanner
   - type: EyeProtection
   - type: IdentityBlocker
     coverage: EYES

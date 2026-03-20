@@ -1,5 +1,6 @@
 # misc
 chat-radio-trinary = Trinary
+chat-radio-nexus = Nexus
 
 chat-radio-gemini-stellar-logistics = GSL
 

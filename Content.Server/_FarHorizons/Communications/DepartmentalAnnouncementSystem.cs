@@ -166,7 +166,7 @@ namespace Content.Server.Communications
             {
                 AnnouncementSound = announcementSound,
                 Message = message,
-                Source = filter
+                Receivers = filter
             });
         }
 

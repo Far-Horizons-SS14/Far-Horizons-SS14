@@ -39,6 +39,38 @@
   - type: Icon
     state: pda-seniorphysician
 
+#Reps/BSO
+
+- type: entity
+  parent: BasePDA
+  id: VeteranBlueShieldPDA
+  name: Veteran Blueshield Officer PDA
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Devices/pda.rsi #FH
+  - type: Pda
+    id: BlueShieldIDCard
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-veteranblueshield
+  - type: PdaBorderColor
+    borderColor: "#062f4c"
+    accentHColor: "#00e5e5"
+    accentVColor: "#00e5e5"
+  - type: Icon
+    sprite: _FarHorizons/Objects/Devices/pda.rsi #FH
+    state: pda-veteranblueshield
+  - type: CartridgeLoader
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NanoTaskCartridge
+      - NewsReaderCartridge
+      - MedTekCartridge
+
 #Security
 
 - type: entity
@@ -55,9 +87,9 @@
        !type:String
        pda-brigmedic
   - type: PdaBorderColor
-    borderColor: "#A32D26"
-    accentHColor: "#d7d7d0"
-    accentVColor: "#d7d7d0"
+    borderColor: "#111230"
+    accentHColor: "#004cae"
+    accentVColor: "#b3c5ce"
   - type: Icon
     state: pda-brigmedic
   - type: CartridgeLoader
@@ -68,6 +100,15 @@
     - NewsReaderCartridge
     - WantedListCartridge
     - MedTekCartridge
+
+# For Detective Inquisitive Tethers
+- type: entity
+  parent: DetectivePDA
+  id: DetectivePDAScurret
+  suffix: Scurret
+  components:
+  - type: Pda
+    id: DetectiveIDCardScurret
 
 #CentComm
 
@@ -132,7 +173,7 @@
        !type:String
        pda
   - type: Sprite
-    sprite: Objects/Devices/pda.rsi
+    sprite: _FarHorizons/Objects/Devices/pda.rsi
     layers:
     - map: [ "enum.PdaVisualLayers.Base" ]
       state: "pda"
@@ -145,7 +186,7 @@
       shader: "unshaded"
       visible: false
   - type: Icon
-    sprite: Objects/Devices/pda.rsi
+    sprite: _FarHorizons/Objects/Devices/pda.rsi
     state: pda
   - type: Pda
     paiSlot:

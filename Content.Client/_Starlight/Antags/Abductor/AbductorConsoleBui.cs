@@ -166,7 +166,7 @@ public sealed class AbductorConsoleBui : BoundUserInterface
         _window.PadLabel.SetMessage(padMsg);
         
         var dispencerMsg = new FormattedMessage();
-        dispencerMsg.AddMarkupOrThrow(state.DispencerFound ? "dispencer: [color=green]connected[/color]" : "dispencer: [color=red]not found[/color]");
+        dispencerMsg.AddMarkupOrThrow(state.DispencerFound ? "dispenser: [color=green]connected[/color]" : "dispenser: [color=red]not found[/color]");
         _window.DispencerLabel.SetMessage(dispencerMsg);
 
         var msg = new FormattedMessage();

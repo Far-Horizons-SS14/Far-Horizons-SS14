@@ -1,0 +1,77 @@
+- type: entity
+  id: BannerBase
+  name: Base Banner
+  description: It's the concept of a banner, you shouldn't be seeing this.
+  components:
+    - type: Physics
+      bodyType: Dynamic
+    - type: Foldable
+      folded: true
+    - type: Pullable
+    - type: Clickable
+    - type: Anchorable
+    - type: InteractionOutline
+    - type: Appearance
+    - type: Sprite
+      sprite: _FarHorizons/Structures/Decoration/banner.rsi
+      noRot: true
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeCircle
+            radius: 0.2
+          density: 190
+          mask:
+          - MachineMask
+          layer:
+          - Opaque
+          - MidImpassable
+          - HighImpassable
+          - BulletImpassable
+    - type: Destructible
+      thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 100
+        behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+
+- type: entity
+  id: BannerNTNC
+  parent: BannerBase
+  name: NTNC Banner
+  description: A banner displaying the NTNC insignia. You feel a sense of pride.
+  components:
+  - type: GenericVisualizer 
+    visuals:
+      enum.FoldedVisuals.State:
+        foldedLayer:
+          True: { state: banner_NTNC }
+          False: { state: banner_NTNC_rolled }
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Decoration/banner.rsi 
+    noRot: true 
+    layers: 
+        - state: banner_NTNC
+          map: [ "foldedLayer" ]
+
+- type: entity
+  id: BannerCC
+  parent: BannerBase
+  name: CC Banner
+  description: A banner displaying the CC logo. It is remarkably clean.
+  components:
+  - type: GenericVisualizer 
+    visuals:
+      enum.FoldedVisuals.State:
+        foldedLayer:
+          True: { state: banner_CC }
+          False: { state: banner_CC_rolled }
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Decoration/banner.rsi 
+    noRot: true 
+    layers: 
+        - state: banner_CC
+          map: [ "foldedLayer" ]

@@ -1,7 +1,7 @@
 - type: entity
   parent: BasePDA
   id: RoboticistPDA
-  name: roboticist PDA
+  name: Roboticist PDA #Far Horizons - The Great Capitalization Crusade
   description: Covered in dirt and oil. The screen is covered in something sticky.
   components:
   - type: Pda
@@ -12,8 +12,9 @@
        !type:String
        pda-roboticist
   - type: PdaBorderColor
-    borderColor: "#363636"
+    borderColor: "#111112" #FH
     accentVColor: "#d33725"
+    accentHColor: "#d33725" #FH
   - type: Icon
     state: pda-roboticist
   - type: HealthAnalyzer
@@ -25,11 +26,11 @@
 - type: entity
   parent: BaseMedicalPDA
   id: SeniorChemistPDA
-  name: senior chemist PDA
+  name: Senior Chemist PDA #Far Horizons - The Great Capitalization Crusade
   description: Smells faintly of bratwurst.
   components:
   - type: Sprite
-    sprite: _Starlight/Objects/Devices/pda.rsi
+    sprite: _FarHorizons/Objects/Devices/pda.rsi #FH
   - type: Pda
     id: ChemistIDCard
   - type: Appearance
@@ -38,20 +39,20 @@
        !type:String
        pda-seniorchemist
   - type: PdaBorderColor
-    borderColor: "#d7d7d0"
-    accentVColor: "#B34200"
+    borderColor: "#d3d3d3" #FH
+    accentVColor: "#cc5100" #FH
   - type: Icon
-    sprite: _Starlight/Objects/Devices/pda.rsi
+    sprite: _FarHorizons/Objects/Devices/pda.rsi #FH
     state: pda-seniorchemist
 
 - type: entity
   parent: BaseMedicalPDA
   id: VeteranBrigmedicPDA
-  name: veteran brigmedic PDA
+  name: Veteran Brigmedic PDA #Far Horizons - The Great Capitalization Crusade
   description: This pulse has never stopped under my watch.
   components:
   - type: Sprite
-    sprite: _Starlight/Objects/Devices/pda.rsi
+    sprite: _FarHorizons/Objects/Devices/pda.rsi #FH
   - type: Pda
     id: BrigmedicIDCard
   - type: Appearance
@@ -60,11 +61,11 @@
        !type:String
        pda-veteranbrigmedic
   - type: PdaBorderColor
-    borderColor: "#A32D26"
-    accentHColor: "#d7d7d0"
-    accentVColor: "#d7d7d0"
+    borderColor: "#0060a5" #FH
+    accentHColor: "#ffffff" #FH
+    accentVColor: "#ffffff" #FH
   - type: Icon
-    sprite: _Starlight/Objects/Devices/pda.rsi
+    sprite: _FarHorizons/Objects/Devices/pda.rsi #FH
     state: pda-veteranbrigmedic
   - type: CartridgeLoader
     preinstalled:
@@ -109,11 +110,11 @@
 - type: entity
   parent: BaseMedicalPDA
   id: VeteranCorpsmanPDA
-  name: veteran corpsman PDA
+  name: Veteran Corpsman PDA #Far Horizons - The Great Capitalization Crusade
   description: I've seen the end. I couldn't change a thing...
   components:
   - type: Sprite
-    sprite: _Starlight/Objects/Devices/pda.rsi
+    sprite: _FarHorizons/Objects/Devices/pda.rsi #FH
   - type: Pda
     id: BrigmedicIDCard
   - type: Appearance
@@ -122,11 +123,11 @@
        !type:String
        pda-veterancorpsman
   - type: PdaBorderColor
-    borderColor: "#A32D26"
-    accentHColor: "#d7d7d0"
-    accentVColor: "#d7d7d0"
+    borderColor: "#878787" #FH
+    accentHColor: "#0077cc" #FH
+    accentVColor: "#0077cc" #FH
   - type: Icon
-    sprite: _Starlight/Objects/Devices/pda.rsi
+    sprite: _FarHorizons/Objects/Devices/pda.rsi #FH
     state: pda-veterancorpsman
   - type: CartridgeLoader
     preinstalled:
@@ -140,7 +141,7 @@
 - type: entity
   parent: BasePDA
   id: MagistratePDA
-  name: magistrate PDA
+  name: Magistrate PDA #Far Horizons - The Great Capitalization Crusade
   components:
   - type: Pda
     id: MagistrateIDCard
@@ -170,7 +171,7 @@
 - type: entity
   parent: BasePDA
   id: NanoTrasenRepresentativePDA
-  name: NanoTrasen representative PDA
+  name: NanoTrasen Representative PDA #Far Horizons - The Great Capitalization Crusade
   components:
   - type: Pda
     id: NanoTrasenRepresentativeIDCard
@@ -186,8 +187,7 @@
        !type:String
        pda-ntrep
   - type: PdaBorderColor
-    borderColor: "#1c1c1c"
-    accentHColor: "#ffce5b"
+    borderColor: "#151515" #FH
   - type: Icon
     state: pda-ntrep
 
@@ -233,10 +233,10 @@
 - type: entity
   parent: BasePDA
   id: BlueShieldPDA
-  name: blueshield officer's PDA
+  name: BlueShield Officer's PDA #Far Horizons - The Great Capitalization Crusade
   components:
   - type: Sprite
-    sprite: _Starlight/Objects/Devices/pda.rsi
+    sprite: _FarHorizons/Objects/Devices/pda.rsi #FH
   - type: Pda
     id: BlueShieldIDCard
   - type: Appearance
@@ -244,8 +244,11 @@
      enum.PdaVisuals.PdaType:
        !type:String
        pda-blueshield
+  - type: PdaBorderColor #FH
+    borderColor: "#181c26" #FH
+    accentHColor: "#25c1c4" #FH
   - type: Icon
-    sprite: _Starlight/Objects/Devices/pda.rsi
+    sprite: _FarHorizons/Objects/Devices/pda.rsi #FH
     state: pda-blueshield
   - type: CartridgeLoader
     uiKey: enum.PdaUiKey.Key
@@ -259,11 +262,11 @@
 - type: entity
   parent: BasePDA
   id: SalvageLeadPDA
-  name: salvage lead PDA
+  name: Salvage Lead PDA #Far Horizons - The Great Capitalization Crusade
   description: Smells like blood and ash.
   components:
   - type: Sprite
-    sprite: _Starlight/Objects/Devices/pda.rsi
+    sprite: _FarHorizons/Objects/Devices/pda.rsi #FH
   - type: Pda
     id: SalvageLeadIDCard
   - type: Appearance
@@ -272,11 +275,11 @@
         !type:String
         pda-salvagelead
   - type: PdaBorderColor
-    borderColor: "#af9366"
-    accentHColor: "#8900c9"
-    accentVColor: "#8900c9"
+    borderColor: "#413015" #FH
+    accentHColor: "#c17733" #FH
+    accentVColor: "#c17733" #FH
   - type: Icon
-    sprite: _Starlight/Objects/Devices/pda.rsi
+    sprite: _FarHorizons/Objects/Devices/pda.rsi #FH
     state: pda-salvagelead
   - type: CartridgeLoader
     uiKey: enum.PdaUiKey.Key
@@ -290,11 +293,11 @@
 - type: entity
   parent: SalvageLeadPDA
   id: VeteranSalvageLeadPDA
-  name: veteran salvage lead PDA
+  name: Veteran Salvage Lead PDA #Far Horizons - The Great Capitalization Crusade
   description: looks like this was patched up with a bunch of scrap. barely.
   components:
   - type: Sprite
-    sprite: _Starlight/Objects/Devices/pda.rsi
+    sprite: _FarHorizons/Objects/Devices/pda.rsi #FH
   - type: Pda
     id: SalvageLeadIDCard
   - type: Appearance
@@ -303,21 +306,21 @@
         !type:String
         pda-veteransalvagelead
   - type: PdaBorderColor
-    borderColor: "#af9366"
-    accentHColor: "#8900c9"
-    accentVColor: "#8f36c6"
+    borderColor: "#413015" #FH
+    accentHColor: "#e39751" #FH
+    accentVColor: "#9a5719" #FH
   - type: Icon
-    sprite: _Starlight/Objects/Devices/pda.rsi
+    sprite: _FarHorizons/Objects/Devices/pda.rsi #FH
     state: pda-veteransalvagelead
 
 - type: entity
   parent: SalvagePDA
   id: VeteranSalvagePDA
-  name: veteran salvage PDA
+  name: Veteran Salvage PDA #Far Horizons - The Great Capitalization Crusade
   description: looks like this was patched up with a bunch of scrap. barely.
   components:
   - type: Sprite
-    sprite: _Starlight/Objects/Devices/pda.rsi
+    sprite: _FarHorizons/Objects/Devices/pda.rsi #FH
   - type: Pda
     id: SalvageIDCard
   - type: Appearance
@@ -326,20 +329,21 @@
         !type:String
         pda-veteransalvage
   - type: PdaBorderColor
-    borderColor: "#af9366"
+    borderColor: "#967032" #FH
     accentVColor: "#8f36c6"
+    accentHColor: "#8f36c6" #FH
   - type: Icon
-    sprite: _Starlight/Objects/Devices/pda.rsi
+    sprite: _FarHorizons/Objects/Devices/pda.rsi #FH
     state: pda-veteransalvage
 
 - type: entity
   parent: BasePDA
   id: MiningPDA
-  name: mining PDA
+  name: Mining PDA #Far Horizons - The Great Capitalization Crusade
   description: there is dirt in every crack.
   components:
   - type: Sprite
-    sprite: _Starlight/Objects/Devices/pda.rsi
+    sprite: _FarHorizons/Objects/Devices/pda.rsi #FH
   - type: Pda
     id: MiningIDCard
   - type: Appearance
@@ -348,10 +352,10 @@
         !type:String
         pda-mining
   - type: PdaBorderColor
-    borderColor: "#af9366"
-    accentVColor: "#3e3ac3"
+    borderColor: "#5b4829" #FH
+    accentHColor: "#2528b6" #FH
   - type: Icon
-    sprite: _Starlight/Objects/Devices/pda.rsi
+    sprite: _FarHorizons/Objects/Devices/pda.rsi #FH
     state: pda-mining
   - type: CartridgeLoader
     uiKey: enum.PdaUiKey.Key
@@ -365,33 +369,33 @@
 - type: entity
   parent: MiningPDA
   id: VeteranMiningPDA
-  name: veteran mining PDA
+  name: Veteran Mining PDA #Far Horizons - The Great Capitalization Crusade
   description: the screen is cracked, and the buttons barely work.
   components:
   - type: Sprite
-    sprite: _Starlight/Objects/Devices/pda.rsi
+    sprite: _FarHorizons/Objects/Devices/pda.rsi #FH
   - type: Pda
     id: MiningIDCard
   - type: Appearance
     appearanceDataInit:
       enum.PdaVisuals.PdaType:
         !type:String
-        pda-veteranmining
+        pda-mining #FH
   - type: PdaBorderColor
-    borderColor: "#af9366"
-    accentVColor: "#6e63be"
+    borderColor: "#5b4829" #FH
+    accentHColor: "#2528b6" #FH
   - type: Icon
-    sprite: _Starlight/Objects/Devices/pda.rsi
+    sprite: _FarHorizons/Objects/Devices/pda.rsi #FH
     state: pda-veteranmining
 
 - type: entity
   parent: BasePDA
   id: MailPDA
-  name: mail PDA
+  name: Mail PDA #Far Horizons - The Great Capitalization Crusade
   description: watch out for papercuts.
   components:
   - type: Sprite
-    sprite: _Starlight/Objects/Devices/pda.rsi
+    sprite: _FarHorizons/Objects/Devices/pda.rsi #FH
   - type: Pda
     id: MailTechIDCard
   - type: Appearance
@@ -400,20 +404,20 @@
         !type:String
         pda-mailtech
   - type: PdaBorderColor
-    borderColor: "#e39751"
-    accentVColor: "#6ec8fa"
+    borderColor: "#775422" #FH
+    accentVColor: "#32968a" #FH
   - type: Icon
-    sprite: _Starlight/Objects/Devices/pda.rsi
+    sprite: _FarHorizons/Objects/Devices/pda.rsi #FH
     state: pda-mailtech
 
 - type: entity
   parent: BasePDA
   id: CommanderPDA
-  name: commander PDA
+  name: Commander PDA #Far Horizons - The Great Capitalization Crusade
   description: Screw captiancy, LETS GET THAT FUKKIN DISK
   components:
     - type: Sprite
-      sprite: _Starlight/Objects/Devices/pda.rsi
+      sprite: _FarHorizons/Objects/Devices/pda.rsi #FH
     - type: Pda
       id: CommanderIDCard
     - type: Appearance
@@ -422,19 +426,18 @@
           !type:String
           pda-commander
     - type: PdaBorderColor
-      borderColor: "#891417"
-      accentVColor: "#FFD700"
+      borderColor: "#221314" #FH
     - type: Icon
-      sprite: _Starlight/Objects/Devices/pda.rsi
+      sprite: _FarHorizons/Objects/Devices/pda.rsi #FH
       state: pda-commander
 
 - type: entity
   parent: BasePDA
   id: NTNCBlueShieldPDA
-  name: naval officer's PDA
+  name: Naval Officer's PDA #Far Horizons - The Great Capitalization Crusade
   components:
   - type: Sprite
-    sprite: _Starlight/Objects/Devices/pda.rsi
+    sprite: _FarHorizons/Objects/Devices/pda.rsi #FH
   - type: Pda
     id: NTNCBlueShieldIDCard
   - type: Appearance
@@ -442,8 +445,11 @@
      enum.PdaVisuals.PdaType:
        !type:String
        pda-blueshield
+  - type: PdaBorderColor #FH
+    borderColor: "#181c26" #FH
+    accentHColor: "#25c1c4" #FH
   - type: Icon
-    sprite: _Starlight/Objects/Devices/pda.rsi
+    sprite: _FarHorizons/Objects/Devices/pda.rsi #FH
     state: pda-blueshield
   - type: CartridgeLoader
     uiKey: enum.PdaUiKey.Key
@@ -460,10 +466,10 @@
 - type: entity
   parent: BasePDA
   id: NTNCCSPDA
-  name: nt nc naval officer's PDA
+  name: NTNC Naval Officer's PDA #Far Horizons - The Great Capitalization Crusade
   components:
   - type: Sprite
-    sprite: _Starlight/Objects/Devices/pda.rsi
+    sprite: _FarHorizons/Objects/Devices/pda.rsi #FH
   - type: Pda
     id: NTNCBlueShieldIDCard
   - type: Appearance
@@ -471,8 +477,10 @@
      enum.PdaVisuals.PdaType:
        !type:String
        pda-ntnc-cs
+  - type: PdaBorderColor #FH
+    borderColor: "#102c0d" #FH
   - type: Icon
-    sprite: _Starlight/Objects/Devices/pda.rsi
+    sprite: _FarHorizons/Objects/Devices/pda.rsi #FH
     state: pda-ntnc-cs
   - type: CartridgeLoader
     uiKey: enum.PdaUiKey.Key

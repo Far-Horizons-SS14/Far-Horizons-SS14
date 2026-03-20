@@ -3,6 +3,13 @@
   groups:
   - ProtogenCybernetics
   - ProtogenTelecomms
+
+- type: roleLoadout
+  id: ProtogenNexusLoadout
+  groups:
+    - ProtogenCybernetics
+    - ProtogenNexusTelecomms
+
 ---
 
 - type: loadoutGroup
@@ -18,6 +25,12 @@
   name: loadout-group-protogen-telecomms
   loadouts:
   - ProtogenTrinaryImplant
+    
+- type: loadoutGroup
+  id: ProtogenNexusTelecomms
+  name: loadout-group-protogen-telecomms
+  loadouts:
+    - ProtogenNexusTrinaryImplant
 
 ---
 
@@ -41,3 +54,10 @@
   storage:
     autoImplant: 
     - TrinaryImplanter
+      
+- type: loadout
+  id: ProtogenNexusTrinaryImplant
+  storage:
+    autoImplant:
+      - TrinaryImplanter
+      - NexusImplanter

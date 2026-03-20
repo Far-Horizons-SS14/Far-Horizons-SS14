@@ -1,0 +1,140 @@
+- type: markingsGroup
+  id: Kobold
+  onlyGroupWhitelisted: true
+  limits:
+    enum.HumanoidVisualLayers.Head:
+      limit: 3
+      required: false
+    enum.HumanoidVisualLayers.HeadTop:
+      limit: 2
+      required: true
+      default: [ LizardHornsRam ]
+    enum.HumanoidVisualLayers.Chest:
+      limit: 2
+      required: false
+    enum.HumanoidVisualLayers.LArm:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RArm:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LHand:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RHand:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LLeg:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RLeg:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LFoot:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RFoot:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.Tail:
+      limit: 1
+      required: false
+
+- type: entity
+  parent: OrganBase
+  id: OrganKobold
+  abstract: true
+  suffix: Kobold
+  components:
+  - type: Tag
+    tags:
+      - Organic
+
+- type: entity
+  parent: OrganKobold
+  id: OrganKoboldExternal
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Mobs/Animals/kobold.rsi
+  - type: VisualOrgan
+    data:
+      sprite: _FarHorizons/Mobs/Animals/kobold.rsi
+  - type: VisualOrganMarkings
+    markingData:
+      group: Kobold
+
+- type: entity
+  parent: BaseAnimalNubody
+  id: AppearanceKobold
+  name: kobold appearance
+  components:
+  - type: InitialBody
+    organs:
+      Torso: OrganKoboldTorso
+      Head: OrganKoboldHead
+      ArmLeft: OrganKoboldArmLeft
+      ArmRight: OrganKoboldArmRight
+      HandRight: OrganKoboldHandRight
+      HandLeft: OrganKoboldHandLeft
+      LegLeft: OrganKoboldLegLeft
+      LegRight: OrganKoboldLegRight
+      FootLeft: OrganKoboldFootLeft
+      FootRight: OrganKoboldFootRight
+      Tail: OrganKoboldTail
+      Brain: OrganHumanBrain
+      Eyes: OrganMonkeyEyes
+      Tongue: OrganHumanTongue
+      Lungs: OrganAnimalLungs
+      Heart: OrganAnimalHeart
+      Stomach: OrganHumanStomach
+      Liver: OrganAnimalLiver
+      Kidneys: OrganAnimalKidneys
+  - type: HumanoidProfile
+    species: Kobold
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+
+- type: entity
+  parent: [ OrganBaseTorso, OrganKoboldExternal ]
+  id: OrganKoboldTorso
+
+- type: entity
+  parent: [ OrganBaseHead, OrganKoboldExternal ]
+  id: OrganKoboldHead
+
+- type: entity
+  parent: [ OrganBaseArmLeft, OrganKoboldExternal ]
+  id: OrganKoboldArmLeft
+
+- type: entity
+  parent: [ OrganBaseArmRight, OrganKoboldExternal ]
+  id: OrganKoboldArmRight
+
+- type: entity
+  parent: [ OrganBaseHandLeft, OrganKoboldExternal ]
+  id: OrganKoboldHandLeft
+
+- type: entity
+  parent: [ OrganBaseHandRight, OrganKoboldExternal ]
+  id: OrganKoboldHandRight
+
+- type: entity
+  parent: [ OrganBaseLegLeft, OrganKoboldExternal ]
+  id: OrganKoboldLegLeft
+
+- type: entity
+  parent: [ OrganBaseLegRight, OrganKoboldExternal ]
+  id: OrganKoboldLegRight
+
+- type: entity
+  parent: [ OrganBaseFootLeft, OrganKoboldExternal ]
+  id: OrganKoboldFootLeft
+
+- type: entity
+  parent: [ OrganBaseFootRight, OrganKoboldExternal ]
+  id: OrganKoboldFootRight
+
+- type: entity
+  parent: [ OrganBaseTail, OrganKoboldExternal ]
+  id: OrganKoboldTail

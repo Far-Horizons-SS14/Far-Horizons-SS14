@@ -49,6 +49,20 @@
   - type: Clothing
     sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/ntrepCC.rsi
 
+#region Civilian
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitGreytide
+  name: Assistant Jumpsuit
+  suffix: NT
+  description: A tasteful grey jumpskirt that has carried you through all of your good days.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/greytide.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/greytide.rsi
+
 #region Security
 
 - type: entity
@@ -224,6 +238,32 @@
     sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/ce_turtle-syndi.rsi
   - type: Clothing
     sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/ce_turtle-syndi.rsi
+
+#region Civilian
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitGreytideSyndi
+  name: Assistant Jumpsuit
+  suffix: NS
+  description: A tasteful grey jumpsuit that has carried you through all of your good days.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/greytide-syndi.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/greytide-syndi.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitAncientSyndi
+  name: Ancient Jumpsuit
+  suffix: NS
+  description: A terribly ragged and frayed grey jumpsuit. It looks like it hasn't been washed in over a decade.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/ancient-syndi.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/ancient-syndi.rsi
 
 #region Engineering
 

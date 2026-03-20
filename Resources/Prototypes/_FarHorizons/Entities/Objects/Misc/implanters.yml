@@ -5,6 +5,14 @@
   components:
   - type: Implanter
     implant: RadioImplantTrinary
+    
+- type: entity
+  id: NexusImplanter
+  name: Nexus Implanter
+  parent: BaseImplantOnlyImplanter
+  components:
+    - type: Implanter
+      implant: RadioImplantNexus
 
 # NTNC
 - type: entity

@@ -1,0 +1,144 @@
+- type: markingsGroup
+  id: Monkey
+  onlyGroupWhitelisted: true
+  limits:
+    enum.HumanoidVisualLayers.Hair:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.Head:
+      limit: 3
+      required: false
+    enum.HumanoidVisualLayers.Chest:
+      limit: 2
+      required: false
+    enum.HumanoidVisualLayers.LArm:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RArm:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LHand:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RHand:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LLeg:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RLeg:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LFoot:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RFoot:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.Tail:
+      limit: 1
+      required: false
+
+- type: entity
+  parent: OrganBase
+  id: OrganMonkey
+  abstract: true
+  suffix: Monkey
+  components:
+  - type: Tag
+    tags:
+      - Organic
+
+- type: entity
+  parent: OrganMonkey
+  id: OrganMonkeyExternal
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Mobs/Animals/monkey.rsi
+  - type: VisualOrgan
+    data:
+      sprite: _FarHorizons/Mobs/Animals/monkey.rsi
+  - type: VisualOrganMarkings
+    markingData:
+      group: Monkey
+
+- type: entity
+  parent: BaseAnimalNubody
+  id: AppearanceMonkey
+  name: monkey appearance
+  components:
+  - type: InitialBody
+    organs:
+      Torso: OrganMonkeyTorso
+      Head: OrganMonkeyHead
+      ArmLeft: OrganMonkeyArmLeft
+      ArmRight: OrganMonkeyArmRight
+      HandRight: OrganMonkeyHandRight
+      HandLeft: OrganMonkeyHandLeft
+      LegLeft: OrganMonkeyLegLeft
+      LegRight: OrganMonkeyLegRight
+      FootLeft: OrganMonkeyFootLeft
+      FootRight: OrganMonkeyFootRight
+      Tail: OrganMonkeyTail
+      Brain: OrganHumanBrain
+      Eyes: OrganMonkeyEyes
+      Tongue: OrganHumanTongue
+      Lungs: OrganAnimalLungs
+      Heart: OrganAnimalHeart
+      Stomach: OrganHumanStomach
+      Liver: OrganAnimalLiver
+      Kidneys: OrganAnimalKidneys
+
+- type: entity
+  parent: [ OrganBaseTorso, OrganMonkeyExternal ]
+  id: OrganMonkeyTorso
+
+- type: entity
+  parent: [ OrganBaseHead, OrganMonkeyExternal ]
+  id: OrganMonkeyHead
+
+- type: entity
+  parent: [ OrganBaseArmLeft, OrganMonkeyExternal ]
+  id: OrganMonkeyArmLeft
+
+- type: entity
+  parent: [ OrganBaseArmRight, OrganMonkeyExternal ]
+  id: OrganMonkeyArmRight
+
+- type: entity
+  parent: [ OrganBaseHandLeft, OrganMonkeyExternal ]
+  id: OrganMonkeyHandLeft
+
+- type: entity
+  parent: [ OrganBaseHandRight, OrganMonkeyExternal ]
+  id: OrganMonkeyHandRight
+
+- type: entity
+  parent: [ OrganBaseLegLeft, OrganMonkeyExternal ]
+  id: OrganMonkeyLegLeft
+
+- type: entity
+  parent: [ OrganBaseLegRight, OrganMonkeyExternal ]
+  id: OrganMonkeyLegRight
+
+- type: entity
+  parent: [ OrganBaseFootLeft, OrganMonkeyExternal ]
+  id: OrganMonkeyFootLeft
+
+- type: entity
+  parent: [ OrganBaseFootRight, OrganMonkeyExternal ]
+  id: OrganMonkeyFootRight
+
+- type: entity
+  parent: [ OrganBaseEyes, OrganHumanInternal, OrganMonkeyExternal ]
+  id: OrganMonkeyEyes
+  suffix: monkey
+  components:
+  - type: VisualOrgan
+    data:
+      sprite: _FarHorizons/Mobs/Animals/monkey.rsi
+
+- type: entity
+  parent: [ OrganBaseTail, OrganMonkeyExternal ]
+  id: OrganMonkeyTail

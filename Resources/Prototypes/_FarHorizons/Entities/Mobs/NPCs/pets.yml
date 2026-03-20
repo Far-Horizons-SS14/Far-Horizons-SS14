@@ -22,3 +22,35 @@
         Base: dead-adminsyndicate
       Dead:
         Base: dead-adminsyndicate
+
+- type: entity
+  name: Frown
+  id: MobSlimesPetFrown
+  parent: [MobSlimesPet, StripableInventoryBase]
+  description: This creature has gone through a lot of cybernetic implants and improvements, you can see on his angry face that he's not really happy about it.
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Mobs/Pets/Frown/frown.rsi                          
+      layers: 
+        - map: [ "enum.DamageStateVisualLayers.Base" ]
+          state: evil_baby_slime
+        - map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
+          state: frown-face
+          shader: unshaded
+        - map: [ "head" ]
+    - type: DamageStateVisuals
+      states:
+        Alive:
+          Base: evil_baby_slime
+          BaseUnshaded: frown_face
+        Dead:
+          Base: evil_baby_slime_dead
+    - type: Inventory
+      speciesId: slime
+      templateId: head
+      displacements:
+        head:
+          sizeMaps:
+            32:
+              sprite: _FarHorizons/Mobs/Pets/Smile/smile_displacement.rsi
+              state: head

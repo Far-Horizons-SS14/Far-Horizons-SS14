@@ -60,6 +60,26 @@
       outerClothing:
       - state: equipped-OUTERCLOTHING
 
+#region Civilian
+
+- type: entity
+  parent: [ClothingOuterStorageBase, AllowSuitStorageClothing]
+  id: ClothingOuterCoatGreytiderTrenchcoat
+  name: Grey Assistant Trenchcoat
+  description: Ah, your trusty coat. There's a few tears here and there, giving it a more timely look. Or at least, that's what you told yourself when you found out gettin' it repaired would set you back 200 spesos.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/Coats/greytidercoat.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/Coats/greytidercoat.rsi
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: Cigarette
+          amount: 3
+        - id: CheapLighter
+
 #region Security
 
 - type: entity

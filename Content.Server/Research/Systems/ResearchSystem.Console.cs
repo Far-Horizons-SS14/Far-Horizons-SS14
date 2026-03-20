@@ -58,7 +58,7 @@ public sealed partial class ResearchSystem
                 ("approver", getIdentityEvent.Title ?? string.Empty)
             );
 
-            _radio.SendRadioMessage(uid, message, component.AnnouncementChannel, uid, escapeMarkup: false);
+            _radio.SendRadioMessage(uid, message, component.AnnouncementChannel, uid, escapeMarkup: false, suppressTTS: true);
 
             if (technologyPrototype.RadioChannels.Any())
                 foreach (var radioChannelId in technologyPrototype.RadioChannels)

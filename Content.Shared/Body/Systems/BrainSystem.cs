@@ -1,4 +1,5 @@
-﻿using Content.Shared.Body.Components;
+﻿using Content.Shared._FarHorizons.Body; //FarHorizons
+using Content.Shared.Body.Components;
 using Content.Shared.Ghost;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
@@ -30,6 +31,19 @@ public sealed class BrainSystem : EntitySystem
 
         var ghostOnMove = EnsureComp<GhostOnMoveComponent>(newEntity);
         ghostOnMove.MustBeDead = HasComp<MobStateComponent>(newEntity); // Don't ghost living players out of their bodies.
+        
+        //FarHorizons Start
+        if(HasComp<BrainComponent>(newEntity))
+        {
+            var ev = new BrainRemoved(oldEntity);
+            RaiseLocalEvent(newEntity, ref ev);
+        }
+        else
+        {
+            var ev = new BrainInserted(newEntity);
+            RaiseLocalEvent(oldEntity, ref ev);
+        }
+        //FarHorizons End
 
         if (!_mindSystem.TryGetMind(oldEntity, out var mindId, out var mind))
             return;
