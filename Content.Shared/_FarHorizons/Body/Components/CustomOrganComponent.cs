@@ -1,8 +1,10 @@
 using Content.Shared.Body;
 using Content.Shared.Damage;
+using Content.Shared.DoAfter;
 using Robust.Shared.Containers;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization;
 
 namespace Content.Shared._FarHorizons.Body;
 
@@ -69,6 +71,22 @@ public sealed partial class VitalOrganComponent : Component
 
 [RegisterComponent]
 public sealed partial class DetachedOrganVisualsExcludedComponent : Component;
+
+[RegisterComponent]
+public sealed partial class ReattacheableLimbsComponent : Component
+{
+    [DataField]
+    public TimeSpan ReattachTime = TimeSpan.FromSeconds(5);
+}
+
+[RegisterComponent]
+public sealed partial class ReattacheableLimbComponent : Component;
+
+[Serializable, NetSerializable]
+public sealed partial class ReattachmentAttemptEvent : SimpleDoAfterEvent;
+
+[RegisterComponent]
+public sealed partial class RegrowableLimbsComponent : Component;
 
 [ByRefEvent]
 public readonly record struct OnDisconnectedVisualOrganState;

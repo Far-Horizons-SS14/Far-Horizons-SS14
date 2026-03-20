@@ -208,6 +208,7 @@
       - DoorBumpOpener
       - AnomalyHost
       - SlimePerson
+  - type: ReattacheableLimbs #FarHorizons
 
 - type: entity
   parent: OrganBase
@@ -215,6 +216,7 @@
   abstract: true
   suffix: slime person
   components:
+  - type: ReattacheableLimb #FarHorizons
   - type: Tag
     tags:
       - Organic
