@@ -226,7 +226,7 @@ public partial class ShuttleNavControl : BaseShuttleControl // Far Horizons - ma
                 var gridCentre = Vector2.Transform(gridBody.LocalCenter, curGridToView);
 
                 var mapCoords = _transform.GetWorldPosition(gUid);
-                var gridDistance = (mapCoords + gridBody.LocalCenter - mapPos.Position).Length();
+                var gridDistance = (mapCoords + gridBody.LocalCenter - mapPos.Position).Length(); // Far Horizons - correct distance calculations
                 
                 var labelText = Loc.GetString("shuttle-console-iff-label", ("name", labelName),
                     ("distance", $"{gridDistance:0.0}"));

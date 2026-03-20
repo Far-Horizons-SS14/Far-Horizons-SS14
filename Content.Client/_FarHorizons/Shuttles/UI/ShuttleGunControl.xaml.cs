@@ -1,5 +1,6 @@
 using System.Numerics;
 using Content.Client.Shuttles.UI;
+using Content.Shared._FarHorizons.Shuttles;
 using Robust.Client.Graphics;
 using Robust.Client.Input;
 using Robust.Client.UserInterface.XAML;
@@ -17,6 +18,7 @@ public sealed class ShuttleGunControl : ShuttleNavControl
     
     private EntityUid? _shuttleEntity;
     private readonly List<(NetCoordinates coordinates, bool fill)> _gunPositions = [];
+    private List<(Vector2, Color)> _tracers = [];
     
     public ShuttleGunControl() : base()
     {
@@ -37,6 +39,8 @@ public sealed class ShuttleGunControl : ShuttleNavControl
         _gunPositions.Clear();
         _gunPositions.AddRange(positions);
     }
+
+    public void TracerPing(BulletTracerPingMessage args) => _tracers = args.Pings;
     
     protected override void Draw(DrawingHandleScreen handle)
     {
@@ -72,7 +76,7 @@ public sealed class ShuttleGunControl : ShuttleNavControl
                 }
 
                 var shuttlePos = _xformSystem.GetWorldPosition(shuttleXform);
-                mapOffset = InverseMapPosition(mapOffset) + Offset + shuttlePos;
+                mapOffset = InverseMapPosition(mapOffset) + shuttlePos;
                 var coordsText = $"{mapOffset.X:0.0}, {mapOffset.Y:0.0}";
                 var coordsDimensions = handle.GetDimensions(Font, coordsText, 0.7f);
                 var coordUiPosition = mouseLocalPos - new Vector2(coordsDimensions.X / 2, coordsDimensions.Y + 10);
@@ -105,6 +109,8 @@ public sealed class ShuttleGunControl : ShuttleNavControl
                 if(fill)
                     handle.DrawPrimitives(DrawPrimitiveTopology.TriangleFan, gunVerts.Span, Color.Orange.WithAlpha(0.05f));
             }
+
+            DrawTracers(handle, worldToShuttle * shuttleToView);
         }
     }
 
@@ -153,6 +159,15 @@ public sealed class ShuttleGunControl : ShuttleNavControl
 
         return mousePos.Window == WindowId.Invalid
             ? null
-            : InverseMapPosition(mouseLocalPos) + Offset + _xformSystem.GetMapCoordinates(shuttleXform).Position;
+            : InverseMapPosition(mouseLocalPos) + _xformSystem.GetMapCoordinates(shuttleXform).Position;
+    }
+
+    private void DrawTracers(DrawingHandleScreen handle, Matrix3x2 worldToView)
+    {
+        foreach(var (coord, color) in _tracers)
+        {
+            var p = Vector2.Transform(coord, worldToView);
+            handle.DrawCircle(p, 1, color);
+        }
     }
 }

@@ -6,6 +6,12 @@ using Robust.Shared.Serialization;
 namespace Content.Shared._FarHorizons.Shuttles;
 
 [Serializable, NetSerializable]
+public enum GunneryConsoleUiKey : byte
+{
+    Key
+}
+
+[Serializable, NetSerializable]
 public sealed class GunneryConsoleBuiState : BoundUserInterfaceState
 {
     public List<GunneryConsoleTurretEntry> TurretEntities = [];

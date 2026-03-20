@@ -185,12 +185,13 @@
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
   - type: GunneryConsole
-  - type: RadarConsole
+  - type: RadarConsole # To appease the ShuttleConsoleSystem
+  - type: BulletTracerReceiver
   - type: ActivatableUI
-    key: enum.RadarConsoleUiKey.Key
+    key: enum.GunneryConsoleUiKey.Key
   - type: UserInterface
     interfaces:
-        enum.RadarConsoleUiKey.Key:
+        enum.GunneryConsoleUiKey.Key:
           type: GunneryConsoleBoundUserInterface
         enum.WiresUiKey.Key:
           type: WiresBoundUserInterface

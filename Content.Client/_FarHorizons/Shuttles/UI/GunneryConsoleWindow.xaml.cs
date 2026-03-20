@@ -147,6 +147,8 @@ public sealed partial class GunneryConsoleWindow : FancyWindow,
     }
 
     public Vector2? GetMousePosition() => RadarScreen.GetMousePosition();
+
+    public void TracerPing(BulletTracerPingMessage args) => RadarScreen.TracerPing(args);
 }
 
 public sealed class GunneryConsoleTurretButton : Button

@@ -840,7 +840,7 @@
 - type: entity
   id: BulletGrenadeBaton
   name: baton grenade
-  parent: BaseBullet
+  parent: [BaseBulletTrigger, BaseBulletTracer] # Far Horizons - radar tracers on large projectiles
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
@@ -860,7 +860,7 @@
 - type: entity
   id: BulletGrenadeBlast
   name: blast grenade
-  parent: BaseBulletTrigger
+  parent: [BaseBulletTrigger, BaseBulletTracer] # Far Horizons - radar tracers on large projectiles
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
@@ -878,7 +878,7 @@
 - type: entity
   id: BulletGrenadeFlash
   name: flash grenade
-  parent: BaseBulletTrigger
+  parent: [BaseBulletTrigger, BaseBulletTracer] # Far Horizons - radar tracers on large projectiles
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
@@ -894,7 +894,7 @@
 - type: entity
   id: BulletGrenadeFrag
   name: frag grenade
-  parent: BaseBulletTrigger
+  parent: [BaseBulletTrigger, BaseBulletTracer] # Far Horizons - radar tracers on large projectiles
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite

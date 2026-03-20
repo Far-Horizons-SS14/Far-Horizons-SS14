@@ -10,6 +10,9 @@ public sealed partial class GunneryConsoleComponent : Component
     [ViewVariables]
     public List<EntityUid> ConnectedTurrets = [];
 
+    [DataField]
+    public float CheckDistance = 16;
+
     [DataField("turretConnectionPort", customTypeSerializer: typeof(PrototypeIdSerializer<SourcePortPrototype>))]
     public string TurretConnectionPort = "GunneryConsoleTurretControl";
 

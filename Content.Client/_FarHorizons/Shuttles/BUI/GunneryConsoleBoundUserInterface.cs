@@ -46,4 +46,16 @@ public sealed class GunneryConsoleBoundUserInterface : BoundUserInterface
 
     private void OnFireButtonPressed(NetCoordinates position, List<NetEntity> turretEntities) 
         => SendMessage(new GunneryConsoleFireActionMessage(position, turretEntities));
+
+    
+    protected override void ReceiveMessage(BoundUserInterfaceMessage message)
+    {
+        if (_window == null)
+            return;
+
+        if (message is not BulletTracerPingMessage ping)
+            return;
+
+        _window.TracerPing(ping);
+    }
 }
