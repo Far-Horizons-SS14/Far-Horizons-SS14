@@ -2,8 +2,8 @@
 - type: entity
   parent: [BaseCentcommContraband, ClothingOuterHardsuitSyndieElite] #sl Change
   id: ClothingOuterHardsuitNTNCConsortium
-  name: nanotrasen navy marine hardsuit
-  description: A protective hardsuit worn by NanoTrasen Navy Marines.
+  name: NanoTrasen marine hardsuit #FH
+  description: A protective hardsuit worn by NanoTrasen marines. #FH
   components:
     - type: Sprite
       sprite: _Starlight/Admeme/Clothing/OuterClothing/Hardsuits/ntnc_hardsuit.rsi
@@ -11,12 +11,19 @@
       sprite: _Starlight/Admeme/Clothing/OuterClothing/Hardsuits/ntnc_hardsuit.rsi
     - type: ToggleableClothing
       clothingPrototype: ClothingHeadHelmetHardsuitNTNCConsortium
-
+#region FH
+- type: Tag
+    tags:
+    - Hardsuit
+    - WhitelistChameleon
+    - IPCExternalCooling
+  #endregion FH
+    
 - type: entity
   parent: [BaseCentcommContraband, ClothingOuterHardsuitSyndieMedic] #sl Change
   id: ClothingOuterHardsuitNTNCConsortiumMedic
-  name: nanotrasen navy marine medic hardsuit
-  description: A protective hardsuit worn by NanoTrasen Navy Marine medical personnel.
+  name: NanoTrasen marine medic hardsuit #FH
+  description: A protective hardsuit worn by NanoTrasen Marine medical personnel. #FH
   components:
     - type: Sprite
       sprite: _Starlight/Admeme/Clothing/OuterClothing/Hardsuits/ntnc_med_hardsuit.rsi
@@ -28,3 +35,5 @@
       tags:
         - Hardsuit
         - WhitelistChameleon
+        - IPCExternalCooling # FH
+        
