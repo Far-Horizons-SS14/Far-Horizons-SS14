@@ -11,13 +11,13 @@
       sprite: _Starlight/Admeme/Clothing/OuterClothing/Hardsuits/ntnc_hardsuit.rsi
     - type: ToggleableClothing
       clothingPrototype: ClothingHeadHelmetHardsuitNTNCConsortium
-#region FH
-- type: Tag
-  tags:
-  - Hardsuit
-  - WhitelistChameleon
-  - IPCExternalCooling
-  #endregion FH
+    #region FH
+    - type: Tag
+      tags:
+      - Hardsuit
+      - WhitelistChameleon
+      - IPCExternalCooling
+      #endregion FH
     
 - type: entity
   parent: [BaseCentcommContraband, ClothingOuterHardsuitSyndieMedic] #sl Change
@@ -33,7 +33,7 @@
       clothingPrototype: ClothingHeadHelmetHardsuitNTNCConsortiumMedic
     - type: Tag
       tags:
-        - Hardsuit
-        - WhitelistChameleon
-        - IPCExternalCooling # FH
+      - Hardsuit
+      - WhitelistChameleon
+      - IPCExternalCooling # FH
         
