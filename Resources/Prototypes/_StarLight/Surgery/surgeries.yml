@@ -18,6 +18,7 @@
     speciesBlacklist:
     - SlimePerson
   #FarHorizons Start
+    - ProtoSlimePerson
   - type: RequireOrganicPart
   #FarHorizons End
     
@@ -36,6 +37,7 @@
     speciesBlacklist: []
     speciesWhitelist:
     - SlimePerson
+    - ProtoSlimePerson #FarHorizons
   - type: RequireOrganicPart
 
 - type: entity
@@ -54,7 +56,8 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
-    
+    - ProtoSlimePerson #FarHorizons
+
 - type: entity
   parent: SurgeryBase
   id: SurgeryCloseIncisionSlime
@@ -71,6 +74,7 @@
     speciesBlacklist: []
     speciesWhitelist:
     - SlimePerson
+    - ProtoSlimePerson #FarHorizons
 
 - type: entity
   parent: SurgeryBase
@@ -91,6 +95,7 @@
     speciesBlacklist:
     - SlimePerson
   #FarHorizons Start
+    - ProtoSlimePerson
     - IPC 
   #FarHorizons End
   - type: Sprite
@@ -167,6 +172,7 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
+    - ProtoSlimePerson #FarHorizons
   - type: SurgeryOrganExistCondition
     category: Liver
   - type: SurgeryPartCondition
@@ -192,6 +198,7 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
+    - ProtoSlimePerson #FarHorizons
   - type: SurgeryOrganDontExistCondition
     category: [ Liver ]
   - type: SurgeryPartCondition
@@ -215,6 +222,7 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
+    - ProtoSlimePerson #FarHorizons
   - type: SurgeryOrganExistCondition
     category: Appendix
   - type: SurgeryPartCondition
@@ -238,6 +246,7 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
+    - ProtoSlimePerson #FarHorizons
   - type: SurgeryOrganExistCondition
     category: Kidneys
   - type: SurgeryPartCondition
@@ -265,6 +274,7 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
+    - ProtoSlimePerson #FarHorizons
   - type: SurgeryOrganDontExistCondition
     category: [ Kidneys ]
   - type: SurgeryPartCondition
@@ -290,6 +300,7 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
+    - ProtoSlimePerson #FarHorizons
   - type: SurgeryOrganExistCondition
     category: Stomach
   - type: SurgeryPartCondition
@@ -315,6 +326,7 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
+    - ProtoSlimePerson #FarHorizons
   - type: SurgeryOrganDontExistCondition
     category: [ Stomach ]
   - type: SurgeryPartCondition
@@ -339,6 +351,7 @@
     speciesBlacklist:
     - SlimePerson
   #FarHorizons Start
+    - ProtoSlimePerson
     - Shadekin
     - ProtoKin
   #FarHorizons End
@@ -368,6 +381,7 @@
     speciesBlacklist:
     - SlimePerson
   #FarHorizons Start
+    - ProtoSlimePerson
     - Shadekin
     - ProtoKin
   #FarHorizons End
@@ -397,6 +411,7 @@
     speciesBlacklist: []
     speciesWhitelist:
     - SlimePerson
+    - ProtoSlimePerson #FarHorizons
   - type: SurgeryOrganExistCondition
     category: Lungs
   - type: SurgeryPartCondition
@@ -423,6 +438,7 @@
     speciesBlacklist: []
     speciesWhitelist:
     - SlimePerson
+    - ProtoSlimePerson #FarHorizons
   - type: SurgeryOrganDontExistCondition
     category: [ Lungs ]
   - type: SurgeryPartCondition
@@ -448,6 +464,7 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
+    - ProtoSlimePerson #FarHorizons
   - type: SurgeryOrganExistCondition
     category: Heart
   - type: SurgeryPartCondition
@@ -471,6 +488,7 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
+    - ProtoSlimePerson #FarHorizons
   - type: SurgeryOrganDontExistCondition
     category: [ Heart ]
   - type: SurgeryPartCondition
@@ -501,6 +519,10 @@
     layers:
       - state: eyeball-l
       - state: eyeball-r
+  - type: SurgerySpeciesCondition
+    speciesBlacklist:
+    - SlimePerson
+    - ProtoSlimePerson #FarHorizons
 
 - type: entity
   parent: SurgeryBase
@@ -524,6 +546,10 @@
     layers:
       - state: eyeball-l
       - state: eyeball-r
+  - type: SurgerySpeciesCondition
+    speciesBlacklist:
+    - SlimePerson
+    - ProtoSlimePerson #FarHorizons
 
 #
 - type: entity
@@ -590,6 +616,8 @@
   - type: SurgerySpeciesCondition 
     speciesBlacklist: 
     - IPC 
+    - SlimePerson
+    - ProtoSlimePerson
   #FarHorizons End
 
 - type: entity
@@ -613,6 +641,8 @@
   - type: SurgerySpeciesCondition 
     speciesBlacklist: 
     - IPC 
+    - SlimePerson
+    - ProtoSlimePerson
   #FarHorizons End
 #
 - type: entity
@@ -641,6 +671,9 @@
     speciesBlacklist:
     - SlimePerson
   #FarHorizons Start
+    - ProtoSlimePerson
+    - Diona
+    - ProtoDionae
     - IPC
   #FarHorizons End
   - type: SurgeryOrganExistCondition
@@ -682,6 +715,9 @@
     speciesBlacklist:
     - SlimePerson
   #FarHorizons Start
+    - ProtoSlimePerson
+    - Diona
+    - ProtoDionae
     - IPC
   #FarHorizons End
   - type: SurgeryOrganDontExistCondition
@@ -706,13 +742,14 @@
     - SurgeryStepDisinfectScalp
     - SurgeryStepMakeIncisionScalp
     - SurgeryStepRetractScalp
-    - SurgeryStepExtractBrain
+    - SurgeryStepExtractSlimeCore
   - type: SurgerySpeciesCondition
     speciesBlacklist: []
     speciesWhitelist:
     - SlimePerson
+    - ProtoSlimePerson #FarHorizons
   - type: SurgeryOrganExistCondition
-    category: Brain
+    category: Core #FarHorizons
   - type: SurgeryPartCondition
     parts: [ Torso ]
   - type: Sprite
@@ -732,15 +769,16 @@
     - SurgeryStepPrepareScalp
     - SurgeryStepMakeIncisionScalp
     - SurgeryStepRetractScalp
-    - SurgeryStepInsertBrain
+    - SurgeryStepInsertSlimeCore
     - SurgeryStepReplaceScalp
     - SurgeryStepSutureScalp
   - type: SurgerySpeciesCondition
     speciesBlacklist: []
     speciesWhitelist:
     - SlimePerson
+    - ProtoSlimePerson #FarHorizons
   - type: SurgeryOrganDontExistCondition
-    category: [ Brain ]
+    category: [ Core, Brain ] #FarHorizons
   - type: SurgeryPartCondition
     parts: [ Torso ]
   - type: Sprite
@@ -782,6 +820,7 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
+    - ProtoSlimePerson #FarHorizons
   - type: SurgeryPartCondition
     parts:
     - Torso
@@ -805,6 +844,7 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
+    - ProtoSlimePerson #FarHorizons
   - type: SurgeryPartCondition
     parts:
     - Torso

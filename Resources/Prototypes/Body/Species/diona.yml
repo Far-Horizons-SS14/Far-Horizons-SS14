@@ -239,7 +239,7 @@
   id: OrganDionaTorso
 
 - type: entity
-  parent: [ OrganBaseHead, OrganDionaExternal ]
+  parent: [ OrganBaseHeadNonVital, OrganDionaExternal ] #FarHorizons
   id: OrganDionaHead
 
 - type: entity
@@ -277,6 +277,9 @@
 - type: entity
   parent: [ OrganBaseBrain, OrganDionaInternal ]
   id: OrganDionaBrain
+  components: #FarHorizons
+  - type: Organ #FarHorizons
+    category: Core #FarHorizons
 
 - type: entity
   parent: [ OrganDionaVisual, OrganBaseEyes, OrganDionaInternal ]
@@ -337,7 +340,7 @@
   #Far-Horizons Start
   - type: InitialBody
     organs:
-      Brain: OrganDionaBrain
+      Core: OrganDionaBrain
       Eyes: OrganAnimalEyes
       Tongue: OrganHumanTongue
       Lungs: OrganDionaLungs
@@ -362,7 +365,7 @@
   #Far-Horizons Start
   - type: InitialBody
     organs:
-      Brain: OrganDionaBrain
+      Core: OrganDionaBrain
       Eyes: OrganAnimalEyes
       Tongue: OrganHumanTongue
       Lungs: OrganDionaLungs
@@ -387,7 +390,7 @@
   #Far-Horizons Start
   - type: InitialBody
     organs:
-      Brain: OrganDionaBrain
+      Core: OrganDionaBrain
       Eyes: OrganAnimalEyes
       Tongue: OrganHumanTongue
       Lungs: OrganDionaLungs

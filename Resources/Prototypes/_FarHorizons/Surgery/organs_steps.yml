@@ -1,0 +1,37 @@
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepExtractSlimeCore
+  name: Extract Core
+  components:
+  - type: SurgeryStep
+    duration: 5
+    tools:
+    - type: Retractor
+    bodyAdd:
+    - type: Uncryoable
+  - type: SurgeryStepOrganExtract
+    slot: Core
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/scissors.rsi
+    state: retractor
+  - type: SurgeryStepEmoteEffect
+  - type: OnFailDamage
+    damage: 
+      types:
+        Piercing: 10
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepInsertSlimeCore
+  name: Insert Core
+  components:
+  - type: SurgeryStep
+    duration: 5
+    tools:
+    - type: Brain
+    bodyRemove:
+    - type: Uncryoable
+  - type: SurgeryStepOrganInsert
+  - type: Sprite
+    sprite: Mobs/Species/Slime/organs.rsi
+    state: brain

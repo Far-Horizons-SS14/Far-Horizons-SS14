@@ -67,7 +67,7 @@
       LegRight: OrganSlimePersonLegRight
       FootLeft: OrganSlimePersonFootLeft
       FootRight: OrganSlimePersonFootRight
-      Brain: OrganSlimePersonCore
+      Core: OrganSlimePersonCore
       Lungs: OrganSlimePersonLungs
   - type: HumanoidProfile
     species: SlimePerson
@@ -77,6 +77,7 @@
   - AppearanceSlimePerson
   - BaseSpeciesMobOrganic
   - BaseSpeciesPickupableLarge #FH
+  - OrganSlimePersonMetabolizer #FG
   id: MobSlimePerson
   name: Urist McWobble
   components:
@@ -201,13 +202,44 @@
   - type: ShowThirstIcons # starlight
   - type: SolutionScanner # starlight
   - type: Wagging # starlight
-  - type: Tag  # Far Horizons
+  # FarHorizons Start
+  - type: Tag  
     tags:
       - CanPilot
       - FootstepSound
       - DoorBumpOpener
       - AnomalyHost
       - SlimePerson
+  - type: Stomach
+  - type: Metabolizer
+    maxReagents: 6
+    metabolizerTypes: [ Slime ]
+    stages: [ Digestion, Bloodstream, Metabolites ]
+    solutions:
+      Respiration:
+        solutionName: Lung
+        transferSolutionName: bloodstream
+        metabolizeAll: true
+      Digestion:
+        solutionName: stomach
+        solutionOnBody: false
+        transferSolutionName: bloodstream
+        transferSolutionOnBody: false
+        transferEfficacy: 0.5
+      Bloodstream:
+        solutionName: bloodstream
+        solutionOnBody: false
+        transferSolutionName: metabolites
+        transferSolutionOnBody: false
+      Metabolites:
+        solutionName: metabolites
+        solutionOnBody: false
+  - type: SolutionContainerManager
+    solutions:
+      food: {}
+      stomach:
+        maxVol: 50
+  # FarHorizons End
 
 - type: entity
   parent: OrganBase
@@ -253,7 +285,7 @@
   id: OrganSlimePersonTorso
 
 - type: entity
-  parent: [ OrganBaseHeadSexed, OrganBaseHead, OrganSlimePersonExternal ]
+  parent: [ OrganBaseHeadSexed, OrganBaseHeadNonVital, OrganSlimePersonExternal ] #FarHorizons
   id: OrganSlimePersonHead
 
 - type: entity
@@ -289,20 +321,22 @@
   id: OrganSlimePersonFootRight
 
 - type: entity
-  parent: [ OrganBaseBrain, OrganSlimePersonInternal, OrganSlimePersonMetabolizer ]
+  parent: [ OrganBaseBrain, OrganSlimePersonInternal ] #FarHorizons
   id: OrganSlimePersonCore
   name: sentient slime core
   components:
-  - type: SolutionContainerManager
-    solutions:
-      food: {}
-      stomach:
-        maxVol: 50.0
-  - type: Stomach
-  - type: Metabolizer
-    maxReagents: 6
-    metabolizerTypes: [ Slime ]
-    stages: [ Digestion, Bloodstream, Metabolites ]
+  - type: Organ #FarHorizons
+    category: Core #FarHorizons
+#  - type: SolutionContainerManager
+#    solutions:
+#      food: {}
+#      stomach:
+#        maxVol: 50.0
+#  - type: Stomach
+#  - type: Metabolizer
+#    maxReagents: 6
+#    metabolizerTypes: [ Slime ]
+#    stages: [ Digestion, Bloodstream, Metabolites ]
 
 - type: entity
   parent: [ OrganBaseLungs, OrganSlimePersonInternal, OrganSlimePersonMetabolizer ]
