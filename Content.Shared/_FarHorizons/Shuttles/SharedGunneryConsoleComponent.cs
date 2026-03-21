@@ -15,6 +15,7 @@ public enum GunneryConsoleUiKey : byte
 public sealed class GunneryConsoleBuiState : BoundUserInterfaceState
 {
     public List<GunneryConsoleTurretEntry> TurretEntities = [];
+    public List<NetEntity> Selected = [];
     public NavInterfaceState State = new(0f, null, null, []);
 }
 
@@ -51,6 +52,12 @@ public struct GunneryConsoleTurretEntry
 public sealed class GunneryConsoleTargetActionMessage(Vector2? position) : BoundUserInterfaceMessage
 {
     public Vector2? Position { get; } = position;
+}
+
+[Serializable, NetSerializable]
+public sealed class GunneryConsoleSelectActionMessage(List<(NetEntity, bool)> turretEntities) : BoundUserInterfaceMessage
+{
+    public List<(NetEntity ent, bool add)> TurretEntities { get; } = turretEntities;
 }
 
 [Serializable, NetSerializable]

@@ -20,12 +20,16 @@ public sealed partial class GunneryConsoleWindow : FancyWindow,
     private readonly SharedMapSystem _maps;
     
     public event Action<NetCoordinates, List<NetEntity>>? FireButtonPressed;
+    public event Action<List<(NetEntity, bool)>>? ButtonUpdate;
+    public event Action<Vector2?>? TargetMessage;
 
     private EntityUid? _shuttleEntity;
     public EntityUid? Entity;
+    private float _accumulator = 0;
+    private readonly float _threshold = 0.25f;
 
     private readonly List<GunneryConsoleTurretButton> _turretButtons = [];
-    private readonly List<NetEntity> _selectedTurrets = [];
+    private List<NetEntity> _selectedTurrets = [];
 
     public GunneryConsoleWindow()
     {
@@ -36,8 +40,8 @@ public sealed partial class GunneryConsoleWindow : FancyWindow,
 
         RadarScreen.OnRadarClick += OnFireCommand;
 
-        SelectAllButton.OnPressed += _ => _turretButtons.ForEach(b => b.Pressed = true);
-        DeselectAllButton.OnPressed += _ => _turretButtons.ForEach(b => b.Pressed = false);
+        SelectAllButton.OnPressed += _ => _turretButtons.ForEach(b => b.Pressed = b.Dirty = true);
+        DeselectAllButton.OnPressed += _ => _turretButtons.ForEach(b => {b.Pressed = false; b.Dirty = true;});
 
         Startup();
     }
@@ -48,23 +52,40 @@ public sealed partial class GunneryConsoleWindow : FancyWindow,
     {
         UpdateTurretList(state.TurretEntities);
         UpdateTurretData(state.TurretEntities);
+        _selectedTurrets = state.Selected;
+        var updatingButtons = _turretButtons.Where(b => !b.Dirty).ToList();
+        updatingButtons.ForEach(b => b.Pressed = state.Selected.Contains(b.NetEntity));
     }
 
     protected override void FrameUpdate(FrameEventArgs args)
     {
         base.FrameUpdate(args);
-        foreach (var button in _turretButtons)
+        UpdateButtons();
+
+        if(TargetMessage == null)
+            return;
+
+        _accumulator += args.DeltaSeconds;
+        if(_accumulator >= _threshold)
         {
-            if (button.Pressed)
-            {
-                if (!_selectedTurrets.Contains(button.NetEntity))
-                    _selectedTurrets.Add(button.NetEntity);
-            }
-            else
-            {
-                _selectedTurrets.Remove(button.NetEntity);
-            }
+            _accumulator -= _threshold;
+            TargetMessage.Invoke(GetMousePosition());
         }
+    }
+
+    private void UpdateButtons()
+    {
+        var updatedButtons = _turretButtons.Where(b => b.Dirty);
+        if (!updatedButtons.Any())
+            return;
+
+        List<(NetEntity, bool)> updateList = [];
+        foreach (var button in updatedButtons)
+        {
+            updateList.Add((button.NetEntity, button.Pressed));
+            button.Dirty = false;
+        }
+        ButtonUpdate?.Invoke(updateList);
     }
 
     private void UpdateTurretList(List<GunneryConsoleTurretEntry> newTurrets)
@@ -155,6 +176,7 @@ public sealed class GunneryConsoleTurretButton : Button
 {
     public NetEntity NetEntity;
     public GunneryConsoleTurretEntry Entry;
+    public bool Dirty = false;
 
     private readonly Label _labelName = new() {HorizontalAlignment = HAlignment.Left, HorizontalExpand = true};
     private readonly Label _labelAmmo = new() {HorizontalAlignment = HAlignment.Right};
@@ -167,6 +189,8 @@ public sealed class GunneryConsoleTurretButton : Button
 
         FormatBox();
         UpdateText();
+
+        OnPressed += _ => Dirty = true;
     }
 
     private void FormatBox()

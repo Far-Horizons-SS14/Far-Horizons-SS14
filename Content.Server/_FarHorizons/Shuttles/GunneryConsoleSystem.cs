@@ -40,6 +40,8 @@ public sealed class GunneryConsoleSystem : EntitySystem
 
         SubscribeLocalEvent<GunneryConsoleComponent, BoundUIOpenedEvent>(OnUIOpened);
         SubscribeLocalEvent<GunneryConsoleComponent, GunneryConsoleFireActionMessage>(OnFireAction);
+        SubscribeLocalEvent<GunneryConsoleComponent, GunneryConsoleTargetActionMessage>(OnTargetAction);
+        SubscribeLocalEvent<GunneryConsoleComponent, GunneryConsoleSelectActionMessage>(OnSelectAction);
     }
 
     private void OnMapInit(EntityUid uid, GunneryConsoleComponent comp, ref MapInitEvent args)
@@ -105,6 +107,7 @@ public sealed class GunneryConsoleSystem : EntitySystem
             ))
         );
         UpdateTurretMetaData(uid, comp);
+        state.Selected = comp.SelectedTurrets;
         state.State = GetNavState(uid);
         _uiSystem.SetUiState(uid, GunneryConsoleUiKey.Key, state);
     }
@@ -205,5 +208,26 @@ public sealed class GunneryConsoleSystem : EntitySystem
                 _gunSystem.AttemptShoot(turret, (turret, gun), targetCoords)
             );
         }
+    }
+
+    private void OnTargetAction(EntityUid uid, GunneryConsoleComponent comp, ref GunneryConsoleTargetActionMessage args) 
+    {
+        comp.TargetPosition = args.Position;
+        DirtyField(uid, comp, nameof(GunneryConsoleComponent.TargetPosition));
+    }
+
+    private void OnSelectAction(EntityUid uid, GunneryConsoleComponent comp, ref GunneryConsoleSelectActionMessage args)
+    {
+        foreach(var (ent, add) in args.TurretEntities)
+        {
+            if (add)
+            {
+                if(!comp.SelectedTurrets.Contains(ent))
+                    comp.SelectedTurrets.Add(ent);
+            }
+            else
+                comp.SelectedTurrets.Remove(ent);
+        }
+        UpdateUI(uid, comp);
     }
 }

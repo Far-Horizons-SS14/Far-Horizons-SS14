@@ -86,8 +86,7 @@ public sealed class ShuttleGunControl : ShuttleNavControl
                 handle.DrawPrimitives(DrawPrimitiveTopology.TriangleFan, mouseVerts.Span, color.WithAlpha(0.05f));
                 handle.DrawPrimitives(DrawPrimitiveTopology.LineLoop, mouseVerts.Span, color);
 
-                Matrix3x2.Invert(worldToShuttle * shuttleToView, out var viewToWorld);
-                var mapOffset = Vector2.Transform(mouseLocalPos, viewToWorld);
+                var mapOffset = _xformSystem.ToWorldPosition(GetMouseCoordinates(mousePos));
                 var coordsText = $"{mapOffset.X:0.0}, {mapOffset.Y:0.0}";
                 var coordsDimensions = handle.GetDimensions(Font, coordsText, 0.7f);
                 var coordUiPosition = mouseLocalPos - new Vector2(coordsDimensions.X / 2, coordsDimensions.Y + 10);
@@ -141,11 +140,11 @@ public sealed class ShuttleGunControl : ShuttleNavControl
             return null;
         
         var mousePos = _inputs.MouseScreenPosition;
-        var mouseLocalPos = GetLocalPosition(mousePos);
+        var mouseCoord = GetMouseCoordinates(mousePos);
 
-        return mousePos.Window == WindowId.Invalid
+        return mousePos.Window == WindowId.Invalid || mouseCoord == EntityCoordinates.Invalid
             ? null
-            : InverseMapPosition(mouseLocalPos) + _xformSystem.GetMapCoordinates(shuttleXform).Position;
+            : _xformSystem.ToWorldPosition(mouseCoord);
     }
 
     private void DrawGuns(DrawingHandleScreen handle, Matrix3x2 worldToView, Vector2? mousePos, float dotOffset)

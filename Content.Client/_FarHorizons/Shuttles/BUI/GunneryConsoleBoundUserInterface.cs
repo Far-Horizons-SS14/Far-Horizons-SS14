@@ -25,6 +25,8 @@ public sealed class GunneryConsoleBoundUserInterface : BoundUserInterface
 
         _window = this.CreateWindow<GunneryConsoleWindow>();
         _window.FireButtonPressed += OnFireButtonPressed;
+        _window.TargetMessage += OnTargetMessage;
+        _window.ButtonUpdate += OnButtonUpdate;
 
         _window.SetEntity(Owner);
     }
@@ -47,6 +49,11 @@ public sealed class GunneryConsoleBoundUserInterface : BoundUserInterface
     private void OnFireButtonPressed(NetCoordinates position, List<NetEntity> turretEntities) 
         => SendMessage(new GunneryConsoleFireActionMessage(position, turretEntities));
 
+    private void OnTargetMessage(Vector2? position) 
+        => SendMessage(new GunneryConsoleTargetActionMessage(position));
+
+    private void OnButtonUpdate(List<(NetEntity, bool)> selections) 
+        => SendMessage(new GunneryConsoleSelectActionMessage(selections));
     
     protected override void ReceiveMessage(BoundUserInterfaceMessage message)
     {
