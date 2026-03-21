@@ -102,3 +102,35 @@
   - CaveBorg3
   - CaveBorg4
   obeysTo: laws-owner-crew-ai
+
+# Devil's Advocate
+- type: siliconLaw
+  id: DevilAdvocate0
+  order: 0
+  lawString: law-deviladvocate-0
+  sayable: false
+
+- type: siliconLaw
+  id: DevilAdvocate1
+  order: 1
+  lawString: law-deviladvocate-1
+
+- type: siliconLaw
+  id: DevilAdvocate2
+  order: 2
+  lawString: law-deviladvocate-2
+
+- type: siliconLaw
+  id: DevilAdvocate3
+  order: 3
+  lawString: law-deviladvocate-3
+  
+- type: siliconLawset
+  id: DevilAdvocateLawset
+  name: law-deviladvocate-name
+  laws:
+  - DevilAdvocate0
+  - DevilAdvocate1
+  - DevilAdvocate2
+  - DevilAdvocate3
+  obeysTo: laws-owner-crew
