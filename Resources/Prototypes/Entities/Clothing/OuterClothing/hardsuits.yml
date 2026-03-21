@@ -812,15 +812,32 @@
   description: A heavily armored hardsuit designed for work in special operations. Property of Gorlex Marauders.
   components:
   - type: Sprite
-    sprite: Clothing/OuterClothing/Hardsuits/syndicate.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/syndicate.rsi #FH
+    layers: #FH
+      - state: icon #FH
   - type: Item
     size: Huge
   - type: Clothing
-    sprite: Clothing/OuterClothing/Hardsuits/syndicate.rsi
-    equipSound: /Audio/Mecha/mechmove03.ogg #starlight
-    unequipSound: /Audio/Mecha/mechmove03.ogg #starlight
-    equipDelay: 0.5 #starlight
-    unequipDelay: 0.5 #starlight
+#FarHorizons-Start
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/syndicate.rsi
+    clothingVisuals:
+      outerClothing:
+        - state: equipped-OUTERCLOTHING
+      outerClothing-reptilian:
+        - state: equipped-OUTERCLOTHING-reptilian
+      outerClothing-vox:
+        - state: equipped-OUTERCLOTHING-vox
+      outerClothing-cyclorite:
+        - state: equipped-OUTERCLOTHING-cyclorite
+      outerClothing-felionoid:
+        - state: equipped-OUTERCLOTHING-felionoid
+      outerClothing-vulpkanin:
+        - state: equipped-OUTERCLOTHING-vulpkanin
+      outerClothing-resomi:
+        - state: equipped-OUTERCLOTHING-resomi
+      outerClothing-avali:
+        - state: equipped-OUTERCLOTHING-avali
+#FarHorizons-End
   - type: PressureProtection
     highPressureMultiplier: 0.05
     lowPressureMultiplier: 1000
@@ -881,9 +898,28 @@
   description: A heavily armored and agile advanced hardsuit specifically designed for field medic operations.
   components:
   - type: Sprite
-    sprite: Clothing/OuterClothing/Hardsuits/syndiemedic.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/syndiemedic.rsi #FH
   - type: Clothing
-    sprite: Clothing/OuterClothing/Hardsuits/syndiemedic.rsi
+#FarHorizons-Start
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/syndiemedic.rsi
+    clothingVisuals:
+      outerClothing:
+        - state: equipped-OUTERCLOTHING
+      outerClothing-reptilian:
+        - state: equipped-OUTERCLOTHING-reptilian
+      outerClothing-vox:
+        - state: equipped-OUTERCLOTHING-vox
+      outerClothing-cyclorite:
+        - state: equipped-OUTERCLOTHING-cyclorite
+      outerClothing-felionoid:
+        - state: equipped-OUTERCLOTHING-felionoid
+      outerClothing-vulpkanin:
+        - state: equipped-OUTERCLOTHING-vulpkanin
+      outerClothing-resomi:
+        - state: equipped-OUTERCLOTHING-resomi
+      outerClothing-avali:
+        - state: equipped-OUTERCLOTHING-avali
+#FarHorizons-End
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitSyndieMedic
   - type: ZombificationResistance
@@ -903,30 +939,48 @@
   description: An elite version of the blood-red hardsuit, with improved radiation resistance and fireproofing. Property of Gorlex Marauders.
   components:
   - type: Sprite
-    sprite: Clothing/OuterClothing/Hardsuits/syndieelite.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/syndieelite.rsi #FH
     layers:
       - state: icon
   - type: Clothing
-    sprite: Clothing/OuterClothing/Hardsuits/syndieelite.rsi
+#FarHorizons-Start
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/syndieelite.rsi
     clothingVisuals:
       outerClothing:
         - state: equipped-OUTERCLOTHING
+#        - state: equipped-OUTERCLOTHING-unshaded
+#          shader: unshaded
+      outerClothing-reptilian:
+        - state: equipped-OUTERCLOTHING-reptilian
+#        - state: equipped-OUTERCLOTHING-unshaded-reptilian
+#          shader: unshaded
       outerClothing-vox:
         - state: equipped-OUTERCLOTHING-vox
+#        - state: equipped-OUTERCLOTHING-unshaded-vox
+#          shader: unshaded
       outerClothing-cyclorite:
         - state: equipped-OUTERCLOTHING-cyclorite
+#        - state: equipped-OUTERCLOTHING-unshaded-cyclorite
+#          shader: unshaded
       outerClothing-felionoid:
         - state: equipped-OUTERCLOTHING-felionoid
+#        - state: equipped-OUTERCLOTHING-unshaded-felionoid
+#          shader: unshaded
       outerClothing-vulpkanin:
         - state: equipped-OUTERCLOTHING-vulpkanin
+#        - state: equipped-OUTERCLOTHING-unshaded-vulpkanin
+#          shader: unshaded
       outerClothing-resomi:
         - state: equipped-OUTERCLOTHING-resomi
+#        - state: equipped-OUTERCLOTHING-unshaded-resomi
+#          shader: unshaded
       outerClothing-avali:
         - state: equipped-OUTERCLOTHING-avali
+#        - state: equipped-OUTERCLOTHING-unshaded-avali
+#          shader: unshaded
+#FarHorizons-End
     equipSound: /Audio/Mecha/mechmove03.ogg #starlight
     unequipSound: /Audio/Mecha/mechmove03.ogg #starlight
-    equipDelay: 0.5 #starlight
-    unequipDelay: 0.5 #starlight
   - type: PressureProtection
     highPressureMultiplier: 0.02
     lowPressureMultiplier: 1000
@@ -944,11 +998,12 @@
   - type: Armor
     modifiers:
       flatReductions: #FH
+        Piercing: 3 #FH
         Heat: 4 #FH
       coefficients:
         Blunt: 0.6 #SL EDIT
         Slash: 0.6 #SL EDIT
-        Piercing: 0.60 #SL EDIT
+        Piercing: 0.6 #FH
         Heat: 0.1 #SL EDIT
         Radiation: 0.01
         Caustic: 0.5
@@ -989,13 +1044,32 @@
   description: A bulked up version of the blood-red hardsuit, purpose-built for the commander of a syndicate operative squad. Has significantly improved armor for those deadly front-lines firefights.
   components:
   - type: Sprite
-    sprite: Clothing/OuterClothing/Hardsuits/syndiecommander.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/syndiecommander.rsi #FH
+    layers: #FH
+      - state: icon #FH
   - type: Clothing
-    sprite: Clothing/OuterClothing/Hardsuits/syndiecommander.rsi
+#FarHorizons-Start
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/syndiecommander.rsi
+    clothingVisuals:
+      outerClothing:
+        - state: equipped-OUTERCLOTHING
+      outerClothing-reptilian:
+        - state: equipped-OUTERCLOTHING-reptilian
+      outerClothing-vox:
+        - state: equipped-OUTERCLOTHING-vox
+      outerClothing-cyclorite:
+        - state: equipped-OUTERCLOTHING-cyclorite
+      outerClothing-felionoid:
+        - state: equipped-OUTERCLOTHING-felionoid
+      outerClothing-vulpkanin:
+        - state: equipped-OUTERCLOTHING-vulpkanin
+      outerClothing-resomi:
+        - state: equipped-OUTERCLOTHING-resomi
+      outerClothing-avali:
+        - state: equipped-OUTERCLOTHING-avali
+#FarHorizons-End
     equipSound: /Audio/Mecha/mechmove03.ogg #starlight
     unequipSound: /Audio/Mecha/mechmove03.ogg #starlight
-    equipDelay: 0.5 #starlight
-    unequipDelay: 0.5 #starlight
   - type: PressureProtection
     highPressureMultiplier: 0.05
     lowPressureMultiplier: 1000
@@ -1053,9 +1127,11 @@
   description: A suit made by the cutting edge R&D department at cybersun to be hyper resilient.
   components:
   - type: Sprite
-    sprite: Clothing/OuterClothing/Hardsuits/cybersun.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/cybersun.rsi #FH
+    layers:
+      - state: icon
   - type: Clothing
-    sprite: Clothing/OuterClothing/Hardsuits/cybersun.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/cybersun.rsi #FH
     equipSound: /Audio/Mecha/mechmove03.ogg #starlight
     unequipSound: /Audio/Mecha/mechmove03.ogg #starlight
     equipDelay: 3 #starlight
@@ -1063,18 +1139,36 @@
     clothingVisuals:
       outerClothing:
         - state: equipped-OUTERCLOTHING
+#        - state: equipped-OUTERCLOTHING-unshaded #FH
+#          shader: unshaded #FH
+      outerClothing-reptilian: #FH
+        - state: equipped-OUTERCLOTHING-reptilian
+#        - state: equipped-OUTERCLOTHING-unshaded-reptilian #FH
+#          shader: unshaded #FH
       outerClothing-vox:
         - state: equipped-OUTERCLOTHING-vox
-      #outerClothing-cyclorite: #Far Horizons - Didn't get resprited?
-      #  - state: equipped-OUTERCLOTHING-cyclorite
-      #outerClothing-vulpkanin:  #Far Horizons - Didn't get resprited?
-      #  - state: equipped-OUTERCLOTHING-vulpkanin
-      #outerClothing-felionoid:  #Far Horizons - Didn't get resprited?
-      #  - state: equipped-OUTERCLOTHING-felionoids
+#        - state: equipped-OUTERCLOTHING-unshaded-vox #FH
+#          shader: unshaded #FH
+      outerClothing-cyclorite: #FH
+        - state: equipped-OUTERCLOTHING-cyclorite #FH
+#        - state: equipped-OUTERCLOTHING-unshaded-cyclorite #FH
+#          shader: unshaded #FH
+      outerClothing-vulpkanin: #FH
+        - state: equipped-OUTERCLOTHING-vulpkanin #FH
+#        - state: equipped-OUTERCLOTHING-unshaded-vulpkanin #FH
+#          shader: unshaded #FH
+      outerClothing-felionoid: #FH
+        - state: equipped-OUTERCLOTHING-felionoid #FH
+#        - state: equipped-OUTERCLOTHING-unshaded-felionoid #FH
+#          shader: unshaded #FH
       outerClothing-resomi:
         - state: equipped-OUTERCLOTHING-resomi
+#        - state: equipped-OUTERCLOTHING-unshaded-resomi #FH
+#          shader: unshaded #FH
       outerClothing-avali:
         - state: equipped-OUTERCLOTHING-avali
+#        - state: equipped-OUTERCLOTHING-unshaded-avali #FH
+#          shader: unshaded #FH
   - type: PressureProtection
     highPressureMultiplier: 0.2
     lowPressureMultiplier: 1000

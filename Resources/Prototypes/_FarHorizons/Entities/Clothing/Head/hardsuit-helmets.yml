@@ -300,7 +300,9 @@
     #  - state: equipped-head-unshaded-dog
     #    shader: unshaded
   - type: PointLight
-    color: "#daffad"
+    radius: 7
+    energy: 3
+    color: "#70ee3a"
   - type: PressureProtection
     highPressureMultiplier: 0.08
     lowPressureMultiplier: 1000
@@ -389,7 +391,8 @@
     #  - state: equipped-head-unshaded-dog
     #    shader: unshaded
   - type: PointLight
-    color: "#adffe6"
+    radius: 6
+    color: "#ffbe93"
   - type: PressureProtection
     highPressureMultiplier: 0.08
     lowPressureMultiplier: 1000
@@ -479,7 +482,8 @@
     #  - state: equipped-head-unshaded-resomi
     #    shader: unshaded
   - type: PointLight
-    color: "#ffdbad"
+    radius: 6
+    color: "#faedae"
   - type: PressureProtection
     highPressureMultiplier: 0.1
     lowPressureMultiplier: 1000

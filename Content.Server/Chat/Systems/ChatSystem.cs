@@ -27,6 +27,7 @@ using Content.Shared.Players;
 using Content.Shared.Players.RateLimiting;
 using Content.Shared.Popups;
 using Content.Shared.Radio;
+using Content.Shared.Radio.Components;
 // Starlight Start
 using Content.Shared.Speech;
 using Content.Shared.Station.Components;
@@ -703,44 +704,51 @@ public sealed partial class ChatSystem : SharedChatSystem
         || (CultureInfo.CurrentCulture.IsNeutralCulture && CultureInfo.CurrentCulture.Name == "en")); // Starlight
 
 
-        foreach (var (session, data) in GetRecipients(source, WhisperMuffledRange))
+        // Far Horizons Start - skip local whisper when using subdermal radio
+        if (channel == null
+            || !TryComp<IntrinsicRadioTransmitterComponent>(source, out var subdermalRadio)
+            || !subdermalRadio.Channels.Contains(channel.ID))
         {
-            if (session.AttachedEntity is not { Valid: true } listener) // Starlight-edit: Languages
-                continue;
-
-            if (MessageRangeCheck(session, data, range) != MessageRangeCheckResult.Full)
-                continue; // Won't get logged to chat, and ghosts are too far away to see the pop-up, so we just won't send it to them.
-
-            // Starlight - Start
-            var canUnderstandLanguage = _language.CanUnderstand(listener, language.ID);
-            // How the entity perceives the message depends on whether it can understand its language
-            var perceivedMessage = canUnderstandLanguage ? message.Text : languageObfuscatedMessage; // Starlight
-            var obfuscated = canUnderstandLanguage != true;
-
-            // Result is the intermediate message derived from the perceived one via obfuscation
-            // Wrapped message is the result wrapped in an "x says y" string
-            string result, wrappedMessage;
-            if (data.Range <= WhisperClearRange || data.Observer)
+            foreach (var (session, data) in GetRecipients(source, WhisperMuffledRange))
             {
-                // Scenario 1: the listener can clearly understand the message
-                result = perceivedMessage;
-                wrappedMessage = WrapWhisperMessage(source, "chat-manager-entity-whisper-wrap-message", name, result, language, obfuscated);
-            }
-            else if (_examineSystem.InRangeUnOccluded(source, listener, WhisperMuffledRange))
-            {
-                // Scenario 2: if the listener is too far, they only hear fragments of the message
-                result = ObfuscateMessageReadability(perceivedMessage);
-                wrappedMessage = WrapWhisperMessage(source, "chat-manager-entity-whisper-wrap-message", nameIdentity, result, language, obfuscated);
-            }
-            else
-            {
-                // Scenario 3: If listener is too far and has no line of sight, they can't identify the whisperer's identity
-                result = ObfuscateMessageReadability(perceivedMessage);
-                wrappedMessage = WrapWhisperMessage(source, "chat-manager-entity-whisper-unknown-wrap-message", string.Empty, result, language, obfuscated);
-            }
+                if (session.AttachedEntity is not { Valid: true } listener) // Starlight-edit: Languages
+                    continue;
 
-            _chatManager.ChatMessageToOne(ChatChannel.Whisper, result, wrappedMessage, source, false, session.Channel);
-            // Starlight - End
+                if (MessageRangeCheck(session, data, range) != MessageRangeCheckResult.Full)
+                    continue; // Won't get logged to chat, and ghosts are too far away to see the pop-up, so we just won't send it to them.
+
+                // Starlight - Start
+                var canUnderstandLanguage = _language.CanUnderstand(listener, language.ID);
+                // How the entity perceives the message depends on whether it can understand its language
+                var perceivedMessage = canUnderstandLanguage ? message.Text : languageObfuscatedMessage; // Starlight
+                var obfuscated = canUnderstandLanguage != true;
+
+                // Result is the intermediate message derived from the perceived one via obfuscation
+                // Wrapped message is the result wrapped in an "x says y" string
+                string result, wrappedMessage;
+                if (data.Range <= WhisperClearRange || data.Observer)
+                {
+                    // Scenario 1: the listener can clearly understand the message
+                    result = perceivedMessage;
+                    wrappedMessage = WrapWhisperMessage(source, "chat-manager-entity-whisper-wrap-message", name, result, language, obfuscated);
+                }
+                else if (_examineSystem.InRangeUnOccluded(source, listener, WhisperMuffledRange))
+                {
+                    // Scenario 2: if the listener is too far, they only hear fragments of the message
+                    result = ObfuscateMessageReadability(perceivedMessage);
+                    wrappedMessage = WrapWhisperMessage(source, "chat-manager-entity-whisper-wrap-message", nameIdentity, result, language, obfuscated);
+                }
+                else
+                {
+                    // Scenario 3: If listener is too far and has no line of sight, they can't identify the whisperer's identity
+                    result = ObfuscateMessageReadability(perceivedMessage);
+                    wrappedMessage = WrapWhisperMessage(source, "chat-manager-entity-whisper-unknown-wrap-message", string.Empty, result, language, obfuscated);
+                }
+
+                _chatManager.ChatMessageToOne(ChatChannel.Whisper, result, wrappedMessage, source, false, session.Channel);
+                // Starlight - End
+            }
+            // Far Horizons End
         }
 
         var replayWrap = WrapWhisperMessage(source, "chat-manager-entity-whisper-wrap-message", name, message.Text, language); // Starlight-edit: Languages
