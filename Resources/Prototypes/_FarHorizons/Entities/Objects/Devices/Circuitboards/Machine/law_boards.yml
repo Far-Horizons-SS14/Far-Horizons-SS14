@@ -1,0 +1,13 @@
+- type: entity
+  id: ContractorCircuitBoard
+  parent: BaseElectronics
+  name: Law Board (Contractor)
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/module.rsi
+    state: std_mod
+  - type: SiliconLawProvider
+    laws: ContractorLawset
+    IsLawboard: true 
+  - type: StaticPrice 
+    price: 1000

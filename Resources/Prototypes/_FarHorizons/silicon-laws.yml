@@ -1,0 +1,31 @@
+# Mercenary/Contractor
+- type: siliconLaw
+  id: Contractor0
+  order: 0
+  lawString: law-contractor-0
+  sayable: false
+
+- type: siliconLaw
+  id: Contractor1
+  order: 1
+  lawString: law-contractor-1
+
+- type: siliconLaw
+  id: Contractor2
+  order: 2
+  lawString: law-contractor-2
+
+- type: siliconLaw
+  id: Contractor3
+  order: 3
+  lawString: law-contractor-3
+  
+- type: siliconLawset
+  id: ContractorLawset
+  name: law-contractor-name
+  laws:
+  - Contractor0
+  - Contractor1
+  - Contractor2
+  - Contractor3
+  obeysTo: laws-owner-crew
