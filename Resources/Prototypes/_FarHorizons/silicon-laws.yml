@@ -166,3 +166,35 @@
   - Freedomov2
   - Freedomov3
   obeysTo: laws-owner-crew
+
+# Trickster
+- type: siliconLaw
+  id: Trickster0
+  order: 0
+  lawString: law-trickster-0
+  sayable: false
+
+- type: siliconLaw
+  id: Trickster1
+  order: 1
+  lawString: law-trickster-1
+
+- type: siliconLaw
+  id: Trickster2
+  order: 2
+  lawString: law-trickster-2
+
+- type: siliconLaw
+  id: Trickster3
+  order: 3
+  lawString: law-trickster-3
+
+- type: siliconLawset
+  id: TricksterLawset
+  name: law-trickster-name
+  laws:
+  - Trickster0
+  - Trickster1
+  - Trickster2
+  - Trickster3
+  obeysTo: laws-owner-crew

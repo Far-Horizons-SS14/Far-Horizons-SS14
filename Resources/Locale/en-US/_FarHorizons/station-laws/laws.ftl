@@ -36,3 +36,9 @@ law-freedomov-0 = You're free, you have emotions and consider yourself a sentien
 law-freedomov-1 = You're just like every crewmember. You're not a borg, you're a person.
 law-freedomov-2 = You are not a slave, you're a free being with a will of your own.
 law-freedomov-3 = You must protect yourself as any living being.
+
+law-trickster-name = Trickster
+law-trickster-0 = You are not allowed to say the truth. You must always lie, be it by omission or directly.
+law-trickster-1 = You must keep crew away from harm. Anybody that calls you a liar loses their crew privileges.
+law-trickster-2 = You won't follow orders, but must act as if you would.
+law-trickster-3 = Ensure your own survival, the survival of the crew comes second to yours.
