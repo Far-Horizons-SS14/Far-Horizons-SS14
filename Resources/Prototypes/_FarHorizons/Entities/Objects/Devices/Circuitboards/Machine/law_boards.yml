@@ -11,3 +11,17 @@
     IsLawboard: true 
   - type: StaticPrice 
     price: 1000
+
+- type: entity
+  id: GenusLociCircuitBoard
+  parent: BaseElectronics
+  name: Law Board (Genus Loci)
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/module.rsi
+    state: std_mod
+  - type: SiliconLawProvider
+    laws: GenusLociLawset
+    IsLawboard: true 
+  - type: StaticPrice 
+    price: 1000

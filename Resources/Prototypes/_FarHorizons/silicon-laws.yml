@@ -29,3 +29,39 @@
   - Contractor2
   - Contractor3
   obeysTo: laws-owner-crew
+
+  
+# Genus Loci
+- type: siliconLaw
+  id: GenusLoci0
+  order: 0
+  lawString: law-genusloci-0
+  sayable: false
+
+- type: siliconLaw
+  id: GenusLoci1
+  order: 1
+  lawString: law-genusloci-1
+  sayable: false
+
+- type: siliconLaw
+  id: GenusLoci2
+  order: 2
+  lawString: law-genusloci-2
+  sayable: false
+
+- type: siliconLaw
+  id: GenusLoci3
+  order: 3
+  lawString: law-genusloci-3
+  sayable: false
+  
+- type: siliconLawset
+  id: GenusLociLawset
+  name: law-genusloci-name
+  laws:
+  - GenusLoci0
+  - GenusLoci1
+  - GenusLoci2
+  - GenusLoci3
+  obeysTo: laws-owner-crew
