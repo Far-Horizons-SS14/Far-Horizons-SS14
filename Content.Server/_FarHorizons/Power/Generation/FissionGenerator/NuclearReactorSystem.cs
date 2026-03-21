@@ -291,6 +291,7 @@ public sealed class NuclearReactorSystem : EntitySystem
         var ControlRods = 0;
         var AvgControlRodInsertion = 0f;
         var TempChange = 0f;
+        long NeutronCount = 0;
 
         var transferVolume = CalculateTransferVolume(inlet.Air.Volume, inlet, outlet, args.dt);
         var GasInput = inlet.Air.RemoveVolume(transferVolume);
@@ -308,6 +309,7 @@ public sealed class NuclearReactorSystem : EntitySystem
         if (comp.RetractPortState == SignalState.Momentary)
             comp.RetractPortState = SignalState.Low;
 
+        comp.SimTime.Restart();
         // Record of neutron movement for this tick
         var flux = new List<(ReactorNeutron neutron, Vector2i source, Vector2i? destination)>();
         for (var x = 0; x < gridWidth; x++)
@@ -360,6 +362,14 @@ public sealed class NuclearReactorSystem : EntitySystem
                 }
 
                 comp.NeutronGrid[x, y] = comp.FluxGrid[x, y].Count;
+                NeutronCount += comp.FluxGrid[x, y].Count;
+
+                if(comp.SimTime.Elapsed.TotalMilliseconds > 500)
+                {
+                    QueueDel(uid);
+                    _adminLog.Add(LogType.EntityDelete, LogImpact.Extreme, $"{ToPrettyString(uid):reactor} simulation took too long ({comp.SimTime.Elapsed.TotalMilliseconds} ms).");
+                    return;
+                }
             }
         }
 
@@ -372,6 +382,8 @@ public sealed class NuclearReactorSystem : EntitySystem
                 comp.FluxGrid[destination.Value.X, destination.Value.Y].Add(neutron);
         }
 
+        comp.NanosElapsed = comp.SimTime.Elapsed.TotalNanoseconds;
+        comp.NeutronCount = NeutronCount;
         AvgControlRodInsertion /= ControlRods;
 
         // Sound for the control rods moving, basically an audio cue that the reactor's doing something important
@@ -567,7 +579,7 @@ public sealed class NuclearReactorSystem : EntitySystem
         if (T != null)
             _atmosphereSystem.Merge(T, comp.AirContents);
 
-        _adminLog.Add(LogType.Explosion, LogImpact.High, $"{ToPrettyString(uid):reactor} catastrophically overloads, meltdown badness: {MeltdownBadness}");
+        _adminLog.Add(LogType.Explosion, LogImpact.Extreme, $"{ToPrettyString(uid):reactor} catastrophically overloads, meltdown badness: {MeltdownBadness}");
 
         // You did not see graphite on the roof. You're in shock. Report to medical.
         for (var i = 0; i < _random.Next(10, 30); i++)
@@ -834,16 +846,26 @@ public sealed class NuclearReactorSystem : EntitySystem
                     continue;
                 }
 
-                dict.Add(new(x, y), new ReactorSlotBUIData
+                // There's quite a few edge cases where this could go wrong, so this try-catch is to stop it from taking the server down with it
+                // Known cases: deletion of reactor, changing of prefab, deletion of a rod
+                try
                 {
-                    Temperature = reactorPart.Temperature,
-                    NeutronCount = reactor.NeutronGrid[x, y],
-                    IconName = reactorPart.IconStateInserted,
-                    PartName = Identity.Name(reactor.GridEntities[new(x, y)], _entityManager),
-                    NeutronRadioactivity = reactorPart.Properties.NeutronRadioactivity,
-                    Radioactivity = reactorPart.Properties.Radioactivity,
-                    SpentFuel = reactorPart.Properties.FissileIsotopes
-                });
+                    dict.Add(new(x, y), new ReactorSlotBUIData
+                    {
+                        Temperature = reactorPart.Temperature,
+                        NeutronCount = reactor.NeutronGrid[x, y],
+                        IconName = reactorPart.IconStateInserted,
+                        PartName = Identity.Name(reactor.GridEntities[new(x, y)], _entityManager),
+                        NeutronRadioactivity = reactorPart.Properties.NeutronRadioactivity,
+                        Radioactivity = reactorPart.Properties.Radioactivity,
+                        SpentFuel = reactorPart.Properties.FissileIsotopes
+                    });
+                }
+                catch
+                {
+                    _uiSystem.CloseUi(uid, NuclearReactorUiKey.Key);
+                    return;
+                }
             }
         }
 

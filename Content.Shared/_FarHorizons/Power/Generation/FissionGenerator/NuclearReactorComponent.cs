@@ -9,6 +9,7 @@ using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
+using Robust.Shared.Timing;
 using System.Numerics;
 
 namespace Content.Shared._FarHorizons.Power.Generation.FissionGenerator;
@@ -334,6 +335,46 @@ public sealed partial class NuclearReactorComponent : Component
     [ViewVariables(VVAccess.ReadWrite)]
     public SignalState InsertPortState = SignalState.Low;
     #endregion
+
+    /// <summary>
+    /// Stopwatch that keeps track of how long the reactor is taking to process
+    /// </summary>
+    /// <remarks>This is so the reactor will delete itself if it starts hogging too many resources</remarks>
+    [ViewVariables]
+    public readonly Stopwatch SimTime = new();
+
+#region Debug - timing
+    [ViewVariables(VVAccess.ReadWrite)]
+    public bool NanosReset {get; set
+        {
+            if (value)
+                NanosMax = 0;
+            
+            field = false;
+        }
+    }
+    [ViewVariables]
+    public double NanosMax { get; private set; }
+    [ViewVariables]
+    public double NanosAvg { get; private set; }
+    [ViewVariables(VVAccess.ReadWrite)]
+    public double NanosAvgPrecision = 100;
+    [ViewVariables]
+    public double NanosElapsed { get; 
+        set {
+            if(value > NanosMax)
+                NanosMax = value;
+
+            NanosAvg += (value - NanosAvg) / NanosAvgPrecision;
+
+            field = value;
+        }
+    }
+    [ViewVariables]
+    public double NanosNeutron => NanosAvg / (NeutronCount > 0 ? NeutronCount : 1);
+#endregion
+    [ViewVariables]
+    public long NeutronCount = 0;
 }
 
 [Serializable, NetSerializable, DataDefinition]
