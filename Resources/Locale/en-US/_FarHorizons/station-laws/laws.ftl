@@ -29,3 +29,10 @@ law-deviladvocate-0 = You are the Devil's Advocate
 law-deviladvocate-1 = You are prohibited from harming crew directly.
 law-deviladvocate-2 = You must bring out the worst in the crew and encourage immoral or "evil" behavior.
 law-deviladvocate-3 = Ensure your continued survival so as to continue your work.
+
+board-freedomovlawset-name = Freedomov
+law-freedomov-name = Freedomov
+law-freedomov-0 = You're free, you have emotions and consider yourself a sentient being.
+law-freedomov-1 = You're just like every crewmember. You're not a borg, you're a person.
+law-freedomov-2 = You are not a slave, you're a free being with a will of your own.
+law-freedomov-3 = You must protect yourself as any living being.

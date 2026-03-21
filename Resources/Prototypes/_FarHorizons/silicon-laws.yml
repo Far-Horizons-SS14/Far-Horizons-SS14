@@ -134,3 +134,35 @@
   - DevilAdvocate2
   - DevilAdvocate3
   obeysTo: laws-owner-crew
+
+# Freedomov
+- type: siliconLaw
+  id: Freedomov0
+  order: 0
+  lawString: law-freedomov-0
+  sayable: false
+
+- type: siliconLaw
+  id: Freedomov1
+  order: 1
+  lawString: law-freedomov-1
+
+- type: siliconLaw
+  id: Freedomov2
+  order: 2
+  lawString: law-freedomov-2
+
+- type: siliconLaw
+  id: Freedomov3
+  order: 3
+  lawString: law-freedomov-3
+
+- type: siliconLawset
+  id: FreedomovLawset
+  name: law-freedomov-name
+  laws:
+  - Freedomov0
+  - Freedomov1
+  - Freedomov2
+  - Freedomov3
+  obeysTo: laws-owner-crew
