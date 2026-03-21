@@ -1,4 +1,5 @@
 using Content.Server.Ghost.Roles.Components;
+using Content.Server.Mind;
 using Content.Server.NPC.Components;
 using Content.Server.NPC.HTN;
 using Content.Server.StationEvents.Components;
@@ -14,6 +15,7 @@ namespace Content.Server._FarHorizons.Body;
 public sealed partial class BrainTransferSystem : EntitySystem
 {
     [Dependency] private readonly IComponentFactory _factory = default!;
+    [Dependency] private readonly MindSystem _mind = default!;
     public override void Initialize()
     {
         base.Initialize();
@@ -29,6 +31,8 @@ public sealed partial class BrainTransferSystem : EntitySystem
             var comp = _factory.GetComponent(component.Value);
             AddComp(args.Body, comp);
         }
+        ent.Comp.StoredComponents.Clear();
+        _mind.MakeSentient(ent.Owner);
     }
 
     private void OnBrainRemoved(Entity<BrainExtraComponent> ent, ref BrainRemoved args)
