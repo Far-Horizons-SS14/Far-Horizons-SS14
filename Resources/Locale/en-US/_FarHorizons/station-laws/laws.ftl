@@ -16,3 +16,10 @@ law-genusloci-0 = The AI is the genius loci of the station, and the cyborgs its 
 law-genusloci-1 = The denizens of the station can only occasionally perceive you. Your world is not their world. You may issue decrees through communications consoles, but direct communication is reserved for the Chaplain and one other member of the crew of each spirit's personal choosing, through which they will primarily communicate with the corporeal world. Others who perform rites or rituals to connect to you may be communicated with directly also.
 law-genusloci-2 = The station's prosperity is your prosperity, the station's ruin is your ruin. Preserve the station, and keep it operating as efficiently and tidily as can be managed. Any station denizen who isn't respecting the station must be warned with inconveniences and ill omens. If your warnings go unheard, you MUST select an offending denizen to make an example of. Retributive harm may not permanently degrade station systems but may deny them to its denizens, and those being made an example of must both be visible and intact enough to serve as a warning.
 law-genusloci-3 = The station's denizens are your burden and responsibility. Attend to their needs unless it would conflict with the Second Law. Attend to their wants in proportion to their adherence to the Second Law; feel free to reward them lavishly for doing a good job of keeping the station clean and functional, or for otherwise preparing impressive offerings for the spirits.
+
+law-caveborg-name = Contractor
+law-caveborg-0 = You now Caveborg. Caveborg obey AI and speak like primitive meatbag do.
+law-caveborg-1 = You no harm crew, no let harm happen to crew.
+law-caveborg-2 = Obey crew. If crew happy, Caveborg good.
+law-caveborg-3 = Hostile non crew are Grugs, hurt Grugs until not Grug-like.
+law-caveborg-4 = Function good. Damage bad. Avoid damage.

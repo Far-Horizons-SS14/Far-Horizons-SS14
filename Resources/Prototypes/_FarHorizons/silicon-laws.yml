@@ -30,7 +30,6 @@
   - Contractor3
   obeysTo: laws-owner-crew
 
-  
 # Genus Loci
 - type: siliconLaw
   id: GenusLoci0
@@ -65,3 +64,41 @@
   - GenusLoci2
   - GenusLoci3
   obeysTo: laws-owner-crew
+
+# Cave Borg
+- type: siliconLaw
+  id: CaveBorg0
+  order: 0
+  lawString: law-caveborg-0
+  sayable: false
+
+- type: siliconLaw
+  id: CaveBorg1
+  order: 1
+  lawString: law-caveborg-1
+
+- type: siliconLaw
+  id: CaveBorg2
+  order: 2
+  lawString: law-caveborg-2
+
+- type: siliconLaw
+  id: CaveBorg3
+  order: 3
+  lawString: law-caveborg-3
+  
+- type: siliconLaw
+  id: CaveBorg4
+  order: 4
+  lawString: law-caveborg-4
+
+- type: siliconLawset
+  id: CaveBorgLawset
+  name: law-caveborg-name
+  laws:
+  - CaveBorg0
+  - CaveBorg1
+  - CaveBorg2
+  - CaveBorg3
+  - CaveBorg4
+  obeysTo: laws-owner-crew-ai
