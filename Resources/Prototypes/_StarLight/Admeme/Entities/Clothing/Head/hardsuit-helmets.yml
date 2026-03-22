@@ -26,19 +26,19 @@
   - type: ToggleableVisuals  # FH: hardsuit fixes
     clothingVisuals:  # TODO: Requires actual sprites
       head:
-        - state: off-equipped-HELMET
+        - state: on-equipped-HELMET
       head-vox:
-        - state: off-equipped-HELMET-vox
+        - state: on-equipped-HELMET-vox
       head-vulpkanin:
-        - state: off-equipped-HELMET-vulpkanin
+        - state: on-equipped-HELMET-vulpkanin
       head-cyclorite:
-        - state: off-equipped-HELMET-cyclorite
+        - state: on-equipped-HELMET-cyclorite
       head-resomi:
-        - state: off-equipped-HELMET-resomi
+        - state: on-equipped-HELMET-resomi
       # head-felionoid:
-      #   - state: off-equipped-HELMET-felionoid
+      #   - state: on-equipped-HELMET-felionoid
       head-avali:
-        - state: off-equipped-HELMET-avali
+        - state: on-equipped-HELMET-avali
   - type: Item
     size: Small
   - type: PointLight
@@ -73,7 +73,7 @@
   - type: ToggleableVisuals  # FH: hardsuit fixes
     clothingVisuals:  # TODO: Requires actual sprites
       head:
-        - state: equipped-HELMET
+        - state: on-equipped-HELMET
   - type: PointLight
     color: "#addbff"
   - type: Pierceable
