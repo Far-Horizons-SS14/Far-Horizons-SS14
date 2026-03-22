@@ -57,3 +57,4 @@ jobs:
         if: always() # Ensures results are uploaded even if tests fail
         with:
           files: "**/results.trx"
+          comment_mode: failures
