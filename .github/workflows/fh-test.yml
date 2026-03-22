@@ -50,6 +50,10 @@ jobs:
           sudo mkswap $SWAP_PATH
           sudo swapon $SWAP_PATH
       - uses: ./.github/actions/setup-test-env
-      - run: dotnet test --no-build -c DebugOpt Content.IntegrationTests/Content.IntegrationTests.csproj --settings .farhorizons/.integrationtests --logger "console;verbosity=normal"
+      - run: dotnet test --no-build -c DebugOpt Content.IntegrationTests/Content.IntegrationTests.csproj --settings .farhorizons/.integrationtests --logger "trx;LogFileName=results.trx"
         env:
           DOTNET_gcServer: "1"
+      - uses: EnricoMi/publish-unit-test-result-action@v2
+        if: always() # Ensures results are uploaded even if tests fail
+        with:
+          files: "**/test-results.trx"

@@ -7,10 +7,12 @@ using Content.Shared.Clothing;
 using Content.Shared.GameTicking;
 using Content.Shared.Humanoid.Markings;
 using Content.Shared.Humanoid.Prototypes;
+using Content.Shared.Inventory;
 using Content.Shared.Preferences;
 using Content.Shared.Preferences.Loadouts;
 using Content.Shared.Roles;
 using Content.Shared.Starlight.CCVar; // Starlight-edit
+using Content.Shared.Station;
 using Content.Shared.Traits;
 using Robust.Client.Player;
 using Robust.Client.ResourceManagement;
@@ -37,6 +39,8 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
     [Dependency] private readonly MarkingManager _markings = default!;
     [Dependency] private readonly ISharedFactionManager _factions = default!; // Far Horizons
     [UISystemDependency] private readonly GuidebookSystem _guide = default!;
+    [UISystemDependency] private readonly InventorySystem _inventory = default!; // Far Horizons
+    [UISystemDependency] private readonly SharedStationSpawningSystem _spawn = default!; // Far Horizons
 
     private CharacterSetupGui? _characterSetup;
     private HumanoidProfileEditor? _profileEditor;

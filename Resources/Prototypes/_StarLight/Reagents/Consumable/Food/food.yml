@@ -10,11 +10,16 @@
       effects:
       - !type:HealthChange
         damage:
-          groups:
-            Brute: -2
-            Burn: -2
-            Toxin: -2
-            Genetic: -2
+          types: # Far Horizons changed to types
+            Blunt: -0.6
+            Slash: -0.6
+            Piercing: -0.6
+            Heat: -0.6
+            Shock: -0.6
+            Cold: -0.6
+            Poison: -1
+            Radiation: -1
+            Cellular: -2
 
 # basically the same as protein, but having a separate chemical allows us to extract it from peas
 - type: reagent
@@ -31,8 +36,10 @@
       - !type:HealthChange
         probability: 0.25
         damage:
-          groups:
-            Brute: -0.8
+          types: # Far Horizons changed to types
+            Blunt: -0.25
+            Slash: -0.25
+            Piercing: -0.25
       - !type:ModifyBloodLevel
         amount: 1
       - !type:SatiateHunger
@@ -81,8 +88,10 @@
       - !type:HealthChange
         probability: 0.25
         damage:
-          groups:
-            Brute: -0.4
+          types: # Far Horizons changed to types
+            Blunt: -0.13
+            Slash: -0.13
+            Piercing: -0.13
       - !type:SatiateHunger
   pricePerUnit: 3
   footstepSound:

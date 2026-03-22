@@ -51,7 +51,7 @@ public sealed partial class OrganSystem : EntitySystem
     {
         if (!TryComp<DamageableComponent>(args.Target, out var bodyDamageable)) return;
 
-        var change = _damageableSystem.ChangeDamage((args.Target, bodyDamageable), ent.Comp.Damage, true, false);
+        var change = _damageableSystem.ChangeDamage((args.Target, bodyDamageable), _damageableSystem.GetPositiveDamage(ent), true, false);
         _damageableSystem.ChangeDamage(ent.AsNullable(), change.Invert(), true, false);
     }
     private void OnOrganExtracted(Entity<DamageableComponent> ent, ref OrganGotRemovedEvent args)

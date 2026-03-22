@@ -6,6 +6,7 @@ using Content.Shared._FarHorizons.Silicons.IPC.Components;
 using Content.Shared.CCVar;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Eye.Blinding.Components;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
@@ -36,6 +37,7 @@ public sealed partial class IPCMenu : FancyWindow
     private readonly NameModifierSystem _nameModifier;
     private readonly PowerCellSystem _powerCell;
     private readonly SharedBatterySystem _batterySystem;
+    private readonly DamageableSystem _damageable;
 
     public Action? BrainButtonPressed;
     public Action? EjectBatteryButtonPressed;
@@ -114,6 +116,7 @@ public sealed partial class IPCMenu : FancyWindow
         _nameModifier = _entity.System<NameModifierSystem>();
         _powerCell = _entity.System<PowerCellSystem>();
         _batterySystem = _entity.System<SharedBatterySystem>();
+        _damageable = _entity.System<DamageableSystem>();
 
         _maxNameLength = _cfgManager.GetCVar(CCVars.MaxNameLength);
 
@@ -172,7 +175,7 @@ public sealed partial class IPCMenu : FancyWindow
 
         var damage = new DamageSpecifier();
         if (Damage != null)
-            damage = Damage.Damage;
+            damage = _damageable.GetPositiveDamage((Entity, Damage));
 
         var temp = 0f;
         LocId fanMode = "";

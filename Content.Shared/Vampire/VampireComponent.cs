@@ -1,5 +1,6 @@
 using Content.Shared.Chat.Prototypes;
 using Content.Shared.Damage;
+using Content.Shared.Damage.Prototypes;
 using Content.Shared.FixedPoint;
 using Content.Shared.Metabolism;
 using Content.Shared.Store;
@@ -46,11 +47,11 @@ public sealed partial class VampireComponent : Component
 
     public static readonly DamageSpecifier MeleeDamage = new()
     {
-        DamageDict = new Dictionary<string, FixedPoint2>() { { "Slash", 10 } }
+        DamageDict = new Dictionary<ProtoId<DamageTypePrototype>, FixedPoint2>() { { "Slash", 10 } }
     };
     public static readonly DamageSpecifier HolyDamage = new()
     {
-        DamageDict = new Dictionary<string, FixedPoint2>() { { "Burn", 10 } }
+        DamageDict = new Dictionary<ProtoId<DamageTypePrototype>, FixedPoint2>() { { "Burn", 10 } }
     };
 
     [ValidatePrototypeId<EntityPrototype>]

@@ -31,4 +31,8 @@ public sealed partial class PassiveDamageComponent : Component
 
     [DataField("nextDamage", customTypeSerializer: typeof(TimeOffsetSerializer)), ViewVariables(VVAccess.ReadWrite)]
     public TimeSpan NextDamage = TimeSpan.Zero;
+
+    // Far Horizons - resotred damage cap
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    public FixedPoint2 DamageCap = 0;
 }

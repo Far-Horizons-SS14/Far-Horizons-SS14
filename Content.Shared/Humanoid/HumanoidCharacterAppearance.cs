@@ -183,14 +183,14 @@ public sealed partial class HumanoidCharacterAppearance : IEquatable<HumanoidCha
 
             var categoryMarkings = new Dictionary<HumanoidVisualLayers, List<Marking>>();
 
-            foreach (var layer in layers)
+            foreach (var layer in chosenLayers)
             {
                 var group = protoMan.Index(markingData.Value.Group);
 
                 if (!group.Limits.TryGetValue(layer, out var limitData))
                     continue;
 
-                if(limitData.Default == null || limitData.Default.Count == 0)
+                if(limitData.Default.Count == 0)
                 {
                     if(layer is HumanoidVisualLayers.Hair)
                         if (random.Prob(0.20f))
@@ -216,10 +216,12 @@ public sealed partial class HumanoidCharacterAppearance : IEquatable<HumanoidCha
                 var newMarkingList = new List<Marking>();
                 foreach (var chosenMarking in chosenMarkings)
                 {
-                    newMarkingList.Add(new Marking(chosenMarking.Key, 3));
+                    if (chosenMarking.Value.Coloring.Layers == null) continue;
+                    newMarkingList.Add(new Marking(chosenMarking.Value.ID, chosenMarking.Value.Coloring.Layers.Count));
                 }
 
-                categoryMarkings[layer] = newMarkingList;
+                if (newMarkingList.Count > 0)
+                    categoryMarkings[layer] = newMarkingList;
             }
 
             if (categoryMarkings.Count > 0)

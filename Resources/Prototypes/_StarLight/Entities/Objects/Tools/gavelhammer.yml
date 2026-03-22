@@ -11,8 +11,10 @@
   - type: MeleeWeapon
     attackRate: 0.4
     damage:
-      groups:
-        Brute: 1
+      types:
+        Poison: 0.3
+        Blunt: 0.3
+        Piercing: 0.3
   - type: Item
     size: Small
   - type: GavelHammer

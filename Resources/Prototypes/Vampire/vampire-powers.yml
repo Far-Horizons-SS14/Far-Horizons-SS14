@@ -79,13 +79,16 @@
   - type: VampireDeathsEmbrace
     cost: 100
     coffinHealing:
-      groups:
-        Toxin: 2
-        Genetic: 2
-        Airloss: 2
-        Brute: 2
-      types:
-        Burn: 1
+      types: # Far Horizons changed to types
+        Asphyxiation: 1
+        Bloodloss: 1
+        Blunt: 0.6
+        Slash: 0.6
+        Piercing: 0.6
+        Cellular: 2
+        Poison: 1
+        Radiation: 1
+        Heat: 1
         Cold: 2
         Shock: 2
         Caustic: 2

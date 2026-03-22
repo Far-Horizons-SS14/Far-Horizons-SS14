@@ -1,3 +1,4 @@
+using System.Linq;
 using Content.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.XAML;
 using Robust.Client.UserInterface.Controls;
@@ -10,6 +11,7 @@ using Content.Shared.PowerCell.Components;
 using Content.Shared._FarHorizons.ReagantDraw.Components;
 using Content.Shared.Power.Components;
 using Content.Shared.Chemistry.EntitySystems;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Power.EntitySystems;
 using Robust.Shared.Containers;
 using Robust.Shared.Utility;
@@ -23,6 +25,7 @@ public sealed partial class VehicleEquipmentMenu : FancyWindow
     private readonly SharedSolutionContainerSystem _solution;
     private readonly SharedContainerSystem _container;
     private readonly SharedBatterySystem _battery;
+    private readonly DamageableSystem _damageable;
     public event Action<NetEntity, EquipmentType>? OnUninstallButtonPressed;
     private readonly Dictionary<EquipmentType, EquipmentRow> _rows = new();
     private static readonly Color _green = Color.FromHex("#00FF00");
@@ -61,6 +64,7 @@ public sealed partial class VehicleEquipmentMenu : FancyWindow
         _solution = _entityManager.System<SharedSolutionContainerSystem>();
         _container = _entityManager.System<SharedContainerSystem>();
         _battery = _entityManager.System<SharedBatterySystem>();
+        _damageable = _entityManager.System<DamageableSystem>();
     }
 
     public void SetEntity(EntityUid entity)
@@ -89,7 +93,8 @@ public sealed partial class VehicleEquipmentMenu : FancyWindow
 
         var Integrity = 0;
         if(Damage != null)
-            Integrity = Math.Clamp((int) ((Vehicle.Health-Damage.TotalDamage) / Vehicle.Health * 100), 0, 100);
+            Integrity = Math.Clamp((int) ((Vehicle.Health-_damageable.GetPositiveDamage((Entity, Damage)).DamageDict
+                    .Select(p => (float)p.Value).Sum()) / Vehicle.Health * 100), 0, 100);
 
         var color = Color.InterpolateBetween(_red, _green, (float)Integrity / 100);
 
@@ -196,7 +201,8 @@ public sealed partial class VehicleEquipmentMenu : FancyWindow
             _entityManager.TryGetComponent<VehicleEquipmentComponent>(mod, out var ve))
         {
             var integrity = Math.Clamp(
-                (int)((ve.Health - damage.TotalDamage) * 100 / ve.Health),
+                (int)((ve.Health - _damageable.GetPositiveDamage((mod.Value, damage)).DamageDict
+                    .Select(p => (float)p.Value).Sum()) * 100 / ve.Health),
                 0, 100);
 
             var color = Color.InterpolateBetween(_red, _green, integrity / 100f);

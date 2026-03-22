@@ -611,7 +611,9 @@ public sealed partial class ChangelingSystem : EntitySystem
         if (!args.DamageIncreased)
             return;
 
-        target.Damage.ClampMax(200); // we never die. UNLESS??
+        var allDamage = _damage.GetPositiveDamage((ent, target));
+        allDamage.ClampMax(200);
+        _damage.SetDamage((ent, target), allDamage); // we never die. UNLESS??
     }
 
     private void OnComponentRemove(Entity<ChangelingComponent> ent, ref ComponentRemove args) => RemoveAllChangelingEquipment(ent, ent.Comp);

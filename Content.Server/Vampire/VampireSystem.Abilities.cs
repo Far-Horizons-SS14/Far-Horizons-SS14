@@ -28,6 +28,7 @@ using Robust.Shared.Containers;
 using Robust.Shared.Utility;
 using System.Collections.Frozen;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using Content.Shared.Bed.Sleep;
 using Content.Shared.Body;
 using Content.Shared.Flash.Components;
@@ -636,10 +637,9 @@ public sealed partial class VampireSystem
             return;
 
         //Should be around 150 total damage ish
-        if (damageableComponent.TotalDamage < threshold * 0.75)
-        {
+        if (_damageableSystem.GetPositiveDamage((vampire, damageableComponent)).DamageDict.Select(p => (float)p.Value)
+                .Sum() < threshold * 0.75)
             _mobState.ChangeMobState(vampire, MobState.Critical, mobStateComponent, vampire);
-        }
     }
     #endregion
 

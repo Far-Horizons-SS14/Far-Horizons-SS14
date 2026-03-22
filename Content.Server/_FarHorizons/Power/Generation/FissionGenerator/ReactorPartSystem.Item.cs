@@ -1,7 +1,9 @@
 using Content.Server.Atmos.EntitySystems;
 using Content.Shared._FarHorizons.Power.Generation.FissionGenerator;
 using Content.Shared.Atmos;
+using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Examine;
 using Content.Shared.Nutrition;
 using Content.Shared.Radiation.Components;
@@ -12,6 +14,7 @@ public sealed partial class ReactorPartSystem
 {
     [Dependency] private readonly EntityManager _entityManager = default!;
     [Dependency] private readonly SharedPointLightSystem _lightSystem = default!;
+    [Dependency] private readonly DamageableSystem _damageable = default!;
 
     private float _burnDiv => (ReactorPartBurnTemp - ReactorPartHotTemp) / 5; // The 5 is how much heat damage insulated gloves protect from
 
@@ -111,10 +114,10 @@ public sealed partial class ReactorPartSystem
 
         var properties = comp.Properties;
 
-        if (!_entityManager.TryGetComponent<DamageableComponent>(args.Target, out var damageable) || damageable.Damage.DamageDict == null)
+        if (!_entityManager.TryGetComponent<DamageableComponent>(args.Target, out var damageable))
             return;
 
-        var dict = damageable.Damage.DamageDict;
+        var dict = _damageable.GetPositiveDamage((args.Target,damageable)).DamageDict;
 
         var dmgKey = "Radiation";
         var dmg = (properties.NeutronRadioactivity * 20) + (properties.Radioactivity * 10) + (properties.FissileIsotopes * 5);
@@ -148,7 +151,12 @@ public sealed partial class ReactorPartSystem
             // This viloates COE, but if energy is conserved, then pulling out a hot rod will instantly turn the room into an oven
             gasMix.Temperature += 0.1f * DeltaT * component.ThermalMass / _atmosphereSystem.GetHeatCapacity(gasMix, false);
 
-        var burncomp = EnsureComp<DamageOnInteractComponent>(uid);
+        var burncomp = CompOrNull<DamageOnInteractComponent>(uid);
+        if (burncomp is null)
+        {
+            burncomp = AddComp<DamageOnInteractComponent>(uid);
+            burncomp.Damage = new DamageSpecifier(); // Game will crash if damage is unitialized when component is first added
+        }
 
         burncomp.IsDamageActive = component.Temperature > Atmospherics.T0C + ReactorPartHotTemp;
 

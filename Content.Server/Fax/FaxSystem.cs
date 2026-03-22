@@ -336,7 +336,7 @@ public sealed class FaxSystem : EntitySystem
                         stampState,
                         stampedBy,
                         locked ?? false,
-                        senderFaxName
+                        senderFaxName,
                         // Starlight-start
                         slipProduct,
                         slipRequester,
@@ -518,6 +518,7 @@ public sealed class FaxSystem : EntitySystem
                                        paper.StampState,
                                        paper.StampedBy,
                                        paper.EditingDisabled,
+                                       null,
                                        //starlight-start
                                        cargoSlipComponent?.Product.Id,
                                        cargoSlipComponent?.Requester,

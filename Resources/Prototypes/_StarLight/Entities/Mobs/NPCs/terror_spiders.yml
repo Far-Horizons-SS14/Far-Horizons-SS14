@@ -112,9 +112,12 @@
     damage:
       types:
         Poison: -0.07
-      groups:
-        Brute: -0.07
-        Burn: -0.07
+        Blunt: -0.05
+        Piercing: -0.05
+        Slash: -0.05
+        Heat: -0.05
+        Cold: -0.05
+        Shock: -0.05
   - type: NpcFactionMember
     factions:
       - Xeno
@@ -152,12 +155,16 @@
     - Alive
     damageCap: 139
     damage:
-      types:
+      types: # Far Horizons changed to types
         Poison: -0.8
-      groups:
-        Brute: -0.8
-        Burn: -0.8
-        Airloss: -1.5
+        Blunt: -0.25
+        Slash: -0.25
+        Piercing: -0.25
+        Heat: -0.25
+        Shock: -0.25
+        Cold: -0.25
+        Asphyxiation: -0.5
+        Bloodloss: -0.5
   - type: MeleeWeapon
     altDisarm: false
     angle: 0
@@ -211,12 +218,13 @@
     - Alive
     damageCap: 79
     damage:
-      types:
+      types: # Far Horizons changed to types
         Poison: -0.5
-      groups:
-        Brute: -0.5
-        Burn: -0.5
-        Airloss: -1.5
+        Blunt: -0.15
+        Slash: -0.15
+        Piercing: -0.15
+        Asphyxiation: -0.75
+        Bloodloss: -0.75
   - type: MeleeWeapon
     altDisarm: false
     angle: 0
@@ -273,10 +281,14 @@
     damage:
       types:
         Poison: -0.5
-      groups:
-        Brute: -0.5
-        Burn: -0.5
-        Airloss: -1.5
+        Blunt: -0.5
+        Piercing: -0.5
+        Slash: -0.5
+        Heat: -0.5
+        Cold: -0.5
+        Shock: -0.5
+        Bloodloss: -0.5
+        Asphyxiation: -0.5
   - type: MeleeWeapon
     altDisarm: false
     angle: 0
@@ -424,9 +436,12 @@
     damage:
       types:
         Poison: -0.1
-      groups:
-        Brute: -0.1
-        Burn: -0.1
+        Blunt: -0.1
+        Piercing: -0.1
+        Slash: -0.1
+        Heat: -0.1
+        Cold: -0.1
+        Shock: -0.1
 
 # Princess
 
@@ -453,10 +468,14 @@
     damage:
       types:
         Poison: -1
-      groups:
-        Brute: -1
-        Burn: -1
-        Airloss: -2
+        Blunt: -0.5
+        Piercing: -0.5
+        Slash: -0.5
+        Heat: -0.5
+        Cold: -0.5
+        Shock: -0.5
+        Bloodloss: -1
+        Asphyxiation: -1
   - type: MeleeWeapon
     altDisarm: false
     angle: 0

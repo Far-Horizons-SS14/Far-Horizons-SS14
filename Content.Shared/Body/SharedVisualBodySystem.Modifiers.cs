@@ -240,10 +240,8 @@ public abstract partial class SharedVisualBodySystem
                     }
                 }
 
-                foreach (var marking in markings)
-                {
-                    marking.SetColor(color);
-                }
+                for (var i = 0; i < markings.Count; i++)
+                    markings[i] = markings[i].WithColor(color);
             }
 
             Dirty(organ, markingComp);

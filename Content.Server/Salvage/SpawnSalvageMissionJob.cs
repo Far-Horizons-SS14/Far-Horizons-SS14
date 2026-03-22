@@ -148,11 +148,8 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
             if (!air.Space)
             {
                 var weather = _prototypeManager.Index(mission.Weather);
-                if (weather.Weather != null)
-                {
-                    var weatherProto = _prototypeManager.Index(weather.Weather);
-                    _entManager.System<SharedWeatherSystem>().SetWeather(mapId, weatherProto, null);
-                }
+                if (weather.WeatherPrototype != null)
+                    _entManager.System<SharedWeatherSystem>().TrySetWeather(mapId, weather.WeatherPrototype, out _);
             }
             // Far Horisons end
 

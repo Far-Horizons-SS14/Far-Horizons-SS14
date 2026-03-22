@@ -1,3 +1,4 @@
+using System.Linq;
 using Robust.Shared.Random;
 using Robust.Shared.Audio.Systems;
 using Content.Shared.Damage;
@@ -11,6 +12,7 @@ using Content.Shared.Weapons.Melee.Events;
 using Content.Shared.Zombies;
 using Content.Shared.Weapons.Melee;
 using Content.Shared.Damage.Components;
+using Content.Shared.Damage.Systems;
 
 namespace Content.Server.Weapons.Melee.InfectOnMelee;
 
@@ -19,6 +21,7 @@ public sealed class InfectOnMeleeSystem : EntitySystem
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly MobStateSystem _mob = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly DamageableSystem _damageable = default!;
 
     public override void Initialize()
     {
@@ -52,11 +55,11 @@ public sealed class InfectOnMeleeSystem : EntitySystem
         float chance = component.InfectionChance;
         if (TryComp<DamageableComponent>(enemy, out var damage))
         {
-            var totalDamage = damage.TotalDamage;
+            var totalDamage = _damageable.GetPositiveDamage((enemy, damage)).DamageDict.Sum(p => (float)p.Value);
 
             var additionalChance = totalDamage * 0.01f;
 
-            var finalChance = Math.Clamp(chance + additionalChance.Float(), 0f, 1f);
+            var finalChance = Math.Clamp(chance + additionalChance, 0f, 1f);
 
             chance = finalChance;
         }

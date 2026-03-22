@@ -31,6 +31,7 @@ using Content.Shared.Starlight.TextToSpeech;
 using Content.Shared._Starlight.Traits;
 #endregion Starlight
 using Content.Shared._FarHorizons.Factions;
+using Content.Shared.Humanoid.Prototypes;
 using Direction = Robust.Shared.Maths.Direction;
 
 namespace Content.Client.Lobby.UI
@@ -158,7 +159,7 @@ namespace Content.Client.Lobby.UI
 
             ResetButton.OnPressed += args =>
             {
-                SetProfile((HumanoidCharacterProfile?)_preferencesManager.Preferences?.SelectedCharacter, _preferencesManager.Preferences?.SelectedCharacterIndex);
+                ResetToDefault();
             };
 
             SaveButton.OnPressed += args =>
@@ -542,7 +543,7 @@ namespace Content.Client.Lobby.UI
         private void SetDirty()
         {
             // If it equals default then reset the button.
-            if (Profile == null || _savedProfile?.MemberwiseEquals(Profile) == true)
+            if (Profile == null || CharacterSlot is not { } slot || _preferencesManager.Preferences?.GetProfile(slot).MemberwiseEquals(Profile) == true)
             {
                 IsDirty = false;
                 return;
@@ -574,9 +575,8 @@ namespace Content.Client.Lobby.UI
         /// </summary>
         public void ResetToDefault()
         {
-            SetProfile(
-                (HumanoidCharacterProfile?)_preferencesManager.Preferences?.SelectedCharacter,
-                _preferencesManager.Preferences?.SelectedCharacterIndex);
+            if (CharacterSlot is not { } slot) return;
+            SetProfile(_preferencesManager.Preferences?.GetProfile(slot), slot);
         }
 
         /// <summary>
@@ -636,7 +636,7 @@ namespace Content.Client.Lobby.UI
                 return;
             if (!_preferencesManager.Preferences!.TryGetHumanoidInSlot(slot, out var humanoid))
                 return;
-            _savedProfile = humanoid.Clone();
+            //_savedProfile = humanoid.Clone();
             SetProfile(humanoid, slot);
         }
 
@@ -676,10 +676,10 @@ namespace Content.Client.Lobby.UI
             ResetButton.Disabled = Profile is null || !IsDirty;
         }
 
-        private void SetPreviewRotation(Direction direction)
-        {
-            SpriteView.OverrideDirection = (Direction)((int)direction % 4 * 2);
-        }
+        // private void SetPreviewRotation(Direction direction)
+        // {
+        //     SpriteView.OverrideDirection = (Direction)((int)direction % 4 * 2);
+        // }
     }
 }
 

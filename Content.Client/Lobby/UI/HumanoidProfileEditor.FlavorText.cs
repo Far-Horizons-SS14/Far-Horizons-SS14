@@ -7,6 +7,12 @@ public sealed partial class HumanoidProfileEditor
 {
     private bool _allowFlavorText;
 
+    //begin starlight
+    private bool _allowCharacterSecrets;
+    private bool _allowExploitables;
+    private bool _allowRPNotes;
+    //end starlight
+
     private FlavorText.FlavorText? _flavorText;
     private TextEdit? _flavorTextEdit;
 

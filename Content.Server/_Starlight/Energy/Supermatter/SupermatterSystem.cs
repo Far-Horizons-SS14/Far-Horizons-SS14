@@ -236,8 +236,9 @@ public sealed class SupermatterSystem : AccUpdateEntitySystem
     private void HandleDamage(Entity<SupermatterComponent> supermatter)
     {
         EnsureComp<DamageableComponent>(supermatter.Owner, out var damageable);
-        var trueDamage = damageable.TotalDamage * Const.DamageMultiplayer;
-        _damageable.TryChangeDamage(supermatter.Owner, damageable.Damage.Invert(), true);
+        var takenDamage = _damageable.GetPositiveDamage((supermatter, damageable));
+        var trueDamage = takenDamage.DamageDict.Sum(p => (float)p.Value) * Const.DamageMultiplayer;
+        _damageable.TryChangeDamage(supermatter.Owner, takenDamage.Invert(), true);
 
         supermatter.Comp.AccBreak = MathHelper.Clamp(supermatter.Comp.AccBreak + (trueDamage * Const.BreakPercent), 0, 9999);
         supermatter.Comp.AccHeat = MathHelper.Clamp(supermatter.Comp.AccHeat + (trueDamage * Const.HeatPercent), 0, 9999);

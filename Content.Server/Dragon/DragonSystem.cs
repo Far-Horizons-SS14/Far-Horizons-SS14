@@ -280,7 +280,7 @@ public sealed partial class DragonSystem : EntitySystem
         // Reset the rift count in objectives since crew destroyed a rift
         if (TryComp<MindContainerComponent>(dragonUid, out var mindContainer) && mindContainer.HasMind)
         {
-            var mind = Comp<MindComponent>(mindContainer.Mind.Value);
+            var mind = Comp<MindComponent>(mindContainer.Mind!.Value);
             foreach (var objId in mind.Objectives)
             {
                 if (_objQuery.TryGetComponent(objId, out var obj))

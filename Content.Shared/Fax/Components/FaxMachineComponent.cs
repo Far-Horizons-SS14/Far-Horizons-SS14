@@ -208,7 +208,7 @@ public sealed partial class FaxPrintout
         string? stampState = null,
         List<StampDisplayInfo>? stampedBy = null,
         bool locked = false,
-        string? senderFaxName = null
+        string? senderFaxName = null,
         //starlight-start
         string? product = null,
         string? requester = null,

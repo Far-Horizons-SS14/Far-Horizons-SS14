@@ -21,6 +21,8 @@ guide-entry-fh-rule-10 = Rule 10
 guide-entry-fh-rule-11 = Rule 11
 guide-entry-fh-rule-12 = Rule 12
 guide-entry-fh-rule-13 = Rule 13
+guide-entry-fh-rule-14 = Rule 14
+guide-entry-Metashield = Metashield
 
 guide-entry-fh-silicon-1 = Sil.Rule 1
 guide-entry-fh-silicon-2 = Sil.Rule 2

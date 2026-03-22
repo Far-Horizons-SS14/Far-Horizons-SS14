@@ -404,10 +404,11 @@ public sealed class MarkingsViewModel
         if (!markingSet.TryGetValue(layer, out var markings))
             return;
 
-        if (markings.FirstOrDefault(it => it.MarkingId == markingId) is not { } marking)
+        var markingIdx = markings.FindIndex(it => it.MarkingId == markingId);
+        if (markingIdx == -1)
             return;
 
-        marking.IsGlowing = glowing;
+        markings[markingIdx] = markings[markingIdx].WithGlowing(glowing);
         MarkingsChanged?.Invoke(organ, layer);
     }
     // Far Horizons end

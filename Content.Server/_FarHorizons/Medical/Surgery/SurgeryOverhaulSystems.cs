@@ -159,7 +159,7 @@ public sealed partial class SurgeryOverhaulSystem : EntitySystem
 
             if (TryComp<DamageableComponent>(args.Body, out var dmgComp))
                 foreach (var key in healComp.Damage!.DamageDict.Keys)
-                    BonusHeal.DamageDict.Add(key, dmgComp.TotalDamage / ResearchModifier);
+                    BonusHeal.DamageDict.Add(key, _damageableSystem.GetPositiveDamage((args.Body, dmgComp)).DamageDict.Select(p => (float)p.Value).Sum() / ResearchModifier);
 
             TotalHeal = healComp.Damage! + (-BonusHeal);
             _damageableSystem.TryChangeDamage(args.Body, TotalHeal);

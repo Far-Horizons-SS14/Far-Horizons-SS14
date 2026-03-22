@@ -9,20 +9,25 @@ using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Utility;
 using Content.Shared.FarHorizons.Tools.Shipyard;
 using Content.Shared.Damage.Components;
+using Content.Shared.Damage.Systems;
+using Robust.Shared.Prototypes;
+using Content.Shared.Damage.Prototypes;
 
 namespace Content.Client._FarHorizons.UI.Shipyard
 {
     [GenerateTypedNameReferences]
     public sealed partial class IntegrityAnalyzerWindow : FancyWindow
     {
-        private readonly IEntityManager _entityManager;
+        [Dependency] private readonly IEntityManager _entityManager = default!;
+        private readonly DamageableSystem _damageable;
+
 
         public IntegrityAnalyzerWindow()
         {
             RobustXamlLoader.Load(this);
 
             var dependencies = IoCManager.Instance!;
-            _entityManager = dependencies.Resolve<IEntityManager>();
+            _damageable = _entityManager.System<DamageableSystem>();
         }
 
         public void Populate(IntegrityAnalyzerScannedTargetMessage msg)
@@ -63,16 +68,18 @@ namespace Content.Client._FarHorizons.UI.Shipyard
 
             // Total Damage
 
-            DamageLabel.Text = damageable.TotalDamage.ToString();
+            DamageLabel.Text = _damageable.GetPositiveDamage((target.Value, damageable)).DamageDict
+                .Select(p => (float)p.Value).Sum().ToString();
 
             // Damage Groups
 
-            var damageSortedGroups = damageable.Damage.DamageDict.OrderByDescending(damage => damage.Value).ToDictionary(damage => damage.Key, damage => damage.Value);
+            var damageSortedGroups = _damageable.GetPositiveDamage((target.Value, damageable)).DamageDict
+                .OrderByDescending(damage => damage.Value).ToDictionary(damage => damage.Key, damage => damage.Value);
 
             DrawDiagnosticGroups(damageSortedGroups);
         }
 
-        private void DrawDiagnosticGroups(Dictionary<string, FixedPoint2> groups)
+        private void DrawDiagnosticGroups(Dictionary<ProtoId<DamageTypePrototype>, FixedPoint2> groups)
         {
             GroupsContainer.RemoveAllChildren();
 

@@ -143,8 +143,10 @@
     delay: 0.9
   - type: LeechOnMarker
     leech:
-      groups:
-        Brute: -10
+      types:
+        Blunt: -3.5
+        Piercing: -3.5
+        Slash: -3.5
   - type: Gun
     soundGunshot: /Audio/Weapons/plasma_cutter.ogg
     fireRate: 1
@@ -244,8 +246,10 @@
     delay: 1.9
   - type: LeechOnMarker
     leech:
-      groups:
-        Brute: -21
+      types:
+        Blunt: -7
+        Piercing: -7
+        Slash: -7
   - type: MeleeWeapon
   - type: Tag
     tags:

@@ -121,8 +121,9 @@
             - Biological
           delay: 2
           damage:
-            groups:
-              Toxin: -20 # 10 each
+            types:
+              Poison: -10
+              Radiation: -10
           healingBeginSound:
             path: "/Audio/Items/Medical/ointment_begin.ogg"
             params:

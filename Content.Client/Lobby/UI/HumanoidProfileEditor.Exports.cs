@@ -10,18 +10,19 @@ public sealed partial class HumanoidProfileEditor
     private bool _exporting;
     private bool _imaging;
 
-    private async void ExportImage()
-    {
-        if (_imaging)
-            return;
+    // Far Horizons removed
+    // private async void ExportImage()
+    // {
+    //     if (_imaging)
+    //         return;
 
-        var dir = SpriteView.OverrideDirection ?? Direction.South;
+    //     var dir = SpriteView.OverrideDirection ?? Direction.South;
 
-        // I tried disabling the button but it looks sorta goofy as it only takes a frame or two to save
-        _imaging = true;
-        await _entManager.System<ContentSpriteSystem>().Export(SpriteView.PreviewDummy, dir, includeId: false);
-        _imaging = false;
-    }
+    //     // I tried disabling the button but it looks sorta goofy as it only takes a frame or two to save
+    //     _imaging = true;
+    //     await _entManager.System<ContentSpriteSystem>().Export(Preview.PreviewDummy, dir, includeId: false);
+    //     _imaging = false;
+    // }
 
     private async void ImportProfile()
     {

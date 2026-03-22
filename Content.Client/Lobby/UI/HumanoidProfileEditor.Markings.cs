@@ -10,7 +10,7 @@ public sealed partial class HumanoidProfileEditor
         }
 
         _markingsModel.OrganData = _markingManager.GetMarkingData(Profile.Species);
-        _markingsModel.OrganProfileData = _markingManager.GetProfileData(Profile.Species, Profile.Sex, Profile.Appearance.SkinColor, Profile.Appearance.EyeColor);
+        _markingsModel.OrganProfileData = _markingManager.GetProfileData(Profile.Species, Profile.Sex, Profile.Appearance.SkinColor, Profile.Appearance.EyeColor, Profile.Appearance.EyeGlowing, Profile.Appearance.Width, Profile.Appearance.Height); // Far Horizons
         _markingsModel.Markings = Profile.Appearance.Markings;
     }
 

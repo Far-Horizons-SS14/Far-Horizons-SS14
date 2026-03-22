@@ -71,8 +71,10 @@
     damageContainers:
       - Biological
     damage:
-      groups:
-        Brute: -2
+      types: # Far Horizons changed to types
+        Blunt: -0.6
+        Slash: -0.6
+        Piercing: -0.6
     healingBeginSound:
       path: "/Audio/_Starlight/Items/Medical/mender.ogg"
     healingEndSound:

@@ -40,14 +40,14 @@ public partial record struct Marking
         _markingColors = new();
     }
 
-    public Marking(ProtoId<MarkingPrototype> markingId, IEnumerable<Color> colors, bool glowing) // Starlight
+    public Marking(ProtoId<MarkingPrototype> markingId, IEnumerable<Color> colors, bool glowing = false) // Starlight
     {
         MarkingId = markingId;
         _markingColors = colors.ToList();
         IsGlowing = glowing;
     }
 
-    public Marking(ProtoId<MarkingPrototype> markingId, int colorsCount, bool glowing) : this(markingId,
+    public Marking(ProtoId<MarkingPrototype> markingId, int colorsCount, bool glowing = false) : this(markingId,
         Enumerable.Repeat(Color.White, colorsCount).ToList(), glowing)
     {
     }

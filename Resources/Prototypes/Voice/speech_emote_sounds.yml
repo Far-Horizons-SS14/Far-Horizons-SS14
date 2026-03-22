@@ -697,8 +697,9 @@
     Yip:
       path: /Audio/_Starlight/Effects/yip.ogg #Starlight Yip
     # STARLIGHT START
-    Yawn:
-      collection: MaleYawn
+    # Far Horizons - replaced with wizden's vulp yawns
+    # Yawn:
+    #   collection: MaleYawn
     Snore:
       collection: Snores
     Weh:
@@ -745,8 +746,9 @@
     Yip:
       path: /Audio/_Starlight/Effects/yip.ogg #Starlight Yip
     # STARLIGHT START
-    Yawn:
-      collection: FemaleYawn
+    # Far Horizons - replaced with wizden vulp yawns
+    # Yawn:
+    #   collection: FemaleYawn
     Snore:
       collection: Snores
     Weh:
@@ -813,7 +815,7 @@
 - type: emoteSounds
   id: MothBodyEmotes
   sounds:
-    FlapWings: # Starlight: Flap wings
+    Flap: # Starlight: Flap wings
       path: /Audio/_Starlight/Voice/Moth/moth_flapwings.ogg
     Clap:
       collection: Claps
@@ -831,7 +833,7 @@
 - type: emoteSounds
   id: MothroachBodyEmotes
   sounds:
-    FlapWings:
+    Flap:
       path: /Audio/_Starlight/Voice/Moth/moth_flapwings.ogg
       params:
         pitch: 1.45

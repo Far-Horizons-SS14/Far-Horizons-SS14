@@ -867,9 +867,13 @@
         - !type:MetabolizerTypeCondition
           type: [ Bloodsucker ]
         damage:
-          groups:
-            Brute: -3
-            Burn: -1.25
+          types: # Far Horizons changed to types
+            Blunt: -1
+            Slash: -1
+            Piercing: -1
+            Heat: -0.4
+            Shock: -0.4
+            Cold: -0.4
 
 - type: reagent
   id: DevilsKiss
@@ -893,9 +897,13 @@
         - !type:MetabolizerTypeCondition
           type: [ Bloodsucker ]
         damage:
-          groups:
-            Brute: -3
-            Burn: -1.25
+          types: # Far Horizons changed to types
+            Blunt: -1
+            Slash: -1
+            Piercing: -1
+            Heat: -0.4
+            Shock: -0.4
+            Cold: -0.4
 
 - type: reagent
   id: DoctorsDelight

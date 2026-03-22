@@ -80,8 +80,10 @@
      collection: AlienClaw
     animation: WeaponArcBite
     damage:
-      groups:
-        Brute: 20 
+      types: # Far Horizons changed to types
+        Blunt: 6.5
+        Slash: 6.5
+        Piercing: 6.5
   - type: DamageStateVisuals
     states:
       Alive:
@@ -142,8 +144,10 @@
     baseSprintSpeed: 6.0
   - type: MeleeWeapon
     damage:
-     groups:
-       Brute: 15
+      types:
+        Blunt: 5
+        Piercing: 5
+        Slash: 5
   - type: Fixtures
     fixtures:
       fix1:

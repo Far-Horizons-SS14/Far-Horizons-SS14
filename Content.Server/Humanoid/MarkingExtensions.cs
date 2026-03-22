@@ -11,7 +11,7 @@ public static class MarkingExtensions
         public static string ToDBString(this Marking Marking)
         {
             // reserved character
-            string sanitizedName = Marking.MarkingId.Replace('@', '_');
+            string sanitizedName = Marking.MarkingId.ToString().Replace('@', '_');
             List<string> colorStringList = new();
             foreach (Color color in Marking.MarkingColors)
                 colorStringList.Add(color.ToHex());

@@ -18,8 +18,10 @@
     allowSelfRepair: true
     fuelCost: 10
     damage:
-      groups:
-        Brute: -30 # 5 for each type with reduction applied
+      types: # 5 for each type with reduction applied
+        Blunt: -10
+        Piercing: -10
+        Slash: -10
   - type: Hunger
   - type: Icon
     sprite: _FarHorizons/Mobs/Species/Protogen/parts.rsi
@@ -265,9 +267,10 @@
     damage:
       types:
         Heat: -0.07
+        Blunt: -0.05
+        Piercing: -0.05
+        Slash: -0.05
         Poison: -0.2
-      groups:
-        Brute: -0.07
   - type: DamageVisuals
     damageOverlayGroups:
       Brute:
@@ -516,8 +519,9 @@
     damage:
       types:
         Heat: -0.14
-      groups:
-        Brute: -0.14
+        Blunt: -0.05
+        Piercing: -0.05
+        Slash: -0.05
   - type: DamageVisuals
     damageOverlayGroups:
       Brute:
@@ -617,8 +621,10 @@
       allowSelfRepair: true
       fuelCost: 10
       damage:
-        groups:
-          Brute: -30 # 5 for each type with reduction applied
+        types: # 5 for each type with reduction applied
+          Blunt: -10
+          Piercing: -10
+          Slash: -10
     - type: Shadekin
       thresholds:
         0.8: Low
@@ -728,9 +734,13 @@
         - Alive
       damageCap: 20
       damage:
-        groups:
-          Brute: -0.07
-          Burn: -0.07
+        types:
+          Heat: -0.05
+          Shock: -0.05
+          Cold: -0.05
+          Blunt: -0.05
+          Piercing: -0.05
+          Slash: -0.05
     - type: Destructible
       thresholds:
         - trigger: !type:DamageTypeTrigger
@@ -1973,8 +1983,9 @@
         types:
           Heat: 2
           Cold: 2
-        groups:
-          Brute: 6
+          Blunt: 2
+          Piercing: 2
+          Slash: 2
       bleedHealPerUpdate: 1.0
       critHealingModifier: 0.5
       stasisDamageReduction: 0.7

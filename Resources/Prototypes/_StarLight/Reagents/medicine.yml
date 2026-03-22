@@ -25,9 +25,13 @@
       effects:
       - !type:HealthChange
         damage:
-          groups:
-            Burn: -4
-            Brute: -4
+          types: # Far Horizons changed to types
+            Blunt: -1.3
+            Slash: -1.3
+            Piercing: -1.3
+            Heat: -1.3
+            Shock: -1.3
+            Cold: -1.3
 
 - type: reagent
   id: Amoxla

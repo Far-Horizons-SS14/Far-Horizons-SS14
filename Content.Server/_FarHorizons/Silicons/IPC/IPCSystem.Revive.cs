@@ -1,3 +1,4 @@
+using System.Linq;
 using Content.Server.Ghost;
 using Content.Shared._FarHorizons.Silicons.IPC.Components;
 using Content.Shared.Damage.Components;
@@ -76,7 +77,7 @@ public sealed partial class IPCSystem
 
         if (!TryComp<DamageableComponent>(ent, out var damageableComponent) ||
             !_mobThreshold.TryGetThresholdForState(ent, MobState.Dead, out var thresholdDead) ||
-            damageableComponent.TotalDamage > thresholdDead || 
+            _damageable.GetPositiveDamage((ent, damageableComponent)).DamageDict.Sum(p => (float)p.Value) > thresholdDead || 
             !BatteryHasCharge(ent))
         {
             _popup.PopupEntity(Loc.GetString(ent.Comp.CantReviveMessage), ent);
@@ -119,9 +120,11 @@ public sealed partial class IPCSystem
             _mobThreshold.TryGetThresholdForState(ent, MobState.Dead, out var thresholdDead) &&
             _mobThreshold.TryGetThresholdForState(ent, MobState.Critical, out var thresholdCrit))
         {
-            if (damageableComponent.TotalDamage < thresholdCrit)
+            var totalDamage = _damageable.GetPositiveDamage((ent, damageableComponent)).DamageDict
+                .Sum(p => (float)p.Value);
+            if (totalDamage < thresholdCrit)
                 _state.ChangeMobState(ent, MobState.Alive);
-            else if (damageableComponent.TotalDamage < thresholdDead)
+            else if (totalDamage < thresholdDead)
                 _state.ChangeMobState(ent, MobState.Critical);
         } else
             dead = true;
@@ -165,7 +168,14 @@ public sealed partial class IPCSystem
         }
     }
 
-    public bool IsDamaged(Entity<IPCReviveComponent> ent, DamageableComponent? damageable) =>
-        Resolve(ent, ref damageable) && damageable.TotalDamage >= ent.Comp.DamagedThreshold.Min &&
-            (ent.Comp.DamagedThreshold.Max == null || damageable.TotalDamage <= ent.Comp.DamagedThreshold.Max);
+    public bool IsDamaged(Entity<IPCReviveComponent> ent, DamageableComponent? damageable)
+    {
+        if (!Resolve(ent, ref damageable))
+            return false;
+
+        var totalDamage = _damageable.GetPositiveDamage((ent, damageable)).DamageDict.Select(p => (float)p.Value).Sum();
+
+        return totalDamage >= ent.Comp.DamagedThreshold.Min &&
+               (ent.Comp.DamagedThreshold.Max == null || totalDamage <= ent.Comp.DamagedThreshold.Max);
+    }
 }

@@ -22,15 +22,14 @@ public sealed partial class HumanoidProfileEditor
     {
         SpeciesInfoButton.StyleClasses.Clear();
 
-        var species = Profile?.Species;
-        if (species is null)
-            return;
+        var species = Profile?.Species ?? _species.First(); // Far Horizons
 
         if (!_prototypeManager.Resolve<SpeciesPrototype>(species, out var speciesProto))
             return;
 
         // Don't display the info button if no guide entry is found
-        if (!_prototypeManager.HasIndex<GuideEntryPrototype>(species))
+        // Far Horizons, guide book from paren species
+        if (!_prototypeManager.HasIndex<GuideEntryPrototype>(speciesProto.SubspeciesOf ?? species))
             return;
 
         const string style = "SpeciesInfoDefault";
@@ -94,7 +93,7 @@ public sealed partial class HumanoidProfileEditor
         }
 
         _markingsModel.SetOrganEyeColor(Profile.Appearance.EyeColor);
-        EyeColorPicker.SetData(Profile.Appearance.EyeColor);
+        EyeColorPicker.SetData(Profile.Appearance.EyeColor, Profile.Appearance.EyeGlowing); // Far Horizons
     }
 
     private void UpdateSkinColor()
@@ -158,10 +157,15 @@ public sealed partial class HumanoidProfileEditor
 
         for (var i = 0; i < _species.Count; i++)
         {
+            // Far Horizons, hide subspecies from list
+            if (_species[i].SubspeciesOf != null)
+                continue;
+
             var name = Loc.GetString(_species[i].Name);
             SpeciesButton.AddItem(name, i);
 
-            if (Profile?.Species.Equals(_species[i].ID) == true)
+            if (Profile?.Species.Equals(_species[i].ID) == true || 
+                _species.Find(p => p.ID == Profile?.Species)?.SubspeciesOf == _species[i].ID) // Far Horizons
             {
                 SpeciesButton.SelectId(i);
             }
@@ -170,7 +174,9 @@ public sealed partial class HumanoidProfileEditor
         // If our species isn't available then reset it to default.
         if (Profile != null)
         {
-            if (!speciesIds.Contains(Profile.Species))
+            // Far Horizons
+            var parentSpecies = _species.Find(p => p.ID == Profile?.Species)?.SubspeciesOf ?? Profile.Species;
+            if (!speciesIds.Contains(parentSpecies))
             {
                 SetSpecies(HumanoidCharacterProfile.DefaultSpecies);
             }
@@ -180,8 +186,10 @@ public sealed partial class HumanoidProfileEditor
     private void SetSpecies(string newSpecies)
     {
         Profile = Profile?.WithSpecies(newSpecies);
+        UpdateSubspecies(); // Far Horizons
         OnSkinColorOnValueChanged(); // Species may have special color prefs, make sure to update it.
-        _markingsModel.OrganData = _markingManager.GetMarkingData(newSpecies);
+        _markingsModel.Markings = []; // Far Horizons
+        UpdateMarkings(); // Far Horizons
         _markingsModel.ValidateMarkings();
         // In case there's job restrictions for the species
         RefreshJobs();
@@ -189,6 +197,8 @@ public sealed partial class HumanoidProfileEditor
         RefreshLoadouts();
         UpdateSexControls(); // update sex for new species
         UpdateSpeciesGuidebookIcon();
+        UpdateSizeControls(); //starlight
+        UpdateSpeciesLoadout(); // Far Horizons
         ReloadPreview();
     }
 
@@ -217,7 +227,9 @@ public sealed partial class HumanoidProfileEditor
 
         UpdateGenderControls();
         _markingsModel.SetOrganSexes(newSex);
-        ReloadPreview();
+        ReloadProfilePreview();
+        //UpdateVoicesControls();
+        //UpdateSiliconVoicesControls(); // 🌟Starlight🌟
     }
 
     private void SetGender(Gender newGender)
@@ -239,7 +251,11 @@ public sealed partial class HumanoidProfileEditor
         // I.e., do what jobs/antags do.
 
         var guidebookController = UserInterfaceManager.GetUIController<GuidebookUIController>();
-        var species = Profile?.Species ?? HumanoidCharacterProfile.DefaultSpecies;
+        // Far Horizons start
+        var speciesId = Profile?.Species ?? HumanoidCharacterProfile.DefaultSpecies;
+        var speciesProto = _species.Find(p => p.ID == speciesId) ?? _species.First();
+        var species = speciesProto.SubspeciesOf ?? speciesProto.ID;
+        // Far Horizons end
         var page = DefaultSpeciesGuidebook;
         if (_prototypeManager.HasIndex<GuideEntryPrototype>(species))
             page = new ProtoId<GuideEntryPrototype>(species.Id); // Gross. See above todo comment.

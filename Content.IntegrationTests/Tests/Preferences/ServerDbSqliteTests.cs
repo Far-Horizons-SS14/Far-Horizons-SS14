@@ -156,7 +156,6 @@ namespace Content.IntegrationTests.Tests.Preferences
             var username = new NetUserId(new Guid("640bd619-fc8d-4fe2-bf3c-4a5fb17d6ddd"));
             await db.InitPrefsAsync(username, new HumanoidCharacterProfile());
             await db.SaveCharacterSlotAsync(username, bogus, 0);
-            await db.SaveSelectedCharacterIndexAsync(username, 0);
 
             if (legacy)
                 await db.MakeCharacterSlotLegacyAsync(username, 0);

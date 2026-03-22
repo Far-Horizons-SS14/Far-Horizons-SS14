@@ -544,7 +544,7 @@
   - type: Speech
     speechVerb: Moth
     speechSounds: Squeak
-    allowedEmotes: ['Chitter', 'Squeak', 'FlapWings'] # Starlight: Add wing flap
+    allowedEmotes: ['Chitter', 'Squeak', 'Flap'] # Starlight: Add wing flap
   - type: FaxableObject
     insertingState: inserting_mothroach
   - type: MothAccent
@@ -618,8 +618,6 @@
       Female: UnisexMoth
       Unsexed: UnisexMoth
     wilhelmProbability: 0.001
-  - type: BodyEmotes
-    soundsId: MothBodyEmotes
   - type: MobPrice
     price: 150
   - type: Tag

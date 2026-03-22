@@ -13,7 +13,7 @@ public sealed partial class HumanoidProfileEditor
         if (!IsDirty)
             return;
 
-        SpriteView.SetName(newName);
+        Preview.Name = newName; // Far Horizons
     }
 
     private void UpdateNameEdit()

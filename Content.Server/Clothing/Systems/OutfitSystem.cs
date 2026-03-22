@@ -46,14 +46,6 @@ public sealed class OutfitSystem : EntitySystem
 
         var spawnCoords = EntityManager.GetComponent<TransformComponent>(target).Coordinates; // Far Horizons
         ICommonSession? session = null;
-        // Check if we are setting the outfit of a player to respect the preferences
-        if (TryComp(target, out ActorComponent? actorComponent))
-        {
-            session = actorComponent.PlayerSession;
-            var userId = actorComponent.PlayerSession.UserId;
-            var prefs = _preferenceManager.GetPreferences(userId);
-            profile = prefs.SelectedCharacter as HumanoidCharacterProfile;
-        }
 
         if (_invSystem.TryGetSlots(target, out var slots))
         {
@@ -132,7 +124,6 @@ public sealed class OutfitSystem : EntitySystem
             if (roleLoadout == null)
             {
                 #region Starlight
-                ICommonSession? session = null;
                 if (TryComp<ActorComponent>(target, out var actor))
                     session = actor.PlayerSession;
                 #endregion
