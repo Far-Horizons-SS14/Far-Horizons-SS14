@@ -527,18 +527,27 @@
           type: [ Vox ]
         reagent: Protein
         amount: 0.25
+      #FarHorizons Start
       - !type:AdjustReagent
         conditions:
         - !type:MetabolizerTypeCondition
           type: [ Vampire ]
         reagent: Protein
         amount: 0.5
-      - !type:AdjustReagent #FH
-        conditions: #FH
-        - !type:MetabolizerTypeCondition #FH
-          type: [ Protogen ] #FH
-        reagent: Protein #FH
-        amount: 0.5 #FH
+      - !type:AdjustReagent 
+        conditions: 
+        - !type:MetabolizerTypeCondition 
+          type: [ Protogen ] 
+        reagent: Protein 
+        amount: 0.5 
+      - !type:CauseDisease 
+        conditions: 
+        - !type:MetabolizerTypeCondition 
+          type: [ Animal, Vox ]
+          inverted: true
+        disease: DiseaseFoodPoisoning
+        probability: 0.05
+        #FarHorizons End
 
 - type: reagent
   id: Allicin

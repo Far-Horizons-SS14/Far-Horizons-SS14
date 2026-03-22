@@ -1,0 +1,89 @@
+- type: disease
+  id: DiseaseGBS
+  name: disease-DiseaseGBS-name
+  desc: disease-DiseaseGBS-desc
+  spreadPath: [ Contact ]
+  contactInfect: 0.005
+  contactDeposit: 0.08
+  cureSteps:
+  - !type:CureReagent
+    cureChance: 0.15 # Higher chance to cure, since two reagents are required.
+    requirements:
+    - reagentId: Diphenhydramine
+    - reagentId: Sulfur
+  stages:
+  - stage: 1
+  # no-op
+  - stage: 2
+    symptoms:
+    - symptom: SymptomSneeze
+  - stage: 3
+    sensations:
+    - !type:PopupMessage
+      messages: [ "disease-sensation-very-weak" ]
+      probability: 0.05
+    symptoms:
+    - symptom: SymptomCough
+      probability: 0.05
+    - symptom: SymptomGasp
+      probability: 0.05
+  - stage: 4
+    symptoms:
+    - symptom: SymptomCough
+      probability: 0.1
+  - stage: 5
+    sensations:
+    - !type:PopupMessage
+      messages: [ "disease-sensation-gib-itself" ]
+      visualType: MediumCaution
+      probability: 0.05
+    symptoms:
+    - symptom: SymptomCough
+      probability: 0.05
+    - symptom: SymptomGib
+
+- type: disease
+  id: DiseaseHonkSyndrome
+  name: disease-DiseaseHonkSyndrome-name
+  desc: disease-DiseaseHonkSyndrome-desc
+  spreadPath: [ Contact ]
+  cureSteps:
+  - !type:CureReagent
+    requirements:
+    - reagentId: BananaHonk
+      amount: 5
+  stages:
+  - stage: 1
+    # no-op
+  - stage: 2
+    sensations:
+    - !type:PopupMessage
+      messages: [ "disease-sensation-clown", "disease-sensation-banana-compulsion" ]
+      probability: 0.05
+    symptoms:
+    - symptom: SymptomJitters
+    - symptom: SymptomEmoteHonk
+  - stage: 3
+    sensations:
+    - !type:PopupMessage
+      messages: [ "disease-sensation-clown" ]
+      probability: 0.05
+    symptoms:
+    - symptom: SymptomHonkShout
+    - symptom: SymptomTransformClown
+
+- type: disease
+  id: DiseaseOwOnavirus
+  name: disease-DiseaseOwOnavirus-name
+  desc: disease-DiseaseOwOnavirus-desc
+  spreadPath: [ Contact ]
+  iconDisease: DiseaseIconBuff
+  cureSteps:
+  - !type:CureWait
+    requiredTicks: 400
+  stages:
+  - stage: 1
+    symptoms:
+    - symptom: SymptomOwOAccent
+    - symptom: SymptomEmoteCat
+    - symptom: SymptomSpeedBoost

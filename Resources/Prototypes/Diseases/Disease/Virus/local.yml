@@ -1,0 +1,92 @@
+- type: disease
+  id: DiseaseFoodPoisoning
+  name: disease-DiseaseFoodPoisoning-name
+  desc: disease-DiseaseFoodPoisoning-desc
+  spreadPath: [ NonContagious ]
+  stageProb: 0.03
+  cureSteps:
+  - !type:CureWait
+    requiredTicks: 300
+  stages:
+  - stage: 1
+    sensations:
+    - !type:PopupMessage
+      messages: [ "disease-sensation-queasy", "disease-sensation-stomach-weird" ]
+      probability: 0.05
+  - stage: 2
+    sensations:
+    - !type:PopupMessage
+      messages: [ "disease-sensation-stomach-ache", "disease-sensation-nausea" ]
+      probability: 0.05
+    symptoms:
+    - symptom: SymptomEmoteGroan
+      probability: 0.1
+  - stage: 3
+    sensations:
+    - !type:PopupMessage
+      messages: [ "disease-sensation-stomach-hurt", "disease-sensation-sick" ]
+      probability: 0.05
+    symptoms:
+    - symptom: SymptomVomiting
+    - symptom: SymptomEmoteGroan
+      probability: 0.1
+    - symptom: SymptomEmoteMoan
+      probability: 0.1
+
+- type: disease
+  id: DiseaseNarcolepsySyndrome
+  name: disease-DiseaseNarcolepsySyndrome-name
+  desc: disease-DiseaseNarcolepsySyndrome-desc
+  spreadPath: [ Airborne ]
+  airborneInfect: 0.01
+  cureSteps:
+  - !type:CureReagent
+    cureChance: 0.05
+    requirements:
+    - reagentId: Haloperidol
+  stages:
+  - stage: 1
+    sensations:
+    - !type:PopupMessage
+      messages: [ "disease-sensation-sleepy" ]
+      probability: 0.05
+  - stage: 2
+    sensations:
+    - !type:PopupMessage
+      messages: [ "disease-sensation-sleepy-2", "disease-sensation-sleepy-3" ]
+      probability: 0.05
+    symptoms:
+    - symptom: SymptomNarcolepsy
+
+- type: disease
+  id: DiseaseAMIV
+  name: disease-DiseaseAMIV-name
+  desc: disease-DiseaseAMIV-desc
+  spreadPath: [ Contact ]
+  contactInfect: 0.005
+  contactDeposit: 0.05
+  cureSteps:
+  - !type:CureReagent
+    requirements:
+    - reagentId: JuiceBanana
+      amount: 3
+  stages:
+  - stage: 1
+    # no-op
+  - stage: 2
+    sensations:
+    - !type:PopupMessage
+      messages: [ "disease-sensation-sick", "disease-sensation-banana-compulsion" ]
+      probability: 0.05
+  - stage: 3
+    cureSteps:
+      - !type:CureWait
+        requiredTicks: 200
+        cureChance: 0.5
+    sensations:
+    - !type:PopupMessage
+      messages: [ "disease-sensation-sick", "disease-sensation-banana-compulsion" ]
+      probability: 0.05
+    symptoms:
+    - symptom: SymptomMonkeyShout
+    - symptom: SymptomGeneticDamage

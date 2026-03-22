@@ -71,6 +71,14 @@
   components:
   - type: DrowsinessStatusEffect
 
+# Applies cluwne transformation while active.
+- type: entity
+  parent: MobStatusEffectDebuff
+  id: StatusEffectCluwne
+  name: cluwnified
+  components:
+  - type: CluwneStatusEffect
+
 # Adds drugs overlay
 - type: entity
   parent: MobStatusEffectDebuff

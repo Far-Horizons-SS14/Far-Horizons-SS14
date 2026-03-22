@@ -1,0 +1,136 @@
+- type: diseaseSymptom
+  id: SymptomCough
+  name: disease-symptom-name-SymptomCough
+  onlyAlive: true
+  airborneBurst:
+    rangeMultiplier: 1.75
+    chanceMultiplier: 1.5
+  cureDuration: 120
+  cureSteps:
+  - !type:CureReagent
+    requirements:
+    - reagentId: Salbutamol
+      amount: 5
+  behaviors:
+  - !type:SymptomStatusEffect
+    effects:
+    - !type:Emote
+      emote: Cough
+      showInChat: true
+
+- type: diseaseSymptom
+  id: SymptomSneeze
+  name: disease-symptom-name-SymptomSneeze
+  onlyAlive: true
+  airborneBurst:
+    rangeMultiplier: 2.5
+    chanceMultiplier: 2.5
+  cureDuration: 120
+  cureSteps:
+  - !type:CureReagent
+    requirements:
+    - reagentId: Salbutamol
+      amount: 5
+  behaviors:
+  - !type:SymptomStatusEffect
+    effects:
+    - !type:Emote
+      emote: Sneeze
+      showInChat: true
+
+- type: diseaseSymptom
+  id: SymptomGasp
+  name: disease-symptom-name-SymptomGasp
+  onlyAlive: true
+  behaviors:
+  - !type:SymptomStatusEffect
+    effects:
+    - !type:Emote
+      emote: Gasp
+      showInChat: true
+
+- type: diseaseSymptom
+  id: SymptomEmoteHonk
+  name: disease-symptom-name-SymptomEmoteCat
+  probability: 0.05
+  onlyAlive: true
+  behaviors:
+  - !type:SymptomStatusEffect
+    effects:
+    - !type:Emote
+      emote: Honk
+      showInChat: true
+
+- type: diseaseSymptom
+  id: SymptomEmoteCat
+  name: disease-symptom-SymptomEmoteCat-name
+  probability: 0.05
+  singleBehavior: true
+  onlyAlive: true
+  behaviors:
+  - !type:SymptomStatusEffect
+    effects:
+    - !type:Emote
+      emote: CatMeow
+      showInChat: true
+  - !type:SymptomStatusEffect
+    effects:
+    - !type:Emote
+      emote: CatHisses
+      showInChat: true
+
+- type: diseaseSymptom
+  id: SymptomEmoteGroan
+  name: disease-symptom-SymptomEmoteGroan-name
+  onlyAlive: true
+  behaviors:
+  - !type:SymptomStatusEffect
+    effects:
+    - !type:Emote
+      emote: Groan
+      showInChat: true
+
+- type: diseaseSymptom
+  id: SymptomEmoteMoan
+  name: disease-symptom-SymptomEmoteMoan-name
+  onlyAlive: true
+  behaviors:
+  - !type:SymptomStatusEffect
+    effects:
+    - !type:Emote
+      emote: Moan
+      showInChat: true
+
+# Shout
+
+- type: diseaseSymptom
+  id: SymptomHonkShout
+  name: disease-symptom-SymptomHonkShout-name
+  probability: 0.05
+  onlyAlive: true
+  behaviors:
+  - !type:SymptomStatusEffect
+    effects:
+    - !type:SpeakDataset
+      pack: DiseaseHonkShouts
+
+- type: diseaseSymptom
+  id: SymptomMonkeyShout
+  name: disease-symptom-SymptomMonkeyShout-name
+  probability: 0.05
+  onlyAlive: true
+  behaviors:
+  - !type:SymptomStatusEffect
+    effects:
+    - !type:SpeakDataset
+      pack: DiseaseMonkeyShouts
+
+# Accent
+
+- type: diseaseSymptom
+  id: SymptomOwOAccent
+  name: disease-symptom-SymptomOwOAccent-name
+  probability: 1
+  behaviors:
+  - !type:SymptomGenericStatusEffect
+    effectProto: StatusEffectOwOAccent

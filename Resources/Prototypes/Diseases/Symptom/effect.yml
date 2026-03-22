@@ -1,0 +1,174 @@
+- type: diseaseSymptom
+  id: SymptomJitters
+  name: disease-symptom-SymptomJitters-name
+  probability: 0.1
+  behaviors:
+  - !type:SymptomStatusEffect
+    effects:
+    - !type:Jitter
+      amplitude: 2
+      frequency: 6
+      time: 3
+
+- type: diseaseSymptom
+  id: SymptomTransitionToFlu
+  name: disease-symptom-SymptomTransitionToFlu-name
+  probability: 0.005
+  behaviors:
+  - !type:SymptomStatusEffect
+    effects:
+    - !type:TransitionDisease
+      fromDiseaseId: DiseaseCold
+      toDiseaseId: DiseaseFlu
+
+- type: diseaseSymptom
+  id: SymptomVomiting
+  name: disease-symptom-SymptomVomiting-name
+  probability: 0.05
+  cureDuration: 120
+  cureSteps:
+  - !type:CureReagent
+    requirements:
+    - reagentId: Charcoal
+      amount: 5
+  behaviors:
+  - !type:SymptomStatusEffect
+    effects:
+    - !type:Vomit
+
+- type: diseaseSymptom
+  id: SymptomNarcolepsy
+  name: disease-symptom-SymptomNarcolepsy-name
+  cureDuration: 400
+  cureSteps:
+  - !type:CureReagent
+    requirements:
+    - reagentId: Ethyloxyephedrine
+      amount: 5
+  - !type:CureReagent
+    requirements:
+    - reagentId: Diphenylmethylamine
+      amount: 3
+  behaviors:
+  - !type:SymptomGenericStatusEffect
+    effectProto: StatusEffectForcedSleeping
+    time: 6
+
+- type: diseaseSymptom
+  id: SymptomFever
+  name: disease-symptom-SymptomFever-name
+  probability: 1.0
+  cureDuration: 180
+  cureSteps:
+  - !type:CureReagent
+    requirements:
+    - reagentId: Haloperidol
+      amount: 2
+    - reagentId: Synaptizine
+      amount: 2
+  behaviors:
+  - !type:SymptomStatusEffect
+    effects:
+    - !type:AdjustTemperature
+      amount: 1000
+
+- type: diseaseSymptom
+  id: SymptomFreezeLight
+  name: disease-symptom-SymptomFreezeLight-name
+  probability: 1.0
+  behaviors:
+  - !type:SymptomStatusEffect
+    effects:
+    - !type:AdjustTemperature
+      amount: -500
+
+- type: diseaseSymptom
+  id: SymptomFreeze
+  name: disease-symptom-SymptomFreeze-name
+  probability: 1.0
+  behaviors:
+  - !type:SymptomStatusEffect
+    effects:
+    - !type:AdjustTemperature
+      amount: -1500
+
+- type: diseaseSymptom
+  id: SymptomToxin
+  name: disease-symptom-SymptomToxin-name
+  probability: 0.05
+  behaviors:
+  - !type:SymptomStatusEffect
+    effects:
+    - !type:HealthChange
+      damage:
+        types:
+          Poison: 9
+
+- type: diseaseSymptom
+  id: SymptomToxinLight
+  name: disease-symptom-SymptomToxinLight-name
+  probability: 0.05
+  cureSteps:
+  - !type:CureReagent
+    requirements:
+    - reagentId: Salbutamol
+      amount: 2
+    - reagentId: Perfluorodecalin
+      amount: 2
+  behaviors:
+  - !type:SymptomStatusEffect
+    effects:
+    - !type:HealthChange
+      damage:
+        types:
+          Poison: 3
+
+- type: diseaseSymptom
+  id: SymptomGeneticDamage
+  name: disease-symptom-SymptomGeneticDamage-name
+  probability: 0.05
+  cureSteps:
+  - !type:CureReagent
+    requirements:
+    - reagentId: Salbutamol
+      amount: 2
+    - reagentId: Perfluorodecalin
+      amount: 2
+  behaviors:
+  - !type:SymptomStatusEffect
+    effects:
+    - !type:HealthChange
+      damage:
+        types:
+          Genetic: 1
+
+- type: diseaseSymptom
+  id: SymptomGib
+  name: disease-symptom-SymptomGib-name
+  probability: 0.05
+  behaviors:
+  - !type:SymptomStatusEffect
+    effects:
+    - !type:HealthChange
+      damage:
+        types:
+          Blunt: 9999
+
+- type: diseaseSymptom
+  id: SymptomSpeedBoost
+  name: disease-symptom-SymptomSpeedBoost-name
+  probability: 0.5
+  behaviors:
+  - !type:SymptomStatusEffect
+    effects:
+    - !type:AddReagentToSolution
+      reagent: Ephedrine
+      solution: chemicals
+
+- type: diseaseSymptom
+  id: SymptomTransformClown
+  name: disease-symptom-SymptomTransformClown-name
+  probability: 1
+  behaviors:
+  - !type:SymptomGenericStatusEffect
+    effectProto: StatusEffectCluwne

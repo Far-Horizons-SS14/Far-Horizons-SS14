@@ -85,6 +85,12 @@ entity-effect-guidebook-satiate-hunger =
         *[other] hunger at {NATURALFIXED($relative, 3)}x the average rate
     }
 
+entity-effect-guidebook-speak-dataset =
+    { $chance ->
+        [1] Will force
+        *[other] force
+    } speak a random word
+
 entity-effect-guidebook-health-change =
     { $chance ->
         [1] { $healsordeals ->
@@ -269,18 +275,6 @@ entity-effect-guidebook-adjust-temperature =
             *[-1] from
         } the body it's in
 
-entity-effect-guidebook-chem-cause-disease =
-    { $chance ->
-        [1] Causes
-        *[other] cause
-    } the disease { $disease }
-
-entity-effect-guidebook-chem-cause-random-disease =
-    { $chance ->
-        [1] Causes
-        *[other] cause
-    } the diseases { $diseases }
-
 entity-effect-guidebook-jittering =
     { $chance ->
         [1] Causes
@@ -297,7 +291,13 @@ entity-effect-guidebook-cure-disease =
     { $chance ->
         [1] Cures
         *[other] cure
-    } diseases
+    } the disease { $disease }
+
+entity-effect-guidebook-cure-disease-lower-stage =
+    { $chance ->
+        [1] Lowers
+        *[other] Lower
+    } stage of the disease { $disease }
 
 entity-effect-guidebook-eye-damage =
     { $chance ->
@@ -350,6 +350,18 @@ entity-effect-guidebook-emote =
         [1] Will force
         *[other] force
     } the metabolizer to [bold][color=white]{$emote}[/color][/bold]
+
+entity-effect-guidebook-transition-disease =
+    { $chance ->
+        [1] Causes
+        *[other] cause
+    } disease transition from { $fromDisease } to { $toDisease }
+
+entity-effect-guidebook-cause-disease =
+    { $chance ->
+        [1] Causes
+        *[other] cause
+    } infects the target with disease { $disease }
 
 entity-effect-guidebook-extinguish-reaction =
     { $chance ->
