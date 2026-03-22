@@ -3744,7 +3744,7 @@
     - Sylvan
   # Starlight-end
   - type: Sprite
-    drawdepth: Mobs
+    drawdepth: SmallMobs #FarHorizons
     layers:
     - map: ["enum.DamageStateVisualLayers.Base"]
       state: nymph
@@ -3758,9 +3758,9 @@
           radius: 0.35
         density: 100 # High, because wood is heavy.
         mask:
-        - MobMask
+        - SmallMobMask #FarHorizons
         layer:
-        - MobLayer
+        - SmallMobLayer #FarHorizons
   - type: Inventory
     speciesId: cat
     templateId: pet
@@ -3809,7 +3809,7 @@
       Unsexed: UnisexDiona
   - type: Tag
     tags:
-    - DoorBumpOpener
+    #- DoorBumpOpener FarHorizons
     - VimPilot
   - type: Emoting
   - type: BodyEmotes
@@ -3819,6 +3819,7 @@
     reformTime: 10
     popupText: diona-reform-attempt
     reformPrototype: MobDionaReformed
+  - type: VentCrawler #FarHorizons
 
 - type: entity
   parent: MobDionaNymph

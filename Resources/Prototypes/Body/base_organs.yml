@@ -71,10 +71,11 @@
       - BodyCoverCover # Far Horizons
       - TailCover # Far Horizons
 
+#FarHorizons Start
 - type: entity
   parent: OrganBase
-  id: OrganBaseHead
-  name: Head #FarHorizons Capitalization
+  id: OrganBaseHeadNonVital
+  name: Head 
   abstract: true
   components:
   - type: Organ
@@ -97,10 +98,18 @@
       - SnoutCover
       - HeadSide
       - HeadTop
-      - FaceCover # Far Horizons
-      - FaceCoverCover # Far Horizons
-  - type: VitalOrgan # Far Horizons - deal damage to body when removed (by any means)
-  - type: HeadOrgan # Far Horizons
+      - FaceCover 
+      - FaceCoverCover 
+  - type: HeadOrgan 
+
+- type: entity
+  parent: OrganBaseHeadNonVital
+  id: OrganBaseHead
+  name: Head 
+  abstract: true
+  components:
+  - type: VitalOrgan 
+#FarHorizons End
 
 - type: entity
   parent: OrganBase
@@ -290,6 +299,7 @@
     entries:
       Burger: Brain
       Taco: Brain
+  - type: VitalOrgan # Far Horizons - deal damage to body when removed (by any means)
 
 - type: entity
   parent: OrganBase

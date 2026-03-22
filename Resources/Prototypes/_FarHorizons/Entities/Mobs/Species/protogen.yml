@@ -589,6 +589,35 @@
       - SiliconEmotesFH
       - Protogen
       - SlimePerson
+  - type: Stomach
+  - type: Metabolizer
+    maxReagents: 6
+    metabolizerTypes: [ Protogen ]
+    stages: [ Digestion, Bloodstream, Metabolites ]
+    solutions:
+      Respiration:
+        solutionName: Lung
+        transferSolutionName: bloodstream
+        metabolizeAll: true
+      Digestion:
+        solutionName: stomach
+        solutionOnBody: false
+        transferSolutionName: bloodstream
+        transferSolutionOnBody: false
+        transferEfficacy: 0.5
+      Bloodstream:
+        solutionName: bloodstream
+        solutionOnBody: false
+        transferSolutionName: metabolites
+        transferSolutionOnBody: false
+      Metabolites:
+        solutionName: metabolites
+        solutionOnBody: false
+  - type: SolutionContainerManager
+    solutions:
+      food: {}
+      stomach:
+        maxVol: 50
   - type: ReattacheableLimbs 
 
 #region SHADEKIN ####

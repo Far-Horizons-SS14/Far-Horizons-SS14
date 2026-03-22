@@ -247,8 +247,22 @@ public sealed partial class IngestionSystem : EntitySystem
         var food = args.Ingested;
         var forceFed = args.User != entity.Owner;
 
-        if (!_body.TryGetOrgansWithComponent<StomachComponent>(entity!, out var stomachs))
+        //FarHorizons Start
+        List<Entity<StomachComponent>> stomachs = new();
+
+        if (_body.TryGetOrgansWithComponent<StomachComponent>(entity.Owner, out var organStomachs))
+        {
+            stomachs.AddRange(organStomachs);
+        }
+
+        if (TryComp<StomachComponent>(entity, out var stomach))
+        {
+            stomachs.Add(new Entity<StomachComponent>(entity.Owner, stomach));
+        }
+
+        if (stomachs.Count == 0)
             return;
+        //FarHorizons End
 
         // Can we digest the specific item we're trying to eat?
         if (!IsDigestibleBy(args.Ingested, stomachs, out var popup))
@@ -312,8 +326,22 @@ public sealed partial class IngestionSystem : EntitySystem
         if (!CanConsume(args.User, entity, food, out var solution, out _))
             return;
 
-        if (!_body.TryGetOrgansWithComponent<StomachComponent>(entity!, out var stomachs))
+        //FarHorizons Start
+        List<Entity<StomachComponent>> stomachs = new();
+
+        if (_body.TryGetOrgansWithComponent<StomachComponent>(entity.Owner, out var organStomachs))
+        {
+            stomachs.AddRange(organStomachs);
+        }
+
+        if (TryComp<StomachComponent>(entity, out var stomach))
+        {
+            stomachs.Add(new Entity<StomachComponent>(entity.Owner, stomach));
+        }
+
+        if (stomachs.Count == 0)
             return;
+        //FarHorizons End
 
         var forceFed = args.User != entity.Owner;
 
