@@ -164,6 +164,30 @@
       sprite: _Starlight/Clothing/Belt/salvage.rsi
     - type: Clothing
       sprite: _Starlight/Clothing/Belt/salvage.rsi
+
+
+#region NanoTrasen Navy
+- type: entity
+  parent: [ClothingBeltWebbingBase, BaseCentcommContraband]
+  id: ClothingBeltNTNCRig
+  name: NanoTrasen marine rig
+  description: A military rig worn by NanoTrasen Marines.
+  components:
+  - type: Storage #Starlight
+    grid:
+    - 0,0,1,0 #left
+    - 0,1,0,1 #left - cube
+    - 3,0,10,1
+    - 12,0,13,0 #right
+    - 12,1,12,1 #right - cube
+  - type: Sprite
+    sprite: _Starlight/Admeme/Clothing/Belt/ntnc_rig.rsi
+  - type: Clothing
+    sprite: _Starlight/Admeme/Clothing/Belt/ntnc_rig.rsi
+  - type: ExplosionResistance
+    damageCoefficient: 0.1
+  - type: StaticPrice
+    price: 900
 #region Syndi/NT split
 
 

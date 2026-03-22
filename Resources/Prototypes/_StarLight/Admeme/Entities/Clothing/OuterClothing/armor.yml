@@ -1,0 +1,38 @@
+- type: entity
+  parent:
+    [BaseCentcommContraband, ClothingOuterVestWeb]
+  id: ClothingOuterVestWebNTNCEnsign
+  name: NanoTrasen marine ensign's carapace. #FH
+  description: An armoured carapace designed for the best of the best within the navy, allowing the wearer to remain protected and stylish.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Admeme/Clothing/OuterClothing/Vests/ntnc-ensign.rsi
+    - type: Clothing
+      sprite: _Starlight/Admeme/Clothing/OuterClothing/Vests/ntnc-ensign.rsi
+
+- type: entity
+  parent: [ClothingOuterArmorBase, BaseCentcommContraband]
+  id: ClothingOuterVestNTNC
+  name: NanoTrasen Marine's vest
+  description: Much better than a standard type-1 security vest. Don't lose it, you will NOT get a replacement.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Admeme/Clothing/OuterClothing/Vests/ntnc_vest.rsi
+    - type: Clothing
+      sprite: _Starlight/Admeme/Clothing/OuterClothing/Vests/ntnc_vest.rsi
+    - type: Pierceable
+      level: Metal
+    - type: Armor
+      modifiers:
+        flatReductions: #FH
+          Piercing: 5 #FH
+          Heat: 4 #FH
+        coefficients:
+          Blunt: 0.6
+          Slash: 0.6
+          Piercing: 0.6
+          Heat: 0.7
+    - type: ExplosionResistance
+      damageCoefficient: 0.80
+    - type: Item
+      size: Normal
