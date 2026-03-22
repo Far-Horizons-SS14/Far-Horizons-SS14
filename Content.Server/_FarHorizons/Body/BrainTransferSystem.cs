@@ -32,7 +32,7 @@ public sealed partial class BrainTransferSystem : EntitySystem
             AddComp(args.Body, comp);
         }
         ent.Comp.StoredComponents.Clear();
-        _mind.MakeSentient(ent.Owner);
+        _mind.MakeSentient(args.Body);
     }
 
     private void OnBrainRemoved(Entity<BrainExtraComponent> ent, ref BrainRemoved args)
