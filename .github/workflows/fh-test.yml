@@ -54,7 +54,7 @@ jobs:
         env:
           DOTNET_gcServer: "1"
       - uses: EnricoMi/publish-unit-test-result-action@v2
-        if: always() # Ensures results are uploaded even if tests fail
+        if: (!cancelled())
         with:
           files: "**/results.trx"
-          comment_mode: failures
+          check_name: Integration Tests
