@@ -1,0 +1,87 @@
+- type: entity
+  parent: BaseMachine
+  id: AmmoDistributorBase
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: Structures/Storage/barrels.rsi
+    state: metalbarrel
+    noRot: true
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.18,-0.48,0.18,0.28"
+        density: 200
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 25
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: BallisticAmmoProvider
+    soundInsert:
+      path: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+  - type: BallisticAmmoDistributor
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: DeviceLinkSource
+    range: 5
+    ports:
+      - AmmoDistributorPort
+
+- type: entity
+  parent: AmmoDistributorBase
+  id: AmmoDistributorBarrel
+  name: AD-30 "Powder Keg" # Ammo Distributor, 30 capacity
+  description: A small metal drum that feeds ammunition into connected weapons.
+  components:
+  - type: BallisticAmmoProvider
+    capacity: 30
+  - type: BallisticAmmoReceiver
+
+- type: entity
+  parent: AmmoDistributorBase
+  id: AmmoDistributorAutoloader
+  name: AD-5 "Smoke Line"
+  description: A small autoloader that feeds ammunition into connected weapons.
+  components:
+  - type: Sprite
+    scale: "0.5, 0.5"
+  - type: BallisticAmmoProvider
+    capacity: 5
+  - type: BallisticAmmoDistributor
+    transferAmount: 5
+  - type: BallisticAmmoReceiver
+  - type: DeviceLinkSource
+    range: 15
+
+- type: entity
+  parent: AmmoDistributorBase
+  id: AmmoDistributorCitadel
+  name: AD-60 "Citadel"
+  description: A large metal drum that feeds ammunition into connected weapons.
+  components:
+  - type: Sprite
+    scale: "2, 2"
+  - type: BallisticAmmoProvider
+    capacity: 60
+  - type: BallisticAmmoDistributor
+    transferAmount: 10

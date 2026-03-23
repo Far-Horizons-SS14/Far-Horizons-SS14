@@ -30,3 +30,14 @@
       state: cpu_engineering
     - type: ComputerBoard
       prototype: GasTurbineMonitor
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: GunneryConsoleCircuitboard
+  name: Gunnery Console Board
+  description: A computer printed circuit board for a gunnery console.
+  components:
+    - type: Sprite
+      state: cpu_security
+    - type: ComputerBoard
+      prototype: ShuttleGunneryConsole

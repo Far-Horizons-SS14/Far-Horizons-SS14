@@ -10,6 +10,7 @@ using Robust.Shared.Containers;
 using Robust.Shared.Map;
 using Robust.Shared.Serialization;
 using Robust.Shared.Prototypes; // 🌟Starlight🌟
+using Content.Shared.Whitelist; // Far Horizons
 
 namespace Content.Shared.Weapons.Ranged.Systems;
 
@@ -473,6 +474,15 @@ public abstract partial class SharedGunSystem
             }
         }
     }
+
+    #region FarHorizons
+    /// <summary>
+    /// Copies a whitelist into a BallisticAmmoProviderComponent.
+    /// </summary>
+    /// <param name="ammoProvider"></param>
+    /// <param name="whitelist"></param>
+    public static void UpdateWhitelist(BallisticAmmoProviderComponent ammoProvider, EntityWhitelist? whitelist) => ammoProvider.Whitelist = whitelist;
+    #endregion
 }
 
 /// <summary>

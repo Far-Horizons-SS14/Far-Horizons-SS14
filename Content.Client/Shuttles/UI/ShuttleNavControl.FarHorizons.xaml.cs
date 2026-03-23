@@ -4,7 +4,7 @@ using Robust.Client.Graphics;
 
 namespace Content.Client.Shuttles.UI;
 
-public sealed partial class ShuttleNavControl
+public partial class ShuttleNavControl
 {
     private TimeSpan _lastPing = TimeSpan.Zero;
     private TimeSpan _nextPing = TimeSpan.Zero;

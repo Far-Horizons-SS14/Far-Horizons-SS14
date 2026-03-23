@@ -165,3 +165,51 @@
       board: !type:Container
       machine_board: !type:Container
       machine_parts: !type:Container
+
+- type: entity
+  parent: BaseComputerAiAccess
+  id: ShuttleGunneryConsole
+  name: Gunnery Console
+  description: Interfaces with connected shuttle weapons to provide targeting data and firing commands. Yes Hoven, kaboom.
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: request-sec
+    - map: ["computerLayerKeys"]
+      state: id_key
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: GunneryConsole
+  - type: RadarConsole # To appease the ShuttleConsoleSystem
+  - type: BulletTracerReceiver
+  - type: ActivatableUI
+    key: enum.GunneryConsoleUiKey.Key
+  - type: UserInterface
+    interfaces:
+        enum.GunneryConsoleUiKey.Key:
+          type: GunneryConsoleBoundUserInterface
+        enum.WiresUiKey.Key:
+          type: WiresBoundUserInterface
+  - type: WorldLoader
+    radius: 256
+  - type: PointLight
+    radius: 1.5
+    energy: 4.0
+    color: "#43ccb5"
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+  - type: DeviceLinkSource
+    ports:
+      - GunneryConsoleTurretControl
+  - type: Computer
+    board: GunneryConsoleCircuitboard
+  - type: ContainerContainer
+    containers:
+      board: !type:Container
+      machine_board: !type:Container
+      machine_parts: !type:Container

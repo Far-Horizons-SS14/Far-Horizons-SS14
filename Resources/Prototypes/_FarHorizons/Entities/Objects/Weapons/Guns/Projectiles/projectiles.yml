@@ -1,4 +1,10 @@
 - type: entity
+  id: BaseBulletTracer
+  abstract: true
+  components:
+  - type: BulletTracerSender
+
+- type: entity
   id: PelletKinetic
   name: kinetic pellet
   categories: [ HideSpawnMenu ]

@@ -1,4 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
+using System.Linq; // Far Horizons
 using Content.Shared.Item;
 using Content.Shared.Tag;
 using Robust.Shared.Utility;
@@ -143,4 +144,66 @@ public sealed class EntityWhitelistSystem : EntitySystem
 
         return list;
     }
+
+    #region FarHorizons
+    /// <summary>
+    /// Checks if any item that would pass whitelist a would also pass whitelist b.
+    /// </summary>
+    /// <param name="listA"></param>
+    /// <param name="listB"></param>
+    /// <returns>If whitelist a passes whitelist b</returns>
+    /// <remarks>A null whitelist is treated as more permissive than an empty whitelist.</remarks>
+    public bool WhitelistCompare(EntityWhitelist? listA, EntityWhitelist? listB)
+    {
+        // Treating null like a whitelist that will pass anything
+        if (listB == null)
+            return true;
+
+        if (listA == null)
+            return false;
+
+        if (listB.RequireAll && !listA.RequireAll)
+            return false;
+
+        listA.Registrations ??= StringsToRegs(listA.Components);
+        listB.Registrations ??= StringsToRegs(listB.Components);
+
+        if (listA.Registrations != null && listB.Registrations != null)
+        {
+            foreach (var reg in listB.Registrations)
+            {
+                if (listA.Registrations.Contains(reg))
+                {
+                    if (!listB.RequireAll)
+                        return true;
+                }
+                else if (listB.RequireAll)
+                    return false;
+            }
+        }
+
+        if (listA.Sizes != null && listB.Sizes != null)
+        {
+            foreach (var size in listB.Sizes)
+            {
+                if (listA.Sizes.Contains(size))
+                {
+                    if (!listB.RequireAll)
+                        return true;
+                }
+                else if (listB.RequireAll)
+                    return false;
+            }
+        }
+
+        if (listA.Tags != null && listB.Tags != null)
+        {
+            return listB.RequireAll
+                ? listA.Tags.All(listB.Tags.Contains)
+                : listA.Tags.Any(listB.Tags.Contains);
+        }
+
+        return listB.RequireAll;
+    }
+    #endregion
 }

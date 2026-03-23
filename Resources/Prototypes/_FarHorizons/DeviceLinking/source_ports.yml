@@ -28,6 +28,18 @@
   description: signal-port-description-gas-turbine-data-sender
   defaultLinks: [ GasTurbineDataReceiver ]
 
+- type: sourcePort
+  id: GunneryConsoleTurretControl
+  name: signal-port-name-gunnery-console-turret-control
+  description: signal-port-description-gunnery-console-turret-control
+  defaultLinks: [ Trigger ]
+
+- type: sourcePort
+  id: AmmoDistributorPort
+  name: signal-port-name-ammo-distributor-port
+  description: signal-port-description-ammo-distributor-port
+  defaultLinks: [ Trigger, AmmoReceiverPort ]
+  
   # Holographic Generator
 - type: sourcePort
   id: ConnectionStatus

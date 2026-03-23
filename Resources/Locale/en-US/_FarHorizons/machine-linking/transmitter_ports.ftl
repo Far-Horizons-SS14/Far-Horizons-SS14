@@ -13,6 +13,12 @@ signal-port-description-gas-turbine-speed-low = Speed is lower than optimal.
 signal-port-name-gas-turbine-data-sender = Gas Turbine
 signal-port-description-gas-turbine-data-sender = Sending info about a gas turbine to a monitor.
 
+signal-port-name-gunnery-console-turret-control = Gunnery Console
+signal-port-description-gunnery-console-turret-control = Connect to a turret to allow the console to control it.
+
+signal-port-name-ammo-receiver-port = Ammo Receiver
+signal-port-description-ammo-receiver-port = Collects ammunition from a distributor.
+
 signal-port-name-holographic-generator-connection-status = Field Status
 signal-port-description-holographic-generator-connection-status = This port is invoked with HIGH when the field forms and LOW when the field fizzles out.
 

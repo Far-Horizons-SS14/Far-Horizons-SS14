@@ -1,0 +1,31 @@
+<controls:FancyWindow xmlns="https://spacestation14.io"
+                      xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+                      xmlns:ui="clr-namespace:Content.Client._FarHorizons.Shuttles.UI"
+                      Title="Gunnery Console"
+                      SetSize="1000 690"
+                      MinSize="256 256">
+    <BoxContainer Orientation="Vertical">
+        <BoxContainer Orientation="Horizontal" VerticalExpand="True" HorizontalExpand="True">
+            <!-- Radar screen  -->
+            <ui:ShuttleGunControl Name="RadarScreen"
+                         Margin="4"
+                         HorizontalExpand = "True"
+                         VerticalExpand = "True"/>
+
+            <!-- Gun Selector  -->
+            <BoxContainer Name="GunSelectorContainer" Orientation="Vertical" VerticalExpand="True" HorizontalExpand="True" Margin="10 10 10 10">
+
+                <BoxContainer Orientation="Horizontal">
+                    <Button Name="SelectAllButton" Text="Select All" HorizontalExpand="True" Margin="0 0 5 0"/>
+                    <Button Name="DeselectAllButton" Text="Deselect All" HorizontalExpand="True" Margin="5 0 0 0"/>
+                </BoxContainer>
+
+                <TabContainer VerticalExpand="True" HorizontalExpand="True" Margin="0 10 0 0">
+                    <ScrollContainer Name="Weapons" HorizontalExpand="True" Margin="8 8 8 8">
+                        <BoxContainer Name="GunList" Orientation="Vertical" VerticalExpand="True" HorizontalExpand="True" Margin="0 0 10 0"/>
+                    </ScrollContainer>
+                </TabContainer>
+            </BoxContainer>
+        </BoxContainer>
+    </BoxContainer>
+</controls:FancyWindow>
