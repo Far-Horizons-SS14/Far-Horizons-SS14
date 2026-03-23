@@ -2,7 +2,7 @@
   parent: BaseItem
   id: BaseComputerCircuitboard
   name: computer board
-  abstract: true
+  abstract: false
   components:
     - type: ComputerBoard
     - type: Sprite
@@ -18,27 +18,37 @@
       chemicalComposition:
         Silicon: 20
     - type: Circuitboard
+#FH - Start
     - type: Edible
       requiresSpecialDigestion: true
-      delay: 4
+      delay: 3
       forceFeedDelay: 10
     - type: FlavorProfile
       flavors:
       - shocking
+    - type: Extractable
+      grindableSolutionName: ramchip
     - type: SolutionContainerManager
       solutions:
         food:
           maxVol: 15
           reagents:
-          - ReagentId: Tazinide
-            Quantity: 5
-          - ReagentId: Vitamin
-            Quantity: 5
-          - ReagentId: Nutriment
-            Quantity: 5
+          - ReagentId: BatteryAcid
+            Quantity: 15
+        ramchip:
+          reagents:
+          - ReagentId: BatteryAcid
+            Quantity: 15
+          - ReagentId: Gold
+            Quantity: 10
+          - ReagentId: Iron
+            Quantity: 10
+          - ReagentId: Silicon
+            Quantity: 50
     - type: Tag
       tags:
-      - RamChip #Protogen joke, makes them able to eat them. - FH End
+      - RamChip #Protogen joke, makes them able to eat them.
+#FH - End
 
 - type: entity
   parent: BaseComputerCircuitboard

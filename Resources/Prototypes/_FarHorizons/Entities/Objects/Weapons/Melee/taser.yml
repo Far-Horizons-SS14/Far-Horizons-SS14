@@ -2,7 +2,7 @@
   name: Taser
   parent: [BaseItem, BaseSecurityContraband]
   id: WeaponHeldTaser
-  description: Widely regarded as incredibly ineffective against fleeing suspects and considered out of date for station-side security, it is still provided for officers that prefer a softer touch.
+  description: Widely regarded as incredibly ineffective against fleeing suspects, it is still provided for officers that prefer a softer touch. Best used in combination with the Pistol Taser.
   components:
   - type: Sprite
     sprite: _FarHorizons/Objects/Weapons/Melee/taser.rsi
@@ -10,11 +10,11 @@
     - state: icon_off
       map: [ "enum.ToggleableVisuals.Layer" ]
   - type: Stunbaton
-    energyPerUse: 11
+    energyPerUse: 5
   - type: ItemToggle
     predictable: false
     soundActivate:
-      collection: sparks
+      path: /Audio/Weapons/Guns/Gunshots/taser.ogg
       params:
         variation: 0.250
     soundDeactivate:
@@ -30,23 +30,23 @@
     prefixOff: off
   - type: ItemToggleMeleeWeapon
     activatedSoundOnHit:
-      path: /Audio/Effects/sparks1.ogg
+      path: /Audio/Weapons/Guns/Hits/taser_hit.ogg
     activatedDamage:
       types:
-        Shock: 0.7
+        Shock: 2 # ~ 18 damage.
   - type: MeleeWeapon
     autoAttack: true
-    attackRate: 4
+    attackRate: 1.5
     wideAnimationRotation: -90
     damage:
       types:
         Blunt: 0
     angle: 0
   - type: StaminaDamageOnHit
-    damage: 3.2
+    damage: 12 # ~ 7 hits
   - type: Battery
-    maxCharge: 1000
-    startingCharge: 1000
+    maxCharge: 100
+    startingCharge: 100
   - type: UseDelay
   - type: Item
     heldPrefix: off

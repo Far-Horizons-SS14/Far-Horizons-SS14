@@ -305,10 +305,11 @@
       damageContainers:
         - Biological
       damage:
-        groups:
-          Brute: 5 # Tourniquets HURT!
+#        groups: - FH
+#          Brute: 5 - FH, this is stupid. A welder is better than this.
         types:
-          Asphyxiation: 5 # Essentially Stopping all blood reaching a part of your body
+#          Asphyxiation: 5 - FH, Breaks Shadekin & IPCs
+          Blunt: 5 #FH
       bloodlossModifier: -10 # Tourniquets stop bleeding
       delay: 0.5
       healingBeginSound:
