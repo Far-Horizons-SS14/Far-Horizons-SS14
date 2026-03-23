@@ -116,9 +116,6 @@ public abstract partial class SharedVendingMachineSystem : EntitySystem
 
         var isEmagged = _emag.CheckFlag(entity.Owner, EmagType.Interaction);
         var showPricesNow = component.ShowPrices && !isEmagged;
-        CalculateInventoryPrices(inventory, showPricesNow);
-        CalculateInventoryPrices(emaggedInventory, showPricesNow);
-        CalculateInventoryPrices(contrabandInventory, showPricesNow);
 
         args.State = new VendingMachineComponentState()
         {
