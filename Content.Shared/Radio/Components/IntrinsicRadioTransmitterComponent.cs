@@ -12,5 +12,5 @@ namespace Content.Shared.Radio.Components;
 public sealed partial class IntrinsicRadioTransmitterComponent : Component
 {
     [DataField]
-    public HashSet<ProtoId<RadioChannelPrototype>> Channels = new() { SharedChatSystem.DefaultCommonChannel };
+    public HashSet<ProtoId<RadioChannelPrototype>> Channels = new(); // FH - Remove default common radio, we don't need it really?
 }
