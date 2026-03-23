@@ -40,7 +40,7 @@
 - type: entity
   id: MachineElectrolysisUnit
   parent: BaseTabletopChemicalMachine
-  name: electrolysis unit
+  name: Electrolysis Unit #FH
   description: The latest in medicinal electrocution technology.
   components:
   - type: SolutionContainerMixer
@@ -77,16 +77,16 @@
   - type: Machine
     board: ElectrolysisUnitMachineCircuitboard
   - type: ApcPowerReceiver
-    powerLoad: 0
-  - type: PowerState
-    idlePowerDraw: 0
-    workingPowerDraw: 1000 # for a lab-grade machine
+    powerLoad: 25 #FH
+#  - type: PowerState FH
+#    idlePowerDraw: 0
+#    workingPowerDraw: 1000 # for a lab-grade machine
 
 # TODO centrifuge should spill the vial if the lid is off
 - type: entity
   id: MachineCentrifuge
   parent: BaseTabletopChemicalMachine
-  name: tabletop centrifuge
+  name: Tabletop Centrifuge #FH
   description: Around and around it goes...
   components:
   - type: SolutionContainerMixer
@@ -99,7 +99,7 @@
     reactionTypes:
     - Centrifuge
   - type: Sprite
-    sprite: Structures/Machines/Medical/centrifuge.rsi
+    sprite: _FarHorizons/Structures/Machines/Medical/centrifuge.rsi #FH
     noRot: true
     offset: "0.0,0.4"
     layers:
@@ -130,7 +130,7 @@
   - type: Machine
     board: CentrifugeMachineCircuitboard
   - type: ApcPowerReceiver
-    powerLoad: 0
-  - type: PowerState
-    idlePowerDraw: 0
-    workingPowerDraw: 500
+    powerLoad: 25 #FH
+#  - type: PowerState FH
+#    idlePowerDraw: 0
+#    workingPowerDraw: 500

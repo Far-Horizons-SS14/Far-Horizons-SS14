@@ -1,7 +1,7 @@
 - type: entity
   id: KitchenReagentGrinder
   parent: [ BaseMachinePowered, SmallConstructibleMachine ]
-  name: reagent grinder
+  name: Reagent Grinder #FH
   description: From BlenderTech. Will It Blend? Let's find out!
   suffix: grinder/juicer
   components:
@@ -15,10 +15,10 @@
   - type: Appearance
   - type: GenericVisualizer
     visuals:
-      enum.ReagentGrinderVisualState.BeakerAttached:
-        grinder:
-          True: {state: "grinder_beaker_attached"}
-          False: {state: "grinder_empty"}
+      enum.PowerDeviceVisuals.Powered: #FH
+        enum.PowerDeviceVisualLayers.Powered: #FH
+          True: { visible: true } #FH
+          False: { visible: false } #FH
   - type: Physics
   - type: Fixtures
     fixtures:
@@ -31,21 +31,30 @@
         layer:
         - TabletopMachineLayer
   - type: Sprite
-    sprite: Structures/Machines/grinder.rsi
+    sprite: _FarHorizons/Structures/Machines/grinder.rsi #FH
     drawdepth: LargeObjects
     snapCardinals: true
     offset: "0.0,0.4"
     layers:
-    - map: [ "grinder" ]
-      state: "grinder_empty"
+      - state: grinder_offline #FH
+      - state: grinder_online #FH
+        visible: false
+        map: [ "enum.PowerDeviceVisualLayers.Powered" ]
   - type: ApcPowerReceiver
-    powerLoad: 0
-  - type: PowerState
-    idlePowerDraw: 0
-    workingPowerDraw: 750 # medium power blender
+    powerLoad: 25 #FH
+#  - type: PowerState FH
+#    idlePowerDraw: 0
+#    workingPowerDraw: 750 # medium power blender
   - type: ItemSlots
     slots:
       beakerSlot:
+        whitelist:
+          components:
+          - FitsInDispenser
+  - type: ItemMapper #FH
+    containerWhitelist: [beakerSlot]
+    mapLayers:
+      grinder_beaker_attached:
         whitelist:
           components:
           - FitsInDispenser
@@ -61,7 +70,7 @@
 - type: entity
   parent: Recycler #too different so different parent
   id: ReagentGrinderIndustrial
-  name: industrial reagent grinder
+  name: Industrial Reagent Grinder #FH
   description: An industrial reagent grinder.
   components:
   - type: SolutionContainerManager

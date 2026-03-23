@@ -1,12 +1,12 @@
 - type: entity
   id: ChemDispenserEmpty
-  name: chemical dispenser
+  name: Chemical Dispenser #FH
   suffix: Empty
   parent: ReagentDispenserBasePowerCell # Starlight-edit: power cell chem dispenser
   description: An industrial grade chemical dispenser.
   components:
   - type: Sprite
-    sprite: Structures/dispensers.rsi
+    sprite: _FarHorizons/Structures/dispensers.rsi #FH
     # Starlight-start: Chem Dispenser unpowered/wiring panel states
     layers:
       - state: industrial-off
@@ -18,6 +18,13 @@
         visible: false
     # Starlight-end
     snapCardinals: true
+  - type: ItemMapper #FH
+    containerWhitelist: [beakerSlot]
+    mapLayers:
+      industrial_loaded:
+        whitelist:
+          components:
+          - FitsInDispenser
   - type: Storage
     openOnActivate: false
     whitelist:
@@ -70,6 +77,12 @@
       Phosphorus: 5
   - type: WiresVisuals
   - type: Appearance
+  - type: GenericVisualizer #FH
+    visuals:
+      enum.PowerDeviceVisuals.Powered:
+        enum.PowerDeviceVisualLayers.Powered:
+          True: { visible: true }
+          False: { visible: false }
   - type: BatteryVisuals
   # Starlight-end
 
