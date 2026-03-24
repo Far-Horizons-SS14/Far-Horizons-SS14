@@ -24,7 +24,8 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using Content.Shared.Research.Components;
 using Content.Shared._FarHorizons.Body;
-using Content.Shared.Damage.Systems; //FarHorizons
+using Content.Shared.Damage.Systems;
+using Content.Shared.Medical.Disease.Prototypes; //FarHorizons
 
 namespace Content.Client.HealthAnalyzer.UI;
 
@@ -182,27 +183,41 @@ public sealed partial class HealthAnalyzerWindow : FancyWindow
         DrawMetabolizingChemicals(msg.State.MetabolizingReagents); 
         // Starlight end
 
-            // Disease
-
-            var infected = false;
-
-            if (_entityManager.TryGetComponent<DiseaseCarrierComponent>(target.Value, out var carrier)
-                && !string.IsNullOrEmpty(carrier.DiseaseIcon)
-                && _prototypes.TryIndex<DiseaseIconPrototype>(carrier.DiseaseIcon, out var diseaseIcon))
+        // Far Horizons Start
+        var showDisease = false;
+        if(_entityManager.TryGetComponent<DiseaseCarrierComponent>(target.Value, out var carrier))
+        {
+            showDisease = carrier.ActiveDiseases.Any(x =>
             {
-                infected = true;
-                DiseaseIcon.Visible = true;
-                DiseaseIcon.Texture = _spriteSystem.Frame0(diseaseIcon.Icon);
-            }
-            else
-            {
-                DiseaseIcon.Visible = false;
-                DiseaseIcon.ToolTip = null;
-            }
+                if (!_prototypes.TryIndex(x.Key, out var disease))
+                    return false;
 
-            DiseaseLabel.Text = infected
-                ? Loc.GetString("health-analyzer-window-entity-disease-yes")
-                : Loc.GetString("health-analyzer-window-entity-disease-no");
+                var index = x.Value-1;
+
+                if (index < 0 || index >= disease.Stages.Count)
+                {
+                    Log.Error($"Invalid stage index {index} for {x.Key}");
+                    return false;
+                }
+
+                return (disease.Stages[index].Stealth & DiseaseStealthFlags.Hidden) == 0;
+            });
+        }
+
+        if (carrier != null && showDisease && !string.IsNullOrEmpty(carrier.DiseaseIcon)
+            && _prototypes.TryIndex(carrier.DiseaseIcon, out var diseaseIcon))
+        {
+            DiseaseIcon.Visible = true;
+            DiseaseIcon.Texture = _spriteSystem.Frame0(diseaseIcon.Icon);
+            DiseaseLabel.Text = Loc.GetString("health-analyzer-window-entity-disease-yes");
+        }
+        else
+        {
+            DiseaseIcon.Visible = false;
+            DiseaseIcon.ToolTip = null;
+            DiseaseLabel.Text = Loc.GetString("health-analyzer-window-entity-disease-no");
+        }
+        // Far Horizons End
     }
 
     private static string GetStatus(MobState mobState)

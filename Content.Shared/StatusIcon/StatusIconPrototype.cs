@@ -148,6 +148,7 @@ public sealed partial class HealthIconPrototype : StatusIconPrototype, IInheriti
     public bool Abstract { get; private set; }
 }
 
+//FarHorizons Start
 /// <summary>
 /// StatusIcons for disease HUD. Separate type to decouple from health icons.
 /// </summary>
@@ -169,6 +170,7 @@ public sealed partial class DiseaseIconPrototype : StatusIconPrototype, IInherit
     [DataField]
     public int PriorityDisease = 1;
 }
+//FarHorizons End
 
 /// <summary>
 /// StatusIcons for the beer goggles and fried onion goggles
