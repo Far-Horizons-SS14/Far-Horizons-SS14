@@ -4,7 +4,7 @@
 - type: entity
   name: scurret
   id: MobBaseScurret
-  parent: [ MobBaseAncestor, BaseSpeciesPickupable ] #Starlight - give the scurret uppies.
+  parent: [ BaseMobAnimalwithHands, MobBaseAncestor, BaseSpeciesPickupable ] #Starlight - give the scurret uppies.
   abstract: true
   components:
   # Starlight-start: Languages
@@ -137,12 +137,25 @@
           32:
             sprite: Mobs/Animals/scurret/displacement.rsi
             state: back
-  - type: Hands
+  #FarHorizons Start
+  - type: Hands # HANDS!
+  #  activeHandId: Right
+  #  hands:
+  #    Right:
+  #      location: Right
+  #    Left:
+  #     location: Left
     leftHandDisplacement:
       sizeMaps:
         32:
           sprite: Mobs/Animals/scurret/displacement.rsi
           state: hand
+    rightHandDisplacement:
+      sizeMaps:
+        32:
+          sprite: Mobs/Animals/scurret/displacement.rsi
+          state: hand
+  #FarHorizons End
 
   - type: InventorySlots
   - type: Edible # Why? I'm not sure but I also am afraid of the answer.
@@ -162,6 +175,7 @@
     - CanPilot
     - VimPilot
     - AnomalyHost
+    - Animal #FH
 
 # Spawnable scurrets have a random name and colour.
 

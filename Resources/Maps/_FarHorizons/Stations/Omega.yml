@@ -4,8 +4,8 @@ meta:
   engineVersion: 272.0.0
   forkId: ""
   forkVersion: ""
-  time: 03/18/2026 08:25:12
-  entityCount: 16095
+  time: 03/23/2026 03:22:51
+  entityCount: 16096
 maps:
 - 1
 grids:
@@ -1527,13 +1527,6 @@ entities:
             color: '#0082D993'
             id: HalfTileOverlayGreyscale
           decals:
-            3744: -27,11
-            3745: -28,11
-            3746: -29,11
-        - node:
-            color: '#0082D993'
-            id: HalfTileOverlayGreyscale
-          decals:
             3280: -28,14
             3281: -27,14
             3283: -26,14
@@ -1550,6 +1543,9 @@ entities:
             3695: -51,58
             3696: -50,58
             3719: -15,58
+            3744: -27,11
+            3745: -28,11
+            3746: -29,11
         - node:
             color: '#0082D9AD'
             id: HalfTileOverlayGreyscale
@@ -1896,10 +1892,6 @@ entities:
             3717: -14,57
             3718: -14,58
             3720: -14,55
-        - node:
-            color: '#0082D993'
-            id: HalfTileOverlayGreyscale90
-          decals:
             3747: -29,8
         - node:
             color: '#0082D9AD'
@@ -2031,11 +2023,6 @@ entities:
             color: '#0082D993'
             id: QuarterTileOverlayGreyscale
           decals:
-            3748: -30,9
-        - node:
-            color: '#0082D993'
-            id: QuarterTileOverlayGreyscale
-          decals:
             3291: -24,18
             3292: -24,17
             3293: -24,16
@@ -2081,6 +2068,7 @@ entities:
             3583: 29,0
             3584: 30,0
             3585: 31,0
+            3748: -30,9
         - node:
             color: '#334E6DC8'
             id: QuarterTileOverlayGreyscale
@@ -3741,10 +3729,6 @@ entities:
             3692: -51,55
             3704: -15,43
             3721: -14,55
-        - node:
-            color: '#0082D993'
-            id: halfswhite
-          decals:
             3729: -32,7
             3730: -31,7
             3731: -30,7
@@ -3752,12 +3736,6 @@ entities:
             3751: -28,13
             3752: -27,13
             3753: -26,13
-        - node:
-            color: '#0082D993'
-            id: halfwwhite
-          decals:
-            3739: -33,8
-            3742: -30,10
         - node:
             color: '#0082D993'
             id: halfwwhite
@@ -3792,6 +3770,8 @@ entities:
             3691: -50,54
             3693: -51,56
             3694: -51,57
+            3739: -33,8
+            3742: -30,10
         - node:
             color: '#0082D993'
             id: quarternewhite
@@ -3812,10 +3792,6 @@ entities:
             id: quartersewhite
           decals:
             3600: -33,22
-        - node:
-            color: '#0082D993'
-            id: quartersewhite
-          decals:
             3749: -29,9
             3750: -28,10
         - node:
@@ -4926,7 +4902,7 @@ entities:
             4: 2184
           -13,4:
             3: 2184
-            6: 546
+            5: 546
           -12,6:
             3: 16
           -13,7:
@@ -4938,7 +4914,7 @@ entities:
           -11,7:
             0: 17
           -11,4:
-            5: 546
+            6: 546
             0: 34824
           -11,3:
             0: 34823
@@ -5292,11 +5268,11 @@ entities:
         - volume: 2500
           temperature: 293.15
           moles:
-            Nitrogen: 6666.982
+            Plasma: 6666.982
         - volume: 2500
           temperature: 293.15
           moles:
-            Plasma: 6666.982
+            Nitrogen: 6666.982
         chunkSize: 4
     - type: BecomesStation
       id: FHOmega
@@ -46588,7 +46564,7 @@ entities:
       pos: 12.5,-29.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -13989.5
+      secondsUntilStateChange: -14052.399
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -48001,7 +47977,7 @@ entities:
       pos: -7.5,27.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -20938.35
+      secondsUntilStateChange: -21001.25
       state: Closing
     - type: Firelock
       emergencyCloseCooldown: 391.7662769
@@ -48209,7 +48185,7 @@ entities:
       pos: 8.5,-22.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -14154.166
+      secondsUntilStateChange: -14217.065
       state: Closing
   - uid: 6487
     components:
@@ -49215,11 +49191,11 @@ entities:
       parent: 2
 - proto: FoodCartHot
   entities:
-  - uid: 6618
+  - uid: 16096
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 6.5,0.5
+      rot: -1.5707963267948966 rad
+      pos: 5.5,-3.5
       parent: 2
 - proto: FoodCondimentBottleEnzyme
   entities:
@@ -91059,6 +91035,13 @@ entities:
     components:
     - type: Transform
       pos: -26.669348,34.58727
+      parent: 2
+- proto: TP14KitchenDeepFryer
+  entities:
+  - uid: 6618
+    components:
+    - type: Transform
+      pos: 6.5,0.5
       parent: 2
 - proto: TrashBag
   entities:

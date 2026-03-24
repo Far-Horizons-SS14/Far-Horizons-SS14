@@ -651,7 +651,7 @@ namespace Content.Shared.Preferences
                 var speciesPrototypes = prototypeManager.EnumeratePrototypes<SpeciesPrototype>();
                 foreach (var specieNames in speciesPrototypes)
                 {
-                    if (Loc.GetString(specieNames.Name).ToLower() == customspeciename.ToLower())
+                    if (Loc.GetString(specieNames.Name).ToLower() == customspeciename.ToLower() && specieNames.RoundStart) //FH for Vic JR
                     {
                         customspeciename = "";
                         break;

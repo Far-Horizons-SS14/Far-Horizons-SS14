@@ -499,8 +499,16 @@
 
 - type: entityTable
   id: SpaceTrafficControlTable
-  table: !type:NestedSelector # we need to pass a list of rules, since rules have further restrictions to consider via StationEventComp
-    tableId: UnknownShuttlesHostileTable
+  # Far Horizons Start
+  table: !type:AllSelector # we need to pass a list of rules, since rules have further restrictions to consider via StationEventComp
+    children:
+      - !type:NestedSelector
+        tableId: UnknownShuttlesFriendlyTable
+      - !type:NestedSelector
+        tableId: UnknownShuttlesFreelanceTable
+      - !type:NestedSelector
+        tableId: UnknownShuttlesHostileTable
+  # Far Horizons End
 
 - type: entity
   id: BasicStationEventScheduler
@@ -539,6 +547,20 @@
     scheduledGameRules: !type:NestedSelector
       prob: 0.05 # Only 1 in 20 rounds...
       tableId: SpaceTrafficControlTable
+
+# Far Horizons Start
+- type: entity
+  id: SpaceTrafficControlFriendlyEventScheduler
+  parent: BaseGameRule
+  components:
+  - type: BasicStationEventScheduler
+    minimumTimeUntilFirstEvent: 1200 # 20 mins
+    minMaxEventTiming:
+      min: 600 # 10 mins
+      max: 1800 # 30 mins
+    scheduledGameRules: !type:NestedSelector
+      tableId: UnknownShuttlesFriendlyTable
+# Far Horizons End
 
 # variation passes
 - type: entity
