@@ -30,7 +30,7 @@
     Metabolites: #This makes it not compete with medicines, a large bonus for something that can heal
       effects:
       - !type:EvenHealthChange
-        probability: 0.5
+        # probability: 0.5
         damage:
           Brute: -0.5
           Burn: -0.5
@@ -58,7 +58,7 @@
     Metabolites:
       effects:
       - !type:EvenHealthChange
-        probability: 0.5
+        # probability: 0.5
         damage:
           Brute: -0.4
       - !type:ModifyBloodLevel
