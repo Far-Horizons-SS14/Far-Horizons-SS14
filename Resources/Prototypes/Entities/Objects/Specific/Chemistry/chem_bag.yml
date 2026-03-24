@@ -1,8 +1,8 @@
 - type: entity
-  name: chemistry bag
+  name: Chemistry Bag #FH
   id: ChemBag
-  parent: BaseStorageItem
-  description: A bag for storing chemistry products, such as pills, pill canisters, bottles, and syringes.
+  parent: [BaseStorageItem, ContentsExplosionResistanceBase] #FH
+  description: A bag for storing chemistry products, such as jugs, beakers, pills, pill canisters, bottles, and syringes. #FH
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Specific/Chemistry/chem_bag.rsi
@@ -11,13 +11,15 @@
     sprite: _Starlight/Objects/Specific/Chemistry/chem_bag.rsi
     quickEquip: false
     slots:
-    - belt
+    - rig #FH
+  - type: ExplosionResistance #FH
+    damageCoefficient: 0
   - type: Item
     size: Ginormous
   - type: Storage
     maxItemSize: Normal # allow up to 5 large beakers / 10 beakers / 10 pill canisters
     grid:
-    - 0,0,4,3
+    - 0,0,7,3 #FH
     quickInsert: true
     areaInsert: true
     whitelist:
@@ -31,4 +33,5 @@
         - Bottle
         - Syringe
         - Dropper
+        - ChemBag #FH
   - type: Dumpable

@@ -1,7 +1,7 @@
 #Cannot inheret from normal proto due to needing specific comps removed.
 
 - type: entity
-  name: reinforced jug
+  name: Reinforced Jug
   parent: BaseItem
   id: JugReinforced
   description: Used to contain a very large amount of chemicals or solutions. Chugging is extremely ill-advised, now explosion AND spill proof!
@@ -52,4 +52,5 @@
     - type: Tag
       tags:
       - ChemDispensable
+      - ChemBag
     - type: DnaSubstanceTrace

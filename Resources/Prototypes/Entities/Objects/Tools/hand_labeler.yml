@@ -1,7 +1,7 @@
 - type: entity
   parent: BaseItem
   id: HandLabeler
-  name: hand labeler
+  name: Hand Labeler #FH
   description: A hand labeler, used to label items and objects.
   components:
     - type: Sprite
@@ -30,3 +30,6 @@
     - type: ItemPrice
       priceCategory: tool_basic
     # Starlight-end
+    - type: Tag #FH
+      tags: 
+      - ChemBag
