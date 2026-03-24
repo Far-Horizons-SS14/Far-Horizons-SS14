@@ -11,7 +11,7 @@ namespace Content.IntegrationTests.Tests.Guidebook;
 [TestOf(typeof(GuidebookSystem))]
 [TestOf(typeof(GuideEntryPrototype))]
 [TestOf(typeof(DocumentParsingManager))]
-[Explicit]
+[Explicit] /// FH Edit
 public sealed class GuideEntryPrototypeTests
 {
     [Test]
