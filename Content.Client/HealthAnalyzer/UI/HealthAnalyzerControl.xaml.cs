@@ -144,13 +144,12 @@ public sealed partial class HealthAnalyzerControl : BoxContainer
 
         DrawDiagnosticGroups(damageSortedGroups, damagePerType);
 
-        // Disease
-
+        // Far Horizons Start
         var infected = false;
 
         if (_entityManager.TryGetComponent<DiseaseCarrierComponent>(target.Value, out var carrier)
             && !string.IsNullOrEmpty(carrier.DiseaseIcon)
-            && _prototypes.TryIndex<HealthIconPrototype>(carrier.DiseaseIcon, out var healthIcon))
+            && _prototypes.TryIndex(carrier.DiseaseIcon, out var healthIcon))
         {
             infected = true;
             DiseaseIcon.Visible = true;
@@ -165,6 +164,7 @@ public sealed partial class HealthAnalyzerControl : BoxContainer
         DiseaseLabel.Text = infected
             ? Loc.GetString("health-analyzer-window-entity-disease-yes")
             : Loc.GetString("health-analyzer-window-entity-disease-no");
+        // Far Horizons End
     }
 
     private static string GetStatus(MobState mobState)

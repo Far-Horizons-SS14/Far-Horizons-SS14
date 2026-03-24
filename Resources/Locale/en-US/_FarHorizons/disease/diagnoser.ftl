@@ -4,10 +4,11 @@
 diagnoser-disease-report-none = [bold]Bill of Good Health[/bold]
 diagnoser-disease-report-subject = [bold]Subject:[/bold] {$name}
 diagnoser-disease-report-subject-dna = [bold]DNA:[/bold] {$dna}
-diagnoser-disease-report-name = [bold]Disease Name:[/bold] {$name} (stage {$stage})
+diagnoser-disease-report-name = [bold]Disease Name:[/bold] {$name} (stage: {$stage})
 diagnoser-disease-report-desc = [bold]Disease Description:[/bold]
 
 diagnoser-no-cures = [bold]The disease has no cures.[/bold]
+diagnoser-cure-unknown = [bold]Error: Disease treament unknown.[/bold]
 diagnoser-cure-has = [bold]The disease has cures:[/bold]
 diagnoser-cure-bedrest = Resting while lying down has [color=orange]{$chance}%[/color] per second to cure; sleeping multiplies by [color=orange]{$sleepMult}x[/color]
 diagnoser-cure-reagent-item = {$units}u [color=orange]{$reagent}[/color]

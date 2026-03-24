@@ -263,8 +263,9 @@ public sealed partial class CrewMonitoringWindow : FancyWindow
 
             statusContainer.AddChild(statusIcon);
 
+            //FarHorizons Start
             // Disease icon
-            if (!string.IsNullOrEmpty(sensor.DiseaseIcon)
+            if (sensor.ShowDisease && !string.IsNullOrEmpty(sensor.DiseaseIcon)
                 && _prototypeManager.TryIndex<DiseaseIconPrototype>(sensor.DiseaseIcon, out var diseaseProto))
             {
                 var diseaseIcon = new TextureRect
@@ -277,6 +278,7 @@ public sealed partial class CrewMonitoringWindow : FancyWindow
                 };
                 statusContainer.AddChild(diseaseIcon);
             }
+            //FarHorizons End
 
             // User name
             var nameLabel = new Label()

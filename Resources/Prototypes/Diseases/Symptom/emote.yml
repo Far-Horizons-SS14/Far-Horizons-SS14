@@ -1,6 +1,6 @@
 - type: diseaseSymptom
   id: SymptomCough
-  name: disease-symptom-name-SymptomCough
+  name: disease-symptom-SymptomCough-name
   onlyAlive: true
   airborneBurst:
     rangeMultiplier: 1.75
@@ -21,7 +21,7 @@
 
 - type: diseaseSymptom
   id: SymptomSneeze
-  name: disease-symptom-name-SymptomSneeze
+  name: disease-symptom-SymptomSneeze-name
   onlyAlive: true
   airborneBurst:
     rangeMultiplier: 2.5
@@ -42,7 +42,7 @@
 
 - type: diseaseSymptom
   id: SymptomGasp
-  name: disease-symptom-name-SymptomGasp
+  name: disease-symptom-SymptomGasp-name
   onlyAlive: true
   behaviors:
   - !type:SymptomStatusEffect
@@ -53,7 +53,7 @@
 
 - type: diseaseSymptom
   id: SymptomEmoteHonk
-  name: disease-symptom-name-SymptomEmoteCat
+  name: disease-symptom-SymptomHonk-name
   probability: 0.05
   onlyAlive: true
   behaviors:

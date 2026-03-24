@@ -1,6 +1,7 @@
 disease-symptom-SymptomCough-name = Cough
 disease-symptom-SymptomSneeze-name = Sneeze
 disease-symptom-SymptomGasp-name = Gasp
+disease-symptom-SymptomHonk-name = Honk
 disease-symptom-SymptomEmoteCat-name = Meow
 disease-symptom-SymptomEmoteGroan-name = Groan
 disease-symptom-SymptomEmoteMoan-name = Moan

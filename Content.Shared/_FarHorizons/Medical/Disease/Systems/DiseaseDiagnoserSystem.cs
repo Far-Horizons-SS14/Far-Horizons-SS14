@@ -87,14 +87,9 @@ public sealed class DiseaseDiagnoserSystem : EntitySystem
         {
             if (!_prototypes.TryIndex(id, out DiseasePrototype? diseaseProto))
                 continue;
-
+            
             var displayName = Loc.GetString(diseaseProto.Name);
             var stage = sample.Stages.GetValueOrDefault(id, 1);
-            lines.Add(Loc.GetString("diagnoser-disease-report-name", ("name", displayName), ("stage", stage)));
-
-            lines.Add(Loc.GetString("diagnoser-disease-report-desc"));
-            lines.Add(Loc.GetString(diseaseProto.Description));
-
             DiseaseStage? stageCfg = null;
             foreach (var stCfg in diseaseProto.Stages)
             {
@@ -107,6 +102,12 @@ public sealed class DiseaseDiagnoserSystem : EntitySystem
 
             if (stageCfg == null)
                 continue;
+
+            var showStage = (stageCfg.Stealth & DiseaseStealthFlags.HiddenStage) == 0;
+
+            lines.Add(Loc.GetString("diagnoser-disease-report-name",("name", displayName), ("stage", showStage ? stage : "Unknown")));
+            lines.Add(Loc.GetString("diagnoser-disease-report-desc"));
+            lines.Add(Loc.GetString(diseaseProto.Description));
 
             // Symptoms block.
             lines.Add(Loc.GetString("diagnoser-disease-symptoms-header"));
@@ -129,9 +130,14 @@ public sealed class DiseaseDiagnoserSystem : EntitySystem
 
             // Cures block.
             var cureSteps = stageCfg.CureSteps.Count > 0 ? stageCfg.CureSteps : diseaseProto.CureSteps;
+            var showTreatment = (stageCfg.Stealth & DiseaseStealthFlags.HiddenTreatment) == 0;
             if (cureSteps.Count == 0)
             {
                 lines.Add(Loc.GetString("diagnoser-no-cures"));
+            }
+            else if(!showTreatment)
+            {
+                lines.Add(Loc.GetString("diagnoser-cure-unknown"));
             }
             else
             {
@@ -144,7 +150,7 @@ public sealed class DiseaseDiagnoserSystem : EntitySystem
                     {
                         var finalLine = stepLine;
                         var chance = Math.Clamp(step.CureChance, 0f, 1f);
-                        if (chance > 0f && chance < 1f)
+                        if (chance is > 0f and < 1f)
                         {
                             var percent = MathF.Round(chance * 100f);
                             finalLine += $" ({percent}%)";

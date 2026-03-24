@@ -18,8 +18,9 @@
       min: 309.15
   stages:
   - stage: 1
-    stealth: [ Hidden ]
+    stealth: [ Hidden, VeryHidden ]
   - stage: 2
+    stealth: [ Hidden ]
     sensations:
     - messages: [ "disease-sensation-throat-sore", "disease-sensation-throat-mucus" ]
       probability: 0.05
@@ -61,8 +62,9 @@
       min: 1
   stages:
   - stage: 1
-    # no-op
+    stealth: [ Hidden, VeryHidden ]
   - stage: 2
+    stealth: [ Hidden ]
     sensations:
     - messages: [ "disease-sensation-throat-sore", "disease-sensation-stiff" ]
       probability: 0.05
@@ -73,6 +75,7 @@
       probability: 0.02
     - symptom: SymptomFreezeLight
   - stage: 3
+    stealth: [ Hidden ]
     sensations:
     - messages: [ "disease-sensation-throat-sore", "disease-sensation-stiff" ]
       probability: 0.05
@@ -101,7 +104,7 @@
     cureChance: 0.5
   stages:
   - stage: 1
-    # no-op
+    stealth: [ Hidden ]
   - stage: 2
     sensations:
     - messages: [ "disease-sensation-muscles-ache", "disease-sensation-stomach-hurt" ]

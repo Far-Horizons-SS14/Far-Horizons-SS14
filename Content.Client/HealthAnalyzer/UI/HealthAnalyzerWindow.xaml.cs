@@ -184,39 +184,25 @@ public sealed partial class HealthAnalyzerWindow : FancyWindow
         // Starlight end
 
         // Far Horizons Start
-        var showDisease = false;
-        if(_entityManager.TryGetComponent<DiseaseCarrierComponent>(target.Value, out var carrier))
+        var infected = false;
+
+        if (_entityManager.TryGetComponent<DiseaseCarrierComponent>(target.Value, out var carrier)
+            && !string.IsNullOrEmpty(carrier.DiseaseIcon)
+            && _prototypes.TryIndex(carrier.DiseaseIcon, out var healthIcon))
         {
-            showDisease = carrier.ActiveDiseases.Any(x =>
-            {
-                if (!_prototypes.TryIndex(x.Key, out var disease))
-                    return false;
-
-                var index = x.Value-1;
-
-                if (index < 0 || index >= disease.Stages.Count)
-                {
-                    Log.Error($"Invalid stage index {index} for {x.Key}");
-                    return false;
-                }
-
-                return (disease.Stages[index].Stealth & DiseaseStealthFlags.Hidden) == 0;
-            });
-        }
-
-        if (carrier != null && showDisease && !string.IsNullOrEmpty(carrier.DiseaseIcon)
-            && _prototypes.TryIndex(carrier.DiseaseIcon, out var diseaseIcon))
-        {
+            infected = true;
             DiseaseIcon.Visible = true;
-            DiseaseIcon.Texture = _spriteSystem.Frame0(diseaseIcon.Icon);
-            DiseaseLabel.Text = Loc.GetString("health-analyzer-window-entity-disease-yes");
+            DiseaseIcon.Texture = _spriteSystem.Frame0(healthIcon.Icon);
         }
         else
         {
             DiseaseIcon.Visible = false;
             DiseaseIcon.ToolTip = null;
-            DiseaseLabel.Text = Loc.GetString("health-analyzer-window-entity-disease-no");
         }
+
+        DiseaseLabel.Text = infected
+            ? Loc.GetString("health-analyzer-window-entity-disease-yes")
+            : Loc.GetString("health-analyzer-window-entity-disease-no");
         // Far Horizons End
     }
 
