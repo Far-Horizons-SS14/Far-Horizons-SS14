@@ -32,10 +32,6 @@ public sealed class GhostThemeSystem : EntitySystem
     }
 
     private readonly Dictionary<ICommonSession, GhostThemeEui> _openUis = [];
-    public override void Shutdown()
-    {
-        base.Shutdown();
-    }
 
     public void OpenEui(ICommonSession session)
     {
@@ -92,7 +88,7 @@ public sealed class GhostThemeSystem : EntitySystem
             playerData.GhostThemeColor = color;
         }
 
-        _appearance.SetData(attached, GhostThemeVisualLayers.Color, color);
+        _appearance.SetData(attached, GhostVisuals.Color, color); // Far Horizons
     }
     public void ChangeTheme(ICommonSession session, string theme)
     {
@@ -119,7 +115,7 @@ public sealed class GhostThemeSystem : EntitySystem
         if (_playerRoles.GetPlayerData(attached) is PlayerData playerData)
             playerData.GhostTheme = theme;
 
-        _appearance.SetData(attached, GhostThemeVisualLayers.Base, theme);
+        _appearance.SetData(attached, GhostVisuals.Theme, theme); // Far Horizons
     }
     public void UpdateAllEui()
     {
@@ -128,11 +124,7 @@ public sealed class GhostThemeSystem : EntitySystem
             eui.StateDirty();
         }
     }
-
-    public override void Update(float frameTime)
-    {
-        base.Update(frameTime);
-    }
+    
     private void OnPlayerAttached(EntityUid uid, GhostComponent component, PlayerAttachedEvent args)
     {
         var theme = EnsureComp<GhostThemeComponent>(uid);
@@ -154,11 +146,11 @@ public sealed class GhostThemeSystem : EntitySystem
 
             theme.SelectedGhostTheme = playerData.GhostTheme;
             theme.GhostThemeColor = playerData.GhostThemeColor;
-            _appearance.SetData(uid, GhostThemeVisualLayers.Color, playerData.GhostThemeColor);
+            _appearance.SetData(uid, GhostVisuals.Color, playerData.GhostThemeColor); // Far Horizons
 
             Dirty(uid, theme);
 
-            _appearance.SetData(uid, GhostThemeVisualLayers.Base, playerData.GhostTheme);
+            _appearance.SetData(uid, GhostVisuals.Theme, playerData.GhostTheme); // Far Horizons
         }
     }
 }

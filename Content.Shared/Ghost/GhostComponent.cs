@@ -103,6 +103,8 @@ public sealed partial class GhostComponent : Component
 [Serializable, NetSerializable]
 public enum GhostVisuals : byte
 {
+    Theme, // Far Horizons - combine SL skins into upstream ghost visuals
+    Color, // Far Horizons
     Damage
 }
 

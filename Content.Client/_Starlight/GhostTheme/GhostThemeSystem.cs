@@ -26,12 +26,17 @@ public sealed class GhostThemeSystem : EntitySystem
     {
         var spriteType = _entities.Entity<SpriteComponent>(ent.Owner);
 
-        if (!_appearance.TryGetData<string>(ent.Owner, GhostThemeVisualLayers.Base, out var Theme) 
-            || !_appearance.TryGetData<Color>(ent.Owner, GhostThemeVisualLayers.Color, out var Color)
-            || !_prototypeManager.TryIndex<GhostThemePrototype>(Theme, out var ghostThemePrototype))
+        if (!_appearance.TryGetData<string>(ent.Owner, GhostVisuals.Theme, out var Theme)
+            || !_appearance.TryGetData<Color>(ent.Owner, GhostVisuals.Color, out var Color)
+            || !_prototypeManager.TryIndex<GhostThemePrototype>(Theme, out var ghostThemePrototype)
+            || (Theme == "None" && Color == Color.White)) // Far Horizons
+        {
+            SetSkin(spriteType, false); // Far Horizons
             return;
+        }
 
-        var layer = _sprite.LayerMapReserve(spriteType, GhostThemeVisualLayers.Base);
+        SetSkin(spriteType, true); // Far Horizons
+        var layer = _sprite.LayerMapReserve(spriteType, GhostVisuals.Theme);
         _sprite.LayerSetSprite(spriteType, layer, ghostThemePrototype.SpriteSpecifier.Sprite);
         _sprite.LayerSetColor(spriteType, layer, Color != Color.White ? Color : ghostThemePrototype.SpriteSpecifier.SpriteColor);
         _sprite.LayerSetScale(spriteType, layer, ghostThemePrototype.SpriteSpecifier.SpriteScale);
@@ -43,5 +48,14 @@ public sealed class GhostThemeSystem : EntitySystem
 
         spriteType.Comp.NoRotation = ghostThemePrototype.SpriteSpecifier.SpriteRotation;
         spriteType.Comp.OverrideContainerOcclusion = true;
+    }
+
+    // Far Horizons
+    private void SetSkin(Entity<SpriteComponent?> ent, bool enabled)
+    {
+        var themeLayer = _sprite.LayerMapReserve(ent, GhostVisuals.Theme);
+        var damageLayer = _sprite.LayerMapReserve(ent, GhostVisuals.Damage);
+        _sprite.LayerSetVisible(ent, themeLayer, enabled);
+        _sprite.LayerSetVisible(ent, damageLayer, !enabled);
     }
 }

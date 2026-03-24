@@ -43,15 +43,16 @@
     sprite: Mobs/Ghosts/ghost_human.rsi
     color: "#fff8"
     layers:
-    - state: animated
-      map: [ "ghostVariant" ]
-      # map: ["enum.GhostThemeVisualLayers.Base"] # sl ghost skins
+    - map: [ enum.GhostVisuals.Theme ] # FH
+      shader: unshaded # FH
+    - state: animated 
+      map: [ enum.GhostVisuals.Damage ] # FH - Made it into enum to set visibility depending on skin
       shader: unshaded
   - type: Appearance
   - type: GenericVisualizer
     visuals:
       enum.GhostVisuals.Damage:
-        ghostVariant:
+        enum.GhostVisuals.Damage: # FH - Made it into enum to set visibility depending on skin
           ghost_Blunt0: { state: ghost_Blunt0 } # this is an icki way of doing this u.u -Thinbug
           ghost_Blunt1: { state: ghost_Blunt1 }
           ghost_Blunt2: { state: ghost_Blunt2 }

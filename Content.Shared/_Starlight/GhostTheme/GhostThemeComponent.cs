@@ -15,10 +15,3 @@ public sealed partial class GhostThemeComponent : Component
     [DataField]
     public Color GhostThemeColor = Color.White;
 }
-
-[Serializable, NetSerializable]
-public enum GhostThemeVisualLayers : byte
-{
-    Base,
-    Color
-}
