@@ -49,7 +49,7 @@ public sealed partial class IPCMenu : FancyWindow
     public string FullText = "";
     public float CharsPerSecond = 150;
 
-    private int _shownCharacters = 0;
+    private int _shownCharacters;
 
     // CCVar.
     private readonly int _maxNameLength;
@@ -58,52 +58,41 @@ public sealed partial class IPCMenu : FancyWindow
 
     private float _bloodLevel;
 
-    private DamageableComponent? _damage = null;
     public DamageableComponent? Damage
     {
-        get => _damage ?? TryGetAssignComp(_entity, Entity, ref _damage);
-        set => _damage = value;
-    }
+        get => field ?? TryGetAssignComp(_entity, Entity, ref field);
+        set;
+    } = null;
 
-    private BlindableComponent? _blind = null;
     public BlindableComponent? Blind
     {
-        get => _blind ?? TryGetAssignComp(_entity, Entity, ref _blind);
-        set => _blind = value;
-    }
+        get => field ?? TryGetAssignComp(_entity, Entity, ref field);
+        set;
+    } = null;
 
-    private MobStateComponent? _state = null;
     public MobStateComponent? State
     {
-        get => _state ?? TryGetAssignComp(_entity, Entity, ref _state);
-        set => _state = value;
-    }
+        get => field ?? TryGetAssignComp(_entity, Entity, ref field);
+        set;
+    } = null;
 
-    private IPCBrainHolderComponent? _brain = null;
     public IPCBrainHolderComponent? Brain
     {
-        get => _brain ?? TryGetAssignComp(_entity, Entity, ref _brain);
-        set => _brain = value;
-    }
-    
-    private IPCThermalRegulationComponent? _thermals = null;
+        get => field ?? TryGetAssignComp(_entity, Entity, ref field);
+        set;
+    } = null;
+
     public IPCThermalRegulationComponent? Thermals
     {
-        get => _thermals ?? TryGetAssignComp(_entity, Entity, ref _thermals);
-        set => _thermals = value;
-    }
+        get => field ?? TryGetAssignComp(_entity, Entity, ref field);
+        set;
+    } = null;
 
-    private IPCBatteryComponent? _battery = null;
     public IPCBatteryComponent? Battery
     {
-        get => _battery ?? TryGetAssignComp(_entity, Entity, ref _battery);
-        set => _battery = value;
-    }
-
-    public bool LastKnownBattery = false;
-    public float LastKnownCharge = 0;
-
-    public MobState LastKnownState = MobState.Dead;
+        get => field ?? TryGetAssignComp(_entity, Entity, ref field);
+        set;
+    } = null;
 
     public IPCMenu()
     {
@@ -183,12 +172,12 @@ public sealed partial class IPCMenu : FancyWindow
         if (Thermals != null)
         {
             temp = Thermals.CurrentTemp;
-            fanMode = Thermals.FansCurrentlyOff || Thermals.CurrentMode == null ? 
-                        Thermals.FansOffDiagnosticsText : 
-                        Thermals.CurrentMode.DiagnosticsText;
-            fansEfficiency = Thermals.FansCurrentlyOff || Thermals.CurrentMode == null ?
-                                Loc.GetString("ipc-ui-console-fans-efficiency-none") :
-                                (Thermals.CurrentEfficiency * 100).ToString("F2") + "%";
+            fanMode = Thermals.FansCurrentlyOff || Thermals.CurrentMode == null
+                ? Thermals.FansOffDiagnosticsText
+                : Thermals.CurrentMode.DiagnosticsText;
+            fansEfficiency = Thermals.FansCurrentlyOff || Thermals.CurrentMode == null
+                ? Loc.GetString("ipc-ui-console-fans-efficiency-none")
+                : (Thermals.CurrentEfficiency * 100).ToString("F2") + "%";
         }
 
         var batteryInserted = false;
@@ -199,7 +188,11 @@ public sealed partial class IPCMenu : FancyWindow
             batteryCharge = _batterySystem.GetChargeLevel((checkedBattery.Owner, checkedBattery.Comp));
         }
 
-        FullText = PrintConsole(LastKnownState.ToString(), batteryInserted, batteryCharge, eyeDamage, _bloodLevel, temp, fanMode, fansEfficiency, Brain, damage);
+        var state = MobState.Dead;
+        if (State != null)
+            state = State.CurrentState;
+
+        FullText = PrintConsole(state.ToString(), batteryInserted, batteryCharge, eyeDamage, _bloodLevel, temp, fanMode, fansEfficiency, Brain, damage);
         UpdateBrainButton(Brain);
         EjectBatteryButton.Disabled = !batteryInserted;
         ChargeBar.Value = batteryCharge;
