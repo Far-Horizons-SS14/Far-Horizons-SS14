@@ -216,21 +216,21 @@
     - SimpleHostile
   - type: Sprite
     drawdepth: SmallMobs
-    sprite: _Starlight/Mobs/Animals/rat.rsi # Starlight
+    sprite: Mobs/Animals/rat.rsi
     layers:
     - map: ["enum.DamageStateVisualLayers.Base", "movement"]
-      state: smallrat #Starlight - They didn't comment this.
+      state: rat
     - map: [ "enum.DamageStateVisualLayers.BaseUnshaded"]
-      state: smallrat_eyes #Starlight - They didn't comment this.
+      state: eyes
       shader: unshaded
 
-  # - type: SpriteMovement // Starlight - Disabled
-  #   movementLayers:
-  #     movement:
-  #       state: rat-moving
-  #   noMovementLayers:
-  #     movement:
-  #       state: rat
+  - type: SpriteMovement
+    movementLayers:
+      movement:
+        state: rat-moving
+    noMovementLayers:
+      movement:
+        state: rat
 
   - type: Physics
     bodyType: KinematicController
