@@ -265,9 +265,11 @@
         - FullTileMask
         layer:
         - GlassLayer
+  - type: SpriteFade
   - type: Sprite
     sprite: _FarHorizons/Structures/Holo/holographic_field.rsi
     noRot: false
+    drawdepth: Overdoors
     layers:
     - state: field
       shader: unshaded
@@ -316,6 +318,7 @@
     sprite: _FarHorizons/Structures/Holo/holographic_barrier.rsi
     state: field
     noRot: false
+    drawdepth: Overdoors
     layers:
     - state: field
       shader: unshaded
