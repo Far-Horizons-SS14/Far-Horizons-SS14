@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 267.3.0
+  engineVersion: 272.0.0
   forkId: ""
   forkVersion: ""
-  time: 12/03/2025 18:32:21
+  time: 03/25/2026 21:49:12
   entityCount: 198
 maps: []
 grids:
@@ -210,6 +210,10 @@ entities:
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
+    - type: TileHistory
+      chunkHistory: {}
+    - type: NavMap
+    - type: ExplosionAirtightGrid
 - proto: AirCanister
   entities:
   - uid: 100
@@ -232,20 +236,6 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 2.5,-3.5
-      parent: 2
-- proto: AirlockGlassShuttle
-  entities:
-  - uid: 66
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -0.5,-4.5
-      parent: 2
-  - uid: 67
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -0.5,-3.5
       parent: 2
 - proto: AirlockMiningGlassLocked
   entities:
@@ -779,20 +769,26 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 1.5,-7.5
       parent: 2
-- proto: ComputerRadar
-  entities:
-  - uid: 125
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 0.5,-1.5
-      parent: 2
 - proto: ComputerShuttle
   entities:
   - uid: 124
     components:
     - type: Transform
       pos: 1.5,-0.5
+      parent: 2
+- proto: FHAirlockGlassShuttle
+  entities:
+  - uid: 66
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -0.5,-4.5
+      parent: 2
+  - uid: 67
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -0.5,-3.5
       parent: 2
 - proto: GasPassiveVent
   entities:
@@ -985,24 +981,18 @@ entities:
       rot: 3.141592653589793 rad
       pos: 1.5,0.5
       parent: 2
-    - type: DeltaPressure
-      gridUid: 2
   - uid: 24
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -0.5,-7.5
       parent: 2
-    - type: DeltaPressure
-      gridUid: 2
   - uid: 25
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 2.5,-7.5
       parent: 2
-    - type: DeltaPressure
-      gridUid: 2
 - proto: MiningWindowDiagonal
   entities:
   - uid: 3
@@ -1010,23 +1000,17 @@ entities:
     - type: Transform
       pos: -0.5,-0.5
       parent: 2
-    - type: DeltaPressure
-      gridUid: 2
   - uid: 4
     components:
     - type: Transform
       pos: 0.5,0.5
       parent: 2
-    - type: DeltaPressure
-      gridUid: 2
   - uid: 5
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 0.5,-0.5
       parent: 2
-    - type: DeltaPressure
-      gridUid: 2
 - proto: OreBox
   entities:
   - uid: 120
@@ -1132,6 +1116,22 @@ entities:
       rot: 3.141592653589793 rad
       pos: 8.5,-0.5
       parent: 2
+- proto: ShuttleGunneryConsole
+  entities:
+  - uid: 125
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 0.5,-1.5
+      parent: 2
+    - type: DeviceLinkSource
+      linkedPorts:
+        68:
+        - - GunneryConsoleTurretControl
+          - Trigger
+        69:
+        - - GunneryConsoleTurretControl
+          - Trigger
 - proto: SignalButton
   entities:
   - uid: 123
