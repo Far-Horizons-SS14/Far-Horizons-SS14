@@ -3,7 +3,7 @@
   mapName: 'Omega'
   mapPath: /Maps/_FarHorizons/Stations/Omega.yml
   minPlayers: 0
-  maxPlayers: 35
+  maxPlayers: 53 # Originally a 35 pop station, bear with me. 53 is bare minimum due to specal jobs.
   stations:
     FHOmega:
       stationProto: StandardNanotrasenStation
@@ -17,59 +17,61 @@
           emergencyShuttlePath: /Maps/Shuttles/emergency_omega.yml
         - type: StationJobs
           availableJobs:
-            #service
+            #Mindshielded roles - Important in revs - 19 (9 combat-capable) v 31 w/borgs being a wildcard adding 3 to either side
+            #Antag v Sec - 6 responders w/cadets, 5 responders w/o cadets v 5 antags if assuming only traitor rolls (5v5), otherwise antags outnumber responding sec, but not total sec.
+            #Total Jobs - 53 / 61 with assistants
+            #Law - 3
+            Magistrate: [ 1, 1 ]
+            IAA: [ 2, 2 ]
+            #Representives - 2
+            BlueShield: [ 1, 1 ]
+            NanoTrasenRepresentative: [ 1, 1 ]
+            #Service - 10
             Captain: [ 1, 1 ]
             HeadOfPersonnel: [ 1, 1 ]
             Bartender: [ 1, 1 ]
             Botanist: [ 2, 2 ]
             Chef: [ 1, 1 ]
-            Janitor: [ 1, 2 ]
+            Janitor: [ 1, 1 ]
             Chaplain: [ 1, 1 ]
             Librarian: [ 1, 1 ]
-            ServiceWorker: [ 2, 2 ]
-            #engineering
+            ServiceWorker: [ 1, 1 ]
+            #Engineering - 5 - 7 w/Assistants
             ChiefEngineer: [ 1, 1 ]
-            AtmosphericTechnician: [ 2, 2 ]
+            AtmosphericTechnician: [ 1, 1 ]
             StationEngineer: [ 3, 3 ]
-            TechnicalAssistant: [ 2, 2 ]
-            #medical
+            TechnicalAssistant: [ 2, 2 ] # Not counted
+            #Medical - 6 - 8 w/Assistants
             ChiefMedicalOfficer: [ 1, 1 ]
-            Chemist: [ 2, 2 ]
-            MedicalDoctor: [ 3, 3 ]
+            Chemist: [ 1, 1 ]
+            MedicalDoctor: [ 2, 2 ]
             Paramedic: [ 1, 1 ]
-            MedicalIntern: [ 2, 2 ]
             Surgeon: [ 1, 1 ]
-            #science
+            MedicalIntern: [ 2, 2 ] # Not counted
+            #Science - 5 - 7 w/Assistants
             ResearchDirector: [ 1, 1 ]
-            Scientist: [ 4, 4 ]
-            ResearchAssistant: [ 2, 2 ]
+            Scientist: [ 3, 3 ]
             Roboticist: [ 1, 1 ]
-            #security
+            ResearchAssistant: [ 2, 2 ] #Not counted
+            #Security - 8 / 9 w/Assitants
             HeadOfSecurity: [ 1, 1 ]
             Warden: [ 1, 1 ]
-            SecurityOfficer: [ 4, 4 ]
+            SecurityOfficer: [ 2, 2 ]
             Detective: [ 1, 1 ]
-            SecurityCadet: [ 2, 2 ]
-            Brigmedic: [ 1, 1 ]
-            Corpsman: [1,1]
-            SecBorg: [1,1]
-            #supply
+            Corpsman: [ 1, 1 ]
+            SecBorg: [ 1, 1 ]
+            SecurityCadet: [ 2, 2 ] #Half counted. So 0.5
+            #Supply - 8
             Quartermaster: [ 1, 1 ]
-            SalvageSpecialist: [ 5, 5 ]
+            SalvageSpecialist: [ 2, 2 ]
+            MiningSpecialist: [ 2, 2 ]
             CargoTechnician: [ 2, 2 ]
-            MailTech: [ 1, 2 ]
-            MiningSpecialist: [ 2, 3 ]
-            SalvageLead: [ 1, 1 ]
-            #civilian
+            MailTech: [ 1, 1 ]
+            #Civilian - 3
             Assistant: [ -1, -1 ]
             Clown: [ 1, 1 ]
             Mime: [ 1, 1 ]
             Musician: [ 1, 1 ]
-            #silicon
+            #Silicon - 3
             StationAi: [ 1, 1 ]
             Borg: [ 2, 2 ]
-            #law
-            IAA: [ 2, 2 ]
-            #Representives
-            BlueShield: [ 1, 1 ]
-            NanoTrasenRepresentative: [ 1, 1 ]
