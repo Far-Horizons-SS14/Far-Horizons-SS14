@@ -120,10 +120,21 @@ public sealed partial class DiseaseStage
 
     /// <summary>
     /// Optional stealth flags for this stage. Controls visibility in HUD/diagnoser/analyzers.
-    /// TODO: does not work <see cref="DiseaseStealthFlags"/>
     /// </summary>
     [DataField]
     public DiseaseStealthFlags Stealth { get; private set; } = DiseaseStealthFlags.None;
+
+    /// <summary>
+    /// Time for being in this stage before attempting to go to the next stage. We don't want someone to just go to stage 3 due to bad luck.
+    /// </summary>
+    [DataField]
+    public float MinStageTime { get; private set; } = 30;
+
+    /// <summary>
+    /// Optional time for being in this stage before attempting to go to the next stage.
+    /// </summary>
+    [DataField]
+    public float MaxStageTime { get; private set; } = 180;
 
     /// <summary>
     /// Symptoms that can trigger during this stage. Order matters for deterministic iteration.

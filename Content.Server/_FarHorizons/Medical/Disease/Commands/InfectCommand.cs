@@ -37,13 +37,13 @@ public sealed class InfectCommand : LocalizedEntityCommands
         var targetUid = parsedUid.Value;
         var diseaseId = args[1];
 
-        var disease = _disease.CreateDisease(diseaseId);
-        if(disease == null)
-            return;
-
         var stage = 1;
         if (args.Length >= 3 && int.TryParse(args[2], NumberStyles.Integer, CultureInfo.InvariantCulture, out var parsedStage))
             stage = Math.Max(1, parsedStage);
+
+        var disease = _disease.CreateDisease(diseaseId, stage);
+        if(disease == null)
+            return;
 
         if (!_disease.Infect(targetUid, disease, stage))
         {

@@ -95,7 +95,7 @@ public sealed partial class SharedDiseaseSystem : EntitySystem
                 continue;
 
             // Progression: scale advance chance strictly according to StageProb and time between ticks.
-            var newStage = AdvanceStage(ent, disease, stage);
+            var newStage = AdvanceStage(ent, DiseaseData, stage);
 
             if (newStage != stage)
             {
@@ -123,17 +123,39 @@ public sealed partial class SharedDiseaseSystem : EntitySystem
             Dirty(ent);
     }
 
-    private int AdvanceStage(Entity<DiseaseCarrierComponent> ent, DiseasePrototype disease, int currentStage)
+    private int AdvanceStage(Entity<DiseaseCarrierComponent> ent, DiseaseData disease, int currentStage)
     {
-        var perTickAdvance = Math.Clamp(disease.StageProb, 0f, 1f);
-        var maxStage = Math.Max(1, disease.Stages.Count);
-        // TODO: Replace with RandomPredicted once the engine PR is merged
+        if(!_prototypes.TryIndex(disease.Id, out var diseaseProto))
+            return currentStage;
+            
+        var maxStage = Math.Max(1, diseaseProto.Stages.Count);
+        if(currentStage == maxStage)
+            return currentStage;
+            
+        if (disease.MinStageUntil > _timing.CurTime)
+            return currentStage;
+
+        // If max time exceeded, force stage change
+        if (disease.MaxStageUntil < _timing.CurTime)
+        {
+            // Force advance change
+            disease.MinStageUntil = _timing.CurTime + TimeSpan.FromSeconds(diseaseProto.Stages[currentStage-1].MinStageTime);
+            disease.MaxStageUntil = _timing.CurTime + TimeSpan.FromSeconds(diseaseProto.Stages[currentStage-1].MaxStageTime);
+            return Math.Min(currentStage + 1, maxStage);
+        }
+        
+        // Normal stage change.
+        var perTickAdvance = Math.Clamp(diseaseProto.StageProb, 0f, 1f);
         var seed = SharedRandomExtensions.HashCodeCombine([(int)_timing.CurTick.Value, GetNetEntity(ent).Id, 1, currentStage]);
         var rand = new System.Random(seed);
-        if (rand.Prob(perTickAdvance))
-            return Math.Min(currentStage + 1, maxStage);
-
-        return currentStage;
+        
+        if (!rand.Prob(perTickAdvance))
+            return currentStage;
+            
+        // Advance stage
+        disease.MinStageUntil = _timing.CurTime + TimeSpan.FromSeconds(diseaseProto.Stages[currentStage-1].MinStageTime);
+        disease.MaxStageUntil = _timing.CurTime + TimeSpan.FromSeconds(diseaseProto.Stages[currentStage-1].MaxStageTime);
+        return Math.Min(currentStage + 1, maxStage);
     }
 
     private void TriggerStage(Entity<DiseaseCarrierComponent> ent, DiseaseData disease, int stage)
@@ -275,7 +297,7 @@ public sealed partial class SharedDiseaseSystem : EntitySystem
     /// </summary>
     public bool CanBeInfected(EntityUid uid, DiseaseData diseaseId)
     {
-        if (!_prototypes.HasIndex<DiseasePrototype>(diseaseId.Id))
+        if (!_prototypes.HasIndex(diseaseId.Id))
             return false;
 
         if (_mobState.IsDead(uid))
@@ -338,15 +360,17 @@ public sealed partial class SharedDiseaseSystem : EntitySystem
         return true;
     }
 
-    public DiseaseData? CreateDisease(string diseaseId)
+    public DiseaseData? CreateDisease(string diseaseId, int startStage=1)
     {
         if (!_prototypes.TryIndex<DiseasePrototype>(diseaseId, out var proto))
             return null;
-
+        
         var disease = new DiseaseData
         {
             Id = diseaseId,
-            StrainName = GenerateStrainName()
+            StrainName = GenerateStrainName(),
+            MinStageUntil = _timing.CurTime + TimeSpan.FromSeconds(proto.Stages[startStage-1].MinStageTime),
+            MaxStageUntil = _timing.CurTime + TimeSpan.FromSeconds(proto.Stages[startStage-1].MaxStageTime)
         };
         return disease;
     }

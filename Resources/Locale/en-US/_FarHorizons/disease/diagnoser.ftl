@@ -11,7 +11,7 @@ diagnoser-disease-report-desc = [bold]Disease Description:[/bold]
 
 diagnoser-no-cures = [bold]The disease has no cures.[/bold]
 diagnoser-cure-unknown = [bold]Error: Disease treament unknown.[/bold]
-diagnoser-cure-has = [bold]The disease has cures:[/bold]
+diagnoser-cure-has = [bold]The disease requires the following steps to cure:[/bold]
 diagnoser-cure-bedrest = Resting while lying down has [color=orange]{$chance}%[/color] per second to cure; sleeping multiplies by [color=orange]{$sleepMult}x[/color]
 diagnoser-cure-reagent-item = {$units}u [color=orange]{$reagent}[/color]
 diagnoser-cure-reagents-all = Consume all of: [color=orange]{$list}[/color]
@@ -19,7 +19,7 @@ diagnoser-cure-time = It will go away on its own after [color=orange]{$time}[/co
 diagnoser-cure-temp = Maintain a body temperature above [color=orange]{$max}°K[/color] ([color=orange]{$maxC}°C[/color]) within [color=orange]{$time}[/color] seconds
 
 diagnoser-cure-lower-stage = [color=green]Lowers the disease stage by 1[/color].
-diagnoser-cure-lower-disease = [color=green]Cures the disease[/color].
+diagnoser-cure-lower-disease = [color=green]Cure Step[/color].
 
 diagnoser-disease-symptoms-header = [bold]This disease has symptoms:[/bold]
 diagnoser-disease-symptoms-none = This disease has no symptoms.
