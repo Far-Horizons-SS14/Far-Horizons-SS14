@@ -489,17 +489,8 @@
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
   # Starlight Start
-    - map: [ "enum.CrewMonitorLayers.Alert" ]
-      sprite: _Starlight/Structures/Machines/computers.rsi
-      state: crew-alert
-      visible: false
   - type: GenericVisualizer
     visuals:
-      enum.CrewMonitorVisuals.Alert:
-        enum.CrewMonitorLayers.Alert:
-          True: { visible: true }
-          False: { visible: false }
-          enum.EdgeConnectionVisuals.ConnectionMask:
       enum.EdgeConnectionVisuals.ConnectionMask:
         computerLayerBody:
           None: { state: computer, sprite: Structures/Machines/computers.rsi }
