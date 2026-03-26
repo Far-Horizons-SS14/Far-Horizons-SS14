@@ -1,3 +1,4 @@
+using Content.Shared._FarHorizons.VisualPickupable;
 using Content.Shared.Armor;
 using Content.Shared.Atmos;
 using Content.Shared.Chat;
@@ -88,6 +89,7 @@ public partial class InventorySystem
         SubscribeLocalEvent<InventoryComponent, TryDetectItem>(RefRelayInventoryEvent); // Starlight
         SubscribeLocalEvent<InventoryComponent, KnockDownAttemptEvent>(RefRelayInventoryEvent); // Starlight
         SubscribeLocalEvent<InventoryComponent, RadiateHeatAttemptEvent>(RefRelayInventoryEvent); // Starlight
+        SubscribeLocalEvent<InventoryComponent, PickupableArmorSpeedRelayEvent>(RefRelayInventoryEvent); // Far Horizons
 
         // Eye/vision events
         SubscribeLocalEvent<InventoryComponent, CanSeeAttemptEvent>(RelayInventoryEvent);
