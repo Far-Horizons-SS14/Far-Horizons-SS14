@@ -25,6 +25,7 @@ using Robust.Shared.Containers;
 using Robust.Shared.Timing;
 using Content.Server.Body.Systems;
 using Content.Shared.Damage.Systems;
+using Content.Server.Power.Components;
 
 namespace Content.Server.Medical;
 
@@ -288,6 +289,8 @@ public sealed class HealthAnalyzerSystem : EntitySystem
             if (analyzer.Value.Comp.Talk && analyzer.Value.Comp.NextTalk < _timing.CurTime && scanMode)
             {
                 analyzer.Value.Comp.NextTalk = _timing.CurTime + analyzer.Value.Comp.TalkInterval;
+                if(TryComp<ApcPowerReceiverComponent>(analyzer.Value, out var power) && !power.Powered)
+                    return new HealthAnalyzerUiState();
 
                 var bloodLevel = !float.IsNaN(bloodAmount)
                     ? $"{bloodAmount * 100:F1} %"
