@@ -53,11 +53,17 @@ jobs:
       - run: dotnet test --no-build -c DebugOpt Content.IntegrationTests/Content.IntegrationTests.csproj --settings .farhorizons/.integrationtests --logger "trx;LogFileName=results.trx"
         env:
           DOTNET_gcServer: "1"
-      - uses: EnricoMi/publish-unit-test-result-action@v2
-        if: (!cancelled())
+      - if: (!cancelled())
+        uses: actions/upload-artifact@v6
         with:
-          files: "**/results.trx"
-          check_name: Integration Tests
+          name: Event File
+          path: ${{ github.event_path }}
+      - if: (!cancelled())
+        uses: actions/upload-artifact@v6
+        with:
+          name: unit-test-results
+          path: "**/results.trx"
+          retention-days: 1
   
   build-release:
     if: "!contains(github.event.pull_request.labels.*.name, 'automated pr') && github.actor != 'github-actions[bot]' && github.event.pull_request.draft == false"
