@@ -22,7 +22,6 @@ jobs:
           run-id: ${{ github.event.workflow_run.id }}
           github-token: ${{ github.token }}
           path: artifactss
-          merge-multiple: true
 
       - uses: EnricoMi/publish-unit-test-result-action@v2
         with:
