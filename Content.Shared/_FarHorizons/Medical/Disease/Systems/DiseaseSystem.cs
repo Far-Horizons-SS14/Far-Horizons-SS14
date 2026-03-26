@@ -303,6 +303,9 @@ public sealed partial class SharedDiseaseSystem : EntitySystem
         if (!_prototypes.HasIndex(diseaseId.Id))
             return false;
 
+        if (!TryComp<DiseaseCarrierComponent>(uid, out var carrier) || carrier.ActiveDiseases.Any(d => d.Key.Id == diseaseId.Id))
+            return false;
+
         if(HasComp<PreventInfectionComponent>(uid))
             return false;
 

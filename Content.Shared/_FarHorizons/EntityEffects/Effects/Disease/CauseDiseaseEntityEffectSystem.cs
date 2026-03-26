@@ -30,6 +30,9 @@ public sealed partial class CauseDiseaseEntityEffectSystem : EntityEffectSystem<
             return;
         }
 
+       if(!_disease.CanBeInfected(entity.Owner, disease))
+        return;
+
         switch (proto.SpreadPath)
         {
             case DiseaseSpreadPath.Contact:
