@@ -19,6 +19,9 @@ using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Content.Server.DeviceLinking.Systems;
 using Content.Shared.DeviceLinking;
+using Content.Shared.Emag.Systems;
+using Content.Shared.Light;
+using Content.Shared.Light.Components;
 
 namespace Content.Server._FarHorizons.GenericFieldGenerator.EntitySystems;
 
@@ -36,6 +39,7 @@ public sealed class GenericFieldGeneratorSystem : EntitySystem
     [Dependency] private readonly SharedMapSystem _mapSystem = default!;
     [Dependency] private readonly GenericFieldSystem _genericfield = default!;
     [Dependency] private readonly DeviceLinkSystem _signalSystem = default!;
+    [Dependency] private readonly SharedRgbLightControllerSystem _rgbSystem = default!;
 
     public override void Initialize()
     {
@@ -52,6 +56,7 @@ public sealed class GenericFieldGeneratorSystem : EntitySystem
         SubscribeLocalEvent<GenericFieldGeneratorComponent, BatteryStateChangedEvent>(OnBatteryStateChanged);
         SubscribeLocalEvent<GenericFieldGeneratorComponent, ChargeChangedEvent>(OnChargeChanged);
         SubscribeLocalEvent<GenericFieldGeneratorComponent, SignalReceivedEvent>(OnSignalReceived);
+        SubscribeLocalEvent<GenericFieldGeneratorComponent, GotEmaggedEvent>(OnGotEmagged);
     }
 
     public override void Update(float frameTime)
@@ -298,6 +303,17 @@ public sealed class GenericFieldGeneratorSystem : EntitySystem
     }
 
     private void OnChargeChanged(Entity<GenericFieldGeneratorComponent> generator, ref ChargeChangedEvent args) => ChangePowerVisualizer(generator);
+
+    private void OnGotEmagged(Entity<GenericFieldGeneratorComponent> generator, ref GotEmaggedEvent args)
+    {
+        generator.Comp.CreatedField = "HomographicField";
+
+        //makes the generator go rainbow, no reason to ever remove this beacause emag cant be removed without deconstructing
+        var rgb = EnsureComp<RgbLightControllerComponent>(generator);
+        _rgbSystem.SetCycleRate(generator, 0.5f, rgb);
+
+        args.Handled = true;
+    }
 
     #endregion
 
