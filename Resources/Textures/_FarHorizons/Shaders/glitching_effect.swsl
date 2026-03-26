@@ -18,6 +18,11 @@ highp float get_luminance(highp vec3 color) {
 }
 
 void fragment() {
+    if (maxSteps == 0)
+    {
+        return;
+    }
+
     highp vec2 uv = FRAGCOORD.xy * SCREEN_PIXEL_SIZE.xy;
     
     // Glitch / psudo-pixel sorting
