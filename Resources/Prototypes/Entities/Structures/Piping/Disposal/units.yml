@@ -11,7 +11,7 @@
   - type: Climbable
     vaultable: false
   - type: Sprite
-    sprite: Structures/Piping/disposal.rsi
+    sprite: _FarHorizons/Structures/Piping/disposal.rsi #FH
     layers:
     - state: condisposal
       map: [ "enum.DisposalUnitVisualLayers.Unanchored" ]
@@ -82,10 +82,10 @@
 - type: entity
   id: DisposalUnit
   parent: DisposalUnitBase
-  name: disposal unit
+  name: Disposal Unit #FH
   components:
   - type: Sprite
-    sprite: Structures/Piping/disposal.rsi
+    sprite: _FarHorizons/Structures/Piping/disposal.rsi #FH
     snapCardinals: true
   - type: Construction
     graph: DisposalMachine
@@ -106,11 +106,11 @@
 - type: entity
   id: MailingUnit
   parent: DisposalUnitBase
-  name: mailing unit
+  name: Mailing Unit #FH
   description: A pneumatic mail delivery unit.
   components:
   - type: Sprite
-    sprite: Structures/Piping/disposal.rsi
+    sprite: _FarHorizons/Structures/Piping/disposal.rsi #FH
     snapCardinals: true
     layers:
       - state: conmailing
