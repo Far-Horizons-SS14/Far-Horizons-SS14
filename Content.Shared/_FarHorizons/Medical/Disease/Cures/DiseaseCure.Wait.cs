@@ -4,6 +4,8 @@ using Robust.Shared.Random;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 using Content.Shared.Medical.Disease.Systems;
+using Content.Shared.Random.Helpers;
+using Robust.Shared.Timing;
 
 namespace Content.Shared.Medical.Disease.Cures;
 
@@ -24,9 +26,10 @@ public sealed partial class CureWait
     /// </summary>
     public override bool OnCure(EntityUid uid, DiseaseData disease)
     {
+        var _entityManager = IoCManager.Resolve<IEntityManager>();
         var _entitySysManager = IoCManager.Resolve<IEntitySystemManager>();
+        var _timing = IoCManager.Resolve<IGameTiming>();
         var _cureSystem = _entitySysManager.GetEntitySystem<SharedDiseaseCureSystem>();
-        var _random = IoCManager.Resolve<IRobustRandom>();
 
         if (RequiredTicks <= 0f)
             return false;
@@ -36,7 +39,10 @@ public sealed partial class CureWait
         if (state.Ticker < RequiredTicks)
             return false;
 
-        if (_random.Prob(CureChance))
+        var seed = SharedRandomExtensions.HashCodeCombine((int)_timing.CurTick.Value, _entityManager.GetNetEntity(uid).Id);
+        var rand = new System.Random(seed);
+
+        if (rand.Prob(CureChance))
         {
             state.Ticker = 0;
             return true;

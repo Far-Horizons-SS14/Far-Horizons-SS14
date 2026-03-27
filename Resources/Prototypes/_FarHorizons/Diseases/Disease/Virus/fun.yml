@@ -16,23 +16,23 @@
       reagent: Sulfur
       min: 1
   stages:
-  - stage: 1
+  - stage: 0
   # no-op
-  - stage: 2
+  - stage: 1
     symptoms:
     - symptom: SymptomSneeze
-  - stage: 3
+  - stage: 2
     sensations: [ "disease-sensation-very-weak" ]
     symptoms:
     - symptom: SymptomCough
       probability: 0.05
     - symptom: SymptomGasp
       probability: 0.05
-  - stage: 4
+  - stage: 3
     symptoms:
     - symptom: SymptomCough
       probability: 0.1
-  - stage: 5
+  - stage: 4
     sensations: [ "disease-sensation-gib-itself" ]
     symptoms:
     - symptom: SymptomCough
@@ -51,14 +51,14 @@
       reagent: BananaHonk
       min: 5
   stages:
-  - stage: 1
+  - stage: 0
     # no-op
-  - stage: 2
+  - stage: 1
     sensations: [ "disease-sensation-clown", "disease-sensation-banana-compulsion" ]
     symptoms:
     - symptom: SymptomJitters
     - symptom: SymptomEmoteHonk
-  - stage: 3
+  - stage: 2
     sensations: [ "disease-sensation-clown" ]
     symptoms:
     - symptom: SymptomHonkShout
@@ -74,7 +74,7 @@
   - !type:CureWait
     requiredTicks: 400
   stages:
-  - stage: 1
+  - stage: 0
     symptoms:
     - symptom: SymptomOwOAccent
     - symptom: SymptomEmoteCat

@@ -27,7 +27,7 @@ public sealed partial class TransitionDiseaseEntityEffectSystem : EntityEffectSy
         });
         
         var disease = _disease.CreateDisease(args.Effect.ToDiseaseId);
-        var stage = _disease.CreateStage(args.Effect.ToDiseaseId, 1);
+        var stage = _disease.CreateStage(args.Effect.ToDiseaseId);
         if(disease == null || stage == null)
             return;
 

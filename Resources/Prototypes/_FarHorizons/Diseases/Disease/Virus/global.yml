@@ -11,15 +11,15 @@
     - !type:ReagentCondition
       reagent: Spaceacillin
       min: 1
-#  - !type:CureConditions
-#    cureChance: 0.2
-#    conditions:
-#    - !type:TemperatureCondition
-#      min: 309.15
+  - !type:CureConditions
+    cureChance: 0.2
+    conditions:
+    - !type:TemperatureCondition
+      max: 309.15
   stages:
-  - stage: 1
+  - stage: 0
     stealth: [ Hidden, VeryHidden ]
-  - stage: 2
+  - stage: 1
     stealth: [ Hidden ]
     sensations: [ "disease-sensation-throat-sore", "disease-sensation-throat-mucus" ]
     symptoms:
@@ -29,7 +29,7 @@
     - !type:CureBedrest
       bedrestChance: 0.10
       sleepMultiplier: 4
-  - stage: 3
+  - stage: 2
     sensations: [ "disease-sensation-throat-sore", "disease-sensation-throat-mucus" ]
     symptoms:
     - symptom: SymptomCough
@@ -57,9 +57,9 @@
       reagent: Leporazine
       min: 1
   stages:
-  - stage: 1
+  - stage: 0
     stealth: [ Hidden, VeryHidden ]
-  - stage: 2
+  - stage: 1
     stealth: [ Hidden ]
     sensations: [ "disease-sensation-throat-sore", "disease-sensation-stiff" ]
     symptoms:
@@ -68,7 +68,7 @@
     - symptom: SymptomSneeze
       probability: 0.02
     - symptom: SymptomFreezeLight
-  - stage: 3
+  - stage: 2
     stealth: [ Hidden ]
     sensations: [ "disease-sensation-throat-sore", "disease-sensation-stiff" ]
     symptoms:
@@ -95,9 +95,9 @@
     requiredTicks: 300
     cureChance: 0.5
   stages:
-  - stage: 1
+  - stage: 0
     stealth: [ Hidden ]
-  - stage: 2
+  - stage: 1
     sensations: [ "disease-sensation-muscles-ache", "disease-sensation-stomach-hurt" ]
     symptoms:
     - symptom: SymptomCough
@@ -108,7 +108,7 @@
       bedrestChance: 0.20
       sleepMultiplier: 1
       lowerStage: true
-  - stage: 3
+  - stage: 2
     sensations: [ "disease-sensation-muscles-ache", "disease-sensation-stomach-hurt" ]
     symptoms:
     - symptom: SymptomCough

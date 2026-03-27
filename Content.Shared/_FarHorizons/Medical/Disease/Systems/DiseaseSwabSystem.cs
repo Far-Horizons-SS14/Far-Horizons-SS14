@@ -69,8 +69,7 @@ public sealed class DiseaseSwabSystem : EntitySystem
         var target = args.Args.Target.Value;
 
         // Read diseases from carrier and overwrite sample
-        ent.Comp.Diseases.Clear();
-        ent.Comp.Stages.Clear();
+        ent.Comp.DiseasesData.Clear();
         ent.Comp.HasSample = true;
         ent.Comp.SubjectName = Identity.Name(target, EntityManager);
         ent.Comp.SubjectDNA = null;
@@ -80,12 +79,7 @@ public sealed class DiseaseSwabSystem : EntitySystem
 
         if (TryComp<DiseaseCarrierComponent>(target, out var carrier) && carrier.ActiveDiseases.Count > 0)
         {
-            foreach (var (diseaseId, stage) in carrier.ActiveDiseases)
-            {
-                ent.Comp.Diseases.Add(diseaseId);
-                ent.Comp.Stages[diseaseId] = stage.Stage;
-            }
-
+            ent.Comp.DiseasesData = new Dictionary<DiseaseData, StageData>(carrier.ActiveDiseases);
             _popup.PopupPredicted(Loc.GetString("swab-disease-collected-popup"), target, args.Args.User);
         }
         else

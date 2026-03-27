@@ -28,14 +28,8 @@ public sealed partial class DiseaseSampleComponent : Component
     public string? SubjectDNA;
 
     /// <summary>
-    /// Disease prototype IDs captured by this sample (from a swab etc.).
+    /// Disease + Stage Data all in one for diagnosis
     /// </summary>
     [DataField, AutoNetworkedField]
-    public List<DiseaseData> Diseases = [];
-
-    /// <summary>
-    /// Optional per-disease stage captured at the moment of sampling.
-    /// </summary>
-    [DataField, AutoNetworkedField]
-    public Dictionary<DiseaseData, int> Stages = [];
+    public Dictionary<DiseaseData, StageData> DiseasesData = [];
 }

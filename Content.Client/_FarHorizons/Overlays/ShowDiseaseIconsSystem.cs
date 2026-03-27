@@ -35,7 +35,7 @@ public sealed class ShowDiseaseIconsSystem : EquipmentHudSystem<ShowDiseaseIcons
             if(!_prototype.TryIndex(x.Key.Id, out var disease))
                 return false;
 
-            var index = x.Value.Stage-1;
+            var index = x.Value.Stage;
 
             if (index < 0 || index >= disease.Stages.Count)
             {

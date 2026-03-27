@@ -55,8 +55,7 @@ public sealed class DiseaseDiagnoserSystem : EntitySystem
         }
 
         // Clear diagnoser state if any and clear sample to avoid reusing stale data.
-        sample.Diseases.Clear();
-        sample.Stages.Clear();
+        sample.DiseasesData.Clear();
         sample.SubjectName = null;
         sample.SubjectDNA = null;
         sample.HasSample = false;
@@ -76,20 +75,21 @@ public sealed class DiseaseDiagnoserSystem : EntitySystem
 
         var header = string.Join("\n", headerParts);
 
-        if (sample.Diseases.Count == 0)
+        if (sample.DiseasesData.Count == 0)
         {
             var healthy = Loc.GetString("diagnoser-disease-report-none");
             return string.IsNullOrEmpty(header) ? healthy : $"{header}\n{healthy}";
         }
 
         var lines = new List<string>();
-        foreach (var id in sample.Diseases)
+        foreach (var (diseaseData, stageData) in sample.DiseasesData)
         {
-            if (!_prototypes.TryIndex(id.Id, out DiseasePrototype? diseaseProto))
+            if (!_prototypes.TryIndex(diseaseData.Id, out DiseasePrototype? diseaseProto))
                 continue;
             
             var displayName = Loc.GetString(diseaseProto.Name);
-            var stage = sample.Stages.GetValueOrDefault(id, 1);
+            var stage = stageData.Stage;
+
             DiseaseStage? stageCfg = null;
             foreach (var stCfg in diseaseProto.Stages)
             {
@@ -106,8 +106,8 @@ public sealed class DiseaseDiagnoserSystem : EntitySystem
             var showStage = (stageCfg.Stealth & DiseaseStealthFlags.HiddenStage) == 0;
 
             lines.Add(Loc.GetString("diagnoser-disease-report-name",("name", displayName)));
-            lines.Add(Loc.GetString("diagnoser-disease-report-stage",("stage", showStage ? stage : "Unknown")));
-            lines.Add(Loc.GetString("diagnoser-disease-report-variant",("name", id.StrainName)));
+            lines.Add(Loc.GetString("diagnoser-disease-report-stage",("stage", showStage ? stage+1 : "Unknown")));
+            lines.Add(Loc.GetString("diagnoser-disease-report-variant",("name", diseaseData.StrainName)));
             lines.Add(Loc.GetString("diagnoser-disease-report-desc"));
             lines.Add(Loc.GetString(diseaseProto.Description));
 

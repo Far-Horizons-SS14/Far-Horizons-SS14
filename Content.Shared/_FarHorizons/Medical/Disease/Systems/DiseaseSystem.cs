@@ -129,7 +129,7 @@ public sealed partial class SharedDiseaseSystem : EntitySystem
         if(!_prototypes.TryIndex(disease.Id, out var diseaseProto))
             return currentStage;
             
-        var maxStage = Math.Max(1, diseaseProto.Stages.Count);
+        var maxStage = Math.Max(0, diseaseProto.Stages.Count-1);
         if(currentStage.Stage == maxStage)
             return currentStage;
             
@@ -140,23 +140,23 @@ public sealed partial class SharedDiseaseSystem : EntitySystem
         if (currentStage.MaxStageUntil < _timing.CurTime)
         {
             // Force advance change
-            currentStage.MinStageUntil = _timing.CurTime + TimeSpan.FromSeconds(diseaseProto.Stages[currentStage.Stage-1].MinStageTime);
-            currentStage.MaxStageUntil = _timing.CurTime + TimeSpan.FromSeconds(diseaseProto.Stages[currentStage.Stage-1].MaxStageTime);
+            currentStage.MinStageUntil = _timing.CurTime + TimeSpan.FromSeconds(diseaseProto.Stages[currentStage.Stage].MinStageTime);
+            currentStage.MaxStageUntil = _timing.CurTime + TimeSpan.FromSeconds(diseaseProto.Stages[currentStage.Stage].MaxStageTime);
             currentStage.Stage = Math.Min(currentStage.Stage + 1, maxStage);
             return currentStage; 
         }
         
         // Normal stage change.
         var perTickAdvance = Math.Clamp(diseaseProto.StageProb, 0f, 1f);
-        var seed = SharedRandomExtensions.HashCodeCombine([(int)_timing.CurTick.Value, GetNetEntity(ent).Id, 1, currentStage.Stage]);
+        var seed = SharedRandomExtensions.HashCodeCombine([(int)_timing.CurTick.Value, GetNetEntity(ent).Id, currentStage.MinStageUntil.Microseconds, currentStage.Stage]);
         var rand = new System.Random(seed);
         
         if (!rand.Prob(perTickAdvance))
             return currentStage;
             
         // Advance stage
-        currentStage.MinStageUntil = _timing.CurTime + TimeSpan.FromSeconds(diseaseProto.Stages[currentStage.Stage-1].MinStageTime);
-        currentStage.MaxStageUntil = _timing.CurTime + TimeSpan.FromSeconds(diseaseProto.Stages[currentStage.Stage-1].MaxStageTime);
+        currentStage.MinStageUntil = _timing.CurTime + TimeSpan.FromSeconds(diseaseProto.Stages[currentStage.Stage].MinStageTime);
+        currentStage.MaxStageUntil = _timing.CurTime + TimeSpan.FromSeconds(diseaseProto.Stages[currentStage.Stage].MaxStageTime);
         currentStage.Stage = Math.Min(currentStage.Stage + 1, maxStage);
         return currentStage; 
     }
@@ -170,12 +170,12 @@ public sealed partial class SharedDiseaseSystem : EntitySystem
         if (stageCfg == null)
             return;
 
-        // Apply the <see cref="PopupMessageEntityEffectSystem"/> effect to show the popup.
+        // Uses popup
         for (var i = 0; i < stageCfg.Sensations.Count; i++)
         {
             var prob = 0.05f;
             // TODO: Replace with RandomPredicted once the engine PR is merged
-            var seed = SharedRandomExtensions.HashCodeCombine((int)_timing.CurTick.Value, GetNetEntity(ent).Id, 3, stage.Stage, i);
+            var seed = SharedRandomExtensions.HashCodeCombine((int)_timing.CurTick.Value, GetNetEntity(ent).Id, stage.MinStageUntil.Microseconds, stage.Stage, i);
             var rand = new System.Random(seed);
             if (!rand.Prob(prob))
                 continue;
@@ -197,7 +197,7 @@ public sealed partial class SharedDiseaseSystem : EntitySystem
 
             var prob = entry.Probability >= 0f ? entry.Probability : symptom.Probability;
             // TODO: Replace with RandomPredicted once the engine PR is merged
-            var seed = SharedRandomExtensions.HashCodeCombine((int)_timing.CurTick.Value, GetNetEntity(ent).Id, 3, stage.Stage, i);
+            var seed = SharedRandomExtensions.HashCodeCombine((int)_timing.CurTick.Value, GetNetEntity(ent).Id, stage.MinStageUntil.Microseconds, stage.Stage, i);
             var rand = new System.Random(seed);
             if (!rand.Prob(prob))
                 continue;
@@ -382,7 +382,7 @@ public sealed partial class SharedDiseaseSystem : EntitySystem
         return disease;
     }
 
-    public StageData? CreateStage(string diseaseId, int startStage=1)
+    public StageData? CreateStage(string diseaseId, int startStage=0)
     {
         if (!_prototypes.TryIndex<DiseasePrototype>(diseaseId, out var proto))
             return null;
@@ -390,8 +390,8 @@ public sealed partial class SharedDiseaseSystem : EntitySystem
         var stage = new StageData
         {
             Stage = startStage,
-            MinStageUntil = _timing.CurTime + TimeSpan.FromSeconds(proto.Stages[startStage-1].MinStageTime),
-            MaxStageUntil = _timing.CurTime + TimeSpan.FromSeconds(proto.Stages[startStage-1].MaxStageTime)
+            MinStageUntil = _timing.CurTime + TimeSpan.FromSeconds(proto.Stages[startStage].MinStageTime),
+            MaxStageUntil = _timing.CurTime + TimeSpan.FromSeconds(proto.Stages[startStage].MaxStageTime)
         };
         return stage;
     }

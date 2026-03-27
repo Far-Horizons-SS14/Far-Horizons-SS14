@@ -42,7 +42,7 @@ public sealed partial class SharedDiseaseCureSystem : EntitySystem
             return;
 
         // TODO: Replace with RandomPredicted once the engine PR is merged
-        var seed = SharedRandomExtensions.HashCodeCombine([(int)_timing.CurTick.Value, GetNetEntity(ent).Id]);
+        var seed = SharedRandomExtensions.HashCodeCombine((int)_timing.CurTick.Value, GetNetEntity(ent).Id, stageData.MinStageUntil.Microseconds);
         var rand = new System.Random(seed);
 
         // Disease-level cures.
@@ -109,7 +109,7 @@ public sealed partial class SharedDiseaseCureSystem : EntitySystem
         if (!ent.Comp.ActiveDiseases.TryGetValue(disease, out var stage) || stage.Stage <= 1)
             return;
 
-        stage.Stage-=stage.Stage;
+        stage.Stage-=1;
 
         ent.Comp.ActiveDiseases[disease] = stage;
         Dirty(ent);

@@ -27,7 +27,7 @@ public sealed class StageData
     /// The stage for the disease
     /// </summary>
     [ViewVariables]
-    public int Stage = 1;
+    public int Stage = 0;
 
     /// <summary>
     /// The time until the disease attempts spreading.
