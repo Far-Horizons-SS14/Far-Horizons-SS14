@@ -5,9 +5,9 @@
   components:
   - type: Sprite
     drawdepth: WallTops
-    sprite: Structures/Windows/reinforced_window.rsi
+    sprite: _FarHorizons/Structures/Windows/reinforced_window.rsi #FH
   - type: Icon
-    sprite: Structures/Windows/reinforced_window.rsi
+    sprite: _FarHorizons/Structures/Windows/reinforced_window.rsi #FH
   - type: Repairable
     fuelCost: 10
     doAfterDelay: 2
@@ -127,7 +127,7 @@
   components:
   - type: Sprite
     drawdepth: WallTops
-    sprite: Structures/Windows/reinforced_window_diagonal.rsi
+    sprite: _FarHorizons/Structures/Windows/reinforced_window_diagonal.rsi #FH
     state: state0
   - type: Tag
     tags:
@@ -138,7 +138,7 @@
     key: windows
     base: state
   - type: Icon
-    sprite: Structures/Windows/reinforced_window_diagonal.rsi
+    sprite: _FarHorizons/Structures/Windows/reinforced_window_diagonal.rsi #FH
     state: state0
   - type: Fixtures
     fixtures:

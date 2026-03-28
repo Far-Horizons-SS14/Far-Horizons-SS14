@@ -5,9 +5,9 @@
   components:
   - type: Sprite
     drawdepth: WallTops
-    sprite: Structures/Windows/shuttle_window.rsi
+    sprite: _FarHorizons/Structures/Windows/shuttle_window.rsi #FH
   - type: Icon
-    sprite: Structures/Windows/shuttle_window.rsi
+    sprite: _FarHorizons/Structures/Windows/shuttle_window.rsi #FH
   - type: Repairable
     fuelCost: 15
     doAfterDelay: 3
@@ -66,7 +66,7 @@
   components:
   - type: Sprite
     drawdepth: WallTops
-    sprite: Structures/Windows/shuttle_window_diagonal.rsi
+    sprite: _FarHorizons/Structures/Windows/shuttle_window_diagonal.rsi #FH
     state: state0
   - type: Tag
     tags:
@@ -77,7 +77,7 @@
     key: walls # Far Horizons... This will surely get fixed, eventually, during a lunar eclipse, when all the stars align.
     base: state
   - type: Icon
-    sprite: Structures/Windows/shuttle_window_diagonal.rsi
+    sprite: _FarHorizons/Structures/Windows/shuttle_window_diagonal.rsi #FH
     state: state0
   - type: Fixtures
     fixtures:
