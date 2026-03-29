@@ -1,3 +1,4 @@
-chat-radio-law = Law
+# Far Horizons CFA Change
+# chat-radio-law = Law
 chat-radio-soviet = Soviet
 chat-radio-expedition = Expedition
