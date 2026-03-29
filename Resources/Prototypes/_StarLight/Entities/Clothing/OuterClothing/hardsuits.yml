@@ -142,6 +142,8 @@
       damageCoefficient: 0.75
     - type: ToggleableClothing
       clothingPrototype: ClothingHeadHelmetHardsuitMercenary
+    - type: SpaceRescuePingSender # Far Horizons
+      hidden: true
 
 #Space Hazard Suit
 - type: entity
@@ -251,6 +253,8 @@
             - PowerCell
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitInfiltration
+  - type: SpaceRescuePingSender # Far Horizons
+    hidden: true
 
 #USSP
 - type: entity
@@ -302,6 +306,8 @@
     - IPCExternalCooling # Far Horizons
   - type: Item
     size: Huge
+  - type: SpaceRescuePingSender # Far Horizons
+    hidden: true
 
 #QM's Luxury Maxim Hardsuit
 - type: entity
@@ -554,6 +560,8 @@
         variation: 0.025
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitNTSF
+  - type: SpaceRescuePingSender # Far Horizons
+    hidden: true
 
 - type: entity
   parent: [ BaseCentcommContraband, ClothingOuterHardsuitBase ]
@@ -603,6 +611,8 @@
         variation: 0.025
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitDecimus
+  - type: SpaceRescuePingSender # Far Horizons
+    hidden: true
 
 #Thanatos (Starlight version of Deathsquad with enhanced stats)
 - type: entity
@@ -646,5 +656,5 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitThanatos
-
-
+  - type: SpaceRescuePingSender # Far Horizons
+    hidden: true
