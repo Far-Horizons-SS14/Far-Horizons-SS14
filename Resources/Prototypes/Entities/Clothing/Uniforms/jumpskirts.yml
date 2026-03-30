@@ -204,30 +204,30 @@
   - type: Clothing
     sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/hop.rsi #Far Horizons
 
-- type: entity
-  parent: [ClothingUniformSkirtBase, BaseCommandContraband]
-  id: ClothingUniformJumpskirtHoS
-  name: Head Of Security's Jumpskirt #Far Horizons - The Great Capitalization Crusade
-  description: It's bright red and rather crisp, much like security's victims tend to be.
-  components:
-  - type: Sprite
-    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/hos.rsi #Far Horizons
-  - type: Clothing
-    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/hos.rsi #Far Horizons
-  - type: Item
-    inhandVisuals:
-      left:
-      - state: inhand-left
-      #  color: "#C12D30" #Far Horizons
-      #  sprite: Clothing/Uniforms/Jumpskirt/color.rsi #Far Horizons
-      - state: overlay-inhand-left
-        sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/hos.rsi #Far Horizons
-      right:
-      - state: inhand-right
-      #  color: "#C12D30" #Far Horizons
-      #  sprite: Clothing/Uniforms/Jumpskirt/color.rsi #Far Horizons
-      - state: overlay-inhand-right
-        sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/hos.rsi #Far Horizons
+#- type: entity #Moved to FH folders to prevent future overwriting
+#  parent: [ClothingUniformSkirtBase, BaseCommandContraband]
+#  id: ClothingUniformJumpskirtHoS
+#  name: Head Of Security's Jumpskirt #Far Horizons - The Great Capitalization Crusade
+#  description: It's bright red and rather crisp, much like security's victims tend to be.
+#  components:
+#  - type: Sprite
+#    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/hos.rsi #Far Horizons
+#  - type: Clothing
+#    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/hos.rsi #Far Horizons
+#  - type: Item
+#    inhandVisuals:
+#      left:
+#      - state: inhand-left
+#      #  color: "#C12D30" #Far Horizons
+#      #  sprite: Clothing/Uniforms/Jumpskirt/color.rsi #Far Horizons
+#      - state: overlay-inhand-left
+#        sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/hos.rsi #Far Horizons
+#      right:
+#      - state: inhand-right
+#      #  color: "#C12D30" #Far Horizons
+#      #  sprite: Clothing/Uniforms/Jumpskirt/color.rsi #Far Horizons
+#      - state: overlay-inhand-right
+#        sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/hos.rsi #Far Horizons
 
 - type: entity
   parent: [ClothingUniformSkirtBase, BaseCommandContraband]
@@ -433,56 +433,56 @@
   - type: Clothing
     sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/roboticist.rsi #Far Horizons
 
-- type: entity
-  parent: [ClothingUniformSkirtBase, BaseSecurityContraband]
-  id: ClothingUniformJumpskirtSec
-  name: Security Jumpskirt #Far Horizons - The Great Capitalization Crusade
-  description: A jumpskirt made of strong material, providing robust protection.
-  components:
-  - type: Sprite
-    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/security.rsi #Far Horizons
-  - type: Clothing
-    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/security.rsi #Far Horizons
-  - type: Item
-    inhandVisuals:
-      left:
-      - state: inhand-left
-      #  color: "#C12D30" #Far Horizons
-      #  sprite: Clothing/Uniforms/Jumpskirt/color.rsi #Far Horizons
-      - state: overlay-inhand-left
-        sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/security.rsi #Far Horizons
-      right:
-      - state: inhand-right
-      #  color: "#C12D30" #Far Horizons
-      #  sprite: Clothing/Uniforms/Jumpskirt/color.rsi #Far Horizons
-      - state: overlay-inhand-right
-        sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/security.rsi #Far Horizons
+#- type: entity #Moved to FH folders to prevent future overwriting
+#  parent: [ClothingUniformSkirtBase, BaseSecurityContraband]
+#  id: ClothingUniformJumpskirtSec
+#  name: Security Jumpskirt #Far Horizons - The Great Capitalization Crusade
+#  description: A jumpskirt made of strong material, providing robust protection.
+#  components:
+#  - type: Sprite
+#    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/security.rsi #Far Horizons
+#  - type: Clothing
+#    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/security.rsi #Far Horizons
+#  - type: Item
+#    inhandVisuals:
+#      left:
+#      - state: inhand-left
+#      #  color: "#C12D30" #Far Horizons
+#      #  sprite: Clothing/Uniforms/Jumpskirt/color.rsi #Far Horizons
+#      - state: overlay-inhand-left
+#        sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/security.rsi #Far Horizons
+#      right:
+#      - state: inhand-right
+#      #  color: "#C12D30" #Far Horizons
+#      #  sprite: Clothing/Uniforms/Jumpskirt/color.rsi #Far Horizons
+#      - state: overlay-inhand-right
+#        sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/security.rsi #Far Horizons
 
 
-- type: entity
-  parent: [ClothingUniformSkirtBase, BaseSecurityContraband]
-  id: ClothingUniformJumpskirtWarden
-  name: Warden's Uniform #Far Horizons - The Great Capitalization Crusade
-  description: A formal security suit for officers complete with Nanotrasen belt buckle.
-  components:
-  - type: Sprite
-    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/warden.rsi #Far Horizons
-  - type: Clothing
-    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/warden.rsi #Far Horizons
-  - type: Item
-    inhandVisuals:
-      left:
-      - state: inhand-left
-      #  color: "#C12D30" #Far Horizons
-      #  sprite: Clothing/Uniforms/Jumpskirt/color.rsi #Far Horizons
-      - state: overlay-inhand-left
-        sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/warden.rsi #Far Horizons
-      right:
-      - state: inhand-right
-      #  color: "#C12D30" #Far Horizons
-      #  sprite: Clothing/Uniforms/Jumpskirt/color.rsi #Far Horizons
-      - state: overlay-inhand-right
-        sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/warden.rsi #Far Horizons
+#- type: entity #Moved to FH folders to prevent future overwriting
+#  parent: [ClothingUniformSkirtBase, BaseSecurityContraband]
+#  id: ClothingUniformJumpskirtWarden
+#  name: Warden's Uniform #Far Horizons - The Great Capitalization Crusade
+#  description: A formal security suit for officers complete with Nanotrasen belt buckle.
+#  components:
+#  - type: Sprite
+#    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/warden.rsi #Far Horizons
+#  - type: Clothing
+#    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/warden.rsi #Far Horizons
+#  - type: Item
+#    inhandVisuals:
+#      left:
+#      - state: inhand-left
+#      #  color: "#C12D30" #Far Horizons
+#      #  sprite: Clothing/Uniforms/Jumpskirt/color.rsi #Far Horizons
+#      - state: overlay-inhand-left
+#        sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/warden.rsi #Far Horizons
+#      right:
+#      - state: inhand-right
+#      #  color: "#C12D30" #Far Horizons
+#      #  sprite: Clothing/Uniforms/Jumpskirt/color.rsi #Far Horizons
+#      - state: overlay-inhand-right
+#        sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/warden.rsi #Far Horizons
 
 
 - type: entity

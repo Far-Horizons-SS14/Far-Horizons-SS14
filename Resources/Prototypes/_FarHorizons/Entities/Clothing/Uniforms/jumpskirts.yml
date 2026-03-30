@@ -133,11 +133,86 @@
   - type: Item
     inhandVisuals:
       left:
-      - state: inhand-left
+#      - state: inhand-left
       - state: overlay-inhand-left
       right:
-      - state: inhand-right
+#      - state: inhand-right
       - state: overlay-inhand-right
+
+- type: entity
+  parent: [ClothingUniformSkirtBase, BaseSecurityContraband]
+  id: ClothingUniformJumpskirtSec
+  name: Security Jumpskirt
+  description: A jumpskirt made of strong material, providing robust protection.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/security.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/security.rsi
+  - type: Item
+    inhandVisuals:
+      left:
+      #- state: inhand-left
+      #  color: "#C12D30"
+      #  sprite: Clothing/Uniforms/Jumpskirt/color.rsi
+      - state: overlay-inhand-left
+        sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/security.rsi
+      right:
+      #- state: inhand-right
+      #  color: "#C12D30"
+      #  sprite: Clothing/Uniforms/Jumpskirt/color.rsi
+      - state: overlay-inhand-right
+        sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/security.rsi
+
+- type: entity
+  parent: [ClothingUniformSkirtBase, BaseSecurityContraband]
+  id: ClothingUniformJumpskirtWarden
+  name: Warden's Uniform
+  description: A formal security suit for officers complete with Nanotrasen belt buckle.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/warden.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/warden.rsi
+  - type: Item
+    inhandVisuals:
+      left:
+      #- state: inhand-left
+      #  color: "#C12D30"
+      #  sprite: Clothing/Uniforms/Jumpskirt/color.rsi
+      - state: overlay-inhand-left
+        sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/warden.rsi
+      right:
+      #- state: inhand-right
+      #  color: "#C12D30"
+      #  sprite: Clothing/Uniforms/Jumpskirt/color.rsi
+      - state: overlay-inhand-right
+        sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/warden.rsi
+
+- type: entity
+  parent: [ClothingUniformSkirtBase, BaseCommandContraband]
+  id: ClothingUniformJumpskirtHoS
+  name: Head Of Security's Jumpskirt
+  description: It's bright red and rather crisp, much like security's victims tend to be.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/hos.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/hos.rsi
+  - type: Item
+    inhandVisuals:
+      left:
+      #- state: inhand-left
+      #  color: "#C12D30"
+      #  sprite: Clothing/Uniforms/Jumpskirt/color.rsi
+      - state: overlay-inhand-left
+        sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/hos.rsi
+      right:
+      #- state: inhand-right
+      #  color: "#C12D30"
+      #  sprite: Clothing/Uniforms/Jumpskirt/color.rsi
+      - state: overlay-inhand-right
+        sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/hos.rsi
 
 #region Syndicate
 
