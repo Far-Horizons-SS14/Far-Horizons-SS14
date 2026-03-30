@@ -341,9 +341,14 @@
       - id: PlushieMorgana
       - id: PlushieKiller
 
-#region Racks
+#region Racks - NT
 
-# Armory - Rifles
+
+
+
+
+
+#region - Rifles
 
 - type: entity
   id: ShelfArmoryLecterTypeTLargeFilled
@@ -411,7 +416,7 @@
     - id: MagazinePistolHP
       amount: 4
 
-# Armory - Shotguns
+#region Shotguns
 
 - type: entity
   id: ShelfArmoryRiotShotgunLargeFilled
@@ -483,7 +488,7 @@
     - id: MagazineMagnum
       amount: 6
 
-# Armory - SMGs
+#region SMGs
 
 - type: entity
   id: ShelfArmoryDrozdLargeFilled
@@ -549,7 +554,7 @@
     - id: MagazinePistolHP
       amount: 4
 
-# Armory - Lasers
+#region Lasers
 
 - type: entity
   id: ShelfArmoryLaserLargeFilled
@@ -615,7 +620,7 @@
     - id: WeaponDominator
       amount: 2
 
-#Armory - Armor
+#region Armor
 
 - type: entity
   id: ShelfArmoryArmorRiotLargeFilled
@@ -1057,3 +1062,78 @@
       - id: RubberStampCorpsman
       - id: PlushieMorgana
       - id: PlushieKiller
+
+#region Racks - NS
+
+
+
+
+
+
+#region - Rifles
+
+- type: entity
+  id: ShelfArmoryLecterTypeSLargeFilled
+  parent: ShelfArmoryLecterTypeSLarge
+  suffix: NS, Filled
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponRifleLecterNS
+      amount: 4
+    - id: WeaponPistolEnforcer
+      amount: 4
+    - id: MagazineRifle556SP
+      amount: 8
+    - id: MagazineRifle556HP
+      amount: 4
+    - id: MagazinePistolSP
+      amount: 8
+    - id: MagazinePistolHP
+      amount: 4
+
+- type: entity
+  id: ShelfArmoryIFV-50SLargeFilled
+  parent: ShelfArmoryIFV-50SLarge
+  suffix: NS, Filled
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponRifleIFV-50S
+      amount: 4
+    - id: WeaponPistolEnforcer
+      amount: 4
+    - id: MagazineRifle38SP
+      amount: 8
+    - id: MagazineRifle38HP
+      amount: 4
+    - id: MagazinePistolSP
+      amount: 8
+    - id: MagazinePistolHP
+      amount: 4
+
+- type: entity
+  id: ShelfArmoryMixedRifleNSFilled
+  parent: ShelfArmoryMixedRifle
+  suffix: NS, Filled
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponRifleLecterNS
+      amount: 2
+    - id: WeaponRifleIFV-50S
+      amount: 2
+    - id: WeaponPistolEnforcer
+      amount: 4
+    - id: MagazineRifle556SP
+      amount: 4
+    - id: MagazineRifle38SP
+      amount: 4
+    - id: MagazineRifle556HP
+      amount: 2
+    - id: MagazineRifle38HP
+      amount: 2
+    - id: MagazinePistolSP
+      amount: 8
+    - id: MagazinePistolHP
+      amount: 4

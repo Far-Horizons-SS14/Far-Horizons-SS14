@@ -1,4 +1,4 @@
-#region Armory
+#region Armory - NT
 # Armory - Gun Base
 - type: entity
   abstract: true
@@ -365,12 +365,13 @@
       tags:
         - BioSec
 
-# Armory - IFV-50
+#region IFV-50-T
 - type: entity
   id: ShelfArmoryIFV-50TLarge
   parent: ShelfArmoryBase
   name: Large IFV-50-T Rack
   description: Holds four IFV-50-T Rifles and Enforcer Pistols.
+  suffix: NT
   components:
   - type: Sprite
     sprite: _FarHorizons/Structures/Storage/racks.rsi
@@ -396,12 +397,13 @@
         - IFV-50
         - MagazineRifle38
 
-#Armory - Lecter
+#region Lecter Type-T
 - type: entity
   id: ShelfArmoryLecterTypeTLarge
   parent: ShelfArmoryBase
   name: Large Lecter Type-T Rack
   description: Holds four Lecter Type-T Rifles and Enforcer Pistols.
+  suffix: NT
   components:
   - type: Sprite
     sprite: _FarHorizons/Structures/Storage/racks.rsi
@@ -427,12 +429,13 @@
         - Lecter
         - MagazineRifle556
 
-# Armory - Mixed Rifles
+#region Mixed Rifles
 - type: entity
   id: ShelfArmoryMixedRifle
   parent: ShelfArmoryBase
   name: Mixed Rifle Rack
   description: Holds two Lecter Type-T & IFV-50-T rifles as well as four Enforcer Pistols.
+  suffix: NT
   components:
   - type: Sprite
     sprite: _FarHorizons/Structures/Storage/racks.rsi
@@ -1033,3 +1036,109 @@
         - HeavySecSuitBoots
         - SLMG
         - Rifle556Heavy
+
+#region Armory - NS
+
+
+
+
+
+
+
+#region IFV-50-S
+- type: entity
+  id: ShelfArmoryIFV-50SLarge
+  parent: ShelfArmoryBase
+  name: Large IFV-50-S Rack
+  description: Holds four IFV-50-S Rifles and Enforcer Pistols.
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Storage/racks.rsi
+    layers:
+    - state: ifvcase
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: ifv-0
+      map: ["enum.StorageFillLayers.Fill"]
+    - state: closed
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+      shader: unshaded
+  - type: StorageFillVisualizer
+    maxFillLevels: 5
+    fillBaseName: ifv
+  - type: Storage
+    whitelist:
+      tags:
+        - Sidearm
+        - MagazinePistol
+        - MagazineMagnum
+        - IFV-50
+        - MagazineRifle38
+
+#region Lecter Type-S
+- type: entity
+  id: ShelfArmoryLecterTypeSLarge
+  parent: ShelfArmoryBase
+  name: Large Lecter Type-S Rack
+  description: Holds four Lecter Type-S Rifles and Enforcer Pistols.
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Storage/racks.rsi
+    layers:
+    - state: lectercase
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: lecter-0
+      map: ["enum.StorageFillLayers.Fill"]
+    - state: closed
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+      shader: unshaded
+  - type: StorageFillVisualizer
+    maxFillLevels: 5
+    fillBaseName: lecter
+  - type: Storage
+    whitelist:
+      tags:
+        - Sidearm
+        - MagazinePistol
+        - MagazineMagnum
+        - Lecter
+        - MagazineRifle556
+
+#region Mixed Rifles
+- type: entity
+  id: ShelfArmoryMixedRifleNS
+  parent: ShelfArmoryBase
+  name: Mixed Rifle Rack
+  description: Holds two Lecter Type-S & IFV-50-S rifles as well as four Enforcer Pistols.
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Storage/racks.rsi
+    layers:
+    - state: mixedriflecase
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: mixedrifle-0
+      map: ["enum.StorageFillLayers.Fill"]
+    - state: closed
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+      shader: unshaded
+  - type: StorageFillVisualizer
+    maxFillLevels: 5
+    fillBaseName: mixedrifle
+  - type: Storage
+    whitelist:
+      tags:
+        - Sidearm
+        - MagazinePistol
+        - MagazineMagnum
+        - Lecter
+        - IFV-50
+        - MagazineRifle556
+        - MagazineRifle38
