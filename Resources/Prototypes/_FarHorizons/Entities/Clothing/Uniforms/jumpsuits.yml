@@ -79,10 +79,79 @@
   - type: Item
     inhandVisuals:
       left:
-      - state: inhand-left
+#      - state: inhand-left
       - state: overlay-inhand-left
       right:
-      - state: inhand-right
+#      - state: inhand-right
+      - state: overlay-inhand-right
+
+- type: entity
+  parent: [ClothingUniformBase, BaseSecurityContraband] #ClothingUniformFoldableBase] - Folded version not resprited and too visually different, disabling temporarily
+  id: ClothingUniformJumpsuitSec
+  name: Security Jumpsuit
+  description: A jumpsuit made of strong material, providing robust protection.
+  components:
+  - type: RollUpSleeves
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/security.rsi
+  - type: Item
+    inhandVisuals:
+      left:
+      # - state: inhand-left
+      #  color: "#003860"
+      #  sprite: Clothing/Uniforms/Jumpsuit/color.rsi
+      - state: overlay-inhand-left
+      right:
+      # - state: inhand-right
+      #  color: "#003860"
+      #  sprite: Clothing/Uniforms/Jumpsuit/color.rsi
+      - state: overlay-inhand-right
+
+- type: entity
+  parent: [ClothingUniformBase, BaseSecurityContraband]
+  id: ClothingUniformJumpsuitWarden
+  name: Warden's Uniform
+  description: A formal security suit for officers complete with Nanotrasen belt buckle.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/warden.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/warden.rsi
+  - type: Item
+    inhandVisuals:
+      left:
+      #- state: inhand-left
+      #  color: "#C12D30"
+      #  sprite: Clothing/Uniforms/Jumpsuit/color.rsi
+      - state: overlay-inhand-left
+      right:
+      #- state: inhand-right
+      #  color: "#C12D30"
+      #  sprite: Clothing/Uniforms/Jumpsuit/color.rsi
+      - state: overlay-inhand-right
+
+- type: entity
+  parent: [ClothingUniformBase, BaseCommandContraband]
+  id: ClothingUniformJumpsuitHoS
+  name: Head Of Security's Jumpsuit
+  description: It's bright red and rather crisp, much like security's victims tend to be.
+  components:
+  - type: RollUpSleeves
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/hos.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/hos.rsi
+  - type: Item
+    inhandVisuals:
+      left:
+      #- state: inhand-left
+      #  color: "#C12D30"
+      #  sprite: Clothing/Uniforms/Jumpsuit/color.rsi
+      - state: overlay-inhand-left
+      right:
+      #- state: inhand-right
+      #  color: "#C12D30"
+      #  sprite: Clothing/Uniforms/Jumpsuit/color.rsi
       - state: overlay-inhand-right
 
 #region Syndicate

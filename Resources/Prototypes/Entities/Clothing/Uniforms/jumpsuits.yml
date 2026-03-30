@@ -360,29 +360,29 @@
   - type: Sprite
     sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/hop.rsi #Far Horizons
 
-- type: entity
-  parent: [ClothingUniformBase, BaseCommandContraband]
-  id: ClothingUniformJumpsuitHoS
-  name: Head Of Security's Jumpsuit #Far Horizons - The Great Capitalization Crusade
-  description: It's bright red and rather crisp, much like security's victims tend to be.
-  components:
-  - type: RollUpSleeves
-  - type: Sprite
-    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/hos.rsi #Far Horizons
-  - type: Clothing
-    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/hos.rsi #Far Horizons
-  - type: Item
-    inhandVisuals:
-      left:
-      - state: inhand-left
-      #  color: "#C12D30" #Far Horizons
-      #  sprite: Clothing/Uniforms/Jumpsuit/color.rsi #Far Horizons
-      - state: overlay-inhand-left
-      right:
-      - state: inhand-right
-      #  color: "#C12D30" #Far Horizons
-      #  sprite: Clothing/Uniforms/Jumpsuit/color.rsi #Far Horizons
-      - state: overlay-inhand-right
+#- type: entity #Moved to FH folders to prevent future overwriting
+#  parent: [ClothingUniformBase, BaseCommandContraband]
+#  id: ClothingUniformJumpsuitHoS
+#  name: Head Of Security's Jumpsuit #Far Horizons - The Great Capitalization Crusade
+#  description: It's bright red and rather crisp, much like security's victims tend to be.
+#  components:
+#  - type: RollUpSleeves
+#  - type: Sprite
+#    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/hos.rsi #Far Horizons
+#  - type: Clothing
+#    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/hos.rsi #Far Horizons
+#  - type: Item
+#    inhandVisuals:
+#      left:
+#      - state: inhand-left
+#      #  color: "#C12D30" #Far Horizons
+#      #  sprite: Clothing/Uniforms/Jumpsuit/color.rsi #Far Horizons
+#      - state: overlay-inhand-left
+#      right:
+#      - state: inhand-right
+#      #  color: "#C12D30" #Far Horizons
+#      #  sprite: Clothing/Uniforms/Jumpsuit/color.rsi #Far Horizons
+#      - state: overlay-inhand-right
 
 - type: entity
   parent: [ClothingUniformBase, BaseCommandContraband]
@@ -645,27 +645,27 @@
   - type: Clothing
     sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/roboticist.rsi #Far Horizons
 
-- type: entity
-  parent: [ClothingUniformBase, BaseSecurityContraband] #ClothingUniformFoldableBase] - Folded version not resprited and too visually different, disabling temporarily
-  id: ClothingUniformJumpsuitSec
-  name: Security Jumpsuit #Far Horizons - The Great Capitalization Crusade
-  description: A jumpsuit made of strong material, providing robust protection.
-  components:
-  - type: RollUpSleeves
-  - type: Sprite
-    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/security.rsi #Far Horizons
-  - type: Item
-    inhandVisuals:
-      left:
-      - state: inhand-left
-      #  color: "#003860" #Far Horizons
-      #  sprite: Clothing/Uniforms/Jumpsuit/color.rsi
-      - state: overlay-inhand-left
-      right:
-      - state: inhand-right
-      #  color: "#003860" #Far Horizons
-      #  sprite: Clothing/Uniforms/Jumpsuit/color.rsi
-      - state: overlay-inhand-right
+#- type: entity #Moved to FH folders to prevent future overwriting
+#  parent: [ClothingUniformBase, BaseSecurityContraband] #ClothingUniformFoldableBase] - Folded version not resprited and too visually different, disabling temporarily
+#  id: ClothingUniformJumpsuitSec
+#  name: Security Jumpsuit #Far Horizons - The Great Capitalization Crusade
+#  description: A jumpsuit made of strong material, providing robust protection.
+#  components:
+#  - type: RollUpSleeves
+#  - type: Sprite
+#    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/security.rsi #Far Horizons
+#  - type: Item
+#    inhandVisuals:
+#      left:
+#      - state: inhand-left
+#      #  color: "#003860" #Far Horizons
+#      #  sprite: Clothing/Uniforms/Jumpsuit/color.rsi
+#      - state: overlay-inhand-left
+#      right:
+#      - state: inhand-right
+#      #  color: "#003860" #Far Horizons
+#      #  sprite: Clothing/Uniforms/Jumpsuit/color.rsi
+#      - state: overlay-inhand-right
 
 - type: entity
   parent: ClothingUniformBase
@@ -700,28 +700,28 @@
   - type: Clothing
     sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/security_trooper.rsi #Far Horizons
 
-- type: entity
-  parent: [ClothingUniformBase, BaseSecurityContraband]
-  id: ClothingUniformJumpsuitWarden
-  name: Warden's Uniform #Far Horizons - The Great Capitalization Crusade
-  description: A formal security suit for officers complete with Nanotrasen belt buckle.
-  components:
-  - type: Sprite
-    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/warden.rsi #Far Horizons
-  - type: Clothing
-    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/warden.rsi #Far Horizons
-  - type: Item
-    inhandVisuals:
-      left:
-      - state: inhand-left
-      #  color: "#C12D30" #Far Horizons
-      #  sprite: Clothing/Uniforms/Jumpsuit/color.rsi #Far Horizons
-      - state: overlay-inhand-left
-      right:
-      - state: inhand-right
-      #  color: "#C12D30" #Far Horizons
-      #  sprite: Clothing/Uniforms/Jumpsuit/color.rsi #Far Horizons
-      - state: overlay-inhand-right
+#- type: entity #Moved to FH folders to prevent future overwriting
+#  parent: [ClothingUniformBase, BaseSecurityContraband]
+#  id: ClothingUniformJumpsuitWarden
+#  name: Warden's Uniform #Far Horizons - The Great Capitalization Crusade
+#  description: A formal security suit for officers complete with Nanotrasen belt buckle.
+#  components:
+#  - type: Sprite
+#    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/warden.rsi #Far Horizons
+#  - type: Clothing
+#    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/warden.rsi #Far Horizons
+#  - type: Item
+#    inhandVisuals:
+#      left:
+#      - state: inhand-left
+#      #  color: "#C12D30" #Far Horizons
+#      #  sprite: Clothing/Uniforms/Jumpsuit/color.rsi #Far Horizons
+#      - state: overlay-inhand-left
+#      right:
+#      - state: inhand-right
+#      #  color: "#C12D30" #Far Horizons
+#      #  sprite: Clothing/Uniforms/Jumpsuit/color.rsi #Far Horizons
+#      - state: overlay-inhand-right
 
 - type: entity
   parent: ClothingUniformBase
