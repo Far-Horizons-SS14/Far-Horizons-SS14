@@ -376,7 +376,7 @@
 - type: entity
   id: HomographicField
   name: Homographic Field
-  description: A Homographic Field that blocks bloodflow.
+  description: A Homographic Field that blocks bloodflow with extreme temperatures.
   placement:
     mode: SnapgridCenter
   components:
@@ -423,11 +423,12 @@
   - type: DamageContacts
     damage:
       types:
-        Heat: 10
+        Heat: 15
         Structural: 30
-  - type: Electrified
-    requirePower: false
-    shockTime: 15
   - type: SpeedModifierContacts
     walkSpeedModifier: 0.3
     sprintSpeedModifier: 0.3
+  - type: IgniteOnCollide
+    fixtureId: fix1
+    fireStacks: 5
+    count : -1

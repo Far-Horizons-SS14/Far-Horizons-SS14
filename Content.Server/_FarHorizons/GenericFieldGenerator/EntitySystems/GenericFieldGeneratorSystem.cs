@@ -18,10 +18,11 @@ using Content.Shared.Maps;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Content.Server.DeviceLinking.Systems;
-using Content.Shared.DeviceLinking;
+// using Content.Shared.DeviceLinking;
 using Content.Shared.Emag.Systems;
 using Content.Shared.Light;
 using Content.Shared.Light.Components;
+using Content.Shared.Lock;
 
 namespace Content.Server._FarHorizons.GenericFieldGenerator.EntitySystems;
 
@@ -40,6 +41,7 @@ public sealed class GenericFieldGeneratorSystem : EntitySystem
     [Dependency] private readonly GenericFieldSystem _genericfield = default!;
     [Dependency] private readonly DeviceLinkSystem _signalSystem = default!;
     [Dependency] private readonly SharedRgbLightControllerSystem _rgbSystem = default!;
+    [Dependency] private readonly EmagSystem _emag = default!;
 
     public override void Initialize()
     {
@@ -306,11 +308,29 @@ public sealed class GenericFieldGeneratorSystem : EntitySystem
 
     private void OnGotEmagged(Entity<GenericFieldGeneratorComponent> generator, ref GotEmaggedEvent args)
     {
+        if (!_emag.CompareFlag(args.Type, EmagType.Interaction))
+        {
+            args.Handled = false;
+            return;
+        }
+
+        if (TryComp<LockComponent>(generator, out var lockcomp) && lockcomp.Locked)
+        {
+            _popupSystem.PopupEntity(Loc.GetString("comp-genericfield-locked"), generator);
+            args.Handled = false;
+            return;
+        }
+
         generator.Comp.CreatedField = "HomographicField";
 
         //makes the generator go rainbow, no reason to ever remove this beacause emag cant be removed without deconstructing
         var rgb = EnsureComp<RgbLightControllerComponent>(generator);
         _rgbSystem.SetCycleRate(generator, 0.5f, rgb);
+
+        if (!generator.Comp.IsConnected)
+            _popupSystem.PopupEntity(Loc.GetString("comp-genericfield-emag"), generator, PopupType.LargeCaution);
+
+        RemoveConnections(generator);
 
         args.Handled = true;
     }
