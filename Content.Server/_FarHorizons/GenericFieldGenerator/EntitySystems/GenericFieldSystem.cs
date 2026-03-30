@@ -59,6 +59,9 @@ public sealed class GenericFieldSystem : EntitySystem
 
     private void OnAnchorChanged(Entity<GenericFieldComponent> field, ref AnchorStateChangedEvent args) // tile beneath removed, likely destroyed
     {
+        if (TerminatingOrDeleted(field.Comp.GridUid))
+            return;
+
         if (!args.Anchored && field.Comp.SourceGen != null)
             _genericgen.FieldDestroyed(field.Comp.SourceGen.Value);
     }
