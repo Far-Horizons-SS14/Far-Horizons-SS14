@@ -1,6 +1,7 @@
 # Hacky for the stress test so don't even consider adding to this
 - type: entity
-  name: burrower
+  name: Burrower #Far Horizons - The Great Capitalization Crusade
+  suffix: XenoAlien #Far Horizons
   id: MobXeno
   parent: SimpleSpaceMobBase
   description: A small Xeno which uses its claws to break things and force open doors. # Moffstation - (Xeno Buffs)
@@ -148,7 +149,8 @@
     speechVerb: LargeMob
 
 - type: entity
-  name: praetorian
+  name: Praetorian #Far Horizons - The Great Capitalization Crusade
+  suffix: XenoAlien #Far Horizons
   parent: MobXeno
   id: MobXenoPraetorian
   description: A large Xeno which can soak up a huge amount of damage. # Moffstation - (Xeno Buffs)
@@ -194,7 +196,8 @@
         - MobLayer
 
 - type: entity
-  name: drone
+  name: Drone #Far Horizons - The Great Capitalization Crusade
+  suffix: XenoAlien #Far Horizons
   parent: MobXeno
   id: MobXenoDrone
   description: A small xeno which carries things around for the hive. # Moffstation - (Xeno Buffs)
@@ -240,7 +243,8 @@
         - MobLayer
 
 - type: entity
-  name: queen
+  name: Queen #Far Horizons - The Great Capitalization Crusade
+  suffix: XenoAlien #Far Horizons
   parent: MobXeno
   id: MobXenoQueen
   description: A massive Xeno who leads the hive. # Moffstation - (Xeno Buffs)
@@ -268,6 +272,46 @@
       0: Alive
       #300: Dead
       600: Dead
+  #Far Horizons - Start - Changing destructible in the middle of the Moff sandwich
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Blunt
+        damage: 800
+      behaviors:
+      - !type:GibBehavior { }
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Heat
+        damage: 1500
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawnInContainer: true
+        spawn:
+          Ash:
+            min: 1
+            max: 1
+      - !type:BurnBodyBehavior
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MeatLaserImpact
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Radiation
+        damage: 15
+      behaviors:
+      - !type:PopupBehavior
+        popup: mouth-taste-metal
+        popupType: LargeCaution
+        targetOnly: true
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Radiation
+        damage: 40
+      behaviors:
+      - !type:VomitBehavior
+  # Far Horizons - End
   - type: SlowOnDamage
     speedModifierThresholds:
       #150: 0.7
@@ -301,7 +345,8 @@
     - CannotSuicide
 
 - type: entity
-  name: ravager
+  name: Ravager #Far Horizons #Far Horizons - The Great Capitalization Crusade
+  suffix: XenoAlien #Far Horizons
   parent: MobXeno
   id: MobXenoRavager
   description: A large Xeno which uses its massive claws to hunt prey. # Moffstation - (Xeno Buffs)
@@ -347,7 +392,8 @@
         - MobLayer
 
 - type: entity
-  name: runner
+  name: Runner #Far Horizons #Far Horizons - The Great Capitalization Crusade
+  suffix: XenoAlien #Far Horizons
   parent: MobXeno
   id: MobXenoRunner
   description: A small, extremely fast Xeno. # Moffstation - (Xeno Buffs)
@@ -386,7 +432,8 @@
         - MobLayer
 
 - type: entity
-  name: rouny
+  name: Rouny #Far Horizons - The Great Capitalization Crusade
+  suffix: Meme, XenoAlien #Far Horizons
   parent: MobXenoRunner
   id: MobXenoRouny
   components:
@@ -401,7 +448,8 @@
       amount: 3
 
 - type: entity
-  name: spitter
+  name: Spitter #Far Horizons - The Great Capitalization Crusade
+  suffix: XenoAlien #Far Horizons
   parent: MobXeno
   id: MobXenoSpitter
   description: A large Xeno which can spit acid at long distances. # Moffstation - (Xeno Buffs)
@@ -414,10 +462,10 @@
     - map: ["enum.DamageStateVisualLayers.Base"]
       state: running
   # Moffstation - Begin (Xeno Buffs)
-  #- type: MobThresholds
-    #thresholds:
-      #0: Alive
-      #50: Dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      75: Dead
   - type: SlowOnDamage
     #speedModifierThresholds:
       #25: 0.7
@@ -458,7 +506,7 @@
         - MobLayer
 
 - type: entity
-  name: space adder
+  name: Space Adder #Far Horizons
   parent: SimpleSpaceMobBase
   id: MobPurpleSnake
   description: A menacing purple snake from Kepler-283c.
@@ -528,7 +576,7 @@
     - FootstepSound
 
 - type: entity
-  name: space adder
+  name: Space Adder #Far Horizons
   parent: MobPurpleSnake
   id: MobSmallPurpleSnake
   suffix: small
@@ -559,6 +607,7 @@
 
 - type: entity
   name: '"Dale"'
+  suffix: XenoAlien #Far Horizons
   description: A praetorian left over from the station's initial security sweep. Has a pair of bloodied dog tags engraved with the name "Pvt. Dale" stuck in its maw.
   parent: SimpleSpaceMobBase
   id: MobXenoLonePraetorianNoGhost
