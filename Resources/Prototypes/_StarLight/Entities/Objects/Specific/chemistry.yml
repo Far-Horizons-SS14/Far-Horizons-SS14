@@ -89,6 +89,64 @@
     - vial6
   - type: Appearance
 
+- type: entity #FH addition begin
+  id: ApothecaryVialCase
+  parent: [ BaseStorageItem, BaseBagOpenClose ]
+  name: Apothecary Vial Case #FH
+  description: A fancy, convenient, compact box with 6 empty vials. This one is made of aged hardwood and burnished steel.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Chemistry/ApothecaryVialCase.rsi
+    layers:
+    - state: closed
+      map: ["closeLayer"]
+    - state: open
+      map: ["openLayer"]
+    - state: vial1
+      map: ["vial1"]
+      visible: false
+    - state: vial2
+      map: ["vial2"]
+      visible: false
+    - state: vial3
+      map: ["vial3"]
+      visible: false
+    - state: vial4
+      map: ["vial4"]
+      visible: false
+    - state: vial5
+      map: ["vial5"]
+      visible: false
+    - state: vial6
+      map: ["vial6"]
+      visible: false
+  - type: Storage
+    grid:
+    - 0,0,1,2
+  - type: Item
+    sprite: Objects/Consumable/Smokeables/vials/case.rsi
+    size: Small
+    shape:
+    - 0,0,0,1
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ChemistryEmptyVial
+          amount: 6
+  - type: ItemCounter
+    count:
+      tags: [Vial]
+    composite: true
+    layerStates:
+    - vial1
+    - vial2
+    - vial3
+    - vial4
+    - vial5
+    - vial6
+  - type: Appearance #FH addition end
+
 - type: entity
   name: Silver Beaker #FH
   parent: BaseBeaker

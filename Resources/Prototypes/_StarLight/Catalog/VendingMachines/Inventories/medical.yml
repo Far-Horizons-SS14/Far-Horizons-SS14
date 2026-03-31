@@ -34,6 +34,18 @@
     stock: 6
   - !type:BuyerAccessCondition
 
+- type: listing #FH addition begin
+  id: VendorApothecaryVialCase
+  productEntity: ApothecaryVialCase
+  cost:
+    NTCredit: 50
+  categories:
+  - SLChemistry
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 20
+  - !type:BuyerAccessCondition #FH addition end
+
 - type: listing
   id: VendorCleanerGrenade
   productEntity: CleanerGrenade
