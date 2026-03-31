@@ -1,3 +1,4 @@
+#region AK-205
 - type: entity
   name: AK-205
   parent: [ BaseWeaponRifle, BaseMajorContraband ]
@@ -57,6 +58,8 @@
     zeroVisible: true
   - type: Appearance
 
+#region Lecter Type-T
+
 - type: entity
   name: Lecter Type-T
   parent: WeaponRifleLecter
@@ -88,6 +91,8 @@
   - type: SpeedModifiedOnWield # Light Stock
     walkModifier: 0.95
     sprintModifier: 0.95
+
+#region Lecter Type-S
 
 - type: entity
   name: Lecter Type-S
@@ -131,6 +136,8 @@
   - type: SpeedModifiedOnWield
     walkModifier: 0.90
     sprintModifier: 0.90
+
+#region Lecter Type-W
 
 - type: entity
   name: Lecter Type-W
@@ -202,3 +209,178 @@
   - type: SpeedModifiedOnWield # Short Stock
     walkModifier: 0.95
     sprintModifier: 0.95
+
+#region IFV-50
+
+- type: entity
+  name: IFV-50
+  parent: [ BaseWeaponRifle, BaseSecurityContraband ]
+  id: WeaponRifleIFV-50
+  description: A hard-hitting but slow firing high end military grade battle rifle with a two round burst reciever. Feeds from .38 special magazines.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/Rifles/IFV-50/ifv-50_x64x32.rsi
+    layers:
+    - state: base
+      map: [ "enum.GunVisualLayers.Base" ]
+    - state: mag-0
+      map: [ "enum.GunVisualLayers.Mag" ]
+  - type: Clothing
+    sprite: _FarHorizons/Objects/Weapons/Guns/Rifles/IFV-50/ifv-50_x32.rsi
+  - type: Item
+    sprite: _FarHorizons/Objects/Weapons/Guns/Rifles/IFV-50/ifv-50_x64x64.rsi
+  - type: GunWieldBonus #2-4 Deviation (Stock)
+    minAngle: -18 # 2
+    maxAngle: -28 # 4
+  - type: Gun
+    minAngle: 20
+    maxAngle: 32
+    angleIncrease: 0.5
+    fireRate: 3
+    burstFireRate: 5.5
+    shotsPerBurst: 2
+    burstCooldown: 0.55
+    selectedMode: Burst
+    availableModes:
+    - SemiAuto
+    - Burst
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/ltrifle.ogg
+      params:
+        variation: 0.05
+        pitch: 0.7
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineRifle38SP
+        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - MagazineRifle38
+        whitelistFailPopup: gun-magazine-whitelist-fail
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeRevolver38SP
+        priority: 1
+        whitelist:
+          tags:
+          - CartridgeRevolver38
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot ""
+      gun_chamber: !type:ContainerSlot ""
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: true
+  - type: Appearance
+  - type: UseDelay # Long in general
+    delay: 1.5
+  - type: Tag
+    tags:
+    - IFV-50
+
+#region IFV-50-T
+
+- type: entity
+  name: IFV-50-T
+  parent: [ WeaponRifleIFV-50 ]
+  id: WeaponRifleIFV-50T
+  description: A modified burst IFV-50 platform utilized by NanoTrasen, it packs a vertical grip and shorter stock for easier handling in space-station environments, a scope for the rare encounter at range as well as electronic status lights. Feeds from .38 Special Magazines.
+  suffix: NT
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/Rifles/NT_IFV-50/ifv-50_x64x32.rsi
+    layers:
+    - state: base
+      map: [ "enum.GunVisualLayers.Base" ]
+    - state: mag-0
+      map: [ "enum.GunVisualLayers.Mag" ]
+  - type: Clothing
+    sprite: _FarHorizons/Objects/Weapons/Guns/Rifles/NT_IFV-50/ifv-50_x32.rsi
+  - type: Item
+    sprite: _FarHorizons/Objects/Weapons/Guns/Rifles/NT_IFV-50/ifv-50_x64x64.rsi
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: true
+  - type: Scope
+    canUseInsideContainer: true
+    canUseNightVision: true
+    zoomLevels:
+      - name: 1x
+        zoom: 1
+        offset: 7
+        doAfter: 0
+        allowMovement: true
+      - name: 1.5x
+        zoom: 1.5
+        offset: 7
+        doAfter: 0
+        allowMovement: true
+  - type: UseDelay # Shorter Stock/Barrel
+    delay: 1
+  - type: SpeedModifiedOnWield # Light Stock
+    walkModifier: 0.95
+    sprintModifier: 0.95
+
+#region IFV-50-S
+
+- type: entity
+  name: IFV-50-S
+  parent: [ WeaponRifleIFV-50 ]
+  id: WeaponRifleIFV-50S
+  description: A modified burst IFV-50 platform utilized by NeoSol, it more resembles a Designated Marksman Rifle rather than a Battle Rifle with it's extended barrel and stock. Also has a Gunsword for additional lethality at close range. Feeds from .38 Special Magazines.
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/Rifles/NS_IFV-50/ifv-50_x64x32.rsi
+    layers:
+    - state: base
+      map: [ "enum.GunVisualLayers.Base" ]
+    - state: mag-0
+      map: [ "enum.GunVisualLayers.Mag" ]
+  - type: Clothing
+    sprite: _FarHorizons/Objects/Weapons/Guns/Rifles/NS_IFV-50/ifv-50_x32.rsi
+  - type: Item
+    sprite: _FarHorizons/Objects/Weapons/Guns/Rifles/NS_IFV-50/ifv-50_x64x64.rsi
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: true
+  - type: GunWieldBonus #1-2 Deviation (Long Barrel/Long Stock)
+    minAngle: -19 # 1
+    maxAngle: -31 # 2
+  - type: MeleeWeapon
+    wideAnimationRotation: -90
+    attackRate: 0.8 # Big, not fast.
+    damage:
+      types:
+        Slash: 30 # Better than Bladed Lector which is 22/s -> This is 24/s
+    soundHit: /Audio/Weapons/bladeslice.ogg
+    angle: 0
+    animation: WeaponArcThrust
+  - type: Scope
+    canUseInsideContainer: true
+    canUseNightVision: true
+    zoomLevels:
+      - name: 1x
+        zoom: 1
+        offset: 7
+        doAfter: 0
+        allowMovement: true
+      - name: 1.5x
+        zoom: 1.5
+        offset: 7
+        doAfter: 0
+        allowMovement: true
+  - type: AltFireMelee
+    attackType: Heavy
+  - type: UseDelay # Long Barrel / Long Stock / Gunsword
+    delay: 2
+  - type: SpeedModifiedOnWield
+    walkModifier: 0.90
+    sprintModifier: 0.90
