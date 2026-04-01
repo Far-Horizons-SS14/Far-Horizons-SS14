@@ -25,7 +25,6 @@ public sealed class SSDIndicatorSystem : EntitySystem
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly StatusEffectsSystem _statusEffects = default!;
-    [Dependency] private readonly SleepingSystem _sleep = default!; // Starlight
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!; // Starlight
 
     private bool _icSsdSleep;
@@ -126,7 +125,6 @@ public sealed class SSDIndicatorSystem : EntitySystem
 
         if (_icSsdSleep)
             component.FallAsleepTime = _timing.CurTime + TimeSpan.FromSeconds(_icSsdSleepTime);
-
 
         Dirty(uid, component);
     }
