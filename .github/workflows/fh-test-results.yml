@@ -30,4 +30,4 @@ jobs:
           event_file: artifacts/event.json
           event_name: ${{ github.event.workflow_run.event }}
           files: "artifacts/**/results.trx"
-          check_name: Integration Tests
+          check_run: false
