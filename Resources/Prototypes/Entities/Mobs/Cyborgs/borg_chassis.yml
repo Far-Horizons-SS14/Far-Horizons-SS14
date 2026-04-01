@@ -46,7 +46,7 @@
 - type: entity
   id: BorgChassisGeneric
   parent: BorgChassisSelectable
-  Name: Generic Cyborg #Far Horizons - The Great Capitalization Crusade
+  name: Generic Cyborg #Far Horizons - The Great Capitalization Crusade
   suffix: type picked
   components:
   - type: BorgSwitchableType
@@ -55,7 +55,7 @@
 - type: entity
   id: BorgChassisMining
   parent: BorgChassisSelectable
-  Name: Salvage Cyborg #Far Horizons - The Great Capitalization Crusade
+  name: Salvage Cyborg #Far Horizons - The Great Capitalization Crusade
   components:
   - type: BorgSwitchableType
     selectedBorgType: mining
@@ -63,7 +63,7 @@
 - type: entity
   id: BorgChassisEngineer
   parent: BorgChassisSelectable
-  Name: Engineer Cyborg #Far Horizons - The Great Capitalization Crusade
+  name: Engineer Cyborg #Far Horizons - The Great Capitalization Crusade
   components:
   - type: BorgSwitchableType
     selectedBorgType: engineering
@@ -71,7 +71,7 @@
 - type: entity
   id: BorgChassisJanitor
   parent: BorgChassisSelectable
-  Name: Janitor Cyborg #Far Horizons - The Great Capitalization Crusade
+  name: Janitor Cyborg #Far Horizons - The Great Capitalization Crusade
   components:
   - type: BorgSwitchableType
     selectedBorgType: janitor
@@ -79,7 +79,7 @@
 - type: entity
   id: BorgChassisMedical
   parent: BorgChassisSelectable
-  Name: Medical Cyborg #Far Horizons - The Great Capitalization Crusade
+  name: Medical Cyborg #Far Horizons - The Great Capitalization Crusade
   components:
   - type: BorgSwitchableType
     selectedBorgType: medical
@@ -87,7 +87,7 @@
 - type: entity
   id: BorgChassisService
   parent: BorgChassisSelectable
-  Name: Service Cyborg #Far Horizons - The Great Capitalization Crusade
+  name: Service Cyborg #Far Horizons - The Great Capitalization Crusade
   components:
   - type: BorgSwitchableType
     selectedBorgType: service
@@ -95,7 +95,7 @@
 - type: entity
   id: BorgChassisSyndicateAssault
   parent: BaseBorgChassisSyndicate
-  Name: Syndicate Assault Cyborg #Far Horizons - The Great Capitalization Crusade
+  name: Syndicate Assault Cyborg #Far Horizons - The Great Capitalization Crusade
   description: A lean, mean killing machine with access to a variety of deadly modules.
   components:
     - type: TextToSpeech
@@ -129,7 +129,7 @@
 - type: entity
   id: BorgChassisSyndicateMedical
   parent: [ BaseBorgChassisSyndicate, ShowMedicalIcons ]
-  Name: Syndicate Medical Cyborg #Far Horizons - The Great Capitalization Crusade
+  name: Syndicate Medical Cyborg #Far Horizons - The Great Capitalization Crusade
   description: A combat medical cyborg. Has limited offensive potential, but makes more than up for it with its support capabilities.
   components:
     - type: TextToSpeech
@@ -170,7 +170,7 @@
 - type: entity
   id: BorgChassisSyndicateSaboteur
   parent: BaseBorgChassisSyndicate
-  Name: Syndicate Saboteur Cyborg #Far Horizons - The Great Capitalization Crusade
+  name: Syndicate Saboteur Cyborg #Far Horizons - The Great Capitalization Crusade
   description: A streamlined engineering cyborg, equipped with covert modules. Its chameleon projector lets it disguise itself as a Nanotrasen cyborg.
   components:
     - type: TextToSpeech
@@ -208,7 +208,7 @@
 - type: entity
   id: BorgChassisDerelict
   parent: BaseBorgChassisDerelict
-  Name: Derelict Cyborg #Far Horizons - The Great Capitalization Crusade
+  name: Derelict Cyborg #Far Horizons - The Great Capitalization Crusade
   description: A man-machine hybrid that assists in station activity. This one is in a state of great disrepair.
   components:
   - type: Sprite
@@ -241,7 +241,7 @@
 - type: entity
   parent: BaseBorgChassisDerelict
   id: EngineeringBorgChassisDerelict
-  Name: Derelict Engineer Cyborg #Far Horizons - The Great Capitalization Crusade
+  name: Derelict Engineer Cyborg #Far Horizons - The Great Capitalization Crusade
   description: A man-machine hybrid that assists the engineering department. This one seems to have chunks of strange crystals pockmarking its surface.
   components:
   - type: Sprite
@@ -275,7 +275,7 @@
 - type: entity
   parent: BaseBorgChassisDerelict
   id: JanitorBorgChassisDerelict
-  Name: Derelict Janitor Cyborg #Far Horizons - The Great Capitalization Crusade
+  name: Derelict Janitor Cyborg #Far Horizons - The Great Capitalization Crusade
   description: A man-machine hybrid that assists the service department. It's a bigger mess than anything it can clean up.
   components:
   - type: Sprite
@@ -311,7 +311,7 @@
 - type: entity
   parent: BaseBorgChassisDerelict
   id: MedicalBorgChassisDerelict
-  Name: Derelict Medical Cyborg #Far Horizons - The Great Capitalization Crusade
+  name: Derelict Medical Cyborg #Far Horizons - The Great Capitalization Crusade
   description: A man-machine hybrid that assists the medical department. This one's needles don't look very sanitary.
   components:
   - type: Sprite
@@ -354,7 +354,7 @@
 - type: entity
   parent: BaseBorgChassisDerelict
   id: MiningBorgChassisDerelict
-  Name: Derelict Salvage Cyborg #Far Horizons - The Great Capitalization Crusade
+  name: Derelict Salvage Cyborg #Far Horizons - The Great Capitalization Crusade
   description: A man-machine hybrid that assists the cargo department. This one has seen the wrong side of a gibtonite chunk.
   components:
   - type: Sprite
@@ -390,7 +390,7 @@
 - type: entity
   parent: BaseBorgChassisSyndicateDerelict
   id: SyndicateAssaultBorgChassisDerelict
-  Name: Derelict Syndicate Assault Cyborg #Far Horizons - The Great Capitalization Crusade
+  name: Derelict Syndicate Assault Cyborg #Far Horizons - The Great Capitalization Crusade
   description: A lean, mean killing machine with access to a variety of deadly modules. This one is more rust-orange than blood-red.
   components:
   - type: Sprite
