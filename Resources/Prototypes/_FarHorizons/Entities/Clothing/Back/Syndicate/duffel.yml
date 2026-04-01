@@ -14,6 +14,51 @@
         - Backpack
 
 - type: entity
+  parent: [ ClothingBackpackDuffel, BaseSyndicateContraband ]
+  id: ClothingBackpackDuffelNeosolEngineering
+  name: Neosol Engineering Duffel Bag
+  suffix: S
+  description: A large duffel bag for holding extra security related goods.
+  components:
+        - type: Sprite
+          sprite: _FarHorizons/Clothing/Back/Duffels/Syndicate/neosol_engineering.rsi
+        - type: Tag
+          tags:
+            - Syndicate
+            - WhitelistChameleon
+            - Backpack
+
+- type: entity
+  parent: [ ClothingBackpackDuffel, BaseSyndicateContraband ]
+  id: ClothingBackpackDuffelNeosolAtmospherics
+  name: Neosol Atmospherics Duffel Bag
+  suffix: S
+  description: A large duffel bag for holding extra security related goods.
+  components:
+        - type: Sprite
+          sprite: _FarHorizons/Clothing/Back/Duffels/Syndicate/neosol_atmospherics.rsi
+        - type: Tag
+          tags:
+            - Syndicate
+            - WhitelistChameleon
+            - Backpack
+
+- type: entity
+  parent: [ ClothingBackpackDuffel, BaseSyndicateContraband ]
+  id: ClothingBackpackDuffelForeman
+  name: Foreman's Duffel Bag
+  suffix: S
+  description: A large duffel bag for holding extra security related goods.
+  components:
+        - type: Sprite
+          sprite: _FarHorizons/Clothing/Back/Duffels/Syndicate/foreman.rsi
+        - type: Tag
+          tags:
+            - Syndicate
+            - WhitelistChameleon
+            - Backpack
+
+- type: entity
   parent: [ClothingBackpackDuffel, BaseSyndicateContraband]
   id: ClothingBackpackDuffelSyndicateBrigmedic
   name: Brigmedic Duffel Bag

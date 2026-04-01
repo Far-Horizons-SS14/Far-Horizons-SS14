@@ -189,6 +189,14 @@
 # Foreman
 
 - type: loadoutGroup
+  id: ForemanBackpacks
+  name: loadout-group-engineering-foreman-backpacks
+  loadouts:
+    - ForemanBackpack
+    - ForemanSatchel
+    - ForemanDuffelbag
+
+- type: loadoutGroup
   id: ForemanHead
   name: loadout-group-foreman-head
   minLimit: 0
@@ -273,7 +281,26 @@
   loadouts:
   - EngineeringSyndiGoggles
 
+- type: loadoutGroup
+  id: EngiNeosolBackpacks
+  name: loadout-group-engineering-neosol-backpacks
+  loadouts:
+    - NeosolEngineeringBackpack
+    - NeosolEngineeringSatchel
+    - NeosolEngineeringDuffelbag
+
+
 # Atmospheric Technician (Atmos)
+
+
+- type: loadoutGroup
+  id: AtmosNeosolBackpacks
+  name: loadout-group-atmos-neosol-backpacks
+  loadouts:
+    - NeosolAtmosphericsBackpack
+    - NeosolAtmosphericsSatchel
+    - NeosolAtmosphericsDuffelbag
+
 
 - type: loadoutGroup
   id: EnviroHead

@@ -15,6 +15,52 @@
 
 - type: entity
   parent: [ClothingBackpack, BaseSyndicateContraband]
+  id: ClothingBackpackNeosolEngineering
+  name: NeoSol Engineering Backpack
+  suffix: S
+  description: It's a very robust backpack.
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Clothing/Back/Backpacks/Syndicate/neosol_engineering.rsi
+    - type: Tag
+      tags:
+        - Syndicate
+        - WhitelistChameleon
+        - Backpack
+
+- type: entity
+  parent: [ClothingBackpack, BaseSyndicateContraband]
+  id: ClothingBackpackNeosolAtmospherics
+  name: NeoSol Atmospherics Backpack
+  suffix: S
+  description: It's a very robust backpack.
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Clothing/Back/Backpacks/Syndicate/neosol_atmospherics.rsi
+    - type: Tag
+      tags:
+        - Syndicate
+        - WhitelistChameleon
+        - Backpack
+
+- type: entity
+  parent: [ClothingBackpack, BaseSyndicateContraband]
+  id: ClothingBackpackForeman
+  name: Foreman's Backpack
+  suffix: S
+  description: It's a very robust backpack.
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Clothing/Back/Backpacks/Syndicate/foreman.rsi
+    - type: Tag
+      tags:
+        - Syndicate
+        - WhitelistChameleon
+        - Backpack
+
+
+- type: entity
+  parent: [ClothingBackpack, BaseSyndicateContraband]
   id: ClothingBackpackSyndicateBrigmedic
   name: Brigmedic Backpack
   suffix: S
