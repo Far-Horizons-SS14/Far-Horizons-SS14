@@ -4,8 +4,8 @@ loadout-group-chief-engineer-backpack = Chief Engineer Backpacks
 
 
 loadout-group-engineering-foreman-backpacks = Foreman Backpacks
-loadout-group-engineering-neosol-backpacks = Neosol Engineer Backpacks
-loadout-group-atmos-neosol-backpacks = Neosol Atmospherics Backpacks
+loadout-group-engineering-neosol-backpacks = Engineer Backpacks
+loadout-group-atmos-neosol-backpacks = Atmospherics Backpacks
 
 loadout-group-chemist-hat = Chemist Head
 
