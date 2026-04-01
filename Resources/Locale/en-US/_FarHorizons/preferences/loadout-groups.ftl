@@ -1,5 +1,7 @@
 loadout-group-atmos-tech-hat = Atmospherics Technician Hat
 
+loadout-group-chief-engineer-backpack = Chief Engineer Backpacks
+
 loadout-group-chemist-hat = Chemist Head
 
 loadout-group-cmo-backpack = CMO Backpack
@@ -48,3 +50,8 @@ loadout-group-Surgeon-shoes = Surgeon Shoes
 loadout-group-Surgeon-equipment = Surgical Equipment
 
 loadout-group-survival = Survival Case
+
+
+loadout-group-engineering-foreman-backpacks = Foreman Backpacks
+loadout-group-engineering-neosol-backpacks = Engineer Backpacks
+loadout-group-atmos-neosol-backpacks = Atmospherics Backpacks

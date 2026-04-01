@@ -13,6 +13,51 @@
         - Syndicate
         - WhitelistChameleon
         - Backpack
+          
+- type: entity
+  parent: [ ClothingBackpackSatchel, BaseSyndicateContraband ]
+  id: ClothingBackpackSatchelNeosolEngineering
+  name: Engineering Satchel
+  suffix: S
+  description: A robust satchel for holding tons of materials and tools.
+  components:
+        - type: Sprite
+          sprite: _FarHorizons/Clothing/Back/Satchels/Syndicate/neosol_engineering.rsi
+        - type: Tag
+          tags:
+            - Syndicate
+            - WhitelistChameleon
+            - Backpack
+
+- type: entity
+  parent: [ ClothingBackpackSatchel, BaseSyndicateContraband ]
+  id: ClothingBackpackSatchelNeosolAtmospherics
+  name: Atmospherics Satchel
+  suffix: S
+  description: A robust satchel for holding massive pipes and air related tanks
+  components:
+        - type: Sprite
+          sprite: _FarHorizons/Clothing/Back/Satchels/Syndicate/neosol_atmospherics.rsi
+        - type: Tag
+          tags:
+            - Syndicate
+            - WhitelistChameleon
+            - Backpack
+              
+- type: entity
+  parent: [ClothingBackpackSatchel, BaseSyndicateContraband]
+  id: ClothingBackpackSatchelForeman
+  name: Foreman's Satchel
+  suffix: S
+  description: A robust satchel, some wires are burnt into it.
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Clothing/Back/Satchels/Syndicate/foreman.rsi
+    - type: Tag
+      tags:
+        - Syndicate
+        - WhitelistChameleon
+        - Backpack
 
 - type: entity
   parent: [ClothingBackpackSatchel, BaseSyndicateContraband]
