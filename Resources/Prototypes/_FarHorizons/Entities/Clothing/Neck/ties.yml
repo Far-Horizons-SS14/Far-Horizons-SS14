@@ -25,3 +25,32 @@
     sprite: Clothing/Neck/Ties/dettie.rsi
   - type: Clothing
     sprite: Clothing/Neck/Ties/dettie.rsi
+
+# Syndicate Cyborg Tie for Hailer purposes. Don't question my methods.
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckTieRedSyndicateBorg
+  name: Red-Tie
+  description: A neosilk clip-on red tie with a tiny speaker on it.
+  components:
+  - type: Sprite
+    sprite: Clothing/Neck/Ties/redtie.rsi
+  - type: Clothing
+    sprite: Clothing/Neck/Ties/redtie.rsi
+  - type: Item
+    storedSprite:
+      state: storage
+      sprite: Clothing/Neck/Ties/redtie.rsi
+  - type: Hailer 
+    hailMessage: "Death to NanoTrasen!!"
+    hailSound:
+      path: /Audio/_Starlight/Effects/nano_death.ogg
+      params:
+        variation: 0.09
+    cooldownDuration: 30
+  - type: Tag
+    tags:
+    - HamsterWearable
+    - WhitelistChameleon
+    - ClothMade
+    - Recyclable

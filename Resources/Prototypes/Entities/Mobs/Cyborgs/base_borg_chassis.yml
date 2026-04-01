@@ -1,7 +1,7 @@
 - type: entity
   parent: [BaseMob, StripableInventoryBase, BaseSiliconLanguages] #Starlight Languages
   id: BaseBorgChassisNotIonStormable
-  name: cyborg
+  name: Cyborg #Far Horizons - The Great Capitalization Crusade
   description: A man-machine hybrid that assists in station activity. They love being asked to state their laws over and over.
   save: false
   abstract: true
@@ -225,7 +225,8 @@
     enabled: false
     mask: /Textures/Effects/LightMasks/cone.png
     autoRot: true
-    radius: 4
+    radius: 8 #Far Horizons
+    energy: 2 #Far Horizons
     netsync: false
   - type: Pullable
   - type: Puller
@@ -395,6 +396,8 @@
     energy: 6
   - type: BypassLock
     bypassDelay: 15 # We don't want people to easily be able to remove syndieborg brains.
+  - type: Loadout #Far Horizons
+    prototypes: [ SyndicateBorgDeathTie ]
 
 - type: entity
   id: BaseBorgChassisDerelict
@@ -460,7 +463,7 @@
 - type: entity
   parent: BaseBorgChassisNotIonStormable
   id: BaseXenoborgChassis
-  name: xenoborg
+  name: Xenoborg #Far Horizons - The Great Capitalization Crusade
   description: A man-machine hybrid that aims to replicate itself. They love extracting brains to insert into fresh Xenoborg chassis to grow their army.
   save: false
   abstract: true

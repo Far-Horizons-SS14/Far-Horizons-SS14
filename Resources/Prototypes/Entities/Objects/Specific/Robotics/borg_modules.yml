@@ -980,7 +980,7 @@
     - state: icon-chemist
   - type: ItemBorgModule
     hands:
-    - item: HandLabeler
+    #- item: HandLabeler #Far Horizons - This is doubled up for some reason.
     - item: Syringe
       hand: #Starlight start
         emptyLabel: borg-slot-syringe-empty
@@ -1016,6 +1016,21 @@
           tags:
           - ChemDispensable
     - item: HandLabeler
+    - item: BoxMouthSwab #Far Horizons
+      hand:
+        emptyLabel: borg-slot-mouth-swab-box-empty
+        emptyRepresentative: BoxMouthSwab
+        whitelist:
+          tags:
+          - BoxMouthSwab
+    - item: DiseaseSwab #Far Horizons
+      hand:
+        emptyLabel: borg-slot-mouth-swab-empty
+        emptyRepresentative: DiseaseSwab
+        whitelist:
+          tags:
+          - DiseaseSwab
+
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: chem-module }
 
