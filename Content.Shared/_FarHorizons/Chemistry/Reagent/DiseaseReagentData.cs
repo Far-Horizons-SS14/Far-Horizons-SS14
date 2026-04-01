@@ -8,9 +8,6 @@ namespace Content.Shared.Chemistry.Reagent;
 public sealed partial class DiseaseReagentData : ReagentData
 {
     [DataField]
-    public string? SubjectName;
-
-    [DataField]
     public Dictionary<DiseaseData, StageData> ActiveDiseases = [];
 
     [DataField]
@@ -18,7 +15,6 @@ public sealed partial class DiseaseReagentData : ReagentData
 
     public override ReagentData Clone() => new DiseaseReagentData
     {
-        SubjectName = SubjectName,
         ActiveDiseases = new Dictionary<DiseaseData, StageData>(ActiveDiseases),
         Immunity = new Dictionary<DiseaseData, float>(Immunity)
     };
@@ -29,8 +25,6 @@ public sealed partial class DiseaseReagentData : ReagentData
             return false;
         if (ReferenceEquals(this, d))
             return true;
-        if (SubjectName != d.SubjectName)
-            return false;
         if (!ActiveDiseases.Keys.SequenceEqual(d.ActiveDiseases.Keys))
             return false;
         if (!Immunity.Keys.SequenceEqual(d.Immunity.Keys))
@@ -41,7 +35,6 @@ public sealed partial class DiseaseReagentData : ReagentData
     public override int GetHashCode()
     {
         var hash = new HashCode();
-        hash.Add(SubjectName);
         foreach (var key in ActiveDiseases.Keys)
             hash.Add(key);
         foreach (var key in Immunity.Keys)

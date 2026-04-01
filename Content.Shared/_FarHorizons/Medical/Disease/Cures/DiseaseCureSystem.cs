@@ -16,6 +16,7 @@ public sealed partial class SharedDiseaseCureSystem : EntitySystem
     [Dependency] private readonly IEntitySystemManager _entitySystemManager = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private readonly SharedDiseaseSystem _disease = default!;
 
     /// <summary>
     /// Executes a configured cure step via its polymorphic OnCure.
@@ -97,6 +98,7 @@ public sealed partial class SharedDiseaseCureSystem : EntitySystem
         if (!ent.Comp.ActiveDiseases.Remove(disease))
             return;
 
+        _disease.UpdateBloodData(ent);
         ApplyPostCureImmunity(ent, disease);
         _popup.PopupPredicted(Loc.GetString("disease-cured"), ent, ent.Owner);
     }

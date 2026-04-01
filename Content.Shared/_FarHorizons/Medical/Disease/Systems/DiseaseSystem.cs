@@ -14,6 +14,9 @@ using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Content.Shared.Popups;
 using Content.Shared.Dataset;
+using Content.Shared.Body.Components;
+using Content.Shared.Chemistry.EntitySystems;
+using Content.Shared.Chemistry.Reagent;
 
 namespace Content.Shared.Medical.Disease.Systems;
 
@@ -31,6 +34,7 @@ public sealed partial class SharedDiseaseSystem : EntitySystem
     [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly SharedSolutionContainerSystem _solution = default!;
 
     private static readonly string _firstStrainName = "StrainFirstNames";
     private static readonly string _secondStrainName = "StrainSecondNames";
@@ -102,6 +106,7 @@ public sealed partial class SharedDiseaseSystem : EntitySystem
 
             if (newStage != stageData)
             {
+                UpdateBloodData(ent);
                 ent.Comp.ActiveDiseases[DiseaseData] = stageData;
                 dirty = true;
             }
@@ -362,6 +367,7 @@ public sealed partial class SharedDiseaseSystem : EntitySystem
                 carrier.IncubatingUntil[disease] = _timing.CurTime + TimeSpan.FromSeconds(disease.IncubationSeconds);
         }
 
+        UpdateBloodData((uid,carrier));
         carrier.NextTick = _timing.CurTime + carrier.TickDelay;
         Dirty(uid, carrier);
         return true;
@@ -406,4 +412,38 @@ public sealed partial class SharedDiseaseSystem : EntitySystem
 
     private string GenerateStrainName()
         => $"{_random.Pick(_prototypes.Index<LocalizedDatasetPrototype>(_firstStrainName))}-{_random.NextByte(99)} {_random.Pick(_prototypes.Index<LocalizedDatasetPrototype>(_secondStrainName))}";
+
+    public void UpdateBloodData(Entity<DiseaseCarrierComponent> ent)
+    {
+        if (!TryComp<BloodstreamComponent>(ent.Owner, out var bloodstream)
+            || !_solution.ResolveSolution(ent.Owner, bloodstream.BloodSolutionName, ref bloodstream.BloodSolution, out var bloodSolution)) return;
+        var bloodReferenceData = bloodstream.BloodReferenceSolution.FirstOrDefault().Reagent.Data;
+
+        if (bloodReferenceData == null) return;
+
+        var bloodDiseaseData = bloodReferenceData.OfType<DiseaseReagentData>().FirstOrDefault();
+
+        if (bloodDiseaseData == null)
+        {
+            bloodDiseaseData = new DiseaseReagentData
+            {
+                ActiveDiseases = new Dictionary<DiseaseData, StageData>(ent.Comp.ActiveDiseases),
+                Immunity = new Dictionary<DiseaseData, float>(ent.Comp.Immunity)
+            };
+
+            bloodReferenceData.Add(bloodDiseaseData);
+        }
+        else
+        {
+            bloodDiseaseData.ActiveDiseases.Clear();
+            bloodDiseaseData.Immunity.Clear();
+
+            foreach (var (disease, stage) in ent.Comp.ActiveDiseases)
+                bloodDiseaseData.ActiveDiseases[disease] = stage;
+
+            foreach (var (disease, value) in ent.Comp.Immunity)
+                bloodDiseaseData.Immunity[disease] = value;
+        }
+        bloodSolution.SetReagentData(bloodReferenceData);
+    }
 }
