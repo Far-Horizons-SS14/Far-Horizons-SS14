@@ -36,8 +36,8 @@ public sealed class BatteryWeaponFireModesSystem : EntitySystem
         SubscribeLocalEvent<BatteryWeaponFireModesComponent, ExaminedEvent>(OnExamined);
         SubscribeLocalEvent<BatteryWeaponFireModesComponent, ActivateInWorldEvent>(OnInteractHandEvent); // Starlight-edit
         SubscribeLocalEvent<BatteryWeaponFireModesComponent, AttemptShootEvent>(OnShootAttempt); // Starlight-edit
+        SubscribeLocalEvent<BatteryWeaponFireModesComponent, CycleFireModeEvent>(OnCycleFire); // FarHorizons
     }
-
     private void OnExamined(Entity<BatteryWeaponFireModesComponent> ent, ref ExaminedEvent args)
     {
         if (ent.Comp.FireModes.Count < 2)
@@ -251,4 +251,14 @@ public sealed class BatteryWeaponFireModesSystem : EntitySystem
     }
     
     # endregion Starlight
+
+    // FarHorizons Start
+    private void OnCycleFire(Entity<BatteryWeaponFireModesComponent> ent, ref CycleFireModeEvent args)
+    {
+        if (args.Handled)
+            return;
+        args.Handled = true;
+        TryCycleFireMode(ent);
+    }
+    // FarHorizons End
 }

@@ -1,3 +1,4 @@
+using Content.Shared.Actions; // Far Horizons
 using Content.Shared.Damage.Prototypes;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
@@ -139,6 +140,7 @@ public sealed partial class DeployableTurretComponent : Component
 
     #endregion
 }
+public sealed partial class DeployTurretEvent : InstantActionEvent; // FarHorizons
 
 [Serializable, NetSerializable]
 public enum DeployableTurretVisuals : byte

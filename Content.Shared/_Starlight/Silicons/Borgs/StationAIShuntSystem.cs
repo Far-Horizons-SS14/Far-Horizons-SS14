@@ -201,6 +201,7 @@ public sealed class StationAIShuntSystem : EntitySystem
         {
             Text = Loc.GetString("ai-shunt-into"),
             Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/vv.svg.192dpi.png")),
+            Priority = -1, // FarHorizons- it avoids shunting while trying to unlock turrets.
             Act = () =>
             {
                 var shuntEv = new AIShuntActionEvent()

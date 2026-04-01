@@ -34,8 +34,8 @@ public abstract partial class SharedDeployableTurretSystem : EntitySystem
         SubscribeLocalEvent<DeployableTurretComponent, ActivateInWorldEvent>(OnActivate);
         SubscribeLocalEvent<DeployableTurretComponent, AttemptChangePanelEvent>(OnAttemptChangeWirePanelWire);
         SubscribeLocalEvent<DeployableTurretComponent, GetVerbsEvent<Verb>>(OnGetVerb);
+        SubscribeLocalEvent<DeployableTurretComponent, DeployTurretEvent>(OnDeployTurret); // FarHorizons
     }
-
     private void OnGetVerb(Entity<DeployableTurretComponent> ent, ref GetVerbsEvent<Verb> args)
     {
         if (!args.CanAccess || !args.CanInteract || !args.CanComplexInteract)
@@ -164,4 +164,14 @@ public abstract partial class SharedDeployableTurretSystem : EntitySystem
 
         return ammoCountEv.Count > 0;
     }
+
+    //FarHorizons Start
+    private void OnDeployTurret(Entity<DeployableTurretComponent> ent, ref DeployTurretEvent args)
+    {
+        if(args.Handled) return;
+
+        ent.Comp.Enabled = !ent.Comp.Enabled;
+        args.Handled = true;
+    }
+    //FarHorizons End
 }

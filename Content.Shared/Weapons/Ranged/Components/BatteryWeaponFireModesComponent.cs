@@ -3,6 +3,7 @@ using Content.Shared._Starlight.Weapons.Ranged.Components; // Starlight-edit
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
+using Content.Shared.Actions; // Far Horizons
 
 namespace Content.Shared.Weapons.Ranged.Components;
 
@@ -72,3 +73,5 @@ public enum BatteryWeaponFireModeVisuals : byte
 {
     State
 }
+
+public sealed partial class CycleFireModeEvent : InstantActionEvent; // FarHorizons

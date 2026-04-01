@@ -14,3 +14,31 @@
       state: mech_siren_on
   - type: InstantAction
     event: !type:BorgToggleSirensEvent
+
+- type: entity
+  id: ActionDeployTurret
+  name: Deploy / UnDeploy Turret
+  description: Toggles the turret between its deploy and undeploy mode.
+  components:
+  - type: Action
+    useDelay: 1
+    itemIconStyle: NoItem
+    icon:
+      sprite: Interface/Actions/actions_ai.rsi
+      state: warp
+  - type: InstantAction
+    event: !type:DeployTurretEvent
+
+- type: entity
+  id: ActionCycleFireMode
+  name: Swap Fire Mode
+  description: Cycle's the turret's fire mode.
+  components:
+  - type: Action
+    useDelay: 1
+    itemIconStyle: NoItem
+    icon:
+      sprite: Interface/Actions/actions_mecha.rsi
+      state: mech_cycle_equip_off
+  - type: InstantAction
+    event: !type:CycleFireModeEvent

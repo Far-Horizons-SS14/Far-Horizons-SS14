@@ -78,13 +78,13 @@
     factions:
     - AllHostile
   - type: BatteryAmmoProvider
-    proto: BulletEnergyTurretDisabler
+    proto: DisablerBolt #FarHorizons
     fireCost: 100
   - type: BatteryWeaponFireModes
     fireModes:
-    - proto: BulletEnergyTurretDisabler
+    - proto: DisablerBolt #FarHorizons
       fireCost: 100
-    - proto: BulletEnergyTurretLaser
+    - proto: RedLaserBeamSpread #FarHorizons
       fireCost: 100
   - type: DeployableTurret
     retractedDamageModifierSetId: Metallic
@@ -140,6 +140,14 @@
   - type: LockedWiresPanel
   - type: UseDelay
     delay: 1.2
+    #FarHorizons Start
+  - type: ActionGrant
+    actions:
+      - ActionDeployTurret
+      - ActionCycleFireMode
+  - type: StationAIShunt 
+  - type: MindContainer 
+    #FarHorizons End
 
 - type: entity
   parent: WeaponEnergyTurretStationBase
