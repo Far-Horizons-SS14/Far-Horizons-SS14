@@ -18,6 +18,18 @@
         Piercing: 0.95
         Heat: 0.95
         Caustic: 0.95
+  - type: LimbArmor
+    limbs:
+      Head:
+        flatReductions:
+          Piercing: 5
+          Heat: 4
+        coefficients:
+          Blunt: 0.75
+          Slash: 0.75
+          Piercing: 0.60
+          Heat: 0.75
+          Caustic: 0.75
   - type: HideLayerClothing
     slots:
     - Hair

@@ -52,6 +52,19 @@
         Slash: 0.9
         Piercing: 0.9
         Heat: 0.9
+  - type: LimbArmor # Far Horizons
+    limbs:
+      Head:
+        flatReductions:
+          Piercing: 5
+          Heat: 4
+        coefficients:
+          Blunt: 0.6
+          Slash: 0.5
+          Piercing: 0.5
+          Heat: 0.7
+          Radiation: 0.25
+          Caustic: 0.6
   - type: Hailer # FH
     hailMessage: "Stop."
     hailSound:
@@ -85,3 +98,16 @@
     modifiers:
       coefficients:
         Heat: 0.9
+  - type: LimbArmor # Far Horizons
+    limbs:
+      Head:
+        flatReductions:
+          Piercing: 5
+          Heat: 4
+        coefficients:
+          Blunt: 0.5
+          Slash: 0.5
+          Piercing: 0.5
+          Heat: 0.5
+          Radiation: 0.5
+          Caustic: 0.5

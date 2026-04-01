@@ -112,7 +112,7 @@
       - mask
       - ears
   - type: DamageableLimb
-    bodyDamageFactor: 1.5 # Hint: aim at head to deal extra damage
+    bodyDamageFactor: 1.0 # Note: Making it >100% was a bad idea
     missChance: 0.35 # 35% chance to miss
     redirectChance: 0.2 # 20% chance to hit torso
     scatterHitChance: 0.05

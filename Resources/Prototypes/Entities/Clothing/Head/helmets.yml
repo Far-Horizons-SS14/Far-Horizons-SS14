@@ -26,6 +26,9 @@
         Slash: 0.9
         Piercing: 0.9
         Heat: 0.9
+  - type: LimbArmor # Far Horizons
+    limbs:
+      Head: {}
 
 #Basic Helmet (Security Helmet)
 - type: entity
@@ -90,6 +93,15 @@
         Heat: 0.80
         Radiation: 0.80
         Caustic: 0.95
+  - type: LimbArmor # Far Horizons
+    limbs:
+      Head:
+        coefficients:
+          Blunt: 0.4
+          Slash: 0.4
+          Piercing: 0.7
+          Heat: 0.9
+          Caustic: 0.9
   - type: ExplosionResistance
     damageCoefficient: 0.75
   - type: HideLayerClothing
@@ -132,6 +144,15 @@
         Blunt: 0.8
         Slash: 0.8
         Piercing: 0.95
+  - type: LimbArmor # Far Horizons
+    limbs:
+      Head:
+        coefficients:
+          Blunt: 0.4
+          Slash: 0.4
+          Piercing: 0.7
+          Heat: 0.9
+          Caustic: 0.9
   - type: HideLayerClothing
     layers:
       Hair: HEAD
@@ -161,6 +182,14 @@
         Blunt: 0.95
         Slash: 0.95
         Piercing: 0.95
+  - type: LimbArmor # Far Horizons
+    limbs:
+      Head:
+        coefficients:
+          Blunt: 0.9
+          Slash: 0.9
+          Piercing: 0.9
+          Heat: 0.75
   - type: HideLayerClothing
     layers:
       Hair: HEAD
@@ -203,6 +232,9 @@
         Slash: 0.8
         Piercing: 0.9
         Heat: 0.9
+  - type: LimbArmor # Far Horizons
+    limbs:
+      Head: {}
   - type: HideLayerClothing
     layers:
       Hair: HEAD
@@ -361,6 +393,19 @@
         Slash: 0.5
         Piercing: 0.5
         Heat: 0.9
+  - type: LimbArmor # Far Horizons
+    limbs:
+      Head:
+        flatReductions:
+          Piercing: 5
+          Heat: 4
+        coefficients:
+          Blunt: 0.5
+          Slash: 0.5
+          Piercing: 0.5
+          Heat: 0.5
+          Radiation: 0.5
+          Caustic: 0.5
   - type: HideLayerClothing
     layers:
       Hair: HEAD
@@ -460,6 +505,9 @@
         Slash: 0.85
         Piercing: 0.85
         Heat: 0.85
+  - type: LimbArmor # Far Horizons
+    limbs:
+      Head: {}
   - type: HideLayerClothing
     layers:
       Hair: HEAD
@@ -515,6 +563,19 @@
         Slash: 0.9
         Piercing: 0.9
         Heat: 0.9
+  - type: LimbArmor # Far Horizons
+    limbs:
+      Head:
+        flatReductions:
+          Piercing: 5
+          Heat: 4
+        coefficients:
+          Blunt: 0.5
+          Slash: 0.5
+          Piercing: 0.5
+          Heat: 0.5
+          Radiation: 0.5
+          Caustic: 0.5
   - type: Unremoveable
   
 #Justice Helmet
@@ -641,6 +702,9 @@
     modifiers:
       coefficients:
         Blunt: 0.95
+  - type: LimbArmor # Far Horizons
+    limbs:
+      Head: {}
   - type: Construction
     graph: cardHelmet
     node: cardhelmet

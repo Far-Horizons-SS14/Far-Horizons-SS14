@@ -18,6 +18,12 @@
         Slash: 0.70
         Piercing: 0.70 #Can save you, but bullets will still hurt. Will take about 10 shots from a Viper before critting, as opposed to 7 while unarmored and 16~ with a bulletproof vest.
         Heat: 0.80
+  - type: LimbArmor
+    limbs:
+      ArmRight: {}
+      ArmLeft: {}
+      LegRight: {}
+      LegLeft: {}
   - type: ExplosionResistance
     damageCoefficient: 0.90
   - type: ArmorSparkEffect
@@ -50,6 +56,12 @@
       coefficients:
         Slash: 0.9
         Piercing: 0.9
+  - type: LimbArmor
+    limbs:
+      ArmRight: {}
+      ArmLeft: {}
+      LegRight: {}
+      LegLeft: {}
   - type: ClothingSpeedModifier #Ligher armor gives room for cybernetics to give speedbuff is my logic.
     walkModifier: 1
     sprintModifier: 1.05 #same speed as cyberlegs
@@ -70,6 +82,12 @@
       coefficients:
         Slash: 0.7
         Piercing: 0.7
+  - type: LimbArmor
+    limbs:
+      ArmRight: {}
+      ArmLeft: {}
+      LegRight: {}
+      LegLeft: {}
 
 - type: entity
   parent: ClothingOuterArmorProtogenBase
@@ -85,6 +103,12 @@
       coefficients:
         Slash: 0.6
         Piercing: 0.6
+  - type: LimbArmor
+    limbs:
+      ArmRight: {}
+      ArmLeft: {}
+      LegRight: {}
+      LegLeft: {}
   - type: ClothingSpeedModifier
     walkModifier: 1
     sprintModifier: 0.90 #Seems low, but a secvest has 30% w/no reduction or a better example would be plate carrier for 45% reduction. 10% reduction for bit better secvest seems fine to me - Keep in mind that they take increased blunt as well.
@@ -128,6 +152,12 @@
         Slash: 0.9
         Piercing: 0.9
         Heat: 0.4 # this technically means it protects against fires pretty well? -heat is just for lasers and stuff, not atmos temperature
+  - type: LimbArmor
+    limbs:
+      ArmRight: {}
+      ArmLeft: {}
+      LegRight: {}
+      LegLeft: {}
   - type: Reflect
     reflectProb: 1
     reflects:
@@ -217,6 +247,12 @@
         Slash: 0.70
         Piercing: 0.70
         Heat: 0.80
+  - type: LimbArmor
+    limbs:
+      ArmRight: {}
+      ArmLeft: {}
+      LegRight: {}
+      LegLeft: {}
 
 - type: entity
   parent: [ ClothingOuterArmorBaseFHSyndi, BaseSecurityContraband ]
@@ -240,6 +276,12 @@
         Slash: 0.9
         Piercing: 0.4
         Heat: 0.9
+  - type: LimbArmor
+    limbs:
+      ArmRight: {}
+      ArmLeft: {}
+      LegRight: {}
+      LegLeft: {}
   - type: ExplosionResistance
     damageCoefficient: 0.80
   - type: Tag
@@ -268,6 +310,12 @@
         Slash: 0.85
         Piercing: 0.55
         Heat: 0.85
+  - type: LimbArmor
+    limbs:
+      ArmRight: {}
+      ArmLeft: {}
+      LegRight: {}
+      LegLeft: {}
   - type: ExplosionResistance
     damageCoefficient: 0.85
 
@@ -291,6 +339,12 @@
         Slash: 0.55
         Piercing: 0.85
         Heat: 0.85
+  - type: LimbArmor
+    limbs:
+      ArmRight: {}
+      ArmLeft: {}
+      LegRight: {}
+      LegLeft: {}
 
 - type: entity
   parent: [ClothingOuterArmorBaseFHSyndi, BaseSecurityContraband]
@@ -314,6 +368,12 @@
         Slash: 0.85
         Piercing: 0.85
         Heat: 0.55
+  - type: LimbArmor
+    limbs:
+      ArmRight: {}
+      ArmLeft: {}
+      LegRight: {}
+      LegLeft: {}
 
 # Inspector (Detective)
 
@@ -338,6 +398,12 @@
         Slash: 0.70
         Piercing: 0.70
         Heat: 0.80
+  - type: LimbArmor
+    limbs:
+      ArmRight: {}
+      ArmLeft: {}
+      LegRight: {}
+      LegLeft: {}
 
 # Enforcer (Security Officer)
 
@@ -359,6 +425,12 @@
         Slash: 0.80
         Piercing: 0.70 
         Heat: 0.90
+  - type: LimbArmor
+    limbs:
+      ArmRight: {}
+      ArmLeft: {}
+      LegRight: {}
+      LegLeft: {}
   - type: ZombificationResistance
     zombificationResistanceCoefficient: 0.75
 
@@ -389,6 +461,12 @@
         Slash: 0.75
         Piercing: 0.95
         Heat: 0.65
+  - type: LimbArmor
+    limbs:
+      ArmRight: {}
+      ArmLeft: {}
+      LegRight: {}
+      LegLeft: {}
   - type: ExplosionResistance
     damageCoefficient: 0.85
   - type: Clothing
@@ -416,6 +494,12 @@
         Slash: 0.75
         Piercing: 0.95
         Heat: 0.65
+  - type: LimbArmor
+    limbs:
+      ArmRight: {}
+      ArmLeft: {}
+      LegRight: {}
+      LegLeft: {}
   - type: ExplosionResistance
     damageCoefficient: 0.85
 
@@ -447,3 +531,9 @@
         Slash: 0.70
         Piercing: 0.70
         Heat: 0.80
+  - type: LimbArmor
+    limbs:
+      ArmRight: {}
+      ArmLeft: {}
+      LegRight: {}
+      LegLeft: {}

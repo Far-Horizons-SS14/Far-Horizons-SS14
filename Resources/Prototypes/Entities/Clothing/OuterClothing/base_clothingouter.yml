@@ -8,12 +8,6 @@
     - outerClothing
   - type: Sprite
     state: icon
-  - type: LimbArmor # Far Horizons
-    limbs:
-      ArmLeft: {}
-      ArmRight: {}
-      LegRight: {}
-      LegLeft: {}
 
 - type: entity
   abstract: true
@@ -142,6 +136,16 @@
         Piercing: 0.95
         Heat: 0.90
         Radiation: 0.25
+  - type: LimbArmor # Far Horizons
+    limbs:
+      ArmRight: {}
+      ArmLeft: {}
+      HandRight: {}
+      HandLeft: {}
+      LegRight: {}
+      LegLeft: {}
+      FootRight: {}
+      FootLeft: {}
   - type: ToggleableClothing
     slot: head
   - type: Clothing #FH

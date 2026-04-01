@@ -22,6 +22,19 @@
         Blunt: 0.8
         Slash: 0.8
         Piercing: 0.8
+  - type: LimbArmor # Far Horizons
+    limbs:
+      Head:
+        flatReductions:
+          Piercing: 5
+          Heat: 4
+        coefficients:
+          Blunt: 0.6
+          Slash: 0.5
+          Piercing: 0.5
+          Heat: 0.7
+          Radiation: 0.25
+          Caustic: 0.6
 
 #NTREP Hardsuit
 - type: entity
@@ -63,6 +76,16 @@
         Slash: 0.9
         Piercing: 0.9
         Heat: 0.9
+  - type: LimbArmor # Far Horizons
+    limbs:
+      Head:
+        coefficients:
+          Blunt: 0.6
+          Slash: 0.6
+          Piercing: 0.5
+          Caustic: 0.7
+          Heat: 0.5
+          Radiation: 0.1
 
 #Mercenary Hardsuit
 - type: entity
@@ -84,6 +107,16 @@
           Slash: 0.9
           Piercing: 0.9
           Heat: 0.9
+    - type: LimbArmor # Far Horizons
+      limbs:
+        Head:
+          coefficients:
+            Blunt: 0.75
+            Slash: 0.75
+            Piercing: 0.75
+            Caustic: 0.75
+            Heat: 0.75
+            Radiation: 0.75
 
 #Space Hazard Suit
 - type: entity
@@ -106,6 +139,16 @@
         Slash: 0.9
         Piercing: 0.9
         Heat: 0.6
+  - type: LimbArmor # Far Horizons
+    limbs:
+      Head:
+        coefficients:
+          Blunt: 0.9
+          Slash: 0.9
+          Piercing: 0.9
+          Heat: 0.8
+          Radiation: 0.2
+          Caustic: 0.4
   - type: Tag
     tags:
     - WhitelistChameleon
@@ -134,6 +177,19 @@
         Blunt: 0.9 #FH
         Slash: 0.9 #FH
         Piercing: 0.9 #FH
+  - type: LimbArmor # Far Horizons
+    limbs:
+      Head:
+        flatReductions:
+          Piercing: 4
+          Heat: 3
+        coefficients:
+          Blunt: 0.6
+          Slash: 0.6
+          Piercing: 0.6
+          Heat: 0.6
+          Radiation: 0.6
+          Caustic: 0.6
   - type: Hailer #FH
     hailMessage: "Death to NanoTrasen!!"
     hailSound:
@@ -190,6 +246,16 @@
         Slash: 0.9
         Piercing: 0.9
         Heat: 0.9
+  - type: LimbArmor # Far Horizons
+    limbs:
+      Head:
+        coefficients:
+          Blunt: 0.3
+          Slash: 0.3
+          Piercing: 0.3
+          Heat: 0.35
+          Radiation: 0.1
+          Caustic: 0.4
   - type: Tag
     tags:
     - WhitelistChameleon
@@ -367,6 +433,17 @@
         Slash: 0.9
         Piercing: 0.9
         Heat: 0.9
+  - type: LimbArmor # Far Horizons
+    limbs:
+      Head:
+        coefficients:
+          Blunt: 0.65
+          Slash: 0.65
+          Piercing: 0.85
+          Heat: 0.65
+          Cold: 0.65
+          Radiation: 0.2
+          Caustic: 0.6
   - type: Tag
     tags:
       - CorgiWearable
@@ -535,6 +612,16 @@
         Heat: 0.75
         Radiation: 0.75
         Caustic: 0.80
+  - type: LimbArmor # Far Horizons
+    limbs:
+      Head:
+        coefficients:
+          Blunt: 0.35
+          Slash: 0.35
+          Piercing: 0.30
+          Heat: 0.35
+          Radiation: 0.35
+          Caustic: 0.35
 
 - type: entity
   parent: [ BaseCentcommContraband, ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
@@ -586,6 +673,16 @@
         Heat: 0.80
         Radiation: 0.80
         Caustic: 0.95
+  - type: LimbArmor # Far Horizons
+    limbs:
+      Head:
+        coefficients:
+          Blunt: 0.25
+          Slash: 0.25
+          Piercing: 0.20
+          Heat: 0.25
+          Radiation: 0.25
+          Caustic: 0.25
 
 #Thanatos Helmet (Starlight version of Deathsquad)
 - type: entity
@@ -615,3 +712,13 @@
         Heat: 0.80
         Radiation: 0.80
         Caustic: 0.95
+  - type: LimbArmor # Far Horizons
+    limbs:
+      Head:
+        coefficients:
+          Blunt: 0.05
+          Slash: 0.05
+          Piercing: 0.01
+          Heat: 0.05
+          Radiation: 0.05
+          Caustic: 0.05

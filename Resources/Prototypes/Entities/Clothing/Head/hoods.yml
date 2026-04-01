@@ -14,6 +14,9 @@
   - type: GroupExamine
   - type: Armor
     modifiers: { }
+  - type: LimbArmor # Far Horizons
+    limbs:
+      Head: {}
   - type: ZombificationResistance
     zombificationResistanceCoefficient: 0.8 # Starlight Edit, also removed the specific coefficients from the security and virology hoods
   - type: Tag
@@ -163,6 +166,9 @@
       coefficients:
         Heat: 0.95
         Radiation: 0.65
+  - type: LimbArmor # Far Horizons
+    limbs:
+      Head: {}
   - type: IdentityBlocker
   - type: BreathMask
   - type: HideLayerClothing

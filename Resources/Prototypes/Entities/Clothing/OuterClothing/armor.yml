@@ -23,6 +23,12 @@
         Slash: 0.70
         Piercing: 0.70 #Can save you, but bullets will still hurt. Will take about 10 shots from a Viper before critting, as opposed to 7 while unarmored and 16~ with a bulletproof vest.
         Heat: 0.80
+  - type: LimbArmor # Far Horizons
+    limbs:
+      ArmRight: {}
+      ArmLeft: {}
+      LegRight: {}
+      LegLeft: {}
   - type: ExplosionResistance
     damageCoefficient: 0.90
   - type: ArmorSparkEffect #starlight
@@ -45,6 +51,12 @@
         Slash: 0.70 #FH
         Piercing: 0.70 #FH
         Heat: 0.80 #FH
+  - type: LimbArmor # Far Horizons
+    limbs:
+      ArmRight: {}
+      ArmLeft: {}
+      LegRight: {}
+      LegLeft: {}
 
 #Alternate / slim basic armor vest
 - type: entity
@@ -81,6 +93,12 @@
         Slash: 0.9
         Piercing: 0.4
         Heat: 0.9
+  - type: LimbArmor # Far Horizons
+    limbs:
+      ArmRight: {}
+      ArmLeft: {}
+      LegRight: {}
+      LegLeft: {}
   - type: ExplosionResistance
     damageCoefficient: 0.80
   - type: Tag #FH
@@ -109,6 +127,12 @@
         Slash: 0.9
         Piercing: 0.9
         Heat: 0.4 # this technically means it protects against fires pretty well? -heat is just for lasers and stuff, not atmos temperature
+  - type: LimbArmor # Far Horizons
+    limbs:
+      ArmRight: {}
+      ArmLeft: {}
+      LegRight: {}
+      LegLeft: {}
   - type: Reflect
     reflectProb: 1
     reflects:
@@ -140,6 +164,12 @@
         Slash: 0.70 #FH
         Piercing: 0.70 #FH
         Heat: 0.80 #FH
+  - type: LimbArmor # Far Horizons
+    limbs:
+      ArmRight: {}
+      ArmLeft: {}
+      LegRight: {}
+      LegLeft: {}
 
 - type: entity
   parent: [ ClothingOuterBaseMedium, AllowSuitStorageClothing ]
@@ -157,6 +187,12 @@
         Piercing: 0.6
         Heat: 0.5
         Caustic: 0.9
+  - type: LimbArmor # Far Horizons
+    limbs:
+      ArmRight: {}
+      ArmLeft: {}
+      LegRight: {}
+      LegLeft: {}
   - type: ExplosionResistance
     damageCoefficient: 0.65
   - type: GroupExamine
@@ -213,6 +249,12 @@
         Heat: 0.9
     staminaModifier: 0.55 #FH
 #    ignoreKnockdown: true - FH
+  - type: LimbArmor # Far Horizons
+    limbs:
+      ArmRight: {}
+      ArmLeft: {}
+      LegRight: {}
+      LegLeft: {}
   - type: ExplosionResistance
     damageCoefficient: 0.9
   - type: StaticPrice
@@ -248,6 +290,12 @@
     staminaModifier: 0.35
 #    ignoreKnockdown: true - FH
     # Starlight-end
+  - type: LimbArmor # Far Horizons
+    limbs:
+      ArmRight: {}
+      ArmLeft: {}
+      LegRight: {}
+      LegLeft: {}
   - type: ExplosionResistance
     damageCoefficient: 0.5
   - type: FireProtection
@@ -280,6 +328,12 @@
         Slash: 0.7
         Piercing: 0.5
         Heat: 0.9
+  - type: LimbArmor # Far Horizons
+    limbs:
+      ArmRight: {}
+      ArmLeft: {}
+      LegRight: {}
+      LegLeft: {}
 
 
 # Armor covering multiple body parts including limbs
@@ -316,6 +370,12 @@
     staminaModifier: 0.1
 #    ignoreKnockdown: true - FH not a combat hardsuit
     # Starlight-end
+  - type: LimbArmor # Far Horizons
+    limbs:
+      ArmRight: {}
+      ArmLeft: {}
+      LegRight: {}
+      LegLeft: {}
   - type: ExplosionResistance
     damageCoefficient: 0.35
   - type: StaminaResistance # do not add these to other equipment or mobs, we don't want to microbalance these everywhere
@@ -393,6 +453,12 @@
         Piercing: 0.7
         Heat: 0.9
         Caustic: 0.9
+  - type: LimbArmor # Far Horizons
+    limbs:
+      ArmRight: {}
+      ArmLeft: {}
+      LegRight: {}
+      LegLeft: {}
   - type: ExplosionResistance
     damageCoefficient: 0.9
   - type: GroupExamine
@@ -422,6 +488,12 @@
         Slash: 0.5
         Piercing: 0.5
         Heat: 0.5
+  - type: LimbArmor # Far Horizons
+    limbs:
+      ArmRight: {}
+      ArmLeft: {}
+      LegRight: {}
+      LegLeft: {}
   - type: GroupExamine
 
 - type: entity
@@ -447,6 +519,12 @@
         Heat: 0.5
         Radiation: 0
         Caustic: 0.75
+  - type: LimbArmor # Far Horizons
+    limbs:
+      ArmRight: {}
+      ArmLeft: {}
+      LegRight: {}
+      LegLeft: {}
   - type: GroupExamine
   - type: ProtectedFromStepTriggers
     slots: WITHOUT_POCKET
@@ -517,6 +595,12 @@
         Piercing: 0.5
         Heat: 0.9
         Radiation: 0.8
+  - type: LimbArmor # Far Horizons
+    limbs:
+      ArmRight: {}
+      ArmLeft: {}
+      LegRight: {}
+      LegLeft: {}
   - type: ClothingSpeedModifier
     walkModifier: 0.65
     sprintModifier: 0.65
@@ -547,6 +631,12 @@
         Blunt: 0.6
         Slash: 0.8
         Piercing: 0.4
+  - type: LimbArmor # Far Horizons
+    limbs:
+      ArmRight: {}
+      ArmLeft: {}
+      LegRight: {}
+      LegLeft: {}
   - type: ClothingSpeedModifier
     walkModifier: 0.8
     sprintModifier: 0.8
@@ -582,6 +672,12 @@
         Slash: 0.5
         Piercing: 0.6
         Heat: 0.5
+  - type: LimbArmor # Far Horizons
+    limbs:
+      ArmRight: {}
+      ArmLeft: {}
+      LegRight: {}
+      LegLeft: {}
   - type: GroupExamine
   - type: ProtectedFromStepTriggers
     slots: WITHOUT_POCKET
@@ -600,6 +696,12 @@
     modifiers:
       coefficients:
         Blunt: 0.9
+  - type: LimbArmor # Far Horizons
+    limbs:
+      ArmRight: {}
+      ArmLeft: {}
+      LegRight: {}
+      LegLeft: {}
   - type: Construction
     graph: cardArmour
     node: cardarmour
@@ -631,6 +733,12 @@
         Heat: 0.5
         Radiation: 0.5
         Caustic: 0.5
+  - type: LimbArmor # Far Horizons
+    limbs:
+      ArmRight: {}
+      ArmLeft: {}
+      LegRight: {}
+      LegLeft: {}
   - type: ClothingSpeedModifier
     walkModifier: 0.7
     sprintModifier: 0.65
