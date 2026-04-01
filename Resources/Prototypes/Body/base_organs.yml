@@ -117,6 +117,21 @@
     redirectChance: 0.2 # 20% chance to hit torso
     scatterHitChance: 0.05
     aimedTowardsScatterHitChance: 0.05 # Have to aim directly at them for headshots, bud
+  - type: LimbDamageEffect
+    effects:
+      - effect: !type:LimbEffectDetach
+        condition: !type:LimbConditionSpecificDamage
+          damageType: Slash
+          damageAmount: 150 # Since taking someone's head off = killing, it shouldn't be faster to do that
+      - effect: !type:LimbEffectDestroy
+        condition: !type:LimbConditionOr
+          conditions:
+            - !type:LimbConditionSpecificDamage
+              damageType: Blunt
+              damageAmount: 250 # Gib lite
+            - !type:LimbConditionSpecificDamage
+              damageType: Heat
+              damageAmount: 1500 # Just in case there's laser gatling I don't know of in maints locker
   - type: LimbDamageVisuals
     layer: "enum.HumanoidVisualLayers.Head"
 
