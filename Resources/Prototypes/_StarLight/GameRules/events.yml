@@ -7,9 +7,6 @@
     weight: 3
     minimumPlayers: 10
     duration: null
-  - type: RuleGrids
-  - type: LoadMapRule
-    gridPath: /Maps/_Starlight/Shuttles/ShuttleEvent/abductor_shuttle.yml
   - type: AntagObjectives
     objectives:
     - AbductObjective
@@ -68,6 +65,14 @@
         - Abductor
       mindRoles:
       - MindRoleLoneAbductor
+  # Far Horizons start
+  # The order of thise is important, startup events get executed from bottom up
+  # Loading map after loading ghost roles leads to bugs
+  # Yes, it is stupid
+  - type: RuleGrids
+  - type: LoadMapRule
+    gridPath: /Maps/_Starlight/Shuttles/ShuttleEvent/abductor_shuttle.yml
+  # Far Horizons end
       
 #Conf's Admeme Shuttles 
 - type: entity

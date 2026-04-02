@@ -581,9 +581,6 @@
     weight: 3 # 🌟Starlight🌟 Casualization
     minimumPlayers: 20
     duration: null # LoneOpsSpawn needs an infinite duration so that it inherits the NukeOpsRule things of an actually appropriate end scrreen (not always "Neutral outcome!") and... ending the game if the station is nuked.
-  - type: RuleGrids
-  - type: LoadMapRule
-    gridPath: /Maps/Shuttles/ShuttleEvent/striker.yml
   - type: NukeopsRule
     roundEndBehavior: Nothing
   - type: AntagSelection
@@ -608,6 +605,14 @@
         - Syndicate
       mindRoles:
       - MindRoleLoneops
+  # Far Horizons start
+  # The order of thise is important, startup events get executed from bottom up
+  # Loading map after loading ghost roles leads to bugs
+  # Yes, it is stupid
+  - type: RuleGrids
+  - type: LoadMapRule
+    gridPath: /Maps/Shuttles/ShuttleEvent/striker.yml
+  # Far Horizons end
   - type: DynamicRuleCost
     cost: 75
 

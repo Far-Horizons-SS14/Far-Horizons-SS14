@@ -366,12 +366,17 @@
     objectives:
     - WizardSurviveObjective
     - WizardDemonstrateObjective
-  - type: LoadMapRule
-    mapPath: /Maps/_Starlight/WizardShuttle.yml #Starlight. wizard deserves their shuttle. and it had to be re-saved as a map to get it to work.
-  - type: RuleGrids
   - type: AntagSelection
   - type: AntagLoadProfileRule
     speciesOverride: Human
+  # Far Horizons start
+  # The order of thise is important, startup events get executed from bottom up
+  # Loading map after loading ghost roles leads to bugs
+  # Yes, it is stupid
+  - type: RuleGrids
+  - type: LoadMapRule
+    mapPath: /Maps/_Starlight/WizardShuttle.yml #Starlight. wizard deserves their shuttle. and it had to be re-saved as a map to get it to work.
+  # Far Horizons end
 
 - type: entity
   parent: BaseWizardRule
