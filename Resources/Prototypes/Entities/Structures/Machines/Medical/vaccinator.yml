@@ -21,4 +21,12 @@
     containers:
       machine_board: !type:Container
       machine_parts: !type:Container
+      mixer: !type:ContainerSlot
   - type: RequireProjectileTarget
+  - type: DiseaseVaccinator
+  - type: ItemSlots
+    slots:
+      mixer:
+        whitelist:
+          tags:
+            - CentrifugeCompatible
