@@ -1,11 +1,11 @@
 using Content.Shared.Mobs.Systems;
-using Content.Shared.Medical.Disease.Systems;
-using Content.Shared.Medical.Disease.Components;
-using Content.Shared.Medical.Disease.Prototypes;
+using Content.Shared._FarHorizons.Medical.Disease.Systems;
+using Content.Shared._FarHorizons.Medical.Disease.Components;
+using Content.Shared._FarHorizons.Medical.Disease.Prototypes;
 using Content.Shared.Random.Helpers;
 using Robust.Shared.Prototypes;
 
-namespace Content.Shared.Medical.Disease.Symptoms;
+namespace Content.Shared._FarHorizons.Medical.Disease.Symptoms;
 
 /// <summary>
 /// Encapsulates symptom-side effects and secondary spread mechanics for diseases.

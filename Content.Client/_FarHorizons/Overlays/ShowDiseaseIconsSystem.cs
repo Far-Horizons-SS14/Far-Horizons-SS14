@@ -1,6 +1,6 @@
 using System.Linq;
-using Content.Shared.Medical.Disease.Components;
-using Content.Shared.Medical.Disease.Prototypes;
+using Content.Shared._FarHorizons.Medical.Disease.Components;
+using Content.Shared._FarHorizons.Medical.Disease.Prototypes;
 using Content.Shared.Overlays;
 using Content.Shared.StatusIcon.Components;
 using Robust.Shared.Prototypes;

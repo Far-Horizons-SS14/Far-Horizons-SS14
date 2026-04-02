@@ -1,12 +1,11 @@
 using Content.Shared.Interaction;
-using Content.Shared.Medical.Disease.Components;
-using Content.Shared.Medical.Disease.Prototypes;
+using Content.Shared._FarHorizons.Medical.Disease.Components;
+using Content.Shared._FarHorizons.Medical.Disease.Prototypes;
 using Robust.Shared.Containers;
 using Robust.Shared.Map;
-using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 
-namespace Content.Shared.Medical.Disease.Systems;
+namespace Content.Shared._FarHorizons.Medical.Disease.Systems;
 
 /// <summary>
 /// Handles airborne disease spread in a periodic.

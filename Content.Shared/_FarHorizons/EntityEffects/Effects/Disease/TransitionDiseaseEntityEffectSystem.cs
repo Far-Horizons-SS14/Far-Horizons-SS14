@@ -1,6 +1,6 @@
-using Content.Shared.Medical.Disease.Prototypes;
-using Content.Shared.Medical.Disease.Components;
-using Content.Shared.Medical.Disease.Systems;
+using Content.Shared._FarHorizons.Medical.Disease.Prototypes;
+using Content.Shared._FarHorizons.Medical.Disease.Components;
+using Content.Shared._FarHorizons.Medical.Disease.Systems;
 using Robust.Shared.Prototypes;
 using System.Linq;
 

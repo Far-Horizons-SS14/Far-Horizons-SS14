@@ -1,7 +1,7 @@
-using Content.Shared.Medical.Disease.Components;
+using Content.Shared._FarHorizons.Medical.Disease.Components;
 using Content.Shared.Interaction;
 
-namespace Content.Shared.Medical.Disease.Systems;
+namespace Content.Shared._FarHorizons.Medical.Disease.Systems;
 
 public sealed class DiseaseVaccinatorSystem : EntitySystem
 {

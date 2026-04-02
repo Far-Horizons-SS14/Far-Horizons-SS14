@@ -1,8 +1,8 @@
 using Content.Shared.DoAfter;
-using Content.Shared.Medical.Disease.Systems;
+using Content.Shared._FarHorizons.Medical.Disease.Systems;
 using Robust.Shared.Serialization;
 
-namespace Content.Shared.Medical.Disease;
+namespace Content.Shared._FarHorizons.Medical.Disease;
 
 /// <summary>
 /// Event for the <see cref="DiseaseSwabSystem"/>.

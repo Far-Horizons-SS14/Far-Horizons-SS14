@@ -1,9 +1,8 @@
 using Content.Shared.StatusIcon;
-using Content.Shared.EntityEffects.Effects.Transform;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 
-namespace Content.Shared.Medical.Disease.Prototypes;
+namespace Content.Shared._FarHorizons.Medical.Disease.Prototypes;
 
 /// <summary>
 /// Describes information about a specific disease.

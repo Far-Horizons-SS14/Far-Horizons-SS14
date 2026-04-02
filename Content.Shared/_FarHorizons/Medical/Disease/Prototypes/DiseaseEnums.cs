@@ -1,7 +1,7 @@
 using Content.Shared.Inventory;
 using Robust.Shared.Serialization;
 
-namespace Content.Shared.Medical.Disease.Prototypes;
+namespace Content.Shared._FarHorizons.Medical.Disease.Prototypes;
 
 /// <summary>
 /// Enumeration describing disease transmission vectors.

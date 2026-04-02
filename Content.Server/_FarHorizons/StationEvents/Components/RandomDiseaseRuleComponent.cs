@@ -1,5 +1,5 @@
 using Content.Server.StationEvents.Events;
-using Content.Shared.Medical.Disease.Prototypes;
+using Content.Shared._FarHorizons.Medical.Disease.Prototypes;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server.StationEvents.Components;
@@ -34,5 +34,3 @@ public sealed partial class RandomDiseaseRuleComponent : Component
     [DataField]
     public bool SkipImmune = true;
 }
-
-

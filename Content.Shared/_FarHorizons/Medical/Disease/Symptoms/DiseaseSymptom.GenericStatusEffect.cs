@@ -1,11 +1,10 @@
-using Content.Shared.Medical.Disease.Prototypes;
-
+using Content.Shared._FarHorizons.Medical.Disease.Prototypes;
 using Content.Shared.StatusEffectNew.Components;
 using Content.Shared.StatusEffectNew;
 using Robust.Shared.Prototypes;
-using Content.Shared.Medical.Disease.Systems;
+using Content.Shared._FarHorizons.Medical.Disease.Systems;
 
-namespace Content.Shared.Medical.Disease.Symptoms;
+namespace Content.Shared._FarHorizons.Medical.Disease.Symptoms;
 
 [DataDefinition]
 public sealed partial class SymptomGenericStatusEffect : SymptomBehavior

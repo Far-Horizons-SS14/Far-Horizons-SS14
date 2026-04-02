@@ -2,15 +2,15 @@ using Content.Shared.Bed.Components;
 using Content.Shared.Bed.Sleep;
 using Content.Shared.Buckle.Components;
 using Content.Shared.Stunnable;
-using Content.Shared.Medical.Disease.Prototypes;
+using Content.Shared._FarHorizons.Medical.Disease.Prototypes;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Serialization;
-using Content.Shared.Medical.Disease.Systems;
+using Content.Shared._FarHorizons.Medical.Disease.Systems;
 using Robust.Shared.Timing;
 using Content.Shared.Random.Helpers;
 
-namespace Content.Shared.Medical.Disease.Cures;
+namespace Content.Shared._FarHorizons.Medical.Disease.Cures;
 
 [Serializable, NetSerializable]
 public sealed partial class CureBedrest : CureStep

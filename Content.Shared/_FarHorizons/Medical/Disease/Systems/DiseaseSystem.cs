@@ -2,10 +2,10 @@ using System.Linq;
 using Content.Shared.Body.Systems;
 using Content.Shared.Clothing.Components;
 using Content.Shared.Inventory;
-using Content.Shared.Medical.Disease.Components;
-using Content.Shared.Medical.Disease.Cures;
-using Content.Shared.Medical.Disease.Prototypes;
-using Content.Shared.Medical.Disease.Symptoms;
+using Content.Shared._FarHorizons.Medical.Disease.Components;
+using Content.Shared._FarHorizons.Medical.Disease.Cures;
+using Content.Shared._FarHorizons.Medical.Disease.Prototypes;
+using Content.Shared._FarHorizons.Medical.Disease.Symptoms;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Random.Helpers;
 using Robust.Shared.Collections;
@@ -18,7 +18,7 @@ using Content.Shared.Body.Components;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Reagent;
 
-namespace Content.Shared.Medical.Disease.Systems;
+namespace Content.Shared._FarHorizons.Medical.Disease.Systems;
 
 /// <summary>
 /// Server system that progresses diseases, triggers symptom behaviors, and handles spread/immunity.

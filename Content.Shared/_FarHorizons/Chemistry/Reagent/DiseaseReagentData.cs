@@ -1,5 +1,5 @@
 using System.Linq;
-using Content.Shared.Medical.Disease.Systems;
+using Content.Shared._FarHorizons.Medical.Disease.Systems;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared.Chemistry.Reagent;

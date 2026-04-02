@@ -1,8 +1,8 @@
 using Content.Shared.EntityEffects;
-using Content.Shared.Medical.Disease.Prototypes;
-using Content.Shared.Medical.Disease.Systems;
+using Content.Shared._FarHorizons.Medical.Disease.Prototypes;
+using Content.Shared._FarHorizons.Medical.Disease.Systems;
 
-namespace Content.Shared.Medical.Disease.Symptoms;
+namespace Content.Shared._FarHorizons.Medical.Disease.Symptoms;
 
 [DataDefinition]
 public sealed partial class SymptomStatusEffect : SymptomBehavior
