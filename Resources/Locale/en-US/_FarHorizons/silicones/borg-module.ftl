@@ -1,0 +1,1 @@
+borg-type-security = [color= #337dd6]Security Cyborgs[/color]
