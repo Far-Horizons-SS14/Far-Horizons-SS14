@@ -333,6 +333,7 @@ public abstract partial class SharedVehicleSystem : EntitySystem
 
     private void HandleCollide(Entity<VehicleComponent> ent, ref StartCollideEvent args)
     {
+        if(!_gameTiming.IsFirstTimePredicted) return;
         if(ent.Comp.Rider == null) return;
         var rider = ent.Comp.Rider.Value;
         
@@ -450,6 +451,7 @@ public abstract partial class SharedVehicleSystem : EntitySystem
     private void OnDamageChanged(EntityUid ent, VehicleComponent component, DamageChangedEvent args)
     {
         if(!args.DamageIncreased || args.DamageDelta == null) return;
+        if(args.Origin == ent) return;
         if (TryComp<VehicleContainerComponent>(ent, out var vcComp)
             && vcComp.PassengerSlot.ContainedEntities.Count != 0)
         {
