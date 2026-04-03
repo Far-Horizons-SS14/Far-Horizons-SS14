@@ -99,6 +99,8 @@
   description: Nice to have, but you can't build a civilization on a foundation of honey alone.
   components:
   - type: CombatMode
+  - type: LimbTargetting # Far Horizons
+    proto: LimbTargetHuman
   - type: MovementSpeedModifier
     baseWalkSpeed : 3
     baseSprintSpeed : 7
@@ -187,6 +189,8 @@
   description: How nice a bee. Oh no, it looks angry and wants my pizza.
   components:
   - type: CombatMode
+  - type: LimbTargetting # Far Horizons
+    proto: LimbTargetHuman
   - type: MeleeWeapon
     angle: 0
     animation: WeaponArcBite
@@ -496,6 +500,8 @@
     proto: CartridgeCaselessRifle
     capacity: 500
   - type: CombatMode
+  - type: LimbTargetting # Far Horizons
+    proto: LimbTargetHuman
   - type: HTN
     rootTask:
       task: GlockroachCompound
@@ -608,6 +614,8 @@
       types:
         Asphyxiation: -0.5
   - type: CombatMode
+  - type: LimbTargetting # Far Horizons
+    proto: LimbTargetHuman
   - type: Butcherable
     spawned:
     - id: FoodMeatSlime
@@ -1325,6 +1333,8 @@
   - type: VentCrawler # Starlight-edit: Vent Crawl
   - type: CombatMode
     canDisarm: true
+  - type: LimbTargetting # Far Horizons
+    proto: LimbTargetHuman
   - type: Inventory
     templateId: monkey
     speciesId: monkey
@@ -1885,6 +1895,8 @@
     wilhelmProbability: 0.001
   # TODO: Remove CombatMode when Prototype Composition is added
   - type: CombatMode
+  - type: LimbTargetting # Far Horizons
+    proto: LimbTargetHuman
   - type: MeleeWeapon
     soundHit:
       path: /Audio/Effects/bite.ogg
@@ -2551,6 +2563,8 @@
     - id: FoodMeatSpider
       amount: 2
   - type: CombatMode
+  - type: LimbTargetting # Far Horizons
+    proto: LimbTargetHuman
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -3653,6 +3667,8 @@
       types:
         Blunt: 0.1
   - type: CombatMode
+  - type: LimbTargetting # Far Horizons
+    proto: LimbTargetHuman
   - type: MeleeWeapon
     soundHit:
         path: /Audio/Effects/bite.ogg
