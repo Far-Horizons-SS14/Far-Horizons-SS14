@@ -10,12 +10,12 @@
     containers:
       machine_board: !type:Container {}
       machine_parts: !type:Container {}
-      mixer: !type:ContainerSlot {}
+      sample: !type:ContainerSlot {}
   - type: DiseaseVaccinator
   - type: MaterialStorage
   - type: ItemSlots
     slots:
-      mixer:
+      sample:
         whitelist:
           tags:
             - CentrifugeCompatible
@@ -39,10 +39,10 @@
     containers:
       machine_board: !type:Container {}
       machine_parts: !type:Container {}
-      mixer: !type:ContainerSlot {}
+      sample: !type:ContainerSlot {}
   - type: ItemSlots
     slots:
-      mixer:
+      sample:
         whitelist:
           tags:
             - CentrifugeCompatible

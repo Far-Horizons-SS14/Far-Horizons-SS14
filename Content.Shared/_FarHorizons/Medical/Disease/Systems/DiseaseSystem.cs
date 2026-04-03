@@ -418,18 +418,28 @@ public sealed partial class SharedDiseaseSystem : EntitySystem
         if (!TryComp<BloodstreamComponent>(ent.Owner, out var bloodstream)
             || !_solution.ResolveSolution(ent.Owner, bloodstream.BloodSolutionName, ref bloodstream.BloodSolution, out var bloodSolution)) return;
 
-        var bloodReferenceData = bloodstream.BloodReferenceSolution.FirstOrDefault().Reagent.Data;
-        if (bloodReferenceData == null) return;
+        var bloodPrototype = bloodstream.BloodReferenceSolution.Contents.FirstOrDefault().Reagent.Prototype;
+        if (bloodPrototype == null) return;
 
-        bloodReferenceData.RemoveAll(d => d is DiseaseReagentData);
-
-        var bloodDiseaseData = new DiseaseReagentData
+        for (var i = 0; i < bloodSolution.Contents.Count; i++)
         {
-            ActiveDiseases = new Dictionary<DiseaseData, StageData>(ent.Comp.ActiveDiseases),
-            Immunity = new Dictionary<DiseaseData, float>(ent.Comp.Immunity)
-        };
+            var reagent = bloodSolution.Contents[i];
+            if (reagent.Reagent.Prototype != bloodPrototype)
+                continue;
 
-        bloodReferenceData.Add(bloodDiseaseData);
-        bloodSolution.SetReagentData(bloodReferenceData);
+            var dataCopy = reagent.Reagent.Data?.ToList() ?? new List<ReagentData>();
+            dataCopy.RemoveAll(d => d is DiseaseReagentData);
+            dataCopy.Add(new DiseaseReagentData
+            {
+                ActiveDiseases = new Dictionary<DiseaseData, StageData>(ent.Comp.ActiveDiseases),
+                Immunity = new Dictionary<DiseaseData, float>(ent.Comp.Immunity)
+            });
+
+            bloodSolution.Contents[i] = new ReagentQuantity(
+                new ReagentId(bloodPrototype, dataCopy),
+                reagent.Quantity
+            );
+            break;
+        }
     }
 }

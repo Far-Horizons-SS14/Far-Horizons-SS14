@@ -163,6 +163,8 @@ public sealed partial class SharedDiseaseCureSystem : EntitySystem
             if(immunity <= 0)
                 ent.Comp.Immunity.Remove(disease);
         }
+        
+        _disease.UpdateBloodData(ent);
     }
 
     /// <summary>
