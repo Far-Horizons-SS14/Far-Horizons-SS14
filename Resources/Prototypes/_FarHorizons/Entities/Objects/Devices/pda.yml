@@ -284,3 +284,1131 @@
     proto: robot
   - type: Speech
     speechVerb: Robotic
+
+#region Base NeoSol PDA
+
+- type: entity
+  abstract: true
+  parent: [ BaseItem, StorePresetUplink ]
+  id: BaseNeoSolPDA
+  name: PDA
+  description: Personal Data Assistant.
+  components:
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Devices/neosol_pda.rsi
+    layers:
+    - map: [ "enum.PdaVisualLayers.Base" ]
+      state: "pda"
+    - state: "light_overlay"
+      map: [ "enum.PdaVisualLayers.Flashlight" ]
+      shader: "unshaded"
+      visible: false
+    - state: "id_overlay"
+      map: [ "enum.PdaVisualLayers.IdLight" ]
+      shader: "unshaded"
+      visible: false
+  - type: Icon
+    sprite: _FarHorizons/Objects/Devices/neosol_pda.rsi
+    state: pda
+  - type: Pda
+    paiSlot:
+      priority: -2
+      whitelist:
+        components:
+        - PAI
+    penSlot:
+      startingItem: Pen
+      priority: -1
+      whitelist:
+        tags:
+        - Write
+    idSlot:
+      name: access-id-card-component-default
+      ejectSound: /Audio/Machines/id_swipe.ogg
+      insertSound: /Audio/Machines/id_insert.ogg
+      whitelist:
+        components:
+        - IdCard
+  - type: PdaVisuals
+  - type: Item
+    size: Small
+  - type: ContainerContainer
+    containers:
+      PDA-id: !type:ContainerSlot {}
+      PDA-pen: !type:ContainerSlot {}
+      PDA-pai: !type:ContainerSlot {}
+      Cartridge-Slot: !type:ContainerSlot {}
+      program-container: !type:Container
+  - type: ItemSlots
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - idcard
+    - Belt
+  - type: UnpoweredFlashlight
+  - type: PointLight
+    enabled: false
+    radius: 1.7
+    falloff: 3
+    softness: 5
+    autoRot: true
+  - type: Ringer
+  - type: RingerUplink
+  - type: SuitSensor
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    transmitFrequencyId: SuitSensor
+    prefix: device-address-prefix-console
+    savableAddress: false
+  - type: WirelessNetworkConnection
+    range: 1200
+  - type: StationLimitedNetwork
+  - type: CartridgeLoader
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NanoTaskCartridge
+      - NewsReaderCartridge
+    cartridgeSlot:
+      priority: -1
+      name: device-pda-slot-component-slot-name-cartridge
+      ejectSound: /Audio/Machines/id_swipe.ogg
+      insertSound: /Audio/Machines/id_insert.ogg
+      whitelist:
+        components:
+          - Cartridge
+  - type: ActivatableUI
+    key: enum.PdaUiKey.Key
+    singleUser: true
+  - type: UserInterface
+    interfaces:
+      enum.PdaUiKey.Key:
+        requireInputValidation: false
+        type: PdaBoundUserInterface
+      enum.StoreUiKey.Key:
+        type: StoreBoundUserInterface
+      enum.RingerUiKey.Key:
+        type: RingerBoundUserInterface
+      enum.InstrumentUiKey.Key:
+        type: InstrumentBoundUserInterface
+      enum.HealthAnalyzerUiKey.Key:
+        type: HealthAnalyzerBoundUserInterface
+      enum.IntegrityAnalyzerUiKey.Key:
+        type: IntegrityAnalyzerBoundUserInterface
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+  - type: Input
+    context: "human"
+  - type: SentienceTarget
+    flavorKind: station-event-random-sentience-flavor-mechanical
+    weight: 0.001
+  - type: BlockMovement
+    blockInteraction: false
+  - type: TypingIndicator
+    proto: robot
+  - type: Speech
+    speechVerb: Robotic
+
+- type: entity
+  parent: BaseNeoSolPDA
+  id: BaseNeoSolMedicalPDA
+  abstract: true
+  components:
+  - type: CartridgeLoader
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NanoTaskCartridge
+      - NewsReaderCartridge
+      - MedTekCartridge
+
+- type: entity
+  parent: BaseNeoSolPDA
+  id: BaseEnforcerPDA
+  abstract: true
+  components:
+  - type: CartridgeLoader
+    preinstalled:
+    - CrewManifestCartridge
+    - NotekeeperCartridge
+    - NanoTaskCartridge
+    - NewsReaderCartridge
+    - WantedListCartridge
+
+- type: entity
+  parent: BaseNeoSolPDA
+  id: BaseNeoSolEngineerPDA
+  abstract: true
+  components:
+  - type: CartridgeLoader
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NanoTaskCartridge
+      - NewsReaderCartridge
+      - HullSenseCartridge
+      - AstroNavCartridge
+
+#endregion
+
+#region NeoSol Command
+
+- type: entity
+  parent: BaseNeoSolPDA
+  id: CommandantPDA
+  name: Commandant PDA
+  description: Surprisingly no different from your PDA.
+  components:
+  - type: Pda
+    id: CommandantIDCard
+    penSlot:
+      startingItem: PenCap
+      priority: -1
+      whitelist:
+        tags:
+        - Write
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-commandant
+  - type: PdaBorderColor
+    borderColor: "#c1c167"
+  - type: Icon
+    state: pda-commandant
+
+- type: entity
+  parent: BaseNeoSolPDA
+  id: PersonnelManagerPDA
+  name: Personnel Manager PDA
+  description: Looks like it's been chewed on.
+  components:
+  - type: Pda
+    id: PersonnelManagerIDCard
+    penSlot:
+      startingItem: PenHop
+      priority: -1
+      whitelist:
+        tags:
+        - Write
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-personnelmanager
+  - type: PdaBorderColor
+    borderColor: "#242a22"
+    accentHColor: "#919119"
+  - type: Icon
+    state: pda-personnelmanager
+
+- type: entity
+  parent: BaseNeoSolEngineerPDA
+  id: ForemanPDA
+  name: Foreman PDA
+  description: Looks like it's barely been used.
+  components:
+  - type: Pda
+    id: ForemanIDCard
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-foreman
+  - type: PdaBorderColor
+    borderColor: "#2e2909"
+    accentHColor: "#07405f"
+  - type: Icon
+    state: pda-foreman
+
+- type: entity
+  parent: BaseNeoSolMedicalPDA
+  id: MedicalDirectorPDA
+  name: Medical Director PDA
+  description: Extraordinarily shiny and sterile.
+  components:
+  - type: Pda
+    id: MedicalDirectorIDCard
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-medicaldirector
+  - type: PdaBorderColor
+    borderColor: "#b6b5b5"
+    accentHColor: "#919119"
+  - type: Icon
+    state: pda-medicaldirector
+
+- type: entity
+  parent: BaseNeoSolPDA
+  id: EpistemicsProvostPDA
+  name: Epistemics Provost PDA
+  description: It appears surprisingly ordinary.
+  components:
+  - type: Pda
+    id: EpistemicsProvostIDCard
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-epistemicsprovost
+  - type: PdaBorderColor
+    borderColor: "#3c3c42"
+    accentHColor: "#6342a7"
+  - type: Icon
+    state: pda-epistemicsprovost
+
+- type: entity
+  parent: BaseEnforcerPDA
+  id: MarshalPDA
+  name: Marshal PDA
+  description: Whosoever bears this PDA is the law.
+  components:
+  - type: Pda
+    id: MarshalIDCard
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-marshal
+  - type: PdaBorderColor
+    borderColor: "#111230"
+    accentHColor: "#004cae"
+  - type: Icon
+    state: pda-marshal
+  - type: CartridgeLoader
+    preinstalled:
+    - CrewManifestCartridge
+    - NotekeeperCartridge
+    - NanoTaskCartridge
+    - NewsReaderCartridge
+    - WantedListCartridge
+    - LogProbeCartridge
+
+#endregion
+
+#region NeoSol Reps
+
+#- type: entity #Commented out until sprites
+#  parent: BaseNeoSolPDA
+#  id: RedSwordPDA
+#  name: Red Sword Officer's PDA
+#  components:
+#  - type: Sprite
+#    sprite: _FarHorizons/Objects/Devices/neosol_pda.rsi
+#  - type: Pda
+#    id: RedSwordIDCard
+#  - type: Appearance
+#    appearanceDataInit:
+#     enum.PdaVisuals.PdaType:
+#       !type:String
+#       pda-redsword
+#  - type: PdaBorderColor
+#    borderColor: "#181c26"
+#    accentHColor: "#25c1c4"
+#  - type: Icon
+#    sprite: _FarHorizons/Objects/Devices/neosol_pda.rsi
+#    state: pda-redsword
+#  - type: CartridgeLoader
+#    uiKey: enum.PdaUiKey.Key
+#    preinstalled:
+#      - CrewManifestCartridge
+#      - NotekeeperCartridge
+#      - NanoTaskCartridge
+#      - NewsReaderCartridge
+#      - MedTekCartridge
+
+#- type: entity #Will do with Red Sword PDA
+#  parent: BaseNeoSolPDA
+#  id: NeoSolRepresentativePDA
+#  name: NeoSol Representative PDA
+#  components:
+#  - type: Pda
+#    id: NeoSolRepresentativeIDCard
+#    penSlot:
+#      startingItem: PenNTR
+#      priority: -1
+#      whitelist:
+#        tags:
+#        - Write
+#  - type: Appearance
+#    appearanceDataInit:
+#     enum.PdaVisuals.PdaType:
+#       !type:String
+#       pda-neosolrep
+#  - type: PdaBorderColor
+#    borderColor: "#151515"
+#  - type: Icon
+#    state: pda-neosolrep
+
+#endregion
+
+#region NeoSol Civilian/Service
+
+- type: entity
+  parent: BaseNeoSolPDA
+  id: NeoSolAssistantPDA
+  name: Assistant PDA
+  description: Why isn't it gray?
+  components:
+  - type: Pda
+    id: NeoSolAssistantIDCard
+  - type: PdaBorderColor
+    borderColor: "#151524"
+
+- type: entity
+  parent: BaseNeoSolPDA
+  id: NeoSolServiceWorkerPDA
+  name: Service Worker PDA
+  description: Why isn't it gray?
+  components:
+  - type: Pda
+    id: NeoSolServiceWorkerIDCard
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-internservice
+  - type: PdaBorderColor
+    borderColor: "#151524"
+  - type: Icon
+    state: pda-internservice
+
+- type: entity
+  parent: BaseNeoSolPDA
+  id: NeoSolClownPDA
+  name: Clown PDA
+  description: Looks can be deceiving.
+  components:
+  - type: Pda
+    id: NeoSolClownIDCard
+    penSlot:
+      startingItem: CrayonOrange
+      ejectSound: /Audio/Items/bikehorn.ogg
+      priority: -1
+      whitelist:
+        tags:
+        - Write
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-clown
+  - type: PdaBorderColor
+    borderColor: "#9822a5"
+  - type: Icon
+    state: pda-clown
+  - type: Slippery
+  - type: StepTrigger
+  - type: CollisionWake
+    enabled: false
+  - type: Physics
+    bodyType: Dynamic
+  - type: Fixtures
+    fixtures:
+      slips:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.3,0.4,0.3"
+        hard: false
+        layer:
+          - SlipLayer
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.3,0.4,0.3"
+        density: 5
+        mask:
+        - ItemMask
+
+- type: entity
+  parent: BaseNeoSolPDA
+  id: NeoSolMimePDA
+  name: Mime PDA
+  description: Suprisingly not on mute.
+  components:
+  - type: Pda
+    id: NeoSolMimeIDCard
+    paiSlot:
+      priority: -2
+      ejectSound: null
+      insertSound: null
+      whitelist:
+        components:
+        - PAI
+    idSlot:
+      name: access-id-card-component-default
+      ejectSound: null
+      insertSound: null
+      whitelist:
+        components:
+        - IdCard
+    penSlot:
+      startingItem: Pen
+      priority: -1
+      whitelist:
+        tags:
+        - Write
+      ejectSound: null
+      insertSound: null
+  - type: CartridgeLoader
+    cartridgeSlot:
+      ejectSound: null
+      insertSound: null
+      whitelist:
+        components:
+        - Cartridge
+    preinstalled:
+    - CrewManifestCartridge
+    - NewsReaderCartridge
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-mime
+  - type: PdaBorderColor
+    borderColor: "#0f0f10"
+    accentHColor: "#afafaf"
+  - type: Icon
+    state: pda-mime
+  - type: Muted
+
+- type: entity
+  name: Chaplain PDA
+  parent: BaseNeoSolPDA
+  id: NeoSolChaplainPDA
+  description: God's chosen PDA.
+  components:
+  - type: Pda
+    id: NeoSolChaplainIDCard
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-chaplain
+  - type: PdaBorderColor
+    borderColor: "#151524"
+  - type: Icon
+    state: pda-chaplain
+
+- type: entity
+  parent: BaseNeoSolPDA
+  id: CustodianPDA
+  name: Custodian PDA
+  description: Smells like bleach.
+  components:
+  - type: Pda
+    id: CustodianIDCard
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-custodian
+  - type: PdaBorderColor
+    borderColor: "#50165e"
+  - type: Icon
+    state: pda-custodian
+
+- type: entity
+  parent: BaseNeoSolPDA
+  id: NeoSolBartenderPDA
+  name: Bartender PDA
+  description: Smells like beer.
+  components:
+  - type: Pda
+    id: NeoSolBartenderIDCard
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-bartender
+  - type: PdaBorderColor
+    borderColor: "#232531"
+  - type: Icon
+    state: pda-bartender
+
+- type: entity
+  parent: BaseNeoSolPDA
+  id: NeoSolChefPDA
+  name: Chef PDA
+  description: Covered in grease and flour.
+  components:
+  - type: Pda
+    id: NeoSolChefIDCard
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-cook
+  - type: PdaBorderColor
+    borderColor: "#434346"
+  - type: Icon
+    state: pda-cook
+
+- type: entity
+  parent: BaseNeoSolPDA
+  id: NeoSolBotanistPDA
+  name: Botanist PDA
+  description: Has an earthy scent.
+  components:
+  - type: Pda
+    id: NeoSolBotanistIDCard
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-hydro
+  - type: PdaBorderColor
+    borderColor: "#1b361a"
+    accentHColor: "#00cc35"
+  - type: Icon
+    state: pda-hydro
+
+- type: entity
+  parent: BaseNeoSolPDA
+  id: NeoSolLibrarianPDA
+  name: Librarian PDA
+  description: Smells like books.
+  components:
+  - type: Pda
+    id: NeoSolLibrarianIDCard
+    penSlot:
+      startingItem: LuxuryPen
+      priority: -1
+      whitelist:
+        tags:
+        - Write
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-library
+  - type: PdaBorderColor
+    borderColor: "#151524"
+  - type: Icon
+    state: pda-library
+
+- type: entity
+  parent: BaseNeoSolPDA
+  id: NeoSolMusicianPDA
+  name: Musician PDA
+  description: It fills you with inspiration.
+  components:
+  - type: Pda
+    id: NeoSolMusicianIDCard
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-musician
+  - type: PdaBorderColor
+    borderColor: "#151524"
+  - type: Icon
+    state: pda-musician
+  - type: Instrument
+    allowPercussion: false
+    handheld: true
+    program: 2
+    bank: 100
+
+- type: entity
+  parent: BaseNeoSolPDA
+  id: JournalistPDA
+  name: Journalist PDA
+  description: Smells like freshly printed press.
+  components:
+  - type: Pda
+    id: JournalistIDCard
+    penSlot:
+      startingItem: LuxuryPen
+      priority: -1
+      whitelist:
+        tags:
+        - Write
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-journalist
+  - type: PdaBorderColor
+    borderColor: "#111134"
+  - type: Icon
+    state: pda-journalist
+
+- type: entity
+  parent: BaseNeoSolPDA
+  id: NeoSolBoxerPDA
+  name: Boxer PDA
+  description: Float like a butterfly, ringtone like a bee.
+  components:
+  - type: Pda
+    id: NeoSolBoxerIDCard
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-boxer
+  - type: PdaBorderColor
+    borderColor: "#232531"
+  - type: Icon
+    state: pda-boxer
+
+- type: entity
+  parent: BaseNeoSolPDA
+  id: NeoSolZookeeperPDA
+  name: Zookeeper PDA
+  description: Made with genuine synthetic leather. Crikey!
+  components:
+  - type: Pda
+    id: NeoSolZookeeperIDCard
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-zookeeper
+  - type: PdaBorderColor
+    borderColor: "#ffe685"
+  - type: Icon
+    state: pda-zookeeper
+
+#endregion
+
+#region NeoSol Medical
+
+- type: entity
+  parent: BaseNeoSolMedicalPDA
+  id: NeoSolSurgeonPDA
+  name: Surgeon PDA
+  description: Shiny and sterile, for the most part. You can see some bloodstains around the edges if you look close enough.
+  components:
+  - type: Pda
+    id: NeoSolSurgeonIDCard
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-medical
+  - type: PdaBorderColor
+    borderColor: "#d7d7d0"
+    accentVColor: "#447987"
+  - type: Icon
+    state: pda-medical
+
+- type: entity
+  parent: BaseNeoSolMedicalPDA
+  id: NeoSolMedicalInternPDA
+  name: Medical Intern PDA
+  description: Why isn't it white?
+  components:
+  - type: Pda
+    id: NeoSolMedicalInternIDCard
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-internmed
+  - type: PdaBorderColor
+    borderColor: "#151524"
+  - type: Icon
+    state: pda-internmed
+  - type: GuideHelp
+    guides:
+    - MedicalDoctor
+
+- type: entity
+  parent: BaseNeoSolMedicalPDA
+  id: NeoSolMedicalPDA
+  name: Medical PDA
+  description: Shiny and sterile.
+  components:
+  - type: Pda
+    id: NeoSolMedicalIDCard
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-medical
+  - type: PdaBorderColor
+    borderColor: "#b6b5b5"
+  - type: Icon
+    state: pda-medical
+  - type: GuideHelp
+    guides:
+    - MedicalDoctor
+
+- type: entity
+  parent: BaseNeoSolMedicalPDA
+  id: NeoSolParamedicPDA
+  name: Paramedic PDA
+  description: Shiny and sterile.
+  components:
+  - type: Pda
+    id: NeoSolParamedicIDCard
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-paramedic
+  - type: PdaBorderColor
+    borderColor: "#141633"
+  - type: Icon
+    state: pda-paramedic
+
+- type: entity
+  parent: BaseNeoSolMedicalPDA
+  id: PharmacistPDA
+  name: Pharmacist PDA
+  description: It has a few discolored blotches here and there.
+  components:
+  - type: Pda
+    id: PharmacistIDCard
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-pharmacist
+  - type: PdaBorderColor
+    borderColor: "#b6b5b5"
+    accentHColor: "#ea6400"
+  - type: Icon
+    state: pda-pharmacist
+
+- type: entity
+  parent: BaseNeoSolPDA
+  id: NeoSolPsychologistPDA
+  name: Psychologist PDA
+  description: Looks immaculately cleaned.
+  components:
+  - type: Pda
+    id: NeoSolPsychologistIDCard
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-medical
+  - type: PdaBorderColor
+    borderColor: "#d7d7d0"
+  - type: Icon
+    state: pda-medical
+
+#endregion
+
+#region NeoSol Security
+
+- type: entity
+  parent: BaseNeoSolMedicalPDA
+  id: NeoSolCorpsmanPDA
+  name: Corpsman PDA
+  description: The pulse looks attuned to the beat of your own heart.
+  components:
+  - type: Pda
+    id: NeoSolCorpsmanIDCard
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-brigmedic
+  - type: PdaBorderColor
+    borderColor: "#111230"
+    accentHColor: "#004cae"
+    accentVColor: "#b3c5ce"
+  - type: Icon
+    state: pda-brigmedic
+  - type: CartridgeLoader
+    preinstalled:
+    - CrewManifestCartridge
+    - NotekeeperCartridge
+    - NanoTaskCartridge
+    - NewsReaderCartridge
+    - WantedListCartridge
+    - MedTekCartridge
+
+- type: entity
+  parent: BaseNeoSolMedicalPDA
+  id: NeoSolBrigmedicPDA
+  name: Brigmedic PDA
+  description: I wonder whose pulse is on the screen? I hope it doesn't stop...
+  components:
+  - type: Pda
+    id: NeoSolBrigmedicIDCard
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-brigmedic
+  - type: PdaBorderColor
+    borderColor: "#111230"
+    accentHColor: "#004cae"
+  - type: Icon
+    state: pda-brigmedic
+  - type: CartridgeLoader
+    preinstalled:
+    - CrewManifestCartridge
+    - NotekeeperCartridge
+    - NanoTaskCartridge
+    - NewsReaderCartridge
+    - WantedListCartridge
+    - MedTekCartridge
+
+- type: entity
+  parent: BaseEnforcerPDA
+  id: RecruitPDA
+  name: Recruit PDA
+  description: Why isn't it red?
+  components:
+  - type: Pda
+    id: RecruitIDCard
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-interncadet
+  - type: PdaBorderColor
+    borderColor: "#151524"
+    accentVColor: "#004cae"
+  - type: Icon
+    state: pda-interncadet
+
+- type: entity
+  parent: BaseEnforcerPDA
+  id: EnforcerPDA
+  name: Enforcer PDA
+  description: Red to hide the stains of assistant blood.
+  components:
+  - type: Pda
+    id: EnforcerIDCard
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-enforcer
+  - type: PdaBorderColor
+    borderColor: "#111230"
+    accentHColor: "#004cae"
+  - type: Icon
+    state: pda-enforcer
+
+- type: entity
+  parent: BaseEnforcerPDA
+  id: ConstablePDA
+  name: Constable PDA
+  description: The OS appears to have been jailbroken.
+  components:
+  - type: Pda
+    id: ConstableIDCard
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-constable
+  - type: PdaBorderColor
+    borderColor: "#111230"
+    accentHColor: "#004cae"
+  - type: Icon
+    state: pda-constable
+
+- type: entity
+  parent: BaseEnforcerPDA
+  id: InspectorPDA
+  name: Inspector PDA
+  description: Smells like rain... pouring down the rooftops...
+  components:
+  - type: Pda
+    id: InspectorIDCard
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-inspector
+  - type: PdaBorderColor
+    borderColor: "#111112"
+    accentHColor: "#004cae"
+  - type: Icon
+    state: pda-inspector
+  - type: CartridgeLoader
+    preinstalled:
+    - CrewManifestCartridge
+    - NotekeeperCartridge
+    - NanoTaskCartridge
+    - NewsReaderCartridge
+    - WantedListCartridge
+    - LogProbeCartridge
+
+#endregion
+
+#region NeoSol Engineering
+
+- type: entity
+  parent: BaseNeoSolPDA
+  id: NeoSolTechnicalAssistantPDA
+  name: Technical Assistant PDA
+  description: Why isn't it yellow?
+  components:
+  - type: Pda
+    id: NeoSolTechnicalAssistantIDCard
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-interntech
+  - type: PdaBorderColor
+    borderColor: "#151524"
+  - type: Icon
+    state: pda-interntech
+
+- type: entity
+  parent: BaseNeoSolEngineerPDA
+  id: NeoSolEngineerPDA
+  name: Engineer PDA
+  description: Rugged and well-worn.
+  components:
+  - type: Pda
+    id: NeoSolEngineeringIDCard
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-engineer
+  - type: PdaBorderColor
+    borderColor: "#2e2909"
+  - type: Icon
+    state: pda-engineer
+
+- type: entity
+  parent: BaseNeoSolEngineerPDA
+  id: NeoSolAtmosPDA
+  name: Atmos PDA
+  description: Still smells like plasma.
+  components:
+  - type: Pda
+    id: NeoSolAtmosIDCard
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-atmos
+  - type: PdaBorderColor
+    borderColor: "#3b3e13"
+  - type: Icon
+    state: pda-atmos
+
+#endregion
+
+#region NeoSol Science
+
+- type: entity
+  parent: BaseNeoSolPDA
+  id: LabTechnicianPDA
+  name: Lab Technician PDA
+  description: Why isn't it purple?
+  components:
+  - type: Pda
+    id: LabTechnicianIDCard
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-internsci
+  - type: PdaBorderColor
+    borderColor: "#151524"
+    accentHColor: "#6342a7"
+  - type: Icon
+    state: pda-internsci
+
+- type: entity
+  parent: BaseNeoSolPDA
+  id: AcademicPDA
+  name: Academic PDA
+  description: It's covered with an unknown gooey substance.
+  components:
+  - type: Pda
+    id: AcademicIDCard
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-academic
+  - type: PdaBorderColor
+    borderColor: "#3c3c42"
+    accentHColor: "#6342a7"
+  - type: Icon
+    state: pda-academic
+
+- type: entity
+  parent: BaseNeoSolPDA
+  id: MechanistPDA
+  name: Mechanist PDA
+  description: Covered in dirt and oil. The screen is covered in something sticky.
+  components:
+  - type: Pda
+    id: MechanistIDCard
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-mechanist
+  - type: PdaBorderColor
+    borderColor: "#111112"
+    accentVColor: "#d33725"
+    accentHColor: "#d33725"
+  - type: Icon
+    state: pda-mechanist
+  - type: HealthAnalyzer
+    scanningEndSound:
+      path: "/Audio/Items/Medical/healthscanner.ogg"
+    damageContainers:
+    - Silicon
+
+#endregion
+
+#region Syndicate High Command
+
+- type: entity
+  parent: BaseEnforcerPDA
+  id: SHCPDA
+  name: SHC PDA
+  description: A red sign of walking bureaucracy.
+  components:
+  - type: Pda
+    id: SHCIDCard
+    penSlot:
+      startingItem: PenCentcom
+      priority: -1
+      whitelist:
+        tags:
+        - Write
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-SHC
+  - type: PdaBorderColor
+    borderColor: "#00842e"
+    accentHColor: "#a99d3d"
+    accentVColor: "#a99d3d"
+  - type: Icon
+    state: pda-SHC
+  - type: CartridgeLoader
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NanoTaskCartridge
+      - NewsReaderCartridge
+      - MedTekCartridge
+      - WantedListCartridge
+      - LogProbeCartridge
+      - AstroNavCartridge
+      - HullSenseCartridge
+
+#endregion

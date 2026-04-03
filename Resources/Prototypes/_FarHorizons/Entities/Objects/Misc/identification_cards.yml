@@ -1419,3 +1419,584 @@
         type: AgentIDCardBoundUserInterface
 
 #endregion
+
+#region NeoSol Base
+
+- type: entity
+  parent: Clothing
+  id: IDCardNeoSolStandard
+  name: Identification Card 
+  description: A card necessary to access various areas aboard the station.
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Misc/neosol_id_cards.rsi
+  - type: Clothing
+    slots:
+    - idcard
+    sprite: _FarHorizons/Objects/Misc/neosol_id_cards.rsi
+  - type: Item
+    size: Small
+    heldPrefix: default
+    storedRotation: -90
+  - type: Access
+  - type: IdCard
+  - type: StationRecordKeyStorage
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+  - type: StealTarget
+    stealGroup: IDCard
+
+#endregion
+
+#region NeoSol Command
+
+- type: entity
+  parent: [IDCardNeoSolStandard, BaseCommandContraband]
+  id: CommandantIDCard
+  name: Commandant ID Card 
+  components:
+  - type: Sprite
+    layers:
+    - state: gold
+    - state: idcommandant
+  - type: Item
+    heldPrefix: gold
+  - type: PresetIdCard
+    job: Captain
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+
+- type: entity
+  parent: [IDCardNeoSolStandard, BaseCommandContraband]
+  id: PersonnelManagerIDCard
+  name: Personnel Manager ID Card 
+  components:
+  - type: Sprite
+    layers:
+    - state: silver
+    - state: idpersonnelmanager
+  - type: Item
+    heldPrefix: silver
+  - type: PresetIdCard
+    job: HeadOfPersonnel
+
+- type: entity
+  parent: [IDCardNeoSolStandard, BaseCommandContraband]
+  id: ForemanIDCard
+  name: Foreman ID Card 
+  components:
+  - type: Sprite
+    layers:
+    - state: silver
+    - state: idforeman
+  - type: Item
+    heldPrefix: silver
+  - type: PresetIdCard
+    job: ChiefEngineer
+
+- type: entity
+  parent: [IDCardNeoSolStandard, BaseCommandContraband]
+  id: MedicalDirectorIDCard
+  name: Medical Director ID Card 
+  components:
+  - type: Sprite
+    layers:
+    - state: silver
+    - state: idmedicaldirector
+  - type: Item
+    heldPrefix: silver
+  - type: PresetIdCard
+    job: ChiefMedicalOfficer
+
+- type: entity
+  parent: [IDCardNeoSolStandard, BaseCommandContraband]
+  id: EpistemicsProvostIDCard
+  name: Epistemics Provost ID Card 
+  components:
+  - type: Sprite
+    layers:
+    - state: silver
+    - state: idepistemicsprovost
+  - type: Item
+    heldPrefix: silver
+  - type: PresetIdCard
+    job: ResearchDirector
+
+- type: entity
+  parent: [IDCardNeoSolStandard, BaseCommandContraband]
+  id: MarshalIDCard
+  name: Marshal ID Card 
+  components:
+  - type: Sprite
+    layers:
+    - state: silver
+    - state: idmarshal
+  - type: Item
+    heldPrefix: silver
+  - type: PresetIdCard
+    job: HeadOfSecurity
+
+#endregion
+
+#region NeoSol Reps
+
+- type: entity
+  parent: [IDCardNeoSolStandard, BaseCommandContraband]
+  id: RedSwordIDCard
+  name: Red Sword ID Card
+  components:
+    - type: Sprite
+      layers:
+        - state: silver
+        - state: idredsword
+    - type: PresetIdCard
+      job: BlueShield
+    - type: Item
+      heldPrefix: silver
+
+- type: entity
+  parent: [IDCardNeoSolStandard, BaseCommandContraband]
+  id: NeoSolRepresentativeIDCard
+  name: NeoSol Representative ID Card
+  components:
+  - type: Sprite
+    layers:
+    - state: gold
+    - state: idneosolrepresentative
+  - type: Item
+    heldPrefix: gold
+  - type: PresetIdCard
+    job: NanoTrasenRepresentative
+
+#endregion
+
+#region NeoSol Civilian/Service
+
+- type: entity
+  parent: IDCardNeoSolStandard
+  id: NeoSolAssistantIDCard
+  name: Assistant ID Card 
+  components:
+  - type: Sprite
+    layers:
+    - state: default
+    - state: idassistant
+  - type: PresetIdCard
+    job: Assistant
+
+- type: entity
+  parent: NeoSolAssistantIDCard
+  id: NeoSolServiceWorkerIDCard
+  name: Service Worker ID Card 
+  components:
+  - type: PresetIdCard
+    job: ServiceWorker
+  - type: Sprite
+    layers:
+    - state: default
+    - state: idintern-service
+
+- type: entity
+  parent: IDCardNeoSolStandard
+  id: NeoSolClownIDCard
+  name: Clown ID Card 
+  components:
+  - type: Sprite
+    layers:
+    - state: default
+    - state: idclown
+  - type: PresetIdCard
+    job: Clown
+
+- type: entity
+  parent: IDCardNeoSolStandard
+  id: NeoSolMimeIDCard
+  name: Mime ID Card 
+  components:
+  - type: Sprite
+    layers:
+    - state: default
+    - state: idmime
+  - type: PresetIdCard
+    job: Mime
+
+- type: entity
+  parent: IDCardNeoSolStandard
+  id: NeoSolChaplainIDCard
+  name: Chaplain ID Card 
+  components:
+    - type: Sprite
+      layers:
+        - state: default
+        - state: idchaplain
+    - type: PresetIdCard
+      job: Chaplain
+
+- type: entity
+  parent: IDCardNeoSolStandard
+  id: CustodianIDCard
+  name: Custodian ID Card 
+  components:
+  - type: Sprite
+    layers:
+    - state: default
+    - state: idcustodian
+  - type: PresetIdCard
+    job: Janitor
+
+- type: entity
+  parent: IDCardNeoSolStandard
+  id: NeoSolBartenderIDCard
+  name: Bartender ID Card 
+  components:
+  - type: Sprite
+    layers:
+    - state: default
+    - state: idbartender
+  - type: PresetIdCard
+    job: Bartender
+
+- type: entity
+  parent: IDCardNeoSolStandard
+  id: NeoSolChefIDCard
+  name: Chef ID Card 
+  components:
+  - type: Sprite
+    layers:
+    - state: default
+    - state: idcook
+  - type: PresetIdCard
+    job: Chef
+
+- type: entity
+  parent: IDCardNeoSolStandard
+  id: NeoSolBotanistIDCard
+  name: Botanist ID Card 
+  components:
+    - type: Sprite
+      layers:
+        - state: default
+        - state: idbotanist
+    - type: PresetIdCard
+      job: Botanist
+
+- type: entity
+  parent: IDCardNeoSolStandard
+  id: NeoSolLibrarianIDCard
+  name: Librarian ID Card 
+  components:
+    - type: Sprite
+      layers:
+        - state: default
+        - state: idlibrarian
+    - type: PresetIdCard
+      job: Librarian
+
+- type: entity
+  parent: IDCardNeoSolStandard
+  id: NeoSolMusicianIDCard
+  name: Musician ID Card 
+  components:
+    - type: Sprite
+      layers:
+      - state: default
+      - state: idmusician
+    - type: PresetIdCard
+      job: Musician
+
+- type: entity
+  parent: IDCardNeoSolStandard
+  id: JournalistIDCard
+  name: Journalist ID Card 
+  components:
+  - type: Sprite
+    layers:
+    - state: default
+    - state: idjournalist
+  - type: PresetIdCard
+    job: Reporter
+
+- type: entity
+  parent: IDCardNeoSolStandard
+  id: NeoSolBoxerIDCard
+  name: Boxer ID Card 
+  components:
+  - type: Sprite
+    layers:
+    - state: default
+    - state: idboxer
+  - type: PresetIdCard
+    job: Boxer
+
+- type: entity
+  parent: IDCardNeoSolStandard
+  id: NeoSolZookeeperIDCard
+  name: Zookeeper ID Card 
+  components:
+  - type: Sprite
+    layers:
+    - state: default
+    - state: idzookeeper
+  - type: PresetIdCard
+    job: Zookeeper
+
+#endregion
+
+#region NeoSol Medical
+
+- type: entity
+  parent: IDCardNeoSolStandard
+  id: NeoSolSurgeonIDCard
+  name: Surgeon ID Card
+  components:
+  - type: Sprite
+    layers:
+    - state: default
+    - state: idsurgeon
+  - type: PresetIdCard
+    job: Surgeon
+
+- type: entity
+  parent: NeoSolAssistantIDCard
+  id: NeoSolMedicalInternIDCard
+  name: Medical Intern ID Card 
+  components:
+  - type: PresetIdCard
+    job: MedicalIntern
+  - type: Sprite
+    layers:
+    - state: default
+    - state: idintern-med
+
+- type: entity
+  parent: IDCardNeoSolStandard
+  id: NeoSolMedicalIDCard
+  name: Medical ID Card 
+  components:
+  - type: Sprite
+    layers:
+    - state: default
+    - state: idmedicaldoctor
+  - type: PresetIdCard
+    job: MedicalDoctor
+
+- type: entity
+  parent: IDCardNeoSolStandard
+  id: NeoSolParamedicIDCard
+  name: Paramedic ID Card 
+  components:
+  - type: Sprite
+    layers:
+    - state: default
+    - state: idparamedic
+  - type: PresetIdCard
+    job: Paramedic
+
+- type: entity
+  parent: IDCardNeoSolStandard
+  id: PharmacistIDCard
+  name: Pharmacist ID Card 
+  components:
+  - type: Sprite
+    layers:
+    - state: default
+    - state: idpharmacist
+  - type: PresetIdCard
+    job: Chemist
+
+- type: entity
+  parent: IDCardNeoSolStandard
+  id: NeoSolPsychologistIDCard
+  name: Psychologist ID Card 
+  components:
+  - type: Sprite
+    layers:
+    - state: default
+    - state: idpsychologist
+  - type: PresetIdCard
+    job: Psychologist
+
+#endregion
+
+#region NeoSol Security
+
+- type: entity
+  parent: [ IDCardNeoSolStandard, BaseSecurityContraband ]
+  id: NeoSolCorpsmanIDCard
+  name: Corpsman ID Card
+  components:
+    - type: Sprite
+      layers:
+        - state: default
+        - state: idcorpsman
+    - type: PresetIdCard
+      job: Corpsman
+
+- type: entity
+  parent: [ IDCardNeoSolStandard, BaseSecurityContraband ]
+  id: NeoSolBrigmedicIDCard
+  name: Brigmedic ID Card
+  components:
+    - type: Sprite
+      layers:
+        - state: default
+        - state: idbrigmedic
+    - type: PresetIdCard
+      job: Brigmedic
+
+- type: entity
+  parent: [ NeoSolAssistantIDCard, BaseSecurityContraband ]
+  id: RecruitIDCard
+  name: Recruit ID Card
+  components:
+  - type: PresetIdCard
+    job: SecurityCadet
+  - type: Sprite
+    layers:
+    - state: default
+    - state: idintern-cadet
+
+- type: entity
+  parent: [ IDCardNeoSolStandard, BaseSecurityContraband ]
+  id: EnforcerIDCard
+  name: Enforcer ID Card 
+  components:
+  - type: Sprite
+    layers:
+    - state: default
+    - state: idenforcer
+  - type: PresetIdCard
+    job: SecurityOfficer
+
+- type: entity
+  parent: [ IDCardNeoSolStandard, BaseSecurityContraband ]
+  id: ConstableIDCard
+  name: Constable ID Card 
+  components:
+    - type: Sprite
+      layers:
+        - state: default
+        - state: idconstable
+    - type: PresetIdCard
+      job: Warden
+
+- type: entity
+  parent: [ IDCardNeoSolStandard, BaseSecurityContraband ]
+  id: InspectorIDCard
+  name: Inspector ID Card 
+  components:
+  - type: Sprite
+    layers:
+    - state: default
+    - state: idinspector
+  - type: PresetIdCard
+    job: Detective
+
+#endregion
+
+#region NeoSol Engineering
+
+- type: entity
+  parent: NeoSolAssistantIDCard
+  id: NeoSolTechnicalAssistantIDCard
+  name: Technical Assistant ID Card 
+  components:
+  - type: PresetIdCard
+    job: TechnicalAssistant
+  - type: Sprite
+    layers:
+    - state: default
+    - state: idintern-tech
+  - type: Item
+    heldPrefix: default
+
+- type: entity
+  parent: IDCardNeoSolStandard
+  id: NeoSolEngineeringIDCard
+  name: Engineer ID Card 
+  components:
+  - type: Sprite
+    layers:
+    - state: default
+    - state: idstationengineer
+  - type: Item
+    heldPrefix: default
+  - type: PresetIdCard
+    job: StationEngineer
+
+- type: entity
+  parent: IDCardNeoSolStandard
+  id: NeoSolAtmosIDCard
+  name: Atmospheric Technician ID Card 
+  components:
+  - type: Sprite
+    layers:
+    - state: default
+    - state: idatmospherictechnician
+  - type: Item
+    heldPrefix: default
+  - type: PresetIdCard
+    job: AtmosphericTechnician
+
+#endregion
+
+#region NeoSol Science
+
+- type: entity
+  parent: NeoSolAssistantIDCard
+  id: LabTechnicianIDCard
+  name: Lab Technician ID Card 
+  components:
+  - type: PresetIdCard
+    job: ResearchAssistant
+  - type: Sprite
+    layers:
+    - state: default
+    - state: idintern-sci
+
+- type: entity
+  parent: IDCardNeoSolStandard
+  id: AcademicIDCard
+  name: Academic ID Card 
+  components:
+  - type: Sprite
+    layers:
+    - state: default
+    - state: idacademic
+  - type: PresetIdCard
+    job: Scientist
+
+- type: entity
+  parent: [ IDCardNeoSolStandard, BaseScienceContraband ]
+  id: MechanistIDCard
+  name: Mechanist ID card
+  components:
+  - type: Sprite
+    layers:
+    - state: default
+    - state: idmechanist
+  - type: PresetIdCard
+    job: Roboticist
+
+#endregion
+
+#region Syndicate High Command
+
+- type: entity
+  parent: IDCardNeoSolStandard
+  id: SHCIDCard
+  name: SHC ID Card
+  components:
+  - type: Sprite
+    layers:
+    - state: idsyndicatehighcommand
+    - state: idsyndicatehighcommand
+  - type: Item
+    heldPrefix: elite
+  - type: PresetIdCard
+    job: CentralCommandOfficial
+
+#endregion
