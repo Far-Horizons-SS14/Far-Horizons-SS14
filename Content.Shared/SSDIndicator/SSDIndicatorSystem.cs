@@ -127,7 +127,7 @@ public sealed class SSDIndicatorSystem : EntitySystem
         if (_icSsdSleep)
             component.FallAsleepTime = _timing.CurTime + TimeSpan.FromSeconds(_icSsdSleepTime);
 
-        component.FallAsleepTime = _timing.CurTime;
+        component.FallAsleepTime = _timing.CurTime; /// Far Horizons
         
         Dirty(uid, component);
     }
