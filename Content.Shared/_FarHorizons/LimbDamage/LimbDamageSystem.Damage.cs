@@ -1,6 +1,7 @@
 using Content.Shared._FarHorizons.LimbDamage.Components;
 using Content.Shared.Body;
 using Content.Shared.Damage.Components;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Rejuvenate;
 using Content.Shared.Weapons.Hitscan.Components;
 using Content.Shared.Weapons.Hitscan.Events;
@@ -17,6 +18,7 @@ public partial class LimbDamageSystem
         SubscribeLocalEvent<DamageableLimbComponent, OrganGotInsertedEvent>(OnDamageableLimbInserted);
         SubscribeLocalEvent<DamageableLimbComponent, RejuvenateEvent>(OnRejuvenate);
         SubscribeLocalEvent<DamageableLimbComponent, BodyRelayedEvent<RejuvenateEvent>>(OnRejuvenateBody);
+        SubscribeLocalEvent<ChangelingLimbComponent, DamageChangedEvent>(OnChangelingLimbDamaged);
     }
 
     private void OnRejuvenate(Entity<DamageableLimbComponent> ent, ref RejuvenateEvent args) => 
@@ -53,5 +55,15 @@ public partial class LimbDamageSystem
         if (!TryComp<DamageableComponent>(args.Target, out var bodyDamageable)) return;
         var damageable = EnsureComp<DamageableComponent>(ent);
         _damageable.SetDamageModifierSetId((ent, damageable), bodyDamageable.DamageModifierSetId);
+    }
+    
+    private void OnChangelingLimbDamaged(Entity<ChangelingLimbComponent> ent, ref DamageChangedEvent args)
+    {
+        if (!args.DamageIncreased)
+            return;
+
+        var allDamage = _damageable.GetPositiveDamage((ent, args.Damageable));
+        allDamage.ClampMax(ent.Comp.DamageCap);
+        _damageable.SetDamage((ent, args.Damageable), allDamage);
     }
 }

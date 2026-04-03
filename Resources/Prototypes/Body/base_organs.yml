@@ -115,11 +115,11 @@
       - mask
       - ears
   - type: DamageableLimb
-    bodyDamageFactor: 1.0 # Note: Making it >100% was a bad idea
+    bodyDamageFactor: 0.4 # Non vital variant is used for diona and slime, same 40% as legs/arms
     missChance: 0.35 # 35% chance to miss
     redirectChance: 0.2 # 20% chance to hit torso
-    scatterHitChance: 0.05
-    aimedTowardsScatterHitChance: 0.05 # Have to aim directly at them for headshots, bud
+    scatterHitChance: 0 # Disable chance to miss head without aiming
+    aimedTowardsScatterHitChance: 0
   - type: LimbDamageEffect
     effects:
       - effect: !type:LimbEffectDetach
@@ -145,6 +145,8 @@
   abstract: true
   components:
   - type: VitalOrgan
+  - type: DamageableLimb
+    bodyDamageFactor: 1.0 # 100% damage transfer for vital heads
   # Far Horizons end
 
 - type: entity

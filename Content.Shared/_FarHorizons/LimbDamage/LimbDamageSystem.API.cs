@@ -214,4 +214,17 @@ public partial class LimbDamageSystem
                 RemCompDeferred<GodmodeComponent>(limb);
         }
     }
+
+    public void SetChangelingLimbs(Entity<LimbDamageableComponent?> target, bool state)
+    {
+        if (!Resolve(target, ref target.Comp, false)) return;
+
+        foreach (var limb in GetAllDamageable(target))
+        {
+            if (state)
+                EnsureComp<ChangelingLimbComponent>(limb);
+            else
+                RemCompDeferred<ChangelingLimbComponent>(limb);
+        }
+    }
 }

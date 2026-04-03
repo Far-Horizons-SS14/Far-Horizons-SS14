@@ -65,6 +65,7 @@ using Content.Shared.Body.Components;
 using Content.Shared.Chemistry.Reagent;
 // Starlight edit end
 using Content.Shared.Zombies;
+using Content.Shared._FarHorizons.LimbDamage;
 
 namespace Content.Server.Changeling;
 
@@ -108,6 +109,7 @@ public sealed partial class ChangelingSystem : EntitySystem
     [Dependency] private readonly NpcFactionSystem _factionSystem = default!;
     [Dependency] private readonly MovementModStatusSystem _movementMod = default!;
     [Dependency] private readonly VisualBodySystem _visualBody = default!;
+    [Dependency] private readonly LimbDamageSystem _limbDamage = default!; // Far Horizons
 
     public EntProtoId FakeArmbladePrototype = "FakeArmBladeChangeling";
 
@@ -560,6 +562,7 @@ public sealed partial class ChangelingSystem : EntitySystem
             QueueDel(equip);
 
         PlayMeatySound(target, comp);
+        _limbDamage.SetChangelingLimbs(target, false); // Far Horizons
     }
 
     #endregion
@@ -592,6 +595,7 @@ public sealed partial class ChangelingSystem : EntitySystem
             _blood.ChangeBloodReagents(uid, new Solution([new ReagentQuantity("BloodChangeling", originalBlood.Volume)]));
         }
         // Starlight edit end
+        _limbDamage.SetChangelingLimbs(uid, true); // Far Horizons
     }
 
     private void OnMobStateChange(EntityUid uid, ChangelingComponent comp, ref MobStateChangedEvent args)
