@@ -1,8 +1,8 @@
 - type: damageModifierSet
-  id: Avali # Not as good as thick fur like the vulps, but still rather insulating.
+  id: Avali # Not as good as thick fur like the vulps, but still rather insulating. - modified to actually be on par with vulps
   coefficients:
-    Cold: 0.6
-    Heat: 1.4
+    Cold: 0.8 #FH
+    Heat: 1.2 #FH
 
 - type: damageModifierSet
   id: TerrorSpider
@@ -25,7 +25,7 @@
     Cold: 0.75
     Heat: 1.2
     Cellular: 0.25
-    Bloodloss: 1.35
+#    Bloodloss: 1.35 #FH ok so, this caused them to actually take way more bloodloss than intended, they already take 100% more bloodloss even without this modifier.
     Shock: 1.25
     Radiation: 1.3
 
