@@ -618,6 +618,8 @@
     - IPC 
     - SlimePerson
     - ProtoSlimePerson
+    - Diona
+    - ProtoDionae
   #FarHorizons End
 
 - type: entity
@@ -643,6 +645,8 @@
     - IPC 
     - SlimePerson
     - ProtoSlimePerson
+    - Diona
+    - ProtoDionae
   #FarHorizons End
 #
 - type: entity
@@ -742,7 +746,7 @@
     - SurgeryStepDisinfectScalp
     - SurgeryStepMakeIncisionScalp
     - SurgeryStepRetractScalp
-    - SurgeryStepExtractBrain
+    - SurgeryStepExtractCore
   - type: SurgerySpeciesCondition
     speciesBlacklist: []
     speciesWhitelist:
@@ -751,7 +755,7 @@
     - Diona #FarHorizons
     - ProtoDionae #FarHorizons
   - type: SurgeryOrganExistCondition
-    category: Brain
+    category: SentientCore
   - type: SurgeryPartCondition
     parts: [ Torso ]
   - type: Sprite
@@ -771,7 +775,7 @@
     - SurgeryStepPrepareScalp
     - SurgeryStepMakeIncisionScalp
     - SurgeryStepRetractScalp
-    - SurgeryStepInsertBrain
+    - SurgeryStepInsertCore
     - SurgeryStepReplaceScalp
     - SurgeryStepSutureScalp
   - type: SurgerySpeciesCondition
@@ -782,7 +786,7 @@
     - Diona #FarHorizons
     - ProtoDionae #FarHorizons
   - type: SurgeryOrganDontExistCondition
-    category: [ Brain ]
+    category: [ SentientCore ]
   - type: SurgeryPartCondition
     parts: [ Torso ]
   - type: Sprite
