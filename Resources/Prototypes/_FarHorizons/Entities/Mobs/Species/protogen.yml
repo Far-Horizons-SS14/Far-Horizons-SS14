@@ -150,6 +150,8 @@
   abstract: true
   components:
   - type: VisionOrganRequiredForVision
+  - type: LimbDamageable
+    proto: LimbTargetProtogen
 
 #region VULPKANIN ####
 
@@ -230,6 +232,8 @@
       reagents:
       - ReagentId: SulfurBlood
         Quantity: 300
+  - type: LimbDamageable
+    proto: LimbTargetVulp
 
 #region VOX ####
 
@@ -351,6 +355,8 @@
       - Protogen
       - Vox
   - type: VisionOrganRequiredForVision
+  - type: LimbDamageable
+    proto: LimbTargetVox
 
 #region THAVEN ####
 
@@ -451,6 +457,8 @@
       - Protogen
       - Thaven
   - type: VisionOrganRequiredForVision
+  - type: LimbDamageable
+    proto: LimbTargetThaven
 
 #region LAPSI ####
 
@@ -862,7 +870,7 @@
         - gloves
         - shoes
     - type: LimbDamageable # Far Horizons
-      proto: LimbTargetHuman
+      proto: LimbTargetShadekin
 
 #region RESOMI ####
 
@@ -1089,6 +1097,8 @@
   - type: FlashModifier
     modifier: 2
   - type: VisionOrganRequiredForVision
+  - type: LimbDamageable
+    proto: LimbTargetResomi
 
 #region REPTILIAN ####
 
@@ -1184,6 +1194,8 @@
       - Reptilian
   - type: VisionOrganRequiredForVision
   - type: Wagging
+  - type: LimbDamageable
+    proto: LimbTargetReptilian
 
 #region MOTH ####
 
@@ -1326,6 +1338,8 @@
       - Protogen
       - Moth
   - type: VisionOrganRequiredForVision
+  - type: LimbDamageable
+    proto: LimbTargetMoth
 
 #region HUMAN ####
 
@@ -1516,6 +1530,8 @@
           32:
             sprite: _Starlight/Mobs/Species/Felionoid/displacement.rsi
             state: shoes
+  - type: LimbDamageable
+    proto: LimbTargetFelionoid
 
 #region DWARF ####
 
@@ -1720,6 +1736,8 @@
   - type: Rootable
   - type: VisionOrganRequiredForVision
   - type: RegrowableLimbs
+  - type: LimbDamageable
+    proto: LimbTargetDiona
 
 #region CYCLORITE ####
 
@@ -1858,6 +1876,8 @@
       - Protogen
       - Cyclorite
   - type: VisionOrganRequiredForVision
+  - type: LimbDamageable
+    proto: LimbTargetCyclorite
 
 #region AVALI ####
 
@@ -2008,6 +2028,8 @@
       critHealingModifier: 0.5
       stasisDamageReduction: 0.7
     - type: VisionOrganRequiredForVision
+    - type: LimbDamageable
+      proto: LimbTargetAvali
 
 #region ARACHNID ####
 
@@ -2089,3 +2111,5 @@
     templateId: protoarachnid
     speciesId: arachnid
   - type: VisionOrganRequiredForVision
+  - type: LimbDamageable
+    proto: LimbTargetArachnid
