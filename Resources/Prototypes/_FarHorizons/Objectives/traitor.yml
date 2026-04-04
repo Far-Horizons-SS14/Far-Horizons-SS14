@@ -1,3 +1,5 @@
+
+
 ## Corpsman
 
 - type: entity
@@ -20,3 +22,109 @@
   - type: Objective
     # You'll have to snatch this from the corpsman's cold, dead hands. Also they're always in sec.
     difficulty: 2
+# RP Objective Additions Begin -- Do not forget to add them to the objectivesGroup.yml in the respective FH folder
+
+- type: entity
+  parent: BaseStoryObjective
+  id: SabotageScienceObjective
+  name: Disrupt the research department by various means of sabotage, be it assaulting research staff, deliberately causing anomalies to go critical or stealing of artefacts to name a few examples.
+  description: Escape to centcomm after the shift, one of our agents will debrief you. Don't show up in cuffs.
+  components:
+    - type: Objective
+      difficulty: 1
+      unique: true
+      icon:
+        sprite: _Starlight/Interface/Misc/rp_icon.rsi
+        state: icon
+        
+- type: entity
+  parent: BaseStoryObjective
+  id: SabotageEngineeringObjective
+  name: Disrupt the engineering department by various means of sabotage, be it assaulting engineering staff, causing hullbreaches in maintenance and hallways etc. Do not cause mass cass by, for instance plasmaflood or releasing the engine. The station is a greater asset if operational.
+  description: Escape to centcomm after the shift, one of our agents will debrief you. Don't show up in cuffs.
+  components:
+    - type: Objective
+      difficulty: 1
+      unique: true
+      icon:
+        sprite: _Starlight/Interface/Misc/rp_icon.rsi
+        state: icon
+
+- type: entity
+  parent: BaseStoryObjective
+  id: SabotageMedicalObjective
+  name: Disrupt the medical department by various means of sabotage, be it assaulting medical staff, sabotaging prepared chemicals with toxins, power outages or other means not listed here. Avoid rendering medbay completely non-functional if possible, as it may be required for other agents success.
+  description: Escape to centcomm after the shift, one of our agents will debrief you. Don't show up in cuffs.
+  components:
+    - type: Objective
+      difficulty: 1
+      unique: true
+      icon:
+        sprite: _Starlight/Interface/Misc/rp_icon.rsi
+        state: icon     
+
+- type: entity
+  parent: BaseStoryObjective
+  id: SabotageServiceObjective
+  name: Disrupt the Service department by various means of sabotage, be it assaulting service staff, poisoning food and drinks with toxins and narcotics, mutating botany plants etc. 
+  description: Escape to centcomm after the shift, one of our agents will debrief you. Don't show up in cuffs.
+  components:
+    - type: Objective
+      difficulty: 1
+      unique: true
+      icon:
+        sprite: _Starlight/Interface/Misc/rp_icon.rsi
+        state: icon
+        
+- type: entity
+  parent: BaseStoryObjective
+  id: SabotageCargoObjective
+  name: Disrupt the local GSL branch by various means of sabotage, be it assaulting GSL staff, disrupting and intercepting deliveries, spreading rumors of "Blue Borgs" etc. Avoid rendering the GSL department fully inoperable, we may need them in the future.
+  description: Escape to centcomm after the shift, one of our agents will debrief you. Don't show up in cuffs.
+  components:
+    - type: Objective
+      difficulty: 1
+      unique: true
+      icon:
+        sprite: _Starlight/Interface/Misc/rp_icon.rsi
+        state: icon
+
+- type: entity
+  parent: BaseStoryObjective
+  id: SabotageSecurityObjective
+  name: Disrupt the local security team by various means of sabotage, be it assaulting security personnel, freeing inmates, spreading rumors about false threats, framing people for arrest as a few examples.
+  description: Escape to centcomm after the shift, one of our agents will debrief you. Don't show up in cuffs.
+  components:
+    - type: Objective
+      difficulty: 3
+      unique: true
+      icon:
+        sprite: _Starlight/Interface/Misc/rp_icon.rsi
+        state: icon
+
+- type: entity
+  parent: BaseStoryObjective
+  id: DisruptCommandStructureObjective
+  name: The command structure of this station requires to be disrupted for some time. Find means to hinder command at coordinating the efforts of this station. Avoid mass destruction.
+  description: Escape to centcomm after the shift, one of our agents will debrief you. Don't show up in cuffs.
+  components:
+    - type: Objective
+      difficulty: 2
+      unique: true
+      icon:
+        sprite: _Starlight/Interface/Misc/rp_icon.rsi
+        state: icon
+
+- type: entity
+  parent: BaseStoryObjective
+  id: MakeMaintenanceUnsafeAgainObjective
+  name: The maintenance tunnels are so safe on this station. Show them why the lone assistant should not venture into maintenance again. Make them fear the tunnels.
+  description: Escape to centcomm after the shift, one of our agents will debrief you. Don't show up in cuffs.
+  components:
+    - type: Objective
+      difficulty: 1.5
+      unique: true
+      icon:
+        sprite: _Starlight/Interface/Misc/rp_icon.rsi
+        state: icon
+# RP Objective Addition End
