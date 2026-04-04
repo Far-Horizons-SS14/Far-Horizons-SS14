@@ -149,3 +149,64 @@
               Caustic: 2
               Slash: 2
               Asphyxiation: 6 # Heart Attack-inducing.
+
+#region Topical Chems
+- type: reagent
+  id: AloeVeraCream
+  name: reagent-name-aloe-vera-cream
+  group: Medicine
+  desc: reagent-desc-aloe-vera-cream
+  physicalDesc: reagent-physical-desc-soothing 
+  flavor: medicine
+  color: "#9FCA82"
+  metabolisms:
+    Bloodstream:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Heat: -0.3
+            Shock: -0.3
+            Cold: -0.3
+            Caustic: -0.05
+        affectAllLimbs: true
+
+- type: reagent
+  id: BurnCream
+  name: reagent-name-burn-cream
+  group: Medicine
+  desc: reagent-desc-burn-cream
+  physicalDesc: reagent-physical-desc-soothing 
+  flavor: medicine
+  color: "#F1EFC0"
+  metabolisms:
+    Bloodstream:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Heat: -0.5
+            Shock: -0.5
+            Cold: -0.5
+            Caustic: -0.1
+        affectAllLimbs: true
+
+- type: reagent
+  id: BurnCreamBlue
+  name: reagent-name-burn-cream-blue
+  group: Medicine
+  desc: reagent-desc-burn-cream-blue
+  physicalDesc: reagent-physical-desc-soothing 
+  flavor: medicine
+  color: "#A4D7FF"
+  metabolisms:
+    Bloodstream:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Heat: -0.7
+            Shock: -0.7
+            Cold: -0.7
+            Caustic: -0.2
+        affectAllLimbs: true

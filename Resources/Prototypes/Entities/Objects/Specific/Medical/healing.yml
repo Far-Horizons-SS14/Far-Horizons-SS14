@@ -17,61 +17,67 @@
     priceCategory: medical  
   #Starlight-edit: end
 
-- type: entity
-  name: ointment
-  description: Used to treat those nasty burns. Less effective on caustic burns.
-  parent: BaseHealingItem
-  id: Ointment
-  suffix: Full
-  components:
-  - type: Tag
-    tags:
-    - Ointment
-  - type: Sprite
-    state: ointment
-  - type: Item
-    heldPrefix: ointment
-    storedSprite:
-      state: ointment-storage
-      sprite: Objects/Specific/Medical/medical.rsi
-  - type: Healing
-    damageContainers:
-      - Biological
-    delay: 1.6 # STARLIGHT
-    damage:
-      types:
-        Heat: -5
-        Cold: -5
-        Shock: -5
-        Caustic: -1.5
-    healingBeginSound:
-      path: "/Audio/Items/Medical/ointment_begin.ogg"
-      params:
-        volume: 1.0
-        variation: 0.125
-    healingEndSound:
-      path: "/Audio/Items/Medical/ointment_end.ogg"
-      params:
-        volume: 1.0
-        variation: 0.125
-  - type: Stack
-    stackType: Ointment
-    count: 10
-  - type: StackPrice
-    price: 5
-  - type: InteractRestriction #FH - Edit
-    restrictInteractionTarget:
-      blacklist:  # Use blacklist instead of whitelist so can be clicked on bags/medkits
-        - IPC
-
-- type: entity
-  id: Ointment1
-  parent: Ointment
-  suffix: Single
-  components:
-  - type: Stack
-    stackType: Ointment
-    count: 1
+#FH - Start - Disabled
+#- type: entity
+#  name: ointment
+#  description: Used to treat those nasty burns. Less effective on caustic burns.
+#  parent: BaseHealingItem
+#  id: Ointment
+#  suffix: Full
+#  components:
+#  - type: Tag
+#    tags:
+#    - Ointment
+#  - type: Sprite
+#    sprite: _FarHorizons/Objects/Specific/Medical/ointment.rsi
+#    state: ointment
+#  - type: Item
+#    heldPrefix: ointment
+#    storedSprite:
+#      state: ointment-storage
+#      sprite: _FarHorizons/Objects/Specific/Medical/ointment.rsi
+#  - type: Healing
+#    damageContainers:
+#      - Biological
+#    delay: 1.6 # STARLIGHT
+#    damage:
+#      types:
+#        Heat: -5
+#        Cold: -5
+#        Shock: -5
+#        Caustic: -1.5
+#    healingBeginSound:
+#      path: "/Audio/Items/Medical/ointment_begin.ogg"
+#      params:
+#        volume: 1.0
+#        variation: 0.125
+#    healingEndSound:
+#      path: "/Audio/Items/Medical/ointment_end.ogg"
+#      params:
+#        volume: 1.0
+#        variation: 0.125
+#  - type: Stack
+#    stackType: Ointment
+#    count: 10
+#  - type: StackPrice
+#    price: 5
+#  - type: InteractRestriction #FH - Edit
+#    restrictInteractionTarget:
+#      blacklist:  # Use blacklist instead of whitelist so can be clicked on bags/medkits
+#        - IPC
+#
+#FH - Disabled
+#- type: entity
+#  id: Ointment1
+#  parent: Ointment
+#  suffix: Single
+#  components:
+#  - type: Sprite
+#    state: ointment_
+#  - type: Stack
+#    stackType: Ointment
+#    count: 1
+#FH - End
 
 - type: entity
   name: regenerative mesh
@@ -380,24 +386,27 @@
   - type: Stack
     count: 1
 
-- type: entity
-  name: aloe cream
-  description: A topical cream for burns.
-  parent: Ointment ##Yes it's a direct reskin
-  id: AloeCream
-  components:
-  - type: Sprite
-    sprite: Objects/Specific/Hydroponics/aloe.rsi
-    state: cream
-  - type: Stack
-    stackType: AloeCream
-    count: 10
-  - type: Item
-    storedRotation: 90
-    storedOffset: 4, 0
-    storedSprite:
-      state: cream
-      sprite: Objects/Specific/Hydroponics/aloe.rsi
+#FH - Start - Disabled
+#- type: entity
+#  name: aloe cream
+#  description: A topical cream for burns.
+#  parent: Ointment
+#  id: AloeCream
+#  suffix: Full
+#  components:
+#  - type: Sprite
+#    sprite: _FarHorizons/Objects/Specific/Medical/ointment.rsi
+#    state: ointment_green
+#  - type: Stack
+#    stackType: AloeCream
+#    count: 10
+#  - type: Item
+#    storedRotation: 90
+#    storedOffset: 4, 0
+#    storedSprite:
+#      state: ointment_green
+#      sprite: _FarHorizons/Objects/Specific/Medical/ointment.rsi
+#FH - End
 
 - type: entity
   parent: BaseHealingItem

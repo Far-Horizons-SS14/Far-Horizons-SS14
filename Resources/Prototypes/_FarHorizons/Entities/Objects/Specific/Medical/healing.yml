@@ -1,3 +1,4 @@
+#region UBR Pack
 - type: entity
   name: Universal Blood Pack
   description: Does not work with Ammonia-based races and will not accept Amoxla to avoid lethal accidents by colorblind medical doctors.
@@ -68,6 +69,7 @@
         - ReagentId: UniversalBlood
           Quantity: 10
 
+#region Amoxla Pack
 - type: entity
   name: Amoxla Pack
   description: Does not work with Non-Ammonia-based races and will not accept Universal Blood to avoid lethal accidents by colorblind medical doctors.
@@ -133,6 +135,7 @@
         - ReagentId: Amoxla
           Quantity: 10
 
+#region Oil Pack
 - type: entity
   name: Oil Pack
   description: Does not work with Non-Organic races and will not accept Universal Blood or Amoxla to avoid lethal accidents by colorblind medical doctors.
@@ -197,6 +200,7 @@
         - ReagentId: Oil
           Quantity: 10
 
+#region Pills
 - type: entity
   name: pill canister
   parent: PillCanister
@@ -241,3 +245,255 @@
         reagents:
           - ReagentId: Amoxla
             Quantity: 15
+
+#region Blue Ointment
+- type: entity
+  parent: [BaseAutoMender, DrinkVisualsOpenable, DrinkVisualsFill] # You have no idea how long this took me to get to layer properly
+  name: Blue Ointment Canister
+  description: Used to treat those nasty burns. Seems to be able to hold more than a normal Canister.
+  id: BlueOintmentEmpty
+  suffix: Empty
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Specific/Medical/blue_ointment.rsi
+    layers:
+    - state: empty
+    - state: ointment1
+      map: ["enum.SolutionContainerLayers.Fill"]
+      visible: false
+    - state: icon_open
+      map: ["enum.OpenableVisuals.Layer"]
+  - type: Item
+    size: Small
+    sprite: _FarHorizons/Objects/Specific/Medical/blue_ointment.rsi
+    heldPrefix: ointment
+  - type: SolutionContainerManager
+    solutions:
+      injector:
+        maxVol: 20
+  - type: Healing
+    solutionDrain: true
+    reagentsToDrain:
+    - ReagentId: BurnCreamBlue
+      Quantity: 1
+    delay: 1.6
+    damageContainers:
+      - Biological
+    damage:
+      types:
+        Heat: -5.5
+        Cold: -5.5
+        Shock: -5.5
+        Caustic: -2
+    healingBeginSound:
+      path: "/Audio/Items/Medical/ointment_begin.ogg"
+      params:
+        volume: 1.0
+        variation: 0.125
+    healingEndSound:
+      path: "/Audio/Items/Medical/ointment_end.ogg"
+      params:
+        volume: 1.0
+        variation: 0.125
+  - type: SolutionContainerVisuals
+    maxFillLevels: 6
+    fillBaseName: ointment
+    inHandsMaxFillLevels: 0
+    inHandsFillBaseName: -fill-
+  - type: ExaminableSolution
+    examinableWhileClosed: false
+    heldOnly: false
+  - type: InteractRestriction
+    restrictInteractionTarget:
+      blacklist:  # Use blacklist instead of whitelist so can be clicked on bags/medkits
+        - IPC
+  - type: Openable
+    sound:
+      collection: bottleOpenSounds
+    closeable: true
+    closeSound:
+      collection: bottleCloseSounds
+  - type: Tag
+    tags:
+    - Ointment
+
+- type: entity
+  suffix: Filled
+  parent: BlueOintmentEmpty
+  id: BlueOintment
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      injector:
+        maxVol: 20
+        reagents:
+        - ReagentId: BurnCreamBlue
+          Quantity: 20
+
+#region Aloe Vera
+- type: entity
+  parent: BlueOintmentEmpty
+  name: Aloe Vera Canister
+  description: Used to treat those nasty burns. Less effective than it's medical counterpart.
+  id: AloeCreamEmpty
+  suffix: Empty
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Specific/Medical/green_ointment.rsi
+    layers:
+    - state: empty
+    - state: ointment1
+      map: ["enum.SolutionContainerLayers.Fill"]
+      visible: false
+    - state: icon_open
+      map: ["enum.OpenableVisuals.Layer"]
+  - type: Item
+    size: Small
+    sprite: _FarHorizons/Objects/Specific/Medical/green_ointment.rsi
+    heldPrefix: ointment
+  - type: SolutionContainerManager
+    solutions:
+      injector:
+        maxVol: 10
+  - type: Healing
+    solutionDrain: true
+    reagentsToDrain:
+    - ReagentId: AloeVeraCream
+      Quantity: 1
+    delay: 1.6
+    damageContainers:
+      - Biological
+    damage:
+      types:
+        Heat: -2.5
+        Cold: -2.5
+        Shock: -2.5
+        Caustic: -0.5
+    healingBeginSound:
+      path: "/Audio/Items/Medical/ointment_begin.ogg"
+      params:
+        volume: 1.0
+        variation: 0.125
+    healingEndSound:
+      path: "/Audio/Items/Medical/ointment_end.ogg"
+      params:
+        volume: 1.0
+        variation: 0.125
+  - type: SolutionContainerVisuals
+    maxFillLevels: 8
+    fillBaseName: ointment
+    inHandsMaxFillLevels: 0
+    inHandsFillBaseName: -fill-
+  - type: ExaminableSolution
+    examinableWhileClosed: false
+    heldOnly: false
+  - type: InteractRestriction
+    restrictInteractionTarget:
+      blacklist:  # Use blacklist instead of whitelist so can be clicked on bags/medkits
+        - IPC
+  - type: Openable
+    sound:
+      collection: bottleOpenSounds
+    closeable: true
+    closeSound:
+      collection: bottleCloseSounds
+  - type: Tag
+    tags:
+    - Ointment
+
+- type: entity
+  suffix: Filled
+  parent: AloeCreamEmpty
+  id: AloeCream
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      injector:
+        maxVol: 10
+        reagents:
+        - ReagentId: AloeVeraCream
+          Quantity: 10
+
+#region Ointment
+- type: entity
+  parent: BlueOintmentEmpty
+  name: Ointment Canister
+  description: Used to treat those nasty burns. Less effective on caustic burns.
+  id: OintmentEmpty
+  suffix: Empty
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Specific/Medical/ointment.rsi
+    layers:
+    - state: empty
+    - state: ointment1
+      map: ["enum.SolutionContainerLayers.Fill"]
+      visible: false
+    - state: icon_open
+      map: ["enum.OpenableVisuals.Layer"]
+  - type: Item
+    size: Small
+    sprite: _FarHorizons/Objects/Specific/Medical/ointment.rsi
+    heldPrefix: ointment
+  - type: SolutionContainerManager
+    solutions:
+      injector:
+        maxVol: 10
+  - type: Healing
+    solutionDrain: true
+    reagentsToDrain:
+    - ReagentId: BurnCream
+      Quantity: 1
+    delay: 1.6
+    damageContainers:
+      - Biological
+    damage:
+      types:
+        Heat: -5
+        Cold: -5
+        Shock: -5
+        Caustic: -1.5
+    healingBeginSound:
+      path: "/Audio/Items/Medical/ointment_begin.ogg"
+      params:
+        volume: 1.0
+        variation: 0.125
+    healingEndSound:
+      path: "/Audio/Items/Medical/ointment_end.ogg"
+      params:
+        volume: 1.0
+        variation: 0.125
+  - type: SolutionContainerVisuals
+    maxFillLevels: 6
+    fillBaseName: ointment
+    inHandsMaxFillLevels: 0
+    inHandsFillBaseName: -fill-
+  - type: ExaminableSolution
+    examinableWhileClosed: false
+    heldOnly: false
+  - type: InteractRestriction
+    restrictInteractionTarget:
+      blacklist:  # Use blacklist instead of whitelist so can be clicked on bags/medkits
+        - IPC
+  - type: Openable
+    sound:
+      collection: bottleOpenSounds
+    closeable: true
+    closeSound:
+      collection: bottleCloseSounds
+  - type: Tag
+    tags:
+    - Ointment
+
+- type: entity
+  suffix: Filled
+  parent: OintmentEmpty
+  id: Ointment
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      injector:
+        maxVol: 10
+        reagents:
+        - ReagentId: BurnCream
+          Quantity: 10
