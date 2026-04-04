@@ -1,7 +1,7 @@
 - type: entity
   parent: BaseItem
   id: DoorRemoteDefault
-  name: door remote
+  name: Door Remote #Far Horizons - The Great Capitalization Crusade
   description: A gadget which can open and bolt doors remotely.
   abstract: true
   components:
@@ -62,7 +62,7 @@
 - type: entity
   parent: [DoorRemoteDefault, BaseCommandContraband]
   id: DoorRemoteCommand
-  name: command door remote
+  name: Command Door Remote #Far Horizons - The Great Capitalization Crusade
   components:
   - type: Sprite
     layers:
@@ -79,7 +79,7 @@
 - type: entity
   parent: [DoorRemoteDefault, BaseCommandContraband]
   id: DoorRemoteCustom
-  name: custom door remote
+  name: Custom Door Remote #Far Horizons - The Great Capitalization Crusade
   description: A gadget which can open and bolt doors remotely. This advanced variant does not have built-in access, instead inheriting the ID access of the user.
   components:
   - type: Sprite
@@ -96,7 +96,7 @@
 - type: entity
   parent: [DoorRemoteDefault, BaseCommandContraband]
   id: DoorRemoteSecurity
-  name: security door remote
+  name: Security Door Remote #Far Horizons - The Great Capitalization Crusade
   components:
   - type: Sprite
     layers:
@@ -112,7 +112,7 @@
 - type: entity
   parent: [DoorRemoteDefault, BaseSecurityCommandContraband]
   id: DoorRemoteArmory
-  name: armory door remote
+  name: Armory Door Remote #Far Horizons - The Great Capitalization Crusade
   components:
   - type: Sprite
     layers:
@@ -128,7 +128,7 @@
 - type: entity
   parent: [DoorRemoteDefault, BaseCommandContraband]
   id: DoorRemoteService
-  name: service door remote
+  name: Service Door Remote #Far Horizons - The Great Capitalization Crusade
   components:
   - type: Sprite
     layers:
@@ -144,7 +144,7 @@
 - type: entity
   parent: [DoorRemoteDefault, BaseCommandContraband]
   id: DoorRemoteResearch
-  name: research door remote
+  name: Research Door Remote #Far Horizons - The Great Capitalization Crusade
   components:
   - type: Sprite
     layers:
@@ -160,7 +160,7 @@
 - type: entity
   parent: [DoorRemoteDefault, BaseCommandContraband]
   id: DoorRemoteCargo
-  name: cargo door remote
+  name: Cargo Door Remote #Far Horizons - The Great Capitalization Crusade
   components:
   - type: Sprite
     layers:
@@ -176,7 +176,7 @@
 - type: entity
   parent: [DoorRemoteDefault, BaseCommandContraband]
   id: DoorRemoteMedical
-  name: medical door remote
+  name: Medical Door Remote #Far Horizons - The Great Capitalization Crusade
   components:
   - type: Sprite
     layers:
@@ -192,7 +192,7 @@
 - type: entity
   parent: [DoorRemoteDefault, BaseCommandContraband]
   id: DoorRemoteEngineering
-  name: engineering door remote
+  name: Engineering Door Remote #Far Horizons - The Great Capitalization Crusade
   components:
   - type: Sprite
     layers:
@@ -208,7 +208,7 @@
 - type: entity
   parent: [DoorRemoteCanEletrifyDoors, BaseCommandContraband]
   id: DoorRemoteAll
-  name: super door remote
+  name: Super Door Remote #Far Horizons - The Great Capitalization Crusade
   description: A gadget which can open and bolt doors remotely. This one works even on wooden doors!
   suffix: Admeme
   components:
@@ -236,7 +236,7 @@
 - type: entity
   parent: [DoorRemoteCanEletrifyDoors, BaseXenoborgContraband]
   id: DoorRemoteXenoborg
-  name: xenoborg door remote
+  name: Xenoborg Door Remote #Far Horizons - The Great Capitalization Crusade
   components:
   - type: Sprite
     layers:
