@@ -746,7 +746,7 @@
     - SurgeryStepDisinfectScalp
     - SurgeryStepMakeIncisionScalp
     - SurgeryStepRetractScalp
-    - SurgeryStepExtractCore
+    - SurgeryStepExtractCore #FH
   - type: SurgerySpeciesCondition
     speciesBlacklist: []
     speciesWhitelist:
@@ -755,7 +755,7 @@
     - Diona #FarHorizons
     - ProtoDionae #FarHorizons
   - type: SurgeryOrganExistCondition
-    category: SentientCore
+    category: Sentient Core #FH
   - type: SurgeryPartCondition
     parts: [ Torso ]
   - type: Sprite
@@ -775,7 +775,7 @@
     - SurgeryStepPrepareScalp
     - SurgeryStepMakeIncisionScalp
     - SurgeryStepRetractScalp
-    - SurgeryStepInsertCore
+    - SurgeryStepInsertCore #FH 
     - SurgeryStepReplaceScalp
     - SurgeryStepSutureScalp
   - type: SurgerySpeciesCondition
@@ -786,7 +786,7 @@
     - Diona #FarHorizons
     - ProtoDionae #FarHorizons
   - type: SurgeryOrganDontExistCondition
-    category: [ SentientCore ]
+    category: [ SentientCore ] #FH
   - type: SurgeryPartCondition
     parts: [ Torso ]
   - type: Sprite
