@@ -83,9 +83,6 @@
   abstract: true
   suffix: IPC
   components:
-  - type: Tag
-    tags:
-      - Inorganic
   - type: Extractable
     juiceSolution:
       reagents:
@@ -136,6 +133,10 @@
 - type: entity
   parent: [ OrganBaseTorsoSexed, OrganBaseTorso, OrganIPCExternal ]
   id: OrganIPCTorso
+  components:
+  - type: Tag
+    tags:
+      - Inorganic
 
 - type: entity
   parent: [ DamageableLimbVisualsIPC, OrganBaseHeadSexed, OrganBaseHead, OrganIPCExternal ]
@@ -147,6 +148,9 @@
       - Head
       - HeadSide
       - HeadTop
+  - type: Tag
+    tags:
+      - Inorganic
 
 - type: entity
   parent: [ DamageableLimbVisualsIPC, OrganBaseArmLeft, OrganIPCExternal ]
@@ -160,6 +164,9 @@
         types:
           Shock: 3
           Heat: 2
+  - type: Tag
+    tags:
+      - Inorganic
 
 - type: entity
   parent: [ DamageableLimbVisualsIPC, OrganBaseArmRight, OrganIPCExternal ]
@@ -173,6 +180,9 @@
         types:
           Shock: 3
           Heat: 2
+  - type: Tag
+    tags:
+      - Inorganic
 
 - type: entity
   parent: [ OrganBaseHandLeft, OrganIPCExternal ]
@@ -186,6 +196,9 @@
         types:
           Shock: 3
           Heat: 1
+  - type: Tag
+    tags:
+      - Inorganic
 
 - type: entity
   parent: [ OrganBaseHandRight, OrganIPCExternal ]
@@ -199,6 +212,9 @@
         types:
           Shock: 3
           Heat: 1
+  - type: Tag
+    tags:
+      - Inorganic
 
 - type: entity
   parent: [ DamageableLimbVisualsIPC, OrganBaseLegLeft, OrganIPCExternal ]
@@ -214,6 +230,9 @@
         types:
           Shock: 3
           Heat: 2
+  - type: Tag
+    tags:
+      - Inorganic
 
 - type: entity
   parent: [ DamageableLimbVisualsIPC, OrganBaseLegRight, OrganIPCExternal ]
@@ -229,6 +248,9 @@
         types:
           Shock: 3
           Heat: 2
+  - type: Tag
+    tags:
+      - Inorganic
 
 - type: entity
   parent: [ OrganBaseFootLeft, OrganIPCExternal ]
@@ -244,6 +266,9 @@
         types:
           Shock: 3
           Heat: 1
+  - type: Tag
+    tags:
+      - Inorganic
 
 - type: entity
   parent: [ OrganBaseFootRight, OrganIPCExternal ]
@@ -259,6 +284,9 @@
         types:
           Shock: 3
           Heat: 1
+  - type: Tag
+    tags:
+      - Inorganic
 
 # Organs
 
@@ -280,18 +308,29 @@
       damageAmount:
         types:
           Shock: 1
+  - type: Tag
+    tags:
+      - Inorganic
 
 - type: entity
   parent: [ OrganBaseTongue, OrganIPCInternal ]
   id: OrganIPCTongue
   name: Vocal Modulator
   description: "A vocal modulator, typically used for lying."
+  components:
+  - type: Tag
+    tags:
+      - Inorganic
 
 - type: entity
   parent: [ OrganBaseEars, OrganIPCInternal ]
   id: OrganIPCEars
   name: Robotic Ears
   description: "Process audio at the same quality of station-side cyborgs"
+  components:
+  - type: Tag
+    tags:
+      - Inorganic
 
 - type: entity
   parent: [ OrganBaseHeart, OrganIPCInternal ]
@@ -301,3 +340,6 @@
   components:
   - type: Metabolizer
     maxReagents: 0
+  - type: Tag
+    tags:
+      - Inorganic

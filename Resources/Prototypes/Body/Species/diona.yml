@@ -57,7 +57,7 @@
       LegRight: OrganDionaLegRight
       FootLeft: OrganDionaFootLeft
       FootRight: OrganDionaFootRight
-      Brain: OrganDionaBrainNymphing
+      SentientCore: OrganDionaBrainNymphing #FH
       Eyes: OrganDionaEyes
       Lungs: OrganDionaLungsNymphing
       Stomach: OrganDionaStomachNymphing
@@ -327,6 +327,9 @@
   - type: Nymph
     transferMind: true
     entityPrototype: OrganDionaNymphBrain
+  # Far Horizons - brain isn't in the head
+  - type: Organ
+    category: SentientCore
 
 - type: entity
   parent: OrganDionaLungs

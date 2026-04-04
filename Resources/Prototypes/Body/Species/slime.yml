@@ -67,7 +67,7 @@
       LegRight: OrganSlimePersonLegRight
       FootLeft: OrganSlimePersonFootLeft
       FootRight: OrganSlimePersonFootRight
-      Brain: OrganSlimePersonCore
+      SentientCore: OrganSlimePersonCore #FH
       Lungs: OrganSlimePersonLungs
   - type: HumanoidProfile
     species: SlimePerson
@@ -347,6 +347,10 @@
   parent: [ OrganBaseBrain, OrganSlimePersonInternal ] #FarHorizons
   id: OrganSlimePersonCore
   name: sentient slime core
+  components:
+  # Far Horizons - brain isn't in the head
+  - type: Organ
+    category: SentientCore
 #FarHorizons - Moving metabolizer/stomach to entire body, instead of core.
 #  components:
 #  - type: SolutionContainerManager

@@ -91,7 +91,7 @@ public sealed class SSDIndicatorSystem : EntitySystem
 
     #region Starlight
 
-    private void OnSSDTry(EntityUid uid, SSDIndicatorComponent component, SSDTryDoAfterEvent args) => SSD(uid, component);
+    private void OnSSDTry(EntityUid uid, SSDIndicatorComponent component, SSDTryDoAfterEvent args) => SSD(uid, component, true); /// Far Horizons
 
     /// <summary>
     /// Attempts to set the entity as SSD.
@@ -119,13 +119,17 @@ public sealed class SSDIndicatorSystem : EntitySystem
         return true;
     }
 
-    private void SSD(EntityUid uid, SSDIndicatorComponent component)
+    // Far Horizons
+    private void SSD(EntityUid uid, SSDIndicatorComponent component, bool sleepNow = false)
     {
         component.IsSSD = true;
 
         if (_icSsdSleep)
             component.FallAsleepTime = _timing.CurTime + TimeSpan.FromSeconds(_icSsdSleepTime);
 
+        if (sleepNow)
+          component.FallAsleepTime = _timing.CurTime; // Far Horizons
+        
         Dirty(uid, component);
     }
 
