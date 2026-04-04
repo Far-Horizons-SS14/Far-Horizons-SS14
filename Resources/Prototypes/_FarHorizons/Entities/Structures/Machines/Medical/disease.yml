@@ -6,11 +6,26 @@
   placement:
     mode: SnapgridCenter
   components:
+  - type: Sprite
+    sprite: Structures/Machines/vaccinator.rsi
+    snapCardinals: true
+    layers:
+    - state: icon
+      map: ["enum.LatheVisualLayers.IsRunning"]
+    - state: unlit
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
   - type: ContainerContainer
     containers:
       machine_board: !type:Container {}
       machine_parts: !type:Container {}
       sample: !type:ContainerSlot {}
+  - type: Lathe
+    idleState: icon
+    runningState: running
+    unlitIdleState: unlit
+    unlitRunningState: running
+    staticPacks:
+    - VaccinatorRecipePack
   - type: DiseaseVaccinator
   - type: MaterialStorage
   - type: ItemSlots

@@ -116,6 +116,20 @@
             Asphyxiation: 10
 
 - type: reagent
+  id: Vaccine
+  name: reagent-name-vaccine
+  group: Medicine
+  desc: reagent-desc-vaccine
+  physicalDesc: reagent-physical-desc-clear
+  flavor: medicine
+  color: "#e0f2fa"
+  metabolisms:
+    Bloodstream:
+      metabolismRate: 5.0
+      effects:
+        - !type:VaccinatePerson
+
+- type: reagent
   id: UniversalBlood
   name: reagent-name-universal-blood
   group: Medicine

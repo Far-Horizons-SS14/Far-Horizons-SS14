@@ -50,7 +50,7 @@ public sealed partial class DiseasePrototype : IPrototype
     /// Default immunity strength granted after curing this disease (0-1).
     /// </summary>
     [DataField]
-    public float PostCureImmunity { get; private set; } = 0.7f;
+    public float PostCureImmunity { get; private set; } = 1.0f;
 
     /// <summary>
     /// Optional incubation time in seconds before symptoms/spread begin after infection.

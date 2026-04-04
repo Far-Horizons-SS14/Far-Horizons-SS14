@@ -1,4 +1,5 @@
 using Robust.Client.UserInterface;
+using Content.Shared._FarHorizons.Medical.Disease.UI;
 
 namespace Content.Client._FarHorizons.Medical.Disease.UI;
 
@@ -14,6 +15,8 @@ public sealed class VaccinatorBoundUserInterface : BoundUserInterface
         base.Open();
         _menu = this.CreateWindow<VaccinatorMenu>();
         _menu.SetEntity(Owner);
+
+        _menu.CreateVaccineAction += () => SendMessage(new CreateVaccineMessage());
     }
 
     protected override void UpdateState(BoundUserInterfaceState state)

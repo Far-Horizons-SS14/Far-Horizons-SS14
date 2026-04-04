@@ -44,13 +44,36 @@
     - Chemicals
 
 - type: entity
-  parent: BaseItem
+  parent: ChemicalMedipen
   id: Vaccine
   name: Vaccine
   description: Prevents people who DON'T already have a disease from catching it.
   components:
   - type: Item
-    size: Tiny
+    inhandVisuals:
+      left:
+      - state: base-needle-inhand-left
+      - state: base-colorA-inhand-left
+        color: "#75a845"
+      - state: base-colorB-inhand-left
+      right:
+      - state: base-needle-inhand-right
+      - state: base-colorA-inhand-right
+        color: "#75a845"
+      - state: base-colorB-inhand-right
   - type: Sprite
     sprite: Objects/Specific/Medical/medipen.rsi
-    state: salpen
+    layers:
+    - state: salpen
+      map: [ "enum.SolutionContainerLayers.Fill" ]
+  - type: SolutionContainerVisuals
+    maxFillLevels: 1
+    changeColor: false
+    emptySpriteName: salpen_empty
+  - type: SolutionContainerManager
+    solutions:
+      pen:
+        maxVol: 5
+        reagents:
+          - ReagentId: Vaccine
+            Quantity: 5

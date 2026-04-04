@@ -15,3 +15,6 @@ reagent-desc-perfluorodecalin = A perfluorocarbon used as an oxygen carrier in s
 
 reagent-name-spaceacillin = Spaceacillin
 reagent-desc-spaceacillin = A broad-spectrum antibiotic used to treat a variety of bacterial infections.
+
+reagent-name-vaccine = Vaccine
+reagent-desc-vaccine = A configured vaccine created at the PanD.E.M.I.C without proper configuration this is more placebo than anything.

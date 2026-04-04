@@ -1,6 +1,7 @@
 using System.Linq;
 using Content.Client._Starlight.UI;
 using Content.Client.Materials;
+using Content.Client.Power.Components;
 using Content.Client.UserInterface.Controls;
 using Content.Shared._FarHorizons.Medical.Disease.Systems;
 using Content.Shared.Chemistry.EntitySystems;
@@ -12,6 +13,7 @@ using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
+using Robust.Shared.Utility;
 
 namespace Content.Client._FarHorizons.Medical.Disease.UI;
 
@@ -20,6 +22,7 @@ public sealed partial class VaccinatorMenu : FancyWindow
 {
     [Dependency] private readonly IEntityManager _entityManager = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    public event Action? CreateVaccineAction;
     private readonly MaterialStorageSystem _materialStorage;
     private readonly SharedContainerSystem _container;
     private readonly SharedSolutionContainerSystem _solutionContainer;
@@ -33,6 +36,8 @@ public sealed partial class VaccinatorMenu : FancyWindow
         _materialStorage = _entityManager.System<MaterialStorageSystem>();
         _container = _entityManager.System<SharedContainerSystem>();
         _solutionContainer = _entityManager.System<SharedSolutionContainerSystem>();
+
+        CreateVaccineButton.OnPressed += _ => CreateVaccineAction?.Invoke();
     }
 
     public void SetEntity(EntityUid uid)
@@ -56,8 +61,8 @@ public sealed partial class VaccinatorMenu : FancyWindow
             return;
         }
             
-        var vial = sampleContainer.ContainedEntities.FirstOrDefault();
-        if (vial == default)
+        var vial = sampleContainer.ContainedEntities.FirstOrNull();
+        if (vial == null)
         {
             NoImmunityDataText.Visible = true;
             return;
@@ -65,7 +70,7 @@ public sealed partial class VaccinatorMenu : FancyWindow
         
         Dictionary<string, (DiseaseData disease, float value)> immunityByName = [];
         
-        if(!_solutionContainer.TryGetSolution(vial, "drink", out var solution))
+        if(!_solutionContainer.TryGetSolution(vial.Value, "drink", out var solution))
         {
             NoImmunityDataText.Visible = true;
             return;
@@ -79,6 +84,7 @@ public sealed partial class VaccinatorMenu : FancyWindow
             var diseaseData = immunity.Reagent.Data.OfType<DiseaseReagentData>().FirstOrDefault();
             if (diseaseData == null)
                 continue;
+                
             foreach (var (disease, value) in diseaseData.Immunity)
             {
                 string diseaseKey = disease.Name; 
@@ -146,6 +152,12 @@ public sealed partial class VaccinatorMenu : FancyWindow
                 canCraft = false;
                 break;
             }
+        }
+        if(_entityManager.TryGetComponent<ApcPowerReceiverComponent>(Entity, out var powerComp) && !powerComp.Powered)
+        {
+            CreateVaccineButton.ToolTip = "No Power";
+            CreateVaccineButton.Disabled = true;
+            return; 
         }
         
         CreateVaccineButton.Disabled = !canCraft;
