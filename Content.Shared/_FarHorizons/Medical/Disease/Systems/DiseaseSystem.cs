@@ -334,7 +334,7 @@ public sealed partial class SharedDiseaseSystem : EntitySystem
             return false;
 
         // TODO: Replace with RandomPredicted once the engine PR is merged
-        var seed = SharedRandomExtensions.HashCodeCombine([(int)_timing.CurTick.Value, uid.GetHashCode(), 0]);
+        var seed = SharedRandomExtensions.HashCodeCombine([(int)_timing.CurTick.Value, uid.GetHashCode(), stage.MinStageUntil.GetHashCode()]);
         var rand = new System.Random(seed);
         if (!rand.Prob(probability))
             return false;
@@ -343,7 +343,7 @@ public sealed partial class SharedDiseaseSystem : EntitySystem
         {
             // Roll against immunity strength.
             // TODO: Replace with RandomPredicted once the engine PR is merged
-            var seedImmunity = SharedRandomExtensions.HashCodeCombine([(int)_timing.CurTick.Value, uid.GetHashCode(), 1]);
+            var seedImmunity = SharedRandomExtensions.HashCodeCombine([(int)_timing.CurTick.Value, uid.GetHashCode(), stage.MaxStageUntil.GetHashCode()]);
             var randImmunity = new System.Random(seedImmunity);
             if (!randImmunity.Prob(immunityStrength))
                 return false;
