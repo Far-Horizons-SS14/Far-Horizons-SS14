@@ -95,12 +95,14 @@
           Quantity: 2
         - ReagentId: Carbon #steel-reinforced
           Quantity: 1
+#FH - Start
   - type: ConditionalHealing
     healingDefinitions:
       - allowedTags: [ IPC, Protogen, ProtoArachnid, ProtoAvali, ProtoCyclops, ProtoDawi, ProtoDionae, ProtoFeline, ProtoHumie, ProtoMoth, ProtoReptile, ProtoResomi, ProtoSlimePerson, ProtoThaven, ProtoVox, ProtoVulp, ProtoKin ]
         healing:
           damageContainers:
             - Biological
+            - Robotic
           delay: 2
           damage:
             types:
@@ -118,6 +120,7 @@
             params:
               volume: 1.0
               variation: 0.125
+#FH - End
 
 - type: entity
   parent: CableHVStack
@@ -174,12 +177,14 @@
           Quantity: 3
         - ReagentId: Copper
           Quantity: 2
+#FH - Start
   - type: ConditionalHealing
     healingDefinitions:
       - allowedTags: [ IPC, Protogen, ProtoArachnid, ProtoAvali, ProtoCyclops, ProtoDawi, ProtoDionae, ProtoFeline, ProtoHumie, ProtoMoth, ProtoReptile, ProtoResomi, ProtoSlimePerson, ProtoThaven, ProtoVox, ProtoVulp, ProtoKin ]
         healing:
           damageContainers:
             - Biological
+            - Robotic
           delay: 2
           damage:
             types:
@@ -197,6 +202,7 @@
             params:
               volume: 1.0
               variation: 0.125
+#FH - End
 
 - type: entity
   parent: CableMVStack
@@ -252,12 +258,14 @@
           Quantity: 3
         - ReagentId: Copper
           Quantity: 2
+#FH - Start
   - type: ConditionalHealing
     healingDefinitions:
       - allowedTags: [ IPC, Protogen, ProtoArachnid, ProtoAvali, ProtoCyclops, ProtoDawi, ProtoDionae, ProtoFeline, ProtoHumie, ProtoMoth, ProtoReptile, ProtoResomi, ProtoSlimePerson, ProtoThaven, ProtoVox, ProtoVulp, ProtoKin ]
         healing:
           damageContainers:
             - Biological
+            - Robotic
           delay: 2
           damage:
             types:
@@ -274,6 +282,7 @@
             params:
               volume: 1.0
               variation: 0.125
+#FH - End
 
 - type: entity
   parent: CableApcStack
