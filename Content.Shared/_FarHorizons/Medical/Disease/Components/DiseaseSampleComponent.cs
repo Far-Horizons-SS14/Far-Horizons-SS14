@@ -1,7 +1,7 @@
-using Content.Shared.Medical.Disease.Systems;
+using Content.Shared._FarHorizons.Medical.Disease.Systems;
 using Robust.Shared.GameStates;
 
-namespace Content.Shared.Medical.Disease.Components;
+namespace Content.Shared._FarHorizons.Medical.Disease.Components;
 
 /// <summary>
 /// Represents a collected disease sample, storing disease prototype IDs.
@@ -32,4 +32,12 @@ public sealed partial class DiseaseSampleComponent : Component
     /// </summary>
     [DataField, AutoNetworkedField]
     public Dictionary<DiseaseData, StageData> DiseasesData = [];
+
+    /// <summary>
+    /// DiseaseData the entity is immune to and their immunity strength (0-1).
+    /// Value represents the probability to block infection attempts for that disease.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public Dictionary<DiseaseData, float> Immunity = [];
+
 }

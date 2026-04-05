@@ -1,4 +1,4 @@
-#region Armory - NT
+#region =NanoTrasen=
 # Armory - Gun Base
 - type: entity
   abstract: true
@@ -370,7 +370,7 @@
   id: ShelfArmoryIFV-50TLarge
   parent: ShelfArmoryBase
   name: Large IFV-50-T Rack
-  description: Holds four IFV-50-T Rifles and Enforcer Pistols.
+  description: Holds four IFV-50-T Rifles and Enforcer Type-T Pistols.
   suffix: NT
   components:
   - type: Sprite
@@ -402,7 +402,7 @@
   id: ShelfArmoryLecterTypeTLarge
   parent: ShelfArmoryBase
   name: Large Lecter Type-T Rack
-  description: Holds four Lecter Type-T Rifles and Enforcer Pistols.
+  description: Holds four Lecter Type-T Rifles and Enforcer Type-T Pistols.
   suffix: NT
   components:
   - type: Sprite
@@ -434,7 +434,7 @@
   id: ShelfArmoryMixedRifle
   parent: ShelfArmoryBase
   name: Mixed Rifle Rack
-  description: Holds two Lecter Type-T & IFV-50-T rifles as well as four Enforcer Pistols.
+  description: Holds two Lecter Type-T & IFV-50-T rifles as well as four Enforcer Type-T Pistols.
   suffix: NT
   components:
   - type: Sprite
@@ -623,35 +623,29 @@
         - ShotgunKammererCitadel
         - ShotgunKammerer5001
 
-# Armory - Drozd
+#region Drozd Type-T
 - type: entity
-  id: ShelfArmoryDrozdLarge
+  id: ShelfArmoryDrozdTypeTLarge
   parent: ShelfArmoryBase
-  name: large drozd rack
-  description: Holds four Drozd Submachine Guns and Enforcer Pistols.
-  suffix: Sec Armory, Med-Highpop
+  name: Large Drozd Type-T Rack
+  description: Holds four Drozd Type-T Submachine Guns and Enforcer Type-T Pistols.
+  suffix: NT
   components:
-  - type: EntityStorageVisuals
-    stateBaseClosed: shotguncase
-    stateDoorOpen: shotguncase_open
-    stateDoorClosed: shotguncase_door
-#  - type: Sprite
-#    sprite: _Afterlight/Structures/Storage/closet-large.rsi
-#    layers:
-#    - state: drozdcase
-#      map: ["enum.StorageVisualLayers.Base"]
-#    - state: unlocked
-#      shader: unshaded
-#    - state: drozd-0
-#    - map: ["enum.StorageFillLayers.Fill"]
-#    - state: closed
-#      map: ["enum.StorageVisualLayers.Door"]
-#    - state: locked
-#      map: ["enum.LockVisualLayers.Lock"]
-#      shader: unshaded
-#  - type: StorageFillVisualizer
-#    maxFillLevels: 5
-#    fillBaseName: drozd
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Storage/racks.rsi
+    layers:
+    - state: drozdcase
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: drozd-0
+      map: ["enum.StorageFillLayers.Fill"]
+    - state: closed
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+      shader: unshaded
+  - type: StorageFillVisualizer
+    maxFillLevels: 5
+    fillBaseName: drozd
   - type: Storage
     grid:
     - 0,0,1,2
@@ -674,34 +668,28 @@
         - Drozd
         - MagazinePistolSubMachineGunSP
 
-# Armory - Sp91rc
+#region P2-91-T
 - type: entity
-  id: ShelfArmorySP91RCLarge
+  id: ShelfArmoryP291TLarge
   parent: ShelfArmoryBase
-  name: large sp91rc rack
-  description: Holds four Sp91rc Submachine Guns and Dominator Pistols.
+  name: Large P2-91-T Rack
+  description: Holds four P2-91-T Submachine Guns and MK 78 Pistols.
   components:
-  - type: EntityStorageVisuals
-    stateBaseClosed: shotguncase
-    stateDoorOpen: shotguncase_open
-    stateDoorClosed: shotguncase_door
-#  - type: Sprite
-#    sprite: _Afterlight/Structures/Storage/closet-large.rsi
-#    layers:
-#    - state: sp91rccase
-#      map: ["enum.StorageVisualLayers.Base"]
-#    - state: unlocked
-#      shader: unshaded
-#    - state: sp91rc-0
-#    - map: ["enum.StorageFillLayers.Fill"]
-#    - state: closed
-#      map: ["enum.StorageVisualLayers.Door"]
-#    - state: locked
-#      map: ["enum.LockVisualLayers.Lock"]
-#      shader: unshaded
-#  - type: StorageFillVisualizer
-#    maxFillLevels: 5
-#    fillBaseName: sp91rc
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Storage/racks.rsi
+    layers:
+    - state: p91case
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: p91-0
+      map: ["enum.StorageFillLayers.Fill"]
+    - state: closed
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+      shader: unshaded
+  - type: StorageFillVisualizer
+    maxFillLevels: 5
+    fillBaseName: p91
   - type: Storage
     grid:
     - 0,0,1,2
@@ -721,37 +709,31 @@
         - Sidearm
         - MagazinePistol
         - MagazineMagnum
-        - SP91RC
+        - P291
         - MagazinePistolSubMachineGunSP
 
-# Armory - Mixed SMGs
+#region Mixed SMGs
 - type: entity
   id: ShelfArmoryMixedSMG
   parent: ShelfArmoryBase
-  name: mixed smg rack
-  description: Holds two Drozd & Sp91rc Submachine Guns and four Dominator Pistols.
+  name: Mixed SMG Rack
+  description: Holds two Drozd Type-T & P2-91-T Submachine Guns and two Enforcer Type-T & MK 78 Pistols.
   components:
-  - type: EntityStorageVisuals
-    stateBaseClosed: shotguncase
-    stateDoorOpen: shotguncase_open
-    stateDoorClosed: shotguncase_door
-#  - type: Sprite
-#    sprite: _Afterlight/Structures/Storage/closet-large.rsi
-#    layers:
-#    - state: mixedsmgcase
-#      map: ["enum.StorageVisualLayers.Base"]
-#    - state: unlocked
-#      shader: unshaded
-#    - state: mixedsmg-0
-#    - map: ["enum.StorageFillLayers.Fill"]
-#    - state: closed
-#      map: ["enum.StorageVisualLayers.Door"]
-#    - state: locked
-#      map: ["enum.LockVisualLayers.Lock"]
-#      shader: unshaded
-#  - type: StorageFillVisualizer
-#    maxFillLevels: 5
-#    fillBaseName: mixedsmg
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Storage/racks.rsi
+    layers:
+    - state: mixedsmgcase
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: mixedsmg-0
+      map: ["enum.StorageFillLayers.Fill"]
+    - state: closed
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+      shader: unshaded
+  - type: StorageFillVisualizer
+    maxFillLevels: 5
+    fillBaseName: mixedsmg
   - type: Storage
     grid:
     - 0,0,1,2
@@ -771,7 +753,7 @@
         - Sidearm
         - MagazinePistol
         - MagazineMagnum
-        - SP91RC
+        - P291
         - Drozd
         - MagazinePistolSubMachineGunSP
 
@@ -1037,7 +1019,7 @@
         - SLMG
         - Rifle556Heavy
 
-#region Armory - NS
+#region =NeoSol=
 
 
 
@@ -1142,3 +1124,137 @@
         - IFV-50
         - MagazineRifle556
         - MagazineRifle38
+
+#region Drozd Type-S
+- type: entity
+  id: ShelfArmoryDrozdTypeSLarge
+  parent: ShelfArmoryBase
+  name: Large Drozd Type-S Rack
+  description: Holds four Drozd Type-S Submachine Guns and Enforcer Type-S Pistols.
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Storage/racks.rsi
+    layers:
+    - state: drozdcase
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: drozd-0
+      map: ["enum.StorageFillLayers.Fill"]
+    - state: closed
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+      shader: unshaded
+  - type: StorageFillVisualizer
+    maxFillLevels: 5
+    fillBaseName: drozd
+  - type: Storage
+    grid:
+    - 0,0,1,2
+    - 5,0,6,2
+    - 10,0,11,2
+    - 15,0,16,2
+    - 0,4,3,4
+    - 0,5,0,5
+    - 2,5,2,5
+    - 5,4,8,4
+    - 5,5,5,5
+    - 7,5,7,5
+    - 10,4,13,9
+    - 15,4,18,9
+    whitelist:
+      tags:
+        - Sidearm
+        - MagazinePistol
+        - MagazineMagnum
+        - Drozd
+        - MagazinePistolSubMachineGunSP
+
+#region P2-91-S
+- type: entity
+  id: ShelfArmoryP291SLarge
+  parent: ShelfArmoryBase
+  name: Large P2-91-S Rack
+  description: Holds four P2-91-S Submachine Guns and MK 59 Pistols.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Storage/racks.rsi
+    layers:
+    - state: p91case
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: p91-0
+      map: ["enum.StorageFillLayers.Fill"]
+    - state: closed
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+      shader: unshaded
+  - type: StorageFillVisualizer
+    maxFillLevels: 5
+    fillBaseName: p91
+  - type: Storage
+    grid:
+    - 0,0,1,2
+    - 5,0,6,2
+    - 10,0,11,2
+    - 15,0,16,2
+    - 0,4,3,4
+    - 0,5,0,5
+    - 2,5,2,5
+    - 5,4,8,4
+    - 5,5,5,5
+    - 7,5,7,5
+    - 10,4,13,9
+    - 15,4,18,9
+    whitelist:
+      tags:
+        - Sidearm
+        - MagazinePistol
+        - MagazineMagnum
+        - P291
+        - MagazinePistolSubMachineGunSP
+
+#region Mixed SMGs
+- type: entity
+  id: ShelfArmoryMixedSMGNS
+  parent: ShelfArmoryBase
+  name: Mixed SMG Rack
+  description: Holds two Drozd Type-S & P2-91-S Submachine Guns and two Enforcer Type-S & MK 59 Pistols.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Storage/racks.rsi
+    layers:
+    - state: mixedsmgcase
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: mixedsmg-0
+      map: ["enum.StorageFillLayers.Fill"]
+    - state: closed
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+      shader: unshaded
+  - type: StorageFillVisualizer
+    maxFillLevels: 5
+    fillBaseName: mixedsmg
+  - type: Storage
+    grid:
+    - 0,0,1,2
+    - 5,0,6,2
+    - 10,0,11,2
+    - 15,0,16,2
+    - 0,4,3,4
+    - 0,5,0,5
+    - 2,5,2,5
+    - 5,4,8,4
+    - 5,5,5,5
+    - 7,5,7,5
+    - 10,4,13,9
+    - 15,4,18,9
+    whitelist:
+      tags:
+        - Sidearm
+        - MagazinePistol
+        - MagazineMagnum
+        - P291
+        - Drozd
+        - MagazinePistolSubMachineGunSP

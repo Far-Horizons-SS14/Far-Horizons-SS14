@@ -2,7 +2,7 @@
   abstract: true
   parent: [ BaseCartridge, BaseSecurityContraband ]
   id: BaseCartridgePistol
-  name: cartridge (.35 auto)
+  name: 9mm Cartridge #FH
   components:
   - type: Tag
     tags:
@@ -16,55 +16,10 @@
         map: [ "enum.AmmoVisualLayers.Base" ]
   - type: Appearance
   - type: SpentAmmoVisuals
-
-- type: entity
-  id: CartridgePistolSP
-  name: cartridge (.35 auto SP)
-  parent: BaseCartridgePistol
-  components:
-  - type: CartridgeAmmo
-    proto: BulletPistolTraceSP
-  - type: Sprite
-    layers:
-      - state: base
-        map: [ "enum.AmmoVisualLayers.Base" ]
-      - state: tip
-        map: [ "enum.AmmoVisualLayers.Tip" ]
-        color: "#3F47DB"
-
-- type: entity
-  id: CartridgePistolHP
-  name: cartridge (.35 auto HP)
-  parent: BaseCartridgePistol
-  components:
-  - type: CartridgeAmmo
-    proto: BulletPistolTraceHP
-  - type: Sprite
-    layers:
-      - state: base
-        map: [ "enum.AmmoVisualLayers.Base" ]
-      - state: tip
-        map: [ "enum.AmmoVisualLayers.Tip" ]
-        color: "#000000"
-        
-- type: entity
-  id: CartridgePistolFMJ
-  name: cartridge (.35 auto FMJ)
-  parent: BaseCartridgePistol
-  components:
-  - type: CartridgeAmmo
-    proto: BulletPistolTraceFMJ
-  - type: Sprite
-    layers:
-      - state: base
-        map: [ "enum.AmmoVisualLayers.Base" ]
-      - state: tip
-        map: [ "enum.AmmoVisualLayers.Tip" ]
-        color: "#B68F0E"
         
 - type: entity
   id: CartridgePistolAP
-  name: cartridge (.35 auto AP)
+  name: 9mm Cartridge (AP) #FH
   parent: BaseCartridgePistol
   components:
   - type: CartridgeAmmo
@@ -80,7 +35,7 @@
 - type: entity
   parent: BaseCartridgePistol
   id: CartridgePistolPractice
-  name: cartridge (.35 auto practice)
+  name: 9mm Cartridge (Practice) #FH
   description: Arguably the most popular caliber on the market, used by all manner of pistols and submachine guns. Practice ammunition fires a chalk projectile that stings a little, but otherwise causes no lasting damage.
   components:
   - type: CartridgeAmmo
@@ -96,7 +51,7 @@
 - type: entity
   parent: BaseCartridgePistol
   id: CartridgePistolIncendiary
-  name: cartridge (.35 auto incendiary)
+  name: 9mm Cartridge (Incendiary) #FH
   description: Arguably the most popular caliber on the market, used by all manner of pistols and submachine guns. Incendiary ammunition contains a self-igniting compound that sets targets ablaze.
   components:
   - type: CartridgeAmmo
@@ -111,7 +66,7 @@
 
 - type: entity
   id: CartridgePistolUranium
-  name: cartridge (.35 auto uranium)
+  name: 9mm Cartridge (Uranium) #FH
   description: Arguably the most popular caliber on the market, used by all manner of pistols and submachine guns. Uranium ammunition replaces the lead core of the bullet with fissile material, irradiating targets from the inside.
   parent: BaseCartridgePistol
   components:
@@ -128,7 +83,7 @@
 - type: entity
   parent: BaseCartridgePistol
   id: CartridgePistolSpent
-  name: cartridge (.35 auto)
+  name: 9mm Cartridge (Spent) #FH
   suffix: spent
   components:
   - type: Sprite

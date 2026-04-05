@@ -1,13 +1,13 @@
 using Content.Server.Administration;
-using Content.Shared.Medical.Disease.Cures;
-using Content.Shared.Medical.Disease.Components;
-using Content.Shared.Medical.Disease.Prototypes;
+using Content.Shared._FarHorizons.Medical.Disease.Cures;
+using Content.Shared._FarHorizons.Medical.Disease.Components;
+using Content.Shared._FarHorizons.Medical.Disease.Prototypes;
 using Content.Shared.Administration;
 using Robust.Shared.Console;
 using Robust.Shared.Prototypes;
 using System.Linq;
 
-namespace Content.Server.Medical.Disease.Commands;
+namespace Content.Server._FarHorizons.Medical.Disease.Commands;
 
 /// <summary>
 /// Grants cure from a disease to your attached entity.

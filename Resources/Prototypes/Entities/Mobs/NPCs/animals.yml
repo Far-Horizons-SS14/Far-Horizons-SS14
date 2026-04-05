@@ -1490,6 +1490,8 @@
   - type: Vocal
     sounds:
       Unsexed: MonkeySounds
+  - type: LimbDamageable
+    proto: LimbTargetMonkey
   #FarHorizons End
 
 
@@ -1667,6 +1669,8 @@
     name: ghost-role-information-kobold-name
     description: ghost-role-information-kobold-description
     rules: ghost-role-information-nonantagonist-rules
+  - type: LimbDamageable # Far Horizons
+    proto: LimbTargetKobold
 
 - type: entity
   name: kobold

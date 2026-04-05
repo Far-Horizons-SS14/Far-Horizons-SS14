@@ -2,7 +2,7 @@
   parent: [ CrateWeaponSecure, BaseSecurityContraband ]
   id: CrateArmorySMG
   name: SMG crate
-  description: Contains two SMGs with four mags. Requires Armory access to open.
+  description: Contains two WT500s with four mags. Requires Armory access to open. #FH
   components:
   - type: EntityTableContainerFill
     containers:
@@ -78,7 +78,7 @@
     containers:
       entity_storage: !type:AllSelector
         children:
-        - id: WeaponPistolMk58 #Starlight
+        - id: WeaponPistolMk78 #Far Horizons
           amount: 2
         - id: MagazinePistolSP #Starlight
           amount: 2

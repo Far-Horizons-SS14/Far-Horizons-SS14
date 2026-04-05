@@ -1,14 +1,14 @@
 using System.Linq;
-using Content.Shared.Medical.Disease.Components;
-using Content.Shared.Medical.Disease.Prototypes;
-using Content.Shared.Medical.Disease.Systems;
+using Content.Shared._FarHorizons.Medical.Disease.Components;
+using Content.Shared._FarHorizons.Medical.Disease.Prototypes;
+using Content.Shared._FarHorizons.Medical.Disease.Systems;
 using Content.Shared.Popups;
 using Content.Shared.Random.Helpers;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 
-namespace Content.Shared.Medical.Disease.Cures;
+namespace Content.Shared._FarHorizons.Medical.Disease.Cures;
 
 public sealed partial class SharedDiseaseCureSystem : EntitySystem
 {
@@ -16,6 +16,7 @@ public sealed partial class SharedDiseaseCureSystem : EntitySystem
     [Dependency] private readonly IEntitySystemManager _entitySystemManager = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private readonly SharedDiseaseSystem _disease = default!;
 
     /// <summary>
     /// Executes a configured cure step via its polymorphic OnCure.
@@ -98,6 +99,7 @@ public sealed partial class SharedDiseaseCureSystem : EntitySystem
             return;
 
         ApplyPostCureImmunity(ent, disease);
+        _disease.UpdateBloodData(ent);
         _popup.PopupPredicted(Loc.GetString("disease-cured"), ent, ent.Owner);
     }
 
@@ -106,7 +108,7 @@ public sealed partial class SharedDiseaseCureSystem : EntitySystem
     /// </summary>
     public void ApplyCureDiseaseStage(Entity<DiseaseCarrierComponent> ent, DiseaseData disease)
     {
-        if (!ent.Comp.ActiveDiseases.TryGetValue(disease, out var stage) || stage.Stage <= 1)
+        if (!ent.Comp.ActiveDiseases.TryGetValue(disease, out var stage) || stage.Stage <= 0)
             return;
 
         stage.Stage-=1;
@@ -138,17 +140,31 @@ public sealed partial class SharedDiseaseCureSystem : EntitySystem
     /// </summary>
     private void ApplyPostCureImmunity(Entity<DiseaseCarrierComponent> ent, DiseaseData disease)
     {
-        if(!_prototypes.TryIndex(disease.Id, out var diseaseProto))
-            return;
+        var strength = disease.PostCureImmunity;
 
-        var strength = diseaseProto.PostCureImmunity;
-
-        if (ent.Comp.Immunity.TryGetValue(disease.Id, out var existing))
-            ent.Comp.Immunity[disease.Id] = MathF.Max(existing, strength);
+        if (ent.Comp.Immunity.TryGetValue(disease, out var existing))
+            ent.Comp.Immunity[disease] = MathF.Max(existing, strength);
         else
-            ent.Comp.Immunity[disease.Id] = strength;
+            ent.Comp.Immunity[disease] = strength;
 
         Dirty(ent);
+    }
+
+    /// <summary>
+    /// Makes disease immunity decay over time to allow reinfection for diseases.
+    /// </summary>
+    public void PostImmunityDecay(Entity<DiseaseCarrierComponent> ent)
+    {
+        if(ent.Comp.Immunity.Count == 0) return;
+
+        foreach(var (disease, immunity) in ent.Comp.Immunity)
+        {
+            ent.Comp.Immunity[disease] = immunity - (disease.PostCureImmunity/(1800f/((int)ent.Comp.TickDelay.TotalSeconds)));
+            if(immunity <= 0)
+                ent.Comp.Immunity.Remove(disease);
+        }
+        
+        _disease.UpdateBloodData(ent);
     }
 
     /// <summary>

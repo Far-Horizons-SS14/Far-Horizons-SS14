@@ -1,13 +1,13 @@
-using Content.Shared.Medical.Disease.Prototypes;
-using Content.Shared.Medical.Disease.Components;
+using Content.Shared._FarHorizons.Medical.Disease.Prototypes;
+using Content.Shared._FarHorizons.Medical.Disease.Components;
 using Robust.Shared.Random;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
-using Content.Shared.Medical.Disease.Systems;
+using Content.Shared._FarHorizons.Medical.Disease.Systems;
 using Content.Shared.Random.Helpers;
 using Robust.Shared.Timing;
 
-namespace Content.Shared.Medical.Disease.Cures;
+namespace Content.Shared._FarHorizons.Medical.Disease.Cures;
 
 [Serializable, NetSerializable]
 public sealed partial class CureWait : CureStep

@@ -1,8 +1,8 @@
-using Content.Shared.Medical.Disease.Systems;
+using Content.Shared._FarHorizons.Medical.Disease.Systems;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 
-namespace Content.Shared.Medical.Disease.Prototypes;
+namespace Content.Shared._FarHorizons.Medical.Disease.Prototypes;
 
 /// <summary>
 /// Base class for cure step variants.
@@ -25,10 +25,8 @@ public abstract partial class CureStep
     /// <summary>
     /// Attempts to execute this cure step on the given entity.
     /// </summary>
-    public virtual bool OnCure(EntityUid uid, DiseaseData disease)
-    {
-        return false;
-    }
+    public virtual bool OnCure(EntityUid uid, DiseaseData disease) 
+        => false;
 
     /// <summary>
     /// Returns one or more localized lines describing this cure step for diagnoser reports.

@@ -1,0 +1,26 @@
+<controls:FancyWindow xmlns="https://spacestation14.io"
+                      xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+                      xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+                      xmlns:system="clr-namespace:System;assembly=System.Runtime"
+                      xmlns:ui="clr-namespace:Content.Client.Materials.UI"                      
+                      MinSize="500 350"
+                      MaxSize="500 350"
+                      Title="{Loc 'vaccinator-popup-title'}">
+    <BoxContainer Orientation="Horizontal" VerticalExpand="True" HorizontalExpand="True">
+        <BoxContainer Orientation="Vertical">
+            <Label Text ="Immunities Detected:" HorizontalAlignment="Center" Margin="10 0 0 0"></Label>
+            <PanelContainer StyleClasses="PanelDark" SetWidth="190" Margin="10 5 0 10" VerticalExpand="True" HorizontalExpand="True" HorizontalAlignment="Left">
+                <BoxContainer Name="ImmunityPanel" Orientation="Vertical" HorizontalAlignment="Center">
+                    <Label Name="NoImmunityDataText" Text="{Loc vaccinator-no-immunity-data-text}" Margin="5 30 0 0"/>
+                </BoxContainer>
+            </PanelContainer>
+        </BoxContainer>
+        <BoxContainer Orientation="Vertical">
+            <Label Text ="Materials" HorizontalAlignment="Center" Margin="10 0 0 0"></Label>
+            <PanelContainer StyleClasses="PanelDark" SetSize="280 180" Margin="10 5 10 10" VerticalExpand="True" HorizontalExpand="True" HorizontalAlignment="Right" VerticalAlignment="Top">
+                <ui:MaterialStorageControl Name="MaterialsList" SizeFlagsStretchRatio="8"/>
+            </PanelContainer>
+            <Button Name="CreateVaccineButton" Text="Create Vaccine" SetSize="280 70" Margin="10 0 10 10" VerticalExpand="True" HorizontalExpand="True" HorizontalAlignment="Right" VerticalAlignment="Center"></Button>
+        </BoxContainer>
+    </BoxContainer>
+</controls:FancyWindow>

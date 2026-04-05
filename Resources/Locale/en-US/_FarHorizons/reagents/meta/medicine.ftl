@@ -24,3 +24,7 @@ reagent-desc-burn-cream-blue = Mixing Dermaline and Pyrazine together with regul
 
 reagent-name-aloe-vera-cream = Aloe Vera Burn Cream
 reagent-desc-aloe-vera-cream = All-Natural Burn Cream! Not very effective, however.
+
+reagent-name-vaccine = Vaccine
+reagent-desc-vaccine = A configured vaccine created at the PanD.E.M.I.C without proper configuration this is more placebo than anything.
+

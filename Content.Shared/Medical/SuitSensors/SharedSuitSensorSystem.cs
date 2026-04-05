@@ -13,7 +13,6 @@ using Content.Shared.GameTicking;
 using Content.Shared.Interaction;
 using Content.Shared.Inventory;
 using Content.Shared.Medical.SuitSensor;
-using Content.Shared.Medical.Disease.Components;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
@@ -26,7 +25,8 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using System.Linq;
-using Content.Shared.Medical.Disease.Prototypes;
+using Content.Shared._FarHorizons.Medical.Disease.Prototypes; // FarHorizons
+using Content.Shared._FarHorizons.Medical.Disease.Components; // FarHorizons
 
 namespace Content.Shared.Medical.SuitSensors;
 

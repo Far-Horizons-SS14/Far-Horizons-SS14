@@ -44,4 +44,6 @@ guide-entry-station-management-sop-blueshield-officer = Blueshield Officer
 guide-entry-station-management-sop-magistrate = Magistrate
 guide-entry-station-management-sop-affairs-offical = Affairs Offical (IAA)
 
+guide-entry-sl-medical-sop-viral-outbreak = Viral Outbreak Protocol
+
 guide-entry-fried-foods-recipes = Fried Foods

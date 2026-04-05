@@ -2,12 +2,12 @@ using Content.Shared.Body.Components;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.EntityConditions;
 using Content.Shared.Metabolism;
-using Content.Shared.Medical.Disease.Prototypes;
+using Content.Shared._FarHorizons.Medical.Disease.Prototypes;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
-using Content.Shared.Medical.Disease.Systems;
+using Content.Shared._FarHorizons.Medical.Disease.Systems;
 
-namespace Content.Shared.Medical.Disease.Cures;
+namespace Content.Shared._FarHorizons.Medical.Disease.Cures;
 
 [Serializable, NetSerializable]
 public sealed partial class CureConditions : CureStep

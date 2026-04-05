@@ -34,6 +34,21 @@
     - SpeedLoaderShotgunBeanbag
     - SpeedLoaderMagnumBasic
 
+- type: loadout
+  id: SecurityRevolverOathbreakerM500
+  dummyEntity: WeaponRevolverOathbreakerM500
+  effects:
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:RoleTimeRequirement
+        role: JobBrigmedic
+        time: 360000 # Trust me, you don't wanna mess with a brig that knows how to transmute your blood into napalm+phlog mix
+  storage:
+    back:
+    - WeaponRevolverOathbreakerM500
+    - SpeedLoaderShotgunBeanbag
+    - SpeedLoaderShotgunBeanbag
+    - SpeedLoaderMagnumBasic
 #region Cadet
 
 # Uniform
@@ -192,7 +207,7 @@
       requirement:
         !type:RoleTimeRequirement
         role: JobDetective
-        time: 540000 # Gonna be the most competent detective you've seen or some guy who afked for 75 rounds
+        time: 360000 # Gonna be the most competent detective you've seen or some guy who afked for 50 rounds
   storage:
     back:
     - WeaponRevolverInspectorM500
@@ -237,6 +252,37 @@
     - SpeedLoaderRevolver38SP
     - SpeedLoaderRevolver38Rubber
 
+- type: loadout
+  id: SecurityRevolverInstigatorM500
+  dummyEntity: WeaponRevolverInstigatorM500
+  effects:
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:RoleTimeRequirement
+        role: JobSecurityOfficer
+        time: 360000 # Will still struggle with friendly fire.
+  storage:
+    back:
+    - WeaponRevolverInspectorM500
+    - SpeedLoaderRevolver38SP
+    - SpeedLoaderRevolver38SP
+    - SpeedLoaderRevolver38Rubber
+
+- type: loadout
+  id: SecurityPistolMk58
+  dummyEntity: WeaponPistolMk58
+  effects:
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:RoleTimeRequirement
+        role: JobSecurityOfficer
+        time: 360000
+  storage:
+    back:
+    - WeaponPistolMk58
+    - MagazinePistolSP
+    - MagazinePistolRubber
+    - MagazinePistolRubber
 #region Warden
 
 # Sidearm

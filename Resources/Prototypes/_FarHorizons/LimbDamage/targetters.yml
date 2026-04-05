@@ -1,3 +1,5 @@
+# Default human guy
+
 - type: limbTargetting
   id: LimbTargetHuman
   drawDebugBoxes: false
@@ -51,6 +53,1038 @@
       area: 0.25, 0.9, 0.5, 1
       sprites:
         - sprite: Mobs/Species/Human/parts.rsi
+          state: r_foot
+  labels:
+    - text: R
+      position: 0.05, 0.1
+    - text: L
+      position: 0.8, 0.1
+
+# Marr
+
+- type: limbTargetting
+  id: LimbTargetShadekin
+  drawDebugBoxes: false
+  limbs:
+    - limb: Head
+      area: 0.35, 0.1, 0.65, 0.3
+      sprites:
+        - sprite: _Starlight/Mobs/Species/Shadekin/parts.rsi
+          state: head_m
+        - sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
+          state: aqua_default
+    - limb: ArmLeft
+      area: 0.65, 0.3, 0.8, 0.55
+      sprites:
+        - sprite: _Starlight/Mobs/Species/Shadekin/parts.rsi
+          state: l_arm
+    - limb: ArmRight
+      area: 0.2, 0.3, 0.35, 0.55
+      sprites:
+        - sprite: _Starlight/Mobs/Species/Shadekin/parts.rsi
+          state: r_arm
+    - limb: HandLeft
+      area: 0.65, 0.55, 0.8, 0.7
+      sprites:
+        - sprite: _Starlight/Mobs/Species/Shadekin/parts.rsi
+          state: l_hand
+    - limb: HandRight
+      area: 0.2, 0.55, 0.35, 0.7
+      sprites:
+        - sprite: _Starlight/Mobs/Species/Shadekin/parts.rsi
+          state: r_hand
+    - limb: LegLeft
+      area: 0.5, 0.7, 0.65, 0.9
+      sprites:
+        - sprite: _Starlight/Mobs/Species/Shadekin/parts.rsi
+          state: l_leg
+    - limb: LegRight
+      area: 0.35, 0.7, 0.5, 0.9
+      sprites:
+        - sprite: _Starlight/Mobs/Species/Shadekin/parts.rsi
+          state: r_leg
+    - limb: FootLeft
+      area: 0.5, 0.9, 0.75, 1
+      sprites:
+        - sprite: _Starlight/Mobs/Species/Shadekin/parts.rsi
+          state: l_foot
+    - limb: FootRight
+      area: 0.25, 0.9, 0.5, 1
+      sprites:
+        - sprite: _Starlight/Mobs/Species/Shadekin/parts.rsi
+          state: r_foot
+    - limb: Torso
+      area: 0.35, 0.3, 0.65, 0.7
+      sprites:
+        - sprite: _Starlight/Mobs/Species/Shadekin/parts.rsi
+          state: torso_m
+        - sprite: _Starlight/Mobs/Customization/shadekin/tails64x32.rsi
+          state: shadekin_big
+  labels:
+    - text: R
+      position: 0.05, 0.1
+    - text: L
+      position: 0.8, 0.1
+
+# Chirp
+
+- type: limbTargetting
+  id: LimbTargetResomi
+  drawDebugBoxes: false
+  limbs:
+    - limb: Head
+      area: 0.35, 0.15, 0.65, 0.45
+      sprites:
+        - sprite: Mobs/Species/Resomi/parts.rsi
+          state: head_m
+    - limb: ArmLeft
+      area: 0.6, 0.4, 0.8, 0.6
+      sprites:
+        - sprite: Mobs/Species/Resomi/parts.rsi
+          state: l_arm
+    - limb: ArmRight
+      area: 0.2, 0.4, 0.4, 0.6
+      sprites:
+        - sprite: Mobs/Species/Resomi/parts.rsi
+          state: r_arm
+    - limb: HandLeft
+      area: 0.65, 0.6, 0.8, 0.8
+      sprites:
+        - sprite: Mobs/Species/Resomi/parts.rsi
+          state: l_hand
+    - limb: HandRight
+      area: 0.2, 0.6, 0.35, 0.8
+      sprites:
+        - sprite: Mobs/Species/Resomi/parts.rsi
+          state: r_hand
+    - limb: LegLeft
+      area: 0.5, 0.7, 0.65, 0.9
+      sprites:
+        - sprite: Mobs/Species/Resomi/parts.rsi
+          state: l_leg
+    - limb: LegRight
+      area: 0.35, 0.7, 0.5, 0.9
+      sprites:
+        - sprite: Mobs/Species/Resomi/parts.rsi
+          state: r_leg
+    - limb: FootLeft
+      area: 0.5, 0.9, 0.75, 1
+      sprites:
+        - sprite: Mobs/Species/Resomi/parts.rsi
+          state: l_foot
+    - limb: FootRight
+      area: 0.25, 0.9, 0.5, 1
+      sprites:
+        - sprite: Mobs/Species/Resomi/parts.rsi
+          state: r_foot
+    - limb: Torso
+      area: 0.4, 0.45, 0.6, 0.7
+      sprites:
+        - sprite: Mobs/Species/Resomi/parts.rsi
+          state: torso_m
+  labels:
+    - text: R
+      position: 0.05, 0.1
+    - text: L
+      position: 0.8, 0.1
+
+# Chirp (2)
+
+- type: limbTargetting
+  id: LimbTargetAvali
+  drawDebugBoxes: false
+  limbs:
+    - limb: Torso
+      area: 0.35, 0.3, 0.65, 0.7
+      sprites:
+        - sprite: _Starlight/Mobs/Species/Avali/parts.rsi
+          state: torso_m
+        - sprite: _Starlight/Mobs/Customization/Avali/avali_parts.rsi
+          state: tail_avalibase
+    - limb: Head
+      area: 0.35, 0.1, 0.65, 0.3
+      sprites:
+        - sprite: _Starlight/Mobs/Species/Avali/parts.rsi
+          state: head_m
+        - sprite: _Starlight/Mobs/Customization/Avali/avali_parts.rsi
+          state: ears_avalibase_primary
+        - sprite: _Starlight/Mobs/Customization/Avali/avali_parts.rsi
+          state: ears_avalibase_secondary
+    - limb: ArmLeft
+      area: 0.65, 0.3, 0.8, 0.55
+      sprites:
+        - sprite: _Starlight/Mobs/Species/Avali/parts.rsi
+          state: l_arm
+    - limb: ArmRight
+      area: 0.2, 0.3, 0.35, 0.55
+      sprites:
+        - sprite: _Starlight/Mobs/Species/Avali/parts.rsi
+          state: r_arm
+    - limb: HandLeft
+      area: 0.65, 0.55, 0.8, 0.7
+      sprites:
+        - sprite: _Starlight/Mobs/Species/Avali/parts.rsi
+          state: l_hand
+    - limb: HandRight
+      area: 0.2, 0.55, 0.35, 0.7
+      sprites:
+        - sprite: _Starlight/Mobs/Species/Avali/parts.rsi
+          state: r_hand
+    - limb: LegLeft
+      area: 0.5, 0.7, 0.65, 0.9
+      sprites:
+        - sprite: _Starlight/Mobs/Species/Avali/parts.rsi
+          state: l_leg
+    - limb: LegRight
+      area: 0.35, 0.7, 0.5, 0.9
+      sprites:
+        - sprite: _Starlight/Mobs/Species/Avali/parts.rsi
+          state: r_leg
+    - limb: FootLeft
+      area: 0.5, 0.9, 0.75, 1
+      sprites:
+        - sprite: _Starlight/Mobs/Species/Avali/parts.rsi
+          state: l_foot
+    - limb: FootRight
+      area: 0.25, 0.9, 0.5, 1
+      sprites:
+        - sprite: _Starlight/Mobs/Species/Avali/parts.rsi
+          state: r_foot
+  labels:
+    - text: R
+      position: 0.05, 0.1
+    - text: L
+      position: 0.8, 0.1
+
+# Chirp ?
+
+- type: limbTargetting
+  id: LimbTargetVox
+  drawDebugBoxes: false
+  limbs:
+    - limb: Torso
+      area: 0.35, 0.3, 0.65, 0.7
+      sprites:
+        - sprite: Mobs/Species/Vox/parts.rsi
+          state: torso
+    - limb: Head
+      area: 0.35, 0.1, 0.65, 0.3
+      sprites:
+        - sprite: Mobs/Species/Vox/parts.rsi
+          state: head
+    - limb: ArmLeft
+      area: 0.65, 0.3, 0.8, 0.55
+      sprites:
+        - sprite: Mobs/Species/Vox/parts.rsi
+          state: l_arm
+    - limb: ArmRight
+      area: 0.2, 0.3, 0.35, 0.55
+      sprites:
+        - sprite: Mobs/Species/Vox/parts.rsi
+          state: r_arm
+    - limb: HandLeft
+      area: 0.65, 0.55, 0.8, 0.7
+      sprites:
+        - sprite: Mobs/Species/Vox/parts.rsi
+          state: l_hand
+    - limb: HandRight
+      area: 0.2, 0.55, 0.35, 0.7
+      sprites:
+        - sprite: Mobs/Species/Vox/parts.rsi
+          state: r_hand
+    - limb: LegLeft
+      area: 0.5, 0.7, 0.65, 0.9
+      sprites:
+        - sprite: Mobs/Species/Vox/parts.rsi
+          state: l_leg
+    - limb: LegRight
+      area: 0.35, 0.7, 0.5, 0.9
+      sprites:
+        - sprite: Mobs/Species/Vox/parts.rsi
+          state: r_leg
+    - limb: FootLeft
+      area: 0.5, 0.9, 0.75, 1
+      sprites:
+        - sprite: Mobs/Species/Vox/parts.rsi
+          state: l_foot
+    - limb: FootRight
+      area: 0.25, 0.9, 0.5, 1
+      sprites:
+        - sprite: Mobs/Species/Vox/parts.rsi
+          state: r_foot
+  labels:
+    - text: R
+      position: 0.05, 0.1
+    - text: L
+      position: 0.8, 0.1
+
+# Bark
+
+- type: limbTargetting
+  id: LimbTargetVulp
+  drawDebugBoxes: false
+  limbs:
+    - limb: Torso
+      area: 0.35, 0.3, 0.65, 0.7
+      sprites:
+        - sprite: _Starlight/Mobs/Species/Vulpkanin/parts.rsi
+          state: torso_m
+        - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
+          state: vulp
+    - limb: Head
+      area: 0.35, 0.1, 0.65, 0.3
+      sprites:
+        - sprite: _Starlight/Mobs/Species/Vulpkanin/parts.rsi
+          state: head_m
+        - sprite: _Starlight/Mobs/Customization/vulpkanin/ear_markings.rsi
+          state: vulp
+    - limb: ArmLeft
+      area: 0.65, 0.3, 0.8, 0.55
+      sprites:
+        - sprite: _Starlight/Mobs/Species/Vulpkanin/parts.rsi
+          state: l_arm
+    - limb: ArmRight
+      area: 0.2, 0.3, 0.35, 0.55
+      sprites:
+        - sprite: _Starlight/Mobs/Species/Vulpkanin/parts.rsi
+          state: r_arm
+    - limb: HandLeft
+      area: 0.65, 0.55, 0.8, 0.7
+      sprites:
+        - sprite: _Starlight/Mobs/Species/Vulpkanin/parts.rsi
+          state: l_hand
+    - limb: HandRight
+      area: 0.2, 0.55, 0.35, 0.7
+      sprites:
+        - sprite: _Starlight/Mobs/Species/Vulpkanin/parts.rsi
+          state: r_hand
+    - limb: LegLeft
+      area: 0.5, 0.7, 0.65, 0.9
+      sprites:
+        - sprite: _Starlight/Mobs/Species/Vulpkanin/parts.rsi
+          state: l_leg
+    - limb: LegRight
+      area: 0.35, 0.7, 0.5, 0.9
+      sprites:
+        - sprite: _Starlight/Mobs/Species/Vulpkanin/parts.rsi
+          state: r_leg
+    - limb: FootLeft
+      area: 0.5, 0.9, 0.75, 1
+      sprites:
+        - sprite: _Starlight/Mobs/Species/Vulpkanin/parts.rsi
+          state: l_foot
+    - limb: FootRight
+      area: 0.25, 0.9, 0.5, 1
+      sprites:
+        - sprite: _Starlight/Mobs/Species/Vulpkanin/parts.rsi
+          state: r_foot
+  labels:
+    - text: R
+      position: 0.05, 0.1
+    - text: L
+      position: 0.8, 0.1
+
+# Moff
+
+- type: limbTargetting
+  id: LimbTargetMoth
+  drawDebugBoxes: false
+  limbs:
+    - limb: Torso
+      area: 0.35, 0.3, 0.65, 0.7
+      sprites:
+        - sprite: Mobs/Species/Moth/parts.rsi
+          state: torso_m
+        - sprite: Mobs/Customization/Moth/moth_wings.rsi
+          state: default
+    - limb: Head
+      area: 0.35, 0.1, 0.65, 0.3
+      sprites:
+        - sprite: Mobs/Species/Moth/parts.rsi
+          state: head
+        - sprite: Mobs/Customization/Moth/moth_antennas.rsi
+          state: default
+    - limb: ArmLeft
+      area: 0.65, 0.3, 0.8, 0.55
+      sprites:
+        - sprite: Mobs/Species/Moth/parts.rsi
+          state: l_arm
+    - limb: ArmRight
+      area: 0.2, 0.3, 0.35, 0.55
+      sprites:
+        - sprite: Mobs/Species/Moth/parts.rsi
+          state: r_arm
+    - limb: HandLeft
+      area: 0.65, 0.55, 0.8, 0.7
+      sprites:
+        - sprite: Mobs/Species/Moth/parts.rsi
+          state: l_hand
+    - limb: HandRight
+      area: 0.2, 0.55, 0.35, 0.7
+      sprites:
+        - sprite: Mobs/Species/Moth/parts.rsi
+          state: r_hand
+    - limb: LegLeft
+      area: 0.5, 0.7, 0.65, 0.9
+      sprites:
+        - sprite: Mobs/Species/Moth/parts.rsi
+          state: l_leg
+    - limb: LegRight
+      area: 0.35, 0.7, 0.5, 0.9
+      sprites:
+        - sprite: Mobs/Species/Moth/parts.rsi
+          state: r_leg
+    - limb: FootLeft
+      area: 0.5, 0.9, 0.75, 1
+      sprites:
+        - sprite: Mobs/Species/Moth/parts.rsi
+          state: l_foot
+    - limb: FootRight
+      area: 0.25, 0.9, 0.5, 1
+      sprites:
+        - sprite: Mobs/Species/Moth/parts.rsi
+          state: r_foot
+  labels:
+    - text: R
+      position: 0.05, 0.1
+    - text: L
+      position: 0.8, 0.1
+
+# Spooder
+
+- type: limbTargetting
+  id: LimbTargetArachnid
+  drawDebugBoxes: false
+  limbs:
+    - limb: Torso
+      area: 0.35, 0.3, 0.65, 0.7
+      sprites:
+        - sprite: Mobs/Species/Arachnid/parts.rsi
+          state: torso
+        - sprite: Mobs/Customization/Arachnid/appendages.rsi
+          state: long_primary
+        - sprite: Mobs/Customization/Arachnid/appendages.rsi
+          state: long_secondary
+    - limb: Head
+      area: 0.35, 0.1, 0.65, 0.3
+      sprites:
+        - sprite: Mobs/Species/Arachnid/parts.rsi
+          state: head
+        - sprite: Mobs/Customization/Arachnid/chelicerae.rsi
+          state: downwards
+    - limb: ArmLeft
+      area: 0.65, 0.3, 0.8, 0.55
+      sprites:
+        - sprite: Mobs/Species/Arachnid/parts.rsi
+          state: l_arm
+    - limb: ArmRight
+      area: 0.2, 0.3, 0.35, 0.55
+      sprites:
+        - sprite: Mobs/Species/Arachnid/parts.rsi
+          state: r_arm
+    - limb: HandLeft
+      area: 0.65, 0.55, 0.8, 0.7
+      sprites:
+        - sprite: Mobs/Species/Arachnid/parts.rsi
+          state: l_hand
+    - limb: HandRight
+      area: 0.2, 0.55, 0.35, 0.7
+      sprites:
+        - sprite: Mobs/Species/Arachnid/parts.rsi
+          state: r_hand
+    - limb: LegLeft
+      area: 0.5, 0.7, 0.65, 0.9
+      sprites:
+        - sprite: Mobs/Species/Arachnid/parts.rsi
+          state: l_leg
+    - limb: LegRight
+      area: 0.35, 0.7, 0.5, 0.9
+      sprites:
+        - sprite: Mobs/Species/Arachnid/parts.rsi
+          state: r_leg
+    - limb: FootLeft
+      area: 0.5, 0.9, 0.75, 1
+      sprites:
+        - sprite: Mobs/Species/Arachnid/parts.rsi
+          state: l_foot
+    - limb: FootRight
+      area: 0.25, 0.9, 0.5, 1
+      sprites:
+        - sprite: Mobs/Species/Arachnid/parts.rsi
+          state: r_foot
+  labels:
+    - text: R
+      position: 0.05, 0.1
+    - text: L
+      position: 0.8, 0.1
+
+# Tree gaming
+
+- type: limbTargetting
+  id: LimbTargetDiona
+  drawDebugBoxes: false
+  limbs:
+    - limb: Torso
+      area: 0.35, 0.3, 0.65, 0.7
+      sprites:
+        - sprite: Mobs/Species/Diona/parts.rsi
+          state: torso
+    - limb: Head
+      area: 0.35, 0.1, 0.65, 0.3
+      sprites:
+        - sprite: Mobs/Species/Diona/parts.rsi
+          state: head
+    - limb: HandLeft
+      area: 0.65, 0.55, 0.8, 0.7
+      sprites:
+        - sprite: Mobs/Species/Diona/parts.rsi
+          state: l_hand
+    - limb: HandRight
+      area: 0.2, 0.55, 0.35, 0.7
+      sprites:
+        - sprite: Mobs/Species/Diona/parts.rsi
+          state: r_hand
+    - limb: ArmLeft
+      area: 0.65, 0.3, 0.8, 0.55
+      sprites:
+        - sprite: Mobs/Species/Diona/parts.rsi
+          state: l_arm
+    - limb: ArmRight
+      area: 0.2, 0.3, 0.35, 0.55
+      sprites:
+        - sprite: Mobs/Species/Diona/parts.rsi
+          state: r_arm
+    - limb: LegLeft
+      area: 0.5, 0.7, 0.65, 0.9
+      sprites:
+        - sprite: Mobs/Species/Diona/parts.rsi
+          state: l_leg
+    - limb: LegRight
+      area: 0.35, 0.7, 0.5, 0.9
+      sprites:
+        - sprite: Mobs/Species/Diona/parts.rsi
+          state: r_leg
+    - limb: FootLeft
+      area: 0.5, 0.9, 0.75, 1
+      sprites:
+        - sprite: Mobs/Species/Diona/parts.rsi
+          state: l_foot
+    - limb: FootRight
+      area: 0.25, 0.9, 0.5, 1
+      sprites:
+        - sprite: Mobs/Species/Diona/parts.rsi
+          state: r_foot
+  labels:
+    - text: R
+      position: 0.05, 0.1
+    - text: L
+      position: 0.8, 0.1
+
+# Lizor
+
+- type: limbTargetting
+  id: LimbTargetReptilian
+  drawDebugBoxes: false
+  limbs:
+    - limb: Torso
+      area: 0.35, 0.3, 0.65, 0.7
+      sprites:
+        - sprite: Mobs/Species/Reptilian/parts.rsi
+          state: torso_m
+        - sprite: Mobs/Customization/reptilian_parts.rsi
+          state: tail_smooth_primary
+        - sprite: Mobs/Customization/reptilian_parts.rsi
+          state: tail_smooth_secondary
+    - limb: Head
+      area: 0.35, 0.1, 0.65, 0.3
+      sprites:
+        - sprite: Mobs/Species/Reptilian/parts.rsi
+          state: head_m
+    - limb: ArmLeft
+      area: 0.65, 0.3, 0.8, 0.55
+      sprites:
+        - sprite: Mobs/Species/Reptilian/parts.rsi
+          state: l_arm
+    - limb: ArmRight
+      area: 0.2, 0.3, 0.35, 0.55
+      sprites:
+        - sprite: Mobs/Species/Reptilian/parts.rsi
+          state: r_arm
+    - limb: HandLeft
+      area: 0.65, 0.55, 0.8, 0.7
+      sprites:
+        - sprite: Mobs/Species/Reptilian/parts.rsi
+          state: l_hand
+    - limb: HandRight
+      area: 0.2, 0.55, 0.35, 0.7
+      sprites:
+        - sprite: Mobs/Species/Reptilian/parts.rsi
+          state: r_hand
+    - limb: LegLeft
+      area: 0.5, 0.7, 0.65, 0.9
+      sprites:
+        - sprite: Mobs/Species/Reptilian/parts.rsi
+          state: l_leg
+    - limb: LegRight
+      area: 0.35, 0.7, 0.5, 0.9
+      sprites:
+        - sprite: Mobs/Species/Reptilian/parts.rsi
+          state: r_leg
+    - limb: FootLeft
+      area: 0.5, 0.9, 0.75, 1
+      sprites:
+        - sprite: Mobs/Species/Reptilian/parts.rsi
+          state: l_foot
+    - limb: FootRight
+      area: 0.25, 0.9, 0.5, 1
+      sprites:
+        - sprite: Mobs/Species/Reptilian/parts.rsi
+          state: r_foot
+  labels:
+    - text: R
+      position: 0.05, 0.1
+    - text: L
+      position: 0.8, 0.1
+
+# Cat
+
+- type: limbTargetting
+  id: LimbTargetFelionoid
+  drawDebugBoxes: false
+  limbs:
+    - limb: Head
+      area: 0.35, 0.1, 0.65, 0.3
+      sprites:
+        - sprite: _Starlight/Mobs/Species/Felionoid/parts.rsi
+          state: head
+    - limb: ArmLeft
+      area: 0.65, 0.3, 0.8, 0.55
+      sprites:
+        - sprite: _Starlight/Mobs/Species/Felionoid/parts.rsi
+          state: l_arm
+    - limb: ArmRight
+      area: 0.2, 0.3, 0.35, 0.55
+      sprites:
+        - sprite: _Starlight/Mobs/Species/Felionoid/parts.rsi
+          state: r_arm
+    - limb: HandLeft
+      area: 0.65, 0.55, 0.8, 0.7
+      sprites:
+        - sprite: _Starlight/Mobs/Species/Felionoid/parts.rsi
+          state: l_hand
+    - limb: HandRight
+      area: 0.2, 0.55, 0.35, 0.7
+      sprites:
+        - sprite: _Starlight/Mobs/Species/Felionoid/parts.rsi
+          state: r_hand
+    - limb: LegLeft
+      area: 0.5, 0.7, 0.65, 0.9
+      sprites:
+        - sprite: _Starlight/Mobs/Species/Felionoid/parts.rsi
+          state: l_leg
+    - limb: LegRight
+      area: 0.35, 0.7, 0.5, 0.9
+      sprites:
+        - sprite: _Starlight/Mobs/Species/Felionoid/parts.rsi
+          state: r_leg
+    - limb: FootLeft
+      area: 0.5, 0.9, 0.75, 1
+      sprites:
+        - sprite: _Starlight/Mobs/Species/Felionoid/parts.rsi
+          state: l_foot
+    - limb: FootRight
+      area: 0.25, 0.9, 0.5, 1
+      sprites:
+        - sprite: _Starlight/Mobs/Species/Felionoid/parts.rsi
+          state: r_foot
+    - limb: Torso
+      area: 0.35, 0.3, 0.65, 0.7
+      sprites:
+        - sprite: _Starlight/Mobs/Species/Felionoid/parts.rsi
+          state: torso
+        - sprite: _Starlight/Mobs/Customization/felionoid_parts.rsi
+          state: tail
+  labels:
+    - text: R
+      position: 0.05, 0.1
+    - text: L
+      position: 0.8, 0.1
+
+# Fish
+
+- type: limbTargetting
+  id: LimbTargetThaven
+  drawDebugBoxes: false
+  limbs:
+    - limb: Torso
+      area: 0.35, 0.3, 0.65, 0.7
+      sprites:
+        - sprite: _Starlight/Mobs/Species/Thaven/parts.rsi
+          state: torso
+    - limb: Head
+      area: 0.35, 0.1, 0.65, 0.3
+      sprites:
+        - sprite: _Starlight/Mobs/Species/Thaven/parts.rsi
+          state: head
+    - limb: ArmLeft
+      area: 0.65, 0.3, 0.8, 0.55
+      sprites:
+        - sprite: _Starlight/Mobs/Species/Thaven/parts.rsi
+          state: l_arm
+    - limb: ArmRight
+      area: 0.2, 0.3, 0.35, 0.55
+      sprites:
+        - sprite: _Starlight/Mobs/Species/Thaven/parts.rsi
+          state: r_arm
+    - limb: HandLeft
+      area: 0.65, 0.55, 0.8, 0.7
+      sprites:
+        - sprite: _Starlight/Mobs/Species/Thaven/parts.rsi
+          state: l_hand
+    - limb: HandRight
+      area: 0.2, 0.55, 0.35, 0.7
+      sprites:
+        - sprite: _Starlight/Mobs/Species/Thaven/parts.rsi
+          state: r_hand
+    - limb: LegLeft
+      area: 0.5, 0.7, 0.65, 0.9
+      sprites:
+        - sprite: _Starlight/Mobs/Species/Thaven/parts.rsi
+          state: l_leg
+    - limb: LegRight
+      area: 0.35, 0.7, 0.5, 0.9
+      sprites:
+        - sprite: _Starlight/Mobs/Species/Thaven/parts.rsi
+          state: r_leg
+    - limb: FootLeft
+      area: 0.5, 0.9, 0.75, 1
+      sprites:
+        - sprite: _Starlight/Mobs/Species/Thaven/parts.rsi
+          state: l_foot
+    - limb: FootRight
+      area: 0.25, 0.9, 0.5, 1
+      sprites:
+        - sprite: _Starlight/Mobs/Species/Thaven/parts.rsi
+          state: r_foot
+  labels:
+    - text: R
+      position: 0.05, 0.1
+    - text: L
+      position: 0.8, 0.1
+
+# Uh, rock?
+
+- type: limbTargetting
+  id: LimbTargetCyclorite
+  drawDebugBoxes: false
+  limbs:
+    - limb: Torso
+      area: 0.35, 0.3, 0.65, 0.7
+      sprites:
+        - sprite: _Starlight/Mobs/Species/Cyclorite/parts.rsi
+          state: torso
+    - limb: Head
+      area: 0.35, 0.1, 0.65, 0.3
+      sprites:
+        - sprite: _Starlight/Mobs/Species/Cyclorite/parts.rsi
+          state: head
+    - limb: ArmLeft
+      area: 0.65, 0.3, 0.8, 0.55
+      sprites:
+        - sprite: _Starlight/Mobs/Species/Cyclorite/parts.rsi
+          state: l_arm
+    - limb: ArmRight
+      area: 0.2, 0.3, 0.35, 0.55
+      sprites:
+        - sprite: _Starlight/Mobs/Species/Cyclorite/parts.rsi
+          state: r_arm
+    - limb: HandLeft
+      area: 0.65, 0.55, 0.8, 0.7
+      sprites:
+        - sprite: _Starlight/Mobs/Species/Cyclorite/parts.rsi
+          state: l_hand
+    - limb: HandRight
+      area: 0.2, 0.55, 0.35, 0.7
+      sprites:
+        - sprite: _Starlight/Mobs/Species/Cyclorite/parts.rsi
+          state: r_hand
+    - limb: LegLeft
+      area: 0.5, 0.7, 0.65, 0.9
+      sprites:
+        - sprite: _Starlight/Mobs/Species/Cyclorite/parts.rsi
+          state: l_leg
+    - limb: LegRight
+      area: 0.35, 0.7, 0.5, 0.9
+      sprites:
+        - sprite: _Starlight/Mobs/Species/Cyclorite/parts.rsi
+          state: r_leg
+    - limb: FootLeft
+      area: 0.5, 0.9, 0.75, 1
+      sprites:
+        - sprite: _Starlight/Mobs/Species/Cyclorite/parts.rsi
+          state: l_foot
+    - limb: FootRight
+      area: 0.25, 0.9, 0.5, 1
+      sprites:
+        - sprite: _Starlight/Mobs/Species/Cyclorite/parts.rsi
+          state: r_foot
+  labels:
+    - text: R
+      position: 0.05, 0.1
+    - text: L
+      position: 0.8, 0.1
+
+# Toaster
+
+- type: limbTargetting
+  id: LimbTargetIPC
+  drawDebugBoxes: false
+  limbs:
+    - limb: Torso
+      area: 0.35, 0.3, 0.65, 0.7
+      sprites:
+        - sprite: _FarHorizons/Mobs/Species/IPC/parts.rsi
+          state: torso_m
+    - limb: Head
+      area: 0.35, 0.1, 0.65, 0.3
+      sprites:
+        - sprite: _FarHorizons/Mobs/Species/IPC/parts.rsi
+          state: head_m
+    - limb: ArmLeft
+      area: 0.65, 0.3, 0.8, 0.55
+      sprites:
+        - sprite: _FarHorizons/Mobs/Species/IPC/parts.rsi
+          state: l_arm
+    - limb: ArmRight
+      area: 0.2, 0.3, 0.35, 0.55
+      sprites:
+        - sprite: _FarHorizons/Mobs/Species/IPC/parts.rsi
+          state: r_arm
+    - limb: HandLeft
+      area: 0.65, 0.55, 0.8, 0.7
+      sprites:
+        - sprite: _FarHorizons/Mobs/Species/IPC/parts.rsi
+          state: l_hand
+    - limb: HandRight
+      area: 0.2, 0.55, 0.35, 0.7
+      sprites:
+        - sprite: _FarHorizons/Mobs/Species/IPC/parts.rsi
+          state: r_hand
+    - limb: LegLeft
+      area: 0.5, 0.7, 0.65, 0.9
+      sprites:
+        - sprite: _FarHorizons/Mobs/Species/IPC/parts.rsi
+          state: l_leg
+    - limb: LegRight
+      area: 0.35, 0.7, 0.5, 0.9
+      sprites:
+        - sprite: _FarHorizons/Mobs/Species/IPC/parts.rsi
+          state: r_leg
+    - limb: FootLeft
+      area: 0.5, 0.9, 0.75, 1
+      sprites:
+        - sprite: _FarHorizons/Mobs/Species/IPC/parts.rsi
+          state: l_foot
+    - limb: FootRight
+      area: 0.25, 0.9, 0.5, 1
+      sprites:
+        - sprite: _FarHorizons/Mobs/Species/IPC/parts.rsi
+          state: r_foot
+  labels:
+    - text: R
+      position: 0.05, 0.1
+    - text: L
+      position: 0.8, 0.1
+
+# Toaster with ears
+
+- type: limbTargetting
+  id: LimbTargetProtogen
+  drawDebugBoxes: false
+  limbs:
+    - limb: Torso
+      area: 0.35, 0.3, 0.65, 0.7
+      sprites:
+        - sprite: _FarHorizons/Mobs/Species/Protogen/parts.rsi
+          state: torso_m
+        - sprite: _FarHorizons/Mobs/Customization/protogen/protogen.rsi
+          state: tail_protogen
+    - limb: Head
+      area: 0.35, 0.1, 0.65, 0.3
+      sprites:
+        - sprite: _FarHorizons/Mobs/Species/Protogen/parts.rsi
+          state: head_m
+        - sprite: _FarHorizons/Mobs/Customization/protogen/visor_shapes.rsi
+          state: visor
+        - sprite: _FarHorizons/Mobs/Customization/protogen/protogen.rsi
+          state: ears_protogen
+    - limb: ArmLeft
+      area: 0.65, 0.3, 0.8, 0.55
+      sprites:
+        - sprite: _FarHorizons/Mobs/Species/Protogen/parts.rsi
+          state: l_arm
+    - limb: ArmRight
+      area: 0.2, 0.3, 0.35, 0.55
+      sprites:
+        - sprite: _FarHorizons/Mobs/Species/Protogen/parts.rsi
+          state: r_arm
+    - limb: HandLeft
+      area: 0.65, 0.55, 0.8, 0.7
+      sprites:
+        - sprite: _FarHorizons/Mobs/Species/Protogen/parts.rsi
+          state: l_hand
+    - limb: HandRight
+      area: 0.2, 0.55, 0.35, 0.7
+      sprites:
+        - sprite: _FarHorizons/Mobs/Species/Protogen/parts.rsi
+          state: r_hand
+    - limb: LegLeft
+      area: 0.5, 0.7, 0.65, 0.9
+      sprites:
+        - sprite: _FarHorizons/Mobs/Species/Protogen/parts.rsi
+          state: l_leg
+    - limb: LegRight
+      area: 0.35, 0.7, 0.5, 0.9
+      sprites:
+        - sprite: _FarHorizons/Mobs/Species/Protogen/parts.rsi
+          state: r_leg
+    - limb: FootLeft
+      area: 0.5, 0.9, 0.75, 1
+      sprites:
+        - sprite: _FarHorizons/Mobs/Species/Protogen/parts.rsi
+          state: l_foot
+    - limb: FootRight
+      area: 0.25, 0.9, 0.5, 1
+      sprites:
+        - sprite: _FarHorizons/Mobs/Species/Protogen/parts.rsi
+          state: r_foot
+  labels:
+    - text: R
+      position: 0.05, 0.1
+    - text: L
+      position: 0.8, 0.1
+
+# Nearly 1000th line, why stop at this point. Monke
+
+- type: limbTargetting
+  id: LimbTargetMonkey
+  drawDebugBoxes: false
+  limbs:
+    - limb: Torso
+      area: 0.4, 0.3, 0.6, 0.55
+      sprites:
+        - sprite: _FarHorizons/Mobs/Animals/monkey.rsi
+          state: torso
+        - sprite: _FarHorizons/Mobs/Animals/monkey.rsi
+          state: tail
+    - limb: Head
+      area: 0.35, 0.1, 0.65, 0.3
+      sprites:
+        - sprite: _FarHorizons/Mobs/Animals/monkey.rsi
+          state: head
+    - limb: ArmLeft
+      area: 0.6, 0.3, 0.8, 0.48
+      sprites:
+        - sprite: _FarHorizons/Mobs/Animals/monkey.rsi
+          state: l_arm
+    - limb: ArmRight
+      area: 0.2, 0.3, 0.4, 0.48
+      sprites:
+        - sprite: _FarHorizons/Mobs/Animals/monkey.rsi
+          state: r_arm
+    - limb: HandLeft
+      area: 0.6, 0.48, 0.8, 0.6
+      sprites:
+        - sprite: _FarHorizons/Mobs/Animals/monkey.rsi
+          state: l_hand
+    - limb: HandRight
+      area: 0.2, 0.48, 0.4, 0.6
+      sprites:
+        - sprite: _FarHorizons/Mobs/Animals/monkey.rsi
+          state: r_hand
+    - limb: LegLeft
+      area: 0.5, 0.55, 0.65, 0.7
+      sprites:
+        - sprite: _FarHorizons/Mobs/Animals/monkey.rsi
+          state: l_leg
+    - limb: LegRight
+      area: 0.35, 0.55, 0.5, 0.7
+      sprites:
+        - sprite: _FarHorizons/Mobs/Animals/monkey.rsi
+          state: r_leg
+    - limb: FootLeft
+      area: 0.5, 0.7, 0.75, 0.8
+      sprites:
+        - sprite: _FarHorizons/Mobs/Animals/monkey.rsi
+          state: l_foot
+    - limb: FootRight
+      area: 0.25, 0.7, 0.5, 0.8
+      sprites:
+        - sprite: _FarHorizons/Mobs/Animals/monkey.rsi
+          state: r_foot
+  labels:
+    - text: R
+      position: 0.05, 0.1
+    - text: L
+      position: 0.8, 0.1
+
+# Kobol
+
+- type: limbTargetting
+  id: LimbTargetKobold
+  drawDebugBoxes: false
+  limbs:
+    - limb: Torso
+      area: 0.4, 0.3, 0.6, 0.55
+      sprites:
+        - sprite: _FarHorizons/Mobs/Animals/kobold.rsi
+          state: torso
+        - sprite: _FarHorizons/Mobs/Animals/kobold.rsi
+          state: tail
+    - limb: Head
+      area: 0.35, 0.1, 0.65, 0.3
+      sprites:
+        - sprite: _FarHorizons/Mobs/Animals/kobold.rsi
+          state: head
+    - limb: ArmLeft
+      area: 0.6, 0.3, 0.8, 0.48
+      sprites:
+        - sprite: _FarHorizons/Mobs/Animals/kobold.rsi
+          state: l_arm
+    - limb: ArmRight
+      area: 0.2, 0.3, 0.4, 0.48
+      sprites:
+        - sprite: _FarHorizons/Mobs/Animals/kobold.rsi
+          state: r_arm
+    - limb: HandLeft
+      area: 0.6, 0.48, 0.8, 0.6
+      sprites:
+        - sprite: _FarHorizons/Mobs/Animals/kobold.rsi
+          state: l_hand
+    - limb: HandRight
+      area: 0.2, 0.48, 0.4, 0.6
+      sprites:
+        - sprite: _FarHorizons/Mobs/Animals/kobold.rsi
+          state: r_hand
+    - limb: LegLeft
+      area: 0.5, 0.55, 0.65, 0.7
+      sprites:
+        - sprite: _FarHorizons/Mobs/Animals/kobold.rsi
+          state: l_leg
+    - limb: LegRight
+      area: 0.35, 0.55, 0.5, 0.7
+      sprites:
+        - sprite: _FarHorizons/Mobs/Animals/kobold.rsi
+          state: r_leg
+    - limb: FootLeft
+      area: 0.5, 0.7, 0.75, 0.8
+      sprites:
+        - sprite: _FarHorizons/Mobs/Animals/kobold.rsi
+          state: l_foot
+    - limb: FootRight
+      area: 0.25, 0.7, 0.5, 0.8
+      sprites:
+        - sprite: _FarHorizons/Mobs/Animals/kobold.rsi
           state: r_foot
   labels:
     - text: R

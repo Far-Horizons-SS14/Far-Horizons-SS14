@@ -4,10 +4,9 @@ using Content.Shared.Popups;
 using Content.Shared.Forensics.Components;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Mobs.Systems;
-using Content.Shared.Medical.Disease.Components;
-using Robust.Shared.Prototypes;
+using Content.Shared._FarHorizons.Medical.Disease.Components;
 
-namespace Content.Shared.Medical.Disease.Systems;
+namespace Content.Shared._FarHorizons.Medical.Disease.Systems;
 
 /// <summary>
 /// Handles using a disease sample swab on mobs to collect their active diseases.
@@ -70,6 +69,7 @@ public sealed class DiseaseSwabSystem : EntitySystem
 
         // Read diseases from carrier and overwrite sample
         ent.Comp.DiseasesData.Clear();
+        ent.Comp.Immunity.Clear();
         ent.Comp.HasSample = true;
         ent.Comp.SubjectName = Identity.Name(target, EntityManager);
         ent.Comp.SubjectDNA = null;
@@ -77,9 +77,13 @@ public sealed class DiseaseSwabSystem : EntitySystem
         if (TryComp<DnaComponent>(target, out var dna) && !string.IsNullOrWhiteSpace(dna.DNA))
             ent.Comp.SubjectDNA = dna.DNA;
 
-        if (TryComp<DiseaseCarrierComponent>(target, out var carrier) && carrier.ActiveDiseases.Count > 0)
+        if (TryComp<DiseaseCarrierComponent>(target, out var carrier))
         {
-            ent.Comp.DiseasesData = new Dictionary<DiseaseData, StageData>(carrier.ActiveDiseases);
+            if(carrier.ActiveDiseases.Count > 0)
+                ent.Comp.DiseasesData = new Dictionary<DiseaseData, StageData>(carrier.ActiveDiseases);
+            if(carrier.Immunity.Count > 0)
+                ent.Comp.Immunity = new Dictionary<DiseaseData, float>(carrier.Immunity);
+
             _popup.PopupPredicted(Loc.GetString("swab-disease-collected-popup"), target, args.Args.User);
         }
         else

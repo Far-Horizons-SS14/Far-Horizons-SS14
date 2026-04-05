@@ -102,15 +102,22 @@ public sealed class HealingSystem : EntitySystem
 
         // Far Horizons start
         bool healingDone;
-        DamageSpecifier? healed;
-        if (args.TargettedLimb == null)
+        DamageSpecifier healed = new();
+
+        var healingDoneToLimb = false;
+        if (args.TargettedLimb != null)
+        {
+            healingDoneToLimb = _limbDamage.TryChangeLimbDamage(target.Owner, args.TargettedLimb.Value,
+                healing.Damage * _damageable.UniversalTopicalsHealModifier, out healed, true,
+                origin: args.Args.User);
+        }
+
+        if (!healingDoneToLimb)
             healingDone = _damageable.TryChangeDamage(target.Owner,
                 healing.Damage * _damageable.UniversalTopicalsHealModifier, out healed, true,
                 origin: args.Args.User);
         else
-            healingDone = _limbDamage.TryChangeLimbDamage(target.Owner, args.TargettedLimb.Value,
-                healing.Damage * _damageable.UniversalTopicalsHealModifier, out healed, true,
-                origin: args.Args.User);
+            healingDone = healingDoneToLimb;
         // Far Horizons end
 
         if (!healingDone && healing.BloodlossModifier != 0)
@@ -194,7 +201,8 @@ public sealed class HealingSystem : EntitySystem
         if (origin != null)
         {
             var limbTarget = _limbDamage.GetCurrentValidTarget(target.Owner, origin.Value);
-            if (limbTarget != null) return _limbDamage.LimbHasDamage(target.Owner, limbTarget.Value, healing.Comp);
+            if (limbTarget != null && _limbDamage.LimbHasDamage(target.Owner, limbTarget.Value, healing.Comp))
+                return true;
         }
         // Far Horizons end
 

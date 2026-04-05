@@ -1,11 +1,11 @@
-using Content.Shared.Medical.Disease.Prototypes;
+using Content.Shared._FarHorizons.Medical.Disease.Prototypes;
 using Content.Shared.StatusIcon;
 using Robust.Shared.GameStates;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 using Robust.Shared.Prototypes;
-using Content.Shared.Medical.Disease.Systems;
+using Content.Shared._FarHorizons.Medical.Disease.Systems;
 
-namespace Content.Shared.Medical.Disease.Components;
+namespace Content.Shared._FarHorizons.Medical.Disease.Components;
 
 /// <summary>
 /// Networked component storing active diseases and immunity tokens.
@@ -30,7 +30,7 @@ public sealed partial class DiseaseCarrierComponent : Component
     /// Delay between disease processing ticks.
     /// </summary>
     [DataField]
-    public TimeSpan TickDelay = TimeSpan.FromSeconds(2);
+    public TimeSpan TickDelay = TimeSpan.FromSeconds(1);
 
     /// <summary>
     /// Time when the next disease processing tick occurs.
@@ -40,11 +40,11 @@ public sealed partial class DiseaseCarrierComponent : Component
     public TimeSpan NextTick;
 
     /// <summary>
-    /// Prototype IDs the entity is immune to and their immunity strength (0-1).
+    /// DiseaseData the entity is immune to and their immunity strength (0-1).
     /// Value represents the probability to block infection attempts for that disease.
     /// </summary>
     [DataField, AutoNetworkedField]
-    public Dictionary<ProtoId<DiseasePrototype>, float> Immunity = [];
+    public Dictionary<DiseaseData, float> Immunity = [];
 
     /// <summary>
     /// Map of symptom prototype IDs to a suppression end time. Used to temporarily

@@ -1,8 +1,7 @@
-using Content.Shared.Humanoid;
-using Content.Shared.Medical.Disease.Systems;
+using Content.Shared._FarHorizons.Medical.Disease.Systems;
 using Content.Server.StationEvents.Components;
 using Content.Shared.GameTicking.Components;
-using Content.Shared.Medical.Disease.Components;
+using Content.Shared._FarHorizons.Medical.Disease.Components;
 using Content.Shared.Mind.Components;
 using Robust.Shared.Random;
 
@@ -71,7 +70,7 @@ public sealed class RandomDiseaseRule : StationEventSystem<RandomDiseaseRuleComp
             // Optional: skip entities already immune if desired.
             if (comp.SkipImmune)
             {
-                if (TryComp<DiseaseCarrierComponent>(ent, out var carrier) && carrier.Immunity.TryGetValue(chosenDisease, out var immunity) && immunity >= 1f)
+                if (TryComp<DiseaseCarrierComponent>(ent, out var carrier) && carrier.Immunity.TryGetValue(disease, out var immunity) && immunity >= 1f)
                     continue;
             }
 

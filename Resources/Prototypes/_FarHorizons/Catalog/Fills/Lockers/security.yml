@@ -359,7 +359,7 @@
     contents:
     - id: WeaponRifleLecterNT
       amount: 4
-    - id: WeaponPistolEnforcer
+    - id: WeaponPistolEnforcerTypeT
       amount: 4
     - id: MagazineRifle556SP
       amount: 8
@@ -379,7 +379,7 @@
     contents:
     - id: WeaponRifleIFV-50T
       amount: 4
-    - id: WeaponPistolEnforcer
+    - id: WeaponPistolEnforcerTypeT
       amount: 4
     - id: MagazineRifle38SP
       amount: 8
@@ -401,7 +401,7 @@
       amount: 2
     - id: WeaponRifleIFV-50T
       amount: 2
-    - id: WeaponPistolEnforcer
+    - id: WeaponPistolEnforcerTypeT
       amount: 4
     - id: MagazineRifle556SP
       amount: 4
@@ -451,7 +451,7 @@
     contents:
     - id: WeaponShotgunKammererCitadel
       amount: 4
-    - id: WeaponPistolMk58
+    - id: WeaponPistolMk78
       amount: 4
     - id: SpeedLoaderMagnumBasic
       amount: 8
@@ -473,7 +473,7 @@
       amount: 2
     - id: WeaponShotgunKammerer5001
       amount: 2
-    - id: WeaponPistolMk58
+    - id: WeaponPistolMk78
       amount: 2
     - id: WeaponPistolN1984
       amount: 2
@@ -491,15 +491,15 @@
 #region SMGs
 
 - type: entity
-  id: ShelfArmoryDrozdLargeFilled
-  parent: ShelfArmoryDrozdLarge
+  id: ShelfArmoryDrozdTypeTLargeFilled
+  parent: ShelfArmoryDrozdTypeTLarge
   suffix: NT, Filled
   components:
   - type: StorageFill
     contents:
-    - id: WeaponSubMachineGunDrozd
+    - id: WeaponSubMachineGunDrozdTypeT
       amount: 4
-    - id: WeaponPistolEnforcer
+    - id: WeaponPistolEnforcerTypeT
       amount: 4
     - id: MagazinePistolSubMachineGunSP
       amount: 8
@@ -511,15 +511,15 @@
       amount: 4
 
 - type: entity
-  id: ShelfArmorySP91RCLargeFilled
-  parent: ShelfArmorySP91RCLarge
+  id: ShelfArmoryP291TLargeFilled
+  parent: ShelfArmoryP291TLarge
   suffix: NT, Filled
   components:
   - type: StorageFill
     contents:
-    - id: WeaponSubMachineGunSP91RC
+    - id: WeaponSubMachineGunP291T
       amount: 4
-    - id: WeaponPistolMk58
+    - id: WeaponPistolMk78
       amount: 4
     - id: MagazinePistolSubMachineGunSP
       amount: 8
@@ -537,13 +537,13 @@
   components:
   - type: StorageFill
     contents:
-    - id: WeaponSubMachineGunDrozd
+    - id: WeaponSubMachineGunDrozdTypeT
       amount: 2
-    - id: WeaponSubMachineGunSP91RC
+    - id: WeaponSubMachineGunP291T
       amount: 2
-    - id: WeaponPistolEnforcer
+    - id: WeaponPistolEnforcerTypeT
       amount: 2
-    - id: WeaponPistolMk58
+    - id: WeaponPistolMk78
       amount: 2
     - id: MagazinePistolSubMachineGunSP
       amount: 8
@@ -1081,7 +1081,7 @@
     contents:
     - id: WeaponRifleLecterNS
       amount: 4
-    - id: WeaponPistolEnforcer
+    - id: WeaponPistolEnforcerTypeS
       amount: 4
     - id: MagazineRifle556SP
       amount: 8
@@ -1101,7 +1101,7 @@
     contents:
     - id: WeaponRifleIFV-50S
       amount: 4
-    - id: WeaponPistolEnforcer
+    - id: WeaponPistolEnforcerTypeS
       amount: 4
     - id: MagazineRifle38SP
       amount: 8
@@ -1123,7 +1123,7 @@
       amount: 2
     - id: WeaponRifleIFV-50S
       amount: 2
-    - id: WeaponPistolEnforcer
+    - id: WeaponPistolEnforcerTypeS
       amount: 4
     - id: MagazineRifle556SP
       amount: 4
@@ -1133,6 +1133,72 @@
       amount: 2
     - id: MagazineRifle38HP
       amount: 2
+    - id: MagazinePistolSP
+      amount: 8
+    - id: MagazinePistolHP
+      amount: 4
+
+#region SMGs
+
+- type: entity
+  id: ShelfArmoryDrozdTypeSLargeFilled
+  parent: ShelfArmoryDrozdTypeSLarge
+  suffix: NS, Filled
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponSubMachineGunDrozdTypeS
+      amount: 4
+    - id: WeaponPistolEnforcerTypeS
+      amount: 4
+    - id: MagazinePistolSubMachineGunSP
+      amount: 8
+    - id: MagazinePistolSubMachineGunHP
+      amount: 4
+    - id: MagazinePistolSP
+      amount: 8
+    - id: MagazinePistolHP
+      amount: 4
+
+- type: entity
+  id: ShelfArmoryP291SLargeFilled
+  parent: ShelfArmoryP291SLarge
+  suffix: NS, Filled
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponSubMachineGunP291S
+      amount: 4
+    - id: WeaponPistolMk59
+      amount: 4
+    - id: MagazinePistolSubMachineGunSP
+      amount: 8
+    - id: MagazinePistolSubMachineGunHP
+      amount: 4
+    - id: MagazinePistolSP
+      amount: 8
+    - id: MagazinePistolHP
+      amount: 4
+
+- type: entity
+  id: ShelfArmoryMixedSMGNSFilled
+  parent: ShelfArmoryMixedSMG
+  suffix: NS, Filled
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponSubMachineGunDrozdTypeS
+      amount: 2
+    - id: WeaponSubMachineGunP291S
+      amount: 2
+    - id: WeaponPistolEnforcerTypeS
+      amount: 2
+    - id: WeaponPistolMk59
+      amount: 2
+    - id: MagazinePistolSubMachineGunSP
+      amount: 8
+    - id: MagazinePistolSubMachineGunHP
+      amount: 4
     - id: MagazinePistolSP
       amount: 8
     - id: MagazinePistolHP

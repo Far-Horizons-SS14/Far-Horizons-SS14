@@ -3,10 +3,10 @@ using Content.Shared.Interaction;
 using Content.Shared.Paper;
 using Robust.Shared.Prototypes;
 using Content.Shared.Popups;
-using Content.Shared.Medical.Disease.Components;
-using Content.Shared.Medical.Disease.Prototypes;
+using Content.Shared._FarHorizons.Medical.Disease.Components;
+using Content.Shared._FarHorizons.Medical.Disease.Prototypes;
 
-namespace Content.Shared.Medical.Disease.Systems;
+namespace Content.Shared._FarHorizons.Medical.Disease.Systems;
 
 /// <summary>
 /// Handles using a DiseaseSample on the DiseaseDiagnoser to print a report.
@@ -87,7 +87,7 @@ public sealed class DiseaseDiagnoserSystem : EntitySystem
             if (!_prototypes.TryIndex(diseaseData.Id, out DiseasePrototype? diseaseProto))
                 continue;
             
-            var displayName = Loc.GetString(diseaseProto.Name);
+            var displayName = Loc.GetString(diseaseData.Name);
             var stage = stageData.Stage;
 
             DiseaseStage? stageCfg = null;
@@ -108,8 +108,9 @@ public sealed class DiseaseDiagnoserSystem : EntitySystem
             lines.Add(Loc.GetString("diagnoser-disease-report-name",("name", displayName)));
             lines.Add(Loc.GetString("diagnoser-disease-report-stage",("stage", showStage ? stage+1 : "Unknown")));
             lines.Add(Loc.GetString("diagnoser-disease-report-variant",("name", diseaseData.StrainName)));
+            lines.Add(Loc.GetString("diagnoser-disease-report-spreadpath",("spreadpath", diseaseData.SpreadPath)));
             lines.Add(Loc.GetString("diagnoser-disease-report-desc"));
-            lines.Add(Loc.GetString(diseaseProto.Description));
+            lines.Add(Loc.GetString(diseaseData.Description));
 
             // Symptoms block.
             lines.Add(Loc.GetString("diagnoser-disease-symptoms-header"));

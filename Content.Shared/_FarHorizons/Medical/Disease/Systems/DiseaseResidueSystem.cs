@@ -1,15 +1,14 @@
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
-using Content.Shared.Medical.Disease.Components;
-using Content.Shared.Medical.Disease.Prototypes;
+using Content.Shared._FarHorizons.Medical.Disease.Components;
+using Content.Shared._FarHorizons.Medical.Disease.Prototypes;
 using Content.Shared.Weapons.Melee;
 using Content.Shared.Weapons.Melee.Events;
 using Robust.Shared.Collections;
 using Robust.Shared.Map;
-using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 
-namespace Content.Shared.Medical.Disease.Systems;
+namespace Content.Shared._FarHorizons.Medical.Disease.Systems;
 
 /// <summary>
 /// Decays disease residue on tiles/items and infects entities on direct contact.
@@ -17,7 +16,6 @@ namespace Content.Shared.Medical.Disease.Systems;
 public sealed class DiseaseResidueSystem : EntitySystem
 {
     [Dependency] private readonly SharedDiseaseSystem _disease = default!;
-    [Dependency] private readonly IPrototypeManager _prototypes = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly SharedInteractionSystem _interaction = default!;
     [Dependency] private readonly SharedTransformSystem _xform = default!;
@@ -86,19 +84,16 @@ public sealed class DiseaseResidueSystem : EntitySystem
             return;
 
         var residue = EnsureComp<DiseaseResidueComponent>(args.Other);
-        foreach (var (DiseaseData, _) in ent.Comp.ActiveDiseases)
+        foreach (var (disease, _) in ent.Comp.ActiveDiseases)
         {
-            if (!_prototypes.TryIndex(DiseaseData.Id, out var proto))
+            if ((disease.SpreadPath & DiseaseSpreadPath.Contact) == 0)
                 continue;
 
-            if ((proto.SpreadPath & DiseaseSpreadPath.Contact) == 0)
-                continue;
-
-            var deposit = proto.ContactDeposit;
-            if (residue.Diseases.TryGetValue(DiseaseData, out var cur))
-                residue.Diseases[DiseaseData] = MathF.Min(1f, cur + deposit);
+            var deposit = disease.ContactDeposit;
+            if (residue.Diseases.TryGetValue(disease, out var cur))
+                residue.Diseases[disease] = MathF.Min(1f, cur + deposit);
             else
-                residue.Diseases[DiseaseData] = MathF.Min(1f, deposit);
+                residue.Diseases[disease] = MathF.Min(1f, deposit);
 
             Dirty(args.Other, residue);
         }
@@ -113,15 +108,15 @@ public sealed class DiseaseResidueSystem : EntitySystem
             return;
 
         var toRemoveAfterContact = new ValueList<DiseaseData>();
-        foreach (var (id, intensity) in ent.Comp.Diseases)
+        foreach (var (disease, intensity) in ent.Comp.Diseases)
         {
-            InfectByContactChance(args.Other, id);
+            InfectByContactChance(args.Other, disease);
 
             var newIntensity = MathF.Max(0f, intensity - ent.Comp.ContactReduction);
             if (newIntensity > 0f)
-                ent.Comp.Diseases[id] = newIntensity;
+                ent.Comp.Diseases[disease] = newIntensity;
             else
-                toRemoveAfterContact.Add(id);
+                toRemoveAfterContact.Add(disease);
         }
 
         foreach (var id in toRemoveAfterContact)
@@ -157,9 +152,9 @@ public sealed class DiseaseResidueSystem : EntitySystem
             if (!_interaction.InRangeUnobstructed(ent.Owner, other, 0.8f))
                 continue;
 
-            foreach (var (id, _) in ent.Comp.ActiveDiseases)
+            foreach (var (disease, _) in ent.Comp.ActiveDiseases)
             {
-                InfectByContactChance(other, id);
+                InfectByContactChance(other, disease);
             }
         }
     }
@@ -179,9 +174,9 @@ public sealed class DiseaseResidueSystem : EntitySystem
         {
             foreach (var target in args.HitEntities)
             {
-                foreach (var (id, _) in attackerCar.ActiveDiseases)
+                foreach (var (disease, _) in attackerCar.ActiveDiseases)
                 {
-                    InfectByContactChance(target, id);
+                    InfectByContactChance(target, disease);
                 }
             }
         }
@@ -192,9 +187,9 @@ public sealed class DiseaseResidueSystem : EntitySystem
             if (!TryComp<DiseaseCarrierComponent>(target, out var targetCar) || targetCar.ActiveDiseases.Count == 0)
                 continue;
 
-            foreach (var (id, _) in targetCar.ActiveDiseases)
+            foreach (var (disease, _) in targetCar.ActiveDiseases)
             {
-                InfectByContactChance(attackerUid, id);
+                InfectByContactChance(attackerUid, disease);
             }
         }
     }
@@ -202,21 +197,18 @@ public sealed class DiseaseResidueSystem : EntitySystem
     /// <summary>
     /// Tries to infect a target via contact using fixed per-disease chance.
     /// </summary>
-    private void InfectByContactChance(EntityUid target, DiseaseData diseaseId)
+    private void InfectByContactChance(EntityUid target, DiseaseData disease)
     {
-        if (!_prototypes.TryIndex(diseaseId.Id, out DiseasePrototype? proto))
+        if ((disease.SpreadPath & DiseaseSpreadPath.Contact) == 0)
             return;
 
-        if ((proto.SpreadPath & DiseaseSpreadPath.Contact) == 0)
-            return;
+        var chance = Math.Clamp(disease.ContactInfect, 0f, 1f);
+        chance = _disease.AdjustContactChanceForProtection(target, chance, disease);
 
-        var chance = Math.Clamp(proto.ContactInfect, 0f, 1f);
-        chance = _disease.AdjustContactChanceForProtection(target, chance, proto);
-
-        var stage = _disease.CreateStage(diseaseId.Id);
+        var stage = _disease.CreateStage(disease.Id);
         if(stage == null)
             return;
 
-        _disease.TryInfectWithChance(target, diseaseId, stage, chance);
+        _disease.TryInfectWithChance(target, disease, stage, chance);
     }
 }

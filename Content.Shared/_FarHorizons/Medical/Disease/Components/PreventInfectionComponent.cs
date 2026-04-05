@@ -1,4 +1,4 @@
-namespace Content.Shared.Medical.Disease.Components;
+namespace Content.Shared._FarHorizons.Medical.Disease.Components;
 
 /// <summary>
 /// Component for entities that can't be infected.

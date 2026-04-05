@@ -66,7 +66,7 @@ public sealed partial class RootableComponent : Component
     /// The movement speed modifier for when rooting is active.
     /// </summary>
     [DataField]
-    public float SpeedModifier = 0.8f;
+    public float SpeedModifier = 0.9f; //FH
 
     /// <summary>
     /// Sound that plays when rooting is toggled.

@@ -1,6 +1,6 @@
-using Content.Shared.Medical.Disease.Prototypes;
-using Content.Shared.Medical.Disease.Systems;
-using Content.Shared.Medical.Disease.Components;
+using Content.Shared._FarHorizons.Medical.Disease.Prototypes;
+using Content.Shared._FarHorizons.Medical.Disease.Systems;
+using Content.Shared._FarHorizons.Medical.Disease.Components;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared.EntityEffects.Effects.Disease;
@@ -33,17 +33,17 @@ public sealed partial class CauseDiseaseEntityEffectSystem : EntityEffectSystem<
        if(!_disease.CanBeInfected(entity.Owner, disease))
         return;
 
-        switch (proto.SpreadPath)
+        switch (disease.SpreadPath)
         {
             case DiseaseSpreadPath.Contact:
                 {
-                    var probability = _disease.AdjustContactChanceForProtection(entity.Owner, proto.ContactInfect, proto);
+                    var probability = _disease.AdjustContactChanceForProtection(entity.Owner, proto.ContactInfect, disease);
                     _disease.TryInfectWithChance(entity.Owner, disease, stage, probability);
                     break;
                 }
             case DiseaseSpreadPath.Airborne:
                 {
-                    var probability = _disease.AdjustAirborneChanceForProtection(entity.Owner, proto.AirborneInfect, proto);
+                    var probability = _disease.AdjustAirborneChanceForProtection(entity.Owner, proto.AirborneInfect, disease);
                     _disease.TryInfectWithChance(entity.Owner, disease, stage, probability);
                     break;
                 }

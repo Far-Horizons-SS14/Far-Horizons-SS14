@@ -1,0 +1,126 @@
+- type: disease
+  id: DiseaseCold
+  name: disease-DiseaseCold-name
+  desc: disease-DiseaseCold-desc
+  spreadPath: [ Airborne ]
+  permeabilityMod: 0.5
+  cureSteps:
+  - !type:CureConditions
+    cureChance: 0.15
+    conditions:
+    - !type:ReagentCondition
+      reagent: Spaceacillin
+      min: 1
+    - !type:TemperatureCondition
+      max: 308.15
+  - !type:CureWait
+    requiredTicks: 900
+  - !type:CureBedrest
+      bedrestChance: 0.00066 #Abysmally Low to have an average of 300 ticks before a heal if they sleep
+      sleepMultiplier: 5
+  stages:
+  - stage: 0
+    stealth: [ Hidden, VeryHidden ]
+  - stage: 1
+    stealth: [ Hidden ]
+    sensations: [ "disease-sensation-throat-sore", "disease-sensation-throat-mucus" ]
+    symptoms:
+    - symptom: SymptomCough
+    - symptom: SymptomSneeze
+
+  - stage: 2
+    sensations: [ "disease-sensation-throat-sore", "disease-sensation-throat-mucus" ]
+    symptoms:
+    - symptom: SymptomCough
+    - symptom: SymptomSneeze
+    - symptom: SymptomFever
+    - symptom: SymptomTransitionToFlu
+
+- type: disease
+  id: DiseaseCold9
+  name: disease-DiseaseCold9-name
+  desc: disease-DiseaseCold9-desc
+  spreadPath: [ Contact ]
+  cureSteps:
+  - !type:CureConditions
+    cureChance: 0.15 # Higher chance to cure, since two reagents are required.
+    conditions:
+    - !type:ReagentCondition
+      reagent: Spaceacillin
+      min: 1
+    - !type:ReagentCondition
+      reagent: Leporazine
+      min: 1
+  - !type:CureWait
+    requiredTicks: 900
+  - !type:CureBedrest
+      bedrestChance: 0.00066 #Abysmally Low to have an average of 300 ticks before a heal if they sleep
+      sleepMultiplier: 5
+  stages:
+  - stage: 0
+    stealth: [ Hidden, VeryHidden ]
+  - stage: 1
+    stealth: [ Hidden ]
+    sensations: [ "disease-sensation-throat-sore", "disease-sensation-stiff" ]
+    symptoms:
+    - symptom: SymptomCough
+      probability: 0.02
+    - symptom: SymptomSneeze
+      probability: 0.02
+    - symptom: SymptomFreezeLight
+  - stage: 2
+    stealth: [ Hidden ]
+    sensations: [ "disease-sensation-throat-sore", "disease-sensation-stiff" ]
+    symptoms:
+    - symptom: SymptomCough
+      probability: 0.04
+    - symptom: SymptomSneeze
+      probability: 0.04
+    - symptom: SymptomFreeze
+
+- type: disease
+  id: DiseaseFlu
+  name: disease-DiseaseFlu-name
+  desc: disease-DiseaseFlu-desc
+  spreadPath: [ Airborne ]
+  permeabilityMod: 0.75
+  cureSteps:
+  - !type:CureConditions
+    cureChance: 0.15
+    conditions:
+    - !type:ReagentCondition
+      reagent: Spaceacillin
+      min: 1
+    - !type:ReagentCondition
+      reagent: Salbutamol
+      min: 1
+  - !type:CureWait
+    requiredTicks: 900
+  - !type:CureBedrest
+      bedrestChance: 0.00066 #Abysmally Low to have an average of 300 ticks before a heal if they sleep
+      sleepMultiplier: 5
+  stages:
+  - stage: 0
+    stealth: [ Hidden ]
+  - stage: 1
+    sensations: [ "disease-sensation-muscles-ache", "disease-sensation-stomach-hurt" ]
+    symptoms:
+    - symptom: SymptomCough
+    - symptom: SymptomSneeze
+    - symptom: SymptomToxinLight
+    cureSteps:
+    - !type:CureBedrest
+      bedrestChance: 0.20
+      sleepMultiplier: 1
+      lowerStage: true
+  - stage: 2
+    sensations: [ "disease-sensation-muscles-ache", "disease-sensation-stomach-hurt" ]
+    symptoms:
+    - symptom: SymptomCough
+    - symptom: SymptomSneeze
+    - symptom: SymptomToxinLight
+    cureSteps:
+    - !type:CureBedrest
+      bedrestChance: 0.15
+      sleepMultiplier: 1
+      lowerStage: true

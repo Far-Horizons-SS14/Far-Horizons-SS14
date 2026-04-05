@@ -1,3 +1,4 @@
+using Content.Shared._FarHorizons.Medical.Disease.Systems; //FarHorizons
 using Content.Shared.Alert;
 using Content.Shared.Body.Systems;
 using Content.Shared.Chemistry.Components;
@@ -17,7 +18,7 @@ namespace Content.Shared.Body.Components;
 /// </summary>
 [RegisterComponent, NetworkedComponent,]
 [AutoGenerateComponentState(fieldDeltas: true), AutoGenerateComponentPause]
-[Access(typeof(SharedBloodstreamSystem))]
+[Access(typeof(SharedBloodstreamSystem), typeof(SharedDiseaseSystem))] //FarHorizons
 public sealed partial class BloodstreamComponent : Component
 {
     public const string DefaultBloodSolutionName = "bloodstream";

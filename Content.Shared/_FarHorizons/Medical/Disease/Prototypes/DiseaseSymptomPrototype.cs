@@ -1,8 +1,8 @@
-using Content.Shared.Medical.Disease.Systems;
+using Content.Shared._FarHorizons.Medical.Disease.Systems;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 
-namespace Content.Shared.Medical.Disease.Prototypes;
+namespace Content.Shared._FarHorizons.Medical.Disease.Prototypes;
 
 /// <summary>
 /// Describes information about a specific disease symptom.

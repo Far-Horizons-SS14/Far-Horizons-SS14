@@ -231,6 +231,10 @@ namespace Content.Server.Lathe
                 if (currentRecipe.Result is { } resultProto)
                 {
                     var result = Spawn(resultProto, Transform(uid).Coordinates);
+
+                    var ev = new LatheProductFinishedEvent(result); //FarHorizons
+                    RaiseLocalEvent(uid, ref ev); //FarHorizons
+
                     _stack.TryMergeToContacts(result);
                     if (currentRecipe.PrintTicket)
                     {

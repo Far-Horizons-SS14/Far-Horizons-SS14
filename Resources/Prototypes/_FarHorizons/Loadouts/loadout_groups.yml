@@ -261,13 +261,16 @@
   loadouts:
   - SecurityRevolverInspectorM500
   - SecurityRevolverInspector
+  - SecurityRevolverOathbreakerM500
   - SecurityRevolverOathbreaker
+  - SecurityRevolverInstigatorM500
   - SecurityRevolverInstigator
   - SecurityPistolN1984
   - SecurityPistolDueProcess
   - SecurityPistolEnforcerFH
   - SecurityPistolPathology
-  - SecurityMk58
+  - SecurityPistolMk58
+  - SecurityMk78
 
 - type: loadoutGroup
   id: SurvivalHeadOfSecurity
@@ -427,8 +430,11 @@
   id: BrigmedicSidearm  
   name: loadout-group-security-sidearm
   loadouts:
+  - SecurityRevolverOathbreakerM500
   - SecurityRevolverOathbreaker
-  - SecurityMk58
+  - SecurityPistolMk58
+  - SecurityMk78
+  - SecurityRevolverInstigatorM500
   - SecurityRevolverInstigator
 
 # Cadet
@@ -498,7 +504,9 @@
   name: loadout-group-security-sidearm
   loadouts:
   - SecurityPistolPathology
-  - SecurityMk58
+  - SecurityPistolMk58
+  - SecurityMk78
+  - SecurityRevolverInstigatorM500
   - SecurityRevolverInstigator
 
 - type: loadoutGroup
@@ -525,9 +533,11 @@
   name: loadout-group-security-sidearm
   loadouts:
   - SecurityPistolDueProcess
-  - SecurityMk58
+  - SecurityPistolMk58
+  - SecurityMk78
+  - SecurityRevolverInstigatorM500
   - SecurityRevolverInstigator
-  
+
 #region Service
 
 # Musician

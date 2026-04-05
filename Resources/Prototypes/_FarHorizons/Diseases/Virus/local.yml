@@ -1,0 +1,91 @@
+- type: disease
+  id: DiseaseFoodPoisoning
+  name: disease-DiseaseFoodPoisoning-name
+  desc: disease-DiseaseFoodPoisoning-desc
+  spreadPath: [ NonContagious ]
+  stageProb: 0.03
+  cureSteps:
+  - !type:CureConditions
+    cureChance: 0.05
+    conditions:
+    - !type:ReagentCondition
+      reagent: Ipecac
+      min: 1
+  - !type:CureWait
+    requiredTicks: 900
+  - !type:CureBedrest
+      bedrestChance: 0.00066 #Abysmally Low to have an average of 300 ticks before a heal if they sleep
+      sleepMultiplier: 5
+  stages:
+  - stage: 0
+    sensations: [ "disease-sensation-queasy", "disease-sensation-stomach-weird" ]
+    stealth: [ Hidden, VeryHidden ]
+  - stage: 1
+    sensations: [ "disease-sensation-stomach-ache", "disease-sensation-nausea" ]
+    symptoms:
+    - symptom: SymptomEmoteGroan
+      probability: 0.1
+  - stage: 2
+    sensations: [ "disease-sensation-stomach-hurt", "disease-sensation-sick" ]
+    symptoms:
+    - symptom: SymptomVomiting
+    - symptom: SymptomEmoteGroan
+      probability: 0.1
+    - symptom: SymptomEmoteMoan
+      probability: 0.1
+
+- type: disease
+  id: DiseaseNarcolepsySyndrome
+  name: disease-DiseaseNarcolepsySyndrome-name
+  desc: disease-DiseaseNarcolepsySyndrome-desc
+  spreadPath: [ NonContagious ]
+  airborneInfect: 0.01
+  cureSteps:
+  - !type:CureConditions
+    cureChance: 0.05
+    conditions:
+    - !type:ReagentCondition
+      reagent: Haloperidol
+      min: 1
+  - !type:CureWait
+    requiredTicks: 900
+  - !type:CureBedrest
+      bedrestChance: 0.00066 #Abysmally Low to have an average of 300 ticks before a heal if they sleep
+      sleepMultiplier: 5
+  stages:
+  - stage: 0
+    sensations: [ "disease-sensation-sleepy" ]
+    stealth: [ Hidden, VeryHidden ]
+  - stage: 1
+    sensations: [ "disease-sensation-sleepy-2", "disease-sensation-sleepy-3" ]
+    symptoms:
+    - symptom: SymptomNarcolepsy
+
+- type: disease
+  id: DiseaseAMIV
+  name: disease-DiseaseAMIV-name
+  desc: disease-DiseaseAMIV-desc
+  spreadPath: [ Contact ]
+  contactInfect: 0.005
+  contactDeposit: 0.05
+  cureSteps:
+  - !type:CureConditions
+    conditions:
+    - !type:ReagentCondition
+      reagent: JuiceBanana
+      min: 3
+  - !type:CureWait
+    requiredTicks: 900
+  - !type:CureBedrest
+      bedrestChance: 0.00066 #Abysmally Low to have an average of 300 ticks before a heal if they sleep
+      sleepMultiplier: 5
+  stages:
+  - stage: 0
+    stealth: [ Hidden, VeryHidden ]
+  - stage: 1
+    sensations: [ "disease-sensation-sick", "disease-sensation-banana-compulsion" ]
+  - stage: 2
+    sensations: [ "disease-sensation-sick", "disease-sensation-banana-compulsion" ]
+    symptoms:
+    - symptom: SymptomMonkeyShout
+    - symptom: SymptomGeneticDamage

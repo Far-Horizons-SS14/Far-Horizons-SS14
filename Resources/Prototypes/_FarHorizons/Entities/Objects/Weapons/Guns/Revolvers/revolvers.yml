@@ -1,3 +1,10 @@
+#region =Neutral=
+
+
+
+
+
+#region Instigator
 - type: entity
   name: Instigator
   parent: [BaseWeaponRevolver, BaseSecurityContraband]
@@ -20,6 +27,26 @@
         - CartridgeRevolver38
         - SpeedLoaderRevolver38
 
+#region Instigator M500
+- type: entity
+  name: Instigator M500
+  parent: [WeaponRevolverInstigator]
+  id: WeaponRevolverInstigatorM500
+  description: A premium version of the Instigator, provided to officers that have dedicated a significant amount of time to upholding space law. Features an improved double-action trigger allowing for slightly faster firing.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/Revolvers/instigator_m500.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Objects/Weapons/Guns/Revolvers/instigator_m500.rsi
+  - type: Gun
+    selectedMode: SemiAuto
+    fireRate: 1.7
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/revolver.ogg
+
+#region Inspector M500
 - type: entity
   name: Inspector M500
   parent: [BaseWeaponRevolver, BaseSecurityContraband]
@@ -44,6 +71,7 @@
     chambers: [ True, True, True, True, True, True ]
     ammoSlots: [ null, null, null, null, null, null ]
 
+#region Initiator
 - type: entity
   name: Initiator
   parent: [BaseWeaponRevolver, BaseSecurityContraband]
@@ -73,6 +101,13 @@
     chambers: [ True, True, True, True, True, True ]
     ammoSlots: [ null, null, null, null, null, null ]
 
+#region =NanoTrasen=
+
+
+
+
+
+#region Oath Breaker
 - type: entity
   name: Oath Breaker
   parent: [BaseWeaponRevolver, BaseSecurityContraband]
@@ -125,3 +160,33 @@
       Animal:
         knockback: 3
         staminaMultiplier: 20
+
+#region Oath Breaker M500
+- type: entity
+  name: Oath Breaker M500
+  parent: [WeaponRevolverOathbreaker]
+  id: WeaponRevolverOathbreakerM500
+  description: Following the success of issuing this weapon to Brigmedics, NanoTrasen commissioned another set of Oath Breakers, this time for Elite brig defenders. Seems to have room for an additional shell compared to the non-premium version.
+  components:
+  - type: Item
+    sprite: _FarHorizons/Objects/Weapons/Guns/Revolvers/oath_breaker_m500.rsi
+    size: Small
+    shape:
+    - 0,0,1,0
+    - 0,1,0,1
+  - type: Clothing
+    sprite: _FarHorizons/Objects/Weapons/Guns/Revolvers/oath_breaker_m500.rsi
+    quickEquip: false
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/Revolvers/oath_breaker_m500.rsi
+  - type: RevolverAmmoProvider
+    whitelist:
+      tags:
+      - ShellShotgun
+      - SpeedLoaderShotgun
+    proto: ShellShotgun
+    capacity: 4
+    chambers: [ True, True, True, True ]
+    ammoSlots: [ null, null, null, null ]
+    soundInsert:
+      path: /Audio/Weapons/Guns/MagIn/shotgun_insert.ogg

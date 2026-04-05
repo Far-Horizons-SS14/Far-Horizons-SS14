@@ -2,7 +2,7 @@
   abstract: true
   parent: BaseItem
   id: BaseMagazineBoxPistol
-  name: ammunition box (.35 auto)
+  name: 9mm Ammunition Box #FH
   components:
   - type: BallisticAmmoProvider
     mayTransfer: true
@@ -17,7 +17,7 @@
     containers:
       ballistic-ammo: !type:Container
   - type: Sprite
-    sprite: Objects/Weapons/Guns/Ammunition/Boxes/pistol.rsi
+    sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Boxes/Pistol/9mm.rsi # FH - Holy fuck this shit has been annoying me forever you have NO IDEA
   - type: MagazineVisuals
     magState: mag
     steps: 3
@@ -27,68 +27,9 @@
 # Boxes
 - type: entity
   parent: BaseMagazineBoxPistol
-  id: MagazineBoxPistolSP
-  name: ammunition box (.35 auto SP)
-  components:
-  - type: BallisticAmmoProvider
-    proto: CartridgePistolSP
-  - type: Sprite
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-    - state: sp
-
-- type: entity
-  parent: BaseMagazineBoxPistol
-  id: MagazineBoxPistolHP
-  name: ammunition box (.35 auto HP)
-  components:
-  - type: BallisticAmmoProvider
-    proto: CartridgePistolHP
-  - type: Sprite
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-      
-- type: entity
-  parent: BaseMagazineBoxPistol
-  id: MagazineBoxPistolFMJ
-  name: ammunition box (.35 auto FMJ)
-  components:
-  - type: BallisticAmmoProvider
-    proto: CartridgePistolFMJ
-  - type: Sprite
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-    - state: fmj
-      
-- type: entity
-  parent: BaseMagazineBoxPistol
-  id: MagazineBoxPistolAP
-  name: ammunition box (.35 auto AP)
-  components:
-  - type: BallisticAmmoProvider
-    proto: CartridgePistolAP
-  - type: Sprite
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-    - state: ap
-
-- type: entity
-  parent: BaseMagazineBoxPistol
   id: MagazineBoxPistolPractice
-  name: ammunition box (.35 auto practice)
-  description: A cardboard box of .35 auto rounds. Intended to hold harmless practice ammunition.
+  name: 9mm Ammunition Box (Practice) #FH
+  description: A cardboard box of 9mm rounds. Intended to hold harmless practice ammunition. #FH
   components:
   - type: BallisticAmmoProvider
     proto: CartridgePistolPractice
@@ -103,8 +44,8 @@
 - type: entity
   parent: BaseMagazineBoxPistol
   id: MagazineBoxPistolIncendiary
-  name: ammunition box (.35 auto incendiary)
-  description: A cardboard box of .35 auto rounds. Intended to hold self-igniting incendiary ammunition.
+  name: 9mm Ammunition Box (Incendiary) #FH
+  description: A cardboard box of 9mm rounds. Intended to hold self-igniting incendiary ammunition. #FH
   components:
   - type: BallisticAmmoProvider
     proto: CartridgePistolIncendiary
@@ -119,8 +60,8 @@
 - type: entity
   parent: BaseMagazineBoxPistol
   id: MagazineBoxPistolUranium
-  name: ammunition box (.35 auto uranium)
-  description: A cardboard box of .35 auto rounds. Intended to hold exotic uranium-core ammunition.
+  name: 9mm Ammunition Box (Uranium) #FH
+  description: A cardboard box of 9mm rounds. Intended to hold exotic uranium-core ammunition. #FH
   components:
   - type: BallisticAmmoProvider
     proto: CartridgePistolUranium

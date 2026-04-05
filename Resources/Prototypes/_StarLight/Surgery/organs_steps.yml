@@ -719,6 +719,47 @@
         Piercing: 10
   #FarHorizons End
 
+#FarHorizons Start
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepExtractCore
+  name: Extract Core
+  components:
+  - type: SurgeryStep
+    duration: 5
+    tools:
+    - type: Retractor
+    bodyAdd:
+    - type: Uncryoable
+  - type: SurgeryStepOrganExtract
+    slot: SentientCore
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/scissors.rsi
+    state: retractor
+  - type: SurgeryStepEmoteEffect
+  - type: OnFailDamage
+    damage: 
+      types:
+        Piercing: 10
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepInsertCore
+  name: Insert Core
+  components:
+  - type: SurgeryStep
+    duration: 5
+    tools:
+    - type: Organ
+    organCategory: SentientCore
+    bodyRemove:
+    - type: Uncryoable
+  - type: SurgeryStepOrganInsert
+  - type: Sprite
+    sprite: Mobs/Species/Human/organs.rsi
+    state: brain
+#FarHorizons End
+
 # Implant
 # liver
 

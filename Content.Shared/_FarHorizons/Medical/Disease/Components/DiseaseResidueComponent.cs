@@ -1,7 +1,7 @@
-using Content.Shared.Medical.Disease.Systems;
+using Content.Shared._FarHorizons.Medical.Disease.Systems;
 using Robust.Shared.GameStates;
 
-namespace Content.Shared.Medical.Disease.Components;
+namespace Content.Shared._FarHorizons.Medical.Disease.Components;
 
 /// <summary>
 /// Residual surface/item contamination by diseases.

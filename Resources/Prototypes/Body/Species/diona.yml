@@ -57,7 +57,7 @@
       LegRight: OrganDionaLegRight
       FootLeft: OrganDionaFootLeft
       FootRight: OrganDionaFootRight
-      Brain: OrganDionaBrainNymphing
+      SentientCore: OrganDionaBrainNymphing #FH
       Eyes: OrganDionaEyes
       Lungs: OrganDionaLungsNymphing
       Stomach: OrganDionaStomachNymphing
@@ -176,9 +176,9 @@
   - type: BodyEmotes
     soundsId: DionaBodyEmotes
   - type: IgnoreKudzu
-  - type: IgniteOnHeatDamage
-    fireStacks: 1
-    threshold: 12
+#  - type: IgniteOnHeatDamage #FH it sucks so bad
+#    fireStacks: 1
+#    threshold: 12
   - type: GibAction
     actionPrototype: DionaGibAction
     allowedStates:
@@ -193,6 +193,8 @@
     - Diona
   - type: VisionOrganRequiredForVision # Far Horizons
   - type: RegrowableLimbs #FarHorizons
+  - type: LimbDamageable # Far Horizons
+    proto: LimbTargetDiona
 
 - type: entity
   parent: OrganBase
@@ -327,6 +329,9 @@
   - type: Nymph
     transferMind: true
     entityPrototype: OrganDionaNymphBrain
+  # Far Horizons - brain isn't in the head
+  - type: Organ
+    category: SentientCore
 
 - type: entity
   parent: OrganDionaLungs

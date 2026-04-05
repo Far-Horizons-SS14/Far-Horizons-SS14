@@ -74,6 +74,7 @@
   color: "#A6D1FF"
   metabolisms:
     Bloodstream:
+      metabolismRate: 0.05
       effects:
       - !type:HealthChange
         damage:
@@ -113,6 +114,20 @@
         damage:
           types:
             Asphyxiation: 10
+
+- type: reagent
+  id: Vaccine
+  name: reagent-name-vaccine
+  group: Medicine
+  desc: reagent-desc-vaccine
+  physicalDesc: reagent-physical-desc-clear
+  flavor: medicine
+  color: "#e0f2fa"
+  metabolisms:
+    Bloodstream:
+      metabolismRate: 5.0
+      effects:
+        - !type:VaccinatePerson
 
 - type: reagent
   id: UniversalBlood

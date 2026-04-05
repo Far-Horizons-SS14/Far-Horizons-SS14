@@ -2,10 +2,10 @@ using System.Linq;
 using Content.Shared.Body.Systems;
 using Content.Shared.Clothing.Components;
 using Content.Shared.Inventory;
-using Content.Shared.Medical.Disease.Components;
-using Content.Shared.Medical.Disease.Cures;
-using Content.Shared.Medical.Disease.Prototypes;
-using Content.Shared.Medical.Disease.Symptoms;
+using Content.Shared._FarHorizons.Medical.Disease.Components;
+using Content.Shared._FarHorizons.Medical.Disease.Cures;
+using Content.Shared._FarHorizons.Medical.Disease.Prototypes;
+using Content.Shared._FarHorizons.Medical.Disease.Symptoms;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Random.Helpers;
 using Robust.Shared.Collections;
@@ -14,9 +14,12 @@ using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Content.Shared.Popups;
 using Content.Shared.Dataset;
-using Content.Shared._FarHorizons.Silicons.IPC.Components;
+using Content.Shared.Body.Components;
+using Content.Shared.Chemistry.EntitySystems;
+using Content.Shared.Chemistry.Reagent;
+using Robust.Shared.Network;
 
-namespace Content.Shared.Medical.Disease.Systems;
+namespace Content.Shared._FarHorizons.Medical.Disease.Systems;
 
 /// <summary>
 /// Server system that progresses diseases, triggers symptom behaviors, and handles spread/immunity.
@@ -32,6 +35,9 @@ public sealed partial class SharedDiseaseSystem : EntitySystem
     [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly SharedSolutionContainerSystem _solution = default!;
+    [Dependency] private readonly SharedBloodstreamSystem _bloodstream = default!;
+    [Dependency] private readonly INetManager _net = default!;
 
     private static readonly string _firstStrainName = "StrainFirstNames";
     private static readonly string _secondStrainName = "StrainSecondNames";
@@ -70,6 +76,9 @@ public sealed partial class SharedDiseaseSystem : EntitySystem
     /// </summary>
     private void ProcessCarrier(Entity<DiseaseCarrierComponent> ent)
     {
+        // Attempts to decay the immunities of the carrier
+        _cure.PostImmunityDecay(ent);
+
         if (ent.Comp.ActiveDiseases.Count == 0)
         {
             if (!string.IsNullOrEmpty(ent.Comp.DiseaseIcon))
@@ -100,6 +109,7 @@ public sealed partial class SharedDiseaseSystem : EntitySystem
 
             if (newStage != stageData)
             {
+                UpdateBloodData(ent);
                 ent.Comp.ActiveDiseases[DiseaseData] = stageData;
                 dirty = true;
             }
@@ -147,7 +157,7 @@ public sealed partial class SharedDiseaseSystem : EntitySystem
         }
         
         // Normal stage change.
-        var perTickAdvance = Math.Clamp(diseaseProto.StageProb, 0f, 1f);
+        var perTickAdvance = Math.Clamp(disease.StageProb, 0f, 1f);
         var seed = SharedRandomExtensions.HashCodeCombine([(int)_timing.CurTick.Value, GetNetEntity(ent).Id, currentStage.MinStageUntil.Microseconds, currentStage.Stage]);
         var rand = new System.Random(seed);
         
@@ -252,7 +262,7 @@ public sealed partial class SharedDiseaseSystem : EntitySystem
     /// <summary>
     /// Adjusts airborne infection chance for PPE/internals on the target.
     /// </summary>
-    public float AdjustAirborneChanceForProtection(EntityUid target, float baseChance, DiseasePrototype disease)
+    public float AdjustAirborneChanceForProtection(EntityUid target, float baseChance, DiseaseData disease)
     {
         var chance = baseChance;
 
@@ -282,7 +292,7 @@ public sealed partial class SharedDiseaseSystem : EntitySystem
     /// <summary>
     /// Adjusts contact infection chance for PPE on the target.
     /// </summary>
-    public float AdjustContactChanceForProtection(EntityUid target, float baseChance, DiseasePrototype disease)
+    public float AdjustContactChanceForProtection(EntityUid target, float baseChance, DiseaseData disease)
     {
         var chance = baseChance;
         var permeability = MathF.Max(0f, disease.PermeabilityMod);
@@ -318,52 +328,49 @@ public sealed partial class SharedDiseaseSystem : EntitySystem
     /// <summary>
     /// Rolls probability, validates eligibility, then infects.
     /// </summary>
-    public bool TryInfectWithChance(EntityUid uid, DiseaseData diseaseId, StageData stage, float probability)
+    public bool TryInfectWithChance(EntityUid uid, DiseaseData disease, StageData stage, float probability)
     {
-        if (!CanBeInfected(uid, diseaseId))
+        if (!CanBeInfected(uid, disease))
             return false;
 
         // TODO: Replace with RandomPredicted once the engine PR is merged
-        var seed = SharedRandomExtensions.HashCodeCombine([(int)_timing.CurTick.Value, uid.GetHashCode(), 0]);
+        var seed = SharedRandomExtensions.HashCodeCombine([(int)_timing.CurTick.Value, uid.GetHashCode(), stage.MinStageUntil.GetHashCode()]);
         var rand = new System.Random(seed);
         if (!rand.Prob(probability))
             return false;
 
-        if (TryComp<DiseaseCarrierComponent>(uid, out var carrier) && carrier.Immunity.TryGetValue(diseaseId.Id, out var immunityStrength))
+        if (TryComp<DiseaseCarrierComponent>(uid, out var carrier) && carrier.Immunity.TryGetValue(disease, out var immunityStrength))
         {
             // Roll against immunity strength.
             // TODO: Replace with RandomPredicted once the engine PR is merged
-            var seedImmunity = SharedRandomExtensions.HashCodeCombine([(int)_timing.CurTick.Value, uid.GetHashCode(), 1]);
+            var seedImmunity = SharedRandomExtensions.HashCodeCombine([(int)_timing.CurTick.Value, uid.GetHashCode(), stage.MaxStageUntil.GetHashCode()]);
             var randImmunity = new System.Random(seedImmunity);
             if (!randImmunity.Prob(immunityStrength))
                 return false;
         }
 
-        return Infect(uid, diseaseId, stage);
+        return Infect(uid, disease, stage);
     }
 
     /// <summary>
     /// Infects an entity if eligible, when it has a carrier component, and sets the initial stage.
     /// </summary>
-    public bool Infect(EntityUid uid, DiseaseData diseaseId, StageData stage)
+    public bool Infect(EntityUid uid, DiseaseData disease, StageData stage)
     {
-        if (!_prototypes.HasIndex(diseaseId.Id))
-            return false;
-
         if (!TryComp<DiseaseCarrierComponent>(uid, out var carrier))
             return false;
 
         // Only initialize stage and incubation when this disease is first added to the carrier.
-        if (carrier.ActiveDiseases.TryAdd(diseaseId, stage))
+        if (carrier.ActiveDiseases.TryAdd(disease, stage))
         {
             // Set initial stage.
 
             // Schedule incubation window if configured; during incubation symptoms/spread are suppressed.
-            var proto = _prototypes.Index(diseaseId.Id);
-            if (proto.IncubationSeconds > 0)
-                carrier.IncubatingUntil[diseaseId] = _timing.CurTime + TimeSpan.FromSeconds(proto.IncubationSeconds);
+            if (disease.IncubationSeconds > 0)
+                carrier.IncubatingUntil[disease] = _timing.CurTime + TimeSpan.FromSeconds(disease.IncubationSeconds);
         }
 
+        UpdateBloodData((uid,carrier));
         carrier.NextTick = _timing.CurTime + carrier.TickDelay;
         Dirty(uid, carrier);
         return true;
@@ -377,7 +384,17 @@ public sealed partial class SharedDiseaseSystem : EntitySystem
         var disease = new DiseaseData
         {
             Id = diseaseId,
-            StrainName = GenerateStrainName()
+            Name = proto.Name,
+            Description = proto.Description,
+            StrainName = GenerateStrainName(),
+            SpreadPath = proto.SpreadPath,
+            StageProb = proto.StageProb,
+            PostCureImmunity = proto.PostCureImmunity,
+            IncubationSeconds = proto.IncubationSeconds,
+            ContactInfect = proto.ContactInfect,
+            ContactDeposit = proto.ContactDeposit,
+            AirborneInfect = proto.AirborneInfect,
+            AirborneRange = proto.AirborneRange
         };
         return disease;
     }
@@ -398,4 +415,34 @@ public sealed partial class SharedDiseaseSystem : EntitySystem
 
     private string GenerateStrainName()
         => $"{_random.Pick(_prototypes.Index<LocalizedDatasetPrototype>(_firstStrainName))}-{_random.NextByte(99)} {_random.Pick(_prototypes.Index<LocalizedDatasetPrototype>(_secondStrainName))}";
+
+    public void UpdateBloodData(Entity<DiseaseCarrierComponent> ent)
+    {
+        if(_net.IsClient) return;
+
+        if (!TryComp<BloodstreamComponent>(ent.Owner, out var bloodstream)
+            || !_solution.ResolveSolution(ent.Owner, bloodstream.BloodSolutionName, ref bloodstream.BloodSolution, out var bloodSolution)) return;
+
+        var bloodData = _bloodstream.GetEntityBloodData((ent.Owner, bloodstream));
+        var diseaseData = bloodData.OfType<DiseaseReagentData>().FirstOrDefault();
+        if(diseaseData == null)
+        {
+            diseaseData = new DiseaseReagentData();
+            bloodData.Add(diseaseData);
+        }
+    
+        diseaseData.ActiveDiseases = new Dictionary<DiseaseData, StageData>(ent.Comp.ActiveDiseases);
+        diseaseData.Immunity = new Dictionary<DiseaseData, float>(ent.Comp.Immunity);
+        bloodstream.BloodReferenceSolution.SetReagentData(bloodData);
+
+        for (var i = 0; i < bloodSolution.Contents.Count; i++)
+        {
+            var old = bloodSolution.Contents[i];
+            if(bloodstream.BloodReferenceSolution.Contents.Any(x => x.Reagent.Prototype == old.Reagent.Prototype))
+                bloodSolution.Contents[i] = new ReagentQuantity(new ReagentId(old.Reagent.Prototype, bloodData), old.Quantity);
+        }
+
+        Dirty(ent);
+        Dirty(ent.Owner, bloodstream);
+    }
 }

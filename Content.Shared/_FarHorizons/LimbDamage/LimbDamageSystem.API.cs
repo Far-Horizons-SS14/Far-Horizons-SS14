@@ -63,6 +63,15 @@ public partial class LimbDamageSystem
         return totalHealed;
     }
 
+    public void ClearAllDamage(Entity<LimbDamageableComponent?> target)
+    {
+        if (!Resolve(target, ref target.Comp, false)) return;
+
+        var allLimbs = GetAllDamageable(target);
+        foreach (var limb in allLimbs)
+            _damageable.ClearAllDamage((limb.Owner, limb.Comp.Damageable));
+    }
+
     public bool LimbHasDamage(Entity<LimbDamageableComponent?> target, ProtoId<OrganCategoryPrototype> targetLimb, HealingComponent healing)
     {
         var limb = GetAllDamageable(target).Where(p => p.Comp.Organ!.Category == targetLimb).FirstOrNull();

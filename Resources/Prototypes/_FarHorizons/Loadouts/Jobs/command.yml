@@ -64,7 +64,7 @@
 
 - type: loadout
   id: SecurityPistolEnforcerFH
-  dummyEntity: WeaponPistolEnforcer
+  dummyEntity: WeaponPistolEnforcerTypeT
   effects:
     - !type:JobRequirementLoadoutEffect
       requirement:
@@ -73,7 +73,7 @@
         time: 36000 # Needs to be earned
   storage:
     back:
-    - WeaponPistolEnforcer
+    - WeaponPistolEnforcerTypeT
     - MagazinePistolSP
     - MagazinePistolSP
     - MagazinePistolRubber

@@ -1,0 +1,328 @@
+#region =Neutral=
+
+
+
+
+
+#region Stock P2-91
+- type: entity
+  name: P2-91
+  parent: [BaseWeaponSubMachineGun, BaseSecurityContraband]
+  id: WeaponSubMachineGunP291
+  description: The much cheaper version of the NanoTransen manufactored WT500, without the specalized electronics that stabilize your aim. For a Personal Defense Weapon on a budget, it does a good job of dropping the person in front of you dead. Feeds from 9mm Magazines.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/SMGs/p91.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: _FarHorizons/Objects/Weapons/Guns/SMGs/p91.rsi
+    quickEquip: false
+    slots:
+    - suitStorage
+    - Belt
+  - type: Item # Small enough to fit in pocket.
+    size: Small
+    shape:
+    - 0,0,1,0
+    - 0,1,0,1
+    storedOffset: 0,-4
+  - type: Gun # 6 - 20 Deviation
+    fireRate: 6
+    minAngle: 6
+    maxAngle: 20
+    angleIncrease: 1.5
+    angleDecay: 6
+    selectedMode: FullAuto
+    shotsPerBurst: 3
+    burstCooldown: 0.2
+    burstFireRate: 8
+    availableModes:
+    - Burst
+    - FullAuto
+    soundGunshot:
+      path: /Audio/_Starlight/Weapons/Guns/Gunshots/1sp_91.ogg
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: true
+  - type: Appearance
+  - type: Tag
+    tags:
+    - P291
+
+#region =NanoTrasen=
+
+
+
+
+
+#region Drozd-T
+- type: entity
+  name: Drozd Type-T
+  parent: [BaseWeaponSubMachineGun, BaseSecurityContraband]
+  id: WeaponSubMachineGunDrozdTypeT
+  description: A modifed Drozd platform utilized by NanoTrasen with a heavier grip & heavier stock for more stability and holographic sights for easy target acquisition, as well as electronic status lights. Feeds from 9mm SMG Magazines.
+  suffix: NT
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Objects/Weapons/Guns/SMGs/nt_drozd.rsi
+      layers:
+        - state: base
+          map: ["enum.GunVisualLayers.Base"]
+        - state: mag-0
+          map: ["enum.GunVisualLayers.Mag"]
+    - type: Clothing
+      sprite: _FarHorizons/Objects/Weapons/Guns/SMGs/nt_drozd.rsi
+    - type: Wieldable
+      unwieldOnUse: false
+    - type: GunWieldBonus # 5-10 Deviation / Heavy Stock & Grip
+      minAngle: -16
+      maxAngle: -22
+    - type: Gun
+      minAngle: 21
+      maxAngle: 32
+      fireRate: 6
+      burstFireRate: 18
+      soundGunshot:
+        path: /Audio/Weapons/Guns/Gunshots/atreides.ogg
+      selectedMode: FullAuto
+      availableModes:
+      - Burst
+      - FullAuto
+      - SemiAuto
+      shotsPerBurst: 3
+      burstCooldown: 0.375
+    - type: ItemSlots
+      slots:
+        gun_magazine:
+          name: Magazine
+          startingItem: MagazinePistolSubMachineGunSP
+          insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
+          ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+          priority: 2
+          whitelist:
+            tags:
+              - MagazinePistolSubMachineGunSP
+          whitelistFailPopup: gun-magazine-whitelist-fail
+        gun_chamber:
+          name: Chamber
+          priority: 1
+          whitelist:
+            tags:
+              - CartridgePistol
+    - type: MagazineVisuals
+      magState: mag
+      steps: 5
+      zeroVisible: true
+    - type: Appearance
+    - type: ChamberMagazineAmmoProvider
+      autoEject: true
+    - type: UseDelay #Much bulkier with the heavy stock and grip.
+      delay: 1
+    - type: Tag
+      tags:
+      - Drozd
+
+#region P2-91-T
+- type: entity
+  name: P2-91-T
+  parent: [BaseWeaponSubMachineGun, BaseSecurityContraband]
+  id: WeaponSubMachineGunP291T
+  description: A heavily modified P291 platform made as a compromise between the more expensive WT500 and the unreliable P291s, utilized by NanoTrasen. It does the job of a Personal Defense Weapon fairly well, boasting decent accuracy for continuous one-handed firing. Feeds from 9mm Magazines.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/SMGs/nt_p91.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Wieldable
+    unwieldOnUse: false
+  - type: GunWieldBonus # 2 - 8 Deviation / Addition of Grip
+    minAngle: -2
+    maxAngle: -4
+  - type: Gun # 4 - 12 Deviation (Meant to be one-handed) / Addition of Stock
+    fireRate: 6
+    minAngle: 4
+    maxAngle: 12
+    angleIncrease: 1.5
+    angleDecay: 6
+    selectedMode: FullAuto
+    shotsPerBurst: 3
+    burstCooldown: 0.2
+    burstFireRate: 8
+    availableModes:
+    - Burst
+    - FullAuto
+    soundGunshot:
+      path: /Audio/_Starlight/Weapons/Guns/Gunshots/1sp_91.ogg
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: true
+  - type: Appearance
+  - type: SpeedModifiedOnWield
+    walkModifier: 1 #Light enough to act like a pistol. A machine pistol, if you will.
+    sprintModifier: 1
+  - type: ChamberMagazineAmmoProvider
+    autoEject: true
+  - type: Tag
+    tags:
+    - P291
+
+#region =NeoSol=
+
+
+
+
+
+#region Drozd-S
+- type: entity
+  name: Drozd Type-S
+  parent: [BaseWeaponSubMachineGun, BaseSecurityContraband]
+  id: WeaponSubMachineGunDrozdTypeS
+  description: A modifed Drozd platform utilized by NeoSol, with a near total conversion to a more automatic-rifle like platform, maintaining the faster rate of fire. Handles just like a rifle without quite the same punch. Feeds from 9mm SMG Magazines.
+  suffix: NS
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Objects/Weapons/Guns/SMGs/NS_Drozd/ns_drozd_x32x64.rsi
+      layers:
+        - state: base
+          map: ["enum.GunVisualLayers.Base"]
+        - state: mag-0
+          map: ["enum.GunVisualLayers.Mag"]
+    - type: Clothing
+      sprite: _FarHorizons/Objects/Weapons/Guns/Rifles/NS_Drozd/ns_drozd_x32.rsi
+    - type: Item
+      sprite: _FarHorizons/Objects/Weapons/Guns/Rifles/NS_Lecter/ns_drozd_x32.rsi
+    - type: Wieldable
+      unwieldOnUse: false
+    - type: GunWieldBonus # 1-5 Deviation / Long Barrel & Heavy Stock/Grip
+      minAngle: -20
+      maxAngle: -27
+    - type: Gun
+      minAngle: 21
+      maxAngle: 32
+      fireRate: 6
+      burstFireRate: 18
+      soundGunshot:
+        path: /Audio/Weapons/Guns/Gunshots/atreides.ogg
+      selectedMode: FullAuto
+      availableModes:
+      - Burst
+      - FullAuto
+      - SemiAuto
+      shotsPerBurst: 3
+      burstCooldown: 0.375
+    - type: ItemSlots
+      slots:
+        gun_magazine:
+          name: Magazine
+          startingItem: MagazinePistolSubMachineGunSP
+          insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
+          ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+          priority: 2
+          whitelist:
+            tags:
+              - MagazinePistolSubMachineGunSP
+          whitelistFailPopup: gun-magazine-whitelist-fail
+        gun_chamber:
+          name: Chamber
+          priority: 1
+          whitelist:
+            tags:
+              - CartridgePistol
+    - type: MagazineVisuals
+      magState: mag
+      steps: 5
+      zeroVisible: true
+    - type: Appearance
+    - type: Sharp
+    - type: MeleeWeapon
+      wideAnimationRotation: -90
+      attackRate: 1
+      damage:
+        types:
+          Slash: 18 # On par with combat knife, albiet slower.
+      soundHit: /Audio/Weapons/bladeslice.ogg
+      angle: 0
+      animation: WeaponArcThrust
+    - type: AltFireMelee
+      attackType: Heavy
+    - type: UseDelay #Much bulkier with the heavy stock and grip.
+      delay: 1
+    - type: SpeedModifiedOnWield
+      walkModifier: 0.90 #Just heavy enough to impede movement.
+      sprintModifier: 0.90
+    - type: Tag
+      tags:
+      - Drozd
+
+#region P2-91-S
+- type: entity
+  name: P2-91-S
+  parent: [BaseWeaponSubMachineGun, BaseSecurityContraband]
+  id: WeaponSubMachineGunP291S
+  description: A custom made P291 platform meant to rival NanoTrasen-made WT500s. It does the job of a Personal Defense Weapon fairly well, boasting impressive accuracy for a one-handed weapon. Feeds from 9mm Magazines.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/SMGs/NS_P91/ns_p91_x32x64.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: _FarHorizons/Objects/Weapons/Guns/SMGs/NS_P91/ns_p91_x32.rsi
+  - type: Item
+    sprite: _FarHorizons/Objects/Weapons/Guns/SMGs/NS_P91/ns_p91_x32.rsi
+  - type: Wieldable
+    unwieldOnUse: false
+  - type: GunWieldBonus # 1 - 6 Deviation / Addition of Grip
+    minAngle: -1
+    maxAngle: -2
+  - type: Gun # 2 - 8 Deviation (Meant to be one-handed) / Addition of Stock & Barrel Ports
+    fireRate: 6
+    minAngle: 2
+    maxAngle: 8
+    angleIncrease: 1.5
+    angleDecay: 6
+    selectedMode: FullAuto
+    shotsPerBurst: 3
+    burstCooldown: 0.2
+    burstFireRate: 8
+    availableModes:
+    - Burst
+    - FullAuto
+    soundGunshot:
+      path: /Audio/_Starlight/Weapons/Guns/Gunshots/1sp_91.ogg
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: true
+  - type: Appearance
+  - type: Sharp
+  - type: MeleeWeapon
+    wideAnimationRotation: -90
+    attackRate: 1.5
+    damage:
+      types:
+        Slash: 12 # Same as combat knife.
+    soundHit: /Audio/Weapons/bladeslice.ogg
+    angle: 0
+    animation: WeaponArcThrust
+  - type: UseDelay # Bayonet
+    delay: 1
+  - type: SpeedModifiedOnWield
+    walkModifier: 1 #Light enough to act like a pistol. A machine pistol, if you will.
+    sprintModifier: 1
+  - type: AltFireMelee
+    attackType: Heavy
+  - type: Tag
+    tags:
+    - P291

@@ -7,6 +7,7 @@ diagnoser-disease-report-subject-dna = [bold]DNA:[/bold] {$dna}
 diagnoser-disease-report-name = [bold]Disease Name:[/bold] {$name}
 diagnoser-disease-report-stage = [bold]Disease Stage:[/bold] {$stage}
 diagnoser-disease-report-variant = [bold]Variant Name:[/bold] {$name}
+diagnoser-disease-report-spreadpath = [bold]Spreadpath:[/bold] {$spreadpath}
 diagnoser-disease-report-desc = [bold]Disease Description:[/bold]
 
 diagnoser-no-cures = [bold]The disease has no cures.[/bold]

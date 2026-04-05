@@ -78,7 +78,7 @@
       conditions:
       - !type:TemperatureCondition
           max: 314.15
-      amount: 20000
+      amount: 10000
     - !type:HealthChange
       damage:
         types:
@@ -95,7 +95,7 @@
       conditions:
       - !type:TemperatureCondition
           min: 273.15
-      amount: -15000
+      amount: -10000
     - !type:HealthChange
       damage:
         types:
@@ -112,7 +112,7 @@
       conditions:
       - !type:TemperatureCondition
           min: 228.15
-      amount: -25000
+      amount: -15000
     - !type:HealthChange
       damage:
         types:
@@ -194,11 +194,3 @@
     - !type:AddReagentToSolution
       reagent: Ephedrine
       solution: chemicals
-
-- type: diseaseSymptom
-  id: SymptomTransformClown
-  name: disease-symptom-SymptomTransformClown-name
-  probability: 1
-  behaviors:
-  - !type:SymptomGenericStatusEffect
-    effectProto: StatusEffectCluwne

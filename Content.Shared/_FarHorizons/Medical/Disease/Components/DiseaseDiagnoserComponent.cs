@@ -1,7 +1,7 @@
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 
-namespace Content.Shared.Medical.Disease.Components;
+namespace Content.Shared._FarHorizons.Medical.Disease.Components;
 
 /// <summary>
 /// Component for entities that can diagnose diseases.
