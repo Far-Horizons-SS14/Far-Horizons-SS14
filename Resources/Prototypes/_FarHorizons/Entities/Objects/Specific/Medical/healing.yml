@@ -313,9 +313,14 @@
     closeable: true
     closeSound:
       collection: flaskCloseSounds
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 100
+      Plastic: 100
   - type: Tag
     tags:
     - Ointment
+    - Recyclable
 
 - type: entity
   suffix: Filled
@@ -397,9 +402,15 @@
     closeable: true
     closeSound:
       collection: bottleCloseSounds
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 100
+      Plastic: 100
+      Glass: 100
   - type: Tag
     tags:
     - Ointment
+    - Recyclable
 
 - type: entity
   suffix: Filled
@@ -481,9 +492,14 @@
     closeable: true
     closeSound:
       collection: flaskCloseSounds
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 100
+      Plastic: 100
   - type: Tag
     tags:
     - Ointment
+    - Recyclable
 
 - type: entity
   suffix: Filled
