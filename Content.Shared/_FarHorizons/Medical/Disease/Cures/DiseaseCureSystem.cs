@@ -108,7 +108,7 @@ public sealed partial class SharedDiseaseCureSystem : EntitySystem
     /// </summary>
     public void ApplyCureDiseaseStage(Entity<DiseaseCarrierComponent> ent, DiseaseData disease)
     {
-        if (!ent.Comp.ActiveDiseases.TryGetValue(disease, out var stage) || stage.Stage <= 1)
+        if (!ent.Comp.ActiveDiseases.TryGetValue(disease, out var stage) || stage.Stage <= 0)
             return;
 
         stage.Stage-=1;
