@@ -259,6 +259,66 @@
       - HeadOfSecurity
       - Captain
       - Detective
+
+#region Civilian
+
+#Basic Armored Hardsuit
+- type: entity
+  parent: [ClothingOuterHardsuitBase, BaseSecurityContraband]
+  id: ClothingOuterHardsuitSpaceHazardArmored
+  name: Armored Space Hazard Suit
+  description: A cheap and easily producable modification of the Space Hazard suit, used to suppliment a station's lack of combat-ready hardsuits for dangerous conditions.
+  suffix: NT
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/OuterClothing/Hardsuits/spacehazard.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/OuterClothing/Hardsuits/spacehazard.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.5
+    lowPressureMultiplier: 1000
+  - type: ExplosionResistance
+    damageCoefficient: 0.5
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      flatReductions:
+        Piercing: 5
+        Heat: 4
+      coefficients:
+        Blunt: 0.7
+        Slash: 0.7
+        Piercing: 0.7
+        Heat: 0.7
+        Caustic: 0.8
+    staminaModifier: 0.6
+    ignoreKnockdown: true
+  - type: LimbArmor
+    limbs:
+      ArmRight: {}
+      ArmLeft: {}
+      HandRight: {}
+      HandLeft: {}
+      LegRight: {}
+      LegLeft: {}
+      FootRight: {}
+      FootLeft: {}
+  - type: ClothingSpeedModifier
+    walkModifier: 0.80
+    sprintModifier: 0.80
+    requireActivated: false #FH cuz item toggle.
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitSpaceHazard
+  - type: Tag
+    tags:
+    - Hardsuit
+    - CorgiWearable
+    - WhitelistChameleon
+    - IPCExternalCooling # Far Horizons
+    - HardsuitSpatio #can now be used to make goliath hardsuit
+
 #region Syndicate 
 
 
