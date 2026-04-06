@@ -6,11 +6,11 @@
       damageContainer: LimbDamageContainer # Only brute and heat
     - type: DamageableLimb
       bodyDamageFactor: 0.4 # 40% of the damage/healing limb takes is transferred to body
-      missChance: 0.2 # 20% chance that direct attack misses entirely
-      redirectChance: 0.1 # 10% chance if it didn't miss, it hit other part of the body instead
+      missChance: 0 # Tried with miss chance originally. Heard less complaints than I thought, but let's try without missing
+      redirectChance: 0.25 # 25% chance if it didn't miss, it hit other part of the body instead
       redirectTarget: Torso # Which part to redirect attack to
-      scatterHitChance: 0.1 # 10% chance to hit this limb when making indirrect attack without aiming at it
-      aimedTowardsScatterHitChance: 0.2 # 20% chance to hit it when making indirrect attack with it as target
+      scatterHitChance: 0.05 # 5% chance to hit this limb when making indirrect attack without aiming at it
+      aimedTowardsScatterHitChance: 0.1 # 10% chance to hit it when making indirrect attack with it as target
     - type: LimbDamageEffect
       effects:
         - effect: !type:LimbEffectDetach # Amputate limb when it takes slash damage

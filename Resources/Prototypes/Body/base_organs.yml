@@ -116,8 +116,8 @@
       - ears
   - type: DamageableLimb
     bodyDamageFactor: 0.4 # Non vital variant is used for diona and slime, same 40% as legs/arms
-    missChance: 0.35 # 35% chance to miss
-    redirectChance: 0.2 # 20% chance to hit torso
+    missChance: 0 # Still 0
+    redirectChance: 0.4 # 40% chance to hit torso
     scatterHitChance: 0 # Disable chance to miss head without aiming
     aimedTowardsScatterHitChance: 0
   - type: LimbDamageEffect
@@ -222,11 +222,11 @@
     slots: [ gloves ]
   - type: DamageableLimb
     bodyDamageFactor: 0.2
-    missChance: 0.35
-    redirectChance: 0.2
+    missChance: 0
+    redirectChance: 0.4
     redirectTarget: ArmLeft
-    scatterHitChance: 0.05
-    aimedTowardsScatterHitChance: 0.1
+    scatterHitChance: 0.02
+    aimedTowardsScatterHitChance: 0.05
   - type: LimbDamageEffect
     effects:
       - effect: !type:LimbEffectDetach
@@ -272,11 +272,11 @@
     slots: [ gloves ]
   - type: DamageableLimb
     bodyDamageFactor: 0.2
-    missChance: 0.35
-    redirectChance: 0.2
+    missChance: 0
+    redirectChance: 0.4
     redirectTarget: ArmRight
-    scatterHitChance: 0.05
-    aimedTowardsScatterHitChance: 0.1
+    scatterHitChance: 0.02
+    aimedTowardsScatterHitChance: 0.05
   - type: LimbDamageEffect
     effects:
       - effect: !type:LimbEffectDetach
@@ -365,11 +365,11 @@
     slots: [ shoes ]
   - type: DamageableLimb
     bodyDamageFactor: 0.2
-    missChance: 0.35
-    redirectChance: 0.2
+    missChance: 0
+    redirectChance: 0.4
     redirectTarget: LegLeft
-    scatterHitChance: 0.05
-    aimedTowardsScatterHitChance: 0.1
+    scatterHitChance: 0.02
+    aimedTowardsScatterHitChance: 0.05
   - type: LimbDamageEffect
     effects:
       - effect: !type:LimbEffectDetach
@@ -410,11 +410,11 @@
     slots: [ shoes ]
   - type: DamageableLimb
     bodyDamageFactor: 0.2
-    missChance: 0.35
-    redirectChance: 0.2
+    missChance: 0
+    redirectChance: 0.4
     redirectTarget: LegLeft
-    scatterHitChance: 0.05
-    aimedTowardsScatterHitChance: 0.1
+    scatterHitChance: 0.02
+    aimedTowardsScatterHitChance: 0.05
   - type: LimbDamageEffect
     effects:
       - effect: !type:LimbEffectDetach
