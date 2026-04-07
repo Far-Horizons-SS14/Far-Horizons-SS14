@@ -101,15 +101,16 @@ public sealed partial class RepairableSystem : EntitySystem
     {
         // Far Horizons start
         DamageSpecifier healed = new();
+        DamageSpecifier healedLimb = new();
 
         var healingDoneToLimb = false;
         if (limbTarget != null)
         {
             healingDoneToLimb = _limbDamage.TryChangeLimbDamage(ent.Owner, limbTarget.Value,
-                damageAmount, out healed, true, false, origin: user);
+                damageAmount, out healed, out healedLimb, true, false, origin: user);
         }
 
-        if (!healingDoneToLimb)
+        if (!healingDoneToLimb || healedLimb.Empty)
             _damageableSystem.TryChangeDamage(ent.Owner, damageAmount, out healed, true, false, origin: user);
         // Far Horizons end
         

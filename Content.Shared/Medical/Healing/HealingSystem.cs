@@ -103,16 +103,17 @@ public sealed class HealingSystem : EntitySystem
         // Far Horizons start
         bool healingDone;
         DamageSpecifier healed = new();
+        DamageSpecifier healedLimb = new();
 
         var healingDoneToLimb = false;
         if (args.TargettedLimb != null)
         {
             healingDoneToLimb = _limbDamage.TryChangeLimbDamage(target.Owner, args.TargettedLimb.Value,
-                healing.Damage * _damageable.UniversalTopicalsHealModifier, out healed, true,
-                origin: args.Args.User);
+                healing.Damage * _damageable.UniversalTopicalsHealModifier, out healed, out healedLimb,
+                true, origin: args.Args.User);
         }
 
-        if (!healingDoneToLimb || healed.Empty)
+        if (!healingDoneToLimb || healedLimb.Empty)
             healingDone = _damageable.TryChangeDamage(target.Owner,
                 healing.Damage * _damageable.UniversalTopicalsHealModifier, out healed, true,
                 origin: args.Args.User);
