@@ -98,6 +98,20 @@ namespace Content.Client.Input
             human.AddFunction(ContentKeyFunctions.SmartEquipRig);
             human.AddFunction(ContentKeyFunctions.SmartEquipTankStorage);
             human.AddFunction(ContentKeyFunctions.OpenRig);
+
+            human.AddFunction(ContentKeyFunctions.TargetTorso);
+            human.AddFunction(ContentKeyFunctions.TargetHead);
+            human.AddFunction(ContentKeyFunctions.TargetArmLeft);
+            human.AddFunction(ContentKeyFunctions.TargetArmRight);
+            human.AddFunction(ContentKeyFunctions.TargetHandLeft);
+            human.AddFunction(ContentKeyFunctions.TargetHandRight);
+            human.AddFunction(ContentKeyFunctions.TargetLegLeft);
+            human.AddFunction(ContentKeyFunctions.TargetLegRight);
+            human.AddFunction(ContentKeyFunctions.TargetFootLeft);
+            human.AddFunction(ContentKeyFunctions.TargetFootRight);
+
+            human.AddFunction(ContentKeyFunctions.TargetNextLimb);
+            human.AddFunction(ContentKeyFunctions.TargetPreviousLimb);
             // Far Horizons end
 
             // actions should be common (for ghosts, mobs, etc)
