@@ -11641,5 +11641,55 @@ Entries:
   id: 111715
   time: '2026-04-06T23:06:08.000000+00:00'
   url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/1117
+- author: princess_gurchi
+  changes:
+  - message: Removed miss chance from direct attacks that target limbs. You may still
+      randomly hit parts other than those you target, but you won't miss entirely.
+    type: Tweak
+  id: 112600
+  time: '2026-04-07T15:38:54.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/1126
+- author: princess_gurchi
+  changes:
+  - message: Reduced chance of hitting limbs randomly with indirect attacks
+    type: Tweak
+  id: 112601
+  time: '2026-04-07T15:38:54.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/1126
+- author: princess_gurchi
+  changes:
+  - message: Disarming limb damage effect - When organic hand or arm damage reaches
+      threshold, and every instance of damage after, held items are dropped. Blunt
+      damage is much more effective for this.
+    type: Add
+  id: 112602
+  time: '2026-04-07T15:38:54.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/1126
+- author: princess_gurchi
+  changes:
+  - message: Knockdown limb damage effect - Just like disarming on hands, excessive
+      damage to legs and feet will cause you to drop down. Both disarming and knockdown
+      only work on organic limbs and not on cybernetics/IPCs (as those already have
+      similar effect on EMP and also not feel pain)
+    type: Add
+  id: 112603
+  time: '2026-04-07T15:38:54.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/1126
+- author: princess_gurchi
+  changes:
+  - message: Limb targeting hotkeys for your limb targeting needs. Configurable in
+      options
+    type: Add
+  id: 112604
+  time: '2026-04-07T15:38:54.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/1126
+- author: princess_gurchi
+  changes:
+  - message: Actually fixed topicals and welding to heal limbs and switch to torso
+      now
+    type: Fix
+  id: 112605
+  time: '2026-04-07T15:38:54.000000+00:00'
+  url: https://github.com/Far-Horizons-SS14/Far-Horizons-SS14/pull/1126
 Order: -1
 
