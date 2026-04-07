@@ -246,41 +246,6 @@
           - ReagentId: Amoxla
             Quantity: 15
 
-- type: entity
-  name: pill
-  suffix: ibuprofen 5u
-  parent: Pill
-  id: PillIbuprofen
-  components:
-  - type: Pill
-    pillType: 11
-  - type: Sprite
-    state: pill12
-  - type: Label
-    currentLabel: ibuprofen 5u
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 20
-        reagents:
-        - ReagentId: Ibuprofen
-          Quantity: 5
-
-- type: entity
-  name: Pill Canister
-  parent: PillCanister
-  id: PillCanisterIbuprofen
-  suffix: ubuprofen 5u, 10 
-  components:
-  - type: Label
-    currentLabel: ibuprofen 5u
-  - type: EntityTableContainerFill
-    containers:
-      storagebase:
-        id: PillHyronalin
-        amount: 10 
-
-
 #region Blue Ointment
 - type: entity
   parent: [BaseAutoMender, DrinkVisualsOpenable, DrinkVisualsFill] # You have no idea how long this took me to get to layer properly

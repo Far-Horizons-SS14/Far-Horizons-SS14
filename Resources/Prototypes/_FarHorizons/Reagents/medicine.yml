@@ -41,58 +41,6 @@
 #               Asphyxiation: 5
 
 - type: reagent
-  id: Ibuprofen
-  name: reagent-name-ibuprofen
-  group: Medicine
-  desc: reagent-desc-ibuprofen
-  physicalDesc: reagent-physical-desc-strong-smelling
-  flavor: medicine
-  color: "#c44c37"
-  metabolisms:
-    Bloodstream:
-      metabolismRate: 0.1
-      effects:
-      - !type:AdjustTemperature
-        amount: -20000
-        conditions:
-        - !type:TemperatureCondition
-            min: 300.15
-        - !type:MetabolizerTypeCondition
-            type: [ Avali ]
-            inverted: true
-      - !type:AdjustTemperature
-        amount: -20000
-        conditions:
-        - !type:TemperatureCondition
-            min: 266.15
-        - !type:MetabolizerTypeCondition
-            type: [ Avali ]
-      - !type:EvenHealthChange
-        damage:
-          Brute: -0.5
-        affectAllLimbs: true 
-      - !type:HealthChange
-        damage:
-          types:
-            Poison: 1
-        conditions:
-        - !type:ReagentCondition
-          reagent: Ibuprofen
-          min: 20
-      - !type:Drunk
-        boozePower: 5
-        conditions:
-        - !type:ReagentCondition
-          reagent: Ibuprofen
-          min: 20
-      - !type:ModifyBleed
-        amount: 0.5
-        conditions:
-        - !type:ReagentCondition
-          reagent: Ethanol
-          min: 1
-
-- type: reagent
   id: Salbutamol
   name: reagent-name-salbutamol
   group: Medicine

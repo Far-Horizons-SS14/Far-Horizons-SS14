@@ -82,7 +82,7 @@
     - !type:HealthChange
       damage:
         types:
-          Heat: 0.1
+          Heat: 0.25
 
 - type: diseaseSymptom
   id: SymptomFreezeLight
@@ -112,7 +112,7 @@
       conditions:
       - !type:TemperatureCondition
           min: 228.15
-      amount: -10000
+      amount: -15000
     - !type:HealthChange
       damage:
         types:
