@@ -275,11 +275,11 @@
           - NukeOpsUplink
 
 - type: listing
-  id: UplinkAdvancedClawsImplant
-  name: uplink-advanced-claws-name
+  id: UplinkAdvancedLeftClawsImplant
+  name: uplink-advanced-claws-left-name
   description: uplink-advanced-claws-desc
   icon: { sprite: _Starlight/Objects/Specific/Medical/implants.rsi, state: hand_implant_claws }
-  productEntity: HandImplantClaws
+  productEntity: HandLeftImplantClaws
   discountCategory: rareDiscounts
   discountDownTo:
     Telecrystal: 0
@@ -289,11 +289,39 @@
   - UplinkCybernetics
 
 - type: listing
-  id: UplinkForensicsImplant
-  name: uplink-forensics-implant-name
+  id: UplinkAdvancedRightClawsImplant
+  name: uplink-advanced-claws-right-name
+  description: uplink-advanced-claws-desc
+  icon: { sprite: _Starlight/Objects/Specific/Medical/implants.rsi, state: hand_implant_claws }
+  productEntity: HandRightImplantClaws
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Telecrystal: 0
+  cost:
+    Telecrystal: 2
+  categories:
+  - UplinkCybernetics
+
+- type: listing
+  id: UplinkLeftForensicsImplant
+  name: uplink-forensics-implant-left-name
   description: uplink-forensics-implant-desc
   icon: { sprite: _Starlight/Objects/Specific/Medical/implants.rsi, state: hand_implant_forensics }
-  productEntity: HandImplantForensics
+  productEntity: HandLeftImplantForensics
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Telecrystal: 1
+  cost:
+    Telecrystal: 2
+  categories:
+  - UplinkCybernetics
+
+- type: listing
+  id: UplinkRightForensicsImplant
+  name: uplink-forensics-implant-rightt-name
+  description: uplink-forensics-implant-desc
+  icon: { sprite: _Starlight/Objects/Specific/Medical/implants.rsi, state: hand_implant_forensics }
+  productEntity: HandRightImplantForensics
   discountCategory: rareDiscounts
   discountDownTo:
     Telecrystal: 1

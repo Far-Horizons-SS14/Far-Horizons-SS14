@@ -137,8 +137,8 @@
 #Hand
 
 - type: latheRecipe
-  id: HandImplantClaws
-  result: HandImplantClaws
+  id: HandLeftImplantClaws
+  result: HandLeftImplantClaws
   categories:
   - Implants
   completetime: 4
@@ -149,8 +149,31 @@
     Glass: 150
 
 - type: latheRecipe
-  id: HandImplantForensics
-  result: HandImplantForensics
+  id: HandRightImplantClaws
+  result: HandRightImplantClaws
+  categories:
+  - Implants
+  completetime: 4
+  materials:
+    Plasteel: 200
+    Steel: 200
+    Plasma: 300
+    Glass: 150
+
+- type: latheRecipe
+  id: HandLeftImplantForensics
+  result: HandLeftImplantForensics
+  categories:
+  - Implants
+  completetime: 4
+  materials:
+    Steel: 200
+    Plasma: 300
+    Glass: 150
+
+- type: latheRecipe
+  id: HandRightImplantForensics
+  result: HandRightImplantForensics
   categories:
   - Implants
   completetime: 4

@@ -194,22 +194,28 @@
         - proto: BrainImplantComms
           prob: 0.2
           cost: 5
-        - proto: BrainImplantCommsExpedition
+        - proto: HandLeftImplantForensics
           prob: 0.2
           cost: 5
-        - proto: BrainImplantNexus
-          prob: 0.01
-          cost: 30
-        - proto: HandImplantForensics
+        - proto: HandRightImplantForensics
           prob: 0.2
           cost: 5
-        - proto: HandImplantClaws
+        - proto: HandLeftImplantClaws
           prob: 0.2
           cost: 5
-        - proto: HandImplantInsulated
+        - proto: HandRightImplantClaws
+          prob: 0.2
+          cost: 5
+        - proto: HandLeftImplantInsulated
           prob: 0.1
           cost: 10
-        - proto: HandImplantThrusters
+        - proto: HandRightImplantInsulated
+          prob: 0.1
+          cost: 10
+        - proto: HandLeftImplantThrusters
+          prob: 0.2
+          cost: 5
+        - proto: HandRightImplantThrusters
           prob: 0.2
           cost: 5
         - proto: EyeImplantChemistry

@@ -598,7 +598,7 @@
 
 - type: entity
   parent: SurgeryBase
-  id: SurgeryExtractHandImplant
+  id: SurgeryExtractLeftHandImplant
   name: Extract Hand Implant
   components:
   - type: Surgery
@@ -608,11 +608,11 @@
     steps:
     - SurgeryStepLocateImplant
     - SurgeryStepExposeNerves
-    - SurgeryStepRemoveHandImplant
+    - SurgeryStepRemoveLeftHandImplant
   - type: SurgeryOrganExistCondition
-    category: HandImplant
+    category: HandLeftImplant
   - type: SurgeryPartCondition
-    parts: [ HandRight, HandLeft ] #FarHorizons
+    parts: [ HandLeft ] #FarHorizons
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - IPC
@@ -623,7 +623,32 @@
 
 - type: entity
   parent: SurgeryBase
-  id: SurgeryImplantHandImplant
+  id: SurgeryExtractRightHandImplant
+  name: Extract Hand Implant
+  components:
+  - type: Surgery
+    requirement:
+    - SurgeryOpenIncision
+    - SurgeryOpenIncisionSlime
+    steps:
+    - SurgeryStepLocateImplant
+    - SurgeryStepExposeNerves
+    - SurgeryStepRemoveRightHandImplant
+  - type: SurgeryOrganExistCondition
+    category: HandRightImplant
+  - type: SurgeryPartCondition
+    parts: [ HandRight ] #FarHorizons
+  - type: SurgerySpeciesCondition
+    speciesBlacklist:
+    - IPC
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/implants.rsi
+    layers:
+      - state: hand_implant_insulated
+
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryImplantLeftHandImplant
   name: Implant Hand Implant
   components:
   - type: Surgery
@@ -632,12 +657,37 @@
     - SurgeryOpenIncisionSlime
     steps:
     - SurgeryStepPrepareImplantSiteHand
-    - SurgeryStepInsertHandImplant
+    - SurgeryStepInsertLeftHandImplant
     - SurgeryStepRejoinNerves
   - type: SurgeryOrganDontExistCondition
-    category: [ HandImplant ] #FarHorizons
+    category: [ HandLeftImplant ] #FarHorizons
   - type: SurgeryPartCondition
-    parts: [ HandRight, HandLeft ] #FarHorizons
+    parts: [ HandLeft ] #FarHorizons
+  - type: SurgerySpeciesCondition
+    speciesBlacklist:
+    - IPC
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/implants.rsi
+    layers:
+      - state: hand_implant_insulated
+
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryImplantRightHandImplant
+  name: Implant Hand Implant
+  components:
+  - type: Surgery
+    requirement:
+    - SurgeryOpenIncision
+    - SurgeryOpenIncisionSlime
+    steps:
+    - SurgeryStepPrepareImplantSiteHand
+    - SurgeryStepInsertRightHandImplant
+    - SurgeryStepRejoinNerves
+  - type: SurgeryOrganDontExistCondition
+    category: [ HandRightImplant ] #FarHorizons
+  - type: SurgeryPartCondition
+    parts: [ HandRight ] #FarHorizons
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - IPC

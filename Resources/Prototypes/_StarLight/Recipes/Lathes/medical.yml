@@ -615,8 +615,8 @@
 # Hands
 
 - type: latheRecipe
-  id: HandImplantInsulated
-  result: HandImplantInsulated
+  id: HandLeftImplantInsulated
+  result: HandLeftImplantInsulated
   categories:
   - Implants
   completetime: 4
@@ -626,8 +626,30 @@
     Glass: 150
 
 - type: latheRecipe
-  id: HandImplantThrusters
-  result: HandImplantThrusters
+  id: HandRightImplantInsulated
+  result: HandRightImplantInsulated
+  categories:
+  - Implants
+  completetime: 4
+  materials:
+    Steel: 200
+    Plasma: 300
+    Glass: 150
+
+- type: latheRecipe
+  id: HandLeftImplantThrusters
+  result: HandLeftImplantThrusters
+  categories:
+  - Implants
+  completetime: 4
+  materials:
+    Steel: 200
+    Plasma: 300
+    Glass: 150
+
+- type: latheRecipe
+  id: HandRightImplantThrusters
+  result: HandRightImplantThrusters
   categories:
   - Implants
   completetime: 4

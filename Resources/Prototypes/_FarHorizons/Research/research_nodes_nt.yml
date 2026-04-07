@@ -1175,7 +1175,7 @@
     - Medical
     - Engineering
     - Service
-    - Supply
+    - GSL
 
 - type: researchTreeNode
   id: Harmpack
@@ -1239,10 +1239,17 @@
   requires:
     - BudgetCyberorgans
   unlocks:
-    - HandImplantInsulated
-    - HandImplantThrusters
+    - HandLeftImplantInsulated
+    - HandRightImplantInsulated
+    - HandLeftImplantThrusters
+    - HandRightImplantThrusters
+    - HandLeftImplantForensics
+    - HandRightImplantForensics
+    - HandLeftImplantClaws
+    - HandRightImplantClaws
   announceTo:
     - Medical
+    - Security
 
 # Chem
 
@@ -1606,7 +1613,7 @@
     - Security
     - Medical
     - Engineering
-    - Supply
+    - GSL
 
 - type: researchTreeNode
   id: NVEyes
