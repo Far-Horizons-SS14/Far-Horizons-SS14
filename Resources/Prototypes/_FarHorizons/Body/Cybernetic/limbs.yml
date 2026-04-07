@@ -1075,6 +1075,8 @@
   description: Wait a moment... This is just an older model of cyberleg someone strapped a pouch to!
   parent: [ OrganCyberLegLeft, WithLeftCyberFoot ]
   components:
+    - type: Item 
+      size: Normal 
     - type: VisualOrgan
       data:
         sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
@@ -1098,13 +1100,15 @@
       openOnActivate: false
       grid:
       - 0,0,1,2
-      maxItemSize: Large
+      maxItemSize: Normal
     - type: PrivateStorage
       accessDelay: 3.0
       accessPopup: "cargo-leg-left-storage-accessing"
     - type: ContainerContainer
       containers:
         storagebase: !type:Container
+          ents: []
+        connected_organs: !type:Container
           ents: []
     - type: UserInterface
       interfaces:
@@ -1117,6 +1121,8 @@
   description: Wait a moment... This is just an older model of cyberleg someone strapped a pouch to!
   parent: [ OrganCyberLegRight, WithRightCyberFoot ]
   components:
+    - type: Item 
+      size: Normal 
     - type: VisualOrgan
       data:
         sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
@@ -1140,13 +1146,15 @@
       openOnActivate: false
       grid:
       - 0,0,1,2
-      maxItemSize: Large
+      maxItemSize: Normal
     - type: PrivateStorage
       accessDelay: 3.0
       accessPopup: "cargo-leg-right-storage-accessing"
     - type: ContainerContainer
       containers:
         storagebase: !type:Container
+          ents: []
+        connected_organs: !type:Container
           ents: []
     - type: UserInterface
       interfaces:
