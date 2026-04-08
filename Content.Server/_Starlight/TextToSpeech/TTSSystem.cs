@@ -175,7 +175,8 @@ public sealed partial class TTSSystem : EntitySystem
         // Far Horizons Start - add logic to shorten the message instead of rejecting when its too long
         args.Message.Tts ??= ShortenMessage(args.Message.Text);
         if (!_isEnabled
-            || !args.Language.SpeechOverride.RequireSpeech)
+            || (!args.Language.SpeechOverride.RequireSpeech && !args.Language.SpeechOverride.RequireSound)
+            )
             return;
         // Far Horizons End
 
