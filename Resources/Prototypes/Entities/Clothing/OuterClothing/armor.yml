@@ -378,8 +378,9 @@
       LegLeft: {}
   - type: ExplosionResistance
     damageCoefficient: 0.35
-  - type: StaminaResistance # do not add these to other equipment or mobs, we don't want to microbalance these everywhere
-    damageCoefficient: 0.45
+  # Far Horizons removed double stam resist
+  # - type: StaminaResistance # do not add these to other equipment or mobs, we don't want to microbalance these everywhere
+  #   damageCoefficient: 0.45
   - type: ClothingSpeedModifier
     walkModifier: 1
     sprintModifier: 1.1
