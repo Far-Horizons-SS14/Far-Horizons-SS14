@@ -112,7 +112,7 @@ public partial class LimbDamageSystem
         if (fullDamage == null)
             return msg;
 
-        if (fullDamage.All(p => p.Value.All(e => e.Value == 0)))
+        if (fullDamage.All(p => ProcessThresholds(p.Value, _inspectThresholds).All(e => e.Value == 0)))
         {
             msg.AddMarkupOrThrow(Loc.GetString("limb-health-no-damage", ("target", Identity.Entity(ent, EntityManager))));
             return msg;
