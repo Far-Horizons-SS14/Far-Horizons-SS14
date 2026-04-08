@@ -159,3 +159,6 @@ tts-voice-name-204 = Theodora
 tts-voice-name-205 = Wilhelmina
 
 tts-voice-name-1005 = Talk-Box
+tts-voice-name-1008 = Rosie
+tts-voice-name-1009 = Brenda
+tts-voice-name-1010 = Mollie
