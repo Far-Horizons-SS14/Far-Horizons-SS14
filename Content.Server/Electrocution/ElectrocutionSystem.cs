@@ -418,20 +418,25 @@ public sealed class ElectrocutionSystem : SharedElectrocutionSystem
         if (shockDamage is { } dmg)
         {
             var damageSpec = new DamageSpecifier(_prototypeManager.Index(DamageType), dmg); // Far Horizons
-
-            if (_damageable.TryChangeDamage(uid, damageSpec, out var damage, origin: sourceUid))
-            {
-                _adminLogger.Add(LogType.Electrocution,
-                    $"{ToPrettyString(uid):entity} received {damage:damage} powered electrocution damage{(sourceUid != null ? " from " + ToPrettyString(sourceUid.Value) : ""):source}");
-            }
+            var damageDealt = false;
+            DamageSpecifier damage = new();
 
             // Far Horizons start
             if (targetHands)
             {
-                _limbDamage.TryChangeLimbDamage(uid, "HandLeft", damageSpec, out _, origin: sourceUid,
-                    skipBodyDamage: true);
-                _limbDamage.TryChangeLimbDamage(uid, "HandRight", damageSpec, out _, origin: sourceUid,
-                    skipBodyDamage: true);
+                damageDealt |= _limbDamage.TryChangeLimbDamage(uid, "HandLeft", damageSpec, out var lhDamage, origin: sourceUid);
+                damageDealt |= _limbDamage.TryChangeLimbDamage(uid, "HandRight", damageSpec, out var rhDamage, origin: sourceUid);
+
+                if (damageDealt)
+                    damage += lhDamage + rhDamage;
+            }
+
+            damageDealt |= !targetHands && _damageable.TryChangeDamage(uid, damageSpec, out damage, origin: sourceUid);
+            
+            if (damageDealt)
+            {
+                _adminLogger.Add(LogType.Electrocution,
+                    $"{ToPrettyString(uid):entity} received {damage:damage} powered electrocution damage{(sourceUid != null ? " from " + ToPrettyString(sourceUid.Value) : ""):source}");
             }
             // Far Horizons end
         }
