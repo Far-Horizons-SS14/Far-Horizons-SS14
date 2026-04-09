@@ -28,10 +28,10 @@ public sealed class TextToSpeechSystem : EntitySystem
     [Dependency] private readonly RadioChimeSystem _chime = default!;
 
     private readonly ConcurrentQueue<(Queue<byte[]> data, SoundSpecifier? specifier, float volume)> _ttsQueue = [];
-    private ISawmill _sawmill = default!;
     private readonly MemoryContentRoot _contentRoot = new();
     private (EntityUid Entity, AudioComponent Component)? _currentPlaying;
 
+    private const float CrossFade = 0.010f;
     private float _volume;
     private float _radioVolume;
     private float _announceVolume;
@@ -53,7 +53,6 @@ public sealed class TextToSpeechSystem : EntitySystem
 
     public override void Initialize()
     {
-        _sawmill = Logger.GetSawmill("tts");
         _cfg.OnValueChanged(StarlightCCVars.TTSVolume, OnTtsVolumeChanged, true);
         _cfg.OnValueChanged(StarlightCCVars.TTSAnnounceVolume, OnTtsAnnounceVolumeChanged, true);
         _cfg.OnValueChanged(StarlightCCVars.TTSRadioVolume, OnTtsRadioVolumeChanged, true);
@@ -204,7 +203,7 @@ public sealed class TextToSpeechSystem : EntitySystem
         }
         catch (Exception ex)
         {
-            _sawmill.Error($"Error playing TTS audio: {ex.Message}", ex);
+            Log.Error($"Error playing TTS audio: {ex.Message}", ex);
         }
 
         return null;
@@ -223,7 +222,7 @@ public sealed class TextToSpeechSystem : EntitySystem
                 continue;
             var timeRemaining = despawnComponent.Lifetime - SharedAudioSystem.AudioDespawnBuffer - 1f;
 
-            if (timeRemaining < 0.066f)
+            if (timeRemaining < 0.066f && (ttsComp.AudioLength.TotalSeconds - audio.PlaybackPosition) < 0.096f)
                 toPlay.Add((uid, audio, ttsComp));
         }
 
