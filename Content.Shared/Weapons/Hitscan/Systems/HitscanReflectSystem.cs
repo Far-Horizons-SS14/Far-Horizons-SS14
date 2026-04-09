@@ -44,6 +44,7 @@ public sealed class HitscanReflectSystem : EntitySystem
             Gun = data.Gun,
             Shooter = data.HitEntity.Value,
             OutputTrace = data.OutputTrace, // Starlight
+            Ricochet = true, // Far Horizons
         };
 
         RaiseLocalEvent(hitscan, ref hitFiredEvent);

@@ -602,6 +602,12 @@ namespace Content.Server.Ghost
 
                     _damageable.ChangeDamage(playerEntity.Value, damage, true);
                 }
+
+                // Far Horizons start
+                // That's what you do if they don't breathe, I guess
+                if (!_mobState.IsDead(playerEntity.Value, mobState))
+                    _mobState.ChangeMobState(playerEntity.Value, MobState.Dead, mobState);
+                // Far Horizons end
             }
 
             if (playerEntity != null)

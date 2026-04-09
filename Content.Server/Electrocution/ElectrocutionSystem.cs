@@ -4,6 +4,7 @@ using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Power.NodeGroups;
 using Content.Server.Weapons.Melee;
+using Content.Shared._FarHorizons.LimbDamage;
 using Content.Shared._FarHorizons.Vehicles.Components;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
@@ -55,6 +56,7 @@ public sealed class ElectrocutionSystem : SharedElectrocutionSystem
     [Dependency] private readonly TagSystem _tag = default!;
     [Dependency] private readonly MetaDataSystem _metaData = default!;
     [Dependency] private readonly TurfSystem _turf = default!;
+    [Dependency] private readonly LimbDamageSystem _limbDamage = default!; // Far Horizons
 
     private static readonly ProtoId<StatusEffectPrototype> StatusKeyIn = "Electrocution";
     private static readonly ProtoId<DamageTypePrototype> DamageType = "Shock";
@@ -184,7 +186,7 @@ public sealed class ElectrocutionSystem : SharedElectrocutionSystem
         if (_meleeWeapon.GetDamage(args.Used, args.User).Empty)
             return;
 
-        TryDoElectrocution(args.User, uid, component.UnarmedHitShock, component.UnarmedHitStun, false);
+        TryDoElectrocution(args.User, uid, component.UnarmedHitShock, component.UnarmedHitStun, false, targetHands: true); // Far Horizons
     }
 
     private void OnElectrifiedInteractUsing(EntityUid uid, ElectrifiedComponent electrified, InteractUsingEvent args)
@@ -241,7 +243,8 @@ public sealed class ElectrocutionSystem : SharedElectrocutionSystem
                     (int) (electrified.ShockDamage * MathF.Pow(RecursiveDamageMultiplier, depth)),
                     TimeSpan.FromSeconds(electrified.ShockTime * MathF.Pow(RecursiveTimeMultiplier, depth)),
                     true,
-                    electrified.SiemensCoefficient
+                    electrified.SiemensCoefficient,
+                    targetHands: true // Far Horizons
                 );
             }
             return lastRet;
@@ -270,7 +273,8 @@ public sealed class ElectrocutionSystem : SharedElectrocutionSystem
                     (int) (electrified.ShockDamage * MathF.Pow(RecursiveDamageMultiplier, depth) * damageScalar),
                     TimeSpan.FromSeconds(electrified.ShockTime * MathF.Pow(RecursiveTimeMultiplier, depth) * timeScalar),
                     true,
-                    electrified.SiemensCoefficient);
+                    electrified.SiemensCoefficient,
+                    targetHands: true); // Far Horizons
             }
             return lastRet;
         }
@@ -298,10 +302,10 @@ public sealed class ElectrocutionSystem : SharedElectrocutionSystem
     /// <inheritdoc/>
     public override bool TryDoElectrocution(
         EntityUid uid, EntityUid? sourceUid, int shockDamage, TimeSpan time, bool refresh, float siemensCoefficient = 1f,
-        StatusEffectsComponent? statusEffects = null, bool ignoreInsulation = false)
+        StatusEffectsComponent? statusEffects = null, bool ignoreInsulation = false, bool targetHands = false) // Far Horizons
     {
         if (!DoCommonElectrocutionAttempt(uid, sourceUid, ref siemensCoefficient, ignoreInsulation)
-            || !DoCommonElectrocution(uid, sourceUid, shockDamage, time, refresh, siemensCoefficient, statusEffects))
+            || !DoCommonElectrocution(uid, sourceUid, shockDamage, time, refresh, siemensCoefficient, statusEffects, targetHands)) // Far Horizons
             return false;
 
         RaiseLocalEvent(uid, new ElectrocutedEvent(uid, sourceUid, siemensCoefficient), true);
@@ -317,12 +321,13 @@ public sealed class ElectrocutionSystem : SharedElectrocutionSystem
         bool refresh,
         float siemensCoefficient = 1f,
         StatusEffectsComponent? statusEffects = null,
-        TransformComponent? sourceTransform = null)
+        TransformComponent? sourceTransform = null,
+        bool targetHands = false) // Far Horizons
     {
         if (!DoCommonElectrocutionAttempt(uid, sourceUid, ref siemensCoefficient))
             return false;
 
-        if (!DoCommonElectrocution(uid, sourceUid, shockDamage, time, refresh, siemensCoefficient, statusEffects))
+        if (!DoCommonElectrocution(uid, sourceUid, shockDamage, time, refresh, siemensCoefficient, statusEffects, targetHands))
             return false;
 
         // Coefficient needs to be higher than this to do a powered electrocution!
@@ -376,7 +381,7 @@ public sealed class ElectrocutionSystem : SharedElectrocutionSystem
 
     private bool DoCommonElectrocution(EntityUid uid, EntityUid? sourceUid,
         int? shockDamage, TimeSpan time, bool refresh, float siemensCoefficient = 1f,
-        StatusEffectsComponent? statusEffects = null)
+        StatusEffectsComponent? statusEffects = null, bool targetHands = false) // Far Horizons
     {
         if (siemensCoefficient <= 0)
             return false;
@@ -412,11 +417,28 @@ public sealed class ElectrocutionSystem : SharedElectrocutionSystem
 
         if (shockDamage is { } dmg)
         {
-            if (_damageable.TryChangeDamage(uid, new DamageSpecifier(_prototypeManager.Index(DamageType), dmg), out var damage, origin: sourceUid))
+            var damageSpec = new DamageSpecifier(_prototypeManager.Index(DamageType), dmg); // Far Horizons
+            var damageDealt = false;
+            DamageSpecifier damage = new();
+
+            // Far Horizons start
+            if (targetHands)
+            {
+                damageDealt |= _limbDamage.TryChangeLimbDamage(uid, "HandLeft", damageSpec, out var lhDamage, origin: sourceUid);
+                damageDealt |= _limbDamage.TryChangeLimbDamage(uid, "HandRight", damageSpec, out var rhDamage, origin: sourceUid);
+
+                if (damageDealt)
+                    damage += lhDamage + rhDamage;
+            }
+
+            damageDealt |= !targetHands && _damageable.TryChangeDamage(uid, damageSpec, out damage, origin: sourceUid);
+            
+            if (damageDealt)
             {
                 _adminLogger.Add(LogType.Electrocution,
                     $"{ToPrettyString(uid):entity} received {damage:damage} powered electrocution damage{(sourceUid != null ? " from " + ToPrettyString(sourceUid.Value) : ""):source}");
             }
+            // Far Horizons end
         }
 
         _stuttering.DoStutter(uid, time * StutteringTimeMultiplier, refresh);

@@ -57,6 +57,7 @@ public sealed partial class HitscanRicochetSystem : EntitySystem
             Gun = data.Gun,
             Shooter = data.HitEntity.Value,
             OutputTrace = data.OutputTrace,
+            Ricochet = true, // Far Horizons
         };
 
         RaiseLocalEvent(hitscan, ref hitFiredEvent);

@@ -60,10 +60,11 @@ namespace Content.Shared.Electrocution
         /// <param name="siemensCoefficient">How insulated the entity is from the shock. 0 means completely insulated, and 1 means no insulation.</param>
         /// <param name="statusEffects">Status effects to apply to the entity.</param>
         /// <param name="ignoreInsulation">Should the electrocution bypass the Insulated component?</param>
+        /// <param name="targetHands">Should the electrocution target hands - Far Horizons</param>
         /// <returns>Whether the entity <see cref="uid"/> was stunned by the shock.</returns>
         public virtual bool TryDoElectrocution(
             EntityUid uid, EntityUid? sourceUid, int shockDamage, TimeSpan time, bool refresh, float siemensCoefficient = 1f,
-            StatusEffectsComponent? statusEffects = null, bool ignoreInsulation = false)
+            StatusEffectsComponent? statusEffects = null, bool ignoreInsulation = false, bool targetHands = false) // Far Horizons
         {
             // only done serverside
             return false;

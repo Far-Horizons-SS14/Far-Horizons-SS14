@@ -111,16 +111,19 @@ public abstract class SharedArmorSystem : EntitySystem
         var msg = new FormattedMessage();
         msg.AddMarkupOrThrow(Loc.GetString("armor-examine"));
 
-        foreach (var coefficientArmor in armorModifiers.Coefficients)
-        {
-            msg.PushNewline();
+        // Far Horizons start
+        // foreach (var coefficientArmor in armorModifiers.Coefficients)
+        // {
+        //     msg.PushNewline();
 
-            var armorType = Loc.GetString("armor-damage-type-" + coefficientArmor.Key.ToLower());
-            msg.AddMarkupOrThrow(Loc.GetString("armor-coefficient-value",
-                ("type", armorType),
-                ("value", MathF.Round((1f - coefficientArmor.Value) * 100, 1))
-            ));
-        }
+        //     var armorType = Loc.GetString("armor-damage-type-" + coefficientArmor.Key.ToLower());
+        //     msg.AddMarkupOrThrow(Loc.GetString("armor-coefficient-value",
+        //         ("type", armorType),
+        //         ("value", MathF.Round((1f - coefficientArmor.Value) * 100, 1))
+        //     ));
+        // }
+
+        // Uncommeted, but this is actually SL
         
         msg.PushNewline();
         var staminaType = Loc.GetString("armor-damage-type-stamina");
@@ -129,16 +132,17 @@ public abstract class SharedArmorSystem : EntitySystem
             ("value", MathF.Round((1f - component.StaminaDamageModifier) * 100, 1))
         ));
 
-        foreach (var flatArmor in armorModifiers.FlatReduction)
-        {
-            msg.PushNewline();
+        // foreach (var flatArmor in armorModifiers.FlatReduction)
+        // {
+        //     msg.PushNewline();
 
-            var armorType = Loc.GetString("armor-damage-type-" + flatArmor.Key.ToLower());
-            msg.AddMarkupOrThrow(Loc.GetString("armor-reduction-value",
-                ("type", armorType),
-                ("value", flatArmor.Value)
-            ));
-        }
+        //     var armorType = Loc.GetString("armor-damage-type-" + flatArmor.Key.ToLower());
+        //     msg.AddMarkupOrThrow(Loc.GetString("armor-reduction-value",
+        //         ("type", armorType),
+        //         ("value", flatArmor.Value)
+        //     ));
+        // }
+        // Far Horizons end
 
         return msg;
     }

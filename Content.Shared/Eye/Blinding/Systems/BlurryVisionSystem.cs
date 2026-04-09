@@ -1,3 +1,4 @@
+using Content.Shared.Clothing;
 using Content.Shared.Eye.Blinding.Components;
 using Content.Shared.Inventory.Events;
 using Content.Shared.Inventory;
@@ -10,8 +11,8 @@ public sealed class BlurryVisionSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<VisionCorrectionComponent, GotEquippedEvent>(OnGlassesEquipped);
-        SubscribeLocalEvent<VisionCorrectionComponent, GotUnequippedEvent>(OnGlassesUnequipped);
+        SubscribeLocalEvent<VisionCorrectionComponent, ClothingGotEquippedEvent>(OnGlassesEquipped); // Far Horizons - don't get vision correction from pocket
+        SubscribeLocalEvent<VisionCorrectionComponent, ClothingGotUnequippedEvent>(OnGlassesUnequipped); // Far Horizons - don't get vision correction from pocket
         SubscribeLocalEvent<VisionCorrectionComponent, InventoryRelayedEvent<GetBlurEvent>>(OnGetBlur);
     }
 
@@ -43,14 +44,16 @@ public sealed class BlurryVisionSystem : EntitySystem
         Dirty(ent, blurry);
     }
 
-    private void OnGlassesEquipped(Entity<VisionCorrectionComponent> glasses, ref GotEquippedEvent args)
+    // Far Horizons - don't get vision correction from pocket
+    private void OnGlassesEquipped(Entity<VisionCorrectionComponent> glasses, ref ClothingGotEquippedEvent args)
     {
-        UpdateBlurMagnitude(args.Equipee, true); // starlight change: glasses param
+        UpdateBlurMagnitude(args.Wearer, true); // starlight change: glasses param
     }
 
-    private void OnGlassesUnequipped(Entity<VisionCorrectionComponent> glasses, ref GotUnequippedEvent args)
+    // Far Horizons - don't get vision correction from pocket
+    private void OnGlassesUnequipped(Entity<VisionCorrectionComponent> glasses, ref ClothingGotUnequippedEvent args)
     {
-        UpdateBlurMagnitude(args.Equipee, false); // starlight change: glasses param
+        UpdateBlurMagnitude(args.Wearer, false); // starlight change: glasses param
     }
 }
 

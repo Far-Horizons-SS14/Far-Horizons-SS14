@@ -1,3 +1,4 @@
+using Content.Shared._FarHorizons.LimbDamage.Components;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Examine;
@@ -22,7 +23,8 @@ public sealed class HealthExaminableSystem : EntitySystem
 
     private void OnGetExamineVerbs(EntityUid uid, HealthExaminableComponent component, GetVerbsEvent<ExamineVerb> args)
     {
-        if (!TryComp<DamageableComponent>(uid, out var damage))
+        if (!TryComp<DamageableComponent>(uid, out var damage) ||
+            HasComp<LimbDamageableComponent>(uid))
             return;
 
         var detailsRange = _examineSystem.IsInDetailsRange(args.User, uid);

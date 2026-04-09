@@ -42,6 +42,9 @@ public record struct HitscanTraceEvent
     /// </summary>
     public List<HitscanTrace>? OutputTrace;
     // Starlight end
+
+    // Far Horizons
+    public bool Ricochet;
 }
 
 /// <summary>
