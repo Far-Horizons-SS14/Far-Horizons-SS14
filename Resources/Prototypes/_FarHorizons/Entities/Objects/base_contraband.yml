@@ -1,6 +1,39 @@
-﻿- type: entity
+- type: entity
   id: BaseNanotrasenContraband
   abstract: true
   components:
   - type: Contraband
     severity: Nanotrasen
+
+- type: entity
+  id: BaseBlueshieldContraband
+  parent: BaseRestrictedContraband
+  abstract: true
+  components:
+  - type: Contraband
+    allowedJobs: [ BlueShield ]
+
+- type: entity
+  id: BaseBlueshieldCommandContraband
+  parent: BaseRestrictedContraband
+  abstract: true
+  components:
+  - type: Contraband
+    allowedDepartments: [ Command ]
+    allowedJobs: [ BlueShield ]
+
+- type: entity
+  id: BaseRepresentativesContraband
+  parent: BaseRestrictedContraband
+  abstract: true
+  components:
+  - type: Contraband
+    allowedDepartments: [ Representives ]
+
+- type: entity
+  id: BaseSecurityScienceCommandRepresentativesContraband
+  parent: BaseRestrictedContraband
+  abstract: true
+  components:
+  - type: Contraband
+    allowedDepartments: [ Security, Science, Command, Representives ]

@@ -1,5 +1,5 @@
 - type: entity
-  parent: [ClothingOuterStorageBase, AllowSuitStorageClothing, BaseCommandContraband]
+  parent: [ ClothingOuterStorageBase, AllowSuitStorageClothing, BaseBlueshieldContraband ] # FH
   id: ClothingOuterCoatBlueShield
   name: Blueshield Officer's Overcoat #Far Horizons - The Great Capitalization Crusade
   description: A coat worn by Blueshield Officers who don't mind a little diplomancy. Heavily reinforced for when diplomancy won't cut it.
@@ -31,7 +31,7 @@
   - type: Item
 
 - type: entity
-  parent: [ ClothingOuterStorageFoldableBase, BaseCommandContraband ]
+  parent: [ ClothingOuterStorageFoldableBase, BaseRepresentativesContraband ] # FH
   id: ClothingOuterCoatNtrep
   name: NT Representive Jacket #Far Horizons - The Great Capitalization Crusade
   description: A fancy black jacket, standart issue to Nanotrasen Representives.
@@ -56,7 +56,7 @@
       LegLeft: {}
 
 - type: entity
-  parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterCoatNtrep, BaseCommandContraband ]
+  parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterCoatNtrep ] # FH
   id: ClothingOuterCoatNtrepOpen
   name: NT Representive Jacket #Far Horizons - The Great Capitalization Crusade
 

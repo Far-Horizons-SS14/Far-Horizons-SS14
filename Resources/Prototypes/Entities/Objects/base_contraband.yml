@@ -1,4 +1,4 @@
-﻿# generic "highly illegal" contraband; Syndicate/magical contraband are already considered highly illegal under Space Law,
+# generic "highly illegal" contraband; Syndicate/magical contraband are already considered highly illegal under Space Law,
 # so this is mostly for stuff that should be equally illegal but doesn't need its own unique contraband tier added
 - type: entity
   id: BaseHighlyIllegalContraband
@@ -88,6 +88,7 @@
   components:
   - type: Contraband
     allowedDepartments: [ Security ]
+    allowedJobs: [ BlueShield ] # FH
 
 - type: entity
   id: BaseEngineeringContraband
@@ -146,6 +147,7 @@
   components:
   - type: Contraband
     allowedDepartments: [ Security, Command ]
+    allowedJobs: [ BlueShield ] # FH
 
 - type: entity
   id: BaseSecurityScienceCommandContraband
@@ -154,6 +156,7 @@
   components:
   - type: Contraband
     allowedDepartments: [ Security, Science, Command ]
+    allowedJobs: [ BlueShield ] # FH
 
 - type: entity
   id: BaseSecurityEngineeringContraband
@@ -162,6 +165,7 @@
   components:
   - type: Contraband
     allowedDepartments: [ Security, Engineering ]
+    allowedJobs: [ BlueShield ] # FH
 
 - type: entity
   id: BaseSiliconScienceContraband
@@ -178,6 +182,7 @@
   components:
   - type: Contraband
     allowedDepartments: [ Security, Cargo ]
+    allowedJobs: [ BlueShield ] # FH
 
 - type: entity
   id: BaseMedicalScienceContraband
@@ -195,7 +200,7 @@
   components:
   - type: Contraband
     allowedDepartments: [ Security ]
-    allowedJobs: [ Bartender ]
+    allowedJobs: [ Bartender, BlueShield ] # FH
 
 - type: entity
   id: BaseSecurityLawyerContraband
@@ -204,7 +209,7 @@
   components:
   - type: Contraband
     allowedDepartments: [ Security ]
-    allowedJobs: [ Lawyer ]
+    allowedJobs: [ Lawyer, BlueShield ] # FH
 
 - type: entity
   id: BaseJanitorContraband
