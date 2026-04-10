@@ -108,6 +108,7 @@ public partial class LimbDamageSystem
         var msg = new FormattedMessage();
 
         var fullDamage = TryGetFullBodyDamage((ent, null, ent.Comp));
+        var inorganicLimbs = GetInorganicOrgans(ent.AsNullable());
 
         if (fullDamage == null)
             return msg;
@@ -122,6 +123,8 @@ public partial class LimbDamageSystem
         foreach (var limb in _inspectOrder)
         {
             var limbName = Loc.GetString($"limb-category-limb-name-{limb.Id.ToLower()}");
+            var inorganic = inorganicLimbs.Contains(limb);
+
             string? finalMessage = null;
 
             if (!fullDamage.TryGetValue(limb, out var limbDamage))
@@ -133,7 +136,7 @@ public partial class LimbDamageSystem
                 if (thresholds.Count != 0)
                     finalMessage = Loc.GetString("limb-health-damage-combined",
                         ("target", Identity.Entity(ent, EntityManager)), ("limb", limbName),
-                        ("damage", ProcessDamageText(thresholds)));
+                        ("damage", ProcessDamageText(thresholds, inorganic)));
             }
 
             if (finalMessage == null) continue;
@@ -229,6 +232,7 @@ public partial class LimbDamageSystem
         var limbName = Loc.GetString($"limb-category-limb-name-{ent.Comp.Organ.Category.Value.Id.ToLower()}");
         var damage = _damageable.GetPositiveDamage((ent.Owner, ent.Comp.Damageable)).DamageDict;
         var thresholds = ProcessThresholds(damage, _inspectThresholds);
+        var inorganic = _tag.HasTag(ent.Owner, InorganicTag);
 
         string baseMessage;
 
@@ -236,7 +240,7 @@ public partial class LimbDamageSystem
             baseMessage = Loc.GetString("limb-health-examinable-detached-ok", ("limb", limbName));
         else
             baseMessage = Loc.GetString("limb-health-examinable-detached-damage-combined", ("limb", limbName),
-                ("damage", ProcessDamageText(thresholds)));
+                ("damage", ProcessDamageText(thresholds, inorganic)));
         
         msg.AddMarkupOrThrow(baseMessage);
 
@@ -250,6 +254,7 @@ public partial class LimbDamageSystem
                 var organName = Loc.GetString($"limb-category-limb-name-{damageableOrgan.Organ.Category.Value.Id.ToLower()}");
                 var organDamage = _damageable.GetPositiveDamage((organ, damageableOrgan.Damageable)).DamageDict;
                 var organThresholds = ProcessThresholds(organDamage, _inspectThresholds);
+                var organInorganic = _tag.HasTag(organ, InorganicTag);
 
                 msg.PushNewline();
 
@@ -258,7 +263,7 @@ public partial class LimbDamageSystem
                         ("limb", organName)));
                 else
                     msg.AddMarkupOrThrow(Loc.GetString("limb-health-examinable-detached-attachment-damage-combined",
-                        ("limb", organName), ("damage", ProcessDamageText(organThresholds))));
+                        ("limb", organName), ("damage", ProcessDamageText(organThresholds, organInorganic))));
             }
 
         return msg;
@@ -277,11 +282,13 @@ public partial class LimbDamageSystem
         return result;
     }
 
-    private string ProcessDamageText(Dictionary<ProtoId<DamageTypePrototype>, FixedPoint2> limbThresholds)
+    private string ProcessDamageText(Dictionary<ProtoId<DamageTypePrototype>, FixedPoint2> limbThresholds, bool inorganic = false)
     {
+        var damagePrefix = inorganic ? "limb-health-silicon-" : "limb-health-";
+
         List<string> damageStrings = new();
         foreach (var (damage, threshold) in limbThresholds)
-            if (Loc.TryGetString($"limb-health-{damage.Id.ToLower()}-{threshold}", out var damageString))
+            if (Loc.TryGetString($"{damagePrefix}{damage.Id.ToLower()}-{threshold}", out var damageString))
                 damageStrings.Add(damageString);
 
         if (damageStrings.Count == 0)
