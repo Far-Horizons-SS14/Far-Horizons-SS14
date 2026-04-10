@@ -20,6 +20,12 @@ public sealed partial class HumanoidCharacterProfile
 
     [DataField]
     public RoleLoadout? SpeciesLoadout = null;
+    
+    [DataField]
+    public Symspeech? Symspeech = null;
+    
+    [DataField]
+    public Symspeech? SiliconSymspeech = null;
 
     private static HashSet<(ProtoId<FactionPrototype>, ProtoId<JobPrototype>)> ValidateFactionJobPreferences(HashSet<(ProtoId<FactionPrototype>, ProtoId<JobPrototype>)> factionJobPreferences)
     {
@@ -33,9 +39,15 @@ public sealed partial class HumanoidCharacterProfile
                       job is { SetPreference: true, Hidden: false }
             )];
     }
+    
+    public HumanoidCharacterProfile WithVoice(Symspeech symspeech) => 
+        new(this) { Symspeech = symspeech };
+
+    public HumanoidCharacterProfile WithSiliconVoice(Symspeech symspeech) => 
+        new(this) { SiliconSymspeech = symspeech };
 
     public HumanoidCharacterProfile WithSpeciesLoadout(RoleLoadout? speciesLoadout) => 
-    new(this) { SpeciesLoadout = speciesLoadout, };
+        new(this) { SpeciesLoadout = speciesLoadout, };
 
     public RoleLoadout? GetSpeciesLoadoutOrDefault(ICommonSession? session, IPrototypeManager protoManager)
     {

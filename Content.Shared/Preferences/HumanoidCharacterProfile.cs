@@ -75,8 +75,6 @@ namespace Content.Shared.Preferences
         [DataField]
         public string Name { get; set; } = "John Doe";
 
-        // Far Horizon - removed datafield. Clean up unused fields in character export
-        public string Voice { get; set; } = "";
         /// <summary>
         /// Associated <see cref="SpeciesPrototype"/> for this profile.
         /// </summary>
@@ -126,8 +124,8 @@ namespace Content.Shared.Preferences
 
         public HumanoidCharacterProfile(
             string name,
-            string voice,
-            string siliconVoice, // 🌟Starlight🌟
+            Symspeech? symspeech, // Far Horizons
+            Symspeech? siliconSymspeech, // 🌟Starlight🌟
             string physicalDesc,// Starlight
             string personalityDesc,// Starlight
             string personalNotes,// Starlight
@@ -150,8 +148,8 @@ namespace Content.Shared.Preferences
             RoleLoadout? speciesLoadout) // Far Horizons
         {
             Name = name;
-            Voice = voice;
-            SiliconVoice = siliconVoice; // 🌟Starlight🌟
+            Symspeech = symspeech;
+            SiliconSymspeech = siliconSymspeech; // 🌟Starlight🌟
             PhysicalDescription = physicalDesc;//Starlight
             PersonalityDescription = personalityDesc;//Starlight
             PersonalNotes = personalNotes;//Starlight
@@ -177,8 +175,8 @@ namespace Content.Shared.Preferences
         /// <summary>Copy constructor</summary>
         public HumanoidCharacterProfile(HumanoidCharacterProfile other)
             : this(other.Name,
-                other.Voice,
-                other.SiliconVoice, // 🌟Starlight🌟
+                other.Symspeech,
+                other.SiliconSymspeech, // 🌟Starlight🌟
                 other.PhysicalDescription,//Starlight
                 other.PersonalityDescription, //Starlight
                 other.PersonalNotes,//Starlight
@@ -347,12 +345,7 @@ namespace Content.Shared.Preferences
         {
             return new(this) { Gender = gender };
         }
-
-        public HumanoidCharacterProfile WithVoice(string id)
-        {
-            return new(this) { Voice = id };
-        }
-
+        
         public HumanoidCharacterProfile WithSpecies(string species)
         {
             return new(this) { Species = species };

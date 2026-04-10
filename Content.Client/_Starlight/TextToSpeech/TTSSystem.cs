@@ -2,6 +2,7 @@ using System.Collections.Concurrent;
 using System.IO;
 using Content.Client._Starlight.Radio.Systems;
 using Content.Client._Starlight.TextToSpeech;
+using Content.Shared.Preferences;
 using Content.Shared.Starlight.CCVar;
 using Content.Shared.Starlight.TextToSpeech;
 using Robust.Client.Audio;
@@ -74,8 +75,8 @@ public sealed class TextToSpeechSystem : EntitySystem
         _contentRoot.Dispose();
     }
 
-    public void RequestPreviewTts(string voiceId)
-        => RaiseNetworkEvent(new PreviewTTSRequestEvent() { VoiceId = voiceId });
+    public void RequestPreviewTts(Symspeech symspeech)
+        => RaiseNetworkEvent(new PreviewTTSRequestEvent() { Symspeech = symspeech });
 
     public bool TryPlayChime(Queue<byte[]> data, AudioParams audioParams, EntityUid? entity, SoundSpecifier chime)
     {

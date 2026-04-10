@@ -57,10 +57,7 @@ public sealed partial class TTSSystem
         if (!_prototypeManager.TryGetInstances<VoicePrototype>(out var voices))
             return fallbackVoice.Value;
 
-        return isHumanoid
-            ? AssignRandomVoice([.. voices.Where(x => !x.Value.Silicon
-                && (x.Value.Sex == Sex.Unsexed || sex == Sex.Unsexed || x.Value.Sex == sex))])
-            : AssignRandomVoice([.. voices.Where(x => x.Value.Silicon)]);
+        return AssignRandomVoice(voices.ToArray());
 
         int AssignRandomVoice(KeyValuePair<string, VoicePrototype>[] voicePrototypes)
         {

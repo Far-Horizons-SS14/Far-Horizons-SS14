@@ -398,6 +398,7 @@ namespace Content.Server.Database
         public int PreferenceId { get; set; }
         public Preference Preference { get; set; } = null!;
         public StarLightModel.StarLightProfile? StarLightProfile { get; set; } // Starlight
+        public FarHorizonsModel.FarHorizonsProfile? FarHorizonsProfile { get; set; } // Far Horizons
         public CDModel.CDProfile? CDProfile { get; set; } // Cosmatic Drift Record System: optional persisted record data
     }
 
