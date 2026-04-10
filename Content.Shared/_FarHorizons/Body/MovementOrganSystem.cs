@@ -25,7 +25,6 @@ public sealed partial class MovementOrganSystem : EntitySystem
     private void RefreshModifiers(EntityUid target)
     {
         if (TerminatingOrDeleted(target)) return;
-
         _movementSpeed.RefreshMovementSpeedModifiers(target);
     }
 
@@ -52,24 +51,25 @@ public sealed partial class MovementOrganSystem : EntitySystem
             totalSprintModifier = NoLegsModifier;
             EnsureComp<LegsParalyzedComponent>(ent);
         }
-            
         else if (HasComp<LegsParalyzedComponent>(ent))
         {
-            if(TryComp<HumanoidCharacterProfileComponent>(ent, out var hcpComp) && hcpComp.Profile != null)
+            var shouldBeParalyzed = false;
+            
+            if (TryComp<HumanoidCharacterProfileComponent>(ent, out var hcpComp) && hcpComp.Profile != null)
             {
                 var traits = hcpComp.Profile.TraitPreferences;
-                var paralyzed = false;
-                foreach( var trait in traits)
+                foreach (var trait in traits)
                 {
-                    if(trait == "WheelchairBound")
+                    if (trait == "WheelchairBound")
                     {
-                        paralyzed = true;
+                        shouldBeParalyzed = true;
                         break;
                     }
                 }
-                if(!paralyzed)
-                    RemComp<LegsParalyzedComponent>(ent);
             }
+            
+            if (!shouldBeParalyzed)
+                RemComp<LegsParalyzedComponent>(ent);
         }
         
         args.ModifySpeed(totalWalkModifier, totalSprintModifier);

@@ -2,6 +2,7 @@ using Content.Shared.DoAfter;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Components;
 using Content.Shared.Popups;
+using Content.Shared.Starlight.Medical.Surgery.Steps.Parts;
 using Content.Shared.Storage;
 using Content.Shared.Storage.EntitySystems;
 using Content.Shared.Strip;
@@ -28,6 +29,8 @@ public abstract class SharedPrivateStorageSystem : EntitySystem
         SubscribeLocalEvent<PrivateStorageComponent, PrivateStorageDoAfterEvent>(OnDoAfter);
         SubscribeLocalEvent<PrivateStorageComponent, GetVerbsEvent<ActivationVerb>>(AddPrivateStorageVerb);
         SubscribeLocalEvent<PrivateStorageComponent, ActivateInWorldEvent>(OnActivate, after: [typeof(SharedStrippableSystem)]);
+        SubscribeLocalEvent<PrivateStorageLimbComponent, GetVerbsEvent<ActivationVerb>>(AddPrivateStorageLimbVerb); //FarHorizon
+        SubscribeLocalEvent<PrivateStorageComponent, AccessibleOverrideEvent>(OnOrganAccessibleOverride);
     }
 
     private void OnDoAfter(EntityUid uid, PrivateStorageComponent component, DoAfterEvent args)
@@ -90,6 +93,62 @@ public abstract class SharedPrivateStorageSystem : EntitySystem
         }
         args.Verbs.Add(verb);
     }
+
+    // FarHorizons Start
+    private void AddPrivateStorageLimbVerb(EntityUid uid, PrivateStorageLimbComponent component, GetVerbsEvent<ActivationVerb> args)
+    {
+        if (!args.CanAccess || !args.CanInteract)
+            return;
+        if(component.Limb.Count == 0)
+            return;
+
+        foreach(var limb in component.Limb)
+        {
+            if (!TryComp<StorageComponent>(limb, out var storageComp) || !TryComp<PrivateStorageComponent>(limb, out var privateStorageComp))
+                continue;
+
+            var uiOpen = _ui.IsUiOpen(limb, StorageComponent.StorageUiKey.Key, args.User);
+
+            ActivationVerb verb = new()
+            {
+                Act = () =>
+                {
+                    if (uiOpen)
+                    {
+                        // Open immediately for the private storage owner
+                        _ui.CloseUi(limb, StorageComponent.StorageUiKey.Key, args.User);
+                    }
+                    else
+                    {
+                        // Trigger the private storage access with delay
+                        StartPrivateStorageAccess(limb, args.User, privateStorageComp, uid);
+                    }
+                }
+            };
+
+            if (uiOpen)
+            {
+                verb.Text = $"{MetaData(limb).EntityName} {Loc.GetString("comp-storage-verb-close-storage")}";
+                verb.Icon = new SpriteSpecifier.Texture(
+                    new("/Textures/Interface/VerbIcons/close.svg.192dpi.png"));
+            }
+            else
+            {
+                verb.Text = $"{MetaData(limb).EntityName} {Loc.GetString("comp-storage-verb-open-storage")}";
+                verb.Icon = new SpriteSpecifier.Texture(
+                    new("/Textures/Interface/VerbIcons/open.svg.192dpi.png"));
+            }
+            args.Verbs.Add(verb);
+        }
+    }
+
+    private void OnOrganAccessibleOverride(EntityUid uid, PrivateStorageComponent _, ref AccessibleOverrideEvent args)
+    {
+        args.Handled = true;
+        args.Accessible = true;
+    }
+
+    //FarHorizons End
     
     /// <summary>
     /// Code used to open storage with action button over the verb
@@ -131,10 +190,13 @@ public abstract class SharedPrivateStorageSystem : EntitySystem
     /// Starts the private storage access process with delay and popup.
     /// If the user is the owner of the storage, access is granted immediately without delay.
     /// </summary>
-    private void StartPrivateStorageAccess(EntityUid uid, EntityUid user, PrivateStorageComponent component)
-    {
+    private void StartPrivateStorageAccess(EntityUid uid, EntityUid user, PrivateStorageComponent component, EntityUid body=default)
+    {   
+        if(body == default)
+            body = uid;
+
         // If the user is the owner of the storage, grant immediate access
-        if (uid == user)
+        if (uid == user || Transform(uid).ParentUid == user)
         {
             if (TryComp<StorageComponent>(uid, out var storageComp))
             {
@@ -145,7 +207,7 @@ public abstract class SharedPrivateStorageSystem : EntitySystem
 
         // For other users, require DoAfter with delay
         var doAfterArgs = new DoAfterArgs(EntityManager, user, component.AccessDelay,
-            new PrivateStorageDoAfterEvent(), uid, target: uid)
+            new PrivateStorageDoAfterEvent(), eventTarget: uid, target: body, used: body)           
         {
             BreakOnMove = true,
             BreakOnDamage = true,
@@ -155,7 +217,7 @@ public abstract class SharedPrivateStorageSystem : EntitySystem
             CancelDuplicate = true
         };
         
-        _popup.PopupEntity(Loc.GetString(component.AccessPopup, ("user", user)), uid, uid, PopupType.Medium);
+        _popup.PopupPredicted(Loc.GetString(component.AccessPopup, ("user", user)), body, body, PopupType.Medium);
         _doAfter.TryStartDoAfter(doAfterArgs);
     }
 }

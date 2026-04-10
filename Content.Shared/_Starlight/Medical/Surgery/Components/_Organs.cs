@@ -41,6 +41,13 @@ public sealed partial class StorageOrganComponent : Component
     public string ActionKey;
 }
 
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
+public sealed partial class PrivateStorageLimbComponent : Component
+{
+    [DataField, AutoNetworkedField]
+    public List<EntityUid> Limb = new();
+}
+
 /// <summary>
 /// Used for opening the storage organ via action.
 /// </summary>

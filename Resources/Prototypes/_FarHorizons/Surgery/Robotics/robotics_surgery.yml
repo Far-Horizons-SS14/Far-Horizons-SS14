@@ -1,3 +1,4 @@
+#region Incision
 - type: entity
   parent: SurgeryBase
   id: SurgeryRemovePlating
@@ -27,106 +28,7 @@
     - SurgeryStepRestoreScrews
     - SurgeryStepWeldJoints
 
-- type: entity
-  parent: SurgeryBase
-  id: SurgeryExtractCavityItemRobot
-  name: Extract Item
-  components:
-  - type: Surgery
-    requirement:
-    - SurgeryRemovePlating
-    steps:
-    - SurgeryStepLocateItemCavity
-    - SurgeryStepRemoveItemCavityRobot
-  - type: SurgerySpeciesCondition
-    speciesBlacklist: []
-    speciesWhitelist:
-    - IPC
-  - type: SurgeryPartCondition
-    parts:
-    - Torso
-  - type: SurgeryOrganExistCondition
-    category: Cavity
-  - type: Sprite
-    sprite: Mobs/Species/Human/parts.rsi
-    state: torso_m
-
-- type: entity
-  parent: SurgeryBase
-  id: SurgeryImplantCavityItemRobot
-  name: Implant Item
-  components:
-  - type: Surgery
-    requirement:
-    - SurgeryRemovePlating
-    steps:
-    - SurgeryStepPrepareImplantSiteCavityRobot
-    - SurgeryStepInsertItemCavity
-  - type: SurgerySpeciesCondition
-    speciesBlacklist: []
-    speciesWhitelist:
-    - IPC
-  - type: SurgeryPartCondition
-    parts:
-    - Torso
-  - type: SurgeryOrganDontExistCondition
-    category: [ Cavity ]
-  - type: Sprite
-    sprite: Mobs/Species/Human/parts.rsi
-    state: torso_m
-    
-- type: entity
-  parent: SurgeryBase
-  id: SurgeryExtractEyeImplantRobot
-  name: Extract Eye Implant
-  components:
-  - type: Surgery
-    requirement:
-    - SurgeryRemovePlating
-    steps:
-    - SurgeryStepLocateImplant
-    - SurgeryStepCutOpticWire
-    - SurgeryStepRemoveEyeImplantRobot
-  - type: SurgeryPartCondition
-    parts:
-    - Head
-  - type: SurgeryOrganExistCondition
-    category: EyeImplant
-  - type: Sprite
-    sprite: _Starlight/Objects/Specific/Medical/implants.rsi
-    layers:
-      - state: eye_implant_welding
-  - type: SurgerySpeciesCondition
-    speciesBlacklist: []
-    speciesWhitelist:
-    - IPC
-
-- type: entity
-  parent: SurgeryBase
-  id: SurgeryImplantEyeImplantRobot
-  name: Implant Eye Implant
-  components:
-  - type: Surgery
-    requirement:
-    - SurgeryRemovePlating
-    steps:
-    - SurgeryStepPrepareImplantSiteEyesRobot
-    - SurgeryStepInsertEyeImplant
-    - SurgeryStepConnectOpticWire
-  - type: SurgeryPartCondition
-    parts:
-    - Head
-  - type: SurgeryOrganDontExistCondition
-    category: [ EyeImplant ]
-  - type: Sprite
-    sprite: _Starlight/Objects/Specific/Medical/implants.rsi
-    layers:
-      - state: eye_implant_welding
-  - type: SurgerySpeciesCondition
-    speciesBlacklist: []
-    speciesWhitelist:
-    - IPC
-
+#region Organs...?
 - type: entity
   parent: SurgeryBase
   id: SurgeryExtractEyesRobot
@@ -163,7 +65,7 @@
     requirement:
     - SurgeryRemovePlating
     steps:
-    - SurgeryStepPrepareImplantSiteEyesRobot
+    - SurgeryStepPrepareImplantSiteRobot
     - SurgeryStepInsertEyes
     - SurgeryStepConnectOpticWire
   - type: SurgeryOrganDontExistCondition
@@ -226,3 +128,205 @@
     speciesBlacklist: []
     speciesWhitelist:
     - IPC
+
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryExtractCavityItemRobot
+  name: Extract Item
+  components:
+  - type: Surgery
+    requirement:
+    - SurgeryRemovePlating
+    steps:
+    - SurgeryStepLocateItemCavity
+    - SurgeryStepRemoveItemCavityRobot
+  - type: SurgerySpeciesCondition
+    speciesBlacklist: []
+    speciesWhitelist:
+    - IPC
+  - type: SurgeryPartCondition
+    parts:
+    - Torso
+  - type: SurgeryOrganExistCondition
+    category: Cavity
+  - type: Sprite
+    sprite: Mobs/Species/Human/parts.rsi
+    state: torso_m
+
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryImplantCavityItemRobot
+  name: Implant Item
+  components:
+  - type: Surgery
+    requirement:
+    - SurgeryRemovePlating
+    steps:
+    - SurgeryStepPrepareImplantSiteRobot
+    - SurgeryStepInsertItemCavity
+  - type: SurgerySpeciesCondition
+    speciesBlacklist: []
+    speciesWhitelist:
+    - IPC
+  - type: SurgeryPartCondition
+    parts:
+    - Torso
+  - type: SurgeryOrganDontExistCondition
+    category: [ Cavity ]
+  - type: Sprite
+    sprite: Mobs/Species/Human/parts.rsi
+    state: torso_m
+
+#region Implants
+
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryExtractEyeImplantRobot
+  name: Extract Eye Implant
+  components:
+  - type: Surgery
+    requirement:
+    - SurgeryRemovePlating
+    steps:
+    - SurgeryStepLocateImplant
+    - SurgeryStepCutOpticWire
+    - SurgeryStepRemoveEyeImplantRobot
+  - type: SurgeryPartCondition
+    parts:
+    - Head
+  - type: SurgeryOrganExistCondition
+    category: EyeImplant
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/implants.rsi
+    layers:
+      - state: eye_implant_welding
+  - type: SurgerySpeciesCondition
+    speciesBlacklist: []
+    speciesWhitelist:
+    - IPC
+
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryImplantEyeImplantRobot
+  name: Implant Eye Implant
+  components:
+  - type: Surgery
+    requirement:
+    - SurgeryRemovePlating
+    steps:
+    - SurgeryStepPrepareImplantSiteRobot
+    - SurgeryStepInsertEyeImplant
+    - SurgeryStepConnectOpticWire
+  - type: SurgeryPartCondition
+    parts:
+    - Head
+  - type: SurgeryOrganDontExistCondition
+    category: [ EyeImplant ]
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/implants.rsi
+    layers:
+      - state: eye_implant_welding
+  - type: SurgerySpeciesCondition
+    speciesBlacklist: []
+    speciesWhitelist:
+    - IPC
+
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryExtractLeftHandImplantRobot
+  name: Extract Hand Implant
+  components:
+  - type: Surgery
+    requirement:
+    - SurgeryRemovePlating
+    steps:
+    - SurgeryStepLocateImplant
+    - SurgeryStepExposeWiringConnections
+    - SurgeryStepRemoveLeftHandImplantRobot
+  - type: SurgeryOrganExistCondition
+    category: HandLeftImplant
+  - type: SurgeryPartCondition
+    parts: [ HandLeft ] #FarHorizons
+  - type: SurgerySpeciesCondition
+    speciesBlacklist: []
+    speciesWhitelist:
+    - IPC
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/implants.rsi
+    layers:
+      - state: l_hand_implant_insulated
+
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryExtractRightHandImplantRobot
+  name: Extract Hand Implant
+  components:
+  - type: Surgery
+    requirement:
+    - SurgeryRemovePlating
+    steps:
+    - SurgeryStepLocateImplant
+    - SurgeryStepExposeWiringConnections
+    - SurgeryStepRemoveRightHandImplantRobot
+  - type: SurgeryOrganExistCondition
+    category: HandRightImplant
+  - type: SurgeryPartCondition
+    parts: [ HandRight ] #FarHorizons
+  - type: SurgerySpeciesCondition
+    speciesBlacklist: []
+    speciesWhitelist:
+    - IPC
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/implants.rsi
+    layers:
+      - state: r_hand_implant_insulated
+
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryImplantLeftHandImplantRobot
+  name: Implant Hand Implant
+  components:
+  - type: Surgery
+    requirement:
+    - SurgeryRemovePlating
+    steps:
+    - SurgeryStepPrepareImplantSiteRobot
+    - SurgeryStepInsertLeftHandImplant
+    - SurgeryStepConnectWiringConnections
+  - type: SurgeryOrganDontExistCondition
+    category: [ HandLeftImplant ] #FarHorizons
+  - type: SurgeryPartCondition
+    parts: [ HandLeft ] #FarHorizons
+  - type: SurgerySpeciesCondition
+    speciesBlacklist: []
+    speciesWhitelist:
+    - IPC
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/implants.rsi
+    layers:
+      - state: l_hand_implant_insulated
+
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryImplantRightHandImplantRobot
+  name: Implant Hand Implant
+  components:
+  - type: Surgery
+    requirement:
+    - SurgeryRemovePlating
+    steps:
+    - SurgeryStepPrepareImplantSiteRobot
+    - SurgeryStepInsertRightHandImplant
+    - SurgeryStepConnectWiringConnections
+  - type: SurgeryOrganDontExistCondition
+    category: [ HandRightImplant ] #FarHorizons
+  - type: SurgeryPartCondition
+    parts: [ HandRight ] #FarHorizons
+  - type: SurgerySpeciesCondition
+    speciesBlacklist: []
+    speciesWhitelist:
+    - IPC
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/implants.rsi
+    layers:
+      - state: r_hand_implant_insulated

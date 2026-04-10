@@ -41,6 +41,9 @@ public sealed partial class OrganSystem : EntitySystem
 
         SubscribeLocalEvent<AbductorOrganComponent, OrganGotInsertedEvent>(OnAbductorOrganImplanted);
         SubscribeLocalEvent<AbductorOrganComponent, OrganGotRemovedEvent>(OnAbductorOrganExtracted);
+
+        SubscribeLocalEvent<OrganDamageComponent, OrganGotInsertedEvent>(OnOrganImplanted);
+        SubscribeLocalEvent<OrganDamageComponent, OrganGotRemovedEvent>(OnOrganExtracted);
     }
 
     //
@@ -110,6 +113,9 @@ public sealed partial class OrganSystem : EntitySystem
 
         if (ent.Comp.OrganAction != null)
             _action.AddAction(args.Target, ref ent.Comp.ActionEntity, ent.Comp.OrganAction, ent.Owner);
+
+        var limbComp = EnsureComp<PrivateStorageLimbComponent>(args.Target);
+        limbComp.Limb.Add(ent.Owner);
     }
 
     private void OnStorageOrganExtracted(Entity<StorageOrganComponent> ent, ref OrganGotRemovedEvent args)
@@ -120,6 +126,13 @@ public sealed partial class OrganSystem : EntitySystem
 
         _action.RemoveAction(args.Target, ent.Comp.ActionEntity);
         ent.Comp.ActionEntity = null;
+
+        if(TryComp<PrivateStorageLimbComponent>(args.Target, out var slComp))
+        {
+            slComp.Limb.Remove(ent.Owner);
+            if(slComp.Limb.Count == 0)
+                RemCompDeferred<PrivateStorageLimbComponent>(args.Target);
+        }
     }
 
     private void OnOrganImplanted(Entity<OrganDamageComponent> ent, ref OrganGotInsertedEvent args)

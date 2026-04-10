@@ -14,6 +14,7 @@ steal-target-groups-reactorfuelrod = reactor fuel rod
 # Thief Single Item
 
 steal-target-groups-clothing-eyes-hud-beer = beer goggles
+steal-target-groups-neurallinkdisruptor = neural link disruptor
 
 # Thief Structures
 

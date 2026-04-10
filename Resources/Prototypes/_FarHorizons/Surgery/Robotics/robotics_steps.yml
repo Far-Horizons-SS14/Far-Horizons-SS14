@@ -227,23 +227,6 @@
 
 - type: entity
   parent: SurgeryStepBase
-  id: SurgeryStepPrepareImplantSiteCavityRobot
-  name: Prepare Implant Site
-  components:
-  - type: SurgeryStep
-    duration: 4
-    tools:
-    - type: ScrewdriverSurgery
-  - type: Sprite
-    sprite: Objects/Tools/screwdriver.rsi
-    state: screwdriver-map
-  - type: OnFailDamage
-    damage: 
-      types:
-        Slash: 10
-
-- type: entity
-  parent: SurgeryStepBase
   id: SurgeryStepRemoveItemCavityRobot
   name: Remove Item
   components:
@@ -299,11 +282,11 @@
 
 - type: entity
   parent: SurgeryStepBase
-  id: SurgeryStepPrepareImplantSiteEyesRobot
+  id: SurgeryStepPrepareImplantSiteRobot
   name: Prepare Implant Site
   components:
   - type: SurgeryStep
-    duration: 2
+    duration: 4
     tools:
     - type: ScrewdriverSurgery
   - type: Sprite
@@ -436,3 +419,43 @@
   - type: Sprite
     sprite: _FarHorizons/Mobs/Species/IPC/organs.rsi
     state: tongue
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepRemoveLeftHandImplantRobot
+  name: Remove Hand Implant
+  components:
+  - type: SurgeryStep
+    duration: 3
+    tools:
+    - type: ScrewdriverSurgery
+  - type: SurgeryStepEmoteEffect
+  - type: SurgeryStepOrganExtract
+    slot: HandLeftImplant
+  - type: Sprite
+    sprite: Objects/Tools/screwdriver.rsi
+    state: screwdriver-map
+  - type: OnFailDamage
+    damage: 
+      types:
+        Slash: 10
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepRemoveRightHandImplantRobot
+  name: Remove Hand Implant
+  components:
+  - type: SurgeryStep
+    duration: 3
+    tools:
+    - type: ScrewdriverSurgery
+  - type: SurgeryStepEmoteEffect
+  - type: SurgeryStepOrganExtract
+    slot: HandRightImplant
+  - type: Sprite
+    sprite: Objects/Tools/screwdriver.rsi
+    state: screwdriver-map
+  - type: OnFailDamage
+    damage: 
+      types:
+        Slash: 10

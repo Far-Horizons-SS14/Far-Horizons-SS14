@@ -275,11 +275,11 @@
           - NukeOpsUplink
 
 - type: listing
-  id: UplinkAdvancedLeftClawsImplant
-  name: uplink-advanced-claws-left-name
+  id: UplinkAdvancedLeftClawsImplant #FH
+  name: uplink-advanced-claws-left-name #FH
   description: uplink-advanced-claws-desc
-  icon: { sprite: _Starlight/Objects/Specific/Medical/implants.rsi, state: hand_implant_claws }
-  productEntity: HandLeftImplantClaws
+  icon: { sprite: _Starlight/Objects/Specific/Medical/implants.rsi, state: l_hand_implant_claws } #FH
+  productEntity: LeftHandImplantClaws #FH
   discountCategory: rareDiscounts
   discountDownTo:
     Telecrystal: 0
@@ -289,11 +289,11 @@
   - UplinkCybernetics
 
 - type: listing
-  id: UplinkAdvancedRightClawsImplant
-  name: uplink-advanced-claws-right-name
+  id: UplinkAdvancedRightClawsImplant #FH
+  name: uplink-advanced-claws-right-name #FH
   description: uplink-advanced-claws-desc
-  icon: { sprite: _Starlight/Objects/Specific/Medical/implants.rsi, state: hand_implant_claws }
-  productEntity: HandRightImplantClaws
+  icon: { sprite: _Starlight/Objects/Specific/Medical/implants.rsi, state: r_hand_implant_claws } #FH
+  productEntity: RightHandImplantClaws #FH
   discountCategory: rareDiscounts
   discountDownTo:
     Telecrystal: 0
@@ -303,11 +303,11 @@
   - UplinkCybernetics
 
 - type: listing
-  id: UplinkLeftForensicsImplant
-  name: uplink-forensics-implant-left-name
+  id: UplinkLeftForensicsImplant #FH
+  name: uplink-forensics-implant-left-name #FH
   description: uplink-forensics-implant-desc
-  icon: { sprite: _Starlight/Objects/Specific/Medical/implants.rsi, state: hand_implant_forensics }
-  productEntity: HandLeftImplantForensics
+  icon: { sprite: _Starlight/Objects/Specific/Medical/implants.rsi, state: l_hand_implant_forensics } #FH
+  productEntity: LeftHandImplantForensics #FH
   discountCategory: rareDiscounts
   discountDownTo:
     Telecrystal: 1
@@ -317,11 +317,11 @@
   - UplinkCybernetics
 
 - type: listing
-  id: UplinkRightForensicsImplant
-  name: uplink-forensics-implant-rightt-name
+  id: UplinkRightForensicsImplant #FH
+  name: uplink-forensics-implant-right-name #FH
   description: uplink-forensics-implant-desc
-  icon: { sprite: _Starlight/Objects/Specific/Medical/implants.rsi, state: hand_implant_forensics }
-  productEntity: HandRightImplantForensics
+  icon: { sprite: _Starlight/Objects/Specific/Medical/implants.rsi, state: r_hand_implant_forensics } #FH
+  productEntity: RightHandImplantForensics #FH
   discountCategory: rareDiscounts
   discountDownTo:
     Telecrystal: 1

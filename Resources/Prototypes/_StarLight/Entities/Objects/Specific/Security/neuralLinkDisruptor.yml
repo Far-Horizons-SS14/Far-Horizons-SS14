@@ -1,5 +1,5 @@
 - type: entity
-  name: neural link disruptor
+  name: Neural Link Disruptor #FH
   parent: BaseItem
   id: NeuralLinkDisruptor
   description: Used to temporarily disrupt cyberware. Implants with passive effects are unaffected.
@@ -12,3 +12,5 @@
   - type: CyberneticDisruptor
     useTime: 10
     duration: 600
+  - type: StealTarget #FH
+    stealGroup: NeuralLinkDisruptorSteal #FH

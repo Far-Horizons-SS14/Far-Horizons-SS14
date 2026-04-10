@@ -596,6 +596,7 @@
     layers:
       - state: eye_implant_welding
 
+#FarHorizons Start
 - type: entity
   parent: SurgeryBase
   id: SurgeryExtractLeftHandImplant
@@ -612,14 +613,14 @@
   - type: SurgeryOrganExistCondition
     category: HandLeftImplant
   - type: SurgeryPartCondition
-    parts: [ HandLeft ] #FarHorizons
+    parts: [ HandLeft ] 
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - IPC
   - type: Sprite
     sprite: _Starlight/Objects/Specific/Medical/implants.rsi
     layers:
-      - state: hand_implant_insulated
+      - state: l_hand_implant_insulated
 
 - type: entity
   parent: SurgeryBase
@@ -644,7 +645,7 @@
   - type: Sprite
     sprite: _Starlight/Objects/Specific/Medical/implants.rsi
     layers:
-      - state: hand_implant_insulated
+      - state: r_hand_implant_insulated
 
 - type: entity
   parent: SurgeryBase
@@ -660,16 +661,16 @@
     - SurgeryStepInsertLeftHandImplant
     - SurgeryStepRejoinNerves
   - type: SurgeryOrganDontExistCondition
-    category: [ HandLeftImplant ] #FarHorizons
+    category: [ HandLeftImplant ] 
   - type: SurgeryPartCondition
-    parts: [ HandLeft ] #FarHorizons
+    parts: [ HandLeft ] 
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - IPC
   - type: Sprite
     sprite: _Starlight/Objects/Specific/Medical/implants.rsi
     layers:
-      - state: hand_implant_insulated
+      - state: l_hand_implant_insulated
 
 - type: entity
   parent: SurgeryBase
@@ -685,17 +686,17 @@
     - SurgeryStepInsertRightHandImplant
     - SurgeryStepRejoinNerves
   - type: SurgeryOrganDontExistCondition
-    category: [ HandRightImplant ] #FarHorizons
+    category: [ HandRightImplant ] 
   - type: SurgeryPartCondition
-    parts: [ HandRight ] #FarHorizons
+    parts: [ HandRight ] 
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - IPC
   - type: Sprite
     sprite: _Starlight/Objects/Specific/Medical/implants.rsi
     layers:
-      - state: hand_implant_insulated
-
+      - state: r_hand_implant_insulated
+#FarHorizons End
 #
 - type: entity
   parent: SurgeryBase

@@ -11,115 +11,115 @@
       - people
 
 - type: entity
-  id: HandLeftImplantInsulated
-  name: Left Hand Insulation Implant
+  id: LeftHandImplantInsulated #FH
+  name: Left Hand Insulation Implant #FH
   description: Protects your hands from electric currents!
   parent: BaseEntityHandImplant
   components:
   - type: Sprite
-    state: hand_implant_insulated
-  - type: Organ
-    category: HandLeftImplant
+    state: l_hand_implant_insulated #FH
+  - type: Organ #FH
+    category: HandLeftImplant #FH
   - type: FunctionalOrgan
     comps:
     - type: Insulated
 
 - type: entity
-  id: HandRightImplantInsulated
+  id: RightHandImplantInsulated #FH
   name: Right Hand Insulation Implant
   description: Protects your hands from electric currents!
   parent: BaseEntityHandImplant
   components:
   - type: Sprite
-    state: hand_implant_insulated
-  - type: Organ
-    category: HandRightImplant
+    state: r_hand_implant_insulated #FH
+  - type: Organ #FH
+    category: HandRightImplant #FH
   - type: FunctionalOrgan
     comps:
     - type: Insulated
 
 - type: entity
-  id: HandLeftImplantForensics
-  name: Left Hand Forensics Implant
+  id: LeftHandImplantForensics #FH
+  name: Left Hand Forensics Implant #FH
   description: Removes your fingerprints! Great for forensics, at the cost of your mail.
   parent: BaseEntityHandImplant
   components:
   - type: Sprite
-    state: hand_implant_forensics
-  - type: Organ
-    category: HandLeftImplant
+    state: l_hand_implant_forensics #FH
+  - type: Organ #FH
+    category: HandLeftImplant #FH
   - type: FunctionalOrgan
     comps:
     - type: FingerprintMask
 
 - type: entity
-  id: HandRightImplantForensics
-  name: Right Hand Forensics Implant
+  id: RightHandImplantForensics #FH
+  name: Right Hand Forensics Implant #FH
   description: Removes your fingerprints! Great for forensics, at the cost of your mail.
   parent: BaseEntityHandImplant
   components:
   - type: Sprite
-    state: hand_implant_forensics
-  - type: Organ
-    category: HandRightImplant
+    state: r_hand_implant_forensics #FH
+  - type: Organ #FH
+    category: HandRightImplant #FH
   - type: FunctionalOrgan
     comps:
     - type: FingerprintMask
 
 - type: entity
-  id: HandLeftImplantClaws
-  name: Left Hand Claws Implant
+  id: LeftHandImplantClaws #FH
+  name: Left Hand Claws Implant #FH
   description: Gives you retractable claws!
   parent: BaseEntityHandImplant
   components:
   - type: Sprite
-    state: hand_implant_claws
-  - type: Organ
-    category: HandLeftImplant
+    state: l_hand_implant_claws #FH
+  - type: Organ #FH
+    category: HandLeftImplant #FH
   - type: FunctionalOrgan
     comps:
     - type: InherentAction
       action: ActionRetractableItemAdvancedClaws
 
 - type: entity
-  id: HandRightImplantClaws
-  name: Right Hand Claws Implant
+  id: RightHandImplantClaws #FH
+  name: Right Hand Claws Implant #FH
   description: Gives you retractable claws!
   parent: BaseEntityHandImplant
   components:
   - type: Sprite
-    state: hand_implant_claws
-  - type: Organ
-    category: HandRightImplant
+    state: r_hand_implant_claws #FH
+  - type: Organ #FH
+    category: HandRightImplant #FH
   - type: FunctionalOrgan
     comps:
     - type: InherentAction
       action: ActionRetractableItemAdvancedClaws
 
 - type: entity
-  id: HandLeftImplantThrusters
-  name: Left Hand Thruster Implant
+  id: LeftHandImplantThrusters #FH
+  name: Left Hand Thruster Implant #FH
   description: Wrist-mounted micro-thrusters to help you maneuver in space.
   parent: BaseEntityHandImplant
   components:
   - type: Sprite
-    state: hand_implant_thrusters
-  - type: Organ
-    category: HandLeftImplant
+    state: l_hand_implant_thrusters #FH
+  - type: Organ #FH
+    category: HandLeftImplant #FH
   - type: FunctionalOrgan
     comps:
     - type: MovementAlwaysTouching
 
 - type: entity
-  id: HandRightImplantThrusters
-  name: Right Hand Thruster Implant
+  id: RightHandImplantThrusters #FH
+  name: Right Hand Thruster Implant #FH
   description: Wrist-mounted micro-thrusters to help you maneuver in space.
   parent: BaseEntityHandImplant
   components:
   - type: Sprite
-    state: hand_implant_thrusters
-  - type: Organ
-    category: HandRightImplant
+    state: r_hand_implant_thrusters #FH
+  - type: Organ #FH
+    category: HandRightImplant #FH
   - type: FunctionalOrgan
     comps:
     - type: MovementAlwaysTouching

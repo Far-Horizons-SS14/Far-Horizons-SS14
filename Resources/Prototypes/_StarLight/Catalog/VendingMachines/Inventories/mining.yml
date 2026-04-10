@@ -295,3 +295,32 @@
   - MiningConsumeables
   conditions:
   - !type:BuyerAccessCondition
+
+#Cybernetics
+# FarHorizons Start
+- type: listing
+  id: VendorSalvageLeftArmCyberSpacerMiner
+  icon:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+    state: l_spacer_arm
+  productEntity: LeftArmCyberSpacer
+  cost:
+    SalvageTicket: 700
+  categories:
+  - SalvageCybernetics
+  conditions:
+  - !type:BuyerAccessCondition
+
+- type: listing
+  id: VendorSalvageRightArmCyberSpacerMiner
+  icon:
+    sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+    state: r_spacer_arm
+  productEntity: RightArmCyberSpacer
+  cost:
+    SalvageTicket: 700
+  categories:
+  - SalvageCybernetics
+  conditions:
+  - !type:BuyerAccessCondition
+#FarHorizons End

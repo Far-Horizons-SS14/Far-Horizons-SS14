@@ -101,8 +101,20 @@ public sealed partial class FHResearchConsoleWindow : FancyWindow
 
         if (selected != null)
         {
-            _selected = _allNodes.Where(p => p.ID == selected).First();
-
+            _selected = _allNodes.FirstOrDefault(p => p.ID == selected);
+            
+            // Add null check - handle case where node isn't found
+            if (_selected == null)
+            {
+                // Node not found in _allNodes - treat as no selection
+                _selected = null;
+                SelectionScroll.Visible = false;
+                NoSelectionBox.Visible = true;
+                UpdateRequirements();
+                UpdateUnlocks();
+                return;
+            }
+            
             if (_researchedNodes.Contains(selected.Value))
                 ResearchButton.Text = Loc.GetString("research-tree-button-researched");
 
