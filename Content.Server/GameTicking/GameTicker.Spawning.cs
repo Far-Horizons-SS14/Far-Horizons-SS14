@@ -470,8 +470,8 @@ namespace Content.Server.GameTicking
 
             //starlight start
             //handle character voices
-            newMind.Comp.Voice = character.Voice;
-            newMind.Comp.SiliconVoice = character.SiliconVoice;
+            newMind.Comp.Symspeech = character.Symspeech;
+            newMind.Comp.SiliconSymspeech = character.SiliconSymspeech;
             //starlight end
 
             _mind.TransferTo(newMind, mob);

@@ -5,6 +5,7 @@ using Content.Server._Starlight.Radio.Systems;
 using Content.Server._Starlight.TextToSpeech;
 using Content.Shared._Starlight.Speech;
 using Content.Shared.Chat;
+using Content.Shared.Preferences;
 using Content.Shared.Radio;
 using Content.Shared.Starlight.CCVar;
 using Content.Shared.Starlight.TextToSpeech;
@@ -34,8 +35,9 @@ public sealed partial class TTSSystem : EntitySystem
         "The robust salvagers have once again halted the nuclear operatives."
     ];
 
-    private const int DefaultAnnounceVoice = 2001;
-    private const int DefaultVoice = 0;
+    private Symspeech _defaultAnnounceVoice = null!; // Far Horizons
+
+    private Symspeech _defaultVoice = null!; // Far Horizons
     // private const int MaxChars = 200; // Far Horizons - Change to a CVar
     private const float WhisperVoiceVolumeModifier = 0.6f;
     private readonly ISawmill _sawmill = Logger.GetSawmill(nameof(TTSSystem));
@@ -46,6 +48,8 @@ public sealed partial class TTSSystem : EntitySystem
 
     public override void Initialize()
     {
+        _defaultVoice = new Symspeech("1", 0, 0, 0, 0, 0); // Far Horizons - TODO - Add a nice voice as a default
+        _defaultAnnounceVoice = new Symspeech("1", 0, 0, 0, 0, 0); // Far Horizons - TODO - Add a nice voice as a default
         _cfg.OnValueChanged(StarlightCCVars.TTSEnabled, v => _isEnabled = v, true);
         _cfg.OnValueChanged(StarlightCCVars.TTSMaxLengthMessage, v => _maxChars = v, true); // Far Horizons - Add max characters length as a CVar
 
@@ -65,13 +69,13 @@ public sealed partial class TTSSystem : EntitySystem
         await Task.Yield();
         try
         {
-            if (!_prototypeManager.TryIndex<VoicePrototype>(ev.VoiceId, out var protoVoice))
+            if (!_prototypeManager.TryIndex(ev.Symspeech.Voice, out var protoVoice))
                 return;
 
             var previewText = _rng.Pick(_sampleText);
             var filter = Filter.SinglePlayer(args.SenderSession);
 
-            await GenerateAndStream(TTSType.System, protoVoice.Voice, previewText, filter);
+            await GenerateAndStream(TTSType.System, ev.Symspeech, previewText, filter); // Far Horizons
         }
         catch (TaskCanceledException ex)
         {
@@ -101,10 +105,11 @@ public sealed partial class TTSSystem : EntitySystem
                 .RemoveWhere(x => x.AttachedEntity.HasValue
                     && x.AttachedEntity != args.Source
                     && !_language.CanUnderstand(x.AttachedEntity.Value, args.Language.ID));
-            var voice = GetOrAssignVoice(args.Source);
+            var symspeech = GetOrAssignVoice(args.Source); // Far Horizons
             var channel = new ProtoId<RadioChannelPrototype>(args.Channel.ID);
-
-            await GenerateAndStream(TTSType.Radio, voice, text, filter, TTSEffect.Walkie, chime, null, channel);
+            
+            // Far Horizons edit
+            await GenerateAndStream(TTSType.Radio, symspeech, text, filter, TTSEffect.Walkie, chime, null, channel);
         }
         catch (TaskCanceledException ex)
         {
@@ -155,8 +160,8 @@ public sealed partial class TTSSystem : EntitySystem
             var text = ShortenMessage(CleanText(args.Message.Tts ?? args.Message.Text)); // Far Horizons - shorten the message to the max length
             var filter = args.Receivers.RemovePlayers(_ignoredRecipients);
             var voice = args.SpeakerUid.HasValue
-                ? GetOrAssignVoice(GetEntity(args.SpeakerUid.Value), fallbackVoice: DefaultAnnounceVoice)
-                : DefaultAnnounceVoice;
+                ? GetOrAssignVoice(GetEntity(args.SpeakerUid.Value), fallbackVoice: _defaultAnnounceVoice) // Far Horizons
+                : _defaultAnnounceVoice; // Far Horizons
 
             await GenerateAndStream(TTSType.Announcement, voice, text, filter, TTSEffect.Megaphone, args.AnnouncementSound);
         }
@@ -228,7 +233,7 @@ public sealed partial class TTSSystem : EntitySystem
     }
 
     private async Task GenerateAndStream(TTSType type,
-                                         int voice,
+                                         Symspeech symspeech, // Far Horizons
                                          string text,
                                          Filter filter,
                                          TTSEffect effect = TTSEffect.None,
@@ -249,7 +254,7 @@ public sealed partial class TTSSystem : EntitySystem
             SourceUid = SourceUid.HasValue ? GetNetEntity(SourceUid.Value) : null,
         }, filter, false);
 
-        await foreach (var chunk in _client.GenerateTTS(text, voice, effect))
+        await foreach (var chunk in _client.GenerateTTS(text, symspeech, effect))
             RaiseNetworkEvent(new TTSChunkEvent { Id = id, Data = chunk }, filter, false);
     }
 

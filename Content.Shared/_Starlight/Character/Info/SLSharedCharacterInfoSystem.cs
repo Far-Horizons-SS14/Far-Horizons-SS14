@@ -63,8 +63,8 @@ public abstract class SLSharedCharacterInfoSystem : EntitySystem
         #endregion Starlight
         if (newMind != null && TryComp(newMind, out MindComponent? mindComp))
         {
-            mindComp.Voice = character.Voice;
-            mindComp.SiliconVoice = character.SiliconVoice;
+            mindComp.Symspeech = character.Symspeech; // Far Horizons
+            mindComp.SiliconSymspeech = character.SiliconSymspeech; // Far Horizons
             if (_configManager.GetCVar(CCVars.FlavorText))
             {
                 var personalityDescription = new CharacterDescriptionComponent

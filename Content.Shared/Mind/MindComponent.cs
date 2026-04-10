@@ -1,4 +1,5 @@
 using Content.Shared.Mind.Components;
+using Content.Shared.Preferences;
 using Robust.Shared.Containers;
 using Robust.Shared.GameStates;
 using Robust.Shared.Network;
@@ -122,12 +123,11 @@ public sealed partial class MindComponent : Component
     [DataField]
     public LocId? Subtype;
 
-    // 🌟Starlight🌟
+    // Far Horizons
     [DataField]
-    public string? Voice;
+    public Symspeech? Symspeech;
     
-    // 🌟Starlight🌟
+    // Far Horizons
     [DataField]
-    public string? SiliconVoice;
-
+    public Symspeech? SiliconSymspeech;
 }

@@ -3,9 +3,11 @@ using System.Linq;
 using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
+using Content.Shared.Preferences;
 using Content.Shared.Starlight.CCVar;
 using Prometheus;
 using Robust.Shared.Configuration;
+using Robust.Shared.Prototypes;
 using StackExchange.Redis;
 using EnumeratorCancellation = System.Runtime.CompilerServices.EnumeratorCancellationAttribute;
 
@@ -14,6 +16,7 @@ namespace Content.Server._Starlight.TextToSpeech;
 public sealed class TTSClient : ITTSClient
 {
     [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
 
     private const string Queue = "tts_jobs";
     private const int TimeoutS = 5;
@@ -89,12 +92,12 @@ public sealed class TTSClient : ITTSClient
     public async IAsyncEnumerable<byte[]> GenerateTTS
     (
         string text,
-        int voice,
+        Symspeech symspeech, // Far Horizons
         TTSEffect effect = TTSEffect.None,
         [EnumeratorCancellation] CancellationToken cancellationToken = default
     )
     {
-        if (await GetCache(text, voice, effect) is byte[] cached)
+        if (await GetCache(text, symspeech, effect) is byte[] cached) // Far Horizons
         {
             _cacheHits.Inc();
 
@@ -119,27 +122,31 @@ public sealed class TTSClient : ITTSClient
         }
 
         _cacheMisses.Inc();
-        await foreach (var chunk in GenerateStreamAsync(text, voice, effect, cancellationToken))
+        await foreach (var chunk in GenerateStreamAsync(text, symspeech, effect, cancellationToken)) // Far Horizons
             yield return chunk;
     }
 
-    private async Task<byte[]?> GetCache(string text, int voice, TTSEffect effect)
+    private async Task<byte[]?> GetCache(string text, Symspeech symspeech, TTSEffect effect) // Far Horizons
     {
-        if (_db is null)
-            return null;
-
-        var cacheKey = effect != TTSEffect.None
-            ? $"cache:2:{voice}:{(int)effect}:{text}"
-            : $"cache:2:{voice}:{text}";
-
-        var cached = await _db.StringGetAsync(cacheKey);
-        return cached.HasValue ? (byte[])cached! : null;
+        // Far Horizons edit start - no cache as of now, generating voices is rather fast for us,
+        // as well as the sheer amount of options makes the cache practically useless
+        // if (_db is null)
+        //     return null;
+        //
+        // var cacheKey = effect != TTSEffect.None
+        //     ? $"cache:2:{voice}:{(int)effect}:{text}"
+        //     : $"cache:2:{voice}:{text}";
+        //
+        // var cached = await _db.StringGetAsync(cacheKey);
+        // return cached.HasValue ? (byte[])cached! : null;
+        return null;
+        // Far Horizons edit end
     }
 
     private async IAsyncEnumerable<byte[]> GenerateStreamAsync
     (
         string text,
-        int voice,
+        Symspeech symspeech, // Far Horizons
         TTSEffect effect = TTSEffect.None,
         [EnumeratorCancellation] CancellationToken cancellationToken = default
     )
@@ -174,14 +181,22 @@ public sealed class TTSClient : ITTSClient
 
         try
         {
+            // Far Horizons edit start - Symspeech
+            var voice = _prototypeManager.Index(symspeech.Voice);
             var job = new TtsJob
             {
                 Id = jobId,
                 Text = text,
-                Voice = voice + "",
+                Voice = voice.Voice + "",
+                Pitch = symspeech.Pitch,
+                Speed = symspeech.Speed,
+                Pause = symspeech.Pause,
+                Polyphony = symspeech.Polyphony,
+                Volume = symspeech.Volume,
                 Effect = (int)effect,
                 Timestamp = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds()
             };
+            // Far Horizons edit end
 
             var jobJson = JsonSerializer.Serialize(job, TtsJobContext.Default.TtsJob);
 
