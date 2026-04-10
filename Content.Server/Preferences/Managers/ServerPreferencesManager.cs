@@ -211,7 +211,7 @@ namespace Content.Server.Preferences.Managers
             Symspeech? symspeech;
             Symspeech? siliconSymspeech;
             
-            if (profile.Symspeech is { } profileSymspeech)
+            if (profile.FarHorizonsProfile?.Symspeech is { } profileSymspeech)
             {
                 symspeech = new Symspeech(
                     profileSymspeech.Voice,
@@ -221,11 +221,11 @@ namespace Content.Server.Preferences.Managers
                     profileSymspeech.Polyphony,
                     profileSymspeech.Volume
                 );
-            } 
+            }
             else
                 symspeech = null;
 
-            if (profile.SiliconSymspeech is { } profileSiliconSymspeech)
+            if (profile.FarHorizonsProfile?.SiliconSymspeech is { } profileSiliconSymspeech)
             {
                 siliconSymspeech = new Symspeech(
                     profileSiliconSymspeech.Voice,
@@ -235,7 +235,7 @@ namespace Content.Server.Preferences.Managers
                     profileSiliconSymspeech.Polyphony,
                     profileSiliconSymspeech.Volume
                 );
-            } 
+            }
             else
                 siliconSymspeech = null;
             // Far Horizons end

@@ -75,8 +75,8 @@ namespace Content.Server.Database
                 // Cosmatic Drift Record System-end
                 .Include(p => p.JobPriorities)
                 // Far Horizons edit start
-                .Include(p => p.Profiles).ThenInclude(h => h.Symspeech)
-                .Include(p => p.Profiles).ThenInclude(h => h.SiliconSymspeech)
+                .Include(p => p.Profiles).ThenInclude(h => h.FarHorizonsProfile).ThenInclude(fh => fh!.Symspeech)
+                .Include(p => p.Profiles).ThenInclude(h => h.FarHorizonsProfile).ThenInclude(fh => fh!.SiliconSymspeech)
                 // Far Horizons edit end
                 .AsSplitQuery()
                 .SingleOrDefaultAsync(p => p.UserId == userId.UserId, cancel);
@@ -338,8 +338,10 @@ namespace Content.Server.Database
             if (humanoid.SpeciesLoadout != null)
                 extraLoadouts[HumanoidCharacterProfile.SpeciesLoadoutDatabaseKey] = humanoid.SpeciesLoadout;
 
+            profile.FarHorizonsProfile ??= new FarHorizonsModel.FarHorizonsProfile();
+
             if (humanoid.Symspeech is { } symspeech)
-                profile.Symspeech = new FarHorizonsModel.SymspeechDTO()
+                profile.FarHorizonsProfile.Symspeech = new FarHorizonsModel.SymspeechDTO()
                 {
                     Voice = symspeech.Voice.Id,
                     Pitch = symspeech.Pitch,
@@ -349,10 +351,10 @@ namespace Content.Server.Database
                     Volume = symspeech.Volume,
                 };
             else
-                profile.Symspeech = null;
-            
-            if(humanoid.SiliconSymspeech is { } siliconSymspeech)
-                profile.SiliconSymspeech = new FarHorizonsModel.SymspeechDTO()
+                profile.FarHorizonsProfile.Symspeech = null;
+
+            if (humanoid.SiliconSymspeech is { } siliconSymspeech)
+                profile.FarHorizonsProfile.SiliconSymspeech = new FarHorizonsModel.SymspeechDTO()
                 {
                     Voice = siliconSymspeech.Voice.Id,
                     Pitch = siliconSymspeech.Pitch,
@@ -362,7 +364,7 @@ namespace Content.Server.Database
                     Volume = siliconSymspeech.Volume,
                 };
             else
-                profile.SiliconSymspeech = null;
+                profile.FarHorizonsProfile.SiliconSymspeech = null;
             
             // Far Horizons end
 

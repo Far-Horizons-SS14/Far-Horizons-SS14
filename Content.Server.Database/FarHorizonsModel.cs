@@ -3,15 +3,6 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Content.Server.Database;
 
-public partial class Profile
-{
-    public int? SymspeechId { get; set; }
-    public FarHorizonsModel.SymspeechDTO? Symspeech { get; set; } = null!;
-
-    public int? SiliconSymspeechId { get; set; }
-    public FarHorizonsModel.SymspeechDTO? SiliconSymspeech { get; set; } = null!;
-}
-
 public sealed class FarHorizonsModel : DataModelBase
 {
     public override void OnModelCreating(ServerDbContext dbContext, ModelBuilder modelBuilder)
@@ -25,18 +16,15 @@ public sealed class FarHorizonsModel : DataModelBase
 
             entity.HasIndex(e => e.ProfileId)
                 .IsUnique();
-        });
 
-        modelBuilder.Entity<Profile>(entity =>
-        {
-            entity.HasOne(p => p.Symspeech)
+            entity.HasOne(e => e.Symspeech)
                 .WithOne()
-                .HasForeignKey<Profile>(p => p.SymspeechId)
+                .HasForeignKey<FarHorizonsProfile>(e => e.SymspeechId)
                 .OnDelete(DeleteBehavior.SetNull);
 
-            entity.HasOne(p => p.SiliconSymspeech)
+            entity.HasOne(e => e.SiliconSymspeech)
                 .WithOne()
-                .HasForeignKey<Profile>(p => p.SiliconSymspeechId)
+                .HasForeignKey<FarHorizonsProfile>(e => e.SiliconSymspeechId)
                 .OnDelete(DeleteBehavior.SetNull);
         });
     }
@@ -46,6 +34,12 @@ public sealed class FarHorizonsModel : DataModelBase
         public int Id { get; set; }
         public int ProfileId { get; set; }
         public virtual Profile Profile { get; set; } = null!;
+
+        public int? SymspeechId { get; set; }
+        public SymspeechDTO? Symspeech { get; set; }
+
+        public int? SiliconSymspeechId { get; set; }
+        public SymspeechDTO? SiliconSymspeech { get; set; }
     }
 
     public class SymspeechDTO
