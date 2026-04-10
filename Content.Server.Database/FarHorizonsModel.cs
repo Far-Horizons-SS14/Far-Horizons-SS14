@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 
 namespace Content.Server.Database;
@@ -42,6 +43,7 @@ public sealed class FarHorizonsModel : DataModelBase
         public SymspeechDTO? SiliconSymspeech { get; set; }
     }
 
+    [Table("fh_symspeech")]
     public class SymspeechDTO
     {
         [Key] public int Id { get; set; }
