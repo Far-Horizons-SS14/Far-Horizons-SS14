@@ -48,3 +48,33 @@ limb-health-shock-50 = is carbonized and smoking
 limb-health-caustic-10 = is discolored
 limb-health-caustic-30 = has bubbling burns
 limb-health-caustic-50 = is violently sizzling
+
+
+
+limb-health-silicon-blunt-10 = is slightly dented
+limb-health-silicon-blunt-30 = is crumpled and deformed
+limb-health-silicon-blunt-50 = is crushed
+
+limb-health-silicon-slash-10 = is scratched
+limb-health-silicon-slash-30 = has deep metal gouges
+limb-health-silicon-slash-50 = is sliced open
+
+limb-health-silicon-piercing-10 = has small puncture
+limb-health-silicon-piercing-30 = is pierced in several spots
+limb-health-silicon-piercing-50 = is riddled with holes
+
+limb-health-silicon-heat-10 = has some scorch marks
+limb-health-silicon-heat-30 = is somewhat warped
+limb-health-silicon-heat-50 = is warped and partially slagged
+
+limb-health-silicon-cold-10 = is coated in frost
+limb-health-silicon-cold-30 = has ice clogging internals
+limb-health-silicon-cold-50 = has thick reflective layer of ice
+
+limb-health-silicon-shock-10 = is sparking and twitching occasionally
+limb-health-silicon-shock-30 = is smelling of burnt electronics
+limb-health-silicon-shock-50 = is looking burnt and its surface peeling off
+
+limb-health-silicon-caustic-10 = looks tarnished
+limb-health-silicon-caustic-30 = is eroded on the surface
+limb-health-silicon-caustic-50 = has a thick iridescent oxidized layer
