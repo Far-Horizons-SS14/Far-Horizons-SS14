@@ -1,5 +1,8 @@
+using System.Linq;
+using Content.Shared._FarHorizons.Body;
 using Content.Shared._Starlight.Magic.Components;
 using Content.Shared._Starlight.Magic.Events;
+using Content.Shared.Body;
 using Content.Shared.Humanoid;
 using Robust.Shared.Serialization;
 
@@ -19,11 +22,19 @@ public sealed class ColorObjectToEyeColorSystem : EntitySystem
     
     private void OnAfterSpawnItemInHand(Entity<ColorObjectToEyeColorComponent> entity, ref AfterSpawnItemInHandEvent ev)
     {
-        if (!TryComp<HumanoidAppearanceComponent>(ev.Performer, out var appearanceComp))
+        if (!TryComp<BodyComponent>(ev.Performer, out var body) || body.Organs == null || body.Organs.ContainedEntities.Count == 0)
             return;
         
-        var color = NormalizeColor(appearanceComp.EyeColor, 1.8f);
-
+        //FarHorizons Start
+        var color = NormalizeColor(Color.AliceBlue, 1.8f);
+        foreach (var eyes in body.Organs.ContainedEntities.Where(HasComp<VisionOrganComponent>))
+        {
+            if (!TryComp<VisualOrganComponent>(eyes, out var eyeOrgan))
+                continue;
+            color = NormalizeColor(eyeOrgan.Profile.EyeColor, 1.8f);
+            break;
+        }
+        //FarHorizons End
         _pointLight.SetColor(ev.Entity, color);
 
         _appearance.SetData(ev.Entity, ColorVisuals.Color, color);
