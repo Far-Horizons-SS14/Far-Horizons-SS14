@@ -46,7 +46,22 @@
   - BaseMobProtoResomi
   id: MobProtoResomi
   name: Urist McRapster
-
+  components:
+  - type: TemperatureDamage
+    heatDamageThreshold: 310
+    coldDamageThreshold: 223
+  - type: Temperature
+    currentTemperature: 261
+    specificHeat: 48
+  - type: ThermalRegulator
+    metabolismHeat: 400 # icebirb go brrr
+    radiatedHeat: 100
+    implicitHeatRegulation: 1500
+    sweatHeatRegulation: 2000
+    shiveringHeatRegulation: 2000
+    normalBodyTemperature: 261
+    thermalRegulationTemperatureThreshold: 1
+    
 # Organs
 
 - type: entity
