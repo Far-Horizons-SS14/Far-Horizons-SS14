@@ -6,6 +6,14 @@
       limit: 1
       required: true
       default: [ ProtoArachnidVisor ]
+    enum.HumanoidVisualLayers.Tail:
+      limit: 1
+      required: true
+      default: [ ArachnidAppendagesDefault ]
+    enum.HumanoidVisualLayers.HeadSide:
+      limit: 1
+      required: true
+      default: [ ArachnidCheliceraeDownwards ]
 
 - type: entity
   parent: AppearanceArachnid
