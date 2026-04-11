@@ -138,7 +138,7 @@
     sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/mining.rsi #Far Horizons
 
 - type: entity
-  parent: [ClothingUniformBase, ClothingUniformFoldableBase]
+  parent: [ClothingUniformBase] # ClothingUniformFoldableBase] # No folded sprites
   id: ClothingUniformJumpsuitSeniorChemist
   name: Senior Chemist Jumpsuit #Far Horizons - The Great Capitalization Crusade
   description: A sign of skill, prestige, and alchemical prowess.
@@ -172,7 +172,7 @@
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/corpsman_response.rsi
 
 - type: entity
-  parent: [ClothingUniformBase, ClothingUniformFoldableBase]
+  parent: [ClothingUniformBase] # ClothingUniformFoldableBase] # No folded sprites
   id: ClothingUniformJumpsuitOfLife
   name: Suit Of Life #Far Horizons - The Great Capitalization Crusade
   description: A suit that symbolizes the joy and positivity of our life.

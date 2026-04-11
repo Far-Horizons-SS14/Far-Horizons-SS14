@@ -13,6 +13,7 @@ limb-health-no-damage = There is no visible damage on { POSS-ADJ($target) } body
 limb-health-missing = { CAPITALIZE(POSS-ADJ($target)) } [color=#c0ed1e]{$limb}[/color] [color=#f2190e]is missing! [/color]
 limb-health-ok = { CAPITALIZE(POSS-ADJ($target)) } [color=#c0ed1e]{$limb}[/color] looks healthy.
 limb-health-damage-combined = { CAPITALIZE(POSS-ADJ($target)) } [color=#c0ed1e]{$limb}[/color] [color=#ea8d2a]{$damage}![/color]
+limb-health-unhandled = { CAPITALIZE(POSS-ADJ($target)) } [color=#c0ed1e]{$limb}[/color] looks like there might be something wrong, but you can't tell what.
 
 limb-health-examinable-detached-ok = This is [color=#c0ed1e]{$limb}[/color], it looks healthy.
 limb-health-examinable-detached-damage-combined = This is [color=#c0ed1e]{$limb}[/color], it [color=#ea8d2a]{$damage}![/color]

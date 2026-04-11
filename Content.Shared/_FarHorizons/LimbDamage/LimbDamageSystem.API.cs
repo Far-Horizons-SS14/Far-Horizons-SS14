@@ -20,23 +20,30 @@ public partial class LimbDamageSystem
     public bool TryChangeLimbDamage(Entity<LimbDamageableComponent?> target, ProtoId<OrganCategoryPrototype> targetLimb,
         DamageSpecifier damage, out DamageSpecifier bodyDamageDealt, bool ignoreResistances = false,
         bool interruptsDoAfters = true, EntityUid? origin = null, bool ignoreGlobalModifiers = false,
-        float armorPenetration = 0, bool canHeal = true, bool skipBodyDamage = false) => TryChangeLimbDamage(target,
+        float armorPenetration = 0, bool canHeal = true, bool skipBodyDamage = false, bool allowTorso = false) => TryChangeLimbDamage(target,
         targetLimb, damage,
         out bodyDamageDealt, out _, ignoreResistances, interruptsDoAfters, origin, ignoreGlobalModifiers,
-        armorPenetration, canHeal, skipBodyDamage);
+        armorPenetration, canHeal, skipBodyDamage, allowTorso);
 
     public bool TryChangeLimbDamage(Entity<LimbDamageableComponent?> target, ProtoId<OrganCategoryPrototype> targetLimb,
         DamageSpecifier damage, out DamageSpecifier bodyDamageDealt, out DamageSpecifier limbDamageDealt,
         bool ignoreResistances = false,
         bool interruptsDoAfters = true, EntityUid? origin = null, bool ignoreGlobalModifiers = false,
-        float armorPenetration = 0, bool canHeal = true, bool skipBodyDamage = false)
+        float armorPenetration = 0, bool canHeal = true, bool skipBodyDamage = false, bool allowTorso = false)
     {
         bodyDamageDealt = new();
         limbDamageDealt = new();
 
         if (!Resolve(target, ref target.Comp, false) ||
-            target.Comp.DefaultLimb == targetLimb)
+            (target.Comp.DefaultLimb == targetLimb && !allowTorso))
             return false; // Damage to torso is vanilla damage system which we don't handle.
+
+        if (target.Comp.DefaultLimb == targetLimb && allowTorso)
+        {
+            bodyDamageDealt = limbDamageDealt = _damageable.ChangeDamage(target.Owner, damage, ignoreResistances,
+                interruptsDoAfters, origin, ignoreGlobalModifiers, armorPenetration, canHeal);
+            return true;
+        }
 
         var targetLimbEnt = GetAllDamageable(target).Where(p => p.Comp.Organ!.Category == targetLimb).FirstOrNull();
         if (targetLimbEnt == null)

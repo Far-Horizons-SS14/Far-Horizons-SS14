@@ -134,9 +134,17 @@ public partial class LimbDamageSystem
                 var thresholds = ProcessThresholds(limbDamage, _inspectThresholds);
 
                 if (thresholds.Count != 0)
-                    finalMessage = Loc.GetString("limb-health-damage-combined",
-                        ("target", Identity.Entity(ent, EntityManager)), ("limb", limbName),
-                        ("damage", ProcessDamageText(thresholds, inorganic)));
+                {
+                    var damageText = ProcessDamageText(thresholds, inorganic);
+                    if (damageText != "")
+                        finalMessage = Loc.GetString("limb-health-damage-combined",
+                            ("target", Identity.Entity(ent, EntityManager)), ("limb", limbName),
+                            ("damage", damageText));
+                    else
+                        finalMessage = Loc.GetString("limb-health-unhandled",
+                            ("target", Identity.Entity(ent, EntityManager)), ("limb", limbName));
+                        
+                }
             }
 
             if (finalMessage == null) continue;
@@ -291,13 +299,17 @@ public partial class LimbDamageSystem
             if (Loc.TryGetString($"{damagePrefix}{damage.Id.ToLower()}-{threshold}", out var damageString))
                 damageStrings.Add(damageString);
 
-        if (damageStrings.Count == 0)
-            return "";
-
-        if (damageStrings.Count == 1)
-            return damageStrings.First();
-
-        var combinedString = string.Join(", ", damageStrings.SkipLast(1));
-        return Loc.GetString("limb-health-damage-combine", ("first", combinedString), ("last", damageStrings.Last()));
+        switch (damageStrings.Count)
+        {
+            case 0:
+                return "";
+            case 1:
+                return damageStrings.First();
+            default:
+                {
+                    var combinedString = string.Join(", ", damageStrings.SkipLast(1));
+                    return Loc.GetString("limb-health-damage-combine", ("first", combinedString), ("last", damageStrings.Last()));
+                }
+        }
     }
 }
