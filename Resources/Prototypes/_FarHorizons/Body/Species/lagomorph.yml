@@ -1,0 +1,192 @@
+- type: markingsGroup
+  parent: Undergarments
+  id: Lagomorph
+  onlyGroupWhitelisted: true
+  limits:
+    enum.HumanoidVisualLayers.Hair:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.FacialHair:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.Head:
+      limit: 3
+      required: false
+    enum.HumanoidVisualLayers.Snout:
+      limit: 1
+      required: true
+    enum.HumanoidVisualLayers.Chest:
+      limit: 3
+      required: false
+    enum.HumanoidVisualLayers.LArm:
+      limit: 2
+      required: false
+    enum.HumanoidVisualLayers.RArm:
+      limit: 2
+      required: false
+    enum.HumanoidVisualLayers.LHand:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RHand:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LLeg:
+      limit: 2
+      required: false
+    enum.HumanoidVisualLayers.RLeg:
+      limit: 2
+      required: false
+    enum.HumanoidVisualLayers.LFoot:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RFoot:
+      limit: 1
+      required: false
+
+- type: entity
+  parent: BaseSpeciesAppearance
+  id: AppearanceLagomorph
+  name: lagomorph appearance
+  components:
+  - type: Inventory
+    femaleDisplacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: jumpsuit-female
+  - type: InitialBody
+    organs:
+      Torso: OrganLagomorphTorso
+      Head: OrganLagomorphHead
+      ArmLeft: OrganLagomorphArmLeft
+      ArmRight: OrganLagomorphArmRight
+      HandRight: OrganLagomorphHandRight
+      HandLeft: OrganLagomorphHandLeft
+      LegLeft: OrganLagomorphLegLeft
+      LegRight: OrganLagomorphLegRight
+      FootLeft: OrganLagomorphFootLeft
+      FootRight: OrganLagomorphFootRight
+      Brain: OrganHumanBrain
+      Eyes: OrganHumanEyes
+      Tongue: OrganHumanTongue
+      Appendix: OrganHumanAppendix
+      Ears: OrganHumanEars
+      Lungs: OrganHumanLungs
+      Heart: OrganLagomorphHeart
+      Stomach: OrganLagomorphStomach
+      Liver: OrganHumanLiver
+      Kidneys: OrganHumanKidneys
+  - type: HumanoidProfile
+    species: Lagomorph
+
+- type: entity
+  parent:
+  - AppearanceLagomorph
+  - BaseMobLagomorph
+  id: MobLagomorph
+  name: Urist McBnuuy
+
+- type: entity
+  parent: OrganBase
+  id: OrganLagomorph
+  abstract: true
+  suffix: lagomorph
+  components:
+  - type: Tag
+    tags:
+      - Organic
+
+- type: entity
+  id: OrganLagomorphMetabolizer
+  abstract: true
+  components:
+  - type: Metabolizer
+    metabolizerTypes: [ LagoMorph ]
+
+- type: entity
+  parent: OrganLagomorph
+  id: OrganLagomorphInternal
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: Mobs/Species/Human/organs.rsi
+
+- type: entity
+  parent: OrganHuman
+  id: OrganLagomorphExternal
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _Starlight/Mobs/Species/Lagomorph/parts.rsi
+  - type: VisualOrgan
+    data:
+      sprite: _Starlight/Mobs/Species/Lagomorph/parts.rsi
+  - type: VisualOrganMarkings
+    markingData:
+      group: Lagomorph
+
+- type: entity
+  parent: [ OrganBaseTorsoSexed, OrganBaseTorso, OrganLagomorphExternal ]
+  id: OrganLagomorphTorso
+
+- type: entity
+  parent: [ OrganBaseHeadSexed, OrganBaseHead, OrganLagomorphExternal ]
+  id: OrganLagomorphHead
+  components:
+  - type: VisualOrganMarkings
+    hideableLayers:
+    - enum.HumanoidVisualLayers.Snout
+    - enum.HumanoidVisualLayers.HeadTop
+    - enum.HumanoidVisualLayers.HeadSide
+    - enum.HumanoidVisualLayers.Hair
+    - enum.HumanoidVisualLayers.FacialHair
+    dependentHidingLayers:
+      enum.HumanoidVisualLayers.Snout:
+      - enum.HumanoidVisualLayers.SnoutCover
+
+- type: entity
+  parent: [ OrganBaseArmLeft, OrganLagomorphExternal ]
+  id: OrganLagomorphArmLeft
+
+- type: entity
+  parent: [ OrganBaseArmRight, OrganLagomorphExternal ]
+  id: OrganLagomorphArmRight
+
+- type: entity
+  parent: [ OrganBaseHandLeft, OrganLagomorphExternal ]
+  id: OrganLagomorphHandLeft
+
+- type: entity
+  parent: [ OrganBaseHandRight, OrganLagomorphExternal ]
+  id: OrganLagomorphHandRight
+
+- type: entity
+  parent: [ OrganBaseLegLeft, OrganLagomorphExternal ]
+  id: OrganLagomorphLegLeft
+
+- type: entity
+  parent: [ OrganBaseLegRight, OrganLagomorphExternal ]
+  id: OrganLagomorphLegRight
+
+- type: entity
+  parent: [ OrganBaseFootLeft, OrganLagomorphExternal ]
+  id: OrganLagomorphFootLeft
+
+- type: entity
+  parent: [ OrganBaseFootRight, OrganLagomorphExternal ]
+  id: OrganLagomorphFootRight
+
+- type: entity
+  parent: [ OrganBaseHeart, OrganLagomorphInternal, OrganLagomorphMetabolizer ]
+  id: OrganLagomorphHeart
+  components:
+  - type: Metabolizer
+    updateInterval: 0.7
+
+- type: entity
+  parent: [ OrganBaseStomach, OrganLagomorphInternal, OrganLagomorphMetabolizer ]
+  id: OrganLagomorphStomach
+  components:
+  - type: Metabolizer
+    updateInterval: 0.7
