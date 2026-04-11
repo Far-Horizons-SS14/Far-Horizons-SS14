@@ -192,6 +192,11 @@
   id: synthBass1
   voice: 38
   name: symspeech-tts-voice-name-38
+  defaultPitch: -12
+  defaultSpeed: 0.58
+  defaultPause: 0.72
+  defaultPoly: 3
+  defaultVolume: 0.8
 
 - type: voice
   id: synthBass2
@@ -292,6 +297,11 @@
   id: tuba
   voice: 58
   name: symspeech-tts-voice-name-58
+  defaultPitch: -12
+  defaultSpeed: 0.58
+  defaultPause: 0.72
+  defaultPoly: 8
+  defaultVolume: 1.0
 
 - type: voice
   id: mutedTrumpet
@@ -367,6 +377,11 @@
   id: flute
   voice: 73
   name: symspeech-tts-voice-name-73
+  defaultPitch: 0
+  defaultSpeed: 0.58
+  defaultPause: 0.72
+  defaultPoly: 8
+  defaultVolume: 1.0
 
 - type: voice
   id: recorder
@@ -1472,4 +1487,15 @@
   id: metal
   voice: 294
   name: symspeech-tts-voice-name-294
+  
+- type: voice
+  id: announcement-voice
+  voice: 13
+  name: "Announcement Voice"
+  AccessibleForPlayers: false
+  defaultPitch: -22
+  defaultSpeed: 0.58
+  defaultPause: 0.72
+  defaultPoly: 4
+  defaultVolume: 1.2
 
