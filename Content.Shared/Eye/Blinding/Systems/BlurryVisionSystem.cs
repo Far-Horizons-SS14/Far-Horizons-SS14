@@ -47,12 +47,18 @@ public sealed class BlurryVisionSystem : EntitySystem
     // Far Horizons - don't get vision correction from pocket
     private void OnGlassesEquipped(Entity<VisionCorrectionComponent> glasses, ref ClothingGotEquippedEvent args)
     {
+        if((args.Clothing.InSlotFlag & SlotFlags.EYES) == 0)
+            return;
+
         UpdateBlurMagnitude(args.Wearer, true); // starlight change: glasses param
     }
 
     // Far Horizons - don't get vision correction from pocket
     private void OnGlassesUnequipped(Entity<VisionCorrectionComponent> glasses, ref ClothingGotUnequippedEvent args)
     {
+        if((args.Clothing.InSlotFlag & SlotFlags.EYES) == 0)
+            return;
+            
         UpdateBlurMagnitude(args.Wearer, false); // starlight change: glasses param
     }
 }
