@@ -36,7 +36,7 @@ public partial class LimbDamageSystem
 
         var dmg = damageComp.Damage * _damageable.UniversalHitscanDamageModifier;
         if (!TryChangeLimbDamage(args.Data.HitEntity.Value, ent.Comp.Target, dmg, out var damageDealt,
-                damageComp.IgnoreResistances, true, args.Data.Shooter, false, damageComp.ArmorPenetration, false))
+                damageComp.IgnoreResistances, true, args.Data.Shooter, false, damageComp.ArmorPenetration, false, false, true))
             return;
 
         var damageEvent = new HitscanDamageDealtEvent
