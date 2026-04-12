@@ -36,16 +36,15 @@
   components:
   - type: Sprite
     state: brain_implant_comms
-  - type: EncryptionKeyHolder
-    keySlots: 4
-  - type: ContainerContainer
-    containers:
-      key_slots: !type:Container
   - type: FunctionalOrgan
     comps:
     - type: ActiveRadio
     - type: IntrinsicRadioReceiver
     - type: IntrinsicRadioTransmitter
-    - type: EncryptionKeyHolder
-      keySlots: 4
-      canBeExamined: false
+    #FH Start
+    - type: IPCRadio
+      keysCapacity: 4
+      copyHeadsetKeys: false  
+      removeHeadset: false 
+    - type: WiresPanel
+    #FH End
