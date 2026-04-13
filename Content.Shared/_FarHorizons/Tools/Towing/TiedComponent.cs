@@ -17,12 +17,6 @@ public sealed partial class TiedComponent : Component
     /// </summary>
     [DataField]
     public EntityUid? AttachedTo;
-
-    /// <summary>
-    /// Is it a hitch?
-    /// </summary>
-    [DataField]
-    public bool isHitch = false;
 }
 
 [Serializable, NetSerializable]

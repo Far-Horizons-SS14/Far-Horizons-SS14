@@ -9,6 +9,8 @@ using Robust.Shared.Physics.Components;
 using Content.Shared.Coordinates;
 using Content.Shared.Hands.Components;
 using Content.Shared.Movement.Systems;
+using Content.Shared.Charges.Components;
+using Content.Shared.Charges.Systems;
 
 namespace Content.Server._FarHorizons.Towing;
 public sealed partial class TowingSystem : EntitySystem
@@ -17,7 +19,7 @@ public sealed partial class TowingSystem : EntitySystem
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly SharedHandsSystem _hands = default!;
     [Dependency] private readonly MovementSpeedModifierSystem _movementSpeed = default!;
-    private static readonly string _towingRope = "TowingRope";
+    [Dependency] private readonly SharedChargesSystem _charges = default!;
     private static readonly string _hitchHook = "HitchHook";
     public override void Initialize()
     {
@@ -34,7 +36,7 @@ public sealed partial class TowingSystem : EntitySystem
     public void OnAddUtilityVerb(EntityUid ent, TowingRopeComponent component, GetVerbsEvent<UtilityVerb> args)
     {
         if(!args.CanAccess || !args.CanInteract || args.Hands == null) return;
-        if(HasComp<TiedComponent>(args.Target)) return;
+        if(Transform(args.Target).ParentUid != Transform(args.Target).GridUid) return;
         if(TryComp<PhysicsComponent>(args.Target, out var physicsComponent) && physicsComponent.BodyType == BodyType.Static) return;
         var tieVerb = new UtilityVerb
         {
@@ -67,10 +69,16 @@ public sealed partial class TowingSystem : EntitySystem
         else
         {
             var entA = ent.Comp.FirstEnd.Value;
-            _joint.RecursiveClearJoints(entA);
-
+            _joint.RecursiveClearJoints(ent.Owner);
             CreateJoint(entA, target, ent.Comp);
-            QueueDel(ent.Owner);
+            ent.Comp.FirstEnd = null;
+
+            if(TryComp<LimitedChargesComponent>(ent.Owner, out var chargeComp))
+            {
+                _charges.TryUseCharge((ent.Owner, chargeComp));
+                if(_charges.GetCurrentCharges(ent.Owner) == 0)
+                    QueueDel(ent.Owner);
+            }
         }
     }
 
@@ -100,29 +108,18 @@ public sealed partial class TowingSystem : EntitySystem
     public void OnUnTieDoAfter(Entity<TiedComponent> ent, ref UnTieDoAfter args)
     {
         if(args.Cancelled) return;
-        if(args.Target == null) return;
-        var target = args.Target.Value;
-        if(TryComp<TiedComponent>(target, out var tComp))
+        if(ent.Comp.AttachedTo != null)
         {
-            if(tComp.AttachedTo != null)
-            {
-                var attachedTo = tComp.AttachedTo.Value;
-                _movementSpeed.RefreshMovementSpeedModifiers(attachedTo);
-                RemComp<TiedComponent>(attachedTo);
-                RemComp<JointComponent>(attachedTo);
-                RemComp<JointVisualsComponent>(attachedTo);
-                if(!tComp.isHitch)
-                {
-                    var newrope = SpawnAtPosition(_towingRope, target.ToCoordinates());
-                    _hands.TryPickupAnyHand(args.User, newrope);   
-                }             
-            }
+            var attachedTo = ent.Comp.AttachedTo.Value;
+            _movementSpeed.RefreshMovementSpeedModifiers(attachedTo);
+            RemComp<TiedComponent>(attachedTo);
+            RemComp<JointVisualsComponent>(attachedTo);
         }
-        _movementSpeed.RefreshMovementSpeedModifiers(target);    
-        RemComp<TiedComponent>(target);
-        RemComp<JointComponent>(target);
-        RemComp<JointVisualsComponent>(target);
-        _joint.RecursiveClearJoints(target);
+
+        _movementSpeed.RefreshMovementSpeedModifiers(ent.Owner);    
+        RemComp<TiedComponent>(ent.Owner);
+        RemComp<JointVisualsComponent>(ent.Owner);
+        _joint.RecursiveClearJoints(ent.Owner);
     }
 
     public void OnAddHitchVerb(EntityUid uid, HitchComponent component, GetVerbsEvent<AlternativeVerb> args)
@@ -164,21 +161,22 @@ public sealed partial class TowingSystem : EntitySystem
 
     private void CreateJoint(EntityUid entityA, EntityUid entityB, TowingRopeComponent towComp)
     {        
-        var visualComp = EnsureComp<JointVisualsComponent>(entityB);
-        var tiedComp = EnsureComp<TiedComponent>(entityB);
         var joint = _joint.CreateDistanceJoint(entityA, entityB);
         joint.MaxLength = joint.Length + 0.3f;
         joint.Stiffness = 1f;
         joint.MinLength = 0.0f;
-                        
-        visualComp.Sprite = towComp.RopeSprite;
-        visualComp.Target = entityA;
-        tiedComp.AttachedTo = entityA;
+        
+        var visualEntAComp = EnsureComp<JointVisualsComponent>(entityB);
+        visualEntAComp.Sprite = towComp.RopeSprite;
+        visualEntAComp.Target = entityA;
+        var visualEntBComp = EnsureComp<JointVisualsComponent>(entityB);
+        visualEntBComp.Sprite = towComp.RopeSprite;
+        visualEntBComp.Target = entityA;
 
-        if (TryComp<TiedComponent>(entityA, out var tied))
-        {
-            tied.AttachedTo = entityB;
-        }
+        var tiedEntAComp = EnsureComp<TiedComponent>(entityA);
+        tiedEntAComp.AttachedTo = entityB;
+        var tiedEntBComp = EnsureComp<TiedComponent>(entityB);
+        tiedEntBComp.AttachedTo = entityA;
 
         towComp.FirstEnd = entityB;
         
