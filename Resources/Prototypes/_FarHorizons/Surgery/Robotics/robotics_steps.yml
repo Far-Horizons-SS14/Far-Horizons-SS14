@@ -74,6 +74,8 @@
     duration: 4
     tools:
     - type: WirecutterSurgery
+    add:
+    - type: IncisionOpen
   - type: Sprite
     sprite: Objects/Tools/wirecutters.rsi
     state: cutters-map
@@ -91,6 +93,8 @@
     duration: 5
     tools:
     - type: WrenchSurgery
+    remove:
+    - type: IncisionOpen
   - type: Sprite
     sprite: Objects/Tools/wrench.rsi
     state: icon
