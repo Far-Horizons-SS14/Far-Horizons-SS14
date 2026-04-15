@@ -175,6 +175,12 @@
 - type: entity
   parent: [ OrganBaseLegRight, OrganLagomorphExternal ]
   id: OrganLagomorphLegRight
+  components:
+  - type: FunctionalOrgan
+    comps:
+    - type: Zoomies
+      hungerDrain: 120
+      duration: 10
 
 - type: entity
   parent: [ OrganBaseFootLeft, OrganLagomorphExternal ]

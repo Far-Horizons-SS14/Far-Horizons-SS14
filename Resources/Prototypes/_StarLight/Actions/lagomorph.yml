@@ -4,15 +4,16 @@
   description: Grants increased stamina regeneration and resistance for a while at the cost of drastically increased hunger.
   components:
     - type: Action
-      useDelay: 20
+      useDelay: 50 # Far Horizons
       itemIconStyle: BigAction
       icon:
         sprite: _Starlight/Interface/Actions/actions_lagomorph.rsi
         state: stamina-active
-    - type: LimitedCharges
-      maxCharges: 1
-    - type: AutoRecharge
-      rechargeDuration: 50
+    # Far Horizons
+    #- type: LimitedCharges
+    #  maxCharges: 1
+    #- type: AutoRecharge
+    #  rechargeDuration: 50
     - type: InstantAction
       event: !type:StaminaSurgeActionEvent
 
@@ -22,14 +23,15 @@
   description: Boost sprint speed at the cost of drastically increased thirst.
   components:
     - type: Action
-      useDelay: 15
+      useDelay: 40 # FarHorizons
       itemIconStyle: BigAction
       icon:
         sprite: _Starlight/Interface/Actions/actions_lagomorph.rsi
         state: zoomies-btn
-    - type: LimitedCharges
-      maxCharges: 1
-    - type: AutoRecharge
-      rechargeDuration: 50
+    # Far Horizons
+    #- type: LimitedCharges
+    #  maxCharges: 1
+    #- type: AutoRecharge
+    #  rechargeDuration: 50
     - type: InstantAction
       event: !type:ZoomiesActionEvent
