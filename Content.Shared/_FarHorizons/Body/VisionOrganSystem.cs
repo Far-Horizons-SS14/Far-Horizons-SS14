@@ -24,6 +24,7 @@ public sealed partial class VisionOrganSystem : EntitySystem
 
         _blindable.SetMinDamage((args.Target, blindable), ent.Comp.MinDamage);
         _blindable.AdjustEyeDamage((args.Target, blindable), ent.Comp.EyeDamage - blindable.EyeDamage);
+        _blindable.UpdateIsBlind((args.Target, blindable));
     }
 
     private void OnVisionOrganRemoved(Entity<VisionOrganComponent> ent, ref OrganGotRemovedEvent args)
@@ -40,7 +41,8 @@ public sealed partial class VisionOrganSystem : EntitySystem
 
     private void EyeUserCanSee(Entity<VisionOrganRequiredForVisionComponent> ent, ref CanSeeAttemptEvent args)
     {
-        if (args.Cancelled ||
+        if (!Initialized(ent) ||
+            args.Cancelled ||
             !TryComp<BodyComponent>(ent, out var body) ||
             body.Organs?.Count == 0) // Body with no organs is either something that didn't finish initializaiton, or some extreme edge case I don't care about
             return;

@@ -6,6 +6,15 @@
   id: BoxMagazine
   description: A box full of magazines.
   components:
+#FH - Start
+  - type: Storage
+    grid:
+    - 0,0,3,1
+  - type: Item
+    size: Large
+    shape:
+    - 0,0,3,1
+#FH - End
   - type: Sprite
     layers:
       - state: box_security

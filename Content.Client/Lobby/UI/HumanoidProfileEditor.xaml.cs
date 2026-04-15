@@ -25,12 +25,18 @@ using Robust.Shared.Enums;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
+#region FarHorizons
+using Content.Client._FarHorizons.Lobby.UI;
+using Content.Client._Starlight.TTS;
+using Content.Shared._FarHorizons.Factions;
+#endregion FarHorizons
+
 #region Starlight
 using Content.Shared.Starlight.CCVar;
 using Content.Shared.Starlight.TextToSpeech;
 using Content.Shared._Starlight.Traits;
 #endregion Starlight
-using Content.Shared._FarHorizons.Factions;
+
 using Content.Shared.Humanoid.Prototypes;
 using Direction = Robust.Shared.Maths.Direction;
 
@@ -85,11 +91,15 @@ namespace Content.Client.Lobby.UI
         }
 
         private readonly ISawmill _sawmill;
-
+        
+        // Far Horizons edit start - TTS
         private List<VoicePrototype> _voices = [];
 
-        private List<VoicePrototype> _siliconVoices = []; // 🌟Starlight🌟
-
+        private SymspeechVoiceSelectorWindow _voiceSelectorWindow;
+    
+        private SymspeechVoiceSelectorWindow _voiceSiliconSelectorWindow;
+        // Far Horizons edit end
+        
         // Cosmatic Drift Record System-start
         private readonly RecordEditorGui _recordsTab; // Tracks CD records UI state
         // Cosmatic Drift Record System-end
@@ -133,6 +143,70 @@ namespace Content.Client.Lobby.UI
             OOCInfoTab.Visible = _allowRPNotes;
             ICInfoTab.Visible = _allowFlavorText || _allowExploitables || _allowCharacterSecrets;
             //end starlight
+            
+            // Far Horizons edit start - TTS
+            _voices = 
+            [
+                .. _prototypeManager
+                    .EnumeratePrototypes<VoicePrototype>()
+            ];
+            
+            _voiceSelectorWindow = new(_voices);
+            _voiceSiliconSelectorWindow = new(_voices);
+            
+            _voiceSelectorWindow.OnVoiceSelected += voice =>
+            {
+                Profile = Profile?.WithVoice(voice);
+                IsDirty = true;
+            };
+
+            _voiceSelectorWindow.OnPreviewRequested += () =>
+            {
+                if(Profile?.Symspeech is { } symspeech)
+                    _entManager.System<TextToSpeechSystem>().RequestPreviewTts(symspeech);
+            };
+
+            VoiceButton.OnPressed += _ =>
+            {
+                var voice = Profile?.Symspeech ?? Profile?.DefaultSymspeech();
+                if (voice != null)
+                    _voiceSelectorWindow.LoadVoice(voice);
+                _voiceSelectorWindow.OpenCentered();
+            };
+
+            _voiceSiliconSelectorWindow.OnVoiceSelected += voice =>
+            {
+                Profile = Profile?.WithSiliconVoice(voice);
+                IsDirty = true;
+            };
+
+            _voiceSiliconSelectorWindow.OnPreviewRequested
+                += () =>
+                {
+                    if(Profile?.SiliconSymspeech is { } symspeech)
+                        _entManager.System<TextToSpeechSystem>().RequestPreviewTts(symspeech);
+                };
+
+            SiliconVoiceButton.OnPressed += _ =>
+            {
+                var voice = Profile?.SiliconSymspeech;
+                if (voice is null)
+                {
+                    var defaultSiliconVoice = _prototypeManager.Index<VoicePrototype>(Symspeech.DefaultSiliconVoice);
+                    voice = new Symspeech(
+                        defaultSiliconVoice.ID,
+                        defaultSiliconVoice.DefaultPitch,
+                        defaultSiliconVoice.DefaultSpeed,
+                        defaultSiliconVoice.DefaultPause,
+                        defaultSiliconVoice.DefaultPolyphony,
+                        defaultSiliconVoice.DefaultVolume
+                    );
+                }
+                _voiceSiliconSelectorWindow.LoadVoice(voice);
+                _voiceSiliconSelectorWindow.OpenCentered();
+            };
+            // Far Horizons edit end
+
             Markings.SetModel(_markingsModel);
 
             ImportButton.OnPressed += args =>
@@ -380,37 +454,6 @@ namespace Content.Client.Lobby.UI
             UpdateSpeciesGuidebookIcon();
             IsDirty = false;
 
-            // Far Horizons - Disabled voices in UI only
-            // //🌟Starlight🌟
-            // _voices = _prototypeManager
-            //     .EnumeratePrototypes<VoicePrototype>()
-            //     .Where(o => !o.Silicon)
-            //     .ToList();
-
-            // VoiceButton.OnItemSelected += args =>
-            // {
-            //     VoiceButton.SelectId(args.Id);
-            //     Profile = Profile?.WithVoice(_voices[args.Id].ID);
-            //     IsDirty = true;
-            // };
-            // VoicePreviewButton.OnPressed +=
-            //     _ => _entManager.System<TextToSpeechSystem>().RequestPreviewTts(Profile?.Voice ?? "");
-
-            // // 🌟Starlight🌟 start
-            // _siliconVoices = _prototypeManager
-            //     .EnumeratePrototypes<VoicePrototype>()
-            //     .Where(o => o.Silicon)
-            //     .ToList();
-
-            // SiliconVoiceButton.OnItemSelected += args =>
-            // {
-            //     SiliconVoiceButton.SelectId(args.Id);
-            //     Profile = Profile?.WithSiliconVoice(_siliconVoices[args.Id].ID);
-            //     IsDirty = true;
-            // };
-            // SiliconVoicePreviewButton.OnPressed +=
-            //     _ => _entManager.System<TextToSpeechSystem>().RequestPreviewTts(Profile?.SiliconVoice ?? "");
-
             SetupTabs();
 
             // Cosmatic Drift Record System-start
@@ -420,34 +463,6 @@ namespace Content.Client.Lobby.UI
             RefreshCharacterInfo();
             // 🌟Starlight🌟 end
         }
-        // private void UpdateVoicesControls()
-        // {
-        //     if (Profile is null)
-        //         return;
-
-        //     VoiceButton.Clear();
-
-        //     for (var i = 0; i < _voices.Count; i++)
-        //     {
-        //         var voice = _voices[i];
-
-        //         VoiceButton.AddItem($"[{voice.Sex}] {Loc.GetString(voice.Name)}", i);
-        //     }
-
-        //     if (string.IsNullOrEmpty(Profile.Voice))
-        //     {
-        //         var available = _voices.ToArray();
-        //         if (available.Length > 0)
-        //         {
-        //             var index = new Random().Next(0, available.Length);
-        //             Profile.Voice = available[index].ID;
-        //         }
-        //     }
-        //     var voiceChoiceId = _voices.FindIndex(x => x.ID == Profile.Voice);
-        //     if (voiceChoiceId != -1)
-        //         VoiceButton.TrySelectId(voiceChoiceId);
-        // }
-        // 🌟Starlight🌟 Start
 
         private void SetupTabs()
         {
@@ -476,36 +491,6 @@ namespace Content.Client.Lobby.UI
             return recordEditor;
         }
         // Cosmatic Drift Record System-end
-
-        // private void UpdateSiliconVoicesControls()
-        // {
-        //     if (Profile is null)
-        //         return;
-
-        //     SiliconVoiceButton.Clear();
-
-        //     for (var i = 0; i < _siliconVoices.Count; i++)
-        //     {
-        //         var voice = _siliconVoices[i];
-
-        //         SiliconVoiceButton.AddItem($"[{voice.Sex}] {Loc.GetString(voice.Name)}", i);
-        //     }
-
-        //     if (string.IsNullOrEmpty(Profile.SiliconVoice))
-        //     {
-        //         var available = _siliconVoices.ToArray();
-        //         if (available.Length > 0)
-        //         {
-        //             var index = new Random().Next(0, available.Length);
-        //             Profile.SiliconVoice = available[index].ID;
-        //         }
-        //     }
-
-        //     var siliconVoiceChoiceId = _siliconVoices.FindIndex(x => x.ID == Profile.SiliconVoice);
-        //     if (siliconVoiceChoiceId != -1)
-        //         SiliconVoiceButton.TrySelectId(siliconVoiceChoiceId);
-        // }
-
 
         private void SetupInfoEditors()
         {
@@ -604,8 +589,6 @@ namespace Content.Client.Lobby.UI
             //UpdateHairPickers();
             //UpdateCMarkingsHair();
             //UpdateCMarkingsFacialHair();
-            //UpdateVoicesControls();
-            //UpdateSiliconVoicesControls(); // 🌟Starlight🌟
             UpdateCybernetics(); // Starlight
             UpdateSpeciesLoadout(); // Far Horizons
 

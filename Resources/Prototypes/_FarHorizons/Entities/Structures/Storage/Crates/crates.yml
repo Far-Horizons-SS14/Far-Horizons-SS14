@@ -28,3 +28,30 @@
     - Energy
     reflectProb: 0.8
     spread: 90
+
+- type: entity
+  parent: [ CrateGenericSteel, BaseSovietContraband ]
+  id: CrateSoviet
+  name: Soviet Crate
+  description: A reinforced crate emblazoned with Soviet Markings. Could contain just about anything from a mosin, to an entire AK47.
+  components:
+  - type: Icon
+    sprite: /Textures/_FarHorizons/Structures/Storage/Crates/commie_secure_crate.rsi
+  - type: Sprite
+    sprite: /Textures/_FarHorizons/Structures/Storage/Crates/commie_secure_crate.rsi
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+  - type: Reflect
+    reflects:
+    - Energy
+    reflectProb: 0.8
+    spread: 90

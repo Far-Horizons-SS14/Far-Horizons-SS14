@@ -21,17 +21,13 @@ lawboard-desc = The USSP is open to everyone, even the AI! Do keep in mind that 
 # Telebonds
 # Weapons
 akms-weapon-name = AKMS Rifle
-akms-weapon-desc = Discontinued but a reliable assault rifle still in broad use today. Uses .30 ammo.
 makarov-name = Makarov
-makarov-desc = Cho? Gun is gun comrade. Uses .35 auto ammo.
 finka-name = Finka (SNKVD)
 finka-desc = The knife's secret technique was...
 mosin-name = Kardashev-Mosin
-mosin-desc = Enemies at the airlock. Uses .45 magnum ammo.
 dp-name = DP-28 LMG
 dp-desc = From RA-TA-TA-TA with love. Uses .30 ammo.
 ppsh-name = PPSH 59 SMG
-ppsh-desc = The legendary discontinued PPSH 59. Inaccurate as hell, but delivers it. Uses .35 ammo.
 toz-name = ZOZ-106
 toz-desc = Aim at head and eyes. Uses .42 ammo, comes with extended magazine.
 
@@ -41,19 +37,15 @@ soviet-eva-desc = A rugged space suit with the hammer and sickle emblazoned on t
 soviet-eva-helm-name = Soviet EVA Helmet
 soviet-eva-helm-desc = A sturdy EVA helmet with a red star emblazoned on the front. Glory to the workers of space!
 soviet-bandolier-name = Marine bandolier (SSF)
-soviet-bandolier-desc = The marines have surplus bandoliers that can hold ammo, knives and radio.
 soviet-gas-mask-name = GP-32 gas mask
 soviet-gas-mask-desc = An old uncomfortable mechanical gas mask. Has eye and flash protection.
 soviet-coat-name = Soviet great coat
 soviet-coat-desc = Offers minor protection from bullets, major protection from fashion.
-glasses-name = cheap sunglasses
-glasses-desc = Retrofitted to show the brainwashing parasite above them.
 soviet-hardsuit-name = Marine hardsuit (SSF)
 soviet-hardsuit-desc = Old robust design, still holds up to this day.
 
 # Implants
 SKB-implanter-name = SKB Demindshielder
-SKB-implanter-desc = An implant specialized in removing brainwashing parasites.
 
 # Deception
 soviet-encryption-key-name = Soviet encryption key

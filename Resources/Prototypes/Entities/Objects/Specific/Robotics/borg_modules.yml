@@ -1058,7 +1058,26 @@
           tags:
           - Syringe #Starlight end
     - item: BorgDropper
+    #FH Start
     - item: Beaker
+      hand:
+        emptyLabel: borg-slot-chemical-containers-empty
+        emptyRepresentative: Beaker
+        whitelist:
+          components:
+          - FitsInDispenser
+          tags:
+          - ChemDispensable
+    - item: Beaker
+      hand:
+        emptyLabel: borg-slot-chemical-containers-empty
+        emptyRepresentative: Beaker
+        whitelist:
+          components:
+          - FitsInDispenser
+          tags:
+          - ChemDispensable
+    #FH End
     - item: Gauze
       hand:
         emptyLabel: borg-slot-topicals-empty

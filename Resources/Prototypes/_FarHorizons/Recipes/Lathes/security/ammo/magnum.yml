@@ -1,4 +1,4 @@
-############ MAGAZINES ############
+#region .44 Magazines
 - type: latheRecipe
   parent: BaseEmptyAmmoRecipe
   id: MagazineMagnumEmpty
@@ -68,7 +68,8 @@
   completetime: 1
   materials:
     Steel: 128
-############ BOXES ############
+  
+#region .44 Boxes
 - type: latheRecipe
   id: MagazineBoxMagnumRubber
   result: MagazineBoxMagnumRubber
@@ -76,57 +77,134 @@
   - Ammo
   completetime: 5
   materials:
-    Steel: 464
-    Plastic: 400
+    Steel: 928
+    Plastic: 800
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineBoxMagnum
+  result: MagazineBoxMagnum
+  materials:
+    Steel: 100
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
   id: MagazineBoxMagnumSP
   result: MagazineBoxMagnumSP
   materials:
-    Steel: 320
+    Steel: 640
     
 - type: latheRecipe
   parent: BaseAmmoRecipe
   id: MagazineBoxMagnumHP
   result: MagazineBoxMagnumHP
   materials:
-    Steel: 320
+    Steel: 640
     
 - type: latheRecipe
   parent: BaseAmmoRecipe
   id: MagazineBoxMagnumFMJ
   result: MagazineBoxMagnumFMJ
   materials:
-    Steel: 320
+    Steel: 640
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineBoxMagnumAP
+  result: MagazineBoxMagnumAP
+  materials:
+    Plastic: 640
+    Steel: 480
+    Uranium: 480
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
   id: MagazineBoxMagnumPractice
   result: MagazineBoxMagnumPractice
   materials:
-    Steel: 80
+    Steel: 160
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
   id: MagazineBoxMagnumIncendiary
   result: MagazineBoxMagnumIncendiary
   materials:
-    Plastic: 320
+    Plastic: 640
     
 - type: latheRecipe
   parent: BaseAmmoRecipe
   id: MagazineBoxMagnumUranium
   result: MagazineBoxMagnumUranium
   materials:
-    Plastic: 320
-    Uranium: 240
+    Plastic: 640
+    Uranium: 480
+
+#region .44 Canisters
+- type: latheRecipe
+  id: MagazineCanisterMagnumRubber
+  result: MagazineCanisterMagnumRubber
+  categories:
+  - Ammo
+  completetime: 5
+  materials:
+    Steel: 3712
+    Plastic: 3200
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineCanisterMagnum
+  result: MagazineCanisterMagnum
+  materials:
+    Steel: 300
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineCanisterMagnumSP
+  result: MagazineCanisterMagnumSP
+  materials:
+    Steel: 2560
     
 - type: latheRecipe
   parent: BaseAmmoRecipe
-  id: MagazineBoxMagnumAP
-  result: MagazineBoxMagnumAP
+  id: MagazineCanisterMagnumHP
+  result: MagazineCanisterMagnumHP
   materials:
-    Plastic: 320
-    Steel: 240
-    Uranium: 240
+    Steel: 2560
+    
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineCanisterMagnumFMJ
+  result: MagazineCanisterMagnumFMJ
+  materials:
+    Steel: 2560
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineCanisterMagnumAP
+  result: MagazineCanisterMagnumAP
+  materials:
+    Plastic: 2560
+    Steel: 1920
+    Uranium: 1920
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineCanisterMagnumPractice
+  result: MagazineCanisterMagnumPractice
+  materials:
+    Steel: 640
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineCanisterMagnumIncendiary
+  result: MagazineCanisterMagnumIncendiary
+  materials:
+    Plastic: 2560
+    
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineCanisterMagnumUranium
+  result: MagazineCanisterMagnumUranium
+  materials:
+    Plastic: 2560
+    Uranium: 480

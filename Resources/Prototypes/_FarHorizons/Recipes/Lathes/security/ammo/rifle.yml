@@ -71,7 +71,6 @@
     Steel: 100
 
 #region 5.56 LMG
-
 - type: latheRecipe
   parent: BaseEmptyAmmoRecipe
   id: Rifle556HeavyMagazineEmpty
@@ -139,3 +138,143 @@
     Plastic: 400
     Steel: 1200
     Uranium: 1200
+
+#region 5.56 Box
+- type: latheRecipe
+  id: MagazineBoxRifle556Rubber
+  result: MagazineBoxRifle556Rubber
+  categories:
+  - Ammo
+  completetime: 5
+  materials:
+    Steel: 700
+    Plastic: 1200
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineBoxRifle556
+  result: MagazineBoxRifle556
+  materials:
+    Steel: 100
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineBoxRifle556SP
+  result: MagazineBoxRifle556SP
+  materials:
+    Steel: 1500
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineBoxRifle556HP
+  result: MagazineBoxRifle556HP
+  materials:
+    Steel: 1500
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineBoxRifle556FMJ
+  result: MagazineBoxRifle556FMJ
+  materials:
+    Steel: 1500
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineBoxRifle556AP
+  result: MagazineBoxRifle556AP
+  materials:
+    Plastic: 1000
+    Steel: 1000
+    Uranium: 1000
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineBoxRifle556Practice
+  result: MagazineBoxRifle556Practice
+  materials:
+    Steel: 500
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineBoxRifle556Incendiary
+  result: MagazineBoxRifle556Incendiary
+  materials:
+    Plastic: 1500
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineBoxRifle556Uranium
+  result: MagazineBoxRifle556Uranium
+  materials:
+    Plastic: 1000
+    Uranium: 1000
+
+#region 5.56 Canister
+- type: latheRecipe
+  id: MagazineCanisterRifle556Rubber
+  result: MagazineCanisterRifle556Rubber
+  categories:
+  - Ammo
+  completetime: 5
+  materials:
+    Steel: 2800
+    Plastic: 4800
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineCanisterRifle556
+  result: MagazineCanisterRifle556
+  materials:
+    Steel: 300
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineCanisterRifle556SP
+  result: MagazineCanisterRifle556SP
+  materials:
+    Steel: 6000
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineCanisterRifle556HP
+  result: MagazineCanisterRifle556HP
+  materials:
+    Steel: 6000
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineCanisterRifle556FMJ
+  result: MagazineCanisterRifle556FMJ
+  materials:
+    Steel: 6000
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineCanisterRifle556AP
+  result: MagazineCanisterRifle556AP
+  materials:
+    Plastic: 4000
+    Steel: 4000
+    Uranium: 4000
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineCanisterRifle556Practice
+  result: MagazineCanisterRifle556Practice
+  materials:
+    Steel: 2000
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineCanisterRifle556Incendiary
+  result: MagazineCanisterRifle556Incendiary
+  materials:
+    Plastic: 6000
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineCanisterRifle556Uranium
+  result: MagazineCanisterRifle556Uranium
+  materials:
+    Plastic: 4000
+    Uranium: 4000

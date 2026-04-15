@@ -11,8 +11,10 @@ namespace Content.Server.Database;
 
 public partial class Profile
 {
-    public string Voice { get; set; } = null!;
-    public string SiliconVoice { get; set; } = null!;
+    // Far Horizons edit start - replaced with Symspeech
+    // public string Voice { get; set; } = null!;
+    // public string SiliconVoice { get; set; } = null!;
+    // Far Horizons edit end
     public bool HairGlowing { get; set; } = false;
     public bool FacialHairGlowing { get; set; } = false;
     public bool EyeGlowing { get; set; } = false;

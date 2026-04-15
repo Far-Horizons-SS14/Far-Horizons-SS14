@@ -5,9 +5,9 @@
   description: The red tide is here.
   components:
   - type: Icon
-    sprite: _Starlight/Structures/Storage/USSP/revolutionary.rsi
+    sprite: /Textures/_FarHorizons/Structures/Storage/Crates/commie_secure_crate.rsi #FH
   - type: Sprite
-    sprite: _Starlight/Structures/Storage/USSP/revolutionary.rsi
+    sprite: /Textures/_FarHorizons/Structures/Storage/Crates/commie_secure_crate.rsi #FH
   - type: EmitSoundOnSpawn
     sound:
       path: /Audio/Effects/teleport_arrival.ogg
@@ -18,23 +18,23 @@
     containers:
       entity_storage: !type:GroupSelector
         children:
-        - id: WeaponSniperMosin
-          weight: 11
-        - id: WeaponPistolMakarov
-          weight: 6
+        - id: ClothingBackpackDuffelBoltGunWood #FH
+          weight: 12
+        - id: ClothingBackpackDuffelWeaponPistolMakarov #FH
+          weight: 7
+        - id: ClothingBackpackDuffelWeaponRifleAk #FH
+          weight: 3 #FH
+        - id: ClothingBackpackDuffelDP28Bundle #FH
+          weight: 1 #FH
+        - id: ClothingBackpackDuffelSupplies #FH
+          weight: 2 #FH
         - id: SpearUranium
-          weight: 1
-        - id: MedkitFilled
-          weight: 5
-        - id: ClothingOuterSovietCoat
-          weight: 6
-        - id: WeaponRifleAk
-          weight: 1
-        - id: WeaponLightMachineGunDP28
-          weight: 2
+          weight: 2 #FH
         - id: EmagCommie
-          weight: 1
-        - id: ClothingOuterArmorSovietFlak
-          weight: 3
+          weight: 2 #FH
+        - id: ClothingOuterSovietCoat #FH
+          weight: 7 #FH
+        - id: ClothingBackpackDuffelSSFArmor #FH
+          weight: 4
         rolls: !type:ConstantNumberSelector
           value: 1

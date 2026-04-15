@@ -12,7 +12,7 @@
         - CartridgeRevolver38
     capacity: 10
   - type: Sprite
-    sprite: _Starlight/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/40.rsi
+    sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/.38_mag.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -22,15 +22,11 @@
     inhandVisuals:
       left:
       - state: inhand-left-mag
-      - state: inhand-left-stripe
-        color: "#575EF5"
       right:
       - state: inhand-right-mag
-      - state: inhand-right-stripe
-        color: "#575EF5"
   - type: MagazineVisuals
     magState: mag
-    steps: 7
+    steps: 6
     zeroVisible: false
   - type: Tag
     tags:
@@ -41,6 +37,7 @@
   name: ".38 Special Magazine (Pistol Any)"
   suffix: empty
   parent: BaseMagazinePistol38
+  description: 10-round single stack pistol magazine. Intended to hold general-purpose kinetic ammunition.
   components:
   - type: BallisticAmmoProvider
     proto: null
@@ -48,6 +45,29 @@
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      right:
+      - state: inhand-right-mag
+
+- type: entity
+  id: MagazinePistol38HP
+  name: ".38 Special Magazine (Pistol HP)"
+  parent: BaseMagazinePistol38
+  description: 10-round single stack pistol magazine loaded with Hollow-Point .38 Revolver rounds. Effective against unarmored targets.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRevolver38HP
+  - type: Sprite
+    layers:
+    - state: hp
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
   - type: Item
     inhandVisuals:
       left:
@@ -59,6 +79,7 @@
   id: MagazinePistol38SP
   name: ".38 Special Magazine (Pistol SP)"
   parent: BaseMagazinePistol38
+  description: 10-round single stack pistol magazine loaded with Soft-Point .38 Revolver rounds. Effective against lightly-armored targets.
   components:
   - type: BallisticAmmoProvider
     proto: CartridgeRevolver38SP
@@ -72,41 +93,14 @@
     inhandVisuals:
       left:
       - state: inhand-left-mag
-      - state: inhand-left-stripe
-        color: "#575EF5"
       right:
       - state: inhand-right-mag
-      - state: inhand-right-stripe
-        color: "#575EF5"
-
-- type: entity
-  id: MagazinePistol38HP
-  name: ".38 Special Magazine (Pistol HP)"
-  parent: BaseMagazinePistol38
-  components:
-  - type: BallisticAmmoProvider
-    proto: CartridgeRevolver38HP
-  - type: Sprite
-    layers:
-    - state: red
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-  - type: Item
-    inhandVisuals:
-      left:
-      - state: inhand-left-mag
-      - state: inhand-left-stripe
-        color: "#F5514C"
-      right:
-      - state: inhand-right-mag
-      - state: inhand-right-stripe
-        color: "#F5514C"
 
 - type: entity
   id: MagazinePistol38FMJ
   name: ".38 Special Magazine (Pistol FMJ)"
   parent: BaseMagazinePistol38
+  description: 10-round single stack pistol magazine loaded with Full Metal Jacket .38 Revolver rounds. Effective against armored targets.
   components:
   - type: BallisticAmmoProvider
     proto: CartridgeRevolver38FMJ
@@ -120,66 +114,14 @@
     inhandVisuals:
       left:
       - state: inhand-left-mag
-      - state: inhand-left-stripe
-        color: "#080706"
       right:
       - state: inhand-right-mag
-      - state: inhand-right-stripe
-        color: "#080706"
-
-- type: entity
-  id: MagazinePistol38Incendiary
-  name: .38 Special Magazine (Pistol Incendiary)
-  parent: BaseMagazinePistol38
-  components:
-  - type: BallisticAmmoProvider
-    proto: CartridgeRevolver38Incendiary
-  - type: Sprite
-    layers:
-    - state: incendiary
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-  - type: Item
-    inhandVisuals:
-      left:
-      - state: inhand-left-mag
-      - state: inhand-left-stripe
-        color: "#E7EEEE"
-      right:
-      - state: inhand-right-mag
-      - state: inhand-right-stripe
-        color: "#E7EEEE"
-
-- type: entity
-  id: MagazinePistol38Uranium
-  name: .38 Special Magazine (Pistol Uranium)
-  parent: BaseMagazinePistol38
-  description: 10-round single-stack magazine for pistols. Intended to hold exotic uranium-core ammunition.
-  components:
-  - type: BallisticAmmoProvider
-    proto: CartridgeRevolver38Uranium
-  - type: Sprite
-    layers:
-    - state: uranium
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-  - type: Item
-    inhandVisuals:
-      left:
-      - state: inhand-left-mag
-      - state: inhand-left-stripe
-        color: "#40F57A"
-      right:
-      - state: inhand-right-mag
-      - state: inhand-right-stripe
-        color: "#40F57A"
 
 - type: entity
   id: MagazinePistol38AP
   name: ".38 Special Magazine (Pistol AP)"
   parent: BaseMagazinePistol38
+  description: 10-round single stack pistol magazine loaded with Armor-Piercing .38 Revolver rounds. Effective against heavily armored targets.
   components:
   - type: BallisticAmmoProvider
     proto: CartridgeRevolver38AP
@@ -193,18 +135,14 @@
     inhandVisuals:
       left:
       - state: inhand-left-mag
-      - state: inhand-left-stripe
-        color: "#72E374"
       right:
       - state: inhand-right-mag
-      - state: inhand-right-stripe
-        color: "#72E374"
 
 - type: entity
   id: MagazinePistol38Practice
   name: .38 Special Magazine (Pistol Practice)
   parent: BaseMagazinePistol38
-  description: 10-round single-stack magazine for pistols. Intended to hold non-harmful chalk ammunition.
+  description: 10-round single stack pistol magazine loaded with Chalk .38 Revolver rounds. Used for target practice.
   components:
   - type: BallisticAmmoProvider
     proto: CartridgeRevolver38Practice
@@ -218,17 +156,56 @@
     inhandVisuals:
       left:
       - state: inhand-left-mag
-      - state: inhand-left-stripe
-        color: "#F08B4B"
       right:
       - state: inhand-right-mag
-      - state: inhand-right-stripe
-        color: "#F08B4B"
+
+- type: entity
+  id: MagazinePistol38Incendiary
+  name: .38 Special Magazine (Pistol Incendiary)
+  parent: BaseMagazinePistol38
+  description: 10-round single stack pistol magazine loaded with Self-Igniting .38 Revolver rounds. Burns people alive.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRevolver38Incendiary
+  - type: Sprite
+    layers:
+    - state: incendiary
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      right:
+      - state: inhand-right-mag
+
+- type: entity
+  id: MagazinePistol38Uranium
+  name: .38 Special Magazine (Pistol Uranium)
+  parent: BaseMagazinePistol38
+  description: 10-round single stack pistol magazine loaded with Uranium-Core .38 Revolver rounds. Delivers radiation poisoning on contact.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRevolver38Uranium
+  - type: Sprite
+    layers:
+    - state: uranium
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      right:
+      - state: inhand-right-mag
 
 - type: entity
   id: MagazinePistol38Rubber
   name: .38 Special Magazine (Pistol Rubber)
   parent: BaseMagazinePistol38
+  description: 10-round single stack pistol magazine loaded with Rubber .38 Revolver rounds. Mostly harmless.
   components:
   - type: BallisticAmmoProvider
     proto: CartridgePistolRubber
@@ -242,12 +219,8 @@
     inhandVisuals:
       left:
       - state: inhand-left-mag
-      - state: inhand-left-stripe
-        color: "#28E7DC"
       right:
       - state: inhand-right-mag
-      - state: inhand-right-stripe
-        color: "#28E7DC"
 
 #region 9mm (Pistol)
 - type: entity
@@ -276,7 +249,7 @@
     containers:
       ballistic-ammo: !type:Container
   - type: Sprite
-    sprite: Objects/Weapons/Guns/Ammunition/Magazine/Pistol/pistol_mag.rsi
+    sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/9mm_mag.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -293,6 +266,7 @@
   name: 9mm Magazine (Pistol Any)
   suffix: empty
   parent: MagazinePistolSP
+  description: 10-round single stack pistol magazine. Intended to hold general-purpose kinetic ammunition.
   components:
   - type: BallisticAmmoProvider
     proto: null
@@ -310,10 +284,31 @@
       - state: inhand-right-mag
 
 - type: entity
+  id: MagazinePistolHP
+  name: 9mm Magazine (Pistol HP)
+  parent: BaseMagazinePistol
+  description: 10-round single stack pistol magazine loaded with Hollow-Point 9mm rounds. Effective against unarmored targets.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgePistolHP
+  - type: Sprite
+    layers:
+    - state: hp
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      right:
+      - state: inhand-right-mag
+
+- type: entity
   id: MagazinePistolSP
   name: 9mm Magazine (Pistol SP)
   parent: BaseMagazinePistol
-  description: 10-round single-stack magazine for pistols. Intended to hold general-purpose kinetic ammunition.
+  description: 10-round single stack pistol magazine loaded with Soft-Point 9mm rounds. Effective against lightly-armored targets.
   components:
   - type: BallisticAmmoProvider
     proto: CartridgePistolSP
@@ -327,41 +322,14 @@
     inhandVisuals:
       left:
       - state: inhand-left-mag
-      - state: inhand-left-stripe
-        color: "#575EF5"
       right:
       - state: inhand-right-mag
-      - state: inhand-right-stripe
-        color: "#575EF5"
-
-- type: entity
-  id: MagazinePistolHP
-  name: 9mm Magazine (Pistol HP)
-  parent: BaseMagazinePistol
-  components:
-  - type: BallisticAmmoProvider
-    proto: CartridgePistolHP
-  - type: Sprite
-    layers:
-    - state: red
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-  - type: Item
-    inhandVisuals:
-      left:
-      - state: inhand-left-mag
-      - state: inhand-left-stripe
-        color: "#F5514C"
-      right:
-      - state: inhand-right-mag
-      - state: inhand-right-stripe
-        color: "#F5514C"
 
 - type: entity
   id: MagazinePistolFMJ
   name: 9mm Magazine (Pistol FMJ)
   parent: BaseMagazinePistol
+  description: 10-round single stack pistol magazine loaded with Full Metal Jacket 9mm rounds. Effective against armored targets.
   components:
   - type: BallisticAmmoProvider
     proto: CartridgePistolFMJ
@@ -375,17 +343,14 @@
     inhandVisuals:
       left:
       - state: inhand-left-mag
-      - state: inhand-left-stripe
-        color: "#080706"
       right:
       - state: inhand-right-mag
-      - state: inhand-right-stripe
-        color: "#080706"
 
 - type: entity
   id: MagazinePistolAP
   name: 9mm Magazine (Pistol AP)
   parent: BaseMagazinePistol
+  description: 10-round single stack pistol magazine loaded with Armor-Piercing 9mm rounds. Effective against heavily armored targets.
   components:
   - type: BallisticAmmoProvider
     proto: CartridgePistolAP
@@ -399,42 +364,14 @@
     inhandVisuals:
       left:
       - state: inhand-left-mag
-      - state: inhand-left-stripe
-        color: "#72E374"
       right:
       - state: inhand-right-mag
-      - state: inhand-right-stripe
-        color: "#72E374"
-
-- type: entity
-  id: MagazinePistolIncendiary
-  name: 9mm Magazine (Pistol Incendiary)
-  parent: MagazinePistolSP
-  components:
-  - type: BallisticAmmoProvider
-    proto: CartridgePistolIncendiary
-  - type: Sprite
-    layers:
-    - state: incendiary
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-  - type: Item
-    inhandVisuals:
-      left:
-      - state: inhand-left-mag
-      - state: inhand-left-stripe
-        color: "#E7EEEE"
-      right:
-      - state: inhand-right-mag
-      - state: inhand-right-stripe
-        color: "#E7EEEE"
 
 - type: entity
   id: MagazinePistolPractice
   name: 9mm Magazine (Pistol Practice)
   parent: BaseMagazinePistol
-  description: 10-round single-stack magazine for pistols. Intended to hold non-harmful chalk ammunition.
+  description: 10-round single stack pistol magazine loaded with Chalk 9mm rounds. Used for target practice.
   components:
   - type: BallisticAmmoProvider
     proto: CartridgePistolPractice
@@ -448,18 +385,35 @@
     inhandVisuals:
       left:
       - state: inhand-left-mag
-      - state: inhand-left-stripe
-        color: "#F08B4B"
       right:
       - state: inhand-right-mag
-      - state: inhand-right-stripe
-        color: "#F08B4B"
+
+- type: entity
+  id: MagazinePistolIncendiary
+  name: 9mm Magazine (Pistol Incendiary)
+  parent: MagazinePistolSP
+  description: 10-round single stack pistol magazine loaded with Self-Igniting 9mm rounds. Burns people alive.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgePistolIncendiary
+  - type: Sprite
+    layers:
+    - state: incendiary
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      right:
+      - state: inhand-right-mag
 
 - type: entity
   id: MagazinePistolUranium
   name: 9mm Magazine (Pistol Uranium)
   parent: BaseMagazinePistol
-  description: 10-round single-stack magazine for pistols. Intended to hold exotic uranium-core ammunition.
+  description: 10-round single stack pistol magazine loaded with Uranium-Core 9mm rounds. Delivers radiation poisoning on contact.
   components:
   - type: BallisticAmmoProvider
     proto: CartridgePistolUranium
@@ -473,17 +427,14 @@
     inhandVisuals:
       left:
       - state: inhand-left-mag
-      - state: inhand-left-stripe
-        color: "#40F57A"
       right:
       - state: inhand-right-mag
-      - state: inhand-right-stripe
-        color: "#40F57A"
 
 - type: entity
   id: MagazinePistolRubber
   name: 9mm Magazine (Pistol Rubber)
   parent: BaseMagazinePistol
+  description: 10-round single stack pistol magazine loaded with Rubber 9mm rounds. Mostly harmless.
   components:
   - type: BallisticAmmoProvider
     proto: CartridgePistolRubber
@@ -497,12 +448,8 @@
     inhandVisuals:
       left:
       - state: inhand-left-mag
-      - state: inhand-left-stripe
-        color: "#28E7DC"
       right:
       - state: inhand-right-mag
-      - state: inhand-right-stripe
-        color: "#28E7DC"
 
 #region 9mm (SMG)
 
@@ -532,7 +479,7 @@
     containers:
       ballistic-ammo: !type:Container
   - type: Sprite
-    sprite: Objects/Weapons/Guns/Ammunition/Magazine/Pistol/smg_mag.rsi
+    sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/9mm_smg_mag.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -549,6 +496,7 @@
   name: 9mm Magazine (SMG Any)
   suffix: empty
   parent: BaseMagazinePistolSubMachineGun
+  description: 30-round double-stack magazine. Intended to hold general-purpose kinetic ammunition.
   components:
   - type: BallisticAmmoProvider
     proto: null
@@ -566,10 +514,37 @@
       - state: inhand-right-mag
 
 - type: entity
+  id: MagazinePistolSubMachineGunHP
+  name: 9mm Magazine (SMG HP)
+  parent: BaseMagazinePistolSubMachineGun
+  description: 30-round double-stack magazine loaded with Hollow-Point 9mm rounds. Effective against unarmored targets.
+  components:
+  - type: BallisticAmmoProvider
+    capacity: 30
+    proto: CartridgePistolHP
+    whitelist:
+      tags:
+        - CartridgePistol
+    soundInsert:
+      path: /Audio/Weapons/Guns/MagIn/bullet_insert.ogg
+  - type: Sprite
+    layers:
+    - state: hp
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      right:
+      - state: inhand-right-mag
+
+- type: entity
   id: MagazinePistolSubMachineGunSP
   name: 9mm Magazine (SMG SP)
   parent: BaseMagazinePistolSubMachineGun
-  description: 30-round double-stack magazine for submachine guns. Intended to hold general-purpose kinetic ammunition.
+  description: 30-round double-stack magazine loaded with Soft-Point 9mm rounds. Effective against lightly-armored targets.
   components:
   - type: BallisticAmmoProvider
     capacity: 30
@@ -589,48 +564,14 @@
     inhandVisuals:
       left:
       - state: inhand-left-mag
-      - state: inhand-left-stripe
-        color: "#575EF5"
       right:
       - state: inhand-right-mag
-      - state: inhand-right-stripe
-        color: "#575EF5"
-
-- type: entity
-  id: MagazinePistolSubMachineGunHP
-  name: 9mm Magazine (SMG HP)
-  parent: BaseMagazinePistolSubMachineGun
-  description: 30-round double-stack magazine for submachine guns.
-  components:
-  - type: BallisticAmmoProvider
-    capacity: 30
-    proto: CartridgePistolHP
-    whitelist:
-      tags:
-        - CartridgePistol
-    soundInsert:
-      path: /Audio/Weapons/Guns/MagIn/bullet_insert.ogg
-  - type: Sprite
-    layers:
-    - state: red
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-  - type: Item
-    inhandVisuals:
-      left:
-      - state: inhand-left-mag
-      - state: inhand-left-stripe
-        color: "#F5514C"
-      right:
-      - state: inhand-right-mag
-      - state: inhand-right-stripe
-        color: "#F5514C"
 
 - type: entity
   id: MagazinePistolSubMachineGunFMJ
   name: 9mm Magazine (SMG FMJ)
   parent: BaseMagazinePistolSubMachineGun
+  description: 30-round double-stack magazine loaded with Full Metal Jacket 9mm rounds. Effective against armored targets.
   components:
   - type: BallisticAmmoProvider
     capacity: 30
@@ -650,17 +591,14 @@
     inhandVisuals:
       left:
       - state: inhand-left-mag
-      - state: inhand-left-stripe
-        color: "#080706"
       right:
       - state: inhand-right-mag
-      - state: inhand-right-stripe
-        color: "#080706"
 
 - type: entity
   id: MagazinePistolSubMachineGunAP
   name: 9mm Magazine (SMG AP)
   parent: BaseMagazinePistolSubMachineGun
+  description: 30-round double-stack magazine loaded with Armor-Piercing 9mm rounds. Effective against heavily armored targets.
   components:
   - type: BallisticAmmoProvider
     capacity: 30
@@ -680,18 +618,14 @@
     inhandVisuals:
       left:
       - state: inhand-left-mag
-      - state: inhand-left-stripe
-        color: "#72E374"
       right:
       - state: inhand-right-mag
-      - state: inhand-right-stripe
-        color: "#72E374"
 
 - type: entity
   id: MagazinePistolSubMachineGunPractice
   name: 9mm Magazine (SMG Practice)
   parent: BaseMagazinePistolSubMachineGun
-  description: 30-round double-stack magazine for submachine guns. Intended to hold non-harmful chalk ammunition.
+  description: 30-round double-stack magazine loaded with Chalk 9mm rounds. Used for target practice.
   components:
   - type: BallisticAmmoProvider
     proto: CartridgePistolPractice
@@ -705,18 +639,14 @@
     inhandVisuals:
       left:
       - state: inhand-left-mag
-      - state: inhand-left-stripe
-        color: "#F08B4B"
       right:
       - state: inhand-right-mag
-      - state: inhand-right-stripe
-        color: "#F08B4B"
 
 - type: entity
   id: MagazinePistolSubMachineGunUranium
   name: 9mm Magazine (SMG Uranium)
   parent: BaseMagazinePistolSubMachineGun
-  description: 30-round double-stack magazine for submachine guns. Intended to hold exotic uranium-core ammunition.
+  description: 30-round double-stack magazine loaded with Uranium-Core 9mm rounds. Delivers radiation poisoning on contact.
   components:
   - type: BallisticAmmoProvider
     proto: CartridgePistolUranium
@@ -730,18 +660,14 @@
     inhandVisuals:
       left:
       - state: inhand-left-mag
-      - state: inhand-left-stripe
-        color: "#40F57A"
       right:
       - state: inhand-right-mag
-      - state: inhand-right-stripe
-        color: "#40F57A"
 
 - type: entity
   id: MagazinePistolSubMachineGunIncendiary
   name: 9mm Magazine (SMG Incendiary)
   parent: BaseMagazinePistolSubMachineGun
-  description: 30-round double-stack magazine for submachine guns. Intended to hold self-igniting incendiary ammunition.
+  description: 30-round double-stack magazine loaded with Self-Igniting 9mm rounds. Burns people alive.
   components:
   - type: BallisticAmmoProvider
     proto: CartridgePistolIncendiary
@@ -755,17 +681,14 @@
     inhandVisuals:
       left:
       - state: inhand-left-mag
-      - state: inhand-left-stripe
-        color: "#E7EEEE"
       right:
       - state: inhand-right-mag
-      - state: inhand-right-stripe
-        color: "#E7EEEE"
 
 - type: entity
   id: MagazinePistolSubMachineGunRubber
   name: 9mm Magazine (SMG Rubber)
   parent: BaseMagazinePistolSubMachineGun
+  description: 30-round double-stack magazine loaded with Rubber 9mm rounds. Mostly harmless.
   components:
   - type: BallisticAmmoProvider
     proto: CartridgePistolRubber
@@ -779,17 +702,14 @@
     inhandVisuals:
       left:
       - state: inhand-left-mag
-      - state: inhand-left-stripe
-        color: "#28E7DC"
       right:
       - state: inhand-right-mag
-      - state: inhand-right-stripe
-        color: "#28E7DC"
 
 - type: entity
   id: MagazinePistolSubMachineGunUzi
   name: 9mm Magazine (Uzi SP)
   parent: BaseMagazinePistolSubMachineGun
+  description: 32-round double-stack magazine loaded with Soft-Point 9mm rounds. Effective against lightly-armored targets.
   components:
   - type: BallisticAmmoProvider
     proto: CartridgePistolSP
@@ -805,12 +725,8 @@
     inhandVisuals:
       left:
       - state: inhand-left-mag
-      - state: inhand-left-stripe
-        color: "#28E7DC"
       right:
       - state: inhand-right-mag
-      - state: inhand-right-stripe
-        color: "#28E7DC"
   - type: Tag
     tags:
       - MagazineSMGUzi

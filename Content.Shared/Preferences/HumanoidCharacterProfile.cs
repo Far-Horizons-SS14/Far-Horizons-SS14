@@ -25,6 +25,7 @@ using Content.Shared._FarHorizons.Humanoid;
 using Robust.Shared;
 using YamlDotNet.RepresentationModel;
 using Content.Shared._Starlight.Traits;
+using Content.Shared.Starlight.TextToSpeech; // Far Horizons
 
 namespace Content.Shared.Preferences
 {
@@ -75,8 +76,6 @@ namespace Content.Shared.Preferences
         [DataField]
         public string Name { get; set; } = "John Doe";
 
-        // Far Horizon - removed datafield. Clean up unused fields in character export
-        public string Voice { get; set; } = "";
         /// <summary>
         /// Associated <see cref="SpeciesPrototype"/> for this profile.
         /// </summary>
@@ -126,8 +125,8 @@ namespace Content.Shared.Preferences
 
         public HumanoidCharacterProfile(
             string name,
-            string voice,
-            string siliconVoice, // 🌟Starlight🌟
+            Symspeech? symspeech, // Far Horizons
+            Symspeech? siliconSymspeech, // 🌟Starlight🌟
             string physicalDesc,// Starlight
             string personalityDesc,// Starlight
             string personalNotes,// Starlight
@@ -150,8 +149,8 @@ namespace Content.Shared.Preferences
             RoleLoadout? speciesLoadout) // Far Horizons
         {
             Name = name;
-            Voice = voice;
-            SiliconVoice = siliconVoice; // 🌟Starlight🌟
+            Symspeech = symspeech;
+            SiliconSymspeech = siliconSymspeech; // 🌟Starlight🌟
             PhysicalDescription = physicalDesc;//Starlight
             PersonalityDescription = personalityDesc;//Starlight
             PersonalNotes = personalNotes;//Starlight
@@ -177,8 +176,8 @@ namespace Content.Shared.Preferences
         /// <summary>Copy constructor</summary>
         public HumanoidCharacterProfile(HumanoidCharacterProfile other)
             : this(other.Name,
-                other.Voice,
-                other.SiliconVoice, // 🌟Starlight🌟
+                other.Symspeech,
+                other.SiliconSymspeech, // 🌟Starlight🌟
                 other.PhysicalDescription,//Starlight
                 other.PersonalityDescription, //Starlight
                 other.PersonalNotes,//Starlight
@@ -347,12 +346,7 @@ namespace Content.Shared.Preferences
         {
             return new(this) { Gender = gender };
         }
-
-        public HumanoidCharacterProfile WithVoice(string id)
-        {
-            return new(this) { Voice = id };
-        }
-
+        
         public HumanoidCharacterProfile WithSpecies(string species)
         {
             return new(this) { Species = species };
@@ -752,6 +746,22 @@ namespace Content.Shared.Preferences
                 SpeciesLoadout.Role = speciesPrototype.Loadout.Value;
                 SpeciesLoadout.SetDefault(this, session, prototypeManager);
             }
+
+            Symspeech ??= DefaultSymspeech();
+
+            if (SiliconSymspeech == null)
+            {
+                if (prototypeManager.TryIndex<VoicePrototype>(Symspeech.DefaultSiliconVoice, out var siliconVoiceProto))
+                {
+                    SiliconSymspeech = new Symspeech(
+                        siliconVoiceProto.ID,
+                        siliconVoiceProto.DefaultPitch,
+                        siliconVoiceProto.DefaultSpeed,
+                        siliconVoiceProto.DefaultPause,
+                        siliconVoiceProto.DefaultPolyphony,
+                        siliconVoiceProto.DefaultVolume);
+                }
+            }
             // Far Horizons end
         }
 
@@ -898,6 +908,27 @@ namespace Content.Shared.Preferences
             var dataNode = serialization.WriteValue(export, alwaysWrite: true, notNullableOverride: true);
             return dataNode;
         }
+        
+        // Far Horizons edit start - Default Symspeech for species and sex
+        public Symspeech DefaultSymspeech() => DefaultSymspeech(Species, Sex);
+
+        public static Symspeech DefaultSymspeech(ProtoId<SpeciesPrototype> species, Sex sex)
+        {
+            var prototypeManager = IoCManager.Resolve<IPrototypeManager>();
+            var speciesProto = prototypeManager.Index(species);
+            var defaultVoiceProtoId = sex == Sex.Male ? speciesProto.DefaultMaleVoice : speciesProto.DefaultFemaleVoice;
+            var defaultVoice = prototypeManager.Index(defaultVoiceProtoId);
+
+            return new Symspeech(
+                defaultVoice.ID,
+                defaultVoice.DefaultPitch,
+                defaultVoice.DefaultSpeed,
+                defaultVoice.DefaultPause,
+                defaultVoice.DefaultPolyphony,
+                defaultVoice.DefaultVolume
+            );
+        }
+        // Far Horizons edit end
 
         // Far Horizons - moved to Far Horizons file
         // public static HumanoidCharacterProfile FromStream(Stream stream, ICommonSession session, ISerializationManager? serialization = null, IConfigurationManager? configuration = null)

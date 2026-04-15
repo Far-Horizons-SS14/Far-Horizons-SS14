@@ -112,6 +112,18 @@
                                     <Control HorizontalExpand="True"/>
                                     <Button Name="SpeciesLoadout" Text="{Loc 'loadout-window'}" HorizontalAlignment="Right" />
                                 </BoxContainer>
+                                <!-- Far Horizons - TTS -->
+                                <BoxContainer HorizontalExpand="True">
+                                    <Label Text="{Loc 'humanoid-profile-editor-voice-label'}" />
+                                    <Control HorizontalExpand="True" />
+                                    <Button Name="VoiceButton" Text="{Loc 'humanoid-profile-editor-voice-select'}" />
+                                </BoxContainer>
+                                <BoxContainer HorizontalExpand="True">
+                                    <Label Text="{Loc 'humanoid-profile-editor-silicon-voice-label'}" />
+                                    <Control HorizontalExpand="True" />
+                                    <Button Name="SiliconVoiceButton" Text="{Loc 'humanoid-profile-editor-silicon-voice-select'}" />
+                                </BoxContainer>
+                                <!-- Far Horizons end -->
                             </BoxContainer>
                             <!-- STARLIGHT - Species Size -->
                             <BoxContainer Margin="10" HorizontalExpand="True" Orientation="Vertical">

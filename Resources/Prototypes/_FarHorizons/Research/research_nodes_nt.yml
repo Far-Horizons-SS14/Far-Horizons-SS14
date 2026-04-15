@@ -125,43 +125,55 @@
   requires:
     - RiotControl
   unlocks:
-    - BoxShotgunIncendiary
+#Speedloader
+    - SpeedLoaderMagnumIncendiary
+    - SpeedLoaderShotgunIncendiary
+    - SpeedLoaderRevolver38Uranium
+    - SpeedLoaderShotgunUranium
+    - SpeedLoaderMagnumUranium
+    - SpeedLoaderRevolver38Incendiary
+#Magazine
     - MagazineRifle556Incendiary
     - MagazinePistolIncendiary
     - MagazinePistolSubMachineGunIncendiary
     - MagazineLightRifleIncendiary
-    - SpeedLoaderMagnumIncendiary
     - MagazineShotgunIncendiary
-    - MagazineBoxPistolIncendiary
-    - MagazineBoxMagnumIncendiary
-    - MagazineBoxLightRifleIncendiary
-    - MagazineBoxRifle556Incendiary
     - Rifle556HeavyMagazineIncendiary
     - MagazinePistolSubMachineGunIncendiary
-    - SpeedLoaderShotgunIncendiary
     - MagazineMagnumIncendiary
     - MagazinePistol38Incendiary
-    - MagazineBoxRevolver38Incendiary
     - MagazineRifle38Incendiary
-    - SpeedLoaderRevolver38Incendiary
+    - MagazineRifle38Uranium
+    - MagazineMagnumUranium
+    - MagazinePistol38Uranium
+    - Rifle556HeavyMagazineUranium
+    - MagazinePistolSubMachineGunUranium
     - MagazineRifle556Uranium
     - MagazinePistolUranium
     - MagazinePistolSubMachineGunUranium
     - MagazineLightRifleUranium
-    - SpeedLoaderMagnumUranium
+#Box
+    - BoxShotgunIncendiary
+    - MagazineBoxPistolIncendiary
+    - MagazineBoxMagnumIncendiary
+    - MagazineBoxLightRifleIncendiary
+    - MagazineBoxRifle556Incendiary
+    - MagazineBoxRevolver38Incendiary
+    - MagazineBoxRevolver38Uranium
     - MagazineBoxPistolUranium
     - MagazineBoxMagnumUranium
     - MagazineBoxLightRifleUranium
     - MagazineBoxRifle556Uranium
     - BoxShotgunUranium
-    - Rifle556HeavyMagazineUranium
-    - MagazinePistolSubMachineGunUranium
-    - SpeedLoaderShotgunUranium
-    - MagazineMagnumUranium
-    - MagazinePistol38Uranium
-    - MagazineBoxRevolver38Uranium
-    - MagazineRifle38Uranium
-    - SpeedLoaderRevolver38Uranium
+#Canister
+    - MagazineCanisterPistolIncendiary
+    - MagazineCanisterPistolUranium
+    - MagazineCanisterRifle556Incendiary
+    - MagazineCanisterRifle556Uranium
+    - MagazineCanisterMagnumIncendiary
+    - MagazineCanisterMagnumUranium
+    - MagazineCanisterRevolver38Incendiary
+    - MagazineCanisterRevolver38Uranium
   announceTo:
     - Security
 
@@ -693,18 +705,26 @@
   requires: 
     - SpecialAmmo
   unlocks:
+#SpeedLoader
     - SpeedLoaderMagnumAP
+#Magazine
     - MagazinePistolAP
     - MagazinePistol38AP
     - MagazineRifle556AP
     - MagazineLightRifleAP
+    - Rifle556HeavyMagazineAP
+    - MagazinePistolSubMachineGunAP
+#Box
     - MagazineBoxMagnumAP
     - MagazineBoxPistolAP
     - MagazineBoxRevolver38AP
     - MagazineBoxRifle556AP
     - MagazineBoxLightRifleAP
-    - Rifle556HeavyMagazineAP
-    - MagazinePistolSubMachineGunAP
+#Canister
+    - MagazineCanisterPistolAP
+    - MagazineCanisterRifle556AP
+    - MagazineCanisterMagnumAP
+    - MagazineCanisterRevolver38AP
   announceTo:
     - Security
 

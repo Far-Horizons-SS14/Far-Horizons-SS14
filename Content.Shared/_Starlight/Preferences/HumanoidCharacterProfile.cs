@@ -9,8 +9,6 @@ public sealed partial class HumanoidCharacterProfile
 {
     private static readonly Regex RestrictedCustomSpecieNameRegex = new(@"[^A-Za-z0-9 '\-,]|\B\s+|\s+\B"); //Starlight
 
-    public string SiliconVoice { get; set; } = ""; // Far Horizon - removed datafield. Clean up unused fields in character export
-
     [DataField] public string PersonalityDescription { get; set; } = string.Empty;
 
     [DataField] public string PersonalNotes { get; set; } = string.Empty;
@@ -66,11 +64,6 @@ public sealed partial class HumanoidCharacterProfile
     public HumanoidCharacterProfile WithOOCNotes(string oocNotes)
     {
         return new(this) { OOCNotes = oocNotes };
-    }
-
-    public HumanoidCharacterProfile WithSiliconVoice(string id)
-    {
-        return new(this) { SiliconVoice = id };
     }
 
     public HumanoidCharacterProfile WithCustomSpecieName(string customspeciename)

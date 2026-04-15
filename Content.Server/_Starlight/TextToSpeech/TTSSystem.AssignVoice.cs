@@ -4,33 +4,39 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Content.Shared.Humanoid;
+using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
+using Content.Shared.Preferences;
 using Content.Shared.Starlight.TextToSpeech;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Starlight.TTS;
 
 public sealed partial class TTSSystem
 {
-    private int GetOrAssignVoice(EntityUid uid, TextToSpeechComponent? component = default, int? fallbackVoice = null)
+    // Far Horizons edit start - change to symspeech
+    private Symspeech GetOrAssignVoice(EntityUid uid, TextToSpeechComponent? component = default, Symspeech? fallbackVoice = null)
     {
-        fallbackVoice ??= DefaultVoice;
-        if (component is null && !TryComp(uid, out component))
-            return fallbackVoice.Value;
-
-        if (component.VoicePrototypeId is string voiceId
-            && _prototypeManager.TryIndex(voiceId, out VoicePrototype? proto))
-            return proto.Voice;
-
-        var isHumanoid = false;
         Sex? sex = null;
+        var isHumanoid = false;
 
-        if (TryComp<HumanoidProfileComponent>(uid, out var humanoidAppearanceComponent)
-            && humanoidAppearanceComponent?.Sex is Sex sex1)
+        if (TryComp<HumanoidProfileComponent>(uid, out var humanoidAppearanceComponent))
         {
             isHumanoid = true;
-            sex = sex1;
+            sex = humanoidAppearanceComponent.Sex;
         }
+
+        fallbackVoice ??= HumanoidCharacterProfile.DefaultSymspeech(
+            humanoidAppearanceComponent?.Species ?? HumanoidCharacterProfile.DefaultSpecies,
+            sex ?? Sex.Male);
+        if (component is null && !TryComp(uid, out component))
+            return fallbackVoice;
+
+        if (component.Symspeech is { } symspeech
+            && _prototypeManager.TryIndex(symspeech.Voice, out VoicePrototype? proto))
+            return symspeech;
+
 
         if (TryComp<MindContainerComponent>(uid, out var mindContainer)
             && mindContainer.HasMind
@@ -38,39 +44,46 @@ public sealed partial class TTSSystem
         {
             if (isHumanoid)
             {
-                if (mind.Voice is string mindVoiceId && _prototypeManager.TryIndex(mindVoiceId, out VoicePrototype? mindVoice))
+                if (mind.Symspeech?.Voice is { } mindVoiceId && _prototypeManager.TryIndex(mindVoiceId, out VoicePrototype? mindVoice))
                 {
-                    component.VoicePrototypeId = mindVoiceId;
-                    return mindVoice.Voice;
+                    component.Symspeech = mind.Symspeech;
+                    return mind.Symspeech;
                 }
             }
             else
             {
-                if (mind.SiliconVoice is string mindVoiceId && _prototypeManager.TryIndex(mindVoiceId, out VoicePrototype? mindVoice))
+                if (mind.SiliconSymspeech?.Voice is { } mindVoiceId && _prototypeManager.TryIndex(mindVoiceId, out VoicePrototype? mindVoice))
                 {
-                    component.VoicePrototypeId = mindVoiceId;
-                    return mindVoice.Voice;
+                    component.Symspeech = mind.SiliconSymspeech;
+                    return mind.SiliconSymspeech;
                 }
             }
         }
 
         if (!_prototypeManager.TryGetInstances<VoicePrototype>(out var voices))
-            return fallbackVoice.Value;
+            return fallbackVoice;
 
-        return isHumanoid
-            ? AssignRandomVoice([.. voices.Where(x => !x.Value.Silicon
-                && (x.Value.Sex == Sex.Unsexed || sex == Sex.Unsexed || x.Value.Sex == sex))])
-            : AssignRandomVoice([.. voices.Where(x => x.Value.Silicon)]);
+        return AssignRandomVoice(voices.ToArray());
 
-        int AssignRandomVoice(KeyValuePair<string, VoicePrototype>[] voicePrototypes)
+        Symspeech AssignRandomVoice(KeyValuePair<string, VoicePrototype>[] voicePrototypes)
         {
             if (voicePrototypes.Length == 0)
-                return fallbackVoice.Value;
+                return fallbackVoice;
 
             var index = _rng.Next(voicePrototypes.Length);
             var prototype = voicePrototypes[index];
-            component.VoicePrototypeId = prototype.Value.ID;
-            return prototype.Value.Voice;
+            var newSymspeech = new Symspeech(
+                prototype.Value.ID,
+                prototype.Value.DefaultPitch,
+                prototype.Value.DefaultSpeed,
+                prototype.Value.DefaultPause,
+                prototype.Value.DefaultPolyphony,
+                prototype.Value.DefaultVolume
+            );
+            component.Symspeech = newSymspeech;
+            
+            return newSymspeech;
         }
     }
+    // Far Horizons edit end
 }

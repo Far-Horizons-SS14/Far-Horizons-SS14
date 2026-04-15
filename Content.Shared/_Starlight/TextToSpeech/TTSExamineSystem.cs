@@ -23,11 +23,14 @@ public sealed class TTSExamineSystem : EntitySystem
         if (Identity.Name(args.Target, EntityManager) != MetaData(args.Target).EntityName)
             return;
 
-        if (ent.Comp.VoicePrototypeId is null)
+        // Far Horizons edit start
+        if (ent.Comp.Symspeech is null)
             return;
 
-        if (!_prototype.TryIndex<VoicePrototype>(ent.Comp.VoicePrototypeId, out var voice))
+        if (!_prototype.TryIndex<VoicePrototype>(ent.Comp.Symspeech.Voice, out var voice))
             return;
+        
+        // Far horizons edit end
 
         var msg = new FormattedMessage();
 

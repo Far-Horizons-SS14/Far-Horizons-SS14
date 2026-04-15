@@ -14,7 +14,7 @@
         - CartridgeRevolver38
     capacity: 8
   - type: Sprite
-    sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Speedloaders/Pistol/38_speed_loader.rsi
+    sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Speedloaders/Revolver/38_speed_loader.rsi
   - type: ContainerContainer
     containers:
       ballistic-ammo: !type:Container
@@ -27,6 +27,7 @@
   id: SpeedLoaderRevolver38Empty
   name: ".38 Special Speed Loader (Revolver Any)"
   parent: BaseSpeedLoaderRevolver38
+  description: 8-round revolver speedloader. Intended to hold general-purpose kinetic ammunition.
   components:
   - type: BallisticAmmoProvider
     proto: null
@@ -42,27 +43,10 @@
   - type: Appearance
 
 - type: entity
-  id: SpeedLoaderRevolver38SP
-  name: ".38 Special Speed Loader (Revolver SP)"
-  parent: BaseSpeedLoaderRevolver38
-  components:
-  - type: BallisticAmmoProvider
-    proto: CartridgeRevolver38SP
-  - type: Sprite
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: base-8
-      map: ["enum.GunVisualLayers.Mag"]
-    - state: base-tip-8
-      map: [ "enum.GunVisualLayers.Tip" ]
-      color: "#326ec8"
-  - type: Appearance
-
-- type: entity
   id: SpeedLoaderRevolver38HP
   name: ".38 Special Speed loader (Revolver HP)"
   parent: BaseSpeedLoaderRevolver38
+  description: 8-round revolver speedloader loaded with Hollow-Point .38 rounds. Effective against unarmored targets.
   components:
   - type: BallisticAmmoProvider
     proto: CartridgeRevolver38HP
@@ -78,9 +62,29 @@
   - type: Appearance
 
 - type: entity
+  id: SpeedLoaderRevolver38SP
+  name: ".38 Special Speed Loader (Revolver SP)"
+  parent: BaseSpeedLoaderRevolver38
+  description: 8-round revolver speedloader loaded with Soft-Point .38 rounds. Effective against lightly-armored targets.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRevolver38SP
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: base-8
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: base-tip-8
+      map: [ "enum.GunVisualLayers.Tip" ]
+      color: "#326ec8"
+  - type: Appearance
+
+- type: entity
   id: SpeedLoaderRevolver38FMJ
   name: ".38 Special Speed loader (Revolver FMJ)"
   parent: BaseSpeedLoaderRevolver38
+  description: 8-round revolver speedloader loaded with Full Metal Jacket .38 rounds. Effective against armored targets.
   components:
   - type: BallisticAmmoProvider
     proto: CartridgeRevolver38FMJ
@@ -96,45 +100,10 @@
   - type: Appearance
 
 - type: entity
-  id: SpeedLoaderRevolver38Incendiary
-  name: ".38 Special Speed loader (Revolver Incendiary)"
-  parent: BaseSpeedLoaderRevolver38
-  components:
-  - type: BallisticAmmoProvider
-    proto: CartridgeRevolver38Incendiary
-  - type: Sprite
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: base-8
-      map: ["enum.GunVisualLayers.Mag"]
-    - state: base-tip-8
-      map: [ "enum.GunVisualLayers.Tip" ]
-      color: "#BFC8CA"
-  - type: Appearance
-
-- type: entity
-  id: SpeedLoaderRevolver38Uranium
-  name: ".38 Special Speed loader (Revolver Uranium)"
-  parent: BaseSpeedLoaderRevolver38
-  components:
-  - type: BallisticAmmoProvider
-    proto: CartridgeRevolver38Uranium
-  - type: Sprite
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: base-8
-      map: ["enum.GunVisualLayers.Mag"]
-    - state: base-tip-8
-      map: [ "enum.GunVisualLayers.Tip" ]
-      color: "#65fe08"
-  - type: Appearance
-
-- type: entity
   id: SpeedLoaderRevolver38AP
   name: ".38 Special Speed loader (Revolver AP)"
   parent: BaseSpeedLoaderRevolver38
+  description: 8-round revolver speedloader loaded with Armor-Piercing .38 rounds. Effective against heavily armored targets.
   components:
   - type: BallisticAmmoProvider
     proto: CartridgeRevolver38AP
@@ -153,6 +122,7 @@
   id: SpeedLoaderRevolver38Practice
   name: ".38 Special Speed loader (Revolver Practice)"
   parent: BaseSpeedLoaderRevolver38
+  description: 8-round revolver speedloader loaded with Chalk .38 rounds. Used for target practice.
   components:
   - type: BallisticAmmoProvider
     proto: CartridgeRevolver38Practice
@@ -168,9 +138,48 @@
   - type: Appearance
 
 - type: entity
+  id: SpeedLoaderRevolver38Incendiary
+  name: ".38 Special Speed loader (Revolver Incendiary)"
+  parent: BaseSpeedLoaderRevolver38
+  description: 8-round revolver speedloader loaded with Self-Igniting .38 rounds. Burns people alive.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRevolver38Incendiary
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: base-8
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: base-tip-8
+      map: [ "enum.GunVisualLayers.Tip" ]
+      color: "#BFC8CA"
+  - type: Appearance
+
+- type: entity
+  id: SpeedLoaderRevolver38Uranium
+  name: ".38 Special Speed loader (Revolver Uranium)"
+  parent: BaseSpeedLoaderRevolver38
+  description: 8-round revolver speedloader loaded with Uranium-Core .38 rounds. Delivers radiation poisoning on contact.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRevolver38Uranium
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: base-8
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: base-tip-8
+      map: [ "enum.GunVisualLayers.Tip" ]
+      color: "#65fe08"
+  - type: Appearance
+
+- type: entity
   id: SpeedLoaderRevolver38Rubber
   name: ".38 Special Speed loader (Revolver Rubber)"
   parent: BaseSpeedLoaderRevolver38
+  description: 8-round revolver speedloader loaded with Rubber .38 rounds. Mostly harmless.
   components:
   - type: BallisticAmmoProvider
     proto: CartridgeRevolver38Rubber

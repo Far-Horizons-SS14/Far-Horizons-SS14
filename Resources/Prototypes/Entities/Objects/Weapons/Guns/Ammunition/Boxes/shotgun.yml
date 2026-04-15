@@ -15,7 +15,7 @@
   abstract: true
   parent: BaseAmmoProvider
   id: AmmoProviderShotgunShell
-  description: 16-shell box of .50 Shotgun ammunition. #Far Horizons
+  description: 32-shell box of .50 Shotgun ammunition. #Far Horizons
   components:
     - type: Sprite
       sprite: Objects/Weapons/Guns/Ammunition/Boxes/shotgun.rsi
@@ -24,7 +24,7 @@
       whitelist:
         tags:
         - ShellShotgun
-      capacity: 16
+      capacity: 32 #FH - 4x mag size
     - type: MagazineVisuals
       magState: mag
       steps: 5

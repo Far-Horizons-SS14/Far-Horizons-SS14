@@ -2,7 +2,6 @@
   name: Pistol Magazine (.44 Magnum)
   parent: [BaseSecuritySalvageContraband, BaseMagazinePistol]
   id: BaseMagazineMagnum
-  description: 8-round single stack pistol magazine. Intended to hold general-purpose kinetic ammunition.
   abstract: true
   components:
   - type: Sprite
@@ -21,13 +20,14 @@
     capacity: 8
   - type: MagazineVisuals
     magState: mag
-    steps: 7
+    steps: 6
 
 - type: entity
   id: MagazineMagnumEmpty
-  name: Pistol Magazine (.44 Magnum any)
+  name: Pistol Magazine (.44 Magnum Any)
   suffix: empty
   parent: BaseMagazineMagnum
+  description: 8-round single stack pistol magazine. Intended to hold general-purpose kinetic ammunition.
   components:
   - type: BallisticAmmoProvider
     proto: null
@@ -45,9 +45,31 @@
       - state: inhand-right-mag
 
 - type: entity
+  id: MagazineMagnumHP
+  name: Pistol Magazine (.44 Magnum HP)
+  parent: BaseMagazineMagnum
+  description: 8-round single stack pistol magazine loaded with Hollow-Point .44 Revolver rounds. Effective against unarmored targets.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeMagnumHP
+  - type: Sprite
+    layers:
+    - state: hp
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      right:
+      - state: inhand-right-mag
+
+- type: entity
   id: MagazineMagnum
   name: Pistol Magazine (.44 Magnum SP)
   parent: BaseMagazineMagnum
+  description: 8-round single stack pistol magazine loaded with Soft-Point .44 Revolver rounds. Effective against lightly-armored targets.
   components:
   - type: BallisticAmmoProvider
     proto: CartridgeMagnumSP
@@ -61,41 +83,14 @@
     inhandVisuals:
       left:
       - state: inhand-left-mag
-      - state: inhand-left-stripe
-        color: "#575EF5"
       right:
       - state: inhand-right-mag
-      - state: inhand-right-stripe
-        color: "#575EF5"
-
-- type: entity
-  id: MagazineMagnumHP
-  name: Pistol Magazine (.44 Magnum HP)
-  parent: BaseMagazineMagnum
-  components:
-  - type: BallisticAmmoProvider
-    proto: CartridgeMagnumHP
-  - type: Sprite
-    layers:
-    - state: red
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-  - type: Item
-    inhandVisuals:
-      left:
-      - state: inhand-left-mag
-      - state: inhand-left-stripe
-        color: "#F5514C"
-      right:
-      - state: inhand-right-mag
-      - state: inhand-right-stripe
-        color: "#F5514C"
 
 - type: entity
   id: MagazineMagnumFMJ
   name: Pistol Magazine (.44 Magnum FMJ)
   parent: BaseMagazineMagnum
+  description: 8-round single stack pistol magazine loaded with Full Metal Jacket .44 Revolver rounds. Effective against armored targets.
   components:
   - type: BallisticAmmoProvider
     proto: CartridgeMagnumFMJ
@@ -109,92 +104,14 @@
     inhandVisuals:
       left:
       - state: inhand-left-mag
-      - state: inhand-left-stripe
-        color: "#080706"
       right:
       - state: inhand-right-mag
-      - state: inhand-right-stripe
-        color: "#080706"
-
-- type: entity
-  id: MagazineMagnumPractice
-  name: Pistol Magazine (.44 Magnum practice)
-  parent: BaseMagazineMagnum
-  description: 8-round single stack pistol magazine. Intended to hold non-harmful chalk ammunition.
-  components:
-  - type: BallisticAmmoProvider
-    proto: CartridgeMagnumPractice
-  - type: Sprite
-    layers:
-    - state: practice
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-  - type: Item
-    inhandVisuals:
-      left:
-      - state: inhand-left-mag
-      - state: inhand-left-stripe
-        color: "#F5514C"
-      right:
-      - state: inhand-right-mag
-      - state: inhand-right-stripe
-        color: "#F5514C"
-
-- type: entity
-  id: MagazineMagnumIncendiary
-  name: Pistol Magazine (.44 Magnum incendiary)
-  parent: BaseMagazineMagnum
-  components:
-  - type: BallisticAmmoProvider
-    proto: CartridgeMagnumIncendiary
-  - type: Sprite
-    layers:
-    - state: incendiary
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-  - type: Item
-    inhandVisuals:
-      left:
-      - state: inhand-left-mag
-      - state: inhand-left-stripe
-        color: "#E7EEEE"
-      right:
-      - state: inhand-right-mag
-      - state: inhand-right-stripe
-        color: "#E7EEEE"
-
-- type: entity
-  id: MagazineMagnumUranium
-  name: Pistol Magazine (.44 Magnum uranium)
-  parent: BaseMagazineMagnum
-  description: 8-round single stack pistol magazine. Intended to hold exotic uranium-core ammunition.
-  components:
-  - type: BallisticAmmoProvider
-    proto: CartridgeMagnumUranium
-  - type: Sprite
-    layers:
-    - state: uranium
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-  - type: Item
-    inhandVisuals:
-      left:
-      - state: inhand-left-mag
-      - state: inhand-left-stripe
-        color: "#40F57A"
-      right:
-      - state: inhand-right-mag
-      - state: inhand-right-stripe
-        color: "#40F57A"
 
 - type: entity
   id: MagazineMagnumAP
-  name: Pistol Magazine (.44 Magnum armor-piercing)
+  name: Pistol Magazine (.44 Magnum AP)
   parent: BaseMagazineMagnum
-  description: 8-round single stack pistol magazine. Intended to hold rare armor-piercing ammunition.
+  description: 8-round single stack pistol magazine loaded with Armor-Piercing .44 Revolver rounds. Effective against heavily armored targets.
   components:
   - type: BallisticAmmoProvider
     proto: CartridgeMagnumAP
@@ -208,17 +125,77 @@
     inhandVisuals:
       left:
       - state: inhand-left-mag
-      - state: inhand-left-stripe
-        color: "#72E374"
       right:
       - state: inhand-right-mag
-      - state: inhand-right-stripe
-        color: "#72E374"
+
+- type: entity
+  id: MagazineMagnumPractice
+  name: Pistol Magazine (.44 Magnum Practice)
+  parent: BaseMagazineMagnum
+  description: 8-round single stack pistol magazine loaded with Chalk .44 Revolver rounds. Used for target practice.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeMagnumPractice
+  - type: Sprite
+    layers:
+    - state: practice
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      right:
+      - state: inhand-right-mag
+
+- type: entity
+  id: MagazineMagnumIncendiary
+  name: Pistol Magazine (.44 Magnum Incendiary)
+  parent: BaseMagazineMagnum
+  description: 8-round single stack pistol magazine loaded with Self-Igniting .44 Revolver rounds. Burns people alive.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeMagnumIncendiary
+  - type: Sprite
+    layers:
+    - state: incendiary
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      right:
+      - state: inhand-right-mag
+
+- type: entity
+  id: MagazineMagnumUranium
+  name: Pistol Magazine (.44 Magnum Uranium)
+  parent: BaseMagazineMagnum
+  description: 8-round single stack pistol magazine loaded with Uranium-Core .44 Revolver rounds. Delivers radiation poisoning on contact.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeMagnumUranium
+  - type: Sprite
+    layers:
+    - state: uranium
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      right:
+      - state: inhand-right-mag
 
 - type: entity
   id: MagazineMagnumRubber
-  name: Pistol Magazine (.44 Magnum rubber)
+  name: Pistol Magazine (.44 Magnum Rubber)
   parent: BaseMagazineMagnum
+  description: 8-round single stack pistol magazine loaded with Rubber .44 Revolver rounds. Mostly harmless.
   components:
   - type: BallisticAmmoProvider
     proto: CartridgeMagnumRubber
@@ -232,9 +209,5 @@
     inhandVisuals:
       left:
       - state: inhand-left-mag
-      - state: inhand-left-stripe
-        color: "#40F57A"
       right:
       - state: inhand-right-mag
-      - state: inhand-right-stripe
-        color: "#40F57A"

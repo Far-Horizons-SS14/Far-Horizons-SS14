@@ -15,26 +15,56 @@
   - MagazineRifle38Practice
   - SpeedLoaderRevolver38Practice
   - MagazineMagnumPractice
+  - MagazineCanisterRifle556Practice
+  - MagazineCanisterMagnumPractice
 
 - type: latheRecipePack
   id: FarHorizonsSecurityAmmoStatic
   recipes:
+######################CANISTER#######################
+# Pistol
+  - MagazineCanisterPistolRubber
+  - MagazineCanisterPistolSP
+  - MagazineCanisterPistolHP
+  - MagazineCanisterPistolFMJ
+  - MagazineCanisterPistol
+# Rifle
+  - MagazineCanisterRifle556Rubber
+  - MagazineCanisterRifle556SP
+  - MagazineCanisterRifle556HP
+  - MagazineCanisterRifle556FMJ
+  - MagazineCanisterRifle556
+# Magnum
+  - MagazineCanisterMagnumRubber
+  - MagazineCanisterMagnumSP
+  - MagazineCanisterMagnumHP
+  - MagazineCanisterMagnumFMJ
+  - MagazineCanisterMagnum
+# Revolver
+  - MagazineCanisterRevolver38Rubber
+  - MagazineCanisterRevolver38SP
+  - MagazineCanisterRevolver38HP
+  - MagazineCanisterRevolver38FMJ
+  - MagazineCanisterRevolver38
 ######################BOX#######################
 # Rifle
   - MagazineBoxRifle556Rubber
   - MagazineBoxRifle556SP
   - MagazineBoxRifle556HP
   - MagazineBoxRifle556FMJ
+  - MagazineBoxRifle556
 # Pistol
   - MagazineBoxPistolRubber
   - MagazineBoxPistolSP
   - MagazineBoxPistolHP
   - MagazineBoxPistolFMJ
+  - MagazineBoxPistol
 # Revolver
   - MagazineBoxRevolver38Rubber
   - MagazineBoxRevolver38SP
   - MagazineBoxRevolver38HP
   - MagazineBoxRevolver38FMJ
+  - MagazineBoxRevolver38
 # Magnum
   - MagazineBoxMagnumRubber
   - MagazineBoxMagnumSP
@@ -128,6 +158,23 @@
 - type: latheRecipePack
   id: FarHorizonsSecurityAmmoDynamic
   recipes:
+######################CANISTER#######################
+# Pistol
+  - MagazineCanisterPistolIncendiary
+  - MagazineCanisterPistolUranium
+  - MagazineCanisterPistolAP
+# Rifle
+  - MagazineCanisterRifle556Incendiary
+  - MagazineCanisterRifle556Uranium
+  - MagazineCanisterRifle556AP
+# Magnum
+  - MagazineCanisterMagnumIncendiary
+  - MagazineCanisterMagnumUranium
+  - MagazineCanisterMagnumAP
+# Revolver
+  - MagazineCanisterRevolver38Incendiary
+  - MagazineCanisterRevolver38Uranium
+  - MagazineCanisterRevolver38AP
 #####################BOX#######################
 # Pistol
   - MagazineBoxPistolIncendiary
@@ -141,6 +188,7 @@
   - MagazineBoxMagnumIncendiary
   - MagazineBoxMagnumUranium
   - MagazineBoxMagnumAP
+  - MagazineBoxMagnum
 # Rifle
   - MagazineBoxRifle556Incendiary
   - MagazineBoxRifle556Uranium

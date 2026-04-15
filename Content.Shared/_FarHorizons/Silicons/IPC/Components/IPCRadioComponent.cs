@@ -5,23 +5,23 @@ using Robust.Shared.GameStates;
 
 namespace Content.Shared._FarHorizons.Silicons.IPC.Components;
 
-[RegisterComponent, NetworkedComponent]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class IPCRadioComponent : Component
 {
-    [DataField]
+    [DataField, AutoNetworkedField]
     public bool CopyHeadsetKeys = false;
-    [DataField("removeHeadset")]
+    [DataField("removeHeadset"), AutoNetworkedField]
     public bool RemoveHeadsetOnRoundstart = false;
-    [DataField]
+    [DataField, AutoNetworkedField]
     public int KeysCapacity = 0;
 
-    [DataField]
+    [DataField, AutoNetworkedField]
     public string EncryptionKeysContainerID = "key_slots";
-    [DataField]
+    [DataField, AutoNetworkedField]
     public string HeadsetContainerID = "ears";
-    [DataField]
+    [DataField, AutoNetworkedField]
     public SoundSpecifier KeyInsertionSound = new SoundPathSpecifier("/Audio/Items/pistol_magin.ogg");
-    [DataField]
+    [DataField, AutoNetworkedField]
     public SoundSpecifier KeyExtractionSound = new SoundPathSpecifier("/Audio/Items/pistol_magout.ogg");
 
     [ViewVariables(VVAccess.ReadWrite)]

@@ -360,17 +360,36 @@
   components:
   - type: StorageFill
     contents:
+#Guns
     - id: WeaponRifleLecterNT
       amount: 4
     - id: WeaponPistolEnforcerTypeT
       amount: 4
+#Canisters
+    - id: MagazineBoxRifle556HP
+      amount: 1
+    - id: MagazineCanisterRifle556SP
+      amount: 1
+    - id: MagazineBoxRifle556FMJ
+      amount: 1
+    - id: MagazineBoxPistolHP
+      amount: 1
+    - id: MagazineCanisterPistolSP
+      amount: 1
+    - id: MagazineBoxPistolFMJ
+      amount: 1
+#Magazines
+    - id: MagazineRifle556HP
+      amount: 4
     - id: MagazineRifle556SP
       amount: 8
-    - id: MagazineRifle556HP
+    - id: MagazineRifle556FMJ
+      amount: 4
+    - id: MagazinePistolHP
       amount: 4
     - id: MagazinePistolSP
       amount: 8
-    - id: MagazinePistolHP
+    - id: MagazinePistolFMJ
       amount: 4
 
 - type: entity
@@ -380,17 +399,36 @@
   components:
   - type: StorageFill
     contents:
+#Guns
     - id: WeaponRifleIFV-50T
       amount: 4
     - id: WeaponPistolEnforcerTypeT
       amount: 4
+#Canisters
+    - id: MagazineBoxRevolver38HP
+      amount: 1
+    - id: MagazineCanisterRevolver38SP
+      amount: 1
+    - id: MagazineBoxRevolver38FMJ
+      amount: 1
+    - id: MagazineBoxPistolHP
+      amount: 1
+    - id: MagazineCanisterPistolSP
+      amount: 1
+    - id: MagazineBoxPistolFMJ
+      amount: 1
+#Magazines
+    - id: MagazineRifle38HP
+      amount: 4
     - id: MagazineRifle38SP
       amount: 8
-    - id: MagazineRifle38HP
+    - id: MagazineRifle38FMJ
+      amount: 4
+    - id: MagazinePistolHP
       amount: 4
     - id: MagazinePistolSP
       amount: 8
-    - id: MagazinePistolHP
+    - id: MagazinePistolFMJ
       amount: 4
 
 - type: entity
@@ -400,23 +438,50 @@
   components:
   - type: StorageFill
     contents:
+#Guns
     - id: WeaponRifleLecterNT
       amount: 2
     - id: WeaponRifleIFV-50T
       amount: 2
     - id: WeaponPistolEnforcerTypeT
       amount: 4
+#Canisters
+    - id: MagazineCanisterRifle556SP
+      amount: 1
+    - id: MagazineCanisterRevolver38SP
+      amount: 1
+    - id: MagazineCanisterPistolSP
+      amount: 1
+    - id: MagazineBoxRifle556HP
+      amount: 1
+    - id: MagazineBoxRifle556FMJ
+      amount: 1
+    - id: MagazineBoxRevolver38HP
+      amount: 1
+    - id: MagazineBoxRevolver38FMJ
+      amount: 1
+    - id: MagazineBoxPistolHP
+      amount: 1
+    - id: MagazineBoxPistolFMJ
+      amount: 1
+#Magazines
+    - id: MagazineRifle556HP
+      amount: 2
     - id: MagazineRifle556SP
       amount: 4
-    - id: MagazineRifle38SP
-      amount: 4
-    - id: MagazineRifle556HP
+    - id: MagazineRifle556FMJ
       amount: 2
     - id: MagazineRifle38HP
       amount: 2
+    - id: MagazineRifle38SP
+      amount: 4
+    - id: MagazineRifle38FMJ
+      amount: 2
+    - id: MagazinePistolHP
+      amount: 4
     - id: MagazinePistolSP
       amount: 8
-    - id: MagazinePistolHP
+    - id: MagazinePistolFMJ
       amount: 4
 
 #region Shotguns
@@ -500,17 +565,34 @@
   components:
   - type: StorageFill
     contents:
+#Guns
     - id: WeaponSubMachineGunDrozdTypeT
-      amount: 4
+      amount: 2
+#Canisters
+    - id: MagazineCanisterPistolSP #Like this for a reason
+      amount: 2
+#Guns
+    - id: WeaponSubMachineGunDrozdTypeT
+      amount: 2
     - id: WeaponPistolEnforcerTypeT
+      amount: 4
+#Canisters
+    - id: MagazineBoxPistolHP
+      amount: 2
+    - id: MagazineBoxPistolFMJ
+      amount: 2
+#Magazines
+    - id: MagazinePistolSubMachineGunHP
       amount: 4
     - id: MagazinePistolSubMachineGunSP
       amount: 8
-    - id: MagazinePistolSubMachineGunHP
+    - id: MagazinePistolSubMachineGunFMJ
+      amount: 4
+    - id: MagazinePistolHP
       amount: 4
     - id: MagazinePistolSP
       amount: 8
-    - id: MagazinePistolHP
+    - id: MagazinePistolFMJ
       amount: 4
 
 - type: entity
@@ -520,17 +602,34 @@
   components:
   - type: StorageFill
     contents:
+#Guns
     - id: WeaponSubMachineGunP291T
-      amount: 4
+      amount: 2
+#Canisters
+    - id: MagazineCanisterPistolSP #Like this for a reason
+      amount: 2
+#Guns
+    - id: WeaponSubMachineGunP291T
+      amount: 2
     - id: WeaponPistolMk78
+      amount: 4
+#Canisters
+    - id: MagazineBoxPistolHP
+      amount: 2
+    - id: MagazineBoxPistolFMJ
+      amount: 2
+#Magazines
+    - id: MagazinePistolSubMachineGunHP
       amount: 4
     - id: MagazinePistolSubMachineGunSP
       amount: 8
-    - id: MagazinePistolSubMachineGunHP
+    - id: MagazinePistolSubMachineGunFMJ
+      amount: 4
+    - id: MagazinePistolHP
       amount: 4
     - id: MagazinePistolSP
       amount: 8
-    - id: MagazinePistolHP
+    - id: MagazinePistolFMJ
       amount: 4
 
 - type: entity
@@ -540,21 +639,36 @@
   components:
   - type: StorageFill
     contents:
+#Guns
     - id: WeaponSubMachineGunDrozdTypeT
       amount: 2
+#Canisters
+    - id: MagazineCanisterPistolSP #Like this for a reason
+      amount: 2
+#Guns
     - id: WeaponSubMachineGunP291T
       amount: 2
     - id: WeaponPistolEnforcerTypeT
       amount: 2
     - id: WeaponPistolMk78
       amount: 2
+#Canisters
+    - id: MagazineBoxPistolHP
+      amount: 2
+    - id: MagazineBoxPistolFMJ
+      amount: 2
+#Magazines
+    - id: MagazinePistolSubMachineGunHP
+      amount: 4
     - id: MagazinePistolSubMachineGunSP
       amount: 8
-    - id: MagazinePistolSubMachineGunHP
+    - id: MagazinePistolSubMachineGunFMJ
+      amount: 4
+    - id: MagazinePistolHP
       amount: 4
     - id: MagazinePistolSP
       amount: 8
-    - id: MagazinePistolHP
+    - id: MagazinePistolFMJ
       amount: 4
 
 #region Lasers
@@ -1082,17 +1196,36 @@
   components:
   - type: StorageFill
     contents:
+#Guns
     - id: WeaponRifleLecterNS
       amount: 4
     - id: WeaponPistolEnforcerTypeS
       amount: 4
+#Canisters
+    - id: MagazineBoxRifle556HP
+      amount: 1
+    - id: MagazineCanisterRifle556SP
+      amount: 1
+    - id: MagazineBoxRifle556FMJ
+      amount: 1
+    - id: MagazineBoxPistolHP
+      amount: 1
+    - id: MagazineCanisterPistolSP
+      amount: 1
+    - id: MagazineBoxPistolFMJ
+      amount: 1
+#Magazines
+    - id: MagazineRifle556HP
+      amount: 4
     - id: MagazineRifle556SP
       amount: 8
-    - id: MagazineRifle556HP
+    - id: MagazineRifle556FMJ
+      amount: 4
+    - id: MagazinePistolHP
       amount: 4
     - id: MagazinePistolSP
       amount: 8
-    - id: MagazinePistolHP
+    - id: MagazinePistolFMJ
       amount: 4
 
 - type: entity
@@ -1102,17 +1235,36 @@
   components:
   - type: StorageFill
     contents:
+#Guns
     - id: WeaponRifleIFV-50S
       amount: 4
     - id: WeaponPistolEnforcerTypeS
       amount: 4
+#Canisters
+    - id: MagazineBoxRevolver38HP
+      amount: 1
+    - id: MagazineCanisterRevolver38SP
+      amount: 1
+    - id: MagazineBoxRevolver38FMJ
+      amount: 1
+    - id: MagazineBoxPistolHP
+      amount: 1
+    - id: MagazineCanisterPistolSP
+      amount: 1
+    - id: MagazineBoxPistolFMJ
+      amount: 1
+#Magazines
+    - id: MagazineRifle38HP
+      amount: 4
     - id: MagazineRifle38SP
       amount: 8
-    - id: MagazineRifle38HP
+    - id: MagazineRifle38FMJ
+      amount: 4
+    - id: MagazinePistolHP
       amount: 4
     - id: MagazinePistolSP
       amount: 8
-    - id: MagazinePistolHP
+    - id: MagazinePistolFMJ
       amount: 4
 
 - type: entity
@@ -1122,23 +1274,50 @@
   components:
   - type: StorageFill
     contents:
+#Guns
     - id: WeaponRifleLecterNS
       amount: 2
     - id: WeaponRifleIFV-50S
       amount: 2
     - id: WeaponPistolEnforcerTypeS
       amount: 4
+#Canisters
+    - id: MagazineCanisterRifle556SP
+      amount: 1
+    - id: MagazineCanisterRevolver38SP
+      amount: 1
+    - id: MagazineCanisterPistolSP
+      amount: 1
+    - id: MagazineBoxRifle556HP
+      amount: 1
+    - id: MagazineBoxRifle556FMJ
+      amount: 1
+    - id: MagazineBoxRevolver38HP
+      amount: 1
+    - id: MagazineBoxRevolver38FMJ
+      amount: 1
+    - id: MagazineBoxPistolHP
+      amount: 1
+    - id: MagazineBoxPistolFMJ
+      amount: 1
+#Magazines
+    - id: MagazineRifle556HP
+      amount: 2
     - id: MagazineRifle556SP
       amount: 4
-    - id: MagazineRifle38SP
-      amount: 4
-    - id: MagazineRifle556HP
+    - id: MagazineRifle556FMJ
       amount: 2
     - id: MagazineRifle38HP
       amount: 2
+    - id: MagazineRifle38SP
+      amount: 4
+    - id: MagazineRifle38FMJ
+      amount: 2
+    - id: MagazinePistolHP
+      amount: 4
     - id: MagazinePistolSP
       amount: 8
-    - id: MagazinePistolHP
+    - id: MagazinePistolFMJ
       amount: 4
 
 #region SMGs
@@ -1150,17 +1329,34 @@
   components:
   - type: StorageFill
     contents:
+#Guns
     - id: WeaponSubMachineGunDrozdTypeS
-      amount: 4
+      amount: 2
+#Canisters
+    - id: MagazineCanisterPistolSP #Like this for a reason
+      amount: 2
+#Guns
+    - id: WeaponSubMachineGunDrozdTypeS
+      amount: 2
     - id: WeaponPistolEnforcerTypeS
+      amount: 4
+#Canisters
+    - id: MagazineBoxPistolHP
+      amount: 2
+    - id: MagazineBoxPistolFMJ
+      amount: 2
+#Magazines
+    - id: MagazinePistolSubMachineGunHP
       amount: 4
     - id: MagazinePistolSubMachineGunSP
       amount: 8
-    - id: MagazinePistolSubMachineGunHP
+    - id: MagazinePistolSubMachineGunFMJ
+      amount: 4
+    - id: MagazinePistolHP
       amount: 4
     - id: MagazinePistolSP
       amount: 8
-    - id: MagazinePistolHP
+    - id: MagazinePistolFMJ
       amount: 4
 
 - type: entity
@@ -1170,17 +1366,34 @@
   components:
   - type: StorageFill
     contents:
+#Guns
     - id: WeaponSubMachineGunP291S
-      amount: 4
+      amount: 2
+#Canisters
+    - id: MagazineCanisterPistolSP #Like this for a reason
+      amount: 2
+#Guns
+    - id: WeaponSubMachineGunP291S
+      amount: 2
     - id: WeaponPistolMk59
+      amount: 4
+#Canisters
+    - id: MagazineBoxPistolHP
+      amount: 2
+    - id: MagazineBoxPistolFMJ
+      amount: 2
+#Magazines
+    - id: MagazinePistolSubMachineGunHP
       amount: 4
     - id: MagazinePistolSubMachineGunSP
       amount: 8
-    - id: MagazinePistolSubMachineGunHP
+    - id: MagazinePistolSubMachineGunFMJ
+      amount: 4
+    - id: MagazinePistolHP
       amount: 4
     - id: MagazinePistolSP
       amount: 8
-    - id: MagazinePistolHP
+    - id: MagazinePistolFMJ
       amount: 4
 
 - type: entity
@@ -1190,19 +1403,34 @@
   components:
   - type: StorageFill
     contents:
+#Guns
     - id: WeaponSubMachineGunDrozdTypeS
       amount: 2
+#Canisters
+    - id: MagazineCanisterPistolSP #Like this for a reason
+      amount: 2
+#Guns
     - id: WeaponSubMachineGunP291S
       amount: 2
     - id: WeaponPistolEnforcerTypeS
       amount: 2
     - id: WeaponPistolMk59
       amount: 2
+#Canisters
+    - id: MagazineBoxPistolHP
+      amount: 2
+    - id: MagazineBoxPistolFMJ
+      amount: 2
+#Magazines
+    - id: MagazinePistolSubMachineGunHP
+      amount: 4
     - id: MagazinePistolSubMachineGunSP
       amount: 8
-    - id: MagazinePistolSubMachineGunHP
+    - id: MagazinePistolSubMachineGunFMJ
+      amount: 4
+    - id: MagazinePistolHP
       amount: 4
     - id: MagazinePistolSP
       amount: 8
-    - id: MagazinePistolHP
+    - id: MagazinePistolFMJ
       amount: 4

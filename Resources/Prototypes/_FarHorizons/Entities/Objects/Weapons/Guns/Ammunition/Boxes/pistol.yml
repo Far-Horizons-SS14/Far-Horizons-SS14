@@ -1,7 +1,39 @@
 - type: entity
   parent: BaseMagazineBoxPistol
+  id: MagazineBoxPistol
+  name: 9mm Ammunition Box (Any)
+  description: A cardboard box designed to hold 9mm rounds.
+  components:
+  - type: BallisticAmmoProvider
+    proto: null
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  parent: BaseMagazineBoxPistol
+  id: MagazineBoxPistolHP
+  name: 9mm Ammunition Box (HP)
+  description: A cardboard box of Hollow-Point 9mm rounds. Effective against unarmored targets.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgePistolHP
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: hp
+
+- type: entity
+  parent: BaseMagazineBoxPistol
   id: MagazineBoxPistolSP
   name: 9mm Ammunition Box (SP)
+  description: A cardboard box of Soft-Point 9mm rounds. Effective against lightly-armored targets.
   components:
   - type: BallisticAmmoProvider
     proto: CartridgePistolSP
@@ -15,22 +47,9 @@
 
 - type: entity
   parent: BaseMagazineBoxPistol
-  id: MagazineBoxPistolHP
-  name: 9mm Ammunition Box (HP)
-  components:
-  - type: BallisticAmmoProvider
-    proto: CartridgePistolHP
-  - type: Sprite
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-      
-- type: entity
-  parent: BaseMagazineBoxPistol
   id: MagazineBoxPistolFMJ
   name: 9mm Ammunition Box (FMJ)
+  description: A cardboard box of Full Metal Jacket 9mm rounds. Effective against armored targets.
   components:
   - type: BallisticAmmoProvider
     proto: CartridgePistolFMJ
@@ -46,6 +65,7 @@
   parent: BaseMagazineBoxPistol
   id: MagazineBoxPistolAP
   name: 9mm Ammunition Box (AP)
+  description: A cardboard box of Armor-Piercing 9mm rounds. Effective against heavily armored targets.
   components:
   - type: BallisticAmmoProvider
     proto: CartridgePistolAP
@@ -61,6 +81,7 @@
   parent: BaseMagazineBoxPistol
   id: MagazineBoxPistolRubber
   name: 9mm Ammunition Box (Rubber)
+  description: A cardboard box of Rubber 9mm rounds. Mostly harmless.
   components:
   - type: BallisticAmmoProvider
     proto: CartridgePistolRubber

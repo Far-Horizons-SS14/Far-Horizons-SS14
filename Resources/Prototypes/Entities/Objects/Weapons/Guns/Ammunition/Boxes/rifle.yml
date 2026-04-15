@@ -9,90 +9,54 @@
       tags:
         - CartridgeRifle556 #FH
     proto: CartridgeRifle556SP #FH
-    capacity: 50
+    capacity: 100 #FH - 4x mag size
   - type: Item
     size: Small
   - type: ContainerContainer
     containers:
       ballistic-ammo: !type:Container
   - type: Sprite
-    sprite: Objects/Weapons/Guns/Ammunition/Boxes/rifle.rsi
+    sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Boxes/Rifle/5.56.rsi #FH
   - type: MagazineVisuals
     magState: mag
-    steps: 4
+    steps: 7 #FH
     zeroVisible: false
   - type: Appearance
+#FH - Start
+  - type: Tag
+    tags:
+      - AmmoBoxRifle556
+#FH - End
 
 # Boxes
-- type: entity
-  parent: BaseMagazineBoxRifle556 #FH
-  id: MagazineBoxRifleBig556 #FH
-  name: 5.56 Ammunition Box (Rifle SP) #FH
-  components:
-  - type: BallisticAmmoProvider
-    capacity: 200
-    proto: CartridgeRifle556SP #FH
-  - type: Sprite
-    layers:
-    - state: base-b
-      map: ["enum.GunVisualLayers.Base"]
-    - state: magb-1
-      map: ["enum.GunVisualLayers.Mag"]
-  - type: MagazineVisuals
-    magState: magb
-    steps: 4
-    zeroVisible: false
-  - type: Appearance
 
-- type: entity
-  parent: BaseMagazineBoxRifle556 #FH
-  id: MagazineBoxRifle556SP #FH
-  name: 5.56 Ammunition Box (Rifle SP) #FH
-  description: A cardboard box of 5.56 rifle rounds. Intended to hold general-purpose kinetic ammunition. #FH
-  components:
-  - type: BallisticAmmoProvider
-    proto: CartridgeRifle556SP #FH
-  - type: Sprite
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-    - state: sp
-
-- type: entity
-  parent: BaseMagazineBoxRifle556 #FH
-  id: MagazineBoxRifle556HP #FH
-  name: 5.56 Ammunition Box (Rifle HP) #FH
-  components:
-  - type: BallisticAmmoProvider
-    proto: CartridgeRifle556HP #FH
-  - type: Sprite
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-      
-- type: entity
-  parent: BaseMagazineBoxRifle556 #FH
-  id: MagazineBoxRifle556FMJ #FH
-  name: 5.56 Ammunition Box (Rifle FMJ) #FH
-  components:
-  - type: BallisticAmmoProvider
-    proto: CartridgeRifle556FMJ #FH
-  - type: Sprite
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-    - state: fmj
+#FH - Start
+#- type: entity
+#  parent: BaseMagazineBoxRifle556 #FH
+#  id: MagazineBoxRifleBig556 #FH
+#  name: 5.56 Ammunition Box (Rifle SP) #FH
+#  components:
+#  - type: BallisticAmmoProvider
+#    capacity: 200
+#    proto: CartridgeRifle556SP #FH
+#  - type: Sprite
+#    layers:
+#    - state: base-b
+#      map: ["enum.GunVisualLayers.Base"]
+#    - state: magb-1
+#      map: ["enum.GunVisualLayers.Mag"]
+#  - type: MagazineVisuals
+#    magState: magb
+#    steps: 4
+#    zeroVisible: false
+#  - type: Appearance
+#FH - End
 
 - type: entity
   parent: BaseMagazineBoxRifle556 #FH
   id: MagazineBoxRifle556AP #FH
   name: 5.56 Ammunition Box (Rifle AP) #FH
+  description: A cardboard box of Armor-Piercing 5.56 rounds. Effective against heavily armored targets. #FH
   components:
   - type: BallisticAmmoProvider
     proto: CartridgeRifle556AP #FH
@@ -108,7 +72,7 @@
   parent: BaseMagazineBoxRifle556 #FH
   id: MagazineBoxRifle556Practice #FH
   name: 5.56 Ammunition Box (Rifle Practice) #FH
-  description: A cardboard box of 5.56 rifle rounds. Intended to hold harmless practice ammunition. #FH
+  description: A cardboard box of Chalk-Loaded 5.56 rounds. Used for target practice. #FH
   components:
   - type: BallisticAmmoProvider
     proto: CartridgeRifle556Practice #FH
@@ -124,7 +88,7 @@
   id: MagazineBoxRifle556Incendiary #FH
   parent: BaseMagazineBoxRifle556 #FH
   name: 5.56 Ammunition Box (Rifle Incendiary) #FH
-  description: A cardboard box of 5.56 rifle rounds. Intended to hold self-igniting incendiary ammunition. #FH
+  description: A cardboard box of Self-Igniting 5.56 rounds. Burns people alive. #FH
   components:
   - type: BallisticAmmoProvider
     proto: CartridgeRifle556Incendiary #FH
@@ -140,7 +104,7 @@
   id: MagazineBoxRifle556Uranium #FH
   parent: BaseMagazineBoxRifle556 #FH
   name: 5.56 Ammunition Box (Rifle Uranium) #FH
-  description: A cardboard box of 5.56 rifle rounds. Intended to hold exotic uranium-core ammunition. #FH
+  description: A cardboard box of Uranium-Core 5.56 rounds. Delivers radiation poisoning on contact. #FH
   components:
   - type: BallisticAmmoProvider
     proto: CartridgeRifle556Uranium #FH

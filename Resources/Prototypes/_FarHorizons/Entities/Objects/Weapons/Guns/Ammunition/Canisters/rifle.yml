@@ -1,0 +1,186 @@
+- type: entity
+  abstract: true
+  parent: BaseItem
+  id: BaseMagazineCanisterRifle556
+  components:
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeRifle556
+    proto: CartridgeRifle556SP
+    capacity: 400 # 16x mag size 
+  - type: Item
+    size: Large
+    shape:
+    - 0,0,2,1
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Canisters/bullet_canister.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: b5.56
+  - type: MagazineVisuals
+    magState: mag
+    steps: 15
+    zeroVisible: false
+  - type: Appearance
+  - type: Tag
+    tags:
+      - AmmoBoxRifle556
+
+# Boxes
+- type: entity
+  parent: BaseMagazineCanisterRifle556
+  id: MagazineCanisterRifle556
+  name: 5.56 Ammunition Canister (Rifle Any)
+  description: A heavy duty metal canister of 5.56 rounds.
+  components:
+  - type: BallisticAmmoProvider
+    proto: null
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: b5.56
+
+- type: entity
+  parent: BaseMagazineCanisterRifle556
+  id: MagazineCanisterRifle556HP
+  name: 5.56 Ammunition Canister (Rifle HP)
+  description: A heavy duty metal canister of Hollow-Point 5.56 Rifle rounds. Effective against unarmored targets.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifle556HP
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: hp
+    - state: b5.56
+
+- type: entity
+  parent: BaseMagazineCanisterRifle556
+  id: MagazineCanisterRifle556SP
+  name: 5.56 Ammunition Canister (Rifle SP)
+  description: A heavy duty metal canister of Soft-Point 5.56 Rifle rounds. Effective against lightly-armored targets.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifle556SP
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: sp
+    - state: b5.56
+
+- type: entity
+  parent: BaseMagazineCanisterRifle556
+  id: MagazineCanisterRifle556FMJ
+  name: 5.56 Ammunition Canister (Rifle FMJ)
+  description: A heavy duty metal canister of Full Metal Jacket 5.56 Rifle rounds. Effective against armored targets.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifle556FMJ
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: fmj
+    - state: b5.56
+
+- type: entity
+  id: MagazineCanisterRifle556AP
+  parent: BaseMagazineCanisterRifle556
+  name: 5.56 Ammunition Canister (Rifle AP)
+  description: A heavy duty metal canister of Armor-Piercing 5.56 Rifle rounds. Effective on heavily armored targets.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifle556AP
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: ap
+    - state: b5.56
+
+- type: entity
+  parent: BaseMagazineCanisterRifle556
+  id: MagazineCanisterRifle556Practice
+  name: 5.56 Ammunition Canister (Rifle Practice)
+  description: A heavy duty metal canister of Chalk-Loaded 5.56 Rifle rounds. Used for target practice.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifle556Practice
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: practice
+    - state: b5.56
+
+- type: entity
+  id: MagazineCanisterRifle556Incendiary
+  parent: BaseMagazineCanisterRifle556
+  name: 5.56 Ammunition Canister (Rifle Incendiary)
+  description: A heavy duty metal canister of Self-Igniting 5.56 Rifle rounds. Burns people alive.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifle556Incendiary
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: incendiary
+    - state: b5.56
+
+- type: entity
+  id: MagazineCanisterRifle556Uranium
+  parent: BaseMagazineCanisterRifle556
+  name: 5.56 Ammunition Canister (Rifle Uranium)
+  description: A heavy duty metal canister of Uranium-Core 5.56 Rifle rounds. Delivers radiation poisoning on contact.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifle556Uranium
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: uranium
+    - state: b5.56
+
+- type: entity
+  id: MagazineCanisterRifle556Rubber
+  parent: BaseMagazineCanisterRifle556
+  name: 5.56 Ammunition Canister (Rifle Rubber)
+  description: A heavy duty metal canister of Rubber 5.56 Rifle rounds. Mostly harmless.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifle556Rubber
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: rubber
+    - state: b5.56

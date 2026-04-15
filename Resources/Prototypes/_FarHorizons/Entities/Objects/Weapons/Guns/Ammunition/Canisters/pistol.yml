@@ -1,0 +1,186 @@
+- type: entity
+  abstract: true
+  parent: BaseItem
+  id: BaseMagazineCanisterPistol
+  components:
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgePistol
+    proto: CartridgePistolSP
+    capacity: 320 # 16x mag size
+  - type: Item
+    size: Large
+    shape:
+    - 0,0,2,1
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Canisters/bullet_canister.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: b9.19
+  - type: MagazineVisuals
+    magState: mag
+    steps: 15
+    zeroVisible: false
+  - type: Appearance
+  - type: Tag
+    tags:
+      - AmmoBoxPistol9mm
+
+# Boxes
+- type: entity
+  parent: BaseMagazineCanisterPistol
+  id: MagazineCanisterPistol
+  name: 9mm Ammunition Canister (Any)
+  description: A heavy duty metal canister of 9mm rounds.
+  components:
+  - type: BallisticAmmoProvider
+    proto: null
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: b9.19
+
+- type: entity
+  parent: BaseMagazineCanisterPistol
+  id: MagazineCanisterPistolHP
+  name: 9mm Ammunition Canister (HP)
+  description: A heavy duty metal canister of Hollow-Point 9mm Pistol rounds. Effective against unarmored targets.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgePistolHP
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: hp
+    - state: b9.19
+
+- type: entity
+  parent: BaseMagazineCanisterPistol
+  id: MagazineCanisterPistolSP
+  name: 9mm Ammunition Canister (SP)
+  description: A heavy duty metal canister of Soft-Point 9mm Pistol rounds. Effective against lightly-armored targets.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgePistolSP
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: sp
+    - state: b9.19
+
+- type: entity
+  parent: BaseMagazineCanisterPistol
+  id: MagazineCanisterPistolFMJ
+  name: 9mm Ammunition Canister (FMJ)
+  description: A heavy duty metal canister of Full Metal Jacket 9mm Pistol rounds. Effective against armored targets.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgePistolFMJ
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: fmj
+    - state: b9.19
+
+- type: entity
+  id: MagazineCanisterPistolAP
+  parent: BaseMagazineCanisterPistol
+  name: 9mm Ammunition Canister (AP)
+  description: A heavy duty metal canister of Armor-Piercing 9mm Pistol rounds. Effective on heavily armored targets.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgePistolAP
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: ap
+    - state: b9.19
+
+- type: entity
+  parent: BaseMagazineCanisterPistol
+  id: MagazineCanisterPistolPractice
+  name: 9mm Ammunition Canister (Practice)
+  description: A heavy duty metal canister of Chalk-Loaded 9mm Pistol rounds. Used for target practice.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgePistolPractice
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: practice
+    - state: b9.19
+
+- type: entity
+  id: MagazineCanisterPistolIncendiary
+  parent: BaseMagazineCanisterPistol
+  name: 9mm Ammunition Canister (Incendiary)
+  description: A heavy duty metal canister of Self-Igniting 9mm Pistol rounds. Burns people alive.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgePistolIncendiary
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: incendiary
+    - state: b9.19
+
+- type: entity
+  id: MagazineCanisterPistolUranium
+  parent: BaseMagazineCanisterPistol
+  name: 9mm Ammunition Canister (Uranium)
+  description: A heavy duty metal canister of Uranium-Core 9mm Pistol rounds. Delivers radiation poisoning on contact.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgePistolUranium
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: uranium
+    - state: b9.19
+
+- type: entity
+  id: MagazineCanisterPistolRubber
+  parent: BaseMagazineCanisterPistol
+  name: 9mm Ammunition Canister (Rubber)
+  description: A heavy duty metal canister of Rubber 9mm Pistol rounds. Mostly harmless.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgePistolRubber
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: rubber
+    - state: b9.19

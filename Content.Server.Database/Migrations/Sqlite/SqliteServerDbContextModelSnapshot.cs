@@ -864,6 +864,80 @@ namespace Content.Server.Database.Migrations.Sqlite
                     b.ToTable("connection_log", (string)null);
                 });
 
+            modelBuilder.Entity("Content.Server.Database.FarHorizonsModel+FarHorizonsProfile", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("far_horizons_profile_id");
+
+                    b.Property<int>("ProfileId")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("profile_id");
+
+                    b.Property<int?>("SiliconSymspeechId")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("silicon_symspeech_id");
+
+                    b.Property<int?>("SymspeechId")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("symspeech_id");
+
+                    b.HasKey("Id")
+                        .HasName("PK_far_horizons_profile");
+
+                    b.HasIndex("ProfileId")
+                        .IsUnique();
+
+                    b.HasIndex("SiliconSymspeechId")
+                        .IsUnique()
+                        .HasDatabaseName("IX_far_horizons_profile_silicon_symspeech_id");
+
+                    b.HasIndex("SymspeechId")
+                        .IsUnique()
+                        .HasDatabaseName("IX_far_horizons_profile_symspeech_id");
+
+                    b.ToTable("far_horizons_profile", (string)null);
+                });
+
+            modelBuilder.Entity("Content.Server.Database.FarHorizonsModel+SymspeechDTO", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("fh_symspeech_id");
+
+                    b.Property<float>("Pause")
+                        .HasColumnType("REAL")
+                        .HasColumnName("pause");
+
+                    b.Property<int>("Pitch")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("pitch");
+
+                    b.Property<int>("Polyphony")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("polyphony");
+
+                    b.Property<float>("Speed")
+                        .HasColumnType("REAL")
+                        .HasColumnName("speed");
+
+                    b.Property<string>("Voice")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("voice");
+
+                    b.Property<float>("Volume")
+                        .HasColumnType("REAL")
+                        .HasColumnName("volume");
+
+                    b.HasKey("Id")
+                        .HasName("PK_fh_symspeech");
+
+                    b.ToTable("fh_symspeech", (string)null);
+                });
+
             modelBuilder.Entity("Content.Server.Database.IPIntelCache", b =>
                 {
                     b.Property<int>("Id")
@@ -1176,11 +1250,6 @@ namespace Content.Server.Database.Migrations.Sqlite
                         .HasColumnType("TEXT")
                         .HasColumnName("sex");
 
-                    b.Property<string>("SiliconVoice")
-                        .IsRequired()
-                        .HasColumnType("TEXT")
-                        .HasColumnName("silicon_voice");
-
                     b.Property<string>("SkinColor")
                         .IsRequired()
                         .HasColumnType("TEXT")
@@ -1198,11 +1267,6 @@ namespace Content.Server.Database.Migrations.Sqlite
                         .IsRequired()
                         .HasColumnType("TEXT")
                         .HasColumnName("species");
-
-                    b.Property<string>("Voice")
-                        .IsRequired()
-                        .HasColumnType("TEXT")
-                        .HasColumnName("voice");
 
                     b.HasKey("Id")
                         .HasName("PK_profile");
@@ -2052,6 +2116,34 @@ namespace Content.Server.Database.Migrations.Sqlite
                     b.Navigation("Server");
                 });
 
+            modelBuilder.Entity("Content.Server.Database.FarHorizonsModel+FarHorizonsProfile", b =>
+                {
+                    b.HasOne("Content.Server.Database.Profile", "Profile")
+                        .WithOne("FarHorizonsProfile")
+                        .HasForeignKey("Content.Server.Database.FarHorizonsModel+FarHorizonsProfile", "ProfileId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("FK_far_horizons_profile_profile_profile_id");
+
+                    b.HasOne("Content.Server.Database.FarHorizonsModel+SymspeechDTO", "SiliconSymspeech")
+                        .WithOne()
+                        .HasForeignKey("Content.Server.Database.FarHorizonsModel+FarHorizonsProfile", "SiliconSymspeechId")
+                        .OnDelete(DeleteBehavior.SetNull)
+                        .HasConstraintName("FK_far_horizons_profile_fh_symspeech_silicon_symspeech_id");
+
+                    b.HasOne("Content.Server.Database.FarHorizonsModel+SymspeechDTO", "Symspeech")
+                        .WithOne()
+                        .HasForeignKey("Content.Server.Database.FarHorizonsModel+FarHorizonsProfile", "SymspeechId")
+                        .OnDelete(DeleteBehavior.SetNull)
+                        .HasConstraintName("FK_far_horizons_profile_fh_symspeech_symspeech_id");
+
+                    b.Navigation("Profile");
+
+                    b.Navigation("SiliconSymspeech");
+
+                    b.Navigation("Symspeech");
+                });
+
             modelBuilder.Entity("Content.Server.Database.Job", b =>
                 {
                     b.HasOne("Content.Server.Database.Profile", "Profile")
@@ -2359,6 +2451,8 @@ namespace Content.Server.Database.Migrations.Sqlite
                     b.Navigation("CDProfile");
 
                     b.Navigation("CharacterInfo");
+
+                    b.Navigation("FarHorizonsProfile");
 
                     b.Navigation("Jobs");
 

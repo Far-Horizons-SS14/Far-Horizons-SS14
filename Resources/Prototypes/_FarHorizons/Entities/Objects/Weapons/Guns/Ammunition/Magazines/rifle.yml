@@ -38,6 +38,7 @@
   name: ".38 Special Magazine (Rifle Any)"
   suffix: empty
   parent: MagazineRifle38SP
+  description: 20-round double-stack Rifle magazine. Intended to hold general-purpose kinetic ammunition.
   components:
   - type: BallisticAmmoProvider
     proto: null
@@ -54,9 +55,31 @@
 
 ## Magazines
 - type: entity
+  id: MagazineRifle38HP
+  name: ".38 Special Magazine (Rifle HP)"
+  parent: BaseMagazineRifle38
+  description: 20-round double-stack rifle magazine loaded with Hollow-Point .38 rounds. Effective against unarmored targets.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRevolver38HP
+  - type: Sprite
+    layers:
+    - state: hp
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      right:
+      - state: inhand-right-mag
+
+- type: entity
   id: MagazineRifle38SP
   name: ".38 Special Magazine (Rifle SP)"
   parent: BaseMagazineRifle38
+  description: 20-round double-stack rifle magazine loaded with Soft-Point .38 rounds. Effective against lightly-armored targets.
   components:
   - type: BallisticAmmoProvider
     proto: CartridgeRevolver38SP
@@ -74,29 +97,10 @@
       - state: inhand-right-mag
 
 - type: entity
-  id: MagazineRifle38HP
-  name: ".38 Special Magazine (Rifle HP)"
-  parent: BaseMagazineRifle38
-  components:
-  - type: BallisticAmmoProvider
-    proto: CartridgeRevolver38HP
-  - type: Sprite
-    layers:
-    - state: red
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-  - type: Item
-    inhandVisuals:
-      left:
-      - state: inhand-left-mag
-      right:
-      - state: inhand-right-mag
-
-- type: entity
   id: MagazineRifle38FMJ
   name: ".38 Special Magazine (Rifle FMJ)"
   parent: BaseMagazineRifle38
+  description: 20-round double-stack rifle magazine loaded with Full Metal Jacket .38 rounds. Effective against armored targets.
   components:
   - type: BallisticAmmoProvider
     proto: CartridgeRevolver38FMJ
@@ -117,6 +121,7 @@
   id: MagazineRifle38AP
   name: ".38 Special Magazine (Rifle AP)"
   parent: BaseMagazineRifle38
+  description: 20-round double-stack rifle magazine loaded with Armor-Piercing .38 rounds. Effective against heavily armored targets.
   components:
   - type: BallisticAmmoProvider
     proto: CartridgeRevolver38AP
@@ -132,31 +137,12 @@
       - state: inhand-left-mag
       right:
       - state: inhand-right-mag
-
-- type: entity
-  id: MagazineRifle38Incendiary
-  name: ".38 Special Magazine (Rifle Incendiary)"
-  parent: BaseMagazineRifle38
-  components:
-  - type: BallisticAmmoProvider
-    proto: CartridgeRevolver38Incendiary
-  - type: Sprite
-    layers:
-    - state: incendiary
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-  - type: Item
-    inhandVisuals:
-      left:
-      - state: inhand-left-mag
-      right:
-      - state: inhand-right-mag
         
 - type: entity
   id: MagazineRifle38Practice
   name: ".38 Special Magazine (Rifle Practice)"
   parent: BaseMagazineRifle38
+  description: 20-round double-stack rifle magazine loaded with Chalk .38 rounds. Used for target practice.
   components:
   - type: BallisticAmmoProvider
     proto: CartridgeRevolver38Practice
@@ -174,9 +160,31 @@
       - state: inhand-right-mag
 
 - type: entity
+  id: MagazineRifle38Incendiary
+  name: ".38 Special Magazine (Rifle Incendiary)"
+  parent: BaseMagazineRifle38
+  description: 20-round double-stack rifle magazine loaded with Self-Igniting .38 rounds. Burns people alive.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRevolver38Incendiary
+  - type: Sprite
+    layers:
+    - state: incendiary
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      right:
+      - state: inhand-right-mag
+
+- type: entity
   id: MagazineRifle38Uranium
   name: ".38 Special Magazine (Rifle Uranium)"
   parent: BaseMagazineRifle38
+  description: 20-round double-stack rifle magazine loaded with Uranium-Core .38 rounds. Delivers radiation poisoning on contact.
   components:
   - type: BallisticAmmoProvider
     proto: CartridgeRevolver38Uranium
@@ -197,9 +205,10 @@
   id: MagazineRifle38Rubber
   name: .38 Special Magazine (Rifle Rubber)
   parent: BaseMagazineRifle38
+  description: 20-round double-stack rifle magazine loaded with Rubber .38 rounds. Mostly harmless.
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgePistolRubber
+    proto: CartridgeRevolver38Rubber
   - type: Sprite
     layers:
     - state: rubber
@@ -219,7 +228,7 @@
   id: Rifle556HeavyBase
   name: "5.56 Box Magazine (Rifle)"
   parent: BaseMagazineBoxLightRifle
-  description: 100 round box of 5.56 Ammuntion.
+  abstract: true
   components:
   - type: Tag
     tags:
@@ -249,6 +258,7 @@
   name: "5.56 Box Magazine (Rifle Any)"
   suffix: empty
   parent: Rifle556HeavyBase
+  description: 100-round belt-fed box rifle magazine. Intended to hold general-purpose kinetic ammunition.
   components:
   - type: BallisticAmmoProvider
     proto: null
@@ -256,26 +266,14 @@
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
-
-- type: entity
-  id: Rifle556HeavyMagazineSP
-  name: "5.56 Box Magazine (Rifle SP)"
-  parent: Rifle556HeavyBase
-  components:
-  - type: BallisticAmmoProvider
-    proto: CartridgeRifle556SP
-  - type: Sprite
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
-    - state: sp
 
 - type: entity
   id: Rifle556HeavyMagazineHP
   name: "5.56 Box Magazine (Rifle HP)"
   parent: Rifle556HeavyBase
+  description: 100-round belt-fed box rifle magazine loaded with Hollow-Point 5.56 rounds. Effective against unarmored targets.
   components:
   - type: BallisticAmmoProvider
     proto: CartridgeRifle556HP
@@ -288,9 +286,26 @@
     - state: hp
 
 - type: entity
+  id: Rifle556HeavyMagazineSP
+  name: "5.56 Box Magazine (Rifle SP)"
+  parent: Rifle556HeavyBase
+  description: 100-round belt-fed box rifle magazine loaded with Soft-Point 5.56 rounds. Effective against lightly-armored targets.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifle556SP
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: sp
+
+- type: entity
   id: Rifle556HeavyMagazineFMJ
   name: "5.56 Box Magazine (Rifle FMJ)"
   parent: Rifle556HeavyBase
+  description: 100-round belt-fed box rifle magazine loaded with Full Metal Jacket 5.56 rounds. Effective against armored targets.
   components:
   - type: BallisticAmmoProvider
     proto: CartridgeRifle556FMJ
@@ -303,39 +318,10 @@
     - state: fmj
 
 - type: entity
-  id: Rifle556HeavyMagazineIncendiary
-  name: "5.56 Box Magazine (Rifle Incendiary)"
-  parent: Rifle556HeavyBase
-  components:
-  - type: BallisticAmmoProvider
-    proto: CartridgeRifle556Incendiary
-  - type: Sprite
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-    - state: incendiary
-
-- type: entity
-  id: Rifle556HeavyMagazineUranium
-  name: "5.56 Box Magazine (Rifle Uranium)"
-  parent: Rifle556HeavyBase
-  components:
-  - type: BallisticAmmoProvider
-    proto: CartridgeRifle556Uranium
-  - type: Sprite
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-    - state: uranium
-
-- type: entity
   id: Rifle556HeavyMagazineAP
   name: "5.56 Box Magazine (Rifle AP)"
   parent: Rifle556HeavyBase
+  description: 100-round belt-fed box rifle magazine loaded with Armor-Piercing 5.56 rounds. Effective against heavily armored targets.
   components:
   - type: BallisticAmmoProvider
     proto: CartridgeRifle556AP
@@ -351,6 +337,7 @@
   id: Rifle556HeavyMagazinePractice
   name: "5.56 Box Magazine (Rifle Practice)"
   parent: Rifle556HeavyBase
+  description: 100-round belt-fed box rifle magazine loaded with Chalk 5.56 rounds. Used for target practice.
   components:
   - type: BallisticAmmoProvider
     proto: CartridgeRifle556Practice
@@ -363,9 +350,42 @@
     - state: practice
 
 - type: entity
+  id: Rifle556HeavyMagazineIncendiary
+  name: "5.56 Box Magazine (Rifle Incendiary)"
+  parent: Rifle556HeavyBase
+  description: 100-round belt-fed box rifle magazine loaded with Self-Igniting 5.56 rounds. Burns people alive.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifle556Incendiary
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: incendiary
+
+- type: entity
+  id: Rifle556HeavyMagazineUranium
+  name: "5.56 Box Magazine (Rifle Uranium)"
+  parent: Rifle556HeavyBase
+  description: 100-round belt-fed box rifle magazine loaded with Uranium-Core 5.56 rounds. Delivers radiation poisoning on contact.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifle556Uranium
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: uranium
+
+- type: entity
   id: Rifle556HeavyMagazineRubber
   name: "5.56 Box Magazine (Rifle Rubber)"
   parent: Rifle556HeavyBase
+  description: 100-round belt-fed box rifle magazine loaded with Rubber 5.56 rounds. Mostly harmless.
   components:
   - type: BallisticAmmoProvider
     proto: CartridgeRifle556Rubber
@@ -414,9 +434,41 @@
   - type: Appearance
 
 - type: entity
+  id: MagazineRifle556Empty
+  name: "5.56 Magazine (Rifle Any)"
+  suffix: empty
+  parent: MagazineRifle556SP
+  description: 25-round double-stack rifle magazine. Intended to hold general-purpose kinetic ammunition.
+  components:
+  - type: BallisticAmmoProvider
+    proto: null
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  id: MagazineRifle556HP
+  name: "5.56 Magazine (Rifle HP)"
+  parent: BaseMagazineRifle556
+  description: 25-round double-stack rifle magazine loaded with Hollow-Point 5.56 rounds. Effective against unarmored targets.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifle556HP
+  - type: Sprite
+    layers:
+    - state: hp
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
   id: MagazineRifle556SP
   name: "5.56 Magazine (Rifle SP)"
   parent: BaseMagazineRifle556
+  description: 25-round double-stack rifle magazine loaded with Soft-Point 5.56 rounds. Effective against lightly-armored targets.
   components:
   - type: BallisticAmmoProvider
     proto: CartridgeRifle556SP
@@ -428,23 +480,10 @@
       map: ["enum.GunVisualLayers.Mag"]
 
 - type: entity
-  id: MagazineRifle556HP
-  name: "5.56 Magazine (Rifle HP)"
-  parent: BaseMagazineRifle556
-  components:
-  - type: BallisticAmmoProvider
-    proto: CartridgeRifle556HP
-  - type: Sprite
-    layers:
-    - state: red
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-
-- type: entity
   id: MagazineRifle556FMJ
   name: "5.56 Magazine (Rifle FMJ)"
   parent: BaseMagazineRifle556
+  description: 25-round double-stack rifle magazine loaded with Full Metal Jacket 5.56 rounds. Effective against armored targets.
   components:
   - type: BallisticAmmoProvider
     proto: CartridgeRifle556FMJ
@@ -459,6 +498,7 @@
   id: MagazineRifle556AP
   name: "5.56 Magazine (Rifle AP)"
   parent: BaseMagazineRifle556
+  description: 25-round double-stack rifle magazine loaded with Full Metal Jacket 5.56 rounds. Effective against heavily armored targets.
   components:
   - type: BallisticAmmoProvider
     proto: CartridgeRifle556AP
@@ -470,36 +510,10 @@
       map: ["enum.GunVisualLayers.Mag"]
 
 - type: entity
-  id: MagazineRifle556Empty
-  name: "5.56 Magazine (Rifle Any)"
-  suffix: empty
-  parent: MagazineRifle556SP
-  components:
-  - type: BallisticAmmoProvider
-    proto: null
-  - type: Sprite
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-
-- type: entity
-  id: MagazineRifle556Incendiary
-  name: "5.56 Magazine (Rifle Incendiary)"
-  parent: MagazineRifle556SP
-  components:
-  - type: BallisticAmmoProvider
-    proto: CartridgeRifle556Incendiary
-  - type: Sprite
-    layers:
-    - state: incendiary
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-        
-- type: entity
   id: MagazineRifle556Practice
   name: "5.56 Magazine (Rifle Practice)"
   parent: BaseMagazineRifle556
+  description: 25-round double-stack rifle magazine loaded with Chalk 5.56 rounds. Used for target practice.
   components:
   - type: BallisticAmmoProvider
     proto: CartridgeRifle556Practice
@@ -511,9 +525,25 @@
       map: ["enum.GunVisualLayers.Mag"]
 
 - type: entity
+  id: MagazineRifle556Incendiary
+  name: "5.56 Magazine (Rifle Incendiary)"
+  parent: MagazineRifle556SP
+  description: 25-round double-stack rifle magazine loaded with Self-Igniting 5.56 rounds. Burns people alive.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifle556Incendiary
+  - type: Sprite
+    layers:
+    - state: incendiary
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
   id: MagazineRifle556Uranium
   name: "5.56 Magazine (Rifle Uranium)"
   parent: BaseMagazineRifle556
+  description: 25-round double-stack rifle magazine loaded with Uranium-Core 5.56 rounds. Delivers radiation poisoning on contact.
   components:
   - type: BallisticAmmoProvider
     proto: CartridgeRifle556Uranium
@@ -528,6 +558,7 @@
   id: MagazineRifle556Rubber
   name: "5.56 Magazine (Rifle Rubber)"
   parent: BaseMagazineRifle556
+  description: 25-round double-stack rifle magazine loaded with Rubber 5.56 rounds. Mostly harmless.
   components:
   - type: BallisticAmmoProvider
     proto: CartridgeRifle556Rubber

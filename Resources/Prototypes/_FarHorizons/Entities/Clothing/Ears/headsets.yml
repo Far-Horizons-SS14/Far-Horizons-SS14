@@ -1,10 +1,24 @@
 #region NanoTrasen
 
-
-
-
-
-
+- type: entity
+  parent: [ClothingHeadsetAlt, BaseCentcommContraband]
+  id: ClothingHeadsetAltNTNC
+  name: NTNC Over-Ear Headset
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyCommand
+      - EncryptionKeyCommon
+      - EncryptionKeySecurity
+      - EncryptionKeyNTNC
+  - type: Sprite
+    sprite: _Starlight/Admeme/Clothing/Ears/Headsets/ntnc.rsi
+  - type: Clothing
+    sprite: _Starlight/Admeme/Clothing/Ears/Headsets/ntnc.rsi
+  - type: RadioChime
+    sound:
+      path: /Audio/_Starlight/Effects/Radio/cc.ogg
 
 
 #region Command
@@ -36,12 +50,23 @@
 
 #region Syndicate
 
-
-
-
-
-
-
+- type: entity
+  parent: [ClothingHeadsetAlt, BaseSyndicateContraband]
+  id: ClothingHeadsetAltGMN
+  name: GMN Over-Ear Headset
+  description: A headset for elite GMN members.
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyGMN
+  - type: Sprite
+    sprite: Clothing/Ears/Headsets/syndicate.rsi
+  - type: Clothing
+    sprite: Clothing/Ears/Headsets/syndicate.rsi
+  - type: RadioChime
+    sound:
+      path: /Audio/_Starlight/Effects/Radio/marauder_commander.ogg
 
 
 #region Command

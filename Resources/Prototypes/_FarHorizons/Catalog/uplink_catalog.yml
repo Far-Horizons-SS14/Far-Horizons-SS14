@@ -110,7 +110,7 @@
   - !type:ListingLimitedStockCondition
     stock: 2 # It's not THAT strong.
 
-- type: listing
+- type: listing 
   id: UplinkWeaponRifleLecterS
   name: uplink-lecter-type-w-name
   description: uplink-lecter-type-w-description
@@ -121,6 +121,47 @@
   categories:
     - UplinkWeaponry
 
+- type: listing
+  id: UplinkUziBundle
+  name: uplink-uzi-bundle-name
+  description: uplink-uzi-bundle-desc
+  icon: { sprite: /Textures/_Starlight/Objects/Weapons/Guns/SMGs/uzi.rsi, state: icon }
+  productEntity: ClothingBackpackDuffelSyndicateFilledUzi
+  discountCategory: veryRareDiscounts
+  discountDownTo:
+    Telecrystal: 15
+  cost:
+    Telecrystal: 20
+  categories:
+  - UplinkWeaponry
+
+- type: listing
+  id: uplinkWeaponPistolDeagle
+  name: uplink-deagle-name
+  description: uplink-deagle-desc
+  icon: { sprite: /Textures/_Starlight/Objects/Weapons/Guns/Pistols/deagle.rsi, state: icon }
+  productEntity: BriefcaseBrownSyndicateFilledPistolDeagle
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Telecrystal: 5
+  cost:
+    Telecrystal: 8
+  categories:
+    - UplinkWeaponry
+
+- type: listing
+  id: uplinkWeaponPistolStechkin
+  name: uplink-stechkin-name
+  description: uplink-stechkin-desc
+  icon: { sprite: /Textures/_Starlight/Objects/Weapons/Guns/Pistols/stechkin.rsi, state: icon }
+  productEntity: BriefcaseBrownSyndicateFilledPistolStechkin
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Telecrystal: 3
+  cost:
+    Telecrystal: 6
+  categories:
+    - UplinkWeaponry
 # Restored wizden content
 
 - type: listing
@@ -258,7 +299,21 @@
     - UplinkExplosives
 
 - type: listing
-  id: UplinkRevolverPython
+  id: UplinkRevolverPythonBundle
+  name: uplink-revolver-python-name-fh
+  description: uplink-revolver-python-desc-fh
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Revolvers/python.rsi, state: icon }
+  productEntity: BriefcaseBrownSyndicateFilledRevolver
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Telecrystal: 4
+  cost:
+    Telecrystal: 10 #understandably, an AP firing revolver with ammo to back it up should be decently expensive.
+  categories:
+  - UplinkWeaponry
+
+- type: listing
+  id: UplinkRevolverPython # I got backlash for making it 10 tc depsite it coming in a better bundle. Not the end of the world to have 2 options.
   name: uplink-revolver-python-name
   description: uplink-revolver-python-desc
   productEntity: WeaponRevolverPythonAP
@@ -266,7 +321,7 @@
   discountDownTo:
     Telecrystal: 2
   cost:
-    Telecrystal: 4 # Originally was 13 and then 8 TC but was not used due to high cost
+    Telecrystal: 4
   categories:
   - UplinkWeaponry
 

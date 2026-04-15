@@ -2,6 +2,7 @@ using Content.Shared.Body;
 using Content.Shared.Dataset;
 using Content.Shared.Humanoid.Markings;
 using Content.Shared.Preferences.Loadouts;
+using Content.Shared.Starlight.TextToSpeech; // Far Horizons
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
@@ -198,6 +199,14 @@ public sealed partial class SpeciesPrototype : IPrototype
     // Far Horizons species loadout
     [DataField]
     public ProtoId<RoleLoadoutPrototype>? Loadout = null;
+    
+    // Far Horizons symspeech start
+    [DataField]
+    public ProtoId<VoicePrototype> DefaultMaleVoice { get; private set; } = "tuba";
+
+    [DataField]
+    public ProtoId<VoicePrototype> DefaultFemaleVoice { get; private set; } = "flute";
+    // Far Horizons symspeech end
 }
 
 public enum SpeciesNaming : byte

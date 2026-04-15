@@ -10,7 +10,7 @@
 
 #region Command
 - type: entity
-  parent: [ ClothingUniformBase, BaseCommandContraband, ClothingUniformFoldableBase ]
+  parent: [ ClothingUniformBase, BaseCommandContraband] # ClothingUniformFoldableBase ] # No folded sprites
   id: ClothingUniformJumpsuitNTChiefEngineer
   name: Chief Engineer's Jumpsuit
   suffix: NT
@@ -195,7 +195,7 @@
 # Personnel Manager (HoP)
 
 - type: entity
-  parent: [ ClothingUniformBase, BaseCommandContraband, ClothingUniformFoldableBase ]
+  parent: [ ClothingUniformBase, BaseCommandContraband ] # ClothingUniformFoldableBase ] # No folded sprites
   id: ClothingUniformJumpsuitHoPSyndi
   name: Personnel Manager's Jumpsuit
   suffix: S
@@ -273,7 +273,7 @@
 # Foreman (Chief Engineer)
 
 - type: entity
-  parent: [ ClothingUniformBase, BaseCommandContraband, ClothingUniformFoldableBase ]
+  parent: [ ClothingUniformBase, BaseCommandContraband ] # ClothingUniformFoldableBase ] # No folded sprites
   id: ClothingUniformJumpsuitChiefEngineerSyndi
   name: Foreman's Jumpsuit
   suffix: S
@@ -285,7 +285,7 @@
     sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/ce-syndi.rsi
 
 - type: entity
-  parent: [ ClothingUniformBase, BaseCommandContraband, ClothingUniformFoldableBase ]
+  parent: [ ClothingUniformBase, BaseCommandContraband ] # ClothingUniformFoldableBase ] # No folded sprites
   id: ClothingUniformJumpsuitChiefEngineerBrightSyndi
   name: Foreman's Red and White Jumpsuit
   suffix: S
@@ -349,7 +349,7 @@
     sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/atmos_casual-syndi.rsi
 
 - type: entity
-  parent: [ClothingUniformBase, ClothingUniformFoldableBase]
+  parent: [ClothingUniformBase] # ClothingUniformFoldableBase] # No folded sprites
   id: ClothingUniformJumpsuitAtmosSyndi
   name: Atmospheric Technician Jumpsuit
   suffix: S

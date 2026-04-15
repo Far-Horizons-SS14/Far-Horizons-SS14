@@ -2,6 +2,7 @@ using System.Linq;
 using Content.Shared._FarHorizons.Body;
 using Content.Shared.Body;
 using Content.Server.Mind;
+using Content.Shared.Starlight.Medical.Surgery.Steps.Parts;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server._FarHorizons.Body;
@@ -32,6 +33,10 @@ public sealed partial class ConnectedOrganSystem : SharedConnectedOrganSystem
             !TryComp<BodyComponent>(args.Target, out var body) || 
             body.Organs == null) 
             return;
+
+        // Sanity check to avoid endless bleed damage when they reattach surgically removed limbs
+        if (HasComp<IncisionOpenComponent>(ent))
+            RemCompDeferred<IncisionOpenComponent>(ent);
         
         var connectedCategories = _protoMan.EnumeratePrototypes<OrganCategoryPrototype>()
             .Where(p => p.ConnectsTo == ent.Comp.Category).Select(p => (ProtoId<OrganCategoryPrototype>)p.ID).ToList();
@@ -48,12 +53,12 @@ public sealed partial class ConnectedOrganSystem : SharedConnectedOrganSystem
         if(HasComp<VisualOrganComponent>(ent))
         {
             var entName = MetaData(args.Target).EntityName;
-            _metaData.SetEntityName(ent, $"{entName}'s {GetPartName(ent.Owner)}");
+            _metaData.SetEntityName(ent, $"{entName}'s {GetPartName(ent.Owner)}", raiseEvents: false);
 
             if(TryComp<HeadOrganComponent>(ent, out var head))
             {
                 head.NameBackup = $"{entName}";
-                _metaData.SetEntityName(args.Target, "Unknown");
+                _metaData.SetEntityName(args.Target, "Unknown", raiseEvents: false);
             }
         }
     }

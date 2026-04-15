@@ -1,0 +1,78 @@
+- type: entity
+  parent: BaseMagazineBoxRifle556
+  id: MagazineBoxRifle556
+  name: 5.56 Ammunition Box (Rifle Any)
+  description: A cardboard box designed to hold 5.56 rounds.
+  components:
+  - type: BallisticAmmoProvider
+    proto: null
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  parent: BaseMagazineBoxRifle556
+  id: MagazineBoxRifle556HP
+  name: 5.56 Ammunition Box (Rifle HP)
+  description: A cardboard box of Hollow-Point 5.56 rounds. Effective against unarmored targets.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifle556HP
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: hp
+
+- type: entity
+  parent: BaseMagazineBoxRifle556
+  id: MagazineBoxRifle556SP
+  name: 5.56 Ammunition Box (Rifle SP)
+  description: A cardboard box of Soft-Point 5.56 rounds. Effective against lightly-armored targets.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifle556SP
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: sp
+
+- type: entity
+  parent: BaseMagazineBoxRifle556
+  id: MagazineBoxRifle556FMJ
+  name: 5.56 Ammunition Box (Rifle FMJ)
+  description: A cardboard box of Full Metal Jacket 5.56 rounds. Effective against armored targets.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifle556FMJ
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: fmj
+
+- type: entity
+  parent: BaseMagazineBoxRifle556
+  id: MagazineBoxRifle556Rubber
+  name: 5.56 Ammunition Box (Rifle Rubber)
+  description: A cardboard box of Rubber 5.56 rounds. Mostly harmless.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifle556Rubber
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: rubber

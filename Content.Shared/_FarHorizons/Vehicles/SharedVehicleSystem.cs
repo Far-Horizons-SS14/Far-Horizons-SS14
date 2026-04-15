@@ -56,6 +56,7 @@ using Content.Shared.CombatMode.Pacification;
 using Content.Shared.Weapons.Ranged.Events;
 using Content.Shared.Hands;
 using Content.Shared._FarHorizons.ReagentDraw.EntitySystems;
+using Robust.Shared.Network;
 
 namespace Content.Shared._FarHorizons.Vehicles;
 
@@ -90,6 +91,7 @@ public abstract partial class SharedVehicleSystem : EntitySystem
     [Dependency] private readonly SharedGunSystem _gun = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
+    [Dependency] private readonly INetManager _net = default!;
     private static readonly ProtoId<TagPrototype> _vehicleKeyTag = "VehicleKey";
     private static readonly string _bluntname = "Blunt";
     private EntityQuery<ProjectileComponent> _projQuery;
@@ -298,11 +300,8 @@ public abstract partial class SharedVehicleSystem : EntitySystem
 
             for (var i = 0; i < ent.Comp.HandsNeeded; i++)
             {
-                if (_virtualItem.TrySpawnVirtualItem(ent.Owner, ent.Comp.Rider.Value, out var virtItem))
-                {
+                if (_virtualItem.TrySpawnVirtualItemInHand(ent.Owner, ent.Comp.Rider.Value, out var virtItem, true, silent: true))
                     EnsureComp<UnremoveableComponent>(virtItem.Value);
-                    _handsSystem.TryForcePickupAnyHand(ent.Comp.Rider.Value, virtItem.Value);
-                }
             }
         }
 
@@ -333,7 +332,8 @@ public abstract partial class SharedVehicleSystem : EntitySystem
 
     private void HandleCollide(Entity<VehicleComponent> ent, ref StartCollideEvent args)
     {
-        if(!_gameTiming.IsFirstTimePredicted) return;
+        if(_net.IsClient) return;
+
         if(ent.Comp.Rider == null) return;
         var rider = ent.Comp.Rider.Value;
         
@@ -355,8 +355,7 @@ public abstract partial class SharedVehicleSystem : EntitySystem
         
         if (args.OurFixture.Hard && args.OtherFixture.Hard)
         {
-            if (_gameTiming.IsFirstTimePredicted)
-                _audio.PlayPredicted(ent.Comp.SoundHit, ent.Owner, null, AudioParams.Default.WithVariation(0.125f).WithVolume(-0.125f));
+            _audio.PlayPredicted(ent.Comp.SoundHit, ent.Owner, null, AudioParams.Default.WithVariation(0.125f).WithVolume(-0.125f));
                 
             if(TryComp<VehicleBuckleComponent>(ent.Owner, out var vbComp) && TryComp<BuckleComponent>(rider, out var buckleComp))
             {
@@ -382,8 +381,7 @@ public abstract partial class SharedVehicleSystem : EntitySystem
         {
             if(!HasComp<DamageableComponent>(args.OtherEntity) || HasComp<PacifiedComponent>(ent.Owner)) return; 
 
-            if (_gameTiming.IsFirstTimePredicted)
-                _audio.PlayPredicted(ent.Comp.SoundHit, ent.Owner, null, AudioParams.Default.WithVariation(0.125f).WithVolume(-0.125f));
+            _audio.PlayPredicted(ent.Comp.SoundHit, ent.Owner, null, AudioParams.Default.WithVariation(0.125f).WithVolume(-0.125f));
 
             DamageTypePrototype? _blunt = _prototypes.Index<DamageTypePrototype>(_bluntname);
             DamageSpecifier? _damage = new(_blunt, Math.Clamp(10 * (1 + (0.5 * speed / crashingSpeed)), 10, 20));
@@ -637,15 +635,19 @@ public abstract partial class SharedVehicleSystem : EntitySystem
     {
         if(args.Container != component.PassengerSlot) return;
         
-        if(_whitelist.IsWhitelistFail(component.PassengerWhitelist, args.Entity))
+        var tagert = args.Entity; 
+        Timer.Spawn(0, () =>
         {
-            if(HasComp<RiderComponent>(args.Entity) && TryComp<VehicleComponent>(ent, out var vehicleComp))
-                RemoveRider(args.Entity, ent, vehicleComp);
+            if(_whitelist.IsWhitelistFail(component.PassengerWhitelist, tagert))
+            {
+                if(HasComp<RiderComponent>(tagert) && TryComp<VehicleComponent>(ent, out var vehicleComp))
+                    RemoveRider(tagert, ent, vehicleComp);
 
-            if(_tags.HasTag(args.Entity, _vehicleKeyTag)) return;
-            
-            _container.Remove(args.Entity, component.PassengerSlot);
-        }
+                if(_tags.HasTag(tagert, _vehicleKeyTag)) return;
+                
+                _container.Remove(tagert, component.PassengerSlot);
+            }
+        });
     }
 
     #endregion
@@ -881,11 +883,8 @@ public abstract partial class SharedVehicleSystem : EntitySystem
         {
             for (var i = 0; i < vehicleComp.HandsNeeded; i++)
             {
-                if (_virtualItem.TrySpawnVirtualItem(vehicle, rider, out var virtItem))
-                {
+                if (_virtualItem.TrySpawnVirtualItemInHand(vehicle, rider, out var virtItem, true, silent: true))
                     EnsureComp<UnremoveableComponent>(virtItem.Value);
-                    Timer.Spawn(0, () => _handsSystem.TryForcePickupAnyHand(rider, virtItem.Value, checkActionBlocker: false));
-                }
             }
         }
     }

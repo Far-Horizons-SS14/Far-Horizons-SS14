@@ -16,21 +16,6 @@
         - AtmosphericTechnician
 
 # Weapons
-
-- type: listing
-  id: UplinkUziBundle
-  name: uplink-uzi-bundle-name
-  description: uplink-uzi-bundle-desc
-  icon: { sprite: /Textures/_Starlight/Objects/Weapons/Guns/SMGs/uzi.rsi, state: icon }
-  productEntity: ClothingBackpackDuffelSyndicateFilledUzi
-  discountCategory: veryRareDiscounts
-  discountDownTo:
-    Telecrystal: 15
-  cost:
-    Telecrystal: 20
-  categories:
-  - UplinkWeaponry
-
 - type: listing
   id: uplinkWeaponShotgunMinotaur
   name: uplink-minotaur-name
@@ -94,32 +79,6 @@
   - !type:BuyerJobCondition
     whitelist:
     - Musician
-
-- type: listing
-  id: uplinkWeaponPistolDeagle
-  name: uplink-deagle-name
-  description: uplink-deagle-desc
-  productEntity: WeaponPistolDeagle
-  discountCategory: rareDiscounts
-  discountDownTo:
-    Telecrystal: 5
-  cost:
-    Telecrystal: 8
-  categories:
-    - UplinkWeaponry
-
-- type: listing
-  id: uplinkWeaponPistolStechkin
-  name: uplink-stechkin-name
-  description: uplink-stechkin-desc
-  productEntity: WeaponPistolStechkin
-  discountCategory: rareDiscounts
-  discountDownTo:
-    Telecrystal: 3
-  cost:
-    Telecrystal: 6
-  categories:
-    - UplinkWeaponry
 
 - type: listing
   id: UplinkHomerunBat

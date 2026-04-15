@@ -190,7 +190,7 @@
   parent: [ BaseBorgiChassis, BaseBorgTransponder ]
   id: BaseStationBorgiChassis
   name: Smart Borgi
-  description: A unusually smart dog, loves stating it's laws.
+  description: An unusually smart dog, loves stating it's laws.
   save: false
   abstract: true
   components:
@@ -237,7 +237,7 @@
   parent: BaseBorgiChassis
   id: BaseSyndicateBorgiChassis
   name: Syndi Borgi
-  description: An unusually smart dog, but hell bent on MURDER.
+  description: An unusually smart dog, loves stating it's laws. #FH
   suffix: Antag
   components:
     - type: GhostRole
@@ -252,7 +252,7 @@
       subverted: true
     - type: RandomMetadata
       nameSegments:
-      - NamesSyndiBorgi
+      - NamesBorgi #FH
     - type: EntityTableContainerFill
       containers:
         borg_brain: !type:AllSelector
@@ -284,3 +284,4 @@
           startingItem: PowerCellHyper
     - type: AccessReader
       access: [["SyndicateAgent"], ["NuclearOperative"]]
+      examinationText: "syndicate-borgi-access-reader-examination" #FH

@@ -3,9 +3,12 @@
 
 - type: listing
   id: UplinkPistolViper
-  name: uplink-pistol-viper-name
-  description: uplink-pistol-viper-desc
-  productEntity: WeaponPistolViper
+#FH - Start
+  name: uplink-pistol-viper-name-fh
+  description: uplink-pistol-viper-desc-fh
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Pistols/viper.rsi, state: icon }
+  productEntity: BriefcaseBrownSyndicateFilledPistolViper
+#FH - End
   discountCategory: rareDiscounts
   discountDownTo:
     Telecrystal: 2
@@ -17,9 +20,12 @@
 # Inbuilt suppressor so it's sneaky + more expensive.
 - type: listing
   id: UplinkPistolCobra
-  name: uplink-pistol-cobra-name
-  description: uplink-pistol-cobra-desc
-  productEntity: WeaponPistolCobra
+#FH - Start
+  name: uplink-pistol-cobra-name-fh 
+  description: uplink-pistol-cobra-desc-fh 
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Pistols/cobra.rsi, state: icon }
+  productEntity: BriefcaseBrownSyndicateFilledPistolCobra
+#FH - End
   discountCategory: rareDiscounts
   discountDownTo:
     Telecrystal: 2

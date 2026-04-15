@@ -1,0 +1,186 @@
+- type: entity
+  abstract: true
+  parent: BaseItem
+  id: BaseMagazineCanisterRevolver38
+  components:
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeRevolver38
+    proto: CartridgeRevolver38SP
+    capacity: 320 # 16x mag size
+  - type: Item
+    size: Large
+    shape:
+    - 0,0,2,1
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Canisters/bullet_canister.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: b.38
+  - type: MagazineVisuals
+    magState: mag
+    steps: 15
+    zeroVisible: false
+  - type: Appearance
+  - type: Tag
+    tags:
+      - AmmoBoxRevolver38
+
+# Boxes
+- type: entity
+  parent: BaseMagazineCanisterRevolver38
+  id: MagazineCanisterRevolver38
+  name: .38 Ammunition Canister (Revolver Any)
+  description: A heavy duty metal canister of .38 rounds.
+  components:
+  - type: BallisticAmmoProvider
+    proto: null
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: b.38
+
+- type: entity
+  parent: BaseMagazineCanisterRevolver38
+  id: MagazineCanisterRevolver38HP
+  name: .38 Ammunition Canister (Revolver HP)
+  description: A heavy duty metal canister of Hollow-Point .38 Revolver rounds. Effective against unarmored targets.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRevolver38HP
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: hp
+    - state: b.38
+
+- type: entity
+  parent: BaseMagazineCanisterRevolver38
+  id: MagazineCanisterRevolver38SP
+  name: .38 Ammunition Canister (Revolver SP)
+  description: A heavy duty metal canister of Soft-Point .38 Revolver rounds. Effective against lightly-armored targets.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRevolver38SP
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: sp
+    - state: b.38
+
+- type: entity
+  parent: BaseMagazineCanisterRevolver38
+  id: MagazineCanisterRevolver38FMJ
+  name: .38 Ammunition Canister (Revolver FMJ)
+  description: A heavy duty metal canister of Full Metal Jacket .38 Revolver rounds. Effective against armored targets.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRevolver38FMJ
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: fmj
+    - state: b.38
+
+- type: entity
+  id: MagazineCanisterRevolver38AP
+  parent: BaseMagazineCanisterRevolver38
+  name: .38 Ammunition Canister (Revolver AP)
+  description: A heavy duty metal canister of Armor-Piercing .38 Revolver rounds. Effective on heavily armored targets.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRevolver38AP
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: ap
+    - state: b.38
+
+- type: entity
+  parent: BaseMagazineCanisterRevolver38
+  id: MagazineCanisterRevolver38Practice
+  name: .38 Ammunition Canister (Revolver Practice)
+  description: A heavy duty metal canister of Chalk-Loaded .38 Revolver rounds. Used for target practice.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRevolver38Practice
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: practice
+    - state: b.38
+
+- type: entity
+  id: MagazineCanisterRevolver38Incendiary
+  parent: BaseMagazineCanisterRevolver38
+  name: .38 Ammunition Canister (Revolver Incendiary)
+  description: A heavy duty metal canister of Self-Igniting .38 Revolver rounds. Burns people alive.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRevolver38Incendiary
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: incendiary
+    - state: b.38
+
+- type: entity
+  id: MagazineCanisterRevolver38Uranium
+  parent: BaseMagazineCanisterRevolver38
+  name: .38 Ammunition Canister (Revolver Uranium)
+  description: A heavy duty metal canister of Uranium-Core .38 Revolver rounds. Delivers radiation poisoning on contact.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRevolver38Uranium
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: uranium
+    - state: b.38
+
+- type: entity
+  id: MagazineCanisterRevolver38Rubber
+  parent: BaseMagazineCanisterRevolver38
+  name: .38 Ammunition Canister (Revolver Rubber)
+  description: A heavy duty metal canister of Rubber .38 Revolver rounds. Mostly harmless.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRevolver38Rubber
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: rubber
+    - state: b.38

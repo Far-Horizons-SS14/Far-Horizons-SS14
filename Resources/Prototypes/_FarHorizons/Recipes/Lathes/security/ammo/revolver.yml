@@ -1,4 +1,4 @@
-############ SPEEDLOADERS (.38) ############
+#region .38 Speedloaders
 - type: latheRecipe
   parent: BaseEmptyAmmoRecipe
   id: SpeedLoaderRevolver38Empty
@@ -70,61 +70,65 @@
     Steel: 80
     Plastic: 40
 
-############ BOXES (.38) ############
+#region .38 Boxes
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineBoxRevolver38
+  result: MagazineBoxRevolver38
+  materials:
+    Steel: 100
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
   id: MagazineBoxRevolver38SP
   result: MagazineBoxRevolver38SP
   materials:
-    Steel: 668
+    Steel: 1336
     
 - type: latheRecipe
   parent: BaseAmmoRecipe
   id: MagazineBoxRevolver38HP
   result: MagazineBoxRevolver38HP
   materials:
-    Steel: 668
+    Steel: 1336
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
   id: MagazineBoxRevolver38FMJ
   result: MagazineBoxRevolver38FMJ
   materials:
-    Steel: 668
+    Steel: 1336
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
   id: MagazineBoxRevolver38Incendiary
   result: MagazineBoxRevolver38Incendiary
   materials:
-    Steel: 80
-    Plastic: 540
+    Plastic: 1080
     
 - type: latheRecipe
   parent: BaseAmmoRecipe
   id: MagazineBoxRevolver38Uranium
   result: MagazineBoxRevolver38Uranium
   materials:
-    Steel: 80
-    Plastic: 428
-    Uranium: 460
+    Plastic: 856
+    Uranium: 920
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
   id: MagazineBoxRevolver38AP
   result: MagazineBoxRevolver38AP
   materials:
-    Steel: 360
-    Uranium: 360
-    Plastic: 520
+    Steel: 720
+    Uranium: 720
+    Plastic: 1040
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
   id: MagazineBoxRevolver38Practice
   result: MagazineBoxRevolver38Practice
   materials:
-    Steel: 200
+    Steel: 400
 
 - type: latheRecipe
   id: MagazineBoxRevolver38Rubber
@@ -133,5 +137,75 @@
   - Ammo
   completetime: 5
   materials:
-    Steel: 200
-    Plastic: 100
+    Steel: 400
+    Plastic: 200
+
+#region .38 Canisters
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineCanisterRevolver38
+  result: MagazineCanisterRevolver38
+  materials:
+    Steel: 300
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineCanisterRevolver38SP
+  result: MagazineCanisterRevolver38SP
+  materials:
+    Steel: 5344
+    
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineCanisterRevolver38HP
+  result: MagazineCanisterRevolver38HP
+  materials:
+    Steel: 5344
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineCanisterRevolver38FMJ
+  result: MagazineCanisterRevolver38FMJ
+  materials:
+    Steel: 5344
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineCanisterRevolver38Incendiary
+  result: MagazineCanisterRevolver38Incendiary
+  materials:
+    Plastic: 4320
+    
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineCanisterRevolver38Uranium
+  result: MagazineCanisterRevolver38Uranium
+  materials:
+    Plastic: 3424
+    Uranium: 3680
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineCanisterRevolver38AP
+  result: MagazineCanisterRevolver38AP
+  materials:
+    Steel: 2880
+    Uranium: 2880
+    Plastic: 4160
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineCanisterRevolver38Practice
+  result: MagazineCanisterRevolver38Practice
+  materials:
+    Steel: 1600
+
+- type: latheRecipe
+  id: MagazineCanisterRevolver38Rubber
+  result: MagazineCanisterRevolver38Rubber
+  categories:
+  - Ammo
+  completetime: 5
+  materials:
+    Steel: 1600
+    Plastic: 800

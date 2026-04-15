@@ -9,25 +9,57 @@
       tags:
         - CartridgeMagnum
     proto: CartridgeMagnumSP
-    capacity: 16
+    capacity: 32 # 4x mag size
   - type: Item
     size: Small
   - type: ContainerContainer
     containers:
       ballistic-ammo: !type:Container
   - type: Sprite
-    sprite: Objects/Weapons/Guns/Ammunition/Boxes/magnum.rsi
+    sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Boxes/Magnum/.44.rsi
   - type: MagazineVisuals
     magState: mag
-    steps: 4
+    steps: 3
     zeroVisible: false
   - type: Appearance
 
 # Boxes
 - type: entity
   parent: BaseMagazineBoxMagnum
+  id: MagazineBoxMagnum
+  name: .44 Magnum Ammunition Box (Revolver Any)
+  description: A cardboard box designed to hold .44 Revolver rounds.
+  components:
+  - type: BallisticAmmoProvider
+    proto: null
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  parent: BaseMagazineBoxMagnum
+  id: MagazineBoxMagnumHP
+  name: .44 Magnum Ammunition Box (Revolver HP)
+  description: A cardboard box of Hollow-Point .44 Revolver rounds. Effective against unarmored targets.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeMagnumHP
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: hp
+
+- type: entity
+  parent: BaseMagazineBoxMagnum
   id: MagazineBoxMagnumSP
   name: .44 Magnum Ammunition Box (Revolver SP)
+  description: A cardboard box of Soft-Point .44 Revolver rounds. Effective against lightly-armored targets.
   components:
   - type: BallisticAmmoProvider
     proto: CartridgeMagnumSP
@@ -41,22 +73,9 @@
 
 - type: entity
   parent: BaseMagazineBoxMagnum
-  id: MagazineBoxMagnumHP
-  name: .44 Magnum Ammunition Box (Revolver HP)
-  components:
-  - type: BallisticAmmoProvider
-    proto: CartridgeMagnumHP
-  - type: Sprite
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-
-- type: entity
-  parent: BaseMagazineBoxMagnum
   id: MagazineBoxMagnumFMJ
   name: .44 Magnum Ammunition Box (Revolver FMJ)
+  description: A cardboard box of Full Metal Jacket .44 Revolver rounds. Effective against armored targets.
   components:
   - type: BallisticAmmoProvider
     proto: CartridgeMagnumFMJ
@@ -69,10 +88,26 @@
     - state: fmj
 
 - type: entity
+  id: MagazineBoxMagnumAP
+  parent: BaseMagazineBoxMagnum
+  name: .44 Magnum Ammunition Box (Revolver AP)
+  description: A cardboard box of Armor-Piercing .44 Revolver rounds. Effective against heavily armored targets.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeMagnumAP
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: ap
+
+- type: entity
   parent: BaseMagazineBoxMagnum
   id: MagazineBoxMagnumPractice
   name: .44 Magnum Ammunition Box (Revolver Practice)
-  description: A cardboard box of .44 magnum rounds. Intended to hold non-harmful chalk ammunition.
+  description: A cardboard box of Chalk-Loaded .44 Revolver rounds. Used for target practice.
   components:
   - type: BallisticAmmoProvider
     proto: CartridgeMagnumPractice
@@ -88,7 +123,7 @@
   id: MagazineBoxMagnumIncendiary
   parent: BaseMagazineBoxMagnum
   name: .44 Magnum Ammunition Box (Revolver Incendiary)
-  description: A cardboard box of .44 magnum rounds. Intended to hold self-igniting incendiary ammunition.
+  description: A cardboard box of Self-Igniting .44 Revolver rounds. Burns people alive.
   components:
   - type: BallisticAmmoProvider
     proto: CartridgeMagnumIncendiary
@@ -104,7 +139,7 @@
   id: MagazineBoxMagnumUranium
   parent: BaseMagazineBoxMagnum
   name: .44 Magnum Ammunition Box (Revolver Uranium)
-  description: A cardboard box of .44 magnum rounds. Intended to hold exotic uranium-core ammunition.
+  description: A cardboard box of Uranium-Core .44 Revolver rounds. Delivers radiation poisoning on contact.
   components:
   - type: BallisticAmmoProvider
     proto: CartridgeMagnumUranium
@@ -117,17 +152,17 @@
     - state: uranium
 
 - type: entity
-  id: MagazineBoxMagnumAP
   parent: BaseMagazineBoxMagnum
-  name: .44 Magnum Ammunition Box (Revolver AP)
-  description: A cardboard box of .44 magnum rounds. Intended to hold armor-piercing ammunition.
+  id: MagazineBoxMagnumRubber
+  name: Ammunition box (.44 Magnum Rubber)
+  description: A cardboard box of Rubber .44 Revolver rounds. Mostly harmless.
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgeMagnumAP
+    proto: CartridgeMagnumRubber
   - type: Sprite
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
-    - state: ap
+    - state: rubber

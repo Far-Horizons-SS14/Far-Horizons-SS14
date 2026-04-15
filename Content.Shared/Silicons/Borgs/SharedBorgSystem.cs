@@ -227,12 +227,12 @@ public abstract partial class SharedBorgSystem : EntitySystem
         // Unpredicted because the event is raised on the server.
         _popup.PopupEntity(Loc.GetString("borg-mind-added", ("name", Identity.Name(chassis.Owner, EntityManager))), chassis.Owner);
 
-        //Starlight start, load the borg's tts voice
+        //Far Horizons start, load the borg's tts voice
         if (TryComp<TextToSpeechComponent>(chassis, out var ttscomp))
         {
-            ttscomp.VoicePrototypeId = args.Mind.Comp.SiliconVoice;
+            ttscomp.Symspeech = args.Mind.Comp.SiliconSymspeech;
         }
-        //Starlight end
+        //Far Horizons end
 
         TryActivate(chassis);
 
@@ -409,13 +409,13 @@ public abstract partial class SharedBorgSystem : EntitySystem
             return;
         }
 
-        //Starlight, load borg voice
+        //Far Horizons, load borg voice
 		if (TryComp<TextToSpeechComponent>(brain, out var ttscomp))
 		{
 			if(mind != null)
-			    ttscomp.VoicePrototypeId = mind.SiliconVoice;
+			    ttscomp.Symspeech = mind.SiliconSymspeech;
 		}
-        //Starlight end
+        //Far Horizons end
 
         _mind.TransferTo(mindId, borg, mind: mind);
     }

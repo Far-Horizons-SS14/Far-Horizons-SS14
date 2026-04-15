@@ -11,19 +11,37 @@
       tags:
         - CartridgeRevolver38
     proto: CartridgeRevolver38SP
-    capacity: 40
+    capacity: 80 # 4x mag size
   - type: Item
     size: Small
   - type: ContainerContainer
     containers:
       ballistic-ammo: !type:Container
   - type: Sprite
-    sprite: _Starlight/Objects/Weapons/Guns/Ammunition/Boxes/pistol.rsi
+    sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Boxes/Revolver/.38.rsi
   - type: MagazineVisuals
     magState: mag
     steps: 4
     zeroVisible: false
   - type: Appearance
+  - type: Tag
+    tags:
+      - AmmoBoxRevolver38
+
+- type: entity
+  parent: BaseMagazineBoxRevolver38
+  id: MagazineBoxRevolver38
+  name: .38 Special Ammunition Box (Revolver Any)
+  components:
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    proto: null
+  - type: Sprite    
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
 
 - type: entity
   parent: BaseMagazineBoxRevolver38
@@ -55,6 +73,7 @@
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
+    - state: hp
 
 - type: entity
   parent: BaseMagazineBoxRevolver38

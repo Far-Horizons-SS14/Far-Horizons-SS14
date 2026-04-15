@@ -74,6 +74,10 @@ namespace Content.Server.Database
                     .ThenInclude(cdProfile => cdProfile!.CharacterRecordEntries)
                 // Cosmatic Drift Record System-end
                 .Include(p => p.JobPriorities)
+                // Far Horizons edit start
+                .Include(p => p.Profiles).ThenInclude(h => h.FarHorizonsProfile).ThenInclude(fh => fh!.Symspeech)
+                .Include(p => p.Profiles).ThenInclude(h => h.FarHorizonsProfile).ThenInclude(fh => fh!.SiliconSymspeech)
+                // Far Horizons edit end
                 .AsSplitQuery()
                 .SingleOrDefaultAsync(p => p.UserId == userId.UserId, cancel);
         }
@@ -115,6 +119,8 @@ namespace Content.Server.Database
 
             var oldProfile = db.DbContext.Profile
                 .Include(p => p.StarLightProfile) // Starlight
+                .Include(p => p.FarHorizonsProfile).ThenInclude(fh => fh!.Symspeech) // Far Horizons
+                .Include(p => p.FarHorizonsProfile).ThenInclude(fh => fh!.SiliconSymspeech) // Far Horizons
                 .Include(p => p.Preference)
                 .Where(p => p.Preference.UserId == userId.UserId)
                 .Include(p => p.Jobs)
@@ -259,8 +265,6 @@ namespace Content.Server.Database
             var dataNode = _serialization.WriteValue(appearance.Markings, alwaysWrite: true, notNullableOverride: true);
 
             profile.CharacterName = humanoid.Name;
-            profile.Voice = humanoid.Voice;
-            profile.SiliconVoice = humanoid.SiliconVoice; // 🌟Starlight🌟
             profile.FlavorText = string.Empty; //Starlight
             profile.CharacterInfo ??= new StarLightModel.CharacterInfo();//Starlight
             profile.CharacterInfo.PhysicalDesc = humanoid.PhysicalDescription;//Starlight
@@ -335,6 +339,35 @@ namespace Content.Server.Database
             Dictionary<string, RoleLoadout> extraLoadouts = new(humanoid.Loadouts);
             if (humanoid.SpeciesLoadout != null)
                 extraLoadouts[HumanoidCharacterProfile.SpeciesLoadoutDatabaseKey] = humanoid.SpeciesLoadout;
+
+            profile.FarHorizonsProfile ??= new FarHorizonsModel.FarHorizonsProfile();
+
+            if (humanoid.Symspeech is { } symspeech)
+                profile.FarHorizonsProfile.Symspeech = new FarHorizonsModel.SymspeechDTO()
+                {
+                    Voice = symspeech.Voice.Id,
+                    Pitch = symspeech.Pitch,
+                    Speed = symspeech.Speed,
+                    Pause = symspeech.Pause,
+                    Polyphony = symspeech.Polyphony,
+                    Volume = symspeech.Volume,
+                };
+            else
+                profile.FarHorizonsProfile.Symspeech = null;
+
+            if (humanoid.SiliconSymspeech is { } siliconSymspeech)
+                profile.FarHorizonsProfile.SiliconSymspeech = new FarHorizonsModel.SymspeechDTO()
+                {
+                    Voice = siliconSymspeech.Voice.Id,
+                    Pitch = siliconSymspeech.Pitch,
+                    Speed = siliconSymspeech.Speed,
+                    Pause = siliconSymspeech.Pause,
+                    Polyphony = siliconSymspeech.Polyphony,
+                    Volume = siliconSymspeech.Volume,
+                };
+            else
+                profile.FarHorizonsProfile.SiliconSymspeech = null;
+            
             // Far Horizons end
 
             foreach (var (role, loadouts) in extraLoadouts) // Far Horizons species loadout

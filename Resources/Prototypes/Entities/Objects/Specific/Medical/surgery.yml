@@ -95,14 +95,14 @@
       path: /Audio/_Starlight/Medical/Surgery/cautery1.ogg
     endSound:
       path: /Audio/_Starlight/Medical/Surgery/cautery2.ogg
+  #- type: HeldSpeedModifier
+  #  walkModifier: 1
+  #  sprintModifier: 0.9
   #FarHorizons End
-  - type: HeldSpeedModifier
-    walkModifier: 1
-    sprintModifier: 0.9
   - type: MeleeWeapon
     damage:
       types:
-        Heat: 0
+        Heat: 8 #FH
   - type: Tag
     tags:
       - CyberHandItem
@@ -186,14 +186,14 @@
     speed: 1.2
     startSound:
       path: /Audio/_Starlight/Medical/Surgery/saw.ogg
+  #- type: HeldSpeedModifier
+  #  walkModifier: 1
+  #  sprintModifier: 0.9
   #FarHorizons End
-  - type: HeldSpeedModifier
-    walkModifier: 1
-    sprintModifier: 0.9
   - type: MeleeWeapon
     damage:
       types:
-        Piercing: 0
+        Piercing: 8 #FH
   - type: Tag
     tags:
       - CyberHandItem
@@ -292,14 +292,14 @@
       path: /Audio/_Starlight/Medical/Surgery/scalpel1.ogg
     endSound:
       path: /Audio/_Starlight/Medical/Surgery/scalpel2.ogg
+#  - type: HeldSpeedModifier
+#    walkModifier: 1
+#    sprintModifier: 0.9
   #FarHorizons End
-  - type: HeldSpeedModifier
-    walkModifier: 1
-    sprintModifier: 0.9
   - type: MeleeWeapon
     damage:
       types:
-        Slash: 0
+        Slash: 6 #FH
   - type: Tag
     tags:
       - CyberHandItem
@@ -497,10 +497,10 @@
       path: /Audio/_Starlight/Medical/Surgery/retractor1.ogg
     endSound:
       path: /Audio/_Starlight/Medical/Surgery/retractor2.ogg
+  # - type: HeldSpeedModifier
+  #   walkModifier: 1
+  #   sprintModifier: 0.9
   #FarHorizons end
-  - type: HeldSpeedModifier
-    walkModifier: 1
-    sprintModifier: 0.9
   - type: Tag
     tags:
       - CyberHandItem
@@ -593,10 +593,10 @@
     speed: 1.2
     startSound:
       path: /Audio/_Starlight/Medical/Surgery/hemostat1.ogg
+  #- type: HeldSpeedModifier
+  #   walkModifier: 1
+  #  sprintModifier: 0.9
   #FarHorizons End
-  - type: HeldSpeedModifier
-    walkModifier: 1
-    sprintModifier: 0.9
   - type: Tag
     tags:
       - CyberHandItem
@@ -701,10 +701,10 @@
     speed: 1.2
     startSound:
       path: /Audio/_Starlight/Medical/Surgery/bone_setter.ogg
+  #- type: HeldSpeedModifier
+  #  walkModifier: 1
+  #  sprintModifier: 0.9
   #FarHorizons End
-  - type: HeldSpeedModifier
-    walkModifier: 1
-    sprintModifier: 0.9
   - type: Tag
     tags:
       - CyberHandItem
@@ -882,14 +882,15 @@
       path: /Audio/_Starlight/Medical/Surgery/saw.ogg
     endSound:
       path: /Audio/Items/drill_hit.ogg
+  #- type: HeldSpeedModifier
+  #  walkModifier: 1
+  #  sprintModifier: 0.9
   #FarHorizons End
-  - type: HeldSpeedModifier
-    walkModifier: 1
-    sprintModifier: 0.9
   - type: MeleeWeapon
     damage:
       types:
-        Slash: 0
+        Slash: 10 #FH
+    attackRate: 0.7
   - type: Tag
     tags:
       - CyberHandItem

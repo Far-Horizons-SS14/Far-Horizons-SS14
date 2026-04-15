@@ -1,10 +1,16 @@
 #region =NanoTrasen=
-# Armory - Gun Base
+
+
+
+
+
+
+#region Gun Base
 - type: entity
   abstract: true
   id: ShelfArmoryBase
   parent: ShelfBaseReinforced
-  name: armory weapon rack
+  name: Armory Weapon Rack
   description: Stores guns, but with STYLE!
   components:
   - type: Sprite
@@ -69,7 +75,7 @@
   - type: AccessReader
     access: [["Armory"]]
   - type: Storage
-    maxItemSize: Huge
+    maxItemSize: Huge # Left / Down (from top) / Right / Up (from bottom)
     grid:
     - 0,0,3,2 #Long 1
     - 5,0,8,2 #Long 2
@@ -81,8 +87,97 @@
     - 5,4,8,4 #Pistol 3&4
     - 5,5,5,5 #Pistol Bottom 3
     - 7,5,7,5 #Pistol Bottom 4
-    - 10,4,13,9 #Ammo 1
-    - 15,4,18,9 #Ammo 2
+    - 2,7,6,8 #Ammo Box - 1
+    - 2,10,6,11 #Ammo Box - 2
+    - 10,4,13,11 #Ammo 1
+    - 15,4,18,11 #Ammo 2
+
+#region Mixed Gun Base
+- type: entity
+  abstract: true
+  id: ShelfArmoryBaseMixed
+  parent: ShelfBaseReinforced
+  name: Mixed Armory Gun Rack
+  description: Stores guns, but with STYLE!
+  components:
+  - type: Sprite
+    sprite: Structures/Storage/closet.rsi
+    noRot: true
+    layers:
+    - state: shotguncase
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: shotguncase_door
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+      shader: unshaded
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+    - state: paper
+      visible: false
+      sprite: Structures/Storage/closet_labels.rsi
+      offset: "-0.065,0"
+      map: ["enum.PaperLabelVisuals.Layer"]
+    - state: panel_open
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+      visible: false
+    - state: electrified_ai
+      sprite: Interface/Misc/ai_hud.rsi
+      shader: unshaded
+      visible: false
+      map: ["enum.ElectrifiedLayers.HUD"]
+    - state: electrified
+      sprite: Effects/electricity.rsi
+      shader: unshaded
+      visible: false
+      map: ["enum.ElectrifiedLayers.Sparks"]
+#    sprite: _Afterlight/Structures/Storage/closet-large.rsi
+#    layers:
+#    - state: lectercase
+#      map: ["enum.StorageVisualLayers.Base"]
+#    - state: unlocked
+#      shader: unshaded
+#    - state: lecter-0
+#    - map: ["enum.StorageFillLayers.Fill"]
+#    - state: closed
+#      map: ["enum.StorageVisualLayers.Door"]
+#    - state: locked
+#      map: ["enum.LockVisualLayers.Lock"]
+#      shader: unshaded
+#  - type: StorageFillVisualizer
+#    maxFillLevels: 5
+#    fillBaseName: lecter
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: StructuralMetallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 75
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: AccessReader
+    access: [["Armory"]]
+  - type: Storage
+    maxItemSize: Huge # Left / Down (from top) / Right / Up (from bottom)
+    grid:
+    - 0,0,3,2 #Long 1
+    - 5,0,8,2 #Long 2
+    - 10,0,13,2 #Long 3
+    - 15,0,18,2 #Long 4
+    - 0,4,3,4 #Pistol 1&2
+    - 0,5,0,5 #Pistol Bottom 1
+    - 2,5,2,5 #Pistol Bottom 2
+    - 5,4,8,4 #Pistol 3&4
+    - 5,5,5,5 #Pistol Bottom 3
+    - 7,5,7,5 #Pistol Bottom 4
+    - 0,7,8,8 #Ammo Box - 1
+    - 2,10,7,11 #Ammo Box - 2
+    - 10,4,13,11 #Ammo 1
+    - 15,4,18,11 #Ammo 2
 
 # Armory - Armor Base
 - type: entity
@@ -396,6 +491,8 @@
         - MagazineMagnum
         - IFV-50
         - MagazineRifle38
+        - AmmoBoxRevolver38
+        - AmmoBoxPistol9mm
 
 #region Lecter Type-T
 - type: entity
@@ -428,11 +525,13 @@
         - MagazineMagnum
         - Lecter
         - MagazineRifle556
+        - AmmoBoxRifle556
+        - AmmoBoxPistol9mm
 
 #region Mixed Rifles
 - type: entity
   id: ShelfArmoryMixedRifle
-  parent: ShelfArmoryBase
+  parent: ShelfArmoryBaseMixed
   name: Mixed Rifle Rack
   description: Holds two Lecter Type-T & IFV-50-T rifles as well as four Enforcer Type-T Pistols.
   suffix: NT
@@ -462,6 +561,9 @@
         - IFV-50
         - MagazineRifle556
         - MagazineRifle38
+        - AmmoBoxRifle556
+        - AmmoBoxRevolver38
+        - AmmoBoxPistol9mm
 
 # Armory - Riot Shotgun
 - type: entity
@@ -658,8 +760,10 @@
     - 5,4,8,4
     - 5,5,5,5
     - 7,5,7,5
-    - 10,4,13,9
-    - 15,4,18,9
+    - 2,7,6,8 #Ammo Box - 1
+    - 2,10,6,11 #Ammo Box - 2
+    - 10,4,13,11 #Ammo 1
+    - 15,4,18,11 #Ammo 2
     whitelist:
       tags:
         - Sidearm
@@ -667,6 +771,7 @@
         - MagazineMagnum
         - Drozd
         - MagazinePistolSubMachineGunSP
+        - AmmoBoxPistol9mm
 
 #region P2-91-T
 - type: entity
@@ -702,8 +807,10 @@
     - 5,4,8,4
     - 5,5,5,5
     - 7,5,7,5
-    - 10,4,13,9
-    - 15,4,18,9
+    - 2,7,6,8 #Ammo Box - 1
+    - 2,10,6,11 #Ammo Box - 2
+    - 10,4,13,11 #Ammo 1
+    - 15,4,18,11 #Ammo 2
     whitelist:
       tags:
         - Sidearm
@@ -711,6 +818,7 @@
         - MagazineMagnum
         - P291
         - MagazinePistolSubMachineGunSP
+        - AmmoBoxPistol9mm
 
 #region Mixed SMGs
 - type: entity
@@ -746,8 +854,10 @@
     - 5,4,8,4
     - 5,5,5,5
     - 7,5,7,5
-    - 10,4,13,9
-    - 15,4,18,9
+    - 2,7,6,8 #Ammo Box - 1
+    - 2,10,6,11 #Ammo Box - 2
+    - 10,4,13,11 #Ammo 1
+    - 15,4,18,11 #Ammo 2
     whitelist:
       tags:
         - Sidearm
@@ -756,6 +866,7 @@
         - P291
         - Drozd
         - MagazinePistolSubMachineGunSP
+        - AmmoBoxPistol9mm
 
 # Armory - Laser Rifle
 - type: entity
@@ -1058,6 +1169,8 @@
         - MagazineMagnum
         - IFV-50
         - MagazineRifle38
+        - AmmoBoxRevolver38
+        - AmmoBoxPistol9mm
 
 #region Lecter Type-S
 - type: entity
@@ -1090,6 +1203,8 @@
         - MagazineMagnum
         - Lecter
         - MagazineRifle556
+        - AmmoBoxRifle556
+        - AmmoBoxPistol9mm
 
 #region Mixed Rifles
 - type: entity
@@ -1124,6 +1239,9 @@
         - IFV-50
         - MagazineRifle556
         - MagazineRifle38
+        - AmmoBoxRifle556
+        - AmmoBoxRevolver38
+        - AmmoBoxPistol9mm
 
 #region Drozd Type-S
 - type: entity
@@ -1160,8 +1278,10 @@
     - 5,4,8,4
     - 5,5,5,5
     - 7,5,7,5
-    - 10,4,13,9
-    - 15,4,18,9
+    - 2,7,6,8 #Ammo Box - 1
+    - 2,10,6,11 #Ammo Box - 2
+    - 10,4,13,11 #Ammo 1
+    - 15,4,18,11 #Ammo 2
     whitelist:
       tags:
         - Sidearm
@@ -1169,6 +1289,7 @@
         - MagazineMagnum
         - Drozd
         - MagazinePistolSubMachineGunSP
+        - AmmoBoxPistol9mm
 
 #region P2-91-S
 - type: entity
@@ -1204,8 +1325,10 @@
     - 5,4,8,4
     - 5,5,5,5
     - 7,5,7,5
-    - 10,4,13,9
-    - 15,4,18,9
+    - 2,7,6,8 #Ammo Box - 1
+    - 2,10,6,11 #Ammo Box - 2
+    - 10,4,13,11 #Ammo 1
+    - 15,4,18,11 #Ammo 2
     whitelist:
       tags:
         - Sidearm
@@ -1213,6 +1336,7 @@
         - MagazineMagnum
         - P291
         - MagazinePistolSubMachineGunSP
+        - AmmoBoxPistol9mm
 
 #region Mixed SMGs
 - type: entity
@@ -1248,8 +1372,10 @@
     - 5,4,8,4
     - 5,5,5,5
     - 7,5,7,5
-    - 10,4,13,9
-    - 15,4,18,9
+    - 2,7,6,8 #Ammo Box - 1
+    - 2,10,6,11 #Ammo Box - 2
+    - 10,4,13,11 #Ammo 1
+    - 15,4,18,11 #Ammo 2
     whitelist:
       tags:
         - Sidearm
@@ -1258,3 +1384,4 @@
         - P291
         - Drozd
         - MagazinePistolSubMachineGunSP
+        - AmmoBoxPistol9mm

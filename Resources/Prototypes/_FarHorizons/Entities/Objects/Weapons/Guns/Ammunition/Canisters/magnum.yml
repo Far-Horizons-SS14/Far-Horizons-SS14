@@ -1,0 +1,183 @@
+- type: entity
+  abstract: true
+  parent: BaseItem
+  id: BaseMagazineCanisterMagnum
+  components:
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeMagnum
+    proto: CartridgeMagnumSP
+    capacity: 128 # 16x mag size
+  - type: Item
+    size: Large
+    shape:
+    - 0,0,2,1
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Canisters/bullet_canister.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: b.44
+  - type: MagazineVisuals
+    magState: mag
+    steps: 15
+    zeroVisible: false
+  - type: Appearance
+
+# Boxes
+- type: entity
+  parent: BaseMagazineCanisterMagnum
+  id: MagazineCanisterMagnum
+  name: .44 Magnum Ammunition Canister (Revolver Any)
+  description: A heavy duty metal canister of .44 Revolver rounds.
+  components:
+  - type: BallisticAmmoProvider
+    proto: null
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: b.44
+
+- type: entity
+  parent: BaseMagazineCanisterMagnum
+  id: MagazineCanisterMagnumHP
+  name: .44 Magnum Ammunition Canister (Revolver HP)
+  description: A heavy duty metal canister of Hollow-Point .44 Revolver rounds. Effective against unarmored targets.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeMagnumHP
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: hp
+    - state: b.44
+
+- type: entity
+  parent: BaseMagazineCanisterMagnum
+  id: MagazineCanisterMagnumSP
+  name: .44 Magnum Ammunition Canister (Revolver SP)
+  description: A heavy duty metal canister of Soft-Point .44 Revolver rounds. Effective against lightly-armored targets.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeMagnumSP
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: sp
+    - state: b.44
+
+- type: entity
+  parent: BaseMagazineCanisterMagnum
+  id: MagazineCanisterMagnumFMJ
+  name: .44 Magnum Ammunition Canister (Revolver FMJ)
+  description: A heavy duty metal canister of Full Metal Jacket .44 Revolver rounds. Effective against armored targets.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeMagnumFMJ
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: fmj
+    - state: b.44
+
+- type: entity
+  id: MagazineCanisterMagnumAP
+  parent: BaseMagazineCanisterMagnum
+  name: .44 Magnum Ammunition Canister (Revolver AP)
+  description: A heavy duty metal canister of Armor-Piercing .44 Revolver rounds. Effective against heavily armored targets.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeMagnumAP
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: ap
+    - state: b.44
+
+- type: entity
+  parent: BaseMagazineCanisterMagnum
+  id: MagazineCanisterMagnumPractice
+  name: .44 Magnum Ammunition Canister (Revolver Practice)
+  description: A heavy duty metal canister of Chalk-Loaded .44 Revolver rounds. Used for target practice.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeMagnumPractice
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: practice
+    - state: b.44
+
+- type: entity
+  id: MagazineCanisterMagnumIncendiary
+  parent: BaseMagazineCanisterMagnum
+  name: .44 Magnum Ammunition Canister (Revolver Incendiary)
+  description: A heavy duty metal canister of Self-Igniting .44 Revolver rounds. Burns people alive.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeMagnumIncendiary
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: incendiary
+    - state: b.44
+
+- type: entity
+  id: MagazineCanisterMagnumUranium
+  parent: BaseMagazineCanisterMagnum
+  name: .44 Magnum Ammunition Canister (Revolver Uranium)
+  description: A heavy duty metal canister of Uranium-Core .44 Revolver rounds. Delivers radiation poisoning on contact.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeMagnumUranium
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: uranium
+    - state: b.44
+
+- type: entity
+  parent: BaseMagazineCanisterMagnum
+  id: MagazineCanisterMagnumRubber
+  name: .44 Magnum Ammunition Canister (Revolver Rubber)
+  description: A heavy duty metal canister of Rubber .44 Revolver rounds. Mostly harmless.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeMagnumRubber
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: rubber
+    - state: b.44

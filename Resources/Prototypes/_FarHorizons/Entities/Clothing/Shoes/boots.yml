@@ -94,3 +94,14 @@
 - type: entity
   parent: [ ClothingShoesBootsCombatSyndi, ClothingShoesBootsJackFilled ]
   id: ClothingShoesBootsCombatSyndiFilled
+
+#region Commie
+- type: entity
+  id: ClothingShoesBootsCowboyBlackCommieFilled
+  parent:
+  - ClothingShoesBootsCowboyBlack
+  - ClothingShoesBootsSecFilled
+  suffix: USSP
+  components:
+  - type: ClothingSlowOnDamageModifier
+    modifier: 0.5

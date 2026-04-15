@@ -918,6 +918,84 @@ namespace Content.Server.Database.Migrations.Postgres
                         });
                 });
 
+            modelBuilder.Entity("Content.Server.Database.FarHorizonsModel+FarHorizonsProfile", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasColumnName("far_horizons_profile_id");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("ProfileId")
+                        .HasColumnType("integer")
+                        .HasColumnName("profile_id");
+
+                    b.Property<int?>("SiliconSymspeechId")
+                        .HasColumnType("integer")
+                        .HasColumnName("silicon_symspeech_id");
+
+                    b.Property<int?>("SymspeechId")
+                        .HasColumnType("integer")
+                        .HasColumnName("symspeech_id");
+
+                    b.HasKey("Id")
+                        .HasName("PK_far_horizons_profile");
+
+                    b.HasIndex("ProfileId")
+                        .IsUnique();
+
+                    b.HasIndex("SiliconSymspeechId")
+                        .IsUnique()
+                        .HasDatabaseName("IX_far_horizons_profile_silicon_symspeech_id");
+
+                    b.HasIndex("SymspeechId")
+                        .IsUnique()
+                        .HasDatabaseName("IX_far_horizons_profile_symspeech_id");
+
+                    b.ToTable("far_horizons_profile", (string)null);
+                });
+
+            modelBuilder.Entity("Content.Server.Database.FarHorizonsModel+SymspeechDTO", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasColumnName("fh_symspeech_id");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<float>("Pause")
+                        .HasColumnType("real")
+                        .HasColumnName("pause");
+
+                    b.Property<int>("Pitch")
+                        .HasColumnType("integer")
+                        .HasColumnName("pitch");
+
+                    b.Property<int>("Polyphony")
+                        .HasColumnType("integer")
+                        .HasColumnName("polyphony");
+
+                    b.Property<float>("Speed")
+                        .HasColumnType("real")
+                        .HasColumnName("speed");
+
+                    b.Property<string>("Voice")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("voice");
+
+                    b.Property<float>("Volume")
+                        .HasColumnType("real")
+                        .HasColumnName("volume");
+
+                    b.HasKey("Id")
+                        .HasName("PK_fh_symspeech");
+
+                    b.ToTable("fh_symspeech", (string)null);
+                });
+
             modelBuilder.Entity("Content.Server.Database.IPIntelCache", b =>
                 {
                     b.Property<int>("Id")
@@ -1246,11 +1324,6 @@ namespace Content.Server.Database.Migrations.Postgres
                         .HasColumnType("text")
                         .HasColumnName("sex");
 
-                    b.Property<string>("SiliconVoice")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("silicon_voice");
-
                     b.Property<string>("SkinColor")
                         .IsRequired()
                         .HasColumnType("text")
@@ -1268,11 +1341,6 @@ namespace Content.Server.Database.Migrations.Postgres
                         .IsRequired()
                         .HasColumnType("text")
                         .HasColumnName("species");
-
-                    b.Property<string>("Voice")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("voice");
 
                     b.HasKey("Id")
                         .HasName("PK_profile");
@@ -2144,6 +2212,34 @@ namespace Content.Server.Database.Migrations.Postgres
                     b.Navigation("Server");
                 });
 
+            modelBuilder.Entity("Content.Server.Database.FarHorizonsModel+FarHorizonsProfile", b =>
+                {
+                    b.HasOne("Content.Server.Database.Profile", "Profile")
+                        .WithOne("FarHorizonsProfile")
+                        .HasForeignKey("Content.Server.Database.FarHorizonsModel+FarHorizonsProfile", "ProfileId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("FK_far_horizons_profile_profile_profile_id");
+
+                    b.HasOne("Content.Server.Database.FarHorizonsModel+SymspeechDTO", "SiliconSymspeech")
+                        .WithOne()
+                        .HasForeignKey("Content.Server.Database.FarHorizonsModel+FarHorizonsProfile", "SiliconSymspeechId")
+                        .OnDelete(DeleteBehavior.SetNull)
+                        .HasConstraintName("FK_far_horizons_profile_fh_symspeech_silicon_symspeech_id");
+
+                    b.HasOne("Content.Server.Database.FarHorizonsModel+SymspeechDTO", "Symspeech")
+                        .WithOne()
+                        .HasForeignKey("Content.Server.Database.FarHorizonsModel+FarHorizonsProfile", "SymspeechId")
+                        .OnDelete(DeleteBehavior.SetNull)
+                        .HasConstraintName("FK_far_horizons_profile_fh_symspeech_symspeech_id");
+
+                    b.Navigation("Profile");
+
+                    b.Navigation("SiliconSymspeech");
+
+                    b.Navigation("Symspeech");
+                });
+
             modelBuilder.Entity("Content.Server.Database.Job", b =>
                 {
                     b.HasOne("Content.Server.Database.Profile", "Profile")
@@ -2451,6 +2547,8 @@ namespace Content.Server.Database.Migrations.Postgres
                     b.Navigation("CDProfile");
 
                     b.Navigation("CharacterInfo");
+
+                    b.Navigation("FarHorizonsProfile");
 
                     b.Navigation("Jobs");
 

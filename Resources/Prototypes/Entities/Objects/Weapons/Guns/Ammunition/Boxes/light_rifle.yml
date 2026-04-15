@@ -3,7 +3,7 @@
   parent: BaseItem
   id: BaseMagazineBoxLightRifle
   name: ammunition box (.30 rifle)
-  description: 60 round box of .30 Rifle ammunition. #Far Horizons
+  description: 120 round box of .30 Rifle ammunition. #Far Horizons
   components:
   - type: BallisticAmmoProvider
     mayTransfer: true
@@ -11,7 +11,7 @@
       tags:
         - CartridgeLightRifle
     proto: CartridgeLightRifleSP
-    capacity: 60
+    capacity: 120 #FH - 4x mag size
   - type: Item
     size: Small
   - type: ContainerContainer

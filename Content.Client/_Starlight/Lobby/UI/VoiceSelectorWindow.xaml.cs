@@ -1,3 +1,4 @@
+// Far Horizons edit - we don't use this one, we have our own (SymspeechVoiceSelectorWindow)
 using System.Linq;
 using Content.Shared.Humanoid;
 using Content.Shared.Starlight.TextToSpeech;
@@ -74,7 +75,7 @@ namespace Content.Client._Starlight.Lobby.UI
 
         public void FilterAndUpdateVoices()
         {
-            var voices = Voices.Where(v => (_filter == null || v.Sex == _filter) && Loc.GetString(v.Name).StartsWith(SearchLine.Text, StringComparison.InvariantCultureIgnoreCase)).ToList();
+            var voices = Voices.Where(v => Loc.GetString(v.Name).StartsWith(SearchLine.Text, StringComparison.InvariantCultureIgnoreCase)).ToList(); // Far Horizons - Remove Sex
             UpdateVoices(voices, updateList: false);
         }
 
@@ -87,7 +88,7 @@ namespace Content.Client._Starlight.Lobby.UI
             }
             VoiceList.Clear();
             foreach (var voice in voices)
-                VoiceList.AddItem($"[{voice.Sex}] {Loc.GetString(voice.Name)}", metadata: voice);
+                VoiceList.AddItem($"{Loc.GetString(voice.Name)}", metadata: voice); // Far Horizons - Remove Sex
 
             if (CurrentVoice != null)
                 SelectVoice(CurrentVoice);

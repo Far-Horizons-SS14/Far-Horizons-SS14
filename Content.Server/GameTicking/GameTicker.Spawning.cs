@@ -37,6 +37,7 @@ using Content.Shared._Starlight.Language.Components;
 using Content.Shared._Starlight.Language.Systems;
 using Content.Shared._FarHorizons.Factions;
 using System.Collections.Immutable;
+using Content.Shared.Starlight.TextToSpeech;
 
 namespace Content.Server.GameTicking
 {
@@ -468,11 +469,27 @@ namespace Content.Server.GameTicking
             DebugTools.AssertNotNull(mobMaybe);
             mob = mobMaybe!.Value;
 
-            //starlight start
+            //Far Horizons start
             //handle character voices
-            newMind.Comp.Voice = character.Voice;
-            newMind.Comp.SiliconVoice = character.SiliconVoice;
-            //starlight end
+            newMind.Comp.Symspeech = character.Symspeech ?? character.DefaultSymspeech();
+
+            var siliconSymspeech = character.SiliconSymspeech;
+            
+            if (siliconSymspeech is null)
+            {
+                var defaultSiliconVoice = _prototypeManager.Index<VoicePrototype>(Symspeech.DefaultSiliconVoice);
+                siliconSymspeech = new Symspeech(
+                    defaultSiliconVoice.ID,
+                    defaultSiliconVoice.DefaultPitch,
+                    defaultSiliconVoice.DefaultSpeed,
+                    defaultSiliconVoice.DefaultPause,
+                    defaultSiliconVoice.DefaultPolyphony,
+                    defaultSiliconVoice.DefaultVolume
+                    );
+            }
+            
+            newMind.Comp.SiliconSymspeech = siliconSymspeech;
+            //Far Horizons end
 
             _mind.TransferTo(newMind, mob);
 

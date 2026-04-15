@@ -1,0 +1,1 @@
+syndicate-borgi-access-reader-examination = Access is generally restricted to personnel with [color=yellow]Command[/color] or [color=yellow]Robotics[/color] access.

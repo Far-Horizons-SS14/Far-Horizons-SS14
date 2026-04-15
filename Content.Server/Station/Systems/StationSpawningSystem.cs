@@ -23,6 +23,7 @@ using Robust.Shared.Map;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+using Content.Shared.Starlight.TextToSpeech; // Far Horizons
 // Starlight Start
 using Prometheus;
 using Robust.Server.Containers;
@@ -179,6 +180,10 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
             _visualBody.ApplyProfileTo(entity.Value, profile);
             _humanoidProfile.ApplyProfileTo(entity.Value, profile);
             _metaSystem.SetEntityName(entity.Value, profile.Name);
+
+            // Far Horizons edit
+            if (TryComp<TextToSpeechComponent>(entity.Value, out var ttsComp))
+                ttsComp.Symspeech = profile.Symspeech ?? profile.DefaultSymspeech();
 
             //Starlight remove
             // if (profile.FlavorText != "" && _configurationManager.GetCVar(CCVars.FlavorText))
