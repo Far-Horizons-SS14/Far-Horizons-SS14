@@ -25,6 +25,7 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
     [Dependency] private readonly InventorySystem _inv = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly RemoteEyeSystem _remoteEye = default!;
+    [Dependency] private readonly MetaDataSystem _metaData = default!; //FarHorizons
 
     private static readonly EntProtoId<InstantActionComponent> _gizmoMark = "ActionGizmoMark";
     private static readonly EntProtoId<InstantActionComponent> _sendYourself = "ActionSendYourself";
@@ -51,6 +52,7 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
     private void AbductorScientistComponentStartup(Entity<AbductorScientistComponent> ent, ref ComponentStartup args)
     {
         ent.Comp.SpawnPosition = EnsureComp<TransformComponent>(ent).Coordinates;
+        _metaData.SetEntityName(ent.Owner, "Abductor Scientist", raiseEvents: false);
         
         EnsureComp<TransformComponent>(ent, out var xform);
         var console = _entityLookup.GetEntitiesInRange<AbductorConsoleComponent>(xform.Coordinates, 4, LookupFlags.Approximate | LookupFlags.Dynamic).FirstOrDefault();
@@ -65,6 +67,7 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
     private void AbductorAgentComponentStartup(Entity<AbductorAgentComponent> ent, ref ComponentStartup args)
     {
         ent.Comp.SpawnPosition = EnsureComp<TransformComponent>(ent).Coordinates;
+        _metaData.SetEntityName(ent.Owner, "Abductor Agent", raiseEvents: false);
         
         EnsureComp<TransformComponent>(ent, out var xform);
         var console = _entityLookup.GetEntitiesInRange<AbductorConsoleComponent>(xform.Coordinates, 4, LookupFlags.Approximate | LookupFlags.Dynamic).FirstOrDefault();

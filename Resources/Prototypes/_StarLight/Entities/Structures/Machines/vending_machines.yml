@@ -244,10 +244,10 @@
       range: 200
     - type: AbductorDispencer
     #FH Start
-    - type: DeviceList
     - type: DeviceNetwork
       deviceNetId: Wireless
       receiveFrequencyId: Abductor
+      transmitFrequencyId: Abductor
     - type: DeviceLinkSink
       ports:
         - DispenserReceiver

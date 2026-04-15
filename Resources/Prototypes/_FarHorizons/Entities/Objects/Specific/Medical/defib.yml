@@ -33,3 +33,27 @@
       - state: ready
         map: ["enum.PowerDeviceVisualLayers.Powered"]
         shader: unshaded
+
+- type: entity
+  id: DefibrillatorAbductor
+  parent: [ BaseDefibrillator, PowerCellSlotMediumItem ]
+  name: Abductor Defibrillator
+  description: A strange device able to revive the death with ease compared to the station defibs.
+  components:
+  - type: MultiHandedItem
+  - type: ToggleCellDraw
+  - type: PowerCellDraw
+    useCharge: 100
+  - type: Defibrillator
+    zapHeal:
+      types:
+        Asphyxiation: -200
+        Bloodloss: -200
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Specific/Medical/defibabductor.rsi
+    layers:
+      - state: icon
+      - state: screen
+        map: [ "enum.ToggleableVisuals.Layer" ]
+        visible: false
+        shader: unshaded
