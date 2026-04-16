@@ -62,3 +62,18 @@
   - type: StaticPrice
     price: 0
   - type: DnaSubstanceTrace
+
+- type: entity
+  id: ChemistryBottleChloralHydrate
+  suffix: Chloral Hydrate
+  parent: BaseChemistryBottleFilled
+  components:
+  - type: Label
+    currentLabel: reagent-name-chloral-hydrate
+  - type: SolutionContainerManager
+    solutions:
+      drink: # This solution name and target volume is hard-coded in ChemMasterComponent
+        maxVol: 30
+        reagents:
+        - ReagentId: ChloralHydrate
+          Quantity: 30
