@@ -93,12 +93,17 @@
   parent: [ OrganBaseHeart, OrganVulpkaninInternal, OrganVulpkaninMetabolizer ]
   id: OrganVulpkaninHeart
   components:
-    - type: Metabolizer
-      updateInterval: 0.8
+  - type: Metabolizer
+    updateInterval: 0.75
 
 - type: entity
   parent: [ OrganBaseStomach, OrganVulpkaninInternal, OrganVulpkaninMetabolizer ]
   id: OrganVulpkaninStomach
   components:
   - type: Metabolizer
-    updateInterval: 1.5
+    updateInterval: 0.75
+  - type: SolutionContainerManager
+    solutions:
+      food: {}
+      stomach:
+        maxVol: 100 #he hungers
