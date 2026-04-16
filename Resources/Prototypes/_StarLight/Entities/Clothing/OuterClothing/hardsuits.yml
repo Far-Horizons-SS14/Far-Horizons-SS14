@@ -327,26 +327,31 @@
     sprite: _Starlight/Clothing/OuterClothing/Hardsuits/sovietmarine.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/OuterClothing/Hardsuits/sovietmarine.rsi
+#FarHorizons - Start
+  - type: Item
+    size: Huge
   - type: PressureProtection
-    highPressureMultiplier: 0.2
+    highPressureMultiplier: 0.05
     lowPressureMultiplier: 1000
   - type: ExplosionResistance
-    damageCoefficient: 0.4
-  - type: BreathMask
-    allowedSlots: [ MASK, HEAD, OUTERCLOTHING ]
-  - type: IngestionBlocker
-  - type: IdentityBlocker
+    damageCoefficient: 0.5
+  - type: Pierceable
+    level: Metal
   - type: Armor
     modifiers:
+      flatReductions:
+        Piercing: 5
+        Heat: 4
       coefficients:
-        Blunt: 0.3
-        Slash: 0.3
-        Piercing: 0.3
-        Heat: 0.35
-        Radiation: 0.1
-        Caustic: 0.4
-    staminaModifier: 1
-  - type: LimbArmor # Far Horizons
+        Blunt: 0.5
+        Slash: 0.5
+        Piercing: 0.5
+        Heat: 0.5
+        Radiation: 0.5
+        Caustic: 0.5
+    staminaModifier: 0.3
+    ignoreKnockdown: true
+  - type: LimbArmor
     limbs:
       ArmRight: {}
       ArmLeft: {}
@@ -357,27 +362,30 @@
       FootRight: {}
       FootLeft: {}
   - type: ClothingSpeedModifier
-    walkModifier: 0.90
-    sprintModifier: 0.90
+    walkModifier: 0.9
+    sprintModifier: 0.9
+    requireActivated: false
   - type: HeldSpeedModifier
   - type: FootstepModifier
     footstepSoundCollection:
       collection: FootstepHeavy
       params:
-        volume: -6
+        pitch: 0.9
         variation: 0.09
   - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitSovietMarine
+    clothingPrototype: ClothingHeadHelmetHardsuitSyndie
   - type: Tag
     tags:
     - MonkeyWearable
+    - Hardsuit
     - WhitelistChameleon
-    - FootstepSound
-    - IPCExternalCooling # Far Horizons
-  - type: Item
-    size: Huge
-  - type: SpaceRescuePingSender # Far Horizons
+    - ScurretWearable
+    - IPCExternalCooling
+  - type: StaticPrice
+    price: 5000
+  - type: SpaceRescuePingSender
     hidden: true
+#FarHorizons - End
 
 #QM's Luxury Maxim Hardsuit
 - type: entity

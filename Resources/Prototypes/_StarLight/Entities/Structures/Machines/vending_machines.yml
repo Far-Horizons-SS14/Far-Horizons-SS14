@@ -243,6 +243,15 @@
     - type: WirelessNetworkConnection
       range: 200
     - type: AbductorDispencer
+    #FH Start
+    - type: DeviceNetwork
+      deviceNetId: Wireless
+      receiveFrequencyId: Abductor
+      transmitFrequencyId: Abductor
+    - type: DeviceLinkSink
+      ports:
+        - DispenserReceiver
+    #FH End
 
 - type: entity
   parent: VendingMachineCondiments

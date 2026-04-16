@@ -106,7 +106,7 @@
   - type: Gun
     minAngle: 21
     maxAngle: 32
-    fireRate: 15
+    fireRate: 8 #FH - Good lord no
     selectedMode: FullAuto
     availableModes:
     - SemiAuto
@@ -118,8 +118,8 @@
     steps: 1
     zeroVisible: true
   - type: Appearance
-  - type: ChamberMagazineAmmoProvider
-    autoEject: true
+#  - type: ChamberMagazineAmmoProvider FH
+#    autoEject: true FH
   - type: ItemSlots
     slots:
       gun_magazine:

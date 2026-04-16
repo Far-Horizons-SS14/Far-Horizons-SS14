@@ -34,15 +34,15 @@ public sealed class LegsParalyzedSystem : EntitySystem
     {
         /*_standingSystem.Stand(uid);
         _bodySystem.UpdateMovementSpeed(uid);*/
-        RemComp<WormComponent>(uid); //FarHorizons
-        RemComp<KnockedDownComponent>(uid); //FarHorizons
+        RemCompDeferred<WormComponent>(uid); //FarHorizons
+        RemCompDeferred<KnockedDownComponent>(uid); //FarHorizons
     }
 
     private void OnBuckled(EntityUid uid, LegsParalyzedComponent component, ref BuckledEvent args)
     {
         //_standingSystem.Stand(uid);
-        RemComp<WormComponent>(uid); //FarHorizons
-        RemComp<KnockedDownComponent>(uid); //FarHorizons
+        RemCompDeferred<WormComponent>(uid); //FarHorizons
+        RemCompDeferred<KnockedDownComponent>(uid); //FarHorizons
     }
 
     private void OnUnbuckled(EntityUid uid, LegsParalyzedComponent component, ref UnbuckledEvent args)

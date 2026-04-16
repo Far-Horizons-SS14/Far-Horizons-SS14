@@ -1,4 +1,16 @@
-### Total Conversion category
+#region Conversion
+- type: listing
+  id: SKBWhistle
+  name: whistle-name
+  description: whistle-desc
+  productEntity: CommanderWhistle
+  cost:
+    Conversion: 1
+  categories:
+  - RevUplinkPassive
+  conditions:
+  - !type:StockLimitedListingCondition
+    stockLimit: 1
 
 - type: listing
   id: SKBCheapSunglassesConversion
@@ -6,7 +18,7 @@
   description: glasses-desc
   productEntity: ClothingEyesGlassesSKBGlasses
   cost:
-    Conversion: 10
+    Conversion: 5
   categories:
   - RevUplinkPassive
   conditions:
@@ -19,34 +31,7 @@
   description: SKB-implanter-desc
   productEntity: USSPUplinkImplanterEmpty
   cost:
-    Conversion: 13
-  categories:
-  - RevUplinkPassive
-  conditions:
-  - !type:StockLimitedListingCondition
-    stockLimit: 1
-
-- type: listing
-  id: USSPSovietKeyConversion
-  name: soviet-encryption-key-name
-  description: soviet-encryption-key-conversion-desc
-  icon: { sprite: _Starlight/Objects/Devices/encryption_keys.rsi, state: soviet_label }
-  productEntity: EncryptionKeySoviet
-  cost:
-    Conversion: 15
-  categories:
-  - RevUplinkPassive
-  conditions:
-  - !type:StockLimitedListingCondition
-    stockLimit: 2
-
-- type: listing
-  id: SKBWhistle
-  name: whistle-name
-  description: whistle-desc
-  productEntity: CommanderWhistle
-  cost:
-    Conversion: 19
+    Conversion: 5
   categories:
   - RevUplinkPassive
   conditions:
@@ -59,7 +44,7 @@
   description: banner-desc
   productEntity: RevolutionaryHeldBanner
   cost:
-    Conversion: 14
+    Conversion: 7
   categories:
   - RevUplinkPassive
   conditions:
@@ -67,12 +52,52 @@
     stockLimit: 4
 
 - type: listing
+  id: USSPSovietKeyConversion
+  name: soviet-encryption-key-name
+  description: soviet-encryption-key-conversion-desc
+  icon: { sprite: _Starlight/Objects/Devices/encryption_keys.rsi, state: soviet_label }
+  productEntity: EncryptionKeySoviet
+  cost:
+    Conversion: 7
+  categories:
+  - RevUplinkPassive
+  conditions:
+  - !type:StockLimitedListingCondition
+    stockLimit: 2
+
+- type: listing
   id: UplinkCommiemovCircuitBoard
   name: lawboard-name
   description: lawboard-desc
   productEntity: CommiemovCircuitBoard
   cost:
-    Conversion: 18
+    Conversion: 9
+  categories:
+  - RevUplinkPassive
+  conditions:
+  - !type:StockLimitedListingCondition
+    stockLimit: 1
+
+- type: listing
+  id: UplinkCommandantBundle #Yes, you MAY protag. Once.
+  name: commandant-crate-name
+  description: commandant-crate-desc
+  productEntity: CrateSovietCommandant
+  cost:
+    Conversion: 10
+  categories:
+  - RevUplinkPassive
+  conditions:
+  - !type:StockLimitedListingCondition
+    stockLimit: 1
+
+- type: listing
+  id: UplinkCrateSovietSupply #Better version of rift only one.
+  name: supplies-crate-name
+  description: supplies-crate-desc
+  productEntity: CrateSovietSupply
+  cost:
+    Conversion: 10
   categories:
   - RevUplinkPassive
   conditions:
@@ -84,39 +109,21 @@
   id: RevSupplyRiftListing
   productEntity: RevSupplyRift
   cost:
-    Conversion: 20
+    Conversion: 10
   categories:
   - RevUplinkPassive
 
-### Telebonds category
-# Weapons, some modern some discontinued like the PPSH
-# The AKMS is candidate of discontinued weapons, but it's just a better DP28 right now.
-# - type: listing
-#   id: SKBAKMSweapon
-#   name: akms-weapon-name
-#   description: akms-weapon-desc
-#   productEntity: WeaponRifleAk
-#   cost:
-#     Telebond: 7
-#   categories:
-#   - RevUplinkWeaponry
-#   conditions:
-#   - !type:StockLimitedListingCondition
-#     stockLimit: 2
-
+#region Weapons (Tickets)
 - type: listing
   id: SKBMakarov
   name: makarov-name
   description: makarov-desc
   icon: { sprite: _Starlight/Objects/Weapons/Guns/Pistols/makarov.rsi, state: icon }
-  productEntity: WeaponPistolMakarov
+  productEntity: ClothingBackpackDuffelWeaponPistolMakarov
   cost:
-    Telebond: 3
+    Telebond: 1
   categories:
   - RevUplinkWeaponry
-  conditions:
-  - !type:StockLimitedListingCondition
-    stockLimit: 2
 
 - type: listing
   id: SNKVDFinka
@@ -128,37 +135,6 @@
     Telebond: 2
   categories:
   - RevUplinkWeaponry
-  conditions:
-  - !type:StockLimitedListingCondition
-    stockLimit: 2
-
-- type: listing
-  id: SKBMosin
-  name: mosin-name
-  description: mosin-desc
-  icon: { sprite: Objects/Weapons/Guns/Snipers/bolt_gun_wood.rsi, state: base }
-  productEntity: WeaponSniperMosin
-  cost:
-    Telebond: 4
-  categories:
-  - RevUplinkWeaponry
-  conditions:
-  - !type:StockLimitedListingCondition
-    stockLimit: 6
-
-- type: listing
-  id: SKBToz106
-  name: toz-name
-  description: toz-desc
-  icon: { sprite: _Starlight/Objects/Weapons/Guns/Shotguns/toz.rsi, state: base }
-  productEntity: WeaponShotgunToz106Extended
-  cost:
-    Telebond: 4
-  categories:
-  - RevUplinkWeaponry
-  conditions:
-  - !type:StockLimitedListingCondition
-    stockLimit: 4
 
 - type: listing
   id: SNKVDAPS
@@ -167,12 +143,42 @@
   productEntity: ClothingBackpackDuffelStechkinAPS
   icon: { sprite: _Starlight/Objects/Weapons/Guns/Pistols/aps.rsi, state: icon }
   cost:
-    Telebond: 15
+    Telebond: 2
   categories:
   - RevUplinkWeaponry
-  conditions:
-  - !type:StockLimitedListingCondition
-    stockLimit: 1
+
+- type: listing
+  id: SKBMosin
+  name: mosin-name
+  description: mosin-desc
+  icon: { sprite: Objects/Weapons/Guns/Snipers/bolt_gun_wood.rsi, state: base }
+  productEntity: ClothingBackpackDuffelBoltGunWood
+  cost:
+    Telebond: 2
+  categories:
+  - RevUplinkWeaponry
+
+- type: listing
+  id: SKBToz106
+  name: toz-name
+  description: toz-desc
+  icon: { sprite: _Starlight/Objects/Weapons/Guns/Shotguns/toz.rsi, state: base }
+  productEntity: ClothingBackpackDuffelWeaponShotgunToz106Extended
+  cost:
+    Telebond: 2
+  categories:
+  - RevUplinkWeaponry
+
+- type: listing
+  id: SKBAKMSweapon
+  name: akms-weapon-name
+  description: akms-weapon-desc
+  icon: { sprite: Objects/Weapons/Guns/Rifles/ak.rsi, state: icon }
+  productEntity: ClothingBackpackDuffelWeaponRifleAk
+  cost:
+    Telebond: 6
+  categories:
+  - RevUplinkWeaponry
 
 - type: listing
   id: SKBDP28
@@ -181,12 +187,9 @@
   icon: { sprite: _Starlight/Objects/Weapons/Guns/LMGs/DP28.rsi, state: icon }
   productEntity: ClothingBackpackDuffelDP28Bundle
   cost:
-    Telebond: 20
+    Telebond: 10
   categories:
   - RevUplinkWeaponry
-  conditions:
-  - !type:StockLimitedListingCondition
-    stockLimit: 1
 
 - type: listing
   id: SKBPPSH
@@ -195,14 +198,11 @@
   icon: { sprite: _Starlight/Objects/Weapons/Guns/SMGs/PPSh59.rsi, state: icon }
   productEntity: ClothingBackpackDuffelPPShBundle
   cost:
-    Telebond: 27
+    Telebond: 10
   categories:
   - RevUplinkWeaponry
-  conditions:
-  - !type:StockLimitedListingCondition
-    stockLimit: 1
 
-# Wearables
+#region Wearables
 - type: listing
   id: SKBSovietEVABundle
   name: soviet-eva-name
@@ -210,12 +210,9 @@
   icon: { sprite: _Starlight/Clothing/OuterClothing/Suits/soviet_eva.rsi, state: icon }
   productEntity: ClothingBackpackDuffelSovietEVABundle
   cost:
-    Telebond: 3
+    Telebond: 1
   categories:
   - RevUplinkWearables
-  conditions:
-  - !type:StockLimitedListingCondition
-    stockLimit: 4
 
 - type: listing
   id: SKBBandolier
@@ -223,12 +220,29 @@
   description: soviet-bandolier-desc
   productEntity: ClothingSovietBandolier
   cost:
-    Telebond: 2
+    Telebond: 1
   categories:
   - RevUplinkWearables
-  conditions:
-  - !type:StockLimitedListingCondition
-    stockLimit: 3
+
+- type: listing
+  id: SKBRig
+  name: soviet-rig-name
+  description: soviet-rig-desc
+  productEntity: ClothingBeltSovietMarineWebbing
+  cost:
+    Telebond: 1
+  categories:
+  - RevUplinkWearables
+
+- type: listing
+  id: SKBBelt
+  name: soviet-belt-name
+  description: soviet-belt-desc
+  productEntity: ClothingSovietBelt
+  cost:
+    Telebond: 1
+  categories:
+  - RevUplinkWearables
 
 - type: listing
   id: SKBGasMask
@@ -236,12 +250,20 @@
   description: soviet-gas-mask-desc
   productEntity: ClothingSovietGasMask
   cost:
-    Telebond: 2
+    Telebond: 1
   categories:
   - RevUplinkWearables
-  conditions:
-  - !type:StockLimitedListingCondition
-    stockLimit: 2
+
+- type: listing
+  id: SKBClothingBackpackDuffelSSFArmor
+  name: soviet-armor-name
+  description: soviet-armor-desc
+  icon: { sprite: _FarHorizons/Clothing/OuterClothing/Armor/security.rsi, state: icon }
+  productEntity: ClothingBackpackDuffelSSFArmor
+  cost:
+    Telebond: 1
+  categories:
+  - RevUplinkWearables
 
 - type: listing
   id: SKBCheapSunglasses
@@ -249,12 +271,19 @@
   description: glasses-desc
   productEntity: ClothingEyesGlassesSKBGlasses
   cost:
-    Telebond: 5
+    Telebond: 2
   categories:
   - RevUplinkWearables
-  conditions:
-  - !type:StockLimitedListingCondition
-    stockLimit: 1
+
+- type: listing
+  id: USSPCoat
+  name: soviet-coat-name
+  description: soviet-coat-desc
+  productEntity: ClothingOuterSovietCoat
+  cost:
+    Telebond: 2
+  categories:
+  - RevUplinkWearables
 
 - type: listing
   id: SSFHardsuit
@@ -263,27 +292,11 @@
   productEntity: ClothingBackpackDuffelMarineHardsuitBundle
   icon: { sprite: _Starlight/Clothing/OuterClothing/Hardsuits/sovietmarine.rsi, state: icon }
   cost:
-    Telebond: 29
+    Telebond: 6
   categories:
   - RevUplinkWearables
-  conditions:
-  - !type:StockLimitedListingCondition
-    stockLimit: 1
 
-- type: listing
-  id: USSPCoat
-  name: soviet-coat-name
-  description: soviet-coat-desc
-  productEntity: ClothingOuterSovietCoat
-  cost:
-    Telebond: 4
-  categories:
-  - RevUplinkWearables
-  conditions:
-  - !type:StockLimitedListingCondition
-    stockLimit: 4
-
-# Implants
+#region Implants
 
 - type: listing
   id: SKBImplanter
@@ -365,7 +378,7 @@
   - !type:StockLimitedListingCondition
     stockLimit: 1
 
-# Deception
+#region Deception
 
 - type: listing
   id: USSPSovietKey
@@ -377,11 +390,8 @@
     Telebond: 4
   categories:
   - RevUplinkDeception
-  conditions:
-  - !type:StockLimitedListingCondition
-    stockLimit: 5
 
-# Pointless
+#region Pointless
 
 - type: listing
   id: USSPMedals
@@ -392,9 +402,6 @@
     Telebond: 1
   categories:
   - RevUplinkPointless
-  conditions:
-  - !type:StockLimitedListingCondition
-    stockLimit: 2
 
 - type: listing
   id: USSPUshanka
@@ -405,9 +412,6 @@
     Telebond: 0
   categories:
   - RevUplinkPointless
-  conditions:
-  - !type:StockLimitedListingCondition
-    stockLimit: 4
 
 - type: listing
   id: USSPZaporozhianBundle
@@ -419,9 +423,6 @@
     Telebond: 1
   categories:
   - RevUplinkPointless
-  conditions:
-  - !type:StockLimitedListingCondition
-    stockLimit: 1
 
 - type: listing
   id: USSPVodkizine
@@ -432,6 +433,44 @@
     Telebond: 5
   categories:
   - RevUplinkPointless
-  conditions:
-  - !type:StockLimitedListingCondition
-    stockLimit: 1
+
+#region Bundles
+- type: listing
+  id: USSPCrateSovietBundleCombat
+  name: combat-bundle
+  description: combat-bundle-desc
+  productEntity: CrateSovietBundleCombat
+  cost:
+    Telebond: 3
+  categories:
+  - RevUplinkBundles
+
+- type: listing
+  id: USSPCrateSovietEVABundleCombat
+  name: combat-bundle-eva
+  description: combat-bundle-eva-desc
+  productEntity: CrateSovietEVABundleCombat
+  cost:
+    Telebond: 3
+  categories:
+  - RevUplinkBundles
+
+- type: listing
+  id: USSPCrateSovietBundleCombatAdvanced
+  name: combat-bundle-advanced
+  description: combat-bundle-advanced-desc
+  productEntity: CrateSovietBundleCombatAdvanced
+  cost:
+    Telebond: 5
+  categories:
+  - RevUplinkBundles
+
+- type: listing
+  id: USSPCrateSovietEVABundleCombatAdvanced
+  name: combat-bundle-eva-advanced
+  description: combat-bundle-eva-advanced-desc
+  productEntity: CrateSovietEVABundleCombatAdvanced
+  cost:
+    Telebond: 13
+  categories:
+  - RevUplinkBundles

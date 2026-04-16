@@ -17,6 +17,8 @@ using Robust.Shared.Prototypes;
 using System.Linq;
 using Content.Server.VendingMachines;
 using Content.Shared.VendingMachines;
+using Content.Server.DeviceLinking.Systems;
+using Robust.Shared.Utility;
 
 namespace Content.Server.Starlight.Antags.Abductor;
 
@@ -26,6 +28,7 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
     [Dependency] private readonly SharedItemSwitchSystem _itemSwitch = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly VendingMachineSystem _vending = default!;
+    [Dependency] private readonly DeviceLinkSystem _deviceLinkSystem = default!;
     
     public void InitializeConsole()
     {
@@ -216,20 +219,12 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
 
         if (computer.Comp.AlienPod == null)
         {
-            var xform = EnsureComp<TransformComponent>(computer.Owner);
-            var alienpad = _entityLookup.GetEntitiesInRange<AbductorAlienPadComponent>(xform.Coordinates, 4, LookupFlags.Approximate | LookupFlags.Dynamic)
-                .FirstOrDefault().Owner;
-            if (alienpad != default)
-                computer.Comp.AlienPod = GetNetEntity(alienpad);
+            computer.Comp.AlienPod = GetNetEntity(_deviceLinkSystem.GetLinkedSinks(computer.Owner, "AlienPadSender").FirstOrNull());
         }
 
         if (computer.Comp.Experimentator == null)
         {
-            var xform = EnsureComp<TransformComponent>(computer.Owner);
-            var experimentator = _entityLookup.GetEntitiesInRange<AbductorExperimentatorComponent>(xform.Coordinates, 4, LookupFlags.Approximate | LookupFlags.Dynamic)
-                .FirstOrDefault().Owner;
-            if (experimentator != default)
-                computer.Comp.Experimentator = GetNetEntity(experimentator);
+            computer.Comp.Experimentator = GetNetEntity(_deviceLinkSystem.GetLinkedSinks(computer.Owner, "ExperimentatorSender").FirstOrNull());
         }
         
         if (computer.Comp.Experimentator != null
@@ -244,11 +239,7 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
         
         if (computer.Comp.Dispencer == null)
         {
-            var xform = EnsureComp<TransformComponent>(computer.Owner);
-            var dispencer = _entityLookup.GetEntitiesInRange<AbductorDispencerComponent>(xform.Coordinates, 4, LookupFlags.Approximate | LookupFlags.Dynamic)
-                .FirstOrDefault().Owner;
-            if (dispencer != default)
-                computer.Comp.Dispencer = GetNetEntity(dispencer);
+            computer.Comp.Dispencer = GetNetEntity(_deviceLinkSystem.GetLinkedSinks(computer.Owner, "DispenserSender").FirstOrNull());
         }
         
         var armorLock = false;

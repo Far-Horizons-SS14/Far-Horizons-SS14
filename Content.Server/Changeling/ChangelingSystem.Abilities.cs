@@ -31,6 +31,7 @@ using Content.Server.Changeling.Systems;
 using Content.Shared.Humanoid;
 using Content.Shared.Body.Components;
 using Content.Shared.Chemistry.Reagent;
+using Content.Shared.Body;
 // Starlight edit end
 
 namespace Content.Server.Changeling;
@@ -39,6 +40,7 @@ public sealed partial class ChangelingSystem : EntitySystem
 {
     [Dependency] private readonly StatusEffectsSystem _statusEffect = default!;
     [Dependency] private readonly ChangelingIdentitySystem _changelingIdentitySystem = default!;
+    [Dependency] private readonly BodySystem _body = default!; //FarHorizons
 
     private const string PolytrinicAcidReagent = "PolytrinicAcid";
 
@@ -50,6 +52,7 @@ public sealed partial class ChangelingSystem : EntitySystem
         SubscribeLocalEvent<ChangelingComponent, StingExtractDNAEvent>(OnStingExtractDNA);
         SubscribeLocalEvent<ChangelingComponent, EnterStasisEvent>(OnEnterStasis);
         SubscribeLocalEvent<ChangelingComponent, ExitStasisEvent>(OnExitStasis);
+        SubscribeLocalEvent<DamageableComponent, BodyRelayedEvent<ExitStasisEvent>>(OnExitStasisOrgans);
 
         SubscribeLocalEvent<ChangelingComponent, CreateBoneShardEvent>(OnCreateBoneShard);
         SubscribeLocalEvent<ChangelingComponent, ToggleChitinousArmorEvent>(OnToggleArmor);
@@ -248,8 +251,12 @@ public sealed partial class ChangelingSystem : EntitySystem
 
         // heal of everything
         _damage.SetAllDamage(uid, 0);
+
+        if(TryComp<BodyComponent>(uid, out var body)) // FarHorizons
+            _body.RelayEvent((uid, body), new ExitStasisEvent()); // FarHorizons
+
         _mobState.ChangeMobState(uid, MobState.Alive);
-        _blood.TryModifyBloodLevel(uid, 1000);
+        _blood.TryModifyBloodLevel(uid, 300); // FarHorizons
         _blood.TryModifyBleedAmount(uid, -1000);
 
         _popup.PopupEntity(Loc.GetString("changeling-stasis-exit"), uid, uid);
@@ -258,6 +265,15 @@ public sealed partial class ChangelingSystem : EntitySystem
 
         args.Handled = true;
     }
+
+    // FarHorizons Start
+    private void OnExitStasisOrgans(Entity<DamageableComponent> ent, ref BodyRelayedEvent<ExitStasisEvent> args)
+    {
+        if(args.Args.Handled) return;
+        _damage.SetAllDamage(ent.Owner, 0);
+        args.Args.Handled = true;
+    }
+    // FarHorizons End
 
     #endregion
 

@@ -460,10 +460,10 @@ public abstract partial class SharedVehicleSystem : EntitySystem
                 _damageable.TryChangeDamage(passenger, damage / vcComp.PassengerSlot.ContainedEntities.Count, origin: args.Origin);
             }
         }
-        else if(HasComp<VehicleBuckleComponent>(ent) && component.Rider != null)
+        else if(HasComp<VehicleBuckleComponent>(ent) && component.Rider != null && !TerminatingOrDeleted(component.Rider.Value))
         {
             _damageable.TryChangeDamage(component.Rider.Value, args.DamageDelta, origin: args.Origin);
-            _color.RaiseEffect(Color.Red, new List<EntityUid>() { component.Rider.Value, }, Filter.Pvs(component.Rider.Value, entityManager: EntityManager));
+            _color.RaiseEffect(Color.Red, new List<EntityUid>() { component.Rider.Value }, Filter.Pvs(component.Rider.Value, entityManager: EntityManager));
         }
     }
 
@@ -875,7 +875,8 @@ public abstract partial class SharedVehicleSystem : EntitySystem
         _actions.GrantContainedActions(rider, vehicle);
         UpdateActions(rider, true);
 
-        _mover.SetRelay(rider, vehicle);
+        if (!TryComp<RelayInputMoverComponent>(rider, out var relay) || relay.RelayEntity != vehicle)
+            _mover.SetRelay(rider, vehicle);
         vehicleComp.Rider = rider;
         Dirty(vehicle, vehicleComp);
         
@@ -959,9 +960,9 @@ public abstract partial class SharedVehicleSystem : EntitySystem
         }
 
         if(HasComp<RelayInputMoverComponent>(rider))
-            RemComp<RelayInputMoverComponent>(rider);
+            RemCompDeferred<RelayInputMoverComponent>(rider);
         if(HasComp<RiderComponent>(rider))
-            RemComp<RiderComponent>(rider);
+            RemCompDeferred<RiderComponent>(rider);
                 
         if(TryComp<InputMoverComponent>(rider, out var imComp) && !imComp.CanMove)
             _actionBlocker.UpdateCanMove(rider);

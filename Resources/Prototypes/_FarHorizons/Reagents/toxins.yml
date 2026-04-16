@@ -8,22 +8,6 @@
   flavor: shocking
   color: "#ffe270"
   metabolisms:
-    Bloodstream:
-      effects:
-      - !type:HealthChange
-        conditions:
-        - !type:MetabolizerTypeCondition
-          type: [ Protogen, ProtoBird ] # Harmless to protogens
-          inverted: true
-        damage:
-          types: # Drinking battery acid is bad for you? Woh.
-            Shock: 0.5 
-            Caustic: 0.5
-      - !type:SatiateThirst
-        conditions:
-        - !type:MetabolizerTypeCondition
-          type: [ Protogen, ProtoBird ]
-        factor: 1 #yummy
     Metabolites: #Acts like vitamin but for protogens. Keep in mind the -50% healing debuff they get, hence buffed numbers.
       effects:
       - !type:HealthChange
@@ -39,6 +23,20 @@
             Shock: -0.33
             Cold: -0.33
         affectAllLimbs: true
+      - !type:HealthChange
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Protogen, ProtoBird ] # Harmless to protogens
+          inverted: true
+        damage:
+          types: # Drinking battery acid is bad for you? Woh.
+            Shock: 0.5 
+            Caustic: 0.5
+      - !type:SatiateThirst
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Protogen, ProtoBird ]
+        factor: 1 #yummy
       - !type:ModifyBleed #smth smth burns you from the inside so it stops internal bleeding, clearly.
         amount: -0.5
       - !type:SatiateHunger

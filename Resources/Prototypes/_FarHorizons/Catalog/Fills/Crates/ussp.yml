@@ -1,0 +1,164 @@
+#region Bundles
+- type: entity
+  id: CrateSovietBundleCombat
+  name: Soviet Combat Crate
+  parent: CrateSoviet
+  description: Contains a set of armor and a Makarov, with extra magazines and a box.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ClothingBackpackDuffelSSF
+        - id: ClothingSovietBelt
+        - id: ClothingOuterArmorBasic
+        - id: ClothingHeadHelmetBasic
+        - id: ClothingShoesBootsCowboyBlackCommieFilled
+        - id: ClothingUniformJumpsuitSoviet
+        - id: WeaponPistolMakarov
+        - id: MagazinePistolSP
+          amount: 4
+        - id: MagazineBoxPistolSP
+
+- type: entity
+  id: CrateSovietEVABundleCombat
+  name: Soviet Combat EVA Crate
+  parent: CrateSoviet
+  description: Contains a Soviet EVA set and a Makarov, with extra magazines and a box.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ClothingBackpackDuffelSSF
+        - id: ClothingSovietBelt
+        - id: ClothingOuterHardsuitSovietEVA
+        - id: ClothingHeadHelmetSovietEVA
+        - id: ClothingShoesBootsCowboyBlackCommieFilled
+        - id: ClothingUniformJumpsuitSoviet
+        - id: OxygenTankFilled
+        - id: NitrogenTankFilled
+        - id: WeaponPistolMakarov
+        - id: MagazinePistolSP
+          amount: 4
+        - id: MagazineBoxPistolSP
+
+- type: entity
+  id: CrateSovietBundleCombatAdvanced
+  name: Advanced Soviet Combat Crate
+  parent: CrateSoviet
+  description: The second best the USSP has to offer! Contains a set of armor, combat uniform, mask, chest rig and makarov & mosin with extra magazines and a box.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ClothingBackpackDuffelSSF
+        - id: ClothingSovietBelt
+        - id: ClothingBeltSovietMarineWebbing
+        - id: ClothingOuterArmorBasic
+        - id: ClothingHeadHelmetBasic
+        - id: ClothingSovietGasMask
+        - id: ClothingHandsGlovesCombat
+        - id: ClothingShoesBootsCowboyBlackCommieFilled
+        - id: ClothingUniformJumpsuitSovietFatigues
+        - id: WeaponPistolMakarov
+        - id: MagazinePistolSP
+          amount: 4
+        - id: MagazineBoxPistolSP
+        - id: WeaponSniperMosin
+        - id: SpeedLoaderLightRifle
+          amount: 4
+        - id: MagazineBoxMagnumSP
+
+- type: entity
+  id: CrateSovietEVABundleCombatAdvanced
+  name: Advanced Soviet Combat Hardsuit Crate
+  parent: CrateSoviet
+  description: The very best the USSP has to offer! Contains a Soviet Marine Hardsuit, combat uniform, mask, chest rig and Stechkin & AK47 with extra magazines and a box.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ClothingBackpackDuffelSSF
+        - id: ClothingSovietBelt
+        - id: ClothingBeltSovietMarineWebbing
+        - id: ClothingOuterHardsuitSovietMarine
+        - id: ClothingHandsGlovesCombat
+        - id: ClothingShoesBootsCowboyBlackCommieFilled
+        - id: ClothingUniformJumpsuitSovietFatigues
+        - id: ClothingSovietGasMask
+        - id: OxygenTankFilled
+        - id: NitrogenTankFilled
+        - id: WeaponRifleAk
+        - id: MagazineLightRifleSP
+          amount: 4
+        - id: MagazineBoxLightRifleSP
+        - id: WeaponPistolAPS
+        - id: MagazinePistol38SP
+          amount: 4
+        - id: MagazineBoxRevolver38SP
+
+- type: entity
+  id: CrateSovietCommandant
+  name: Commandant Crate
+  parent: CrateSoviet
+  description: Lead the masses to victory, comrade!
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ClothingBackpackDuffelSSF
+        - id: ClothingSovietBelt
+        - id: ClothingBeltSovietMarineWebbing
+        - id: ClothingOuterArmorPlate
+        - id: ClothingHeadHelmetPlate
+        - id: ClothingEyesHudSovietMarine
+        - id: ClothingHandsGlovesCombat
+        - id: ClothingShoesBootsCowboyBlackCommieFilled
+        - id: ClothingUniformJumpsuitSovietAdmiral
+        - id: ClothingHeadHatSovietAdmiralHat
+        - id: ClothingSovietGasMask
+        - id: CommanderWhistle
+        - id: WeaponRifleAk
+        - id: MagazineLightRifleFMJ
+          amount: 4
+        - id: MagazineBoxLightRifleFMJ
+        - id: WeaponPistolAPS
+        - id: MagazinePistol38FMJ
+          amount: 4
+        - id: MagazineBoxRevolver38FMJ
+        - id: ClothingSovietMedals
+        - id: ClothingHeadsetAltSoviet
+        - id: RevolutionaryHeldBanner
+
+- type: entity
+  id: CrateSovietSupply
+  name: Supply Crate
+  parent: CrateSoviet
+  description: Lead the masses to victory, comrade!
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: MedkitFilled
+          amount: 4
+        - id: MagazineLightRifleSP
+          amount: 4
+        - id: MagazinePistol38SP
+          amount: 4
+        - id: SpeedLoaderLightRifle
+          amount: 4
+        - id: MagazinePistolSP
+          amount: 4
+        - id: MagazineCanisterRevolver38SP
+        - id: MagazineCanisterPistolSP
+        - id: MagazineCanisterMagnumSP
+        - id: MagazineCanisterLightRifleSP
+        - id: FoodTinMRE
+          amount: 6
+        - id: DrinkWaterBottleFull
+          amount: 6

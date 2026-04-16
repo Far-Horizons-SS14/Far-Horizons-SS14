@@ -27,3 +27,12 @@ signal-port-description-holographic-generator-field-connected = This port is inv
 
 signal-port-name-holographic-generator-field-disconnected = Field Disconnected
 signal-port-description-holographic-generator-field-disconnected = This port is invoked whenever the field fizzles out.
+
+signal-port-name-alien-pad-port = Alien Pad
+signal-port-description-alien-pad-port = Connects the Alien Pad to the console.
+
+signal-port-name-experimentator-port = Experimentator
+signal-port-description-experimentator-port = Connects the Experimentator to the console.
+
+signal-port-name-dispenser-port = Dispenser
+signal-port-description-dispenser-port = Connects the Dispenser to the console.

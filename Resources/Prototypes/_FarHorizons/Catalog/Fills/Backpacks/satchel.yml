@@ -1,0 +1,21 @@
+- type: entity
+  id: ClothingSatchelLeatherSovietOfficialLoadout
+  name: leather satchel
+  parent: ClothingBackpackSatchelLeather
+  suffix: USSP official
+  description: A trend-setting satchel from a bygone era.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: Finka
+        - id: PenExploding
+        - id: BoxFolderBase
+        - id: BoxFolderClipboard
+        - id: BodyBagFolded
+        - id: DrinkVodkizineBottleFull
+        - id: Flash
+        - id: CigarGoldCase
+        - id: FlippoEngravedLighter
+        - id: MagazinePistolSP

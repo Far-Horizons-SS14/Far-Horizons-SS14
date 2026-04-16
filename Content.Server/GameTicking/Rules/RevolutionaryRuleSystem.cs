@@ -413,7 +413,7 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
                     var uplinkOwnerComp = EnsureComp<USSPUplinkOwnerComponent>(uplinkUid.Value);
                     uplinkOwnerComp.OwnerUid = ev.User.Value;
 
-                    var currencyToAdd = new Dictionary<string, FixedPoint2> { { "Telebond", FixedPoint2.New(1) } };
+                    var currencyToAdd = new Dictionary<string, FixedPoint2> { { "Telebond", FixedPoint2.New(2) } }; /// FH - MOAR
                     var success = storeSystem.TryAddCurrency(currencyToAdd, uplinkUid.Value);
 
                     // Debug log to see the updated telebond value

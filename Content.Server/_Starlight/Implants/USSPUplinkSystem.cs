@@ -222,7 +222,7 @@ public sealed class USSPUplinkSystem : EntitySystem
                 
                 // Add a telebond for each converted revolutionary
                 if (TryComp<StoreComponent>(uid, out var storeComp))
-                    storeComp.Balance["Telebond"] = storeComp.Balance.GetValueOrDefault("Telebond") + FixedPoint2.New(1);
+                    storeComp.Balance["Telebond"] = storeComp.Balance.GetValueOrDefault("Telebond") + FixedPoint2.New(2); /// FH - MOAR
             }
             
             // Synchronize all uplinks to ensure this one has the correct values

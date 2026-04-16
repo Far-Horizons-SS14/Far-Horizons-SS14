@@ -28,3 +28,12 @@
         base:
           True: { state: experimentator_1 }
           False: { state: experimentator_0 } 
+  #FH Start
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: Abductor
+    transmitFrequencyId: Abductor
+  - type: DeviceLinkSink
+    ports:
+      - ExperimentatorReceiver
+  #FH End

@@ -23,6 +23,14 @@
   id: JumpResomi
   categories: [ HideSpawnMenu ]
   components:
+  #FarHorizons Start
+  - type: Action
+    useDelay: 30 
+    itemIconStyle: NoItem
+    icon:
+      sprite: _Starlight/Actions/resomi.rsi
+      state: jump
+  #FarHorizons End
   - type: WorldTargetAction
     event: !type:JumpActionEvent
       distance: 10

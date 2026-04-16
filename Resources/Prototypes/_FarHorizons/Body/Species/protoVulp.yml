@@ -33,8 +33,8 @@
       Tongue: OrganProtogenTongue
       Ears: OrganProtogenEars
       Lungs: OrganProtogenLungs
-      Heart: OrganProtogenHeart
-      Stomach: OrganProtogenStomach
+      Heart: OrganProtoVulpHeart
+      Stomach: OrganProtoVulpStomach
       Liver: OrganProtogenLiver
       Kidneys: OrganProtogenKidneys
   - type: HumanoidProfile
@@ -115,3 +115,35 @@
 - type: entity
   parent: [ BaseProtogenFootRight, OrganBaseFootRight, OrganProtoVulpExternal ]
   id: OrganProtoVulpFootRight
+
+#Internal Organs
+
+- type: entity
+  parent: [ OrganBaseHeart, OrganProtogenInternal, OrganProtogenMetabolizer ]
+  id: OrganProtoVulpHeart
+  name: Cybernetic Heart
+  description: "Doesn't actually need to beat, simply mimics the movement to provide comfort for the user."
+  suffix: Protogen-Vulpkanin
+  components:
+  - type: Metabolizer
+    updateInterval: 0.75
+
+- type: entity
+  parent: [ OrganBaseStomach, OrganProtogenInternal, OrganProtogenMetabolizer ]
+  id: OrganProtoVulpStomach
+  name: Biological Reactor
+  description: "Some call it over-engineered, but it's vital to the function of a protogen. Turns organic matter into organic and electrical energy to power the protogen's cybernetics and flesh."
+  suffix: Protogen-Vulpkanin
+  components:
+  - type: Metabolizer
+    updateInterval: 0.75
+  - type: SolutionContainerManager
+    solutions:
+      food: {}
+      stomach:
+        maxVol: 100 #he hungers
+  - type: Stomach
+    specialDigestible:
+      tags:
+      - RamChip
+    isSpecialDigestibleExclusive: false

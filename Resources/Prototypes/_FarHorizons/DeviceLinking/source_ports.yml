@@ -55,3 +55,23 @@
   id: FieldDisconnected
   name: signal-port-name-holographic-generator-field-disconnected
   description: signal-port-description-holographic-generator-field-disconnected
+
+  # Abductor Console
+
+- type: sourcePort
+  id: AlienPadSender
+  name: signal-port-name-alien-pad-port
+  description: signal-port-description-alien-pad-port
+  defaultLinks: [ AlienPadReceiver ]
+
+- type: sourcePort
+  id: ExperimentatorSender
+  name: signal-port-name-experimentator-port
+  description: signal-port-description-experimentator-port
+  defaultLinks: [ ExperimentatorReceiver ]
+
+- type: sourcePort
+  id: DispenserSender
+  name: signal-port-name-dispenser-port
+  description: signal-port-description-dispenser-port
+  defaultLinks: [ DispenserReceiver ]
