@@ -10,7 +10,7 @@
     - type: Transform
       noRot: true
     - type: Sprite
-      sprite: _Starlight/Structures/Storage/canister.rsi # Starlight Edit: Structures/Storage/canister.rsi -> _Starlight/Structures/Storage/canister.rsi
+      sprite: Structures/Storage/canister.rsi
       noRot: true
       layers:
         - state: grey
@@ -140,7 +140,7 @@
   components:
     - type: Sprite
       layers:
-        - state: storage # Starlight Edit: yellow -> storage
+        - state: yellow
     - type: GasCanister
       gasMixture:
         volume: 1500
@@ -179,7 +179,7 @@
   components:
   - type: Sprite
     layers:
-      - state: air # Starlight Edit: grey -> air
+      - state: grey
   - type: GasCanister
     gasMixture:
       volume: 1500
@@ -219,7 +219,7 @@
   components:
   - type: Sprite
     layers:
-      - state: oxygen # Starlight Edit: blue -> oxygen
+      - state: blue
   - type: GasCanister
     gasMixture:
       volume: 1500
@@ -256,11 +256,6 @@
   name: liquid oxygen canister
   description: A canister that can contain any type of gas. This one is supposed to contain liquid oxygen. It can be attached to connector ports using a wrench.
   components:
-  # Starlight Start
-  - type: Sprite
-    layers:
-      - state: l_oxygen
-  # Starlight End
   - type: GasCanister
     gasMixture:
       volume: 1500
@@ -278,7 +273,7 @@
   components:
     - type: Sprite
       layers:
-        - state: nitrogen # Starlight Edit: red -> nitrogen
+        - state: red
     - type: GasCanister
       gasMixture:
         volume: 1500
@@ -315,11 +310,6 @@
   name: liquid nitrogen canister
   description: A canister that can contain any type of gas. This one is supposed to contain liquid nitrogen. It can be attached to connector ports using a wrench.
   components:
-  # Starlight Start
-  - type: Sprite
-    layers:
-      - state: l_nitrogen
-  # Starlight End
   - type: GasCanister
     gasMixture:
       volume: 1500
@@ -337,7 +327,7 @@
   components:
     - type: Sprite
       layers:
-        - state: carbon # Starlight Edit: black -> carbon
+        - state: black
     - type: GasCanister
       gasMixture:
         volume: 1500
@@ -393,7 +383,7 @@
   components:
     - type: Sprite
       layers:
-        - state: plasma # Starlight Edit: orange -> plasma
+        - state: orange
     - type: GasCanister
       gasMixture:
         volume: 1500
@@ -434,7 +424,7 @@
   components:
     - type: Sprite
       layers:
-        - state: tritium # Starlight Edit: green -> tritium
+        - state: green
     - type: GasCanister
       gasMixture:
         volume: 1500
@@ -514,7 +504,7 @@
   components:
     - type: Sprite
       layers:
-        - state: ammonia # Starlight Edit: greenys -> ammonia
+        - state: greenys
     - type: GasCanister
       gasMixture:
         volume: 1500
@@ -555,7 +545,7 @@
   components:
     - type: Sprite
       layers:
-        - state: nitrous_oxide # Starlight Edit: redws -> nitrous_oxide
+        - state: redws
     - type: GasCanister
       gasMixture:
         volume: 1500
@@ -596,7 +586,7 @@
   components:
   - type: Sprite
     layers:
-    - state: freezon # Starlight Edit: frezon -> freezon
+    - state: frezon
   - type: GasCanister
     gasMixture:
       volume: 1500
@@ -636,7 +626,6 @@
   id: GasCanisterBrokenBase
   name: broken gas canister
   description: A broken gas canister. Not useless yet, as it can be salvaged for high quality materials.
-  categories: [ HideSpawnMenu ] # Starlight: Removed from spawn menu in favor of all the variants
   components:
     - type: Destructible
       thresholds:
@@ -665,8 +654,8 @@
       damageModifierSet: Metallic
     - type: InteractionOutline
     - type: Sprite
-      sprite: _Starlight/Structures/Storage/canister.rsi # Starlight Edit: Structures/Storage/canister.rsi -> _Starlight/Structures/Storage/canister.rsi
-      state: gray_broken # Starlight Edit: grey_1 -> gray_broken
+      sprite: Structures/Storage/canister.rsi
+      state: grey-1
     - type: Physics
       bodyType: Dynamic
     - type: Fixtures
@@ -692,7 +681,7 @@
   # categories: [ HideSpawnMenu ] # Starlight Edit: Added to spawn menu
   components:
     - type: Sprite
-      state: storage_broken # Starlight Edit: yellow_1 -> storage_broken
+      state: yellow-1
 
 - type: entity
   parent: GasCanisterBrokenBase
@@ -700,7 +689,7 @@
   # categories: [ HideSpawnMenu ] # Starlight Edit: Added to spawn menu
   components:
   - type: Sprite
-    state: air_broken # Starlight Edit: grey-1 -> air_broken
+    state: grey-1
 
 - type: entity
   parent: GasCanisterBrokenBase
@@ -708,7 +697,7 @@
   # categories: [ HideSpawnMenu ] # Starlight Edit: Added to spawn menu
   components:
   - type: Sprite
-    state: oxygen_broken # Starlight Edit: blue-1 -> oxygen_broken
+    state: blue-1
 
 - type: entity
   parent: GasCanisterBrokenBase
@@ -716,7 +705,7 @@
   # categories: [ HideSpawnMenu ] # Starlight Edit: Added to spawn menu
   components:
     - type: Sprite
-      state: nitrogen_broken
+      state: red-1
 
 - type: entity
   parent: GasCanisterBrokenBase
@@ -724,7 +713,7 @@
   # categories: [ HideSpawnMenu ] # Starlight Edit: Added to spawn menu
   components:
     - type: Sprite
-      state: carbon_broken # Starlight Edit: black-1 -> carbon_broken
+      state: black-1
 
 - type: entity
   parent: GasCanisterBrokenBase
@@ -732,7 +721,7 @@
   # categories: [ HideSpawnMenu ] # Starlight Edit: Added to spawn menu
   components:
     - type: Sprite
-      state: plasma_broken # Starlight Edit: orange-1 -> plasma_broken
+      state: orange-1
 
 - type: entity
   parent: GasCanisterBrokenBase
@@ -740,7 +729,7 @@
   # categories: [ HideSpawnMenu ] # Starlight Edit: Added to spawn menu
   components:
     - type: Sprite
-      state: tritium_broken # Starlight Edit: green-1 -> tritium_broken
+      state: green-1
 
 - type: entity
   parent: GasCanisterBrokenBase
@@ -749,7 +738,7 @@
   # categories: [ HideSpawnMenu ] # Starlight Edit: Added to spawn menu
   components:
     - type: Sprite
-      state: water_vapor_broken # Starlight Edit: water_vapor-1 -> water_vapor_broken
+      state: water_vapor-1
 
 - type: entity
   parent: GasCanisterBrokenBase
@@ -757,7 +746,7 @@
   # categories: [ HideSpawnMenu ] # Starlight Edit: Added to spawn menu
   components:
     - type: Sprite
-      state: ammonia_broken # Starlight Edit: greenys-1 -> ammonia_broken
+      state: greenys-1
 
 - type: entity
   parent: GasCanisterBrokenBase
@@ -765,7 +754,7 @@
   # categories: [ HideSpawnMenu ] # Starlight Edit: Added to spawn menu
   components:
     - type: Sprite
-      state: nitrous_oxide_broken # Starlight Edit: redws-1 -> nitrous_oxide_broken
+      state: redws-1
 
 - type: entity
   parent: GasCanisterBrokenBase
@@ -773,4 +762,4 @@
   # categories: [ HideSpawnMenu ] # Starlight Edit: Added to spawn menu
   components:
   - type: Sprite
-    state: freezon_broken # Starlight Edit: frezon-1 -> freezon_broken
+    state: frezon-1

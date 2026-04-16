@@ -126,13 +126,13 @@
       # Starlight BEGIN
       - !type:EvenHealthChange
         ignoreResistances: true
-        maxScale: 10
+        #maxScale: 10 FH
         damage:
           Brute: -1.4
           Burn: -1.1
           Toxin: -0.8
       - !type:ModifyBleed
-        maxScale: 7
+        #maxScale: 7 FH
         amount: -0.12
       # Starlight END
 
@@ -168,14 +168,13 @@
           min: 4
         boozePower: 35
 
-    Medicine:
-      effects:
-      - !type:HealthChange
+    #Medicine: FH
+    #  effects: FH
+      - !type:EvenHealthChange #FH
         damage:
-          groups:
-            Burn: -0.1
-            Toxin: -0.1
-            Brute: -0.1
+          Burn: -0.1
+          Toxin: -0.1
+          Brute: -0.1
 
       - !type:ModifyStatusEffect
         conditions:
@@ -237,7 +236,7 @@
           min: 6
         reagent: NitrosylPlasmide
         amount: 2.5
-        maxScale: 2 # Starlight
+        # maxScale: 2 # Starlight #FH
 
       - !type:GenericStatusEffect
         conditions:
