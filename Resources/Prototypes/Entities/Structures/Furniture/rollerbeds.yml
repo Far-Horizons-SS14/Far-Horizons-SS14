@@ -51,6 +51,7 @@
           behaviors:
             - !type:DoActsBehavior
               acts: ["Destruction"]
+            - !type:EmptyAllContainersBehaviour #FH
             - !type:SpawnEntitiesBehavior
               spawn:
                 SheetSteel1:
@@ -130,7 +131,7 @@
   - type: Item
     heldPrefix: emergency_rollerbed
   - type: Sprite
-    layers:
+    layers: 
     - state: emergency_rollerbed
       map: ["unfoldedLayer"]
     - state: emergency_rollerbed_folded
@@ -139,12 +140,38 @@
     - state: emergency_rollerbed_buckled
       map: ["buckledLayer"]
       visible: false
+#FH - Start
+  - type: ContainerContainer
+    containers:
+      item: !type:ContainerSlot
+  - type: ItemSlots
+    slots:
+      item:
+        name: clothing-boots-sidearm
+        priority: 4
+        whitelist:
+          tags:
+          - DefibrillatorSmall
+#FH - End
 
 - type: entity
   parent: EmergencyRollerBed
   id: EmergencyRollerBedSpawnFolded
   suffix: folded
   components:
+#FH - Start
+  - type: ContainerContainer
+    containers:
+      item: !type:ContainerSlot
+  - type: ItemSlots
+    slots:
+      item:
+        name: clothing-boots-sidearm
+        priority: 4
+        whitelist:
+          tags:
+          - DefibrillatorSmall
+#FH - End
   - type: Foldable
     folded: true
   - type: Strap

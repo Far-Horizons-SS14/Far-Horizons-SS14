@@ -525,13 +525,14 @@
   parent: BaseLatheLube
   name: medical techfab
   description: Prints equipment for use by the medbay.
+  suffix: Left #FH
   components:
   - type: Sprite
-    sprite: _FarHorizons/Structures/Machines/NT/techfab.rsi #FH
+    sprite: _FarHorizons/Structures/Machines/NT/medical_techfab.rsi #FH
     layers:
     - state: icon
       map: ["enum.LatheVisualLayers.IsRunning"]
-    - state: med
+#    - state: med - FH
     - state: unlit
       shader: unshaded
       map: ["enum.PowerDeviceVisualLayers.Powered"]
@@ -567,6 +568,15 @@
   - type: StealTarget
     stealGroup: MedicalTechFabCircuitboard
   - type: OreSiloClient
+#FH - Start
+  - type: Transform
+    anchored: true
+  - type: IconSmooth
+    mode: CardinalFlags
+    base: icon_
+    key: ame_shield # REALLY needs to be replaced in the future with something that only has 4 cardinal directions
+  - type: AmeShield
+#FH - End
 
 - type: entity
   parent: BaseLathe

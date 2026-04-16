@@ -247,6 +247,21 @@
           - ReagentId: Amoxla
             Quantity: 15
 
+- type: entity
+  suffix: Chloral Hydrate
+  parent: PrefilledSyringe
+  id: SyringeChloralHydrate
+  components:
+  - type: Label
+    currentLabel: reagent-name-chloral-hydrate 
+  - type: SolutionContainerManager
+    solutions:
+      injector:
+        maxVol: 15
+        reagents:
+          - ReagentId: ChloralHydrate
+            Quantity: 15
+
 #region Blue Ointment
 - type: entity
   parent: [BaseAutoMender, DrinkVisualsOpenable, DrinkVisualsFill] # You have no idea how long this took me to get to layer properly
@@ -448,7 +463,7 @@
   - type: SolutionContainerManager
     solutions:
       injector:
-        maxVol: 10
+        maxVol: 20
   - type: Healing
     solutionDrain: true
     reagentsToDrain:
@@ -507,10 +522,10 @@
   - type: SolutionContainerManager
     solutions:
       injector:
-        maxVol: 10
+        maxVol: 20
         reagents:
         - ReagentId: BurnCream
-          Quantity: 10
+          Quantity: 20
 
 - type: entity
   suffix: One Use
@@ -528,7 +543,7 @@
 #region Brute Pack
 - type: entity
   name: Brute Pack
-  description: A therapeutic gel-laced bandage set designed to treat brute-force trauma.
+  description: A therapeutic Bicaridine gel-laced bandage set designed to treat brute-force trauma.
   parent: BaseItem
   id: Brutepack
   suffix: Full
@@ -566,6 +581,7 @@
         Blunt: -5
         Piercing: -5
         Slash: -5
+    bloodlossModifier: -1
     healingBeginSound:
       path: "/Audio/Items/Medical/brutepack_begin.ogg"
       params:
@@ -596,10 +612,20 @@
   - type: Stack
     count: 1
 
+- type: entity
+  id: Brutepack5
+  parent: Brutepack
+  suffix: 5
+  components:
+  - type: Sprite
+    state: brutepack-7
+  - type: Stack
+    count: 5
+
 #region Blue Brute Pack
 - type: entity
   name: Blue Brute Pack
-  description: A therapeutic gel-laced bandage set designed to treat brute-force trauma. A special mixture of chemicals make these ones last longer and a bit more potent.
+  description: A therapeutic gel-laced bandage set designed to treat brute-force trauma. A mixture of Bicaridine and Tricordrazine make these ones a bit more potent.
   parent: BaseItem
   id: BrutepackBlue
   suffix: Full
@@ -637,6 +663,7 @@
         Blunt: -6
         Piercing: -6
         Slash: -6
+    bloodlossModifier: -2
     healingBeginSound:
       path: "/Audio/Items/Medical/brutepack_begin.ogg"
       params:
@@ -668,6 +695,16 @@
     count: 1
 
 - type: entity
+  id: BrutepackBlue5
+  parent: BrutepackBlue
+  suffix: 5
+  components:
+  - type: Sprite
+    state: brutepack_blue-7
+  - type: Stack
+    count: 5
+
+- type: entity
   id: BrutepackBlue10
   parent: BrutepackBlue
   suffix: 10
@@ -677,24 +714,16 @@
   - type: Stack
     count: 10
 
-- type: stack
-  parent: BaseSmallStack
-  id: BrutepackBlue
-  name: stack-brutepack
-  maxCount: 20
-  icon: { sprite: "_FarHorizons/Objects/Specific/Medical/brute_pack.rsi", state: brutepack_blue-0 }
-  spawn: BrutepackBlue
-
 #region Bruizine Brute Pack
 - type: entity
   name: Bruizine Brute Pack
-  description: A therapeutic gel-laced bandage set designed to treat blunt-force trauma. A non-reactive Bruizine-Bicaridine mixture makes this pack great at treating blunt injuries, but not much else.
+  description: A therapeutic gel-laced bandage set designed to treat blunt-force trauma. A non-reactive Bicaridine-Tricordrazine-Bruizine mixture makes this pack great at treating blunt injuries, but not much else.
   parent: BaseItem
   id: BrutepackRed
   suffix: Full
   components:
   - type: Stack
-    count: 10
+    count: 20
     stackType: BrutepackRed
     baseLayer: base
     layerStates:
@@ -726,7 +755,7 @@
         Piercing: -2.5
         Slash: -2.5
         Blunt: -7.5
-    bloodlossModifier: -1
+    bloodlossModifier: -2
     healingBeginSound:
       path: "/Audio/Items/Medical/brutepack_begin.ogg"
       params:
@@ -757,23 +786,26 @@
   - type: Stack
     count: 1
 
-- type: stack
-  parent: BaseSmallStack
-  id: BrutepackRed
-  name: stack-brutepack
-  icon: { sprite: "_FarHorizons/Objects/Specific/Medical/brute_pack.rsi", state: brutepack_red-0 }
-  spawn: BrutepackRed
+- type: entity
+  id: BrutepackRed5
+  parent: BrutepackRed
+  suffix: 5
+  components:
+  - type: Sprite
+    state: brutepack_red-7
+  - type: Stack
+    count: 5
 
 #region Lacerinol Brute Pack
 - type: entity
   name: Lacerinol Brute Pack
-  description: A therapeutic gel-laced bandage set designed to treat lacerations. A non-reactive Lacerinol-Bicaridine mixture makes this pack great at treating stab wounds, but not much else.
+  description: A therapeutic gel-laced bandage set designed to treat lacerations. A non-reactive Bicaridine-Tricordrazine-Lacerinol mixture makes this pack great at treating stab wounds, but not much else.
   parent: BaseItem
   id: BrutepackBlack
   suffix: Full
   components:
   - type: Stack
-    count: 10
+    count: 20
     stackType: BrutepackBlack
     baseLayer: base
     layerStates:
@@ -805,7 +837,7 @@
         Piercing: -2.5
         Slash: -7.5
         Blunt: -2.5
-    bloodlossModifier: -1
+    bloodlossModifier: -3
     healingBeginSound:
       path: "/Audio/Items/Medical/brutepack_begin.ogg"
       params:
@@ -836,23 +868,26 @@
   - type: Stack
     count: 1
 
-- type: stack
-  parent: BaseSmallStack
-  id: BrutepackBlack
-  name: stack-brutepack
-  icon: { sprite: "_FarHorizons/Objects/Specific/Medical/brute_pack.rsi", state: brutepack_black-0 }
-  spawn: BrutepackBlack
+- type: entity
+  id: BrutepackBlack5
+  parent: BrutepackBlack
+  suffix: 5
+  components:
+  - type: Sprite
+    state: brutepack_black-7
+  - type: Stack
+    count: 5
 
 #region Puncturase Brute Pack
 - type: entity
   name: Puncturase Brute Pack
-  description: A therapeutic gel-laced bandage set designed to treat piercing injuries. A non-reactive Puncturase-Bicaridine mixture makes this pack great at treating gunshot wounds, but not much else.
+  description: A therapeutic gel-laced bandage set designed to treat piercing injuries. A non-reactive Bicaridine-Tricordrazine-Puncturase mixture makes this pack great at treating gunshot wounds, but not much else.
   parent: BaseItem
   id: BrutepackBeige
   suffix: Full
   components:
   - type: Stack
-    count: 10
+    count: 20
     stackType: BrutepackBeige
     baseLayer: base
     layerStates:
@@ -884,7 +919,7 @@
         Piercing: -7.5
         Slash: -2.5
         Blunt: -2.5
-    bloodlossModifier: -1
+    bloodlossModifier: -3
     healingBeginSound:
       path: "/Audio/Items/Medical/brutepack_begin.ogg"
       params:
@@ -915,12 +950,15 @@
   - type: Stack
     count: 1
 
-- type: stack
-  parent: BaseSmallStack
-  id: BrutepackBeige
-  name: stack-brutepack
-  icon: { sprite: "_FarHorizons/Objects/Specific/Medical/brute_pack.rsi", state: brutepack_beige-0 }
-  spawn: BrutepackBeige
+- type: entity
+  id: BrutepackBeige5
+  parent: BrutepackBeige
+  suffix: 5
+  components:
+  - type: Sprite
+    state: brutepack_beige-7
+  - type: Stack
+    count: 5
 
 - type: entity
   name: pill

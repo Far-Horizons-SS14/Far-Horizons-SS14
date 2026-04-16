@@ -43,3 +43,27 @@
         conditions:
         - !type:MetabolizerTypeCondition
           type: [ Protogen, ProtoBird ]
+
+- type: reagent
+  id: HydrogenSulfide
+  name: reagent-name-hydrogen-sulfide
+  group: Toxins
+  desc: reagent-desc-hydrogen-sulfide
+  flavor: bitter
+  color: "#7D7C30"
+  physicalDesc: reagent-physical-desc-nondescript
+  contrabandSeverity: Major
+  metabolisms:
+    Bloodstream:
+      effects:
+      - !type:MovementSpeedModifier
+        walkSpeedModifier: 0.65
+        sprintSpeedModifier: 0.65
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentCondition
+          reagent: HydrogenSulfide
+          min: 40
+        damage:
+          types:
+            Poison: 1.30

@@ -1,0 +1,1 @@
+generic-reagent-effect-sleepy = Your eyelids feel heavy..

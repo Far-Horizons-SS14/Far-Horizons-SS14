@@ -357,9 +357,16 @@
     delay: 1.6 # STARLIGHT
     damage:
       types:
-        Slash: -5
-        Piercing: -10
-    bloodlossModifier: -10
+#FH - Start
+        Blunt: -2.5
+        Slash: -2.5
+        Piercing: -2.5
+        Heat: -2.5
+        Cold: -2.5
+        Shock: -2.5
+        Caustic: -0.5
+    bloodlossModifier: -5
+#FH - End
     healingBeginSound:
       path: "/Audio/Items/Medical/brutepack_begin.ogg"
       params:
@@ -372,7 +379,7 @@
         variation: 0.125
   - type: Stack
     stackType: Gauze
-    count: 10
+    count: 20 #FH
   - type: StackPrice
     price: 10
   - type: InteractRestriction #FH - Edit

@@ -1,16 +1,17 @@
 - type: entity
   id: BodyBag
   parent: [ BaseDeployFoldable, BasePaperLabelableVisualized ]
-  name: Body Bag #Far Horizons - The Great Capitalization Crusade
-  description: A plastic bag designed for the storage and transportation of cadavers to stop body decomposition.
+  name: Self-Sealing Body Bag #Far Horizons - The Great Capitalization Crusade
+  description: A body bag that hermetically seals itself when closed by expelling air and any excess liquid through one-way ports underneath the bag, it does an excellent job of keeping cadavers from rotting. #FH
   components:
   - type: Item
     size: Small
     heldPrefix: bag
+    storedOffset: -8, 0 #FH
   - type: Sprite
     drawdepth: BelowMobs # I guess body bags need appear above a coroner's table?
     offset: "0,0.23"
-    sprite: Objects/Specific/Medical/Morgue/bodybags.rsi
+    sprite: _FarHorizons/Objects/Specific/Medical/Morgue/bodybags.rsi #FH
     layers:
     - state: bag
       map: ["unfoldedLayer", "enum.StorageVisualLayers.Base"]
@@ -21,8 +22,13 @@
       map: ["enum.StorageVisualLayers.Door"]
     - state: paper
       map: ["enum.PaperLabelVisuals.Layer"]
+ #FH - Start
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+      shader: unshaded
+ #FH - End
   - type: Icon
-    sprite: Objects/Specific/Medical/Morgue/bodybags.rsi
+    sprite: _FarHorizons/Objects/Specific/Medical/Morgue/bodybags.rsi #FH
     state: bag
   - type: Tag
     tags:
@@ -51,7 +57,7 @@
         - VimPilot # Pets
         - CanPilot # People
     closeSound:
-      path: /Audio/Misc/zip.ogg
+      path: /Audio/Machines/windoor_open.ogg #FH
     openSound:
       path: /Audio/Misc/zip.ogg
   - type: EntityStorageLayingDownOverride
@@ -86,6 +92,30 @@
   - type: StaticPrice
     price: 50
   - type: Buckle
+#FH - Start
+  - type: Lock
+    lockOnClick: false
+    autoUnlock: false
+    autoLock: false 
+  - type: LockVisuals
+  - type: AccessReader
+    access: [["Medical"]]
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Inflatable
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 45
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:EmptyAllContainersBehaviour
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+#FH - End
 
 - type: entity
   id: BodyBagFolded

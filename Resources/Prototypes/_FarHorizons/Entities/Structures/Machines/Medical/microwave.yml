@@ -1,0 +1,107 @@
+- type: entity
+  id: MedicalMicrowave
+  parent: [BaseMachinePowered, SmallConstructibleMachine]
+  name: Medical Autoclave
+  description: Used for sterilizing medical equipment and making sterile topicals. Seems to stay on once activated.
+  suffix: Right
+  components:
+  - type: CookingDevice
+    capacity: 10
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.PowerDeviceVisuals.VisualState:
+#        enum.MicrowaveVisualizerLayers.Base: - Doesn't work with modular stuff.
+#          Idle: { state: "michaelwave_0" }
+#          Broken: { state: "michaelwave_0" }
+#          Cooking: { state: "michaelwave_0" }
+        enum.MicrowaveVisualizerLayers.BaseUnlit:
+#          Idle: { state: "unlit_michaelwave" }
+#          Broken: { state: "unlit_michaelwave" }
+          Cooking: { state: "med_michaelwave_running_unlit" } # Microwave will stay on after being activated. It was either this or the incorrect base sprite being applied.
+      enum.PowerDeviceVisuals.Powered:
+        enum.MicrowaveVisualizerLayers.BaseUnlit:
+          True: { visible: true }
+          False: { visible: false }
+  - type: ActivatableUI
+    key: enum.MicrowaveUiKey.Key
+  - type: DeviceLinkSink
+    ports:
+    - On
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: BasicDevice
+  - type: WirelessNetworkConnection
+    range: 200
+  - type: UserInterface
+    interfaces:
+      enum.MicrowaveUiKey.Key:
+        type: MicrowaveBoundUserInterface
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.4,0.4,0.4"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+          - MachineLayer
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Machines/NT/medical_michaelwave.rsi
+    snapCardinals: false
+    layers:
+    - state: michaelwave_0
+      map: ["enum.MicrowaveVisualizerLayers.Base"]
+    - state: unlit_michaelwave
+      shader: unshaded
+      map: ["enum.MicrowaveVisualizerLayers.BaseUnlit"]
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:ChangeConstructionNodeBehavior
+        node: machineFrame
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 10
+    totalIntensity: 5
+    intensitySlope: 5
+    canCreateVacuum: false
+    deleteAfterExplosion: false
+  - type: ApcPowerReceiver
+    powerLoad: 5
+  - type: PowerState
+    idlePowerDraw: 5
+    workingPowerDraw: 1000
+  - type: Machine
+    board: MicrowaveMachineCircuitboard
+  - type: ContainerContainer
+    containers:
+      microwave_entity_container: !type:Container
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: EmptyOnMachineDeconstruct
+    containers:
+    - microwave_entity_container
+  - type: GuideHelp
+    guides:
+    - Chef
+    - FoodRecipes
+# Attempting to make modular, properly.
+  - type: Transform
+    anchored: true
+  - type: IconSmooth
+    mode: CardinalFlags
+    base: michaelwave_
+    key: ame_shield # REALLY needs to be replaced in the future with something that only has 4 cardinal directions
+  - type: AmeShield
