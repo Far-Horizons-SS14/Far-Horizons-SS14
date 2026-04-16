@@ -46,7 +46,7 @@
 - type: entity
   id: LockerSecurityFH
   parent: LockerBaseSecure
-  name: Security Officer's Locker
+  name: Security Cadet's Locker
   components:
   - type: Appearance
   - type: Sprite
@@ -61,7 +61,7 @@
 - type: entity
   id: LockerSecurityLargeFH
   parent: LockerBaseSecure
-  name: Large Security Officer's Locker
+  name: Large Security Cadet's Locker
   components:
   - type: Appearance
   - type: Sprite
@@ -76,7 +76,7 @@
 - type: entity
   id: LockerSecurityLargeFHL
   parent: LockerBaseSecure
-  name: Large Security Officer Lockers
+  name: Large Security Cadet Lockers
   components:
   - type: Appearance
   - type: Sprite
@@ -93,7 +93,7 @@
 - type: entity
   id: LockerSecurityLargeFHM
   parent: LockerBaseSecure
-  name: Large Security Officer Lockers
+  name: Large Security Cadet Lockers
   components:
   - type: Appearance
   - type: Sprite
@@ -110,7 +110,7 @@
 - type: entity
   id: LockerSecurityLargeFHR
   parent: LockerBaseSecure
-  name: Large Security Officer Lockers
+  name: Large Security Cadet Lockers
   components:
   - type: Appearance
   - type: Sprite
@@ -124,6 +124,51 @@
   - type: EntityStorage
     capacity: 50 # Big lockers tend to have more than 30 items in them
 
+# Cadetless
+- type: entity
+  id: LockerSecurityOfficerLargeFHL
+  parent: LockerSecurityLargeFHL
+  name: Large Security Officer Lockers
+  Suffix: No Cadet
+  components:
+  - type: AccessReader
+    access: [["Security"]]
+
+- type: entity
+  id: LockerSecurityOfficerLargeFHM
+  parent: LockerSecurityLargeFHM
+  name: Large Security Officer Lockers
+  Suffix: No Cadet
+  components:
+  - type: AccessReader
+    access: [["Security"]]
+
+- type: entity
+  id: LockerSecurityOfficerLargeFHR
+  parent: LockerSecurityLargeFHR
+  name: Large Security Officer Lockers
+  Suffix: No Cadet
+  components:
+  - type: AccessReader
+    access: [["Security"]]
+
+- type: entity
+  id: LockerSecurityOfficerFH
+  parent: LockerSecurityFH
+  name: Security Officer's Locker
+  Suffix: No Cadet
+  components:
+  - type: AccessReader
+    access: [["Security"]]
+
+- type: entity
+  id: LockerSecurityOfficerLargeFH
+  parent: LockerSecurityLargeFH
+  name: Large Security Officer's Locker
+  Suffix: No Cadet
+  components:
+  - type: AccessReader
+    access: [["Security"]]
 # Warden
 
 - type: entity

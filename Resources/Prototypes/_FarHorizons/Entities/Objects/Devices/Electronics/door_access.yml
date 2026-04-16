@@ -42,3 +42,12 @@
   components:
   - type: AccessReader
     access: [["Magistrate"]]
+
+#Security without cadet
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsSecurityNoCadet
+  suffix: Security, No Cadet, Locked
+  components:
+  - type: AccessReader
+    access: [["Security"]]
