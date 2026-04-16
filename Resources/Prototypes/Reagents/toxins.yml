@@ -68,15 +68,26 @@
       - !type:MovementSpeedModifier
         walkSpeedModifier: 0.65
         sprintSpeedModifier: 0.65
+#FH - Start
+      - !type:PopupMessage
+        type: Local
+        visualType: LargeCaution
+        messages: [ "generic-reagent-effect-sleepy"]
+        probability: 0.33
       - !type:ModifyStatusEffect
-        effectProto: StatusEffectDrowsiness
-        time: 4
-        type: Update
+        conditions:
+        - !type:ReagentCondition
+          reagent: ChloralHydrate
+          min: 19 # No syringe of instant sleep
+        effectProto: StatusEffectForcedSleeping
+        time: 9
+        delay: 8 # Less effective than noct + warning
+#FH - End
       - !type:HealthChange
         conditions:
         - !type:ReagentCondition
           reagent: ChloralHydrate
-          min: 20
+          min: 25 #FH
         damage:
           types:
             Poison: 1.5
