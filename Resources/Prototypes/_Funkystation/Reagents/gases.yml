@@ -7,7 +7,7 @@
   flavor: bitter
   color: "#9370db"
   metabolisms:
-    Gas:
+    Respiration: #FH
       effects:
       - !type:Emote
         conditions:
@@ -121,7 +121,7 @@
   flavor: strange
   color: "#90560b"
   metabolisms:
-    Gas:
+    Respiration: #FH
       effects:
       # Starlight BEGIN
       - !type:EvenHealthChange
@@ -202,7 +202,7 @@
   flavor: sour
   color: "#90560B"
   metabolisms:
-    Gas:
+    Respiration: #FH
       effects:
       - !type:NitriumMovementSpeedModifier
         conditions:
@@ -266,7 +266,7 @@
   flavor: bitter
   color: "#7b68ee"
   metabolisms:
-    Gas:
+    Respiration: #FH
       effects:
       - !type:Oxygenate
         factor: 8
@@ -321,7 +321,7 @@
   flavor: bitter
   color: "#1c1a1a"
   metabolisms:
-    Gas:
+    Respiration: #FH
       effects:
       - !type:HealthChange
         conditions:
