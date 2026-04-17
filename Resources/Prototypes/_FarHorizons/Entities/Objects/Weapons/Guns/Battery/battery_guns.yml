@@ -203,6 +203,8 @@
     steps: 11
     zeroVisible: true
   - type: Lock
+    autoUnlock: true
+    autoLock: true
   - type: AccessReader
     access: [["Security"]]
   - type: Battery 
@@ -281,6 +283,8 @@
     steps: 4
     zeroVisible: true
   - type: Lock
+    autoUnlock: true
+    autoLock: true
   - type: AccessReader
     access: [["Security"]]
   - type: BatteryAmmoProvider
