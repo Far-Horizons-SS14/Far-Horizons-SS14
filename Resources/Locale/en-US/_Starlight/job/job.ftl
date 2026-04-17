@@ -1,4 +1,4 @@
-job-name-magistrate = Magistrate
+job-name-magistrate = Concord Liaison
 job-name-ntrep = NanoTrasen Representative
 job-name-iaa = Affairs Official
 job-name-ntncblueshield = Nanotrasen Navy Corps Marine
