@@ -16,7 +16,7 @@ trait-background-deific-encounter-name = Deific Encounter
 trait-background-deific-encounter-description = You have experienced something that you are certain was a miracle. Something that could only have been an act of a God. 
 
 trait-background-magical-encounter-name = Magical Encounter
-<#-- Far Horizons Description -->
+## Far Horizons Description
 trait-background-magical-encounter-description = After a magical encounter with a passing wizard you led a pilgrimage to study this new interesting phenomenon known as magic. Eventually you found an ancient empire of nearly extinct pointy eared folks which welcomed this learning and gave you "My First Cantrip Book!" to broaden your horizons.
 
 trait-background-abducted-name = Abducted
