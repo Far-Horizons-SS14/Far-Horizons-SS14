@@ -88,11 +88,18 @@ marking-LagomorphBackScarRight = Right Back Scar
 marking-LagomorphBackScarLeft = Left Back Scar
 
 # legs
-marking-LagomorphClaws = Claws
-marking-LagomorphLegSockL = Leggings
-marking-LagomorphFootSockR = Socks
 marking-LagomorphLegSpotsR = Right Leg Spots
 marking-LagomorphLegSpotsL = Left Leg Spots
+<#-- Far Horizons Start -->
+marking-LagomorphLegSockL = Legging (Left)
+marking-LagomorphLegSockR = Legging (Right)
+
+#feet
+marking-LagomorphClawL = Claw (Left)
+marking-LagomorphClawR = Claw (Right)
+marking-LagomorphFootSockL = Sock (Left)
+marking-LagomorphFootSockR = Sock (Right)
+<#-- Far Horizons End -->
 
 # arms
 marking-LagomorphHandMittsR = Right Hand Mitten
