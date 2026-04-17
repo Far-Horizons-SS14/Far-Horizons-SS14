@@ -35,6 +35,8 @@ public sealed class SiliconLawSystem : SharedSiliconLawSystem
     [Dependency] private readonly UserInterfaceSystem _userInterface = default!;
     [Dependency] private readonly EmagSystem _emag = default!;
     [Dependency] private readonly IEntityManager _entMan = default!; // Starlight
+    [Dependency] private readonly IonStormSystem _ionTarget = default!; // FH
+    
 
     private static readonly ProtoId<SiliconLawsetPrototype> DefaultCrewLawset = "Crewsimov";
 
@@ -183,12 +185,18 @@ public sealed class SiliconLawSystem : SharedSiliconLawSystem
         }
         #endregion
 
+        //FH start
+        //apply Ioned laws before others so EMAG and Ion dont conflict
+        if (TryComp<IonStormTargetComponent>(uid, out var iontargetcomponent) && TryComp<SiliconLawBoundComponent>(uid, out var lawbounccomponent))
+            _ionTarget.IonStormTarget((uid, lawbounccomponent, iontargetcomponent), false);
+        //FH end
+
         // Add the first emag law before the others
         component.Lawset?.Laws.RemoveAt(0);
 
         component.Lawset?.Laws.Insert(0, new SiliconLaw
         {
-            LawString = Loc.GetString("law-emag-custom", ("name", Name(args.user)), ("title", Loc.GetString(component.Lawset.ObeysTo))),
+            LawString = Loc.GetString("fh-law-emag-custom", ("name", Name(args.user)), ("title", Loc.GetString(component.Lawset.ObeysTo))), //FH
             Order = 0,
             Sayable = false
         });
