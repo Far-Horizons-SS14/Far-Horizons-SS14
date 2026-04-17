@@ -41,8 +41,10 @@ guide-entry-station-management-sop-general-procedures-intro = General Station Ma
 guide-entry-station-management-sop-staff-intro = Individual Station Management Procedures
 guide-entry-station-management-sop-nanotrasen-rep = NanoTrasen Representative
 guide-entry-station-management-sop-blueshield-officer = Blueshield Officer
-guide-entry-station-management-sop-magistrate = Magistrate
+guide-entry-station-management-sop-magistrate = Concord Liaison (Magistrate)
 guide-entry-station-management-sop-affairs-offical = Affairs Offical (IAA)
+
+guide-entry-sl-nano-trasen-employee-sop-magistrate = Concord Liaison
 
 guide-entry-sl-medical-sop-viral-outbreak = Viral Outbreak Protocol
 

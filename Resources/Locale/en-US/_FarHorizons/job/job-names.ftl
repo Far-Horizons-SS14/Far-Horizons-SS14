@@ -1,3 +1,4 @@
+job-name-magistrate = Concord Liaison
 job-name-secborg = Security Cyborg
 job-name-corpsman = Corpsman
 job-name-blueshield = Blueshield Officer

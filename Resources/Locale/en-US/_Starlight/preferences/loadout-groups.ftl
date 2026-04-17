@@ -44,7 +44,6 @@ loadout-group-brigmedic-mask = Brigmedic mask
 loadout-group-brigmedic-tie = Brigmedic tie
 
 # Law
-loadout-group-magistrate-shoes = Magistrate Shoes
 loadout-group-iia-shoes = Lawyer Shoes
 
 # Civilian

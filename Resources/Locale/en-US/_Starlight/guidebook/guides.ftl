@@ -130,7 +130,6 @@ guide-entry-sl-nano-trasen-employee-sop-safety-protocol = Safety Protocol
 guide-entry-sl-nano-trasen-employee-sop-staff-intro = Staff Procedures
 guide-entry-sl-nano-trasen-employee-sop-nt-rep = NanoTrasen Representative
 guide-entry-sl-nano-trasen-employee-sop-bso = BlueShield Officer
-guide-entry-sl-nano-trasen-employee-sop-magistrate = Magistrate
 guide-entry-sl-nano-trasen-employee-sop-iaa = Affairs Official
 
 guide-entry-sl-service-sop-intro = Service
