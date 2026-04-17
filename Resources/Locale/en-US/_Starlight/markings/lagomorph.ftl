@@ -90,7 +90,7 @@ marking-LagomorphBackScarLeft = Left Back Scar
 # legs
 marking-LagomorphLegSpotsR = Right Leg Spots
 marking-LagomorphLegSpotsL = Left Leg Spots
-<#-- Far Horizons Start -->
+## Far Horizons Start
 marking-LagomorphLegSockL = Legging (Left)
 marking-LagomorphLegSockR = Legging (Right)
 
@@ -99,7 +99,7 @@ marking-LagomorphClawL = Claw (Left)
 marking-LagomorphClawR = Claw (Right)
 marking-LagomorphFootSockL = Sock (Left)
 marking-LagomorphFootSockR = Sock (Right)
-<#-- Far Horizons End -->
+## Far Horizons End
 
 # arms
 marking-LagomorphHandMittsR = Right Hand Mitten
