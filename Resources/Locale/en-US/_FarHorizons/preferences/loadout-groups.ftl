@@ -24,6 +24,7 @@ loadout-group-magistrate-eyewear = Concord Liaison Eyewear
 loadout-group-magistrate-uniform = Concord Liaison Uniform
 loadout-group-magistrate-neck = Concord Liaison Neck
 loadout-group-magistrate-outer = Concord Liaison Outer Clothing
+loadout-group-magistrate-shoes = Concord Liaison Shoes
 
 loadout-group-mining-head = Mining Specialist Head
 loadout-group-mining-backpack = Mining Specialist Backpack
