@@ -8,8 +8,6 @@ using Content.Shared.Damage.Systems;
 using Content.Shared.Radio.Components;
 using Content.Shared.Speech.Muting;
 using Content.Shared.Starlight.Antags.Abductor;
-using Content.Shared._Starlight.Cybernetics;
-using Content.Shared._Starlight.Cybernetics.Components;
 using Content.Shared.Starlight.Medical.Surgery.Steps.Parts;
 using Content.Shared.VentCraw;
 using Robust.Shared.Containers;

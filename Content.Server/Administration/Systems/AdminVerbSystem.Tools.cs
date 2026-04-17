@@ -821,7 +821,7 @@ public sealed partial class AdminVerbSystem
             {
                 Text = "Replace the right hand with a Reaper arm.",
                 Category = VerbCategory.Tricks,
-                Icon = new SpriteSpecifier.Rsi(new("/Textures/_Starlight/Mobs/Species/Cyberlimbs/parts.rsi"), "r_silver_arm"),
+                Icon = new SpriteSpecifier.Rsi(new("/Textures/_FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi"), "r_silver_arm"), //FarHorizons
                 Act = () =>
                 {
                     // Far Horizons start

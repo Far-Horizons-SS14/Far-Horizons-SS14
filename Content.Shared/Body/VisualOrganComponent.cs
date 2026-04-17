@@ -1,5 +1,7 @@
 using Content.Shared.Humanoid;
+using Content.Shared.Humanoid.Prototypes;
 using Robust.Shared.GameStates;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared.Body;
@@ -29,6 +31,12 @@ public sealed partial class VisualOrganComponent : Component
     /// </summary>
     [DataField]
     public Dictionary<Sex, string>? SexStateOverrides;
+
+    /// <summary>
+    /// For overriding the sprite path when a organ meets certain species condition.
+    /// </summary>
+    [DataField]
+    public Dictionary<ProtoId<SpeciesPrototype>, string>? SpeciesOverrides;
 
     /// <summary>
     /// The current profile data of this organ, used for alternate sprite selection and colouration.

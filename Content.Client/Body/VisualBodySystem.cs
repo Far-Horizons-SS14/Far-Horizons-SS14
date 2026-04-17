@@ -81,6 +81,11 @@ public sealed class VisualBodySystem : SharedVisualBodySystem
         if (!_sprite.LayerMapTryGet(target, ent.Comp.Layer, out var index, true))
             return;
 
+        if(ent.Comp.SpeciesOverrides is { } ovverrides 
+            && TryComp<HumanoidProfileComponent>(target, out var hpComp) 
+            && ovverrides.TryGetValue(hpComp.Species, out var spritePath))
+                ent.Comp.Data.RsiPath = spritePath;
+
         _sprite.LayerSetData(target, index, ent.Comp.Data);
         // Far Horizons scale start
         if (!ent.Comp.ScaleSource) return;
