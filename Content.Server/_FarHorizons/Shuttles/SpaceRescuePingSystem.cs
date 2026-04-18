@@ -61,6 +61,11 @@ public sealed class SpaceRescuePingSystem : EntitySystem
                     sndTransform.MapID != rcvTransform.MapID)
                     continue;
 
+                var parent = _transform.GetParentUid(pingUid); // Likely a person wearing the suit
+                var parentsParent = _transform.GetParentUid(parent); // Container that person is inside of
+                if (HasComp<SpaceRescuePingMutedComponent>(parentsParent))
+                    continue;
+
                 var netCoords = new NetCoordinates(GetNetEntity(pingUid), _transform.GetWorldPosition(sndTransform));
                 pings.Add((netCoords.Position, pingComp.Color));
             }

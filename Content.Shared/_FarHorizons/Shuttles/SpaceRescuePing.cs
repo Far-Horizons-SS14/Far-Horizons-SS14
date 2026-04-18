@@ -1,5 +1,4 @@
 using System.Numerics;
-using Robust.Shared.GameStates;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared._FarHorizons.Shuttles;
@@ -25,3 +24,6 @@ public sealed class SpaceRescuePingMessage(List<(Vector2, Color)> pings, TimeSpa
     public List<(Vector2, Color)> Pings = pings;
     public TimeSpan RefreshRate = refreshRate;
 }
+
+[RegisterComponent]
+public sealed partial class SpaceRescuePingMutedComponent : Component;
