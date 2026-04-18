@@ -5,8 +5,8 @@ from github import Github
 # Reusing your logic for consistency
 def parse_changelog(pr_body):
     changelog_entries = []
-    pattern = r"(?<!", "", pr_body, flags=re.DOTALL)
-    matches = list(re.finditer(pattern, cleaned_body, re.MULTILINE))
+    pattern = r"(?<!<!--\s)^:cl:\s+([^\n]+)\n((?:- (add|remove|tweak|fix): [^\n]+\n?)+)"
+    matches = list(re.finditer(pattern, pr_body, re.MULTILINE))
 
     for match in matches:
         author = match.group(1).strip()
