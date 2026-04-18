@@ -32,7 +32,7 @@ public sealed class EvacShuttleTest
         pair.Server.CfgMan.SetCVar(CCVars.EmergencyShuttleEnabled, true);
         pair.Server.CfgMan.SetCVar(CCVars.GameDummyTicker, false);
         var gameMap = pair.Server.CfgMan.GetCVar(CCVars.GameMap);
-        pair.Server.CfgMan.SetCVar(CCVars.GameMap, "Saltern");
+        pair.Server.CfgMan.SetCVar(CCVars.GameMap, "FHOmega"); // Far Horizons - rest of maps is disabled, have to use ours
 
         await server.WaitPost(() => ticker.RestartRound());
         await pair.RunTicksSync(25);
