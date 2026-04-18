@@ -1,96 +1,52 @@
 name: Update Changelog
 
 on:
-  push:
-    branches:
-      - Far-Horizons
+  pull_request:
+    types: [closed]
+    branches: [Far-Horizons]
       
 permissions:
   contents: write
   pull-requests: write
-  actions: read
-
-env:
- BRANCH_NAME: ${{ github.ref_name	}} 
 
 jobs:
   update-changelog:
-    if: github.actor != 'github-actions[bot]'
+    if: github.event.pull_request.merged == true && github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
-      - name: Get Pull Request Number via GH
-        id: get_pr
-        uses: actions/github-script@v6
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          script: |
-            const pr = await github.rest.repos.listPullRequestsAssociatedWithCommit({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              commit_sha: context.sha
-            });
-            if (pr.data.length === 0) {
-              console.log("No PR found for this branch. Skipping changelog update.");
-              return "";
-            }
-            console.log(`PR Number: ${pr.data[0].number}`);
-            return pr.data[0].number;
-        
-      #re checkout
-      - name: Re-checkout repository
-        if: steps.get_pr.outputs.result != ''
-        uses: actions/checkout@v4
-        with:
-          ref: ${{ github.ref }}
+          ref: Far-Horizons
           
       - name: Set up Python
-        if: steps.get_pr.outputs.result != ''
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v5
         with:
           python-version: '3.x'
 
       - name: Install Dependencies
-        if: steps.get_pr.outputs.result != ''
-        run: |
-          pip install pyyaml PyGithub
+        run: pip install pyyaml PyGithub
     
       - name: Parse PR and Update Changelog
-        if: steps.get_pr.outputs.result != ''
         env:
           CHANGELOG_FILE_PATH: 'Resources/Changelog/ChangelogFarHorizons.yml'
           GITHUB_TOKEN: ${{ github.token }}
-          PR_NUMBER: ${{ steps.get_pr.outputs.result }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
           GITHUB_REPOSITORY: ${{ github.repository }}
         run: |
           python ./Tools/_FarHorizons/update_changelog.py
-          echo "Script exited with code $?"
-
-      - name: Display changelog after update
-        if: steps.get_pr.outputs.result != ''
-        run: |
-          tail -n 100 "Resources/Changelog/ChangelogFarHorizons.yml"
-
-      - name: Git status before commit
-        if: steps.get_pr.outputs.result != ''
-        run: |
-          git status
       
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v7
         with:
           token: ${{ github.token }}
-          commit-message: Update changelog for PR/${{ steps.get_pr.outputs.result }} [skip ci]
+          commit-message: "Update changelog for PR #${{ github.event.pull_request.number }} [skip ci]"
           committer: github-actions[bot] <github-actions[bot]@users.noreply.github.com>
           author: github-actions[bot] <github-actions[bot]@users.noreply.github.com>
-          signoff: false
-          branch: ci-branch/patch-changelog-${{ steps.get_pr.outputs.result }}
+          branch: ci/patch-changelog-${{ github.event.pull_request.number }}
           delete-branch: true
-          title: '[CI] Update patchnotes for ${{ steps.get_pr.outputs.result }}'
+          title: '[CI] Update patchnotes for #${{ github.event.pull_request.number }}'
           body: |
-            Automated PR to populate patchnotes
+            Automated update to `ChangelogFarHorizons.yml` after merging PR #${{ github.event.pull_request.number }}.
           labels: |
             automated pr
-          

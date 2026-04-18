@@ -1,0 +1,55 @@
+name: Changelog Preview
+
+on:
+  pull_request_target:
+    types: [opened, edited, synchronize]
+    branches: [Far-Horizons]
+
+permissions:
+  pull-requests: write
+
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.base.ref }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Install Dependencies
+        run: pip install PyGithub
+
+      - name: Generate Preview
+        id: generate_preview
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: |
+          # We capture the script output into a multiline GitHub output variable
+          {
+            echo 'preview_text<<EOF'
+            python ./Tools/_FarHorizons/preview_changelog.py
+            echo 'EOF'
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Find Comment
+        uses: peter-evans/find-comment@v3
+        id: fc
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          comment-author: 'github-actions[bot]'
+          body-includes: Changelog Preview
+
+      - name: Post or Update Comment
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          comment-id: ${{ steps.fc.outputs.comment-id }}
+          issue-number: ${{ github.event.pull_request.number }}
+          body: ${{ steps.generate_preview.outputs.preview_text }}
+          edit-mode: replace
