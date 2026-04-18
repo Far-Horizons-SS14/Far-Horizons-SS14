@@ -960,9 +960,9 @@ public abstract partial class SharedVehicleSystem : EntitySystem
         }
 
         if(HasComp<RelayInputMoverComponent>(rider))
-            RemCompDeferred<RelayInputMoverComponent>(rider);
+            RemComp<RelayInputMoverComponent>(rider);
         if(HasComp<RiderComponent>(rider))
-            RemCompDeferred<RiderComponent>(rider);
+            RemComp<RiderComponent>(rider);
                 
         if(TryComp<InputMoverComponent>(rider, out var imComp) && !imComp.CanMove)
             _actionBlocker.UpdateCanMove(rider);

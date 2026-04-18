@@ -50,6 +50,7 @@
     layers:
     - state: icon
       shader: unshaded
+      map: [ "enum.ColorVisuals.Color" ] #FH
   - type: Item
     sprite: _Starlight/Objects/Magic/ember.rsi
     size: Tiny
@@ -61,13 +62,13 @@
       - state: inhand-right
         shader: unshaded
   - type: PointLight
-    radius: 1
-    energy: 8
+    radius: 1.5 #FH
+    energy: 4 #FH
     color: "#93F02E"
   - type: Unremoveable
   - type: SurgeryTool
   - type: Cautery
-    speed: 1.0
+    speed: 2.0 #FH
     startSound:
       path: /Audio/_Starlight/Medical/Surgery/cautery1.ogg
     endSound:
@@ -82,6 +83,15 @@
       path: /Audio/_Starlight/Magic/ember.ogg
   - type: StaticPrice
     price: 0 # Not sellable.
+#Far Horizons-Start
+  - type: Appearance
+  - type: ColorVisuals
+  - type: MeleeWeapon
+    wideAnimationRotation: 180
+    damage:
+      types:
+        Heat: 5
+        #Far Horizons-End
 
 # Antidote
 
