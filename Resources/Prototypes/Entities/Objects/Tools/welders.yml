@@ -94,6 +94,7 @@
   - type: PointLight
     enabled: false
     radius: 1.5
+    energy: 5 #FarHorizons
     color: orange
     netsync: false
   - type: ItemTogglePointLight
@@ -188,6 +189,7 @@
   - type: PointLight
     enabled: false
     radius: 1.5
+    energy: 5 #FarHorizons
     color: lightblue
   - type: SolutionRegeneration
     solution: Welder
@@ -226,10 +228,11 @@
         maxVol: 50
   - type: Tool
     speedModifier: 0.7
-  - type: PointLight
-    enabled: false
-    radius: 1.0
-    color: orange
+  # FarHorizons Fix on the Pointlight
+  #- type: PointLight
+  #  enabled: false
+  #  radius: 1.0
+  #  color: orange
   - type: Tag
     tags:
       - EmergencyWelder #Starlight, distinction needed for use in crafting recipies.

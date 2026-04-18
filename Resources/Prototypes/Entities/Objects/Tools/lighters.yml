@@ -94,7 +94,8 @@
   - type: PointLight
     enabled: false
     netsync: false
-    radius: 1.1 #smallest possible
+    radius: 1.5 #FarHorizons
+    energy: 5 #FarHorizons
     color: orange
   - type: ItemTogglePointLight
   - type: PhysicalComposition
@@ -221,7 +222,8 @@
   - type: PointLight
     enabled: false
     netsync: false
-    radius: 1.2 #slightly stronger than the other lighters
+    radius: 1.5 #FarHorizons
+    energy: 5 #FarHorizons
     color: orange
   - type: ItemTogglePointLight
   - type: UseDelay
@@ -362,6 +364,7 @@
     enabled: false
     netsync: false
     radius: 2
+    energy: 5 #FarHorizons
     color: green
 
 - type: entity
@@ -404,6 +407,7 @@
     enabled: false
     netsync: false
     radius: 1.5
+    energy: 5 #FarHorizons
     color: yellow
   - type: ComponentToggler
     components:
@@ -437,6 +441,7 @@
     enabled: false
     netsync: false
     radius: 2
+    energy: 5 #FarHorizons
     color: magenta
 
 - type: entity
@@ -461,6 +466,7 @@
     enabled: false
     netsync: false
     radius: 2
+    energy: 5 #FarHorizons
     color: cyan
 
 - type: entity
@@ -489,6 +495,7 @@
     enabled: false
     netsync: false
     radius: 2
+    energy: 5 #FarHorizons
     color: blue
   - type: RefillableSolution
     solution: Welder
@@ -522,6 +529,7 @@
     enabled: false
     netsync: false
     radius: 4 #Excessively powerful
+    energy: 5 #FarHorizons
     color: Gold
   - type: RefillableSolution
     solution: Welder
@@ -564,6 +572,7 @@
     enabled: false
     netsync: false
     radius: 2
+    energy: 5 #FarHorizons
     color: green
 
 - type: entity
@@ -584,6 +593,7 @@
     enabled: false
     netsync: false
     radius: 2
+    energy: 5 #FarHorizons
     color: brown
 
 - type: entity
@@ -629,6 +639,7 @@
     enabled: false
     netsync: false
     radius: 2
+    energy: 5 #FarHorizons
     color: yellow
 
 - type: entity
@@ -676,4 +687,5 @@
     enabled: false
     netsync: false
     radius: 2
+    energy: 5 #FarHorizons
     color: orange
