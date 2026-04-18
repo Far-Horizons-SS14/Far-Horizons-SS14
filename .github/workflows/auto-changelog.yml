@@ -8,10 +8,6 @@ on:
 permissions:
   contents: write
   pull-requests: write
-  actions: read
-
-env:
- BRANCH_NAME: ${{ github.ref_name	}} 
 
 jobs:
   update-changelog:
@@ -24,22 +20,18 @@ jobs:
           ref: Far-Horizons
           
       - name: Set up Python
-        if: steps.get_pr.outputs.result != ''
         uses: actions/setup-python@v5
         with:
           python-version: '3.x'
 
       - name: Install Dependencies
-        if: steps.get_pr.outputs.result != ''
-        run: |
-          pip install pyyaml PyGithub
+        run: pip install pyyaml PyGithub
     
       - name: Parse PR and Update Changelog
-        if: steps.get_pr.outputs.result != ''
         env:
           CHANGELOG_FILE_PATH: 'Resources/Changelog/ChangelogFarHorizons.yml'
           GITHUB_TOKEN: ${{ github.token }}
-          PR_NUMBER: ${{ steps.get_pr.outputs.result }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
           GITHUB_REPOSITORY: ${{ github.repository }}
         run: |
           python ./Tools/_FarHorizons/update_changelog.py
@@ -48,15 +40,13 @@ jobs:
         uses: peter-evans/create-pull-request@v7
         with:
           token: ${{ github.token }}
-          commit-message: Update changelog for PR/${{ steps.get_pr.outputs.result }} [skip ci]
+          commit-message: "Update changelog for PR #${{ github.event.pull_request.number }} [skip ci]"
           committer: github-actions[bot] <github-actions[bot]@users.noreply.github.com>
           author: github-actions[bot] <github-actions[bot]@users.noreply.github.com>
-          signoff: false
-          branch: ci-branch/patch-changelog-${{ steps.get_pr.outputs.result }}
+          branch: ci/patch-changelog-${{ github.event.pull_request.number }}
           delete-branch: true
-          title: '[CI] Update patchnotes for ${{ steps.get_pr.outputs.result }}'
+          title: '[CI] Update patchnotes for #${{ github.event.pull_request.number }}'
           body: |
-            Automated PR to populate patchnotes
+            Automated update to `ChangelogFarHorizons.yml` after merging PR #${{ github.event.pull_request.number }}.
           labels: |
             automated pr
-          
