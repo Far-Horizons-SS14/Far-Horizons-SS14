@@ -830,7 +830,7 @@
   id: LeftArmCyberScribe
   name: Left Scribe Arm
   description: Augmented arm for the bureaucrats of the modern age.
-  parent: [ OrganCyberArmRight, WithRightCyberHand ]
+  parent: [ OrganCyberArmLeft, WithLeftCyberHand ]
   components:
     - type: VisualOrgan
       data:
@@ -883,6 +883,8 @@
           - CyberHandItem
       stateOn: r_scribe_arm_TOOLS
       stateOff: r_scribe_arm
+
+# Herakles
 
 - type: entity
   id: LeftArmCyberHerakles
