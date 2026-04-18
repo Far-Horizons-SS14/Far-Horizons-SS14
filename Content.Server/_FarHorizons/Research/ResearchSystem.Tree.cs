@@ -161,7 +161,8 @@ public sealed partial class FHResearchSystem
 
     public bool AddResearchToQueue(Entity<FHResearchTreeComponent?> ent, ProtoId<ResearchTreeNodePrototype> node)
     {
-        if (!Resolve(ent, ref ent.Comp))
+        if (!Resolve(ent, ref ent.Comp) ||
+            ent.Comp.Queue.Contains(node))
             return false;
 
         if (ent.Comp.Queue.Count < GetCurrentQueueSize((ent, ent.Comp)))
