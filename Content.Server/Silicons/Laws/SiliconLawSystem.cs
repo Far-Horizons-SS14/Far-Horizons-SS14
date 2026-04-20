@@ -185,12 +185,6 @@ public sealed class SiliconLawSystem : SharedSiliconLawSystem
         }
         #endregion
 
-        //FH start
-        //apply Ioned laws before others so EMAG and Ion dont conflict
-        if (TryComp<IonStormTargetComponent>(uid, out var iontargetcomponent) && TryComp<SiliconLawBoundComponent>(uid, out var lawbounccomponent))
-            _ionTarget.IonStormTarget((uid, lawbounccomponent, iontargetcomponent), false);
-        //FH end
-
         // Add the first emag law before the others
         component.Lawset?.Laws.RemoveAt(0);
 
