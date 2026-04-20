@@ -25,6 +25,12 @@
   - type: Sprite
     overrideDir: South # No rotating limbs!
     enableOverrideDir: true
+
+- type: entity
+  id: OrganEdible
+  abstract: true
+  parent: BaseItem
+  components:
   - type: Edible
   - type: Extractable
     juiceSolution:
@@ -82,7 +88,7 @@
 #FarHorizons Start
 - type: entity
   parent: [ DamageableLimbBase, OrganBase]
-  id: OrganBaseHeadNonVital
+  id: OrganBaseHeadNonVitalNonEdible #Far Horizons
   name: Head 
   abstract: true
   components:
@@ -139,7 +145,21 @@
     layer: "enum.HumanoidVisualLayers.Head"
 
 - type: entity
-  parent: OrganBaseHeadNonVital
+  parent: OrganBaseHeadNonVitalNonEdible
+  id: OrganBaseHeadVitalNonEdible
+  name: Head 
+  abstract: true
+  components:
+  - type: VitalOrgan
+  - type: DamageableLimb
+    bodyDamageFactor: 1.0 # 100% damage transfer for vital heads
+
+- type: entity
+  parent: [ OrganBaseHeadNonVitalNonEdible, OrganEdible ]
+  id: OrganBaseHeadNonVitalEdible
+
+- type: entity
+  parent: OrganBaseHeadNonVitalEdible
   id: OrganBaseHead
   name: Head 
   abstract: true
@@ -151,7 +171,7 @@
 
 - type: entity
   parent: [ DamageableLimbBase, OrganBase ]
-  id: OrganBaseArmLeft
+  id: OrganBaseArmLeftNonEdible #Far Horizons
   name: Left Arm #FarHorizons Capitalization
   abstract: true
   components:
@@ -194,11 +214,16 @@
             - !type:LimbConditionSpecificDamage
               damageType: Blunt
               damageAmount: 150
+
+- type: entity
+  parent: [OrganBaseArmLeftNonEdible, OrganEdible]
+  id: OrganBaseArmLeft
+  abstract: true
   # Far Horizons end
 
 - type: entity
   parent: [ DamageableLimbBase, OrganBase ]
-  id: OrganBaseArmRight
+  id: OrganBaseArmRightNonEdible #Far Horizons
   name: Right Arm #FarHorizons Capitalization
   abstract: true
   components:
@@ -241,11 +266,16 @@
             - !type:LimbConditionSpecificDamage
               damageType: Blunt
               damageAmount: 150
+
+- type: entity
+  parent: [OrganBaseArmRightNonEdible, OrganEdible]
+  id: OrganBaseArmRight
+  abstract: true
   # Far Horizons end
 
 - type: entity
   parent: [ DamageableLimbBaseNoVisuals, OrganBase ]
-  id: OrganBaseHandLeft
+  id: OrganBaseHandLeftNonEdible #Far Horizons
   name: Left Hand #FarHorizons Capitalization
   abstract: true
   components:
@@ -299,11 +329,16 @@
             - !type:LimbConditionSpecificDamage
               damageType: Blunt
               damageAmount: 50
+
+- type: entity
+  parent: [OrganBaseHandLeftNonEdible, OrganEdible]
+  id: OrganBaseHandLeft
+  abstract: true
   # Far Horizons end
 
 - type: entity
   parent: [ DamageableLimbBaseNoVisuals, OrganBase ]
-  id: OrganBaseHandRight
+  id: OrganBaseHandRightNonEdible #Far Horizons
   name: Right Hand #FarHorizons Capitalization
   abstract: true
   components:
@@ -357,11 +392,16 @@
             - !type:LimbConditionSpecificDamage
               damageType: Blunt
               damageAmount: 50
+
+- type: entity
+  parent: [OrganBaseHandRightNonEdible, OrganEdible]
+  id: OrganBaseHandRight
+  abstract: true
   # Far Horizons end
 
 - type: entity
   parent: [ DamageableLimbBase, OrganBase ]
-  id: OrganBaseLegLeft
+  id: OrganBaseLegLeftNonEdible #Far Horizons
   name: Left Leg #FarHorizons Capitalization
   abstract: true
   components:
@@ -405,11 +445,16 @@
             - !type:LimbConditionSpecificDamage
               damageType: Blunt
               damageAmount: 150
+
+- type: entity
+  parent: [OrganBaseLegLeftNonEdible, OrganEdible]
+  id: OrganBaseLegLeft
+  abstract: true
   # Far Horizons end
 
 - type: entity
   parent: [ DamageableLimbBase, OrganBase ]
-  id: OrganBaseLegRight
+  id: OrganBaseLegRightNonEdible #Far Horizons
   name: Right Leg #FarHorizons Capitalization
   abstract: true
   components:
@@ -453,11 +498,16 @@
             - !type:LimbConditionSpecificDamage
               damageType: Blunt
               damageAmount: 150
+
+- type: entity
+  parent: [OrganBaseLegRightNonEdible, OrganEdible]
+  id: OrganBaseLegRight
+  abstract: true
   # Far Horizons end
 
 - type: entity
   parent: [ DamageableLimbBaseNoVisuals, OrganBase ]
-  id: OrganBaseFootLeft
+  id: OrganBaseFootLeftNonEdible #Far Horizons
   name: Left Foot #FarHorizons Capitalization
   abstract: true
   components:
@@ -507,11 +557,16 @@
             - !type:LimbConditionSpecificDamage
               damageType: Blunt
               damageAmount: 50
+
+- type: entity
+  parent: [OrganBaseFootLeftNonEdible, OrganEdible]
+  id: OrganBaseFootLeft
+  abstract: true
   # Far Horizons end
 
 - type: entity
   parent: [ DamageableLimbBaseNoVisuals, OrganBase ]
-  id: OrganBaseFootRight
+  id: OrganBaseFootRightNonEdible
   name: Right Foot #FarHorizons Capitalization
   abstract: true
   components:
@@ -561,6 +616,11 @@
             - !type:LimbConditionSpecificDamage
               damageType: Blunt
               damageAmount: 50
+
+- type: entity
+  parent: [OrganBaseFootRightNonEdible, OrganEdible]
+  id: OrganBaseFootRight
+  abstract: true
   # Far Horizons end
 
 - type: entity

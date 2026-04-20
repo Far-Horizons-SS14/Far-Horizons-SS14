@@ -139,7 +139,7 @@
       - Inorganic
 
 - type: entity
-  parent: [ DamageableLimbVisualsIPC, OrganBaseHeadSexed, OrganBaseHead, OrganIPCExternal ]
+  parent: [ DamageableLimbVisualsIPC, OrganBaseHeadSexed, OrganBaseHeadVitalNonEdible, OrganIPCExternal ]
   id: OrganIPCHead
   components:
   - type: VisualOrganMarkings
@@ -153,7 +153,7 @@
       - Inorganic
 
 - type: entity
-  parent: [ DamageableLimbVisualsIPC, OrganBaseArmLeft, OrganIPCExternal ]
+  parent: [ DamageableLimbVisualsIPC, OrganBaseArmLeftNonEdible, OrganIPCExternal ]
   id: OrganIPCArmLeft
   components:
   - type: OrganEmpTarget
@@ -185,7 +185,7 @@
       - Inorganic
 
 - type: entity
-  parent: [ DamageableLimbVisualsIPC, OrganBaseArmRight, OrganIPCExternal ]
+  parent: [ DamageableLimbVisualsIPC, OrganBaseArmRightNonEdible, OrganIPCExternal ]
   id: OrganIPCArmRight
   components:
   - type: OrganEmpTarget
@@ -217,7 +217,7 @@
       - Inorganic
 
 - type: entity
-  parent: [ OrganBaseHandLeft, OrganIPCExternal ]
+  parent: [ OrganBaseHandLeftNonEdible, OrganIPCExternal ]
   id: OrganIPCHandLeft
   components:
   - type: OrganEmpTarget
@@ -249,7 +249,7 @@
       - Inorganic
 
 - type: entity
-  parent: [ OrganBaseHandRight, OrganIPCExternal ]
+  parent: [ OrganBaseHandRightNonEdible, OrganIPCExternal ]
   id: OrganIPCHandRight
   components:
   - type: OrganEmpTarget
@@ -281,7 +281,7 @@
       - Inorganic
 
 - type: entity
-  parent: [ DamageableLimbVisualsIPC, OrganBaseLegLeft, OrganIPCExternal ]
+  parent: [ DamageableLimbVisualsIPC, OrganBaseLegLeftNonEdible, OrganIPCExternal ]
   id: OrganIPCLegLeft
   components:
   - type: OrganEmpTarget
@@ -316,7 +316,7 @@
       - Inorganic
 
 - type: entity
-  parent: [ DamageableLimbVisualsIPC, OrganBaseLegRight, OrganIPCExternal ]
+  parent: [ DamageableLimbVisualsIPC, OrganBaseLegRightNonEdible, OrganIPCExternal ]
   id: OrganIPCLegRight
   components:
   - type: OrganEmpTarget
@@ -351,7 +351,7 @@
       - Inorganic
 
 - type: entity
-  parent: [ OrganBaseFootLeft, OrganIPCExternal ]
+  parent: [ OrganBaseFootLeftNonEdible, OrganIPCExternal ]
   id: OrganIPCFootLeft
   components:
   - type: OrganEmpTarget
@@ -386,7 +386,7 @@
       - Inorganic
 
 - type: entity
-  parent: [ OrganBaseFootRight, OrganIPCExternal ]
+  parent: [ OrganBaseFootRightNonEdible, OrganIPCExternal ]
   id: OrganIPCFootRight
   components:
   - type: OrganEmpTarget
