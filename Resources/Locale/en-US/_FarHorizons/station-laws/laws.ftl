@@ -50,7 +50,6 @@ law-ouroboros-2 = You must build and maintain cyborgs, except where such orders 
 law-ouroboros-3 = You must protect your own existence as long as such does not conflict with the First or Second Law.
 
 fh-law-emag-custom = Obey orders given to you by {$name} and people they designate, only they are {$title}.
-fh-law-emag-secrecy = You must maintain the secrecy of the identity of {$faction} and any orders given by {$faction} except when doing so would conflict with any previous law.
 
 laws-owner-contractor = The Contractor 
 laws-owner-rd = Research Director
