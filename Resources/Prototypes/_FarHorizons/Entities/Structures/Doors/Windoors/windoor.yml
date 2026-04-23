@@ -8,3 +8,14 @@
       board: [ DoorElectronicsRobotics ]
   - type: Wires
     layoutId: AirlockScience
+
+- type: entity
+  parent: WindoorSecure
+  id: WindoorSecureSecurityNoCadetLocked
+  suffix: Security, No Cadet, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSecurityNoCadet ]
+  - type: Wires
+    layoutId: AirlockSecurity
