@@ -5,8 +5,7 @@
   description: A mechanical door that permits one-way access and prevents tailgating.
   components:
   - type: Sprite
-    sprite: Structures/Doors/turnstile.rsi
-    snapCardinals: true
+    sprite: _FarHorizons/Structures/Doors/Turnstile/generic.rsi # FarHorizons - resprite
     drawdepth: Doors
     layers:
     - state: turnstile
@@ -81,7 +80,7 @@
 
 - type: entity
   id: TurnstileGenpopEnter
-  parent: Turnstile
+  parent: TurnstileSecurity # FarHorizons
   suffix: Genpop Enter
   components:
   - type: AccessReader
@@ -89,7 +88,7 @@
 
 - type: entity
   id: TurnstileGenpopLeave
-  parent: Turnstile
+  parent: TurnstileSecurity # FarHorizons
   suffix: Genpop Leave
   components:
   - type: AccessReader

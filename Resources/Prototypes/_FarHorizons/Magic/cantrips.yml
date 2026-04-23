@@ -1,0 +1,20 @@
+- type: entity
+  parent: BaseAction
+  id: ActionCantripCheese
+  name: Create Cheese
+  description: Places a slice of cheese in your hand. delicious!
+  components:
+  - type: Magic
+    requiresClothes: false
+  - type: Action
+    useDelay: 30
+    itemIconStyle: BigAction
+    icon:
+      sprite: Objects/Consumable/Food/ingredients.rsi
+      state: cheesewedge
+  - type: InstantAction
+    event: !type:SpawnItemInHandEvent
+      spawned: FoodCheeseMagical
+  - type: SpeakOnAction
+    sentence: action-speech-cantrip-cheese
+    whisper: true

@@ -65,6 +65,21 @@
   - !type:ListingLimitedStockCondition
     stock: 1
 
+#FarHorizons Start
+- type: listing
+  id: CantripCheese
+  name: cantrip-chese-name
+  description: cantrip-cheese-description
+  productAction: ActionCantripCheese
+  cost:
+    WizCoin: 1
+  categories:
+  - CantripsStandard
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+#FarHorizons End
+
 # Disabled until I figure out what's wrong with it:
 # - type: listing
 #   id: CantripMessage

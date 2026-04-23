@@ -1,0 +1,141 @@
+- type: entity
+  parent: FloorTileItemDark
+  id: FloorTileItemDarkSquigglyVertical
+  name: dark steel squiggly vertical tile
+  components:
+  - type: Sprite
+    state: dark-squiggly
+  - type: FloorTile
+    outputs:
+    - Plating
+    - FloorDarkSquigglyVertical
+  - type: Stack
+    stackType: FloorTileDarkSquigglyVertical
+
+- type: entity
+  name: hydro neosol tile
+  parent: FloorTileItemBase
+  id: FloorTileItemHydroNeoSol
+  components:
+  - type: Sprite
+    state: hydro
+  - type: Item
+    heldPrefix: hydro
+  - type: FloorTile
+    outputs:
+      - Plating
+      - FloorHydroNeoSol
+  - type: Stack
+    stackType: FloorTileHydroNeoSol
+
+- type: entity
+  name: metal floor
+  parent: FloorTileItemBase
+  id: FloorTileItemMetal
+  components:
+  - type: Sprite
+    state: techfloor
+  - type: Item
+    heldPrefix: dark
+  - type: FloorTile
+    outputs:
+      - Plating
+      - FloorMetal
+  - type: Stack
+    stackType: FloorTileMetal
+
+- type: entity
+  name: metal floor
+  parent: FloorTileItemBase
+  id: FloorTileItemMetalEngi
+  components:
+  - type: Sprite
+    state: techfloor
+  - type: Item
+    heldPrefix: dark
+  - type: FloorTile
+    outputs:
+      - Plating
+      - FloorMetalEngi
+  - type: Stack
+    stackType: FloorTileMetalEngi
+
+- type: entity
+  name: metal floor
+  parent: FloorTileItemBase
+  id: FloorTileItemMetalMed
+  components:
+  - type: Sprite
+    state: techfloor
+  - type: Item
+    heldPrefix: dark
+  - type: FloorTile
+    outputs:
+      - Plating
+      - FloorMetalMed
+  - type: Stack
+    stackType: FloorTileMetalMed
+
+- type: entity
+  name: metal floor
+  parent: FloorTileItemBase
+  id: FloorTileItemMetalSec
+  components:
+  - type: Sprite
+    state: techfloor
+  - type: Item
+    heldPrefix: dark
+  - type: FloorTile
+    outputs:
+      - Plating
+      - FloorMetalSec
+  - type: Stack
+    stackType: FloorTileMetalSec
+
+- type: entity
+  name: metal floor
+  parent: FloorTileItemBase
+  id: FloorTileItemMetalEngiNeoSol
+  components:
+  - type: Sprite
+    state: techfloor
+  - type: Item
+    heldPrefix: dark
+  - type: FloorTile
+    outputs:
+      - Plating
+      - FloorMetalEngiNeoSol
+  - type: Stack
+    stackType: FloorTileMetalEngiNeoSol
+
+- type: entity
+  name: metal floor
+  parent: FloorTileItemBase
+  id: FloorTileItemMetalMedNeoSol
+  components:
+  - type: Sprite
+    state: techfloor
+  - type: Item
+    heldPrefix: dark
+  - type: FloorTile
+    outputs:
+      - Plating
+      - FloorMetalMedNeoSol
+  - type: Stack
+    stackType: FloorTileMetalMedNeoSol
+
+- type: entity
+  name: metal floor
+  parent: FloorTileItemBase
+  id: FloorTileItemMetalSecNeoSol
+  components:
+  - type: Sprite
+    state: techfloor
+  - type: Item
+    heldPrefix: dark
+  - type: FloorTile
+    outputs:
+      - Plating
+      - FloorMetalSecNeoSol
+  - type: Stack
+    stackType: FloorTileMetalSecNeoSol

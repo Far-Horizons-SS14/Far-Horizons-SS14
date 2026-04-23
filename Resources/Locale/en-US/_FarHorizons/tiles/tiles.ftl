@@ -1,1 +1,12 @@
 tiles-office-carpet-red-floor = office red carpet floor
+tiles-dark-squiggly-vertical = dark steel vertical squiggly tile
+tiles-glass-neosol-floor = glass neosol floor
+tiles-hydro-neosol-floor = hydro neosol floor
+tiles-metal-floor = metal floor
+tiles-metal-engi-floor = metal engineering floor
+tiles-metal-med-floor = metal medical floor
+tiles-metal-sec-floor = metal security floor
+tiles-metal-engi-neosol-floor = metal neosol engineering floor
+tiles-metal-med-neosol-floor = metal neosol medical floor
+tiles-metal-sec-neosol-floor = metal neosol security floor
+tiles-reinforced-glass-neosol-floor = reinforced glass neosol floor

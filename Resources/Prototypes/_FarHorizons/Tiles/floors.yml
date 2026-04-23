@@ -12,3 +12,145 @@
   friction: 1.25
   itemDrop: FloorTileItemCarpetOffice
   heatCapacity: 10000
+
+- type: tile
+  id: FloorDarkSquigglyVertical
+  parent: BaseStationTile
+  name: tiles-dark-squiggly-vertical
+  sprite: /Textures/_FarHorizons/Tiles/dark_squiggly_vertical.png
+  variants: 4
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  itemDrop: FloorTileItemDarkSquigglyVertical
+  allowRotationMirror: true
+
+- type: tile
+  id: FloorGlassNeoSol
+  parent: BaseStationTile
+  name: tiles-glass-neosol-floor
+  sprite: /Textures/_FarHorizons/Tiles/glass_neosol.png
+  variants: 4
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  footstepSounds:
+    collection: FootstepTile
+  itemDrop: SheetGlass1 # TODO: differentiate between NT an NS
+
+- type: tile
+  id: FloorHydroNeoSol
+  parent: BaseStationTile
+  name: tiles-hydro-neosol-floor
+  sprite: /Textures/_FarHorizons/Tiles/hydro_neosol.png
+  itemDrop: FloorTileItemHydroNeoSol
+
+- type: tile
+  id: FloorMetal
+  parent: BaseStationTile
+  name: tiles-metal-floor
+  sprite: /Textures/_FarHorizons/Tiles/metal.png
+  variants: 4
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  itemDrop: FloorTileItemMetal
+
+- type: tile
+  id: FloorMetalEngi
+  parent: BaseStationTile
+  name: tiles-metal-engi-floor
+  sprite: /Textures/_FarHorizons/Tiles/metal_engi.png
+  variants: 4
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  itemDrop: FloorTileItemMetalEngi
+
+- type: tile
+  id: FloorMetalMed
+  parent: BaseStationTile
+  name: tiles-metal-med-floor
+  sprite: /Textures/_FarHorizons/Tiles/metal_med.png
+  variants: 4
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  itemDrop: FloorTileItemMetalMed
+
+- type: tile
+  id: FloorMetalSec
+  parent: BaseStationTile
+  name: tiles-metal-sec-floor
+  sprite: /Textures/_FarHorizons/Tiles/metal_sec.png
+  variants: 4
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  itemDrop: FloorTileItemMetalSec
+
+- type: tile
+  id: FloorMetalEngiNeoSol
+  parent: BaseStationTile
+  name: tiles-metal-engi-neosol-floor
+  sprite: /Textures/_FarHorizons/Tiles/metal_neosol_engi.png
+  variants: 4
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  itemDrop: FloorTileItemMetalEngiNeoSol
+
+- type: tile
+  id: FloorMetalMedNeoSol
+  parent: BaseStationTile
+  name: tiles-metal-med-neosol-floor
+  sprite: /Textures/_FarHorizons/Tiles/metal_neosol_med.png
+  variants: 4
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  itemDrop: FloorTileItemMetalMedNeoSol
+
+- type: tile
+  id: FloorMetalSecNeoSol
+  parent: BaseStationTile
+  name: tiles-metal-sec-neosol-floor
+  sprite: /Textures/_FarHorizons/Tiles/metal_neosol_sec.png
+  variants: 4
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  itemDrop: FloorTileItemMetalSecNeoSol
+
+- type: tile
+  id: FloorRGlassNeoSol
+  parent: BaseStationTile
+  name: tiles-reinforced-glass-neosol-floor
+  sprite: /Textures/_FarHorizons/Tiles/rglass_neosol.png # FarHorizons - resprite
+  variants: 4
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  footstepSounds:
+    collection: FootstepTile
+  itemDrop: SheetRGlass1 # TODO: differentiate between NT an NS

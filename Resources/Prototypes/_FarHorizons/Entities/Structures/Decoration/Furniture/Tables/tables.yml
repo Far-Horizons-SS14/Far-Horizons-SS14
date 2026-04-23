@@ -1,0 +1,114 @@
+- type: entity
+  id: TableReinforcedPlasmaGlass
+  parent: TableBase
+  name: Reinforced Plasma Glass Table
+  description: A square piece of plasma glass, standing on four metal legs. Pretty and extra robust.
+  components:
+  - type: Sprite
+    sprite:  _FarHorizons/Structures/Furniture/Tables/r_plasma.rsi
+  - type: Icon
+    sprite:  _FarHorizons/Structures/Furniture/Tables/r_plasma.rsi
+  - type: GlassTable
+    climberDamage:
+      types:
+        Slash: 40
+    tableDamage:
+      types:
+        Blunt: 160
+    tableMassLimit: 480
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 500
+      behaviors: #excess damage (nuke?). avoid computational cost of spawning entities.
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:ChangeConstructionNodeBehavior
+        node: TableFrame
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ShardGlassPlasma:
+            min: 1
+            max: 1
+          PartRodMetal1:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: IconSmooth
+    key: reinforcedglasstable
+  - type: Construction
+    graph: Table
+    node: TableReinforcedPlasmaGlass
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepTile
+
+- type: entity
+  id: TableUraniumGlass
+  parent: TableBase
+  name: Uranium Glass Table
+  description: A square piece of uranium glass, standing on four metal legs. Glowing!.
+  components:
+  - type: Sprite
+    sprite:  _FarHorizons/Structures/Furniture/Tables/uranium.rsi
+  - type: Icon
+    sprite:  _FarHorizons/Structures/Furniture/Tables/uranium.rsi
+  - type: GlassTable
+    climberDamage:
+      types:
+        Slash: 45
+        Radiation: 5
+    tableDamage:
+      types:
+        Blunt: 175
+    tableMassLimit: 420
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 475
+      behaviors: #excess damage (nuke?). avoid computational cost of spawning entities.
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+    - trigger:
+        !type:DamageTrigger
+        damage: 95
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:ChangeConstructionNodeBehavior
+        node: TableFrame
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ShardGlassUranium:
+            min: 1
+            max: 1
+          PartRodMetal1:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: IconSmooth
+    key: reinforcedglasstable
+  - type: Construction
+    graph: Table
+    node: TableUraniumGlass
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepTile

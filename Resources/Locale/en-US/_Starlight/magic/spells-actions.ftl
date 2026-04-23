@@ -7,3 +7,6 @@ action-speech-cantrip-mop = Poitina.
 action-speech-cantrip-bandage = Sercë, á racë úleasta.
 
 prayer-popup-subtle-psychic-whisper = You feel a whisper in your mind...
+
+#Far Horizons
+action-speech-cantrip-cheese = Vocá cásëúm.

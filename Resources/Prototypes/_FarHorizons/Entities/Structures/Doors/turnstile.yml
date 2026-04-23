@@ -1,0 +1,45 @@
+- type: entity
+  id: TurnstileSecurity
+  parent: Turnstile
+  suffix: Security
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Doors/Turnstile/nt_security.rsi
+  - type: AccessReader
+    access: [["Security"]]
+
+- type: entity
+  id: TurnstileCommandNeoSol
+  parent: Turnstile
+  suffix: Command, NeoSol
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Doors/Turnstile/ns_command.rsi
+  - type: AccessReader
+    access: [["Command"]]
+
+- type: entity
+  id: TurnstileSecurityNeoSol
+  parent: Turnstile
+  suffix: Security, NeoSol
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Doors/Turnstile/ns_security.rsi
+  - type: AccessReader
+    access: [["Security"]]
+
+- type: entity
+  id: TurnstileGenpopEnterNeoSol
+  parent: TurnstileSecurityNeoSol
+  suffix: Genpop Enter, NeoSol
+  components:
+  - type: AccessReader
+    access: [["GenpopEnter"], ["Security"]]
+
+- type: entity
+  id: TurnstileGenpopLeaveNeoSol
+  parent: TurnstileSecurityNeoSol
+  suffix: Genpop Leave, NeoSol
+  components:
+  - type: AccessReader
+    access: [["GenpopLeave"], ["Security"]]

@@ -1,1 +1,10 @@
 stack-plutonium = plutonium
+stack-dark-squiggly-vertical = dark steel squiggly vertical tile
+stack-hydro-neosol-tile = hydro neosol tile
+stack-metal-floor = metal floor
+stack-metal-engi-floor = metal engineering floor
+stack-metal-med-floor = metal medical floor
+stack-metal-sec-floor = metal security floor
+stack-metal-engi-neosol-floor = metal neosol engineering floor
+stack-metal-med-neosol-floor = metal neosol medical floor
+stack-metal-sec-neosol-floor = metal neosol security floor

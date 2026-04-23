@@ -21,7 +21,7 @@
         mask:
         - TableMask
   - type: Sprite
-    sprite: Structures/Furniture/chairs.rsi
+    sprite: _FarHorizons/Structures/Furniture/chairs.rsi # FarHorizons - resprite
     noRot: true
   - type: Strap
     position: Stand
@@ -142,7 +142,7 @@
     node: stoolBar
 
 - type: entity
-  name: brass chair
+  name: Etherian Chair # FarHorizons
   id: ChairBrass
   parent: StoolBase
   components:
@@ -415,6 +415,7 @@
   description: Make sure you sit *really* gently.
   components:
   - type: Sprite
+    sprite: Structures/Furniture/chairs.rsi # FarHorizons - resprite
     state: card-stool
   - type: Construction
     graph: Seat
@@ -487,4 +488,5 @@
   name: xeno chair
   components:
   - type: Sprite
+    sprite: Structures/Furniture/chairs.rsi # FarHorizons - resprite
     state: xeno-chair

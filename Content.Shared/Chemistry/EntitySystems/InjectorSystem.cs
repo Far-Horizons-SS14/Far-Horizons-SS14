@@ -574,7 +574,17 @@ public sealed partial class InjectorSystem : EntitySystem
 
         if (realTransferAmount <= 0)
         {
-            LocId msg = target.Owner == user ? "injector-component-target-is-empty-message-self" : "injector-component-target-is-empty-message";
+            //Far Horizons Start
+            LocId msg;
+            if(injector.Comp.ReagentWhitelist != null && injector.Comp.ReagentWhitelist.Count > 0)
+            {
+                _solutionContainer.TryAddSolution(targetSolution, temporarilyRemovedSolution);
+                msg = target.Owner == user ? "injector-component-no-valid-reagent-message-self" : "injector-component-no-valid-reagent-message";
+            }
+            else
+                msg = target.Owner == user ? "injector-component-target-is-empty-message-self" : "injector-component-target-is-empty-message";
+            //Far Horizons End
+            
             var targetIdentity = Identity.Entity(target, EntityManager);
             _popup.PopupClient(Loc.GetString(msg, ("target", targetIdentity)), injector.Owner, user);
             return false;

@@ -15,3 +15,7 @@ cantrip-bandage-description = Creates a magic glyph that stops bleeding when app
 
 cantrip-message-name = Psychic Whisper
 cantrip-message-description = Sends a private message to a target.
+
+#Far Horizons
+cantrip-chese-name = Cheese
+cantrip-cheese-description = Summon cheese from a dimension with infinite cheese.
