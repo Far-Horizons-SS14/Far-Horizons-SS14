@@ -1,4 +1,4 @@
-#region Cargo
+#region GSL Belts
 
 - type: entity
   parent: ClothingBeltStorageBase
@@ -199,6 +199,13 @@
           tags:
           - Wrench
           - ImprovisedWrench
+
+#region Nanotrasen
+
+
+
+
+
 
 #region Command
 
@@ -428,24 +435,7 @@
       - id: AnomalyScanner
       - id: NodeScanner
 
-#region Security
-
-
-
-
-
-
-
-
-
-
-
-
-
-#region Syndicate
-
-
-
+#region NeoSol
 
 
 
@@ -463,12 +453,13 @@
   id: ClothingBeltSheathSyndi
   name: Sabre Sheath
   description: An ornate sheath designed to hold an officer's blade.
+  suffix: NeoSol
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/Belt/syndisheath.rsi
+    sprite: _FarHorizons/Clothing/Belt/NeoSol/sheath.rsi
     state: sheath
   - type: Clothing
-    sprite: _FarHorizons/Clothing/Belt/syndisheath.rsi
+    sprite: _FarHorizons/Clothing/Belt/NeoSol/sheath.rsi
   - type: Item
     size: Ginormous
   - type: ItemSlots
@@ -497,12 +488,13 @@
   id: ClothingBeltHoPSyndi
   name: Personnel Manager Belt
   description: A very clean belt with some wear on some lesser seen parts. Can fit plenty of paperwork and writing implements inside.
+  suffix: NeoSol
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/Belt/syndihop.rsi
+    sprite: _FarHorizons/Clothing/Belt/NeoSol/hop.rsi
     state: icon
   - type: Clothing
-    sprite: _FarHorizons/Clothing/Belt/syndihop.rsi
+    sprite: _FarHorizons/Clothing/Belt/NeoSol/hop.rsi
 
 # Foreman (Chief Engineer)
 
@@ -650,17 +642,18 @@
   id: ClothingBeltCorpsmanSyndi
   name: Corpsman Belt
   description: A tactical belt with as many pockets and bags to hold all the medical items you need!
+  suffix: NeoSol
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/Belt/corpsmansyndi.rsi
+    sprite: _FarHorizons/Clothing/Belt/NeoSol/corpsmanbelt.rsi
   - type: Clothing
-    sprite: _FarHorizons/Clothing/Belt/corpsmansyndi.rsi
+    sprite: _FarHorizons/Clothing/Belt/NeoSol/corpsmanbelt.rsi
   - type: Appearance
 
 - type: entity
   id: ClothingBeltCorpsmanSyndiFilled
   parent: ClothingBeltCorpsmanSyndi
-  suffix: Filled
+  suffix: NeoSol, Filled
   components:
   - type: StorageFill
     contents:
@@ -674,34 +667,10 @@
 
 - type: entity
   parent: ClothingBeltBrigmedic
-  id: ClothingBeltBrigmedicWebSyndi
-  name: Tactical Trauma Rig
-  description: A stylish alternative to the belt.
-  components:
-  - type: Sprite
-    sprite: _FarHorizons/Clothing/Belt/brigmedicwebbing-syndi.rsi
-  - type: Clothing
-    sprite: _FarHorizons/Clothing/Belt/brigmedicwebbing-syndi.rsi
-  - type: Appearance
-
-- type: entity
-  id: ClothingBeltBrigmedicWebSyndiFilled
-  parent: ClothingBeltBrigmedicWebSyndi
-  suffix: Filled
-  components:
-  - type: StorageFill
-    contents:
-      - id: Stunbaton
-      - id: Handcuffs    
-      - id: Brutepack
-      - id: Ointment
-      - id: Gauze
-
-- type: entity
-  parent: ClothingBeltBrigmedic
   id: ClothingBeltBrigmedicSyndi
   name: Tactical Trauma Belt
   description: Because why choose between being a medic or a security guard when you can be both?
+  suffix: NeoSol
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/Belt/tactical_trauma.rsi
@@ -711,7 +680,7 @@
 - type: entity
   id: ClothingBeltBrigmedicSyndiFilled
   parent: ClothingBeltBrigmedicSyndi
-  suffix: Filled
+  suffix: NeoSol, Filled
   components:
   - type: StorageFill
     contents:
@@ -728,16 +697,17 @@
   id: ClothingBeltSecuritySyndi
   name: Security Belt
   description: Can hold security gear like handcuffs and flashes.
+  suffix: NeoSol
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/Belt/securitysyndi.rsi
+    sprite: _FarHorizons/Clothing/Belt/NeoSol/security.rsi
   - type: Clothing
-    sprite: _FarHorizons/Clothing/Belt/securitysyndi.rsi
+    sprite: _FarHorizons/Clothing/Belt/NeoSol/security.rsi
 
 - type: entity
   id: ClothingBeltSecuritySyndiFilled
   parent: ClothingBeltSecuritySyndi
-  suffix: Filled
+  suffix: NeoSol, Filled
   components:
   - type: EntityTableContainerFill
     containers:
@@ -769,3 +739,45 @@
     damageCoefficient: 0.1
   - type: StaticPrice
     price: 500
+
+# region Medical
+
+- type: entity
+  parent: ClothingBeltMedicalEMT
+  id: ClothingBeltMedicalEMTSyndi
+  suffix: NeoSol
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Belt/NeoSol/emt.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Belt/NeoSol/emt.rsi
+
+- type: entity
+  parent: ClothingBeltMedicalEMTFilled
+  id: ClothingBeltMedicalEMTSyndiFilled
+  suffix: NeoSol, Filled
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Belt/NeoSol/emt.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Belt/NeoSol/emt.rsi
+
+- type: entity
+  parent: ClothingBeltMedical
+  id: ClothingBeltMedicalSyndi
+  suffix: NeoSol
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Belt/NeoSol/medical.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Belt/NeoSol/medical.rsi
+
+- type: entity
+  parent: ClothingBeltMedicalFilled
+  id: ClothingBeltMedicalSyndiFilled
+  suffix: NeoSol, Filled
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Belt/NeoSol/medical.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Belt/NeoSol/medical.rsi
