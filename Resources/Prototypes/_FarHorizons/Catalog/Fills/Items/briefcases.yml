@@ -1,0 +1,12 @@
+- type: entity
+  id: BriefcaseWeaponViperFilled
+  parent: BriefcaseWeaponSmall
+  name: Secure Viper Case
+  suffix: Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: WeaponPistolViper
+        - id: AmmoSelection9mmS

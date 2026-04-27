@@ -1,0 +1,52 @@
+#region 9mm
+#Guns are loaded with SP by default, so extra mag for other types
+- type: thiefBackpackSet
+  id: AmmoWeapon9mmHP
+  name: thief-backpack-category-tools-name
+  description: thief-backpack-category-tools-description
+  sprite:
+    sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Boxes/Pistol/9mm.rsi
+    state: icon_hp
+  content:
+  - MagazinePistolHP
+  - MagazinePistolHP
+  - MagazinePistolHP
+  - MagazineBoxPistolHP
+
+- type: thiefBackpackSet
+  id: AmmoWeapon9mmSP
+  name: thief-backpack-category-tools-name
+  description: thief-backpack-category-tools-description
+  sprite:
+    sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Boxes/Pistol/9mm.rsi
+    state: icon_sp
+  content:
+  - MagazinePistolSP
+  - MagazinePistolSP
+  - MagazineBoxPistolSP
+
+- type: thiefBackpackSet
+  id: AmmoWeapon9mmFMJ
+  name: thief-backpack-category-tools-name
+  description: thief-backpack-category-tools-description
+  sprite:
+    sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Boxes/Pistol/9mm.rsi
+    state: icon_fmj
+  content:
+  - MagazinePistolFMJ
+  - MagazinePistolFMJ
+  - MagazinePistolFMJ
+  - MagazineBoxPistolFMJ
+
+- type: thiefBackpackSet
+  id: AmmoWeapon9mmMixed
+  name: thief-backpack-category-tools-name
+  description: thief-backpack-category-tools-description
+  sprite:
+    sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Boxes/Pistol/9mm.rsi
+    state: icon
+  content:
+  - MagazinePistolHP
+  - MagazinePistolSP
+  - MagazinePistolFMJ
+  - MagazineBoxPistolSP

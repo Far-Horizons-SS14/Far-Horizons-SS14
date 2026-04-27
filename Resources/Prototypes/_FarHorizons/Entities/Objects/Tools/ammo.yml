@@ -1,0 +1,75 @@
+- type: entity
+  id: AmmoSelectionBase
+  parent: BaseItem
+  name: Ammo Selector
+  description: Has four options to choose from, HP - SP - FMJ - Mixed
+  suffix: Debug
+  components:
+  - type: Sprite
+    sprite: Objects/Devices/door_remote.rsi
+    layers:
+    - state: door_remotebase
+    - state: door_remotelightscolour
+      color: "#58c800"
+    - state: door_remotescreencolour
+      color: "#3a7231"
+  - type: ThiefUndeterminedBackpack
+    maxSelectedSets: 1
+    approveSound: lightning
+    possibleSets: #Example
+#9mm
+    - AmmoWeapon9mmHP
+    - AmmoWeapon9mmSP
+    - AmmoWeapon9mmFMJ
+    - AmmoWeapon9mmMixed
+  - type: ActivatableUI
+    key: enum.ThiefBackpackUIKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.ThiefBackpackUIKey.Key:
+        type: ThiefBackpackBoundUserInterface
+
+#region NanoTrasen
+- type: entity
+  id: AmmoSelectionBaseNT
+  parent: [AmmoSelectionBase, BaseSyndicateContraband]
+  suffix: Debug
+  components:
+  - type: Sprite
+    sprite: Objects/Devices/door_remote.rsi
+    layers:
+    - state: door_remotebase
+    - state: door_remotelightscolour
+      color: "#0077FF"
+    - state: door_remotescreencolour
+      color: "#0033EE"
+
+#region Syndicate
+- type: entity
+  id: AmmoSelectionBaseS
+  parent: [AmmoSelectionBase, BaseSyndicateContraband]
+  suffix: Debug
+  description: A remote controller that redspaces in ammunition for your firearm, seems to have 4 different types to choose from. HP / SP / FMJ / Mixed
+  components:
+  - type: Sprite
+    sprite: Objects/Devices/door_remote.rsi
+    layers:
+    - state: door_remotebase
+    - state: door_remotelightscolour
+      color: "#cb0000"
+    - state: door_remotescreencolour
+      color: "#830000"
+
+- type: entity
+  id: AmmoSelection9mmS
+  parent: AmmoSelectionBaseS
+  name: 9mm Ammo Selector
+  description: Has four options to choose from, HP - SP - FMJ - Mixed
+  suffix: S
+  components:
+  - type: ThiefUndeterminedBackpack
+    possibleSets:
+    - AmmoWeapon9mmHP
+    - AmmoWeapon9mmSP
+    - AmmoWeapon9mmFMJ
+    - AmmoWeapon9mmMixed
