@@ -1,12 +1,18 @@
+# region NeoSol
+
+
+
+
+
+
+#region Security
 - type: entity
   parent: [ClothingBackpack, BaseSyndicateContraband]
   id: ClothingBackpackSyndicateSecurity
-  name: Security Backpack
-  suffix: S
-  description: It's a very robust backpack.
+  suffix: NeoSol
   components:
     - type: Sprite
-      sprite: _FarHorizons/Clothing/Back/Backpacks/Syndicate/security.rsi
+      sprite: _FarHorizons/Clothing/Back/Backpacks/NeoSol/security.rsi
     - type: Tag
       tags:
         - Syndicate
@@ -15,13 +21,25 @@
 
 - type: entity
   parent: [ClothingBackpack, BaseSyndicateContraband]
-  id: ClothingBackpackNeosolEngineering
-  name: Engineering Backpack
-  suffix: S
-  description: It's a very robust backpack for holding tons of materials and tools.
+  id: ClothingBackpackSyndicateBrigmedic
+  suffix: NeoSol
   components:
     - type: Sprite
-      sprite: _FarHorizons/Clothing/Back/Backpacks/Syndicate/neosol_engineering.rsi
+      sprite: _FarHorizons/Clothing/Back/Backpacks/NeoSol/brigmedic.rsi
+    - type: Tag
+      tags:
+        - Syndicate
+        - WhitelistChameleon
+        - Backpack
+
+#region Engineering
+- type: entity
+  parent: [ClothingBackpack, BaseSyndicateContraband]
+  id: ClothingBackpackNeosolEngineering
+  suffix: NeoSol
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Clothing/Back/Backpacks/NeoSol/engineering.rsi
     - type: Tag
       tags:
         - Syndicate
@@ -31,12 +49,10 @@
 - type: entity
   parent: [ClothingBackpack, BaseSyndicateContraband]
   id: ClothingBackpackNeosolAtmospherics
-  name: Atmospherics Backpack
-  suffix: S
-  description: It's a very robust backpack for holding massive pipes and air related tanks.
+  suffix: NeoSol
   components:
     - type: Sprite
-      sprite: _FarHorizons/Clothing/Back/Backpacks/Syndicate/neosol_atmospherics.rsi
+      sprite: _FarHorizons/Clothing/Back/Backpacks/NeoSol/atmospherics.rsi
     - type: Tag
       tags:
         - Syndicate
@@ -47,27 +63,11 @@
   parent: [ClothingBackpack, BaseSyndicateContraband]
   id: ClothingBackpackForeman
   name: Foreman's Backpack
-  suffix: S
+  suffix: NeoSol
   description: It's a very robust backpack, some wires are burnt into it.
   components:
     - type: Sprite
-      sprite: _FarHorizons/Clothing/Back/Backpacks/Syndicate/foreman.rsi
-    - type: Tag
-      tags:
-        - Syndicate
-        - WhitelistChameleon
-        - Backpack
-
-
-- type: entity
-  parent: [ClothingBackpack, BaseSyndicateContraband]
-  id: ClothingBackpackSyndicateBrigmedic
-  name: Brigmedic Backpack
-  suffix: S
-  description: It's a very sterile backpack.
-  components:
-    - type: Sprite
-      sprite: _FarHorizons/Clothing/Back/Backpacks/Syndicate/brigmedic.rsi
+      sprite: _FarHorizons/Clothing/Back/Backpacks/NeoSol/foreman.rsi
     - type: Tag
       tags:
         - Syndicate

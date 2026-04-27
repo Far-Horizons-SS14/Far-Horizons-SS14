@@ -1,12 +1,46 @@
+#region NeoSol
+
+
+
+
+
+
+#region Security
 - type: entity
   parent: [ClothingBackpackDuffel, BaseSyndicateContraband]
   id: ClothingBackpackDuffelSyndicateSecurity
-  name: Security Duffel Bag
-  suffix: S
-  description: A large duffel bag for holding extra security related goods.
+  suffix: NeoSol
   components:
     - type: Sprite
-      sprite: _FarHorizons/Clothing/Back/Duffels/Syndicate/security.rsi
+      sprite: _FarHorizons/Clothing/Back/Duffels/NeoSol/security.rsi
+    - type: Tag
+      tags:
+        - Syndicate
+        - WhitelistChameleon
+        - Backpack
+
+- type: entity
+  parent: [ClothingBackpackDuffel, BaseSyndicateContraband]
+  id: ClothingBackpackDuffelSyndicateBrigmedic
+  suffix: NeoSol
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Clothing/Back/Duffels/NeoSol/brigmedic.rsi
+    - type: Tag
+      tags:
+        - Syndicate
+        - WhitelistChameleon
+        - Backpack
+
+
+#region Engineering
+- type: entity
+  parent: [ ClothingBackpackDuffel, BaseSyndicateContraband ]
+  id: ClothingBackpackDuffelNeosolEngineering
+  suffix: NeoSol
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Clothing/Back/Duffels/NeoSol/engineering.rsi
     - type: Tag
       tags:
         - Syndicate
@@ -15,58 +49,26 @@
 
 - type: entity
   parent: [ ClothingBackpackDuffel, BaseSyndicateContraband ]
-  id: ClothingBackpackDuffelNeosolEngineering
-  name: Engineering Duffel Bag
-  suffix: S
-  description: A large duffel bag for holding tons of materials and tools.
-  components:
-        - type: Sprite
-          sprite: _FarHorizons/Clothing/Back/Duffels/Syndicate/neosol_engineering.rsi
-        - type: Tag
-          tags:
-            - Syndicate
-            - WhitelistChameleon
-            - Backpack
-
-- type: entity
-  parent: [ ClothingBackpackDuffel, BaseSyndicateContraband ]
   id: ClothingBackpackDuffelNeosolAtmospherics
-  name: Atmospherics Duffel Bag
-  suffix: S
-  description: A large duffel bag for holding massive pipes and air related tanks.
+  suffix: NeoSol
   components:
-        - type: Sprite
-          sprite: _FarHorizons/Clothing/Back/Duffels/Syndicate/neosol_atmospherics.rsi
-        - type: Tag
-          tags:
-            - Syndicate
-            - WhitelistChameleon
-            - Backpack
+    - type: Sprite
+      sprite: _FarHorizons/Clothing/Back/Duffels/NeoSol/atmospherics.rsi
+    - type: Tag
+      tags:
+        - Syndicate
+        - WhitelistChameleon
+        - Backpack
 
 - type: entity
   parent: [ ClothingBackpackDuffel, BaseSyndicateContraband ]
   id: ClothingBackpackDuffelForeman
   name: Foreman's Duffel Bag
-  suffix: S
+  suffix: NeoSol
   description: A large duffel bag stained with the stench of alcohol, burnt wires and pain.
   components:
-        - type: Sprite
-          sprite: _FarHorizons/Clothing/Back/Duffels/Syndicate/foreman.rsi
-        - type: Tag
-          tags:
-            - Syndicate
-            - WhitelistChameleon
-            - Backpack
-
-- type: entity
-  parent: [ClothingBackpackDuffel, BaseSyndicateContraband]
-  id: ClothingBackpackDuffelSyndicateBrigmedic
-  name: Brigmedic Duffel Bag
-  suffix: S
-  description: A large duffel bag for holding extra medical related goods.
-  components:
     - type: Sprite
-      sprite: _FarHorizons/Clothing/Back/Duffels/Syndicate/brigmedic.rsi
+      sprite: _FarHorizons/Clothing/Back/Duffels/NeoSol/foreman.rsi
     - type: Tag
       tags:
         - Syndicate
