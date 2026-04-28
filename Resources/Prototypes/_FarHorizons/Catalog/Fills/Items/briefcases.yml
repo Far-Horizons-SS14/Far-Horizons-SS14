@@ -9,4 +9,135 @@
       storagebase: !type:AllSelector
         children:
         - id: WeaponPistolViper
+        - id: TreasureCoinIron
         - id: AmmoSelection9mmS
+
+- type: entity # .25 does not have any ammo types.
+  id: BriefcaseWeaponCobraFilled
+  parent: BriefcaseWeaponSmall
+  name: Secure Cobra Case
+  suffix: Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: WeaponPistolCobra
+        - id: TreasureCoinIron
+        - id: MagazinePistolCaselessRifle
+          amount: 3
+        - id: MagazineBoxCaselessRifle
+
+- type: entity
+  id: BriefcaseWeaponStechkinFilled
+  parent: BriefcaseWeaponSmall
+  name: Secure Stechkin Case
+  suffix: Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: WeaponPistolStechkin
+        - id: TreasureCoinIron
+        - id: AmmoSelection38S
+
+- type: entity
+  id: BriefcaseWeaponJungleHawkFilled
+  parent: BriefcaseWeaponSmall
+  name: Secure Jungle Hawk Case
+  suffix: Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: WeaponPistolDeagle
+        - id: TreasureCoinIron
+        - id: AmmoSelection44MagS
+
+- type: entity
+  id: BriefcaseWeaponPythonFilled
+  parent: BriefcaseWeaponSmall
+  name: Secure Python Case
+  suffix: Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: WeaponRevolverPythonAP
+        - id: TreasureCoinIron
+        - id: AmmoSelection44S
+
+- type: entity
+  id: BriefcaseWeaponPythonAPFilled
+  parent: BriefcaseWeaponSmall
+  name: Secure Python Case
+  suffix: Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: WeaponRevolverPythonAP
+        - id: TreasureCoinIron
+        - id: SpeedLoaderMagnumAP
+        - id: SpeedLoaderMagnumAP
+        - id: MagazineBoxMagnumAP
+
+- type: entity
+  id: BriefcaseWeaponUziFilled
+  parent: BriefcaseWeaponSmall
+  name: Secure Uzi Case
+  suffix: Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: WeaponSubMachineGunUzi
+        - id: TreasureCoinIron
+        - id: AmmoSelection9mmSMGS
+
+- type: entity
+  id: BriefcaseWeaponLecterSFilled
+  parent: BriefcaseWeapon
+  name: Secure Lecter Type-W Case
+  suffix: Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: WeaponRifleLecterS
+        - id: TreasureCoinIron
+        - id: AmmoSelection556S
+
+- type: entity
+  id: BriefcaseWeaponEstocFilled
+  parent: BriefcaseWeapon
+  name: Secure Estoc Case
+  suffix: Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: WeaponRifleEstoc
+        - id: TreasureCoinIron
+        - id: AmmoSelection556S
+
+- type: entity
+  id: BriefcaseWeaponC20RFilled
+  parent: BriefcaseWeaponSmall
+  name: Secure CR20 Case
+  suffix: Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: WeaponSubMachineGunC20r
+        - id: TreasureCoinIron
+        - id: AmmoSelection9mmSMGS

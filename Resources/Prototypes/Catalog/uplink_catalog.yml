@@ -7,7 +7,7 @@
   name: uplink-pistol-viper-name-fh
   description: uplink-pistol-viper-desc-fh
   icon: { sprite: /Textures/Objects/Weapons/Guns/Pistols/viper.rsi, state: icon }
-  productEntity: BriefcaseBrownSyndicateFilledPistolViper
+  productEntity: BriefcaseWeaponViperFilled
 #FH - End
   discountCategory: rareDiscounts
   discountDownTo:
@@ -24,7 +24,7 @@
   name: uplink-pistol-cobra-name-fh 
   description: uplink-pistol-cobra-desc-fh 
   icon: { sprite: /Textures/Objects/Weapons/Guns/Pistols/cobra.rsi, state: icon }
-  productEntity: BriefcaseBrownSyndicateFilledPistolCobra
+  productEntity: BriefcaseWeaponCobraFilled
 #FH - End
   discountCategory: rareDiscounts
   discountDownTo:
@@ -226,10 +226,10 @@
 
 - type: listing
   id: UplinkC20RBundle
-  name: uplink-c20r-bundle-name
-  description: uplink-c20r-bundle-desc
+  name: uplink-smg-c20r-name-fh #FH
+  description: uplink-smg-c20r-desc-fh #FH
   icon: { sprite: /Textures/Objects/Weapons/Guns/SMGs/c20r.rsi, state: icon }
-  productEntity: ClothingBackpackDuffelSyndicateFilledSMG
+  productEntity: BriefcaseWeaponC20RFilled #FH
   discountCategory: veryRareDiscounts
   discountDownTo:
     Telecrystal: 10
@@ -283,10 +283,10 @@
 
 - type: listing
   id: UplinkEstocBundle
-  name: uplink-estoc-bundle-name
-  description: uplink-estoc-bundle-desc
+  name: uplink-rifle-estoc-name-fh #FH
+  description: uplink-rifle-estoc-desc-fh #FH
   icon: { sprite: /Textures/Objects/Weapons/Guns/Rifles/estoc.rsi, state: icon }
-  productEntity: ClothingBackpackDuffelSyndicateFilledRifle
+  productEntity: BriefcaseWeaponEstocFilled #FH this is a SL gun by the way..
   discountCategory: veryRareDiscounts
   discountDownTo:
     Telecrystal: 11
@@ -337,10 +337,10 @@
 
 - type: listing
   id: UplinkL6SawBundle
-  name: uplink-l6-saw-bundle-name
-  description: uplink-l6-saw-bundle-desc
-  icon: { sprite: /Textures/Objects/Weapons/Guns/LMGs/l6.rsi, state: icon }
-  productEntity: ClothingBackpackDuffelSyndicateFilledLMG
+  name: uplink-lmg-l6-name-fh #FH
+  description: uplink-lmg-l6-desc-fh #FH
+  icon: { sprite: /Textures/Objects/Weapons/Guns/LMGs/l6_x64.rsi, state: icon }
+  productEntity: CrateSyndicateL6Uplink #FH
   discountCategory: veryRareDiscounts
   discountDownTo:
     Telecrystal: 20
@@ -669,9 +669,11 @@
 
 - type: listing
   id: UplinkAmmoBundle
-  name: uplink-ammo-bundle-name
-  description: uplink-ammo-bundle-desc
-  productEntity: ClothingBackpackDuffelSyndicateAmmoFilled
+#FH - Start
+  name: uplink-ammo-bundle-name-fh
+  description: uplink-ammo-bundle-desc-fh
+  productEntity: AmmoSelectionAmmoBagS
+#FH - End
   cost:
     Telecrystal: 15
   categories:

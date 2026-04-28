@@ -251,7 +251,7 @@
     - FullAuto
 
 - type: entity
-  name: Estoc DMR
+  name: Estoc DMR #FH - Not wizden gun btw, this is SL
   parent: [BaseWeaponRifle, BaseSyndicateContraband]
   id: WeaponRifleEstoc
   description: "A designated marksman rifle firing in 3-round bursts. The Estoc was designed as the Lecter’s long-range counterpart, equipped with an extended 20-inch barrel and telescopic sight. Feeds from 5.56 rifle magazines." #FH
@@ -263,9 +263,6 @@
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
-  - type: Item
-    shape:
-    - 0,0,4,2
   - type: Clothing
     sprite: Objects/Weapons/Guns/Rifles/estoc.rsi
   - type: Gun

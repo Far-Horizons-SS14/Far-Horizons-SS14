@@ -7,7 +7,7 @@
   - type: Sprite
     sprite: Clothing/Back/Duffels/duffel.rsi
   - type: Storage
-    maxItemSize: Huge
+    maxItemSize: Ginormous #FH - Fix for not being able to fit storage containers that hold "huge" items, like guns.
     grid:
     - 0,0,7,4
   - type: ClothingSpeedModifier
@@ -216,7 +216,7 @@
   - type: Storage  # FH
     maxItemSize: Huge  # FH
     grid:  # FH
-    - 0,0,11,10 # FH
+    - 0,0,11,11 # FH
   - type: ClothingSpeedModifier # FH - Prevents abuse of bigger bag
     walkModifier: 0.2  # FH
     sprintModifier: 0.2  # FH

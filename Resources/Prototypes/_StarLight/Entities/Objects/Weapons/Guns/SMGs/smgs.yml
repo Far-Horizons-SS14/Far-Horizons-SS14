@@ -28,7 +28,7 @@
   name: Type U3 Uzi
   parent: [BaseWeaponSubMachineGun, BaseMajorContraband]
   id: WeaponSubMachineGunUzi
-  description: Lightweight submachine gun with a 32-round magazine that has single or 4 round firing modes.
+  description: Lightweight submachine gun with a 30-round magazine that has single or 4 round firing modes. #FH
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Guns/SMGs/uzi.rsi
@@ -62,13 +62,13 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazinePistolSubMachineGunUzi
+        startingItem: MagazinePistolSubMachineGunSP #FH
         insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
         priority: 2
         whitelist:
           tags:
-            - MagazineSMGUzi
+            - MagazinePistolSubMachineGunSP #FH
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber

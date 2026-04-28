@@ -15,7 +15,10 @@
       color: "#3a7231"
   - type: ThiefUndeterminedBackpack
     maxSelectedSets: 1
-    approveSound: lightning
+    approveSound: 
+      collection: lightning
+    toolName: ammo-selection-title
+    toolDesc: ammo-selection-title-description
     possibleSets: #Example
 #9mm
     - AmmoWeapon9mmHP
@@ -48,8 +51,9 @@
 - type: entity
   id: AmmoSelectionBaseS
   parent: [AmmoSelectionBase, BaseSyndicateContraband]
-  suffix: Debug
+  suffix: S
   description: A remote controller that redspaces in ammunition for your firearm, seems to have 4 different types to choose from. HP / SP / FMJ / Mixed
+  abstract: true
   components:
   - type: Sprite
     sprite: Objects/Devices/door_remote.rsi
@@ -59,13 +63,23 @@
       color: "#cb0000"
     - state: door_remotescreencolour
       color: "#830000"
+  - type: ThiefUndeterminedBackpack
+    maxSelectedSets: 1
+    approveSound: 
+      collection: lightning
+    toolName: ammo-selection-title
+    toolDesc: ammo-selection-title-description-s
+    possibleSets: #Example
+#9mm
+    - AmmoWeapon9mmHP
+    - AmmoWeapon9mmSP
+    - AmmoWeapon9mmFMJ
+    - AmmoWeapon9mmMixed
 
 - type: entity
   id: AmmoSelection9mmS
   parent: AmmoSelectionBaseS
-  name: 9mm Ammo Selector
-  description: Has four options to choose from, HP - SP - FMJ - Mixed
-  suffix: S
+  name: 9mm Ammo Selector (Pistol)
   components:
   - type: ThiefUndeterminedBackpack
     possibleSets:
@@ -73,3 +87,75 @@
     - AmmoWeapon9mmSP
     - AmmoWeapon9mmFMJ
     - AmmoWeapon9mmMixed
+
+- type: entity
+  id: AmmoSelection556S
+  parent: AmmoSelectionBaseS
+  name: 5.56 Ammo Selector
+  components:
+  - type: ThiefUndeterminedBackpack
+    possibleSets:
+    - AmmoWeapon556HP
+    - AmmoWeapon556SP
+    - AmmoWeapon556FMJ
+    - AmmoWeapon556Mixed
+
+- type: entity
+  id: AmmoSelection9mmSMGS
+  parent: AmmoSelectionBaseS
+  name: 9mm Ammo Selector (SMG)
+  components:
+  - type: ThiefUndeterminedBackpack
+    possibleSets:
+    - AmmoWeapon9mmHPSMG
+    - AmmoWeapon9mmSPSMG
+    - AmmoWeapon9mmFMJSMG
+    - AmmoWeapon9mmMixedSMG
+
+- type: entity
+  id: AmmoSelection38S
+  parent: AmmoSelectionBaseS
+  name: .38 Ammo Selector
+  components:
+  - type: ThiefUndeterminedBackpack
+    possibleSets:
+    - AmmoWeapon38HP
+    - AmmoWeapon38SP
+    - AmmoWeapon38FMJ
+    - AmmoWeapon38Mixed
+
+- type: entity
+  id: AmmoSelection44S
+  parent: AmmoSelectionBaseS
+  name: .44 Magnum Ammo Selector (Revolver)
+  components:
+  - type: ThiefUndeterminedBackpack
+    possibleSets:
+    - AmmoWeapon44HP
+    - AmmoWeapon44SP
+    - AmmoWeapon44FMJ
+    - AmmoWeapon44Mixed
+
+- type: entity
+  id: AmmoSelection44MagS
+  parent: AmmoSelectionBaseS
+  name: .44 Magnum Ammo Selector (Pistol)
+  components:
+  - type: ThiefUndeterminedBackpack
+    possibleSets:
+    - AmmoWeapon44HPMag
+    - AmmoWeapon44SPMag
+    - AmmoWeapon44FMJMag
+    - AmmoWeapon44MixedMag
+
+- type: entity
+  id: AmmoSelectionAmmoBagS
+  parent: AmmoSelectionBaseS
+  name: Ammo Bag Selector
+  description: A remote controller that redspaces in ammunition for your squad, seems to have 3 different types to choose from. HP / SP / FMJ
+  components:
+  - type: ThiefUndeterminedBackpack
+    possibleSets:
+    - AmmoBagHP
+    - AmmoBagSP
+    - AmmoBagFMJ

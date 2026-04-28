@@ -115,7 +115,7 @@
   name: uplink-lecter-type-w-name
   description: uplink-lecter-type-w-description
   icon: { sprite: /Textures/_FarHorizons/Objects/Weapons/Guns/Rifles/s_lecter.rsi, state: icon}
-  productEntity: ClothingBackpackDuffelSyndicateFilledLecterW
+  productEntity: BriefcaseWeaponLecterSFilled
   cost:
     Telecrystal: 20
   categories:
@@ -126,7 +126,7 @@
   name: uplink-uzi-bundle-name
   description: uplink-uzi-bundle-desc
   icon: { sprite: /Textures/_Starlight/Objects/Weapons/Guns/SMGs/uzi.rsi, state: icon }
-  productEntity: ClothingBackpackDuffelSyndicateFilledUzi
+  productEntity: BriefcaseWeaponUziFilled
   discountCategory: veryRareDiscounts
   discountDownTo:
     Telecrystal: 15
@@ -140,7 +140,7 @@
   name: uplink-deagle-name
   description: uplink-deagle-desc
   icon: { sprite: /Textures/_Starlight/Objects/Weapons/Guns/Pistols/deagle.rsi, state: icon }
-  productEntity: BriefcaseBrownSyndicateFilledPistolDeagle
+  productEntity: BriefcaseWeaponJungleHawkFilled
   discountCategory: rareDiscounts
   discountDownTo:
     Telecrystal: 5
@@ -154,7 +154,7 @@
   name: uplink-stechkin-name
   description: uplink-stechkin-desc
   icon: { sprite: /Textures/_Starlight/Objects/Weapons/Guns/Pistols/stechkin.rsi, state: icon }
-  productEntity: BriefcaseBrownSyndicateFilledPistolStechkin
+  productEntity: BriefcaseWeaponStechkinFilled
   discountCategory: rareDiscounts
   discountDownTo:
     Telecrystal: 3
@@ -300,10 +300,10 @@
 
 - type: listing
   id: UplinkRevolverPythonBundle
-  name: uplink-revolver-python-name-fh
-  description: uplink-revolver-python-desc-fh
+  name: uplink-revolver-python-name-fh-ap
+  description: uplink-revolver-python-desc-fh-ap
   icon: { sprite: /Textures/Objects/Weapons/Guns/Revolvers/python.rsi, state: icon }
-  productEntity: BriefcaseBrownSyndicateFilledRevolver
+  productEntity: BriefcaseWeaponPythonAPFilled
   discountCategory: rareDiscounts
   discountDownTo:
     Telecrystal: 4
@@ -314,9 +314,10 @@
 
 - type: listing
   id: UplinkRevolverPython # I got backlash for making it 10 tc depsite it coming in a better bundle. Not the end of the world to have 2 options.
-  name: uplink-revolver-python-name
-  description: uplink-revolver-python-desc
-  productEntity: WeaponRevolverPythonAP
+  name: uplink-revolver-python-name-fh
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Revolvers/python.rsi, state: icon }
+  description: uplink-revolver-python-desc-fh
+  productEntity: BriefcaseWeaponPythonFilled
   discountCategory: rareDiscounts
   discountDownTo:
     Telecrystal: 2

@@ -33,9 +33,6 @@ uplink-forensics-implant-desc = A cybernetic implant for hands. Removes an agent
 uplink-syndie-implant-name = Syndicate Agent Implant
 uplink-syndie-implant-desc = A cybernetic eye implant. Enables an agent to see information about the station crew, humanoids and syndicate without any glasses. (Warning: You will need a surgical assistant for the procedure.)
 
-uplink-uzi-bundle-name = Type U3 Uzi Bundle
-uplink-uzi-bundle-desc = Contains the Type U3 Uzi, with two additional magazines.
-
 uplink-uzi-magazine-name = Uzi Magazine (.35 auto)
 uplink-uzi-magazine-desc = Submachine gun magazine with 32 cartridges. Compatible with the Type U3 Uzi
 

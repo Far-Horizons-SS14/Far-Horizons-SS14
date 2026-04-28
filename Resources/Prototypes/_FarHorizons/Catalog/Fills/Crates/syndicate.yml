@@ -4,10 +4,27 @@
   id: CrateSyndicateM81A1Uplink
   suffix: Filled
   parent: CrateSyndicateM81A1
-  name: M81A1 "Fissure" Bundle
+  name: M81A1 "Fissure" Crate
   description: Finally getting to see this in the field really means only one thing, no where is safe. Glory to the Syndicates!
   components:
   - type: StorageFill
     contents:
       - id: WeaponLauncherM81A1Fissure
       - id: ClothingBeltM81RocketLoaderChestRigFilled
+
+- type: entity
+  id: CrateSyndicateL6Uplink
+  suffix: Filled
+  parent: CrateSyndicateM81A1 #What? I liked the style.
+  name: L6 SAW Crate
+  description: A time-honored classic. Blast away those that stand between you and your objective!
+  components:
+  - type: StorageFill
+    contents:
+      - id: WeaponLightMachineGunL6 #This may seem overkill, but it -is- the entire TC budget. Plus, you're not doing things quiet with this. Come on. Don't lie.
+      - id: MagazineLightRifleBoxSP
+      - id: MagazineLightRifleBoxSP
+      - id: MagazineLightRifleBoxSP
+      - id: MagazineLightRifleBoxSP
+      - id: MagazineLightRifleBoxSP
+      - id: MagazineCanisterLightRifleSP

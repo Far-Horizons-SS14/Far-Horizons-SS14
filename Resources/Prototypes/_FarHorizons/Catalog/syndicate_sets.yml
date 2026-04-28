@@ -1,9 +1,8 @@
 #region 9mm
-#Guns are loaded with SP by default, so extra mag for other types
 - type: thiefBackpackSet
   id: AmmoWeapon9mmHP
-  name: thief-backpack-category-tools-name
-  description: thief-backpack-category-tools-description
+  name: ammo-selection-hp-name
+  description: ammo-selection-hp-description
   sprite:
     sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Boxes/Pistol/9mm.rsi
     state: icon_hp
@@ -15,20 +14,23 @@
 
 - type: thiefBackpackSet
   id: AmmoWeapon9mmSP
-  name: thief-backpack-category-tools-name
-  description: thief-backpack-category-tools-description
+  name: ammo-selection-sp-name
+  description: ammo-selection-sp-description
   sprite:
     sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Boxes/Pistol/9mm.rsi
     state: icon_sp
   content:
   - MagazinePistolSP
   - MagazinePistolSP
+  - MagazinePistolSP
+  - MagazinePistolSP
+  - MagazinePistolSP
   - MagazineBoxPistolSP
 
 - type: thiefBackpackSet
   id: AmmoWeapon9mmFMJ
-  name: thief-backpack-category-tools-name
-  description: thief-backpack-category-tools-description
+  name: ammo-selection-fmj-name
+  description: ammo-selection-fmj-description
   sprite:
     sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Boxes/Pistol/9mm.rsi
     state: icon_fmj
@@ -40,8 +42,8 @@
 
 - type: thiefBackpackSet
   id: AmmoWeapon9mmMixed
-  name: thief-backpack-category-tools-name
-  description: thief-backpack-category-tools-description
+  name: ammo-selection-mixed-name
+  description: ammo-selection-mixed-description
   sprite:
     sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Boxes/Pistol/9mm.rsi
     state: icon
@@ -50,3 +52,309 @@
   - MagazinePistolSP
   - MagazinePistolFMJ
   - MagazineBoxPistolSP
+
+#region 9mm SMG
+- type: thiefBackpackSet
+  id: AmmoWeapon9mmHPSMG
+  name: ammo-selection-hp-name
+  description: ammo-selection-hp-description
+  sprite:
+    sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Boxes/Pistol/9mm.rsi
+    state: icon_hp
+  content:
+  - MagazinePistolSubMachineGunHP
+  - MagazinePistolSubMachineGunHP
+  - MagazinePistolSubMachineGunHP
+  - MagazineBoxPistolHP
+
+- type: thiefBackpackSet
+  id: AmmoWeapon9mmSPSMG
+  name: ammo-selection-sp-name
+  description: ammo-selection-sp-description
+  sprite:
+    sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Boxes/Pistol/9mm.rsi
+    state: icon_sp
+  content:
+  - MagazinePistolSubMachineGunSP
+  - MagazinePistolSubMachineGunSP
+  - MagazinePistolSubMachineGunSP
+  - MagazinePistolSubMachineGunSP
+  - MagazinePistolSubMachineGunSP
+  - MagazineBoxPistolSP
+
+- type: thiefBackpackSet
+  id: AmmoWeapon9mmFMJSMG
+  name: ammo-selection-fmj-name
+  description: ammo-selection-fmj-description
+  sprite:
+    sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Boxes/Pistol/9mm.rsi
+    state: icon_fmj
+  content:
+  - MagazinePistolSubMachineGunFMJ
+  - MagazinePistolSubMachineGunFMJ
+  - MagazinePistolSubMachineGunFMJ
+  - MagazineBoxPistolFMJ
+
+- type: thiefBackpackSet
+  id: AmmoWeapon9mmMixedSMG
+  name: ammo-selection-mixed-name
+  description: ammo-selection-mixed-description
+  sprite:
+    sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Boxes/Pistol/9mm.rsi
+    state: icon
+  content:
+  - MagazinePistolSubMachineGunHP
+  - MagazinePistolSubMachineGunSP
+  - MagazinePistolSubMachineGunFMJ
+  - MagazineBoxPistolSP
+
+#region 5.56
+- type: thiefBackpackSet
+  id: AmmoWeapon556HP
+  name: ammo-selection-hp-name
+  description: ammo-selection-hp-description
+  sprite:
+    sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Boxes/Rifle/5.56.rsi
+    state: icon_hp
+  content:
+  - MagazineRifle556HP
+  - MagazineRifle556HP
+  - MagazineRifle556HP
+  - MagazineBoxRifle556HP
+
+- type: thiefBackpackSet
+  id: AmmoWeapon556SP
+  name: ammo-selection-sp-name
+  description: ammo-selection-sp-description
+  sprite:
+    sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Boxes/Rifle/5.56.rsi
+    state: icon_sp
+  content:
+  - MagazineRifle556SP
+  - MagazineRifle556SP
+  - MagazineRifle556SP
+  - MagazineRifle556SP
+  - MagazineRifle556SP
+  - MagazineBoxRifle556SP
+
+- type: thiefBackpackSet
+  id: AmmoWeapon556FMJ
+  name: ammo-selection-fmj-name
+  description: ammo-selection-fmj-description
+  sprite:
+    sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Boxes/Rifle/5.56.rsi
+    state: icon_fmj
+  content:
+  - MagazineRifle556FMJ
+  - MagazineRifle556FMJ
+  - MagazineRifle556FMJ
+  - MagazineBoxRifle556FMJ
+
+- type: thiefBackpackSet
+  id: AmmoWeapon556Mixed
+  name: ammo-selection-mixed-name
+  description: ammo-selection-mixed-description
+  sprite:
+    sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Boxes/Rifle/5.56.rsi
+    state: icon
+  content:
+  - MagazineRifle556HP
+  - MagazineRifle556SP
+  - MagazineRifle556FMJ
+  - MagazineBoxRifle556SP
+
+#region .38 Special
+- type: thiefBackpackSet
+  id: AmmoWeapon38HP
+  name: ammo-selection-hp-name
+  description: ammo-selection-hp-description
+  sprite:
+    sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Boxes/Revolver/.38.rsi
+    state: icon_hp
+  content:
+  - MagazinePistol38HP
+  - MagazinePistol38HP
+  - MagazinePistol38HP
+  - MagazineBoxRevolver38HP
+
+- type: thiefBackpackSet
+  id: AmmoWeapon38SP
+  name: ammo-selection-sp-name
+  description: ammo-selection-sp-description
+  sprite:
+    sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Boxes/Revolver/.38.rsi
+    state: icon_sp
+  content:
+  - MagazinePistol38SP
+  - MagazinePistol38SP
+  - MagazinePistol38SP
+  - MagazinePistol38SP
+  - MagazinePistol38SP
+  - MagazineBoxRevolver38SP
+
+- type: thiefBackpackSet
+  id: AmmoWeapon38FMJ
+  name: ammo-selection-fmj-name
+  description: ammo-selection-fmj-description
+  sprite:
+    sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Boxes/Revolver/.38.rsi
+    state: icon_fmj
+  content:
+  - MagazinePistol38FMJ
+  - MagazinePistol38FMJ
+  - MagazinePistol38FMJ
+  - MagazineBoxRevolver38FMJ
+
+- type: thiefBackpackSet
+  id: AmmoWeapon38Mixed
+  name: ammo-selection-mixed-name
+  description: ammo-selection-mixed-description
+  sprite:
+    sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Boxes/Revolver/.38.rsi
+    state: icon
+  content:
+  - MagazinePistol38HP
+  - MagazinePistol38SP
+  - MagazinePistol38FMJ
+  - MagazineBoxRevolver38SP
+
+#region .44 Magazine
+- type: thiefBackpackSet
+  id: AmmoWeapon44HPMag
+  name: ammo-selection-hp-name
+  description: ammo-selection-hp-description
+  sprite:
+    sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Boxes/Magnum/.44.rsi
+    state: icon_hp
+  content:
+  - MagazineMagnumHP
+  - MagazineMagnumHP
+  - MagazineMagnumHP
+  - MagazineBoxMagnumHP
+
+- type: thiefBackpackSet
+  id: AmmoWeapon44SPMag
+  name: ammo-selection-sp-name
+  description: ammo-selection-sp-description
+  sprite:
+    sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Boxes/Magnum/.44.rsi
+    state: icon_sp
+  content:
+  - MagazineMagnum
+  - MagazineMagnum
+  - MagazineMagnum
+  - MagazineMagnum
+  - MagazineMagnum
+  - MagazineBoxMagnumSP
+
+- type: thiefBackpackSet
+  id: AmmoWeapon44FMJMag
+  name: ammo-selection-fmj-name
+  description: ammo-selection-fmj-description
+  sprite:
+    sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Boxes/Magnum/.44.rsi
+    state: icon_fmj
+  content:
+  - MagazineMagnumFMJ
+  - MagazineMagnumFMJ
+  - MagazineMagnumFMJ
+  - MagazineBoxMagnumFMJ
+
+- type: thiefBackpackSet
+  id: AmmoWeapon44MixedMag
+  name: ammo-selection-mixed-name
+  description: ammo-selection-mixed-description
+  sprite:
+    sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Boxes/Magnum/.44.rsi
+    state: icon
+  content:
+  - MagazineMagnumHP
+  - MagazineMagnum
+  - MagazineMagnumFMJ
+  - MagazineBoxMagnumSP
+
+#region .44 Revolver
+- type: thiefBackpackSet
+  id: AmmoWeapon44HP
+  name: ammo-selection-hp-name
+  description: ammo-selection-hp-description
+  sprite:
+    sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Boxes/Magnum/.44.rsi
+    state: icon_hp
+  content:
+  - SpeedLoaderMagnumHP
+  - SpeedLoaderMagnumHP
+  - SpeedLoaderMagnumHP
+  - MagazineBoxMagnumHP
+
+- type: thiefBackpackSet
+  id: AmmoWeapon44SP
+  name: ammo-selection-sp-name
+  description: ammo-selection-sp-description
+  sprite:
+    sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Boxes/Magnum/.44.rsi
+    state: icon_sp
+  content:
+  - SpeedLoaderMagnumSP
+  - SpeedLoaderMagnumSP
+  - SpeedLoaderMagnumSP
+  - SpeedLoaderMagnumSP
+  - SpeedLoaderMagnumSP
+  - MagazineBoxMagnumSP
+
+- type: thiefBackpackSet
+  id: AmmoWeapon44FMJ
+  name: ammo-selection-fmj-name
+  description: ammo-selection-fmj-description
+  sprite:
+    sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Boxes/Magnum/.44.rsi
+    state: icon_fmj
+  content:
+  - SpeedLoaderMagnumFMJ
+  - SpeedLoaderMagnumFMJ
+  - SpeedLoaderMagnumFMJ
+  - MagazineBoxMagnumFMJ
+
+- type: thiefBackpackSet
+  id: AmmoWeapon44Mixed
+  name: ammo-selection-mixed-name
+  description: ammo-selection-mixed-description
+  sprite:
+    sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Boxes/Magnum/.44.rsi
+    state: icon
+  content:
+  - SpeedLoaderMagnumHP
+  - SpeedLoaderMagnumSP
+  - SpeedLoaderMagnumFMJ
+  - MagazineBoxMagnumSP
+
+#region Blammo Bag
+- type: thiefBackpackSet
+  id: AmmoBagHP
+  name: ammo-selection-hp-name
+  description: ammo-selection-hp-bag-description
+  sprite:
+    sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Boxes/Rifle/5.56.rsi
+    state: icon_hp
+  content:
+  - ClothingBackpackDuffelSyndicateAmmoFilledHP
+
+- type: thiefBackpackSet
+  id: AmmoBagSP
+  name: ammo-selection-sp-name
+  description: ammo-selection-sp-bag-description
+  sprite:
+    sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Boxes/Rifle/5.56.rsi
+    state: icon_sp
+  content:
+  - ClothingBackpackDuffelSyndicateAmmoFilled
+
+- type: thiefBackpackSet
+  id: AmmoBagFMJ
+  name: ammo-selection-fmj-name
+  description: ammo-selection-fmj-bag-description
+  sprite:
+    sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Boxes/Rifle/5.56.rsi
+    state: icon_fmj
+  content:
+  - ClothingBackpackDuffelSyndicateAmmoFilledFMJ

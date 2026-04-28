@@ -170,41 +170,48 @@
 - type: entity
   parent: ClothingBackpackDuffelSyndicateAmmo
   id: ClothingBackpackDuffelSyndicateAmmoFilled
-  name: ammo bundle
-  description: "Reloading! Contains 4-5 magazines for all avaliable nuclear operative weapons, minus the China-Lake." #FH
+  name: Soft-Point Ammo Bundle #FH
+  description: "Reloading! Contains 4-5 soft-point magazines and one canister for all avaliable nuclear operative weapons, minus the China-Lake." #FH
   components:
   - type: EntityTableContainerFill
     containers:
       storagebase: !type:AllSelector
         children:
-        - id: MagazinePistolSubMachineGunSP  #FH
-          amount: 5  #FH
-        - id: MagazineShotgun  #FH
-          amount: 3  #FH
-        - id: MagazineRifle556SP  #FH
-          amount: 4  #FH
-        - id: MagazineMagnumRifleSP #FH
-          amount: 4 #FH
-        - id: MagazineLightRifleBoxSP #FH
-          amount: 4 #FH
-        - id: MagazineShotgunSlug #FH
-          amount: 4 #FH
-        - id: SpeedLoaderMagnumAP #FH
-          amount: 2 #FH
-        - id: SpeedLoaderMagnumSP #FH
-          amount: 2 #FH
-        - id: MagazinePistolCaselessRifle #FH
-          amount: 5 #FH
-        - id: MagazinePistolSP #FH
-          amount: 5 #FH
-        - id: MagazinePistol38FMJ #FH
-          amount: 5 #FH
-        - id: MagazinePistolSubMachineGunUzi #FH
-          amount: 4 #FH
-        - id: MagazineBoxAntiMateriel #FH
-          amount: 4 #FH
-        - id: MagazineMagnum #FH
-          amount: 4 #FH
+#FH - Start
+        - id: MagazineCanisterRevolver38SP
+        - id: MagazineCanisterMagnumSP
+        - id: MagazineCanisterRifle556SP
+        - id: MagazineCanisterLightRifleSP
+        - id: MagazineCanisterPistolSP
+        - id: MagazinePistolSubMachineGunSP
+          amount: 5
+        - id: MagazineShotgun
+          amount: 3
+        - id: MagazineRifle556SP
+          amount: 4
+        - id: MagazineMagnumRifleSP
+          amount: 4
+        - id: MagazineLightRifleBoxSP
+          amount: 4
+        - id: MagazineShotgunSlug
+          amount: 4
+        - id: SpeedLoaderMagnumAP
+          amount: 2
+        - id: SpeedLoaderMagnumSP
+          amount: 2
+        - id: MagazinePistolCaselessRifle
+          amount: 5
+        - id: MagazinePistolSP
+          amount: 5
+        - id: MagazinePistol38FMJ
+          amount: 5
+        - id: MagazinePistolSubMachineGunSP
+          amount: 4
+        - id: MagazineBoxAntiMateriel
+          amount: 4
+        - id: MagazineMagnum
+          amount: 4
+#FH - End
 
 - type: entity
   parent: ClothingBackpackDuffelClown
