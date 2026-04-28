@@ -23,3 +23,18 @@
       state: mopshoes
     useDelay: 1
     itemIconStyle: BigAction
+
+- type: entity
+  parent: BaseAction
+  id: ActionOpenCantripStore
+  name: Select Cantrips
+  description: Opens the cantrip selection screen
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    priority: -20
+    icon:
+      sprite: _Starlight/Objects/Misc/books.rsi
+      state: cantrips
+  - type: InstantAction
+    event: !type:OpenUplinkImplantEvent

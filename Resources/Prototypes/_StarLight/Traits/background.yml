@@ -57,8 +57,28 @@
   effects:
     - !type:BackgroundEffect
       background: MagicalEncounter
-    - !type:SpawnItemInHandEffect
-      item: BookOfCantrips
+    # Far Horizons start
+    - !type:AddCompsEffect
+      components:
+      - type: InherentCantrips
+        action: ActionOpenCantripStore
+        addComponents:
+          - type: UserInterface
+            interfaces:
+              enum.StoreUiKey.Key:
+                type: StoreBoundUserInterface
+          - type: ActivatableUI
+            key: enum.StoreUiKey.Key
+          - type: Store
+            name: store-preset-name-cantrips
+            categories:
+            - CantripsStandard
+            currencyWhitelist:
+            - WizCoin
+            refundAllowed: false
+            balance:
+              WizCoin: 2
+    # Far Horizons end
 
 - type: trait
   id: Abducted
