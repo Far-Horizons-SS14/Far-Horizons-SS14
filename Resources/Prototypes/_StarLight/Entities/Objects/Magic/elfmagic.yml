@@ -230,9 +230,9 @@
   - type: Injector
     solutionName: pen
     currentTransferAmount: null
-    activeModeProtoId: HyposprayInjectMode
+    activeModeProtoId: SyringeInjectMode # Far Horizons - nerfs
     allowedModes:
-    - HyposprayInjectMode
+    - SyringeInjectMode # Far Horizons - nerfs
   - type: Unremoveable
   - type: StaticPrice
     price: 0 # Not sellable.
@@ -244,7 +244,7 @@
   - type: SolutionContainerManager
     solutions:
       pen:
-        maxVol: 5
+        maxVol: 15
         reagents:
-        - ReagentId: ElfTranexamicAcid
-          Quantity: 5
+        - ReagentId: Inaprovaline # Far Horizons - nerfing it further
+          Quantity: 15
