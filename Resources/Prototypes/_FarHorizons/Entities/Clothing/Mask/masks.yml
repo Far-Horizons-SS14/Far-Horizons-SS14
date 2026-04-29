@@ -1,3 +1,4 @@
+#region ## NanoTrasen
 - type: entity
   parent: [ ClothingMaskGas, BaseSecurityContraband ]
   id: ClothingMaskGasCorpsman
@@ -81,8 +82,15 @@
     tags:
     - HeavySecSuit
 
-## Syndicate Station
+#region ## NeoSol ##
 
+
+
+
+
+
+
+#region Command
 
 - type: entity
   parent: [ClothingMaskGasAtmos, BaseCommandContraband]
@@ -91,8 +99,8 @@
   description: The Syndicate cut corners and repainted a spare atmospheric gas mask, but don't tell anyone.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/Mask/syndigascaptain.rsi #Far Horizons
+    sprite: _FarHorizons/Clothing/Mask/NeoSol/gascaptain.rsi #Far Horizons
   - type: Clothing
-    sprite: _FarHorizons/Clothing/Mask/syndigascaptain.rsi #Far Horizons
+    sprite: _FarHorizons/Clothing/Mask/NeoSol/gascaptain.rsi #Far Horizons
   - type: BreathMask
   - type: IngestionBlocker
