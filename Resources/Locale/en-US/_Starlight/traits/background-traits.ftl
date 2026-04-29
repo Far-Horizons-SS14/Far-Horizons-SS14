@@ -15,9 +15,9 @@ trait-background-xenos-disaster-survivor-description = You are one of a few surv
 trait-background-deific-encounter-name = Deific Encounter
 trait-background-deific-encounter-description = You have experienced something that you are certain was a miracle. Something that could only have been an act of a God. 
 
-trait-background-magical-encounter-name = Magical Encounter
-## Far Horizons Description
-trait-background-magical-encounter-description = After a magical encounter with a passing wizard you led a pilgrimage to study this new interesting phenomenon known as magic. Eventually you found an ancient empire of nearly extinct pointy eared folks which welcomed this learning and gave you "My First Cantrip Book!" to broaden your horizons.
+# Far Horizons 
+trait-background-magical-encounter-name = Intrinsic Augments
+trait-background-magical-encounter-description = Through cyberware, bioware, genetic modifications, psionics or birthright, you gain access to a set of abilities some would call unnatural.
 
 trait-background-abducted-name = Abducted
 trait-background-abducted-description = You were once the unfortunate recipient of a probing. The Grays are real! They have a fork-sword that makes you fall asleep, and they teleported you to a shuttle, and made you lay eggs! No, not alien eggs, chicken eggs! Why won't anyone believe you!? - You may choose which gland you had, but the goal is crazy alien story tone. 
