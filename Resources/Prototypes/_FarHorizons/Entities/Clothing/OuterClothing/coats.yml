@@ -223,14 +223,28 @@
 
 #Lab Coat
 - type: entity
-  parent: ClothingOuterCoatLab
+  parent: ClothingOuterStorageFoldableBase
   id: ClothingOuterCoatLabSyndi
+  name: Lab Coat 
+  description: A suit that protects against minor chemical spills.
   suffix: NS
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/OuterClothing/Coats/NeoSol/labcoat.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Coats/NeoSol/labcoat.rsi 
   - type: Clothing
-    sprite: _FarHorizons/Clothing/OuterClothing/Coats/NeoSol/labcoat.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Coats/NeoSol/labcoat.rsi 
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      coefficients:
+        Caustic: 0.75
+  - type: LimbArmor # Far Horizons
+    limbs:
+      ArmRight: {}
+      ArmLeft: {}
+      LegRight: {}
+      LegLeft: {}
 
 - type: entity
   parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterCoatLabSyndi]
@@ -239,14 +253,28 @@
 
 #Senior Lab Coat
 - type: entity
-  parent: ClothingOuterCoatLabSeniorPhysician
+  parent: ClothingOuterStorageFoldableBase
   id: ClothingOuterCoatLabSeniorPhysicianSyndi
+  name: Senior Physician Lab Coat 
+  description: A suit that protects against minor chemical spills. Has light blue sleeves and an orange waist trim.
   suffix: NS
   components:
   - type: Sprite
     sprite: _FarHorizons/Clothing/OuterClothing/Coats/NeoSol/labcoat_senior_physician.rsi
   - type: Clothing
     sprite: _FarHorizons/Clothing/OuterClothing/Coats/NeoSol/labcoat_senior_physician.rsi
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      coefficients:
+        Caustic: 0.75
+  - type: LimbArmor
+    limbs:
+      ArmRight: {}
+      ArmLeft: {}
+      LegRight: {}
+      LegLeft: {}
 
 - type: entity
   parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterCoatLabSeniorPhysicianSyndi]
@@ -255,15 +283,28 @@
 
 #Pharmacist Coat
 - type: entity
-  parent: ClothingOuterCoatLabChem
+  parent: ClothingOuterStorageFoldableBase
   id: ClothingOuterCoatLabChemSyndi
-  name: Pharmacist Lab Coat
+  name: Pharmacist Lab Coat 
+  description: A suit that protects against minor chemical spills. Has an orange stripe on the shoulder.
   suffix: NS
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/OuterClothing/Coats/NeoSol/labcoat_chem.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Coats/NeoSol/labcoat_chem.rsi 
   - type: Clothing
-    sprite: _FarHorizons/Clothing/OuterClothing/Coats/NeoSol/labcoat_chem.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Coats//NeoSol/labcoat_chem.rsi 
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      coefficients:
+        Caustic: 0.75
+  - type: LimbArmor # Far Horizons
+    limbs:
+      ArmRight: {}
+      ArmLeft: {}
+      LegRight: {}
+      LegLeft: {}
 
 - type: entity
   parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterCoatLabChemSyndi]
@@ -272,15 +313,30 @@
 
 #Medical Director
 - type: entity
-  parent: ClothingOuterCoatLabCmo
+  parent: ClothingOuterStorageFoldableBase
   id: ClothingOuterCoatLabCmoSyndi
-  name: Medical Director's Lab Coat
+  name: Medical Director's Lab Coat 
+  description: Custom made blue lab coat for the Medical Director, offers improved protection against chemical spills and minor cuts.
   suffix: NS
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/OuterClothing/Coats/NeoSol/labcoat_chem.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Coats/NeoSol/labcoat_cmo.rsi 
   - type: Clothing
-    sprite: _FarHorizons/Clothing/OuterClothing/Coats/NeoSol/labcoat_chem.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Coats/NeoSol/labcoat_cmo.rsi 
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      coefficients:
+        Slash: 0.95
+        Heat: 0.95
+        Caustic: 0.65
+  - type: LimbArmor # Far Horizons
+    limbs:
+      ArmRight: {}
+      ArmLeft: {}
+      LegRight: {}
+      LegLeft: {}
 
 - type: entity
   parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterCoatLabCmoSyndi]
@@ -289,14 +345,28 @@
 
 #Virologist
 - type: entity
-  parent: ClothingOuterCoatLabViro
+  parent: ClothingOuterStorageFoldableBase
   id: ClothingOuterCoatLabViroSyndi
+  name: Virologist Lab Coat 
+  description: A suit that protects against bacteria and viruses. Has an green stripe on the shoulder.
   suffix: NS
   components:
   - type: Sprite
     sprite: _FarHorizons/Clothing/OuterClothing/Coats/NeoSol/labcoat_viro.rsi
   - type: Clothing
-    sprite: _FarHorizons/Clothing/OuterClothing/Coats/NeoSol/labcoat_viro.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Coats/NeoSol/labcoat_viro.rsi 
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      coefficients:
+        Caustic: 0.75
+  - type: LimbArmor
+    limbs:
+      ArmRight: {}
+      ArmLeft: {}
+      LegRight: {}
+      LegLeft: {}
 
 - type: entity
   parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterCoatLabViroSyndi]

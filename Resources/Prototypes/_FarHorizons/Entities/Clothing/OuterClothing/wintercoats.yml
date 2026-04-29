@@ -87,42 +87,113 @@
 #region Medical
 
 - type: entity
-  parent: ClothingOuterWinterCMO
+  parent: [ClothingOuterWinterCoatToggleable, BaseCommandContraband]
   id: ClothingOuterWinterCMOSyndi
   name: Medical Director's Winter Coat
-  suffix: NS
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/OuterClothing/WinterCoats/NeoSol/cmo.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/WinterCoats/NeoSol/cmo.rsi 
+  - type: Item
   - type: Clothing
-    sprite: _FarHorizons/Clothing/OuterClothing/WinterCoats/NeoSol/cmo.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/WinterCoats/NeoSol/cmo.rsi 
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      coefficients:
+        Slash: 0.95
+        Heat: 0.90
+        Caustic: 0.75
+    priceMultiplier: 0.15
+  - type: LimbArmor
+    limbs:
+      ArmRight: {}
+      ArmLeft: {}
+      LegRight: {}
+      LegLeft: {}
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHatHoodWinterCMO
 
 - type: entity
-  parent: ClothingOuterWinterMed
+  parent: ClothingOuterWinterCoatToggleable
   id: ClothingOuterWinterMedSyndi
-  suffix: NS
+  name: Medical Winter Coat 
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/OuterClothing/WinterCoats/NeoSol/medical.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/WinterCoats/NeoSol/medical.rsi 
+  - type: Item
   - type: Clothing
-    sprite: _FarHorizons/Clothing/OuterClothing/WinterCoats/NeoSol/medical.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/WinterCoats/NeoSol/medical.rsi 
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      coefficients:
+        Slash: 0.95
+        Heat: 0.90
+        Caustic: 0.9
+    priceMultiplier: 0.15
+  - type: LimbArmor 
+    limbs:
+      ArmRight: {}
+      ArmLeft: {}
+      LegRight: {}
+      LegLeft: {}
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHatHoodWinterMed
 
 - type: entity
-  parent: ClothingOuterWinterPara
+  parent: ClothingOuterWinterCoatToggleable
   id: ClothingOuterWinterParaSyndi
-  suffix: NS
+  name: Paramedic Winter Coat 
   components:
   - type: Sprite
     sprite: _FarHorizons/Clothing/OuterClothing/WinterCoats/NeoSol/paramedic.rsi
+  - type: Item
   - type: Clothing
     sprite: _FarHorizons/Clothing/OuterClothing/WinterCoats/NeoSol/paramedic.rsi
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      coefficients:
+        Slash: 0.95
+        Heat: 0.75
+        Caustic: 0.9
+    priceMultiplier: 0.15
+  - type: LimbArmor # Far Horizons
+    limbs:
+      ArmRight: {}
+      ArmLeft: {}
+      LegRight: {}
+      LegLeft: {}
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHatHoodWinterPara
 
 - type: entity
-  parent: ClothingOuterWinterViro
+  parent: ClothingOuterWinterCoatToggleable
   id: ClothingOuterWinterViroSyndi
-  suffix: NS
+  name: Virology Winter Coat
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/OuterClothing/WinterCoats/NeoSol/viro.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/WinterCoats/NeoSol/viro.rsi 
+  - type: Item
   - type: Clothing
-    sprite: _FarHorizons/Clothing/OuterClothing/WinterCoats/NeoSol/viro.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/WinterCoats/NeoSol/viro.rsi 
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      coefficients:
+        Slash: 0.95
+        Heat: 0.90
+        Caustic: 0.9
+    priceMultiplier: 0.15
+  - type: LimbArmor
+    limbs:
+      ArmRight: {}
+      ArmLeft: {}
+      LegRight: {}
+      LegLeft: {}
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHatHoodWinterSci
