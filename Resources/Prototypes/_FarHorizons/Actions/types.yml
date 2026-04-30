@@ -23,3 +23,16 @@
       state: mopshoes
     useDelay: 1
     itemIconStyle: BigAction
+
+- type: entity
+  parent: BaseToggleAction
+  id: ActionToggleParamedicSirenSyndi
+  name: Toggle Paramedic Siren
+  description: Toggles the paramedic siren on and off.
+  components:
+  - type: Action
+    icon:
+      sprite: _FarHorizons/Clothing/OuterClothing/Suits/NeoSol/paramed.rsi 
+      state: icon-siren
+    useDelay: 1
+    itemIconStyle: BigAction

@@ -371,6 +371,82 @@
   - type: Sprite
     sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/NeoSol/engineering.rsi
 
+#region Medical
+- type: entity
+  parent: [ClothingUniformBase] # ClothingUniformFoldableBase] # Far Horizons - no folded sprites
+  id: ClothingUniformJumpsuitChemistrySyndi
+  name: Pharmacist Jumpsuit 
+  description: There's some odd stains on this jumpsuit. Hm.
+  suffix: NS
+  components:
+  - type: RollUpSleeves
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/NeoSol/chemistry.rsi 
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/NeoSol/chemistry.rsi 
+
+- type: entity
+  parent: [ClothingUniformBase, BaseCommandContraband] # ClothingUniformFoldableBase] # Far Horizons - no folded sprites
+  id: ClothingUniformJumpsuitCMOSyndi
+  name: Medical Director's Jumpsuit 
+  description: It's a jumpsuit worn by those with the experience to be Medical Director It provides minor biological protection.
+  suffix: NS
+  components:
+  - type: RollUpSleeves
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/NeoSol/cmo.rsi 
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/NeoSol/cmo.rsi 
+
+- type: entity
+  parent: [ClothingUniformBase, BaseCommandContraband]
+  id: ClothingUniformJumpsuitCMOTurtleSyndi
+  name: Medical Director's Turtleneck Jumpsuit
+  description: It's a turtleneck worn by those with the experience to be Medical Director. It provides minor biological protection.
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/NeoSol/cmo_turtle.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/NeoSol/cmo_turtle.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitParamedicSyndi
+  name: Paramedic Jumpsuit 
+  description: It's got a plus on it, that's a good thing right?
+  suffix: NS
+  components:
+  - type: RollUpSleeves
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/NeoSol/paramedic.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/NeoSol/paramedic.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitSeniorPhysicianSyndi
+  name: Senior Physician Jumpsuit 
+  description: A sign of skill and prestige within the medical department.
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/NeoSol/senior_physician.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/NeoSol/senior_physician.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitVirologySyndi
+  name: Virology Jumpsuit 
+  description: It's made of a special fiber that gives special protection against biohazards. It has a virologist rank stripe on it.
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/NeoSol/virology.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/NeoSol/virology.rsi
+
 #region Security
 
 # Constable (Warden)

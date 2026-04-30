@@ -46,17 +46,18 @@
 - type: roleLoadout
   id: SyndieChiefMedicalOfficer #Medical Director
   groups:
-  - ChiefMedicalOfficerHead
-  - MedicalMask
-  - ChiefMedicalOfficerJumpsuit
-  - MedicalGloves
-  - MedicalBackpack
-  - ChiefMedicalOfficerOuterClothing
-  - ChiefMedicalOfficerNeck
-  - ChiefMedicalOfficerShoes
-  - MedicalEyewear
+  - MedicalDirectorHead
+  - MedicalMaskSyndi
+  - MedicalDirectorJumpsuit
+  - MedicalGlovesSyndi
+  - MedicalBackpackSyndi
+  - MedicalDirectorOuterClothing
+  - MedicalDirectorNeck
+  - MedicalDirectorShoes
+  - MedicalEyewearSyndi
   - SurvivalMedical
   - Trinkets
+  - Pens 
 
 - type: roleLoadout
   id: SyndieResearchDirector #Head of Research
@@ -180,78 +181,88 @@
 - type: roleLoadout
   id: SyndieSurgeon #Physician
   groups:
-  - MedicalDoctorHead
-  - MedicalMask
-  - MedicalDoctorJumpsuit
-  - MedicalGloves
-  - MedicalBackpack
-  - MedicalDoctorOuterClothing
-  - MedicalShoes
-  - MedicalDoctorPDA
-  - MedicalEyewear
+  - MedicalDoctorHeadSyndi
+  - MedicalMaskSyndi
+  - MedicalDoctorJumpsuitSyndi
+  - MedicalGlovesSyndi
+  - MedicalBackpackSyndi
+  - MedicalDoctorOuterClothingSyndi
+  - MedicalShoesSyndi
+  - SurgeonPDASyndi
+  - MedicalEyewearSyndi
   - SurvivalMedical
   - Trinkets
+  - SurgeonEquipmentGroup
+  - Pens
 
 - type: roleLoadout
   id: SyndieChemist #Pharmacist
   groups:
-  - ChemistHead
-  - MedicalMask
-  - ChemistJumpsuit
-  - MedicalGloves
-  - ChemistBackpack
-  - ChemistOuterClothing
-  - MedicalShoes
+  - ChemistHeadSyndi
+  - MedicalMaskSyndi
+  - PharmacistJumpsuit
+  - MedicalGlovesSyndi
+  - PharmacistBackpack
+  - PharmacistOuterClothing
+  - MedicalShoesSyndi
+  - ChemistEyewear
+  - ChemistBeaker 
+  - ChemistLabeler 
   - SurvivalMedical
   - Trinkets
+  - Pens 
 
 - type: roleLoadout
   id: SyndieParamedic #Medic
   groups:
-  - ParamedicHead
-  - MedicalMask
-  - ParamedicJumpsuit
-  - MedicalGloves
-  - MedicalBackpack
-  - ParamedicOuterClothing
-  - ParamedicShoes
-  - MedicalEyewear
+  - ParamedicHeadSyndi
+  - MedicalMaskSyndi
+  - ParamedicJumpsuitSyndi
+  - MedicalGlovesSyndi
+  - MedicalBackpackSyndi
+  - ParamedicOuterClothingSyndi
+  - ParamedicShoesSyndi
+  - MedicalEyewearSyndi
   - SurvivalMedical
   - Trinkets
+  - Pens 
 
 - type: roleLoadout
   id: SyndieMedicalDoctor #Clinician
   groups:
-  - MedicalDoctorHead
-  - MedicalMask
-  - MedicalDoctorJumpsuit
-  - MedicalGloves
-  - MedicalBackpack
-  - MedicalDoctorOuterClothing
-  - MedicalShoes
-  - MedicalDoctorPDA
-  - MedicalEyewear
+  - MedicalDoctorHeadSyndi
+  - MedicalMaskSyndi
+  - MedicalDoctorJumpsuitSyndi
+  - MedicalGlovesSyndi
+  - MedicalBackpackSyndi
+  - MedicalDoctorOuterClothingSyndi
+  - MedicalShoesSyndi
+  - MedicalDoctorPDASyndi
+  - MedicalEyewearSyndi
   - SurvivalMedical
   - Trinkets
+  - Pens 
 
 - type: roleLoadout
   id: SyndieMedicalIntern #Nursing Assistant
   groups:
-  - MedicalInternJumpsuit
-  - MedicalBackpack
-  - MedicalEyewear
+  - MedicalInternJumpsuitSyndi
+  - MedicalBackpackSyndi
+  - MedicalEyewearSyndi
   - SurvivalMedical
   - Trinkets
+  - Pens 
 
 - type: roleLoadout
   id: SyndiePsychologist #Psychoanalyst
   groups:
-  - PsychologistJumpsuit
-  - MedicalBackpack
-  - CivilianShoes
+  - PsychologistJumpsuitSyndi
+  - MedicalBackpackSyndi
+  - SyndieShoes
   - Glasses
   - Survival
   - Trinkets
+  - Pens 
 
 #region Science
 

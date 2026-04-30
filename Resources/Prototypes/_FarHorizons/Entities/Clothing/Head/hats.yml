@@ -364,12 +364,14 @@
     - Recyclable
     - HamsterWearable
     - WhitelistChameleon
+    
 #region Medical
 - type: entity
   parent: [ClothingHeadBase, BaseCommandContraband]
   id: ClothingHeadHatBeretCmoSyndi
   name: Medical Director's Beret 
   description: A turquoise beret with a cross on the front. The sight of it calms you down and makes it clear that you will be cured.
+  suffix: NS
   components:
   - type: Sprite
     sprite: _FarHorizons/Clothing/Head/Hats/NeoSol/beret_cmo.rsi
@@ -389,6 +391,7 @@
   id: ClothingHeadHatBeretMedicSyndi
   name: Medical Beret 
   description: A sterile white beret.
+  suffix: NS
   components:
   - type: Sprite
     sprite: _FarHorizons/Clothing/Head/Hats/NeoSol/beret_medic.rsi
@@ -404,6 +407,7 @@
   id: ClothingHeadHatBeretVirologistSyndi
   name: Virology Beret
   description: A sterile green beret.
+  suffix: NS
   components:
   - type: Sprite
     sprite: _FarHorizons/Clothing/Head/Hats/NeoSol/beret_virology.rsi
@@ -419,6 +423,7 @@
   id: ClothingHeadNurseHatSyndi
   name: Nurse Hat 
   description: Somehow I feel I'm not supposed to leave this place.
+  suffix: NS
   components:
   - type: Sprite
     sprite: _FarHorizons/Clothing/Head/Hats/NeoSol/nursehat.rsi 
