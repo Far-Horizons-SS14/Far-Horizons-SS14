@@ -69,7 +69,9 @@
           False: { visible: false }
 #FH - Start
   - type: Item
-    size: Large
+    size: Huge
+    shape:
+    - 0,0,3,1
   - type: Storage
     maxItemSize: Huge
     grid:
@@ -85,7 +87,11 @@
   - type: Sprite
     sprite: _FarHorizons/Objects/Storage/Briefcases/weapon_case_small.rsi #FH
   - type: Item
-    size: Normal #FH
+#FH - Start
+    size: Large
+    shape:
+    - 0,0,1,1
+#FH - End
   - type: Storage
     maxItemSize: Large
     grid:
