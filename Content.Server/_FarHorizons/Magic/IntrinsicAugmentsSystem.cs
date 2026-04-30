@@ -7,7 +7,7 @@ using Robust.Server.GameObjects;
 
 namespace Content.Server._FarHorizons.Magic;
 
-public sealed class InherentCantripsSystem : EntitySystem
+public sealed class IntrinsicAugmentsSystem : EntitySystem
 {
     [Dependency] private readonly ActionsSystem _actions = default!;
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
@@ -16,14 +16,13 @@ public sealed class InherentCantripsSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<InherentCantripsComponent, MapInitEvent>(OnCantripInit);
-        SubscribeLocalEvent<InherentCantripsComponent, OpenInherentCantripsEvent>(OnSelectionScreenOpen);
+        SubscribeLocalEvent<IntrinsicAugmentsComponent, MapInitEvent>(OnCantripInit);
         SubscribeLocalEvent<StorePurchaseCompletedEvent>(OnPurchase);
     }
 
     private void OnPurchase(ref StorePurchaseCompletedEvent ev)
     {
-        if (!TryComp<InherentCantripsComponent>(ev.Buyer, out var comp) ||
+        if (!TryComp<IntrinsicAugmentsComponent>(ev.Buyer, out var comp) ||
             comp.Store == null ||
             comp.Store.Balance.Values.Sum() > 0)
             return;
@@ -39,13 +38,10 @@ public sealed class InherentCantripsSystem : EntitySystem
                 _actions.RemoveAction(action.AsNullable());
         }
 
-        RemCompDeferred<InherentCantripsComponent>(ev.Buyer);
+        RemCompDeferred<IntrinsicAugmentsComponent>(ev.Buyer);
     }
 
-    private void OnSelectionScreenOpen(Entity<InherentCantripsComponent> ent, ref OpenInherentCantripsEvent args) => 
-        _ui.TryOpenUi(ent.Owner, ent.Comp.UiKey, ent);
-
-    private void OnCantripInit(Entity<InherentCantripsComponent> ent, ref MapInitEvent args)
+    private void OnCantripInit(Entity<IntrinsicAugmentsComponent> ent, ref MapInitEvent args)
     {
         _actions.AddAction(ent, ent.Comp.Action);
         EntityManager.AddComponents(ent, ent.Comp.AddComponents);
