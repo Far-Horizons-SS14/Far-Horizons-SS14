@@ -592,6 +592,53 @@
     - WhitelistChameleon
     - IPCExternalCooling
 
+#region Medical
+- type: entity
+  parent: [ClothingOuterHardsuitBase, BaseCommandContraband]
+  id: ClothingOuterHardsuitMedicalSyndi
+  name: Medical Director's Hardsuit
+  suffix: NS
+  description: A special suit that protects against hazardous, low pressure environments. Built with lightweight materials for easier movement.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/NeoSol/medical.rsi 
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/NeoSol/medical.rsi 
+  - type: PressureProtection
+    highPressureMultiplier: 0.3
+    lowPressureMultiplier: 1000
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      coefficients:
+        Caustic: 0.1
+  - type: LimbArmor 
+    limbs:
+      ArmRight: {}
+      ArmLeft: {}
+      HandRight: {}
+      HandLeft: {}
+      LegRight: {}
+      LegLeft: {}
+      FootRight: {}
+      FootLeft: {}
+  - type: ZombificationResistance
+    zombificationResistanceCoefficient: 0.0 
+  - type: ClothingSpeedModifier
+    walkModifier: 1.0 
+    sprintModifier: 1.0 
+    requireActivated: false 
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitMedicalSyndi
+  - type: Tag
+    tags:
+    - Hardsuit
+    - WhitelistChameleon
+    - IPCExternalCooling 
+
+
 #region Security
 
 # General Security

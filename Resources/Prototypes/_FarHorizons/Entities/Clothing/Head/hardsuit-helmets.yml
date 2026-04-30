@@ -531,6 +531,33 @@
     #- CorgiWearable
     - WhitelistChameleon
 
+#region Medical
+
+- type: entity
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
+  id: ClothingHeadHelmetHardsuitMedicalSyndi
+  name: Medical Director's Hardsuit Helmet 
+  suffix: NS
+  description: Lightweight medical hardsuit helmet that doesn't restrict your head movements.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Head/Hardsuits/NeoSol/medical.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Head/Hardsuits/NeoSol/medical.rsi
+  - type: PointLight
+    color: "#b9ffad"
+  - type: PressureProtection
+    highPressureMultiplier: 0.6
+    lowPressureMultiplier: 1000
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+
+
+
+
+
+
 #region Security
 
 - type: entity

@@ -48,7 +48,7 @@
 
 
 
-#region ## Syndicate ##
+#region ## NeoSol ##
 
 - type: entity
   parent: [ClothingHeadsetAlt, BaseSyndicateContraband]
@@ -210,6 +210,62 @@
     sprite: _FarHorizons/Clothing/Ears/Headsets/NeoSol/engineering.rsi
   - type: Clothing
     sprite: _FarHorizons/Clothing/Ears/Headsets/NeoSol/engineering.rsi
+
+#region Medical
+
+- type: entity
+  parent: ClothingHeadset
+  id: ClothingHeadsetMedicalSyndi
+  name: Medical Headset 
+  description: A headset for the trained staff of the medbay.
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeySyndiMed
+      - EncryptionKeySyndiCommon
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Ears/Headsets/NeoSol/medical.rsi 
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Ears/Headsets/NeoSol/medical.rsi 
+
+- type: entity
+  parent: [ClothingHeadsetAlt, BaseCommandContraband]
+  id: ClothingHeadsetAltMedicalSyndi
+  name: Medical Director's Over-Ear Headset 
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeySyndiMed
+      - EncryptionKeySyndiCommand
+      - EncryptionKeySyndiCommon
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Ears/Headsets/NeoSol/medical.rsi 
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Ears/Headsets/NeoSol/medical.rsi 
+  - type: StealTarget
+    stealGroup: ClothingHeadsetAltMedical
+  - type: RadioChime
+    sound:
+      path: /Audio/_Starlight/Effects/Radio/cmo.ogg
+
+- type: entity
+  parent: [ClothingHeadsetMedicalSyndi, BaseCommandContraband]
+  id: ClothingHeadsetCMOSyndi
+  name: MD Headset
+  description: A headset used by the MD.
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeySyndiMed
+      - EncryptionKeySyndiCommand
+      - EncryptionKeySyndiCommon
+  - type: RadioChime
+    sound:
+      path: /Audio/_Starlight/Effects/Radio/cmo.ogg
+
 #region Security
 
 

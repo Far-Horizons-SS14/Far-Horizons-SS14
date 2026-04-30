@@ -11,6 +11,7 @@
   id: ClothingOuterHardsuitMedicalEVA
   name: Medical EVA Suit
   description: A lightweight space suit supplied in the medical department with the basic ability to protect the wearer from the vacuum of space during emergencies.
+  suffix: NT
   components:
   - type: Sprite
     sprite: _FarHorizons/Clothing/OuterClothing/Suits/medical.rsi
@@ -32,10 +33,28 @@
 #region Medical
 
 - type: entity
+  parent: ClothingOuterEVASuitBase
+  id: ClothingOuterHardsuitMedicalEVASyndi
+  name: Medical EVA Suit
+  description: A lightweight space suit supplied in the medical department with the basic ability to protect the wearer from the vacuum of space during emergencies.
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/Suits/NeoSol/medical.rsi #need Resprite
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/Suits/NeoSol/medical.rsi
+  - type: Tag
+    tags:
+    - SuitEVA
+    - WhitelistChameleon
+    - IPCExternalCooling
+
+- type: entity
   parent: [ClothingOuterEVASuitBase, BaseMedicalContraband] 
   id: ClothingOuterHardsuitVoidParamedSyndi
   name: Paramedic Void Suit 
   description: A void suit made for paramedics.
+  suffix: NS
   components:
   - type: Sprite
     sprite: _FarHorizons/Clothing/OuterClothing/Suits/NeoSol/paramed.rsi 
@@ -76,7 +95,7 @@
   - type: StealTarget
     stealGroup: ClothingOuterHardsuitVoidParamed
   - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetVoidParamedSydni
+    clothingPrototype: ClothingHeadHelmetVoidParamedSyndi
   - type: ItemToggle
     onUse: false
     soundActivate:

@@ -67,6 +67,24 @@
     - PetWearable
     - WhitelistChameleon
 
+#region Medical
+- type: entity
+  parent: [ClothingEyesHudBase, ShowMedicalIcons]
+  id: ClothingEyesHudMedicalSyndi
+  name: Medical HUD 
+  description: A heads-up display that scans the humanoids in view and provides accurate data about their health status.
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Eyes/Hud/NeoSol/med.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Eyes/Hud/NeoSol/med.rsi
+  - type: Tag
+    tags:
+    - HudMedical
+    - PetWearable
+    - WhitelistChameleon
+
 #region Security
 
 - type: entity

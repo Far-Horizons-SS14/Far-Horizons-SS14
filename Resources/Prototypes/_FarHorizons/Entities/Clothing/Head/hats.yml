@@ -364,6 +364,88 @@
     - Recyclable
     - HamsterWearable
     - WhitelistChameleon
+#region Medical
+- type: entity
+  parent: [ClothingHeadBase, BaseCommandContraband]
+  id: ClothingHeadHatBeretCmoSyndi
+  name: Medical Director's Beret 
+  description: A turquoise beret with a cross on the front. The sight of it calms you down and makes it clear that you will be cured.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Head/Hats/NeoSol/beret_cmo.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Head/Hats/NeoSol/beret_cmo.rsi
+  - type: Tag
+    tags:
+    - PetWearable
+    - CorgiWearable
+    - ClothMade
+    - Recyclable
+    - HamsterWearable
+    - WhitelistChameleon
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatBeretMedicSyndi
+  name: Medical Beret 
+  description: A sterile white beret.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Head/Hats/NeoSol/beret_medic.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Head/Hats/NeoSol/beret_medic.rsi
+  - type: Tag
+    tags:
+    - PetWearable
+    - CorgiWearable
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatBeretVirologistSyndi
+  name: Virology Beret
+  description: A sterile green beret.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Head/Hats/NeoSol/beret_virology.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Head/Hats/NeoSol/beret_virology.rsi
+  - type: Tag
+    tags:
+    - PetWearable
+    - CorgiWearable
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadNurseHatSyndi
+  name: Nurse Hat 
+  description: Somehow I feel I'm not supposed to leave this place.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Head/Hats/NeoSol/nursehat.rsi 
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Head/Hats/NeoSol/nursehat.rsi 
+  - type: Tag
+    tags:
+    - ClothMade
+    - Recyclable
+    - HamsterWearable
+    - WhitelistChameleon
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatBeretChemistSyndi
+  name: Pharmacist Beret
+  description: A sterile orange beret.
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Head/Hats/NeoSol/beret_chemist.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Head/Hats/NeoSol/beret_chemist.rsi
+  - type: Tag
+    tags:
+    - PetWearable
+    - CorgiWearable
 
 #region Security
 
