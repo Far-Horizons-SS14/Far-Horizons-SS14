@@ -3,7 +3,7 @@
   parent: BaseItem
   id: BaseJammer
   name: radio jammer
-  description: This device will disrupt any nearby outgoing radio communication as well as suit sensors and Cameras when activated.
+  description: This device will disrupt any nearby outgoing radio communication as well as suit sensors when activated.
   components:
   - type: Sprite
     sprite: Objects/Devices/jammer.rsi
@@ -39,7 +39,7 @@
   name: radio jammer
   parent: [BaseJammer, PowerCellSlotMediumItem, BaseSyndicateContraband]
   id: RadioJammer
-  description: This device will disrupt any nearby outgoing and incoming radio communication as well as suit sensors and Cameras when activated.
+  description: This device will disrupt any nearby outgoing and incoming radio communication as well as suit sensors when activated.
   components:
   - type: GenericVisualizer
     visuals:
@@ -56,10 +56,6 @@
   - type: BatteryVisuals
   - type: StaticPrice
     price: 1500
-  - type: RadioJammer #FH start
-    frequenciesExcluded:
-    - 1213 #Syndicate Radio
-    #FH end
 
 - type: entity
   parent: [BaseJammer, BaseXenoborgContraband]
