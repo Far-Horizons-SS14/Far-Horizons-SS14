@@ -718,12 +718,18 @@ public sealed partial class EmergencyShuttleSystem : SharedEmergencyShuttleSyste
     /// </summary>
     public bool IsTargetEscaping(EntityUid target)
     {
+        //FH start
+        var xform = Transform(target);
+
+        //Altenative escapes that dont have to be shuttle
+        if (HasComp<AlternativeEscapeComponent>(xform.GridUid))
+            return true;
+
         // if evac isn't here then sitting in a pod doesn't return true
         if (!EmergencyShuttleArrived)
             return false;
 
-        // check if target is on an emergency shuttle
-        var xform = Transform(target);
+        //FH end
 
         if (HasComp<EmergencyShuttleComponent>(xform.GridUid))
             return true;

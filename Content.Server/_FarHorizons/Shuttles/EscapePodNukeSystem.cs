@@ -82,9 +82,10 @@ public sealed class EscapePodNukeSystem : EntitySystem
         if (!_preppods)
         {
             _preppods = true;
-            while (podQuery.MoveNext(out _, out var pod))
+            while (podQuery.MoveNext(out var uid, out var pod))
             {
                 pod.LaunchTime = _timing.CurTime + TimeSpan.FromSeconds(_random.NextFloat(0.05f, 0.75f));
+                AddComp<AlternativeEscapeComponent>(uid);
             }
         }
 
