@@ -20,7 +20,7 @@ uplink-syndicate-secway-armored-light-name = Lightly Armored Segway
 uplink-syndicate-secway-armored-light-description = Outspeed security on this BLISTERINGLY fast one horsepower segway! Now with the same protection as Type I vest.
 
 uplink-lecter-type-w-name = Lecter Type-W Case
-uplink-lecter-type-w-description = A simple wooden lecter with a short barrel and stock to enable ease of handling, pre-loaded with SP. Also comes with an underbarrel chainsaw and a Ammo Selector.
+uplink-lecter-type-w-description = A simple wooden lecter with a short barrel and stock to enable ease of handling, pre-loaded with SP. Also comes with an underbarrel chainsaw and an Ammo Selector.
 
 uplink-deagle-name = Jungle Hawk Case
 uplink-deagle-desc = A robust .44 magnum handgun pre-loaded with SP. Comes with an Ammo Selector.
