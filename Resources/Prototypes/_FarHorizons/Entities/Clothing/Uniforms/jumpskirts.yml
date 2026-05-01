@@ -332,6 +332,29 @@
   - type: Clothing
     sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/NeoSol/hos_parade.rsi
 
+- type: entity
+  parent: [ClothingUniformSkirtBase, BaseCommandContraband]
+  id: ClothingUniformJumpskirtCMOSyndi
+  name: Medical Director's Jumpskirt 
+  description: It's a jumpskirt worn by those with the experience to be Medical Director. It provides minor biological protection.
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/NeoSol/cmo.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/NeoSol/cmo.rsi
+
+- type: entity
+  parent: [ClothingUniformSkirtBase, BaseCommandContraband]
+  id: ClothingUniformJumpskirtCMOTurtleSyndi
+  name: Medical Director's Turtleneck 
+  description: It's a turtleneck worn by those with the experience to be Medical Director. It provides minor biological protection.
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/NeoSol/cmo_turtle.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/NeoSol/cmo_turtle.rsi
 
 
 # Foreman (CE)
@@ -453,31 +476,6 @@
     sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/NeoSol/chemistry.rsi 
   - type: Clothing
     sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/NeoSol/chemistry.rsi 
-
-
-- type: entity
-  parent: [ClothingUniformSkirtBase, BaseCommandContraband]
-  id: ClothingUniformJumpskirtCMOSyndi
-  name: Medical Director's Jumpskirt 
-  description: It's a jumpskirt worn by those with the experience to be Medical Director. It provides minor biological protection.
-  suffix: NS
-  components:
-  - type: Sprite
-    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/NeoSol/cmo.rsi
-  - type: Clothing
-    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/NeoSol/cmo.rsi
-
-- type: entity
-  parent: [ClothingUniformSkirtBase, BaseCommandContraband]
-  id: ClothingUniformJumpskirtCMOTurtleSyndi
-  name: Medical Director's Turtleneck 
-  description: It's a turtleneck worn by those with the experience to be Medical Director. It provides minor biological protection.
-  suffix: NS
-  components:
-  - type: Sprite
-    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/NeoSol/cmo_turtle.rsi
-  - type: Clothing
-    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/NeoSol/cmo_turtle.rsi
 
 - type: entity
   parent: ClothingUniformSkirtBase

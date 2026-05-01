@@ -308,6 +308,31 @@
   - type: Clothing
     sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/NeoSol/ce_turtle.rsi
 
+- type: entity
+  parent: [ClothingUniformBase, BaseCommandContraband] # ClothingUniformFoldableBase] # Far Horizons - no folded sprites
+  id: ClothingUniformJumpsuitCMOSyndi
+  name: Medical Director's Jumpsuit 
+  description: It's a jumpsuit worn by those with the experience to be Medical Director It provides minor biological protection.
+  suffix: NS
+  components:
+  - type: RollUpSleeves
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/NeoSol/cmo.rsi 
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/NeoSol/cmo.rsi 
+
+- type: entity
+  parent: [ClothingUniformBase, BaseCommandContraband]
+  id: ClothingUniformJumpsuitCMOTurtleSyndi
+  name: Medical Director's Turtleneck Jumpsuit
+  description: It's a turtleneck worn by those with the experience to be Medical Director. It provides minor biological protection.
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/NeoSol/cmo_turtle.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/NeoSol/cmo_turtle.rsi
+
 #region Civilian
 
 - type: entity
@@ -386,29 +411,16 @@
     sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/NeoSol/chemistry.rsi 
 
 - type: entity
-  parent: [ClothingUniformBase, BaseCommandContraband] # ClothingUniformFoldableBase] # Far Horizons - no folded sprites
-  id: ClothingUniformJumpsuitCMOSyndi
-  name: Medical Director's Jumpsuit 
-  description: It's a jumpsuit worn by those with the experience to be Medical Director It provides minor biological protection.
-  suffix: NS
+  parent: [ClothingUniformBase] # ClothingUniformFoldableBase] # Far Horizons - no folded sprites
+  id: ClothingUniformJumpsuitMedicalDoctorSyndi
+  name: Medical Doctor Jumpsuit
+  description: It's made of a special fiber that provides minor protection against biohazards. It has a cross on the chest denoting that the wearer is trained medical personnel.
   components:
   - type: RollUpSleeves
   - type: Sprite
-    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/NeoSol/cmo.rsi 
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/NeoSol/medical.rsi 
   - type: Clothing
-    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/NeoSol/cmo.rsi 
-
-- type: entity
-  parent: [ClothingUniformBase, BaseCommandContraband]
-  id: ClothingUniformJumpsuitCMOTurtleSyndi
-  name: Medical Director's Turtleneck Jumpsuit
-  description: It's a turtleneck worn by those with the experience to be Medical Director. It provides minor biological protection.
-  suffix: NS
-  components:
-  - type: Sprite
-    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/NeoSol/cmo_turtle.rsi
-  - type: Clothing
-    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/NeoSol/cmo_turtle.rsi
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/NeoSol/medical.rsi 
 
 - type: entity
   parent: ClothingUniformBase
