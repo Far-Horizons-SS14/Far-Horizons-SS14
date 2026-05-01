@@ -1,0 +1,13 @@
+- type: entity
+  id: BaseFusionReactorTorus
+  parent: BaseStructure
+  name: Fusion Reactor Torus
+  description: A piece of a Fusion Reactor's magnetic torus.
+  components:
+  - type: Sprite
+    sprite: Structures/Walls/solid.rsi
+  - type: IconSmooth
+    key: fusion_torus
+    base: solid
+  - type: FusionReactorTorus
+  - type: FusionDevice
