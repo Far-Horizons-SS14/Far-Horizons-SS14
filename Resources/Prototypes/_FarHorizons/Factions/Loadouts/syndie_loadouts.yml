@@ -61,6 +61,10 @@
   id: MedicalDirectorBeret
   equipment:
     head: ClothingHeadHatBeretCmoSyndi
+
+- type: loadout
+  id: ResearchDirectorBeret
+  startingGear: RDBeret
   
 # Engineering
 
@@ -365,6 +369,24 @@
   equipment:
     neck: ClothingNeckMantleCESyndi
 
+- type: loadout
+  id: ResearchDirectorMantleSyndi
+  equipment:
+    neck: ClothingNeckMantleRD
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MasterRD
+
+- type: startingGear
+  id: ResearchDirectorMantleSyndi
+  equipment:
+    neck: ClothingNeckMantleRD
+
+- type: loadout
+  id: ResearchDirectorCloakSyndi
+  equipment:
+    neck: ClothingNeckCloakRd
+
 # Security
 
 - type: loadout
@@ -533,6 +555,17 @@
   id: MedicalDirectorTurtleneckJumpskirt
   equipment:
     jumpsuit: ClothingUniformJumpskirtCMOTurtleSyndi
+
+- type: loadout
+  id: ResearchDirectorJumpsuitSyndi
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitResearchDirectorSyndi
+
+- type: loadout
+  id: ResearchDirectorJumpskirtSyndi
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtResearchDirectorSyndi
+
 
 # Civilian
 
@@ -935,6 +968,21 @@
   equipment:
     back: ClothingBackpackDuffelChemistry
 
+- type: loadout
+  id: ScientistBackpackSyndi
+  equipment:
+    back: ClothingBackpackScience
+
+- type: loadout
+  id: ScientistSatchelSyndi
+  equipment:
+    back: ClothingBackpackSatchelScience
+
+- type: loadout
+  id: ScientistDuffelSyndi
+  equipment:
+    back: ClothingBackpackDuffelScience
+
 #region Outer Clothing
 
 - type: loadout
@@ -982,6 +1030,15 @@
   equipment:
     outerClothing: ClothingOuterWinterCMOSyndi
 
+- type: loadout
+  id: ResearchDirectorLabCoatSyndi
+  equipment:
+    outerClothing: ClothingOuterCoatRD
+
+- type: loadout
+  id: ResearchDirectorWintercoatSyndi
+  equipment:
+    outerClothing: ClothingOuterWinterRD
 
 # Engineering
 

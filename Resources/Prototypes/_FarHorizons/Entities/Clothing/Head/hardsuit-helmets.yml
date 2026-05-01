@@ -553,11 +553,27 @@
     tags:
     - WhitelistChameleon
 
-
-
-
-
-
+#region Science
+- type: entity
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
+  id: ClothingHeadHelmetHardsuitRdSyndi
+  name: Experimental Research Hardsuit Helmet 
+  suffix: NS
+  description: Lightweight hardsuit helmet that doesn't restrict your head movements.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Head/Hardsuits/NeoSol/rd.rsi 
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Head/Hardsuits/NeoSol/rd.rsi 
+  - type: PointLight
+    color: "#adffb0"
+  - type: PressureProtection
+    highPressureMultiplier: 0.60
+    lowPressureMultiplier: 1000
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    
 #region Security
 
 - type: entity

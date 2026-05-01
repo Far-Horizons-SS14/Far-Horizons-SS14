@@ -55,34 +55,6 @@
 
 
 
-#region Security
-
-# Marshal (HoS)
-
-- type: entity
-  parent: [ ClothingOuterArmorHoS, ClothingOuterWinterCoat, BaseSecurityCommandContraband ]
-  id: ClothingOuterWinterHoSSyndi
-  name: Marshal's Armored Winter Coat
-  suffix: NS
-  description: A sturdy, utilitarian winter coat designed to protect the Marshal from any threats and hypothermic events.
-  components:
-  - type: Sprite
-    sprite: _FarHorizons/Clothing/OuterClothing/WinterCoats/NeoSol/coathosarmored.rsi
-  - type: Clothing
-    sprite: _FarHorizons/Clothing/OuterClothing/WinterCoats/NeoSol/coathosarmored.rsi
-
-# Constable (Warden)
-- type: entity
-  parent: [ClothingOuterArmorWarden, ClothingOuterWinterCoat, BaseSecurityContraband]
-  id: ClothingOuterWinterWardenSyndi
-  name: Constable's Armored Winter Coat
-  suffix: NS
-  description: A sturdy, utilitarian winter coat designed to protect a warden from any brig-bound threats and hypothermic events.
-  components:
-  - type: Sprite
-    sprite: _FarHorizons/Clothing/OuterClothing/WinterCoats/NeoSol/coatwardenarmored.rsi
-  - type: Clothing
-    sprite: _FarHorizons/Clothing/OuterClothing/WinterCoats/NeoSol/coatwardenarmored.rsi
 
 #region Medical
 
@@ -201,3 +173,73 @@
       LegLeft: {}
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHatHoodWinterSci
+
+#region Science
+
+- type: entity
+  parent: ClothingOuterWinterCoatToggleable
+  id: ClothingOuterWinterSciSyndi
+  name: Science Winter Coat 
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/WinterCoats/NeoSol/science.rsi
+    layers:
+    - state: icon
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      right:
+      - state: inhand-right
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/WinterCoats/NeoSol/science.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: equipped-OUTERCLOTHING
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      coefficients:
+        Slash: 0.95
+        Heat: 0.90
+        Caustic: 0.9
+    priceMultiplier: 0.15
+  - type: LimbArmor # Far Horizons
+    limbs:
+      ArmRight: {}
+      ArmLeft: {}
+      LegRight: {}
+      LegLeft: {}
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHatHoodWinterSci
+
+#region Security
+
+# Marshal (HoS)
+
+- type: entity
+  parent: [ ClothingOuterArmorHoS, ClothingOuterWinterCoat, BaseSecurityCommandContraband ]
+  id: ClothingOuterWinterHoSSyndi
+  name: Marshal's Armored Winter Coat
+  suffix: NS
+  description: A sturdy, utilitarian winter coat designed to protect the Marshal from any threats and hypothermic events.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/WinterCoats/NeoSol/coathosarmored.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/WinterCoats/NeoSol/coathosarmored.rsi
+
+# Constable (Warden)
+- type: entity
+  parent: [ClothingOuterArmorWarden, ClothingOuterWinterCoat, BaseSecurityContraband]
+  id: ClothingOuterWinterWardenSyndi
+  name: Constable's Armored Winter Coat
+  suffix: NS
+  description: A sturdy, utilitarian winter coat designed to protect a warden from any brig-bound threats and hypothermic events.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/WinterCoats/NeoSol/coatwardenarmored.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/WinterCoats/NeoSol/coatwardenarmored.rsi

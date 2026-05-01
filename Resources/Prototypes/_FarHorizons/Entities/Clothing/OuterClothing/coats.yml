@@ -127,98 +127,6 @@
   - type: Clothing
     sprite: _FarHorizons/Clothing/OuterClothing/Coats/NeoSol/hos_trenchcoat.rsi
 
-#region Security
-
-
-# Constable (Warden)
-
-- type: entity
-  parent: [ ClothingOuterArmorWarden, ClothingOuterStorageBase, BaseSecurityContraband ]
-  id: ClothingOuterCoatWardenSyndi
-  name: Constable's Armored Jacket
-  suffix: NS
-  description: A sturdy, utilitarian jacket designed to protect a guardian from any brig-bound threats.
-  components:
-  - type: Sprite
-    sprite: _FarHorizons/Clothing/OuterClothing/Coats/NeoSol/warden.rsi
-  - type: Clothing
-    sprite: _FarHorizons/Clothing/OuterClothing/Coats/NeoSol/warden.rsi
-
-# Inspector (Detective)
-
-- type: entity
-  parent: [ClothingOuterStorageBase, AllowSuitStorageClothing, ClothingOuterArmorBase]
-  id: ClothingOuterCoatDetectiveSyndi
-  name: Inspector Trenchcoat
-  suffix: NS
-  description: An 18th-century multi-purpose trenchcoat. Someone who wears this means serious business.
-  components:
-  - type: Sprite
-    sprite: _FarHorizons/Clothing/OuterClothing/Coats/NeoSol/detective.rsi
-  - type: Clothing
-    sprite: _FarHorizons/Clothing/OuterClothing/Coats/NeoSol/detective.rsi
-  - type: StorageFill
-    contents:
-    - id: SmokingPipeFilledTobacco
-    - id: FlippoEngravedLighter
-  - type: ExplosionResistance
-    damageCoefficient: 1 #its a coat. it doesnt do shit
-
-- type: entity
-  parent: [ClothingOuterStorageBase, AllowSuitStorageClothing, ClothingOuterArmorBase]
-  id: ClothingOuterCoatDetectiveLoadoutGreySyndi
-  name: Inspectors's Noir Trenchcoat
-  suffix: NS
-  description: Ah, your trusty coat. There's a few tears here and there, giving it a more timely look. Or at least, that's what you told yourself when you found out gettin' it repaired would set you back 200 spesos.
-  components:
-  - type: Sprite
-    sprite: Clothing/OuterClothing/Coats/detective_grey.rsi
-  - type: Clothing
-    sprite: Clothing/OuterClothing/Coats/detective_grey.rsi
-  - type: StorageFill
-    contents:
-    - id: SmokingPipeFilledTobacco
-    - id: FlippoEngravedLighter
-  - type: ExplosionResistance
-    damageCoefficient: 1 #its a coat. it doesnt do shit
-
-# Enforcer (Security Officer)
-
-# Brigmedic (Brigmedic)
-
-- type: entity
-  parent: [ClothingOuterStorageBase, AllowSuitStorageClothing]
-  id: ClothingOuterCoatAMGSyndi
-  name: Armored Medical Gown
-  suffix: NS
-  description: The version of the medical gown, with elements of a bulletproof vest, looks strange, but your heart is protected.
-  components:
-  - type: Sprite
-    sprite: _FarHorizons/Clothing/OuterClothing/Coats/NeoSol/brigmedic.rsi
-  - type: Clothing
-    sprite: _FarHorizons/Clothing/OuterClothing/Coats/NeoSol/brigmedic.rsi
-  - type: Pierceable
-    level: Metal
-  - type: ZombificationResistance
-    zombificationResistanceCoefficient: 0.60
-  - type: Armor
-    modifiers:
-      flatReductions:
-        Piercing: 5
-        Heat: 4
-      coefficients:
-        Blunt: 0.8
-        Slash: 0.85
-        Piercing: 0.65
-        Heat: 0.85
-        Caustic: 0.75
-  - type: LimbArmor
-    limbs:
-      ArmRight: {}
-      ArmLeft: {}
-      LegRight: {}
-      LegLeft: {}
-
 #region Medical
 
 #Lab Coat
@@ -372,3 +280,121 @@
   parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterCoatLabViroSyndi]
   id: ClothingOuterCoatLabViroSyndiOpened
   name: Virologist Lab Coat
+
+#region Science
+
+- type: entity
+  parent: ClothingOuterStorageFoldableBase
+  id: ClothingOuterCoatRndSyndi
+  name: Academic Lab Coat 
+  description: A good looking coat that researchers wear to protect their over-designed jumpsuits.
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/Coats/NeoSol/labcoat_sci.rsi 
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/Coats/NeoSol/labcoat_sci.rsi 
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      coefficients:
+        Caustic: 0.75
+  - type: LimbArmor # Far Horizons
+    limbs:
+      ArmRight: {}
+      ArmLeft: {}
+      LegRight: {}
+      LegLeft: {}
+
+#region Security
+
+
+# Constable (Warden)
+
+- type: entity
+  parent: [ ClothingOuterArmorWarden, ClothingOuterStorageBase, BaseSecurityContraband ]
+  id: ClothingOuterCoatWardenSyndi
+  name: Constable's Armored Jacket
+  suffix: NS
+  description: A sturdy, utilitarian jacket designed to protect a guardian from any brig-bound threats.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/Coats/NeoSol/warden.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/Coats/NeoSol/warden.rsi
+
+# Inspector (Detective)
+
+- type: entity
+  parent: [ClothingOuterStorageBase, AllowSuitStorageClothing, ClothingOuterArmorBase]
+  id: ClothingOuterCoatDetectiveSyndi
+  name: Inspector Trenchcoat
+  suffix: NS
+  description: An 18th-century multi-purpose trenchcoat. Someone who wears this means serious business.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/Coats/NeoSol/detective.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/Coats/NeoSol/detective.rsi
+  - type: StorageFill
+    contents:
+    - id: SmokingPipeFilledTobacco
+    - id: FlippoEngravedLighter
+  - type: ExplosionResistance
+    damageCoefficient: 1 #its a coat. it doesnt do shit
+
+- type: entity
+  parent: [ClothingOuterStorageBase, AllowSuitStorageClothing, ClothingOuterArmorBase]
+  id: ClothingOuterCoatDetectiveLoadoutGreySyndi
+  name: Inspectors's Noir Trenchcoat
+  suffix: NS
+  description: Ah, your trusty coat. There's a few tears here and there, giving it a more timely look. Or at least, that's what you told yourself when you found out gettin' it repaired would set you back 200 spesos.
+  components:
+  - type: Sprite
+    sprite: Clothing/OuterClothing/Coats/detective_grey.rsi
+  - type: Clothing
+    sprite: Clothing/OuterClothing/Coats/detective_grey.rsi
+  - type: StorageFill
+    contents:
+    - id: SmokingPipeFilledTobacco
+    - id: FlippoEngravedLighter
+  - type: ExplosionResistance
+    damageCoefficient: 1 #its a coat. it doesnt do shit
+
+# Enforcer (Security Officer)
+
+# Brigmedic (Brigmedic)
+
+- type: entity
+  parent: [ClothingOuterStorageBase, AllowSuitStorageClothing]
+  id: ClothingOuterCoatAMGSyndi
+  name: Armored Medical Gown
+  suffix: NS
+  description: The version of the medical gown, with elements of a bulletproof vest, looks strange, but your heart is protected.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/Coats/NeoSol/brigmedic.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/Coats/NeoSol/brigmedic.rsi
+  - type: Pierceable
+    level: Metal
+  - type: ZombificationResistance
+    zombificationResistanceCoefficient: 0.60
+  - type: Armor
+    modifiers:
+      flatReductions:
+        Piercing: 5
+        Heat: 4
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.85
+        Piercing: 0.65
+        Heat: 0.85
+        Caustic: 0.75
+  - type: LimbArmor
+    limbs:
+      ArmRight: {}
+      ArmLeft: {}
+      LegRight: {}
+      LegLeft: {}

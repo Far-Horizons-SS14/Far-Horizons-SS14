@@ -333,6 +333,18 @@
   - type: Clothing
     sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/NeoSol/cmo_turtle.rsi
 
+- type: entity
+  parent: [ClothingUniformBase, BaseCommandContraband]
+  id: ClothingUniformJumpsuitResearchDirectorSyndi
+  name: Head of Research's Jumpsuit 
+  description: A spiffy red uniform for the wrangler of the spontaneously combusting scientists. It is said that a drunk Head of Research spent their life savings on the R&D for this.
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/NeoSol/rnd.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/NeoSol/rnd.rsi
+
 #region Civilian
 
 - type: entity
@@ -458,6 +470,45 @@
     sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/NeoSol/virology.rsi
   - type: Clothing
     sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/NeoSol/virology.rsi
+
+#region Science
+
+- type: entity
+  parent: [ClothingUniformBase] # ClothingUniformFoldableBase] # Far Horizons - no folded sprites
+  id: ClothingUniformJumpsuitRoboticistSyndi
+  name: Mechanist Jumpsuit 
+  description: A very comfortable jacket and tank top for the grease heads of the science department.
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/NeoSol/roboticist.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/NeoSol/roboticist.rsi
+
+- type: entity
+  parent: [ClothingUniformBase] # ClothingUniformFoldableBase] # Far Horizons - no folded sprites
+  id: ClothingUniformJumpsuitScientistSyndi
+  name: Academic Jumpsuit 
+  description: An ultra comfortable jumpsuit. It took 3 weeks straight of R&D to get these results. It's not pretty, but the researchers think it's worth it.
+  suffix: NS
+  components:
+  - type: RollUpSleeves
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/NeoSol/scientist.rsi 
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/NeoSol/scientist.rsi 
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitScientistFormalSyndi
+  name: Academic's Formal Jumpsuit 
+  description: A formal jumpsuit that was meant as an upgrade to the previous researcher jumpsuit, however, the R&D was cut short so it just looks pretty.
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/NeoSol/scientist_formal.rsi 
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/NeoSol/scientist_formal.rsi 
 
 #region Security
 

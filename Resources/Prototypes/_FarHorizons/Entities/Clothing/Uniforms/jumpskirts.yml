@@ -256,6 +256,20 @@
   - type: Clothing
     sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/NeoSol/capformaldress.rsi
 
+# Head of Research
+
+- type: entity
+  parent: [ClothingUniformSkirtBase, BaseCommandContraband]
+  id: ClothingUniformJumpskirtResearchDirectorSyndi
+  name: Head of Research's Jumpskirt
+  description: A spiffy red uniform for the wrangler of the spontaneously combusting scientists. It is said that a drunk Head of Research spent their life savings on the R&D for this.
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/NeoSol/rnd.rsi 
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/NeoSol/rnd.rsi 
+
 # Personnel Manager (HoP)
 
 - type: entity
@@ -332,6 +346,7 @@
   - type: Clothing
     sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/NeoSol/hos_parade.rsi
 
+# Medical Director
 - type: entity
   parent: [ClothingUniformSkirtBase, BaseCommandContraband]
   id: ClothingUniformJumpskirtCMOSyndi
@@ -524,6 +539,44 @@
     sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/NeoSol/virology.rsi 
   - type: Clothing
     sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/NeoSol/virology.rsi 
+
+#region Science
+
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingUniformJumpskirtRoboticistSyndi
+  name: Mechanist Jumpskirt
+  description: A very comfortable jacket and tank top for the grease heads of the science department.
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/NeoSol/roboticist.rsi 
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/NeoSol/roboticist.rsi 
+
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingUniformJumpskirtScientistSyndi
+  name: Academic Jumpskirt
+  description: An ultra comfortable jumpskirt. It took 3 weeks straight of R&D to get these results. It's not pretty, but the researchers think it's worth it.
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/NeoSol/scientist.rsi 
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/NeoSol/scientist.rsi 
+
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingUniformJumpskirtScientistFormalSyndi
+  name: Formal Academic Jumpskirt 
+  description: A formal jumpskirt that was meant as an upgrade to the previous researcher jumpskirt, however, the R&D was cut short so it just looks pretty.
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/NeoSol/scientist_formal.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/NeoSol/scientist_formal.rsi
 
 #region Security
 

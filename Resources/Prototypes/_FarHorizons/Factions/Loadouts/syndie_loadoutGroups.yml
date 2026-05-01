@@ -295,6 +295,39 @@
   - LaceupShoes 
   - LeatherShoes 
 
+ # Head of Research
+- type: loadoutGroup
+  id: ResearchDirectorHeadSyndi
+  name: loadout-group-research-director-head
+  minLimit: 0
+  loadouts:
+  - ResearchDirectorBeret
+
+- type: loadoutGroup
+  id: ResearchDirectorNeckSyndi
+  name: loadout-group-research-director-neck
+  minLimit: 0
+  loadouts:
+  - ResearchDirectorMantleSyndi
+  - ResearchDirectorCloakSyndi
+
+- type: loadoutGroup
+  id: ResearchDirectorJumpsuitSyndi
+  name: loadout-group-research-director-jumpsuit
+  loadouts:
+  - ResearchDirectorJumpsuitSyndi
+  - ResearchDirectorJumpskirtSyndi
+  - RDClassicalJumpsuit
+  - RDClassicalJumpskirt
+
+- type: loadoutGroup
+  id: ResearchDirectorOuterClothingSyndi
+  name: loadout-group-research-director-outerclothing
+  minLimit: 0
+  loadouts:
+  - ResearchDirectorLabCoatSyndi
+  - ResearchDirectorWintercoatSyndi
+
 #region Civilian
 
 - type: loadoutGroup
@@ -624,6 +657,19 @@
   loadouts:
   - PsychologistJumpsuit
   - PsychologistJumpskirt
+
+#region Science
+
+# General Science
+
+- type: loadoutGroup
+  id: ScientistBackpackSyndi
+  name: loadout-group-scientist-backpack
+  loadouts:
+  - ScientistBackpackSyndi
+  - ScientistSatchelSyndi
+  - ScientistDuffelSyndi
+  - LeatherSatchel 
 
 #region Security
 
