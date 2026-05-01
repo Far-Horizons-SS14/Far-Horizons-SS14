@@ -328,7 +328,7 @@ internal sealed partial class ChatManager : IChatManager
             return;
         }
 
-        var clients = _adminManager.ActiveAdmins.Select(p => p.Channel);
+        var clients = _adminManager.ActiveAdmins.Where(p => _adminManager.HasAdminFlag(p, AdminFlags.Adminchat)).Select(p => p.Channel); // Far Horizons - only relay message to Adminchat permission holders
 
         var prefix = GetAdminTitle(player);
         
