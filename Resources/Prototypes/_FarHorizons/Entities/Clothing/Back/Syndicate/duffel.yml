@@ -1,4 +1,4 @@
-#region NeoSol
+#region ## NeoSol ##
 
 
 
@@ -9,7 +9,9 @@
 - type: entity
   parent: [ClothingBackpackDuffel, BaseSyndicateContraband]
   id: ClothingBackpackDuffelSyndicateSecurity
-  suffix: NeoSol
+  name: Security Duffel Bag
+  description: A large duffel bag for holding extra security related goods.
+  suffix: NS
   components:
     - type: Sprite
       sprite: _FarHorizons/Clothing/Back/Duffels/NeoSol/security.rsi
@@ -22,7 +24,9 @@
 - type: entity
   parent: [ClothingBackpackDuffel, BaseSyndicateContraband]
   id: ClothingBackpackDuffelSyndicateBrigmedic
-  suffix: NeoSol
+  name: Brigmedic Duffel Bag
+  description: A large duffel bag for holding extra medical related goods.
+  suffix: NS
   components:
     - type: Sprite
       sprite: _FarHorizons/Clothing/Back/Duffels/NeoSol/brigmedic.rsi
@@ -37,7 +41,9 @@
 - type: entity
   parent: [ ClothingBackpackDuffel, BaseSyndicateContraband ]
   id: ClothingBackpackDuffelNeosolEngineering
-  suffix: NeoSol
+  name: Engineering Duffel Bag
+  description: A large duffel bag for holding tons of materials and tools.
+  suffix: NS
   components:
     - type: Sprite
       sprite: _FarHorizons/Clothing/Back/Duffels/NeoSol/engineering.rsi
@@ -50,7 +56,9 @@
 - type: entity
   parent: [ ClothingBackpackDuffel, BaseSyndicateContraband ]
   id: ClothingBackpackDuffelNeosolAtmospherics
-  suffix: NeoSol
+  name: Atmospherics Duffel Bag
+  description: A large duffel bag for holding massive pipes and air related tanks.
+  suffix: NS
   components:
     - type: Sprite
       sprite: _FarHorizons/Clothing/Back/Duffels/NeoSol/atmospherics.rsi
@@ -64,8 +72,8 @@
   parent: [ ClothingBackpackDuffel, BaseSyndicateContraband ]
   id: ClothingBackpackDuffelForeman
   name: Foreman's Duffel Bag
-  suffix: NeoSol
   description: A large duffel bag stained with the stench of alcohol, burnt wires and pain.
+  suffix: NS
   components:
     - type: Sprite
       sprite: _FarHorizons/Clothing/Back/Duffels/NeoSol/foreman.rsi

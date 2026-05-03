@@ -1,4 +1,4 @@
-# region NeoSol
+# region ## NeoSol ##
 
 
 
@@ -9,7 +9,9 @@
 - type: entity
   parent: [ClothingBackpack, BaseSyndicateContraband]
   id: ClothingBackpackSyndicateSecurity
-  suffix: NeoSol
+  name: Security Backpack
+  description: It's a very robust backpack.
+  suffix: NS
   components:
     - type: Sprite
       sprite: _FarHorizons/Clothing/Back/Backpacks/NeoSol/security.rsi
@@ -22,7 +24,8 @@
 - type: entity
   parent: [ClothingBackpack, BaseSyndicateContraband]
   id: ClothingBackpackSyndicateBrigmedic
-  suffix: NeoSol
+  description: It's a very sterile backpack.
+  suffix: NS
   components:
     - type: Sprite
       sprite: _FarHorizons/Clothing/Back/Backpacks/NeoSol/brigmedic.rsi
@@ -36,7 +39,9 @@
 - type: entity
   parent: [ClothingBackpack, BaseSyndicateContraband]
   id: ClothingBackpackNeosolEngineering
-  suffix: NeoSol
+  name: Engineering Backpack
+  description: It's a very robust backpack for holding tons of materials and tools.
+  suffix: NS
   components:
     - type: Sprite
       sprite: _FarHorizons/Clothing/Back/Backpacks/NeoSol/engineering.rsi
@@ -49,7 +54,9 @@
 - type: entity
   parent: [ClothingBackpack, BaseSyndicateContraband]
   id: ClothingBackpackNeosolAtmospherics
-  suffix: NeoSol
+  name: Atmospherics Backpack
+  description: It's a very robust backpack for holding massive pipes and air related tanks.
+  suffix: NS
   components:
     - type: Sprite
       sprite: _FarHorizons/Clothing/Back/Backpacks/NeoSol/atmospherics.rsi
@@ -63,8 +70,8 @@
   parent: [ClothingBackpack, BaseSyndicateContraband]
   id: ClothingBackpackForeman
   name: Foreman's Backpack
-  suffix: NeoSol
   description: It's a very robust backpack, some wires are burnt into it.
+  suffix: NS
   components:
     - type: Sprite
       sprite: _FarHorizons/Clothing/Back/Backpacks/NeoSol/foreman.rsi
