@@ -1,14 +1,101 @@
+#region ## NanoTrasen ##
+
+
+
+
+
+
+
+#region Medical
 #Medical Helmet
 - type: entity
   parent: ClothingHeadEVAHelmetBase
   id: ClothingHeadHelmetEVAMedical
   name: Medical EVA helmet
   description: An old-but-gold helmet designed for extravehicular activites and given to the Medical department. Infamous for making security officers paranoid.
+  suffix: NT
   components:
   - type: Sprite
     sprite: _FarHorizons/Clothing/Head/Helmets/medical_eva.rsi #Far Horizons
   - type: Clothing
     sprite: _FarHorizons/Clothing/Head/Helmets/medical_eva.rsi #Far Horizons
+  - type: Tag
+    tags:
+    - HelmetEVA
+    - WhitelistChameleon
+
+#region ## NeoSol ##
+
+
+
+
+
+
+
+#region Medical
+
+#Medical Helmet
+- type: entity
+  parent: ClothingHeadEVAHelmetBase
+  id: ClothingHeadHelmetEVAMedicalSyndi
+  name: Medical EVA helmet
+  description: An old-but-gold helmet designed for extravehicular activites and given to the Medical department. Infamous for making security officers paranoid.
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Head/Helmets/NeoSol/medical_eva.rsi #Need Resprite
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Head/Helmets/NeoSol/medical_eva.rsi 
+  - type: Tag
+    tags:
+    - HelmetEVA
+    - WhitelistChameleon
+
+#Paramedic Void Helmet
+- type: entity
+  parent: [ ClothingHeadSuitWithLightBase, ClothingHeadEVAHelmetBase ] 
+  id: ClothingHeadHelmetVoidParamedSyndi
+  name: Paramedic Void Helmet 
+  description: A void helmet made for paramedics.
+  categories: [ HideSpawnMenu ]
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Head/Hardsuits/NeoSol/paramedhelm.rsi 
+  - type: HandheldLight
+    addPrefix: false
+  - type: ToggleableVisuals
+    spriteLayer: light
+    clothingVisuals:
+      head:
+      - state: equipped-head-light
+      head-vox:
+      - state: equipped-head-light-vox
+  - type: Clothing
+    clothingVisuals:
+      head:
+      - state: equipped-head
+      head-vox:
+      - state: equipped-head-vox
+  - type: TemperatureProtection
+    heatingCoefficient: 0.1
+    coolingCoefficient: 0.1
+  - type: Armor
+    modifiers:
+      coefficients:
+        Heat: 0.90
+        Radiation: 0.75
+  - type: LimbArmor # Far Horizons
+    limbs:
+      Head:
+        coefficients:
+          Heat: 0.90
+          Radiation: 0.75
+          Caustic: 0.5
+  - type: PointLight
+    radius: 5
+    energy: 2
+    color: "#00ff62"
   - type: Tag
     tags:
     - HelmetEVA

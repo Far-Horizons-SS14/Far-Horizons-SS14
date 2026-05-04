@@ -1,3 +1,4 @@
+# region ## GSL ##
 - type: entity
   parent: [ ClothingHeadHelmetBase, BaseSalvageContraband ]
   id: ClothingHeadHelmetSalvage
@@ -11,8 +12,15 @@
   - type: HideLayerClothing
     layers:
       Hair: HEAD
+#region ## NanoTrasen ##
 
-#region Syndicate
+
+
+
+
+
+
+#region ## NeoSol ##
 
 
 
@@ -28,13 +36,13 @@
   parent: [ClothingHeadLightBase, BaseEngineeringContraband]
   id: ClothingHeadHelmetAtmosFireSyndi
   name: Atmospheric Fire Helmet
-  suffix: S
+  suffix: NS
   description: An atmospheric fire helmet, able to keep the user cool in any situation.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/Head/Helmets/atmos_firehelmet-syndi.rsi
+    sprite: _FarHorizons/Clothing/Head/Helmets/NeoSol/atmos_firehelmet.rsi
   - type: Clothing
-    sprite: _FarHorizons/Clothing/Head/Helmets/atmos_firehelmet-syndi.rsi
+    sprite: _FarHorizons/Clothing/Head/Helmets/NeoSol/atmos_firehelmet.rsi
     quickEquip: true
   - type: PointLight
     radius: 6
@@ -65,11 +73,11 @@
   parent: [ClothingHeadHelmetArmoredBase, BaseSecurityContraband, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetSecuritySyndi
   name: Security Helmet
-  suffix: S
+  suffix: NS
   description: Standard security gear. Protects the head from impacts.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/Head/Helmets/security-syndi.rsi
+    sprite: _FarHorizons/Clothing/Head/Helmets/NeoSol/security.rsi
     layers:
       - state: icon
       - state: icon-light
@@ -109,16 +117,16 @@
   parent: [ClothingHeadBase, BaseSecurityContraband, BaseToggleClothing]
   id: ClothingHeadHelmetBulletProofSyndi
   name: Bulletproof Helmet
-  suffix: S
+  suffix: NS
   description: Protects the face against bullets, can flip up and down.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/Head/Helmets/bulletproof-syndi.rsi
+    sprite: _FarHorizons/Clothing/Head/Helmets/NeoSol/bulletproof.rsi
     layers:
     - state: icon
       map: [ "enum.ToggleableVisuals.Layer" ]
   - type: Clothing
-    sprite: _FarHorizons/Clothing/Head/Helmets/bulletproof-syndi.rsi
+    sprite: _FarHorizons/Clothing/Head/Helmets/NeoSol/bulletproof.rsi
   - type: Item
     storedRotation: 0  
   - type: ItemToggle # Welding mask starts in an activated state
@@ -168,13 +176,13 @@
   parent: [ ClothingHeadHelmetBase, BaseSecurityContraband ]
   id: ClothingHeadHelmetHeatAbsorbentSyndi
   name: Heat Absorbent Helmet
-  suffix: S
+  suffix: NS
   description: Advanced helmet best paired with the vest for pure style, has minor reflective properties and can absorb heat fairly well.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/Head/Helmets/heatabsorbent-syndi.rsi
+    sprite: _FarHorizons/Clothing/Head/Helmets/NeoSol/heatabsorbent.rsi
   - type: Clothing
-    sprite: _FarHorizons/Clothing/Head/Helmets/heatabsorbent-syndi.rsi
+    sprite: _FarHorizons/Clothing/Head/Helmets/NeoSol/heatabsorbent.rsi
   - type: Armor
     modifiers:
       coefficients:
@@ -200,13 +208,13 @@
   parent: [ClothingHeadHelmetBase, BaseSecurityContraband]
   id: ClothingHeadHelmetPlateSyndi
   name: Plate Helmet
-  suffix: S
+  suffix: NS
   description: A modified security helmet with a ceramic plate insert, which means less padding for blunt hits.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/Head/Helmets/plate-syndi.rsi
+    sprite: _FarHorizons/Clothing/Head/Helmets/NeoSol/plate.rsi
   - type: Clothing
-    sprite: _FarHorizons/Clothing/Head/Helmets/plate-syndi.rsi
+    sprite: _FarHorizons/Clothing/Head/Helmets/NeoSol/plate.rsi
   - type: Armor
     modifiers:
       coefficients:
@@ -232,13 +240,13 @@
   parent: [ClothingHeadHelmetBase, BaseSecurityContraband]
   id: ClothingHeadHelmetReflectiveSyndi
   name: Reflective Helmet
-  suffix: S
+  suffix: NS
   description: A shiny helmet for your equally shiny vest.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/Head/Helmets/reflect-syndi.rsi
+    sprite: _FarHorizons/Clothing/Head/Helmets/NeoSol/reflect.rsi
   - type: Clothing
-    sprite: _FarHorizons/Clothing/Head/Helmets/reflect-syndi.rsi
+    sprite: _FarHorizons/Clothing/Head/Helmets/NeoSol/reflect.rsi
   - type: Armor
     modifiers:
       coefficients:
@@ -269,13 +277,13 @@
   parent:  [ClothingHeadHelmetBase, BaseSecurityContraband ]
   id: ClothingHeadHelmetStabproofSyndi
   name: Stabproof Helmet
-  suffix: S
+  suffix: NS
   description: The most "comfortable" security helmet, as rated by officers. Will take a blow to the head nicely, but a bullet'll go right through it.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/Head/Helmets/stabproof-syndi.rsi
+    sprite: _FarHorizons/Clothing/Head/Helmets/NeoSol/stabproof.rsi
   - type: Clothing
-    sprite: _FarHorizons/Clothing/Head/Helmets/stabproof-syndi.rsi
+    sprite: _FarHorizons/Clothing/Head/Helmets/NeoSol/stabproof.rsi
   - type: Armor
     modifiers:
       coefficients:
@@ -301,13 +309,13 @@
   parent: [ClothingHeadHelmetBase, BaseSecurityContraband]
   id: ClothingHeadHelmetSwatSyndi
   name: SWAT Helmet
-  suffix: S
+  suffix: NS
   description: An extremely robust helmet, commonly used by paramilitary forces. This one has the Syndicate logo emblazoned on the top.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/Head/Helmets/swat-syndi.rsi
+    sprite: _FarHorizons/Clothing/Head/Helmets/NeoSol/swat.rsi
   - type: Clothing
-    sprite: _FarHorizons/Clothing/Head/Helmets/swat-syndi.rsi
+    sprite: _FarHorizons/Clothing/Head/Helmets/NeoSol/swat.rsi
   - type: Pierceable
     level: Metal
   - type: Armor #This is intentionally not spaceproof, when the time comes to port the values from SS13 this should be buffed from what it was.

@@ -86,13 +86,13 @@
   parent: [ClothingEyesBase, BaseCommandContraband]
   id: ClothingEyesGlassesCommandSyndi
   name: Administration Glasses
-  suffix: S
+  suffix: NS
   description: Upgraded sunglasses that provide flash immunity and show ID card status.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/Eyes/Glasses/syndicommandglasses.rsi
+    sprite: _FarHorizons/Clothing/Eyes/Glasses/NeoSol/commandglasses.rsi
   - type: Clothing
-    sprite: _FarHorizons/Clothing/Eyes/Glasses/syndicommandglasses.rsi
+    sprite: _FarHorizons/Clothing/Eyes/Glasses/NeoSol/commandglasses.rsi
   - type: FlashImmunity
   - type: EyeProtection
     protectionTime: 5
@@ -111,13 +111,13 @@
   parent: [ ClothingEyesBase, BaseEngineeringSalvageContraband ]
   id: ClothingEyesGlassesMesonSyndi
   name: Engineering Goggles
-  suffix: S
+  suffix: NS
   description: Yellow-tinted goggles using a proprietary polymer that provides protection from eye damage of all types, it has a small switch on the side to enable an inbuilt tray scanner.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/Eyes/Glasses/meson-syndi.rsi
+    sprite: _FarHorizons/Clothing/Eyes/Glasses/NeoSol/meson.rsi
   - type: Clothing
-    sprite: _FarHorizons/Clothing/Eyes/Glasses/meson-syndi.rsi
+    sprite: _FarHorizons/Clothing/Eyes/Glasses/NeoSol/meson.rsi
   - type: TrayScanner
   - type: EyeProtection
   - type: IdentityBlocker
@@ -131,13 +131,13 @@
   parent: ClothingEyesBase
   id: ClothingEyesGlassesThermalSyndi
   name: Optical Thermal Scanner
-  suffix: S
+  suffix: NS
   description: Thermals in the shape of glasses.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/Eyes/Glasses/thermalsyndi.rsi
+    sprite: _FarHorizons/Clothing/Eyes/Glasses/NeoSol/thermal.rsi
   - type: Clothing
-    sprite: _FarHorizons/Clothing/Eyes/Glasses/thermalsyndi.rsi
+    sprite: _FarHorizons/Clothing/Eyes/Glasses/NeoSol/thermal.rsi
   - type: Armor
     modifiers:
       coefficients:
@@ -156,13 +156,13 @@
   parent: [ ClothingEyesBase, ShowSecurityIcons, BaseSecurityContraband ]
   id: ClothingEyesGlassesSecuritySyndi
   name: Security Glasses
-  suffix: S
+  suffix: NS
   description: Upgraded sunglasses that provide flash immunity and a security HUD.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/Eyes/Glasses/secglasses-syndi.rsi
+    sprite: _FarHorizons/Clothing/Eyes/Glasses/NeoSol/secglasses.rsi
   - type: Clothing
-    sprite: _FarHorizons/Clothing/Eyes/Glasses/secglasses-syndi.rsi
+    sprite: _FarHorizons/Clothing/Eyes/Glasses/NeoSol/secglasses.rsi
   - type: FlashImmunity
   - type: EyeProtection
     protectionTime: 5
@@ -187,13 +187,13 @@
   parent: [ClothingEyesBase, ShowSecurityIcons, BaseSecurityContraband]
   id: ClothingEyesGlassesBrigmedicSyndi
   name: Security Medical Glasses
-  suffix: S
+  suffix: NS
   description: Tamashi-upgraded glasses. Yes. Security medical ones.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/Eyes/Glasses/brigmedicglasses-syndi.rsi
+    sprite: _FarHorizons/Clothing/Eyes/Glasses/NeoSol/brigmedicglasses.rsi
   - type: Clothing
-    sprite: _FarHorizons/Clothing/Eyes/Glasses/brigmedicglasses-syndi.rsi
+    sprite: _FarHorizons/Clothing/Eyes/Glasses/NeoSol/brigmedicglasses.rsi
   - type: FlashImmunity
   - type: SolutionScanner
   - type: EyeProtection

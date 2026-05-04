@@ -250,6 +250,84 @@
   #- EngineeringWinterBoots #Needs respriting
   - Heels
 
+#Medical Director
+- type: loadoutGroup
+  id: MedicalDirectorHead
+  name: loadout-group-chief-medical-officer-head
+  minLimit: 0
+  loadouts:
+  - MedicalDirectorBeret
+  - CMOMedicalHeadMirror
+
+- type: loadoutGroup
+  id: MedicalDirectorJumpsuit
+  name: loadout-group-chief-medical-officer-jumpsuit
+  loadouts:
+  - MedicalDirectorJumpsuit
+  - MedicalDirectorJumpskirt
+  - MedicalDirectorTurtleneckJumpsuit
+  - MedicalDirectorTurtleneckJumpskirt
+
+- type: loadoutGroup
+  id: MedicalDirectorOuterClothing
+  name: loadout-group-chief-medical-officer-outerclothing
+  minLimit: 0
+  loadouts:
+  - MedicalDirectorLabCoat
+  - MedicalDirectorWintercoat
+
+- type: loadoutGroup
+  id: MedicalDirectorNeck
+  name: loadout-group-chief-medical-officer-neck
+  minLimit: 0
+  loadouts:
+  - ChiefMedicalOfficerCloak
+  - ChiefMedicalOfficerMantle
+
+- type: loadoutGroup
+  id: MedicalDirectorShoes
+  name: loadout-group-chief-medical-officer-shoes
+  loadouts:
+  - BrownShoes
+  - MedicalWinterBoots
+  - WhiteShoes 
+  - Heels 
+  - LaceupShoes 
+  - LeatherShoes 
+
+ # Head of Research
+- type: loadoutGroup
+  id: ResearchDirectorHeadSyndi
+  name: loadout-group-research-director-head
+  minLimit: 0
+  loadouts:
+  - ResearchDirectorBeret
+
+- type: loadoutGroup
+  id: ResearchDirectorNeckSyndi
+  name: loadout-group-research-director-neck
+  minLimit: 0
+  loadouts:
+  - ResearchDirectorMantleSyndi
+  - ResearchDirectorCloakSyndi
+
+- type: loadoutGroup
+  id: ResearchDirectorJumpsuitSyndi
+  name: loadout-group-research-director-jumpsuit
+  loadouts:
+  - ResearchDirectorJumpsuitSyndi
+  - ResearchDirectorJumpskirtSyndi
+  - RDClassicalJumpsuit
+  - RDClassicalJumpskirt
+
+- type: loadoutGroup
+  id: ResearchDirectorOuterClothingSyndi
+  name: loadout-group-research-director-outerclothing
+  minLimit: 0
+  loadouts:
+  - ResearchDirectorLabCoatSyndi
+  - ResearchDirectorWintercoatSyndi
+
 #region Civilian
 
 - type: loadoutGroup
@@ -385,6 +463,327 @@
   loadouts:
   - YellowJumpsuit
   - YellowJumpskirt
+
+#region Medical
+
+# Generics
+- type: loadoutGroup
+  id: MedicalEyewearSyndi
+  name: loadout-group-medical-glasses
+  minLimit: 0
+  loadouts:
+  - MedicalHudSyndi
+  - MedicalEyePatchHud
+  - Glasses
+  - GlassesJamjar
+  - GlassesJensen
+  - MedicalEyesPrescriptionGlasses
+
+- type: loadoutGroup
+  id: MedicalMaskSyndi
+  name: loadout-group-medical-mask
+  minLimit: 0
+  loadouts:
+  - SterileMask
+
+- type: loadoutGroup
+  id: MedicalGlovesSyndi
+  name: loadout-group-medical-gloves
+  minLimit: 0
+  loadouts:
+  - LatexGlovesSyndi
+  - NitrileGlovesSyndi
+
+- type: loadoutGroup
+  id: MedicalBackpackSyndi
+  name: loadout-group-medical-doctor-backpack
+  loadouts:
+  - MedicalDoctorBackpackSyndi
+  - MedicalDoctorSatchelSyndi
+  - MedicalDoctorDuffelSyndi
+  - LeatherSatchel
+
+- type: loadoutGroup
+  id: MedicalShoesSyndi
+  name: loadout-group-medical-doctor-shoes
+  loadouts:
+  - WhiteShoes
+  - MedicalWinterBoots
+  - Heels 
+  - LaceupShoes 
+  - LeatherShoes
+
+# Medical Doctor
+- type: loadoutGroup
+  id: MedicalDoctorHeadSyndi
+  name: loadout-group-medical-doctor-head
+  minLimit: 0
+  loadouts:
+  - MedicalBeretSyndi
+  - SeniorPhysicianBeret
+  - MedicalHeadMirror
+  - BlueSurgeryCap
+  - GreenSurgeryCap
+  - PurpleSurgeryCap
+  - NurseHatSyndi
+
+- type: loadoutGroup
+  id: MedicalDoctorJumpsuitSyndi
+  name: loadout-group-medical-doctor-jumpsuit
+  loadouts:
+  - MedicalDoctorJumpsuitSyndi
+  - MedicalDoctorJumpskirtSyndi
+  - SeniorPhysicianJumpsuitSyndi
+  - SeniorPhysicianJumpskirtSyndi
+  - MedicalBlueScrubs
+  - MedicalGreenScrubs
+  - MedicalPurpleScrubs
+  - NurseJumpskirt 
+  - CoronerJumpskirt 
+  - CoronerJumpsuit 
+  - CoronerJumpsuitAlt 
+
+- type: loadoutGroup
+  id: MedicalDoctorOuterClothingSyndi
+  name: loadout-group-medical-doctor-outerclothing
+  minLimit: 0
+  loadouts:
+  - RegularLabCoatSyndi
+  - MedicalDoctorWintercoatSyndi
+  - SeniorPhysicianLabCoatSyndi
+  - WindbreakerMedical 
+
+- type: loadoutGroup
+  id: MedicalDoctorPDASyndi
+  name: loadout-group-medical-doctor-id
+  loadouts:
+  - MedicalDoctorPDASyndi
+  - SeniorPhysicianPDASyndi
+
+# Surgeon
+- type: loadoutGroup
+  id: SurgeonPDASyndi
+  name: loadout-group-Surgeon-id
+  loadouts:
+  - SurgeonPDASyndi
+  - SeniorSurgeonPDASyndi
+
+# Pharmacist
+- type: loadoutGroup
+  id: ChemistHeadSyndi
+  name: loadout-group-chemist-hat
+  minLimit: 0
+  loadouts:
+  - ChemistBeretSyndi
+  - MedicalBeretSyndi
+
+- type: loadoutGroup
+  id: PharmacistJumpsuit
+  name: loadout-group-chemist-jumpsuit
+  loadouts:
+  - PharmacistJumpsuit
+  - PharmacistJumpskirt
+  - SeniorPharmacistJumpsuit 
+  - SeniorPharmacistJumpskirt 
+
+- type: loadoutGroup
+  id: PharmacistBackpack
+  name: loadout-group-chemist-backpack
+  loadouts:
+  - PharmacistBackpack
+  - PharmacistSatchel
+  - PharmacistDuffel
+  - LeatherSatchel 
+
+- type: loadoutGroup
+  id: PharmacistOuterClothing
+  name: loadout-group-chemist-outerclothing
+  minLimit: 0
+  loadouts:
+  - RegularLabCoatSyndi
+  - PharmacistLabCoat
+  - PharmacistWintercoat
+  - SeniorPharmacistLabCoat 
+  - SeniorPharmacistWintercoat 
+
+  #Paramedic
+
+- type: loadoutGroup
+  id: ParamedicHeadSyndi
+  name: loadout-group-paramedic-head
+  minLimit: 0
+  loadouts:
+  - ParamedicHeadSyndi
+
+- type: loadoutGroup
+  id: ParamedicJumpsuitSyndi
+  name: loadout-group-paramedic-jumpsuit
+  loadouts:
+  - ParamedicJumpsuitSyndi
+  - ParamedicJumpskirtSyndi
+
+- type: loadoutGroup
+  id: ParamedicOuterClothingSyndi
+  name: loadout-group-paramedic-outerclothing
+  minLimit: 0
+  loadouts:
+  - ParamedicWindbreakerSyndi
+  - ParamedicWintercoatSyndi
+
+- type: loadoutGroup
+  id: ParamedicShoesSyndi
+  name: loadout-group-paramedic-shoes
+  loadouts:
+  - BlueShoesSyndi
+  - WhiteShoesSyndi
+  - MedicalWinterBootsSyndi
+  - Heels 
+  - HighHeelBoots 
+
+#Medical Intern
+
+- type: loadoutGroup
+  id: MedicalInternJumpsuitSyndi
+  name: loadout-group-medical-intern-jumpsuit
+  loadouts:
+  - WhiteJumpsuit
+  - WhiteJumpskirt
+
+#Psychologist
+
+- type: loadoutGroup
+  id: PsychologistJumpsuitSyndi
+  name: loadout-group-psychologist-jumpsuit
+  loadouts:
+  - PsychologistJumpsuit
+  - PsychologistJumpskirt
+
+#region Science
+
+# General Science
+
+- type: loadoutGroup
+  id: ScientistBackpackSyndi
+  name: loadout-group-scientist-backpack
+  loadouts:
+  - ScientistBackpackSyndi
+  - ScientistSatchelSyndi
+  - ScientistDuffelSyndi
+  - LeatherSatchel 
+
+#Roboticist
+
+- type: loadoutGroup
+  id: RoboticistHeadSyndi
+  name: loadout-group-roboticist-head
+  minLimit: 0
+  loadouts:
+  - RoboticistCap
+  - ScienceBeret #Far Horizons
+  - SkullBandana
+  - RoboticistBlackCapFlipped
+
+- type: loadoutGroup
+  id: RoboticistGogglesSyndi
+  name: loadout-group-roboticist-goggles
+  minLimit: 0
+  loadouts:
+  - RoboticistWeldingGoggles
+  - RoboticistDiagnosticsHud
+
+- type: loadoutGroup
+  id: RoboticistJumpsuitSyndi
+  name: loadout-group-roboticist-jumpsuit
+  loadouts:
+  - RoboticistJumpsuitSyndi
+  - RoboticistJumpskirtSyndi
+
+- type: loadoutGroup
+  id: RoboticistGlovesSyndi
+  name: loadout-group-roboticist-gloves
+  minLimit: 0
+  loadouts:
+  - LatexGloves
+  - PurpleGloves
+  - RobohandsGloves
+
+- type: loadoutGroup
+  id: RoboticistOuterClothingSyndi
+  name: loadout-group-roboticist-outerclothing
+  minLimit: 0
+  loadouts:
+  - RoboticistLabCoat
+  - RoboticistWintercoat
+
+- type: loadoutGroup
+  id: RoboticistBackpackSyndi
+  name: loadout-group-roboticist-backpack
+  loadouts:
+  - RoboticistBackpack
+  - RoboticistSatchel
+  - RoboticistDuffel
+  - LeatherSatchel
+
+- type: loadoutGroup
+  id: RoboticistShoesSyndi
+  name: loadout-group-roboticist-shoes
+  minLimit: 1
+  loadouts:
+  - BlackShoes
+  - ScienceWinterBoots
+  - Heels
+  - LeatherShoes
+
+  # Academic
+
+- type: loadoutGroup
+  id: ScientistHeadSyndi
+  name: loadout-group-scientist-head
+  minLimit: 0
+  loadouts:
+  - SkullBandana
+  - ScienceBeret 
+
+- type: loadoutGroup
+  id: ScientistJumpsuitSyndi
+  name: loadout-group-scientist-jumpsuit
+  loadouts:
+  - ScientistJumpsuitSyndi
+  - ScientistJumpskirtSyndi
+  - ScientistJumpsuitFormalSyndi
+  - ScientistJumpskirtFormalSyndi
+  - RoboticistJumpsuitSyndi
+  - RoboticistJumpskirtSyndi
+  - SeniorResearcherJumpsuit
+  - SeniorResearcherJumpskirt
+  
+- type: loadoutGroup
+  id: ScientistOuterClothingSyndi
+  name: loadout-group-scientist-outerclothing
+  minLimit: 0
+  loadouts:
+  - RegularLabCoatSyndi
+  - ScienceLabCoatSyndi
+  - ScienceWintercoatSyndi
+  - RoboticistLabCoat
+  - RoboticistWintercoat
+  - SeniorResearcherLabCoat
+  - WindbreakerScience 
+
+- type: loadoutGroup
+  id: ScientistPDASyndi
+  name: loadout-group-scientist-id
+  loadouts:
+  - ScientistPDASyndi
+  - SeniorResearcherPDASyndi
+
+#Research Assistant
+- type: loadoutGroup
+  id: ResearchAssistantJumpsuitSyndi
+  name: loadout-group-research-assistant-jumpsuit
+  loadouts:
+  - WhiteJumpsuit
+  - WhiteJumpskirt
 
 #region Security
 

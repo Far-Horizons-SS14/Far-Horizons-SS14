@@ -104,13 +104,13 @@ public sealed partial class NPCCombatSystem
                 _combat.SetInCombatMode(uid, true, combatMode);
             }
 
-            //🌟Starlight🌟
-            if (!_gun.IsChamberClosed(uid)
-                && TryComp<ChamberMagazineAmmoProviderComponent>(gun, out var magazineComp))
-            {
-                _gun.SetBoltClosed(gun, magazineComp, true);
-            }
-
+            // Far Horizons start
+            if (TryComp<ChamberMagazineAmmoProviderComponent>(gun, out var magazineComp) &&
+                ((_itemSlots.TryGetSlot(gun, "gun_chamber", out var chamber) &&
+                chamber.Item == null) ||
+                magazineComp.BoltClosed == false))
+                _gun.UseChambered(gun, magazineComp);
+            // Far Horizons end
 
             var ammoEv = new GetAmmoCountEvent();
             RaiseLocalEvent(gun, ref ammoEv);

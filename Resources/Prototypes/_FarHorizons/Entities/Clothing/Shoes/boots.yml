@@ -8,18 +8,7 @@
     sprite: _FarHorizons/Clothing/Shoes/Boots/bright-performer.rsi
   - type: Clothing
     sprite: _FarHorizons/Clothing/Shoes/Boots/bright-performer.rsi
-
-#region NanoDerpsen
-
-
-
-
-
-
-
-
-#region Cargo
-
+#region ## GSL ##
 - type: entity
   parent: ClothingShoesBaseButcherable
   id: ClothingShoesBootsCargo
@@ -33,7 +22,16 @@
     sprite: _FarHorizons/Clothing/Shoes/Boots/cargotech.rsi
   - type: Matchbox
 
-#region Syndicate ####
+#region ## NanoTrasen ##
+
+
+
+
+
+
+
+
+#region ## NeoSol ##
 
 
 
@@ -50,13 +48,13 @@
   parent: ClothingShoesBaseButcherable
   id: ClothingShoesBootsWorkSyndi
   name: Workboots
-  suffix: S
+  suffix: NS
   description: Engineering lace-up work boots for the especially blue-collar.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/Shoes/Boots/workbootssyndi.rsi
+    sprite: _FarHorizons/Clothing/Shoes/Boots/NeoSol/workboots.rsi
   - type: Clothing
-    sprite: _FarHorizons/Clothing/Shoes/Boots/workbootssyndi.rsi
+    sprite: _FarHorizons/Clothing/Shoes/Boots/NeoSol/workboots.rsi
   - type: Matchbox
 
 #region Security
@@ -65,13 +63,13 @@
   parent: [ClothingShoesMilitaryBase, BaseSecurityContraband]
   id: ClothingShoesBootsJackSyndi
   name: Jackboots
-  suffix: S
+  suffix: NS
   description: Nanotrasen-issue Security combat boots for combat scenarios or combat situations. All combat, all the time.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/Shoes/Boots/jackboots-syndi.rsi
+    sprite: _FarHorizons/Clothing/Shoes/Boots/NeoSol/jackboots.rsi
   - type: Clothing
-    sprite: _FarHorizons/Clothing/Shoes/Boots/jackboots-syndi.rsi
+    sprite: _FarHorizons/Clothing/Shoes/Boots/NeoSol/jackboots.rsi
   - type: ClothingSlowOnDamageModifier
     modifier: 0.5
   
@@ -83,13 +81,13 @@
   parent: [ClothingShoesMilitaryBase, BaseSecurityContraband]
   id: ClothingShoesBootsCombatSyndi
   name: Combat Boots
-  suffix: S
+  suffix: NS
   description: Robust combat boots for combat scenarios or combat situations. All combat, all the time.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/Shoes/Boots/combatboots-syndi.rsi
+    sprite: _FarHorizons/Clothing/Shoes/Boots/NeoSol/combatboots.rsi
   - type: Clothing
-    sprite: _FarHorizons/Clothing/Shoes/Boots/combatboots-syndi.rsi
+    sprite: _FarHorizons/Clothing/Shoes/Boots/NeoSol/combatboots.rsi
 
 - type: entity
   parent: [ ClothingShoesBootsCombatSyndi, ClothingShoesBootsJackFilled ]

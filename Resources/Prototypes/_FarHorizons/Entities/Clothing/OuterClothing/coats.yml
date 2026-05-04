@@ -1,4 +1,4 @@
-#region NanoTrasen ##
+#region ## NanoTrasen ##
 
 
 
@@ -80,50 +80,9 @@
           amount: 3
         - id: CheapLighter
 
-#region Security
-
-- type: entity
-  parent: [BaseSecurityContraband, ClothingOuterWinterCoatToggleable, AllowSuitStorageClothing]
-  id: ClothingOuterCoatCorpsmanFH
-  name: Corpsman's Armored Jacket
-  suffix: NT
-  description: Heavily armored yet surprisingly comfortable jacket, a byproduct from the tendency of corpsmen to throw themselves directly into danger.
-  components:
-  - type: Sprite
-    sprite: _FarHorizons/Clothing/OuterClothing/Coats/corpsman.rsi
-  - type: Clothing
-    sprite: _FarHorizons/Clothing/OuterClothing/Coats/corpsman.rsi
-    clothingVisuals:
-      outerClothing:
-      - state: equipped-OUTERCLOTHING
-  - type: Pierceable
-    level: Metal
-  - type: ZombificationResistance
-    zombificationResistanceCoefficient: 0.50
-  - type: Armor
-    modifiers:
-      flatReductions: #FH
-        Piercing: 5 #FH
-        Heat: 4 #FH
-      coefficients:
-        Blunt: 0.75
-        Slash: 0.75
-        Piercing: 0.60
-        Heat: 0.75
-        Caustic: 0.75
-  - type: LimbArmor
-    limbs:
-      ArmRight: {}
-      ArmLeft: {}
-      LegRight: {}
-      LegLeft: {}
-  - type: ExplosionResistance
-    damageCoefficient: 0.95
-  - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHatHoodCorpsman
 
 
-#region Syndicate ####
+#region ## NeoSol ##
 
 
 
@@ -143,13 +102,13 @@
   parent: ClothingOuterCoatHoP
   id: ClothingOuterCoatHoPSyndi
   name: Personnel Manager's Jacket
-  suffix: S
+  suffix: NS
   description: A sleek coat for the administrative arm of the station.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/OuterClothing/Coats/syndihop.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Coats/NeoSol/hop.rsi
   - type: Clothing
-    sprite: _FarHorizons/Clothing/OuterClothing/Coats/syndihop.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Coats/NeoSol/hop.rsi
     clothingVisuals:
       outerClothing:
       - state: equipped-OUTERCLOTHING
@@ -157,28 +116,196 @@
 # Marshal (HoS)
 
 - type: entity
-  parent: [ ClothingOuterArmorHoS, ClothingOuterWinterCoat, BaseSecurityCommandContraband ]
-  id: ClothingOuterWinterHoSSyndi
-  name: Marshal's Armored Winter Coat
-  suffix: S
-  description: A sturdy, utilitarian winter coat designed to protect the Marshal from any threats and hypothermic events.
-  components:
-  - type: Sprite
-    sprite: _FarHorizons/Clothing/OuterClothing/WinterCoats/coat-hos-armored-syndi.rsi
-  - type: Clothing
-    sprite: _FarHorizons/Clothing/OuterClothing/WinterCoats/coat-hos-armored-syndi.rsi
-
-- type: entity
   parent: [ClothingOuterArmorHoS, ClothingOuterStorageBase, BaseSecurityCommandContraband]
   id: ClothingOuterCoatHoSTrenchSyndi
   name: Marshal's Armored Trenchcoat
-  suffix: S
+  suffix: NS
   description: A greatcoat enhanced with a special alloy for some extra protection and style for those with a commanding presence.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/OuterClothing/Coats/hos_trenchcoat-syndi.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Coats/NeoSol/hos_trenchcoat.rsi
   - type: Clothing
-    sprite: _FarHorizons/Clothing/OuterClothing/Coats/hos_trenchcoat-syndi.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Coats/NeoSol/hos_trenchcoat.rsi
+
+#region Medical
+
+#Lab Coat
+- type: entity
+  parent: ClothingOuterStorageFoldableBase
+  id: ClothingOuterCoatLabSyndi
+  name: Lab Coat 
+  description: A suit that protects against minor chemical spills.
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/Coats/NeoSol/labcoat.rsi 
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/Coats/NeoSol/labcoat.rsi 
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      coefficients:
+        Caustic: 0.75
+  - type: LimbArmor # Far Horizons
+    limbs:
+      ArmRight: {}
+      ArmLeft: {}
+      LegRight: {}
+      LegLeft: {}
+
+- type: entity
+  parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterCoatLabSyndi]
+  id: ClothingOuterCoatLabSyndiOpened
+  name: Lab Coat
+
+#Senior Lab Coat
+- type: entity
+  parent: ClothingOuterStorageFoldableBase
+  id: ClothingOuterCoatLabSeniorPhysicianSyndi
+  name: Senior Physician Lab Coat 
+  description: A suit that protects against minor chemical spills. Has light blue sleeves and an orange waist trim.
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/Coats/NeoSol/labcoat_senior_physician.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/Coats/NeoSol/labcoat_senior_physician.rsi
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      coefficients:
+        Caustic: 0.75
+  - type: LimbArmor
+    limbs:
+      ArmRight: {}
+      ArmLeft: {}
+      LegRight: {}
+      LegLeft: {}
+
+- type: entity
+  parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterCoatLabSeniorPhysicianSyndi]
+  id: ClothingOuterCoatLabSeniorPhysicianSyndiOpened
+  name: Senior Physician Lab Coat
+
+#Pharmacist Coat
+- type: entity
+  parent: ClothingOuterStorageFoldableBase
+  id: ClothingOuterCoatLabChemSyndi
+  name: Pharmacist Lab Coat 
+  description: A suit that protects against minor chemical spills. Has an orange stripe on the shoulder.
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/Coats/NeoSol/labcoat_chem.rsi 
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/Coats//NeoSol/labcoat_chem.rsi 
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      coefficients:
+        Caustic: 0.75
+  - type: LimbArmor # Far Horizons
+    limbs:
+      ArmRight: {}
+      ArmLeft: {}
+      LegRight: {}
+      LegLeft: {}
+
+- type: entity
+  parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterCoatLabChemSyndi]
+  id: ClothingOuterCoatLabChemSyndiOpened
+  name: Pharmacist Lab Coat
+
+#Medical Director
+- type: entity
+  parent: ClothingOuterStorageFoldableBase
+  id: ClothingOuterCoatLabCmoSyndi
+  name: Medical Director's Lab Coat 
+  description: Custom made blue lab coat for the Medical Director, offers improved protection against chemical spills and minor cuts.
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/Coats/NeoSol/labcoat_cmo.rsi 
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/Coats/NeoSol/labcoat_cmo.rsi 
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      coefficients:
+        Slash: 0.95
+        Heat: 0.95
+        Caustic: 0.65
+  - type: LimbArmor # Far Horizons
+    limbs:
+      ArmRight: {}
+      ArmLeft: {}
+      LegRight: {}
+      LegLeft: {}
+
+- type: entity
+  parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterCoatLabCmoSyndi]
+  id: ClothingOuterCoatLabCmoSyndiOpened
+  name: Medical Director's Lab Coat
+
+#Virologist
+- type: entity
+  parent: ClothingOuterStorageFoldableBase
+  id: ClothingOuterCoatLabViroSyndi
+  name: Virologist Lab Coat 
+  description: A suit that protects against bacteria and viruses. Has an green stripe on the shoulder.
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/Coats/NeoSol/labcoat_viro.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/Coats/NeoSol/labcoat_viro.rsi 
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      coefficients:
+        Caustic: 0.75
+  - type: LimbArmor
+    limbs:
+      ArmRight: {}
+      ArmLeft: {}
+      LegRight: {}
+      LegLeft: {}
+
+- type: entity
+  parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterCoatLabViroSyndi]
+  id: ClothingOuterCoatLabViroSyndiOpened
+  name: Virologist Lab Coat
+
+#region Science
+
+- type: entity
+  parent: ClothingOuterStorageFoldableBase
+  id: ClothingOuterCoatRndSyndi
+  name: Academic Lab Coat 
+  description: A good looking coat that researchers wear to protect their over-designed jumpsuits.
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/Coats/NeoSol/labcoat_sci.rsi 
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/Coats/NeoSol/labcoat_sci.rsi 
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      coefficients:
+        Caustic: 0.75
+  - type: LimbArmor # Far Horizons
+    limbs:
+      ArmRight: {}
+      ArmLeft: {}
+      LegRight: {}
+      LegLeft: {}
 
 #region Security
 
@@ -186,28 +313,16 @@
 # Constable (Warden)
 
 - type: entity
-  parent: [ClothingOuterArmorWarden, ClothingOuterWinterCoat, BaseSecurityContraband]
-  id: ClothingOuterWinterWardenSyndi
-  name: Constable's Armored Winter Coat
-  suffix: S
-  description: A sturdy, utilitarian winter coat designed to protect a warden from any brig-bound threats and hypothermic events.
-  components:
-  - type: Sprite
-    sprite: _FarHorizons/Clothing/OuterClothing/WinterCoats/coat-warden-armored-syndi.rsi
-  - type: Clothing
-    sprite: _FarHorizons/Clothing/OuterClothing/WinterCoats/coat-warden-armored-syndi.rsi
-
-- type: entity
   parent: [ ClothingOuterArmorWarden, ClothingOuterStorageBase, BaseSecurityContraband ]
   id: ClothingOuterCoatWardenSyndi
   name: Constable's Armored Jacket
-  suffix: S
+  suffix: NS
   description: A sturdy, utilitarian jacket designed to protect a guardian from any brig-bound threats.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/OuterClothing/Coats/warden-syndi.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Coats/NeoSol/warden.rsi
   - type: Clothing
-    sprite: _FarHorizons/Clothing/OuterClothing/Coats/warden-syndi.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Coats/NeoSol/warden.rsi
 
 # Inspector (Detective)
 
@@ -215,13 +330,13 @@
   parent: [ClothingOuterStorageBase, AllowSuitStorageClothing, ClothingOuterArmorBase]
   id: ClothingOuterCoatDetectiveSyndi
   name: Inspector Trenchcoat
-  suffix: S
+  suffix: NS
   description: An 18th-century multi-purpose trenchcoat. Someone who wears this means serious business.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/OuterClothing/Coats/detective-syndi.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Coats/NeoSol/detective.rsi
   - type: Clothing
-    sprite: _FarHorizons/Clothing/OuterClothing/Coats/detective-syndi.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Coats/NeoSol/detective.rsi
   - type: StorageFill
     contents:
     - id: SmokingPipeFilledTobacco
@@ -233,7 +348,7 @@
   parent: [ClothingOuterStorageBase, AllowSuitStorageClothing, ClothingOuterArmorBase]
   id: ClothingOuterCoatDetectiveLoadoutGreySyndi
   name: Inspectors's Noir Trenchcoat
-  suffix: S
+  suffix: NS
   description: Ah, your trusty coat. There's a few tears here and there, giving it a more timely look. Or at least, that's what you told yourself when you found out gettin' it repaired would set you back 200 spesos.
   components:
   - type: Sprite
@@ -255,13 +370,13 @@
   parent: [ClothingOuterStorageBase, AllowSuitStorageClothing]
   id: ClothingOuterCoatAMGSyndi
   name: Armored Medical Gown
-  suffix: S
+  suffix: NS
   description: The version of the medical gown, with elements of a bulletproof vest, looks strange, but your heart is protected.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/OuterClothing/Coats/brigmedic-syndi.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Coats/NeoSol/brigmedic.rsi
   - type: Clothing
-    sprite: _FarHorizons/Clothing/OuterClothing/Coats/brigmedic-syndi.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Coats/NeoSol/brigmedic.rsi
   - type: Pierceable
     level: Metal
   - type: ZombificationResistance

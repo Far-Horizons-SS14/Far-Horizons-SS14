@@ -134,13 +134,13 @@
   parent: [ ClothingOuterArmorBaseFHSyndi, BaseSecurityContraband ]
   id: ClothingOuterArmorReflectiveSyndi
   name: Reflective Vest
-  suffix: S
+  suffix: NS
   description: An armored vest with advanced shielding to protect against energy weapons.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/OuterClothing/Armor/armor_reflec-syndi.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Armor/NeoSol/armor_reflec.rsi
   - type: Clothing
-    sprite: _FarHorizons/Clothing/OuterClothing/Armor/armor_reflec-syndi.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Armor/NeoSol/armor_reflec.rsi
   - type: Pierceable
     level: Metal
   - type: Armor
@@ -175,13 +175,13 @@
   parent: [ ClothingOuterArmorBaseCarapace, BaseCommandContraband ]
   id: ClothingOuterArmorCaptainCarapaceSyndi
   name: Commandant's Carapace
-  suffix: S
+  suffix: NS
   description: An armored chestpiece that provides protection whilst still offering maximum mobility and flexibility. Issued only to the station's finest.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/OuterClothing/Armor/captain_carapace-syndi.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Armor/NeoSol/captain_carapace.rsi
   - type: Clothing
-    sprite: _FarHorizons/Clothing/OuterClothing/Armor/captain_carapace-syndi.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Armor/NeoSol/captain_carapace.rsi
   - type: Tag
     tags:
     - CorgiWearable
@@ -196,13 +196,13 @@
   parent: ClothingOuterArmorBasic
   id: ClothingOuterArmorBasicSlimSyndi
   name: Armor Vest Slim
-  suffix: S, Slim
+  suffix: NS, Slim
   description: A slim Type I armored vest that provides decent protection against most types of damage.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/OuterClothing/Armor/security_slim-syndi.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Armor/NeoSol/security_slim.rsi
   - type: Clothing
-    sprite: _FarHorizons/Clothing/OuterClothing/Armor/security_slim-syndi.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Armor/NeoSol/security_slim.rsi
 
 - type: entity
   abstract: true
@@ -212,9 +212,9 @@
   description: The normal armor base has a sec contra label, which means anything inhereting takes it. Please use this one instead!
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/OuterClothing/Armor/security-syndi.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Armor/NeoSol/security.rsi
   - type: Clothing
-    sprite: _FarHorizons/Clothing/OuterClothing/Armor/security-syndi.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Armor/NeoSol/security.rsi
   - type: Pierceable
     level: Metal
   - type: Armor #Based on /tg/ but slightly compensated to fit the fact that armor stacks in SS14.
@@ -231,7 +231,7 @@
 - type: entity
   parent: [ BaseSecurityBartenderContraband, ClothingOuterArmorBaseFHSyndi ]
   id: ClothingOuterArmorBasicSyndi
-  suffix: S
+  suffix: NS
   components:
   - type: Tag
     tags:
@@ -258,13 +258,13 @@
   parent: [ ClothingOuterArmorBaseFHSyndi, BaseSecurityContraband ]
   id: ClothingOuterArmorBulletproofSyndi
   name: Bulletproof Vest
-  suffix: S
+  suffix: NS
   description: A Type III heavy bulletproof vest that excels in protecting the wearer against traditional projectile weaponry and explosives to a minor extent.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/OuterClothing/Armor/bulletproof-syndi.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Armor/NeoSol/bulletproof.rsi
   - type: Clothing
-    sprite: _FarHorizons/Clothing/OuterClothing/Armor/bulletproof-syndi.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Armor/NeoSol/bulletproof.rsi
   - type: Pierceable
     level: Metal
   - type: Armor
@@ -292,15 +292,15 @@
   parent: [ ClothingOuterArmorBaseFHSyndi, BaseSecurityContraband ]
   id: ClothingOuterArmorPlateSyndi
   name: Plate Carrier
-  suffix: S
+  suffix: NS
   description: A standard Type II armored vest that provides good protection against bullets and lasers with the help of a plate inserted in the back and front, but not much else.
   components:
   - type: Pierceable
     level: Metal
   - type: Sprite
-    sprite: _FarHorizons/Clothing/OuterClothing/Armor/platecarrier-syndi.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Armor/NeoSol/platecarrier.rsi
   - type: Clothing
-    sprite: _FarHorizons/Clothing/OuterClothing/Armor/platecarrier-syndi.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Armor/NeoSol/platecarrier.rsi
   - type: Armor
     modifiers:
       flatReductions:
@@ -323,15 +323,15 @@
   parent: [ ClothingOuterArmorBaseFHSyndi, BaseSecurityContraband ]
   id: ClothingOuterArmorStabSyndi
   name: Stabproof Vest
-  suffix: S
+  suffix: NS
   description: Contrary to it's name, it's just a Type II armored vest that provides good protection against stabs and punches, but not much else.
   components:
   - type: Pierceable
     level: Metal
   - type: Sprite
-    sprite: _FarHorizons/Clothing/OuterClothing/Armor/stabvest-syndi.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Armor/NeoSol/stabvest.rsi
   - type: Clothing
-    sprite: _FarHorizons/Clothing/OuterClothing/Armor/stabvest-syndi.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Armor/NeoSol/stabvest.rsi
   - type: Armor
     modifiers:
       coefficients:
@@ -350,15 +350,15 @@
   parent: [ClothingOuterArmorBaseFHSyndi, BaseSecurityContraband]
   id: ClothingOuterArmorHeatAbsorbSyndi
   name: Heat Absorbent Vest
-  suffix: S
+  suffix: NS
   description: Advanced vest designed to absorb heat rather than reflect it, but still has some reflective properties itself. Not good against bullets or blunt impacts due to the fragile material.
   components:
   - type: Pierceable
     level: Metal
   - type: Sprite
-    sprite: _FarHorizons/Clothing/OuterClothing/Armor/armor_reflec-syndi.rsi #Needs updating eventually to not use the reflective vest sprites.
+    sprite: _FarHorizons/Clothing/OuterClothing/Armor/NeoSol/armor_reflec.rsi #Needs updating eventually to not use the reflective vest sprites.
   - type: Clothing
-    sprite: _FarHorizons/Clothing/OuterClothing/Armor/armor_reflec-syndi.rsi #Needs updating eventually to not use the reflective vest sprites.
+    sprite: _FarHorizons/Clothing/OuterClothing/Armor/NeoSol/armor_reflec.rsi #Needs updating eventually to not use the reflective vest sprites.
   - type: Armor
     modifiers:
       flatReductions:
@@ -381,13 +381,13 @@
   parent: [ ClothingOuterArmorBaseFHSyndi, BaseSecurityContraband ]
   id: ClothingOuterVestDetectiveSyndi
   name: Inspector's Vest
-  suffix: S
+  suffix: NS
   description: A hard-boiled private investigator's armored vest.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/OuterClothing/Vests/detvest-syndi.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Vests/NeoSol/detvest.rsi
   - type: Clothing
-    sprite: _FarHorizons/Clothing/OuterClothing/Vests/detvest-syndi.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Vests/NeoSol/detvest.rsi
   - type: Armor
     modifiers:
       flatReductions:
@@ -514,13 +514,13 @@
   parent: [ ClothingOuterArmorBaseFHSyndi, BaseSecurityContraband ]
   id: ClothingOuterVestBrigmedicSyndi
   name: Brigmedic's Vest
-  suffix: S
+  suffix: NS
   description: An armored vest made for the station's Brigmedic.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/OuterClothing/Vests/brigmedic-syndi.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Vests/NeoSol/brigmedic.rsi
   - type: Clothing
-    sprite: _FarHorizons/Clothing/OuterClothing/Vests/brigmedic-syndi.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Vests/NeoSol/brigmedic.rsi
   - type: Armor
     modifiers:
       flatReductions:

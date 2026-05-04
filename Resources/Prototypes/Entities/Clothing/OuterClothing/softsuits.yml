@@ -116,16 +116,16 @@
 - type: entity
   parent: [ClothingOuterEVASuitBase, BaseMedicalContraband] #Despite "Voidsuits are light hardsuits", since it parents of EVA Suits, it goes with the other softsuits
   id: ClothingOuterHardsuitVoidParamed
-  name: paramedic void suit
+  name: Paramedic Void Suit #FH
   description: A void suit made for paramedics.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/paramed.rsi #Far Horizons
+    sprite: _FarHorizons/Clothing/OuterClothing/Suits/paramed.rsi #Far Horizons
     layers:
     - state: icon
   - type: Appearance
   - type: Clothing
-    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/paramed.rsi #Far Horizons
+    sprite: _FarHorizons/Clothing/OuterClothing/Suits/paramed.rsi #Far Horizons
   - type: PressureProtection
     highPressureMultiplier: 0.5
     lowPressureMultiplier: 1000

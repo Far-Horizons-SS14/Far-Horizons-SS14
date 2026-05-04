@@ -1,12 +1,12 @@
 
-## Syndicate Station
+#region ## NeoSol ##
 
 # Commandant (Captain)
 
 - type: entity
   id: DresserCommandantFilled
   parent: Dresser
-  suffix: Filled, Commandant
+  suffix: Filled, NS, Commandant
   components:
   - type: StorageFill
     contents:
@@ -25,7 +25,7 @@
 - type: entity
   id: DresserPersonnelManagerFilled
   parent: Dresser
-  suffix: Filled, Personnel Manager
+  suffix: Filled, NS, Personnel Manager
   components:
   - type: StorageFill
     contents:
@@ -38,3 +38,38 @@
       - id: ClothingNeckMantleHOPSyndi
       - id: ClothingShoesBootsLaceup
       - id: ClothingShoesHighheelBoots
+
+# Foreman (CE)
+- type: entity
+  id: DresserForemanFilled
+  parent: Dresser
+  suffix: Filled, NS, Foreman
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingUniformJumpsuitChiefEngineerTurtleSyndi
+        - id: ClothingUniformJumpskirtChiefEngineerTurtleSyndi
+        - id: ClothingHeadHatBeretEngineeringSyndi
+        - id: ClothingOuterWinterCE
+        - id: ClothingNeckCloakCeSyndi
+
+# Medical Director (CMO)
+- type: entity
+  id: DresserMedicalDirectorFilled
+  parent: Dresser
+  suffix: Filled, NS, Medical Director
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingOuterCoatLabCmoSyndi
+        - id: ClothingUniformJumpsuitCMOTurtleSyndi
+        - id: ClothingUniformJumpskirtCMOTurtleSyndi
+        - id: ClothingHeadHatBeretCmoSyndi
+        - id: ClothingHeadMirror
+        - id: ClothingEyesGlasses
+        - id: ClothingOuterWinterCMOSyndi
+        - id: ClothingCloakCmo

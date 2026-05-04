@@ -1,20 +1,21 @@
-# HoP's Suit Storage Unit
+# region ## CFA ##
+# Magistrate's Suit Storage Unit
 
 - type: entity
-  id: SuitStorageHoP
+  id: SuitStorageMagistrate
   parent: SuitStorageBaseFH
-  name: Personal Suit Storage Unit
-  description: A standard-issue suit storage unit. The most basic looking out of the other personal storage units for all command members.
-  suffix: Head of Personnel
+  name: High-Tech Suit Storage Unit
+  description: A high-tech suit storage unit, this one appears to have been fresh-out of the factory, it's clearly been designed by the top artists in the sector. On the side of it is a large label that states, "For CFA Magistrate use only. - Concord Frontier Authority".
+  suffix: Magistrate
   components:
   - type: EntityTableContainerFill
     containers:
       entity_storage: !type:NestedSelector
-        tableId: FillHoPHardsuit
+        tableId: FillMagistrateHardsuit
   - type: Sprite
     sprite: _FarHorizons/Structures/Storage/suit_storage.rsi
     layers:
-    - state: hop
+    - state: magi
       map: ["enum.StorageVisualLayers.Base"]
     - state: door
       map: ["enum.StorageVisualLayers.Door"]
@@ -24,22 +25,23 @@
     - state: locked
       map: ["enum.LockVisualLayers.Lock"]
       shader: unshaded
-    - state: screen-eva
+    - state: screen-cfa
       map: ["computerLayerScreen"]
   - type: EntityStorageVisuals
-    stateDoorOpen: hop
+    stateDoorOpen: magi
   - type: AccessReader
-    access: [["HeadOfPersonnel"]]
+    access: [["Magistrate"]]
 
 - type: entityTable
-  id: FillHoPHardsuit
+  id: FillMagistrateHardsuit
   table: !type:AllSelector
     children:
-    - id: ClothingOuterHardsuitHoP
+    - id: ClothingOuterHardsuitMagistrate
     - id: ClothingMaskBreath
     - id: OxygenTankFilled
     - id: NitrogenTankFilled
 
+# region ## GSL ##
 # QM's Suit Storage Unit
 
 - type: entity
@@ -82,23 +84,31 @@
     - id: ClothingMaskBreath
     - id: NitrogenTankFilled
 
-# Magistrate's Suit Storage Unit
+# region ## NanoTrasen ##
+
+
+
+
+
+
+#region Comamnd
+# HoP's Suit Storage Unit
 
 - type: entity
-  id: SuitStorageMagistrate
+  id: SuitStorageHoP
   parent: SuitStorageBaseFH
-  name: High-Tech Suit Storage Unit
-  description: A high-tech suit storage unit, this one appears to have been fresh-out of the factory, it's clearly been designed by the top artists in the sector. On the side of it is a large label that states, "For CFA Magistrate use only. - Concord Frontier Authority".
-  suffix: Magistrate
+  name: Personal Suit Storage Unit
+  description: A standard-issue suit storage unit. The most basic looking out of the other personal storage units for all command members.
+  suffix: Head of Personnel
   components:
   - type: EntityTableContainerFill
     containers:
       entity_storage: !type:NestedSelector
-        tableId: FillMagistrateHardsuit
+        tableId: FillHoPHardsuit
   - type: Sprite
     sprite: _FarHorizons/Structures/Storage/suit_storage.rsi
     layers:
-    - state: magi
+    - state: hop
       map: ["enum.StorageVisualLayers.Base"]
     - state: door
       map: ["enum.StorageVisualLayers.Door"]
@@ -108,18 +118,18 @@
     - state: locked
       map: ["enum.LockVisualLayers.Lock"]
       shader: unshaded
-    - state: screen-cfa
+    - state: screen-eva
       map: ["computerLayerScreen"]
   - type: EntityStorageVisuals
-    stateDoorOpen: magi
+    stateDoorOpen: hop
   - type: AccessReader
-    access: [["Magistrate"]]
+    access: [["HeadOfPersonnel"]]
 
 - type: entityTable
-  id: FillMagistrateHardsuit
+  id: FillHoPHardsuit
   table: !type:AllSelector
     children:
-    - id: ClothingOuterHardsuitMagistrate
+    - id: ClothingOuterHardsuitHoP
     - id: ClothingMaskBreath
     - id: OxygenTankFilled
     - id: NitrogenTankFilled
@@ -329,14 +339,20 @@
     - id: ClothingOuterHardsuitEVA
       amount: 15
 
-#region Syndicate
+#region ## NeoSol ##
 
-# Command
+
+
+
+
+
+
+# region Command
 
 - type: entity
   id: SuitStorageCommandant #Captain
   parent: SuitStorageBase
-  suffix: S, Commandant
+  suffix: NS, Commandant
   components:
   - type: EntityTableContainerFill
     containers:
@@ -358,7 +374,7 @@
 - type: entity
   id: SuitStoragePC #Head of Personnel
   parent: SuitStorageBase
-  suffix: S, Personnel Manager
+  suffix: NS, Personnel Manager
   components:
   - type: EntityTableContainerFill
     containers:
@@ -379,7 +395,7 @@
 - type: entity
   id: SuitStorageSO
   parent: SuitStorageBase
-  suffix: S, Marshal
+  suffix: NS, Marshal
   components:
   - type: EntityTableContainerFill
     containers:
@@ -397,12 +413,33 @@
     - id: OxygenTankFilled
     - id: NitrogenTankFilled
 
-# Security
+- type: entity
+  id: SuitStorageMD
+  parent: SuitStorageBase
+  suffix: NS, Medical Director
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: FillMedicalDirectorHardsuit
+  - type: AccessReader
+    access: [["ChiefMedicalOfficer"]]
+
+- type: entityTable
+  id: FillMedicalDirectorHardsuit
+  table: !type:AllSelector
+    children:
+    - id: ClothingOuterHardsuitMedicalSyndi
+    - id: ClothingMaskBreath
+    - id: OxygenTankFilled
+    - id: NitrogenTankFilled
+
+# region Security
 
 - type: entity
   id: SuitStorageSecuritySyndi
   parent: SuitStorageBase
-  suffix: S, Security
+  suffix: NS, Security
   components:
   - type: EntityTableContainerFill
     containers:
@@ -423,7 +460,7 @@
 - type: entity
   id: SuitStorageConstable
   parent: SuitStorageBase
-  suffix: S, Constable
+  suffix: NS, Constable
   components:
   - type: EntityTableContainerFill
     containers:
@@ -444,7 +481,7 @@
 - type: entity
   id: SuitStorageBrigSyndi
   parent: SuitStorageBase
-  suffix: S, Brigmedic
+  suffix: NS, Brigmedic
   components:
   - type: EntityTableContainerFill
     containers:
@@ -465,7 +502,7 @@
 - type: entity
   id: SuitStorageCorpsmanSyndi
   parent: SuitStorageBase
-  suffix: S, Corpsman
+  suffix: NS, Corpsman
   components:
   - type: EntityTableContainerFill
     containers:

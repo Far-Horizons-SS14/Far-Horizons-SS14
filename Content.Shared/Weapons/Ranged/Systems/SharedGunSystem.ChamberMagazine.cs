@@ -99,7 +99,8 @@ public abstract partial class SharedGunSystem
     /// <summary>
     /// Opens then closes the bolt, or just closes it if currently open.
     /// </summary>
-    private void UseChambered(EntityUid uid, ChamberMagazineAmmoProviderComponent component, EntityUid? user = null)
+    /// Far Horizons - made public for NPCs
+    public void UseChambered(EntityUid uid, ChamberMagazineAmmoProviderComponent component, EntityUid? user = null)
     {
         if (component.BoltClosed == false)
         {

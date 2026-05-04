@@ -1,14 +1,129 @@
+#region ## NanoTrasen ##
+
+
+
+
+
+
+#region Medical
 - type: entity
   parent: ClothingOuterEVASuitBase
   id: ClothingOuterHardsuitMedicalEVA
   name: Medical EVA Suit
   description: A lightweight space suit supplied in the medical department with the basic ability to protect the wearer from the vacuum of space during emergencies.
+  suffix: NT
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/OuterClothing/Suits/medical_eva.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Suits/medical.rsi
   - type: Clothing
-    sprite: _FarHorizons/Clothing/OuterClothing/Suits/medical_eva.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Suits/medical.rsi
   - type: Tag
     tags:
     - SuitEVA
     - WhitelistChameleon
+    - IPCExternalCooling
+
+#region ## NeoSol ##
+
+
+
+
+
+
+#region Medical
+
+- type: entity
+  parent: ClothingOuterEVASuitBase
+  id: ClothingOuterHardsuitMedicalEVASyndi
+  name: Medical EVA Suit
+  description: A lightweight space suit supplied in the medical department with the basic ability to protect the wearer from the vacuum of space during emergencies.
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/Suits/NeoSol/medical.rsi #need Resprite
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/Suits/NeoSol/medical.rsi
+  - type: Tag
+    tags:
+    - SuitEVA
+    - WhitelistChameleon
+    - IPCExternalCooling
+
+- type: entity
+  parent: [ClothingOuterEVASuitBase, BaseMedicalContraband] 
+  id: ClothingOuterHardsuitVoidParamedSyndi
+  name: Paramedic Void Suit 
+  description: A void suit made for paramedics.
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/Suits/NeoSol/paramed.rsi 
+    layers:
+    - state: icon
+  - type: Appearance
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/Suits/NeoSol/paramed.rsi 
+  - type: PressureProtection
+    highPressureMultiplier: 0.5
+    lowPressureMultiplier: 1000
+  - type: ClothingSpeedModifier
+    walkModifier: 1.0 
+    sprintModifier: 1.0 
+  - type: HeldSpeedModifier
+  - type: TemperatureProtection
+    heatingCoefficient: 0.1
+    coolingCoefficient: 0.1
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      coefficients:
+        Heat: 0.90
+        Radiation: 0.75
+        Caustic: 0.5
+  - type: LimbArmor 
+    limbs:
+      ArmRight: {}
+      ArmLeft: {}
+      HandRight: {}
+      HandLeft: {}
+      LegRight: {}
+      LegLeft: {}
+      FootRight: {}
+      FootLeft: {}
+  - type: GroupExamine
+  - type: StealTarget
+    stealGroup: ClothingOuterHardsuitVoidParamed
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetVoidParamedSyndi
+  - type: ItemToggle
+    onUse: false
+    soundActivate:
+      path: /Audio/Items/flashlight_on.ogg
+    soundDeactivate:
+      path: /Audio/Items/flashlight_off.ogg
+  - type: ItemToggleActiveSound
+    activeSound:
+      path: /Audio/Effects/Vehicle/ambulancesiren.ogg 
+      params:
+        volume: -4
+  - type: UseDelay
+    delay: 1.0
+  - type: ToggleClothing
+    action: ActionToggleParamedicSirenSyndi
+  - type: ItemTogglePointLight
+  - type: PointLight
+    enabled: false
+    radius: 2
+    energy: 2
+    color: red
+    mask: /Textures/Effects/LightMasks/double_cone.png
+  - type: RotatingLight
+    speed: 360
+  - type: ContainerContainer
+    containers:
+      toggleable-clothing: !type:ContainerSlot {}
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - IPCExternalCooling 

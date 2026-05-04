@@ -148,7 +148,7 @@
 
 - type: entity
   id: LockerCommandantFilledNoLaser
-  suffix: S, Filled
+  suffix: NS, Filled
   parent: LockerCommandant
   components:
   - type: EntityTableContainerFill
@@ -192,7 +192,7 @@
 
 - type: entity
   id: LockerCommandantFilled
-  suffix: S, Filled, AntiqueLaser
+  suffix: NS, Filled, AntiqueLaser
   parent: LockerCommandant
   components:
   - type: EntityTableContainerFill
@@ -210,7 +210,7 @@
 
 - type: entity
   id: LockerCommandantFilledHardsuit
-  suffix: S, Filled, Hardsuit
+  suffix: NS, Filled, Hardsuit
   parent: LockerCommandant
   components:
   - type: EntityTableContainerFill
@@ -226,7 +226,7 @@
 
 - type: entity
   id: LockerPersonnelManagerFilled
-  suffix: S, Filled
+  suffix: NS, Filled
   parent: LockerPersonnelManager
   components:
   - type: EntityTableContainerFill
@@ -275,7 +275,7 @@
 # No Hardsuit
 - type: entity
   id: LockerMarshalFilled
-  suffix: S, Filled
+  suffix: NS, Filled
   parent: LockerMarshal
   components:
   - type: EntityTableContainerFill
@@ -320,7 +320,7 @@
 
 - type: entity
   id: LockerMarshalHardsuitFilled
-  suffix: S, Filled, Hardsuit
+  suffix: NS, Filled, Hardsuit
   parent: LockerMarshal
   components:
   - type: EntityTableContainerFill
@@ -421,7 +421,7 @@
 # No hardsuit locker
 - type: entity
   id: LockerChiefEngineerFilledSyndi
-  suffix: S, Filled
+  suffix: NS, Filled
   parent: LockerChiefEngineerSyndi
   components:
   - type: EntityTableContainerFill
@@ -432,7 +432,7 @@
 # No hardsuit + hardsuit locker
 - type: entity
   id: LockerChiefEngineerFilledHardsuitSyndi
-  suffix: S, Filled, Hardsuit
+  suffix: NS, Filled, Hardsuit
   parent: LockerChiefEngineerSyndi
   components:
   - type: EntityTableContainerFill
@@ -450,7 +450,7 @@
 
 - type: entity
   id: LockerRepresentativeFilledSyndi
-  suffix: S, Filled
+  suffix: NS, Filled
   parent: LockerRepresentative
   components:
   - type: EntityTableContainerFill
@@ -476,7 +476,7 @@
 
 - type: entity
   id: LockerRepresentativeFilledBluespacedSyndi
-  suffix: S, Filled, Bluespaced
+  suffix: NS, Filled, Bluespaced
   parent: LockerRepresentativeFilledSyndi
   categories: [ Spawner ]
   components:

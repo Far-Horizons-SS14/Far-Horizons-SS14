@@ -1,3 +1,5 @@
+#region ## NanoTrasen ##
+
 # Magistrate Helmet
 
 - type: entity
@@ -169,7 +171,7 @@
     highPressureMultiplier: 0.5
     lowPressureMultiplier: 1000
 
-#region Syndicate
+#region ## NeoSol ##
 
 
 
@@ -186,13 +188,13 @@
   parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetHardsuitCapSyndi
   name: Commandant's Hardsuit Helmet
-  suffix: S
+  suffix: NS
   description: Special hardsuit helmet, made for the Commandant of the station.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/Head/Hardsuits/syndicapspace.rsi #Far Horizons
+    sprite: _FarHorizons/Clothing/Head/Hardsuits/NeoSol/capspace.rsi #Far Horizons
   - type: Clothing
-    sprite: _FarHorizons/Clothing/Head/Hardsuits/syndicapspace.rsi #Far Horizons
+    sprite: _FarHorizons/Clothing/Head/Hardsuits/NeoSol/capspace.rsi #Far Horizons
   - type: PressureProtection
     highPressureMultiplier: 0.3
     lowPressureMultiplier: 1000
@@ -212,12 +214,12 @@
   id: ClothingHeadHelmetHardsuitHoPSyndi
   categories: [ HideSpawnMenu ]
   name: Personnel Manager Hardsuit Helmet
-  suffix: S
+  suffix: NS
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/Head/Hardsuits/syndihopspace.rsi
+    sprite: _FarHorizons/Clothing/Head/Hardsuits/NeoSol/hopspace.rsi
   - type: Clothing
-    sprite: _FarHorizons/Clothing/Head/Hardsuits/syndihopspace.rsi
+    sprite: _FarHorizons/Clothing/Head/Hardsuits/NeoSol/hopspace.rsi
   - type: PointLight
     color: green
     radius: 3.5
@@ -229,13 +231,13 @@
   parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetHardsuitSecurityRedSyndi
   name: Marshal's Hardsuit Helmet
-  suffix: S
+  suffix: NS
   description: Security hardsuit helmet with the latest top secret Syndi-HUD software. Belongs to the SO.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/Head/Hardsuits/security-red-syndi.rsi
+    sprite: _FarHorizons/Clothing/Head/Hardsuits/NeoSol/security-red.rsi
   - type: Clothing
-    sprite: _FarHorizons/Clothing/Head/Hardsuits/security-red-syndi.rsi
+    sprite: _FarHorizons/Clothing/Head/Hardsuits/NeoSol/security-red.rsi
   - type: PointLight
     color: "#ffeead"
   - type: PressureProtection
@@ -267,11 +269,11 @@
   parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetHardsuitEngineeringWhiteSyndi
   name: Foreman's Hardsuit Helmet
-  suffix: S
+  suffix: NS
   description: Special hardsuit helmet, made for the technical lead of the station.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/Head/Hardsuits/engineering-white-syndi.rsi
+    sprite: _FarHorizons/Clothing/Head/Hardsuits/NeoSol/engineering-white.rsi
     layers:
     - state: icon
     - state: icon-unshaded
@@ -358,11 +360,11 @@
   parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetHardsuitAtmosSyndi
   name: Atmospheric Hardsuit Helmet
-  suffix: S
+  suffix: NS
   description: A special hardsuit helmet designed for working in low-pressure, high thermal environments.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/Head/Hardsuits/atmospherics-syndi.rsi
+    sprite: _FarHorizons/Clothing/Head/Hardsuits/NeoSol/atmospherics.rsi
     layers:
     - state: icon
     - state: icon-unshaded
@@ -449,11 +451,11 @@
   parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetHardsuitEngineeringSyndi
   name: Engineer Hardsuit Helmet
-  suffix: S
+  suffix: NS
   description: An architectural hardsuit helmet designed for working in low-pressure, high radioactive environments.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/Head/Hardsuits/engineering-syndi.rsi
+    sprite: _FarHorizons/Clothing/Head/Hardsuits/NeoSol/engineering.rsi
     layers:
     - state: icon
     - state: icon-unshaded
@@ -529,19 +531,62 @@
     #- CorgiWearable
     - WhitelistChameleon
 
+#region Medical
+
+- type: entity
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
+  id: ClothingHeadHelmetHardsuitMedicalSyndi
+  name: Medical Director's Hardsuit Helmet 
+  suffix: NS
+  description: Lightweight medical hardsuit helmet that doesn't restrict your head movements.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Head/Hardsuits/NeoSol/medical.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Head/Hardsuits/NeoSol/medical.rsi
+  - type: PointLight
+    color: "#b9ffad"
+  - type: PressureProtection
+    highPressureMultiplier: 0.6
+    lowPressureMultiplier: 1000
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+
+#region Science
+- type: entity
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
+  id: ClothingHeadHelmetHardsuitRdSyndi
+  name: Experimental Research Hardsuit Helmet 
+  suffix: NS
+  description: Lightweight hardsuit helmet that doesn't restrict your head movements.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Head/Hardsuits/NeoSol/rd.rsi 
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Head/Hardsuits/NeoSol/rd.rsi 
+  - type: PointLight
+    color: "#adffb0"
+  - type: PressureProtection
+    highPressureMultiplier: 0.60
+    lowPressureMultiplier: 1000
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    
 #region Security
 
 - type: entity
   parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetHardsuitSecuritySyndi
   name: Security Hardsuit Helmet
-  suffix: S
+  suffix: NS
   description: Armored hardsuit helmet for security needs.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/Head/Hardsuits/security-syndi.rsi
+    sprite: _FarHorizons/Clothing/Head/Hardsuits/NeoSol/security.rsi
   - type: Clothing
-    sprite: _FarHorizons/Clothing/Head/Hardsuits/security-syndi.rsi
+    sprite: _FarHorizons/Clothing/Head/Hardsuits/NeoSol/security.rsi
   - type: PointLight
     color: "#ffeead"
   - type: PressureProtection
@@ -576,13 +621,13 @@
   parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetHardsuitWardenSyndi
   name: Constable's Hardsuit Helmet
-  suffix: S
+  suffix: NS
   description: A modified riot helmet. Oddly comfortable.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/Head/Hardsuits/security-warden-syndi.rsi
+    sprite: _FarHorizons/Clothing/Head/Hardsuits/NeoSol/security-warden.rsi
   - type: Clothing
-    sprite: _FarHorizons/Clothing/Head/Hardsuits/security-warden-syndi.rsi
+    sprite: _FarHorizons/Clothing/Head/Hardsuits/NeoSol/security-warden.rsi
   - type: PointLight
     color: "#ffeead"
   - type: PressureProtection
@@ -614,13 +659,13 @@
   parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetHardsuitBrigmedicSyndi
   name: Brigmedic Hardsuit Helmet
-  suffix: S
+  suffix: NS
   description: The lightweight helmet of the medical officer hardsuit. Protects against viruses, and clowns.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/Head/Hardsuits/brigmedic-syndi.rsi
+    sprite: _FarHorizons/Clothing/Head/Hardsuits/NeoSol/brigmedic.rsi
   - type: Clothing
-    sprite: _FarHorizons/Clothing/Head/Hardsuits/brigmedic-syndi.rsi
+    sprite: _FarHorizons/Clothing/Head/Hardsuits/NeoSol/brigmedic.rsi
   - type: PointLight
     color: "#00FFFF"
   - type: Armor
@@ -659,12 +704,12 @@
   id: ClothingHeadHelmetHardsuitNtrepSyndi
   categories: [ HideSpawnMenu ]
   name: NeoSol Representative's Hardsuit Helmet
-  suffix: S
+  suffix: NS
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/Head/Hardsuits/ntrep-syndi.rsi
+    sprite: _FarHorizons/Clothing/Head/Hardsuits/NeoSol/ntrep.rsi
   - type: Clothing
-    sprite: _FarHorizons/Clothing/Head/Hardsuits/ntrep-syndi.rsi
+    sprite: _FarHorizons/Clothing/Head/Hardsuits/NeoSol/ntrep.rsi
   - type: PointLight
     color: "#adeeff"
   - type: PressureProtection

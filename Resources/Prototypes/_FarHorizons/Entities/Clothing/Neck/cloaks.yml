@@ -1,6 +1,12 @@
+#region ## NanoTrasen ##
 
 
-#region Syndicate
+
+
+
+
+
+#region ## NeoSol ##
 
 
 
@@ -18,11 +24,11 @@
   parent: [ClothingNeckBase, BaseCommandContraband]
   id: ClothingNeckCloakCapFormalSyndi
   name: Commandant's Formal Cloak
-  suffix: S
+  suffix: NS
   description: A lavish and decorated cloak for special occasions.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/Neck/Cloaks/syndicapcloakformal.rsi
+    sprite: _FarHorizons/Clothing/Neck/Cloaks/NeoSol/capcloakformal.rsi
   - type: StealTarget
     stealGroup: HeadCloak
 
@@ -30,11 +36,11 @@
   parent: [ClothingNeckBase, BaseCommandContraband]
   id: ClothingNeckCloakCapSyndi
   name: Commandant's Cloak
-  suffix: S
+  suffix: NS
   description: A pompous and comfy blue cloak with a nice gold trim, while not particularly valuable as your other possessions, it sure is fancy.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/Neck/Cloaks/syndicap.rsi
+    sprite: _FarHorizons/Clothing/Neck/Cloaks/NeoSol/cap.rsi
   - type: StealTarget
     stealGroup: HeadCloak
 
@@ -44,11 +50,11 @@
   parent: [ ClothingNeckBase, BaseCommandContraband ]
   id: ClothingNeckCloakHosSyndi
   name: Marshal's Cloak
-  suffix: S
+  suffix: NS
   description: An exquisite dark and red cloak fitting for those who can assert dominance over wrongdoers. Take a stab at being civil in prosecution!
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/Neck/Cloaks/hos-syndi.rsi
+    sprite: _FarHorizons/Clothing/Neck/Cloaks/NeoSol/hos.rsi
   - type: StealTarget
     stealGroup: HeadCloak
 
@@ -59,7 +65,7 @@
   description: An elite Marshal's cloak crafted from the latest composite glowing fabric. Only for a true paladin.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/Neck/Cloaks/hos_elite-syndi.rsi
+    sprite: _FarHorizons/Clothing/Neck/Cloaks/NeoSol/hos_elite.rsi
   - type: StealTarget
     stealGroup: HeadCloak
   - type: PointLight

@@ -17,7 +17,7 @@
 - type: entity
   parent: BriefcaseBrown
   id: BriefcaseBrownSyndicateFilledPistolDeagle
-  suffix: S, Filled
+  suffix: NS, Filled
   components:
   - type: EntityTableContainerFill
     containers:
@@ -27,6 +27,20 @@
         - id: MagazineMagnum
           amount: 2
         - id: MagazineBoxMagnumSP
+
+- type: entity
+  parent: BriefcaseBrown
+  id: BriefcaseBrownSyndicateFilledPistolStechkin
+  suffix: NS, Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: WeaponPistolStechkin
+        - id: MagazinePistol38SP
+          amount: 2
+        - id: MagazineBoxRevolver38SP
 
 - type: entity
   parent: BriefcaseBrown

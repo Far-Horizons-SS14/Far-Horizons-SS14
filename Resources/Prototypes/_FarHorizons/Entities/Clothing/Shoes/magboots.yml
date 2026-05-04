@@ -37,7 +37,7 @@
   parent: [ClothingShoesBase, BaseToggleClothing]
   id: ClothingShoesBootsMagBaseSyndi
   name: Magboots
-  suffix: S
+  suffix: NS
   description: Magnetic boots, often used during extravehicular activity to ensure the user remains safely attached to the vehicle.
   abstract: true
   components:
@@ -83,7 +83,7 @@
   parent: [ClothingShoesBootsMagBase, BaseGrandTheftContraband]
   id: ClothingShoesBootsMagAdvSyndi
   name: Advanced Magboots
-  suffix: S
+  suffix: NS
   description: State-of-the-art magnetic boots that do not slow down their wearer.
   components:
   - type: Sprite
@@ -106,7 +106,7 @@
 - type: entity
   parent: [ClothingShoesBootsMagBase]
   id: ClothingShoesBootsMagSciSyndi
-  suffix: S
+  suffix: NS
   components:
   - type: Sprite
     sprite: Clothing/Shoes/Boots/magboots-science.rsi # Needs respriting for Syndicate side

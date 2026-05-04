@@ -1,4 +1,4 @@
-#region NanoTrasen
+#region ## NanoTrasen ##
 
 
 
@@ -319,7 +319,7 @@
     - IPCExternalCooling # Far Horizons
     - HardsuitSpatio #can now be used to make goliath hardsuit
 
-#region Syndicate 
+#region ## NeoSol ##
 
 
 
@@ -339,13 +339,13 @@
   parent: [ClothingOuterHardsuitBase, BaseCommandContraband]
   id: ClothingOuterHardsuitCapSyndi
   name: Commandant's Armored Spacesuit
-  suffix: S
+  suffix: NS
   description: A formal armored spacesuit, made for the station's Commandant.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/syndicapspace.rsi #Far Horizons
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/NeoSol/capspace.rsi #Far Horizons
   - type: Clothing
-    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/syndicapspace.rsi #Far Horizons
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/NeoSol/capspace.rsi #Far Horizons
   - type: PressureProtection
     highPressureMultiplier: 0.02
     lowPressureMultiplier: 1000
@@ -397,13 +397,13 @@
   parent: ClothingOuterHardsuitHoP
   id: ClothingOuterHardsuitHoPSyndi
   name: Personnel Manager Hardsuit
-  suffix: S
+  suffix: NS
   description: A hardsuit which somehow just seems to be covered in papercuts. How that even happened on this is astounding.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/syndihopspace.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/NeoSol/hopspace.rsi
   - type: Clothing
-    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/syndihopspace.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/NeoSol/hopspace.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitHoPSyndi
 
@@ -413,13 +413,13 @@
   parent: ClothingOuterHardsuitSecurityRed
   id: ClothingOuterHardsuitSecurityRedSyndi
   name: Marshal Hardsuit
-  suffix: S
+  suffix: NS
   description: A special suit that protects against hazardous, low pressure environments. Has an additional layer of armor.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/security-red-syndi.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/NeoSol/security-red.rsi
   - type: Clothing
-    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/security-red-syndi.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/NeoSol/security-red.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitSecurityRedSyndi
 
@@ -428,13 +428,13 @@
   parent: [ClothingOuterHardsuitBase, BaseCommandContraband]
   id: ClothingOuterHardsuitEngineeringWhiteSyndi
   name: Foreman's Hardsuit
-  suffix: S
+  suffix: NS
   description: A special hardsuit that protects against hazardous, low pressure environments, made for the technical lead of the station.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/engineering-white-syndi.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/NeoSol/engineering-white.rsi
   - type: Clothing
-    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/engineering-white-syndi.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/NeoSol/engineering-white.rsi
   - type: PressureProtection
     highPressureMultiplier: 0.02
     lowPressureMultiplier: 1000
@@ -485,13 +485,13 @@
   parent: [ClothingOuterHardsuitBase, BaseEngineeringContraband]
   id: ClothingOuterHardsuitAtmosSyndi
   name: Atmospheric Hardsuit
-  suffix: S
+  suffix: NS
   description: A special suit that protects against hazardous, low pressure environments. Has thermal shielding.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/atmospherics-syndi.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/NeoSol/atmospherics.rsi
   - type: Clothing
-    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/atmospherics-syndi.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/NeoSol/atmospherics.rsi
   - type: PressureProtection
     highPressureMultiplier: 0.02
     lowPressureMultiplier: 1000
@@ -544,13 +544,13 @@
   parent: [ClothingOuterHardsuitBase, BaseEngineeringContraband]
   id: ClothingOuterHardsuitEngineeringSyndi
   name: Engineering Hardsuit
-  suffix: S
+  suffix: NS
   description: A special suit that protects against hazardous, low pressure environments. Has radiation shielding.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/engineering-syndi.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/NeoSol/engineering.rsi
   - type: Clothing
-    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/engineering-syndi.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/NeoSol/engineering.rsi
   - type: PressureProtection
     highPressureMultiplier: 0.04
     lowPressureMultiplier: 1000
@@ -592,6 +592,113 @@
     - WhitelistChameleon
     - IPCExternalCooling
 
+#region Medical
+- type: entity
+  parent: [ClothingOuterHardsuitBase, BaseCommandContraband]
+  id: ClothingOuterHardsuitMedicalSyndi
+  name: Medical Director's Hardsuit
+  suffix: NS
+  description: A special suit that protects against hazardous, low pressure environments. Built with lightweight materials for easier movement.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/NeoSol/medical.rsi 
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/NeoSol/medical.rsi 
+  - type: PressureProtection
+    highPressureMultiplier: 0.3
+    lowPressureMultiplier: 1000
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      coefficients:
+        Caustic: 0.1
+  - type: LimbArmor 
+    limbs:
+      ArmRight: {}
+      ArmLeft: {}
+      HandRight: {}
+      HandLeft: {}
+      LegRight: {}
+      LegLeft: {}
+      FootRight: {}
+      FootLeft: {}
+  - type: ZombificationResistance
+    zombificationResistanceCoefficient: 0.0 
+  - type: ClothingSpeedModifier
+    walkModifier: 1.0 
+    sprintModifier: 1.0 
+    requireActivated: false 
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitMedicalSyndi
+  - type: Tag
+    tags:
+    - Hardsuit
+    - WhitelistChameleon
+    - IPCExternalCooling 
+
+#region Science
+
+- type: entity
+  parent: [ClothingOuterHardsuitBase, BaseGrandTheftContraband]
+  id: ClothingOuterHardsuitRdSyndi
+  name: Experimental Research Hardsuit
+  suffix: NS
+  description: An experimental Cybersun Manufacturing hardsuit with R&D being conducted using the "willing" Head of Research. The armor plating is replaced with biohazard resistant material.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/NeoSol/rd.rsi 
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/NeoSol/rd.rsi 
+  - type: PressureProtection
+    highPressureMultiplier: 0.02
+    lowPressureMultiplier: 1000
+  - type: Pierceable
+    level: Rock
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.6
+        Slash: 0.8
+        Piercing: 0.9
+        Heat: 0.3
+        Radiation: 0.1
+        Caustic: 0.2
+  - type: LimbArmor # Far Horizons
+    limbs:
+      ArmRight: {}
+      ArmLeft: {}
+      HandRight: {}
+      HandLeft: {}
+      LegRight: {}
+      LegLeft: {}
+      FootRight: {}
+      FootLeft: {}
+  - type: ExplosionResistance
+    damageCoefficient: 0.1
+  - type: ClothingSpeedModifier
+    walkModifier: 0.75
+    sprintModifier: 0.75
+    requireActivated: false 
+  - type: HeldSpeedModifier
+  - type: Item
+    size: Huge
+    shape:
+    - 0,0,4,4 
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - HighRiskItem
+    - Hardsuit
+    - IPCExternalCooling 
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitRdSyndi
+  - type: StaticPrice
+    price: 750
+  - type: StealTarget
+    stealGroup: ClothingOuterHardsuitRd
+
 #region Security
 
 # General Security
@@ -600,12 +707,12 @@
   parent: ClothingOuterHardsuitSecurity
   id: ClothingOuterHardsuitSecuritySyndi
   name: Security Hardsuit
-  suffix: S
+  suffix: NS
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/security-syndi.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/NeoSol/security.rsi
   - type: Clothing
-    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/security-syndi.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/NeoSol/security.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitSecuritySyndi
 
@@ -615,13 +722,13 @@
   parent: ClothingOuterHardsuitBrigmedic
   id: ClothingOuterHardsuitBrigmedicSyndi
   name: Brigmedic Hardsuit
-  suffix: S
+  suffix: NS
   description: Special hardsuit of the guardian angel of the brig. It is the medical version of the security hardsuit.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/brigmedic-syndi.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/NeoSol/brigmedic.rsi
   - type: Clothing
-    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/brigmedic-syndi.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/NeoSol/brigmedic.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitBrigmedicSyndi
   
@@ -631,12 +738,12 @@
   parent: ClothingOuterHardsuitWarden
   id: ClothingOuterHardsuitWardenSyndi
   name: Constable's Hardsuit
-  suffix: S
+  suffix: NS
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/security-warden-syndi.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/NeoSol/security-warden.rsi
   - type: Clothing
-    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/security-warden-syndi.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/NeoSol/security-warden.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitWardenSyndi
 
@@ -648,13 +755,13 @@
   parent: [ClothingOuterHardsuitBase, BaseCommandContraband]
   id: ClothingOuterHardsuitNtrepSyndi
   name: NeoSol Representative Hardsuit
-  suffix: S
+  suffix: NS
   description: This hardsuit was designed by Syndicate High Command to really make sure people understand who's in charge.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/ntrep-syndi.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/NeoSol/ntrep.rsi
   - type: Clothing
-    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/ntrep-syndi.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/NeoSol/ntrep.rsi
   - type: PressureProtection
     highPressureMultiplier: 0.525
     lowPressureMultiplier: 10000
