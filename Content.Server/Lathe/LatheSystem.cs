@@ -437,23 +437,15 @@ namespace Content.Server.Lathe
 
             if (component.CurrentRecipe != null)
             {
-                if (component.Queue.Count > 0)
-                {
-                    // Batch abandoned while printing last item, need to create a one-item batch
-                    var batch = component.Queue.First();
-                    if (batch.Recipe != component.CurrentRecipe)
-                    {
-                        var newBatch = new LatheRecipeBatch(component.CurrentRecipe.Value, 0, 1);
-                        component.Queue.AddFirst(newBatch);
-                    }
-                    else if (batch.ItemsPrinted > 0)
-                    {
-                        batch.ItemsPrinted--;
-                    }
-                }
-
                 RefundCurrentRecipe(uid, component);
                 component.CurrentRecipe = null;
+
+                // Far Horizons start
+                // Whatever code there was before - it was cringe. Is this cringe? Maybe, but at least it's not duping mats
+                foreach (var batch in component.Queue)
+                    RefundBatch(uid, component, batch);
+                component.Queue = [];
+                // Far Horizons end
             }
             RemCompDeferred<LatheProducingComponent>(uid);
             UpdateUserInterfaceState(uid, component);
