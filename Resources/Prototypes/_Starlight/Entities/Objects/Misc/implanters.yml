@@ -1,7 +1,7 @@
 # USSP Implanters
 
 - type: entity
-  id: BaseImplantOnlyImplanterSyndi_StarLight
+  id: BaseImplantOnlyImplanterSyndi_Starlight #FH - Fixing Starlight name.
   parent: [BaseImplantOnlyImplanter, BaseSovietContraband]
   name: syndicate implanter
   description: A compact disposable syringe exclusively designed for the injection of subdermal implants.
@@ -35,7 +35,7 @@
 - type: entity
   id: USSPUplinkImplanterEmpty
   suffix: Empty
-  parent: BaseImplantOnlyImplanterSyndi_StarLight
+  parent: BaseImplantOnlyImplanterSyndi_Starlight #FH - Fixing Starlight name.
   name: SKB implanter
   description: A brittle disposable syringe exclusively designed for the injection of subdermal implants for SKB agents.
   components:
@@ -75,7 +75,7 @@
 - type: entity
   id: USSPUplinkImplanter
   suffix: USSP uplink
-  parent: BaseImplantOnlyImplanterSyndi_StarLight
+  parent: BaseImplantOnlyImplanterSyndi_Starlight #FH - Fixing Starlight name.
   name: SKB implanter
   description: A brittle disposable syringe exclusively designed for the injection of subdermal implants for SKB agents. Dissolves on use.
   components:
