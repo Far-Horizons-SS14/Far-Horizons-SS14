@@ -96,6 +96,7 @@ public sealed partial class ZombieComponent : Component
             { "Blunt", -0.7 }, // Starlight-edit
             { "Slash", -0.5 }, // Starlight-edit
             { "Piercing", -0.6 }, // Starlight-edit
+            // { "Heat", -0.02 }, // Far Horizons removed heat regeneration
             { "Shock", -0.05 } // Starlight-edit
         }
     };
