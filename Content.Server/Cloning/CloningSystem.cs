@@ -89,6 +89,7 @@ public sealed partial class CloningSystem : SharedCloningSystem
         var originalName = _nameMod.GetBaseName(original);
 
         CopyCyberwareStates(original, clone.Value); // 🌟Starlight🌟 Copy species-native cyberware
+        CloneProtogenCybernetics(original, clone.Value); // Far Horizons
 
         // Set the clone's name. The raised events will also adjust their PDA and ID card names.
         _metaData.SetEntityName(clone.Value, originalName);
