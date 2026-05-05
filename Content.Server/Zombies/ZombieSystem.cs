@@ -5,6 +5,7 @@ using Content.Server.Chat;
 using Content.Server.Chat.Systems;
 using Content.Server.Emoting.Systems;
 using Content.Server.Speech.EntitySystems;
+using Content.Shared._FarHorizons.LimbDamage;
 using Content.Shared.Anomaly.Components;
 using Content.Shared.Armor;
 using Content.Shared.Bed.Sleep;
@@ -44,6 +45,7 @@ namespace Content.Server.Zombies
         [Dependency] private readonly MobStateSystem _mobState = default!;
         [Dependency] private readonly SharedPopupSystem _popup = default!;
         [Dependency] private readonly SharedRoleSystem _role = default!;
+        [Dependency] private readonly LimbDamageSystem _limbDamage = default!; // Far Horizons
 
         public readonly ProtoId<NpcFactionPrototype> Faction = "Zombie";
 
@@ -160,6 +162,7 @@ namespace Content.Server.Zombies
 
                 // Gradual healing for living zombies.
                 _damageable.ChangeDamage((uid, damage), comp.PassiveHealing * multiplier, true, false);
+                _limbDamage.ChangeDamageAll(uid, comp.PassiveHealing * multiplier, true, false); // Far Horizons
             }
         }
 
@@ -272,6 +275,7 @@ namespace Content.Server.Zombies
                 if (_mobState.IsAlive(uid, mobState))
                 {
                     _damageable.TryChangeDamage(args.User, entity.Comp.HealingOnBite, true, false);
+                    _limbDamage.ChangeDamageAll(args.User, entity.Comp.HealingOnBite, true, false); // Far Horizons
 
                     // If we cannot infect the living target, the zed will just heal itself.
                     if (HasComp<ZombieImmuneComponent>(uid) || cannotSpread || !_random.Prob(GetZombieInfectionChance(uid, entity.Comp)))
