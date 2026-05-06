@@ -42,7 +42,7 @@ humanoid-profile-editor-preference-spawn-priority-cryosleep = Cryosleep
 humanoid-profile-editor-jobs-amount-in-department-tooltip = Jobs in the {$departmentName} department
 
 #Far Horizons-Changing Department Label
--profile-editor-department-jobs-label = {$departmentName}
+#humanoid-profile-editor-department-jobs-label = {$departmentName}
 
 humanoid-profile-editor-antags-tab = Antags
 humanoid-profile-editor-antag-preference-yes-button = Yes
