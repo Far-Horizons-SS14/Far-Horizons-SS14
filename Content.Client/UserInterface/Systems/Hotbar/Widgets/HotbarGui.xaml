@@ -3,7 +3,6 @@
     xmlns:inventory="clr-namespace:Content.Client.UserInterface.Systems.Inventory.Controls"
     xmlns:hands="clr-namespace:Content.Client.UserInterface.Systems.Hands.Controls"
     xmlns:widgets="clr-namespace:Content.Client.UserInterface.Systems.Hotbar.Widgets"
-    xmlns:limbDamage="clr-namespace:Content.Client._FarHorizons.LimbDamage.UI"
     Name="HotbarInterface"
     VerticalExpand="True"
     VerticalAlignment="Bottom"
@@ -81,8 +80,6 @@
                 ExpandBackwards="True"
                 Columns="6"
                 />
-            <limbDamage:LimbTargettingUI
-                Margin="4 0 0 0"/>
         </BoxContainer>
     </BoxContainer>
 </widgets:HotbarGui>

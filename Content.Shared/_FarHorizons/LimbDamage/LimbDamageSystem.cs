@@ -26,6 +26,7 @@ public sealed partial class LimbDamageSystem : EntitySystem
         InitArmor();
         InitEffect();
         InitInspect();
+        InitThrowable();
 
         SubscribeLocalEvent<LimbDamageableComponent, ComponentInit>(OnBodyInit);
         SubscribeLocalEvent<DamageableLimbComponent, ComponentInit>(OnLimbInit);

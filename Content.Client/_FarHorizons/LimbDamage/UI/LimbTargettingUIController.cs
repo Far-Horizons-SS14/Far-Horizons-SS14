@@ -109,6 +109,7 @@ public sealed class LimbTargettingUIController : UIController, IOnSystemLoaded<L
         {
             widget.InitTarget(_protoMan, _resourceCache, _sprite!, limbTarget.Proto);
             widget.Visible = true;
+            widget.UpdateLimb(limbTarget.Target);
         }
 
         if (widget.OnSelectedLimb == null)
