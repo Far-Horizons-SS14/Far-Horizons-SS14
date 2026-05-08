@@ -39,7 +39,7 @@ public abstract partial class SharedGunSystem
 
     private void OnCartridgeDamageExamine(Entity<CartridgeAmmoComponent> ent, ref DamageExamineEvent args)
     {
-        var damageSpec = GetProjectileDamage(ent.Comp.Prototype);
+        var damageSpec = GetProjectileDamage(ent.Comp.Prototype) ?? GetHitscanDamage(ent.Comp.Prototype); // Far Horizons
 
         if (damageSpec == null)
             return;
