@@ -1,3 +1,5 @@
+light_mode unshaded;
+
 const mediump float time_scale = 1;
 const mediump float distance_scale = 0.125;
 
@@ -14,6 +16,5 @@ void fragment() {
 
     w *= 4.0;
 
-    COLOR.xyz = zTexture(UV + vec2(w) * SCREEN_PIXEL_SIZE).xyz;
-    COLOR.a = 1.0;
+    COLOR = zTexture(UV + vec2(w) * SCREEN_PIXEL_SIZE);
 }

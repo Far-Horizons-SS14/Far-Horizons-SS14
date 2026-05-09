@@ -34,8 +34,8 @@ public sealed class ReactorPartSystem : EntitySystem
 
         _sprite.LayerSetColor((uid, args.Sprite), 0, _proto.Index(component.Material).Color);
 
-        if (args.AppearanceData.TryGetValue(ReactorPartVisuals.HeatDistort, out var value) && value is bool hot)
-            args.Sprite.PostShader = hot ? _heatShader : null;
+        if (args.AppearanceData.TryGetValue(ReactorPartVisuals.HeatDistort, out var value) && value is bool enabled)
+            args.Sprite.PostShader = enabled ? _heatShader : null;
     }
 
     private void OnComponentInit(Entity<ReactorPartComponent> ent, ref ComponentInit args)

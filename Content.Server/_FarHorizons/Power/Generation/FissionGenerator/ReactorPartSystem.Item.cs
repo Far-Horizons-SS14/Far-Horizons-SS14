@@ -177,7 +177,7 @@ public sealed partial class ReactorPartSystem
                 burncomp.Damage.DamageDict["Heat"] = damage;
         }
 
-        _appearance.SetData(uid, ReactorPartVisuals.HeatDistort, burncomp.IsDamageActive);
+        _appearance.SetData(uid, ReactorPartVisuals.HeatDistort, component.Temperature > Atmospherics.T0C + ReactorPartBurnTemp);
 
         Dirty(uid, burncomp);
     }
