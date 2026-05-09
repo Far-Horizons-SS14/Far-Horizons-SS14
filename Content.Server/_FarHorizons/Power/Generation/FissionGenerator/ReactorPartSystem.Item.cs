@@ -118,7 +118,7 @@ public sealed partial class ReactorPartSystem
         if (!_entityManager.TryGetComponent<DamageableComponent>(args.Target, out var damageable))
             return;
 
-        var dict = _damageable.GetPositiveDamage((args.Target,damageable)).DamageDict;
+        var dict = _damageable.GetPositiveDamage((args.Target, damageable)).DamageDict;
 
         var dmgKey = "Radiation";
         var dmg = (properties.NeutronRadioactivity * 20) + (properties.Radioactivity * 10) + (properties.FissileIsotopes * 5);
@@ -134,23 +134,24 @@ public sealed partial class ReactorPartSystem
     private void OnAtmosExposed(EntityUid uid, ReactorPartComponent component, ref AtmosExposedUpdateEvent args)
     {
         // Stops it from cooking the room while in the reactor
-        if(!TryComp(uid, out MetaDataComponent? metaData) || (metaData.Flags & MetaDataFlags.InContainer) == MetaDataFlags.InContainer)
+        if (!TryComp(uid, out MetaDataComponent? metaData) || (metaData.Flags & MetaDataFlags.InContainer) == MetaDataFlags.InContainer)
             return;
 
         // Can't use args.GasMixture because then it wouldn't excite the tile
         var gasMix = _atmosphereSystem.GetContainingMixture(uid, false, true) ?? GasMixture.SpaceGas;
-        if(gasMix.TotalMoles < Atmospherics.GasMinMoles)
+        if (gasMix.TotalMoles < Atmospherics.GasMinMoles)
             gasMix = GasMixture.SpaceGas;
 
-        var DeltaT = (component.Temperature - gasMix.Temperature) * 0.01f;
+        var totalThermalMass = component.ThermalMass + _atmosphereSystem.GetHeatCapacity(gasMix, true);
+        var totalEnergy = (component.ThermalMass * component.Temperature) + _atmosphereSystem.GetThermalEnergy(gasMix);
+        var tEquilibrium = totalEnergy / totalThermalMass;
 
-        if (Math.Abs(DeltaT) < 0.1)
-            return;
+        // Not realistic, but makes things happen on a game-like time scale
+        component.Temperature = tEquilibrium;
 
-        component.Temperature -= DeltaT;
         if (!gasMix.Immutable) // This prevents it from heating up space itself
             // This viloates COE, but if energy is conserved, then pulling out a hot rod will instantly turn the room into an oven
-            gasMix.Temperature += 0.1f * DeltaT * component.ThermalMass / _atmosphereSystem.GetHeatCapacity(gasMix, false);
+            gasMix.Temperature -= (gasMix.Temperature - tEquilibrium) * 0.1f;
 
         var burncomp = CompOrNull<DamageOnInteractComponent>(uid);
         if (burncomp is null)
@@ -163,7 +164,7 @@ public sealed partial class ReactorPartSystem
 
         if (burncomp.IsDamageActive)
         {
-            var damage = Math.Max((component.Temperature - Atmospherics.T0C - ReactorPartHotTemp) / _burnDiv, 0);
+            var damage = Math.Min(Math.Max((component.Temperature - Atmospherics.T0C - ReactorPartHotTemp) / _burnDiv, 0), 100);
 
             // Giant string of if/else that makes sure it will interfere only as much as it needs to
             if (burncomp.Damage == null)

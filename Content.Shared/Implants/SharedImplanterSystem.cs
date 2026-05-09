@@ -437,7 +437,7 @@ public abstract class SharedImplanterSystem : EntitySystem
                 }
                 else
                 {
-                    DrawCatastrophicFailure(implanter, component, user);
+                    DrawCatastrophicFailure(implanter, component, user, target); // FarHorizons - damage target rather than operator
                 }
             }
 
@@ -446,7 +446,7 @@ public abstract class SharedImplanterSystem : EntitySystem
         }
         else
         {
-            DrawCatastrophicFailure(implanter, component, user);
+            DrawCatastrophicFailure(implanter, component, user, target); // FarHorizons - damage target rather than operator
         }
     }
 
@@ -468,9 +468,9 @@ public abstract class SharedImplanterSystem : EntitySystem
         RaiseLocalEvent(target, ref ev);
     }
 
-    private void DrawCatastrophicFailure(EntityUid implanter, ImplanterComponent component, EntityUid user)
+    private void DrawCatastrophicFailure(EntityUid implanter, ImplanterComponent component, EntityUid user, EntityUid target)
     {
-        _damageableSystem.TryChangeDamage(user, component.DeimplantFailureDamage, ignoreResistances: true, origin: implanter);
+        _damageableSystem.TryChangeDamage(target, component.DeimplantFailureDamage, ignoreResistances: true, origin: implanter); // FarHorizons - damage target rather than operator
         var userName = Identity.Entity(user, EntityManager);
         var failedCatastrophicallyMessage = Loc.GetString("implanter-draw-failed-catastrophically", ("user", userName));
         _popup.PopupEntity(failedCatastrophicallyMessage, user, PopupType.MediumCaution);
