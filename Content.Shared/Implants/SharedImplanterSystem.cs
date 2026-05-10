@@ -437,7 +437,7 @@ public abstract class SharedImplanterSystem : EntitySystem
                 }
                 else
                 {
-                    DrawCatastrophicFailure(implanter, component, user);
+                    DrawCatastrophicFailure(implanter, component, user, target); // FarHorizons - damage target rather than operator
                 }
             }
 
@@ -446,7 +446,7 @@ public abstract class SharedImplanterSystem : EntitySystem
         }
         else
         {
-            DrawCatastrophicFailure(implanter, component, user);
+            DrawCatastrophicFailure(implanter, component, user, target); // FarHorizons - damage target rather than operator
         }
     }
 
@@ -468,11 +468,11 @@ public abstract class SharedImplanterSystem : EntitySystem
         RaiseLocalEvent(target, ref ev);
     }
 
-    private void DrawCatastrophicFailure(EntityUid implanter, ImplanterComponent component, EntityUid user)
+    private void DrawCatastrophicFailure(EntityUid implanter, ImplanterComponent component, EntityUid user, EntityUid target) // FarHorizons - damage target rather than operator
     {
-        _damageableSystem.TryChangeDamage(user, component.DeimplantFailureDamage, ignoreResistances: true, origin: implanter);
-        var userName = Identity.Entity(user, EntityManager);
-        var failedCatastrophicallyMessage = Loc.GetString("implanter-draw-failed-catastrophically", ("user", userName));
+        _damageableSystem.TryChangeDamage(target, component.DeimplantFailureDamage, ignoreResistances: false, origin: implanter); // FarHorizons - damage target rather than operator
+        var targetName = Identity.Entity(target, EntityManager); /// FarHorizons - It is NOT going into that guys hand :P
+        var failedCatastrophicallyMessage = Loc.GetString("implanter-draw-failed-catastrophically-fh", ("target", targetName)); /// FarHorizons - It is NOT going into that guys hand :P
         _popup.PopupEntity(failedCatastrophicallyMessage, user, PopupType.MediumCaution);
     }
 
