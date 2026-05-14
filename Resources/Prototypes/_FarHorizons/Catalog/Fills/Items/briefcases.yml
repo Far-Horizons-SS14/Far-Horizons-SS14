@@ -141,3 +141,22 @@
         - id: WeaponSubMachineGunC20r
         - id: TreasureCoinIron
         - id: AmmoSelection9mmSMGS
+
+- type: entity
+  parent: [BriefcaseSecure, BaseGrandTheftContraband, BaseCommandContraband]
+  id: BriefcaseSecureNukeCodes
+  name: Nuclear Authentication Codes Case
+  description: To lock - Set the code by pressing E after inputting it, then confirm the code, then enter the code again to open. To lock again, press C on the keypad.
+  suffix: Filled
+  components:
+  - type: Item
+    size: Normal
+  - type: Storage
+    maxItemSize: Normal
+    grid:
+    - 0,0,1,1
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: NukeCodePaper

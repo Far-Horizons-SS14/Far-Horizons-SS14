@@ -7,6 +7,7 @@ steal-target-groups-clothing-head-hat-guardian = Constable's Cap
 steal-target-groups-corpsmanhypo = Corpsman Hypospray
 steal-target-groups-brigmedicbedsheet = Strange Brigmedic's Bedsheet
 
+steal-target-groups-briefcasesecurenukecodes = Nuclear Authentication Codes Case
 # Thief Collection
 
 steal-target-groups-reactorfuelrod = reactor fuel rod

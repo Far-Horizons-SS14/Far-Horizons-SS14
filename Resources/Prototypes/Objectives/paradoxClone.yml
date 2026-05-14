@@ -15,26 +15,28 @@
     - ParadoxCloneObjectiveBlacklist # don't copy the objectives from other clones
 
 - type: entity
-  parent: [BaseParadoxCloneObjective, BaseLivingObjective]
+  parent: [BaseParadoxCloneObjective, BaseSurviveObjective] #FH
   id: ParadoxCloneLivingObjective
-  name: Escape to CentComm alive and unrestrained via the escape shuttle.
-  description: Return to your old life.
+  name: Survive. #FH
+  description: Find a way to fix the the paradox that brought you here! The local Research Director might know something.. Or you could just try to kill the "you" in this reality. Chosing to do nothing will result in your certain doom at the end of the shift. #FH
   components:
   - type: Objective
+    difficulty: 1 #FH
     icon:
-      sprite: Structures/Furniture/chairs.rsi
-      state: shuttle
-  - type: EscapeShuttleCondition
+      sprite: Mobs/Species/Human/organs.rsi #FH
+      state: heart-on #FH
+#  - type: EscapeShuttleCondition - FH
 
-- type: entity
-  parent: [BaseParadoxCloneObjective, BaseKillObjective]
-  id: ParadoxCloneKillObjective
-  name: Fix the space-time paradox.
-  description: Replace your original to fix the paradox. Remember, your mission is to blend in, do not kill anyone else unless you have to!
-  components:
-  - type: PickSpecificPerson
-  - type: KillPersonCondition
-    requireDead: true
-  - type: TargetObjective
-    title: objective-condition-kill-head-title # kill <name>, <job>
-
+#FH - Start
+#- type: entity
+#  parent: [BaseParadoxCloneObjective, BaseKillObjective]
+#  id: ParadoxCloneKillObjective
+#  name: Fix the space-time paradox.
+#  description: Replace your original to fix the paradox. Remember, your mission is to blend in, do not kill anyone else unless you have to!
+#  components:
+#  - type: PickSpecificPerson
+#  - type: KillPersonCondition
+#    requireDead: true
+#  - type: TargetObjective
+#    title: objective-condition-kill-head-title # kill <name>, <job>
+#FH - End
