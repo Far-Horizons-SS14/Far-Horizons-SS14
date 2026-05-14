@@ -49,3 +49,7 @@ guide-entry-sl-nano-trasen-employee-sop-magistrate = Concord Liaison
 guide-entry-sl-medical-sop-viral-outbreak = Viral Outbreak Protocol
 
 guide-entry-fried-foods-recipes = Fried Foods
+
+guide-entry-security-almanac = The Security Almanac
+
+guide-entry-prometheus-protocol = Prometheus Protocol
