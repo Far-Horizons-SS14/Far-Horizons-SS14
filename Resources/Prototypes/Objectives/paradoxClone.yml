@@ -28,10 +28,10 @@
 #  - type: EscapeShuttleCondition - FH
 
 - type: entity
-  parent: [BaseParadoxCloneObjective, BaseKillObjective]
+  parent: [BaseParadoxCloneObjective, BaseKillParadoxCloneObjective] #FH
   id: ParadoxCloneKillObjective
-  name: The straightforward option.
-  description: It'll probably work. Right? Entirely optional.
+  name: The Straightforward Option. #FH
+  description: It'll probably work. Right? #FH
   components:
   - type: PickSpecificPerson
   - type: KillPersonCondition

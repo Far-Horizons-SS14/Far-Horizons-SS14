@@ -1,0 +1,42 @@
+- type: entity
+  abstract: true
+  parent: BaseTargetObjective
+  id: BaseKillParadoxCloneObjective
+  components:
+  - type: Objective
+    unique: false
+    icon:
+      sprite: Objects/Weapons/Guns/Pistols/viper.rsi
+      state: icon
+  - type: KillPersonCondition
+
+- type: entity
+  abstract: true
+  parent: BaseTargetObjective
+  id: BaseSocialParadoxCloneObjective
+  components:
+  - type: Objective
+    unique: false
+  - type: SocialObjective
+
+- type: entity
+  abstract: true
+  parent: BaseSocialParadoxCloneObjective
+  id: BaseKeepAliveParadoxCloneObjective
+  components:
+  - type: KeepAliveCondition
+
+- type: entity
+  parent: [BaseParadoxCloneObjective, BaseKeepAliveParadoxCloneObjective]
+  id: ParadoxCloneKeepAliveObjective
+  name: The Complicated Option.
+  description: Better than Murder. Hope the Research Director can help you.
+  components:
+  - type: Objective
+    difficulty: 1 #FH
+    icon:
+      sprite: _Starlight/Objects/Weapons/Melee/paladin_shield.rsi
+      state: base
+  - type: PickSpecificPerson
+  - type: TargetObjective
+    title: objective-condition-paradox-protect
