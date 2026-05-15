@@ -10,6 +10,7 @@ using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
 using Content.Shared.Body;
 using Content.Shared._FarHorizons.Factions;
+using Content.Shared._FarHorizons.Humanoid;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.IdentityManagement;
@@ -285,10 +286,10 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
 
         Entity<TransformComponent, BodyComponent> body = (entity, transform, bodyComp);
 
-        var installedCyberlimbs = _allCybernetics.Where(p => cybernetics.Contains(p.ID)).ToList();
+        var installedCyberlimbs = _allCybernetics.Where(p => cybernetics.Contains(p.Id)).ToList();
         
         foreach (var implant in installedCyberlimbs){
-            var implantEnt = _prototypeManager.Index<EntityPrototype>(implant.ID);
+            var implantEnt = _prototypeManager.Index<EntityPrototype>(implant.Id);
 
             var newPart = Spawn(implantEnt.ID, body.Comp1.Coordinates);
             if(!TryComp(newPart, out OrganComponent? organComp)){
@@ -312,8 +313,9 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
 
                 _container.Remove(oldPartEnt.AsNullable(), body.Comp2.Organs, false, true);
                 QueueDel(oldPart);
-                _container.Insert(newPart, body.Comp2.Organs, body.Comp1, true);
             }
+
+            _container.Insert(newPart, body.Comp2.Organs, body.Comp1, true); // Far Horizons
         }      
     }
 

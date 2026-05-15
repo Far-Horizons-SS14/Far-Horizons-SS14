@@ -1,0 +1,21 @@
+<Control
+    xmlns="https://spacestation14.io"
+    xmlns:limbDamage="clr-namespace:Content.Client._FarHorizons.LimbDamage.UI"
+    MouseFilter="Stop">
+    <!-- Primary container -->
+    <BoxContainer Orientation="Vertical" HorizontalExpand="True">
+        <!-- Cybernetics points container -->
+        <BoxContainer Orientation="Horizontal" HorizontalExpand="True">
+            <Label Name="CyberneticsPoints" Text="{Loc 'cybernetics-points-remaining'}" />
+        </BoxContainer>
+        <!-- Magic here -->
+        <PanelContainer 
+        Name="BackgroundPanel"
+        MinWidth="200" 
+        MinHeight="200" 
+        MaxWidth="200" 
+        MaxHeight="200">
+        <limbDamage:LimbTargettingDisplay Name="LimbTargettingDisplay" MaxSize="200 200"/>
+        </PanelContainer>
+    </BoxContainer>
+</Control>

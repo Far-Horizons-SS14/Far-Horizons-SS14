@@ -2,6 +2,7 @@ using System.IO;
 using System.Linq;
 using Content.Shared._FarHorizons.Factions;
 using Content.Shared._FarHorizons.Humanoid;
+using Content.Shared._FarHorizons.Traits.Effects;
 using Content.Shared.Preferences.Loadouts;
 using Content.Shared.Roles;
 using Robust.Shared.Configuration;
@@ -116,5 +117,21 @@ public sealed partial class HumanoidCharacterProfile
         var collection = IoCManager.Instance;
         profile.EnsureValid(session, collection!);
         return profile;
+    }
+
+    public int GetProfileCyberwareCapacity(IPrototypeManager protoMan)
+    {
+        var points = protoMan.Index(Species).RoundstartCyberwareCapacity;
+
+        foreach (var trait in TraitPreferences)
+        {
+            var traitProto = protoMan.Index(trait);
+
+            foreach (var effect in traitProto.Effects)
+                if (effect is CyberneticsPointsEffect cEffect)
+                    points += cEffect.Change;
+        }
+
+        return points;
     }
 }

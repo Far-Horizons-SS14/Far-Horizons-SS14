@@ -20,7 +20,7 @@ public sealed partial class LimbTargettingDisplay : Control
         _shaders.Count > 0;
 
     private ProtoId<OrganCategoryPrototype>? _highlight;
-    private ProtoId<OrganCategoryPrototype> _selection = "Torso";
+    private ProtoId<OrganCategoryPrototype>? _selection = "Torso";
 
     private Vector2 _currentMousePosition =>
         (UserInterfaceManager.MousePositionScaled.Position * UIScale) - GlobalPixelPosition;
@@ -98,7 +98,7 @@ public sealed partial class LimbTargettingDisplay : Control
         }
     }
 
-    public void UpdateSelection(ProtoId<OrganCategoryPrototype> selection) => _selection = selection;
+    public void UpdateSelection(ProtoId<OrganCategoryPrototype>? selection) => _selection = selection;
 
     protected override void KeyBindDown(GUIBoundKeyEventArgs args)
     {
@@ -116,7 +116,7 @@ public sealed partial class LimbTargettingDisplay : Control
         args.Handle();
     }
 
-    private ProtoId<OrganCategoryPrototype>? GetHighlight()
+    public ProtoId<OrganCategoryPrototype>? GetHighlight()
     {
         foreach (var (limb, draw) in DrawLimbs)
             if (Contains(draw.Area, _relativeMousePosition))

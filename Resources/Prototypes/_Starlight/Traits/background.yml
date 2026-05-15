@@ -48,31 +48,15 @@
     - !type:BackgroundEffect
       background: DeificEncounter
 
-- type: trait
-  id: MagicalEncounter
-  name: trait-background-magical-encounter-name
-  description: trait-background-magical-encounter-description
-  category: BackgroundTraits
-  cost: 2 #FH
-  effects:
-    - !type:BackgroundEffect
-      background: MagicalEncounter
-    # Far Horizons start
-    - !type:AddCompsEffect
-      components:
-      - type: IntrinsicAugments
-        action: ActionOpenCantripStore
-        addComponents:
-          - type: Store
-            name: store-preset-name-cantrips
-            categories:
-            - CantripsStandard
-            currencyWhitelist:
-            - IntrinsicPoint # Far Horizons
-            refundAllowed: false
-            balance:
-              IntrinsicPoint: 2 # Far Horizons
-    # Far Horizons end
+# FH - heavily changed and moved
+# - type: trait
+#   id: MagicalEncounter
+#   name: trait-background-magical-encounter-name
+#   description: trait-background-magical-encounter-description
+#   category: BackgroundTraits
+#   effects:
+#     - !type:BackgroundEffect
+#       background: MagicalEncounter
 
 - type: trait
   id: Abducted

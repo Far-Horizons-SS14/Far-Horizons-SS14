@@ -5,6 +5,7 @@
          xmlns:ui1="clr-namespace:Content.Client._Starlight.Lobby.UI"
          xmlns:traits="clr-namespace:Content.Client._Starlight.Traits.UI"
          xmlns:profileEditorControls="clr-namespace:Content.Client.Lobby.UI.ProfileEditorControls"
+         xmlns:cybernetics="clr-namespace:Content.Client._FarHorizons.Humanoid.UI"
          HorizontalExpand="True">
         <!-- Left side -->
         <BoxContainer Orientation="Vertical" Margin="10 10 10 10" HorizontalExpand="True">
@@ -180,7 +181,7 @@
                 <BoxContainer Name="CyberneticsTab" Orientation="Vertical" Margin="10">
                     <!-- Cybernetics -->
                     <ScrollContainer VerticalExpand="True">
-                        <humanoid:CyberneticsPicker Name="Cybernetics" />
+                        <cybernetics:CyberneticsPicker Name="Cybernetics" />
                     </ScrollContainer>
                 </BoxContainer>
                 <!-- Starlight start-->

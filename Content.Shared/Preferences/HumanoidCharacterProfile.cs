@@ -654,16 +654,13 @@ namespace Content.Shared.Preferences
             }
 
             var allCybernetics = CyberneticImplant.GetAllCybernetics(prototypeManager);
-            var installedCybernetics = allCybernetics.Where(p => Cybernetics.Contains(p.ID))
-                                       .ToList();
-            if (installedCybernetics.Select(p => p.Cost).Sum() <= speciesPrototype.RoundstartCyberwareCapacity)
-            {
-                Cybernetics = installedCybernetics.Select(p => p.ID).ToList();
-            }
-            else
-            {
-                Cybernetics = [];
-            }
+            // Far Horizons start
+            var installedCybernetics = allCybernetics.Where(p => Cybernetics.Contains(p.Id)).ToList();
+            Cybernetics =
+                installedCybernetics.Select(p => p.Cost).Sum() <= GetProfileCyberwareCapacity(prototypeManager)
+                    ? installedCybernetics.Select(p => p.Id).ToList()
+                    : [];
+            // Far Horizons end
             // Starlight - End
 
             string flavortext;

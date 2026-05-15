@@ -52,28 +52,50 @@
   id: LeftArmCyber
   components:
     - type: RoundstartImplantable
-      cost: 1
+      cost: 0
+      iconScale: 3
+      iconOffset: -50, -30
+      description:
+        - roundstart-cybernetics-basic-level-description
+        - roundstart-cybernetics-hand-attached-description
+        - roundstart-cybernetics-generic-limb-description
 
 - type: entity
   parent: [ OrganCyberArmRight, WithRightCyberHand ]
   id: RightArmCyber
   components:
     - type: RoundstartImplantable
-      cost: 1
+      cost: 0
+      iconScale: 3
+      iconOffset: -20, -30
+      description:
+        - roundstart-cybernetics-basic-level-description
+        - roundstart-cybernetics-hand-attached-description
+        - roundstart-cybernetics-generic-limb-description
 
 - type: entity
   parent: OrganCyberHandLeft
   id: LeftHandCyber
   components:
     - type: RoundstartImplantable
-      cost: 1
+      cost: 0
+      iconScale: 3
+      iconOffset: -60, -45
+      description:
+        - roundstart-cybernetics-basic-level-description
+        - roundstart-cybernetics-generic-limb-description
 
 - type: entity
   parent: OrganCyberHandRight
   id: RightHandCyber
   components:
     - type: RoundstartImplantable
-      cost: 1
+      cost: 0
+      iconScale: 3
+      iconOffset: -10, -45
+      description:
+        - roundstart-cybernetics-basic-level-description
+        - roundstart-cybernetics-generic-limb-description
 
 - type: entity
   parent: [ OrganCyberLegLeft, WithLeftCyberFoot ]
@@ -82,7 +104,13 @@
     - type: MovementOrgan
       sprintSpeedModifier: 1.05 # +5%
     - type: RoundstartImplantable
-      cost: 2
+      cost: 0
+      iconScale: 3
+      iconOffset: -45, -68
+      description:
+        - roundstart-cybernetics-basic-level-description
+        - roundstart-cybernetics-foot-attached-description
+        - roundstart-cybernetics-generic-limb-description
 
 - type: entity
   parent: [ OrganCyberLegRight, WithRightCyberFoot ]
@@ -91,21 +119,37 @@
     - type: MovementOrgan
       sprintSpeedModifier: 1.05 # +5%
     - type: RoundstartImplantable
-      cost: 2
+      cost: 0
+      iconScale: 3
+      iconOffset: -25, -68
+      description:
+        - roundstart-cybernetics-basic-level-description
+        - roundstart-cybernetics-foot-attached-description
+        - roundstart-cybernetics-generic-limb-description
 
 - type: entity
   parent: OrganCyberFootLeft
   id: LeftFootCyber
   components:
     - type: RoundstartImplantable
-      cost: 1
+      cost: 0
+      iconScale: 3
+      iconOffset: -45, -80
+      description:
+        - roundstart-cybernetics-basic-level-description
+        - roundstart-cybernetics-generic-limb-description
 
 - type: entity
   parent: OrganCyberFootRight
   id: RightFootCyber
   components:
     - type: RoundstartImplantable
-      cost: 1
+      cost: 0
+      iconScale: 3
+      iconOffset: -25, -80
+      description:
+        - roundstart-cybernetics-basic-level-description
+        - roundstart-cybernetics-generic-limb-description
       
 #reaper
 - type: entity
@@ -206,6 +250,14 @@
           - CyberHandItem
       stateOn: l_steel_arm_TOOLS
       stateOff: l_steel_arm
+    - type: RoundstartImplantable
+      cost: 2
+      iconScale: 2.5
+      iconOffset: -40, -25
+      description:
+        - roundstart-cybernetics-mechwright-description
+        - roundstart-cybernetics-hand-attached-description
+        - roundstart-cybernetics-generic-limb-description
 
 - type: entity
   parent: [ OrganCyberArmRight, WithRightCyberHand ]
@@ -236,6 +288,14 @@
           - CyberHandItem
       stateOn: r_steel_arm_TOOLS
       stateOff: r_steel_arm
+    - type: RoundstartImplantable
+      cost: 2
+      iconScale: 2.5
+      iconOffset: -10, -25
+      description:
+        - roundstart-cybernetics-mechwright-description
+        - roundstart-cybernetics-hand-attached-description
+        - roundstart-cybernetics-generic-limb-description
 
 
 #Bulwark 
@@ -378,6 +438,12 @@
       stateOff: l_ripper_arm
     - type: RoundstartImplantable
       cost: 2
+      iconScale: 2.5
+      iconOffset: -40, -25
+      description:
+        - roundstart-cybernetics-ripper-description
+        - roundstart-cybernetics-hand-attached-description
+        - roundstart-cybernetics-generic-limb-description
     - type: Construction
       graph: RipperLeftGraph
       node: left
@@ -417,6 +483,12 @@
       stateOff: r_ripper_arm
     - type: RoundstartImplantable
       cost: 2
+      iconScale: 2.5
+      iconOffset: -10, -25
+      description:
+        - roundstart-cybernetics-ripper-description
+        - roundstart-cybernetics-hand-attached-description
+        - roundstart-cybernetics-generic-limb-description
     - type: Construction
       graph: RipperRightGraph
       node: right
@@ -611,7 +683,6 @@
       state: l_angel_arm
     - type: LimbItemStorage
       items:
-        - AutoinjectorCyber
         - AutoinjectorCyberTricordrazine
         - AutoinjectorCyberInaprovaline
         - DefibrillatorCyber
@@ -624,6 +695,14 @@
           - CyberHandItem
       stateOn: l_angel_arm_TOOLS
       stateOff: l_angel_arm
+    - type: RoundstartImplantable
+      cost: 1
+      iconScale: 2.5
+      iconOffset: -40, -25
+      description:
+        - roundstart-cybernetics-angel-description
+        - roundstart-cybernetics-hand-attached-description
+        - roundstart-cybernetics-generic-limb-description
 
 - type: entity
   id: RightArmCyberAngel
@@ -640,7 +719,6 @@
       state: r_angel_arm
     - type: LimbItemStorage
       items:
-        - AdvancedJetInjectorCyber
         - AutoinjectorCyberTricordrazine
         - AutoinjectorCyberInaprovaline
         - DefibrillatorCyber
@@ -653,6 +731,14 @@
           - CyberHandItem
       stateOn: r_angel_arm_TOOLS
       stateOff: r_angel_arm
+    - type: RoundstartImplantable
+      cost: 1
+      iconScale: 2.5
+      iconOffset: -10, -25
+      description:
+        - roundstart-cybernetics-angel-description
+        - roundstart-cybernetics-hand-attached-description
+        - roundstart-cybernetics-generic-limb-description
 
 # Zeus
 - type: entity
@@ -733,6 +819,14 @@
           - CyberHandItem
       stateOn: l_riplet_arm_TOOLS
       stateOff: l_riplet_arm
+    - type: RoundstartImplantable
+      cost: 2
+      iconScale: 2.5
+      iconOffset: -40, -25
+      description:
+        - roundstart-cybernetics-riplet-description
+        - roundstart-cybernetics-hand-attached-description
+        - roundstart-cybernetics-generic-limb-description
 
 - type: entity
   id: RightArmCyberRiplet
@@ -759,6 +853,14 @@
           - CyberHandItem
       stateOn: r_riplet_arm_TOOLS
       stateOff: r_riplet_arm
+    - type: RoundstartImplantable
+      cost: 2
+      iconScale: 2.5
+      iconOffset: -10, -25
+      description:
+        - roundstart-cybernetics-riplet-description
+        - roundstart-cybernetics-hand-attached-description
+        - roundstart-cybernetics-generic-limb-description
 
 # Persephone
 - type: entity
@@ -792,6 +894,14 @@
           - CyberHandItem
       stateOn: l_persephone_arm_TOOLS
       stateOff: l_persephone_arm
+    - type: RoundstartImplantable
+      cost: 1
+      iconScale: 2.5
+      iconOffset: -40, -25
+      description:
+        - roundstart-cybernetics-persephone-description
+        - roundstart-cybernetics-hand-attached-description
+        - roundstart-cybernetics-generic-limb-description
 
 - type: entity
   id: RightArmCyberPersephone
@@ -824,6 +934,14 @@
           - CyberHandItem
       stateOn: r_persephone_arm_TOOLS
       stateOff: r_persephone_arm
+    - type: RoundstartImplantable
+      cost: 1
+      iconScale: 2.5
+      iconOffset: -10, -25
+      description:
+        - roundstart-cybernetics-persephone-description
+        - roundstart-cybernetics-hand-attached-description
+        - roundstart-cybernetics-generic-limb-description
 
 # Scribe
 - type: entity
@@ -854,6 +972,14 @@
           - CyberHandItem
       stateOn: l_scribe_arm_TOOLS
       stateOff: l_scribe_arm
+    - type: RoundstartImplantable
+      cost: 1
+      iconScale: 2.5
+      iconOffset: -40, -25
+      description:
+        - roundstart-cybernetics-scribe-description
+        - roundstart-cybernetics-hand-attached-description
+        - roundstart-cybernetics-generic-limb-description
 
 - type: entity
   id: RightArmCyberScribe
@@ -883,6 +1009,14 @@
           - CyberHandItem
       stateOn: r_scribe_arm_TOOLS
       stateOff: r_scribe_arm
+    - type: RoundstartImplantable
+      cost: 1
+      iconScale: 2.5
+      iconOffset: -10, -25
+      description:
+        - roundstart-cybernetics-scribe-description
+        - roundstart-cybernetics-hand-attached-description
+        - roundstart-cybernetics-generic-limb-description
 
 # Herakles
 
@@ -999,12 +1133,20 @@
       sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi #FH
       state: l_leg_hydraulic
     - type: MovementOrgan
-      sprintSpeedModifier: 1.20
+      sprintSpeedModifier: 1.15
     - type: FootstepModifier
       footstepSoundCollection:
         path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
         params:
           volume: -10
+    - type: RoundstartImplantable
+      cost: 2
+      iconScale: 3
+      iconOffset: -45, -68
+      description:
+        - roundstart-cybernetics-hydraulic-description
+        - roundstart-cybernetics-foot-attached-description
+        - roundstart-cybernetics-generic-limb-description
 
 - type: entity
   id: RightLegCyberHydraulic
@@ -1025,6 +1167,14 @@
         path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
         params:
           volume: -10
+    - type: RoundstartImplantable
+      cost: 2
+      iconScale: 3
+      iconOffset: -25, -68
+      description:
+        - roundstart-cybernetics-hydraulic-description
+        - roundstart-cybernetics-foot-attached-description
+        - roundstart-cybernetics-generic-limb-description
 
 # Pilebunker Legs
 - type: entity
@@ -1117,6 +1267,14 @@
       interfaces:
         enum.StorageUiKey.Key:
           type: StorageBoundUserInterface
+    - type: RoundstartImplantable
+      cost: 1
+      iconScale: 3
+      iconOffset: -45, -68
+      description:
+        - roundstart-cybernetics-cargo-description
+        - roundstart-cybernetics-foot-attached-description
+        - roundstart-cybernetics-generic-limb-description
 
 - type: entity
   id: RightLegCyberCargo
@@ -1163,6 +1321,14 @@
       interfaces:
         enum.StorageUiKey.Key:
           type: StorageBoundUserInterface
+    - type: RoundstartImplantable
+      cost: 1
+      iconScale: 3
+      iconOffset: -25, -68
+      description:
+        - roundstart-cybernetics-cargo-description
+        - roundstart-cybernetics-foot-attached-description
+        - roundstart-cybernetics-generic-limb-description
 
 # Speed legs
 - type: entity

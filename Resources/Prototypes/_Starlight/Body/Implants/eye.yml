@@ -39,6 +39,14 @@
       damageContainers:
       - Inorganic
       - Silicon
+  # FH start
+  - type: RoundstartImplantable
+    cost: 1
+    iconScale: 1.3
+    iconOffset: -7, -7
+    description:
+      - roundstart-cybernetics-eye-diagnostic-description
+  # FH end
 
 - type: entity
   id: EyeImplantMedical
@@ -52,6 +60,14 @@
     comps:
     - type: ShowHealthBars
     - type: ShowHealthIcons
+  # FH start
+  - type: RoundstartImplantable
+    cost: 2
+    iconScale: 1.3
+    iconOffset: -7, -7
+    description:
+      - roundstart-cybernetics-eye-med-description
+  # FH end
 
 - type: entity
   id: EyeImplantChemistry
@@ -64,6 +80,14 @@
   - type: FunctionalOrgan
     comps:
     - type: SolutionScanner
+  # FH start
+  - type: RoundstartImplantable
+    cost: 1
+    iconScale: 1.3
+    iconOffset: -7, -7
+    description:
+      - roundstart-cybernetics-eye-chem-description
+  # FH end
 
 - type: entity
   id: EyeImplantSecurity

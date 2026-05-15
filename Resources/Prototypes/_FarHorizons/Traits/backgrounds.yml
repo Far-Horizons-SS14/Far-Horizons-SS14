@@ -1,0 +1,31 @@
+- type: trait
+  id: MagicalEncounter
+  name: trait-background-magical-encounter-name
+  description: trait-background-magical-encounter-description
+  category: BackgroundTraits
+  cost: 2
+  effects:
+    - !type:AddCompsEffect
+      components:
+      - type: IntrinsicAugments
+        action: ActionOpenCantripStore
+        addComponents:
+          - type: Store
+            name: store-preset-name-cantrips
+            categories:
+            - CantripsStandard
+            currencyWhitelist:
+            - IntrinsicPoint
+            refundAllowed: false
+            balance:
+              IntrinsicPoint: 2
+
+- type: trait
+  id: Chromehead
+  name: trait-background-chromehead-name
+  description: trait-background-chromehead-description
+  category: BackgroundTraits
+  cost: 3
+  effects:
+    - !type:CyberneticsPointsEffect
+      change: 3 # +3 points to spend
