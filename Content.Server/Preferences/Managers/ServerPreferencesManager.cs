@@ -346,9 +346,21 @@ namespace Content.Server.Preferences.Managers
             prefsData.Prefs = new PlayerPreferences(profiles, curPrefs.AdminOOCColor, curPrefs.ConstructionFavorites, curPrefs.JobPriorities);
 
             if (ShouldStorePrefs(session.Channel.AuthType))
-                await _db.SaveCharacterSlotAsync(userId, profile, slot);
+            {
+                try
+                {
+                    await _db.SaveCharacterSlotAsync(userId, profile, slot);
+                }
+                catch (Exception e)
+                {
+                    _sawmill.Error(
+                        $"Error saving character {slot} for user {userId} " +
+                        $"(symspeech voice='{profile.Symspeech?.Voice.Id ?? "<null>"}', " +
+                        $"silicon voice='{profile.SiliconSymspeech?.Voice.Id ?? "<null>"}'): {e}");
+                }
+            }
         }
-        
+
         public async Task SetConstructionFavorites(NetUserId userId, List<ProtoId<ConstructionPrototype>> favorites)
         {
             if (!_cachedPlayerPrefs.TryGetValue(userId, out var prefsData) || !prefsData.PrefsLoaded)
