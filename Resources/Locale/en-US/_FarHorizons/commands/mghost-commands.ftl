@@ -1,0 +1,1 @@
+fh-mghost-mentors-only = You are not a Mentor!

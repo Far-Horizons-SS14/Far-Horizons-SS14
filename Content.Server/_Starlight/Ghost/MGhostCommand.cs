@@ -39,7 +39,7 @@ public sealed class MGhostCommand : LocalizedCommands
 
         if (!_discordLinkManager.HasPermission(player.UserId.UserId, AdditionalPermissionsTypes.Mentor)) // if you are a admin you should be using aghost
         {
-            shell.WriteError(LocalizationManager.GetString("mghost-mentors-only"));
+            shell.WriteError(LocalizationManager.GetString("fh-mghost-mentors-only")); //FH, this didnt have a .ftl for some reason
             return;
         }
 
