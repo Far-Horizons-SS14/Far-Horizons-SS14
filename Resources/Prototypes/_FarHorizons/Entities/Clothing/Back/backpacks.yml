@@ -1,4 +1,4 @@
-# Cargo
+#region GSL
 
 - type: entity
   parent: [ ClothingBackpack, BaseCargoContraband ] 
@@ -9,10 +9,26 @@
   - type: Sprite
     sprite: _FarHorizons/Clothing/Back/Backpacks/mining.rsi
 
-# Engi
+
+
+#region ## NanoTrasen ##
+
+
+
+
+
+#region Command
+- type: entity
+  parent: [ClothingBackpack, BaseCommandContraband]
+  id: ClothingBackpackCMO
+  name: Chief Medical Officer's Backpack
+  description: It's a sterile backpack designed for the NanoTrasen Chief Medical Officer.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Back/Backpacks/cmo.rsi
 
 - type: entity
-  parent: ClothingBackpack
+  parent: [ClothingBackpack, BaseCommandContraband]
   id: ClothingBackpackChiefEngineer
   name: Chief Engineer's Backpack
   description: It's a backpack especially designed for use in a spacious environment.
@@ -21,7 +37,7 @@
       sprite: _FarHorizons/Clothing/Back/Backpacks/chief_engineer.rsi
 
 
-# Medical
+#region Medical
 
 - type: entity
   parent: ClothingBackpack
@@ -32,7 +48,7 @@
   - type: Sprite
     sprite: _FarHorizons/Clothing/Back/Backpacks/paramedic.rsi
 
-# Security
+#region Security
 
 - type: entity
   parent: [ClothingBackpack, BaseSecurityContraband]
@@ -42,3 +58,139 @@
   components:
   - type: Sprite
     sprite: _FarHorizons/Clothing/Back/Backpacks/corpsman.rsi
+
+# region ## NeoSol ##
+
+
+
+
+
+
+#region Command
+- type: entity
+  parent: [ClothingBackpack, BaseCommandContraband, BaseSyndicateContraband]
+  id: ClothingBackpackMD
+  name: Medical Officer's Backpack
+  description: It's a sterile backpack especially designed for use by the NeoSol Medical Director.
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Back/Backpacks/NeoSol/cmo.rsi
+
+- type: entity
+  parent: [ClothingBackpack, BaseCommandContraband, BaseSyndicateContraband]
+  id: ClothingBackpackForeman
+  name: Foreman's Backpack
+  description: It's a very robust backpack, some wires are burnt into it.
+  suffix: NS
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Clothing/Back/Backpacks/NeoSol/foreman.rsi
+    - type: Tag
+      tags:
+        - Syndicate
+        - WhitelistChameleon
+        - Backpack
+
+#region Medical
+- type: entity
+  parent: [ClothingBackpack, BaseSyndicateContraband]
+  id: ClothingBackpackMedicalSyndi
+  name: Medical Backpack
+  description: It's a backpack especially designed for use in a sterile environment.
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Back/Backpacks/NeoSol/medical.rsi
+
+- type: entity
+  parent: [ClothingBackpack, BaseSyndicateContraband]
+  id: ClothingBackpackChemistrySyndi
+  name: Pharmacist Backpack
+  description: A backpack specially designed to repel stains and hazardous liquids.
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Back/Backpacks/NeoSol/chemistry.rsi
+
+- type: entity
+  parent: [ClothingBackpack, BaseSyndicateContraband]
+  id: ClothingBackpackParamedicSyndi
+  name: Paramedic Backpack
+  description: It's a backpack especially designed for use in a spacious environment.
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Back/Backpacks/NeoSol/paramedic.rsi
+
+- type: entity
+  parent: [ClothingBackpack, BaseSyndicateContraband]
+  id: ClothingBackpackVirologySyndi
+  name: Virology Backpack 
+  description: A backpack made of hypo-allergenic fibers. It's designed to help prevent the spread of disease. Smells like monkey.
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Back/Backpacks/NeoSol/virology.rsi
+
+#region Security
+- type: entity
+  parent: [ClothingBackpack, BaseSecurityContraband, BaseSyndicateContraband]
+  id: ClothingBackpackSyndicateSecurity
+  name: Security Backpack
+  description: It's a very robust backpack.
+  suffix: NS
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Clothing/Back/Backpacks/NeoSol/security.rsi
+    - type: Tag
+      tags:
+        - Syndicate
+        - WhitelistChameleon
+        - Backpack
+
+- type: entity
+  parent: [ClothingBackpack, BaseSecurityContraband, BaseSyndicateContraband]
+  id: ClothingBackpackSyndicateBrigmedic
+  name: Brigmedic Backpack
+  description: It's a very sterile backpack.
+  suffix: NS
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Clothing/Back/Backpacks/NeoSol/brigmedic.rsi
+    - type: Tag
+      tags:
+        - Syndicate
+        - WhitelistChameleon
+        - Backpack
+
+#region Engineering
+- type: entity
+  parent: [ClothingBackpack, BaseSyndicateContraband]
+  id: ClothingBackpackNeosolEngineering
+  name: Engineering Backpack
+  description: It's a very robust backpack for holding tons of materials and tools.
+  suffix: NS
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Clothing/Back/Backpacks/NeoSol/engineering.rsi
+    - type: Tag
+      tags:
+        - Syndicate
+        - WhitelistChameleon
+        - Backpack
+
+- type: entity
+  parent: [ClothingBackpack, BaseSyndicateContraband]
+  id: ClothingBackpackNeosolAtmospherics
+  name: Atmospherics Backpack
+  description: It's a very robust backpack for holding massive pipes and air related tanks.
+  suffix: NS
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Clothing/Back/Backpacks/NeoSol/atmospherics.rsi
+    - type: Tag
+      tags:
+        - Syndicate
+        - WhitelistChameleon
+        - Backpack
