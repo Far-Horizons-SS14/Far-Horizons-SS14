@@ -60,4 +60,64 @@ public sealed partial class FusionSystem
             decay.React(fusionMix, deltaT);
         }
     }
+
+    /// <summary>
+    /// Divides a source fusion mixture into several recipient mixtures, scaled by their relative constrained volumes.
+    /// </summary>
+    /// <remarks>
+    /// Serves the same function as AtmosphereSystem.DivideInto
+    /// </remarks>
+    public void DivideInto(FusionMixture source, List<FusionMixture> receivers)
+    {
+        // TODO: big maths
+        var totalVolume = 0d;
+        foreach (var receiver in receivers)
+        {
+            totalVolume += receiver.ConstrainedVolume;
+        }
+
+        double? sourceHeatCap = null;
+
+        foreach (var receiver in receivers)
+        {
+            var fraction = receiver.ConstrainedVolume / totalVolume;
+
+            if (Math.Abs(source.Temperature - receiver.Temperature) >= 0.01)
+            {
+                if (receiver.TotalMoles == 0)
+                    receiver.Temperature = source.Temperature;
+                else
+                {
+                    sourceHeatCap ??= source.HeatCap;
+                    var receiverHeatCap = receiver.HeatCap;
+                    var combinedHeatCap = receiverHeatCap + (sourceHeatCap.Value * fraction);
+                    if (combinedHeatCap > 0.003)
+                        receiver.Temperature = ((source.Temperature * sourceHeatCap.Value * fraction) + (receiver.Temperature * receiverHeatCap)) / combinedHeatCap;
+                }
+            }
+
+            receiver.Pressure = source.Pressure;
+            foreach (var kvp in source.Atoms)
+            {
+                receiver.Atoms[kvp.Key] = receiver.Atoms.GetValueOrDefault(kvp.Key) + (kvp.Value * fraction);
+            }
+        }
+    }
+
+    public void Merge(FusionMixture receiver, FusionMixture source)
+    {
+        if (Math.Abs(source.Temperature - receiver.Temperature) >= 0.01)
+        {
+            var sourceHeatCap = source.HeatCap;
+            var receiverHeatCap = receiver.HeatCap;
+            var combinedHeatCap = receiverHeatCap + sourceHeatCap;
+            if (combinedHeatCap > 0.003)
+                receiver.Temperature = ((source.Temperature * sourceHeatCap) + (receiver.Temperature * receiverHeatCap)) / combinedHeatCap;
+        }
+
+        foreach (var kvp in source.Atoms)
+        {
+            receiver.Atoms[kvp.Key] = receiver.Atoms.GetValueOrDefault(kvp.Key) + kvp.Value;
+        }
+    }
 }

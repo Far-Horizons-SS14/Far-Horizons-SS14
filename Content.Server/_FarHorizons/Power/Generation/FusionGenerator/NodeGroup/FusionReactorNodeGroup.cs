@@ -1,0 +1,151 @@
+using System.Linq;
+using Content.Server._FarHorizons.Fusion;
+using Content.Server._FarHorizons.Fusion.Systems;
+using Content.Server._FarHorizons.Power.Generation.FusionGenerator.Components;
+using Content.Server._FarHorizons.Power.Generation.FusionGenerator.EntitySystems;
+using Content.Server.Atmos.EntitySystems;
+using Content.Server.NodeContainer.NodeGroups;
+using Content.Shared.Atmos;
+using Content.Shared.NodeContainer;
+using Content.Shared.NodeContainer.NodeGroups;
+using Robust.Server.GameObjects;
+using Robust.Shared.Map.Components;
+using Robust.Shared.Timing;
+
+namespace Content.Server._FarHorizons.Power.Generation.FusionGenerator.NodeGroup;
+
+[NodeGroup(NodeGroupID.FusionReactor)]
+public sealed partial class FusionReactorNodeGroup : BaseNodeGroup
+{
+    [Dependency] private readonly IGameTiming _gameTiming = default!;
+    [Dependency] private readonly EntityManager _entityManager = default!;
+
+    [ViewVariables]
+    private FusionReactorSystem? _fusionReactorSystem;
+    [ViewVariables]
+    private AtmosphereSystem? _atmosphereSystem;
+
+    [ViewVariables]
+    private FusionSystem? _fusionSystem;
+
+    [ViewVariables]
+    private EntityUid? _masterController;
+
+    private const float LitersPerTorus = 2500;
+    private const float LitersPerMagnet = 200;
+
+    [ViewVariables]
+    public TimeSpan LastProcess = TimeSpan.Zero;
+
+    /// <summary>
+    /// Torus parts that count as magnets for the fusion reactor, similar to an AME's cores.
+    /// </summary>
+    public readonly List<Entity<FusionReactorTorusComponent>> Magnets = [];
+    public int MagnetCount => Magnets.Count;
+
+    /// <summary>
+    /// Torus parts that aren't magnets.
+    /// </summary>
+    public readonly List<Entity<FusionReactorTorusComponent>> Torus = [];
+
+    public override void Initialize(Node sourceNode, IEntityManager entMan)
+    {
+        base.Initialize(sourceNode, entMan);
+
+        _fusionSystem = entMan.EntitySysManager.GetEntitySystem<FusionSystem>();
+        _fusionReactorSystem = entMan.EntitySysManager.GetEntitySystem<FusionReactorSystem>();
+        _fusionReactorSystem.AddReactor(this);
+
+        _atmosphereSystem = entMan.EntitySysManager.GetEntitySystem<AtmosphereSystem>();
+    }
+
+    public override void LoadNodes(List<Node> groupNodes)
+    {
+        base.LoadNodes(groupNodes);
+
+        EntityUid? gridEnt = null;
+
+        var torusQuery = _entityManager.GetEntityQuery<FusionReactorTorusComponent>();
+        var controllerQuery = _entityManager.GetEntityQuery<FusionReactorControllerComponent>();
+        var xformQuery = _entityManager.GetEntityQuery<TransformComponent>();
+        foreach (var node in groupNodes)
+        {
+            var nodeOwner = node.Owner;
+            if (!xformQuery.TryGetComponent(nodeOwner, out var xform))
+                continue;
+            if (!_entityManager.TryGetComponent(xform.GridUid, out MapGridComponent? grid))
+                continue;
+
+            if (gridEnt == null)
+                gridEnt = xform.GridUid;
+            else if (gridEnt != xform.GridUid)
+                continue;
+
+            if (torusQuery.TryGetComponent(nodeOwner, out var torus))
+            {
+                LoadTorus(nodeOwner, torus, xform, grid, torusQuery);
+                continue;
+            }
+
+            if (controllerQuery.TryGetComponent(nodeOwner, out var controller))
+            {
+                LoadController(nodeOwner);
+                continue;
+            }
+        }
+
+        Plasma.ConstrainedVolume = Torus.Count * LitersPerTorus;
+
+        CoolantIn.Volume = Magnets.Count * LitersPerMagnet;
+        CoolantOut.Volume = CoolantIn.Volume;
+
+        return;
+
+        void LoadTorus(EntityUid nodeOwner, FusionReactorTorusComponent torus, TransformComponent xform, MapGridComponent grid, EntityQuery<FusionReactorTorusComponent> torusQuery)
+        {
+            var mapSystem = _entityManager.System<MapSystem>();
+
+            var nodeNeighbors = mapSystem.GetCellsInSquareArea(xform.GridUid!.Value, grid, xform.Coordinates, 1)
+                .Where(entity => entity != nodeOwner && torusQuery.HasComponent(entity));
+
+            if (nodeNeighbors.Count() >= 8)
+            {
+                Magnets.Add((nodeOwner, torus));
+                _fusionReactorSystem?.SetMagnet(nodeOwner, torus, true);
+            }
+            else
+            {
+                Torus.Add((nodeOwner, torus));
+                _fusionReactorSystem?.SetMagnet(nodeOwner, torus, false);
+            }
+        }
+
+        void LoadController(EntityUid nodeOwner)
+        {
+            if (_masterController == null)
+                _masterController = nodeOwner;
+        }
+    }
+
+    public override void AfterRemake(IEnumerable<IGrouping<INodeGroup?, Node>> newGroups)
+    {
+        _fusionReactorSystem?.RemoveReactor(this);
+
+        var newPlasma = new List<FusionMixture>(newGroups.Count());
+        var newCoolantIn = new List<GasMixture>(newGroups.Count());
+        var newCoolantOut = new List<GasMixture>(newGroups.Count());
+        foreach (var group in newGroups)
+        {
+            if (group.Key is FusionReactorNodeGroup newGroup)
+            {
+                newPlasma.Add(newGroup.Plasma);
+                newCoolantIn.Add(newGroup.CoolantIn);
+                newCoolantOut.Add(newGroup.CoolantOut);
+            }
+        }
+
+        _fusionSystem?.DivideInto(Plasma, newPlasma);
+        _atmosphereSystem?.DivideInto(CoolantIn, newCoolantIn);
+        _atmosphereSystem?.DivideInto(CoolantOut, newCoolantOut);
+    }
+}

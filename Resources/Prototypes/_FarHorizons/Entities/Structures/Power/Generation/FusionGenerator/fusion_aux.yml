@@ -1,0 +1,33 @@
+- type: entity
+  id: FusionReactorCoolantPumpInlet
+  parent: BaseStructure
+  name: Fusion Reactor Coolant Pump
+  description: A port of the coolant system for the fusion reactor.
+  components:
+  - type: Sprite
+    sprite: Structures/Piping/Atmospherics/thermomachine.rsi
+    layers:
+      - state: freezerOn
+  - type: FusionReactorCoolantPump
+  - type: AtmosDevice
+  - type: NodeContainer
+    examinable: true
+    nodes:
+      reactor:
+        !type:AdjacentNode
+        nodeGroupID: FusionReactor
+      pipe:
+        !type:PipeNode
+        nodeGroupID: Pipe
+        pipeDirection: South
+        volume: 1000
+
+- type: entity
+  id: FusionReactorCoolantPumpOutlet
+  parent: FusionReactorCoolantPumpInlet
+  components:
+  - type: Sprite
+    layers:
+      - state: heaterOn
+  - type: FusionReactorCoolantPump
+    isInlet: false

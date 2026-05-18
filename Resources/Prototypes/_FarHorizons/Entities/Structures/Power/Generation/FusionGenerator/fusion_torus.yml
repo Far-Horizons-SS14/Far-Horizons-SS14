@@ -1,8 +1,8 @@
 - type: entity
-  id: BaseFusionReactorTorus
+  id: FusionReactorTorus
   parent: BaseStructure
   name: Fusion Reactor Torus
-  description: A piece of a Fusion Reactor's magnetic torus.
+  description: A piece of a Fusion Reactor's magnetic torus. The only thing between you and the power of the sun.
   components:
   - type: Sprite
     sprite: Structures/Walls/solid.rsi
@@ -10,4 +10,9 @@
     key: fusion_torus
     base: solid
   - type: FusionReactorTorus
-  - type: FusionDevice
+  - type: NodeContainer
+    examinable: true
+    nodes:
+      reactor:
+        !type:AdjacentNode
+        nodeGroupID: FusionReactor
