@@ -67,6 +67,23 @@
     - PetWearable
     - WhitelistChameleon
 
+- type: entity
+  parent: ClothingEyesBase
+  id: ClothingEyesHudSkillsSyndi
+  name: Skills HUD 
+  description: Visor with a built-in skills HUD, showing the employment history of nearby NS crew members.
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Eyes/Hud/NeoSol/hudskill.rsi 
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Eyes/Hud/NeoSol/hudskill.rsi 
+  - type: ShowJobIcons
+  - type: ShowMindShieldIcons
+  - type: ShowCriminalRecordIcons
+  - type: EyeProtection
+    protectionTime: 5
+
 #region Medical
 - type: entity
   parent: [ClothingEyesHudBase, ShowMedicalIcons]

@@ -1,5 +1,5 @@
 
-#region Law ####
+#region ## CFA ##
 
 - type: entity
   parent: ClothingEyesBase
@@ -43,7 +43,7 @@
     coverage: EYES
   - type: ShowJobIcons
 
-#region NanoTrasen ##
+#region ## NanoTrasen ##
 
 
 - type: entity
@@ -71,7 +71,7 @@
   - type: IdentityBlocker
     coverage: EYES
 
-#region Syndicate ####
+#region ## NanoTrasen ##
 
 
 
@@ -104,6 +104,22 @@
   - type: IdentityBlocker
     coverage: EYES
   - type: ShowJobIcons
+
+- type: entity
+  parent: ClothingEyesBase
+  id: ClothingEyesSunGlassesHudSkillSyndi
+  name: Skills Sunglasses 
+  description: Sunglasses with a build-in skills HUD, showing the employment history of nearby NS crew members.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Eyes/Glasses/NeoSol/sunhudskill.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Eyes/Glasses/NeoSol/sunhudskill.rsi
+  - type: ShowJobIcons
+  - type: ShowMindShieldIcons
+  - type: ShowCriminalRecordIcons
+  - type: EyeProtection
+    protectionTime: 5
 
 #region Engineering
 

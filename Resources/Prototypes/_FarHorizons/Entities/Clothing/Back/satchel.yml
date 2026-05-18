@@ -73,7 +73,7 @@
       sprite: _FarHorizons/Clothing/Back/Satchels/NeoSol/cmo.rsi
 
 - type: entity
-  parent: [ClothingBackpackSatchel, BaseSyndicateContraband,]
+  parent: [ClothingBackpackSatchel ,]
   id: ClothingBackpackSatchelForeman
   name: Foreman's Satchel
   suffix: NS
@@ -89,7 +89,7 @@
 
 #region Medical
 - type: entity
-  parent: [ClothingBackpackSatchel, BaseSyndicateContraband]
+  parent: [ClothingBackpackSatchel ]
   id: ClothingBackpackSatchelMedicalSyndi
   name: Medical Satchel 
   description: A sterile satchel used in medical departments.
@@ -99,7 +99,7 @@
     sprite: _FarHorizons/Clothing/Back/Satchels/NeoSol/medical.rsi 
 
 - type: entity
-  parent: [ClothingBackpackSatchel, BaseSyndicateContraband]
+  parent: [ClothingBackpackSatchel ]
   id: ClothingBackpackSatchelChemistrySyndi
   name: Pharmacist Satchel 
   description: A sterile satchel with chemist colours.
@@ -109,7 +109,7 @@
     sprite: _FarHorizons/Clothing/Back/Satchels/NeoSol/chemistry.rsi 
 
 - type: entity
-  parent: [ClothingBackpackSatchel, BaseSyndicateContraband]
+  parent: [ClothingBackpackSatchel ]
   id: ClothingBackpackSatchelParamedicSyndi
   name: Paramedic Satchel
   description: A medical satchel that has seen a fair amount of use in the depths of space.
@@ -119,7 +119,7 @@
     sprite: _FarHorizons/Clothing/Back/Satchels/NeoSol/paramedic.rsi
 
 - type: entity
-  parent: [ClothingBackpackSatchel, BaseSyndicateContraband]
+  parent: [ClothingBackpackSatchel ]
   id: ClothingBackpackSatchelVirologySyndi
   name: Virology Satchel 
   description: A satchel made of hypo-allergenic fibers. It's designed to help prevent the spread of disease. Smells like monkey.
@@ -130,7 +130,7 @@
 
 #region Security
 - type: entity
-  parent: [ClothingBackpackSatchel, BaseSyndicateContraband]
+  parent: [ClothingBackpackSatchel ]
   id: ClothingBackpackSatchelSyndicateSecurity
   name: Security Satchel
   suffix: NS
@@ -145,7 +145,7 @@
         - Backpack
 
 - type: entity
-  parent: [ClothingBackpackSatchel, BaseSyndicateContraband]
+  parent: [ClothingBackpackSatchel ]
   id: ClothingBackpackSatchelSyndicateBrigmedic
   name: Brigmedic Satchel
   suffix: NS
@@ -162,7 +162,7 @@
 #region Engineering
 
 - type: entity
-  parent: [ ClothingBackpackSatchel, BaseSyndicateContraband ]
+  parent: [ ClothingBackpackSatchel  ]
   id: ClothingBackpackSatchelNeosolEngineering
   name: Engineering Satchel
   suffix: NS
@@ -177,7 +177,7 @@
         - Backpack
 
 - type: entity
-  parent: [ ClothingBackpackSatchel, BaseSyndicateContraband ]
+  parent: [ ClothingBackpackSatchel  ]
   id: ClothingBackpackSatchelNeosolAtmospherics
   name: Atmospherics Satchel
   suffix: NS

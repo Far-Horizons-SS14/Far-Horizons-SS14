@@ -175,7 +175,7 @@
       sprite: _FarHorizons/Clothing/Back/Duffels/salvage.rsi #Far Horizons
 
 - type: entity
-  parent: [ClothingBackpackDuffel, BaseSyndicateContraband]
+  parent: [ClothingBackpackDuffel ]
   id: ClothingBackpackDuffelSyndicate
   name: Syndicate Duffel Bag #Far Horizons - The Great Capitalization Crusade
   description: A large duffel bag for holding various traitor goods.
@@ -189,7 +189,7 @@
     - 0,0,8,4
 
 - type: entity
-  parent: [ ClothingBackpackDuffelSyndicate, BaseSyndicateContraband ]
+  parent: [ ClothingBackpackDuffelSyndicate  ]
   id: ClothingBackpackDuffelSyndicateBundle
   abstract: true
   components:

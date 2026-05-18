@@ -99,7 +99,7 @@
 # Personnel Manager (HoP)
 
 - type: entity
-  parent: ClothingOuterCoatHoP
+  parent: [ClothingOuterCoatHoP ]
   id: ClothingOuterCoatHoPSyndi
   name: Personnel Manager's Jacket
   suffix: NS
@@ -116,7 +116,7 @@
 # Marshal (HoS)
 
 - type: entity
-  parent: [ClothingOuterArmorHoS, ClothingOuterStorageBase, BaseSecurityCommandContraband]
+  parent: [ClothingOuterArmorHoS, ClothingOuterStorageBase, BaseSecurityCommandContraband ]
   id: ClothingOuterCoatHoSTrenchSyndi
   name: Marshal's Armored Trenchcoat
   suffix: NS
@@ -127,101 +127,26 @@
   - type: Clothing
     sprite: _FarHorizons/Clothing/OuterClothing/Coats/NeoSol/hos_trenchcoat.rsi
 
-#region Medical
+# NSR
 
-#Lab Coat
 - type: entity
-  parent: ClothingOuterStorageFoldableBase
-  id: ClothingOuterCoatLabSyndi
-  name: Lab Coat 
-  description: A suit that protects against minor chemical spills.
+  parent: [ BaseCommandContraband, ClothingOuterStorageBase  ]
+  id: ClothingOuterCoatNSR
+  name: NeoSol Representatives's Jacket
   suffix: NS
+  description: A gold lined coat for the official representative of NeoSol on station.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/OuterClothing/Coats/NeoSol/labcoat.rsi 
+    sprite: _FarHorizons/Clothing/OuterClothing/Coats/NeoSol/nsrep.rsi
   - type: Clothing
-    sprite: _FarHorizons/Clothing/OuterClothing/Coats/NeoSol/labcoat.rsi 
-  - type: Pierceable
-    level: Metal
-  - type: Armor
-    modifiers:
-      coefficients:
-        Caustic: 0.75
-  - type: LimbArmor # Far Horizons
-    limbs:
-      ArmRight: {}
-      ArmLeft: {}
-      LegRight: {}
-      LegLeft: {}
+    sprite: _FarHorizons/Clothing/OuterClothing/Coats/NeoSol/nsrep.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: equipped-OUTERCLOTHING
 
+# Medical Director
 - type: entity
-  parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterCoatLabSyndi]
-  id: ClothingOuterCoatLabSyndiOpened
-  name: Lab Coat
-
-#Senior Lab Coat
-- type: entity
-  parent: ClothingOuterStorageFoldableBase
-  id: ClothingOuterCoatLabSeniorPhysicianSyndi
-  name: Senior Physician Lab Coat 
-  description: A suit that protects against minor chemical spills. Has light blue sleeves and an orange waist trim.
-  suffix: NS
-  components:
-  - type: Sprite
-    sprite: _FarHorizons/Clothing/OuterClothing/Coats/NeoSol/labcoat_senior_physician.rsi
-  - type: Clothing
-    sprite: _FarHorizons/Clothing/OuterClothing/Coats/NeoSol/labcoat_senior_physician.rsi
-  - type: Pierceable
-    level: Metal
-  - type: Armor
-    modifiers:
-      coefficients:
-        Caustic: 0.75
-  - type: LimbArmor
-    limbs:
-      ArmRight: {}
-      ArmLeft: {}
-      LegRight: {}
-      LegLeft: {}
-
-- type: entity
-  parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterCoatLabSeniorPhysicianSyndi]
-  id: ClothingOuterCoatLabSeniorPhysicianSyndiOpened
-  name: Senior Physician Lab Coat
-
-#Pharmacist Coat
-- type: entity
-  parent: ClothingOuterStorageFoldableBase
-  id: ClothingOuterCoatLabChemSyndi
-  name: Pharmacist Lab Coat 
-  description: A suit that protects against minor chemical spills. Has an orange stripe on the shoulder.
-  suffix: NS
-  components:
-  - type: Sprite
-    sprite: _FarHorizons/Clothing/OuterClothing/Coats/NeoSol/labcoat_chem.rsi 
-  - type: Clothing
-    sprite: _FarHorizons/Clothing/OuterClothing/Coats//NeoSol/labcoat_chem.rsi 
-  - type: Pierceable
-    level: Metal
-  - type: Armor
-    modifiers:
-      coefficients:
-        Caustic: 0.75
-  - type: LimbArmor # Far Horizons
-    limbs:
-      ArmRight: {}
-      ArmLeft: {}
-      LegRight: {}
-      LegLeft: {}
-
-- type: entity
-  parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterCoatLabChemSyndi]
-  id: ClothingOuterCoatLabChemSyndiOpened
-  name: Pharmacist Lab Coat
-
-#Medical Director
-- type: entity
-  parent: ClothingOuterStorageFoldableBase
+  parent: [ClothingOuterStorageFoldableBase, BaseCommandContraband ]
   id: ClothingOuterCoatLabCmoSyndi
   name: Medical Director's Lab Coat 
   description: Custom made blue lab coat for the Medical Director, offers improved protection against chemical spills and minor cuts.
@@ -251,9 +176,101 @@
   id: ClothingOuterCoatLabCmoSyndiOpened
   name: Medical Director's Lab Coat
 
+#region Medical
+
+#Lab Coat
+- type: entity
+  parent: [ClothingOuterStorageFoldableBase ]
+  id: ClothingOuterCoatLabSyndi
+  name: Lab Coat 
+  description: A suit that protects against minor chemical spills.
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/Coats/NeoSol/labcoat.rsi 
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/Coats/NeoSol/labcoat.rsi 
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      coefficients:
+        Caustic: 0.75
+  - type: LimbArmor # Far Horizons
+    limbs:
+      ArmRight: {}
+      ArmLeft: {}
+      LegRight: {}
+      LegLeft: {}
+
+- type: entity
+  parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterCoatLabSyndi]
+  id: ClothingOuterCoatLabSyndiOpened
+  name: Lab Coat
+
+#Senior Lab Coat
+- type: entity
+  parent: [ClothingOuterStorageFoldableBase ]
+  id: ClothingOuterCoatLabSeniorPhysicianSyndi
+  name: Senior Physician Lab Coat 
+  description: A suit that protects against minor chemical spills. Has light blue sleeves and an orange waist trim.
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/Coats/NeoSol/labcoat_senior_physician.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/Coats/NeoSol/labcoat_senior_physician.rsi
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      coefficients:
+        Caustic: 0.75
+  - type: LimbArmor
+    limbs:
+      ArmRight: {}
+      ArmLeft: {}
+      LegRight: {}
+      LegLeft: {}
+
+- type: entity
+  parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterCoatLabSeniorPhysicianSyndi]
+  id: ClothingOuterCoatLabSeniorPhysicianSyndiOpened
+  name: Senior Physician Lab Coat
+
+#Pharmacist Coat
+- type: entity
+  parent: [ClothingOuterStorageFoldableBase ]
+  id: ClothingOuterCoatLabChemSyndi
+  name: Pharmacist Lab Coat 
+  description: A suit that protects against minor chemical spills. Has an orange stripe on the shoulder.
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/Coats/NeoSol/labcoat_chem.rsi 
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/Coats//NeoSol/labcoat_chem.rsi 
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      coefficients:
+        Caustic: 0.75
+  - type: LimbArmor # Far Horizons
+    limbs:
+      ArmRight: {}
+      ArmLeft: {}
+      LegRight: {}
+      LegLeft: {}
+
+- type: entity
+  parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterCoatLabChemSyndi]
+  id: ClothingOuterCoatLabChemSyndiOpened
+  name: Pharmacist Lab Coat
+
 #Virologist
 - type: entity
-  parent: ClothingOuterStorageFoldableBase
+  parent: [ClothingOuterStorageFoldableBase ]
   id: ClothingOuterCoatLabViroSyndi
   name: Virologist Lab Coat 
   description: A suit that protects against bacteria and viruses. Has an green stripe on the shoulder.
@@ -284,7 +301,7 @@
 #region Science
 
 - type: entity
-  parent: ClothingOuterStorageFoldableBase
+  parent: [ClothingOuterStorageFoldableBase ]
   id: ClothingOuterCoatRndSyndi
   name: Academic Lab Coat 
   description: A good looking coat that researchers wear to protect their over-designed jumpsuits.
@@ -313,7 +330,7 @@
 # Constable (Warden)
 
 - type: entity
-  parent: [ ClothingOuterArmorWarden, ClothingOuterStorageBase, BaseSecurityContraband ]
+  parent: [ ClothingOuterArmorWarden, ClothingOuterStorageBase, BaseSecurityContraband  ]
   id: ClothingOuterCoatWardenSyndi
   name: Constable's Armored Jacket
   suffix: NS
@@ -327,7 +344,7 @@
 # Inspector (Detective)
 
 - type: entity
-  parent: [ClothingOuterStorageBase, AllowSuitStorageClothing, ClothingOuterArmorBase]
+  parent: [ClothingOuterStorageBase, AllowSuitStorageClothing, ClothingOuterArmorBase ]
   id: ClothingOuterCoatDetectiveSyndi
   name: Inspector Trenchcoat
   suffix: NS
