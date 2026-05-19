@@ -147,7 +147,7 @@
     base: solid
   - type: Paintable
     group: WallSolid
-  - type: PaintableWall
+  - type: GenericPaintable
 
 - type: entity
   parent: BaseWall
@@ -223,6 +223,9 @@
         layer:
         - WallLayer
         density: 2000
+  - type: Paintable
+    group: WallReinforced
+  - type: GenericPaintable
 
 - type: entity
   parent: BaseWall

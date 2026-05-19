@@ -674,7 +674,7 @@
         density: 2000
   - type: Paintable #FH start
     group: WallReinforced
-  - type: PaintableWall #FH end
+  - type: GenericPaintable #FH end
 
 - type: entity
   parent: WallReinforced
@@ -1052,7 +1052,7 @@
     base: solid
   - type: Paintable #FH start
     group: WallSolid 
-  - type: PaintableWall #FH end
+  - type: GenericPaintable #FH end
 
 - type: entity
   parent: WallDiagonalBase
