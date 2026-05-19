@@ -333,11 +333,24 @@
   id: ClothingHeadHatCapNsrep
   name: NS Representive Cap 
   description: The cap of justice over command!
+  suffix: NS
   components:
   - type: Sprite
     sprite: _FarHorizons/Clothing/Head/Hats/NeoSol/nsrep.rsi 
   - type: Clothing
     sprite: _FarHorizons/Clothing/Head/Hats/NeoSol/nsrep.rsi 
+
+- type: entity
+  parent: [ ClothingHeadBase, BaseRepresentativesContraband ] 
+  id: ClothingHeadHatBeretNsRep
+  name: NS Representive's Beret 
+  description: The beret of justice over command!
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Head/Hats/NeoSol/beret_nsrep.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Head/Hats/NeoSol/beret_nsrep.rsi
 
 #region Engineering
 

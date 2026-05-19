@@ -293,6 +293,7 @@
   id: BaseNeoSolPDA
   name: PDA
   description: Personal Data Assistant.
+  suffix: NS
   components:
   - type: Appearance
     appearanceDataInit:
@@ -628,28 +629,28 @@
 #      - NewsReaderCartridge
 #      - MedTekCartridge
 
-#- type: entity #Will do with Red Sword PDA
-#  parent: BaseNeoSolPDA
-#  id: NeoSolRepresentativePDA
-#  name: NeoSol Representative PDA
-#  components:
-#  - type: Pda
-#    id: NeoSolRepresentativeIDCard
-#    penSlot:
-#      startingItem: PenNTR
-#      priority: -1
-#      whitelist:
-#        tags:
-#        - Write
-#  - type: Appearance
-#    appearanceDataInit:
-#     enum.PdaVisuals.PdaType:
-#       !type:String
-#       pda-neosolrep
-#  - type: PdaBorderColor
-#    borderColor: "#151515"
-#  - type: Icon
-#    state: pda-neosolrep
+- type: entity #Will do with Red Sword PDA
+  parent: BaseNeoSolPDA
+  id: NeoSolRepresentativePDA
+  name: NeoSol Representative PDA
+  components:
+  - type: Pda
+    id: NeoSolRepresentativeIDCard
+    penSlot:
+      startingItem: PenNTR
+      priority: -1
+      whitelist:
+        tags:
+        - Write
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-neosolrepresentative
+  - type: PdaBorderColor
+    borderColor: "#151515"
+  - type: Icon
+    state: pda-neosolrepresentative
 
 #endregion
 

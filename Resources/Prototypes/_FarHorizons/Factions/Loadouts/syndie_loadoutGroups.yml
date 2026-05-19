@@ -272,7 +272,7 @@
 
 - type: loadoutGroup
   id: MedicalDirectorHead
-  name: loadout-group-chief-medical-officer-head
+  name: loadout-group-medical-director-head
   minLimit: 0
   loadouts:
   - MedicalDirectorBeret
@@ -280,7 +280,7 @@
 
 - type: loadoutGroup
   id: MedicalDirectorJumpsuit
-  name: loadout-group-chief-medical-officer-jumpsuit
+  name: loadout-group-medical-director-jumpsuit
   loadouts:
   - MedicalDirectorJumpsuit
   - MedicalDirectorJumpskirt
@@ -289,7 +289,7 @@
 
 - type: loadoutGroup
   id: MedicalDirectorOuterClothing
-  name: loadout-group-chief-medical-officer-outerclothing
+  name: loadout-group-medical-director-outerclothing
   minLimit: 0
   loadouts:
   - MedicalDirectorLabCoat
@@ -297,7 +297,7 @@
 
 - type: loadoutGroup
   id: MedicalDirectorNeck
-  name: loadout-group-chief-medical-officer-neck
+  name: loadout-group-medical-director-neck
   minLimit: 0
   loadouts:
   - ChiefMedicalOfficerCloak
@@ -305,7 +305,7 @@
 
 - type: loadoutGroup
   id: MedicalDirectorShoes
-  name: loadout-group-chief-medical-officer-shoes
+  name: loadout-group-medical-director-shoes
   loadouts:
   - BrownShoes
   - MedicalWinterBoots
@@ -317,14 +317,14 @@
  # Head of Research
 - type: loadoutGroup
   id: ResearchDirectorHeadSyndi
-  name: loadout-group-research-director-head
+  name: loadout-group-hor-head
   minLimit: 0
   loadouts:
   - ResearchDirectorBeret
 
 - type: loadoutGroup
   id: ResearchDirectorNeckSyndi
-  name: loadout-group-research-director-neck
+  name: loadout-group-hor-neck
   minLimit: 0
   loadouts:
   - ResearchDirectorMantleSyndi
@@ -332,7 +332,7 @@
 
 - type: loadoutGroup
   id: ResearchDirectorJumpsuitSyndi
-  name: loadout-group-research-director-jumpsuit
+  name: loadout-group-hor-jumpsuit
   loadouts:
   - ResearchDirectorJumpsuitSyndi
   - ResearchDirectorJumpskirtSyndi
@@ -341,11 +341,66 @@
 
 - type: loadoutGroup
   id: ResearchDirectorOuterClothingSyndi
-  name: loadout-group-research-director-outerclothing
+  name: loadout-group-hor-outerclothing
   minLimit: 0
   loadouts:
   - ResearchDirectorLabCoatSyndi
   - ResearchDirectorWintercoatSyndi
+
+# NeoSol Rep
+- type: loadoutGroup
+  id: NeoSolRepresentativeHead
+  name: loadout-group-neosolrepresentative-head
+  minLimit: 1 
+  loadouts:
+  - NSRCap
+  - NSRBeret
+
+- type: loadoutGroup
+  id: NeoSolRepresentativeJumpsuit
+  name: loadout-group-neosolrepresentative-jumpsuit
+  minLimit: 1 
+  loadouts:
+  - NSRJumpsuit
+  - NSRJumpskirt
+  - NSRJumpsuitFormal
+  - NSRJumpskirtFormal
+  - NSRJumpsuitCC 
+  - NSRJumpskirtCC
+  - NSRTurtleneck
+  - NSRTurtleneckSkirt
+
+- type: loadoutGroup
+  id: NeoSolOuterClothing
+  name: loadout-group-neosolrepresentative-outerclothing
+  minLimit: 0
+  loadouts:
+  - NSRCoat
+  - NSRWinterCoat
+
+- type: loadoutGroup
+  id: NeoSolRepresentativeEyewear
+  name: loadout-group-neosolrepresentative-eyewear
+  loadouts:
+  - NSRGlasses
+  - NSRHud
+
+- type: loadoutGroup
+  id: NeoSolRepresentativeShoes
+  name: loadout-group-neosolrepresentative-shoes
+  minLimit: 1
+  loadouts:
+  - LaceupShoes
+  - Heels
+  - LeatherShoes
+
+- type: loadoutGroup
+  id: NeoSolRepresentativeBackpack
+  name: loadout-group-neosolrepresentative-backpack
+  loadouts:
+  - NSRBackpack
+  - NSRDuffel
+  - NSRSatchel
 
 #region Civilian
 

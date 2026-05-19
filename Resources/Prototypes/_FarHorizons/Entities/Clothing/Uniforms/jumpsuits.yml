@@ -38,9 +38,9 @@
 # NTR
 
 - type: entity
-  parent: [ ClothingUniformBase, BaseCommandContraband ]
+  parent: [ ClothingUniformBase, BaseRepresentativesContraband ]
   id: ClothingUniformJumpsuitNtrepCentComm
-  name: NT Representive's Centcomm Jumpsuit
+  name: NT Representative's Centcomm Jumpsuit
   suffix: NT
   description: When you somehow want to look even more official than you did before.
   components:
@@ -344,6 +344,54 @@
     sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/NeoSol/rnd.rsi
   - type: Clothing
     sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/NeoSol/rnd.rsi
+
+- type: entity
+  parent: [ ClothingUniformBase, BaseRepresentativesContraband ]
+  id: ClothingUniformJumpsuitNsrep
+  name: NS Representative Suit 
+  description: That suit that is better not to see.
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/NeoSol/nsrep.rsi 
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/NeoSol/nsrep.rsi 
+
+- type: entity
+  parent: [ ClothingUniformBase, BaseRepresentativesContraband ] 
+  id: ClothingUniformJumpsuitNsrepFormal
+  name: NS Representative Formal Suit 
+  description: That suit that is better not to see.
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/NeoSol/nsrepformal.rsi 
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/NeoSol/nsrepformal.rsi 
+
+- type: entity
+  parent: [ ClothingUniformBase, BaseRepresentativesContraband ] 
+  id: ClothingUniformJumpsuitNsrepTurtleNeck
+  name: NS Representative's Turtleneck Jumpsuit 
+  description: For a more casual look while on the job.
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/NeoSol/nsrepturtleneck.rsi 
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/NeoSol/nsrepturtleneck.rsi 
+
+- type: entity
+  parent: [ ClothingUniformBase, BaseRepresentativesContraband ]
+  id: ClothingUniformJumpsuitNsrepCentComm
+  name: NT Representative's Centcomm Jumpsuit
+  description: When you somehow want to look even more official than you did before.
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/NeoSol/nsrepCC.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/NeoSol/nsrepCC.rsi
 
 #region Civilian
 

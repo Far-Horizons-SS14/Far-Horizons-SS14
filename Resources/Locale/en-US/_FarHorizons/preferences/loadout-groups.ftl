@@ -56,3 +56,27 @@ loadout-group-survival = Survival Case
 loadout-group-engineering-foreman-backpacks = Foreman Backpacks
 loadout-group-engineering-neosol-backpacks = Engineer Backpacks
 loadout-group-atmos-neosol-backpacks = Atmospherics Backpacks
+
+# NT Rep
+loadout-group-nanotrasenrepresentative-backpack = NanoTrasen Representative Backpack
+
+# NS Rep
+loadout-group-neosolrepresentative-head = NeoSol Representative Head
+loadout-group-neosolrepresentative-jumpsuit = NeoSol Representative Jumpsuit
+loadout-group-neosolrepresentative-outerclothing = NeoSol Representative Outer Clothing
+loadout-group-neosolrepresentative-eyewear = NeoSol Representative Eyewear
+loadout-group-neosolrepresentative-shoes = NeoSol Representative Shoes
+loadout-group-neosolrepresentative-backpack = NeoSol Representative Backpack
+
+# Medical Director
+loadout-group-medical-director-head = Medical Director Head
+loadout-group-medical-director-jumpsuit = Medical Director Jumpsuit
+loadout-group-medical-director-outerclothing = Medical Director Outer Clothing
+loadout-group-medical-director-neck = Medical Director Neck
+loadout-group-medical-director-shoes = Medical Director Shoes
+
+# HoR
+loadout-group-hor-head = Head of Research Head
+loadout-group-hor-neck = Head of Research Neck
+loadout-group-hor-jumpsuit = Head of Research Jumpsuit
+loadout-group-hor-outerclothing = Head of Research Outer Clothing

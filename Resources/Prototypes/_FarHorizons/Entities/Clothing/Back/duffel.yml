@@ -23,6 +23,7 @@
   id: ClothingDuffelCMO
   name: Chief Medical Officer's Duffel Bag
   description: It's a sterile duffel bag designed for the NanoTrasen Chief Medical Officer.
+  suffix: NT
   components:
     - type: Sprite
       sprite: _FarHorizons/Clothing/Back/Duffels/cmo.rsi
@@ -32,10 +33,20 @@
   id: ClothingDuffelChiefEngineer
   name: Chief Engineer's Duffel Bag
   description: It's a duffelbag especially designed for use in a spacious environment.
+  suffix: NT
   components:
     - type: Sprite
       sprite: _FarHorizons/Clothing/Back/Duffels/chief_engineer.rsi
 
+- type: entity
+  parent: [ClothingBackpack, BaseRepresentativesContraband]
+  id: ClothingBackpackDuffelNtRepresentative
+  name: Nanotrasen Representative's Duffel Bag
+  description: It's a jade trimmed duffel bag used by the Nanotrasen Representative.
+  suffix: NT
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Clothing/Back/Duffels/ntrep.rsi
 
 #region Medical
 
@@ -44,6 +55,7 @@
   id: ClothingBackpackDuffelParamedic
   name: Paramedic Duffel Bag
   description: A large duffel bag for holding extra medical supplies for in the depths of space.
+  suffix: NT
   components:
   - type: Sprite
     sprite: _FarHorizons/Clothing/Back/Duffels/paramedic.rsi
@@ -55,6 +67,7 @@
   id: ClothingBackpackDuffelCorpsman
   name: Corpsman's Duffel Bag
   description: An odd duffelbag that uses flaps instead of zippers for quicker access. Handy!
+  suffix: NT
   components:
   - type: Sprite
     sprite: _FarHorizons/Clothing/Back/Duffels/corpsman.rsi
@@ -68,7 +81,7 @@
 #region Command
 
 - type: entity
-  parent: [ClothingBackpackDuffel, BaseSyndicateContraband, BaseCommandContraband]
+  parent: [ClothingBackpackDuffel, BaseCommandContraband]
   id: ClothingBackpackDuffelMD
   name: Medical Director's Duffle Bag
   description: It's a sterile duffel bag designed for the NeoSol Medical Director.
@@ -78,7 +91,7 @@
     sprite: _FarHorizons/Clothing/Back/Duffels/NeoSol/medical.rsi 
 
 - type: entity
-  parent: [ ClothingBackpackDuffel, BaseSyndicateContraband, BaseCommandContraband]
+  parent: [ ClothingBackpackDuffel, BaseCommandContraband]
   id: ClothingBackpackDuffelForeman
   name: Foreman's Duffel Bag
   description: A large duffel bag stained with the stench of alcohol, burnt wires and pain.
@@ -91,10 +104,20 @@
         - Syndicate
         - WhitelistChameleon
         - Backpack
+
+- type: entity
+  parent: [ClothingBackpack, BaseRepresentativesContraband]
+  id: ClothingBackpackDuffelNsRepresentative
+  name: NeoSol Representative's Duffel Bag
+  description: It's a gold trimmed duffel bag used by the NeoSol Representative.
+  suffix: NS
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Clothing/Back/Duffels/NeoSol/nsrep.rsi
         
 #region Engineering
 - type: entity
-  parent: [ ClothingBackpackDuffel, BaseSyndicateContraband ]
+  parent: [ ClothingBackpackDuffel ]
   id: ClothingBackpackDuffelNeosolEngineering
   name: Engineering Duffel Bag
   description: A large duffel bag for holding tons of materials and tools.
@@ -109,7 +132,7 @@
         - Backpack
 
 - type: entity
-  parent: [ ClothingBackpackDuffel, BaseSyndicateContraband ]
+  parent: [ ClothingBackpackDuffel ]
   id: ClothingBackpackDuffelNeosolAtmospherics
   name: Atmospherics Duffel Bag
   description: A large duffel bag for holding massive pipes and air related tanks.
@@ -126,7 +149,7 @@
 #region Medical
 
 - type: entity
-  parent: [ClothingBackpackDuffel, BaseSyndicateContraband]
+  parent: [ClothingBackpackDuffel]
   id: ClothingBackpackDuffelMedicalSyndi
   name: Medical Duffel Bag
   description: A large duffel bag for holding extra medical supplies.
@@ -136,7 +159,7 @@
     sprite: _FarHorizons/Clothing/Back/Duffels/NeoSol/medical.rsi 
 
 - type: entity
-  parent: [ClothingBackpackDuffel, BaseSyndicateContraband]
+  parent: [ClothingBackpackDuffel]
   id: ClothingBackpackDuffelParamedicSyndi
   name: Paramedic Duffel Bag
   description: A large duffel bag for holding extra medical supplies for in the depths of space.
@@ -146,7 +169,7 @@
     sprite: _FarHorizons/Clothing/Back/Duffels/NeoSol/paramedic.rsi
 
 - type: entity
-  parent: [ClothingBackpackDuffel, BaseSyndicateContraband]
+  parent: [ClothingBackpackDuffel]
   id: ClothingBackpackDuffelChemistrySyndi
   name: Pharmacist Duffel Bag
   description: A large duffel bag for holding extra beakers and test tubes.
@@ -156,7 +179,7 @@
     sprite: _FarHorizons/Clothing/Back/Duffels/NeoSol/chemistry.rsi
 
 - type: entity
-  parent: [ClothingBackpackDuffel, BaseSyndicateContraband]
+  parent: [ClothingBackpackDuffel]
   id: ClothingBackpackDuffelVirologySyndi
   name: Virology Duffel Bag 
   description: A large duffel bag made of hypo-allergenic fibers. It's designed to help prevent the spread of disease. Smells like monkey.
@@ -167,7 +190,7 @@
 
 #region Security
 - type: entity
-  parent: [ClothingBackpackDuffel, BaseSyndicateContraband]
+  parent: [ClothingBackpackDuffel]
   id: ClothingBackpackDuffelSyndicateSecurity
   name: Security Duffel Bag
   description: A large duffel bag for holding extra security related goods.
@@ -182,7 +205,7 @@
         - Backpack
 
 - type: entity
-  parent: [ClothingBackpackDuffel, BaseSyndicateContraband]
+  parent: [ClothingBackpackDuffel]
   id: ClothingBackpackDuffelSyndicateBrigmedic
   name: Brigmedic Duffel Bag
   description: A large duffel bag for holding extra medical related goods.

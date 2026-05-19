@@ -21,6 +21,7 @@
   id: ClothingSatchelCMO
   name: Chief Medical Officer's Satchel
   description: It's a sterile satchel designed for the NanoTrasen Chief Medical Officer.
+  suffix: NT
   components:
     - type: Sprite
       sprite: _FarHorizons/Clothing/Back/Satchels/cmo.rsi
@@ -30,9 +31,20 @@
   id: ClothingSatchelChiefEngineer
   name: Chief Engineer's Satchel
   description: It's a satchel especially designed for use in a spacious environment.
+  suffix: NT
   components:
     - type: Sprite
       sprite: _FarHorizons/Clothing/Back/Satchels/chief_engineer.rsi
+
+- type: entity
+  parent: [ClothingBackpack, BaseRepresentativesContraband]
+  id: ClothingSatchelNtRepresentative
+  name: Nanotrasen Representative's Satchel
+  description: It's a jade trimmed satchel used by the Nanotrasen Representative.
+  suffix: NT
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Clothing/Back/Satchels/ntrep.rsi
 
 #region Medical
 
@@ -41,6 +53,7 @@
   id: ClothingBackpackSatchelParamedic
   name: Paramedic Satchel
   description: A medical satchel that has seen a fair amount of use in the depths of space.
+  suffix: NT
   components:
   - type: Sprite
     sprite: _FarHorizons/Clothing/Back/Satchels/paramedic.rsi
@@ -52,6 +65,7 @@
   id: ClothingBackpackSatchelCorpsman
   name: Corpsman Satchel
   description: Has more than enough pockets to organize everything.
+  suffix: NT
   components:
   - type: Sprite
     sprite: _FarHorizons/Clothing/Back/Satchels/corpsman.rsi
@@ -73,7 +87,7 @@
       sprite: _FarHorizons/Clothing/Back/Satchels/NeoSol/cmo.rsi
 
 - type: entity
-  parent: [ClothingBackpackSatchel ,]
+  parent: [ClothingBackpackSatchel]
   id: ClothingBackpackSatchelForeman
   name: Foreman's Satchel
   suffix: NS
@@ -86,6 +100,16 @@
         - Syndicate
         - WhitelistChameleon
         - Backpack
+
+- type: entity
+  parent: [ClothingBackpack, BaseRepresentativesContraband]
+  id: ClothingSatchelNsRepresentative
+  name: NeoSol Representative's Satchel
+  description: It's a gold trimmed satchel used by the NeoSol Representative.
+  suffix: NS
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Clothing/Back/Satchels/NeoSol/nsrep.rsi
 
 #region Medical
 - type: entity
