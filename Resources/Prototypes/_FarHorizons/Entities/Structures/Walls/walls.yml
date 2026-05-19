@@ -105,7 +105,8 @@
 - type: entity
   parent: BaseWall
   id: WallSolidSyndicate
-  name: Solid Wall [S]
+  name: Solid wall
+  suffix: NS
   components:
   - type: Sprite
     sprite: _FarHorizons/Structures/Walls/solid_syndie.rsi
@@ -144,11 +145,15 @@
   - type: IconSmooth
     key: walls
     base: solid
+  - type: Paintable
+    group: WallSolid
+  - type: PaintableWall
 
 - type: entity
   parent: BaseWall
   id: WallReinforcedSyndicate
-  name: Reinforced Wall [S]
+  name: Reinforced Wall
+  suffix: NS
   components:
   - type: Pierceable
     level: HardenedMetal
