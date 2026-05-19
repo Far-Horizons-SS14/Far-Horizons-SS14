@@ -477,6 +477,54 @@
     - WhitelistChameleon
     - IPCExternalCooling
 
+- type: entity
+  parent: [ ClothingOuterHardsuitBase, BaseBlueshieldContraband ] # FH
+  id: ClothingOuterHardsuitRedSword
+  name: Redsword Operative's Hardsuit
+  description: A high-tech hardsuit perfect for diving in front of Mr. Pre- Er, Commandant.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/NeoSol/redsword.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/NeoSol/redsword.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.525
+    lowPressureMultiplier: 10000
+  - type: ClothingSpeedModifier
+    walkModifier: 0.8
+    sprintModifier: 0.8
+    requireActivated: false #FH cuz item toggle.
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      flatReductions: #FH
+        Piercing: 5 #FH
+        Heat: 4 #FH
+      coefficients:
+        Blunt: 0.6
+        Slash: 0.5
+        Piercing: 0.5
+        Heat: 0.7
+        Radiation: 0.25
+        Caustic: 0.6
+    staminaModifier: 0.4 #FH - Default is 50%, upped to 60% due to BSO.
+    ignoreKnockdown: true #FH - Taser no worky on combat hardsuits
+  - type: LimbArmor # Far Horizons
+    limbs:
+      ArmRight: {}
+      ArmLeft: {}
+      HandRight: {}
+      HandLeft: {}
+      LegRight: {}
+      LegLeft: {}
+      FootRight: {}
+      FootLeft: {}
+  - type: ExplosionResistance
+    damageCoefficient: 0.6
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitRedsword
+
 #region Engineering
 
 # Atmospheric Technician (Atmos) Hardsuit

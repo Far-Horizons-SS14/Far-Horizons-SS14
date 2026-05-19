@@ -121,6 +121,34 @@
   - type: EyeProtection
     protectionTime: 5
 
+- type: entity
+  parent: [ ClothingEyesBase, BaseBlueshieldContraband ]
+  id: ClothingEyesGlassesRedSword
+  name: Redsword Operative's Glasses 
+  description: The innovative red lenses hide your eyes from light flashes and have a built-in visor.
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Eyes/Glasses/NeoSol/redsword.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Eyes/Glasses/NeoSol/redsword.rsi
+  - type: FlashImmunity
+  - type: ShowJobIcons
+  - type: ShowMindShieldIcons
+  - type: ShowCriminalRecordIcons
+  - type: ShowHealthBars
+    damageContainers:
+    - Biological
+  - type: ShowHealthIcons
+    damageContainers:
+    - Biological
+  - type: Tag
+    tags:
+    - HudMedical
+  - type: EyeProtection
+    protectionTime: 5
+
+
 #region Engineering
 
 - type: entity

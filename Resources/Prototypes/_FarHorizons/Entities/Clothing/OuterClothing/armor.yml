@@ -116,7 +116,7 @@
     damageCoefficient: 0.80
 
 
-#region Syndicate
+#region ## NeoSol ##
 
 
 
@@ -186,6 +186,40 @@
     tags:
     - CorgiWearable
     - WhitelistChameleon
+#RSO
+- type: entity
+  parent: [ ClothingOuterArmorBase, BaseBlueshieldContraband ] 
+  id: ClothingOuterArmorRedSword
+  name: Redsword Operative's Bulletproof Vest 
+  description: Much better than a standard type-1 security vest. Don't lose it, you will NOT get a replacement.
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/Armor/NeoSol/redsword.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/Armor/NeoSol/redsword.rsi
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      flatReductions: #FH
+        Piercing: 5 #FH
+        Heat: 4 #FH
+      coefficients:
+        Blunt: 0.6
+        Slash: 0.6
+        Piercing: 0.6
+        Heat: 0.7
+  - type: LimbArmor # Far Horizons
+    limbs:
+      ArmRight: {}
+      ArmLeft: {}
+      LegRight: {}
+      LegLeft: {}
+  - type: ExplosionResistance
+    damageCoefficient: 0.80
+  - type: Item
+    size: Normal
 
 #region Security
 

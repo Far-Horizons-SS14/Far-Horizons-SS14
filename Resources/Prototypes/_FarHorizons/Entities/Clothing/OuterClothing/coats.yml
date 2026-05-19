@@ -143,6 +143,40 @@
     clothingVisuals:
       outerClothing:
       - state: equipped-OUTERCLOTHING
+  
+#RSO
+- type: entity
+  parent: [ ClothingOuterStorageBase, AllowSuitStorageClothing, BaseBlueshieldContraband ]
+  id: ClothingOuterCoatRedsword
+  name: Redsword Operative's Overcoat 
+  description: A coat worn by Redsword Operatives who don't mind a little diplomancy. Heavily reinforced for when diplomancy won't cut it.
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/Coats/NeoSol/redsword_coat.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/Coats/NeoSol/redsword_coat.rsi
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      flatReductions: #FH
+        Piercing: 5 #FH
+        Heat: 4 #FH
+      coefficients:
+        Blunt: 0.6
+        Slash: 0.6
+        Piercing: 0.6
+        Heat: 0.7
+  - type: LimbArmor # Far Horizons
+    limbs:
+      ArmRight: {}
+      ArmLeft: {}
+      LegRight: {}
+      LegLeft: {}
+  - type: ExplosionResistance
+    damageCoefficient: 0.80
+  - type: Item
 
 # Medical Director
 - type: entity

@@ -87,3 +87,21 @@
     sprite: _FarHorizons/Clothing/Neck/Cloaks/ce.rsi # This still needs to be resprited.
   #- type: StealTarget - Temporarily disabled, I can't be bothered to add steal target currently.
   #  stealGroup: HeadCloak
+
+- type: entity
+  parent: [ ClothingNeckBase, BaseBlueshieldContraband ] 
+  id: ClothingNeckCloakRsoElite
+  name: Redsword Operative's Mantle
+  description: A Redsword Operative's mantle crafted from the latest composite glowing fabric. Any true RedSword is not afraid of shining in the dark! 
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Neck/Cloaks/NeoSol/rso_elite.rsi
+  - type: StealTarget
+    stealGroup: HeadCloak
+  - type: PointLight
+    radius: 2
+    energy: 4
+    color: "#f25252"
+  - type: StaticPrice
+    price: 2000

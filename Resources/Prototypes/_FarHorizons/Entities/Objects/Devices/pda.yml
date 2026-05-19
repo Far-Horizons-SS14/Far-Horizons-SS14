@@ -600,34 +600,34 @@
 
 #region NeoSol Reps
 
-#- type: entity #Commented out until sprites
-#  parent: BaseNeoSolPDA
-#  id: RedSwordPDA
-#  name: Red Sword Officer's PDA
-#  components:
-#  - type: Sprite
-#    sprite: _FarHorizons/Objects/Devices/neosol_pda.rsi
-#  - type: Pda
-#    id: RedSwordIDCard
-#  - type: Appearance
-#    appearanceDataInit:
-#     enum.PdaVisuals.PdaType:
-#       !type:String
-#       pda-redsword
-#  - type: PdaBorderColor
-#    borderColor: "#181c26"
-#    accentHColor: "#25c1c4"
-#  - type: Icon
-#    sprite: _FarHorizons/Objects/Devices/neosol_pda.rsi
-#    state: pda-redsword
-#  - type: CartridgeLoader
-#    uiKey: enum.PdaUiKey.Key
-#    preinstalled:
-#      - CrewManifestCartridge
-#      - NotekeeperCartridge
-#      - NanoTaskCartridge
-#      - NewsReaderCartridge
-#      - MedTekCartridge
+- type: entity 
+  parent: BaseNeoSolPDA
+  id: RedSwordPDA
+  name: Red Sword Operative's PDA
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Devices/neosol_pda.rsi
+  - type: Pda
+    id: RedSwordIDCard
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-redsword
+  - type: PdaBorderColor
+    borderColor: "#181c26"
+    accentHColor: "#c42535"
+  - type: Icon
+    sprite: _FarHorizons/Objects/Devices/neosol_pda.rsi
+    state: pda-redsword
+  - type: CartridgeLoader
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NanoTaskCartridge
+      - NewsReaderCartridge
+      - MedTekCartridge
 
 - type: entity #Will do with Red Sword PDA
   parent: BaseNeoSolPDA

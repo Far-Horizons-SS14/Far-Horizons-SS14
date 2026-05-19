@@ -1,6 +1,11 @@
-#region NanoTrasen ##
+#region ## NanoTrasen ##
 
-# CentCom
+
+
+
+
+
+#region Command
 
 - type: entity
   parent: [ ClothingEyesBase, BaseCommandContraband ]
@@ -103,7 +108,7 @@
     coverage: EYES
   - type: FlashImmunity
 
-#region Syndicate
+#region ## NeoSol ##
 
 
 
@@ -113,6 +118,33 @@
 
 
 
+#region Command
+- type: entity
+  parent: [ ClothingEyesBase, BaseCommandContraband ]
+  id: ClothingEyesVisorRedSword
+  name: Redsword Operative's Visor
+  suffix: NS
+  description: An innovative visor that scans the humanoids in view and provides accurate data about their ID status, security records, and medical information.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Eyes/Visors/NeoSol/redsword.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Eyes/Visors/NeoSol/redsword.rsi
+  - type: ShowJobIcons
+  - type: ShowMindShieldIcons
+  - type: ShowCriminalRecordIcons
+  - type: ShowHealthBars
+    damageContainers:
+    - Biological
+  - type: ShowHealthIcons
+    damageContainers:
+    - Biological
+  - type: Tag
+    tags:
+    - HudMedical
+  - type: EyeProtection
+    protectionTime: 5
+  - type: FlashImmunity
 
 #region Security
 

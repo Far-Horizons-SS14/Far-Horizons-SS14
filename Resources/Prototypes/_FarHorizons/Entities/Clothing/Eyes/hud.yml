@@ -84,6 +84,32 @@
   - type: EyeProtection
     protectionTime: 5
 
+- type: entity
+  parent: [ ClothingEyesBase, BaseBlueshieldContraband ] # FH
+  id: ClothingEyesHudRedSword
+  name: Redsword Operative's HUD
+  description: An innovative heads-up display that scans the humanoids in view and provides accurate data about their ID status, security records, and medical information.
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Eyes/Hud/NeoSol/redsword.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Eyes/Hud/NeoSol/redsword.rsi
+  - type: ShowJobIcons
+  - type: ShowMindShieldIcons
+  - type: ShowCriminalRecordIcons
+  - type: ShowHealthBars
+    damageContainers:
+    - Biological
+  - type: ShowHealthIcons
+    damageContainers:
+    - Biological
+  - type: Tag
+    tags:
+    - HudMedical
+  - type: EyeProtection
+    protectionTime: 5
+
 #region Medical
 - type: entity
   parent: [ClothingEyesHudBase, ShowMedicalIcons]

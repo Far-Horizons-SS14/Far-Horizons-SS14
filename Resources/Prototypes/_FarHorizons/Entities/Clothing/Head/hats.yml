@@ -332,7 +332,7 @@
   parent: [ ClothingHeadBase, BaseRepresentativesContraband ]
   id: ClothingHeadHatCapNsrep
   name: NS Representive Cap 
-  description: The cap of justice over command!
+  description: The cap of power over executive!
   suffix: NS
   components:
   - type: Sprite
@@ -344,13 +344,25 @@
   parent: [ ClothingHeadBase, BaseRepresentativesContraband ] 
   id: ClothingHeadHatBeretNsRep
   name: NS Representive's Beret 
-  description: The beret of justice over command!
+  description: The beret of power over executive!
   suffix: NS
   components:
   - type: Sprite
     sprite: _FarHorizons/Clothing/Head/Hats/NeoSol/beret_nsrep.rsi
   - type: Clothing
     sprite: _FarHorizons/Clothing/Head/Hats/NeoSol/beret_nsrep.rsi
+
+#RSO
+- type: entity
+  parent: [ ClothingHeadBase, BaseBlueshieldContraband ] 
+  id: ClothingHeadHatBeretRedSword
+  name: Redsword Operative's Beret 
+  description: This beret completes the outfit of any true Redsword.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Head/Hats/NeoSol/redsword.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Head/Hats/NeoSol/redsword.rsi
 
 #region Engineering
 
