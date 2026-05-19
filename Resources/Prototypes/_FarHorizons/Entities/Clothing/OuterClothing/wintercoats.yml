@@ -56,6 +56,23 @@
 
 
 
+#region Command
+
+# Syndicate Operating Agent (NTR)
+
+- type: entity
+  parent: [ ClothingOuterWinterCoat, BaseRepresentativesContraband ]
+  id: ClothingOuterWinterSOA
+  name: Syndicate Operating Agent's Winter Coat
+  description: Authentic fur stitched to a durathread backing using golden thread. Rumored to cost more than some stations.
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/WinterCoats/NeoSol/shrep_winter.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/WinterCoats/NeoSol/shrep_winter.rsi
+
+
 #region Medical
 
 - type: entity

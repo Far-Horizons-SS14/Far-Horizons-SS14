@@ -327,6 +327,40 @@
     - PetWearable
     - CorgiWearable
 
+# Syndicate Operating Agent (NTR)
+
+- type: entity
+  parent: [ ClothingHeadBase, BaseRepresentativesContraband ]
+  id: ClothingHeadHatBeretSOA
+  name: Syndicate Operating Agent's Beret
+  description: A red colored beret to remind command of their betters.
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Head/Hats/NeoSol/beret_shrep.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Head/Hats/NeoSol/beret_shrep.rsi
+  - type: Tag
+    tags:
+    - PetWearable
+    - CorgiWearable
+
+- type: entity
+  parent: [ ClothingHeadBase, BaseRepresentativesContraband ]
+  id: ClothingHeadHatCapSOA
+  name: Syndicate Operating Agent Cap 
+  description: The cap to keep command in line.
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Head/Hats/NeoSol/shrep.rsi 
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Head/Hats/NeoSol/shrep.rsi
+  - type: Tag
+    tags:
+    - PetWearable
+    - CorgiWearable
+
 #region Engineering
 
 - type: entity

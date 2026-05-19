@@ -127,6 +127,23 @@
   - type: Clothing
     sprite: _FarHorizons/Clothing/OuterClothing/Coats/NeoSol/hos_trenchcoat.rsi
 
+# Syndicate Operating Agent (NTR)
+
+- type: entity
+  parent: [ BaseRepresentativesContraband, ClothingOuterStorageBase ]
+  id: ClothingOuterCoatSOA
+  name: Syndicate Operating Agent's Jacket
+  description: Freshly steamed and pressed, ready to perform its duties.
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/Coats/NeoSol/shrep.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/Coats/NeoSol/shrep.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: equipped-OUTERCLOTHING
+
 #region Medical
 
 #Lab Coat

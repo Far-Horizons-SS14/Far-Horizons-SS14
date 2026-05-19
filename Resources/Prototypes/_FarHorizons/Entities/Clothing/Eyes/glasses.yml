@@ -105,6 +105,24 @@
     coverage: EYES
   - type: ShowJobIcons
 
+- type: entity
+  parent: [ClothingEyesBase, BaseCommandContraband]
+  id: ClothingEyesSunGlassesHudSkillSyndi
+  name: Skills Sunglasses
+  description: Sunglasses with a build-in skills HUD, showing the employment history of nearby NeoSol crew members.
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Eyes/Glasses/NeoSol/sunhudskill.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Eyes/Glasses/NeoSol/sunhudskill.rsi
+  - type: FlashImmunity
+  - type: ShowJobIcons
+  - type: ShowMindShieldIcons
+  - type: ShowCriminalRecordIcons
+  - type: EyeProtection
+    protectionTime: 5
+
 #region Engineering
 
 - type: entity

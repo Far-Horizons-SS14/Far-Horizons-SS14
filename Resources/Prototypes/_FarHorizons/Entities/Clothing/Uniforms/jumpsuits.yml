@@ -345,6 +345,57 @@
   - type: Clothing
     sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/NeoSol/rnd.rsi
 
+# Syndicate Operating Agent (NTR)
+
+- type: entity
+  parent: [ ClothingUniformBase, BaseRepresentativesContraband ]
+  id: ClothingUniformJumpsuitSOA
+  name: Syndicate Operating Agent Suit
+  description: That suit that is better not to see.
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/NeoSol/shrep.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/NeoSol/shrep.rsi
+
+- type: entity
+  parent: [ ClothingUniformBase, BaseRepresentativesContraband ]
+  id: ClothingUniformJumpsuitSOAFormal
+  name: Syndicate Operating Agent Formal Suit
+  description: That suit that is better not to see.
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/NeoSol/shrepformal.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/NeoSol/shrepformal.rsi
+
+- type: entity
+  parent: [ ClothingUniformBase, BaseRepresentativesContraband ]
+  id: ClothingUniformJumpsuitSOATurtleNeck
+  name: Syndicate Operating Agent's Turtleneck Jumpsuit
+  description: For a more casual look while on the job.
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/NeoSol/shrepturtleneck.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/NeoSol/shrepturtleneck.rsi
+
+- type: entity
+  parent: [ ClothingUniformBase, BaseRepresentativesContraband ]
+  id: ClothingUniformJumpsuitSOAHighCommand
+  name: Syndicate Operating Agent's High Command Jumpsuit
+  description: When you somehow want to look even more official than you did before.
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/NeoSol/shrepSHC.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/NeoSol/shrepSHC.rsi
+
+
 #region Civilian
 
 - type: entity
