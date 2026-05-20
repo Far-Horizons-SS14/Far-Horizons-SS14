@@ -1,6 +1,11 @@
-﻿# Groups (subtabs)
+﻿# Categories (tabs)
+spray-painter-tab-category-walls = Walls
+
+# Groups (subtabs)
 spray-painter-tab-group-fhairlockstandard = Standard
 spray-painter-tab-group-fhairlockglass = Glass
+spray-painter-tab-group-wallsolid= Solid
+spray-painter-tab-group-wallreinforced= Reinforced
 
 # Airlocks
 spray-painter-style-fhairlockstandard-atmospherics = Atmospheric
@@ -32,3 +37,15 @@ spray-painter-style-fhairlockglass-salvage = Salvage
 spray-painter-style-fhairlockglass-science = Science
 spray-painter-style-fhairlockglass-security = Security
 spray-painter-style-fhairlockglass-virology = Virology
+
+# Walls
+spray-painter-style-wallsolid-nanotrasen = Nanotrasen
+spray-painter-style-wallsolid-standard = Standard
+spray-painter-style-wallsolid-neosol = Neosol
+
+spray-painter-style-wallreinforced-nanotrasen = Nanotrasen
+spray-painter-style-wallreinforced-standard = Standard
+spray-painter-style-wallreinforced-neosol = Neosol
+
+# Lockers
+spray-painter-style-locker-magistrate = Magistrate

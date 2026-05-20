@@ -135,7 +135,7 @@
               doAfter: 2
 
     - node: wall
-      entity: WallSolidNeutral #FH, Paintable Walls
+      entity: WallSolidStandard #FH, Paintable Walls
       edges:
         - to: girder
           completed:
@@ -309,7 +309,7 @@
               doAfter: 2
 
     - node: reinforcedWall
-      entity: WallReinforcedNeutral #FH, Paintable Walls
+      entity: WallReinforcedStandard #FH, Paintable Walls
       edges:
         - to: reinforcedGirder
           completed:

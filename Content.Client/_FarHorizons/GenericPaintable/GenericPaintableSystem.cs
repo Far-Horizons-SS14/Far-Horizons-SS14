@@ -1,4 +1,5 @@
 using Content.Shared._FarHorizons.GenericPaintable;
+using Content.Shared.SprayPainter.Components;
 using Content.Shared.SprayPainter.Prototypes;
 using Robust.Client.GameObjects;
 using Robust.Shared.Prototypes;
@@ -15,6 +16,14 @@ public sealed class GenericPaintableSystem : EntitySystem
     {
         base.Initialize();
         SubscribeLocalEvent<GenericPaintableComponent, AppearanceChangeEvent>(OnAppearanceChange);
+        SubscribeLocalEvent<GenericPaintableComponent, ComponentInit>(InitComp);
+    }
+
+    private void InitComp(EntityUid entity, GenericPaintableComponent comp, ComponentInit args)
+    {
+        //Does this entity have PaintableComponent? if not, why is GenericPaintableComponent here?
+        if (!HasComp<PaintableComponent>(entity))
+            RemCompDeferred<GenericPaintableComponent>(entity);
     }
 
     private void OnAppearanceChange(Entity<GenericPaintableComponent> entity, ref AppearanceChangeEvent args)
