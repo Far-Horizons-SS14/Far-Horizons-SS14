@@ -300,7 +300,7 @@ internal sealed partial class ChatManager : IChatManager
         var playerName = player.Name;
         var playerTitle = "";
 
-        if (_adminManager.HasAdminFlag(player, AdminFlags.NameColor))
+        if (_adminManager.HasAdminFlag(player, AdminFlags.NameColor, true)) //FH
         {
             var prefs = _preferencesManager.GetPreferences(player.UserId);
             colorOverride = prefs.AdminOOCColor;
