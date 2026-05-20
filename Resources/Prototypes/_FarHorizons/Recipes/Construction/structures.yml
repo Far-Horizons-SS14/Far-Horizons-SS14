@@ -27,34 +27,6 @@
 
 # Windows
 
-- type: construction
-  id: WindowSyndie
-  graph: WindowSyndie
-  startNode: start
-  targetNode: windowsyndie
-  category: construction-category-structures
-  canBuildInImpassable: true
-  conditions:
-    - !type:EmptyOrWindowValidInTile
-    - !type:NoWindowsInTile
-  objectType: Structure
-  placementMode: SnapgridCenter
-  canRotate: false
-
-- type: construction
-  id: ReinforcedWindowSyndie
-  graph: WindowSyndie
-  startNode: start
-  targetNode: reinforcedWindowSyndie
-  category: construction-category-structures
-  canBuildInImpassable: true
-  conditions:
-    - !type:EmptyOrWindowValidInTile
-    - !type:NoWindowsInTile
-  objectType: Structure
-  placementMode: SnapgridCenter
-  canRotate: false
-
 #Railings
 
 - type: construction

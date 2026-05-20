@@ -2,164 +2,25 @@
 
 - type: entity
   id: WindowSyndie
-  parent: [BaseDeltaPressureGlass, BaseStructure, BaseStructureDissolvable] # Starlight-edit 
-  name: Window [S]
   description: Don't smudge up the glass down there.
-  placement:
-    mode: SnapgridCenter
-    snap:
-    - Window
   components:
-  - type: Anchorable
-    flags:
-    - Anchorable
-  - type: Rotatable
-  - type: Ricochetable
-    chance: 0.7
-  - type: MeleeSound
-    soundGroups:
-      Brute:
-        collection: GlassSmack
-  - type: WallMount
-    arc: 360 # interact despite grilles
-  - type: Tag
-    tags:
-      - ForceFixRotations
-      - Window
   - type: Sprite
     drawdepth: WallTops
     sprite: Structures/Windows/window.rsi
   - type: Icon
     sprite: Structures/Windows/window.rsi
     state: full
-  - type: Physics
-    bodyType: Static
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeAabb {}
-        mask:
-        - FullTileMask
-        layer:
-        - GlassLayer
-  - type: Damageable
-    damageContainer: StructuralInorganic
-    damageModifierSet: Glass
-  - type: ExaminableDamage
-    messages: WindowMessages
-  - type: Repairable
-  - type: RCDDeconstructable
-    cost: 6
-    delay: 4
-    fx: EffectRCDDeconstruct4
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 150 #excess damage (nuke?). avoid computational cost of spawning entities.
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          collection: WindowShatter
-      - !type:DoActsBehavior
-        acts: [ "Destruction" ]
-    - trigger:
-        !type:DamageTrigger
-        damage: 50
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          collection: WindowShatter
-      - !type:SpawnEntitiesBehavior
-        spawn:
-          ShardGlass:
-            min: 1
-            max: 2
-      - !type:DoActsBehavior
-        acts: [ "Destruction" ]
-  - type: Airtight
-  - type: IconSmooth
-    key: walls  # FarHorizons... gonna fix it when we separate prototypes
-    base: window
-  - type: InteractionPopup
-    interactSuccessString: comp-window-knock
-    messagePerceivedByOthers: comp-window-knock
-    interactSuccessSound:
-      path: /Audio/Effects/glass_knock.ogg
-  - type: Construction
-    graph: Window
-    node: window
-  - type: Appearance
-  - type: DamageVisuals
-    thresholds: [5, 10, 20]
-    damageDivisor: 2
-    trackAllDamage: true
-    damageOverlay:
-      sprite: Structures/Windows/cracks.rsi
-  - type: StaticPrice
-    price: 100
-  - type: BlockWeather
 
 # Reinforced
 
 - type: entity
   id: ReinforcedWindowSyndie
-  name: Reinforced Window [S]
-  parent: [BaseDeltaPressureReinforcedGlass, Window]
   components:
   - type: Sprite
     drawdepth: WallTops
     sprite: Structures/Windows/reinforced_window.rsi
   - type: Icon
     sprite: Structures/Windows/reinforced_window.rsi
-  - type: Repairable
-    fuelCost: 10
-    doAfterDelay: 2
-  - type: Damageable
-    damageContainer: StructuralInorganic
-    damageModifierSet: RGlass
-  - type: RCDDeconstructable
-    cost: 6
-    delay: 6
-    fx: EffectRCDDeconstruct6
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 150 #excess damage (nuke?). avoid computational cost of spawning entities.
-      behaviors:
-      - !type:DoActsBehavior
-        acts: [ "Destruction" ]
-      - !type:PlaySoundBehavior
-        sound:
-          collection: WindowShatter
-    - trigger:
-        !type:DamageTrigger
-        damage: 75
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          collection: WindowShatter
-      - !type:SpawnEntitiesBehavior
-        spawn:
-          ShardGlassReinforced:
-            min: 1
-            max: 2
-      - !type:DoActsBehavior
-        acts: [ "Destruction" ]
-  - type: IconSmooth
-    base: rwindow
-  - type: Construction
-    graph: Window
-    node: reinforcedWindow
-  - type: Appearance
-  - type: DamageVisuals
-    thresholds: [5, 10, 20]
-    damageDivisor: 3
-    trackAllDamage: true
-    damageOverlay:
-      sprite: Structures/Windows/cracks.rsi
 
 # Wooden
 
