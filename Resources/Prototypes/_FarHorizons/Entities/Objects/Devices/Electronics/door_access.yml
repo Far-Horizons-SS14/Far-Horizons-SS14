@@ -1,3 +1,14 @@
+# region ## GSL ##
+#Salvage Lead Office
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsSalvageLead
+  suffix: Salvage Lead, Locked
+  components:
+  - type: AccessReader
+    access: [["SalvageLead"]]
+
+# region ## NanoTrasen ##
 #BSO Office
 - type: entity
   parent: DoorElectronics
@@ -25,15 +36,6 @@
   - type: AccessReader
     access: [["Ntrep"]]
 
-#Salvage Lead Office
-- type: entity
-  parent: DoorElectronics
-  id: DoorElectronicsSalvageLead
-  suffix: Salvage Lead, Locked
-  components:
-  - type: AccessReader
-    access: [["SalvageLead"]]
-
 #Magistrate Office
 - type: entity
   parent: DoorElectronics
@@ -51,3 +53,352 @@
   components:
   - type: AccessReader
     access: [["Security"]]
+
+#region Lambda Squadron
+- type: entity
+  parent: BaseDoorElectronicsSyndicate 
+  id: DoorElectronicsLambdaop
+  suffix: Lambdaop, Locked
+  components:
+  - type: AccessReader
+    access: [["LambdaOperative"]]
+
+- type: entity
+  parent: BaseDoorElectronicsSyndicate 
+  id: DoorElectronicsLambdaAgent
+  suffix: LambdaAgent, Locked
+  components:
+  - type: AccessReader
+    access: [["LambdaAgent"]]
+
+#region ## NeoSol ##
+
+
+
+
+
+
+
+#region Command
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsCommandant
+  suffix: Commandant, NS, Locked
+  components:
+  - type: AccessReader
+    access: [["Commandant"]]
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsPersonnelManager
+  suffix: PersonnelManager, NS, Locked
+  components:
+  - type: AccessReader
+    access: [["PersonnelManager"]]
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsForeman
+  suffix: Foreman, NS, Locked
+  components:
+  - type: AccessReader
+    access: [["Foreman"]]
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsHeadOfResearch
+  suffix: HeadOfResearch, NS, Locked
+  components:
+  - type: AccessReader
+    access: [["HeadOfResearch"]]
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsMarshal
+  suffix: Marshal, NS, Locked
+  components:
+  - type: AccessReader
+    access: [["Marshal"]]
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsMedicalDirector
+  suffix: MedicalDirector, Locked
+  components:
+  - type: AccessReader
+    access: [["MedicalDirector"]]
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsExecutive
+  suffix: Executive, NS, Locked
+  components:
+  - type: AccessReader
+    access: [["Executive"]]
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsVaultNS
+  suffix: Vault, NS, Locked
+  components:
+  - type: AccessReader
+    access: [["SecurityNS"], ["Executive"]]
+
+#region Service
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsBarNS
+  suffix: Bar, NS, Locked
+  components:
+  - type: AccessReader
+    access: [["BarNS"]]
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsBarKitchenNS
+  suffix: Bar, Kitchen, NS, Locked
+  components:
+  - type: AccessReader
+    access: [["BarNS"], ["KitchenNS"]]
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsHydroponicsNS
+  suffix: Hydroponics, Locked
+  components:
+  - type: AccessReader
+    access: [["HydroponicsNS"]]
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsChapelNS
+  suffix: Chapel, NS, Locked
+  components:
+  - type: AccessReader
+    access: [["ChapelNS"]]
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsTheatreNS
+  suffix: Theatre, NS, Locked
+  components:
+  - type: AccessReader
+    access: [["TheatreNS"]]
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsKitchenNS
+  suffix: Kitchen, NS, Locked
+  components:
+  - type: AccessReader
+    access: [["KitchenNS"]]
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsKitchenHydroponicsNS
+  suffix: Kitchen, Hydroponics, NS, Locked
+  components:
+  - type: AccessReader
+    access: [["KitchenNS"], ["HydroponicsNS"]]
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsJanitorNS
+  suffix: Janitor, NS, Locked
+  components:
+  - type: AccessReader
+    access: [["JanitorNS"]]
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsServiceNS
+  suffix: Service, NS, Locked
+  components:
+  - type: AccessReader
+    access: [["ServiceNS"]]
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsServiceTheatreNS
+  suffix: Service, Theatre, NS, Locked
+  components:
+  - type: AccessReader
+    access: [["ServiceNS"], ["TheatreNS"]]
+
+#region Engineering
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsAtmosphericsNS
+  suffix: Atmospherics, NS, Locked
+  components:
+  - type: AccessReader
+    access: [["AtmosphericsNS"]]
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsEngineeringNS
+  suffix: Engineering, NS, Locked
+  components:
+  - type: AccessReader
+    access: [["EngineeringNS"]]
+
+#region Science
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsMorgueNS
+  suffix: Morgue, NS, Locked
+  components:
+  - type: AccessReader
+    access: [["MedicalNS"], ["DetectiveNS"], ["ChapelNS"]]
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsMedicalResearchNS
+  suffix: Medical, Science, NS, Locked
+  components:
+  - type: AccessReader
+    access: [["ResearchNS"], ["MedicalNS"]]
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsResearchNS
+  suffix: Research, NS, Locked
+  components:
+  - type: AccessReader
+    access: [["ResearchNS"]]
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsRoboticsNS
+  suffix: Robotics, NS, Locked
+  components:
+  - type: AccessReader
+    access: [["RoboticsNS"]]
+
+# region Security
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsArmoryNS
+  suffix: Armory, NS, Locked
+  components:
+  - type: AccessReader
+    access: [["ArmoryNS"]]
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsDetectiveNS
+  suffix: Detective, NS, Locked
+  components:
+  - type: AccessReader
+    access: [["DetectiveNS"]]
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsSecurityNS
+  suffix: Security, Cadet, NS, Locked
+  components:
+  - type: AccessReader
+    access: [["SecurityNS"], ["CadetNS"]]
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsSecurityLawyerNS
+  suffix: Security, Lawyer, NS, Locked
+  components:
+  - type: AccessReader
+    access: [["SecurityNS"], ["Lawyer"]]
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsBrigNS
+  suffix: Brig, NS, Locked
+  components:
+  - type: AccessReader
+    access: [["BrigNS"]]
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsSecurityNoCadetNS
+  suffix: Security, NS, Locked
+  components:
+  - type: AccessReader
+    access: [["SecurityNS"]]
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsCourtroomNS
+  suffix: Courtroom, NS, Locked
+  components:
+  - type: AccessReader
+    access: [["Executive"], ["SecurityNS"], ["Lawyer"]]
+
+#region Medical
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsChemistryNS
+  suffix: Chemistry, NS, Locked
+  components:
+  - type: AccessReader
+    access: [["ChemistryNS"]]
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsMedicalNS
+  suffix: Medical, NS, Locked
+  components:
+  - type: AccessReader
+    access: [["MedicalNS"]]
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsSurgeryNS
+  suffix: Surgery, NS, Locked
+  components:
+  - type: AccessReader
+    access: [["SurgeryNS"]]
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsParamedicNS
+  suffix: Paramedic, NS, Locked
+  components:
+  - type: AccessReader
+    access: [["ParamedicNS"]]
+
+# region Representatives
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsRedSwordOfficer
+  suffix: RSO, NS, Locked
+  components:
+  - type: AccessReader
+    access: [["RedSword"]]
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsSOAgent
+  suffix: SOAgent, NS, Locked
+  components:
+  - type: AccessReader
+    access: [["SOAgent"], ["RedSword"]]
+
+# region Generics
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsExternalNS
+  suffix: External, NS, Locked
+  components:
+  - type: AccessReader
+    access: [["ExternalNS"]]
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsMaintenanceNS
+  suffix: Maintenance, NS, Locked
+  components:
+  - type: AccessReader
+    access: [["MaintenanceNS"]]

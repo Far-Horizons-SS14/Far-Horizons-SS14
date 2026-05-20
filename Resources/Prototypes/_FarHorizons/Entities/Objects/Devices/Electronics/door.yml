@@ -1,0 +1,17 @@
+- type: entity
+  id: DoorElectronicsNS
+  parent: DoorElectronics
+  name: door electronics
+  description: An electronics board used in doors and airlocks.
+  suffix: NS
+  components:
+    - type: DoorElectronics
+      accessGroups:
+      - GeneralNS
+      - SecurityNS
+      - Cargo
+      - Executive
+      - ResearchNS
+      - MedicalNS
+      - ServiceNS
+      - EngineeringNS

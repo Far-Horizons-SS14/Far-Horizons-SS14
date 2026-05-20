@@ -1,4 +1,156 @@
-# Airlocks
+#region GSL
+
+
+
+
+
+
+#region Standard Airlocks
+- type: entity
+  parent: FHAirlockCommand
+  id: FHAirlockQuartermasterLocked
+  suffix: Quartermaster, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsQuartermaster ]
+
+- type: entity
+  parent: FHAirlockQuartermasterLocked
+  id: FHAirlockMaintQuartermasterLocked
+  suffix: Quartermaster, Locked, Maint
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/maint.rsi
+
+- type: entity
+  parent: FHAirlockCargo
+  id: FHAirlockCargoLocked
+  suffix: Cargo, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsCargo ]
+
+- type: entity
+  parent: FHAirlockCargoLocked
+  id: FHAirlockMaintCargoLocked
+  suffix: Cargo, Locked, Maint
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/maint.rsi
+
+- type: entity
+  parent: FHAirlockExternal
+  id: FHAirlockExternalCargoLocked
+  suffix: External, Cargo, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsCargo ]
+  - type: Wires
+    layoutId: AirlockCargo
+
+- type: entity
+  parent: FHAirlockSalvageLead
+  id: FHAirlockSalvageLeadLocked
+  suffix: Salvage Lead, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSalvageLead ]
+
+- type: entity
+  parent: FHAirlockSalvage
+  id: FHAirlockSalvageLocked
+  suffix: Salvage, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSalvage ]
+
+- type: entity
+  parent: FHAirlockSalvageLocked
+  id: FHAirlockMaintSalvageLocked
+  suffix: Salvage, Locked, Maint
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/maint.rsi
+
+- type: entity
+  parent: FHAirlockMining
+  id: FHAirlockMiningLocked
+  suffix: Mining/Salvage, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSalvageMining ]
+
+# region Glass Airlocks
+- type: entity
+  parent: FHAirlockCommandGlass
+  id: FHAirlockQuartermasterGlassLocked
+  suffix: Quartermaster, Locked
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsQuartermaster ]
+
+- type: entity
+  parent: FHAirlockExternalGlass
+  id: FHAirlockExternalGlassCargoLocked
+  suffix: External, Glass, Cargo, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsCargo ]
+  - type: Wires
+    layoutId: AirlockCargo
+
+- type: entity
+  parent: FHAirlockCargoGlass
+  id: FHAirlockCargoGlassLocked
+  suffix: Cargo, Locked
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsCargo ]
+
+- type: entity
+  parent: FHAirlockSalvageLeadGlass
+  id: FHAirlockSalvageLeadGlassLocked
+  suffix: Salvage Lead, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSalvageLead ]
+
+- type: entity
+  parent: FHAirlockSalvageGlass
+  id: FHAirlockSalvageGlassLocked
+  suffix: Salvage, Locked
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsSalvage ]
+
+- type: entity
+  parent: FHAirlockMiningGlass
+  id: FHAirlockMiningGlassLocked
+  suffix: Mining/Salvage, Locked
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsSalvageMining ]
+
+# region NanoTrasen
+
+
+
+
+
+
+# region Standard Airlocks
 - type: entity
   parent: FHAirlock
   id: FHAirlockServiceLocked
@@ -157,17 +309,6 @@
 
 - type: entity
   parent: FHAirlockExternal
-  id: FHAirlockExternalCargoLocked
-  suffix: External, Cargo, Locked
-  components:
-  - type: ContainerFill
-    containers:
-      board: [ DoorElectronicsCargo ]
-  - type: Wires
-    layoutId: AirlockCargo
-
-- type: entity
-  parent: FHAirlockExternal
   id: FHAirlockExternalEngineeringLocked
   suffix: External, Engineering, Locked
   components:
@@ -260,42 +401,6 @@
   - type: ContainerFill
     containers:
       board: [ DoorElectronicsAtmospherics ]
-
-- type: entity
-  parent: FHAirlockCargo
-  id: FHAirlockCargoLocked
-  suffix: Cargo, Locked
-  components:
-  - type: ContainerFill
-    containers:
-      board: [ DoorElectronicsCargo ]
-
-- type: entity
-  parent: FHAirlockSalvage
-  id: FHAirlockSalvageLocked
-  suffix: Salvage, Locked
-  components:
-  - type: ContainerFill
-    containers:
-      board: [ DoorElectronicsSalvage ]
-
-- type: entity
-  parent: FHAirlockSalvageLead
-  id: FHAirlockSalvageLeadLocked
-  suffix: Salvage Lead, Locked
-  components:
-  - type: ContainerFill
-    containers:
-      board: [ DoorElectronicsSalvageLead ]
-
-- type: entity
-  parent: FHAirlockMining
-  id: FHAirlockMiningLocked
-  suffix: Mining/Salvage, Locked
-  components:
-  - type: ContainerFill
-    containers:
-      board: [ DoorElectronicsSalvageMining ]
 
 - type: entity
   parent: FHAirlockMedical
@@ -443,15 +548,6 @@
 
 - type: entity
   parent: FHAirlockCommand
-  id: FHAirlockQuartermasterLocked
-  suffix: Quartermaster, Locked
-  components:
-  - type: ContainerFill
-    containers:
-      board: [ DoorElectronicsQuartermaster ]
-
-- type: entity
-  parent: FHAirlockCommand
   id: FHAirlockMagistrateLocked
   suffix: Magistrate, Locked
   components:
@@ -543,22 +639,6 @@
   - type: ContainerFill
     containers:
       board: [ DoorElectronicsExternal ]
-
-- type: entity
-  parent: FHAirlockSalvageLocked
-  id: FHAirlockMaintSalvageLocked
-  suffix: Salvage, Locked, Maint
-  components:
-  - type: Sprite
-    sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/maint.rsi
-
-- type: entity
-  parent: FHAirlockCargoLocked
-  id: FHAirlockMaintCargoLocked
-  suffix: Cargo, Locked, Maint
-  components:
-  - type: Sprite
-    sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/maint.rsi
 
 - type: entity
   parent: FHAirlockCommandLocked
@@ -795,14 +875,6 @@
     sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/maint.rsi
 
 - type: entity
-  parent: FHAirlockQuartermasterLocked
-  id: FHAirlockMaintQuartermasterLocked
-  suffix: Quartermaster, Locked, Maint
-  components:
-  - type: Sprite
-    sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/maint.rsi
-
-- type: entity
   parent: FHAirlockArmoryLocked
   id: FHAirlockMaintArmoryLocked
   suffix: Armory, Locked, Maint
@@ -849,17 +921,6 @@
   - type: ContainerFill
     containers:
       board: [ DoorElectronicsExternal ]
-
-- type: entity
-  parent: FHAirlockExternalGlass
-  id: FHAirlockExternalGlassCargoLocked
-  suffix: External, Glass, Cargo, Locked
-  components:
-  - type: ContainerFill
-    containers:
-      board: [ DoorElectronicsCargo ]
-  - type: Wires
-    layoutId: AirlockCargo
 
 - type: entity
   parent: FHAirlockExternalGlass
@@ -1014,42 +1075,6 @@
     - type: ContainerFill
       containers:
         board: [ DoorElectronicsAtmospherics ]
-
-- type: entity
-  parent: FHAirlockCargoGlass
-  id: FHAirlockCargoGlassLocked
-  suffix: Cargo, Locked
-  components:
-    - type: ContainerFill
-      containers:
-        board: [ DoorElectronicsCargo ]
-
-- type: entity
-  parent: FHAirlockSalvageGlass
-  id: FHAirlockSalvageGlassLocked
-  suffix: Salvage, Locked
-  components:
-    - type: ContainerFill
-      containers:
-        board: [ DoorElectronicsSalvage ]
-
-- type: entity
-  parent: FHAirlockSalvageLeadGlass
-  id: FHAirlockSalvageLeadGlassLocked
-  suffix: Salvage Lead, Locked
-  components:
-  - type: ContainerFill
-    containers:
-      board: [ DoorElectronicsSalvageLead ]
-
-- type: entity
-  parent: FHAirlockMiningGlass
-  id: FHAirlockMiningGlassLocked
-  suffix: Mining/Salvage, Locked
-  components:
-    - type: ContainerFill
-      containers:
-        board: [ DoorElectronicsSalvageMining ]
 
 - type: entity
   parent: FHAirlockChemistryGlass
@@ -1215,15 +1240,6 @@
 
 - type: entity
   parent: FHAirlockCommandGlass
-  id: FHAirlockQuartermasterGlassLocked
-  suffix: Quartermaster, Locked
-  components:
-    - type: ContainerFill
-      containers:
-        board: [ DoorElectronicsQuartermaster ]
-
-- type: entity
-  parent: FHAirlockCommandGlass
   id: FHAirlockMagistrateGlassLocked
   suffix: Magistrate, Locked
   components:
@@ -1360,114 +1376,14 @@
       containers:
         board: [ DoorElectronicsArmory ]
 
-#region Shuttle
+#region NeoSol
 
-# Standard
-- type: entity
-  parent: FHAirlockShuttle
-  id: FHAirlockExternalShuttleLocked
-  suffix: External, Docking, Locked
-  components:
-  - type: ContainerFill
-    containers:
-      board: [ DoorElectronicsExternal ]
 
-- type: entity
-  parent: FHAirlockShuttleSyndicate
-  id: FHAirlockExternalShuttleSyndicateLocked
-  suffix: External, Docking, Syndicate, Locked
-  components:
-  - type: ContainerFill
-    containers:
-      board: [ DoorElectronicsSyndicateAgent ]
 
-- type: entity
-  parent: FHAirlockShuttleSyndicate
-  id: FHAirlockExternalShuttleNukeopLocked
-  suffix: External, Docking, Nukeop, Locked
-  components:
-  - type: ContainerFill
-    containers:
-      board: [ DoorElectronicsNukeop ]
 
-- type: entity
-  parent: FHAirlockShuttleXenoborg
-  id: FHAirlockGlassShuttleXenoborgLocked
-  suffix: External, Docking, Xenoborg, Locked
-  components:
-  - type: StationAiWhitelist
-    enabled: false
-  - type: ContainerFill
-    containers:
-      board: [ DoorElectronicsXenoborg ]
 
-# Glass
 
-- type: entity
-  parent: FHAirlockGlassShuttle
-  id: FHAirlockExternalGlassShuttleLocked
-  suffix: External, Glass, Docking, Locked
-  components:
-  - type: ContainerFill
-    containers:
-      board: [ DoorElectronicsExternal ]
-
-- type: entity
-  parent: FHAirlockGlassShuttleSyndicate
-  id: FHAirlockExternalGlassShuttleSyndicateLocked
-  suffix: Syndicate, Locked, Glass
-  components:
-  - type: ContainerFill
-    containers:
-      board: [ DoorElectronicsSyndicateAgent ]
-
-- type: entity
-  parent: FHAirlockGlassShuttleSyndicate
-  id: FHAirlockExternalGlassShuttleNukeopLocked
-  suffix: Nukeop, Locked, Glass
-  components:
-  - type: ContainerFill
-    containers:
-      board: [ DoorElectronicsNukeop ]
-
-- type: entity
-  parent: FHAirlockGlassShuttle
-  id: FHAirlockExternalGlassShuttleEmergencyLocked
-  suffix: External, Emergency, Glass, Docking, Locked
-  components:
-  - type: PriorityDock
-    tag: DockEmergency
-  - type: ContainerFill
-    containers:
-      board: [ DoorElectronicsExternal ]
-
-- type: entity
-  parent: FHAirlockGlassShuttle
-  id: FHAirlockExternalGlassShuttleArrivals
-  suffix: External, Arrivals, Glass, Docking
-  components:
-  - type: PriorityDock
-    tag: DockArrivals
-  - type: ContainerFill
-    containers:
-      board: [ DoorElectronicsExternal ]
-
-- type: entity
-  parent: FHAirlockGlassShuttle
-  id: FHAirlockExternalGlassShuttleEscape
-  suffix: External, Escape 3x4, Glass, Docking
-  components:
-  - type: GridFill
-    addComponents:
-    - type: IFF
-      flags:
-      - HideLabel
-  - type: ContainerFill
-    containers:
-      board: [ DoorElectronicsExternal ]
-
-# Standard Syndicate Locked
-
+#region Standard Airlocks
 - type: entity
   parent: FHAirlockEngineeringSyndie
   id: FHAirlockEngineeringSyndieLocked
@@ -1615,8 +1531,7 @@
       layoutId: AirlockService
 
 
-# Glass Syndicate Locked
-
+# region Glass Airlocks
 - type: entity
   parent: FHAirlockEngineeringGlassSyndie
   id: FHAirlockEngineeringGlassSyndieLocked
@@ -1762,3 +1677,113 @@
         board: [ DoorElectronicsService ]
     - type: Wires
       layoutId: AirlockService
+
+#region Shuttle
+
+
+
+
+
+
+#region Standard Airlocks
+- type: entity
+  parent: FHAirlockShuttle
+  id: FHAirlockExternalShuttleLocked
+  suffix: External, Docking, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsExternal ]
+
+- type: entity
+  parent: FHAirlockShuttleSyndicate
+  id: FHAirlockExternalShuttleSyndicateLocked
+  suffix: External, Docking, Syndicate, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSyndicateAgent ]
+
+- type: entity
+  parent: FHAirlockShuttleSyndicate
+  id: FHAirlockExternalShuttleNukeopLocked
+  suffix: External, Docking, Nukeop, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNukeop ]
+
+- type: entity
+  parent: FHAirlockShuttleXenoborg
+  id: FHAirlockGlassShuttleXenoborgLocked
+  suffix: External, Docking, Xenoborg, Locked
+  components:
+  - type: StationAiWhitelist
+    enabled: false
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsXenoborg ]
+
+# region Glass Airlocks
+- type: entity
+  parent: FHAirlockGlassShuttle
+  id: FHAirlockExternalGlassShuttleLocked
+  suffix: External, Glass, Docking, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsExternal ]
+
+- type: entity
+  parent: FHAirlockGlassShuttleSyndicate
+  id: FHAirlockExternalGlassShuttleSyndicateLocked
+  suffix: Syndicate, Locked, Glass
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSyndicateAgent ]
+
+- type: entity
+  parent: FHAirlockGlassShuttleSyndicate
+  id: FHAirlockExternalGlassShuttleNukeopLocked
+  suffix: Nukeop, Locked, Glass
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNukeop ]
+
+- type: entity
+  parent: FHAirlockGlassShuttle
+  id: FHAirlockExternalGlassShuttleEmergencyLocked
+  suffix: External, Emergency, Glass, Docking, Locked
+  components:
+  - type: PriorityDock
+    tag: DockEmergency
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsExternal ]
+
+- type: entity
+  parent: FHAirlockGlassShuttle
+  id: FHAirlockExternalGlassShuttleArrivals
+  suffix: External, Arrivals, Glass, Docking
+  components:
+  - type: PriorityDock
+    tag: DockArrivals
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsExternal ]
+
+- type: entity
+  parent: FHAirlockGlassShuttle
+  id: FHAirlockExternalGlassShuttleEscape
+  suffix: External, Escape 3x4, Glass, Docking
+  components:
+  - type: GridFill
+    addComponents:
+    - type: IFF
+      flags:
+      - HideLabel
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsExternal ]

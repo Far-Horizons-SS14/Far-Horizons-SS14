@@ -1,0 +1,36 @@
+# NeoSol Access Configurator
+- type: entity
+  parent: AccessConfigurator
+  id: AccessConfiguratorNS
+  name: access configurator
+  description: Used to modify the access level requirements for airlocks and other lockable devices.
+  suffix: NS
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Tools/syndicate_access_configurator.rsi
+      state: icon
+    - type: Clothing
+      sprite: _Starlight/Objects/Tools/syndicate_access_configurator.rsi
+    - type: AccessOverrider
+      accessGroups:
+      - GeneralNS
+      - SecurityNS
+      - Cargo
+      - Executive
+      - ResearchNS
+      - MedicalNS
+      - ServiceNS
+      - EngineeringNS
+      privilegedIdSlot:
+        name: AccessOverrider-privilegedId
+        ejectSound: /Audio/Machines/id_swipe.ogg
+        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+        ejectOnBreak: true
+        swap: false
+        whitelist:
+          components:
+            - IdCard
+      denialSound:
+        path: /Audio/Machines/custom_deny.ogg
+      doAfter: 0.5
+  
