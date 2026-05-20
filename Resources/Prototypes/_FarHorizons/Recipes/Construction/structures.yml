@@ -25,32 +25,6 @@
 
 # Walls
 
-- type: construction
-  id: WallSyndie
-  graph: GirderSyndie
-  startNode: start
-  targetNode: wallsyndie
-  category: construction-category-structures
-  objectType: Structure
-  placementMode: SnapgridCenter
-  canRotate: false
-  canBuildInImpassable: false
-  conditions:
-    - !type:TileNotBlocked
-
-- type: construction
-  id: ReinforcedWallSyndie
-  graph: GirderSyndie
-  startNode: start
-  targetNode: reinforcedWallSyndie
-  category: construction-category-structures
-  objectType: Structure
-  placementMode: SnapgridCenter
-  canRotate: false
-  canBuildInImpassable: false
-  conditions:
-    - !type:TileNotBlocked
-
 # Windows
 
 - type: construction

@@ -1,144 +1,38 @@
 # Walls
 
 - type: entity
-  parent: BaseWall
+  parent: WallSolid
   id: WallSolidNeutral
+  suffix: ""
   name: Solid Wall
   components:
   - type: Sprite
-    sprite: Structures/Walls/solid.rsi #TODO: neutral sprites
-  - type: WallReplacementMarker
-  - type: Construction
-    graph: Girder
-    node: wall
+    sprite: Structures/Walls/solid.rsi #TODO: neutral sprite
   - type: Icon
     sprite: Structures/Walls/solid.rsi #TODO: neutral sprites
-  - type: RCDDeconstructable
-    cost: 6
-    delay: 8
-    fx: EffectRCDDeconstruct8
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 400
-      behaviors:
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalSlam
-    - trigger:
-        !type:DamageTrigger
-        damage: 200
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalSlam
-      - !type:ChangeConstructionNodeBehavior
-        node: girder
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
-  - type: IconSmooth
-    key: walls
-    base: solid
-  - type: Paintable
-    group: WallSolid
-  - type: GenericPaintable
 
 - type: entity
-  parent: BaseWall
+  parent: WallSolid
   id: WallSolidSyndicate
   name: Solid Wall
   suffix: NS
   components:
   - type: Sprite
     sprite: _FarHorizons/Structures/Walls/solid_syndie.rsi
-  - type: WallReplacementMarker
-  - type: Construction
-    graph: Girder
-    node: wall
   - type: Icon
     sprite: _FarHorizons/Structures/Walls/solid_syndie.rsi
-  - type: RCDDeconstructable
-    cost: 6
-    delay: 8
-    fx: EffectRCDDeconstruct8
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 400
-      behaviors:
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalSlam
-    - trigger:
-        !type:DamageTrigger
-        damage: 200
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalSlam
-      - !type:ChangeConstructionNodeBehavior
-        node: girder
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
-  - type: IconSmooth
-    key: walls
-    base: solid
-  - type: Paintable
-    group: WallSolid
-  - type: GenericPaintable
 
 - type: entity
-  parent: BaseWall
+  parent: WallReinforced
   id: WallReinforcedNeutral
   name: Reinforced Wall
+  suffix: ""
   components:
-  - type: Pierceable
-    level: HardenedMetal
-  - type: Ricochetable
-    chance: 0.75
   - type: Sprite
     sprite: Structures/Walls/solid.rsi #TODO: neutral sprites
   - type: Icon
     sprite: Structures/Walls/solid.rsi #TODO: neutral sprites
     state: rgeneric
-  - type: Construction
-    graph: Girder
-    node: reinforcedWall
-  - type: Damageable
-    damageContainer: StructuralInorganic
-    damageModifierSet: StructuralMetallicStrong
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 600
-      behaviors:
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalSlam
-    - trigger:
-        !type:DamageTrigger
-        damage: 400
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalSlam
-      - !type:ChangeConstructionNodeBehavior
-        node: girder
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
-  - type: IconSmooth
-    key: walls
-    base: reinf_over
-  - type: Appearance
   - type: GenericVisualizer
     visuals:
       enum.ReinforcedWallVisuals.DeconstructionStage:
@@ -150,73 +44,18 @@
           3: { state: reinf_construct-3, visible: true}
           4: { state: reinf_construct-4, visible: true}
           5: { state: reinf_construct-5, visible: true}
-  - type: ReinforcedWallReplacementMarker
-  - type: StaticPrice
-    price: 250
-  - type: RadiationBlocker
-    resistance: 5
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeAabb
-          bounds: "-0.5,-0.5,0.5,0.5"
-        mask:
-        - FullTileMask
-        layer:
-        - WallLayer
-        density: 2000
-  - type: Paintable
-    group: WallReinforced
-  - type: GenericPaintable
 
 - type: entity
-  parent: BaseWall
+  parent: WallReinforced
   id: WallReinforcedSyndicate
   name: Reinforced Wall
   suffix: NS
   components:
-  - type: Pierceable
-    level: HardenedMetal
-  - type: Ricochetable
-    chance: 0.75
   - type: Sprite
     sprite: _FarHorizons/Structures/Walls/solid_syndie.rsi
   - type: Icon
     sprite: _FarHorizons/Structures/Walls/solid_syndie.rsi
     state: rgeneric
-  - type: Construction
-    graph: Girder
-    node: reinforcedWall
-  - type: Damageable
-    damageContainer: StructuralInorganic
-    damageModifierSet: StructuralMetallicStrong
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 600
-      behaviors:
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalSlam
-    - trigger:
-        !type:DamageTrigger
-        damage: 400
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalSlam
-      - !type:ChangeConstructionNodeBehavior
-        node: girder
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
-  - type: IconSmooth
-    key: walls
-    base: reinf_over
-  - type: Appearance
   - type: GenericVisualizer
     visuals:
       enum.ReinforcedWallVisuals.DeconstructionStage:
@@ -228,25 +67,6 @@
           3: { state: reinf_construct-3, visible: true}
           4: { state: reinf_construct-4, visible: true}
           5: { state: reinf_construct-5, visible: true}
-  - type: ReinforcedWallReplacementMarker
-  - type: StaticPrice
-    price: 250
-  - type: RadiationBlocker
-    resistance: 5
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeAabb
-          bounds: "-0.5,-0.5,0.5,0.5"
-        mask:
-        - FullTileMask
-        layer:
-        - WallLayer
-        density: 2000
-  - type: Paintable
-    group: WallReinforced
-  - type: GenericPaintable
 
 - type: entity
   parent: BaseWall
