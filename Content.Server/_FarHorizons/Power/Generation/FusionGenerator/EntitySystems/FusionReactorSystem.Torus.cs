@@ -1,5 +1,6 @@
 using Content.Server._FarHorizons.Fusion;
 using Content.Server._FarHorizons.Power.Generation.FusionGenerator.Components;
+using Content.Server._FarHorizons.Power.Generation.FusionGenerator.NodeGroup;
 using Content.Server.Atmos.EntitySystems;
 using Content.Shared.Atmos;
 using Robust.Shared.Random;
@@ -26,15 +27,22 @@ public sealed partial class FusionReactorSystem
         torus.IsMagnet = state;
     }
 
-    public void ProcessCooling(List<Entity<FusionReactorTorusComponent>> magnets, GasMixture coolant)
+    private void ProcessCooling(FusionReactorNodeGroup fusionReactor, float dt)
     {
         var totalHeatCap = 0f;
         var totalThermalEnergy = 0f;
 
+        /// Logic from the <see cref="HeatExchangerSystem"/> to determine how much gas to process
+        var P = fusionReactor.CoolantIn.Pressure - fusionReactor.CoolantOut.Pressure;
+        var dPdn = Atmospherics.R * ((fusionReactor.CoolantOut.Temperature / fusionReactor.CoolantOut.Volume) + (fusionReactor.CoolantIn.Temperature / fusionReactor.CoolantIn.Volume));
+        var Pfinal = P * MathF.Exp(-1f * dPdn * dt);
+        var n = (P - Pfinal) / dPdn;
+        var coolant = n > 0 ? fusionReactor.CoolantIn.Remove(n) : fusionReactor.CoolantOut.Remove(-n);
+
         totalHeatCap += _atmosphereSystem.GetHeatCapacity(coolant, true);
         totalThermalEnergy += _atmosphereSystem.GetThermalEnergy(coolant);
 
-        foreach (var (uid, magnet) in magnets)
+        foreach (var (uid, magnet) in fusionReactor.Magnets)
         {
             if (!magnet.IsMagnet)
                 continue;
@@ -46,7 +54,7 @@ public sealed partial class FusionReactorSystem
         var tEquilibrium = totalThermalEnergy / totalHeatCap;
 
         // For now assume there is perfect and instantaneous heat exchange
-        foreach (var (uid, magnet) in magnets)
+        foreach (var (uid, magnet) in fusionReactor.Magnets)
         {
             if (!magnet.IsMagnet)
                 continue;
@@ -55,9 +63,14 @@ public sealed partial class FusionReactorSystem
         }
 
         coolant.Temperature = tEquilibrium;
+
+        if (n > 0)
+            _atmosphereSystem.Merge(fusionReactor.CoolantOut, coolant);
+        else
+            _atmosphereSystem.Merge(fusionReactor.CoolantIn, coolant);
     }
 
-    public void ProcessDamage(List<Entity<FusionReactorTorusComponent>> tori, FusionMixture fusionMixture)
+    private void ProcessDamage(List<Entity<FusionReactorTorusComponent>> tori, FusionMixture fusionMixture)
     {
         var pressure = fusionMixture.ConstrainedPressure;
         var temperature = fusionMixture.Temperature;
@@ -78,11 +91,27 @@ public sealed partial class FusionReactorSystem
         }
     }
 
-    void IntegrityFailure(FusionReactorTorusComponent torus)
+    private void IntegrityFailure(FusionReactorTorusComponent torus)
     {
         /// TODO: boom
         /// boom strength should be calculated by contained fusion mixture
-        torus.Temperature = float.PositiveInfinity;
-        torus.IsMagnet = false;
+        // torus.Temperature = float.PositiveInfinity;
+        // torus.IsMagnet = false;
+    }
+
+    private void ProcessMagnetics(FusionReactorNodeGroup reactorNodeGroup, float dt)
+    {
+        if (reactorNodeGroup.SuperconductingCount <= 0)
+        {
+            reactorNodeGroup.MagneticPressure = 1000;
+            return;
+        }
+        
+        // Power draw is RequestedMagneticPressure/SuperconductingCount * TorusCount/10 joules per second
+        var targetDraw = reactorNodeGroup.TorusCount * reactorNodeGroup.RequestedMagneticPressure / (reactorNodeGroup.SuperconductingCount * 10) * dt;
+        var trueDraw = DrainPower(reactorNodeGroup, (float)targetDraw);
+
+        reactorNodeGroup.MagneticPressure = reactorNodeGroup.RequestedMagneticPressure * trueDraw / targetDraw;
+        reactorNodeGroup.Plasma.Pressure = reactorNodeGroup.MagneticPressure;
     }
 }

@@ -29,7 +29,7 @@ public sealed partial class FusionReactorNodeGroup : BaseNodeGroup
     private FusionSystem? _fusionSystem;
 
     [ViewVariables]
-    private EntityUid? _masterController;
+    public Entity<FusionReactorControllerComponent>? MasterController { get; private set; }
 
     private const float LitersPerTorus = 2500;
     private const float LitersPerMagnet = 200;
@@ -41,12 +41,23 @@ public sealed partial class FusionReactorNodeGroup : BaseNodeGroup
     /// Torus parts that count as magnets for the fusion reactor, similar to an AME's cores.
     /// </summary>
     public readonly List<Entity<FusionReactorTorusComponent>> Magnets = [];
-    public int MagnetCount => Magnets.Count;
+    public int SuperconductingCount => Magnets.Count(m => m.Comp.Superconducting);
 
     /// <summary>
     /// Torus parts that aren't magnets.
     /// </summary>
     public readonly List<Entity<FusionReactorTorusComponent>> Torus = [];
+    public int TorusCount => Torus.Count;
+
+    /// <summary>
+    /// The batteries attached to the fusion reactor
+    /// </summary>
+    public readonly List<Entity<FusionReactorBatteryComponent>> Batteries = [];
+
+    /// <summary>
+    /// The MASERs attached to the fusion reactor
+    /// </summary>
+    public readonly List<Entity<FusionReactorMaserComponent>> Masers = [];
 
     public override void Initialize(Node sourceNode, IEntityManager entMan)
     {
@@ -67,6 +78,8 @@ public sealed partial class FusionReactorNodeGroup : BaseNodeGroup
 
         var torusQuery = _entityManager.GetEntityQuery<FusionReactorTorusComponent>();
         var controllerQuery = _entityManager.GetEntityQuery<FusionReactorControllerComponent>();
+        var batteryQuery = _entityManager.GetEntityQuery<FusionReactorBatteryComponent>();
+        var maserQuery = _entityManager.GetEntityQuery<FusionReactorMaserComponent>();
         var xformQuery = _entityManager.GetEntityQuery<TransformComponent>();
         foreach (var node in groupNodes)
         {
@@ -87,9 +100,21 @@ public sealed partial class FusionReactorNodeGroup : BaseNodeGroup
                 continue;
             }
 
+            if (batteryQuery.TryGetComponent(nodeOwner, out var battery))
+            {
+                LoadBattery(nodeOwner, battery);
+                continue;
+            }
+
+            if (maserQuery.TryGetComponent(nodeOwner, out var maser))
+            {
+                LoadMaser(nodeOwner, maser);
+                continue;
+            }
+
             if (controllerQuery.TryGetComponent(nodeOwner, out var controller))
             {
-                LoadController(nodeOwner);
+                LoadController(nodeOwner, controller);
                 continue;
             }
         }
@@ -120,10 +145,20 @@ public sealed partial class FusionReactorNodeGroup : BaseNodeGroup
             }
         }
 
-        void LoadController(EntityUid nodeOwner)
+        void LoadController(EntityUid nodeOwner, FusionReactorControllerComponent controller)
         {
-            if (_masterController == null)
-                _masterController = nodeOwner;
+            if (MasterController == null)
+                MasterController = (nodeOwner, controller);
+        }
+
+        void LoadBattery(EntityUid nodeOwner, FusionReactorBatteryComponent battery)
+        {
+            Batteries.Add((nodeOwner, battery));
+        }
+
+        void LoadMaser(EntityUid nodeOwner, FusionReactorMaserComponent maser)
+        {
+            Masers.Add((nodeOwner, maser));
         }
     }
 

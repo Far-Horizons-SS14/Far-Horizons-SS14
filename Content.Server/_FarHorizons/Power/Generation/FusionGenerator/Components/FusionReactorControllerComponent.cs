@@ -3,4 +3,6 @@ namespace Content.Server._FarHorizons.Power.Generation.FusionGenerator.Component
 [RegisterComponent]
 public sealed partial class FusionReactorControllerComponent : Component
 {
+    [ViewVariables(VVAccess.ReadWrite)]
+    public float PowerExtraction = 0;
 }

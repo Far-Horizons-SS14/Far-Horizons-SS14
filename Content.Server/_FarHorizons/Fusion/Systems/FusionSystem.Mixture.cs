@@ -39,6 +39,18 @@ public sealed partial class FusionSystem
 
     public void React(FusionMixture fusionMix, double deltaT)
     {
+        // Antimatter reaction gets a special spot to itself
+        if (fusionMix.Atoms.TryGetValue(new(-1, 0), out var antiProton) &&
+            fusionMix.Atoms.TryGetValue(new(1, 0), out var proton))
+        {
+            var reactant = Math.Min(antiProton, proton);
+            fusionMix.Atoms[new(-1, 0)] -= reactant;
+            fusionMix.Atoms[new(1, 0)] -= reactant;
+
+            // E=MC^2
+            fusionMix.AddJoule(reactant * FusionConsts.MolToAtom * 2 * FusionConsts.MProton * FusionConsts.C * FusionConsts.C);
+        }
+
         foreach (var reaction in _fusionReactions)
         {
             if (!fusionMix.Atoms.TryGetValue(reaction.ReactantA, out var reactantA) ||

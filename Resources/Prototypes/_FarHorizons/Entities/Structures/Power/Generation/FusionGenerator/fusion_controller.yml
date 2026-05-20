@@ -14,3 +14,12 @@
       reactor:
         !type:AdjacentNode
         nodeGroupID: FusionReactor
+      output:
+        !type:CableDeviceNode
+        nodeGroupID: HVPower
+  - type: PowerMonitoringDevice
+    group: Generator
+    loadNode: output
+  - type: PowerSupplier
+    supplyRampRate: 75000
+    supplyRampTolerance: 5000

@@ -12,13 +12,13 @@ public sealed partial class FusionReactorNodeGroup
         Atoms = { { new(1, 0), 10 } }
     };
 
-    //TODO: replace this with lists of input and output gas mixtures, which the fusionreactorsystem would then take care of transfering gas and cooling parts
-
     [ViewVariables]
     public GasMixture CoolantIn = new();
     [ViewVariables]
     public GasMixture CoolantOut = new();
 
+    [ViewVariables]
+    public double MagneticPressure { get; set; } = 1000;
     [ViewVariables(VVAccess.ReadWrite)]
-    public double MagneticPressure { get; private set; } = 1000;
+    public double RequestedMagneticPressure { get; set; } = 1000;
 }
