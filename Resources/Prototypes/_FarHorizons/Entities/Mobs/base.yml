@@ -12,10 +12,10 @@
     standUpDoafterModifier: 5 # Takes 5x the normal time to stand up
     whisperChance: 1 # 100% chance any message turns into whisper
     fallAfterStandingChance: 0.6 # 60% chance to fall down after standing up
-    fallOnUseChance: 0.4 # 40% chance to fall down when using items or devices
+    fallOnUseChance: 0.3 # 30% chance to fall down when using items or devices
     damageOnFall:
       types:
-        Blunt: 5 # Deal 5 blunt every time you fall down, other than when you enter crit
+        Blunt: 2.5 # Deal 2.5 blunt every time you fall down, other than when you enter crit
     walkSpeedModifier: 0.3
     sprintSpeedModifier: 0.3 # Move 70% slower
     restrictCombat: true # No combat actions allowed
