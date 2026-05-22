@@ -81,7 +81,7 @@
 
 #region Command
 - type: entity
-  parent: DoorElectronics
+  parent: DoorElectronicsNS
   id: DoorElectronicsNSCommandant
   suffix: Commandant, NS, Locked
   components:
@@ -89,7 +89,7 @@
     access: [["Commandant"]]
 
 - type: entity
-  parent: DoorElectronics
+  parent: DoorElectronicsNS
   id: DoorElectronicsNSPersonnelManager
   suffix: PersonnelManager, NS, Locked
   components:
@@ -97,7 +97,7 @@
     access: [["PersonnelManager"]]
 
 - type: entity
-  parent: DoorElectronics
+  parent: DoorElectronicsNS
   id: DoorElectronicsNSForeman
   suffix: Foreman, NS, Locked
   components:
@@ -105,15 +105,15 @@
     access: [["Foreman"]]
 
 - type: entity
-  parent: DoorElectronics
-  id: DoorElectronicsNSHeadOfResearch
-  suffix: HeadOfResearch, NS, Locked
+  parent: DoorElectronicsNS
+  id: DoorElectronicsNSEpistemicsProvost
+  suffix: EpistemicsProvost, NS, Locked
   components:
   - type: AccessReader
-    access: [["HeadOfResearch"]]
+    access: [["EpistemicsProvost"]]
 
 - type: entity
-  parent: DoorElectronics
+  parent: DoorElectronicsNS
   id: DoorElectronicsNSMarshal
   suffix: Marshal, NS, Locked
   components:
@@ -121,7 +121,7 @@
     access: [["Marshal"]]
 
 - type: entity
-  parent: DoorElectronics
+  parent: DoorElectronicsNS
   id: DoorElectronicsNSMedicalDirector
   suffix: MedicalDirector, Locked
   components:
@@ -129,7 +129,7 @@
     access: [["MedicalDirector"]]
 
 - type: entity
-  parent: DoorElectronics
+  parent: DoorElectronicsNS
   id: DoorElectronicsNSExecutive
   suffix: Executive, NS, Locked
   components:
@@ -137,7 +137,7 @@
     access: [["Executive"]]
 
 - type: entity
-  parent: DoorElectronics
+  parent: DoorElectronicsNS
   id: DoorElectronicsNSVault
   suffix: Vault, NS, Locked
   components:
@@ -146,7 +146,7 @@
 
 #region Service
 - type: entity
-  parent: DoorElectronics
+  parent: DoorElectronicsNS
   id: DoorElectronicsNSBar
   suffix: Bar, NS, Locked
   components:
@@ -154,7 +154,7 @@
     access: [["BarNS"]]
 
 - type: entity
-  parent: DoorElectronics
+  parent: DoorElectronicsNS
   id: DoorElectronicsNSBarKitchen
   suffix: Bar, Kitchen, NS, Locked
   components:
@@ -162,7 +162,7 @@
     access: [["BarNS"], ["KitchenNS"]]
 
 - type: entity
-  parent: DoorElectronics
+  parent: DoorElectronicsNS
   id: DoorElectronicsNSHydroponics
   suffix: Hydroponics, Locked
   components:
@@ -170,7 +170,7 @@
     access: [["HydroponicsNS"]]
 
 - type: entity
-  parent: DoorElectronics
+  parent: DoorElectronicsNS
   id: DoorElectronicsNSChapel
   suffix: Chapel, NS, Locked
   components:
@@ -178,7 +178,7 @@
     access: [["ChapelNS"]]
 
 - type: entity
-  parent: DoorElectronics
+  parent: DoorElectronicsNS
   id: DoorElectronicsNSTheatre
   suffix: Theatre, NS, Locked
   components:
@@ -186,7 +186,7 @@
     access: [["TheatreNS"]]
 
 - type: entity
-  parent: DoorElectronics
+  parent: DoorElectronicsNS
   id: DoorElectronicsNSKitchen
   suffix: Kitchen, NS, Locked
   components:
@@ -194,7 +194,7 @@
     access: [["KitchenNS"]]
 
 - type: entity
-  parent: DoorElectronics
+  parent: DoorElectronicsNS
   id: DoorElectronicsNSKitchenHydroponics
   suffix: Kitchen, Hydroponics, NS, Locked
   components:
@@ -202,7 +202,7 @@
     access: [["KitchenNS"], ["HydroponicsNS"]]
 
 - type: entity
-  parent: DoorElectronics
+  parent: DoorElectronicsNS
   id: DoorElectronicsNSJanitor
   suffix: Janitor, NS, Locked
   components:
@@ -210,7 +210,7 @@
     access: [["JanitorNS"]]
 
 - type: entity
-  parent: DoorElectronics
+  parent: DoorElectronicsNS
   id: DoorElectronicsNSService
   suffix: Service, NS, Locked
   components:
@@ -218,7 +218,7 @@
     access: [["ServiceNS"]]
 
 - type: entity
-  parent: DoorElectronics
+  parent: DoorElectronicsNS
   id: DoorElectronicsNSServiceTheatre
   suffix: Service, Theatre, NS, Locked
   components:
@@ -228,7 +228,7 @@
 #region Engineering
 
 - type: entity
-  parent: DoorElectronics
+  parent: DoorElectronicsNS
   id: DoorElectronicsNSAtmospherics
   suffix: Atmospherics, NS, Locked
   components:
@@ -236,7 +236,7 @@
     access: [["AtmosphericsNS"]]
 
 - type: entity
-  parent: DoorElectronics
+  parent: DoorElectronicsNS
   id: DoorElectronicsNSEngineering
   suffix: Engineering, NS, Locked
   components:
@@ -245,7 +245,7 @@
 
 #region Science
 - type: entity
-  parent: DoorElectronics
+  parent: DoorElectronicsNS
   id: DoorElectronicsNSMorgue
   suffix: Morgue, NS, Locked
   components:
@@ -253,7 +253,7 @@
     access: [["MedicalNS"], ["DetectiveNS"], ["ChapelNS"]]
 
 - type: entity
-  parent: DoorElectronics
+  parent: DoorElectronicsNS
   id: DoorElectronicsNSMedicalResearch
   suffix: Medical, Science, NS, Locked
   components:
@@ -261,7 +261,7 @@
     access: [["ResearchNS"], ["MedicalNS"]]
 
 - type: entity
-  parent: DoorElectronics
+  parent: DoorElectronicsNS
   id: DoorElectronicsNSResearch
   suffix: Research, NS, Locked
   components:
@@ -269,7 +269,7 @@
     access: [["ResearchNS"]]
 
 - type: entity
-  parent: DoorElectronics
+  parent: DoorElectronicsNS
   id: DoorElectronicsNSRobotics
   suffix: Robotics, NS, Locked
   components:
@@ -279,7 +279,7 @@
 # region Security
 
 - type: entity
-  parent: DoorElectronics
+  parent: DoorElectronicsNS
   id: DoorElectronicsNSArmory
   suffix: Armory, NS, Locked
   components:
@@ -287,7 +287,7 @@
     access: [["ArmoryNS"]]
 
 - type: entity
-  parent: DoorElectronics
+  parent: DoorElectronicsNS
   id: DoorElectronicsNSDetective
   suffix: Detective, NS, Locked
   components:
@@ -295,7 +295,7 @@
     access: [["DetectiveNS"]]
 
 - type: entity
-  parent: DoorElectronics
+  parent: DoorElectronicsNS
   id: DoorElectronicsNSSecurity
   suffix: Security, Cadet, NS, Locked
   components:
@@ -303,7 +303,7 @@
     access: [["SecurityNS"], ["CadetNS"]]
 
 - type: entity
-  parent: DoorElectronics
+  parent: DoorElectronicsNS
   id: DoorElectronicsNSSecurityLawyer
   suffix: Security, Lawyer, NS, Locked
   components:
@@ -311,7 +311,7 @@
     access: [["SecurityNS"], ["Lawyer"]]
 
 - type: entity
-  parent: DoorElectronics
+  parent: DoorElectronicsNS
   id: DoorElectronicsNSBrig
   suffix: Brig, NS, Locked
   components:
@@ -319,7 +319,7 @@
     access: [["BrigNS"]]
 
 - type: entity
-  parent: DoorElectronics
+  parent: DoorElectronicsNS
   id: DoorElectronicsNSSecurityNoCadet
   suffix: Security, No Cadet, NS, Locked
   components:
@@ -327,7 +327,7 @@
     access: [["SecurityNS"]]
 
 - type: entity
-  parent: DoorElectronics
+  parent: DoorElectronicsNS
   id: DoorElectronicsNSCourtroom
   suffix: Courtroom, NS, Locked
   components:
@@ -337,7 +337,7 @@
 #region Medical
 
 - type: entity
-  parent: DoorElectronics
+  parent: DoorElectronicsNS
   id: DoorElectronicsNSChemistry
   suffix: Chemistry, NS, Locked
   components:
@@ -345,7 +345,7 @@
     access: [["ChemistryNS"]]
 
 - type: entity
-  parent: DoorElectronics
+  parent: DoorElectronicsNS
   id: DoorElectronicsNSMedical
   suffix: Medical, NS, Locked
   components:
@@ -353,7 +353,7 @@
     access: [["MedicalNS"]]
 
 - type: entity
-  parent: DoorElectronics
+  parent: DoorElectronicsNS
   id: DoorElectronicsNSSurgery
   suffix: Surgery, NS, Locked
   components:
@@ -361,7 +361,7 @@
     access: [["SurgeryNS"]]
 
 - type: entity
-  parent: DoorElectronics
+  parent: DoorElectronicsNS
   id: DoorElectronicsNSParamedic
   suffix: Paramedic, NS, Locked
   components:
@@ -370,7 +370,7 @@
 
 # region Representatives
 - type: entity
-  parent: DoorElectronics
+  parent: DoorElectronicsNS
   id: DoorElectronicsNSRedSwordOperative
   suffix: RSO, NS, Locked
   components:
@@ -378,7 +378,7 @@
     access: [["RedSword"]]
 
 - type: entity
-  parent: DoorElectronics
+  parent: DoorElectronicsNS
   id: DoorElectronicsNSNSRep
   suffix: NeoSolRep, NS, Locked
   components:
@@ -388,7 +388,7 @@
 # region Miscs
 
 - type: entity
-  parent: DoorElectronics
+  parent: DoorElectronicsNS
   id: DoorElectronicsNSExternal
   suffix: External, NS, Locked
   components:
@@ -396,7 +396,7 @@
     access: [["ExternalNS"]]
 
 - type: entity
-  parent: DoorElectronics
+  parent: DoorElectronicsNS
   id: DoorElectronicsNSMaintenance
   suffix: Maintenance, NS, Locked
   components:
@@ -404,7 +404,7 @@
     access: [["MaintenanceNS"]]
 
 - type: entity
-  parent: BaseDoorElectronicsCentComm 
+  parent: BaseDoorElectronicsHighCommand 
   id: DoorElectronicsNSHighCommand
   suffix: NeoSolHighCommand, Locked
   components:

@@ -5,6 +5,9 @@
   description: An electronics board used in doors and airlocks.
   suffix: NS
   components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Misc/module.rsi
+      state: syndicate_door_electronics
     - type: DoorElectronics
       accessGroups:
       - GeneralNS
@@ -15,3 +18,21 @@
       - MedicalNS
       - ServiceNS
       - EngineeringNS
+
+- type: entity
+  id: BaseDoorElectronicsHighCommand
+  parent: BaseDoorElectronicsCentComm
+  name: HighCommand door electronics
+  description: An electronics board used in doors and airlocks.
+  components:
+    - type: DoorElectronics
+      accessGroups:
+      - GeneralNS
+      - SecurityNS
+      - Cargo
+      - Executive
+      - ResearchNS
+      - MedicalNS
+      - ServiceNS
+      - EngineeringNS
+      - NSHighCommand

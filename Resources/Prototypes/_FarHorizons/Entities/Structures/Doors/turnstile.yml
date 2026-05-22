@@ -16,7 +16,7 @@
   - type: Sprite
     sprite: _FarHorizons/Structures/Doors/Turnstile/ns_command.rsi
   - type: AccessReader
-    access: [["Command"]]
+    access: [["Executive"]]
 
 - type: entity
   id: TurnstileSecurityNeoSol
@@ -26,7 +26,7 @@
   - type: Sprite
     sprite: _FarHorizons/Structures/Doors/Turnstile/ns_security.rsi
   - type: AccessReader
-    access: [["Security"]]
+    access: [["SecurityNS"]]
 
 - type: entity
   id: TurnstileGenpopEnterNeoSol
@@ -34,7 +34,7 @@
   suffix: Genpop Enter, NeoSol
   components:
   - type: AccessReader
-    access: [["GenpopEnter"], ["Security"]]
+    access: [["GenpopEnterNS"], ["SecurityNS"]]
 
 - type: entity
   id: TurnstileGenpopLeaveNeoSol
@@ -42,4 +42,4 @@
   suffix: Genpop Leave, NeoSol
   components:
   - type: AccessReader
-    access: [["GenpopLeave"], ["Security"]]
+    access: [["GenpopLeaveNS"], ["SecurityNS"]]

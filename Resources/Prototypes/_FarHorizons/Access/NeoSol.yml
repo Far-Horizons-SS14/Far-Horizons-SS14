@@ -23,7 +23,7 @@
   - Foreman
   - MedicalDirector
   - Marshal
-  - HeadOfResearch
+  - EpistemicsProvost
   - Executive
   - CryogenicsNS
   - SecurityNS
@@ -48,7 +48,7 @@
   - GenpopEnterNS
   - GenpopLeaveNS
   - CadetNS
-  - SOAgent
+  - NSRep
   - BrigmedicNS
   - RedSword
   - RoboticsNS
@@ -63,10 +63,11 @@
 #region NeoSol High Command
 - type: accessLevel
   id: NSHighCommand
-  name: id-card-access-level-central-command
+  name: id-card-access-level-high-command
   
 - type: accessGroup
   id: NSHighCommand
+  name: id-card-access-group-high-command
   tags:
   - NSHighCommand
 
@@ -89,8 +90,8 @@
   name: id-card-access-level-foreman
 
 - type: accessLevel
-  id: HeadOfResearch
-  name: id-card-access-level-head-of-research
+  id: EpistemicsProvost
+  name: id-card-access-level-epistemics-provost
 
 - type: accessLevel
   id: Marshal
@@ -120,8 +121,8 @@
   - CryogenicsNS
   - PersonnelManager
   - Marshal
-  - HeadOfResearch
-  - SOAgent
+  - EpistemicsProvost
+  - NSRep
   - RedSword
 
 # region Engineering
@@ -184,15 +185,15 @@
   id: ResearchNS
   name: id-card-access-group-research
   tags:
-  - HeadOfResearch
+  - EpistemicsProvost
   - ResearchNS
   - RoboticsNS
 
 #region Representatives
 
 - type: accessLevel
-  id: SOAgent
-  name: id-card-access-level-soagent
+  id: NSRep
+  name: id-card-access-level-nsrepresentative
   
 - type: accessLevel
   id: RedSword

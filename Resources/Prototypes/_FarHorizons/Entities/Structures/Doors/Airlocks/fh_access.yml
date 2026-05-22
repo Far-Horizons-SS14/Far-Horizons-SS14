@@ -1493,7 +1493,7 @@
   components:
   - type: ContainerFill
     containers:
-      board: [ DoorElectronicsBarNS ]
+      board: [ DoorElectronicsNSBar ]
 
 - type: entity
   parent: FHAirlockNSServiceLocked
@@ -1663,7 +1663,7 @@
   components:
   - type: ContainerFill
     containers:
-      board: [ DoorElectronicsNSSOAgent ]
+      board: [ DoorElectronicsNSNSRep ]
 
 - type: entity
   parent: FHAirlockNSExecutive
@@ -1712,12 +1712,12 @@
 
 - type: entity
   parent: FHAirlockNSExecutive
-  id: FHAirlockNSHeadOfResearchLocked
-  suffix: HeadOfResearch, NS, Locked
+  id: FHAirlockNSEpistemicsProvostLocked
+  suffix: EpistemicsProvost, NS, Locked
   components:
   - type: ContainerFill
     containers:
-      board: [ DoorElectronicsNSHeadOfResearch ]
+      board: [ DoorElectronicsNSEpistemicsProvost ]
 
 - type: entity
   parent: FHAirlockNSExecutive
@@ -2032,9 +2032,9 @@
     sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/maint_syndie.rsi
 
 - type: entity
-  parent: FHAirlockNSHeadOfResearchLocked
-  id: FHAirlockNSMaintHeadOfResearchLocked
-  suffix: HeadOfResearch, NS, Locked, Maint
+  parent: FHAirlockNSEpistemicsProvostLocked
+  id: FHAirlockNSMaintEpistemicsProvostLocked
+  suffix: EpistemicsProvost, NS, Locked, Maint
   components:
   - type: Sprite
     sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/maint_syndie.rsi
@@ -2378,12 +2378,12 @@
 
 - type: entity
   parent: FHAirlockNSExecutiveGlass
-  id: FHAirlockNSHeadOfResearchGlassLocked
-  suffix: HeadOfResearch, NS, Glass, Locked
+  id: FHAirlockNSEpistemicsProvostGlassLocked
+  suffix: EpistemicsProvost, NS, Glass, Locked
   components:
     - type: ContainerFill
       containers:
-        board: [ DoorElectronicsNSHeadOfResearch ]
+        board: [ DoorElectronicsNSEpistemicsProvost ]
 
 - type: entity
   parent: FHAirlockNSExecutiveGlass
