@@ -490,25 +490,6 @@
   #- type: StealTarget - Disabling for now, cause I don't feel like going through steal targets currently.
   #  stealGroup: ChiefEngineerToolBelt
 
-#RSO
-- type: entity
-  parent: [ ClothingBeltStorageBase, ContentsExplosionResistanceBase, BaseBlueshieldContraband ] # FH
-  id: ClothingBeltRedSword
-  name: Redsword Webbing 
-  description: A tactical rig that can hold many items to save the lives of the executives.
-  suffix: NS
-  components:
-  - type: Storage
-    grid:
-    - 0,0,7,1
-    - 9,0,10,1 #right
-  - type: Sprite
-    sprite: _FarHorizons/Clothing/Belt/NeoSol/redswordwebbing.rsi
-  - type: Clothing
-    sprite: _FarHorizons/Clothing/Belt/NeoSol/redswordwebbing.rsi
-  - type: ExplosionResistance
-    damageCoefficient: 0.5
-
 #region Engineering
 
 - type: entity
