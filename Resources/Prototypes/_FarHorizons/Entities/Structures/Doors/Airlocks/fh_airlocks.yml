@@ -371,7 +371,7 @@
 
 - type: entity
   parent: FHAirlockEngineering
-  id: FHAirlockEngineeringNS
+  id: FHAirlockNSEngineering
   suffix: NS, Engineering
   components:
     - type: Sprite
@@ -379,7 +379,7 @@
 
 - type: entity
   parent: FHAirlockAtmospherics
-  id: FHAirlockAtmosphericsNS
+  id: FHAirlockNSAtmospherics
   suffix: NS, Atmospherics
   components:
     - type: Sprite
@@ -387,7 +387,7 @@
 
 - type: entity
   parent: FHAirlockHydroponics
-  id: FHAirlockHydroponicsNS
+  id: FHAirlockNSHydroponics
   suffix: NS, Hydroponics
   components:
     - type: Sprite
@@ -395,7 +395,7 @@
 
 - type: entity
   parent: FHAirlockMedical
-  id: FHAirlockMedicalNS
+  id: FHAirlockNSMedical
   suffix: NS, Medical
   components:
     - type: Sprite
@@ -403,7 +403,7 @@
 
 - type: entity
   parent: FHAirlockVirology
-  id: FHAirlockVirologyNS
+  id: FHAirlockNSVirology
   suffix: NS, Virology
   components:
     - type: Sprite
@@ -411,7 +411,7 @@
 
 - type: entity
   parent: FHAirlockChemistry
-  id: FHAirlockChemistryNS
+  id: FHAirlockNSChemistry
   suffix: NS, Chemistry
   components:
     - type: Sprite
@@ -419,7 +419,7 @@
 
 - type: entity
   parent: FHAirlockScience
-  id: FHAirlockScienceNS
+  id: FHAirlockNSScience
   suffix: NS, Science
   components:
     - type: Sprite
@@ -427,15 +427,15 @@
 
 - type: entity
   parent: FHAirlockCommand
-  id: FHAirlockCommandNS
-  suffix: NS, Command
+  id: FHAirlockNSExecutive
+  suffix: NS, Executive
   components:
     - type: Sprite
       sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/command_syndie.rsi
 
 - type: entity
   parent: FHAirlockSecurity
-  id: FHAirlockSecurityNS
+  id: FHAirlockNSSecurity
   suffix: NS, Security
   components:
     - type: Sprite
@@ -443,7 +443,7 @@
 
 - type: entity
   parent: FHAirlockMaint
-  id: FHAirlockMaintNS
+  id: FHAirlockNSMaint
   suffix: NS, Maintenance
   components:
     - type: Sprite
@@ -451,15 +451,15 @@
 
 - type: entity
   parent: FHAirlockCentralCommand
-  id: FHAirlockSHC
-  suffix: SHC
+  id: FHAirlockNSNeoSolHighCommand
+  suffix: NS, NeoSolHighCommand
   components:
     - type: Sprite
       sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/SHC.rsi
 
 - type: entity
   parent: FHAirlockSurgery
-  id: FHAirlockSurgeryNS
+  id: FHAirlockNSSurgery
   suffix: NS, Surgery
   components:
     - type: Sprite
@@ -467,7 +467,7 @@
 
 - type: entity
   parent: FHAirlockRobotics
-  id: FHAirlockRoboticsNS
+  id: FHAirlockNSRobotics
   suffix: NS, Robotics
   components:
     - type: Sprite
@@ -475,7 +475,7 @@
 
 - type: entity
   parent: FHAirlockMedical
-  id: FHAirlockParamedicNS
+  id: FHAirlockNSParamedic
   suffix: NS, Paramedic
   components:
     - type: Sprite
@@ -483,7 +483,7 @@
 
 - type: entity
   parent: FHAirlock
-  id: FHAirlockBasicNS
+  id: FHAirlockNSBasic
   suffix: NS
   components:
     - type: Sprite
@@ -493,7 +493,7 @@
 
 - type: entity
   parent: FHAirlockStandardGlass
-  id: FHAirlockBasicGlassNS
+  id: FHAirlockNSBasicGlass
   suffix: NS
   components:
     - type: Sprite
@@ -501,7 +501,7 @@
 
 - type: entity
   parent: FHAirlockEngineeringGlass
-  id: FHAirlockEngineeringGlassNS
+  id: FHAirlockNSEngineeringGlass
   suffix: NS, Engineering
   components:
     - type: Sprite
@@ -509,7 +509,7 @@
 
 - type: entity
   parent: FHAirlockMaintGlass
-  id: FHAirlockMaintGlassNS
+  id: FHAirlockNSMaintGlass
   suffix: NS, Maintenance
   components:
     - type: Sprite
@@ -517,7 +517,7 @@
 
 - type: entity
   parent: FHAirlockAtmosphericsGlass
-  id: FHAirlockAtmosphericsGlassNS
+  id: FHAirlockNSAtmosphericsGlass
   suffix: NS, Atmospherics
   components:
     - type: Sprite
@@ -525,7 +525,7 @@
 
 - type: entity
   parent: FHAirlockHydroponicsGlass
-  id: FHAirlockHydroponicsGlassNS
+  id: FHAirlockNSHydroponicsGlass
   suffix: NS, Hydroponics
   components:
     - type: Sprite
@@ -533,7 +533,7 @@
 
 - type: entity
   parent: FHAirlockMedicalGlass
-  id: FHAirlockMedicalGlassNS
+  id: FHAirlockNSMedicalGlass
   suffix: NS, Medical
   components:
     - type: Sprite
@@ -541,7 +541,7 @@
 
 - type: entity
   parent: FHAirlockChemistryGlass
-  id: FHAirlockChemistryGlassNS
+  id: FHAirlockNSChemistryGlass
   suffix: NS, Chemistry
   components:
     - type: Sprite
@@ -549,7 +549,7 @@
 
 - type: entity
   parent: FHAirlockVirologyGlass
-  id: FHAirlockVirologyGlassNS
+  id: FHAirlockNSVirologyGlass
   suffix: NS, Virology
   components:
     - type: Sprite
@@ -557,7 +557,7 @@
 
 - type: entity
   parent: FHAirlockScienceGlass
-  id: FHAirlockScienceGlassNS
+  id: FHAirlockNSScienceGlass
   suffix: NS, Science
   components:
     - type: Sprite
@@ -565,15 +565,15 @@
 
 - type: entity
   parent: FHAirlockCommandGlass
-  id: FHAirlockCommandGlassNS
-  suffix: NS, Command
+  id: FHAirlockNSExecutiveGlass
+  suffix: NS, Executive
   components:
     - type: Sprite
       sprite: _FarHorizons/Structures/Doors/Airlocks/Glass/command_syndie.rsi
 
 - type: entity
   parent: FHAirlockSecurityGlass
-  id: FHAirlockSecurityGlassNS
+  id: FHAirlockNSSecurityGlass
   suffix: NS, Security
   components:
     - type: Sprite
@@ -581,15 +581,15 @@
 
 - type: entity
   parent: FHAirlockCentralCommandGlass
-  id: FHAirlockSHCGlass
-  suffix: SHC
+  id: FHAirlockNSNeoSolHighCommandGlass
+  suffix: NS, NeoSolHighCommand
   components:
     - type: Sprite
       sprite: _FarHorizons/Structures/Doors/Airlocks/Glass/SHC.rsi
 
 - type: entity
   parent: FHAirlockSurgeryGlass
-  id: FHAirlockSurgeryGlassNS
+  id: FHAirlockNSSurgeryGlass
   suffix: NS, Surgery
   components:
     - type: Sprite
@@ -597,7 +597,7 @@
 
 - type: entity
   parent: FHAirlockRoboticsGlass
-  id: FHAirlockRoboticsGlassNS
+  id: FHAirlockNSRoboticsGlass
   suffix: NS, Robotics
   components:
     - type: Sprite
@@ -605,7 +605,7 @@
 
 - type: entity
   parent: FHAirlockMedicalGlass
-  id: FHAirlockParamedicGlassNS
+  id: FHAirlockNSParamedicGlass
   suffix: NS, Paramedic
   components:
     - type: Sprite
