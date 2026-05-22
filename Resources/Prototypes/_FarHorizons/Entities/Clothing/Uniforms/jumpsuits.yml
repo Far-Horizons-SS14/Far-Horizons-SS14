@@ -345,6 +345,94 @@
   - type: Clothing
     sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/NeoSol/rnd.rsi
 
+# NeoSol Representative (NTR)
+
+- type: entity
+  parent: [ ClothingUniformBase, BaseRepresentativesContraband ]
+  id: ClothingUniformJumpsuitNSR
+  name: NeoSol Representative Suit
+  description: That suit that is better not to see.
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/NeoSol/shrep.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/NeoSol/shrep.rsi
+
+- type: entity
+  parent: [ ClothingUniformBase, BaseRepresentativesContraband ]
+  id: ClothingUniformJumpsuitNSRFormal
+  name: NeoSol Representative Formal Suit
+  description: That suit that is better not to see.
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/NeoSol/shrepformal.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/NeoSol/shrepformal.rsi
+
+- type: entity
+  parent: [ ClothingUniformBase, BaseRepresentativesContraband ]
+  id: ClothingUniformJumpsuitNSRTurtleNeck
+  name: NeoSol Representative's Turtleneck Jumpsuit
+  description: For a more casual look while on the job.
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/NeoSol/shrepturtleneck.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/NeoSol/shrepturtleneck.rsi
+
+- type: entity
+  parent: [ ClothingUniformBase, BaseRepresentativesContraband ]
+  id: ClothingUniformJumpsuitNSRHighCommand
+  name: NeoSol Representative's High Command Jumpsuit
+  description: When you somehow want to look even more official than you did before.
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/NeoSol/shrepSHC.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/NeoSol/shrepSHC.rsi
+
+# Red Sword Operative (BSO)
+
+- type: entity
+  parent: [ ClothingUniformBase, BaseBlueshieldContraband ] # Technically not Blueshield, but that's a problem for another day
+  id: ClothingUniformJumpsuitRedSword
+  name: Red Sword Operative's Suit 
+  description: Suit of a bodyguard specialized in harming threats.
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/NeoSol/redsword.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/NeoSol/redsword.rsi
+
+- type: entity
+  parent: [ ClothingUniformBase, BaseBlueshieldContraband ] # Technically not Blueshield, but that's a problem for another day
+  id: ClothingUniformJumpsuitEliteRedSword
+  name: Elite Red Sword Operative's Suit 
+  description: Suit of an elite red sword. The feats required to aquire one make other red swords kneel.
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/NeoSol/redsword_elite.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/NeoSol/redsword_elite.rsi
+
+- type: entity
+  parent: [ ClothingUniformBase, BaseBlueshieldContraband ] # Technically not Blueshield, but that's a problem for another day
+  id: ClothingUniformJumpsuitRedSwordFormal
+  name: Red Sword Operative's Formal Suit 
+  description: For when a slaughter does not warrant a lack of class.
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/NeoSol/redsword_formal.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/NeoSol/redsword_formal.rsi
+
 #region Civilian
 
 - type: entity

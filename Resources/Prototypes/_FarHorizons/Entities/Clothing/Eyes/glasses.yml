@@ -105,6 +105,51 @@
     coverage: EYES
   - type: ShowJobIcons
 
+- type: entity
+  parent: [ClothingEyesBase, BaseCommandContraband]
+  id: ClothingEyesSunGlassesHudSkillSyndi
+  name: Skills Sunglasses
+  description: Sunglasses with a build-in skills HUD, showing the employment history of nearby NeoSol crew members.
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Eyes/Glasses/NeoSol/sunhudskill.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Eyes/Glasses/NeoSol/sunhudskill.rsi
+  - type: FlashImmunity
+  - type: ShowJobIcons
+  - type: ShowMindShieldIcons
+  - type: ShowCriminalRecordIcons
+  - type: EyeProtection
+    protectionTime: 5
+
+- type: entity
+  parent: [ ClothingEyesBase, BaseBlueshieldContraband ] # Technically not Blueshield, but that's a problem for another day
+  id: ClothingEyesGlassesRedSword
+  name: Red Sword Operative's Glasses
+  description: The innovative red-lined lenses hide your eyes from light flashes and have a built-in visor.
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Eyes/Glasses/NeoSol/redswordoperative.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Eyes/Glasses/NeoSol/redswordoperative.rsi
+  - type: FlashImmunity
+  - type: ShowJobIcons
+  - type: ShowMindShieldIcons
+  - type: ShowCriminalRecordIcons
+  - type: ShowHealthBars
+    damageContainers:
+    - Biological
+  - type: ShowHealthIcons
+    damageContainers:
+    - Biological
+  - type: Tag
+    tags:
+    - HudMedical
+  - type: EyeProtection
+    protectionTime: 5
+
 #region Engineering
 
 - type: entity

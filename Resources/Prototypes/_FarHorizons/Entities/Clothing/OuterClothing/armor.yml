@@ -187,6 +187,42 @@
     - CorgiWearable
     - WhitelistChameleon
 
+# Red Sword Operative (BSO)
+
+- type: entity
+  parent: [ ClothingOuterArmorBase, BaseBlueshieldContraband ] # Technically not Blueshield, but that's a problem for another day
+  id: ClothingOuterArmorRedSword
+  name: Red Sword Operative's Bulletproof Vest
+  description: Much better than a standard Type-I armored vest. Don't lose it, you will NOT get a replacement.
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/Armor/NeoSol/redsword.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/Armor/NeoSol/redsword.rsi
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      flatReductions:
+        Piercing: 5 
+        Heat: 4
+      coefficients:
+        Blunt: 0.6
+        Slash: 0.6
+        Piercing: 0.6
+        Heat: 0.7
+  - type: LimbArmor
+    limbs:
+      ArmRight: {}
+      ArmLeft: {}
+      LegRight: {}
+      LegLeft: {}
+  - type: ExplosionResistance
+    damageCoefficient: 0.80
+  - type: Item
+    size: Normal
+
 #region Security
 
 # General Armor
