@@ -56,9 +56,9 @@
 # NTR
 
 - type: entity
-  parent: [ ClothingUniformSkirtBase, BaseRepresentativesContraband ]
+  parent: [ ClothingUniformSkirtBase, BaseCommandContraband ]
   id: ClothingUniformJumpskirtNtrepCentComm
-  name: NT Representative's Centcomm Jumpskirt
+  name: NT Representive's Centcomm Jumpskirt
   suffix: NT
   description: When you somehow want to look even more official than you did before.
   components:
@@ -68,9 +68,9 @@
     sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/ntrepCC.rsi
 
 - type: entity
-  parent: [ ClothingUniformSkirtBase, BaseRepresentativesContraband ]
+  parent: [ ClothingUniformSkirtBase, BaseCommandContraband ]
   id: ClothingUniformJumpskirtNtrepFormal
-  name: NT Representative's Formal Jumpskirt
+  name: NT Representive's Formal Jumpskirt
   suffix: NT
   description: For when CentComm tells you to dress to the nines, the NTR takes it to the tens instead.
   components:
@@ -80,9 +80,9 @@
     sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/ntrepformal.rsi
 
 - type: entity
-  parent: [ ClothingUniformSkirtBase, BaseRepresentativesContraband ]
+  parent: [ ClothingUniformSkirtBase, BaseCommandContraband ]
   id: ClothingUniformJumpskirtNtrepNoble
-  name: NT Representative's Noble Jumpskirt
+  name: NT Representive's Noble Jumpskirt
   suffix: NT
   description: For only the highest nobility within CentComm's representatives. May they be dazzled by your brilliance.
   components:
@@ -410,54 +410,93 @@
   - type: Clothing
     sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/NeoSol/ce_turtle.rsi
 
-#NeoSol Rep
+# NeoSol Representative (NTR)
+
 - type: entity
-  parent: [ ClothingUniformSkirtBase, BaseRepresentativesContraband ] 
-  id: ClothingUniformJumpskirtNsrep
-  name: NT Representative Skirt 
+  parent: [ ClothingUniformBase, BaseRepresentativesContraband ]
+  id: ClothingUniformJumpskirtNSR
+  name: NeoSol Representative Skirt
   description: That skirt that is better not to see.
   suffix: NS
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/NeoSol/nsrep.rsi 
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/NeoSol/shrep.rsi
   - type: Clothing
-    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/NeoSol/nsrep.rsi 
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/NeoSol/shrep.rsi
 
 - type: entity
-  parent: [ ClothingUniformSkirtBase, BaseRepresentativesContraband ] # FH
-  id: ClothingUniformJumpskirtNsrepTurtleneck
-  name: NS Representative's Turtleneck Jumpskirt 
+  parent: [ ClothingUniformBase, BaseRepresentativesContraband ]
+  id: ClothingUniformJumpskirtNSRFormal
+  name: NeoSol Representative Formal Skirt
+  description: That skirt that is better not to see.
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/NeoSol/shrepformal.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/NeoSol/shrepformal.rsi
+
+- type: entity
+  parent: [ ClothingUniformBase, BaseRepresentativesContraband ]
+  id: ClothingUniformJumpskirtNSRTurtleNeck
+  name: NeoSol Representative's Turtleneck Jumpskirt
   description: For a more casual look while on the job.
   suffix: NS
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/NeoSol/nsrepturtleneck.rsi 
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/NeoSol/shrepturtleneck.rsi
   - type: Clothing
-    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/NeoSol/nsrepturtleneck.rsi 
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/NeoSol/shrepturtleneck.rsi
 
 - type: entity
-  parent: [ ClothingUniformSkirtBase, BaseRepresentativesContraband ]
-  id: ClothingUniformJumpskirtNsrepFormal
-  name: NS Representative's Formal Jumpskirt
-  suffix: NS
-  description: For when CentComm tells you to dress to the nines, the NTR takes it to the tens instead.
-  components:
-  - type: Sprite
-    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/NeoSol/nsrepformal.rsi
-  - type: Clothing
-    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/NeoSol/nsrepformal.rsi
-
-- type: entity
-  parent: [ ClothingUniformSkirtBase, BaseRepresentativesContraband ]
-  id: ClothingUniformJumpskirtNsrepCentComm
-  name: NS Representative's Centcomm Jumpskirt
-  suffix: NS
+  parent: [ ClothingUniformBase, BaseRepresentativesContraband ]
+  id: ClothingUniformJumpskirtNSRHighCommand
+  name: NeoSol Representative's High Command Jumpskirt
   description: When you somehow want to look even more official than you did before.
+  suffix: NS
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/NeoSol/nsrepCC.rsi
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/NeoSol/shrepSHC.rsi
   - type: Clothing
-    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/NeoSol/nsrepCC.rsi
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/NeoSol/shrepSHC.rsi
+
+# Red Sword Operative (BSO)
+
+- type: entity
+  parent: [ ClothingUniformBase, BaseBlueshieldContraband ] # Technically not Blueshield, but that's a problem for another day
+  id: ClothingUniformJumpskirtRedSword
+  name: Red Sword Operative's Skirt 
+  description: Skirt of a bodyguard specialized in harming threats.
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/NeoSol/redsword.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/NeoSol/redsword.rsi
+
+- type: entity
+  parent: [ ClothingUniformBase, BaseBlueshieldContraband ] # Technically not Blueshield, but that's a problem for another day
+  id: ClothingUniformJumpskirtEliteRedSword
+  name: Elite Red Sword Operative's Skirt 
+  description: Skirt of an elite red sword. The feats required to aquire one make other red swords kneel.
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/NeoSol/redsword_elite.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/NeoSol/redsword_elite.rsi
+
+- type: entity
+  parent: [ ClothingUniformBase, BaseBlueshieldContraband ] # Technically not Blueshield, but that's a problem for another day
+  id: ClothingUniformJumpskirtRedSwordFormal
+  name: Red Sword Operative's Formal Skirt 
+  description: For when a slaughter does not warrant a lack of class.
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/NeoSol/redsword_formal.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/NeoSol/redsword_formal.rsi
 
 #region Civilian
 

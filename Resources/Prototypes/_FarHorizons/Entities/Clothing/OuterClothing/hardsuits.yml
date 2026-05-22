@@ -477,30 +477,32 @@
     - WhitelistChameleon
     - IPCExternalCooling
 
+#RSO Hardsuit
 - type: entity
-  parent: [ ClothingOuterHardsuitBase, BaseBlueshieldContraband ] # FH
+  parent: [ ClothingOuterHardsuitBase, BaseBlueshieldContraband ] # Technically not Blueshield, but that's a problem for another day
   id: ClothingOuterHardsuitRedSword
-  name: Redsword Operative's Hardsuit
-  description: A high-tech hardsuit perfect for diving in front of Mr. Pre- Er, Commandant.
+  name: Red Sword Operative's Hardsuit
+  description: A high-tech hardsuit so well armored it could be mistaken for a wall.
+  suffix: NS
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/NeoSol/redsword.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/NeoSol/redswordoperative.rsi
   - type: Clothing
-    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/NeoSol/redsword.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/NeoSol/redswordoperative.rsi
   - type: PressureProtection
     highPressureMultiplier: 0.525
     lowPressureMultiplier: 10000
   - type: ClothingSpeedModifier
     walkModifier: 0.8
     sprintModifier: 0.8
-    requireActivated: false #FH cuz item toggle.
+    requireActivated: false
   - type: Pierceable
     level: Metal
   - type: Armor
     modifiers:
-      flatReductions: #FH
-        Piercing: 5 #FH
-        Heat: 4 #FH
+      flatReductions:
+        Piercing: 5
+        Heat: 4
       coefficients:
         Blunt: 0.6
         Slash: 0.5
@@ -508,9 +510,9 @@
         Heat: 0.7
         Radiation: 0.25
         Caustic: 0.6
-    staminaModifier: 0.4 #FH - Default is 50%, upped to 60% due to BSO.
-    ignoreKnockdown: true #FH - Taser no worky on combat hardsuits
-  - type: LimbArmor # Far Horizons
+    staminaModifier: 0.4
+    ignoreKnockdown: true
+  - type: LimbArmor
     limbs:
       ArmRight: {}
       ArmLeft: {}
@@ -523,7 +525,7 @@
   - type: ExplosionResistance
     damageCoefficient: 0.6
   - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitRedsword
+    clothingPrototype: ClothingHeadHelmetHardsuitRedSword
 
 #region Engineering
 

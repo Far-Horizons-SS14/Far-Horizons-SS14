@@ -43,7 +43,8 @@ public sealed class KillTrackingSystem : EntitySystem
 
     private void OnMobStateChanged(EntityUid uid, KillTrackerComponent component, MobStateChangedEvent args)
     {
-        if (args.NewMobState != component.KillState || args.OldMobState >= args.NewMobState)
+        // Far Horizons
+        if ( !component.KillStates.Contains(args.NewMobState) || args.OldMobState >= args.NewMobState)
             return;
 
         // impulse is the entity that did the finishing blow.

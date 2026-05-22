@@ -293,7 +293,6 @@
   id: BaseNeoSolPDA
   name: PDA
   description: Personal Data Assistant.
-  suffix: NS
   components:
   - type: Appearance
     appearanceDataInit:
@@ -600,10 +599,12 @@
 
 #region NeoSol Reps
 
-- type: entity 
+- type: entity
   parent: BaseNeoSolPDA
   id: RedSwordPDA
   name: Red Sword Operative's PDA
+  description: It has seen more "peacekeeping" than most security forces.
+  suffix: NS
   components:
   - type: Sprite
     sprite: _FarHorizons/Objects/Devices/neosol_pda.rsi
@@ -611,15 +612,15 @@
     id: RedSwordIDCard
   - type: Appearance
     appearanceDataInit:
-     enum.PdaVisuals.PdaType:
-       !type:String
-       pda-redsword
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-redswordoperative
   - type: PdaBorderColor
     borderColor: "#181c26"
-    accentHColor: "#c42535"
+    accentHColor: "#25c1c4"
   - type: Icon
     sprite: _FarHorizons/Objects/Devices/neosol_pda.rsi
-    state: pda-redsword
+    state: pda-redswordoperative
   - type: CartridgeLoader
     uiKey: enum.PdaUiKey.Key
     preinstalled:
@@ -633,6 +634,8 @@
   parent: BaseNeoSolPDA
   id: NeoSolRepresentativePDA
   name: NeoSol Representative PDA
+  description: Gilded with gold and in pristine condition.
+  suffix: NS
   components:
   - type: Pda
     id: NeoSolRepresentativeIDCard
@@ -644,9 +647,9 @@
         - Write
   - type: Appearance
     appearanceDataInit:
-     enum.PdaVisuals.PdaType:
-       !type:String
-       pda-neosolrepresentative
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-neosolrepresentative
   - type: PdaBorderColor
     borderColor: "#151515"
   - type: Icon

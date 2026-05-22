@@ -11,6 +11,7 @@ using Content.Server.Speech.EntitySystems;
 using Content.Server.Speech.Prototypes;
 using Content.Server.Starlight.TTS;
 using Content.Server.Station.Systems;
+using Content.Shared._FarHorizons.Mobs;
 using Content.Shared._Starlight.Language;
 using Content.Shared._Starlight.Speech;
 using Content.Shared.ActionBlocker;
@@ -71,6 +72,7 @@ public sealed partial class ChatSystem : SharedChatSystem
     [Dependency] private readonly SharedCollectiveMindSystem _collectiveMind = default!; // Starlight
     [Dependency] private readonly LanguageSystem _language = default!; // Starlight
     [Dependency] private readonly SharedPopupSystem _popups = default!; // Starlight
+    [Dependency] private readonly SharedActiveCritSystem _activeCrit = default!; // Far Horizons
 
     public const float DefaultObfuscationFactor = 0.2f; // Percentage of symbols in a whispered message that can be seen even by "far" listeners - Starlight
     public readonly Color DefaultSpeakColor = Color.LightGray; // Starlight
@@ -255,6 +257,10 @@ public sealed partial class ChatSystem : SharedChatSystem
                 return;
             }
         }
+
+        // Far Horizons
+        if (desiredType == InGameICChatType.Speak && _activeCrit.ForceWhisper(source))
+            desiredType = InGameICChatType.Whisper;
 
         // Otherwise, send whatever type.
         switch (desiredType)

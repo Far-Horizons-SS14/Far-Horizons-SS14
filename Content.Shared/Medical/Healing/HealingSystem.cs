@@ -344,7 +344,8 @@ public sealed class HealingSystem : EntitySystem
         if (!Resolve(ent, ref ent.Comp1, ref ent.Comp2, false))
             return mod;
 
-        if (!_mobThresholdSystem.TryGetThresholdForState(ent, MobState.Critical, out var amount, ent.Comp2))
+        if (!_mobThresholdSystem.TryGetThresholdForState(ent, MobState.Critical, out var amount, ent.Comp2) &&
+            !_mobThresholdSystem.TryGetThresholdForState(ent, MobState.ActiveCritical, out amount, ent.Comp2)) // Far Horizons
             return 1;
 
         var percentDamage = (float)(_damageable.GetTotalDamage(ent) / amount);

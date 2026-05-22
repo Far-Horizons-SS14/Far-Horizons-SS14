@@ -55,19 +55,25 @@
 
 
 
+
 #region Command
 
+# NeoSol Representative (NTR)
+
 - type: entity
-  parent: [ ClothingOuterArmorHoS, ClothingOuterWinterCoat, BaseSecurityCommandContraband ]
-  id: ClothingOuterWinterHoSSyndi
-  name: Marshal's Armored Winter Coat
+  parent: [ ClothingOuterWinterCoat, BaseRepresentativesContraband ]
+  id: ClothingOuterWinterNSR
+  name: NeoSol Representative's Winter Coat
+  description: Authentic fur stitched to a durathread backing using golden thread. Rumored to cost more than some stations.
   suffix: NS
-  description: A sturdy, utilitarian winter coat designed to protect the Marshal from any threats and hypothermic events.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/OuterClothing/WinterCoats/NeoSol/coathosarmored.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/WinterCoats/NeoSol/shrep_winter.rsi
   - type: Clothing
-    sprite: _FarHorizons/Clothing/OuterClothing/WinterCoats/NeoSol/coathosarmored.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/WinterCoats/NeoSol/shrep_winter.rsi
+
+
+#region Medical
 
 - type: entity
   parent: [ClothingOuterWinterCoatToggleable, BaseCommandContraband]
@@ -98,36 +104,6 @@
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHatHoodWinterCMO
 
-- type: entity
-  parent: [ClothingOuterWinterCoatToggleable, BaseCommandContraband]
-  id: ClothingOuterWinterNSR
-  name: NeoSol Representative's Winter Coat
-  suffix: NS
-  components:
-  - type: Sprite
-    sprite: _FarHorizons/Clothing/OuterClothing/WinterCoats/NeoSol/nsrep.rsi 
-  - type: Item
-  - type: Clothing
-    sprite: _FarHorizons/Clothing/OuterClothing/WinterCoats/NeoSol/nsrep.rsi 
-  - type: Pierceable
-    level: Metal
-  - type: Armor
-    modifiers:
-      coefficients:
-        Slash: 0.95
-        Heat: 0.90
-        Caustic: 0.75
-    priceMultiplier: 0.15
-  - type: LimbArmor
-    limbs:
-      ArmRight: {}
-      ArmLeft: {}
-      LegRight: {}
-      LegLeft: {}
-  - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHatHoodWinterCMO
-
-#region Medical
 - type: entity
   parent: ClothingOuterWinterCoatToggleable
   id: ClothingOuterWinterMedSyndi
@@ -259,6 +235,18 @@
 #region Security
 
 # Marshal (HoS)
+
+- type: entity
+  parent: [ ClothingOuterArmorHoS, ClothingOuterWinterCoat, BaseSecurityCommandContraband ]
+  id: ClothingOuterWinterHoSSyndi
+  name: Marshal's Armored Winter Coat
+  suffix: NS
+  description: A sturdy, utilitarian winter coat designed to protect the Marshal from any threats and hypothermic events.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/WinterCoats/NeoSol/coathosarmored.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/WinterCoats/NeoSol/coathosarmored.rsi
 
 # Constable (Warden)
 - type: entity

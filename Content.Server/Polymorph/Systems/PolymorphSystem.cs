@@ -87,7 +87,7 @@ public sealed partial class PolymorphSystem : EntitySystem
                 continue;
 
             if (comp.Configuration.RevertOnDeath && _mobState.IsDead(uid, mob) ||
-                comp.Configuration.RevertOnCrit && _mobState.IsIncapacitated(uid, mob))
+                comp.Configuration.RevertOnCrit && _mobState.IsIncapacitated(uid, mob, true)) // Far Horizons
             {
                 Revert((uid, comp));
             }

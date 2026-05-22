@@ -52,6 +52,9 @@ public sealed class DefibrillatorTest : InteractionTest
 
         // Get the damage needed to kill or crit the target.
         var critThreshold = mobThresholdsSystem.GetThresholdForState(STarget.Value, MobState.Critical);
+        if (critThreshold == 0)
+            critThreshold = mobThresholdsSystem.GetThresholdForState(STarget.Value, MobState.ActiveCritical); // Far Horizons
+
         var deathThreshold = mobThresholdsSystem.GetThresholdForState(STarget.Value, MobState.Dead);
         var critDamage = new DamageSpecifier(ProtoMan.Index(BluntDamageTypeId), (critThreshold + deathThreshold) / 2);
         var deathDamage = new DamageSpecifier(ProtoMan.Index(BluntDamageTypeId), deathThreshold);
@@ -97,6 +100,7 @@ public sealed class DefibrillatorTest : InteractionTest
         await Interact();
 
         // The target should be revived, but in crit.
-        Assert.That(targetMobState.CurrentState, Is.EqualTo(MobState.Critical), "Target mob was not revived from being defibrillated.");
+        // Far Horizons active crit
+        Assert.That(targetMobState.CurrentState, Is.EqualTo(MobState.Critical).Or.EqualTo(MobState.ActiveCritical), "Target mob was not revived from being defibrillated.");
     }
 }

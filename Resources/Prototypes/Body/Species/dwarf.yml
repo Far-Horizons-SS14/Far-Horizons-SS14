@@ -39,6 +39,7 @@
 
 - type: entity
   parent:
+  - ActiveCritBase # FH
   - AppearanceDwarf
   - MobHuman
   id: MobDwarf
@@ -55,7 +56,7 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      110: Critical
+      110: ActiveCritical # FH
       220: Dead
   - type: Absorbable
   # Starlight-end

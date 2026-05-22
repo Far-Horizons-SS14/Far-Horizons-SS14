@@ -58,6 +58,7 @@ public sealed partial class SalarySystem : SharedSalarySystem
                 }
                 if (!_entityManager.TryGetComponent<MobStateComponent>(query.Current.Session.AttachedEntity, out var state) 
                     || state.CurrentState == MobState.Critical 
+                    || state.CurrentState == MobState.ActiveCritical // Far Horizons
                     || state.CurrentState == MobState.Dead)
                     continue;
                 if (_time.CurTime - lastTime > TimeSpan.FromMinutes(15)

@@ -85,7 +85,7 @@ public abstract class SharedCryostorageSystem : EntitySystem
         if (args.Container.ID != comp.ContainerId)
             return;
 
-        if (_mobState.IsIncapacitated(args.EntityUid))
+        if (_mobState.IsIncapacitated(args.EntityUid, allowActiveCrit: true)) // Far Horizons
         {
             args.Cancel();
             return;

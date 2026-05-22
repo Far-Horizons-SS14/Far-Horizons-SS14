@@ -352,18 +352,21 @@
     #- CorgiWearable
     - WhitelistChameleon
 
+#RSO Hardsuit
 - type: entity
   parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
-  id: ClothingHeadHelmetHardsuitRedsword
+  id: ClothingHeadHelmetHardsuitRedSword
   categories: [ HideSpawnMenu ]
-  name: Redsword Operative's Hardsuit Helmet
+  name: Red Sword Operative's Hardsuit Helmet
+  description: Without a hardsuit supporting it, the weight of the armor would crush your spine.
+  suffix: NS
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/Head/Hardsuits/NeoSol/redsword.rsi
+    sprite: _FarHorizons/Clothing/Head/Helmets/NeoSol/redswordoperative.rsi 
   - type: Clothing
-    sprite: _FarHorizons/Clothing/Head/Hardsuits/NeoSol/redsword.rsi
+    sprite: _FarHorizons/Clothing/Head/Helmets/NeoSol/redswordoperative.rsi 
   - type: PointLight
-    color: "#adffc7"
+    color: "#ffadad"
   - type: PressureProtection
     highPressureMultiplier: 0.45
     lowPressureMultiplier: 10000
@@ -375,7 +378,7 @@
         Blunt: 0.8
         Slash: 0.8
         Piercing: 0.8
-  - type: LimbArmor 
+  - type: LimbArmor
     limbs:
       Head:
         flatReductions:

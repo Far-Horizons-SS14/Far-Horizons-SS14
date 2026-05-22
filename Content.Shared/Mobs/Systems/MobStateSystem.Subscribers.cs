@@ -84,6 +84,7 @@ public partial class MobStateSystem
             case MobState.Alive:
                 //unused
                 break;
+            case MobState.ActiveCritical: // Far Horizons
             case MobState.Critical:
                 _standing.Stand(target);
                 break;
@@ -115,6 +116,7 @@ public partial class MobStateSystem
                 _appearance.SetData(target, MobStateVisuals.State, MobState.Alive);
                 break;
             }
+            case MobState.ActiveCritical: // Far Horizons
             case MobState.Critical:
             {
                 Down(target);

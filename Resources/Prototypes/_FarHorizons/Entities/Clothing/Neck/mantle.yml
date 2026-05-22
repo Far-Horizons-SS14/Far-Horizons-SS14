@@ -65,3 +65,19 @@
     sprite: _FarHorizons/Clothing/Neck/Mantles/NeoSol/hosmantle.rsi
   - type: Clothing
     sprite: _FarHorizons/Clothing/Neck/Mantles/NeoSol/hosmantle.rsi
+
+# Red Sword Operative (BSO)
+
+- type: entity
+  parent: [ ClothingNeckBase, BaseBlueshieldContraband ] # Technically not Blueshield, but that's a problem for another day
+  id: ClothingNeckCloakRsoElite
+  name: Red Sword Operative's Mantle
+  description: A Red Sword Operative's mantle, crafted from a weave of obsidian and durathread. Impractical, but unmatched as a statement.
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Neck/Cloaks/NeoSol/rso_elite.rsi 
+  - type: StealTarget
+    stealGroup: HeadCloak
+  - type: StaticPrice
+    price: 2000

@@ -1,4 +1,5 @@
 using System.Numerics;
+using Content.Client._FarHorizons.Mobs;
 using Content.Shared.Mobs;
 using Robust.Client.Graphics;
 using Robust.Client.Player;
@@ -16,6 +17,8 @@ public sealed class DamageOverlay : Overlay
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly IEntityManager _entityManager = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
+    
+    private ActiveCritSystem? _activeCrit = default!; // FarHorizons
 
     public override OverlaySpace Space => OverlaySpace.WorldSpace;
 
@@ -171,7 +174,10 @@ public sealed class DamageOverlay : Overlay
             _oldPainLevel = PainLevel;
         }
 
-        level = State != MobState.Critical ? _oldOxygenLevel : 1f;
+        _activeCrit ??= _entityManager.System<ActiveCritSystem>(); // Far Horizons
+        level = State != MobState.Critical && !_activeCrit.IsBlackout(_playerManager.LocalEntity.Value) // Far Horizons
+            ? _oldOxygenLevel
+            : 1f;
 
         if (level > 0f)
         {

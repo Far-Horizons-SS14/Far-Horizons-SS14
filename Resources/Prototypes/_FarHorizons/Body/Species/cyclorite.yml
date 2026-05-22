@@ -113,10 +113,17 @@
 
 - type: entity
   parent:
+  - ActiveCritBase
   - AppearanceCyclorite
   - BaseMobCyclorite
   id: MobCyclorite
   name: Urist Cyclorite
+  components:
+    - type: MobThresholds
+      thresholds:
+        0: Alive
+        120: ActiveCritical
+        240: Dead
 
 # Organs
 

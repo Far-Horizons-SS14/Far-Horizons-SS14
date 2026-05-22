@@ -68,6 +68,7 @@
 
 - type: entity
   parent:
+  - ActiveCritBase # FH
   - AppearanceSkeletonPerson
   - BaseSpeciesMob
   id: MobSkeletonPerson
@@ -86,7 +87,7 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      100: Critical
+      100: ActiveCritical # FH
       150: Dead
   - type: TransferMindOnGib
   - type: Destructible

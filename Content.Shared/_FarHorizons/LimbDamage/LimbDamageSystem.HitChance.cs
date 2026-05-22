@@ -2,6 +2,7 @@ using System.Linq;
 using Content.Shared._FarHorizons.LimbDamage.Components;
 using Content.Shared.Body;
 using Content.Shared.Damage.Components;
+using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Random.Helpers;
 using Content.Shared.Stunnable;
@@ -61,7 +62,7 @@ public partial class LimbDamageSystem
     {
         var target = args.Target;
 
-        if (ent.Comp.CurrentState < Mobs.MobState.Critical ||
+        if (ent.Comp.CurrentState < MobState.ActiveCritical ||
             args.Handled ||
             !TryComp<BodyComponent>(ent, out var body) ||
             body.Organs == null ||

@@ -29,7 +29,7 @@ public sealed class BeingVentCrawSystem : EntitySystem
     
     private void OnMobStateChanged(EntityUid uid, BeingVentCrawComponent component, MobStateChangedEvent args)
     {
-        if (args.NewMobState != MobState.Dead || args.OldMobState != MobState.Critical)
+        if (args.NewMobState != MobState.Dead || (args.OldMobState != MobState.Critical && args.OldMobState != MobState.ActiveCritical) ) // Far Horizons
             return;
             
         if (TryComp<ActorComponent>(uid, out var actor))

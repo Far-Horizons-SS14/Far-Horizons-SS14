@@ -60,7 +60,7 @@ namespace Content.Shared.Examine
                 return true;
 
             // check if the mob is in critical or dead
-            if (MobStateSystem.IsIncapacitated(examiner))
+            if (MobStateSystem.IsIncapacitated(examiner, allowActiveCrit: true)) // Far Horizons
                 return false;
 
             if (!InRangeUnOccluded(examiner, entity, ExamineDetailsRange))

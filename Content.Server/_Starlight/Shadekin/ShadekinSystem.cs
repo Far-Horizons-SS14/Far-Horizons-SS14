@@ -234,6 +234,7 @@ public sealed partial class ShadekinSystem : EntitySystem
             passive.AllowedStates.Clear();
             passive.AllowedStates.Add(MobState.Alive);
             passive.AllowedStates.Add(MobState.Critical);
+            passive.AllowedStates.Add(MobState.ActiveCritical); // Far Horizons
             passive.AllowedStates.Add(MobState.Dead);
             passive.Interval = 0.5f;
         }
