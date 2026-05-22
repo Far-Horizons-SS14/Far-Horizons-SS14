@@ -1,7 +1,9 @@
 using Content.Shared.ActionBlocker;
 using Content.Shared.CombatMode;
 using Content.Shared.Damage.Systems;
+using Content.Shared.Eye.Blinding.Systems;
 using Content.Shared.IdentityManagement;
+using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Item;
 using Content.Shared.Mobs;
@@ -18,7 +20,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared._FarHorizons.Mobs;
 
-public abstract class SharedActiveCritSystem : EntitySystem
+public abstract partial class SharedActiveCritSystem : EntitySystem
 {
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] protected readonly MobStateSystem _mobState = default!;
@@ -28,10 +30,13 @@ public abstract class SharedActiveCritSystem : EntitySystem
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedCombatModeSystem _combat = default!;
     [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!;
+    [Dependency] private readonly BlindableSystem _blindable = default!;
 
     public override void Initialize()
     {
         base.Initialize();
+
+        InitializeActions();
 
         SubscribeLocalEvent<ActiveCritComponent, MobStateChangedEvent>(OnStateChanged);
         SubscribeLocalEvent<ActiveCritComponent, RefreshMovementSpeedModifiersEvent>(OnMovementModifierRefresh);
@@ -46,6 +51,15 @@ public abstract class SharedActiveCritSystem : EntitySystem
         SubscribeLocalEvent<ActiveCritComponent, ConsciousAttemptEvent>(OnConsciousCheck);
         SubscribeLocalEvent<ActiveCritComponent, UpdateCanMoveEvent>(OnCanMoveCheck);
         SubscribeLocalEvent<ActiveCritComponent, SpeakAttemptEvent>(OnSpeakAttempt);
+        SubscribeLocalEvent<ActiveCritComponent, InRangeOverrideEvent>(OnInRangeCheck);
+    }
+
+    private void OnInRangeCheck(Entity<ActiveCritComponent> ent, ref InRangeOverrideEvent args)
+    {
+        if (!_mobState.IsCritical(ent.Owner) || args.Handled || args.Action) return;
+
+        args.InRange = false;
+        args.Handled = true;
     }
 
     private void OnSpeakAttempt(Entity<ActiveCritComponent> ent, ref SpeakAttemptEvent args)
@@ -73,7 +87,7 @@ public abstract class SharedActiveCritSystem : EntitySystem
 
     private void OnUseAttempt(Entity<ActiveCritComponent> ent, ref UseAttemptEvent args)
     {
-        if (!_mobState.IsCritical(ent.Owner) || args.Cancelled) return;
+        if (!_mobState.IsCritical(ent.Owner) || args.Cancelled || !_timing.IsFirstTimePredicted) return;
 
         if (HasComp<KnockedDownComponent>(ent.Owner))
         {
@@ -93,16 +107,7 @@ public abstract class SharedActiveCritSystem : EntitySystem
         if (!_mobState.IsCritical(ent.Owner) || args.Cancelled) return;
 
         if (HasComp<KnockedDownComponent>(ent.Owner))
-        {
             args.Cancelled = true;
-            return;
-        }
-
-        var random = SharedRandomExtensions.PredictedRandom(_timing, GetNetEntity(ent));
-        if (!random.Prob(ent.Comp.FallOnUseChance)) return;
-        _stun.TryKnockdown(ent.Owner, ent.Comp.CrawlDuration, true, false, true, true);
-        _damage.TryChangeDamage(ent.Owner, ent.Comp.DamageOnFall, true, false);
-        args.Cancelled = true;
     }
 
     private void OnPickupAttempt(Entity<ActiveCritComponent> ent, ref PickupAttemptEvent args)
@@ -154,6 +159,8 @@ public abstract class SharedActiveCritSystem : EntitySystem
 
     private void OnStateChanged(Entity<ActiveCritComponent> ent, ref MobStateChangedEvent args)
     {
+        if (!_timing.IsFirstTimePredicted) return;
+
         if (args.OldMobState == MobState.ActiveCritical && args.NewMobState != MobState.ActiveCritical)
             CleanupActiveCrit(ent.AsNullable());
         else if (args.OldMobState != MobState.ActiveCritical && args.NewMobState == MobState.ActiveCritical)
@@ -187,16 +194,27 @@ public abstract class SharedActiveCritSystem : EntitySystem
         _movementSpeed.RefreshMovementSpeedModifiers(ent.Owner);
         EnterBlackout(ent);
         _combat.SetInCombatMode(ent.Owner, false);
+
+        if (ent.Comp.AdjustTemporaryEyeDamage <= 0) 
+            return;
+        
+        _blindable.AdjustEyeDamage(ent.Owner, ent.Comp.AdjustTemporaryEyeDamage);
+
     }
 
     public void CleanupActiveCrit(Entity<ActiveCritComponent?> ent)
     {
-        if (!Resolve(ent, ref ent.Comp) || !_mobState.IsCritical(ent))
+        if (!Resolve(ent, ref ent.Comp))
             return;
 
         ExitBlackout(ent);
         ent.Comp.BlackoutToggleAt = null;
         _movementSpeed.RefreshMovementSpeedModifiers(ent.Owner);
+
+        if (ent.Comp.AdjustTemporaryEyeDamage <= 0) 
+            return;
+        
+        _blindable.AdjustEyeDamage(ent.Owner, -ent.Comp.AdjustTemporaryEyeDamage);
     }
 
     public void EnterBlackout(Entity<ActiveCritComponent?> ent)

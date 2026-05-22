@@ -28,6 +28,8 @@ public sealed partial class ActiveCritComponent : Component
 
     [DataField] public float SpeechDistortionStrength = 0.5f;
 
+    [DataField] public int AdjustTemporaryEyeDamage;
+
     [DataField] public LocId CantUseHandsMessage = "active-crit-cant-use-hands";
     [DataField] public LocId FailedStandUpMessage = "active-crit-standup-fail";
 
