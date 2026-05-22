@@ -78,6 +78,26 @@
 
 
 
+#region NSHC
+- type: entity
+  parent: [ClothingBackpack, BaseRepresentativesContraband]
+  id: ClothingBackpackDuffelNsRepresentative
+  name: NeoSol Representative's Duffel Bag
+  description: It's a gold trimmed duffel bag used by the NeoSol Representative.
+  suffix: NS
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Clothing/Back/Duffels/NeoSol/nsrep.rsi
+
+- type: entity
+  parent: [ ClothingBackpackDuffel, BaseRepresentativesContraband ] 
+  id: ClothingBackpackDuffelRedSword
+  name: Red Sword's Duffel Bag 
+  description: The bag for a Red Sword ready for any contingency. 
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Back/Duffels/NeoSol/redsword.rsi 
+
 #region Command
 
 - type: entity
@@ -104,16 +124,6 @@
         - Syndicate
         - WhitelistChameleon
         - Backpack
-
-- type: entity
-  parent: [ClothingBackpack, BaseRepresentativesContraband]
-  id: ClothingBackpackDuffelNsRepresentative
-  name: NeoSol Representative's Duffel Bag
-  description: It's a gold trimmed duffel bag used by the NeoSol Representative.
-  suffix: NS
-  components:
-    - type: Sprite
-      sprite: _FarHorizons/Clothing/Back/Duffels/NeoSol/nsrep.rsi
         
 #region Engineering
 - type: entity

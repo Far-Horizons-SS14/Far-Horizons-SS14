@@ -62,6 +62,115 @@
 ## Specific Loadout Groups
 
 
+
+#region SHC
+
+# NeoSol Rep
+- type: loadoutGroup
+  id: NeoSolRepresentativeHead
+  name: loadout-group-neosolrepresentative-head
+  minLimit: 1 
+  loadouts:
+  - NSRCap
+  - NSRBeret
+
+- type: loadoutGroup
+  id: NeoSolRepresentativeJumpsuit
+  name: loadout-group-neosolrepresentative-jumpsuit
+  minLimit: 1 
+  loadouts:
+  - NSRJumpsuit
+  - NSRJumpskirt
+  - NSRJumpsuitFormal
+  - NSRJumpskirtFormal
+  - NSRJumpsuitCC 
+  - NSRJumpskirtCC
+  - NSRTurtleneck
+  - NSRTurtleneckSkirt
+
+- type: loadoutGroup
+  id: NeoSolOuterClothing
+  name: loadout-group-neosolrepresentative-outerclothing
+  minLimit: 0
+  loadouts:
+  - NSRCoat
+  - NSRWinterCoat
+
+- type: loadoutGroup
+  id: NeoSolRepresentativeEyewear
+  name: loadout-group-neosolrepresentative-eyewear
+  loadouts:
+  - NSRGlasses
+  - NSRHud
+
+- type: loadoutGroup
+  id: NeoSolRepresentativeShoes
+  name: loadout-group-neosolrepresentative-shoes
+  minLimit: 1
+  loadouts:
+  - LaceupShoes
+  - Heels
+  - LeatherShoes
+
+- type: loadoutGroup
+  id: NeoSolRepresentativeBackpack
+  name: loadout-group-neosolrepresentative-backpack
+  loadouts:
+  - NSRBackpack
+  - NSRDuffel
+  - NSRSatchel
+
+#region RedSword
+- type: loadoutGroup
+  id: RedSwordEyewear
+  name: loadout-group-redsword-eyewear
+  loadouts:
+  - RSOGlasses
+  - RSOHud
+  - RSOVisor
+
+- type: loadoutGroup
+  id: RedSwordNeck
+  name: loadout-group-redsword-neck
+  minLimit: 0
+  loadouts:
+  - RSOMantleElite
+
+- type: loadoutGroup
+  id: RedSwordJumpsuit
+  name: loadout-group-redsword-jumpsuit
+  loadouts:
+  - RSOJumpsuit
+  - RSOJumpskirt
+  - RSOJumpsuitFormal
+  - RSOJumpskirtFormal
+  - RSOJumpsuitElite
+  - RSOJumpskirtElite
+
+- type: loadoutGroup
+  id: RedSwordOuterclothing
+  name: loadout-group-redsword-outerclothing
+  minLimit: 1
+  loadouts:
+  - RSOArmorVest
+  - RSOArmorCoat
+
+- type: loadoutGroup
+  id: RedSwordBackpack
+  name: loadout-group-backpack-outerclothing
+  loadouts:
+  - RSOBackpack
+  - RSODuffel
+  - RSOSatchel
+
+- type: loadoutGroup
+  id: RedSwordShoes
+  name: loadout-group-rso-shoes
+  loadouts:
+  - CombatBootsSyndi
+  - JackBootsSyndi
+  - HighHeelBootsFilled
+
 #region Command
 
  #Commandant (Captain)
@@ -346,61 +455,6 @@
   loadouts:
   - ResearchDirectorLabCoatSyndi
   - ResearchDirectorWintercoatSyndi
-
-# NeoSol Rep
-- type: loadoutGroup
-  id: NeoSolRepresentativeHead
-  name: loadout-group-neosolrepresentative-head
-  minLimit: 1 
-  loadouts:
-  - NSRCap
-  - NSRBeret
-
-- type: loadoutGroup
-  id: NeoSolRepresentativeJumpsuit
-  name: loadout-group-neosolrepresentative-jumpsuit
-  minLimit: 1 
-  loadouts:
-  - NSRJumpsuit
-  - NSRJumpskirt
-  - NSRJumpsuitFormal
-  - NSRJumpskirtFormal
-  - NSRJumpsuitCC 
-  - NSRJumpskirtCC
-  - NSRTurtleneck
-  - NSRTurtleneckSkirt
-
-- type: loadoutGroup
-  id: NeoSolOuterClothing
-  name: loadout-group-neosolrepresentative-outerclothing
-  minLimit: 0
-  loadouts:
-  - NSRCoat
-  - NSRWinterCoat
-
-- type: loadoutGroup
-  id: NeoSolRepresentativeEyewear
-  name: loadout-group-neosolrepresentative-eyewear
-  loadouts:
-  - NSRGlasses
-  - NSRHud
-
-- type: loadoutGroup
-  id: NeoSolRepresentativeShoes
-  name: loadout-group-neosolrepresentative-shoes
-  minLimit: 1
-  loadouts:
-  - LaceupShoes
-  - Heels
-  - LeatherShoes
-
-- type: loadoutGroup
-  id: NeoSolRepresentativeBackpack
-  name: loadout-group-neosolrepresentative-backpack
-  loadouts:
-  - NSRBackpack
-  - NSRDuffel
-  - NSRSatchel
 
 #region Civilian
 
@@ -1115,13 +1169,3 @@
   loadouts:
     - RecruitSuit
     - RecruitSkirt
-
-#region SHC
-
-- type: loadoutGroup
-  id: RedSwordShoes
-  name: loadout-group-rso-shoes
-  loadouts:
-  - CombatBootsSyndi
-  - JackBootsSyndi
-  - HighHeelBootsFilled

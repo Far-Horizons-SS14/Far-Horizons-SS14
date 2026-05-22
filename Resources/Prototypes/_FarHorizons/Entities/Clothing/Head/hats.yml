@@ -352,23 +352,11 @@
   - type: Clothing
     sprite: _FarHorizons/Clothing/Head/Hats/NeoSol/beret_nsrep.rsi
 
-#RSO
-- type: entity
-  parent: [ ClothingHeadBase, BaseBlueshieldContraband ] 
-  id: ClothingHeadHatBeretRedSword
-  name: Redsword Operative's Beret 
-  description: This beret completes the outfit of any true Redsword.
-  components:
-  - type: Sprite
-    sprite: _FarHorizons/Clothing/Head/Hats/NeoSol/redsword.rsi
-  - type: Clothing
-    sprite: _FarHorizons/Clothing/Head/Hats/NeoSol/redsword.rsi
-
 # NeoSol Representative (NTR)
 
 - type: entity
   parent: [ ClothingHeadBase, BaseRepresentativesContraband ]
-  id: ClothingHeadHatBeretSOA
+  id: ClothingHeadHatBeretNSR
   name: NeoSol Representative's Beret
   description: A red colored beret to remind command of their betters.
   suffix: NS

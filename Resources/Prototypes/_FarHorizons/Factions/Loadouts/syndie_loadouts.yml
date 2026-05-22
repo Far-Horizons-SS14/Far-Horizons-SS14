@@ -185,12 +185,12 @@
 - type: loadout
   id: NSRCap
   equipment:
-    head: ClothingHeadHatCapNsrep
+    head: ClothingHeadHatCapNSR
 
 - type: loadout
   id: NSRBeret
   equipment:
-    head: ClothingHeadHatBeretNsRep
+    head: ClothingHeadHatBeretNSR
 
 #region Ears / Headsets
 
@@ -331,6 +331,23 @@
   equipment:
     eyes: ClothingEyesHudSkillsSyndi
 
+  #RSO
+
+- type: loadout
+  id: RSOGlasses
+  equipment:
+    eyes: ClothingEyesGlassesRedSword
+
+- type: loadout
+  id: RSOHud
+  equipment:
+    eyes: ClothingEyesHudRedSword
+
+- type: loadout
+  id: RSOVisor
+  equipment:
+    eyes: ClothingEyesVisorRedSword
+
 #region Neck
 
 # This exists to allow syndicate borgs to scream out their dislike of NanoTrasen
@@ -408,6 +425,11 @@
   id: ResearchDirectorCloakSyndi
   equipment:
     neck: ClothingNeckCloakRd
+
+- type: loadout
+  id: RSOMantleElite
+  equipment:
+    neck: ClothingNeckCloakRsoElite
 
 # Security
 
@@ -859,42 +881,72 @@
 - type: loadout
   id: NSRJumpsuit
   equipment:
-    jumpsuit: ClothingUniformJumpsuitNsrep
+    jumpsuit: ClothingUniformJumpsuitNSR
 
 - type: loadout
   id: NSRJumpskirt
   equipment:
-    jumpsuit: ClothingUniformJumpskirtNsrep
+    jumpsuit: ClothingUniformJumpskirtNSR
 
 - type: loadout
   id: NSRJumpsuitFormal
   equipment:
-    jumpsuit: ClothingUniformJumpsuitNsrepFormal
+    jumpsuit: ClothingUniformJumpsuitNSRFormal
 
 - type: loadout
   id: NSRJumpskirtFormal
   equipment:
-    jumpsuit: ClothingUniformJumpskirtNsrepFormal
+    jumpsuit: ClothingUniformJumpskirtNSRFormal
 
 - type: loadout
   id: NSRJumpsuitCC
   equipment:
-    jumpsuit: ClothingUniformJumpsuitNsrepCentComm
+    jumpsuit: ClothingUniformJumpsuitNSRHighCommand
 
 - type: loadout
   id: NSRJumpskirtCC
   equipment:
-    jumpsuit: ClothingUniformJumpskirtNsrepCentComm
+    jumpsuit: ClothingUniformJumpskirtNSRHighCommand
 
 - type: loadout
   id: NSRTurtleneck
   equipment:
-    jumpsuit: ClothingUniformJumpsuitNsrepTurtleNeck
+    jumpsuit: ClothingUniformJumpsuitNSRTurtleNeck
 
 - type: loadout
   id: NSRTurtleneckSkirt
   equipment:
-    jumpsuit: ClothingUniformJumpskirtNsrepTurtleneck
+    jumpsuit: ClothingUniformJumpskirtNSRTurtleNeck
+
+- type: loadout
+  id: RSOJumpsuit
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitRedSword
+
+- type: loadout
+  id: RSOJumpskirt
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtRedSword
+
+- type: loadout
+  id: RSOJumpsuitFormal
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitRedSwordFormal
+
+- type: loadout
+  id: RSOJumpskirtFormal
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtRedSwordFormal
+
+- type: loadout
+  id: RSOJumpsuitElite
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitEliteRedSword
+
+- type: loadout
+  id: RSOJumpskirtElite
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtEliteRedSword
 
 #region Hands
 
@@ -1126,6 +1178,21 @@
   equipment:
     back: ClothingSatchelNsRepresentative
 
+- type: loadout
+  id: RSOBackpack
+  equipment:
+    back: ClothingBackpackRedSword
+
+- type: loadout
+  id: RSODuffel
+  equipment:
+    back: ClothingBackpackDuffelRedSword
+
+- type: loadout
+  id: RSOSatchel
+  equipment:
+    back: ClothingBackpackSatchelRedSword
+
 #region Outer Clothing
 
 - type: loadout
@@ -1339,6 +1406,16 @@
   id: NSRWinterCoat
   equipment:
     outerClothing: ClothingOuterWinterNSR
+
+- type: loadout
+  id: RSOArmorVest
+  equipment:
+    outerClothing: ClothingOuterArmorRedSword
+
+- type: loadout
+  id: RSOArmorCoat
+  equipment:
+    outerClothing: ClothingOuterCoatRedSword
 
 #region Boots
 

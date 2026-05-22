@@ -76,6 +76,26 @@
 
 
 
+#region NSHC
+- type: entity
+  parent: [ClothingBackpack, BaseRepresentativesContraband]
+  id: ClothingSatchelNsRepresentative
+  name: NeoSol Representative's Satchel
+  description: It's a gold trimmed satchel used by the NeoSol Representative.
+  suffix: NS
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Clothing/Back/Satchels/NeoSol/nsrep.rsi
+
+- type: entity
+  parent: [ ClothingBackpackSatchel, BaseRepresentativesContraband ] 
+  id: ClothingBackpackSatchelRedSword
+  name: Red Sword's Satchel 
+  description: Useful for holding everything a speedy red sword officer needs!
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Back/Satchels/NeoSol/redsword.rsi 
+
 #region Command
 - type: entity
   parent: [ClothingBackpackSatchel, BaseCommandContraband]
@@ -100,16 +120,6 @@
         - Syndicate
         - WhitelistChameleon
         - Backpack
-
-- type: entity
-  parent: [ClothingBackpack, BaseRepresentativesContraband]
-  id: ClothingSatchelNsRepresentative
-  name: NeoSol Representative's Satchel
-  description: It's a gold trimmed satchel used by the NeoSol Representative.
-  suffix: NS
-  components:
-    - type: Sprite
-      sprite: _FarHorizons/Clothing/Back/Satchels/NeoSol/nsrep.rsi
 
 #region Medical
 - type: entity

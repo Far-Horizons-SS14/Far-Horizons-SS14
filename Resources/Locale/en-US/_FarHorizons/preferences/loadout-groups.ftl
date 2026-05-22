@@ -68,6 +68,13 @@ loadout-group-neosolrepresentative-eyewear = NeoSol Representative Eyewear
 loadout-group-neosolrepresentative-shoes = NeoSol Representative Shoes
 loadout-group-neosolrepresentative-backpack = NeoSol Representative Backpack
 
+# RSO
+loadout-group-redsword-eyewear = Red Sword Operative Eyewear
+loadout-group-redsword-neck = Red Sword Operative Neck
+loadout-group-redsword-jumpsuit = Red Sword Operative Jumpsuit
+loadout-group-redsword-outerclothing = Red Sword Operative Outer Clothing
+loadout-group-backpack-outerclothing = Red Sword operative Backpack
+
 # Medical Director
 loadout-group-medical-director-head = Medical Director Head
 loadout-group-medical-director-jumpsuit = Medical Director Jumpsuit

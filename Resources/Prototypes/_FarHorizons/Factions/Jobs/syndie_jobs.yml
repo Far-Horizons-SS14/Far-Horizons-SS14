@@ -88,6 +88,17 @@
     loadout: NeoSolRepresentative
     startingGear: NeoSolRepresentativeGear
 
+- type: factionJobAssignment
+  id: SyndieBlueShield
+  faction: FactionSyndicate
+  job: BlueShield
+  override:
+    name: faction-syndicate-job-bso
+    icon: JobIconSyndieBlueShieldOfficer
+    #supervisors: job-supervisors-nshc
+    loadout: RedSwordOperative
+    startingGear: RedSwordGear
+    
 #region Civilan
 
 - type: factionJobAssignment
@@ -459,15 +470,3 @@
     icon: JobIconSyndieSecborg
     #supervisors: job-supervisors-marshal
     jobEntity: PlayerSecBorgBatterySyndicate
-
-# Syndie jobs
-- type: factionJobAssignment
-  id: SyndieBlueShield
-  faction: FactionSyndicate
-  job: BlueShield
-  override:
-    name: faction-syndicate-job-bso
-    icon: JobIconSyndieBlueShieldOfficer
-    #supervisors: job-supervisors-nshc
-    loadout: SyndieBlueShield
-    startingGear: SyndieBlueShieldGear
