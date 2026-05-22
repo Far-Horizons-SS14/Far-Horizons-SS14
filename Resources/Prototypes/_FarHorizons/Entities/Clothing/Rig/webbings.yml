@@ -213,16 +213,22 @@
 # Red Sword Operative (BSO)
 
 - type: entity
-  parent: [ ClothingBeltWebbingBase, BaseBlueshieldContraband ] # Technically not Blueshield, but that's a problem for another day
+  parent: [ ClothingBeltWebbingBase, ContentsExplosionResistanceBase, BaseBlueshieldContraband ] # Technically not Blueshield, but that's a problem for another day
   id: ClothingBeltRSOWebbing
   name: Red Sword Operative Rig
   description: Custom built to hold 28% more pain for the enemy.
   suffix: NS
   components:
+  - type: Storage
+    grid:
+    - 0,0,7,1
+    - 9,0,10,1 #right
   - type: Sprite
     sprite: _FarHorizons/Clothing/Belt/NeoSol/redswordwebbing.rsi
   - type: Clothing
     sprite: _FarHorizons/Clothing/Belt/NeoSol/redswordwebbing.rsi
+  - type: ExplosionResistance
+    damageCoefficient: 0.5
 
 #region Security
 
