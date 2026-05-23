@@ -1594,6 +1594,15 @@
       board: [ DoorElectronicsNSMedical ]
 
 - type: entity
+  parent: FHAirlockNSParamedic
+  id: FHAirlockNSParamedicLocked
+  suffix: Paramedic, NS, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNSMedical ]
+
+- type: entity
   parent: FHAirlockNSVirology
   id: FHAirlockNSVirologyLocked
   suffix: Virology, NS, Locked
@@ -2092,13 +2101,22 @@
 - type: entity
   parent: FHAirlockNSBasicGlass
   id: FHAirlockNSServiceGlassLocked
-  suffix: Service, NS, Locked
+  suffix: Service, NS, Glass, Locked
   components:
     - type: ContainerFill
       containers:
         board: [ DoorElectronicsNSService ]
     - type: Wires
       layoutId: AirlockService
+
+- type: entity
+  parent: FHAirlockNSMaintGlass
+  id: FHAirlockNSMaintGlassLocked
+  suffix: Maint, NS, Glass, Locked
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsNSMaintenance ]
 
 - type: entity
   parent: FHAirlockExternalGlass
@@ -2258,6 +2276,15 @@
     - type: ContainerFill
       containers:
         board: [ DoorElectronicsNSMedical ]
+
+- type: entity
+  parent: FHAirlockNSParamedicGlass
+  id: FHAirlockNSParamedicGlassLocked
+  suffix: Paramedic, NS, Glass, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNSMedical ]
 
 - type: entity
   parent: FHAirlockNSVirologyGlass
