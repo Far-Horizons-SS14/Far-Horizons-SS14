@@ -856,10 +856,13 @@ public abstract partial class SharedVehicleSystem : EntitySystem
 
         if(HasComp<VehicleBuckleComponent>(vehicle) && TryComp<StrapComponent>(vehicle, out var strapComp))
         {
-            if(riderTransform.LocalPosition.X != 0+strapComp.BuckleOffset.X || riderTransform.LocalPosition.Y != 0+strapComp.BuckleOffset.Y)
+            if(!riderTransform.ActivelyLerping && !_gameTiming.ApplyingState)
+            {
+                if(riderTransform.LocalPosition.X != 0+strapComp.BuckleOffset.X || riderTransform.LocalPosition.Y != 0+strapComp.BuckleOffset.Y)
                 _transform.SetLocalPosition(rider, new Vector2(0f+strapComp.BuckleOffset.X, 0f+strapComp.BuckleOffset.Y), riderTransform);
-            if(riderTransform.LocalRotation != 0)
-                _transform.SetLocalRotation(rider, 0f, riderTransform);
+                if(riderTransform.LocalRotation != 0)
+                    _transform.SetLocalRotation(rider, 0f, riderTransform);
+            }
         }
     }
     
