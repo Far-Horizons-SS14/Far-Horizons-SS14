@@ -127,9 +127,9 @@
     allowedEmotes: ['Chirp', 'Flap', 'Hisses', 'Squish', 'Purr', 'Growl', 'Trill', 'Scree', 'Call', 'Squawk', 'Bark', 'Snarl', 'Whine', 'Howl', 'Yip', 'Mew', 'Meow','Thump', 'Liss', 'Lurr', 'Rattle', "Marr", "Wurble", 'Chitter', 'Squeak', 'Click', 'Beep', 'Ping', 'Buzz', 'Buzz-Two', 'Chime', 'Honk']
   - type: Vocal
     sounds:
-      Male: MaleProtogen
-      Female: FemaleProtogen
-      Unsexed: MaleProtogen
+      Male: ProtoHumanMSounds
+      Female: ProtoHumanFSounds
+      Unsexed: ProtoHumanMSounds
   - type: UniversalHealModifier
     modifier: 0.5
   - type: Absorbable
@@ -208,6 +208,11 @@
   - type: ContentEye
     targetZoom: "1.125, 1.125"
     maxZoom: "1.125, 1.125"
+  - type: Vocal
+    sounds:
+      Male: ProtoVulpMSounds
+      Female: ProtoVulpFSounds
+      Unsexed: ProtoVulpMSounds
   - type: Tag
     tags:
       - CanPilot
@@ -336,6 +341,11 @@
         32:
           sprite: Mobs/Species/Vox/displacement.rsi
           state: hand_r
+  - type: Vocal
+    sounds:
+      Male: ProtoVoxMSounds
+      Female: ProtoVoxFSounds
+      Unsexed: ProtoVoxMSounds
   - type: Tag
     tags:
       - CanPilot
@@ -709,9 +719,9 @@
       allowedEmotes: ['Chirp', 'Hisses', 'Squish', 'Purr', 'Growl', 'Trill', 'Scree', 'Call', 'Squawk', 'Bark', 'Snarl', 'Whine', 'Howl', 'Yip', 'Mew', 'Meow','Thump', 'Liss', 'Lurr', 'Rattle', "Marr", "Wurble", 'Chitter', 'Squeak', 'Click', 'Beep', 'Ping', 'Buzz', 'Buzz-Two', 'Chime', 'Honk']
     - type: Vocal
       sounds:
-        Male: MaleProtogen
-        Female: FemaleProtogen
-        Unsexed: MaleProtogen
+        Male: ProtoShadekinMSounds
+        Female: ProtoShadekinFSounds
+        Unsexed: ProtoShadekinMSounds
     - type: MeleeWeapon
       soundHit:
         collection: AlienClaw
@@ -1079,6 +1089,11 @@
           32:
             sprite: Mobs/Species/Resomi/displacement.rsi
             state: belt
+  - type: Vocal
+    sounds:
+      Male: ProtoResomiMSounds
+      Female: ProtoResomiFSounds
+      Unsexed: ProtoResomiMSounds
   - type: Tag
     tags:
     - CanPilot
@@ -1178,6 +1193,11 @@
           32:
             sprite: Mobs/Species/Reptilian/displacement.rsi
             state: mask
+  - type: Vocal
+    sounds:
+      Male: ProtoReptilianMSounds
+      Female: ProtoReptilianFSounds
+      Unsexed: ProtoReptilianMSounds
   - type: Tag
     tags:
       - CanPilot
@@ -1323,6 +1343,11 @@
           32:
             sprite: Mobs/Species/Moth/displacement.rsi
             state: shoes
+  - type: Vocal
+    sounds:
+      Male: ProtoMothMSounds
+      Female: ProtoMothFSounds
+      Unsexed: ProtoMothMSounds
   - type: Tag
     tags:
       - CanPilot
@@ -1466,6 +1491,11 @@
       - !type:Emote
         emote: Hisses
         showInChat: false
+  - type: Vocal
+    sounds:
+      Male: ProtoFelionoidMSounds
+      Female: ProtoFelionoidFSounds
+      Unsexed: ProtoFelionoidMSounds
   - type: Tag
     tags:
     - CanPilot
@@ -1627,6 +1657,11 @@
     - Machine
     - Trinary
     - Sylvan
+  - type: Vocal
+    sounds:
+      Male: ProtoDionaMSounds
+      Female: ProtoDionaFSounds
+      Unsexed: ProtoDionaMSounds
   - type: Tag
     tags:
     - CanPilot
@@ -1870,6 +1905,11 @@
           32:
             sprite: _Starlight/Mobs/Species/Cyclorite/displacement.rsi
             state: outer
+  - type: Vocal
+    sounds:
+      Male: ProtoCycloriteMSounds
+      Female: ProtoCycloriteFSounds
+      Unsexed: ProtoCycloriteMSounds
   - type: Tag
     tags:
       - CanPilot
@@ -1907,6 +1947,11 @@
       - Machine
       - Trinary
       - Scratch
+    - type: Vocal
+      sounds:
+        Male: ProtoAvaliMSounds
+        Female: ProtoAvaliFSounds
+        Unsexed: ProtoAvaliMSounds
     - type: Tag
       tags:
         - CanPilot
@@ -2088,6 +2133,11 @@
     productionLength: 2
     entityProduced: MaterialWebSilk1
     hungerCost: 4 # Should total to 25 total silk on full hunger
+  - type: Vocal
+    sounds:
+      Male: ProtoArachnidMSounds
+      Female: ProtoArachnidFSounds
+      Unsexed: ProtoArachnidMSounds
   - type: Tag
     tags:
     - CanPilot
