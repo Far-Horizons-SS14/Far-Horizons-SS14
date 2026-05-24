@@ -16,6 +16,7 @@
     #  rechargeDuration: 50
     - type: InstantAction
       event: !type:StaminaSurgeActionEvent
+    - type: BlockActionInCrit # FH
 
 - type: entity
   id: Zoomies
@@ -35,3 +36,4 @@
     #  rechargeDuration: 50
     - type: InstantAction
       event: !type:ZoomiesActionEvent
+    - type: BlockActionInCrit # FH

@@ -145,7 +145,7 @@ public sealed class PullingSystem : EntitySystem
         if (component.Pulling == null)
             return;
 
-        if (TryComp<PullableComponent>(component.Pulling, out var comp) && (args.NewMobState == MobState.Critical || args.NewMobState == MobState.Dead))
+        if (TryComp<PullableComponent>(component.Pulling, out var comp) && args.NewMobState is MobState.Critical or MobState.ActiveCritical or MobState.Dead) // Far Horizons
         {
             TryStopPull(component.Pulling.Value, comp);
         }

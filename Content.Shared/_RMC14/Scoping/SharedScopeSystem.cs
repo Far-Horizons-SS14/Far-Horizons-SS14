@@ -150,7 +150,7 @@ public abstract partial class SharedScopeSystem : EntitySystem
         //     return;
         // Far Horizons End
 
-        var dir = _transform.GetWorldRotation(args.User).GetCardinalDir(); // Far Horizons - World rotation instead of local rotation
+        var dir = GetEyeDirection(args.User); // Far Horizons - Calculate direction
         if (ent.Comp.ScopingDirection != dir)
             Unscope(ent);
     }
@@ -195,7 +195,7 @@ public abstract partial class SharedScopeSystem : EntitySystem
 
     private void OnGunGunShot(Entity<GunScopingComponent> ent, ref GunShotEvent args)
     {
-        var dir = _transform.GetWorldRotation(args.User).GetCardinalDir(); // Far Horizons - World rotation instead of local rotation
+        var dir = GetEyeDirection(args.User); // Far Horizons - Calculate direction
         if (TryComp(ent.Comp.Scope, out ScopeComponent? scope) && scope.ScopingDirection != dir)
             UnscopeGun(ent);
     }
@@ -257,7 +257,7 @@ public abstract partial class SharedScopeSystem : EntitySystem
         if (!CanScopePopup(scope, user))
             return null;
 
-        var cardinalDir = _transform.GetWorldRotation(user).GetCardinalDir();
+        var cardinalDir = GetEyeDirection(user); // Far Horizons - Calculate direction
         var ev = new ScopeDoAfterEvent(cardinalDir);
         var zoomLevel = GetCurrentZoomLevel(scope);
         var doAfter = new DoAfterArgs(EntityManager, user, zoomLevel.DoAfter, ev, scope, null, scope)
@@ -427,4 +427,8 @@ public abstract partial class SharedScopeSystem : EntitySystem
         RaiseLocalEvent(user, ref ev);
         _eye.SetOffset(user, ev.Offset);
     }
+
+    // FarHorizons edit start - get local rotation
+    private Direction GetEyeDirection(EntityUid user) => _transform.GetWorldRotation(user).GetDir();
+    // FarHorizons edit end
 }

@@ -182,6 +182,16 @@
   equipment:
     head: ClothingHeadHelmetHeatAbsorbentSyndi
 
+- type: loadout
+  id: NSRCap
+  equipment:
+    head: ClothingHeadHatCapNSR
+
+- type: loadout
+  id: NSRBeret
+  equipment:
+    head: ClothingHeadHatBeretNSR
+
 #region Ears / Headsets
 
 # Command
@@ -309,6 +319,35 @@
   equipment:
     eyes: ClothingEyesVisorSecMedSyndi
 
+  #NSR
+
+- type: loadout
+  id: NSRGlasses
+  equipment:
+    eyes: ClothingEyesSunGlassesHudSkillSyndi
+
+- type: loadout
+  id: NSRHud
+  equipment:
+    eyes: ClothingEyesHudSkillsSyndi
+
+  #RSO
+
+- type: loadout
+  id: RSOGlasses
+  equipment:
+    eyes: ClothingEyesGlassesRedSword
+
+- type: loadout
+  id: RSOHud
+  equipment:
+    eyes: ClothingEyesHudRedSword
+
+- type: loadout
+  id: RSOVisor
+  equipment:
+    eyes: ClothingEyesVisorRedSword
+
 #region Neck
 
 # This exists to allow syndicate borgs to scream out their dislike of NanoTrasen
@@ -386,6 +425,11 @@
   id: ResearchDirectorCloakSyndi
   equipment:
     neck: ClothingNeckCloakRd
+
+- type: loadout
+  id: RSOMantleElite
+  equipment:
+    neck: ClothingNeckCloakRsoElite
 
 # Security
 
@@ -834,6 +878,76 @@
   equipment:
     jumpsuit: ClothingUniformJumpskirtSecCadetSyndi
 
+- type: loadout
+  id: NSRJumpsuit
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitNSR
+
+- type: loadout
+  id: NSRJumpskirt
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtNSR
+
+- type: loadout
+  id: NSRJumpsuitFormal
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitNSRFormal
+
+- type: loadout
+  id: NSRJumpskirtFormal
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtNSRFormal
+
+- type: loadout
+  id: NSRJumpsuitCC
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitNSRHighCommand
+
+- type: loadout
+  id: NSRJumpskirtCC
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtNSRHighCommand
+
+- type: loadout
+  id: NSRTurtleneck
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitNSRTurtleNeck
+
+- type: loadout
+  id: NSRTurtleneckSkirt
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtNSRTurtleNeck
+
+- type: loadout
+  id: RSOJumpsuit
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitRedSword
+
+- type: loadout
+  id: RSOJumpskirt
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtRedSword
+
+- type: loadout
+  id: RSOJumpsuitFormal
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitRedSwordFormal
+
+- type: loadout
+  id: RSOJumpskirtFormal
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtRedSwordFormal
+
+- type: loadout
+  id: RSOJumpsuitElite
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitEliteRedSword
+
+- type: loadout
+  id: RSOJumpskirtElite
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtEliteRedSword
+
 #region Hands
 
 # Medical
@@ -974,36 +1088,65 @@
     back: ClothingBackpackSatchelForeman
 
 # Medical
+- type: loadout
+  id: MedicalDirectorBackpack
+  equipment:
+    back: ClothingBackpackMD
+
+- type: loadout
+  id: MedicalDirectorDuffel
+  equipment:
+    back: ClothingBackpackDuffelMD
+
+- type: loadout
+  id: MedicalDirectorSatchel
+  equipment:
+    back: ClothingBackpackSatchelMD
 
 - type: loadout
   id: MedicalDoctorBackpackSyndi
   equipment:
-    back: ClothingBackpackMedical
+    back: ClothingBackpackMedicalSyndi
 
 - type: loadout
   id: MedicalDoctorSatchelSyndi
   equipment:
-    back: ClothingBackpackSatchelMedical
+    back: ClothingBackpackSatchelMedicalSyndi
 
 - type: loadout
   id: MedicalDoctorDuffelSyndi
   equipment:
-    back: ClothingBackpackDuffelMedical
+    back: ClothingBackpackDuffelMedicalSyndi
 
 - type: loadout
   id: PharmacistBackpack
   equipment:
-    back: ClothingBackpackChemistry
+    back: ClothingBackpackChemistrySyndi
 
 - type: loadout
   id: PharmacistSatchel
   equipment:
-    back: ClothingBackpackSatchelChemistry
+    back: ClothingBackpackSatchelChemistrySyndi
 
 - type: loadout
   id: PharmacistDuffel
   equipment:
-    back: ClothingBackpackDuffelChemistry
+    back: ClothingBackpackDuffelChemistrySyndi
+
+- type: loadout
+  id: ParamedicBackpackSyndi
+  equipment:
+    back: ClothingBackpackParamedicSyndi
+
+- type: loadout
+  id: ParamedicDuffelSyndi
+  equipment:
+    back: ClothingBackpackDuffelParamedicSyndi
+
+- type: loadout
+  id: ParamedicSatchelSyndi
+  equipment:
+    back: ClothingBackpackSatchelParamedicSyndi
 
 - type: loadout
   id: ScientistBackpackSyndi
@@ -1019,6 +1162,36 @@
   id: ScientistDuffelSyndi
   equipment:
     back: ClothingBackpackDuffelScience
+
+- type: loadout
+  id: NSRBackpack
+  equipment:
+    back: ClothingBackpackNsRepresentative
+
+- type: loadout
+  id: NSRDuffel
+  equipment:
+    back: ClothingBackpackDuffelNsRepresentative
+
+- type: loadout
+  id: NSRSatchel
+  equipment:
+    back: ClothingSatchelNsRepresentative
+
+- type: loadout
+  id: RSOBackpack
+  equipment:
+    back: ClothingBackpackRedSword
+
+- type: loadout
+  id: RSODuffel
+  equipment:
+    back: ClothingBackpackDuffelRedSword
+
+- type: loadout
+  id: RSOSatchel
+  equipment:
+    back: ClothingBackpackSatchelRedSword
 
 #region Outer Clothing
 
@@ -1223,6 +1396,26 @@
   id: EnforcerBomber
   equipment:
     outerClothing: ClothingOuterSecurityBomberSyndi
+
+- type: loadout
+  id: NSRCoat
+  equipment:
+    outerClothing: ClothingOuterCoatNSR
+
+- type: loadout
+  id: NSRWinterCoat
+  equipment:
+    outerClothing: ClothingOuterWinterNSR
+
+- type: loadout
+  id: RSOArmorVest
+  equipment:
+    outerClothing: ClothingOuterArmorRedSword
+
+- type: loadout
+  id: RSOArmorCoat
+  equipment:
+    outerClothing: ClothingOuterCoatRedSword
 
 #region Boots
 

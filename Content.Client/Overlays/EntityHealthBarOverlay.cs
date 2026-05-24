@@ -139,6 +139,7 @@ public sealed class EntityHealthBarOverlay : Overlay
                 return null;
 
             if (!_mobThresholdSystem.TryGetThresholdForState(uid, MobState.Critical, out var threshold, thresholds) &&
+                !_mobThresholdSystem.TryGetThresholdForState(uid, MobState.ActiveCritical, out threshold, thresholds) && // Far Horizons
                 !_mobThresholdSystem.TryGetThresholdForState(uid, MobState.Dead, out threshold, thresholds))
                 return (1, false);
 
@@ -148,7 +149,8 @@ public sealed class EntityHealthBarOverlay : Overlay
 
         if (_mobStateSystem.IsCritical(uid, component))
         {
-            if (!_mobThresholdSystem.TryGetThresholdForState(uid, MobState.Critical, out var critThreshold, thresholds) ||
+            if ((!_mobThresholdSystem.TryGetThresholdForState(uid, MobState.Critical, out var critThreshold, thresholds) &&
+                 !_mobThresholdSystem.TryGetThresholdForState(uid, MobState.ActiveCritical, out critThreshold, thresholds)) || // Far Horizons
                 !_mobThresholdSystem.TryGetThresholdForState(uid, MobState.Dead, out var deadThreshold, thresholds))
             {
                 return (1, true);

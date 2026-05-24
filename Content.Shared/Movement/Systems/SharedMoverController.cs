@@ -2,6 +2,7 @@ using System.Collections.Concurrent;
 using System.Diagnostics.CodeAnalysis;
 using System.Net;
 using System.Numerics;
+using Content.Shared._FarHorizons.Mobs;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Actions;
 using Content.Shared.Bed.Sleep;
@@ -58,6 +59,7 @@ public abstract partial class SharedMoverController : VirtualController
     [Dependency] private   readonly TagSystem _tags = default!;
     [Dependency] private   readonly SharedActionsSystem _action = default!; //🌟Starlight🌟
     [Dependency] private   readonly SharedChargesSystem _charges = default!; //🌟Starlight🌟
+    [Dependency] private   readonly SharedActiveCritSystem _activeCrit = default!; // Far Horzions
 
     protected EntityQuery<CanMoveInAirComponent> CanMoveInAirQuery;
     protected EntityQuery<FootstepModifierComponent> FootstepModifierQuery;

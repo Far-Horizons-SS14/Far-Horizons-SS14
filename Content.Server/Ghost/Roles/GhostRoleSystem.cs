@@ -111,6 +111,7 @@ public sealed class GhostRoleSystem : EntitySystem
                         RegisterGhostRole((component, ghostRole));
                     break;
                 }
+            case MobState.ActiveCritical: // Far Horizons
             case MobState.Critical:
             case MobState.Dead:
                 UnregisterGhostRole((component, ghostRole));

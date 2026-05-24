@@ -127,6 +127,58 @@
   - type: Clothing
     sprite: _FarHorizons/Clothing/OuterClothing/Coats/NeoSol/hos_trenchcoat.rsi
 
+# NeoSol Representative (NTR)
+
+- type: entity
+  parent: [ BaseRepresentativesContraband, ClothingOuterStorageBase ]
+  id: ClothingOuterCoatNSR
+  name: NeoSol Representative's Jacket
+  description: Freshly steamed and pressed, ready to perform its duties.
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/Coats/NeoSol/shrep.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/Coats/NeoSol/shrep.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: equipped-OUTERCLOTHING
+
+# Red Sword Operative (BSO)
+
+- type: entity
+  parent: [ ClothingOuterStorageBase, AllowSuitStorageClothing, BaseBlueshieldContraband ] # Technically not Blueshield, but that's a problem for another day
+  id: ClothingOuterCoatRedSword
+  name: Red Sword Operative's Armored Overcoat
+  description: A tailor made coat with enough armor plating to make it nearly indistinguishable from an armored vest.
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/Coats/NeoSol/redsword_armored_coat.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/Coats/NeoSol/redsword_armored_coat.rsi
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      flatReductions:
+        Piercing: 5
+        Heat: 4
+      coefficients:
+        Blunt: 0.6
+        Slash: 0.6
+        Piercing: 0.6
+        Heat: 0.7
+  - type: LimbArmor
+    limbs:
+      ArmRight: {}
+      ArmLeft: {}
+      LegRight: {}
+      LegLeft: {}
+  - type: ExplosionResistance
+    damageCoefficient: 0.80
+  - type: Item
+
 #region Medical
 
 #Lab Coat

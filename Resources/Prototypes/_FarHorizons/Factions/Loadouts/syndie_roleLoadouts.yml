@@ -10,8 +10,10 @@
   - CommandantOuterClothing
   - CaptainShoes
   - CommandantEyewear
-  - SurvivalExtended
+  - SurvivalCaptain
   - Trinkets
+  - Scarves
+  - CapPens
 
 - type: roleLoadout
   id: SyndieHeadOfSecurity #Marshal
@@ -26,8 +28,11 @@
   - SecurityNonLethalWeapon
   - MarshalOuterClothing
   - SecurityShoesSyndi
-  - SurvivalSecurity
+  - SurvivalHeadOfSecurity
   - Trinkets
+  - Scarves
+  - Pens
+  - HeadofSecurityJobTrinkets
 
 - type: roleLoadout
   id: SyndieChiefEngineer #Foreman
@@ -40,8 +45,10 @@
   - ForemanBackpacks
   #- ChiefEngineerOuterClothing 
   - ForemanShoes
-  - SurvivalExtended
+  - SurvivalChiefEngineer
   - Trinkets
+  - Scarves
+  - Pens
 
 - type: roleLoadout
   id: SyndieChiefMedicalOfficer #Medical Director
@@ -50,13 +57,14 @@
   - MedicalMaskSyndi
   - MedicalDirectorJumpsuit
   - MedicalGlovesSyndi
-  - MedicalBackpackSyndi
+  - MedicalDirectorBackpack
   - MedicalDirectorOuterClothing
   - MedicalDirectorNeck
   - MedicalDirectorShoes
   - MedicalEyewearSyndi
-  - SurvivalMedical
+  - SurvivalChiefMedicalOfficer
   - Trinkets
+  - Scarves 
   - Pens 
 
 - type: roleLoadout
@@ -70,8 +78,10 @@
   - ScientistGloves
   - ResearchDirectorShoes
   - Glasses
-  - Survival
+  - SurvivalResearchDirector 
   - Trinkets
+  - Scarves
+  - Pens 
 
 - type: roleLoadout
   id: SyndieHeadOfPersonnel #Personnel Manager
@@ -83,8 +93,10 @@
   - PMOuterClothing
   - HoPShoes
   - CommandEyewearSyndi
-  - Survival
+  - SurvivalHeadOfPersonnel 
   - Trinkets
+  - Scarves 
+  - HoPPens
 
 
 - type: roleLoadout
@@ -98,16 +110,6 @@
   - CommandEyewearSyndi
   - Survival
   - Trinkets
-
-- type: roleLoadout
-  id: SyndieNanoTrasenRepresentative #NeoSol Representative
-  groups:
-  - NanoTrasenRepresentativeJumpsuit
-  - NanoTrasenRepresentativeEyewear
-  - CommonBackpack
-  - NanotrasenRepresentativeShoes
-  - Trinkets
-  - Survival
 
 #region Law
 
@@ -154,6 +156,8 @@
   - EnviroShoes
   - SurvivalExtended
   - Trinkets
+  - Scarves 
+  - Pens
 
 - type: roleLoadout
   id: SyndieStationEngineer #Station Engineer
@@ -167,6 +171,8 @@
   - StationEngineerID
   - SurvivalExtended
   - Trinkets
+  - Scarves
+  - Pens 
 
 - type: roleLoadout
   id: SyndieTechnicalAssistant #Technical Assistant
@@ -175,7 +181,9 @@
   - StationEngineerBackpack
   - SurvivalExtended
   - Trinkets
-
+  - Scarves
+  - Pens 
+  
 #region Medical
 
 - type: roleLoadout
@@ -192,6 +200,7 @@
   - MedicalEyewearSyndi
   - SurvivalMedical
   - Trinkets
+  - Scarves
   - SurgeonEquipmentGroup
   - Pens
 
@@ -210,7 +219,8 @@
   - ChemistLabeler 
   - SurvivalMedical
   - Trinkets
-  - Pens 
+  - Scarves
+  - Pens
 
 - type: roleLoadout
   id: SyndieParamedic #Medic
@@ -219,13 +229,14 @@
   - MedicalMaskSyndi
   - ParamedicJumpsuitSyndi
   - MedicalGlovesSyndi
-  - MedicalBackpackSyndi
+  - ParamedicBackpackSyndi
   - ParamedicOuterClothingSyndi
   - ParamedicShoesSyndi
   - MedicalEyewearSyndi
   - SurvivalMedical
   - Trinkets
-  - Pens 
+  - Scarves
+  - Pens
 
 - type: roleLoadout
   id: SyndieMedicalDoctor #Clinician
@@ -241,7 +252,8 @@
   - MedicalEyewearSyndi
   - SurvivalMedical
   - Trinkets
-  - Pens 
+  - Scarves
+  - Pens
 
 - type: roleLoadout
   id: SyndieMedicalIntern #Nursing Assistant
@@ -251,7 +263,8 @@
   - MedicalEyewearSyndi
   - SurvivalMedical
   - Trinkets
-  - Pens 
+  - Scarves
+  - Pens
 
 - type: roleLoadout
   id: SyndiePsychologist #Psychoanalyst
@@ -261,8 +274,8 @@
   - SyndieShoes
   - Glasses
   - Survival
-  - Trinkets
-  - Pens 
+  - Scarves
+  - Pens
 
 #region Science
 
@@ -276,9 +289,10 @@
   - RoboticistOuterClothingSyndi
   - RoboticistBackpackSyndi
   - RoboticistShoesSyndi
-  - Survival
+  - SurvivalResearch 
   - Trinkets
-  - Pens 
+  - Scarves
+  - Pens
 
 - type: roleLoadout
   id: SyndieScientist #Researcher
@@ -292,8 +306,9 @@
   - ScientistShoes
   - ScientistPDASyndi
   - Glasses
-  - Survival
+  - SurvivalResearch
   - Trinkets
+  - Scarves
   - Pens 
 
 - type: roleLoadout
@@ -304,6 +319,8 @@
   - Glasses
   - Survival
   - Trinkets
+  - Scarves
+  - Pens
 
 #region Security
 
@@ -318,8 +335,13 @@
   - SecurityBackpackSyndi
   - SecurityBeltSyndi
   - SecurityShoesSyndi
+  - WardenSidearm 
+  - SecurityNonLethalWeapon 
   - SurvivalSecurity
   - Trinkets
+  - Scarves
+  - Pens
+  - WardenJobTrinkets
 
 - type: roleLoadout
   id: SyndieCorpsman #Corpsman
@@ -334,9 +356,11 @@
     - CorpsmanGloves
     - SecurityShoesSyndi
     - SecurityNonLethalWeapon
-    - SecuritySidearm
+    - CorpsmanSidearm
     - SurvivalSecurity
     - Trinkets
+    - Scarves
+    - Pens
 
 - type: roleLoadout
   id: SyndieBrigmedic #Brigmedic
@@ -349,11 +373,13 @@
     - BrigmedicSyndiBackpack
     - BrigSyndiGloves
     - BrigSyndiBelt
-    - SecurityNonLethalWeapon
-    - SecuritySidearm
     - SecurityShoesSyndi
+    - SecurityNonLethalWeapon
+    - BrigmedicSidearm # FarHorizons
     - SurvivalSecurity
     - Trinkets
+    - Scarves
+    - Pens
 
 - type: roleLoadout
   id: SyndieDetective #Inspector
@@ -366,8 +392,13 @@
   - SecurityBackpackSyndi
   - InspectorOuterClothing
   - InspectorShoes
+  - DetectiveSidearm
+  - SecurityNonLethalWeapon 
   - SurvivalSecurity
   - Trinkets
+  - Scarves
+  - Pens
+  - DetectiveJobTrinkets
 
 - type: roleLoadout
   id: SyndieSecurityOfficer #Enforcer
@@ -380,11 +411,13 @@
   - SecurityBackpackSyndi
   - SecurityBeltSyndi
   - SecurityPDA
-  - SecurityNonLethalWeapon
-  - SecuritySidearm
-  - SecurityShoesSyndi
+  - SecurityNonLethalWeapon #Starlight
+  - SecuritySidearm #Starlight
   - SurvivalSecurity
   - Trinkets
+  - Scarves # Starlight
+  - Pens # Starlight
+  - SecurityJobTrinkets
 
 - type: roleLoadout
   id: SyndieSecurityCadet #Recruit
@@ -394,17 +427,35 @@
   - SecurityNonLethalWeapon
   - SurvivalSecurity
   - Trinkets
+  - Scarves 
+  - Pens
 
 #region SHC
 
 - type: roleLoadout
-  id: SyndieBlueShield #"Red Sword" Operative
+  id: RedSwordOperative #"Red Sword" Operative
   groups:
-  - BlueShieldJumpsuit
-  - BlueShieldBackpack
-  - BlueShieldOuterclothing
+  - RedSwordEyewear
+  - RedSwordNeck
+  - RedSwordJumpsuit
+  - RedSwordOuterclothing
+  - RedSwordBackpack
   - RedSwordShoes
-  - BlueShieldNeck
-  - BlueShieldEyewear
   - Trinkets
+  - Scarves
+  - Pens
   - SurvivalSecurity
+
+- type: roleLoadout
+  id: NeoSolRepresentative #NeoSol Representative
+  groups:
+  - NeoSolRepresentativeEyewear
+  - NeoSolRepresentativeHead
+  - NeoSolRepresentativeJumpsuit
+  - NeoSolOuterClothing
+  - NeoSolRepresentativeBackpack
+  - NeoSolRepresentativeShoes
+  - Trinkets
+  - Scarves
+  - NTRPens
+  - SurvivalStationManagement

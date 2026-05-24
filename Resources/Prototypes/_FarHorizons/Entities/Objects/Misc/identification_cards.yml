@@ -1430,6 +1430,7 @@
   id: IDCardNeoSolStandard
   name: Identification Card 
   description: A card necessary to access various areas aboard the station.
+  suffix: NS
   abstract: true
   components:
   - type: Sprite
@@ -1551,7 +1552,8 @@
 - type: entity
   parent: [IDCardNeoSolStandard, BaseCommandContraband]
   id: RedSwordIDCard
-  name: Red Sword ID Card
+  name: Red Sword Operative ID Card
+  suffix: NS
   components:
     - type: Sprite
       layers:
@@ -1566,6 +1568,7 @@
   parent: [IDCardNeoSolStandard, BaseCommandContraband]
   id: NeoSolRepresentativeIDCard
   name: NeoSol Representative ID Card
+  suffix: NS
   components:
   - type: Sprite
     layers:

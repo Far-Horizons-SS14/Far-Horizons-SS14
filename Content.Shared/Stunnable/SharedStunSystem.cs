@@ -85,6 +85,7 @@ public abstract partial class SharedStunSystem : EntitySystem
                 {
                     break;
                 }
+            case MobState.ActiveCritical: // Far Horizons
             case MobState.Critical:
                 {
                     _status.TryRemoveStatusEffect(uid, StunId);

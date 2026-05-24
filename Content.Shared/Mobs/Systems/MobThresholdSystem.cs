@@ -177,6 +177,7 @@ public sealed partial class MobThresholdSystem : EntitySystem
             return false;
 
         return TryGetThresholdForState(target, MobState.Critical, out threshold, thresholdComponent)
+               || TryGetThresholdForState(target, MobState.ActiveCritical, out threshold, thresholdComponent) // Far Horizons
                || TryGetThresholdForState(target, MobState.Dead, out threshold, thresholdComponent);
     }
 

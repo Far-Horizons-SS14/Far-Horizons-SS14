@@ -1,3 +1,30 @@
+#region NSHC
+- type: startingGear
+  id: NeoSolRepresentativeGear
+  equipment:
+    id: NeoSolRepresentativePDA
+    ears: ClothingHeadsetCommandSyndi
+    belt: BoxFolderNanoTrasenClipboard
+  storage:
+    back:
+    - RubberStampNtrep
+    - CaneNT
+
+- type: startingGear
+  id: RedSwordGear
+  equipment:
+    head: ClothingHeadHatBeretBlueShield
+    ears: ClothingHeadsetRSO
+    id: RedSwordPDA
+    belt: ClothingBeltRedSwordWebbingFilled
+    gloves: ClothingHandsGlovesCombat
+    pocket1: WeaponMultiphaseGun
+    pocket2: HandheldBSOCrewMonitor
+  storage:
+    back:
+    - Flash
+    - ClothingMaskGasBSO
+
 #region Command
 
 - type: startingGear
@@ -75,19 +102,6 @@
     - GavelHammer
     - GavelBlock
     - BookSpaceLaw
-
-- type: startingGear
-  id: SyndieNanoTrasenRepresentativeGear
-  equipment:
-    head: ClothingHeadHatCapNtrep
-    id: NanoTrasenRepresentativePDA
-    ears: ClothingHeadsetAltCommand
-    outerClothing: ClothingOuterCoatNtrep
-    belt: BoxFolderNanoTrasenClipboard
-  storage:
-    back:
-    - RubberStampNtrep
-    - CaneNT
 
 #region Law
 
@@ -271,23 +285,6 @@
   storage:
     back:
     - Flash
-
-# Syndie Jobs
-
-- type: startingGear
-  id: SyndieBlueShieldGear
-  equipment:
-    head: ClothingHeadHatBeretBlueShield
-    id: BlueShieldPDA
-    ears: ClothingHeadsetAltBSO
-    belt: ClothingBeltBlueShieldWebbingFilled
-    gloves: ClothingHandsGlovesCombat
-    pocket1: WeaponMultiphaseGun
-    pocket2: HandheldBSOCrewMonitor
-  storage:
-    back:
-    - Flash
-    - ClothingMaskGasBSO
 
 #region Silicon
 

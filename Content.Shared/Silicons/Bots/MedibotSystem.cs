@@ -103,7 +103,7 @@ public sealed class MedibotSystem : EntitySystem
         if (!TryComp<DamageableComponent>(target, out var damageable)) return false;
         if (!_solutionContainer.TryGetInjectableSolution(target, out _, out _)) return false;
 
-        if (mobState.CurrentState != MobState.Alive && mobState.CurrentState != MobState.Critical)
+        if (mobState.CurrentState != MobState.Alive && mobState.CurrentState != MobState.Critical && mobState.CurrentState != MobState.ActiveCritical) // Far Horizons
         {
             _popup.PopupClient(Loc.GetString("medibot-target-dead"), medibot, medibot);
             return false;
