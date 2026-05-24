@@ -9,6 +9,7 @@ using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Hands.Components;
 using Robust.Shared.Containers;
 // Starlight end
+using Content.Shared._FarHorizons.Factions; //FarHorizons
 
 namespace Content.Shared.Access.Systems
 {
@@ -17,6 +18,7 @@ namespace Content.Shared.Access.Systems
         [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
         [Dependency] private readonly SharedContainerSystem _container = default!; // Starlight
         [Dependency] private readonly SharedHandsSystem _hands = default!; // Starlight
+        [Dependency] private readonly ISharedFactionManager _factions = default!; // Far Horizons
 
         public override void Initialize()
         {
@@ -116,6 +118,7 @@ namespace Content.Shared.Access.Systems
         public void SetAccessToJob(
             EntityUid uid,
             JobPrototype prototype,
+            ProtoId<FactionPrototype>? faction, // Far Horizons
             bool extended,
             AccessComponent? access = null)
         {
@@ -123,15 +126,15 @@ namespace Content.Shared.Access.Systems
                 return;
 
             access.Tags.Clear();
-            access.Tags.UnionWith(prototype.Access);
+            access.Tags.UnionWith(_factions.OverrideJobAccess((faction, prototype)) ?? Enumerable.Empty<ProtoId<AccessLevelPrototype>>());
             Dirty(uid, access);
 
-            TryAddGroups(uid, prototype.AccessGroups, access);
+            TryAddGroups(uid, _factions.OverrideJobAccessGroups((faction, prototype)) ?? Enumerable.Empty<ProtoId<AccessGroupPrototype>>(), access);
 
             if (extended)
             {
-                access.Tags.UnionWith(prototype.ExtendedAccess);
-                TryAddGroups(uid, prototype.ExtendedAccessGroups, access);
+                access.Tags.UnionWith(_factions.OverrideJobExtendedAccess((faction, prototype)) ?? Enumerable.Empty<ProtoId<AccessLevelPrototype>>());
+                TryAddGroups(uid, _factions.OverrideJobExtendedAccessGroups((faction, prototype)) ?? Enumerable.Empty<ProtoId<AccessGroupPrototype>>(), access);
             }
         }
     }

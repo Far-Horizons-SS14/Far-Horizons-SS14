@@ -11,6 +11,8 @@
     #supervisors: job-supervisors-nshc
     loadout: SyndieCaptain
     startingGear: SyndieCaptain
+    accessGroups: 
+    - AllAccessNS
 
 - type: factionJobAssignment
   id: SyndieHeadOfSecurity
@@ -23,6 +25,19 @@
     #supervisors: job-supervisors-commandant
     loadout: SyndieHeadOfSecurity
     startingGear: SyndieHoSGear
+    access:
+    - Marshal
+    - Executive
+    - BrigNS
+    - SecurityNS
+    - ArmoryNS
+    - MaintenanceNS
+    - ExternalNS
+    - DetectiveNS
+    - CryogenicsNS
+    - BrigmedicNS
+    - GenpopEnterNS
+    - GenpopLeaveNS
 
 
 - type: factionJobAssignment
@@ -36,6 +51,17 @@
     #supervisors: job-supervisors-commandant
     loadout: SyndieChiefEngineer
     startingGear: SyndieChiefEngineerGear
+    access:
+    - MaintenanceNS
+    - EngineeringNS
+    - Executive
+    - ExternalNS
+    - Foreman
+    - AtmosphericsNS
+    - BrigNS
+    - CryogenicsNS
+    - GenpopEnterNS
+    - GenpopLeaveNS
 
 
 - type: factionJobAssignment
@@ -49,6 +75,16 @@
     #supervisors: job-supervisors-commandant
     loadout: SyndieChiefMedicalOfficer
     startingGear: SyndieCMOGear
+    access:
+    - MedicalNS
+    - Executive
+    - MaintenanceNS
+    - ChemistryNS
+    - MedicalDirector
+    - BrigNS
+    - CryogenicsNS
+    - SurgeryNS 
+    - ParamedicNS 
 
 - type: factionJobAssignment
   id: SyndieResearchDirector
@@ -61,6 +97,14 @@
     #supervisors: job-supervisors-commandant
     loadout: SyndieResearchDirector
     startingGear: SyndieResearchDirectorGear
+    access:
+    - ResearchNS
+    - Executive
+    - MaintenanceNS
+    - EpistemicsProvost
+    - BrigNS
+    - CryogenicsNS
+    - RoboticsNS 
 
 - type: factionJobAssignment
   id: SyndieHeadOfPersonnel
@@ -73,6 +117,36 @@
     #supervisors: job-supervisors-commandant
     loadout: SyndieHeadOfPersonnel
     startingGear: SyndieHoPGear
+    access:
+    - Executive
+    - PersonnelManager
+    - BarNS
+    - ServiceNS
+    - MaintenanceNS
+    - JanitorNS
+    - TheatreNS
+    - KitchenNS
+    - ChapelNS
+    - HydroponicsNS
+    - ExternalNS
+    - CryogenicsNS
+    - ChemistryNS
+    - EngineeringNS
+    - ResearchNS
+    - DetectiveNS
+    - SecurityNS
+    - BrigNS
+    - AtmosphericsNS
+    - MedicalNS
+    - RoboticsNS
+    - BrigmedicNS 
+    - SurgeryNS
+    - ParamedicNS 
+    - Mining 
+    - SalvageLead 
+    - Salvage
+    - Lawyer
+    - Cargo
 
 #region NSHC
 
@@ -87,6 +161,36 @@
     #supervisors: job-supervisors-nshc
     loadout: SyndieNanoTrasenRepresentative
     startingGear: SyndieNanoTrasenRepresentativeGear
+    access:
+      - CryogenicsNS
+      - Executive
+      - BarNS
+      - ServiceNS
+      - MaintenanceNS
+      - JanitorNS
+      - TheatreNS
+      - KitchenNS
+      - ChapelNS
+      - HydroponicsNS
+      - ExternalNS
+      - ChemistryNS
+      - EngineeringNS
+      - ResearchNS
+      - RoboticsNS
+      - DetectiveNS
+      - SecurityNS
+      - BrigNS
+      - AtmosphericsNS
+      - MedicalNS
+      - NSRep
+      - BrigmedicNS
+      - SurgeryNS
+      - ParamedicNS
+      - Lawyer
+      - Salvage
+      - Mining
+      - SalvageLead
+      - Cargo
 
 #region Civilan
 
@@ -98,6 +202,8 @@
   override:
     #supervisors: job-supervisors-pm
     loadout: SyndieAssistant
+    access:
+    - MaintenanceNS
 
 - type: factionJobAssignment
   id: SyndieBartender
@@ -105,6 +211,13 @@
   job: Bartender
   override:
     #supervisors: job-supervisors-pm
+    access:
+    - ServiceNS
+    - MaintenanceNS
+    - BarNS
+    extendedAccess:
+    - KitchenNS
+    - HydroponicsNS
 
 - type: factionJobAssignment
   id: SyndieBotanist
@@ -112,6 +225,13 @@
   job: Botanist
   override:
     #supervisors: job-supervisors-pm
+    access:
+    - ServiceNS
+    - MaintenanceNS
+    - HydroponicsNS
+    extendedAccess:
+    - KitchenNS
+    - BarNS
 
 - type: factionJobAssignment
   id: SyndieBoxer
@@ -119,6 +239,9 @@
   job: Boxer
   override:
     #supervisors: job-supervisors-pm
+    access:
+    - ServiceNS
+    - MaintenanceNS
 
 - type: factionJobAssignment
   id: SyndieChaplain
@@ -126,6 +249,9 @@
   job: Chaplain
   override:
     #supervisors: job-supervisors-pm
+    access:
+    - ChapelNS
+    - MaintenanceNS
 
 - type: factionJobAssignment
   id: SyndieChef
@@ -133,6 +259,13 @@
   job: Chef
   override:
     #supervisors: job-supervisors-pm
+    access:
+    - ServiceNS
+    - MaintenanceNS
+    - KitchenNS
+    extendedAccess:
+    - HydroponicsNS
+    - BarNS
 
 - type: factionJobAssignment
   id: SyndieClown
@@ -140,6 +273,9 @@
   job: Clown
   override:
     #supervisors: job-supervisors-pm
+    access:
+    - TheatreNS
+    - MaintenanceNS
 
 - type: factionJobAssignment
   id: SyndieJanitor
@@ -148,6 +284,10 @@
   override:
     name: faction-syndicate-job-janitor
     #supervisors: job-supervisors-pm
+    access:
+    - ServiceNS
+    - JanitorNS
+    - MaintenanceNS
 
 - type: factionJobAssignment
   id: SyndieLibrarian
@@ -155,6 +295,9 @@
   job: Librarian
   override:
     #supervisors: job-supervisors-pm
+    access:
+    - ServiceNS
+    - MaintenanceNS
 
 - type: factionJobAssignment
   id: SyndieMime
@@ -162,6 +305,9 @@
   job: Mime
   override:
     #supervisors: job-supervisors-pm
+    access:
+    - TheatreNS
+    - MaintenanceNS
 
 - type: factionJobAssignment
   id: SyndieMusician
@@ -169,6 +315,9 @@
   job: Musician
   override:
     #supervisors: job-supervisors-pm
+    access:
+    - MaintenanceNS
+    - TheatreNS
 
 - type: factionJobAssignment
   id: SyndieReporter
@@ -177,6 +326,9 @@
   override:
     name: faction-syndicate-job-reporter
     #supervisors: job-supervisors-pm
+    access:
+    - ServiceNS
+    - MaintenanceNS
 
 - type: factionJobAssignment
   id: SyndieServiceWorker
@@ -184,6 +336,13 @@
   job: ServiceWorker
   override:
     #supervisors: job-supervisors-pm
+    access:
+    - ServiceNS
+    - MaintenanceNS
+    - BarNS
+    - KitchenNS
+    extendedAccess:
+    - HydroponicsNS
 
 - type: factionJobAssignment
   id: SyndieZookeeper
@@ -191,6 +350,9 @@
   job: Zookeeper
   override:
     #supervisors: job-supervisors-pm
+    access:
+    - ServiceNS
+    - MaintenanceNS
 
 #region Law
 
@@ -215,7 +377,12 @@
     icon: JobIconSyndieAtmosphericTechnician
     #supervisors: job-supervisors-foreman
     loadout: SyndieAtmosphericTechnician
-    startingGear: SyndieAtmosphericTechnicianGear
+    startingGear: SyndieAtmosphericTechnicianGear\
+    access:
+    - MaintenanceNS
+    - EngineeringNS
+    - ExternalNS
+    - AtmosphericsNS
 
 - type: factionJobAssignment
   id: SyndieStationEngineer
@@ -228,6 +395,12 @@
     #supervisors: job-supervisors-foreman
     loadout: SyndieStationEngineer
     startingGear: SyndieStationEngineerGear
+    access:
+    - MaintenanceNS
+    - EngineeringNS
+    - ExternalNS
+    extendedAccess:
+    - AtmosphericsNS
 
 - type: factionJobAssignment
   id: SyndieTechnicalAssistant
@@ -240,6 +413,10 @@
     #supervisors: job-supervisors-foreman
     loadout: SyndieTechnicalAssistant
     startingGear: SyndieTechnicalAssistantGear
+    access:
+    - MaintenanceNS
+    - EngineeringNS
+    - ExternalNS
 
 #region Medical
 
@@ -254,6 +431,12 @@
     #supervisors: job-supervisors-md
     loadout: SyndieSurgeon
     startingGear: SyndieSurgeonGear
+    access:
+    - MedicalNS
+    - MaintenanceNS
+    - SurgeryNS
+    extendedAccess:
+    - ParamedicNS
 
 - type: factionJobAssignment
   id: SyndieChemist
@@ -266,6 +449,13 @@
     #supervisors: job-supervisors-md
     loadout: SyndieChemist
     startingGear: SyndieChemistGear
+    access:
+    - MedicalNS
+    - ChemistryNS
+    - MaintenanceNS
+    extendedAccess:
+    - ParamedicNS
+    - SurgeryNS
 
 - type: factionJobAssignment
   id: SyndieParamedic
@@ -278,6 +468,14 @@
     #supervisors: job-supervisors-md
     loadout: SyndieParamedic
     startingGear: SyndieParamedicGear
+    access:
+    - MedicalNS
+    - MaintenanceNS
+    - ExternalNS
+    - ParamedicNS
+    extendedAccess:
+    - ChemistryNS
+    - SurgeryNS
 
 - type: factionJobAssignment
   id: SyndieMedicalDoctor
@@ -290,6 +488,13 @@
     #supervisors: job-supervisors-md
     loadout: SyndieMedicalDoctor
     startingGear: SyndieDoctorGear
+    access:
+    - MedicalNS
+    - MaintenanceNS
+    extendedAccess:
+    - ChemistryNS
+    - ParamedicNS
+    - SurgeryNS
 
 - type: factionJobAssignment
   id: SyndieMedicalIntern
@@ -302,6 +507,9 @@
     #supervisors: job-supervisors-md
     loadout: SyndieMedicalIntern
     startingGear: SyndieMedicalInternGear
+    access:
+    - MedicalNS
+    - MaintenanceNS
 
 - type: factionJobAssignment
   id: SyndiePsychologist
@@ -314,6 +522,11 @@
     #supervisors: job-supervisors-md
     loadout: SyndiePsychologist
     startingGear: SyndiePsychologistGear
+    access:
+    - MedicalNS
+    - MaintenanceNS
+    extendedAccess:
+    - ChemistryNS
 
 #region Science
 
@@ -328,6 +541,10 @@
     #supervisors: job-supervisors-ep
     loadout: SyndieRoboticist
     startingGear: SyndieRoboticistGear
+    access:
+      - ResearchNS
+      - MaintenanceNS
+      - RoboticsNS
 
 - type: factionJobAssignment
   id: SyndieScientist
@@ -340,7 +557,12 @@
     #supervisors: job-supervisors-ep
     loadout: SyndieScientist
     startingGear: SyndieScientistGear
-
+    access:
+    - ResearchNS
+    - MaintenanceNS
+    extendedAccess:
+    - RoboticsNS
+    
 - type: factionJobAssignment
   id: SyndieResearchAssistant
   faction: FactionSyndicate
@@ -352,6 +574,9 @@
     #supervisors: job-supervisors-ep
     loadout: SyndieResearchAssistant
     startingGear: SyndieResearchAssistantGear
+    access:
+    - ResearchNS
+    - MaintenanceNS
 
 #region Silicon
 
@@ -388,6 +613,17 @@
     #supervisors: job-supervisors-marshal
     loadout: SyndieWarden
     startingGear: SyndieWardenGear
+    access:
+    - SecurityNS
+    - BrigNS
+    - ArmoryNS
+    - MaintenanceNS
+    - ExternalNS
+    - DetectiveNS
+    - CryogenicsNS
+    - BrigmedicNS
+    - GenpopEnterNS
+    - GenpopLeaveNS
 
 - type: factionJobAssignment
   id: SyndieCorpsman
@@ -400,6 +636,15 @@
     #supervisors: job-supervisors-marshal
     loadout: SyndieCorpsman
     startingGear: SyndieCorpsmanGear
+    access:
+    - SecurityNS
+    - BrigNS
+    - MaintenanceNS
+    - ServiceNS
+    - MedicalNS
+    - ExternalNS
+    - CryogenicsNS
+    - BrigmedicNS
 
 - type: factionJobAssignment
   id: SyndieBrigmedic
@@ -412,6 +657,17 @@
     #supervisors: job-supervisors-marshal
     loadout: SyndieBrigmedic
     startingGear: SyndieBrigmedicGear
+    access:
+    - SecurityNS
+    - BrigNS
+    - MaintenanceNS
+    - ServiceNS
+    - MedicalNS
+    - ExternalNS
+    - CryogenicsNS
+    - BrigmedicNS
+    - ChemistryNS
+    - SurgeryNS
 
 - type: factionJobAssignment
   id: SyndieDetective
@@ -424,6 +680,13 @@
     #supervisors: job-supervisors-marshal
     loadout: SyndieDetective
     startingGear: SyndieDetectiveGear
+    access:
+    - SecurityNS
+    - BrigNS
+    - MaintenanceNS
+    - DetectiveNS
+    - CryogenicsNS
+    - ExternalNS
 
 - type: factionJobAssignment
   id: SyndieSecurityOfficer
@@ -436,6 +699,12 @@
     #supervisors: job-supervisors-marshal
     loadout: SyndieSecurityOfficer
     startingGear: SyndieSecurityOfficerGear
+    access:
+    - SecurityNS
+    - BrigNS
+    - MaintenanceNS
+    - ExternalNS
+    - CryogenicsNS
 
 - type: factionJobAssignment
   id: SyndieSecurityCadet
@@ -448,6 +717,12 @@
     #supervisors: job-supervisors-marshal
     loadout: SyndieSecurityCadet
     startingGear: SyndieSecurityCadetGear
+    access:
+    - CadetNS 
+    - BrigNS
+    - MaintenanceNS
+    - ExternalNS
+    - CryogenicsNS
 
 - type: factionJobAssignment
   id: SyndieSecBorg
@@ -471,3 +746,5 @@
     #supervisors: job-supervisors-nshc
     loadout: SyndieBlueShield
     startingGear: SyndieBlueShieldGear
+    accessGroups:
+    - AllAccessNS

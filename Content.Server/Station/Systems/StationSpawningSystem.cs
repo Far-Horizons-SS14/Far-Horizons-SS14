@@ -197,12 +197,12 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
         // make it more consistent and equip things in a more effective order.
         if (loadout != null)
         {
-            var startingGear = prototype?.StartingGear != null ? [_prototypeManager.Index<StartingGearPrototype>(prototype.StartingGear)] : Array.Empty<IEquipmentLoadout>();
+            var startingGear = prototype?.StartingGear != null ? [_prototypeManager.Index<StartingGearPrototype>(_factions.OverrideJobStartingGear((factionProto?.ID, prototype))!)] : Array.Empty<IEquipmentLoadout>(); //FH-Edit
             StarlightEquipRoleLoadout(entity.Value, loadout, startingGear, roleProto!);
         }
         else if (prototype?.StartingGear != null)
         {
-            var startingGear = _prototypeManager.Index<StartingGearPrototype>(prototype.StartingGear);
+            var startingGear = _prototypeManager.Index<StartingGearPrototype>(_factions.OverrideJobStartingGear((factionProto?.ID, prototype))!); //FH-Edit
             EquipStartingGear(entity.Value, startingGear, raiseEvent: false);
         }
         // Starlight end
@@ -210,12 +210,6 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
         // if (loadout != null)
         // {
         //     EquipRoleLoadout(entity.Value, loadout, roleProto!, profile); // Starlight edit
-        // }
-
-        // if (prototype?.StartingGear != null)
-        // {
-        //     var startingGear = _prototypeManager.Index<StartingGearPrototype>(_factions.OverrideJobStartingGear((factionProto?.ID, prototype))!); // Far Horizons starting gear faction override
-        //     EquipStartingGear(entity.Value, startingGear, raiseEvent: false);
         // }
 
         // Far Horizons species loadouts
@@ -359,7 +353,7 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
             extendedAccess = data.ExtendedAccess;
         }
 
-        _accessSystem.SetAccessToJob(cardId, jobPrototype, extendedAccess);
+        _accessSystem.SetAccessToJob(cardId, jobPrototype, _factions.DecideFactionForJob(jobPrototype), extendedAccess); //FarHorizons
 
         if (pdaComponent != null)
             _pdaSystem.SetOwner(idUid.Value, pdaComponent, entity, characterName);

@@ -1,5 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using Content.Shared.Access;
 using Content.Shared.Clothing;
 using Content.Shared.GameTicking;
 using Content.Shared.Preferences.Loadouts;
@@ -169,6 +170,46 @@ public abstract partial class SharedFactionManager : ISharedFactionManager
         factionJob.faction is null || !TryGetJobAssignment((factionJob.faction.Value, factionJob.job), out var assignment) ? 
         _prototypeManager.Index(factionJob.job).JobPreviewEntity :
         OverrideJobPreviewEntity(assignment!);
+
+    public IReadOnlyCollection<ProtoId<AccessLevelPrototype>>? OverrideJobAccess(FactionJobAssignmentPrototype assignment) =>
+        assignment.Override == null || assignment.Override.Access == null ?
+            _prototypeManager.Index(assignment.Job).Access :
+            assignment.Override.Access;
+    
+    public IReadOnlyCollection<ProtoId<AccessLevelPrototype>>? OverrideJobAccess((ProtoId<FactionPrototype>? faction, ProtoId<JobPrototype> job) factionJob) =>
+        factionJob.faction == null || !TryGetJobAssignment((factionJob.faction.Value, factionJob.job), out var assignment) ? 
+        _prototypeManager.Index(factionJob.job).Access :
+        OverrideJobAccess(assignment!);
+
+    public IReadOnlyCollection<ProtoId<AccessGroupPrototype>>? OverrideJobAccessGroups(FactionJobAssignmentPrototype assignment) =>
+        assignment.Override == null || assignment.Override.AccessGroups == null ?
+            _prototypeManager.Index(assignment.Job).AccessGroups :
+            assignment.Override.AccessGroups;
+    
+    public IReadOnlyCollection<ProtoId<AccessGroupPrototype>>? OverrideJobAccessGroups((ProtoId<FactionPrototype>? faction, ProtoId<JobPrototype> job) factionJob) =>
+        factionJob.faction == null || !TryGetJobAssignment((factionJob.faction.Value, factionJob.job), out var assignment) ? 
+        _prototypeManager.Index(factionJob.job).AccessGroups :
+        OverrideJobAccessGroups(assignment!);
+
+    public IReadOnlyCollection<ProtoId<AccessLevelPrototype>>? OverrideJobExtendedAccess(FactionJobAssignmentPrototype assignment) =>
+        assignment.Override == null || assignment.Override.ExtendedAccess == null ?
+            _prototypeManager.Index(assignment.Job).ExtendedAccess :
+            assignment.Override.ExtendedAccess;
+    
+    public IReadOnlyCollection<ProtoId<AccessLevelPrototype>>? OverrideJobExtendedAccess((ProtoId<FactionPrototype>? faction, ProtoId<JobPrototype> job) factionJob) =>
+        factionJob.faction == null || !TryGetJobAssignment((factionJob.faction.Value, factionJob.job), out var assignment) ? 
+        _prototypeManager.Index(factionJob.job).ExtendedAccess :
+        OverrideJobExtendedAccess(assignment!);
+
+    public IReadOnlyCollection<ProtoId<AccessGroupPrototype>>? OverrideJobExtendedAccessGroups(FactionJobAssignmentPrototype assignment) =>
+        assignment.Override == null || assignment.Override.ExtendedAccessGroups == null ?
+            _prototypeManager.Index(assignment.Job).ExtendedAccessGroups :
+            assignment.Override.ExtendedAccessGroups;
+    
+    public IReadOnlyCollection<ProtoId<AccessGroupPrototype>>? OverrideJobExtendedAccessGroups((ProtoId<FactionPrototype>? faction, ProtoId<JobPrototype> job) factionJob) =>
+        factionJob.faction == null || !TryGetJobAssignment((factionJob.faction.Value, factionJob.job), out var assignment) ? 
+        _prototypeManager.Index(factionJob.job).ExtendedAccessGroups :
+        OverrideJobExtendedAccessGroups(assignment!);
 
     private (ProtoId<FactionPrototype> faction, ProtoId<JobPrototype> job) GetDefaultIdsWithJob() =>
         (GetDefaultFaction(), SharedGameTicker.FallbackOverflowJob);

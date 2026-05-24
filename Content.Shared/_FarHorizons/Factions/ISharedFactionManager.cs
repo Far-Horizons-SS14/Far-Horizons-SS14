@@ -1,3 +1,4 @@
+using Content.Shared.Access;
 using Content.Shared.Preferences.Loadouts;
 using Content.Shared.Roles;
 using Content.Shared.StatusIcon;
@@ -44,4 +45,12 @@ public interface ISharedFactionManager
     public EntProtoId? OverrideJobEntity((ProtoId<FactionPrototype>? faction, ProtoId<JobPrototype> job) factionJob);
     public EntProtoId? OverrideJobPreviewEntity(FactionJobAssignmentPrototype assignment);
     public EntProtoId? OverrideJobPreviewEntity((ProtoId<FactionPrototype>? faction, ProtoId<JobPrototype> job) factionJob);
+    public IReadOnlyCollection<ProtoId<AccessLevelPrototype>>? OverrideJobAccess(FactionJobAssignmentPrototype assignment);
+    public IReadOnlyCollection<ProtoId<AccessLevelPrototype>>? OverrideJobAccess((ProtoId<FactionPrototype>? faction, ProtoId<JobPrototype> job) factionJob);
+    public IReadOnlyCollection<ProtoId<AccessGroupPrototype>>? OverrideJobAccessGroups(FactionJobAssignmentPrototype assignment);
+    public IReadOnlyCollection<ProtoId<AccessGroupPrototype>>? OverrideJobAccessGroups((ProtoId<FactionPrototype>? faction, ProtoId<JobPrototype> job) factionJob);
+    public IReadOnlyCollection<ProtoId<AccessLevelPrototype>>? OverrideJobExtendedAccess(FactionJobAssignmentPrototype assignment);
+    public IReadOnlyCollection<ProtoId<AccessLevelPrototype>>? OverrideJobExtendedAccess((ProtoId<FactionPrototype>? faction, ProtoId<JobPrototype> job) factionJob);
+    public IReadOnlyCollection<ProtoId<AccessGroupPrototype>>? OverrideJobExtendedAccessGroups(FactionJobAssignmentPrototype assignment);
+    public IReadOnlyCollection<ProtoId<AccessGroupPrototype>>? OverrideJobExtendedAccessGroups((ProtoId<FactionPrototype>? faction, ProtoId<JobPrototype> job) factionJob);
 }
