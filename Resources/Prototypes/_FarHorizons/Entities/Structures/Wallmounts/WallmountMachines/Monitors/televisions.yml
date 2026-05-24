@@ -1,7 +1,8 @@
+#region ## NanoTrasen ##
 - type: entity
   parent: WallmountTelevision
   id: WallmountTelevisionCWS
-  suffix: CWS
+  suffix: CWS, NT
   components:
   - type: Sprite
     layers:
@@ -19,7 +20,7 @@
 - type: entity
   parent: WallmountTelevision
   id: WallmountTelevisionSec
-  suffix: Sec
+  suffix: Sec, NT
   components:
   - type: Sprite
     layers:
@@ -37,7 +38,7 @@
 - type: entity
   parent: WallmountTelevision
   id: WallmountTelevisionGensys
-  suffix: Gensys
+  suffix: Gensys, NT
   components:
   - type: Sprite
     layers:
@@ -55,7 +56,7 @@
 - type: entity
   parent: WallmountTelevision
   id: WallmountTelevisionLime
-  suffix: Limehelp
+  suffix: Limb, NT
   components:
   - type: Sprite
     layers:
@@ -73,7 +74,7 @@
 - type: entity
   parent: WallmountTelevision
   id: WallmountTelevisionLMC
-  suffix: MinersLMC
+  suffix: MinersLMC, NT
   components:
   - type: Sprite
     layers:
@@ -91,7 +92,7 @@
 - type: entity
   parent: WallmountTelevision
   id: WallmountTelevisionNTWorlds
-  suffix: NTWorlds
+  suffix: NTWorlds, NT
   components:
   - type: Sprite
     layers:
@@ -111,6 +112,7 @@
   parent: MarkerBase
   name: random television spawner
   id: WallmountTelevisionRandomSpawner
+  suffix: NT
   components:
     - type: Sprite
       layers:
@@ -126,4 +128,114 @@
         - WallmountTelevisionLMC
         - WallmountTelevisionNTWorlds
       offset: 0.0
-  
+
+#region ## NeoSol ##
+- type: entity
+  parent: WallmountTelevision
+  id: WallmountTelevisionCSC
+  suffix: CSC, NS
+  components:
+  - type: Sprite
+    layers:
+      - map: ["computerLayerBody"]
+        state: television_wall
+      - map: ["computerLayerScreen"]
+        state: CSCScreen
+  - type: PointLight
+    enabled: true
+    energy: 2
+    radius: 2.5
+    offset: 0.0, -.75
+    color: "#ffc401"
+
+- type: entity
+  parent: WallmountTelevision
+  id: WallmountTelevisionNSWorlds
+  suffix: NSWorlds, NS
+  components:
+  - type: Sprite
+    layers:
+      - map: ["computerLayerBody"]
+        state: television_wall
+      - map: ["computerLayerScreen"]
+        state: NSworlds
+  - type: PointLight
+    enabled: true
+    energy: 2
+    radius: 2.5
+    offset: 0.0, -.75
+    color: "#f34040"
+
+- type: entity
+  parent: WallmountTelevision
+  id: WallmountTelevisionSecBigBrother
+  suffix: SecBigBrother, NS
+  components:
+  - type: Sprite
+    layers:
+      - map: ["computerLayerBody"]
+        state: television_wall
+      - map: ["computerLayerScreen"]
+        state: SecBigBrother
+  - type: PointLight
+    enabled: true
+    energy: 2
+    radius: 2.5
+    offset: 0.0, -.75
+    color: "#f34040"
+
+- type: entity
+  parent: WallmountTelevision
+  id: WallmountTelevisionTelosmonkey
+  suffix: Telosmonkey, NS
+  components:
+  - type: Sprite
+    layers:
+      - map: ["computerLayerBody"]
+        state: television_wall
+      - map: ["computerLayerScreen"]
+        state: Telosmonkey
+  - type: PointLight
+    enabled: true
+    energy: 2
+    radius: 2.5
+    offset: 0.0, -.75
+    color: "#ed75f8"
+
+- type: entity
+  parent: WallmountTelevision
+  id: WallmountTelevisionTelostext
+  suffix: Telostext, NS
+  components:
+  - type: Sprite
+    layers:
+      - map: ["computerLayerBody"]
+        state: television_wall
+      - map: ["computerLayerScreen"]
+        state: Telostext
+  - type: PointLight
+    enabled: true
+    energy: 2
+    radius: 2.5
+    offset: 0.0, -.75
+    color: "#ed75f8"
+
+- type: entity
+  parent: MarkerBase
+  name: random television spawner
+  id: WallmountTelevisionNSRandomSpawner
+  suffix: NS
+  components:
+    - type: Sprite
+      layers:
+        - state: red
+        - sprite: _FarHorizons/Structures/Wallmounts/flatscreentv.rsi
+          state: television_wall
+    - type: RandomSpawner
+      prototypes:
+        - WallmountTelevisionCSC
+        - WallmountTelevisionNSWorlds
+        - WallmountTelevisionSecBigBrother
+        - WallmountTelevisionTelosmonkey
+        - WallmountTelevisionTelostext
+      offset: 0.0
