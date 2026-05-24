@@ -84,7 +84,11 @@
 # kill
 # FH Edit Begin -- Increasing overall round entropy by removing RR of a random person is going to increase likelyhood of rolling more high-profile objectives as well as overall in-character behavior of non-command crew
 
-#- type: entity
+
+# kill
+#FH Edit Begin -- Increasing overall round entropy by removing RR of a random person is going to increase likelyhood of rolling more high-profile objectives as well as overall in-character behavior of non-command crew
+
+# - type: entity
 #  parent: [BaseTraitorObjective, BaseKillObjective]
 #  id: KillRandomPersonObjective
 #  description: Do it however you like, just make sure they don't get off the station.
@@ -96,14 +100,14 @@
 #    title: objective-condition-maroon-person-title
 #  - type: PickRandomPerson
 #    filters:
-#    # Can't have multiple objectives to kill the same person.
+    # Can't have multiple objectives to kill the same person.
 #    - !type:TargetObjectiveMindFilter
 #      blacklist:
 #        components:
 #        - KillPersonCondition
 #  - type: KillPersonCondition
 #    requireMaroon: true
-# FH Edit End
+#FH Edit End
 
 - type: entity
   parent: [BaseTraitorObjective, BaseKillObjective]
