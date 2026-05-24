@@ -97,7 +97,7 @@
   - type: PickRandomPerson
     filters:
     # Can't have multiple objectives to kill the same person.
-    - !type:BodyMindFilter
+    - !type:BodyMindFilter #FH Edit
       whitelist: #FH Edit
         components: #FH Edit
         - CommandStaff #FH Edit
