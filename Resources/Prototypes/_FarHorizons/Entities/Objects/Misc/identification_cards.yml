@@ -28,6 +28,8 @@
     - WhitelistChameleonIdCard
   - type: StealTarget
     stealGroup: IDCard
+  - type: PresetIdCard
+    faction: FactionNT
 
 #endregion
 
@@ -188,6 +190,7 @@
         - state: silver
         - state: idntmagi
     - type: PresetIdCard
+      faction: FactionCFA
       job: Magistrate
     - type: Item
       heldPrefix: silver
@@ -202,6 +205,7 @@
     - state: silver
     - state: idntiaa
   - type: PresetIdCard
+    faction: FactionCFA
     job: IAA
   - type: Item
     heldPrefix: silver
@@ -752,6 +756,7 @@
     - type: Item
       heldPrefix: silver
     - type: PresetIdCard
+      faction: FactionCargonia
       job: Quartermaster
 
 - type: entity
@@ -764,6 +769,7 @@
     - state: default
     - state: idcargotechnician
   - type: PresetIdCard
+    faction: FactionCargonia
     job: CargoTechnician
 
 - type: entity
@@ -776,6 +782,7 @@
     - state: default
     - state: idsalvagespecialist 
   - type: PresetIdCard
+    faction: FactionCargonia
     job: SalvageSpecialist
 
 - type: entity
@@ -788,6 +795,7 @@
         - state: default
         - state: idsalvagelead
     - type: PresetIdCard
+      faction: FactionCargonia
       job: SalvageLead
 
 - type: entity
@@ -800,6 +808,7 @@
     - state: default
     - state: idstationminer
   - type: PresetIdCard
+    faction: FactionCargonia
     job: MiningSpecialist
 
 - type: entity
@@ -812,6 +821,7 @@
     - state: default
     - state: idmailtech
   - type: PresetIdCard
+    faction: FactionCargonia
     job: MailTech
 
 #endregion
