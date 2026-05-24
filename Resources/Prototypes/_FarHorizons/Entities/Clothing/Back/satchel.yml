@@ -1,43 +1,226 @@
-# Cargo
-
+#region ## GSL ##
 - type: entity
   parent: [ ClothingBackpackSatchel, BaseCargoContraband ] 
   id: ClothingBackpackSatchelMining
-  name: mining satchel
+  name: Mining Satchel
   description: It's a well worn satchel covered in asteroid dust and scuff marks from rocks hitting it.
   components:
   - type: Sprite
     sprite: _FarHorizons/Clothing/Back/Satchels/mining.rsi
+    
+#region ## NanoTrasen ##
 
-# Engi
+
+
+
+
+#region Command
 
 - type: entity
-  parent: ClothingBackpackSatchel
+  parent: [ClothingBackpackSatchel, BaseCommandContraband]
+  id: ClothingSatchelCMO
+  name: Chief Medical Officer's Satchel
+  description: It's a sterile satchel designed for the NanoTrasen Chief Medical Officer.
+  suffix: NT
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Clothing/Back/Satchels/cmo.rsi
+
+- type: entity
+  parent: [ClothingBackpackSatchel, BaseCommandContraband]
   id: ClothingSatchelChiefEngineer
   name: Chief Engineer's Satchel
-  description: It's a backpack especially designed for use in a spacious environment.
+  description: It's a satchel especially designed for use in a spacious environment.
+  suffix: NT
   components:
     - type: Sprite
       sprite: _FarHorizons/Clothing/Back/Satchels/chief_engineer.rsi
 
-# Medical
+- type: entity
+  parent: [ClothingBackpack, BaseRepresentativesContraband]
+  id: ClothingSatchelNtRepresentative
+  name: NanoTrasen Representative's Satchel
+  description: It's a jade trimmed satchel used by the Nanotrasen Representative.
+  suffix: NT
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Clothing/Back/Satchels/ntrep.rsi
+
+#region Medical
 
 - type: entity
   parent: ClothingBackpackSatchel
   id: ClothingBackpackSatchelParamedic
-  name: paramedic satchel
+  name: Paramedic Satchel
   description: A medical satchel that has seen a fair amount of use in the depths of space.
+  suffix: NT
   components:
   - type: Sprite
     sprite: _FarHorizons/Clothing/Back/Satchels/paramedic.rsi
 
-# Security
+#region Security
 
 - type: entity
   parent: [ClothingBackpackSatchel, BaseSecurityContraband]
   id: ClothingBackpackSatchelCorpsman
   name: Corpsman Satchel
   description: Has more than enough pockets to organize everything.
+  suffix: NT
   components:
   - type: Sprite
     sprite: _FarHorizons/Clothing/Back/Satchels/corpsman.rsi
+
+#region ## NeoSol ##
+
+
+
+
+
+#region NSHC
+- type: entity
+  parent: [ClothingBackpack, BaseRepresentativesContraband]
+  id: ClothingSatchelNsRepresentative
+  name: NeoSol Representative's Satchel
+  description: It's a gold trimmed satchel used by the NeoSol Representative.
+  suffix: NS
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Clothing/Back/Satchels/NeoSol/nsrep.rsi
+
+- type: entity
+  parent: [ ClothingBackpackSatchel, BaseRepresentativesContraband ] 
+  id: ClothingBackpackSatchelRedSword
+  name: Red Sword Operative's Satchel 
+  description: Useful for holding everything a speedy red sword officer needs!
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Back/Satchels/NeoSol/redsword.rsi 
+
+#region Command
+- type: entity
+  parent: [ClothingBackpackSatchel, BaseCommandContraband]
+  id: ClothingBackpackSatchelMD
+  name: Medical Director's Satchel
+  description: It's a sterile satchel designed for the NeoSol Medical Director.
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Clothing/Back/Satchels/NeoSol/cmo.rsi
+
+- type: entity
+  parent: [ClothingBackpackSatchel]
+  id: ClothingBackpackSatchelForeman
+  name: Foreman's Satchel
+  suffix: NS
+  description: A robust satchel, some wires are burnt into it.
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Clothing/Back/Satchels/NeoSol/foreman.rsi
+    - type: Tag
+      tags:
+        - Syndicate
+        - WhitelistChameleon
+        - Backpack
+
+#region Medical
+- type: entity
+  parent: [ClothingBackpackSatchel ]
+  id: ClothingBackpackSatchelMedicalSyndi
+  name: Medical Satchel 
+  description: A sterile satchel used in medical departments.
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Back/Satchels/NeoSol/medical.rsi 
+
+- type: entity
+  parent: [ClothingBackpackSatchel ]
+  id: ClothingBackpackSatchelChemistrySyndi
+  name: Pharmacist Satchel 
+  description: A sterile satchel with chemist colours.
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Back/Satchels/NeoSol/chemistry.rsi 
+
+- type: entity
+  parent: [ClothingBackpackSatchel ]
+  id: ClothingBackpackSatchelParamedicSyndi
+  name: Paramedic Satchel
+  description: A medical satchel that has seen a fair amount of use in the depths of space.
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Back/Satchels/NeoSol/paramedic.rsi
+
+- type: entity
+  parent: [ClothingBackpackSatchel ]
+  id: ClothingBackpackSatchelVirologySyndi
+  name: Virology Satchel 
+  description: A satchel made of hypo-allergenic fibers. It's designed to help prevent the spread of disease. Smells like monkey.
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Back/Satchels/NeoSol/virology.rsi 
+
+#region Security
+- type: entity
+  parent: [ClothingBackpackSatchel ]
+  id: ClothingBackpackSatchelSyndicateSecurity
+  name: Security Satchel
+  suffix: NS
+  description: A robust satchel for security related needs.
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Clothing/Back/Satchels/NeoSol/security.rsi
+    - type: Tag
+      tags:
+        - Syndicate
+        - WhitelistChameleon
+        - Backpack
+
+- type: entity
+  parent: [ClothingBackpackSatchel ]
+  id: ClothingBackpackSatchelSyndicateBrigmedic
+  name: Brigmedic Satchel
+  suffix: NS
+  description: A sterile satchel for medical related needs.
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Clothing/Back/Satchels/NeoSol/brigmedic.rsi
+    - type: Tag
+      tags:
+        - Syndicate
+        - WhitelistChameleon
+        - Backpack
+
+#region Engineering
+
+- type: entity
+  parent: [ ClothingBackpackSatchel  ]
+  id: ClothingBackpackSatchelNeosolEngineering
+  name: Engineering Satchel
+  suffix: NS
+  description: A robust satchel for holding tons of materials and tools.
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Clothing/Back/Satchels/NeoSol/engineering.rsi
+    - type: Tag
+      tags:
+        - Syndicate
+        - WhitelistChameleon
+        - Backpack
+
+- type: entity
+  parent: [ ClothingBackpackSatchel  ]
+  id: ClothingBackpackSatchelNeosolAtmospherics
+  name: Atmospherics Satchel
+  suffix: NS
+  description: A robust satchel for holding massive pipes and air related tanks
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Clothing/Back/Satchels/NeoSol/atmospherics.rsi
+    - type: Tag
+      tags:
+        - Syndicate
+        - WhitelistChameleon
+        - Backpack

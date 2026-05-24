@@ -116,6 +116,23 @@
         - id: HolofanProjector
         - id: GasAnalyzer
         - id: trayScanner
+# RSO
+
+- type: entity
+  id: ClothingBeltRedSwordWebbingFilled
+  parent: ClothingBeltRSOWebbing
+  suffix: Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: Handcuffs
+        - id: Handcuffs
+        - id: Stunbaton
+        - id: GrenadeFlashBang
+        - id: TearGasGrenade
+        - id: SecurityMedkitFHFilledBSO
 
 #region Engineering
 
