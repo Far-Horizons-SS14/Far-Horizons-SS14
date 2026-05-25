@@ -781,6 +781,7 @@ namespace Content.Shared.Preferences
             // Track points count for each group.
             var groups = new Dictionary<string, int>();
             var result = new List<ProtoId<TraitPrototype>>();
+            var totalInGroup = new Dictionary<string, int>(); // Far Horizons
 
             foreach (var trait in traits)
             {
@@ -804,6 +805,16 @@ namespace Content.Shared.Preferences
                 // Too expensive.
                 if (existing > category.MaxPoints) // Starlight
                     continue;
+                
+                // Far Horizons start
+                var total = totalInGroup.GetOrNew(category.ID);
+                total += 1;
+
+                if (total > category.MaxTraits)
+                    continue;
+                
+                totalInGroup[category.ID] = total;
+                // Far Horizons end
 
                 groups[category.ID] = existing;
                 result.Add(trait);
