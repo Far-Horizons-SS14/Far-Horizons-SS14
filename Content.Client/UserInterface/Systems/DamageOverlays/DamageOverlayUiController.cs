@@ -84,7 +84,10 @@ public sealed class DamageOverlayUiController : UIController
             return;
 
         if (!_mobThresholdSystem.TryGetIncapThreshold(entity, out var foundThreshold, thresholds))
+        {
+            ClearOverlay(); // Far Horizons
             return; //this entity cannot die or crit!!
+        }
 
         if (!thresholds.ShowOverlays)
         {
