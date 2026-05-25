@@ -363,7 +363,9 @@
         conditions:
           # they gotta be in crit first
         - !type:MobStateCondition
-          mobstate: Critical
+          mobstates: # Far Horizons
+            - Critical
+            - ActiveCritical # Far Horizons
         - !type:ReagentCondition
           reagent: Epinephrine
           max: 20
@@ -375,7 +377,9 @@
         conditions:
           # they gotta be in crit first
         - !type:MobStateCondition
-          mobstate: Critical
+          mobstates: # Far Horizons
+            - Critical
+            - ActiveCritical # Far Horizons
         - !type:ReagentCondition
           reagent: Epinephrine
           max: 20
@@ -489,7 +493,9 @@
         conditions:
           # they gotta be in crit first
         - !type:MobStateCondition
-          mobstate: Critical
+          mobstates: # Far Horizons
+            - Critical
+            - ActiveCritical # Far Horizons
         damage:
           types:
             Asphyxiation: -2
@@ -1404,7 +1410,8 @@
           - !type:TemperatureCondition
             max: 150.0
           - !type:MobStateCondition
-            mobstate: Dead
+            mobstates: # Far Horizons
+              - Dead # Far Horizons
 
 - type: reagent
   id: Arcryox

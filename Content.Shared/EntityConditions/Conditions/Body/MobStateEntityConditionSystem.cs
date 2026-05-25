@@ -1,4 +1,5 @@
-﻿using Content.Shared.Mobs;
+﻿using System.Linq;
+using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Robust.Shared.Prototypes;
 
@@ -12,7 +13,7 @@ public sealed partial class MobStateEntityConditionSystem : EntityConditionSyste
 {
     protected override void Condition(Entity<MobStateComponent> entity, ref EntityConditionEvent<MobStateCondition> args)
     {
-        if (entity.Comp.CurrentState == args.Condition.Mobstate)
+        if (args.Condition.Mobstates.Contains(entity.Comp.CurrentState)) // Far Horizons
             args.Result = true;
     }
 }
@@ -21,8 +22,8 @@ public sealed partial class MobStateEntityConditionSystem : EntityConditionSyste
 public sealed partial class MobStateCondition : EntityConditionBase<MobStateCondition>
 {
     [DataField]
-    public MobState Mobstate = MobState.Alive;
+    public List<MobState> Mobstates = new(){ MobState.Alive }; // Far Horizons
 
     public override string EntityConditionGuidebookText(IPrototypeManager prototype) =>
-        Loc.GetString("entity-condition-guidebook-mob-state-condition", ("state", Mobstate));
+        Loc.GetString("entity-condition-guidebook-mob-state-condition", ("state", Mobstates.First()));
 }
