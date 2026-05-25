@@ -244,7 +244,7 @@ public abstract partial class SharedActiveCritSystem : EntitySystem
 
     public bool IsBlackout(Entity<ActiveCritComponent?> ent)
     {
-        if (!Resolve(ent, ref ent.Comp) || !_mobState.IsCritical(ent))
+        if (!Resolve(ent, ref ent.Comp, false) || !_mobState.IsCritical(ent))
             return false;
 
         return ent.Comp.Blackout;
