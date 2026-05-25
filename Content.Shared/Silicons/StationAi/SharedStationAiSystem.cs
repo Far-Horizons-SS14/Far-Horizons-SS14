@@ -279,11 +279,6 @@ public abstract partial class SharedStationAiSystem : EntitySystem
 
         // Starlight-start
 
-        var isBorg = HasComp<BorgBrainComponent>(uid);
-        var borgHaveMind = TryComp<MindContainerComponent>(uid, out var mindContainer) && _mind.GetMind(uid, mindContainer) != null;
-        var isBorgTarget = HasComp<BorgBrainComponent>(args.Args.Target.Value);
-        var borgHaveMindTarget = TryComp<MindContainerComponent>(args.Args.Target.Value, out var targetMindContainer) && _mind.GetMind(args.Args.Target.Value, targetMindContainer) != null;
-
         // basically if the AI is off shunting we wanna force them BACK. simplest way to do that is to fake the event to send them back.
         var slot = component?.Slot;
         if (slot != null && slot.Item.HasValue && TryComp<StationAIShuntableComponent>(slot.Item.Value, out var shuntable))
@@ -301,13 +296,6 @@ public abstract partial class SharedStationAiSystem : EntitySystem
             args.Handled = true;
             return;
         }
-        // Starlight-start: borgs can be downloaded/uploaded
-        else if (isBorgTarget && borgHaveMindTarget && slot?.ContainerSlot is { } containerSlot && containerSlot.ContainedEntity != null)
-        {
-            _mind.ControlMob(args.Args.Target.Value, uid);
-            Del(containerSlot.ContainedEntity);
-        }
-        // Starlight-end
 
         // Otherwise try to take from them
         if (slot != null && _slots.CanEject(args.Args.Target.Value, args.User, targetHolder.Slot)) // Starlight-edit
@@ -319,13 +307,32 @@ public abstract partial class SharedStationAiSystem : EntitySystem
 
             args.Handled = true;
         }
-        // Starlight-start: borgs can be downloaded/uploaded
-        else if (isBorg && borgHaveMind && targetHolder.Slot.ContainerSlot != null)
+
+        // Far Horizons Start: Refactoring the AI -> Intellicard -> Posi Upload
+        // Intellicard -> Posi
+        if (component == null && (!TryComp<MindContainerComponent>(uid, out var mind) || !mind.HasMind))
         {
+            if(targetHolder.Slot?.ContainerSlot is { } containerSlot  && containerSlot.ContainedEntity != null)
+            {
+                _mind.ControlMob(containerSlot.ContainedEntity.Value, uid); 
+                if (_slots.TryEject(args.Args.Target.Value, targetHolder.Slot, args.User, out var ejected))
+                    Del(ejected);
+                
+                args.Handled = true;
+                return;
+            }
+        }   
+        // Posi -> Intellicard
+        else if(targetHolder.Slot.ContainerSlot != null && HasComp<MindContainerComponent>(uid))
+        {
+            
             var brain = SpawnInContainerOrDrop(DefaultAi, args.Args.Target.Value, targetHolder.Slot.ContainerSlot.ID);
             _mind.ControlMob(uid, brain);
+
+            args.Handled = true;
+            return;
         }
-        // Starlight-end
+        // Far Horizons End
     }
 
     private void OnHolderInteract(Entity<StationAiHolderComponent> ent, ref AfterInteractEvent args)
