@@ -8,35 +8,20 @@
     receiveFrequencyId: SecborgControl
     transmitFrequencyId: SecurityRoboticsConsole
     savableAddress: false
-
-
-- type: entity # TODO implement sirens
-  parent: [BaseBorgChassis, BaseSecBorgTransponder]
-  id: BorgChassisSecurity
-  name: security cyborg
-  description: A special chassis produced by Nanotrasen to aid station side security forces in their duties.
-  components:
   - type: BorgTransponder
     name: security cyborg
     sprite:
       sprite: _FarHorizons/Mobs/Silicon/Chassis/security.rsi
       state: borg
+
+
+- type: entity # TODO implement sirens
+  parent: [BaseBorgChassis, BaseSecBorgTransponder]
+  id: BorgChassisSecuritySelectable
+  name: security cyborg
+  description: A special chassis produced by Nanotrasen to aid station side security forces in their duties.
+  components:
   - type: TextToSpeech
-  - type: Sprite
-    sprite: _FarHorizons/Mobs/Silicon/Chassis/security.rsi
-    layers:
-      - state: borg
-      - state: borg_e
-        map: ["enum.BorgVisualLayers.Light"]
-        shader: unshaded
-        visible: false
-      - state: borg_l
-        shader: unshaded
-        map: ["light"]
-        visible: false
-      # - state: borg_siren_on
-      #   map: [ "enum.BorgVisualLayers.Siren", "siren" ]
-      #   shader: unshaded
   - type: RandomMetadata
     nameSegments:
     - NamesBorg
@@ -53,47 +38,35 @@
   - type: AccessReader
     access: [["Command"], ["Armory"]] # Warden & Command. Todo, sec roboticist
   - type: ShowJobIcons
-  - type: ShowMindShieldIcons
-  - type: ShowCriminalRecordIcons
+  - type: ShowCrewIcons
   - type: InteractionPopup
     interactSuccessSound:
       path: /Audio/Ambience/Objects/periodic_beep.ogg
-  - type: FlashImmunity
-  - type: IntrinsicRadioTransmitter
-    channels:
-    - Binary
-    - Common
-    - Science
-    - Security
-  - type: ActiveRadio
-    channels:
-    - Binary
-    - Common
-    - Science
-    - Security
-  # - type: ActionGrant
-  #   actions:
-  #   - ActionBorgToggleSirens
-  - type: EmagSiliconLaw
-    stunTime: 5
-  - type: SiliconLawProvider
-    laws: Robocop
+  - type: Sprite
+    sprite: _FarHorizons/Mobs/Silicon/Chassis/security.rsi
+    layers:
+    - state: borg
+      map: [ "movement", "enum.BorgVisualLayers.Body" ]
+    - state: borg_e_r
+      map: [ "enum.BorgVisualLayers.Light" ]
+      shader: unshaded
+      visible: false
+    - state: borg_l
+      shader: unshaded
+      map: [ "light","enum.BorgVisualLayers.LightStatus" ]
+      visible: false
   - type: BorgChassis
-    maxModules: 6
+    maxModules: 0
     hasMindState: borg_e
     noMindState: borg_e_r
-
-- type: entity
-  parent: BorgChassisSecurity
-  id: BorgChassisSecurityModule
-  suffix: Module
-  components:
-  - type: ContainerFill
-    containers:
-      borg_module:
-      - BorgModuleTool
-      - BorgModuleBaton
-      - BorgModuleDominator
+  - type: BorgSwitchableType
+    inherentRadioChannels:
+    - Binary
+    - Common
+    availableTypes:
+    - security
+  - type: SiliconLawProvider
+    laws: Robocop
 
 - type: entity
   parent: BaseBorgChassisNotIonStormable

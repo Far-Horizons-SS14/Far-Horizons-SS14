@@ -1,39 +1,39 @@
 # Security borg
-- type: borgType
-  id: security
-
-  # Description
-  dummyPrototype: BorgChassisSecurity
-
-  # Functional
-  extraModuleCount: 3
-  moduleWhitelist:
-    tags:
-    - BorgModuleGeneric
+#- type: borgType
+#  id: security
+#
+#  # Description
+#  dummyPrototype: BorgChassisSecurity
+#
+#  # Functional
+#  extraModuleCount: 3
+#  moduleWhitelist:
+#    tags:
+#    - BorgModuleGeneric
 #    - BorgModuleSecurity
-
-  defaultModules:
-  - BorgModuleTool
+#
+#  defaultModules:
+#  - BorgModuleTool
 #  - BorgModuleSecurity
-
-  radioChannels:
-  - Science
-  - Security
-
-  # Visual
-  inventoryTemplateId: borgShort
-  spritePath: _Starlight/Mobs/Silicon/Chassis/security.rsi
-
-  # Pet
-  petSuccessString: petting-success-security-cyborg
-  petFailureString: petting-failure-security-cyborg
-
-  requirements:
-  - !type:OverallPlaytimeRequirement #Far Horizons
-    time: 14400 # 4 Hours Far Horizons - Temporary //
-  - !type:DepartmentTimeRequirement
-    department: Security
-    time: 0 # Far Horizons - Temporary // 36000 #10 hrs Starlight
+#
+#  radioChannels:
+#  - Science
+#  - Security
+#
+#  # Visual
+#  inventoryTemplateId: borgShort
+#  spritePath: _Starlight/Mobs/Silicon/Chassis/security.rsi
+#
+#  # Pet
+#  petSuccessString: petting-success-security-cyborg
+#  petFailureString: petting-failure-security-cyborg
+#
+#  requirements:
+#  - !type:OverallPlaytimeRequirement #Far Horizons
+#    time: 14400 # 4 Hours Far Horizons - Temporary //
+#  - !type:DepartmentTimeRequirement
+#    department: Security
+#    time: 0 # Far Horizons - Temporary // 36000 #10 hrs Starlight
 
 # Syndicate borgs
 

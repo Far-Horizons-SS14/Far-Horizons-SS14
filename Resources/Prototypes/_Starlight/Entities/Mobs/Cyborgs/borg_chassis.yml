@@ -43,14 +43,13 @@
     channels:
     - Syndicate
 
-# Far Horizons name clash
-# - type: entity
-#   id: BorgChassisSecurity
-#   parent: BorgChassisSelectable
-#   name: security cyborg
-#   components:
-#   - type: BorgSwitchableType
-#     selectedBorgType: security
+- type: entity
+  id: BorgChassisSecurity
+  parent: BorgChassisSelectable
+  name: security cyborg
+  components:
+  - type: BorgSwitchableType
+    selectedBorgType: security
     
 - type: entity
   id: BorgChassisPurrfus
