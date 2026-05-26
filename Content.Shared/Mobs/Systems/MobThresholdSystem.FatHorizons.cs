@@ -13,4 +13,14 @@ public sealed partial class MobThresholdSystem
         mob.Comp.Thresholds.Add(0, MobState.Alive);
         Dirty(mob);
     }
+
+    public void MakeZombieDead(Entity<MobThresholdsComponent?> mob)
+    {
+        if (!Resolve(mob, ref mob.Comp))
+            return;
+
+        mob.Comp.Thresholds = [];
+        mob.Comp.Thresholds.Add(0, MobState.Dead);
+        Dirty(mob);
+    }
 }

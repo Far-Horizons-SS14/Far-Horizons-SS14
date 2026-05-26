@@ -190,7 +190,9 @@
       - !type:EvenHealthChange
         conditions:
         - !type:MobStateCondition
-          mobstate: Critical
+          mobstates: # Far Horizons
+            - Critical
+            - ActiveCritical # Far Horizons
         damage: # Doesn't heal poison because if you OD'd I'm not giving you a safety net
           Burn: -0.5
           Brute: -0.5
@@ -198,7 +200,9 @@
       - !type:HealthChange
         conditions:
         - !type:MobStateCondition
-          mobstate: Critical
+          mobstates: # Far Horizons
+            - Critical
+            - ActiveCritical # Far Horizons
         damage:
           types:
             Asphyxiation: -2

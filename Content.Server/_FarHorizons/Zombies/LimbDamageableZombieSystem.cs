@@ -1,6 +1,6 @@
 using System.Linq;
+using Content.Server._FarHorizons.Body;
 using Content.Server.Mobs;
-using Content.Shared._FarHorizons.Body;
 using Content.Shared._FarHorizons.LimbDamage;
 using Content.Shared._FarHorizons.LimbDamage.Components;
 using Content.Shared._FarHorizons.Zombies;
@@ -32,7 +32,7 @@ public sealed class LimbDamageableZombieSystem : EntitySystem
 
         SubscribeLocalEvent<LimbDamageableComponent, EntityZombifiedEvent>(OnZombified);
         SubscribeLocalEvent<ZombieHeadComponent, DamageChangedEvent>(OnZombieHeadDamaged);
-        SubscribeLocalEvent<ZombieHeadComponent, OrganGotRemovedEvent>(OnZombieHeadRemoved, before: [ typeof(VitalOrganComponent) ]);
+        SubscribeLocalEvent<ZombieHeadComponent, OrganGotRemovedEvent>(OnZombieHeadRemoved, before: [ typeof(VitalOrganSystem) ]);
     }
 
     private void OnZombified(Entity<LimbDamageableComponent> ent, ref EntityZombifiedEvent args)
@@ -63,6 +63,7 @@ public sealed class LimbDamageableZombieSystem : EntitySystem
 
         _deathgasp.Deathgasp(organ.Body.Value);
         _mobState.ChangeMobState(organ.Body.Value, MobState.Dead);
+        _mobThreshold.MakeZombieDead(organ.Body.Value);
     }
 
     private void OnZombieHeadRemoved(Entity<ZombieHeadComponent> ent, ref OrganGotRemovedEvent args)
@@ -74,5 +75,6 @@ public sealed class LimbDamageableZombieSystem : EntitySystem
 
         _deathgasp.Deathgasp(organ.Body.Value);
         _mobState.ChangeMobState(organ.Body.Value, MobState.Dead);
+        _mobThreshold.MakeZombieDead(organ.Body.Value);
     }
 }

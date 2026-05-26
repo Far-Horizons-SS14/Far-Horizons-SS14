@@ -82,26 +82,28 @@
 #    - type: HijackShuttleCondition
 
 # kill
+# FH Edit Begin -- Increasing overall round entropy by removing RR of a random person i.e. the janitor is going to increase likelyhood of rolling more high-profile objectives
 
-- type: entity
-  parent: [BaseTraitorObjective, BaseKillObjective]
-  id: KillRandomPersonObjective
-  description: Do it however you like, just make sure they don't get off the station.
-  components:
-  - type: Objective
-    difficulty: 1.5 #Starlight edit
-    unique: false
-  - type: TargetObjective
-    title: objective-condition-maroon-person-title
-  - type: PickRandomPerson
-    filters:
+#- type: entity
+#  parent: [BaseTraitorObjective, BaseKillObjective]
+#  id: KillRandomPersonObjective
+#  description: Do it however you like, just make sure they don't get off the station.
+#  components:
+#  - type: Objective
+#    difficulty: 1.5 #Starlight Edit
+#    unique: false
+#  - type: TargetObjective
+#    title: objective-condition-maroon-person-title
+#  - type: PickRandomPerson
+#    filters:
     # Can't have multiple objectives to kill the same person.
-    - !type:TargetObjectiveMindFilter
-      blacklist:
-        components:
-        - KillPersonCondition
-  - type: KillPersonCondition
-    requireMaroon: true
+#    - !type:TargetObjectiveMindFilter
+#      blacklist:
+#        components:
+#        - KillPersonCondition
+#  - type: KillPersonCondition
+#    requireMaroon: true
+#FH Edit End
 
 - type: entity
   parent: [BaseTraitorObjective, BaseKillObjective]
