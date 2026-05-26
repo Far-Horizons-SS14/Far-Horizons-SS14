@@ -77,7 +77,7 @@
   abstract: true
   components:
   - type: Sprite
-    sprite: Mobs/Silicon/Chassis/generic.rsi
+    sprite: _Starlight/Mobs/Silicon/Chassis/NTNC_Borg.rsi
   - type: TextToSpeech
   - type: RandomMetadata
     nameSegments:
@@ -203,6 +203,7 @@
       - !type:EmptyContainersBehaviour
         containers:
         - borg_brain
+        - borg_module
         - cell_slot
       - !type:DoActsBehavior
         acts: [ "Destruction" ]

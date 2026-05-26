@@ -54,3 +54,47 @@
   id: PlayerBorgBatterySyndicate
   parent: PlayerBorgBattery
   suffix: Syndicate
+
+# NTNC
+- type: entity
+  id: PlayerBorgHAWBattery
+  parent: NTNCBorgChassisHAW
+  suffix: Battery, module
+  components:
+  - type: ContainerFill
+    containers:
+      borg_brain:
+        - PositronicBrain
+      borg_module:
+        - BorgModuleAdvancedTool
+        - CentcommAccessBreakerModule
+        - CentcommLaserModule
+        - CentcommBulwarkModule
+        - CentcommModuleSpaceMovement
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellMicroreactor
+
+- type: entity
+  id: PlayerBorgSOSUBattery
+  parent: NTNCBorgChassisSOSU
+  suffix: Battery, module
+  components:
+  - type: ContainerFill
+    containers:
+      borg_brain:
+        - PositronicBrain
+      borg_module:
+        - BorgModuleAdvancedTool
+        - CentcommAccessBreakerModule
+        - CentcommLaserModule
+        - CentcommModuleChameleonProjector
+        - CentcommModuleCloakDevice
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellMicroreactor
+  - type: GhostTakeoverAvailable
