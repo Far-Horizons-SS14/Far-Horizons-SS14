@@ -464,3 +464,184 @@
   - type: Battery
     maxCharge: 2400
     startingCharge: 2400
+
+- type: entity
+  id: WeaponHoloflarePistol 
+  parent: BaseWeaponBattery
+  name: Holoflare Pistol 
+  description: A PKA-platform pistol that can shoot many short-lifetime flares of varying intensity.
+  suffix: Salv
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/Battery/holoflare_pistol.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: low-unshaded
+      map: ["enum.FireModesLayers.FireMode"]
+    - state: low-unshaded-5
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Item
+    sprite: _FarHorizons/Objects/Weapons/Guns/Battery/holoflare_pistol.rsi
+    size: Normal
+    shape:
+    - 0,0,1,0
+    - 0,1,0,1
+  - type: Gun
+    selectedMode: SemiAuto
+    fireRate: 1
+    availableModes:
+      - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/flaregun.ogg
+  - type: BatteryAmmoProvider
+    proto: LowIntensityHoloflare
+    fireCost: 50
+  - type: BatteryWeaponFireModes
+    fireModes: 
+    - proto: LowIntensityHoloflare
+      magState: low
+      fireCost: 50
+      visualState: low-unshaded
+      heldPrefix: low
+    - proto: MediumIntensityHoloflare
+      magState: medium
+      fireCost: 100
+      visualState: medium-unshaded
+      heldPrefix: medium
+    - proto: HighIntensityHoloflare
+      magState: high
+      fireCost: 150
+      visualState: high-unshaded
+      heldPrefix: high
+  - type: Battery
+    maxCharge: 600
+    startingCharge: 600
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 5
+  - type: MagazineVisuals
+    magState: low
+    steps: 6
+    zeroVisible: true
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - pocket
+    - belt
+    - back
+    - suitStorage
+  - type: Appearance
+    
+
+- type: entity
+  id: WeaponHoloflarePistolSec
+  parent: WeaponHoloflarePistol
+  description: A regular Holoflare Pistol with a snazzy paint job to represent the station's security department.
+  suffix: Sec
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/Battery/holoflare_pistol.rsi
+    layers:
+    - state: base-sec
+      map: ["enum.GunVisualLayers.Base"]
+    - state: low-unshaded
+      map: ["enum.FireModesLayers.FireMode"]
+    - state: low-unshaded-5
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: BatteryAmmoProvider
+    proto: LowIntensityHoloflareSec
+    fireCost: 50
+  - type: BatteryWeaponFireModes
+    fireModes: 
+    - proto: LowIntensityHoloflareSec
+      magState: low
+      fireCost: 50
+      visualState: low-unshaded
+      heldPrefix: low
+    - proto: MediumIntensityHoloflareSec
+      magState: medium
+      fireCost: 100
+      visualState: medium-unshaded
+      heldPrefix: medium
+    - proto: HighIntensityHoloflareSec
+      magState: high
+      fireCost: 150
+      visualState: high-unshaded
+      heldPrefix: high
+
+- type: entity
+  id: WeaponHoloflarePistolEngi
+  parent: WeaponHoloflarePistol
+  description: A regular Holoflare Pistol with a snazzy paint job to represent the station's engineering department.
+  suffix: Engi
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/Battery/holoflare_pistol.rsi
+    layers:
+    - state: base-engi
+      map: ["enum.GunVisualLayers.Base"]
+    - state: low-unshaded
+      map: ["enum.FireModesLayers.FireMode"]
+    - state: low-unshaded-5
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: BatteryAmmoProvider
+    proto: LowIntensityHoloflareEngi
+    fireCost: 50
+  - type: BatteryWeaponFireModes
+    fireModes: 
+    - proto: LowIntensityHoloflareEngi
+      magState: low
+      fireCost: 50
+      visualState: low-unshaded
+      heldPrefix: low
+    - proto: MediumIntensityHoloflareEngi
+      magState: medium
+      fireCost: 100
+      visualState: medium-unshaded
+      heldPrefix: medium
+    - proto: HighIntensityHoloflareEngi
+      magState: high
+      fireCost: 150
+      visualState: high-unshaded
+      heldPrefix: high
+
+- type: entity
+  id: WeaponHoloflarePistolSci
+  parent: WeaponHoloflarePistol
+  description: A regular Holoflare Pistol with a snazzy paint job to represent the station's science department.
+  suffix: Sci
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/Battery/holoflare_pistol.rsi
+    layers:
+    - state: base-sci
+      map: ["enum.GunVisualLayers.Base"]
+    - state: low-unshaded
+      map: ["enum.FireModesLayers.FireMode"]
+    - state: low-unshaded-5
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: BatteryAmmoProvider
+    proto: LowIntensityHoloflareSci
+    fireCost: 50
+  - type: BatteryWeaponFireModes
+    fireModes: 
+    - proto: LowIntensityHoloflareSci
+      magState: low
+      fireCost: 50
+      visualState: low-unshaded
+      heldPrefix: low
+    - proto: MediumIntensityHoloflareSci
+      magState: medium
+      fireCost: 100
+      visualState: medium-unshaded
+      heldPrefix: medium
+    - proto: HighIntensityHoloflareSci
+      magState: high
+      fireCost: 150
+      visualState: high-unshaded
+      heldPrefix: high

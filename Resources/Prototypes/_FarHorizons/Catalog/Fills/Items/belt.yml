@@ -226,3 +226,36 @@
     containers:
       storagebase: !type:NestedSelector
         tableId: BeltSecurityEntityTable
+
+
+#region ##GSL##
+
+- type: entity
+  id: ClothingBeltSheathSwordMachete
+  parent: ClothingBeltMacheteScabbard
+  suffix: OnlySword
+  components:
+  - type: ContainerFill
+    containers:
+      item:
+      - WeaponCrusherMachete
+
+- type: entity
+  id: ClothingBeltSheathFilledMachete
+  parent: ClothingBeltMacheteScabbard
+  suffix: Filled
+  components:
+  - type: ContainerFill
+    containers:
+      item:
+      - WeaponCrusherMachete
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: Crowbar
+        - id: Wrench
+        - id: Screwdriver
+        - id: Wirecutter
+        - id: Welder
+        - id: NetworkConfigurator

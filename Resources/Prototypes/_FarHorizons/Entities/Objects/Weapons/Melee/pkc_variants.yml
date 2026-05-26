@@ -1,0 +1,178 @@
+# TODO// Once weapon system allows altfire guns and multiple ammos, add the awesome throwing knive crusher
+
+- type: entity
+  parent: [BaseWeaponCrusher, BaseSecurityCargoContraband]
+  id: WeaponCrusherHammer
+  name: Crusher Hammer
+  description: A later design of the proto-kinetic crusher that features a large hammer head shell that deals heavy blows that knock assailants back. The drawbacks of its large blunt form factor are the loss of the life leeching feature and slower swing speeds.
+  components:
+  - type: Tag
+    tags:
+      - Pickaxe
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Melee/KineticCrusherVariants/crusher-hammer.rsi
+    state: icon
+  - type: Item
+    size: Ginormous
+    sprite: _FarHorizons/Objects/Weapons/Melee/KineticCrusherVariants/crusher-inhands-hammer.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Objects/Weapons/Melee/KineticCrusherVariants/crusher-hammer.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: AmmoCounter
+  - type: UseDelayOnShoot
+  - type: UseDelay
+    delay: 0.9
+  - type: Gun
+    soundGunshot: /Audio/Weapons/plasma_cutter.ogg
+    fireRate: 1
+    useKey: false
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 0.5
+    rechargeSound:
+      path: /Audio/Weapons/Guns/MagIn/kinetic_reload.ogg
+  - type: BasicEntityAmmoProvider
+    proto: BulletChargeBlunt
+    capacity: 1
+    count: 1
+  - type: MeleeThrowOnHit
+    speed: 15 
+    distance: 2
+  - type: MeleeWeapon
+    attackRate: 0.8
+    wideAnimationRotation: -135
+    damage:
+      types:
+        Blunt: 20
+    soundHit:
+      collection: MetalThud
+  - type: Wieldable
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Blunt: 5
+        Structural: 30
+  - type: GunRequiresWield
+  - type: DisarmMalus
+
+- type: entity
+  parent: [BaseWeaponCrusher, BaseSecurityCargoContraband]
+  id: WeaponCrusherSpear
+  name: Crusher Spear
+  description: A later design of the proto-kinetic crusher that features a long, spear head shell that deals weaker but piercing strikes. The spear boasts throwing and greater leech at the cost of some speed and damage.
+  components:
+  - type: Tag
+    tags:
+      - Pickaxe
+      - Spear
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Melee/KineticCrusherVariants/crusher-spear.rsi
+    state: icon
+  - type: Item
+    size: Ginormous
+    sprite: _FarHorizons/Objects/Weapons/Melee/KineticCrusherVariants/crusher-inhands-spear.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Objects/Weapons/Melee/KineticCrusherVariants/crusher-spear.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: AmmoCounter
+  - type: UseDelayOnShoot
+  - type: UseDelay
+    delay: 0.9
+  - type: Gun
+    soundGunshot: /Audio/Weapons/plasma_cutter.ogg
+    fireRate: 1
+    useKey: false
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 0.5
+    rechargeSound:
+      path: /Audio/Weapons/Guns/MagIn/kinetic_reload.ogg
+  - type: BasicEntityAmmoProvider
+    proto: BulletChargePierce
+    capacity: 1
+    count: 1
+  - type: MeleeWeapon
+    attackRate: 1.5
+    wideAnimationRotation: -135
+    animation: WeaponArcThrust
+    angle: 0
+    damage:
+      types:
+        Slash: 4
+        Piercing: 8
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Piercing: 20
+  - type: LeechOnMarker
+    leech:
+      groups:
+        Brute: -21
+  - type: Wieldable
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Piercing: 3
+        Slash: 1
+        Structural: 30
+  - type: GunRequiresWield
+  - type: DisarmMalus
+  - type: EmbeddableProjectile
+    offset: -0.15,0.0
+  - type: ThrowingAngle
+    angle: 225
+  - type: LandAtCursor
+
+- type: entity
+  parent: [BaseWeaponCrusher, BaseSecurityCargoContraband]
+  id: WeaponCrusherMachete
+  name: Crusher Machete
+  description: A later design of the proto-kinetic crusher, equipped with a machete blade shell it effortlessly slices through its target. This one is typically gifted to esteemed salvagers upon being promoted to lead.
+  components:
+  - type: Tag
+    tags:
+      - CrusherMachete
+      - Pickaxe
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Melee/KineticCrusherVariants/crusher-machete.rsi
+    state: icon
+  - type: Item
+    size: Ginormous
+    sprite: _FarHorizons/Objects/Weapons/Melee/KineticCrusherVariants/crusher-inhands-machete.rsi
+  - type: AmmoCounter
+  - type: UseDelayOnShoot
+  - type: UseDelay
+    delay: 0.9
+  - type: Gun
+    soundGunshot: /Audio/Weapons/plasma_cutter.ogg
+    fireRate: 1
+    useKey: false
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 2
+    rechargeSound:
+      path: /Audio/Weapons/Guns/MagIn/kinetic_reload.ogg
+  - type: BasicEntityAmmoProvider
+    proto: BulletChargeSlash
+    capacity: 1
+    count: 1
+  - type: MeleeWeapon
+    attackRate: 1.8
+    wideAnimationRotation: -135
+    damage:
+      types:
+        Slash: 20
+        Structural: 30
+    soundHit:
+      collection: MetalThud
+  - type: DisarmMalus
+  - type: Reflect
+    reflectProb: 0.1
+    spread: 70
+    
+    

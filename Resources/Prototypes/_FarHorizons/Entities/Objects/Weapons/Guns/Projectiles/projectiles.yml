@@ -31,6 +31,109 @@
     count: 5
     spread: 25
 
+#PKC variant charge shots
+
+- type: entity
+  id: BulletChargeBlunt #For the Crusher Hammer
+  name: charge bolt
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  description: Marks a target for additional damage.
+  components:
+  - type: Reflective
+    reflective:
+    - NonEnergy
+  - type: Sprite
+    noRot: false
+    sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
+    layers:
+      - state: chronobolt
+        shader: unshaded
+  - type: GatheringProjectile
+  - type: DamageMarkerOnCollide
+    whitelist:
+      components:
+        - MobState
+    damage:
+      types:
+        Blunt: 25
+  - type: Projectile
+    impactEffect: BulletImpactEffectKinetic
+    damage:
+      types:
+        Blunt: 0
+  # Short lifespan
+  - type: TimedDespawn
+    lifetime: 0.4
+
+- type: entity
+  id: BulletChargeSlash #For the Crusher Machete/Sickle
+  name: charge bolt
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  description: Marks a target for additional damage.
+  components:
+  - type: Reflective
+    reflective:
+    - NonEnergy
+  - type: Sprite
+    noRot: false
+    sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
+    layers:
+      - state: chronobolt
+        shader: unshaded
+  - type: GatheringProjectile
+  - type: DamageMarkerOnCollide
+    whitelist:
+      components:
+        - MobState
+    damage:
+      types:
+        Slash: 20
+    amount: 2
+  - type: Projectile
+    impactEffect: BulletImpactEffectKinetic
+    damage:
+      types:
+        Blunt: 0
+  # Short lifespan
+  - type: TimedDespawn
+    lifetime: 0.4
+
+- type: entity
+  id: BulletChargePierce #For the Crusher Spear
+  name: charge bolt
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  description: Marks a target for additional damage.
+  components:
+  - type: Reflective
+    reflective:
+    - NonEnergy
+  - type: Sprite
+    noRot: false
+    sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
+    layers:
+      - state: chronobolt
+        shader: unshaded
+  - type: GatheringProjectile
+  - type: DamageMarkerOnCollide
+    whitelist:
+      components:
+        - MobState
+    damage:
+      types:
+        Piercing: 15
+        Slash: 5
+  - type: Projectile
+    impactEffect: BulletImpactEffectKinetic
+    damage:
+      types:
+        Blunt: 0
+  # Short lifespan
+  - type: TimedDespawn
+    lifetime: 0.6
+
 # Launcher projectiles (Rockets)
 - type: entity
   id: Bullet120mmRocketHE
@@ -183,3 +286,176 @@
     ignoreResistances: false
   - type: TimedDespawn
     lifetime: 0.20
+
+# Holoflare Variations
+
+- type: entity
+  id: LowIntensityHoloflare
+  name: Dim Holoflare
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Physics
+    bodyType: Dynamic
+    fixedRotation: true
+  - type: EmbeddableProjectile
+    deleteOnRemove: true
+  - type: Fixtures
+    fixtures:
+      projectile:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.1,-0.1,0.1,0.1"
+        mask:
+          - ItemMask # BulletImpassable
+  - type: Sprite
+    sprite: _FarHorizons\Objects\Weapons\Guns\Projectiles\holoflares.rsi
+    state: low
+    scale: 0.5,0.5
+    shader: unshaded
+  - type: AmbientSound
+    enabled: true
+    volume: -10
+    range: 3
+    sound:
+      path: /Audio/Ambience/Objects/light_hum.ogg
+      params:
+        loop: true
+  - type: Projectile
+    deleteOnCollide: false
+    damage:
+      types:
+        Heat: 0
+  - type: TimedDespawn
+    lifetime: 180
+  - type: PointLight
+    enabled: true
+    color: "#C0E0F8"
+    radius: 4.0
+    energy: 2.0
+    netsync: false
+
+- type: entity
+  id: MediumIntensityHoloflare
+  parent: LowIntensityHoloflare
+  categories: [ HideSpawnMenu ]
+  name: Holoflare
+  components:
+  - type: Sprite
+    sprite: _FarHorizons\Objects\Weapons\Guns\Projectiles\holoflares.rsi
+    state: medium
+    scale: 0.6,0.6
+    shader: unshaded
+  - type: PointLight
+    enabled: true
+    color: "#C0E0F8"
+    radius: 7.0
+    energy: 3.0
+    netsync: false
+
+- type: entity
+  id: HighIntensityHoloflare
+  parent: LowIntensityHoloflare
+  categories: [ HideSpawnMenu ]
+  name: Bright Holoflare
+  components:
+  - type: Sprite
+    sprite: _FarHorizons\Objects\Weapons\Guns\Projectiles\holoflares.rsi
+    state: high
+    scale: 0.7,0.7
+    shader: unshaded
+  - type: PointLight
+    enabled: true
+    color: "#C0E0F8"
+    radius: 10.0
+    energy: 4.0
+    netsync: false
+
+- type: entity
+  id: LowIntensityHoloflareSec
+  parent: LowIntensityHoloflare
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    state: low-sec
+  - type: PointLight
+    color: "#254ca8"
+
+- type: entity
+  id: MediumIntensityHoloflareSec
+  parent: MediumIntensityHoloflare
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    state: medium-sec
+  - type: PointLight
+    color: "#254ca8"
+
+- type: entity
+  id: HighIntensityHoloflareSec
+  parent: HighIntensityHoloflare
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    state: high-sec
+  - type: PointLight
+    color: "#254ca8"
+
+- type: entity
+  id: LowIntensityHoloflareEngi
+  parent: LowIntensityHoloflare
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    state: low-engi
+  - type: PointLight
+    color: "#ed864a"
+
+- type: entity
+  id: MediumIntensityHoloflareEngi
+  parent: MediumIntensityHoloflare
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    state: medium-engi
+  - type: PointLight
+    color: "#ed864a"
+
+- type: entity
+  id: HighIntensityHoloflareEngi
+  parent: HighIntensityHoloflare
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    state: high-engi
+  - type: PointLight
+    color: "#ed864a"
+
+- type: entity
+  id: LowIntensityHoloflareSci
+  parent: LowIntensityHoloflare
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    state: low-sci
+  - type: PointLight
+    color: "#f870ff"
+
+- type: entity
+  id: MediumIntensityHoloflareSci
+  parent: MediumIntensityHoloflare
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    state: medium-sci
+  - type: PointLight
+    color: "#f870ff"
+
+- type: entity
+  id: HighIntensityHoloflareSci
+  parent: HighIntensityHoloflare
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    state: high-sci
+  - type: PointLight
+    color: "#f870ff"
