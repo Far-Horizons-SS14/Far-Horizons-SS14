@@ -54,7 +54,7 @@
   - type: DatasetVocalizer
     dataset: MedibotAds
   - type: Inventory
-    templateId: medibot
+    templateId: borgTall
   # starlight
   - type: WiresPanel
   - type: Wires
@@ -65,6 +65,8 @@
     interfaces:
       enum.WiresUiKey.Key:
         type: WiresBoundUserInterface
+      enum.StrippingUiKey.Key:
+        type: StrippableBoundUserInterface
 
 - type: entity
   name: BrigKit
