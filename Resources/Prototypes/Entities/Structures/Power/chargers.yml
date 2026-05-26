@@ -309,6 +309,7 @@
       machine_board: !type:Container
       machine_parts: !type:Container
   - type: StationAIShuntThrough # Starlight
+  - type: StationAIShunt #FH-Edit: Without this the AIShuntActionEvent never triggers.
 
 - type: entity
   parent: BorgCharger
