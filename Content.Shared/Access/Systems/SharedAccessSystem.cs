@@ -126,15 +126,15 @@ namespace Content.Shared.Access.Systems
                 return;
 
             access.Tags.Clear();
-            access.Tags.UnionWith(_factions.OverrideJobAccess((faction, prototype)) ?? Enumerable.Empty<ProtoId<AccessLevelPrototype>>());
+            access.Tags.UnionWith(_factions.OverrideJobAccess((faction, prototype)) ?? Enumerable.Empty<ProtoId<AccessLevelPrototype>>()); //FarHorizons-Edit
             Dirty(uid, access);
 
-            TryAddGroups(uid, _factions.OverrideJobAccessGroups((faction, prototype)) ?? Enumerable.Empty<ProtoId<AccessGroupPrototype>>(), access);
+            TryAddGroups(uid, _factions.OverrideJobAccessGroups((faction, prototype)) ?? Enumerable.Empty<ProtoId<AccessGroupPrototype>>(), access); //FarHorizons-Edit
 
             if (extended)
             {
-                access.Tags.UnionWith(_factions.OverrideJobExtendedAccess((faction, prototype)) ?? Enumerable.Empty<ProtoId<AccessLevelPrototype>>());
-                TryAddGroups(uid, _factions.OverrideJobExtendedAccessGroups((faction, prototype)) ?? Enumerable.Empty<ProtoId<AccessGroupPrototype>>(), access);
+                access.Tags.UnionWith(_factions.OverrideJobExtendedAccess((faction, prototype)) ?? Enumerable.Empty<ProtoId<AccessLevelPrototype>>()); //FarHorizons-Edit
+                TryAddGroups(uid, _factions.OverrideJobExtendedAccessGroups((faction, prototype)) ?? Enumerable.Empty<ProtoId<AccessGroupPrototype>>(), access); //FarHorizons-Edit
             }
         }
     }

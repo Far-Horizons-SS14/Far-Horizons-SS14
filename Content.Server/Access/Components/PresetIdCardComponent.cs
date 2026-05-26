@@ -17,6 +17,8 @@ public sealed partial class PresetIdCardComponent : Component
     [DataField("customJobTitle")]
     public string? CustomJobTitle;
     
+    // FarHorizons Start - Faction Support
     [DataField("faction")]
     public ProtoId<FactionPrototype>? Faction;
+    // FarHorizons End
 }
