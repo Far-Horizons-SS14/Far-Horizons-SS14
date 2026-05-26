@@ -29,7 +29,7 @@
 - type: entity
   id: BorgModuleUppies
   parent: [ BaseBorgModule, BaseProviderBorgModule ]
-  name: personnel transport cyborg module
+  name: Personnel Transport Cyborg Module #FH-Edit
   description: A universal cyborg module which allows the unit to carry small personnel.
   components:
   - type: Tag
@@ -99,7 +99,7 @@
 - type: entity
   id: BorgModulePaperwork
   parent: [ BaseBorgModulePurrfus, BaseProviderBorgModule ]
-  name: paperwork cyborg module
+  name: Paperwork Cyborg Module #FH-Edit
   components:
   - type: Sprite
     layers:
@@ -127,7 +127,7 @@
 - type: entity
   id: BorgModuleBartending
   parent: [ BaseBorgModuleService, BaseProviderBorgModule ]
-  name: bartending cyborg module
+  name: bartending cyborg Module #FH-Edit
   components:
   - type: Sprite
     layers:
@@ -171,7 +171,7 @@
 - type: entity
   id: BorgModuleBooks
   parent: [ BaseBorgModuleService, BaseProviderBorgModule ]
-  name: bookkeeping cyborg module
+  name: Book Keeping Cyborg Module #FH-Edit
   components:
   - type: Sprite
     layers:
@@ -212,7 +212,7 @@
 - type: entity
   id: BorgModuleBotany
   parent: [ BaseBorgModuleService, BaseProviderBorgModule ]
-  name: botany cyborg module
+  name: Botany Cyborg Module #FH-Edit
   components:
   - type: Sprite
     layers:
@@ -252,7 +252,7 @@
 - type: entity
   id: BorgModuleCooking
   parent: [ BaseBorgModuleService, BaseProviderBorgModule ]
-  name: cooking cyborg module
+  name: Cooking Cyborg Module #FH-Edit
   components:
   - type: Sprite
     layers:
@@ -304,8 +304,8 @@
 # region Syndicate
 - type: entity
   id: BorgModuleSyndicateAdvancedTool
-  parent: [ BaseBorgModuleEngineering, BaseProviderBorgModule, BaseSyndicateContraband]
-  name: syndicate advanced tool cyborg module
+  parent: [ BaseBorgModule, BaseProviderBorgModule, BaseSyndicateContraband] #FH-Edit
+  name: Syndicate Advanced Tool Cyborg Module #FH-Edit
   description: A syndicate version of the advanced tools module, containing disguised syndicate jaws of life.
   components:
   - type: Sprite
@@ -325,8 +325,8 @@
 
 - type: entity
   id: BorgModuleSyndicateAdvancedChemical
-  parent: [ BaseBorgModuleMedical, BaseProviderBorgModule, BaseSyndicateContraband]
-  name: syndicate advanced chemical cyborg module
+  parent: [ BaseBorgModule, BaseProviderBorgModule, BaseSyndicateContraband] #FH-Edit
+  name: Syndicate Advanced Chemical Cyborg Module #FH-Edit
   description: A syndicate version of the advanced chemical module, including a gorlex hypospray.
   components:
   - type: Sprite
@@ -380,8 +380,8 @@
 
 - type: entity
   id: BorgModuleSyndicateRescue
-  parent: [ BaseBorgModuleMedical, BaseProviderBorgModule, BaseSyndicateContraband ]
-  name: syndicate rescue cyborg module
+  parent: [ BaseBorgModule, BaseProviderBorgModule, BaseSyndicateContraband ] #FH-Edi
+  name: Syndicate Rescue Cyborg Module #FH-Edit
   description: A syndicate version of the rescue module, featuring a syndicate defibrillator.
   components:
   - type: Sprite
@@ -402,7 +402,7 @@
 - type: entity
   id: BorgModuleSyndicateStealth
   parent: [BaseBorgModuleSyndicateStealth, BaseProviderBorgModule, BaseSyndicateContraband ]
-  name: syndicate stealth module
+  name: Syndicate Stealth Cyborg Module #FH-Edit
   description: Contains an adaptation of the infiltration suit's cloaking device for the syndicate stealth cyborg.
   components:
   - type: Sprite
@@ -418,8 +418,8 @@
 
 - type: entity
   id: BorgModuleSyndicateChameleonProjector
-  parent: [ BaseBorgModuleSyndicateStealth, BaseProviderBorgModule, BaseSyndicateContraband ]
-  name: syndicate chameleon projector module.
+  parent: [ BaseBorgModule, BaseProviderBorgModule, BaseSyndicateContraband ] #FH-Edit
+  name: Syndicate Chameleon Cyborg Module #FH-Edit
   description: Contains an adaptation of the chameleon projector for the syndicate stealth cyborg.
   components:
   - type: Sprite
@@ -445,7 +445,7 @@
 - type: entity
   id: BorgModuleSurgical
   parent: [ BaseBorgModuleMedical, BaseProviderBorgModule ]
-  name: surgery cyborg module
+  name: Surgery Cyborg Module #FH-Edit
   components:
   - type: Sprite
     layers:
@@ -476,7 +476,7 @@
 - type: entity
   parent: [ BaseXenoborgModuleGeneric, BaseProviderBorgModule, BaseXenoborgContraband ]
   id: XenoborgModuleRCD
-  name: engineering xenoborg module
+  name: Engineering Xenoborg Module #FH-Edit
   description: Module with a recharging xenoborg RCD
   components:
   - type: Sprite
@@ -568,7 +568,7 @@
 - type: entity
   id: BorgModuleHold
   parent: [ BaseBorgModuleSupply, BaseProviderBorgModule ]
-  name: hauling cyborg module
+  name: Hauling Cyborg Module #FH-Edit
   components:
   - type: Sprite
     layers:
@@ -608,7 +608,7 @@
 - type: entity
   id: BorgModuleMail
   parent: [ BaseBorgModuleSupply, BaseProviderBorgModule ]
-  name: mail cyborg module
+  name: Mail Cyborg Module #FH-Edit
   components:
   - type: Sprite
     layers:
@@ -635,7 +635,7 @@
 - type: entity
   id: BorgModuleAdvancedLoading
   parent: [ BaseBorgModuleSupply, BaseProviderBorgModule ]
-  name: loading cyborg module
+  name: Loading Cyborg Module #FH-Edit
   description: Advanced module for cargo cyborgs, with specialised hydraulic clamps
   components:
   - type: Sprite
