@@ -355,6 +355,15 @@
       - StationAiCoreElectronics
   - type: StaticPrice
     price: 5000
+# Starlight-start: Changed to core linking
+  - type: DeviceList
+  - type: DeviceNetwork
+    deviceNetId: Wired
+  - type: DeviceLinkSource
+    range: 20
+    ports:
+      - AiLawConsoleSender
+# Starlight-end
 
 # The job-ready version of an AI spawn.
 - type: entity
@@ -941,48 +950,4 @@
       settings: default
     reregister: false
     job: Borg
-  - type: GhostTakeoverAvailable
-    
-# TODO: Move to FarHorizons
-- type: entity
-  id: PlayerBorgHAWBattery
-  parent: NTNCBorgChassisHAW
-  suffix: Battery, module
-  components:
-  - type: ContainerFill
-    containers:
-      borg_brain:
-        - PositronicBrain
-      borg_module:
-        - BorgModuleAdvancedTool
-        - CentcommAccessBreakerModule
-        - CentcommLaserModule
-        - CentcommBulwarkModule
-        - CentcommModuleSpaceMovement
-  - type: ItemSlots
-    slots:
-      cell_slot:
-        name: power-cell-slot-component-slot-name-default
-        startingItem: PowerCellMicroreactor
-
-- type: entity
-  id: PlayerBorgSOSUBattery
-  parent: NTNCBorgChassisSOSU
-  suffix: Battery, module
-  components:
-  - type: ContainerFill
-    containers:
-      borg_brain:
-        - PositronicBrain
-      borg_module:
-        - BorgModuleAdvancedTool
-        - CentcommAccessBreakerModule
-        - CentcommLaserModule
-        - CentcommModuleChameleonProjector
-        - CentcommModuleCloakDevice
-  - type: ItemSlots
-    slots:
-      cell_slot:
-        name: power-cell-slot-component-slot-name-default
-        startingItem: PowerCellMicroreactor
   - type: GhostTakeoverAvailable

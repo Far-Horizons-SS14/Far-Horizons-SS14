@@ -248,14 +248,14 @@
     icon: { sprite: _FarHorizons/Interface/Actions/actions_borg.rsi, state: adv-light-replacer-module }
 
 - type: entity
-  parent: [ BaseBorgModuleCargo, BaseProviderBorgModule ]
+  parent: [ BaseBorgModuleMining, BaseProviderBorgModule ]
   id: BorgModulePKA
   name: Salvage PKA Cyborg Module
   description: Gemini Stellar Logistics decided it was sometimes more cost efficient to send in a force of cyborgs to clear out problems on missions. PKA module worked great for that.
   components:
   - type: Sprite
     layers:
-    - state: cargo
+    - state: mining
     - state: icon-rcd #This needs to be replaced with a decent icon at some point. {sprite: _FarHorizons/Objects/Specific/Robotics/borgmodule.rsi, state: icon-light-replacer-adv }
   - type: ItemBorgModule
     hands:

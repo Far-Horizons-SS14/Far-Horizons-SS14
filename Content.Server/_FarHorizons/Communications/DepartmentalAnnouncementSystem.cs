@@ -97,16 +97,26 @@ namespace Content.Server.Communications
             _commsSystem.UpdateCommsConsoleInterface(uid, Comp<CommunicationsConsoleComponent>(uid));
         }
 
-        private void OnInsertAttempt(EntityUid uid, DepartmentalAnnouncementComponent comp, ref ItemSlotInsertAttemptEvent args)
+        private void OnInsertAttempt(EntityUid uid, DepartmentalAnnouncementComponent comp, ref ItemSlotInsertAttemptEvent args) =>         
+        Timer.Spawn(0, () =>
         {
-            Timer.Spawn(0, () => _commsSystem.UpdateCommsConsoleInterface(uid, Comp<CommunicationsConsoleComponent>(uid)));
-        }
+            if (!TryComp<CommunicationsConsoleComponent>(uid, out var console))
+                return;
+
+            _commsSystem.UpdateCommsConsoleInterface(uid, console);
+        });                                                                                                                                                                                                                                                                                                                                                                                           
 
         private void OnEjectAttempt(EntityUid uid, DepartmentalAnnouncementComponent comp, ref ItemSlotEjectAttemptEvent args)
         {
             comp.CurrentChannel = "No Channels Available";
             comp.Channels = new List<string> { "No Channels Available" };
-            Timer.Spawn(0, () => _commsSystem.UpdateCommsConsoleInterface(uid, Comp<CommunicationsConsoleComponent>(uid)));
+            Timer.Spawn(0, () =>
+            {
+                if (!TryComp<CommunicationsConsoleComponent>(uid, out var console))
+                    return;
+                    
+                _commsSystem.UpdateCommsConsoleInterface(uid, console);
+            });
         }
 
         private void OnConstructionChangeEntityEvent(EntityUid uid, DepartmentalAnnouncementComponent comp, ref ConstructionChangeEntityEvent args)
