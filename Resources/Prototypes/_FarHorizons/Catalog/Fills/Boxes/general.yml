@@ -10,3 +10,27 @@
       - id: ClothingUniformJumpskirtBrightPerformer
       - id: ClothingHeadBrightPerformerWig
       - id: PersonalAI
+
+- type: entity
+  name: ID Card Box 
+  parent: BoxID
+  id: BoxIDNS
+  description: A box of spare blank ID cards.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase:
+        id: NeoSolAssistantIDCard 
+        amount: 4
+
+- type: entity
+  name: PDA Box
+  parent: BoxPDA
+  id: BoxPDANS
+  description: A box of spare PDA microcomputers.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase:
+        id: NeoSolAssistantPDA 
+        amount: 4

@@ -142,26 +142,16 @@
         tableId: LockerFillQuarterMasterHardsuit
 
 
-#region Syndicate
+#region ## NeoSol ##
 
 # Commandant (Captain)
-
-- type: entity
-  id: LockerCommandantFilledNoLaser
-  suffix: NS, Filled
-  parent: LockerCommandant
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      entity_storage: !type:NestedSelector
-        tableId: LockerFillCommandantNoLaser
 
 - type: entityTable
   id: LockerFillCommandantNoLaser
   table: !type:AllSelector
     children:
     - id: ClothingNeckCloakCapFormalSyndi
-    - id: CaptainIDCard
+    - id: CommandantIDCard
     - id: CigarGoldCase
       prob: 0.25
     - id: ClothingBeltSheathFilledSyndi
@@ -178,7 +168,7 @@
     - id: SpaceCash1000
     - id: ClothingEyesGlassesCommandSyndi
     - id: ClothingEyesHudCommandSyndi
-    - id: EncryptionKeyCargo # Far Horizons - replaced with cargo key
+    #- id: EncryptionKeyCargo # Far Horizons - replaced with cargo key
     - id: OrganSkeletonPersonHead
       conditions:
       - !type:PlayerCountCondition
@@ -189,6 +179,26 @@
         presets:
         - Greenshift
         - Sandbox
+    - id: PlushieLizardJobCaptain
+      prob: 0.02
+
+- type: entityTable
+  id: LockerFillCommandantLaser
+  table: !type:AllSelector
+    children:
+    - !type:NestedSelector
+      tableId: LockerFillCaptainNoLaser
+    - id: WeaponAntiqueLaser
+
+- type: entity
+  id: LockerCommandantFilledNoLaser
+  suffix: NS, Filled
+  parent: LockerCommandant
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: LockerFillCommandantNoLaser
 
 - type: entity
   id: LockerCommandantFilled
@@ -199,14 +209,6 @@
     containers:
       entity_storage: !type:NestedSelector
         tableId: LockerFillCommandantLaser
-
-- type: entityTable
-  id: LockerFillCommandantLaser
-  table: !type:AllSelector
-    children:
-    - !type:NestedSelector
-      tableId: LockerFillCaptainNoLaser
-    - id: WeaponAntiqueLaser
 
 - type: entity
   id: LockerCommandantFilledHardsuit
@@ -224,37 +226,27 @@
 
 # Personnel Manager (HoP)
 
-- type: entity
-  id: LockerPersonnelManagerFilled
-  suffix: NS, Filled
-  parent: LockerPersonnelManager
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      entity_storage: !type:NestedSelector
-        tableId: LockerFillPersonnelManager
-
 - type: entityTable
   id: LockerFillPersonnelManager
   table: !type:AllSelector
     children:
     - id: ClothingNeckMantleHOPSyndi
     - id: ClothingBeltHoPSyndi
-    - id: AccessConfigurator
+    - id: AccessConfiguratorNS
     - id: BoxEncryptionKeyAssistant
     - id: BoxEncryptionKeyService
     - id: BoxHeadset
-    - id: BoxID
-    - id: BoxPDA
+    - id: BoxIDNS
+    - id: BoxPDANS
     - id: CigarGoldCase
       prob: 0.25
     - id: ClothingBackpackIan
       prob: 0.5
     - id: ClothingHeadsetHoP
     - id: ClothingNeckGoldmedal
-    - id: DoorRemoteService
+    - id: DoorRemoteServiceNS
     - id: HoPIDCard
-    - id: IDComputerCircuitboard
+    - id: IDComputerCircuitboardNS
     - id: FundingAllocationComputerCircuitboard
     - id: CargoRequestServiceComputerCircuitboard
     - id: RubberStampApproved
@@ -268,6 +260,16 @@
         presets:
         - Greenshift
         - Sandbox
+
+- type: entity
+  id: LockerPersonnelManagerFilled
+  suffix: NS, Filled
+  parent: LockerPersonnelManager
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: LockerFillPersonnelManager
 
 # Marshal (HoS)
 

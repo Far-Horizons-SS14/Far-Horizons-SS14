@@ -256,7 +256,7 @@
 
 
 
-#region Syndicate ---v
+#region ## NeoSol ##
 
 
 
@@ -265,6 +265,37 @@
 
 
 
+
+#region Representatives
+- type: entity
+  id: LockerRedsword
+  parent: LockerBaseSecureSyndi
+  name: Redsword Operative's Locker 
+  components:
+  - type: Appearance
+  - type: EntityStorageVisuals
+    stateBaseClosed: sword
+    stateDoorOpen: sword_open
+    stateDoorClosed: sword_door
+  - type: AccessReader
+    access: [["RedSword"]]
+  - type: WiresPanelSecurity
+    securityLevel: medSecurity
+
+- type: entity
+  id: LockerRepresentativeNS
+  name: NeoSol Representative's Locker 
+  parent: LockerBaseSecureSyndi
+  components:
+  - type: Appearance
+  - type: AccessReader
+    access: [["NSRep"]]
+  - type: EntityStorageVisuals
+    stateBaseClosed: soa
+    stateDoorOpen: soa_open
+    stateDoorClosed: soa_door
+  - type: WiresPanelSecurity 
+    securityLevel: medSecurity
 
 #region Command
 
@@ -281,26 +312,7 @@
     stateDoorOpen: cap_open
     stateDoorClosed: cap_door
   - type: AccessReader
-    access: [["Captain"]]
-  - type: WiresPanelSecurity # Maintenance panel
-    securityLevel: medSecurity
-
-# Magistrate (Magistrate)
-
-- type: entity
-  id: LockerMagistrateSyndi
-  parent: LockerBaseSecureSyndi
-  name: Magistrate's Locker
-  components:
-  - type: Appearance
-  - type: Sprite
-    sprite: _FarHorizons/Structures/Storage/closet.rsi
-  - type: EntityStorageVisuals
-    stateBaseClosed: hos
-    stateDoorOpen: hos_open
-    stateDoorClosed: hos_door
-  - type: AccessReader
-    access: [["Magistrate"]]
+    access: [["Commandant"]]
   - type: WiresPanelSecurity
     securityLevel: medSecurity
     
@@ -317,7 +329,7 @@
     stateDoorOpen: hop_open
     stateDoorClosed: hop_door
   - type: AccessReader
-    access: [["HeadOfPersonnel"]]
+    access: [["PersonnelManager"]]
   - type: WiresPanelSecurity # Maintenance panel
     securityLevel: medSecurity 
 
@@ -325,18 +337,18 @@
 
 - type: entity
   id: LockerMarshal
-  parent: LockerLargeBaseSecureSyndi
+  parent: LockerBaseSecureSyndi
   name: Marshal's Locker
   components:
-  - type: Appearance
   - type: Sprite
-    sprite: _FarHorizons/Structures/Storage/closet.rsi
+    sprite: _FarHorizons/Structures/Storage/closet.rsi #Still need resprite
+  - type: Appearance
   - type: EntityStorageVisuals
     stateBaseClosed: hos
     stateDoorOpen: hos_open
     stateDoorClosed: hos_door
   - type: AccessReader
-    access: [["HeadOfSecurity"]]
+    access: [["Marshal"]]
   - type: WiresPanelSecurity
     securityLevel: medSecurity
 
@@ -353,8 +365,40 @@
     stateDoorOpen: ce_open
     stateDoorClosed: ce_door
   - type: AccessReader
-    access: [ [ "ChiefEngineer" ] ]
+    access: [ [ "Foreman" ] ]
   - type: WiresPanelSecurity
+    securityLevel: medSecurity
+  
+  # Medical Director (CMO)
+- type: entity
+  id: LockerChiefMedicalOfficerNS
+  parent: LockerBaseSecureSyndi
+  name: Medical Director's Locker
+  components:
+  - type: Appearance
+  - type: EntityStorageVisuals
+    stateBaseClosed: cmo
+    stateDoorOpen: cmo_open
+    stateDoorClosed: cmo_door
+  - type: AccessReader
+    access: [ [ "MedicalDirector" ] ]
+  - type: WiresPanelSecurity
+    securityLevel: medSecurity
+
+# Epistemics Provost (RD)
+- type: entity
+  id: LockerResearchDirectorNS
+  parent: LockerBaseSecureSyndi
+  name: Epistemics Provost's Locker 
+  components:
+  - type: Appearance
+  - type: EntityStorageVisuals
+    stateBaseClosed: rd
+    stateDoorOpen: science_open
+    stateDoorClosed: rd_door
+  - type: AccessReader
+    access: [ [ "EpistemicsProvost" ] ]
+  - type: WiresPanelSecurity 
     securityLevel: medSecurity
 
 #region Engineering
@@ -362,7 +406,7 @@
 # Atmos tech
 - type: entity
   id: LockerAtmosphericsSyndi
-  parent: LockerBase
+  parent: LockerBaseNS
   name: Atmospheric Technician's Locker
   components:
   - type: Appearance
@@ -371,12 +415,12 @@
     stateDoorOpen: atmos_open
     stateDoorClosed: atmos_door
   - type: AccessReader
-    access: [ [ "Atmospherics" ] ]
+    access: [ [ "AtmosphericsNS" ] ]
 
 # Engineer
 - type: entity
   id: LockerEngineerSyndi
-  parent: LockerBase
+  parent: LockerBaseNS
   name: Engineer's Locker
   suffix: NS
   components:
@@ -386,38 +430,40 @@
     stateDoorOpen: eng_secure_open
     stateDoorClosed: eng_secure_door
   - type: AccessReader
-    access: [ [ "Engineering" ] ]
+    access: [ [ "EngineeringNS" ] ]
 
 # Electrical supplies
 - type: entity
   id: LockerElectricalSuppliesSyndi
-  parent: LockerBase
+  parent: LockerBaseNS
   name: Electrical Supplies Locker
-  suffix: NS
   components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Storage/closet.rsi #Still need resprite
   - type: Appearance
   - type: EntityStorageVisuals
     stateBaseClosed: eng
     stateDoorOpen: eng_open
     stateDoorClosed: eng_elec_door
   - type: AccessReader
-    access: [ [ "Engineering" ] ]
+    access: [ [ "EngineeringNS" ] ]
 
 # Evac Repair
 - type: entity
-  parent: LockerBase
+  parent: LockerBaseNS
   id: LockerEvacRepairSyndi
   name: Emergency Shuttle Emergency Locker
-  suffix: NS
   description: It's emergencies all the way down.
   components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Storage/closet.rsi #Still need resprite
   - type: Appearance
   - type: EntityStorageVisuals
     stateBaseClosed: eng
     stateDoorOpen: eng_open
     stateDoorClosed: eng_evac_door
   - type: AccessReader
-    access: [ [ "Engineering" ] ]
+    access: [ [ "EngineeringNS" ] ]
 
 #Evac Repair Wall Locker
 - type: entity
@@ -427,28 +473,98 @@
   suffix: NS
   description: It's emergencies all the way down.
   components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Storage/closet.rsi #Still need resprite
   - type: EntityStorageVisuals
     stateBaseClosed: eng
     stateDoorOpen: eng_open
     stateDoorClosed: eng_evac_door
   - type: AccessReader
-    access: [["Engineering"]]
+    access: [["EngineeringNS"]]
 
 # Welding supplies
 - type: entity
   id: LockerWeldingSuppliesSyndi
-  suffix: NS
-  parent: LockerBase
+  parent: LockerBaseNS
   name: Welding Supplies Locker
   components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Storage/closet.rsi #Still need resprite
   - type: Appearance
   - type: EntityStorageVisuals
     stateBaseClosed: eng
     stateDoorOpen: eng_open
     stateDoorClosed: eng_weld_door
   - type: AccessReader
-    access: [ [ "Engineering" ] ]
+    access: [ [ "EngineeringNS" ] ]
 
+#region Medical
+- type: entity
+  id: LockerMedicineNS
+  parent: LockerBaseNS
+  name: Medicine Locker
+  description: Filled to the brim with medical junk.
+  components:
+  - type: Appearance
+  - type: EntityStorageVisuals
+    stateBaseClosed: med
+    stateDoorOpen: med_open
+    stateDoorClosed: med_door
+  - type: AccessReader
+    access: [ [ "MedicalNS" ] ]
+
+- type: entity
+  id: LockerMedicalNS
+  parent: LockerBaseNS
+  name: Medical Doctor's Locker
+  components:
+  - type: Appearance
+  - type: EntityStorageVisuals
+    stateBaseClosed: med_secure
+    stateDoorOpen: med_secure_open
+    stateDoorClosed: med_secure_door
+  - type: AccessReader
+    access: [ [ "MedicalNS" ] ]
+
+- type: entity
+  id: LockerChemistryNS
+  parent: LockerBaseNS
+  name: Chemical Locker 
+  components:
+  - type: Appearance
+  - type: EntityStorageVisuals
+    stateBaseClosed: chemical
+    stateDoorOpen: chemical_open
+    stateDoorClosed: chemical_door
+  - type: AccessReader
+    access: [ [ "ChemistryNS" ] ]
+
+- type: entity
+  id: LockerParamedicNS
+  parent: LockerBaseNS
+  name: Paramedic's Locker
+  components:
+  - type: Appearance
+  - type: EntityStorageVisuals
+    stateBaseClosed: paramed
+    stateDoorOpen: paramed_open
+    stateDoorClosed: paramed_door
+  - type: AccessReader
+    access: [ [ "MedicalNS" ] ]
+
+#region Research
+- type: entity
+  id: LockerScientistNS
+  parent: LockerBaseNS
+  name: Scientist's Locker 
+  components:
+  - type: Appearance
+  - type: EntityStorageVisuals
+    stateBaseClosed: science
+    stateDoorOpen: science_open
+    stateDoorClosed: science_door
+  - type: AccessReader
+    access: [ [ "ResearchNS" ] ]
 
 #region Security
 
@@ -459,15 +575,15 @@
   parent: LockerBaseSecureSyndi
   name: Enforcer's Locker
   components:
-  - type: Appearance
   - type: Sprite
-    sprite: _FarHorizons/Structures/Storage/closet.rsi
+    sprite: _FarHorizons/Structures/Storage/closet.rsi #Still need resprite
+  - type: Appearance
   - type: EntityStorageVisuals
     stateBaseClosed: sec
     stateDoorOpen: sec_open
     stateDoorClosed: sec_door
   - type: AccessReader
-    access: [["Security"]]
+    access: [["SecurityNS"]]
 
 - type: entity
   id: LockerSecurityLargeFHSyndi
@@ -476,13 +592,13 @@
   components:
   - type: Appearance
   - type: Sprite
-    sprite: _FarHorizons/Structures/Storage/closet-large.rsi
+    sprite: _FarHorizons/Structures/Storage/closet-large.rsi #Still need resprite
   - type: EntityStorageVisuals
     stateBaseClosed: sec
     stateDoorOpen: sec_open
     stateDoorClosed: sec_door
   - type: AccessReader
-    access: [["Security"]]
+    access: [["SecurityNS"]]
 
 - type: entity
   id: LockerSecurityLargeFHLSyndi
@@ -491,13 +607,13 @@
   components:
   - type: Appearance
   - type: Sprite
-    sprite: _FarHorizons/Structures/Storage/closet-left-large.rsi
+    sprite: _FarHorizons/Structures/Storage/closet-left-large.rsi #Still need resprite
   - type: EntityStorageVisuals
     stateBaseClosed: sec_L
     stateDoorOpen: sec_L_open
     stateDoorClosed: sec_L_door
   - type: AccessReader
-    access: [["Security"]]
+    access: [["SecurityNS"]]
   - type: EntityStorage
     capacity: 50 # Big lockers tend to have more than 30 items in them
 
@@ -508,13 +624,13 @@
   components:
   - type: Appearance
   - type: Sprite
-    sprite: _FarHorizons/Structures/Storage/closet-middle-large.rsi
+    sprite: _FarHorizons/Structures/Storage/closet-middle-large.rsi #Still need resprite
   - type: EntityStorageVisuals
     stateBaseClosed: sec_M
     stateDoorOpen: sec_M_open
     stateDoorClosed: sec_M_door
   - type: AccessReader
-    access: [["Security"]]
+    access: [["SecurityNS"]]
   - type: EntityStorage
     capacity: 50 # Big lockers tend to have more than 30 items in them
 
@@ -525,13 +641,13 @@
   components:
   - type: Appearance
   - type: Sprite
-    sprite: _FarHorizons/Structures/Storage/closet-right-large.rsi
+    sprite: _FarHorizons/Structures/Storage/closet-right-large.rsi #Still need resprite
   - type: EntityStorageVisuals
     stateBaseClosed: sec_R
     stateDoorOpen: sec_R_open
     stateDoorClosed: sec_R_door
   - type: AccessReader
-    access: [["Security"]]
+    access: [["SecurityNS"]]
   - type: EntityStorage
     capacity: 50 # Big lockers tend to have more than 30 items in them
 
@@ -539,35 +655,36 @@
 
 - type: entity
   id: LockerWardenFHSyndi
-  parent: LockerLargeBaseSecureSyndi
+  parent: LockerLargeBaseSecure
   name: Constable's Locker
+  suffix: NS
   components:
   - type: Appearance
   - type: Sprite
-    sprite: _FarHorizons/Structures/Storage/closet.rsi
+    sprite: _FarHorizons/Structures/Storage/closet.rsi #still needs resprite
   - type: EntityStorageVisuals
     stateBaseClosed: warden
     stateDoorOpen: sec_open
     stateDoorClosed: warden_door
   - type: AccessReader
-    access: [["Armory"]]
+    access: [["ArmoryNS"]]
   - type: WiresPanelSecurity
     securityLevel: medSecurity
 
 - type: entity
   id: LockerWardenLargeFHSyndi
-  parent: LockerLargeBaseSecureSyndi
+  parent: LockerLargeBaseSecure
   name: Large Constable's Locker
   components:
   - type: Appearance
   - type: Sprite
-    sprite: _FarHorizons/Structures/Storage/closet-large.rsi
+    sprite: _FarHorizons/Structures/Storage/closet-large.rsi #Still need resprite
   - type: EntityStorageVisuals
     stateBaseClosed: warden
     stateDoorOpen: sec_open
     stateDoorClosed: warden_door
   - type: AccessReader
-    access: [["Armory"]]
+    access: [["ArmoryNS"]]
   - type: WiresPanelSecurity
     securityLevel: medSecurity
   
@@ -575,50 +692,145 @@
 
 - type: entity
   id: LockerBrigmedicFHSyndi
-  parent: LockerLargeBaseSecureSyndi
+  parent: LockerLargeBaseSecure
   name: Brigmedic's Locker
-  suffix: NS
   components:
   - type: Appearance
   - type: Sprite
-    sprite: _FarHorizons/Structures/Storage/closet.rsi
+    sprite: _FarHorizons/Structures/Storage/closet.rsi #Still need resprite
   - type: EntityStorageVisuals
     stateBaseClosed: brigmedic
     stateDoorOpen: sec_open
     stateDoorClosed: brigmedic_door
   - type: AccessReader
-    access: [["Brigmedic"]]
+    access: [["BrigmedicNS"]]
 
 - type: entity
   id: LockerBrigmedicLargeFHSyndi
-  parent: LockerLargeBaseSecureSyndi
+  parent: LockerLargeBaseSecure
   name: Large Brigmedic's Locker
-  suffix: NS
   components:
   - type: Appearance
   - type: Sprite
-    sprite: _FarHorizons/Structures/Storage/closet-large.rsi
+    sprite: _FarHorizons/Structures/Storage/closet-large.rsi #Still need resprite
   - type: EntityStorageVisuals
     stateBaseClosed: brigmedic
     stateDoorOpen: sec_open
     stateDoorClosed: brigmedic_door
   - type: AccessReader
-    access: [["Brigmedic"]]
+    access: [["BrigmedicNS"]]
 
 # Corpsman
 
 - type: entity
   id: LockerCorpsmanFHSyndi
-  parent: LockerLargeBaseSecureSyndi
+  parent: LockerLargeBaseSecure
   name: Corpsman's Locker
-  suffix: NS
   components:
   - type: Appearance
   - type: Sprite
-    sprite: _FarHorizons/Structures/Storage/closet.rsi
+    sprite: _FarHorizons/Structures/Storage/closet.rsi #Still needs resprite
   - type: EntityStorageVisuals
     stateBaseClosed: brigmedic
     stateDoorOpen: sec_open
     stateDoorClosed: corpsman_door
   - type: AccessReader
-    access: [["Brigmedic"]]
+    access: [["BrigmedicNS"]]
+
+# Genpop Storage
+- type: entity
+  parent: [ GenpopBase , LockerBaseSecureSyndi ]
+  id: LockerPrisonerNS
+  name: Prisoner Closet 
+  description: It's a secure locker for an inmate's personal belongings during their time in prison.
+  suffix: 1, NS
+  components:
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PolygonShape
+          radius: 0.01
+          vertices:
+          - -0.25,-0.48
+          - 0.25,-0.48
+          - 0.25,0.48
+          - -0.25,0.48
+        mask:
+        - Impassable
+        - TableLayer
+        - LowImpassable
+        layer:
+        - BulletImpassable
+        - Opaque
+        density: 75
+        hard: True
+        restitution: 0
+        friction: 0.4
+  - type: AccessReader
+    access: [["SecurityNS"]]
+    examinationText: access-reader-examination-functionality-restricted
+
+
+- type: entity
+  parent: LockerPrisonerNS
+  id: LockerPrisonerNS2
+  suffix: 2, NS
+  components:
+  - type: EntityStorageVisuals
+    stateDoorClosed: genpop_door_2
+
+- type: entity
+  parent: LockerPrisonerNS
+  id: LockerPrisonerNS3
+  suffix: 3, NS
+  components:
+  - type: EntityStorageVisuals
+    stateDoorClosed: genpop_door_3
+
+- type: entity
+  parent: LockerPrisonerNS
+  id: LockerPrisonerNS4
+  suffix: 4, NS
+  components:
+  - type: EntityStorageVisuals
+    stateDoorClosed: genpop_door_4
+
+- type: entity
+  parent: LockerPrisonerNS
+  id: LockerPrisonerNS5
+  suffix: 5, NS
+  components:
+  - type: EntityStorageVisuals
+    stateDoorClosed: genpop_door_5
+
+- type: entity
+  parent: LockerPrisonerNS
+  id: LockerPrisonerNS6
+  suffix: 6, NS
+  components:
+  - type: EntityStorageVisuals
+    stateDoorClosed: genpop_door_6
+
+- type: entity
+  parent: LockerPrisonerNS
+  id: LockerPrisonerNS7
+  suffix: 7, NS
+  components:
+  - type: EntityStorageVisuals
+    stateDoorClosed: genpop_door_7
+
+- type: entity
+  parent: LockerPrisonerNS
+  id: LockerPrisonerNS8
+  suffix: 8, NS
+  components:
+  - type: EntityStorageVisuals
+    stateDoorClosed: genpop_door_8
+
+- type: entity
+  parent: LockerPrisonerNS
+  id: LockerPrisonerNS9
+  suffix: 9, NS
+  components:
+  - type: EntityStorageVisuals
+    stateDoorClosed: genpop_door_9
