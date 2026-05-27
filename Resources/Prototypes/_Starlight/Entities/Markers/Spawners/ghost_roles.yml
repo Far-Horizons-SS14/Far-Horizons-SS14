@@ -18,18 +18,38 @@
     - sprite: Mobs/Silicon/Chassis/derelict.rsi
       state: derelict_icon
 
+# FH - removed brighteye
+# - type: entity
+#   categories: [ HideSpawnMenu, Spawner ]
+#   parent: BaseAntagSpawner
+#   id: SpawnPointGhostBrighteye
+#   name: ghost role spawn point
+#   suffix: brighteye
+#   components:
+#   - type: GhostRole
+#     name: roles-antag-brighteye-name
+#     description: roles-antag-brighteye-description
+#     mindRoles:
+#     - MindRoleBrighteye
+#     raffle:
+#       settings: default
+#   - type: Sprite
+#     sprite: Markers/jobs.rsi
+#     layers:
+#     - state: green
+#     - sprite: _Starlight/Mobs/Species/Shadekin/parts.rsi
+#       state: full
+
+ 
 - type: entity
   categories: [ HideSpawnMenu, Spawner ]
-  parent: BaseAntagSpawner
-  id: SpawnPointGhostBrighteye
-  name: ghost role spawn point
-  suffix: brighteye
+  parent: SpawnPointGhostDerelictCyborg
+  id: SpawnPointGhostDerelictPurrfusCyborg
   components:
   - type: GhostRole
-    name: roles-antag-brighteye-name
-    description: roles-antag-brighteye-description
-    mindRoles:
-    - MindRoleBrighteye
+    name: ghost-role-information-derelict-purrfus-cyborg-name
+    description: ghost-role-information-derelict-purrfus-cyborg-description
+    rules: ghost-role-information-silicon-rules
     raffle:
       settings: default
   - type: Sprite

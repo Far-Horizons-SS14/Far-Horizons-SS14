@@ -22,18 +22,19 @@
     - RRCardCriminal
 #    - RRCardMailOpen
 
-- type: entity
-  parent: BaseGameRule
-  id: RailroadingBrighteye
-  components:
-  - type: StationEvent
-    earliestStart: 1
-  - type: RailroadRule
-    preSpawnDelay: 1
-    delay: 1
-    cards:
-    - RRCardBrighteyeDark
-    - RRCardBrighteyePortalCritical
+# FH - Removed brighteye
+# - type: entity
+#   parent: BaseGameRule
+#   id: RailroadingBrighteye
+#   components:
+#   - type: StationEvent
+#     earliestStart: 1
+#   - type: RailroadRule
+#     preSpawnDelay: 1
+#     delay: 1
+#     cards:
+#     - RRCardBrighteyeDark
+#     - RRCardBrighteyePortalCritical
     
 - type: entity
   parent: BaseGameRule
