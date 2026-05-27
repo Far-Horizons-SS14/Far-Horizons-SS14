@@ -41,3 +41,13 @@
       state: cpu_security
     - type: ComputerBoard
       prototype: ShuttleGunneryConsole
+
+- type: entity
+  parent: IDComputerCircuitboard
+  id: IDComputerCircuitboardNS
+  name: ID Card Computer Board
+  description: A computer printed circuit board for an ID card console.
+  suffix: NS
+  components:
+  - type: ComputerBoard
+    prototype: ComputerIdNS

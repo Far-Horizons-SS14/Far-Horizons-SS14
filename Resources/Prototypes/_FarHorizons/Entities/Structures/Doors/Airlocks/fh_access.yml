@@ -1,4 +1,193 @@
-# Airlocks
+#region CFA
+
+- type: entity
+  parent: FHAirlockCommand
+  id: FHAirlockMagistrateLocked
+  suffix: Concord Liaison, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsMagistrate ]
+
+- type: entity
+  parent: FHAirlockCommandGlass
+  id: FHAirlockMagistrateGlassLocked
+  suffix: Concord Liaison, Locked
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsMagistrate ]
+
+- type: entity
+  parent: FHAirlockServiceLocked
+  id: FHAirlockLawyerLocked
+  suffix: Lawyer, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsLawyer ]
+
+- type: entity
+  parent: FHAirlockLawyerLocked
+  id: FHAirlockMaintLawyerLocked
+  suffix: Lawyer, Locked, Maint
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/maint.rsi
+
+#region GSL
+
+
+
+
+
+
+#region Standard Airlocks
+- type: entity
+  parent: FHAirlockCommand
+  id: FHAirlockQuartermasterLocked
+  suffix: Quartermaster, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsQuartermaster ]
+
+- type: entity
+  parent: FHAirlockQuartermasterLocked
+  id: FHAirlockMaintQuartermasterLocked
+  suffix: Quartermaster, Locked, Maint
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/maint.rsi
+
+- type: entity
+  parent: FHAirlockCargo
+  id: FHAirlockCargoLocked
+  suffix: Cargo, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsCargo ]
+
+- type: entity
+  parent: FHAirlockCargoLocked
+  id: FHAirlockMaintCargoLocked
+  suffix: Cargo, Locked, Maint
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/maint.rsi
+
+- type: entity
+  parent: FHAirlockExternal
+  id: FHAirlockExternalCargoLocked
+  suffix: External, Cargo, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsCargo ]
+  - type: Wires
+    layoutId: AirlockCargo
+
+- type: entity
+  parent: FHAirlockSalvageLead
+  id: FHAirlockSalvageLeadLocked
+  suffix: Salvage Lead, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSalvageLead ]
+
+- type: entity
+  parent: FHAirlockSalvage
+  id: FHAirlockSalvageLocked
+  suffix: Salvage, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSalvage ]
+
+- type: entity
+  parent: FHAirlockSalvageLocked
+  id: FHAirlockMaintSalvageLocked
+  suffix: Salvage, Locked, Maint
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/maint.rsi
+
+- type: entity
+  parent: FHAirlockMining
+  id: FHAirlockMiningLocked
+  suffix: Mining/Salvage, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSalvageMining ]
+
+# region Glass Airlocks
+- type: entity
+  parent: FHAirlockCommandGlass
+  id: FHAirlockQuartermasterGlassLocked
+  suffix: Quartermaster, Locked
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsQuartermaster ]
+
+- type: entity
+  parent: FHAirlockExternalGlass
+  id: FHAirlockExternalGlassCargoLocked
+  suffix: External, Glass, Cargo, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsCargo ]
+  - type: Wires
+    layoutId: AirlockCargo
+
+- type: entity
+  parent: FHAirlockCargoGlass
+  id: FHAirlockCargoGlassLocked
+  suffix: Cargo, Locked
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsCargo ]
+
+- type: entity
+  parent: FHAirlockSalvageLeadGlass
+  id: FHAirlockSalvageLeadGlassLocked
+  suffix: Salvage Lead, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSalvageLead ]
+
+- type: entity
+  parent: FHAirlockSalvageGlass
+  id: FHAirlockSalvageGlassLocked
+  suffix: Salvage, Locked
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsSalvage ]
+
+- type: entity
+  parent: FHAirlockMiningGlass
+  id: FHAirlockMiningGlassLocked
+  suffix: Mining/Salvage, Locked
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsSalvageMining ]
+
+# region NanoTrasen
+
+
+
+
+
+
+# region Standard Airlocks
 - type: entity
   parent: FHAirlock
   id: FHAirlockServiceLocked
@@ -53,15 +242,6 @@
   components:
     - type: Sprite
       sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/maint.rsi
-
-- type: entity
-  parent: FHAirlockServiceLocked
-  id: FHAirlockLawyerLocked
-  suffix: Lawyer, Locked
-  components:
-  - type: ContainerFill
-    containers:
-      board: [ DoorElectronicsLawyer ]
 
 - type: entity
   parent: FHAirlockServiceLocked
@@ -157,17 +337,6 @@
 
 - type: entity
   parent: FHAirlockExternal
-  id: FHAirlockExternalCargoLocked
-  suffix: External, Cargo, Locked
-  components:
-  - type: ContainerFill
-    containers:
-      board: [ DoorElectronicsCargo ]
-  - type: Wires
-    layoutId: AirlockCargo
-
-- type: entity
-  parent: FHAirlockExternal
   id: FHAirlockExternalEngineeringLocked
   suffix: External, Engineering, Locked
   components:
@@ -222,28 +391,6 @@
     layoutId: AirlockEngineering
 
 - type: entity
-  parent: FHAirlockExternal
-  id: FHAirlockExternalSyndicateLocked
-  suffix: External, Syndicate, Locked
-  components:
-  - type: ContainerFill
-    containers:
-      board: [ DoorElectronicsSyndicateAgent ]
-  - type: Wires
-    layoutId: AirlockSecurity
-
-- type: entity
-  parent: FHAirlockExternal
-  id: FHAirlockExternalNukeopLocked
-  suffix: External, Nukeop, Locked
-  components:
-  - type: ContainerFill
-    containers:
-      board: [ DoorElectronicsNukeop ]
-  - type: Wires
-    layoutId: AirlockSecurity
-
-- type: entity
   parent: FHAirlockEngineering
   id: FHAirlockEngineeringLocked
   suffix: Engineering, Locked
@@ -260,42 +407,6 @@
   - type: ContainerFill
     containers:
       board: [ DoorElectronicsAtmospherics ]
-
-- type: entity
-  parent: FHAirlockCargo
-  id: FHAirlockCargoLocked
-  suffix: Cargo, Locked
-  components:
-  - type: ContainerFill
-    containers:
-      board: [ DoorElectronicsCargo ]
-
-- type: entity
-  parent: FHAirlockSalvage
-  id: FHAirlockSalvageLocked
-  suffix: Salvage, Locked
-  components:
-  - type: ContainerFill
-    containers:
-      board: [ DoorElectronicsSalvage ]
-
-- type: entity
-  parent: FHAirlockSalvageLead
-  id: FHAirlockSalvageLeadLocked
-  suffix: Salvage Lead, Locked
-  components:
-  - type: ContainerFill
-    containers:
-      board: [ DoorElectronicsSalvageLead ]
-
-- type: entity
-  parent: FHAirlockMining
-  id: FHAirlockMiningLocked
-  suffix: Mining/Salvage, Locked
-  components:
-  - type: ContainerFill
-    containers:
-      board: [ DoorElectronicsSalvageMining ]
 
 - type: entity
   parent: FHAirlockMedical
@@ -442,24 +553,6 @@
       board: [ DoorElectronicsHeadOfPersonnel ]
 
 - type: entity
-  parent: FHAirlockCommand
-  id: FHAirlockQuartermasterLocked
-  suffix: Quartermaster, Locked
-  components:
-  - type: ContainerFill
-    containers:
-      board: [ DoorElectronicsQuartermaster ]
-
-- type: entity
-  parent: FHAirlockCommand
-  id: FHAirlockMagistrateLocked
-  suffix: Magistrate, Locked
-  components:
-  - type: ContainerFill
-    containers:
-      board: [ DoorElectronicsMagistrate ]
-
-- type: entity
   parent: FHAirlock
   id: FHAirlockCourtroomLocked
   suffix: Courtroom, Locked
@@ -545,22 +638,6 @@
       board: [ DoorElectronicsExternal ]
 
 - type: entity
-  parent: FHAirlockSalvageLocked
-  id: FHAirlockMaintSalvageLocked
-  suffix: Salvage, Locked, Maint
-  components:
-  - type: Sprite
-    sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/maint.rsi
-
-- type: entity
-  parent: FHAirlockCargoLocked
-  id: FHAirlockMaintCargoLocked
-  suffix: Cargo, Locked, Maint
-  components:
-  - type: Sprite
-    sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/maint.rsi
-
-- type: entity
   parent: FHAirlockCommandLocked
   id: FHAirlockMaintCommandLocked
   suffix: Command, Locked, Maint
@@ -620,14 +697,6 @@
   parent: FHAirlockJanitorLocked
   id: FHAirlockMaintJanitorLocked
   suffix: Janitor, Locked, Maint
-  components:
-  - type: Sprite
-    sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/maint.rsi
-
-- type: entity
-  parent: FHAirlockLawyerLocked
-  id: FHAirlockMaintLawyerLocked
-  suffix: Lawyer, Locked, Maint
   components:
   - type: Sprite
     sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/maint.rsi
@@ -795,14 +864,6 @@
     sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/maint.rsi
 
 - type: entity
-  parent: FHAirlockQuartermasterLocked
-  id: FHAirlockMaintQuartermasterLocked
-  suffix: Quartermaster, Locked, Maint
-  components:
-  - type: Sprite
-    sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/maint.rsi
-
-- type: entity
   parent: FHAirlockArmoryLocked
   id: FHAirlockMaintArmoryLocked
   suffix: Armory, Locked, Maint
@@ -812,23 +873,45 @@
 
 - type: entity
   parent: FHAirlockSyndicate
-  id: FHAirlockSyndicateLocked
-  suffix: Syndicate, Locked
+  id: FHAirlockLambdaLocked
+  suffix: Lambda, Locked
   components:
   - type: ContainerFill
     containers:
-      board: [ DoorElectronicsSyndicateAgent ]
+      board: [ DoorElectronicsLambdaAgent ]
 
 - type: entity
   parent: FHAirlockSyndicate
-  id: FHAirlockSyndicateNukeopLocked
-  suffix: Nukeop, Locked
+  id: FHAirlockLambdaSquadopLocked
+  suffix: Lambda SquadOp, Locked
   components:
   - type: ContainerFill
     containers:
-      board: [ DoorElectronicsNukeop ]
+      board: [ DoorElectronicsLambdaSquadop ]
 
-# Glass Airlocks
+- type: entity
+  parent: FHAirlockExternal
+  id: FHAirlockExternalLambdaLocked
+  suffix: External, Lambda, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsLambdaAgent ]
+  - type: Wires
+    layoutId: AirlockSecurity
+
+- type: entity
+  parent: FHAirlockExternal
+  id: FHAirlockExternalLambdaSquadopLocked
+  suffix: External, Squadop, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsLambdaSquadop ]
+  - type: Wires
+    layoutId: AirlockSecurity
+
+#region Glass Airlocks
 
 - type: entity
   parent: FHAirlockGlass
@@ -849,39 +932,6 @@
   - type: ContainerFill
     containers:
       board: [ DoorElectronicsExternal ]
-
-- type: entity
-  parent: FHAirlockExternalGlass
-  id: FHAirlockExternalGlassCargoLocked
-  suffix: External, Glass, Cargo, Locked
-  components:
-  - type: ContainerFill
-    containers:
-      board: [ DoorElectronicsCargo ]
-  - type: Wires
-    layoutId: AirlockCargo
-
-- type: entity
-  parent: FHAirlockExternalGlass
-  id: FHAirlockExternalGlassSyndicateLocked
-  suffix: External, Glass, Syndicate, Locked
-  components:
-  - type: ContainerFill
-    containers:
-      board: [ DoorElectronicsSyndicateAgent ]
-  - type: Wires
-    layoutId: AirlockSecurity
-
-- type: entity
-  parent: FHAirlockExternalGlass
-  id: FHAirlockExternalGlassNukeopLocked
-  suffix: External, Glass, Nukeop, Locked
-  components:
-  - type: ContainerFill
-    containers:
-      board: [ DoorElectronicsNukeop ]
-  - type: Wires
-    layoutId: AirlockSecurity
 
 - type: entity
   parent: FHAirlockExternalGlass
@@ -1014,42 +1064,6 @@
     - type: ContainerFill
       containers:
         board: [ DoorElectronicsAtmospherics ]
-
-- type: entity
-  parent: FHAirlockCargoGlass
-  id: FHAirlockCargoGlassLocked
-  suffix: Cargo, Locked
-  components:
-    - type: ContainerFill
-      containers:
-        board: [ DoorElectronicsCargo ]
-
-- type: entity
-  parent: FHAirlockSalvageGlass
-  id: FHAirlockSalvageGlassLocked
-  suffix: Salvage, Locked
-  components:
-    - type: ContainerFill
-      containers:
-        board: [ DoorElectronicsSalvage ]
-
-- type: entity
-  parent: FHAirlockSalvageLeadGlass
-  id: FHAirlockSalvageLeadGlassLocked
-  suffix: Salvage Lead, Locked
-  components:
-  - type: ContainerFill
-    containers:
-      board: [ DoorElectronicsSalvageLead ]
-
-- type: entity
-  parent: FHAirlockMiningGlass
-  id: FHAirlockMiningGlassLocked
-  suffix: Mining/Salvage, Locked
-  components:
-    - type: ContainerFill
-      containers:
-        board: [ DoorElectronicsSalvageMining ]
 
 - type: entity
   parent: FHAirlockChemistryGlass
@@ -1214,24 +1228,6 @@
         board: [ DoorElectronicsHeadOfPersonnel ]
 
 - type: entity
-  parent: FHAirlockCommandGlass
-  id: FHAirlockQuartermasterGlassLocked
-  suffix: Quartermaster, Locked
-  components:
-    - type: ContainerFill
-      containers:
-        board: [ DoorElectronicsQuartermaster ]
-
-- type: entity
-  parent: FHAirlockCommandGlass
-  id: FHAirlockMagistrateGlassLocked
-  suffix: Magistrate, Locked
-  components:
-    - type: ContainerFill
-      containers:
-        board: [ DoorElectronicsMagistrate ]
-
-- type: entity
   parent: FHAirlockGlass
   id: FHAirlockCourtroomGlassLocked
   suffix: Courtroom, Locked
@@ -1307,23 +1303,45 @@
 
 - type: entity
   parent: FHAirlockSyndicateGlass
-  id: FHAirlockSyndicateGlassLocked
-  suffix: Syndicate, Locked
+  id: FHAirlockLambdaGlassLocked
+  suffix: Lambda, Glass, Locked
   components:
     - type: ContainerFill
       containers:
-        board: [ DoorElectronicsSyndicateAgent ]
+        board: [ DoorElectronicsLambdaAgent ]
 
 - type: entity
+  parent: FHAirlockExternalGlass
+  id: FHAirlockExternalGlassLambdaLocked
+  suffix: External, Glass, Lambda, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsLambdaAgent ]
+  - type: Wires
+    layoutId: AirlockSecurity
+    
+- type: entity
   parent: FHAirlockSyndicateGlass
-  id: FHAirlockSyndicateNukeopGlassLocked
-  suffix: Nukeop, Locked
+  id: FHAirlockLambdaSquadopGlassLocked
+  suffix: Squadop, Glass, Locked
   components:
     - type: ContainerFill
       containers:
-        board: [ DoorElectronicsNukeop ]
+        board: [ DoorElectronicsLambdaSquadop ]
 
-#HighSecDoors
+- type: entity
+  parent: FHAirlockExternalGlass
+  id: FHAirlockExternalGlassLambdaSquadopLocked
+  suffix: External, Glass, Squadop, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsLambdaSquadop ]
+  - type: Wires
+    layoutId: AirlockSecurity
+    
+#region HighSecDoors
 - type: entity
   parent: FHHighSecDoor
   id: FHHighSecCentralCommandLocked
@@ -1360,9 +1378,1230 @@
       containers:
         board: [ DoorElectronicsArmory ]
 
+#region NeoSol
+
+
+
+
+
+
+# region Standard Airlocks
+- type: entity
+  parent: FHAirlockNSBasic
+  id: FHAirlockNSServiceLocked
+  suffix: Service, NS, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNSService ]
+  - type: Wires
+    layoutId: AirlockService
+
+- type: entity
+  parent: FHAirlockNSMaint
+  id: FHAirlockNSMaintLocked
+  suffix: Maint, NS, Locked
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsNSMaintenance ]
+
+- type: entity
+  parent: FHAirlockFreezer
+  id: FHAirlockNSFreezerLocked
+  suffix: Kitchen, NS, Locked
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsNSKitchen ]
+
+- type: entity
+  parent: FHAirlockFreezer
+  id: FHAirlockNSFreezerKitchenHydroLocked
+  suffix: Kitchen, Hydroponics, NS, Locked
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsNSKitchenHydroponics ]
+
+- type: entity
+  parent: FHAirlockFreezer
+  id: FHAirlockNSFreezerHydroponicsLocked
+  suffix: Hydroponics, NS, Locked
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsNSHydroponics ]
+
+- type: entity
+  parent: FHAirlockFreezerKitchenHydroLocked
+  id: FHAirlockNSMaintKitchenHydroLocked
+  suffix: Kitchen, Hydroponics, NS, Locked, Maint
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/maint_syndie.rsi
+
+- type: entity
+  parent: FHAirlockNSServiceLocked
+  id: FHAirlockNSTheatreLocked
+  suffix: Theatre, NS, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNSTheatre ]
+
+- type: entity
+  parent: FHAirlockNSServiceLocked
+  id: FHAirlockNSServiceTheatreLocked
+  suffix: Service, Theatre, NS, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNSServiceTheatre ]
+
+- type: entity
+  parent: FHAirlockNSServiceLocked
+  id: FHAirlockNSChapelLocked
+  suffix: Chapel, NS, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNSChapel ]
+
+- type: entity
+  parent: FHAirlockNSServiceLocked
+  id: FHAirlockNSJanitorLocked
+  suffix: Janitor, NS, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNSJanitor ]
+
+- type: entity
+  parent: FHAirlockNSServiceLocked
+  id: FHAirlockNSKitchenLocked
+  suffix: Kitchen, NS, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNSKitchen ]
+
+- type: entity
+  parent: FHAirlockNSServiceLocked
+  id: FHAirlockNSBarLocked
+  suffix: Bar, NS, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNSBar ]
+
+- type: entity
+  parent: FHAirlockNSServiceLocked
+  id: FHAirlockNSBarKitchenLocked
+  suffix: Bar, Kitchen, NS, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNSBarKitchen ]
+
+- type: entity
+  parent: FHAirlockNSHydroponics
+  id: FHAirlockNSHydroponicsLocked
+  suffix: Hydroponics, NS, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNSHydroponics ]
+
+- type: entity
+  parent: FHAirlockExternal
+  id: FHAirlockNSExternalLocked
+  suffix: External, NS, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNSExternal ]
+
+- type: entity
+  parent: FHAirlockExternal
+  id: FHAirlockNSExternalSecurityLocked
+  suffix: External, Security, No Cadet, NS, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNSSecurityNoCadet ]
+  - type: Wires
+    layoutId: AirlockSecurity
+
+- type: entity
+  parent: FHAirlockExternal
+  id: FHAirlockNSExternalEngineeringLocked
+  suffix: External, Engineering, NS, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNSEngineering ]
+  - type: Wires
+    layoutId: AirlockEngineering
+
+- type: entity
+  parent: FHAirlockExternal
+  id: FHAirlockNSExternalCommandLocked
+  suffix: External, Executive, NS, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNSExecutive ]
+  - type: Wires
+    layoutId: AirlockCommand
+
+- type: entity
+  parent: FHAirlockExternal
+  id: FHAirlockNSExternalAtmosphericsLocked
+  suffix: External, Atmospherics, NS, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNSAtmospherics ]
+  - type: Wires
+    layoutId: AirlockEngineering
+
+- type: entity
+  parent: FHAirlockNSEngineering
+  id: FHAirlockNSEngineeringLocked
+  suffix: Engineering, NS, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNSEngineering ]
+
+- type: entity
+  parent: FHAirlockNSAtmospherics
+  id: FHAirlockNSAtmosphericsLocked
+  suffix: Atmospherics, NS, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNSAtmospherics ]
+
+- type: entity
+  parent: FHAirlockMedical
+  id: FHAirlockNSMedicalLocked
+  suffix: Medical, NS, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNSMedical ]
+
+- type: entity
+  parent: FHAirlockNSParamedic
+  id: FHAirlockNSParamedicLocked
+  suffix: Paramedic, NS, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNSMedical ]
+
+- type: entity
+  parent: FHAirlockNSVirology
+  id: FHAirlockNSVirologyLocked
+  suffix: Virology, NS, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNSMedical ]
+
+- type: entity
+  parent: FHAirlockNSChemistry
+  id: FHAirlockNSChemistryLocked
+  suffix: Chemistry, NS, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNSChemistry ]
+
+- type: entity
+  parent: FHAirlockNSMedical
+  id: FHAirlockNSMedicalMorgueLocked
+  suffix: Morgue, NS, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNSMorgue ]
+
+- type: entity
+  parent: FHAirlockNSScience
+  id: FHAirlockNSScienceLocked
+  suffix: Science, NS, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNSResearch ]
+
+- type: entity
+  parent: FHAirlockNSScience
+  id: FHAirlockNSMedicalScienceLocked
+  suffix: Medical, Science, NS, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNSMedicalResearch ]
+
+- type: entity
+  parent: FHAirlockNSNeoSolHighCommand
+  id: FHAirlockNSNeoSolHighCommandLocked
+  suffix: NeiSolHighCommand, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNSHighCommand ]
+
+- type: entity
+  parent: FHAirlockNSNeoSolHighCommand
+  id: FHAirlockNSRedSwordOperativeLocked
+  suffix: RSO, NS, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNSRedSwordOperative ]
+
+- type: entity
+  parent: FHAirlockNSNeoSolHighCommand
+  id: FHAirlockNSNeoSolRepresentativeLocked
+  suffix: NSR, NS, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNSNSRep ]
+
+- type: entity
+  parent: FHAirlockNSExecutive
+  id: FHAirlockNSExecutiveLocked
+  suffix: Executive, NS, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNSExecutive ]
+
+- type: entity
+  parent: FHAirlockNSExecutive
+  id: FHAirlockNSCommandantLocked
+  suffix: Commandant, NS, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNSCommandant ]
+
+- type: entity
+  parent: FHAirlockNSExecutive
+  id: FHAirlockNSMedicalDirectorLocked
+  suffix: MedicalDirector, NS, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNSMedicalDirector ]
+
+- type: entity
+  parent: FHAirlockNSExecutive
+  id: FHAirlockNSForemanLocked
+  suffix: Foreman, NS, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNSForeman ]
+
+- type: entity
+  parent: FHAirlockNSExecutive
+  id: FHAirlockNSMarshalLocked
+  suffix: Marshal, NS, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNSMarshal ]
+
+- type: entity
+  parent: FHAirlockNSExecutive
+  id: FHAirlockNSEpistemicsProvostLocked
+  suffix: EpistemicsProvost, NS, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNSEpistemicsProvost ]
+
+- type: entity
+  parent: FHAirlockNSExecutive
+  id: FHAirlockNSPersonnelManagerLocked
+  suffix: PersonnelManager, NS, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNSPersonnelManager ]
+
+- type: entity
+  parent: FHAirlockNSBasic
+  id: FHAirlockNSCourtroomLocked
+  suffix: Courtroom, NS, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNSCourtroom ]
+  - type: Wires
+    layoutId: AirlockCommand
+
+- type: entity
+  parent: FHAirlockNSSecurity
+  id: FHAirlockNSSecurityLocked
+  suffix: Security, NS, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNSSecurity ]
+
+- type: entity
+  parent: FHAirlockNSSecurity
+  id: FHAirlockNSSecurityNoCadetLocked
+  suffix: Security, No Cadet, NS, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNSSecurityNoCadet ]
+
+- type: entity
+  parent: FHAirlockNSSecurity
+  id: FHAirlockNSDetectiveLocked
+  suffix: Detective, NS, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNSDetective ]
+
+- type: entity
+  parent: FHAirlockNSSecurity
+  id: FHAirlockNSBrigLocked
+  suffix: Brig, NS, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNSBrig ]
+
+- type: entity
+  parent: FHAirlockNSSecurity
+  id: FHAirlockNSSecurityLawyerLocked
+  suffix: Security, Lawyer, NS, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNSSecurityLawyer ]
+
+- type: entity
+  parent: FHAirlockNSSecurity
+  id: FHAirlockNSArmoryLocked
+  suffix: Armory, NS, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNSArmory ]
+  - type: Wires
+    layoutId: AirlockArmory
+
+- type: entity
+  parent: FHAirlockNSSecurity
+  id: FHAirlockNSVaultLocked
+  suffix: Vault, NS, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNSVault ]
+
+- type: entity
+  parent: FHAirlockNSExecutive
+  id: FHAirlockNSEVALocked
+  suffix: EVA, NS, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNSExternal ]
+
+- type: entity
+  parent: FHAirlockNSExecutiveLocked
+  id: FHAirlockNSMaintExecutiveLocked
+  suffix: Executive, NS, Locked, Maint
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/maint_syndie.rsi
+
+- type: entity
+  parent: FHAirlockNSEngineeringLocked
+  id: FHAirlockNSMaintEngiLocked
+  suffix: Engineering, NS, Locked, Maint
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/maint_syndie.rsi
+
+- type: entity
+  parent: FHAirlockNSAtmosphericsLocked
+  id: FHAirlockNSMaintAtmoLocked
+  suffix: Atmospherics, NS, Locked, Maint
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/maint_syndie.rsi
+
+- type: entity
+  parent: FHAirlockNSBarLocked
+  id: FHAirlockNSMaintBarLocked
+  suffix: Bar, NS, Locked, Maint
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/maint_syndie.rsi
+
+- type: entity
+  parent: FHAirlockNSBarKitchenLocked
+  id: FHAirlockNSMaintBarKitchenLocked
+  suffix: Bar&Kitchen, NS, Locked, Maint
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/maint_syndie.rsi
+
+- type: entity
+  parent: FHAirlockNSChapelLocked
+  id: FHAirlockNSMaintChapelLocked
+  suffix: Chapel, NS, Locked, Maint
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/maint_syndie.rsi
+
+- type: entity
+  parent: FHAirlockNSHydroponicsLocked
+  id: FHAirlockNSMaintHydroLocked
+  suffix: Hydroponics, NS, Locked, Maint
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/maint_syndie.rsi
+
+- type: entity
+  parent: FHAirlockNSJanitorLocked
+  id: FHAirlockNSMaintJanitorLocked
+  suffix: Janitor, NS, Locked, Maint
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/maint_syndie.rsi
+
+- type: entity
+  parent: FHAirlockNSServiceLocked
+  id: FHAirlockNSMaintServiceLocked
+  suffix: Service, NS, Locked, Maint
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/maint_syndie.rsi
+
+- type: entity
+  parent: FHAirlockNSTheatreLocked
+  id: FHAirlockNSMaintTheatreLocked
+  suffix: Theatre, NS, Locked, Maint
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/maint_syndie.rsi
+
+- type: entity
+  parent: FHAirlockNSServiceTheatreLocked
+  id: FHAirlockNSMaintServiceTheatreLocked
+  suffix: Service, Theatre, NS, Locked, Maint
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/maint_syndie.rsi
+
+- type: entity
+  parent: FHAirlockNSKitchenLocked
+  id: FHAirlockNSMaintKitchenLocked
+  suffix: Kitchen, NS, Locked, Maint
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/maint_syndie.rsi
+
+- type: entity
+  parent: FHAirlockNSMedicalLocked
+  id: FHAirlockNSMaintMedLocked
+  suffix: Medical, NS, Locked, Maint
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/maint_syndie.rsi
+
+- type: entity
+  parent: FHAirlockNSSurgery
+  id: FHAirlockNSSurgeryLocked
+  suffix: Surgery, NS, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNSSurgery ]
+
+- type: entity
+  parent: FHAirlockNSMedicalMorgueLocked
+  id: FHAirlockNSMedicalMorgueMaintLocked
+  suffix: Morgue, NS, Locked, Maint
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/maint_syndie.rsi
+
+- type: entity
+  parent: FHAirlockNSChemistryLocked
+  id: FHAirlockNSMaintChemLocked
+  suffix: Chemistry, NS, Locked, Maint
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/maint_syndie.rsi
+
+- type: entity
+  parent: FHAirlockNSScienceLocked
+  id: FHAirlockNSMaintRnDLocked
+  suffix: Science, NS, Locked, Maint
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/maint_syndie.rsi
+
+- type: entity
+  parent: FHAirlockNSRobotics
+  id: FHAirlockNSRoboticsLocked
+  suffix: Robotics, NS, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNSRobotics ]
+
+- type: entity
+  parent: FHAirlockNSRoboticsLocked
+  id: FHAirlockNSMaintRoboticsLocked
+  suffix: Robotics, NS, Locked, Maint
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/maint_syndie.rsi
+
+- type: entity
+  parent: FHAirlockNSMedicalScienceLocked
+  id: FHAirlockNSMaintRnDMedLocked
+  suffix: Medical, Science, NS, Locked, Maint
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/maint_syndie.rsi
+
+- type: entity
+  parent: FHAirlockNSSecurityLocked
+  id: FHAirlockNSMaintSecLocked
+  suffix: Security, NS, Locked, Maint
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/maint_syndie.rsi
+
+- type: entity
+  parent: FHAirlockNSDetectiveLocked
+  id: FHAirlockNSMaintDetectiveLocked
+  suffix: Detective, NS, Locked, Maint
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/maint_syndie.rsi
+
+- type: entity
+  parent: FHAirlockNSPersonnelManagerLocked
+  id: FHAirlockNSMaintPMLocked
+  suffix: PersonnelManager, NS, Locked, Maint
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/maint_syndie.rsi
+
+- type: entity
+  parent: FHAirlockNSCommandantLocked
+  id: FHAirlockNSMaintCommandantLocked
+  suffix: Commandant, NS, Locked, Maint
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/maint_syndie.rsi
+
+- type: entity
+  parent: FHAirlockNSForemanLocked
+  id: FHAirlockNSMaintForemanLocked
+  suffix: Foreman, NS, Locked, Maint
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/maint_syndie.rsi
+
+- type: entity
+  parent: FHAirlockNSMedicalDirectorLocked
+  id: FHAirlockNSMaintMedicalDirectorLocked
+  suffix: MedicalDirector, NS, Locked, Maint
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/maint_syndie.rsi
+
+- type: entity
+  parent: FHAirlockNSMarshalLocked
+  id: FHAirlockNSMaintMarshalLocked
+  suffix: Marshal, NS, Locked, Maint
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/maint_syndie.rsi
+
+- type: entity
+  parent: FHAirlockNSEpistemicsProvostLocked
+  id: FHAirlockNSMaintEpistemicsProvostLocked
+  suffix: EpistemicsProvost, NS, Locked, Maint
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/maint_syndie.rsi
+
+- type: entity
+  parent: FHAirlockNSArmoryLocked
+  id: FHAirlockNSMaintArmoryLocked
+  suffix: Armory, NS, Locked, Maint
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/maint_syndie.rsi
+
+- type: entity
+  parent: FHAirlockSyndicate
+  id: FHAirlockSyndicateLocked
+  suffix: Syndicate, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSyndicateAgent ]
+
+- type: entity
+  parent: FHAirlockSyndicate
+  id: FHAirlockSyndicateNukeopLocked
+  suffix: Nukeop, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNukeop ]
+
+- type: entity
+  parent: FHAirlockExternal
+  id: FHAirlockExternalSyndicateLocked
+  suffix: External, Syndicate, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSyndicateAgent ]
+  - type: Wires
+    layoutId: AirlockSecurity
+
+- type: entity
+  parent: FHAirlockExternal
+  id: FHAirlockExternalNukeopLocked
+  suffix: External, Nukeop, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNukeop ]
+  - type: Wires
+    layoutId: AirlockSecurity
+    
+#region Glass Airlocks
+
+- type: entity
+  parent: FHAirlockNSBasicGlass
+  id: FHAirlockNSServiceGlassLocked
+  suffix: Service, NS, Glass, Locked
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsNSService ]
+    - type: Wires
+      layoutId: AirlockService
+
+- type: entity
+  parent: FHAirlockNSMaintGlass
+  id: FHAirlockNSMaintGlassLocked
+  suffix: Maint, NS, Glass, Locked
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsNSMaintenance ]
+
+- type: entity
+  parent: FHAirlockExternalGlass
+  id: FHAirlockNSExternalGlassLocked
+  suffix: External, NS, Glass, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNSExternal ]
+
+- type: entity
+  parent: FHAirlockExternalGlass
+  id: FHAirlockNSExternalGlassEngineeringLocked
+  suffix: External, NS, Glass, Engineering, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNSEngineering ]
+  - type: Wires
+    layoutId: AirlockEngineering
+
+- type: entity
+  parent: FHAirlockExternalGlass
+  id: FHAirlockNSExternalGlassAtmosphericsLocked
+  suffix: External, NS, Glass, Atmospherics, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNSAtmospherics ]
+  - type: Wires
+    layoutId: AirlockEngineering
+
+- type: entity
+  parent: FHAirlockNSServiceGlassLocked
+  id: FHAirlockNSTheatreGlassLocked
+  suffix: Theatre, NS, Glass, Locked
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsNSTheatre ]
+
+- type: entity
+  parent: FHAirlockNSServiceGlassLocked
+  id: FHAirlockNSServiceTheatreGlassLocked
+  suffix: Service, Theatre, NS, Glass, Locked
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsNSServiceTheatre ]
+
+- type: entity
+  parent: FHAirlockNSServiceGlassLocked
+  id: FHAirlockNSBarGlassLocked
+  suffix: Bar, NS, Glass Locked
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsNSBar ]
+
+- type: entity
+  parent: FHAirlockNSServiceGlassLocked
+  id: FHAirlockNSBarKitchenGlassLocked
+  suffix: Bar, Kitchen, NS, Glass, Locked
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsNSBarKitchen ]
+
+- type: entity
+  parent: FHAirlockNSServiceGlassLocked
+  id: FHAirlockNSKitchenGlassLocked
+  suffix: Kitchen, NS, Glass, Locked
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsNSKitchen ]
+
+- type: entity
+  parent: FHAirlockNSServiceGlassLocked
+  id: FHAirlockNSJanitorGlassLocked
+  suffix: Janitor, NS, Glass, Locked
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsNSJanitor ]
+
+- type: entity
+  parent: FHAirlockHydroponicsGlass
+  id: FHAirlockNSHydroGlassLocked
+  suffix: Hydroponics, NS, Glass, Locked
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsNSHydroponics ]
+
+- type: entity
+  parent: FHAirlockServiceGlassLocked
+  id: FHAirlockNSChapelGlassLocked
+  suffix: Chapel, NS, Glass, Locked
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsNSChapel ]
+
+- type: entity
+  parent: FHAirlockNSBasicGlass
+  id: FHAirlockNSChapelStandardGlassLocked
+  suffix: Chapel, NS, Glass Locked
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsNSChapel ]
+    - type: Wires
+      layoutId: AirlockService
+
+- type: entity
+  parent: FHAirlockNSEngineeringGlass
+  id: FHAirlockNSEngineeringGlassLocked
+  suffix: Engineering, NS, Glass, Locked
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsNSEngineering ]
+
+- type: entity
+  parent: FHAirlockNSAtmosphericsGlass
+  id: FHAirlockNSAtmosphericsGlassLocked
+  suffix: Atmospherics, NS, Glass, Locked
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsNSAtmospherics ]
+
+- type: entity
+  parent: FHAirlockNSChemistryGlass
+  id: FHAirlockNSChemistryGlassLocked
+  suffix: Chemistry, NS, Glass, Locked
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsNSChemistry ]
+
+- type: entity
+  parent: FHAirlockNSMedicalGlass
+  id: FHAirlockNSMedicalMorgueGlassLocked
+  suffix: Morgue, NS, Glass, Locked
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsNSMorgue ]
+
+- type: entity
+  parent: FHAirlockNSMedicalGlass
+  id: FHAirlockNSMedicalGlassLocked
+  suffix: Medical, NS, Glass, Locked
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsNSMedical ]
+
+- type: entity
+  parent: FHAirlockNSParamedicGlass
+  id: FHAirlockNSParamedicGlassLocked
+  suffix: Paramedic, NS, Glass, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNSMedical ]
+
+- type: entity
+  parent: FHAirlockNSVirologyGlass
+  id: FHAirlockNSVirologyGlassLocked
+  suffix: Virology, NS, Glass Locked
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsNSMedical ]
+
+- type: entity
+  parent: FHAirlockNSSurgeryGlass
+  id: FHAirlockNSSurgeryGlassLocked
+  suffix: Surgery, NS, Glass, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNSSurgery ]
+
+- type: entity
+  parent: FHAirlockNSScienceGlass
+  id: FHAirlockNSScienceGlassLocked
+  suffix: Science, NS, Glass, Locked
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsNSResearch ]
+
+- type: entity
+  parent: FHAirlockNSRoboticsGlass
+  id: FHAirlockNSRoboticsGlassLocked
+  suffix: Robotics, NS, Glass, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNSRobotics ]
+
+- type: entity
+  parent: FHAirlockNSScienceGlass
+  id: FHAirlockNSMedicalScienceGlassLocked
+  suffix: Medical, Science, NS, Glass, Locked
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsNSMedicalResearch ]
+
+- type: entity
+  parent: FHAirlockNSNeoSolHighCommandGlass
+  id: FHAirlockNSNeoSolHighCommandGlassLocked
+  suffix: NeoSolHighCommand, NS, Glass, Locked
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsNSHighCommand ]
+
+- type: entity
+  parent: FHAirlockNSNeoSolHighCommandGlass
+  id: FHAirlockNSRedSwordOperativeGlassLocked
+  suffix: RSO, NS, Glass, Locked
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsNSRedSwordOperative ]
+
+- type: entity
+  parent: FHAirlockNSNeoSolHighCommandGlass
+  id: FHAirlockSyndicateoperatingAgentGlassLocked
+  suffix: NSR, NS, Glass, Locked
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsNSNSRep ]
+
+- type: entity
+  parent: FHAirlockNSExecutiveGlass
+  id: FHAirlockNSExecutiveGlassLocked
+  suffix: Executive, NS, Glass, Locked
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsNSExecutive ]
+
+- type: entity
+  parent: FHAirlockNSExecutiveGlass
+  id: FHAirlockNSCommandantGlassLocked
+  suffix: Commandant, NS, Glass, Locked
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsNSCommandant ]
+
+- type: entity
+  parent: FHAirlockNSExecutiveGlass
+  id: FHAirlockNSMedicalDirectorGlassLocked
+  suffix: MedicalDirector, NS, Glass, Locked
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsNSMedicalDirector ]
+
+- type: entity
+  parent: FHAirlockNSExecutiveGlass
+  id: FHAirlockNSForemanGlassLocked
+  suffix: Foreman, NS, Glass, Locked
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsNSForeman ]
+
+- type: entity
+  parent: FHAirlockNSExecutiveGlass
+  id: FHAirlockNSMarshalGlassLocked
+  suffix: Marshal, NS, Glass, Locked
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsNSMarshal ]
+
+- type: entity
+  parent: FHAirlockNSExecutiveGlass
+  id: FHAirlockNSEpistemicsProvostGlassLocked
+  suffix: EpistemicsProvost, NS, Glass, Locked
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsNSEpistemicsProvost ]
+
+- type: entity
+  parent: FHAirlockNSExecutiveGlass
+  id: FHAirlockNSPersonnelManagerGlassLocked
+  suffix: HeadOfPersonnel, NS, Glass, Locked
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsNSPersonnelManager ]
+
+- type: entity
+  parent: FHAirlockNSBasicGlass
+  id: FHAirlockNSCourtroomGlassLocked
+  suffix: Courtroom, NS, Glass, Locked
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsNSCourtroom ]
+    - type: Wires
+      layoutId: AirlockCommand
+
+- type: entity
+  parent: FHAirlockNSSecurityGlass
+  id: FHAirlockNSSecurityGlassLocked
+  suffix: Security, NS, Glass, Locked
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsNSSecurity ]
+
+- type: entity
+  parent: FHAirlockNSSecurityGlass
+  id: FHAirlockNSSecurityGlassNoCadetLocked
+  suffix: Security, No Cadet NS, Glass, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNSSecurityNoCadet ]
+
+- type: entity
+  parent: FHAirlockNSSecurityGlass
+  id: FHAirlockNSDetectiveGlassLocked
+  suffix: Detective, NS, Glass, Locked
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsNSDetective ]
+
+- type: entity
+  parent: FHAirlockNSSecurityGlass
+  id: FHAirlockNSBrigGlassLocked
+  suffix: Brig, NS, Glass, Locked
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsNSBrig ]
+
+- type: entity
+  parent: FHAirlockNSSecurityGlass
+  id: FHAirlockNSSecurityLawyerGlassLocked
+  suffix: Security, Lawyer, NS, Glass, Locked
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsNSSecurityLawyer ]
+
+- type: entity
+  parent: FHAirlockNSSecurityGlass
+  id: FHAirlockNSArmoryGlassLocked
+  suffix: Armory, NS, Glass, Locked
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsNSArmory ]
+
+- type: entity
+  parent: FHAirlockNSExecutiveLocked
+  id: FHAirlockNSEVAGlassLocked
+  suffix: EVA, NS, Glass, Locked
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsNSExternal ]
+
+- type: entity
+  parent: FHAirlockExternalGlass
+  id: FHAirlockNSExternalGlassExecutiveLocked
+  suffix: External, Glass, Executive, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNSExecutive ]
+  - type: Wires
+    layoutId: AirlockCommand
+
+- type: entity
+  parent: FHAirlockExternalGlassLong
+  id: FHAirlockNSExternalGlassSecurityLocked
+  suffix: External, Security, NS, No Cadet, Glass, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNSSecurityNoCadet ]
+  - type: Wires
+    layoutId: AirlockSecurity
+
+- type: entity
+  parent: FHAirlockSyndicateGlass
+  id: FHAirlockSyndicateGlassLocked
+  suffix: Syndicate, Locked
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsSyndicateAgent ]
+
+- type: entity
+  parent: FHAirlockExternalGlass
+  id: FHAirlockExternalGlassSyndicateLocked
+  suffix: External, Glass, Syndicate, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSyndicateAgent ]
+  - type: Wires
+    layoutId: AirlockSecurity
+
+- type: entity
+  parent: FHAirlockSyndicateGlass
+  id: FHAirlockSyndicateNukeopGlassLocked
+  suffix: Nukeop, Locked
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsNukeop ]
+
+- type: entity
+  parent: FHAirlockExternalGlass
+  id: FHAirlockExternalGlassNukeopLocked
+  suffix: External, Glass, NukeOp, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNukeop ]
+  - type: Wires
+    layoutId: AirlockSecurity
+
+#region HighSecDoors
+- type: entity
+  parent: FHHighSecDoor
+  id: FHHighSecNSNeoSolHighCommandLocked
+  suffix: NeoSolHighCommand, NS, Locked
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsNSHighCommand ]
+
+- type: entity
+  parent: FHHighSecDoor
+  id: FHHighSecNSExecutiveLocked
+  suffix: Executive, NS, Locked
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsNSExecutive ]
+
+- type: entity
+  parent: FHHighSecDoor
+  id: FHHighSecNSCommandantLocked
+  suffix: Commandant, NS, Locked
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsNSCommandant ]
+
+- type: entity
+  parent: FHHighSecDoor
+  id: FHHighSecNSArmoryLocked
+  suffix: Armory, NS, Locked
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsNSArmory ]
+
 #region Shuttle
 
-# Standard
+
+
+
+
+
+#region Standard Airlocks
 - type: entity
   parent: FHAirlockShuttle
   id: FHAirlockExternalShuttleLocked
@@ -1384,7 +2623,7 @@
 - type: entity
   parent: FHAirlockShuttleSyndicate
   id: FHAirlockExternalShuttleNukeopLocked
-  suffix: External, Docking, Nukeop, Locked
+  suffix: External, Docking, NukeOp, Locked
   components:
   - type: ContainerFill
     containers:
@@ -1401,8 +2640,7 @@
     containers:
       board: [ DoorElectronicsXenoborg ]
 
-# Glass
-
+# region Glass Airlocks
 - type: entity
   parent: FHAirlockGlassShuttle
   id: FHAirlockExternalGlassShuttleLocked
@@ -1424,7 +2662,7 @@
 - type: entity
   parent: FHAirlockGlassShuttleSyndicate
   id: FHAirlockExternalGlassShuttleNukeopLocked
-  suffix: Nukeop, Locked, Glass
+  suffix: NukeOp, Locked, Glass
   components:
   - type: ContainerFill
     containers:
@@ -1465,300 +2703,3 @@
   - type: ContainerFill
     containers:
       board: [ DoorElectronicsExternal ]
-
-# Standard Syndicate Locked
-
-- type: entity
-  parent: FHAirlockEngineeringSyndie
-  id: FHAirlockEngineeringSyndieLocked
-  suffix: Syndicate, Engineering, Locked
-  components:
-    - type: ContainerFill
-      containers:
-        board: [ DoorElectronicsEngineering ]
-
-- type: entity
-  parent: FHAirlockAtmosphericsSyndie
-  id: FHAirlockAtmosphericsSyndieLocked
-  suffix: Syndicate, Atmospherics, Locked
-  components:
-    - type: ContainerFill
-      containers:
-        board: [ DoorElectronicsAtmospherics ]
-
-- type: entity
-  parent: FHAirlockHydroponicsSyndie
-  id: FHAirlockHydroponicsSyndieLocked
-  suffix: Syndicate, Hydroponics, Locked
-  components:
-    - type: ContainerFill
-      containers:
-        board: [ DoorElectronicsHydroponics ]
-
-- type: entity
-  parent: FHAirlockMedicalSyndie
-  id: FHAirlockMedicalSyndieLocked
-  suffix: Syndicate, Medical, Locked
-  components:
-    - type: ContainerFill
-      containers:
-        board: [ DoorElectronicsMedical ]
-
-- type: entity
-  parent: FHAirlockVirologySyndie
-  id: FHAirlockVirologySyndieLocked
-  suffix: Syndicate, Virology, Locked
-  components:
-    - type: ContainerFill
-      containers:
-        board: [ DoorElectronicsMedical ]
-
-- type: entity
-  parent: FHAirlockChemistrySyndie
-  id: FHAirlockChemistrySyndieLocked
-  suffix: Syndicate, Chemistry, Locked
-  components:
-    - type: ContainerFill
-      containers:
-        board: [ DoorElectronicsChemistry ]
-
-- type: entity
-  parent: FHAirlockScienceSyndie
-  id: FHAirlockScienceSyndieLocked
-  suffix: Syndicate, Science, Locked
-  components:
-    - type: ContainerFill
-      containers:
-        board: [ DoorElectronicsResearch ]
-
-- type: entity
-  parent: FHAirlockCommandSyndie
-  id: FHAirlockCommandSyndieLocked
-  suffix: Syndicate, Command, Locked
-  components:
-    - type: ContainerFill
-      containers:
-        board: [ DoorElectronicsCommand ]
-
-- type: entity
-  parent: FHAirlockSecuritySyndie
-  id: FHAirlockSecuritySyndieLocked
-  suffix: Syndicate, Security, Locked
-  components:
-    - type: ContainerFill
-      containers:
-        board: [ DoorElectronicsSecurity ]
-
-- type: entity
-  parent: FHAirlockMaintSyndie
-  id: FHAirlockMaintSyndieLocked
-  suffix: Syndicate, Maintenance, Locked
-  components:
-    - type: ContainerFill
-      containers:
-        board: [ DoorElectronicsMaintenance ]
-
-- type: entity
-  parent: FHAirlockSHC
-  id: FHAirlockSHCLocked
-  suffix: SHC, Locked
-  components:
-    - type: ContainerFill
-      containers:
-        board: [ DoorElectronicsCentralCommand ]
-
-- type: entity
-  parent: FHAirlockSurgerySyndie
-  id: FHAirlockSurgerySyndieLocked
-  suffix: Syndicate, Surgery, Locked
-  components:
-    - type: ContainerFill
-      containers:
-        board: [ DoorElectronicsSurgery ]
-
-- type: entity
-  parent: FHAirlockRoboticsSyndie
-  id: FHAirlockRoboticsSyndieLocked
-  suffix: Syndicate, Robotics, Locked
-  components:
-    - type: ContainerFill
-      containers:
-        board: [ DoorElectronicsRobotics ]
-
-- type: entity
-  parent: FHAirlockParamedicSyndie
-  id: FHAirlockParamedicSyndieLocked
-  suffix: Syndicate, Paramedic, Locked
-  components:
-    - type: ContainerFill
-      containers:
-        board: [ DoorElectronicsMedical ]
-
-- type: entity
-  parent: FHAirlockBasicSyndie
-  id: FHAirlockBasicSyndieLocked
-  suffix: Syndicate, Locked
-  components:
-    - type: ContainerFill
-      containers:
-        board: [ DoorElectronicsSyndicateAgent ]
-
-- type: entity
-  parent: FHAirlockBasicSyndie
-  id: FHAirlockServiceSyndieLocked
-  suffix: Syndicate, Service, Locked
-  components:
-    - type: ContainerFill
-      containers:
-        board: [ DoorElectronicsService ]
-    - type: Wires
-      layoutId: AirlockService
-
-
-# Glass Syndicate Locked
-
-- type: entity
-  parent: FHAirlockEngineeringGlassSyndie
-  id: FHAirlockEngineeringGlassSyndieLocked
-  suffix: Syndicate, Engineering, Locked
-  components:
-    - type: ContainerFill
-      containers:
-        board: [ DoorElectronicsEngineering ]
-
-- type: entity
-  parent: FHAirlockAtmosphericsGlassSyndie
-  id: FHAirlockAtmosphericsGlassSyndieLocked
-  suffix: Syndicate, Atmospherics, Locked
-  components:
-    - type: ContainerFill
-      containers:
-        board: [ DoorElectronicsAtmospherics ]
-
-- type: entity
-  parent: FHAirlockHydroponicsGlassSyndie
-  id: FHAirlockHydroponicsGlassSyndieLocked
-  suffix: Syndicate, Hydroponics, Locked
-  components:
-    - type: ContainerFill
-      containers:
-        board: [ DoorElectronicsHydroponics ]
-
-- type: entity
-  parent: FHAirlockMedicalGlassSyndie
-  id: FHAirlockMedicalGlassSyndieLocked
-  suffix: Syndicate, Medical, Locked
-  components:
-    - type: ContainerFill
-      containers:
-        board: [ DoorElectronicsMedical ]
-
-- type: entity
-  parent: FHAirlockVirologyGlassSyndie
-  id: FHAirlockVirologyGlassSyndieLocked
-  suffix: Syndicate, Virology, Locked
-  components:
-    - type: ContainerFill
-      containers:
-        board: [ DoorElectronicsMedical ]
-
-- type: entity
-  parent: FHAirlockChemistryGlassSyndie
-  id: FHAirlockChemistryGlassSyndieLocked
-  suffix: Syndicate, Chemistry, Locked
-  components:
-    - type: ContainerFill
-      containers:
-        board: [ DoorElectronicsChemistry ]
-
-- type: entity
-  parent: FHAirlockScienceGlassSyndie
-  id: FHAirlockScienceGlassSyndieLocked
-  suffix: Syndicate, Science, Locked
-  components:
-    - type: ContainerFill
-      containers:
-        board: [ DoorElectronicsResearch ]
-
-- type: entity
-  parent: FHAirlockCommandGlassSyndie
-  id: FHAirlockCommandGlassSyndieLocked
-  suffix: Syndicate, Command, Locked
-  components:
-    - type: ContainerFill
-      containers:
-        board: [ DoorElectronicsCommand ]
-
-- type: entity
-  parent: FHAirlockSecurityGlassSyndie
-  id: FHAirlockSecurityGlassSyndieLocked
-  suffix: Syndicate, Security, Locked
-  components:
-    - type: ContainerFill
-      containers:
-        board: [ DoorElectronicsSecurity ]
-
-- type: entity
-  parent: FHAirlockMaintGlassSyndie
-  id: FHAirlockMaintGlassSyndieLocked
-  suffix: Syndicate, Maintenance, Locked
-  components:
-    - type: ContainerFill
-      containers:
-        board: [ DoorElectronicsMaintenance ]
-
-- type: entity
-  parent: FHAirlockSHCGlass
-  id: FHAirlockSHCGlassLocked
-  suffix: SHC, Locked
-  components:
-    - type: ContainerFill
-      containers:
-        board: [ DoorElectronicsCentralCommand ]
-
-- type: entity
-  parent: FHAirlockSurgeryGlassSyndie
-  id: FHAirlockSurgeryGlassSyndieLocked
-  suffix: Syndicate, Surgery, Locked
-  components:
-    - type: ContainerFill
-      containers:
-        board: [ DoorElectronicsSurgery ]
-
-- type: entity
-  parent: FHAirlockRoboticsGlassSyndie
-  id: FHAirlockRoboticsGlassSyndieLocked
-  suffix: Syndicate, Robotics, Locked
-  components:
-    - type: ContainerFill
-      containers:
-        board: [ DoorElectronicsRobotics ]
-
-- type: entity
-  parent: FHAirlockParamedicGlassSyndie
-  id: FHAirlockParamedicGlassSyndieLocked
-  suffix: Syndicate, Paramedic, Locked
-  components:
-    - type: ContainerFill
-      containers:
-        board: [ DoorElectronicsMedical ]
-
-- type: entity
-  parent: FHAirlockBasicGlassSyndie
-  id: FHAirlockBasicGlassSyndieLocked
-  suffix: Syndicate, Locked
-  components:
-    - type: ContainerFill
-      containers:
-        board: [ DoorElectronicsSyndicateAgent ]
-
-- type: entity
-  parent: FHAirlockSyndicateGlass
-  id: FHAirlockServiceGlassSyndieLocked
-  suffix: Syndicate, Service, Locked
-  components:
-    - type: ContainerFill
-      containers:
-        board: [ DoorElectronicsService ]
-    - type: Wires
-      layoutId: AirlockService

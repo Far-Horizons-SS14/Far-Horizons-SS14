@@ -342,3 +342,30 @@
     radius: 1.5
     energy: 1.6
     color: "#FC0097"
+
+- type: entity
+  parent: ComputerId
+  id: ComputerIdNS
+  name: ID Card Computer 
+  description: Terminal for programming NeoSol employee ID cards to access parts of the station.
+  suffix: NS
+  components:
+  - type: IdCardConsole
+    accessGroups:
+    - GeneralNS
+    - SecurityNS
+    - Cargo
+    - Executive
+    - ResearchNS
+    - MedicalNS
+    - ServiceNS
+    - EngineeringNS
+    - General
+    - Security
+    - Command
+    - Research
+    - Medical
+    - Service
+    - Engineering
+  - type: Computer
+    board: IDComputerCircuitboardNS
