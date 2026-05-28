@@ -1,7 +1,7 @@
 - type: entity
   id: LockerBaseNS
   parent: LockerBase
-  description: A standard-issue NeoSol storage unit.
+  abstract: true
   suffix: NS
   components:
   - type: Sprite
@@ -10,8 +10,8 @@
 - type: entity
   id: LockerBaseSecureSyndi
   parent: LockerBaseSecure
+  abstract: true
   name: Secure Closet
-  description: A standard-issue NeoSol storage unit.
   suffix: NS
   components:
   - type: Sprite
@@ -21,7 +21,6 @@
   id: LockerLargeBaseSecureSyndi
   suffix: NS
   parent: LockerLargeBaseSecure
-  description: A standard-issue NeoSol storage unit.
   abstract: true
   components:
   - type: Sprite
