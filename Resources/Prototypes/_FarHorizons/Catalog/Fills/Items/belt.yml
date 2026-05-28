@@ -245,10 +245,6 @@
   parent: ClothingBeltMacheteScabbard
   suffix: Filled
   components:
-  - type: ContainerFill
-    containers:
-      item:
-      - WeaponCrusherMachete
   - type: EntityTableContainerFill
     containers:
       storagebase: !type:AllSelector
@@ -259,3 +255,6 @@
         - id: Wirecutter
         - id: Welder
         - id: NetworkConfigurator
+      item: !type:AllSelector
+        children:
+        - id: WeaponCrusherMachete
