@@ -141,6 +141,7 @@
         - GrappleGun
         - Write
         - Paper
+        - HoloflarePistol
       components:
         - StationMap
         - SprayPainter
@@ -201,6 +202,94 @@
           tags:
           - Wrench
           - ImprovisedWrench
+
+
+ # Salvage Lead Belt
+    
+- type: entity
+  parent: [ClothingBeltStorageBase, ClothingSlotBase, BaseSalvageContraband]
+  id: ClothingBeltMacheteScabbard
+  name: Crusher Machete Scabbard
+  description: A high power scabbard designed to carry the elusive Crusher Machete granted to the greatest salvage has to offer.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Belt/crushchetesheath.rsi
+    state: sheath
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Belt/crushchetesheath.rsi
+    slots:
+    - suitStorage
+    - Belt
+  - type: Item
+    size: Ginormous
+  - type: Storage
+    grid:
+    - 0,0,0,0 #left
+    - 1,0,1,1 #left - grapple
+    - 3,0,7,1
+    whitelist:
+      tags:
+        - Wirecutter
+        - Crowbar
+        - Screwdriver
+        - Flashlight
+        - Wrench
+        - GeigerCounter
+        - Flare
+        - CableCoil
+        - Powerdrill
+        - JawsOfLife
+        - CigPack
+        - Radio
+        - HolofanProjector
+        - Multitool
+        - AppraisalTool
+        - GPS
+        - WeldingMask
+        - RemoteSignaller
+        - ImprovisedCrowbar
+        - ImprovisedScrewdriver
+        - ImprovisedWirecutter
+        - ImprovisedWrench
+        - ImprovisedMultitool
+        - Knife
+        - GrappleGun
+        - Write
+        - Paper
+        - HoloflarePistol
+      components:
+        - StationMap
+        - SprayPainter
+        - SprayPainterAmmo
+        - NetworkConfigurator
+        - Welder
+        - PowerCell
+        - Geiger
+        - TrayScanner
+        - GasAnalyzer
+        - HandLabeler
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+      item: !type:ContainerSlot
+  - type: ItemSlots
+    slots:
+      item:
+        name: Crusher Machete
+        insertVerbText: sheath-insert-verb
+        ejectVerbText: sheath-eject-verb
+        insertSound: /Audio/Items/sheath.ogg
+        ejectSound: /Audio/Items/unsheath.ogg
+        whitelist:
+          tags:
+          - CrusherMachete
+  - type: ItemMapper
+    mapLayers:
+      sheath-sabre:
+        whitelist:
+          tags:
+          - CrusherMachete
+  - type: Appearance
 
 #region ## Nanotrasen ##
 
