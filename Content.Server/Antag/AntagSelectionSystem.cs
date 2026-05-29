@@ -382,7 +382,7 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
     {
         _adminLogger.Add(LogType.AntagSelection, $"Start trying to make {session} become the antagonist: {ToPrettyString(ent)}");
 
-        if (checkPref && !ValidAntagPreference(session, def.PrefRoles, ent.Comp.SelectionTime))
+        if (checkPref && !ValidAntagPreference(session, def.PrefRoles, ent.Comp.SelectionTime)) ///Starlight edited this maybe?
             return false;
 
         if (!IsSessionValid(ent, session, def) || !IsEntityValid(session?.AttachedEntity, def))
