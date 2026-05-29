@@ -17,8 +17,10 @@
           emergencyShuttlePath: /Maps/Shuttles/emergency.yml
         - type: StationJobs
           availableJobs:
-            #service
+            #command
             Captain: [ 1, 1 ]
+            NanoTrasenRepresentative: [ 1, 1 ]
+            #service
             HeadOfPersonnel: [ 1, 1 ]
             Bartender: [ 1, 1 ]
             Botanist: [ 1, 1 ]
@@ -48,11 +50,10 @@
             #SecBorg: [1,1] #Far Horizons
             #supply
             Quartermaster: [ 1, 1 ]
-            SalvageSpecialist: [ 1, 1 ]
+            SalvageSpecialist: [ 2, 2 ]
             CargoTechnician: [ 2, 2 ]
             MailTech: [ 1, 1 ]
             MiningSpecialist: [ 2, 2 ]
-            SalvageLead: [ 1, 1 ]
             #civilian
             Assistant: [ -1, -1 ]
             Clown: [ 1, 1 ]
