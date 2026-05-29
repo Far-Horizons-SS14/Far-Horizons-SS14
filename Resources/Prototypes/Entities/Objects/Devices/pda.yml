@@ -193,23 +193,7 @@
       - NewsReaderCartridge
       - HullSenseCartridge
       - AstroNavCartridge #FH
-#FarHorizons End
-
-#FarHorizons Start
-- type: entity
-  parent: BasePDA
-  id: BaseEngineerPDA
-  abstract: true
-  components:
-  - type: CartridgeLoader
-    uiKey: enum.PdaUiKey.Key
-    preinstalled:
-      - CrewManifestCartridge
-      - NotekeeperCartridge
-      - NanoTaskCartridge
-      - NewsReaderCartridge
-      - HullSenseCartridge
-      - AstroNavCartridge #FH
+      - NanoChatCartridge #FH
 #FarHorizons End
 
 - type: entity
@@ -487,6 +471,7 @@
     preinstalled:
     - CrewManifestCartridge
     - NewsReaderCartridge
+    - NanoChatCartridge #FH
   - type: Appearance
     appearanceDataInit:
      enum.PdaVisuals.PdaType:
@@ -863,6 +848,18 @@
     borderColor: "#141633" #FH
   - type: Icon
     state: pda-paramedic
+#FarHorizons Start
+  - type: CartridgeLoader
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NanoTaskCartridge
+      - NewsReaderCartridge
+      - MedTekCartridge
+      - NanoChatCartridge
+      - AstroNavCartridge
+#FarHorizons End
 
 - type: entity
   parent: BaseMedicalPDA

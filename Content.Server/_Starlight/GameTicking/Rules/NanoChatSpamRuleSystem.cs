@@ -199,16 +199,18 @@ public sealed class NanoChatSpamRuleSystem : GameRuleSystem<NanoChatSpamRuleComp
 
         // Get species from the player entity
         var species = "Human";
-        if (playerEntity != null && TryComp<HumanoidAppearanceComponent>(playerEntity.Value, out var humanoid))
+        if (playerEntity != null && TryComp<HumanoidProfileComponent>(playerEntity.Value, out var humanoid))
         {
-            species = humanoid.Species.ToString();
+            var speciesTemp = humanoid.Species;
+            species = speciesTemp.ToString();
         }
 
         // Get gender from the player entity
         var gender = "Unknown";
-        if (playerEntity != null && TryComp<HumanoidAppearanceComponent>(playerEntity.Value, out var humanoidGender))
+        if (playerEntity != null && TryComp<HumanoidProfileComponent>(playerEntity.Value, out var humanoidGender))
         {
-            gender = humanoidGender.Gender.ToString();
+            var genderTemp = humanoidGender.Gender;
+            gender = genderTemp.ToString();
         }
 
         // Get current station time and date using the proper TimeSystem
