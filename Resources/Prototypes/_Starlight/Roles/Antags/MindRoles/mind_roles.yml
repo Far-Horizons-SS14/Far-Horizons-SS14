@@ -1,12 +1,24 @@
 - type: entity
   parent: BaseMindRoleAntag
-  id: MindRoleLoneAbductor
-  name: Lone Abductor Role
+  id: MindRoleScientist #FH
+  name: Scientist Abductor Role #FH
   components:
   - type: MindRole
     exclusiveAntag: true
-    antagPrototype: LoneAbductorAntag
+    antagPrototype: ScientistAbductorAntag #FH
   - type: Abductor
+
+#FarHorizons Start
+- type: entity
+  parent: BaseMindRoleAntag
+  id: MindRoleAgentAbductor
+  name: Agent Abductor Role
+  components:
+  - type: MindRole
+    exclusiveAntag: true
+    antagPrototype: AgentAbductorAntag
+  - type: Abductor
+#FarHorizons End
 
 - type: entity
   parent: BaseMindRoleAntag
