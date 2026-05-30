@@ -349,3 +349,23 @@
           amount: 4
         - id: MagazineMagnum
           amount: 4
+
+#region NeoSol
+- type: entity
+  parent: ClothingBackpackDuffelMedicalSyndi
+  id: ClothingBackpackDuffelSurgerySyndiFilled
+  name: Surgical Duffel Bag
+  description: "A large duffel bag for holding extra medical supplies - this one seems to be designed for holding surgical tools."
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: Hemostat
+        - id: Saw
+        - id: Drill
+        - id: Cautery
+        - id: Retractor
+        - id: Scalpel
+        - id: BoneGel
+        - id: BoneSetter

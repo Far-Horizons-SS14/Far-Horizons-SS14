@@ -1,0 +1,77 @@
+- type: entity
+  parent: DoorRemoteCommand
+  id: DoorRemoteCommandNS
+  name: Executive Door Remote 
+  suffix: NS
+  components:
+  - type: Sprite
+    layers:
+    - state: door_remotebase
+    - state: door_remotelightscolour
+      color: "#e6e600"
+    - state: door_remotescreencolour
+      color: "#9f9f00"
+  - type: Access
+    groups:
+    - Executive
+  - type: DoorRemote
+
+- type: entity
+  parent: DoorRemoteSecurity
+  id: DoorRemoteSecurityNS
+  name: Security Door Remote #Far Horizons - The Great Capitalization Crusade
+  suffix: NS
+  components:
+  - type: Access
+    groups:
+    - SecurityNS
+
+- type: entity
+  parent: DoorRemoteArmory
+  id: DoorRemoteArmoryNS
+  name: Armory Door Remote 
+  suffix: NS
+  components:
+  - type: Access
+    groups:
+    - ArmoryNS
+
+- type: entity
+  parent: DoorRemoteService
+  id: DoorRemoteServiceNS
+  name: Service Door Remote 
+  suffix: NS
+  components:
+  - type: Access
+    groups:
+    - ServiceNS
+
+- type: entity
+  parent: DoorRemoteResearch
+  id: DoorRemoteResearchNS
+  name: Research Door Remote 
+  suffix: NS
+  components:
+  - type: Access
+    groups:
+    - ResearchNS
+
+- type: entity
+  parent: DoorRemoteMedical
+  id: DoorRemoteMedicalNS
+  name: Medical Door Remote 
+  suffix: NS
+  components:
+  - type: Access
+    groups:
+    - MedicalNS
+
+- type: entity
+  parent: DoorRemoteEngineering
+  id: DoorRemoteEngineeringNS
+  name: Engineering Door Remote 
+  suffix: NS
+  components:
+  - type: Access
+    groups:
+    - EngineeringNS

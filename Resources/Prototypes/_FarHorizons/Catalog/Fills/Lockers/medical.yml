@@ -1,0 +1,76 @@
+- type: entity
+  parent: LockerChemistryNS
+  id: LockerChemistryNSFilled
+  suffix: NS, Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: LockerFillChemistry
+
+- type: entityTable
+  id: LockerFillNSMedicalDoctor
+  table: !type:AllSelector
+    children:
+    - id: ClothingEyesHudMedicalSyndi
+    - id: ClothingBeltMedicalSyndiFilled
+    - id: JetInjector
+    - id: HandheldHealthAnalyzer
+    - id: ChemistryBottleLaughter # Widely recognized as the best medicine :o)
+      prob: 0.01
+    - id: PlushieLizardJobMedicaldoctor
+      prob: 0.02
+    - id: PlushieLizardJobMedicalintern
+      prob: 0.02
+    - id: PlushieLizardJobPsychologist
+      prob: 0.02
+
+- type: entity
+  parent: LockerMedicalNS
+  id: LockerMedicalNSFilled
+  suffix: NS, Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: LockerFillNSMedicalDoctor
+
+- type: entityTable
+  id: LockerFillNSParamedic
+  table: !type:AllSelector
+    children:
+    - id: ClothingOuterHardsuitVoidParamedSyndi
+    #- id: ClothingOuterCoatParamedicWB Needs resprite
+    - id: ClothingHeadHatParamedicsoftSyndi
+    - id: ClothingOuterWinterParaSyndi
+    - id: ClothingUniformJumpsuitParamedicSyndi
+    - id: ClothingUniformJumpskirtParamedicSyndi
+    - id: ClothingEyesHudMedicalSyndi
+    - id: ClothingHandsGlovesLatex
+    - id: ClothingHeadsetMedical
+    - id: ClothingMaskSterile
+    - id: HandheldGPSBasic
+    - id: MedkitFilled
+      prob: 0.3
+    - id: PlushieKiosha 
+    - id: EmergencyHandheldCrewMonitor
+    - id: JetInjector
+    - id: HandheldHealthAnalyzer
+    - id: BoxBodyBag
+    - !type:GroupSelector
+      children:
+      - id: RollerBedSpawnFolded
+      - id: CheapRollerBedSpawnFolded
+      - id: EmergencyRollerBedSpawnFolded
+    - id: PlushieLizardJobParamedic
+      prob: 0.02
+
+- type: entity
+  parent: LockerParamedicNS
+  id: LockerParamedicNSFilled
+  suffix: NS, Filled, Hardsuit 
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: LockerFillNSParamedic
