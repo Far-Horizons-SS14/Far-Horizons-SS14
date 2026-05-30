@@ -39,7 +39,7 @@
         factions:
         - Abductor
       mindRoles:
-      - MindRoleLoneAbductor
+      - MindRoleScientistAbductor #FH
     - spawnerPrototype: AbductorAgentSpawner
       min: 1
       max: 1
@@ -64,7 +64,7 @@
         factions:
         - Abductor
       mindRoles:
-      - MindRoleLoneAbductor
+      - MindRoleAgentAbductor #FH
   # Far Horizons start
   # The order of thise is important, startup events get executed from bottom up
   # Loading map after loading ghost roles leads to bugs

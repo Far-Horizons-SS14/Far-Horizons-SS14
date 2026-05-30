@@ -13,7 +13,7 @@
     raffle:
       settings: default
     mindRoles:
-    - MindRoleLoneAbductor
+    - MindRoleScientistAbductor #FH
   - type: AbductorScientist
   - type: ActionGrant
     actions:
@@ -37,7 +37,7 @@
     raffle:
       settings: default
     mindRoles:
-    - MindRoleLoneAbductor
+    - MindRoleAgentAbductor #FH
   - type: AbductorAgent
   - type: ActionGrant
     actions:
@@ -124,7 +124,7 @@
     description: abductors-ghost-role-desc
     rules: abductors-ghost-role-rules
     mindRoles:
-    - MindRoleScientist #FH
+    - MindRoleScientistAbductor #FH
   - type: Sprite
     sprite: Markers/jobs.rsi
     layers:
