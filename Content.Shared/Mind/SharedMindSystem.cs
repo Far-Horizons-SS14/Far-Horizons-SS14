@@ -694,7 +694,7 @@ public abstract partial class SharedMindSystem : EntitySystem
         }
 
         // Starlight-start
-        var speaker = EnsureComp<LanguageSpeakerComponent>(uid);
+        var speaker = EnsureComp<LanguageKnowledgeComponent>(uid); //FH Fix
 
         // If the entity already speaks some language (like monkey or robot), we do nothing else.
         // Otherwise, we give them the fallback language
