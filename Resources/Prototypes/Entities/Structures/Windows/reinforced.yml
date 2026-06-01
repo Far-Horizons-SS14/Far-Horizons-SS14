@@ -1,6 +1,7 @@
 - type: entity
   id: ReinforcedWindow
   name: Reinforced window #Far Horizons - The Great Capitalization Crusade
+  suffix: NT #FH
   parent: [BaseDeltaPressureReinforcedGlass, Window]
   components:
   - type: Sprite
@@ -55,6 +56,9 @@
     trackAllDamage: true
     damageOverlay:
       sprite: Structures/Windows/cracks.rsi
+  - type: Paintable #FH start
+    group: ReinforcedWindow 
+  - type: GenericPaintable #FH end
 
 - type: entity
   id: WindowReinforcedDirectional
@@ -164,3 +168,5 @@
   - type: Construction
     graph: WindowDiagonal
     node: reinforcedWindowDiagonal
+  - type: Paintable #FH start
+    group: null #FH end

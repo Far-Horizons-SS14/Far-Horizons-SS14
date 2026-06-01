@@ -6,6 +6,8 @@ spray-painter-tab-group-fhairlockstandard = Standard
 spray-painter-tab-group-fhairlockglass = Glass
 spray-painter-tab-group-wallsolid= Solid
 spray-painter-tab-group-wallreinforced= Reinforced
+spray-painter-tab-group-window= Window
+spray-painter-tab-group-reinforcedwindow= Reinforced Window
 
 # Airlocks
 spray-painter-style-fhairlockstandard-atmospherics = Atmospheric
@@ -46,6 +48,14 @@ spray-painter-style-wallsolid-neosol = Neosol
 spray-painter-style-wallreinforced-nanotrasen = Nanotrasen
 spray-painter-style-wallreinforced-standard = Standard
 spray-painter-style-wallreinforced-neosol = Neosol
+
+spray-painter-style-window-nanotrasen = Nanotrasen
+spray-painter-style-window-standard = Standard
+spray-painter-style-window-neosol = Neosol
+
+spray-painter-style-reinforcedwindow-nanotrasen = Nanotrasen
+spray-painter-style-reinforcedwindow-standard = Standard
+spray-painter-style-reinforcedwindow-neosol = Neosol
 
 # Lockers
 spray-painter-style-locker-magistrate = Magistrate
