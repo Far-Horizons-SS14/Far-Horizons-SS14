@@ -55,7 +55,7 @@ spray-painter-style-window-neosol = Neosol
 
 spray-painter-style-reinforcedwindow-nanotrasen = Nanotrasen
 spray-painter-style-reinforcedwindow-standard = Standard
-spray-painter-style-reinforcedwindow-neosol = Neosol
+spray-painter-style-reinforcedwindow-neosol = NeoSol
 
 # Lockers
 spray-painter-style-locker-magistrate = Corporate Liaison
