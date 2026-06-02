@@ -58,4 +58,4 @@ spray-painter-style-reinforcedwindow-standard = Standard
 spray-painter-style-reinforcedwindow-neosol = Neosol
 
 # Lockers
-spray-painter-style-locker-magistrate = Magistrate
+spray-painter-style-locker-magistrate = Corporate Liaison
