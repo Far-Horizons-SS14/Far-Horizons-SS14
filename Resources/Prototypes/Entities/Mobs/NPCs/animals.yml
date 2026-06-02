@@ -1528,6 +1528,18 @@
   - type: GhostTakeoverAvailable
   - type: Loadout
     prototypes: [SyndicateOperativeGearMonkey]
+  # Far Horizons-Start
+  - type: LanguageSpeaker
+  - type: LanguageKnowledge
+    speaks:
+    - Ancestor
+    - Sign 
+    understands:
+    - Ancestor
+    - GalacticCommon
+    - Sign 
+    - SolCommon 
+  # Far Horizons-End
 
 - type: entity
   id: MobMonkeySyndicateAgent
@@ -1701,9 +1713,10 @@
   - type: LanguageKnowledge
     speaks:
     - Ancestor
-    - Draconic
+    - Sign #Far Horizons: Give orange me give eat orange
     understands:
     - Ancestor
+    - Sign #Far Horizons: Give orange me give eat orange
     - Draconic
     - GalacticCommon
   # Starlight-End
