@@ -42,10 +42,17 @@
 
 - type: entity
   parent:
+  - ActiveCritBase
   - AppearanceProtoFeline
   - BaseMobProtoFeline
   id: MobProtoFeline
   name: Urist McFelinster
+  components:
+    - type: MobThresholds
+      thresholds:
+        0: Alive
+        75: ActiveCritical
+        150: Dead
 
 # Organs
 

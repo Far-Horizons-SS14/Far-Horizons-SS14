@@ -1,0 +1,602 @@
+#region Standard Syndicate
+
+- type: entity
+  parent: FHAirlockEngineering
+  id: FHAirlockEngineeringSyndie
+  suffix: Syndicate, Engineering
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/engineering_syndie.rsi
+
+- type: entity
+  parent: FHAirlockAtmospherics
+  id: FHAirlockAtmosphericsSyndie
+  suffix: Syndicate, Atmospherics
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/atmospherics_syndie.rsi
+
+- type: entity
+  parent: FHAirlockHydroponics
+  id: FHAirlockHydroponicsSyndie
+  suffix: Syndicate, Hydroponics
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/hydroponics_syndie.rsi
+
+- type: entity
+  parent: FHAirlockMedical
+  id: FHAirlockMedicalSyndie
+  suffix: Syndicate, Medical
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/medical_syndie.rsi
+
+- type: entity
+  parent: FHAirlockVirology
+  id: FHAirlockVirologySyndie
+  suffix: Syndicate, Virology
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/virology_syndie.rsi
+
+- type: entity
+  parent: FHAirlockChemistry
+  id: FHAirlockChemistrySyndie
+  suffix: Syndicate, Chemistry
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/chemistry_syndie.rsi
+
+- type: entity
+  parent: FHAirlockScience
+  id: FHAirlockScienceSyndie
+  suffix: Syndicate, Science
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/science_syndie.sci
+
+- type: entity
+  parent: FHAirlockCommand
+  id: FHAirlockCommandSyndie
+  suffix: Syndicate, Command
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/command_syndie.rsi
+
+- type: entity
+  parent: FHAirlockSecurity
+  id: FHAirlockSecuritySyndie
+  suffix: Syndicate, Security
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/security_syndie.rsi
+
+- type: entity
+  parent: FHAirlockMaint
+  id: FHAirlockMaintSyndie
+  suffix: Syndicate, Maintenance
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/maint_syndie.rsi
+
+- type: entity
+  parent: FHAirlockCentralCommand
+  id: FHAirlockSHC
+  categories: [ HideSpawnMenu ]
+  suffix: SHC
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/SHC.rsi
+
+- type: entity
+  parent: FHAirlockSurgery
+  id: FHAirlockSurgerySyndie
+  suffix: Syndicate, Surgery
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/surgeon_syndie.rsi
+
+- type: entity
+  parent: FHAirlockRobotics
+  id: FHAirlockRoboticsSyndie
+  suffix: Syndicate, Robotics
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/robotics_syndie.sci
+
+- type: entity
+  parent: FHAirlockMedical
+  id: FHAirlockParamedicSyndie
+  suffix: Syndicate, Paramedic
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/paramedic_syndie.rsi
+
+- type: entity
+  parent: FHAirlock
+  id: FHAirlockBasicSyndie
+  suffix: Syndicate
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/basic_syndie.rsi
+
+
+#region Glass Syndicate
+
+- type: entity
+  parent: FHAirlockStandardGlass
+  id: FHAirlockBasicGlassSyndie
+  suffix: Syndicate
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Structures/Doors/Airlocks/Glass/basic_syndie.rsi
+
+- type: entity
+  parent: FHAirlockEngineeringGlass
+  id: FHAirlockEngineeringGlassSyndie
+  suffix: Syndicate, Engineering
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Structures/Doors/Airlocks/Glass/engineering_syndie.rsi
+
+- type: entity
+  parent: FHAirlockMaintGlass
+  id: FHAirlockMaintGlassSyndie
+  suffix: Syndicate, Maintenance
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Structures/Doors/Airlocks/Glass/maint_syndie.rsi
+
+- type: entity
+  parent: FHAirlockAtmosphericsGlass
+  id: FHAirlockAtmosphericsGlassSyndie
+  suffix: Syndicate, Atmospherics
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Structures/Doors/Airlocks/Glass/atmospherics_syndie.rsi
+
+- type: entity
+  parent: FHAirlockHydroponicsGlass
+  id: FHAirlockHydroponicsGlassSyndie
+  suffix: Syndicate, Hydroponics
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Structures/Doors/Airlocks/Glass/hydroponics_syndie.rsi
+
+- type: entity
+  parent: FHAirlockMedicalGlass
+  id: FHAirlockMedicalGlassSyndie
+  suffix: Syndicate, Medical
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Structures/Doors/Airlocks/Glass/medical_syndie.rsi
+
+- type: entity
+  parent: FHAirlockChemistryGlass
+  id: FHAirlockChemistryGlassSyndie
+  suffix: Syndicate, Chemistry
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Structures/Doors/Airlocks/Glass/chemistry_syndie.rsi
+
+- type: entity
+  parent: FHAirlockVirologyGlass
+  id: FHAirlockVirologyGlassSyndie
+  suffix: Syndicate, Virology
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Structures/Doors/Airlocks/Glass/virology_syndie.rsi
+
+- type: entity
+  parent: FHAirlockScienceGlass
+  id: FHAirlockScienceGlassSyndie
+  suffix: Syndicate, Science
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Structures/Doors/Airlocks/Glass/science_syndie.sci
+
+- type: entity
+  parent: FHAirlockCommandGlass
+  id: FHAirlockCommandGlassSyndie
+  suffix: Syndicate, Command
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Structures/Doors/Airlocks/Glass/command_syndie.rsi
+
+- type: entity
+  parent: FHAirlockSecurityGlass
+  id: FHAirlockSecurityGlassSyndie
+  suffix: Syndicate, Security
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Structures/Doors/Airlocks/Glass/security_syndie.rsi
+
+- type: entity
+  parent: FHAirlockCentralCommandGlass
+  id: FHAirlockSHCGlass
+  categories: [ HideSpawnMenu ]
+  suffix: SHC
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Structures/Doors/Airlocks/Glass/SHC.rsi
+
+- type: entity
+  parent: FHAirlockSurgeryGlass
+  id: FHAirlockSurgeryGlassSyndie
+  suffix: Syndicate, Surgery
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Structures/Doors/Airlocks/Glass/surgery_syndie.rsi
+
+- type: entity
+  parent: FHAirlockRoboticsGlass
+  id: FHAirlockRoboticsGlassSyndie
+  suffix: Syndicate, Robotics
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Structures/Doors/Airlocks/Glass/robotics_syndie.sci
+
+- type: entity
+  parent: FHAirlockMedicalGlass
+  id: FHAirlockParamedicGlassSyndie
+  suffix: Syndicate, Paramedic
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Structures/Doors/Airlocks/Glass/paramedic_syndie.rsi
+
+# Standard Syndicate Locked
+
+- type: entity
+  parent: FHAirlockEngineeringSyndie
+  id: FHAirlockEngineeringSyndieLocked
+  suffix: Syndicate, Engineering, Locked
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsEngineering ]
+
+- type: entity
+  parent: FHAirlockAtmosphericsSyndie
+  id: FHAirlockAtmosphericsSyndieLocked
+  suffix: Syndicate, Atmospherics, Locked
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsAtmospherics ]
+
+- type: entity
+  parent: FHAirlockHydroponicsSyndie
+  id: FHAirlockHydroponicsSyndieLocked
+  suffix: Syndicate, Hydroponics, Locked
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsHydroponics ]
+
+- type: entity
+  parent: FHAirlockMedicalSyndie
+  id: FHAirlockMedicalSyndieLocked
+  suffix: Syndicate, Medical, Locked
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsMedical ]
+
+- type: entity
+  parent: FHAirlockVirologySyndie
+  id: FHAirlockVirologySyndieLocked
+  suffix: Syndicate, Virology, Locked
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsMedical ]
+
+- type: entity
+  parent: FHAirlockChemistrySyndie
+  id: FHAirlockChemistrySyndieLocked
+  suffix: Syndicate, Chemistry, Locked
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsChemistry ]
+
+- type: entity
+  parent: FHAirlockScienceSyndie
+  id: FHAirlockScienceSyndieLocked
+  suffix: Syndicate, Science, Locked
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsResearch ]
+
+- type: entity
+  parent: FHAirlockCommandSyndie
+  id: FHAirlockCommandSyndieLocked
+  suffix: Syndicate, Command, Locked
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsCommand ]
+
+- type: entity
+  parent: FHAirlockSecuritySyndie
+  id: FHAirlockSecuritySyndieLocked
+  suffix: Syndicate, Security, Locked
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsSecurity ]
+
+- type: entity
+  parent: FHAirlockMaintSyndie
+  id: FHAirlockMaintSyndieLocked
+  suffix: Syndicate, Maintenance, Locked
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsMaintenance ]
+
+- type: entity
+  parent: FHAirlockSHC
+  id: FHAirlockSHCLocked
+  suffix: SHC, Locked
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsCentralCommand ]
+
+- type: entity
+  parent: FHAirlockSurgerySyndie
+  id: FHAirlockSurgerySyndieLocked
+  suffix: Syndicate, Surgery, Locked
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsSurgery ]
+
+- type: entity
+  parent: FHAirlockRoboticsSyndie
+  id: FHAirlockRoboticsSyndieLocked
+  suffix: Syndicate, Robotics, Locked
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsRobotics ]
+
+- type: entity
+  parent: FHAirlockParamedicSyndie
+  id: FHAirlockParamedicSyndieLocked
+  suffix: Syndicate, Paramedic, Locked
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsMedical ]
+
+- type: entity
+  parent: FHAirlockBasicSyndie
+  id: FHAirlockBasicSyndieLocked
+  suffix: Syndicate, Locked
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsSyndicateAgent ]
+
+- type: entity
+  parent: FHAirlockBasicSyndie
+  id: FHAirlockServiceSyndieLocked
+  suffix: Syndicate, Service, Locked
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsService ]
+    - type: Wires
+      layoutId: AirlockService
+
+# Glass Syndicate Locked
+
+- type: entity
+  parent: FHAirlockEngineeringGlassSyndie
+  id: FHAirlockEngineeringGlassSyndieLocked
+  suffix: Syndicate, Engineering, Locked
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsEngineering ]
+
+- type: entity
+  parent: FHAirlockAtmosphericsGlassSyndie
+  id: FHAirlockAtmosphericsGlassSyndieLocked
+  suffix: Syndicate, Atmospherics, Locked
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsAtmospherics ]
+
+- type: entity
+  parent: FHAirlockHydroponicsGlassSyndie
+  id: FHAirlockHydroponicsGlassSyndieLocked
+  suffix: Syndicate, Hydroponics, Locked
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsHydroponics ]
+
+- type: entity
+  parent: FHAirlockMedicalGlassSyndie
+  id: FHAirlockMedicalGlassSyndieLocked
+  suffix: Syndicate, Medical, Locked
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsMedical ]
+
+- type: entity
+  parent: FHAirlockVirologyGlassSyndie
+  id: FHAirlockVirologyGlassSyndieLocked
+  suffix: Syndicate, Virology, Locked
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsMedical ]
+
+- type: entity
+  parent: FHAirlockChemistryGlassSyndie
+  id: FHAirlockChemistryGlassSyndieLocked
+  suffix: Syndicate, Chemistry, Locked
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsChemistry ]
+
+- type: entity
+  parent: FHAirlockScienceGlassSyndie
+  id: FHAirlockScienceGlassSyndieLocked
+  suffix: Syndicate, Science, Locked
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsResearch ]
+
+- type: entity
+  parent: FHAirlockCommandGlassSyndie
+  id: FHAirlockCommandGlassSyndieLocked
+  suffix: Syndicate, Command, Locked
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsCommand ]
+
+- type: entity
+  parent: FHAirlockSecurityGlassSyndie
+  id: FHAirlockSecurityGlassSyndieLocked
+  suffix: Syndicate, Security, Locked
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsSecurity ]
+
+- type: entity
+  parent: FHAirlockMaintGlassSyndie
+  id: FHAirlockMaintGlassSyndieLocked
+  suffix: Syndicate, Maintenance, Locked
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsMaintenance ]
+
+- type: entity
+  parent: FHAirlockSHCGlass
+  id: FHAirlockSHCGlassLocked
+  suffix: SHC, Locked
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsCentralCommand ]
+
+- type: entity
+  parent: FHAirlockSurgeryGlassSyndie
+  id: FHAirlockSurgeryGlassSyndieLocked
+  suffix: Syndicate, Surgery, Locked
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsSurgery ]
+
+- type: entity
+  parent: FHAirlockRoboticsGlassSyndie
+  id: FHAirlockRoboticsGlassSyndieLocked
+  suffix: Syndicate, Robotics, Locked
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsRobotics ]
+
+- type: entity
+  parent: FHAirlockParamedicGlassSyndie
+  id: FHAirlockParamedicGlassSyndieLocked
+  suffix: Syndicate, Paramedic, Locked
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsMedical ]
+
+- type: entity
+  parent: FHAirlockBasicGlassSyndie
+  id: FHAirlockBasicGlassSyndieLocked
+  suffix: Syndicate, Locked
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsSyndicateAgent ]
+
+- type: entity
+  parent: FHAirlockSyndicateGlass
+  id: FHAirlockServiceGlassSyndieLocked
+  suffix: Syndicate, Service, Locked
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsService ]
+    - type: Wires
+      layoutId: AirlockService

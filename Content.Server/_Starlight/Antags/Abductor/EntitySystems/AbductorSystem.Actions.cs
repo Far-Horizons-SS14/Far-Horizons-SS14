@@ -81,7 +81,7 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
 
     private void OnReturn(AbductorReturnToShipEvent ev)
     {
-        if (_mobState.IsIncapacitated(ev.Performer))
+        if (_mobState.IsIncapacitated(ev.Performer, allowActiveCrit: true)) // Far Horizons
             return;
         AbductorAgentComponent? agentComp = null;
         if (!TryComp<AbductorScientistComponent>(ev.Performer, out var scientistComp) && !TryComp<AbductorAgentComponent>(ev.Performer, out agentComp))
@@ -193,7 +193,7 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
     
     private void OnDoAfterSendYourself(EntityUid ent, AbductorSendYourselfDoAfterEvent args)
     {
-        if (_mobState.IsIncapacitated(ent))
+        if (_mobState.IsIncapacitated(ent, allowActiveCrit: true)) // Far Horizons
             return;
         _color.RaiseEffect(Color.FromHex("#BA0099"), new List<EntityUid>(1) { ent }, Filter.Pvs(ent, entityManager: EntityManager));
         if (_pullingSystem.IsPulling(ent))

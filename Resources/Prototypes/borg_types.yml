@@ -22,7 +22,7 @@
   - Science
 
   # Visual
-  inventoryTemplateId: borgShort
+  inventoryTemplateId: borg # Starlight - why was this not always the case?  
   spritePath: Mobs/Silicon/Chassis/generic.rsi
 
   # Pet
@@ -84,6 +84,7 @@
     tags:
     - BorgModuleGeneric
     - BorgModuleCargo
+    - BorgModuleMining #STARLIGHT
 
   defaultModules:
   - BorgModulePrying
@@ -96,6 +97,7 @@
   radioChannels:
   - GSL # Far Horizons
   - Science
+  #- Expedition #Starlight #FH
 
   # Visual
   inventoryTemplateId: borgTall

@@ -90,7 +90,7 @@ public sealed class RespiratorSystem : EntitySystem
 
             UpdateSaturation(uid, -(float)respirator.UpdateInterval.TotalSeconds, respirator);
 
-            if (!_mobState.IsIncapacitated(uid)) // cannot breathe in crit.
+            if (!_mobState.IsIncapacitated(uid, allowActiveCrit: true)) // cannot breathe in crit. - FH added active crit
             {
                 switch (respirator.Status)
                 {
@@ -188,7 +188,7 @@ public sealed class RespiratorSystem : EntitySystem
     /// </summary>
     public bool IsBreathing(Entity<RespiratorComponent?> ent)
     {
-        if (_mobState.IsIncapacitated(ent))
+        if (_mobState.IsIncapacitated(ent, allowActiveCrit: true)) // Far Horizons
             return false;
 
         if (!Resolve(ent, ref ent.Comp))

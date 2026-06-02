@@ -122,7 +122,8 @@
           - !type:TemperatureCondition
             max: 213.0
           - !type:MobStateCondition
-            mobstate: Dead
+            mobstates: # Far Horizons
+              - Dead
           damage:
             types:
               Radiation: -5

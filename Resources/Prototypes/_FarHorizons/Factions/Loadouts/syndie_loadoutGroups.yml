@@ -62,6 +62,115 @@
 ## Specific Loadout Groups
 
 
+
+#region SHC
+
+# NeoSol Rep
+- type: loadoutGroup
+  id: NeoSolRepresentativeHead
+  name: loadout-group-neosolrepresentative-head
+  minLimit: 1 
+  loadouts:
+  - NSRCap
+  - NSRBeret
+
+- type: loadoutGroup
+  id: NeoSolRepresentativeJumpsuit
+  name: loadout-group-neosolrepresentative-jumpsuit
+  minLimit: 1 
+  loadouts:
+  - NSRJumpsuit
+  - NSRJumpskirt
+  - NSRJumpsuitFormal
+  - NSRJumpskirtFormal
+  - NSRJumpsuitCC 
+  - NSRJumpskirtCC
+  - NSRTurtleneck
+  - NSRTurtleneckSkirt
+
+- type: loadoutGroup
+  id: NeoSolOuterClothing
+  name: loadout-group-neosolrepresentative-outerclothing
+  minLimit: 0
+  loadouts:
+  - NSRCoat
+  - NSRWinterCoat
+
+- type: loadoutGroup
+  id: NeoSolRepresentativeEyewear
+  name: loadout-group-neosolrepresentative-eyewear
+  loadouts:
+  - NSRGlasses
+  - NSRHud
+
+- type: loadoutGroup
+  id: NeoSolRepresentativeShoes
+  name: loadout-group-neosolrepresentative-shoes
+  minLimit: 1
+  loadouts:
+  - LaceupShoes
+  - Heels
+  - LeatherShoes
+
+- type: loadoutGroup
+  id: NeoSolRepresentativeBackpack
+  name: loadout-group-neosolrepresentative-backpack
+  loadouts:
+  - NSRBackpack
+  - NSRDuffel
+  - NSRSatchel
+
+#region RedSword
+- type: loadoutGroup
+  id: RedSwordEyewear
+  name: loadout-group-redsword-eyewear
+  loadouts:
+  - RSOGlasses
+  - RSOHud
+  - RSOVisor
+
+- type: loadoutGroup
+  id: RedSwordNeck
+  name: loadout-group-redsword-neck
+  minLimit: 0
+  loadouts:
+  - RSOMantleElite
+
+- type: loadoutGroup
+  id: RedSwordJumpsuit
+  name: loadout-group-redsword-jumpsuit
+  loadouts:
+  - RSOJumpsuit
+  - RSOJumpskirt
+  - RSOJumpsuitFormal
+  - RSOJumpskirtFormal
+  - RSOJumpsuitElite
+  - RSOJumpskirtElite
+
+- type: loadoutGroup
+  id: RedSwordOuterclothing
+  name: loadout-group-redsword-outerclothing
+  minLimit: 1
+  loadouts:
+  - RSOArmorVest
+  - RSOArmorCoat
+
+- type: loadoutGroup
+  id: RedSwordBackpack
+  name: loadout-group-backpack-outerclothing
+  loadouts:
+  - RSOBackpack
+  - RSODuffel
+  - RSOSatchel
+
+- type: loadoutGroup
+  id: RedSwordShoes
+  name: loadout-group-rso-shoes
+  loadouts:
+  - CombatBootsSyndi
+  - JackBootsSyndi
+  - HighHeelBootsFilled
+
 #region Command
 
  #Commandant (Captain)
@@ -251,9 +360,28 @@
   - Heels
 
 #Medical Director
+
+- type: loadoutGroup
+  id: MedicalDirectorBackpack
+  name: loadout-group-medical-doctor-backpack
+  loadouts:
+  - MedicalDirectorBackpack
+  - MedicalDirectorDuffel
+  - MedicalDirectorSatchel
+  - MedicalDoctorBackpackSyndi
+  - MedicalDoctorDuffelSyndi
+  - MedicalDoctorSatchelSyndi
+  - ParamedicBackpackSyndi
+  - ParamedicDuffelSyndi
+  - ParamedicSatchelSyndi
+  - PharmacistBackpack
+  - PharmacistDuffel
+  - PharmacistSatchel
+  - LeatherSatchel
+
 - type: loadoutGroup
   id: MedicalDirectorHead
-  name: loadout-group-chief-medical-officer-head
+  name: loadout-group-medical-director-head
   minLimit: 0
   loadouts:
   - MedicalDirectorBeret
@@ -261,7 +389,7 @@
 
 - type: loadoutGroup
   id: MedicalDirectorJumpsuit
-  name: loadout-group-chief-medical-officer-jumpsuit
+  name: loadout-group-medical-director-jumpsuit
   loadouts:
   - MedicalDirectorJumpsuit
   - MedicalDirectorJumpskirt
@@ -270,7 +398,7 @@
 
 - type: loadoutGroup
   id: MedicalDirectorOuterClothing
-  name: loadout-group-chief-medical-officer-outerclothing
+  name: loadout-group-medical-director-outerclothing
   minLimit: 0
   loadouts:
   - MedicalDirectorLabCoat
@@ -278,7 +406,7 @@
 
 - type: loadoutGroup
   id: MedicalDirectorNeck
-  name: loadout-group-chief-medical-officer-neck
+  name: loadout-group-medical-director-neck
   minLimit: 0
   loadouts:
   - ChiefMedicalOfficerCloak
@@ -286,7 +414,7 @@
 
 - type: loadoutGroup
   id: MedicalDirectorShoes
-  name: loadout-group-chief-medical-officer-shoes
+  name: loadout-group-medical-director-shoes
   loadouts:
   - BrownShoes
   - MedicalWinterBoots
@@ -298,14 +426,14 @@
  # Head of Research
 - type: loadoutGroup
   id: ResearchDirectorHeadSyndi
-  name: loadout-group-research-director-head
+  name: loadout-group-epistemics-provost-head
   minLimit: 0
   loadouts:
   - ResearchDirectorBeret
 
 - type: loadoutGroup
   id: ResearchDirectorNeckSyndi
-  name: loadout-group-research-director-neck
+  name: loadout-group-epistemics-provost-neck
   minLimit: 0
   loadouts:
   - ResearchDirectorMantleSyndi
@@ -313,7 +441,7 @@
 
 - type: loadoutGroup
   id: ResearchDirectorJumpsuitSyndi
-  name: loadout-group-research-director-jumpsuit
+  name: loadout-group-epistemics-provost-jumpsuit
   loadouts:
   - ResearchDirectorJumpsuitSyndi
   - ResearchDirectorJumpskirtSyndi
@@ -322,7 +450,7 @@
 
 - type: loadoutGroup
   id: ResearchDirectorOuterClothingSyndi
-  name: loadout-group-research-director-outerclothing
+  name: loadout-group-epistemics-provost-outerclothing
   minLimit: 0
   loadouts:
   - ResearchDirectorLabCoatSyndi
@@ -607,6 +735,14 @@
   - SeniorPharmacistWintercoat 
 
   #Paramedic
+
+- type: loadoutGroup
+  id: ParamedicBackpackSyndi
+  name: loadout-group-paramedic-backpack
+  loadouts:
+    - ParamedicBackpackSyndi
+    - ParamedicDuffelSyndi
+    - ParamedicSatchelSyndi
 
 - type: loadoutGroup
   id: ParamedicHeadSyndi
@@ -1033,13 +1169,3 @@
   loadouts:
     - RecruitSuit
     - RecruitSkirt
-
-#region SHC
-
-- type: loadoutGroup
-  id: RedSwordShoes
-  name: loadout-group-rso-shoes
-  loadouts:
-  - CombatBootsSyndi
-  - JackBootsSyndi
-  - HighHeelBootsFilled

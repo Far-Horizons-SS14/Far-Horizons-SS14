@@ -2,7 +2,7 @@
 - type: entity
   parent: BorgSubtypeBase
   abstract: true
-  id: BorgSecuritySubtypeBase
+  id: BorgSecuritySubtypeBaseNT #FH Change
   name: borg security subtype
   components:
     - type: BorgSubtypeDefinition
@@ -10,3 +10,29 @@
 
       # Description
       dummyPrototype: BorgChassisSecurity
+
+# cargo
+- type: entity
+  parent: BorgSubtypeBase
+  abstract: true
+  id: BorgCargoSubtypeBase
+  name: borg cargo subtype
+  components:
+    - type: BorgSubtypeDefinition
+      parentType: cargo
+
+      # Description
+      dummyPrototype: BorgChassisCargo
+
+# purrfus
+- type: entity
+  parent: BorgSubtypeBase
+  abstract: true
+  id: BorgPurrfusSubtypeBase
+  name: borg purrfus subtype
+  components:
+    - type: BorgSubtypeDefinition
+      parentType: purrfus
+
+      # Description
+      dummyPrototype: BorgChassisPurrfus

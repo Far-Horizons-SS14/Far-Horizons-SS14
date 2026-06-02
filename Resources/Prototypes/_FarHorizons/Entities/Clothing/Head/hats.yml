@@ -327,6 +327,57 @@
     - PetWearable
     - CorgiWearable
 
+# NeoSol Representative (NTR)
+
+- type: entity
+  parent: [ ClothingHeadBase, BaseRepresentativesContraband ]
+  id: ClothingHeadHatBeretNSR
+  name: NeoSol Representative's Beret
+  description: A red colored beret to remind command of their betters.
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Head/Hats/NeoSol/beret_shrep.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Head/Hats/NeoSol/beret_shrep.rsi
+  - type: Tag
+    tags:
+    - PetWearable
+    - CorgiWearable
+
+- type: entity
+  parent: [ ClothingHeadBase, BaseRepresentativesContraband ]
+  id: ClothingHeadHatCapNSR
+  name: NeoSol Representative Cap
+  description: The cap to keep command in line.
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Head/Hats/NeoSol/shrep.rsi 
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Head/Hats/NeoSol/shrep.rsi
+  - type: Tag
+    tags:
+    - PetWearable
+    - CorgiWearable
+
+# Red Sword Operative (BSO)
+
+- type: entity
+  parent: [ ClothingHeadBase, BaseBlueshieldContraband ] # Technically not Blueshield, but that's a problem for another day
+  id: ClothingHeadHatBeretRedSword
+  name: Red Sword Operative's Beret
+  description: A reminder of the standards that others cannot hope to meet.
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Head/Hats/NeoSol/baret_redsword.rsi 
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Head/Hats/NeoSol/baret_redsword.rsi 
+  - type: Tag
+    tags:
+    - HamsterWearable
+
 #region Engineering
 
 - type: entity

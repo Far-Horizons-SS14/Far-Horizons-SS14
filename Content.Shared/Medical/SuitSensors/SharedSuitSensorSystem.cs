@@ -390,7 +390,8 @@ public abstract class SharedSuitSensorSystem : EntitySystem
 
         // Get mob total damage crit threshold
         int? totalDamageThreshold = null;
-        if (_mobThresholdSystem.TryGetThresholdForState(sensor.User.Value, MobState.Critical, out var critThreshold))
+        if (_mobThresholdSystem.TryGetThresholdForState(sensor.User.Value, MobState.Critical, out var critThreshold) ||
+            _mobThresholdSystem.TryGetThresholdForState(sensor.User.Value, MobState.ActiveCritical, out critThreshold)) // Far Horizons
             totalDamageThreshold = critThreshold.Value.Int();
 
         // finally, form suit sensor status

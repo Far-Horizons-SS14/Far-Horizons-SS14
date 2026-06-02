@@ -67,6 +67,49 @@
     - PetWearable
     - WhitelistChameleon
 
+- type: entity
+  parent: [ClothingEyesBase, BaseCommandContraband]
+  id: ClothingEyesHudSkillsSyndi
+  name: Skills HUD
+  description: Visor with a built-in skills HUD, showing the employment history of nearby NeoSol crew members.
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Eyes/Hud/NeoSol/hudskill.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Eyes/Hud/NeoSol/hudskill.rsi
+  - type: ShowJobIcons
+  - type: ShowMindShieldIcons
+  - type: ShowCriminalRecordIcons
+  - type: EyeProtection
+    protectionTime: 5
+
+- type: entity
+  parent: [ ClothingEyesBase, BaseBlueshieldContraband ] # Technically not Blueshield, but that's a problem for another day
+  id: ClothingEyesHudRedSword
+  name: Red Sword Operative's HUD
+  description: An innovative heads-up display that scans the humanoids in view and provides accurate data about their ID status, security records, and medical information.
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Eyes/Hud/NeoSol/redswordoperative.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Eyes/Hud/NeoSol/redswordoperative.rsi
+  - type: ShowJobIcons
+  - type: ShowMindShieldIcons
+  - type: ShowCriminalRecordIcons
+  - type: ShowHealthBars
+    damageContainers:
+    - Biological
+  - type: ShowHealthIcons
+    damageContainers:
+    - Biological
+  - type: Tag
+    tags:
+    - HudMedical
+  - type: EyeProtection
+    protectionTime: 5
+
 #region Medical
 - type: entity
   parent: [ClothingEyesHudBase, ShowMedicalIcons]

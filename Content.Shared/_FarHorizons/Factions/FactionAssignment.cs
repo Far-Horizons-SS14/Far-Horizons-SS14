@@ -1,3 +1,4 @@
+using Content.Shared.Access;
 using Content.Shared.Preferences.Loadouts;
 using Content.Shared.Roles;
 using Content.Shared.StatusIcon;
@@ -75,4 +76,13 @@ public sealed partial class JobOverride{
     public EntProtoId? JobEntity;
     [DataField]
     public EntProtoId? JobPreviewEntity;
+    [DataField]
+    public IReadOnlyCollection<ProtoId<AccessLevelPrototype>>? Access;
+    [DataField]
+    public IReadOnlyCollection<ProtoId<AccessGroupPrototype>>? AccessGroups;
+    [DataField]
+    public IReadOnlyCollection<ProtoId<AccessLevelPrototype>>? ExtendedAccess;
+    [DataField]
+    public IReadOnlyCollection<ProtoId<AccessGroupPrototype>>? ExtendedAccessGroups;
+
 }

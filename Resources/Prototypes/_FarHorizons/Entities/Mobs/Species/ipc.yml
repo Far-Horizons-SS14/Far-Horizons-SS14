@@ -73,11 +73,11 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      100: Critical
+      100: ActiveCritical
       200: Dead
     stateAlertDict:
       Alive: IPCHealth
-      Critical: BorgCrit
+      ActiveCritical: BorgCrit
       Dead: BorgDead
   - type: WiresPanel
   - type: DamageVisuals

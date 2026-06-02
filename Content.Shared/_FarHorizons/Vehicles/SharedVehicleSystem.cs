@@ -56,6 +56,7 @@ using Content.Shared.CombatMode.Pacification;
 using Content.Shared.Weapons.Ranged.Events;
 using Content.Shared.Hands;
 using Content.Shared._FarHorizons.ReagentDraw.EntitySystems;
+using Content.Shared.Mobs;
 using Robust.Shared.Network;
 
 namespace Content.Shared._FarHorizons.Vehicles;
@@ -760,9 +761,10 @@ public abstract partial class SharedVehicleSystem : EntitySystem
     private void OnPullAttempt(Entity<RiderComponent> ent, ref PullAttemptEvent args)
     {
         if(TryComp<MobStateComponent>(ent.Owner, out var mbState) 
-        && (mbState.CurrentState == Mobs.MobState.Critical 
-            || mbState.CurrentState == Mobs.MobState.Dead 
-            || mbState.CurrentState == Mobs.MobState.Invalid))
+        && (mbState.CurrentState == MobState.Critical 
+            || mbState.CurrentState == MobState.ActiveCritical
+            || mbState.CurrentState == MobState.Dead 
+            || mbState.CurrentState == MobState.Invalid))
         {
             _buckle.Unbuckle(ent.Owner, args.PullerUid);
             return;
@@ -854,10 +856,13 @@ public abstract partial class SharedVehicleSystem : EntitySystem
 
         if(HasComp<VehicleBuckleComponent>(vehicle) && TryComp<StrapComponent>(vehicle, out var strapComp))
         {
-            if(riderTransform.LocalPosition.X != 0+strapComp.BuckleOffset.X || riderTransform.LocalPosition.Y != 0+strapComp.BuckleOffset.Y)
+            if(!riderTransform.ActivelyLerping && !_gameTiming.ApplyingState)
+            {
+                if(riderTransform.LocalPosition.X != 0+strapComp.BuckleOffset.X || riderTransform.LocalPosition.Y != 0+strapComp.BuckleOffset.Y)
                 _transform.SetLocalPosition(rider, new Vector2(0f+strapComp.BuckleOffset.X, 0f+strapComp.BuckleOffset.Y), riderTransform);
-            if(riderTransform.LocalRotation != 0)
-                _transform.SetLocalRotation(rider, 0f, riderTransform);
+                if(riderTransform.LocalRotation != 0)
+                    _transform.SetLocalRotation(rider, 0f, riderTransform);
+            }
         }
     }
     

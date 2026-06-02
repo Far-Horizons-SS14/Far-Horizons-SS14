@@ -29,10 +29,17 @@
 
 - type: entity
   parent:
+  - ActiveCritBase
   - AppearanceProtoDawi
   - BaseMobProtoDawi
   id: MobProtoDawi
   name: Urist McHands The ProtoDawi
+  components:
+    - type: MobThresholds
+      thresholds:
+        0: Alive
+        110: ActiveCritical
+        220: Dead
 
 # Organs
 

@@ -42,10 +42,17 @@
 
 - type: entity
   parent:
+  - ActiveCritBase
   - AppearanceProtoCyclops
   - BaseMobProtoCyclops
   id: MobProtoCyclops
   name: Urist McCyclopster
+  components:
+    - type: MobThresholds
+      thresholds:
+        0: Alive
+        120: ActiveCritical
+        240: Dead
 
 # Organs
 

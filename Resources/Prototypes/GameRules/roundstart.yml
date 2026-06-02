@@ -54,6 +54,8 @@
     rules:
     - id: Thief
       prob: 0.5
+    - id: SLChangeling #Far Horizons - Because Xenoborg rounds are now major antag, this is being introduced.
+      prob: 0.4
     - id: SubWizard
       prob: 0.05
 
@@ -64,7 +66,13 @@
   - type: SubGamemodes
     rules:
     - id: Thief
-      prob: 0.5
+    #Far Horizons-Start - This subgamerule is only used in the Wizard gamePreset. Why not add in some other antags so it's not completely quiet?
+      prob: 0.9 
+    - id: SLChangeling 
+      prob: 0.6
+    - id: Traitor
+      prob: 0.6
+    #Far Horizons-End
 
 - type: entity
   parent: BaseGameRule
@@ -467,7 +475,7 @@
   id: Xenoborgs
   components:
   - type: GameRule
-    minPlayers: 30
+    minPlayers: 80 #Far Horizons - This requires a much larger player base and it's not welcome with other major antags going on. -- Original is 30 minimum players.
   - type: AntagMultipleRoleSpawner
     antagRoleToPrototypes:
       MothershipCore: [ MothershipCore ]

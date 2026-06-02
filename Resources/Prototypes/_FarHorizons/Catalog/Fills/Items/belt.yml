@@ -116,6 +116,23 @@
         - id: HolofanProjector
         - id: GasAnalyzer
         - id: trayScanner
+# RSO
+
+- type: entity
+  id: ClothingBeltRedSwordWebbingFilled
+  parent: ClothingBeltRSOWebbing
+  suffix: Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: Handcuffs
+        - id: Handcuffs
+        - id: Stunbaton
+        - id: GrenadeFlashBang
+        - id: TearGasGrenade
+        - id: SecurityMedkitFHFilledBSO
 
 #region Engineering
 
@@ -226,3 +243,35 @@
     containers:
       storagebase: !type:NestedSelector
         tableId: BeltSecurityEntityTable
+
+
+#region ##GSL##
+
+- type: entity
+  id: ClothingBeltSheathSwordMachete
+  parent: ClothingBeltMacheteScabbard
+  suffix: OnlyMachete
+  components:
+  - type: ContainerFill
+    containers:
+      item:
+      - WeaponCrusherMachete
+
+- type: entity
+  id: ClothingBeltSheathFilledMachete
+  parent: ClothingBeltMacheteScabbard
+  suffix: Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: Crowbar
+        - id: Wrench
+        - id: Screwdriver
+        - id: Wirecutter
+        - id: Welder
+        - id: NetworkConfigurator
+      item: !type:AllSelector
+        children:
+        - id: WeaponCrusherMachete

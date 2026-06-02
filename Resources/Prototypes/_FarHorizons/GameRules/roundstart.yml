@@ -1,0 +1,29 @@
+- type: entity
+  parent: BaseGameRule
+  id: SubGamemodesRuleNoXenoborgsMaybeTraitorLingx2 #This is being used in TraitorLings gamePreset.
+  components:
+  - type: SubGamemodes
+    rules:
+    - id: Thief
+      prob: 0.5
+#    - id: Vampire # disabled until reworked
+#      prob: 0.25
+    - id: SubWizard
+      prob: 0.05
+    - id: Traitor #TraitorLing gamePreset requires minimum of 50 people. Let's add a small chance to get double amounts.
+      prob: 0.2
+    - id: SLChangeling
+      prob: 0.2
+
+- type: entity
+  parent: BaseGameRule
+  id: SubGamemodesRuleNoChangelingsNoXenoborgs #This is being used in Traitor gamePreset.
+  components:
+  - type: SubGamemodes
+    rules:
+    - id: Thief
+      prob: 0.5
+#    - id: Vampire # disabled until reworked
+#      prob: 0.25
+    - id: SubWizard
+      prob: 0.05

@@ -70,48 +70,19 @@
   - type: Clothing
     sprite: Objects/Tools/universal_access_configurator.rsi
   - type: AccessOverrider
-    accessLevels:
-    - Armory
-    - Atmospherics
-    - Bar
-    - BasicSilicon
-    - Borg
-    - Brig
-    - Detective
-    - Captain
-    - Cargo
-    - Chapel
-    - Chemistry
-    - ChiefEngineer
-    - ChiefMedicalOfficer
-    - Command
-    - Cryogenics
-    - EmergencyShuttleRepealAll
-    - Engineering
-    - External
-    - HeadOfPersonnel
-    - HeadOfSecurity
-    - Hydroponics
-    - Janitor
-    - Kitchen
-    - Lawyer
-    - Maintenance
-    - Medical
-    - Quartermaster
-    - Research
-    - ResearchDirector
-    - Salvage
-    - Security
-    - Service
-    - StationAi
-    - Theatre
+    #FarHorizons Start
+    accessGroups: 
+    - AllAccess
+    - AllAccessNS
+    - Silicon
+    - SiliconNS
+    - Misc
     - CentralCommand
-    - NuclearOperative
-    - SyndicateAgent
-    - Wizard
+    - NSHighCommand
+    - Syndicate
+    - LambdaSquadron
     - Xenoborg
-    - GenpopEnter
-    - GenpopLeave
+    #FarHorizons End
     privilegedIdSlot:
       name: id-card-console-privileged-id
       startingItem: UniversalIDCard

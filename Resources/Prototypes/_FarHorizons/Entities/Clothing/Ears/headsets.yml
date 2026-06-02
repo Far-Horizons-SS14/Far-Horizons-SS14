@@ -192,6 +192,46 @@
     sound:
       path: /Audio/_Starlight/Effects/Radio/ce.ogg
 
+# Red Sword Operative (BSO)
+
+- type: entity
+  parent: [ ClothingHeadset, BaseBlueshieldContraband ] # Technically not Blueshield, but that's a problem for another day
+  id: ClothingHeadsetRSO
+  name: Red Sword Operative Headset
+  description: A headset specialized in tuning out everyone but command.
+  suffix: NS
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyStationMaster
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Ears/Headsets/NeoSol/redswordoperative.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Ears/Headsets/NeoSol/redswordoperative.rsi
+  - type: RadioChime
+    sound:
+      path: /Audio/_Starlight/Effects/Radio/bso.ogg
+
+- type: entity
+  parent: [ ClothingHeadsetAlt, BaseBlueshieldContraband ] # Technically not Blueshield, but that's a problem for another day
+  id: ClothingHeadsetAltRSO
+  name: Red Sword Operative Over-Ear Headset
+  description: A headset specialized in tuning out everyone but command.
+  suffix: NS
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyStationMaster
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Ears/Headsets/NeoSol/redswordoperative.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Ears/Headsets/NeoSol/redswordoperative.rsi
+  - type: RadioChime
+    sound:
+      path: /Audio/_Starlight/Effects/Radio/bso.ogg
+
 #region Engineering
 
 - type: entity

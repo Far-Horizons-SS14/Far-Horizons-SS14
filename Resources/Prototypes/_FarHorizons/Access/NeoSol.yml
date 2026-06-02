@@ -1,0 +1,327 @@
+# region Generics
+- type: accessLevel
+  id: ExternalNS
+  name: id-card-access-level-external
+
+- type: accessLevel
+  id: MaintenanceNS
+  name: id-card-access-level-maintenance
+
+- type: accessGroup
+  id: GeneralNS
+  name: id-card-access-group-general
+  tags:
+  - MaintenanceNS
+  - ExternalNS
+
+- type: accessGroup
+  id: AllAccessNS
+  tags:
+  - EmergencyShuttleRepealAllNS
+  - Commandant
+  - PersonnelManager
+  - Foreman
+  - MedicalDirector
+  - Marshal
+  - EpistemicsProvost
+  - Executive
+  - CryogenicsNS
+  - SecurityNS
+  - DetectiveNS
+  - ArmoryNS
+  - BrigNS
+  - LawyerNS
+  - EngineeringNS
+  - MedicalNS
+  - ResearchNS
+  - ServiceNS
+  - MaintenanceNS
+  - ExternalNS
+  - JanitorNS
+  - TheatreNS
+  - BarNS
+  - ChemistryNS
+  - KitchenNS
+  - ChapelNS
+  - HydroponicsNS
+  - AtmosphericsNS
+  - GenpopEnterNS
+  - GenpopLeaveNS
+  - CadetNS
+  - NSRep
+  - BrigmedicNS
+  - RedSword
+  - RoboticsNS
+  - SurgeryNS
+  - ParamedicNS
+  - Quartermaster
+  - Salvage
+  - SalvageLead
+  - Mining
+  - Cargo
+
+#region NeoSol High Command
+- type: accessLevel
+  id: NSHighCommand
+  name: id-card-access-level-high-command
+  
+- type: accessGroup
+  id: NSHighCommand
+  name: id-card-access-group-high-command
+  tags:
+  - NSHighCommand
+
+#region Command
+
+- type: accessLevel
+  id: Executive
+  name: id-card-access-level-executive
+
+- type: accessLevel
+  id: Commandant
+  name: id-card-access-level-commandant
+
+- type: accessLevel
+  id: PersonnelManager
+  name: id-card-access-level-personnel-manager
+
+- type: accessLevel
+  id: Foreman
+  name: id-card-access-level-foreman
+
+- type: accessLevel
+  id: EpistemicsProvost
+  name: id-card-access-level-epistemics-provost
+
+- type: accessLevel
+  id: Marshal
+  name: id-card-access-level-marshal
+
+- type: accessLevel
+  id: MedicalDirector
+  name: id-card-access-level-medical-director
+
+- type: accessLevel
+  id: EmergencyShuttleRepealAllNS
+  name: id-card-access-level-emergency-shuttle-repeal
+  canAddToIdCard: false
+
+- type: accessLevel
+  id: CryogenicsNS
+  name: id-card-access-level-cryogenics
+
+- type: accessGroup
+  id: Executive
+  name: id-card-access-group-executive
+  tags:
+  - Executive
+  - Commandant
+  - Foreman
+  - MedicalDirector
+  - CryogenicsNS
+  - PersonnelManager
+  - Marshal
+  - EpistemicsProvost
+  - NSRep
+  - RedSword
+
+# region Engineering
+
+- type: accessLevel
+  id: EngineeringNS
+  name: id-card-access-level-engineering
+
+- type: accessLevel
+  id: AtmosphericsNS
+  name: id-card-access-level-atmospherics
+
+- type: accessGroup
+  id: EngineeringNS
+  name: id-card-access-group-engineering
+  tags:
+  - Foreman
+  - EngineeringNS
+  - AtmosphericsNS
+
+#region Medical
+
+- type: accessLevel
+  id: MedicalNS
+  name: id-card-access-level-medical
+
+- type: accessLevel
+  id: ChemistryNS
+  name: id-card-access-level-chemistry
+  
+- type: accessLevel
+  id: ParamedicNS
+  name: id-card-access-level-paramed
+
+- type: accessLevel
+  id: SurgeryNS
+  name: id-card-access-level-surgery
+
+- type: accessGroup
+  id: MedicalNS
+  name: id-card-access-group-medical
+  tags:
+  - MedicalDirector
+  - MedicalNS
+  - ChemistryNS
+  - SurgeryNS 
+  - ParamedicNS 
+
+# region Research
+
+- type: accessLevel
+  id: ResearchNS
+  name: id-card-access-level-research
+
+- type: accessLevel
+  id: RoboticsNS
+  name: id-card-access-level-robotics
+
+- type: accessGroup
+  id: ResearchNS
+  name: id-card-access-group-research
+  tags:
+  - EpistemicsProvost
+  - ResearchNS
+  - RoboticsNS
+
+#region Representatives
+
+- type: accessLevel
+  id: NSRep
+  name: id-card-access-level-nsrepresentative
+  
+- type: accessLevel
+  id: RedSword
+  name: id-card-access-level-redsword
+
+# region Security
+
+- type: accessLevel
+  id: SecurityNS
+  name: id-card-access-level-security
+
+- type: accessLevel
+  id: ArmoryNS
+  name: id-card-access-level-armory
+
+- type: accessLevel
+  id: BrigNS
+  name: id-card-access-level-brig
+
+- type: accessLevel
+  id: DetectiveNS
+  name: id-card-access-level-detective
+
+- type: accessLevel
+  id: BrigmedicNS
+  name: id-card-access-level-brigmedic
+
+- type: accessLevel
+  id: CadetNS
+  name: id-card-access-level-cadet
+
+- type: accessLevel
+  id: GenpopEnterNS
+  name: id-card-access-level-genpop-enter
+
+- type: accessLevel
+  id: GenpopLeaveNS
+  name: id-card-access-level-genpop-leave
+
+- type: accessGroup
+  id: SecurityNS
+  name: id-card-access-group-security
+  tags:
+  - Marshal
+  - SecurityNS
+  - ArmoryNS
+  - BrigNS
+  - DetectiveNS
+  - CryogenicsNS
+  - BrigmedicNS
+  - CadetNS
+
+- type: accessGroup
+  id: ArmoryNS
+  tags:
+  - SecurityNS
+  - ArmoryNS
+  - BrigNS
+
+#region Service
+
+- type: accessLevel
+  id: BarNS
+  name: id-card-access-level-bar
+
+- type: accessLevel
+  id: KitchenNS
+  name: id-card-access-level-kitchen
+
+- type: accessLevel
+  id: HydroponicsNS
+  name: id-card-access-level-hydroponics
+
+- type: accessLevel
+  id: ServiceNS
+  name: id-card-access-level-service
+
+- type: accessLevel
+  id: JanitorNS
+  name: id-card-access-level-janitor
+
+- type: accessLevel
+  id: TheatreNS
+  name: id-card-access-level-theatre
+
+- type: accessLevel
+  id: ChapelNS
+  name: id-card-access-level-chapel
+
+- type: accessLevel
+  id: LawyerNS
+  name: id-card-access-level-lawyer
+
+- type: accessGroup
+  id: ServiceNS
+  name: id-card-access-group-service
+  tags:
+  - PersonnelManager
+  - BarNS
+  - KitchenNS
+  - HydroponicsNS
+  - ServiceNS
+  - JanitorNS
+  - TheatreNS
+  - ChapelNS
+  - LawyerNS
+
+#region Silicons
+
+- type: accessLevel
+  id: BorgNS
+  name: id-card-access-level-borg
+  canAddToIdCard: false
+
+- type: accessLevel
+  id: BasicSiliconNS
+  name: id-card-access-level-basic-silicon
+  canAddToIdCard: false
+
+- type: accessLevel
+  id: StationAiNS
+  name: id-card-access-level-station-ai
+  canAddToIdCard: false
+  
+- type: accessGroup
+  id: SiliconNS
+  tags:
+  - StationAiNS
+  - BorgNS
+  - BasicSiliconNS
+

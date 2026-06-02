@@ -15,8 +15,9 @@ public enum MobState : byte
 {
     Invalid = 0,
     Alive = 1,
-    Critical = 2,
-    Dead = 3
+    ActiveCritical = 2, // Far Horizons
+    Critical = 3,
+    Dead = 4
 }
 
 /// <summary>

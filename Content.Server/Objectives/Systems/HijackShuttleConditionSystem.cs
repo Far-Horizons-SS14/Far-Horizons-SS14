@@ -86,7 +86,7 @@ public sealed class HijackShuttleConditionSystem : EntitySystem
             if (isAntagonist) // Allow antagonist
                 continue;
 
-            var isPersonIncapacitated = _mobState.IsIncapacitated(player.AttachedEntity.Value);
+            var isPersonIncapacitated = _mobState.IsIncapacitated(player.AttachedEntity.Value, allowActiveCrit: true); // Far Horizons
             if (isPersonIncapacitated) // Allow dead and crit
                 continue;
 

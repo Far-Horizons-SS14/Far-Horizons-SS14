@@ -42,10 +42,17 @@
 
 - type: entity
   parent:
+  - ActiveCritBase
   - AppearanceProtoAvali
   - BaseMobProtoAvali
   id: MobProtoAvali
   name: Urist McAvalister
+  components:
+    - type: MobThresholds
+      thresholds:
+        0: Alive
+        90: ActiveCritical
+        180: Dead
 
 # Organs
 

@@ -298,7 +298,7 @@ public sealed partial class ChangelingSystem : EntitySystem
     /// </summary>
     public bool IsIncapacitated(EntityUid uid)
     {
-        if (_mobState.IsIncapacitated(uid)
+        if (_mobState.IsIncapacitated(uid, allowActiveCrit: true) // Far Horizons
         || (TryComp<CuffableComponent>(uid, out var cuffs) && cuffs.CuffedHandCount > 0))
             return true;
 

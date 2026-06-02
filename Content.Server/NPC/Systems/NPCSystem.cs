@@ -53,7 +53,8 @@ namespace Content.Server.NPC.Systems
 
         public void OnPlayerNPCDetach(EntityUid uid, HTNComponent component, PlayerDetachedEvent args)
         {
-            if (_mobState.IsIncapacitated(uid) || TerminatingOrDeleted(uid))
+            // Far Horizons
+            if (_mobState.IsIncapacitated(uid, allowActiveCrit: true) || TerminatingOrDeleted(uid))
                 return;
 
             // This NPC has an attached mind, so it should not wake up.
@@ -166,6 +167,7 @@ namespace Content.Server.NPC.Systems
                 case MobState.Alive:
                     WakeNPC(uid, component);
                     break;
+                case MobState.ActiveCritical: // Far Horizons
                 case MobState.Critical:
                 case MobState.Dead:
                     SleepNPC(uid, component);

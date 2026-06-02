@@ -194,11 +194,17 @@
 
 - type: entity
   parent:
+  - ActiveCritBase
   - AppearanceResomi
   - BaseMobResomi
   id: MobResomi
   name: Urist McRaptor
   components:
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      85: ActiveCritical
+      170: Dead
   - type: TemperatureDamage
     heatDamageThreshold: 310
     coldDamageThreshold: 223

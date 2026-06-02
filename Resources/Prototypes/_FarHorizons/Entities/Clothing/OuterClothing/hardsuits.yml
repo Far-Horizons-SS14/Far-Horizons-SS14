@@ -477,6 +477,56 @@
     - WhitelistChameleon
     - IPCExternalCooling
 
+#RSO Hardsuit
+- type: entity
+  parent: [ ClothingOuterHardsuitBase, BaseBlueshieldContraband ] # Technically not Blueshield, but that's a problem for another day
+  id: ClothingOuterHardsuitRedSword
+  name: Red Sword Operative's Hardsuit
+  description: A high-tech hardsuit so well armored it could be mistaken for a wall.
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/NeoSol/redswordoperative.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/NeoSol/redswordoperative.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.525
+    lowPressureMultiplier: 10000
+  - type: ClothingSpeedModifier
+    walkModifier: 0.8
+    sprintModifier: 0.8
+    requireActivated: false
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      flatReductions:
+        Piercing: 5
+        Heat: 4
+      coefficients:
+        Blunt: 0.6
+        Slash: 0.5
+        Piercing: 0.5
+        Heat: 0.7
+        Radiation: 0.25
+        Caustic: 0.6
+    staminaModifier: 0.4
+    ignoreKnockdown: true
+  - type: LimbArmor
+    limbs:
+      ArmRight: {}
+      ArmLeft: {}
+      HandRight: {}
+      HandLeft: {}
+      LegRight: {}
+      LegLeft: {}
+      FootRight: {}
+      FootLeft: {}
+  - type: ExplosionResistance
+    damageCoefficient: 0.6
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitRedSword
+
 #region Engineering
 
 # Atmospheric Technician (Atmos) Hardsuit

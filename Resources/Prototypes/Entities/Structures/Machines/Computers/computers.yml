@@ -642,6 +642,15 @@
     - Medical
     - Service
     - Engineering
+    #FarHorizons Start
+    - GeneralNS
+    - SecurityNS
+    - Executive
+    - ResearchNS
+    - MedicalNS
+    - ServiceNS
+    - EngineeringNS
+    #FarHorizons End
   # Starlight-edit: End
     privilegedIdSlot:
       name: id-card-console-privileged-id
@@ -1866,8 +1875,8 @@
   - type: Lock
     unlockOnClick: false
   - type: SiliconLawUpdater
-    components:
-    - type: StationAiHeld
+#    components: Changed to core linking
+#    - type: StationAiHeld
   - type: ItemSlotsLock
     slots:
     - circuit_holder
@@ -1886,6 +1895,14 @@
     containers:
       circuit_holder: !type:ContainerSlot
       board: !type:Container
+# Starlight-start: Link console to core
+  - type: DeviceList
+  - type: DeviceNetwork
+    deviceNetId: Wired
+  - type: DeviceLinkSink
+    ports:
+      - AiLawConsoleReceiver
+# Starlight-end
 
 - type: entity
   id: StationAiFixerComputer
