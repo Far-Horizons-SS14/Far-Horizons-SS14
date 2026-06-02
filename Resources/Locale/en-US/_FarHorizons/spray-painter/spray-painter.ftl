@@ -53,7 +53,7 @@ spray-painter-style-window-nanotrasen = NanoTrasen
 spray-painter-style-window-standard = Standard
 spray-painter-style-window-neosol = NeoSol
 
-spray-painter-style-reinforcedwindow-nanotrasen = Nanotrasen
+spray-painter-style-reinforcedwindow-nanotrasen = NanoTrasen
 spray-painter-style-reinforcedwindow-standard = Standard
 spray-painter-style-reinforcedwindow-neosol = NeoSol
 
