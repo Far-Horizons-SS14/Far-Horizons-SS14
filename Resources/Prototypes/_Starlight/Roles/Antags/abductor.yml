@@ -1,13 +1,23 @@
 - type: antag
-  id: LoneAbductorAntag
+  id: ScientistAbductorAntag #FH
   name: abductors-ghost-role-name
   antagonist: true
   objective: roles-antag-abductor-objective
   requirements:
   - !type:RoleTimeRequirement
-    role: JobSecurityOfficer
-    time: 3600 # 1 hour - Far Horizons // #Starlight - 10800 # 3 hrs
-  - !type:RoleTimeRequirement
     role: JobSurgeon
     time: 3600 # 1 hour - Far Horizons // #Starlight - 3h
   playTimeTracker: AntagLoneAbductor
+
+#FarHorizons Start
+- type: antag
+  id: AgentAbductorAntag
+  name: abductora-ghost-role-name
+  antagonist: true
+  objective: roles-antag-abductor-objective
+  requirements:
+  - !type:RoleTimeRequirement
+    role: JobSecurityOfficer
+    time: 3600 
+  playTimeTracker: AntagLoneAbductor
+#FarHorizons End
