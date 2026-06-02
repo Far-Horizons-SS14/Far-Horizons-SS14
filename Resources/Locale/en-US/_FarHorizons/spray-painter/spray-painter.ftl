@@ -41,7 +41,7 @@ spray-painter-style-fhairlockglass-security = Security
 spray-painter-style-fhairlockglass-virology = Virology
 
 # Walls
-spray-painter-style-wallsolid-nanotrasen = Nanotrasen
+spray-painter-style-wallsolid-nanotrasen = NanoTrasen
 spray-painter-style-wallsolid-standard = Standard
 spray-painter-style-wallsolid-neosol = Neosol
 
