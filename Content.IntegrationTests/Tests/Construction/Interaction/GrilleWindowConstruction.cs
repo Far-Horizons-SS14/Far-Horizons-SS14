@@ -10,7 +10,7 @@ namespace Content.IntegrationTests.Tests.Construction.Interaction;
 public sealed class GrilleWindowConstruction : InteractionTest
 {
     private const string Grille = "Grille";
-    private const string Window = "Window";
+    private const string Window = "WindowStandard"; //FH
 
     [Test]
     public async Task WindowOnGrille()
