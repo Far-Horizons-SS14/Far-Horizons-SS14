@@ -47,7 +47,7 @@ spray-painter-style-wallsolid-neosol = Neosol
 
 spray-painter-style-wallreinforced-nanotrasen = NanoTrasen
 spray-painter-style-wallreinforced-standard = Standard
-spray-painter-style-wallreinforced-neosol = Neosol
+spray-painter-style-wallreinforced-neosol = NeoSol
 
 spray-painter-style-window-nanotrasen = NanoTrasen
 spray-painter-style-window-standard = Standard
