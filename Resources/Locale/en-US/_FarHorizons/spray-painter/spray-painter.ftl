@@ -43,7 +43,7 @@ spray-painter-style-fhairlockglass-virology = Virology
 # Walls
 spray-painter-style-wallsolid-nanotrasen = NanoTrasen
 spray-painter-style-wallsolid-standard = Standard
-spray-painter-style-wallsolid-neosol = Neosol
+spray-painter-style-wallsolid-neosol = NeoSol
 
 spray-painter-style-wallreinforced-nanotrasen = NanoTrasen
 spray-painter-style-wallreinforced-standard = Standard
