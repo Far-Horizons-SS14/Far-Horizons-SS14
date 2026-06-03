@@ -23,6 +23,7 @@ using Robust.Shared.Serialization.Manager;
 using Robust.Shared.Utility;
 using Content.Shared._FarHorizons.Factions;
 using Content.Server._FarHorizons.Factions;
+using Content.Shared._CD.Records;
 using Content.Shared._Starlight.Traits;
 using Content.Shared.Starlight.TextToSpeech; // Far Horizons edit
 
@@ -241,6 +242,36 @@ namespace Content.Server.Preferences.Managers
             }
             else
                 siliconSymspeech = null;
+
+            PlayerProvidedCharacterRecords? cdProfile = null;
+            if (profile.CDProfile is { CharacterRecords: not null })
+            {
+                cdProfile = profile.CDProfile!.CharacterRecords.Deserialize<PlayerProvidedCharacterRecords>();
+
+                var medicalEntries = profile.CDProfile!.CharacterRecordEntries
+                    .Where(p => p.Type == CDModel.DbRecordEntryType.Medical).Select(p =>
+                        new PlayerProvidedCharacterRecords.RecordEntry(p.Title, p.Involved, p.Description)).ToList();
+                if (medicalEntries.Count > 0)
+                    cdProfile = cdProfile?.WithMedicalEntries(medicalEntries);
+
+                var secEntries = profile.CDProfile!.CharacterRecordEntries
+                    .Where(p => p.Type == CDModel.DbRecordEntryType.Security).Select(p =>
+                        new PlayerProvidedCharacterRecords.RecordEntry(p.Title, p.Involved, p.Description)).ToList();
+                if (secEntries.Count > 0)
+                    cdProfile = cdProfile?.WithSecurityEntries(secEntries);
+
+                var employmentEntries = profile.CDProfile!.CharacterRecordEntries
+                    .Where(p => p.Type == CDModel.DbRecordEntryType.Employment).Select(p =>
+                        new PlayerProvidedCharacterRecords.RecordEntry(p.Title, p.Involved, p.Description)).ToList();
+                if (employmentEntries.Count > 0)
+                    cdProfile = cdProfile?.WithEmploymentEntries(employmentEntries);
+
+                var adminEntries = profile.CDProfile!.CharacterRecordEntries
+                    .Where(p => p.Type == CDModel.DbRecordEntryType.Admin).Select(p =>
+                        new PlayerProvidedCharacterRecords.RecordEntry(p.Title, p.Involved, p.Description)).ToList();
+                if (adminEntries.Count > 0)
+                    cdProfile = cdProfile?.WithAdminEntries(adminEntries);
+            }
             // Far Horizons end
             
             return new HumanoidCharacterProfile(
@@ -274,7 +305,8 @@ namespace Content.Server.Preferences.Managers
                 loadouts,
                 profile.StarLightProfile?.CyberneticIds ?? [], // Starlight
                 profile.Enabled,
-                speciesLoadout // Far Horizons
+                speciesLoadout, // Far Horizons
+                cdProfile // Far Horizons
             );
         }
 

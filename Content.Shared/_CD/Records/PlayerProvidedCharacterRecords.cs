@@ -33,34 +33,27 @@ public sealed partial class PlayerProvidedCharacterRecords
     public int Weight { get; private set; }
     public const int MaxWeight = 300;
 
-    [DataField]
-    public string EmergencyContactName { get; private set; }
+    // Far Horizons start
+    // Changed accessibility of all these fields so they can actually be parsed
+    [DataField] public string EmergencyContactName { get; set; } = "";
 
     // Employment
-    [DataField]
-    public bool HasWorkAuthorization { get; private set; }
+    [DataField] public bool HasWorkAuthorization { get; set; } = true;
 
     // Security
-    [DataField]
-    public string IdentifyingFeatures { get; private set; }
+    [DataField] public string IdentifyingFeatures { get; set; } = "";
 
     // Medical
-    [DataField]
-    public string Allergies { get; private set; }
-    [DataField]
-    public string DrugAllergies { get; private set; }
-    [DataField]
-    public string PostmortemInstructions { get; private set; }
+    [DataField] public string Allergies { get; set; } = "None";
+    [DataField] public string DrugAllergies { get; set; } = "None";
+    [DataField] public string PostmortemInstructions { get; set; } = "Return home";
 
     // Incidents / free-form entries
-    [DataField, JsonIgnore]
-    public List<RecordEntry> MedicalEntries { get; private set; }
-    [DataField, JsonIgnore]
-    public List<RecordEntry> SecurityEntries { get; private set; }
-    [DataField, JsonIgnore]
-    public List<RecordEntry> EmploymentEntries { get; private set; }
-    [DataField, JsonIgnore]
-    public List<RecordEntry> AdminEntries { get; private set; }
+    [DataField, JsonIgnore] public List<RecordEntry> MedicalEntries { get; private set; } = [];
+    [DataField, JsonIgnore] public List<RecordEntry> SecurityEntries { get; private set; } = [];
+    [DataField, JsonIgnore] public List<RecordEntry> EmploymentEntries { get; private set; } = [];
+    [DataField, JsonIgnore] public List<RecordEntry> AdminEntries { get; private set; } = [];
+    // Far Horizons end
 
     [DataDefinition]
     [Serializable, NetSerializable]
