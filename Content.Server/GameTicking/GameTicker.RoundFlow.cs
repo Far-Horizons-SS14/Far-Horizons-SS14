@@ -438,6 +438,7 @@ namespace Content.Server.GameTicking
             AnnounceRound();
             UpdateInfoText();
             SendRoundStartedDiscordMessage();
+            _lobby.RoundStarted(); // Far Horizons
 
 #if EXCEPTION_TOLERANCE
             }
@@ -684,6 +685,8 @@ namespace Content.Server.GameTicking
                 UpdateInfoText();
 
                 ReqWindowAttentionAll();
+
+                _lobby.PreRoundStarted(); // Far Horizons
             }
         }
 

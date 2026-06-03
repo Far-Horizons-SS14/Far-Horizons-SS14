@@ -138,6 +138,8 @@ namespace Content.Server.GameTicking
                     _userDb.ClientDisconnected(session);
 
                     _adminLogger.Add(LogType.Connection, LogImpact.Low, $"User {args.Session:Player} attached to {(args.Session.AttachedEntity != null ? ToPrettyString(args.Session.AttachedEntity) : "nothing"):entity} disconnected from the game.");
+
+                    _lobby.RefreshJobPicks(_playerGameStatuses); // Far Horizons
                     break;
                 }
             }
