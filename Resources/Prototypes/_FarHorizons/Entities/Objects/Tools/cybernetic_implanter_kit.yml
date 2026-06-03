@@ -1,0 +1,19 @@
+- type: entity
+  name: TestCyber
+  parent: [BaseItem, BaseSyndicateContraband]
+  id: BaseCyberneticImplanterKit
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Weapons/Melee/cybermantisblade.rsi
+      state: cybermantisblade
+    - type: CyberneticImplanter
+      implantBeginSound:
+        path: "/Audio/_Starlight/Medical/Surgery/scalpel1.ogg"
+        params:
+          volume: 1.0
+          variation: 0.125
+      implantEndSound:
+        path: "/Audio/_Starlight/Medical/Surgery/scalpel2.ogg"
+        params:
+          volume: 1.0
+          variation: 0.125
