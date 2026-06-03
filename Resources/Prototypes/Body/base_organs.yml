@@ -623,7 +623,7 @@
   # Far Horizons end
 
 - type: entity
-  parent: OrganBase
+  parent: OrganEdible #FH
   id: OrganBaseBrain
   name: Brain #FarHorizons Capitalization
   abstract: true
@@ -651,7 +651,7 @@
   - type: VitalOrgan # Far Horizons - deal damage to body when removed (by any means)
 
 - type: entity
-  parent: OrganBase
+  parent: OrganEdible #FH
   id: OrganBaseEyes
   name: Eyes #FarHorizons Capitalization
   abstract: true
@@ -684,7 +684,7 @@
       - Eyes
 
 - type: entity
-  parent: OrganBase
+  parent: OrganEdible #FH
   id: OrganBaseTongue
   name: Tongue #FarHorizons Capitalization
   abstract: true
@@ -706,7 +706,7 @@
     - state: tongue
 
 - type: entity
-  parent: OrganBase
+  parent: OrganEdible #FH
   id: OrganBaseAppendix
   name: Appendix #FarHorizons Capitalization
   abstract: true
@@ -726,7 +726,7 @@
     - state: appendix
 
 - type: entity
-  parent: OrganBase
+  parent: OrganEdible #FH
   id: OrganBaseEars
   name: Ears #FarHorizons Capitalization
   abstract: true
@@ -740,7 +740,7 @@
     - state: ears
 
 - type: entity
-  parent: OrganBase
+  parent: OrganEdible #FH
   id: OrganBaseLungs
   name: Lungs #FarHorizons Capitalization
   abstract: true
@@ -772,7 +772,7 @@
     heldPrefix: lungs
 
 - type: entity
-  parent: OrganBase
+  parent: OrganEdible #FH
   id: OrganBaseHeart
   name: Heart #FarHorizons Capitalization
   abstract: true
@@ -798,7 +798,7 @@
   - type: VitalOrgan # Far Horizons - deal damage to body when removed (by any means)
 
 - type: entity
-  parent: OrganBase
+  parent: OrganEdible #FH
   id: OrganBaseStomach
   name: Stomach #FarHorizons Capitalization
   abstract: true
@@ -830,7 +830,7 @@
     heldPrefix: stomach
 
 - type: entity
-  parent: OrganBase
+  parent: OrganEdible #FH
   id: OrganBaseLiver
   name: Liver #FarHorizons Capitalization
   abstract: true
@@ -856,7 +856,7 @@
     stages: [ Metabolites ]
 
 - type: entity
-  parent: OrganBase
+  parent: OrganEdible #FH
   id: OrganBaseKidneys
   name: Kidneys #FarHorizons Capitalization
   abstract: true

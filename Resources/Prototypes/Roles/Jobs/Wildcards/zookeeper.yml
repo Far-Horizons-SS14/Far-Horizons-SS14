@@ -13,6 +13,26 @@
   - !type:GiveItemOnHolidaySpecial
     holiday: MonkeyDay
     prototype: MonkeyCubeBox
+  #FarHorizons Start
+  - !type:AddComponentSpecial
+    components:
+    - type: AdditionalLanguageKnowledge # If we just put in LanguageKnowledge, it'd overwrite your normal languages
+      understands:
+      - Ancestor
+      - Bat
+      - Cat
+      - Chicken
+      - Dog
+      - Duck
+      - Fox
+      - Mothroach
+      - Mouse
+      - Pig
+      - ScurretSign
+      - Bubblish
+      - Chittin
+      - Draconic
+  #FarHorizons End
 
 - type: startingGear
   id: ZookeeperGear
