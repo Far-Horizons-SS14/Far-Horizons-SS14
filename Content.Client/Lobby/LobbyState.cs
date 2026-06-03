@@ -217,6 +217,7 @@ namespace Content.Client.Lobby
                 Lobby!.ReadyButton.Pressed = false;
                 Lobby!.ReadyButton.Disabled = false;
                 Lobby!.ObserveButton.Disabled = false;
+                Lobby!.JobPicksButton.Disabled = true; // Far Horizons
             }
             else
             {
@@ -231,6 +232,7 @@ namespace Content.Client.Lobby
                 Lobby!.ReadyButton.ToggleMode = true;
                 Lobby!.ReadyButton.Disabled = !_readyPossibleWithCharacters; // Starlight - false -> !_readyPossibleWithCharacters
                 Lobby!.ObserveButton.Disabled = true;
+                Lobby!.JobPicksButton.Disabled = false; // Far Horizons
             }
 
             if (_gameTicker.ServerInfoBlob != null)

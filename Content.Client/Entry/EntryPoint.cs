@@ -30,6 +30,7 @@ using Content.Shared._Starlight.DocumentManager;
 using Content.Shared.Ame.Components;
 using Content.Shared.FeedbackSystem;
 using Content.Shared._FarHorizons.Factions;
+using Content.Shared._FarHorizons.Lobby;
 using Content.Shared.Gravity;
 using Content.Shared.Localizations;
 using Robust.Client;
@@ -88,6 +89,7 @@ namespace Content.Client.Entry
         [Dependency] private readonly ISharedFactionManager _factions = default!; //Far Horizons
         [Dependency] private readonly DiscordLinkManager _discordLinkManager = default!; // Far Horizons
         [Dependency] private readonly PreWrittenDocumentManager _documentManager = default!; // Starlight
+        [Dependency] private readonly ISharedLobbyManager _lobby = default!; // Far Horizons
 
         public override void PreInit()
         {
@@ -159,8 +161,10 @@ namespace Content.Client.Entry
             _playbackMan.Initialize();
             _clientsidePlaytimeManager.Initialize();
 
-            //Far Horizons
+            // Far Horizons start
             _factions.Init();
+            _lobby.Init();
+            // Far Horizons end
 
             //AUTOSCALING default Setup!
             _configManager.SetCVar("interface.resolutionAutoScaleUpperCutoffX", 1080);
@@ -175,8 +179,10 @@ namespace Content.Client.Entry
             base.Shutdown();
             //_titleWindowManager.Shutdown();
 
-            //Far Horizons
+            // Far Horizons start
             _factions.Shutdown();
+            _lobby.Shutdown();
+            // Far Horizons end
         }
 
         public override void PostInit()

@@ -164,6 +164,8 @@ namespace Content.Server.GameTicking
                     continue;
                 RaiseNetworkEvent(GetStatusMsg(playerSession), playerSession.Channel);
             }
+
+            _lobby.RefreshJobPicks(_playerGameStatuses); // Far Horizons
         }
 
         public void ToggleReady(ICommonSession player, bool ready)
@@ -190,6 +192,8 @@ namespace Content.Server.GameTicking
             RaiseNetworkEvent(GetStatusMsg(player), player.Channel);
             // update server info to reflect new ready count
             UpdateInfoText();
+
+            _lobby.RefreshJobPicks(_playerGameStatuses); // Far Horizons
         }
 
         public bool UserHasJoinedGame(ICommonSession session)

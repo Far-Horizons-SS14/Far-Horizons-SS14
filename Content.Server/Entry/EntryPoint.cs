@@ -29,6 +29,7 @@ using Content.Server.Preferences.Managers;
 using Content.Server.ServerInfo;
 using Content.Server.ServerUpdates;
 using Content.Server.Voting.Managers;
+using Content.Shared._FarHorizons.Lobby;
 using Content.Shared._Starlight.DocumentManager;
 using Content.Shared.CCVar;
 using Content.Shared.FeedbackSystem;
@@ -96,6 +97,7 @@ namespace Content.Server.Entry
         [Dependency] private readonly IPlayerRolesManager _playerRoles = default!;
 #endregion Starlight
 
+        [Dependency] private readonly ISharedLobbyManager _lobby = default!; // Far Horizons
 
         public override void PreInit()
         {
@@ -164,6 +166,7 @@ namespace Content.Server.Entry
             IoCManager.Resolve<IServerFactionManager>().Init();
             IoCManager.Resolve<DiscordOauthServer>().Initialize();
             IoCManager.Resolve<DiscordRequestsAdapter>().Initialize();
+            _lobby.Init();
             // Far Horizons end
         }
 
@@ -251,6 +254,7 @@ namespace Content.Server.Entry
             //Far Horizons
             IoCManager.Resolve<IServerFactionManager>().Shutdown();
             IoCManager.Resolve<IDiscordLinkManager>().Shutdown();
+            _lobby.Shutdown();
         }
 
         private static void LoadConfigPresets(IConfigurationManager cfg, IResourceManager res, ISawmill sawmill)

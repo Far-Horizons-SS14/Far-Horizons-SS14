@@ -8,7 +8,8 @@
     xmlns:style="clr-namespace:Content.Client.Stylesheets"
     xmlns:lobbyUi="clr-namespace:Content.Client.Lobby.UI"
     xmlns:info="clr-namespace:Content.Client.Info"
-    xmlns:widgets="clr-namespace:Content.Client.UserInterface.Systems.Chat.Widgets">
+    xmlns:widgets="clr-namespace:Content.Client.UserInterface.Systems.Chat.Widgets"
+    xmlns:fhLobby="clr-namespace:Content.Client._FarHorizons.Lobby.UI">
     <!-- Background -->
     <TextureRect Access="Public" VerticalExpand="True" HorizontalExpand="True" Name="Background"
                  Stretch="KeepAspectCovered" />
@@ -44,6 +45,16 @@
                                                 StyleClasses="ButtonBig" MinWidth="137" />
                                     </BoxContainer>
                                 </controls:StripeBack>
+                                <!-- Far Horizons start -->
+                                <BoxContainer Orientation="Horizontal" SeparationOverride="6" Margin="3 0 3 3">
+                                    <cc:UICommandButton Name="OnlineListButton" Access="Public"
+                                                        Text="{Loc 'ui-lobby-online-list-button'}"
+                                                        WindowType="{x:Type fhLobby:OnlineListWindow}" />
+                                    <cc:UICommandButton Name="JobPicksButton" Access="Public"
+                                                        Text="{Loc 'ui-lobby-job-picks-button'}"
+                                                        WindowType="{x:Type fhLobby:JobPicksWindow}" />
+                                </BoxContainer>
+                                <!-- Far Horizons end -->
                                 <RichTextLabel Name="PlaytimeComment" Visible="False" Access="Public" HorizontalAlignment="Center" />
                             </BoxContainer>
                         </PanelContainer>

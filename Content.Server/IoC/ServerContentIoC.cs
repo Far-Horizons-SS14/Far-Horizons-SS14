@@ -46,7 +46,9 @@ using Content.Server._Starlight.TextToSpeech;
 
 using Content.Shared._FarHorizons.Factions;
 using Content.Server._FarHorizons.Factions;
+using Content.Server._FarHorizons.Lobby;
 using Content.Shared._FarHorizons.DiscordLink;
+using Content.Shared._FarHorizons.Lobby;
 
 namespace Content.Server.IoC;
 
@@ -118,6 +120,8 @@ internal static class ServerContentIoC
         deps.Register<IDiscordLinkManager, DiscordLinkManager>();
         deps.Register<DiscordOauthServer>();
         deps.Register<DiscordRequestsAdapter>();
+        deps.Register<ISharedLobbyManager, ServerLobbyManager>();
+        deps.Register<IServerLobbyManager, ServerLobbyManager>();
         // Far Horizons end
     }
 }
