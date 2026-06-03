@@ -473,6 +473,13 @@ public abstract partial class InventorySystem
         {
             if (slotDef != slotDefinition && slotDef.DependsOn == slotDefinition.Name)
             {
+                if (slotDef.DependsOnWhitelist != null &&
+                    TryGetSlotContainer(target, slotDef.Name, out var depContainer, out _, inventory) &&
+                    depContainer.ContainedEntity.HasValue &&
+                    _whitelistSystem.IsWhitelistPass(slotDef.DependsOnWhitelist, depContainer.ContainedEntity.Value))
+                {
+                    continue;
+                }
                 //this recursive call might be risky
                 TryUnequip(actor, target, slotDef.Name, out _, ref itemsDropped, true, true, predicted, inventory, reparent: reparent);
             }
