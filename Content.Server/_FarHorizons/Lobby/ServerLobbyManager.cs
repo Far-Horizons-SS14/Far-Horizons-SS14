@@ -42,6 +42,8 @@ public sealed partial class ServerLobbyManager : SharedLobbyManager, IServerLobb
 
     private void SetJobPicks(Dictionary<ProtoId<FactionJobAssignmentPrototype>, (int, int, int)> jobPicks)
     {
+        if (JobPicks == jobPicks) return;
+
         JobPicks = jobPicks;
         SyncCurrentJobPicks();
     }
