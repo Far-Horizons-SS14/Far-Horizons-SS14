@@ -146,7 +146,9 @@ namespace Content.Shared.Preferences
             Dictionary<string, RoleLoadout> loadouts,
             List<string> cybernetics, // Starlight
             bool enabled,
-            RoleLoadout? speciesLoadout) // Far Horizons
+            RoleLoadout? speciesLoadout, // Far Horizons
+            PlayerProvidedCharacterRecords? cdCharacterRecords = null // Far Horizons
+            )
         {
             Name = name;
             Symspeech = symspeech;
@@ -171,6 +173,7 @@ namespace Content.Shared.Preferences
             Cybernetics = cybernetics; // Starlight
             Enabled = enabled;
             SpeciesLoadout = speciesLoadout;
+            CDCharacterRecords = cdCharacterRecords ?? PlayerProvidedCharacterRecords.DefaultRecords(); // Far Horizons
         }
 
         /// <summary>Copy constructor</summary>
@@ -197,15 +200,9 @@ namespace Content.Shared.Preferences
                 new Dictionary<string, RoleLoadout>(other.Loadouts),
                 other.Cybernetics, // Starlight
                 other.Enabled,
-                other.SpeciesLoadout) // Far Horizons
-        {
-            // Cosmatic Drift Record System-start
-            CDCharacterRecords = other.CDCharacterRecords != null
-                ? new PlayerProvidedCharacterRecords(other.CDCharacterRecords)
-                : PlayerProvidedCharacterRecords.DefaultRecords();
-            CDCharacterRecords.EnsureValid();
-            // Cosmatic Drift Record System-end
-        }
+                other.SpeciesLoadout, // Far Horizons
+                other.CDCharacterRecords // Far Horizons
+                ) { }
 
         /// <summary>
         ///     Get the default humanoid character profile, using internal constant values.
