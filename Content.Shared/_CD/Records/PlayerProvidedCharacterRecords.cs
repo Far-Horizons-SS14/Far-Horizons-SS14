@@ -1,10 +1,7 @@
-using System;
-using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Text.Json.Serialization;
 using Content.Shared.Humanoid.Prototypes;
-using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 using Robust.Shared.Utility;
 
@@ -25,16 +22,14 @@ public sealed partial class PlayerProvidedCharacterRecords
 
     // Additional data is fetched from the profile itself (name, age, etc.)
 
-    [DataField]
-    public int Height { get; private set; }
-    public const int MaxHeight = 800;
-
-    [DataField]
-    public int Weight { get; private set; }
-    public const int MaxWeight = 300;
-
     // Far Horizons start
     // Changed accessibility of all these fields so they can actually be parsed
+    [DataField, JsonIgnore] public int Height { get; private set; } = 164;
+    public const int MaxHeight = 800;
+
+    [DataField, JsonIgnore] public int Weight { get; private set; } = 74;
+    public const int MaxWeight = 300;
+
     [DataField] public string EmergencyContactName { get; set; } = "";
 
     // Employment
