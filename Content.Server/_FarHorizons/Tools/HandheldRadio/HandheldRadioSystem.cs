@@ -157,7 +157,8 @@ public sealed class HandheldRadioSystem : EntitySystem
             HasComp<HandheldRadioComponent>(args.Source) ||
             !TryComp(args.Source, out TransformComponent? source_tf) ||
             !TryComp(ent, out TransformComponent? target_tf) ||
-            !_interaction.InRangeUnobstructed((args.Source, source_tf), (ent, target_tf), ent.Comp.MicListeningRange))
+            !_interaction.InRangeUnobstructed((args.Source, source_tf), (ent, target_tf), ent.Comp.MicListeningRange) ||
+            !_language.GetLanguage(args.Source).SpeechOverride.AllowRadio)
                 args.Cancel();
     }
 
@@ -186,7 +187,10 @@ public sealed class HandheldRadioSystem : EntitySystem
             if (senderTf.MapID != targetTf.MapID && !targetRadio.Comp.RecievesFromAnyMap)
                 continue;
             
-            var name = Loc.GetString("speech-name-relay", ("speaker", Name(radio)), ("originalName", Name(source)));
+            var nameEv = new TransformSpeakerNameEvent(source, Name(source));
+            RaiseLocalEvent(source, nameEv);
+            
+            var name = Loc.GetString("speech-name-relay", ("speaker", Name(targetRadio)), ("originalName", nameEv.VoiceName));
             LanguagePrototype? language = null;
             if (TryComp(source, out LanguageSpeakerComponent? sourceLang))
                 language = _language.GetLanguage((source, sourceLang));
