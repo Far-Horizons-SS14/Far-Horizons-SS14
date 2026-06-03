@@ -1,196 +1,38 @@
-# Girders
-
-- type: entity
-  id: GirderSyndie
-  parent: [ BaseStructureDynamic, BaseStructureDissolvable ]
-  name: Girder
-  description: A large structural assembly made out of metal; It requires a layer of metal before it can be considered a wall.
-  components:
-  - type: Transform
-    anchored: true
-    noRot: false
-  - type: Physics
-    bodyType: Static
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeAabb
-          bounds: "-0.45,-0.45,0.45,0.45"
-        density: 60
-        mask:
-        - MachineMask
-        layer:
-        - GlassAirlockLayer
-  - type: InteractionOutline
-  - type: Construction
-    graph: GirderSyndie
-    node: girdersyndie
-  - type: Sprite
-    sprite: _FarHorizons/Structures/Walls/solid_syndie.rsi
-    state: wall_girder
-  - type: Damageable
-    damageContainer: StructuralInorganic
-    damageModifierSet: StructuralMetallic
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 200
-      behaviors: #excess damage, don't spawn entities.
-      - !type:DoActsBehavior
-        acts: [ "Destruction" ]
-    - trigger:
-        !type:DamageTrigger
-        damage: 50
-      behaviors:
-      - !type:SpawnEntitiesBehavior
-        spawn:
-          SheetSteel1:
-            min: 1
-            max: 1
-      - !type:DoActsBehavior
-        acts: [ "Destruction" ]
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalBreak
-  - type: StaticPrice
-    price: 30
-
-- type: entity
-  id: ReinforcedGirderSyndie
-  parent: Girder
-  name: Reinforced Girder
-  description: A large structural assembly made out of metal and plasteel; It requires a layer of plasteel before it can be considered a reinforced wall.
-  components:
-    - type: Sprite
-      sprite: _FarHorizons/Structures/Walls/solid_syndie.rsi
-      state: reinforced_wall_girder
-    - type: Construction
-      graph: GirderSyndie
-      node: reinforcedGirderSyndie
-    - type: Destructible
-      thresholds:
-        - trigger:
-            !type:DamageTrigger
-            damage: 200
-          behaviors:
-            - !type:DoActsBehavior
-              acts: [ "Destruction" ]
-            - !type:PlaySoundBehavior
-              sound:
-                collection: MetalBreak
-        - trigger:
-            !type:DamageTrigger
-            damage: 50
-          behaviors:
-            - !type:SpawnEntitiesBehavior
-              spawn:
-                SheetSteel1:
-                  min: 1
-                  max: 1
-                SheetPlasteel1:
-                  min: 1
-                  max: 1
-            - !type:DoActsBehavior
-              acts: [ "Destruction" ]
-            - !type:PlaySoundBehavior
-              sound:
-                collection: MetalBreak
-    - type: StaticPrice
-      price: 130
-
 # Walls
 
 - type: entity
-  parent: BaseWall
-  id: WallSolidSyndicate
-  name: Solid Wall [S]
+  parent: WallSolid
+  id: WallSolidStandard
+  suffix: ""
+  name: Solid Wall
   components:
   - type: Sprite
-    sprite: _FarHorizons/Structures/Walls/solid_syndie.rsi
-  - type: WallReplacementMarker
-  - type: Construction
-    graph: GirderSyndie
-    node: wallsyndie
+    sprite: Structures/Walls/solid.rsi #TODO: neutral sprite
   - type: Icon
-    sprite: _FarHorizons/Structures/Walls/solid_syndie.rsi
-  - type: RCDDeconstructable
-    cost: 6
-    delay: 8
-    fx: EffectRCDDeconstruct8
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 400
-      behaviors:
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalSlam
-    - trigger:
-        !type:DamageTrigger
-        damage: 200
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalSlam
-      - !type:ChangeConstructionNodeBehavior
-        node: girdersyndie
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
-  - type: IconSmooth
-    key: walls
-    base: solid
+    sprite: Structures/Walls/solid.rsi #TODO: neutral sprites
 
 - type: entity
-  parent: BaseWall
-  id: WallReinforcedSyndicate
-  name: Reinforced Wall [S]
+  parent: WallSolid
+  id: WallSolidSyndicate
+  name: Solid Wall
+  suffix: NS
   components:
-  - type: Pierceable
-    level: HardenedMetal
-  - type: Ricochetable
-    chance: 0.75
   - type: Sprite
     sprite: _FarHorizons/Structures/Walls/solid_syndie.rsi
   - type: Icon
     sprite: _FarHorizons/Structures/Walls/solid_syndie.rsi
+
+- type: entity
+  parent: WallReinforced
+  id: WallReinforcedStandard
+  name: Reinforced Wall
+  suffix: ""
+  components:
+  - type: Sprite
+    sprite: Structures/Walls/solid.rsi #TODO: neutral sprites
+  - type: Icon
+    sprite: Structures/Walls/solid.rsi #TODO: neutral sprites
     state: rgeneric
-  - type: Construction
-    graph: Girder
-    node: reinforcedWall
-  - type: Damageable
-    damageContainer: StructuralInorganic
-    damageModifierSet: StructuralMetallicStrong
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 600
-      behaviors:
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalSlam
-    - trigger:
-        !type:DamageTrigger
-        damage: 400
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalSlam
-      - !type:ChangeConstructionNodeBehavior
-        node: girder
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
-  - type: IconSmooth
-    key: walls
-    base: reinf_over
-  - type: Appearance
   - type: GenericVisualizer
     visuals:
       enum.ReinforcedWallVisuals.DeconstructionStage:
@@ -202,39 +44,37 @@
           3: { state: reinf_construct-3, visible: true}
           4: { state: reinf_construct-4, visible: true}
           5: { state: reinf_construct-5, visible: true}
-  - type: ReinforcedWallReplacementMarker
-  - type: StaticPrice
-    price: 250
-  - type: RadiationBlocker
-    resistance: 5
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeAabb
-          bounds: "-0.5,-0.5,0.5,0.5"
-        mask:
-        - FullTileMask
-        layer:
-        - WallLayer
-        density: 2000
 
 - type: entity
-  parent: BaseWall
+  parent: WallReinforced
+  id: WallReinforcedSyndicate
+  name: Reinforced Wall
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Walls/solid_syndie.rsi
+  - type: Icon
+    sprite: _FarHorizons/Structures/Walls/solid_syndie.rsi
+    state: rgeneric
+  - type: GenericVisualizer
+    visuals:
+      enum.ReinforcedWallVisuals.DeconstructionStage:
+        ReinforcedWallVisualLayers.Deconstruction:
+          -1: { visible: false }
+          0: { state: reinf_construct-0, visible: true}
+          1: { state: reinf_construct-1, visible: true}
+          2: { state: reinf_construct-2, visible: true}
+          3: { state: reinf_construct-3, visible: true}
+          4: { state: reinf_construct-4, visible: true}
+          5: { state: reinf_construct-5, visible: true}
+
+- type: entity
+  parent: WallSolid
   id: WallFakeNT
   name: Solid Wall
   suffix: Fake, NT
   description: This wall feels.. hollow. Some signage reads "Break in event of Emergency!"
   components:
-  - type: Sprite
-    sprite: Structures/Walls/solid.rsi
-  - type: WallReplacementMarker
-  - type: Icon
-    sprite: Structures/Walls/solid.rsi
-  - type: RCDDeconstructable
-    cost: 6
-    delay: 8
-    fx: EffectRCDDeconstruct8
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: FlimsyMetallic
@@ -249,15 +89,3 @@
       - !type:PlaySoundBehavior
         sound:
           collection: MetalSlam
-    - trigger:
-        !type:DamageTrigger
-        damage: 100
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalSlam
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
-  - type: IconSmooth
-    key: walls
-    base: solid

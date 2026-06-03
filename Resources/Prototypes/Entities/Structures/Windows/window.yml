@@ -1,7 +1,8 @@
 - type: entity
   id: Window
   parent: [BaseDeltaPressureGlass, BaseStructure, BaseStructureDissolvable] # Starlight-edit 
-  name: Window [NT] #Far Horizons - The Great Capitalization Crusade
+  name: Window #Far Horizons - The Great Capitalization Crusade
+  suffix: NT #FH
   description: Don't smudge up the glass down there.
   placement:
     mode: SnapgridCenter
@@ -98,6 +99,9 @@
   - type: StaticPrice
     price: 100
   - type: BlockWeather
+  - type: Paintable #FH start
+    group: Window 
+  - type: GenericPaintable #FH end
 
 - type: entity
   parent: Window

@@ -2,6 +2,7 @@
   parent: Window
   id: BarWindow
   name: bar window
+  suffix: "" #FH
   components:
   - type: Sprite
     drawdepth: WallTops
@@ -15,6 +16,8 @@
     node: barWindow
   - type: StaticPrice
     price: 70
+  - type: Paintable #FH start
+    group: null #FH end
 
 - type: entity
   parent: BarWindow
