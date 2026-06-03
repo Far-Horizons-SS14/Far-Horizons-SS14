@@ -86,6 +86,7 @@
       - NotekeeperCartridge
       - NanoTaskCartridge
       - NewsReaderCartridge
+      - NanoChatCartridge # CD
     cartridgeSlot:
       priority: -1
       name: device-pda-slot-component-slot-name-cartridge
@@ -160,6 +161,7 @@
     - NanoTaskCartridge
     - NewsReaderCartridge
     - WantedListCartridge
+    - NanoChatCartridge # CD
 
 - type: entity
   parent: BasePDA
@@ -174,12 +176,13 @@
       - NanoTaskCartridge
       - NewsReaderCartridge
       - MedTekCartridge
+      - NanoChatCartridge # CD
 
 #FarHorizons Start
 - type: entity
   parent: BasePDA
   id: BaseEngineerPDA
-  abstract: true
+  abstract: true 
   components:
   - type: CartridgeLoader
     uiKey: enum.PdaUiKey.Key
@@ -190,6 +193,7 @@
       - NewsReaderCartridge
       - HullSenseCartridge
       - AstroNavCartridge #FH
+      - NanoChatCartridge #FH
 #FarHorizons End
 
 - type: entity
@@ -467,6 +471,7 @@
     preinstalled:
     - CrewManifestCartridge
     - NewsReaderCartridge
+    - NanoChatCartridge #FH
   - type: Appearance
     appearanceDataInit:
      enum.PdaVisuals.PdaType:
@@ -534,6 +539,7 @@
     - NanoTaskCartridge
     - NewsReaderCartridge
     - AstroNavCartridge
+    - NanoChatCartridge # CD
 
 - type: entity
   parent: BasePDA
@@ -580,6 +586,7 @@
       - NanoTaskCartridge
       - NewsReaderCartridge
       - AstroNavCartridge
+      - NanoChatCartridge # CD
 
 - type: entity
   parent: BasePDA
@@ -841,6 +848,18 @@
     borderColor: "#141633" #FH
   - type: Icon
     state: pda-paramedic
+#FarHorizons Start
+  - type: CartridgeLoader
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NanoTaskCartridge
+      - NewsReaderCartridge
+      - MedTekCartridge
+      - NanoChatCartridge
+      - AstroNavCartridge
+#FarHorizons End
 
 - type: entity
   parent: BaseMedicalPDA
@@ -925,6 +944,7 @@
     - NewsReaderCartridge
     - WantedListCartridge
     - LogProbeCartridge
+    - NanoChatCartridge # CD
 
 - type: entity
   parent: BaseSecurityPDA
@@ -1001,6 +1021,7 @@
       - LogProbeCartridge
       - AstroNavCartridge
       - HullSenseCartridge #FarHorizons
+      - NanoChatCartridge # CD
 
 - type: entity
   parent: CentcomPDA
@@ -1028,6 +1049,7 @@
       - MedTekCartridge
       - AstroNavCartridge
       - HullSenseCartridge #FarHorizons
+      - NanoChatCartridge # CD
   - type: Tag #  Ignore Chameleon tags
     tags:
     - DoorBumpOpener
@@ -1151,6 +1173,7 @@
     preinstalled:
       - NotekeeperCartridge
       - NanoTaskCartridge
+      - NanoChatCartridge # CD
 
 - type: entity
   parent: [ SyndiPDA, BaseSyndicateContraband ]
@@ -1192,6 +1215,7 @@
       - NotekeeperCartridge
       - NanoTaskCartridge
       - MedTekCartridge
+      - NanoChatCartridge # CD
 
 - type: entity
   parent: [ SyndiOperativePDA, BaseSyndicateContraband ]
@@ -1241,6 +1265,7 @@
       - LogProbeCartridge
       - AstroNavCartridge
       - HullSenseCartridge #FarHorizons
+      - NanoChatCartridge # CD
 
 - type: entity
   parent: ERTLeaderPDA
@@ -1410,6 +1435,7 @@
     - NewsReaderCartridge
     - WantedListCartridge
     - LogProbeCartridge
+    - NanoChatCartridge # CD
 
 - type: entity
   parent: BaseMedicalPDA
@@ -1437,6 +1463,7 @@
     - NewsReaderCartridge
     - WantedListCartridge
     - MedTekCartridge
+    - NanoChatCartridge # CD
 
 - type: entity
   parent: ClownPDA
