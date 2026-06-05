@@ -1,5 +1,8 @@
+using Content.Shared.DoAfter;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
+using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization;
 
 namespace Content.Shared._FarHorizons.CyberneticImplanter;
 
@@ -17,4 +20,21 @@ public sealed partial class CyberneticImplanterComponent : Component
     /// </summary>
     [DataField]
     public SoundSpecifier? ImplantEndSound = null;
+
+    /// <summary>
+    /// Organ to be implanted
+    /// </summary>
+    [DataField]
+    public ProtoId<EntityPrototype>? ImplantedOrgan;
+
+    /// <summary>
+    /// Time to activate on a target
+    /// </summary>
+    [DataField]
+    public TimeSpan ActivationTime = TimeSpan.FromSeconds(5f);
+}
+
+[Serializable, NetSerializable]
+public sealed partial class CyberneticImplantDoAfterEvent : SimpleDoAfterEvent
+{
 }
