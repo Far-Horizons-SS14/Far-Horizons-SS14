@@ -15,10 +15,14 @@
     actions:
     - !type:AppearanceChange
     edges:
-    - to: wired
+    - to: electronics
       steps:
-      - material: Cable
-        amount: 2
+      - tag: ResearchTreeMapElectronics
+        store: board
+        name: research-tree-map-electronics
+        icon:
+          sprite: "Objects/Misc/module.rsi"
+          state: "science"
         doAfter: 1
     - to: start
       completed:
@@ -29,29 +33,6 @@
       steps:
       - tool: Welding
         doAfter: 2
-
-  - node: wired
-    entity: ResearchTreeMapAssembly
-    actions:
-    - !type:AppearanceChange
-    edges:
-    - to: electronics
-      steps:
-      - tag: ResearchTreeMapElectronics
-        store: board
-        name: research-tree-map-electronics
-        icon:
-          sprite: "Objects/Misc/module.rsi"
-          state: "science"
-        doAfter: 1
-    - to: assembly
-      completed:
-      - !type:GivePrototype
-        prototype: CableApcStack1
-        amount: 2
-      steps:
-      - tool: Cutting
-        doAfter: 1
 
   - node: electronics
     actions:
@@ -65,7 +46,7 @@
   - node: research_tree_map
     entity: ResearchTreeMap
     edges:
-    - to: wired
+    - to: assembly
       conditions:
       - !type:ContainerNotEmpty
         container: board
