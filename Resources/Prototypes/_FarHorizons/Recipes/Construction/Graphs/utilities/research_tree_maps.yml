@@ -15,7 +15,7 @@
     actions:
     - !type:AppearanceChange
     edges:
-    - to: electronics
+    - to: research_tree_map
       steps:
       - tag: ResearchTreeMapElectronics
         store: board
@@ -31,20 +31,13 @@
         amount: 2
       - !type:DeleteEntity {}
       steps:
-      - tool: Welding
-        doAfter: 2
-
-  - node: electronics
-    actions:
-    - !type:AppearanceChange
-    edges:
-    - to: research_tree_map
-      steps:
       - tool: Screwing
         doAfter: 2
 
-  - node: research_tree_map
-    entity: ResearchTreeMap
+  - node: electronics
+    entity: ResearchTreeMapAssembly
+    actions:
+    - !type:AppearanceChange
     edges:
     - to: assembly
       conditions:
@@ -56,4 +49,16 @@
         emptyAtUser: true
       steps:
       - tool: Prying
+        doAfter: 3
+    - to: research_tree_map
+      steps:
+      - tool: Screwing
+        doAfter: 1
+
+  - node: research_tree_map
+    entity: ResearchTreeMap
+    edges:
+    - to: electronics
+      steps:
+      - tool: Screwing
         doAfter: 1
