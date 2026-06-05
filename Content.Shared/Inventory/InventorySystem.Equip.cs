@@ -253,19 +253,22 @@ public abstract partial class InventorySystem
         DebugTools.Assert(slotDefinition.Name == slot);
         if (slotDefinition.DependsOn != null)
         {
-            if (!TryGetSlotEntity(target, slotDefinition.DependsOn, out EntityUid? slotEntity, inventory))
-                return false;
-
-            if (slotDefinition.DependsOnComponents is { } componentRegistry)
+            if(_whitelistSystem.IsWhitelistFailOrNull(slotDefinition.DependsOnWhitelist, itemUid)) //FarHorizons
             {
-                foreach (var (_, entry) in componentRegistry)
-                {
-                    if (!HasComp(slotEntity, entry.Component.GetType()))
-                        return false;
+                if (!TryGetSlotEntity(target, slotDefinition.DependsOn, out EntityUid? slotEntity, inventory))
+                    return false;
 
-                    if (TryComp<AllowSuitStorageComponent>(slotEntity, out var comp) &&
-                        _whitelistSystem.IsWhitelistFailOrNull(comp.Whitelist, itemUid))
-                        return false;
+                if (slotDefinition.DependsOnComponents is { } componentRegistry)
+                {
+                    foreach (var (_, entry) in componentRegistry)
+                    {
+                        if (!HasComp(slotEntity, entry.Component.GetType()))
+                            return false;
+
+                        if (TryComp<AllowSuitStorageComponent>(slotEntity, out var comp) &&
+                            _whitelistSystem.IsWhitelistFailOrNull(comp.Whitelist, itemUid))
+                            return false;
+                    }
                 }
             }
         }
@@ -470,6 +473,13 @@ public abstract partial class InventorySystem
         {
             if (slotDef != slotDefinition && slotDef.DependsOn == slotDefinition.Name)
             {
+                //FarHorizons Start
+                if (slotDef.DependsOnWhitelist != null &&
+                    TryGetSlotContainer(target, slotDef.Name, out var depContainer, out _, inventory) &&
+                    depContainer.ContainedEntity.HasValue &&
+                    _whitelistSystem.IsWhitelistPass(slotDef.DependsOnWhitelist, depContainer.ContainedEntity.Value))
+                        continue;
+                //FarHorizons End
                 //this recursive call might be risky
                 TryUnequip(actor, target, slotDef.Name, out _, ref itemsDropped, true, true, predicted, inventory, reparent: reparent);
             }
