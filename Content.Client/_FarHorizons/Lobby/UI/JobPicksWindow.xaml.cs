@@ -24,6 +24,8 @@ public sealed partial class JobPicksWindow : DefaultWindow
 
     private readonly SpriteSystem _sprite;
 
+    private Dictionary<ProtoId<FactionJobAssignmentPrototype>, (Label low, Label med, Label high)> _labelsCache; 
+
     public JobPicksWindow()
     {
         Title = Loc.GetString("job-picks-window-title");
@@ -32,12 +34,31 @@ public sealed partial class JobPicksWindow : DefaultWindow
 
         _sprite = _entMan.System<SpriteSystem>();
 
+        _labelsCache = new();
+        
         _lobby.OnJobPicksUpdated += UpdateJobList;
+        BuildJobList();
         UpdateJobList();
     }
 
     private void UpdateJobList()
     {
+        var picks = _lobby.GetJobPicks();
+
+        foreach (var (job, (lowLabel, medLabel, highLabel)) in _labelsCache)
+        {
+            if (!picks.TryGetValue(job, out var value))
+                value = (0, 0, 0);
+
+            lowLabel.Text = $" {value.low}";
+            medLabel.Text = $" {value.med}";
+            highLabel.Text = $" {value.high}";
+        }
+    }
+
+    private void BuildJobList()
+    {
+        _labelsCache.Clear();
         FactionTabs.RemoveAllChildren();
 
         foreach (var faction in _factions.ListPlayableFactions().ToList())
@@ -143,26 +164,25 @@ public sealed partial class JobPicksWindow : DefaultWindow
                     HorizontalExpand = true
                 };
 
-                if (!_lobby.GetJobPicks().TryGetValue(jobAssignment, out var value))
-                    value = (0, 0, 0);
-
                 var lowPrioLabel = new Label
                 {
                     Margin = new Thickness(5f, 0, 0, 0),
-                    Text = $" {value.Item1}"
+                    Text = " 0"
                 };
 
                 var mediumPrioLabel = new Label
                 {
                     Margin = new Thickness(5f, 0, 0, 0),
-                    Text = $" {value.Item2}"
+                    Text = " 0"
                 };
 
                 var highPrioLabel = new Label
                 {
                     Margin = new Thickness(5f, 0, 0, 0),
-                    Text = $" {value.Item3}"
+                    Text = " 0"
                 };
+
+                _labelsCache.Add(jobAssignment, (lowPrioLabel, mediumPrioLabel, highPrioLabel));
 
                 jobContainer.AddChild(icon);
                 jobContainer.AddChild(jobLabel);
