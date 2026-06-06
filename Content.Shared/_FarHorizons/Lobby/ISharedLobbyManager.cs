@@ -10,5 +10,5 @@ public interface ISharedLobbyManager
 
     event Action? OnJobPicksUpdated;
 
-    Dictionary<ProtoId<FactionJobAssignmentPrototype>, (int, int, int)> GetJobPicks();
+    Dictionary<ProtoId<FactionJobAssignmentPrototype>, (int low, int med, int high)> GetJobPicks();
 }
