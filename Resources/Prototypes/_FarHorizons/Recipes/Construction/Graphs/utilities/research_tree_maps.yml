@@ -15,27 +15,7 @@
     actions:
     - !type:AppearanceChange
     edges:
-    - to: wired
-      steps:
-      - material: Cable
-        amount: 2
-        doAfter: 1
-    - to: start
-      completed:
-      - !type:GivePrototype
-        prototype: SheetSteel1
-        amount: 2
-      - !type:DeleteEntity {}
-      steps:
-      - tool: Welding
-        doAfter: 2
-
-  - node: wired
-    entity: ResearchTreeMapAssembly
-    actions:
-    - !type:AppearanceChange
-    edges:
-    - to: electronics
+    - to: research_tree_map
       steps:
       - tag: ResearchTreeMapElectronics
         store: board
@@ -44,28 +24,22 @@
           sprite: "Objects/Misc/module.rsi"
           state: "science"
         doAfter: 1
-    - to: assembly
+    - to: start
       completed:
       - !type:GivePrototype
-        prototype: CableApcStack1
+        prototype: SheetSteel1
         amount: 2
-      steps:
-      - tool: Cutting
-        doAfter: 1
-
-  - node: electronics
-    actions:
-    - !type:AppearanceChange
-    edges:
-    - to: research_tree_map
+      - !type:DeleteEntity {}
       steps:
       - tool: Screwing
         doAfter: 2
 
-  - node: research_tree_map
-    entity: ResearchTreeMap
+  - node: electronics
+    entity: ResearchTreeMapAssembly
+    actions:
+    - !type:AppearanceChange
     edges:
-    - to: wired
+    - to: assembly
       conditions:
       - !type:ContainerNotEmpty
         container: board
@@ -75,4 +49,16 @@
         emptyAtUser: true
       steps:
       - tool: Prying
+        doAfter: 3
+    - to: research_tree_map
+      steps:
+      - tool: Screwing
+        doAfter: 1
+
+  - node: research_tree_map
+    entity: ResearchTreeMap
+    edges:
+    - to: electronics
+      steps:
+      - tool: Screwing
         doAfter: 1
