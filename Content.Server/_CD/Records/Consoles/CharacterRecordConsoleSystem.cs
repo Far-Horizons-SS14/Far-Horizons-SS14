@@ -139,6 +139,12 @@ public sealed class CharacterRecordConsoleSystem : EntitySystem
         {
             StationRecordFilterType.Name =>
                 !nameJob.Contains(filterLowerCaseValue, StringComparison.CurrentCultureIgnoreCase),
+            //FarHorizons Start
+            StationRecordFilterType.Job =>
+                !record.JobTitle.Contains(filterLowerCaseValue, StringComparison.CurrentCultureIgnoreCase),
+            StationRecordFilterType.Species =>
+                !record.Species.Contains(filterLowerCaseValue, StringComparison.CurrentCultureIgnoreCase),
+             //FarHorizons End
             StationRecordFilterType.Prints => record.Fingerprint != null
                 && IsFilterWithSomeCodeValue(record.Fingerprint, filterLowerCaseValue),
             StationRecordFilterType.DNA => record.DNA != null
