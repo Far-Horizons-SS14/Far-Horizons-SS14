@@ -1,22 +1,21 @@
+using System.Linq;
 using Content.Shared.Body;
 using Content.Shared.DoAfter;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
-// using Content.Shared.Popups;
+using Content.Shared.Popups;
 using Robust.Shared.Audio.Systems;
-// using Robust.Shared.Profiling;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Toolshed.Commands.Values;
 
 namespace Content.Shared._FarHorizons.CyberneticImplanter;
 
 public sealed class CyberneticImplanterSystem : EntitySystem
 {
     [Dependency] private readonly SharedAudioSystem _audio = default!;
-    // [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
     [Dependency] private readonly IPrototypeManager _protoManager = default!;
     [Dependency] private readonly EntityManager _entityManager = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
 
     public override void Initialize()
     {
@@ -52,27 +51,15 @@ public sealed class CyberneticImplanterSystem : EntitySystem
         if (!TryComp<BodyComponent>(target, out var bodycomponent) ||
         bodycomponent.Organs == null ||
         bodycomponent.Organs.ContainedEntities == null ||
-        entity.Comp.ImplantedOrgan == null ||
-        !_protoManager.Index<EntityPrototype>(entity.Comp.ImplantedOrgan).TryGetComponent<OrganComponent>(out var ImplantOrganComponent, Factory) ||
+        !_protoManager.Index<EntityPrototype>(entity.Comp.ImplantedOrgan).TryGetComponent<OrganComponent>(out var ImplantOrganComponent, Factory) || //will cause an exception if yaml is configured incorrectly
         ImplantOrganComponent.Category == null ||
         _protoManager.Index<OrganCategoryPrototype>(ImplantOrganComponent.Category).ConnectsTo == null)
             return false;
 
         var ConnectsTo = _protoManager.Index<OrganCategoryPrototype>(ImplantOrganComponent.Category).ConnectsTo;
-        var ValidConnection = false;
 
-        //does this body have a valid organ to connect the implant to? ex: trying to implant hands on bodys that dont have arms
-        foreach (var organ in bodycomponent.Organs.ContainedEntities)
-        {
-            if (!TryComp<OrganComponent>(organ, out var OrganComponent))
-                continue;
-
-            if (OrganComponent.Category == ConnectsTo)
-                ValidConnection = true; //we dont need to know what organ it is, will recheck upon doafter completion
-        }
-
-        //this check will be redone once doafter is complete (things might have changed in the time to complete the doafter)
-        if (!ValidConnection)
+        //are there any organs matching the category in ConnectsTo?
+        if (!bodycomponent.Organs.ContainedEntities.Any(p => TryComp<OrganComponent>(p, out var organ) && organ.Category == ConnectsTo))
             return false;
 
         //ready to go! play sfx and start the doafter
@@ -86,8 +73,11 @@ public sealed class CyberneticImplanterSystem : EntitySystem
             BreakOnDamage = true
         };
 
-        // Server and Client Spilt here, dont need the client for the rest of this
-        _doAfter.TryStartDoAfter(doAfterEventArgs);
+        // Server and Client spilt here, dont need the client for the rest of this
+        if (!_doAfter.TryStartDoAfter(doAfterEventArgs))
+            return false;
+        
+        _popupSystem.PopupClient(Loc.GetString("comp-cyberneticimplanter-implantstart"), target, PopupType.MediumCaution);
 
         return true;
     }

@@ -24,8 +24,8 @@ public sealed partial class CyberneticImplanterComponent : Component
     /// <summary>
     /// Organ to be implanted
     /// </summary>
-    [DataField]
-    public ProtoId<EntityPrototype>? ImplantedOrgan;
+    [DataField(required: true)]
+    public EntProtoId ImplantedOrgan;
 
     /// <summary>
     /// Time to activate on a target

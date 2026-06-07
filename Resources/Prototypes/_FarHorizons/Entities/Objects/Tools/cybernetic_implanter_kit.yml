@@ -18,3 +18,11 @@
         params:
           volume: 1.0
           variation: 0.125
+
+- type: entity
+  name: TestCyber (hand)
+  parent: BaseCyberneticImplanterKit
+  id: TestHandCyberneticImplanterKit
+  components:
+  - type: CyberneticImplanter
+    implantedOrgan: LeftHandCyber
