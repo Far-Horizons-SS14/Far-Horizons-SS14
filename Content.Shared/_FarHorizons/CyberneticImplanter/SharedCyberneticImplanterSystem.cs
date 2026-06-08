@@ -1,15 +1,19 @@
 using System.Linq;
 using Content.Shared.Body;
 using Content.Shared.DoAfter;
+using Content.Shared.EntityEffects.Effects;
+using Content.Shared.Examine;
+using Content.Shared.Humanoid;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Popups;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Toolshed.Commands.Values;
 
 namespace Content.Shared._FarHorizons.CyberneticImplanter;
 
-public sealed class CyberneticImplanterSystem : EntitySystem
+public sealed class SharedCyberneticImplanterSystem : EntitySystem
 {
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly IPrototypeManager _protoManager = default!;
@@ -23,9 +27,19 @@ public sealed class CyberneticImplanterSystem : EntitySystem
 
         SubscribeLocalEvent<CyberneticImplanterComponent, UseInHandEvent>(OnUse);
         SubscribeLocalEvent<CyberneticImplanterComponent, AfterInteractEvent>(OnAfterInteract);
+        SubscribeLocalEvent<UsedCyberneticImplanterComponent, ExaminedEvent>(OnExamineUsed);
     }
 
-    //using on self
+    private void OnExamineUsed(EntityUid entity, UsedCyberneticImplanterComponent component, ExaminedEvent args) //used to show what organ was destroyed after an implant
+    {
+        if (!args.IsInDetailsRange)
+            return;
+
+        if (component.Species != null && component.Organ != null)
+            args.PushMarkup(Loc.GetString("comp-usedcyberneticimplanter-examine", ("species", component.Species), ("organ", component.Organ)));
+    }
+
+    //using on self`
     private void OnUse(Entity<CyberneticImplanterComponent> entity, ref UseInHandEvent args)
     {
         if (args.Handled)
@@ -48,7 +62,8 @@ public sealed class CyberneticImplanterSystem : EntitySystem
     private bool TryImplant(Entity<CyberneticImplanterComponent> entity, EntityUid target, EntityUid user)
     {
         //if statment straight from hell, does all the checks to verify target is valid
-        if (!TryComp<BodyComponent>(target, out var bodycomponent) ||
+        if (!HasComp<HumanoidProfileComponent>(target) ||
+        !TryComp<BodyComponent>(target, out var bodycomponent) ||
         bodycomponent.Organs == null ||
         bodycomponent.Organs.ContainedEntities == null ||
         !_protoManager.Index<EntityPrototype>(entity.Comp.ImplantedOrgan).TryGetComponent<OrganComponent>(out var ImplantOrganComponent, Factory) || //will cause an exception if yaml is configured incorrectly
@@ -60,8 +75,11 @@ public sealed class CyberneticImplanterSystem : EntitySystem
 
         //are there any organs matching the category in ConnectsTo?
         if (!bodycomponent.Organs.ContainedEntities.Any(p => TryComp<OrganComponent>(p, out var organ) && organ.Category == ConnectsTo))
+        {
+            if(ConnectsTo != null)
+                _popupSystem.PopupClient(Loc.GetString("comp-cyberneticimplanter-missingconnectto", ("connectto", ConnectsTo.Value.ToString())), target, user, PopupType.Small);
             return false;
-
+        }
         //ready to go! play sfx and start the doafter
         _audio.PlayPredicted(entity.Comp.ImplantBeginSound, entity, user);
 
@@ -76,8 +94,9 @@ public sealed class CyberneticImplanterSystem : EntitySystem
         // Server and Client spilt here, dont need the client for the rest of this
         if (!_doAfter.TryStartDoAfter(doAfterEventArgs))
             return false;
-        
-        _popupSystem.PopupClient(Loc.GetString("comp-cyberneticimplanter-implantstart"), target, PopupType.MediumCaution);
+
+        if (TryComp(entity, out MetaDataComponent? metadata))
+            _popupSystem.PopupClient(Loc.GetString("comp-cyberneticimplanter-implantstart", ("implanter", metadata.EntityName)), target, target, PopupType.Medium);
 
         return true;
     }

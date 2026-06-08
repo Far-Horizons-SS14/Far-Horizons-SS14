@@ -13,7 +13,7 @@ using Robust.Shared.Utility;
 
 namespace Content.Server._FarHorizons.CyberneticImplanter;
 
-public sealed class CyberneticImplanterSystem : EntitySystem
+public sealed class ServerCyberneticImplanterSystem : EntitySystem
 {
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly IPrototypeManager _protoManager = default!;
@@ -48,15 +48,29 @@ public sealed class CyberneticImplanterSystem : EntitySystem
         //Is there already an organ of the same category in the body? 
         var ExisitingOrgan = bodycomponent.Organs.ContainedEntities.FirstOrNull(p => TryComp<OrganComponent>(p, out var organ) && organ.Category == ImplantOrganComponent.Category);
         var OrganDestroyed = false;
-
         //if so remove it first
         if (ExisitingOrgan != null)
         {
+            var UsedComponent = AddComp<UsedCyberneticImplanterComponent>(entity);
+
+            if (TryComp(ExisitingOrgan.Value, out MetaDataComponent? metaComp)) //this has to be done before removing the organ to prevent the name of the target being in the entity name
+            {
+                UsedComponent.Organ = metaComp.EntityName; //dont care if this is null, checks later anyways
+                if (TryComp(entity, out MetaDataComponent? implantermetaComp) && TryComp(args.Target, out MetaDataComponent? targetmetaComp))
+                    _popupSystem.PopupEntity(Loc.GetString("comp-cyberneticimplanter-organdestroyed", ("implanter", implantermetaComp.EntityName), ("destroyed", metaComp.EntityName), ("target", targetmetaComp.EntityName)), entity, PopupType.LargeCaution);
+            }
+
+            if (TryComp(ExisitingOrgan.Value, out VisualOrganMarkingsComponent? markingcomp))
+            {
+                var species = markingcomp.MarkingData.Group;
+                UsedComponent.Species = species.ToString();
+            }
+
             if (!_containers.CanRemove(ExisitingOrgan.Value, bodycomponent.Organs)) //uh oh
                 return;
-            if(!_containers.Remove(ExisitingOrgan.Value, bodycomponent.Organs)) //uh oh
+            if (!_containers.Remove(ExisitingOrgan.Value, bodycomponent.Organs)) //uh oh
                 return;
-            _popupSystem.PopupEntity(Loc.GetString("comp-cyberneticimplanter-organdestroyed"), entity, PopupType.LargeCaution);
+
             QueueDel(ExisitingOrgan);
             OrganDestroyed = true;
         }
@@ -78,11 +92,13 @@ public sealed class CyberneticImplanterSystem : EntitySystem
         var ev = new TransferDnaEvent { Donor = args.Target.Value, Recipient = entity, CanDnaBeCleaned = !OrganDestroyed};
         RaiseLocalEvent(args.Target.Value, ref ev);
 
-        if (!OrganDestroyed)
-            _popupSystem.PopupEntity(Loc.GetString("comp-cyberneticimplanter-cleanimplant"), entity, PopupType.Medium);
+        if (!OrganDestroyed && TryComp(SpawnedOrgan, out MetaDataComponent? metadata))
+            _popupSystem.PopupEntity(Loc.GetString("comp-cyberneticimplanter-cleanimplant",("implanted", metadata.EntityName)), entity, PopupType.Medium);
 
         _audio.PlayPredicted(entity.Comp.ImplantEndSound, entity, entity);
 
         args.Handled = true;
+
+        RemCompDeferred<CyberneticImplanterComponent>(entity); //cyber da world, my final message, goodbye
     }
 }
