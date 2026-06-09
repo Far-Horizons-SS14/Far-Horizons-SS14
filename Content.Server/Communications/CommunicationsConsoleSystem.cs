@@ -163,10 +163,6 @@ namespace Content.Server.Communications
             var stationUid = _stationSystem.GetOwningStation(uid);
             List<string>? levels = null;
             string currentLevel = default!;
-            //FarHorizons Start
-            List<string>? channels = null;
-            string currentChannel = default!;
-            //FarHorizons End
             float currentDelay = 0;
 
             if (stationUid != null)
@@ -209,8 +205,6 @@ namespace Content.Server.Communications
                 alertLevels: levels,
                 currentAlert: currentLevel,
                 currentAlertDelay: currentDelay,
-                channels: channels, //FarHorizons
-                currentChannel: currentChannel, //FarHorizons
                 expectedCountdownEnd: _roundEndSystem.ExpectedCountdownEnd,
                 announcementCooldownEnd: announceEndTime,
                 callRecallCooldownEnd: recallEndTime,

@@ -477,7 +477,7 @@
 - type: entity
   parent: ComputerComms
   id: ComputerCommsEngineering
-  name: engineering communications console
+  name: Engineering Communications Computer #Far Horizons
   description: A computer used to make station wide announcements via keyboard, set the appropriate alert level, and call the emergency shuttle.
   components:
     - type: Sprite
@@ -516,7 +516,7 @@
 - type: entity
   parent: ComputerComms
   id: ComputerCommsMedical
-  name: medical communications console
+  name: Medical Communications Computer #Far Horizons
   description: A computer used to make station wide announcements via keyboard, set the appropriate alert level, and call the emergency shuttle.
   components:
     - type: Sprite
@@ -554,7 +554,7 @@
 - type: entity
   parent: ComputerComms
   id: ComputerCommsScience
-  name: science communications console
+  name: Science Communications Computer #Far Horizons
   description: A computer used to make station wide announcements via keyboard, set the appropriate alert level, and call the emergency shuttle.
   components:
     - type: Sprite
@@ -590,7 +590,7 @@
 - type: entity
   parent: ComputerComms
   id: ComputerCommsSecurity
-  name: security communications console
+  name: Security Communications Computer #Far Horizons
   description: A computer used to make station wide announcements via keyboard, set the appropriate alert level, and call the emergency shuttle.
   components:
     - type: Sprite
@@ -629,7 +629,7 @@
 - type: entity
   parent: ComputerComms
   id: ComputerCommsService
-  name: service communications console
+  name: Service Communications Computer #Far Horizons
   description: A computer used to make station wide announcements via keyboard, set the appropriate alert level, and call the emergency shuttle.
   components:
     - type: Sprite
@@ -665,7 +665,7 @@
 - type: entity
   parent: ComputerComms
   id: ComputerCommsCargo
-  name: cargo communications console
+  name: GSL Communications Computer #Far Horizons
   description: A computer used to make station wide announcements via keyboard, set the appropriate alert level, and call the emergency shuttle.
   components:
     - type: Sprite
@@ -701,7 +701,7 @@
 - type: entity
   parent: ComputerComms
   id: ComputerCommsLaw
-  name: law communications console
+  name: CFA Communications Computer #Far Horizons
   description: A computer used to make station wide announcements via keyboard, set the appropriate alert level, and call the emergency shuttle.
   components:
     - type: Sprite
@@ -718,7 +718,7 @@
         - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
           state: generic_panel_open
     - type: AccessReader
-      access: [[ "Magistrate", "IAA" ]]
+      access: [[ "Magistrate", "Lawyer" ]] #FH-Edit
     - type: CommunicationsConsole
       title: comms-console-announcement-title-law
       sound: /Audio/_Starlight/Announcements/announce2.ogg
