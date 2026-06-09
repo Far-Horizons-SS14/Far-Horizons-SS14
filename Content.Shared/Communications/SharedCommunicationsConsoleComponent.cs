@@ -18,11 +18,6 @@ namespace Content.Shared.Communications
         public List<string>? AlertLevels;
         public string CurrentAlert;
         public float CurrentAlertDelay;
-
-        //FarHorizon Start
-        public List<string>? Channels;
-        public string CurrentChannel;
-        //FarHorizon End
         // Starlight edit Start
         public readonly TimeSpan? AnnouncementCooldownEnd;
         public readonly TimeSpan? ShuttleCountdownEnd;
@@ -36,8 +31,6 @@ namespace Content.Shared.Communications
             List<string>? alertLevels,
             string currentAlert,
             float currentAlertDelay,
-            List<string>? channels,
-            string currentChannel,
             TimeSpan? expectedCountdownEnd = null,
             TimeSpan? announcementCooldownEnd = null,
             TimeSpan? callRecallCooldownEnd = null,
@@ -54,10 +47,6 @@ namespace Content.Shared.Communications
             AlertLevels = alertLevels;
             CurrentAlert = currentAlert;
             CurrentAlertDelay = currentAlertDelay;
-            //FarHorizon Start
-            Channels = channels;
-            CurrentChannel = currentChannel;
-            //FarHorizon End
             // Starlight Start
             AnnouncementCooldownEnd = announcementCooldownEnd;
             CallRecallCooldownEnd = callRecallCooldownEnd;

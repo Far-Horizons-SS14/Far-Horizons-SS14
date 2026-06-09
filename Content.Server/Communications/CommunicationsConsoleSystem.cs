@@ -46,7 +46,6 @@ namespace Content.Server.Communications
         [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
         [Dependency] private readonly IConfigurationManager _cfg = default!;
         [Dependency] private readonly IAdminLogManager _adminLogger = default!;
-        [Dependency] private readonly DepartmentalAnnouncementSystem _deptAnnounce = default!; //FarHorizons
         [Dependency] private readonly IGameTiming _gameTiming = default!; // Starlight
 
         private const float UIUpdateInterval = 5.0f;
@@ -192,13 +191,6 @@ namespace Content.Server.Communications
                 }
             }
 
-            // FarHorizons Start
-            if (TryComp<DepartmentalAnnouncementComponent>(uid, out var deptComp))
-            {
-                channels = deptComp.Channels;
-                currentChannel = deptComp.CurrentChannel;
-            }
-            // FarHorizons End
             // Starlight Start
             TimeSpan? announceEndTime = null;
             if (comp.AnnouncementCooldownRemaining > 0f)
@@ -339,24 +331,10 @@ namespace Content.Server.Communications
             Loc.TryGetString(comp.Title, out var title);
             title ??= comp.Title;
 
-            //FarHorizons Start
-            List<string>? channels = null;
-            string currentChannel = default!;
-            string? titleAlt = default!;
-            if (TryComp<DepartmentalAnnouncementComponent>(uid, out var deptComp))
-            {
-                channels = deptComp.Channels;
-                currentChannel = deptComp.CurrentChannel;
-                Loc.TryGetString(deptComp.TitleAlt, out titleAlt);
-                titleAlt ??= deptComp.TitleAlt;
-
-            }
-            //FarHorizons End
-
             if (comp.AnnounceSentBy)
                 msg.Text += "\n" + Loc.GetString("comms-console-announcement-sent-by") + " " + author;
 
-            if (comp.Global && currentChannel == "Common")
+            if (comp.Global)
             {
                 _chatSystem.DispatchGlobalAnnouncement(msg.Tts ?? msg.Text, title, announcementSound: comp.Sound, colorOverride: comp.Color, speaker: speaker); // Starlight
 
@@ -364,18 +342,8 @@ namespace Content.Server.Communications
                 return;
             }
 
-            if (currentChannel == "Common")
-            {
-                _chatSystem.DispatchCommunicationsConsoleAnnouncement(uid, msg.Text, title, announcementSound: comp.Sound, speaker: speaker, colorOverride: comp.Color); // 🌟Starlight🌟
-                _adminLogger.Add(LogType.Chat, LogImpact.Low, $"{ToPrettyString(message.Actor):player} has sent the following station announcement: {msg.Text}");
-                return;
-            }
-            else
-            {
-                _deptAnnounce.DispatchFilteredCommunicationsConsoleAnnouncement(currentChannel, uid, msg.Text, titleAlt, announcementSound: comp.Sound, colorOverride: comp.Color, Global: comp.Global);
-                _adminLogger.Add(LogType.Chat, LogImpact.Low, $"{ToPrettyString(message.Actor):player} has sent the following departmental announcement to {currentChannel}: {msg.Text}");
-                return;
-            }
+            _chatSystem.DispatchCommunicationsConsoleAnnouncement(uid, msg.Text, title, announcementSound: comp.Sound, speaker: speaker, colorOverride: comp.Color); // 🌟Starlight🌟
+            _adminLogger.Add(LogType.Chat, LogImpact.Low, $"{ToPrettyString(message.Actor):player} has sent the following station announcement: {msg.Text}");
         }
 
         private void OnBroadcastMessage(EntityUid uid, CommunicationsConsoleComponent component, CommunicationsConsoleBroadcastMessage message)

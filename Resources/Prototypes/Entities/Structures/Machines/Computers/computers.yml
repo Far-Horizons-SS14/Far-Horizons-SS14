@@ -803,33 +803,9 @@
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: StructuralMetallicStrong
-  #FarHorizonsStart
-  - type: DepartmentalAnnouncement
-    titleAlt: comms-console-announcement-title-station-alt
-  - type: Lock
-    unlockOnClick: false
-  - type: ItemSlotsLock
-    slots:
-    - key_slot
-  - type: ItemSlots
-    slots:
-      key_slot:
-        name: key-slot
-        insertSuccessPopup: communication-channels-updated
-        whitelist:
-          requireAll: true
-          components:
-          - EncryptionKey
-          - Item
-  - type: ContainerFill
-    containers:
-      key_slot:
-      - EncryptionKeyStationMaster
   - type: ContainerContainer
     containers:
-      key_slot: !type:ContainerSlot
       board: !type:Container
-  #FarHorizonsEnd
 
 - type: entity
   parent: ComputerComms
@@ -864,33 +840,9 @@
     radius: 1.5
     energy: 4.0
     color: "#f71713"
-  #FarHorizonsStart
-  - type: DepartmentalAnnouncement
-    titleAlt: comms-console-announcement-title-nukie-alt
-  - type: Lock
-    unlockOnClick: false
-  - type: ItemSlotsLock
-    slots:
-    - key_slot
-  - type: ItemSlots
-    slots:
-      key_slot:
-        name: key-slot
-        insertSuccessPopup: communication-channels-updated
-        whitelist:
-          requireAll: true
-          components:
-          - EncryptionKey
-          - Item
-  - type: ContainerFill
-    containers:
-      key_slot:
-      - EncryptionKeySyndie
   - type: ContainerContainer
     containers:
-      key_slot: !type:ContainerSlot
       board: !type:Container
-  #FarHorizonsEnd
 
 - type: entity
   parent: ComputerComms
@@ -925,33 +877,9 @@
     radius: 1.5
     energy: 4.0
     color: "#F317F3"
-  #FarHorizonsStart
-  - type: DepartmentalAnnouncement
-    titleAlt: comms-console-announcement-title-wizard-alt
-  - type: Lock
-    unlockOnClick: false
-  - type: ItemSlotsLock
-    slots:
-    - key_slot
-  - type: ItemSlots
-    slots:
-      key_slot:
-        name: key-slot
-        insertSuccessPopup: communication-channels-updated
-        whitelist:
-          requireAll: true
-          components:
-          - EncryptionKey
-          - Item
-  - type: ContainerFill
-    containers:
-      key_slot:
-      - EncryptionKeyCommon
   - type: ContainerContainer
     containers:
-      key_slot: !type:ContainerSlot
       board: !type:Container
-  #FarHorizonsEnd
 
 - type: entity
   parent: ComputerComms
@@ -984,33 +912,9 @@
     radius: 1.5
     energy: 4.0
     color: "#00FF00"
-  #FarHorizonsStart
-  - type: DepartmentalAnnouncement
-    titleAlt: comms-console-announcement-title-centcom-alt
-  - type: Lock
-    unlockOnClick: false
-  - type: ItemSlotsLock
-    slots:
-    - key_slot
-  - type: ItemSlots
-    slots:
-      key_slot:
-        name: key-slot
-        insertSuccessPopup: communication-channels-updated
-        whitelist:
-          requireAll: true
-          components:
-          - EncryptionKey
-          - Item
-  - type: ContainerFill
-    containers:
-      key_slot:
-      - EncryptionKeyStationMaster
   - type: ContainerContainer
     containers:
-      key_slot: !type:ContainerSlot
       board: !type:Container
-  #FarHorizonsEnd
 
 - type: entity
   parent: BaseComputerAiAccess

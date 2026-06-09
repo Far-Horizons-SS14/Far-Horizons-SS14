@@ -34,8 +34,6 @@ namespace Content.Client.Communications.UI
         public event Action<string>? OnAlertLevel;
         public event Action<string>? OnAnnounce;
         public event Action<string>? OnBroadcast;
-        public event Action<string>? OnAnnounceChannel; //FarHorizon
-        public string CurrentChannel = string.Empty; //FarHorizon
         // Starlight Start
         public bool ShuttleCallsAllowed = true;
         public TimeSpan? AnnouncementCountdownEnd;
@@ -90,17 +88,6 @@ namespace Content.Client.Communications.UI
 
             EmergencyShuttleButton.OnPressed += _ => OnEmergencyLevel?.Invoke();
             EmergencyShuttleButton.Disabled = !CanCall;
-
-            //FarHorizons Start
-            AnnounceToButton!.OnItemSelected += args =>
-            {
-                var metadata = AnnounceToButton.GetItemMetadata(args.Id);
-                if (metadata != null && metadata is string cast)
-                {
-                    OnAnnounceChannel?.Invoke(cast);
-                }
-            };
-            //FarHorizons End
 
             // Starlight Start
             SetLabelMessage(CountdownLabel, null);
@@ -351,30 +338,5 @@ namespace Content.Client.Communications.UI
                 return $"{time.Seconds}";
         #endregion Starlight
         }
-
-        // FarHorizons Start
-        public void UpdateAnnouncementChannels(List<string>? channels, string currentChannel)
-        {
-            AnnounceToButton.Clear();
-
-            if (channels == null)
-            {
-                AnnounceToButton.AddItem(currentChannel);
-                AnnounceToButton.SetItemMetadata(AnnounceToButton.ItemCount - 1, currentChannel);
-            }
-            else
-            {
-                foreach (var channel in channels)
-                {
-                    AnnounceToButton.AddItem(channel);
-                    AnnounceToButton.SetItemMetadata(AnnounceToButton.ItemCount - 1, channel);
-                    if (channel == currentChannel)
-                    {
-                        AnnounceToButton.Select(AnnounceToButton.ItemCount - 1);
-                    }
-                }
-            }
-        }
-        // FarHorizons End
     }
 }
