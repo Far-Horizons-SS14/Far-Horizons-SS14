@@ -1,28 +1,147 @@
 - type: entity
-  name: TestCyber
-  parent: [BaseItem, BaseSyndicateContraband]
+  parent: BaseItem
   id: BaseCyberneticImplanterKit
+  abstract: true
   components:
-    - type: Sprite
-      sprite: _Starlight/Objects/Weapons/Melee/cybermantisblade.rsi
-      state: cybermantisblade
     - type: CyberneticImplanter
-      implantedOrgan: LeftArmCyberMantisBlade
+      implantedOrgan: null
       implantBeginSound:
-        path: "/Audio/_Starlight/Medical/Surgery/scalpel1.ogg"
+        path: "/Audio/_Starlight/Medical/Surgery/scalpel1.ogg" #TODO
         params:
           volume: 1.0
           variation: 0.125
       implantEndSound:
-        path: "/Audio/_Starlight/Medical/Surgery/scalpel2.ogg"
+        path: "/Audio/_Starlight/Medical/Surgery/scalpel2.ogg" #TODO
         params:
           volume: 1.0
           variation: 0.125
 
+#region Syndicate
+
 - type: entity
-  name: TestCyber (hand)
-  parent: BaseCyberneticImplanterKit
-  id: TestHandCyberneticImplanterKit
+  parent: [BaseCyberneticImplanterKit, BaseSyndicateContraband]
+  id: BaseCyberneticImplanterKitSyndicate
+  name: Cybernetic Implanter Kit
+  description: A Cybernetic Implanter Kit for field installation of augments.
+  abstract: true
+
+- type: entity
+  parent: BaseCyberneticImplanterKitSyndicate
+  id: HandCyberneticImplanterKitSyndicateEyes
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Melee/cybermantisblade.rsi #TODO
+    state: cybermantisblade
+  - type: Item
+    size: Normal
+
+- type: entity
+  parent: BaseCyberneticImplanterKitSyndicate
+  id: HandCyberneticImplanterKitSyndicateEyeImplant
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Melee/cybermantisblade.rsi #TODO
+    state: cybermantisblade
+  - type: Item
+    size: Small
+
+- type: entity
+  parent: BaseCyberneticImplanterKitSyndicate
+  id: HandCyberneticImplanterKitSyndicateLimb
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Melee/cybermantisblade.rsi #TODO
+    state: cybermantisblade
+  - type: Item
+    size: Large
+
+- type: entity
+  parent: BaseCyberneticImplanterKitSyndicate
+  id: HandCyberneticImplanterKitSyndicateHand
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Melee/cybermantisblade.rsi #TODO
+    state: cybermantisblade
+  - type: Item
+    size: Normal
+
+#Eyes
+- type: entity
+  parent: HandCyberneticImplanterKitSyndicateEyes
+  id: CyberneticImplanterCyberEyeNightVision
+  name: Night Vision Cyber Eyes C.I.K.
   components:
   - type: CyberneticImplanter
-    implantedOrgan: LeftHandCyber
+    implantedOrgan: CyberEyeNightVision
+
+- type: entity
+  parent: HandCyberneticImplanterKitSyndicateEyes
+  id: CyberneticImplanterCyberEyeThermal
+  name: Thermal Vision Cyber Eyes C.I.K.
+  components:
+  - type: CyberneticImplanter
+    implantedOrgan: CyberEyeThermal
+
+#Eye Implant
+
+- type: entity
+  parent: HandCyberneticImplanterKitSyndicateEyeImplant
+  id: CyberneticImplanterEyeImplantSyndie
+  name: Syndicate Eye Implant C.I.K.
+  components:
+  - type: CyberneticImplanter
+    implantedOrgan: EyeImplantSyndie
+
+# Arm
+- type: entity
+  parent: HandCyberneticImplanterKitSyndicateLimb
+  id: CyberneticImplanterLeftArmCyberMantisBlade
+  name: Left Mantis Blade Arm C.I.K.
+  components:
+  - type: CyberneticImplanter
+    implantedOrgan: LeftArmCyberMantisBlade
+
+- type: entity
+  parent: HandCyberneticImplanterKitSyndicateLimb
+  id: CyberneticImplanterRightArmCyberMantisBlade
+  name: Right Mantis Blade Arm C.I.K.
+  components:
+  - type: CyberneticImplanter
+    implantedOrgan: RightArmCyberMantisBlade
+
+#Hand
+- type: entity
+  parent: HandCyberneticImplanterKitSyndicateHand
+  id: CyberneticImplanterLeftHandImplantClaws
+  name: Left Hand Claws Implant C.I.K.
+  components:
+  - type: CyberneticImplanter
+    implantedOrgan: LeftHandImplantClaws
+
+- type: entity
+  parent: HandCyberneticImplanterKitSyndicateHand
+  id: CyberneticImplanterRightHandImplantClaws
+  name: Right Hand Claws Implant C.I.K.
+  components:
+  - type: CyberneticImplanter
+    implantedOrgan: RightHandImplantClaws
+
+- type: entity
+  parent: HandCyberneticImplanterKitSyndicateHand
+  id: CyberneticImplanterLeftHandImplantForensics
+  name: Left Hand Forensics Implant C.I.K.
+  components:
+  - type: CyberneticImplanter
+    implantedOrgan: LeftHandImplantForensics
+
+- type: entity
+  parent: HandCyberneticImplanterKitSyndicateHand
+  id: CyberneticImplanterRightHandImplantForensics
+  name: Right Hand Forensics Implant C.I.K.
+  components:
+  - type: CyberneticImplanter
+    implantedOrgan: RightHandImplantForensics
