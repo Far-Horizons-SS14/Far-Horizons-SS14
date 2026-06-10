@@ -13,6 +13,7 @@ namespace Content.Shared.Communications
         public readonly bool CanAnnounce;
         public readonly bool CanBroadcast; // Starlight
         public readonly bool CanCall;
+        public readonly bool CanShuttle; //FarHorizons
         public readonly TimeSpan? ExpectedCountdownEnd;
         public readonly bool CountdownStarted;
         public List<string>? AlertLevels;
@@ -28,6 +29,7 @@ namespace Content.Shared.Communications
         public CommunicationsConsoleInterfaceState(
             bool canAnnounce,
             bool canCall,
+            bool canShuttle, //FarHorizons
             List<string>? alertLevels,
             string currentAlert,
             float currentAlertDelay,
@@ -43,6 +45,7 @@ namespace Content.Shared.Communications
         {
             CanAnnounce = canAnnounce;
             CanCall = canCall;
+            CanShuttle = canShuttle; //FarHorizons
             ExpectedCountdownEnd = expectedCountdownEnd;
             CountdownStarted = expectedCountdownEnd != null;
             AlertLevels = alertLevels;

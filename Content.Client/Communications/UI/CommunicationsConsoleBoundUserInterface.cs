@@ -84,6 +84,7 @@ namespace Content.Client.Communications.UI
                 _menu.CanAnnounce = commsState.CanAnnounce;
                 _menu.CanBroadcast = commsState.CanBroadcast;
                 _menu.CanCall = commsState.CanCall;
+                _menu.CanShuttle = commsState.CanShuttle; //FarHorizons
                 // Starlight edit Start
                 _menu.ShuttleCallsAllowed = commsState.ShuttleCallsAllowed;
                 _menu.AnnouncementCountdownEnd = commsState.AnnouncementCooldownEnd;

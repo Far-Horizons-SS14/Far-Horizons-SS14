@@ -25,6 +25,7 @@ namespace Content.Client.Communications.UI
         public bool CanAnnounce;
         public bool CanBroadcast;
         public bool CanCall;
+        public bool CanShuttle; //FarHorizons
         public bool AlertLevelSelectable;
         public bool CountdownStarted;
         public string CurrentLevel = string.Empty;
@@ -244,6 +245,7 @@ namespace Content.Client.Communications.UI
             // ---------------------
             // Shuttle / Call/Recall
             // ---------------------
+            EmergencyBox.Visible = CanShuttle; //FarHorizons
             var actualShuttleEnd = ShuttleCountdownEnd ?? CountdownEnd;
             var inbound = CountdownStarted && (actualShuttleEnd != null);
             var baseCallText = inbound ? _loc.GetString("comms-console-menu-recall-shuttle") : _loc.GetString("comms-console-menu-call-shuttle");

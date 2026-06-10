@@ -202,6 +202,7 @@ namespace Content.Server.Communications
                 canAnnounce: CanAnnounce(comp),
                 canBroadcast: comp.CanBroadcast,
                 canCall: CanCallOrRecall(comp),
+                canShuttle: comp.CanShuttle, //FarHorizons
                 alertLevels: levels,
                 currentAlert: currentLevel,
                 currentAlertDelay: currentDelay,
