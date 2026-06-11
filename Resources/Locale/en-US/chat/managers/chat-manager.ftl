@@ -21,6 +21,7 @@ chat-manager-whisper-headset-on-message = You can't whisper on the radio!
 chat-manager-server-wrap-message = [bold]{$message}[/bold]
 chat-manager-sender-announcement = Central Command
 
+#Moved to _Starlight
 old-chat-manager-sender-announcement-wrap-message = [font size=14][bold]{$sender} Announcement:[/font][font size=12]
                                                 {$message}[/bold][/font]
 
@@ -31,6 +32,7 @@ chat-manager-entity-me-wrap-message = [italic]{ PROPER($entity) ->
     }
 
 chat-manager-entity-looc-wrap-message = LOOC: [bold]{$entityName}:[/bold] {$message}
+#Moved to _Starlight
 old-chat-manager-send-ooc-wrap-message = OOC: [bold]{$playerTitle} [color={$nameColor}]{$playerName}:[/color] [color={$messageColor}]{$message}[/color][/bold]
 chat-manager-send-ooc-patron-wrap-message = OOC: [bold][color={$patronColor}]{$playerName}[/color]:[/bold] {$message}
 
