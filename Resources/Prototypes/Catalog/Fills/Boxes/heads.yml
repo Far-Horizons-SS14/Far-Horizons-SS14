@@ -1,7 +1,7 @@
 - type: entity
-  parent: ToteBase
+  parent: [ToteBase, BaseCommandContraband] #FH
   id: BoxCaptainCircuitboards
-  name: bridge circuit tote
+  name: Captain Circuit Tote #FH
   components:
   - type: EntityTableContainerFill
     containers:
@@ -11,9 +11,9 @@
         - id: StationRecordsComputerCircuitboard
 
 - type: entity
-  parent: ToteBase
+  parent: [ToteBase, BaseCommandContraband] #FH
   id: BoxCECircuitboards
-  name: engineering circuit tote
+  name: Chief Engineer Circuit Tote #FH
   components:
   - type: EntityTableContainerFill
     containers:
@@ -24,11 +24,12 @@
         - id: AtmosMonitoringComputerCircuitboard
         - id: PowerComputerCircuitboard
         - id: SolarControlComputerCircuitboard
+        - id: EngineeringCommsComputerCircuitboard # Starlight
 
 - type: entity
-  parent: ToteBase
+  parent: [ToteBase, BaseCommandContraband] #FH
   id: BoxCMOCircuitboards
-  name: medical circuit tote
+  name: Chief Medical Officer Circuit Tote #FH
   components:
   - type: EntityTableContainerFill
     containers:
@@ -36,11 +37,12 @@
         children:
         - id: MedicalTechFabCircuitboard
         - id: CargoRequestMedicalComputerCircuitboard
+        - id: MedicalCommsComputerCircuitboard # Starlight
 
 - type: entity
-  parent: ToteBase
+  parent: [ToteBase, BaseCommandContraband] #FH
   id: BoxHoPCircuitboards
-  name: head of personnel circuit tote
+  name: Head of Personnel Circuit Tote #FH
   components:
   - type: EntityTableContainerFill
     containers:
@@ -49,6 +51,7 @@
         - id: IDComputerCircuitboard
         - id: FundingAllocationComputerCircuitboard
         - id: CargoRequestServiceComputerCircuitboard
+        - id: ServiceCommsComputerCircuitboard # Starlight
 
 - type: entity
   parent: BoxStamps
@@ -64,9 +67,9 @@
         - id: RubberStampHop
 
 - type: entity
-  parent: ToteBase
+  parent: [ToteBase, BaseCommandContraband] #FH
   id: BoxHoSCircuitboards
-  name: security circuit tote
+  name: Head of Security Circuit Tote #FH
   components:
   - type: EntityTableContainerFill
     containers:
@@ -74,11 +77,13 @@
         children:
         - id: SecurityTechFabCircuitboard
         - id: CargoRequestSecurityComputerCircuitboard
+        - id: SecurityCommsComputerCircuitboard # Starlight
+        - id: SecurityShuttleConsoleCircuitboard #FH
 
 - type: entity
-  parent: ToteBase
+  parent: [ToteBase, BaseCommandContraband] #FH
   id: BoxQMCircuitboards
-  name: cargo circuit tote
+  name: Quartermaster Circuit Tote #FH
   components:
   - type: EntityTableContainerFill
     containers:
@@ -91,6 +96,9 @@
         - id: SalvageMagnetMachineCircuitboard
         - id: SalvageJobBoardComputerCircuitboard
         - id: MailTeleporterMachineCircuitboard
+        - id: CargoCommsComputerCircuitboard # Starlight
+        - id: SalvageShuttleConsoleCircuitboard #FH
+        - id: MiningShuttleConsoleCircuitboard #FH
 
 - type: entity
   parent: BoxStamps
@@ -106,9 +114,9 @@
         - id: RubberStampQm
 
 - type: entity
-  parent: ToteBase
+  parent: [ToteBase, BaseCommandContraband] #FH
   id: BoxRDCircuitboards
-  name: science circuit tote
+  name: Research Director Circuit Tote #FH
   components:
   - type: EntityTableContainerFill
     containers:
@@ -122,3 +130,4 @@
         - id: AnalysisComputerCircuitboard #Because sometimes round start artis just fucking explode on the pad.
         - id: ArtifactAnalyzerMachineCircuitboard
         - id: StationAiFixerCircuitboard
+        - id: ScienceCommsComputerCircuitboard # Starlight

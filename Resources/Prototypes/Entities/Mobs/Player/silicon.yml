@@ -84,22 +84,6 @@
   #region Starlight
   - type: StationAIShuntable
   #endregion Starlight
-  #FarHorizonsStart
-  - type: DepartmentalAnnouncement
-    channels:
-    - Binary
-    - Common
-    - Command
-    - Engineering
-    - Medical
-    - Science
-    - Security
-    - Service
-    - GSL # Far Horizons
-    - CFA # Far Horizons
-    currentChannel: Common
-    titleAlt: comms-console-announcement-title-station-ai-alt 
-  #FarHorizonsEnd
   - type: ShowCrewIcons
   - type: DamagedSiliconAccent
     startPowerCorruptionAtCharIdx: 4
