@@ -5,11 +5,15 @@ using Content.Server.NPC.HTN;
 using Content.Server.StationEvents.Components;
 using Content.Shared._FarHorizons.Body;
 using Content.Shared._Starlight.Language.Components;
+using Content.Shared.Body;
+using Content.Shared.Body.Components;
+using Content.Shared.GameTicking;
 using Content.Shared.NPC;
 using Content.Shared.NPC.Components;
 using Content.Shared.Traits.Assorted;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.Markdown.Mapping;
+using Robust.Shared.Utility;
 
 namespace Content.Server._FarHorizons.Body;
 public sealed partial class BrainTransferSystem : EntitySystem
@@ -20,8 +24,21 @@ public sealed partial class BrainTransferSystem : EntitySystem
     {
         base.Initialize();
 
+        SubscribeLocalEvent<HumanoidCharacterProfileComponent, PlayerSpawnCompleteEvent>(OnPlayerSpawn);
         SubscribeLocalEvent<BrainExtraComponent, BrainInserted>(OnBrainInserted);
         SubscribeLocalEvent<BrainExtraComponent, BrainRemoved>(OnBrainRemoved);
+    }
+
+    private void OnPlayerSpawn(Entity<HumanoidCharacterProfileComponent> ent, ref PlayerSpawnCompleteEvent args)
+    {
+        if(!TryComp<BodyComponent>(ent.Owner, out var body) || body.Organs == null)
+            return;
+        var brain = body.Organs.ContainedEntities.FirstOrNull(HasComp<BrainComponent>);
+
+        if(brain == null) return;
+
+        var hcpComp = EnsureComp<HumanoidCharacterProfileComponent>(brain.Value);
+        hcpComp.Profile = ent.Comp.Profile;
     }
 
     private void OnBrainInserted(Entity<BrainExtraComponent> ent, ref BrainInserted args)
