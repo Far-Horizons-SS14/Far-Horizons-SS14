@@ -23,11 +23,16 @@
     - id: DoorRemoteSecurity
     - id: HoloprojectorSecurity
     - id: RubberStampHos
-    - id: SecurityTechFabCircuitboard
-    - id: CargoRequestSecurityComputerCircuitboard
     - id: WeaponDisabler
     - id: WantedListCartridge
     - id: DrinkHosFlask
+    - id: BoxHoSCircuitboards
+    - id: PrintedDocumentGreenshiftAlert 
+      conditions: 
+      - !type:GamemodeCondition 
+        presets: 
+        - Greenshift 
+        - Sandbox 
 
 - type: entity
   id: LockerHeadOfSecurityFHFilledHardsuit
@@ -51,8 +56,6 @@
     - id: DoorRemoteSecurity
     - id: HoloprojectorSecurity
     - id: RubberStampHos
-    - id: SecurityTechFabCircuitboard
-    - id: CargoRequestSecurityComputerCircuitboard
     - id: WeaponDisabler
     - id: WantedListCartridge
     - id: DrinkHosFlask
@@ -62,6 +65,13 @@
     - id: OxygenTankFilled
     - id: NitrogenTankFilled
     - id: ClothingShoesBootsMagSec
+    - id: BoxHoSCircuitboards
+    - id: PrintedDocumentGreenshiftAlert 
+      conditions: 
+      - !type:GamemodeCondition 
+        presets: 
+        - Greenshift 
+        - Sandbox 
 
 # Locker & Hardsuit table for QM's locker
 
