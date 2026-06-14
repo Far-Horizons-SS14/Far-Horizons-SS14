@@ -48,7 +48,7 @@ guide-entry-sl-emergency-shuttle = The Emergency Shuttle
 guide-entry-sl-miscellaneous-clarifications = Miscellaneous Clarifications
 guide-entry-sl-line-of-succesion = Line of Succesion
 guide-entry-sl-command-clarifications = Command Clarifications
-
+ 
 guide-entry-sl-general-command-staff = General Command Staff
 guide-entry-sl-captain = Captain
 guide-entry-sl-ai = AI
@@ -63,17 +63,6 @@ guide-entry-sl-firing-demotion-policies = Firing / Demotion
 guide-entry-sl-cause-for-demotion = Causes for Demotion and Dismissal
 guide-entry-sl-vote-of-no-confidence = Vote Of No Confidence
 guide-entry-sl-money-accounts-and-space-credits = Money Accounts and Space Credits
-
-guide-entry-sl-security-sop-intro = Security
-guide-entry-sl-security-sop-cadet = Cadet
-guide-entry-sl-security-sop-securityofficer = Security Officer
-guide-entry-sl-security-sop-detective = Detective
-guide-entry-sl-security-sop-brigmedic = Brigmedic
-guide-entry-sl-security-sop-warden = Warden
-guide-entry-sl-security-sop-headofsecurity = Head of Security
-guide-entry-sl-security-sop-prisonertreatment = Prisoner Treatment
-guide-entry-sl-security-sop-parole = Parole
-guide-entry-sl-security-sop-permitacquisition = Permit Acquisiton
 
 guide-entry-sl-legal-sop-intro = Legal
 

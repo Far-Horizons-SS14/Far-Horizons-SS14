@@ -50,6 +50,20 @@ guide-entry-sl-medical-sop-viral-outbreak = Viral Outbreak Protocol
 
 guide-entry-fried-foods-recipes = Fried Foods
 
+guide-entry-fh-security-sop-intro = Security
+guide-entry-security-general-procedures = General Procedures
+guide-entry-security-alert-level-procedures = Alert Level Procedures
 guide-entry-security-almanac = The Security Almanac
+guide-entry-fh-security-sop-cadet = Cadet
+guide-entry-fh-security-sop-securityofficer = Security Officer
+guide-entry-fh-security-sop-detective = Detective
+guide-entry-security-medical-staff = Security Medical Staff
+guide-entry-fh-security-sop-brigmedic = Brigmedic
+guide-entry-security-sop-corpsman = Corpsman
+guide-entry-fh-security-sop-warden = Warden
+guide-entry-fh-security-sop-headofsecurity = Head of Security
+guide-entry-fh-security-sop-prisonertreatment = Prisoner Treatment
+guide-entry-fh-security-sop-parole = Parole
+guide-entry-fh-security-sop-permitacquisition = Permit Acquisiton
 
 guide-entry-prometheus-protocol = Prometheus Protocol
