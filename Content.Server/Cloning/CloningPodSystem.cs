@@ -31,6 +31,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Damage.Systems;
+using Content.Shared.Body.Components; // Far Horizons
 
 namespace Content.Server.Cloning;
 
@@ -153,7 +154,7 @@ public sealed class CloningPodSystem : EntitySystem
             ClonesWaitingForMind.Remove(mind);
         }
 
-        if (mind.OwnedEntity != null && !_mobStateSystem.IsDead(mind.OwnedEntity.Value))
+        if (mind.OwnedEntity != null && !_mobStateSystem.IsDead(mind.OwnedEntity.Value) && !HasComp<BrainComponent>(mind.OwnedEntity.Value)) // Far Horizons
             return false; // Body controlled by mind is not dead
 
         // Yes, we still need to track down the client because we need to open the Eui
@@ -163,7 +164,7 @@ public sealed class CloningPodSystem : EntitySystem
         if (!TryComp<PhysicsComponent>(bodyToClone, out var physics))
             return false;
 
-        var cloningCost = (int)Math.Round(physics.FixturesMass);
+        var cloningCost = !HasComp<BrainComponent>(bodyToClone) ? (int)Math.Round(physics.FixturesMass) : 50; //Far Horizons
 
         if (_configManager.GetCVar(CCVars.BiomassEasyMode))
             cloningCost = (int)Math.Round(cloningCost * EasyModeCloningCost);

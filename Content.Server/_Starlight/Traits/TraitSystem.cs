@@ -63,7 +63,7 @@ public sealed class TraitSystem : EntitySystem
     /// <summary>
     /// Applies a traits to an entity.
     /// </summary>
-    public void ApplyTraits(EntityUid Mob, HumanoidCharacterProfile profile, ICommonSession session)
+    public void ApplyTraits(EntityUid Mob, HumanoidCharacterProfile profile, ICommonSession? session) //Far Horizons
     {
         var validTraits = ValidateTraits(Mob, profile.TraitPreferences, session, profile);
 

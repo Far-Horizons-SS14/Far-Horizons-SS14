@@ -270,7 +270,7 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
     /// <summary>
     /// Replaces humanoid's limbs with cybernetics on spawn
     /// </summary>
-    private void SetupCybernetics(EntityUid entity, List<string> cybernetics){
+    public void SetupCybernetics(EntityUid entity, List<string> cybernetics){ //FH-Edit
         if (!TryComp(entity, out TransformComponent? transform) ||
             !TryComp(entity, out BodyComponent? bodyComp))
             return;
