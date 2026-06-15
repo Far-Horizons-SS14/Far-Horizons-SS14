@@ -31,7 +31,7 @@ public sealed partial class CyberneticImplanterComponent : Component
     /// Time to activate on a target
     /// </summary>
     [DataField]
-    public TimeSpan ActivationTime = TimeSpan.FromSeconds(5f);
+    public TimeSpan ActivationTime = TimeSpan.FromSeconds(10f);
 }
 
 [Serializable, NetSerializable]
