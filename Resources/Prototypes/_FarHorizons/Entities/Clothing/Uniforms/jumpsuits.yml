@@ -13,6 +13,19 @@
     - type: Clothing
       sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/salvageleadformal.rsi
 
+# Salvage Med
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitSalvageMedFormal
+  name: Formal Salvage Medic's Jumpsuit
+  description: It's a snappy jumpsuit with rolleable sleeves. It's very dirty.
+  components:
+    - type: RollUpSleeves
+    - type: Sprite
+      sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/salvagemedformal.rsi
+    - type: Clothing
+      sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/salvagemedformal.rsi
+
 # Mining Specialist
 - type: entity
   parent: ClothingUniformBase
