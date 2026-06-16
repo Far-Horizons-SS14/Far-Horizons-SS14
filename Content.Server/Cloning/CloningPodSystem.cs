@@ -164,7 +164,7 @@ public sealed class CloningPodSystem : EntitySystem
         if (!TryComp<PhysicsComponent>(bodyToClone, out var physics))
             return false;
 
-        var cloningCost = !HasComp<BrainComponent>(bodyToClone) ? (int)Math.Round(physics.FixturesMass) : 50; //Far Horizons
+        var cloningCost = !HasComp<BrainComponent>(bodyToClone) ? (int)Math.Round(physics.FixturesMass) : 100; //Far Horizons
 
         if (_configManager.GetCVar(CCVars.BiomassEasyMode))
             cloningCost = (int)Math.Round(cloningCost * EasyModeCloningCost);
