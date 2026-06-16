@@ -18,6 +18,22 @@
     head: ClothingHeadHatHardhatMiner
 
 - type: loadout
+  id: MiningSpecialistJumpsuitFormal
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: VeteranMiningSpecialist
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitMiningSpecialistFormal
+
+- type: loadout
+  id: MiningSpecialistJumpskirtFormal
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: VeteranMiningSpecialist
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtMiningSpecialistFormal
+
+- type: loadout
   id: MiningBackpack
   equipment:
     back: ClothingBackpackMining
@@ -91,3 +107,21 @@
     proto: VeteranSalvageSpecialist
   equipment:
     back: ClothingBackpackDuffelSalvageSenior
+  
+  # Salvage Lead
+
+- type: loadout
+  id: SalvageLeadJumpsuitFormal
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: VeteranSalvageSpecialist
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSalvageLeadFormal
+    
+- type: loadout
+  id: SalvageLeadJumpskirtFormal
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: VeteranSalvageSpecialist
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtSalvageLeadFormal

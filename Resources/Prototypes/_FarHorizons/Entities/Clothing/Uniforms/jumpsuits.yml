@@ -1,3 +1,30 @@
+#region ## GSL ##
+
+# Salvage Lead
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitSalvageLeadFormal
+  name: Formal Salvage Leads's Jumpsuit
+  description: It's a snappy jumpsuit with rolleable sleeves. It's very dirty.
+  components:
+    - type: RollUpSleeves
+    - type: Sprite
+      sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/salvageleadformal.rsi
+    - type: Clothing
+      sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/salvageleadformal.rsi
+
+# Mining Specialist
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitMiningSpecialistFormal
+  name: Formal Mining Specialist's Jumpsuit 
+  description: A suit passed down through many generations. A fine layer of dust trails behind it.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/miningformal.rsi 
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/miningformal.rsi
+
 #region ## NanoTrasen ##
 
 

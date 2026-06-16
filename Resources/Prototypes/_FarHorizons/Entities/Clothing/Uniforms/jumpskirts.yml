@@ -26,6 +26,32 @@
   - type: Clothing
     sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/qmformal.rsi
 
+# Salvage Lead
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingUniformJumpskirtSalvageLeadFormal
+  name: Formal Salvage Leads's Jumpskirt
+  description: It's a snappy jumpskirt with rolleable sleeves. It's very dirty.
+  components:
+    - type: RollUpSleeves
+    - type: Sprite
+      sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/salvageleadformal.rsi
+    - type: Clothing
+      sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/salvageleadformal.rsi
+
+# Mining Specialist
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingUniformJumpskirtMiningSpecialistFormal
+  name: Formal Mining Specialist's Jumpskirt
+  description: A suit passed down through many generations. a fine layer of dust trails behind it.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/miningformal.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/miningformal.rsi
+
+
 #region ## NanoTrasen ##
 
 
