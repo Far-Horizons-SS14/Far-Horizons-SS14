@@ -13,6 +13,17 @@
     - type: Clothing
       sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/salvageleadformal.rsi
 
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitSalvageLeadSenior
+  name: Senior Salvage Leads's Jumpsuit
+  description: It's a snappy jumpsuit with rolleable sleeves. It's very dirty.
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/salvageleadsenior.rsi
+    - type: Clothing
+      sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/salvageleadsenior.rsi
+
 # Salvage Med
 - type: entity
   parent: ClothingUniformBase
@@ -26,6 +37,19 @@
     - type: Clothing
       sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/salvagemedformal.rsi
 
+# Salvage Specialist
+- type: entity
+  parent: [ClothingUniformBase]
+  id: ClothingUniformJumpsuitSalvageSenior
+  name: Senior Salvage Specialist's Jumpsuit 
+  description: It's a snappy jumpsuit with a sturdy set of overalls. It's very dirty.
+  components:
+  - type: RollUpSleeves
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/salvagesenior.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/salvagesenior.rsi
+
 # Mining Specialist
 - type: entity
   parent: ClothingUniformBase
@@ -37,6 +61,30 @@
     sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/miningformal.rsi 
   - type: Clothing
     sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/miningformal.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitMiningSpecialistSenior
+  name: Senior Mining Specialist's Jumpsuit 
+  description: A suit passed down through many generations. A fine layer of dust trails behind it.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/miningsenior.rsi 
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/miningsenior.rsi 
+
+# Cargo Tech
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitCargoSenior
+  name: Senior Cargo Tech Jumpsuit
+  description: A sturdy jumpsuit, issued to members of the Cargo department.
+  components:
+  - type: RollUpSleeves
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/cargotechsenior.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/cargotechsenior.rsi
 
 #region ## NanoTrasen ##
 

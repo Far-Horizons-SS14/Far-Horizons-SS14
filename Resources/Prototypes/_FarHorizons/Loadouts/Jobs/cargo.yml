@@ -10,6 +10,22 @@
   equipment:
     shoes: ClothingShoesBootsCargo
 
+- type: loadout
+  id: CargoTechnicianJumpsuitSenior
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitCargoSenior
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SeniorCargo
+
+- type: loadout
+  id: CargoTechnicianJumpskirtSenior
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtCargoSenior
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SeniorCargo
+
 # Mining Specialist
 
 - type: loadout
@@ -32,6 +48,22 @@
     proto: VeteranMiningSpecialist
   equipment:
     jumpsuit: ClothingUniformJumpskirtMiningSpecialistFormal
+
+- type: loadout
+  id: MiningSpecialistJumpsuitSenior
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: VeteranMiningSpecialist
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitMiningSpecialistSenior
+
+- type: loadout
+  id: MiningSpecialistJumpskirtSenior
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: VeteranMiningSpecialist
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtMiningSpecialistSenior
 
 - type: loadout
   id: MiningBackpack
@@ -85,6 +117,22 @@
     head: ClothingHeadHelmetSalvage
 
 - type: loadout
+  id: SalvageSpecialistJumpsuitSenior
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: VeteranSalvageSpecialist
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSalvageSenior
+
+- type: loadout
+  id: SalvageSpecialistJumpskirtSenior
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: VeteranSalvageSpecialist
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtSalvageSenior
+
+- type: loadout
   id: SalvageSpecialistBackpackSenior
   effects:
   - !type:GroupLoadoutEffect
@@ -109,12 +157,20 @@
     back: ClothingBackpackDuffelSalvageSenior
   
   # Salvage Lead
+- type: loadoutEffectGroup
+  id: VeteranSalvageLead
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobSalvageLead
+      time: 216000 # 60 hrs
 
 - type: loadout
   id: SalvageLeadJumpsuitFormal
   effects:
   - !type:GroupLoadoutEffect
-    proto: VeteranSalvageSpecialist
+    proto: VeteranSalvageLead
   equipment:
     jumpsuit: ClothingUniformJumpsuitSalvageLeadFormal
     
@@ -122,6 +178,22 @@
   id: SalvageLeadJumpskirtFormal
   effects:
   - !type:GroupLoadoutEffect
-    proto: VeteranSalvageSpecialist
+    proto: VeteranSalvageLead
   equipment:
     jumpsuit: ClothingUniformJumpskirtSalvageLeadFormal
+
+- type: loadout
+  id: SalvageLeadJumpsuitSenior
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: VeteranSalvageLead
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSalvageLeadSenior
+    
+- type: loadout
+  id: SalvageLeadJumpskirtSenior
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: VeteranSalvageLead
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtSalvageLeadSenior

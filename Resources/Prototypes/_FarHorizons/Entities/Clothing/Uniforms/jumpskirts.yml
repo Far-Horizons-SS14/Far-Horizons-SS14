@@ -39,6 +39,18 @@
     - type: Clothing
       sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/salvageleadformal.rsi
 
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingUniformJumpskirtSalvageLeadSenior
+  name: Senior Salvage Leads's Jumpskirt
+  description: It's a snappy jumpskirt with rolleable sleeves. It's very dirty.
+  components:
+    - type: RollUpSleeves
+    - type: Sprite
+      sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/salvageleadsenior.rsi
+    - type: Clothing
+      sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/salvageleadsenior.rsi
+
 # Salvage Med
 - type: entity
   parent: ClothingUniformSkirtBase
@@ -52,6 +64,18 @@
     - type: Clothing
       sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/salvagemedformal.rsi
 
+# Salvage Specialist
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingUniformJumpskirtSalvageSenior
+  name: Senior Salvage Specialist's Jumpskirt
+  description: Perfectly pairs with a pickaxe, this versatile and durable skirt jumpsuit is designed for tough work, offering both practicality and a rugged, stylish appearance.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/salvagesenior.rsi 
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/salvagesenior.rsi
+
 # Mining Specialist
 - type: entity
   parent: ClothingUniformSkirtBase
@@ -63,6 +87,30 @@
     sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/miningformal.rsi
   - type: Clothing
     sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/miningformal.rsi
+
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingUniformJumpskirtMiningSpecialistSenior
+  name: Senior Mining Specialist's Jumpskirt
+  description: A suit passed down through many generations. a fine layer of dust trails behind it.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/miningsenior.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/miningsenior.rsi
+
+# Cargo Tech
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingUniformJumpskirtCargoSenior
+  name: Senior Cargo Tech Jumpskirt 
+  description: A sturdy jumpskirt, issued to members of the Cargo department.
+  components:
+  - type: RollUpSleeves
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/cargotechsenior.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/cargotechsenior.rsi
 
 
 #region ## NanoTrasen ##
