@@ -33,6 +33,30 @@
     back: ClothingBackpackSatchelMining
     
 - type: loadout
+  id: MiningBackpackSenior
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: VeteranMiningSpecialist
+  equipment:
+    back: ClothingBackpackMiningSenior
+
+- type: loadout
+  id: MiningDuffelSenior
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: VeteranMiningSpecialist
+  equipment:
+    back: ClothingBackpackDuffelMiningSenior
+
+- type: loadout
+  id: MiningSatchelSenior
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: VeteranMiningSpecialist
+  equipment:
+    back: ClothingBackpackSatchelMiningSenior
+
+- type: loadout
   id: MiningOreBag
   equipment:
     rig: OreBag
@@ -43,3 +67,27 @@
   id: SalvageHelmet
   equipment:
     head: ClothingHeadHelmetSalvage
+
+- type: loadout
+  id: SalvageSpecialistBackpackSenior
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: VeteranSalvageSpecialist
+  equipment:
+    back: ClothingBackpackSalvageSenior
+
+- type: loadout
+  id: SalvageSpecialistSatchelSenior
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: VeteranSalvageSpecialist
+  equipment:
+    back: ClothingBackpackSatchelSalvageSenior
+
+- type: loadout
+  id: SalvageSpecialistDuffelSenior
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: VeteranSalvageSpecialist
+  equipment:
+    back: ClothingBackpackDuffelSalvageSenior
