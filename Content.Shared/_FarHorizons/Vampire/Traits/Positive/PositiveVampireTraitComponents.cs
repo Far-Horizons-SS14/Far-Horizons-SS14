@@ -1,6 +1,7 @@
 using Content.Shared.Damage;
 using Content.Shared.EntityEffects;
 using Content.Shared.Metabolism;
+using Content.Shared.Tag;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 
@@ -52,6 +53,7 @@ public sealed partial class ConversionVampireTraitComponent : LesserVampireActio
     [DataField] public EntProtoId AcceptAction;
     [DataField] public DamageSpecifier ComaHealing = new();
     [DataField] public TimeSpan ConversionTime = TimeSpan.FromSeconds(60);
+    [DataField] public List<ProtoId<TagPrototype>> BlacklistTargets = new();
     [ViewVariables(VVAccess.ReadOnly)] public bool Used;
 }
 

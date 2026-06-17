@@ -49,3 +49,8 @@
         traitsAction: ActionOpenVampireTraits
         traitsUiKey: enum.VampireTraitsUiKey.Key
         allowTraitSelection: true
+  requirements:
+    - !type:SpeciesRequirement
+      species:
+        - IPC
+      inverted: true

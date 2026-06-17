@@ -16,6 +16,7 @@ using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
 using Content.Shared.Station.Components;
 using Content.Shared.StatusEffectNew;
+using Content.Shared.Tag;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
@@ -68,6 +69,7 @@ public sealed class
     [Dependency] private readonly LimbDamageSystem _limbDamage = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly SleepingSystem _sleeping = default!;
+    [Dependency] private readonly TagSystem _tag = default!;
 
     private EntProtoId _sleepStatus = "StatusEffectForcedSleeping";
 
@@ -153,7 +155,8 @@ public sealed class
             _mind.GetMind(args.Target, mind) == null ||
             _mobState.IsDead(args.Target) ||
             Vampire.GetBloodPool(ent) < ent.Comp2.DecreaseBloodPool ||
-            HasComp<VampireConversionCandidateComponent>(args.Target))
+            HasComp<VampireConversionCandidateComponent>(args.Target) ||
+            _tag.HasAnyTag(args.Target, ent.Comp2.BlacklistTargets))
             return;
 
         if (ent.Comp2.PopupMessage != null)
