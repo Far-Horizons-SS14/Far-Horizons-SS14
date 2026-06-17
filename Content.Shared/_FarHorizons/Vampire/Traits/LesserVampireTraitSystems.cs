@@ -111,6 +111,7 @@ public abstract class LesserVampireToggleActionTraitSystem<T, TEvent> : LesserVa
 
         ent.Comp.Toggled = false;
         Vampire.RefreshBloodPoolChange((ent, vampire));
+        Dirty(ent);
 
         var action = Actions.GetActions(ent)
             .Where(p => MetaData(p).EntityPrototype is { } entProto && entProto.ID == ent.Comp.Action)
@@ -145,6 +146,7 @@ public abstract class LesserVampireToggleActionTraitSystem<T, TEvent> : LesserVa
         {
             ent.Comp2.Toggled = !ent.Comp2.Toggled;
             Vampire.RefreshBloodPoolChange((ent.Owner, ent.Comp1));
+            Dirty(ent);
         }
 
         Actions.SetToggled(args.Action.AsNullable(), ent.Comp2.Toggled);
