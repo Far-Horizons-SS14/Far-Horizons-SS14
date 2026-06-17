@@ -17,6 +17,7 @@ using Content.Shared.Mobs.Systems;
 using Content.Shared.Power;
 using Robust.Server.GameObjects;
 using Robust.Server.Player;
+using Content.Shared.Body.Components;
 
 namespace Content.Server.Cloning
 {
@@ -204,13 +205,13 @@ namespace Content.Server.Cloning
                 EntityUid? scanBody = scanner.BodyContainer.ContainedEntity;
 
                 // GET STATE
-                if (scanBody == null || !HasComp<MobStateComponent>(scanBody))
+                if (scanBody == null || (!HasComp<MobStateComponent>(scanBody) && !HasComp<BrainComponent>(scanBody))) //FarHorizons-Edit
                     clonerStatus = ClonerStatus.ScannerEmpty;
                 else
                 {
                     scanBodyInfo = MetaData(scanBody.Value).EntityName;
 
-                    if (!_mobStateSystem.IsDead(scanBody.Value))
+                    if (!_mobStateSystem.IsDead(scanBody.Value) && !HasComp<BrainComponent>(scanBody)) //FarHorizons-Edit
                     {
                         clonerStatus = ClonerStatus.ScannerOccupantAlive;
                     }

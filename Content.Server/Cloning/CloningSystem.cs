@@ -23,6 +23,14 @@ using Content.Shared.Body.Components;
 using Content.Shared.Body.Systems;
 using Robust.Shared.Utility;
 using Content.Shared.Starlight.Medical.Surgery.Steps.Parts;
+//FarHorizons Start
+using Content.Shared._FarHorizons.Body;
+using Content.Server.Station.Systems;
+using Content.Shared.Starlight.TextToSpeech;
+using Content.Server._Starlight.Traits;
+using Content.Server._Starlight.Character;
+using Robust.Shared.Player;
+//FarHorizons End
 
 namespace Content.Server.Cloning;
 
@@ -43,7 +51,11 @@ public sealed partial class CloningSystem : SharedCloningSystem
     [Dependency] private readonly SharedVisualBodySystem _visualBody = default!;
     [Dependency] private readonly NameModifierSystem _nameMod = default!;
     [Dependency] private readonly Shared.StatusEffectNew.StatusEffectsSystem _statusEffects = default!; //TODO: This system has to support both the old and new status effect systems, until the old is able to be fully removed.
-
+    [Dependency] private readonly StationSpawningSystem _spawningSystem = default!; //FarHorizons 
+    [Dependency] private readonly HumanoidProfileSystem _humanoidProfile = default!; //FarHorizons 
+    [Dependency] private readonly TraitSystem _traitSystem = default!; //FarHorizons 
+    [Dependency] private readonly SLCharacterInfoSystem _sLSharedCharacterInfoSystem = default!; //FarHorizons 
+    
     /// <summary>
     ///     Spawns a clone of the given humanoid mob at the specified location or in nullspace.
     /// </summary>
@@ -53,43 +65,75 @@ public sealed partial class CloningSystem : SharedCloningSystem
         if (!_prototype.Resolve(settingsId, out var settings))
             return false; // invalid settings
 
-        if (!TryComp<HumanoidProfileComponent>(original, out var humanoid))
-            return false; // whatever body was to be cloned, was not a humanoid
+        //FarHorizons Start
+        TryComp<HumanoidProfileComponent>(original, out var humanoid);
+        TryComp<HumanoidCharacterProfileComponent>(original, out var hcpComp);
 
-        if (!_prototype.Resolve(humanoid.Species, out var speciesPrototype))
-            return false; // invalid species
+        if (humanoid == null && hcpComp == null)
+            return false; // whatever body was to be cloned, was not a humanoid
 
         var attemptEv = new CloningAttemptEvent(settings);
         RaiseLocalEvent(original, ref attemptEv);
         if (attemptEv.Cancelled && !settings.ForceCloning)
             return false; // cannot clone, for example due to the unrevivable trait
 
-        clone = coords == null ? Spawn(speciesPrototype.Prototype) : Spawn(speciesPrototype.Prototype, coords.Value);
-        _visualBody.CopyAppearanceFrom(original, clone.Value);
+        string originalName;
 
-        CloneComponents(original, clone.Value, settings);
+        if (humanoid != null)
+        {
+            if (!_prototype.Resolve(humanoid.Species, out var speciesPrototype))
+                return false; // invalid species
 
-        // Add equipment first so that SetEntityName also renames the ID card.
-        if (settings.CopyEquipment != null)
-            CopyEquipment(original, clone.Value, settings.CopyEquipment.Value, settings.Whitelist, settings.Blacklist);
+            clone = coords == null ? Spawn(speciesPrototype.Prototype) : Spawn(speciesPrototype.Prototype, coords.Value);
+            _visualBody.CopyAppearanceFrom(original, clone.Value);
 
-        // Copy storage on the mob itself as well.
-        // This is needed for slime storage.
-        if (settings.CopyInternalStorage)
-            CopyStorage(original, clone.Value, settings.Whitelist, settings.Blacklist);
+            CloneComponents(original, clone.Value, settings);
 
-        // copy implants and their storage contents
-        if (settings.CopyImplants)
-            CopyImplants(original, clone.Value, settings.CopyInternalStorage, settings.Whitelist, settings.Blacklist);
+            // Add equipment first so that SetEntityName also renames the ID card.
+            if (settings.CopyEquipment != null)
+                CopyEquipment(original, clone.Value, settings.CopyEquipment.Value, settings.Whitelist, settings.Blacklist);
 
-        // Copy permanent status effects
-        if (settings.CopyStatusEffects)
-            CopyStatusEffects(original, clone.Value);
+            // Copy storage on the mob itself as well.
+            // This is needed for slime storage.
+            if (settings.CopyInternalStorage)
+                CopyStorage(original, clone.Value, settings.Whitelist, settings.Blacklist);
 
-        var originalName = _nameMod.GetBaseName(original);
+            // copy implants and their storage contents
+            if (settings.CopyImplants)
+                CopyImplants(original, clone.Value, settings.CopyInternalStorage, settings.Whitelist, settings.Blacklist);
 
-        CopyCyberwareStates(original, clone.Value); // 🌟Starlight🌟 Copy species-native cyberware
-        CloneProtogenCybernetics(original, clone.Value); // Far Horizons
+            // Copy permanent status effects
+            if (settings.CopyStatusEffects)
+                CopyStatusEffects(original, clone.Value);
+
+            originalName = _nameMod.GetBaseName(original); //Far Horizons
+
+            CopyCyberwareStates(original, clone.Value); // 🌟Starlight🌟 Copy species-native cyberware
+            CloneProtogenCybernetics(original, clone.Value); // Far Horizons
+        }
+        else if (hcpComp != null && hcpComp.Profile != null)
+        {
+            var profile = hcpComp.Profile;
+
+            if (!_prototype.Resolve(profile.Species, out var speciesPrototype))
+                return false; // invalid species
+
+            clone = coords == null ? Spawn(speciesPrototype.Prototype) : Spawn(speciesPrototype.Prototype, coords.Value);
+            _spawningSystem.SetupCybernetics(clone.Value, profile.Cybernetics);
+
+            _visualBody.ApplyProfileTo(clone.Value, profile);
+            _humanoidProfile.ApplyProfileTo(clone.Value, profile);
+            originalName = profile.Name;
+
+            if (TryComp<TextToSpeechComponent>(clone.Value, out var ttsComp))
+                ttsComp.Symspeech = profile.Symspeech ?? profile.DefaultSymspeech();
+
+            _traitSystem.ApplyTraits(clone.Value, profile, null);
+            _sLSharedCharacterInfoSystem.ApplyCharacterInfo(clone.Value, profile);
+        }
+        else
+            return false;
+        //FarHorizons End
 
         // Set the clone's name. The raised events will also adjust their PDA and ID card names.
         _metaData.SetEntityName(clone.Value, originalName);

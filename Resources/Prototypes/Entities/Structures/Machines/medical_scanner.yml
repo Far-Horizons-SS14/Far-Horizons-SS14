@@ -79,3 +79,17 @@
   - type: GuideHelp
     guides:
     - Cloning
+#FarHorizons Start
+  - type: ItemSlots
+    slots:
+      scanner-bodyContainer:
+        name: occupant
+        insertSound:
+          path: /Audio/Machines/terminal_insert_disc.ogg
+        ejectSound:
+          path: /Audio/Machines/terminal_insert_disc.ogg
+        whitelist:
+          components:
+          - Brain
+        disableEject: true
+#FarHorizons End

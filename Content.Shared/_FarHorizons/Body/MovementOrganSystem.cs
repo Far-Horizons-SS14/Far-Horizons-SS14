@@ -30,6 +30,8 @@ public sealed partial class MovementOrganSystem : EntitySystem
 
     private void OnMovementModifierRefresh(Entity<MovementOrganExpectedToMoveComponent> ent, ref RefreshMovementSpeedModifiersEvent args)
     {
+        if (TerminatingOrDeleted(ent)) return;
+        
         if (!TryComp<BodyComponent>(ent, out var body)) return;
 
         if (body.Organs == null || body.Organs.Count == 0) return;
