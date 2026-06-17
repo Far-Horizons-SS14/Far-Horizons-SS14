@@ -1,3 +1,34 @@
+#region ## GSL ##
+- type: entity
+  parent: [ ClothingHeadBase , BaseSalvageContraband ]
+  id: ClothingHeadHatBeretSalvage
+  name: Salvage Specialist's Beret
+  description: A purple beret.
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Clothing/Head/Hats/beret_salvage.rsi
+    - type: Clothing
+      sprite: _FarHorizons/Clothing/Head/Hats/beret_salvage.rsi
+    - type: Tag
+      tags:
+        - PetWearable
+        - CorgiWearable
+
+- type: entity
+  parent: [ ClothingHeadBase , BaseSalvageContraband ]
+  id: ClothingHeadHatBeretSalvageLead
+  name: Salvage Lead's Beret
+  description: A tan beret.
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Clothing/Head/Hats/beret_salvagelead.rsi
+    - type: Clothing
+      sprite: _FarHorizons/Clothing/Head/Hats/beret_salvagelead.rsi
+    - type: Tag
+      tags:
+        - PetWearable
+        - CorgiWearable
+
 #region ## NanoTrasen ##
 
 

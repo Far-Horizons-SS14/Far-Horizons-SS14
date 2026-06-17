@@ -27,6 +27,18 @@
 # Salvage Med
 - type: entity
   parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitSalvageMed
+  name: Salvage Medic's Jumpsuit
+  description: It's a snappy jumpsuit with rolleable sleeves. It's very dirty.
+  components:
+    - type: RollUpSleeves
+    - type: Sprite
+      sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/salvagemed.rsi
+    - type: Clothing
+      sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/salvagemed.rsi
+
+- type: entity
+  parent: ClothingUniformBase
   id: ClothingUniformJumpsuitSalvageMedFormal
   name: Formal Salvage Medic's Jumpsuit
   description: It's a snappy jumpsuit with rolleable sleeves. It's very dirty.

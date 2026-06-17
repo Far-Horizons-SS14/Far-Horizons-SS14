@@ -1,5 +1,5 @@
 
-#region Law ####
+#region ## CFA ##
 
 - type: entity
   parent: ClothingEyesBase
@@ -43,7 +43,26 @@
     coverage: EYES
   - type: ShowJobIcons
 
-#region NanoTrasen ##
+#region ## GSL ##
+
+- type: entity
+  parent: [ClothingEyesBase, ShowMedicalIcons, BaseSalvageContraband]
+  id: ClothingEyesGlassesScrapperMedical
+  name: Scrapper Medical Glasses 
+  description: A heads-up display that scans the humanoids in view and provides accurate data about their health status.
+  suffix: GSL
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Eyes/Glasses/salvagemed.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Eyes/Glasses/salvagemed.rsi
+  - type: Tag
+    tags:
+    - HudMedical
+    - PetWearable
+    - WhitelistChameleon
+
+#region ## NanoTrasen ##
 
 
 - type: entity
@@ -71,7 +90,7 @@
   - type: IdentityBlocker
     coverage: EYES
 
-#region Syndicate ####
+#region ## NeoSol ##
 
 
 

@@ -54,6 +54,18 @@
 # Salvage Med
 - type: entity
   parent: ClothingUniformSkirtBase
+  id: ClothingUniformJumpskirtSalvageMed
+  name: Salvage Medic's Jumpskirt
+  description: It's a snappy jumpskirt with rolleable sleeves. It's very dirty.
+  components:
+    - type: RollUpSleeves
+    - type: Sprite
+      sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/salvagemed.rsi
+    - type: Clothing
+      sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/salvagemed.rsi
+
+- type: entity
+  parent: ClothingUniformSkirtBase
   id: ClothingUniformJumpskirtSalvageMedFormal
   name: Formal Salvage Medic's Jumpskirt
   description: It's a snappy jumpskirt with rolleable sleeves. It's very dirty.

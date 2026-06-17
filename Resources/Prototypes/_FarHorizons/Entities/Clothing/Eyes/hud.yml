@@ -1,3 +1,4 @@
+#region ## CFA ##
 - type: entity
   parent: [ClothingEyesBase, ShowSecurityIcons, BaseCommandContraband]
   id: ClothingEyesHudCommandMagistrate
@@ -13,6 +14,24 @@
   - type: Tag
     tags:
     - HudSecurity
+    - PetWearable
+    - WhitelistChameleon
+
+#region ## GSL ##
+- type: entity
+  parent: [ClothingEyesHudBase, ShowMedicalIcons, BaseSalvageContraband]
+  id: ClothingEyesHudScrapperMedical
+  name: Scrapper Medical HUD 
+  description: A heads-up display that scans the humanoids in view and provides accurate data about their health status.
+  suffix: GSL
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Eyes/Hud/salvagemed.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Eyes/Hud/salvagemed.rsi
+  - type: Tag
+    tags:
+    - HudMedical
     - PetWearable
     - WhitelistChameleon
 
