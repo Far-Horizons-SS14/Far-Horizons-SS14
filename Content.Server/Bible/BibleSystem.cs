@@ -1,8 +1,10 @@
+using System.Linq;
 using Content.Server.Bible.Components;
 using Content.Server.Chat; //Starlight
 using Content.Server.Ghost.Roles.Events;
 using Content.Server.Hands.Systems; //Starlight
 using Content.Server.Popups;
+using Content.Shared._FarHorizons.Vampire.Traits.Positive;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Actions;
 using Content.Shared.Bible;
@@ -29,6 +31,7 @@ using Robust.Shared.Containers;
 using Robust.Shared.Player;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Robust.Shared.Utility;
 
 namespace Content.Server.Bible
 {
@@ -219,6 +222,22 @@ namespace Content.Server.Bible
                 }
             }
             //#endregion
+
+            // Far Horizons start
+            // Wish it was events. We remove the offer to become vampire from person
+            if (TryComp<VampireConversionCandidateComponent>(args.Target, out var vampire) &&
+                vampire.ConvertedBy != null)
+            {
+                var action = _actionsSystem.GetActions(args.Target.Value)
+                    .Where(p => MetaData(p).EntityPrototype is { } entProto && entProto.ID == vampire.ConvertedBy.Value.Comp.AcceptAction)
+                    .FirstOrNull();
+                
+                if (action != null)
+                    _actionsSystem.RemoveAction(args.Target.Value, action.Value.AsNullable());
+
+                RemCompDeferred<VampireConversionCandidateComponent>(args.Target.Value);
+            }
+            // Far Horizons end
 
             if (_damageableSystem.TryChangeDamage(args.Target.Value, component.Damage, true, origin: uid))
             {

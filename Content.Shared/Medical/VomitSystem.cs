@@ -39,6 +39,7 @@ public sealed class VomitSystem : EntitySystem
         base.Initialize();
 
         SubscribeLocalEvent<StomachComponent, BodyRelayedEvent<TryVomitEvent>>(TryVomitSolution);
+        SubscribeLocalEvent<StomachComponent, TryVomitEvent>(TryVomitBodyWrapper); // Far Horizons slime moment
     }
 
     private const float ChemMultiplier = 0.1f;
@@ -49,6 +50,17 @@ public sealed class VomitSystem : EntitySystem
 
     private readonly SoundSpecifier _vomitSound = new SoundCollectionSpecifier(VomitCollection,
         AudioParams.Default.WithVariation(0.2f).WithVolume(-4f));
+
+    // Far Horizons start
+    private void TryVomitBodyWrapper(Entity<StomachComponent> ent, ref TryVomitEvent args)
+    {
+        if (!TryComp<BodyComponent>(ent, out var body)) return;
+
+        var ev = new BodyRelayedEvent<TryVomitEvent>((ent, body), args);
+        TryVomitSolution(ent, ref ev);
+        args = ev.Args;
+    }
+    // Far Horizons end
 
     private void TryVomitSolution(Entity<StomachComponent> ent, ref BodyRelayedEvent<TryVomitEvent> args)
     {

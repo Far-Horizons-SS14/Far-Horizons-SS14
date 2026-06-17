@@ -1,0 +1,109 @@
+- type: entity
+  parent: BaseAction
+  id: ActionOpenVampireTraits
+  name: Vampire Traits
+  description: Select your strengths and weaknesses
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    priority: -20
+    icon:
+      sprite: Interface/Actions/actions_vampire.rsi
+      state: fullpotential
+  - type: InstantAction
+    event: !type:OpenVampireTraitsEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionVampireTraitRetractFangs
+  name: Retract Fangs
+  description: Retract your fangs, hiding your identity and losing the ability to bite. Drains blood pool when active
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    priority: -20
+    icon:
+      sprite: Interface/Actions/actions_vampire.rsi
+      state: fangs_extended
+    iconOn:
+      sprite: Interface/Actions/actions_vampire.rsi
+      state: fangs_retracted
+  - type: InstantAction
+    event: !type:VampireFangsRetractEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionVampireTraitTransfusion
+  name: Transfusion
+  description: Sacrifice porion of your blood pool to restore blood levels of someone else
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    priority: -20
+    icon:
+      sprite: Interface/Actions/actions_vampire.rsi
+      state: bloodsteal
+  - type: TargetAction
+    interactOnMiss: false
+  - type: EntityTargetAction
+    canTargetSelf: false
+    whitelist:
+      components:
+      - HumanoidProfile
+    event: 
+      !type:VampireTransfusionEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionVampireTraitCharm
+  name: Charm
+  description: Make everyone around you feel safe and relaxed
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    priority: -20
+    icon:
+      sprite: _FarHorizons/Interface/Actions/actions_vampire.rsi
+      state: charm # it sucks, but it's the best I got, sorry!
+    iconOn:
+      sprite: _FarHorizons/Interface/Actions/actions_vampire.rsi
+      state: dantalion # this one actually existed in files but not defined in meta, I copied it over
+  - type: InstantAction
+    event: !type:VampireCharmEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionVampireTraitConversion
+  name: Conversion
+  description: Share your curse with a willing target. Upon accepting, they will
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    priority: -20
+    icon:
+      sprite: Interface/Actions/actions_vampire.rsi
+      state: mutation
+  - type: TargetAction
+    interactOnMiss: false
+  - type: EntityTargetAction
+    canTargetSelf: false
+    whitelist:
+      components:
+      - HumanoidProfile
+    event: 
+      !type:VampireConversionEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionVampireTraitConversionAccept
+  name: "[color=red]Embrace the Blood[/color]"
+  description: Succumb to the curse and become vampire. This will put you into a vulnerable state, but you will regenerate damage in the process.
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    priority: -20
+    icon:
+      sprite: Interface/Actions/actions_vampire.rsi
+      state: mutation
+  - type: InstantAction
+    event: !type:VampireConversionAcceptEvent

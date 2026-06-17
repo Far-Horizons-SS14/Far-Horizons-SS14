@@ -56,6 +56,8 @@
       enum.InstrumentUiKey.Key:
         type: InstrumentBoundUserInterface
         requireInputValidation: false
+      enum.VampireTraitsUiKey.Key:
+        type: VampireTraitsBoundUserInterface
   - type: GlitchOnIonStorm
     duration: 25
     ramp: 3
@@ -496,6 +498,8 @@
       enum.InstrumentUiKey.Key:
         type: InstrumentBoundUserInterface
         requireInputValidation: false
+      enum.VampireTraitsUiKey.Key:
+        type: VampireTraitsBoundUserInterface
   - type: Icon
     sprite: _FarHorizons/Mobs/Species/Proto-Slime/parts.rsi
     state: full
@@ -705,6 +709,8 @@
         enum.InstrumentUiKey.Key:
           type: InstrumentBoundUserInterface
           requireInputValidation: false
+        enum.VampireTraitsUiKey.Key:
+          type: VampireTraitsBoundUserInterface
     - type: HumanoidEMP # HumanoidEMP is needed to receive EMP effects, it may carry its own innate effects, but doesn't have to
       effectCooldown: 2
       baseDamage:

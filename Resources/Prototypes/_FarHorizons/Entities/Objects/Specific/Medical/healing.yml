@@ -46,6 +46,10 @@
     maxFillLevels: 7
     fillBaseName: bloodpack
     solutionName: injector
+  - type: VampireDrinkable
+    container: injector
+    amount: 2
+    duration: 2
   - type: InteractRestriction
     restrictInteractionTarget:
       blacklist:  # Use blacklist instead of whitelist so can be clicked on bags/medkits

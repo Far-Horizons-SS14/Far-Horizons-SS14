@@ -29,3 +29,23 @@
   effects:
     - !type:CyberneticsPointsEffect
       change: 3 # +3 points to spend
+
+- type: trait
+  id: Vampire
+  name: trait-background-vampire-name
+  description: trait-background-vampire-description
+  category: BackgroundTraits
+  cost: 2
+  effects:
+    - !type:AddCompsEffect
+      components:
+      - type: LesserVampire
+        bloodPoolAlert: VampireBloodPool
+        bloodPoolAlertSegments: 25 # 25 segment display alert
+        bloodPoolMax: 100
+        metabolizer: LesserVampire
+        drinkDelay: 2
+        drinkAmount: 4 # Tiny little sips, we wouldn't want to hurt anyone, would we?
+        traitsAction: ActionOpenVampireTraits
+        traitsUiKey: enum.VampireTraitsUiKey.Key
+        allowTraitSelection: true

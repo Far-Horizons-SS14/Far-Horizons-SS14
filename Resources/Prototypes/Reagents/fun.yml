@@ -37,6 +37,13 @@
   metabolisms:
     Digestion:
       effects:
+       # Far Horizons start
+      - !type:Vomit
+        probability: 0.7
+        conditions:
+          - !type:MetabolizerTypeCondition
+            type: [ LesserVampire ]
+      # Far Horizons end
       - !type:SatiateHunger
         conditions:
         - !type:MetabolizerTypeCondition
