@@ -97,9 +97,44 @@
   suffix: GSL
   components:
     - type: Sprite
-      sprite: _FarHorizons/Clothing/OuterClothing/Vests/salvage.rsi #FH
+      sprite: _FarHorizons/Clothing/OuterClothing/Vests/salvage.rsi 
     - type: Clothing
-      sprite: _FarHorizons/Clothing/OuterClothing/Vests/salvage.rsi #FH
+      sprite: _FarHorizons/Clothing/OuterClothing/Vests/salvage.rsi
+    - type: ExplosionResistance
+      damageCoefficient: 0.7
+      worn: false
+    - type: Armor
+      modifiers:
+        coefficients:
+          Blunt: 0.95
+          Slash: 0.95
+          Piercing: 0.95
+      priceMultiplier: 1.15
+
+- type: entity
+  parent: [BaseSalvageContraband, ClothingBeltWebbingBase]
+  id: ClothingBeltSalvageMercWebbingGoliath
+  name: Goliath Scrapper Webbing
+  description: Ideal for storing spare ammo, some small items and the totally not contraband grenades.
+  suffix: GSL
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Clothing/OuterClothing/Vests/salvage_goliath.rsi 
+    - type: Clothing
+      sprite: _FarHorizons/Clothing/OuterClothing/Vests/salvage_goliath.rsi 
+    - type: ExplosionResistance
+      damageCoefficient: 0.4
+      worn: false
+    - type: Armor
+      modifiers:
+        coefficients:
+          Blunt: 0.95
+          Slash: 0.90
+          Piercing: 0.95
+          Heat: 0.90
+          Caustic: 0.90
+      priceMultiplier: 1.3
+
 
 #region ## Nanotrasen ##
 - type: entity

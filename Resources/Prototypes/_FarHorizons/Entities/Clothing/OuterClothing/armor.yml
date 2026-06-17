@@ -115,7 +115,127 @@
   - type: ExplosionResistance
     damageCoefficient: 0.80
 
+#region ## GSL ##
+- type: entity
+  parent: [ ClothingOuterArmorBaseFH, BaseSalvageContraband ]
+  id: ClothingOuterArmorSalvageMedium
+  name: Salvage Armor
+  description: Alternative to the classic salvager suit for when oxygen isn't a problem.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/Armor/salvage.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/Armor/salvage.rsi
+    state: heavy
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.8
+        Piercing: 0.7
+  - type: LimbArmor
+    limbs:
+      ArmRight: {}
+      ArmLeft: {}
+      LegRight: {}
+      LegLeft: {}
+  - type: ExplosionResistance
+    damageCoefficient: 0.80
 
+- type: entity
+  parent: ClothingOuterArmorSalvageMedium
+  id: ClothingOuterArmorSalvageMediumGoliath
+  name: Goliath Salvage Armor
+  description: Alternative to the classic salvager suit for when oxygen isn't a problem. Reinforced against heat by the extra goliath flesh.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/Armor/salvage_goliath.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/Armor/salvage_goliath.rsi
+    state: heavy
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.75
+        Piercing: 0.7
+        Heat: 0.75
+        Caustic: 0.75
+        Radiation: 0.75
+  - type: LimbArmor
+    limbs:
+      ArmRight: {}
+      ArmLeft: {}
+      LegRight: {}
+      LegLeft: {}
+  - type: ExplosionResistance
+    damageCoefficient: 0.80
+
+- type: entity
+  parent: [ ClothingOuterArmorBaseFH, BaseSalvageContraband ]
+  id: ClothingOuterArmorSalvageHeavy
+  name: Heavy Salvage Armor
+  description: Alternative to the classic salvager suit for when oxygen isn't a problem with extra platings at the cost of speed.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/Armor/salvageheavy.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/Armor/salvageheavy.rsi
+    state: heavy
+  - type: Armor
+    modifiers:
+      flatReductions:
+        Slash: 2
+        Piercing: 3
+      coefficients:
+        Blunt: 0.75
+        Slash: 0.65
+        Piercing: 0.6
+  - type: LimbArmor
+    limbs:
+      ArmRight: {}
+      ArmLeft: {}
+      LegRight: {}
+      LegLeft: {}
+  - type: ExplosionResistance
+    damageCoefficient: 0.70
+  - type: ClothingSpeedModifier
+    walkModifier: 1
+    sprintModifier: 0.85
+
+- type: entity
+  parent: ClothingOuterArmorSalvageHeavy
+  id: ClothingOuterArmorSalvageHeavyGoliath
+  name: Heavy Goliath Salvage Armor
+  description: Alternative to the classic salvager suit for when oxygen isn't a problem with extra platings at the cost of speed. Reinforced against heat by the extra goliath flesh.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/Armor/salvageheavy_goliath.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/Armor/salvageheavy_goliath.rsi
+    state: heavy
+  - type: Armor
+    modifiers:
+      flatReductions:
+        Slash: 2
+        Piercing: 3
+        Heat: 3
+      coefficients:
+        Blunt: 0.75
+        Slash: 0.65
+        Piercing: 0.6
+        Heat: 0.65
+        Caustic: 0.65
+        Radiation: 0.6
+  - type: LimbArmor
+    limbs:
+      ArmRight: {}
+      ArmLeft: {}
+      LegRight: {}
+      LegLeft: {}
+  - type: ExplosionResistance
+    damageCoefficient: 0.70
+    
 #region ## NeoSol ##
 
 

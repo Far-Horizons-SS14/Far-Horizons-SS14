@@ -123,3 +123,28 @@
   - SalvageConsumeables
   conditions:
   - !type:BuyerAccessCondition
+
+#Armor
+- type: listing
+  id: VendorSalvageClothingOuterArmorSalvageMedium
+  productEntity: ClothingOuterArmorSalvageMedium
+  cost:
+    SalvageTicket: 250
+  categories:
+  - SalvageEquipment
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 5
+  - !type:BuyerAccessCondition
+
+- type: listing
+  id: VendorSalvageClothingOuterArmorSalvageHeavy
+  productEntity: ClothingOuterArmorSalvageHeavy
+  cost:
+    SalvageTicket: 500
+  categories:
+  - SalvageEquipment
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 2
+  - !type:BuyerAccessCondition
