@@ -1,0 +1,10 @@
+- type: trait
+  id: DwarfAccent
+  name: trait-dwarf-name
+  description: trait-dwarf-desc
+  category: SpeechTraits
+  cost: 2
+  effects:
+    - !type:AddCompsEffect
+      components:
+        - type: DwarfAccent

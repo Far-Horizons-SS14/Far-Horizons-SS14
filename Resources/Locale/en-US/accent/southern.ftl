@@ -1,2 +1,2 @@
-accent-southern-words-1 = you all
-accent-southern-words-replace-1 = y'all
+#Hello there. This is your friendly neighborhood Far Horizon Corrupt Omega saying fuck upstream word replacements getting purged.
+#I have moved the entire list to our directory Resources/Locale/en-US/_FarHorizons/accent/
