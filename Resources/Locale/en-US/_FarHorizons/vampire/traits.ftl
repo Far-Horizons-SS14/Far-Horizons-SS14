@@ -24,20 +24,20 @@ lesser-vampire-trait-uv-sensitivity-description = Your blood pool will drain rap
 # Positives
 
 lesser-vampire-trait-extendable-fangs-name = Extendable Fangs
-lesser-vampire-trait-extendable-fangs-description = Gan an ability to hide your fangs at will. Blood pool drains when active.
+lesser-vampire-trait-extendable-fangs-description = Gain an ability to hide your fangs at will. Your blood pool drains while active.
 
 lesser-vampire-trait-charm-name = Charm
-lesser-vampire-trait-charm-description = Make everyone around you feel safe and relaxed. Blood pool drains when active.
+lesser-vampire-trait-charm-description = Make everyone around you feel safe and relaxed. Your blood pool drains while active.
 
 lesser-vampire-trait-absorb-language-name = Absorb Language
 lesser-vampire-trait-absorb-language-description = Once per target, when you bite someone, there's a 50% chance you learn to understand one of the languages they speak.
 
 lesser-vampire-trait-transfusion-name = Transfusion
-lesser-vampire-trait-transfusion-description = Gain an ability to sacrifice portion of your blood pool to restore blood of someone else.
+lesser-vampire-trait-transfusion-description = Gain an ability to sacrifice a portion of your blood pool to restore the blood of someone else.
 lesser-vampire-trait-transfusion-popup = {$vampire} firmly {CONJUGATE-BASIC($vampire, "press", "presses")} {POSS-ADJ($vampire)} bleeding palm against the chest of {$target}
 
 lesser-vampire-trait-conversion-name = Conversion
-lesser-vampire-trait-conversion-description = Allows you to covert a consenting target into vampire once per shift. After accepting, they will fall into a coma and heal all damage, but they will not develop their own vampire traits.
+lesser-vampire-trait-conversion-description = Allows you to convert a consenting target into a vampire once per shift. After accepting, they will fall into a coma and heal most damage, but they will not develop their own vampiric traits.
 lesser-vampire-trait-conversion-popup = {$vampire} {CONJUGATE-BASIC($vampire, "offer", "offers")} {POSS-ADJ($vampire)} own blood to {$target}
 
 lesser-vampire-trait-supernatural-strength-name = Supernatural Strength

@@ -5,4 +5,4 @@ alerts-low-circulation-name = [color=red]Low Circulation[/color]
 alerts-low-circulation-desc = Something about the atmosphere, be it pressure or temperature is making your ventaliation [color=red]less effective[/color]. A [color=green]pressurized suit[/color] would protect you.
 
 alerts-vampirebloodpool-name = [color=red]Blood Pool[/color]
-alerts-vampirebloodpool-desc = Blood you have stored and available to use for abilities
+alerts-vampirebloodpool-desc = Blood you have stored and is available to use for abilities.

@@ -2,7 +2,7 @@
   parent: BaseAction
   id: ActionOpenVampireTraits
   name: Vampire Traits
-  description: Select your strengths and weaknesses
+  description: Select your strengths and weaknesses.
   components:
   - type: Action
     itemIconStyle: BigAction
@@ -17,7 +17,7 @@
   parent: BaseAction
   id: ActionVampireTraitRetractFangs
   name: Retract Fangs
-  description: Retract your fangs, hiding your identity and losing the ability to bite. Drains blood pool when active
+  description: Retract your fangs, hiding your vampiric identity but losing the ability to bite. Drains your blood pool while active.
   components:
   - type: Action
     itemIconStyle: BigAction
@@ -35,7 +35,7 @@
   parent: BaseAction
   id: ActionVampireTraitTransfusion
   name: Transfusion
-  description: Sacrifice porion of your blood pool to restore blood levels of someone else
+  description: Sacrifice a portion of your blood pool to restore the blood levels of someone else.
   components:
   - type: Action
     itemIconStyle: BigAction
@@ -57,7 +57,7 @@
   parent: BaseAction
   id: ActionVampireTraitCharm
   name: Charm
-  description: Make everyone around you feel safe and relaxed
+  description: Make everyone around you feel safe and relaxed! You're clearly not a threat!
   components:
   - type: Action
     itemIconStyle: BigAction
@@ -75,7 +75,7 @@
   parent: BaseAction
   id: ActionVampireTraitConversion
   name: Conversion
-  description: Share your curse with a willing target. Upon accepting, they will
+  description: Share your vampirism with a willing target. Upon accepting, they will fall into a coma and heal most damage, but they will not develop their own vampiric traits.
   components:
   - type: Action
     itemIconStyle: BigAction
@@ -97,7 +97,7 @@
   parent: BaseAction
   id: ActionVampireTraitConversionAccept
   name: "[color=red]Embrace the Blood[/color]"
-  description: Succumb to the curse and become vampire. This will put you into a vulnerable state, but you will regenerate damage in the process.
+  description: Succumb to the curse given to you and become a vampire. This will put you into a coma, but you will regenerate most damage in the process. You will not gain any vampiric traits from converting!
   components:
   - type: Action
     itemIconStyle: BigAction
