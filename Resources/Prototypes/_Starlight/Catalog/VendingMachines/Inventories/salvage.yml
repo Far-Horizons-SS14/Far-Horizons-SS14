@@ -372,11 +372,13 @@
   id: VendorSalvageClothingHandsSalvageMercGlovesCombat
   productEntity: ClothingHandsSalvageMercGlovesCombat
   cost:
-    SalvageTicket: 150
+    SalvageTicket: 250 #FH
   categories:
   - SalvageMercenaryEquipment
   conditions:
   - !type:BuyerAccessCondition
+  - !type:ListingLimitedStockCondition #FH
+      stock: 5 #FH
 
 - type: listing
   id: VendorSalvageClothingEyesGlassesSalvageMercenary

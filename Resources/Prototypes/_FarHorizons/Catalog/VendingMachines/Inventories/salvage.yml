@@ -62,11 +62,35 @@
 
 - type: listing
   id: VendorVehicleSkeletonMotorcycle
-  productEntity: VehicleSkeletonMotorcycleFueledwithKEys
+  productEntity: VehicleSkeletonMotorcycleFueledwithKeys
   cost:
     SalvageTicket: 800
   categories:
   - SalvageEquipment
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 5
+  - !type:BuyerAccessCondition
+
+- type: listing
+  id: VendorClothingHandsGlovesScrapperTierOne
+  productEntity: ClothingHandsGlovesScrapperTierOne
+  cost:
+    SalvageTicket: 100
+  categories:
+  - SalvageMercenaryEquipment
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 5
+  - !type:BuyerAccessCondition
+
+- type: listing
+  id: VendorClothingHandsGlovesScrapperTierTwo
+  productEntity: ClothingHandsGlovesScrapperTierTwo
+  cost:
+    SalvageTicket: 150
+  categories:
+  - SalvageMercenaryEquipment
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 5
@@ -131,7 +155,7 @@
   cost:
     SalvageTicket: 250
   categories:
-  - SalvageEquipment
+  - SalvageMercenaryEquipment
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 5
@@ -143,7 +167,7 @@
   cost:
     SalvageTicket: 500
   categories:
-  - SalvageEquipment
+  - SalvageMercenaryEquipment
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 2
@@ -155,7 +179,7 @@
   cost:
     SalvageTicket: 150
   categories:
-  - SalvageEquipment
+  - SalvageMercenaryEquipment
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 5
@@ -167,31 +191,32 @@
   cost:
     SalvageTicket: 300
   categories:
-  - SalvageEquipment
+  - SalvageMercenaryEquipment
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 2
   - !type:BuyerAccessCondition
 
+# Eyes stuff
 - type: listing
   id: VendorSalvageClothingEyesHudScrapper
   productEntity: ClothingEyesHudScrapper
   cost:
     SalvageTicket: 75
   categories:
-  - SalvageEquipment
+  - SalvageMercenaryEquipment
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 5
   - !type:BuyerAccessCondition
 
 - type: listing
-  id: VendorSalvageClothingEyesHudScrapper
-  productEntity: ClothingEyesHudScrapper
+  id: VendorSalvageClothingEyesGlassesScrapper
+  productEntity: ClothingEyesGlassesScrapper
   cost:
     SalvageTicket: 150
   categories:
-  - SalvageEquipment
+  - SalvageMercenaryEquipment
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 5
@@ -203,7 +228,7 @@
   cost:
     SalvageTicket: 250
   categories:
-  - SalvageEquipment
+  - SalvageMercenaryEquipment
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 2
