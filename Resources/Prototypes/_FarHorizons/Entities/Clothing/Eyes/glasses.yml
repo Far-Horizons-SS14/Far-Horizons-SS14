@@ -48,8 +48,29 @@
 - type: entity
   parent: [ClothingEyesBase, ShowMedicalIcons, BaseSalvageContraband]
   id: ClothingEyesGlassesScrapperMedical
+  name: Scrapper Objective Glasses 
+  description: A pair of glasses that helps tracking down the mission objective for salvage.
+  suffix: GSL
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Eyes/Glasses/salvage.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Eyes/Glasses/salvage.rsi
+  - type: Tag
+    tags:
+    - PetWearable
+    - WhitelistChameleon
+  - type: FlashImmunity
+  - type: EyeProtection
+  - type: IdentityBlocker
+    coverage: EYES
+
+
+- type: entity
+  parent: [ClothingEyesBase, ShowMedicalIcons, BaseSalvageContraband]
+  id: ClothingEyesGlassesScrapperMedical
   name: Scrapper Medical Glasses 
-  description: A heads-up display that scans the humanoids in view and provides accurate data about their health status.
+  description: A modified pair of medical glasses with objective tracking. Trademarked by GSL.
   suffix: GSL
   components:
   - type: Sprite
@@ -61,6 +82,20 @@
     - HudMedical
     - PetWearable
     - WhitelistChameleon
+  - type: FlashImmunity
+  - type: EyeProtection
+  - type: IdentityBlocker
+    coverage: EYES
+  - type: ShowHealthBars
+    damageContainers:
+    - Biological
+    - Silicon
+    - Robotic
+  - type: ShowHealthIcons
+    damageContainers:
+    - Biological
+    - Silicon
+    - Robotic
 
 #region ## NanoTrasen ##
 

@@ -19,14 +19,32 @@
 
 #region ## GSL ##
 - type: entity
+  parent: [ClothingEyesHudBase, BaseSalvageContraband]
+  id: ClothingEyesHudScrapper
+  name: Scrapper Objective HUD 
+  description: A heads-up display that helps tracking down the mission objective for salvage.
+  suffix: GSL
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Eyes/Hud/salvage.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Eyes/Hud/salvage.rsi
+  - type: ShowObjectiveIcons
+  - type: Tag
+    tags:
+    - PetWearable
+    - WhitelistChameleon
+
+- type: entity
   parent: [ClothingEyesHudBase, ShowMedicalIcons, BaseSalvageContraband]
   id: ClothingEyesHudScrapperMedical
   name: Scrapper Medical HUD 
-  description: A heads-up display that scans the humanoids in view and provides accurate data about their health status.
+  description: A modified heads-up medical display with objective tracking. Trademarked by GSL.
   suffix: GSL
   components:
   - type: Sprite
     sprite: _FarHorizons/Clothing/Eyes/Hud/salvagemed.rsi
+  - type: ShowObjectiveIcons
   - type: Clothing
     sprite: _FarHorizons/Clothing/Eyes/Hud/salvagemed.rsi
   - type: Tag
@@ -34,6 +52,16 @@
     - HudMedical
     - PetWearable
     - WhitelistChameleon
+  - type: ShowHealthBars
+    damageContainers:
+    - Biological
+    - Silicon
+    - Robotic
+  - type: ShowHealthIcons
+    damageContainers:
+    - Biological
+    - Silicon
+    - Robotic
 
 #region ## NanoTrasen ##
 - type: entity

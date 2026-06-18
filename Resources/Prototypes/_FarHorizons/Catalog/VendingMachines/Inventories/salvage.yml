@@ -172,3 +172,39 @@
   - !type:ListingLimitedStockCondition
     stock: 2
   - !type:BuyerAccessCondition
+
+- type: listing
+  id: VendorSalvageClothingEyesHudScrapper
+  productEntity: ClothingEyesHudScrapper
+  cost:
+    SalvageTicket: 75
+  categories:
+  - SalvageEquipment
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 5
+  - !type:BuyerAccessCondition
+
+- type: listing
+  id: VendorSalvageClothingEyesHudScrapper
+  productEntity: ClothingEyesHudScrapper
+  cost:
+    SalvageTicket: 150
+  categories:
+  - SalvageEquipment
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 5
+  - !type:BuyerAccessCondition
+
+- type: listing
+  id: VendorSalvageClothingEyesHudScrapperMedical
+  productEntity: ClothingEyesHudScrapperMedical
+  cost:
+    SalvageTicket: 250
+  categories:
+  - SalvageEquipment
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 2
+  - !type:BuyerAccessCondition
