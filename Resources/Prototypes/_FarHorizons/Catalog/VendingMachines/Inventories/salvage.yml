@@ -148,3 +148,27 @@
   - !type:ListingLimitedStockCondition
     stock: 2
   - !type:BuyerAccessCondition
+
+- type: listing
+  id: VendorSalvageClothingHeadHelmetSalvageMedium
+  productEntity: ClothingHeadHelmetSalvageMedium
+  cost:
+    SalvageTicket: 150
+  categories:
+  - SalvageEquipment
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 5
+  - !type:BuyerAccessCondition
+
+- type: listing
+  id: VendorSalvageClothingHeadHelmetSalvageHeavy
+  productEntity: ClothingHeadHelmetSalvageHeavy
+  cost:
+    SalvageTicket: 300
+  categories:
+  - SalvageEquipment
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 2
+  - !type:BuyerAccessCondition
