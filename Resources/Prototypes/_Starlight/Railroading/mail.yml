@@ -3,10 +3,11 @@
   categories: [HideSpawnMenu]
   components:
   - type: Conditions
-    conditions:
-    - !type:SubjectMindAntagCondition
-      blacklist:
-      - Brighteye
+    # FH - removed brighteye
+    # conditions:
+    # - !type:SubjectMindAntagCondition
+    #   blacklist:
+    #   - Brighteye
   - type: RailroadSpawnFlow
     count:
       min: 1

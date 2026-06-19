@@ -188,6 +188,21 @@
   meltingPoint: -16.0
   tileReactions:
   - !type:FlammableTileReaction {}
+  # Far Horizons start
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:Drunk
+        boozePower: 100 # Most of it will be vomited right away, so effect has to be strong immediately
+        conditions:
+          - !type:MetabolizerTypeCondition
+            type: [ LesserVampire ]
+      - !type:Vomit
+        probability: 0.7
+        conditions:
+          - !type:MetabolizerTypeCondition
+            type: [ LesserVampire ]
+    # Far Horizons end
 
 - type: reagent
   id: CapsaicinOil

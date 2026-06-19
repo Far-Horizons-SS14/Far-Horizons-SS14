@@ -125,7 +125,7 @@ public sealed partial class HumanoidCharacterProfile
 
         foreach (var trait in TraitPreferences)
         {
-            var traitProto = protoMan.Index(trait);
+            if (!protoMan.TryIndex(trait, out var traitProto)) continue; // Far Horizons
 
             foreach (var effect in traitProto.Effects)
                 if (effect is CyberneticsPointsEffect cEffect)

@@ -12,11 +12,12 @@
           baseTranslator: TranslatorForeigner
   conflicts:
     - Foreigner
-  requirements:
-    - !type:TraitsRequirement
-      traits:
-        - Iterator
-      inverted: true
+  # FH - disabled backgrounds
+  # requirements:
+  #   - !type:TraitsRequirement
+  #     traits:
+  #       - Iterator
+  #     inverted: true
 
 - type: trait
   id: Foreigner
@@ -31,11 +32,12 @@
           baseTranslator: TranslatorForeigner
   conflicts:
     - ForeignerLight
-  requirements:
-    - !type:TraitsRequirement
-      traits:
-        - Iterator
-      inverted: true
+  # FH - removed backgrounds
+  # requirements:
+  #   - !type:TraitsRequirement
+  #     traits:
+  #       - Iterator
+  #     inverted: true
 
 - type: trait
   id: SignLanguage
@@ -49,11 +51,12 @@
         - Sign
       languagesUnderstood:
         - Sign
-  requirements:
-    - !type:TraitsRequirement
-      traits:
-        - Iterator
-      inverted: true
+  # FH - removed backgrounds
+  # requirements:
+  #   - !type:TraitsRequirement
+  #     traits:
+  #       - Iterator
+  #     inverted: true
 
 # Species Languages // Should cost: 2
 
@@ -75,10 +78,11 @@
       species:
         - Felionoid
       inverted: true
-    - !type:TraitsRequirement
-      traits:
-        - Iterator
-      inverted: true
+    # FH - removed backgrounds
+    # - !type:TraitsRequirement
+    #   traits:
+    #     - Iterator
+    #   inverted: true
 
 - type: trait
   id: Canilunzt
@@ -99,10 +103,11 @@
       species:
         - Vulpkanin
       inverted: true
-    - !type:TraitsRequirement
-      traits:
-        - Iterator
-      inverted: true
+    # FH - removed backgrounds
+    # - !type:TraitsRequirement
+    #   traits:
+    #     - Iterator
+    #   inverted: true
 
 - type: trait
   id: Scratch
@@ -122,10 +127,11 @@
         - Avali
         - Resomi
       inverted: true
-    - !type:TraitsRequirement
-      traits:
-        - Iterator
-      inverted: true
+    # FH - removed backgrounds
+    # - !type:TraitsRequirement
+    #   traits:
+    #     - Iterator
+    #   inverted: true
 
 - type: trait
   id: Aielic
@@ -139,11 +145,12 @@
         - Aielic
       languagesUnderstood:
         - Aielic
-  requirements:
-    - !type:TraitsRequirement
-      traits:
-        - Iterator
-      inverted: true
+  # FH - removed backgrounds
+  # requirements:
+  #   - !type:TraitsRequirement
+  #     traits:
+  #       - Iterator
+  #     inverted: true
 
 - type: trait
   id: Grumbakul
@@ -162,10 +169,11 @@
       species:
         - Dwarf
       inverted: true
-    - !type:TraitsRequirement
-      traits:
-        - Iterator
-      inverted: true
+    # FH - removed backgrounds
+    # - !type:TraitsRequirement
+    #   traits:
+    #     - Iterator
+    #   inverted: true
 
 - type: trait
   id: Darktongue
@@ -210,10 +218,11 @@
       species:
         - Human
       inverted: true
-    - !type:TraitsRequirement
-      traits:
-        - Iterator
-      inverted: true
+    # FH - removed backgrounds
+    # - !type:TraitsRequirement
+    #   traits:
+    #     - Iterator
+    #   inverted: true
 
 - type: trait
   id: VoxPidgin
@@ -232,10 +241,11 @@
       species:
         - Vox
       inverted: true
-    - !type:TraitsRequirement
-      traits:
-        - Iterator
-      inverted: true
+    # FH - removed backgrounds
+    # - !type:TraitsRequirement
+    #   traits:
+    #     - Iterator
+    #   inverted: true
 
 - type: trait
   id: Draconic
@@ -254,10 +264,11 @@
       species:
         - Reptilian
       inverted: true
-    - !type:TraitsRequirement
-      traits:
-        - Iterator
-      inverted: true
+    # FH - removed backgrounds
+    # - !type:TraitsRequirement
+    #   traits:
+    #     - Iterator
+    #   inverted: true
 
 - type: trait
   id: Marish
@@ -276,10 +287,11 @@
       species:
         - Shadekin
       inverted: true
-    - !type:TraitsRequirement
-      traits:
-        - Iterator
-      inverted: true
+    # FH - removed backgrounds
+    # - !type:TraitsRequirement
+    #   traits:
+    #     - Iterator
+    #   inverted: true
 
 - type: trait
   id: Bubblish
@@ -298,10 +310,11 @@
       species:
         - SlimePerson
       inverted: true
-    - !type:TraitsRequirement
-      traits:
-        - Iterator
-      inverted: true
+    # FH - removed backgrounds
+    # - !type:TraitsRequirement
+    #   traits:
+    #     - Iterator
+    #   inverted: true
 
 - type: trait
   id: Terrum
@@ -320,10 +333,11 @@
       species:
         - Cyclorite
       inverted: true
-    - !type:TraitsRequirement
-      traits:
-        - Iterator
-      inverted: true
+    # FH - removed backgrounds
+    # - !type:TraitsRequirement
+    #   traits:
+    #     - Iterator
+    #   inverted: true
 
 - type: trait
   id: Sylvan
@@ -342,10 +356,11 @@
       species:
         - Diona
       inverted: true
-    - !type:TraitsRequirement
-      traits:
-        - Iterator
-      inverted: true
+    # FH - removed backgrounds
+    # - !type:TraitsRequirement
+    #   traits:
+    #     - Iterator
+    #   inverted: true
 
 - type: trait
   id: Moffic
@@ -365,10 +380,11 @@
       species:
         - Moth
       inverted: true
-    - !type:TraitsRequirement
-      traits:
-        - Iterator
-      inverted: true
+    # FH - removed backgrounds
+    # - !type:TraitsRequirement
+    #   traits:
+    #     - Iterator
+    #   inverted: true
 
 - type: trait
   id: Thaveyan
@@ -401,7 +417,8 @@
       species:
         - Thaven
       inverted: true
-    - !type:TraitsRequirement
-      traits:
-        - Iterator
-      inverted: true
+    # FH - removed backgrounds
+    # - !type:TraitsRequirement
+    #   traits:
+    #     - Iterator
+    #   inverted: true

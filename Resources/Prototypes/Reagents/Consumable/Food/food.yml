@@ -8,6 +8,15 @@
   flavor: nutriment
   color: "#24591F"
   metabolisms:
+    # Far Horizons start
+    Digestion:
+      effects:
+      - !type:Vomit
+        probability: 0.7
+        conditions:
+          - !type:MetabolizerTypeCondition
+            type: [ LesserVampire ]
+    # Far Horizons end
     Metabolites:
       effects:
       - !type:SatiateHunger
@@ -56,6 +65,15 @@
   flavor: protein
   color: "#FFFFE5"
   metabolisms:
+    # Far Horizons start
+    Digestion:
+      effects:
+      - !type:Vomit
+        probability: 0.7
+        conditions:
+          - !type:MetabolizerTypeCondition
+            type: [ LesserVampire ]
+    # Far Horizons end
     Metabolites:
       effects:
       - !type:EvenHealthChange

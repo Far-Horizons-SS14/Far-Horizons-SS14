@@ -191,6 +191,43 @@
   flavor: metallic
   color: "#7C0F00"
   metabolisms:
+    Digestion:
+      effects:
+      - !type:FillBloodPool
+        factor: 1.5
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ LesserVampire ]
+      - !type:SatiateThirst
+        factor: 3
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ LesserVampire ]
+      - !type:SatiateHunger
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ LesserVampire ]
+      - !type:EvenHealthChange # Trico effect by drinking blood
+        damage:
+          Brute: -1
+          Burn: -1
+          Toxin: -0.5
+        affectAllLimbs: true
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ LesserVampireHealingBlood ]
+      - !type:HealthChange
+        damage:
+          types:
+            Bloodloss: -3
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ LesserVampireHealingBlood ]
+      - !type:ModifyBloodLevel
+        amount: 1
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ LesserVampireHealingBlood ]
     Bloodstream:
       effects:
         - !type:HealthChange

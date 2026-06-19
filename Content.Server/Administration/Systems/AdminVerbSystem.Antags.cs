@@ -36,7 +36,7 @@ public sealed partial class AdminVerbSystem
     private static readonly EntProtoId DefaultNinjaRule = "NinjaSpawn";
     private static readonly ProtoId<StartingGearPrototype> PirateGearId = "PirateGear";
     private static readonly EntProtoId DefaultVampireRule = "Vampire"; //Starlight
-    private static readonly EntProtoId DefaultBrighteyeRule = "Brighteye"; //Starlight
+    //private static readonly EntProtoId DefaultBrighteyeRule = "Brighteye"; //Starlight - FH removed
 
     // All antag verbs have names so invokeverb works.
     private void AddAntagVerbs(GetVerbsEvent<Verb> args)
@@ -258,22 +258,23 @@ public sealed partial class AdminVerbSystem
         };
         args.Verbs.Add(vampire);
 
-        if (HasComp<ShadekinComponent>(args.Target))
-        {
-            Verb brighteye = new()
-            {
-                Text = Loc.GetString("admin-verb-text-make-brighteye"),
-                Category = VerbCategory.Antag,
-                Icon = new SpriteSpecifier.Rsi(new ResPath("/Textures/_Starlight/Interface/Actions/shadekin.rsi"), "rest"),
-                Act = () =>
-                {
-                    _gameTicker.StartGameRule("TheDarkMap"); // The Dark should always be spawned for any brighteye.
-                    _antag.ForceMakeAntag<BrighteyeRuleComponent>(targetPlayer, DefaultBrighteyeRule);
-                },
-                Impact = LogImpact.High,
-                Message = Loc.GetString("admin-verb-make-brighteye"),
-            };
-            args.Verbs.Add(brighteye);
-        }
+        // FH - removed brighteye
+        // if (HasComp<ShadekinComponent>(args.Target))
+        // {
+        //     Verb brighteye = new()
+        //     {
+        //         Text = Loc.GetString("admin-verb-text-make-brighteye"),
+        //         Category = VerbCategory.Antag,
+        //         Icon = new SpriteSpecifier.Rsi(new ResPath("/Textures/_Starlight/Interface/Actions/shadekin.rsi"), "rest"),
+        //         Act = () =>
+        //         {
+        //             _gameTicker.StartGameRule("TheDarkMap"); // The Dark should always be spawned for any brighteye.
+        //             _antag.ForceMakeAntag<BrighteyeRuleComponent>(targetPlayer, DefaultBrighteyeRule);
+        //         },
+        //         Impact = LogImpact.High,
+        //         Message = Loc.GetString("admin-verb-make-brighteye"),
+        //     };
+        //     args.Verbs.Add(brighteye);
+        // }
     }
 }
