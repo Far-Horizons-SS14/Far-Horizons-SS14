@@ -233,3 +233,15 @@
   - !type:ListingLimitedStockCondition
     stock: 2
   - !type:BuyerAccessCondition
+
+- type: listing
+  id: VendorSalvageClothingEyesGlassesScrapperMedical
+  productEntity: ClothingEyesGlassesScrapperMedical
+  cost:
+    SalvageTicket: 300
+  categories:
+  - SalvageMercenaryEquipment
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 2
+  - !type:BuyerAccessCondition

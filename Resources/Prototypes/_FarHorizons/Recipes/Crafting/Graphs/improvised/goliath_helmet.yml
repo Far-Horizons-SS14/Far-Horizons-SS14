@@ -1,0 +1,25 @@
+- type: constructionGraph
+  id: SalvageHelmetGoliath
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: salvageHelmetGoliath
+      steps:
+      - item: ClothingHeadHelmetSalvageMediumGoliath
+        icon:
+          sprite: _FarHorizons/Clothing/Head/Helmets/salvage.rsi
+          state: icon
+        name: Salvage Armored Helmet
+        doAfter: 10
+      - material: Durathread
+        amount: 5
+        doAfter: 10
+      - material: Plasteel
+        amount: 3
+        doAfter: 15
+      - material: GoliathHide
+        amount: 5
+        doAfter: 15
+  - node: salvageHelmetGoliath
+    entity: ClothingHeadHelmetSalvageMediumGoliath

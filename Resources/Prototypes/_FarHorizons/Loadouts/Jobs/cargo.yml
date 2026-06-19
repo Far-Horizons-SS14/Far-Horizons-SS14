@@ -1,3 +1,26 @@
+- type: loadoutEffectGroup
+  id: SalvageMedic
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:DepartmentTimeRequirement
+      department: Medical
+      time: 18000 # 5 hrs
+
+- type: loadoutEffectGroup
+  id: VeteranSalvageMedic
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:DepartmentTimeRequirement
+      department: Medical
+      time: 18000 # 5 hrs
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobSalvageSpecialist
+      time: 216000 # 60 hrs
+
 - type: loadout
   id: GSLSalvageBelt
   equipment:
@@ -25,6 +48,16 @@
   effects:
   - !type:GroupLoadoutEffect
     proto: SeniorCargo
+
+- type: loadout
+  id: CargoTechnicianFingerlessGlovesCargo
+  equipment:
+    jumpsuit: ClothingHandsGlovesFingerlessCargo
+
+- type: loadout
+  id: CargoTechnicianFingerlessGloves
+  equipment:
+    jumpsuit: ClothingHandsGlovesFingerless
 
 # Mining Specialist
 
@@ -112,6 +145,11 @@
 # Salvage Technician
 
 - type: loadout
+  id: SalvageBeret
+  equipment:
+    head: ClothingHeadHatBeretSalvage
+
+- type: loadout
   id: SalvageHelmet
   equipment:
     head: ClothingHeadHelmetSalvage
@@ -158,6 +196,11 @@
   
   # Salvage Lead
 - type: loadout
+  id: SalvageLeadBeret
+  equipment:
+    head: ClothingHeadHatBeretSalvageLead
+
+- type: loadout
   id: SalvageLeadJumpsuitFormal
   effects:
   - !type:GroupLoadoutEffect
@@ -188,3 +231,36 @@
     proto: VeteranSalvageLead
   equipment:
     jumpsuit: ClothingUniformJumpskirtSalvageLeadSenior
+
+  #Salvage Medic
+- type: loadout
+  id: SalvageMedicJumpsuit
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SalvageMedic
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSalvageMed
+
+- type: loadout
+  id: SalvageMedicJumpskirt
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SalvageMedic
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtSalvageMed
+
+- type: loadout
+  id: SalvageMedicJumpsuitFormal
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: VeteranSalvageMedic
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSalvageMedFormal
+
+- type: loadout
+  id: SalvageMedicJumpskirtFormal
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: VeteranSalvageMedic
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtSalvageMedFormal

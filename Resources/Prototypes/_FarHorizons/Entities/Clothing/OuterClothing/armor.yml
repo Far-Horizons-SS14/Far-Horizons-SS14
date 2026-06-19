@@ -175,6 +175,9 @@
       ArmLeft: {}
       LegRight: {}
       LegLeft: {}
+  - type: Construction
+    graph: SalvageArmorGoliath
+    node: salvageArmorGoliath
 
 - type: entity
   parent: [ ClothingOuterArmorBaseFH, BaseSalvageContraband ]
@@ -207,6 +210,9 @@
   - type: ClothingSpeedModifier
     walkModifier: 1
     sprintModifier: 0.85
+  - type: Construction
+    graph: SalvageHeavvyArmorGoliath
+    node: salvageHeavyArmorGoliath
 
 - type: entity
   parent: ClothingOuterArmorSalvageHeavy

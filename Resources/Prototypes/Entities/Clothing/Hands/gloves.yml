@@ -325,7 +325,12 @@
         Blunt: 1
   - type: LimbArmor
     limbs:
-      Head:
+      HandRight:
+        coefficients:
+          Blunt: 0.8
+          Slash: 0.7
+          Piercing: 0.7
+      HandLeft:
         coefficients:
           Blunt: 0.8
           Slash: 0.7
