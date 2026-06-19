@@ -1,4 +1,6 @@
 using Content.Shared._FarHorizons.Salvage.Components;
+using Content.Shared.IdentityManagement;
+using Content.Shared.IdentityManagement.Components;
 using Content.Shared.Overlays;
 using Content.Shared.StatusIcon.Components;
 using Robust.Shared.Prototypes;
@@ -20,6 +22,14 @@ public sealed class ShowOjectiveIconsSystem : EquipmentHudSystem<ShowObjectiveIc
     {
         if (!IsActive)
             return;
+
+        if(HasComp<IdentityComponent>(uid))
+        {
+            var seeIdentityEvent = new SeeIdentityAttemptEvent();
+            RaiseLocalEvent(uid, seeIdentityEvent);
+            if(seeIdentityEvent.Cancelled)
+                return;
+        }
 
         if (_prototype.Resolve(component.TargetStatusIcon, out var iconPrototype))
             ev.StatusIcons.Add(iconPrototype);
