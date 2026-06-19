@@ -10,5 +10,5 @@ public sealed partial class SalvageMissionObjectiveTargetComponent : Component
     public ProtoId<SalvageMissionObjectivePrototype>? OwnedBy = null;
     
     [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public ProtoId<SecurityIconPrototype> TargetStatusIcon = "SecurityIconAoS";
+    public ProtoId<SecurityIconPrototype> TargetStatusIcon = "SalvageTargetIcon";
 }
