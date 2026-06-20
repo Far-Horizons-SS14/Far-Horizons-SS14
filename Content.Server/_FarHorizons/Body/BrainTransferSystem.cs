@@ -11,6 +11,7 @@ using Content.Shared.GameTicking;
 using Content.Shared.Humanoid;
 using Content.Shared.NPC;
 using Content.Shared.NPC.Components;
+using Content.Shared.Species.Components;
 using Content.Shared.Traits.Assorted;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.Markdown.Mapping;
@@ -63,7 +64,13 @@ public sealed partial class BrainTransferSystem : EntitySystem
             if (!EntityManager.TryGetComponent(args.Body, component, out var comp))
                 continue;
 
-            ent.Comp.StoredComponents.Add(component.Name, new EntityPrototype.ComponentRegistryEntry(comp, new MappingDataNode()));
+            if (HasComp<NymphComponent>(args.Body) && ent.Comp.StoredComponents.ContainsKey(component.Name))
+            {
+                RemComp(args.Body, comp);
+                continue;
+            }
+
+            ent.Comp.StoredComponents[component.Name] = new EntityPrototype.ComponentRegistryEntry(comp, new MappingDataNode());
             RemComp(args.Body, comp);
         }
     }
