@@ -4,12 +4,14 @@ using Content.Server.Chat; //Starlight
 using Content.Server.Ghost.Roles.Events;
 using Content.Server.Hands.Systems; //Starlight
 using Content.Server.Popups;
+using Content.Shared._FarHorizons.LimbDamage;
 using Content.Shared._FarHorizons.Vampire.Traits.Positive;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Actions;
 using Content.Shared.Bible;
 using Content.Shared.Clumsy; //Starlight
-using Content.Shared.Cluwne; //Starlight
+using Content.Shared.Cluwne;
+using Content.Shared.CombatMode.Pacification; //Starlight
 using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Ghost.Roles.Components;
@@ -50,6 +52,7 @@ namespace Content.Server.Bible
         [Dependency] private readonly SharedStunSystem _stun = default!;
         [Dependency] private readonly HandsSystem _hands = default!; //Starlight
         [Dependency] private readonly TagSystem _tags = default!; //Starlight
+        [Dependency] private readonly LimbDamageSystem _limbDamage = default!; // Far Horizons
 
         public override void Initialize()
         {
@@ -73,6 +76,7 @@ namespace Content.Server.Bible
                 {
                     _stun.TryUpdateParalyzeDuration(args.Container.Owner, TimeSpan.FromSeconds(10));
                     _damageableSystem.TryChangeDamage(args.Container.Owner, component.DamageOnUnholyUse);
+                    _limbDamage.ChangeDamageAll(args.Container.Owner, component.DamageOnUnholyUse); // Far Horizons
                     _audio.PlayPvs(component.SizzleSoundPath, args.Container.Owner);
                 });
             }
@@ -142,6 +146,7 @@ namespace Content.Server.Bible
 
                 _audio.PlayPvs(component.SizzleSoundPath, args.User);
                 _damageableSystem.TryChangeDamage(args.User, component.DamageOnUntrainedUse, true, origin: uid);
+                _limbDamage.ChangeDamageAll(args.User, component.DamageOnUntrainedUse, true, origin: uid); // Far Horizons
                 _delay.TryResetDelay((uid, useDelay));
 
                 return;
@@ -151,15 +156,18 @@ namespace Content.Server.Bible
             string selfMessage;
 
             //Damage unholy creatures
-            if (HasComp<UnholyComponent>(args.Target))
+            if (HasComp<UnholyComponent>(args.Target) && !HasComp<PacifiedComponent>(args.User)) // Far Horizons
             {
                 _damageableSystem.TryChangeDamage(args.Target.Value, component.DamageUnholy, true, origin: uid);
+                _limbDamage.ChangeDamageAll(args.Target.Value, component.DamageUnholy, true, origin: uid); // Far Horizons
 
                  othersMessage = Loc.GetString(component.LocPrefix + "-damage-unholy-others", ("user", Identity.Entity(args.User, EntityManager)), ("target", Identity.Entity(args.Target.Value, EntityManager)), ("bible", uid));
                 _popupSystem.PopupEntity(othersMessage, args.User, Filter.PvsExcept(args.User), true, PopupType.MediumCaution);
 
                 selfMessage = Loc.GetString(component.LocPrefix + "-damage-unholy-self", ("target", Identity.Entity(args.Target.Value, EntityManager)), ("bible", uid));
                 _popupSystem.PopupEntity(selfMessage, args.User, args.User, PopupType.LargeCaution);
+
+                _audio.PlayPvs(component.SizzleSoundPath, args.Target.Value); // Far Horizons - idk why it wasn't here before
 
                 _delay.TryResetDelay((uid, useDelay));
 
@@ -171,7 +179,7 @@ namespace Content.Server.Bible
             
 
             // This only has a chance to fail if the target is not wearing anything on their head and is not a familiar.
-            if (!_invSystem.TryGetSlotEntity(args.Target.Value, "head", out _) && !HasComp<FamiliarComponent>(args.Target.Value))
+            if (!_invSystem.TryGetSlotEntity(args.Target.Value, "head", out _) && !HasComp<FamiliarComponent>(args.Target.Value) && !HasComp<PacifiedComponent>(args.User)) // Far Horizons added pacification check
             {
                 if (_random.Prob(component.FailChance))
                 {
@@ -183,6 +191,7 @@ namespace Content.Server.Bible
 
                     _audio.PlayPvs(component.BibleHitSound, args.User);
                     _damageableSystem.TryChangeDamage(args.Target.Value, component.DamageOnFail, true, origin: uid);
+                    _limbDamage.ChangeDamageAll(args.Target.Value, component.DamageOnFail, true, origin: uid); // Far Horizons
                     _delay.TryResetDelay((uid, useDelay));
                     return;
                 }
@@ -241,6 +250,8 @@ namespace Content.Server.Bible
 
             if (_damageableSystem.TryChangeDamage(args.Target.Value, component.Damage, true, origin: uid))
             {
+                _limbDamage.ChangeDamageAll(args.Target.Value, component.Damage, true, origin: uid); // Far Horizons
+
                 othersMessage = Loc.GetString(component.LocPrefix + "-heal-success-others", ("user", userEnt), ("target", targetEnt), ("bible", uid));
                 selfMessage = Loc.GetString(component.LocPrefix + "-heal-success-self", ("target", targetEnt), ("bible", uid));
 

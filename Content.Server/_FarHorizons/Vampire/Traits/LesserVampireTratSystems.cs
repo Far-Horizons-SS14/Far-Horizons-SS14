@@ -1,5 +1,6 @@
 using System.Linq;
 using Content.Server.Atmos.Components;
+using Content.Server.Shuttles.Components;
 using Content.Server.Station.Components;
 using Content.Shared._FarHorizons.LimbDamage;
 using Content.Shared._FarHorizons.Vampire;
@@ -36,7 +37,8 @@ public sealed class
         var uvProtected = _transform.GetGrid(transform.Coordinates) is { } grid &&
                           (HasComp<BecomesStationComponent>(grid) ||
                            HasComp<StationMemberComponent>(grid) ||
-                           HasComp<MapAtmosphereComponent>(grid));
+                           HasComp<MapAtmosphereComponent>(grid) ||
+                           HasComp<EmergencyShuttleComponent>(grid));
 
         var valBefore = ent.Comp2.CurrentlyDrained;
         ent.Comp2.CurrentlyDrained = !uvProtected;

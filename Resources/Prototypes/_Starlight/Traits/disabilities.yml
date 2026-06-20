@@ -121,6 +121,11 @@
   - !type:AddStatusEffect
     statusEffects:
     - StatusEffectHemophiliaTrait
+  requirements: # FH - no IPCs though
+    - !type:SpeciesRequirement
+      species:
+        - IPC
+      inverted: true
 
 - type: trait
   id: ImpairedMobility
