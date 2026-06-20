@@ -1,0 +1,2 @@
+bible-damage-unholy-others = {$user} {CONJUGATE-BASIC($vampire, "touch", "touches")} {$target} with {THE($bible)} and {POSS-ADJ($target)} skin begins to boil!
+bible-damage-unholy-self = You touch {$target} with {THE($bible)} and {POSS-ADJ($target)} skin begins to boil!
