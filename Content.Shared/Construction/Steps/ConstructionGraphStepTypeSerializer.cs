@@ -31,6 +31,13 @@ namespace Content.Shared.Construction.Steps
                 return typeof(TagConstructionGraphStep);
             }
 
+            //FarHorizons Start
+            if (node.Has("item"))
+            {
+                return typeof(ItemConstructionGraphStep);
+            }
+            //FarHorizons End
+
             if (node.Has("allTags") || node.Has("anyTags"))
             {
                 return typeof(MultipleTagsConstructionGraphStep);

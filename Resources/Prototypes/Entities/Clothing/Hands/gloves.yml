@@ -306,9 +306,9 @@
       - type: CriminalRecordsHacker
 
 - type: entity
-  parent: [ ClothingHandsGlovesColorBlack, BaseSecurityEngineeringContraband ]
+  parent: [ ClothingHandsGlovesColorBlack, BaseSecurityContraband ] #FH Why do engis need combat gloves?
   id: ClothingHandsGlovesCombat
-  name: combat gloves
+  name: Combat Gloves #FH
   description: These tactical gloves are fireproof and shock resistant.
   components:
   - type: Sprite
@@ -318,6 +318,36 @@
   - type: Insulated
   - type: Fiber
     fiberMaterial: fibers-insulative
+  #FarHorizons Start
+  - type: Armor
+    modifiers: 
+      coefficients:
+        Blunt: 1
+  - type: LimbArmor
+    limbs:
+      HandRight:
+        coefficients:
+          Blunt: 0.8
+          Slash: 0.7
+          Piercing: 0.7
+      HandLeft:
+        coefficients:
+          Blunt: 0.8
+          Slash: 0.7
+          Piercing: 0.7
+  - type: MeleeWeapon
+    autoAttack: true
+    attackRate: 1.0
+    damage:
+      types:
+        Blunt: 12
+    soundHit:
+      collection: MetalThud
+      params:
+        volume: 5
+        pitch: 0.3
+        variation: 0.025
+  #FarHorizons End
 
 # can't parent combat gloves since they are butcherable
 - type: entity

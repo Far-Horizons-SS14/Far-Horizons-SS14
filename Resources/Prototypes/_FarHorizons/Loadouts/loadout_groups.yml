@@ -22,6 +22,15 @@
   - EmergencyNitrogenExtendedCommandN2
   - EmergencyNonBreatherExtendedCommandNone
 
+# Cargo Tech
+- type: loadoutGroup
+  id: CargoTechHandsGloves
+  name: loadout-group-cargo-technician-hands
+  minLimit: 0
+  loadouts:
+  - CargoTechnicianFingerlessGloves
+  - CargoTechnicianFingerlessGlovesCargo
+
 # Mining Specialist
 
 - type: loadoutGroup
@@ -39,6 +48,9 @@
   - MiningBackpack
   - MiningDuffel
   - MiningSatchel
+  - MiningBackpackSenior
+  - MiningDuffelSenior
+  - MiningSatchelSenior
 
 - type: loadoutGroup
   id: MiningSpecialistBelt
@@ -56,6 +68,19 @@
   loadouts:
   - SalvageHelmet
   - CargoTechnicianHead
+  - SalvageBeret
+
+#Salvage Lead
+- type: loadoutGroup
+  id: SalvageLeadHead
+  name: loadout-group-salvage-head
+  minLimit: 0
+  loadouts:
+  - SalvageHelmet
+  - CargoTechnicianHead
+  - SalvageBeret
+  - SalvageLeadBeret
+
 
 #region CFA/Law
 

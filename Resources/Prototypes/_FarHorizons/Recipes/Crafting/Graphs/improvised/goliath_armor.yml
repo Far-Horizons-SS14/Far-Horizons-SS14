@@ -1,0 +1,25 @@
+- type: constructionGraph
+  id: SalvageArmorGoliath
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: salvageArmorGoliath
+      steps:
+      - item: ClothingOuterArmorSalvageMedium
+        icon:
+          sprite: _FarHorizons/Clothing/OuterClothing/Armor/salvage.rsi
+          state: icon
+        name: crafting-menu-name-salvage-armor
+        doAfter: 10
+      - material: Durathread
+        amount: 10
+        doAfter: 10
+      - material: Plasteel
+        amount: 5
+        doAfter: 10
+      - material: GoliathHide
+        amount: 10
+        doAfter: 10
+  - node: salvageArmorGoliath
+    entity: ClothingOuterArmorSalvageMediumGoliath

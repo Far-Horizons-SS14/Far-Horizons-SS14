@@ -1,3 +1,26 @@
+- type: loadoutEffectGroup
+  id: SalvageMedic
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:DepartmentTimeRequirement
+      department: Medical
+      time: 18000 # 5 hrs
+
+- type: loadoutEffectGroup
+  id: VeteranSalvageMedic
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:DepartmentTimeRequirement
+      department: Medical
+      time: 18000 # 5 hrs
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobSalvageSpecialist
+      time: 216000 # 60 hrs
+
 - type: loadout
   id: GSLSalvageBelt
   equipment:
@@ -10,12 +33,70 @@
   equipment:
     shoes: ClothingShoesBootsCargo
 
+- type: loadout
+  id: CargoTechnicianJumpsuitSenior
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitCargoSenior
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SeniorCargo
+
+- type: loadout
+  id: CargoTechnicianJumpskirtSenior
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtCargoSenior
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SeniorCargo
+
+- type: loadout
+  id: CargoTechnicianFingerlessGlovesCargo
+  equipment:
+    jumpsuit: ClothingHandsGlovesFingerlessCargo
+
+- type: loadout
+  id: CargoTechnicianFingerlessGloves
+  equipment:
+    jumpsuit: ClothingHandsGlovesFingerless
+
 # Mining Specialist
 
 - type: loadout
   id: MiningHardhat
   equipment:
     head: ClothingHeadHatHardhatMiner
+
+- type: loadout
+  id: MiningSpecialistJumpsuitFormal
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: VeteranMiningSpecialist
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitMiningSpecialistFormal
+
+- type: loadout
+  id: MiningSpecialistJumpskirtFormal
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: VeteranMiningSpecialist
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtMiningSpecialistFormal
+
+- type: loadout
+  id: MiningSpecialistJumpsuitSenior
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: VeteranMiningSpecialist
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitMiningSpecialistSenior
+
+- type: loadout
+  id: MiningSpecialistJumpskirtSenior
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: VeteranMiningSpecialist
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtMiningSpecialistSenior
 
 - type: loadout
   id: MiningBackpack
@@ -33,6 +114,30 @@
     back: ClothingBackpackSatchelMining
     
 - type: loadout
+  id: MiningBackpackSenior
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: VeteranMiningSpecialist
+  equipment:
+    back: ClothingBackpackMiningSenior
+
+- type: loadout
+  id: MiningDuffelSenior
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: VeteranMiningSpecialist
+  equipment:
+    back: ClothingBackpackDuffelMiningSenior
+
+- type: loadout
+  id: MiningSatchelSenior
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: VeteranMiningSpecialist
+  equipment:
+    back: ClothingBackpackSatchelMiningSenior
+
+- type: loadout
   id: MiningOreBag
   equipment:
     rig: OreBag
@@ -40,6 +145,122 @@
 # Salvage Technician
 
 - type: loadout
+  id: SalvageBeret
+  equipment:
+    head: ClothingHeadHatBeretSalvage
+
+- type: loadout
   id: SalvageHelmet
   equipment:
     head: ClothingHeadHelmetSalvage
+
+- type: loadout
+  id: SalvageSpecialistJumpsuitSenior
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: VeteranSalvageSpecialist
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSalvageSenior
+
+- type: loadout
+  id: SalvageSpecialistJumpskirtSenior
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: VeteranSalvageSpecialist
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtSalvageSenior
+
+- type: loadout
+  id: SalvageSpecialistBackpackSenior
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: VeteranSalvageSpecialist
+  equipment:
+    back: ClothingBackpackSalvageSenior
+
+- type: loadout
+  id: SalvageSpecialistSatchelSenior
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: VeteranSalvageSpecialist
+  equipment:
+    back: ClothingBackpackSatchelSalvageSenior
+
+- type: loadout
+  id: SalvageSpecialistDuffelSenior
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: VeteranSalvageSpecialist
+  equipment:
+    back: ClothingBackpackDuffelSalvageSenior
+  
+  # Salvage Lead
+- type: loadout
+  id: SalvageLeadBeret
+  equipment:
+    head: ClothingHeadHatBeretSalvageLead
+
+- type: loadout
+  id: SalvageLeadJumpsuitFormal
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: VeteranSalvageLead
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSalvageLeadFormal
+    
+- type: loadout
+  id: SalvageLeadJumpskirtFormal
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: VeteranSalvageLead
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtSalvageLeadFormal
+
+- type: loadout
+  id: SalvageLeadJumpsuitSenior
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: VeteranSalvageLead
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSalvageLeadSenior
+    
+- type: loadout
+  id: SalvageLeadJumpskirtSenior
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: VeteranSalvageLead
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtSalvageLeadSenior
+
+  #Salvage Medic
+- type: loadout
+  id: SalvageMedicJumpsuit
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SalvageMedic
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSalvageMed
+
+- type: loadout
+  id: SalvageMedicJumpskirt
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SalvageMedic
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtSalvageMed
+
+- type: loadout
+  id: SalvageMedicJumpsuitFormal
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: VeteranSalvageMedic
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSalvageMedFormal
+
+- type: loadout
+  id: SalvageMedicJumpskirtFormal
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: VeteranSalvageMedic
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtSalvageMedFormal

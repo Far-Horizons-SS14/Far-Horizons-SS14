@@ -1,5 +1,5 @@
 
-#region Law ####
+#region ## CFA ##
 
 - type: entity
   parent: ClothingEyesBase
@@ -43,7 +43,63 @@
     coverage: EYES
   - type: ShowJobIcons
 
-#region NanoTrasen ##
+#region ## GSL ##
+
+- type: entity
+  parent: [ClothingEyesBase, BaseSalvageContraband]
+  id: ClothingEyesGlassesScrapper
+  name: Scrapper Objective Glasses 
+  description: A pair of glasses that helps tracking down the mission objective for salvage.
+  suffix: GSL
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Eyes/Glasses/salvage.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Eyes/Glasses/salvage.rsi
+  - type: Tag
+    tags:
+    - PetWearable
+    - WhitelistChameleon
+  - type: FlashImmunity
+  - type: EyeProtection
+  - type: ShowObjectiveIcons
+  - type: IdentityBlocker
+    coverage: EYES
+
+
+- type: entity
+  parent: [ClothingEyesBase, ShowMedicalIcons, BaseSalvageContraband]
+  id: ClothingEyesGlassesScrapperMedical
+  name: Scrapper Medical Glasses 
+  description: A modified pair of medical glasses with objective tracking. Trademarked by GSL.
+  suffix: GSL
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Eyes/Glasses/salvagemed.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Eyes/Glasses/salvagemed.rsi
+  - type: Tag
+    tags:
+    - HudMedical
+    - PetWearable
+    - WhitelistChameleon
+  - type: FlashImmunity
+  - type: EyeProtection
+  - type: IdentityBlocker
+    coverage: EYES
+  - type: ShowHealthBars
+    damageContainers:
+    - Biological
+    - Silicon
+    - Robotic
+  - type: ShowObjectiveIcons
+  - type: ShowHealthIcons
+    damageContainers:
+    - Biological
+    - Silicon
+    - Robotic
+
+#region ## NanoTrasen ##
 
 
 - type: entity
@@ -71,7 +127,7 @@
   - type: IdentityBlocker
     coverage: EYES
 
-#region Syndicate ####
+#region ## NeoSol ##
 
 
 

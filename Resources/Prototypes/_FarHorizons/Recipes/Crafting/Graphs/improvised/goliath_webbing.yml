@@ -1,0 +1,22 @@
+- type: constructionGraph
+  id: WebbingGoliath
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: webbingGoliath
+      steps:
+      - item: ClothingBeltSalvageMercWebbing
+        icon:
+          sprite: _FarHorizons/Clothing/OuterClothing/Vests/salvage.rsi
+          state: icon
+        name: crafting-menu-name-scrapper-webbing
+        doAfter: 10
+      - material: Durathread
+        amount: 5
+        doAfter: 10
+      - material: GoliathHide
+        amount: 3
+        doAfter: 10
+  - node: webbingGoliath
+    entity: ClothingBeltSalvageMercWebbingGoliath

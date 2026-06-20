@@ -12,6 +12,136 @@
   - type: HideLayerClothing
     layers:
       Hair: HEAD
+
+- type: entity
+  parent: [ ClothingHeadHelmetBase, BaseSalvageContraband ]
+  id: ClothingHeadHelmetSalvageMedium
+  name: Salvage Armored Helmet
+  description: A generic helmet given to all of GSL's salvage teams but this time armored.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Head/Helmets/salvage.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Head/Helmets/salvage.rsi
+  - type: HideLayerClothing
+    layers:
+      HeadTop : HEAD
+      HeadSide : HEAD
+    slots:
+    - Snout
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 1
+        Slash: 1
+        Piercing: 1
+        Heat: 1
+  - type: LimbArmor
+    limbs:
+      Head:
+        flatReductions:
+          Slash: 2
+          Piercing: 3
+        coefficients:
+          Blunt: 0.85
+          Slash: 0.8
+          Piercing: 0.7
+  - type: ExplosionResistance
+    damageCoefficient: 0.80
+    
+- type: entity
+  parent: ClothingHeadHelmetSalvageMedium
+  id: ClothingHeadHelmetSalvageMediumGoliath
+  name: Goliath Salvage Armored Helmet
+  description: A generic helmet given to all of GSL's salvage teams but this time armored and some extra Goliath flesh.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Head/Helmets/salvage_goliath.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Head/Helmets/salvage_goliath.rsi
+  - type: LimbArmor
+    limbs:
+      Head:
+        flatReductions:
+          Slash: 2
+          Piercing: 3
+          Heat: 3
+        coefficients:
+          Blunt: 0.85
+          Slash: 0.7
+          Piercing: 0.7
+          Heat: 0.7
+          Radiation: 0.7
+          Caustic: 0.7
+  - type: Construction
+    graph: SalvageHelmetGoliath
+    node: salvageHelmetGoliath
+
+- type: entity
+  parent: ClothingHeadHelmetSalvageMedium
+  id: ClothingHeadHelmetSalvageHeavy
+  name: Heavy Salvage Armored Helmet
+  description: A generic helmet given to all of GSL's salvage teams but this time extra armored.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Head/Helmets/salvageheavy.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Head/Helmets/salvageheavy.rsi
+  - type: HideLayerClothing
+    layers:
+      HeadTop : HEAD
+      HeadSide : HEAD
+    slots:
+    - Snout
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 1
+        Slash: 1
+        Piercing: 1
+        Heat: 1
+  - type: LimbArmor
+    limbs:
+      Head:
+        flatReductions:
+          Slash: 3
+          Piercing: 4
+        coefficients:
+          Blunt: 0.75
+          Slash: 0.65
+          Piercing: 0.6    
+  - type: BreathMask
+  - type: IngestionBlocker
+  - type: IdentityBlocker
+
+- type: entity
+  parent: ClothingHeadHelmetSalvageMedium
+  id: ClothingHeadHelmetSalvageHeavyGoliath
+  name: Goliath Heavy Salvage Armored Helmet
+  description: A generic helmet given to all of GSL's salvage teams but this time extra armored and some Goliath flesh.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Head/Helmets/salvageheavy_goliath.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Head/Helmets/salvageheavy_goliath.rsi
+  - type: LimbArmor
+    limbs:
+      Head:
+        flatReductions:
+          Slash: 4
+          Piercing: 4
+          Heat: 4
+        coefficients:
+          Blunt: 0.75
+          Slash: 0.6
+          Piercing: 0.6
+          Heat: 0.6
+          Caustic: 0.65
+          Radiation: 0.65
+  - type: Construction
+    graph: SalvageHeavyHelmetGoliath
+    node: salvageHeavyHelmetGoliath
+
 #region ## NanoTrasen ##
 
 

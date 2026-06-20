@@ -7,7 +7,25 @@
   components:
   - type: Sprite
     sprite: _FarHorizons/Clothing/Back/Satchels/mining.rsi
-    
+
+- type: entity
+  parent: [ ClothingBackpackSatchel, BaseCargoContraband ] 
+  id: ClothingBackpackSatchelMiningSenior
+  name: Senior Mining Satchel
+  description: It's a well worn satchel covered in asteroid dust and scuff marks from rocks hitting it.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Back/Satchels/miningsenior.rsi
+
+- type: entity
+  parent: [ ClothingBackpackSatchel, BaseCargoContraband ] 
+  id: ClothingBackpackSatchelSalvageSenior
+  name: Senior Salvage Satchel 
+  description: A robust satchel for stashing your loot.
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Clothing/Back/Satchels/salvagesenior.rsi
+
 #region ## NanoTrasen ##
 
 
