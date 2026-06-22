@@ -47,6 +47,11 @@
   parent: UnsensoredClothingUniformBase
   id: ClothingUniformBase
   #Far Horizons-Start
+  components:
+  - type: HideLayerClothing
+    slots:
+    - BodyCover
+    - BodyCoverCover
   # components:
   #- type: SuitSensor
   #- type: DeviceNetwork
