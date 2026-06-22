@@ -6,20 +6,20 @@
     edges:
     - to: salvageHelmetGoliath
       steps:
-      - item: ClothingHeadHelmetSalvageMediumGoliath
+      - item: ClothingHeadHelmetSalvageMedium
         icon:
           sprite: _FarHorizons/Clothing/Head/Helmets/salvage.rsi
           state: icon
         name: crafting-menu-name-salvage-helmet
-        doAfter: 10
+        doAfter: 5
       - material: Durathread
         amount: 5
-        doAfter: 10
+        doAfter: 5
       - material: Plasteel
         amount: 3
-        doAfter: 15
+        doAfter: 5
       - material: GoliathHide
         amount: 5
-        doAfter: 15
+        doAfter: 5
   - node: salvageHelmetGoliath
     entity: ClothingHeadHelmetSalvageMediumGoliath
