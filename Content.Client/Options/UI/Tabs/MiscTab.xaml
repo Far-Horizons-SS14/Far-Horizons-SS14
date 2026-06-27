@@ -28,6 +28,12 @@
                 <CheckBox Name="OpaqueStorageWindowCheckBox" Text="{Loc 'ui-options-opaque-storage-window'}" />
                 <CheckBox Name="StaticStorageUI" Text="{Loc 'ui-options-static-storage-ui'}" />
                 <!-- <CheckBox Name="ToggleWalk" Text="{Loc 'ui-options-hotkey-toggle-walk'}" /> -->
+                <!-- Far Horizons start -->
+                <Label Text="{Loc 'ui-options-general-limb-targetting'}"
+                       StyleClasses="LabelKeyText"/>
+                <ui:OptionDropDown Name="DropDownTargetterSpecies" Title="{Loc 'ui-options-limb-targetting-species'}" />
+                <CheckBox Name="MatchTargetterToSpeciesCheckBox" Text="{Loc 'ui-options-limb-targetting-match-species'}" />
+                <!-- Far Horizons end -->
             </BoxContainer>
         </ScrollContainer>
         <ui:OptionsTabControlRow Name="Control" Access="Public" />

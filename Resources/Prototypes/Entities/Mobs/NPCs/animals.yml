@@ -100,7 +100,6 @@
   components:
   - type: CombatMode
   - type: LimbTargetting # Far Horizons
-    proto: LimbTargetHuman
   - type: MovementSpeedModifier
     baseWalkSpeed : 3
     baseSprintSpeed : 7
@@ -190,7 +189,6 @@
   components:
   - type: CombatMode
   - type: LimbTargetting # Far Horizons
-    proto: LimbTargetHuman
   - type: MeleeWeapon
     angle: 0
     animation: WeaponArcBite
@@ -501,7 +499,6 @@
     capacity: 500
   - type: CombatMode
   - type: LimbTargetting # Far Horizons
-    proto: LimbTargetHuman
   - type: HTN
     rootTask:
       task: GlockroachCompound
@@ -615,7 +612,6 @@
         Asphyxiation: -0.5
   - type: CombatMode
   - type: LimbTargetting # Far Horizons
-    proto: LimbTargetHuman
   - type: Butcherable
     spawned:
     - id: FoodMeatSlime
@@ -1334,7 +1330,6 @@
   - type: CombatMode
     canDisarm: true
   - type: LimbTargetting # Far Horizons
-    proto: LimbTargetHuman
   - type: Inventory
     templateId: monkey
     speciesId: monkey
@@ -1951,7 +1946,6 @@
   # TODO: Remove CombatMode when Prototype Composition is added
   - type: CombatMode
   - type: LimbTargetting # Far Horizons
-    proto: LimbTargetHuman
   - type: MeleeWeapon
     soundHit:
       path: /Audio/Effects/bite.ogg
@@ -2619,7 +2613,6 @@
       amount: 2
   - type: CombatMode
   - type: LimbTargetting # Far Horizons
-    proto: LimbTargetHuman
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -3723,7 +3716,6 @@
         Blunt: 0.1
   - type: CombatMode
   - type: LimbTargetting # Far Horizons
-    proto: LimbTargetHuman
   - type: MeleeWeapon
     soundHit:
         path: /Audio/Effects/bite.ogg

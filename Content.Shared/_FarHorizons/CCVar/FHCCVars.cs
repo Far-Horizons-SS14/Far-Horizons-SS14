@@ -1,4 +1,6 @@
-﻿using Robust.Shared.Configuration;
+﻿using Content.Shared._FarHorizons.LimbDamage.Components;
+using Robust.Shared.Configuration;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared._FarHorizons.CCVar;
 
@@ -20,4 +22,13 @@ public sealed partial class FHCCVars
     /// </summary>
     public static readonly CVarDef<int>
         VoteTimerFaction = CVarDef.Create("vote.timerfaction", 90, CVar.SERVERONLY);
+
+    public static readonly CVarDef<ProtoId<LimbTargettingPrototype>> LimbTargettingStyle =
+        CVarDef.Create("ui.limb_targetting_style", (ProtoId<LimbTargettingPrototype>)"LimbTargetHuman",
+            CVar.CLIENTONLY);
+
+    public static readonly CVarDef<bool> LimbTargettingMatchSpecies =
+        CVarDef.Create("ui.limb_targetting_match_species", false, CVar.CLIENTONLY);
+
+
 }

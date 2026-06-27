@@ -1,5 +1,7 @@
 ﻿using System.Linq;
 using Content.Client.UserInterface.Screens;
+using Content.Shared._FarHorizons.CCVar;
+using Content.Shared._FarHorizons.LimbDamage.Components;
 using Content.Shared.CCVar;
 using Content.Shared.HUD;
 using Content.Shared.Starlight.CCVar;
@@ -37,6 +39,13 @@ public sealed partial class MiscTab : Control
             layoutEntries.Add(new OptionDropDownCVar<string>.ValueOption(layout.ToString()!, Loc.GetString($"ui-options-hud-layout-{layout.ToString()!.ToLower()}")));
         }
 
+        // Far Horizons start
+        var limbTargetters = _prototypeManager.EnumeratePrototypes<LimbTargettingPrototype>()
+            .Where(p => !p.HideInSettings).Select(p =>
+                new OptionDropDownCVar<ProtoId<LimbTargettingPrototype>>.ValueOption(p.ID, Loc.GetString(p.Name)))
+            .ToList();
+        // Far Horizons end
+
         // Channel can be null in replays so.
         // ReSharper disable once ConditionalAccessQualifierIsNonNullableAccordingToAPIContract
         ShowOocPatronColor.Visible = _playerManager.LocalSession?.Channel?.UserData.PatronTier is { };
@@ -56,6 +65,10 @@ public sealed partial class MiscTab : Control
         //starlight
         Control.AddOptionSlider(StarlightCCVars.ChatSeparatedMinWidth, SeparatedChatWidthSlider, 300, 580);
         //starlight end
+        // Far Horizons start
+        Control.AddOptionDropDown(FHCCVars.LimbTargettingStyle, DropDownTargetterSpecies, limbTargetters);
+        Control.AddOptionCheckBox(FHCCVars.LimbTargettingMatchSpecies, MatchTargetterToSpeciesCheckBox);
+        // Far Horizons end
 
         Control.Initialize();
     }
