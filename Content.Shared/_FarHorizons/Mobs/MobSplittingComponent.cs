@@ -11,6 +11,7 @@ public sealed partial class MobSplittingComponent : Component
     [DataField(required: true)] public Dictionary<EntProtoId, MobSplittingConfig> SplitInto;
     [DataField] public SoundSpecifier? Sound;
     [DataField] public int ThrowRadius = 2;
+    [DataField] public bool FirePrevents = true;
 }
 
 [Serializable, NetSerializable, DataDefinition]
