@@ -10,6 +10,8 @@ public sealed partial class LimbTargettingPrototype : IPrototype
 {
     [IdDataField] public string ID { get; private set; } = default!;
 
+    [DataField(required: true)] public LocId Name;
+    [DataField] public bool HideInSettings = false;
     [DataField] public List<LimbTargetLayer> Limbs = new();
     [DataField] public List<LimbTargetLabel> Labels = new();
     [DataField] public bool DrawDebugBoxes;

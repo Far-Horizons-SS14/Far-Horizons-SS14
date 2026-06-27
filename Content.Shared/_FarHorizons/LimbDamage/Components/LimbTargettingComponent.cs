@@ -8,8 +8,6 @@ namespace Content.Shared._FarHorizons.LimbDamage.Components;
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState(true)]
 public sealed partial class LimbTargettingComponent : Component
 {
-    [DataField(required: true)] public ProtoId<LimbTargettingPrototype> Proto;
-
     [ViewVariables, AutoNetworkedField] public ProtoId<OrganCategoryPrototype> Target = "Torso";
 }
 

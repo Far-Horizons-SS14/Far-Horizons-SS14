@@ -17,3 +17,7 @@ ui-options-function-target-foot-left = Target Left Foot
 ui-options-function-target-foot-right = Target Right Foot
 
 ui-options-function-focus-mentor-chat-window = Focus chat (Mentor)
+
+ui-options-general-limb-targetting = Limb Targetting
+ui-options-limb-targetting-species = Targetter Style
+ui-options-limb-targetting-match-species = Match to played character

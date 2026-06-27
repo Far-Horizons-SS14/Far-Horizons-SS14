@@ -1,4 +1,5 @@
 using Content.Client.UserInterface.Systems.Gameplay;
+using Content.Shared._FarHorizons.CCVar;
 using Content.Shared._FarHorizons.LimbDamage.Components;
 using Content.Shared.Body;
 using JetBrains.Annotations;
@@ -6,6 +7,7 @@ using Robust.Client.GameObjects;
 using Robust.Client.Player;
 using Robust.Client.ResourceManagement;
 using Robust.Client.UserInterface.Controllers;
+using Robust.Shared.Configuration;
 using Robust.Shared.Prototypes;
 
 namespace Content.Client._FarHorizons.LimbDamage.UI;
@@ -17,6 +19,7 @@ public sealed class LimbTargettingUIController : UIController, IOnSystemLoaded<L
     [Dependency] private readonly IPrototypeManager _protoMan = default!;
     [Dependency] private readonly IPlayerManager _player = default!;
     [Dependency] private readonly IResourceCache _resourceCache = default!;
+    [Dependency] private readonly IConfigurationManager _cfg = default!;
 
     private SpriteSystem? _sprite;
     private LimbTargettingSystem? _limbTargetting;
@@ -33,6 +36,8 @@ public sealed class LimbTargettingUIController : UIController, IOnSystemLoaded<L
         _entMan.EntityDirtied += OnDirty;
         _entMan.ComponentRemoved += OnComponentRemoved;
         _protoMan.PrototypesReloaded += OnProtoReload;
+        _cfg.OnValueChanged(FHCCVars.LimbTargettingMatchSpecies, _ => UpdateWidget());
+        _cfg.OnValueChanged(FHCCVars.LimbTargettingStyle, _ => UpdateWidget());
     }
 
     public void OnSystemLoaded(LimbTargettingSystem limbTargetting)
@@ -96,7 +101,8 @@ public sealed class LimbTargettingUIController : UIController, IOnSystemLoaded<L
 
         if (UIManager.ActiveScreen is null ||
             !UIManager.ActiveScreen.TryGetWidget<LimbTargettingUI>(out var widget) ||
-            _sprite is null)
+            _sprite is null ||
+            _limbTargetting is null)
             return;
 
         if (_player.LocalSession?.AttachedEntity is not { } playerEnt ||
@@ -107,7 +113,7 @@ public sealed class LimbTargettingUIController : UIController, IOnSystemLoaded<L
         }
         else
         {
-            widget.InitTarget(_protoMan, _resourceCache, _sprite!, limbTarget.Proto);
+            widget.InitTarget(_protoMan, _resourceCache, _sprite!, _limbTargetting!.GetTargetterStyle());
             widget.Visible = true;
             widget.UpdateLimb(limbTarget.Target);
         }
