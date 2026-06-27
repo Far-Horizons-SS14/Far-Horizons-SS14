@@ -94,25 +94,6 @@
           tags:
             - CartridgeMagnum
 
-- type: entity
-  name: golden mk 58
-  parent: [ WeaponPistolMk58, BaseSecurityContraband ]
-  id: WeaponPistolGoldenMk58
-  components:
-  - type: Sprite #FH - start
-    sprite: _FarHorizons/Objects/Weapons/Guns/Pistols/mk78.rsi
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: base-overlay
-      shader: unshaded
-      visible: false
-      map: [ "light" ]
-    - state: mag-0
-      map: ["enum.GunVisualLayers.Mag"] #FH - end
-  - type: Clothing
-    sprite: _Starlight/Objects/Weapons/Guns/Pistols/golden_mk58.rsi
-
 # FH - Removal of "Enforcer" Moved to _FarHorizons/pistols.yml
 
 # FH - Removal of "Due Process" Moved to _FarHorizons/pistols.yml

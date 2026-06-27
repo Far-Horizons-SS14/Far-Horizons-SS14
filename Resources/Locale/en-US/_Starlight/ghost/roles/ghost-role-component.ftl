@@ -27,8 +27,6 @@ ghost-role-information-corporate-aligned-rules = You are [color={role-type-corpo
 
 ghost-role-information-nanotrasen-special-forces-name = NTSF Operative
 ghost-role-information-nanotrasen-special-forces-description = You are a NanoTrasen Special Forces Operative. Perform your assigned task.
-ghost-role-information-decimus-name = Decimus Operative
-ghost-role-information-decimus-description = You are a Decimus Operative. Enact Code Epsilon. Recovery of NanoTrasen Personnel may or may not be an objective, seek directives from your superiors.
 
 ghost-role-information-syndicate-cyborg-stealth-name = Syndicate Stealth Cyborg
 
