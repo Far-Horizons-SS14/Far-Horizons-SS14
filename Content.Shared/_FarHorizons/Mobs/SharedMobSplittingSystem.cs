@@ -1,3 +1,4 @@
+using Content.Shared.Atmos.Components;
 using Content.Shared.Mobs;
 using Content.Shared.Random.Helpers;
 using Content.Shared.Throwing;
@@ -24,6 +25,11 @@ public sealed class SharedMobSplittingSystem : EntitySystem
     {
         if (!(args.NewMobState == MobState.Dead && args.OldMobState != MobState.Dead) ||
             TerminatingOrDeleted(ent))
+            return;
+
+        if (ent.Comp.FirePrevents &&
+            TryComp<FlammableComponent>(ent, out var flammable) &&
+            flammable.OnFire)
             return;
 
         _audio.PlayPredicted(ent.Comp.Sound, ent.Owner, ent.Owner);
