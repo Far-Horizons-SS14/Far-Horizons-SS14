@@ -13,13 +13,13 @@ public sealed partial class CyberneticImplanterComponent : Component
     /// Sound played on Implant begin.
     /// </summary>
     [DataField]
-    public SoundSpecifier? ImplantBeginSound = null;
+    public SoundSpecifier? ImplantBeginSound;
 
     /// <summary>
     /// Sound played on Implant end.
     /// </summary>
     [DataField]
-    public SoundSpecifier? ImplantEndSound = null;
+    public SoundSpecifier? ImplantEndSound;
 
     /// <summary>
     /// Organ to be implanted
@@ -35,6 +35,19 @@ public sealed partial class CyberneticImplanterComponent : Component
 }
 
 [Serializable, NetSerializable]
-public sealed partial class CyberneticImplantDoAfterEvent : SimpleDoAfterEvent
+public enum CyberneticImplanterVisuals : byte
 {
+    State,
 }
+
+[Serializable, NetSerializable]
+public enum CyberneticImplanterState : byte
+{
+    Icon,
+    Implant,
+    Used,
+    Gored,
+}
+
+[Serializable, NetSerializable]
+public sealed partial class CyberneticImplanterDoAfterEvent : SimpleDoAfterEvent;

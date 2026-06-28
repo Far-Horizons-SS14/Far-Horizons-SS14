@@ -5,7 +5,18 @@
   components:
     - type: Sprite
       sprite: _FarHorizons/Objects/Tools/singular_eye_CIK.rsi #TODO
-      state: icon_toggled
+      layers:
+      - state: icon
+        map: ["cyberneticImplanter"]
+    - type: Appearance
+    - type: GenericVisualizer
+      visuals:
+        enum.CyberneticImplanterVisuals.State:
+          cyberneticImplanter:
+            Icon: {state: icon}
+            Implant: {state: icon_implant}
+            Used: {state: icon_used}
+            Gored: {state: icon_gored}
     - type: CyberneticImplanter
       implantedOrgan: null
       implantBeginSound:

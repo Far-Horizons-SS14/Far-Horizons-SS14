@@ -8,10 +8,40 @@
   },
   "states": [
     {
-      "name": "icon"
+      "name": "icon",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
     },
     {
-      "name": "icon_toggled"
+      "name": "icon_implant",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    },
+    {
+      "name": "icon_used"
+    },
+    {
+      "name": "icon_gored"
     },
     {
       "name": "inhand-left",
@@ -20,36 +50,6 @@
     {
       "name": "inhand-right",
       "directions": 4
-    },
-    {
-      "name": "implant_surgery_animation",
-      "delays": [
-        [
-          0.1,
-          0.1,
-          0.1,
-          0.1,
-          0.1,
-          0.1,
-          0.1,
-          0.1,
-          0.1,
-          0.1,
-          0.1,
-          0.1
-        ]
-      ]
-    },
-    {
-      "name": "toggled_green_lit_animation",
-      "delays": [
-        [
-          0.1,
-          0.1,
-          0.1,
-          0.1
-        ]
-      ]
     }
   ]
 }

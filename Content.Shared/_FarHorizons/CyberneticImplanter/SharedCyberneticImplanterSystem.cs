@@ -1,15 +1,14 @@
 using System.Linq;
 using Content.Shared.Body;
 using Content.Shared.DoAfter;
-using Content.Shared.EntityEffects.Effects;
 using Content.Shared.Examine;
 using Content.Shared.Humanoid;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Popups;
+using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Toolshed.Commands.Values;
 
 namespace Content.Shared._FarHorizons.CyberneticImplanter;
 
@@ -61,29 +60,30 @@ public sealed class SharedCyberneticImplanterSystem : EntitySystem
 
     private bool TryImplant(Entity<CyberneticImplanterComponent> entity, EntityUid target, EntityUid user)
     {
+        //most of this doesnt need to be done on the client, but seperating it isnt neccessary
         //if statment straight from hell, does all the checks to verify target is valid
         if (!HasComp<HumanoidProfileComponent>(target) ||
         !TryComp<BodyComponent>(target, out var bodycomponent) ||
         bodycomponent.Organs == null ||
         bodycomponent.Organs.ContainedEntities == null ||
-        !_protoManager.Index<EntityPrototype>(entity.Comp.ImplantedOrgan).TryGetComponent<OrganComponent>(out var ImplantOrganComponent, Factory) || //will cause an exception if yaml is configured incorrectly
-        ImplantOrganComponent.Category == null ||
-        _protoManager.Index<OrganCategoryPrototype>(ImplantOrganComponent.Category).ConnectsTo == null)
+        !_protoManager.Index<EntityPrototype>(entity.Comp.ImplantedOrgan).TryGetComponent<OrganComponent>(out var implantOrganComp, Factory) || //will cause an exception if yaml is configured incorrectly
+        implantOrganComp.Category == null ||
+        _protoManager.Index<OrganCategoryPrototype>(implantOrganComp.Category).ConnectsTo == null)
             return false;
 
-        var ConnectsTo = _protoManager.Index<OrganCategoryPrototype>(ImplantOrganComponent.Category).ConnectsTo;
+        var connectsTo = _protoManager.Index<OrganCategoryPrototype>(implantOrganComp.Category).ConnectsTo;
 
         //are there any organs matching the category in ConnectsTo?
-        if (!bodycomponent.Organs.ContainedEntities.Any(p => TryComp<OrganComponent>(p, out var organ) && organ.Category == ConnectsTo))
+        if (!bodycomponent.Organs.ContainedEntities.Any(p => TryComp<OrganComponent>(p, out var organ) && organ.Category == connectsTo))
         {
-            if(ConnectsTo != null)
-                _popupSystem.PopupClient(Loc.GetString("comp-cyberneticimplanter-missingconnectto", ("connectto", ConnectsTo.Value.ToString())), target, user, PopupType.Small);
+            if(connectsTo != null)
+                _popupSystem.PopupClient(Loc.GetString("comp-cyberneticimplanter-missingconnectto", ("connectto", connectsTo.Value.ToString())), target, user);
             return false;
         }
         //ready to go! play sfx and start the doafter
         _audio.PlayPredicted(entity.Comp.ImplantBeginSound, entity, user);
 
-        var doAfterEventArgs = new DoAfterArgs(_entityManager, user, entity.Comp.ActivationTime, new CyberneticImplantDoAfterEvent(), entity, target)
+        var doAfterEventArgs = new DoAfterArgs(_entityManager, user, entity.Comp.ActivationTime, new CyberneticImplanterDoAfterEvent(), entity, target)
         {
             NeedHand = true,
             BreakOnMove = true,
@@ -94,6 +94,9 @@ public sealed class SharedCyberneticImplanterSystem : EntitySystem
         // Server and Client spilt here, dont need the client for the rest of this
         if (!_doAfter.TryStartDoAfter(doAfterEventArgs))
             return false;
+
+
+
 
         if (TryComp(entity, out MetaDataComponent? metadata))
             _popupSystem.PopupClient(Loc.GetString("comp-cyberneticimplanter-implantstart", ("implanter", metadata.EntityName)), target, target, PopupType.Medium);
