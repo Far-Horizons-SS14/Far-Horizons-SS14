@@ -289,7 +289,12 @@
 - type: entity
   parent: [ OrganBaseTorsoSexed, OrganBaseTorso, OrganProtogenExternal ]
   id: OrganProtogenTorso
-
+  components:
+  - type: VisualOrganMarkings
+    hideableLayers:
+    - enum.HumanoidVisualLayers.BodyCover
+    - enum.HumanoidVisualLayers.BodyCoverCover
+    
 - type: entity
   parent: [ OrganBaseHeadSexed, OrganBaseHead, OrganProtogenExternal ]
   id: OrganProtogenHead

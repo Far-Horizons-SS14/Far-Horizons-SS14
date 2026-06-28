@@ -76,7 +76,12 @@
 - type: entity
   parent: [ OrganProtoKinExternal, OrganShadekinTorso ]
   id: OrganProtoKinTorso
-
+  components:
+  - type: VisualOrganMarkings
+    hideableLayers:
+    - enum.HumanoidVisualLayers.BodyCover
+    - enum.HumanoidVisualLayers.BodyCoverCover
+    
 - type: entity
   parent: [ OrganProtoKinExternal, OrganShadekinHead ]
   id: OrganProtoKinHead

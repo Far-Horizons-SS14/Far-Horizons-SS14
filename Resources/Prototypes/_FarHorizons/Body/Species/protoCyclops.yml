@@ -70,7 +70,12 @@
 - type: entity
   parent: [ OrganProtoCyclopsExternal, OrganCycloriteTorso ]
   id: OrganProtoCyclopsTorso
-
+  components:
+  - type: VisualOrganMarkings
+    hideableLayers:
+    - enum.HumanoidVisualLayers.BodyCover
+    - enum.HumanoidVisualLayers.BodyCoverCover
+    
 - type: entity
   parent: [ OrganProtoCyclopsExternal, OrganCycloriteHead ]
   id: OrganProtoCyclopsHead

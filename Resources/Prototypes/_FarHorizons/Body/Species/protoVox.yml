@@ -81,7 +81,12 @@
 - type: entity
   parent: [ OrganProtoVoxExternalUnsprited, OrganVoxTorso ]
   id: OrganProtoVoxTorso
-
+  components:
+  - type: VisualOrganMarkings
+    hideableLayers:
+    - enum.HumanoidVisualLayers.BodyCover
+    - enum.HumanoidVisualLayers.BodyCoverCover
+    
 - type: entity
   parent: [ OrganProtoVoxExternalUnsprited, OrganVoxHead ]
   id: OrganProtoVoxHead
