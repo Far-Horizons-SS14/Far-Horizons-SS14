@@ -6,7 +6,6 @@ using Content.Shared.Humanoid;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Popups;
-using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Prototypes;
 
@@ -19,6 +18,7 @@ public sealed class SharedCyberneticImplanterSystem : EntitySystem
     [Dependency] private readonly EntityManager _entityManager = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
+    [Dependency] private readonly SharedAppearanceSystem _visualizer = default!;
 
     public override void Initialize()
     {
@@ -34,7 +34,7 @@ public sealed class SharedCyberneticImplanterSystem : EntitySystem
         if (!args.IsInDetailsRange)
             return;
 
-        if (component.Species != null && component.Organ != null)
+        if (component.Organ != null)
             args.PushMarkup(Loc.GetString("comp-usedcyberneticimplanter-examine", ("species", component.Species), ("organ", component.Organ)));
     }
 
@@ -95,7 +95,7 @@ public sealed class SharedCyberneticImplanterSystem : EntitySystem
         if (!_doAfter.TryStartDoAfter(doAfterEventArgs))
             return false;
 
-
+        _visualizer.SetData(entity, CyberneticImplanterVisuals.State, CyberneticImplanterState.Implant);
 
 
         if (TryComp(entity, out MetaDataComponent? metadata))

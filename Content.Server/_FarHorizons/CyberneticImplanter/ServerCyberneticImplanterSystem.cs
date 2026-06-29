@@ -60,13 +60,14 @@ public sealed class ServerCyberneticImplanterSystem : EntitySystem
             {
                 usedComponent.Organ = metaComp.EntityName; //dont care if this is null, checks later anyways
                 if (TryComp(entity, out MetaDataComponent? implantermetaComp) && TryComp(args.Target, out MetaDataComponent? targetmetaComp))
-                    _popupSystem.PopupEntity(Loc.GetString("comp-cyberneticimplanter-organDestroyed", ("implanter", implantermetaComp.EntityName), ("destroyed", metaComp.EntityName), ("target", targetmetaComp.EntityName)), entity, PopupType.LargeCaution);
+                    _popupSystem.PopupEntity(Loc.GetString("comp-cyberneticimplanter-organdestroyed", ("implanter", implantermetaComp.EntityName), ("destroyed", metaComp.EntityName), ("target", targetmetaComp.EntityName)), entity, PopupType.LargeCaution);
             }
 
             if (TryComp(exisitingOrgan.Value, out VisualOrganMarkingsComponent? markingcomp))
             {
                 var species = markingcomp.MarkingData.Group;
-                usedComponent.Species = species.ToString();
+                if (species != "")
+                    usedComponent.Species = species.ToString() + " ";
             }
 
             if (!_containers.CanRemove(exisitingOrgan.Value, bodycomponent.Organs)) //uh oh
