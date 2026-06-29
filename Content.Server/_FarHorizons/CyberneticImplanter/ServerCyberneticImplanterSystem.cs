@@ -39,10 +39,10 @@ public sealed class ServerCyberneticImplanterSystem : EntitySystem
             bodycomponent.Organs == null ||
         !_protoManager.Index<EntityPrototype>(entity.Comp.ImplantedOrgan).TryGetComponent<OrganComponent>(out var implantOrganComp, Factory) ||
         implantOrganComp.Category == null ||
-        _protoManager.Index<OrganCategoryPrototype>(implantOrganComp.Category).ConnectsTo == null)
+        !(_protoManager.Index<OrganCategoryPrototype>(implantOrganComp.Category) is { ConnectsTo: not null } organCategory))
             return;
 
-        var connectsTo = _protoManager.Index<OrganCategoryPrototype>(implantOrganComp.Category).ConnectsTo;
+        var connectsTo = organCategory.ConnectsTo;
 
         //are there any organs matching the category in ConnectsTo? (might have changed during doafter)
         if (!bodycomponent.Organs.ContainedEntities.Any(p => TryComp<OrganComponent>(p, out var organ) && organ.Category == connectsTo))
@@ -81,17 +81,20 @@ public sealed class ServerCyberneticImplanterSystem : EntitySystem
         }
 
         //spawn the organ and try to insert into target body
-        var spawnedOrgan = Spawn(entity.Comp.ImplantedOrgan);
-        if (!_containers.CanInsert(spawnedOrgan, bodycomponent.Organs)) //uh oh
-        {
-            QueueDel(spawnedOrgan); //cleanup
+        // var spawnedOrgan = Spawn(entity.Comp.ImplantedOrgan);
+        // if (!_containers.CanInsert(spawnedOrgan, bodycomponent.Organs)) //uh oh
+        // {
+        //     QueueDel(spawnedOrgan); //cleanup
+        //     return;
+        // }
+        // if (!_containers.Insert(spawnedOrgan, bodycomponent.Organs)) //uh oh
+        // {
+        //     QueueDel(spawnedOrgan); //cleanup
+        //     return;
+        // }
+
+        if (!TrySpawnInContainer(entity.Comp.ImplantedOrgan, args.Target.Value, bodycomponent.Organs.ID, out var spawnedOrgan)) //works
             return;
-        }
-        if (!_containers.Insert(spawnedOrgan, bodycomponent.Organs)) //uh oh
-        {
-            QueueDel(spawnedOrgan); //cleanup
-            return;
-        }
 
         //everything worked! clean up and do cosmetic effects
         var ev = new TransferDnaEvent { Donor = args.Target.Value, Recipient = entity, CanDnaBeCleaned = !organDestroyed };

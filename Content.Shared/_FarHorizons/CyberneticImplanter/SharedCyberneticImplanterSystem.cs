@@ -68,10 +68,10 @@ public sealed class SharedCyberneticImplanterSystem : EntitySystem
         bodycomponent.Organs.ContainedEntities == null ||
         !_protoManager.Index<EntityPrototype>(entity.Comp.ImplantedOrgan).TryGetComponent<OrganComponent>(out var implantOrganComp, Factory) || //will cause an exception if yaml is configured incorrectly
         implantOrganComp.Category == null ||
-        _protoManager.Index<OrganCategoryPrototype>(implantOrganComp.Category).ConnectsTo == null)
+        !(_protoManager.Index<OrganCategoryPrototype>(implantOrganComp.Category) is { ConnectsTo: not null } organCategory))
             return false;
 
-        var connectsTo = _protoManager.Index<OrganCategoryPrototype>(implantOrganComp.Category).ConnectsTo;
+        var connectsTo = organCategory.ConnectsTo;
 
         //are there any organs matching the category in ConnectsTo?
         if (!bodycomponent.Organs.ContainedEntities.Any(p => TryComp<OrganComponent>(p, out var organ) && organ.Category == connectsTo))
