@@ -24,9 +24,26 @@ public sealed class SharedCyberneticImplanterSystem : EntitySystem
     {
         base.Initialize();
 
+        SubscribeLocalEvent<CyberneticImplanterComponent, ComponentInit>(OnInit);
         SubscribeLocalEvent<CyberneticImplanterComponent, UseInHandEvent>(OnUse);
         SubscribeLocalEvent<CyberneticImplanterComponent, AfterInteractEvent>(OnAfterInteract);
+        SubscribeLocalEvent<CyberneticImplanterComponent, ExaminedEvent>(OnExamineUnused);
         SubscribeLocalEvent<UsedCyberneticImplanterComponent, ExaminedEvent>(OnExamineUsed);
+    }
+
+    private void OnInit(EntityUid entity, CyberneticImplanterComponent component, ComponentInit _)
+    {
+        if (component.ImplantedOrganDesc == null)
+            component.ImplantedOrganDesc = _protoManager.Index<EntityPrototype>(component.ImplantedOrgan).Description;
+    }
+
+    private void OnExamineUnused(EntityUid entity, CyberneticImplanterComponent component, ExaminedEvent args) //used to show a description of the implant
+    {
+        if (!args.IsInDetailsRange)
+            return;
+
+        if (component.ImplantedOrganDesc != null)
+            args.PushMarkup(Loc.GetString("comp-cyberneticimplanter-examine", ("desc", component.ImplantedOrganDesc!)));
     }
 
     private void OnExamineUsed(EntityUid entity, UsedCyberneticImplanterComponent component, ExaminedEvent args) //used to show what organ was destroyed after an implant
