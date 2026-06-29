@@ -45,10 +45,10 @@
     letters:
     - name: rr-criminal-letter-name
       content: rr-criminal-1-letter-content
-      stampState: paper_stamp-centcom
+      stampState: "paper_stamp-magistrate"
       stampedBy:
-        - stampedColor: "#006666"
-          stampedName: rr-nt-isd
+        - stampedColor: "#FF5297"
+          stampedName: rr-cfa
   - type: RailroadFaxOnFailed
     addresses: 
     - Captain's Office
@@ -64,10 +64,10 @@
     letters:
     - name: rr-criminal-failed-name
       content: rr-criminal-failed-content
-      stampState: paper_stamp-centcom
+      stampState: "paper_stamp-magistrate"
       stampedBy:
-        - stampedColor: "#006620"
-          stampedName: rr-cc
+        - stampedColor: "#FF5297"
+          stampedName: rr-cfa
   - type: RailroadAssignRole
     role: RRMindRoleCriminal
   - type: RailroadModifyIdCard
