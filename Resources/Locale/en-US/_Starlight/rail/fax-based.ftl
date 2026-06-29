@@ -1,38 +1,57 @@
 rr-criminal = Criminal
 rr-criminal-desc = That was a mistake, at any moment I could be reported and the hunt would begin.
 
-rr-criminal-message = Well-wisher: We have just intercepted a fax, you’ve been declared wanted. Nevertheless, your recent malicious act against NT has greatly impressed us. We’ll send you a gift by mail, it should arrive in about 20 minutes.
-rr-criminal-wrapped-message = [bold]Well-wisher[/bold]: We have just intercepted a fax, you’ve been declared wanted. Nevertheless, your recent malicious act against NT has greatly impressed us. We’ll send you a gift by mail, it should arrive in about 20 minutes.
+rr-criminal-message = Well-wisher: We have just intercepted a fax, you’ve been declared wanted. Nevertheless, your recent malicious act against the CFA has greatly impressed us. We’ll send you a gift by mail, it should arrive in about 20 minutes.
+rr-criminal-wrapped-message = [bold]Well-wisher[/bold]: We have just intercepted a fax, you’ve been declared wanted. Nevertheless, your recent malicious act against the CFA has greatly impressed us. We’ll send you a gift by mail, it should arrive in about 20 minutes.
 
-rr-criminal-letter-name = ORDER, dangerous criminal {$subject} is wanted.
-rr-criminal-1-letter-content = [logo]            [cclogo] 
+rr-criminal-letter-name = URGENT, {$subject} is wanted.
+rr-criminal-1-letter-content = 
+[color=#330066]╔═════════════════════════════════╗[/color] 
+[color=#4a0070]║██▀░░▄█████▄░▄█████▄░▄█████▄░░▀██║[/color]
+[color=#61007a]║█▌░░░██░░░░░░██░░░░░░██░░░██░░░▐█║[/color]
+[color=#780084]║█▌░░░██░░░░░░███████░███████░░░▐█║[/color]
+[color=#96208e]║█▌░░░██░░░░░░██░░░░░░██░░░██░░░▐█║[/color]
+[color=#b03298]║██▄░░▀█████▀░██░░░░░░██░░░██░░▄██║[/color]
+[color=#cc44aa]╚═════════════════════════════════╝[/color]
+[head=3][color=#330066][bold]C[/bold][/color][color=#4a0070][bold]o[/bold][/color][color=#61007a][bold]n[/bold][/color][color=#780084][bold]c[/bold][/color][color=#8a1089][bold]o[/bold][/color][color=#96208e][bold]r[/bold][/color][color=#a82c96][bold]d[/bold][/color][color=#b03298][bold] [/bold][/color][color=#b83aa0][bold]F[/bold][/color][color=#cc44aa][bold]rontier Authority[/bold][/color][/head]
+[bolditalic]"We are the law."[/bolditalic]
+[bold]OFFICIAL DOCUMENT[/bold]
+[color=black]▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬[/color]
+A crewmember amongst your station, {$subject}, is suspected to have been involved with known terrorist organizations. 
 
-                             [head=3]NT Information Security Department[/head]
+We require information on {POSS-ADJ($subject)} whereabouts within the past week, which activities {CONJUGATE-BE($subject)} conducted and if anyone unusual has contacted {OBJECT($subject)} amongst other relevant information.
+The CFA therefore orders an interrogation on {$subject}, the results are to be faxed back to us in a timely manner.
 
-                  [center][color=#006666][italic][bold]   Order for the immediate interception[/bold][/italic][/color][/center]
-    ─────────────────────────────────────────
-    A dangerous criminal {$subject} has infiltrated your station.
-    {SUBJECT($subject)} {CONJUGATE-BE($subject)} charged with multiple counts of ████████████████████ , as well as ██████████████.
-    There is also clear evidence pointing to crimes of a ██████████████  nature against █████████████. {SUBJECT($subject)} may be armed.
+It is very likely {CONJUGATE-BE($subject)} poses a flight risk and may be armed, security teams are advised to proceed with caution.
 
-    In accordance with Directive 25, Section B of the Code of Information Crimes, you are ordered to deliver {OBJECT($subject)} to Central Command, dead or alive.
-    
-    Failure to comply with this order may result in charges of incompetence and dismissal.
-    ─────────────────────────────────────────
-   ⠀                                    [italic]Place for stamps[/italic]
+In the event that the interrogation proves sucessful the station's liason, or head of security in their absence, may decide their sentence with the information gained. 
+Regardless of the interrogation's outcome, {$subject} must be brought to Central Command for further questioning.
+[color=black]▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬[/color]
+      
+[italic]The contents of this transmission are restricted to personnel holding authorized positions within the [color=#330066][bold]C[/bold][/color][color=#4a0070][bold]o[/bold][/color][color=#61007a][bold]n[/bold][/color][color=#780084][bold]c[/bold][/color][color=#8a1089][bold]o[/bold][/color][color=#96208e][bold]r[/bold][/color][color=#a82c96][bold]d[/bold][/color][color=#b03298][bold] [/bold][/color][color=#b83aa0][bold]F[/bold][/color][color=#cc44aa][bold]rontier Authority[/bold][/color], or individuals explicitly granted clearance by such entities.
+      
+Unauthorized distribution, duplication, or disclosure may result in contractual penalties, prosecution, or liquidation of involved assets.[/italic]
+⠀                                    [italic]Place for stamps[/italic]
 
-rr-criminal-failed-name = Decision regarding the criminal {$subject}.
-rr-criminal-failed-content = [logo]            [cclogo] 
+rr-criminal-failed-name = Update regarding {$subject}.
+rr-criminal-failed-content = 
+[color=#330066]╔═════════════════════════════════╗[/color] 
+[color=#4a0070]║██▀░░▄█████▄░▄█████▄░▄█████▄░░▀██║[/color]
+[color=#61007a]║█▌░░░██░░░░░░██░░░░░░██░░░██░░░▐█║[/color]
+[color=#780084]║█▌░░░██░░░░░░███████░███████░░░▐█║[/color]
+[color=#96208e]║█▌░░░██░░░░░░██░░░░░░██░░░██░░░▐█║[/color]
+[color=#b03298]║██▄░░▀█████▀░██░░░░░░██░░░██░░▄██║[/color]
+[color=#cc44aa]╚═════════════════════════════════╝[/color]
+[head=3][color=#330066][bold]C[/bold][/color][color=#4a0070][bold]o[/bold][/color][color=#61007a][bold]n[/bold][/color][color=#780084][bold]c[/bold][/color][color=#8a1089][bold]o[/bold][/color][color=#96208e][bold]r[/bold][/color][color=#a82c96][bold]d[/bold][/color][color=#b03298][bold] [/bold][/color][color=#b83aa0][bold]F[/bold][/color][color=#cc44aa][bold]rontier Authority[/bold][/color][/head]
+[bolditalic]"We are the law."[/bolditalic]
+[bold]OFFICIAL DOCUMENT[/bold]
+[color=black]▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬[/color]
+New information has surfaced that suggests the nature of {$subject}'s crimes is purely accidental, please keep this in mind during the interrogation and subsequent sentencing.
+Continue with the investigation.
+[color=black]▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬[/color]
+[italic]The contents of this transmission are restricted to personnel holding authorized positions within the [color=#330066][bold]C[/bold][/color][color=#4a0070][bold]o[/bold][/color][color=#61007a][bold]n[/bold][/color][color=#780084][bold]c[/bold][/color][color=#8a1089][bold]o[/bold][/color][color=#96208e][bold]r[/bold][/color][color=#a82c96][bold]d[/bold][/color][color=#b03298][bold] [/bold][/color][color=#b83aa0][bold]F[/bold][/color][color=#cc44aa][bold]rontier Authority[/bold][/color], or individuals explicitly granted clearance by such entities.
 
-                             [head=3]Authorized inspector on the case[/head]
+Unauthorized distribution, duplication, or disclosure may result in contractual penalties, prosecution, or liquidation of involved assets.[/italic]
+⠀                                    [italic]Place for stamps[/italic]
 
-                  [center][color=#006666][italic][bold]            Decision[/bold][/italic][/color][/center]
-    ─────────────────────────────────────────
-    Regarding the case of the criminal {$subject}. We have just intercepted a recruitment letter indicating that the crimes committed were not of direct intent.
-    In this regard, the crime is no longer classified as informational extremism, but as fatal negligence.
-    You should interrogate the criminal, and if {CONJUGATE-BE($subject)} admits {POSS-ADJ($subject)} guilt, allow {OBJECT($subject)} to work it off in lower positions, with damages assessed from one and a half to ten million credits.
-    ─────────────────────────────────────────
-   ⠀                                    [italic]Place for stamps[/italic]
-
-rr-nt-isd = NT ISD
-rr-cc = CentComm
+rr-cfa = Concord Frontier Authority
