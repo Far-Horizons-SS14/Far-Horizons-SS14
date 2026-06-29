@@ -55,7 +55,7 @@ public sealed class SharedCyberneticImplanterSystem : EntitySystem
             args.PushMarkup(Loc.GetString("comp-usedcyberneticimplanter-examine", ("species", component.Species), ("organ", component.Organ)));
     }
 
-    //using on self`
+    //using on self
     private void OnUse(Entity<CyberneticImplanterComponent> entity, ref UseInHandEvent args)
     {
         if (args.Handled)
@@ -77,7 +77,7 @@ public sealed class SharedCyberneticImplanterSystem : EntitySystem
 
     private bool TryImplant(Entity<CyberneticImplanterComponent> entity, EntityUid target, EntityUid user)
     {
-        //most of this doesnt need to be done on the client, but seperating it isnt neccessary
+        //most of this doesnt need to be done on the client, but doing it this way ensures the doafter isnt laggy on the client
         //if statment straight from hell, does all the checks to verify target is valid
         if (!HasComp<HumanoidProfileComponent>(target) ||
         !TryComp<BodyComponent>(target, out var bodycomponent) ||

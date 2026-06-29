@@ -28,7 +28,7 @@ public sealed partial class CyberneticImplanterComponent : Component
     public EntProtoId ImplantedOrgan;
 
     /// <summary>
-    /// Description of Organ to be implanted, automatically generated upon mapinit if not provided
+    /// Description of Organ to be implanted, automatically generated upon init if not provided
     /// </summary>
     [DataField]
     public string? ImplantedOrganDesc;
