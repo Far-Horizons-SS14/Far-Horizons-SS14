@@ -322,14 +322,14 @@ public sealed class HealingSystem : EntitySystem
         var doAfterEventArgs =
             new DoAfterArgs(EntityManager, user, delay, new HealingDoAfterEvent(limbTarget), target, target: target, used: healing)
             {
+                // Didn't break on damage as they may be trying to prevent it and
+                // not being able to heal your own ticking damage would be frustrating.
                 NeedHand = true,
                 BreakOnMove = true,
                 BreakOnWeightlessMove = false,
             };
 
-        if (!_doAfter.TryStartDoAfter(doAfterEventArgs))
-            return false;
-        
+        _doAfter.TryStartDoAfter(doAfterEventArgs);
         return true;
     }
 
