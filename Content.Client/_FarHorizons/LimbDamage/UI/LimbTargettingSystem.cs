@@ -18,6 +18,8 @@ public sealed class LimbTargettingSystem : EntitySystem
 
     public Action<ProtoId<OrganCategoryPrototype>>? LocalTargetUpdated;
 
+    private const string DefaultStyle = "LimbTargetHuman";
+
     public override void Initialize()
     {
         base.Initialize();
@@ -57,6 +59,9 @@ public sealed class LimbTargettingSystem : EntitySystem
             _player.LocalSession?.AttachedEntity is { } playerEnt &&
             TryComp<LimbDamageableComponent>(playerEnt, out var limbDamageable))
             style = limbDamageable.Proto;
+
+        if (!_protoMan.HasIndex<LimbTargettingPrototype>(style))
+            style = DefaultStyle;
 
         return style;
     }
