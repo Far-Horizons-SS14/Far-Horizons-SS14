@@ -5,6 +5,7 @@ rr-criminal-letter-name = URGENT, {$subject} is wanted.
 rr-criminal-1-letter-content =
    ⠀[cfalogo]
 
+
    ⠀[head=3][color=#330066][bold]C[/bold][/color][color=#4a0070][bold]o[/bold][/color][color=#61007a][bold]n[/bold][/color][color=#780084][bold]c[/bold][/color][color=#8a1089][bold]o[/bold][/color][color=#96208e][bold]r[/bold][/color][color=#a82c96][bold]d[/bold][/color][color=#b03298][bold] [/bold][/color][color=#b83aa0][bold]F[/bold][/color][color=#cc44aa][bold]rontier Authority[/bold][/color][/head]
    ⠀[bolditalic]"We are the law."[/bolditalic]
    ⠀[bold]OFFICIAL DOCUMENT[/bold]
@@ -23,11 +24,12 @@ rr-criminal-1-letter-content =
    ⠀[italic]The contents of this transmission are restricted to personnel holding authorized positions within the [color=#330066][bold]C[/bold][/color][color=#4a0070][bold]o[/bold][/color][color=#61007a][bold]n[/bold][/color][color=#780084][bold]c[/bold][/color][color=#8a1089][bold]o[/bold][/color][color=#96208e][bold]r[/bold][/color][color=#a82c96][bold]d[/bold][/color][color=#b03298][bold] [/bold][/color][color=#b83aa0][bold]F[/bold][/color][color=#cc44aa][bold]rontier Authority[/bold][/color], or individuals explicitly granted clearance by such entities.
 
    ⠀Unauthorized distribution, duplication, or disclosure may result in contractual penalties, prosecution, or liquidation of involved assets.[/italic]
-    ⠀                      [italic]Place for stamps[/italic]
+    ⠀                      [center][italic]Place for stamps[/italic][/center]
 
 rr-criminal-failed-name = Update regarding {$subject}.
 rr-criminal-failed-content =
    ⠀[cfalogo]
+
 
    ⠀[head=3][color=#330066][bold]C[/bold][/color][color=#4a0070][bold]o[/bold][/color][color=#61007a][bold]n[/bold][/color][color=#780084][bold]c[/bold][/color][color=#8a1089][bold]o[/bold][/color][color=#96208e][bold]r[/bold][/color][color=#a82c96][bold]d[/bold][/color][color=#b03298][bold] [/bold][/color][color=#b83aa0][bold]F[/bold][/color][color=#cc44aa][bold]rontier Authority[/bold][/color][/head]
    ⠀[bolditalic]"We are the law."[/bolditalic]
@@ -39,7 +41,6 @@ rr-criminal-failed-content =
    ⠀[italic]The contents of this transmission are restricted to personnel holding authorized positions within the [color=#330066][bold]C[/bold][/color][color=#4a0070][bold]o[/bold][/color][color=#61007a][bold]n[/bold][/color][color=#780084][bold]c[/bold][/color][color=#8a1089][bold]o[/bold][/color][color=#96208e][bold]r[/bold][/color][color=#a82c96][bold]d[/bold][/color][color=#b03298][bold] [/bold][/color][color=#b83aa0][bold]F[/bold][/color][color=#cc44aa][bold]rontier Authority[/bold][/color], or individuals explicitly granted clearance by such entities.
 
    ⠀Unauthorized distribution, duplication, or disclosure may result in contractual penalties, prosecution, or liquidation of involved assets.[/italic]
-    ⠀                      [italic]Place for stamps[/italic]
+    ⠀                      [center][italic]Place for stamps[/italic][/center]
 
-rr-cfa = Concord Frontier Authority
-rr-nt-isd = CFA Ambassador Mothon
+rr-cfa-a = CFA Ambassador Mothon
