@@ -42,7 +42,7 @@ public sealed partial class MiscTab : Control
         // Far Horizons start
         var limbTargetters = _prototypeManager.EnumeratePrototypes<LimbTargettingPrototype>()
             .Where(p => !p.HideInSettings).Select(p =>
-                new OptionDropDownCVar<ProtoId<LimbTargettingPrototype>>.ValueOption(p.ID, Loc.GetString(p.Name)))
+                new OptionDropDownCVar<string>.ValueOption(p.ID, Loc.GetString(p.Name)))
             .ToList();
         // Far Horizons end
 

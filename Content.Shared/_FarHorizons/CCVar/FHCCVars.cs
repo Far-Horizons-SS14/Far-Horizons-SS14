@@ -23,12 +23,12 @@ public sealed partial class FHCCVars
     public static readonly CVarDef<int>
         VoteTimerFaction = CVarDef.Create("vote.timerfaction", 90, CVar.SERVERONLY);
 
-    public static readonly CVarDef<ProtoId<LimbTargettingPrototype>> LimbTargettingStyle =
-        CVarDef.Create("ui.limb_targetting_style", (ProtoId<LimbTargettingPrototype>)"LimbTargetHuman",
-            CVar.CLIENTONLY);
+    public static readonly CVarDef<string> LimbTargettingStyle =
+        CVarDef.Create("ui.limb_targetting_style", "LimbTargetHuman",
+            CVar.CLIENTONLY | CVar.ARCHIVE);
 
     public static readonly CVarDef<bool> LimbTargettingMatchSpecies =
-        CVarDef.Create("ui.limb_targetting_match_species", false, CVar.CLIENTONLY);
+        CVarDef.Create("ui.limb_targetting_match_species", false, CVar.CLIENTONLY | CVar.ARCHIVE);
 
 
 }
