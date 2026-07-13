@@ -8,6 +8,7 @@ public sealed partial class FusionSystem : EntitySystem
     public override void Initialize() {
         base.Initialize();
 
+        InitializeCVars();
         CollectReactions();
 
         SubscribeLocalEvent<PrototypesReloadedEventArgs>(OnPrototypesReloaded);
@@ -15,8 +16,12 @@ public sealed partial class FusionSystem : EntitySystem
 
     private void OnPrototypesReloaded(PrototypesReloadedEventArgs args)
     {
-        if (args.WasModified<FusionReactionPrototype>())
-                    CollectReactions();
+        if (args.WasModified<FusionReactionPrototype>() 
+            || args.WasModified<FusionDecayPrototype>()
+            || args.WasModified<FusionConversionPrototype>())
+        {
+            CollectReactions();
+        }
     }
 
     public override void Update(float frameTime)

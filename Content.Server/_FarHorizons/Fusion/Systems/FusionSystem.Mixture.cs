@@ -1,5 +1,7 @@
 using System.Linq;
 using Content.Server._FarHorizons.Fusion.Reactions;
+using Content.Shared._FarHorizons.Fusion;
+using Content.Shared.Atmos;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
@@ -11,11 +13,13 @@ public sealed partial class FusionSystem
 
     private FusionReactionPrototype[] _fusionReactions = [];
     private FusionDecayPrototype[] _fusionDecays = [];
+    private FusionConversionPrototype[] _fusionConversions = [];
 
     public void CollectReactions()
     {
         _fusionReactions = _protoMan.EnumeratePrototypes<FusionReactionPrototype>().ToArray();
         _fusionDecays = _protoMan.EnumeratePrototypes<FusionDecayPrototype>().ToArray();
+        _fusionConversions = _protoMan.EnumeratePrototypes<FusionConversionPrototype>().ToArray();
     }
 
     public static double FusionAmount(FusionAtom atom1, FusionAtom atom2, double temperature)
@@ -39,7 +43,12 @@ public sealed partial class FusionSystem
 
     public void React(FusionMixture fusionMix, double deltaT)
     {
+        // During reactor construction it may pass a NaN fusion mixture
+        if(double.IsNaN(fusionMix.TotalMoles))
+            return;
+
         // Antimatter reaction gets a special spot to itself
+        // TODO: Allow for more types of antimatter
         if (fusionMix.Atoms.TryGetValue(new(-1, 0), out var antiProton) &&
             fusionMix.Atoms.TryGetValue(new(1, 0), out var proton))
         {
@@ -48,7 +57,7 @@ public sealed partial class FusionSystem
             fusionMix.Atoms[new(1, 0)] -= reactant;
 
             // E=MC^2
-            fusionMix.AddJoule(reactant * FusionConsts.MolToAtom * 2 * FusionConsts.MProton * FusionConsts.C * FusionConsts.C);
+            AddJoule(fusionMix, reactant * FusionConsts.MolToAtom * 2 * FusionConsts.MProton * FusionConsts.C * FusionConsts.C);
         }
 
         foreach (var reaction in _fusionReactions)
@@ -59,7 +68,7 @@ public sealed partial class FusionSystem
 
             DebugTools.Assert(reactantA >= 0 && reactantB >= 0, "Cannot process negative mass");
 
-            reaction.React(fusionMix, deltaT);
+            reaction.React(fusionMix, deltaT, this);
         }
 
         foreach (var decay in _fusionDecays)
@@ -69,19 +78,52 @@ public sealed partial class FusionSystem
 
             DebugTools.Assert(reactant >= 0, "Cannot process negative mass");
 
-            decay.React(fusionMix, deltaT);
+            decay.React(fusionMix, deltaT, this);
         }
     }
 
     /// <summary>
-    /// Divides a source fusion mixture into several recipient mixtures, scaled by their relative constrained volumes.
+    /// Gets the heat capacity of <paramref name="mixture"/>.
+    /// </summary>
+    /// <param name="mixture"><see cref="FusionMixture"/> to get the heat capacity of.</param>
+    /// <param name="scale">If it should be scaled by CVars.</param>
+    /// <returns>Heat capacity of <paramref name="mixture"/>.</returns>
+    public double GetHeatCapacity(FusionMixture mixture, bool scale = true) => 
+        mixture.TotalMoles * FusionConsts.HeatCap * (scale ? HeatScale : 1);
+
+    /// <summary>
+    /// Changes the energy in <paramref name="mixture"/> by a number of electron volts.
+    /// </summary>
+    /// <param name="mixture">Mixture to have its energy changed.</param>
+    /// <param name="electronVolts">Amount of energy, in electron volts.</param>
+    public void ChangeEV(FusionMixture mixture, double electronVolts) => 
+        AddJoule(mixture, electronVolts * FusionConsts.EVToJoule);
+
+    /// <summary>
+    /// Changes the energy in <paramref name="mixture"/> by a number of joules.
+    /// </summary>
+    /// <param name="mixture">Mixture to have its energy changed.</param>
+    /// <param name="joules">Amount of energy, in joules.</param>
+    public void AddJoule(FusionMixture mixture, double joules)
+    {
+        mixture.Joules += joules;
+
+        // work around for floating point imprecision
+        var prevTemp = mixture.Temperature;
+        var heatCap = GetHeatCapacity(mixture);
+        mixture.Temperature += mixture.Joules / heatCap;
+        mixture.Joules -= (mixture.Temperature - prevTemp) * heatCap;
+    }
+
+    /// <summary>
+    /// Divides a source fusion mixture into several recipient mixtures, scaled by their relative 
+    /// constrained volumes.
     /// </summary>
     /// <remarks>
     /// Serves the same function as AtmosphereSystem.DivideInto
     /// </remarks>
     public void DivideInto(FusionMixture source, List<FusionMixture> receivers)
     {
-        // TODO: big maths
         var totalVolume = 0d;
         foreach (var receiver in receivers)
         {
@@ -100,8 +142,8 @@ public sealed partial class FusionSystem
                     receiver.Temperature = source.Temperature;
                 else
                 {
-                    sourceHeatCap ??= source.HeatCap;
-                    var receiverHeatCap = receiver.HeatCap;
+                    sourceHeatCap ??= GetHeatCapacity(source);
+                    var receiverHeatCap = GetHeatCapacity(receiver);
                     var combinedHeatCap = receiverHeatCap + (sourceHeatCap.Value * fraction);
                     if (combinedHeatCap > 0.003)
                         receiver.Temperature = ((source.Temperature * sourceHeatCap.Value * fraction) + (receiver.Temperature * receiverHeatCap)) / combinedHeatCap;
@@ -120,8 +162,8 @@ public sealed partial class FusionSystem
     {
         if (Math.Abs(source.Temperature - receiver.Temperature) >= 0.01)
         {
-            var sourceHeatCap = source.HeatCap;
-            var receiverHeatCap = receiver.HeatCap;
+            var sourceHeatCap = GetHeatCapacity(source);
+            var receiverHeatCap = GetHeatCapacity(receiver);
             var combinedHeatCap = receiverHeatCap + sourceHeatCap;
             if (combinedHeatCap > 0.003)
                 receiver.Temperature = ((source.Temperature * sourceHeatCap) + (receiver.Temperature * receiverHeatCap)) / combinedHeatCap;
@@ -131,5 +173,39 @@ public sealed partial class FusionSystem
         {
             receiver.Atoms[kvp.Key] = receiver.Atoms.GetValueOrDefault(kvp.Key) + kvp.Value;
         }
+    }
+
+    public FusionMixture ConvertFromGasMixture(GasMixture input)
+    {
+        FusionMixture mixture = new();
+
+        foreach (var conversion in _fusionConversions)
+        {
+            // Sanity check that should stop array errors
+            if((int)conversion.Gas >= Atmospherics.TotalNumberOfGases)
+                continue;
+            
+            var gas = input.GetMoles(conversion.Gas);
+            if(gas <= 0)
+                continue;
+
+            foreach(var (atom, amount) in conversion.Products)
+            {
+                mixture.ChangeAtom(atom, amount * gas);
+            }
+        }
+
+        return mixture;
+    }
+
+    public double GetMass(FusionMixture mixture)
+    {
+        double mass = 0;
+        foreach(var (atom, mol) in mixture.Atoms)
+        {
+            mass += ((atom.Neutron * FusionConsts.MNeutron) + (Math.Abs(atom.Proton) * FusionConsts.MProton)) 
+                * FusionConsts.MolToAtom * mol;
+        }
+        return mass;
     }
 }

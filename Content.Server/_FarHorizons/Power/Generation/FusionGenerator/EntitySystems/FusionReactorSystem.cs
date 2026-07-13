@@ -1,6 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using Content.Server._FarHorizons.Fusion.Systems;
 using Content.Server._FarHorizons.Power.Generation.FusionGenerator.NodeGroup;
+using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
 using Content.Shared.NodeContainer;
 using Robust.Shared.Timing;
@@ -22,10 +23,12 @@ public sealed partial class FusionReactorSystem : EntitySystem
     {
         base.Initialize();
 
+        BatteryInitialize();
         ControllerInitialize();
         TorusInitialize();
         CoolingInitialize();
         MaserInitialize();
+        GasInletInitialize();
     }
 
     public void AddReactor(FusionReactorNodeGroup nodeGroup) => _fusionReactors.Add(nodeGroup);
@@ -49,16 +52,18 @@ public sealed partial class FusionReactorSystem : EntitySystem
         var dt = (float)(time - fusionReactor.LastProcess).TotalSeconds;
         fusionReactor.LastProcess = time;
 
-        ProcessMaser(fusionReactor, dt);
-
         ProcessCooling(fusionReactor, dt);
         ProcessMagnetics(fusionReactor, dt);
 
+        ProcessMaser(fusionReactor, dt);
+
+        ExtractPower(fusionReactor, dt);
+
+        ProcessPowerDraws(fusionReactor, dt);
+        
         _fusionSystem.React(fusionReactor.Plasma, dt);
 
         ProcessDamage(fusionReactor.Torus, fusionReactor.Plasma);
-
-        ExtractPower(fusionReactor, dt);
     }
 
     private bool TryGetReactorGroup(EntityUid uid, [NotNullWhen(true)] out FusionReactorNodeGroup? reactorNodeGroup)
@@ -75,57 +80,5 @@ public sealed partial class FusionReactorSystem : EntitySystem
 
         reactorNodeGroup = nodeGroup;
         return true;
-    }
-
-    /// <summary>
-    /// Takes energy from the <paramref name="reactorNodeGroup"/> to power a function
-    /// </summary>
-    /// <param name="reactorNodeGroup"></param>
-    /// <param name="amount"></param>
-    /// <returns>The number of joules taken from the capacitors.</returns>
-    private float DrainPower(FusionReactorNodeGroup reactorNodeGroup, float amount)
-    {
-        if (reactorNodeGroup.Batteries.Count <= 0)
-            return 0;
-
-        var dE = amount / reactorNodeGroup.Batteries.Count;
-        var output = 0f;
-        var deficit = 0f;
-
-        foreach (var (uid, comp) in reactorNodeGroup.Batteries)
-        {
-            var chargeChange = -_battery.UseCharge(uid, dE);
-            chargeChange += -_battery.UseCharge(uid, deficit);
-            deficit += dE - chargeChange;
-            output += chargeChange;
-        }
-
-        return output;
-    }
-
-    /// <summary>
-    /// Adds energy to the <paramref name="reactorNodeGroup"/>
-    /// </summary>
-    /// <param name="reactorNodeGroup"></param>
-    /// <param name="amount"></param>
-    /// <returns>The number of joules added to the capacitors.</returns>
-    private float AddPower(FusionReactorNodeGroup reactorNodeGroup, float amount)
-    {
-        if (reactorNodeGroup.Batteries.Count <= 0)
-            return 0;
-
-        var dE = amount / reactorNodeGroup.Batteries.Count;
-        var output = 0f;
-        var excess = 0f;
-
-        foreach (var (uid, comp) in reactorNodeGroup.Batteries)
-        {
-            var chargeChange = _battery.ChangeCharge(uid, dE);
-            chargeChange += _battery.ChangeCharge(uid, excess);
-            excess += dE - chargeChange;
-            output += chargeChange;
-        }
-
-        return output;
     }
 }

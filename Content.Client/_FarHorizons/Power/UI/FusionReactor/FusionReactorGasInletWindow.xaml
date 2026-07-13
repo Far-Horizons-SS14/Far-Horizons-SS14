@@ -1,0 +1,27 @@
+<controls:FancyWindow xmlns="https://spacestation14.io"
+            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+            xmlns:fui="clr-namespace:Content.Client._FarHorizons.Power.UI.FusionReactor"
+            MinSize="200 400" Title="Gas Inlet">
+    <BoxContainer Orientation="Vertical" Margin="5 5 5 5" SeparationOverride="10">
+        <controls:SwitchButton
+            Name="ToggleStatusButton"
+            HorizontalAlignment="Left"
+            Pressed="True" />
+
+        <BoxContainer Orientation="Horizontal" HorizontalExpand="True">
+            <Label Text="Power Use"/>
+            <Control MinSize="5 0" />
+            <LineEdit Name="PowerUseInput" MinSize="70 0" />
+            <Control MinSize="5 0" />
+            <Button Name="SetMaxPowerUseButton" Text="Max" />
+            <Control MinSize="5 0" />
+            <Control HorizontalExpand="True" />
+            <Button Name="SetPowerUseButton" Text="Set" HorizontalAlignment="Right" Disabled="True"/>
+        </BoxContainer>
+    
+        <PanelContainer StyleClasses="PanelDark" SetWidth="300" VerticalExpand="True" HorizontalExpand="True" Margin="5 5 5 5">
+            <fui:FusionAtomList Name="AtomList"/>
+        </PanelContainer>
+    </BoxContainer>
+</controls:FancyWindow>

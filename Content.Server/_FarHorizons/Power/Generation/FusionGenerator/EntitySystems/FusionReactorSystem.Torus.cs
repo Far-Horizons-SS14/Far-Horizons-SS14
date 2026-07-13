@@ -1,7 +1,8 @@
-using Content.Server._FarHorizons.Fusion;
+using System.Linq;
 using Content.Server._FarHorizons.Power.Generation.FusionGenerator.Components;
 using Content.Server._FarHorizons.Power.Generation.FusionGenerator.NodeGroup;
 using Content.Server.Atmos.EntitySystems;
+using Content.Shared._FarHorizons.Fusion;
 using Content.Shared.Atmos;
 using Robust.Shared.Random;
 
@@ -106,12 +107,20 @@ public sealed partial class FusionReactorSystem
             reactorNodeGroup.MagneticPressure = 1000;
             return;
         }
-        
-        // Power draw is RequestedMagneticPressure/SuperconductingCount * TorusCount/10 joules per second
-        var targetDraw = reactorNodeGroup.TorusCount * reactorNodeGroup.RequestedMagneticPressure / (reactorNodeGroup.SuperconductingCount * 10) * dt;
-        var trueDraw = DrainPower(reactorNodeGroup, (float)targetDraw);
 
-        reactorNodeGroup.MagneticPressure = reactorNodeGroup.RequestedMagneticPressure * trueDraw / targetDraw;
-        reactorNodeGroup.Plasma.Pressure = reactorNodeGroup.MagneticPressure;
+        // Power draw is RequestedMagneticPressure/SuperconductingCount * TorusCount/10 watts
+        var targetDraw = reactorNodeGroup.TorusCount * reactorNodeGroup.RequestedMagneticPressure / (reactorNodeGroup.SuperconductingCount * 10);
+        var dE = targetDraw / reactorNodeGroup.SuperconductingCount;
+        var dP = reactorNodeGroup.RequestedMagneticPressure / reactorNodeGroup.SuperconductingCount;
+
+        reactorNodeGroup.MagneticPressure = 0;
+        foreach(var (uid, magnet) in reactorNodeGroup.Magnets)
+        {
+            SetPowerDraw(uid, magnet.IsMagnet && magnet.Superconducting, dE);
+            SetOnSatisfy(uid, () => {
+                reactorNodeGroup.MagneticPressure += dP * GetPowerSatisfaction(uid);
+                reactorNodeGroup.Plasma.Pressure = reactorNodeGroup.MagneticPressure;
+                });
+        }
     }
 }

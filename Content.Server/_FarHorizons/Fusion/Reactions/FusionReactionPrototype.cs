@@ -1,4 +1,5 @@
 using Content.Server._FarHorizons.Fusion.Systems;
+using Content.Shared._FarHorizons.Fusion;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server._FarHorizons.Fusion.Reactions;
@@ -25,7 +26,7 @@ public sealed partial class FusionReactionPrototype : IPrototype
     [DataField("energy")]
     public double EnergyPerReaction = 0;
 
-    public void React(FusionMixture mixture, double deltaT)
+    public void React(FusionMixture mixture, double deltaT, FusionSystem fusionSystem)
     {
         var reactantA = mixture.Atoms[ReactantA];
         var reactantB = mixture.Atoms[ReactantB];
@@ -41,7 +42,7 @@ public sealed partial class FusionReactionPrototype : IPrototype
         // convert back to across full mixture
         reactionCount *= cm3;
 
-        var reactionMols = Math.Min(reactionCount * FusionConsts.AtomToMol, Math.Min(reactantA, reactantB));
+        var reactionMols = Math.Min(reactionCount * FusionConsts.AtomToMol * fusionSystem.MassScale, Math.Min(reactantA, reactantB));
         var realmin = FusionConsts.MinQuantity * (reactantA + reactantB);
 
         if (double.IsNaN(reactionCount) || reactionMols < realmin || reactionCount <= 0)
@@ -58,9 +59,9 @@ public sealed partial class FusionReactionPrototype : IPrototype
         if (EnergyPerReaction == 0)
             return;
 
-        var joules = EnergyPerReaction * reactionCount * FusionConsts.EVToJoule;
+        var joules = EnergyPerReaction * reactionCount * FusionConsts.EVToJoule * fusionSystem.EnergyScale;
 
-        mixture.AddJoule(joules);
+        fusionSystem.AddJoule(mixture, joules);
         mixture._debug_EnergySources[ID] = joules;
     }
 }

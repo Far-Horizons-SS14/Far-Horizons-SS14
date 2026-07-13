@@ -6,10 +6,16 @@ namespace Content.Server._FarHorizons.Power.Generation.FusionGenerator.Component
 public sealed partial class FusionReactorMaserComponent : Component
 {
     [ViewVariables(VVAccess.ReadWrite)]
-    public float PowerSetting = 0;
+    public int PowerSetting = 0;
 
-    [ViewVariables(VVAccess.ReadWrite)]
-    public float MaxPower = 1e6f;
+    [DataField]
+    public int MaxPowerSetting = 5;
+
+    [DataField]
+    public float PowerExponent = 1.75f;
+
+    [DataField]
+    public float BasePower = 1e6f;
 
     [ViewVariables(VVAccess.ReadWrite)]
     public bool InjectAntimatter = false;

@@ -8,12 +8,14 @@
     sprite: Structures/Power/Generation/ame.rsi
     state: control
   - type: FusionReactorController
+  - type: FusionReactorPowerSupply
   - type: NodeContainer
     examinable: true
     nodes:
       reactor:
-        !type:AdjacentNode
+        !type:DirectionalNode
         nodeGroupID: FusionReactor
+        nodeDirection: North
       output:
         !type:CableDeviceNode
         nodeGroupID: HVPower

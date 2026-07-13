@@ -1,31 +1,25 @@
 using System.Linq;
-using Content.Server._FarHorizons.Fusion;
 using Content.Server._FarHorizons.Fusion.Systems;
 using Content.Server._FarHorizons.Power.Generation.FusionGenerator.Components;
 using Content.Server._FarHorizons.Power.Generation.FusionGenerator.EntitySystems;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.NodeContainer.NodeGroups;
+using Content.Shared._FarHorizons.Fusion;
 using Content.Shared.Atmos;
 using Content.Shared.NodeContainer;
 using Content.Shared.NodeContainer.NodeGroups;
 using Robust.Server.GameObjects;
 using Robust.Shared.Map.Components;
-using Robust.Shared.Timing;
 
 namespace Content.Server._FarHorizons.Power.Generation.FusionGenerator.NodeGroup;
 
 [NodeGroup(NodeGroupID.FusionReactor)]
 public sealed partial class FusionReactorNodeGroup : BaseNodeGroup
 {
-    [Dependency] private readonly IGameTiming _gameTiming = default!;
     [Dependency] private readonly EntityManager _entityManager = default!;
 
-    [ViewVariables]
     private FusionReactorSystem? _fusionReactorSystem;
-    [ViewVariables]
     private AtmosphereSystem? _atmosphereSystem;
-
-    [ViewVariables]
     private FusionSystem? _fusionSystem;
 
     [ViewVariables]
@@ -151,15 +145,11 @@ public sealed partial class FusionReactorNodeGroup : BaseNodeGroup
                 MasterController = (nodeOwner, controller);
         }
 
-        void LoadBattery(EntityUid nodeOwner, FusionReactorBatteryComponent battery)
-        {
+        void LoadBattery(EntityUid nodeOwner, FusionReactorBatteryComponent battery) =>
             Batteries.Add((nodeOwner, battery));
-        }
 
-        void LoadMaser(EntityUid nodeOwner, FusionReactorMaserComponent maser)
-        {
+        void LoadMaser(EntityUid nodeOwner, FusionReactorMaserComponent maser) =>
             Masers.Add((nodeOwner, maser));
-        }
     }
 
     public override void AfterRemake(IEnumerable<IGrouping<INodeGroup?, Node>> newGroups)
@@ -167,6 +157,7 @@ public sealed partial class FusionReactorNodeGroup : BaseNodeGroup
         _fusionReactorSystem?.RemoveReactor(this);
 
         var newPlasma = new List<FusionMixture>(newGroups.Count());
+        var newStored = new List<FusionMixture>(newGroups.Count());
         var newCoolantIn = new List<GasMixture>(newGroups.Count());
         var newCoolantOut = new List<GasMixture>(newGroups.Count());
         foreach (var group in newGroups)
@@ -174,12 +165,14 @@ public sealed partial class FusionReactorNodeGroup : BaseNodeGroup
             if (group.Key is FusionReactorNodeGroup newGroup)
             {
                 newPlasma.Add(newGroup.Plasma);
+                newStored.Add(newGroup.Stored);
                 newCoolantIn.Add(newGroup.CoolantIn);
                 newCoolantOut.Add(newGroup.CoolantOut);
             }
         }
 
         _fusionSystem?.DivideInto(Plasma, newPlasma);
+        _fusionSystem?.DivideInto(Stored, newStored);
         _atmosphereSystem?.DivideInto(CoolantIn, newCoolantIn);
         _atmosphereSystem?.DivideInto(CoolantOut, newCoolantOut);
     }

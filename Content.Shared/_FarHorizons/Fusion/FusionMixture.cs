@@ -1,8 +1,10 @@
 using System.Linq;
+using System.Runtime.Serialization;
 using Content.Shared.Atmos;
+using Robust.Shared.Serialization;
 using Robust.Shared.Utility;
 
-namespace Content.Server._FarHorizons.Fusion;
+namespace Content.Shared._FarHorizons.Fusion;
 
 public sealed class FusionMixture
 {
@@ -61,38 +63,20 @@ public sealed class FusionMixture
     /// Joules of energy that, due to floating point limitations, cannot be expressed as temperature  
     /// </summary>
     [ViewVariables]
-    private double _joules;
-
-    [ViewVariables]
-    public double HeatCap => TotalMoles * FusionConsts.HeatCap;
+    public double Joules;
 
     [ViewVariables]
     public double TotalMoles => Atoms.Values.Sum();
-
-    public void AddEV(double electronVolts) => AddJoule(electronVolts * FusionConsts.EVToJoule);
-
-    public void AddJoule(double joules)
-    {
-        _joules += joules;
-        _debug_MadeJoules += joules;
-
-        // work around for floating point imprecision
-        var prevTemp = Temperature;
-        Temperature += _joules / HeatCap;
-        _joules -= (Temperature - prevTemp) * HeatCap;
-    }
 
     public void ChangeAtom(FusionAtom key, double change) => Atoms[key] = Atoms.GetValueOrDefault(key) + change;
 
     #region Debug Vars
     [ViewVariables]
-    private double _debug_MadeJoules;
-    [ViewVariables]
     public Dictionary<string, double> _debug_EnergySources = [];
     #endregion
 }
 
-[DataDefinition]
+[DataDefinition, Serializable, NetSerializable]
 public partial record struct FusionAtom
 {
     [DataField]
@@ -105,6 +89,10 @@ public partial record struct FusionAtom
         Proton = proton;
         Neutron = neutron;
     }
+
+    public readonly string Name => (Proton < 0 ? "Anti-" : "") + $"{Loc.GetString($"periodic-table-element-{Math.Abs(Proton)}")}-{Math.Abs(Proton) + Neutron}";
+
+    public override readonly string ToString() => Name;
 
     // Makes prototype loading easier
     public static implicit operator FusionAtom(Vector2i vector) => new(vector.X, vector.Y);

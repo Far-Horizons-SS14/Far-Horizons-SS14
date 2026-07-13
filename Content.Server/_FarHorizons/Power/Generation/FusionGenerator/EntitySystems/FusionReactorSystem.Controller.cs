@@ -12,23 +12,31 @@ public sealed partial class FusionReactorSystem
 
     private void ExtractPower(FusionReactorNodeGroup fusionReactor, float dt)
     {
-        if (fusionReactor.MasterController == null)
+        if (!fusionReactor.MasterController.HasValue)
             return;
 
         var (uid, comp) = fusionReactor.MasterController.Value;
 
-        var extractTarget = comp.PowerExtraction * dt;
+        var extractTarget = comp.ExtractMode switch
+        {
+            Components.FusionReactorPowerExtractType.Watts => comp.WattSetting * dt,
+            Components.FusionReactorPowerExtractType.Temperature =>
+                (float)((_fusionSystem.GetHeatCapacity(fusionReactor.Plasma) * fusionReactor.Plasma.Temperature) -
+                (_fusionSystem.GetHeatCapacity(fusionReactor.Plasma) * comp.TempSetting)),
+            _ => 0,
+        };
 
         if (extractTarget <= 0)
             return;
 
-        fusionReactor.Plasma.AddJoule(-extractTarget);
+        _fusionSystem.AddJoule(fusionReactor.Plasma, -extractTarget);
 
-        var storedEnergy = AddPower(fusionReactor, extractTarget);
+        var storedEnergy = ChangePower(fusionReactor, extractTarget);
+        // SetPowerDraw(uid, extractTarget > 0, -extractTarget / dt);
 
         if (!TryComp<PowerSupplierComponent>(uid, out var powerSupplier))
             return;
 
-        powerSupplier.MaxSupply = Math.Max(0, extractTarget - storedEnergy);
+        powerSupplier.MaxSupply = Math.Max(0, extractTarget - storedEnergy) / dt;
     }
 }

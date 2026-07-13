@@ -10,9 +10,12 @@
     key: fusion_torus
     base: solid
   - type: FusionReactorTorus
+  - type: FusionReactorPowerDraw
+    priority: 0
   - type: NodeContainer
     examinable: true
     nodes:
       reactor:
-        !type:AdjacentNode
+        !type:DirectionalNode
         nodeGroupID: FusionReactor
+        nodeDirection: Fourway

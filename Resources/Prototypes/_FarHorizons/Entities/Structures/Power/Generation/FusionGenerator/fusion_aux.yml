@@ -9,18 +9,29 @@
     layers:
       - state: freezerOn
   - type: FusionReactorCoolantPump
+  - type: FusionReactorPowerDraw
+    draw: 200
+    priority: 1
   - type: AtmosDevice
   - type: NodeContainer
     examinable: true
     nodes:
       reactor:
-        !type:AdjacentNode
+        !type:DirectionalNode
         nodeGroupID: FusionReactor
+        nodeDirection: North
       pipe:
         !type:PipeNode
         nodeGroupID: Pipe
         pipeDirection: South
         volume: 1000
+  - type: ActivatableUI
+    key: enum.FusionReactorUiKey.Key
+  - type: ActivatableUIRequiresAnchor
+  - type: UserInterface
+    interfaces:
+      enum.FusionReactorUiKey.Key:
+        type: FusionReactorCoolantPumpBoundUserInterface
 
 - type: entity
   id: FusionReactorCoolantPumpOutlet
@@ -56,8 +67,9 @@
         !type:CableTerminalPortNode
         nodeGroupID: HVPower
       reactor:
-        !type:AdjacentNode
+        !type:DirectionalNode
         nodeGroupID: FusionReactor
+        nodeDirection: North
   - type: BatteryCharger
     voltage: High
     node: input
@@ -93,6 +105,8 @@
       whitelist:
         components:
         - AmeFuelContainer
+  - type: FusionReactorPowerDraw
+    priority: 2
   - type: ContainerContainer
     containers:
       jar_slot: !type:ContainerSlot {}
@@ -102,5 +116,46 @@
     examinable: true
     nodes:
       reactor:
-        !type:AdjacentNode
+        !type:DirectionalNode
         nodeGroupID: FusionReactor
+        nodeDirection: North
+  - type: ActivatableUI
+    key: enum.FusionReactorUiKey.Key
+  - type: ActivatableUIRequiresAnchor
+  - type: UserInterface
+    interfaces:
+      enum.FusionReactorUiKey.Key:
+        type: FusionReactorMaserBoundUserInterface
+
+- type: entity
+  id: FusionReactorGasInlet
+  parent: BaseStructure
+  name: Fusion Reactor Gas Inlet
+  description: Breaks down gases into atoms for use in the fusion reactor.
+  components:
+  - type: Sprite
+    sprite: Structures/Machines/gasrecycler.rsi
+    layers:
+      - state: running
+  - type: FusionReactorGasInlet
+  - type: FusionReactorPowerDraw
+  - type: AtmosDevice
+  - type: NodeContainer
+    examinable: true
+    nodes:
+      reactor:
+        !type:DirectionalNode
+        nodeGroupID: FusionReactor
+        nodeDirection: North
+      pipe:
+        !type:PipeNode
+        nodeGroupID: Pipe
+        pipeDirection: South
+        volume: 200
+  - type: ActivatableUI
+    key: enum.FusionReactorUiKey.Key
+  - type: ActivatableUIRequiresAnchor
+  - type: UserInterface
+    interfaces:
+      enum.FusionReactorUiKey.Key:
+        type: FusionReactorGasInletBoundUserInterface

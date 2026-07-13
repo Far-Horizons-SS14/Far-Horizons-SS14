@@ -1,4 +1,4 @@
-using Content.Server._FarHorizons.Fusion;
+using Content.Shared._FarHorizons.Fusion;
 using Content.Shared.Atmos;
 
 namespace Content.Server._FarHorizons.Power.Generation.FusionGenerator.NodeGroup;
@@ -12,6 +12,9 @@ public sealed partial class FusionReactorNodeGroup
         Atoms = { { new(1, 0), 10 } }
     };
 
+    [ViewVariables(VVAccess.ReadWrite)]
+    public FusionMixture Stored = new();
+
     [ViewVariables]
     public GasMixture CoolantIn = new();
     [ViewVariables]
@@ -20,5 +23,5 @@ public sealed partial class FusionReactorNodeGroup
     [ViewVariables]
     public double MagneticPressure { get; set; } = 1000;
     [ViewVariables(VVAccess.ReadWrite)]
-    public double RequestedMagneticPressure { get; set; } = 1000;
+    public float RequestedMagneticPressure { get; set; } = 1000;
 }

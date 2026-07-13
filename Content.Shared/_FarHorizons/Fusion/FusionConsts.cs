@@ -1,6 +1,6 @@
 using Content.Shared.Atmos;
 
-namespace Content.Server._FarHorizons.Fusion;
+namespace Content.Shared._FarHorizons.Fusion;
 
 public static class FusionConsts
 {
@@ -69,7 +69,7 @@ public static class FusionConsts
     /// <summary>
     /// Minimum temperature of a plamsa, roughly the temperature of an iron plasma 
     /// </summary>
-    public const double PlasmaTemperature = 7000;
+    public const float PlasmaTemperature = 7000;
 
     /// <summary>
     /// Absolute hot

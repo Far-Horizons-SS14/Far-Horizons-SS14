@@ -1,8 +1,9 @@
-using Content.Server._FarHorizons.Power.Generation.FusionGenerator.Components;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Atmos.Piping.Components;
 using Content.Server.NodeContainer.EntitySystems;
 using Content.Server.NodeContainer.Nodes;
+using Content.Shared._FarHorizons.Power.Generation.FusionGenerator;
+using Content.Shared._FarHorizons.Power.Generation.FusionGenerator.Components;
 using Content.Shared.Atmos;
 
 namespace Content.Server._FarHorizons.Power.Generation.FusionGenerator.EntitySystems;
@@ -15,6 +16,10 @@ public sealed partial class FusionReactorSystem
     {
         SubscribeLocalEvent<FusionReactorCoolantPumpComponent, AtmosDeviceUpdateEvent>(OnCoolantPumpUpdate);
         SubscribeLocalEvent<FusionReactorCoolantPumpComponent, GasAnalyzerScanEvent>(OnCoolantPumpAnalyze);
+
+        SubscribeLocalEvent<FusionReactorCoolantPumpComponent, FusionReactorCoolantPumpSetEnableMessage>(OnCoolantPumpSetEnableMessage);
+        SubscribeLocalEvent<FusionReactorCoolantPumpComponent, FusionReactorCoolantPumpSetFlowMessage>(OnCoolantPumpSetFlowMessage);
+        SubscribeLocalEvent<FusionReactorCoolantPumpComponent, BoundUIOpenedEvent>(OnCoolantPumpUIOpened);
     }
 
     private void OnCoolantPumpAnalyze(EntityUid uid, FusionReactorCoolantPumpComponent comp, ref GasAnalyzerScanEvent args)
@@ -55,6 +60,10 @@ public sealed partial class FusionReactorSystem
 
     private void OnCoolantPumpUpdate(EntityUid uid, FusionReactorCoolantPumpComponent comp, ref AtmosDeviceUpdateEvent args)
     {
+        SetPowerDraw(uid, comp.Enabled);
+        if (!comp.Enabled)
+            return;
+
         if (!TryGetReactorGroup(uid, out var fusionReactor))
             return;
 
@@ -64,7 +73,12 @@ public sealed partial class FusionReactorSystem
         var sourceMix = comp.IsInlet ? pipe.Air : fusionReactor.CoolantOut;
         var receiverMix = comp.IsInlet ? fusionReactor.CoolantIn : pipe.Air;
 
-        var transferVolume = CalculateTransferVolume(comp.FlowRate, sourceMix, receiverMix, args.dt);
+        var satisfaction = GetPowerSatisfaction(uid);
+
+        if (satisfaction <= 0)
+            return;
+
+        var transferVolume = CalculateTransferVolume(comp.FlowRate * satisfaction, sourceMix, receiverMix, args.dt);
         var transferMix = sourceMix.RemoveVolume(transferVolume);
 
         _atmosphereSystem.Merge(receiverMix, transferMix);
@@ -78,5 +92,16 @@ public sealed partial class FusionReactorSystem
         var molesSpaceLeft = ((Atmospherics.MaxOutputPressure * 3) - outlet.Pressure) * outlet.Volume / (outlet.Temperature * Atmospherics.R);
         var actualMolesTransfered = Math.Clamp(transferMoles, 0, Math.Max(0, molesSpaceLeft));
         return Math.Max(0, actualMolesTransfered * inlet.Temperature * Atmospherics.R / inlet.Pressure);
+    }
+
+    private void OnCoolantPumpSetEnableMessage(EntityUid uid, FusionReactorCoolantPumpComponent comp, ref FusionReactorCoolantPumpSetEnableMessage args) => 
+        comp.Enabled = args.Enable;
+
+    private void OnCoolantPumpSetFlowMessage(EntityUid uid, FusionReactorCoolantPumpComponent comp, ref FusionReactorCoolantPumpSetFlowMessage args) => 
+        comp.FlowRate = args.FlowRate;
+
+    private void OnCoolantPumpUIOpened(EntityUid uid, FusionReactorCoolantPumpComponent comp, ref BoundUIOpenedEvent args)
+    {
+
     }
 }
