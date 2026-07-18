@@ -30,6 +30,7 @@ public sealed class StationPowerTests
         "FHOasis",
         "FHOmega",
         "FHCore",
+        "FHUnity",
         // Far Horizons end
     ];
 
