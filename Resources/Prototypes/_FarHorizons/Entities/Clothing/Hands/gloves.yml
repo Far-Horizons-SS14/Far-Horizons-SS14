@@ -229,6 +229,8 @@
 
 #region ## NeoSol ##
 
+
+#region Command
 - type: entity
   parent: ClothingHandsBase
   id: ClothingHandsGlovesHopSyndi
@@ -251,3 +253,24 @@
     limbs:
       HandRight: {}
       HandLeft: {}
+
+#region Service
+- type: entity
+  parent: ClothingHandsGlovesJanitor
+  id: ClothingHandsGlovesJanitorNS
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Hands/Gloves/NeoSol/janitor.rsi 
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Hands/Gloves/NeoSol/janitor.rsi 
+
+- type: entity
+  parent: ClothingHandsGlovesLeather
+  id: ClothingHandsGlovesLeatherNS
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Hands/Gloves/NeoSol/leather.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Hands/Gloves/NeoSol/leather.rsi

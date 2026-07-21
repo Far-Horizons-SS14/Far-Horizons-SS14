@@ -74,7 +74,7 @@
 - type: entity
   parent: [ClothingHeadset, BaseCommandContraband]
   id: ClothingHeadsetCommandSyndi
-  name: Command Headset
+  name: Executive Headset
   suffix: NS
   description: A headset with a commanding channel.
   components:
@@ -232,6 +232,40 @@
     sound:
       path: /Audio/_Starlight/Effects/Radio/bso.ogg
 
+- type: entity
+  parent: [ClothingHeadsetScience, BaseCommandContraband]
+  id: ClothingHeadsetRDNS
+  name: Epistemics Provost Headset 
+  description: Lamarr used to love chewing on this...
+  suffix: NS
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeySyndiSci
+      - EncryptionKeySyndiCommand
+      - EncryptionKeySyndiCommon
+  - type: RadioChime
+    sound:
+      path: /Audio/_Starlight/Effects/Radio/rd.ogg
+
+- type: entity
+  parent: [ClothingHeadsetAlt, BaseCommandContraband]
+  id: ClothingHeadsetPMNS
+  name: Executive Over-Ear Headset
+  suffix: NS
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeySyndiService
+      - EncryptionKeySyndiCommand
+      - EncryptionKeySyndiCommon
+  - type: Sprite
+    sprite: Clothing/Ears/Headsets/command.rsi
+  - type: Clothing
+    sprite: Clothing/Ears/Headsets/command.rsi
+
 #region Engineering
 
 - type: entity
@@ -307,6 +341,59 @@
   - type: RadioChime
     sound:
       path: /Audio/_Starlight/Effects/Radio/cmo.ogg
+
+
+#region Science
+- type: entity
+  parent: ClothingHeadset
+  id: ClothingHeadsetScienceNS
+  name: Science Headset 
+  description: A sciency headset. Like usual.
+  suffix: NS
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeySyndiSci
+      - EncryptionKeySyndiCommon
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Ears/Headsets/science.rsi 
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Ears/Headsets/science.rsi 
+
+- type: entity
+  parent: ClothingHeadsetScience
+  id: ClothingHeadsetMedicalScienceNS
+  name: Medical Research Headset 
+  description: A headset that is a result of the mating between medical and science.
+  suffix: NS
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeySyndiMedSci
+      - EncryptionKeySyndiCommon
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Ears/Headsets/medicalscience.rsi 
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Ears/Headsets/medicalscience.rsi 
+
+- type: entity
+  parent: ClothingHeadsetScience
+  id: ClothingHeadsetRoboticsNS
+  name: Robotics Headset 
+  description: Made specifically for the roboticists, who cannot decide between departments.
+  suffix: NS
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeySyndiSciRobo
+      - EncryptionKeySyndiCommon
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Ears/Headsets/robotics.rsi 
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Ears/Headsets/robotics.rsi 
 
 #region Security
 
@@ -434,3 +521,31 @@
   - type: RadioChime
     sound:
       path: /Audio/_Starlight/Effects/Radio/brigmedic.ogg
+
+#region Service
+- type: entity
+  parent: ClothingHeadsetService
+  id: ClothingHeadsetServiceNS
+  suffix: NS
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeySyndiService
+      - EncryptionKeySyndiCommon
+  - type: Sprite
+    sprite: Clothing/Ears/Headsets/service.rsi
+  - type: Clothing
+    sprite: Clothing/Ears/Headsets/service.rsi
+
+- type: entity
+  parent: ClothingHeadset
+  id: ClothingHeadsetAssistantNS
+  name: Assistant Headset 
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeySyndiCommon
+  - type: Sprite
+    sprite: Clothing/Ears/Headsets/service.rsi

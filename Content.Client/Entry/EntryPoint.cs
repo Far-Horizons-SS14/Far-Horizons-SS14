@@ -143,6 +143,7 @@ namespace Content.Client.Entry
             _prototypeManager.RegisterIgnore("codewordGenerator");
             _prototypeManager.RegisterIgnore("codewordFaction");
             _prototypeManager.RegisterIgnore("salvageMissionObjectiveHandler"); // Far Horizons
+            _prototypeManager.RegisterIgnore("bossMechanicsSheet"); // Far Horizons
             
             _prototypeManager.RegisterIgnore("onSignActions"); //🌟Starlight🌟
 

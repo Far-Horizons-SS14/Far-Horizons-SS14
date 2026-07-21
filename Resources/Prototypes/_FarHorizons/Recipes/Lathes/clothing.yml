@@ -33,6 +33,11 @@
   id: ClothingHeadHatBeretVirologist
   result: ClothingHeadHatBeretVirologist
 
+- type: latheRecipe
+  parent: BaseHatRecipe
+  id: ClothingHeadRancherHat
+  result: ClothingHeadRancherHat
+
 ## Non-Command Uniforms
 
 - type: latheRecipe
@@ -49,6 +54,12 @@
 
 #region ## NeoSol ##
 
+
+
+
+
+
+#region Command
 ## Command Hats
 - type: latheRecipe
   parent: BaseCommandHatRecipe
@@ -187,6 +198,7 @@
   id: ClothingOuterCoatHoSTrenchSyndi
   result: ClothingOuterCoatHoSTrenchSyndi
 
+#region Security
 
 ## Overwatch Hats 
 
@@ -348,6 +360,7 @@
   id: ClothingNeckTieDetSyndi
   result: ClothingNeckTieDetSyndi
 
+#region Medical
 
 ## Medical Hats 
 
@@ -448,6 +461,66 @@
   id: ClothingUniformJumpskirtVirologySyndi
   result: ClothingUniformJumpskirtVirologySyndi
 
+#region Service
+#Service Hats
+- type: latheRecipe
+  parent: BaseHatRecipe
+  id: ClothingHeadRancherHatNS
+  result: ClothingHeadRancherHatNS
+
+#Service Masks
+- type: latheRecipe
+  parent: BaseHatRecipe
+  id: ClothingMaskJanitorNS
+  result: ClothingMaskJanitorNS
+
+#Service Jumpsuits
+- type: latheRecipe
+  parent: BaseJumpsuitRecipe
+  id: ClothingUniformJumpsuitHydroponicsNS
+  result: ClothingUniformJumpsuitHydroponicsNS
+
+- type: latheRecipe
+  parent: BaseJumpsuitRecipe
+  id: ClothingUniformJumpsuitOverallNS
+  result: ClothingUniformJumpsuitOverallNS
+
+- type: latheRecipe
+  parent: BaseJumpsuitRecipe
+  id: ClothingUniformJumpskirtOveralls
+  result: ClothingUniformJumpskirtOveralls
+
+- type: latheRecipe
+  parent: BaseJumpsuitRecipe
+  id: ClothingUniformJumpsuitChefNS
+  result: ClothingUniformJumpsuitChefNS
+
+- type: latheRecipe
+  parent: BaseJumpsuitRecipe
+  id: ClothingUniformJumpsuitJanitorNS
+  result: ClothingUniformJumpsuitJanitorNS
+
+- type: latheRecipe
+  parent: BaseJumpsuitRecipe
+  id: ClothingUniformJumpskirtHydroponicsNS
+  result: ClothingUniformJumpskirtHydroponicsNS
+
+- type: latheRecipe
+  parent: BaseJumpsuitRecipe
+  id: ClothingUniformJumpskirtOverallsNS
+  result: ClothingUniformJumpskirtOverallsNS
+
+- type: latheRecipe
+  parent: BaseJumpsuitRecipe
+  id: ClothingUniformJumpskirtChefNS
+  result: ClothingUniformJumpskirtChefNS  
+
+- type: latheRecipe
+  parent: BaseJumpsuitRecipe
+  id: ClothingUniformJumpskirtJanitorNS
+  result: ClothingUniformJumpskirtJanitorNS  
+
+#region Science
 # Science Jumpsuits
 
 - type: latheRecipe
@@ -479,7 +552,6 @@
   parent: BaseJumpsuitRecipe
   id: ClothingUniformJumpskirtScientistFormalSyndi
   result: ClothingUniformJumpskirtScientistFormalSyndi
-
 
 - type: latheRecipe
   parent: BaseJumpsuitRecipe

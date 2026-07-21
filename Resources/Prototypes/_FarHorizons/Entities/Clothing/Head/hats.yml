@@ -166,6 +166,24 @@
     tags:
     - PetWearable
     - CorgiWearable
+  
+#region Service
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadRancherHat
+  name: Rancher Hat
+  description: A fancy hat for hot days!
+  suffix: NT
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Head/Hats/botanist_rancher_hat.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Head/Hats/botanist_rancher_hat.rsi
+  - type: Tag
+    tags:
+    - PetWearable
+    - CorgiWearable
+    - WhitelistChameleon
 
 #region ## NeoSol ##
 
@@ -642,3 +660,13 @@
     - PetWearable
     - CorgiWearable
 
+#region Service
+- type: entity
+  parent: ClothingHeadRancherHat
+  id: ClothingHeadRancherHatNS
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Head/Hats/NeoSol/botanist_rancher_hat.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Head/Hats/NeoSol/botanist_rancher_hat.rsi

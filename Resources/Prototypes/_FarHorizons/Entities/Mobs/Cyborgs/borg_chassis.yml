@@ -1,0 +1,54 @@
+- type: entity
+  id: BorgChassisGenericNS
+  parent: BorgChassisSelectableNS
+  name: Generic Cyborg 
+  suffix: NS, Type Picked
+  components:
+  - type: BorgSwitchableType
+    selectedBorgType: genericNS
+
+- type: entity
+  id: BorgChassisEngineerNS
+  parent: BorgChassisSelectableNS
+  name: Engineer Cyborg
+  suffix: NS
+  components:
+  - type: BorgSwitchableType
+    selectedBorgType: engineeringNS
+
+- type: entity
+  id: BorgChassisJanitorNS
+  parent: BorgChassisSelectableNS
+  name: Janitor Cyborg 
+  suffix: NS
+  components:
+  - type: BorgSwitchableType
+    selectedBorgType: janitorNS
+
+- type: entity
+  id: BorgChassisMedicalNS
+  parent: BorgChassisSelectableNS
+  name: Medical Cyborg 
+  suffix: NS
+  components:
+  - type: BorgSwitchableType
+    selectedBorgType: medicalNS
+
+- type: entity
+  id: BorgChassisServiceNS
+  parent: BorgChassisSelectableNS
+  name: Service Cyborg 
+  suffix: NS
+  components:
+  - type: BorgSwitchableType
+    selectedBorgType: serviceNS
+
+- type: entity
+  id: BorgChassisPurrfusNS
+  parent: BorgChassisSelectableNS
+  name: Purrfus Cyborg
+  suffix: NS
+  components:
+  - type: TextToSpeech
+  - type: BorgSwitchableType
+    selectedBorgType: purrfus

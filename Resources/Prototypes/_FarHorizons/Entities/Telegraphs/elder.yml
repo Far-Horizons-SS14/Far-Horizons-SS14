@@ -1,0 +1,1213 @@
+#region Flourish1
+# 3 variations of the same attack with different patterns. "Don't stay in red" type mechanic
+- type: entity
+  id: TelegraphBossElderFlourish1
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: TelegraphedAttack
+      telegraphs:
+        - effectDelay: 1.0
+          tiles:
+            - 0, 1
+            - 0, -1
+            - 1, 0
+            - -1, 0
+            - 0, 5
+            - 0, -5
+            - 5, 0
+            - -5, 0
+            - 5, 5
+            - -5, -5
+            - 5, -5
+            - -5, 5
+        - displayDelay: 0.7
+          effectDelay: 1.7
+          tiles:
+            - 2, 2
+            - 2, -2
+            - -2, 2
+            - -2, -2
+            - 1, 2
+            - -1, 2
+            - 1, -2
+            - -1, -2
+            - 2, 1
+            - -2, 1
+            - 2, -1
+            - -2, -1
+        - displayDelay: 1.4
+          effectDelay: 2.23
+          tiles:
+            - 3, 1
+            - 1, 3
+            - -3, 1
+            - -1, 3
+            - 3, -1
+            - 1, -3
+            - -3, -1
+            - -1, -3
+            - 4, 2
+            - 2, 4
+            - -4, 2
+            - -2, 4
+            - 4, -2
+            - 2, -4
+            - -4, -2
+            - -2, -4
+        - displayDelay: 1.9
+          effectDelay: 2.7
+          tiles:
+            - -5, 3
+            - -4, 3
+            - -3, 3
+            - -2, 3
+            - -1, 3
+            - 0, 3
+            - 1, 3
+            - 2, 3
+            - 3, 3
+            - 4, 3
+            - 5, 3
+            - -5, -3
+            - -4, -3
+            - -3, -3
+            - -2, -3
+            - -1, -3
+            - 0, -3
+            - 1, -3
+            - 2, -3
+            - 3, -3
+            - 4, -3
+            - 5, -3
+        - displayDelay: 2.4
+          effectDelay: 3.3
+          tiles:
+            - 0, 0
+            - 4, 5
+            - -4, 5
+            - 4, -5
+            - -4, -5
+            - 5, 4
+            - -5, 4
+            - 5, -4
+            - -5, -4
+            - 3, 5
+            - -3, 5
+            - 3, -5
+            - -3, -5
+            - 5, 3
+            - -5, 3
+            - 5, -3
+            - -5, -3
+            - 1, 1
+            - -1, -1
+            - 1, -1
+            - -1, 1
+    - type: TelegraphDealDamageOnTrigger
+      damage:
+        types:
+          Slash: 5
+          Blunt: 20
+          Cold: 10
+          Structural: 100
+    - type: TelegraphSpawnVFXEntityOnTrigger
+      entity: EffectGravityPulse
+    - type: TelegraphPlaySoundOnTrigger
+      sound:
+        path: /Audio/Items/Defib/defib_zap.ogg
+
+- type: entity
+  id: TelegraphBossElderFlourish2
+  parent: TelegraphBossElderFlourish1
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: TelegraphedAttack
+      telegraphs:
+        - effectDelay: 1
+          tiles:
+            - 0, 0
+            - 1, 1
+            - -1, -1
+            - 1, -1
+            - -1, 1
+            - 2, 2
+            - -2, -2
+            - 2, -2
+            - -2, 2
+            - 0, 2
+            - 0, -2
+            - 2, 0
+            - -2, 0
+        - displayDelay: 0.7
+          effectDelay: 1.7
+          tiles:
+            - 0, 3
+            - 0, 4
+            - 0, -3
+            - 0, -4
+            - 3, 0
+            - 4, 0
+            - -3, 0
+            - -4, 0
+            - 4, 4
+            - -4, -4
+            - 4, -4
+            - -4, 4
+            - 3, 1
+            - -3, -1
+            - 1, 3
+            - -1, -3
+        - displayDelay: 1.4
+          effectDelay: 2.2
+          tiles:
+            - -5, 5
+            - -5, -5
+            - 5, 5
+            - 5, -5
+            - -5, 0
+            - 5, 0
+            - -5, 1
+            - -5, -1
+            - 5, 1
+            - 5, -1
+            - -3, 3
+            - -3, -3
+            - 3, 3
+            - 3, -3
+            - 1, 5
+            - -1, 5
+            - 1, -5
+            - -1, -5
+        - displayDelay: 1.9
+          effectDelay: 2.8
+          tiles:
+            - -2, 3
+            - -2, 4
+            - -2, 5
+            - 2, 3
+            - 2, 4
+            - 2, 5
+            - -2, -3
+            - -2, -4
+            - -2, -5
+            - 2, -3
+            - 2, -4
+            - 2, -5
+            - -4, 2
+            - -4, -2
+            - 4, 2
+            - 4, -2
+            - 0, 5
+            - 0, -5
+        - displayDelay: 2.4
+          effectDelay: 3.3
+          tiles:
+            - 0, 6
+            - 0, -6
+            - 6, 0
+            - -6, 0
+            - 3, 6
+            - -3, 6
+            - 3, -6
+            - -3, -6
+            - 6, 3
+            - 6, -3
+            - -6, 3
+            - -6, -3
+            - 1, 2
+            - -1, 2
+            - 1, -2
+            - -1, -2
+            - 2, 1
+            - -2, 1
+            - 2, -1
+            - -2, -1
+            - 4, 5
+            - -4, 5
+            - 4, -5
+            - -4, -5
+            - 5, 4
+            - -5, 4
+            - 5, -4
+            - -5, -4
+
+- type: entity
+  id: TelegraphBossElderFlourish3
+  parent: TelegraphBossElderFlourish1
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: TelegraphedAttack
+      telegraphs:
+        - effectDelay: 1.0
+          tiles:
+            - -5, -5
+            - -5, -4
+            - -5, -3
+            - -5, -2
+            - -5, -1
+            - -5, 0
+            - -5, 1
+            - -5, 2
+            - -5, 3
+            - -5, 4
+            - -5, 5
+            - 5, -5
+            - 5, -4
+            - 5, -3
+            - 5, -2
+            - 5, -1
+            - 5, 0
+            - 5, 1
+            - 5, 2
+            - 5, 3
+            - 5, 4
+            - 5, 5
+            - -4, 5
+            - -3, 5
+            - -2, 5
+            - -1, 5
+            - 0, 5
+            - 1, 5
+            - 2, 5
+            - 3, 5
+            - 4, 5
+            - -4, -5
+            - -3, -5
+            - -2, -5
+            - -1, -5
+            - 0, -5
+            - 1, -5
+            - 2, -5
+            - 3, -5
+            - 4, -5
+            - -4, 4
+            - 4, -4
+        - displayDelay: 0.7
+          effectDelay: 1.7
+          tiles:
+            - -1, 0
+            - -2, 1
+            - -3, 1
+            - -4, 2
+            - -4, 3
+            - 1, 0
+            - 2, -1
+            - 3, -1
+            - 4, -2
+            - 4, -3
+            - 0, 1
+            - -1, 2
+            - -1, 3
+            - -2, 4
+            - 0, -1
+            - 1, -2
+            - 1, -3
+            - 2, -4
+        - displayDelay: 1.4
+          effectDelay: 2.2
+          tiles:
+            - -3, -3
+            - -3, -1
+            - -3, 0
+            - -3, 2
+            - -2, -3
+            - -2, -1
+            - -2, 2
+            - -1, -2
+            - -1, 1
+            - 3, 3
+            - 3, 1
+            - 3, 0
+            - 3, -2
+            - 2, 3
+            - 2, 1
+            - 2, -2
+            - 1, 2
+            - 1, -1
+        - displayDelay: 1.9
+          effectDelay: 2.7
+          tiles:
+            - -1, -1
+            - 0, -1
+            - 1, -1
+            - -1, 0
+            - 0, 0
+            - 1, 0
+            - -1, 1
+            - 0, 1
+            - 1, 1
+            - -3, 4
+            - -4, 1
+            - 3, -4
+            - 4, -1
+            - 2, 2
+            - -2, -2
+            - 2, -2
+            - -2, 2
+        - displayDelay: 2.4
+          effectDelay: 3.3
+          tiles:
+            - -4, -4
+            - -4, -2
+            - -4, 0
+            - -4, 4
+            - -3, -2
+            - -3, 3
+            - -2, -4
+            - -2, 0
+            - -2, 3
+            - -1, -4
+            - -1, 4
+            - 0, -4
+            - 0, -3
+            - 0, 2
+            - 0, 3
+            - 0, 4
+            - 1, -4
+            - 1, 3
+            - 2, -3
+            - 2, 0
+            - 2, 4
+            - 3, -3
+            - 3, 2
+            - 4, -4
+            - 4, 0
+            - 4, 2
+            - 4, 4
+
+#region Warning Shot
+# Attack that targets everyone, places a utility telegraph on them (organge)
+# when that runs out, same shape is placed under character's feet which will first damage, then leave lingering damaging field
+- type: entity
+  id: TelegraphBossElderWarningShotPre
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: TelegraphedAttack
+      kind: Utility
+      telegraphs:
+        - effectDelay: 2
+          tiles: &warning_shot_tiles
+            - -2, 0
+            - -1, -1
+            - -1, 0
+            - -1, 1
+            - 0, -2
+            - 0, -1
+            - 0, 0
+            - 0, 1
+            - 0, 2
+            - 1, -1
+            - 1, 0
+            - 1, 1
+            - 2, 0
+    - type: TelegraphFollowupAttackOnTrigger
+      entity: TelegraphBossElderWarningShotMain
+
+- type: entity
+  id: TelegraphBossElderWarningShotMain
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: TelegraphedAttack
+      telegraphs:
+        - effectDelay: 1
+          tiles: *warning_shot_tiles
+    - type: TelegraphDealDamageOnTrigger
+      damage:
+        types:
+          Slash: 5
+          Blunt: 15
+          Cold: 5
+          Structural: 100
+    - type: TelegraphFollowupAttackOnTrigger
+      entity: TelegraphBossElderWarningShotLingering
+    - type: TelegraphSpawnVFXEntityOnTrigger
+      entity: EffectGravityPulse
+    - type: TelegraphPlaySoundOnTrigger
+      sound:
+        path: /Audio/Items/Defib/defib_zap.ogg
+
+- type: entity
+  id: TelegraphBossElderWarningShotLingering
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: TelegraphedAttack
+      continuous: true
+      telegraphs:
+        - effectDelay: 10
+          tiles: *warning_shot_tiles
+    - type: TelegraphDealDamageOnTrigger
+      damage:
+        types:
+          Blunt: 5
+          Cold: 5
+          Structural: 10
+    - type: Sprite
+      sprite: _FarHorizons/VFX/void_flame.rsi
+      layers:
+        - state: void_flame
+          shader: unshaded
+      scale: 2, 2
+    - type: AmbientSound
+      enabled: true
+      volume: 0
+      range: 15
+      sound:
+        path: /Audio/Items/Flare/flare_burn.ogg
+        params:
+          loop: true
+
+#region Single Out
+# Selects furthest target and create damage around them, then on top of them
+- type: entity
+  id: TelegraphBossElderSingleOut
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: TelegraphedAttack
+      telegraphs:
+        - effectDelay: 1.5
+          tiles:
+            - -4, -4
+            - -4, -1
+            - -4, 0
+            - -4, 1
+            - -4, 4
+            - -3, -3
+            - -3, -2
+            - -3, -1
+            - -3, 0
+            - -3, 1
+            - -3, 2
+            - -3, 3
+            - -2, -3
+            - -2, -2
+            - -2, 2
+            - -2, 3
+            - -1, -4
+            - -1, -3
+            - -1, 3
+            - -1, 4
+            - 0, -4
+            - 0, -3
+            - 0, 3
+            - 0, 4
+            - 1, -4
+            - 1, -3
+            - 1, 3
+            - 1, 4
+            - 2, -3
+            - 2, -2
+            - 2, 2
+            - 2, 3
+            - 3, -3
+            - 3, -2
+            - 3, -1
+            - 3, 0
+            - 3, 1
+            - 3, 2
+            - 3, 3
+            - 4, -4
+            - 4, -1
+            - 4, 0
+            - 4, 1
+            - 4, 4
+        - displayDelay: 1
+          effectDelay: 2.5
+          tiles:
+            - -2, 0
+            - -1, -1
+            - -1, 0
+            - -1, 1
+            - 0, -2
+            - 0, -1
+            - 0, 0
+            - 0, 1
+            - 0, 2
+            - 1, -1
+            - 1, 0
+            - 1, 1
+            - 2, 0
+    - type: TelegraphDealDamageOnTrigger
+      damage:
+        types:
+          Slash: 5
+          Blunt: 10
+          Cold: 10
+          Structural: 50
+    - type: TelegraphSpawnVFXEntityOnTrigger
+      entity: EffectGravityPulse
+    - type: TelegraphPlaySoundOnTrigger
+      sound:
+        path: /Audio/Items/Defib/defib_zap.ogg
+
+#region Healing Decoy
+# Creates large damaging area, when that finishes - boss is teleported randomly within that area, and creats 3 clones
+# As long as any clones are active - boss heals passively. When clone takes damage - it explodes and heals the boss
+# When the boss takes damage - all decoys explode but don't heal the boss
+# Boss' AI is frozen while it heals
+- type: entity
+  id: TelegraphBossElderHealingDecoy
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: TelegraphedAttack
+      telegraphs:
+        - effectDelay: 5
+          tiles:
+            - -10, -2
+            - -10, -1
+            - -10, 0
+            - -10, 1
+            - -10, 2
+            - -9, -3
+            - -9, -2
+            - -9, -1
+            - -9, 0
+            - -9, 1
+            - -9, 2
+            - -9, 3
+            - -8, -4
+            - -8, -3
+            - -8, -2
+            - -8, -1
+            - -8, 0
+            - -8, 1
+            - -8, 2
+            - -8, 3
+            - -8, 4
+            - -7, -5
+            - -7, -4
+            - -7, -3
+            - -7, -2
+            - -7, -1
+            - -7, 0
+            - -7, 1
+            - -7, 2
+            - -7, 3
+            - -7, 4
+            - -7, 5
+            - -6, -6
+            - -6, -5
+            - -6, -4
+            - -6, -3
+            - -6, -2
+            - -6, -1
+            - -6, 0
+            - -6, 1
+            - -6, 2
+            - -6, 3
+            - -6, 4
+            - -6, 5
+            - -6, 6
+            - -5, -7
+            - -5, -6
+            - -5, -5
+            - -5, -4
+            - -5, -3
+            - -5, -2
+            - -5, -1
+            - -5, 0
+            - -5, 1
+            - -5, 2
+            - -5, 3
+            - -5, 4
+            - -5, 5
+            - -5, 6
+            - -5, 7
+            - -4, -8
+            - -4, -7
+            - -4, -6
+            - -4, -5
+            - -4, -4
+            - -4, -3
+            - -4, -2
+            - -4, -1
+            - -4, 0
+            - -4, 1
+            - -4, 2
+            - -4, 3
+            - -4, 4
+            - -4, 5
+            - -4, 6
+            - -4, 7
+            - -4, 8
+            - -3, -9
+            - -3, -8
+            - -3, -7
+            - -3, -6
+            - -3, -5
+            - -3, -4
+            - -3, -3
+            - -3, -2
+            - -3, -1
+            - -3, 0
+            - -3, 1
+            - -3, 2
+            - -3, 3
+            - -3, 4
+            - -3, 5
+            - -3, 6
+            - -3, 7
+            - -3, 8
+            - -3, 9
+            - -2, -10
+            - -2, -9
+            - -2, -8
+            - -2, -7
+            - -2, -6
+            - -2, -5
+            - -2, -4
+            - -2, -3
+            - -2, -2
+            - -2, -1
+            - -2, 0
+            - -2, 1
+            - -2, 2
+            - -2, 3
+            - -2, 4
+            - -2, 5
+            - -2, 6
+            - -2, 7
+            - -2, 8
+            - -2, 9
+            - -2, 10
+            - -1, -10
+            - -1, -9
+            - -1, -8
+            - -1, -7
+            - -1, -6
+            - -1, -5
+            - -1, -4
+            - -1, -3
+            - -1, -2
+            - -1, -1
+            - -1, 0
+            - -1, 1
+            - -1, 2
+            - -1, 3
+            - -1, 4
+            - -1, 5
+            - -1, 6
+            - -1, 7
+            - -1, 8
+            - -1, 9
+            - -1, 10
+            - 0, -10
+            - 0, -9
+            - 0, -8
+            - 0, -7
+            - 0, -6
+            - 0, -5
+            - 0, -4
+            - 0, -3
+            - 0, -2
+            - 0, -1
+            - 0, 0
+            - 0, 1
+            - 0, 2
+            - 0, 3
+            - 0, 4
+            - 0, 5
+            - 0, 6
+            - 0, 7
+            - 0, 8
+            - 0, 9
+            - 0, 10
+            - 1, -10
+            - 1, -9
+            - 1, -8
+            - 1, -7
+            - 1, -6
+            - 1, -5
+            - 1, -4
+            - 1, -3
+            - 1, -2
+            - 1, -1
+            - 1, 0
+            - 1, 1
+            - 1, 2
+            - 1, 3
+            - 1, 4
+            - 1, 5
+            - 1, 6
+            - 1, 7
+            - 1, 8
+            - 1, 9
+            - 1, 10
+            - 2, -10
+            - 2, -9
+            - 2, -8
+            - 2, -7
+            - 2, -6
+            - 2, -5
+            - 2, -4
+            - 2, -3
+            - 2, -2
+            - 2, -1
+            - 2, 0
+            - 2, 1
+            - 2, 2
+            - 2, 3
+            - 2, 4
+            - 2, 5
+            - 2, 6
+            - 2, 7
+            - 2, 8
+            - 2, 9
+            - 2, 10
+            - 3, -9
+            - 3, -8
+            - 3, -7
+            - 3, -6
+            - 3, -5
+            - 3, -4
+            - 3, -3
+            - 3, -2
+            - 3, -1
+            - 3, 0
+            - 3, 1
+            - 3, 2
+            - 3, 3
+            - 3, 4
+            - 3, 5
+            - 3, 6
+            - 3, 7
+            - 3, 8
+            - 3, 9
+            - 4, -8
+            - 4, -7
+            - 4, -6
+            - 4, -5
+            - 4, -4
+            - 4, -3
+            - 4, -2
+            - 4, -1
+            - 4, 0
+            - 4, 1
+            - 4, 2
+            - 4, 3
+            - 4, 4
+            - 4, 5
+            - 4, 6
+            - 4, 7
+            - 4, 8
+            - 5, -7
+            - 5, -6
+            - 5, -5
+            - 5, -4
+            - 5, -3
+            - 5, -2
+            - 5, -1
+            - 5, 0
+            - 5, 1
+            - 5, 2
+            - 5, 3
+            - 5, 4
+            - 5, 5
+            - 5, 6
+            - 5, 7
+            - 6, -6
+            - 6, -5
+            - 6, -4
+            - 6, -3
+            - 6, -2
+            - 6, -1
+            - 6, 0
+            - 6, 1
+            - 6, 2
+            - 6, 3
+            - 6, 4
+            - 6, 5
+            - 6, 6
+            - 7, -5
+            - 7, -4
+            - 7, -3
+            - 7, -2
+            - 7, -1
+            - 7, 0
+            - 7, 1
+            - 7, 2
+            - 7, 3
+            - 7, 4
+            - 7, 5
+            - 8, -4
+            - 8, -3
+            - 8, -2
+            - 8, -1
+            - 8, 0
+            - 8, 1
+            - 8, 2
+            - 8, 3
+            - 8, 4
+            - 9, -3
+            - 9, -2
+            - 9, -1
+            - 9, 0
+            - 9, 1
+            - 9, 2
+            - 9, 3
+            - 10, -2
+            - 10, -1
+            - 10, 0
+            - 10, 1
+            - 10, 2
+    - type: TelegraphDealDamageOnTrigger
+      damage:
+        types:
+          Slash: 125
+          Cold: 75
+          Structural: 200
+    - type: TelegraphElderBossHealingDecoy
+      decoy: MobElderDecoy
+      numDecoys: 3
+      passiveHealingRate: 1
+      passiveHealing:
+        types:
+          Piercing: -25
+          Slash: -25
+          Blunt: -25
+    - type: TelegraphSpawnVFXEntityOnTrigger
+      entity: EffectBossElderInnerCircle
+      single: true
+    - type: TelegraphPlaySoundOnTrigger
+      sound:
+        path: /Audio/Magic/blink.ogg
+
+- type: entity
+  id: TelegraphBossElderDecoyExplosion
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: TelegraphedAttack
+      telegraphs:
+        - effectDelay: 5
+          tiles:
+            - 0, 0
+            - -1, -1
+            - -1, 0
+            - -1, 1
+            - 0, -1
+            - 0, 1
+            - 1, -1
+            - 1, 0
+            - 1, 1
+            - -2, -1
+            - -2, 0
+            - -2, 1
+            - -1, -2
+            - -1, 2
+            - 0, -2
+            - 0, 2
+            - 1, -2
+            - 1, 2
+            - 2, -1
+            - 2, 0
+            - 2, 1
+            - -3, -1
+            - -3, 0
+            - -3, 1
+            - -2, -2
+            - -2, 2
+            - -1, -3
+            - -1, 3
+            - 0, -3
+            - 0, 3
+            - 1, -3
+            - 1, 3
+            - 2, -2
+            - 2, 2
+            - 3, -1
+            - 3, 0
+            - 3, 1
+            - -4, -2
+            - -4, -1
+            - -4, 0
+            - -4, 1
+            - -4, 2
+            - -3, -3
+            - -3, -2
+            - -3, 2
+            - -3, 3
+            - -2, -4
+            - -2, -3
+            - -2, 3
+            - -2, 4
+            - -1, -4
+            - -1, 4
+            - 0, -4
+            - 0, 4
+            - 1, -4
+            - 1, 4
+            - 2, -4
+            - 2, -3
+            - 2, 3
+            - 2, 4
+            - 3, -3
+            - 3, -2
+            - 3, 2
+            - 3, 3
+            - 4, -2
+            - 4, -1
+            - 4, 0
+            - 4, 1
+            - 4, 2
+            - -5, -2
+            - -5, -1
+            - -5, 0
+            - -5, 1
+            - -5, 2
+            - -4, -3
+            - -4, 3
+            - -3, -4
+            - -3, 4
+            - -2, -5
+            - -2, 5
+            - -1, -5
+            - -1, 5
+            - 0, -5
+            - 0, 5
+            - 1, -5
+            - 1, 5
+            - 2, -5
+            - 2, 5
+            - 3, -4
+            - 3, 4
+            - 4, -3
+            - 4, 3
+            - 5, -2
+            - 5, -1
+            - 5, 0
+            - 5, 1
+            - 5, 2
+    - type: TelegraphDealDamageOnTrigger
+      damage:
+        types:
+          Slash: 10
+          Blunt: 20
+          Cold: 10
+          Structural: 50
+    - type: TelegraphSpawnVFXEntityOnTrigger
+      entity: EffectGravityPulse
+    - type: TelegraphDeleteEntityOnTrigger
+    - type: TelegraphPlaySoundOnTrigger
+      sound:
+        path: /Audio/Items/Defib/defib_zap.ogg
+
+#region Final Showdown
+# Makes area smaller at the end of fight
+- type: entity
+  id: TelegraphBossElderFinalShowdownMain
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: TelegraphedAttack
+      telegraphs:
+        - effectDelay: 5
+          inverse: true
+          tiles: &final_showdown_tiles
+            - -7, -2
+            - -7, -1
+            - -7, 0
+            - -7, 1
+            - -7, 2
+            - -6, -3
+            - -6, -2
+            - -6, -1
+            - -6, 0
+            - -6, 1
+            - -6, 2
+            - -6, 3
+            - -5, -5
+            - -5, -4
+            - -5, -3
+            - -5, -2
+            - -5, -1
+            - -5, 0
+            - -5, 1
+            - -5, 2
+            - -5, 3
+            - -5, 4
+            - -5, 5
+            - -4, -6
+            - -4, -5
+            - -4, -4
+            - -4, -3
+            - -4, -2
+            - -4, -1
+            - -4, 0
+            - -4, 1
+            - -4, 2
+            - -4, 3
+            - -4, 4
+            - -4, 5
+            - -4, 6
+            - -3, -6
+            - -3, -5
+            - -3, -4
+            - -3, -3
+            - -3, -2
+            - -3, -1
+            - -3, 0
+            - -3, 1
+            - -3, 2
+            - -3, 3
+            - -3, 4
+            - -3, 5
+            - -3, 6
+            - -2, -7
+            - -2, -6
+            - -2, -5
+            - -2, -4
+            - -2, -3
+            - -2, -2
+            - -2, -1
+            - -2, 0
+            - -2, 1
+            - -2, 2
+            - -2, 3
+            - -2, 4
+            - -2, 5
+            - -2, 6
+            - -2, 7
+            - -1, -7
+            - -1, -6
+            - -1, -5
+            - -1, -4
+            - -1, -3
+            - -1, -2
+            - -1, -1
+            - -1, 0
+            - -1, 1
+            - -1, 2
+            - -1, 3
+            - -1, 4
+            - -1, 5
+            - -1, 6
+            - -1, 7
+            - 0, -7
+            - 0, -6
+            - 0, -5
+            - 0, -4
+            - 0, -3
+            - 0, -2
+            - 0, -1
+            - 0, 0
+            - 0, 1
+            - 0, 2
+            - 0, 3
+            - 0, 4
+            - 0, 5
+            - 0, 6
+            - 0, 7
+            - 1, -7
+            - 1, -6
+            - 1, -5
+            - 1, -4
+            - 1, -3
+            - 1, -2
+            - 1, -1
+            - 1, 0
+            - 1, 1
+            - 1, 2
+            - 1, 3
+            - 1, 4
+            - 1, 5
+            - 1, 6
+            - 1, 7
+            - 2, -7
+            - 2, -6
+            - 2, -5
+            - 2, -4
+            - 2, -3
+            - 2, -2
+            - 2, -1
+            - 2, 0
+            - 2, 1
+            - 2, 2
+            - 2, 3
+            - 2, 4
+            - 2, 5
+            - 2, 6
+            - 2, 7
+            - 3, -6
+            - 3, -5
+            - 3, -4
+            - 3, -3
+            - 3, -2
+            - 3, -1
+            - 3, 0
+            - 3, 1
+            - 3, 2
+            - 3, 3
+            - 3, 4
+            - 3, 5
+            - 3, 6
+            - 4, -6
+            - 4, -5
+            - 4, -4
+            - 4, -3
+            - 4, -2
+            - 4, -1
+            - 4, 0
+            - 4, 1
+            - 4, 2
+            - 4, 3
+            - 4, 4
+            - 4, 5
+            - 4, 6
+            - 5, -5
+            - 5, -4
+            - 5, -3
+            - 5, -2
+            - 5, -1
+            - 5, 0
+            - 5, 1
+            - 5, 2
+            - 5, 3
+            - 5, 4
+            - 5, 5
+            - 6, -3
+            - 6, -2
+            - 6, -1
+            - 6, 0
+            - 6, 1
+            - 6, 2
+            - 6, 3
+            - 7, -2
+            - 7, -1
+            - 7, 0
+            - 7, 1
+            - 7, 2
+    - type: TelegraphFollowupAttackOnTrigger
+      entity: TelegraphBossElderFinalShowdownLingering
+    - type: TelegraphDealDamageOnTrigger
+      damage:
+        types:
+          Slash: 15
+          Blunt: 50
+          Cold: 30
+          Structural: 50
+
+- type: entity
+  id: TelegraphBossElderFinalShowdownLingering
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: TelegraphedAttack
+      continuous: true
+      telegraphs:
+        - effectDelay: 120
+          inverse: true
+          tiles: *final_showdown_tiles
+    - type: TelegraphDealDamageOnTrigger
+      damage:
+        types:
+          Slash: 5
+          Blunt: 10
+          Cold: 10
+          Structural: 10
+    - type: OverlayVFX
+      shader: BossVFXElderOuterCircle
+    - type: AmbientSound
+      enabled: true
+      volume: 0
+      range: 15
+      sound:
+        path: /Audio/Items/Flare/flare_burn.ogg
+        params:
+          loop: true

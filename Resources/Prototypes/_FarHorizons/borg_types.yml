@@ -1,3 +1,14 @@
+#region ## NanoTrasen ##
+
+
+
+
+
+
+
+
+
+#region Security
 - type: borgType
   id: security
 #
@@ -33,3 +44,274 @@
   - type: ShowMindShieldIcons
   - type: ShowCriminalRecordIcons
   - type: FlashImmunity
+
+
+#region ## NeoSol ## 
+
+
+
+
+
+#region Generic
+- type: borgType
+  id: genericNS
+
+  # Description
+  dummyPrototype: BorgChassisGenericNS
+
+  # Functional
+  extraModuleCount: 5
+  moduleWhitelist:
+    tags:
+    - BorgModuleGeneric
+    - BorgModuleScience #until sciborgs are added
+
+  defaultModules:
+  - BorgModulePrying
+  - BorgModuleTool
+  - BorgModuleInflatable
+  - BorgModuleArtifact
+  - BorgModuleAnomaly
+  radioChannels:
+  - SyndiSci
+
+  # Visual
+  inventoryTemplateId: borg # Starlight - why was this not always the case?  
+  spritePath: Mobs/Silicon/Chassis/generic.rsi
+
+  # Pet
+  petSuccessString: petting-success-generic-cyborg
+  petFailureString: petting-failure-generic-cyborg
+
+
+#region Engineering
+- type: borgType
+  id: engineeringNS
+
+  # Description
+  dummyPrototype: BorgChassisEngineerNS
+
+  # Functional
+  extraModuleCount: 3
+  moduleWhitelist:
+    tags:
+    - BorgModuleGeneric
+    - BorgModuleEngineering
+
+  defaultModules:
+  - BorgModulePrying
+  - BorgModuleTool
+  - BorgModuleConstruction
+  - BorgModuleRCD
+  - BorgModuleCable
+
+  radioChannels:
+  - SyndiEngi
+  - SyndiSci
+
+  # Visual
+  inventoryTemplateId: borgShort
+  spritePath: Mobs/Silicon/Chassis/synd_eng.rsi
+
+  # Pet
+  petSuccessString: petting-success-engineer-cyborg
+  petFailureString: petting-failure-engineer-cyborg
+
+  # Starlight-start: Requirements
+  requirements:
+  - !type:DepartmentTimeRequirement
+    department: Engineering
+    time: 0 # Far Horizons - Temporary
+  # Starlight-end
+
+
+#region Janitor
+- type: borgType
+  id: janitorNS
+
+  # Description
+  dummyPrototype: BorgChassisJanitorNS
+
+  # Functional
+  extraModuleCount: 3
+  moduleWhitelist:
+    tags:
+    - BorgModuleGeneric
+    - BorgModuleJanitor
+
+  defaultModules:
+  - BorgModuleTool # Far Horizons - we love our cyborgs actually
+  - BorgModuleCleaning
+  - BorgModuleCustodial
+
+  radioChannels:
+  - SyndiSci
+  - SyndiService
+
+  # Visual
+  inventoryTemplateId: borgShort
+  spritePath: Mobs/Silicon/Chassis/janitor.rsi
+  spriteBodyMovementState: borg_moving
+
+  # Pet
+  petSuccessString: petting-success-janitor-cyborg
+  petFailureString: petting-failure-janitor-cyborg
+
+
+#region Medical
+- type: borgType
+  id: medicalNS
+
+  # Description
+  dummyPrototype: BorgChassisMedical
+
+  # Functional
+  extraModuleCount: 3
+  moduleWhitelist:
+    tags:
+    - BorgModuleGeneric
+    - BorgModuleMedical
+
+  defaultModules:
+  - BorgModuleTool # Far Horizons - we love our cyborgs actually
+  - BorgModuleChemical
+  - BorgModuleTopicals
+
+  radioChannels:
+  - SyndiSci
+  - SyndiMed
+
+  addComponents:
+  - type: SolutionScanner
+  - type: ShowHealthBars
+    damageContainers:
+    - Biological
+  - type: ShowHealthIcons
+    damageContainers:
+    - Biological
+
+  # Visual
+  inventoryTemplateId: borgDutch
+  spritePath: Mobs/Silicon/Chassis/synd_medical.rsi
+
+  # Pet
+  petSuccessString: petting-success-medical-cyborg
+  petFailureString: petting-failure-medical-cyborg
+
+  # Sounds
+  footstepCollection:
+    collection: FootstepHoverBorg
+
+  # Starlight-start: Requirements
+  requirements:
+  - !type:DepartmentTimeRequirement
+    department: Medical
+    time: 0 # Far Horizons - Temporary
+  # Starlight-end
+
+
+#region Service
+- type: borgType
+  id: serviceNS
+
+  # Description
+  dummyPrototype: BorgChassisServiceNS
+
+  # Functional
+  extraModuleCount: 3
+  moduleWhitelist:
+    tags:
+    - BorgModuleGeneric
+    - BorgModuleService
+
+  defaultModules:
+  - BorgModuleTool # Far Horizons - we love our cyborgs actually
+  - BorgModuleMusique
+  # Starlight start 
+  - BorgModuleBartending
+  - BorgModuleCooking
+  - BorgModuleBotany
+  - BorgModuleBooks
+  # Starlight end
+  - BorgModuleClowning
+  
+  radioChannels:
+  - SyndiSci
+  - SyndiService
+
+  # Visual
+  inventoryTemplateId: borgTall
+  spritePath: Mobs/Silicon/Chassis/service.rsi
+
+  # Pet
+  petSuccessString: petting-success-service-cyborg
+  petFailureString: petting-failure-service-cyborg
+
+#region Security
+- type: borgType
+  id: securityNS
+#
+  # Description
+  dummyPrototype: BorgChassisSecurityNS
+
+  # Functional
+  extraModuleCount: 3
+  moduleWhitelist:
+    tags:
+    - BorgModuleGeneric
+    - BorgModuleSecurity
+
+  defaultModules:
+  - BorgModuleTool
+  - BorgModuleBaton
+  - BorgModuleDominator
+
+  radioChannels:
+  - SyndiSci
+  - SyndiSec
+
+  # Visual
+  inventoryTemplateId: borgShort
+  spritePath: Mobs/Silicon/Chassis/synd_sec.rsi
+
+  # Pet
+  petSuccessString: petting-success-security-cyborg
+  petFailureString: petting-failure-security-cyborg
+
+  # Components
+  addComponents:
+  - type: ShowMindShieldIcons
+  - type: ShowCriminalRecordIcons
+  - type: FlashImmunity
+
+#region Purrfus
+- type: borgType
+  id: purrfusNS
+
+  # Description
+  dummyPrototype: BorgChassisPurrfus
+
+  # Functional
+  extraModuleCount: 3
+  moduleWhitelist:
+    tags:
+    - BorgModuleGeneric
+    - BorgModulePurrfus
+
+  defaultModules:
+  - BorgModuleTool
+  - BorgModulePaperwork
+
+  radioChannels:
+  - SyndiCommon
+  - SyndiCommand
+  - SyndiSci
+  - CFA # Far Horizons CFA Change
+
+  # Visual
+  inventoryTemplateId: borgTall
+  spritePath: _Starlight/Mobs/Silicon/Chassis/purrfus.rsi
+
+  # Pet
+  petSuccessString: petting-success-generic-cyborg
+  petFailureString: petting-failure-generic-cyborg

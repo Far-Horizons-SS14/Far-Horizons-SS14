@@ -39,3 +39,8 @@ ui-options-limb-targetting-species-ipc = IPC
 ui-options-limb-targetting-species-protogen = Protogen
 ui-options-limb-targetting-species-monkey = Monkey
 ui-options-limb-targetting-species-kobold = Kobold
+
+ui-options-accessability-header-telegraphs = Telegraphs
+ui-options-telegraphs-hostile-color = Hostile Telegraphs:
+ui-options-telegraphs-utility-color = Utility Telegraphs:
+ui-options-telegraphs-color-example = ■■■

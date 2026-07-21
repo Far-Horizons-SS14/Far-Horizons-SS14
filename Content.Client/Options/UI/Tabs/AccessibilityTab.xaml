@@ -21,6 +21,11 @@
                 <Label Text="{Loc 'ui-options-accessability-header-content'}"
                        StyleClasses="LabelKeyText"/>
                 <CheckBox Name="CensorNudityCheckBox" Text="{Loc 'ui-options-censor-nudity'}" />
+                <!-- Far Horizons start -->
+                <Label Text="{Loc 'ui-options-accessability-header-telegraphs'}" StyleClasses="LabelKeyText"/>
+                <ui:OptionColorSlider Name="HostileTelegraphsColorSlider" Title="{Loc 'ui-options-telegraphs-hostile-color'}" Example="{Loc 'ui-options-telegraphs-color-example'}"/>
+                <ui:OptionColorSlider Name="UtilityTelegraphsColorSlider" Title="{Loc 'ui-options-telegraphs-utility-color'}" Example="{Loc 'ui-options-telegraphs-color-example'}"/>
+                <!-- Far Horizons end -->
             </BoxContainer>
         </ScrollContainer>
         <ui:OptionsTabControlRow Name="Control" Access="Public" />

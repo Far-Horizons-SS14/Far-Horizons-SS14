@@ -126,6 +126,29 @@
       NorthWest: thincornernorth
       NorthEast: thincornereast
 
+- type: dungeonConfig
+  id: FHElderArena
+  layers:
+  - !type:PrefabDunGen
+    roomWhitelist:
+      tags:
+      - SalvageElderArena
+    presets:
+    - FHArena
+    
+  - !type:DungeonEntranceDunGen
+    count: 5
+    tile: FloorConcreteMono
+    contents: SovietDungeonEntrance
+
+  - !type:WallMountDunGen
+    tile: FloorConcreteMono
+    contents: SovietDungeonWalls
+
+  - !type:BoundaryWallDunGen
+    tile: FloorConcreteMono
+    wall: WallBrick
+    cornerWall: WallBrick
 
 - type: entityTable
   id: FHBaseAirlock

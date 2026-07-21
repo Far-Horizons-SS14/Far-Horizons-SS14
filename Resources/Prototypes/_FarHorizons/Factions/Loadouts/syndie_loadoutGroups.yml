@@ -1169,3 +1169,62 @@
   loadouts:
     - RecruitSuit
     - RecruitSkirt
+
+#region Service
+#Chef
+- type: loadoutGroup
+  id: ChefJumpsuitNS
+  name: loadout-group-chef-jumpsuit
+  loadouts:
+  - ChefJumpsuitNS
+  - ChefJumpskirtNS
+
+#Janitor
+- type: loadoutGroup
+  id: JanitorHeadNS
+  name: loadout-group-janitor-head
+  minLimit: 0
+  loadouts:
+  - JanitorHeadNS
+
+- type: loadoutGroup
+  id: JanitorMaskNS
+  name: loadout-group-janitor-mask
+  minLimit: 0
+  loadouts:
+  - JanitorMaskNS
+
+- type: loadoutGroup
+  id: JanitorJumpsuitNS
+  name: loadout-group-janitor-jumpsuit
+  loadouts:
+  - JanitorJumpsuitNS
+  - JanitorJumpskirtNS
+
+- type: loadoutGroup
+  id: JanitorGlovesNS
+  name: loadout-group-janitor-gloves
+  minLimit: 0
+  loadouts:
+  - JanitorRubberGlovesNS
+  - OrangeGloves
+  - PurpleGloves
+
+#Botanist
+- type: loadoutGroup
+  id: BotanistHeadNS
+  name: loadout-group-botanist-head
+  minLimit: 0
+  loadouts:
+  - BotanistHead
+  - BotanistBandanaNS
+  - BotanistRancherHatNS
+
+- type: loadoutGroup
+  id: BotanistJumpsuitNS
+  name: loadout-group-botanist-jumpsuit
+  loadouts:
+  - BotanistJumpsuitNS
+  - BotanistJumpskirtNS
+  - BotanistOverallsJumpsuitNS
+  - BotanistOverallsJumpskirtNS

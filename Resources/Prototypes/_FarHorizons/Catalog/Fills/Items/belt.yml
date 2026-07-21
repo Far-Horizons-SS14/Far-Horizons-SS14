@@ -244,6 +244,49 @@
       storagebase: !type:NestedSelector
         tableId: BeltSecurityEntityTable
 
+#region Service
+- type: entity
+  id: ClothingBeltChefNSFilled
+  parent: ClothingBeltChefNS
+  suffix: NS, Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: FoodShakerSalt
+        - id: FoodShakerPepper
+
+- type: entity
+  id: ClothingBeltJanitorNSFilled
+  parent: ClothingBeltJanitorNS
+  suffix: NS, Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - !type:NestedSelector
+          tableId: AllSoapsTable
+        - id: SprayBottleSpaceCleaner
+        - id: CleanerGrenade
+          amount: 2
+        - id: FlashlightLantern
+        - id: LightReplacer
+
+- type: entity
+  id: ClothingBeltPlantNSFilled
+  parent: ClothingBeltPlantNS
+  suffix: NS, Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: HydroponicsToolMiniHoe
+        - id: HydroponicsToolSpade
+        - id: HydroponicsToolClippers
+        - id: ChemistryBottleRobustHarvest
 
 #region ##GSL##
 

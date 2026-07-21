@@ -2,7 +2,7 @@
 - type: entity
   parent: MobStatusEffectDebuff
   id: StatusEffectNumbness
-  name: numbness
+  name: Numbness
   components:
     - type: NumbnessStatusEffect
 
@@ -12,6 +12,21 @@
 - type: entity
   parent: MobStatusEffectDebuff
   id: StatusEffectBlinded
-  name: blinded
+  name: Blinded
   components:
     - type: BlindnessStatusEffect
+
+- type: entity
+  parent: StatusEffectSlowdown
+  id: StatusEffectSlowdownNoMobState
+  name: Slowdown
+  components:
+  - type: StatusEffect
+    whitelist:
+      components:
+      - MovementSpeedModifier
+      requireAll: true
+    blacklist:
+      tags:
+      - SlowImmune
+  - type: MovementModStatusEffect

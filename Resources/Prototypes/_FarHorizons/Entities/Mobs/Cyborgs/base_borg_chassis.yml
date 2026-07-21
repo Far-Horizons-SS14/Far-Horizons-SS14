@@ -15,10 +15,11 @@
       state: borg
 
 
+#region ## NanoTrasen ##
 - type: entity # TODO implement sirens
   parent: [BaseBorgChassis, BaseSecBorgTransponder]
   id: BorgChassisSecuritySelectable
-  name: security cyborg
+  name: Security Cyborg
   description: A special chassis produced by Nanotrasen to aid station side security forces in their duties.
   components:
   - type: TextToSpeech
@@ -273,3 +274,128 @@
   - type: FootstepModifier # it flies instead of walking
     footstepSoundCollection:
       collection: FootstepHoverXenoborg
+
+#region ## NeoSol ##
+- type: entity
+  id: BaseBorgChassisNS
+  parent: [BaseBorgChassis, BaseBorgTransponder]
+  abstract: true
+  components:
+  - type: TextToSpeech
+  - type: RandomMetadata
+    nameSegments:
+    - NamesBorg
+  - type: NpcFactionMember
+    factions:
+    - NeoSolSilicon
+  - type: Access
+    groups:
+    - AllAccessNS
+    tags:
+    - Borg
+  - type: AccessReader
+    access: [["Executive"], ["RoboticsNS"]] # Starlight
+  - type: ShowJobIcons
+  - type: ShowCrewIcons
+  - type: InteractionPopup
+    interactSuccessSound:
+      path: /Audio/Ambience/Objects/periodic_beep.ogg
+  - type: Vocal
+    sounds:
+      Unsexed: UnisexSiliconSyndicate
+
+- type: entity
+  parent: [BaseBorgChassisNS, BaseSecBorgTransponder]
+  id: BorgChassisSecuritySelectableNS
+  name: Security Cyborg
+  description: A special chassis produced by Nanotrasen to aid station side security forces in their duties.
+  suffix: NS
+  components:
+  - type: RandomMetadata
+    nameSegments:
+    - NamesBorg
+  - type: Access
+    enabled: false
+    groups:
+    - SecurityNS
+    tags:
+    - MaintenanceNS
+    - ExternalNS
+  - type: AccessReader
+    access: [["Executive"], ["ArmoryNS"]]
+  - type: Sprite
+    sprite: Mobs/Silicon/Chassis/synd_sec.rsi
+    layers:
+    - state: borg
+      map: [ "movement", "enum.BorgVisualLayers.Body" ]
+    - state: borg_e_r
+      map: [ "enum.BorgVisualLayers.Light" ]
+      shader: unshaded
+      visible: false
+    - state: borg_l
+      shader: unshaded
+      map: [ "light","enum.BorgVisualLayers.LightStatus" ]
+      visible: false
+  - type: BorgChassis
+    maxModules: 0
+    hasMindState: borg_e
+    noMindState: borg_e_r
+  - type: BorgSwitchableType
+    inherentRadioChannels:
+    - SyndiCommon
+    - Binary
+    availableTypes:
+    - securityNS
+  - type: SiliconLawProvider
+    laws: Robocop
+
+- type: entity
+  id: BorgChassisSecurityNS
+  parent: BorgChassisSelectableNS
+  name: Security Cyborg
+  suffix: NS
+  components:
+  - type: BorgSwitchableType
+    selectedBorgType: securityNS
+
+- type: entity
+  id: BorgChassisSelectableNS
+  parent: BaseBorgChassisNS
+  components:
+  - type: Sprite
+    layers:
+    - state: borg
+      map: [ "movement", "enum.BorgVisualLayers.Body" ]
+    - state: borg_e_r
+      map: [ "enum.BorgVisualLayers.Light" ]
+      shader: unshaded
+      visible: false
+    - state: borg_l
+      shader: unshaded
+      map: [ "light","enum.BorgVisualLayers.LightStatus" ]
+      visible: false
+  - type: BorgChassis
+    maxModules: 0
+    hasMindState: borg_e
+    noMindState: borg_e_r
+  - type: BorgTransponder
+    sprite:
+      sprite: Mobs/Silicon/Chassis/generic.rsi
+      state: borg
+    name: cyborg
+  - type: InteractionPopup
+    interactSuccessString: petting-success-generic-cyborg
+    interactFailureString: petting-failure-generic-cyborg
+  - type: BorgSwitchableType
+    inherentRadioChannels:
+    - SyndiCommon
+    - Binary
+    availableTypes:
+    - engineeringNS
+    - genericNS
+    - janitorNS
+    - medicalNS
+    - purrfusNS
+    - serviceNS
+    - cargo
+    - mining

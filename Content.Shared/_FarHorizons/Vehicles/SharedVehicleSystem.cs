@@ -2,9 +2,7 @@ using Content.Shared._FarHorizons.Vehicles.Components;
 using Robust.Shared.Audio.Systems;
 using Content.Shared.DragDrop;
 using Content.Shared.Lock;
-using Robust.Shared.Physics.Events;
 using Robust.Shared.Timing;
-using Robust.Shared.Audio;
 using Content.Shared.Examine;
 using Content.Shared.Damage.Components;
 using Content.Shared.Movement.Pulling.Events;
@@ -38,21 +36,18 @@ using Robust.Shared.Containers;
 using Content.Shared.Inventory.VirtualItem;
 using Content.Shared.Interaction.Components;
 using Content.Shared.Destructible;
-using Content.Shared.Damage;
 using Content.Shared.Whitelist;
 using Content.Shared.Wieldable;
 using Content.Shared.Wieldable.Components;
 using Content.Shared.Weapons.Ranged.Systems;
 using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Repairable;
-using Content.Shared.Damage.Prototypes;
 using Content.Shared.Effects;
 using Robust.Shared.Player;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Emp;
 using Content.Shared.PowerCell.Components;
-using Content.Shared.CombatMode.Pacification;
 using Content.Shared.Weapons.Ranged.Events;
 using Content.Shared.Hands;
 using Content.Shared._FarHorizons.ReagentDraw.EntitySystems;
@@ -63,39 +58,38 @@ namespace Content.Shared._FarHorizons.Vehicles;
 
 public abstract partial class SharedVehicleSystem : EntitySystem
 {    
-    [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly SharedMoverController _mover = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly SharedBuckleSystem _buckle = default!;
-    [Dependency] private readonly MovementSpeedModifierSystem _movementSpeed = default!;
-    [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!;
-    [Dependency] private readonly SharedActionsSystem _actions = default!;
-    [Dependency] private readonly TagSystem _tags = default!;
-    [Dependency] private readonly PowerCellSystem _powerCell = default!;
-    [Dependency] private readonly SharedReagentDrawSystem _reagentDraw = default!;
-    [Dependency] private readonly SharedStunSystem _stun = default!;
-    [Dependency] private readonly ThrowingSystem _throwing = default!;
-    [Dependency] private readonly SharedAmbientSoundSystem _ambientSound = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
-    [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
-    [Dependency] private readonly IGameTiming _gameTiming = default!;
-    [Dependency] private readonly SharedVirtualItemSystem _virtualItem = default!;
-    [Dependency] private readonly SharedContainerSystem _container = default!;
-    [Dependency] private readonly DamageableSystem _damageable = default!;
-    [Dependency] private readonly EntityWhitelistSystem _whitelist = default!;
-    [Dependency] private readonly SharedWieldableSystem _wield = default!;
-    [Dependency] private readonly SharedStaminaSystem _stamina = default!;
-    [Dependency] private readonly LockSystem _lock = default!;
-    [Dependency] private readonly IPrototypeManager _prototypes = default!;
-    [Dependency] private readonly SharedColorFlashEffectSystem _color = default!;
-    [Dependency] private readonly SharedGunSystem _gun = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly INetManager _net = default!;
-    private static readonly ProtoId<TagPrototype> _vehicleKeyTag = "VehicleKey";
-    private static readonly string _bluntname = "Blunt";
-    private EntityQuery<ProjectileComponent> _projQuery;
+    [Dependency] protected readonly ISharedAdminLogManager _adminLogger = default!;
+    [Dependency] protected readonly SharedMoverController _mover = default!;
+    [Dependency] protected readonly SharedTransformSystem _transform = default!;
+    [Dependency] protected readonly SharedBuckleSystem _buckle = default!;
+    [Dependency] protected readonly MovementSpeedModifierSystem _movementSpeed = default!;
+    [Dependency] protected readonly ActionBlockerSystem _actionBlocker = default!;
+    [Dependency] protected readonly SharedActionsSystem _actions = default!;
+    [Dependency] protected readonly TagSystem _tags = default!;
+    [Dependency] protected readonly PowerCellSystem _powerCell = default!;
+    [Dependency] protected readonly SharedReagentDrawSystem _reagentDraw = default!;
+    [Dependency] protected readonly SharedStunSystem _stun = default!;
+    [Dependency] protected readonly ThrowingSystem _throwing = default!;
+    [Dependency] protected readonly SharedAmbientSoundSystem _ambientSound = default!;
+    [Dependency] protected readonly SharedPopupSystem _popup = default!;
+    [Dependency] protected readonly SharedDoAfterSystem _doAfter = default!;
+    [Dependency] protected readonly SharedHandsSystem _handsSystem = default!;
+    [Dependency] protected readonly IGameTiming _gameTiming = default!;
+    [Dependency] protected readonly SharedVirtualItemSystem _virtualItem = default!;
+    [Dependency] protected readonly SharedContainerSystem _container = default!;
+    [Dependency] protected readonly DamageableSystem _damageable = default!;
+    [Dependency] protected readonly EntityWhitelistSystem _whitelist = default!;
+    [Dependency] protected readonly SharedWieldableSystem _wield = default!;
+    [Dependency] protected readonly SharedStaminaSystem _stamina = default!;
+    [Dependency] protected readonly LockSystem _lock = default!;
+    [Dependency] protected readonly IPrototypeManager _prototypes = default!;
+    [Dependency] protected readonly SharedColorFlashEffectSystem _color = default!;
+    [Dependency] protected readonly SharedGunSystem _gun = default!;
+    [Dependency] protected readonly SharedAudioSystem _audio = default!;
+    [Dependency] protected readonly SharedAppearanceSystem _appearance = default!;
+    protected static readonly ProtoId<TagPrototype> s_vehicleKeyTag = "VehicleKey";
+    protected static readonly string s_bluntname = "Blunt";
+    protected EntityQuery<ProjectileComponent> _projQuery;
     public override void Initialize()
     {
         base.Initialize();
@@ -111,14 +105,12 @@ public abstract partial class SharedVehicleSystem : EntitySystem
         SubscribeLocalEvent<VehicleComponent, TurnKeysDoAfter>(OnTurnKeysDoAfter);
         SubscribeLocalEvent<VehicleComponent, ReagantContainerSlotEmptyEvent>(OnEmptyReagantContainer);
         SubscribeLocalEvent<VehicleComponent, PowerCellSlotEmptyEvent>(OnPowerCellEmpty);
-        SubscribeLocalEvent<VehicleComponent, RepairedEvent>(OnRepairFinished);
         SubscribeLocalEvent<VehicleComponent, EmpPulseEvent>(OnEmpPulse);
         SubscribeLocalEvent<VehicleComponent, BreakageEventArgs>(OnBreakageEvent);
         SubscribeLocalEvent<VehicleComponent, DamageChangedEvent>(OnDamageChanged);
         SubscribeLocalEvent<VehicleComponent, TurnKeysEvent>(OnTurnKeysEvent);
         SubscribeLocalEvent<VehicleComponent, HornActionEvent>(OnHornActionEvent);
         SubscribeLocalEvent<VehicleComponent, ToggleTrunkActionEvent>(OnToggleTrunk);
-        SubscribeLocalEvent<VehicleComponent, StartCollideEvent>(HandleCollide);
         SubscribeLocalEvent<VehicleComponent, CanDropTargetEvent>(OnCanDragDrop);
         SubscribeLocalEvent<VehicleComponent, ExaminedEvent>(OnExamine);
 
@@ -168,13 +160,13 @@ public abstract partial class SharedVehicleSystem : EntitySystem
     private void OnEntInsertedVehicle(Entity<VehicleComponent> ent, ref EntInsertedIntoContainerMessage args)
     {
         if(args.Container.ID != "key_slot") return;
-        ent.Comp.hasKeys = _tags.HasTag(args.Entity, _vehicleKeyTag);
+        ent.Comp.hasKeys = _tags.HasTag(args.Entity, s_vehicleKeyTag);
         Dirty(ent);
     }
 
     private void OnInsertEvent(Entity<VehicleComponent> ent, ref ItemSlotInsertEvent args)
     {
-        if(_tags.HasTag(args.Item, _vehicleKeyTag))
+        if(_tags.HasTag(args.Item, s_vehicleKeyTag))
         {
             ent.Comp.hasKeys = true;
             Dirty(ent.Owner, ent.Comp);
@@ -195,7 +187,7 @@ public abstract partial class SharedVehicleSystem : EntitySystem
         if(args.User == null) return;
         var user = args.User;
         var item = args.Item;
-        if(_tags.HasTag(args.Item, _vehicleKeyTag))
+        if(_tags.HasTag(args.Item, s_vehicleKeyTag))
         {
             if(ent.Comp.Rider == user || ent.Comp.Rider == null)
             {
@@ -240,7 +232,7 @@ public abstract partial class SharedVehicleSystem : EntitySystem
         if(args.Cancelled || args.Handled) return;
         if(TryComp<ContainerManagerComponent>(ent.Owner, out var container))
         {
-            var key = container.Containers.Values.SelectMany(c => c.ContainedEntities).FirstOrDefault(e => _tags.HasTag(e, _vehicleKeyTag));           
+            var key = container.Containers.Values.SelectMany(c => c.ContainedEntities).FirstOrDefault(e => _tags.HasTag(e, s_vehicleKeyTag));           
             ent.Comp.hasKeys = false;
             TurnOffVehicle(ent.Owner, ent.Comp);
             if(ent.Comp.Rider == null) return;
@@ -332,70 +324,6 @@ public abstract partial class SharedVehicleSystem : EntitySystem
         Dirty(ent.Owner, ent.Comp);
     }
 
-    private void HandleCollide(Entity<VehicleComponent> ent, ref StartCollideEvent args)
-    {
-        if(_net.IsClient) return;
-
-        if(ent.Comp.Rider == null) return;
-        var rider = ent.Comp.Rider.Value;
-        
-        if(!ent.Comp.AllowCrashing) return;
-        if(!TryComp<MovementSpeedModifierComponent>(ent.Owner, out var msmComp)) return; 
-
-        var speed = args.OurBody.LinearVelocity.Length();
-        var crashingSpeed = 0f;
-
-        if(msmComp.BaseSprintSpeed > msmComp.BaseWalkSpeed)
-            crashingSpeed = msmComp.BaseWalkSpeed+1;
-        else if(msmComp.BaseSprintSpeed < msmComp.BaseWalkSpeed)
-            crashingSpeed = msmComp.BaseSprintSpeed+1;
-        
-        if(crashingSpeed < 8f)
-            crashingSpeed = 8f;
-            
-        if (speed < crashingSpeed) return;
-        
-        if (args.OurFixture.Hard && args.OtherFixture.Hard)
-        {
-            _audio.PlayPredicted(ent.Comp.SoundHit, ent.Owner, null, AudioParams.Default.WithVariation(0.125f).WithVolume(-0.125f));
-                
-            if(TryComp<VehicleBuckleComponent>(ent.Owner, out var vbComp) && TryComp<BuckleComponent>(rider, out var buckleComp))
-            {
-                if(TryComp<PhysicsComponent>(ent.Owner, out var vehiclePhys) && TryComp<PhysicsComponent>(rider, out var riderPhys))
-                    if(_buckle.TryUnbuckle(rider, null, buckleComp) && vbComp.EjectOnCrash)
-                    {
-                        var riderXform = Transform(rider);
-                        _stun.TryCrawling(rider, TimeSpan.FromSeconds(3));
-                        _throwing.TryThrow(rider, vehiclePhys.LinearVelocity, riderPhys, riderXform, _projQuery, vehiclePhys.LinearVelocity.Length(), playSound: false);
-                        _adminLogger.Add(Database.LogType.Landed, Database.LogImpact.Medium, $"{ToPrettyString(rider)} was launched from vehicle {ToPrettyString(ent.Owner)}");
-                    }
-            }
-            else if(TryComp<VehicleContainerComponent>(ent.Owner, out var vcComp))
-            {
-                foreach(var passenger in vcComp.PassengerSlot.ContainedEntities)
-                {
-                    _stun.TryAddStunDuration(passenger, TimeSpan.FromSeconds(3));
-                    _adminLogger.Add(Database.LogType.Landed, Database.LogImpact.Medium, $"{ToPrettyString(passenger)} was stunned inside of vehicle {ToPrettyString(ent.Owner)}");
-                }
-            }
-        }
-        else if(args.OurFixture.Hard && !args.OtherFixture.Hard)
-        {
-            if(!HasComp<DamageableComponent>(args.OtherEntity) || HasComp<PacifiedComponent>(ent.Owner)) return; 
-
-            _audio.PlayPredicted(ent.Comp.SoundHit, ent.Owner, null, AudioParams.Default.WithVariation(0.125f).WithVolume(-0.125f));
-
-            DamageTypePrototype? _blunt = _prototypes.Index<DamageTypePrototype>(_bluntname);
-            DamageSpecifier? _damage = new(_blunt, Math.Clamp(10 * (1 + (0.5 * speed / crashingSpeed)), 10, 20));
-            _damageable.TryChangeDamage(args.OtherEntity, _damage, origin: ent.Comp.Rider.Value);
-            _color.RaiseEffect(Color.Red, new List<EntityUid>() { args.OtherEntity, }, Filter.Pvs(args.OtherEntity, entityManager: EntityManager));
-
-            Timer.Spawn(TimeSpan.FromSeconds(2), () => _movementSpeed.ChangeBaseSpeed(ent.Owner, msmComp.BaseWalkSpeed * 4, msmComp.BaseSprintSpeed * 4, msmComp.Acceleration));
-            _movementSpeed.ChangeBaseSpeed(ent.Owner, msmComp.BaseWalkSpeed/4, msmComp.BaseSprintSpeed/4, msmComp.Acceleration);
-            _adminLogger.Add(Database.LogType.Landed, Database.LogImpact.High, $"{ToPrettyString(ent.Comp.Rider.Value)} ran over {ToPrettyString(args.OtherEntity)} dealing {_damage}");
-        }
-    }
-
     private void OnGetAdditionalAccess(Entity<VehicleComponent> ent, ref GetAdditionalAccessEvent args)
     {
         if (ent.Comp.Rider == null) return;
@@ -413,19 +341,6 @@ public abstract partial class SharedVehicleSystem : EntitySystem
     {
         if(ent.Comp.CellPowered)
             TurnOffVehicle(ent.Owner, ent.Comp);
-    }
-
-    private void OnRepairFinished(Entity<VehicleComponent> ent, ref RepairedEvent args)
-    {
-        _adminLogger.Add(Database.LogType.Action, Database.LogImpact.Low, $"{ToPrettyString(args.User)} repaired the vehicle {ToPrettyString(ent.Owner)}");
-        ent.Comp.isBroken = false;
-        
-        if(TryComp<VehicleBuckleComponent>(ent, out var vbComp))
-        {
-            _buckle.StrapSetEnabled(ent, true);
-        }
-        TryUpdateVisualState(ent.Owner);
-        Dirty(ent.Owner, ent.Comp);
     }
 
     private void OnToggleTrunk(Entity<VehicleComponent> ent, ref ToggleTrunkActionEvent args)
@@ -645,7 +560,7 @@ public abstract partial class SharedVehicleSystem : EntitySystem
                 if(HasComp<RiderComponent>(tagert) && TryComp<VehicleComponent>(ent, out var vehicleComp))
                     RemoveRider(tagert, ent, vehicleComp);
 
-                if(_tags.HasTag(tagert, _vehicleKeyTag)) return;
+                if(_tags.HasTag(tagert, s_vehicleKeyTag)) return;
                 
                 _container.Remove(tagert, component.PassengerSlot);
             }

@@ -30,5 +30,9 @@ public sealed partial class FHCCVars
     public static readonly CVarDef<bool> LimbTargettingMatchSpecies =
         CVarDef.Create("ui.limb_targetting_match_species", false, CVar.CLIENTONLY | CVar.ARCHIVE);
 
-
+    public static readonly CVarDef<string> HostileTelegraphsColor = 
+        CVarDef.Create("accessibility.hostile_telegraphs_color", "#FF0000FF", CVar.CLIENTONLY | CVar.ARCHIVE);
+    
+    public static readonly CVarDef<string> UtilityTelegraphsColor = 
+        CVarDef.Create("accessibility.utility_telegraphs_color", "#FFA500FF", CVar.CLIENTONLY | CVar.ARCHIVE);
 }

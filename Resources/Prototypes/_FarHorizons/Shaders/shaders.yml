@@ -29,3 +29,60 @@
   id: HeatDistortionFH # stuck the "FH" on the end in case upstream decides to make a HeatDistortion shader
   kind: source
   path: "/Textures/_FarHorizons/Shaders/heat_distortion.swsl"
+
+- type: shader
+  id: TelegraphedAttackProgress
+  kind: source
+  path: "/Textures/_FarHorizons/Shaders/telegraphed_attack_progress.swsl"
+  params:
+    progress: 0.0
+    baseColor: 1, 0, 0
+    alpha_outside: 0.1
+    alpha_inside: 0.3
+    alpha_edge: 0.8
+    edge_thickness: 0.03
+    edge_feather: 0.01
+
+- type: shader
+  id: TelegraphedAttackContinuous
+  kind: source
+  path: "/Textures/_FarHorizons/Shaders/telegraphed_attack_continuous.swsl"
+  params:
+    progress: 0.0
+    baseColor: 1, 0, 0
+    alpha_outside: 0.1
+    alpha_inside: 0.3
+    alpha_edge: 0.8
+    edge_thickness: 0.03
+    edge_feather: 0.01
+    line_frequency: 20
+    line_speed: 1.5
+    line_thickness: 0.3
+    line_alpha_boost: 0.15
+
+- type: shader
+  id: BossVFXElderInnerCircle
+  kind: source
+  path: "/Textures/_FarHorizons/Shaders/elder_circular_vfx.swsl"
+  params:
+    color1: 0.25, 0.1, 0.3
+    color2: 0, 0, 0
+    noise_scale: 0.1
+    time_scale: 0.3
+    hole_threshold: 0.4
+    outerCircle: false
+    range: 10.0
+
+- type: shader
+  id: BossVFXElderOuterCircle
+  kind: source
+  path: "/Textures/_FarHorizons/Shaders/elder_circular_vfx.swsl"
+  params:
+    color1: 0.25, 0.1, 0.3
+    color2: 0, 0, 0
+    noise_scale: 0.1
+    time_scale: 0.3
+    hole_threshold: 0.4
+    outerCircle: true
+    range: 7
+    falloff_width: 2.5

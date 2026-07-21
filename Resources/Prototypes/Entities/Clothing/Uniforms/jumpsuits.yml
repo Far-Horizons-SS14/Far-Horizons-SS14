@@ -195,9 +195,9 @@
   description: Can't cook without this.
   components:
   - type: Sprite
-    sprite: Clothing/Uniforms/Jumpsuit/chef.rsi
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/chef.rsi #FarHorizons
   - type: Clothing
-    sprite: Clothing/Uniforms/Jumpsuit/chef.rsi
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/chef.rsi #FarHorizons
 
 - type: entity
   parent: [ClothingUniformBase] # ClothingUniformFoldableBase] # Far Horizons - no folded sprites
@@ -446,7 +446,7 @@
   description: Has a strong earthy smell to it. Hopefully it's merely dirty as opposed to soiled.
   components:
   - type: Sprite
-    sprite: Clothing/Uniforms/Jumpsuit/hydro.rsi
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/hydro.rsi # Far Horizons
 
 - type: entity
   parent: [ClothingUniformBase] # ClothingUniformFoldableBase] # Far Horizons - no folded sprites
@@ -456,7 +456,7 @@
   components:
   - type: RollUpSleeves
   - type: Sprite
-    sprite: Clothing/Uniforms/Jumpsuit/janitor.rsi
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/janitor.rsi #Far Horizons
 
 - type: entity
   parent: ClothingUniformBase
@@ -726,13 +726,13 @@
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformOveralls
-  name: Overalls #Far Horizons - The Great Capitalization Crusade
+  name: Overalls Jumpsuit #Far Horizons - The Great Capitalization Crusade
   description: Great for working outdoors.
   components:
   - type: Sprite
-    sprite: Clothing/Uniforms/Jumpsuit/overalls.rsi
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/overalls.rsi # Far Horizons
   - type: Clothing
-    sprite: Clothing/Uniforms/Jumpsuit/overalls.rsi
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/overalls.rsi # Far Horizons
 
 - type: entity
   parent: ClothingUniformBase

@@ -1,3 +1,4 @@
+#region ## NanoTrasen ##
 - type: entity
   parent: BorgSecuritySubtypeBaseNT
   id: BorgSecuritySubtypeRedKnightNT
@@ -87,4 +88,522 @@
       spriteHasMindState: weaponguy_e
       spriteNoMindState: weaponguy_e_r
       spriteToggleLightState: weaponguy_l
+      inventoryTemplateId: borgTall
+
+#region ## NeoSol ##
+
+
+
+
+
+
+# region Engineering
+
+- type: entity
+  parent: BorgEngineerSubtypeBaseNS
+  id: BorgEngineerSubtypeStandardNS
+  name: Standard
+  suffix: NS
+  components:
+    - type: BorgSubtypeDefinition
+      spritePath: Mobs/Silicon/Chassis/synd_eng.rsi
+      spriteBodyState: borg
+      spriteHasMindState: borg_e
+      spriteNoMindState: borg_e_r
+      spriteToggleLightState: borg_l
+      inventoryTemplateId: borg
+
+- type: entity
+  parent: BorgEngineerSubtypeBaseNS
+  id: BorgEngineerSubtypeGenericNS
+  name: Generic
+  suffix: NS
+  components:
+    - type: BorgSubtypeDefinition
+      spritePath: Mobs/Silicon/Chassis/engineer.rsi
+      spriteBodyState: generic
+      spriteHasMindState: generic_e
+      spriteNoMindState: generic_e_r
+      spriteToggleLightState: generic_l
+      inventoryTemplateId: borgTall
+
+- type: entity
+  parent: BorgEngineerSubtypeBaseNS
+  id: BorgEngineerSubtypeAntiqueNS
+  name: Antique
+  suffix: NS
+  components:
+    - type: BorgSubtypeDefinition
+      spritePath: Mobs/Silicon/Chassis/engineer.rsi
+      spriteBodyState: antique
+      spriteHasMindState: antique_e
+      spriteNoMindState: antique_e_r
+      spriteToggleLightState: antique_l
+      inventoryTemplateId: borgTall
+
+- type: entity
+  parent: BorgEngineerSubtypeBaseNS
+  id: BorgEngineerSubtypeNobleNS
+  name: Noble-ENG
+  suffix: NS
+  components:
+    - type: BorgSubtypeDefinition
+      spritePath: Mobs/Silicon/Chassis/engineer.rsi
+      spriteBodyState: noble
+      spriteHasMindState: noble_e
+      spriteNoMindState: noble_e_r
+      spriteToggleLightState: noble_l
+      inventoryTemplateId: borgDutch
+
+- type: entity
+  parent: BorgEngineerSubtypeBaseNS
+  id: BorgEngineerSubtypeCricketNS
+  name: Cricket
+  suffix: NS
+  components:
+    - type: BorgSubtypeDefinition
+      spritePath: Mobs/Silicon/Chassis/engineer.rsi
+      spriteBodyState: cricket
+      spriteHasMindState: cricket_e
+      spriteNoMindState: cricket_e_r
+      spriteToggleLightState: cricket_l
+      inventoryTemplateId: borgDutch
+
+# region Generic
+
+- type: entity
+  parent: BorgGenericSubtypeBaseNS
+  id: BorgGenericSubtypeGenericNS
+  name: Generic
+  suffix: NS
+  components:
+    - type: BorgSubtypeDefinition
+      spritePath: Mobs/Silicon/Chassis/generic.rsi
+      spriteBodyState: generic
+      spriteHasMindState: generic_e
+      spriteNoMindState: generic_e_r
+      spriteToggleLightState: generic_l
+      inventoryTemplateId: borgTall
+
+- type: entity
+  parent: BorgGenericSubtypeBaseNS
+  id: BorgGenericSubtypeDroidNS
+  name: Android
+  suffix: NS
+  components:
+    - type: BorgSubtypeDefinition
+      spritePath: Mobs/Silicon/Chassis/generic.rsi
+      spriteBodyState: droid
+      spriteHasMindState: droid_e
+      spriteNoMindState: droid_e_r
+      spriteToggleLightState: droid_l
+      inventoryTemplateId: borg
+
+- type: entity
+  parent: BorgGenericSubtypeBaseNS
+  id: BorgGenericSubtypeNobleNS
+  name: Noble-STD
+  suffix: NS
+  components:
+    - type: BorgSubtypeDefinition
+      spritePath: Mobs/Silicon/Chassis/generic.rsi
+      spriteBodyState: noble
+      spriteHasMindState: noble_e
+      spriteNoMindState: noble_e_r
+      spriteToggleLightState: noble_l
+      inventoryTemplateId: borgDutch
+
+# region Janitor
+
+- type: entity
+  parent: BorgJanitorSubtypeBaseNS
+  id: BorgJanitorSubtypeStandardNS
+  name: Standard 
+  suffix: NS
+  components:
+    - type: BorgSubtypeDefinition
+      spritePath: Mobs/Silicon/Chassis/janitor.rsi
+      spriteBodyState: standard
+      spriteHasMindState: standard_e
+      spriteNoMindState: standard_e_r
+      spriteToggleLightState: standard_l
+      inventoryTemplateId: borg
+
+- type: entity
+  parent: BorgJanitorSubtypeBaseNS
+  id: BorgJanitorSubtypeGenericNS
+  name: Generic 
+  suffix: NS
+  components:
+    - type: BorgSubtypeDefinition
+      spritePath: Mobs/Silicon/Chassis/janitor.rsi
+      spriteBodyState: generic
+      spriteHasMindState: generic_e
+      spriteNoMindState: generic_e_r
+      spriteToggleLightState: generic_l
+      inventoryTemplateId: borgTall
+
+- type: entity
+  parent: BorgJanitorSubtypeBaseNS
+  id: BorgJanitorSubtypeMopbotNS
+  name: Mopbot
+  suffix: NS
+  components:
+    - type: BorgSubtypeDefinition
+      spritePath: Mobs/Silicon/Chassis/janitor.rsi
+      spriteBodyState: mopbot
+      spriteHasMindState: mopbot_e
+      spriteNoMindState: mopbot_e_r
+      spriteToggleLightState: mopbot_l
+      inventoryTemplateId: borgTall
+
+- type: entity
+  parent: BorgJanitorSubtypeBaseNS
+  id: BorgJanitorSubtypeNobleNS
+  name: Noble-CLN
+  suffix: NS
+  components:
+    - type: BorgSubtypeDefinition
+      spritePath: Mobs/Silicon/Chassis/janitor.rsi
+      spriteBodyState: noble
+      spriteHasMindState: noble_e
+      spriteNoMindState: noble_e_r
+      spriteToggleLightState: noble_l
+      inventoryTemplateId: borgDutch
+
+- type: entity
+  parent: BorgJanitorSubtypeBaseNS
+  id: BorgJanitorSubtypeCricketNS
+  name: Cricket
+  suffix: NS
+  components:
+    - type: BorgSubtypeDefinition
+      spritePath: Mobs/Silicon/Chassis/janitor.rsi
+      spriteBodyState: cricket
+      spriteHasMindState: cricket_e
+      spriteNoMindState: cricket_e_r
+      spriteToggleLightState: cricket_l
+      inventoryTemplateId: borgDutch
+
+# region Medical
+
+- type: entity
+  parent: BorgMedicalSubtypeBaseNS
+  id: BorgMedicalSubtypeStandardNS
+  name: Standard
+  suffix: NS
+  components:
+    - type: BorgSubtypeDefinition
+      spritePath: Mobs/Silicon/Chassis/synd_medical.rsi
+      spriteBodyState: borg
+      spriteHasMindState: borg_e
+      spriteNoMindState: borg_e_r
+      spriteToggleLightState: borg_l
+      inventoryTemplateId: borg
+
+- type: entity
+  parent: BorgMedicalSubtypeBaseNS
+  id: BorgMedicalSubtypeGenericNS
+  name: Generic
+  suffix: NS
+  components:
+    - type: BorgSubtypeDefinition
+      spritePath: Mobs/Silicon/Chassis/medical.rsi
+      spriteBodyState: generic
+      spriteHasMindState: generic_e
+      spriteNoMindState: generic_e_r
+      spriteToggleLightState: generic_l
+      inventoryTemplateId: borgTall
+
+- type: entity
+  parent: BorgMedicalSubtypeBaseNS
+  id: BorgMedicalSubtypeNeedlesNS
+  name: Needles
+  suffix: NS
+  components:
+    - type: BorgSubtypeDefinition
+      spritePath: Mobs/Silicon/Chassis/medical.rsi
+      spriteBodyState: needles
+      spriteHasMindState: generic_e
+      spriteNoMindState: generic_e_r
+      spriteToggleLightState: generic_l
+      inventoryTemplateId: borgTall
+
+- type: entity
+  parent: BorgMedicalSubtypeBaseNS
+  id: BorgMedicalSubtypeDroidNS
+  name: Advanced Android
+  suffix: NS
+  components:
+    - type: BorgSubtypeDefinition
+      spritePath: Mobs/Silicon/Chassis/medical.rsi
+      spriteBodyState: droid
+      spriteHasMindState: droid_e
+      spriteNoMindState: droid_e_r
+      spriteToggleLightState: droid_l
+      inventoryTemplateId: borgDutch
+
+- type: entity
+  parent: BorgMedicalSubtypeBaseNS
+  id: BorgMedicalSubtypeNobleNS
+  name: Noble-MED
+  suffix: NS
+  components:
+    - type: BorgSubtypeDefinition
+      spritePath: Mobs/Silicon/Chassis/medical.rsi
+      spriteBodyState: noble
+      spriteHasMindState: noble_e
+      spriteNoMindState: noble_e_r
+      spriteToggleLightState: noble_l
+      inventoryTemplateId: borgDutch
+
+- type: entity
+  parent: BorgMedicalSubtypeBaseNS
+  id: BorgMedicalSubtypeCricketNS
+  name: Cricket
+  suffix: NS
+  components:
+    - type: BorgSubtypeDefinition
+      spritePath: Mobs/Silicon/Chassis/medical.rsi
+      spriteBodyState: cricket
+      spriteHasMindState: cricket_e
+      spriteNoMindState: cricket_e_r
+      spriteToggleLightState: cricket_l
+      inventoryTemplateId: borgDutch
+
+# region Service
+
+- type: entity
+  parent: BorgServiceSubtypeBaseNS
+  id: BorgServiceSubtypeStandardNS
+  name: Standard
+  suffix: NS
+  components:
+    - type: BorgSubtypeDefinition
+      spritePath: Mobs/Silicon/Chassis/service.rsi
+      spriteBodyState: standard
+      spriteHasMindState: standard_e
+      spriteNoMindState: standard_e_r
+      spriteToggleLightState: standard_l
+      inventoryTemplateId: borg
+
+- type: entity
+  parent: BorgServiceSubtypeBaseNS
+  id: BorgServiceSubtypeGenericNS
+  name: Generic
+  suffix: NS
+  components:
+    - type: BorgSubtypeDefinition
+      spritePath: Mobs/Silicon/Chassis/service.rsi
+      spriteBodyState: generic
+      inventoryTemplateId: borgTall
+
+- type: entity
+  parent: BorgServiceSubtypeBaseNS
+  id: BorgServiceSubtypeWaitressNS
+  name: Waitress
+  suffix: NS
+  components:
+    - type: BorgSubtypeDefinition
+      spritePath: Mobs/Silicon/Chassis/service.rsi
+      spriteBodyState: waitress
+      inventoryTemplateId: borgTall
+
+- type: entity
+  parent: BorgServiceSubtypeBaseNS
+  id: BorgServiceSubtypeBrobotNS
+  name: Brobot
+  suffix: NS
+  components:
+    - type: BorgSubtypeDefinition
+      spritePath: Mobs/Silicon/Chassis/service.rsi
+      spriteBodyState: brobot
+      spriteHasMindState: brobot_e
+      spriteNoMindState: brobot_e_r
+      inventoryTemplateId: borgTall
+
+- type: entity
+  parent: BorgServiceSubtypeBaseNS
+  id: BorgServiceSubtypeMaximillionNS
+  name: Maximillion
+  suffix: NS
+  components:
+    - type: BorgSubtypeDefinition
+      spritePath: Mobs/Silicon/Chassis/service.rsi
+      spriteBodyState: maximillion
+      spriteHasMindState: maximillion_e
+      spriteNoMindState: maximillion_e_r
+      price: 500
+      inventoryTemplateId: borgTall
+
+- type: entity
+  parent: BorgServiceSubtypeBaseNS
+  id: BorgServiceSubtypeNobleNS
+  name: Noble-SRV
+  suffix: NS
+  components:
+    - type: BorgSubtypeDefinition
+      spritePath: Mobs/Silicon/Chassis/service.rsi
+      spriteBodyState: noble
+      spriteHasMindState: noble_e
+      spriteNoMindState: noble_e_r
+      spriteToggleLightState: noble_l
+      inventoryTemplateId: borgDutch
+
+- type: entity
+  parent: BorgServiceSubtypeBaseNS
+  id: BorgServiceSubtypeCricketNS
+  name: Cricket
+  suffix: NS
+  components:
+    - type: BorgSubtypeDefinition
+      spritePath: Mobs/Silicon/Chassis/service.rsi
+      spriteBodyState: cricket
+      spriteHasMindState: cricket_e
+      spriteNoMindState: cricket_e_r
+      spriteToggleLightState: cricket_l
+      inventoryTemplateId: borgDutch
+
+# region Security
+
+- type: entity
+  parent: BorgSecuritySubtypeBaseNS
+  id: BorgSecuritySubtypeRedKnightNS
+  name: Red Knight
+  suffix: NS
+  components:
+    - type: BorgSubtypeDefinition
+      spritePath: _Starlight/Mobs/Silicon/Chassis/security.rsi
+      spriteBodyState: red-knight
+      spriteHasMindState: red-knight_e
+      spriteNoMindState: red-knight_e_r
+      spriteToggleLightState: red-knight_l
+      inventoryTemplateId: borgTall
+
+- type: entity
+  parent: BorgSecuritySubtypeBaseNS
+  id: BorgSecuritySubtypeBlackKnightNS
+  name: Black Knight
+  suffix: NS
+  components:
+    - type: BorgSubtypeDefinition
+      spritePath: _Starlight/Mobs/Silicon/Chassis/security.rsi
+      spriteBodyState: black-knight
+      spriteHasMindState: black-knight_e
+      spriteNoMindState: black-knight_e_r
+      spriteToggleLightState: black-knight_l
+      inventoryTemplateId: borgTall
+
+- type: entity
+  parent: BorgSecuritySubtypeBaseNS
+  id: BorgSecuritySubtypeStandardNS
+  name: Standard
+  suffix: NS
+  components:
+    - type: BorgSubtypeDefinition
+      spritePath: _Starlight/Mobs/Silicon/Chassis/security.rsi
+      spriteBodyState: standard
+      spriteHasMindState: standard_e
+      spriteNoMindState: standard_e_r
+      spriteToggleLightState: standard_l
+      inventoryTemplateId: borg
+
+- type: entity
+  parent: BorgSecuritySubtypeBaseNS
+  id: BorgSecuritySubtypeNobleNS
+  name: Noble-SEC
+  suffix: NS
+  components:
+    - type: BorgSubtypeDefinition
+      spritePath: _Starlight/Mobs/Silicon/Chassis/security.rsi
+      spriteBodyState: noble
+      spriteHasMindState: noble_e
+      spriteNoMindState: noble_e_r
+      spriteToggleLightState: noble_l
+      inventoryTemplateId: borgDutch
+
+- type: entity
+  parent: BorgSecuritySubtypeBaseNS
+  id: BorgSecuritySubtypeCricketNS
+  name: Cricket
+  suffix: NS
+  components:
+    - type: BorgSubtypeDefinition
+      spritePath: _Starlight/Mobs/Silicon/Chassis/security.rsi
+      spriteBodyState: cricket
+      spriteHasMindState: cricket_e
+      spriteNoMindState: cricket_e_r
+      spriteToggleLightState: cricket_l
+      inventoryTemplateId: borgDutch
+
+- type: entity
+  parent: BorgSecuritySubtypeBaseNS
+  id: BorgSecuritySubtypeHeavyNS
+  name: Heavy
+  suffix: NS
+  components:
+    - type: BorgSubtypeDefinition
+      spritePath: _Starlight/Mobs/Silicon/Chassis/security.rsi
+      spriteBodyState: heavy
+      spriteHasMindState: heavy_e
+      spriteNoMindState: heavy_e_r
+      spriteToggleLightState: heavy_l
+      inventoryTemplateId: borg
+
+- type: entity
+  parent: BorgSecuritySubtypeBaseNS
+  id: BorgSecuritySubtypeWeaponsGuyNS
+  name: Weapons Guy
+  suffix: NS
+  components:
+    - type: BorgSubtypeDefinition
+      spritePath: _Starlight/Mobs/Silicon/Chassis/security.rsi
+      spriteBodyState: borg
+      spriteHasMindState: borg_e
+      spriteNoMindState: borg_e_r
+      spriteToggleLightState: borg_l
+      inventoryTemplateId: borgTall
+
+# region Purrfus
+
+- type: entity
+  parent: BorgPurrfusSubtypeBaseNS
+  id: BorgPurrfusSubtypeGreenNS
+  name: Green Purrfus
+  suffix: NS
+  components:
+    - type: BorgSubtypeDefinition
+      spritePath: _Starlight/Mobs/Silicon/Chassis/purrfus.rsi
+      spriteBodyState: green
+      spriteHasMindState: green_e
+      spriteNoMindState: green_e_r
+      spriteToggleLightState: green_l
+      inventoryTemplateId: borgTall
+
+- type: entity
+  parent: BorgPurrfusSubtypeBaseNS
+  id: BorgPurrfusSubtypeOrangeNS
+  name: Orange Purrfus
+  suffix: NS
+  components:
+    - type: BorgSubtypeDefinition
+      spritePath: _Starlight/Mobs/Silicon/Chassis/purrfus.rsi
+      spriteBodyState: orange
+      spriteHasMindState: orange_e
+      spriteNoMindState: orange_e_r
+      spriteToggleLightState: orange_l
+      inventoryTemplateId: borgTall
+
+- type: entity
+  parent: BorgPurrfusSubtypeBaseNS
+  id: BorgPurrfusSubtypePinkNS
+  name: Pink Purrfus
+  suffix: NS
+  components:
+    - type: BorgSubtypeDefinition
+      spritePath: _Starlight/Mobs/Silicon/Chassis/purrfus.rsi
+      spriteBodyState: pink
+      spriteHasMindState: pink_e
+      spriteNoMindState: pink_e_r
+      spriteToggleLightState: pink_l
       inventoryTemplateId: borgTall

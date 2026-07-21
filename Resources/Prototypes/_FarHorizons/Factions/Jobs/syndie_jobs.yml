@@ -242,6 +242,7 @@
   weight: 0
   override:
     #supervisors: job-supervisors-pm
+    startingGear: SyndieAssistantGear
     loadout: SyndieAssistant
     access:
     - MaintenanceNS
@@ -252,6 +253,7 @@
   job: Bartender
   override:
     #supervisors: job-supervisors-pm
+    startingGear: SyndieBartenderGear
     access:
     - ServiceNS
     - MaintenanceNS
@@ -266,6 +268,8 @@
   job: Botanist
   override:
     #supervisors: job-supervisors-pm
+    startingGear: SyndieBotanistGear
+    loadout: SyndieBotanist
     access:
     - ServiceNS
     - MaintenanceNS
@@ -280,6 +284,7 @@
   job: Boxer
   override:
     #supervisors: job-supervisors-pm
+    startingGear: SyndieBoxerGear
     access:
     - ServiceNS
     - MaintenanceNS
@@ -290,6 +295,7 @@
   job: Chaplain
   override:
     #supervisors: job-supervisors-pm
+    startingGear: SyndieChaplainGear
     access:
     - ChapelNS
     - MaintenanceNS
@@ -300,6 +306,8 @@
   job: Chef
   override:
     #supervisors: job-supervisors-pm
+    startingGear: SyndieChefGear
+    loadout: SyndieChef
     access:
     - ServiceNS
     - MaintenanceNS
@@ -314,6 +322,7 @@
   job: Clown
   override:
     #supervisors: job-supervisors-pm
+    startingGear: SyndieClownGear
     access:
     - TheatreNS
     - MaintenanceNS
@@ -325,6 +334,8 @@
   override:
     name: faction-syndicate-job-janitor
     #supervisors: job-supervisors-pm
+    startingGear: SyndieJanitorGear
+    loadout: SyndieJanitor
     access:
     - ServiceNS
     - JanitorNS
@@ -336,6 +347,7 @@
   job: Librarian
   override:
     #supervisors: job-supervisors-pm
+    startingGear: SyndieLibrarianGear
     access:
     - ServiceNS
     - MaintenanceNS
@@ -346,6 +358,7 @@
   job: Mime
   override:
     #supervisors: job-supervisors-pm
+    startingGear: SyndieMimeGear
     access:
     - TheatreNS
     - MaintenanceNS
@@ -356,6 +369,7 @@
   job: Musician
   override:
     #supervisors: job-supervisors-pm
+    startingGear: SyndieMusicianGear
     access:
     - MaintenanceNS
     - TheatreNS
@@ -367,6 +381,7 @@
   override:
     name: faction-syndicate-job-reporter
     #supervisors: job-supervisors-pm
+    startingGear: SyndieReporterGear
     access:
     - ServiceNS
     - MaintenanceNS
@@ -377,6 +392,7 @@
   job: ServiceWorker
   override:
     #supervisors: job-supervisors-pm
+    startingGear: SyndieServiceWorkerGear
     access:
     - ServiceNS
     - MaintenanceNS
@@ -391,6 +407,7 @@
   job: Zookeeper
   override:
     #supervisors: job-supervisors-pm
+    startingGear: SyndieZookeeperGear
     access:
     - ServiceNS
     - MaintenanceNS
@@ -640,7 +657,7 @@
     name: faction-syndicate-job-borg
     icon: JobIconSyndieBorg
     #supervisors: job-supervisors-ep
-    jobEntity: PlayerBorgBatterySyndicate
+    jobEntity: PlayerBorgBatteryNS
 
 #region Security
 
@@ -775,4 +792,4 @@
     name: faction-syndicate-job-secborg
     icon: JobIconSyndieSecborg
     #supervisors: job-supervisors-marshal
-    jobEntity: PlayerSecBorgBatterySyndicate
+    jobEntity: PlayerSecBorgBatteryNS

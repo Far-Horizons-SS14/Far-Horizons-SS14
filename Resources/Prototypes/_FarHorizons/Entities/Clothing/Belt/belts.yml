@@ -698,7 +698,40 @@
     tags:
     - UtilityBelt
     - WhitelistChameleon
-    
+
+#region Service
+- type: entity
+  parent: ClothingBeltChef
+  id: ClothingBeltChefNS
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Belt/NeoSol/chef.rsi 
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Belt/NeoSol/chef.rsi 
+
+- type: entity
+  parent: ClothingBeltJanitor
+  id: ClothingBeltJanitorNS
+  suffix: NS
+  description: A belt used to hold most janitorial supplies.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Belt/NeoSol/janitor.rsi 
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Belt/NeoSol/janitor.rsi 
+
+- type: entity
+  parent: ClothingBeltPlant
+  id: ClothingBeltPlantNS
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Belt/NeoSol/plant.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Belt/NeoSol/plant.rsi
+
+
 #region Security
 
 # Corpsman (Corpsman)

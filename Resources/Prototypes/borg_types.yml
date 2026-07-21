@@ -97,6 +97,7 @@
   radioChannels:
   - GSL # Far Horizons
   - Science
+  - SyndiSci #FH
   #- Expedition #Starlight #FH
 
   # Visual
@@ -115,6 +116,18 @@
     time: 0 # Far Horizons - Temporary
   # Starlight-end
 
+  #FarHorizons Start
+  # Components
+  addComponents:
+  - type: Access
+    groups:
+    - AllAccess
+    - AllAccessNS
+    tags:
+    - Borg
+  - type: AccessReader
+    access: [["Command"], ["Robotics"], ["Executive"], ["RoboticsNS"]]
+  #FarHorizons End
 
 # Janitor borg
 - type: borgType

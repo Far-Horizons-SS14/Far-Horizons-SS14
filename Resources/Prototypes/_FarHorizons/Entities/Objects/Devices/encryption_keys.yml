@@ -66,7 +66,7 @@
 #region Syndi Station Comms
 
 - type: entity 
-  parent: [ EncryptionKeySyndi, BaseSecurityContraband ]
+  parent: [ EncryptionKeySyndi, BaseCentcommCommandContraband ]
   id: EncryptionKeySyndiMaster
   name: Station-Executive Encryption Key
   description: An encryption key used by someone working very high up at a NeoSol Station.
@@ -90,7 +90,7 @@
 
 
 - type: entity
-  parent: [ EncryptionKeySyndi, BaseSecurityContraband ]
+  parent: [ EncryptionKeySyndi, BaseCommandContraband ]
   id: EncryptionKeySyndiCommand
   name: Command Encryption Key
   description: An encryption key used by someone who is an executive within NeoSol command.
@@ -105,7 +105,7 @@
     - state: com_label
 
 - type: entity
-  parent: [ EncryptionKeySyndi, BaseSecurityContraband ]
+  parent: [ EncryptionKeySyndi, BaseSecurityLawyerContraband ]
   id: EncryptionKeySyndiSecurity
   name: Security Encryption Key
   description: An encryption key used by someone who enforces justice.
@@ -120,7 +120,7 @@
     - state: sec_label
 
 - type: entity
-  parent: [ EncryptionKeySyndi, BaseSecurityContraband ]
+  parent: [ EncryptionKeySyndi, BaseScienceContraband ]
   id: EncryptionKeySyndiSci
   name: Science Encryption Key
   description: An encryption key to talk about dangerous experiments.
@@ -135,7 +135,22 @@
     - state: sci_label
 
 - type: entity
-  parent: [ EncryptionKeySyndi, BaseSecurityContraband ]
+  parent: [ EncryptionKeySyndi, BaseScienceContraband ]
+  id: EncryptionKeySyndiSciRobo
+  name: Robotech Encryption Key # Far Horizons Capitilization
+  description: An encryption key used by robototech engineers. Maybe it has a LAH-6000 on it?
+  components:
+  - type: EncryptionKey
+    channels:
+    - SyndiSci
+    defaultChannel: SyndiSci
+  - type: Sprite
+    layers:
+    - state: crypt_gray
+    - state: robotics_label
+
+- type: entity
+  parent: [ EncryptionKeySyndi, BaseMedicalContraband ]
   id: EncryptionKeySyndiMed
   name: Medical Encryption Key
   description: An encryption key used by someone who saves lives.
@@ -150,7 +165,7 @@
     - state: med_label
 
 - type: entity
-  parent: [ EncryptionKeySyndi, BaseSecurityContraband ]
+  parent: [ EncryptionKeySyndi, BaseEngineeringContraband ]
   id: EncryptionKeySyndiEngi
   name: Engineering Encryption Key
   description: An encryption key made to coordinate with engineering to fix the artifact room within the first 10 minutes.
@@ -165,7 +180,7 @@
     - state: eng_label
 
 - type: entity
-  parent: [ EncryptionKeySyndi, BaseSecurityContraband ]
+  parent: [ EncryptionKeySyndi, BaseCivilianContraband ]
   id: EncryptionKeySyndiService
   name: Service Encryption Key
   description: An encryption key designed with the intention of complaining about departmental cleanliness.
@@ -180,7 +195,7 @@
     - state: service_label
 
 - type: entity
-  parent: [ EncryptionKeySyndi, BaseSecurityContraband ]
+  parent: EncryptionKeySyndi
   id: EncryptionKeySyndiCommon
   name: Common Encryption Key
   description: An encryption key specifically designed for inter-departmental communications where you scream out obscenities at each other.
@@ -197,7 +212,7 @@
 # stupid multi-dep comms
 
 - type: entity
-  parent: [ EncryptionKeySyndi, BaseSecurityContraband ]
+  parent: [ EncryptionKeySyndi, BaseMedicalScienceContraband ]
   id: EncryptionKeySyndiMedSci
   name: Med-Sci Encryption Key
   description: An encryption key made to coordinate the advancements of technologies relating to the medicinal field.
@@ -232,7 +247,7 @@
 #region High Command Comms
 
 - type: entity
-  parent: [ EncryptionKeySyndi, BaseSyndicateContraband ]
+  parent: [ EncryptionKeySyndi, BaseCentcommCommandContraband ]
   id: EncryptionKeySHC
   name: NeoSol High Command Encryption Key
   description: An encryption key used by someone who is very evil.

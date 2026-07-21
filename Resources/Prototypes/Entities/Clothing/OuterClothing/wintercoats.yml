@@ -236,7 +236,7 @@
   description: A coat specifically designed for work inside cold storage, sorely needed by cold-blooded lizard chefs.
   components:
   - type: Sprite
-    sprite: Clothing/OuterClothing/WinterCoats/coat.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/WinterCoats/chef.rsi #Far Horizons
     layers:
     - state: CHEF-icon
   - type: Item
@@ -246,7 +246,7 @@
       right:
       - state: CHEF-inhand-right
   - type: Clothing
-    sprite: Clothing/OuterClothing/WinterCoats/coat.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/WinterCoats/chef.rsi #Far Horizons
     clothingVisuals:
       outerClothing:
       - state: CHEF-equipped-OUTERCLOTHING
@@ -474,7 +474,7 @@
   name: Hydroponics Winter Coat #Far Horizons - The Great Capitalization Crusade
   components:
   - type: Sprite
-    sprite: Clothing/OuterClothing/WinterCoats/coat.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/WinterCoats/plant.rsi #Far Horizons
     layers:
     - state: HYDRO-icon
   - type: Item
@@ -484,7 +484,7 @@
       right:
       - state: HYDRO-inhand-right
   - type: Clothing
-    sprite: Clothing/OuterClothing/WinterCoats/coat.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/WinterCoats/plant.rsi #Far Horizons
     clothingVisuals:
       outerClothing:
       - state: HYDRO-equipped-OUTERCLOTHING
@@ -497,7 +497,7 @@
   name: Janitorial Winter Coat #Far Horizons - The Great Capitalization Crusade
   components:
   - type: Sprite
-    sprite: Clothing/OuterClothing/WinterCoats/coat.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/WinterCoats/janitor.rsi #Far Horizons
     layers:
     - state: JANI-icon
   - type: Item
@@ -505,9 +505,9 @@
       left:
       - state: JANI-inhand-left
       right:
-      - state: CHEF-inhand-right
+      - state: JANI-inhand-right #Far Horizons - Why was this CHEF and not JANI??
   - type: Clothing
-    sprite: Clothing/OuterClothing/WinterCoats/coat.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/WinterCoats/janitor.rsi #Far Horizons
     clothingVisuals:
       outerClothing:
       - state: JANI-equipped-OUTERCLOTHING

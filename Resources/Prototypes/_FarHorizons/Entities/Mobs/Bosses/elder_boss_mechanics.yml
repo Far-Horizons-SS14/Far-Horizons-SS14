@@ -1,0 +1,44 @@
+- type: bossMechanicsSheet
+  id: ElderBossMechanics
+  mechanics:
+    # Warning Shot - circle following each player, then dropping at their feet and staying there
+    - cooldownSeconds: 30
+      logic:
+      - !type:TelegraphedAttackFollowingEveryone
+        protos: [ TelegraphBossElderWarningShotPre ]
+    # Single Out - large area attack around the furthest player
+    - cooldownSeconds: 15
+      considerations:
+      - !type:HealthInRangeConsideration
+        maxHealth: 0.9
+      logic:
+      - !type:TelegraphedAttackOnFurthestTarget
+        protos: [ TelegraphBossElderSingleOut ]
+    # Flourish - large flashy attack around boss
+    - cooldownSeconds: 10
+      considerations:
+      - !type:HealthInRangeConsideration
+        maxHealth: 0.7
+      logic:
+      - !type:TelegraphedAttackAroundSelf
+        protos: 
+          - TelegraphBossElderFlourish1
+          - TelegraphBossElderFlourish2
+          - TelegraphBossElderFlourish3
+    # Healing decoy - Area attack, boss teleports to a tile within this attack, creates clones and begins healing. Attacking boss destroys clones safely, attacking clones heals boss extra
+    - cooldownSeconds: -1 # negative number means once per combat
+      considerations:
+      - !type:HealthInRangeConsideration
+        minHealth: 0.2
+        maxHealth: 0.5
+      logic:
+      - !type:TelegraphedAttackAroundSelf
+        protos: [ TelegraphBossElderHealingDecoy ]
+    # Final showdown - make arena smaller
+    - cooldownSeconds: -1
+      considerations:
+      - !type:HealthInRangeConsideration
+        maxHealth: 0.2
+      logic:
+      - !type:TelegraphedAttackAroundSelf
+        protos: [ TelegraphBossElderFinalShowdownMain ]

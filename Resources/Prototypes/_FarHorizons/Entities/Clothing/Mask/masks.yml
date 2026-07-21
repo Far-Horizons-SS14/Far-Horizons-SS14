@@ -104,3 +104,27 @@
     sprite: _FarHorizons/Clothing/Mask/NeoSol/gascaptain.rsi #Far Horizons
   - type: BreathMask
   - type: IngestionBlocker
+
+#region Service
+- type: entity
+  parent: ClothingMaskBase
+  id: ClothingMaskJanitorNS
+  name: Janitorial Gas Mask
+  description: A mask designed to deal with the unpleasant smells of the station.
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Mask/NeoSol/janitor.rsi
+    state: icon
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Mask/NeoSol/janitor.rsi
+  - type: BreathMask
+  - type: IngestionBlocker
+  - type: IdentityBlocker
+    coverage: MOUTH
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+  - type: HideLayerClothing
+    slots:
+    - Snout

@@ -280,13 +280,13 @@
       #  color: "#C12D30"
       #  sprite: Clothing/Uniforms/Jumpskirt/color.rsi
       - state: overlay-inhand-left
-        sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/warden.rsi
+        sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/warden.rsi
       right:
       #- state: inhand-right
       #  color: "#C12D30"
       #  sprite: Clothing/Uniforms/Jumpskirt/color.rsi
       - state: overlay-inhand-right
-        sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/warden.rsi
+        sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/warden.rsi
 
 - type: entity
   parent: [ClothingUniformSkirtBase, BaseCommandContraband]
@@ -305,13 +305,27 @@
       #  color: "#C12D30"
       #  sprite: Clothing/Uniforms/Jumpskirt/color.rsi
       - state: overlay-inhand-left
-        sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/hos.rsi
+        sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/hos.rsi
       right:
       #- state: inhand-right
       #  color: "#C12D30"
       #  sprite: Clothing/Uniforms/Jumpskirt/color.rsi
       - state: overlay-inhand-right
-        sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/hos.rsi
+        sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/hos.rsi
+
+#region Service
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpskirtOveralls
+  name: Overalls Jumpskirt
+  suffix: NT
+  description: Great for working outdoors.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/overalls.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/overalls.rsi
+
 
 #region ## NeoSol ##
 
@@ -885,3 +899,44 @@
     sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/NeoSol/security_cadet.rsi
   - type: Clothing
     sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/NeoSol/security_cadet.rsi
+
+#region Service
+- type: entity
+  parent: ClothingUniformJumpskirtHydroponics
+  id: ClothingUniformJumpskirtHydroponicsNS
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/NeoSol/hydro.rsi 
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/NeoSol/hydro.rsi 
+
+- type: entity
+  parent: ClothingUniformJumpskirtOveralls
+  id: ClothingUniformJumpskirtOverallsNS
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/NeoSol/overalls.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/NeoSol/overalls.rsi
+
+- type: entity
+  parent: ClothingUniformJumpskirtChef
+  id: ClothingUniformJumpskirtChefNS
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/NeoSol/chef.rsi 
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/NeoSol/chef.rsi 
+
+- type: entity
+  parent: ClothingUniformJumpskirtJanitor
+  id: ClothingUniformJumpskirtJanitorNS
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/NeoSol/janitor.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpskirt/NeoSol/janitor.rsi
