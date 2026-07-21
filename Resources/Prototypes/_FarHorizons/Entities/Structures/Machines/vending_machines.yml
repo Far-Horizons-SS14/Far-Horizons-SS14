@@ -1,5 +1,17 @@
 #region NeoSol
 
+
+
+
+
+
+
+
+
+
+
+#region Drobes
+
 - type: entity
   parent: VendingMachine
   id: VendingMachineSecDrobeNeoSol
@@ -98,3 +110,263 @@
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
   - type: AccessReader
     access: [["MedicalNS"]]
+    
+- type: entity
+  parent: VendingMachine
+  id: VendingMachineChemDrobeNeoSol
+  name: ChemDrobe
+  suffix: NS
+  description: A vending machine for dispensing chemistry related clothing.
+  components:
+  - type: VendingMachine
+    pack: ChemDrobeInventoryNeoSol
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+  - type: Machine
+    board: VendingMachineChemDrobeCircuitboard
+  - type: DatasetVocalizer
+    dataset: ChemDrobeAds
+  - type: SpeakOnUIClosed
+    pack: GenericVendGoodbyes
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Machines/VendingMachines/chemdrobe.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: AccessReader
+    access: [["ChemistryNS"]]
+
+- type: entity
+  parent: VendingMachine
+  id: VendingMachineAtmosDrobeNeoSol
+  name: AtmosDrobe
+  suffix: NS
+  description: This relatively unknown vending machine delivers clothing for Atmospherics Technicians, an equally unknown job.
+  components:
+  - type: VendingMachine
+    pack: AtmosDrobeInventoryNeoSol
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+  - type: Machine
+    board: VendingMachineAtmosDrobeCircuitboard
+  - type: DatasetVocalizer
+    dataset: AtmosDrobeAds
+  - type: SpeakOnUIClosed
+    pack: GenericVendGoodbyes
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Machines/VendingMachines/atmosdrobe.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: PointLight
+    radius: 1.5
+    energy: 3.0
+    color: "#b89e2a"
+  - type: AccessReader
+    access: [["AtmosphericsNS"]]
+
+- type: entity
+  parent: VendingMachine
+  id: VendingMachineEngiDrobeNeoSol
+  name: EngiDrobe
+  suffix: NS
+  description: A vending machine renowned for vending industrial grade clothing.
+  components:
+  - type: VendingMachine
+    pack: EngiDrobeInventoryNeoSol
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+  - type: Machine
+    board: VendingMachineEngiDrobeCircuitboard
+  - type: DatasetVocalizer
+    dataset: EngiDrobeAds
+  - type: SpeakOnUIClosed
+    pack: GenericVendGoodbyes
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Machines/VendingMachines/engidrobe.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: PointLight
+    radius: 1.5
+    energy: 3.0
+    color: "#b89e2a"
+  - type: AccessReader
+    access: [["EngineeringNS"]]
+
+- type: entity
+  parent: VendingMachine
+  id: VendingMachineChefDrobeNeoSol
+  name: ChefDrobe
+  suffix: NS
+  description: This vending machine might not dispense meat, but it certainly dispenses chef related clothing.
+  components:
+  - type: VendingMachine
+    pack: ChefDrobeInventoryNeoSol
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+  - type: Machine
+    board: VendingMachineChefDrobeCircuitboard
+  - type: DatasetVocalizer
+    dataset: ChefDrobeAds
+  - type: SpeakOnUIClosed
+    pack: GenericVendGoodbyes
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Machines/VendingMachines/chefdrobe.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: AccessReader
+    access: [["KitchenNS"]]
+
+- type: entity
+  parent: VendingMachine
+  id: VendingMachineDetDrobeNeoSol
+  name: DetDrobe
+  suffix: NS
+  description: A machine for all your detective needs, as long as you need clothes.
+  components:
+  - type: VendingMachine
+    pack: DetDrobeInventory
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+  - type: Machine
+    board: VendingMachineDetDrobeCircuitboard
+  - type: DatasetVocalizer
+    dataset: DetDrobeAds
+  - type: SpeakOnUIClosed
+    pack: GenericVendGoodbyes
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Machines/VendingMachines/detdrobe.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: AccessReader
+    access: [["DetectiveNS"]]
+
+- type: entity
+  parent: VendingMachine
+  id: VendingMachineJaniDrobeNeoSol
+  name: JaniDrobe
+  suffix: NS
+  description: A self cleaning vending machine capable of dispensing clothing for janitors.
+  components:
+  - type: VendingMachine
+    pack: JaniDrobeInventoryNeoSol
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+  - type: Machine
+    board: VendingMachineJaniDrobeCircuitboard
+  - type: DatasetVocalizer
+    dataset: JaniDrobeAds
+  - type: SpeakOnUIClosed
+    pack: GenericVendGoodbyes
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Machines/VendingMachines/janidrobe.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: PointLight
+    radius: 1.5
+    energy: 3.0
+    color: "#6927C5"
+  - type: AccessReader
+    access: [["JanitorNS"]]
+
+- type: entity
+  parent: VendingMachine
+  id: VendingMachineSciDrobeNeoSol
+  name: SciDrobe
+  suffix: NS
+  description: A simple vending machine suitable to dispense well tailored science clothing. Endorsed by Space Cubans.
+  components:
+  - type: VendingMachine
+    pack: SciDrobeInventoryNeoSol
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineSciDrobeCircuitboard # Starlight-edit: Vending Machine boards
+  - type: DatasetVocalizer
+    dataset: SciDrobeAds
+  - type: SpeakOnUIClosed
+    pack: GenericVendGoodbyes
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Machines/VendingMachines/scidrobe.rsi #Far Horizons resprite
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: AccessReader
+    access: [["ResearchNS"]]
+
+- type: entity
+  parent: VendingMachine
+  id: VendingMachineRoboDrobeNeoSol
+  name: RoboDrobe
+  suffix: NS
+  description: A vending machine designed to dispense clothing known only to roboticists.
+  components:
+  - type: VendingMachine
+    pack: RoboDrobeInventoryNeoSol
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+  - type: Machine
+    board: VendingMachineRoboDrobeCircuitboard
+  - type: DatasetVocalizer
+    dataset: RoboDrobeAds
+  - type: SpeakOnUIClosed
+    pack: GenericVendGoodbyes
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Machines/VendingMachines/robodrobe.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: AccessReader
+    access: [["RoboticsNS"]]

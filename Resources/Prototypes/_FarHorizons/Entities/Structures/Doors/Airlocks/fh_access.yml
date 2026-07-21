@@ -2712,7 +2712,7 @@
 
 #region HighSecDoors
 - type: entity
-  parent: FHHighSecDoor
+  parent: FHHighSecDoorNeoSol
   id: FHHighSecNSNeoSolHighCommandLocked
   suffix: NeoSolHighCommand, NS, Locked
   components:
@@ -2721,7 +2721,7 @@
         board: [ DoorElectronicsNSHighCommand ]
 
 - type: entity
-  parent: FHHighSecDoor
+  parent: FHHighSecDoorNeoSol
   id: FHHighSecNSExecutiveLocked
   suffix: Executive, NS, Locked
   components:
@@ -2730,7 +2730,7 @@
         board: [ DoorElectronicsNSExecutive ]
 
 - type: entity
-  parent: FHHighSecDoor
+  parent: FHHighSecDoorNeoSol
   id: FHHighSecNSCommandantLocked
   suffix: Commandant, NS, Locked
   components:
@@ -2739,7 +2739,7 @@
         board: [ DoorElectronicsNSCommandant ]
 
 - type: entity
-  parent: FHHighSecDoor
+  parent: FHHighSecDoorNeoSol
   id: FHHighSecNSArmoryLocked
   suffix: Armory, NS, Locked
   components:

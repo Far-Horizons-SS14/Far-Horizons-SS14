@@ -1,7 +1,7 @@
 ﻿- type: entity
   id: FHHighSecDoor
   parent: FHAirlock
-  name: high security door
+  name: High Security Door
   description: Keeps the bad out and keeps the good in.
   placement:
     mode: SnapgridCenter
@@ -47,3 +47,10 @@
       tags:
         - HighSecDoor
         # This tag is used to nagivate the Airlock construction graph. It's needed because this construction graph is shared between Airlock, AirlockGlass, and HighSecDoor
+
+- type: entity
+  parent: FHHighSecDoor
+  id: FHHighSecDoorNeoSol
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/basic_syndie.rsi
