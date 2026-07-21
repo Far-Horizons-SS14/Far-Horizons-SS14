@@ -1,0 +1,100 @@
+#region NeoSol
+
+- type: entity
+  parent: VendingMachine
+  id: VendingMachineSecDrobeNeoSol
+  name: SecDrobe
+  suffix: NS
+  description: A vending machine for security and security-related clothing!
+  components:
+  - type: VendingMachine
+    pack: SecDrobeInventoryNeoSol
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+  - type: Machine
+    board: VendingMachineSecDrobeCircuitboard
+  - type: DatasetVocalizer
+    dataset: SecDrobeAds
+  - type: SpeakOnUIClosed
+    pack: GenericVendGoodbyes
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Machines/VendingMachines/secdrobe.rsi # Need NeoSol version...
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: PointLight
+    radius: 1.5
+    energy: 3.0
+    color: "#d82929"
+  - type: AccessReader
+    access: [["SecurityNS"], ["CadetNS"]]
+
+
+- type: entity
+  parent: VendingMachine
+  id: VendingBarDrobeNeoSol
+  name: BarDrobe
+  suffix: NS
+  description: A stylish vendor to dispense the most stylish bar clothing!
+  components:
+  - type: VendingMachine
+    pack: BarDrobeInventoryNeoSol
+    offState: off
+    showPrices: false
+    brokenState: broken
+    normalState: normal-unshaded
+  - type: Machine
+    board: VendingBarDrobeCircuitboard
+  - type: DatasetVocalizer
+    dataset: BarDrobeAds
+  - type: SpeakOnUIClosed
+    pack: GenericVendGoodbyes
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Machines/VendingMachines/bardrobe.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: AccessReader
+    access: [["BarNS"]]
+
+- type: entity
+  parent: VendingMachine
+  id: VendingMachineMediDrobeNeoSol
+  name: MediDrobe
+  suffix: NS
+  description: A vending machine rumoured to be capable of dispensing clothing for medical personnel.
+  components:
+  - type: VendingMachine
+    pack: MediDrobeInventoryNeoSol
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+  - type: Machine
+    board: VendingMachineMediDrobeCircuitboard
+  - type: DatasetVocalizer
+    dataset: MediDrobeAds
+  - type: SpeakOnUIClosed
+    pack: GenericVendGoodbyes
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Machines/VendingMachines/medidrobe.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: AccessReader
+    access: [["MedicalNS"]]

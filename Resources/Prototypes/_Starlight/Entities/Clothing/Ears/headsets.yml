@@ -26,6 +26,11 @@
         - EncryptionKeySecurity
         - EncryptionKeyCommon
         - EncryptionKeyCommand
+        #Far Horizons-Start - Dual station comms for Corporate Liaison and Quartermaster
+        - EncryptionKeySyndiCommon
+        - EncryptionKeySyndiCommand
+        - EncryptionKeySyndiSecurity
+        #Far Horizons-End
     - type: Sprite
       sprite: _FarHorizons/Clothing/Ears/Headsets/law.rsi #Far Horizons
 
@@ -43,7 +48,7 @@
 - type: entity
   parent: [ ClothingHeadset, BaseSecurityContraband ]
   id: ClothingHeadsetSecurityWarden
-  name: warden's headset
+  name: Warden's Headset #FH
   description: This is used by your elite warden.
   components:
   - type: ContainerFill

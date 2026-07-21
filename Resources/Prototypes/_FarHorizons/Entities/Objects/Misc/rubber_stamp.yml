@@ -165,13 +165,27 @@
 
 - type: entity
   name: Red Sword Officer's Rubber Stamp
-  parent: [ RubberStampBase, BaseRepresentativesContraband ] # FH
+  parent: [ RubberStampBase, BaseRepresentativesContraband ]
   id: RubberStampRSO
   suffix: NS
   categories: [ DoNotMap ]
   components:
   - type: Stamp
-    stampedName: "Blueshield Officer"
+    stampedName: "Red Sword Officer"
+    stampedColor: "#004281"
+    stampState: "paper_stamp-syndicate"
+  - type: Sprite
+    state: stamp-syndicate
+
+- type: entity
+  name: NeoSol Representative's Rubber Stamp
+  parent: [ RubberStampBase, BaseRepresentativesContraband ]
+  id: RubberStampNSR
+  suffix: NS
+  categories: [ DoNotMap ]
+  components:
+  - type: Stamp
+    stampedName: "NeoSol Representative"
     stampedColor: "#004281"
     stampState: "paper_stamp-syndicate"
   - type: Sprite
