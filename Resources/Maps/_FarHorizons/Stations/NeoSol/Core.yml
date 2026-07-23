@@ -4,8 +4,8 @@ meta:
   engineVersion: 272.0.1
   forkId: ""
   forkVersion: ""
-  time: 07/21/2026 22:48:03
-  entityCount: 23362
+  time: 07/23/2026 00:12:12
+  entityCount: 23359
 maps:
 - 1
 grids:
@@ -13,7 +13,11 @@ grids:
 - 22818
 - 23018
 orphans: []
-nullspace: []
+nullspace:
+- 14642
+- 14643
+- 14644
+- 16640
 tilemap:
   9: Space
   84: FloorArcadeBlue2
@@ -38,6 +42,7 @@ tilemap:
   87: FloorEighties
   19: FloorFreezer
   88: FloorGold
+  14: FloorGrass
   28: FloorGrassJungle
   77: FloorGreenCircuit
   26: FloorHullReinforced
@@ -54,6 +59,8 @@ tilemap:
   32: FloorRGlass
   5: FloorRedCarpetOffice
   25: FloorReinforced
+  17: FloorShuttleOrange
+  11: FloorShuttleRed
   15: FloorSteel
   2: FloorSteelBitile
   50: FloorSteelCheckerDark
@@ -14574,18 +14581,6 @@ entities:
       parent: 22818
 - proto: AirlockExternalEngineeringLocked
   entities:
-  - uid: 273
-    components:
-    - type: MetaData
-      name: Singularity external airlock
-    - type: Transform
-      pos: -6.5,-12.5
-      parent: 2
-    - type: DeviceLinkSource
-      linkedPorts:
-        292:
-        - - DoorStatus
-          - DoorBolt
   - uid: 275
     components:
     - type: MetaData
@@ -14593,20 +14588,6 @@ entities:
     - type: Transform
       pos: -23.5,37.5
       parent: 2
-- proto: AirlockExternalGlassEngineeringLocked
-  entities:
-  - uid: 292
-    components:
-    - type: MetaData
-      name: Singularity external airlock
-    - type: Transform
-      pos: -6.5,-10.5
-      parent: 2
-    - type: DeviceLinkSource
-      linkedPorts:
-        273:
-        - - DoorStatus
-          - DoorBolt
 - proto: AirSensor
   entities:
   - uid: 596
@@ -70112,12 +70093,6 @@ entities:
     - type: Transform
       pos: 26.5,16.5
       parent: 2
-  - uid: 250
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 29.5,7.5
-      parent: 2
 - proto: FHAirlockExternal
   entities:
   - uid: 185
@@ -71232,7 +71207,7 @@ entities:
       pos: -2.5,26.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -117.86505
+      secondsUntilStateChange: -3846.8906
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -71247,6 +71222,12 @@ entities:
       parent: 2
 - proto: FHAirlockNSCargoGlassLocked
   entities:
+  - uid: 292
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 29.5,7.5
+      parent: 2
   - uid: 8435
     components:
     - type: Transform
@@ -71500,6 +71481,9 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -4.5,-9.5
       parent: 2
+    - type: Door
+      secondsUntilStateChange: -3650.0317
+      state: Opening
     - type: DeviceLinkSink
       invokeCounter: 1
     - type: DeviceLinkSource
@@ -71507,6 +71491,8 @@ entities:
         19431:
         - - DoorStatus
           - DoorBolt
+      lastSignals:
+        DoorStatus: True
   - uid: 19431
     components:
     - type: Transform
@@ -71765,6 +71751,18 @@ entities:
         274:
         - - DoorStatus
           - DoorBolt
+  - uid: 250
+    components:
+    - type: Transform
+      pos: -6.5,-12.5
+      parent: 2
+    - type: DeviceLinkSink
+      invokeCounter: 1
+    - type: DeviceLinkSource
+      linkedPorts:
+        273:
+        - - DoorStatus
+          - DoorBolt
   - uid: 274
     components:
     - type: Transform
@@ -71804,6 +71802,20 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         451:
+        - - DoorStatus
+          - DoorBolt
+- proto: FHAirlockNSExternalGlassEngineeringLocked
+  entities:
+  - uid: 273
+    components:
+    - type: Transform
+      pos: -6.5,-10.5
+      parent: 2
+    - type: DeviceLinkSink
+      invokeCounter: 1
+    - type: DeviceLinkSource
+      linkedPorts:
+        250:
         - - DoorStatus
           - DoorBolt
 - proto: FHAirlockNSExternalGlassLocked
@@ -72568,7 +72580,7 @@ entities:
       pos: 10.5,38.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -16862.797
+      secondsUntilStateChange: -20591.822
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -75149,7 +75161,7 @@ entities:
       pos: -26.5,-14.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -67681.4
+      secondsUntilStateChange: -71410.42
       state: Closing
     - type: Firelock
       emergencyCloseCooldown: 7916.7587519
@@ -75819,7 +75831,7 @@ entities:
       pos: -2.5,26.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -119.23172
+      secondsUntilStateChange: -3848.2573
       state: Closing
   - uid: 11076
     components:
@@ -76747,7 +76759,7 @@ entities:
       pos: 11.5,36.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -73939.625
+      secondsUntilStateChange: -77668.65
       state: Closing
   - uid: 11226
     components:
@@ -103637,11 +103649,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 68.5,20.5
       parent: 2
-  - uid: 14609
-    components:
-    - type: Transform
-      pos: 64.5,13.5
-      parent: 2
   - uid: 14614
     components:
     - type: Transform
@@ -103790,21 +103797,6 @@ entities:
     components:
     - type: Transform
       pos: 70.5,-33.5
-      parent: 2
-  - uid: 14642
-    components:
-    - type: Transform
-      pos: 64.5,16.5
-      parent: 2
-  - uid: 14643
-    components:
-    - type: Transform
-      pos: 64.5,15.5
-      parent: 2
-  - uid: 14644
-    components:
-    - type: Transform
-      pos: 64.5,14.5
       parent: 2
   - uid: 14645
     components:
@@ -116522,12 +116514,6 @@ entities:
       parent: 2
 - proto: RailingCornerSmall
   entities:
-  - uid: 16640
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -2.5,-9.5
-      parent: 2
   - uid: 16641
     components:
     - type: Transform
@@ -116672,18 +116658,6 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -10.5,-37.5
-      parent: 2
-  - uid: 16666
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -2.5,-9.5
-      parent: 2
-  - uid: 16667
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 3.5,-9.5
       parent: 2
   - uid: 23369
     components:
@@ -140802,6 +140776,11 @@ entities:
     - type: Transform
       pos: 4.5,0.5
       parent: 2
+  - uid: 14609
+    components:
+    - type: Transform
+      pos: 64.5,15.5
+      parent: 2
   - uid: 14612
     components:
     - type: Transform
@@ -141037,12 +141016,6 @@ entities:
     components:
     - type: Transform
       pos: 9.5,41.5
-      parent: 2
-  - uid: 18953
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 64.5,15.5
       parent: 2
   - uid: 18961
     components:
@@ -153163,7 +153136,7 @@ entities:
       lastSignals:
         DoorStatus: True
     - type: Door
-      secondsUntilStateChange: -25214.748
+      secondsUntilStateChange: -28943.773
       state: Opening
     - type: Airlock
       autoClose: False
@@ -153498,7 +153471,7 @@ entities:
       lastSignals:
         DoorStatus: True
     - type: Door
-      secondsUntilStateChange: -32017.041
+      secondsUntilStateChange: -35746.07
       state: Opening
     - type: Airlock
       autoClose: False
