@@ -194,3 +194,63 @@
     radius: 3
     energy: 2
     color: "#66ccde"
+
+- type: entity
+  id: HolotableBaseNS
+  parent: HolotableBase
+  name: Holotable
+  description: Holographic display table. Does absolutely nothing but look cool at the moment.
+  suffix: NS
+  abstract: true
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Structures/Machines/NS/HoloTables/holotable.rsi
+      layers:
+        - state: Table-Frame
+          type: Icon
+          sprite: _FarHorizons/Structures/Machines/NS/HoloTables/holotable.rsi
+        - map: [ "enum.PowerDeviceVisualLayers.Powered" ]
+          state: holotable
+          shader: unshaded
+          type: Icon
+          sprite: _FarHorizons/Structures/Machines/NS/HoloTables/holotable.rsi
+
+- type: entity
+  id: MedicalHolotableNS
+  parent: HolotableBaseNS
+  name: Medical Holotable
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Machines/NS/HoloTables/medical_holotable.rsi
+    layers:
+      - state: Table-Frame
+        type: Icon
+        sprite: _FarHorizons/Structures/Machines/NS/HoloTables/medical_holotable.rsi
+      - map: [ "enum.PowerDeviceVisualLayers.Powered" ]
+        state: HoloMed
+        type: Icon
+        sprite: _FarHorizons/Structures/Machines/NS/HoloTables/medical_holotable.rsi
+  - type: Appearance
+  - type: PointLight
+    radius: 3
+    energy: 2
+    color: "#66ccde"
+
+- type: entity
+  id: EngineeringHolotableNS
+  parent: HolotableBaseNS
+  name: Engineering Holotable
+  suffix: NS
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Structures/Machines/NS/HoloTables/engineering_holotable.rsi
+      layers:
+      - state: Table-Frame
+        type: Icon
+        sprite: _FarHorizons/Structures/Machines/NS/HoloTables/engineering_holotable.rsi
+      - map: [ "enum.PowerDeviceVisualLayers.Powered" ]
+        state: Holo-Table-Lights
+        shader: unshaded
+        type: Icon
+        sprite: _FarHorizons/Structures/Machines/NS/HoloTables/engineering_holotable.rsi

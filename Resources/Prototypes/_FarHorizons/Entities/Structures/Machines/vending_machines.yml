@@ -370,3 +370,110 @@
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
   - type: AccessReader
     access: [["RoboticsNS"]]
+
+
+# endregion
+
+# region Departmental
+
+
+- type: entity
+  parent: VendingMachineCart
+  id: VendingMachineCartNS
+  name: PTech
+  description: PTech vending! Providing a ROBUST selection of PDAs, cartridges, and anything else a dull paper pusher needs!
+  components:
+  - type: VendingMachine
+    pack: PTechInventoryNS
+    offState: off
+    showPrices: false # Starlight-edit: Vending Machines Prices
+    brokenState: broken
+    normalState: normal-unshaded
+    ejectState: eject-unshaded
+    denyState: deny-unshaded
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineCartCircuitboard # Starlight-edit: Vending Machine boards
+  - type: Sprite
+    sprite: Structures/Machines/VendingMachines/cart.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: PointLight
+    radius: 1
+    energy: 2.0
+    color: "#ffb0b0"
+  - type: AccessReader
+    access: [["PersonnelManager"]]
+
+- type: entity
+  parent: VendingMachineMedicalBase
+  id: VendingMachineMedicalBaseNS
+  name: InterMed Civilian
+  description: It's a medical drug dispenser. Natural chemicals only!
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Machines/NS/VendingMachines/medical_civilian.rsi
+    layers:
+    - state: "off" #FH
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off" #FH
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+
+- type: entity
+  parent: VendingMachineMedical
+  id: VendingMachineMedicalNS
+  name: InterMed Plus
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Machines/NS/VendingMachines/medical.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+
+# endregion
+# region Credits
+
+- type: entity
+  parent: SLVendingMachineMedical
+  id: FHVendingMachineMedicalNS
+  name: Medical Dispenser
+  components:
+  - type: AccessReader
+    access: [["MedicalNS"]]
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Machines/NS/CreditVendingMachines/medical.rsi
+
+- type: entity
+  parent: SLVendingMachineEngi
+  id: FHVendingMachineEngiNS
+  name: Engi Dispenser
+  components:
+  - type: AccessReader
+    access: [["EngineeringNS"]]
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Machines/NS/CreditVendingMachines/engi.rsi
+
+- type: entity
+  parent: SLVendingMachineSecurity
+  id: FHVendingMachineSecurityNS
+  name: Security Dispenser
+  components:
+  - type: AccessReader
+    access: [["SecurityNS"], ["CadetNS"]]
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Machines/NS/CreditVendingMachines/security.rsi
