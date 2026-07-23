@@ -175,6 +175,52 @@
     Piercing: 0.85
     Radiation: 1.3
 
+- type: damageModifierSet
+  id: BorgArmorBase
+  flatReductions: 
+    Piercing: 2 
+    Heat: 2 
+  coefficients: 
+    Blunt: 0.95
+    Slash: 0.95
+    Piercing: 0.90
+    Heat: 0.80
+    Shock: 1.3
+
+- type: damageModifierSet
+  id: BorgSecBorgArmor
+  flatReductions: 
+    Piercing: 4 
+    Heat: 3 
+  coefficients: 
+    Blunt: 0.80 
+    Slash: 0.75
+    Piercing: 0.75 
+    Heat: 0.85
+    Shock: 1.3 
+
+- type: damageModifierSet
+  id: BorgArmorReflective
+  flatReductions: 
+    Heat: 2
+  coefficients:
+    Blunt: 0.95
+    Slash: 0.95
+    Piercing: 0.95
+    Heat: 0.6
+    Shock: 1.3 
+
+- type: damageModifierSet
+  id: BorgArmorSyndicate
+  flatReductions:
+    Piercing: 5
+    Heat: 4
+  coefficients:
+    Blunt: 0.7
+    Slash: 0.6
+    Piercing: 0.5
+    Heat: 0.6
+    
 #region Structures
 - type: damageModifierSet
   id: StructuralReactorCasing # StructuralMetallicStrong(er), it's going to take more than a mere baseball bat to do any real damage

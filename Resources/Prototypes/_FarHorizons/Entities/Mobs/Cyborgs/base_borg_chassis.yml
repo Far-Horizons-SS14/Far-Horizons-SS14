@@ -29,15 +29,6 @@
   - type: NpcFactionMember
     factions:
     - NanoTrasenSilicon
-  - type: Access
-    enabled: false
-    groups:
-    - Security # Ensure it can go anywhere inside of sec.
-    tags:
-    - Maintenance # Was told it's not unbalanced to give it maints.
-    - External # Is borg. Can go outside.
-  - type: AccessReader
-    access: [["Command"], ["Armory"]] # Warden & Command. Todo, sec roboticist
   - type: ShowJobIcons
   - type: ShowCrewIcons
   - type: InteractionPopup
@@ -86,14 +77,6 @@
   - type: NpcFactionMember
     factions:
     - NanoTrasenSilicon
-  - type: Access
-    enabled: false
-    groups:
-    - AllAccess
-    tags:
-    - CentralCommand
-  - type: AccessReader
-    access: [["CentralCommand"]]
   - type: ShowJobIcons
   - type: InteractionPopup
     interactSuccessSound:
@@ -288,13 +271,6 @@
   - type: NpcFactionMember
     factions:
     - NeoSolSilicon
-  - type: Access
-    groups:
-    - AllAccessNS
-    tags:
-    - Borg
-  - type: AccessReader
-    access: [["Executive"], ["RoboticsNS"]] # Starlight
   - type: ShowJobIcons
   - type: ShowCrewIcons
   - type: InteractionPopup
@@ -314,15 +290,6 @@
   - type: RandomMetadata
     nameSegments:
     - NamesBorg
-  - type: Access
-    enabled: false
-    groups:
-    - SecurityNS
-    tags:
-    - MaintenanceNS
-    - ExternalNS
-  - type: AccessReader
-    access: [["Executive"], ["ArmoryNS"]]
   - type: Sprite
     sprite: Mobs/Silicon/Chassis/synd_sec.rsi
     layers:

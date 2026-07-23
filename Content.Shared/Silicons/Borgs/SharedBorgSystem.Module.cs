@@ -280,6 +280,10 @@ public abstract partial class SharedBorgSystem
     private void OnComponentModuleInstalled(Entity<ComponentBorgModuleComponent> ent, ref BorgModuleInstalledEvent args)
     {
         var chassis = args.ChassisEnt;
+
+        if(ent.Comp.uninstallComponents.Count != 0) //FarHorizons
+            EntityManager.RemoveComponents(chassis, ent.Comp.uninstallComponents); 
+
         EntityManager.AddComponents(chassis, ent.Comp.Components);
     }
 
@@ -288,6 +292,9 @@ public abstract partial class SharedBorgSystem
     {
         var chassis = args.ChassisEnt;
         EntityManager.RemoveComponents(chassis, ent.Comp.Components);
+
+        if(ent.Comp.uninstallComponents.Count != 0) //FarHorizons
+            EntityManager.AddComponents(chassis, ent.Comp.uninstallComponents); 
     }
 
     private void OnComponentModuleInstalledRelay(Entity<ComponentBorgModuleComponent> ent,

@@ -25,3 +25,7 @@ borg-type-securityNS-transponder = Security Cyborg
 borg-type-purrfusNS-name = Purrfus
 borg-type-purrfusNS-desc = Serve as a personal aid for those who require assistance with paperwork, especially members of command and the law department.
 borg-type-purrfusNS-transponder = Purrfus Cyborg
+
+borg-ui-access-module-label = Access Module:
+borg-ui-armor-module-label = Armor Module:
+borg-ui-speed-module-label = Speed Module:

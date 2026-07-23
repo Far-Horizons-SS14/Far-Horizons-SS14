@@ -8,7 +8,7 @@
   override:
     name: faction-syndicate-job-captain
     icon: JobIconSyndieCaptain
-    #supervisors: job-supervisors-nshc
+    supervisors: job-supervisors-nshc
     loadout: SyndieCaptain
     startingGear: SyndieCaptain
     accessGroups: 
@@ -22,7 +22,7 @@
   override:
     name: faction-syndicate-job-hos
     icon: JobIconSyndieHeadOfSecurity
-    #supervisors: job-supervisors-commandant
+    supervisors: job-supervisors-commandant
     loadout: SyndieHeadOfSecurity
     startingGear: SyndieHoSGear
     access:
@@ -48,7 +48,7 @@
   override:
     name: faction-syndicate-job-ce
     icon: JobIconSyndieChiefEngineer
-    #supervisors: job-supervisors-commandant
+    supervisors: job-supervisors-commandant
     loadout: SyndieChiefEngineer
     startingGear: SyndieChiefEngineerGear
     access:
@@ -72,7 +72,7 @@
   override:
     name: faction-syndicate-job-cmo
     icon: JobIconSyndieChiefMedicalOfficer
-    #supervisors: job-supervisors-commandant
+    supervisors: job-supervisors-commandant
     loadout: SyndieChiefMedicalOfficer
     startingGear: SyndieCMOGear
     access:
@@ -94,7 +94,7 @@
   override:
     name: faction-syndicate-job-rd
     icon: JobIconSyndieResearchDirector
-    #supervisors: job-supervisors-commandant
+    supervisors: job-supervisors-commandant
     loadout: SyndieResearchDirector
     startingGear: SyndieResearchDirectorGear
     access:
@@ -114,7 +114,7 @@
   override:
     name: faction-syndicate-job-hop
     icon: JobIconSyndieHeadOfPersonnel
-    #supervisors: job-supervisors-commandant
+    supervisors: job-supervisors-commandant
     loadout: SyndieHeadOfPersonnel
     startingGear: SyndieHoPGear
     access:
@@ -158,7 +158,7 @@
   override:
     name: faction-syndicate-job-rep
     icon: JobIconSyndieNanoTrasenRepresentative
-    #supervisors: job-supervisors-nshc
+    supervisors: job-supervisors-nshc
     loadout: NeoSolRepresentative
     startingGear: NeoSolRepresentativeGear
     access:
@@ -199,7 +199,7 @@
   override:
     name: faction-syndicate-job-bso
     icon: JobIconSyndieBlueShieldOfficer
-    #supervisors: job-supervisors-nshc
+    supervisors: job-supervisors-nshc
     loadout: RedSwordOperative
     startingGear: RedSwordGear
     access:
@@ -241,7 +241,7 @@
   job: Assistant
   weight: 0
   override:
-    #supervisors: job-supervisors-pm
+    supervisors: job-supervisors-pm
     startingGear: SyndieAssistantGear
     loadout: SyndieAssistant
     access:
@@ -252,7 +252,7 @@
   faction: FactionSyndicate
   job: Bartender
   override:
-    #supervisors: job-supervisors-pm
+    supervisors: job-supervisors-pm
     startingGear: SyndieBartenderGear
     access:
     - ServiceNS
@@ -267,7 +267,7 @@
   faction: FactionSyndicate
   job: Botanist
   override:
-    #supervisors: job-supervisors-pm
+    supervisors: job-supervisors-pm
     startingGear: SyndieBotanistGear
     loadout: SyndieBotanist
     access:
@@ -283,7 +283,7 @@
   faction: FactionSyndicate
   job: Boxer
   override:
-    #supervisors: job-supervisors-pm
+    supervisors: job-supervisors-pm
     startingGear: SyndieBoxerGear
     access:
     - ServiceNS
@@ -294,7 +294,7 @@
   faction: FactionSyndicate
   job: Chaplain
   override:
-    #supervisors: job-supervisors-pm
+    supervisors: job-supervisors-pm
     startingGear: SyndieChaplainGear
     access:
     - ChapelNS
@@ -305,7 +305,7 @@
   faction: FactionSyndicate
   job: Chef
   override:
-    #supervisors: job-supervisors-pm
+    supervisors: job-supervisors-pm
     startingGear: SyndieChefGear
     loadout: SyndieChef
     access:
@@ -321,7 +321,7 @@
   faction: FactionSyndicate
   job: Clown
   override:
-    #supervisors: job-supervisors-pm
+    supervisors: job-supervisors-pm
     startingGear: SyndieClownGear
     access:
     - TheatreNS
@@ -333,7 +333,7 @@
   job: Janitor
   override:
     name: faction-syndicate-job-janitor
-    #supervisors: job-supervisors-pm
+    supervisors: job-supervisors-pm
     startingGear: SyndieJanitorGear
     loadout: SyndieJanitor
     access:
@@ -346,7 +346,7 @@
   faction: FactionSyndicate
   job: Librarian
   override:
-    #supervisors: job-supervisors-pm
+    supervisors: job-supervisors-pm
     startingGear: SyndieLibrarianGear
     access:
     - ServiceNS
@@ -357,7 +357,7 @@
   faction: FactionSyndicate
   job: Mime
   override:
-    #supervisors: job-supervisors-pm
+    supervisors: job-supervisors-pm
     startingGear: SyndieMimeGear
     access:
     - TheatreNS
@@ -368,7 +368,7 @@
   faction: FactionSyndicate
   job: Musician
   override:
-    #supervisors: job-supervisors-pm
+    supervisors: job-supervisors-pm
     startingGear: SyndieMusicianGear
     access:
     - MaintenanceNS
@@ -380,7 +380,7 @@
   job: Reporter
   override:
     name: faction-syndicate-job-reporter
-    #supervisors: job-supervisors-pm
+    supervisors: job-supervisors-pm
     startingGear: SyndieReporterGear
     access:
     - ServiceNS
@@ -391,7 +391,7 @@
   faction: FactionSyndicate
   job: ServiceWorker
   override:
-    #supervisors: job-supervisors-pm
+    supervisors: job-supervisors-pm
     startingGear: SyndieServiceWorkerGear
     access:
     - ServiceNS
@@ -406,7 +406,7 @@
   faction: FactionSyndicate
   job: Zookeeper
   override:
-    #supervisors: job-supervisors-pm
+    supervisors: job-supervisors-pm
     startingGear: SyndieZookeeperGear
     access:
     - ServiceNS
@@ -433,7 +433,7 @@
   override:
     name: faction-syndicate-job-atmos
     icon: JobIconSyndieAtmosphericTechnician
-    #supervisors: job-supervisors-foreman
+    supervisors: job-supervisors-foreman
     loadout: SyndieAtmosphericTechnician
     startingGear: SyndieAtmosphericTechnicianGear
     access:
@@ -450,7 +450,7 @@
   override:
     name: faction-syndicate-job-engineer
     icon: JobIconSyndieEngineer
-    #supervisors: job-supervisors-foreman
+    supervisors: job-supervisors-foreman
     loadout: SyndieStationEngineer
     startingGear: SyndieStationEngineerGear
     access:
@@ -468,7 +468,7 @@
   override:
     name: faction-syndicate-job-ta
     icon: JobIconSyndieTechnicalAssistant
-    #supervisors: job-supervisors-foreman
+    supervisors: job-supervisors-foreman
     loadout: SyndieTechnicalAssistant
     startingGear: SyndieTechnicalAssistantGear
     access:
@@ -486,7 +486,7 @@
   override:
     name: faction-syndicate-job-surgeon
     icon: JobIconSyndieSurgeon
-    #supervisors: job-supervisors-md
+    supervisors: job-supervisors-md
     loadout: SyndieSurgeon
     startingGear: SyndieSurgeonGear
     access:
@@ -504,7 +504,7 @@
   override:
     name: faction-syndicate-job-chemist
     icon: JobIconSyndieChemist
-    #supervisors: job-supervisors-md
+    supervisors: job-supervisors-md
     loadout: SyndieChemist
     startingGear: SyndieChemistGear
     access:
@@ -523,7 +523,7 @@
   override:
     name: faction-syndicate-job-paramedic
     icon: JobIconSyndieParamedic
-    #supervisors: job-supervisors-md
+    supervisors: job-supervisors-md
     loadout: SyndieParamedic
     startingGear: SyndieParamedicGear
     access:
@@ -543,7 +543,7 @@
   override:
     name: faction-syndicate-job-doctor
     icon: JobIconSyndieMedicalDoctor
-    #supervisors: job-supervisors-md
+    supervisors: job-supervisors-md
     loadout: SyndieMedicalDoctor
     startingGear: SyndieDoctorGear
     access:
@@ -562,7 +562,7 @@
   override:
     name: faction-syndicate-job-intern
     icon: JobIconSyndieMedicalIntern
-    #supervisors: job-supervisors-md
+    supervisors: job-supervisors-md
     loadout: SyndieMedicalIntern
     startingGear: SyndieMedicalInternGear
     access:
@@ -577,7 +577,7 @@
   override:
     name: faction-syndicate-job-psychologist
     icon: JobIconSyndiePsychologist
-    #supervisors: job-supervisors-md
+    supervisors: job-supervisors-md
     loadout: SyndiePsychologist
     startingGear: SyndiePsychologistGear
     access:
@@ -596,7 +596,7 @@
   override:
     name: faction-syndicate-job-roboticist
     icon: JobIconSyndieRoboticist
-    #supervisors: job-supervisors-ep
+    supervisors: job-supervisors-ep
     loadout: SyndieRoboticist
     startingGear: SyndieRoboticistGear
     access:
@@ -612,7 +612,7 @@
   override:
     name: faction-syndicate-job-scientist
     icon: JobIconSyndieScientist
-    #supervisors: job-supervisors-ep
+    supervisors: job-supervisors-ep
     loadout: SyndieScientist
     startingGear: SyndieScientistGear
     access:
@@ -629,7 +629,7 @@
   override:
     name: faction-syndicate-job-ra
     icon: JobIconSyndieResearchAssistant
-    #supervisors: job-supervisors-ep
+    supervisors: job-supervisors-ep
     loadout: SyndieResearchAssistant
     startingGear: SyndieResearchAssistantGear
     access:
@@ -645,7 +645,7 @@
   weight: 0
   override:
     icon: JobIconSyndieAI
-    #supervisors: job-supervisors-ep
+    supervisors: job-supervisors-ep
     jobEntity: StationAiBrainSyndicate
 
 - type: factionJobAssignment
@@ -656,7 +656,7 @@
   override:
     name: faction-syndicate-job-borg
     icon: JobIconSyndieBorg
-    #supervisors: job-supervisors-ep
+    supervisors: job-supervisors-ep
     jobEntity: PlayerBorgBatteryNS
 
 #region Security
@@ -669,7 +669,7 @@
   override:
     name: faction-syndicate-job-warden
     icon: JobIconSyndieWarden
-    #supervisors: job-supervisors-marshal
+    supervisors: job-supervisors-marshal
     loadout: SyndieWarden
     startingGear: SyndieWardenGear
     access:
@@ -692,7 +692,7 @@
   override:
     name: faction-syndicate-job-corpsman
     icon: JobIconSyndieCorpsman
-    #supervisors: job-supervisors-marshal
+    supervisors: job-supervisors-marshal
     loadout: SyndieCorpsman
     startingGear: SyndieCorpsmanGear
     access:
@@ -713,7 +713,7 @@
   override:
     name: faction-syndicate-job-brigmed
     icon: JobIconSyndieBrigmedic
-    #supervisors: job-supervisors-marshal
+    supervisors: job-supervisors-marshal
     loadout: SyndieBrigmedic
     startingGear: SyndieBrigmedicGear
     access:
@@ -736,7 +736,7 @@
   override:
     name: faction-syndicate-job-detective
     icon: JobIconSyndieDetective
-    #supervisors: job-supervisors-marshal
+    supervisors: job-supervisors-marshal
     loadout: SyndieDetective
     startingGear: SyndieDetectiveGear
     access:
@@ -755,7 +755,7 @@
   override:
     name: faction-syndicate-job-officer
     icon: JobIconSyndieSecurityOfficer
-    #supervisors: job-supervisors-marshal
+    supervisors: job-supervisors-marshal
     loadout: SyndieSecurityOfficer
     startingGear: SyndieSecurityOfficerGear
     access:
@@ -773,7 +773,7 @@
   override:
     name: faction-syndicate-job-cadet
     icon: JobIconSyndieCadet
-    #supervisors: job-supervisors-marshal
+    supervisors: job-supervisors-marshal
     loadout: SyndieSecurityCadet
     startingGear: SyndieSecurityCadetGear
     access:
@@ -791,5 +791,5 @@
   override:
     name: faction-syndicate-job-secborg
     icon: JobIconSyndieSecborg
-    #supervisors: job-supervisors-marshal
+    supervisors: job-supervisors-marshal
     jobEntity: PlayerSecBorgBatteryNS

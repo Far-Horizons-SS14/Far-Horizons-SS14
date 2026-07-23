@@ -31,7 +31,7 @@
     startAudio:
       path: /Audio/Announcements/announce.ogg
   - type: CargoGiftsRule
-    sender: cargo-gift-default-sender
+    # sender: cargo-gift-default-sender # FH removed
 
 - type: entity
   id: GiftsPizzaPartySmall
@@ -43,7 +43,7 @@
     earliestStart: 20
   - type: CargoGiftsRule
     description: cargo-gift-pizza-small
-    dest: cargo-gift-dest-bar
+    # dest: cargo-gift-dest-bar # FH removed
     gifts:
       FoodPizza: 1              # 4 pizzas
       FoodBarSupply: 1
@@ -61,7 +61,7 @@
     minimumPlayers: 40
   - type: CargoGiftsRule
     description: cargo-gift-pizza-large
-    dest: cargo-gift-dest-bar
+    # dest: cargo-gift-dest-bar # FH removed
     gifts:
       FoodPizzaLarge: 1              # 16 pizzas
       FoodBarSupply: 1
@@ -78,7 +78,7 @@
     minimumPlayers: 10
   - type: CargoGiftsRule
     description: cargo-gift-eng
-    dest: cargo-gift-dest-eng
+    # dest: cargo-gift-dest-eng # FH removed
     gifts:
       EngineeringCableBulk: 1
       AirlockKit: 1
@@ -98,7 +98,7 @@
     earliestStart: 30
   - type: CargoGiftsRule
     description: cargo-gift-vending
-    dest: cargo-gift-dest-supp
+    # dest: cargo-gift-dest-supp # FH removed
     gifts:
       CrateVendingMachineRestockHotDrinks: 3
       CrateVendingMachineRestockBooze: 1
@@ -118,7 +118,7 @@
     earliestStart: 20
   - type: CargoGiftsRule
     description: cargo-gift-cleaning
-    dest: cargo-gift-dest-janitor
+    # dest: cargo-gift-dest-janitor # FH removed
     gifts:
       ServiceJanitorial: 2
       ServiceLightsReplacement: 2
@@ -135,7 +135,7 @@
     minimumPlayers: 30
   - type: CargoGiftsRule
     description: cargo-gift-medical-supply
-    dest: cargo-gift-dest-med
+    # dest: cargo-gift-dest-med # FH removed
     gifts:
       MedicalSupplies: 1
       MedicalChemistrySupplies: 1
@@ -154,7 +154,7 @@
     minimumPlayers: 40
   - type: CargoGiftsRule
     description: cargo-gift-space-protection
-    dest: cargo-gift-dest-supp
+    # dest: cargo-gift-dest-supp # FH removed
     gifts:
       EmergencyInternalsLarge: 2
       EmergencyInflatablewall: 1
@@ -173,7 +173,7 @@
     minimumPlayers: 40
   - type: CargoGiftsRule
     description: cargo-gift-fire-protection
-    dest: cargo-gift-dest-supp
+    # dest: cargo-gift-dest-supp # FH removed
     gifts:
       EmergencyFire: 2
       EmergencyBurnKit: 1
@@ -190,7 +190,7 @@
     minimumPlayers: 50
   - type: CargoGiftsRule
     description: cargo-gift-security-guns
-    dest: cargo-gift-dest-sec
+    # dest: cargo-gift-dest-sec # FH removed
     gifts:
       SecurityArmor: 3
       ArmorySmg: 1
@@ -209,7 +209,7 @@
     minimumPlayers: 50
   - type: CargoGiftsRule
     description: cargo-gift-security-riot
-    dest: cargo-gift-dest-sec
+    # dest: cargo-gift-dest-sec # FH removed
     gifts:
       SecurityRiot: 2
       SecurityRestraints: 2

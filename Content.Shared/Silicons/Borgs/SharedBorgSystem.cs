@@ -78,6 +78,7 @@ public abstract partial class SharedBorgSystem : EntitySystem
         InitializeModule();
         InitializeRelay();
         InitializeUI();
+        InitializeAccessModule(); //Far Horizons
 
         SubscribeLocalEvent<TryGetIdentityShortInfoEvent>(OnTryGetIdentityShortInfo);
 

@@ -1,5 +1,5 @@
 - type: constructionGraph
-  id: Secborg
+  id: SecborgNS
   start: start
   graph:
   - node: start
@@ -33,7 +33,4 @@
         doAfter: 0.5
 
   - node: secborg
-    entity: BorgChassisSecuritySelectable
-
-  # - node: derelictsecborg # todo derelict security borg
-  #   entity: BorgChassisDerelictSecurity
+    entity: BorgChassisSecuritySelectableNS

@@ -18,6 +18,7 @@ public sealed class JobSystem : SharedJobSystem
     [Dependency] private readonly IChatManager _chat = default!;
     [Dependency] private readonly ISharedPlayerManager _player = default!;
     [Dependency] private readonly RoleSystem _roles = default!;
+    [Dependency] private readonly ISharedFactionManager _factions = default!; // Far Horizons
 
     public override void Initialize()
     {
@@ -57,8 +58,10 @@ public sealed class JobSystem : SharedJobSystem
         if (prototype.RequireAdminNotify)
             _chat.DispatchServerMessage(session, Loc.GetString("job-greet-important-disconnect-admin-notify"));
 
-        // Far Horizons faction name override
-        _chat.DispatchServerMessage(session, Loc.GetString("job-greet-supervisors-warning", ("jobName", MindTryGetJobName(mindId)), ("supervisors", Loc.GetString(prototype.Supervisors))));
+        // Far Horizons start
+        var supervisors = _factions.OverrideLocalizedJobSupervisors((MindGetFactionId(mindId), prototype));
+        _chat.DispatchServerMessage(session, Loc.GetString("job-greet-supervisors-warning", ("jobName", MindTryGetJobName(mindId)), ("supervisors", supervisors)));
+        // Far Horizons end
         
         // Starlight
         _chat.DispatchServerMessage(session, Loc.GetString("job-greet-information-rules", ("jobRules", Loc.GetString(prototype.JobRules))));

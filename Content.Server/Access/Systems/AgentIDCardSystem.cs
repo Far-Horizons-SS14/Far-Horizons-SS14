@@ -18,6 +18,7 @@ using Content.Shared.Lock;
 using Content.Shared.PDA;
 using Content.Shared.VoiceMask;
 using Content.Shared._CD.NanoChat; // CD
+using Content.Shared.Silicons.Borgs.Components; //Far Horizons
 
 namespace Content.Server.Access.Systems
 {
@@ -115,6 +116,8 @@ namespace Content.Server.Access.Systems
 
             if (!TryComp<AccessComponent>(uid, out var access) || !HasComp<IdCardComponent>(uid))
                 return;
+
+            if(HasComp<PassiveBorgModuleComponent>(args.Target)) return; //Far Horizons
 
             var beforeLength = access.Tags.Count;
             access.Tags.UnionWith(targetAccess.Tags);

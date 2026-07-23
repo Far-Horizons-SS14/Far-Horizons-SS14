@@ -60,6 +60,13 @@ public sealed class BorgSwitchableTypeSystem : SharedBorgSwitchableTypeSystem
                 _borgSystem.SetBorgModuleDefault((moduleEntity, borgModule), true);
                 _borgSystem.InsertModule(chassisEnt, moduleEntity);
             }
+            //Far Horizons Start
+            foreach (var module in prototype.AdditionalModules)
+            {
+                var moduleEntity = Spawn(module);
+                _borgSystem.InsertModule(chassisEnt, moduleEntity);
+            }
+            //Far Horizons End
         }
 
         // Configure special components

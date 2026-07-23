@@ -33,8 +33,8 @@
         layer:
         - MobLayer
   - type: MovementSpeedModifier
-    baseWalkSpeed : 2.5
-    baseSprintSpeed : 4.5
+    baseWalkSpeed : 1.0 #Far Horizons
+    baseSprintSpeed : 2.0 #Far Horizons
   - type: Sprite
     sprite: Mobs/Silicon/Chassis/generic.rsi
   - type: RotationVisuals
@@ -273,6 +273,8 @@
       path: /Audio/Ambience/Objects/periodic_beep.ogg
   #endregion
   - type: GlitchOnEMP #Far Horizons
+  - type: AccessReader #Far Horizons
+    containerAccessProvider: borg_module
 
 - type: entity
   abstract: true
@@ -349,13 +351,15 @@
   - type: NpcFactionMember
     factions:
     - NanoTrasenSilicon # starlight
-  - type: Access
-    groups:
-    - AllAccess
-    tags:
-    - Borg
-  - type: AccessReader
-    access: [["Command"], ["Robotics"]] # Starlight
+  # FarHorizons Start
+  #- type: Access
+  #  groups:
+  #  - AllAccess
+  #  tags:
+  #  - Borg
+  #- type: AccessReader
+  #  access: [["Command"], ["Robotics"]] # Starlight
+  # FarHorizons End
   - type: ShowJobIcons
   - type: ShowCrewIcons
   - type: InteractionPopup
@@ -573,11 +577,13 @@
     - Cyborgs
     - Robotics
     - Xenoborgs
-  - type: Access
-    tags:
-    - Xenoborg
-  - type: AccessReader
-    access: [["Xenoborg"]]
+  # FarHorizons Start
+  #- type: Access
+  #  tags:
+  #  - Xenoborg
+  #- type: AccessReader
+  #  access: [["Xenoborg"]]
+  # FarHorizons End
   - type: ShowJobIcons # not sure if it is needed
   - type: ShowCrewIcons
   - type: InteractionPopup

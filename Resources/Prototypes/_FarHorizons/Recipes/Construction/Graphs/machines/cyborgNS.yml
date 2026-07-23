@@ -1,11 +1,11 @@
 - type: constructionGraph
-  id: Secborg
+  id: CyborgNS
   start: start
   graph:
   - node: start
-    entity: SecborgEndoskeleton
+    entity: CyborgEndoskeletonNS
     edges:
-    - to: secborg
+    - to: cyborg
       steps:
       - assemblyId: generic
         guideString: borg-construction-guide-string
@@ -32,8 +32,6 @@
       - tool: Screwing
         doAfter: 0.5
 
-  - node: secborg
-    entity: BorgChassisSecuritySelectable
+  - node: cyborg
+    entity: BorgChassisSelectableNS
 
-  # - node: derelictsecborg # todo derelict security borg
-  #   entity: BorgChassisDerelictSecurity

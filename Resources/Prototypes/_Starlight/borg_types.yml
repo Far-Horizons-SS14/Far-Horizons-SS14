@@ -56,6 +56,13 @@
   - BorgModuleTopicals
   - BorgModuleSyndicateWeapon
 
+  #Far Horizons Start
+  additionalModules:
+  - BorgModuleAccessSyndicate
+  - BorgModuleArmorBasic
+  - BorgModuleSpeedBasic
+  #Far Horizons End
+
   radioChannels:
   - Syndicate
 
@@ -86,6 +93,13 @@
   - BorgModuleOperative
   - BorgModuleSyndicateWeapon
 
+  #Far Horizons Start
+  additionalModules:
+  - BorgModuleAccessSyndicate
+  - BorgModuleArmorBasic
+  - BorgModuleSpeedBasic
+  #Far Horizons End
+
   radioChannels:
   - Syndicate
 
@@ -112,6 +126,13 @@
   defaultModules:
   - BorgModuleTool
   - BorgModuleOperative
+
+  #Far Horizons Start
+  additionalModules:
+  - BorgModuleAccessSyndicate
+  - BorgModuleArmorBasic
+  - BorgModuleSpeedBasic
+  #Far Horizons End
 
   radioChannels:
   - Syndicate
@@ -151,6 +172,13 @@
   - BorgModuleTool
   - BorgModulePaperwork
 
+  #Far Horizons Start
+  additionalModules:
+  - BorgModuleAccessNT
+  - BorgModuleArmorBasic
+  - BorgModuleSpeedBasic
+  #Far Horizons End
+
   radioChannels:
   - Common
   - Command
@@ -186,6 +214,13 @@
   - BorgModuleHold
   - BorgModuleMail
 
+  #Far Horizons Start
+  additionalModules:
+  - BorgModuleAccessGSL
+  - BorgModuleArmorBasic
+  - BorgModuleSpeedBasic
+  #Far Horizons End
+
   radioChannels:
   - GSL #FarHorizons
   - Science
@@ -198,16 +233,3 @@
   # Pet
   petSuccessString: petting-success-cargo-cyborg
   petFailureString: petting-failure-cargo-cyborg
-
-  #FarHorizons Start
-  # Components
-  addComponents:
-  - type: Access
-    groups:
-    - AllAccess
-    - AllAccessNS
-    tags:
-    - Borg
-  - type: AccessReader
-    access: [["Command"], ["Robotics"], ["Executive"], ["RoboticsNS"]]
-  #FarHorizons End

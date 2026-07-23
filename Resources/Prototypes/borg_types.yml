@@ -18,6 +18,14 @@
   - BorgModuleInflatable
   - BorgModuleArtifact
   - BorgModuleAnomaly
+
+  #Far Horizons Start
+  additionalModules:
+  - BorgModuleAccessNT
+  - BorgModuleArmorBasic
+  - BorgModuleSpeedBasic
+  #Far Horizons End
+
   radioChannels:
   - Science
 
@@ -50,6 +58,13 @@
   - BorgModuleConstruction
   - BorgModuleRCD
   - BorgModuleCable
+
+  #Far Horizons Start
+  additionalModules:
+  - BorgModuleAccessNT
+  - BorgModuleArmorBasic
+  - BorgModuleSpeedBasic
+  #Far Horizons End
 
   radioChannels:
   - Engineering
@@ -94,6 +109,13 @@
   - BorgModuleTraversal
   - BorgModuleAppraisal
 
+  #Far Horizons Start
+  additionalModules:
+  - BorgModuleAccessGSL
+  - BorgModuleArmorBasic
+  - BorgModuleSpeedBasic
+  #Far Horizons End
+
   radioChannels:
   - GSL # Far Horizons
   - Science
@@ -116,19 +138,6 @@
     time: 0 # Far Horizons - Temporary
   # Starlight-end
 
-  #FarHorizons Start
-  # Components
-  addComponents:
-  - type: Access
-    groups:
-    - AllAccess
-    - AllAccessNS
-    tags:
-    - Borg
-  - type: AccessReader
-    access: [["Command"], ["Robotics"], ["Executive"], ["RoboticsNS"]]
-  #FarHorizons End
-
 # Janitor borg
 - type: borgType
   id: janitor
@@ -147,6 +156,13 @@
   - BorgModuleTool # Far Horizons - we love our cyborgs actually
   - BorgModuleCleaning
   - BorgModuleCustodial
+
+  #Far Horizons Start
+  additionalModules:
+  - BorgModuleAccessNT
+  - BorgModuleArmorBasic
+  - BorgModuleSpeedBasic
+  #Far Horizons End
 
   radioChannels:
   - Science
@@ -180,6 +196,13 @@
   - BorgModuleTool # Far Horizons - we love our cyborgs actually
   - BorgModuleChemical
   - BorgModuleTopicals
+
+  #Far Horizons Start
+  additionalModules:
+  - BorgModuleAccessNT
+  - BorgModuleArmorBasic
+  - BorgModuleSpeedBasic
+  #Far Horizons End
 
   radioChannels:
   - Science
@@ -240,6 +263,13 @@
   # Starlight end
   - BorgModuleClowning
   
+  #Far Horizons Start
+  additionalModules:
+  - BorgModuleAccessNT
+  - BorgModuleArmorBasic
+  - BorgModuleSpeedBasic
+  #Far Horizons End
+
   radioChannels:
   - Science
   - Service

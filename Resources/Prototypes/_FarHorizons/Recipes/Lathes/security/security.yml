@@ -25,6 +25,17 @@
   - BorgModuleLaserCarbine
 
 - type: latheRecipe
+  parent: CyborgEndoskeletonNS
+  id: SecborgEndoskeletonNS
+  result: SecborgEndoskeletonNS
+
+- type: latheRecipePack
+  id: FarHorizonsSecBorgRecipePackNS
+  recipes:
+  - SecborgEndoskeletonNS
+  - BorgModuleLaserCarbine
+
+- type: latheRecipe
   parent: BaseWeaponRecipeSidearm
   id: WeaponLaserPistol
   result: WeaponLaserPistol

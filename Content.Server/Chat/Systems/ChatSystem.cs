@@ -43,6 +43,7 @@ using Robust.Shared.Random;
 using Robust.Shared.Replays;
 using Robust.Shared.Utility;
 using Content.Shared._Starlight.Chat;
+using Content.Shared._FarHorizons.Factions;
 // Starlight End
 
 namespace Content.Server.Chat.Systems;
@@ -73,6 +74,7 @@ public sealed partial class ChatSystem : SharedChatSystem
     [Dependency] private readonly LanguageSystem _language = default!; // Starlight
     [Dependency] private readonly SharedPopupSystem _popups = default!; // Starlight
     [Dependency] private readonly SharedActiveCritSystem _activeCrit = default!; // Far Horizons
+    [Dependency] private readonly ISharedFactionManager _factions = default!; // Far Horizons
 
     public const float DefaultObfuscationFactor = 0.2f; // Percentage of symbols in a whispered message that can be seen even by "far" listeners - Starlight
     public readonly Color DefaultSpeakColor = Color.LightGray; // Starlight
@@ -347,7 +349,7 @@ public sealed partial class ChatSystem : SharedChatSystem
         EntityUid? speaker = null // Starlight
         )
     {
-        sender ??= Loc.GetString("chat-manager-sender-announcement");
+        sender ??= _factions.GetAnnouncerSender(); // Far Horizons
 
         var wrappedMessage = Loc.GetString("chat-manager-sender-announcement-wrap-message", ("sender", sender), ("message", FormattedMessage.EscapeText(message.Text))); // Starlight
         _chatManager.ChatMessageToAll(ChatChannel.Radio, message.Text, wrappedMessage, default, false, true, colorOverride); // Starlight
@@ -377,7 +379,7 @@ public sealed partial class ChatSystem : SharedChatSystem
         SoundSpecifier? announcementSound = null,
         Color? colorOverride = null)
     {
-        sender ??= Loc.GetString("chat-manager-sender-announcement");
+        sender ??= _factions.GetAnnouncerSender(); // Far Horizons
 
         var wrappedMessage = Loc.GetString("chat-manager-sender-announcement-wrap-message", ("sender", sender), ("message", FormattedMessage.EscapeText(message.Text))); // Starlight
         _chatManager.ChatMessageToManyFiltered(filter, ChatChannel.Radio, message.Text, wrappedMessage, source ?? default, false, true, colorOverride); // Starlight
@@ -405,7 +407,7 @@ public sealed partial class ChatSystem : SharedChatSystem
         SoundSpecifier? announcementSound = null,
         Color? colorOverride = null)
     {
-        sender ??= Loc.GetString("chat-manager-sender-announcement");
+        sender ??= _factions.GetAnnouncerSender(); // Far Horizons
 
         var wrappedMessage = Loc.GetString("chat-manager-sender-announcement-wrap-message", ("sender", sender), ("message", FormattedMessage.EscapeText(message.Text))); // Starlight
         var station = _stationSystem.GetOwningStation(source);
@@ -458,7 +460,7 @@ public sealed partial class ChatSystem : SharedChatSystem
         EntityUid? speaker = null, // Starlight
         Color? colorOverride = null)
     {
-        sender ??= Loc.GetString("chat-manager-sender-announcement");
+        sender ??= _factions.GetAnnouncerSender(); // Far Horizons
 
         var wrappedMessage = Loc.GetString("chat-manager-sender-announcement-wrap-message", ("sender", sender), ("message", FormattedMessage.EscapeText(message)));
 

@@ -25,14 +25,16 @@ public sealed partial class CargoGiftsRuleComponent : Component
     /// <summary>
     /// Sender of the gifts
     /// </summary>
-    [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public LocId Sender = "cargo-gift-default-sender";
+    /// Far Horizons - replaced with dynamic faction name
+    // [DataField, ViewVariables(VVAccess.ReadWrite)]
+    // public LocId Sender = "cargo-gift-default-sender";
 
     /// <summary>
     /// Destination of the gifts (who they get sent to on the station)
     /// </summary>
-    [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public LocId Dest = "cargo-gift-default-dest";
+    /// Far Horizons - removed destination
+    // [DataField, ViewVariables(VVAccess.ReadWrite)]
+    // public LocId Dest = "cargo-gift-default-dest";
 
     /// <summary>
     /// Account the gifts are deposited into

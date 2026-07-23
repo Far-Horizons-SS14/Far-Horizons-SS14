@@ -282,14 +282,21 @@ public sealed class AccessReaderSystem : EntitySystem
         if (Paused(target))
             return true;
 
+        var foundReader = false;
+
         foreach (var entity in container.ContainedEntities)
         {
             if (!TryComp(entity, out AccessReaderComponent? containedReader))
                 continue;
 
+            foundReader = true;
+
             if (IsAllowed(access, stationKeys, entity, containedReader))
                 return true;
         }
+
+        if (!foundReader)
+            return IsAllowedInternal(access, stationKeys, reader);
 
         return false;
     }

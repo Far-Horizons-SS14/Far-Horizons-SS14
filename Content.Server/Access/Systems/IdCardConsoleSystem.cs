@@ -284,6 +284,7 @@ public sealed class IdCardConsoleSystem : SharedIdCardConsoleSystem
         if (oldTags.SetEquals(finalTags))
             return;
 
+        /*Far Horizons Start - Needs to be removed due to not allowing consoles to modify an access it doesn't have.
         var difference = finalTags.Union(oldTags).Except(finalTags.Intersect(oldTags)).ToHashSet();
         // Starlight-edit: End
         if (!difference.IsSubsetOf(privilegedPerms))
@@ -291,6 +292,7 @@ public sealed class IdCardConsoleSystem : SharedIdCardConsoleSystem
             _sawmill.Warning($"User {ToPrettyString(uid)} tried to modify permissions they could not give/take!");
             return;
         }
+        Far Horizons End*/
 
         // Starlight-edit: Start
         var addedTags = finalTags.Except(oldTags).Select(tag => "+" + tag).ToList();

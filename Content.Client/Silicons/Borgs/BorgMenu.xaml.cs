@@ -1,3 +1,5 @@
+using System.Linq;
+using System.Reflection;
 using Content.Client.Stylesheets;
 using Content.Client.UserInterface.Controls;
 using Content.Shared.CCVar;
@@ -127,8 +129,9 @@ public sealed partial class BorgMenu : FancyWindow
         if (!_entity.TryGetComponent(Entity, out BorgChassisComponent? chassis))
             return;
 
+        var passiveModuleCount = chassis.ModuleContainer.ContainedEntities.Count(_entity.HasComponent<PassiveBorgModuleComponent>); //Far Horizons
         ModuleCounter.Text = Loc.GetString("borg-ui-module-counter",
-            ("actual", chassis.ModuleCount),
+            ("actual", chassis.ModuleCount - passiveModuleCount), //Far Horizons
             ("max", chassis.MaxModules));
 
         if (chassis.ModuleContainer.Count == _modules.Count)
@@ -147,6 +150,13 @@ public sealed partial class BorgMenu : FancyWindow
         }
 
         ModuleContainer.Children.Clear();
+
+        //FarHorizons Start
+        AccessModuleContainer.Children.Clear();
+        ArmorModuleContainer.Children.Clear();
+        SpeedModuleContainer.Children.Clear();
+        //FarHorizons End
+
         _modules.Clear();
         foreach (var module in chassis.ModuleContainer.ContainedEntities)
         {
@@ -156,7 +166,26 @@ public sealed partial class BorgMenu : FancyWindow
             {
                 RemoveModuleButtonPressed?.Invoke(module);
             };
-            ModuleContainer.AddChild(control);
+            //FarHorizons Start
+            if(_entity.TryGetComponent<PassiveBorgModuleComponent>(module, out var passiveComp))
+                switch(passiveComp.PassiveType)
+                {
+                    case PassiveBorgModuleType.Access:
+                        AccessModuleContainer.AddChild(control);
+                        break;
+                    case PassiveBorgModuleType.Armor:
+                        ArmorModuleContainer.AddChild(control);
+                        break;
+                    case PassiveBorgModuleType.Speed:
+                        SpeedModuleContainer.AddChild(control);
+                        break;
+                    default:
+                        ModuleContainer.AddChild(control);
+                        break;
+                }
+            else
+                ModuleContainer.AddChild(control);
+            //FarHorizons End
             _modules.Add(module);
         }
     }

@@ -1,12 +1,40 @@
 - type: entity
   parent: CyborgEndoskeleton
   id: SecborgEndoskeleton
-  name: security cyborg endoskeleton
+  name: Security Cyborg Endoskeleton
   components:
   - type: Construction
     graph: Secborg
     node: start
     defaultTarget: secborg
+    containers:
+    - part-container
+    - cell_slot
+
+- type: entity
+  parent: CyborgEndoskeleton
+  id: CyborgEndoskeletonNS
+  name: Cyborg Endoskeleton
+  suffix: NS
+  components:
+  - type: Construction
+    graph: CyborgNS
+    node: start
+    defaultTarget: cyborg
+    containers:
+    - part-container
+    - cell_slot
+
+- type: entity
+  parent: CyborgEndoskeleton
+  id: SecborgEndoskeletonNS
+  name: Security Cyborg Endoskeleton
+  suffix: NS
+  components:
+  - type: Construction
+    graph: SecborgNS
+    node: start
+    defaultTarget: cyborg
     containers:
     - part-container
     - cell_slot

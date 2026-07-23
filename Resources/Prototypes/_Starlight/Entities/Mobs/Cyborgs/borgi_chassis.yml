@@ -13,6 +13,10 @@
           children:
             - id: BorgModuleTool
             - id: BorgModuleFireExtinguisher
+            #Far Horizons Start
+            - id: BorgModuleAccessGSL
+            - id: BorgModuleSpeedBasic
+            #Far Horizons End
         ears: !type:AllSelector
           children:
             - id: ClothingHeadsetAssistant
@@ -195,6 +199,10 @@
             - id: XenoborgModuleTool
             - id: BorgModuleSyndicateWeapon
             - id: BorgModuleTopicals
+              #Far Horizons Start
+            - id: BorgModuleAccessXenoborg
+            - id: BorgModuleSpeedBasic
+            #Far Horizons End
     - type: Barotrauma # borgis largely do not have access to hardsuits so nerf the space damage they take
       maxDamage: 1
       damage:
@@ -247,6 +255,10 @@
             - id: XenoborgModuleTool
             - id: BorgModuleSyndicateWeapon
             - id: BorgModuleTopicals
+            #Far Horizons Start
+            - id: BorgModuleAccessXenoborg
+            - id: BorgModuleSpeedBasic
+            #Far Horizons End
         ears: !type:AllSelector
           children:
             - id: ClothingHeadsetAssistant

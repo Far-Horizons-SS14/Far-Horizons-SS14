@@ -180,7 +180,7 @@ public abstract class SharedIdCardSystem : EntitySystem
         {
             return false;
         }
-
+        if(!id.AllowJobIconChange) return false;
         if (id.JobIcon == jobIcon.ID)
         {
             return true;
@@ -202,7 +202,7 @@ public abstract class SharedIdCardSystem : EntitySystem
     {
         if (!Resolve(uid, ref id))
             return false;
-
+        if(!id.AllowDepartmentChange) return false; //Far Horizons
         id.JobDepartments.Clear();
         foreach (var department in _prototypeManager.EnumeratePrototypes<DepartmentPrototype>())
         {
@@ -219,7 +219,7 @@ public abstract class SharedIdCardSystem : EntitySystem
     {
         if (!Resolve(uid, ref id))
             return false;
-
+        if(!id.AllowDepartmentChange) return false; //Far Horizons
         id.JobDepartments.Clear();
         foreach (var department in departments)
         {
@@ -242,7 +242,7 @@ public abstract class SharedIdCardSystem : EntitySystem
     {
         if (!Resolve(uid, ref id))
             return false;
-
+        if(!id.CanRenameObject) return false; //Far Horizons
         if (!string.IsNullOrWhiteSpace(fullName))
         {
             fullName = fullName.Trim();
@@ -279,7 +279,7 @@ public abstract class SharedIdCardSystem : EntitySystem
     {
         if (!Resolve(uid, ref id))
             return;
-
+        if(!id.CanRenameObject) return; //Far Horizons
         var jobSuffix = string.IsNullOrWhiteSpace(id.LocalizedJobTitle) ? string.Empty : $" ({id.LocalizedJobTitle})";
 
         var val = string.IsNullOrWhiteSpace(id.FullName)
