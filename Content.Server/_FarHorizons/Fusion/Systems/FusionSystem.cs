@@ -5,7 +5,8 @@ namespace Content.Server._FarHorizons.Fusion.Systems;
 
 public sealed partial class FusionSystem : EntitySystem
 {
-    public override void Initialize() {
+    public override void Initialize()
+    {
         base.Initialize();
 
         InitializeCVars();
@@ -16,18 +17,11 @@ public sealed partial class FusionSystem : EntitySystem
 
     private void OnPrototypesReloaded(PrototypesReloadedEventArgs args)
     {
-        if (args.WasModified<FusionReactionPrototype>() 
+        if (args.WasModified<FusionReactionPrototype>()
             || args.WasModified<FusionDecayPrototype>()
             || args.WasModified<FusionConversionPrototype>())
         {
             CollectReactions();
         }
-    }
-
-    public override void Update(float frameTime)
-    {
-        base.Update(frameTime);
-
-        ProcessFusionDevices(); // TODO: not every update
     }
 }

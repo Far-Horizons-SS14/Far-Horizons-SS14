@@ -1,26 +1,39 @@
 <controls:FancyWindow xmlns="https://spacestation14.io"
             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
             xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
-            MinSize="200 120" Title="MASER control">
+            MinSize="450 180" Title="MASER control">
     <BoxContainer Orientation="Vertical" Margin="5 5 5 5" SeparationOverride="10">
         <BoxContainer Orientation="Horizontal" HorizontalExpand="True">
             
-            <BoxContainer Orientation="Vertical" HorizontalExpand="True">
+            <PanelContainer HorizontalExpand="True" StyleClasses="BackgroundPanelDark">
+                <BoxContainer Orientation="Vertical" HorizontalExpand="True" Margin="5 5 5 5">
+                    
+                    <Label Text="{Loc fusion-reactor-maser-ui-injection}" HorizontalExpand="True" StyleClasses="LabelKeyText" HorizontalAlignment="Center"/>
+                    <!--View of antimatter jar sprite-->
+                    <BoxContainer Name="AntimatterVeiw" Orientation="Vertical" VerticalExpand="True" Margin="4" SetSize="64 64">
+                        <Label Name="NoJar" Text="{Loc fusion-reactor-maser-ui-no-jar}" HorizontalAlignment="Center" VerticalAlignment="Center" Visible="False"/>
+                        <SpriteView Name="EntityView" SetSize="32 32" Scale="2 2" OverrideDirection="South" />
+                        <Label Name="AMCount" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </BoxContainer>
 
-                <!--View of antimatter jar sprite-->
-                <BoxContainer Name="AntimatterVeiw" Orientation="Horizontal" VerticalExpand="True" Margin="4">
-                    <SpriteView Name="EntityView" SetSize="32 32" Scale="2 2" OverrideDirection="South" Margin="15" />
+                    <controls:SwitchButton Name="ToggleInjectButton" HorizontalAlignment="Center" Pressed="True" />
                 </BoxContainer>
+            </PanelContainer>
+            
+            <PanelContainer HorizontalExpand="True" StyleClasses="BackgroundPanelDark">
+                <BoxContainer Orientation="Vertical" HorizontalExpand="True" Margin="5 5 5 5">
+                    <Label Text="{Loc fusion-reactor-maser-ui-power}" HorizontalExpand="True" StyleClasses="LabelKeyText" HorizontalAlignment="Center"/>
+                    <SliderIntInput Name="MaserPowerLevelSlider" MinSize="200 0"/>
 
-                <controls:SwitchButton
-                    Name="ToggleInjectButton"
-                    HorizontalAlignment="Left"
-                    Pressed="True" />
-            </BoxContainer>
+                    <GridContainer Columns="2" VerticalExpand="True" Margin="5 5 5 5">
+                        <Label Text="{Loc fusion-reactor-maser-ui-set-power}" StyleClasses="StatusFieldTitle"  HorizontalExpand="True"/>
+                        <Label Name="PowerLevelValue" Text="--- W" HorizontalAlignment="Right"/>
 
-            <BoxContainer Orientation="Vertical" HorizontalExpand="True">
-                <Slider Name="MaserPowerLevelSlider" />
-            </BoxContainer>
+                        <Label Text="{Loc fusion-reactor-maser-ui-received-power}" StyleClasses="StatusFieldTitle"  HorizontalExpand="True"/>
+                        <Label Name="PowerLevelConsuming" Text="--- W" HorizontalAlignment="Right"/>
+                    </GridContainer>
+                </BoxContainer>
+            </PanelContainer>
         </BoxContainer>
     </BoxContainer>
 </controls:FancyWindow>

@@ -10,14 +10,13 @@
             Pressed="True" />
 
         <BoxContainer Orientation="Horizontal" HorizontalExpand="True">
-            <Label Text="Power Use"/>
+            <Label Text="{Loc fusion-reactor-gas-inlet-ui-power-use}"/>
             <Control MinSize="5 0" />
-            <LineEdit Name="PowerUseInput" MinSize="70 0" />
+            <LineEdit Name="PowerUseInput" MinSize="70 0" HorizontalExpand="True"/>
             <Control MinSize="5 0" />
-            <Button Name="SetMaxPowerUseButton" Text="Max" />
+            <Button Name="SetMaxPowerUseButton" Text="{Loc fusion-reactor-gas-inlet-ui-max}" />
             <Control MinSize="5 0" />
-            <Control HorizontalExpand="True" />
-            <Button Name="SetPowerUseButton" Text="Set" HorizontalAlignment="Right" Disabled="True"/>
+            <Button Name="SetPowerUseButton" Text="{Loc fusion-reactor-gas-inlet-ui-set}" HorizontalAlignment="Right" Disabled="True"/>
         </BoxContainer>
     
         <PanelContainer StyleClasses="PanelDark" SetWidth="300" VerticalExpand="True" HorizontalExpand="True" Margin="5 5 5 5">

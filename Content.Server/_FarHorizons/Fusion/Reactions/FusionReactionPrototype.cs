@@ -1,6 +1,7 @@
 using Content.Server._FarHorizons.Fusion.Systems;
 using Content.Shared._FarHorizons.Fusion;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Utility;
 
 namespace Content.Server._FarHorizons.Fusion.Reactions;
 
@@ -34,22 +35,24 @@ public sealed partial class FusionReactionPrototype : IPrototype
         var numA = reactantA / cm3 * FusionConsts.MolToAtom;
         var numB = reactantB / cm3 * FusionConsts.MolToAtom;
 
-        var selfReact = ReactantA == ReactantB;
-        // reactions per cm^3
+        var selfReact = ReactantA == ReactantB ? 0.5 : 1;
+        /// reactions per cm^3
         var reactionCount = numA * numB * FusionSystem.FusionAmount(ReactantA, ReactantB, mixture.Temperature)
-                            * (selfReact ? 0.5 : 1) * deltaT;
+                            * selfReact * deltaT;
 
-        // convert back to across full mixture
+        /// convert back to across full mixture
         reactionCount *= cm3;
 
-        var reactionMols = Math.Min(reactionCount * FusionConsts.AtomToMol * fusionSystem.MassScale, Math.Min(reactantA, reactantB));
-        var realmin = FusionConsts.MinQuantity * (reactantA + reactantB);
+        var reactionMols = Math.Min(reactionCount * FusionConsts.AtomToMol * fusionSystem.MassScale, Math.Min(reactantA, reactantB) * selfReact);
+        // var realmin = FusionConsts.MinQuantity * (reactantA + reactantB);
 
-        if (double.IsNaN(reactionCount) || reactionMols < realmin || reactionCount <= 0)
+        if (double.IsNaN(reactionCount) || reactionMols < FusionConsts.MinQuantity || reactionCount < 1)
             return;
 
         mixture.ChangeAtom(ReactantA, -reactionMols);
         mixture.ChangeAtom(ReactantB, -reactionMols);
+
+        DebugTools.Assert(mixture.Atoms[ReactantA] >= 0 && mixture.Atoms[ReactantB] >= 0, "Consumed more mass than exists");
 
         foreach (var (atom, amount) in Products)
         {
@@ -61,7 +64,7 @@ public sealed partial class FusionReactionPrototype : IPrototype
 
         var joules = EnergyPerReaction * reactionCount * FusionConsts.EVToJoule * fusionSystem.EnergyScale;
 
-        fusionSystem.AddJoule(mixture, joules);
+        fusionSystem.ChangeJoule(mixture, joules);
         mixture._debug_EnergySources[ID] = joules;
     }
 }

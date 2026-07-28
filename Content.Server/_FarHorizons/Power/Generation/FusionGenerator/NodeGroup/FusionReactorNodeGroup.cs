@@ -53,6 +53,49 @@ public sealed partial class FusionReactorNodeGroup : BaseNodeGroup
     /// </summary>
     public readonly List<Entity<FusionReactorMaserComponent>> Masers = [];
 
+    /// <summary>
+    /// The power-producing plasma within the torus
+    /// </summary>
+    [ViewVariables(VVAccess.ReadWrite)]
+    public FusionMixture Plasma = new();
+
+    /// <summary>
+    /// Atoms in storage, waiting to be injected
+    /// </summary>
+    [ViewVariables(VVAccess.ReadWrite)]
+    public FusionMixture Stored = new(); // Doesn't need to be a FusionMixture, but it makes interacting with it a lot easier
+
+    /// <summary>
+    /// Coolent flowing into the reactor
+    /// </summary>
+    [ViewVariables]
+    public GasMixture CoolantIn = new();
+    /// <summary>
+    /// Coolent flowing out of the reactor
+    /// </summary>
+    [ViewVariables]
+    public GasMixture CoolantOut = new();
+
+    /// <summary>
+    /// The pressure exerted on the <see cref="Plasma"/> by magnets
+    /// </summary>
+    [ViewVariables]
+    public double MagneticPressure { get; set; } = 1000;
+    /// <summary>
+    /// How much pressure the reactor is trying to exert
+    /// </summary>
+    [ViewVariables(VVAccess.ReadWrite)]
+    public float RequestedMagneticPressure { get; set; } = 1000;
+
+    /// <summary>
+    /// The stability of the plasma within the reactor
+    /// </summary>
+    /// <remarks>
+    /// As stability decreases, actions like extracting power and adjusting contents should become more difficult
+    /// </remarks>
+    [ViewVariables]
+    public float PlasmaStability => StabilityCalculation();
+
     public override void Initialize(Node sourceNode, IEntityManager entMan)
     {
         base.Initialize(sourceNode, entMan);
@@ -175,5 +218,15 @@ public sealed partial class FusionReactorNodeGroup : BaseNodeGroup
         _fusionSystem?.DivideInto(Stored, newStored);
         _atmosphereSystem?.DivideInto(CoolantIn, newCoolantIn);
         _atmosphereSystem?.DivideInto(CoolantOut, newCoolantOut);
+    }
+
+    private float StabilityCalculation()
+    {
+        var ex = Plasma.Volume / Plasma.ConstrainedVolume;
+        var x = 1 - (0.5f * (float)ex);
+
+        // Go put it in desmos yourself if you're so curious
+        var value = Math.Clamp(1.5625f * (x - MathF.Pow(x, 8)), 0, 1);
+        return !float.IsNaN(value) ? value : 0;
     }
 }

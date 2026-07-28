@@ -44,20 +44,44 @@ public sealed partial class FusionSystem
     public void React(FusionMixture fusionMix, double deltaT)
     {
         // During reactor construction it may pass a NaN fusion mixture
-        if(double.IsNaN(fusionMix.TotalMoles))
+        if (double.IsNaN(fusionMix.TotalMoles))
             return;
 
-        // Antimatter reaction gets a special spot to itself
-        // TODO: Allow for more types of antimatter
-        if (fusionMix.Atoms.TryGetValue(new(-1, 0), out var antiProton) &&
-            fusionMix.Atoms.TryGetValue(new(1, 0), out var proton))
+        /// Antimatter reaction gets a special spot to itself
+        /// It is assumed that neutrons cease to exist when the matter/antimatter reacts
+        var antimatterAtoms = fusionMix.Atoms.Where(k => k.Key.Proton < 0 && k.Value > 0).ToList();
+        if (antimatterAtoms.Count > 0)
         {
-            var reactant = Math.Min(antiProton, proton);
-            fusionMix.Atoms[new(-1, 0)] -= reactant;
-            fusionMix.Atoms[new(1, 0)] -= reactant;
+            /// Calculate how much antimatter reacts
+            var antimatter = antimatterAtoms.Sum(k => k.Value * -k.Key.Proton);
+            var matter = fusionMix.Atoms.Where(k => k.Key.Proton > 0).Sum(k => k.Value * k.Key.Proton);
+            var reactQty = Math.Min(antimatter, matter);
+            var reactAnti = reactQty;
+            var reactMatter = reactQty;
 
-            // E=MC^2
-            AddJoule(fusionMix, reactant * FusionConsts.MolToAtom * 2 * FusionConsts.MProton * FusionConsts.C * FusionConsts.C);
+            /// Remove the reacted mols from the mixture
+            foreach (var (atom, mol) in fusionMix.Atoms)
+            {
+                if (atom.Proton < 0 && reactAnti > 0)
+                {
+                    var amount = Math.Min(reactAnti, mol * -atom.Proton);
+                    fusionMix.ChangeAtom(atom, -amount);
+                    reactAnti -= amount;
+                }
+                else if (atom.Proton > 0 && reactMatter > 0)
+                {
+                    var amount = Math.Min(reactMatter, mol * atom.Proton);
+                    fusionMix.ChangeAtom(atom, -amount);
+                    reactMatter -= amount;
+                }
+
+                // Mass dues are paid, no need to waste our time searching further
+                if (reactAnti <= 0 && reactMatter <= 0)
+                    break;
+            }
+
+            /// E=MC^2
+            ChangeJoule(fusionMix, reactQty * FusionConsts.MolToAtom * 2 * FusionConsts.MProton * FusionConsts.C * FusionConsts.C);
         }
 
         foreach (var reaction in _fusionReactions)
@@ -88,7 +112,7 @@ public sealed partial class FusionSystem
     /// <param name="mixture"><see cref="FusionMixture"/> to get the heat capacity of.</param>
     /// <param name="scale">If it should be scaled by CVars.</param>
     /// <returns>Heat capacity of <paramref name="mixture"/>.</returns>
-    public double GetHeatCapacity(FusionMixture mixture, bool scale = true) => 
+    public double GetHeatCapacity(FusionMixture mixture, bool scale = true) =>
         mixture.TotalMoles * FusionConsts.HeatCap * (scale ? HeatScale : 1);
 
     /// <summary>
@@ -96,23 +120,32 @@ public sealed partial class FusionSystem
     /// </summary>
     /// <param name="mixture">Mixture to have its energy changed.</param>
     /// <param name="electronVolts">Amount of energy, in electron volts.</param>
-    public void ChangeEV(FusionMixture mixture, double electronVolts) => 
-        AddJoule(mixture, electronVolts * FusionConsts.EVToJoule);
+    public void ChangeEV(FusionMixture mixture, double electronVolts) =>
+        ChangeJoule(mixture, electronVolts * FusionConsts.EVToJoule);
 
     /// <summary>
     /// Changes the energy in <paramref name="mixture"/> by a number of joules.
     /// </summary>
     /// <param name="mixture">Mixture to have its energy changed.</param>
     /// <param name="joules">Amount of energy, in joules.</param>
-    public void AddJoule(FusionMixture mixture, double joules)
+    /// <returns>Actual change</returns>
+    public double ChangeJoule(FusionMixture mixture, double joules)
     {
-        mixture.Joules += joules;
+        // Can't change the energy state of a vacuum.
+        if (mixture.TotalMoles <= 0)
+            return 0;
+
+        var heatCap = GetHeatCapacity(mixture);
+        var maxRemovableJoules = (heatCap * mixture.Temperature) - (heatCap * FusionConsts.PlasmaTemperature);
+        var jouleChange = maxRemovableJoules + joules <=0 ? maxRemovableJoules : joules;
+        mixture.Joules += jouleChange;
 
         // work around for floating point imprecision
         var prevTemp = mixture.Temperature;
-        var heatCap = GetHeatCapacity(mixture);
         mixture.Temperature += mixture.Joules / heatCap;
         mixture.Joules -= (mixture.Temperature - prevTemp) * heatCap;
+
+        return jouleChange;
     }
 
     /// <summary>
@@ -182,14 +215,14 @@ public sealed partial class FusionSystem
         foreach (var conversion in _fusionConversions)
         {
             // Sanity check that should stop array errors
-            if((int)conversion.Gas >= Atmospherics.TotalNumberOfGases)
-                continue;
-            
-            var gas = input.GetMoles(conversion.Gas);
-            if(gas <= 0)
+            if ((int)conversion.Gas >= Atmospherics.TotalNumberOfGases)
                 continue;
 
-            foreach(var (atom, amount) in conversion.Products)
+            var gas = input.GetMoles(conversion.Gas);
+            if (gas <= 0)
+                continue;
+
+            foreach (var (atom, amount) in conversion.Products)
             {
                 mixture.ChangeAtom(atom, amount * gas);
             }
@@ -201,9 +234,9 @@ public sealed partial class FusionSystem
     public double GetMass(FusionMixture mixture)
     {
         double mass = 0;
-        foreach(var (atom, mol) in mixture.Atoms)
+        foreach (var (atom, mol) in mixture.Atoms)
         {
-            mass += ((atom.Neutron * FusionConsts.MNeutron) + (Math.Abs(atom.Proton) * FusionConsts.MProton)) 
+            mass += ((atom.Neutron * FusionConsts.MNeutron) + (Math.Abs(atom.Proton) * FusionConsts.MProton))
                 * FusionConsts.MolToAtom * mol;
         }
         return mass;

@@ -15,7 +15,7 @@ public sealed partial class FusionReactorMaserComponent : Component
     public float PowerExponent = 1.75f;
 
     [DataField]
-    public float BasePower = 1e6f;
+    public float BasePower = 1e4f;
 
     [ViewVariables(VVAccess.ReadWrite)]
     public bool InjectAntimatter = false;
@@ -24,9 +24,16 @@ public sealed partial class FusionReactorMaserComponent : Component
     [DataField(AMJarSlotId), ViewVariables]
     public ItemSlot AMJarSlot = new();
     
-    [ViewVariables(VVAccess.ReadWrite)]
+    /// <summary>
+    /// Fractional parts of antimatter that could not be accounted for by the fuel jar.
+    /// </summary>
+    [ViewVariables]
     public float Antimatter = 0;
 
-    [ViewVariables(VVAccess.ReadWrite)]
-    public float InjectionRate = 0.25f;
+    /// <summary>
+    /// Rate of amtimatter injection in units/s.
+    /// </summary>
+    /// <remarks>For reference, an AME set to an injection rate of 2 is 0.2u/s.</remarks>
+    [DataField]
+    public float InjectionRate = 1f;
 }

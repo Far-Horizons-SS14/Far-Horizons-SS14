@@ -16,8 +16,13 @@ public sealed partial class FusionReactorPowerSupplyComponent : Component
     public float Supply = 0;
 
     /// <summary>
-    /// How much power did not go into storage
+    /// How much excess power was produced
     /// </summary>
     [ViewVariables]
     public float Surplus = 0;
+
+    /// <summary>
+    /// Action invoked after surplus is calculated
+    /// </summary>
+    public Action OnSurplus;
 }

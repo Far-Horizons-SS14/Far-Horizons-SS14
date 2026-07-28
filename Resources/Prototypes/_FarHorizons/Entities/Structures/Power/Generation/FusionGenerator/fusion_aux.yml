@@ -51,7 +51,6 @@
   components:
   - type: Sprite
     sprite: _FarHorizons/Structures/Power/smes.rsi
-    snapCardinals: true
     layers:
       - state: smes
   - type: FusionReactorBattery
@@ -78,17 +77,12 @@
     maxChargeRate: 5000
     supplyRampTolerance: 5000
     supplyRampRate: 1000
-  - type: BatteryInterface
-    minChargeRate: 5000
-    maxChargeRate: 150000
-    minSupply: 5000
-    maxSupply: 150000
   - type: UserInterface
     interfaces:
-      enum.BatteryUiKey.Key:
-        type: BatteryBoundUserInterface
+      enum.FusionReactorUiKey.Key:
+        type: FusionReactorCapacitorBoundUserInterface
   - type: ActivatableUI
-    key: enum.BatteryUiKey.Key
+    key: enum.FusionReactorUiKey.Key
 
 - type: entity
   id: FusionReactorMaser

@@ -1,8 +1,9 @@
 using Content.Shared.Atmos;
+using Robust.Shared.GameStates;
 
 namespace Content.Shared._FarHorizons.Power.Generation.FusionGenerator.Components;
 
-[RegisterComponent]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class FusionReactorCoolantPumpComponent : Component
 {
     /// <summary>
@@ -14,7 +15,7 @@ public sealed partial class FusionReactorCoolantPumpComponent : Component
     /// <summary>
     /// If the coolant pump is active
     /// </summary>
-    [ViewVariables(VVAccess.ReadWrite)]
+    [ViewVariables(VVAccess.ReadWrite), AutoNetworkedField]
     public bool Enabled = false;
 
     /// <summary>
@@ -26,7 +27,7 @@ public sealed partial class FusionReactorCoolantPumpComponent : Component
     /// <summary>
     /// Volume of gas to process per tick
     /// </summary>
-    [DataField]
+    [DataField, AutoNetworkedField]
     public float FlowRate = Atmospherics.MaxTransferRate;
 
     /// <summary>

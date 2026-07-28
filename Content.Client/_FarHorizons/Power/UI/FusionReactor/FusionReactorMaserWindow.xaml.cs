@@ -8,6 +8,8 @@ namespace Content.Client._FarHorizons.Power.UI.FusionReactor;
 [GenerateTypedNameReferences]
 public sealed partial class FusionReactorMaserWindow : FancyWindow
 {
+    private bool _suppressSlider = false;
+
     public Action<int>? SetPowerLevel;
     public Action<bool>? SetAMInject;
 
@@ -17,21 +19,35 @@ public sealed partial class FusionReactorMaserWindow : FancyWindow
         IoCManager.InjectDependencies(this);
 
         ToggleInjectButton.OnPressed += _ => SetAMInject?.Invoke(ToggleInjectButton.Pressed);
-        MaserPowerLevelSlider.OnValueChanged += _ => SetPowerLevel?.Invoke((int)MaserPowerLevelSlider.Value);
-    }
-
-    public void SetEntity(EntityUid maser)
-    {
+        MaserPowerLevelSlider.OnValueChanged += _ =>
+        {
+            if (!_suppressSlider)
+                SetPowerLevel?.Invoke(MaserPowerLevelSlider.Value);
+        };
     }
 
     public void Update(FusionReactorMaserBuiState msg)
     {
         ToggleInjectButton.Pressed = msg.AMInjection;
 
+        _suppressSlider = true;
         MaserPowerLevelSlider.Value = msg.PowerSetting;
         MaserPowerLevelSlider.MaxValue = msg.MaxPowerSetting;
+        _suppressSlider = false;
 
-        if (msg.AMJar.HasValue)
-            EntityView.SetEntity(msg.AMJar.Value);
+        AMCount.Text = msg.Antimatter.ToString();
+
+        var jarPresent = msg.AMJar.HasValue;
+        ToggleInjectButton.Disabled = !jarPresent;
+        if (jarPresent)
+            EntityView.SetEntity(msg.AMJar!.Value);
+        EntityView.Visible = jarPresent;
+        AMCount.Visible = jarPresent;
+        NoJar.Visible = !jarPresent;
+
+        PowerLevelValue.Text = Loc.GetString("fusion-reactor-maser-ui-format-power", ("power", msg.RequestedPower));
+        PowerLevelConsuming.Text = Loc.GetString("fusion-reactor-maser-ui-format-power", ("power", msg.ReceivedPower));
     }
+
+    public void SetEntity(EntityUid entity, IEntityManager entMan) => this.SetInfoFromEntity(entMan, entity);
 }

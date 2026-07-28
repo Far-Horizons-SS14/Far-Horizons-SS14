@@ -33,5 +33,8 @@ public sealed partial class FusionReactorPowerDrawComponent : Component
     [DataField]
     public int Priority = 5;
 
+    /// <summary>
+    /// Action invoked after satisfaction is calculated
+    /// </summary>
     public Action OnSatisfy;
 }

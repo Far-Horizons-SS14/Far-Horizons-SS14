@@ -47,7 +47,7 @@ public sealed partial class FusionDecayPrototype : IPrototype
 
         var joules = EnergyPerReaction * count * FusionConsts.EVToJoule* fusionSystem.EnergyScale;
 
-        fusionSystem.AddJoule(mixture, joules);
+        fusionSystem.ChangeJoule(mixture, joules);
         mixture._debug_EnergySources[ID] = joules;
     }
 }

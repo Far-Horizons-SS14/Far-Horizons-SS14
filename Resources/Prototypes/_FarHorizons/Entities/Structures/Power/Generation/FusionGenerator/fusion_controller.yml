@@ -25,3 +25,10 @@
   - type: PowerSupplier
     supplyRampRate: 75000
     supplyRampTolerance: 5000
+  - type: ActivatableUI
+    key: enum.FusionReactorUiKey.Key
+  - type: ActivatableUIRequiresAnchor
+  - type: UserInterface
+    interfaces:
+      enum.FusionReactorUiKey.Key:
+        type: FusionReactorControllerBoundUserInterface

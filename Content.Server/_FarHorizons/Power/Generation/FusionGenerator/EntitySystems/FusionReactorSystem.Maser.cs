@@ -12,6 +12,12 @@ public sealed partial class FusionReactorSystem
     [Dependency] private readonly ItemSlotsSystem _slotsSystem = default!;
     [Dependency] private readonly UserInterfaceSystem _uiSystem = null!;
 
+    /// Not arbitrary
+    /// A one core AME running at 1 (or 2) injection rate gives the most energy possible per unit of antimatter at 602059.9913 kJ. Using E=mc^2, that 
+    /// equates to roughly 6.6988e-12 kg. When halved to account for the equal amount of matter consumed, the resulting amount of antimatter per unit
+    /// is 3.3494e-12 kg. Assuming the antimatter is pure positrons, there are 1.9973e15 positrons/unit, or 3.3206e-9 mol/unit.
+    private const double AntimatterPerUnit = 3.3206373689e-9;
+
     private void MaserInitialize()
     {
         SubscribeLocalEvent<FusionReactorMaserComponent, ComponentInit>(OnMaserInit);
@@ -31,7 +37,7 @@ public sealed partial class FusionReactorSystem
         foreach (var (uid, comp) in fusionReactor.Masers)
         {
             SetPowerDraw(uid, comp.PowerSetting > 0, comp.BasePower * MathF.Pow(comp.PowerExponent, comp.PowerSetting - 1));
-            SetOnSatisfy(uid, () => _fusionSystem.AddJoule(fusionReactor.Plasma, GetPowerSupplied(uid) * dt));
+            SetOnSatisfy(uid, () => _fusionSystem.ChangeJoule(fusionReactor.Plasma, GetPowerSupplied(uid) * dt));
 
             if (comp.InjectAntimatter)
             {
@@ -41,8 +47,9 @@ public sealed partial class FusionReactorSystem
                 {
                     if (TryComp<AmeFuelContainerComponent>(comp.AMJarSlot.Item, out var fuelContainer) && fuelContainer.FuelAmount > 0)
                     {
-                        fuelContainer.FuelAmount -= 1;
-                        comp.Antimatter += 1;
+                        var transfer = Math.Min((int)Math.Floor(injectAM + 1), fuelContainer.FuelAmount);
+                        fuelContainer.FuelAmount -= transfer;
+                        comp.Antimatter += transfer;
                     }
                     else
                     {
@@ -54,7 +61,7 @@ public sealed partial class FusionReactorSystem
                 if (injectAM > 0 && comp.Antimatter > 0)
                 {
                     comp.Antimatter -= injectAM;
-                    fusionReactor.Plasma.ChangeAtom(new(-1, 0), injectAM * 1e-7);
+                    fusionReactor.Plasma.ChangeAtom(new(-1, 0), injectAM * AntimatterPerUnit);
                 }
             }
 
@@ -76,14 +83,19 @@ public sealed partial class FusionReactorSystem
         if (!_uiSystem.IsUiOpen(uid, FusionReactorUiKey.Key))
             return;
 
-        _uiSystem.SetUiState(uid, FusionReactorUiKey.Key,
-           new FusionReactorMaserBuiState
-           {
-               PowerSetting = maser.PowerSetting,
-               MaxPowerSetting = maser.MaxPowerSetting,
-
-               AMInjection = maser.InjectAntimatter,
-               AMJar = EntityManager.GetNetEntity(maser.AMJarSlot.Item),
-           });
+        _uiSystem.SetUiState(uid, FusionReactorUiKey.Key, GetBuiState(uid, maser));
     }
+
+    public FusionReactorMaserBuiState GetBuiState(EntityUid uid, FusionReactorMaserComponent maser) => new()
+    {
+        PowerSetting = maser.PowerSetting,
+        MaxPowerSetting = maser.MaxPowerSetting,
+
+        AMInjection = maser.InjectAntimatter,
+        AMJar = EntityManager.GetNetEntity(maser.AMJarSlot.Item),
+        Antimatter = TryComp<AmeFuelContainerComponent>(maser.AMJarSlot.Item, out var fuelContainer) ? fuelContainer.FuelAmount : 0,
+
+        RequestedPower = TryComp<FusionReactorPowerDrawComponent>(uid, out var powerDrawComponent) && powerDrawComponent.Enabled ? powerDrawComponent.Draw : 0,
+        ReceivedPower = GetPowerSupplied(uid),
+    };
 }

@@ -1,7 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using Content.Server._FarHorizons.Fusion.Systems;
+using Content.Server._FarHorizons.Power.Generation.FusionGenerator.Components;
 using Content.Server._FarHorizons.Power.Generation.FusionGenerator.NodeGroup;
-using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
 using Content.Shared.NodeContainer;
 using Robust.Shared.Timing;
@@ -39,6 +39,14 @@ public sealed partial class FusionReactorSystem : EntitySystem
     {
         base.Update(frameTime);
 
+        var batteryQuery = EntityQueryEnumerator<FusionReactorBatteryComponent>();
+
+        while (batteryQuery.MoveNext(out var uid, out var battery))
+        {
+            // Battery UIs update every tick, just like a normal battery
+            UpdateBatteryUi(uid, battery);
+        }
+
         foreach (var reactor in _fusionReactors)
         {
             // TODO: not every update
@@ -57,13 +65,14 @@ public sealed partial class FusionReactorSystem : EntitySystem
 
         ProcessMaser(fusionReactor, dt);
 
+        ProcessInjects(fusionReactor, dt);
         ExtractPower(fusionReactor, dt);
 
         ProcessPowerDraws(fusionReactor, dt);
-        
+
         _fusionSystem.React(fusionReactor.Plasma, dt);
 
-        ProcessDamage(fusionReactor.Torus, fusionReactor.Plasma);
+        ProcessDamage(fusionReactor.Torus, fusionReactor.Plasma, dt);
     }
 
     private bool TryGetReactorGroup(EntityUid uid, [NotNullWhen(true)] out FusionReactorNodeGroup? reactorNodeGroup)

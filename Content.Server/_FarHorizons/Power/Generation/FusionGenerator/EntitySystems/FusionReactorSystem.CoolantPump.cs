@@ -82,6 +82,8 @@ public sealed partial class FusionReactorSystem
         var transferMix = sourceMix.RemoveVolume(transferVolume);
 
         _atmosphereSystem.Merge(receiverMix, transferMix);
+        
+        Dirty(uid, comp);
     }
 
     private float CalculateTransferVolume(float volume, GasMixture inlet, GasMixture outlet, float dt)
@@ -94,10 +96,10 @@ public sealed partial class FusionReactorSystem
         return Math.Max(0, actualMolesTransfered * inlet.Temperature * Atmospherics.R / inlet.Pressure);
     }
 
-    private void OnCoolantPumpSetEnableMessage(EntityUid uid, FusionReactorCoolantPumpComponent comp, ref FusionReactorCoolantPumpSetEnableMessage args) => 
+    private void OnCoolantPumpSetEnableMessage(EntityUid uid, FusionReactorCoolantPumpComponent comp, ref FusionReactorCoolantPumpSetEnableMessage args) =>
         comp.Enabled = args.Enable;
 
-    private void OnCoolantPumpSetFlowMessage(EntityUid uid, FusionReactorCoolantPumpComponent comp, ref FusionReactorCoolantPumpSetFlowMessage args) => 
+    private void OnCoolantPumpSetFlowMessage(EntityUid uid, FusionReactorCoolantPumpComponent comp, ref FusionReactorCoolantPumpSetFlowMessage args) =>
         comp.FlowRate = args.FlowRate;
 
     private void OnCoolantPumpUIOpened(EntityUid uid, FusionReactorCoolantPumpComponent comp, ref BoundUIOpenedEvent args)

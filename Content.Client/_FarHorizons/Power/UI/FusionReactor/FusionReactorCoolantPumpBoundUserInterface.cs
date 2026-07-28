@@ -29,6 +29,8 @@ public sealed class FusionReactorCoolantPumpBoundUserInterface : BoundUserInterf
 
         _window = this.CreateWindow<FusionReactorCoolantPumpWindow>();
 
+        _window.SetEntity(Owner, EntMan);
+
         if (EntMan.TryGetComponent(Owner, out FusionReactorCoolantPumpComponent? pump))
         {
             _maxTransferRate = pump.FlowRateMax;
@@ -36,13 +38,11 @@ public sealed class FusionReactorCoolantPumpBoundUserInterface : BoundUserInterf
 
         _window.ToggleStatusButtonPressed += OnToggleStatusButtonPressed;
         _window.PumpTransferRateChanged += OnPumpTransferRatePressed;
+
         Update();
     }
 
-    private void OnToggleStatusButtonPressed(bool status)
-    {
-        SendPredictedMessage(new FusionReactorCoolantPumpSetEnableMessage(status));
-    }
+    private void OnToggleStatusButtonPressed(bool status) => SendPredictedMessage(new FusionReactorCoolantPumpSetEnableMessage(status));
 
     private void OnPumpTransferRatePressed(string value)
     {
@@ -59,7 +59,6 @@ public sealed class FusionReactorCoolantPumpBoundUserInterface : BoundUserInterf
         if (_window is null || !EntMan.TryGetComponent(Owner, out FusionReactorCoolantPumpComponent? pump))
             return;
 
-        _window.Title = Identity.Name(Owner, EntMan);
         _window.SetPumpStatus(pump.Enabled);
         _window.SetTransferRate(pump.FlowRate);
     }

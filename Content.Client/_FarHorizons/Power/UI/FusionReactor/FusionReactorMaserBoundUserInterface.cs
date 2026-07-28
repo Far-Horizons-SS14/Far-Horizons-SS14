@@ -13,7 +13,6 @@ namespace Content.Client._FarHorizons.Power.UI.FusionReactor;
 public sealed class FusionReactorMaserBoundUserInterface : BoundUserInterface, IBuiPreTickUpdate
 {
     [Dependency] private readonly IClientGameTiming _gameTiming = null!;
-    [Dependency] private readonly IEntityManager _entityManager = null!;
 
     [ViewVariables]
     private FusionReactorMaserWindow? _window;
@@ -30,10 +29,12 @@ public sealed class FusionReactorMaserBoundUserInterface : BoundUserInterface, I
         _pred = new BuiPredictionState(this, _gameTiming);
 
         _window = this.CreateWindow<FusionReactorMaserWindow>();
-        _window.SetEntity(Owner);
+
+        _window.SetEntity(Owner, EntMan);
 
         _window.SetPowerLevel += val => _powerLevelCoalescer.Set(val);
         _window.SetAMInject += OnInjectToggle;
+
         Update();
     }
 
@@ -60,9 +61,6 @@ public sealed class FusionReactorMaserBoundUserInterface : BoundUserInterface, I
 
         _window?.Update(maserState);
     }
-    
-    private void OnInjectToggle(bool inject)
-    {
-        SendPredictedMessage(new FusionReactorMaserSetInjectionMessage(inject));
-    }
+
+    private void OnInjectToggle(bool inject) => SendPredictedMessage(new FusionReactorMaserSetInjectionMessage(inject));
 }

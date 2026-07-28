@@ -5,9 +5,7 @@ using JetBrains.Annotations;
 using Robust.Client.UserInterface;
 
 namespace Content.Client._FarHorizons.Power.UI.FusionReactor;
-/// <summary>
-/// Initializes a <see cref="GasVolumePumpWindow"/> and updates it when new server messages are received.
-/// </summary>
+
 [UsedImplicitly]
 public sealed class FusionReactorGasInletBoundUserInterface : BoundUserInterface
 {
@@ -27,16 +25,15 @@ public sealed class FusionReactorGasInletBoundUserInterface : BoundUserInterface
 
         _window = this.CreateWindow<FusionReactorGasInletWindow>();
 
+        _window.SetEntity(Owner, EntMan);
+
         _window.ToggleStatusButtonPressed += OnToggleStatusButtonPressed;
         _window.PowerUseChanged += OnPumpTransferRatePressed;
-        _window.SetEntity(Owner);
+
         Update();
     }
 
-    private void OnToggleStatusButtonPressed(bool status)
-    {
-        SendPredictedMessage(new FusionReactorGasInletSetEnableMessage(status));
-    }
+    private void OnToggleStatusButtonPressed(bool status) => SendPredictedMessage(new FusionReactorGasInletSetEnableMessage(status));
 
     private void OnPumpTransferRatePressed(string value)
     {
@@ -44,13 +41,6 @@ public sealed class FusionReactorGasInletBoundUserInterface : BoundUserInterface
         rate = Math.Clamp(rate, 0f, _maxTransferRate);
 
         SendPredictedMessage(new FusionReactorGasInletSetPowerMessage(rate));
-    }
-
-    public override void Update()
-    {
-        base.Update();
-
-        _window?.Title = Identity.Name(Owner, EntMan);
     }
 
     protected override void UpdateState(BoundUserInterfaceState state)

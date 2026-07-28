@@ -1,13 +1,14 @@
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Shared._FarHorizons.Fusion;
+using Content.Shared._FarHorizons.Power.Generation.FusionGenerator;
 using Robust.Client.UserInterface.Controls;
 
 namespace Content.Client._FarHorizons.Power.UI.FusionReactor;
 
-public sealed class FusionAtomList : ScrollContainer
+[Virtual]
+public class FusionAtomList : ScrollContainer
 {
-    private readonly BoxContainer _list = new()
+    protected readonly BoxContainer _list = new()
     {
         Orientation = BoxContainer.LayoutOrientation.Vertical,
         VerticalExpand = true,
@@ -15,7 +16,9 @@ public sealed class FusionAtomList : ScrollContainer
         Margin = new(2, 2, 2, 2),
     };
 
-    private readonly Dictionary<FusionAtom, FusionAtomEntry> _entries = [];
+    protected readonly Dictionary<FusionAtom, FusionAtomEntry> _entries = [];
+
+    public bool Strict = true;
 
     public string DisplayUnit = "";
 
@@ -23,19 +26,13 @@ public sealed class FusionAtomList : ScrollContainer
 
     public FusionAtomList(Dictionary<FusionAtom, double> entries)
     {
-        foreach (var (atom, mol) in entries)
-        {
-            _entries.Add(atom, new(atom, mol) { Unit = DisplayUnit });
-        }
+        Update(entries);
         Initialize();
     }
 
     public FusionAtomList(List<(FusionAtom, double)> entries)
     {
-        foreach (var (atom, mol) in entries)
-        {
-            _entries.Add(atom, new(atom, mol) { Unit = DisplayUnit });
-        }
+        Update(entries);
         Initialize();
     }
 
@@ -50,7 +47,7 @@ public sealed class FusionAtomList : ScrollContainer
         }
     }
 
-    public void Update(FusionAtom atom, double mol)
+    public virtual void Update(FusionAtom atom, double mol)
     {
         if (_entries.TryGetValue(atom, out var entry))
         {
@@ -69,11 +66,8 @@ public sealed class FusionAtomList : ScrollContainer
             Update(atom, mol);
         }
 
-        var excess = _entries.ExceptBy(entries.Select(n => n.Key), e => e.Key).ToList();
-        foreach (var (atom, mol) in excess)
-        {
-            Remove(atom);
-        }
+        if (Strict)
+            RemoveExcess(entries);
     }
 
     public void Update(List<(FusionAtom, double)> entries)
@@ -83,11 +77,8 @@ public sealed class FusionAtomList : ScrollContainer
             Update(atom, mol);
         }
 
-        var excess = _entries.ExceptBy(entries.Select(n => n.Item1), e => e.Key).ToList();
-        foreach (var (atom, mol) in excess)
-        {
-            Remove(atom);
-        }
+        if (Strict)
+            RemoveExcess(entries);
     }
 
     public void Remove(FusionAtom atom)
@@ -115,35 +106,60 @@ public sealed class FusionAtomList : ScrollContainer
         }
     }
 
+    public void RemoveExcess(Dictionary<FusionAtom, double> entries)
+    {
+        var excess = _entries.ExceptBy(entries.Select(n => n.Key), e => e.Key).ToList();
+        foreach (var (atom, mol) in excess)
+        {
+            Remove(atom);
+        }
+    }
+
+    public void RemoveExcess(List<(FusionAtom, double)> entries)
+    {
+        var excess = _entries.ExceptBy(entries.Select(n => n.Item1), e => e.Key).ToList();
+        foreach (var (atom, mol) in excess)
+        {
+            Remove(atom);
+        }
+    }
+
     public void Clear()
     {
         _entries.Clear();
         _list.RemoveAllChildren();
     }
+
+    public void Order()
+    {
+        _list.RemoveAllChildren();
+        foreach (var (atom, entry) in _entries.OrderBy(e => e.Key.Proton).ThenBy(e => e.Key.Neutron))
+        {
+            _list.AddChild(entry);
+        }
+    }
+
+    public bool Contains(FusionAtom atom) => _entries.ContainsKey(atom);
 }
 
 [Virtual]
 public class FusionAtomEntry : BoxContainer
 {
-    public FusionAtom Atom { get; private set; }
-    public double Mols { get; private set; }
+    public FusionAtom Atom { get; protected set; }
+    public double Mols { get; protected set; }
     public string Unit = "";
 
-    protected Label _atomLabel;
-    protected Label _molLabel;
+    protected readonly BoxContainer _dataBox;
+    protected readonly Label _atomLabel;
+    protected readonly Label _molLabel;
 
     public FusionAtomEntry(FusionAtom atom, double mols)
     {
-        Initialize();
-        Atom = atom;
-        Mols = mols;
-        Update();
-    }
-
-    [MemberNotNull(nameof(_atomLabel)), MemberNotNull(nameof(_molLabel))]
-    private void Initialize()
-    {
-        Orientation = LayoutOrientation.Horizontal;
+        Orientation = LayoutOrientation.Vertical;
+        _dataBox = new()
+        {
+            Orientation = LayoutOrientation.Horizontal,
+        };
         _atomLabel = new()
         {
 
@@ -154,8 +170,13 @@ public class FusionAtomEntry : BoxContainer
             HorizontalExpand = true,
         };
 
-        AddChild(_atomLabel);
-        AddChild(_molLabel);
+        _dataBox.AddChild(_atomLabel);
+        _dataBox.AddChild(_molLabel);
+        AddChild(_dataBox);
+
+        Atom = atom;
+        Mols = mols;
+        Update();
     }
 
     public void Update()
@@ -170,9 +191,8 @@ public class FusionAtomEntry : BoxContainer
         Update();
     }
 
-    private static string SIFormat(double value, string unit = "")
+    protected static string SIFormat(double value, string unit = "")
     {
-        string[] Prefixes = ["y", "z", "a", "f", "p", "n", "u", "m", "", "k", "M", "G", "T"];
         const int MinExponentPower = -24;
         const int MaxExponentPower = 12;
 
@@ -184,9 +204,102 @@ public class FusionAtomEntry : BoxContainer
 
         var scaled = value * Math.Pow(10, -magnitude);
 
-        var prefix = Prefixes[(magnitude - MinExponentPower) / 3];
-
-        return $"{scaled:0.#}\t{prefix}{unit}";
+        return $"{Loc.GetString("fusion-reactor-controller-ui-fmt-prefix", ("divided", scaled), ("places", (magnitude - MinExponentPower) / 3))}{unit}";
     }
 }
 
+public sealed class FusionInjectionList : FusionAtomList
+{
+    public Action<KeyValuePair<FusionAtom, FusionReactorTransferData>>? OnTransferSet;
+
+    public override void Update(FusionAtom atom, double mol)
+    {
+        if (_entries.TryGetValue(atom, out var entry))
+        {
+            entry.Update(mol);
+            return;
+        }
+        var newEntry = new FusionAtomInjectEntry(atom, mol) { Unit = DisplayUnit };
+        newEntry.OnSetPressed += val => OnTransferSet?.Invoke(new(atom, val));
+        _entries.Add(atom, newEntry);
+        _list.AddChild(_entries[atom]);
+    }
+
+    public void UpdateSelectors(Dictionary<FusionAtom, FusionReactorTransferData> transferData)
+    {
+        foreach (var (atom, data) in transferData)
+        {
+            if (!_entries.TryGetValue(atom, out var entry) || entry is not FusionAtomInjectEntry injectEntry)
+                continue;
+
+            injectEntry.UpdateInject(data);
+        }
+    }
+}
+
+public sealed class FusionAtomInjectEntry : FusionAtomEntry
+{
+    private readonly BoxContainer _controlBox;
+    private readonly OptionButton _injectMode;
+    private readonly LineEdit _entryBox;
+    private readonly Button _setButton;
+
+    public Action<FusionReactorTransferData>? OnSetPressed;
+
+    public FusionAtomInjectEntry(FusionAtom atom, double mols) : base(atom, mols)
+    {
+        _controlBox ??= new()
+        {
+            Orientation = LayoutOrientation.Horizontal,
+        };
+        _entryBox ??= new()
+        {
+            Text = "0",
+            MinWidth = 100,
+        };
+        _setButton ??= new()
+        {
+            Text = Loc.GetString("fusion-reactor-controller-ui-set"),
+            Disabled = true,
+        };
+        _injectMode ??= new()
+        {
+            HorizontalExpand = true,
+        };
+
+        _injectMode.Clear();
+        foreach (var type in Enum.GetValues<FusionReactorTransferType>())
+        {
+            _injectMode.AddItem(Loc.GetString($"fusion-reactor-controller-ui-{type.ToString().ToLower()}"), (int)type);
+        }
+
+        _injectMode.OnItemSelected += obj =>
+        {
+            _injectMode.SelectId(obj.Id);
+            _setButton.Disabled = false;
+        };
+        _entryBox.OnTextChanged += _ => _setButton.Disabled = false;
+        _setButton.OnPressed += _ =>
+        {
+            if (float.TryParse(_entryBox.Text, out var num) && !float.IsNaN(num))
+            {
+                OnSetPressed?.Invoke(new((FusionReactorTransferType)_injectMode.SelectedId, num));
+            }
+            _setButton.Disabled = true;
+        };
+
+        _controlBox.AddChild(_injectMode);
+        _controlBox.AddChild(_entryBox);
+        _controlBox.AddChild(_setButton);
+        AddChild(_controlBox);
+    }
+
+    public void UpdateInject(FusionReactorTransferData data)
+    {
+        if (!_setButton.Disabled)
+            return;
+
+        _injectMode.SelectId((int)data.transferType);
+        _entryBox.Text = data.Quantity.ToString();
+    }
+}

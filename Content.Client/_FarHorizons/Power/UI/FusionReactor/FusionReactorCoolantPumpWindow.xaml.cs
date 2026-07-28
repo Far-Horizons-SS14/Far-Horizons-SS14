@@ -36,13 +36,9 @@ public sealed partial class FusionReactorCoolantPumpWindow : FancyWindow
         };
     }
 
-    public void SetTransferRate(float rate)
-    {
-        PumpTransferRateInput.Text = rate.ToString(CultureInfo.CurrentCulture);
-    }
+    public void SetEntity(EntityUid entity, IEntityManager entMan) => this.SetInfoFromEntity(entMan, entity);
 
-    public void SetPumpStatus(bool enabled)
-    {
-        ToggleStatusButton.Pressed = enabled;
-    }
+    public void SetTransferRate(float rate) => PumpTransferRateInput.Text = rate.ToString(CultureInfo.CurrentCulture);
+
+    public void SetPumpStatus(bool enabled) => ToggleStatusButton.Pressed = enabled;
 }

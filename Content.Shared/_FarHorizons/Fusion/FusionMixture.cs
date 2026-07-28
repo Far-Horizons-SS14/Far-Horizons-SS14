@@ -1,12 +1,13 @@
 using System.Linq;
-using System.Runtime.Serialization;
 using Content.Shared.Atmos;
 using Robust.Shared.Serialization;
 using Robust.Shared.Utility;
 
 namespace Content.Shared._FarHorizons.Fusion;
 
-public sealed class FusionMixture
+[Serializable]
+[DataDefinition]
+public sealed partial class FusionMixture
 {
     /// <summary>
     /// Key: atom<para/>Value: mols
@@ -24,7 +25,7 @@ public sealed class FusionMixture
     /// </summary>
     [DataField("pressure")]
     [ViewVariables(VVAccess.ReadWrite)]
-    public double Pressure = 1;
+    public double Pressure = 0;
 
     /// <summary>
     /// Volume, in liters
