@@ -41,6 +41,7 @@ public sealed partial class AlignAtmosPipeLayers : SnapgridCenter
     private Color _guideColor = new Color(0, 0, 0.5785f);
     private const float GuideRadius = 0.1f;
     private const float GuideOffset = 0.21875f;
+    private const float AtmosGhostOpacity = 0.5f; // Starlight
 
     public AlignAtmosPipeLayers(PlacementManager pMan) : base(pMan)
     {
@@ -52,8 +53,8 @@ public sealed partial class AlignAtmosPipeLayers : SnapgridCenter
         _spriteSystem = _entityManager.System<SpriteSystem>();
 
         // Starlight START: Make atmos ghosts transparent to prevent big sprites from blocking visibility of their own pipes.
-        ValidPlaceColor = ValidPlaceColor.WithAlpha(0.5f);
-        InvalidPlaceColor = InvalidPlaceColor.WithAlpha(0.5f);
+        ValidPlaceColor = ValidPlaceColor.WithAlpha(AtmosGhostOpacity);
+        InvalidPlaceColor = InvalidPlaceColor.WithAlpha(AtmosGhostOpacity);
         // Starlight END
     }
 
