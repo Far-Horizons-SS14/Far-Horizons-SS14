@@ -2,16 +2,11 @@ using Content.Server._FarHorizons.Power.Generation.FusionGenerator.Components;
 using Content.Server._FarHorizons.Power.Generation.FusionGenerator.NodeGroup;
 using Content.Shared._FarHorizons.Power.Generation.FusionGenerator;
 using Content.Shared.Ame.Components;
-using Content.Shared.Containers.ItemSlots;
-using Robust.Server.GameObjects;
 
 namespace Content.Server._FarHorizons.Power.Generation.FusionGenerator.EntitySystems;
 
 public sealed partial class FusionReactorSystem
 {
-    [Dependency] private readonly ItemSlotsSystem _slotsSystem = default!;
-    [Dependency] private readonly UserInterfaceSystem _uiSystem = null!;
-
     /// Not arbitrary
     /// A one core AME running at 1 (or 2) injection rate gives the most energy possible per unit of antimatter at 602059.9913 kJ. Using E=mc^2, that 
     /// equates to roughly 6.6988e-12 kg. When halved to account for the equal amount of matter consumed, the resulting amount of antimatter per unit

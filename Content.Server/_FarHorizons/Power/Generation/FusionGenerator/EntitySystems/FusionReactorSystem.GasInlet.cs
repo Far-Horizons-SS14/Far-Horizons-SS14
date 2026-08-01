@@ -1,5 +1,4 @@
 using System.Linq;
-using Content.Server._FarHorizons.Fusion;
 using Content.Server.Atmos.Piping.Components;
 using Content.Server.NodeContainer.Nodes;
 using Content.Shared._FarHorizons.Fusion;

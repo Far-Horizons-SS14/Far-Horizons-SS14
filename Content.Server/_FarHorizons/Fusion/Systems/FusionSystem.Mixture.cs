@@ -65,13 +65,13 @@ public sealed partial class FusionSystem
                 if (atom.Proton < 0 && reactAnti > 0)
                 {
                     var amount = Math.Min(reactAnti, mol * -atom.Proton);
-                    fusionMix.ChangeAtom(atom, -amount);
+                    fusionMix.ChangeAtom(atom, -amount / atom.Proton);
                     reactAnti -= amount;
                 }
                 else if (atom.Proton > 0 && reactMatter > 0)
                 {
                     var amount = Math.Min(reactMatter, mol * atom.Proton);
-                    fusionMix.ChangeAtom(atom, -amount);
+                    fusionMix.ChangeAtom(atom, -amount / atom.Proton);
                     reactMatter -= amount;
                 }
 

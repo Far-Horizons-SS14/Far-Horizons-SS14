@@ -1,17 +1,15 @@
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Atmos.Piping.Components;
-using Content.Server.NodeContainer.EntitySystems;
 using Content.Server.NodeContainer.Nodes;
 using Content.Shared._FarHorizons.Power.Generation.FusionGenerator;
 using Content.Shared._FarHorizons.Power.Generation.FusionGenerator.Components;
 using Content.Shared.Atmos;
+using Content.Shared.Verbs;
 
 namespace Content.Server._FarHorizons.Power.Generation.FusionGenerator.EntitySystems;
 
 public sealed partial class FusionReactorSystem
 {
-    [Dependency] private readonly NodeContainerSystem _nodeContainer = default!;
-
     private void CoolingInitialize()
     {
         SubscribeLocalEvent<FusionReactorCoolantPumpComponent, AtmosDeviceUpdateEvent>(OnCoolantPumpUpdate);
@@ -19,7 +17,8 @@ public sealed partial class FusionReactorSystem
 
         SubscribeLocalEvent<FusionReactorCoolantPumpComponent, FusionReactorCoolantPumpSetEnableMessage>(OnCoolantPumpSetEnableMessage);
         SubscribeLocalEvent<FusionReactorCoolantPumpComponent, FusionReactorCoolantPumpSetFlowMessage>(OnCoolantPumpSetFlowMessage);
-        SubscribeLocalEvent<FusionReactorCoolantPumpComponent, BoundUIOpenedEvent>(OnCoolantPumpUIOpened);
+
+        SubscribeLocalEvent<FusionReactorCoolantPumpComponent, GetVerbsEvent<Verb>>(OnCoolantPumpGetVerbs);
     }
 
     private void OnCoolantPumpAnalyze(EntityUid uid, FusionReactorCoolantPumpComponent comp, ref GasAnalyzerScanEvent args)
@@ -58,6 +57,20 @@ public sealed partial class FusionReactorSystem
         }
     }
 
+    private void OnCoolantPumpGetVerbs(EntityUid uid, FusionReactorCoolantPumpComponent comp, ref GetVerbsEvent<Verb> args)
+    {
+        if (!args.CanAccess || !args.CanInteract)
+            return;
+
+        Verb changeVerb = new()
+        {
+            Text = Loc.GetString(comp.IsInlet ? "fusion-reactor-gas-inlet-verb-set-outlet" : "fusion-reactor-gas-inlet-verb-set-inlet"),
+            TextStyleClass = "InteractionVerb",
+            Act = () => comp.IsInlet = !comp.IsInlet,
+        };
+        args.Verbs.Add(changeVerb);
+    }
+
     private void OnCoolantPumpUpdate(EntityUid uid, FusionReactorCoolantPumpComponent comp, ref AtmosDeviceUpdateEvent args)
     {
         SetPowerDraw(uid, comp.Enabled);
@@ -82,7 +95,7 @@ public sealed partial class FusionReactorSystem
         var transferMix = sourceMix.RemoveVolume(transferVolume);
 
         _atmosphereSystem.Merge(receiverMix, transferMix);
-        
+
         Dirty(uid, comp);
     }
 
@@ -101,9 +114,4 @@ public sealed partial class FusionReactorSystem
 
     private void OnCoolantPumpSetFlowMessage(EntityUid uid, FusionReactorCoolantPumpComponent comp, ref FusionReactorCoolantPumpSetFlowMessage args) =>
         comp.FlowRate = args.FlowRate;
-
-    private void OnCoolantPumpUIOpened(EntityUid uid, FusionReactorCoolantPumpComponent comp, ref BoundUIOpenedEvent args)
-    {
-
-    }
 }

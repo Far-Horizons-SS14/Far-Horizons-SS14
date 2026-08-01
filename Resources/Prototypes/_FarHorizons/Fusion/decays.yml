@@ -116,6 +116,28 @@
     11,12: 1
 #endregion
 
+#region Oxygen Burning
+- type: fusionDecay
+  id: S31>P31
+  reactant:
+    proton: 16
+    neutron: 15
+  energy: 4374040
+  halflife: 2.572
+  products:
+    15,16: 1
+
+- type: fusionDecay
+  id: P30>Si30
+  reactant:
+    proton: 15
+    neutron: 15
+  energy: 3210152
+  halflife: 149.9
+  products:
+    14,16: 1
+#endregion
+
 #region Silicon Burning
 - type: fusionDecay
   id: Ti44>Sc44

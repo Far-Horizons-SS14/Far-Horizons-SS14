@@ -69,7 +69,13 @@ public sealed partial class FusionMixture
     [ViewVariables]
     public double TotalMoles => Atoms.Values.Sum();
 
-    public void ChangeAtom(FusionAtom key, double change) => Atoms[key] = Atoms.GetValueOrDefault(key) + change;
+    public void ChangeAtom(FusionAtom key, double change)
+    {
+        var afterChange = Atoms.GetValueOrDefault(key) + change;
+
+        // If there's less than an atom then just make it 0
+        Atoms[key] = MathHelper.CloseTo(afterChange, 0, FusionConsts.AtomToMol) ? 0 : afterChange;
+    }
 
     #region Debug Vars
     [ViewVariables]

@@ -133,7 +133,8 @@ public class FusionAtomList : ScrollContainer
     public void Order()
     {
         _list.RemoveAllChildren();
-        foreach (var (atom, entry) in _entries.OrderBy(e => e.Key.Proton).ThenBy(e => e.Key.Neutron))
+        // Sorts by element, then matter/antimatter, then isotope
+        foreach (var (atom, entry) in _entries.OrderBy(e => Math.Abs(e.Key.Proton)).ThenBy(e => -e.Key.Proton).ThenBy(e => e.Key.Neutron))
         {
             _list.AddChild(entry);
         }

@@ -2,17 +2,27 @@ using System.Diagnostics.CodeAnalysis;
 using Content.Server._FarHorizons.Fusion.Systems;
 using Content.Server._FarHorizons.Power.Generation.FusionGenerator.Components;
 using Content.Server._FarHorizons.Power.Generation.FusionGenerator.NodeGroup;
+using Content.Server.Atmos.EntitySystems;
+using Content.Server.Explosion.EntitySystems;
+using Content.Server.NodeContainer.EntitySystems;
 using Content.Server.Power.EntitySystems;
+using Content.Shared.Containers.ItemSlots;
 using Content.Shared.NodeContainer;
+using Robust.Server.GameObjects;
 using Robust.Shared.Timing;
 
 namespace Content.Server._FarHorizons.Power.Generation.FusionGenerator.EntitySystems;
 
 public sealed partial class FusionReactorSystem : EntitySystem
 {
+    [Dependency] private readonly AtmosphereSystem _atmosphereSystem = default!;
+    [Dependency] private readonly BatterySystem _battery = default!;
+    [Dependency] private readonly ExplosionSystem _explosionSystem = default!;
     [Dependency] private readonly FusionSystem _fusionSystem = default!;
     [Dependency] private readonly IGameTiming _gameTiming = default!;
-    [Dependency] private readonly BatterySystem _battery = default!;
+    [Dependency] private readonly ItemSlotsSystem _slotsSystem = default!;
+    [Dependency] private readonly NodeContainerSystem _nodeContainer = default!;
+    [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
 
     /// <summary>
     /// May eventually be handled by a grid/map level component like the atmosphere system, but for now the system can keep track of it.

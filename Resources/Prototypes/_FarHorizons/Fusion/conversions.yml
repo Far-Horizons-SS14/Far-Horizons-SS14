@@ -44,16 +44,17 @@
   id: FusionConversionPlasma
   gas: Plasma
   products:
-    # pretending that Plasma is acetylene for the purposes of conversion
-    # Carbon
-    6,6: 1.978
-    6,7: 0.0212
-    6,8: 0.0008
+    # Plasma is acetylene (C2H2) for the purposes of conversion
 
     # Hydrogen
     1,0: 1.99971
     1,1: 0.00023
     1,2: 2e-16
+
+    # Carbon
+    6,6: 1.978
+    6,7: 0.0212
+    6,8: 0.0008
 
 - type: fusionConversion
   id: FusionConversionTritium
@@ -65,28 +66,28 @@
   id: FusionConversionWater
   gas: WaterVapor
   products:
-    # Oxygen
-    8,8: 0.9976
-    8,9: 0.0004
-    8,10: 0.002
-
     # Hydrogen
     1,0: 1.99971
     1,1: 0.00023
     1,2: 2e-16
 
+    # Oxygen
+    8,8: 0.9976
+    8,9: 0.0004
+    8,10: 0.002
+
 - type: fusionConversion
   id: FusionConversionAmmonia
   gas: Ammonia
   products:
-    # Nitrogen
-    7,7: 0.9962
-    7,8: 0.0038
-    
     # Hydrogen
     1,0: 3.99942
     1,1: 0.00046
     1,2: 4e-16
+
+    # Nitrogen
+    7,7: 0.9962
+    7,8: 0.0038
 
 - type: fusionConversion
   id: FusionConversionNitrousOxide
@@ -105,30 +106,112 @@
   id: FusionConversionFrezon
   gas: Frezon
   products:
-    # pretending that Frezon is R-22 (CHClF2) for the purpose of conversion
-    # Carbon
-    6,6: 0.989
-    6,7: 0.0106
-    6,8: 0.0004
+    # Frezon is R-22 (CHClF2) for the purpose of conversion
 
     # Hydrogen
     1,0: 0.999855
     1,1: 0.000115
     1,2: 1e-16
 
-    # Chlorine
-    # 17,18: 0.758
-    # 17,20: 0.242
+    # Carbon
+    6,6: 0.989
+    6,7: 0.0106
+    6,8: 0.0004
 
     # Fluorine
     9,10: 2
+
+    # Chlorine
+    # 17,18: 0.758
+    # 17,20: 0.242
 #endregion
 
 #region Funky Gasses
-# bz
-# healium
-# nitrium
-# pluox
+- type: fusionConversion
+  id: FusionConversionBZ
+  gas: BZ
+  products:
+    # BZ is furan (C4H4O) for the purpose of conversion
+
+    # Hydrogen
+    1,0: 3.99942
+    1,1: 0.00046
+    1,2: 4e-16
+
+    # Carbon
+    6,6: 3.956
+    6,7: 0.0436
+    6,8: 0.0016
+
+    # Oxygen
+    8,8: 0.9976
+    8,9: 0.0004
+    8,10: 0.002
+
+- type: fusionConversion
+  id: FusionConversionHealium
+  gas: Healium
+  products:
+    # Healium is sodium thiopental (C11H17N2O2SNa) for the purpose of conversion and because it's funny
+
+    # Hydrogen
+    1,0: 16.997535
+    1,1: 0.001955
+    1,2: 1.7e-15
+
+    # Carbon
+    6,6: 10.879
+    6,7: 0.1166
+    6,8: 0.0044
+
+    # Nitrogen
+    7,7: 1.9924
+    7,8: 0.0076
+
+    # Oxygen
+    8,8: 1.9952
+    8,9: 0.0008
+    8,10: 0.004
+
+    # Sodium
+    11,12: 1
+
+    # Sulfur
+    16,16: 0.948
+    # 16,17: 0.0076 # Not in any reaction/decay
+    # 16,18: 0.0437
+    # 16,20: 0.0007
+
+- type: fusionConversion
+  id: FusionConversionNitrium
+  gas: Nitrium
+  products:
+    # Nitrium is 1H-triazirene (N3H) for the purpose of conversion
+
+    # Hydrogen
+    1,0: 0.999855
+    1,1: 0.000115
+    1,2: 1e-16
+
+    # Nitrogen
+    7,7: 2.9886
+    7,8: 0.0114
+
+- type: fusionConversion
+  id: FusionConversionPluoxium
+  gas: Pluoxium
+  products:
+    # Literally just carbonate (CO3)
+
+    # Carbon
+    6,6: 0.989
+    6,7: 0.0106
+    6,8: 0.0004
+
+    # Oxygen
+    8,8: 2.9928
+    8,9: 0.0012
+    8,10: 0.006
 
 - type: fusionConversion
   id: FusionConversionHydrogen
@@ -138,9 +221,58 @@
     1,1: 0.00023
     1,2: 2e-16
 
-# hypernob
-# protonitrate
-# zauker
+- type: fusionConversion
+  id: FusionConversionHyperNoblium
+  gas: HyperNoblium
+  products:
+    # The production reaction, if taken literally, would mean that HyperNoblium's chemical formula is N10H5, which is horrifying for a number of reasons.
+    # So, HyperNoblium is going to be the much more reasonable hydrazine (N2H4) and we're just going to ignore the fact that all nitrogen-hydrogen 
+    # compounds are explosives and will definitely not stop reactions like HyperNoblium does.
+
+    # Hydrogen
+    1,0: 3.99942
+    1,1: 0.00046
+    1,2: 4e-16
+
+    # Nitrogen
+    7,7: 1.9924
+    7,8: 0.0076
+
+- type: fusionConversion
+  id: FusionConversionProtoNitrate
+  gas: ProtoNitrate # Why is it called protonitrate when it has NO nitrogen at all when making it
+  products:
+    # ProtoNitrate is carbonic acid (H2CO3) for the purpose of conversion
+
+    # Hydrogen
+    1,0: 1.99971
+    1,1: 0.00023
+    1,2: 2e-16
+
+    # Carbon
+    6,6: 0.989
+    6,7: 0.0106
+    6,8: 0.0004
+
+    # Oxygen
+    8,8: 2.9928
+    8,9: 0.0012
+    8,10: 0.006
+
+- type: fusionConversion
+  id: FusionConversionZauker
+  gas: Zauker
+  products:
+    # Zauker is N7H9 (not named, but a real compound) for the purpose of conversion because I said so
+
+    # Hydrogen
+    1,0: 8.998695
+    1,1: 0.001035
+    1,2: 9e-16
+
+    # Nitrogen
+    7,7: 6.9734
+    7,8: 0.0266
 
 - type: fusionConversion
   id: FusionConversionHalon
@@ -152,12 +284,12 @@
     6,7: 0.0106
     6,8: 0.0004
 
+    # Fluorine
+    9,10: 3
+
     # Bromine
     # 35,44: 0.506
     # 35,46: 0.494
-
-    # Fluorine
-    9,10: 3
 
 - type: fusionConversion
   id: FusionConversionHelium
@@ -166,5 +298,19 @@
     2,2: 0.999998
     2,1: 0.000002
 
-# antinob
+- type: fusionConversion
+  id: FusionConversionAntiNoblium
+  gas: AntiNoblium
+  products:
+    # Antimatter HyperNoblium, woe be upon the engineer that shoves it into the fusion reactor unprepared
+    # Also makes it so you can turn the fusion reactor into a ghetto AME but that probably won't be a problem... right?
+
+    # Hydrogen
+    -1,0: 3.99942
+    -1,1: 0.00046
+    -1,2: 4e-16
+
+    # Nitrogen
+    -7,7: 1.9924
+    -7,8: 0.0076
 #endregion

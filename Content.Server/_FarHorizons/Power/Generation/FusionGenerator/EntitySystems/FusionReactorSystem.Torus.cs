@@ -1,7 +1,5 @@
 using Content.Server._FarHorizons.Power.Generation.FusionGenerator.Components;
 using Content.Server._FarHorizons.Power.Generation.FusionGenerator.NodeGroup;
-using Content.Server.Atmos.EntitySystems;
-using Content.Server.Explosion.EntitySystems;
 using Content.Shared._FarHorizons.Fusion;
 using Content.Shared.Atmos;
 
@@ -9,9 +7,6 @@ namespace Content.Server._FarHorizons.Power.Generation.FusionGenerator.EntitySys
 
 public sealed partial class FusionReactorSystem
 {
-    [Dependency] private readonly AtmosphereSystem _atmosphereSystem = default!;
-    [Dependency] private readonly ExplosionSystem _explosionSystem = default!;
-
     private void TorusInitialize()
     {
 
