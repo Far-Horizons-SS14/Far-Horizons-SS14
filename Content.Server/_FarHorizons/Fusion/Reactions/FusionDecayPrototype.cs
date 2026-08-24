@@ -32,7 +32,7 @@ public sealed partial class FusionDecayPrototype : IPrototype
         var processAmount = reactant - (reactant * Math.Pow(0.5, deltaT / Halflife));
         var count = Math.Round(processAmount * FusionConsts.MolToAtom);
 
-        if (count <= 0 || double.IsNaN(processAmount))
+        if (!double.IsFinite(processAmount) || count <= 0)
             return;
 
         mixture.ChangeAtom(Reactant, -processAmount);

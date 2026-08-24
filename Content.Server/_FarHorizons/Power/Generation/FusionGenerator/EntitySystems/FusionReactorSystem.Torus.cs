@@ -65,46 +65,6 @@ public sealed partial class FusionReactorSystem
             _atmosphereSystem.Merge(fusionReactor.CoolantIn, coolant);
     }
 
-    private void ProcessDamage(List<Entity<FusionReactorTorusComponent>> tori, FusionMixture fusionMixture, float dt)
-    {
-        var pressure = fusionMixture.ConstrainedPressure;
-        var temperature = fusionMixture.Temperature;
-
-        foreach (var (uid, torus) in tori)
-        {
-            if (pressure == 0)
-            {
-                torus.Integrity += MathF.Min(torus.Regeneration * dt, torus.MaxIntegrity - torus.Integrity);
-                continue;
-            }
-            if (torus.IsMagnet)
-                continue;
-
-            torus.Integrity -= MathF.Min((float)(pressure / torus.PressureResistance * (temperature / torus.TemperatureResistance)) * dt, dt);
-
-            if (torus.Integrity <= 0)
-                IntegrityFailure(uid, torus, fusionMixture);
-        }
-    }
-
-    private void IntegrityFailure(EntityUid uid, FusionReactorTorusComponent torus, FusionMixture fusionMixture)
-    {
-        if (!TryGetReactorGroup(uid, out var fusionReactor))
-            return;
-
-        var pressure = (float)(fusionMixture.Pressure + fusionMixture.ConstrainedPressure);
-        var volume = (float)Math.Min(fusionMixture.ConstrainedVolume, fusionMixture.Volume) / fusionReactor.Torus.Count;
-
-        /// joules of energy resultant from it no longer being under pressure
-        var energy = pressure * volume / 0.67f * (1 - MathF.Pow(Atmospherics.OneAtmosphere * 1000 / pressure, 0.67f / 1.67f));
-        /// joules of energy contained within the mixture
-        energy += MathF.Cbrt((float)(_fusionSystem.GetHeatCapacity(fusionMixture) * fusionMixture.Temperature));
-
-        var intensity = MathF.Max(energy, 80);
-        _explosionSystem.QueueExplosion(uid, "Default", intensity, 100, 100, user: uid);
-        QueueDel(uid);
-    }
-
     private void ProcessMagnetics(FusionReactorNodeGroup reactorNodeGroup, float dt)
     {
         if (reactorNodeGroup.SuperconductingCount <= 0)

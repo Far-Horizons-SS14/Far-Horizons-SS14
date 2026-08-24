@@ -31,7 +31,7 @@ public sealed partial class FusionMixture
     /// Volume, in liters
     /// </summary>
     [ViewVariables]
-    public double Volume => TotalMoles * FusionConsts.R * Temperature / Pressure;
+    public double Volume => Pressure == 0 ? ConstrainedVolume : TotalMoles * FusionConsts.R * Temperature / Pressure;
 
     /// <summary>
     /// Volume of the physical container the <see cref="FusionMixture"/> is within

@@ -31,7 +31,7 @@ public sealed partial class FusionReactionPrototype : IPrototype
     {
         var reactantA = mixture.Atoms[ReactantA];
         var reactantB = mixture.Atoms[ReactantB];
-        var cm3 = mixture.Volume * 1000;
+        var cm3 = Math.Min(mixture.Volume, mixture.ConstrainedVolume) * 1000;
         var numA = reactantA / cm3 * FusionConsts.MolToAtom;
         var numB = reactantB / cm3 * FusionConsts.MolToAtom;
 
@@ -46,7 +46,7 @@ public sealed partial class FusionReactionPrototype : IPrototype
         var reactionMols = Math.Min(reactionCount * FusionConsts.AtomToMol * fusionSystem.MassScale, Math.Min(reactantA, reactantB) * selfReact);
         // var realmin = FusionConsts.MinQuantity * (reactantA + reactantB);
 
-        if (double.IsNaN(reactionCount) || reactionMols < FusionConsts.MinQuantity || reactionCount < 1)
+        if (!double.IsFinite(reactionCount) || reactionMols < FusionConsts.MinQuantity || reactionCount < 1)
             return;
 
         mixture.ChangeAtom(ReactantA, -reactionMols);

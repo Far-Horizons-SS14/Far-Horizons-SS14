@@ -5,6 +5,8 @@ using Content.Server.Power.Components;
 using Content.Shared._FarHorizons.Fusion;
 using Content.Shared._FarHorizons.Power.Generation.FusionGenerator;
 using Content.Shared.Atmos;
+using Content.Shared.Radio;
+using Robust.Shared.Audio;
 
 namespace Content.Server._FarHorizons.Power.Generation.FusionGenerator.EntitySystems;
 
@@ -21,6 +23,8 @@ public sealed partial class FusionReactorSystem
 
         SubscribeLocalEvent<FusionReactorControllerComponent, FusionReactorControllerEditInjectMessage>(OnControllerEditInjectMessage);
 
+        SubscribeLocalEvent<FusionReactorControllerComponent, FusionReactorControllerEjectMessage>(OnControllerEjectMessage);
+
         SubscribeLocalEvent<FusionReactorControllerComponent, BoundUIOpenedEvent>(OnControllerUIOpened);
     }
 
@@ -33,16 +37,20 @@ public sealed partial class FusionReactorSystem
 
         fusionReactor.RequestedMagneticPressure = comp.RequestedMagneticPressure;
 
+        /// The thought here is that: 
+        /// - the Watt setting, which requires constant monitoring, is always going to work, even if at reduced capacity
+        /// - the Temperature setting, which is fully autonomous, is heavily dependent on stability
+
         var extractTarget = comp.ExtractMode switch
         {
-            FusionReactorPowerExtractType.Watts => comp.WattSetting * dt,
+            FusionReactorPowerExtractType.Watts => comp.WattSetting * dt * MathF.Max(fusionReactor.PlasmaStability, 0.001f),
             FusionReactorPowerExtractType.Temperature =>
                 (float)(_fusionSystem.GetHeatCapacity(fusionReactor.Plasma) * (fusionReactor.Plasma.Temperature - comp.TempSetting)
-                 * fusionReactor.PlasmaStability), // intentional double multiply of PlasmaStability
+                 * fusionReactor.PlasmaStability * fusionReactor.PlasmaStability), // intentional double multiply of PlasmaStability
             _ => 0,
         };
 
-        extractTarget = Math.Max(extractTarget * fusionReactor.PlasmaStability, 0);
+        extractTarget = MathF.Max(extractTarget, 0);
 
         var extracted = -_fusionSystem.ChangeJoule(fusionReactor.Plasma, -extractTarget);
 
@@ -93,6 +101,7 @@ public sealed partial class FusionReactorSystem
                         toStorage.ChangeAtom(atom, amount);
                     }
                     break;
+
                 case FusionReactorTransferType.SetLevel:
                     var level = fusionReactor.Plasma.Atoms.GetValueOrDefault(atom);
 
@@ -112,6 +121,7 @@ public sealed partial class FusionReactorSystem
                         toStorage.ChangeAtom(atom, amount);
                     }
                     break;
+
                 case FusionReactorTransferType.Fill:
                     if (!fusionReactor.Stored.Atoms.TryGetValue(atom, out var fillStored))
                         break;
@@ -119,6 +129,7 @@ public sealed partial class FusionReactorSystem
                     fusionReactor.Stored.ChangeAtom(atom, -fillAmount);
                     toPlasma.ChangeAtom(atom, fillAmount);
                     break;
+
                 case FusionReactorTransferType.Drain:
                     if (!fusionReactor.Plasma.Atoms.TryGetValue(atom, out var drainStored))
                         break;
@@ -126,12 +137,127 @@ public sealed partial class FusionReactorSystem
                     fusionReactor.Plasma.ChangeAtom(atom, -drainAmount);
                     toStorage.ChangeAtom(atom, drainAmount);
                     break;
+
+                default:
+                    break;
             }
         }
 
         _fusionSystem.Merge(fusionReactor.Plasma, toPlasma);
         _fusionSystem.Merge(fusionReactor.Stored, toStorage);
     }
+
+    #region Radio
+    private void UpdateRadio(FusionReactorNodeGroup fusionReactor)
+    {
+        switch (fusionReactor.MeltdownStage)
+        {
+            case FusionReactorMeltdownStage.Stage0:
+                if (fusionReactor.LastAnnouncedIntegrity != 1)
+                {
+                    SendRadioMessage(fusionReactor, Loc.GetString("fusion-reactor-controller-radio-integrity-restored"));
+                    fusionReactor.LastAnnouncedIntegrity = 1;
+                }
+
+                if (!fusionReactor.MeltdownAnnouncements.HasFlag(FusionReactorMeltdownStage.SafeStages))
+                    MeltdownAverted();
+                break;
+
+            case FusionReactorMeltdownStage.Stage1:
+                IntegrityUpdate();
+
+                if (!fusionReactor.MeltdownAnnouncements.HasFlag(FusionReactorMeltdownStage.SafeStages))
+                    MeltdownAverted();
+                break;
+
+            case FusionReactorMeltdownStage.Stage2:
+                IntegrityUpdate();
+
+                if (!fusionReactor.MeltdownAnnouncements.HasFlag(FusionReactorMeltdownStage.Stage2))
+                {
+                    SendAnnouncement(fusionReactor, Loc.GetString("fusion-reactor-controller-announcement-stage-2"));
+                    SendRadioMessage(fusionReactor, Loc.GetString("fusion-reactor-controller-radio-stage-2"));
+                    fusionReactor.MeltdownAnnouncements &= ~FusionReactorMeltdownStage.SafeStages;
+                    fusionReactor.MeltdownAnnouncements |= FusionReactorMeltdownStage.Stage2;
+                }
+                break;
+
+            case FusionReactorMeltdownStage.Stage3:
+                if (!fusionReactor.MeltdownAnnouncements.HasFlag(FusionReactorMeltdownStage.Stage3))
+                {
+                    SendAnnouncement(fusionReactor, Loc.GetString("fusion-reactor-controller-announcement-stage-3", ("value", Stage3Delay)));
+                    fusionReactor.MeltdownAnnouncements &= ~FusionReactorMeltdownStage.SafeStages;
+                    fusionReactor.MeltdownAnnouncements |= FusionReactorMeltdownStage.Stage3;
+                }
+                break;
+
+            case FusionReactorMeltdownStage.Stage4:
+                if (!fusionReactor.MeltdownAnnouncements.HasFlag(FusionReactorMeltdownStage.Stage4))
+                {
+                    SendAnnouncement(fusionReactor, Loc.GetString("fusion-reactor-controller-announcement-stage-4", ("value", Stage4Delay)));
+                    fusionReactor.MeltdownAnnouncements &= ~FusionReactorMeltdownStage.SafeStages;
+                    fusionReactor.MeltdownAnnouncements |= FusionReactorMeltdownStage.Stage4;
+                }
+                break;
+
+            default:
+                break;
+        }
+
+        return;
+
+        void IntegrityUpdate()
+        {
+            if (MathF.Abs(fusionReactor.IntegrityRatio - fusionReactor.LastAnnouncedIntegrity) < fusionReactor.AnnouncementInterval)
+                return;
+
+            var message = fusionReactor.IntegrityRatio >= fusionReactor.LastAnnouncedIntegrity ?
+                Loc.GetString("fusion-reactor-controller-radio-integrity-rising", ("value", fusionReactor.IntegrityRatio)) :
+                Loc.GetString("fusion-reactor-controller-radio-integrity-falling", ("value", fusionReactor.IntegrityRatio));
+
+            SendRadioMessage(fusionReactor, message);
+            fusionReactor.LastAnnouncedIntegrity = fusionReactor.IntegrityRatio;
+        }
+
+        void MeltdownAverted()
+        {
+            SendAnnouncement(fusionReactor, Loc.GetString("fusion-reactor-controller-announcement-stage-safe"));
+            fusionReactor.MeltdownAnnouncements = FusionReactorMeltdownStage.SafeStages;
+        }
+    }
+
+    private void SendRadioMessage(FusionReactorNodeGroup fusionReactor, string message)
+    {
+        if (!fusionReactor.MasterController.HasValue)
+            return;
+
+        var (uid, controller) = fusionReactor.MasterController.Value;
+
+        foreach (var channelID in controller.AlertChannel)
+        {
+            if (!_protoMan.TryIndex<RadioChannelPrototype>(channelID, out var channel))
+                continue;
+
+            _radioSystem.SendRadioMessage(uid, message, channel, uid);
+        }
+    }
+
+    private void SendAnnouncement(FusionReactorNodeGroup fusionReactor, string message, string? sender = null, SoundPathSpecifier? sound = null)
+    {
+        if (_gameTiming.CurTime < fusionReactor.NextAllowedAnnouncement)
+            return;
+
+        fusionReactor.NextAllowedAnnouncement = _gameTiming.CurTime.Add(TimeSpan.FromSeconds(MathF.Min(Stage3Delay, Stage4Delay) - 1));
+
+        if (!fusionReactor.MasterController.HasValue)
+            return;
+
+        var uid = fusionReactor.MasterController.Value.Owner;
+
+        var stationUid = _station.GetStationInMap(Transform(uid).MapID);
+        _chatSystem.DispatchStationAnnouncement(stationUid ?? uid, message, sender ?? Loc.GetString("fusion-reactor-controller-announcement-sender"), false, sound, Color.Orange);
+    }
+    #endregion
 
     #region BUI
     private void UpdateControllerUI(EntityUid uid, FusionReactorControllerComponent comp)
@@ -153,8 +279,12 @@ public sealed partial class FusionReactorSystem
             Batteries = fusionReactor.Batteries.Select(b => (GetNetEntity(b.Owner), GetBuiState(b.Owner, b.Comp))).ToList(),
             MagnetTemperature = fusionReactor.Magnets.Count > 0 ? fusionReactor.Magnets.Average(m => m.Comp.Temperature) : Atmospherics.T20C,
             MagnetCritical = fusionReactor.Magnets.Count > 0 ? fusionReactor.Magnets.Average(m => m.Comp.TC) : 0,
-            Integrity = fusionReactor.Torus.Count > 0 ? fusionReactor.Torus.Average(t => t.Comp.Integrity / t.Comp.MaxIntegrity) : 0,
+            Integrity = fusionReactor.IntegrityRatio,
             Stability = fusionReactor.PlasmaStability,
+
+            MeltdownStage = fusionReactor.MeltdownStage,
+            CanEject = fusionReactor.CanEject,
+            EventTime = fusionReactor.NextEventTime,
 
             IsMaster = fusionReactor.MasterController.HasValue && uid == fusionReactor.MasterController.Value.Owner,
             ExtractMode = comp.ExtractMode,
@@ -218,6 +348,15 @@ public sealed partial class FusionReactorSystem
         {
             dict[args.Atom] = 0;
         }
+    }
+
+    private void OnControllerEjectMessage(EntityUid uid, FusionReactorControllerComponent comp, ref FusionReactorControllerEjectMessage args)
+    {
+        if (!TryGetReactorGroup(uid, out var fusionReactor))
+            return;
+
+        if (!TryEjectCore(fusionReactor))
+            SendRadioMessage(fusionReactor, $"Core eject failed, detonation in {(fusionReactor.NextEventTime - _gameTiming.CurTime).TotalSeconds:0.#} seconds");
     }
 
     #endregion

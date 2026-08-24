@@ -206,7 +206,7 @@ public sealed partial class FusionReactorGraphic : Control
         if (!_isInit)
             return;
 
-        var scale = fusionMix.Volume / fusionMix.ConstrainedVolume;
+        var scale = fusionMix.TotalMoles > 0 ? fusionMix.Volume / fusionMix.ConstrainedVolume : 0;
         var list = _parts["plasma"];
         list[0].Scale = scale;
         list[0].VisualColor = PlasmaColor(0.8f * fusionMix.Temperature / 1e11f);

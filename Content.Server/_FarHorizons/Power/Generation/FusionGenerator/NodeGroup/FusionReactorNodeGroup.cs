@@ -5,6 +5,7 @@ using Content.Server._FarHorizons.Power.Generation.FusionGenerator.EntitySystems
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.NodeContainer.NodeGroups;
 using Content.Shared._FarHorizons.Fusion;
+using Content.Shared._FarHorizons.Power.Generation.FusionGenerator;
 using Content.Shared.Atmos;
 using Content.Shared.NodeContainer;
 using Content.Shared.NodeContainer.NodeGroups;
@@ -95,6 +96,108 @@ public sealed partial class FusionReactorNodeGroup : BaseNodeGroup
     /// </remarks>
     [ViewVariables]
     public float PlasmaStability => StabilityCalculation();
+
+    /// <summary>
+    /// The "health" of the reactor
+    /// </summary>
+    [DataField]
+    public float Integrity = 100;
+
+    /// <summary>
+    /// The maximum value of <see cref="Integrity"/>
+    /// </summary>
+    [DataField]
+    public float IntegrityMax = 100;
+
+    /// <summary>
+    /// Integrity of the reactor, expressed as a ratio of <see cref="Integrity"/> to <see cref="IntegrityMax"/>
+    /// </summary>
+    [ViewVariables]
+    public float IntegrityRatio => Integrity / IntegrityMax;
+
+    /// <summary>
+    /// How much <see cref="Integrity"/> should be recovered per second
+    /// </summary>
+    [DataField]
+    public float IntegrityRegeneration = 0.1f;
+
+    /// <summary>
+    /// The maximum amount <see cref="Integrity"/> can be removed per second
+    /// </summary>
+    [DataField]
+    public float IntegrityMaxDecay = 0.5f;
+
+    /// <summary>
+    /// How resistant is the reactor to the pressure of a confinement failure
+    /// </summary>
+    /// <remarks>
+    /// d = p ^ (1 / this) - 0.5
+    /// </remarks>
+    [DataField]
+    public float ResistancePressure = 10;
+
+    /// <summary>
+    /// How resistant is the reactor to the temperature of a confinement failure
+    /// </summary>
+    /// <remarks>
+    /// d = t ^ (1 / this) - 0.5
+    /// </remarks>
+    [DataField]
+    public float ResistanceTemperature = 10;
+
+    /// <summary>
+    /// Current meltdown stage of the reactor
+    /// </summary>
+    [ViewVariables(VVAccess.ReadWrite)]
+    public FusionReactorMeltdownStage MeltdownStage = FusionReactorMeltdownStage.Stage0;
+
+    /// <summary>
+    /// What meltdown announcements have been sent
+    /// </summary>
+    [ViewVariables(VVAccess.ReadWrite)]
+    public FusionReactorMeltdownStage MeltdownAnnouncements = FusionReactorMeltdownStage.SafeStages;
+
+    /// <summary>
+    /// Last integrity ratio value announced over radio
+    /// </summary>
+    [ViewVariables(VVAccess.ReadWrite)]
+    public float LastAnnouncedIntegrity = 1;
+
+    /// <summary>
+    /// Minimum difference between <see cref="LastAnnouncedIntegrity"/> and <see cref="IntegrityRatio"/> before another announcement is made
+    /// </summary>
+    [DataField]
+    public float AnnouncementInterval = 0.05f;
+
+    /// <summary>
+    /// The next time the reactor is allowed to make a station-wide announcement
+    /// </summary>
+    /// <remarks>
+    /// Intended to prevent announcement spam
+    /// </remarks>
+    [ViewVariables]
+    public TimeSpan NextAllowedAnnouncement = TimeSpan.Zero;
+
+    /// <summary>
+    /// Next time for something to happen, used for time-based events
+    /// </summary>
+    /// <remarks>
+    /// If there is no event, should be set to TimeSpan.MaxValue
+    /// </remarks>
+    [ViewVariables]
+    public TimeSpan NextEventTime = TimeSpan.MaxValue;
+
+    /// <summary>
+    /// Is a core eject attempt allowed
+    /// </summary>
+    [ViewVariables(VVAccess.ReadWrite)]
+    public bool CanEject = false;
+
+    /// <summary>
+    /// Has the reactor attempted an emergency coolant dump
+    /// </summary>
+    [ViewVariables(VVAccess.ReadWrite)]
+    public bool HasDumpedCoolant = false;
 
     public override void Initialize(Node sourceNode, IEntityManager entMan)
     {
@@ -211,6 +314,29 @@ public sealed partial class FusionReactorNodeGroup : BaseNodeGroup
                 newStored.Add(newGroup.Stored);
                 newCoolantIn.Add(newGroup.CoolantIn);
                 newCoolantOut.Add(newGroup.CoolantOut);
+
+                newGroup.LastProcess = LastProcess;
+                newGroup.RequestedMagneticPressure = RequestedMagneticPressure;
+
+                newGroup.CanEject = CanEject;
+                newGroup.HasDumpedCoolant = HasDumpedCoolant;
+
+                newGroup.Integrity = Integrity;
+                newGroup.IntegrityMax = IntegrityMax;
+                newGroup.IntegrityMaxDecay = IntegrityMaxDecay;
+                newGroup.IntegrityRegeneration = IntegrityRegeneration;
+
+                newGroup.ResistancePressure = ResistancePressure;
+                newGroup.ResistanceTemperature = ResistanceTemperature;
+
+                newGroup.MeltdownAnnouncements = MeltdownAnnouncements;
+                newGroup.MeltdownStage = MeltdownStage;
+
+                newGroup.LastAnnouncedIntegrity = LastAnnouncedIntegrity;
+                newGroup.AnnouncementInterval = AnnouncementInterval;
+
+                newGroup.NextAllowedAnnouncement = NextAllowedAnnouncement;
+                newGroup.NextEventTime = NextEventTime;
             }
         }
 

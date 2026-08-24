@@ -127,6 +127,10 @@ public sealed class FusionReactorControllerBuiState : BoundUserInterfaceState
     public float Integrity;
     public float Stability;
 
+    public FusionReactorMeltdownStage MeltdownStage;
+    public bool CanEject;
+    public TimeSpan EventTime;
+
     /// Controller data
     public bool IsMaster = false;
     public FusionReactorPowerExtractType ExtractMode;
@@ -177,6 +181,9 @@ public sealed class FusionReactorControllerEditInjectMessage(FusionAtom atom) : 
 {
     public FusionAtom Atom { get; } = atom;
 }
+
+[Serializable, NetSerializable]
+public sealed class FusionReactorControllerEjectMessage() : BoundUserInterfaceMessage;
 #endregion
 
 #region Data Types
@@ -240,5 +247,60 @@ public enum FusionReactorTransferType
     /// Remove all from the plasma
     /// </summary>
     Drain,
+}
+
+[Flags]
+public enum FusionReactorMeltdownStage
+{
+    /// <summary>
+    /// Running normally, at 100% integrity
+    /// </summary>
+    Stage0 = 1 << 0,
+
+    /// <summary>
+    /// Taking damage, but above 25% integrity
+    /// </summary>
+    /// <remarks>
+    /// Will announce integrity at intervals over radio <para/>  
+    /// Resolved by just stopping damage
+    /// </remarks>
+    Stage1 = 1 << 1,
+
+    /// <summary>
+    /// Critically damaged
+    /// </summary>
+    /// <remarks>
+    /// Will announce integrity at intervals over radio <para/>
+    /// Will make a station-wide announcement <para/>
+    /// At 5% integrity will attempt to contain the plasma by dumping coolant
+    /// </remarks>
+    Stage2 = 1 << 2,
+
+    /// <summary>
+    /// Melting down, at or below 0% integrity
+    /// </summary>
+    /// <remarks>
+    /// Will make a station-wide announcement <para/>
+    /// Will not explode for another 15 seconds after entering <para/>
+    /// Core eject option enabled
+    /// </remarks>
+    Stage3 = 1 << 3,
+
+    /// <summary>
+    /// Actively exploding
+    /// </summary>
+    /// <remarks>
+    /// AllowMassDestruction only <para/>
+    /// After 30 seconds will explode with a good portion of the power of the nuclear bomb
+    /// </remarks>
+    Stage4 = 1 << 4,
+
+    /// <summary>
+    /// Stages that are considered relatively "safe"
+    /// </summary>
+    /// <remarks>
+    /// Will make a station-wide announcement if the reactor was in an unsafe state before
+    /// </remarks>
+    SafeStages = Stage0 | Stage1
 }
 #endregion

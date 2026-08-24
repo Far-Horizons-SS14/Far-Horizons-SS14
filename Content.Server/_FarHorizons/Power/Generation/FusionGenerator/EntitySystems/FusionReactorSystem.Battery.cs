@@ -67,7 +67,7 @@ public sealed partial class FusionReactorSystem : EntitySystem
     }
 
     #region BUI
-    private void UpdateBatteryUi(EntityUid uid, FusionReactorBatteryComponent comp)
+    private void UpdateBatteryUI(EntityUid uid, FusionReactorBatteryComponent comp)
     {
         if (!_uiSystem.IsUiOpen(uid, FusionReactorUiKey.Key))
             return;

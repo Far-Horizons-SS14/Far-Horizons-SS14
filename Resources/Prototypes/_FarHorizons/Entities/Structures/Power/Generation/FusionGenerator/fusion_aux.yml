@@ -56,8 +56,8 @@
   - type: FusionReactorBattery
   - type: Battery
     netsync: false
-    startingCharge: 0
-    maxCharge: 8000000
+    startingCharge: 16000000
+    maxCharge: 16000000
   - type: ExaminableBattery
   - type: NodeContainer
     examinable: true
@@ -83,6 +83,14 @@
         type: FusionReactorCapacitorBoundUserInterface
   - type: ActivatableUI
     key: enum.FusionReactorUiKey.Key
+
+- type: entity
+  id: FusionReactorBatteryEmpty
+  parent: FusionReactorBattery
+  suffix: Empty
+  components:
+  - type: Battery
+    startingCharge: 0
 
 - type: entity
   id: FusionReactorMaser

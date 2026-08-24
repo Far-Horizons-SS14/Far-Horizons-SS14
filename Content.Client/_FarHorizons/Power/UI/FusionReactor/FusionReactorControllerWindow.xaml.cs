@@ -16,16 +16,19 @@ namespace Content.Client._FarHorizons.Power.UI.FusionReactor;
 public sealed partial class FusionReactorControllerWindow : FancyWindow
 {
     [Dependency] private readonly IResourceCache _resourceCache = default!;
+    [Dependency] private readonly IGameTiming _gameTiming = default!;
 
     public Action<KeyValuePair<FusionAtom, FusionReactorTransferData>>? OnTransferSet;
     public Action<FusionReactorControllerSetExtractMessage>? OnExtractSet;
     public Action<float>? OnPressureSet;
     public Action<FusionReactorControllerSetMaserInjectMessage>? OnMaserSetInject;
     public Action<FusionReactorControllerEditInjectMessage>? OnEditInject;
+    public Action? EjectPressed;
 
     private readonly Dictionary<NetEntity, BatteryStateEntry> _batteryEntries = [];
     private readonly Dictionary<NetEntity, MaserStateEntry> _maserEntries = [];
-    private readonly VectorFont _consoleFont;
+    private float _accumulator = 0f;
+    private TimeSpan _timeSpan;
 
     // 28 gets us all the way to Nickel, which is as high as the reactor goes by default
     private const int NumberAtoms = 28;
@@ -36,14 +39,19 @@ public sealed partial class FusionReactorControllerWindow : FancyWindow
         IoCManager.InjectDependencies(this);
 
         // Thank you IPCs for the neat font
-        _consoleFont = new(_resourceCache.GetResource<FontResource>("/Fonts/_FarHorizons/VT323/vt323-latin-400-normal.ttf"), 15);
+        var consoleResource = _resourceCache.GetResource<FontResource>("/Fonts/_FarHorizons/VT323/vt323-latin-400-normal.ttf");
+        var dataFont = new VectorFont(consoleResource, 15);
 
         foreach (var child in Overview.Children)
         {
             if (child is not Label label)
                 continue;
-            label.FontOverride = _consoleFont;
+            label.FontOverride = dataFont;
         }
+
+        CenterCountdown.FontOverride = new VectorFont(consoleResource, 50);
+        EjectButton.Label.FontOverride = new VectorFont(consoleResource, 20);
+        EjectButton.ModulateSelfOverride = Color.FromHex("#FF0000");
 
         EditInjectOption.Clear();
         for (var p = 1; p <= NumberAtoms; p++)
@@ -61,10 +69,10 @@ public sealed partial class FusionReactorControllerWindow : FancyWindow
         LeftTabWing.SetTabTitle(1, Loc.GetString("fusion-reactor-controller-ui-tab-injection"));
 
         SortAtomList.OnPressed += _ => AtomList.Order();
-        AtomList.DisplayUnit = "mol";
+        AtomList.DisplayUnit = Loc.GetString("fusion-reactor-controller-ui-unit-mol");
 
         SortInjectList.OnPressed += _ => InjectionList.Order();
-        InjectionList.DisplayUnit = "mol";
+        InjectionList.DisplayUnit = Loc.GetString("fusion-reactor-controller-ui-unit-mol");
         InjectionList.OnTransferSet += val => OnTransferSet?.Invoke(val);
 
         EditInjectToggle.OnPressed += _ => EditInjectBox.Visible = EditInjectToggle.Pressed;
@@ -90,6 +98,8 @@ public sealed partial class FusionReactorControllerWindow : FancyWindow
 
         PressureSetting.OnTextChanged += _ => SetPressureButton.Disabled = false;
         SetPressureButton.OnPressed += _ => OnSetPressurePressed();
+
+        EjectButton.OnPressed += _ => EjectPressed?.Invoke();
     }
 
     public void SetEntity(EntityUid entity, IEntityManager entMan) => this.SetInfoFromEntity(entMan, entity);
@@ -102,10 +112,21 @@ public sealed partial class FusionReactorControllerWindow : FancyWindow
         InjectionList.Update(msg.Stored);
         InjectionList.UpdateSelectors(msg.Transfers);
 
-        ReactorTempValue.Text = Loc.GetString("fusion-reactor-controller-ui-format-temperature", ("value", msg.Plasma.Temperature));
-        ReactorPressureValue.Text = Loc.GetString("fusion-reactor-controller-ui-format-pressure", ("value", msg.Plasma.Pressure));
-        ReactorExpansionValue.Text = Loc.GetString("fusion-reactor-controller-ui-format-percent", ("value", msg.Plasma.Volume / msg.Plasma.ConstrainedVolume));
-        ReactorStabilityValue.Text = Loc.GetString("fusion-reactor-controller-ui-format-percent", ("value", msg.Stability));
+        if (msg.Plasma.TotalMoles > 0)
+        {
+            ReactorTempValue.Text = Loc.GetString("fusion-reactor-controller-ui-format-temperature", ("value", msg.Plasma.Temperature));
+            ReactorPressureValue.Text = Loc.GetString("fusion-reactor-controller-ui-format-pressure", ("value", msg.Plasma.Pressure));
+            ReactorExpansionValue.Text = Loc.GetString("fusion-reactor-controller-ui-format-percent", ("value", msg.Plasma.Volume / msg.Plasma.ConstrainedVolume));
+            ReactorStabilityValue.Text = Loc.GetString("fusion-reactor-controller-ui-format-percent", ("value", msg.Stability));
+        }
+        else
+        {
+            ReactorTempValue.Text = Loc.GetString("fusion-reactor-controller-ui-stat-no-data");
+            ReactorPressureValue.Text = Loc.GetString("fusion-reactor-controller-ui-stat-no-data");
+            ReactorExpansionValue.Text = Loc.GetString("fusion-reactor-controller-ui-stat-no-data");
+            ReactorStabilityValue.Text = Loc.GetString("fusion-reactor-controller-ui-stat-no-data");
+        }
+
         ReactorIntegrityValue.Text = Loc.GetString("fusion-reactor-controller-ui-format-percent", ("value", msg.Integrity));
         ReactorMagTempValue.Text = Loc.GetString("fusion-reactor-controller-ui-format-temperature", ("value", msg.MagnetTemperature));
         ReactorPowerExtractionValue.Text = Loc.GetString("fusion-reactor-controller-ui-format-power", ("power", msg.PowerExtracted));
@@ -154,8 +175,36 @@ public sealed partial class FusionReactorControllerWindow : FancyWindow
 
         ReactorGraphic.UpdatePlasma(msg.Plasma);
         ReactorGraphic.UpdateMagnets(msg.MagnetTemperature, msg.MagnetCritical);
+
+        WarningStripeTop.Visible = msg.MeltdownStage > FusionReactorMeltdownStage.Stage1;
+        WarningStripeBottom.Visible = msg.MeltdownStage > FusionReactorMeltdownStage.Stage1;
+
+        CenterPopup.Visible = msg.MeltdownStage > FusionReactorMeltdownStage.Stage2;
+        EjectButton.Visible = msg.CanEject;
+
+        _timeSpan = msg.EventTime;
     }
 
+    protected override void FrameUpdate(FrameEventArgs args)
+    {
+        base.FrameUpdate(args);
+
+        _accumulator += args.DeltaSeconds;
+
+        var lambda = (MathF.Sin(_accumulator * 4) * 0.5f) + 0.5f;
+        var warnColor = Color.InterpolateBetween(Color.FromHex("#FF0000"), Color.FromHex("#FFFF00"), lambda);
+
+        WarningStripeTop.ModulateSelfOverride = warnColor;
+        WarningStripeBottom.ModulateSelfOverride = warnColor;
+        WarningStripeCenter.ModulateSelfOverride = warnColor.WithAlpha(0.75f);
+
+        var seconds = MathF.Max((float)(_timeSpan - _gameTiming.CurTime).TotalSeconds, 0f);
+
+        CenterCountdown.Text = Loc.GetString("fusion-reactor-controller-ui-format-seconds", ("value", seconds));
+        CenterCountdown.ModulateSelfOverride = warnColor;
+    }
+
+    #region Messages
     private void OnSetExtractPressed()
     {
         var type = (FusionReactorPowerExtractType)ExtractionOption.SelectedId;
@@ -225,7 +274,9 @@ public sealed partial class FusionReactorControllerWindow : FancyWindow
         }
         return list;
     }
+    #endregion
 
+    #region Entries
     private sealed class BatteryStateEntry : BoxContainer
     {
         private const int ChargeCells = 5;
@@ -408,4 +459,5 @@ public sealed partial class FusionReactorControllerWindow : FancyWindow
 
         public bool CheckIsModified([MaybeNullWhen(false)] out int value) => _powerLevelCoalescer.CheckIsModified(out value);
     }
+    #endregion
 }

@@ -20,4 +20,10 @@ public sealed partial class FusionReactorControllerComponent : Component
 
     [ViewVariables(VVAccess.ReadWrite)]
     public Dictionary<FusionAtom, FusionReactorTransferData> Transfers = [];
+
+    /// <summary>
+    /// Radio channel(s) to send alerts to
+    /// </summary>
+    [DataField]
+    public string[] AlertChannel = ["Engineering"];
 }

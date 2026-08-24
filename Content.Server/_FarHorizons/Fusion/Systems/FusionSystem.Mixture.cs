@@ -65,7 +65,7 @@ public sealed partial class FusionSystem
                 if (atom.Proton < 0 && reactAnti > 0)
                 {
                     var amount = Math.Min(reactAnti, mol * -atom.Proton);
-                    fusionMix.ChangeAtom(atom, -amount / atom.Proton);
+                    fusionMix.ChangeAtom(atom, amount / atom.Proton);
                     reactAnti -= amount;
                 }
                 else if (atom.Proton > 0 && reactMatter > 0)
@@ -116,6 +116,15 @@ public sealed partial class FusionSystem
         mixture.TotalMoles * FusionConsts.HeatCap * (scale ? HeatScale : 1);
 
     /// <summary>
+    /// Gets the thermal energy of <paramref name="mixture"/>.
+    /// </summary>
+    /// <param name="mixture"><see cref="FusionMixture"/> to get the thermal energy of.</param>
+    /// <param name="scale">If it should be scaled by CVars.</param>
+    /// <returns>Thermal energy of <paramref name="mixture"/>.</returns>
+    public double GetThermalEnergy(FusionMixture mixture, bool scale = true) =>
+        mixture.Temperature * GetHeatCapacity(mixture, scale);
+
+    /// <summary>
     /// Changes the energy in <paramref name="mixture"/> by a number of electron volts.
     /// </summary>
     /// <param name="mixture">Mixture to have its energy changed.</param>
@@ -136,13 +145,13 @@ public sealed partial class FusionSystem
             return 0;
 
         var heatCap = GetHeatCapacity(mixture);
-        var maxRemovableJoules = (heatCap * mixture.Temperature) - (heatCap * FusionConsts.PlasmaTemperature);
-        var jouleChange = maxRemovableJoules + joules <=0 ? maxRemovableJoules : joules;
+        var maxRemovableJoules = heatCap * (mixture.Temperature - FusionConsts.PlasmaTemperature);
+        var jouleChange = joules <= -maxRemovableJoules ? -maxRemovableJoules : joules;
         mixture.Joules += jouleChange;
 
         // work around for floating point imprecision
         var prevTemp = mixture.Temperature;
-        mixture.Temperature += mixture.Joules / heatCap;
+        mixture.Temperature += jouleChange / heatCap;
         mixture.Joules -= (mixture.Temperature - prevTemp) * heatCap;
 
         return jouleChange;
@@ -191,6 +200,9 @@ public sealed partial class FusionSystem
         }
     }
 
+    /// <summary>
+    /// Merges the source mixture into the receiver mixture. The source mixture is unmodified.
+    /// </summary>
     public void Merge(FusionMixture receiver, FusionMixture source)
     {
         if (Math.Abs(source.Temperature - receiver.Temperature) >= 0.01)
@@ -208,6 +220,11 @@ public sealed partial class FusionSystem
         }
     }
 
+    /// <summary>
+    /// Converts a gas mixture into a fusion mixture according the the conversion prototypes.
+    /// </summary>
+    /// <param name="input">Input gas mixture</param>
+    /// <returns>Resultant fusion mixture</returns>
     public FusionMixture ConvertFromGasMixture(GasMixture input)
     {
         FusionMixture mixture = new();

@@ -41,6 +41,8 @@ public sealed class FusionReactorControllerBoundUserInterface : BoundUserInterfa
 
         _window.OnEditInject += TrySendMessage;
 
+        _window.EjectPressed += OnEjectPressed;
+
         Update();
     }
 
@@ -83,6 +85,9 @@ public sealed class FusionReactorControllerBoundUserInterface : BoundUserInterfa
 
     private void OnPressureSet(float pressure) =>
         TrySendMessage(new FusionReactorControllerSetPressureMessage(Math.Max(pressure, 0)));
+
+    private void OnEjectPressed() =>
+        TrySendMessage(new FusionReactorControllerEjectMessage());
 
     private void TrySendMessage(BoundUserInterfaceMessage message)
     {
