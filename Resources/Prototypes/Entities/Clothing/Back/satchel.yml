@@ -1,16 +1,43 @@
+# FH start
 - type: entity
-  parent: ClothingBackpack
+  parent: [Clothing, ContentsExplosionResistanceBase]
   id: ClothingBackpackSatchel
-  name: Satchel #Far Horizons - The Great Capitalization Crusade
+  name: Satchel
   description: A trendy looking satchel.
   components:
   - type: Sprite
     sprite: Clothing/Back/Satchels/satchel.rsi
+  - type: Item
+    size: Ginormous
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - back
   - type: Storage
     grid:
     - 0,0,1,3
     - 3,0,6,3
     - 8,0,9,3
+    maxItemSize: Ginormous
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+        ents: []
+  - type: UserInterface
+    interfaces:
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
+  - type: SwitchableEquipMode
+  # to prevent bag open/honk spam
+  - type: UseDelay
+    delay: 0.5
+  - type: ExplosionResistance
+    damageCoefficient: 0.9
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - Backpack
+# FH end
 
 - type: entity
   parent: ClothingBackpackSatchel
