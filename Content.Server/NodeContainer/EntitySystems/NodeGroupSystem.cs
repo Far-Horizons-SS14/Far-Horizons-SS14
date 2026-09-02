@@ -468,6 +468,7 @@ namespace Content.Server.NodeContainer.EntitySystems
                 NodeGroupID.WireNet => Color.DarkMagenta,
                 NodeGroupID.Teg => Color.Red,
                 NodeGroupID.ExCable => Color.Pink,
+                NodeGroupID.FusionReactor => Color.Aqua, // FarHorizons
                 _ => Color.White
             };
         }

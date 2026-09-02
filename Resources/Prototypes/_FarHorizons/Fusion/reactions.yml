@@ -1,0 +1,504 @@
+- type: fusionReaction
+  id: D+T>He
+  reactantA:
+    proton: 1
+    neutron: 1
+  reactantB:
+    proton: 1
+    neutron: 2
+  energy: 17600000
+  products:
+    2,2: 1
+
+#region P-P chain
+- type: fusionReaction
+  id: H+H>D
+  reactantA:
+    proton: 1
+    neutron: 0
+  reactantB:
+    proton: 1
+    neutron: 0
+  energy: 1442000
+  products:
+    1,1: 1
+
+- type: fusionReaction
+  id: D+H>He3
+  reactantA:
+    proton: 1
+    neutron: 1
+  reactantB:
+    proton: 1
+    neutron: 0
+  energy: 5493000
+  products:
+    2,1: 1
+
+- type: fusionReaction
+  id: He3+He3>He4+2H
+  reactantA:
+    proton: 2
+    neutron: 1
+  reactantB:
+    proton: 2
+    neutron: 1
+  energy: 12859000
+  products:
+    2,2: 1
+    1,0: 2
+
+- type: fusionReaction
+  id: He3+He4>Be7
+  reactantA:
+    proton: 2
+    neutron: 1
+  reactantB:
+    proton: 2
+    neutron: 2
+  energy: 1590000
+  products:
+    4,3: 1
+
+- type: fusionReaction
+  id: Be7+H>B8
+  reactantA:
+    proton: 4
+    neutron: 3
+  reactantB:
+    proton: 1
+    neutron: 0
+  energy: 0
+  products:
+    5,3: 1
+
+- type: fusionReaction
+  id: Li7+H>2He4
+  reactantA:
+    proton: 3
+    neutron: 4
+  reactantB:
+    proton: 1
+    neutron: 0
+  energy: 17350000
+  products:
+    2,2: 2
+#endregion
+
+#region CNO Cycles (Cold)
+- type: fusionReaction
+  id: C12+H>N13
+  reactantA:
+    proton: 6
+    neutron: 6
+  reactantB:
+    proton: 1
+    neutron: 0
+  energy: 1950000
+  products:
+    7,6: 1
+
+- type: fusionReaction
+  id: C13+H>N14
+  reactantA:
+    proton: 6
+    neutron: 7
+  reactantB:
+    proton: 1
+    neutron: 0
+  energy: 7540000
+  products:
+    7,7: 1
+
+- type: fusionReaction
+  id: N14+H>O15
+  reactantA:
+    proton: 7
+    neutron: 7
+  reactantB:
+    proton: 1
+    neutron: 0
+  energy: 7350000
+  products:
+    8,7: 1
+
+- type: fusionReaction
+  id: N15+H>C12+He4 # TODO: join with N15+H>O16
+  reactantA:
+    proton: 7
+    neutron: 8
+  reactantB:
+    proton: 1
+    neutron: 0
+  energy: 4960000
+  products:
+    6,6: 1
+    2,2: 1
+
+- type: fusionReaction
+  id: N15+H>O16
+  reactantA:
+    proton: 7
+    neutron: 8
+  reactantB:
+    proton: 1
+    neutron: 0
+  energy: 12130000
+  products:
+    8,8: 1
+
+- type: fusionReaction
+  id: O16+H>F17
+  reactantA:
+    proton: 8
+    neutron: 8
+  reactantB:
+    proton: 1
+    neutron: 0
+  energy: 600000
+  products:
+    9,8: 1
+
+- type: fusionReaction
+  id: O17+H>N14+He4 # TODO: join with O17+H>F18
+  reactantA:
+    proton: 8
+    neutron: 9
+  reactantB:
+    proton: 1
+    neutron: 0
+  energy: 1190000
+  products:
+    7,7: 1
+    2,2: 1
+
+- type: fusionReaction
+  id: O17+H>F18
+  reactantA:
+    proton: 8
+    neutron: 9
+  reactantB:
+    proton: 1
+    neutron: 0
+  energy: 5610000
+  products:
+    9,9: 1
+
+- type: fusionReaction
+  id: O18+H>N15+He4 # TODO: join with O18+H>F19
+  reactantA:
+    proton: 8
+    neutron: 10
+  reactantB:
+    proton: 1
+    neutron: 0
+  energy: 3980000
+  products:
+    7,8: 1
+    2,2: 1
+
+- type: fusionReaction
+  id: O18+H>F19
+  reactantA:
+    proton: 8
+    neutron: 10
+  reactantB:
+    proton: 9
+    neutron: 10
+  energy: 7994000
+  products:
+    9,10: 1
+
+- type: fusionReaction
+  id: F19+H>O16+He4
+  reactantA:
+    proton: 9
+    neutron: 10
+  reactantB:
+    proton: 1
+    neutron: 0
+  energy: 8114000
+  products:
+    8,8: 1
+    2,2: 1
+#endregion
+
+#region CNO Cycles (Hot)
+- type: fusionReaction
+  id: N13+H>O14
+  reactantA:
+    proton: 7
+    neutron: 6
+  reactantB:
+    proton: 1
+    neutron: 0
+  energy: 1950000
+  products:
+    8,6: 1
+
+- type: fusionReaction
+  id: F17+H>Ne18
+  reactantA:
+    proton: 9
+    neutron: 8
+  reactantB:
+    proton: 1
+    neutron: 0
+  energy: 3920000
+  products:
+    10,8: 1
+
+- type: fusionReaction
+  id: F18+H>O15+He4 # TODO: join with F18+H>Ne19
+  reactantA:
+    proton: 9
+    neutron: 9
+  reactantB:
+    proton: 1
+    neutron: 0
+  energy: 2880000
+  products:
+    8,7: 1
+    2,2: 1
+
+- type: fusionReaction
+  id: F18+H>Ne19
+  reactantA:
+    proton: 9
+    neutron: 9
+  reactantB:
+    proton: 1
+    neutron: 0
+  energy: 6410000
+  products:
+    10,9: 1
+#endregion
+
+#region Triple-Alpha
+- type: fusionReaction
+  id: He4+He4>Be8
+  reactantA:
+    proton: 2
+    neutron: 2
+  reactantB:
+    proton: 2
+    neutron: 2
+  energy: -91800
+  products:
+    4,4: 1
+
+- type: fusionReaction
+  id: Be8+He4>C12
+  reactantA:
+    proton: 4
+    neutron: 4
+  reactantB:
+    proton: 2
+    neutron: 2
+  energy: 7367000
+  products:
+    6,6: 1
+
+- type: fusionReaction
+  id: C12+He4>O16
+  reactantA:
+    proton: 6
+    neutron: 6
+  reactantB:
+    proton: 2
+    neutron: 2
+  energy: 7162000
+  products:
+    8,8: 1
+#endregion
+
+#region Carbon Burning
+- type: fusionReaction
+  id: C12+C12>...
+  reactantA:
+    proton: 6
+    neutron: 6
+  reactantB:
+    proton: 6
+    neutron: 6
+  # The ratios for each reaction here are made up because I can't find answers for what they actually are
+  energy: 3589920 # 4617000 * 0.6 + 2241000 * 0.35 + -2599000 * 0.04 + 13933000 * 0.01
+  products:
+    # ...>Ne20+He4
+    10,10: 0.6 # 60% of an atom... don't question it
+    2,2: 0.6
+
+    # ...>Na23+H
+    11,12: 0.35
+    1,0: 0.35
+
+    # ...>Mg23
+    12,11: 0.04 # Rare due to it consuming energy
+
+    # ...>Mg24
+    12,12: 0.01 # Rare because of how uncommonly it doesn't break into one of the other reactions 
+#endregion
+
+#region Neon Burning
+- type: fusionReaction
+  id: Ne20+He4>Mg24
+  reactantA:
+    proton: 10
+    neutron: 10
+  reactantB:
+    proton: 2
+    neutron: 2
+  energy: 9316000
+  products:
+    12,12: 1
+
+- type: fusionReaction
+  id: Ne20+Ne20>O16+Mg24
+  reactantA:
+    proton: 10
+    neutron: 10
+  reactantB:
+    proton: 10
+    neutron: 10
+  energy: 0
+  products:
+    8,8: 1
+    12,12: 1
+
+- type: fusionReaction
+  id: Mg24+He4>Si28
+  reactantA:
+    proton: 12
+    neutron: 12
+  reactantB:
+    proton: 2
+    neutron: 2
+  energy: 9980000
+  products:
+    14,14: 1
+#endregion
+
+#region Oxygen Burning
+- type: fusionReaction
+  id: O16+O16>...
+  reactantA:
+    proton: 8
+    neutron: 8
+  reactantB:
+    proton: 8
+    neutron: 8
+  # I actually have numbers for most of these, but I still took some creative liberties
+  # https://en.wikipedia.org/wiki/Oxygen-burning_process
+  energy: 7667290 # 9593000 * 0.34 + 7676000 * 0.56 + 1459000 * 0.04 + 381000 * 0.01 + -2409000 * 0.05 + 16539000 * 0.01
+  products:
+    # ...>Si28+He4
+    14,14: 0.34
+    2,2: 0.34
+
+    # ...>P31+H
+    15,16: 0.56
+    1,0: 0.58
+    
+    # ...>S31
+    16,15: 0.04
+    
+    # ...>Si30+2H
+    14,16: 0.01
+    # 1,0: 0.02 # added to the P31+H
+    
+    # ...>P30+D
+    15,15: 0.04
+    1,1: 0.04
+    
+    # ...>S32
+    16,16: 0.01
+#endregion
+
+#region Silicon Burning
+# Also known as the Alpha Process
+- type: fusionReaction
+  id: Si28+He4>S32
+  reactantA:
+    proton: 14
+    neutron: 14
+  reactantB:
+    proton: 2
+    neutron: 2
+  energy: 6950000
+  products:
+    16,16: 1
+
+- type: fusionReaction
+  id: S32+He4>Ar36
+  reactantA:
+    proton: 16
+    neutron: 16
+  reactantB:
+    proton: 2
+    neutron: 2
+  energy: 6640000
+  products:
+    18,18: 1
+
+- type: fusionReaction
+  id: Ar36+He4>Ca40
+  reactantA:
+    proton: 18
+    neutron: 18
+  reactantB:
+    proton: 2
+    neutron: 2
+  energy: 7040000
+  products:
+    20,20: 1
+
+- type: fusionReaction
+  id: Ca40+He4>Ti44
+  reactantA:
+    proton: 20
+    neutron: 20
+  reactantB:
+    proton: 2
+    neutron: 2
+  energy: 5130000
+  products:
+    22,22: 1
+
+- type: fusionReaction
+  id: Ti44+He4>Cr48
+  reactantA:
+    proton: 22
+    neutron: 22
+  reactantB:
+    proton: 2
+    neutron: 2
+  energy: 7700000
+  products:
+    24,24: 1
+
+- type: fusionReaction
+  id: Cr48+He4>Fe52
+  reactantA:
+    proton: 24
+    neutron: 24
+  reactantB:
+    proton: 2
+    neutron: 2
+  energy: 7940000
+  products:
+    26,26: 1
+
+- type: fusionReaction
+  id: Fe52+He4>Ni56
+  reactantA:
+    proton: 26
+    neutron: 26
+  reactantB:
+    proton: 2
+    neutron: 2
+  energy: 8000000
+  products:
+    28,28: 1
+
+# This keeps going all the way to Sn100, but I stopped caring
+#endregion

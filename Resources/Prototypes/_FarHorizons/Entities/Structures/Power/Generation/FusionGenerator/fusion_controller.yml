@@ -1,0 +1,34 @@
+- type: entity
+  id: FusionReactorController
+  parent: BaseStructure
+  name: Fusion Reactor Controller
+  description: The control center for a fusion reactor.
+  components:
+  - type: Sprite
+    sprite: Structures/Power/Generation/ame.rsi
+    state: control
+  - type: FusionReactorController
+  - type: FusionReactorPowerSupply
+  - type: NodeContainer
+    examinable: true
+    nodes:
+      reactor:
+        !type:DirectionalNode
+        nodeGroupID: FusionReactor
+        nodeDirection: North
+      output:
+        !type:CableDeviceNode
+        nodeGroupID: HVPower
+  - type: PowerMonitoringDevice
+    group: Generator
+    loadNode: output
+  - type: PowerSupplier
+    supplyRampRate: 75000
+    supplyRampTolerance: 5000
+  - type: ActivatableUI
+    key: enum.FusionReactorUiKey.Key
+  - type: ActivatableUIRequiresAnchor
+  - type: UserInterface
+    interfaces:
+      enum.FusionReactorUiKey.Key:
+        type: FusionReactorControllerBoundUserInterface
