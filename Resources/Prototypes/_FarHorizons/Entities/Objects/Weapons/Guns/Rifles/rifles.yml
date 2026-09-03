@@ -64,24 +64,24 @@
     zeroVisible: true
   - type: Appearance
 
-#region Stock IFV-50
+#region Stock Hannibal
 - type: entity
-  name: IFV-50
+  name: Hannibal
   parent: [ BaseWeaponRifle, BaseSecurityContraband ]
-  id: WeaponRifleIFV-50
+  id: WeaponRifleHannibal
   description: A hard-hitting but slow firing high end military grade battle rifle with a two round burst reciever. Feeds from .38 special magazines.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Objects/Weapons/Guns/Rifles/IFV-50/ifv-50_x64x32.rsi
+    sprite: _FarHorizons/Objects/Weapons/Guns/Rifles/Hannibal/Hannibal_x64x32.rsi
     layers:
     - state: base
       map: [ "enum.GunVisualLayers.Base" ]
     - state: mag-0
       map: [ "enum.GunVisualLayers.Mag" ]
   - type: Clothing
-    sprite: _FarHorizons/Objects/Weapons/Guns/Rifles/IFV-50/ifv-50_x32.rsi
+    sprite: _FarHorizons/Objects/Weapons/Guns/Rifles/Hannibal/Hannibal_x32.rsi
   - type: Item
-    sprite: _FarHorizons/Objects/Weapons/Guns/Rifles/IFV-50/ifv-50_x64x64.rsi
+    sprite: _FarHorizons/Objects/Weapons/Guns/Rifles/Hannibal/Hannibal_x64x64.rsi
   - type: GunWieldBonus #2-4 Deviation (Stock)
     minAngle: -18 # 2
     maxAngle: -28 # 4
@@ -134,7 +134,7 @@
     delay: 1.5
   - type: Tag
     tags:
-    - IFV-50
+    - Hannibal
 #region =NanoTrasen=
 
 
@@ -214,25 +214,25 @@
     walkModifier: 0.95
     sprintModifier: 0.95
 
-#region IFV-50-T
+#region Hannibal-T
 - type: entity
-  name: IFV-50-T
-  parent: [ WeaponRifleIFV-50 ]
-  id: WeaponRifleIFV-50T
-  description: A modified burst IFV-50 platform utilized by NanoTrasen, it packs a vertical grip and shorter stock for easier handling in space-station environments, a scope for the rare encounter at range as well as electronic status lights. Feeds from .38 Special Magazines.
+  name: Hannibal-T
+  parent: [ WeaponRifleHannibal ]
+  id: WeaponRifleHannibalT
+  description: A modified burst Hannibal platform utilized by NanoTrasen, it packs a vertical grip and shorter stock for easier handling in space-station environments, a scope for the rare encounter at range as well as electronic status lights. Feeds from .38 Special Magazines.
   suffix: NT
   components:
   - type: Sprite
-    sprite: _FarHorizons/Objects/Weapons/Guns/Rifles/NT_IFV-50/ifv-50_x64x32.rsi
+    sprite: _FarHorizons/Objects/Weapons/Guns/Rifles/NT_Hannibal/Hannibal_x64x32.rsi
     layers:
     - state: base
       map: [ "enum.GunVisualLayers.Base" ]
     - state: mag-0
       map: [ "enum.GunVisualLayers.Mag" ]
   - type: Clothing
-    sprite: _FarHorizons/Objects/Weapons/Guns/Rifles/NT_IFV-50/ifv-50_x32.rsi
+    sprite: _FarHorizons/Objects/Weapons/Guns/Rifles/NT_Hannibal/Hannibal_x32.rsi
   - type: Item
-    sprite: _FarHorizons/Objects/Weapons/Guns/Rifles/NT_IFV-50/ifv-50_x64x64.rsi
+    sprite: _FarHorizons/Objects/Weapons/Guns/Rifles/NT_Hannibal/Hannibal_x64x64.rsi
   - type: MagazineVisuals
     magState: mag
     steps: 5
@@ -310,25 +310,25 @@
     walkModifier: 0.90
     sprintModifier: 0.90
 
-#region IFV-50-S
+#region Hannibal-S
 - type: entity
-  name: IFV-50-S
-  parent: [ WeaponRifleIFV-50 ]
-  id: WeaponRifleIFV-50S
-  description: A modified burst IFV-50 platform utilized by NeoSol, it more resembles a Designated Marksman Rifle rather than a Battle Rifle with it's extended barrel and stock. Also has a Gunsword for additional lethality at close range. Feeds from .38 Special Magazines.
+  name: Hannibal-S
+  parent: [ WeaponRifleHannibal ]
+  id: WeaponRifleHannibalS
+  description: A modified burst Hannibal platform utilized by NeoSol, it more resembles a Designated Marksman Rifle rather than a Battle Rifle with it's extended barrel and stock. Also has a Gunsword for additional lethality at close range. Feeds from .38 Special Magazines.
   suffix: NS
   components:
   - type: Sprite
-    sprite: _FarHorizons/Objects/Weapons/Guns/Rifles/NS_IFV-50/ifv-50_x64x32.rsi
+    sprite: _FarHorizons/Objects/Weapons/Guns/Rifles/NS_Hannibal/Hannibal_x64x32.rsi
     layers:
     - state: base
       map: [ "enum.GunVisualLayers.Base" ]
     - state: mag-0
       map: [ "enum.GunVisualLayers.Mag" ]
   - type: Clothing
-    sprite: _FarHorizons/Objects/Weapons/Guns/Rifles/NS_IFV-50/ifv-50_x32.rsi
+    sprite: _FarHorizons/Objects/Weapons/Guns/Rifles/NS_Hannibal/Hannibal_x32.rsi
   - type: Item
-    sprite: _FarHorizons/Objects/Weapons/Guns/Rifles/NS_IFV-50/ifv-50_x64x64.rsi
+    sprite: _FarHorizons/Objects/Weapons/Guns/Rifles/NS_Hannibal/Hannibal_x64x64.rsi
   - type: MagazineVisuals
     magState: mag
     steps: 5

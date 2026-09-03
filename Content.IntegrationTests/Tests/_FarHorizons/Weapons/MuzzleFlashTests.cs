@@ -12,27 +12,27 @@ public sealed class MuzzleFlashTests : InteractionTest
     protected override string PlayerPrototype => "MobHuman";
 
     [Test]
-    public async Task MuzzleFlashDoesNotDrainMk78Flashlight()
+    public async Task MuzzleFlashDoesNotDrainMKTFlashlight()
     {
-        var mk78 = await PlaceInHands("WeaponPistolMk78");
+        var mkT = await PlaceInHands("WeaponPistolMKT");
         var handheldLight = SEntMan.System<SharedHandheldLightSystem>();
 
         await Server.WaitPost(() =>
-            handheldLight.SetActivated(ToServer(mk78), true, SEntMan.GetComponent<HandheldLightComponent>(ToServer(mk78))));
+            handheldLight.SetActivated(ToServer(mkT), true, SEntMan.GetComponent<HandheldLightComponent>(ToServer(mkT))));
         await RunTicks(5);
 
         await Client.WaitPost(() =>
-            Assert.That(CEntMan.GetComponent<PointLightComponent>(CEntMan.GetEntity(mk78)).Energy, Is.GreaterThan(0f)));
+            Assert.That(CEntMan.GetComponent<PointLightComponent>(CEntMan.GetEntity(mkT)).Energy, Is.GreaterThan(0f)));
 
         await Client.WaitPost(() =>
             CEntMan.EventBus.RaiseLocalEvent(
-                CEntMan.GetEntity(mk78),
-                new MuzzleFlashEvent(mk78, "MuzzleFlashEffect", Angle.Zero),
+                CEntMan.GetEntity(mkT),
+                new MuzzleFlashEvent(mkT, "MuzzleFlashEffect", Angle.Zero),
                 broadcast: true));
         await Pair.RunSeconds(1f);
 
         await Client.WaitPost(() =>
-            Assert.That(CEntMan.GetComponent<PointLightComponent>(CEntMan.GetEntity(mk78)).Energy, Is.GreaterThan(0f),
-                "The MK 78 flashlight should retain its energy after the muzzle flash animation ends."));
+            Assert.That(CEntMan.GetComponent<PointLightComponent>(CEntMan.GetEntity(mkT)).Energy, Is.GreaterThan(0f),
+                "The MK-T flashlight should retain its energy after the muzzle flash animation ends."));
     }
 }

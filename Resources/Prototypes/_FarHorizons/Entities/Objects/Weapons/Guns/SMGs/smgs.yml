@@ -4,22 +4,22 @@
 
 
 
-#region Stock P2-91
+#region Stock sparv
 - type: entity
-  name: P2-91
+  name: Sparv
   parent: [BaseWeaponSubMachineGun, BaseSecurityContraband]
-  id: WeaponSubMachineGunP291
+  id: WeaponSubMachineGunSparv
   description: The much cheaper version of the NanoTransen manufactored WT500, without the specalized electronics that stabilize your aim. For a Personal Defense Weapon on a budget, it does a good job of dropping the person in front of you dead. Feeds from 9mm Magazines.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Objects/Weapons/Guns/SMGs/p91.rsi
+    sprite: _FarHorizons/Objects/Weapons/Guns/SMGs/sparv.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
-    sprite: _FarHorizons/Objects/Weapons/Guns/SMGs/p91.rsi
+    sprite: _FarHorizons/Objects/Weapons/Guns/SMGs/sparv.rsi
     quickEquip: false
     slots:
     - suitStorage
@@ -52,7 +52,7 @@
   - type: Appearance
   - type: Tag
     tags:
-    - P291
+    - Sparv
 
 #region =NanoTrasen=
 
@@ -127,15 +127,15 @@
       tags:
       - Drozd
 
-#region P2-91-T
+#region Sparv-T
 - type: entity
-  name: P2-91-T
+  name: Sparv-T
   parent: [BaseWeaponSubMachineGun, BaseSecurityContraband]
-  id: WeaponSubMachineGunP291T
-  description: A heavily modified P291 platform made as a compromise between the more expensive WT500 and the unreliable P291s, utilized by NanoTrasen. It does the job of a Personal Defense Weapon fairly well, boasting decent accuracy for continuous one-handed firing. Feeds from 9mm Magazines.
+  id: WeaponSubMachineGunSparvT
+  description: A heavily modified Sparv platform made as a compromise between the more expensive WT500 and the unreliable Sparvs, utilized by NanoTrasen. It does the job of a Personal Defense Weapon fairly well, boasting decent accuracy for continuous one-handed firing. Feeds from 9mm Magazines.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Objects/Weapons/Guns/SMGs/nt_p91.rsi
+    sprite: _FarHorizons/Objects/Weapons/Guns/SMGs/nt_Sparv.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -173,7 +173,7 @@
     autoEject: true
   - type: Tag
     tags:
-    - P291
+    - Sparv
 
 #region =NeoSol=
 
@@ -263,24 +263,24 @@
       tags:
       - Drozd
 
-#region P2-91-S
+#region Sparv-S
 - type: entity
-  name: P2-91-S
+  name: Sparv-S
   parent: [BaseWeaponSubMachineGun, BaseSecurityContraband]
-  id: WeaponSubMachineGunP291S
-  description: A custom made P291 platform meant to rival NanoTrasen-made WT500s. It does the job of a Personal Defense Weapon fairly well, boasting impressive accuracy for a one-handed weapon. Feeds from 9mm Magazines.
+  id: WeaponSubMachineGunSparvS
+  description: A custom made Sparv platform meant to rival NanoTrasen-made WT500s. It does the job of a Personal Defense Weapon fairly well, boasting impressive accuracy for a one-handed weapon. Feeds from 9mm Magazines.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Objects/Weapons/Guns/SMGs/NS_P91/ns_p91_x32x64.rsi
+    sprite: _FarHorizons/Objects/Weapons/Guns/SMGs/NS_Sparv/Sparv_x32x64.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
-    sprite: _FarHorizons/Objects/Weapons/Guns/SMGs/NS_P91/ns_p91_x32.rsi
+    sprite: _FarHorizons/Objects/Weapons/Guns/SMGs/NS_Sparv/ns_Sparv_x32.rsi
   - type: Item
-    sprite: _FarHorizons/Objects/Weapons/Guns/SMGs/NS_P91/ns_p91_x32.rsi
+    sprite: _FarHorizons/Objects/Weapons/Guns/SMGs/NS_Sparv/ns_Sparv_x32.rsi
   - type: Wieldable
     unwieldOnUse: false
   - type: GunWieldBonus # 1 - 6 Deviation / Addition of Grip
@@ -325,7 +325,7 @@
     attackType: Heavy
   - type: Tag
     tags:
-    - P291
+    - Sparv
 
 
   #region Contable's
@@ -336,16 +336,16 @@
   description: A small bullpup SMG, designed for close quarters combat and subduing prison riots. Feeds from 9mm Magazines.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Objects/Weapons/Guns/SMGs/NS_P91/ns_p91_x32x64.rsi
+    sprite: _FarHorizons/Objects/Weapons/Guns/SMGs/NS_Sparv/Sparv_x32x64.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
-    sprite: _FarHorizons/Objects/Weapons/Guns/SMGs/NS_P91/ns_p91_x32.rsi
+    sprite: _FarHorizons/Objects/Weapons/Guns/SMGs/NS_Sparv/ns_Sparv_x32.rsi
   - type: Item
-    sprite: _FarHorizons/Objects/Weapons/Guns/SMGs/NS_P91/ns_p91_x32.rsi
+    sprite: _FarHorizons/Objects/Weapons/Guns/SMGs/NS_Sparv/ns_Sparv_x32.rsi
   - type: Wieldable
     unwieldOnUse: false
   - type: GunWieldBonus # 1 - 15 Deviation / Addition of Grip

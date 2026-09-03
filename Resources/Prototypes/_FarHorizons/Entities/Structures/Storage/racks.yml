@@ -460,20 +460,20 @@
       tags:
         - BioSec
 
-#region IFV-50-T
+#region Hannibal-T
 - type: entity
-  id: ShelfArmoryIFV-50TLarge
+  id: ShelfArmoryHannibalTLarge
   parent: ShelfArmoryBase
-  name: Large IFV-50-T Rack
-  description: Holds four IFV-50-T Rifles and Enforcer Type-T Pistols.
+  name: Large Hannibal-T Rack
+  description: Holds four Hannibal-T Rifles and Enforcer Type-T Pistols.
   suffix: NT
   components:
   - type: Sprite
     sprite: _FarHorizons/Structures/Storage/racks.rsi
     layers:
-    - state: ifvcase
+    - state: Hannibalcase
       map: ["enum.StorageVisualLayers.Base"]
-    - state: ifv-0
+    - state: Hannibal-0
       map: ["enum.StorageFillLayers.Fill"]
     - state: closed
       map: ["enum.StorageVisualLayers.Door"]
@@ -482,14 +482,14 @@
       shader: unshaded
   - type: StorageFillVisualizer
     maxFillLevels: 5
-    fillBaseName: ifv
+    fillBaseName: Hannibal
   - type: Storage
     whitelist:
       tags:
         - Sidearm
         - MagazinePistol
         - MagazineMagnum
-        - IFV-50
+        - Hannibal
         - MagazineRifle38
         - AmmoBoxRevolver38
         - AmmoBoxPistol9mm
@@ -533,7 +533,7 @@
   id: ShelfArmoryMixedRifle
   parent: ShelfArmoryBaseMixed
   name: Mixed Rifle Rack
-  description: Holds two Lecter Type-T & IFV-50-T rifles as well as four Enforcer Type-T Pistols.
+  description: Holds two Lecter Type-T & Hannibal-T rifles as well as four Enforcer Type-T Pistols.
   suffix: NT
   components:
   - type: Sprite
@@ -558,7 +558,7 @@
         - MagazinePistol
         - MagazineMagnum
         - Lecter
-        - IFV-50
+        - Hannibal
         - MagazineRifle556
         - MagazineRifle38
         - AmmoBoxRifle556
@@ -570,7 +570,7 @@
   id: ShelfArmoryRiotShotgunLarge #TODO - Rename to "ShelfArmoryHeavyShotgunLarge" can't rn because it'd fuck up maps.
   parent: ShelfArmoryBase
   name: Large Heavy Shotgun Rack
-  description: Holds two Kammerer 5084 Shotguns, two Sentinel Type-T Shotguns and four N1984 Pistols.
+  description: Holds two Klauser-T Shotguns, two Sentinel Type-T Shotguns and four N1984 Pistols.
   suffix: NT
   components:
   - type: Sprite
@@ -616,28 +616,28 @@
         - RiotShotgun
         - CombatShotgun
         - SpeedLoaderShotgun
-        - ShotgunKammererCitadel
-        - ShotgunKammerer5001
+        - ShotgunCitadel
+        - ShotgunKlauser
         - ShotgunSentinel
         - AmmoBoxPistol9mm
         - AmmoBoxMagnum44
         - AmmoBoxShotgun12g
         - MagazineShotgun
 
-#region Kammerer Citadel-T
+#region Citadel-T
 - type: entity
-  id: ShelfArmoryKrammerLarge
+  id: ShelfArmoryCitadelLarge
   parent: ShelfArmoryBase
-  name: Large Kammerer Citadel-T Rack
-  description: Holds four high-quality Kammerer Citadel-Ts and lesser-quality Enforcer Pistols.
+  name: Large Citadel-T Rack
+  description: Holds four high-quality Citadel-Ts and lesser-quality Enforcer Pistols.
   suffix: NT
   components:
   - type: Sprite
     sprite: _FarHorizons/Structures/Storage/racks.rsi
     layers:
-    - state: kammerercitadelcase
+    - state: Citadelcase
       map: ["enum.StorageVisualLayers.Base"]
-    - state: kammerercitadel-0
+    - state: Citadel-0
       map: ["enum.StorageFillLayers.Fill"]
     - state: closed
       map: ["enum.StorageVisualLayers.Door"]
@@ -646,7 +646,7 @@
       shader: unshaded
   - type: StorageFillVisualizer
     maxFillLevels: 5
-    fillBaseName: kammerercitadel
+    fillBaseName: Citadel
   - type: Storage # Left / Down (from top) / Right / Up (from bottom)
     grid:
     - 0,0,0,4 #Long 1
@@ -673,7 +673,7 @@
         - MagazineMagnum
         - WeaponShotgunKammerer
         - SpeedLoaderShotgun
-        - ShotgunKammererCitadel
+        - ShotgunCitadel
         - AmmoBoxPistol9mm
         - AmmoBoxMagnum44
         - AmmoBoxShotgun12g
@@ -683,7 +683,7 @@
   id: ShelfArmoryMixedShotgun
   parent: ShelfArmoryBase
   name: Mixed Shotgun Rack
-  description: Holds two high-quality Kammerer Citadel-Ts, a Kammerer 5084, Sentinel Type-T and two Enforcer Type-Ts & N1984s.
+  description: Holds two high-quality Citadel-Ts, a Klauser-T, Sentinel Type-T and two Enforcer Type-Ts & N1984s.
   suffix: NT
   components:
   - type: Sprite
@@ -729,8 +729,8 @@
         - RiotShotgun
         - CombatShotgun
         - SpeedLoaderShotgun
-        - ShotgunKammererCitadel
-        - ShotgunKammerer5001
+        - ShotgunCitadel
+        - ShotgunKlauser
         - ShotgunSentinel
         - AmmoBoxPistol9mm
         - AmmoBoxMagnum44
@@ -785,19 +785,19 @@
         - MagazinePistolSubMachineGunSP
         - AmmoBoxPistol9mm
 
-#region P2-91-T
+#region Sparv-T
 - type: entity
-  id: ShelfArmoryP291TLarge
+  id: ShelfArmorySparvTLarge
   parent: ShelfArmoryBase
-  name: Large P2-91-T Rack
-  description: Holds four P2-91-T Submachine Guns and MK 78 Pistols.
+  name: Large Sparv-T Rack
+  description: Holds four Sparv-T Submachine Guns and MK-T Pistols.
   components:
   - type: Sprite
     sprite: _FarHorizons/Structures/Storage/racks.rsi
     layers:
-    - state: p91case
+    - state: Sparvcase
       map: ["enum.StorageVisualLayers.Base"]
-    - state: p91-0
+    - state: Sparv-0
       map: ["enum.StorageFillLayers.Fill"]
     - state: closed
       map: ["enum.StorageVisualLayers.Door"]
@@ -806,7 +806,7 @@
       shader: unshaded
   - type: StorageFillVisualizer
     maxFillLevels: 5
-    fillBaseName: p91
+    fillBaseName: Sparv
   - type: Storage
     grid:
     - 0,0,1,2
@@ -828,7 +828,7 @@
         - Sidearm
         - MagazinePistol
         - MagazineMagnum
-        - P291
+        - Sparv
         - MagazinePistolSubMachineGunSP
         - AmmoBoxPistol9mm
 
@@ -837,7 +837,7 @@
   id: ShelfArmoryMixedSMG
   parent: ShelfArmoryBase
   name: Mixed SMG Rack
-  description: Holds two Drozd Type-T & P2-91-T Submachine Guns and two Enforcer Type-T & MK 78 Pistols.
+  description: Holds two Drozd Type-T & Sparv-T Submachine Guns and two Enforcer Type-T & MK-T Pistols.
   components:
   - type: Sprite
     sprite: _FarHorizons/Structures/Storage/racks.rsi
@@ -875,7 +875,7 @@
         - Sidearm
         - MagazinePistol
         - MagazineMagnum
-        - P291
+        - Sparv
         - Drozd
         - MagazinePistolSubMachineGunSP
         - AmmoBoxPistol9mm
@@ -1151,20 +1151,20 @@
 
 
 
-#region IFV-50-S
+#region Hannibal-S
 - type: entity
-  id: ShelfArmoryIFV-50SLarge
+  id: ShelfArmoryHannibalSLarge
   parent: ShelfArmoryBase
-  name: Large IFV-50-S Rack
-  description: Holds four IFV-50-S Rifles and Enforcer Pistols.
+  name: Large Hannibal-S Rack
+  description: Holds four Hannibal-S Rifles and Enforcer Pistols.
   suffix: NS
   components:
   - type: Sprite
     sprite: _FarHorizons/Structures/Storage/racks.rsi
     layers:
-    - state: ifvcase
+    - state: Hannibalcase
       map: ["enum.StorageVisualLayers.Base"]
-    - state: ifv-0
+    - state: Hannibal-0
       map: ["enum.StorageFillLayers.Fill"]
     - state: closed
       map: ["enum.StorageVisualLayers.Door"]
@@ -1173,14 +1173,14 @@
       shader: unshaded
   - type: StorageFillVisualizer
     maxFillLevels: 5
-    fillBaseName: ifv
+    fillBaseName: Hannibal
   - type: Storage
     whitelist:
       tags:
         - Sidearm
         - MagazinePistol
         - MagazineMagnum
-        - IFV-50
+        - Hannibal
         - MagazineRifle38
         - AmmoBoxRevolver38
         - AmmoBoxPistol9mm
@@ -1224,7 +1224,7 @@
   id: ShelfArmoryMixedRifleNS
   parent: ShelfArmoryBase
   name: Mixed Rifle Rack
-  description: Holds two Lecter Type-S & IFV-50-S rifles as well as four Enforcer Pistols.
+  description: Holds two Lecter Type-S & Hannibal-S rifles as well as four Enforcer Pistols.
   suffix: NS
   components:
   - type: Sprite
@@ -1249,7 +1249,7 @@
         - MagazinePistol
         - MagazineMagnum
         - Lecter
-        - IFV-50
+        - Hannibal
         - MagazineRifle556
         - MagazineRifle38
         - AmmoBoxRifle556
@@ -1304,19 +1304,19 @@
         - MagazinePistolSubMachineGunSP
         - AmmoBoxPistol9mm
 
-#region P2-91-S
+#region Sparv-S
 - type: entity
-  id: ShelfArmoryP291SLarge
+  id: ShelfArmorySparvSLarge
   parent: ShelfArmoryBase
-  name: Large P2-91-S Rack
-  description: Holds four P2-91-S Submachine Guns and MK 59 Pistols.
+  name: Large Sparv-S Rack
+  description: Holds four Sparv-S Submachine Guns and MK-S Pistols.
   components:
   - type: Sprite
     sprite: _FarHorizons/Structures/Storage/racks.rsi
     layers:
-    - state: p91case
+    - state: Sparvcase
       map: ["enum.StorageVisualLayers.Base"]
-    - state: p91-0
+    - state: Sparv-0
       map: ["enum.StorageFillLayers.Fill"]
     - state: closed
       map: ["enum.StorageVisualLayers.Door"]
@@ -1325,7 +1325,7 @@
       shader: unshaded
   - type: StorageFillVisualizer
     maxFillLevels: 5
-    fillBaseName: p91
+    fillBaseName: Sparv
   - type: Storage
     grid:
     - 0,0,1,2
@@ -1347,7 +1347,7 @@
         - Sidearm
         - MagazinePistol
         - MagazineMagnum
-        - P291
+        - Sparv
         - MagazinePistolSubMachineGunSP
         - AmmoBoxPistol9mm
 
@@ -1356,7 +1356,7 @@
   id: ShelfArmoryMixedSMGNS
   parent: ShelfArmoryBase
   name: Mixed SMG Rack
-  description: Holds two Drozd Type-S & P2-91-S Submachine Guns and two Enforcer Type-S & MK 59 Pistols.
+  description: Holds two Drozd Type-S & Sparv-S Submachine Guns and two Enforcer Type-S & MK-S Pistols.
   components:
   - type: Sprite
     sprite: _FarHorizons/Structures/Storage/racks.rsi
@@ -1394,7 +1394,7 @@
         - Sidearm
         - MagazinePistol
         - MagazineMagnum
-        - P291
+        - Sparv
         - Drozd
         - MagazinePistolSubMachineGunSP
         - AmmoBoxPistol9mm
@@ -1404,7 +1404,7 @@
   id: ShelfArmoryHeavyShotgunLargeNS
   parent: ShelfArmoryBase
   name: Large Heavy Shotgun Rack
-  description: Holds two Kammerer 5052 Shotguns, two Sentinel Type-S Shotguns and four N1984 Pistols.
+  description: Holds two Klauser-S Shotguns, two Sentinel Type-S Shotguns and four N1984 Pistols.
   suffix: NS
   components:
   - type: Sprite
@@ -1450,28 +1450,28 @@
         - RiotShotgun
         - CombatShotgun
         - SpeedLoaderShotgun
-        - ShotgunKammererCitadel
-        - ShotgunKammerer5001
+        - ShotgunCitadel
+        - ShotgunKlauser
         - ShotgunSentinel
         - AmmoBoxPistol9mm
         - AmmoBoxMagnum44
         - AmmoBoxShotgun12g
         - MagazineShotgun
 
-#region Kammerer Citadel-S
+#region Citadel-S
 - type: entity
-  id: ShelfArmoryKrammerLargeNS
+  id: ShelfArmoryCitadelLargeNS
   parent: ShelfArmoryBase
-  name: Large Kammerer Citadel-S Rack
-  description: Holds four high-quality Kammerer Citadel-Ss and lesser-quality Enforcer Pistols.
+  name: Large Citadel-S Rack
+  description: Holds four high-quality Citadel-Ss and lesser-quality Enforcer Pistols.
   suffix: NS
   components:
   - type: Sprite
     sprite: _FarHorizons/Structures/Storage/racks.rsi
     layers:
-    - state: kammerercitadelcase
+    - state: Citadelcase
       map: ["enum.StorageVisualLayers.Base"]
-    - state: kammerercitadel-0
+    - state: Citadel-0
       map: ["enum.StorageFillLayers.Fill"]
     - state: closed
       map: ["enum.StorageVisualLayers.Door"]
@@ -1480,7 +1480,7 @@
       shader: unshaded
   - type: StorageFillVisualizer
     maxFillLevels: 5
-    fillBaseName: kammerercitadel
+    fillBaseName: Citadel
   - type: Storage # Left / Down (from top) / Right / Up (from bottom)
     grid:
     - 0,0,0,4 #Long 1
@@ -1507,7 +1507,7 @@
         - MagazineMagnum
         - WeaponShotgunKammerer
         - SpeedLoaderShotgun
-        - ShotgunKammererCitadel
+        - ShotgunCitadel
         - AmmoBoxPistol9mm
         - AmmoBoxMagnum44
         - AmmoBoxShotgun12g
@@ -1517,7 +1517,7 @@
   id: ShelfArmoryMixedShotgunNS
   parent: ShelfArmoryBase
   name: Mixed Shotgun Rack
-  description: Holds two high-quality Kammerer Citadel-Ss, a Kammerer 5052, Sentinel Type-S and two Enforcer Type-Ss & N1984s.
+  description: Holds two high-quality Citadel-Ss, a Klauser-S, Sentinel Type-S and two Enforcer Type-Ss & N1984s.
   suffix: NS
   components:
   - type: Sprite
@@ -1563,8 +1563,8 @@
         - RiotShotgun
         - CombatShotgun
         - SpeedLoaderShotgun
-        - ShotgunKammererCitadel
-        - ShotgunKammerer5001
+        - ShotgunCitadel
+        - ShotgunKlauser
         - ShotgunSentinel
         - AmmoBoxPistol9mm
         - AmmoBoxMagnum44

@@ -29,17 +29,17 @@
   - type: StealTarget
     stealGroup: OfficerHandgun
 
-#region Instigator M500
+#region Instigator custom
 - type: entity
-  name: Instigator M500
+  name: Instigator custom
   parent: [WeaponRevolverInstigator]
-  id: WeaponRevolverInstigatorM500
+  id: WeaponRevolverInstigatorcustom
   description: A premium version of the Instigator, provided to officers that have dedicated a significant amount of time to upholding space law. Features an improved double-action trigger allowing for slightly faster firing.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Objects/Weapons/Guns/Revolvers/instigator_m500.rsi
+    sprite: _FarHorizons/Objects/Weapons/Guns/Revolvers/instigator_custom.rsi
   - type: Clothing
-    sprite: _FarHorizons/Objects/Weapons/Guns/Revolvers/instigator_m500.rsi
+    sprite: _FarHorizons/Objects/Weapons/Guns/Revolvers/instigator_custom.rsi
   - type: Gun
     selectedMode: SemiAuto
     fireRate: 1.7
@@ -50,17 +50,17 @@
   - type: StealTarget
     stealGroup: OfficerHandgun
 
-#region Inspector M500
+#region Inspector custom
 - type: entity
-  name: Inspector M500
+  name: Inspector custom
   parent: [BaseWeaponRevolver, BaseSecurityContraband]
-  id: WeaponRevolverInspectorM500
+  id: WeaponRevolverInspectorcustom
   description: The premium version of the readily-avaliable Inspector, it is only handed out to veteran detectives worthy of such a handcannon. Features an improved double-action trigger allowing for slightly faster firing.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Objects/Weapons/Guns/Revolvers/inspector_m500.rsi
+    sprite: _FarHorizons/Objects/Weapons/Guns/Revolvers/inspector_custom.rsi
   - type: Clothing
-    sprite: _FarHorizons/Objects/Weapons/Guns/Revolvers/inspector_m500.rsi
+    sprite: _FarHorizons/Objects/Weapons/Guns/Revolvers/inspector_custom.rsi
   - type: Item
     storedOffset: 0,-2
   - type: Gun
@@ -263,24 +263,24 @@
   - type: StealTarget
     stealGroup: OfficerHandgun
 
-#region Oath Breaker M500
+#region Oath Breaker custom
 - type: entity
-  name: Oath Breaker M500
+  name: Oath Breaker custom
   parent: [WeaponRevolverOathbreaker]
-  id: WeaponRevolverOathbreakerM500
+  id: WeaponRevolverOathbreakercustom
   description: Following the success of issuing this weapon to Brigmedics, NanoTrasen commissioned another set of Oath Breakers, this time for Elite brig defenders. Seems to have room for an additional shell compared to the non-premium version. Comes with a longarm modifcation kit built in, including a knife sharpening kit. Takes some time to assemble/deassemble.
   components:
   - type: Item
-    sprite: _FarHorizons/Objects/Weapons/Guns/Revolvers/oath_breaker_m500.rsi
+    sprite: _FarHorizons/Objects/Weapons/Guns/Revolvers/oath_breaker_custom.rsi
     size: Small
     shape:
     - 0,0,1,0
     - 0,1,0,1
   - type: Clothing
-    sprite: _FarHorizons/Objects/Weapons/Guns/Revolvers/oath_breaker_m500.rsi
+    sprite: _FarHorizons/Objects/Weapons/Guns/Revolvers/oath_breaker_custom.rsi
     quickEquip: false
   - type: Sprite
-    sprite: _FarHorizons/Objects/Weapons/Guns/Revolvers/oath_breaker_m500.rsi
+    sprite: _FarHorizons/Objects/Weapons/Guns/Revolvers/oath_breaker_custom.rsi
   - type: RevolverAmmoProvider
     whitelist:
       tags:
@@ -295,27 +295,27 @@
   - type: Tag
     tags:
     - Sidearm
-    - OathBreakerM500
+    - OathBreakercustom
   - type: Construction
-    graph: WeaponRevolverOathbreakerM500Graph
+    graph: WeaponRevolverOathbreakercustomGraph
     node: attachment
   - type: StealTarget
     stealGroup: OfficerHandgun
 
 #Longarm variant
 - type: entity
-  name: Extended Oath Breaker M500
+  name: Extended Oath Breaker custom
   parent: [WeaponRevolverOathbreaker, BaseGunWieldable]
-  id: WeaponRevolverOathbreakerM500Extended
+  id: WeaponRevolverOathbreakercustomExtended
   description: It seems to be fitted with a pistol stock, green dot sights, your now sharper combat knife and a muzzle brake. The cylinder also appears to have been swapped out for a premium sealed 6-shooter model. 
   components:
   - type: Sprite
-    sprite: _FarHorizons/Objects/Weapons/Guns/Revolvers/Stock_Oath_Breaker_M500/sprite_64x32.rsi
+    sprite: _FarHorizons/Objects/Weapons/Guns/Revolvers/Stock_Oath_Breaker_custom/sprite_64x32.rsi
   - type: Clothing
-    sprite: _FarHorizons/Objects/Weapons/Guns/Revolvers/Stock_Oath_Breaker_M500/clothing.rsi
+    sprite: _FarHorizons/Objects/Weapons/Guns/Revolvers/Stock_Oath_Breaker_custom/clothing.rsi
     quickEquip: false
   - type: Item
-    sprite: _FarHorizons/Objects/Weapons/Guns/Revolvers/Stock_Oath_Breaker_M500/inhands.rsi
+    sprite: _FarHorizons/Objects/Weapons/Guns/Revolvers/Stock_Oath_Breaker_custom/inhands.rsi
     size: Normal
     shape:
     - 0,0,3,0
@@ -382,9 +382,9 @@
   - type: Tag
     tags:
     - Sidearm
-    - OathBreakerM500
+    - OathBreakercustom
   - type: Construction
-    graph: WeaponRevolverOathbreakerM500ExtendedGraph
+    graph: WeaponRevolverOathbreakercustomExtendedGraph
     node: attachment
   - type: StealTarget
     stealGroup: OfficerHandgun
