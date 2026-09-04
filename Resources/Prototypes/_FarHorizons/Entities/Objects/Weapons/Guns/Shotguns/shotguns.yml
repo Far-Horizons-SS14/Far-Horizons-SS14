@@ -56,16 +56,16 @@
     tags:
     - ShotgunKlauser
 
-#region Combat Shotgun
+#region FITZ-21
 # Bit of an odd one, inherets from revolver to have instant speedloader reloads - a cheap way to include the shellholder on the sprite.
 - type: entity
-  name: Combat Shotgun
+  name: FITZ-21
   parent: [BaseWeaponRevolver, BaseGunWieldable, BaseSecurityContraband]
-  id: WeaponShotgunCombat
+  id: WeaponShotgunFITZ21
   description: A semi automatic shotgun with a shellholder allowing for much faster reloads. Holds eight rounds.
   components:
   - type: Item
-    sprite: _FarHorizons/Objects/Weapons/Guns/Shotguns/Combat_Shotgun_Folded/inhands_64x.rsi
+    sprite: _FarHorizons/Objects/Weapons/Guns/Shotguns/FITZ21_Folded/inhands_64x.rsi
     size: Large
     shape:
     - 0,0,4,0
@@ -80,12 +80,12 @@
       path: /Audio/Weapons/Guns/Empty/empty.ogg
     spread: 20
   - type: Sprite
-    sprite: _FarHorizons/Objects/Weapons/Guns/Shotguns/Combat_Shotgun_Folded/clothing.rsi
+    sprite: _FarHorizons/Objects/Weapons/Guns/Shotguns/FITZ21_Folded/clothing.rsi
     layers:
     - state: icon
       map: [ "enum.GunVisualLayers.Base" ]
   - type: Clothing
-    sprite: _FarHorizons/Objects/Weapons/Guns/Shotguns/Combat_Shotgun_Folded/clothing.rsi
+    sprite: _FarHorizons/Objects/Weapons/Guns/Shotguns/FITZ21_Folded/clothing.rsi
     quickEquip: false
     slots:
     - Back
@@ -123,7 +123,7 @@
     price: 500
   - type: Tag
     tags:
-    - CombatShotgun
+    - FITZ21
 
 #region Sentinel
 - type: entity

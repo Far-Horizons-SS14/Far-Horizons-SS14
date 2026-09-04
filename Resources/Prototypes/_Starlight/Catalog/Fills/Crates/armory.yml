@@ -31,10 +31,10 @@
           amount: 6
         
 - type: entity
-  id: CrateArmoryCombatShotgun
+  id: CrateArmoryFitz21
   parent: [ CrateWeaponSecure, BaseRestrictedContraband ]
-  name: combat shotguns crate
-  description: Contains two automatic combat shotguns, with two additional ammo boxes. Requires Armory access to open.
+  name: Fitz-21 crate
+  description: Contains two automatic Fitz-21 shotguns, with two additional ammo boxes. Requires Armory access to open.
   components:
   - type: Contraband
     allowedDepartments: [ Security ]
@@ -42,7 +42,7 @@
     containers:
       entity_storage: !type:AllSelector
         children:
-        - id: WeaponShotgunCombat
+        - id: WeaponShotgunFITZ21
           amount: 2
         - id: BoxLethalshot
           amount: 2
