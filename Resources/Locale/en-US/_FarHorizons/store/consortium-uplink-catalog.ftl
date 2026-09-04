@@ -204,7 +204,7 @@ uplink-consortium-radio-jammer-name = Radio Jammer
 uplink-consortium-radio-jammer-desc = This device will disrupt any nearby outgoing radio communication as well as suit sensors when activated.
 
 uplink-consortium-syndicate-weapon-module-name = Weapon Cyborg Module
-uplink-consortium-syndicate-weapon-module-desc = Upgrades a cyborg with both an energy dagger and an echis pistol.
+uplink-consortium-syndicate-weapon-module-desc = Upgrades a cyborg with both an energy dagger and a Viper ROW pistol.
 
 uplink-consortium-syndicate-martyr-module-name = Martyr Cyborg Module
 uplink-consortium-syndicate-martyr-module-desc = Turn your emagged borg friend into a walking bomb with just this module. Make sure they're loyal to your cause, results may vary.
