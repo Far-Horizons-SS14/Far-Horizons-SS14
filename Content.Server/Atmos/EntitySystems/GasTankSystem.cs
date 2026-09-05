@@ -7,6 +7,7 @@ using Content.Shared.Cargo;
 using Content.Shared.Popups;
 using Content.Shared.Throwing;
 using JetBrains.Annotations;
+using Robust.Shared.Audio.Systems;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Random;
 
@@ -21,6 +22,7 @@ public sealed partial class GasTankSystem : SharedGasTankSystem
     [Dependency] private SharedTransformSystem _xform = default!;
     [Dependency] private SharedPhysicsSystem _physics = default!;
     [Dependency] private ThrowingSystem _throwing = default!;
+    [Dependency] private SharedAudioSystem _audioSys = default!;
 
     private const float MinimumSoundValvePressure = 10.0f;
 
@@ -58,19 +60,56 @@ public sealed partial class GasTankSystem : SharedGasTankSystem
 
         Atmos.React(entity.Comp.Air, entity.Comp);
 
-        if ((entity.Comp.IsConnected || entity.Comp.ReleaseValveOpen) && UI.IsUiOpen(entity.Owner, SharedGasTankUiKey.Key))
+        //Far Horizons Start
+        if ((entity.Comp.IsConnected || entity.Comp.ReleaseValveOpen) &&
+            (UI.IsUiOpen(entity.Owner, SharedGasTankUiKey.Key) || UI.IsUiOpen(entity.Owner, SharedGasTankUiKey.OrganKey)))
             UpdateUserInterface(entity);
+        //Far Horizons End
     }
 
     public override void UpdateUserInterface(Entity<GasTankComponent> ent)
     {
         var (owner, component) = ent;
-        UI.SetUiState(owner,
-            SharedGasTankUiKey.Key,
-            new GasTankBoundUserInterfaceState
-            {
-                TankPressure = component.Air.Pressure
-            });
+        var state = new GasTankBoundUserInterfaceState
+        {
+            TankPressure = component.Air.Pressure
+        };
+        UI.SetUiState(owner, SharedGasTankUiKey.Key, state);
+        UI.SetUiState(owner, SharedGasTankUiKey.OrganKey, state);
+    }
+
+    /// <summary>
+    /// logic to empty the Gas Tank Organ
+    /// </summary>
+    protected override void OnGasTankEmptyOrgan(Entity<GasTankComponent> ent, ref GasTankEmptyOrganMessage args)
+    {
+        // Skip if the organ is already empty, to avoid spam
+        if (ent.Comp.Air == null || ent.Comp.Air.TotalMoles <= 0)
+            return;
+
+         // Get the gas
+        var environment = _atmosphereSystem.GetContainingMixture(ent.Owner, false, true);
+        if (environment != null)
+        {
+            // Send the gas to the environment
+            _atmosphereSystem.Merge(environment, ent.Comp.Air);
+        }
+
+        // Clear the gas tank
+        ent.Comp.Air.Clear();
+        CheckStatus(ent);
+
+        // Play sound on release
+         EntityUid soundSource = ent.Owner;
+        if (TryComp<OrganComponent>(ent.Owner, out var organ) && organ.Body != null)
+        {
+            soundSource = organ.Body.Value;
+        }
+        _audioSys.PlayPvs(ent.Comp.RuptureSound, soundSource);
+
+        Dirty(ent);
+        UpdateUserInterface(ent);
+        // Starlight edit end
     }
 
     private void OnParentChange(EntityUid uid, GasTankComponent component, ref EntParentChangedMessage args)
