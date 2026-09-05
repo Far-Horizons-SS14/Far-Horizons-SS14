@@ -1,4 +1,6 @@
 using Robust.Shared.GameStates;
+using Robust.Shared.Prototypes; // FH
+using Content.Shared.Radio; // FH
 
 namespace Content.Shared.Security.Components;
 
@@ -19,4 +21,12 @@ public sealed partial class GenpopIdCardComponent : Component
     /// </summary>
     [DataField, AutoNetworkedField, AutoPausedField]
     public TimeSpan SentenceDuration;
+
+    //FH start
+    /// <summary>
+    /// Channel to annouce expiration on
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public ProtoId<RadioChannelPrototype> RadioChannel = "Security";
+    //FH end
 }

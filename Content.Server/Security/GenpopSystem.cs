@@ -26,6 +26,7 @@ public sealed partial class GenpopSystem : SharedGenpopSystem
         {
             id.Crime = crime;
             id.SentenceDuration = TimeSpan.FromMinutes(sentence);
+            id.RadioChannel = ent.Comp.RadioChannel; //FH
             Dirty(uid, id);
         }
         if (sentence <= 0)
