@@ -1,16 +1,16 @@
 - type: constructionGraph
-  id: WeaponRevolverOathbreakerM500Graph
+  id: WeaponRevolverOathbreakercustomGraph
   start: start
   graph:
   - node: start
     edges:
     - to: attachment
       steps:
-      - tag: OathBreakerM500
+      - tag: OathBreakercustom
         icon:
-          sprite: _FarHorizons/Objects/Weapons/Guns/Revolvers/Stock_Oath_Breaker_M500/sprite_64x32.rsi
+          sprite: _FarHorizons/Objects/Weapons/Guns/Revolvers/Stock_Oath_Breaker_custom/sprite_64x32.rsi
           state: icon
-        name: crafting-menu-name-OathBreakerM500Extended
+        name: crafting-menu-name-OathBreakercustomExtended
         doAfter: 10
   - node: attachment
-    entity: WeaponRevolverOathbreakerM500
+    entity: WeaponRevolverOathbreakercustom

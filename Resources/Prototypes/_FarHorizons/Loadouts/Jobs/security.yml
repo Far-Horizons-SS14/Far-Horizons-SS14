@@ -35,8 +35,8 @@
     - SpeedLoaderMagnumBasic
 
 - type: loadout
-  id: SecurityRevolverOathbreakerM500
-  dummyEntity: WeaponRevolverOathbreakerM500
+  id: SecurityRevolverOathbreakercustom
+  dummyEntity: WeaponRevolverOathbreakercustom
   effects:
     - !type:JobRequirementLoadoutEffect
       requirement:
@@ -45,7 +45,7 @@
         time: 360000 # Trust me, you don't wanna mess with a brig that knows how to transmute your blood into napalm+phlog mix
   storage:
     back:
-    - WeaponRevolverOathbreakerM500
+    - WeaponRevolverOathbreakercustom
     - SpeedLoaderShotgunBeanbag
     - SpeedLoaderShotgunBeanbag
     - SpeedLoaderMagnumBasic
@@ -200,8 +200,8 @@
     - SpeedLoaderMagnumRubber
 
 - type: loadout
-  id: SecurityRevolverInspectorM500
-  dummyEntity: WeaponRevolverInspectorM500
+  id: SecurityRevolverInspectorcustom
+  dummyEntity: WeaponRevolverInspectorcustom
   effects:
     - !type:JobRequirementLoadoutEffect
       requirement:
@@ -210,7 +210,7 @@
         time: 360000 # Gonna be the most competent detective you've seen or some guy who afked for 50 rounds
   storage:
     back:
-    - WeaponRevolverInspectorM500
+    - WeaponRevolverInspectorcustom
     - SpeedLoaderMagnumSP
     - SpeedLoaderMagnumSP
     - SpeedLoaderMagnumRubber
@@ -253,8 +253,8 @@
     - SpeedLoaderRevolver38Rubber
 
 - type: loadout
-  id: SecurityRevolverInstigatorM500
-  dummyEntity: WeaponRevolverInstigatorM500
+  id: SecurityRevolverInstigatorcustom
+  dummyEntity: WeaponRevolverInstigatorcustom
   effects:
     - !type:JobRequirementLoadoutEffect
       requirement:
@@ -263,7 +263,7 @@
         time: 360000 # Will still struggle with friendly fire.
   storage:
     back:
-    - WeaponRevolverInspectorM500
+    - WeaponRevolverInspectorcustom
     - SpeedLoaderRevolver38SP
     - SpeedLoaderRevolver38SP
     - SpeedLoaderRevolver38Rubber

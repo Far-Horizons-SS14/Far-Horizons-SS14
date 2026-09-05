@@ -2,13 +2,13 @@
   parent: [ CrateWeaponSecure, BaseSecurityContraband ]
   id: CrateArmorySMGLight
   name: Light SMG Crate
-  description: Contains two P2-91s with four mags. Requires Armory access to open.
+  description: Contains two Sparvs with four mags. Requires Armory access to open.
   components:
   - type: EntityTableContainerFill
     containers:
       entity_storage: !type:AllSelector
         children:
-        - id: WeaponSubMachineGunP291
+        - id: WeaponSubMachineGunSparv
           amount: 2
         - id: MagazinePistolSubMachineGunSP
           amount: 4
@@ -30,30 +30,30 @@
 
 - type: entity
   parent: [ CrateWeaponSecure, BaseSecurityContraband ]
-  id: CrateArmoryCivilianMk59
-  name: Civilian Mk 59 Crate
-  description: Contains two Civilian Mk 59s with four mags. Requires Armory access to open.
+  id: CrateArmoryCivilianMKS
+  name: Civilian MK-S Crate
+  description: Contains two Civilian MK-Ss with four mags. Requires Armory access to open.
   components:
   - type: EntityTableContainerFill
     containers:
       entity_storage: !type:AllSelector
         children:
-        - id: WeaponPistolMk59Civilian
+        - id: WeaponPistolMKSCivilian
           amount: 2
         - id: MagazinePistolCivilianSP
           amount: 4
 
 - type: entity
   parent: [ CrateWeaponSecure, BaseSecurityContraband ]
-  id: CrateArmoryCivilianMk78
-  name: Civilian Mk 78 Crate
-  description: Contains two Civilian Mk 78s with four mags. Requires Armory access to open.
+  id: CrateArmoryCivilianMKT
+  name: Civilian MK-T Crate
+  description: Contains two Civilian MK-Ts with four mags. Requires Armory access to open.
   components:
   - type: EntityTableContainerFill
     containers:
       entity_storage: !type:AllSelector
         children:
-        - id: WeaponPistolMk78Civilian
+        - id: WeaponPistolMKTCivilian
           amount: 2
         - id: MagazinePistolCivilianSP
           amount: 4
@@ -76,8 +76,8 @@
 - type: entity
   parent: [ CrateWeaponSecure, BaseSecurityContraband ]
   id: CrateArmoryCivilianLever
-  name: Civilian Lever-Action Crate
-  description: Contains two Civilian Lever-Actions with four speed loaders. Requires Armory access to open.
+  name: Swordfish Lever-Action Crate
+  description: Contains two Swordfish Lever-Actions with four speed loaders. Requires Armory access to open.
   components:
   - type: EntityTableContainerFill
     containers:

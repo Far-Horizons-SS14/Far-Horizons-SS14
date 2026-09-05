@@ -4,15 +4,15 @@
 
 
 
-#region Kammerer Citadel
+#region Citadel
 - type: entity
-  name: Kammerer Citadel
+  name: Citadel
   parent: [BaseWeaponShotgun, BaseGunWieldable, BaseSecurityContraband]
-  id: WeaponShotgunKammererCitadel
+  id: WeaponShotgunCitadel
   description: An old faithful design refurbished for modern applications, and a personal favorite amongst many Corporate Security forces. Uses .50 Shotgun Shells.
   components:
   - type: Item
-    sprite: _FarHorizons/Objects/Weapons/Guns/Shotguns/Kammerer_Citadel/inhands_64x.rsi
+    sprite: _FarHorizons/Objects/Weapons/Guns/Shotguns/Citadel/inhands_64x.rsi
   - type: Gun
     spread: 10
     pump: true
@@ -23,23 +23,23 @@
     soundInsert:
       path: /Audio/Weapons/Guns/MagIn/shotgun_insert.ogg
   - type: Sprite
-    sprite: _FarHorizons/Objects/Weapons/Guns/Shotguns/Kammerer_Citadel/clothing.rsi
+    sprite: _FarHorizons/Objects/Weapons/Guns/Shotguns/Citadel/clothing.rsi
   - type: Clothing
-    sprite: _FarHorizons/Objects/Weapons/Guns/Shotguns/Kammerer_Citadel/clothing.rsi
+    sprite: _FarHorizons/Objects/Weapons/Guns/Shotguns/Citadel/clothing.rsi
   - type: GunRequiresWield
   - type: Tag
     tags:
-    - ShotgunKammererCitadel
+    - ShotgunCitadel
 
-#region Kammerer 5001
+#region Klauser
 - type: entity
-  name: Kammerer 5001
+  name: Klauser
   parent: [BaseWeaponShotgun, BaseGunWieldable, BaseSecurityContraband]
-  id: WeaponShotgunKammerer5001
+  id: WeaponShotgunKlauser
   description: A highly advanced shotgun in the "Kammerer" series, typically employed in riot control. #It can quickly toggle between lethal and non-lethal rounds thanks to it's dual chamber. ##Pending rework to allow this
   components:
   - type: Item
-    sprite: _FarHorizons/Objects/Weapons/Guns/Shotguns/Kammerer5001/inhands_64x.rsi
+    sprite: _FarHorizons/Objects/Weapons/Guns/Shotguns/Klauser/inhands_64x.rsi
   - type: Gun
     spread: 20
   - type: BallisticAmmoProvider
@@ -48,24 +48,24 @@
     soundInsert:
       path: /Audio/Weapons/Guns/MagIn/shotgun_insert.ogg
   - type: Sprite
-    sprite: _FarHorizons/Objects/Weapons/Guns/Shotguns/Kammerer5001/clothing.rsi
+    sprite: _FarHorizons/Objects/Weapons/Guns/Shotguns/Klauser/clothing.rsi
   - type: Clothing
-    sprite: _FarHorizons/Objects/Weapons/Guns/Shotguns/Kammerer5001/clothing.rsi
+    sprite: _FarHorizons/Objects/Weapons/Guns/Shotguns/Klauser/clothing.rsi
   - type: GunRequiresWield
   - type: Tag
     tags:
-    - ShotgunKammerer5001
+    - ShotgunKlauser
 
-#region Combat Shotgun
+#region FITZ-21
 # Bit of an odd one, inherets from revolver to have instant speedloader reloads - a cheap way to include the shellholder on the sprite.
 - type: entity
-  name: Combat Shotgun
+  name: FITZ-21
   parent: [BaseWeaponRevolver, BaseGunWieldable, BaseSecurityContraband]
-  id: WeaponShotgunCombat
+  id: WeaponShotgunFITZ21
   description: A semi automatic shotgun with a shellholder allowing for much faster reloads. Holds eight rounds.
   components:
   - type: Item
-    sprite: _FarHorizons/Objects/Weapons/Guns/Shotguns/Combat_Shotgun_Folded/inhands_64x.rsi
+    sprite: _FarHorizons/Objects/Weapons/Guns/Shotguns/FITZ21_Folded/inhands_64x.rsi
     size: Large
     shape:
     - 0,0,4,0
@@ -80,12 +80,12 @@
       path: /Audio/Weapons/Guns/Empty/empty.ogg
     spread: 20
   - type: Sprite
-    sprite: _FarHorizons/Objects/Weapons/Guns/Shotguns/Combat_Shotgun_Folded/clothing.rsi
+    sprite: _FarHorizons/Objects/Weapons/Guns/Shotguns/FITZ21_Folded/clothing.rsi
     layers:
     - state: icon
       map: [ "enum.GunVisualLayers.Base" ]
   - type: Clothing
-    sprite: _FarHorizons/Objects/Weapons/Guns/Shotguns/Combat_Shotgun_Folded/clothing.rsi
+    sprite: _FarHorizons/Objects/Weapons/Guns/Shotguns/FITZ21_Folded/clothing.rsi
     quickEquip: false
     slots:
     - Back
@@ -123,7 +123,7 @@
     price: 500
   - type: Tag
     tags:
-    - CombatShotgun
+    - FITZ21
 
 #region Sentinel
 - type: entity
@@ -223,20 +223,20 @@
 
 
 
-#region Kammerer Citadel-T
+#region Citadel-T
 - type: entity
-  name: Kammerer Citadel-T
-  parent: [WeaponShotgunKammererCitadel]
-  id: WeaponShotgunKammererCitadelT
+  name: Citadel-T
+  parent: [WeaponShotgunCitadel]
+  id: WeaponShotgunCitadelT
   description: An old faithful design refurbished for modern applications given a holographic sight with status LEDs, and is a personal favorite amongst many NanoTransen Security forces. Uses .50 Shotgun Shells.
   suffix: NT  
   components:
   - type: Item
-    sprite: _FarHorizons/Objects/Weapons/Guns/Shotguns/Kammerer_Citadel_T/inhands_64x.rsi
+    sprite: _FarHorizons/Objects/Weapons/Guns/Shotguns/Citadel_T/inhands_64x.rsi
   - type: Sprite
-    sprite: _FarHorizons/Objects/Weapons/Guns/Shotguns/Kammerer_Citadel_T/clothing.rsi
+    sprite: _FarHorizons/Objects/Weapons/Guns/Shotguns/Citadel_T/clothing.rsi
   - type: Clothing
-    sprite: _FarHorizons/Objects/Weapons/Guns/Shotguns/Kammerer_Citadel_T/clothing.rsi
+    sprite: _FarHorizons/Objects/Weapons/Guns/Shotguns/Citadel_T/clothing.rsi
   - type: UseDelay
     delay: 1
   - type: GunRequiresWield
@@ -281,23 +281,23 @@
 
   # Compared to stock - (-0.5s ADS / +Gunstates / +0.5 Knockback / +0.5 speed / +2.5 tile range)
 
-#region Kammerer 5084
+#region Klauser-T
 - type: entity
-  name: Kammerer 5084
-  parent: [WeaponShotgunKammerer5001]
-  id: WeaponShotgunKammerer5084
+  name: Klauser-T
+  parent: [WeaponShotgunKlauser]
+  id: WeaponShotgunKlauserT
   description: A highly advanced shotgun in the "Kammerer" series, typically employed in riot control. It's stock has been lightened, and has been given status LEDs alongside a holographic sight. #It can quickly toggle between lethal and non-lethal rounds thanks to it's dual chamber. ##Pending rework to allow this
   suffix: NT
   components:
   - type: Item
-    sprite: _FarHorizons/Objects/Weapons/Guns/Shotguns/Kammerer5084/inhands_64x.rsi
+    sprite: _FarHorizons/Objects/Weapons/Guns/Shotguns/KlauserT/inhands_64x.rsi
     size: Large
     shape:
     - 0,0,3,1
   - type: Sprite
-    sprite: _FarHorizons/Objects/Weapons/Guns/Shotguns/Kammerer5084/clothing.rsi
+    sprite: _FarHorizons/Objects/Weapons/Guns/Shotguns/KlauserT/clothing.rsi
   - type: Clothing
-    sprite: _FarHorizons/Objects/Weapons/Guns/Shotguns/Kammerer5084/clothing.rsi
+    sprite: _FarHorizons/Objects/Weapons/Guns/Shotguns/KlauserT/clothing.rsi
   - type: UseDelay
     delay: 1
   - type: GunRequiresWield
@@ -401,24 +401,24 @@
 
 
 
-#region Kammerer Citadel-S
+#region Citadel-S
 - type: entity
-  name: Kammerer Citadel-S
-  parent: [WeaponShotgunKammererCitadel]
-  id: WeaponShotgunKammererCitadelS
+  name: Citadel-S
+  parent: [WeaponShotgunCitadel]
+  id: WeaponShotgunCitadelS
   description: An old faithful design refurbished for modern applications given a red dot sight, longer stock and shotgun choke, and is a personal favorite amongst many NeoSol Security forces. Uses .50 Shotgun Shells.
   suffix: NS
   components:
   - type: Item
-    sprite: _FarHorizons/Objects/Weapons/Guns/Shotguns/Kammerer_Citadel_S/inhands_64x.rsi
+    sprite: _FarHorizons/Objects/Weapons/Guns/Shotguns/Citadel_S/inhands_64x.rsi
   - type: Gun
     spread: 4 # Does literally nothing.
     pump: true
     fireRate: 2
   - type: Sprite
-    sprite: _FarHorizons/Objects/Weapons/Guns/Shotguns/Kammerer_Citadel_S/sprite_64x32.rsi
+    sprite: _FarHorizons/Objects/Weapons/Guns/Shotguns/Citadel_S/sprite_64x32.rsi
   - type: Clothing
-    sprite: _FarHorizons/Objects/Weapons/Guns/Shotguns/Kammerer_Citadel_S/clothing.rsi
+    sprite: _FarHorizons/Objects/Weapons/Guns/Shotguns/Citadel_S/clothing.rsi
   - type: UseDelay
     delay: 2
   - type: GunRequiresWield
@@ -475,23 +475,23 @@
 
   # Compared to stock - (+0.5s ADS / +Melee / -6 Spread / -0.5 Knockback / -0.5 speed)
 
-#region Kammerer 5052
+#region Klauser-S
 - type: entity
-  name: Kammerer 5052
-  parent: [WeaponShotgunKammerer5001]
-  id: WeaponShotgunKammerer5052
+  name: Klauser-S
+  parent: [WeaponShotgunKlauser]
+  id: WeaponShotgunKlauserS
   description: A highly advanced shotgun in the "Kammerer" series, typically employed in riot control. It's been fitted with a heavy stock for better recoil management, a red dot sight for quick target acquisition and a shotgun choke. #It can quickly toggle between lethal and non-lethal rounds thanks to it's dual chamber. ##Pending rework to allow this
   suffix: NS
   components:
   - type: Item
-    sprite: _FarHorizons/Objects/Weapons/Guns/Shotguns/Kammerer5052/inhands_64x.rsi
+    sprite: _FarHorizons/Objects/Weapons/Guns/Shotguns/KlauserS/inhands_64x.rsi
     size: Large
     shape:
     - 0,0,3,1
   - type: Sprite
-    sprite: _FarHorizons/Objects/Weapons/Guns/Shotguns/Kammerer5052/sprite_64x32.rsi
+    sprite: _FarHorizons/Objects/Weapons/Guns/Shotguns/KlauserS/sprite_64x32.rsi
   - type: Clothing
-    sprite: _FarHorizons/Objects/Weapons/Guns/Shotguns/Kammerer5052/clothing.rsi
+    sprite: _FarHorizons/Objects/Weapons/Guns/Shotguns/KlauserS/clothing.rsi
   - type: Gun
     spread: 16 #does literally nothing
   - type: UseDelay
