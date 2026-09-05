@@ -2,6 +2,7 @@ using System.Numerics;
 using Content.Shared._FarHorizons.Fluids.Components;
 using Content.Shared.Buckle.Components;
 using Content.Shared.Fluids.Components;
+using Content.Shared.Gravity;
 using Content.Shared.Movement.Pulling.Components;
 using Content.Shared.Stunnable;
 using Robust.Shared.Map;
@@ -18,6 +19,8 @@ public abstract partial class SharedFluidFootprintSystem
         if (TerminatingOrDeleted(ent) || TerminatingOrDeleted(args.OtherEntity) ||
             (TryComp<BuckleComponent>(ent, out var buckle) && buckle.BuckledTo != null) ||
             HasComp<KnockedDownComponent>(ent) ||
+            !TryComp<GravityAffectedComponent>(ent, out var gravAffected) ||
+            gravAffected.Weightless ||
             !TryComp<FluidFootprintSourceComponent>(args.OtherEntity, out var source) ||
             !TryComp<PuddleComponent>(args.OtherEntity, out var puddle) ||
             !Solution.ResolveSolution(args.OtherEntity, puddle.SolutionName, ref puddle.Solution) ||
@@ -60,6 +63,8 @@ public abstract partial class SharedFluidFootprintSystem
         if (TerminatingOrDeleted(ent) || TerminatingOrDeleted(args.OtherEntity) ||
             !ent.Comp.BeingPulled ||
             (HasComp<FluidFootprintSpreaderComponent>(ent) && !HasComp<KnockedDownComponent>(ent)) ||
+            !TryComp<GravityAffectedComponent>(ent, out var gravAffected) ||
+            gravAffected.Weightless ||
             !TryComp<FluidFootprintSourceComponent>(args.OtherEntity, out var source) ||
             !TryComp<PuddleComponent>(args.OtherEntity, out var puddle) ||
             !Solution.ResolveSolution(args.OtherEntity, puddle.SolutionName, ref puddle.Solution) ||
