@@ -13,6 +13,9 @@ using Content.Shared.Popups;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Content.Server.Kitchen.EntitySystems;
+using Content.Shared.Security.Components; //FH
+using Content.Server.Radio.EntitySystems; //FH
+
 
 namespace Content.Server.Access.Systems;
 
@@ -23,6 +26,7 @@ public sealed partial class IdCardSystem : SharedIdCardSystem
     [Dependency] private IPrototypeManager _prototypeManager = default!;
     [Dependency] private IAdminLogManager _adminLogger = default!;
     [Dependency] private CookingDeviceSystem _microwave = default!; // Starlight-edit
+    [Dependency] private RadioSystem _radio = default!; //FH
     [Dependency] private ChatSystem _chat = default!;
 
     public override void Initialize()
@@ -114,5 +118,14 @@ public sealed partial class IdCardSystem : SharedIdCardSystem
                 ChatTransmitRange.Normal,
                 true);
         }
+
+        //FH start
+        if (TryComp<IdCardComponent>(ent, out var idcomp) && TryComp<GenpopIdCardComponent>(ent, out var genpopcomp))
+            _radio.SendRadioMessage(ent,
+                Loc.GetString("genpop-prisoner-id-release", ("name", idcomp.FullName ?? "genpop-prisoner-name-default"), ("crime", genpopcomp.Crime)),
+                genpopcomp.RadioChannel,
+                ent,
+                escapeMarkup: false);
+        //FH end
     }
 }

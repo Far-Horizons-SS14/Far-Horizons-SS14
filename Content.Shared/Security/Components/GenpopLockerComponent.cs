@@ -1,6 +1,7 @@
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
+using Content.Shared.Radio; // FH
 
 namespace Content.Shared.Security.Components;
 
@@ -23,6 +24,14 @@ public sealed partial class GenpopLockerComponent : Component
     /// </summary>
     [DataField]
     public EntProtoId<GenpopIdCardComponent> IdCardProto = "PrisonerIDCard";
+
+    //FH start
+    /// <summary>
+    /// Channel to annouce expiration of prisoner Id on
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public ProtoId<RadioChannelPrototype> RadioChannel = "Security";
+    //FH end
 }
 
 [Serializable, NetSerializable]
