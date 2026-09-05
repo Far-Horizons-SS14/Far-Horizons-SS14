@@ -346,3 +346,22 @@
   - type: Tag
     tags:
     - WhitelistChameleon
+
+
+- type: entity
+  parent: ClothingHandsGlovesSyntheticBase
+  id: ClothingHandsGlovesWizard
+  name: Wizard Gloves
+  description: A Wizard's Gloves
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Hands/Gloves/wizard.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Hands/Gloves/wizard.rsi
+  - type: Butcherable
+    butcheringType: Knife
+    spawned:
+    - id: MaterialCloth1
+      amount: 1
+  - type: Fiber
+    fiberColor: fibers-black
