@@ -792,7 +792,7 @@
     sprite: _FarHorizons/Clothing/OuterClothing/Armor/hardliner_raid.rsi
     layers:
     - state: icon
-    # - state: light-overlay
+    # - state: light-overlay 
     #   visible: false
     #   shader: unshaded
   - type: Clothing
@@ -830,11 +830,21 @@
     spriteLayer: light
     clothingVisuals:
       outerClothing:
-      - state: equipped-OUTERCLOTHING
-        shader: unshaded
+        - state: equipped-OUTERCLOTHING
+      outerClothing-reptilian:
+        - state: equipped-OUTERCLOTHING
       outerClothing-vox:
-      - state: equipped-OUTERCLOTHING-vox
-        shader: unshaded
+        - state: equipped-OUTERCLOTHING-vox
+      outerClothing-cyclorite:
+        - state: equipped-OUTERCLOTHING
+      outerClothing-felionoid:
+        - state: equipped-OUTERCLOTHING
+      outerClothing-vulpkanin:
+        - state: equipped-OUTERCLOTHING
+      outerClothing-resomi:
+        - state: equipped-OUTERCLOTHING-resomi
+      outerClothing-avali:
+        - state: equipped-OUTERCLOTHING
   - type: ItemTogglePointLight
   - type: Appearance
   - type: HandheldLight

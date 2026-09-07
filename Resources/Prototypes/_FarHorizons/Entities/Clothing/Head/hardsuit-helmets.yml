@@ -276,9 +276,9 @@
 
 #region Lambda infil helmet
 - type: entity
-  parent: ClothingHeadHardsuitBase #[ ClothingHeadSuitWithLightBase ]
+  # parent: ClothingHeadHardsuitBase
+  parent: [ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetHardsuitLambdaInfiltration
-  categories: [ HideSpawnMenu ]
   name: Lambda Infiltration Hardsuit "Hades" Helmet
   description:  A specialized hardsuit's helmet, allowing the user to be efficient and unseen, just like Tartarus.
   suffix: NT
@@ -286,7 +286,7 @@
   - type: Sprite
     sprite: _FarHorizons/Clothing/Head/Hardsuits/hardliner_infiltration.rsi
   - type: Clothing
-    sprite: _FarHorizons/Clothing/Head/Hardsuits/hardliner_infiltration.rsi
+    sprite: _FarHorizons/Clothing/Head/Hardsuits/hardliner_infiltration.rsi #Far Horizons
     clothingVisuals: # STARLIGHT
       head:
         - state: off-equipped-HELMET
@@ -302,14 +302,13 @@
           # shader: unshaded #FH
       head-felionoid:
         - state: off-equipped-HELMET
-          shader: unshaded #FH
+          # shader: unshaded #FH
       head-resomi:
         - state: off-equipped-HELMET
           # shader: unshaded #FH
       head-avali:
         - state: off-equipped-HELMET
           # shader: unshaded #FH
-
   - type: ToggleableVisuals # STARLIGHT
     clothingVisuals:
       head:
@@ -333,8 +332,10 @@
       head-avali:
         - state: on-equipped-HELMET
       #     shader: unshaded
-#   - type: PointLight
-#     color: "#880808"
+  - type: PointLight 
+    color: cyan
+    radius: 6 
+    energy: 5
   - type: PressureProtection
     highPressureMultiplier: 0.45
     lowPressureMultiplier: 10000
