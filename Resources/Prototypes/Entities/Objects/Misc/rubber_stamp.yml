@@ -144,18 +144,18 @@
   - type: Sprite
     state: stamp-hop
 
-- type: entity
-  name: head of security's rubber stamp
-  parent: [RubberStampBase, BaseCommandContraband]
-  id: RubberStampHos
-  categories: [ DoNotMap ]
-  components:
-  - type: Stamp
-    stampedName: stamp-component-stamped-name-hos
-    stampedColor: "#cc0000"
-    stampState: "paper_stamp-hos"
-  - type: Sprite
-    state: stamp-hos
+#- type: entity
+#  name: head of security's rubber stamp
+#  parent: [RubberStampBase, BaseCommandContraband]
+#  id: RubberStampHos
+#  categories: [ DoNotMap ]
+#  components:
+#  - type: Stamp
+#    stampedName: stamp-component-stamped-name-hos
+#    stampedColor: "#cc0000"
+#    stampState: "paper_stamp-hos"
+#  - type: Sprite
+#    state: stamp-hos
 
 - type: entity
   name: mime's rubber stamp
@@ -224,18 +224,18 @@
   - type: StaticPrice
     price: 1000
 
-- type: entity
-  name: warden's rubber stamp
-  parent: [RubberStampBase, BaseSecurityContraband]
-  id: RubberStampWarden
-  categories: [ DoNotMap ]
-  components:
-  - type: Stamp
-    stampedName: stamp-component-stamped-name-warden
-    stampedColor: "#5b0000"
-    stampState: "paper_stamp-warden"
-  - type: Sprite
-    state: stamp-warden
+#- type: entity
+#  name: warden's rubber stamp
+#  parent: [RubberStampBase, BaseSecurityContraband]
+#  id: RubberStampWarden
+#  categories: [ DoNotMap ]
+#  components:
+#  - type: Stamp
+#    stampedName: stamp-component-stamped-name-warden
+#    stampedColor: "#5b0000"
+#    stampState: "paper_stamp-warden"
+#  - type: Sprite
+#    state: stamp-warden
 
 - type: entity
   name: APPROVED rubber stamp

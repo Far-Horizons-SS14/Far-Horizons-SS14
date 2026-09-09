@@ -1,5 +1,4 @@
 # Syndicate M81A1 Crate
-
 - type: entity
   parent: [ CrateBaseSecure, BaseSyndicateContraband ]
   id: CrateSyndicateM81A1
@@ -81,3 +80,66 @@
     - Energy
     reflectProb: 0.8
     spread: 90
+
+# Security lock boxes
+- type: entity
+  parent: CrateBaseLockBox
+  id: CrateLockBoxSecurityNT
+  name: security lock box
+  suffix: NT, Secure
+  components:
+  - type: Sprite
+    layers:
+    - state: base
+    - state: overlay
+      color: "#0060a5"
+    - state: closed
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: overlay-closed
+      color: "#0060a5"
+      map: [ lid_overlay ]
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+      shader: unshaded
+    - state: paper
+      sprite: Structures/Storage/Crates/labels.rsi
+      offset: "-0.46875,0.03125"
+      map: ["enum.PaperLabelVisuals.Layer"]
+  - type: OverrideSell
+    overrideAccount: Security
+  - type: AccessReader
+    access: [["Security"], ["Cadet"]]
+
+- type: entity
+  parent: CrateBaseLockBox
+  id: CrateLockBoxSecurityNS
+  name: security lock box
+  suffix: NS, Secure
+  components:
+  - type: Sprite
+    layers:
+    - state: base
+    - state: overlay
+      color: "#c12d30"
+    - state: closed
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: overlay-closed
+      color: "#c12d30"
+      map: [ lid_overlay ]
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+      shader: unshaded
+    - state: paper
+      sprite: Structures/Storage/Crates/labels.rsi
+      offset: "-0.46875,0.03125"
+      map: ["enum.PaperLabelVisuals.Layer"]
+  - type: OverrideSell
+    overrideAccount: Security
+  - type: AccessReader
+    access: [["SecurityNS"], ["CadetNS"]]
