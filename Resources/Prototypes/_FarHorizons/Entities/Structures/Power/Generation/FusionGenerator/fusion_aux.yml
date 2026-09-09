@@ -1,0 +1,163 @@
+- type: entity
+  id: FusionReactorCoolantPumpInlet
+  parent: BaseStructure
+  name: Fusion Reactor Coolant Pump
+  description: A port of the coolant system for the fusion reactor.
+  components:
+  - type: Sprite
+    sprite: Structures/Piping/Atmospherics/thermomachine.rsi
+    layers:
+      - state: freezerOn
+  - type: FusionReactorCoolantPump
+  - type: FusionReactorPowerDraw
+    draw: 200
+    priority: 1
+  - type: AtmosDevice
+  - type: NodeContainer
+    examinable: true
+    nodes:
+      reactor:
+        !type:DirectionalNode
+        nodeGroupID: FusionReactor
+        nodeDirection: North
+      pipe:
+        !type:PipeNode
+        nodeGroupID: Pipe
+        pipeDirection: South
+        volume: 1000
+  - type: ActivatableUI
+    key: enum.FusionReactorUiKey.Key
+  - type: ActivatableUIRequiresAnchor
+  - type: UserInterface
+    interfaces:
+      enum.FusionReactorUiKey.Key:
+        type: FusionReactorCoolantPumpBoundUserInterface
+
+- type: entity
+  id: FusionReactorCoolantPumpOutlet
+  parent: FusionReactorCoolantPumpInlet
+  components:
+  - type: Sprite
+    layers:
+      - state: heaterOn
+  - type: FusionReactorCoolantPump
+    isInlet: false
+
+- type: entity
+  id: FusionReactorBattery
+  parent: BaseStructure
+  name: Fusion Reactor Supercapacitor
+  description: Stores the energy needed to operate the fusion reactor.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Power/smes.rsi
+    layers:
+      - state: smes
+  - type: FusionReactorBattery
+  - type: Battery
+    netsync: false
+    startingCharge: 16000000
+    maxCharge: 16000000
+  - type: ExaminableBattery
+  - type: NodeContainer
+    examinable: true
+    nodes:
+      input:
+        !type:CableTerminalPortNode
+        nodeGroupID: HVPower
+      reactor:
+        !type:DirectionalNode
+        nodeGroupID: FusionReactor
+        nodeDirection: North
+  - type: BatteryCharger
+    voltage: High
+    node: input
+  - type: PowerNetworkBattery
+    maxSupply: 150000
+    maxChargeRate: 5000
+    supplyRampTolerance: 5000
+    supplyRampRate: 1000
+  - type: UserInterface
+    interfaces:
+      enum.FusionReactorUiKey.Key:
+        type: FusionReactorCapacitorBoundUserInterface
+  - type: ActivatableUI
+    key: enum.FusionReactorUiKey.Key
+
+- type: entity
+  id: FusionReactorBatteryEmpty
+  parent: FusionReactorBattery
+  suffix: Empty
+  components:
+  - type: Battery
+    startingCharge: 0
+
+- type: entity
+  id: FusionReactorMaser
+  parent: BaseStructure
+  name: Fusion Reactor MASER
+  description: Heats the plasma within a fusion reactor using concentrated microwaves.
+  components:
+  - type: Sprite
+    sprite: Structures/Power/Generation/Singularity/emitter.rsi
+    layers:
+    - state: emitter2
+  - type: FusionReactorMaser
+    jar_slot:
+      whitelist:
+        components:
+        - AmeFuelContainer
+  - type: FusionReactorPowerDraw
+    priority: 2
+  - type: ContainerContainer
+    containers:
+      jar_slot: !type:ContainerSlot {}
+  - type: ItemSlots
+  - type: AtmosDevice
+  - type: NodeContainer
+    examinable: true
+    nodes:
+      reactor:
+        !type:DirectionalNode
+        nodeGroupID: FusionReactor
+        nodeDirection: North
+  - type: ActivatableUI
+    key: enum.FusionReactorUiKey.Key
+  - type: ActivatableUIRequiresAnchor
+  - type: UserInterface
+    interfaces:
+      enum.FusionReactorUiKey.Key:
+        type: FusionReactorMaserBoundUserInterface
+
+- type: entity
+  id: FusionReactorGasInlet
+  parent: BaseStructure
+  name: Fusion Reactor Gas Inlet
+  description: Breaks down gases into atoms for use in the fusion reactor.
+  components:
+  - type: Sprite
+    sprite: Structures/Machines/gasrecycler.rsi
+    layers:
+      - state: running
+  - type: FusionReactorGasInlet
+  - type: FusionReactorPowerDraw
+  - type: AtmosDevice
+  - type: NodeContainer
+    examinable: true
+    nodes:
+      reactor:
+        !type:DirectionalNode
+        nodeGroupID: FusionReactor
+        nodeDirection: North
+      pipe:
+        !type:PipeNode
+        nodeGroupID: Pipe
+        pipeDirection: South
+        volume: 200
+  - type: ActivatableUI
+    key: enum.FusionReactorUiKey.Key
+  - type: ActivatableUIRequiresAnchor
+  - type: UserInterface
+    interfaces:
+      enum.FusionReactorUiKey.Key:
+        type: FusionReactorGasInletBoundUserInterface

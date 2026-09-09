@@ -1,0 +1,101 @@
+<controls:FancyWindow xmlns="https://spacestation14.io"
+            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+            SetSize="570 325" 
+            Resizable="False"
+            Title="Fusion Reactor Supercapacitor">
+    <BoxContainer Orientation="Vertical" Margin="5 5 5 5" SeparationOverride="10">
+        <BoxContainer Orientation="Horizontal">
+            <!--Left panel-->
+            <BoxContainer Orientation="Vertical" SetWidth="175" Margin="5 5 5 5">
+                <PanelContainer HorizontalExpand="True" StyleClasses="BackgroundPanelDark">
+                    <BoxContainer Orientation="Horizontal" Margin="5 5 5 5">
+                        <Label Text="{Loc fusion-reactor-battery-ui-label-input}" HorizontalExpand="True" StyleClasses="LabelKeyText" />
+                        <controls:SwitchButton Name="InputBreaker" Pressed="True" HorizontalAlignment="Right"/>
+                    </BoxContainer>
+                </PanelContainer>
+
+                <PanelContainer SetHeight="2" VerticalAlignment="Top" Margin="2 16" />
+
+                <PanelContainer HorizontalExpand="True" StyleClasses="BackgroundPanelDark">
+                    <BoxContainer Orientation="Vertical" Margin="5 5 5 5">
+                        <BoxContainer Orientation="Vertical" >
+                            <Label Text="{Loc fusion-reactor-battery-ui-external}" StyleClasses="LabelSubText" HorizontalExpand="True" HorizontalAlignment="Center"/>
+                            <Slider Name="MaxExternalInputSlider" MinSize="150 0"/>
+                        </BoxContainer>
+
+                        <BoxContainer Orientation="Horizontal" >
+                            <Label Text="{Loc fusion-reactor-battery-ui-max}" StyleClasses="StatusFieldTitle"  HorizontalExpand="True"/>
+                            <Label Name="MaxExternalInputValue" Text="--- W"/>
+                        </BoxContainer>
+                        <BoxContainer Orientation="Horizontal" >
+                            <Label Text="{Loc fusion-reactor-battery-ui-current}" StyleClasses="StatusFieldTitle"  HorizontalExpand="True"/>
+                            <Label Name="ExternalInputValue" Text="--- W" HorizontalAlignment="Right"/>
+                        </BoxContainer>
+                    </BoxContainer>
+                </PanelContainer>
+
+                <PanelContainer SetHeight="2" VerticalAlignment="Top" Margin="2 16" />
+
+                <PanelContainer HorizontalExpand="True" StyleClasses="BackgroundPanelDark">
+                    <BoxContainer Orientation="Vertical" Margin="5 5 5 5">
+                        <Label Text="{Loc fusion-reactor-battery-ui-internal}" StyleClasses="LabelSubText" HorizontalExpand="True" HorizontalAlignment="Center"/>
+                        <BoxContainer Orientation="Horizontal" >
+                            <Label Text="{Loc fusion-reactor-battery-ui-current}" StyleClasses="StatusFieldTitle"  HorizontalExpand="True"/>
+                            <Label Name="InternalInputValue" Text="--- W" HorizontalAlignment="Right"/>
+                        </BoxContainer>
+                    </BoxContainer>
+                </PanelContainer>
+            </BoxContainer>
+
+            <!--Center panel-->
+            <BoxContainer Orientation="Vertical" SetWidth="200" VerticalExpand="True">
+                <PanelContainer HorizontalExpand="True" StyleClasses="BackgroundPanelDark">
+                    <BoxContainer Orientation="Vertical" Margin="5 5 5 5">
+                        <Label Text="{Loc fusion-reactor-battery-ui-storage}" HorizontalExpand="True" VerticalAlignment="Top" StyleClasses="LabelKeyText" />
+                        <GridContainer Columns="2" VerticalExpand="True">
+                            <Label Text="{Loc fusion-reactor-battery-ui-stored}" StyleClasses="StatusFieldTitle"  HorizontalExpand="True"/>
+                            <Label Name="ChargeLevelValue" Text="--- %" HorizontalAlignment="Right"/>
+
+                            <Label Text="{Loc fusion-reactor-battery-ui-energy}" StyleClasses="StatusFieldTitle"  HorizontalExpand="True"/>
+                            <Label Name="ChargeValue" Text="--- J" HorizontalAlignment="Right"/>
+
+                            <Label Name="ChargeETAText" Text="ETA:" StyleClasses="StatusFieldTitle"  HorizontalExpand="True"/>
+                            <Label Name="ChargeETA" Text="---" HorizontalAlignment="Right"/>
+                        </GridContainer>
+                    </BoxContainer>
+                </PanelContainer>
+                
+                <BoxContainer VerticalExpand="True"/>
+
+                <PanelContainer HorizontalExpand="True" StyleClasses="BackgroundPanelDark">
+                    <GridContainer Name="ChargeMeter" Columns="3" SetHeight="150" Margin="5 5 5 5"/>
+                </PanelContainer>
+
+            </BoxContainer>
+
+            <!--Right panel-->
+            <BoxContainer Orientation="Vertical" SetWidth="175">
+                <PanelContainer HorizontalExpand="True" StyleClasses="BackgroundPanelDark">
+                    <BoxContainer Orientation="Vertical" Margin="5 5 5 5">
+                        <BoxContainer Orientation="Horizontal" Margin="5 5 5 5">
+                            <Label Text="{Loc fusion-reactor-battery-ui-label-output}" HorizontalExpand="True" StyleClasses="LabelKeyText" />
+                            <controls:SwitchButton Name="OutputBreaker" Pressed="True" HorizontalAlignment="Right"/>
+                        </BoxContainer>
+                        <BoxContainer Orientation="Horizontal" >
+                            <Label Text="{Loc fusion-reactor-battery-ui-current}" StyleClasses="StatusFieldTitle"  HorizontalExpand="True"/>
+                            <Label Name="OutputValue" Text="--- W" HorizontalAlignment="Right"/>
+                        </BoxContainer>
+                    </BoxContainer>
+                </PanelContainer>
+
+                <BoxContainer Orientation="Vertical" VerticalExpand="True">
+                    <BoxContainer Orientation="Vertical" VerticalExpand="True"/>
+                    <SpriteView Name="EntityView" SetSize="64 64" Scale="3 3" OverrideDirection="South" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <BoxContainer Orientation="Vertical" VerticalExpand="True"/>
+                </BoxContainer>
+            </BoxContainer>
+        </BoxContainer>
+        
+    </BoxContainer>
+</controls:FancyWindow>

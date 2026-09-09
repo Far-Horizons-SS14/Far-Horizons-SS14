@@ -1,0 +1,141 @@
+<controls:FancyWindow xmlns="https://spacestation14.io"
+            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+            xmlns:fui="clr-namespace:Content.Client._FarHorizons.Power.UI.FusionReactor"
+            MinSize="975 655" Title="Fusion Reactor">
+    <BoxContainer>
+        <!--A neat trick: PanelContainers do not calculate collision, and as such will gladly allow other Controls to clip into each other-->
+        <PanelContainer>
+
+        <!--Warning Stripes-->
+        <BoxContainer Orientation="Vertical" Margin="5 5 5 5">
+            <controls:StripeBack Name="WarningStripeTop" Visible="False">
+                <BoxContainer SetHeight="15" HorizontalExpand="True"/>
+            </controls:StripeBack>
+
+            <BoxContainer VerticalExpand="True"/>
+            
+            <controls:StripeBack Name="WarningStripeBottom" Visible="False">
+                <BoxContainer SetHeight="15" HorizontalExpand="True"/>
+            </controls:StripeBack>
+        </BoxContainer>
+
+        <!--The normally seen UI-->
+        <BoxContainer Orientation="Vertical" SeparationOverride="10">
+            <BoxContainer Orientation="Horizontal" Margin="5 5 5 5" SeparationOverride="10">
+
+                <!--Left control panel-->
+                <TabContainer Name="LeftTabWing" VerticalExpand="True" Margin="1 1 1 2" SetHeight="600">
+                    <BoxContainer Name="Contents" Orientation="Vertical">
+                        <Button Name="SortAtomList" Text="{Loc fusion-reactor-controller-ui-sort}"/>
+                        <PanelContainer StyleClasses="PanelDark" SetWidth="300" VerticalExpand="True" HorizontalExpand="True" Margin="5 5 5 5">
+                            <fui:FusionAtomList Name="AtomList"/>
+                        </PanelContainer>
+                    </BoxContainer>
+
+                    <BoxContainer Name="Injection" Orientation="Vertical">
+                        <Button Name="SortInjectList" Text="{Loc fusion-reactor-controller-ui-sort}"/>
+                        <BoxContainer Orientation="Vertical">
+                            <Button Name="EditInjectToggle" Text="{Loc fusion-reactor-controller-ui-edit-entries}" ToggleMode="True"/>
+                            <BoxContainer Name="EditInjectBox" Orientation="Horizontal" Visible="False">
+                                <OptionButton Name="EditInjectOption"/>
+                                <LineEdit Name="EditInjectNumber" Text="1" HorizontalExpand="True"/>
+                                <Button Name="EditInjectButton" Text="{Loc fusion-reactor-controller-ui-add}" Disabled="True"/>
+                            </BoxContainer>
+                        </BoxContainer>
+                        <PanelContainer StyleClasses="PanelDark" SetWidth="300" VerticalExpand="True" HorizontalExpand="True" Margin="5 5 5 5">
+                            <fui:FusionInjectionList Name="InjectionList"/>
+                        </PanelContainer>
+                    </BoxContainer>
+                </TabContainer>
+
+                <BoxContainer HorizontalExpand="True"/>
+
+                <BoxContainer Orientation="Vertical" SetWidth="300" SetHeight="600" HorizontalExpand="True">
+                    <!--Centerpiece graphic representation of the reactor-->
+                    <fui:FusionReactorGraphic Name="ReactorGraphic" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+
+                    <PanelContainer SetWidth="300" StyleClasses="Inset" VerticalAlignment="Bottom">
+                        <GridContainer Name="Overview" Columns="2" VerticalExpand="True" Margin="0 0 0 0">
+                            <Label Text="{Loc fusion-reactor-controller-ui-stat-temp}" StyleClasses="StatusFieldTitle"  HorizontalExpand="True"/>
+                            <Label Name="ReactorTempValue" Text="0" HorizontalAlignment="Right"/>
+                            
+                            <Label Text="{Loc fusion-reactor-controller-ui-stat-pressure}" StyleClasses="StatusFieldTitle"  HorizontalExpand="True"/>
+                            <Label Name="ReactorPressureValue" Text="0" HorizontalAlignment="Right"/>
+                            
+                            <Label Text="{Loc fusion-reactor-controller-ui-stat-expansion}" StyleClasses="StatusFieldTitle"  HorizontalExpand="True"/>
+                            <Label Name="ReactorExpansionValue" Text="0" HorizontalAlignment="Right"/>
+                            
+                            <Label Text="{Loc fusion-reactor-controller-ui-stat-stability}" StyleClasses="StatusFieldTitle"  HorizontalExpand="True"/>
+                            <Label Name="ReactorStabilityValue" Text="0" HorizontalAlignment="Right"/>
+                            
+                            <Label Text="{Loc fusion-reactor-controller-ui-stat-integrity}" StyleClasses="StatusFieldTitle"  HorizontalExpand="True"/>
+                            <Label Name="ReactorIntegrityValue" Text="0" HorizontalAlignment="Right"/>
+
+                            <Label Text="{Loc fusion-reactor-controller-ui-stat-magtemp}" StyleClasses="StatusFieldTitle"  HorizontalExpand="True"/>
+                            <Label Name="ReactorMagTempValue" Text="0" HorizontalAlignment="Right"/>
+
+                            <Label Text="{Loc fusion-reactor-controller-ui-stat-extraction}" StyleClasses="StatusFieldTitle"  HorizontalExpand="True"/>
+                            <Label Name="ReactorPowerExtractionValue" Text="0" HorizontalAlignment="Right"/>
+                            
+                            <Label Text="{Loc fusion-reactor-controller-ui-stat-export}" StyleClasses="StatusFieldTitle"  HorizontalExpand="True"/>
+                            <Label Name="ReactorPowerExportValue" Text="0" HorizontalAlignment="Right"/>
+                        </GridContainer>
+                    </PanelContainer>
+                </BoxContainer>
+
+                <BoxContainer HorizontalExpand="True"/>
+
+                <!--Right control panel-->
+                <TabContainer Name="RightTabWing" VerticalExpand="True" Margin="1 1 1 2">
+                    <BoxContainer Name="PowerControl" Orientation="Vertical">
+                        <OptionButton Name="ExtractionOption" MinWidth="100" StyleClasses="ButtonSquare"/>
+                        <BoxContainer Orientation="Horizontal" HorizontalExpand="True">
+                            <Label Text="{Loc fusion-reactor-controller-ui-temperature}" StyleClasses="StatusFieldTitle"  HorizontalExpand="True"/>
+                            <LineEdit Name="TemperatureSetting" MinSize="100 0" />
+                        </BoxContainer>
+                        <BoxContainer Orientation="Horizontal" HorizontalExpand="True">
+                            <Label Text="{Loc fusion-reactor-controller-ui-watts}" StyleClasses="StatusFieldTitle"  HorizontalExpand="True"/>
+                            <LineEdit Name="WattSetting" MinSize="100 0" />
+                        </BoxContainer>
+                        <Button Name="SetExtractionButton" Text="{Loc fusion-reactor-controller-ui-set}" HorizontalAlignment="Right" Disabled="True"/>
+
+                        <BoxContainer SetHeight="20"/>
+
+                        <BoxContainer Orientation="Vertical" HorizontalExpand="True">
+                            <Label Text="{Loc fusion-reactor-controller-ui-req-pressure}" StyleClasses="StatusFieldTitle"  HorizontalExpand="True"/>
+                            <LineEdit Name="PressureSetting" MinSize="100 0" />
+                        </BoxContainer>
+                        <Button Name="SetPressureButton" Text="{Loc fusion-reactor-controller-ui-set}" HorizontalAlignment="Right" Disabled="True"/>
+
+                        <BoxContainer SetHeight="20"/>
+
+                        <PanelContainer StyleClasses="PanelDark" SetWidth="300" SetHeight="200" VerticalExpand="True" HorizontalExpand="True" Margin="5 5 5 5">
+                            <ScrollContainer>
+                                <BoxContainer Name="BatteryList" Orientation="Vertical" VerticalExpand="True" HorizontalExpand="True" Margin="2 2 2 2"/>
+                            </ScrollContainer>
+                        </PanelContainer>
+                    </BoxContainer>
+                    
+                    <BoxContainer Name="MASERControl" Orientation="Vertical">
+                        <PanelContainer StyleClasses="PanelDark" SetWidth="300" VerticalExpand="True" HorizontalExpand="True" Margin="5 5 5 5">
+                            <ScrollContainer>
+                                <BoxContainer Name="MASERList" Orientation="Vertical" VerticalExpand="True" HorizontalExpand="True" Margin="2 2 2 2"/>
+                            </ScrollContainer>
+                        </PanelContainer>
+                    </BoxContainer>
+                </TabContainer>
+            </BoxContainer>
+        </BoxContainer>
+        
+        <!--Eject UI-->
+        <BoxContainer Name="CenterPopup" Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True" VerticalAlignment="Center" Visible="False">
+            <controls:StripeBack SetHeight="100" Name="WarningStripeCenter" >
+                <Label Name="CenterCountdown" Text="You die now :3" StyleClasses="LabelKeyText" HorizontalAlignment="Center"/>
+            </controls:StripeBack>
+            <Button Name="EjectButton" Text="{Loc fusion-reactor-controller-ui-eject}" HorizontalAlignment="Center" Visible="False"/>
+        </BoxContainer>
+
+        </PanelContainer>
+    </BoxContainer>
+</controls:FancyWindow>
