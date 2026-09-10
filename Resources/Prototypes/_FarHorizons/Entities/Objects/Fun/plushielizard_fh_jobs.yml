@@ -1,0 +1,90 @@
+#region NT jobs
+
+- type: entity
+  id: PlushieLizardJobHeadofsecurity
+  name: Head of Security Lizard Plushie
+  suffix: NT
+  description: An adorable stuffed toy that resembles a lizardperson as the head of security. It seems to have been ripped and re-stitched a few times.
+  components:
+  - type: Sprite
+    sprite: /Textures/_FarHorizons/Objects/Fun/Plushies/plushielizard_fh_jobs.rsi
+    state: headofsecurity
+
+- type: entity
+  id: PlushieLizardJobSecuritycadet
+  name: Security Cadet Lizard Plushie
+  suffix: NT
+  description: An adorable stuffed toy that resembles a lizardperson as a security cadet. Seems to have shock marks across the plushie.
+  components:
+  - type: Sprite
+    sprite: /Textures/_FarHorizons/Objects/Fun/Plushies/plushielizard_fh_jobs.rsi
+    state: securitycadet
+
+- type: entity
+  id: PlushieLizardJobSecurityofficer
+  name: Security Officer Lizard Plushie
+  suffix: NT
+  description: An adorable stuffed toy that resembles a lizardperson as a security officer. The stuffing has been padded down from a lot of punching.
+  components:
+  - type: Sprite
+    sprite: /Textures/_FarHorizons/Objects/Fun/Plushies/plushielizard_fh_jobs.rsi
+    state: securityofficer
+
+- type: entity
+  id: PlushieLizardJobWarden
+  name: Warden Lizard Plushie
+  suffix: NT
+  description: An adorable stuffed toy that resembles a lizardperson as a warden. Smells like black powder and gun oil.
+  components:
+  - type: Sprite
+    sprite: /Textures/_FarHorizons/Objects/Fun/Plushies/plushielizard_fh_jobs.rsi
+    state: warden
+
+#region NS jobs
+
+- type: entity
+  id: PlushieLizardJobInspector
+  parent: PlushieLizardJobDetective
+  name: Inspector Lizard Plushie
+  suffix: NS
+  description: An adorable stuffed toy that resembles a lizardperson as an inspector. Seems ready for a mystery.
+
+- type: entity
+  id: PlushieLizardJobMarshal
+  name: Marshal Lizard Plushie
+  suffix: NS
+  description: An adorable stuffed toy that resembles a lizardperson as a marshal. It seems to have been ripped and re-stitched a few times.
+  components:
+  - type: Sprite
+    sprite: /Textures/_FarHorizons/Objects/Fun/Plushies/plushielizard_fh_jobs.rsi
+    state: marshal
+
+- type: entity
+  id: PlushieLizardJobSecuritycadetns
+  name: Security Cadet Lizard Plushie
+  suffix: NS
+  description: An adorable stuffed toy that resembles a lizardperson as a security cadet. Seems to have shock marks across the plushie.
+  components:
+  - type: Sprite
+    sprite: /Textures/_FarHorizons/Objects/Fun/Plushies/plushielizard_fh_jobs.rsi
+    state: securitycadetns
+
+- type: entity
+  id: PlushieLizardJobEnforcer
+  name: Enforcer Lizard Plushie
+  suffix: NS
+  description: An adorable stuffed toy that resembles a lizardperson as an enforcer. The stuffing has been padded down from a lot of punching.
+  components:
+  - type: Sprite
+    sprite: /Textures/_FarHorizons/Objects/Fun/Plushies/plushielizard_fh_jobs.rsi
+    state: enforcer
+
+- type: entity
+  id: PlushieLizardJobConstable
+  suffix: NS
+  name: Constable Lizard Plushie
+  description: An adorable stuffed toy that resembles a lizardperson as a constable. Smells like black powder and gun oil.
+  components:
+  - type: Sprite
+    sprite: /Textures/_FarHorizons/Objects/Fun/Plushies/plushielizard_fh_jobs.rsi
+    state: constable
