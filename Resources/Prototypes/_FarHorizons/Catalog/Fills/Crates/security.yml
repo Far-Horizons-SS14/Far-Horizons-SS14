@@ -1,6 +1,8 @@
+#region NT security vehicles
+
 - type: entity
   id: CrateSecuritySecway
-  parent: CrateSecgear
+  parent: CrateSecgearNT
   name: Secway Crate
   description: A standard-issue secway for apprehending criminals, or a poor substitute for exercise. Probably both.
   components:
@@ -10,7 +12,7 @@
 
 - type: entity
   id: CrateSecuritySecwayTurbo
-  parent: CrateSecgear
+  parent: CrateSecgearNT
   name: Secway Turbo Crate
   description: A premium-grade secway for catching and shooting criminals at the same time.
   components:
@@ -20,7 +22,7 @@
 
 - type: entity
   id: CrateSecuritySTV
-  parent: CrateSecgear
+  parent: CrateSecgearNT
   name: STV Crate
   description: A security-grade ATV for catching criminals and running over Tiders.
   components:
@@ -28,11 +30,44 @@
     contents:
       - id: VehicleATVNTSecFilled
 
+#region NS security vehicles
+
 - type: entity
-  parent: CrateSecgear
+  id: CrateSecuritySecwayNS
+  parent: CrateSecgearNS
+  name: Secway Crate
+  description: A standard-issue secway for apprehending criminals, or a poor substitute for exercise. Probably both.
+  components:
+  - type: StorageFill
+    contents:
+      - id: VehicleSecwayFilled # Replace this with NS variant when it exists
+
+- type: entity
+  id: CrateSecuritySecwayTurboNS
+  parent: CrateSecgearNS
+  name: Secway Turbo Crate
+  description: A premium-grade secway for catching and shooting criminals at the same time.
+  components:
+  - type: StorageFill
+    contents:
+      - id: VehicleSecwayTurboFilled # Replace this with NS variant when it exists
+
+- type: entity
+  id: CrateSecuritySTVNS
+  parent: CrateSecgearNS
+  name: STV Crate
+  description: A security-grade ATV for catching criminals and running over Tiders.
+  components:
+  - type: StorageFill
+    contents:
+      - id: VehicleATVNSSecFilled # Replace this with NS variant when it exists
+
+#region implanters
+
+- type: entity
+  parent: CrateSecgearNS
   id: CrateSecurityTrackingMindshieldImplantsNS
   name: Implanter Crate
-  suffix: NS, Secure
   description: Contains 4 NeoSol MindShield implants and 4 tracking implant. Requires Security access to open.
   components:
   - type: EntityTableContainerFill
@@ -43,5 +78,76 @@
           amount: 4
         - id: TrackingImplanter
           amount: 4
-  - type: AccessReader
-    access: [["SecurityNS"], ["CadetNS"]]
+
+- type: entity
+  parent: CrateSecgearNT
+  id: CrateSecurityTrackingMindshieldImplants
+  name: implanter crate
+  description: Contains 4 NanoTrasen MindShield implants and 4 tracking implant. Requires Security access to open. # FH
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: MindShieldImplanter
+          amount: 4
+        - id: TrackingImplanter
+          amount: 4
+
+#region NT armor
+- type: entity
+  parent: CrateSecgearNT
+  id: CrateSecurityHelmet
+  name: helmet crate
+  description: Contains three standard-issue brain buckets. Requires Security access to open.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ClothingHeadHelmetBasic
+          amount: 3
+
+- type: entity
+  parent: CrateSecgearNT
+  id: CrateSecurityArmor
+  name: armor crate
+  description: Contains three bulletproof vests. Requires Security access to open.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ClothingOuterArmorBulletproof
+          amount: 3
+        - id: ClothingHeadHelmetBulletProof
+          amount: 3
+
+#region NS armor
+- type: entity
+  parent: CrateSecgearNS
+  id: CrateSecurityHelmetNS
+  name: helmet crate
+  description: Contains three standard-issue brain buckets. Requires Security access to open.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ClothingHeadHelmetSecuritySyndi
+          amount: 3
+
+- type: entity
+  parent: CrateSecgearNS
+  id: CrateSecurityArmorNS
+  name: armor crate
+  description: Contains three bulletproof vests. Requires Security access to open.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ClothingOuterArmorBulletproofSyndi
+          amount: 3
+        - id: ClothingHeadHelmetBulletProofSyndi
+          amount: 3

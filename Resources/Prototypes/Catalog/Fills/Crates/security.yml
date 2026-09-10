@@ -1,30 +1,30 @@
-- type: entity
-  parent: CrateSecgear
-  id: CrateSecurityArmor
-  name: armor crate
-  description: Contains three bulletproof vests. Requires Security access to open.
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      entity_storage: !type:AllSelector
-        children:
-        - id: ClothingOuterArmorBulletproof
-          amount: 3
-        - id: ClothingHeadHelmetBulletProof
-          amount: 3
+#- type: entity
+#  parent: CrateSecgear
+#  id: CrateSecurityArmor
+#  name: armor crate
+#  description: Contains three bulletproof vests. Requires Security access to open.
+#  components:
+#  - type: EntityTableContainerFill
+#    containers:
+#      entity_storage: !type:AllSelector
+#        children:
+#        - id: ClothingOuterArmorBulletproof
+#          amount: 3
+#        - id: ClothingHeadHelmetBulletProof
+#          amount: 3
 
-- type: entity
-  parent: CrateSecgear
-  id: CrateSecurityHelmet
-  name: helmet crate
-  description: Contains three standard-issue brain buckets. Requires Security access to open.
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      entity_storage: !type:AllSelector
-        children:
-        - id: ClothingHeadHelmetBasic
-          amount: 3
+#- type: entity
+#  parent: CrateSecgear
+#  id: CrateSecurityHelmet
+#  name: helmet crate
+#  description: Contains three standard-issue brain buckets. Requires Security access to open.
+#  components:
+#  - type: EntityTableContainerFill
+#    containers:
+#      entity_storage: !type:AllSelector
+#        children:
+#        - id: ClothingHeadHelmetBasic
+#          amount: 3
 
 - type: entity
   parent: CrateSecgear
@@ -93,22 +93,22 @@
         - id: ClothingMaskSterile
           amount: 2
 
-- type: entity
-  parent: CrateSecgear
-  id: CrateSecurityTrackingMindshieldImplants
-  name: implanter crate
-  description: Contains 4 NanoTrasen MindShield implants and 4 tracking implant. Requires Security access to open. # FH
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      entity_storage: !type:AllSelector
-        children:
-        - id: MindShieldImplanter
-          amount: 4
-        - id: TrackingImplanter
-          amount: 4
-  - type: AccessReader
-    access: [["Security"], ["Cadet"]] #FH
+#- type: entity
+#  parent: CrateSecgear
+#  id: CrateSecurityTrackingMindshieldImplants
+#  name: implanter crate
+#  description: Contains 4 NanoTrasen MindShield implants and 4 tracking implant. Requires Security access to open. # FH
+#  components:
+#  - type: EntityTableContainerFill
+#    containers:
+#      entity_storage: !type:AllSelector
+#        children:
+#        - id: MindShieldImplanter
+#          amount: 4
+#        - id: TrackingImplanter
+#          amount: 4
+#  - type: AccessReader
+#    access: [["Security"], ["Cadet"]] #FH
 
 - type: entity
   parent: CrateSecgear
