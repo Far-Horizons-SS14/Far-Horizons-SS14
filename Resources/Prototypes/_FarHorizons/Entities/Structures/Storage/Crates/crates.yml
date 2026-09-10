@@ -81,11 +81,61 @@
     reflectProb: 0.8
     spread: 90
 
-# Security lock boxes
+
+#region Base Security
+
+- type: entity
+  parent: [ CrateBaseSecure, BaseSecurityContraband ]
+  id: CrateSecgearNT
+  name: Secgear Crate
+  suffix: NT, Secure
+  components:
+  - type: Icon
+    sprite: _FarHorizons\Structures\Storage\Crates\sec_gear_nt.rsi
+  - type: Sprite
+    sprite: _FarHorizons\Structures\Storage\Crates\sec_gear_nt.rsi
+  - type: AccessReader
+    access: [["Security"], ["Cadet"]]
+
+- type: entity
+  parent: [ CrateSecgear, BaseSecurityContraband ]
+  id: CrateSecgearNS
+  name: Secgear Crate
+  suffix: NS, Secure
+  components:
+  - type: AccessReader
+    access: [["SecurityNS"], ["CadetNS"]]
+
+#region Contraband Storage
+
+- type: entity
+  parent: [ CrateBaseSecure, BaseSecurityContraband ]
+  suffix: NT, Armory, Secure
+  id: CrateContrabandStorageSecureNT
+  name: Contraband Storage Crate
+  description: An armory access locked crate for storing contraband confiscated from suspects or prisoners.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons\Structures\Storage\Crates\sec_gear_nt.rsi
+  - type: AccessReader
+    access: [["Armory"]]
+
+- type: entity
+  parent: [ CrateSecgear, BaseSecurityContraband ]
+  suffix: NS, Armory, Secure
+  id: CrateContrabandStorageSecureNS
+  name: Contraband Storage Crate
+  description: An armory access locked crate for storing contraband confiscated from suspects or prisoners.
+  components:
+  - type: AccessReader
+    access: [["ArmoryNS"]]
+
+#region Security Lock Box
+
 - type: entity
   parent: CrateBaseLockBox
   id: CrateLockBoxSecurityNT
-  name: security lock box
+  name: Security Lock Box
   suffix: NT, Secure
   components:
   - type: Sprite
@@ -116,7 +166,7 @@
 - type: entity
   parent: CrateBaseLockBox
   id: CrateLockBoxSecurityNS
-  name: security lock box
+  name: Security Lock Box
   suffix: NS, Secure
   components:
   - type: Sprite

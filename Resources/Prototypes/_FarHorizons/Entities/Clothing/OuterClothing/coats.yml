@@ -64,7 +64,7 @@
 - type: entity
   parent: [ClothingOuterStorageFoldableBase, AllowSuitStorageClothing, BaseSecurityContraband]
   id: ClothingOuterSecurityBomber
-  name: Security Bomber #Far Horizons - The Great Capitalization Crusade
+  name: Security Bomber
   description: A regular bomber, but with armored inserts.
   components:
   - type: Sprite
@@ -73,35 +73,35 @@
     sprite: _FarHorizons/Clothing/OuterClothing/Coats/security_bomber_nt.rsi
   - type: Armor
     modifiers:
-      flatReductions: #FH
-        Piercing: 5 #FH
-        Heat: 4 #FH
+      flatReductions:
+        Piercing: 5
+        Heat: 4
       coefficients:
-        Blunt: 0.70 #FH
-        Slash: 0.70 #FH
-        Piercing: 0.70 #FH
-        Heat: 0.80 #FH
-  - type: LimbArmor # Far Horizons
+        Blunt: 0.70
+        Slash: 0.70
+        Piercing: 0.70
+        Heat: 0.80
+  - type: LimbArmor
     limbs:
       ArmRight: {}
       ArmLeft: {}
       LegRight: {}
       LegLeft: {}
   - type: ExplosionResistance
-    damageCoefficient: 0.90 #FH
+    damageCoefficient: 0.90
   - type: ZombificationResistance
-    zombificationResistanceCoefficient: 0.75 #FH
+    zombificationResistanceCoefficient: 0.75
 
 - type: entity
   parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterSecurityBomber]
   id: ClothingOuterSecurityBomberOpened
-  name: Security Bomber #Far Horizons - The Great Capitalization Crusade
+  name: Security Bomber
 
 # Security Windbreaker
 - type: entity
   parent: [ClothingOuterStorageFoldableBase, AllowSuitStorageClothing, BaseSecurityContraband]
   id: ClothingOuterWindbreakerSecurity
-  name: Security Windbreaker #Far Horizons - The Great Capitalization Crusade
+  name: Security Windbreaker
   description: A stylish blue windbreaker with additional inserted plate padding for security usage.
   components:
   - type: Sprite
@@ -110,29 +110,29 @@
     sprite: _FarHorizons/Clothing/OuterClothing/Coats/windbreaker_security_nt
   - type: Armor
     modifiers:
-      flatReductions: #FH
-        Piercing: 5 #FH
-        Heat: 4 #FH
+      flatReductions:
+        Piercing: 5
+        Heat: 4
       coefficients:
-        Blunt: 0.70 #FH
-        Slash: 0.70 #FH
-        Piercing: 0.70 #FH
-        Heat: 0.80 #FH
-  - type: LimbArmor # Far Horizons
+        Blunt: 0.70
+        Slash: 0.70
+        Piercing: 0.70
+        Heat: 0.80
+  - type: LimbArmor
     limbs:
       ArmRight: {}
       ArmLeft: {}
       LegRight: {}
       LegLeft: {}
   - type: ExplosionResistance
-    damageCoefficient: 0.90 #FH
+    damageCoefficient: 0.90
   - type: ZombificationResistance
     zombificationResistanceCoefficient: 0.75
 
 - type: entity
   parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterWindbreakerSecurity]
   id: ClothingOuterWindbreakerSecurityOpened
-  name: Security Windbreaker #Far Horizons - The Great Capitalization Crusade
+  name: Security Windbreaker
 #region Civilian
 
 - type: entity
