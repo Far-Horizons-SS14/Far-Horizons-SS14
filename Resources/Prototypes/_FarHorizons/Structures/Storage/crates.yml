@@ -1,0 +1,26 @@
+#region security crates
+- type: entity
+  parent: [ CrateBaseSecure, BaseSecurityContraband ]
+  id: CrateSecgearNT
+  name: secgear crate
+  suffix: NT, Secure
+  components:
+  - type: Icon
+    sprite: _FarHorizons\Structures\Storage\Crates\sec_gear_nt.rsi
+  - type: Sprite
+    sprite: _FarHorizons\Structures\Storage\Crates\sec_gear_nt.rsi
+  - type: AccessReader
+    access: [["Security"], ["Cadet"]]
+
+- type: entity
+  parent: [ CrateBaseSecure, BaseSecurityContraband ]
+  id: CrateSecgearNS
+  name: secgear crate
+  suffix: NS, Secure
+  components:
+  - type: Icon
+    sprite: _FarHorizons\Structures\Storage\Crates\sec_gear_ns.rsi
+  - type: Sprite
+    sprite: _FarHorizons\Structures\Storage\Crates\sec_gear_ns.rsi
+  - type: AccessReader
+    access: [["SecurityNS"], ["CadetNS"]]

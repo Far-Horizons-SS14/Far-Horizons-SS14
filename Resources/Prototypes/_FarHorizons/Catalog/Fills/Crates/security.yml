@@ -40,7 +40,7 @@
   components:
   - type: StorageFill
     contents:
-      - id: VehicleSecwaySFilled
+      - id: VehicleSecwayFilled # Replace this with NS variant when it exists
 
 - type: entity
   id: CrateSecuritySecwayTurboNS
@@ -60,7 +60,7 @@
   components:
   - type: StorageFill
     contents:
-      - id: VehicleATVNTSecFilled # Replace this with NS variant when it exists
+      - id: VehicleATVNSSecFilled # Replace this with NS variant when it exists
 
 #region implanters
 
@@ -82,7 +82,7 @@
 - type: entity
   parent: CrateSecgearNT
   id: CrateSecurityTrackingMindshieldImplants
-  name: Implanter Crate
+  name: implanter crate
   description: Contains 4 NanoTrasen MindShield implants and 4 tracking implant. Requires Security access to open. # FH
   components:
   - type: EntityTableContainerFill
@@ -98,7 +98,7 @@
 - type: entity
   parent: CrateSecgearNT
   id: CrateSecurityHelmet
-  name: Helmet Crate
+  name: helmet crate
   description: Contains three standard-issue brain buckets. Requires Security access to open.
   components:
   - type: EntityTableContainerFill
@@ -111,7 +111,7 @@
 - type: entity
   parent: CrateSecgearNT
   id: CrateSecurityArmor
-  name: Armor Crate
+  name: armor crate
   description: Contains three bulletproof vests. Requires Security access to open.
   components:
   - type: EntityTableContainerFill
@@ -127,7 +127,7 @@
 - type: entity
   parent: CrateSecgearNS
   id: CrateSecurityHelmetNS
-  name: Helmet Crate
+  name: helmet crate
   description: Contains three standard-issue brain buckets. Requires Security access to open.
   components:
   - type: EntityTableContainerFill
@@ -140,7 +140,7 @@
 - type: entity
   parent: CrateSecgearNS
   id: CrateSecurityArmorNS
-  name: Armor Crate
+  name: armor crate
   description: Contains three bulletproof vests. Requires Security access to open.
   components:
   - type: EntityTableContainerFill
