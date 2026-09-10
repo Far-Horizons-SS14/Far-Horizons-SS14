@@ -1,0 +1,19 @@
+- type: entity
+  parent: FlaskBase
+  id: DrinkMarshalFlask
+  name: Marshal's Flask
+  suffix: NS
+  description: A metal flask, fit for a hard working Marshal.
+  components:
+  - type: Sprite
+    sprite: Objects/Consumable/Drinks/hosflask.rsi
+
+- type: entity
+  parent: FlaskBase
+  id: DrinkHosFlask
+  name: HoS's Flask
+  suffix: NT
+  description: A metal flask, fit for a hard working HoS.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Consumable/Drinks/drinks_flasks/hosflask_nt.rsi

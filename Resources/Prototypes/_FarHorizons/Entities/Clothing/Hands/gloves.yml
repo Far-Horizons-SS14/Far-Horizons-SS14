@@ -275,6 +275,34 @@
   - type: Clothing
     sprite: _FarHorizons/Clothing/Hands/Gloves/NeoSol/leather.rsi
 
+# Far Horizons blue sec
+- type: entity
+  parent: [ClothingHandsButcherable, BaseSecurityContraband]
+  id: ClothingHandsGlovesSecurityBlue
+  name: Blue Security Gloves
+  description: Black gloves, but slightly blue! The detective will LOVE you if you wear these.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Hands/Gloves/securityglovesblue.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Hands/Gloves/securityglovesblue.rsi
+  - type: Fiber
+    fiberMaterial: fibers-blue-and-black-woven
+  - type: FingerprintMask
+
+- type: entity
+  parent: [ClothingHandsButcherable, BaseSecurityContraband]
+  id: ClothingHandsGlovesSecurityFingerlessBlue
+  name: Fingerless Blue Security Gloves
+  description: Black gloves, but slightly blue! The detective will HATE you if you wear these.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Hands/Gloves/securityglovesfingerlessblue.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Hands/Gloves/securityglovesfingerlessblue.rsi
+  - type: Fiber
+    fiberMaterial: fibers-blue-and-black-woven
+ 
 # Consortium Weapons
 
 - type: entity

@@ -17,21 +17,6 @@
       sprite: _FarHorizons/Objects/Misc/stamps.rsi
       state: stamp-secret
 
-- type: entity
-  name: Corpsman Rubber Stamp
-  parent: [RubberStampBase, BaseSecurityContraband]
-  id: RubberStampCorpsman
-  suffix: NT
-  categories: [ DoNotMap ]
-  components:
-    - type: Stamp
-      stampedName: "Corpsman"
-      stampedColor: "#14568B"
-      stampState: "paper_stamp-corpsman"
-    - type: Sprite
-      sprite: _FarHorizons/Objects/Misc/stamps.rsi
-      state: stamp-corpsman
-
 #region NeoSol
 
 
@@ -115,7 +100,7 @@
   - type: Stamp
     stampedName: stamp-component-stamped-name-hos
     stampedColor: "#cc0000"
-    stampState: "paper_stamp-hos"
+    stampState: "paper_stamp-marshal"
   - type: Sprite
     state: stamp-hos
 
@@ -143,7 +128,7 @@
   - type: Stamp
     stampedName: stamp-component-stamped-name-constable
     stampedColor: "#5b0000"
-    stampState: "paper_stamp-warden"
+    stampState: "paper_stamp-constable"
   - type: Sprite
     state: stamp-warden
 
@@ -259,3 +244,51 @@
       layers:
         - state: box-cc
         - state: stamp-cc-departments
+
+#region NanoTrasen Security
+
+
+- type: entity
+  name: Warden's Rubber Stamp
+  parent: [RubberStampBase, BaseSecurityContraband]
+  id: RubberStampWarden
+  suffix: NT
+  categories: [ DoNotMap ]
+  components:
+  - type: Stamp
+    stampedName: stamp-component-stamped-name-warden
+    stampedColor: "#003860"
+    stampState: "paper_stamp-warden"
+  - type: Sprite
+    sprite: _FarHorizons\Objects\Misc\stamps.rsi
+    state: stamp-warden
+
+- type: entity
+  name: Head of Security's Rubber Stamp
+  parent: [RubberStampBase, BaseCommandContraband]
+  id: RubberStampHos
+  suffix: NT
+  categories: [ DoNotMap ]
+  components:
+  - type: Stamp
+    stampedName: stamp-component-stamped-name-hos
+    stampedColor: "#0060a5"
+    stampState: "paper_stamp-hos"
+  - type: Sprite
+    sprite: _FarHorizons\Objects\Misc\stamps.rsi
+    state: stamp-hos
+
+- type: entity
+  name: Corpsman Rubber Stamp
+  parent: [RubberStampBase, BaseSecurityContraband]
+  id: RubberStampCorpsman
+  suffix: NT
+  categories: [ DoNotMap ]
+  components:
+    - type: Stamp
+      stampedName: "Corpsman"
+      stampedColor: "#14568B"
+      stampState: "paper_stamp-corpsman"
+    - type: Sprite
+      sprite: _FarHorizons/Objects/Misc/stamps.rsi
+      state: stamp-corpsman

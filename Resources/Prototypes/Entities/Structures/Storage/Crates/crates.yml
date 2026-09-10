@@ -335,6 +335,7 @@
 - type: entity
   parent: [ CrateBaseSecure, BaseSecurityContraband ]
   suffix: Armory, Secure
+  categories: [ DoNotMap ] # Far Horizons: Use faction specific version instead.
   id: CrateContrabandStorageSecure
   name: contraband storage crate
   description: An armory access locked crate for storing contraband confiscated from suspects or prisoners.
@@ -635,35 +636,35 @@
   - type: AccessReader
     access: [["Research"], ["ResearchNS"]] #FH
 
-- type: entity
-  id: CrateLockBoxSecurity
-  parent: CrateBaseLockBox
-  name: security lock box
-  components:
-  - type: Sprite
-    layers:
-    - state: base
-    - state: overlay
-      color: "#c12d30"
-    - state: closed
-      map: ["enum.StorageVisualLayers.Door"]
-    - state: overlay-closed
-      color: "#c12d30"
-      map: [ lid_overlay ]
-    - state: welded
-      visible: false
-      map: ["enum.WeldableLayers.BaseWelded"]
-    - state: locked
-      map: ["enum.LockVisualLayers.Lock"]
-      shader: unshaded
-    - state: paper
-      sprite: Structures/Storage/Crates/labels.rsi
-      offset: "-0.46875,0.03125"
-      map: ["enum.PaperLabelVisuals.Layer"]
-  - type: OverrideSell
-    overrideAccount: Security
-  - type: AccessReader
-    access: [["Security"], ["Cadet"], ["SecurityNS"], ["CadetNS"]]  # Starlight: add cadet #FH
+#- type: entity
+#  id: CrateLockBoxSecurity
+#  parent: CrateBaseLockBox
+#  name: security lock box
+#  components:
+#  - type: Sprite
+#    layers:
+#    - state: base
+#    - state: overlay
+#      color: "#c12d30"
+#    - state: closed
+#      map: ["enum.StorageVisualLayers.Door"]
+#    - state: overlay-closed
+#      color: "#c12d30"
+#      map: [ lid_overlay ]
+#    - state: welded
+#      visible: false
+#      map: ["enum.WeldableLayers.BaseWelded"]
+#    - state: locked
+#      map: ["enum.LockVisualLayers.Lock"]
+#      shader: unshaded
+#    - state: paper
+#      sprite: Structures/Storage/Crates/labels.rsi
+#      offset: "-0.46875,0.03125"
+#      map: ["enum.PaperLabelVisuals.Layer"]
+#  - type: OverrideSell
+#    overrideAccount: Security
+#  - type: AccessReader
+#    access: [["Security"], ["Cadet"], ["SecurityNS"], ["CadetNS"]]  # Starlight: add cadet #FH
 
 - type: entity
   id: CrateLockBoxService
