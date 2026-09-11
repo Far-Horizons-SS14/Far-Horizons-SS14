@@ -769,3 +769,117 @@
       ArmLeft: {}
       LegRight: {}
       LegLeft: {}
+
+
+
+#region ## NanoTrasen ##
+
+
+
+
+
+
+
+#region Lambda Raid Suit
+- type: entity
+  parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing, BaseSyndicateContraband ]
+  id: ClothingOuterArmorLambdaRaid
+  name: Lambda Raid Suit "Apollo"
+  suffix: NT
+  description: A very durable and reasonably flexible suit of armor for those missions, where speed is of utmost necessity. Incapable of space walks.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/Armor/hardliner_raid.rsi
+    layers:
+    - state: icon
+    # - state: light-overlay 
+    #   visible: false
+    #   shader: unshaded
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/Armor/hardliner_raid.rsi
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      flatReductions: #FH
+        Piercing: 5 #FH
+        Heat: 4 #FH
+      coefficients:
+        Blunt: 0.45
+        Slash: 0.45
+        Piercing: 0.35
+        Heat: 0.3
+        Caustic: 0.5
+    # Starlight-start
+    staminaModifier: 0.1
+#    ignoreKnockdown: true - FH not a combat hardsuit
+    # Starlight-end
+  - type: LimbArmor # Far Horizons
+    limbs:
+      ArmRight: {}
+      ArmLeft: {}
+      LegRight: {}
+      LegLeft: {}
+  - type: ExplosionResistance
+    damageCoefficient: 0.35
+  - type: ClothingSpeedModifier
+    walkModifier: 1
+    sprintModifier: 1.1
+  #Shoulder mounted flashlight
+  - type: ToggleableVisuals
+    spriteLayer: light
+    clothingVisuals:
+      outerClothing:
+        - state: equipped-OUTERCLOTHING
+      outerClothing-reptilian:
+        - state: equipped-OUTERCLOTHING
+      outerClothing-vox:
+        - state: equipped-OUTERCLOTHING-vox
+      outerClothing-cyclorite:
+        - state: equipped-OUTERCLOTHING
+      outerClothing-felionoid:
+        - state: equipped-OUTERCLOTHING
+      outerClothing-vulpkanin:
+        - state: equipped-OUTERCLOTHING
+      outerClothing-resomi:
+        - state: equipped-OUTERCLOTHING-resomi
+      outerClothing-avali:
+        - state: equipped-OUTERCLOTHING
+  - type: ItemTogglePointLight
+  - type: Appearance
+  - type: HandheldLight
+    addPrefix: false
+    blinkingBehaviourId: blinking
+    radiatingBehaviourId: radiating
+  - type: PointLight
+    enabled: false
+    color: white
+    radius: 5
+    energy: 2
+    lightMask: ConeSingle
+    autoRot: true
+    netsync: false
+  - type: LightBehaviour
+    behaviours:
+      - !type:FadeBehaviour
+        id: radiating
+        interpolate: Linear
+        maxDuration: 2.0
+        startValue: 3.0
+        endValue: 2.0
+        isLooped: true
+        reverseWhenFinished: true
+      - !type:PulseBehaviour
+        id: blinking
+        interpolate: Nearest
+        maxDuration: 1.0
+        startValue: 0.1
+        endValue: 2.0
+        isLooped: true
+  - type: Battery
+    maxCharge: 600
+    startingCharge: 600
+  - type: BatterySelfRecharger
+    autoRechargeRate: 2
+  - type: Item
+    size: Normal

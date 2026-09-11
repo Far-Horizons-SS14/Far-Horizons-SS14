@@ -493,3 +493,58 @@
           amount: 4
         - id: MagazineMagnum
           amount: 4
+
+#regoin Lambda Hardsuits
+
+
+
+#region base lambda hardsuit
+- type: entity
+  parent: ClothingBackpackDuffelSyndicateBundle
+  id: ClothingBackpackDuffelLambdaHardsuitBundle
+  name: Lambda "Spartan" Hardsuit Bundle #FH
+  description: Contains the Lambda Hardliner's signature "Spartan" hardsuit.
+  suffix: NT
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingOuterHardsuitLambda
+        - !type:NestedSelector
+          tableId: SyndicateHardsuitExtrasEntityTable # For now leaving the Syndicate Extras table
+
+#region Lambda Infil suit
+- type: entity
+  parent: ClothingBackpackDuffelSyndicateBundle
+  id: ClothingBackpackDuffelLambdaInfiltration
+  name: Lambda "Hades" Hardsuit Bundle
+  description: Contains the Lambda "Hades" hardsuit. Perfect for infiltration.
+  suffix: NT
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingOuterHardsuitLambdaInfiltration
+        - id: ClothingMaskGasSyndicate
+        - id: ClothingHandsGlovesCombat
+        - id: DoubleEmergencyOxygenTankFilled
+        - id: DoubleEmergencyNitrogenTankFilled
+        - id: EmergencyCoolingUnit
+
+#region lambda elite suit
+- type: entity
+  parent: ClothingBackpackDuffelSyndicateBundle
+  id: ClothingBackpackDuffelLambdaEliteHardsuitBundle
+  name: Lambda "Helios" Hardsuit Bundle #FH
+  description: Contains Lambda's "Helios" hardsuit, which comes with some more stuff in it.
+  suffix: NT
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingOuterHardsuitLambdaElite
+        - !type:NestedSelector
+          tableId: SyndicateHardsuitExtrasEntityTable

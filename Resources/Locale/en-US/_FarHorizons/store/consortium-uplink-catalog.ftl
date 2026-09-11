@@ -385,20 +385,20 @@ uplink-consortium-eva-syndie-desc = A simple EVA suit that offers no protection 
 uplink-consortium-hardsuit-carp-name = Carp Hardsuit
 uplink-consortium-hardsuit-carp-desc = Looks like an ordinary carp suit, except fully spaceproof and tricks space carp into thinking you are one of them.
 
-uplink-consortium-hardsuit-syndie-name = Syndicate Hardsuit
-uplink-consortium-hardsuit-syndie-desc = The Syndicate's well known armored blood red hardsuit, capable of space walks and bullet resistant.
+uplink-consortium-hardsuit-lambda-name = "Spartan" Hardsuit
+uplink-consortium-hardsuit-lambda-desc = The signiture hardsuit of the Lambda Hardliners. The perfect choice to fight against insurmountable odds.
 
-uplink-consortium-syndie-raid-name = Syndicate Raid Suit
-uplink-consortium-syndie-raid-desc = A very durable and reasonably flexible suit of blood-red armor, reinforced against all common forms of damage but not capable of space walks. Comes with a sick helmet.
+uplink-consortium-lambda-raid-name = Lambda Raid Suit "Apollo"
+uplink-consortium-lambda-raid-desc = A very durable and reasonably flexible suit of armor for those missions, where speed is of utmost necessity. Incapable of space walks.
 
-uplink-consortium-hardsuit-infiltration-name = Syndicate Infiltration Hardsuit
-uplink-consortium-hardsuit-infiltration-desc = The Syndicate's Special Operations' hardsuit of choice, this hardsuit, as well as durability, has been built with chameleon technology integrated.
+uplink-consortium-hardsuit-infiltration-name = Lambda Infiltration Hardsuit "Hades"
+uplink-consortium-hardsuit-infiltration-desc = A specialized hardsuit, allowing the user to be efficient and unseen, just like Tartarus.
 
-uplink-consortium-hardsuit-syndieelite-name = Syndicate Elite Hardsuit
-uplink-consortium-hardsuit-syndieelite-desc = An elite version of the blood-red hardsuit, with improved mobility and fireproofing. Property of Gorlex Marauders.
+uplink-consortium-hardsuit-lambda-elite-name = Lambda Elite Hardsuit "Helios"
+uplink-consortium-hardsuit-lambda-elite-desc = An elite version of the "Spartan" hardsuit, allowing the user to embody The Sun during missions.
 
-uplink-consortium-clothing-outer-hardsuit-juggernaut-name = Cybersun Juggernaut Suit
-uplink-consortium-clothing-outer-hardsuit-juggernaut-desc = Hyper resilient armor made of materials tested in the Tau chromosphere facility. The only thing that's going to be slowing you down is this suit... and tasers.
+uplink-consortium-clothing-outer-hardsuit-juggernaut-name = Lambda Juggernaut Suit "Polyphemus"
+uplink-consortium-clothing-outer-hardsuit-juggernaut-desc = A suit of armor as powerful as the fabled cyclops. Protects everything except the eyes exceptionally well.
 
 uplink-consortium-energy-dome-name = Personal Energy Dome
 uplink-consortium-energy-dome-desc = A personal shield generator that protects the wearer from lasers and bullets but prevents from using ranged weapons himself. Comes with a small power cell.

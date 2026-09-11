@@ -47,3 +47,20 @@
       - id: GrenadeFrag
       - id: GrenadeFrag
       - id: GrenadeFrag
+
+#region Lambda Juggsuit
+- type: entity
+  parent: CrateSyndicate
+  id: CrateLambdaJuggernautBundle
+  name: Lambda "Polyphemus" Juggernaut Bundle
+  suffix: NT, Filled
+  description: Contains everything except a big gun to go postal.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ClothingOuterHardsuitLambdaJuggernaut
+        - id: ClothingHandsGlovesSyndicatePowered #FH
+        - !type:NestedSelector
+          tableId: SyndicateHardsuitExtrasEntityTable

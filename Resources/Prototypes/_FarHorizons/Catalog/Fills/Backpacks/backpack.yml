@@ -1,0 +1,15 @@
+- type: entity
+  parent: ClothingBackpackSyndicateBundle
+  id: ClothingBackpackLambdaRaidBundle
+  name: Lambda "Apollo" bundle
+  description: Contains Lambda Hardliner's "Apollo" raid armor suit.
+  suffix: NT
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingOuterArmorLambdaRaid
+        - id: ClothingHeadHelmetLambdaRaid
+        - id: ClothingMaskGasSyndicate
+        - id: ClothingHandsGlovesCombat
