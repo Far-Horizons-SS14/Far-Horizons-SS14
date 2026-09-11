@@ -231,41 +231,41 @@
         Nitrogen: 0.307706858 # nitrogen
 
 #Empty security
-- type: entity
-  id: JetpackSecurity
-  parent: [JetpackMini, BaseSecurityContraband]
-  name: security mini jetpack
-  description: A compact jetpack utilized by station security when patrolling the station's exterior. Not intended for long range travel, it holds only 1.5 L of gas.
-  suffix: Empty
-  components:
-  - type: Item
-    sprite: Objects/Tanks/Jetpacks/security.rsi
-  - type: Sprite
-    sprite: Objects/Tanks/Jetpacks/security.rsi
-  - type: Clothing
-    sprite: Objects/Tanks/Jetpacks/security.rsi
-  - type: GasTank
-    maxIntegrity: 5 # You may ask why this microbalance? The answer is: Sec jetpacks sprite is based off regular jetpacks, and I'm too lazy to make their sprite data different.
-    integrity: 5
-  - type: MaxPressureVisuals
-    steps: 5
+#- type: entity
+#  id: JetpackSecurity
+#  parent: [JetpackMini, BaseSecurityContraband]
+#  name: security mini jetpack
+#  description: A compact jetpack utilized by station security when patrolling the station's exterior. Not intended for long range travel, it holds only 1.5 L of gas.
+#  suffix: Empty
+#  components:
+#  - type: Item
+#    sprite: Objects/Tanks/Jetpacks/security.rsi
+#  - type: Sprite
+#    sprite: Objects/Tanks/Jetpacks/security.rsi
+#  - type: Clothing
+#    sprite: Objects/Tanks/Jetpacks/security.rsi
+#  - type: GasTank
+#    maxIntegrity: 5 # You may ask why this microbalance? The answer is: Sec jetpacks sprite is based off regular jetpacks, and I'm too lazy to make their sprite data different.
+#    integrity: 5
+#  - type: MaxPressureVisuals
+#    steps: 5
 
 #Filled security
-- type: entity
-  id: JetpackSecurityFilled
-  parent: JetpackSecurity
-  name: security jetpack
-  suffix: Filled
-  components:
-  - type: GasTank
-    releasePressure: 42.6
-    air:
-      # 4 minutes of thrust
-      volume: 1.5
-      temperature: 293.15
-      moles:
-        Oxygen: 0.307706858 # oxygen
-        Nitrogen: 0.307706858 # nitrogen
+#- type: entity
+#  id: JetpackSecurityFilled
+#  parent: JetpackSecurity
+#  name: security jetpack
+#  suffix: Filled
+#  components:
+#  - type: GasTank
+#    releasePressure: 42.6
+#    air:
+#      # 4 minutes of thrust
+#      volume: 1.5
+#      temperature: 293.15
+#      moles:
+#        Oxygen: 0.307706858 # oxygen
+#        Nitrogen: 0.307706858 # nitrogen
 
 #Empty void
 - type: entity

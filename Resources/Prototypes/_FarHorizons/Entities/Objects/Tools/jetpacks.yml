@@ -1,6 +1,6 @@
 
 
-## Syndicate Station
+#region Neosol
 
 # Commandant (Captain)
 
@@ -25,3 +25,80 @@
       moles:
         Oxygen: 1.025689525 # oxygen
         Nitrogen: 1.025689525 # nitrogen
+
+#region Security
+
+- type: entity
+  id: JetpackSecurityNS
+  parent: [JetpackMini, BaseSecurityContraband]
+  name: Security Jetpack
+  description: A compact jetpack utilized by station security when patrolling the station's exterior. Not intended for long range travel, it holds only 1.5 L of gas.
+  suffix: NS, Empty
+  components:
+  - type: Item
+    sprite: Objects/Tanks/Jetpacks/security.rsi
+  - type: Sprite
+    sprite: Objects/Tanks/Jetpacks/security.rsi
+  - type: Clothing
+    sprite: _Objects/Tanks/Jetpacks/security.rsi
+  - type: GasTank
+    maxIntegrity: 5
+    integrity: 5
+  - type: MaxPressureVisuals
+    steps: 5
+
+- type: entity
+  id: JetpackSecurityNSFilled
+  parent: JetpackSecurityNS
+  name: Security Jetpack
+  suffix: NS, Filled
+  components:
+  - type: GasTank
+    releasePressure: 42.6
+    air:
+      # 4 minutes of thrust
+      volume: 1.5
+      temperature: 293.15
+      moles:
+        Oxygen: 0.307706858 # oxygen
+        Nitrogen: 0.307706858 # nitrogen
+
+
+#region NanoTrasen
+
+#region Security
+
+- type: entity
+  id: JetpackSecurity
+  parent: [JetpackMini, BaseSecurityContraband]
+  name: Security Jetpack
+  description: A compact jetpack utilized by station security when patrolling the station's exterior. Not intended for long range travel, it holds only 1.5 L of gas.
+  suffix: NT, Empty
+  components:
+  - type: Item
+    sprite: _FarHorizons/Objects/Tanks/Jetpacks/security.rsi
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Tanks/Jetpacks/security.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Objects/Tanks/Jetpacks/security.rsi
+  - type: GasTank
+    maxIntegrity: 5
+    integrity: 5
+  - type: MaxPressureVisuals
+    steps: 5
+
+- type: entity
+  id: JetpackSecurityFilled
+  parent: JetpackSecurity
+  name: Security Jetpack
+  suffix: NT, Filled
+  components:
+  - type: GasTank
+    releasePressure: 42.6
+    air:
+      # 4 minutes of thrust
+      volume: 1.5
+      temperature: 293.15
+      moles:
+        Oxygen: 0.307706858 # oxygen
+        Nitrogen: 0.307706858 # nitrogen
