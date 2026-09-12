@@ -148,31 +148,31 @@
       cell_slot:
         name: power-cell-slot-component-slot-name-default
 
-- type: entity
-  parent: Holoprojector
-  id: HoloprojectorSecurity
-  name: holobarrier projector
-  description: Creates a solid but fragile holographic barrier.
-  components:
-  - type: HolosignProjector
-    signProto: HolosignSecurity
-    chargeUse: 90
-  - type: Sprite
-    sprite: Objects/Devices/Holoprojectors/security.rsi
-    state: icon
-  - type: Tag
-    tags:
-    - HolofanProjector
-    - SecBeltEquip
-  - type: StaticPrice
-    price: 50
+#- type: entity
+#  parent: Holoprojector
+#  id: HoloprojectorSecurity
+#  name: holobarrier projector
+#  description: Creates a solid but fragile holographic barrier.
+#  components:
+#  - type: HolosignProjector
+#    signProto: HolosignSecurity
+#     chargeUse: 90
+#   - type: Sprite
+#     sprite: Objects/Devices/Holoprojectors/security.rsi
+#     state: icon
+#   - type: Tag
+#     tags:
+#     - HolofanProjector
+#     - SecBeltEquip
+#   - type: StaticPrice
+#     price: 50
 
-- type: entity
-  parent: HoloprojectorSecurity
-  id: HoloprojectorSecurityEmpty
-  suffix: Empty
-  components:
-  - type: ItemSlots
-    slots:
-      cell_slot:
-        name: power-cell-slot-component-slot-name-default
+# - type: entity
+#   parent: HoloprojectorSecurity
+#   id: HoloprojectorSecurityEmpty
+#   suffix: Empty
+#   components:
+#   - type: ItemSlots
+#     slots:
+#       cell_slot:
+#         name: power-cell-slot-component-slot-name-default

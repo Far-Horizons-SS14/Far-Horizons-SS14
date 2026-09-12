@@ -1,0 +1,34 @@
+#region Security Whistle
+
+# NanoTrasen
+- type: entity
+  parent: BaseWhistle
+  id: SecurityWhistle
+  suffix: NT
+  description: The sound of it brings fear.
+  components:
+  - type: Item
+    sprite: _FarHorizons/Objects/Fun/whistles.rsi
+    size: Tiny
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Fun/whistles.rsi
+    state: sec
+  - type: Clothing
+    sprite: _FarHorizons/Objects/Fun/whistles.rsi
+    equippedPrefix: sec
+  - type: Whistle
+    distance: 5
+
+# NeoSol
+- type: entity
+  parent: BaseWhistle
+  id: SecurityWhistleNS
+  suffix: NS
+  description: The sound of it brings fear.
+  components:
+  - type: Sprite
+    state: sec
+  - type: Clothing
+    equippedPrefix: sec
+  - type: Whistle
+    distance: 5
