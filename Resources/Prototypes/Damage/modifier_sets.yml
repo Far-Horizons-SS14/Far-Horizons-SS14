@@ -215,10 +215,11 @@
 #    Shock: 1.2 #FH plants dont get fucked up by shock tho?.. who came up with this? they actually have a higher tolerance
 
 - type: damageModifierSet
-  id: Moth # Slightly worse at everything but cold
+  id: Moth # Slightly worse at everything but cold and rads
   coefficients:
     Cold: 0.7
     Heat: 1.2
+    Radiation: 0.5 # FH
 
 - type: damageModifierSet
   id: Vox
