@@ -1,0 +1,44 @@
+- type: entity
+  abstract: true
+  parent: BaseElectronics
+  id: WeaponEnergyTurretStationControlPanelElectronicsBaseNS 
+  name: sentry turret control panel electronics
+  description: An electronics board used in a sentry turret control panel.
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/module.rsi
+    state: security
+  - type: ElectronicsBoard
+    prototype: WeaponEnergyTurretSecurityControlPanelNS
+  - type: Tag
+    tags:
+    - TurretControlElectronics
+    - RamChip #Protogen joke, makes them able to eat them. - FH
+
+- type: entity
+  parent: WeaponEnergyTurretStationControlPanelElectronicsBaseNS
+  id: WeaponEnergyTurretSecurityControlPanelElectronicsNS
+  suffix: Security
+
+- type: entity
+  parent: WeaponEnergyTurretStationControlPanelElectronicsBaseNS
+  id: WeaponEnergyTurretAIControlPanelElectronicsNS
+  suffix: AI
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/module.rsi
+    state: science
+  - type: ElectronicsBoard
+    prototype: WeaponEnergyTurretAIControlPanelNS
+    
+- type: entity
+  parent: WeaponEnergyTurretStationControlPanelElectronicsBaseNS
+  id: WeaponEnergyTurretCommandControlPanelElectronicsNS
+  suffix: Command
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/module.rsi
+    state: command
+  - type: ElectronicsBoard
+    prototype: WeaponEnergyTurretCommandControlPanelN
+

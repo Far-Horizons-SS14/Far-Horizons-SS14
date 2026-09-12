@@ -1,55 +1,7 @@
 - type: entity
-  id: WeaponEnergyTurretControlPanelFrame
-  name: sentry turret control panel assembly
-  description: An incomplete wall-mounted assembly for a sentry turret control panel.
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Sprite
-    noRot: false
-    drawdepth: SmallObjects
-    sprite: Structures/Wallmounts/turret_controls.rsi
-    layers:
-    - state: base
-  - type: Damageable
-    damageContainer: StructuralInorganic
-    damageModifierSet: StructuralMetallic
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 200
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalGlassBreak
-          params:
-            volume: -4
-      - !type:ChangeConstructionNodeBehavior
-        node: machineFrame
-      - !type:DoActsBehavior
-        acts: [ "Destruction" ]
-  - type: Transform
-    anchored: true
-  - type: WallMount
-  - type: Clickable
-  - type: InteractionOutline
-  - type: ContainerContainer
-    containers:
-      board: !type:Container
-  - type: Construction
-    graph: WeaponEnergyTurretControlPanel
-    node: frame
-    containers:
-    - board
-  placement:
-    mode: SnapgridCenter
-    snap:
-    - Wallmount
-
-- type: entity
   abstract: true
   parent: WeaponEnergyTurretControlPanelFrame
-  id: WeaponEnergyTurretStationControlPanelBase
+  id: WeaponEnergyTurretStationControlPanelBaseNS
   name: sentry turret control panel
   description: A wall-mounted interface for remotely configuring the operational parameters of linked sentry turrets.
   components:
@@ -85,59 +37,58 @@
   - type: DeployableTurretController
     accessGroups:
     - Cargo
-    - Command
-    - Engineering
-    - General
-    - Medical
-    - Research
-    - Security
-    - Service
-    - Silicon
+    - Executive
+    - EngineeringNS
+    - GeneralNS
+    - MedicalNS
+    - ResearchNS
+    - SecurityNS
+    - ServiceNS
+    - SiliconNS
     accessLevels:
-    - Armory
-    - Atmospherics
-    - Bar
-    - BasicSilicon
-    - Borg
-    - Brig
-    - Detective
-    - Captain
-    - Cargo
-    - Chapel
-    - Chemistry
-    - ChiefEngineer
-    - ChiefMedicalOfficer
-    - Command
-    - Cryogenics
-    - Engineering
-    - External
-    - HeadOfPersonnel
-    - HeadOfSecurity
-    - Hydroponics
-    - Janitor
-    - Kitchen
-    - Lawyer
-    - Maintenance
-    - Medical
-    - Quartermaster
-    - Research
-    - ResearchDirector
-    - Salvage
-    - Security
-    - Service
-    - Theatre
-    #FH Start
     - SalvageLead
-    - Surgery
-    - Cadet
-    - BlueShield
-    - Ntrep
+    - ArmoryNS
+    - AtmosphericsNS
+    - BarNS
+    - BasicSiliconNS
+    - BorgNS
+    - BrigNS
+    - DetectiveNS
+    - Commandant
+    - Cargo
+    - ChapelNS
+    - ChemistryNS
+    - Foreman
+    - MedicalDirector
+    - Executive
+    - CryogenicsNS
+    - EngineeringNS
+    - ExternalNS
+    - PersonnelManager
+    - Marshal
+    - HydroponicsNS
+    - JanitorNS
+    - KitchenNS
+    - LawyerNS
+    - MaintenanceNS
+    - MedicalNS
+    - Quartermaster
+    - ResearchNS
+    - EpistemicsProvost
+    - Salvage
+    - SecurityNS
+    - ServiceNS
+    - TheatreNS
+    - SalvageLead
+    - SurgeryNS
+    - CadetNS
+    - RedSword
+    - NSRep
     - Magistrate
-    - Brigmedic
-    - Robotics
-    - Paramedic
+    - BrigmedicNS
+    - RoboticsNS
+    - ParamedicNS
     - Mining
-    #FH End
   - type: DeviceList
     isAllowList: true
   - type: DeviceNetwork
@@ -174,29 +125,29 @@
   - type: ContainerFill
     containers:
       board:
-      - WeaponEnergyTurretStationControlPanelElectronics
+      - WeaponEnergyTurretStationControlPanelElectronicsNS
   - type: Construction
     graph: WeaponEnergyTurretControlPanel
     node: finish
 
 - type: entity
-  parent: WeaponEnergyTurretStationControlPanelBase
-  id: WeaponEnergyTurretAIControlPanel
-  suffix: AI # Starlight edit
+  parent: WeaponEnergyTurretStationControlPanelBaseNS
+  id: WeaponEnergyTurretAIControlPanelNS
+  suffix: NS, AI # Starlight edit
   components:
   - type: AccessReader
-    access: [["StationAi"], ["ResearchDirector"]]
+    access: [["StationAiNS"], ["EpistemicsProvost"]]
   - type: ContainerFill
     containers:
       board:
-      - WeaponEnergyTurretAIControlPanelElectronics
+      - WeaponEnergyTurretAIControlPanelElectronicsNS
   - type: DeviceNetwork
     receiveFrequencyId: TurretAI
     transmitFrequencyId: TurretControlAI
   - type: TurretTargetSettings
     exemptAccessLevels:
-    - BasicSilicon
-    - Borg
+    - BasicSiliconNS
+    - BorgNS
   # Starlight edit Start: AI turret controller All Access
   # - type: DeployableTurretController
   #   accessGroups:
@@ -207,35 +158,35 @@
   # Starligh edit End
 
 - type: entity
-  parent: WeaponEnergyTurretStationControlPanelBase
-  id: WeaponEnergyTurretSecurityControlPanel
-  suffix: Security
+  parent: WeaponEnergyTurretStationControlPanelBaseNS
+  id: WeaponEnergyTurretSecurityControlPanelNS
+  suffix: NS, Security
   components:
   - type: AccessReader
-    access: [["StationAi"], ["Security"]]
+    access: [["StationAiNS"], ["SecurityNS"]]
   - type: ContainerFill
     containers:
       board:
-      - WeaponEnergyTurretSecurityControlPanelElectronics
+      - WeaponEnergyTurretSecurityControlPanelElectronicsNS
   - type: TurretTargetSettings
     exemptAccessLevels:
-    - Security
-    - BasicSilicon
-    - Borg
+    - SecurityNS
+    - BasicSiliconNS
+    - BorgNS
 
 - type: entity
-  parent: WeaponEnergyTurretStationControlPanelBase
-  id: WeaponEnergyTurretCommandControlPanel
-  suffix: Command
+  parent: WeaponEnergyTurretStationControlPanelBaseNS
+  id: WeaponEnergyTurretCommandControlPanelNS
+  suffix: NS, Command
   components:
   - type: AccessReader
-    access: [["StationAi"], ["Command"]]
+    access: [["StationAiNS"], ["Executive"]]
   - type: ContainerFill
     containers:
       board:
-      - WeaponEnergyTurretCommandControlPanelElectronics
+      - WeaponEnergyTurretCommandControlPanelElectronicsNS
   - type: TurretTargetSettings
     exemptAccessLevels:
-    - Command
-    - BasicSilicon
-    - Borg
+    - Executive
+    - BasicSiliconNS
+    - BorgNS
