@@ -77,7 +77,7 @@ public abstract partial class SharedPowerArmorSystem : EntitySystem
         SubscribeLocalEvent<PowerArmorPartComponent, EntGotInsertedIntoContainerMessage>(OnPartInserted);
         SubscribeLocalEvent<PowerArmorPartComponent, EntGotRemovedFromContainerMessage>(OnPartEjected);
         SubscribeLocalEvent<PowerArmorPartComponent, BreakageEventArgs>(OnPartBroken);
-        SubscribeLocalEvent<PowerArmorPartComponent, RepairedEvent>(OnRepair);
+        SubscribeLocalEvent<PowerArmorPartComponent, RepairDoAfterEvent>(OnRepair);
         SubscribeLocalEvent<PowerArmorPartComponent, AfterInteractEvent>(OnInteractUsing);
 
         SubscribeLocalEvent<PowerArmorModuleComponent, EntGotInsertedIntoContainerMessage>(OnModuleInstalled);
@@ -452,21 +452,24 @@ public abstract partial class SharedPowerArmorSystem : EntitySystem
         _movement.RefreshMovementSpeedModifiers(paComp.Wearer.Value);
     }
 
-    private void OnRepair(Entity<PowerArmorPartComponent> ent, ref RepairedEvent args)
+    private void OnRepair(Entity<PowerArmorPartComponent> ent, ref RepairDoAfterEvent args)
     {
-        if(!_container.TryGetContainingContainer(ent.Owner, out var container) 
-        || !TryComp<PowerArmorComponent>(container.Owner, out var paComp)) return;
-
-        paComp.TotalSpeedModifier = (float) Math.Round(paComp.TotalSpeedModifier - ent.Comp.SpeedModifier, 2);
+        if(args.Cancelled) return;
         
-        _appearance.SetData(ent.Owner, PowerArmorPartVisuals.PowerArmor, GetNetEntity(container.Owner));
-        _appearance.SetData(ent.Owner, PowerArmorPartVisuals.Visible, true);
+        if(_container.TryGetContainingContainer(ent.Owner, out var container) 
+        && TryComp<PowerArmorComponent>(container.Owner, out var paComp))
+        {
+            paComp.TotalSpeedModifier = (float) Math.Round(paComp.TotalSpeedModifier - ent.Comp.SpeedModifier, 2);
+        
+            _appearance.SetData(ent.Owner, PowerArmorPartVisuals.PowerArmor, GetNetEntity(container.Owner));
+            _appearance.SetData(ent.Owner, PowerArmorPartVisuals.Visible, true);
+
+            if(paComp.Wearer != null) 
+                _movement.RefreshMovementSpeedModifiers(paComp.Wearer.Value);
+        }
+
         ent.Comp.isBroken = false;
         Dirty(ent);
-
-        if(paComp.Wearer == null) return;
-
-        _movement.RefreshMovementSpeedModifiers(paComp.Wearer.Value);
     }
 
     private void OnInteractUsing(Entity<PowerArmorPartComponent> ent, ref AfterInteractEvent args)

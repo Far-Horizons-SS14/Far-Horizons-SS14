@@ -13,10 +13,6 @@
     partType: Head
   - type: Damageable
     damageContainer: LimbDamageContainer
-  - type: Repairable
-    damageValue: -15 
-    doAfterDelay: 1
-    fuelCost: 0.5
     
 
 #region Base Parts
@@ -144,6 +140,10 @@
           collection: MetalBreak
       - !type:DoActsBehavior
         acts: ["Breakage"]
+  - type: Repairable
+    damageValue: -20 
+    doAfterDelay: 1
+    fuelCost: 5.0
 
 #region Head
 
@@ -163,6 +163,10 @@
           collection: MetalBreak
       - !type:DoActsBehavior
         acts: ["Breakage"]
+  - type: Repairable
+    damageValue: -20 
+    doAfterDelay: 1
+    fuelCost: 5.0
 
 #region Chest
 
@@ -182,6 +186,10 @@
           collection: MetalBreak
       - !type:DoActsBehavior
         acts: ["Breakage"]
+  - type: Repairable
+    damageValue: -40 
+    doAfterDelay: 1
+    fuelCost: 5.0
 
 #region Arms
 
