@@ -1,5 +1,12 @@
 #region Biological
 
+- type: damageModifierSet # moved here since it was in the lagomorph species file for some reason
+  id: Lagomorph
+  coefficients:
+    Blunt: 0.9
+    Cold: 0.75
+    Heat: 1.25
+
 - type: damageModifierSet
   id: Protogen # Weaker IPC values, on account of being half-robot
   coefficients:
@@ -24,7 +31,18 @@
     Heat: 1.2
     Cold: 0.5
 
-# Thaven, despite having a reference to it.. Doesn't actually have a damage modifier? Ingame guidebook says they have one. Very odd.
+- type: damageModifierSet
+  id: Thaven
+  coefficients:
+    Blunt: 1.1
+    Slash: 1.1
+    Pierce: 1.1
+    Genetic: 1.1
+    Radiation: 1.2
+    Heat: 0.9
+    Cold: 0.9
+    Poison: 0.9
+
 - type: damageModifierSet
   id: ProtoThaven 
   coefficients:
