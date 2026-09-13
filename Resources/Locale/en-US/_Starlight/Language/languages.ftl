@@ -23,7 +23,6 @@ language-Canilunzt-name = Canilunzt
 language-Canilunzt-description = The guttural language spoken and utilized by the inhabitants of Vazzend system, composed of growls, barks, yaps, and heavy utilization of ears and tail movements. Vulpkanin speak this language with ease.
 
 language-Moffic-name = Moffic
-language-Moffic-description = The language of the Mothpeople borders on complete unintelligibility.
 
 language-Nekomimetic-name = Nekomimetic
 language-Nekomimetic-description = To the casual observer, this language is an incomprehensible mess of broken Japanese. To the felionoid, it's somehow comprehensible.
