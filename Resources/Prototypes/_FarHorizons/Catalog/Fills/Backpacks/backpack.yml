@@ -1,0 +1,23 @@
+- type: entity
+  parent: ClothingBackpackLambda
+  id: ClothingBackpackLambdaBundle
+  abstract: true
+  components:
+  - type: Tag
+    tags: [] # ignore "WhitelistChameleon" tag
+
+- type: entity
+  parent: ClothingBackpackLambdaBundle
+  id: ClothingBackpackLambdaRaidBundle
+  name: Lambda "Apollo" bundle
+  description: Contains Lambda Hardliner's "Apollo" raid armor suit.
+  suffix: NT
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingOuterArmorLambdaRaid
+        - id: ClothingHeadHelmetLambdaRaid
+        - id: ClothingMaskGasSyndicate
+        - id: ClothingHandsGlovesCombat

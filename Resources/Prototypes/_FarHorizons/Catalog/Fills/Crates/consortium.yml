@@ -47,3 +47,21 @@
       - id: GrenadeFrag
       - id: GrenadeFrag
       - id: GrenadeFrag
+
+#region Lambda Juggsuit
+- type: entity
+  parent: CrateConsortium
+  id: CrateLambdaJuggernautBundle
+  name: Lambda "Polyphemus" Juggernaut Bundle
+  suffix: NT, Filled
+  description: Contains everything except a big gun to go postal.
+  components:
+  - type: StorageFill
+    contents:
+      - id: ClothingOuterHardsuitLambdaJuggernaut
+      - id: ClothingHandsGlovesSyndicatePowered
+      - id: ClothingMaskGasSyndicate
+      - id: ClothingHandsGlovesCombat
+      - id: DoubleEmergencyOxygenTankFilled
+      - id: DoubleEmergencyNitrogenTankFilled
+      - id: EmergencyCoolingUnit

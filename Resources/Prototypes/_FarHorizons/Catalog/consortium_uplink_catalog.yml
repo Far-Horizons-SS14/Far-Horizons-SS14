@@ -1812,11 +1812,11 @@
   - ConsortiumUplinkWearables
 
 - type: listing
-  id: ConsortiumUplinkHardsuitSyndie
-  name: uplink-consortium-hardsuit-syndie-name
-  description: uplink-consortium-hardsuit-syndie-desc
-  icon: { sprite: /Textures/_FarHorizons/Clothing/OuterClothing/Hardsuits/syndicate.rsi, state: icon }
-  productEntity: ClothingBackpackDuffelSyndicateHardsuitBundle
+  id: ConsortiumUplinkLambdaHardsuit
+  name: uplink-consortium-hardsuit-lambda-name
+  description: uplink-consortium-hardsuit-lambda-desc
+  icon: { sprite: /Textures/_FarHorizons/Clothing/OuterClothing/Hardsuits/hardliner.rsi, state: icon }
+  productEntity: ClothingBackpackDuffelLambdaHardsuitBundle
   discountCategory: veryRareDiscounts
   discountDownTo:
     Refinedbluespacecrystal: 4
@@ -1826,11 +1826,25 @@
   - ConsortiumUplinkWearables
 
 - type: listing
-  id: ConsortiumUplinkClothingOuterArmorRaid
-  name: uplink-consortium-syndie-raid-name
-  description: uplink-consortium-syndie-raid-desc
-  icon: { sprite: /Textures/Clothing/OuterClothing/Armor/syndie-raid.rsi, state: icon }
-  productEntity: ClothingBackpackSyndicateRaidBundle
+  id: UplinkHardsuitLambdaInfiltration
+  name: uplink-consortium-hardsuit-infiltration-name
+  description: uplink-consortium-hardsuit-infiltration-desc
+  icon: { sprite: /Textures/_FarHorizons/Clothing/OuterClothing/Hardsuits/hardliner_infiltration.rsi, state: icon }
+  productEntity: ClothingBackpackDuffelLambdaInfiltration
+  discountCategory: veryRareDiscounts
+  discountDownTo:
+    Refinedbluespacecrystal: 5
+  cost:
+    Refinedbluespacecrystal: 10
+  categories:
+  - ConsortiumUplinkWearables
+
+- type: listing
+  id: ConsortiumUplinkClothingOuterArmorLambdaRaid
+  name: uplink-consortium-lambda-raid-name
+  description: uplink-consortium-lambda-raid-desc
+  icon: { sprite: /Textures/_FarHorizons/Clothing/OuterClothing/Armor/hardliner_raid.rsi, state: icon }
+  productEntity: ClothingBackpackLambdaRaidBundle
   cost:
     Refinedbluespacecrystal: 10
   categories:
@@ -1842,27 +1856,22 @@
       - NukeOpsUplink
 
 - type: listing
-  id: ConsortiumUplinkHardsuitSyndieElite
-  name: uplink-consortium-hardsuit-syndieelite-name
-  description: uplink-consortium-hardsuit-syndieelite-desc
-  icon: { sprite: /Textures/Clothing/OuterClothing/Hardsuits/syndieelite.rsi, state: icon }
-  productEntity: ClothingBackpackDuffelSyndicateEliteHardsuitBundle
+  id: ConsortiumUplinkHardsuitLambdaElite
+  name: uplink-consortium-hardsuit-lambda-elite-name
+  description: uplink-consortium-hardsuit-lambda-elite-desc
+  icon: { sprite: /Textures/_FarHorizons/Clothing/OuterClothing/Hardsuits/hardliner_elite.rsi, state: icon }
+  productEntity: ClothingBackpackDuffelLambdaEliteHardsuitBundle
   cost:
     Refinedbluespacecrystal: 10 #Starlight edit
   categories:
   - ConsortiumUplinkWearables
-#  conditions: #Starlight edit, why cant traitors grab this?... they get elite web vest as is
-#  - !type:StoreWhitelistCondition
-#    whitelist:
-#      tags:
-#      - NukeOpsUplink
 
 - type: listing
   id: ConsortiumUplinkClothingOuterHardsuitJuggernaut
   name: uplink-consortium-clothing-outer-hardsuit-juggernaut-name
   description: uplink-consortium-clothing-outer-hardsuit-juggernaut-desc
-  icon: { sprite: /Textures/Structures/Storage/Crates/syndicate.rsi, state: icon }
-  productEntity: CrateCybersunJuggernautBundle
+  icon: { sprite: /Textures/_FarHorizons/Clothing/OuterClothing/Hardsuits/hardliner_heavy.rsi, state: icon }
+  productEntity: CrateLambdaJuggernautBundle
   cost:
     Refinedbluespacecrystal: 12
   categories:

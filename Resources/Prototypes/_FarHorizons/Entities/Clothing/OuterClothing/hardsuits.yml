@@ -319,6 +319,461 @@
     - IPCExternalCooling # Far Horizons
     - HardsuitSpatio #can now be used to make goliath hardsuit
 
+
+#region Lambda
+
+#region Lambda base hardsuit
+- type: entity
+  parent: [ ClothingOuterHardsuitBase, BaseSyndicateContraband ]
+  id: ClothingOuterHardsuitLambda
+  name: Lambda Hardsuit "Spartan"
+  suffix: NT 
+  description: The signiture hardsuit of the Lambda Hardliners. The perfect choice to fight against insurmountable odds.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/hardliner.rsi
+    layers: 
+      - state: icon
+  - type: Item
+    size: Huge
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/hardliner.rsi
+    clothingVisuals:
+      outerClothing:
+        - state: equipped-OUTERCLOTHING
+      outerClothing-vox:
+        - state: equipped-OUTERCLOTHING-vox
+      outerClothing-vulpkanin:
+        - state: equipped-OUTERCLOTHING-vulpkanin
+      outerClothing-resomi:
+        - state: equipped-OUTERCLOTHING-resomi
+      outerClothing-avali:
+        - state: equipped-OUTERCLOTHING-avali
+  - type: PressureProtection
+    highPressureMultiplier: 0.05
+    lowPressureMultiplier: 1000
+  - type: ExplosionResistance
+    damageCoefficient: 0.5
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      flatReductions:
+        Piercing: 5
+        Heat: 4
+      coefficients:
+        Blunt: 0.5
+        Slash: 0.5
+        Piercing: 0.5
+        Heat: 0.5
+        Radiation: 0.5
+        Caustic: 0.5
+    staminaModifier: 0.3
+    ignoreKnockdown: true
+  - type: LimbArmor 
+    limbs:
+      ArmRight: {}
+      ArmLeft: {}
+      HandRight: {}
+      HandLeft: {}
+      LegRight: {}
+      LegLeft: {}
+      FootRight: {}
+      FootLeft: {}
+  - type: ClothingSpeedModifier
+    walkModifier: 0.9
+    sprintModifier: 0.9
+    requireActivated: false
+  - type: HeldSpeedModifier
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: TechMarch
+      params:
+        pitch: 0.9
+        variation: 0.09
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitLambda
+  - type: Tag
+    tags:
+    - MonkeyWearable
+    - Hardsuit
+    - WhitelistChameleon
+    - ScurretWearable
+    - IPCExternalCooling
+  - type: StaticPrice
+    price: 5000
+  - type: SpaceRescuePingSender
+    hidden: true
+
+#region Lambda Infiltration Suit
+- type: entity
+  parent: [ClothingOuterHardsuitBase, AllowSuitStorageClothing, BaseToggleClothing, BaseSyndicateContraband]
+  id: ClothingOuterHardsuitLambdaInfiltration
+  name: Lambda Infiltration Hardsuit "Hades"
+  suffix: NT
+  description: A specialized hardsuit utilizing novel metamaterials, rendering the user invisible and unseen, much like most of Tartarus.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/hardliner_infiltration.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/hardliner_infiltration.rsi
+    clothingVisuals:
+      outerClothing:
+        - state: equipped-OUTERCLOTHING
+      outerClothing-vox:
+        - state: equipped-OUTERCLOTHING-vox
+      outerClothing-resomi:
+        - state: equipped-OUTERCLOTHING-resomi
+      outerClothing-avali:
+        - state: equipped-OUTERCLOTHING-avali
+  - type: Item
+    size: Huge
+  - type: PressureProtection
+    highPressureMultiplier: 0.525
+    lowPressureMultiplier: 10000
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      flatReductions:
+        Piercing: 4
+        Heat: 3
+      coefficients:
+        Blunt: 0.6
+        Slash: 0.6
+        Piercing: 0.6
+        Heat: 0.6
+        Radiation: 0.6
+        Caustic: 0.6
+    staminaModifier: 0.3
+  - type: LimbArmor
+    limbs:
+      ArmRight: {}
+      ArmLeft: {}
+      HandRight: {}
+      HandLeft: {}
+      LegRight: {}
+      LegLeft: {}
+      FootRight: {}
+      FootLeft: {}
+  - type: ClothingSpeedModifier
+    walkModifier: 0.9
+    sprintModifier: 0.9
+    requireActivated: false
+  - type: ExplosionResistance
+    damageCoefficient: 0.5
+  - type: ToggleClothing
+    action: ActionTogglePhaseCloak
+    disableOnUnequip: true
+  - type: ComponentToggler
+    parent: true
+    components:
+    - type: Stealth
+      minVisibility: 0.15
+      maxVisibility: 0.15
+      lastVisibility: 0.15
+  - type: PowerCellDraw
+    drawRate: 14 # roughly 200 seconds on the default cell
+  - type: ToggleCellDraw
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+    fitsInCharger: false
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot
+      toggleable-clothing: !type:ContainerSlot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellUltra
+        disableEject: true
+        whitelist:
+          tags:
+            - PowerCell
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitLambdaInfiltration
+  - type: SpaceRescuePingSender # Far Horizons
+    hidden: true
+
+#region Lambda Elite Hardsuit
+- type: entity
+  parent: [ClothingOuterHardsuitBase, BaseSyndicateContraband]
+  id: ClothingOuterHardsuitLambdaElite
+  name: Lambda Elite Hardsuit "Helios"
+  suffix: NT
+  description: A specialized version of the "Spartan" hardsuit, capable of surviving even a star's heat.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/hardliner_elite.rsi
+    layers:
+      - state: icon
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/hardliner_elite.rsi
+    clothingVisuals:
+      outerClothing:
+        - state: equipped-OUTERCLOTHING
+      outerClothing-vox:
+        - state: equipped-OUTERCLOTHING-vox
+      outerClothing-resomi:
+        - state: equipped-OUTERCLOTHING-resomi
+      outerClothing-avali:
+        - state: equipped-OUTERCLOTHING-avali
+    equipSound: /Audio/Mecha/mechmove03.ogg
+    unequipSound: /Audio/Mecha/mechmove03.ogg
+  - type: PressureProtection
+    highPressureMultiplier: 0.02
+    lowPressureMultiplier: 1000
+  - type: TemperatureProtection
+    heatingCoefficient: 0.001
+    coolingCoefficient: 0.001
+  - type: ExplosionResistance
+    damageCoefficient: 0.2
+  - type: FireProtection
+    reduction: 0.8
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      flatReductions:
+        Piercing: 3
+        Heat: 4
+      coefficients:
+        Blunt: 0.6
+        Slash: 0.6
+        Piercing: 0.6
+        Heat: 0.1
+        Radiation: 0.01
+        Caustic: 0.5
+    staminaModifier: 0.2
+    ignoreKnockdown: true
+  - type: LimbArmor
+    limbs:
+      ArmRight: {}
+      ArmLeft: {}
+      HandRight: {}
+      HandLeft: {}
+      LegRight: {}
+      LegLeft: {}
+      FootRight: {}
+      FootLeft: {}
+  - type: Item
+    size: Huge
+  - type: ClothingSpeedModifier
+    walkModifier: 0.9
+    sprintModifier: 0.9
+    requireActivated: false
+  - type: HeldSpeedModifier
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: TechMarch
+      params:
+        pitch: 0.8
+        variation: 0.09
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitLambdaElite
+  - type: Tag
+    tags:
+    - Hardsuit
+    - WhitelistChameleon
+    - IPCExternalCooling
+  - type: SpaceRescuePingSender
+    hidden: true
+
+#region Lambda Medic Hardsuit
+- type: entity
+  parent: [ClothingOuterHardsuitSyndie, BaseSyndicateContraband]
+  id: ClothingOuterHardsuitLambdaMedic
+  name: Lambda Medic Hardsuit "Pheonix"
+  suffix: NT
+  description: An armored hardsuit, designed with combat medics in mind. With it, the wearer will be able to ensure the other operatives rise from the ashes again.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/hardliner_medical.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/hardliner_medical.rsi
+    clothingVisuals:
+      outerClothing:
+        - state: equipped-OUTERCLOTHING
+      outerClothing-vox:
+        - state: equipped-OUTERCLOTHING-vox
+      outerClothing-resomi:
+        - state: equipped-OUTERCLOTHING-resomi
+      outerClothing-avali:
+        - state: equipped-OUTERCLOTHING-avali
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitLambdaMedic
+  - type: ZombificationResistance
+    zombificationResistanceCoefficient: 0.75
+  - type: Tag
+    tags:
+    - Hardsuit
+    - WhitelistChameleon
+    - IPCExternalCooling
+
+#region Lambda Juggernaut Hardsuit
+- type: entity
+  parent: [ClothingOuterHardsuitBase, BaseSyndicateContraband]
+  id: ClothingOuterHardsuitLambdaJuggernaut
+  name: Lambda Juggernaut Suit "Polyphemus"
+  suffix: NT
+  description: A model of the Heavy Suit, built from the ground up to be lighter but just as protective. Extremely protective, though the visor has been known to shatter if stabbed in just the right way.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/hardliner_heavy.rsi
+    layers:
+      - state: icon
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/hardliner_heavy.rsi
+    equipSound: /Audio/Mecha/mechmove03.ogg
+    unequipSound: /Audio/Mecha/mechmove03.ogg
+    equipDelay: 3 
+    unequipDelay: 3
+    clothingVisuals:
+      outerClothing:
+        - state: equipped-OUTERCLOTHING
+      outerClothing-vox:
+        - state: equipped-OUTERCLOTHING-vox
+      outerClothing-resomi:
+        - state: equipped-OUTERCLOTHING-resomi
+      outerClothing-avali:
+        - state: equipped-OUTERCLOTHING-avali
+  - type: PressureProtection
+    highPressureMultiplier: 0.2
+    lowPressureMultiplier: 1000
+  - type: ExplosionResistance
+    damageCoefficient: 0.3
+  - type: ZombificationResistance
+    zombificationResistanceCoefficient: 0 # Immune
+  - type: Armor
+    modifiers:
+      flatReductions: 
+        Piercing: 5
+        Heat: 4
+      coefficients:
+        Blunt: 0.2
+        Slash: 0.2
+        Piercing: 0.2
+        Heat: 0.2
+        Radiation: 0.2
+        Caustic: 0.2
+    staminaModifier: 0.1
+    ignoreKnockdown: true
+  - type: LimbArmor
+    limbs:
+      ArmRight: {}
+      ArmLeft: {}
+      HandRight: {}
+      HandLeft: {}
+      LegRight: {}
+      LegLeft: {}
+      FootRight: {}
+      FootLeft: {}
+  - type: ClothingSpeedModifier
+    walkModifier: 0.65
+    sprintModifier: 0.65
+    requireActivated: false
+  - type: HeldSpeedModifier
+  - type: FootstepModifier 
+    footstepSoundCollection:
+      path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
+      params:
+        volume: -6
+        pitch: 0.7
+        variation: 0.025
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitLambdaJuggernaut
+  - type: Tag
+    tags:
+    - MonkeyWearable
+    - Hardsuit
+    - WhitelistChameleon
+    - IPCExternalCooling
+    - RequiredForLmgTag
+  - type: SpaceRescuePingSender
+    hidden: true
+
+#Lambda Commander Hardsuit
+- type: entity
+  parent: [ClothingOuterHardsuitBase, BaseSyndicateContraband]
+  id: ClothingOuterHardsuitLambdaCommander
+  name: Lambda Commander Hardsuit "Ares"
+  suffix: NT
+  description: A bulked up version of the "Spartan" hardsuit, allowing the user to prove they came to wage war.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/hardliner_commander.rsi
+    layers:
+      - state: icon
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/hardliner_commander.rsi
+    clothingVisuals:
+      outerClothing:
+        - state: equipped-OUTERCLOTHING
+      outerClothing-vox:
+        - state: equipped-OUTERCLOTHING-vox
+      outerClothing-vulpkanin:
+        - state: equipped-OUTERCLOTHING-vulpkanin
+      outerClothing-resomi:
+        - state: equipped-OUTERCLOTHING-resomi
+      outerClothing-avali:
+        - state: equipped-OUTERCLOTHING-avali
+    equipSound: /Audio/Mecha/mechmove03.ogg 
+    unequipSound: /Audio/Mecha/mechmove03.ogg 
+  - type: PressureProtection
+    highPressureMultiplier: 0.05
+    lowPressureMultiplier: 1000
+  - type: ExplosionResistance
+    damageCoefficient: 0.5
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      flatReductions:
+        Piercing: 5
+        Heat: 4
+      coefficients:
+        Blunt: 0.4
+        Slash: 0.4
+        Piercing: 0.3
+        Heat: 0.5
+        Radiation: 0.25
+        Caustic: 0.4
+    staminaModifier: 0.1
+    ignoreKnockdown: true
+  - type: LimbArmor
+    limbs:
+      ArmRight: {}
+      ArmLeft: {}
+      HandRight: {}
+      HandLeft: {}
+      LegRight: {}
+      LegLeft: {}
+      FootRight: {}
+      FootLeft: {}
+  - type: ClothingSpeedModifier
+    walkModifier: 0.95
+    sprintModifier: 0.95
+    requireActivated: false
+  - type: HeldSpeedModifier
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: TechMarch
+      params:
+        pitch: 0.9
+        variation: 0.02
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitLambdaCommander
+  - type: Tag
+    tags:
+    - Hardsuit
+    - WhitelistChameleon
+    - IPCExternalCooling 
+  - type: SpaceRescuePingSender 
+    hidden: true
+
+
+
 #region ## NeoSol ##
 
 

@@ -90,9 +90,34 @@
   - type: Sprite
     sprite: _FarHorizons/Clothing/Back/Duffels/corpsman.rsi
 
+
+#region Lambda
+
+- type: entity
+  parent: [ClothingBackpackDuffel, BaseSyndicateContraband]
+  id: ClothingBackpackDuffelLambda
+  name: Lambda Duffel Bag
+  description: A large duffel bag for holding various traitor goods.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Back/Duffels/consortium.rsi
+  - type: ExplosionResistance
+    damageCoefficient: 0.1
+  - type: Storage
+    grid:
+    - 0,0,8,4
+
+- type: entity
+  parent: [ ClothingBackpackDuffelLambda, BaseSyndicateContraband ]
+  id: ClothingBackpackDuffelLambdaBundle
+  abstract: true
+  components:
+  - type: Tag
+    tags: [] # ignore "WhitelistChameleon" tag
+
 #region ## NeoSol ##
 
-
+ 
 
 
 
