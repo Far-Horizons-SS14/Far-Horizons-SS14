@@ -37,12 +37,12 @@
     steps: 5
     zeroVisible: true
   - type: BatteryAmmoProvider
-    proto: DisablerBolt
-    fireCost: 100
+    proto: TaserProjectileRifle
+    fireCost: 500
   - type: BatteryWeaponFireModes
     fireModes:
-    - proto: DisablerBolt
-      fireCost: 100
+    - proto: TaserProjectileRifle
+      fireCost: 500
       magState: disable
       visualState: disable-unshaded
     - proto: RedLaserBeam
@@ -221,12 +221,12 @@
     maxCharge: 1500
     startingCharge: 1500
   - type: BatteryAmmoProvider
-    proto: BoltTaserRifle
-    fireCost: 125
+    proto: TaserProjectileRifle
+    fireCost: 500
   - type: BatteryWeaponFireModes #TODO - Make wielded inhands configurable. The sprites are there in the file, but cannot be used :/
     fireModes:
-    - proto: BoltTaserRifle
-      fireCost: 125 # 12
+    - proto: TaserProjectileRifle
+      fireCost: 500 
       visualState: stun
       magState: stun
       heldPrefix: stun
@@ -266,6 +266,12 @@
   - type: Tag
     tags:
     - Dominator
+  - type: Tazer
+    damagePerSecond:
+      types:
+        Shock: 3.5
+    maxDistance: 10
+    staminaDrainRate: 10
 
 - type: entity
   name: Dominator Pistol
@@ -299,11 +305,11 @@
   - type: AccessReader
     access: [["Security"]]
   - type: BatteryAmmoProvider
-    proto: BoltTaserFH
+    proto: TaserProjectile
     fireCost: 500
   - type: BatteryWeaponFireModes
     fireModes:
-    - proto: BoltTaserFH
+    - proto: TaserProjectile
       fireCost: 500
       visualState: stun
       magState: stun
@@ -345,6 +351,12 @@
     tags:
     - Sidearm
     - Dominator
+  - type: Tazer
+    damagePerSecond:
+      types:
+        Shock: 3.5
+    maxDistance: 5
+    staminaDrainRate: 10
 
 - type: entity
   name: X-03 Plasmeric Bolt Shotgun
@@ -377,11 +389,11 @@
       params:
         variation: 0.07
   - type: BatteryAmmoProvider
-    proto: BoltTaserSpread
+    proto: TaserProjectileBarrage
     fireCost: 200
   - type: BatteryWeaponFireModes
     fireModes:
-    - proto: BoltTaserSpread
+    - proto: TaserProjectileBarrage
       fireCost: 200 # ~ 6 shots
       visualState: stun
       magState: stun
@@ -411,6 +423,12 @@
     startingCharge: 1200
   - type: BatterySelfRecharger
     autoRechargeRate: 15
+  - type: Tazer
+    damagePerSecond:
+      types:
+        Shock: 3.5
+    maxDistance: 3
+    staminaDrainRate: 5
 
 - type: entity
   name: Laser Shotgun
@@ -443,11 +461,11 @@
       params:
         variation: 0.07
   - type: BatteryAmmoProvider
-    proto: BoltTaserSpread
+    proto: TaserProjectileBarrage
     fireCost: 300
   - type: BatteryWeaponFireModes
     fireModes:
-    - proto: BoltTaserSpread
+    - proto: TaserProjectileBarrage
       fireCost: 300 # ~ 8 shots 
       visualState: stun
       magState: stun
@@ -491,6 +509,12 @@
   - type: Battery
     maxCharge: 2400
     startingCharge: 2400
+  - type: Tazer
+    damagePerSecond:
+      types:
+        Shock: 3.5
+    maxDistance: 3
+    staminaDrainRate: 5
 
 - type: entity
   id: WeaponHoloflarePistol 
@@ -711,11 +735,11 @@
   - type: AccessReader
     access: [["SecurityNS"]]
   - type: BatteryAmmoProvider
-    proto: BoltTaserFH
+    proto: TaserProjectile
     fireCost: 500
   - type: BatteryWeaponFireModes
     fireModes:
-    - proto: BoltTaserFH
+    - proto: TaserProjectile
       fireCost: 500
       visualState: stun
       magState: stun
@@ -757,6 +781,12 @@
     tags:
     - Sidearm
     - Dominator
+  - type: Tazer
+    damagePerSecond:
+      types:
+        Shock: 3.5
+    maxDistance: 6
+    staminaDrainRate: 10
 
 - type: entity
   name: X-01 Multiphase Energy Gun
@@ -790,12 +820,12 @@
     steps: 5
     zeroVisible: true
   - type: BatteryAmmoProvider
-    proto: TaserBolt
-    fireCost: 100
+    proto: TaserProjectileRifle
+    fireCost: 500
   - type: BatteryWeaponFireModes
     fireModes:
-    - proto: TaserBolt
-      fireCost: 100
+    - proto: TaserProjectileRifle
+      fireCost: 500
       magState: stun
       visualState: stun-unshaded
     - proto: RedLaserBeam
