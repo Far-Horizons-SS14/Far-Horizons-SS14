@@ -67,7 +67,7 @@ public sealed partial class DiseaseAirborneSystem : EntitySystem
         var flags = sourceContained ? LookupFlags.All : LookupFlags.Uncontained;
         _lookup.GetEntitiesInRange(mapPos.MapId, mapPos.Position, range, _tmpTargets, flags);
 
-        // Chance now takes into account the disease our spatient
+        // Chance takes into account the patient's equipment
         var chance = Math.Clamp(disease.AirborneInfect * chanceMultiplier, 0f, 1f);
         chance = _disease.AdjustAirborneChanceForProtection(source, chance, disease);
         if (chance <= 0f) return;
@@ -96,7 +96,7 @@ public sealed partial class DiseaseAirborneSystem : EntitySystem
             if (!_interaction.InRangeUnobstructed(source, other, range))
                 continue;
             
-            var stage = _disease.CreateStage(disease.Id);
+            var stage = _disease.CreateStage(disease);
             if(stage == null)
                 continue;
             _disease.TryInfectWithChance(other, disease, stage, chance);

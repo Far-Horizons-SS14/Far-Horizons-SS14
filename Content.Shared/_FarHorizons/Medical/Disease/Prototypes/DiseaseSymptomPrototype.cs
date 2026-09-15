@@ -1,3 +1,5 @@
+using Content.Shared._FarHorizons.Medical.Disease.Components;
+using Content.Shared._FarHorizons.Medical.Disease.Effects;
 using Content.Shared._FarHorizons.Medical.Disease.Systems;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
@@ -8,7 +10,7 @@ namespace Content.Shared._FarHorizons.Medical.Disease.Prototypes;
 /// Describes information about a specific disease symptom.
 /// </summary>
 [Prototype]
-public sealed partial class DiseaseSymptomPrototype : IPrototype
+public sealed partial class DiseaseSymptomPrototype : IPrototype, ISerializationHooks
 {
     /// <summary>
     /// ID of the symptom.
@@ -23,16 +25,22 @@ public sealed partial class DiseaseSymptomPrototype : IPrototype
     public string Name { get; private set; } = string.Empty;
 
     /// <summary>
+    /// What level is this symptom? For the sake of mutations. Higher level = Higher Rarity
+    /// </summary>
+    [DataField]
+    public int Tier { get; private set; } = 1;
+
+    /// <summary>
+    /// The stats for this symptom this are added for the total stats of the disease.
+    /// </summary>
+    [DataField]
+    public DiseaseStats Stats { get; private set; } = default!;
+
+    /// <summary>
     /// Behavior variants configured by name. Each entry is a symptom effect with its own parameters.
     /// </summary>
     [DataField]
     public List<SymptomBehavior> Behaviors { get; private set; } = [];
-
-    /// <summary>
-    /// Probability per tick to trigger behavior when eligible (0-1).
-    /// </summary>
-    [DataField]
-    public float Probability { get; private set; } = 0.02f;
 
     /// <summary>
     /// If true, only a single randomly selected behavior from <see cref="Behaviors"/> will run when the symptom triggers.
@@ -65,6 +73,12 @@ public sealed partial class DiseaseSymptomPrototype : IPrototype
     /// </summary>
     [DataField]
     public List<CureStep> CureSteps { get; private set; } = [];
+
+    void ISerializationHooks.AfterDeserialization()
+    {
+        for (var i = 0; i < Behaviors.Count; i++)
+            Behaviors[i].Index = i;
+    }
 }
 
 [DataDefinition]
@@ -87,10 +101,27 @@ public sealed partial class SymptomAirborneBurst
 /// <summary>
 /// Base class for symptom behavior.
 /// </summary>
+[DataDefinition]
+[Serializable, NetSerializable]
 public abstract partial class SymptomBehavior
 {
+    [ViewVariables]
+    public int Index { get; internal set; }
+
+    /// <summary>
+    /// Conditions needed to be met before trigger symptom
+    /// </summary>
+    [DataField]
+    public ISymptomCondition[] Conditions { get; private set; } = [];
+
+    /// <summary>
+    /// Probability per tick to trigger behavior when eligible (0-1).
+    /// </summary>
+    [DataField]
+    public float Probability { get; set; } = 0.02f;
+
     /// <summary>
     /// Called when the symptom is triggered on the carrier.
     /// </summary>
-    public virtual void OnSymptom(EntityUid uid, DiseaseData disease) { }
+    public virtual void OnSymptom(Entity<DiseaseCarrierComponent> entity, DiseaseData disease, StageData stage, DiseaseSymptomPrototype symptom) { }
 }

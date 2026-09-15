@@ -3,6 +3,7 @@ using Content.Shared._FarHorizons.Medical.Disease.Systems;
 using Content.Shared._FarHorizons.Medical.Disease.Components;
 using Content.Shared._FarHorizons.Medical.Disease.Prototypes;
 using Content.Shared.Random.Helpers;
+using Robust.Shared.Timing;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared._FarHorizons.Medical.Disease.Symptoms;
@@ -16,11 +17,12 @@ public sealed partial class SharedDiseaseSymptomSystem : EntitySystem
     [Dependency] private MobStateSystem _mobState = default!;
     [Dependency] private DiseaseAirborneSystem _airborneDisease = default!;
     [Dependency] private IPrototypeManager _prototype = default!;
+    [Dependency] private IGameTiming _timing = default!;
 
     /// <summary>
     /// Executes the side-effects for a triggered symptom on a carrier.
     /// </summary>
-    public void TriggerSymptom(Entity<DiseaseCarrierComponent> ent, DiseaseData disease, DiseaseSymptomPrototype symptom)
+    public void TriggerSymptom(Entity<DiseaseCarrierComponent> ent, DiseaseData disease, StageData stage, DiseaseSymptomPrototype symptom)
     {
         // Skip this symptom when the carrier is dead.
         if (symptom.OnlyAlive && _mobState.IsDead(ent.Owner))
@@ -32,14 +34,14 @@ public sealed partial class SharedDiseaseSymptomSystem : EntitySystem
         void RunSingleBehavior(SymptomBehavior behavior)
         {
             deps.InjectDependencies(behavior);
-            behavior.OnSymptom(ent.Owner, disease);
+            behavior.OnSymptom(ent, disease, stage, symptom);
         }
 
         if (symptom.SingleBehavior && symptom.Behaviors.Count > 0)
         {
             // Run exactly one random behavior.
             // TODO: Replace with RandomPredicted once the engine PR is merged
-            var seed = SharedRandomExtensions.HashCodeCombine([(int)GetNetEntity(ent).Id, 0, 0, symptom.Behaviors.Count]);
+            var seed = SharedRandomExtensions.HashCodeCombine(_timing.CurTime.Microseconds, GetNetEntity(ent).Id, symptom.Behaviors.Count);
             var rand = new System.Random(seed);
             var behavior = symptom.Behaviors[rand.Next(0, symptom.Behaviors.Count)];
             RunSingleBehavior(behavior);
@@ -62,13 +64,11 @@ public sealed partial class SharedDiseaseSymptomSystem : EntitySystem
     private void ApplyAirborneBurst(DiseaseSymptomPrototype symptom, Entity<DiseaseCarrierComponent> ent, DiseaseData disease)
     {
         var cfg = symptom.AirborneBurst;
-        if(!_prototype.TryIndex(disease.Id, out var diseaseProto))
-            return;
 
         if ((disease.SpreadPath & DiseaseSpreadPath.Airborne) == 0)
             return;
 
-        var range = diseaseProto.AirborneRange * MathF.Max(0.1f, cfg.RangeMultiplier);
+        var range = disease.AirborneRange * MathF.Max(0.1f, cfg.RangeMultiplier);
         var mult = MathF.Max(0f, cfg.ChanceMultiplier);
         _airborneDisease.TryAirborneSpread(ent.Owner, disease, overrideRange: range, chanceMultiplier: mult);
     }

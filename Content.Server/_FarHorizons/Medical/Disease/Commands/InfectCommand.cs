@@ -5,6 +5,7 @@ using Content.Shared._FarHorizons.Medical.Disease.Prototypes;
 using Content.Shared.Administration;
 using Robust.Shared.Console;
 using Robust.Shared.Prototypes;
+using Content.Shared._FarHorizons.Medical.Disease.Components;
 
 namespace Content.Server._FarHorizons.Medical.Disease.Commands;
 
@@ -39,12 +40,13 @@ public sealed partial class InfectCommand : LocalizedEntityCommands
 
         var stage = 0;
         if (args.Length >= 3 && int.TryParse(args[2], NumberStyles.Integer, CultureInfo.InvariantCulture, out var parsedStage))
-            stage = Math.Max(0, parsedStage);
+            stage = Math.Clamp(parsedStage, 0, 4);
         
-        var stageData = _disease.CreateStage(diseaseId, stage);
-        var disease = _disease.CreateDisease(diseaseId);
-        if(disease == null || stageData == null)
-            return;
+        var disease = _disease.GenerateDisease(diseaseId);
+        if(disease == null ) return;
+        
+        var stageData = _disease.CreateStage(disease.Value, stage);
+        if(stageData == null) return;
 
         if (!_disease.Infect(targetUid, disease.Value, stageData))
         {
@@ -58,7 +60,7 @@ public sealed partial class InfectCommand : LocalizedEntityCommands
     public override CompletionResult GetCompletion(IConsoleShell shell, string[] args) => args.Length switch
     {
         1 => CompletionResult.FromHintOptions(
-            CompletionHelper.NetEntities(args[0], EntityManager),
+            GetDiseaseCarrierOptions(),
             "<uid>"),
         2 => CompletionResult.FromHintOptions(
             CompletionHelper.PrototypeIDs<DiseasePrototype>(proto: _proto),
@@ -66,4 +68,14 @@ public sealed partial class InfectCommand : LocalizedEntityCommands
         3 => CompletionResult.FromHint("<stage>"),
         _ => CompletionResult.Empty,
     };
+
+    private IEnumerable<CompletionOption> GetDiseaseCarrierOptions()
+    {
+        var query = EntityManager.EntityQueryEnumerator<DiseaseCarrierComponent, MetaDataComponent>();
+        while (query.MoveNext(out var uid, out _, out var meta))
+        {
+            var netEntity = EntityManager.GetNetEntity(uid);
+            yield return new CompletionOption(netEntity.ToString(), string.IsNullOrEmpty(meta.EntityName) ? "unnamed" : meta.EntityName);
+        }
+    }
 }

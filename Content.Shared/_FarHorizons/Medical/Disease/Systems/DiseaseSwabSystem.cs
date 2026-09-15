@@ -41,7 +41,7 @@ public sealed partial class DiseaseSwabSystem : EntitySystem
             return;
 
         // Don't allow swabbing machines like diagnoser here
-        if (HasComp<DiseaseDiagnoserComponent>(target))
+        if (!HasComp<DiseaseCarrierComponent>(target) && !HasComp<DiseaseResidueComponent>(target))
             return;
 
         args.Handled = true;

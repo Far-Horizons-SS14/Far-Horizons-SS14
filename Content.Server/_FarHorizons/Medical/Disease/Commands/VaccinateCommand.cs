@@ -55,11 +55,24 @@ public sealed partial class VaccinateCommand : LocalizedEntityCommands
     public override CompletionResult GetCompletion(IConsoleShell shell, string[] args) => args.Length switch
     {
         1 => CompletionResult.FromHintOptions(
-            CompletionHelper.NetEntities(args[0], EntityManager),
+            GetDiseaseCarrierOptions(),
             "<uid>"),
         2 => CompletionResult.FromHintOptions(
             CompletionHelper.PrototypeIDs<DiseasePrototype>(proto: _proto),
             "<disease prototype>"),
         _ => CompletionResult.Empty,
     };
+
+    private IEnumerable<CompletionOption> GetDiseaseCarrierOptions()
+    {
+        var query = EntityManager.EntityQueryEnumerator<DiseaseCarrierComponent, MetaDataComponent>();
+        while (query.MoveNext(out var uid, out var carrier, out var meta))
+        {
+            if (carrier.ActiveDiseases.Count == 0)
+                continue;
+
+            var netEntity = EntityManager.GetNetEntity(uid);
+            yield return new CompletionOption(netEntity.ToString(), meta.EntityName);
+        }
+    }
 }

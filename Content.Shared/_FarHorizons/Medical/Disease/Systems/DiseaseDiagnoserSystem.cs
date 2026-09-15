@@ -87,23 +87,10 @@ public sealed partial class DiseaseDiagnoserSystem : EntitySystem
             if (!_prototypes.TryIndex(diseaseData.Id, out DiseasePrototype? diseaseProto))
                 continue;
             
-            var displayName = Loc.GetString(diseaseData.Name);
+            var displayName = Loc.GetString(diseaseData.Name[0].ToString().ToUpper() + diseaseData.Name[1..]);
             var stage = stageData.Stage;
 
-            DiseaseStage? stageCfg = null;
-            foreach (var stCfg in diseaseProto.Stages)
-            {
-                if (stCfg.Stage == stage)
-                {
-                    stageCfg = stCfg;
-                    break;
-                }
-            }
-
-            if (stageCfg == null)
-                continue;
-
-            var showStage = (stageCfg.Stealth & DiseaseStealthFlags.HiddenStage) == 0;
+            var showStage = true;
 
             lines.Add(Loc.GetString("diagnoser-disease-report-name",("name", displayName)));
             lines.Add(Loc.GetString("diagnoser-disease-report-stage",("stage", showStage ? stage+1 : "Unknown")));
@@ -114,13 +101,13 @@ public sealed partial class DiseaseDiagnoserSystem : EntitySystem
 
             // Symptoms block.
             lines.Add(Loc.GetString("diagnoser-disease-symptoms-header"));
-            if (stageCfg.Symptoms.Count == 0)
+            if (diseaseData.Symptoms.Count == 0)
             {
                 lines.Add("- " + Loc.GetString("diagnoser-disease-symptoms-none"));
             }
             else
             {
-                foreach (var symptomEntry in stageCfg.Symptoms)
+                foreach (var symptomEntry in diseaseData.Symptoms)
                 {
                     var symptomId = symptomEntry.Symptom;
                     if (_prototypes.TryIndex(symptomId, out var symProto))
@@ -132,8 +119,8 @@ public sealed partial class DiseaseDiagnoserSystem : EntitySystem
             }
 
             // Cures block.
-            var cureSteps = stageCfg.CureSteps.Count > 0 ? stageCfg.CureSteps : diseaseProto.CureSteps;
-            var showTreatment = (stageCfg.Stealth & DiseaseStealthFlags.HiddenTreatment) == 0;
+            var cureSteps = diseaseData.CureSteps;
+            var showTreatment = true;
             if (cureSteps.Count == 0)
             {
                 lines.Add(Loc.GetString("diagnoser-no-cures"));
@@ -145,8 +132,10 @@ public sealed partial class DiseaseDiagnoserSystem : EntitySystem
             else
             {
                 lines.Add(Loc.GetString("diagnoser-cure-has"));
-                foreach (var step in cureSteps)
+                for (int i = 0; i < cureSteps.Count; i++)
                 {
+                    var step = cureSteps[i];
+                    lines.Add("Option " + $"{i+1}:");
                     var stepLines = step.BuildDiagnoserLines(_prototypes).ToList();
 
                     foreach (var stepLine in stepLines)

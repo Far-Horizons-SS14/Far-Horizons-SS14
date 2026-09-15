@@ -205,7 +205,7 @@ public sealed partial class DiseaseResidueSystem : EntitySystem
         var chance = Math.Clamp(disease.ContactInfect, 0f, 1f);
         chance = _disease.AdjustContactChanceForProtection(target, chance, disease);
 
-        var stage = _disease.CreateStage(disease.Id);
+        var stage = _disease.CreateStage(disease);
         if(stage == null)
             return;
 

@@ -19,10 +19,11 @@ public sealed partial class CauseDiseaseEntityEffectSystem : EntityEffectSystem<
         if(!_prototype.TryIndex(args.Effect.DiseaseId, out var proto))
             return;
 
-        var disease = _disease.CreateDisease(args.Effect.DiseaseId);
-        var stage = _disease.CreateStage(args.Effect.DiseaseId);
-        if(disease == null || stage == null)
-            return;
+        var disease = _disease.GenerateDisease(args.Effect.DiseaseId);
+        if(disease == null) return;
+
+        var stage = _disease.CreateStage(disease.Value);
+        if(stage == null) return;
             
         if (args.Effect.ForceInfect)
         {
@@ -37,13 +38,13 @@ public sealed partial class CauseDiseaseEntityEffectSystem : EntityEffectSystem<
         {
             case DiseaseSpreadPath.Contact:
                 {
-                    var probability = _disease.AdjustContactChanceForProtection(entity.Owner, proto.ContactInfect, disease.Value);
+                    var probability = _disease.AdjustContactChanceForProtection(entity.Owner, disease.Value.ContactInfect, disease.Value);
                     _disease.TryInfectWithChance(entity.Owner, disease.Value, stage, probability);
                     break;
                 }
             case DiseaseSpreadPath.Airborne:
                 {
-                    var probability = _disease.AdjustAirborneChanceForProtection(entity.Owner, proto.AirborneInfect, disease.Value);
+                    var probability = _disease.AdjustAirborneChanceForProtection(entity.Owner, disease.Value.AirborneInfect, disease.Value);
                     _disease.TryInfectWithChance(entity.Owner, disease.Value, stage, probability);
                     break;
                 }
