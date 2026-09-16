@@ -22,6 +22,9 @@
   - type: TimerTriggerVisuals
     primingSound:
       path: /Audio/Items/smoke_grenade_prime.ogg
+  - type: Tag #FH start
+    tags:
+    - HandGrenadePacifiedWhitelist #FH end - everything that parents this grenade is non-lethal
 
 - type: entity
   parent: [ BaseCivilianContraband, SmokeGrenade ]
@@ -125,3 +128,6 @@
     components:
     - type: TriggerOnUse
     - type: TimerTrigger
+  - type: Tag #FH start
+    tags:
+    - HandGrenadePacifiedWhitelist #FH end

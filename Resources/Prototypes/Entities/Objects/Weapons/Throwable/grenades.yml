@@ -59,6 +59,7 @@
     tags:
     - HandGrenade
     - GrenadeFlashBang
+    - HandGrenadePacifiedWhitelist #FH
 
 - type: entity
   id: GrenadeFlashEffect
@@ -450,6 +451,9 @@
   - type: TimerTriggerVisuals
     primingSound:
       path: /Audio/Effects/countdown.ogg
+  - type: Tag #FH start
+    tags: 
+    - HandGrenadePacifiedWhitelist #FH end - these are all fake grenades and can be used when pacified
 
 - type: entity
   name: syndicate trickybomb
