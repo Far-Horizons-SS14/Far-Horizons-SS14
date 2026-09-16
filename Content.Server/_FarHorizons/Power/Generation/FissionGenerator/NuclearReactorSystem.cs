@@ -9,6 +9,7 @@ using Content.Server.Explosion.EntitySystems;
 using Content.Server.NodeContainer.EntitySystems;
 using Content.Server.NodeContainer.Nodes;
 using Content.Server.Popups;
+using Content.Server.Radiation.Systems;
 using Content.Server.Radio.EntitySystems;
 using Content.Server.Station.Systems;
 using Content.Shared._FarHorizons.Materials.Systems;
@@ -65,6 +66,7 @@ public sealed partial class NuclearReactorSystem : EntitySystem
     [Dependency] private ItemSlotsSystem _slotsSystem = default!;
     [Dependency] private NodeContainerSystem _nodeContainer = default!;
     [Dependency] private PopupSystem _popupSystem = default!;
+    [Dependency] private RadiationSystem _radiation = default!;
     [Dependency] private RadioSystem _radioSystem = default!;
     [Dependency] private ReactorPartSystem _partSystem = default!;
     [Dependency] private ServerGlobalSoundSystem _soundSystem = default!;
@@ -420,7 +422,7 @@ public sealed partial class NuclearReactorSystem : EntitySystem
         var comp = EnsureComp<RadiationSourceComponent>(uid);
 
         // Linear scaling up to maximum, logarithmic beyond that
-        comp.Intensity = (float)Math.Max(reactor.RadiationLevel <= reactor.MaximumRadiation ? reactor.RadiationLevel : reactor.MaximumRadiation + Math.Log(reactor.RadiationLevel - reactor.MaximumRadiation + 1), reactor.Melted ? reactor.MeltdownRadiation : 0);
+        _radiation.SetIntensity((uid, comp), (float)Math.Max(reactor.RadiationLevel <= reactor.MaximumRadiation ? reactor.RadiationLevel : reactor.MaximumRadiation + Math.Log(reactor.RadiationLevel - reactor.MaximumRadiation + 1), reactor.Melted ? reactor.MeltdownRadiation : 0));
         reactor.RadiationLevel /= Math.Max(reactor.RadiationStability, 1);
     }
 

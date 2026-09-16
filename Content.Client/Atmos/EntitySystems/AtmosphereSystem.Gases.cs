@@ -14,7 +14,10 @@ public sealed partial class AtmosphereSystem
      code that would escape sandbox. As such these methods are overridden here with a safe
      implementation.
      */
-    
+
+    /// <inheritdoc/>
+    /// <remarks>No-op on client as reactions aren't entirely in shared.
+    /// Don't call it. Smile.</remarks>
     public override ReactionResult React(GasMixture mixture, IGasMixtureHolder? holder)
     {
         // Reactions don't work on client so don't even try.

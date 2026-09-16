@@ -44,6 +44,10 @@ public abstract partial class SharedPuddleSystem : EntitySystem
     [Dependency] private TileFrictionController _tile = default!;
     [Dependency] private INetManager _net = default!;
 
+    [Dependency] private EntityQuery<StepTriggerComponent> _stepTriggerQuery = default!;
+    [Dependency] private EntityQuery<ReactiveComponent> _reactiveQuery = default!;
+    [Dependency] private EntityQuery<EvaporationComponent> _evaporationQuery = default!;
+
     private ProtoId<ReagentPrototype>[] _standoutReagents = [];
 
     /// <summary>
@@ -56,10 +60,6 @@ public abstract partial class SharedPuddleSystem : EntitySystem
     // Using local deletion queue instead of the standard queue so that we can easily "undelete" if a puddle
     // loses & then gains reagents in a single tick.
     private HashSet<EntityUid> _deletionQueue = [];
-
-    private EntityQuery<StepTriggerComponent> _stepTriggerQuery;
-    private EntityQuery<ReactiveComponent> _reactiveQuery;
-    private EntityQuery<EvaporationComponent> _evaporationQuery;
 
     public override void Initialize()
     {
@@ -74,10 +74,6 @@ public abstract partial class SharedPuddleSystem : EntitySystem
         SubscribeLocalEvent<EvaporationComponent, MapInitEvent>(OnEvaporationMapInit);
 
         SubscribeLocalEvent<PrototypesReloadedEventArgs>(OnPrototypesReloaded);
-
-        _stepTriggerQuery = GetEntityQuery<StepTriggerComponent>();
-        _reactiveQuery = GetEntityQuery<ReactiveComponent>();
-        _evaporationQuery = GetEntityQuery<EvaporationComponent>();
 
         CacheStandsout();
         InitializeSpillable();

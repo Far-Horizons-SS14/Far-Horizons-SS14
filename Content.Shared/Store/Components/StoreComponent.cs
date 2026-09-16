@@ -140,6 +140,13 @@ public readonly record struct StoreAddedEvent;
 public readonly record struct StoreRemovedEvent;
 
 /// <summary>
+/// Far Horizons/Starlight: event broadcast after a store rebuilds its listing catalog,
+/// allowing server-side listing state to be reapplied.
+/// </summary>
+[ByRefEvent]
+public readonly record struct StoreListingsRefreshedEvent(EntityUid Store);
+
+/// <summary>
 ///     Broadcast when an Entity with the <see cref="StoreRefundComponent"/> is deleted
 /// </summary>
 [ByRefEvent]

@@ -216,12 +216,8 @@ public abstract partial class SharedRestrictNestingItemSystem : EntitySystem
         if (TryComp<RestrictNestingItemComponent>(item, out var nestingItem) && !skipInitialItem)
             return true;
 
-        //get the container of the item
-        if (!TryComp<ContainerManagerComponent>(item, out var containerManager))
-            return false;
-
         //now run this on all items in the inventory
-        var containers = containerManager.Containers.Values.ToList();
+        var containers = _containerSystem.GetAllContainers(item).ToList();
         var items = containers.SelectMany(container => container.ContainedEntities).ToList();
 
         foreach (var itemInInventory in items)

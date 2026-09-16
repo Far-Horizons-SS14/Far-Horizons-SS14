@@ -34,12 +34,12 @@ public sealed partial class ShowNullSpaceSystem : SharedShowNullSpaceSystem
             || !clothing.Slots.HasFlag(args.SlotFlags))
             return;
 
-        EnsureComp<ShowNullSpaceComponent>(args.Equipee);
+        EnsureComp<ShowNullSpaceComponent>(args.EquipTarget);
     }
 
     private void OnUnequipped(EntityUid uid, ShowNullSpaceComponent component, GotUnequippedEvent args)
     {
-        RemComp<ShowNullSpaceComponent>(args.Equipee);
+        RemComp<ShowNullSpaceComponent>(args.EquipTarget);
     }
 
     private void Toggle(EntityUid uid, bool toggle)

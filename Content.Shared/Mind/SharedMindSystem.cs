@@ -14,6 +14,7 @@ using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Objectives.Systems;
 using Content.Shared.Players;
+using Content.Shared.Silicons.StationAi;
 using Content.Shared.Speech;
 using Content.Shared._Starlight.Language.Systems; // Starlight-edit
 using Content.Shared._Starlight.Language.Components; // Starlight-edit

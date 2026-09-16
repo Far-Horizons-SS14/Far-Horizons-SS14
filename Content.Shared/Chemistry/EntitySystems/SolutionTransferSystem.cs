@@ -23,8 +23,8 @@ public sealed partial class SolutionTransferSystem : EntitySystem
     [Dependency] private SharedUserInterfaceSystem _ui = default!;
     [Dependency] private SharedDoAfterSystem _doAfter = default!;
 
-    private EntityQuery<RefillableSolutionComponent> _refillableQuery;
-    private EntityQuery<DrainableSolutionComponent> _drainableQuery;
+    [Dependency] private EntityQuery<RefillableSolutionComponent> _refillableQuery = default!;
+    [Dependency] private EntityQuery<DrainableSolutionComponent> _drainableQuery = default!;
 
     /// <summary>
     ///     Default transfer amounts for the set-transfer verb.
@@ -40,9 +40,6 @@ public sealed partial class SolutionTransferSystem : EntitySystem
         SubscribeLocalEvent<SolutionTransferComponent, AfterInteractEvent>(OnAfterInteract);
         SubscribeLocalEvent<SolutionTransferComponent, SolutionDrainTransferDoAfterEvent>(OnSolutionDrainTransferDoAfter);
         SubscribeLocalEvent<SolutionTransferComponent, SolutionRefillTransferDoAfterEvent>(OnSolutionFillTransferDoAfter);
-
-        _refillableQuery = GetEntityQuery<RefillableSolutionComponent>();
-        _drainableQuery = GetEntityQuery<DrainableSolutionComponent>();
     }
 
     private void AddSetTransferVerbs(Entity<SolutionTransferComponent> ent, ref GetVerbsEvent<AlternativeVerb> args)

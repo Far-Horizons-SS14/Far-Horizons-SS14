@@ -1,3 +1,4 @@
+using Content.IntegrationTests.Fixtures;
 using Content.Shared.Coordinates;
 using Content.Shared.Power.Components;
 using Content.Shared.Power.EntitySystems;
@@ -8,7 +9,7 @@ using Robust.Shared.Maths;
 namespace Content.IntegrationTests.Tests.Power;
 
 [TestFixture]
-public sealed class PowerStateTest
+public sealed class PowerStateTest : GameTest
 {
     [TestPrototypes]
     private const string Prototypes = @"
@@ -31,7 +32,7 @@ public sealed class PowerStateTest
     [Test]
     public async Task SetWorkingState_IdleToWorking_UpdatesLoad()
     {
-        await using var pair = await PoolManager.GetServerClient();
+        var pair = Pair;
         var server = pair.Server;
 
         var entManager = server.ResolveDependency<IEntityManager>();
@@ -64,8 +65,6 @@ public sealed class PowerStateTest
                 Assert.That(receiver.Load, Is.EqualTo(powerState.WorkingPowerDraw).Within(0.01f));
             });
         });
-
-        await pair.CleanReturnAsync();
     }
 
     /// <summary>
@@ -74,7 +73,7 @@ public sealed class PowerStateTest
     [Test]
     public async Task SetWorkingState_WorkingToIdle_UpdatesLoad()
     {
-        await using var pair = await PoolManager.GetServerClient();
+        var pair = Pair;
         var server = pair.Server;
 
         var entManager = server.ResolveDependency<IEntityManager>();
@@ -116,8 +115,6 @@ public sealed class PowerStateTest
                 Assert.That(receiver.Load, Is.EqualTo(powerState.IdlePowerDraw).Within(0.01f));
             });
         });
-
-        await pair.CleanReturnAsync();
     }
 
     /// <summary>
@@ -126,7 +123,7 @@ public sealed class PowerStateTest
     [Test]
     public async Task SetWorkingState_AlreadyInState_NoChange()
     {
-        await using var pair = await PoolManager.GetServerClient();
+        var pair = Pair;
         var server = pair.Server;
 
         var entManager = server.ResolveDependency<IEntityManager>();
@@ -176,8 +173,6 @@ public sealed class PowerStateTest
                 Assert.That(receiver.Load, Is.EqualTo(powerState.WorkingPowerDraw).Within(0.01f));
             });
         });
-
-        await pair.CleanReturnAsync();
     }
 }
 

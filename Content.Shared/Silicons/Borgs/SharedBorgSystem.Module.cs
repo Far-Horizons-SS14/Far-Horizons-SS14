@@ -13,7 +13,7 @@ namespace Content.Shared.Silicons.Borgs;
 
 public abstract partial class SharedBorgSystem
 {
-    private EntityQuery<BorgModuleComponent> _moduleQuery;
+    [Dependency] private EntityQuery<BorgModuleComponent> _moduleQuery = default!;
     [Dependency] private SharedIPCSystem _ipc = default!; // FarHorizons
 
     public void InitializeModule()
@@ -35,8 +35,6 @@ public abstract partial class SharedBorgSystem
 
         SubscribeLocalEvent<ComponentBorgModuleComponent, BorgModuleRelayedEvent<BorgModuleInsertAttemptEvent>>(
             OnComponentModuleInstalledRelay);
-
-        _moduleQuery = GetEntityQuery<BorgModuleComponent>();
     }
 
     #region BorgModule

@@ -56,6 +56,8 @@ public sealed partial class CloningSystem : SharedCloningSystem
     [Dependency] private TraitSystem _traitSystem = default!; //FarHorizons 
     [Dependency] private SLCharacterInfoSystem _sLSharedCharacterInfoSystem = default!; //FarHorizons 
     
+    [Dependency] private EntityQuery<CloneableStatusEffectComponent> _cloneableEffectQuery = default!;
+
     /// <summary>
     ///     Spawns a clone of the given humanoid mob at the specified location or in nullspace.
     /// </summary>
@@ -331,19 +333,10 @@ public sealed partial class CloningSystem : SharedCloningSystem
     /// </summary>
     public void CopyStatusEffects(Entity<StatusEffectContainerComponent?> original, Entity<StatusEffectContainerComponent?> target)
     {
-        if (!Resolve(original, ref original.Comp, false))
-            return;
-
-        if (original.Comp.ActiveStatusEffects is null)
-            return;
-
-        foreach (var effect in original.Comp.ActiveStatusEffects.ContainedEntities)
+        foreach (var effect in _statusEffects.EnumerateStatusEffects(original, _cloneableEffectQuery))
         {
-            if (!TryComp<StatusEffectComponent>(effect, out var effectComp))
-                continue;
-
             //We are not interested in temporary effects, only permanent ones.
-            if (effectComp.EndEffectTime is not null)
+            if (effect.Comp1.EndEffectTime is not null)
                 continue;
 
             var effectProto = Prototype(effect);

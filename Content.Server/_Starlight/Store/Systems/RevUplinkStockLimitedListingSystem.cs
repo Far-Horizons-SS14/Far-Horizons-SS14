@@ -1,102 +1,197 @@
-using System.Linq;
-using Content.Server.Store.Components;
+using Content.Server.Store.Systems;
+using Content.Shared.GameTicking;
+using Content.Shared.Store;
 using Content.Shared.Store.Components;
 using Content.Shared.Store.Conditions;
 using Content.Shared.Store.Events;
 using Robust.Shared.GameObjects;
+using Robust.Shared.Prototypes;
 
-namespace Content.Server.Store.Systems;
+namespace Content.Server._Starlight.Store.Systems;
 
 /// <summary>
-/// This system handles stock-limited listings in the store system.
-/// It prevents race conditions when multiple players try to purchase the same stock-limited item.
-/// This is primarily used by the revolutionary uplink system, but could be used by other systems in the future.
+/// Synchronizes stock-limited revolutionary listings across every revolutionary uplink.
 /// </summary>
 public sealed partial class RevUplinkStockLimitedListingSystem : EntitySystem
 {
+    [Dependency] private StoreSystem _store = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
+
+    private readonly Dictionary<string, (int Remaining, string? LastPurchaser)> _stock = new();
+    private readonly Dictionary<(EntityUid Store, EntityUid Buyer, string Listing), int> _reservations = new();
+
     public override void Initialize()
     {
-        base.Initialize();
-        
         SubscribeLocalEvent<StorePurchaseAttemptEvent>(OnStorePurchaseAttempt);
-        SubscribeLocalEvent<StorePurchaseCompletedEvent>(OnStorePurchaseCompleted);
+        SubscribeLocalEvent<StoreBuyFinishedEvent>(OnStoreBuyFinished);
+        SubscribeLocalEvent<StoreListingsRefreshedEvent>(OnStoreListingsRefreshed);
+        SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestart);
     }
-    
-    /// <summary>
-    /// Handles the StorePurchaseAttemptEvent for stock-limited listings.
-    /// </summary>
-    private void OnStorePurchaseAttempt(ref StorePurchaseAttemptEvent args)
+
+    private void OnStorePurchaseAttempt(ref StorePurchaseAttemptEvent ev)
     {
-        // Get the store component
-        if (!TryComp<StoreComponent>(args.StoreEntity, out var storeComp))
+        if (!TryGetStockCondition(ev.StoreEntity, ev.ListingId, out var stock))
             return;
-        
-        // Find the listing
-        var listingId = args.ListingId; // Store in local variable to avoid using ref parameter in lambda
-        var listing = storeComp.FullListingsCatalog.FirstOrDefault(x => x.ID.Equals(listingId));
-        if (listing == null)
-            return;
-        
-        // Check if this is a stock-limited listing
-        if (listing.Conditions == null)
-            return;
-        
-        foreach (var condition in listing.Conditions)
+
+        var current = _stock.TryGetValue(ev.ListingId, out var existing)
+            ? existing.Remaining
+            : stock.StockLimit;
+        if (current <= 0)
         {
-            if (condition is not StockLimitedListingCondition)
+            ev.Cancel = true;
+            return;
+        }
+
+        UpdateStock(ev.ListingId, current - 1, existing.LastPurchaser);
+        var key = (ev.StoreEntity, ev.Buyer, ev.ListingId);
+        _reservations[key] = _reservations.GetValueOrDefault(key) + 1;
+    }
+
+    private void OnStoreListingsRefreshed(ref StoreListingsRefreshedEvent ev)
+    {
+        if (!TryComp(ev.Store, out StoreComponent? store))
+            return;
+
+        SynchronizeStoreListings(store);
+    }
+
+    private void OnStoreBuyFinished(ref StoreBuyFinishedEvent ev)
+    {
+        if (ev.PurchasedItem.Conditions is null)
+            return;
+
+        foreach (var condition in ev.PurchasedItem.Conditions)
+        {
+            if (condition is not StockLimitedListingCondition stock)
                 continue;
-            
-            // Get the StockLimitedProcessingComponent
-            if (!TryComp<StockLimitedProcessingComponent>(args.StoreEntity, out var processingComp))
-            {
-                processingComp = EnsureComp<StockLimitedProcessingComponent>(args.StoreEntity);
-            }
-            
-            // Check if this listing is already being processed
-            if (processingComp.ProcessingListings.TryGetValue(listing.ID, out var isProcessing) && isProcessing)
-            {
-                // This listing is already being processed, so cancel this purchase
-                args.Cancel = true;
+
+            var key = (ev.StoreUid, ev.Buyer, ev.PurchasedItem.ID);
+            if (!_reservations.TryGetValue(key, out var reserved) || reserved == 0)
                 return;
-            }
-            
-            // Mark that we're processing this listing
-            processingComp.ProcessingListings[listing.ID] = true;
-            break;
+
+            if (reserved == 1)
+                _reservations.Remove(key);
+            else
+                _reservations[key] = reserved - 1;
+
+            var remaining = _stock.TryGetValue(ev.PurchasedItem.ID, out var existing)
+                ? existing.Remaining
+                : stock.StockLimit - 1;
+            var purchaser = TryComp(ev.Buyer, out MetaDataComponent? metadata)
+                ? metadata.EntityName
+                : null;
+            UpdateStock(ev.PurchasedItem.ID, remaining, purchaser);
+            return;
         }
     }
-    
-    /// <summary>
-    /// Handles the StorePurchaseCompletedEvent for stock-limited listings.
-    /// </summary>
-    private void OnStorePurchaseCompleted(ref StorePurchaseCompletedEvent args)
+
+    private void OnRoundRestart(RoundRestartCleanupEvent ev)
     {
-        // Get the store component
-        if (!TryComp<StoreComponent>(args.StoreEntity, out var storeComp))
-            return;
-        
-        // Find the listing
-        var listingId = args.ListingId; // Store in local variable to avoid using ref parameter in lambda
-        var listing = storeComp.FullListingsCatalog.FirstOrDefault(x => x.ID.Equals(listingId));
-        if (listing == null)
-            return;
-        
-        // Check if this is a stock-limited listing
-        if (listing.Conditions == null)
-            return;
-        
-        foreach (var condition in listing.Conditions)
+        _stock.Clear();
+        _reservations.Clear();
+
+        var stores = EntityQueryEnumerator<StoreComponent>();
+        while (stores.MoveNext(out var uid, out var store))
         {
-            if (condition is not StockLimitedListingCondition)
+            SynchronizeStoreListings(store);
+            _store.UpdateUserInterface(null, uid, store);
+        }
+    }
+
+    private void UpdateStock(string listingId, int remaining, string? purchaser)
+    {
+        _stock[listingId] = (remaining, purchaser);
+
+        var stores = EntityQueryEnumerator<StoreComponent>();
+        while (stores.MoveNext(out var uid, out var store))
+        {
+            foreach (var listing in store.FullListingsCatalog)
+            {
+                if (listing.ID != listingId || listing.Conditions is null)
+                    continue;
+
+                foreach (var condition in listing.Conditions)
+                {
+                    if (condition is StockLimitedListingCondition stock)
+                    {
+                        stock.CurrentStock = remaining;
+                        stock.LastPurchaser = purchaser;
+                        UpdateListingPresentation(listing, stock);
+                    }
+                }
+            }
+
+            _store.UpdateUserInterface(null, uid, store);
+        }
+    }
+
+    private void SynchronizeStoreListings(StoreComponent store)
+    {
+        foreach (var listing in store.FullListingsCatalog)
+        {
+            if (listing.Conditions is null)
                 continue;
-            
-            // Get the StockLimitedProcessingComponent
-            if (!TryComp<StockLimitedProcessingComponent>(args.StoreEntity, out var processingComp))
-                return;
-            
-            // Mark that we're done processing this listing
-            processingComp.ProcessingListings[listing.ID] = false;
-            break;
+
+            foreach (var condition in listing.Conditions)
+            {
+                if (condition is not StockLimitedListingCondition stock)
+                    continue;
+
+                if (!_stock.TryGetValue(listing.ID, out var value))
+                {
+                    value = (stock.StockLimit, null);
+                    _stock[listing.ID] = value;
+                }
+
+                stock.CurrentStock = value.Remaining;
+                stock.LastPurchaser = value.LastPurchaser;
+                UpdateListingPresentation(listing, stock);
+            }
+        }
+    }
+
+    private bool TryGetStockCondition(EntityUid storeUid, string listingId, out StockLimitedListingCondition condition)
+    {
+        if (TryComp(storeUid, out StoreComponent? store))
+        {
+            foreach (var listing in store.FullListingsCatalog)
+            {
+                if (listing.ID != listingId || listing.Conditions is null)
+                    continue;
+
+                foreach (var listingCondition in listing.Conditions)
+                {
+                    if (listingCondition is StockLimitedListingCondition stock)
+                    {
+                        condition = stock;
+                        return true;
+                    }
+                }
+            }
+        }
+
+        condition = null!;
+        return false;
+    }
+
+    private void UpdateListingPresentation(ListingData listing, StockLimitedListingCondition stock)
+    {
+        if (!_proto.TryIndex<ListingPrototype>(listing.ID, out var prototype))
+            return;
+
+        if (prototype.Name is { } name)
+        {
+            var stockText = stock.CurrentStock == 0
+                ? Loc.GetString("store-ui-button-out-of-stock")
+                : $"{stock.CurrentStock}/{stock.StockLimit}";
+            listing.Name = $"{Loc.GetString(name)} ({stockText})";
+        }
+
+        if (prototype.Description is { } description)
+        {
+            listing.Description = string.IsNullOrEmpty(stock.LastPurchaser)
+                ? Loc.GetString(description)
+                : $"{Loc.GetString(description)} Last purchased by: {stock.LastPurchaser}";
         }
     }
 }

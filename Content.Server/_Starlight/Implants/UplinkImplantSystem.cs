@@ -15,5 +15,5 @@ public sealed partial class UplinkImplantSystem : EntitySystem
         SubscribeLocalEvent<UplinkImplantComponent, ImplantImplantedEvent>(OnImplantImplanted);
     }
 
-    private void OnImplantImplanted(EntityUid uid, UplinkImplantComponent component, ref ImplantImplantedEvent args) => _uplink.SetUplink(args.Implanted, uid, FixedPoint2.New(0), true);
+    private void OnImplantImplanted(Entity<UplinkImplantComponent> implant, ref ImplantImplantedEvent args) => _uplink.TryAddEntityUplink(args.Implanted, FixedPoint2.New(0), out var _, implant, implant, true);
 }

@@ -13,7 +13,7 @@ public abstract partial class SharedAtmosphereSystem : EntitySystem
     [Dependency] private SharedInternalsSystem _internals = default!;
     [Dependency] protected SharedTransformSystem XformSystem = default!;
 
-    private EntityQuery<InternalsComponent> _internalsQuery;
+    [Dependency] private EntityQuery<InternalsComponent> _internalsQuery = default!;
 
     /// <summary>
     /// The length to pre-allocate list/dicts of delta pressure entities on a <see cref="GridAtmosphereComponent"/>.
@@ -23,8 +23,6 @@ public abstract partial class SharedAtmosphereSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
-
-        _internalsQuery = GetEntityQuery<InternalsComponent>();
 
         InitializeBreathTool();
         InitializeGases();

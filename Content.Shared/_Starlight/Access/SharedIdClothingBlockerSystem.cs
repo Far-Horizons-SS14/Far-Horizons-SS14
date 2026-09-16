@@ -19,11 +19,11 @@ public abstract class SharedIdClothingBlockerSystem : EntitySystem
     protected virtual void OnUnequipAttempt(EntityUid uid, IdClothingBlockerComponent component,
         BeingUnequippedAttemptEvent args)
     {
-        var wearerHasAccess = HasJobAccess(args.Unequipee, component);
+        var wearerHasAccess = HasJobAccess(args.User, component);
         if (wearerHasAccess)
             return;
 
-        if (args.UnEquipTarget == args.Unequipee)
+        if (args.UnEquipTarget == args.User)
         {
             args.Cancel();
         }
@@ -48,12 +48,12 @@ public abstract class SharedIdClothingBlockerSystem : EntitySystem
 
     private void OnGotEquipped(EntityUid uid, IdClothingBlockerComponent component, GotEquippedEvent args)
     {
-        var wearerHasAccess = HasJobAccess(args.Equipee, component);
+        var wearerHasAccess = HasJobAccess(args.EquipTarget, component);
 
         if (wearerHasAccess)
             return;
 
-        OnUnauthorizedAccess(uid, component, args.Equipee);
+        OnUnauthorizedAccess(uid, component, args.EquipTarget);
     }
 
     protected virtual void OnUnauthorizedAccess(EntityUid clothingUid, IdClothingBlockerComponent component,
@@ -63,10 +63,10 @@ public abstract class SharedIdClothingBlockerSystem : EntitySystem
 
     private void OnGotUnequipped(EntityUid uid, IdClothingBlockerComponent component, GotUnequippedEvent args)
     {
-        if (Exists(args.Equipee) &&
-            HasComp<IdClothingFrozenComponent>(args.Equipee))
+        if (Exists(args.EquipTarget) &&
+            HasComp<IdClothingFrozenComponent>(args.EquipTarget))
         {
-            RemComp<IdClothingFrozenComponent>(args.Equipee);
+            RemComp<IdClothingFrozenComponent>(args.EquipTarget);
         }
     }
 

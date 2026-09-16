@@ -694,16 +694,14 @@
   flavor: medicine
   color: "#86caf7"
   metabolisms:
-    # Far Horizons start
-    Digestion:
+    Bloodstream:
       effects:
         - !type:CureZombieInfection
           conditions:
             - !type:ReagentCondition
               reagent: Ambuzol
               min: 10
-    # Far Horizons end
-    Bloodstream:
+    Digestion:
       effects:
         - !type:CureZombieInfection
           conditions:
@@ -720,16 +718,6 @@
   flavor: medicine
   color: "#1274b5"
   metabolisms:
-    # Far Horizons start
-    Digestion:
-      effects:
-        - !type:CureZombieInfection
-          innoculate: true
-          conditions:
-            - !type:ReagentCondition
-              reagent: AmbuzolPlus
-              min: 5
-    # Far Horizons end
     Bloodstream:
       effects:
         - !type:CureZombieInfection
@@ -738,6 +726,14 @@
             - !type:ReagentCondition
               reagent: AmbuzolPlus
               min: 5
+    Digestion:
+      effects:
+      - !type:CureZombieInfection
+        innoculate: true
+        conditions:
+        - !type:ReagentCondition
+          reagent: AmbuzolPlus
+          min: 5
 
 - type: reagent
   id: PulpedBananaPeel
@@ -888,10 +884,20 @@
     Bloodstream:
       effects:
       - !type:EvenHealthChange
+        conditions:
+        - !type:MobStateCondition # no healing in crit so that dedicated single damage type meds can still have a niche.
+          mobstate: Alive
         damage:
           Brute: -1
           Burn: -1
-          Toxin: -0.5
+        affectAllLimbs: true # Far Horizons
+      - !type:HealthChange
+        conditions:
+        - !type:MobStateCondition
+          mobstate: Alive
+        damage:
+          types:
+            Poison: -0.5 # Same as what it was before the second coming of offmed
         affectAllLimbs: true # Far Horizons
 
 - type: reagent
@@ -1536,9 +1542,8 @@
   metabolisms:
     Bloodstream:
       effects:
-      - !type:GenericStatusEffect
-        key: RadiationProtection
-        component: RadiationProtection
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectRadiationProtection
         time: 2
         type: Add
       - !type:HealthChange

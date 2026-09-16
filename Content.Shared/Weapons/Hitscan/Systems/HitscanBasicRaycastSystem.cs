@@ -34,13 +34,11 @@ public sealed partial class HitscanBasicRaycastSystem : EntitySystem
     [Dependency] private SharedTransformSystem _transform = default!;
     [Dependency] private LimbDamageSystem _limbDamage = default!;
 
-    private EntityQuery<HitscanBasicVisualsComponent> _visualsQuery;
+    [Dependency] private EntityQuery<HitscanBasicVisualsComponent> _visualsQuery = default!;
 
     public override void Initialize()
     {
         base.Initialize();
-
-        _visualsQuery = GetEntityQuery<HitscanBasicVisualsComponent>();
 
         SubscribeLocalEvent<HitscanBasicRaycastComponent, HitscanTraceEvent>(OnHitscanFired);
     }

@@ -26,22 +26,3 @@ public struct StorePurchaseAttemptEvent
         Buyer = buyer;
     }
 }
-
-/// <summary>
-/// Event raised when a store purchase is completed.
-/// Systems can subscribe to this event to perform actions after a purchase.
-/// </summary>
-[ByRefEvent]
-public struct StorePurchaseCompletedEvent
-{
-    public readonly string ListingId;
-    public readonly EntityUid StoreEntity;
-    public readonly EntityUid Buyer;
-    
-    public StorePurchaseCompletedEvent(string listingId, EntityUid storeEntity, EntityUid buyer)
-    {
-        ListingId = listingId;
-        StoreEntity = storeEntity;
-        Buyer = buyer;
-    }
-}

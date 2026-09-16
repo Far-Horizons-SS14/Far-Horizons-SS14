@@ -109,7 +109,7 @@
   effects:
   - !type:AddStatusEffect
     statusEffects:
-    - PainNumbnessTraitStatusEffect
+    - TraitStatusEffectPainNumbness
 
 - type: trait #FH Edit Allows Shadekin to have Hemophilia.
   id: Hemophilia
@@ -120,7 +120,7 @@
   effects:
   - !type:AddStatusEffect
     statusEffects:
-    - StatusEffectHemophiliaTrait
+    - TraitStatusEffectHemophilia
   requirements: # FH - no IPCs though
     - !type:SpeciesRequirement
       species:

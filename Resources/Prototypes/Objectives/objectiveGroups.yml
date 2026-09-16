@@ -6,6 +6,8 @@
     TraitorObjectiveGroupKill: 1
     TraitorObjectiveGroupState: 1 #As in, something about your character. Alive, dead, arrested, gained an ability...
     TraitorObjectiveGroupSocial: 0.25 #Involves helping/harming others without killing them or stealing their stuff, lowered because the chance of rolling this was enormous when its just one objective in the category
+    TraitorObjectiveGroupSabotage: 1
+    #TraitorObjectiveGroupOther: 1 # FH - disabled because only other objective currently disabled
     TraitorObjectiveGroupStory: 1  # Starlight
 
 - type: weightedRandom
@@ -32,6 +34,7 @@
   id: TraitorObjectiveGroupKill
   weights:
 #   KillRandomPersonObjective: 1 #FH Edit: Flick on if KillRandomPerson in the ‎Objectives/traitors.yml is enabled
+    KillStationAiObjective: 0.25
     KillRandomHeadObjective: 0.25
     TeachRandomPersonObjective: 1 #Starlight Teach them a lesson
     TeachRandomHeadObjective: 0.25 # Starlight Teach them a lesson
@@ -48,6 +51,18 @@
   weights:
 #    RandomTraitorAliveObjective: 1 - Removed because the objective was boring and didn't progress the round.
     RandomTraitorProgressObjective: 1
+
+- type: weightedRandom
+  id: TraitorObjectiveGroupSabotage
+  weights:
+    SupercritAnomaliesObjective: 1
+
+#misc objectives that don't fall other another category
+#- type: weightedRandom # FH disabled: the only entry in this group is disabled, and we want to avoid errors
+#  id: TraitorObjectiveGroupOther
+#  weights:
+    #HijackTradeStationObjective: 1 # FH disabled; doesn't make sense with factions
+
 
 #Thief groups
 - type: weightedRandom

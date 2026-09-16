@@ -1,6 +1,7 @@
 ﻿using Content.Server._FarHorizons.Factions;
 using Content.Server.Hands.Systems;
 using Content.Server.Preferences.Managers;
+using Content.Server.Storage.EntitySystems;
 using Content.Shared._FarHorizons.Body;
 using Content.Shared.Access.Components;
 using Content.Shared.Clothing;
@@ -14,6 +15,8 @@ using Content.Shared.Preferences;
 using Content.Shared.Preferences.Loadouts;
 using Content.Shared.Roles;
 using Content.Shared.Station;
+using Content.Shared.Containers.ItemSlots;
+using Content.Shared.Storage;
 using Robust.Server.Containers;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
@@ -26,6 +29,8 @@ public sealed partial class OutfitSystem : EntitySystem
     [Dependency] private HandsSystem _handSystem = default!;
     [Dependency] private InventorySystem _invSystem = default!;
     [Dependency] private SharedStationSpawningSystem _spawningSystem = default!;
+    [Dependency] private ItemSlotsSystem _itemSlotsSystem = default!;
+    [Dependency] private StorageSystem _storageSystem = default!;
     [Dependency] private IServerFactionManager _factions = default!; // Far Horizons
     [Dependency] private ContainerSystem _container = default!; // Far Horizons
 
@@ -71,25 +76,35 @@ public sealed partial class OutfitSystem : EntitySystem
             }
         }
 
-        // Far Horizons start
-        foreach (var (slotName, entProtos) in startingGear.Storage)
+        var coords = Transform(target).Coordinates;
+        foreach (var (slotName, storageContainers) in startingGear.Storage)
         {
-            if (entProtos.Count == 0)
+            if (storageContainers.Count == 0)
                 continue;
 
-            if (!_container.TryGetContainer(target, slotName, out var container)) continue;
+            if (!_invSystem.TryGetSlotEntity(target, slotName, out var slotEnt))
+                continue;
 
-            foreach (var entProto in entProtos)
+            if (TryComp<StorageComponent>(slotEnt, out var storage))
             {
-                var spawnedEntity = Spawn(entProto, spawnCoords);
-                _container.Insert(spawnedEntity, container);
+                foreach (var entProto in storageContainers)
+                {
+                    var spawnedEntity = SpawnAtPosition(entProto, coords);
+                    _storageSystem.Insert(slotEnt.Value, spawnedEntity, out _, user: null, storageComp: storage, playSound: false);
+                }
+            }
+            else if (TryComp<ItemSlotsComponent>(slotEnt, out var itemSlots))
+            {
+                foreach (var entProto in storageContainers)
+                {
+                    var spawnedEntity = SpawnAtPosition(entProto, coords);
+                    _itemSlotsSystem.TryInsertEmpty((slotEnt.Value, itemSlots), spawnedEntity, null, excludeUserAudio: true);
+                }
             }
         }
-        // Far Horizons end
 
         if (TryComp(target, out HandsComponent? handsComponent))
         {
-            var coords = Comp<TransformComponent>(target).Coordinates;
             foreach (var prototype in startingGear.Inhand)
             {
                 var inhandEntity = Spawn(prototype, coords);

@@ -54,10 +54,10 @@ public abstract partial class SharedCryoPodSystem : EntitySystem
     [Dependency] protected SharedUserInterfaceSystem UI = default!;
     [Dependency] private StandingStateSystem _standingState = default!;
 
-    private EntityQuery<BloodstreamComponent> _bloodstreamQuery;
-    private EntityQuery<ItemSlotsComponent> _itemSlotsQuery;
-    private EntityQuery<FitsInDispenserComponent> _dispenserQuery;
-    private EntityQuery<SolutionContainerManagerComponent> _solutionContainerQuery;
+    [Dependency] private EntityQuery<BloodstreamComponent> _bloodstreamQuery = default!;
+    [Dependency] private EntityQuery<ItemSlotsComponent> _itemSlotsQuery = default!;
+    [Dependency] private EntityQuery<FitsInDispenserComponent> _dispenserQuery = default!;
+    [Dependency] private EntityQuery<SolutionContainerManagerComponent> _solutionContainerQuery = default!;
 
 
     public override void Initialize()
@@ -77,11 +77,6 @@ public abstract partial class SharedCryoPodSystem : EntitySystem
         SubscribeLocalEvent<CryoPodComponent, ActivatableUIOpenAttemptEvent>(OnActivateUIAttempt);
         SubscribeLocalEvent<CryoPodComponent, EntRemovedFromContainerMessage>(OnEjected);
         SubscribeLocalEvent<CryoPodComponent, EntInsertedIntoContainerMessage>(OnBodyInserted);
-
-        _bloodstreamQuery = GetEntityQuery<BloodstreamComponent>();
-        _itemSlotsQuery = GetEntityQuery<ItemSlotsComponent>();
-        _dispenserQuery = GetEntityQuery<FitsInDispenserComponent>();
-        _solutionContainerQuery = GetEntityQuery<SolutionContainerManagerComponent>();
 
         InitializeInsideCryoPod();
 

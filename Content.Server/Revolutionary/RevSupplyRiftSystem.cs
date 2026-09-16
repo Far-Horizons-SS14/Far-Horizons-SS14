@@ -18,6 +18,7 @@ using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
 using Content.Shared.NPC.Systems;
 using Content.Shared.Revolutionary.Components;
+using Content.Shared.Revolutionary.Events;
 using Content.Shared.Store;
 using Content.Shared.Store.Events;
 using Robust.Shared.Maths;
@@ -88,7 +89,7 @@ public sealed partial class RevSupplyRiftSystem : EntitySystem
         SubscribeLocalEvent<RevSupplyRiftComponent, ComponentStartup>(OnRevRiftStartup);
         SubscribeLocalEvent<RevSupplyRiftComponent, ComponentShutdown>(OnRevRiftShutdown);
         SubscribeLocalEvent<StorePurchaseAttemptEvent>(OnStorePurchaseAttempt);
-        SubscribeLocalEvent<StorePurchaseCompletedEvent>(OnStorePurchaseCompleted);
+        SubscribeLocalEvent<StoreBuyFinishedEvent>(OnStorePurchaseCompleted);
         
         // Subscribe to the round restart cleanup event to reset the rift destroyed flag
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestart);
@@ -158,12 +159,12 @@ public sealed partial class RevSupplyRiftSystem : EntitySystem
     }
     
     /// <summary>
-    /// Handles the StorePurchaseCompletedEvent for revolutionary supply rifts.
+    /// Handles completed purchases for revolutionary supply rifts.
     /// </summary>
-    private void OnStorePurchaseCompleted(ref StorePurchaseCompletedEvent args)
+    private void OnStorePurchaseCompleted(ref StoreBuyFinishedEvent args)
     {
         // Only handle the revolutionary supply rift listing
-        if (args.ListingId != RevSupplyRiftListingId)
+        if (args.PurchasedItem.ID != RevSupplyRiftListingId)
             return;
         
         // Mark that we're done processing a rift purchase
@@ -184,6 +185,8 @@ public sealed partial class RevSupplyRiftSystem : EntitySystem
         
         // Store the active rift
         _activeRift = uid;
+        var opened = new RevSupplyRiftOpenedEvent();
+        RaiseLocalEvent(ref opened);
         
         // Try to get the name of the revolutionary who placed the rift
         // The Dragon property in DragonRiftComponent is actually the revolutionary player entity
@@ -302,6 +305,8 @@ public sealed partial class RevSupplyRiftSystem : EntitySystem
             // Mark that a rift has been destroyed
             _riftDestroyed = true;
             _activeRift = null;
+            var destroyed = new RevSupplyRiftDestroyedEvent();
+            RaiseLocalEvent(ref destroyed);
             
             // Update all uplinks with the destroyed message
             UpdateRiftDestroyedListing();

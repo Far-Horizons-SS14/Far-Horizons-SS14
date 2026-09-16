@@ -30,6 +30,8 @@ public abstract partial class SharedImplanterSystem : EntitySystem
     [Dependency] private SharedUserInterfaceSystem _uiSystem = default!;
     [Dependency] private IPrototypeManager _proto = default!;
 
+    [Dependency] private EntityQuery<SubdermalImplantComponent> _implantCompQuery = default!;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -241,8 +243,8 @@ public abstract partial class SharedImplanterSystem : EntitySystem
                 // If the target is a revolutionary, check if they were converted by a different head revolutionary
                 if (targetIsRev)
                 {
-                    // First check if the target has a RevolutionaryConverterComponent
-                    if (TryComp<RevolutionaryConverterComponent>(target, out var converterComp) && 
+                    // First check if the target has a RevolutionaryConvertedByComponent
+                    if (TryComp<RevolutionaryConvertedByComponent>(target, out var converterComp) && 
                         converterComp.ConverterUid != null && 
                         converterComp.ConverterUid != user)
                     {
@@ -251,7 +253,7 @@ public abstract partial class SharedImplanterSystem : EntitySystem
                         return false;
                     }
                     
-                    // If the target doesn't have a RevolutionaryConverterComponent or it's not set,
+                    // If the target doesn't have a RevolutionaryConvertedByComponent or it's not set,
                     // fall back to checking the implant owner
                     if (hasOwner && ownerComp != null && ownerComp.OwnerUid != null)
                     {
@@ -291,8 +293,8 @@ public abstract partial class SharedImplanterSystem : EntitySystem
                 // If the user is trying to implant themselves with an implant from a different head revolutionary
                 if (user == target && userIsRev && !userIsHeadRev)
                 {
-                    // First check if the user has a RevolutionaryConverterComponent
-                    if (TryComp<RevolutionaryConverterComponent>(user, out var converterComp) && 
+                    // First check if the user has a RevolutionaryConvertedByComponent
+                    if (TryComp<RevolutionaryConvertedByComponent>(user, out var converterComp) && 
                         converterComp.ConverterUid != null)
                     {
                         // If the implant has an owner component
@@ -336,7 +338,7 @@ public abstract partial class SharedImplanterSystem : EntitySystem
                     }
                     else
                     {
-                        // If the user doesn't have a RevolutionaryConverterComponent, 
+                        // If the user doesn't have a RevolutionaryConvertedByComponent, 
                         // they shouldn't be able to implant themselves with any USSP uplink
                         _popup.PopupEntity(Loc.GetString("Not your headrev."), user, user);
                         return false;
@@ -376,13 +378,11 @@ public abstract partial class SharedImplanterSystem : EntitySystem
 
         if (_container.TryGetContainer(target, ImplanterComponent.ImplantSlotId, out var implantContainer))
         {
-            var implantCompQuery = GetEntityQuery<SubdermalImplantComponent>();
-
             if (component.AllowDeimplantAll)
             {
                 foreach (var implant in implantContainer.ContainedEntities)
                 {
-                    if (!implantCompQuery.TryGetComponent(implant, out var implantComp))
+                    if (!_implantCompQuery.TryGetComponent(implant, out var implantComp))
                         continue;
 
                     //Don't remove a permanent implant and look for the next that can be drawn
@@ -417,7 +417,7 @@ public abstract partial class SharedImplanterSystem : EntitySystem
                     }
                 }
 
-                if (implant != null && implantCompQuery.TryGetComponent(implant, out var implantComp))
+                if (implant != null && _implantCompQuery.TryGetComponent(implant, out var implantComp))
                 {
                     //Don't remove a permanent implant
                     if (!_container.CanRemove(implant.Value, implantContainer))

@@ -28,14 +28,14 @@ public sealed partial class HailerSystem : EntitySystem
 
     private void OnEquipped(EntityUid uid, HailerComponent component, GotEquippedEvent args)
     {
-        _actions.AddAction(args.Equipee, ref component.ActionEntity, component.Action);
+        _actions.AddAction(args.EquipTarget, ref component.ActionEntity, component.Action);
     }
 
     private void OnUnequipped(EntityUid uid, HailerComponent component, GotUnequippedEvent args)
     {
         if (component.ActionEntity != null)
         {
-            _actions.RemoveAction(args.Equipee, component.ActionEntity);
+            _actions.RemoveAction(args.EquipTarget, component.ActionEntity);
             component.ActionEntity = null;
         }
     }

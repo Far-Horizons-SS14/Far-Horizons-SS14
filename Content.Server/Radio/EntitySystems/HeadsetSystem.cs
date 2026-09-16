@@ -69,9 +69,9 @@ public sealed partial class HeadsetSystem : SharedHeadsetSystem
         if (component.IsEquipped && component.Enabled)
         {
             // Far Horizons start
-            var wearingHeadset = EnsureComp<WearingHeadsetComponent>(args.Equipee);
+            var wearingHeadset = EnsureComp<WearingHeadsetComponent>(args.EquipTarget);
             wearingHeadset.Headset = uid;
-            Dirty<WearingHeadsetComponent>((args.Equipee, wearingHeadset));
+            Dirty<WearingHeadsetComponent>((args.EquipTarget, wearingHeadset));
             // Far Horizons end
             UpdateRadioChannels(uid, component);
         }
@@ -81,7 +81,7 @@ public sealed partial class HeadsetSystem : SharedHeadsetSystem
     {
         base.OnGotUnequipped(uid, component, args);
         RemComp<ActiveRadioComponent>(uid);
-        RemComp<WearingHeadsetComponent>(args.Equipee);
+        RemComp<WearingHeadsetComponent>(args.EquipTarget);
     }
 
     public void SetEnabled(EntityUid uid, bool value, HeadsetComponent? component = null)

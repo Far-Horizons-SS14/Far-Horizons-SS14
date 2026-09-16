@@ -76,8 +76,8 @@ public sealed partial class VehicleSystems : SharedVehicleSystem
                     {
                         var riderXform = Transform(rider);
                         _stun.TryCrawling(rider, TimeSpan.FromSeconds(3));
-                        _throwing.TryThrow(rider, vehiclePhys.LinearVelocity, riderPhys, riderXform, _projQuery, vehiclePhys.LinearVelocity.Length(), playSound: false);
-                    _adminLogger.Add(LogType.Slip, LogImpact.Medium, $"{ToPrettyString(rider)} was launched from vehicle {ToPrettyString(ent.Owner)}");
+                        _throwing.TryThrow(rider, vehiclePhys.LinearVelocity, riderPhys, riderXform, vehiclePhys.LinearVelocity.Length(), playSound: false);
+                        _adminLogger.Add(LogType.Slip, LogImpact.Medium, $"{ToPrettyString(rider)} was launched from vehicle {ToPrettyString(ent.Owner)}");
                     }
             }
             else if(TryComp<VehicleContainerComponent>(ent.Owner, out var vcComp))

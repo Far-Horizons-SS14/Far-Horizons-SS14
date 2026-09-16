@@ -13,7 +13,10 @@
   icon:
     sprite: Objects/Specific/Service/vending_machine_restock.rsi
     state: base
-  product: CrateVendingMachineRestockSustenanceFilled
+  product: VendingMachineRestockSustenance
+  container:
+    entity: WrappedParcel
+    containerId: contents
   cost: 1000
   category: cargoproduct-category-name-service
   group: market

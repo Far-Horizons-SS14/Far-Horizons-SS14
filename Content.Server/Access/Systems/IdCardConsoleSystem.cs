@@ -3,14 +3,13 @@ using System.Linq;
 using Content.Server.Chat.Systems;
 using Content.Server.Containers;
 using Content.Server.StationRecords.Systems;
-using Content.Shared.Access.Components;
-using static Content.Shared.Access.Components.IdCardConsoleComponent;
-using Content.Shared.Access.Systems;
 using Content.Shared.Access;
+using Content.Shared.Access.Components;
+using Content.Shared.Access.Systems;
 using Content.Shared.Administration.Logs;
+using Content.Shared.CCVar;
 using Content.Shared.Construction;
 using Content.Shared.Containers.ItemSlots;
-using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Database;
 using Content.Shared.Roles;
@@ -18,9 +17,11 @@ using Content.Shared.StationRecords;
 using Content.Shared.Throwing;
 using JetBrains.Annotations;
 using Robust.Server.GameObjects;
+using Robust.Shared.Configuration;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using static Content.Shared.Access.Components.IdCardConsoleComponent;
 using Content.Shared.Chat; // Starlight
 using Content.Shared._FarHorizons.Factions; //FH
 using Content.Server._FarHorizons.Factions; // Far Horizons (since when are we marking imports?)
@@ -30,6 +31,7 @@ namespace Content.Server.Access.Systems;
 [UsedImplicitly]
 public sealed partial class IdCardConsoleSystem : SharedIdCardConsoleSystem
 {
+    [Dependency] private IConfigurationManager _cfgManager = default!;
     [Dependency] private IPrototypeManager _prototype = default!;
     [Dependency] private StationRecordsSystem _record = default!;
     [Dependency] private UserInterfaceSystem _userInterface = default!;
@@ -228,7 +230,7 @@ public sealed partial class IdCardConsoleSystem : SharedIdCardConsoleSystem
         string newFullName,
         string newJobTitle,
         List<ProtoId<AccessLevelPrototype>> newAccessList,
-        ProtoId<FactionJobAssignmentPrototype> newJobProto, //FH
+        ProtoId<FactionJobAssignmentPrototype>? newJobProto, //FH
         EntityUid player,
         IdCardConsoleComponent? component = null)
     {
@@ -237,6 +239,16 @@ public sealed partial class IdCardConsoleSystem : SharedIdCardConsoleSystem
 
         if (component.TargetIdSlot.Item is not { Valid: true } targetId || !PrivilegedIdIsAuthorized(uid, component, out var privilegedId))
             return;
+
+        // Limit name and job title lengths
+        var maxNameLength = _cfgManager.GetCVar(CCVars.MaxNameLength);
+        var maxIdJobLength = _cfgManager.GetCVar(CCVars.MaxIdJobLength);
+
+        if (newFullName.Length > maxNameLength)
+            newFullName = newFullName[..maxNameLength];
+
+        if (newJobTitle.Length > maxIdJobLength)
+            newJobTitle = newJobTitle[..maxIdJobLength];
 
         _idCard.TryChangeFullName(targetId, newFullName, player: player);
         _idCard.TryChangeJobTitle(targetId, newJobTitle, player: player);

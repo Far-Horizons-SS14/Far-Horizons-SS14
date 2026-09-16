@@ -57,7 +57,6 @@ namespace Content.Server.Atmos.EntitySystems
         private EntityQuery<PhysicsComponent> _physicsQuery;
 
         private static readonly TimeSpan UpdateTime = TimeSpan.FromSeconds(1);
-
         private readonly Dictionary<Entity<FlammableComponent>, float> _fireEvents = new();
 
         private const float LIMB_DAMAGE_MULTIPLIER = 2f; // Far Horizons - deal this much more damage to limbs as dealt to torso (damage is randomly split between all available limbs)

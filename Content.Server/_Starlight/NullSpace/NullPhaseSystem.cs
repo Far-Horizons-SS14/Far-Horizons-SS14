@@ -56,12 +56,12 @@ public sealed partial class NullSpacePhaseSystem : EntitySystem
             || !clothing.Slots.HasFlag(args.SlotFlags))
             return;
 
-        EnsureComp<NullPhaseComponent>(args.Equipee);
+        EnsureComp<NullPhaseComponent>(args.EquipTarget);
     }
 
     private void OnUnequipped(EntityUid uid, NullPhaseComponent component, GotUnequippedEvent args)
     {
-        RemComp<NullPhaseComponent>(args.Equipee);
+        RemComp<NullPhaseComponent>(args.EquipTarget);
     }
 
     private void OnPhaseAction(EntityUid uid, NullPhaseComponent component, NullPhaseActionEvent args)

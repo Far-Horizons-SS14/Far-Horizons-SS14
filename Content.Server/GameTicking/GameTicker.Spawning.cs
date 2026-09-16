@@ -290,12 +290,12 @@ namespace Content.Server.GameTicking
 
             // Pick best job best on prefs.
             var playerPreferences = _prefsManager.GetPreferences(player.UserId);
-            
+
             // Far Horizons
             var jobPriorities = playerPreferences.JobPrioritiesFiltered()
                                         .Where(p => _factions.ListSpawnableFactionIDs().Contains(p.Key.faction));
 
-            // StationJobsSystem doesn't know about factions, so if we have multiple of the same job with different factions available, 
+            // StationJobsSystem doesn't know about factions, so if we have multiple of the same job with different factions available,
             // we take the highest pritority job as the only one to consider.
             // It shouldn't really matter until dual station, and then most of this code will need to be rewritten anyways.
             Dictionary<ProtoId<JobPrototype>, JobPriority> jobPrioritiesFiltered = [];
@@ -308,7 +308,7 @@ namespace Content.Server.GameTicking
                 _stationJobs.PickBestAvailableJobWithPriority(station,
                                                 jobPrioritiesFiltered,
                                                 true,
-                                                restrictedRoles) 
+                                                restrictedRoles)
                 is ProtoId<JobPrototype> job
             ){
                 // Hopefully select the same faction we dropped before
@@ -347,7 +347,7 @@ namespace Content.Server.GameTicking
                 return;
             }
             //starlight end
-            
+
             _newLifeSystem.SaveCharacterToUsed(player.UserId, playerPreferences.IndexOfCharacter(character));     //🌟Starlight🌟
 
             DoSpawn(player, character, station, faction, jobId, silent, out var mob, out var jobPrototype, out var jobName);
@@ -458,23 +458,24 @@ namespace Content.Server.GameTicking
 
             DebugTools.AssertNotNull(data);
 
-            var newMind = _mind.CreateMind(data!.UserId, character.Name);
-            _mind.SetUserId(newMind, data.UserId);
-
             jobPrototype = _prototypeManager.Index<JobPrototype>(jobId);
 
-            _playTimeTrackings.PlayerRolesChanged(player);
 
             var mobMaybe = _stationSpawning.SpawnPlayerCharacterOnStation(station, faction, jobId, character);
             DebugTools.AssertNotNull(mobMaybe);
             mob = mobMaybe!.Value;
+
+            var newMind = _mind.CreateMind(data.UserId, Name(mob));
+            _mind.SetUserId(newMind, data.UserId);
+
+            _playTimeTrackings.PlayerRolesChanged(player);
 
             //Far Horizons start
             //handle character voices
             newMind.Comp.Symspeech = character.Symspeech ?? character.DefaultSymspeech();
 
             var siliconSymspeech = character.SiliconSymspeech;
-            
+
             if (siliconSymspeech is null)
             {
                 var defaultSiliconVoice = _prototypeManager.Index<VoicePrototype>(Symspeech.DefaultSiliconVoice);
@@ -487,7 +488,7 @@ namespace Content.Server.GameTicking
                     defaultSiliconVoice.DefaultVolume
                     );
             }
-            
+
             newMind.Comp.SiliconSymspeech = siliconSymspeech;
             //Far Horizons end
 

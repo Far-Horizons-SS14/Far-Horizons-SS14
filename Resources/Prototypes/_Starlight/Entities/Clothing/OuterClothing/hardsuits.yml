@@ -368,10 +368,11 @@
   - type: HeldSpeedModifier
   - type: FootstepModifier
     footstepSoundCollection:
-      collection: FootstepHeavy
+      path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
       params:
-        pitch: 0.9
-        variation: 0.09
+        volume: -7
+        pitch: 0.7
+        variation: 0.025
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitSyndie
   - type: Tag

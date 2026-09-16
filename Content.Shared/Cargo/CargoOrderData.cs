@@ -8,28 +8,16 @@ namespace Content.Shared.Cargo
     public sealed partial class CargoOrderData
     {
         /// <summary>
-        /// Price when the order was added.
-        /// </summary>
-        [DataField]
-        public int Price;
-
-        /// <summary>
         /// A unique (arbitrary) ID which identifies this order.
         /// </summary>
         [DataField]
         public int OrderId { get; private set; }
 
         /// <summary>
-        /// Prototype Id for the item to be created
+        /// The ID of the cargo product ordered.
         /// </summary>
         [DataField]
-        public string ProductId { get; private set; }
-
-        /// <summary>
-        /// Prototype Name
-        /// </summary>
-        [DataField]
-        public string ProductName { get; private set; }
+        public ProtoId<CargoProductPrototype> Product;
 
         /// <summary>
         /// The number of items in the order. Not readonly, as it might change
@@ -68,12 +56,10 @@ namespace Content.Shared.Cargo
         public NetEntity StationId;
         #endregion
 
-        public CargoOrderData(int orderId, string productId, string productName, int price, int amount, string requester, string reason, ProtoId<CargoAccountPrototype> account, NetEntity stationId) // Starlight: +stationId
+        public CargoOrderData(int orderId, ProtoId<CargoProductPrototype> product, int amount, string requester, string reason, ProtoId<CargoAccountPrototype> account, NetEntity stationId) // Starlight: +stationId
         {
             OrderId = orderId;
-            ProductId = productId;
-            ProductName = productName;
-            Price = price;
+            Product = product;
             OrderQuantity = amount;
             Requester = requester;
             Reason = reason;

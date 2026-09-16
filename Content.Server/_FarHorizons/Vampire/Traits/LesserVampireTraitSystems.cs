@@ -1,5 +1,4 @@
 using System.Linq;
-using Content.Server.Atmos.Components;
 using Content.Server.Shuttles.Components;
 using Content.Server.Station.Components;
 using Content.Shared._FarHorizons.LimbDamage;

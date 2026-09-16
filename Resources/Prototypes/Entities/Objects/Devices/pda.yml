@@ -1,6 +1,6 @@
 - type: entity
   abstract: true
-  parent: [ BaseItem, StorePresetUplink ] #PDA's have uplinks so they have to inherit the data.
+  parent: [ BaseItem ]
   id: BasePDA
   name: PDA
   description: Personal Data Assistant.
@@ -113,6 +113,7 @@
         type: HealthAnalyzerBoundUserInterface
       enum.IntegrityAnalyzerUiKey.Key: #FarHorizons
         type: IntegrityAnalyzerBoundUserInterface #FarHorizons
+  - type: RemoteStore # PDAs can access uplinks so they need this component.
   - type: Tag
     tags:
     - DoorBumpOpener

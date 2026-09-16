@@ -132,7 +132,7 @@ public sealed partial class ToggleableClothingSystem
         foreach (var clothing in component.ClothingUids)
         {
             if (component.Container != null && clothing.Value != null && component.isActiveList.GetValueOrDefault(clothing.Key))
-                ToggleClothing(args.Equipee, uid, component, clothing.Key, args.Equipee);
+                ToggleClothing(args.EquipTarget, uid, component, clothing.Key, args.EquipTarget);
         }
     }
 

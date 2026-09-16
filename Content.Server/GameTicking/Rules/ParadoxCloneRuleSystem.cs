@@ -12,7 +12,7 @@ using Content.Shared.Gibbing.Components;
 using Content.Shared.Medical.SuitSensor;
 using Content.Shared.Mind;
 using Content.Shared.Objectives.Systems;
-using NetCord;
+using Content.Shared.Random.Helpers;
 using Robust.Server.GameObjects;
 using Robust.Shared.Random;
 
@@ -40,7 +40,7 @@ public sealed partial class ParadoxCloneRuleSystem : GameRuleSystem<ParadoxClone
     protected override void Started(EntityUid uid, ParadoxCloneRuleComponent component, GameRuleComponent gameRule, GameRuleStartedEvent args)
     {
         base.Started(uid, component, gameRule, args);
-        
+
         // check if we got enough potential cloning targets, otherwise cancel the gamerule so that the ghost role does not show up
         var allHumans = _target.GetMinds();
 
@@ -141,7 +141,7 @@ public sealed partial class ParadoxCloneRuleSystem : GameRuleSystem<ParadoxClone
     // SL start
     private Entity<MindComponent>? FindValidPlayer()
     {
-        var validPlayers = _mind.GetAliveHumans().Where(mind => !HasComp<NoObjectiveTargetComponent>(mind.Comp.OwnedEntity)).ToHashSet();
+        var validPlayers = _target.GetMinds().Where(mind => !HasComp<NoObjectiveTargetComponent>(mind.Comp.OwnedEntity)).ToHashSet();
         if (validPlayers.Count == 0) return null;
         return _random.Pick(validPlayers);
     }

@@ -4,6 +4,7 @@ using Content.Server.Atmos.EntitySystems;
 using Content.Server.Chat.Managers;
 using Content.Server.Explosion.EntitySystems;
 using Content.Server.Lightning;
+using Content.Server.Radiation.Systems;
 using Content.Server.Radio.EntitySystems;
 using Content.Server.Starlight.Energy.Supermatter;
 using Content.Shared.Abilities.Goliath;
@@ -37,6 +38,7 @@ public sealed partial class SupermatterSystem : AccUpdateEntitySystem
     [Dependency] private AtmosphereSystem _atmosphere = default!;
     [Dependency] private AudioSystem _audio = default!;
     [Dependency] private LightningSystem _lightning = default!;
+    [Dependency] private RadiationSystem _radiation = default!;
     [Dependency] private RadioSystem _radioSystem = default!;
     [Dependency] private SupermatterCascadeSystem _cascade = default!;
     [Dependency] private IChatManager _chat = default!;
@@ -166,7 +168,7 @@ public sealed partial class SupermatterSystem : AccUpdateEntitySystem
     private void HandleRadiation(Entity<SupermatterComponent> supermatter)
     {
         var radComp = EnsureComp<RadiationSourceComponent>(supermatter.Owner);
-        radComp.Intensity = supermatter.Comp.AccRadiation.Float();
+        _radiation.SetIntensity((supermatter, radComp), supermatter.Comp.AccRadiation.Float());
 
         supermatter.Comp.AccRadiation /= supermatter.Comp.RadiationStability;
     }

@@ -1,12 +1,23 @@
 # Funky atmos - /tg/ gases
+gas-bz = BZ
 gas-bz-abbreviation = BZ
+gas-healium = Healium
 gas-healium-abbreviation = Healium
+gas-nitrium = Nitrium
 gas-nitrium-abbreviation = Nitrium
+gas-pluoxium = Pluoxium
 gas-pluoxium-abbreviation = Pluox
+gas-hydrogen = Hydrogen
 gas-hydrogen-abbreviation = H₂
+gas-hyper-noblium = Hyper-Noblium
 gas-hyper-noblium-abbreviation = Hyper-Nob
+gas-proto-nitrate = Proto-Nitrate
 gas-proto-nitrate-abbreviation = Proto-Nitrate
+gas-zauker = Zauker
 gas-zauker-abbreviation = Zauker
+gas-halon = Halon
 gas-halon-abbreviation = Halon
+gas-helium = Helium
 gas-helium-abbreviation = He
+gas-anti-noblium = Anti-Noblium
 gas-anti-noblium-abbreviation = Anti-Nob
