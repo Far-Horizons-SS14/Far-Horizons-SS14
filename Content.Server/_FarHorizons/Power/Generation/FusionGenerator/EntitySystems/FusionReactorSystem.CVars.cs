@@ -10,6 +10,8 @@ public sealed partial class FusionReactorSystem
     public float ExplosiveForceMin { get; private set; }
     public float ExplosiveForceMax { get; private set; }
     public float ExplosiveForceMaxDestruction { get; private set; }
+    public float Tickrate { get; private set; }
+    public float TickTime { get; private set; }
 
     private void InitializeCVars()
     {
@@ -19,5 +21,18 @@ public sealed partial class FusionReactorSystem
         Subs.CVar(_cfg, FHCCVars.FusionReactorExplosiveForceMin, value => ExplosiveForceMin = value, true);
         Subs.CVar(_cfg, FHCCVars.FusionReactorExplosiveForceMax, value => ExplosiveForceMax = value, true);
         Subs.CVar(_cfg, FHCCVars.FusionReactorExplosiveForceMaxDestruction, value => ExplosiveForceMaxDestruction = value, true);
+        Subs.CVar(_cfg, FHCCVars.FusionReactorTargetTickrate, TickrateCalc, true);
+
+        void TickrateCalc(float value)
+        {
+            /// Some explaination:
+            /// A maximum of 30 as that's the base tickrate of the game and it can't go faster
+            /// A minimum of 0.1 (10 seconds per tick) as the simulation gets unstable going slower
+            /// The minimum also prevents div by zero and negative numbers
+            value = Math.Clamp(value, 0.1f, 30f);
+            Tickrate = value;
+            TickTime = 1 / value;
+            _cfg.SetCVar(FHCCVars.FusionReactorTargetTickrate, value);
+        }
     }
 }

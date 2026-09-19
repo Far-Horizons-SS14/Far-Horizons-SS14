@@ -31,6 +31,10 @@ public sealed partial class FusionReactorSystem
     {
         foreach (var (uid, comp) in fusionReactor.Masers)
         {
+            var valid = IsValid(uid);
+            comp.PowerSetting *= valid ? 1 : 0;
+            comp.InjectAntimatter &= valid;
+            
             SetPowerDraw(uid, comp.PowerSetting > 0, comp.BasePower * MathF.Pow(comp.PowerExponent, comp.PowerSetting - 1));
             SetOnSatisfy(uid, () => _fusionSystem.ChangeJoule(fusionReactor.Plasma, GetPowerSupplied(uid) * dt));
 

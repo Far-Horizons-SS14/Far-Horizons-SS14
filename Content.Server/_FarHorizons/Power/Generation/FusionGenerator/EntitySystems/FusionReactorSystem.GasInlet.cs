@@ -20,6 +20,7 @@ public sealed partial class FusionReactorSystem
 
     private void OnGasInletUpdate(EntityUid uid, FusionReactorGasInletComponent comp, ref AtmosDeviceUpdateEvent args)
     {
+        comp.Enabled &= IsValid(uid);
         if (!comp.Enabled)
         {
             comp.Production.Clear();
@@ -80,5 +81,7 @@ public sealed partial class FusionReactorSystem
 
                Enabled = inlet.Enabled,
            });
+
+        UpdateValidityUI(uid);
     }
 }

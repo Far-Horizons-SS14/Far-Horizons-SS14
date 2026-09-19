@@ -41,6 +41,9 @@ fusion-reactor-controller-ui-stat-no-data = N/A
 
 fusion-reactor-controller-ui-eject = Eject
 
+fusion-reactor-controller-ui-action-denied = Controller is not master, action prohibited
+fusion-reactor-controller-ui-low-pressure = Pressure too low to inject
+
 # [8] has an invisible character, U+200B, because it does not accept empty strings
 fusion-reactor-controller-ui-fmt-prefix = { TOSTRING($divided, "F1") } { $places ->
     [0] y
@@ -61,7 +64,7 @@ fusion-reactor-controller-ui-fmt-prefix = { TOSTRING($divided, "F1") } { $places
 fusion-reactor-controller-announcement-sender = Fusion Reactor
 fusion-reactor-controller-announcement-stage-safe = The fusion reactor's integrity has recovered to acceptable levels. A containment breach has been averted.
 fusion-reactor-controller-announcement-stage-2 = A fusion reactor on board the station has suffered extreme integrity loss. A containment breach may be imminent.
-fusion-reactor-controller-announcement-stage-3 = A fusion reactor on board the station has suffered catastorphic integrity loss. The core eject button has been activated. Estimated { TOSTRING($value, "F1") } seconds to containment failure.
+fusion-reactor-controller-announcement-stage-3 = A fusion reactor on board the station has suffered catastrophic integrity loss. The core eject button has been activated. Estimated { TOSTRING($value, "F1") } seconds to containment failure.
 fusion-reactor-controller-announcement-stage-4 = A fusion reactor on board the station has suffered a complete containment failure. Emergency containment fields have been deployed but have proved ineffective. The reactor will detonate in { TOSTRING($value, "F1") } seconds. Evacuate the area immediately.
 
 fusion-reactor-controller-radio-integrity-rising = Integrity recovering: { TOSTRING($value, "P1") }.

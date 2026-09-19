@@ -8,3 +8,4 @@ fusion-reactor-cvar-description-delay-stage4 = Number of seconds the reactor wil
 fusion-reactor-cvar-description-explosion-min = Minimum explosive power of a fusion reactor meltdown.
 fusion-reactor-cvar-description-explosion-max = Maximum explosive power of a fusion reactor meltdown when fusion_reactor.allow_mass_destruction is false.
 fusion-reactor-cvar-description-explosion-max-destruction = Maximum explosive power of a fusion reactor meltdown when fusion_reactor.allow_mass_destruction is true.
+fusion-reactor-cvar-description-tickrate = Ticks per second of the fusion reactor simulation.

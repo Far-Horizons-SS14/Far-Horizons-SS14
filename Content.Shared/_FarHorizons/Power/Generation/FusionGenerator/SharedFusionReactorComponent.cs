@@ -1,4 +1,5 @@
 using Content.Shared._FarHorizons.Fusion;
+using Content.Shared._FarHorizons.Power.Generation.FusionGenerator.Components;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared._FarHorizons.Power.Generation.FusionGenerator;
@@ -184,6 +185,15 @@ public sealed class FusionReactorControllerEditInjectMessage(FusionAtom atom) : 
 
 [Serializable, NetSerializable]
 public sealed class FusionReactorControllerEjectMessage() : BoundUserInterfaceMessage;
+#endregion
+
+#region Validity Check
+
+[Serializable, NetSerializable]
+public sealed class FusionReactorValidityBuiMessage : BoundUserInterfaceMessage
+{
+    public FusionReactorValidity Validity = FusionReactorValidity.Valid;
+}
 #endregion
 
 #region Data Types

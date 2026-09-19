@@ -78,12 +78,13 @@ public sealed partial class FusionReactorSystem
         var injectEfficiency = MathF.Max(fusionReactor.PlasmaStability, 0.001f);
         FusionMixture toPlasma = new() { Temperature = fusionReactor.Stored.Temperature };
         FusionMixture toStorage = new() { Temperature = fusionReactor.Plasma.Temperature };
+        var canInject = fusionReactor.Plasma.Pressure > 0;
         foreach (var (atom, data) in comp.Transfers)
         {
             switch (data.transferType)
             {
                 case FusionReactorTransferType.SetRate:
-                    if (data.Quantity > 0)
+                    if (canInject && data.Quantity > 0)
                     {
                         if (!fusionReactor.Stored.Atoms.TryGetValue(atom, out var ratePosStored))
                             break;
@@ -105,7 +106,7 @@ public sealed partial class FusionReactorSystem
                 case FusionReactorTransferType.SetLevel:
                     var level = fusionReactor.Plasma.Atoms.GetValueOrDefault(atom);
 
-                    if (level < data.Quantity)
+                    if (level < data.Quantity && canInject)
                     {
                         if (!fusionReactor.Stored.Atoms.TryGetValue(atom, out var setLvlStored))
                             break;
@@ -123,7 +124,7 @@ public sealed partial class FusionReactorSystem
                     break;
 
                 case FusionReactorTransferType.Fill:
-                    if (!fusionReactor.Stored.Atoms.TryGetValue(atom, out var fillStored))
+                    if (!canInject || !fusionReactor.Stored.Atoms.TryGetValue(atom, out var fillStored))
                         break;
                     var fillAmount = fillStored * injectEfficiency;
                     fusionReactor.Stored.ChangeAtom(atom, -fillAmount);
@@ -295,6 +296,8 @@ public sealed partial class FusionReactorSystem
             PowerExtracted = supplyComponent != null && supplyComponent.Enabled ? supplyComponent.Supply : 0,
             PowerExported = supplyComponent != null && supplyComponent.Enabled ? supplyComponent.Surplus : 0,
         });
+
+        UpdateValidityUI(uid);
     }
 
     private void OnControllerUIOpened(EntityUid uid, FusionReactorControllerComponent comp, ref BoundUIOpenedEvent args) => UpdateControllerUI(uid, comp);

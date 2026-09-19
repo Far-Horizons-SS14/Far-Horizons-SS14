@@ -1,0 +1,29 @@
+- type: entity
+  id: CrateFusionReactorTorus
+  parent: CrateEngineeringSecure
+  name: Fusion Reactor Torus Crate
+  description: 9 segments of a fusion reactor's torus.
+  components:
+  - type: StorageFill
+    contents:
+      - id: FusionReactorTorusFlatpack
+        amount: 9
+
+- type: entity
+  id: CrateFusionReactorCircuits
+  parent: CrateEngineeringSecure
+  name: Fusion Reactor Machines Crate
+  description: A selection of circuit boards for building a fusion reactor's machines.
+  components:
+  - type: StorageFill
+    contents:
+      - id: FusionReactorCoolantPumpMachineCircuitboard
+        amount: 2
+      - id: FusionReactorCapacitorMachineCircuitboard
+        amount: 4
+      - id: FusionReactorMaserMachineCircuitboard
+        amount: 2
+      - id: FusionReactorGasInletMachineCircuitboard
+        amount: 1
+      - id: FusionReactorControllerMachineCircuitboard
+        amount: 1

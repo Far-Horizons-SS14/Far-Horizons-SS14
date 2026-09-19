@@ -1,6 +1,6 @@
 - type: entity
   id: FusionReactorCoolantPumpInlet
-  parent: BaseStructure
+  parent: [ BaseStructure, ConstructibleMachine ]
   name: Fusion Reactor Coolant Pump
   description: A port of the coolant system for the fusion reactor.
   components:
@@ -8,11 +8,31 @@
     sprite: Structures/Piping/Atmospherics/thermomachine.rsi
     layers:
       - state: freezerOn
+  - type: Appearance
+  - type: InteractionOutline
+  - type: Rotatable
+  - type: Anchorable
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
   - type: FusionReactorCoolantPump
   - type: FusionReactorPowerDraw
     draw: 200
     priority: 1
+  - type: FusionReactorRequireValid
+    magnet: 1
   - type: AtmosDevice
+  - type: Machine
+    board: FusionReactorCoolantPumpMachineCircuitboard
+  - type: WiresPanel
   - type: NodeContainer
     examinable: true
     nodes:
@@ -45,7 +65,7 @@
 
 - type: entity
   id: FusionReactorBattery
-  parent: BaseStructure
+  parent: [ BaseStructure, ConstructibleMachine ]
   name: Fusion Reactor Supercapacitor
   description: Stores the energy needed to operate the fusion reactor.
   components:
@@ -53,12 +73,31 @@
     sprite: _FarHorizons/Structures/Power/smes.rsi
     layers:
       - state: smes
+  - type: Appearance
+  - type: InteractionOutline
+  - type: Rotatable
+  - type: Anchorable
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
   - type: FusionReactorBattery
+  - type: FusionReactorRequireValid
   - type: Battery
     netsync: false
     startingCharge: 16000000
     maxCharge: 16000000
   - type: ExaminableBattery
+  - type: Machine
+    board: FusionReactorCapacitorMachineCircuitboard
+  - type: WiresPanel
   - type: NodeContainer
     examinable: true
     nodes:
@@ -94,7 +133,7 @@
 
 - type: entity
   id: FusionReactorMaser
-  parent: BaseStructure
+  parent: [ BaseStructure, ConstructibleMachine ]
   name: Fusion Reactor MASER
   description: Heats the plasma within a fusion reactor using concentrated microwaves.
   components:
@@ -102,6 +141,21 @@
     sprite: Structures/Power/Generation/Singularity/emitter.rsi
     layers:
     - state: emitter2
+  - type: Appearance
+  - type: InteractionOutline
+  - type: Rotatable
+  - type: Anchorable
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
   - type: FusionReactorMaser
     jar_slot:
       whitelist:
@@ -109,11 +163,15 @@
         - AmeFuelContainer
   - type: FusionReactorPowerDraw
     priority: 2
+  - type: FusionReactorRequireValid
+    torus: 1
   - type: ContainerContainer
     containers:
       jar_slot: !type:ContainerSlot {}
   - type: ItemSlots
-  - type: AtmosDevice
+  - type: Machine
+    board: FusionReactorMaserMachineCircuitboard
+  - type: WiresPanel
   - type: NodeContainer
     examinable: true
     nodes:
@@ -131,7 +189,7 @@
 
 - type: entity
   id: FusionReactorGasInlet
-  parent: BaseStructure
+  parent: [ BaseStructure, ConstructibleMachine ]
   name: Fusion Reactor Gas Inlet
   description: Breaks down gases into atoms for use in the fusion reactor.
   components:
@@ -139,9 +197,29 @@
     sprite: Structures/Machines/gasrecycler.rsi
     layers:
       - state: running
+  - type: Appearance
+  - type: InteractionOutline
+  - type: Rotatable
+  - type: Anchorable
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
   - type: FusionReactorGasInlet
   - type: FusionReactorPowerDraw
+  - type: FusionReactorRequireValid
+    alone: false
   - type: AtmosDevice
+  - type: Machine
+    board: FusionReactorGasInletMachineCircuitboard
+  - type: WiresPanel
   - type: NodeContainer
     examinable: true
     nodes:

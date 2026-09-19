@@ -30,6 +30,8 @@ public sealed partial class FusionReactorControllerWindow : FancyWindow
     private float _accumulator = 0f;
     private TimeSpan _timeSpan;
 
+    private FusionReactorControllerBuiState _lastState = new();
+
     // 28 gets us all the way to Nickel, which is as high as the reactor goes by default
     private const int NumberAtoms = 28;
 
@@ -73,7 +75,7 @@ public sealed partial class FusionReactorControllerWindow : FancyWindow
 
         SortInjectList.OnPressed += _ => InjectionList.Order();
         InjectionList.DisplayUnit = Loc.GetString("fusion-reactor-controller-ui-unit-mol");
-        InjectionList.OnTransferSet += val => OnTransferSet?.Invoke(val);
+        InjectionList.OnTransferSet += TransferSet;
 
         EditInjectToggle.OnPressed += _ => EditInjectBox.Visible = EditInjectToggle.Pressed;
         EditInjectOption.OnItemSelected += obj =>
@@ -183,6 +185,7 @@ public sealed partial class FusionReactorControllerWindow : FancyWindow
         EjectButton.Visible = msg.CanEject;
 
         _timeSpan = msg.EventTime;
+        _lastState = msg;
     }
 
     protected override void FrameUpdate(FrameEventArgs args)
@@ -203,6 +206,10 @@ public sealed partial class FusionReactorControllerWindow : FancyWindow
         CenterCountdown.Text = Loc.GetString("fusion-reactor-controller-ui-format-seconds", ("value", seconds));
         CenterCountdown.ModulateSelfOverride = warnColor;
     }
+
+    public void UpdateValidity(FusionReactorValidityBuiMessage validityMessage) => InvalidPopup.Update(validityMessage);
+
+    public void DisplayMessage(string text) => InvalidPopup.Display(text);
 
     #region Messages
     private void OnSetExtractPressed()
@@ -259,6 +266,27 @@ public sealed partial class FusionReactorControllerWindow : FancyWindow
             return;
 
         OnEditInject?.Invoke(new(new(protons, neutrons)));
+    }
+
+    private void TransferSet(KeyValuePair<FusionAtom, FusionReactorTransferData> value)
+    {
+        if (!InvalidPopup.Valid)
+        {
+            InvalidPopup.Show();
+            return;
+        }
+
+        var drain = value.Value.transferType == FusionReactorTransferType.Drain ||
+                    ((value.Value.transferType == FusionReactorTransferType.SetRate || value.Value.transferType == FusionReactorTransferType.SetLevel)
+                    && value.Value.Quantity <= 0);
+
+        if (!drain && _lastState.Plasma.Pressure <= 0)
+        {
+            InvalidPopup.Display(Loc.GetString("fusion-reactor-controller-ui-low-pressure"));
+            return;
+        }
+
+        OnTransferSet?.Invoke(value);
     }
 
     public List<FusionReactorControllerSetMaserPowerMessage> GetMaserCoalescers()

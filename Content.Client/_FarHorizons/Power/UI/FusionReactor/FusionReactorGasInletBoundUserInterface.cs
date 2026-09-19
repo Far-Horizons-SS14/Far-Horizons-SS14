@@ -1,5 +1,4 @@
 using Content.Shared._FarHorizons.Power.Generation.FusionGenerator;
-using Content.Shared.IdentityManagement;
 using Content.Shared.Localizations;
 using JetBrains.Annotations;
 using Robust.Client.UserInterface;
@@ -53,5 +52,13 @@ public sealed class FusionReactorGasInletBoundUserInterface : BoundUserInterface
         _window?.SetTransferRate(inletState.PowerSetting);
         _window?.SetMaxTransferRate(inletState.MaxPowerSetting);
         _window?.Update();
+    }
+
+    protected override void ReceiveMessage(BoundUserInterfaceMessage message)
+    {
+        base.ReceiveMessage(message);
+
+        if (message is FusionReactorValidityBuiMessage validityMessage)
+            _window?.UpdateValidity(validityMessage);
     }
 }

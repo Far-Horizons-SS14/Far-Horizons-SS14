@@ -1,0 +1,21 @@
+<fusion:FusionReactorInvalidPopup
+    xmlns="https://spacestation14.io"
+    xmlns:fusion="clr-namespace:Content.Client._FarHorizons.Power.UI.FusionReactor"
+    xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+    HorizontalExpand="True" VerticalExpand="True" Visible="False">
+
+    <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True" VerticalAlignment="Center">
+        <controls:StripeBack Name="WarningStripeCenter" >
+            <BoxContainer Orientation="Vertical" >
+                <Label Name="InvalidLabel" Text="{ Loc fusion-reactor-validity-ui-invalid-config }" StyleClasses="ConsoleHeading" HorizontalAlignment="Center"/>
+                <Label Name="InvalidAlone" Text="{ Loc fusion-reactor-validity-ui-invalid-alone }" StyleClasses="ConsoleText" HorizontalAlignment="Center"/>
+                <Label Name="InvalidTori" Text="{ Loc fusion-reactor-validity-ui-invalid-tori }" StyleClasses="ConsoleText" HorizontalAlignment="Center"/>
+                <Label Name="InvalidMagnet" Text="{ Loc fusion-reactor-validity-ui-invalid-magnet }" StyleClasses="ConsoleText" HorizontalAlignment="Center"/>
+                <Label Name="CustomText" Text="" StyleClasses="ConsoleText" HorizontalAlignment="Center" Visible="False"/>
+                <Label Text="{ Loc fusion-reactor-validity-ui-invalid-disclaimer }" StyleClasses="LabelSubText" HorizontalAlignment="Center"/>
+                <Button Name="ACKButton" Text="{ Loc fusion-reactor-validity-ui-dismiss }" HorizontalAlignment="Center"/>
+            </BoxContainer>
+        </controls:StripeBack>
+    </BoxContainer>
+
+</fusion:FusionReactorInvalidPopup>

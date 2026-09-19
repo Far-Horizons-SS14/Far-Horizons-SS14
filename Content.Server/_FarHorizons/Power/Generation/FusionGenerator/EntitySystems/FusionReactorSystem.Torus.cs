@@ -1,6 +1,5 @@
 using Content.Server._FarHorizons.Power.Generation.FusionGenerator.Components;
 using Content.Server._FarHorizons.Power.Generation.FusionGenerator.NodeGroup;
-using Content.Shared._FarHorizons.Fusion;
 using Content.Shared.Atmos;
 
 namespace Content.Server._FarHorizons.Power.Generation.FusionGenerator.EntitySystems;
@@ -74,7 +73,7 @@ public sealed partial class FusionReactorSystem
         }
 
         // Power draw is RequestedMagneticPressure/SuperconductingCount * TorusCount/10 watts
-        var targetDraw = reactorNodeGroup.TorusCount * reactorNodeGroup.RequestedMagneticPressure / (reactorNodeGroup.SuperconductingCount * 10);
+        var targetDraw = reactorNodeGroup.Torus.Count * reactorNodeGroup.RequestedMagneticPressure / (reactorNodeGroup.SuperconductingCount * 10);
         var dE = targetDraw / reactorNodeGroup.SuperconductingCount;
         var dP = reactorNodeGroup.RequestedMagneticPressure / reactorNodeGroup.SuperconductingCount;
 

@@ -942,6 +942,25 @@
   announceTo:
     - Engineering
 
+- type: researchTreeNode
+  id: FusionReactorUnlock
+  name: research-tree-node-fusion-1
+  cost: 20000
+  icon:
+    state: power
+    color: "#EFB341"
+  tier: Tier2
+  requires:
+    - NuclearPowerGeneration
+  unlocks:
+    - FusionReactorCoolantPumpMachineCircuitboard
+    - FusionReactorCapacitorMachineCircuitboard
+    - FusionReactorMaserMachineCircuitboard
+    - FusionReactorGasInletMachineCircuitboard
+    - FusionReactorControllerMachineCircuitboard
+  announceTo:
+    - Engineering
+
 # Research
 
 - type: researchTreeNode

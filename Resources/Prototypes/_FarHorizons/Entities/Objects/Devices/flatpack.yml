@@ -35,3 +35,20 @@
   - type: Sprite
     layers:
     - state: emitter
+  
+- type: entity
+  parent: BaseFlatpack
+  id: FusionReactorTorusFlatpack
+  name: Fusion Reactor Torus Flatpack
+  description: A flatpack used for a piece of the fusion reactor's torus.
+  components:
+  - type: Sprite
+    layers:
+    - state: ame-part
+  - type: Flatpack
+    entity: FusionReactorTorus
+  - type: StaticPrice
+    price: 500
+  - type: GuideHelp
+    guides:
+    - Power

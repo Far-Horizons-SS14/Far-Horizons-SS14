@@ -25,10 +25,10 @@ public sealed partial class FusionReactorBatteryComponent : Component
     public float Supply = 0;
 
     [ViewVariables]
-    public PowerNetworkBatteryComponent NetBattery;
+    public PowerNetworkBatteryComponent NetBattery = new();
 
     [ViewVariables]
-    public BatteryComponent Battery;
+    public BatteryComponent Battery = new();
 
     /// <summary>
     /// A value used to assist in charge rate calculations

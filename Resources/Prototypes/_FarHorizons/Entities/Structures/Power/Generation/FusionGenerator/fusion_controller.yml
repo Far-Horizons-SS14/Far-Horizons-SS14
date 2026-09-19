@@ -1,14 +1,36 @@
 - type: entity
   id: FusionReactorController
-  parent: BaseStructure
+  parent: [ BaseStructure, ConstructibleMachine ]
   name: Fusion Reactor Controller
   description: The control center for a fusion reactor.
   components:
   - type: Sprite
     sprite: Structures/Power/Generation/ame.rsi
     state: control
+  - type: Appearance
+  - type: InteractionOutline
+  - type: Rotatable
+  - type: Anchorable
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
   - type: FusionReactorController
   - type: FusionReactorPowerSupply
+  - type: FusionReactorRequireValid
+    magnet: 1
+    torus: 8
+    alone: false
+  - type: Machine
+    board: FusionReactorControllerMachineCircuitboard
+  - type: WiresPanel
   - type: NodeContainer
     examinable: true
     nodes:

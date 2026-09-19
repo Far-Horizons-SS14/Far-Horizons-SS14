@@ -1,7 +1,6 @@
 using Content.Client.UserInterface;
 using Content.Shared._FarHorizons.Fusion;
 using Content.Shared._FarHorizons.Power.Generation.FusionGenerator;
-using Content.Shared.IdentityManagement;
 using JetBrains.Annotations;
 using Robust.Client.Timing;
 using Robust.Client.UserInterface;
@@ -80,6 +79,14 @@ public sealed class FusionReactorControllerBoundUserInterface : BoundUserInterfa
         _window?.UpdateState(controllerState);
     }
 
+    protected override void ReceiveMessage(BoundUserInterfaceMessage message)
+    {
+        base.ReceiveMessage(message);
+
+        if (message is FusionReactorValidityBuiMessage validityMessage)
+            _window?.UpdateValidity(validityMessage);
+    }
+
     private void OnInjectionSet(KeyValuePair<FusionAtom, FusionReactorTransferData> injection) =>
         TrySendMessage(new FusionReactorControllerSetInjectMessage(injection.Key, injection.Value));
 
@@ -92,7 +99,10 @@ public sealed class FusionReactorControllerBoundUserInterface : BoundUserInterfa
     private void TrySendMessage(BoundUserInterfaceMessage message)
     {
         if (!_master)
+        {
+            _window?.DisplayMessage(Loc.GetString("fusion-reactor-controller-ui-action-denied"));
             return;
+        }
 
         SendMessage(message);
     }

@@ -6,6 +6,7 @@ using Content.Server.Atmos.EntitySystems;
 using Content.Server.NodeContainer.NodeGroups;
 using Content.Shared._FarHorizons.Fusion;
 using Content.Shared._FarHorizons.Power.Generation.FusionGenerator;
+using Content.Shared._FarHorizons.Power.Generation.FusionGenerator.Components;
 using Content.Shared.Atmos;
 using Content.Shared.NodeContainer;
 using Content.Shared.NodeContainer.NodeGroups;
@@ -32,6 +33,9 @@ public sealed partial class FusionReactorNodeGroup : BaseNodeGroup
     [ViewVariables]
     public TimeSpan LastProcess = TimeSpan.Zero;
 
+    [ViewVariables]
+    public TimeSpan NextProcess = TimeSpan.Zero;
+
     /// <summary>
     /// Torus parts that count as magnets for the fusion reactor, similar to an AME's cores.
     /// </summary>
@@ -42,7 +46,6 @@ public sealed partial class FusionReactorNodeGroup : BaseNodeGroup
     /// Torus parts that aren't magnets.
     /// </summary>
     public readonly List<Entity<FusionReactorTorusComponent>> Torus = [];
-    public int TorusCount => Torus.Count;
 
     /// <summary>
     /// The batteries attached to the fusion reactor
@@ -215,11 +218,13 @@ public sealed partial class FusionReactorNodeGroup : BaseNodeGroup
         base.LoadNodes(groupNodes);
 
         EntityUid? gridEnt = null;
+        var requireValids = new List<FusionReactorRequireValidComponent>();
 
         var torusQuery = _entityManager.GetEntityQuery<FusionReactorTorusComponent>();
         var controllerQuery = _entityManager.GetEntityQuery<FusionReactorControllerComponent>();
         var batteryQuery = _entityManager.GetEntityQuery<FusionReactorBatteryComponent>();
         var maserQuery = _entityManager.GetEntityQuery<FusionReactorMaserComponent>();
+        var validityQuery = _entityManager.GetEntityQuery<FusionReactorRequireValidComponent>();
         var xformQuery = _entityManager.GetEntityQuery<TransformComponent>();
         foreach (var node in groupNodes)
         {
@@ -233,6 +238,9 @@ public sealed partial class FusionReactorNodeGroup : BaseNodeGroup
                 gridEnt = xform.GridUid;
             else if (gridEnt != xform.GridUid)
                 continue;
+
+            if (validityQuery.TryGetComponent(nodeOwner, out var validComponent))
+                requireValids.Add(validComponent);
 
             if (torusQuery.TryGetComponent(nodeOwner, out var torus))
             {
@@ -263,6 +271,20 @@ public sealed partial class FusionReactorNodeGroup : BaseNodeGroup
 
         CoolantIn.Volume = Magnets.Count * LitersPerMagnet;
         CoolantOut.Volume = CoolantIn.Volume;
+
+        foreach (var valid in requireValids)
+        {
+            valid.Validity = FusionReactorValidity.Valid;
+
+            if (Torus.Count < valid.MinimumTorus)
+                valid.Validity |= FusionReactorValidity.InsufficientTorus;
+
+            if (Magnets.Count < valid.MinimumMagnet)
+                valid.Validity |= FusionReactorValidity.InsufficientMagnet;
+
+            if (!valid.AllowedAlone && groupNodes.Count <= 1)
+                valid.Validity |= FusionReactorValidity.Alone;
+        }
 
         return;
 
@@ -308,42 +330,49 @@ public sealed partial class FusionReactorNodeGroup : BaseNodeGroup
         var newCoolantOut = new List<GasMixture>(newGroups.Count());
         foreach (var group in newGroups)
         {
-            if (group.Key is FusionReactorNodeGroup newGroup)
-            {
-                newPlasma.Add(newGroup.Plasma);
-                newStored.Add(newGroup.Stored);
-                newCoolantIn.Add(newGroup.CoolantIn);
-                newCoolantOut.Add(newGroup.CoolantOut);
+            if (group.Key is not FusionReactorNodeGroup newGroup)
+                continue;
 
-                newGroup.LastProcess = LastProcess;
-                newGroup.RequestedMagneticPressure = RequestedMagneticPressure;
+            newPlasma.Add(newGroup.Plasma);
+            newStored.Add(newGroup.Stored);
+            newCoolantIn.Add(newGroup.CoolantIn);
+            newCoolantOut.Add(newGroup.CoolantOut);
 
-                newGroup.CanEject = CanEject;
-                newGroup.HasDumpedCoolant = HasDumpedCoolant;
+            newGroup.LastProcess = LastProcess;
+            newGroup.NextProcess = NextProcess;
+            newGroup.RequestedMagneticPressure = RequestedMagneticPressure;
 
-                newGroup.Integrity = Integrity;
-                newGroup.IntegrityMax = IntegrityMax;
-                newGroup.IntegrityMaxDecay = IntegrityMaxDecay;
-                newGroup.IntegrityRegeneration = IntegrityRegeneration;
+            newGroup.CanEject = CanEject;
+            newGroup.HasDumpedCoolant = HasDumpedCoolant;
 
-                newGroup.ResistancePressure = ResistancePressure;
-                newGroup.ResistanceTemperature = ResistanceTemperature;
+            newGroup.Integrity = Integrity;
+            newGroup.IntegrityMax = IntegrityMax;
+            newGroup.IntegrityMaxDecay = IntegrityMaxDecay;
+            newGroup.IntegrityRegeneration = IntegrityRegeneration;
 
-                newGroup.MeltdownAnnouncements = MeltdownAnnouncements;
-                newGroup.MeltdownStage = MeltdownStage;
+            newGroup.ResistancePressure = ResistancePressure;
+            newGroup.ResistanceTemperature = ResistanceTemperature;
 
-                newGroup.LastAnnouncedIntegrity = LastAnnouncedIntegrity;
-                newGroup.AnnouncementInterval = AnnouncementInterval;
+            newGroup.MeltdownAnnouncements = MeltdownAnnouncements;
+            newGroup.MeltdownStage = MeltdownStage;
 
-                newGroup.NextAllowedAnnouncement = NextAllowedAnnouncement;
-                newGroup.NextEventTime = NextEventTime;
-            }
+            newGroup.LastAnnouncedIntegrity = LastAnnouncedIntegrity;
+            newGroup.AnnouncementInterval = AnnouncementInterval;
+
+            newGroup.NextAllowedAnnouncement = NextAllowedAnnouncement;
+            newGroup.NextEventTime = NextEventTime;
         }
 
         _fusionSystem?.DivideInto(Plasma, newPlasma);
         _fusionSystem?.DivideInto(Stored, newStored);
-        _atmosphereSystem?.DivideInto(CoolantIn, newCoolantIn);
-        _atmosphereSystem?.DivideInto(CoolantOut, newCoolantOut);
+
+        // AtmosphereSystem.DivideInto has no input validation and will happily start throwing NaN gas
+        // mixtures if recievers have 0 total volume
+        if (newCoolantIn.Sum(g => g.Volume) > 0)
+            _atmosphereSystem?.DivideInto(CoolantIn, newCoolantIn);
+
+        if (newCoolantOut.Sum(g => g.Volume) > 0)
+            _atmosphereSystem?.DivideInto(CoolantOut, newCoolantOut);
     }
 
     private float StabilityCalculation()

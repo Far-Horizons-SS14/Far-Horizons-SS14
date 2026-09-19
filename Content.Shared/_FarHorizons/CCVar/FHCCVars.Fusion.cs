@@ -63,4 +63,9 @@ public sealed partial class FHCCVars
     public static readonly CVarDef<float> FusionReactorExplosiveForceMaxDestruction =
         CVarDef.Create("fusion_reactor.explosion_max_destruction", 750000f, CVar.SERVERONLY, Loc.GetString("fusion-reactor-cvar-description-explosion-max-destruction"));
 
+    /// <summary>
+    /// The ticks per second of the fusion reactor's calculations
+    /// </summary>
+    public static readonly CVarDef<float> FusionReactorTargetTickrate =
+        CVarDef.Create("fusion_reactor.tickrate", 30f, CVar.SERVERONLY, Loc.GetString("fusion-reactor-cvar-description-tickrate"));
 }

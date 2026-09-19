@@ -1,0 +1,90 @@
+- type: entity
+  id: FusionReactorCoolantPumpMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: Fusion Reactor Coolant Pump Machine Board
+  description: A machine printed circuit board for a fusion reactor's coolant pump.
+  components:
+  - type: Sprite
+    state: engineering
+  - type: MachineBoard
+    prototype: FusionReactorCoolantPumpInlet
+    stackRequirements:
+      Manipulator: 2
+      Steel: 2
+    componentRequirements:
+      GasVolumePump:
+        amount: 1
+        defaultPrototype: GasVolumePump
+
+- type: entity
+  id: FusionReactorCapacitorMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: Fusion Reactor Supercapacitor Machine Board
+  description: A machine printed circuit board for a fusion reactor's supercapacitor.
+  components:
+  - type: Sprite
+    state: engineering
+  - type: MachineBoard
+    prototype: FusionReactorBatteryEmpty
+    stackRequirements:
+      Manipulator: 5
+      CableHV: 15
+    componentRequirements:
+      PowerCell:
+        amount: 8
+        defaultPrototype: PowerCellSmallPrinted
+
+- type: entity
+  id: FusionReactorMaserMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: Fusion Reactor MASER Machine Board
+  description: A machine printed circuit board for a fusion reactor's MASER.
+  components:
+  - type: Sprite
+    state: engineering
+  - type: MachineBoard
+    prototype: FusionReactorMaser
+    stackRequirements:
+      Manipulator: 2
+      Glass: 2
+      Plasma: 5
+      CableMV: 10
+
+- type: entity
+  id: FusionReactorGasInletMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: Fusion Reactor Gas Inlet Machine Board
+  description: A machine printed circuit board for a fusion reactor's gas inlet.
+  components:
+  - type: Sprite
+    state: engineering
+  - type: MachineBoard
+    prototype: FusionReactorGasInlet
+    stackRequirements:
+      Manipulator: 1
+      Plasma: 5
+      Steel: 4
+    componentRequirements:
+      GasTank:
+        amount: 2
+        defaultPrototype: AirTank
+
+- type: entity
+  id: FusionReactorControllerMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: Fusion Reactor Controller Machine Board
+  description: A machine printed circuit board for a fusion reactor's controller.
+  components:
+  - type: Sprite
+    state: engineering
+  - type: MachineBoard
+    prototype: FusionReactorController
+    stackRequirements:
+      Glass: 1
+      Plasteel: 3
+      Cable: 10
+      CableHV: 10
+    tagRequirements:
+      SmallAIChip:
+        amount: 1
+        defaultPrototype: PotatoAIChip

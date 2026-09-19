@@ -1,4 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using Content.Server._FarHorizons.Fusion.Systems;
 using Content.Server._FarHorizons.Power.Generation.FusionGenerator.Components;
 using Content.Server._FarHorizons.Power.Generation.FusionGenerator.NodeGroup;
@@ -68,6 +69,7 @@ public sealed partial class FusionReactorSystem : EntitySystem
         CoolingInitialize();
         MaserInitialize();
         GasInletInitialize();
+        ValidityInitialize();
     }
 
     public void AddReactor(FusionReactorNodeGroup nodeGroup) => _fusionReactors.Add(nodeGroup);
@@ -85,27 +87,27 @@ public sealed partial class FusionReactorSystem : EntitySystem
             UpdateBatteryUI(uid, battery);
         }
 
+        var curTime = _gameTiming.CurTime;
         var shakeQuery = EntityQueryEnumerator<FusionReactorCameraShakeComponent>();
         while (shakeQuery.MoveNext(out var uid, out var shake))
         {
-            if(_gameTiming.CurTime < shake.NextShake)
+            if (curTime < shake.NextShake)
                 continue;
-            
+
             UpdateEffectShake(uid, shake);
         }
 
-        foreach (var reactor in _fusionReactors)
+        foreach (var reactor in _fusionReactors.Where(r => r.NextProcess <= curTime))
         {
-            // TODO: not every update
-            ProcessReactor(reactor);
+            ProcessReactor(reactor, curTime);
         }
     }
 
-    private void ProcessReactor(FusionReactorNodeGroup fusionReactor)
+    private void ProcessReactor(FusionReactorNodeGroup fusionReactor, TimeSpan curTime)
     {
-        var time = _gameTiming.CurTime;
-        var dt = (float)(time - fusionReactor.LastProcess).TotalSeconds;
-        fusionReactor.LastProcess = time;
+        var dt = (float)(curTime - fusionReactor.LastProcess).TotalSeconds;
+        fusionReactor.LastProcess = curTime;
+        fusionReactor.NextProcess = curTime.Add(TimeSpan.FromSeconds(TickTime));
 
         ProcessCooling(fusionReactor, dt);
         ProcessMagnetics(fusionReactor, dt);
@@ -121,7 +123,7 @@ public sealed partial class FusionReactorSystem : EntitySystem
 
         ProcessDamage(fusionReactor, dt);
         UpdateMeltdownStage(fusionReactor);
-        
+
         UpdateRadio(fusionReactor);
     }
 

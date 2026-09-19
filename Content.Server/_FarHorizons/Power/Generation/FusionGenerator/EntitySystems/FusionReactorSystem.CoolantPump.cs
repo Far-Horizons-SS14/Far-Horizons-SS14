@@ -73,6 +73,7 @@ public sealed partial class FusionReactorSystem
 
     private void OnCoolantPumpUpdate(EntityUid uid, FusionReactorCoolantPumpComponent comp, ref AtmosDeviceUpdateEvent args)
     {
+        comp.Enabled &= IsValid(uid);
         SetPowerDraw(uid, comp.Enabled);
         if (!comp.Enabled)
             return;
