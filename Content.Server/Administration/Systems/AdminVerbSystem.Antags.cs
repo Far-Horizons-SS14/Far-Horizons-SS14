@@ -36,6 +36,8 @@ public sealed partial class AdminVerbSystem
     private static readonly EntProtoId DefaultNinjaRule = "NinjaSpawn";
     private static readonly ProtoId<StartingGearPrototype> PirateGearId = "PirateGear";
     private static readonly EntProtoId DefaultVampireRule = "Vampire"; //Starlight
+    private static readonly EntProtoId DefaultTraitorNSRule = "TraitorNS"; // Far Horizons
+    private static readonly EntProtoId DefaultLambdaLoneopsRule = "LambdaLoneOpsSpawn"; // Far Horizons
     //private static readonly EntProtoId DefaultBrighteyeRule = "Brighteye"; //Starlight - FH removed
 
     // All antag verbs have names so invokeverb works.
@@ -257,6 +259,38 @@ public sealed partial class AdminVerbSystem
             Message = Loc.GetString("admin-verb-make-vampire"),
         };
         args.Verbs.Add(vampire);
+
+        // Far Horizons start
+        var traitorNSName = Loc.GetString("admin-verb-text-make-traitor-ns");
+        Verb traitorNS = new()
+        {
+            Text = traitorNSName,
+            Category = VerbCategory.Antag,
+            Icon = new SpriteSpecifier.Rsi(new ResPath("/Textures/Interface/Misc/job_icons.rsi"), "Syndicate"),
+            Act = () =>
+            {
+                _antag.ForceMakeAntag<TraitorRuleComponent>(targetPlayer, DefaultTraitorNSRule);
+            },
+            Impact = LogImpact.High,
+            Message = string.Join(": ", traitorName, Loc.GetString("admin-verb-make-traitor-ns")),
+        };
+        args.Verbs.Add(traitorNS);
+
+        var nukeOpNameNS = Loc.GetString("admin-verb-text-make-nuclear-operative-ns");
+        Verb nukeOpNS = new()
+        {
+            Text = nukeOpNameNS,
+            Category = VerbCategory.Antag,
+            Icon = new SpriteSpecifier.Rsi(new("/Textures/_FarHorizons/Clothing/Head/Hardsuits/hardliner.rsi"), "icon"),
+            Act = () =>
+            {
+                _antag.ForceMakeAntag<NukeopsRuleComponent>(targetPlayer, DefaultLambdaLoneopsRule);
+            },
+            Impact = LogImpact.High,
+            Message = string.Join(": ", nukeOpName, Loc.GetString("admin-verb-make-nuclear-operative-ns")),
+        };
+        args.Verbs.Add(nukeOpNS);
+        // Far Horizons end
 
         // FH - removed brighteye
         // if (HasComp<ShadekinComponent>(args.Target))

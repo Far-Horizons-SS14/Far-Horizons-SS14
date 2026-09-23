@@ -175,3 +175,23 @@
       targetUser: true
       radioChannel: SyndiSec
     #endregion Starlight tracker rattle
+
+- type: entity
+  parent: BaseSubdermalImplant
+  id: ConsortiumUplinkImplant
+  name: Consortium uplink implant
+  description: This implant lets the user access a hidden Consortium uplink at will.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SubdermalImplant
+    implantAction: ActionOpenUplinkImplant
+    whitelist:
+      components:
+      - Hands
+  - type: RemoteStore
+    proto: StorePresetConsortiumRemoteUplink
+    currency: Refinedbluespacecrystal
+  - type: UserInterface
+    interfaces:
+      enum.StoreUiKey.Key:
+        type: StoreBoundUserInterface

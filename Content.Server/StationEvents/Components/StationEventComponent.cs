@@ -1,4 +1,6 @@
+using Content.Shared._FarHorizons.Factions;
 using Robust.Shared.Audio;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
 namespace Content.Server.StationEvents.Components;
@@ -87,4 +89,6 @@ public sealed partial class StationEventComponent : Component
     /// </summary>
     [DataField]
     public bool OccursDuringRoundEnd = true;
+
+    [DataField] public ProtoId<FactionPrototype>? Faction = null;
 }

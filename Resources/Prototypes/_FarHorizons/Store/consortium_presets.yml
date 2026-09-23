@@ -23,3 +23,11 @@
     balance:
       Refinedbluespacecrystal: 0
     expectedFaction:
+      - Consortium
+
+- type: entity
+  parent: StorePresetConsortiumUplink
+  id: StorePresetConsortiumRemoteUplink
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RingerAccessUplink
