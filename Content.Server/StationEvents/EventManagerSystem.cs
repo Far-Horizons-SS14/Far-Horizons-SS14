@@ -22,7 +22,7 @@ public sealed partial class EventManagerSystem : EntitySystem
     [Dependency] private EntityTableSystem _entityTable = default!;
     [Dependency] public GameTicker GameTicker = default!;
     [Dependency] private RoundEndSystem _roundEnd = default!;
-    [Dependency] private IServerFactionManager _factions = default!;
+    [Dependency] private IServerFactionManager _factions = default!; // Far Horizons
 
     public bool EventsEnabled { get; private set; }
     private void SetEnabled(bool value) => EventsEnabled = value;

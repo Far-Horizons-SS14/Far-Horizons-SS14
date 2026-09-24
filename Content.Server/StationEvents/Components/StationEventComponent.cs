@@ -90,5 +90,5 @@ public sealed partial class StationEventComponent : Component
     [DataField]
     public bool OccursDuringRoundEnd = true;
 
-    [DataField] public ProtoId<FactionPrototype>? Faction = null;
+    [DataField] public ProtoId<FactionPrototype>? Faction = null; // Far Horizons
 }
