@@ -266,7 +266,7 @@ public sealed partial class AdminVerbSystem
         {
             Text = traitorNSName,
             Category = VerbCategory.Antag,
-            Icon = new SpriteSpecifier.Rsi(new ResPath("/Textures/Interface/Misc/job_icons.rsi"), "Syndicate"),
+            Icon = new SpriteSpecifier.Rsi(new ResPath("/Textures/_FarHorizons/Interface/Misc/job_icons.rsi"), "Consortium"),
             Act = () =>
             {
                 _antag.ForceMakeAntag<TraitorRuleComponent>(targetPlayer, DefaultTraitorNSRule);
