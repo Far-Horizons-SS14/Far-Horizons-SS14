@@ -40,6 +40,7 @@
     nameFormat: name-format-nuclear-operation
   - type: NukeopsRule
     greetingMessage: lambda-welcome
+    greetSoundNotification: /Audio/_FarHorizons/Ambience/Antag/lambda_start.ogg
   - type: RuleGrids
   - type: AntagSelection
   - type: AntagLoadProfileRule
@@ -138,6 +139,7 @@
     currencyProto: Refinedbluespacecrystal
     greetingMessage: traitor-role-greeting-ns
     codewordsMessage: traitor-role-codewords-ns
+    # greetSoundNotification: /Audio/_FarHorizons/Ambience/Antag/nt_traitor.ogg # TODO: find source of the cool sound Abby found or find alternative
   - type: AntagRandomObjectives
     sets:
     - groups: TraitorObjectiveGroups # TODO: Add separate objectives
