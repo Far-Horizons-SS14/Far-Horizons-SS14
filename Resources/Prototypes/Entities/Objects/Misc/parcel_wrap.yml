@@ -107,7 +107,7 @@
         enum.WrappedParcelVisuals.Layer:
           "Tiny": { state: "parcel-tiny" }
           "Small": { state: "parcel-small" }
-          "Medium": { state: "parcel-medium" }
+          "Normal": { state: "parcel-medium" } #FH Edit- ITs normal not medium somehow...
           "Large": { state: "parcel-medium" }
           "Huge": { state: "parcel-large" }
           "Ginormous": { state: "parcel-large" }
@@ -121,6 +121,24 @@
           Bounty: { state: bounty }
           CaptainsPaper: { state: captains_paper }
           Invoice: { state: invoice }
+      #FH Start
+      enum.TamperSealVisuals.Size:
+        enum.TamperSealLayers.Sealed:
+          "Tiny": { state: "tiny-seal" }
+          "Small": { state: "small-seal" }
+          "Normal": { state: "medium-seal" }
+          "Large": { state: "medium-seal" }
+          "Huge": { state: "large-seal" }
+          "Ginormous": { state: "large-seal" }
+      enum.FactionTamperSealVisuals.Size:
+        enum.FactionTamperSealLayers.Sealed:
+          "Tiny": { state: "tiny-factionseal" }
+          "Small": { state: "small-factionseal" }
+          "Normal": { state: "medium-factionseal" }
+          "Large": { state: "medium-factionseal" }
+          "Huge": { state: "large-factionseal" }
+          "Ginormous": { state: "large-factionseal" }
+      #FH End
   - type: Sprite
     sprite: Objects/Misc/ParcelWrap/wrapped_parcel.rsi
     layers:
@@ -130,6 +148,18 @@
       visible: false
       sprite: Objects/Misc/ParcelWrap/paper_labels.rsi
       map: ["enum.PaperLabelVisuals.Layer"]
+  #FH Start
+    - state: tiny-seal
+      sprite: _FarHorizons/Structures/Storage/tamper_seal_parcel.rsi
+      visible: false
+      map: [ "enum.TamperSealLayers.Sealed" ]
+    - state: tiny-factionseal
+      sprite: _FarHorizons/Structures/Storage/tamper_seal_parcel.rsi
+      visible: false
+      map: [ "enum.FactionTamperSealLayers.Sealed" ]
+  - type: TamperSealable
+    destroyToolQualities: [ Cutting, Slicing ]
+  #FH End
 
 - type: entity
   parent: BaseWrappedParcel
