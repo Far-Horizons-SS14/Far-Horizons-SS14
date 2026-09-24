@@ -287,7 +287,7 @@ public sealed partial class AdminVerbSystem
                 _antag.ForceMakeAntag<NukeopsRuleComponent>(targetPlayer, DefaultLambdaLoneopsRule);
             },
             Impact = LogImpact.High,
-            Message = string.Join(": ", nukeOpName, Loc.GetString("admin-verb-make-nuclear-operative-ns")),
+            Message = string.Join(": ", nukeOpNameNS, Loc.GetString("admin-verb-make-nuclear-operative-ns")),
         };
         args.Verbs.Add(nukeOpNS);
         // Far Horizons end
