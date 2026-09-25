@@ -4,6 +4,7 @@ using Content.Shared.FixedPoint;
 using Content.Shared.NPC.Prototypes;
 using Content.Shared.Random;
 using Content.Shared.Roles;
+using Content.Shared.Store;
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
@@ -79,4 +80,11 @@ public sealed partial class TraitorRuleComponent : Component
     /// </summary>
     [DataField]
     public FixedPoint2 StartingBalance = 25;
+
+    [DataField] public EntProtoId StoreProto = "StorePresetRemoteUplink"; // Far Horizons
+    [DataField] public EntProtoId ImplantProto = "UplinkImplant"; // Far Horizons
+    [DataField] public ProtoId<ListingPrototype> UplinkCatalogProto = "UplinkUplinkImplanter"; // Far Horizons
+    [DataField] public ProtoId<CurrencyPrototype> CurrencyProto = "Telecrystal"; // Far Horizons
+    [DataField] public LocId GreetingMessage = "traitor-role-greeting"; // Far Horizons
+    [DataField] public LocId CodewordsMessage = "traitor-role-codewords"; // Far Horizons
 }

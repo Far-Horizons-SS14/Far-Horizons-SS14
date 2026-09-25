@@ -58,9 +58,11 @@ public sealed partial class UplinkSystem : EntitySystem
         }
 
         // If we didn't have an uplink, make an empty one.
-        entity.Comp.Store = Spawn(TraitorUplinkStore, MapCoordinates.Nullspace);
+        var proto = entity.Comp.Proto ?? TraitorUplinkStore; // Far Horizons
+        var currency = entity.Comp.Currency ?? TelecrystalCurrencyPrototype; // Far Horizons
+        entity.Comp.Store = Spawn(proto, MapCoordinates.Nullspace); // Far Horizons
         Dirty(entity, entity.Comp); // FH - If you don't dirty the entity, the client doesn't know about the store and can't use it.
-        SetUplink(args.Implanted, entity.Comp.Store.Value, 0, false);
+        SetUplink(args.Implanted, entity.Comp.Store.Value, 0, false, currency); // Far Horizons
         Log.Warning($"{ToPrettyString(args.Implanted)} did not have an uplink when they were implanted."); // FH - Error to Warning so that we can explicitly do this in a test
     }
 
@@ -80,18 +82,26 @@ public sealed partial class UplinkSystem : EntitySystem
         out Note[]? code,
         EntityUid? uplinkEntity = null,
         bool giveDiscounts = false,
-        bool bindToPda = false)
+        bool bindToPda = false,
+        EntProtoId? proto = null, // Far Horizons
+        EntProtoId? implantProto = null, // Far Horizons
+        ProtoId<ListingPrototype>? uplinkCatalog = null, // Far Horizons
+        ProtoId<CurrencyPrototype>? currency = null) // Far Horizons
     {
         code = null;
 
-        var storeEntity = Spawn(TraitorUplinkStore, MapCoordinates.Nullspace);
-        if (TryAddEntityUplink(user, balance, out var generatedCode, uplinkEntity, storeEntity, giveDiscounts, bindToPda))
+        proto ??= TraitorUplinkStore; // Far Horizons
+        currency ??= TelecrystalCurrencyPrototype; // Far Horizons
+        var storeEntity = Spawn(proto, MapCoordinates.Nullspace); // Far Horizons
+        if (TryAddEntityUplink(user, balance, out var generatedCode, uplinkEntity, storeEntity, currency.Value, giveDiscounts, bindToPda)) // Far Horizons
         {
             code = generatedCode;
             return AddUplinkResult.Pda;
         }
 
-        if (TryImplantUplink(user, storeEntity, balance, giveDiscounts))
+        implantProto ??= FallbackUplinkImplant; // Far Horizons
+        uplinkCatalog ??= FallbackUplinkCatalog; // Far Horizons
+        if (TryImplantUplink(user, storeEntity, balance, giveDiscounts, implantProto.Value, uplinkCatalog.Value, currency.Value)) // Far Horizons
         {
             return AddUplinkResult.Implant;
         }
@@ -106,6 +116,7 @@ public sealed partial class UplinkSystem : EntitySystem
         out Note[]? code,
         EntityUid? uplinkEntity,
         EntityUid storeEntity,
+        ProtoId<CurrencyPrototype> currency, // Far Horizons
         bool giveDiscounts = false,
         bool bindToPda = false)
     {
@@ -132,7 +143,7 @@ public sealed partial class UplinkSystem : EntitySystem
             _ringer.SetBoundUplinkEntity((storeEntity, accessComp), uplinkEntity.Value);
         }
 
-        SetUplink(user, storeEntity, balance, giveDiscounts);
+        SetUplink(user, storeEntity, balance, giveDiscounts, currency); // Far Horizons
         // Far Horizons: Only PDAs given a traitor store may use any traitor's ringer code.
         if (HasComp<PdaComponent>(uplinkEntity))
             EnsureComp<RingerCapablePDAComponent>(uplinkEntity.Value);
@@ -143,7 +154,7 @@ public sealed partial class UplinkSystem : EntitySystem
     /// <summary>
     /// Configure TC for the uplink
     /// </summary>
-    private void SetUplink(EntityUid user, EntityUid store, FixedPoint2 balance, bool giveDiscounts)
+    private void SetUplink(EntityUid user, EntityUid store, FixedPoint2 balance, bool giveDiscounts, ProtoId<CurrencyPrototype> currency) // Far Horizons
     {
         if (!_mind.TryGetMind(user, out var mind, out _))
             return;
@@ -153,7 +164,7 @@ public sealed partial class UplinkSystem : EntitySystem
         storeComp.AccountOwner = mind;
 
         storeComp.Balance.Clear();
-        _store.TryAddCurrency(new Dictionary<string, FixedPoint2> { { TelecrystalCurrencyPrototype, balance } },
+        _store.TryAddCurrency(new Dictionary<string, FixedPoint2> { { currency, balance } }, // Far Horizons
             store,
             storeComp);
 
@@ -169,12 +180,12 @@ public sealed partial class UplinkSystem : EntitySystem
     /// <summary>
     /// Implant an uplink as a fallback measure if the traitor had no PDA
     /// </summary>
-    public bool TryImplantUplink(EntityUid user, EntityUid storeEntity, FixedPoint2 balance, bool giveDiscounts)
+    public bool TryImplantUplink(EntityUid user, EntityUid storeEntity, FixedPoint2 balance, bool giveDiscounts, EntProtoId implantProto, ProtoId<ListingPrototype> catalogProto, ProtoId<CurrencyPrototype> currency) // Far Horizons
     {
-        if (!_proto.Resolve(FallbackUplinkCatalog, out var catalog))
+        if (!_proto.Resolve(catalogProto, out var catalog)) // Far Horizons
             return false;
 
-        if (!catalog.Cost.TryGetValue(TelecrystalCurrencyPrototype, out var cost))
+        if (!catalog.Cost.TryGetValue(currency, out var cost)) // Far Horizons
             return false;
 
         if (balance < cost) // Can't use Math functions on FixedPoint2
@@ -182,8 +193,8 @@ public sealed partial class UplinkSystem : EntitySystem
         else
             balance = balance - cost;
 
-        SetUplink(user, storeEntity, balance, giveDiscounts);
-        var implant = _subdermalImplant.AddImplant(user, FallbackUplinkImplant);
+        SetUplink(user, storeEntity, balance, giveDiscounts, currency); // Far Horizons
+        var implant = _subdermalImplant.AddImplant(user, implantProto); // Far Horizons
 
         if (!HasComp<RemoteStoreComponent>(implant))
         {

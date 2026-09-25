@@ -1,0 +1,69 @@
+- type: startingGear
+  id: ConsortiumOperativeGearFullNoUplink
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitOperative # TODO - replace with blue version
+    back: ClothingBackpackDuffelSyndicate # TODO - replace with blue version
+    mask: ClothingMaskGasSyndicate # TODO - replace with blue version
+    eyes: ClothingEyesHudSyndicate # TODO - replace with blue version
+    ears: ClothingHeadsetAltSyndicate # TODO - replace with blue version
+    gloves: ClothingHandsGlovesCombat # TODO - replace with blue version
+    outerClothing: ClothingOuterHardsuitLambda
+    shoes: ClothingShoesBootsCombatFilled
+    id: SyndiOperativePDA # TODO - replace with blue version
+    pocket2: PlushieCarp
+    belt: ClothingBeltMilitaryWebbing
+    rig: ClothingBeltOperativeWebbing
+  storage:
+    back:
+    - WeaponPistolViper
+    - PinpointerSyndicateNuclear
+    - MedkitAdvancedFilled
+    autoImplant:
+    - DeathAcidifierImplanter
+
+- type: startingGear
+  id: ConsortiumOperativeGearFull
+  parent: ConsortiumOperativeGearFullNoUplink
+  equipment:
+    pocket2: BaseConsortiumUplinkRadio40RB
+
+- type: startingGear
+  id: ConsortiumCommanderGearFull
+  parent: ConsortiumOperativeGearFull
+  equipment:
+    id: SyndiCommanderPDA # TODO - replace with blue version
+    neck: CommanderWhistle
+    ears: ClothingHeadsetAltSyndicateCommander # TODO - replace with blue version
+    outerClothing: ClothingOuterHardsuitLambdaCommander
+  inhand:
+  - NukeOpsDeclarationOfWar
+
+- type: startingGear
+  id: ConsortiumOperativeMedicFull
+  parent: ConsortiumOperativeGearFull
+  equipment:
+    eyes: ClothingEyesHudSyndicateAgent # TODO - replace with blue version
+    outerClothing: ClothingOuterHardsuitLambdaMedic
+    ears: ClothingHeadsetAltSyndicateAgent # TODO - replace with blue version
+    shoes: ClothingShoesBootsMagSyndie # TODO - replace with blue version
+    id: SyndiCorpsmanPDA # TODO - replace with blue version
+    belt: ClothingBeltMilitaryWebbingMedFilled
+    rig: ClothingBeltMilitaryWebbingMed
+  storage:
+    back:
+    - SyndiHypo # TODO - replace with blue version
+    - SawAdvanced
+    - Cautery
+    - CombatKnife
+    - WeaponPistolViper
+    - PinpointerSyndicateNuclear
+    - HandheldHealthAnalyzer
+    - CombatMedipen
+    autoImplant:
+    - DeathAcidifierImplanter
+
+- type: startingGear
+  id: ConsortiumLoneOperativeGearFull
+  parent: ConsortiumOperativeGearFull
+  equipment:
+    pocket2: BaseConsortiumUplinkRadio60RB

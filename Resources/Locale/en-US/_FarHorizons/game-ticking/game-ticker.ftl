@@ -1,0 +1,1 @@
+preset-not-correct-faction = Can't start {$presetName}. Requires {$factionRequired} faction but {$factionCurrent} is selected.

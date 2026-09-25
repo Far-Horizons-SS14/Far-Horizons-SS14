@@ -583,6 +583,7 @@
     weight: 3 # 🌟Starlight🌟 Casualization
     minimumPlayers: 20
     duration: null # LoneOpsSpawn needs an infinite duration so that it inherits the NukeOpsRule things of an actually appropriate end scrreen (not always "Neutral outcome!") and... ending the game if the station is nuked.
+    faction: FactionNT # Far Horizons
   - type: NukeopsRule
     roundEndBehavior: Nothing
   - type: AntagSelection
@@ -632,6 +633,7 @@
       path: /Audio/_Starlight/Announcements/attention.ogg
     duration: null # the rule has to last the whole round not 1 second
     occursDuringRoundEnd: false
+    faction: FactionNT # Far Horizons
   - type: AlertLevelInterceptionRule
   - type: AntagSelection
     definitions:
