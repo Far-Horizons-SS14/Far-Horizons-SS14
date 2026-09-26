@@ -33,8 +33,10 @@ public sealed partial class FusionReactorSystem : EntitySystem
 
     private void OnBatteryStartup(EntityUid uid, FusionReactorBatteryComponent comp, ref ComponentStartup args)
     {
-        comp.NetBattery = EnsureComp<PowerNetworkBatteryComponent>(uid);
         comp.Battery = EnsureComp<BatteryComponent>(uid);
+        comp.Battery.NetSyncEnabled = false;
+        
+        comp.NetBattery = EnsureComp<PowerNetworkBatteryComponent>(uid);
     }
 
     private void OnPowerDrawExamined(EntityUid uid, FusionReactorPowerDrawComponent comp, ref ExaminedEvent args)

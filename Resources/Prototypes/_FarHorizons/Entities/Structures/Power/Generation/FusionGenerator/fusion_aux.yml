@@ -167,7 +167,9 @@
     torus: 1
   - type: ContainerContainer
     containers:
-      jar_slot: !type:ContainerSlot {}
+      machine_board: !type:Container
+      machine_parts: !type:Container
+      jar_slot: !type:ContainerSlot
   - type: ItemSlots
   - type: Machine
     board: FusionReactorMaserMachineCircuitboard
