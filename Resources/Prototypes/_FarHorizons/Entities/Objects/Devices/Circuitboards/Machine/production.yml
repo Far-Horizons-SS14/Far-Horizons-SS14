@@ -39,25 +39,13 @@
 
 #region NeoSol
 - type: entity
-  id: AutofabMachineCircuitboard
   parent: BaseMachineCircuitboard
-  name: Autofab Machine Board
-  description: A machine printed circuit board for an Autofab.
-  components:
-    - type: MachineBoard
-      prototype: Autofab
-      stackRequirements:
-        Manipulator: 4
-        Glass: 1
-
-- type: entity
-  parent: BaseMachineCircuitboard
-  id: AutofabSubzeroMachineCircuitboard
-  name: Subzero Autofab Machine Board
-  description: A machine printed circuit board for a Subzero Autofab.
+  id: AutolatheSubzeroMachineCircuitboard
+  name: Subzero Autolathe Machine Board
+  description: A machine printed circuit board for a Subzero Autolathe.
   components:
   - type: MachineBoard
-    prototype: AutofabSubzero
+    prototype: AutolatheSubzero
     stackRequirements:
       Manipulator: 3
       Glass: 1

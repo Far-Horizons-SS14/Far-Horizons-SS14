@@ -1,6 +1,6 @@
 - type: entity
   abstract: true
-  id: BaseSubzerofab
+  id: BaseSubzerolathe
   components:
   - type: Lathe
     materialUseMultiplier: 0.5
@@ -13,82 +13,15 @@
       SpaceGlue: 5
 
 - type: entity
-  id: Autofab
-  parent: BaseLatheLube
-  name: Autofab 
-  description: It produces basic items using metal and glass. Has the ability to process blueprints to print new recipes.
-  components:
-  - type: Sprite
-    sprite: _FarHorizons/Structures/Machines/NS/autofab.rsi #TODO: CUSTOM SPRITE
-    snapCardinals: true
-    layers:
-    - state: icon
-      map: ["enum.LatheVisualLayers.IsRunning"]
-    - state: unlit
-      shader: unshaded
-      map: ["enum.PowerDeviceVisualLayers.Powered"]
-    - state: inserting
-      map: ["enum.MaterialStorageVisualLayers.Inserting"]
-    - state: panel
-      map: ["enum.WiresVisualLayers.MaintenancePanel"]
-  - type: Machine
-    board: AutofabMachineCircuitboard
-  - type: MaterialStorage
-    whitelist:
-      tags:
-        - Sheet
-        - RawMaterial
-        - Ingot
-  - type: OreSiloClient
-  - type: Lathe
-    idleState: icon
-    runningState: building
-    unlitIdleState: unlit
-    unlitRunningState: unlit-building
-    staticPacks:
-    - ToolsStatic 
-    - PartsStatic 
-    - AtmosStatic
-    - CablesStatic
-    - PaperworkStatic
-    - CargoStatic
-    - MaterialsStatic
-    - BasicChemistryStatic
-    - RollerBedsStatic
-    - LightsStatic
-    - ServiceStatic
-    - PowerCellsStatic
-    - ElectronicsStatic
-    dynamicPacks:
-    - StarlightAutolatheLootable
-  - type: EmagLatheRecipes #TODO: NT THEMED EMAG PACKS
-    emagStaticPacks:
-    - StarlightSecurityEmagWeaponsStatic
-    - FarHorizonsAmmoStatic
-    - StarlightSecurityAmmoEmagStatic
-  - type: BlueprintReceiver
-    whitelist:
-      tags:
-      - BlueprintAutolathe
-  - type: ContainerContainer
-    containers:
-      machine_board: !type:Container
-      machine_parts: !type:Container
-      blueprint: !type:Container
-  - type: EmptyOnMachineDeconstruct
-    containers:
-    - blueprint
-
-- type: entity
-  id: AutofabSubzero
-  parent: [Autofab, BaseSubzerofab]
-  name: Subzero Autofab
-  description: A highly-experimental Autofab that harnesses the power of extreme cold to slowly create objects more cost-effectively.
+  id: AutolatheSubzero
+  parent: [Autolathe, BaseSubzerolathe]
+  name: Subzero Autolathe
+  description: A highly-experimental Autolathe that harnesses the power of extreme cold to slowly create objects more cost-effectively.
   components:
   - type: Sprite
     sprite: _FarHorizons/Structures/Machines/NS/autofab.rsi #TODO: CUSTOM SPRITE
   - type: Machine
-    board: AutofabSubzeroMachineCircuitboard
+    board: AutolatheSubzeroMachineCircuitboard
 
 - type: entity
   id: Protofab
@@ -207,7 +140,7 @@
 
 - type: entity
   id: ProtofabSubzero
-  parent: [Protofab, BaseSubzerofab]
+  parent: [Protofab, BaseSubzerolathe]
   name: Subzero Protofab
   description: A highly-experimental Protofab that harnesses the power of extreme cold to slowly create objects more cost-effectively.
   components:
@@ -276,7 +209,7 @@
 
 - type: entity
   id: BoardEngraverSubzero
-  parent: [BoardEngraver, BaseSubzerofab]
+  parent: [BoardEngraver, BaseSubzerolathe]
   name: Subzero Board Engraver
   description: A highly-experimental Board Engraver that harnesses the power of extreme cold to slowly create objects more cost-effectively.
   components:
