@@ -37,6 +37,22 @@
     - type: StaticPrice
       price: 40
 
+- type: entity
+  parent: BaseMachineCircuitboard
+  id: BiochemicalLatheMachineCircuitboard
+  name: Biochemical Lathe Machine Board
+  description: A machine printed circuit board for a Biochemical Lathe.
+  components:
+  - type: MachineBoard
+    prototype: BiochemicalLathe
+    stackRequirements:
+      Manipulator: 2
+      Glass: 5
+    tagRequirements:
+      GlassBeaker:
+        amount: 2
+        defaultPrototype: Beaker
+
 #region NeoSol
 - type: entity
   parent: BaseMachineCircuitboard

@@ -1,10 +1,103 @@
+#region Nanotrasen
+- type: entity
+  id: SecurityTechFabAmmo
+  parent: BaseLatheLube
+  name: Security Ammo Techfab
+  description: Prints NanoTrasen-Approved Ammo for use by Security Crew.
+  suffix: NT
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Machines/NT/techfab.rsi
+    layers:
+    - state: icon
+      map: ["enum.LatheVisualLayers.IsRunning"]
+    - state: secbullet
+    - state: unlit
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+    - state: inserting
+      map: ["enum.MaterialStorageVisualLayers.Inserting"]
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: Machine
+    board: SecurityAmmoTechFabCircuitboard
+  - type: Lathe
+    idleState: icon
+    runningState: icon
+    unlitIdleState: unlit
+    unlitRunningState: unlit # Far Horizons - replace with animations when available
+    staticPacks:
+    - FarHorizonsSecurityAmmoStatic
+    - FarHorizonsCivilianMagazinesStatic
+    dynamicPacks:
+    - FarHorizonsSecurityAmmoDynamic
+    - FarHorizonsSecurityThrowablesDynamic
+  - type: EmagLatheRecipes
+    emagStaticPacks:
+    - StarlightSyndicateModulesSecfab
+    - StarlightSyndicateAmmoStatic
+    - FarHorizonsSecurityAmmoEmagStatic
+    - FarHorizonsAmmoStatic
+    emagDynamicPacks:
+    - FarHorizonsSecurityAmmoEmagDynamic
+    - FarHorizonsAmmoDynamic
+  - type: MaterialStorage
+    whitelist:
+      tags:
+        - Sheet
+        - RawMaterial
+        - Ingot
+  - type: OreSiloClient
+
+- type: entity
+  id: BiochemicalLathe
+  parent: BaseLatheLube
+  name: Biochemical Lathe
+  description: Converts biomass and checmicals into biological components.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Machines/NS/protofab.rsi #TODO: CUSTOM SPRITE
+    snapCardinals: true
+    layers:
+    - state: icon
+      map: ["enum.LatheVisualLayers.IsRunning"]
+    - state: unlit
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+    - state: inserting
+      map: ["enum.MaterialStorageVisualLayers.Inserting"]
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: Machine
+    board: BiochemicalLatheMachineCircuitboard
+  - type: MaterialStorage
+    whitelist:
+      tags:
+        - Sheet
+        - RawMaterial
+        - Ingot
+  - type: OreSiloClient
+  - type: Lathe
+    idleState: icon
+    runningState: building
+    unlitIdleState: unlit
+    unlitRunningState: unlit-building
+    staticPacks:
+    - BiologicalOrgans
+    dynamicPacks:
+    - AdvancedTools
+  # - type: EmagLatheRecipes
+  #   emagDynamicPacks:
+  #   -
+
+#region NeoSol
 - type: entity
   abstract: true
   id: BaseSubzerolathe
   components:
   - type: Lathe
-    materialUseMultiplier: 0.5
-    timeMultiplier: 1.5
+    materialUseMultiplier: 0.4
+    timeMultiplier: 2
   - type: LatheHeatProducing #TODO: Find balanced Value for Subzero 
     energyPerSecond: -40000
   - type: ReagentSpeed
@@ -85,58 +178,6 @@
     - StarlightSecurityEquipment
     - StarlightSecurityWeapons
     - StarlightDefenseStatic
-
-- type: entity
-  id: SecurityTechFabAmmo
-  parent: BaseLatheLube
-  name: Security Ammo Techfab
-  description: Prints NanoTrasen-Approved Ammo for use by Security Crew.
-  suffix: NT
-  components:
-  - type: Sprite
-    sprite: _FarHorizons/Structures/Machines/NT/techfab.rsi
-    layers:
-    - state: icon
-      map: ["enum.LatheVisualLayers.IsRunning"]
-    - state: secbullet
-    - state: unlit
-      shader: unshaded
-      map: ["enum.PowerDeviceVisualLayers.Powered"]
-    - state: inserting
-      map: ["enum.MaterialStorageVisualLayers.Inserting"]
-    - state: panel
-      map: ["enum.WiresVisualLayers.MaintenancePanel"]
-  - type: Machine
-    board: SecurityAmmoTechFabCircuitboard
-  - type: Lathe
-    idleState: icon
-    runningState: icon
-    unlitIdleState: unlit
-    unlitRunningState: unlit # Far Horizons - replace with animations when available
-    staticPacks:
-    - FarHorizonsSecurityAmmoStatic
-    - FarHorizonsCivilianMagazinesStatic
-    dynamicPacks:
-    - FarHorizonsSecurityAmmoDynamic
-    - FarHorizonsSecurityThrowablesDynamic
-  - type: EmagLatheRecipes
-    emagStaticPacks:
-    - StarlightSyndicateModulesSecfab
-    - StarlightSyndicateAmmoStatic
-    - FarHorizonsSecurityAmmoEmagStatic
-    - FarHorizonsAmmoStatic
-    emagDynamicPacks:
-    - FarHorizonsSecurityAmmoEmagDynamic
-    - FarHorizonsAmmoDynamic
-  - type: MaterialStorage
-    whitelist: &StandardMaterialWhitelist
-      tags:
-        - Sheet
-        - RawMaterial
-        - Ingot
-  - type: OreSiloClient
-
-#region NeoSol
 
 - type: entity
   id: ProtofabSubzero
@@ -511,5 +552,9 @@
     - FarHorizonsSecurityAmmoEmagDynamic
     - FarHorizonsAmmoDynamic
   - type: MaterialStorage
-    whitelist: *StandardMaterialWhitelist
+    whitelist:
+      tags:
+        - Sheet
+        - RawMaterial
+        - Ingot
   - type: OreSiloClient
