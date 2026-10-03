@@ -1102,6 +1102,7 @@
   parent: [ IDCardStandard, BaseSyndicateContraband ]
   id: OperativeIDCard
   name: Syndicate Operative ID Card
+  suffix: NS
   components:
     - type: Sprite
       layers:
@@ -2053,3 +2054,60 @@
     job: HC-DCIOfficial
 
 #endregion
+
+- type: entity
+  parent: [ IDCardStandard, BaseSyndicateContraband ]
+  id: LambdaIDCard #ID for naval things, just like the syndicate has
+  name: Lambda ID Card 
+  suffix: NT
+  components:
+  - type: Sprite
+    layers:
+    - state: syndi
+    - state: idoperative
+  - type: Item
+    heldPrefix: black
+  - type: Access
+    tags:
+    - NuclearOperative
+    - SyndicateAgent
+
+- type: entity
+  parent: [ LambdaIDCard, BaseSyndicateContraband ]
+  id: LambdaOperativeIDCard
+  name: Lambda Operative ID Card 
+  suffix: NT
+  components:
+  - type: Sprite
+    layers:
+    - state: syndi
+    - state: idoperative
+  - type: Item
+    heldPrefix: black
+  - type: AgentIDCard
+
+- type: entity
+  parent: [ LambdaOperativeIDCard, BaseSyndicateContraband ]
+  id: LambdaCorpsmanIDCard
+  name: Lambda Corpsman ID Card 
+  suffix: NT
+  components:
+  - type: Sprite
+    layers:
+    - state: syndi
+    - state: idsyndiagent
+  - type: Item
+    heldPrefix: black
+
+- type: entity
+  parent: [ LambdaOperativeIDCard, BaseSyndicateContraband ]
+  id: LambdaCommanderIDCard
+  name: Lambda Commander ID Card 
+  suffix: NT
+  components:
+  - type: Sprite
+    layers:
+    - state: syndi
+    - state: idcommander
+  - type: Item
+    heldPrefix: black
