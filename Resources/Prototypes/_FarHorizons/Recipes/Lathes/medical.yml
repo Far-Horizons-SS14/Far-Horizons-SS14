@@ -53,6 +53,86 @@
   id: HardPouchMedical
   result: HardPouchMedical
 
+#region Organs
+- type: latheRecipe
+  id: BaseOrganLimbRecipe
+  completetime: 6
+  abstract: true
+  materials:
+    Biomass: 6 #50 biomass to fully clone someone, this seems fair to me
+
+- type: latheRecipe
+  id: BaseOrganExtremityRecipe 
+  completetime: 2
+  abstract: true
+  materials:
+    Biomass: 2
+
+# Human
+- type: latheRecipe
+  parent: BaseOrganLimbRecipe
+  id: LeftArmWithHandHuman
+  result: LeftArmWithHandHuman
+  categories:
+  - LeftArm
+  - Human
+
+- type: latheRecipe
+  parent: BaseOrganLimbRecipe
+  id: RightArmWithHandHuman
+  result: RightArmWithHandHuman
+  categories:
+  - RightArm
+  - Human
+
+- type: latheRecipe
+  parent: BaseOrganExtremityRecipe
+  id: OrganHumanHandLeft
+  result: OrganHumanHandLeft
+  categories:
+  - LeftHand
+  - Human
+
+- type: latheRecipe
+  parent: BaseOrganExtremityRecipe
+  id: OrganHumanHandRight
+  result: OrganHumanHandRight
+  categories:
+  - RightHand
+  - Human
+
+- type: latheRecipe
+  parent: BaseOrganLimbRecipe
+  id: LeftLegWithFootHuman
+  result: LeftLegWithFootHuman
+  categories:
+  - LeftLeg
+  - Human
+
+- type: latheRecipe
+  parent: BaseOrganLimbRecipe
+  id: RightLegWithFootHuman
+  result: RightLegWithFootHuman
+  categories:
+  - RightLeg
+  - Human
+
+- type: latheRecipe
+  parent: BaseOrganExtremityRecipe
+  id: OrganHumanFootLeft
+  result: OrganHumanFootLeft
+  categories:
+  - LeftFoot
+  - Human
+
+- type: latheRecipe
+  parent: BaseOrganExtremityRecipe
+  id: OrganHumanFootRight
+  result: OrganHumanFootRight
+  categories:
+  - RightFoot
+  - Human
+  
 #region Misc
 
 - type: latheRecipe

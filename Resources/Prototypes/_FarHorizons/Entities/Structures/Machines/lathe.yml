@@ -53,10 +53,10 @@
   id: BiochemicalLathe
   parent: BaseLatheLube
   name: Biochemical Lathe
-  description: Converts biomass and checmicals into biological components.
+  description: Converts biomass into complex biological parts.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Structures/Machines/NS/protofab.rsi #TODO: CUSTOM SPRITE
+    sprite: _FarHorizons/Structures/Machines/NS/protofab.rsi #TODO: SPRITE
     snapCardinals: true
     layers:
     - state: icon
@@ -84,8 +84,8 @@
     unlitRunningState: unlit-building
     staticPacks:
     - BiologicalOrgans
-    dynamicPacks:
-    - AdvancedTools
+    # dynamicPacks:
+    # - AdvancedTools
   # - type: EmagLatheRecipes
   #   emagDynamicPacks:
   #   -
