@@ -1,7 +1,7 @@
 - type: entity
   name: automender
   description: A device used to heal patients brute, burn or both damage types.
-  parent: BaseStarlightHealingItem
+  parent: [ BaseStarlightHealingItem, SolutionInjector ] #FH
   id: BaseAutoMender
   abstract: true
   components:
@@ -16,10 +16,9 @@
   - type: Item
     sprite: _FarHorizons/Objects/Specific/Medical/medical.rsi #FH
     heldPrefix: mender
-  - type: SolutionContainerManager
-    solutions:
-      injector:
-        maxVol: 35
+  - type: Solution # FH - migrated from SolutionContainerManager
+    solution:
+      maxVol: 35
   - type: RefillableSolution
     solution: injector
   - type: DrawableSolution
@@ -58,10 +57,9 @@
     sprite: _FarHorizons/Objects/Specific/Medical/medical.rsi
     heldPrefix: brutemender
 #FH - End
-  - type: SolutionContainerManager
-    solutions:
-      injector:
-        maxVol: 30
+  - type: Solution # FH - migrated from SolutionContainerManager
+    solution:
+      maxVol: 30
   - type: Healing
     solutionDrain: true
     reagentsToDrain:
@@ -85,13 +83,12 @@
   parent: AutoMenderBrute
   id: AutoMenderBruteFilled
   components:
-  - type: SolutionContainerManager
-    solutions:
-      injector:
-        maxVol: 30
-        reagents:
-        - ReagentId: Bicaridine
-          Quantity: 30
+  - type: Solution # FH - migrated from SolutionContainerManager
+    id: injector
+    solution:
+      reagents:
+      - ReagentId: Bicaridine
+        Quantity: 30
       
 - type: entity
   id: AutoMenderBurn
@@ -136,10 +133,8 @@
   parent: AutoMenderBurn
   id: AutoMenderBurnFilled
   components:
-  - type: SolutionContainerManager
-    solutions:
-      injector:
-        maxVol: 35
-        reagents:
-        - ReagentId: Dermaline
-          Quantity: 35
+  - type: Solution # FH - migrated from SolutionContainerManager
+    solution:
+      reagents:
+      - ReagentId: Dermaline
+        Quantity: 35

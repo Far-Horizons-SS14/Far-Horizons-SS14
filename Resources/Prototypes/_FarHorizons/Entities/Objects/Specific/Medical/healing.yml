@@ -16,10 +16,9 @@
   - type: Item
     sprite: Objects/Specific/Medical/medical.rsi
     heldPrefix: bloodpack
-  - type: SolutionContainerManager
-    solutions:
-      injector:
-        maxVol: 10
+  - type: Solution
+    solution:
+      maxVol: 10
   - type: Healing
     solutionDrain: true
     reagentsToDrain:
@@ -65,13 +64,11 @@
   parent: BloodpackEmpty
   id: Bloodpack
   components:
-  - type: SolutionContainerManager
-    solutions:
-      injector:
-        maxVol: 10
-        reagents:
-        - ReagentId: UniversalBlood
-          Quantity: 10
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: UniversalBlood
+        Quantity: 10
 
 #region Amoxla Pack
 - type: entity
@@ -131,13 +128,11 @@
   parent: BloodpackEmptyAmmonia
   id: BloodpackAmmonia
   components:
-  - type: SolutionContainerManager
-    solutions:
-      injector:
-        maxVol: 10
-        reagents:
-        - ReagentId: Amoxla
-          Quantity: 10
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Amoxla
+        Quantity: 10
 
 #region Oil Pack
 - type: entity
@@ -197,13 +192,11 @@
   parent: BloodpackEmptyOil
   id: BloodpackOil
   components:
-  - type: SolutionContainerManager
-    solutions:
-      injector:
-        maxVol: 10
-        reagents:
-        - ReagentId: Oil
-          Quantity: 10
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Oil
+        Quantity: 10
 
 #region Pills
 - type: entity
@@ -243,13 +236,11 @@
   components:
   - type: Label
     currentLabel: reagent-name-amoxla
-  - type: SolutionContainerManager
-    solutions:
-      injector:
-        maxVol: 15
-        reagents:
-          - ReagentId: Amoxla
-            Quantity: 15
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Amoxla
+        Quantity: 15
 
 - type: entity
   suffix: Chloral Hydrate
@@ -258,13 +249,11 @@
   components:
   - type: Label
     currentLabel: reagent-name-chloral-hydrate 
-  - type: SolutionContainerManager
-    solutions:
-      injector:
-        maxVol: 15
-        reagents:
-          - ReagentId: ChloralHydrate
-            Quantity: 15
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: ChloralHydrate
+        Quantity: 15
 
 #region Blue Ointment
 - type: entity
@@ -287,10 +276,9 @@
     size: Small
     sprite: _FarHorizons/Objects/Specific/Medical/blue_ointment.rsi
     heldPrefix: ointment
-  - type: SolutionContainerManager
-    solutions:
-      injector:
-        maxVol: 20
+  - type: Solution
+    solution:
+      maxVol: 20
   - type: Healing
     solutionDrain: true
     reagentsToDrain:
@@ -348,13 +336,11 @@
   parent: BlueOintmentEmpty
   id: BlueOintment
   components:
-  - type: SolutionContainerManager
-    solutions:
-      injector:
-        maxVol: 20
-        reagents:
-        - ReagentId: BurnCreamBlue
-          Quantity: 20
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: BurnCreamBlue
+        Quantity: 20
 
 #region Aloe Vera
 - type: entity
@@ -377,10 +363,9 @@
     size: Small
     sprite: _FarHorizons/Objects/Specific/Medical/green_ointment.rsi
     heldPrefix: ointment
-  - type: SolutionContainerManager
-    solutions:
-      injector:
-        maxVol: 10
+  - type: Solution
+    solution:
+      maxVol: 10
   - type: Healing
     solutionDrain: true
     reagentsToDrain:
@@ -439,13 +424,11 @@
   parent: AloeCreamEmpty
   id: AloeCream
   components:
-  - type: SolutionContainerManager
-    solutions:
-      injector:
-        maxVol: 10
-        reagents:
-        - ReagentId: AloeVeraCream
-          Quantity: 10
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: AloeVeraCream
+        Quantity: 10
 
 #region Ointment
 - type: entity
@@ -468,10 +451,9 @@
     size: Small
     sprite: _FarHorizons/Objects/Specific/Medical/ointment.rsi
     heldPrefix: ointment
-  - type: SolutionContainerManager
-    solutions:
-      injector:
-        maxVol: 20
+  - type: Solution
+    solution:
+      maxVol: 20
   - type: Healing
     solutionDrain: true
     reagentsToDrain:
@@ -529,26 +511,22 @@
   parent: OintmentEmpty
   id: Ointment
   components:
-  - type: SolutionContainerManager
-    solutions:
-      injector:
-        maxVol: 20
-        reagents:
-        - ReagentId: BurnCream
-          Quantity: 20
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: BurnCream
+        Quantity: 20
 
 - type: entity
   suffix: One Use
   parent: OintmentEmpty
   id: Ointment1 # Leftover to keep maps from breaking, and also fit with "only one use" for said maps.
   components:
-  - type: SolutionContainerManager
-    solutions:
-      injector:
-        maxVol: 10
-        reagents:
-        - ReagentId: BurnCream
-          Quantity: 1
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: BurnCream
+        Quantity: 1
 
 #region Brute Pack
 - type: entity
@@ -992,13 +970,11 @@
     state: pill12
   - type: Label
     currentLabel: ibuprofen 5u
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 20
-        reagents:
-        - ReagentId: Ibuprofen
-          Quantity: 5
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Ibuprofen
+        Quantity: 5
 
 - type: entity
   name: Pill Canister

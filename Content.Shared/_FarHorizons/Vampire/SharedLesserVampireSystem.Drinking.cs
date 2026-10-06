@@ -20,12 +20,12 @@ public partial class SharedLesserVampireSystem
         if (args.Target == null || args.Cancelled)
             return;
 
-        if (TryComp<SolutionContainerManagerComponent>(args.Target, out var soultionContainer) &&
+        if (TryComp<SolutionManagerComponent>(args.Target, out var solutionContainer) &&
             TryComp<VampireDrinkableComponent>(args.Target, out var drinkable))
         {
-            DoDrink(ent, (args.Target.Value, soultionContainer, drinkable));
+            DoDrink(ent, (args.Target.Value, solutionContainer, drinkable));
             args.Repeat = VampireCanDrinkBlood(ent) &&
-                          CanDrinkFromContainer(ent, (args.Target.Value, soultionContainer, drinkable)) &&
+                          CanDrinkFromContainer(ent, (args.Target.Value, solutionContainer, drinkable)) &&
                           GetBloodPool(ent) < ent.Comp.BloodPoolMax;
         }   
     }
@@ -35,21 +35,21 @@ public partial class SharedLesserVampireSystem
         if (args.Target == null || args.Cancelled)
             return;
 
-        if (!TryComp<SolutionContainerManagerComponent>(args.Target, out var soultionContainer) ||
+        if (!TryComp<SolutionManagerComponent>(args.Target, out var solutionContainer) ||
             !TryComp<VampireBiteableComponent>(args.Target, out var drinkable)) return;
 
         var ev = new OnVampireBite(ent, (args.Target.Value, drinkable));
         RaiseLocalEvent(ent, ref ev);
 
-        DoDrink(ent, (args.Target.Value, soultionContainer, drinkable));
+        DoDrink(ent, (args.Target.Value, solutionContainer, drinkable));
         args.Repeat = VampireCanDrinkBlood(ent) &&
                       VampireCanBite(ent, (args.Target.Value, drinkable)) &&
-                      CanDrinkFromContainer(ent, (args.Target.Value, soultionContainer, drinkable)) &&
+                      CanDrinkFromContainer(ent, (args.Target.Value, solutionContainer, drinkable)) &&
                       GetBloodPool(ent) < ent.Comp.BloodPoolMax;
     }
 
     private void DoDrink(Entity<LesserVampireComponent> ent,
-        Entity<SolutionContainerManagerComponent, VampireConsumption> target)
+        Entity<SolutionManagerComponent, VampireConsumption> target)
     {
         if (!_solution.TryGetSolution((target.Owner, target.Comp1), target.Comp2.Container, out var solution) ||
             !TryComp<BodyComponent>(ent, out var body) || body.Organs == null)
@@ -74,7 +74,7 @@ public partial class SharedLesserVampireSystem
 
         _reaction.DoEntityReaction(ent, split, ReactionMethod.Ingestion);
 
-        if (!_stomach.TryTransferSolution(stomach.Value.Owner, split, stomach.Value.Comp))
+        if (!_stomach.TryTransferSolution((stomach.Value, stomach.Value.Comp), split))
         {
             _solution.AddSolution(solution.Value, split);
             return;
@@ -84,7 +84,7 @@ public partial class SharedLesserVampireSystem
     }
 
     public bool CanDrinkFromContainer(Entity<LesserVampireComponent> ent,
-        Entity<SolutionContainerManagerComponent, VampireConsumption> target)
+        Entity<SolutionManagerComponent, VampireConsumption> target)
     {
         if (!_solution.TryGetSolution((target.Owner, target.Comp1), target.Comp2.Container, out var solution))
             return false;

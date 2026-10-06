@@ -98,6 +98,7 @@
 - type: entity
   id: ElfAntidoteSeed
   name: Rejuvenating Rune #Far Horizons
+  parent: [ SolutionHypospray, SolutionVeryTiny ]
   description: A rune of radiant life energy, useful for restoring vitality to plants. Will evaporate soon if not used. #Far Horizons
   components:
   - type: Item
@@ -122,7 +123,7 @@
     changeColor: false
     emptySpriteName: icon-empty
   - type: ExaminableSolution
-    solution: pen
+    solution: hypospray
   - type: TimedDespawn
     lifetime: 15 # Not stockpileable.
   - type: PointLight
@@ -130,7 +131,7 @@
     energy: 8
     color: "#93F02E"
   - type: Injector
-    solutionName: pen
+    solutionName: hypospray
     currentTransferAmount: null
     activeModeProtoId: HyposprayInjectMode
     allowedModes:
@@ -143,13 +144,11 @@
   - type: EmitSoundOnSpawn
     sound: 
       path: /Audio/_Starlight/Magic/cantrip.ogg
-  - type: SolutionContainerManager
-    solutions:
-      pen:
-        maxVol: 15
-        reagents:
-        - ReagentId: ElfDiethylamine
-          Quantity: 15
+  - type: Solution # FH - migrated from SolutionContainerManager
+    solution:
+      reagents:
+      - ReagentId: ElfDiethylamine
+        Quantity: 15
 
 # Cleanse
 
@@ -181,21 +180,20 @@
       params:
         volume: 0.1
         variation: 0.5
-  - type: SolutionContainerManager
-    solutions:
-      solutionArea:
-        maxVol: 15
-        canReact: true
-        reagents:
-        - ReagentId: ElfSpaceCleaner
-          Quantity: 15
+  - type: Solution # FH - migrated from SolutionContainerManager
+    solution:
+      maxVol: 15
+      canReact: true
+      reagents:
+      - ReagentId: ElfSpaceCleaner
+        Quantity: 15
 
 # Hemostasis
 
 - type: entity
   name: Haemostatic Rune #Far Horizons
   description: A rune that stops bleeding when applied. Will fade if not used quickly. #Far Horizons
-  parent: BaseHealingItem
+  parent: [ BaseHealingItem, SolutionHypospray, SolutionVeryTiny ]
   id: ElfRuneHaemostatic
   components:
   - type: Item
@@ -220,7 +218,7 @@
     changeColor: false
     emptySpriteName: icon-empty
   - type: ExaminableSolution
-    solution: pen
+    solution: hypospray
   - type: TimedDespawn
     lifetime: 15 # Not stockpileable.
   - type: PointLight
@@ -228,7 +226,7 @@
     energy: 8
     color: "#93F02E"
   - type: Injector
-    solutionName: pen
+    solutionName: hypospray
     currentTransferAmount: null
     activeModeProtoId: SyringeInjectMode # Far Horizons - nerfs
     allowedModes:
@@ -237,14 +235,12 @@
   - type: StaticPrice
     price: 0 # Not sellable.
   - type: DeleteOnSolutionEmpty
-    solution: pen
+    solution: hypospray
   - type: EmitSoundOnSpawn
     sound: 
       path: /Audio/_Starlight/Magic/ember.ogg
-  - type: SolutionContainerManager
-    solutions:
-      pen:
-        maxVol: 15 #FH
-        reagents:
-        - ReagentId: Inaprovaline # Far Horizons - nerfing it further
-          Quantity: 15
+  - type: Solution # FH - migrated from SolutionContainerManager
+    solution:
+      reagents:
+      - ReagentId: Inaprovaline # Far Horizons - nerfing it further
+        Quantity: 15

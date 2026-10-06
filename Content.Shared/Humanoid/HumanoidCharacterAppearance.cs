@@ -228,7 +228,12 @@ public sealed partial class HumanoidCharacterAppearance : IEquatable<HumanoidCha
                 newMarkings[organ.Key] = categoryMarkings;
         }
         //FarHorizons End
-        return new HumanoidCharacterAppearance(newEyeColor, false, newSkinColor, newMarkings, newWidth, newHeight); //FarHorizons randomized Markings
+        // Safety step. Most systems which called Random() also called this, and not doing so caused issues with markings.
+        // In the future it could *maybe* be removed, but it's probably worth the extra CPU cycles to validate this info.
+        return EnsureValid(
+            new HumanoidCharacterAppearance(newEyeColor, false, newSkinColor, newMarkings, newWidth, newHeight), //FarHorizons randomized Markings
+            species,
+            sex);
     }
 
     //FarHorizons Start

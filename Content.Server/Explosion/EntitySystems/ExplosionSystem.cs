@@ -69,6 +69,7 @@ public sealed partial class ExplosionSystem : SharedExplosionSystem
     private EntityQuery<ActorComponent> _actorQuery;
     private EntityQuery<DestructibleComponent> _destructibleQuery;
     private EntityQuery<DamageableComponent> _damageableQuery;
+    [Dependency] private EntityQuery<InjurableComponent> _injurableQuery = default!;
     private EntityQuery<AirtightComponent> _airtightQuery;
     private EntityQuery<TileHistoryComponent> _tileHistoryQuery;
 

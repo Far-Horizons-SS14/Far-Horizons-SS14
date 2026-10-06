@@ -459,6 +459,8 @@
           West: { state: computer_r-synd, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/command.rsi }
           East: { state: computer_l-synd, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/command.rsi }
           East, West: { state: computer_l_r-synd, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/command.rsi }
+  - type: Computer
+    board: CommsComputerCircuitboardNS
 
 - type: entity
   parent: ComputerFundingAllocation
@@ -503,6 +505,8 @@
           West: { state: computer_r-synd, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/command.rsi }
           East: { state: computer_l-synd, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/command.rsi }
           East, West: { state: computer_l_r-synd, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/command.rsi }
+  - type: Computer
+    board: FundingAllocationComputerCircuitboardNS
 
 - type: entity
   parent: RecruitmentComputer
@@ -547,6 +551,8 @@
           West: { state: computer_r-synd, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/command.rsi }
           East: { state: computer_l-synd, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/command.rsi }
           East, West: { state: computer_l_r-synd, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/command.rsi }
+  - type: Computer
+    board: RecruitmentComputerCircuitboardNS
 
 #region Engineering
 
@@ -608,7 +614,7 @@
     canBroadcast: false
     canShuttle: false
   - type: Computer
-    board: EngineeringCommsComputerCircuitboard
+    board: EngineeringCommsComputerCircuitboardNS
   - type: PointLight
     radius: 1.5
     energy: 4.0
@@ -667,6 +673,8 @@
     - SyndiEngi
   - type: AccessReader
     access: [["EngineeringNS"]]
+  - type: Computer
+    board: CargoRequestEngineeringComputerCircuitboardNS
 
 - type: entity
   parent: ComputerPowerMonitoring
@@ -709,6 +717,8 @@
           West: { state: computer_r-eng, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/engineering.rsi }
           East: { state: computer_l-eng, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/engineering.rsi }
           East, West: { state: computer_l_r-eng, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/engineering.rsi }
+  - type: Computer
+    board: PowerComputerCircuitboardNS
 
 - type: entity
   parent: ComputerSolarControl
@@ -751,6 +761,8 @@
           West: { state: computer_r-eng, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/engineering.rsi }
           East: { state: computer_l-eng, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/engineering.rsi }
           East, West: { state: computer_l_r-eng, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/engineering.rsi }
+  - type: Computer
+    board: SolarControlComputerCircuitboardNS
 
 #region Medical
 
@@ -795,6 +807,8 @@
           West: { state: computer_r-med, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/medical.rsi }
           East: { state: computer_l-med, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/medical.rsi }
           East, West: { state: computer_l_r-med, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/medical.rsi }
+  - type: Computer
+    board: CrewMonitoringComputerCircuitboardNS
 
 - type: entity
   parent: ComputerMedicalRecords
@@ -839,6 +853,8 @@
           East, West: { state: computer_l_r-med, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/medical.rsi }
   - type: AccessReader
     access: [["SecurityNS"], ["CadetNS"]] # Starlight: add cadet
+  - type: Computer
+    board: MedicalRecordsComputerCircuitboardNS
 
 - type: entity
   parent: ComputerCloningConsole
@@ -881,6 +897,8 @@
           West: { state: computer_r-med, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/medical.rsi }
           East: { state: computer_l-med, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/medical.rsi }
           East, West: { state: computer_l_r-med, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/medical.rsi }
+  - type: Computer
+    board: CloningConsoleComputerCircuitboardNS
 
 - type: entity
   parent: ComputerCargoOrdersMedical
@@ -933,6 +951,8 @@
     - SyndiMed
   - type: AccessReader
     access: [["MedicalNS"]]
+  - type: Computer
+    board: CargoRequestMedicalComputerCircuitboardNS
 
 - type: entity
   parent: ComputerCommsMedical
@@ -978,6 +998,8 @@
           East, West: { state: computer_l_r-med, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/medical.rsi }
   - type: AccessReader
     access: [[ "MedicalDirector" ]]
+  - type: Computer
+    board: MedicalCommsComputerCircuitboardNS
 
 #region Science
 
@@ -1022,6 +1044,8 @@
           West: { state: computer_r-sci, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/science.rsi }
           East: { state: computer_l-sci, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/science.rsi }
           East, West: { state: computer_l_r-sci, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/science.rsi }
+  - type: Computer
+    board: AnalysisComputerCircuitboardNS
 
 - type: entity
   parent: ComputerRoboticsControl
@@ -1073,6 +1097,8 @@
     deviceNetId: Wireless
     receiveFrequencyId: RoboticsConsoleNS
     transmitFrequencyId: CyborgControlNS
+  - type: Computer
+    board: RoboticsConsoleCircuitboardNS
 
 - type: entity
   parent: ComputerResearchAndDevelopment
@@ -1117,6 +1143,8 @@
           East, West: { state: computer_l_r-sci, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/science.rsi }
   - type: AccessReader
     access: [["ResearchNS"]]
+  - type: Computer
+    board: ResearchComputerCircuitboardNS
 
 - type: entity
   parent: ComputerCommsScience
@@ -1171,6 +1199,8 @@
       - yellow
     canBroadcast: false
     canShuttle: false
+  - type: Computer
+    board: ScienceCommsComputerCircuitboardNS
 
 - type: entity
   id: ComputerCargoOrdersScienceNS
@@ -1225,6 +1255,8 @@
     - SyndiSci
   - type: AccessReader
     access: [["ResearchNS"]]
+  - type: Computer
+    board: CargoRequestScienceComputerCircuitboardNS
 
 #region Security
 
@@ -1269,6 +1301,8 @@
           West: { state: computer_r-sec, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/security.rsi }
           East: { state: computer_l-sec, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/security.rsi }
           East, West: { state: computer_l_r-sec, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/security.rsi }
+  - type: Computer
+    board: SurveillanceCameraMonitorCircuitboardNS
 
 - type: entity
   parent: ComputerSurveillanceWirelessCameraMonitor
@@ -1311,6 +1345,8 @@
           West: { state: computer_r-sec, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/security.rsi }
           East: { state: computer_l-sec, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/security.rsi }
           East, West: { state: computer_l_r-sec, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/security.rsi }
+  - type: Computer
+    board: SurveillanceWirelessCameraMonitorCircuitboardNS
 
 - type: entity
   parent: ComputerShuttleSecurity
@@ -1353,6 +1389,8 @@
           West: { state: computer_r-sec, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/security.rsi }
           East: { state: computer_l-sec, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/security.rsi }
           East, West: { state: computer_l_r-sec, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/security.rsi }
+  - type: Computer
+    board: SecurityShuttleConsoleCircuitboardNS
 
 - type: entity
   parent: ComputerCargoOrdersSecurity
@@ -1405,12 +1443,16 @@
     - SyndiSec
   - type: AccessReader
     access: [["SecurityNS"]]
+  - type: Computer
+    board: CargoRequestSecurityComputerCircuitboardNS
 
 - type: entity
   parent: ComputerCriminalRecords
   id: ComputerCriminalRecordsNS
   suffix: NS
   components:
+  - type: CriminalRecordsConsole
+    securityChannel: SyndiSec
   - type: Sprite
     sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/security.rsi
     layers:
@@ -1449,6 +1491,8 @@
           East, West: { state: computer_l_r-sec, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/security.rsi }
   - type: AccessReader
     access: [["SecurityNS"], ["CadetNS"]]
+  - type: Computer
+    board: CriminalRecordsComputerCircuitboardNS
 
 #region Service
 - type: entity
@@ -1480,6 +1524,8 @@
     - SyndiService
   - type: AccessReader
     access: [["ServiceNS"]]
+  - type: Computer
+    board: CargoRequestServiceComputerCircuitboardNS
 
 - type: entity
   parent: ComputerComms
@@ -1508,7 +1554,7 @@
     canShuttle: false
     global: true
   - type: Computer
-    board: CentcommCommsComputerCircuitboard
+    board: HighCommandCommsComputerCircuitboardNS
   - type: PointLight
     radius: 1.5
     energy: 4.0

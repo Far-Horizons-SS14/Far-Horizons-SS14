@@ -18,14 +18,11 @@
   - type: PhysicalComposition
     materialComposition:
       RawAbyssium: 100
-  - type: Extractable
-    grindableSolutionName: abyssiumore
-  - type: SolutionContainerManager
-    solutions:
-      abyssiumore:
-        reagents:
-        - ReagentId: Iron
-          Quantity: 10
+  - type: Solution # FH - migrated from SolutionContainerManager
+    solution:
+      reagents:
+      - ReagentId: Iron
+        Quantity: 10
   - type: PointLight
     radius: 1.2
     energy: 0.8
@@ -80,6 +77,7 @@
       heldPrefix: bluespace
     - type: Appearance
     - type: Damageable
+    - type: Injurable
       damageContainer: Inorganic
     - type: DamageOnLand
       damage:

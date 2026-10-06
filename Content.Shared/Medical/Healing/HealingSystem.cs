@@ -68,9 +68,12 @@ public sealed partial class HealingSystem : EntitySystem
             healing = healingData.MakeComponent();
         }
 
+        if (!TryComp<InjurableComponent>(target, out var injurable))
+            return;
+
         if (healing.DamageContainers is not null &&
-            target.Comp.DamageContainerID is not null &&
-            !healing.DamageContainers.Contains(target.Comp.DamageContainerID.Value))
+            injurable.DamageContainer is not null &&
+            !healing.DamageContainers.Contains(injurable.DamageContainer.Value))
         {
             return;
         }
@@ -139,28 +142,25 @@ public sealed partial class HealingSystem : EntitySystem
                 dontRepeat = true;
         }
         // Starlight start
-        else if (healing.SolutionDrain && TryComp<SolutionContainerManagerComponent>(args.Used, out var solutionManager))
+        // Far Horizons - resolve the migrated solution directly instead of requiring SolutionContainerManager.
+        else if (healing.SolutionDrain && _solutionContainerSystem.TryGetSolution(args.Used.Value, "injector", out var solutionEntity))
         {
-            Entity<SolutionComponent>? solutionEntity = null;
-            if (_solutionContainerSystem.ResolveSolution(args.Used.Value, "injector", ref solutionEntity, out var solution))
+            var solution = solutionEntity.Value.Comp.Solution;
+
+            var reagentsToRemove = new List<(ReagentQuantity Reagent, FixedPoint2 Amount)>();
+            foreach(var reagent in solution.Contents)
             {
-                var reagentsToRemove = new List<(ReagentQuantity Reagent, FixedPoint2 Amount)>();
-                foreach(var reagent in solution.Contents)
-                {
-                    var drainReagent = healing.ReagentsToDrain.FirstOrDefault(drain => drain.Reagent == reagent.Reagent && reagent.Quantity >= drain.Quantity);
-                    if (solutionEntity != null)
-                        reagentsToRemove.Add((reagent, drainReagent.Quantity));
-                }
-
-                foreach (var (reagent, amount) in reagentsToRemove)
-                {
-                    if (solutionEntity != null)
-                        _solutionContainerSystem.RemoveReagent(solutionEntity.Value, reagent.Reagent, amount);
-                }
-
-                if (!solution.Contents.Any(sol => healing.ReagentsToDrain.Any(req => req.Reagent == sol.Reagent && sol.Quantity >= req.Quantity)))
-                    dontRepeat = true;
+                var drainReagent = healing.ReagentsToDrain.FirstOrDefault(drain => drain.Reagent == reagent.Reagent && reagent.Quantity >= drain.Quantity);
+                reagentsToRemove.Add((reagent, drainReagent.Quantity));
             }
+
+            foreach (var (reagent, amount) in reagentsToRemove)
+            {
+                _solutionContainerSystem.RemoveReagent(solutionEntity.Value, reagent.Reagent, amount);
+            }
+
+            if (!solution.Contents.Any(sol => healing.ReagentsToDrain.Any(req => req.Reagent == sol.Reagent && sol.Quantity >= req.Quantity)))
+                dontRepeat = true;
         }
         // Starlight end
         else
@@ -268,9 +268,12 @@ public sealed partial class HealingSystem : EntitySystem
         if (!Resolve(target, ref target.Comp, false))
             return false;
 
+        if (!TryComp<InjurableComponent>(target, out var injurable))
+            return false;
+
         if (healing.Comp.DamageContainers is not null &&
-            target.Comp.DamageContainerID is not null &&
-            !healing.Comp.DamageContainers.Contains(target.Comp.DamageContainerID.Value))
+            injurable.DamageContainer is not null &&
+            !healing.Comp.DamageContainers.Contains(injurable.DamageContainer.Value))
         {
             return false;
         }
@@ -300,11 +303,12 @@ public sealed partial class HealingSystem : EntitySystem
         //Far Horizons End
 
         // Starlight start
-        if (healing.Comp.SolutionDrain && TryComp<SolutionContainerManagerComponent>(healing.Owner, out var solutionManager))
+        // Far Horizons - migrated solution entities do not require SolutionContainerManager on the item.
+        if (healing.Comp.SolutionDrain)
         {
-            Entity<SolutionComponent>? solutionEntity = null;
-            if (_solutionContainerSystem.ResolveSolution(healing.Owner, "injector", ref solutionEntity, out var solution))
+            if (_solutionContainerSystem.TryGetSolution(healing.Owner, "injector", out var solutionEntity))
             {
+                var solution = solutionEntity.Value.Comp.Solution;
                 if (!solution.Contents.Any(sol => healing.Comp.ReagentsToDrain.Any(req => req.Reagent == sol.Reagent && sol.Quantity >= req.Quantity)))
                 {
                     _popupSystem.PopupClient(Loc.GetString("medical-item-solution-missing", ("item", healing.Owner)), healing.Owner, user);

@@ -38,24 +38,21 @@
         - id: BoneGel
         - id: BoneSetterAdvanced
 
-- type: entity
-  parent: ClothingBackpackDuffelSyndicateMedicalBundle
-  id: ClothingBackpackDuffelSyndicateFilledMedicine
-  name: Syndicate Medicine Duffel Bag #FH
-  description: A large duffel bag containing essential medicinal reagents.
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      storagebase: !type:AllSelector
-        children:
-        - id: JugBicaridine
-        - id: JugPuncturase
-        - id: JugDermaline
-        - id: JugDylovene
-        - id: JugHyronalin
-        - id: JugSaline
-        - id: JugDexalinPlus
-        - id: JugTranexamicAcid
+# FH - disabled to avoid confusion
+#- type: entity
+#  parent: ClothingBackpackDuffelSyndicateMedicalBundle
+#  id: ClothingBackpackDuffelSyndicateFilledMedicine
+#  name: Syndicate Medicine Duffel Bag #FH
+#  description: A large duffel bag containing essential medicinal reagents.
+#  components:
+#  - type: EntityTableContainerFill
+#    containers:
+#      storagebase: !type:AllSelector
+#        children:
+#        - id: JugBicaridine
+#        - id: JugPunctTranex
+#        - id: JugPyraDerma
+#        - id: JugDexPlusSaline
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle

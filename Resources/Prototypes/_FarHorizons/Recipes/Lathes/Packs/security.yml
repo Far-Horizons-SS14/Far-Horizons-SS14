@@ -1,10 +1,25 @@
-#region Static recipes
+#region Static Recipes - NS
+- type: latheRecipePack
+  id: FarHorizonsNSSecurityGeneralEquipmentStatic
+  recipes:
+  - WeaponLeverActionNS
+
+#region Static recipes - NT
 
 - type: latheRecipePack
   id: FarHorizonsSecurityGeneralEquipmentStatic
   recipes:
   - SoftPouchSecurity
   - HardPouchSecurity
+  - WeaponLeverActionNT
+
+- type: latheRecipePack
+  id: FarHorizonsNanoTrasenHardlightTechnologyStatic # Exclusive to NT
+  recipes:
+  - SpeedLoaderMagnumLeverEmptyHardlight
+  - WeaponLeverActionModel2325
+  - WeaponLeverActionModel2325Pistol
+  - WeaponRevolverIndomitable
 
 # Practice ammo/mags and practice weapons
 - type: latheRecipePack
@@ -140,6 +155,13 @@
   - SpeedLoaderMagnumHP
   - SpeedLoaderMagnumFMJ
   - SpeedLoaderMagnumRubber
+# Magnum - Lever Speedloader
+  - SpeedLoaderMagnumLeverEmpty
+  - SpeedLoaderMagnumLeverRubber
+  - SpeedLoaderMagnumLeverHP
+  - SpeedLoaderMagnumLeverSP
+  - SpeedLoaderMagnumLeverFMJ
+  - SpeedLoaderMagnumLeverPractice
 # SMG
   - MagazinePistolSubMachineGunSP
   - MagazinePistolSubMachineGunHP
@@ -153,7 +175,7 @@
   - Rifle556HeavyMagazineFMJ
   - Rifle556HeavyMagazineEmpty
 
-#region Dynamic recipes
+#region Dynamic recipes - NT
 - type: latheRecipePack
   id: FarHorizonsSecurityWeaponsDynamic
   recipes:
@@ -238,6 +260,10 @@
   - SpeedLoaderMagnumIncendiary
   - SpeedLoaderMagnumUranium
   - SpeedLoaderMagnumAP
+#Magnum Lever Speedloader
+  - SpeedLoaderMagnumLeverIncendiary
+  - SpeedLoaderMagnumLeverUranium
+  - SpeedLoaderMagnumLeverAP
 # SMG
   - MagazinePistolSubMachineGunIncendiary
   - MagazinePistolSubMachineGunUranium

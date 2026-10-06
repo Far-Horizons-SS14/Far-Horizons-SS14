@@ -150,6 +150,52 @@
     wall: WallBrick
     cornerWall: WallBrick
 
+- type: dungeonConfig
+  id: Bunker
+  layers:
+  - !type:PrefabDunGen
+    roomWhitelist:
+      tags:
+      - SalvageBunker
+    presets:
+    - BunkerBox
+    - BunkerCross
+    - BunkerFlat
+    - BunkerTriangle
+
+  - !type:CorridorDunGen
+    width: 2.5
+    pathLimit: 4096
+    tile: FloorConcrete
+
+  - !type:JunctionDunGen
+    width: 2
+    tile: FloorConcrete
+    contents: FHBaseAirlock
+
+  - !type:DungeonEntranceDunGen
+    count: 4
+    tile: FloorConcrete
+    contents: FHBaseAirlock
+  
+  - !type:RoomEntranceDunGen
+    tile: FloorConcrete
+    contents: FHBaseAirlock
+
+  - !type:WallMountDunGen
+    contents: LegitPosterTable
+    tile: FloorConcrete
+
+  - !type:BoundaryWallDunGen
+    wall: WallSolidNS
+    tile: FloorConcrete
+
+  - !type:AutoCablingDunGen
+    entity: CableApcExtension
+  
+  - !type:CornerClutterDunGen
+    contents: BaseClutter
+
 - type: entityTable
   id: FHBaseAirlock
   table: !type:AllSelector

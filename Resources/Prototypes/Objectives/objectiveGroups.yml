@@ -7,7 +7,7 @@
     TraitorObjectiveGroupState: 1 #As in, something about your character. Alive, dead, arrested, gained an ability...
     TraitorObjectiveGroupSocial: 0.25 #Involves helping/harming others without killing them or stealing their stuff, lowered because the chance of rolling this was enormous when its just one objective in the category
     TraitorObjectiveGroupSabotage: 1
-    #TraitorObjectiveGroupOther: 1 # FH - disabled because only other objective currently disabled
+    #TraitorObjectiveGroupOther: 1 # FH - disabled because all "other" objectives currently disabled
     TraitorObjectiveGroupStory: 1  # Starlight
 
 - type: weightedRandom
@@ -58,10 +58,11 @@
     SupercritAnomaliesObjective: 1
 
 #misc objectives that don't fall other another category
-#- type: weightedRandom # FH disabled: the only entry in this group is disabled, and we want to avoid errors
+#- type: weightedRandom # FH disabled: the only entries in this group are disabled, and we want to avoid errors
 #  id: TraitorObjectiveGroupOther
 #  weights:
     #HijackTradeStationObjective: 1 # FH disabled; doesn't make sense with factions
+    #MailFraudObjective: 1 #FH Disabled; no faction should have motivation to do this
 
 
 #Thief groups

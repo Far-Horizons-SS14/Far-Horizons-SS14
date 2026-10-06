@@ -78,14 +78,14 @@ public sealed partial class IntegrityAnalyzerSystem : EntitySystem
     private void OnAfterInteract(Entity<IntegrityAnalyzerComponent> uid, ref AfterInteractEvent args)
     {
         if (args.Target == null 
-            || !TryComp<DamageableComponent>(args.Target, out var damageableComponent)
+            || !TryComp<InjurableComponent>(args.Target, out var injurableComponent)
             || HasComp<MobStateComponent>(args.Target)
             || !_cell.HasDrawCharge(uid.Owner, user: args.User))
             return;
         
         if (uid.Comp.DamageContainers != null 
-            && damageableComponent.DamageContainerID != null 
-            && !uid.Comp.DamageContainers.Contains(damageableComponent.DamageContainerID.Value))
+            && injurableComponent.DamageContainer != null 
+            && !uid.Comp.DamageContainers.Contains(injurableComponent.DamageContainer.Value))
             return;
 
         _audio.PlayPvs(uid.Comp.ScanningBeginSound, uid);

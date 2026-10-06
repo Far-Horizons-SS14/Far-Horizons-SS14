@@ -303,11 +303,16 @@
         Glass: 1
 
 - type: entity
-  id: SecurityAmmoTechFabCircuitboardNS
+  id: BaseMachineCircuitboardNS
   parent: BaseMachineCircuitboard
+  suffix: NS, Machine Board
+  abstract: true
+
+- type: entity
+  id: SecurityAmmoTechFabCircuitboardNS
+  parent: BaseMachineCircuitboardNS
   name: Security Ammo Techfab Machine Board
   description: A machine printed circuit board for a Security Ammo Techfab.
-  suffix: NS
   components:
     - type: Sprite
       state: security
@@ -319,3 +324,216 @@
         GlassBeaker:
           amount: 2
           defaultPrototype: Beaker
+
+#region NSDrobes
+- type: entity
+  id: VendingMachineSecDrobeCircuitboardNS
+  parent: BaseMachineCircuitboardNS
+  name: SecDrobe circuitboard
+  description: A machine printed circuit board for a SecDrobe machine
+  components:
+    - type: Sprite
+      state: security
+    - type: MachineBoard
+      prototype: VendingMachineSecDrobeEmptyNS
+      stackRequirements:
+        Steel: 5
+        Manipulator: 1
+        Glass: 2
+
+- type: entity
+  id: VendingBarDrobeCircuitboardNS
+  parent: BaseMachineCircuitboardNS
+  name: BarDrobe circuitboard
+  description: A machine printed circuit board for a BarDrobe machine
+  components:
+    - type: Sprite
+      state: service
+    - type: MachineBoard
+      prototype: VendingBarDrobeEmptyNS
+      stackRequirements:
+        Steel: 5
+        Manipulator: 1
+        Glass: 2
+
+- type: entity
+  id: VendingMachineMediDrobeCircuitboardNS
+  parent: BaseMachineCircuitboardNS
+  name: MediDrobe circuitboard
+  description: A machine printed circuit board for a MediDrobe machine
+  components:
+    - type: Sprite
+      state: medical
+    - type: MachineBoard
+      prototype: VendingMachineMediDrobeEmptyNS
+      stackRequirements:
+        Steel: 5
+        Manipulator: 1
+        Glass: 2
+
+- type: entity
+  id: VendingMachineChemDrobeCircuitboardNS
+  parent: BaseMachineCircuitboardNS
+  name: ChemDrobe circuitboard
+  description: A machine printed circuit board for a ChemDrobe machine
+  components:
+    - type: Sprite
+      state: medical
+    - type: MachineBoard
+      prototype: VendingMachineChemDrobeEmptyNS
+      stackRequirements:
+        Steel: 5
+        Manipulator: 1
+        Glass: 2
+
+- type: entity
+  id: VendingMachineAtmosDrobeCircuitboardNS
+  parent: BaseMachineCircuitboardNS
+  name: AtmosDrobe circuitboard
+  description: A machine printed circuit board for a AtmosDrobe machine
+  components:
+    - type: Sprite
+      state: engineering
+    - type: MachineBoard
+      prototype: VendingMachineAtmosDrobeEmptyNS
+      stackRequirements:
+        Steel: 5
+        Manipulator: 1
+        Glass: 2
+
+- type: entity
+  id: VendingMachineEngiDrobeCircuitboardNS
+  parent: BaseMachineCircuitboardNS
+  name: EngiDrobe circuitboard
+  description: A machine printed circuit board for a EngiDrobe machine
+  components:
+    - type: Sprite
+      state: engineering
+    - type: MachineBoard
+      prototype: VendingMachineEngiDrobeEmptyNS
+      stackRequirements:
+        Steel: 5
+        Manipulator: 1
+        Glass: 2
+
+- type: entity
+  id: VendingMachineChefDrobeCircuitboardNS
+  parent: BaseMachineCircuitboardNS
+  name: ChefDrobe circuitboard
+  description: A machine printed circuit board for a ChefDrobe machine
+  components:
+    - type: Sprite
+      state: service
+    - type: MachineBoard
+      prototype: VendingMachineChefDrobeEmptyNS
+      stackRequirements:
+        Steel: 5
+        Manipulator: 1
+        Glass: 2
+
+- type: entity
+  id: VendingMachineDetDrobeCircuitboardNS
+  parent: BaseMachineCircuitboardNS
+  name: DetDrobe circuitboard
+  description: A machine printed circuit board for a DetDrobe machine
+  components:
+    - type: Sprite
+      state: security
+    - type: MachineBoard
+      prototype: VendingMachineDetDrobeEmptyNS
+      stackRequirements:
+        Steel: 5
+        Manipulator: 1
+        Glass: 2
+
+- type: entity
+  id: VendingMachineJaniDrobeCircuitboardNS
+  parent: BaseMachineCircuitboardNS
+  name: JaniDrobe circuitboard
+  description: A machine printed circuit board for a JaniDrobe machine
+  components:
+    - type: Sprite
+      state: service
+    - type: MachineBoard
+      prototype: VendingMachineJaniDrobeEmptyNS
+      stackRequirements:
+        Steel: 5
+        Manipulator: 1
+        Glass: 2
+
+- type: entity
+  id: VendingMachineSciDrobeCircuitboardNS
+  parent: BaseMachineCircuitboardNS
+  name: SciDrobe circuitboard
+  description: A machine printed circuit board for a SciDrobe machine
+  components:
+    - type: Sprite
+      state: science
+    - type: MachineBoard
+      prototype: VendingMachineSciDrobeEmptyNS
+      stackRequirements:
+        Steel: 5
+        Manipulator: 1
+        Glass: 2
+
+- type: entity
+  id: VendingMachineRoboDrobeCircuitboardNS
+  parent: BaseMachineCircuitboardNS
+  name: RoboDrobe circuitboard
+  description: A machine printed circuit board for a RoboDrobe machine
+  components:
+    - type: Sprite
+      state: science
+    - type: MachineBoard
+      prototype: VendingMachineRoboDrobeEmptyNS
+      stackRequirements:
+        Steel: 5
+        Manipulator: 1
+        Glass: 2
+
+#region NSTech
+
+- type: entity
+  id: VendingMachineCartCircuitboardNS
+  parent: BaseMachineCircuitboardNS
+  name: PTech circuitboard
+  description: A machine printed circuit board for a PTech machine
+  components:
+    - type: Sprite
+      state: command
+    - type: MachineBoard
+      prototype: VendingMachineCartEmptyNS
+      stackRequirements:
+        Steel: 5
+        Manipulator: 1
+        Glass: 2
+
+- type: entity
+  id: VendingMachineSecCircuitboardNS
+  parent: BaseMachineCircuitboardNS
+  name: SecTech circuitboard
+  description: A machine printed circuit board for a SecTech machine
+  components:
+    - type: Sprite
+      state: security
+    - type: MachineBoard
+      prototype: VendingMachineSecEmptyNS
+      stackRequirements:
+        Steel: 5
+        Manipulator: 1
+        Glass: 2
+
+#region GSL
+- type: entity
+  id: VendingMachineCartCircuitboardGSL
+  parent: BaseMachineCircuitboard
+  name: PTech circuitboard
+  description: A machine printed circuit board for a PTech machine
+  suffix: GSL, Machine Board
+  components:
+    - type: MachineBoard
+      prototype: VendingMachineCartEmptyGSL
+      stackRequirements:
+        Steel: 5
+        Manipulator: 1
+        Glass: 2

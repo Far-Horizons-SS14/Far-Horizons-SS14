@@ -1,5 +1,5 @@
 - type: entity
-  parent: BaseItem
+  parent: [ BaseItem, SolutionTank, SolutionSmall ]
   id: CoolingUnitNitrogen
   name: Experimental Portable Cryogenics Unit
   description: A experimental cryogenic device able to cool a body to subzero temperatures using liquid nitrogen for its fuel.
@@ -25,23 +25,21 @@
       delay: 1
     - type: ToggleReagentDraw
     - type: RefillableSolution
-      solution: nitrogentank
+      solution: tank
     - type: ExaminableSolution
-      solution: nitrogentank
+      solution: tank
       exactVolume: true
     - type: ReagentDraw
       enabled: false
       drainRate: 0.25
-      solutionContainer: nitrogentank
+      solutionContainer: tank
       whitelistedReagents:
         - Nitrogen
-    - type: SolutionContainerManager
-      solutions:
-        nitrogentank:
-          reagents:
-          - ReagentId: Nitrogen
-            Quantity: 50
-          maxVol: 50
+    - type: Solution
+      solution:
+        reagents:
+        - ReagentId: Nitrogen
+          Quantity: 60
     - type: ItemToggle
       soundActivate: /Audio/Items/flashlight_on.ogg
       soundDeactivate: /Audio/Items/flashlight_on.ogg

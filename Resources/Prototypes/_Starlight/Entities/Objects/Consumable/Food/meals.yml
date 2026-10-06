@@ -17,21 +17,20 @@
       layers:
         - state: plate
         - state: LizardCooked
-    - type: SolutionContainerManager
-      solutions:
-        food:
-          maxVol: 30
-          reagents:
-            - ReagentId: Nutriment
-              Quantity: 10
-            - ReagentId: Protein
-              Quantity: 10
-            - ReagentId: Vitamin
-              Quantity: 10
+    - type: Solution # FH - migrated from SolutionContainerManager
+      solution:
+        maxVol: 30
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+        - ReagentId: Protein
+          Quantity: 10
+        - ReagentId: Vitamin
+          Quantity: 10
     - type: Tag
       tags:
         - Meat
-        
+
 - type: entity
   name: Kentucky fried felionoid
   parent: [ FoodMealBase, BaseMajorContraband ]
@@ -48,19 +47,18 @@
       sprite: _Starlight/Objects/Consumable/Food/friedNoid.rsi
       layers:
         - state: FriedNoidCooked
-    - type: SolutionContainerManager
-      solutions:
-        food:
-          maxVol: 20
-          reagents:
-            - ReagentId: Nutriment
-              Quantity: 5
-            - ReagentId: Protein
-              Quantity: 10
-            - ReagentId: Vitamin
-              Quantity: 2
-            - ReagentId: Ephedrine
-              Quantity: 3
+    - type: Solution # FH - migrated from SolutionContainerManager
+      solution:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+        - ReagentId: Protein
+          Quantity: 10
+        - ReagentId: Vitamin
+          Quantity: 2
+        - ReagentId: Ephedrine
+          Quantity: 3
     - type: Tag
       tags:
         - Meat
@@ -81,13 +79,12 @@
       sprite: _Starlight/Objects/Consumable/Food/thaslop.rsi
       layers:
         - state: thaslop
-    - type: SolutionContainerManager
-      solutions:
-        food:
-          maxVol: 30
-          reagents:
-            - ReagentId: Nutriment
-              Quantity: 20
+    - type: Solution # FH - migrated from SolutionContainerManager
+      solution:
+        maxVol: 30
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 20
     - type: Tag
       tags:
         - Meat
@@ -111,15 +108,14 @@
       sprite: _Starlight/Objects/Consumable/Food/plate.rsi
       layers:
         - state: charcuterie
-    - type: SolutionContainerManager
-      solutions:
-        food:
-          maxVol: 38.25
-          reagents:
-            - ReagentId: Nutriment
-              Quantity: 29.25
-            - ReagentId: Protein
-              Quantity: 6
+    - type: Solution # FH - migrated from SolutionContainerManager
+      solution:
+        maxVol: 38.25
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 29.25
+        - ReagentId: Protein
+          Quantity: 6
     - type: Tag
       tags:
         - Meat
@@ -143,15 +139,14 @@
       sprite: _Starlight/Objects/Consumable/Food/khlavkalash.rsi
       layers:
         - state: khlavkalash
-    - type: SolutionContainerManager
-      solutions:
-        food:
-          maxVol: 20
-          reagents:
-            - ReagentId: Nutriment
-              Quantity: 15
-            - ReagentId: TableSalt
-              Quantity: 2
+    - type: Solution # FH - migrated from SolutionContainerManager
+      solution:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 15
+        - ReagentId: TableSalt
+          Quantity: 2
     - type: Tag
       tags:
       - Meat
@@ -174,11 +169,9 @@
       layers:
         - state: bowl
         - state: blindingstew
-    - type: SolutionContainerManager
-      solutions:
-        food:
-          maxVol: 48
-          reagents:
-            - ReagentId: BlindingStew
-              Quantity: 48
-          
+    - type: Solution # FH - migrated from SolutionContainerManager
+      solution:
+        maxVol: 48
+        reagents:
+        - ReagentId: BlindingStew
+          Quantity: 48

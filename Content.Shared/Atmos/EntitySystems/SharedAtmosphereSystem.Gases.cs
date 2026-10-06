@@ -78,8 +78,6 @@ public abstract partial class SharedAtmosphereSystem
             GasReagents[idx] = gasPrototype.Reagent;
         }
 
-        Array.Resize(ref _gasMolarHeatCapacities, MathHelper.NextMultipleOf(Atmospherics.TotalNumberOfGases, 4));
-
         for (var i = 0; i < GasPrototypes.Length; i++)
         {
             /*
@@ -424,7 +422,7 @@ public abstract partial class SharedAtmosphereSystem
         if (deltaP <= 0)
             return null;
 
-        return ReleaseGasAt(mixture, (float)GetFlowVolume(mixture, deltaP, area, dt), deltaP);
+        return ReleaseGasAt(mixture, (float)GetFlowVolume(mixture, deltaP, area, dt), mixture.Pressure);
     }
 
     /// <summary>

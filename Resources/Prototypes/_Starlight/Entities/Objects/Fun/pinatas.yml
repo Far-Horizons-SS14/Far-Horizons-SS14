@@ -1,5 +1,5 @@
 - type: entity
-  parent: BaseItem
+  parent: [ BaseItem, SolutionFood, SolutionTiny ]
   id: BasePinata
   abstract: true
   name: Base Pinata
@@ -15,17 +15,16 @@
   - type: Edible
     requiresSpecialDigestion: true
     delay: 2
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 10
-        reagents:
-        - ReagentId: Fiber
-          Quantity: 10
+  - type: Solution # FH - migrated from SolutionContainerManager
+    solution:
+      reagents:
+      - ReagentId: Fiber
+        Quantity: 10
   - type: Sprite
     sprite: _Starlight/Objects/Fun/Pinatas/clown.rsi
     state: pinata
   - type: Damageable
+  - type: Injurable
     damageContainer: Inorganic
 
 - type: entity

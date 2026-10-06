@@ -1,0 +1,73 @@
+- type: entity
+  parent: [ToteBase, BaseCommandContraband]
+  id: BoxCaptainCircuitboardsNS
+  name: Commandant Circuit Tote
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: CommsComputerCircuitboardNS
+        - id: StationRecordsComputerCircuitboard
+
+- type: entity
+  parent: [ToteBase, BaseCommandContraband]
+  id: BoxCECircuitboardsNS
+  name: Foreman Circuit Tote
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: CargoRequestEngineeringComputerCircuitboardNS
+        - id: AlertsComputerCircuitboard
+        - id: AtmosMonitoringComputerCircuitboard
+        - id: PowerComputerCircuitboardNS
+        - id: SolarControlComputerCircuitboardNS
+        - id: EngineeringCommsComputerCircuitboardNS
+
+- type: entity
+  parent: [ToteBase, BaseCommandContraband]
+  id: BoxCMOCircuitboardsNS
+  name: Medical Director Circuit Tote
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: InterdyneTechFabCircuitboard
+        - id: CargoRequestMedicalComputerCircuitboardNS
+        - id: MedicalCommsComputerCircuitboardNS
+
+
+- type: entity
+  parent: [ToteBase, BaseCommandContraband]
+  id: BoxHoPCircuitboardsNS
+  name: Personnel Manager Circuit Tote
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: IDComputerCircuitboardNS
+        - id: FundingAllocationComputerCircuitboardNS
+        - id: CargoRequestServiceComputerCircuitboardNS
+
+- type: entity
+  parent: [ToteBase, BaseCommandContraband]
+  id: BoxRDCircuitboardsNS
+  name: Epistemics Provost Circuit Tote
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: BoardEngraverMachineCircuitboard
+        - id: ProtolatheMachineCircuitboard
+        - id: ResearchComputerCircuitboardNS
+        - id: CargoRequestScienceComputerCircuitboardNS
+        - id: RoboticsConsoleCircuitboardNS
+        - id: AnalysisComputerCircuitboardNS #Because sometimes round start artis just fucking explode on the pad.
+        - id: ArtifactAnalyzerMachineCircuitboard
+        - id: StationAiFixerCircuitboard
+        - id: ScienceCommsComputerCircuitboardNS

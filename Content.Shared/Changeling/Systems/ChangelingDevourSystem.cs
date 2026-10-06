@@ -11,14 +11,11 @@ using Content.Shared.Humanoid;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Inventory;
 using Content.Shared.Mobs.Systems;
-using Content.Shared.Nutrition.Components;
 using Content.Shared.Popups;
-using Content.Shared.Storage;
 using Content.Shared.Store.Components;
 using Content.Shared.Whitelist;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Network;
-using Robust.Shared.Random;
 
 namespace Content.Shared.Changeling.Systems;
 
@@ -32,10 +29,8 @@ public sealed partial class ChangelingDevourSystem : EntitySystem
     [Dependency] private DamageableSystem _damageable = default!;
     [Dependency] private MobStateSystem _mobState = default!;
     [Dependency] private SharedChangelingIdentitySystem _changelingIdentitySystem = default!;
-    [Dependency] private InventorySystem _inventorySystem = default!;
     [Dependency] private SharedAudioSystem _audio = default!;
     [Dependency] private ISharedAdminLogManager _adminLogger = default!;
-    [Dependency] private IRobustRandom _robustRandom = default!;
 
     public override void Initialize()
     {
@@ -174,10 +169,6 @@ public sealed partial class ChangelingDevourSystem : EntitySystem
 
         _adminLogger.Add(LogType.Action, LogImpact.Medium, $"{ToPrettyString(ent.Owner):player} successfully devoured {ToPrettyString(target):player}'s identity");
 
-        if (_inventorySystem.TryGetSlotEntity(target, "jumpsuit", out var item)
-            && TryComp<ButcherableComponent>(item, out var butcherable))
-            RipClothing(target, (item.Value, butcherable));
-
         if (!TryComp<ChangelingIdentityComponent>(ent.Owner, out var identityStorage))
             return;
 
@@ -276,20 +267,6 @@ public sealed partial class ChangelingDevourSystem : EntitySystem
         }
 
         return false;
-    }
-
-    // TODO: This should just be an API method in the butcher system
-    private void RipClothing(EntityUid victim, Entity<ButcherableComponent> item)
-    {
-        var spawnEntities = EntitySpawnCollection.GetSpawns(item.Comp.SpawnedEntities, _robustRandom);
-
-        foreach (var proto in spawnEntities)
-        {
-            // TODO: once predictedRandom is in, make this a Coordinate offset of 0.25f from the victims position
-            PredictedSpawnNextToOrDrop(proto, victim);
-        }
-
-        PredictedQueueDel(item.Owner);
     }
 }
 

@@ -15,13 +15,12 @@
         - pilk
     - type: SliceableFood
       slice: FoodCakeResomiSlice
-    - type: SolutionContainerManager
-      solutions:
-        food:
-          maxVol: 30
-          reagents:
-            - ReagentId: Nutriment
-              Quantity: 30                 
+    - type: Solution # FH - migrated from SolutionContainerManager
+      solution:
+        maxVol: 30
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 30
     - type: Tag
       tags:
         - Cake
@@ -43,15 +42,14 @@
         - Sweetness
     - type: SliceableFood
       slice: FoodCottonCakeSlice
-    - type: SolutionContainerManager
-      solutions:
-        food:
-          maxVol: 30
-          reagents:
-            - ReagentId: Nutriment
-              Quantity: 15
-            - ReagentId: Fiber
-              Quantity: 15                 
+    - type: Solution # FH - migrated from SolutionContainerManager
+      solution:
+        maxVol: 30
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 15
+        - ReagentId: Fiber
+          Quantity: 15
     - type: Tag
       tags:
         - Cake
@@ -73,15 +71,14 @@
       flavors:
         - Fiber
         - Sweetness
-    - type: SolutionContainerManager
-      solutions:
-        food:
-          maxVol: 10
-          reagents:
-            - ReagentId: Nutriment
-              Quantity: 5
-            - ReagentId: Fiber
-              Quantity: 5
+    - type: Solution # FH - migrated from SolutionContainerManager
+      solution:
+        maxVol: 10
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+        - ReagentId: Fiber
+          Quantity: 5
     - type: Tag
       tags:
         - Cake
@@ -106,15 +103,13 @@
         - hope
         - sadness
         - pilk
-    - type: SolutionContainerManager
-      solutions:
-        food:
-          maxVol: 5
-          reagents:
-            - ReagentId: Nutriment
-              Quantity: 5
+    - type: Solution # FH - migrated from SolutionContainerManager
+      solution:
+        maxVol: 5
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
     - type: Tag
       tags:
         - Cake
         - Slice
-        

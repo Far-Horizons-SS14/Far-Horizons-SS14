@@ -185,16 +185,16 @@ public sealed class RevolutionaryStoreConditionsTest : GameTest
             var firstListing = GetListing(entMan.GetComponent<StoreComponent>(firstUplink), "TestReservedRevolutionaryStock");
 
             var firstAttempt = new StorePurchaseAttemptEvent("TestReservedRevolutionaryStock", firstUplink, firstHeadRev);
-            entMan.EventBus.RaiseLocalEvent(firstUplink, ref firstAttempt);
+            entMan.EventBus.RaiseEvent(EventSource.Local, ref firstAttempt);
             Assert.That(firstAttempt.Cancel, Is.False);
             Assert.That(GetStock(firstListing), Is.Zero);
 
             var secondAttempt = new StorePurchaseAttemptEvent("TestReservedRevolutionaryStock", secondUplink, secondHeadRev);
-            entMan.EventBus.RaiseLocalEvent(secondUplink, ref secondAttempt);
+            entMan.EventBus.RaiseEvent(EventSource.Local, ref secondAttempt);
             Assert.That(secondAttempt.Cancel, Is.True);
 
             var finish = new StoreBuyFinishedEvent(firstUplink, firstListing, firstHeadRev);
-            entMan.EventBus.RaiseLocalEvent(firstUplink, ref finish);
+            entMan.EventBus.RaiseEvent(EventSource.Local, ref finish);
         });
     }
 

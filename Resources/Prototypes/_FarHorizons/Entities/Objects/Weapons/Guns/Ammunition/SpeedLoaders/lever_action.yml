@@ -1,0 +1,390 @@
+#region .44 Magnum
+- type: entity
+  id: SpeedLoaderMagnumLeverEmpty
+  name: ".44 Magnum Speed Loader (Lever-Action)"
+  parent: [BaseSpeedLoaderShotgun, BaseSecurityContraband]
+  description: Spring-loaded tube designed to reload Lever Actions.
+  components:
+  - type: BallisticAmmoProvider
+    proto: null
+    whitelist:
+      tags:
+        - CartridgeMagnum
+    capacity: 12
+  - type: MagazineVisuals
+    magState: mag
+    steps: 13
+    zeroVisible: false
+  - type: Item
+    size: Normal
+    shape:
+    - 0,0,0,1
+    storedRotation: 90
+    storedOffset: -1,0
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Speedloaders/Lever_Action/lever_action_speed_loader.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    
+- type: entity
+  id: SpeedLoaderMagnumLeverHP
+  name: ".44 Magnum Speed Loader (Lever-Action HP)"
+  parent: SpeedLoaderMagnumLeverEmpty
+  description: Spring-loaded tube designed to reload Lever Actions. Loaded with Hollow-Point rounds, it is effective against unarmored targets.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeMagnumHP
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Speedloaders/Lever_Action/lever_action_speed_loader.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: hp
+
+- type: entity
+  id: SpeedLoaderMagnumLeverSP
+  name: ".44 Magnum Speed Loader (Lever-Action SP)"
+  parent: SpeedLoaderMagnumLeverEmpty
+  description: Spring-loaded tube designed to reload Lever Actions. Loaded with Soft-Point rounds, it is effective against lightly-armored targets.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeMagnumSP
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Speedloaders/Lever_Action/lever_action_speed_loader.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: sp
+    
+- type: entity
+  id: SpeedLoaderMagnumLeverFMJ
+  name: ".44 Magnum Speed Loader (Lever-Action FMJ)"
+  parent: SpeedLoaderMagnumLeverEmpty
+  description: Spring-loaded tube designed to reload Lever Actions. Loaded with Full Metal Jacket rounds, it is effective against armored targets.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeMagnumFMJ
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Speedloaders/Lever_Action/lever_action_speed_loader.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: fmj
+    
+- type: entity
+  id: SpeedLoaderMagnumLeverAP
+  name: ".44 Magnum Speed Loader (Lever-Action AP)"
+  parent: SpeedLoaderMagnumLeverEmpty
+  description: Spring-loaded tube designed to reload Lever Actions. Loaded with Armor Piercing rounds, it is effective against heavily armored targets.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeMagnumAP
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Speedloaders/Lever_Action/lever_action_speed_loader.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: ap
+    
+- type: entity
+  id: SpeedLoaderMagnumLeverPractice
+  name: ".44 Magnum Speed Loader (Lever-Action Practice)"
+  parent: SpeedLoaderMagnumLeverEmpty
+  description: Spring-loaded tube designed to reload Lever Actions. Used for target practice, mostly harmless due to only being loaded with chalk.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeMagnumPractice
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Speedloaders/Lever_Action/lever_action_speed_loader.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: practice
+    
+- type: entity
+  id: SpeedLoaderMagnumLeverIncendiary
+  name: ".44 Magnum Speed Loader (Lever-Action Incendiary)"
+  parent: SpeedLoaderMagnumLeverEmpty
+  description: Spring-loaded tube designed to reload Lever Actions. Loaded with Self-Igniting Incendiary rounds, it is highly effective against anything with fur or fluff.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeMagnumIncendiary
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Speedloaders/Lever_Action/lever_action_speed_loader.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: incendiary
+    
+- type: entity
+  id: SpeedLoaderMagnumLeverUranium
+  name: ".44 Magnum Speed Loader (Lever-Action Uranium)"
+  parent: SpeedLoaderMagnumLeverEmpty
+  description: Spring-loaded tube designed to reload Lever Actions. Loaded with radioactive Uranium rounds, it is effective against anything with flesh or metal, as well as armor.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeMagnumUranium
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Speedloaders/Lever_Action/lever_action_speed_loader.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: uranium
+    
+- type: entity
+  id: SpeedLoaderMagnumLeverRubber
+  name: ".44 Magnum Speed Loader (Lever-Action Rubber)"
+  parent: SpeedLoaderMagnumLeverEmpty
+  description: Spring-loaded tube designed to reload Lever Actions. Loaded with mostly harmless Rubber rounds, it is effective for less-than-lethal takedowns.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeMagnumRubber
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Speedloaders/Lever_Action/lever_action_speed_loader.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: rubber
+
+#region .44 Civ
+- type: entity
+  id: BaseSpeedLoaderLeverCivilian
+  name: .44/7.62 Civilian Speed Loader (Lever-Action)
+  parent: [BaseSpeedLoaderShotgun]
+  description: A rifle speedloader designed to be paired with the Swordfish Lever-Action rifle. Accepts 7.62 and .44 Magnum cartridges.
+  components:
+  - type: BallisticAmmoProvider
+    proto: null
+    whitelist:
+      tags:
+        - CartridgeMagnum
+        - CartridgeMagnumImprovised
+        - CartridgeLightRifle
+        - CartridgeLightRifleImprovised
+    capacity: 6
+  - type: MagazineVisuals
+    magState: mag
+    steps: 13
+    zeroVisible: false
+  - type: Item
+    size: Normal
+    shape:
+    - 0,0,0,1
+    storedRotation: 90
+    storedOffset: -1,0
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Speedloaders/Lever_Action/lever_action_speed_loader.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  id: SpeedLoaderLeverCivilianMagnumSP
+  parent: BaseSpeedLoaderLeverCivilian
+  name: Civilian Speed Loader (.44 Magnum SP)
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeMagnumSP
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Speedloaders/Lever_Action/lever_action_speed_loader.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: sp
+
+- type: entity
+  id: SpeedLoaderLeverCivilianMagnumRubber
+  parent: BaseSpeedLoaderLeverCivilian
+  name: Civilian Speed Loader (.44 Magnum Rubber)
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeMagnumRubber
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Speedloaders/Lever_Action/lever_action_speed_loader.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: rubber
+
+#region Multipurpose Hardlight
+- type: entity
+  id: SpeedLoaderMagnumLeverEmptyHardlight
+  name: "Hardlight Speedloader (Hardlight Lever-Action / Revolver)"
+  parent: [BaseSpeedLoaderShotgun, BaseSecurityContraband]
+  description: Specially designed, and technologically complicated speedloader for Hardlight weapons. Due to the sheer difference in capabilites, it is not compatible with normal weapons.
+  components:
+  - type: MagazineVisuals
+    magState: mag
+    steps: 8
+    zeroVisible: false
+  - type: Item
+    size: Normal
+    shape:
+    - 0,0,0,1
+    storedRotation: 90
+    storedOffset: -1,0
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Speedloaders/Lever_Action/multipurpose_speed_loader_hardlight.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: ItemSwitch 
+    onUse: false
+    state: 44mag
+    states:
+      12g: !type:ItemSwitchState
+        verb: 12 Gauge
+        sprite:
+          sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Speedloaders/Lever_Action/multipurpose_speed_loader_hardlight.rsi #Sprites CANNOT be split into seperate folders, it doesn't support it.
+          state: base
+        components:
+        - type: ContainerContainer
+          containers:
+           ballistic-ammo: !type:Container
+             ents: []
+        - type: BallisticAmmoProvider
+          mayTransfer: true
+          fillDelay: 0.1
+          soundRack:
+            path: /Audio/_FarHorizons/Items/Weapons/Mark1/mark1_cycle_Bolt.ogg
+            params:
+              variation: 0.05
+          whitelist:
+           tags:
+           - ShellShotgun
+           - SpeedLoaderShotgun
+          capacity: 10
+          proto: null
+          soundInsert:
+            path: /Audio/Weapons/Guns/MagIn/shotgun_insert.ogg
+
+      44mag: !type:ItemSwitchState
+        verb: .44 Magnum
+        sprite:
+          sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Speedloaders/Lever_Action/multipurpose_speed_loader_hardlight.rsi
+          state: base
+        components:
+        - type: ContainerContainer
+          containers:
+           ballistic-ammo: !type:Container
+             ents: []
+        - type: BallisticAmmoProvider
+          mayTransfer: true
+          fillDelay: 0.1
+          soundRack:
+            path: /Audio/_FarHorizons/Items/Weapons/Mark1/mark1_cycle_Bolt.ogg
+            params:
+              variation: 0.05
+          whitelist:
+           tags:
+           - CartridgeMagnum
+           - CartridgeMagnumImprovised
+          capacity: 12
+          proto: null
+          soundInsert:
+            path: /Audio/Weapons/Guns/MagIn/shotgun_insert.ogg
+
+      38spec: !type:ItemSwitchState
+        verb: .38 Special
+        sprite:
+          sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Speedloaders/Lever_Action/multipurpose_speed_loader_hardlight.rsi
+          state: base
+        components:
+        - type: ContainerContainer
+          containers:
+           ballistic-ammo: !type:Container
+             ents: []
+        - type: BallisticAmmoProvider
+          mayTransfer: true
+          fillDelay: 0.1
+          soundRack:
+            path: /Audio/_FarHorizons/Items/Weapons/Mark1/mark1_cycle_Bolt.ogg
+            params:
+              variation: 0.05
+          whitelist:
+           tags:
+           - CartridgeRevolver38
+           - SpeedLoaderRevolver38
+          capacity: 12
+          proto: null
+          soundInsert:
+            path: /Audio/Weapons/Guns/MagIn/shotgun_insert.ogg
+
+      rifle: !type:ItemSwitchState
+        verb: 7.62 / 5.56
+        sprite:
+          sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Speedloaders/Lever_Action/multipurpose_speed_loader_hardlight.rsi
+          state: base
+        components:
+        - type: ContainerContainer
+          containers:
+           ballistic-ammo: !type:Container
+             ents: []
+        - type: BallisticAmmoProvider
+          mayTransfer: true
+          fillDelay: 0.1
+          soundRack:
+            path: /Audio/_FarHorizons/Items/Weapons/Mark1/mark1_cycle_Bolt.ogg
+            params:
+              variation: 0.05
+          whitelist:
+           tags:
+           - CartridgeLightRifle
+           - CartridgeLightRifleImprovised
+           - CartridgeRifle556
+          capacity: 35
+          proto: null
+          soundInsert:
+            path: /Audio/Weapons/Guns/MagIn/shotgun_insert.ogg
+
+      9mm: !type:ItemSwitchState
+        verb: 9mm
+        sprite:
+          sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Speedloaders/Lever_Action/multipurpose_speed_loader_hardlight.rsi
+          state: base
+        components:
+        - type: ContainerContainer
+          containers:
+           ballistic-ammo: !type:Container
+             ents: []
+        - type: BallisticAmmoProvider
+          mayTransfer: true
+          fillDelay: 0.1
+          soundRack:
+            path: /Audio/_FarHorizons/Items/Weapons/Mark1/mark1_cycle_Bolt.ogg
+            params:
+              variation: 0.05
+          whitelist:
+           tags:
+           - CartridgePistol
+          capacity: 50
+          proto: null
+          soundInsert:
+            path: /Audio/Weapons/Guns/MagIn/shotgun_insert.ogg

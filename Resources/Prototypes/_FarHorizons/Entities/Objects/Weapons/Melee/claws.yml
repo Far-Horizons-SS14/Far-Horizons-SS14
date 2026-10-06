@@ -1,6 +1,6 @@
 - type: entity
   name: Hypo Claws
-  parent: [ BaseClaws, BaseSyndicateContraband ]
+  parent: [ BaseClaws, BaseSyndicateContraband, SolutionHypospray, SolutionToolSmall ]
   id: HypoClaws
   description: Sharp, retractable plasteel claws, with hypo injector technology to inject chems.
   components:
@@ -18,10 +18,6 @@
     damage:
       types:
         Slash: 12
-  - type: SolutionContainerManager
-    solutions:
-      hypospray:
-        maxVol: 30
   - type: Injector
     solutionName: hypospray
     currentTransferAmount: 1
@@ -40,4 +36,4 @@
     fiberMaterial: fibers-rubber
     fiberColor: fibers-red-and-black-woven
   - type: FingerprintMask
-  
+

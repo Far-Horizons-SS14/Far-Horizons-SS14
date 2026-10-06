@@ -47,8 +47,9 @@
     - type: FlashModifier
       modifier: 2
     - type: Damageable
-      damageContainer: Biological
       damageModifierSet: Shadekin
+    - type: Injurable
+      damageContainer: Biological
     - type: Reactive
       groups:
         Flammable: [Touch]

@@ -60,16 +60,14 @@
   - type: Stamina
     staminaAlert: "IPCStamina"
   - type: Damageable
-    damageContainer: Robotic
     damageModifierSet: IPC
-  - type: SolutionContainerManager
+  - type: Injurable
+    damageContainer: Robotic
+  - type: SolutionManager
     solutions:
-      bloodstream:
-        canReact: false # My robots aren't beakers! (oil -> ash conversion is evil and needs to go)
-      bloodstreamTemporary:
-        canReact: false
-      metabolites:
-        canReact: false
+    - SolutionIPCBloodstream
+    - SolutionIPCBloodstreamTemporary
+    - SolutionIPCMetabolites
   - type: Bloodstream
     bloodReferenceSolution:
       reagents:
@@ -357,6 +355,36 @@
       - shoes
   - type: LimbDamageable # Far Horizons
     proto: LimbTargetIPC
+
+- type: entity
+  parent: Solution
+  id: SolutionIPCBloodstream
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: bloodstream
+    solution:
+      canReact: false # My robots aren't beakers! (oil -> ash conversion is evil and needs to go)
+
+- type: entity
+  parent: Solution
+  id: SolutionIPCBloodstreamTemporary
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: bloodstreamTemporary
+    solution:
+      canReact: false
+
+- type: entity
+  parent: Solution
+  id: SolutionIPCMetabolites
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: metabolites
+    solution:
+      canReact: false
 
 - type: entity
   parent: BaseMentalAction

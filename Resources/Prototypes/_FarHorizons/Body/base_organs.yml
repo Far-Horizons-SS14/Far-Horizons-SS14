@@ -3,6 +3,7 @@
   abstract: true
   components:
     - type: Damageable
+    - type: Injurable
       damageContainer: LimbDamageContainer # Only brute and heat
     - type: DamageableLimb
       bodyDamageFactor: 0.4 # 40% of the damage/healing limb takes is transferred to body

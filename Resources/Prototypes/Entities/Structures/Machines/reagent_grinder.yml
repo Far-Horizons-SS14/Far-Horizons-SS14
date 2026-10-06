@@ -87,15 +87,11 @@
       - LargeBeaker
 
 - type: entity
-  parent: Recycler #too different so different parent
+  parent: [SolutionToolGinormous, Recycler] #too different so different parent
   id: ReagentGrinderIndustrial
   name: Industrial Reagent Grinder #FH
   description: An industrial reagent grinder.
   components:
-  - type: SolutionContainerManager
-    solutions:
-      output:
-        maxVol: 400 #*slaps roof of machine* This baby can fit so much omnizine in it
   - type: MaterialReclaimer
     whitelist:
       components:
@@ -106,7 +102,7 @@
     efficiency: 0.9
     reclaimMaterials: false # Materials have ExtractableComponent, which is whitelisted, so we have to avoid infinite recycling loops
     onlyReclaimDrainable: false
-    solutionContainerId: output
+    solutionContainerId: solution
   - type: Sprite
     sprite: Structures/Machines/recycling.rsi
     layers:
@@ -131,6 +127,6 @@
     - machine_parts
     - machine_board
   - type: DrainableSolution
-    solution: output
+    solution: solution
   - type: ExaminableSolution
-    solution: output
+    solution: solution

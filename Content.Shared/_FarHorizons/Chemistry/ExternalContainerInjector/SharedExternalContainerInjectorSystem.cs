@@ -72,9 +72,10 @@ public abstract partial class SharedExternalContainerInjectorSystem : EntitySyst
 
     protected bool EligibleEntity(EntityUid entity, IEntityManager entMan, ExternalContainerInjectorComponent component)
     {
+        var hasSolutionContainer = _solutionContainers.TryGetSolution(entity, component.VialSolutionName, out _, out _);
         return component.OnlyAffectsMobs
-            ? entMan.HasComponent<SolutionContainerManagerComponent>(entity) &&
+            ? hasSolutionContainer &&
               entMan.HasComponent<MobStateComponent>(entity)
-            : entMan.HasComponent<SolutionContainerManagerComponent>(entity);
+            : hasSolutionContainer;
     }
 }

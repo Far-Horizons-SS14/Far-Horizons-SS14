@@ -6,13 +6,12 @@
   components:
   - type: Label
     currentLabel: reagent-name-uranium
-  - type: SolutionContainerManager
-    solutions:
-      beaker:
-        reagents:
-        - ReagentId: Uranium
-          Quantity: 200
-          
+  - type: Solution # FH - migrated from SolutionContainerManager
+    solution:
+      reagents:
+      - ReagentId: Uranium
+        Quantity: 240
+
 - type: entity
   parent: Jug
   suffix: Corn oil
@@ -20,9 +19,9 @@
   components:
   - type: Label
     currentLabel: Corn Oil for frying
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        reagents:
-        - ReagentId: Cornoil
-          Quantity: 200
+  - type: Solution # FH - migrated from SolutionContainerManager
+    id: drink
+    solution:
+      reagents:
+      - ReagentId: Cornoil
+        Quantity: 240

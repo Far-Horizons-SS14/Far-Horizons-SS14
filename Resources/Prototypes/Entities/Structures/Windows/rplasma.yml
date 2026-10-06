@@ -10,8 +10,9 @@
   - type: Icon
     sprite: _FarHorizons/Structures/Windows/NanoTrasen/reinforced_plasma_window.rsi #FH
   - type: Damageable
-    damageContainer: StructuralInorganic
     damageModifierSet: RGlass
+  - type: Injurable
+    damageContainer: StructuralInorganic
   - type: RadiationBlocker
     resistance: 4
   - type: Destructible

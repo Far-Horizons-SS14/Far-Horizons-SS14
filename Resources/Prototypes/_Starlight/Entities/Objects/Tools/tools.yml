@@ -448,13 +448,13 @@
     useSound:
       collection: Welder
     qualities: Welding
-  - type: SolutionContainerManager
-    solutions:
-      Welder:
-        reagents:
-        - ReagentId: WeldingFuel
-          Quantity: 50
-        maxVol: 50
+  - type: Solution # FH - migrated from SolutionContainerManager
+    id: Welder
+    solution:
+      reagents:
+      - ReagentId: WeldingFuel
+        Quantity: 50
+      maxVol: 50
   - type: Welder
   - type: GenericVisualizer
     visuals:
@@ -682,7 +682,7 @@
 
 - type: entity
   name: forged omnitool
-  parent: BaseItem
+  parent: [ BaseItem, SolutionWelder ]
   id: OmnitoolForged
   description: Some absolute psychopath decided to saw off the heads of all tools they could find and smash it together into a makeshift drill. Looks nice, considering it's origins.
   components:
@@ -698,18 +698,17 @@
       shader: unshaded
       map: ["enum.ToggleableVisuals.Layer"]
   - type: RefillableSolution
-    solution: Welder
+    solution: welder
   - type: Tool
     useSound:
       collection: Welder
     qualities: Welding
-  - type: SolutionContainerManager
-    solutions:
-      Welder:
-        reagents:
-        - ReagentId: WeldingFuel
-          Quantity: 50
-        maxVol: 100
+  - type: Solution # FH - migrated from SolutionContainerManager
+    solution:
+      reagents:
+      - ReagentId: WeldingFuel
+        Quantity: 50
+      maxVol: 100
   - type: Welder
   - type: GenericVisualizer
     visuals:

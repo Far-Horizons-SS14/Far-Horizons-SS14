@@ -47,8 +47,9 @@
   - type: LimbTargetting # Far Horizons
   - type: Body
   - type: Damageable
-    damageContainer: Biological
     damageModifierSet: TerrorSpider
+  - type: Injurable
+    damageContainer: Biological
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -62,10 +63,10 @@
     damage:
       types:
         Piercing: 18
-  - type: SolutionContainerManager
-    solutions:
-      melee:
-        maxVol: 30
+  - type: Solution # FH - migrated from SolutionContainerManager
+    id: melee
+    solution:
+      maxVol: 30
   - type: SolutionRegeneration
     solution: melee
     generated:
