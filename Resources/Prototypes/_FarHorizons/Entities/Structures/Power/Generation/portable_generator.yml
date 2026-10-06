@@ -4,7 +4,7 @@
     An industrial generator capable of powering small ships and shuttles.
     Runs off welding fuel and is rated for up to 50 kW. Needs two air scrubbers to prevent buildup of toxic gasses.
     WARNING: Do not put in a non-ventilated room, you will suffocate!
-  parent: PortableGeneratorSwitchableBase
+  parent: [SolutionTank, SolutionNormal, PortableGeneratorSwitchableBase]
   id: GeneratorAcman
   suffix: Welding Fuel, 50 kW
   components:
@@ -55,10 +55,6 @@
       solution: tank
       reagents:
         WeldingFuel: 1
-    - type: SolutionContainerManager
-      solutions:
-        tank:
-          maxVol: 100
     - type: RefillableSolution
       solution: tank
     - type: PortableGenerator

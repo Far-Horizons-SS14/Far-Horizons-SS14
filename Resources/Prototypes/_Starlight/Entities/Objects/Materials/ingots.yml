@@ -44,14 +44,11 @@
   - type: Item
     heldPrefix: abyssium
   - type: Appearance
-#  - type: Extractable
-#    grindableSolutionName: gold
-#  - type: SolutionContainerManager
-#    solutions:
-#      gold:
-#        reagents:
-#        - ReagentId: Gold
-#          Quantity: 10
+#  - type: Solution # FH - migrated from SolutionContainerManager
+#    solution:
+#      reagents:
+#      - ReagentId: Gold
+#        Quantity: 10
 
 - type: entity
   parent: IngotAbyssium

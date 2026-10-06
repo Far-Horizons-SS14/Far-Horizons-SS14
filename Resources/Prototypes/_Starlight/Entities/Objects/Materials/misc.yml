@@ -126,8 +126,9 @@
           restitution: 0.3
           friction: 0.2
     - type: Damageable
-      damageContainer: Inorganic
       damageModifierSet: null
+    - type: Injurable
+      damageContainer: Inorganic
     - type: DamageOnLand
       damage:
         types:

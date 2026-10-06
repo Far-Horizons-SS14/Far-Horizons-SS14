@@ -155,7 +155,7 @@
     - id: ClothingBeltSheathFilledSyndi
     - id: ClothingHeadsetAltCommandSyndi
     - id: ClothingOuterArmorCaptainCarapaceSyndi
-    - id: CommsComputerCircuitboard
+    - id: CommsComputerCircuitboardNS
     - id: DoorRemoteCustom
     - id: MedalCase
     - id: NukeDisk
@@ -245,8 +245,8 @@
     - id: DoorRemoteServiceNS
     - id: PersonnelManagerIDCard
     - id: IDComputerCircuitboardNS
-    - id: FundingAllocationComputerCircuitboard
-    - id: CargoRequestServiceComputerCircuitboard
+    - id: FundingAllocationComputerCircuitboardNS
+    - id: CargoRequestServiceComputerCircuitboardNS
     - id: RubberStampApproved
     - id: RubberStampDenied
     - id: RubberStampPM
@@ -286,9 +286,9 @@
     - id: ClothingHandsGlovesColorYellow
     - id: ClothingHeadsetAltCESyndi
     - id: DoorRemoteEngineering
-    - id: CargoRequestEngineeringComputerCircuitboard
+    - id: CargoRequestEngineeringComputerCircuitboardNS
     - id: ShipyardRCD
-    - id: BoxCECircuitboards
+    - id: BoxCECircuitboardsNS
     - id: MatBag
     - id: WeaponGrapplingGun
     - id: BoxFlare
@@ -424,7 +424,7 @@
     - id: ClothingNeckCloakRdElite
     - id: Intellicard
     - id: BoxEncryptionKeyScienceNS
-    - id: BoxRDCircuitboards
+    - id: BoxRDCircuitboardsNS
     - id: ClothingBeltScienceRD
     - id: ClothingHeadsetAltScience
     - id: DoorRemoteResearchNS
@@ -487,7 +487,7 @@
   table: !type:AllSelector
     children:
     - id: ClothingNeckCloakHosEliteSyndi
-    - id: WeaponEnergySMG
+    - id: WeaponSniperWatcher
     - id: BookSpaceLaw
     - id: BoxEncryptionKeySecurityNS
     - id: CigarGoldCase
@@ -504,11 +504,11 @@
     - id: RubberStampMarshal
     - id: SecurityTechFabCircuitboard
     - id: SecurityAmmoTechFabCircuitboardNS
-    - id: CargoRequestSecurityComputerCircuitboard
+    - id: CargoRequestSecurityComputerCircuitboardNS
     - id: WeaponDisabler
     - id: WantedListCartridgeNS
     - id: DrinkMarshalFlask
-    - id: SecurityShuttleConsoleCircuitboard
+    - id: SecurityShuttleConsoleCircuitboardNS
     - id: PrintedDocumentGreenshiftAlert
       conditions:
       - !type:GamemodeCondition

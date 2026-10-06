@@ -45,6 +45,23 @@
 
 - type: entity
   parent: BaseMagazineBoxRevolver38
+  id: MagazineBoxRevolver38HP
+  name: .38 Special Ammunition Box (Revolver HP)
+  description: A cardboard box of Hollow-Point .38 Special revolver rounds. Effective against unarmored targets.
+  components:
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    proto: CartridgeRevolver38HP
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: hp
+
+- type: entity
+  parent: BaseMagazineBoxRevolver38
   id: MagazineBoxRevolver38SP
   name: .38 Special Ammunition Box (Revolver SP)
   description: A cardboard box of Soft-Point .38 Special revolver rounds. Effective against lightly-armored targets.
@@ -62,24 +79,9 @@
 
 - type: entity
   parent: BaseMagazineBoxRevolver38
-  id: MagazineBoxRevolver38HP
-  name: .38 Special Ammunition Box (Revolver HP)
-  components:
-  - type: BallisticAmmoProvider
-    mayTransfer: true
-    proto: CartridgeRevolver38HP
-  - type: Sprite
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-    - state: hp
-
-- type: entity
-  parent: BaseMagazineBoxRevolver38
   id: MagazineBoxRevolver38FMJ
   name: .38 Special Ammunition Box (Revolver FMJ)
+  description: A cardboard box of Full Metal Jacket .38 Special revolver rounds. Effective against armored targets.
   components:
   - type: BallisticAmmoProvider
     mayTransfer: true

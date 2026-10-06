@@ -116,8 +116,9 @@
     - type: Speech
       speechVerb: Monkey
     - type: Damageable
-      damageContainer: Biological
       damageModifierSet: Gorilla
+    - type: Injurable
+      damageContainer: Biological
     - type: InteractionPopup
       successChance: 0
       interactFailureString: petting-failure-generic
@@ -165,8 +166,9 @@
       baseWalkSpeed: 2
       baseSprintSpeed: 4
     - type: Damageable
-      damageContainer: Biological
       damageModifierSet: GorillaRampaging
+    - type: Injurable
+      damageContainer: Biological
     - type: NpcFactionMember
       factions:
         - Gorilla

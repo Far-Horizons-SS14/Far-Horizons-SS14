@@ -12,6 +12,11 @@
           operator: !type:SaveEntityInActiveHandOperator
             targetKey: HeldGun
 
+        # Free the supporting hand before picking up the magazine.
+        - !type:HTNPrimitiveTask
+          operator: !type:WieldOperator
+            wield: false
+
         # Swap to empty hand
         - !type:HTNPrimitiveTask
           operator: !type:SwapToFreeHandOperator
@@ -34,6 +39,11 @@
         - !type:HTNPrimitiveTask
           operator: !type:SaveEntityInActiveHandOperator
             targetKey: HeldGun
+
+        # Free the supporting hand before picking up the ammunition.
+        - !type:HTNPrimitiveTask
+          operator: !type:WieldOperator
+            wield: false
 
         # Swap to empty hand
         - !type:HTNPrimitiveTask
@@ -70,6 +80,11 @@
           operator: !type:SaveEntityInActiveHandOperator
             targetKey: HeldGun
 
+        # Free the supporting hand before picking up the magazine.
+        - !type:HTNPrimitiveTask
+          operator: !type:WieldOperator
+            wield: false
+
         # Swap to empty hand
         - !type:HTNPrimitiveTask
           operator: !type:SwapToFreeHandOperator
@@ -104,6 +119,11 @@
         - !type:HTNPrimitiveTask
           operator: !type:SaveEntityInActiveHandOperator
             targetKey: HeldGun
+
+        # Free the supporting hand before picking up the ammunition.
+        - !type:HTNPrimitiveTask
+          operator: !type:WieldOperator
+            wield: false
 
         # Swap to empty hand
         - !type:HTNPrimitiveTask

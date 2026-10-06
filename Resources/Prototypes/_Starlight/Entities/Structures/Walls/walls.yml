@@ -27,8 +27,9 @@
     sprite: _Starlight/Structures/Walls/abductor_diagonal.rsi
     state: state0
   - type: Damageable
-    damageContainer: StructuralInorganic
     damageModifierSet: StructuralMetallic
+  - type: Injurable
+    damageContainer: StructuralInorganic
   - type: Physics
     bodyType: Static
   - type: Reflect
@@ -66,10 +67,11 @@
   suffix: Reinforced, Exterior
   components:
   - type: Damageable
-    damageContainer: StructuralInorganic
     damageModifierSet: StructuralMetallicStrong
+  - type: Injurable
+    damageContainer: StructuralInorganic
   - type: StaticPrice
-    price: 250
+    price: 260 # FH - 250 -> 260 to fix arbitrage test
   - type: RadiationBlocker
     resistance: 5
   - type: Sprite
@@ -94,8 +96,9 @@
   suffix: Reinforced
   components:
   - type: Damageable
-    damageContainer: StructuralInorganic
     damageModifierSet: StructuralMetallicStrong
+  - type: Injurable
+    damageContainer: StructuralInorganic
   - type: Sprite
     sprite: _Starlight/Structures/Walls/concrete_wall.rsi
   - type: Icon

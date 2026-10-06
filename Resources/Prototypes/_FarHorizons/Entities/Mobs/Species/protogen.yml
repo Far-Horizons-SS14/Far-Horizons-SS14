@@ -29,8 +29,9 @@
     state: full
   - type: Thirst
   - type: Damageable
-    damageContainer: Biological
     damageModifierSet: Protogen
+  - type: Injurable
+    damageContainer: Biological
   # Music player
   - type: ActionGrant
     actions:
@@ -179,8 +180,9 @@
     sprite: _FarHorizons/Mobs/Species/Proto-Vulp/parts.rsi
     state: full
   - type: Damageable
-    damageContainer: Biological
     damageModifierSet: ProtoVulp
+  - type: Injurable
+    damageContainer: Biological
   - type: Body
     prototype: ProtoVulp
     requiredLegs: 2
@@ -259,8 +261,9 @@
     prototype: ProtoVox
     requiredLegs: 2
   - type: Damageable
-    damageContainer: Biological
     damageModifierSet: ProtoVox
+  - type: Injurable
+    damageContainer: Biological
   - type: Butcherable
     butcheringType: Spike
     spawned:
@@ -406,8 +409,9 @@
       - id: FoodThavenMeat
         amount: 5
   - type: Damageable
-    damageContainer: Biological
     damageModifierSet: ProtoThaven
+  - type: Injurable
+    damageContainer: Biological
   - type: Inventory
     templateId: protogen
     displacements:
@@ -525,8 +529,9 @@
   - type: UseDelay
     delay: 0.5
   - type: Damageable
-    damageContainer: Biological
     damageModifierSet: ProtoSlimePerson
+  - type: Injurable
+    damageContainer: Biological
   - type: PassiveDamage
     allowedStates:
     - Alive
@@ -633,11 +638,9 @@
       Metabolites:
         solutionName: metabolites
         solutionOnBody: false
-  - type: SolutionContainerManager
+  - type: SolutionManager
     solutions:
-      food: {}
-      stomach:
-        maxVol: 50
+    - SolutionStomach
   - type: ReattacheableLimbs 
 
 #region SHADEKIN ####
@@ -742,8 +745,9 @@
     - type: FlashModifier
       modifier: 2
     - type: Damageable
-      damageContainer: Biological
       damageModifierSet: ProtoKin
+    - type: Injurable
+      damageContainer: Biological
     - type: Reactive
       groups:
         Flammable: [Touch]
@@ -920,8 +924,9 @@
     normalState: Resomi_minor_burning
     alternateState: Resomi_burning
   - type: Damageable
-    damageContainer: Biological
     damageModifierSet: ProtoResomi
+  - type: Injurable
+    damageContainer: Biological
   - type: Fixtures
     fixtures: 
       fix1:
@@ -1152,8 +1157,9 @@
       amount: 5
   - type: LizardAccent
   - type: Damageable
-    damageContainer: Biological
     damageModifierSet: ProtoReptile
+  - type: Injurable
+    damageContainer: Biological
   - type: Temperature
     currentTemperature: 310.15
     specificHeat: 42
@@ -1249,8 +1255,9 @@
     prototype: ProtoMoth
     requiredLegs: 2
   - type: Damageable
-    damageContainer: Biological
     damageModifierSet: ProtoMoth
+  - type: Injurable
+    damageContainer: Biological
   - type: ZombieAccentOverride
     accent: zombieMoth
   - type: Butcherable
@@ -1405,8 +1412,9 @@
       types:
         Blunt: 5
   - type: Damageable
-    damageContainer: Biological
     damageModifierSet: ProtoHumie
+  - type: Injurable
+    damageContainer: Biological
   - type: Inventory
     templateId: protogen
     femaleDisplacements:
@@ -1475,8 +1483,9 @@
     - id: FoodMeatHuman
       amount: 3
   - type: Damageable
-    damageContainer: Biological
     damageModifierSet: ProtoFeline
+  - type: Injurable
+    damageContainer: Biological
   - type: MeleeWeapon
     soundHit:
       collection: AlienClaw
@@ -1688,8 +1697,9 @@
     prototype: ProtoDionae
     requiredLegs: 2
   - type: Damageable
-    damageContainer: Biological
     damageModifierSet: ProtoDionae
+  - type: Injurable
+    damageContainer: Biological
   - type: DamageVisuals
     damageOverlayGroups:
       Brute:
@@ -1828,8 +1838,9 @@
       120: ActiveCritical
       240: Dead
   - type: Damageable
-    damageContainer: Biological
     damageModifierSet: ProtoCyclops
+  - type: Injurable
+    damageContainer: Biological
   - type: DamageVisuals
     damageOverlayGroups:
       Brute:
@@ -2088,8 +2099,9 @@
       baseWeightlessFriction: 1
       baseWeightlessModifier: 1
     - type: Damageable
-      damageContainer: Biological
       damageModifierSet: ProtoAvali
+    - type: Injurable
+      damageContainer: Biological
     - type: DamageVisuals
       damageOverlayGroups:
         Brute:

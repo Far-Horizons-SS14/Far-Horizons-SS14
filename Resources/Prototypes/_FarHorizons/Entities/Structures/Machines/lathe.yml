@@ -217,16 +217,16 @@
     - NSScienceBoardsStatic
     - NSServiceBoardsStatic
     - CargoBoardsStatic #Should Syndi have this?
-    - MedicalBoardsStatic
-    - EngineeringBoardsStatic
-#    - StarlightVendorBoards #TODO: Figure out what to do with all the vending machines
+    - NSMedicalBoardsStatic 
+    - NSEngineeringBoardsStatic 
+    - NSStarlightVendorBoards
     dynamicPacks: #TODO: SYNDI TECH
-    - EngineeringBoards
+    - NSEngineeringBoards
     - CargoBoards
-    - MedicalBoards
-    - ServiceBoards
+    - NSMedicalBoards
+    - NSServiceBoards
     - NSScienceBoards
-    - CameraBoards
+    - NSCameraBoards
     - MechBoards
     - ShuttleBoards
     - StarlightMechBoards
@@ -345,6 +345,7 @@
     - SecurityWeaponsStatic
     - FarHorizonsCivilianMagazinesStatic
     - FarHorizonsCivilianWeaponsStatic
+    - FarHorizonsNSSecurityGeneralEquipmentStatic
     dynamicPacks:
     - SalvageSecurityBoards
     - SalvageSecurityWeapons

@@ -295,18 +295,24 @@
   id: HoSSidearm
   name: loadout-group-security-sidearm
   loadouts:
-  - SecurityRevolverInspectorcustom
-  - SecurityRevolverInspector
-  - SecurityRevolverOathbreakercustom
-  - SecurityRevolverOathbreaker
-  - SecurityRevolverInstigatorcustom
-  - SecurityRevolverInstigator
+# Job Specific - Important for Salvage for this to be at the top
   - SecurityPistolN1984
-  - SecurityPistolDueProcess
+# Default
+  - SecurityMKT
+  - SecurityRevolverInstigator
+# HoS's Special
   - SecurityPistolEnforcerFH
   - SecurityPistolPathology
+  - SecurityPistolDueProcess
+  - SecurityRevolverOathbreaker
+  - SecurityRevolverInspector
+# Prestige Weapons
   - SecurityPistolMk58
-  - SecurityMKT
+  - LeverActionModel2325Pistol
+  - SecurityRevolverInspectorcustom
+  - SecurityRevolverOathbreakercustom
+  - SecurityRevolverInstigatorcustom
+  - RevolverIndomitable
 
 - type: loadoutGroup
   id: SurvivalHeadOfSecurity
@@ -462,18 +468,33 @@
 
 #region Security
 
+# General Sec
+
+- type: loadoutGroup
+  id: SecurityLongarm  
+  name: loadout-group-security-longarm
+  minLimit: 0
+  loadouts:
+  - LeverActionNT
+  - LeverActionModel2325
+
 # Brigmedic
 
 - type: loadoutGroup
   id: BrigmedicSidearm  
   name: loadout-group-security-sidearm
   loadouts:
-  - SecurityRevolverOathbreakercustom
+# Job Specific - Important for Salvage for this to be at the top
   - SecurityRevolverOathbreaker
-  - SecurityPistolMk58
+  - SecurityRevolverOathbreakercustom
+# Default
   - SecurityMKT
-  - SecurityRevolverInstigatorcustom
   - SecurityRevolverInstigator
+# Prestige Weapons
+  - SecurityRevolverInstigatorcustom
+  - SecurityPistolMk58
+  - RevolverIndomitable
+  - LeverActionModel2325Pistol
 
 # Cadet
 
@@ -549,11 +570,16 @@
   id: CorpsmanSidearm  
   name: loadout-group-security-sidearm
   loadouts:
+# Job Specific - Important for Salvage for this to be at the top
   - SecurityPistolPathology
-  - SecurityPistolMk58
+# Default
   - SecurityMKT
-  - SecurityRevolverInstigatorcustom
   - SecurityRevolverInstigator
+# Prestige Weapons
+  - SecurityRevolverInstigatorcustom
+  - SecurityPistolMk58
+  - LeverActionModel2325Pistol
+  - RevolverIndomitable
 
 - type: loadoutGroup
   id: CorpsmanID
@@ -568,9 +594,14 @@
   id: DetectiveSidearm 
   name: loadout-group-security-sidearm
   loadouts:
-  - SecurityRevolverInspectorcustom
+# Job Specific - Important for Salvage for this to be at the top
   - SecurityRevolverInspector
+  - SecurityRevolverInspectorcustom
+# Default
   - SecurityRevolverInstigatorDet
+# Prestige Weapons
+  - LeverActionModel2325Pistol
+  - RevolverIndomitable
 
 # Warden
 
@@ -578,11 +609,16 @@
   id: WardenSidearm 
   name: loadout-group-security-sidearm
   loadouts:
+# Job Specific - Important for Salvage for this to be at the top
   - SecurityPistolDueProcess
-  - SecurityPistolMk58
+# Default
   - SecurityMKT
-  - SecurityRevolverInstigatorcustom
   - SecurityRevolverInstigator
+# Prestige Weapons
+  - SecurityRevolverInstigatorcustom
+  - SecurityPistolMk58
+  - LeverActionModel2325Pistol
+  - RevolverIndomitable
 
 #region Service
 
@@ -664,6 +700,7 @@
   - Mk58Civ
   - InstigatorCiv
   - LeverActionCiv
+  - LeverActionPistolCiv
 
 - type: loadoutGroup
   id: CivilianWeaponsNT

@@ -19,7 +19,7 @@ public partial class SharedLesserVampireSystem
         if (!args.CanComplexInteract ||
             !_interaction.InRangeAndAccessible(args.User, args.Target) ||
             !TryComp<LesserVampireComponent>(args.User, out var vampire) ||
-            !TryComp<SolutionContainerManagerComponent>(ent, out var solutionContainer) ||
+            !TryComp<SolutionManagerComponent>(ent, out var solutionContainer) ||
             !VampireCanDrinkBlood((args.User, vampire)) ||
             !CanDrinkFromContainer((args.User, vampire), (ent, solutionContainer, ent.Comp)))
             return;
@@ -42,7 +42,7 @@ public partial class SharedLesserVampireSystem
             !_interaction.InRangeAndAccessible(args.User, args.Target) ||
             args.User == args.Target ||
             !TryComp<LesserVampireComponent>(args.User, out var vampire) ||
-            !TryComp<SolutionContainerManagerComponent>(ent, out var solutionContainer) ||
+            !TryComp<SolutionManagerComponent>(ent, out var solutionContainer) ||
             !VampireCanDrinkBlood((args.User, vampire)) ||
             !VampireCanBite((args.User, vampire), args.Target) ||
             !CanDrinkFromContainer((args.User, vampire), (ent, solutionContainer, ent.Comp)))
@@ -61,7 +61,7 @@ public partial class SharedLesserVampireSystem
     }
 
     public void DrinkFromContainer(Entity<LesserVampireComponent> ent,
-        Entity<SolutionContainerManagerComponent, VampireDrinkableComponent> target)
+        Entity<SolutionManagerComponent, VampireDrinkableComponent> target)
     {
         var doAfterEventArgs =
             new DoAfterArgs(EntityManager, ent, target.Comp2.Duration, new LesserVampireDrinkBloodDoAfterEvent(),
@@ -78,7 +78,7 @@ public partial class SharedLesserVampireSystem
     }
 
     public void BiteTarget(Entity<LesserVampireComponent> ent,
-        Entity<SolutionContainerManagerComponent, VampireBiteableComponent> target)
+        Entity<SolutionManagerComponent, VampireBiteableComponent> target)
     {
         _popup.PopupPredicted(Loc.GetString("lesser-vampire-bite-warning", ("vampire", Identity.Entity(ent, EntityManager)), ("target", Identity.Entity(target, EntityManager))), ent, ent, PopupType.MediumCaution);
 

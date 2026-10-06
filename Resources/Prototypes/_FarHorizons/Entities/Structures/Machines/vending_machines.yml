@@ -25,7 +25,7 @@
     brokenState: broken
     normalState: normal-unshaded
   - type: Machine
-    board: VendingMachineSecDrobeCircuitboard
+    board: VendingMachineSecDrobeCircuitboardNS
   - type: DatasetVocalizer
     dataset: SecDrobeAds
   - type: SpeakOnUIClosed
@@ -62,7 +62,7 @@
     brokenState: broken
     normalState: normal-unshaded
   - type: Machine
-    board: VendingBarDrobeCircuitboard
+    board: VendingBarDrobeCircuitboardNS
   - type: DatasetVocalizer
     dataset: BarDrobeAds
   - type: SpeakOnUIClosed
@@ -93,7 +93,7 @@
     brokenState: broken
     normalState: normal-unshaded
   - type: Machine
-    board: VendingMachineMediDrobeCircuitboard
+    board: VendingMachineMediDrobeCircuitboardNS
   - type: DatasetVocalizer
     dataset: MediDrobeAds
   - type: SpeakOnUIClosed
@@ -124,7 +124,7 @@
     brokenState: broken
     normalState: normal-unshaded
   - type: Machine
-    board: VendingMachineChemDrobeCircuitboard
+    board: VendingMachineChemDrobeCircuitboardNS
   - type: DatasetVocalizer
     dataset: ChemDrobeAds
   - type: SpeakOnUIClosed
@@ -155,7 +155,7 @@
     brokenState: broken
     normalState: normal-unshaded
   - type: Machine
-    board: VendingMachineAtmosDrobeCircuitboard
+    board: VendingMachineAtmosDrobeCircuitboardNS
   - type: DatasetVocalizer
     dataset: AtmosDrobeAds
   - type: SpeakOnUIClosed
@@ -190,7 +190,7 @@
     brokenState: broken
     normalState: normal-unshaded
   - type: Machine
-    board: VendingMachineEngiDrobeCircuitboard
+    board: VendingMachineEngiDrobeCircuitboardNS
   - type: DatasetVocalizer
     dataset: EngiDrobeAds
   - type: SpeakOnUIClosed
@@ -225,7 +225,7 @@
     brokenState: broken
     normalState: normal-unshaded
   - type: Machine
-    board: VendingMachineChefDrobeCircuitboard
+    board: VendingMachineChefDrobeCircuitboardNS
   - type: DatasetVocalizer
     dataset: ChefDrobeAds
   - type: SpeakOnUIClosed
@@ -256,7 +256,7 @@
     brokenState: broken
     normalState: normal-unshaded
   - type: Machine
-    board: VendingMachineDetDrobeCircuitboard
+    board: VendingMachineDetDrobeCircuitboardNS
   - type: DatasetVocalizer
     dataset: DetDrobeAds
   - type: SpeakOnUIClosed
@@ -287,7 +287,7 @@
     brokenState: broken
     normalState: normal-unshaded
   - type: Machine
-    board: VendingMachineJaniDrobeCircuitboard
+    board: VendingMachineJaniDrobeCircuitboardNS
   - type: DatasetVocalizer
     dataset: JaniDrobeAds
   - type: SpeakOnUIClosed
@@ -321,8 +321,8 @@
     offState: off
     brokenState: broken
     normalState: normal-unshaded
-  - type: Machine # Starlight-edit: Vending Machine boards
-    board: VendingMachineSciDrobeCircuitboard # Starlight-edit: Vending Machine boards
+  - type: Machine 
+    board: VendingMachineSciDrobeCircuitboardNS
   - type: DatasetVocalizer
     dataset: SciDrobeAds
   - type: SpeakOnUIClosed
@@ -353,7 +353,7 @@
     brokenState: broken
     normalState: normal-unshaded
   - type: Machine
-    board: VendingMachineRoboDrobeCircuitboard
+    board: VendingMachineRoboDrobeCircuitboardNS
   - type: DatasetVocalizer
     dataset: RoboDrobeAds
   - type: SpeakOnUIClosed
@@ -376,6 +376,39 @@
 
 # region Tech
 
+- type: entity
+  parent: VendingMachineCart
+  id: VendingMachineCartGSL
+  name: PTech
+  suffix: GSL
+  description: PTech vending! Providing a ROBUST selection of PDAs, cartridges, and anything else a dull paper pusher needs!
+  components:
+  - type: VendingMachine
+    pack: PTechInventoryGSL
+    offState: off
+    showPrices: false # Starlight-edit: Vending Machines Prices
+    brokenState: broken
+    normalState: normal-unshaded
+    ejectState: eject-unshaded
+    denyState: deny-unshaded
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineCartCircuitboardGSL # Starlight-edit: Vending Machine boards
+  - type: Sprite
+    sprite: Structures/Machines/VendingMachines/cart.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: PointLight
+    radius: 1
+    energy: 2.0
+    color: "#ffb0b0"
+  - type: AccessReader
+    access: [["Quartermaster"], ["SalvageLead"]]
 
 - type: entity
   parent: VendingMachineCart
@@ -393,7 +426,7 @@
     ejectState: eject-unshaded
     denyState: deny-unshaded
   - type: Machine # Starlight-edit: Vending Machine boards
-    board: VendingMachineCartCircuitboard # Starlight-edit: Vending Machine boards
+    board: VendingMachineCartCircuitboardNS # Starlight-edit: Vending Machine boards
   - type: Sprite
     sprite: Structures/Machines/VendingMachines/cart.rsi
     layers:
@@ -427,7 +460,7 @@
     denyState: deny-unshaded
     showPrices: false
   - type: Machine
-    board: VendingMachineSecCircuitboard
+    board: VendingMachineSecCircuitboardNS
   - type: DatasetVocalizer
     dataset: SecTechAds
   - type: SpeakOnUIClosed
@@ -582,3 +615,103 @@
     access: [["SecurityNS"], ["CadetNS"]]
   - type: Sprite
     sprite: _FarHorizons/Structures/Machines/NS/CreditVendingMachines/security.rsi
+
+
+#region Empty
+
+- type: entity
+  parent: VendingMachineSecDrobeNeoSol
+  id: VendingMachineSecDrobeEmptyNS
+  suffix: Empty
+  components:
+    - type: EmptyVendingMachine
+
+- type: entity
+  parent: VendingBarDrobeNeoSol
+  id: VendingBarDrobeEmptyNS
+  suffix: Empty
+  components:
+    - type: EmptyVendingMachine
+
+- type: entity
+  parent: VendingMachineMediDrobeNeoSol
+  id: VendingMachineMediDrobeEmptyNS
+  suffix: Empty
+  components:
+    - type: EmptyVendingMachine
+
+- type: entity
+  parent: VendingMachineChemDrobeNeoSol
+  id: VendingMachineChemDrobeEmptyNS
+  suffix: Empty
+  components:
+    - type: EmptyVendingMachine
+
+- type: entity
+  parent: VendingMachineAtmosDrobeNeoSol
+  id: VendingMachineAtmosDrobeEmptyNS
+  suffix: Empty
+  components:
+    - type: EmptyVendingMachine
+
+- type: entity
+  parent: VendingMachineEngiDrobeNeoSol
+  id: VendingMachineEngiDrobeEmptyNS
+  suffix: Empty
+  components:
+    - type: EmptyVendingMachine
+    
+- type: entity
+  parent: VendingMachineChefDrobeNeoSol
+  id: VendingMachineChefDrobeEmptyNS
+  suffix: Empty
+  components:
+    - type: EmptyVendingMachine
+    
+- type: entity
+  parent: VendingMachineDetDrobeNeoSol
+  id: VendingMachineDetDrobeEmptyNS
+  suffix: Empty
+  components:
+    - type: EmptyVendingMachine
+
+- type: entity
+  parent: VendingMachineJaniDrobeNeoSol
+  id: VendingMachineJaniDrobeEmptyNS
+  suffix: Empty
+  components:
+    - type: EmptyVendingMachine
+
+- type: entity
+  parent: VendingMachineSciDrobeNeoSol
+  id: VendingMachineSciDrobeEmptyNS
+  suffix: Empty
+  components:
+    - type: EmptyVendingMachine
+- type: entity
+  parent: VendingMachineRoboDrobeNeoSol
+  id: VendingMachineRoboDrobeEmptyNS
+  suffix: Empty
+  components:
+    - type: EmptyVendingMachine
+
+- type: entity
+  parent: VendingMachineCartNS
+  id: VendingMachineCartEmptyNS
+  suffix: Empty
+  components:
+    - type: EmptyVendingMachine
+
+- type: entity
+  parent: VendingMachineSecNS
+  id: VendingMachineSecEmptyNS
+  suffix: Empty
+  components:
+    - type: EmptyVendingMachine
+
+- type: entity
+  parent: VendingMachineCartGSL
+  id: VendingMachineCartEmptyGSL
+  suffix: Empty
+  components:
+    - type: EmptyVendingMachine

@@ -1,6 +1,6 @@
 - type: entity
   id: BaseMachineCircuitboard
-  parent: BaseItem
+  parent: [BaseItem, SolutionElectronicsEdibleFood] # FH - direct food solution avoids the Edible initialization race
   name: machine board
   abstract: true
   suffix: Machine Board
@@ -29,23 +29,9 @@
       - shocking
     - type: Extractable
       grindableSolutionName: ramchip
-    - type: SolutionContainerManager
+    - type: SolutionManager
       solutions:
-        food:
-          maxVol: 15
-          reagents:
-          - ReagentId: BatteryAcid
-            Quantity: 15
-        ramchip:
-          reagents:
-          - ReagentId: BatteryAcid
-            Quantity: 15
-          - ReagentId: Gold
-            Quantity: 10
-          - ReagentId: Iron
-            Quantity: 10
-          - ReagentId: Silicon
-            Quantity: 50
+      - SolutionElectronicsRamChip
     - type: Tag
       tags:
       - RamChip #Protogen joke, makes them able to eat them.

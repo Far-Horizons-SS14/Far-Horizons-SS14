@@ -1,0 +1,1031 @@
+#region =Base=
+- type: entity
+  name: Swordfish Lever-Action
+  parent: [BaseWeaponSniper, BaseGunWieldable]
+  id: WeaponLeverActionBase
+  abstract: true
+  components:
+  - type: KnockbackByUserTag
+    doestContain:
+      Skating:
+        knockback: 1
+        staminaMultiplier: 50
+      Resomi:
+        knockback: 3
+        staminaMultiplier: 15
+      Avali:
+        knockback: 1
+        staminaMultiplier: 15
+      Felionoid:
+        knockback: 1
+        staminaMultiplier: 15
+      Animal:
+        knockback: 3
+        staminaMultiplier: 15
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/Lever_Actions/Model_1989/model_1989_x64x32.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Objects/Weapons/Guns/Lever_Actions/Model_1989/model_1989_x32.rsi
+  - type: Item
+    sprite: _FarHorizons/Objects/Weapons/Guns/Lever_Actions/Model_1989/model_1989_x32.rsi
+    size: Normal
+    shape:
+    - 0,0,4,0
+    storedOffset: 0,-1
+  - type: Gun # 5-10 Deviation (Stock)
+    fireRate: 1.5 
+    minAngle: 10
+    maxAngle: 20
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/sniper.ogg
+  - type: GunWieldBonus
+    minAngle: -5
+    maxAngle: -10
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+      - CartridgeMagnum
+      - CartridgeMagnumImprovised
+      - CartridgeLightRifle
+      - CartridgeLightRifleImprovised
+    capacity: 12
+    proto: CartridgeMagnumSP
+  - type: Wieldable
+    unwieldOnUse: false
+
+#region =Neutral=
+
+
+
+
+
+
+#region Swordfish
+- type: entity
+  name: Swordfish Lever-Action
+  parent: [WeaponLeverActionBase, BaseSecurityContraband]
+  id: WeaponLeverActionStock
+  description: Used by some law enforcement agencies on the frontier where strong firepower reliably delivered matters more than an automatic firearm. Accepts .30 and .44 Magnum cartridges.
+  components:
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+      - CartridgeMagnum
+      - CartridgeMagnumImprovised
+      - CartridgeLightRifle
+      - CartridgeLightRifleImprovised
+    capacity: 12
+    proto: CartridgeMagnumSP
+  #type: Attachments (or smth)
+  #- Stock/Barrel (- 10 Max / - 5 Min)
+  #- Large Ammo Tube (12 RNDs)
+  #Modifiers:
+  #- Lever Action (- 1 Knockback)
+  #- Sniper (+1 Tile Range)
+
+#region Wooden Swordfish
+- type: entity
+  name: Wooden Swordfish Lever-Action
+  parent: [WeaponLeverActionBase]
+  id: WeaponLeverActionCivilian
+  description: Typically found in the hands of civilians as a popular self-defense weapon. Accepts .30 and .44 Magnum cartridges.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/Lever_Actions/Model_1989_Civilian/model_1989_x64x32.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Objects/Weapons/Guns/Lever_Actions/Model_1989_Civilian/model_1989_x32.rsi
+  - type: Item
+    sprite: _FarHorizons/Objects/Weapons/Guns/Lever_Actions/Model_1989_Civilian/model_1989_x32.rsi
+  - type: Gun
+    fireRate: 1.0
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+      - CartridgeMagnum
+      - CartridgeMagnumImprovised
+      - CartridgeLightRifle
+      - CartridgeLightRifleImprovised
+    capacity: 6 
+    proto: CartridgeMagnumSP
+  #type: Attachments (or smth)
+  #- Stock/Barrel (- 10 Max / - 5 Min)
+  #- Standard Ammo Tube (6 RNDs)
+  #Modifiers:
+  #- Lever Action (- 1 Knockback)
+  #- Sniper (+1 Tile Range)
+
+#region W.Swordfish Pistol
+- type: entity
+  name: Wooden Swordfish Lever-Action Pistol
+  parent: [WeaponLeverActionBase]
+  id: WeaponLeverActionCivilianPistol
+  description: Doesn't hold that many rounds, but it is compact! Accepts .30 and .44 Magnum cartridges, still needs to be wielded to be properly used.
+  components:
+  - type: KnockbackByUserTag
+    doestContain:
+      Skating:
+        knockback: 0
+        staminaMultiplier: 0
+      Resomi:
+        knockback: 0
+        staminaMultiplier: 0
+      Avali:
+        knockback: 0
+        staminaMultiplier: 0
+      Felionoid:
+        knockback: 0
+        staminaMultiplier: 0
+      Animal:
+        knockback: 0
+        staminaMultiplier: 0
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/Lever_Actions/model_1989_short.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Objects/Weapons/Guns/Lever_Actions/model_1989_short.rsi
+    quickEquip: false
+    slots:
+    - suitStorage
+    - Belt
+  - type: Item
+    sprite: _FarHorizons/Objects/Weapons/Guns/Lever_Actions/model_1989_short.rsi
+    size: Small
+    shape:
+    - 0,0,1,0
+    - 0,1,0,1
+    storedOffset: 0,-3
+  - type: Gun
+    fireRate: 1.0
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+      - CartridgeMagnum
+      - CartridgeMagnumImprovised
+      - CartridgeLightRifle
+      - CartridgeLightRifleImprovised
+    capacity: 4
+    proto: CartridgeMagnumSP
+  #type: Attachments (or smth)
+  #- Stock/Barrel (- 10 Max / - 5 Min)
+  #- Small Ammo Tube (4 RNDs)
+  #Modifiers:
+  #- Lever Action Pistol (No Knockback)
+
+#region =NanoTrasen=
+
+
+
+
+
+#region Swordfish Type-T
+- type: entity
+  name: Swordfish Lever-Action Type-T
+  parent: [WeaponLeverActionBase, BaseSecurityContraband]
+  id: WeaponLeverActionNT
+  description: A simple and reliable firearm, able to be easily manufacured by on-station Security Technology Fabricators. Despite being worse than standard automatic/semi-automatic firearms, it finds it's favorites regardless among Security Staff that prefer a more western look.
+  components:
+  - type: KnockbackByUserTag
+    doestContain:
+      Skating:
+        knockback: 1.5
+        staminaMultiplier: 50
+      Resomi:
+        knockback: 3.5
+        staminaMultiplier: 15
+      Avali:
+        knockback: 1.5
+        staminaMultiplier: 15
+      Felionoid:
+        knockback: 1.5
+        staminaMultiplier: 15
+      Animal:
+        knockback: 3.5
+        staminaMultiplier: 15
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/Lever_Actions/Model_1989_NT/model_1989_x64x32.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Objects/Weapons/Guns/Lever_Actions/Model_1989/model_1989_x32.rsi
+  - type: Item
+    sprite: _FarHorizons/Objects/Weapons/Guns/Lever_Actions/Model_1989/model_1989_x32.rsi
+    size: Normal
+    shape:
+    - 0,0,4,0
+    storedOffset: 0,-1
+  - type: Gun # 3-8 Deviation (2x Scope / Short Barrel)
+    fireRate: 1.5
+    minAngle: 10
+    maxAngle: 20
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/sniper.ogg
+  - type: GunWieldBonus
+    minAngle: -7
+    maxAngle: -12
+  - type: EyeCursorOffset
+    maxOffset: 0
+    pvsIncrease: 0
+  - type: SpeedModifiedOnWield
+    walkModifier: 0.95
+    sprintModifier: 0.95
+  - type: UseDelay
+    delay: 1.5
+  - type: Scope
+    canUseInsideContainer: true
+    canUseNightVision: true
+    zoomLevels:
+      - name: 1x
+        zoom: 1
+        offset: 7
+        doAfter: 0
+        allowMovement: true
+      - name: 2x
+        zoom: 2
+        offset: 7
+        doAfter: 0
+        allowMovement: true
+  #type: Attachments (or smth)
+  #- Stock/Barrel (- 10 Max / - 5 Min)
+  #- Lightweight Stock (+0.5s Speed / + 0.5 Knockback)
+  #- Short Barrel (-0.5s Wield Time / + 5 Max & 3 Min Deviation)
+  #- Large Ammo Tube (12 RNDs)
+  #- 2x Scope (2x Tile Range)
+  #Modifiers:
+  #- Lever Action (- 1 Knockback)
+
+#region Model 2325
+- type: entity
+  name: Model 2325
+  parent: [BaseItem, BaseSecurityContraband] #You have no idea how much of a pain in the ass this was.
+  id: WeaponLeverActionModel2325
+  description: As the name suggests, this is a very modern take on a Lever Action. It utilizes proprietary NanoTransen Hardlight Technology to dynamically modify it's internals, allowing for quick adjustment and adaptation of most common ammo calibers on the fly, as well as featuring an advanced stabilization system that negates recoil entirely. WARNING - Leaving ammunition inside while actively changing modes will destroy it!
+  components:
+  - type: AmmoCounter
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/Lever_Actions/Model_2325/model_2325_x64x64.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+  - type: Clothing
+    sprite: _FarHorizons/Objects/Weapons/Guns/Lever_Actions/Model_2325/model_2325_x64x64.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: Item
+    sprite: _FarHorizons/Objects/Weapons/Guns/Lever_Actions/Model_2325/model_2325_x64x64.rsi
+    size: Normal
+    shape:
+    - 0,0,4,0
+  - type: StaticPrice
+    price: 1000 #this thing is worth a lot
+  #type: Attachments (or smth)
+  #- Stock/Barrel (- 10 Max / - 5 Min)
+  #- Hardlight Barrel/Reciver (Allows changing of Ammo Types)
+  #- Hardlight Ammo Tube (Varies in capacity)
+  #- Automatic Recoil Dampening System (Negates Recoil entirely)
+  #- Smart Blue Dot Sights (1-5 Deviation / ~ 1.5x Tile Range [roughly])
+  - type: ItemSwitch 
+    onUse: false
+    state: 44mag
+    states:
+      12g: !type:ItemSwitchState
+        verb: 12 Gauge
+        sprite:
+          sprite: _FarHorizons/Objects/Weapons/Guns/Lever_Actions/Model_2325/model_2325_x64x64.rsi #Sprites CANNOT be split into seperate folders, it doesn't support it.
+          state: base
+        components:
+        - type: CursorOffsetRequiresWield
+        - type: EyeCursorOffset #Scope does not work with this thing.
+          maxOffset: 5
+          pvsIncrease: 0.5
+        - type: Wieldable
+          unwieldOnUse: false
+        - type: UseDelay
+          delay: 2
+        - type: SpeedModifiedOnWield
+          walkModifier: 0.90
+          sprintModifier: 0.90
+        - type: AmmoCounter
+        - type: GunWieldBonus
+          minAngle: -9
+          maxAngle: -15
+        - type: Gun
+          minAngle: 10
+          maxAngle: 20
+          pump: true
+          fireRate: 1.5 # ~ 45 DPS, technically less depending on individual speed of racking
+          selectedMode: SemiAuto
+          availableModes:
+          - SemiAuto
+          soundGunshot:
+            path: /Audio/_FarHorizons/Items/Weapons/Mark1/mark1.ogg
+            params:
+              variation: 0.246
+        - type: ContainerContainer
+          containers:
+           ballistic-ammo: !type:Container
+             ents: []
+        - type: BallisticAmmoProvider
+          soundRack:
+            path: /Audio/_FarHorizons/Items/Weapons/Mark1/mark1_cycle_Bolt.ogg
+            params:
+              variation: 0.05
+          whitelist:
+           tags:
+           - ShellShotgun
+          capacity: 10
+          proto: null
+          soundInsert:
+            path: /Audio/Weapons/Guns/MagIn/shotgun_insert.ogg
+
+      44mag: !type:ItemSwitchState
+        verb: .44 Magnum
+        sprite:
+          sprite: _FarHorizons/Objects/Weapons/Guns/Lever_Actions/Model_2325/model_2325_x64x64.rsi #Sprites CANNOT be split into seperate folders, it doesn't support it.
+          state: base
+        components:
+        - type: CursorOffsetRequiresWield
+        - type: EyeCursorOffset #Scope does not work with this thing.
+          maxOffset: 5
+          pvsIncrease: 0.5
+        - type: Wieldable
+          unwieldOnUse: false
+        - type: UseDelay
+          delay: 2
+        - type: SpeedModifiedOnWield
+          walkModifier: 0.90
+          sprintModifier: 0.90
+        - type: AmmoCounter
+        - type: GunWieldBonus
+          minAngle: -9
+          maxAngle: -15
+        - type: Gun
+          minAngle: 10
+          maxAngle: 20
+          pump: true
+          fireRate: 1.5 # ~ 52.5 DPS, technically less depending on individual speed of racking
+          selectedMode: SemiAuto
+          availableModes:
+          - SemiAuto
+          soundGunshot:
+            path: /Audio/_FarHorizons/Items/Weapons/Mark1/mark1.ogg
+            params:
+              variation: 0.246
+        - type: ContainerContainer
+          containers:
+           ballistic-ammo: !type:Container
+             ents: []
+        - type: BallisticAmmoProvider
+          soundRack:
+            path: /Audio/_FarHorizons/Items/Weapons/Mark1/mark1_cycle_Bolt.ogg
+            params:
+              variation: 0.05
+          whitelist:
+           tags:
+           - CartridgeMagnum
+           - CartridgeMagnumImprovised
+          capacity: 12
+          proto: null
+          soundInsert:
+            path: /Audio/Weapons/Guns/MagIn/shotgun_insert.ogg
+
+      38spec: !type:ItemSwitchState
+        verb: .38 Special
+        sprite:
+          sprite: _FarHorizons/Objects/Weapons/Guns/Lever_Actions/Model_2325/model_2325_x64x64.rsi
+          state: base
+        components:
+        - type: CursorOffsetRequiresWield
+        - type: EyeCursorOffset
+          maxOffset: 5
+          pvsIncrease: 0.5
+        - type: Wieldable
+          unwieldOnUse: false
+        - type: UseDelay
+          delay: 2
+        - type: SpeedModifiedOnWield
+          walkModifier: 0.90
+          sprintModifier: 0.90
+        - type: AmmoCounter
+        - type: GunWieldBonus
+          minAngle: -9
+          maxAngle: -15
+        - type: Gun
+          minAngle: 10
+          maxAngle: 20
+          pump: true
+          fireRate: 2 # ~ 50 DPS, technically less depending on individual speed of racking
+          selectedMode: SemiAuto
+          availableModes:
+          - SemiAuto
+          soundGunshot:
+            path: /Audio/_FarHorizons/Items/Weapons/Mark1/mark1.ogg
+            params:
+              variation: 0.246
+        - type: ContainerContainer
+          containers:
+           ballistic-ammo: !type:Container
+             ents: []
+        - type: BallisticAmmoProvider
+          soundRack:
+            path: /Audio/_FarHorizons/Items/Weapons/Mark1/mark1_cycle_Bolt.ogg
+            params:
+              variation: 0.05
+          whitelist:
+           tags:
+           - CartridgeRevolver38
+           - SpeedLoaderRevolver38
+          capacity: 12
+          proto: null
+          soundInsert:
+            path: /Audio/Weapons/Guns/MagIn/shotgun_insert.ogg
+
+      rifle: !type:ItemSwitchState
+        verb: 7.62 / 5.56
+        sprite:
+          sprite: _FarHorizons/Objects/Weapons/Guns/Lever_Actions/Model_2325/model_2325_x64x64.rsi
+          state: base
+        components:
+        - type: CursorOffsetRequiresWield
+        - type: EyeCursorOffset
+          maxOffset: 5
+          pvsIncrease: 0.5
+        - type: Wieldable
+          unwieldOnUse: false
+        - type: UseDelay
+          delay: 2
+        - type: SpeedModifiedOnWield
+          walkModifier: 0.90
+          sprintModifier: 0.90
+        - type: AmmoCounter
+        - type: GunWieldBonus
+          minAngle: -9
+          maxAngle: -15
+        - type: Gun
+          minAngle: 10
+          maxAngle: 20
+          pump: true
+          fireRate: 3.5 # ~ 66.5 / 58.5 DPS respectively, though I really have my doubts someone is going to be able to do this three and a half times in a second with the pump.
+          selectedMode: SemiAuto
+          availableModes:
+          - SemiAuto
+          soundGunshot:
+            path: /Audio/_FarHorizons/Items/Weapons/Mark1/mark1.ogg
+            params:
+              variation: 0.246
+        - type: ContainerContainer
+          containers:
+           ballistic-ammo: !type:Container
+             ents: []
+        - type: BallisticAmmoProvider
+          soundRack:
+            path: /Audio/_FarHorizons/Items/Weapons/Mark1/mark1_cycle_Bolt.ogg
+            params:
+              variation: 0.05
+          whitelist:
+           tags:
+           - CartridgeLightRifle
+           - CartridgeLightRifleImprovised
+           - CartridgeRifle556
+          capacity: 35
+          proto: null
+          soundInsert:
+            path: /Audio/Weapons/Guns/MagIn/shotgun_insert.ogg
+
+      9mm: !type:ItemSwitchState
+        verb: 9mm
+        sprite:
+          sprite: _FarHorizons/Objects/Weapons/Guns/Lever_Actions/Model_2325/model_2325_x64x64.rsi
+          state: base
+        components:
+        - type: CursorOffsetRequiresWield
+        - type: EyeCursorOffset
+          maxOffset: 5
+          pvsIncrease: 0.5
+        - type: Wieldable
+          unwieldOnUse: false
+        - type: UseDelay
+          delay: 2
+        - type: SpeedModifiedOnWield
+          walkModifier: 0.90
+          sprintModifier: 0.90
+        - type: AmmoCounter
+        - type: GunWieldBonus
+          minAngle: -9
+          maxAngle: -15
+        - type: Gun
+          minAngle: 10
+          maxAngle: 20
+          pump: true
+          fireRate: 3.5 # ~ 56 DPS, same doubt of actually reaching that with pump.
+          selectedMode: SemiAuto
+          availableModes:
+          - SemiAuto
+          soundGunshot:
+            path: /Audio/_FarHorizons/Items/Weapons/Mark1/mark1.ogg
+            params:
+              variation: 0.246
+        - type: ContainerContainer
+          containers:
+           ballistic-ammo: !type:Container
+             ents: []
+        - type: BallisticAmmoProvider
+          soundRack:
+            path: /Audio/_FarHorizons/Items/Weapons/Mark1/mark1_cycle_Bolt.ogg
+            params:
+              variation: 0.05
+          whitelist:
+           tags:
+           - CartridgePistol
+          capacity: 50
+          proto: null
+          soundInsert:
+            path: /Audio/Weapons/Guns/MagIn/shotgun_insert.ogg
+
+#region Model 2325 Pistol
+- type: entity
+  name: Model 2325 Pistol
+  parent: [BaseItem, BaseSecurityContraband]
+  id: WeaponLeverActionModel2325Pistol
+  description: As the name suggests, this is a very modern take on a Lever Action, now in compact form! It utilizes proprietary NanoTransen Hardlight Technology to dynamically modify it's internals, allowing for quick adjustment and adaptation of most common ammo calibers on the fly, as well as featuring an advanced stabilization system that negates recoil entirely. WARNING - Leaving ammunition inside while actively changing modes will destroy it!
+  components:
+  - type: AmmoCounter
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/Lever_Actions/model_2325_short.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+  - type: Clothing
+    sprite: _FarHorizons/Objects/Weapons/Guns/Lever_Actions/model_2325_short.rsi
+    quickEquip: false
+    slots:
+    - suitStorage
+    - Belt
+  - type: Item
+    sprite: _FarHorizons/Objects/Weapons/Guns/Lever_Actions/model_2325_short.rsi
+    size: Small
+    shape:
+    - 0,0,1,0
+    - 0,1,0,1
+    storedOffset: 0,-3
+  - type: StaticPrice
+    price: 800 #this thing is still worth a lot
+  #type: Attachments (or smth)
+  #- Stock/Barrel (- 10 Max / - 5 Min)
+  #- Hardlight Barrel/Reciver (Allows changing of Ammo Types)
+  #- Hardlight Ammo Tube (Varies in capacity)
+  #- Automatic Recoil Dampening System (Negates Recoil entirely)
+  #- Smart Blue Dot Sights (1-5 Deviation / ~ 1.5x Tile Range [roughly])
+  - type: ItemSwitch 
+    onUse: false
+    state: 44mag
+    states:
+      12g: !type:ItemSwitchState
+        verb: 12 Gauge
+        sprite:
+          sprite: _FarHorizons/Objects/Weapons/Guns/Lever_Actions/model_2325_short.rsi #Sprites CANNOT be split into seperate folders, it doesn't support it.
+          state: base
+        components:
+        - type: CursorOffsetRequiresWield
+        - type: EyeCursorOffset
+          maxOffset: 5
+          pvsIncrease: 0.5
+        - type: Wieldable
+          unwieldOnUse: false
+        - type: UseDelay
+          delay: 2
+        - type: SpeedModifiedOnWield
+          walkModifier: 0.90
+          sprintModifier: 0.90
+        - type: AmmoCounter
+        - type: GunWieldBonus
+          minAngle: -9
+          maxAngle: -15
+        - type: Gun
+          minAngle: 10
+          maxAngle: 20
+          pump: true
+          fireRate: 1
+          selectedMode: SemiAuto
+          availableModes:
+          - SemiAuto
+          soundGunshot:
+            path: /Audio/_FarHorizons/Items/Weapons/Mark1/mark1.ogg
+            params:
+              variation: 0.246
+        - type: ContainerContainer
+          containers:
+           ballistic-ammo: !type:Container
+             ents: []
+        - type: BallisticAmmoProvider
+          soundRack:
+            path: /Audio/_FarHorizons/Items/Weapons/Mark1/mark1_cycle_Bolt.ogg
+            params:
+              variation: 0.05
+          whitelist:
+           tags:
+           - ShellShotgun
+          capacity: 4
+          proto: null
+          soundInsert:
+            path: /Audio/Weapons/Guns/MagIn/shotgun_insert.ogg
+
+      44mag: !type:ItemSwitchState
+        verb: .44 Magnum
+        sprite:
+          sprite: _FarHorizons/Objects/Weapons/Guns/Lever_Actions/model_2325_short.rsi
+          state: base
+        components:
+        - type: CursorOffsetRequiresWield
+        - type: EyeCursorOffset #Scope does not work with this thing.
+          maxOffset: 5
+          pvsIncrease: 0.5
+        - type: Wieldable
+          unwieldOnUse: false
+        - type: UseDelay
+          delay: 2
+        - type: SpeedModifiedOnWield
+          walkModifier: 0.90
+          sprintModifier: 0.90
+        - type: AmmoCounter
+        - type: GunWieldBonus
+          minAngle: -9
+          maxAngle: -15
+        - type: Gun
+          minAngle: 10
+          maxAngle: 20
+          pump: true
+          fireRate: 1.5
+          selectedMode: SemiAuto
+          availableModes:
+          - SemiAuto
+          soundGunshot:
+            path: /Audio/_FarHorizons/Items/Weapons/Mark1/mark1.ogg
+            params:
+              variation: 0.246
+        - type: ContainerContainer
+          containers:
+           ballistic-ammo: !type:Container
+             ents: []
+        - type: BallisticAmmoProvider
+          soundRack:
+            path: /Audio/_FarHorizons/Items/Weapons/Mark1/mark1_cycle_Bolt.ogg
+            params:
+              variation: 0.05
+          whitelist:
+           tags:
+           - CartridgeMagnum
+           - CartridgeMagnumImprovised
+           - CartridgeLightRifle
+           - CartridgeLightRifleImprovised
+          capacity: 8
+          proto: null
+          soundInsert:
+            path: /Audio/Weapons/Guns/MagIn/shotgun_insert.ogg
+
+      38spec: !type:ItemSwitchState
+        verb: .38 Special
+        sprite:
+          sprite: _FarHorizons/Objects/Weapons/Guns/Lever_Actions/model_2325_short.rsi
+          state: base
+        components:
+        - type: CursorOffsetRequiresWield
+        - type: EyeCursorOffset
+          maxOffset: 5
+          pvsIncrease: 0.5
+        - type: Wieldable
+          unwieldOnUse: false
+        - type: UseDelay
+          delay: 2
+        - type: SpeedModifiedOnWield
+          walkModifier: 0.90
+          sprintModifier: 0.90
+        - type: AmmoCounter
+        - type: GunWieldBonus
+          minAngle: -9
+          maxAngle: -15
+        - type: Gun
+          minAngle: 10
+          maxAngle: 20
+          pump: true
+          fireRate: 2
+          selectedMode: SemiAuto
+          availableModes:
+          - SemiAuto
+          soundGunshot:
+            path: /Audio/_FarHorizons/Items/Weapons/Mark1/mark1.ogg
+            params:
+              variation: 0.246
+        - type: ContainerContainer
+          containers:
+           ballistic-ammo: !type:Container
+             ents: []
+        - type: BallisticAmmoProvider
+          soundRack:
+            path: /Audio/_FarHorizons/Items/Weapons/Mark1/mark1_cycle_Bolt.ogg
+            params:
+              variation: 0.05
+          whitelist:
+           tags:
+           - CartridgeRevolver38
+           - SpeedLoaderRevolver38
+          capacity: 8
+          proto: null
+          soundInsert:
+            path: /Audio/Weapons/Guns/MagIn/shotgun_insert.ogg
+
+      rifle: !type:ItemSwitchState
+        verb: 7.62 / 5.56
+        sprite:
+          sprite: _FarHorizons/Objects/Weapons/Guns/Lever_Actions/model_2325_short.rsi
+          state: base
+        components:
+        - type: CursorOffsetRequiresWield
+        - type: EyeCursorOffset
+          maxOffset: 5
+          pvsIncrease: 0.5
+        - type: Wieldable
+          unwieldOnUse: false
+        - type: UseDelay
+          delay: 2
+        - type: SpeedModifiedOnWield
+          walkModifier: 0.90
+          sprintModifier: 0.90
+        - type: AmmoCounter
+        - type: GunWieldBonus
+          minAngle: -9
+          maxAngle: -15
+        - type: Gun
+          minAngle: 10
+          maxAngle: 20
+          pump: true
+          fireRate: 3
+          selectedMode: SemiAuto
+          availableModes:
+          - SemiAuto
+          soundGunshot:
+            path: /Audio/_FarHorizons/Items/Weapons/Mark1/mark1.ogg
+            params:
+              variation: 0.246
+        - type: ContainerContainer
+          containers:
+           ballistic-ammo: !type:Container
+             ents: []
+        - type: BallisticAmmoProvider
+          soundRack:
+            path: /Audio/_FarHorizons/Items/Weapons/Mark1/mark1_cycle_Bolt.ogg
+            params:
+              variation: 0.05
+          whitelist:
+           tags:
+           - CartridgeLightRifle
+           - CartridgeRifle556
+          capacity: 20
+          proto: null
+          soundInsert:
+            path: /Audio/Weapons/Guns/MagIn/shotgun_insert.ogg
+
+      9mm: !type:ItemSwitchState
+        verb: 9mm
+        sprite:
+          sprite: _FarHorizons/Objects/Weapons/Guns/Lever_Actions/model_2325_short.rsi
+          state: base
+        components:
+        - type: CursorOffsetRequiresWield
+        - type: EyeCursorOffset
+          maxOffset: 5
+          pvsIncrease: 0.5
+        - type: Wieldable
+          unwieldOnUse: false
+        - type: UseDelay
+          delay: 2
+        - type: SpeedModifiedOnWield
+          walkModifier: 0.90
+          sprintModifier: 0.90
+        - type: AmmoCounter
+        - type: GunWieldBonus
+          minAngle: -9
+          maxAngle: -15
+        - type: Gun
+          minAngle: 10
+          maxAngle: 20
+          pump: true
+          fireRate: 3
+          selectedMode: SemiAuto
+          availableModes:
+          - SemiAuto
+          soundGunshot:
+            path: /Audio/_FarHorizons/Items/Weapons/Mark1/mark1.ogg
+            params:
+              variation: 0.246
+        - type: ContainerContainer
+          containers:
+           ballistic-ammo: !type:Container
+             ents: []
+        - type: BallisticAmmoProvider
+          soundRack:
+            path: /Audio/_FarHorizons/Items/Weapons/Mark1/mark1_cycle_Bolt.ogg
+            params:
+              variation: 0.05
+          whitelist:
+           tags:
+           - CartridgePistol
+          capacity: 25
+          proto: null
+          soundInsert:
+            path: /Audio/Weapons/Guns/MagIn/shotgun_insert.ogg
+#region =NeoSol=
+
+
+
+
+
+
+#region Swordfish Type-S
+- type: entity
+  name: Swordfish Lever-Action Type-S
+  parent: [WeaponLeverActionBase, BaseSecurityContraband]
+  id: WeaponLeverActionNS
+  description: A simple and reliable firearm, able to be easily manufacured by on-station Security Technology Fabricators. Despite being worse than standard automatic/semi-automatic firearms, it finds it's favorites regardless among Security Staff that prefer a more western look.
+  components:
+  - type: KnockbackByUserTag # More aggressive knockback reduction because user has time to recover and brace between shots
+    doestContain:
+      Skating:
+        knockback: 0.5
+        staminaMultiplier: 50
+      Resomi:
+        knockback: 1.5
+        staminaMultiplier: 15
+      Avali:
+        knockback: 0.5
+        staminaMultiplier: 15
+      Felionoid:
+        knockback: 0.5
+        staminaMultiplier: 15
+      Animal:
+        knockback: 2.5
+        staminaMultiplier: 15
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/Lever_Actions/Model_1989_NS/model_1989_x64x32.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Objects/Weapons/Guns/Lever_Actions/Model_1989_NS/model_1989_x32.rsi
+  - type: Item
+    sprite: _FarHorizons/Objects/Weapons/Guns/Lever_Actions/Model_1989_NS/model_1989_x32.rsi
+    size: Normal
+    shape:
+    - 0,0,4,0
+    storedOffset: 0,-1
+  - type: Gun # 3-8 Deviation (2x Scope / Short Barrel)
+    fireRate: 1.5
+    minAngle: 10
+    maxAngle: 20
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/sniper.ogg
+  - type: GunWieldBonus
+    minAngle: -9
+    maxAngle: -12
+  - type: EyeCursorOffset
+    maxOffset: 0
+    pvsIncrease: 0
+  - type: UseDelay
+    delay: 3
+  - type: Scope
+    canUseInsideContainer: true
+    canUseNightVision: true
+    zoomLevels:
+      - name: 1x
+        zoom: 1
+        offset: 7
+        doAfter: 0
+        allowMovement: true
+      - name: 2x
+        zoom: 2
+        offset: 7
+        doAfter: 0
+        allowMovement: true
+  - type: Sharp
+  - type: MeleeWeapon
+    wideAnimationRotation: -90
+    attackRate: 1
+    damage:
+      types:
+        Slash: 24
+  - type: AltFireMelee
+    attackType: Heavy
+  #type: Attachments (or smth)
+  #- Stock/Barrel (- 10 Max / - 5 Min)
+  #- Heavy Stock/Long Barrel (+ 0.5s Wield Time / Max Accuracy [1-2] / -0.5 Knockback)
+  #- Heavy Gunsword (+ 24/s Slashing / + 0.5s Wield Time)
+  #- Large Ammo Tube (12 RNDs)
+  #- 2x Scope (2x Tile Range)
+  #Modifiers:
+  #- Lever Action (- 1 Knockback)
+
+#region The Watcher
+- type: entity
+  name: The Watcher
+  parent: [WeaponLeverActionBase, BaseSecurityContraband]
+  id: WeaponSniperWatcher
+  description: A weapon designed to remind that The Law's eye is ever-watchful. Features a double barrel automatic lever action trigger, allowing for the simultaneous firing of two bullets at once, but the weapon must undergo a brief cooldown between each use. Can be switched to regular semi-automatic firing mode of one bullet, as well as featuring an advanced recoil absorption system.
+  components:
+  - type: KnockbackByUserTag
+    doestContain:
+      Resomi:
+        knockback: 0
+      Felionoid:
+        knockback: 0
+      Avali:
+        knockback: 0
+      Animal:
+        knockback: 0
+  - type: BallisticAmmoProvider
+    capacity: 12
+    proto: CartridgeMagnumSP
+    whitelist:
+      tags:
+        - CartridgeMagnum
+    soundRack:
+      path: /Audio/_FarHorizons/Items/Weapons/Mark1/mark1_cycle_Bolt.ogg
+      params:
+        variation: 0.05
+  - type: Gun #Deviation when wielding is 0-10
+    pump: false
+    selectedMode: Burst
+    minAngle: 10
+    maxAngle: 40
+    soundGunshot:
+      path: /Audio/_FarHorizons/Items/Weapons/Mark1/mark1.ogg
+      params:
+        variation: 0.246
+    fireRate: 2.7 #HoS should not be throwing his special weapon away because it does less DPS than their armory rifle.
+    shotsPerBurst: 2
+    burstFireRate: 30 #Simulates shooting 2 bullets at once.
+    burstCooldown: 0.75 # Slightly faster. I think?
+    availableModes:
+    - Burst
+    - SemiAuto
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/Lever_Actions/Model_1989_NS_Marshal/model_1989_x64x32.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Objects/Weapons/Guns/Lever_Actions/Model_1989_NS_Marshal/model_1989_x32.rsi
+    slots:
+      - Back
+      - suitStorage
+  - type: Item
+    sprite: _FarHorizons/Objects/Weapons/Guns/Lever_Actions/Model_1989_NS_Marshal/model_1989_x32.rsi
+    size: Large
+    shape:
+    - 0,0,4,0
+    storedOffset: 0,-1
+  - type: Wieldable
+    unwieldOnUse: false
+  - type: Scope
+    canUseInsideContainer: true
+    canUseNightVision: true
+    zoomLevels:
+      - name: 1x
+        zoom: 1
+        offset: 7
+        doAfter: 0
+        allowMovement: true
+      - name: 3x
+        zoom: 3
+        offset: 7
+        doAfter: 0
+        allowMovement: true
+  - type: GunWieldBonus
+    minAngle: -10
+    maxAngle: -30
+  - type: GunRequiresWield
+  - type: StaticPrice
+    price: 500
+  - type: EyeCursorOffset # removing the "moving camera" when wielding the gun
+    maxOffset: 0
+    pvsIncrease: 0
+  - type: Sharp
+  - type: MeleeWeapon
+    wideAnimationRotation: -90
+    attackRate: 1
+    damage:
+      types:
+        Slash: 26 # Stronger than the rest because HoS is a special little boy.
+  - type: UseDelay # Long Barrel / Gunsword / Heavy Stock
+    delay: 2.5 #Super unwieldly.
+  - type: AltFireMelee
+    attackType: Heavy
+  - type: SpeedModifiedOnWield
+    walkModifier: 0.85
+    sprintModifier: 0.85
+  #type: Attachments (or smth)
+  #- Large Ammo Tube (12 RNDs)
+  #- Sniper Stock/Long Double Barrel (+0.5 Wielding Time / -0.5 Speed / Max Accuracy [1-2])
+  #- Serrated Gunsword (+26 Melee Slash Damage)
+  #- 3x Scope (3x Tile Range)
+  #- Automatic Recoil Dampening System (Negates Recoil entirely)

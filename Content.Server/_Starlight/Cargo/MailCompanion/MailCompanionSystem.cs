@@ -28,7 +28,7 @@ public sealed partial class MailCompanionWindow: EntitySystem
         SubscribeLocalEvent<MailCompanionComponent, BoundUIOpenedEvent>(OnUiOpened);
         SubscribeLocalEvent<MailCompanionComponent, DeviceNetworkPacketEvent>(OnPacketReceived);
         SubscribeLocalEvent<MailCompanionComponent, ExaminedEvent>(OnExamined);
-        SubscribeLocalEvent<DeliveryComponent, DeliveryOpenedEvent>(OnDeliveryOpened);
+        SubscribeLocalEvent<TrackedDeliveryComponent, DeliveryOpenedEvent>(OnTrackedDeliveryOpened); // Far-Horizons - use TrackedDeliveryComponent to avoid event listener collision on DeliveryComponent
     }
 
     public override void Update(float frameTime)
@@ -94,7 +94,7 @@ public sealed partial class MailCompanionWindow: EntitySystem
         args.PushMarkup(Loc.GetString("mail-companion-examine-recipient", ("recipient", component.RecipientName)));
     }
 
-    private void OnDeliveryOpened(EntityUid uid, DeliveryComponent component, ref DeliveryOpenedEvent args)
+    private void OnTrackedDeliveryOpened(Entity<TrackedDeliveryComponent> uid, ref DeliveryOpenedEvent args) // Far-Horizons - use TrackedDeliveryComponent to avoid event listener collision on DeliveryComponent
     {
         var query = EntityQueryEnumerator<MailCompanionComponent>();
         while (query.MoveNext(out var companionUid, out var companion))
@@ -131,6 +131,11 @@ public sealed partial class MailCompanionWindow: EntitySystem
         component.TrackedSensor = null;
         component.ExpiresAt = null;
         component.CooldownEndsAt = null;
+
+        // Far-Horizons start
+        // We can't (usefully) record the tracker on this because multiple trackers could be tracking the same delivery, and we don't want to override an existing one.
+        EnsureComp<TrackedDeliveryComponent>(delivery.Owner);
+        // Far-Horizons end
 
         if (delivery.Comp.IsOpened)
         {

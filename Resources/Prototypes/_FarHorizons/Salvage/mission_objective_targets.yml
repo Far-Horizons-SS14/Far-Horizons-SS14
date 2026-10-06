@@ -28,8 +28,9 @@
           layer:
           - MachineLayer
     - type: Damageable
-      damageContainer: Inorganic
       damageModifierSet: Metallic
+    - type: Injurable
+      damageContainer: Inorganic
     - type: Destructible
       thresholds:
       - trigger:
@@ -106,9 +107,9 @@
     - type: StatusIcon
 
 - type: entity
-  id: ComputerSalvageMissionObjective
+  id: BaseComputerSalvageMission
   parent: BaseMachine
-  name: Security Console
+  abstract: true
   components:
     - type: Sprite
       sprite: _Starlight/Structures/Machines/desktop_computers.rsi
@@ -120,11 +121,6 @@
         shader: unshaded
         map: ["screen"]
         visible: false
-    - type: SalvageMissionDisarmConsole
-      failSound:
-        path: /Audio/Machines/buzz-two.ogg
-      successSound:
-        path: /Audio/Effects/Cargo/ping.ogg
     - type: Appearance
     - type: GenericVisualizer
       visuals:
@@ -142,3 +138,45 @@
       interfaces:
         enum.SalvageMissionDisarmConsoleUiKey.Key:
           type: SalvageMissionDisarmBUI
+
+- type: entity
+  id: ComputerSalvageMissionObjective
+  parent: BaseComputerSalvageMission
+  name: Security Console
+  components:
+    - type: SalvageMissionDisarmConsole
+      failSound:
+        path: /Audio/Machines/buzz-two.ogg
+      successSound:
+        path: /Audio/Effects/Cargo/ping.ogg
+
+- type: entity
+  id: ComputerSalvageMissionObjectiveData
+  parent: BaseComputerSalvageMission
+  name: Data Console
+  components:
+    - type: SalvageMissionDataHeistConsole
+      failSound:
+        path: /Audio/Machines/buzz-two.ogg
+      successSound:
+        path: /Audio/Effects/Cargo/ping.ogg
+      spawnTarget: DiskSalvageMissionObjective
+
+- type: entity
+  parent: BaseItem
+  id: DiskSalvageMissionObjective
+  name: Encrypted Datadisk
+  description: You can only imagine all of the secrets it contains.
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/module.rsi
+    layers:
+    - state: datadisk_base
+      color: "#b72424"
+    - state: datadisk_label
+    - state: datadisk_encrypted
+  - type: PointLight
+    radius: 1.5
+    energy: 0.5
+    castShadows: false
+    color: "#0000ff"

@@ -29,5 +29,11 @@
     codeLength: 4
 
 - type: salvageMissionObjectiveHandler
+  id: MissionObjectiveDataHeistHandler
+  handler: !type:SalvageMissionDataHeist
+    numBodies: 20
+    codeLength: 6
+
+- type: salvageMissionObjectiveHandler
   id: MissionObjectiveHeadHuntHandler
   handler: !type:SalvageMissionHeadHunt

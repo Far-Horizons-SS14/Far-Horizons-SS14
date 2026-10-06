@@ -1,13 +1,13 @@
 - type: markingsGroup
   parent: Undergarments
   id: Moth
-  onlyGroupWhitelisted: true
   limits:
     enum.HumanoidVisualLayers.Hair:
       limit: 1
       required: false
     enum.HumanoidVisualLayers.FacialHair:
       limit: 1
+      onlyGroupWhitelisted: true
       required: false
     enum.HumanoidVisualLayers.Tail:
       limit: 1
@@ -173,7 +173,7 @@
     bloodReferenceSolution:
       reagents:
       - ReagentId: InsectBlood
-        Quantity: 300
+        Quantity: 600
   - type: DamageVisuals
     damageOverlayGroups:
       Brute:

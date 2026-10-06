@@ -1,6 +1,6 @@
 - type: entity
   name: reinforced beaker
-  parent: BaseItem
+  parent: [ BaseItem, SolutionBeaker, SolutionNormal ]
   id: BeakerReinforced
   description: Used to contain a moderate amount of chemicals and solutions, now explosion proof!
   components:
@@ -22,10 +22,6 @@
     damage:
       types:
         Blunt: 0
-  - type: SolutionContainerManager
-    solutions:
-      beaker:
-        maxVol: 100
   - type: MixableSolution
     solution: beaker
   - type: FitsInDispenser
@@ -57,10 +53,12 @@
   - type: StaticPrice
     price: 10
   - type: DnaSubstanceTrace
+  - type: TESTSolutionSizeNonStandard # FH
+    reason: Reinforced beakers are intentionally more efficient than the standard
 
 - type: entity
   name: large reinforced beaker
-  parent: BeakerReinforced
+  parent: [ SolutionLarge, BeakerReinforced ]
   description: Used to contain a large amount of chemicals or solutions, now explosion proof!
   id: LargeBeakerReinforced
   components:
@@ -74,10 +72,6 @@
   - type: Item
     size: Normal
     sprite: _FarHorizons/Objects/Specific/Chemistry/reinforced_beaker_large.rsi
-  - type: SolutionContainerManager
-    solutions:
-      beaker:
-        maxVol: 200
   - type: Appearance
   - type: SolutionContainerVisuals
     maxFillLevels: 6

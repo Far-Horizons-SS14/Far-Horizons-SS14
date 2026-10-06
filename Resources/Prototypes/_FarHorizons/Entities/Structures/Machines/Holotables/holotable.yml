@@ -52,8 +52,9 @@
     - type: Clickable
     - type: InteractionOutline
     - type: Damageable
-      damageContainer: StructuralInorganic
       damageModifierSet: Metallic
+    - type: Injurable
+      damageContainer: StructuralInorganic
     - type: ApcPowerReceiver
       powerLoad: 50
     - type: LitOnPowered

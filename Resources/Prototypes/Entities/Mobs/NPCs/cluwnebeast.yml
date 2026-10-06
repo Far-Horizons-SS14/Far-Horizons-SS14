@@ -34,8 +34,9 @@
     bodyType: KinematicController
   - type: MobState
   - type: Damageable
-    damageContainer: Biological
     damageModifierSet: CluwneBeast
+  - type: Injurable
+    damageContainer: Biological
   - type: Hands
   - type: ComplexInteraction
   - type: InfectOnMelee

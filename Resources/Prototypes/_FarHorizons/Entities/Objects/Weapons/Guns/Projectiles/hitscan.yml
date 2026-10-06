@@ -442,19 +442,19 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: HitscanBasicDamage
-    armorPenetration: -0.13
+    armorPenetration: 0.25
     damage:
       types:
-        Piercing: 30
-        Structural: 10
+        Piercing: 6.7
+        Structural: 13.4
   - type: HitscanPierce
-    chance: 0.40
+    chance: 0.34
   - type: ProjectileSpread
-    proto: PelletShotgunTrace
+    proto: PelletShotgunFlechetteTrace
     count: 6
     spread: 10 #This needs to be removed from hitscan code itself in the future, it breaks guns because spread is not supposed to be defined here.
   - type: HitscanRicochet
-    chance: 0.30
+    chance: 0.40
 
 - type: entity
   id: PelletShotgunSlugTrace
@@ -491,7 +491,7 @@
         Structural: 23.33
     armorPenetration: 0.35
   - type: HitscanPierce
-    chance: 0.75
+    chance: 0.37
     pierceLevel: HardenedMetal
   - type: HitscanBasicVisuals
     bullet:
@@ -503,7 +503,7 @@
     count: 6
     spread: 10 #This needs to be removed from hitscan code itself in the future, it breaks guns because spread is not supposed to be defined here.
   - type: HitscanRicochet
-    chance: 0.80
+    chance: 0.40
 
 - type: entity
   id: PelletShotgunUraniumSpreadTrace

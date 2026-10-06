@@ -394,6 +394,197 @@
   #- Premium Extended Cylnder (+2 Shell Count), im justifying this by pointing out this is in all intents and purposes a longarm that also needs to be wielded, doesn't fit in pocket/holster anymore.
   #- Muzzle Brake (this would increase accuracy if it MATTERED)
 
+#region Indomitable
+- type: entity
+  name: Indomitable
+  parent: [BaseItem, BaseSecurityContraband]
+  id: WeaponRevolverIndomitable
+  description: Functions on Hardlight technology, utilizing the ability to rapidly reform it's internals to it's advantage allowing a much faster rate of fire. Will win a wild-western style draw.
+  components:
+  - type: AmmoCounter
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/Revolvers/indomitable.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+  - type: Clothing
+    sprite: _FarHorizons/Objects/Weapons/Guns/Revolvers/indomitable.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: Item
+    sprite: _FarHorizons/Objects/Weapons/Guns/Revolvers/indomitable.rsi
+    size: Small
+    shape:
+    - 0,0,1,0
+    - 0,1,0,1
+    storedOffset: 0,-3
+  - type: StaticPrice
+    price: 800 #this thing is worth a lot
+  #type: Attachments (or smth)
+  #- Stock/Barrel (- 10 Max / - 5 Min)
+  #- Hardlight Barrel/Reciver (Allows changing of Ammo Types)
+  #- Hardlight Ammo Tube (Varies in capacity)
+  #- Automatic Recoil Dampening System (Negates Recoil entirely)
+  #- Smart Blue Dot Sights (1-5 Deviation / ~ 1.2x Tile Range [roughly])
+  - type: ItemSwitch 
+    onUse: false
+    state: 44mag
+    states:
+      12g: !type:ItemSwitchState
+        verb: 12 Gauge
+        sprite:
+          sprite: _FarHorizons/Objects/Weapons/Guns/Revolvers/indomitable.rsi
+          state: base
+        components:
+        - type: EyeCursorOffset #Scope does not work with this thing.
+          maxOffset: 2
+          pvsIncrease: 0.5
+        - type: AmmoCounter
+        - type: Gun
+          minAngle: 1
+          maxAngle: 5
+          fireRate: 1.5
+          selectedMode: SemiAuto
+          availableModes:
+          - SemiAuto
+          soundGunshot:
+            path: /Audio/Weapons/Guns/Gunshots/mateba.ogg
+        - type: ContainerContainer
+          containers:
+           ballistic-ammo: !type:Container
+             ents: []
+        - type: BallisticAmmoProvider
+          whitelist:
+           tags:
+           - ShellShotgun
+          capacity: 2
+          proto: null
+          soundInsert:
+            path: /Audio/Weapons/Guns/MagIn/shotgun_insert.ogg
+
+      44mag: !type:ItemSwitchState
+        verb: .44 Magnum
+        sprite:
+          sprite: _FarHorizons/Objects/Weapons/Guns/Revolvers/indomitable.rsi
+          state: base
+        components:
+        - type: EyeCursorOffset #Scope does not work with this thing.
+          maxOffset: 2
+          pvsIncrease: 0.5
+        - type: AmmoCounter
+        - type: Gun
+          minAngle: 1
+          maxAngle: 5
+          fireRate: 2
+          selectedMode: SemiAuto
+          availableModes:
+          - SemiAuto
+          soundGunshot:
+            path: /Audio/Weapons/Guns/Gunshots/hpistol.ogg
+            params:
+              variation: 0.05
+              pitch: 0.8
+        - type: ContainerContainer
+          containers:
+           ballistic-ammo: !type:Container
+             ents: []
+        - type: BallisticAmmoProvider
+          soundRack:
+            path: /Audio/_FarHorizons/Items/Weapons/Mark1/mark1_cycle_Bolt.ogg
+            params:
+              variation: 0.05
+          whitelist:
+           tags:
+           - CartridgeMagnum
+           - CartridgeMagnumImprovised
+           - CartridgeLightRifle
+           - CartridgeLightRifleImprovised
+          capacity: 4
+          proto: null
+          soundInsert:
+            path: /Audio/Weapons/Guns/MagIn/shotgun_insert.ogg
+
+      38spec: !type:ItemSwitchState
+        verb: .38 Special
+        sprite:
+          sprite: _FarHorizons/Objects/Weapons/Guns/Revolvers/indomitable.rsi
+          state: base
+        components:
+        - type: EyeCursorOffset
+          maxOffset: 2
+          pvsIncrease: 0.5
+        - type: AmmoCounter
+        - type: Gun
+          minAngle: 1
+          maxAngle: 5
+          fireRate: 3
+          selectedMode: SemiAuto
+          availableModes:
+          - SemiAuto
+          soundGunshot:
+            path: /Audio/Weapons/Guns/Gunshots/hpistol.ogg
+            params:
+              variation: 0.05
+              pitch: 0.8
+        - type: ContainerContainer
+          containers:
+           ballistic-ammo: !type:Container
+             ents: []
+        - type: BallisticAmmoProvider
+          soundRack:
+            path: /Audio/_FarHorizons/Items/Weapons/Mark1/mark1_cycle_Bolt.ogg
+            params:
+              variation: 0.05
+          whitelist:
+           tags:
+           - CartridgeRevolver38
+           - SpeedLoaderRevolver38
+          capacity: 4
+          proto: null
+          soundInsert:
+            path: /Audio/Weapons/Guns/MagIn/shotgun_insert.ogg
+
+      9mm: !type:ItemSwitchState
+        verb: 9mm
+        sprite:
+          sprite: _FarHorizons/Objects/Weapons/Guns/Revolvers/indomitable.rsi
+          state: base
+        components:
+        - type: EyeCursorOffset
+          maxOffset: 2
+          pvsIncrease: 0.5
+        - type: AmmoCounter
+        - type: Gun
+          minAngle: 1
+          maxAngle: 5
+          fireRate: 6
+          selectedMode: SemiAuto
+          availableModes:
+          - SemiAuto
+          soundGunshot:
+            path: /Audio/Weapons/Guns/Gunshots/hpistol.ogg
+            params:
+              variation: 0.05
+              pitch: 0.8
+        - type: ContainerContainer
+          containers:
+           ballistic-ammo: !type:Container
+             ents: []
+        - type: BallisticAmmoProvider
+          soundRack:
+            path: /Audio/_FarHorizons/Items/Weapons/Mark1/mark1_cycle_Bolt.ogg
+            params:
+              variation: 0.05
+          whitelist:
+           tags:
+           - CartridgePistol
+          capacity: 8
+          proto: null
+          soundInsert:
+            path: /Audio/Weapons/Guns/MagIn/shotgun_insert.ogg
+
 #region =Civilian=
 
 
@@ -408,9 +599,9 @@
   description: A modified Instigator designed for civilian use. It has been modifed to have 6 chambers and to have a slower fire-rate.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Objects/Weapons/Guns/Revolvers/instigator.rsi
+    sprite: _FarHorizons/Objects/Weapons/Guns/Revolvers/instigator_civilian.rsi
   - type: Clothing
-    sprite: _FarHorizons/Objects/Weapons/Guns/Revolvers/instigator.rsi
+    sprite: _FarHorizons/Objects/Weapons/Guns/Revolvers/instigator_civilian.rsi
   - type: Item
     storedOffset: 0,-2
   - type: RevolverAmmoProvider

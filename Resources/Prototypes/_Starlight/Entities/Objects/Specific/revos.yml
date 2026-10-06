@@ -1,6 +1,6 @@
 - type: entity
   name: telebond
-  parent: [BaseItem, BaseSovietContraband]
+  parent: [ BaseItem, BaseSovietContraband, SolutionFood ]
   id: Telebond
   suffix: 20 TB
   description: Outdated tickets printed with a microcrystalline pattern, used to summon supplies via an old radio uplink, the old way. "DO NOT EAT!" — Boris
@@ -33,21 +33,20 @@
     - metallic
     - chemical
   - type: BadFood
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 16
-        reagents:
-        - ReagentId: Razorium
-          Quantity: 2
-        - ReagentId: Ephedrine
-          Quantity: 3
-        - ReagentId: Silicon
-          Quantity: 4
-        - ReagentId: Vodka
-          Quantity: 5
-        - ReagentId: Tazinide
-          Quantity: 2
+  - type: Solution # FH - migrated from SolutionContainerManager
+    solution:
+      maxVol: 16
+      reagents:
+      - ReagentId: Razorium
+        Quantity: 2
+      - ReagentId: Ephedrine
+        Quantity: 3
+      - ReagentId: Silicon
+        Quantity: 4
+      - ReagentId: Vodka
+        Quantity: 5
+      - ReagentId: Tazinide
+        Quantity: 2
 
 - type: entity
   parent: Telebond

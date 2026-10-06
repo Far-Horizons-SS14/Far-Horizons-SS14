@@ -7,7 +7,6 @@ using Content.Shared.Cargo;
 using Content.Shared.Popups;
 using Content.Shared.Throwing;
 using JetBrains.Annotations;
-using Robust.Shared.Audio.Systems;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Random;
 
@@ -22,11 +21,10 @@ public sealed partial class GasTankSystem : SharedGasTankSystem
     [Dependency] private SharedTransformSystem _xform = default!;
     [Dependency] private SharedPhysicsSystem _physics = default!;
     [Dependency] private ThrowingSystem _throwing = default!;
-    [Dependency] private SharedAudioSystem _audioSys = default!;
 
-    private const float MinimumSoundValvePressure = 10.0f;
+    private const float MinimumSoundValvePressure = 21.3f; // Arbitrary number
 
-    private const float ReleaseArea = 0.0001f; // About 1cm^2
+    private const float ReleaseArea = 0.0005f; // About 5cm^2
     private const float SafeReleaseArea = 0.01f; // Far Horizons - split maxcap and non-maxcap release logic 
 
     // A vector bias for throwing our gas tanks in radians. Averages about -43 degrees since the sprite is at a 45-degree angle.
@@ -70,6 +68,7 @@ public sealed partial class GasTankSystem : SharedGasTankSystem
     public override void UpdateUserInterface(Entity<GasTankComponent> ent)
     {
         var (owner, component) = ent;
+        // Starlight edit start - Breathable organs
         var state = new GasTankBoundUserInterfaceState
         {
             TankPressure = component.Air.Pressure
@@ -87,7 +86,7 @@ public sealed partial class GasTankSystem : SharedGasTankSystem
         if (ent.Comp.Air == null || ent.Comp.Air.TotalMoles <= 0)
             return;
 
-         // Get the gas
+        // Get the gas
         var environment = _atmosphereSystem.GetContainingMixture(ent.Owner, false, true);
         if (environment != null)
         {
@@ -97,15 +96,15 @@ public sealed partial class GasTankSystem : SharedGasTankSystem
 
         // Clear the gas tank
         ent.Comp.Air.Clear();
-        CheckStatus(ent);
+        CheckStatus(ent, 1);
 
         // Play sound on release
-         EntityUid soundSource = ent.Owner;
+        EntityUid soundSource = ent.Owner;
         if (TryComp<OrganComponent>(ent.Owner, out var organ) && organ.Body != null)
         {
             soundSource = organ.Body.Value;
         }
-        _audioSys.PlayPvs(ent.Comp.RuptureSound, soundSource);
+        Audio.PlayPvs(ent.Comp.RuptureSound, soundSource);
 
         Dirty(ent);
         UpdateUserInterface(ent);
@@ -156,7 +155,7 @@ public sealed partial class GasTankSystem : SharedGasTankSystem
             _atmosphereSystem.Merge(environment, removed);
 
         // If we wouldn't produce a sound, don't throw or play a sound.
-        if (deltaP < MinimumSoundValvePressure)
+        if (removed.Pressure < MinimumSoundValvePressure)
             return;
 
         Audio.PlayPvs(entity.Comp.ReleaseSound, entity);
@@ -189,12 +188,6 @@ public sealed partial class GasTankSystem : SharedGasTankSystem
     public GasMixture RemoveAir(Entity<GasTankComponent> gasTank, float amount)
     {
         return gasTank.Comp.Air.Remove(amount);
-    }
-
-    public void AssumeAir(Entity<GasTankComponent> ent, GasMixture giver)
-    {
-        _atmosphereSystem.Merge(ent.Comp.Air, giver);
-        CheckStatus(ent);
     }
 
     protected override void SafetyMeasures(Entity<GasTankComponent> entity)

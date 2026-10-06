@@ -217,6 +217,20 @@
       components:
         - type: NPCRecentlyInjected
       retainWithComp: false
+    #FH Start
+    - !type:DamageContainerFilter
+      damageContainers:
+        - Biological
+        - BiologicalMetaphysical
+      invert: true
+    - !type:HasDamageTypeFilter
+      damageGroups:
+        - Brute
+        - Burn
+        - Airloss
+      damageTypes:
+        - Poison
+    #FH End
   considerations:
     - !type:TargetIsCritCon
       curve: !type:QuadraticCurve

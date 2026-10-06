@@ -1,6 +1,6 @@
 - type: entity
   name: Golden Beaker #FH
-  parent: BaseBeaker
+  parent: [ SolutionLarge, BaseBeaker ]
   description: Used to contain a gigantic amount of chemicals and solutions.
   id: GoldenBeaker
   components:
@@ -25,10 +25,8 @@
     fillBaseName: beaker
     inHandsMaxFillLevels: 3
     inHandsFillBaseName: -fill-
-  - type: SolutionContainerManager
-    solutions:
-      beaker:
-        maxVol: 200
+  - type: TESTSolutionSizeNonStandard # FH
+    reason: Intentionally larger than standard
 
 - type: entity
   id: VialCase
@@ -116,10 +114,11 @@
     fillBaseName: beaker
     inHandsMaxFillLevels: 3
     inHandsFillBaseName: -fill-
-  - type: SolutionContainerManager
-    solutions:
-      beaker:
-        maxVol: 150
+  - type: TESTSolutionSizeNonStandard # FH
+    reason: Intentionally 3x larger than standard
+  - type: Solution # FH - migrated from SolutionContainerManager
+    solution:
+      maxVol: 180
 
 - type: entity
   name: Light Beaker #FH
@@ -166,10 +165,11 @@
     damage:
       types:
         Blunt: 5
-  - type: SolutionContainerManager
-    solutions:
-      beaker:
-        maxVol: 100
+  - type: Solution # FH - migrated from SolutionContainerManager
+    solution:
+      maxVol: 120
+  - type: TESTSolutionSizeNonStandard # FH
+    reason: Intentionally larger than standard
 
 - type: entity
   name: Dark Beaker #FH
@@ -216,10 +216,11 @@
     damage:
       types:
         Blunt: 9
-  - type: SolutionContainerManager
-    solutions:
-      beaker:
-        maxVol: 100
+  - type: Solution # FH - migrated from SolutionContainerManager
+    solution:
+      maxVol: 120
+  - type: TESTSolutionSizeNonStandard # FH
+    reason: Intentionally larger than standard
 
 - type: entity
   parent: ChemBag

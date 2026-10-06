@@ -339,7 +339,7 @@
 #region Pathology
 - type: entity
   name: Pathology
-  parent: [BaseWeaponPistol, BaseSecurityContraband]
+  parent: [BaseWeaponPistol, BaseSecurityContraband, SolutionWeapon, SolutionToolSmall]
   id: WeaponPistolPathology
   description: Corpsman's custom-made pistol, posessing a special intergrated knife that partially injects it's contents upon embedding into it's target via a pressure system. Usage of this weapon is more than likely considered a warcrime, thankfully, you're not in a war.
   components:
@@ -363,10 +363,6 @@
     - SemiAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/mk58.ogg
-  - type: SolutionContainerManager
-    solutions:
-      melee:
-        maxVol: 20
   - type: MeleeChemicalInjector
     solution: melee
     transferAmount: 2
@@ -658,7 +654,7 @@
   description: A modified MK 58 designed for civilian use. It has been modifed to only accept civilian 9mm magazines, and to have a slower fire-rate.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Objects/Weapons/Guns/Pistols/mk58.rsi
+    sprite: _FarHorizons/Objects/Weapons/Guns/Pistols/mk58_civilian.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -669,14 +665,14 @@
     steps: 1
     zeroVisible: true
   - type: Clothing
-    sprite: _FarHorizons/Objects/Weapons/Guns/Pistols/mk58.rsi
+    sprite: _FarHorizons/Objects/Weapons/Guns/Pistols/mk58_civilian.rsi
   - type: Item
     size: Small
     shape:
     - 0,0,1,0
     - 0,1,0,1
     storedRotation: 0
-    sprite: _FarHorizons/Objects/Weapons/Guns/Pistols/mk58.rsi
+    sprite: _FarHorizons/Objects/Weapons/Guns/Pistols/mk58_civilian.rsi
     storedOffset: 0,-2
   - type: Gun
     fireRate: 3

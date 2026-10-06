@@ -16,15 +16,14 @@
       butcheringType: Knife
       spawned:
         - id: EffectOrganTree
-    - type: SolutionContainerManager
-      solutions:
-        food:
-          maxVol: 5
-          reagents:
-            - ReagentId: Nutriment
-              Quantity: 2
-            - ReagentId: Vitamin
-              Quantity: 2
+    - type: Solution # FH - migrated from SolutionContainerManager
+      solution:
+        maxVol: 5
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 2
+        - ReagentId: Vitamin
+          Quantity: 2
     - type: Tag
       tags:
         - Fruit

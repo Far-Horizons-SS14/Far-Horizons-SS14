@@ -278,12 +278,6 @@
   - type: Metabolizer
     solutionOnBody: false
     metabolizerTypes: [ Slime ]
-  - type: SolutionContainerManager
-    solutions:
-      food: {}
-      Lung:
-        maxVol: 100.0
-        canReact: false
 
 - type: entity
   parent: [ OrganBaseHeart, OrganCycloriteInternal, OrganCycloriteMetabolizer ] 

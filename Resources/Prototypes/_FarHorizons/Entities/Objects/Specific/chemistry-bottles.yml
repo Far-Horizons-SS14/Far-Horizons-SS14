@@ -1,6 +1,6 @@
 - type: entity
   name: reinforced bottle
-  parent: BaseItem
+  parent: [ BaseItem, SolutionDrink, SolutionSmall ]
   id: EmptyBottleReinforced
   description: A round, explosion proof bottle.
   components:
@@ -23,10 +23,6 @@
   - type: SolutionContainerVisuals
     maxFillLevels: 6
     fillBaseName: bottle-1-
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        maxVol: 60
   - type: MixableSolution
     solution: drink
   - type: RefillableSolution
@@ -62,6 +58,9 @@
   - type: StaticPrice
     price: 0
   - type: DnaSubstanceTrace
+  - type: TESTSolutionSizeNonStandard
+    reason: Reinforced bottles are specifically an upgrade over the standard bottles
+
 
 - type: entity
   id: ChemistryBottleChloralHydrate
@@ -70,10 +69,8 @@
   components:
   - type: Label
     currentLabel: reagent-name-chloral-hydrate
-  - type: SolutionContainerManager
-    solutions:
-      drink: # This solution name and target volume is hard-coded in ChemMasterComponent
-        maxVol: 30
-        reagents:
-        - ReagentId: ChloralHydrate
-          Quantity: 30
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: ChloralHydrate
+        Quantity: 30

@@ -60,8 +60,9 @@
       containers:
         board: [ DoorElectronics ]
     - type: Damageable   # FarHorizons
-      damageContainer: StructuralInorganic
       damageModifierSet: StrongMetallic
+    - type: Injurable   # FarHorizons
+      damageContainer: StructuralInorganic
     - type: RCDDeconstructable   # FarHorizons
       cost: 6
       delay: 8

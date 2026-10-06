@@ -17,10 +17,10 @@
   - type: Tag
     tags:
     - BoneGel
-  - type: SolutionContainerManager
-    solutions:
-      container:
-        maxVol: 30
+  - type: Solution # FH - migrated from SolutionContainerManager
+    id: container
+    solution:
+      maxVol: 30
   - type: MixableSolution
     solution: container
   - type: SolutionTransfer

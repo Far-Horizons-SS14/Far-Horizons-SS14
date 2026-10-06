@@ -33,7 +33,6 @@ public sealed partial class DnaScrambleOnTriggerSystem : XOnTriggerSystem<DnaScr
             return;
 
         var newProfile = HumanoidCharacterProfile.RandomWithSpecies(humanoid.Species);
-        newProfile.Appearance = HumanoidCharacterAppearance.EnsureValid(newProfile.Appearance, humanoid.Species, newProfile.Sex);
         _visualBody.ApplyProfileTo(target, newProfile);
         _humanoidProfile.ApplyProfileTo(target, newProfile);
         _visualBody.MatchMarkingsToSkinColorAndRandomHair(target, newProfile); //FarHorizons
