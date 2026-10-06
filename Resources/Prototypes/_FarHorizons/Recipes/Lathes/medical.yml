@@ -55,15 +55,22 @@
 
 #region Organs
 - type: latheRecipe
+  id: BaseOrganInternalRecipe 
+  completetime: 2
+  abstract: true
+  materials:
+    Biomass: 4
+
+- type: latheRecipe
   id: BaseOrganLimbRecipe
-  completetime: 6
+  completetime: 3
   abstract: true
   materials:
     Biomass: 6 #50 biomass to fully clone someone, this seems fair to me
 
 - type: latheRecipe
   id: BaseOrganExtremityRecipe 
-  completetime: 2
+  completetime: 1
   abstract: true
   materials:
     Biomass: 2
@@ -132,7 +139,79 @@
   categories:
   - RightFoot
   - Human
-  
+
+- type: latheRecipe
+  parent: BaseOrganInternalRecipe
+  id: OrganHumanEyes
+  result: OrganHumanEyes
+  categories:
+  - Eyes
+  - Human
+
+- type: latheRecipe
+  parent: BaseOrganInternalRecipe
+  id: OrganHumanTongue
+  result: OrganHumanTongue
+  categories:
+  - Tongue
+  - Human
+
+- type: latheRecipe
+  parent: BaseOrganInternalRecipe
+  id: OrganHumanAppendix
+  result: OrganHumanAppendix
+  categories:
+  - Appendix
+  - Human
+
+- type: latheRecipe
+  parent: BaseOrganInternalRecipe
+  id: OrganHumanEars
+  result: OrganHumanEars
+  categories:
+  - Ears
+  - Human
+
+- type: latheRecipe
+  parent: BaseOrganInternalRecipe
+  id: OrganHumanLungs
+  result: OrganHumanLungs
+  categories:
+  - Lungs
+  - Human
+
+- type: latheRecipe
+  parent: BaseOrganInternalRecipe
+  id: OrganHumanHeart
+  result: OrganHumanHeart
+  categories:
+  - Heart
+  - Human
+
+- type: latheRecipe
+  parent: BaseOrganInternalRecipe
+  id: OrganHumanStomach
+  result: OrganHumanStomach
+  categories:
+  - Stomach
+  - Human
+
+- type: latheRecipe
+  parent: BaseOrganInternalRecipe
+  id: OrganHumanLiver
+  result: OrganHumanLiver
+  categories:
+  - Liver
+  - Human
+
+- type: latheRecipe
+  parent: BaseOrganInternalRecipe
+  id: OrganHumanKidneys
+  result: OrganHumanKidneys
+  categories:
+  - Kidneys
+  - Human
+
 #region Misc
 
 - type: latheRecipe
