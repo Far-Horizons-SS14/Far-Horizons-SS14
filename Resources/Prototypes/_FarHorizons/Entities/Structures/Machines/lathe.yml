@@ -7,6 +7,7 @@
   suffix: NT
   components:
   - type: Sprite
+    snapCardinals: true
     sprite: _FarHorizons/Structures/Machines/NT/techfab.rsi
     layers:
     - state: icon
@@ -53,6 +54,7 @@
   id: BiochemicalLathe
   parent: BaseLatheLube
   name: Biochemical Lathe
+  suffix: NT
   description: Converts biomass into complex biological parts.
   components:
   - type: Sprite
@@ -83,7 +85,7 @@
     unlitIdleState: unlit
     unlitRunningState: unlit-building
     staticPacks:
-    - BiologicalOrgans
+    - BiologicalOrgansNT
     # dynamicPacks:
     # - AdvancedTools
   # - type: EmagLatheRecipes
@@ -109,6 +111,7 @@
   id: AutolatheSubzero
   parent: [Autolathe, BaseSubzerolathe]
   name: Subzero Autolathe
+  suffix: NS
   description: A highly-experimental Autolathe that harnesses the power of extreme cold to slowly create objects more cost-effectively.
   components:
   - type: Sprite
@@ -120,6 +123,7 @@
   id: Protofab
   parent: BaseLatheLube
   name: Protofab
+  suffix: NS
   description: Converts raw materials into advanced items.
   components:
   - type: Sprite
@@ -194,6 +198,7 @@
   id: BoardEngraver
   parent: BaseLatheLube
   name: Board Engraver
+  suffix: NS
   description: Prints circuit boards for machines.
   components:
   - type: Sprite
@@ -269,9 +274,11 @@
   id: CybersunAssembler
   parent: BaseLatheLube
   name: Cybersun Assembler
+  suffix: NS
   description: Creates parts for robotics and other mechanical needs.
   components:
   - type: Sprite
+    snapCardinals: true
     sprite: Structures/Machines/exosuit_fabricator.rsi #TOOD: CUSTOM SPRITE
     layers:
     - state: fab-idle
@@ -316,9 +323,11 @@
   id: OverwatchTechFab
   parent: BaseLatheLube
   name: Overwatch Techfab
+  suffix: NS
   description: Prints equipment for use by Overwatch crew.
   components:
   - type: Sprite
+    snapCardinals: true
     sprite: _FarHorizons/Structures/Machines/NS/techfab.rsi
     layers:
     - state: icon
@@ -375,9 +384,11 @@
   id: InterdyneTechFab
   parent: BaseLatheLube
   name: Interdyne Techfab
+  suffix: NS
   description: Prints equipment for use by the medbay.
   components:
   - type: Sprite
+    snapCardinals: true
     sprite: _FarHorizons/Structures/Machines/NS/techfab.rsi
     layers:
     - state: icon
@@ -420,6 +431,7 @@
   parent: BaseLathe
   id: NSUniformPrinter
   name: NeoSol Uniform Printer
+  suffix: NS
   description: Prints new or replacement uniforms.
   components:
   - type: Transform
@@ -518,6 +530,7 @@
   suffix: NS
   components:
   - type: Sprite
+    snapCardinals: true
     sprite: _FarHorizons/Structures/Machines/NS/techfab.rsi
     layers:
     - state: icon
