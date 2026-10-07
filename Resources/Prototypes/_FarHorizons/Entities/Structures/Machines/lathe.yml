@@ -55,7 +55,7 @@
   parent: BaseLatheLube
   name: Biochemical Lathe
   suffix: NT
-  description: Converts biomass into complex biological parts.
+  description: A state of the art Biochemical Lathe which converts biomass into complex biological parts.
   components:
   - type: Sprite
     sprite: _FarHorizons/Structures/Machines/NS/protofab.rsi #TODO: SPRITE
@@ -87,8 +87,7 @@
     staticPacks:
     - BiologicalOrgansNT
     # dynamicPacks:
-    # - AdvancedTools
-  # - type: EmagLatheRecipes
+  # - type: EmagLatheRecipes TODO: Biochemical lathe emag
   #   emagDynamicPacks:
   #   -
 
@@ -170,6 +169,8 @@
     - Instruments
     - Equipment
     - StarlightProtolatheLootable
+    - FarHorizonsHoloflareDynamic
+    - BasicSurgeryStatic
   - type: EmagLatheRecipes
     emagDynamicPacks: #TODO: NT THEMED EMAG PACKS
     - StarlightSurgeryDynamic
@@ -304,6 +305,12 @@
     - StarlightMechEquipment
     - StarlightSecurityMechs
     - StarlightMechParts
+    - FarHorizonsVehicleBasicPartsDynamic
+    - FarHorizonsVehicleBasicAdvancedDynamic
+    - StarlightCyberlimbDynamic
+    - StarlightCyberOrgansDynamic
+    - StarlightImplantDynamic
+    
   - type: EmagLatheRecipes #TODO: NT THEMED EMAG PACKS
     emagStaticPacks:
     - StarlightMechWeapon
@@ -412,11 +419,9 @@
     - MedicalClothingStatic
     - EmptyMedkitsStatic
     - StarlightMedicalStatic
+    - BasicSurgeryStatic
     dynamicPacks: #TODO: NT THEMED MEDICAL DYNAMICS
     - StarlightSurgeryDynamic
-    - StarlightCyberlimbDynamic
-    - StarlightCyberOrgansDynamic
-    - StarlightImplantDynamic
     - Chemistry
     - StarlightBudgetCyberOrgansDynamic
     - FarHorizonsMedContainersDynamic

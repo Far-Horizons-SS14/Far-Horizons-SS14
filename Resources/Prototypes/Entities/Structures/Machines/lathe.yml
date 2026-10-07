@@ -230,6 +230,7 @@
     - Equipment
     - StarlightProtolatheLootable # Starlight start
     - FarHorizonsHoloflareDynamic #FH
+    - BasicSurgeryStatic
   - type: EmagLatheRecipes
     emagDynamicPacks:
     - StarlightSurgeryDynamic
@@ -371,6 +372,9 @@
     - StarlightMechParts
     - FarHorizonsVehicleBasicPartsDynamic #FarHorizons
     - FarHorizonsVehicleBasicAdvancedDynamic #FarHorizons
+    - StarlightCyberlimbDynamic #FH
+    - StarlightCyberOrgansDynamic #FH
+    - StarlightImplantDynamic #FH
   - type: EmagLatheRecipes
     emagStaticPacks:
     - StarlightMechWeapon
@@ -571,11 +575,10 @@
     - EmptyMedkitsStatic
     - StarlightMedicalStatic # Starlight
     - FarHorizonsMedGeneralEquipmentStatic #FH
+    - BasicSurgeryStatic #FH
     dynamicPacks:
     - StarlightSurgeryDynamic
-    - StarlightCyberlimbDynamic
-    - StarlightCyberOrgansDynamic
-    - StarlightImplantDynamic
+    #FH - removed starlight medical packs, moved to the biochemical lathe
     - Chemistry
     - StarlightBudgetCyberOrgansDynamic
     - FarHorizonsMedContainersDynamic # FH
