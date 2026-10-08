@@ -342,7 +342,7 @@
   parent: BaseLatheLube
   name: Exosuit Fabricator #FH
   suffix: NT #FH
-  description: Creates parts for robotics and other mechanical needs.
+  description: An industrial Exosuit Fabricator for robotics and other mechanical needs. #FH
   components:
   - type: Sprite
     sprite: Structures/Machines/exosuit_fabricator.rsi
@@ -484,13 +484,13 @@
     - FarHorizonsSecurityThrowablesDynamic #FarHorizons
     - FarHorizonsSecurityWeaponsDynamic #FarHorizons
     - FarHorizonsSecurityVehiclePartsDynamic #FarHorizons
-  #region Starlight secfab emagging
+  #start Starlight secfab emagging
   - type: EmagLatheRecipes
     emagStaticPacks:
     - StarlightSyndicateModulesSecfab
     - StarlightSyndicateAmmoStatic
-  #endregion Starlight secfab emagging
-  #region FarHorizons secfab emagging
+  #end Starlight secfab emagging
+  #start FarHorizons secfab emagging
     - FarHorizonsSecurityAmmoEmagStatic
     - FarHorizonsAmmoStatic
     emagDynamicPacks:
