@@ -1,25 +1,64 @@
+#region Nanotrasen
 - type: entity
-  abstract: true
-  id: BaseSubzerofab
-  components:
-  - type: Lathe
-    materialUseMultiplier: 0.5
-    timeMultiplier: 1.5
-  - type: LatheHeatProducing #TODO: Find balanced Value for Subzero 
-    energyPerSecond: -40000
-  - type: ReagentSpeed
-    modifiers:
-      SpaceLube: 0.8
-      SpaceGlue: 5
-
-- type: entity
-  id: Autofab
+  id: SecurityTechFabAmmo
   parent: BaseLatheLube
-  name: Autofab 
-  description: It produces basic items using metal and glass. Has the ability to process blueprints to print new recipes.
+  name: Security Ammo Techfab
+  description: Prints NanoTrasen-Approved Ammo for use by Security Crew.
+  suffix: NT
   components:
   - type: Sprite
-    sprite: _FarHorizons/Structures/Machines/NS/autofab.rsi #TODO: CUSTOM SPRITE
+    snapCardinals: true
+    sprite: _FarHorizons/Structures/Machines/NT/techfab.rsi
+    layers:
+    - state: icon
+      map: ["enum.LatheVisualLayers.IsRunning"]
+    - state: secbullet
+    - state: unlit
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+    - state: inserting
+      map: ["enum.MaterialStorageVisualLayers.Inserting"]
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: Machine
+    board: SecurityAmmoTechFabCircuitboard
+  - type: Lathe
+    idleState: icon
+    runningState: icon
+    unlitIdleState: unlit
+    unlitRunningState: unlit # Far Horizons - replace with animations when available
+    staticPacks:
+    - FarHorizonsSecurityAmmoStatic
+    - FarHorizonsCivilianMagazinesStatic
+    dynamicPacks:
+    - FarHorizonsSecurityAmmoDynamic
+    - FarHorizonsSecurityThrowablesDynamic
+  - type: EmagLatheRecipes
+    emagStaticPacks:
+    - StarlightSyndicateModulesSecfab
+    - StarlightSyndicateAmmoStatic
+    - FarHorizonsSecurityAmmoEmagStatic
+    - FarHorizonsAmmoStatic
+    emagDynamicPacks:
+    - FarHorizonsSecurityAmmoEmagDynamic
+    - FarHorizonsAmmoDynamic
+  - type: MaterialStorage
+    whitelist:
+      tags:
+        - Sheet
+        - RawMaterial
+        - Ingot
+  - type: OreSiloClient
+
+- type: entity
+  id: BiochemicalLathe
+  parent: BaseLatheLube
+  name: Biochemical Lathe
+  suffix: NT
+  description: A state of the art Biochemical Lathe which converts biomass into complex biological parts.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Machines/NS/protofab.rsi #TODO: SPRITE
     snapCardinals: true
     layers:
     - state: icon
@@ -32,7 +71,7 @@
     - state: panel
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
   - type: Machine
-    board: AutofabMachineCircuitboard
+    board: BiochemicalLatheMachineCircuitboard
   - type: MaterialStorage
     whitelist:
       tags:
@@ -46,54 +85,44 @@
     unlitIdleState: unlit
     unlitRunningState: unlit-building
     staticPacks:
-    - ToolsStatic 
-    - PartsStatic 
-    - AtmosStatic
-    - CablesStatic
-    - PaperworkStatic
-    - CargoStatic
-    - MaterialsStatic
-    - BasicChemistryStatic
-    - RollerBedsStatic
-    - LightsStatic
-    - ServiceStatic
-    - PowerCellsStatic
-    - ElectronicsStatic
-    dynamicPacks:
-    - StarlightAutolatheLootable
-  - type: EmagLatheRecipes #TODO: NT THEMED EMAG PACKS
-    emagStaticPacks:
-    - StarlightSecurityEmagWeaponsStatic
-    - FarHorizonsAmmoStatic
-    - StarlightSecurityAmmoEmagStatic
-  - type: BlueprintReceiver
-    whitelist:
-      tags:
-      - BlueprintAutolathe
-  - type: ContainerContainer
-    containers:
-      machine_board: !type:Container
-      machine_parts: !type:Container
-      blueprint: !type:Container
-  - type: EmptyOnMachineDeconstruct
-    containers:
-    - blueprint
+    - BiologicalOrgansNT
+    # dynamicPacks:
+  # - type: EmagLatheRecipes TODO: Biochemical lathe emag
+  #   emagDynamicPacks:
+  #   -
+
+#region NeoSol
+- type: entity
+  abstract: true
+  id: BaseSubzerolathe
+  components:
+  - type: Lathe
+    materialUseMultiplier: 0.4
+    timeMultiplier: 2
+  - type: LatheHeatProducing #TODO: Find balanced Value for Subzero 
+    energyPerSecond: -40000
+  - type: ReagentSpeed
+    modifiers:
+      SpaceLube: 0.8
+      SpaceGlue: 5
 
 - type: entity
-  id: AutofabSubzero
-  parent: [Autofab, BaseSubzerofab]
-  name: Subzero Autofab
-  description: A highly-experimental Autofab that harnesses the power of extreme cold to slowly create objects more cost-effectively.
+  id: AutolatheSubzero
+  parent: [Autolathe, BaseSubzerolathe]
+  name: Subzero Autolathe
+  suffix: NS
+  description: A highly-experimental Autolathe that harnesses the power of extreme cold to slowly create objects more cost-effectively.
   components:
   - type: Sprite
     sprite: _FarHorizons/Structures/Machines/NS/autofab.rsi #TODO: CUSTOM SPRITE
   - type: Machine
-    board: AutofabSubzeroMachineCircuitboard
+    board: AutolatheSubzeroMachineCircuitboard
 
 - type: entity
   id: Protofab
   parent: BaseLatheLube
   name: Protofab
+  suffix: NS
   description: Converts raw materials into advanced items.
   components:
   - type: Sprite
@@ -140,6 +169,8 @@
     - Instruments
     - Equipment
     - StarlightProtolatheLootable
+    - FarHorizonsHoloflareDynamic
+    - BasicSurgeryStatic
   - type: EmagLatheRecipes
     emagDynamicPacks: #TODO: NT THEMED EMAG PACKS
     - StarlightSurgeryDynamic
@@ -154,60 +185,8 @@
     - StarlightDefenseStatic
 
 - type: entity
-  id: SecurityTechFabAmmo
-  parent: BaseLatheLube
-  name: Security Ammo Techfab
-  description: Prints NanoTrasen-Approved Ammo for use by Security Crew.
-  suffix: NT
-  components:
-  - type: Sprite
-    sprite: _FarHorizons/Structures/Machines/NT/techfab.rsi
-    layers:
-    - state: icon
-      map: ["enum.LatheVisualLayers.IsRunning"]
-    - state: secbullet
-    - state: unlit
-      shader: unshaded
-      map: ["enum.PowerDeviceVisualLayers.Powered"]
-    - state: inserting
-      map: ["enum.MaterialStorageVisualLayers.Inserting"]
-    - state: panel
-      map: ["enum.WiresVisualLayers.MaintenancePanel"]
-  - type: Machine
-    board: SecurityAmmoTechFabCircuitboard
-  - type: Lathe
-    idleState: icon
-    runningState: icon
-    unlitIdleState: unlit
-    unlitRunningState: unlit # Far Horizons - replace with animations when available
-    staticPacks:
-    - FarHorizonsSecurityAmmoStatic
-    - FarHorizonsCivilianMagazinesStatic
-    dynamicPacks:
-    - FarHorizonsSecurityAmmoDynamic
-    - FarHorizonsSecurityThrowablesDynamic
-  - type: EmagLatheRecipes
-    emagStaticPacks:
-    - StarlightSyndicateModulesSecfab
-    - StarlightSyndicateAmmoStatic
-    - FarHorizonsSecurityAmmoEmagStatic
-    - FarHorizonsAmmoStatic
-    emagDynamicPacks:
-    - FarHorizonsSecurityAmmoEmagDynamic
-    - FarHorizonsAmmoDynamic
-  - type: MaterialStorage
-    whitelist: &StandardMaterialWhitelist
-      tags:
-        - Sheet
-        - RawMaterial
-        - Ingot
-  - type: OreSiloClient
-
-#region NeoSol
-
-- type: entity
   id: ProtofabSubzero
-  parent: [Protofab, BaseSubzerofab]
+  parent: [Protofab, BaseSubzerolathe]
   name: Subzero Protofab
   description: A highly-experimental Protofab that harnesses the power of extreme cold to slowly create objects more cost-effectively.
   components:
@@ -220,6 +199,7 @@
   id: BoardEngraver
   parent: BaseLatheLube
   name: Board Engraver
+  suffix: NS
   description: Prints circuit boards for machines.
   components:
   - type: Sprite
@@ -276,7 +256,7 @@
 
 - type: entity
   id: BoardEngraverSubzero
-  parent: [BoardEngraver, BaseSubzerofab]
+  parent: [BoardEngraver, BaseSubzerolathe]
   name: Subzero Board Engraver
   description: A highly-experimental Board Engraver that harnesses the power of extreme cold to slowly create objects more cost-effectively.
   components:
@@ -295,9 +275,11 @@
   id: CybersunAssembler
   parent: BaseLatheLube
   name: Cybersun Assembler
-  description: Creates parts for robotics and other mechanical needs.
+  suffix: NS
+  description: An industry leading Cybersun Assembler for robotics and other mechanical needs.
   components:
   - type: Sprite
+    snapCardinals: true
     sprite: Structures/Machines/exosuit_fabricator.rsi #TOOD: CUSTOM SPRITE
     layers:
     - state: fab-idle
@@ -323,6 +305,12 @@
     - StarlightMechEquipment
     - StarlightSecurityMechs
     - StarlightMechParts
+    - FarHorizonsVehicleBasicPartsDynamic
+    - FarHorizonsVehicleBasicAdvancedDynamic
+    - StarlightCyberlimbDynamic
+    - StarlightCyberOrgansDynamic
+    - StarlightImplantDynamic
+    
   - type: EmagLatheRecipes #TODO: NT THEMED EMAG PACKS
     emagStaticPacks:
     - StarlightMechWeapon
@@ -342,9 +330,11 @@
   id: OverwatchTechFab
   parent: BaseLatheLube
   name: Overwatch Techfab
+  suffix: NS
   description: Prints equipment for use by Overwatch crew.
   components:
   - type: Sprite
+    snapCardinals: true
     sprite: _FarHorizons/Structures/Machines/NS/techfab.rsi
     layers:
     - state: icon
@@ -401,9 +391,11 @@
   id: InterdyneTechFab
   parent: BaseLatheLube
   name: Interdyne Techfab
+  suffix: NS
   description: Prints equipment for use by the medbay.
   components:
   - type: Sprite
+    snapCardinals: true
     sprite: _FarHorizons/Structures/Machines/NS/techfab.rsi
     layers:
     - state: icon
@@ -427,11 +419,9 @@
     - MedicalClothingStatic
     - EmptyMedkitsStatic
     - StarlightMedicalStatic
+    - BasicSurgeryStatic
     dynamicPacks: #TODO: NT THEMED MEDICAL DYNAMICS
     - StarlightSurgeryDynamic
-    - StarlightCyberlimbDynamic
-    - StarlightCyberOrgansDynamic
-    - StarlightImplantDynamic
     - Chemistry
     - StarlightBudgetCyberOrgansDynamic
     - FarHorizonsMedContainersDynamic
@@ -446,6 +436,7 @@
   parent: BaseLathe
   id: NSUniformPrinter
   name: NeoSol Uniform Printer
+  suffix: NS
   description: Prints new or replacement uniforms.
   components:
   - type: Transform
@@ -539,11 +530,12 @@
 - type: entity
   id: SecurityTechFabAmmoNS
   parent: BaseLatheLube
-  name: Security Ammo Techfab
+  name: Overwatch Ammo Techfab
   description: Prints NeoSol-Approved Ammo for use by Security Crew.
   suffix: NS
   components:
   - type: Sprite
+    snapCardinals: true
     sprite: _FarHorizons/Structures/Machines/NS/techfab.rsi
     layers:
     - state: icon
@@ -579,5 +571,47 @@
     - FarHorizonsSecurityAmmoEmagDynamic
     - FarHorizonsAmmoDynamic
   - type: MaterialStorage
-    whitelist: *StandardMaterialWhitelist
+    whitelist:
+      tags:
+        - Sheet
+        - RawMaterial
+        - Ingot
   - type: OreSiloClient
+
+- type: entity
+  id: BiologicalFabricator
+  parent: BaseLatheLube
+  name: Biological Fabricator
+  suffix: NS
+  description: An industrial grade Biological Fabricator which converts biomass into biological products.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Machines/NS/protofab.rsi #TODO: SPRITE
+    snapCardinals: true
+    layers:
+    - state: icon
+      map: ["enum.LatheVisualLayers.IsRunning"]
+    - state: unlit
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+    - state: inserting
+      map: ["enum.MaterialStorageVisualLayers.Inserting"]
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: Machine
+    board: BiochemicalLatheMachineCircuitboard
+  - type: MaterialStorage
+    whitelist:
+      tags:
+        - Sheet
+        - RawMaterial
+        - Ingot
+  - type: OreSiloClient
+  - type: Lathe
+    idleState: icon
+    runningState: building
+    unlitIdleState: unlit
+    unlitRunningState: unlit-building
+    staticPacks:
+    - BiologicalOrgansNT #Temporary until NS techtree
+    # dynamicPacks:

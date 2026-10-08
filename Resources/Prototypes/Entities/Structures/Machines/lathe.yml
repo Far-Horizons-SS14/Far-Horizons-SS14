@@ -2,7 +2,7 @@
   id: BaseLathe
   parent: [ BaseMachinePowered, ConstructibleMachine ]
   abstract: true
-  name: lathe
+  name: Lathe #FH CRUSADE
   components:
   - type: Appearance
   - type: WiresVisuals
@@ -14,7 +14,7 @@
           bounds: "-0.4,-0.4,0.4,0.4"
         density: 190
         mask:
-        - MachineMask
+          - MachineMask
         layer:
           - MachineLayer
   - type: Lathe
@@ -98,7 +98,8 @@
 - type: entity
   id: Autolathe
   parent: BaseLatheLube
-  name: autolathe
+  name: Autolathe #FH CRUSADE
+  suffix: NT #FH
   description: It produces basic items using metal and glass. Has the ability to process blueprints to print new recipes.
   components:
   - type: Sprite
@@ -170,7 +171,7 @@
 - type: entity
   id: AutolatheHyperConvection
   parent: [Autolathe, BaseHyperlathe]
-  name: hyper convection autolathe
+  name: Hyper Convection Autolathe #FH CRUSADE
   description: A highly-experimental autolathe that harnesses the power of extreme heat to slowly create objects more cost-effectively.
   components:
   - type: Sprite
@@ -181,7 +182,8 @@
 - type: entity
   id: Protolathe
   parent: BaseLatheLube
-  name: protolathe
+  name: Protolathe #FH CRUSADE
+  suffix: NT #FH
   description: Converts raw materials into advanced items.
   components:
   - type: Sprite
@@ -228,6 +230,7 @@
     - Equipment
     - StarlightProtolatheLootable # Starlight start
     - FarHorizonsHoloflareDynamic #FH
+    - BasicSurgeryStatic
   - type: EmagLatheRecipes
     emagDynamicPacks:
     - StarlightSurgeryDynamic
@@ -248,7 +251,7 @@
 - type: entity
   id: ProtolatheHyperConvection
   parent: [Protolathe, BaseHyperlathe]
-  name: hyper convection protolathe
+  name: Hyper Convection Protolathe #FH CRUSADE
   description: A highly-experimental protolathe that harnesses the power of extreme heat to slowly create objects more cost-effectively.
   components:
   - type: Sprite
@@ -259,7 +262,8 @@
 - type: entity
   id: CircuitImprinter
   parent: BaseLatheLube
-  name: circuit imprinter
+  name: Circuit Imprinter #FH CRUSADE
+  suffix: NT #FH
   description: Prints circuit boards for machines.
   components:
   - type: Sprite
@@ -314,7 +318,7 @@
 - type: entity
   id: CircuitImprinterHyperConvection
   parent: [CircuitImprinter, BaseHyperlathe]
-  name: hyper convection circuit imprinter
+  name: Hyper Convection Circuit Imprinter #FH CRUSADE
   description: A highly-experimental circuit imprinter that harnesses the power of extreme heat to slowly create objects more cost-effectively.
   components:
   - type: Sprite
@@ -336,8 +340,9 @@
 - type: entity
   id: ExosuitFabricator
   parent: BaseLatheLube
-  name: exosuit fabricator
-  description: Creates parts for robotics and other mechanical needs.
+  name: Exosuit Fabricator #FH
+  suffix: NT #FH
+  description: An industrial Exosuit Fabricator for robotics and other mechanical needs. #FH
   components:
   - type: Sprite
     sprite: Structures/Machines/exosuit_fabricator.rsi
@@ -367,6 +372,9 @@
     - StarlightMechParts
     - FarHorizonsVehicleBasicPartsDynamic #FarHorizons
     - FarHorizonsVehicleBasicAdvancedDynamic #FarHorizons
+    - StarlightCyberlimbDynamic #FH
+    - StarlightCyberOrgansDynamic #FH
+    - StarlightImplantDynamic #FH
   - type: EmagLatheRecipes
     emagStaticPacks:
     - StarlightMechWeapon
@@ -381,7 +389,7 @@
 - type: entity
   id: Biofabricator
   parent: BaseLathe
-  name: biocube fabricator
+  name: Biocube Fabricator #NT CRUSADE
   description: Produces animal cubes using biomass.
   components:
   - type: Sprite
@@ -422,10 +430,12 @@
 - type: entity
   id: SecurityTechFab
   parent: BaseLatheLube
-  name: security techfab
+  name: Security Techfab #FH
+  suffix: NT #FH
   description: Prints equipment for use by security crew.
   components:
   - type: Sprite
+    snapCardinals: true #FH
     sprite: _FarHorizons/Structures/Machines/NT/techfab.rsi #FH
     layers:
     - state: icon
@@ -474,13 +484,13 @@
     - FarHorizonsSecurityThrowablesDynamic #FarHorizons
     - FarHorizonsSecurityWeaponsDynamic #FarHorizons
     - FarHorizonsSecurityVehiclePartsDynamic #FarHorizons
-  #region Starlight secfab emagging
+  #start Starlight secfab emagging
   - type: EmagLatheRecipes
     emagStaticPacks:
     - StarlightSyndicateModulesSecfab
     - StarlightSyndicateAmmoStatic
-  #endregion Starlight secfab emagging
-  #region FarHorizons secfab emagging
+  #end Starlight secfab emagging
+  #start FarHorizons secfab emagging
     - FarHorizonsSecurityAmmoEmagStatic
     - FarHorizonsAmmoStatic
     emagDynamicPacks:
@@ -494,10 +504,11 @@
 - type: entity
   id: AmmoTechFab
   parent: BaseLatheLube
-  name: ammo techfab
+  name: Ammo Techfab #FH CRUSADE
   description: Prints the bare minimum of bullets that any budget military or armory could need. Nothing fancy.
   components:
     - type: Sprite
+      snapCardinals: true #FH
       sprite: _FarHorizons/Structures/Machines/NT/techfab.rsi #FH
       layers:
         - state: icon
@@ -532,16 +543,17 @@
 - type: entity
   id: MedicalTechFab
   parent: BaseLatheLube
-  name: medical techfab
+  name: Medical Techfab #FH CRUSADE
+  suffix: NT #FH
   description: Prints equipment for use by the medbay.
-  suffix: Left #FH
   components:
   - type: Sprite
-    sprite: _FarHorizons/Structures/Machines/NT/medical_techfab.rsi #FH
+    snapCardinals: true #FH
+    sprite: _FarHorizons/Structures/Machines/NT/techfab.rsi #FH
     layers:
     - state: icon
       map: ["enum.LatheVisualLayers.IsRunning"]
-#    - state: med - FH
+    - state: med
     - state: unlit
       shader: unshaded
       map: ["enum.PowerDeviceVisualLayers.Powered"]
@@ -563,11 +575,10 @@
     - EmptyMedkitsStatic
     - StarlightMedicalStatic # Starlight
     - FarHorizonsMedGeneralEquipmentStatic #FH
+    - BasicSurgeryStatic #FH
     dynamicPacks:
     - StarlightSurgeryDynamic
-    - StarlightCyberlimbDynamic
-    - StarlightCyberOrgansDynamic
-    - StarlightImplantDynamic
+    #FH - removed starlight medical packs, moved to the biochemical lathe
     - Chemistry
     - StarlightBudgetCyberOrgansDynamic
     - FarHorizonsMedContainersDynamic # FH
@@ -577,20 +588,12 @@
   - type: StealTarget
     stealGroup: MedicalTechFabCircuitboard
   - type: OreSiloClient
-#FH - Start
-  - type: Transform
-    anchored: true
-  - type: IconSmooth
-    mode: CardinalFlags
-    base: icon_
-    key: ame_shield # REALLY needs to be replaced in the future with something that only has 4 cardinal directions
-  - type: AmeShield
-#FH - End
 
 - type: entity
   parent: BaseLathe
   id: UniformPrinter
-  name: uniform printer
+  name: Uniform Printer #FH CRUSADE
+  suffix: NT #FH
   description: Prints new or replacement uniforms.
   components:
   - type: Transform
@@ -636,7 +639,7 @@
 - type: entity
   id: Biogenerator
   parent: BaseLathe
-  name: biogenerator
+  name: Biogenerator #FH
   description: Converts plants into biomass, which can be used to construct useful items.
   components:
   - type: Sprite
@@ -683,10 +686,11 @@
 - type: entity
   parent: BaseLathe
   id: OreProcessor
-  name: ore processor
+  name: Ore Processor #FH
   description: It produces sheets and ingots using ores.
   components:
     - type: Sprite
+      snapCardinals: true #FH
       sprite: Structures/Machines/ore_processor.rsi
       layers:
         - state: icon
@@ -749,7 +753,7 @@
 - type: entity
   parent: OreProcessor
   id: OreProcessorIndustrial
-  name: industrial ore processor
+  name: Industrial Ore Processor #FH CRUSADE
   description: An ore processor specifically designed for mass-producing metals in industrial applications.
   components:
   - type: Sprite
@@ -767,10 +771,11 @@
 - type: entity
   parent: BaseLathe
   id: Sheetifier
-  name: sheet-meister 2000
+  name: Sheet-Meister 2000 #FH
   description: A very sheety machine.
   components:
   - type: Sprite
+    snapCardinals: true #FH
     sprite: Structures/Machines/sheetifier.rsi
     layers:
     - state: base_machine
@@ -798,7 +803,7 @@
 - type: entity
   parent: BaseLathe
   id: CutterMachine
-  name: cutter machine
+  name: Cutter Machine #FH CRUSADE
   description: This is a cutter. It cuts. Add variety to your station floor with eye-pleasing patterns! Don't stick your fingers in.
   components:
   - type: Sprite
