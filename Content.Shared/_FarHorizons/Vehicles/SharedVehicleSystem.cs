@@ -38,7 +38,7 @@ using Content.Shared.PowerCell.Components;
 using Robust.Shared.Network;
 using Content.Shared.Repairable;
 using Content.Shared.Movement.Events;
-using Content.Shared.Traits.Assorted;
+using Content.Shared._FarHorizons.Traits.Assorted;
 
 namespace Content.Shared._FarHorizons.Vehicles;
 
@@ -443,6 +443,9 @@ public abstract partial class SharedVehicleSystem : EntitySystem
         RefreshHeldGuns(rider);
         vehicle.Comp.Passengers.Add(rider);
         Dirty(vehicle);
+
+        if(HasComp<KnockedDownComponent>(rider) && !HasComp<LegsParalyzedComponent>(rider))
+            RemComp<KnockedDownComponent>(rider);
 
         if(_whitelist.IsWhitelistFail(vehicle.Comp.RiderWhitelist, rider) || _whitelist.IsWhitelistPass(vehicle.Comp.RiderBlacklist, rider)) return;
         if(!vehicle.Comp.hasKeys && vehicle.Comp.RequireIgnition) return;

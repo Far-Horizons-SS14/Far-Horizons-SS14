@@ -16,7 +16,6 @@ public sealed partial class DirectionalOverrideSystem: EntitySystem
     {
         base.Update(frameTime);
 
-        var viewBounds = _eye.GetWorldViewbounds();
         var eyeRotation = _eye.CurrentEye.Rotation;
 
         var query = EntityQueryEnumerator<DirectionalOverrideComponent, SpriteComponent, TransformComponent>();
@@ -26,11 +25,7 @@ public sealed partial class DirectionalOverrideSystem: EntitySystem
                 continue;
             doComp.NextUpdate = _timing.CurTime + TimeSpan.FromSeconds(0.1);
 
-            var worldPos = _transform.GetWorldPosition(xform);
-            if (!viewBounds.Contains(worldPos))
-                continue;
-
-            var direction = (_transform.GetWorldRotation(xform) - Math.Abs(eyeRotation)).GetCardinalDir();
+            var direction = (_transform.GetWorldRotation(xform) + eyeRotation).GetCardinalDir();
 
             if (doComp.Offsets.TryGetValue(direction, out var offset))
                 _sprite.SetOffset((uid, sprite), offset);
