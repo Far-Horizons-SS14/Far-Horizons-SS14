@@ -25,7 +25,7 @@ public sealed partial class DirectionalOverrideSystem: EntitySystem
                 continue;
             doComp.NextUpdate = _timing.CurTime + TimeSpan.FromSeconds(0.1);
 
-            var direction = (_transform.GetWorldRotation(xform) - Math.Abs(eyeRotation)).GetCardinalDir();
+            var direction = (_transform.GetWorldRotation(xform) + eyeRotation).GetCardinalDir();
 
             if (doComp.Offsets.TryGetValue(direction, out var offset))
                 _sprite.SetOffset((uid, sprite), offset);
