@@ -20,12 +20,8 @@ public sealed partial class StarSystemMapSystem : SharedStarSystemMapSystem
     [Dependency] private MetaDataSystem _metadata = default!;
     [Dependency] private TransformSystem _transform = default!;
 
-    public override void Initialize()
-    {
-        base.Initialize();
-        SubscribeLocalEvent<PostGameMapLoad>(OnPostMapLoad);
-    }
 
+    [SubscribeLocalEvent]
     private void OnPostMapLoad(PostGameMapLoad ev)
     {
         if (!_map.TryGetMap(ev.Map, out var mapUid)) return;
