@@ -132,7 +132,7 @@ void fragment() {
         discard;
     }
 
-    mat2 rot = mat2(BH_TILT_C, -BH_TILT_S, BH_TILT_S, BH_TILT_C);
+    highp mat2 rot = mat2(BH_TILT_C, -BH_TILT_S, BH_TILT_S, BH_TILT_C);
     highp vec2 pn = (rot * offset) * invR;
 
     highp float q2 = dot(pn, pn);
