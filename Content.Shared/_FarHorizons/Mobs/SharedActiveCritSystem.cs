@@ -177,7 +177,7 @@ public abstract partial class SharedActiveCritSystem : EntitySystem
 
     private void OnStateChanged(Entity<ActiveCritComponent> ent, ref MobStateChangedEvent args)
     {
-        if (!_timing.IsFirstTimePredicted) return;
+        if (!_timing.IsFirstTimePredicted || TerminatingOrDeleted(ent)) return;
 
         if (args.OldMobState == MobState.ActiveCritical && args.NewMobState != MobState.ActiveCritical)
             CleanupActiveCrit(ent.AsNullable());
