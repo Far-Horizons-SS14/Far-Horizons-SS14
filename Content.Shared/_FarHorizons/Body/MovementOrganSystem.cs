@@ -12,6 +12,7 @@ public sealed partial class MovementOrganSystem : EntitySystem
     [Dependency] private MovementSpeedModifierSystem _movementSpeed = default!;
     [Dependency] private InventorySystem _inventory = default!;
     private const float NoLegsModifier = 0.1f;
+    private const string WheelChairBound = "WheelchairBound";
 
     public override void Initialize()
     {
@@ -35,7 +36,7 @@ public sealed partial class MovementOrganSystem : EntitySystem
 
         var hasTrait = TryComp<HumanoidCharacterProfileComponent>(target, out var hcpComp)
                     && hcpComp.Profile != null
-                    && hcpComp.Profile.TraitPreferences.Contains("WheelchairBound");
+                    && hcpComp.Profile.TraitPreferences.Contains(WheelChairBound);
 
         if (legCount <= 1 || hasTrait)
             EnsureComp<LegsParalyzedComponent>(target);
