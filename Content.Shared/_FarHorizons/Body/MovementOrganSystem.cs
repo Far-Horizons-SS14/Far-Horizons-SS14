@@ -2,8 +2,7 @@ using System.Linq;
 using Content.Shared.Body;
 using Content.Shared.Inventory;
 using Content.Shared.Movement.Systems;
-using Content.Shared.Traits.Assorted;
-using Robust.Shared.Prototypes;
+using Content.Shared._FarHorizons.Traits.Assorted;
 
 namespace Content.Shared._FarHorizons.Body;
 

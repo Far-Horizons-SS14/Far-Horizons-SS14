@@ -38,7 +38,7 @@ using Content.Shared.PowerCell.Components;
 using Robust.Shared.Network;
 using Content.Shared.Repairable;
 using Content.Shared.Movement.Events;
-using Content.Shared.Traits.Assorted;
+using Content.Shared._FarHorizons.Traits.Assorted;
 
 namespace Content.Shared._FarHorizons.Vehicles;
 
