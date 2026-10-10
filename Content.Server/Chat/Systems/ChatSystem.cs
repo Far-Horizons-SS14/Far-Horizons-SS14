@@ -546,6 +546,7 @@ public sealed partial class ChatSystem : SharedChatSystem
         var admins = _adminManager.ActiveAdmins
             .Select(p => p.Channel);
         string messageWrap;
+        string nameMessageWrap; //FH
         string adminMessageWrap;
 
 
@@ -553,7 +554,12 @@ public sealed partial class ChatSystem : SharedChatSystem
             ("message", FormattedMessage.EscapeText(message)),
             ("channel", collectiveMind.LocalizedName),
             ("number", Number));
-
+        //FH Start
+        nameMessageWrap = Loc.GetString("fh-collective-mind-chat-wrap-message-name",
+            ("channel", collectiveMind.LocalizedName),
+            ("message", FormattedMessage.EscapeText(message)),
+            ("source", source));
+        //FH End
         adminMessageWrap = Loc.GetString("collective-mind-chat-wrap-message-admin",
             ("source", source),
             ("message", FormattedMessage.EscapeText(message)),
@@ -561,7 +567,7 @@ public sealed partial class ChatSystem : SharedChatSystem
             ("number", Number));
 
         if (collectiveMind.ShowNames)
-            messageWrap = adminMessageWrap;
+            messageWrap = nameMessageWrap; //FH
 
         _adminLogger.Add(LogType.Chat, LogImpact.Low, $"CollectiveMind chat from {ToPrettyString(source):Player}: {FormattedMessage.EscapeText(message)}");
 

@@ -1,0 +1,1 @@
+fh-collective-mind-chat-wrap-message-name = [bold]{$source}: {$message}[/bold]
