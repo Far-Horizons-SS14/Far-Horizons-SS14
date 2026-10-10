@@ -111,11 +111,17 @@ public sealed partial class FusionReactorSystem
         return Math.Max(0, actualMolesTransfered * inlet.Temperature * Atmospherics.R / inlet.Pressure);
     }
 
-    private void UpdateCoolantPumpAudio(EntityUid uid, FusionReactorCoolantPumpComponent comp) => 
+    private void UpdateCoolantPumpAudio(EntityUid uid, FusionReactorCoolantPumpComponent comp)
+    {
         _ambientSoundSystem.SetAmbience(uid, comp.Enabled);
+        Dirty(uid, comp);
+    }
 
-    private void OnCoolantPumpSetEnableMessage(EntityUid uid, FusionReactorCoolantPumpComponent comp, ref FusionReactorCoolantPumpSetEnableMessage args) =>
+    private void OnCoolantPumpSetEnableMessage(EntityUid uid, FusionReactorCoolantPumpComponent comp, ref FusionReactorCoolantPumpSetEnableMessage args)
+    {
         comp.Enabled = args.Enable;
+        Dirty(uid, comp);
+    }
 
     private void OnCoolantPumpSetFlowMessage(EntityUid uid, FusionReactorCoolantPumpComponent comp, ref FusionReactorCoolantPumpSetFlowMessage args) =>
         comp.FlowRate = args.FlowRate;

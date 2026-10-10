@@ -72,6 +72,9 @@ public sealed partial class FusionReactorSystem
         if (reactorNodeGroup.SuperconductingCount <= 0)
         {
             reactorNodeGroup.MagneticPressure = 1000;
+            foreach (var (uid, magnet) in reactorNodeGroup.Magnets)
+                SetPowerDraw(uid, false);
+
             return;
         }
 
@@ -93,6 +96,6 @@ public sealed partial class FusionReactorSystem
         }
     }
 
-    private void UpdateMagnetAudio(EntityUid uid, FusionReactorTorusComponent comp) => 
+    private void UpdateMagnetAudio(EntityUid uid, FusionReactorTorusComponent comp) =>
         _ambientSoundSystem.SetAmbience(uid, comp.IsMagnet && comp.Superconducting);
 }
