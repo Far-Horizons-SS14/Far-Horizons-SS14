@@ -58,6 +58,10 @@ public sealed partial class TraitSystem : EntitySystem
 
             ApplyTrait(args.Mob, trait);
         }
+        //Far Horizons Start
+        var ev = new TraitsApplied();
+        RaiseLocalEvent(args.Mob, ref ev);
+        //Far Horizons End
     }
 
     /// <summary>
