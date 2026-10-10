@@ -1,1 +1,1 @@
-fh-collective-mind-chat-wrap-message-name = [bold]{$source}: {$message}[/bold]
+fh-collective-mind-chat-wrap-message-admin = [bold]{$source}: {$message}[/bold]

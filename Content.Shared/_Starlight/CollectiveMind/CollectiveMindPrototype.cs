@@ -31,7 +31,7 @@ public sealed partial class CollectiveMindPrototype : IPrototype
     /// <summary>
     /// Will show the name of the one who spoke (like admin)
     /// </summary>
-    [DataField(tag:"ShowNames")] //FH - Add tag
+    [DataField]
     public bool ShowNames = false;
 
     /// <summary>
