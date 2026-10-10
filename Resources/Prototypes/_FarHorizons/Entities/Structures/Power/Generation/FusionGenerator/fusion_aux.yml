@@ -3,6 +3,7 @@
   parent: [ BaseStructure, ConstructibleMachine ]
   name: Fusion Reactor Coolant Pump
   description: A port of the coolant system for the fusion reactor.
+  suffix: Inlet
   components:
   - type: Sprite
     sprite: Structures/Piping/Atmospherics/thermomachine.rsi
@@ -52,10 +53,17 @@
     interfaces:
       enum.FusionReactorUiKey.Key:
         type: FusionReactorCoolantPumpBoundUserInterface
+  - type: AmbientSound
+    enabled: false
+    volume: -9
+    range: 4
+    sound:
+      path: /Audio/_FarHorizons/Ambience/Objects/water_pump.ogg
 
 - type: entity
   id: FusionReactorCoolantPumpOutlet
   parent: FusionReactorCoolantPumpInlet
+  suffix: Outlet
   components:
   - type: Sprite
     layers:
@@ -122,6 +130,11 @@
         type: FusionReactorCapacitorBoundUserInterface
   - type: ActivatableUI
     key: enum.FusionReactorUiKey.Key
+  - type: AmbientSound
+    volume: -6
+    range: 4
+    sound:
+      path: /Audio/Ambience/Objects/periodic_beep.ogg
 
 - type: entity
   id: FusionReactorBatteryEmpty
@@ -188,6 +201,12 @@
     interfaces:
       enum.FusionReactorUiKey.Key:
         type: FusionReactorMaserBoundUserInterface
+  - type: AmbientSound
+    enabled: false
+    volume: -6
+    range: 8
+    sound:
+      path: /Audio/_FarHorizons/Ambience/Objects/microwave.ogg
 
 - type: entity
   id: FusionReactorGasInlet
@@ -241,3 +260,9 @@
     interfaces:
       enum.FusionReactorUiKey.Key:
         type: FusionReactorGasInletBoundUserInterface
+  - type: AmbientSound
+    enabled: false
+    volume: -6
+    range: 4
+    sound:
+      path: /Audio/_FarHorizons/Ambience/Objects/plasma_cutter.ogg

@@ -19,6 +19,7 @@ public sealed partial class FusionReactorSystem
             return;
 
         torus.IsMagnet = state;
+        UpdateMagnetAudio(uid, torus);
     }
 
     private void ProcessCooling(FusionReactorNodeGroup fusionReactor, float dt)
@@ -66,6 +67,8 @@ public sealed partial class FusionReactorSystem
 
     private void ProcessMagnetics(FusionReactorNodeGroup reactorNodeGroup, float dt)
     {
+        reactorNodeGroup.Magnets.ForEach(m => UpdateMagnetAudio(m.Owner, m.Comp));
+
         if (reactorNodeGroup.SuperconductingCount <= 0)
         {
             reactorNodeGroup.MagneticPressure = 1000;
@@ -89,4 +92,7 @@ public sealed partial class FusionReactorSystem
             });
         }
     }
+
+    private void UpdateMagnetAudio(EntityUid uid, FusionReactorTorusComponent comp) => 
+        _ambientSoundSystem.SetAmbience(uid, comp.IsMagnet && comp.Superconducting);
 }

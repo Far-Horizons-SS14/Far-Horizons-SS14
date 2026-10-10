@@ -29,6 +29,7 @@ namespace Content.Server._FarHorizons.Power.Generation.FusionGenerator.EntitySys
 
 public sealed partial class FusionReactorSystem : EntitySystem
 {
+    [Dependency] private readonly AmbientSoundSystem _ambientSoundSystem = default!;
     [Dependency] private readonly AtmosphereSystem _atmosphereSystem = default!;
     [Dependency] private readonly BatterySystem _battery = default!;
     [Dependency] private readonly ChatSystem _chatSystem = default!;

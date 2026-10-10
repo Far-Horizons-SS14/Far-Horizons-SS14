@@ -75,6 +75,7 @@ public sealed partial class FusionReactorSystem
     {
         comp.Enabled &= IsValid(uid);
         SetPowerDraw(uid, comp.Enabled);
+        UpdateCoolantPumpAudio(uid, comp);
         if (!comp.Enabled)
             return;
 
@@ -109,6 +110,9 @@ public sealed partial class FusionReactorSystem
         var actualMolesTransfered = Math.Clamp(transferMoles, 0, Math.Max(0, molesSpaceLeft));
         return Math.Max(0, actualMolesTransfered * inlet.Temperature * Atmospherics.R / inlet.Pressure);
     }
+
+    private void UpdateCoolantPumpAudio(EntityUid uid, FusionReactorCoolantPumpComponent comp) => 
+        _ambientSoundSystem.SetAmbience(uid, comp.Enabled);
 
     private void OnCoolantPumpSetEnableMessage(EntityUid uid, FusionReactorCoolantPumpComponent comp, ref FusionReactorCoolantPumpSetEnableMessage args) =>
         comp.Enabled = args.Enable;

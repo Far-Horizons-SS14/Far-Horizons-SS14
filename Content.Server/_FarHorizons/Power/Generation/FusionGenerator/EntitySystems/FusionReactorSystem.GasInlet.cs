@@ -21,6 +21,7 @@ public sealed partial class FusionReactorSystem
     private void OnGasInletUpdate(EntityUid uid, FusionReactorGasInletComponent comp, ref AtmosDeviceUpdateEvent args)
     {
         comp.Enabled &= IsValid(uid);
+        UpdateGasInletAudio(uid, comp);
         if (!comp.Enabled)
         {
             comp.Production.Clear();
@@ -58,6 +59,9 @@ public sealed partial class FusionReactorSystem
 
         _fusionSystem.Merge(fusionReactor.Stored, fusionMix);
     }
+
+    private void UpdateGasInletAudio(EntityUid uid, FusionReactorGasInletComponent comp) => 
+        _ambientSoundSystem.SetAmbience(uid, comp.Enabled);
 
     private void OnGasInletSetEnableMessage(EntityUid uid, FusionReactorGasInletComponent comp, ref FusionReactorGasInletSetEnableMessage args) =>
         comp.Enabled = args.Enable;

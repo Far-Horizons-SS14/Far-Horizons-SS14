@@ -67,5 +67,5 @@ public sealed partial class FHCCVars
     /// The ticks per second of the fusion reactor's calculations
     /// </summary>
     public static readonly CVarDef<float> FusionReactorTargetTickrate =
-        CVarDef.Create("fusion_reactor.tickrate", 30f, CVar.SERVERONLY, Loc.GetString("fusion-reactor-cvar-description-tickrate"));
+        CVarDef.Create("fusion_reactor.tickrate", 10f, CVar.SERVERONLY, Loc.GetString("fusion-reactor-cvar-description-tickrate"));
 }
