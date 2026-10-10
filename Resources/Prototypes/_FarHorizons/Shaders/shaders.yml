@@ -95,6 +95,24 @@
     parallaxFactor: 0.05
     solarRadiusFactor: 25.0
 
+# spinny boi for CC backgrounds
+- type: shader
+  id: NeutronStar
+  kind: source
+  path: "/Textures/_FarHorizons/Shaders/StarSystem/neutron_star.swsl"
+  params:
+    parallaxFactor: 0.05
+    solarRadiusFactor: 25.0
+
+# chunky boi for NSHC backgrounds
+- type: shader
+  id: BlackHole
+  kind: source
+  path: "/Textures/_FarHorizons/Shaders/StarSystem/black_hole.swsl"
+  params:
+    parallaxFactor: 0.05
+    solarRadiusFactor: 25.0
+
 - type: shader
   id: GasGiant
   kind: source

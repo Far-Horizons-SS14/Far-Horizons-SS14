@@ -1,0 +1,269 @@
+light_mode unshaded;
+
+#include "/Textures/_FarHorizons/Shaders/shader_utils.swsl"
+
+uniform highp vec2 starWorldPos;
+uniform highp float starRadius;
+uniform highp vec3 starColor;
+uniform highp float starLuminosity;
+
+uniform highp vec2 viewportMin;
+uniform highp vec2 viewportSize;
+
+uniform highp float parallaxFactor;
+uniform highp float solarRadiusFactor;
+
+// Treat these as uniforms, useful for tuning the right look
+const highp float BH_TILT       = 0.28;
+const highp float BH_ELEVATION  = 0.2;
+const highp float BH_DISK_INNER = 0.65;
+const highp float BH_DISK_OUTER = 3.0;
+const highp float BH_SPIN_DIR   = 1.0;
+const highp float BH_SPIN_SPEED = 0.05;
+const highp float BH_CYCLE      = 8.0;
+const highp float BH_GAIN       = 1.6;
+const highp float BH_ARCH_FADE_START = 1.0;
+const highp float BH_ARCH_FADE_END   = 2.2;
+const highp float BH_EDGE_WIDTH = 0.25;
+const highp float BH_BAND_ANGULAR = 8.0;
+const highp float BH_BAND_RADIAL  = 6.0;
+const highp float BH_BAND_CONTRAST = 1.0;
+const highp vec3  BH_OUTER_TINT = vec3(1.0, 0.72, 0.5);
+
+// IMPORTANT: performance
+const highp int BH_STEPS = 40; // maximum number of rays per pixel per frame, don't overuse
+const highp float BH_H = 0.25; // decrease if BH_STEPS goes up, increase if it goes down
+
+// m*th
+const highp float BH_B_CRIT  = 5.19615;
+const highp float BH_INV_B_CRIT = 0.19245;
+const highp float BH_TWO_PI  = 6.28318530;
+const highp float BH_PI      = 3.14159265;
+const highp float BH_SIN_E = sin(BH_ELEVATION);
+const highp float BH_COS_E = cos(BH_ELEVATION);
+const highp float BH_CH = cos(BH_H);
+const highp float BH_SH = sin(BH_H);
+const highp float BH_CH2 = cos(BH_H * 0.5);
+const highp float BH_SH2 = sin(BH_H * 0.5);
+const highp float BH_TILT_C = cos(BH_TILT);
+const highp float BH_TILT_S = sin(BH_TILT);
+const highp float BH_U_OUT = 1.0 / (BH_DISK_OUTER * BH_B_CRIT);
+
+const highp float BH_CULL_RADIUS = 2.15;
+const highp float BH_CULL_HALF_W = BH_DISK_OUTER * 1.05;
+const highp float BH_CULL_HALF_H = BH_DISK_OUTER * BH_SIN_E + 0.4;
+
+// Separate noise functions from shader_utils because I hate myself apparently
+highp float bh_hash(highp vec2 p) {
+    p = fract(p * vec2(123.34, 456.21));
+    p += dot(p, p + 45.32);
+    return fract(p.x * p.y);
+}
+
+highp float bh_noise(highp vec2 p, highp float period) {
+    highp vec2 i = floor(p);
+    highp vec2 f = fract(p);
+    f = f * f * (3.0 - 2.0 * f);
+
+    highp float x0 = mod(i.x, period);
+    highp float x1 = mod(i.x + 1.0, period);
+
+    highp float a = bh_hash(vec2(x0, i.y));
+    highp float b = bh_hash(vec2(x1, i.y));
+    highp float c = bh_hash(vec2(x0, i.y + 1.0));
+    highp float d = bh_hash(vec2(x1, i.y + 1.0));
+
+    return mix(mix(a, b, f.x), mix(c, d, f.x), f.y);
+}
+
+highp float bh_pattern(highp float r, highp float ang, highp float shiftRev, highp float off) {
+    highp float A = BH_BAND_ANGULAR;
+    highp float n1 = bh_noise(vec2(ang * A + mod(shiftRev * A, A), r * BH_BAND_RADIAL + off), A);
+    highp float n2 = bh_noise(vec2(ang * 2.0 * A + mod(shiftRev * 2.2 * A, 2.0 * A),
+                                   r * BH_BAND_RADIAL * 2.0 + off + 7.0), 2.0 * A);
+    return n1 * 0.6 + n2 * 0.4;
+}
+
+highp float bh_disk(highp float r, highp float ang) {
+    highp float inner  = smoothstep(BH_DISK_INNER, BH_DISK_INNER + 0.12, r);
+    highp float outer  = 1.0 - smoothstep(BH_DISK_OUTER * 0.5, BH_DISK_OUTER, r);
+    highp float inv    = BH_DISK_INNER / r;
+    highp float radial = inv * inv;
+
+    highp float omega = BH_SPIN_DIR * BH_SPIN_SPEED * 0.28 * inversesqrt(r) / r;
+    highp float tau = TIME / BH_CYCLE;
+    highp float p0 = fract(tau);
+    highp float p1 = fract(tau + 0.5);
+    highp float w0 = 1.0 - abs(2.0 * p0 - 1.0);
+
+    highp float n0 = bh_pattern(r, ang, omega * p0 * BH_CYCLE, 0.0);
+    highp float n1 = bh_pattern(r, ang, omega * p1 * BH_CYCLE, 17.0);
+    highp float n = mix(n1, n0, w0);
+
+    n = clamp(0.5 + (n - 0.5) * 1.6 * BH_BAND_CONTRAST, 0.0, 1.0);
+    highp float streaks = mix(0.3, 1.5, n);
+    return radial * inner * outer * streaks;
+}
+
+highp float bh_cover(highp float rdn) {
+    highp float inner = smoothstep(BH_DISK_INNER, BH_DISK_INNER + 0.06, rdn);
+    highp float outer = 1.0 - smoothstep(BH_DISK_OUTER - BH_EDGE_WIDTH, BH_DISK_OUTER, rdn);
+    return inner * outer;
+}
+
+highp vec3 bh_tint(highp float rdn) {
+    highp float inv = BH_DISK_INNER / rdn;
+    highp float heat = clamp(inv * inv, 0.0, 1.0);
+    return mix(starColor * BH_OUTER_TINT, vec3(1.0, 0.96, 0.9), heat);
+}
+
+void fragment() {
+    highp vec2 cameraCenter = viewportMin + (viewportSize * 0.5);
+    highp vec2 parallaxedPos = starWorldPos + (cameraCenter - starWorldPos) * (1.0 - parallaxFactor);
+
+    highp vec2 pixelWorldPos = viewportMin + (UV * viewportSize);
+    highp vec2 offset = pixelWorldPos - parallaxedPos;
+
+    highp float R = starRadius * solarRadiusFactor * 0.5;
+    highp float invR = 1.0 / R;
+
+    // disgard ASAP - this boi is chonky and we don't want to run it any more than necessary
+    if (dot(offset, offset) > R * R * BH_CULL_HALF_W * BH_CULL_HALF_W) {
+        discard;
+    }
+
+    highp mat2 rot = mat2(BH_TILT_C, -BH_TILT_S, BH_TILT_S, BH_TILT_C);
+    highp vec2 pn = (rot * offset) * invR;
+
+    highp float q2 = dot(pn, pn);
+    highp vec2 ee = pn / vec2(BH_CULL_HALF_W, BH_CULL_HALF_H);
+    if (q2 > BH_CULL_RADIUS * BH_CULL_RADIUS && dot(ee, ee) > 1.0) {
+        discard;
+    }
+
+    highp float q = sqrt(q2);
+    highp float safeQ = max(q, 0.0001);
+    highp float b = q * BH_B_CRIT;
+    highp float xn = pn.x / safeQ;
+    highp float yn = pn.y / safeQ;
+
+    highp vec3 O  = vec3(0.0, BH_SIN_E, BH_COS_E);
+    highp vec3 ey = vec3(0.0, BH_COS_E, -BH_SIN_E);
+    highp vec3 e  = vec3(xn, 0.0, 0.0) + yn * ey;
+
+    highp float invRn = inversesqrt(BH_SIN_E * BH_SIN_E + BH_COS_E * BH_COS_E * yn * yn);
+    highp float c1 = -BH_COS_E * yn * invRn;
+    highp float s1 = BH_SIN_E * invRn;
+    highp float nextPhi = atan(BH_SIN_E, -BH_COS_E * yn);
+    highp float sgn = 1.0;
+
+    highp float u = 0.0;
+    highp float v = 1.0 / b;
+    highp float phi = 0.0;
+
+    highp vec3 E = vec3(0.0);
+    highp float T = 1.0;
+    highp float Tcov = 1.0;
+    highp float umax = 0.0;
+    bool escaped = false;
+
+    for (int i = 0; i < BH_STEPS; i++) {
+        highp float rem = nextPhi - phi;
+        bool atPlane = rem <= BH_H;
+        highp float h = BH_H;
+        highp float ch = BH_CH;
+        highp float sh = BH_SH;
+        highp float ch2 = BH_CH2;
+        highp float sh2 = BH_SH2;
+        if (atPlane) {
+            h = rem;
+            ch = cos(h);
+            sh = sin(h);
+            ch2 = cos(0.5 * h);
+            sh2 = sin(0.5 * h);
+        }
+
+        highp float F0 = 3.0 * u * u;
+        highp float um = F0 + (u - F0) * ch2 + v * sh2;
+        highp float F = 3.0 * um * um;
+        highp float uN = F + (u - F) * ch + v * sh;
+        highp float vN = (F - u) * sh + v * ch;
+        umax = max(umax, uN);
+
+        if (atPlane) {
+            highp float uc = max(uN, 0.0001);
+            highp float rM = 1.0 / uc;
+            highp float rdn = rM * BH_INV_B_CRIT;
+
+            if (rdn > BH_DISK_INNER && rdn < BH_DISK_OUTER) {
+                highp float cc = sgn * c1;
+                highp float sc = sgn * s1;
+                highp vec3 dirA = cc * O + sc * e;
+                highp vec3 dirB = -sc * O + cc * e;
+
+                highp vec3 toCam = normalize(vN * dirA - uc * dirB);
+                highp vec3 vd = BH_SPIN_DIR * vec3(dirA.z, 0.0, -dirA.x);
+                highp float beta = inversesqrt(rM);
+                highp float beam = sqrt(1.0 - beta * beta) / max(1.0 - beta * dot(vd, toCam), 0.1);
+
+                highp float ang = atan(dirA.z, dirA.x) / BH_TWO_PI + 0.5;
+                highp float I = bh_disk(rdn, ang) * beam;
+
+                highp float sy = rM * dot(dirA, ey);
+                highp float lensShift = max(q - length(vec2(rM * dirA.x, sy)) * BH_INV_B_CRIT, 0.0);
+                highp float lens = smoothstep(0.3, 1.5, lensShift);
+                highp float archFade = 1.0 - smoothstep(BH_ARCH_FADE_START, BH_ARCH_FADE_END, rdn);
+                I *= mix(1.0, archFade, lens);
+
+                highp float archCover = 1.0 - smoothstep(BH_ARCH_FADE_END - BH_EDGE_WIDTH, BH_ARCH_FADE_END, rdn);
+                highp float cov = bh_cover(rdn) * mix(1.0, archCover, lens);
+
+                E += T * bh_tint(rdn) * I;
+                T *= 1.0 - clamp(I * 0.8, 0.0, 0.92);
+                Tcov *= 1.0 - cov;
+            }
+
+            phi = nextPhi;
+            nextPhi += BH_PI;
+            sgn = -sgn;
+        } else {
+            phi += BH_H;
+        }
+
+        if (uN > 0.5) {
+            break;
+        }
+        if (uN <= 0.0) {
+            escaped = true;
+            break;
+        }
+        if (vN < 0.0 && uN < BH_U_OUT) {
+            escaped = true;
+            break;
+        }
+
+        u = uN;
+        v = vN;
+    }
+
+    highp float hole = escaped ? 0.0 : 1.0;
+
+    if (escaped) {
+        highp float rim = smoothstep(0.17, 0.333, umax);
+        E += vec3(1.0, 0.95, 0.88) * (rim * rim * rim * 0.9);
+    }
+
+    highp float brightnessBoost = 1.0 + log2(max(starLuminosity, 1.0)) * 0.2;
+    E *= BH_GAIN * brightnessBoost;
+
+    highp vec3 tm = vec3(1.0) - exp(-E);
+    highp float glow = max(tm.r, max(tm.g, tm.b));
+
+    highp float cover = 1.0 - Tcov;
+    highp float alpha = max(max(glow, hole), cover);
+    if (alpha < 0.003) {
+        discard;
+    }
+
+    COLOR = vec4(tm / alpha, alpha);
+}

@@ -1,10 +1,12 @@
 using Content.Shared._FarHorizons.CCVar;
 using Content.Shared._FarHorizons.StarSystem;
+using Content.Shared._FarHorizons.StarSystem.Helpers;
+using Content.Shared._FarHorizons.StarSystem.Prototypes;
 using Robust.Client.Graphics;
 using Robust.Shared.Configuration;
 using Robust.Shared.Prototypes;
 
-namespace Content.Server._FarHorizons.StarSystem;
+namespace Content.Client._FarHorizons.StarSystem;
 
 public sealed partial class StarSystemMapSystem : SharedStarSystemMapSystem
 {
@@ -19,7 +21,6 @@ public sealed partial class StarSystemMapSystem : SharedStarSystemMapSystem
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeLocalEvent<StarSystemMapComponent, AfterAutoHandleStateEvent>(OnStateChanged);
         _starOverlay = new(EntityManager, _protoMan);
         _planetOverlay = new(EntityManager, _protoMan);
         _beltOverlay = new(EntityManager, _protoMan);
@@ -57,11 +58,31 @@ public sealed partial class StarSystemMapSystem : SharedStarSystemMapSystem
         }
     }
 
+    [SubscribeLocalEvent]
     private void OnStateChanged(Entity<StarSystemMapComponent> ent, ref AfterAutoHandleStateEvent args)
     {
         ent.Comp.StarSystem = MakePlanetarySystem(ent);
         _starOverlay.ResetShader();
         _planetOverlay.ResetShader();
         _beltOverlay.ResetShader();
+    }
+
+    [SubscribeLocalEvent]
+    private void OnCustomStateChanged(Entity<BecomesCustomStarSystemComponent> ent, ref AfterAutoHandleStateEvent args)
+    {
+        if (ent.Comp.Map is not {} map) return;
+
+        var starSystem = EnsureComp<StarSystemMapComponent>(map);
+        var customSystem = _protoMan.Index(ent.Comp.CustomSystem);
+        starSystem.StarSystem = MakeCustomSystem(customSystem);
+    }
+
+    private PlanetarySystem MakeCustomSystem(CustomStarSystemPrototype proto)
+    {
+        var star = proto.Star.MakeStar();
+        var planets = new List<Planet>(); // No planet support implemented yet
+        var belt = (AsteroidBelt?)null; // Same for belt
+
+        return new PlanetarySystem(star, planets, belt);
     }
 }
