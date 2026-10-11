@@ -1,0 +1,175 @@
+using System.Diagnostics.CodeAnalysis;
+using System.Linq;
+using Content.Server._FarHorizons.Fusion.Systems;
+using Content.Server._FarHorizons.Power.Generation.FusionGenerator.Components;
+using Content.Server._FarHorizons.Power.Generation.FusionGenerator.NodeGroup;
+using Content.Server.Atmos.EntitySystems;
+using Content.Server.Audio;
+using Content.Server.Chat.Systems;
+using Content.Server.Emp;
+using Content.Server.Explosion.EntitySystems;
+using Content.Server.Ghost;
+using Content.Server.NodeContainer.EntitySystems;
+using Content.Server.Power.EntitySystems;
+using Content.Server.Radio.EntitySystems;
+using Content.Server.Station.Systems;
+using Content.Shared._FarHorizons.Power.Generation.FusionGenerator.Components;
+using Content.Shared.Camera;
+using Content.Shared.Containers.ItemSlots;
+using Content.Shared.NodeContainer;
+using Robust.Server.GameObjects;
+using Robust.Shared.Audio.Systems;
+using Robust.Shared.Configuration;
+using Robust.Shared.Map;
+using Robust.Shared.Prototypes;
+using Robust.Shared.Random;
+using Robust.Shared.Timing;
+
+namespace Content.Server._FarHorizons.Power.Generation.FusionGenerator.EntitySystems;
+
+public sealed partial class FusionReactorSystem : EntitySystem
+{
+    [Dependency] private AmbientSoundSystem _ambientSoundSystem = default!;
+    [Dependency] private AtmosphereSystem _atmosphereSystem = default!;
+    [Dependency] private BatterySystem _battery = default!;
+    [Dependency] private ChatSystem _chatSystem = default!;
+    [Dependency] private EmpSystem _empSystem = default!;
+    [Dependency] private ExplosionSystem _explosionSystem = default!;
+    [Dependency] private FusionSystem _fusionSystem = default!;
+    [Dependency] private GhostSystem _ghostSystem = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
+    [Dependency] private IGameTiming _gameTiming = default!;
+    [Dependency] private IPrototypeManager _protoMan = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private ItemSlotsSystem _slotsSystem = default!;
+    [Dependency] private NodeContainerSystem _nodeContainer = default!;
+    [Dependency] private RadioSystem _radioSystem = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private SharedAudioSystem _audioSystem = default!;
+    [Dependency] private SharedCameraRecoilSystem _sharedCameraRecoil = default!;
+    [Dependency] private SharedMapSystem _mapSystem = default!;
+    [Dependency] private StationSystem _station = default!;
+    [Dependency] private TransformSystem _transformSystem = default!;
+    [Dependency] private UserInterfaceSystem _uiSystem = default!;
+
+    /// <summary>
+    /// May eventually be handled by a grid/map level component like the atmosphere system, but for now the system can keep track of it.
+    /// </summary>
+    private List<FusionReactorNodeGroup> _fusionReactors = [];
+
+    public override void Initialize()
+    {
+        base.Initialize();
+
+        InitializeCVars();
+
+        BatteryInitialize();
+        ControllerInitialize();
+        TorusInitialize();
+        CoolingInitialize();
+        MaserInitialize();
+        GasInletInitialize();
+        ValidityInitialize();
+    }
+
+    public void AddReactor(FusionReactorNodeGroup nodeGroup) => _fusionReactors.Add(nodeGroup);
+
+    public void RemoveReactor(FusionReactorNodeGroup nodeGroup) => _fusionReactors.Remove(nodeGroup);
+
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+
+        var batteryQuery = EntityQueryEnumerator<FusionReactorBatteryComponent>();
+        while (batteryQuery.MoveNext(out var uid, out var battery))
+        {
+            // Battery UIs update every tick, just like a normal battery
+            UpdateBatteryUI(uid, battery);
+        }
+
+        var curTime = _gameTiming.CurTime;
+        var shakeQuery = EntityQueryEnumerator<FusionReactorCameraShakeComponent>();
+        while (shakeQuery.MoveNext(out var uid, out var shake))
+        {
+            if (curTime < shake.NextShake)
+                continue;
+
+            UpdateEffectShake(uid, shake);
+        }
+
+        foreach (var reactor in _fusionReactors.Where(r => r.NextProcess <= curTime))
+        {
+            ProcessReactor(reactor, curTime);
+        }
+    }
+
+    private void ProcessReactor(FusionReactorNodeGroup fusionReactor, TimeSpan curTime)
+    {
+        var dt = (float)(curTime - fusionReactor.LastProcess).TotalSeconds;
+        fusionReactor.LastProcess = curTime;
+        fusionReactor.NextProcess = curTime.Add(TimeSpan.FromSeconds(TickTime));
+
+        ProcessCooling(fusionReactor, dt);
+        ProcessMagnetics(fusionReactor, dt);
+
+        ProcessMaser(fusionReactor, dt);
+
+        ProcessInjects(fusionReactor, dt);
+        ExtractPower(fusionReactor, dt);
+
+        ProcessPowerDraws(fusionReactor, dt);
+
+        _fusionSystem.React(fusionReactor.Plasma, dt);
+
+        ProcessDamage(fusionReactor, dt);
+        UpdateMeltdownStage(fusionReactor);
+
+        UpdateRadio(fusionReactor);
+
+        UpdateVisuals(fusionReactor);
+    }
+
+    private void UpdateVisuals(FusionReactorNodeGroup fusionReactor)
+    {
+        foreach(var (uid, _) in fusionReactor.Batteries)
+            UpdateBatteryVisuals(uid);
+    }
+
+    private bool TryGetReactorGroup(EntityUid uid, [NotNullWhen(true)] out FusionReactorNodeGroup? reactorNodeGroup)
+    {
+        reactorNodeGroup = null;
+        if (!TryComp<NodeContainerComponent>(uid, out var nodeContainer))
+            return false;
+
+        if (!nodeContainer.Nodes.TryGetValue("reactor", out var node))
+            return false;
+
+        if (node.NodeGroup is not FusionReactorNodeGroup nodeGroup || nodeGroup == null)
+            return false;
+
+        reactorNodeGroup = nodeGroup;
+        return true;
+    }
+
+    private MapCoordinates GetCenter(FusionReactorNodeGroup fusionReactor)
+    {
+        MapId? map = null;
+        var ymax = float.NegativeInfinity;
+        var ymin = float.PositiveInfinity;
+        var xmax = float.NegativeInfinity;
+        var xmin = float.PositiveInfinity;
+
+        foreach (var node in fusionReactor.Nodes)
+        {
+            var coord = _transformSystem.GetMapCoordinates(node.Owner);
+
+            map ??= coord.MapId;
+            ymax = MathF.Max(ymax, coord.Y);
+            ymin = MathF.Min(ymin, coord.Y);
+            xmax = MathF.Max(xmax, coord.X);
+            xmin = MathF.Min(xmin, coord.X);
+        }
+
+        return map == null ? new() : new((xmax + xmin) / 2, (ymax + ymin) / 2, map.Value);
+    }
+}

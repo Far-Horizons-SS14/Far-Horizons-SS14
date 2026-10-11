@@ -141,8 +141,13 @@ namespace Content.Client.Entry
             _prototypeManager.RegisterIgnore("ghostRoleRaffleDecider");
             _prototypeManager.RegisterIgnore("codewordGenerator");
             _prototypeManager.RegisterIgnore("codewordFaction");
-            _prototypeManager.RegisterIgnore("salvageMissionObjectiveHandler"); // Far Horizons
-            _prototypeManager.RegisterIgnore("bossMechanicsSheet"); // Far Horizons
+            // Far Horizons - start
+            _prototypeManager.RegisterIgnore("salvageMissionObjectiveHandler");
+            _prototypeManager.RegisterIgnore("bossMechanicsSheet");
+            _prototypeManager.RegisterIgnore("fusionReaction");
+            _prototypeManager.RegisterIgnore("fusionDecay");
+            _prototypeManager.RegisterIgnore("fusionConversion");
+            // Far Horizons - end
             
             _prototypeManager.RegisterIgnore("onSignActions"); //🌟Starlight🌟
 

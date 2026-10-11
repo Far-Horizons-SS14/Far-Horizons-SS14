@@ -1,0 +1,340 @@
+- type: entity
+  id: FusionReactorCoolantPumpInlet
+  parent: [ BaseStructure, ConstructibleMachine ]
+  name: Fusion Reactor Coolant Pump
+  description: A port of the coolant system for the fusion reactor.
+  suffix: Inlet
+  components:
+  - type: Sprite
+    sprite: Structures/Piping/Atmospherics/thermomachine.rsi
+    layers:
+    - map: ["enum.FusionReactorCoolantPumpVisualLayers.Enabled"]
+      state: freezerOff
+    - map: [ "enum.PipeVisualLayers.Pipe" ]
+      state: pipe
+      renderingStrategy: Default
+  - type: GenericVisualizer # When proper sprites are made, this is going to be redone
+    visuals:
+      enum.FusionReactorCoolantPumpVisuals.Enabled:
+        enum.FusionReactorCoolantPumpVisualLayers.Enabled:
+          InletOff: { state: freezerOff }
+          InletOn: { state: freezerOn }
+          OutletOff: { state: heaterOff }
+          OutletOn: { state: heaterOn }
+  - type: AtmosPipeLayers
+    spriteLayersRsiPaths:
+      enum.PipeVisualLayers.Pipe:
+        Primary: Structures/Piping/Atmospherics/thermomachine.rsi
+        Secondary: Structures/Piping/Atmospherics/thermomachine_alt1.rsi
+        Tertiary: Structures/Piping/Atmospherics/thermomachine_alt2.rsi
+  - type: Appearance
+  - type: InteractionOutline
+  - type: Rotatable
+  - type: Anchorable
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: FusionReactorCoolantPump
+  - type: FusionReactorPowerDraw
+    draw: 200
+    priority: 1
+  - type: FusionReactorRequireValid
+    magnet: 1
+  - type: AtmosDevice
+  - type: Machine
+    board: FusionReactorCoolantPumpMachineCircuitboard
+  - type: WiresPanel
+  - type: NodeContainer
+    examinable: true
+    nodes:
+      reactor:
+        !type:DirectionalNode
+        nodeGroupID: FusionReactor
+        nodeDirection: North
+      pipe:
+        !type:PipeNode
+        nodeGroupID: Pipe
+        pipeDirection: South
+        volume: 1000
+  - type: ActivatableUI
+    key: enum.FusionReactorUiKey.Key
+  - type: ActivatableUIRequiresAnchor
+  - type: UserInterface
+    interfaces:
+      enum.FusionReactorUiKey.Key:
+        type: FusionReactorCoolantPumpBoundUserInterface
+  - type: AmbientSound
+    enabled: false
+    volume: -9
+    range: 4
+    sound:
+      path: /Audio/_FarHorizons/Ambience/Objects/water_pump.ogg
+
+- type: entity
+  id: FusionReactorCoolantPumpOutlet
+  parent: FusionReactorCoolantPumpInlet
+  suffix: Outlet
+  components:
+  - type: Sprite
+    layers:
+    - map: ["enum.FusionReactorCoolantPumpVisualLayers.Enabled"]
+      state: heaterOff
+    - map: [ "enum.PipeVisualLayers.Pipe" ]
+      state: pipe
+      renderingStrategy: Default
+  - type: FusionReactorCoolantPump
+    isInlet: false
+
+- type: entity
+  id: FusionReactorBattery
+  parent: [ BaseStructure, ConstructibleMachine ]
+  name: Fusion Reactor Supercapacitor
+  description: Stores the energy needed to operate the fusion reactor.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Power/smes.rsi
+    layers:
+    - state: smes
+    - map: ["enum.FusionReactorBatteryVisualLayers.ChargeLevel"]
+      state: "smes-og1"
+      shader: unshaded
+      visible: false
+  - type: GenericVisualizer
+    visuals:
+      enum.FusionReactorBatteryVisuals.ChargeLevel:
+        enum.FusionReactorBatteryVisualLayers.ChargeLevel:
+          Level0: { visible: false }
+          Level1: { visible: true, state: "smes-og1" }
+          Level2: { visible: true, state: "smes-og2" }
+          Level3: { visible: true, state: "smes-og3" }
+          Level4: { visible: true, state: "smes-og4" }
+          Level5: { visible: true, state: "smes-og5" }
+  - type: Appearance
+  - type: InteractionOutline
+  - type: Rotatable
+  - type: Anchorable
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: FusionReactorBattery
+  - type: FusionReactorRequireValid
+  - type: Battery
+    netsync: false
+    startingCharge: 16000000
+    maxCharge: 16000000
+  - type: ExaminableBattery
+  - type: Machine
+    board: FusionReactorCapacitorMachineCircuitboard
+  - type: WiresPanel
+  - type: NodeContainer
+    examinable: true
+    nodes:
+      input:
+        !type:CableTerminalPortNode
+        nodeGroupID: HVPower
+      reactor:
+        !type:DirectionalNode
+        nodeGroupID: FusionReactor
+        nodeDirection: North
+  - type: BatteryCharger
+    voltage: High
+    node: input
+  - type: PowerNetworkBattery
+    maxSupply: 150000
+    maxChargeRate: 5000
+    supplyRampTolerance: 5000
+    supplyRampRate: 1000
+  - type: UserInterface
+    interfaces:
+      enum.FusionReactorUiKey.Key:
+        type: FusionReactorCapacitorBoundUserInterface
+  - type: ActivatableUI
+    key: enum.FusionReactorUiKey.Key
+  - type: AmbientSound
+    volume: -6
+    range: 4
+    sound:
+      path: /Audio/Ambience/Objects/periodic_beep.ogg
+
+- type: entity
+  id: FusionReactorBatteryEmpty
+  parent: FusionReactorBattery
+  suffix: Empty
+  components:
+  - type: Battery
+    startingCharge: 0
+
+- type: entity
+  id: FusionReactorMaser
+  parent: [ BaseStructure, ConstructibleMachine ]
+  name: Fusion Reactor MASER
+  description: Heats the plasma within a fusion reactor using concentrated microwaves.
+  components:
+  - type: Sprite
+    sprite: Structures/Power/Generation/Singularity/emitter.rsi
+    layers:
+    - state: emitter2
+    - map: ["enum.FusionReactorMaserVisualLayers.Enabled"]
+      state: beam
+      shader: unshaded
+      visible: false
+    - map: ["enum.FusionReactorMaserVisualLayers.Injecting"]
+      state: locked
+      shader: unshaded
+      visible: false
+  - type: GenericVisualizer
+    visuals:
+      enum.FusionReactorMaserVisuals.Enabled:
+        enum.FusionReactorMaserVisualLayers.Enabled:
+          True: { visible: true }
+          False: { visible: false }
+      enum.FusionReactorMaserVisuals.Injecting:
+        enum.FusionReactorMaserVisualLayers.Injecting:
+          True: { visible: true }
+          False: { visible: false }
+  - type: Appearance
+  - type: InteractionOutline
+  - type: Rotatable
+  - type: Anchorable
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: FusionReactorMaser
+    jar_slot:
+      whitelist:
+        components:
+        - AmeFuelContainer
+  - type: FusionReactorPowerDraw
+    priority: 2
+  - type: FusionReactorRequireValid
+    torus: 1
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+      jar_slot: !type:ContainerSlot
+  - type: ItemSlots
+  - type: Machine
+    board: FusionReactorMaserMachineCircuitboard
+  - type: WiresPanel
+  - type: NodeContainer
+    examinable: true
+    nodes:
+      reactor:
+        !type:DirectionalNode
+        nodeGroupID: FusionReactor
+        nodeDirection: South
+  - type: ActivatableUI
+    key: enum.FusionReactorUiKey.Key
+  - type: ActivatableUIRequiresAnchor
+  - type: UserInterface
+    interfaces:
+      enum.FusionReactorUiKey.Key:
+        type: FusionReactorMaserBoundUserInterface
+  - type: AmbientSound
+    enabled: false
+    volume: -6
+    range: 8
+    sound:
+      path: /Audio/_FarHorizons/Ambience/Objects/microwave.ogg
+
+- type: entity
+  id: FusionReactorGasInlet
+  parent: [ BaseStructure, ConstructibleMachine ]
+  name: Fusion Reactor Gas Inlet
+  description: Breaks down gases into atoms for use in the fusion reactor.
+  components:
+  - type: Sprite
+    sprite: Structures/Machines/gasrecycler.rsi
+    layers:
+    - map: [ "enum.PipeVisualLayers.Pipe" ]
+      sprite: Structures/Piping/Atmospherics/pipe.rsi
+      state: pipeUnaryConnectors
+      renderingStrategy: Default
+    - state: running
+    - map: ["enum.FusionReactorGasInletVisualLayers.Enabled"]
+      state: unlit
+  - type: GenericVisualizer
+    visuals:
+      enum.FusionReactorGasInletVisuals.Enabled:
+        enum.FusionReactorGasInletVisualLayers.Enabled:
+          True: { visible: false }
+          False: { visible: true }
+  - type: AtmosPipeLayers
+    spriteLayersRsiPaths:
+      enum.PipeVisualLayers.Pipe:
+        Primary: Structures/Piping/Atmospherics/pipe.rsi
+        Secondary: Structures/Piping/Atmospherics/pipe_alt1.rsi
+        Tertiary: Structures/Piping/Atmospherics/pipe_alt2.rsi
+  - type: Appearance
+  - type: InteractionOutline
+  - type: Rotatable
+  - type: Anchorable
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: FusionReactorGasInlet
+  - type: FusionReactorPowerDraw
+  - type: FusionReactorRequireValid
+    alone: false
+  - type: AtmosDevice
+  - type: Machine
+    board: FusionReactorGasInletMachineCircuitboard
+  - type: WiresPanel
+  - type: NodeContainer
+    examinable: true
+    nodes:
+      reactor:
+        !type:DirectionalNode
+        nodeGroupID: FusionReactor
+        nodeDirection: North
+      pipe:
+        !type:PipeNode
+        nodeGroupID: Pipe
+        pipeDirection: South
+        volume: 200
+  - type: ActivatableUI
+    key: enum.FusionReactorUiKey.Key
+  - type: ActivatableUIRequiresAnchor
+  - type: UserInterface
+    interfaces:
+      enum.FusionReactorUiKey.Key:
+        type: FusionReactorGasInletBoundUserInterface
+  - type: AmbientSound
+    enabled: false
+    volume: -6
+    range: 4
+    sound:
+      path: /Audio/_FarHorizons/Ambience/Objects/plasma_cutter.ogg

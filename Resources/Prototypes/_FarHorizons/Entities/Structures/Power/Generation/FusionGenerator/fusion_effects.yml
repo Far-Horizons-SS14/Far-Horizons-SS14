@@ -1,0 +1,14 @@
+- type: entity
+  id: FusionReactorEjectFlash
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: PointLight
+      enabled: true
+      radius: 50
+      energy: 10
+      color: "#22bbff"
+      netsync: false
+    - type: LightFade
+      duration: 12
+    - type: TimedDespawn
+      lifetime: 12

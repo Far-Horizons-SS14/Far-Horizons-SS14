@@ -1,0 +1,20 @@
+- type: constructionGraph
+  id: FusionReactorTorus
+  start: start
+  graph:
+    - node: start
+
+    - node: fusionReactorTorus
+      entity: FusionReactorTorus
+      edges:
+        - to: start
+          completed:
+            - !type:AdminLog 
+              message: "A fusion reactor torus has been deconstructed."
+            - !type:SpawnPrototype
+              prototype: FusionReactorTorusFlatpack
+              amount: 1
+            - !type:DeleteEntity
+          steps:
+            - tool: Welding
+              doAfter: 3
