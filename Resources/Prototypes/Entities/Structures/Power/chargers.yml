@@ -90,12 +90,7 @@
   - type: Machine
     board: CellRechargerCircuitboard
   - type: WiresPanel
-  - type: GenericVisualizer
-    visuals:
-      enum.WiresVisuals.MaintenancePanelState:
-        enum.WiresVisualLayers.MaintenancePanel:
-          True: { visible: true }
-          False: { visible: false }
+  - type: WiresVisuals
   - type: PowerCellSlot
     cellSlotId: charger_slot
     # fitsInCharger is true i dont think this will ever affect anything negatively but it lets it function
@@ -111,6 +106,9 @@
         blacklist:
           tags:
           - PotatoBattery
+  - type: Item
+    size: Ginormous
+  - type: MultiHandedItem
 
 - type: entity
   parent: [ BaseItemRecharger, ConstructibleMachine ]
@@ -175,6 +173,9 @@
         blacklist:
           tags:
           - PotatoBattery
+  - type: Item
+    size: Ginormous
+  - type: MultiHandedItem
 
 - type: entity
   parent: BaseItemRecharger
@@ -200,6 +201,9 @@
         blacklist:
           tags:
           - PotatoBattery
+  - type: Item
+    size: Ginormous
+  - type: MultiHandedItem
 
 - type: entity
   parent: [ BaseItemRecharger, BaseWallmount ]
@@ -237,6 +241,7 @@
   components:
   - type: Sprite
     sprite: Structures/Power/borg_charger.rsi
+    noRot: True
     layers:
       - state: borgcharger-u1
         map: ["base"]
@@ -308,6 +313,19 @@
       entity_storage: !type:Container
       machine_board: !type:Container
       machine_parts: !type:Container
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.48
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: StationAIShuntThrough # Starlight
+  - type: StationAIShunt #FH-Edit: Without this the AIShuntActionEvent never triggers.
 
 - type: entity
   parent: BorgCharger

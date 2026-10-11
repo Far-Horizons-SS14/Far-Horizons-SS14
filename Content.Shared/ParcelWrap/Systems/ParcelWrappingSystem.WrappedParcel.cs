@@ -1,20 +1,26 @@
 using Content.Shared.Destructible;
 using Content.Shared.DoAfter;
 using Content.Shared.Interaction.Events;
+using Content.Shared.Item;
 using Content.Shared.Materials;
 using Content.Shared.ParcelWrap.Components;
 using Content.Shared.Popups;
 using Content.Shared.Verbs;
 using Robust.Shared.Containers;
+using Robust.Shared.Timing;
+using Content.Shared._Starlight.Cargo.TamperSeal.Components; //FH
 
 namespace Content.Shared.ParcelWrap.Systems;
 
 // This part handles Wrapped Parcels
 public sealed partial class ParcelWrappingSystem
 {
+    [Dependency] private IGameTiming _timing = default!;
+
     private void InitializeWrappedParcel()
     {
         SubscribeLocalEvent<WrappedParcelComponent, ComponentInit>(OnComponentInit);
+        SubscribeLocalEvent<WrappedParcelComponent, EntInsertedIntoContainerMessage>(OnEntInsertedIntoContainer);
         SubscribeLocalEvent<WrappedParcelComponent, UseInHandEvent>(OnUseInHand);
         SubscribeLocalEvent<WrappedParcelComponent, GetVerbsEvent<InteractionVerb>>(OnGetVerbsForWrappedParcel);
         SubscribeLocalEvent<WrappedParcelComponent, UnwrapWrappedParcelDoAfterEvent>(OnUnwrapParcelDoAfter);
@@ -27,9 +33,38 @@ public sealed partial class ParcelWrappingSystem
         entity.Comp.Contents = _container.EnsureContainer<ContainerSlot>(entity, entity.Comp.ContainerId);
     }
 
+    private void OnEntInsertedIntoContainer(Entity<WrappedParcelComponent> entity, ref EntInsertedIntoContainerMessage args)
+    {
+        // If the entity was inserted because of a server state application, assume that the item's state is applied
+        // correctly as well and that deriving them from the contents is unneeded.
+        if (_timing.ApplyingState)
+            return;
+
+        if (args.Container != entity.Comp.Contents ||
+            !TryComp<ItemComponent>(entity, out var parcelItemComp))
+            return;
+
+        // If this wrap maintains the size when wrapping, set the parcel's size to the target's size, or the fallback
+        // size if the target does not have a size.
+        var targetItemComp = CompOrNull<ItemComponent>(args.Entity);
+        if (entity.Comp.GetsSizeFromContent)
+        {
+            var size = targetItemComp?.Size ?? _fallbackParcelSize;
+            _item.SetSize(entity, size, parcelItemComp);
+            _appearance.SetData(entity, WrappedParcelVisuals.Size, size.Id);
+        }
+
+        // If this wrap maintains the shape when wrapping and the item has a shape override, copy the shape override to
+        // the parcel.
+        if (entity.Comp.GetsShapeFromContent)
+        {
+            _item.SetShape(entity, targetItemComp?.Shape, parcelItemComp);
+        }
+    }
+
     private void OnUseInHand(Entity<WrappedParcelComponent> entity, ref UseInHandEvent args)
     {
-        if (args.Handled)
+        if (args.Handled || (TryComp<TamperSealComponent>(entity, out var tsComp) && !tsComp.Opened)) //FH-Edit
             return;
 
         args.Handled = TryStartUnwrapDoAfter(args.User, entity);
@@ -38,7 +73,7 @@ public sealed partial class ParcelWrappingSystem
     private void OnGetVerbsForWrappedParcel(Entity<WrappedParcelComponent> entity,
         ref GetVerbsEvent<InteractionVerb> args)
     {
-        if (!args.CanAccess || !args.CanComplexInteract)
+        if (!args.CanAccess || !args.CanComplexInteract || HasComp<TamperSealComponent>(entity)) //FH-Edit
             return;
 
         if (!entity.Comp.CanSelfUnwrap && entity.Comp.Contents.Contains(args.User))
@@ -102,22 +137,19 @@ public sealed partial class ParcelWrappingSystem
     /// </returns>
     private EntityUid? UnwrapInternal(EntityUid? user, Entity<WrappedParcelComponent> parcel)
     {
-        var containedEntity = parcel.Comp.Contents.ContainedEntity;
-        _audio.PlayPredicted(parcel.Comp.UnwrapSound, parcel, user);
-
-        // If we're on the client, just return the contained entity and don't try to despawn the parcel.
-        if (!_net.IsServer)
-            return containedEntity;
-
         var parcelTransform = Transform(parcel);
+        _audio.PlayPredicted(parcel.Comp.UnwrapSound, parcelTransform.Coordinates, user);
 
+        var containedEntity = parcel.Comp.Contents.ContainedEntity;
         if (containedEntity is { } parcelContents)
         {
-            _container.Remove(parcelContents,
+            _container.Remove(
+                parcelContents,
                 parcel.Comp.Contents,
                 true,
                 true,
-                parcelTransform.Coordinates);
+                parcelTransform.Coordinates
+            );
 
             // If the parcel is in a container, try to put the unwrapped contents in that container.
             if (_container.TryGetContainingContainer((parcel, null, null), out var outerContainer))
@@ -131,11 +163,11 @@ public sealed partial class ParcelWrappingSystem
         // Spawn unwrap trash.
         if (parcel.Comp.UnwrapTrash is { } trashProto)
         {
-            var trash = Spawn(trashProto, parcelTransform.Coordinates);
+            var trash = PredictedSpawnAtPosition(trashProto, parcelTransform.Coordinates);
             _transform.DropNextTo((trash, null), (parcel, parcelTransform));
         }
 
-        QueueDel(parcel);
+        PredictedQueueDel(parcel);
 
         return containedEntity;
     }

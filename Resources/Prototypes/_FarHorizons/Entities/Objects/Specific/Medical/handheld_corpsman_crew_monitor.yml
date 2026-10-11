@@ -19,7 +19,7 @@
   - type: CrewMonitoringConsole
   - type: CrewMonitoringFilter
     shownDepartments:
-    - Security
+    - "Security Jobs - NT Corporate Security"
   - type: DeviceNetwork
     deviceNetId: Wireless
     receiveFrequencyId: CrewMonitor
@@ -38,6 +38,74 @@
   - type: Tag
     tags:
       - BrigmedicBeltEquip
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+
+- type: entity
+  id: HandheldCorpsmanCrewMonitorNS
+  parent: HandheldCorpsmanCrewMonitor
+  suffix: NS
+  components:
+  - type: CrewMonitoringFilter
+    shownDepartments:
+    - "Security Jobs - Aegis Corporate Securities"
+
+- type: entity
+  id: HandheldCorpsmanCrewMonitorNSEmpty
+  parent: HandheldCorpsmanCrewMonitorNS
+  suffix: NS, Empty
+  components:
+  - type: Tag
+    tags:
+      - BrigmedicBeltEquip
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+
+- type: entity
+  id: HandheldBrigmedicCrewMonitorNS
+  parent: HandheldBrigmedicCrewMonitor
+  suffix: NS
+  components:
+  - type: CrewMonitoringFilter
+    shownDepartments:
+    - "Security Jobs - Aegis Corporate Securities"
+
+- type: entity
+  id: HandheldBrigmedicCrewMonitorNSEmpty
+  parent: HandheldBrigmedicCrewMonitorNS
+  suffix: NS, Empty
+  components:
+  - type: Tag
+    tags:
+      - BrigmedicBeltEquip
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+
+- type: entity
+  name: CommandFriend™ X-02
+  parent: HandheldBSOCrewMonitor
+  id: HandheldBSOCrewMonitorNS
+  description: Does not monitor the competence levels of command members.
+  suffix: NS
+  components:
+  - type: CrewMonitoringFilter
+    shownDepartments:
+    - "Command Jobs - Cybersun and Major Executives From Leading Companies"
+    - "Command Jobs"
+    - "Space Law Jobs - Concord Frontier Authority"
+    alwaysShowTrackingImplants: true
+
+- type: entity
+  id: HandheldBSOCrewMonitorNSEmpty
+  parent: HandheldBSOCrewMonitorNS
+  suffix: NS, Empty
+  components:
   - type: ItemSlots
     slots:
       cell_slot:

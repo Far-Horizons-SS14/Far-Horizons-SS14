@@ -30,35 +30,44 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using Content.Shared.Atmos.Components;
 using System.Linq;
+using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
+using Content.Shared.Mobs.Components;
 using Content.Shared.Temperature.Components;
+using Content.Shared.Stealth;
+using Content.Shared.Stealth.Components;
+using Content.Shared.Weapons.Ranged.Systems;
+using Content.Server._FarHorizons.NPC.Queries.Considerations;
+using Content.Server._FarHorizons.NPC.Queries.Filters;
 
 namespace Content.Server.NPC.Systems;
 
 /// <summary>
 /// Handles utility queries for NPCs.
 /// </summary>
-public sealed class NPCUtilitySystem : EntitySystem
+public sealed partial class NPCUtilitySystem : EntitySystem // Far Horizons made partial
 {
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly ContainerSystem _container = default!;
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly HandsSystem _hands = default!;
-    [Dependency] private readonly InventorySystem _inventory = default!;
-    [Dependency] private readonly IngestionSystem _ingestion = default!;
-    [Dependency] private readonly MobStateSystem _mobState = default!;
-    [Dependency] private readonly NpcFactionSystem _npcFaction = default!;
-    [Dependency] private readonly PuddleSystem _puddle = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly SharedSolutionContainerSystem _solutions = default!;
-    [Dependency] private readonly SharedInteractionSystem _interaction = default!;
-    [Dependency] private readonly WeldableSystem _weldable = default!;
-    [Dependency] private readonly ExamineSystemShared _examine = default!;
-    [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
-    [Dependency] private readonly MobThresholdSystem _thresholdSystem = default!;
-    [Dependency] private readonly TurretTargetSettingsSystem _turretTargetSettings = default!;
-    [Dependency] private readonly DamageableSystem _damageable = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
+    [Dependency] private ContainerSystem _container = default!;
+    [Dependency] private EntityLookupSystem _lookup = default!;
+    [Dependency] private HandsSystem _hands = default!;
+    [Dependency] private InventorySystem _inventory = default!;
+    [Dependency] private IngestionSystem _ingestion = default!;
+    [Dependency] private MobStateSystem _mobState = default!;
+    [Dependency] private NpcFactionSystem _npcFaction = default!;
+    [Dependency] private PuddleSystem _puddle = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private SharedSolutionContainerSystem _solutions = default!;
+    [Dependency] private SharedInteractionSystem _interaction = default!;
+    [Dependency] private WeldableSystem _weldable = default!;
+    [Dependency] private ExamineSystemShared _examine = default!;
+    [Dependency] private EntityWhitelistSystem _whitelistSystem = default!;
+    [Dependency] private MobThresholdSystem _thresholdSystem = default!;
+    [Dependency] private TurretTargetSettingsSystem _turretTargetSettings = default!;
+    [Dependency] private DamageableSystem _damageable = default!;
+    [Dependency] private SharedStealthSystem _stealth = default!;
+    [Dependency] private ItemSlotsSystem _itemSlot = default!;
 
     private EntityQuery<PuddleComponent> _puddleQuery;
     private EntityQuery<TransformComponent> _xformQuery;
@@ -256,17 +265,36 @@ public sealed class NPCUtilitySystem : EntitySystem
             }
             case TargetAmmoMatchesCon:
             {
-                if (!blackboard.TryGetValue(NPCBlackboard.ActiveHand, out string? activeHand, EntityManager) ||
+                if (!blackboard.TryGetValue<string>(NPCBlackboard.ActiveHand, out var activeHand, EntityManager) ||
                     !_hands.TryGetHeldItem(owner, activeHand, out var heldEntity) ||
-                    !TryComp<BallisticAmmoProviderComponent>(heldEntity, out var heldGun))
+                    !HasComp<GunComponent>(heldEntity))  // Far Horizons
                 {
                     return 0f;
                 }
 
-                if (_whitelistSystem.IsWhitelistFailOrNull(heldGun.Whitelist, targetUid))
+                // Far Horizons start
+                BallisticAmmoProviderComponent? ballisticAmmoProvider = null;
+
+                if (!TryComp<ItemSlotsComponent>(heldEntity.Value, out var itemSlots) &&
+                    !TryComp(heldEntity.Value, out ballisticAmmoProvider))
                 {
                     return 0f;
                 }
+
+                if (itemSlots != null && 
+                    _itemSlot.TryGetSlot(heldEntity.Value, SharedGunSystem.MagazineSlot, out var magazineSlot) && 
+                    magazineSlot != null &&
+                    _whitelistSystem.IsWhitelistFailOrNull(magazineSlot.Whitelist, targetUid))
+                {
+                    return 0f;
+                }
+
+                if (ballisticAmmoProvider != null && 
+                    _whitelistSystem.IsWhitelistFailOrNull(ballisticAmmoProvider.Whitelist, targetUid))
+                {
+                    return 0f;
+                }
+                // Far Horizons end
 
                 return 1f;
             }
@@ -288,9 +316,19 @@ public sealed class NPCUtilitySystem : EntitySystem
 
                 return Math.Clamp(distance / radius, 0f, 1f);
             }
+            case TargetIsVisibleCon:
+            {
+                if (!TryComp(targetUid, out StealthComponent? stealth))
+                    return 1f; // If there is no StealthComponent, we see it.
+
+                // Checking the visibility level
+                var visibility = _stealth.GetVisibility(targetUid, stealth);
+                return visibility >= 0.5f ? 1f : 0f; // Visibility threshold 0.5
+            }
             case TargetAmmoCon:
             {
-                if (!HasComp<GunComponent>(targetUid))
+                if (!HasComp<GunComponent>(targetUid) &&
+                    !HasComp<BallisticAmmoProviderComponent>(targetUid)) // Far Horizons
                     return 0f;
 
                 var ev = new GetAmmoCountEvent();
@@ -307,12 +345,13 @@ public sealed class NPCUtilitySystem : EntitySystem
             }
             case TargetHealthCon con:
             {
-                if (!TryComp(targetUid, out DamageableComponent? damage))
+                if (!TryComp(targetUid, out DamageableComponent? damage) || !TryComp(targetUid, out MobThresholdsComponent? threshold))
                     return 0f;
+
                 var totalDamage = _damageable.GetTotalDamage((targetUid, damage));
-                if (con.TargetState != MobState.Invalid && _thresholdSystem.TryGetPercentageForState(targetUid, con.TargetState, totalDamage, out var percentage))
+                if (con.TargetState != MobState.Invalid && _thresholdSystem.TryGetPercentageForState(targetUid, con.TargetState, totalDamage, out var percentage, threshold))
                     return Math.Clamp((float)(1 - percentage), 0f, 1f);
-                if (_thresholdSystem.TryGetIncapPercentage(targetUid, totalDamage, out var incapPercentage))
+                if (_thresholdSystem.TryGetIncapPercentage(targetUid, totalDamage, out var incapPercentage, threshold))
                     return Math.Clamp((float)(1 - incapPercentage), 0f, 1f);
                 return 0f;
             }
@@ -337,7 +376,7 @@ public sealed class NPCUtilitySystem : EntitySystem
                         return 1f;
                 }
 
-                var result = _interaction.InRangeUnobstructed(owner, targetUid, radius + bufferRange, CollisionGroup.Opaque) ? 1f : 0f;
+                var result = _interaction.InRangeUnobstructed(owner, targetUid, radius + bufferRange, CollisionGroup.HighImpassable, LineOfSightIgnoreCheck) ? 1f : 0f; // Far Horizons, see comment on LineOfSightIgnoreCheck
                 return result;
             }
             case TargetIsAliveCon:
@@ -386,6 +425,13 @@ public sealed class NPCUtilitySystem : EntitySystem
 
                     return temperature.CurrentTemperature <= con.MinTemp ? 1f : 0f;
                 }
+            // Far Horizons start
+            // All FH additions will be defined externally to avoid bloating this function beyond reason
+            case ExternalConsideration externalConsideration:
+                {
+                    return externalConsideration.GetScore(blackboard, targetUid, EntityManager);
+                }
+            // Far Horizons end
             default:
                 throw new NotImplementedException();
         }
@@ -576,6 +622,20 @@ public sealed class NPCUtilitySystem : EntitySystem
 
                 break;
             }
+            // Far Horizons start
+            // All FH additions will be defined externally to avoid bloating this function beyond reason
+            case ExternalFilter externalFilter:
+            {
+                _entityList.Clear();
+                
+                _entityList.AddRange(externalFilter.GetEntities(blackboard, entities, EntityManager));
+
+                foreach (var ent in _entityList)
+                    entities.Remove(ent);
+
+                break;
+            }
+            // Far Horizons end
             default:
                 throw new NotImplementedException();
         }

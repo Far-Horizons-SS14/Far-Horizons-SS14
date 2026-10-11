@@ -1,0 +1,23 @@
+- type: htnCompound
+  id: RealDocCompound
+  branches:
+  # Observe for targets
+  - tasks:
+    - !type:HTNPrimitiveTask
+      operator: !type:UtilityOperator
+        proto: RealDocInjectable
+        returnType: EnumerableDescending
+    - !type:HTNPrimitiveTask
+      operator: !type:PickNearbyInjectableOperator
+        targetKey: Target
+        targetMoveKey: TargetCoordinates
+
+    - !type:HTNCompoundTask
+      task: MedibotGetInRange
+    - !type:HTNCompoundTask
+      task: MedibotInject
+
+  # Idle when targets not found
+  - tasks:
+    - !type:HTNCompoundTask
+      task: IdleCompound

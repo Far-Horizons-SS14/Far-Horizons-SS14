@@ -34,10 +34,6 @@
           2: { state: alert-1 }
           3: { state: alert-2 }
           4: { state: alert-2 }
-      enum.WiresVisuals.MaintenancePanelState:
-        enum.WiresVisualLayers.MaintenancePanel:
-          True: { visible: false }
-          False: { visible: true }
       # Starlight Start
       enum.EdgeConnectionVisuals.ConnectionMask:
         computerLayerBody:
@@ -138,8 +134,6 @@
         enum.WiresUiKey.Key:
           type: WiresBoundUserInterface
   - type: RadarConsole
-  - type: WorldLoader
-    radius: 256
   - type: PointLight
     radius: 1.5
     energy: 4.0
@@ -217,8 +211,6 @@
       - Syndicate
   - type: RadarConsole
     maxRange: 384
-  - type: WorldLoader
-    radius: 1536
   - type: PointLight
     radius: 1.5
     energy: 4.0
@@ -317,6 +309,7 @@
   parent: BaseComputerAiAccess
   id: ComputerPowerMonitoring
   name: Power Monitoring Computer #Far Horizons - The Great Capitalization Crusade
+  suffix: NT #FH
   description: It monitors power levels across the station.
   components:
   - type: Sprite
@@ -359,6 +352,7 @@
   parent: BaseComputerAiAccess
   id: ComputerMedicalRecords
   name: Medical Records Computer #Far Horizons - The Great Capitalization Crusade
+  suffix: NT #FH
   description: This can be used to check medical records.
   components:
   - type: Sprite
@@ -389,13 +383,15 @@
   - type: ActivatableUI
     key: enum.CharacterRecordConsoleKey.Key
   # Cosmatic Drift Record System-end
+
 - type: entity
   parent: BaseComputerAiAccess
   id: ComputerCriminalRecords
   # Cosmatic Drift Record System-start: Renamed from "criminal records computer" to "security records computer" to better reflect its purpose.
-  name: security records computer
+  name: Security Records Computer #FH
   description: This can be used to access security records.
   # Cosmatic Drift Record System-end
+  suffix: NT #FH
   components:
     # We need to have both a CriminalRecordsConsole and CharacterRecordConsole
     # component to be able to set wanted status.
@@ -437,11 +433,12 @@
   - type: ActivatableUI
     key: enum.CharacterRecordConsoleKey.Key
   # Cosmatic Drift Record System-end
+
 - type: entity
   parent: BaseComputerAiAccess
   id: ComputerStationRecords
   # Cosmatic Drift Record System-start: Renamed from "station records computer" to "employment records computer" to better reflect its purpose.
-  name: employment records computer
+  name: Employment Records Computer #FH
   description: This can be used to check employment records.
   # Cosmatic Drift Record System-end
   components:
@@ -474,7 +471,8 @@
   parent: BaseComputerAiAccess
   id: ComputerCrewMonitoring
   name: Crew Monitoring Console #Far Horizons - The Great Capitalization Crusade
-  description: Used to monitor active health sensors built into most of the crew's uniforms.
+  suffix: NT #FH
+  description: Used to monitor active health sensors built into most of the crew's pda's. #FH
   components:
   - type: Sprite
     layers:
@@ -523,6 +521,7 @@
   parent: BaseComputerAiAccess
   id: ComputerResearchAndDevelopment
   name: R&D Computer #Far Horizons - The Great Capitalization Crusade
+  suffix: NT #FH
   description: A computer used to interface with R&D tools.
   components:
   - type: Sprite
@@ -576,6 +575,7 @@
   parent: BaseComputerAiAccess
   id: ComputerAnalysisConsole
   name: Analysis Console #Far Horizons - The Great Capitalization Crusade
+  suffix: NT #FH
   description: A computer used to interface with the artifact analyzer.
   components:
   - type: Sprite
@@ -629,6 +629,7 @@
   parent: BaseComputerAiAccess
   id: ComputerId
   name: ID Card Computer #Far Horizons - The Great Capitalization Crusade
+  suffix: NT #FH
   description: Terminal for programming Nanotrasen employee ID cards to access parts of the station.
   components:
   - type: IdCardConsole
@@ -642,6 +643,15 @@
     - Medical
     - Service
     - Engineering
+    #FarHorizons Start
+    - GeneralNS
+    - SecurityNS
+    - Executive
+    - ResearchNS
+    - MedicalNS
+    - ServiceNS
+    - EngineeringNS
+    #FarHorizons End
   # Starlight-edit: End
     privilegedIdSlot:
       name: id-card-console-privileged-id
@@ -652,6 +662,9 @@
       whitelist:
         components:
         - IdCard
+      blacklist: #Far Horizons
+        tags: 
+        - BorgModuleAccess
     targetIdSlot:
       name: id-card-console-target-id
       ejectSound: /Audio/Machines/id_swipe.ogg
@@ -661,6 +674,12 @@
       whitelist:
         components:
         - IdCard
+        tags: #Far Horizons
+        - BorgModuleAccess
+    factions: #FH start
+    - FactionNT
+    - FactionCFA
+    - FactionCargonia #FH end
   - type: ActivatableUI
     key: enum.IdCardConsoleUiKey.Key
   - type: UserInterface
@@ -755,6 +774,7 @@
   parent: BaseComputerAiAccess
   id: ComputerComms
   name: Communications Computer #Far Horizons - The Great Capitalization Crusade
+  suffix: NT #FH
   description: A computer used to make station wide announcements via keyboard, set the appropriate alert level, and call the emergency shuttle.
   components:
   - type: Sprite
@@ -764,6 +784,7 @@
     - map: ["computerLayerKeyboard"]
       state: generic_keyboard
     - map: ["computerLayerScreen"]
+      sprite: _Starlight/Structures/Machines/computers.rsi # Starlight: Visual cohesion w/ departmental consoles
       state: comm
     - map: ["computerLayerKeys"]
       state: generic_keys
@@ -772,7 +793,7 @@
   - type: AccessReader
     access: [[ "Command" ]]
   - type: CommunicationsConsole
-    title: comms-console-announcement-title-station
+    title: comms-console-announcement-title-command # Starlight
     sound: /Audio/_Starlight/Announcements/announce2.ogg #Starlight
   - type: DeviceNetwork
     deviceNetId: Wireless
@@ -792,40 +813,19 @@
     energy: 4.0
     color: "#3c5eb5"
   - type: Damageable
-    damageContainer: StructuralInorganic
     damageModifierSet: StructuralMetallicStrong
-  #FarHorizonsStart
-  - type: DepartmentalAnnouncement
-    titleAlt: comms-console-announcement-title-station-alt
-  - type: Lock
-    unlockOnClick: false
-  - type: ItemSlotsLock
-    slots:
-    - key_slot
-  - type: ItemSlots
-    slots:
-      key_slot:
-        name: key-slot
-        insertSuccessPopup: communication-channels-updated
-        whitelist:
-          requireAll: true
-          components:
-          - EncryptionKey
-          - Item
-  - type: ContainerFill
-    containers:
-      key_slot:
-      - EncryptionKeyStationMaster
+  - type: Injurable
+    damageContainer: StructuralInorganic
   - type: ContainerContainer
     containers:
-      key_slot: !type:ContainerSlot
       board: !type:Container
-  #FarHorizonsEnd
+      pai_slot: !type:ContainerSlot #FH
 
 - type: entity
   parent: ComputerComms
   id: SyndicateComputerComms
   name: Syndicate Communications Computer #Far Horizons - The Great Capitalization Crusade
+  suffix: Syndicate #FH
   description: A computer capable of remotely hacking into the station's communications systems. Using this to make an announcement will alert the station to your presence.
   components:
   - type: Sprite
@@ -855,38 +855,16 @@
     radius: 1.5
     energy: 4.0
     color: "#f71713"
-  #FarHorizonsStart
-  - type: DepartmentalAnnouncement
-    titleAlt: comms-console-announcement-title-nukie-alt
-  - type: Lock
-    unlockOnClick: false
-  - type: ItemSlotsLock
-    slots:
-    - key_slot
-  - type: ItemSlots
-    slots:
-      key_slot:
-        name: key-slot
-        insertSuccessPopup: communication-channels-updated
-        whitelist:
-          requireAll: true
-          components:
-          - EncryptionKey
-          - Item
-  - type: ContainerFill
-    containers:
-      key_slot:
-      - EncryptionKeySyndie
   - type: ContainerContainer
     containers:
-      key_slot: !type:ContainerSlot
       board: !type:Container
-  #FarHorizonsEnd
+      pai_slot: !type:ContainerSlot #FH
 
 - type: entity
   parent: ComputerComms
   id: WizardComputerComms
   name: Wizard Communications Computer #Far Horizons - The Great Capitalization Crusade
+  suffix: Wizard #FH
   description: A computer capable of magically projecting your speech to the station. Using this to make an announcement will alert the station to your presence.
   components:
   - type: Sprite
@@ -916,38 +894,16 @@
     radius: 1.5
     energy: 4.0
     color: "#F317F3"
-  #FarHorizonsStart
-  - type: DepartmentalAnnouncement
-    titleAlt: comms-console-announcement-title-wizard-alt
-  - type: Lock
-    unlockOnClick: false
-  - type: ItemSlotsLock
-    slots:
-    - key_slot
-  - type: ItemSlots
-    slots:
-      key_slot:
-        name: key-slot
-        insertSuccessPopup: communication-channels-updated
-        whitelist:
-          requireAll: true
-          components:
-          - EncryptionKey
-          - Item
-  - type: ContainerFill
-    containers:
-      key_slot:
-      - EncryptionKeyCommon
   - type: ContainerContainer
     containers:
-      key_slot: !type:ContainerSlot
       board: !type:Container
-  #FarHorizonsEnd
+      pai_slot: !type:ContainerSlot #FH
 
 - type: entity
   parent: ComputerComms
   id: CentcommComputerComms
   name: Central Command Communications Computer #Far Horizons - The Great Capitalization Crusade
+  suffix: NT #FH
   description: A computer used to make world wide announcements via keyboard. The superior cousin of the regular communications computer.
   components:
   - type: Sprite
@@ -975,38 +931,16 @@
     radius: 1.5
     energy: 4.0
     color: "#00FF00"
-  #FarHorizonsStart
-  - type: DepartmentalAnnouncement
-    titleAlt: comms-console-announcement-title-centcom-alt
-  - type: Lock
-    unlockOnClick: false
-  - type: ItemSlotsLock
-    slots:
-    - key_slot
-  - type: ItemSlots
-    slots:
-      key_slot:
-        name: key-slot
-        insertSuccessPopup: communication-channels-updated
-        whitelist:
-          requireAll: true
-          components:
-          - EncryptionKey
-          - Item
-  - type: ContainerFill
-    containers:
-      key_slot:
-      - EncryptionKeyStationMaster
   - type: ContainerContainer
     containers:
-      key_slot: !type:ContainerSlot
       board: !type:Container
-  #FarHorizonsEnd
+      pai_slot: !type:ContainerSlot #FH
 
 - type: entity
   parent: BaseComputerAiAccess
   id: ComputerSolarControl
   name: Solar Control Computer #Far Horizons - The Great Capitalization Crusade
+  suffix: NT #FH
   description: A controller for solar panel arrays.
   components:
   - type: Sprite
@@ -1127,12 +1061,14 @@
   - type: GuideHelp
     guides:
     - Cargo
+  - type: CredstickDirectTransferTarget # Far Horizons
 
 # Request console variants.
 - type: entity
   id: ComputerCargoOrdersEngineering
   parent: ComputerCargoOrders
   name: Engineering Request Computer #Far Horizons - The Great Capitalization Crusade
+  suffix: NT #FH
   description: Used by the engineering department to order supplies.
   components:
   - type: Sprite
@@ -1166,6 +1102,7 @@
   id: ComputerCargoOrdersMedical
   parent: ComputerCargoOrders
   name: Medical Request Computer #Far Horizons - The Great Capitalization Crusade
+  suffix: NT #FH
   description: Used by the medical department to order supplies.
   components:
   - type: Sprite
@@ -1200,6 +1137,7 @@
   parent: ComputerCargoOrders
   name: Science Request Computer #Far Horizons - The Great Capitalization Crusade
   description: Used by the science department to order supplies.
+  suffix: NT #FH
   components:
   - type: Sprite
     sprite: _FarHorizons/Structures/Machines/Computers/scirequest.rsi #Far Horizons
@@ -1233,6 +1171,7 @@
   id: ComputerCargoOrdersSecurity
   parent: ComputerCargoOrders
   name: Security Request Computer #Far Horizons - The Great Capitalization Crusade
+  suffix: NT #FH
   description: Used by the security department to order supplies.
   components:
   - type: Sprite
@@ -1267,6 +1206,7 @@
   parent: ComputerCargoOrders
   name: Service Request Computer #Far Horizons - The Great Capitalization Crusade
   description: Used by the service department to order supplies.
+  suffix: NT #FH
   components:
   - type: Sprite
     layers:
@@ -1339,6 +1279,7 @@
   parent: BaseComputerAiAccess
   id: ComputerFundingAllocation
   name: Funding Allocation Computer #Far Horizons - The Great Capitalization Crusade
+  suffix: NT #FH
   description: Terminal for controlling the distribution of funds and pay to departments.
   components:
   - type: Sprite
@@ -1376,6 +1317,7 @@
   parent: BaseComputerAiAccess
   id: ComputerCloningConsole
   name: Cloning Console Computer #Far Horizons - The Great Capitalization Crusade
+  suffix: NT #FH
   description: The centerpiece of the cloning system, medicine's greatest accomplishment. It has lots of ports and wires.
   components:
   - type: CloningConsole
@@ -1417,8 +1359,9 @@
     speechVerb: Robotic
     speechSounds: Pai
   - type: Damageable
-    damageContainer: StructuralInorganic
     damageModifierSet: StructuralMetallicStrong
+  - type: Injurable
+    damageContainer: StructuralInorganic
   - type: GuideHelp
     guides:
     - Cloning
@@ -1487,10 +1430,6 @@
           computerLayerKeys:
             True: { visible: true, shader: unshaded }
             False: { visible: true }
-        enum.WiresVisuals.MaintenancePanelState:
-          enum.WiresVisualLayers.MaintenancePanel:
-            True: { visible: false }
-            False: { visible: true }
         # Starlight Start
         enum.EdgeConnectionVisuals.ConnectionMask:
           computerLayerBody:
@@ -1527,6 +1466,7 @@
   parent: BaseComputer
   id: ComputerSurveillanceCameraMonitor
   name: Camera Monitor #Far Horizons - The Great Capitalization Crusade
+  suffix: NT #FH
   description: A surveillance camera monitor. You're watching them. Maybe.
   components:
   - type: Sprite
@@ -1566,6 +1506,7 @@
   parent: BaseComputer
   id: ComputerSurveillanceWirelessCameraMonitor
   name: Wireless Camera Monitor #Far Horizons - The Great Capitalization Crusade
+  suffix: NT #FH
   description: A wireless surveillance camera monitor. You're watching them. Maybe.
   components:
   - type: Sprite
@@ -1746,6 +1687,7 @@
   parent: BaseComputerAiAccess
   id: ComputerRoboticsControl
   name: Robotics Control Console #Far Horizons - The Great Capitalization Crusade
+  suffix: NT #FH
   description: Used to remotely monitor, disable, and destroy the station's cyborgs. #FH
   components:
   - type: Sprite
@@ -1866,8 +1808,8 @@
   - type: Lock
     unlockOnClick: false
   - type: SiliconLawUpdater
-    components:
-    - type: StationAiHeld
+#    components: Changed to core linking
+#    - type: StationAiHeld
   - type: ItemSlotsLock
     slots:
     - circuit_holder
@@ -1886,6 +1828,14 @@
     containers:
       circuit_holder: !type:ContainerSlot
       board: !type:Container
+# Starlight-start: Link console to core
+  - type: DeviceList
+  - type: DeviceNetwork
+    deviceNetId: Wired
+  - type: DeviceLinkSink
+    ports:
+      - AiLawConsoleReceiver
+# Starlight-end
 
 - type: entity
   id: StationAiFixerComputer
@@ -1929,10 +1879,6 @@
           Occupied: { state: ai-fixer-full }
           Rebooting: { state: ai-fixer-404 }
           Dead: { state: ai-fixer-404 }
-      enum.WiresVisuals.MaintenancePanelState:
-        enum.WiresVisualLayers.MaintenancePanel:
-          True: { visible: false }
-          False: { visible: true }
       # Starlight Start
       enum.EdgeConnectionVisuals.ConnectionMask:
         computerLayerBody:

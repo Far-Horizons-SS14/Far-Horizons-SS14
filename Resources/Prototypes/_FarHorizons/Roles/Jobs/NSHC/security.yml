@@ -1,0 +1,40 @@
+- type: job
+  id: HC-GWSOfficial
+  name: job-name-hc-gws-official
+  description: job-description-hc-gws-official
+  playTimeTracker: JobHC-GWSOfficial
+  setPreference: false
+  startingGear: HC-GWSGear
+  icon: "JobIconCentComm"
+  supervisors: job-supervisors-nshc
+  canBeAntag: false
+  accessGroups:
+  - AllAccessNS
+  access:
+  - NSHighCommand
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplantNS, DeathRattleImplantNSHC ]
+
+- type: startingGear
+  id: HC-GWSGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitCentcomOfficer
+    shoes: ClothingShoesBootsCombatFilled
+    head: ClothingHeadHatCentcomcap
+    mask: ClothingMaskGasCentcom
+    eyes: ClothingEyesGlassesCentComm
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterArmorCentcommCarapace
+    back: ClothingBackpackNTNC
+    id: CSDOfficialPDA
+    ears: ClothingHeadsetAltCentCom
+    rig: ClothingBeltNTNCRig
+    belt: ClothingBeltNTNCFilled
+    suitstorage: WeaponSubMachineGunWt550
+    pocket1: MagazinePistolSubMachineGunTopMounted
+    suitstorage2: NitrogenTankFilled
+  storage:
+    autoImplant:
+      - MindShieldImplanterNS
+      - DeathRattleImplanterNSHC

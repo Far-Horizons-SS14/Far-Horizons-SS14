@@ -1,13 +1,13 @@
 - type: markingsGroup
   parent: Undergarments
   id: Moth
-  onlyGroupWhitelisted: true
   limits:
     enum.HumanoidVisualLayers.Hair:
-      limit: 0
+      limit: 1
       required: false
     enum.HumanoidVisualLayers.FacialHair:
-      limit: 0
+      limit: 1
+      onlyGroupWhitelisted: true
       required: false
     enum.HumanoidVisualLayers.Tail:
       limit: 1
@@ -51,6 +51,7 @@
 - type: entity
   parent: BaseSpeciesAppearance
   id: AppearanceMoth
+  categories: [ HideSpawnMenu ]
   name: moth appearance
   components:
   - type: Inventory
@@ -134,6 +135,7 @@
 
 - type: entity
   parent:
+  - ActiveCritBase # FH
   - AppearanceMoth
   - BaseSpeciesMobOrganic
   - BaseSpeciesPickupableLarge #FH
@@ -163,11 +165,15 @@
     allowedEmotes: ['Chitter', 'Squeak', 'Flap'] # Starlight: Add wing flap
   - type: TypingIndicator
     proto: moth
+  - type: CreamPied
+    sprite:
+      sprite: Effects/creampie.rsi
+      state: creampie_moth
   - type: Bloodstream
     bloodReferenceSolution:
       reagents:
       - ReagentId: InsectBlood
-        Quantity: 300
+        Quantity: 600
   - type: DamageVisuals
     damageOverlayGroups:
       Brute:
@@ -215,9 +221,16 @@
       - DoorBumpOpener
       - AnomalyHost
       - Moth
-  - type: VisionOrganRequiredForVision # Far Horizons
-  - type: LimbDamageable # Far Horizons
+  # Far Horizons start
+  - type: VisionOrganRequiredForVision
+  - type: LimbDamageable
     proto: LimbTargetMoth
+  - type: FluidFootprintSpreader
+    footprint: Insect
+    footprintSize: 0.75
+    stepSpacing: 0.2
+    lateralOffset: 0.1
+  # Far Horizons end
 
 - type: entity
   parent: OrganBase
@@ -346,6 +359,10 @@
 - type: entity
   parent: [ OrganBaseHeart, OrganMothInternal, OrganAnimalMetabolizer ]
   id: OrganMothHeart
+  components: #FH start
+  - type: Metabolizer
+    maxReagents: 2
+    metabolizerTypes: [ Moth ] #FH end
 
 - type: entity
   parent: [ OrganBaseStomach, OrganMothInternal, OrganMothMetabolizer ]

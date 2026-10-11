@@ -3,7 +3,7 @@ using Content.Shared.Clothing;
 
 namespace Content.Server.Speech.EntitySystems;
 
-public sealed class AddAccentClothingSystem : EntitySystem
+public sealed partial class AddAccentClothingSystem : EntitySystem
 {
     public override void Initialize()
     {

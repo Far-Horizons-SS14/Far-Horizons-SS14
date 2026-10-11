@@ -1,0 +1,200 @@
+- type: roleLoadout
+  id: JobRoboticist
+  groups:
+  - RoboticistHead
+  - RoboticistGoggles
+  - RoboticistJumpsuit
+  - RoboticistGloves
+  - RoboticistOuterClothing
+  - RoboticistBackpack
+  - RoboticistShoes
+  - SurvivalResearch #FH
+  - Trinkets
+  - Scarves
+  - Pens
+  - CivilianWeaponsNT # FH
+  - Credsticks # Far Horizons
+
+- type: roleLoadout
+  id: JobMagistrate
+  groups:
+  - CommonBackpack
+  - MagistrateHead #Far Horizons
+  - MagistrateEyewear #Far Horizons
+  - MagistrateNeck
+  - MagistrateUniform
+  - MagistrateOuterClothing #Far Horizons
+  - MagistrateShoes
+  - SurvivalStationManagement #FH
+  - Trinkets
+  - Scarves
+  - LuxuryPens
+  - CivilianWeaponsFactionless # FH
+  - Credsticks # Far Horizons
+
+- type: roleLoadout
+  id: JobSurgeon
+  groups:
+  - SurgeonHead #FH
+  - MedicalMask
+  - SurgeonJumpsuit #FH
+  - MedicalGloves
+  - SurgeonBackpack #FH
+  - SurgeonOuterClothing #FH
+  - SurgeonShoes #FH
+  - SurgeonPDA #FH
+  - MedicalEyewear
+  - SurvivalMedical
+  - Trinkets
+  - Scarves
+  - SurgeonEquipmentGroup #FH
+  - Pens
+  - CivilianWeaponsNT # FH
+  - Credsticks # Far Horizons
+
+- type: roleLoadout
+  id: JobNanoTrasenRepresentative
+  groups:
+  - NanoTrasenRepresentativeHead
+  - NanoTrasenRepresentativeJumpsuit
+  - NanoTrasenRepresentativeEyewear
+  - NTRBackpack #FH
+  - NanotrasenRepresentativeShoes
+  - Trinkets
+  - Scarves
+  - NTRPens
+  - SurvivalStationManagement #FH
+  - CivilianWeaponsNT # FH
+  - Credsticks # Far Horizons
+
+- type: roleLoadout
+  id: JobIAA
+  groups:
+  - IAAEyewear #Far Horizons
+  - LawyerNeck
+  - LawyerJumpsuit
+  - CommonBackpack
+  - LawyerShoes
+  - Trinkets
+  - Scarves
+  - LuxuryPens
+  - SurvivalStationManagement #FH
+  - CivilianWeaponsFactionless # FH
+  - Credsticks # Far Horizons
+
+- type: roleLoadout
+  id: JobBlueShield
+  groups:
+  - BlueShieldHead
+  - BlueShieldJumpsuit
+  - BlueShieldBackpack
+  - BlueShieldOuterclothing
+  - BlueShieldShoes
+  - BlueShieldPDA #FH
+  - BlueShieldNeck
+  - BlueShieldEyewear
+  - Trinkets
+  - Scarves
+  - Pens
+  - SurvivalSecurity
+  - Credsticks # Far Horizons
+
+- type: roleLoadout
+  id: JobMiningSpecialist
+  groups:
+  - MiningSpecialistBackpack # Far Horizons
+  - MiningSpecialistHead
+  #- SalvageSpecialistBackpack #Far Horizons
+  - MiningSpecialistJumpsuit
+  - SalvageSpecialistOuterClothing
+  - MiningSpecialistBelt #Far Horizons
+  - SalvageSpecialistShoes
+  - MiningSpecialistPDA
+  - Glasses
+  - SurvivalCargo #FH
+  - Trinkets
+  - Scarves
+  - Pens
+  - CivilianWeaponsFactionless # FH
+  - Credsticks # Far Horizons
+
+- type: roleLoadout
+  id: JobMailTech
+  groups:
+  - CargoTechnicianHead
+  - CargoTechnicianJumpsuit
+  - CargoTechnicianBackpack
+  - CargoTechnicianOuterClothing
+  - CargoTechnicianShoes
+  - Glasses
+  - SurvivalCargo #FH
+  - Trinkets
+  - Scarves
+  - Pens
+  - CivilianWeaponsFactionless # FH
+  - Credsticks # Far Horizons
+
+- type: roleLoadout
+  id: JobBrigmedic
+  groups:
+    - BrigmedicHead
+    - BrigmedicMask
+    - BrigmedicJumpsuit
+    - BrigmedicTie
+    - BrigmedicBackpack
+    - BrigmedicOuterClothing
+    - BrigmedicBelt
+    - BrigmedicGloves
+    - BrigmedicEyewear
+    - BrigmedicPDA
+    - BrigmedicBeaker
+    - SecurityShoes
+    - SecurityNonLethalWeapon
+    - SecurityLongarm #FH
+    - BrigmedicSidearm # FarHorizons
+    - SurvivalSecurity
+    - Trinkets
+    - Scarves
+    - Pens
+    - SecurityJobTrinkets #FH
+    - Credsticks # Far Horizons
+
+- type: roleLoadout
+  id: JobSalvageLead
+  groups:
+    - SalvageLeadHead #Far Horizons
+    - SalvageSpecialistBackpack
+    - SalvageLeadJumpsuit
+    - SalvageLeadNeck
+    - SalvageSpecialistOuterClothing
+    - SalvageSpecialistShoes
+    - SalvageLeadPDA
+    - Glasses
+    - SurvivalCargo #FH
+    - Trinkets
+    - Scarves # FH
+    - CivilianWeaponsFactionless # FH
+    - Credsticks # Far Horizons
+
+# Antagonist Loadouts
+- type: roleLoadout
+  id: AntagXenoborg
+  nameDataset: NamesXenoborg
+  canCustomizeName: true
+  groups:
+  - SiliconBrainType
+
+- type: roleLoadout
+  id: AntagMothership
+  nameDataset: NamesXenoborg
+  canCustomizeName: true
+
+# FH - remove brighteye
+# - type: roleLoadout
+#   id: AntagBrighteye
+#   groups:
+#   - BrighteyeJumpsuit
+#   - BrighteyeNeck
+#   - BrighteyeShoes
+#   - BrighteyeGloves
+#   - Scarves

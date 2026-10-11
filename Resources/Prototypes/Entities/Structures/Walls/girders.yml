@@ -28,8 +28,9 @@
     sprite: Structures/Walls/solid.rsi
     state: wall_girder
   - type: Damageable
-    damageContainer: StructuralInorganic
     damageModifierSet: StructuralMetallic
+  - type: Injurable
+    damageContainer: StructuralInorganic
   - type: Destructible
     thresholds:
     - trigger:
@@ -54,6 +55,7 @@
           collection: MetalBreak
   - type: StaticPrice
     price: 30
+  - type: LineOfSightExclude # Far Horizons
 
 - type: entity
   id: ReinforcedGirder

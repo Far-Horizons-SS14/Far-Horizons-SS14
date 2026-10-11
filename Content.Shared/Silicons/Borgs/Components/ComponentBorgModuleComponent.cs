@@ -19,4 +19,14 @@ public sealed partial class ComponentBorgModuleComponent : Component
     /// </summary>
     [DataField(required: true)]
     public ComponentRegistry Components = new();
+
+    //FarHorizons Start
+
+    /// <summary>
+    /// What components should be granted once this module is uninstalled into a borg chassis.
+    /// </summary>
+    [DataField]
+    public ComponentRegistry uninstallComponents = new();
+
+    //FarHorizons End
 }

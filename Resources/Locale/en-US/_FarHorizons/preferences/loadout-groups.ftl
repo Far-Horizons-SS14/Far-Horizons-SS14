@@ -56,3 +56,13 @@ loadout-group-survival = Survival Case
 loadout-group-engineering-foreman-backpacks = Foreman Backpacks
 loadout-group-engineering-neosol-backpacks = Engineer Backpacks
 loadout-group-atmos-neosol-backpacks = Atmospherics Backpacks
+
+loadout-group-cargo-technician-hands = Cargo Technician Hands
+
+loadout-group-janitor-mask = Janitor Mask
+
+loadout-group-civilian-weapons = Civilian Weapons
+
+loadout-group-credsticks = Credstick
+
+loadout-group-security-longarm = SoP Compliant Longarm

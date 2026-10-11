@@ -1,0 +1,81 @@
+- type: gameMap
+  id: FHCore
+  mapName: 'Core'
+  mapPath: /Maps/_FarHorizons/Stations/NeoSol/Core.yml
+  minPlayers: 0 #default is 35. since it's the only map, we want something to be shown in voting
+  maxPlayers: 80
+  faction: FactionSyndicate
+  stations:
+    StarlightCore:
+      stationProto: StandardNeosolStation
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: '{0} Core {1}'
+          nameGenerator:
+            !type:NeosolNameGenerator
+            prefixCreator: '14'
+        - type: StationEmergencyShuttle
+          emergencyShuttlePath: /Maps/_FarHorizons/Shuttles/FH_Emergency_Rod.yml
+        - type: StationCargoShuttle
+          path: /Maps/_FarHorizons/Shuttles/KillerTamashi-Cargo-Shuttle.yml
+        - type: StationArrivals
+          shuttlePath: /Maps/_FarHorizons/Shuttles/arrivals-neosol.yml
+        - type: StationJobs
+          availableJobs:
+            #service
+            Bartender: [ 2, 2 ]
+            Botanist: [ 2, 2]
+            Chef: [ 1, 1 ]
+            Janitor: [ 2, 2 ]
+            Captain: [ 1, 1 ]
+            HeadOfPersonnel: [ 1, 1 ]
+            Chaplain: [ 1, 1 ]
+            Librarian: [ 1, 1 ]
+            ServiceWorker: [ 3, 3 ]
+            #engineering
+            ChiefEngineer: [ 1, 1 ]
+            StationEngineer: [ 4, 4 ]
+            AtmosphericTechnician: [ 2, 2 ]
+            TechnicalAssistant: [ 2, 2 ]
+            #medical
+            ChiefMedicalOfficer: [ 1, 1 ]
+            MedicalDoctor: [ 3, 4 ]
+            Chemist: [ 2, 2 ]
+            MedicalIntern: [ 3, 3 ]
+            Paramedic: [ 1, 2 ]
+            #science
+            ResearchDirector: [ 1, 1 ]
+            Scientist: [ 3, 3 ]
+            ResearchAssistant: [ 2, 2 ]
+            Roboticist: [ 2, 2 ]
+            #security
+            HeadOfSecurity: [ 1, 1 ]
+            SecurityOfficer: [ 3, 3 ]
+            Warden: [ 1, 1 ]
+            SecurityCadet: [ 2, 2 ]
+            Detective: [ 1, 1 ]
+            Brigmedic: [ 1, 1 ]
+            Corpsman: [ 1, 1]
+            SecBorg: [ 1, 1]
+            #supply
+            CargoTechnician: [ 3, 3 ]
+            Quartermaster: [ 1, 1 ]
+            SalvageSpecialist: [ 2, 2 ]
+            MiningSpecialist: [ 2, 2 ]
+            SalvageLead: [ 1, 1 ]
+            #civilian
+            Assistant: [ -1, -1 ]
+            Clown: [ 1, 1 ]
+            Mime: [ 1, 1 ]
+            Musician: [ 1, 1 ]
+            Boxer: [ 2, 2 ]
+            Reporter: [ 2, 2 ]
+            # silicon
+            StationAi: [ 1, 1 ]
+            Borg: [ 2, 2 ]
+            #law
+            Magistrate: [ 1, 1 ]
+            IAA: [ 2, 2 ]
+            #Representives
+            BlueShield: [ 1, 1 ]
+            NanoTrasenRepresentative: [ 1, 1 ]

@@ -1,3 +1,4 @@
+# FH gear
 uplink-M81A1-fissure-crate-teleporter-name = M81A1 "Fissure" Bundle
 uplink-M81A1-fissure-crate-teleporter-desc = For when you need extra BOOM in your operations, comes included with a M81 rocket loader chest rig that is equipped with seven 120mm rockets. "This is guranteed to blow up in your face... gorlex approved!" - Random Lone Operative 
 
@@ -19,20 +20,63 @@ uplink-syndicate-secway-description = Outspeed security on this BLISTERINGLY fas
 uplink-syndicate-secway-armored-light-name = Lightly Armored Segway
 uplink-syndicate-secway-armored-light-description = Outspeed security on this BLISTERINGLY fast one horsepower segway! Now with the same protection as Type I vest.
 
-uplink-lecter-type-w-name = Lecter Type-W Bundle
-uplink-lecter-type-w-description = A simple wooden lecter with a short barrel and stock to enable ease of handling. Also comes with an underbarrel chainsaw and two 5.56 SP & FMJ mags, as well as a box.
+uplink-lecter-type-w-name = Lecter Type-W Case
+uplink-lecter-type-w-description = A simple wooden lecter with a short barrel and stock to enable ease of handling, pre-loaded with SP. Also comes with an underbarrel chainsaw and an Ammo Selector.
 
-uplink-deagle-name = Jungle Hawk Bundle
-uplink-deagle-desc = A robust magnum handgun. Comes with two SP magazines and an ammo box.
+uplink-deagle-name = Jungle Hawk Case
+uplink-deagle-desc = A robust .44 magnum handgun pre-loaded with SP. Comes with an Ammo Selector.
 
-uplink-stechkin-name = Stechkin Pistol Bundle
-uplink-stechkin-desc = A small, easily concealable 10mm handgun. Comes with two SP magazines and an ammo box.
+uplink-stechkin-name = Stechkin Pistol Case
+uplink-stechkin-desc = A small, easily concealable .38 Special Handgun. Comes pre-loaded with FMJ and an Ammo Selector.
 
-uplink-revolver-python-name-fh = Python Bundle
-uplink-revolver-python-desc-fh = A brutally simple, effective and loud Syndicate revolver. Comes loaded with Armor-Piercing rounds, two AP speedloaders and an ammo box.
+uplink-revolver-python-name-fh = Python Case
+uplink-revolver-python-desc-fh = Comes pre-loaded with AP .44 Magnum rounds and an Ammo Selector. Additional AP rounds not included.
 
-uplink-pistol-viper-name-fh = Viper Bundle
-uplink-pistol-viper-desc-fh = A small, easily concealable but somewhat underpowered gun. Retrofitted with a fully automatic receiver. Uses pistol magazines (9mm)
+uplink-revolver-python-name-fh-ap = AP Python Case
+uplink-revolver-python-desc-fh-ap = A brutally simple, effective and loud Syndicate revolver. Comes pre-loaded with Armor-Piercing rounds, two AP speedloaders and an ammo box.
 
-uplink-pistol-cobra-name-fh = Cobra Bundle
-uplink-pistol-cobra-desc-fh = A rugged, robust operator handgun with inbuilt silencer. Uses pistol magazines (.25 caseless)
+uplink-pistol-viper-name-fh = Viper Case
+uplink-pistol-viper-desc-fh = A small, easily concealable but somewhat underpowered gun pre-loaded with SP. Retrofitted with a fully automatic receiver, uses pistol magazines (9mm). Comes with an Ammo Selector.
+
+uplink-pistol-cobra-name-fh = Cobra Case
+uplink-pistol-cobra-desc-fh = A rugged, robust operator handgun with inbuilt silencer. Uses pistol magazines (.25 caseless). Comes with three spare magazines and an ammo box.
+
+uplink-lmg-l6-name-fh = L6 SAW Crate
+uplink-lmg-l6-desc-fh = The iconic L6 light machine gun loaded with 7.62 SP, for operators not intending on completing their task through subterfuge. Comes with five light machine gun magazines and an 7.62 ammo canister.
+
+uplink-smg-c20r-name-fh = C-20r Case
+uplink-smg-c20r-desc-fh = Old Faithful: The classic C-20r submachine gun loaded with 9mm SP, comes with an Ammo Selector.
+
+uplink-rifle-estoc-name-fh = Estoc DMR Case
+uplink-rifle-estoc-desc-fh = A designated marksman rifle, fitted with decent optics allowing for longer ranged combat. Comes loaded with 5.56 SP and an Ammo Selector.
+
+uplink-uzi-bundle-name = Type U3 Uzi Case
+uplink-uzi-bundle-desc = Contains the Type U3 Uzi loaded with 9mm SP and an Ammo Selector.
+
+uplink-ammo-bundle-name-fh = Ammo Bundle Selector
+uplink-ammo-bundle-desc-fh = Reloading! Contains 4-5 magazines and one canister each of your choice for all nuclear operative weapons, except for the China-Lake and M81A1
+
+uplink-nightvision-eyes-desc-fh = Allows you to see in the dark but makes you more vulnerable to flashes. 
+uplink-thermalvision-eyes-desc-fh = Allows you to see in the dark and detect creatures through walls but makes you more vulnerable to flashes. 
+uplink-mantis-blade-arms-desc-fh = Originally used as a simple construction tool, now turned into hidden blades that can extend from your arm while still keeping its destructive prying skill. Truly a sight to behold. 
+uplink-advanced-claws-desc-fh = A cybernetic implant for hands. Allows an agent to extend sharp plasteel claws at will, and hide them away just as quickly. 
+uplink-forensics-implant-desc-fh = A cybernetic implant for hands. Removes an agent's fingerprints so as to not leave evidence of a crime. Does not work through gloves. 
+uplink-agent-implant-name = Agent Eye Implant
+uplink-agent-implant-desc = A cybernetic eye implant. Enables an agent to see information about the station crew, humanoids and other insurgents without any glasses. 
+
+uplink-bulldog-bundle-desc-fh = Lean and mean: Contains the popular Bulldog Shotgun and an Ammo Selector.
+uplink-minotaur-desc-fh = Lean and mean: Contains smooth, powerful, highly illegal Shotgun and an Ammo Selector.
+
+uplink-forensics-implant-name = Forensics Implant
+
+uplink-hypo-claws-name = Hypo Claws Implant 
+uplink-hypo-claws-desc = Sharp, retractable plasteel claws, with hypo injector technology to inject chems into victims. Can be retracted and hidden on demand.
+uplink-bunker-breaker-arm-name = Bunker Breaker Arm
+uplink-bunker-breaker-desc = Augmented arm with all the tools needed to go where you dont belong, including a jaws of death.
+uplink-ifa30-arm-name = IFA-30 Case
+uplink-ifa30-arms-desc = A modern IFA-30 SMG for mobile operations integrated into a Cybernetic Arm, comes with an Ammo Selector.
+
+uplink-knives-kit-name-fh = Throwing Knives Kit
+uplink-knives-kit-desc-fh = A set of 8 throwing knives, perfect for embedding into the body of your victims. Capable of ignoring armor entirely when thrown.
+
+uplink-hushpup-desc-fh = A powerful silenced shotgun with a low magazine capacity. Uses 12 gauge shotgun ammo. Comes with an Ammo Selector.

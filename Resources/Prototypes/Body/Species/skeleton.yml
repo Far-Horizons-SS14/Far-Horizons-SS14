@@ -42,6 +42,7 @@
 - type: entity
   parent: BaseSpeciesAppearance
   id: AppearanceSkeletonPerson
+  categories: [ HideSpawnMenu ]
   name: skeletonperson appearance
   components:
   - type: Inventory
@@ -68,14 +69,16 @@
 
 - type: entity
   parent:
+  - ActiveCritBase # FH
   - AppearanceSkeletonPerson
   - BaseSpeciesMob
   id: MobSkeletonPerson
   name: Urist McBones
   components:
   - type: Damageable
-    damageContainer: BiologicalMetaphysical
     damageModifierSet: Skeleton
+  - type: Injurable
+    damageContainer: BiologicalMetaphysical
   - type: DamageVisuals
     damageOverlayGroups:
       Brute:
@@ -86,7 +89,7 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      100: Critical
+      100: ActiveCritical # FH
       150: Dead
   - type: TransferMindOnGib
   - type: Destructible

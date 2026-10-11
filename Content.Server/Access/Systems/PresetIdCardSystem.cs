@@ -10,13 +10,13 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server.Access.Systems;
 
-public sealed class PresetIdCardSystem : EntitySystem
+public sealed partial class PresetIdCardSystem : EntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly IdCardSystem _cardSystem = default!;
-    [Dependency] private readonly SharedAccessSystem _accessSystem = default!;
-    [Dependency] private readonly StationSystem _stationSystem = default!;
-    [Dependency] private readonly IServerFactionManager _factions = default!; // Far Horizons
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IdCardSystem _cardSystem = default!;
+    [Dependency] private SharedAccessSystem _accessSystem = default!;
+    [Dependency] private StationSystem _stationSystem = default!;
+    [Dependency] private IServerFactionManager _factions = default!; // Far Horizons
     public override void Initialize()
     {
         SubscribeLocalEvent<PresetIdCardComponent, MapInitEvent>(OnMapInit);
@@ -78,17 +78,23 @@ public sealed class PresetIdCardSystem : EntitySystem
             return;
         }
 
-        _accessSystem.SetAccessToJob(uid, job, extended);
+        var faction = id.Faction != null ? id.Faction : _factions.DecideFactionForJob(job); //FarHorizons Faction Stuff
+        _accessSystem.SetAccessToJob(uid, job, faction, extended); //FarHorizons
 
         // FarHorizons - custom job titles and factions name override
-        var jobName = _factions.OverrideLocalizedJobName((_factions.DecideFactionForJob(job), job));
+        var jobName = _factions.OverrideLocalizedJobName((faction, job));
         if (id.CustomJobTitle != null)
             jobName = id.CustomJobTitle;
         _cardSystem.TryChangeJobTitle(uid, jobName);
         _cardSystem.TryChangeJobDepartment(uid, job);
 
-        // Far Horizons faction job icon override
-        if (_prototypeManager.Resolve(_factions.OverrideJobIcon((_factions.DecideFactionForJob(job), job)), out var jobIcon))
+        // Far Horizons start
+        // Faction job icon override
+        if (_prototypeManager.Resolve(_factions.OverrideJobIcon((faction, job)), out var jobIcon))
             _cardSystem.TryChangeJobIcon(uid, jobIcon);
+        
+        // SetFaction
+        _cardSystem.TryChangeFaction(uid, id.Faction);
+        // Far Horizons end
     }
 }

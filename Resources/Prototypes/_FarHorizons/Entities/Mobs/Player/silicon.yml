@@ -1,17 +1,87 @@
+#AI
+- type: entity
+  id: StationAiBrainSyndicate
+  parent: StationAiBrain
+  suffix: NeoSol
+  components:
+  - type: Access
+    groups:
+    - AllAccessNS
+    - SiliconNS
+
 # Borgs
 - type: entity
-  id: PlayerSecBorgBattery
-  parent: BorgChassisSecurity
+  id: PlayerSecBorgChassis
+  parent: BorgChassisSecuritySelectable
   suffix: Battery
   components:
   - type: ContainerFill
     containers:
       borg_brain:
       - PositronicBrain
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellMedium
+  - type: StartingMindRole
+    mindRole: "MindRoleSiliconBrain"
+    silent: true
+
+# NTNC
+- type: entity
+  id: PlayerBorgHAWBattery
+  parent: NTNCBorgChassisHAW
+  suffix: Battery, module
+  components:
+  - type: ContainerFill
+    containers:
+      borg_brain:
+        - PositronicBrain
       borg_module:
-      - BorgModuleTool
-      - BorgModuleBaton
-      - BorgModuleDominator
+        - BorgModuleAdvancedTool
+        - CentcommAccessBreakerModule
+        - CentcommLaserModule
+        - CentcommBulwarkModule
+        - CentcommModuleSpaceMovement
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellMicroreactor
+
+- type: entity
+  id: PlayerBorgSOSUBattery
+  parent: NTNCBorgChassisSOSU
+  suffix: Battery, module
+  components:
+  - type: ContainerFill
+    containers:
+      borg_brain:
+        - PositronicBrain
+      borg_module:
+        - BorgModuleAdvancedTool
+        - CentcommAccessBreakerModule
+        - CentcommLaserModule
+        - CentcommModuleChameleonProjector
+        - CentcommModuleCloakDevice
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellMicroreactor
+  - type: GhostTakeoverAvailable
+
+#region ## NeoSol ##
+- type: entity
+  id: PlayerSecBorgBatteryNS
+  parent: BorgChassisSecuritySelectableNS
+  suffix: Battery, Brain, NS
+  components:
+  - type: ContainerFill
+    containers:
+      borg_brain:
+      - PositronicBrain
   - type: ItemSlots
     slots:
       cell_slot:
@@ -22,39 +92,108 @@
     silent: true
 
 - type: entity
-  id: PlayerSecBorgBatterySyndicate
-  parent: PlayerSecBorgBattery
-  suffix: Syndicate
+  id: PlayerSecBorgChassisNS
+  parent: BorgChassisSecuritySelectableNS
+  suffix: Battery, NS
   components:
-    - type: Sprite
-      sprite: Mobs/Silicon/Chassis/synd_sec.rsi
-      layers:
-      - state: borg
-      - state: borg_e
-        map: [ "enum.BorgVisualLayers.Light" ]
-        shader: unshaded
-        visible: false
-      - state: borg_l
-        shader: unshaded
-        map: [ "light" ]
-        visible: false
-    - type: Speech
-      speechSounds: SyndieBorg
-      allowedEmotes:
-      - Laugh
-    - type: Vocal
-      sounds:
-        Unsexed: UnisexSiliconSyndicate
-    - type: BorgChassis
-      maxModules: 6
-      hasMindState: borg_e
-      noMindState: borg
-    - type: PointLight
-      color: "#dd200b"
-      radius: 4
-      energy: 2
+  - type: ContainerFill
+    containers:
+      borg_brain:
+      - PositronicBrain
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellMedium
+  - type: StartingMindRole
+    mindRole: "MindRoleSiliconBrain"
+    silent: true
 
 - type: entity
-  id: PlayerBorgBatterySyndicate
-  parent: PlayerBorgBattery
-  suffix: Syndicate
+  id: PlayerBorgChassisNS
+  parent: BorgChassisSelectableNS
+  suffix: Battery, NS
+  components:
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellMedium
+  - type: StartingMindRole
+    mindRole: "MindRoleSiliconBrain"
+    silent: true
+
+- type: entity
+  id: PlayerBorgBatteryNS
+  parent: BorgChassisSelectableNS
+  suffix: Battery, Brain, NS
+  components:
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellMedium
+  - type: StartingMindRole
+    mindRole: "MindRoleSiliconBrain"
+    silent: true
+
+- type: entity
+  id: StationAiBrainNS
+  parent: StationAiBrain
+  categories: [ HideSpawnMenu, DoNotMap ]
+  suffix: NS
+  components:
+  - type: Access
+    groups:
+    - AllAccessNS
+    - SiliconNS
+
+- type: entity
+  id: PlayerStationAiNS
+  parent: PlayerStationAiEmptyNS
+  suffix: Job spawn, NS
+  components:
+  - type: ContainerSpawnPoint
+    containerId: station_ai_mind_slot
+    job: StationAi
+
+- type: entity
+  id: PlayerStationAiEmptyNS
+  parent: PlayerStationAiEmpty
+  name: AI core
+  description: The latest in Artificial Intelligences.
+  suffix: Empty, NS
+  components:
+  - type: ContainerComp
+    proto: AiHeldNS
+
+- type: entity
+  id: AiHeldNS
+  description: Components added / removed from an entity that gets inserted into an AI core.
+  parent: AiHeld
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Binary
+    - SyndiCommand
+    - SyndiSec
+    - SyndiEngi
+    - SyndiSci
+    - SyndiMed
+    - SyndiService
+    - SyndiCommon
+    - GSL
+    - CFA 
+  - type: ActiveRadio
+    channels:
+    - Binary
+    - SyndiCommand
+    - SyndiSec
+    - SyndiEngi
+    - SyndiSci
+    - SyndiMed
+    - SyndiService
+    - SyndiCommon
+    - GSL
+    - CFA 

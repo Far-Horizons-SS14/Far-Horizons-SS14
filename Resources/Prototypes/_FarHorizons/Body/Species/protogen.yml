@@ -100,6 +100,7 @@
 
 - type: entity
   parent:
+  - ActiveCritBase
   - AppearanceProtogen
   - BaseMobProtogen
   id: MobProtogen
@@ -114,6 +115,11 @@
         - Protogen
         - SiliconEmotesFH
         - TrueProtogen  # because of that
+    - type: FluidFootprintSpreader
+      footprint: Animal
+      footprintSize: 1.0
+      stepSpacing: 0.2
+      lateralOffset: 0.15
 
 # EMP Bases
 
@@ -288,7 +294,12 @@
 - type: entity
   parent: [ OrganBaseTorsoSexed, OrganBaseTorso, OrganProtogenExternal ]
   id: OrganProtogenTorso
-
+  components:
+  - type: VisualOrganMarkings
+    hideableLayers:
+    - enum.HumanoidVisualLayers.BodyCover
+    - enum.HumanoidVisualLayers.BodyCoverCover
+    
 - type: entity
   parent: [ OrganBaseHeadSexed, OrganBaseHead, OrganProtogenExternal ]
   id: OrganProtogenHead
@@ -355,7 +366,7 @@
       6:
         glitchDuration: 5.0
         additionalEffects:
-          StatusEffectBlinded: 2.0
+          StatusEffectBlindness: 2.0
 
 - type: entity
   parent: [ OrganBaseTongue, OrganProtogenInternal ]
@@ -387,11 +398,6 @@
   name: Biological Reactor
   description: "Some call it over-engineered, but it's vital to the function of a protogen. Turns organic matter into organic and electrical energy to power the protogen's cybernetics and flesh."
   components:
-  - type: SolutionContainerManager
-    solutions:
-      food: {}
-      stomach:
-        maxVol: 50
   - type: Stomach
     specialDigestible:
       tags:

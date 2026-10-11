@@ -21,15 +21,15 @@ namespace Content.Server._Starlight.Equipment.EntitySystems;
 /// Handles <see cref="LargeGrabberComponent"/> and all related UI logic
 /// Adapted from <see cref="MechGrabberSystem"/>
 /// </summary>
-public sealed class LargeGrabberSystem : EntitySystem
+public sealed partial class LargeGrabberSystem : EntitySystem
 {
-    [Dependency] private readonly SharedContainerSystem _container = default!;
-    [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
-    [Dependency] private readonly InteractionSystem _interaction = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly TransformSystem _transform = default!;
-    [Dependency] private readonly ItemToggleSystem _itemToggle = default!;
-    [Dependency] private readonly PowerCellSystem _powerCell = default!;
+    [Dependency] private SharedContainerSystem _container = default!;
+    [Dependency] private SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private InteractionSystem _interaction = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private TransformSystem _transform = default!;
+    [Dependency] private ItemToggleSystem _itemToggle = default!;
+    [Dependency] private PowerCellSystem _powerCell = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -124,10 +124,11 @@ public sealed class LargeGrabberSystem : EntitySystem
         if (!component.DropOnContainerChange)
             return;
 
+        if (TerminatingOrDeleted(uid)) return; //Far Horizons
         while (component.ItemContainer.Count > 0)
         {
             var targetCoords = new EntityCoordinates(args.Container.Owner, component.DepositOffset);
-            if (!_interaction.InRangeUnobstructed(args.Container.Owner, targetCoords))
+            if (TerminatingOrDeleted(args.Container.Owner) || !_interaction.InRangeUnobstructed(args.Container.Owner, targetCoords)) //Far Horizons
                 return;
 
             if (component.ItemContainer.ContainedEntities.TryFirstOrNull(out var item) && item.HasValue)

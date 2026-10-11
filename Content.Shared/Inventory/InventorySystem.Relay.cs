@@ -37,6 +37,9 @@ using Content.Shared.Wieldable;
 using Content.Shared.Zombies;
 using Content.Shared._Starlight.ScanGate; // Starlight
 using Content.Shared._Starlight.Body.Events; // Starlight
+using Content.Shared.Interaction; //Far Horizons
+using Content.Shared._FarHorizons.Fluids.Components; // Far Horizons
+using Content.Shared.Clothing; // Far Horizons
 
 namespace Content.Shared.Inventory;
 
@@ -70,6 +73,7 @@ public partial class InventorySystem
         SubscribeLocalEvent<InventoryComponent, BeforeEmoteEvent>(RelayInventoryEvent);
         SubscribeLocalEvent<InventoryComponent, StoodEvent>(RelayInventoryEvent);
         SubscribeLocalEvent<InventoryComponent, DownedEvent>(RelayInventoryEvent);
+        SubscribeLocalEvent<InventoryComponent, ClothingSpeedModifierQueryEvent>(RelayInventoryEvent); //FarHorizons
 
         // by-ref events
         SubscribeLocalEvent<InventoryComponent, RefreshFrictionModifiersEvent>(RefRelayInventoryEvent);
@@ -92,6 +96,8 @@ public partial class InventorySystem
         SubscribeLocalEvent<InventoryComponent, RadiateHeatAttemptEvent>(RefRelayInventoryEvent); // Starlight
         SubscribeLocalEvent<InventoryComponent, PickupableArmorSpeedRelayEvent>(RefRelayInventoryEvent); // Far Horizons
         SubscribeLocalEvent<InventoryComponent, LimbDamageModifyEvent>(RefRelayInventoryEvent); // Far Horizons
+        SubscribeLocalEvent<InventoryComponent, InteractUsingEvent>(RefRelayInventoryEvent); // Far Horizons
+        SubscribeLocalEvent<InventoryComponent, BootFootprintModifyEvent>(RefRelayInventoryEvent); // Far Horizons
 
         // Eye/vision events
         SubscribeLocalEvent<InventoryComponent, CanSeeAttemptEvent>(RelayInventoryEvent);
@@ -103,7 +109,7 @@ public partial class InventorySystem
         SubscribeLocalEvent<InventoryComponent, RefreshEquipmentHudEvent<ShowJobIconsComponent>>(RefRelayInventoryEvent);
         SubscribeLocalEvent<InventoryComponent, RefreshEquipmentHudEvent<ShowHealthBarsComponent>>(RefRelayInventoryEvent);
         SubscribeLocalEvent<InventoryComponent, RefreshEquipmentHudEvent<ShowHealthIconsComponent>>(RefRelayInventoryEvent);
-        SubscribeLocalEvent<InventoryComponent, RefreshEquipmentHudEvent<ShowDiseaseIconsComponent>>(RefRelayInventoryEvent);
+        SubscribeLocalEvent<InventoryComponent, RefreshEquipmentHudEvent<ShowDiseaseIconsComponent>>(RefRelayInventoryEvent); //FH
         SubscribeLocalEvent<InventoryComponent, RefreshEquipmentHudEvent<ShowHungerIconsComponent>>(RefRelayInventoryEvent);
         SubscribeLocalEvent<InventoryComponent, RefreshEquipmentHudEvent<ShowThirstIconsComponent>>(RefRelayInventoryEvent);
         SubscribeLocalEvent<InventoryComponent, RefreshEquipmentHudEvent<ShowMindShieldIconsComponent>>(RefRelayInventoryEvent);
@@ -112,6 +118,7 @@ public partial class InventorySystem
         SubscribeLocalEvent<InventoryComponent, RefreshEquipmentHudEvent<BlackAndWhiteOverlayComponent>>(RefRelayInventoryEvent);
         SubscribeLocalEvent<InventoryComponent, RefreshEquipmentHudEvent<NoirOverlayComponent>>(RefRelayInventoryEvent);
         SubscribeLocalEvent<InventoryComponent, RefreshEquipmentHudEvent<ThermalSightComponent>>(RefRelayInventoryEvent);
+        SubscribeLocalEvent<InventoryComponent, RefreshEquipmentHudEvent<ShowObjectiveIconsComponent>>(RefRelayInventoryEvent); //FH
 
         SubscribeLocalEvent<InventoryComponent, GetVerbsEvent<EquipmentVerb>>(OnGetEquipmentVerbs);
         SubscribeLocalEvent<InventoryComponent, GetVerbsEvent<InnateVerb>>(OnGetInnateVerbs);

@@ -1,0 +1,75 @@
+- type: entity
+  id: COAFilled
+  name: COA Secretary Locker
+  suffix: NS Filled
+  parent: LockerBaseSecure
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: _Starlight/Structures/Storage/closet.rsi
+  - type: EntityStorageVisuals
+    stateBaseClosed: bssecure
+    stateDoorOpen: bssecure_open
+    stateDoorClosed: bssecure_door
+  - type: AccessReader
+    access: [ [ "NSHighCommand" ] ]
+  - type: WiresPanelSecurity
+    securityLevel: medSecurity
+  - type: StorageFill
+    contents:
+    - id: ClothingBackpackSatchelLeather
+    - id: MagazineMagnum
+      amount: 2
+    - id: ClothingEyesHudCommandSyndi
+    - id: MindShieldImplanterNS
+    - id: DeathRattleImplanterNSHC
+    - id: ClothingUniformJumpsuitCaptainSyndi
+    - id: ClothingEyesGlassesCommandSyndi
+    - id: ClothingHandsGlovesHop
+    - id: SHCPDA
+    - id: WeaponPistolN1984
+    - id: ClothingBeltSheathFilledSyndi
+#    - id: ClothingHeadHatCentcomcap
+    - id: ClothingShoesBootsLaceup
+#    - id: ClothingOuterArmorCentcommCarapace
+    - id: ClothingHeadsetNSHC
+#    - id: ClothingMaskGasCentcom
+    - id: PowerCellAntiqueProto
+
+- type: entity
+  id: GWSFilled
+  name: GWS Cadet Locker
+  suffix: NS Filled
+  parent: LockerBaseSecure
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: _Starlight/Structures/Storage/closet.rsi
+  - type: EntityStorageVisuals
+    stateBaseClosed: bssecure
+    stateDoorOpen: bssecure_open
+    stateDoorClosed: bssecure_door
+  - type: AccessReader
+    access: [ [ "NSHighCommand" ] ]
+  - type: WiresPanelSecurity
+    securityLevel: medSecurity
+  - type: StorageFill
+    contents:
+    - id: ClothingBackpackSatchelSyndicateSecurity
+    - id: MagazineMagnum
+      amount: 2
+    - id: ClothingEyesHudCommandSyndi
+    - id: MindShieldImplanterNS
+    - id: DeathRattleImplanterNSHC
+    - id: ClothingUniformJumpsuitCaptainSyndi
+    - id: ClothingEyesGlassesCommandSyndi
+    - id: ClothingHandsGlovesCombat
+    - id: SHCPDA
+    - id: WeaponPistolN1984
+    - id: ClothingBeltSecuritySyndiFilled
+    - id: ClothingHeadHatBeretSecuritySyndi
+    - id: ClothingShoesBootsJackSyndiFilled
+#    - id: ClothingOuterVestWebEliteCentcomm
+    - id: ClothingHeadsetNSHC
+#    - id: ClothingMaskGasCentcom
+    - id: PowerCellAntiqueProto

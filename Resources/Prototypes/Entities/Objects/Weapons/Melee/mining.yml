@@ -107,8 +107,8 @@
   abstract: true
   parent: BaseItem
   id: BaseWeaponCrusher # Crusher? But I...
-  name: crusher
-  description: An early design of the proto-kinetic accelerator.
+  name: Crusher # Far Horizons (Capitalization Crusade Reborn)
+  description: The earliest produced design of the proto-kinetic crusher, it slices and crushes anything that comes between it. # Far Horizons
   components:
   - type: Sharp
   - type: Execution
@@ -126,13 +126,13 @@
     tags:
       - Pickaxe
   - type: Sprite
-    sprite: Objects/Weapons/Melee/crusher.rsi
+    sprite: _FarHorizons/Objects/Weapons/Melee/KineticCrusherVariants/crusher.rsi #Far Horizons
     state: icon
   - type: Item
     size: Ginormous
-    sprite: Objects/Weapons/Melee/crusher-inhands.rsi
+    sprite: _FarHorizons/Objects/Weapons/Melee/KineticCrusherVariants/crusher-inhands.rsi #Far Horizons
   - type: Clothing
-    sprite: Objects/Weapons/Melee/crusher.rsi
+    sprite: _FarHorizons/Objects/Weapons/Melee/KineticCrusherVariants/crusher.rsi #Far Horizons
     quickEquip: false
     slots:
     - Back
@@ -164,17 +164,17 @@
     wideAnimationRotation: -135
     damage:
       types:
-        Blunt: 10
-        Slash: 5
+        Blunt: 5
+        Slash: 10
     soundHit:
       collection: MetalThud
   - type: Wieldable
   - type: IncreaseDamageOnWield
     damage:
       types:
-        Blunt: 2.5
-        Slash: 2.5
-        Structural: 30
+        Blunt: 2
+        Slash: 3
+        Structural: 25
   - type: GunRequiresWield
   - type: DisarmMalus
   - type: Prying
@@ -182,11 +182,11 @@
 - type: entity
   parent: [ BaseKnife, BaseWeaponCrusher, BaseSecurityCargoContraband]
   id: WeaponCrusherDagger
-  name: crusher dagger
+  name: Crusher Dagger #FH (Capitalization!!!)
   description: A scaled down version of a proto-kinetic crusher. Uses kinetic energy to vibrate the blade at high speeds.
   components:
   - type: Sprite
-    sprite: Objects/Weapons/Melee/crusher_dagger.rsi
+    sprite: _FarHorizons/Objects/Weapons/Melee/KineticCrusherVariants/crusher_dagger.rsi #FH
     state: icon
   - type: MeleeWeapon
     autoAttack: true

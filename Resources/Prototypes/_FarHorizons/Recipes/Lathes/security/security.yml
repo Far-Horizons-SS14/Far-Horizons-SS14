@@ -25,6 +25,17 @@
   - BorgModuleLaserCarbine
 
 - type: latheRecipe
+  parent: CyborgEndoskeletonNS
+  id: SecborgEndoskeletonNS
+  result: SecborgEndoskeletonNS
+
+- type: latheRecipePack
+  id: FarHorizonsSecBorgRecipePackNS
+  recipes:
+  - SecborgEndoskeletonNS
+  - BorgModuleLaserCarbine
+
+- type: latheRecipe
   parent: BaseWeaponRecipeSidearm
   id: WeaponLaserPistol
   result: WeaponLaserPistol
@@ -140,6 +151,95 @@
     Uranium: 100
     Silver: 200
     Gold: 50
+
+- type: latheRecipe
+  parent: BaseWeaponRecipe
+  id: WeaponLeverActionNT
+  result: WeaponLeverActionNT
+  categories:
+    - Weapons
+  materials:
+    Steel: 1200
+    Plastic: 1000
+#Attachements
+    Glass: 100
+    Silver: 10
+    Gold: 10
+
+- type: latheRecipe
+  parent: BaseWeaponRecipe
+  id: WeaponLeverActionNS
+  result: WeaponLeverActionNS
+  categories:
+    - Weapons
+  materials:
+    Steel: 1400
+    Plastic: 1000
+#Attachements
+    Glass: 150
+
+- type: latheRecipe
+  parent: BaseWeaponRecipe
+  id: WeaponLeverActionModel2325
+  result: WeaponLeverActionModel2325
+  categories:
+    - Weapons
+  materials: #Cost is split between harder to obtain resources
+    Steel: 600
+    Plastic: 600
+    Plasteel: 600
+    Wood: 600
+#Hardlight Internals
+    Glass: 200
+    Silver: 100
+    Gold: 100
+
+- type: latheRecipe
+  parent: BaseWeaponRecipe
+  id: WeaponLeverActionModel2325Pistol
+  result: WeaponLeverActionModel2325Pistol
+  categories:
+    - Weapons
+  materials:
+    Steel: 300
+    Plastic: 300
+    Plasteel: 300
+    Wood: 300
+#Hardlight Internals
+    Glass: 100
+    Silver: 50
+    Gold: 50
+
+- type: latheRecipe
+  parent: BaseWeaponRecipe
+  id: WeaponRevolverIndomitable
+  result: WeaponRevolverIndomitable
+  categories:
+    - Weapons
+  materials:
+    Steel: 300
+    Plastic: 300
+    Plasteel: 300
+    Wood: 300
+#Hardlight Internals
+    Glass: 100
+    Silver: 50
+    Gold: 50
+
+- type: latheRecipe
+  parent: BaseWeaponRecipe
+  id: SpeedLoaderMagnumLeverEmptyHardlight
+  result: SpeedLoaderMagnumLeverEmptyHardlight
+  categories:
+    - Weapons
+  materials:
+    Steel: 100
+    Plastic: 100
+    Plasteel: 100
+#Hardlight Internals
+    Glass: 50
+    Silver: 10
+    Gold: 10
 
 #region Vehicles
 - type: latheRecipe

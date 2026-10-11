@@ -12,7 +12,7 @@ namespace Content.Server.Voting.Managers;
 
 public sealed partial class VoteManager
 {
-    [Dependency] private readonly IServerFactionManager _factions = default!;
+    [Dependency] private IServerFactionManager _factions = default!;
 
     private void CreateFactionVote(ICommonSession? initiator)
     {
@@ -50,7 +50,7 @@ public sealed partial class VoteManager
             {
                 picked = (FactionPrototype) args.Winner;
             }
-            _chatManager.DispatchServerAnnouncement(Loc.GetString("ui-vote-map-win"));
+            _chatManager.DispatchServerAnnouncement(Loc.GetString("ui-vote-faction-win"));
 
             _adminLogger.Add(LogType.Vote, LogImpact.Medium, $"Faction vote finished: {picked.Name}");
             var ticker = _entityManager.EntitySysManager.GetEntitySystem<GameTicker>();

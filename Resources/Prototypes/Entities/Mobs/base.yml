@@ -119,6 +119,7 @@
   abstract: true
   components:
   - type: Damageable
+  - type: Injurable
     damageContainer: Biological
   - type: Destructible
     thresholds:
@@ -214,7 +215,6 @@
       types:
         Blunt: 5
   - type: LimbTargetting # Far Horizons
-    proto: LimbTargetHuman
 
 # Used for mobs that are affected by atmospherics, pressure, and heat
 - type: entity
@@ -313,7 +313,7 @@
   id: MobBloodstream
   abstract: true
   components:
-  - type: SolutionContainerManager
+  - type: SolutionManager
   - type: InjectableSolution
     solution: bloodstream
   - type: Bloodstream
@@ -323,3 +323,9 @@
     bloodlossHealDamage:
       types:
         Bloodloss: -1
+  # Far Horizons start
+  - type: VampireBiteable
+    container: bloodstream
+    amount: 5
+    duration: 3
+  # Far Horizons end

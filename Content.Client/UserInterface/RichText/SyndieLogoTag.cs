@@ -13,9 +13,9 @@ using Robust.Shared.Utility;
 
 namespace Content.Client.UserInterface.RichText;
 
-public sealed class SyndieLogoTag : IMarkupTag
+public sealed partial class SyndieLogoTag : IMarkupTag
 {
-    [Dependency] private readonly IEntitySystemManager _entitySystem = default!;
+    [Dependency] private IEntitySystemManager _entitySystem = default!;
     private SpriteSystem? _spriteSystem;
     private IResourceCache? _resourceCache;
 

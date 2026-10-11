@@ -1,7 +1,7 @@
 ﻿using Content.Shared.Actions.Components;
 
 namespace Content.Shared._Starlight.Actions.EntitySystems;
-public sealed class StarlightActionsSystem : EntitySystem
+public sealed partial class StarlightActionsSystem : EntitySystem
 {
     public EntityUid[] HideActions(EntityUid performer, ActionsComponent? comp = null)
     {

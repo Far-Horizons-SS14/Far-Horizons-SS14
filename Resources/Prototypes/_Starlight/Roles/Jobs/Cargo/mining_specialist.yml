@@ -1,0 +1,47 @@
+﻿- type: job
+  id: MiningSpecialist
+  name: job-name-miningspec
+  description: job-description-miningspec
+  playTimeTracker: JobMiningSpecialist
+  requirements:
+  - !type:DepartmentTimeRequirement
+    department: Cargo
+    time: 10800 # 3 hrs
+  - !type:OverallPlaytimeRequirement
+    time: 36000 #10 hrs
+  icon: "JobIconShaftMiner"
+  startingGear: MiningSpecialistGear
+  supervisors: job-supervisors-qm
+  access:
+  - Cargo
+  - Mining
+  - Maintenance
+  - External
+  - MaintenanceNS  # Far Horizons
+  - ExternalNS  # Far Horizons
+  extendedAccess:
+  - Salvage
+
+- type: startingGear
+  id: MiningSpecialistGear
+  equipment:
+    #id: MiningPDA #Far Horizons - Disabling because they can choose between PDA's in loadout.
+    ears: ClothingHeadsetMining
+    rig: OreBag #Far Horizons - They have this on top of a belt.
+    belt: ClothingBeltSalvage #Far Horizons - They also get a rig now
+    gloves: ClothingHandsGlovesCargo #Far Horizons
+  #storage: #Far Horizons
+  #  back:
+  #  - OreBag #In a moment of brilliance, we have decided it won't be spawned in this way anymore.
+
+- type: chameleonOutfit
+  id: MiningSpecialistChameleonOutfit
+  job: MiningSpecialist
+  equipment:
+    head: ClothingHeadHatCargosoft
+    eyes: ClothingEyesGlassesCheapSunglasses
+    mask: ClothingMaskGasExplorer
+    outerClothing: ClothingOuterWinterMiner
+    belt: ClothingBeltSalvage #Far Horizons
+    neck: ClothingNeckScarfStripedBrown
+    gloves: ClothingHandsGlovesCargo #Far Horizons

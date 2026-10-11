@@ -6,7 +6,7 @@ using Robust.Client.Graphics;
 namespace Content.Client.Cloning.UI
 {
     [UsedImplicitly]
-    public sealed class AcceptCloningEui : BaseEui
+    public sealed partial class AcceptCloningEui : BaseEui
     {
         private readonly AcceptCloningWindow _window;
 

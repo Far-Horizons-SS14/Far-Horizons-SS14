@@ -1,0 +1,25 @@
+- type: constructionGraph
+  id: SalvageCombatGlovesGoliath
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: salvageCombatGlovesGoliath
+      steps:
+      - item: ClothingHandsSalvageMercGlovesCombat
+        icon:
+          sprite: _FarHorizons/Clothing/Hands/Gloves/salvagecombat.rsi 
+          state: icon
+        name: crafting-menu-name-scrapper-combat-gloves
+        doAfter: 5
+      - material: Durathread
+        amount: 5
+        doAfter: 5
+      - material: Plasteel
+        amount: 3
+        doAfter: 5
+      - material: GoliathHide
+        amount: 5
+        doAfter: 5
+  - node: salvageCombatGlovesGoliath
+    entity: ClothingHandsSalvageMercGlovesCombatGoliath

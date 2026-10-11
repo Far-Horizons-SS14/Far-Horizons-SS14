@@ -1,0 +1,42 @@
+light_mode unshaded;
+
+uniform highp vec3 baseColor;
+uniform highp float progress;
+
+uniform highp float alpha_outside;
+uniform highp float alpha_inside;
+uniform highp float alpha_edge;
+
+uniform highp float edge_thickness;
+uniform highp float edge_feather;
+
+uniform highp float line_frequency;
+uniform highp float line_speed;
+uniform highp float line_thickness;
+uniform highp float line_alpha_boost;
+
+void fragment() {
+    highp vec2 center_dist = abs(UV - vec2(0.5));
+    highp float dist = max(center_dist.x, center_dist.y);
+    highp float max_radius = 0.5;
+    highp float current_radius = (1.0 - progress) * max_radius;
+
+    highp float outer_edge = smoothstep(current_radius + edge_feather, current_radius, dist);
+    highp float inner_edge = smoothstep(current_radius - edge_thickness, current_radius - edge_thickness - edge_feather, dist);
+
+    highp float wave_ring = outer_edge * (1.0 - inner_edge);
+    highp float inside_mask = inner_edge;
+
+    highp float diagonal_coord = UV.x + UV.y + (TIME * line_speed);
+    highp float line_pattern = sin(diagonal_coord * line_frequency);
+    highp float line_mask = smoothstep(1.0 - line_thickness, 1.0, line_pattern);
+
+    highp float final_alpha = alpha_outside + (line_mask * line_alpha_boost);
+
+    highp float inside_alpha_with_lines = alpha_inside + (line_mask * line_alpha_boost);
+
+    final_alpha = mix(final_alpha, inside_alpha_with_lines, inside_mask);
+    final_alpha = mix(final_alpha, alpha_edge, wave_ring);
+
+    COLOR = vec4(baseColor, final_alpha);
+}

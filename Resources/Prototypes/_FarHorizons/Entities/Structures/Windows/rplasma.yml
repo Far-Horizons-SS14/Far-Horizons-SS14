@@ -1,0 +1,39 @@
+- type: entity
+  parent: ReinforcedPlasmaWindow
+  id: ReinforcedPlasmaWindowGeneric
+  suffix: Generic
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Windows/Generic/reinforced_plasma_window.rsi
+  - type: Icon
+    sprite: _FarHorizons/Structures/Windows/Generic/reinforced_plasma_window.rsi
+
+- type: entity
+  parent: ReinforcedPlasmaWindow
+  id: ReinforcedPlasmaWindowNS
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Windows/NeoSol/reinforced_plasma_window.rsi
+  - type: Icon
+    sprite: _FarHorizons/Structures/Windows/NeoSol/reinforced_plasma_window.rsi
+
+- type: entity
+  parent: ReinforcedPlasmaWindowDiagonal
+  id: ReinforcedPlasmaWindowDiagonalGeneric
+  suffix: Diagonal, Generic
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Windows/NanoTrasen/reinforced_plasma_diagonal.rsi
+  - type: Icon
+    sprite: _FarHorizons/Structures/Windows/NanoTrasen/reinforced_plasma_diagonal.rsi
+
+- type: entity
+  parent: ReinforcedPlasmaWindowDiagonal
+  id: ReinforcedPlasmaWindowDiagonalNS
+  suffix: Diagonal, NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Windows/NeoSol/reinforced_plasma_diagonal.rsi
+  - type: Icon
+    sprite: _FarHorizons/Structures/Windows/NeoSol/reinforced_plasma_diagonal.rsi

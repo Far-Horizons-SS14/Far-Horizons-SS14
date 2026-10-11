@@ -2,25 +2,21 @@ using System.Text;
 using System.Text.RegularExpressions;
 using Content.Server.Speech.Components;
 using Content.Shared.Speech;
+using Content.Shared.Speech.Components;
 using Content.Shared.Speech.EntitySystems;
 using Content.Shared.StatusEffectNew;
+using Content.Shared._Starlight.Speech;
 using Robust.Shared.Random;
 
 namespace Content.Server.Speech.EntitySystems
 {
     public sealed partial class StutteringSystem : SharedStutteringSystem
     {
-        [Dependency] private readonly IRobustRandom _random = default!;
+        [Dependency] private IRobustRandom _random = default!;
 
         // Regex of characters to stutter.
         [GeneratedRegex(@"[b-df-hj-np-tv-wxyz]", RegexOptions.IgnoreCase | RegexOptions.Compiled, "en-US")]
         private static partial Regex Stutter();
-
-        public override void Initialize()
-        {
-            SubscribeLocalEvent<StutteringAccentComponent, AccentGetEvent>(OnAccent);
-            SubscribeLocalEvent<StutteringAccentComponent, StatusEffectRelayedEvent<AccentGetEvent>>(OnAccent);
-        }
 
         public override void DoStutter(EntityUid uid, TimeSpan time, bool refresh)
         {
@@ -36,11 +32,11 @@ namespace Content.Server.Speech.EntitySystems
         public override void DoRemoveStutter(EntityUid uid)
             => Status.TryRemoveStatusEffect(uid, Stuttering);
 
-        private void OnAccent(Entity<StutteringAccentComponent> entity, ref AccentGetEvent args)
-            => args.Message.Text = Accentuate(args.Message.Text, entity.Comp);
-
-        private void OnAccent(Entity<StutteringAccentComponent> entity, ref StatusEffectRelayedEvent<AccentGetEvent> args)
-            => args.Args.Message.Text = Accentuate(args.Args.Message.Text, entity.Comp);
+        protected override SpeechMessage AccentuateInternal(EntityUid uid, StutteringAccentComponent component, SpeechMessage message)
+        {
+            message.Text = Accentuate(message.Text, component);
+            return message;
+        }
 
         public string Accentuate(string message, StutteringAccentComponent component)
         {

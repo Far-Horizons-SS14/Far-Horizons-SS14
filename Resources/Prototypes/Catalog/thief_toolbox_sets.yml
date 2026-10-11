@@ -1,7 +1,7 @@
 - type: thiefBackpackSet
   id: ChameleonSet
   name: thief-backpack-category-chameleon-name
-  description: thief-backpack-category-chameleon-description
+  description: fh-thief-backpack-category-chameleon-description #FH
   sprite:
     sprite: Objects/Devices/chameleon_projector.rsi
     state: icon
@@ -9,11 +9,13 @@
   - ClothingBackpackChameleonFillAgent
   - ChameleonProjector
   - FakeMindShieldImplanter
+  - DnaScramblerImplanter #FH
+  - CyberneticImplanterConsortiumEyeImplantAgent #FH
 
 - type: thiefBackpackSet
   id: ToolsSet
   name: thief-backpack-category-tools-name
-  description: thief-backpack-category-tools-description
+  description: fh-thief-backpack-category-tools-description #FH
   sprite:
     sprite: Objects/Weapons/Bombs/c4.rsi
     state: icon
@@ -26,43 +28,46 @@
   - Multitool
   - C4
   - C4
+  - AccessBreaker #FH
 
 - type: thiefBackpackSet
   id: ChemistrySet
   name: thief-backpack-category-chemistry-name
-  description: thief-backpack-category-chemistry-description
+  description: fh-thief-backpack-category-chemistry-description #FH
   sprite:
     sprite: Objects/Specific/Medical/implanter.rsi
     state: implanter0
   content:
   - StorageImplanter
-  - DnaScramblerImplanter
+  #- DnaScramblerImplanter #FH, Moved to ChameleonSet
+  - ScramImplant #FH
   - ChemistryBottleEphedrine
   - SoapOmega
   - Syringe
   - DrinkShaker
 
-- type: thiefBackpackSet
-  id: SyndieSet
-  name: thief-backpack-category-syndie-name
-  description: thief-backpack-category-syndie-description
-  sprite:
-    sprite: Objects/Specific/Syndicate/telecrystal.rsi
-    state: telecrystal
-  content:
-  - RadioJammer
-  - TraitorCodePaper
-  - Emag
-  - AccessBreaker
-  - Lighter
-  - CigPackSyndicate
-  - Telecrystal10 #The thief cannot use them, but it may induce communication with traitors
-  - SyndicatePersonalAI # [Starlight] allows the thief to be able to communicate indirectly with traitors, without accidentally spoiling nukies.
+# Far Horizons - replaced with faction-independent kit
+# - type: thiefBackpackSet
+#   id: SyndieSet
+#   name: thief-backpack-category-syndie-name
+#   description: thief-backpack-category-syndie-description
+#   sprite:
+#     sprite: Objects/Specific/Syndicate/telecrystal.rsi
+#     state: telecrystal
+#   content:
+#   - RadioJammer
+#   - TraitorCodePaper
+#   - Emag
+#   - AccessBreaker
+#   - Lighter
+#   - CigPackSyndicate
+#   - Telecrystal10 #The thief cannot use them, but it may induce communication with traitors
+#   - SyndicatePersonalAI # [Starlight] allows the thief to be able to communicate indirectly with traitors, without accidentally spoiling nukies.
 
 - type: thiefBackpackSet
   id: SleeperSet
   name: thief-backpack-category-sleeper-name
-  description: thief-backpack-category-sleeper-description
+  description: fh-thief-backpack-category-sleeper-description #FH
   sprite:
     sprite: Objects/Tanks/anesthetic.rsi
     state: icon
@@ -71,25 +76,27 @@
   - ChemistryBottleNocturine
   - HypopenBox
   - NitrousOxideTankFilled
+  - ChemistryBottleMuteToxin #FH
 
 - type: thiefBackpackSet
   id: CommunicatorSet
   name: thief-backpack-category-communicator-name
-  description: thief-backpack-category-communicator-description
+  description: fh-thief-backpack-category-communicator-description #FH
   sprite:
     sprite: Objects/Devices/communication.rsi
     state: old-radio
   content:
-  - EncryptionKeyStationMaster
+  - EncryptionKeyBlackmarket #FH
   - CyberPen
   - BriefcaseThiefBribingBundleFilled
   - VoiceMaskImplanter
+  - RadioJammer #FH
   #- todo Chameleon Stamp
 
 - type: thiefBackpackSet
   id: SmugglerSet
   name: thief-backpack-category-smuggler-name
-  description: thief-backpack-category-smuggler-description
+  description: fh-thief-backpack-category-smuggler-description #FH
   sprite:
     sprite: Objects/Tools/fulton.rsi
     state: extraction_pack

@@ -4,7 +4,7 @@ using Robust.Shared.Prototypes;
 namespace Content.Client.FeedbackPopup;
 
 /// <inheritdoc />
-public sealed class ClientFeedbackManager : SharedFeedbackManager
+public sealed partial class ClientFeedbackManager : SharedFeedbackManager
 {
     /// <summary>
     /// A read-only set representing the currently displayed feedback popups.
@@ -31,7 +31,7 @@ public sealed class ClientFeedbackManager : SharedFeedbackManager
     /// <inheritdoc />
     public override void Display(List<ProtoId<FeedbackPopupPrototype>>? prototypes)
     {
-        if (prototypes == null || !NetManager.IsClient)
+        if (prototypes == null)
             return;
 
         var count = _displayedPopups.Count;
@@ -42,9 +42,6 @@ public sealed class ClientFeedbackManager : SharedFeedbackManager
     /// <inheritdoc />
     public override void Remove(List<ProtoId<FeedbackPopupPrototype>>? prototypes)
     {
-        if (!NetManager.IsClient)
-            return;
-
         if (prototypes == null)
         {
             _displayedPopups.Clear();

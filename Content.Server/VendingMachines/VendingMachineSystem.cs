@@ -28,19 +28,19 @@ using Robust.Shared.Player; // Starlight-edit
 
 namespace Content.Server.VendingMachines
 {
-    public sealed class VendingMachineSystem : SharedVendingMachineSystem
+    public sealed partial class VendingMachineSystem : SharedVendingMachineSystem
     {
-        [Dependency] private readonly IRobustRandom _random = default!;
-        [Dependency] private readonly PricingSystem _pricing = default!;
-        [Dependency] private readonly ThrowingSystem _throwingSystem = default!;
+        [Dependency] private IRobustRandom _random = default!;
+        [Dependency] private PricingSystem _pricing = default!;
+        [Dependency] private ThrowingSystem _throwingSystem = default!;
         // 🌟Starlight🌟 start 
-        [Dependency] private readonly ItemPriceManager _itemPriceManager = default!; 
-        [Dependency] private readonly IComponentFactory _componentFactory = default!; 
-        [Dependency] private readonly IPlayerRolesManager _playerRolesManager = default!; 
-        [Dependency] private readonly TagSystem _tag = default!; 
-        [Dependency] private readonly CargoSystem _cargoSystem = default!;
-        [Dependency] private readonly Content.Server.Station.Systems.StationSystem _stationSystem = default!;
-        [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
+        [Dependency] private ItemPriceManager _itemPriceManager = default!; 
+        [Dependency] private IComponentFactory _componentFactory = default!; 
+        [Dependency] private IPlayerRolesManager _playerRolesManager = default!; 
+        [Dependency] private TagSystem _tag = default!; 
+        [Dependency] private CargoSystem _cargoSystem = default!;
+        [Dependency] private Content.Server.Station.Systems.StationSystem _stationSystem = default!;
+        [Dependency] private ISharedAdminLogManager _adminLogger = default!;
         // 🌟Starlight🌟 end 
 
         private const float WallVendEjectDistanceFromWall = 1f;

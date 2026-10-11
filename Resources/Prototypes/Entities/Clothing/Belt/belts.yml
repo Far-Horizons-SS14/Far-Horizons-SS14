@@ -133,9 +133,9 @@
   description: A belt designed to hold various rods of power. A veritable fanny pack of exotic magic.
   components:
   - type: Sprite
-    sprite: Clothing/Belt/wand.rsi
+    sprite: _FarHorizons/Clothing/Belt/wand.rsi #FH
   - type: Clothing
-    sprite: Clothing/Belt/wand.rsi
+    sprite: _FarHorizons/Clothing/Belt/wand.rsi #FH
   - type: Storage
     grid:
     - 0,0,15,1
@@ -278,4 +278,17 @@
 #    size: Huge
 #  - type: ExplosionResistance
 #    damageCoefficient: 0.1
+#Far Horizons-End
+
+#Far Horizons-Start - Turned off
+#- type: entity
+#  parent: [ BaseCentcommContraband, ClothingBeltMilitaryWebbing ]
+#  id: ClothingBeltMilitaryWebbingERT
+#  name: ERT chest rig
+#  description: A set of tactical webbing worn by Emergency Response Team operatives.
+#  components:
+#  - type: Sprite
+#    sprite: Clothing/Belt/militarywebbingert.rsi
+#  - type: Clothing
+#    sprite: Clothing/Belt/militarywebbingert.rsi
 #Far Horizons-End

@@ -1,0 +1,96 @@
+- type: entity
+  parent: ClothingHeadSuitWithLightBase
+  id: PowerArmorHelmetNaked
+  name: Power Armor Helmet
+  description: Some assembly required.
+  components:
+  - type: Animateable
+  - type: Clickable
+  - type: InteractionOutline
+  - type: MovedByPressure
+  - type: CollisionWake
+  - type: GravityAffected
+  - type: Physics
+    bodyType: Dynamic
+    fixedRotation: false
+    canCollide: false
+  - type: Pullable
+  - type: DamageExaminable
+  - type: Appearance
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/PowerArmor/underarmor.rsi
+    layers:
+    - map: [ "enum.PowerArmorVisualLayers.UnderArmorHelmet" ]
+      state: underarmor-helmet
+    - map: [ "enum.PowerArmorVisualLayers.Head" ]
+    - map: [ "light" ]
+      visible: false
+      shader: unshaded
+  - type: Clothing
+    equipSound: /Audio/Mecha/mechmove03.ogg
+    unequipSound: /Audio/Mecha/mechmove03.ogg
+    quickEquip: false
+    slots: [ HEAD ]
+    clothingVisuals: 
+      head:
+      - map: [ "enum.PowerArmorVisualLayers.UnderArmorHelmet" ]
+        state: underarmor-helmet
+      - map: [ "enum.PowerArmorVisualLayers.Head" ]
+        shader: unshaded
+  - type: ToggleableVisuals
+    clothingVisuals:
+      head:
+        - shader: unshaded
+  - type: PressureProtection
+    highPressureMultiplier: 0.3
+    lowPressureMultiplier: 1000
+  - type: TemperatureProtection
+    heatingCoefficient: 0.1
+    coolingCoefficient: 0.1
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.80
+        Slash: 0.80
+        Piercing: 0.80
+        Heat: 0.80
+        Radiation: 0.25
+  - type: LimbArmor
+    limbs:
+      Head: {}
+  - type: ContainerContainer
+    containers:
+      parts: !type:Container
+        ents: []
+  - type: GroupExamine
+  - type: IngestionBlocker
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+  - type: IdentityBlocker
+  - type: HideLayerClothing
+    slots:
+    - Hair
+    - Snout
+    - HeadTop
+    - HeadSide
+    - FacialHair
+  - type: PowerArmor
+    parts:
+      Head: null
+  - type: PointLight
+    color: "#ffeead"
+    radius: 7
+    energy: 3
+
+- type: entity
+  parent: PowerArmorHelmetNaked
+  id: PowerArmorHelmetNTJuggernautFilled
+  suffix: NT, Filled
+  components:
+  - type: ContainerFill
+    containers:
+      parts:
+      - PowerArmorHelmetNTJuggernaut

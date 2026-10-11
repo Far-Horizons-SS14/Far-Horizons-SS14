@@ -1,0 +1,695 @@
+#BSO Hardsuit
+- type: entity
+  parent: [ ClothingOuterHardsuitBase, BaseBlueshieldContraband ] # FH
+  id: ClothingOuterHardsuitBlueshield
+  name: Blueshield Officer's Hardsuit #FH
+  description: A high-tech hardsuit perfect for diving in front of Mr. Pre- Er, Captain.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/OuterClothing/Hardsuits/blueshield.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/OuterClothing/Hardsuits/blueshield.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.525
+    lowPressureMultiplier: 10000
+  - type: ClothingSpeedModifier
+    walkModifier: 0.8
+    sprintModifier: 0.8
+    requireActivated: false #FH cuz item toggle.
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      flatReductions: #FH
+        Piercing: 5 #FH
+        Heat: 4 #FH
+      coefficients:
+        Blunt: 0.6
+        Slash: 0.5
+        Piercing: 0.5
+        Heat: 0.7
+        Radiation: 0.25
+        Caustic: 0.6
+    staminaModifier: 0.4 #FH - Default is 50%, upped to 60% due to BSO.
+    ignoreKnockdown: true #FH - Taser no worky on combat hardsuits
+  - type: LimbArmor # Far Horizons
+    limbs:
+      ArmRight: {}
+      ArmLeft: {}
+      HandRight: {}
+      HandLeft: {}
+      LegRight: {}
+      LegLeft: {}
+      FootRight: {}
+      FootLeft: {}
+  - type: ExplosionResistance
+    damageCoefficient: 0.6
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitBlueshield
+
+#NTRep Hardsuit
+- type: entity
+  parent: [ ClothingOuterHardsuitBase, BaseRepresentativesContraband] # FH
+  id: ClothingOuterHardsuitNtrep
+  name: Nanotrasen Representative Hardsuit #FH
+  description: It used to be blue, but too many premium cigars turned it tobacco brown.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/ntrep.rsi #Far Horizons
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/ntrep.rsi #Far Horizons
+  - type: PressureProtection
+    highPressureMultiplier: 0.525
+    lowPressureMultiplier: 10000
+  - type: ClothingSpeedModifier
+    walkModifier: 0.95
+    sprintModifier: 0.95
+    requireActivated: false #FH cuz item toggle.
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9
+        Radiation: 0.25
+        Caustic: 0.9
+    staminaModifier: 0.8
+  - type: LimbArmor # Far Horizons
+    limbs:
+      ArmRight: {}
+      ArmLeft: {}
+      HandRight: {}
+      HandLeft: {}
+      LegRight: {}
+      LegLeft: {}
+      FootRight: {}
+      FootLeft: {}
+  - type: ExplosionResistance
+    damageCoefficient: 0.9
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitNtrep
+
+#Clown Battlesuit
+- type: entity
+  parent: [ClothingOuterHardsuitBase]
+  id: ClothingOuterBattlesuitClown
+  name: Clown Battlesuit #FH
+  description: A funny suit that protects against hazardous, low pressure environments. Has an additional layer of armor.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/OuterClothing/Hardsuits/clown_battlesuit.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/OuterClothing/Hardsuits/clown_battlesuit.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.5
+    lowPressureMultiplier: 1000
+  - type: ExplosionResistance
+    damageCoefficient: 0.4
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.6
+        Slash: 0.6
+        Piercing: 0.5
+        Caustic: 0.7
+        Heat: 0.5
+        Radiation: 0.1
+    staminaModifier: 0.7
+  - type: LimbArmor # Far Horizons
+    limbs:
+      ArmRight: {}
+      ArmLeft: {}
+      HandRight: {}
+      HandLeft: {}
+      LegRight: {}
+      LegLeft: {}
+      FootRight: {}
+      FootLeft: {}
+  - type: ClothingSpeedModifier
+    walkModifier: 0.85
+    sprintModifier: 0.8
+    requireActivated: false #FH cuz item toggle.
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetBattlesuitClown
+
+#Mercenary Hardsuit
+- type: entity
+  parent: [ ClothingOuterHardsuitBase, BaseSalvageContraband ]
+  id: ClothingOuterHardsuitMercenary
+  name: mercenary hardsuit
+  description: It's a hardsuit. It could stop a bullet. It's sealed with top of the line duct tape.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/OuterClothing/Hardsuits/mercenary.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/OuterClothing/Hardsuits/mercenary.rsi
+    - type: PressureProtection
+      highPressureMultiplier: 0.525
+      lowPressureMultiplier: 10000
+    - type: ClothingSpeedModifier
+      walkModifier: 0.9
+      sprintModifier: 0.9
+      requireActivated: false #FH cuz item toggle.
+    - type: Pierceable
+      level: Metal
+    - type: Armor
+      modifiers:
+        coefficients:
+          Blunt: 0.75
+          Slash: 0.75
+          Piercing: 0.75
+          Caustic: 0.75
+          Heat: 0.75
+          Radiation: 0.75
+      staminaModifier: 0.9
+    - type: LimbArmor # Far Horizons
+      limbs:
+        ArmRight: {}
+        ArmLeft: {}
+        HandRight: {}
+        HandLeft: {}
+        LegRight: {}
+        LegLeft: {}
+        FootRight: {}
+        FootLeft: {}
+    - type: ExplosionResistance
+      damageCoefficient: 0.75
+    - type: ToggleableClothing
+      clothingPrototype: ClothingHeadHelmetHardsuitMercenary
+    - type: SpaceRescuePingSender # Far Horizons
+      hidden: true
+
+#Space Hazard Suit
+- type: entity
+  parent: [ ClothingOuterHardsuitBase ] # Far Horizons - removed contra base
+  id: ClothingOuterHardsuitSpaceHazard
+  name: space hazard hardsuit
+  description: A special suit that protects against hazardous, low pressure environments. Specifically for the dangers of space mining.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/OuterClothing/Hardsuits/spacehazard.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/OuterClothing/Hardsuits/spacehazard.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.2
+    lowPressureMultiplier: 1000
+  - type: ExplosionResistance
+    damageCoefficient: 0.4
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.8
+        Radiation: 0.2
+        Caustic: 0.4
+  - type: LimbArmor # Far Horizons
+    limbs:
+      ArmRight: {}
+      ArmLeft: {}
+      HandRight: {}
+      HandLeft: {}
+      LegRight: {}
+      LegLeft: {}
+      FootRight: {}
+      FootLeft: {}
+  - type: ClothingSpeedModifier
+    walkModifier: 0.85
+    sprintModifier: 0.85
+    requireActivated: false #FH cuz item toggle.
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitSpaceHazard
+  - type: Tag
+    tags:
+    - Hardsuit
+    - CorgiWearable
+    - WhitelistChameleon
+    - IPCExternalCooling # Far Horizons
+    - HardsuitSpatio #can now be used to make goliath hardsuit
+
+#Syndicate Infiltration Suit
+- type: entity
+  parent: [ClothingOuterHardsuitBase, AllowSuitStorageClothing, BaseToggleClothing, BaseSyndicateContraband]
+  id: ClothingOuterHardsuitInfiltration
+  name: syndicate infiltration hardsuit
+  suffix: NS #Far Horizons
+  description: The Syndicate's Special Operations' hardsuit of choice, this hardsuit, as well as durability, has been built with stealth in mind.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/OuterClothing/Hardsuits/infiltrationsyndie.rsi
+  - type: Clothing
+  - type: Item
+    size: Huge
+    sprite: _Starlight/Clothing/OuterClothing/Hardsuits/infiltrationsyndie.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.525
+    lowPressureMultiplier: 10000
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      flatReductions: #FH
+        Piercing: 4 #FH
+        Heat: 3 #FH
+      coefficients:
+        Blunt: 0.6
+        Slash: 0.6
+        Piercing: 0.6
+        Heat: 0.6
+        Radiation: 0.6
+        Caustic: 0.6
+    staminaModifier: 0.3
+  - type: LimbArmor # Far Horizons
+    limbs:
+      ArmRight: {}
+      ArmLeft: {}
+      HandRight: {}
+      HandLeft: {}
+      LegRight: {}
+      LegLeft: {}
+      FootRight: {}
+      FootLeft: {}
+  - type: ClothingSpeedModifier
+    walkModifier: 0.9
+    sprintModifier: 0.9
+    requireActivated: false #FH cuz item toggle.
+  - type: ExplosionResistance
+    damageCoefficient: 0.5
+  - type: ToggleClothing
+    action: ActionTogglePhaseCloak
+    disableOnUnequip: true
+  - type: ComponentToggler
+    parent: true
+    components:
+    - type: Stealth
+      minVisibility: 0.15
+      maxVisibility: 0.15
+      lastVisibility: 0.15
+  - type: PowerCellDraw
+    drawRate: 14 # roughly 200 seconds on the default cell
+  - type: ToggleCellDraw
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+    fitsInCharger: false
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot
+      toggleable-clothing: !type:ContainerSlot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellUltra
+        disableEject: true
+        whitelist:
+          tags:
+            - PowerCell
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitInfiltration
+  - type: SpaceRescuePingSender # Far Horizons
+    hidden: true
+
+#USSP
+- type: entity
+  parent: [ClothingOuterHardsuitBase, BaseSovietContraband]
+  id: ClothingOuterHardsuitSovietMarine
+  name: SSF marine hardsuit
+  description: SMIRNO!
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/OuterClothing/Hardsuits/sovietmarine.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/OuterClothing/Hardsuits/sovietmarine.rsi
+#FarHorizons - Start
+  - type: Item
+    size: Huge
+  - type: PressureProtection
+    highPressureMultiplier: 0.05
+    lowPressureMultiplier: 1000
+  - type: ExplosionResistance
+    damageCoefficient: 0.5
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      flatReductions:
+        Piercing: 5
+        Heat: 4
+      coefficients:
+        Blunt: 0.5
+        Slash: 0.5
+        Piercing: 0.5
+        Heat: 0.5
+        Radiation: 0.5
+        Caustic: 0.5
+    staminaModifier: 0.3
+    ignoreKnockdown: true
+  - type: LimbArmor
+    limbs:
+      ArmRight: {}
+      ArmLeft: {}
+      HandRight: {}
+      HandLeft: {}
+      LegRight: {}
+      LegLeft: {}
+      FootRight: {}
+      FootLeft: {}
+  - type: ClothingSpeedModifier
+    walkModifier: 0.9
+    sprintModifier: 0.9
+    requireActivated: false
+  - type: HeldSpeedModifier
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
+      params:
+        volume: -7
+        pitch: 0.7
+        variation: 0.025
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitSyndie
+  - type: Tag
+    tags:
+    - MonkeyWearable
+    - Hardsuit
+    - WhitelistChameleon
+    - ScurretWearable
+    - IPCExternalCooling
+  - type: StaticPrice
+    price: 5000
+  - type: SpaceRescuePingSender
+    hidden: true
+#FarHorizons - End
+
+#QM's Luxury Maxim Hardsuit
+- type: entity
+  parent: [ ClothingOuterHardsuitBase, BaseCommandContraband ]
+  id: ClothingOuterHardsuitLuxmax
+  name: QM's luxury maxim hardsuit
+  description: This luxury maxim hardsuit has been retrofitted with solid gold fittings and furnishings, making it more cumbersome, and less protective than a standard maxim hardsuit.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/luxmax.rsi #Far Horizons
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/luxmax.rsi #Far Horizons
+  - type: PressureProtection
+    highPressureMultiplier: 0.5
+    lowPressureMultiplier: 1000
+  - type: ExplosionResistance
+    damageCoefficient: 0.5
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.7
+        Piercing: 0.8
+        Heat: 0.8
+        Radiation: 0.3
+        Caustic: 0.7
+  - type: LimbArmor # Far Horizons
+    limbs:
+      ArmRight: {}
+      ArmLeft: {}
+      HandRight: {}
+      HandLeft: {}
+      LegRight: {}
+      LegLeft: {}
+      FootRight: {}
+      FootLeft: {}
+  - type: ClothingSpeedModifier
+    walkModifier: 0.9
+    sprintModifier: 0.9
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitLuxmax
+
+#Spationaut Lead Hardsuit
+- type: entity
+  parent: [ClothingOuterHardsuitBase, BaseSalvageContraband]
+  id: ClothingOuterHardsuitSpatioLead
+  name: spationaut lead hardsuit
+  description: A lightweight decorated hardsuit designed for industrial EVA in zero gravity.
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/spatio.rsi #Far Horizons
+    - type: Clothing
+      sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/spatio.rsi #Far Horizons
+    - type: PressureProtection
+      highPressureMultiplier: 0.7
+      lowPressureMultiplier: 1000
+    - type: Pierceable
+      level: Metal
+    - type: Armor
+      modifiers:
+        coefficients:
+          Blunt: 0.7 #FH
+          Slash: 0.7 #FH
+          Piercing: 0.7 #FH
+          Heat: 0.7 #FH
+          Radiation: 0.3
+          Caustic: 0.7 #FH
+    - type: LimbArmor # Far Horizons
+      limbs:
+        ArmRight: {}
+        ArmLeft: {}
+        HandRight: {}
+        HandLeft: {}
+        LegRight: {}
+        LegLeft: {}
+        FootRight: {}
+        FootLeft: {}
+    - type: ClothingSpeedModifier
+      walkModifier: 0.8
+      sprintModifier: 0.8
+    - type: HeldSpeedModifier
+    - type: ToggleableClothing
+      clothingPrototype: ClothingHeadHelmetHardsuitSpatioLead
+    - type: Tag
+      tags:
+        - Hardsuit
+        - HardsuitSpatio
+        - CorgiWearable
+        - IPCExternalCooling # Far Horizons
+
+#Mining Specialist Advanced hardsuit
+- type: entity
+  parent: [ ClothingOuterHardsuitBase, BaseSalvageMiningContraband ]
+  id: ClothingOuterHardsuitAdvancedMining
+  name: advanced mining hardsuit
+  description: An advanced jetpack-equipped hardsuit designed for mining operations.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/OuterClothing/Hardsuits/advmining.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/OuterClothing/Hardsuits/advmining.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.02
+    lowPressureMultiplier: 1000
+  - type: ExplosionResistance
+    damageCoefficient: 0.2
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.65
+        Slash: 0.65
+        Piercing: 0.85
+        Heat: 0.65
+        Cold: 0.65
+        Radiation: 0.2
+        Caustic: 0.6
+  - type: LimbArmor # Far Horizons
+    limbs:
+      ArmRight: {}
+      ArmLeft: {}
+      HandRight: {}
+      HandLeft: {}
+      LegRight: {}
+      LegLeft: {}
+      FootRight: {}
+      FootLeft: {}
+  - type: ClothingSpeedModifier
+    walkModifier: 0.85
+    sprintModifier: 0.85
+  - type: HeldSpeedModifier
+  - type: TemperatureProtection
+    heatingCoefficient: 0.001
+    coolingCoefficient: 0.001
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitAdvancedMining
+  - type: Jump
+    action: JumpJet
+    isEquipment: true
+  - type: ActivatableUI
+    key: enum.SharedGasTankUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.SharedGasTankUiKey.Key:
+        type: GasTankBoundUserInterface
+  - type: UseDelay
+    delays:
+      gasTank:
+        length: 1.0
+  - type: GasTank
+    releasePressure: 42.6
+    air:
+      # 13 minutes of thrust
+      volume: 5
+      temperature: 293.15
+      moles:
+      - 1.025689525 # oxygen
+      - 1.025689525 # nitrogen
+  - type: Jetpack
+    moleUsage: 0.00085
+
+#Mining Hardsuit
+- type: entity
+  parent: [ClothingOuterHardsuitBase, BaseSalvageMiningContraband]
+  id: ClothingOuterHardsuitMining
+  name: mining hardsuit
+  description: A special suit that protects against hazardous, low pressure environments encountered during space mining.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/mining.rsi #Far Horizons
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/mining.rsi #Far Horizons
+  - type: PressureProtection
+    highPressureMultiplier: 0.2
+    lowPressureMultiplier: 1000
+  - type: ExplosionResistance
+    damageCoefficient: 0.4
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.7
+        Slash: 0.7
+        Piercing: 0.9
+        Heat: 0.7
+        Cold: 0.7
+        Radiation: 0.3
+        Caustic: 0.7
+  - type: LimbArmor # Far Horizons
+    limbs:
+      ArmRight: {}
+      ArmLeft: {}
+      HandRight: {}
+      HandLeft: {}
+      LegRight: {}
+      LegLeft: {}
+      FootRight: {}
+      FootLeft: {}
+  - type: ClothingSpeedModifier
+    walkModifier: 0.80
+    sprintModifier: 0.80
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitMining
+  - type: Tag
+    tags:
+    - CorgiWearable
+    - Hardsuit
+    - IPCExternalCooling # Far Horizons
+
+# Golden
+
+- type: entity
+  parent: ClothingOuterHardsuitAtmos
+  id: ClothingOuterHardsuitAtmosGolden
+  name: golden atmos hardsuit
+  description: A golden hardsuit that protects against hazardous, low pressure environments. Has thermal shielding.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/OuterClothing/Hardsuits/atmospherics_golden.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/OuterClothing/Hardsuits/atmospherics_golden.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitAtmosGolden
+
+- type: entity
+  parent: ClothingOuterHardsuitEngineering
+  id: ClothingOuterHardsuitEngineeringGolden
+  name: golden engineering hardsuit
+  description: A golden hardsuit that protects against hazardous, low pressure environments. Has radiation shielding.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/OuterClothing/Hardsuits/engineering_golden.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/OuterClothing/Hardsuits/engineering_golden.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitEngineeringGolden
+
+# NanoTrasen Special Forces
+
+- type: entity
+  parent: [ BaseCentcommContraband, ClothingOuterHardsuitBase ]
+  id: ClothingOuterHardsuitNTSF
+  name: nanotrasen special forces hardsuit
+  description: An advanced hardsuit favored by commandos for use in special operations.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/OuterClothing/Hardsuits/NTSF_Hardsuit.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/OuterClothing/Hardsuits/NTSF_Hardsuit.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.02
+    lowPressureMultiplier: 1000
+  - type: TemperatureProtection
+    heatingCoefficient: 0.001
+    coolingCoefficient: 0.001
+  - type: ExplosionResistance
+    damageCoefficient: 0.3
+  - type: FireProtection
+    reduction: 0.8
+  # Far Horizons removed double stam resist
+  # - type: StaminaResistance # do not add these to other equipment or mobs, we don't want to microbalance these everywhere
+  #   damageCoefficient: 0.0 # 100% stamina resistance
+  - type: Pierceable
+    level: Rock
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.35 # 65% resistance
+        Slash: 0.35
+        Piercing: 0.30 # 70% pierce resistance
+        Heat: 0.35
+        Radiation: 0.35
+        Caustic: 0.35
+    staminaModifier: 0.0
+    ignoreKnockdown: true
+  - type: LimbArmor # Far Horizons
+    limbs:
+      ArmRight: {}
+      ArmLeft: {}
+      HandRight: {}
+      HandLeft: {}
+      LegRight: {}
+      LegLeft: {}
+      FootRight: {}
+      FootLeft: {}
+  - type: ClothingSpeedModifier
+    walkModifier: 1.0
+    sprintModifier: 1.0
+  - type: HeldSpeedModifier
+  - type: FootstepModifier #starlight
+    footstepSoundCollection:
+      path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
+      params:
+        volume: -7
+        pitch: 0.7
+        variation: 0.025
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitNTSF
+  - type: SpaceRescuePingSender # Far Horizons
+    hidden: true

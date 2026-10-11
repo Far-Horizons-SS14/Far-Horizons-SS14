@@ -1,0 +1,388 @@
+#Basic Helmet (Abductor Helmet)
+- type: entity
+  parent: [ ClothingHeadHelmetBase, BaseMajorContraband ]
+  id: ClothingHeadHelmetAbductor
+  name: Helmet #Far Horizons - The Great Capitalization Crusade
+  components:
+  - type: Pierceable
+    level: Metal
+  - type: FlashImmunity
+  - type: EyeProtection
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.80
+        Slash: 0.80
+        Piercing: 0.80
+        Heat: 0.80
+        Radiation: 0.80
+        Caustic: 0.95
+  - type: LimbArmor # Far Horizons
+    limbs:
+      Head:
+        coefficients:
+          Blunt: 0.85
+          Slash: 0.85
+          Heat: 0.85
+          Piercing: 0.85
+          Radiation: 0.85
+          Caustic: 0.25
+  - type: ExplosionResistance
+    damageCoefficient: 0.75
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Helmets/abductor.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Helmets/abductor.rsi
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - SecurityHelmet
+    
+#Basic Helmet (Security Helmet Reskin)
+- type: entity
+  parent: [ClothingHeadHelmetBase, BaseSecurityContraband]
+  id: ClothingHeadHelmetDredd
+  name: Helmet #Far Horizons - The Great Capitalization Crusade
+  description: I AM THE LAW!
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Helmets/dredd.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Helmets/dredd.rsi
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - SecurityHelmet
+
+- type: entity
+  parent: [ClothingHeadBase, BaseSecurityContraband, BaseToggleClothing]
+  id: ClothingHeadHelmetBulletProof
+  name: Bulletproof Helmet #Far Horizons - The Great Capitalization Crusade
+  description: Protects the face against bullets, can flip up and down.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Head/Helmets/bulletproof.rsi #Far Horizons
+    layers:
+    - state: icon
+      map: [ "enum.ToggleableVisuals.Layer" ]
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Head/Helmets/bulletproof.rsi #Far Horizons
+  - type: Item
+    storedRotation: 0  
+  - type: ItemToggle # Welding mask starts in an activated state
+    activated: true
+  - type: Appearance
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.95
+        Slash: 0.95
+        Piercing: 0.80
+  - type: LimbArmor # Far Horizons
+    limbs:
+      Head:
+        flatReductions:
+          Piercing: 5
+        coefficients:
+          Blunt: 0.9
+          Slash: 0.9
+          Piercing: 0.4
+          Heat: 0.9
+  - type: ToggleClothing
+    action: ActionToggleWeldingMask
+  - type: WeldingMask  
+  - type: HideLayerClothing
+    slots:
+    - Snout
+    hideOnToggle: true
+  - type: GenericVisualizer
+    visuals:
+      enum.ToggleableVisuals.Enabled:
+        enum.ToggleableVisuals.Layer:
+          True: {state: icon}
+          False: {state: icon-up}
+  - type: ComponentToggler
+    components:
+    - type: IngestionBlocker
+    - type: FlashImmunity
+    - type: IdentityBlocker
+  - type: Tag #FH
+    tags: #FH
+    - BulletproofArmor #FH
+  
+- type: entity
+  parent: [ClothingHeadHelmetBase, BaseSecurityContraband]
+  id: ClothingHeadHelmetReflective
+  name: Reflective Helmet #Far Horizons - The Great Capitalization Crusade
+  description: A shiny helmet for your equally shiny vest.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Head/Helmets/reflect.rsi #Far Horizons
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Head/Helmets/reflect.rsi #Far Horizons
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.95
+        Slash: 0.95
+        Piercing: 0.95
+        Heat: 0.80
+  - type: LimbArmor # Far Horizons
+    limbs:
+      Head:
+        flatReductions:
+          Heat: 4
+        coefficients:
+          Blunt: 0.9
+          Slash: 0.9
+          Piercing: 0.9
+          Heat: 0.4
+  - type: Reflect
+    reflectProb: 0.2
+    reflects:
+      - Energy  
+  - type: Tag
+    tags:
+    - SecurityHelmet
+    - ReflectArmor #FH
+
+- type: entity
+  parent: [ClothingHeadHelmetBase, BaseSecurityContraband]
+  id: ClothingHeadHelmetPlate
+  name: Plate Helmet #Far Horizons - The Great Capitalization Crusade
+  description: A modified security helmet with a ceramic plate insert, which means less padding for blunt hits.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Head/Helmets/plate.rsi #Far Horizons
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Head/Helmets/plate.rsi #Far Horizons
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.93
+        Slash: 0.93
+        Piercing: 0.87
+        Heat: 0.93
+  - type: LimbArmor # Far Horizons
+    limbs:
+      Head:
+        flatReductions:
+          Piercing: 5
+        coefficients:
+          Blunt: 0.85
+          Slash: 0.85
+          Piercing: 0.55
+          Heat: 0.85
+  - type: Tag
+    tags:
+    - SecurityHelmet
+
+- type: entity
+  parent:  [ClothingHeadHelmetBase, BaseSecurityContraband ]
+  id: ClothingHeadHelmetStabproof
+  name: Stabproof Helmet #Far Horizons - The Great Capitalization Crusade
+  description: The most "comfortable" security helmet, as rated by officers. Will take a blow to the head nicely, but a bullet'll go right through it.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Head/Helmets/stabproof.rsi #Far Horizons
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Head/Helmets/stabproof.rsi #Far Horizons
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.87
+        Slash: 0.87
+        Piercing: 0.93
+        Heat: 0.93
+  - type: LimbArmor # Far Horizons
+    limbs:
+      Head:
+        coefficients:
+          Blunt: 0.55
+          Slash: 0.55
+          Piercing: 0.85
+          Heat: 0.85
+  - type: Tag
+    tags:
+    - SecurityHelmet
+
+- type: entity
+  parent: [ ClothingHeadHelmetBase, BaseSecurityContraband ]
+  id: ClothingHeadHelmetHeatAbsorbent
+  name: Heat Absorbent Helmet #Far Horizons - The Great Capitalization Crusade
+  description: Advanced helmet best paired with the vest for pure style, has minor reflective properties and can absorb heat fairly well.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Head/Helmets/heatabsorbent.rsi #Far Horizons
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Head/Helmets/heatabsorbent.rsi #Far Horizons
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.93
+        Slash: 0.93
+        Piercing: 0.93
+        Heat: 0.87
+  - type: LimbArmor # Far Horizons
+    limbs:
+      Head:
+        flatReductions:
+          Heat: 4
+        coefficients:
+          Blunt: 0.85
+          Slash: 0.85
+          Piercing: 0.85
+          Heat: 0.55
+  - type: Tag
+    tags:
+    - SecurityHelmet
+
+- type: entity
+  parent: [ClothingHeadHelmetBase, BaseMinorContraband]
+  id: ClothingHeadHelmetMakeshift
+  name: Makeshift Helmet #Far Horizons - The Great Capitalization Crusade
+  description: Cobbled together steel held together with lv cables in the vauge shape of a helmet. Barely does anything.
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.97
+        Slash: 0.96
+        Piercing: 0.97
+        Heat: 0.98
+  - type: LimbArmor # Far Horizons
+    limbs:
+      Head:
+        coefficients:
+          Blunt: 0.90
+          Slash: 0.80
+          Piercing: 0.90
+          Heat: 0.95
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Helmets/makeshift.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Helmets/makeshift.rsi
+  - type: Construction
+    graph: ClothingHeadHelmetMakeshiftGraph
+    node: helmet
+
+- type: entity
+  parent: [ClothingHeadHelmetBase, BaseMinorContraband]
+  id: ClothingHeadHelmetImprovised
+  name: Improvised Helmet #Far Horizons - The Great Capitalization Crusade
+  description: Interlocking steel plates provides some decent protection, but is still barely better than nothing.
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.95
+        Slash: 0.93
+        Piercing: 0.95
+        Heat: 0.96
+  - type: LimbArmor # Far Horizons
+    limbs:
+      Head:
+        coefficients:
+          Blunt: 0.85
+          Slash: 0.70
+          Piercing: 0.85
+          Heat: 0.90
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Helmets/improvised.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Helmets/improvised.rsi
+
+- type: entity
+  parent: [ClothingHeadHelmetBase, BaseMinorContraband]
+  id: ClothingHeadHelmetForged
+  name: Forged Helmet #Far Horizons - The Great Capitalization Crusade
+  description: A high-quality helmet made by some of the best Tidersmiths, it is finally worthwhile to have it on your head.
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.92
+        Slash: 0.90
+        Piercing: 0.92
+        Heat: 0.94
+  - type: LimbArmor # Far Horizons
+    limbs:
+      Head:
+        flatReductions:
+          Piercing: 5
+        coefficients:
+          Blunt: 0.75
+          Slash: 0.65
+          Piercing: 0.70
+          Heat: 0.85
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Helmets/forged.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Helmets/forged.rsi
+
+- type: entity
+  parent: [ClothingHeadHelmetBase, BaseMajorContraband]
+  id: ClothingHeadHelmetPaladin
+  name: Paladin Helmet #Far Horizons - The Great Capitalization Crusade
+  description: No true paladin can go without their helmet!
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.90
+        Slash: 0.88
+        Piercing: 0.90
+        Heat: 0.92
+  - type: LimbArmor # Far Horizons
+    limbs:
+      Head:
+        flatReductions:
+          Piercing: 5
+        coefficients:
+          Blunt: 0.70
+          Slash: 0.50
+          Piercing: 0.55
+          Heat: 0.85
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Helmets/paladin.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Helmets/paladin.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHelmetRisk
+  name: Station Daredevil's Helmet #Far Horizons - The Great Capitalization Crusade
+  description: A strong helmet with a cool red line in the middle.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Helmets/riskhelmet.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Helmets/riskhelmet.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.95
+  - type: LimbArmor # Far Horizons
+    limbs:
+      Head:
+        coefficients:
+          Blunt: 0.80
+  - type: ExplosionResistance
+    damageCoefficient: 0.95
+
+# Far Horizons removed
+# - type: entity
+#   parent: [ ClothingHeadHelmetArmoredBase, BaseSalvageContraband ]
+#   id: ClothingHeadHelmetSalvageMerc
+#   name: Scrapper Helmet #Far Horizons - The Great Capitalization Crusade
+#   description: A durable, lightweight helmet favored by salvagers.
+#   components:
+#     - type: Sprite
+#       sprite: _Starlight/Clothing/Head/Helmets/salvage.rsi
+#     - type: Clothing
+#       sprite: _Starlight/Clothing/Head/Helmets/salvage.rsi
+#     - type: HideLayerClothing
+#       layers:
+#         Hair: HEAD

@@ -1,0 +1,105 @@
+#region NS intercoms
+- type: entity
+  id: IntercomNSCommon #Far Horizons
+  parent: Intercom
+  suffix: Common, NS
+  components:
+  - type: ContainerFill
+    containers:
+      board:
+      - IntercomElectronics
+      key_slots:
+      - EncryptionKeySyndiCommon
+
+- type: entity
+  id: IntercomNSCommand #Far Horizons
+  parent: BaseIntercomSecure
+  suffix: Command, NS
+  description: An intercom. It's been reinforced with metal.
+  components:
+  - type: ContainerFill
+    containers:
+      board:
+      - IntercomElectronics
+      key_slots:
+      - EncryptionKeySyndiCommon
+      - EncryptionKeySyndiCommand
+
+- type: entity
+  id: IntercomNSEngineering #Far Horizons
+  parent: Intercom
+  suffix: Engineering, NS
+  components:
+  - type: ContainerFill
+    containers:
+      board:
+      - IntercomElectronics
+      key_slots:
+      - EncryptionKeySyndiCommon
+      - EncryptionKeySyndiEngi
+
+- type: entity
+  id: IntercomNSMedical #Far Horizons
+  parent: Intercom
+  suffix: Medical, NS
+  components:
+  - type: ContainerFill
+    containers:
+      board:
+      - IntercomElectronics
+      key_slots:
+      - EncryptionKeySyndiCommon
+      - EncryptionKeySyndiMed
+
+- type: entity
+  id: IntercomNSScience #Far Horizons
+  parent: Intercom
+  suffix: Science, NS
+  components:
+  - type: ContainerFill
+    containers:
+      board:
+      - IntercomElectronics
+      key_slots:
+      - EncryptionKeySyndiCommon
+      - EncryptionKeySyndiSci
+
+- type: entity
+  id: IntercomNSSecurity #Far Horizons
+  parent: BaseIntercomSecure
+  suffix: Security, NS
+  description: An intercom. It's been reinforced with metal from security helmets, making it a bitch-and-a-half to open.
+  components:
+  - type: ContainerFill
+    containers:
+      board:
+      - IntercomElectronics
+      key_slots:
+      - EncryptionKeySyndiCommon
+      - EncryptionKeySyndiSecurity
+
+- type: entity
+  id: IntercomNSService #Far Horizons
+  parent: Intercom
+  suffix: Service, NS
+  components:
+  - type: ContainerFill
+    containers:
+      board:
+      - IntercomElectronics
+      key_slots:
+      - EncryptionKeySyndiCommon
+      - EncryptionKeySyndiService
+
+- type: entity
+  id: IntercomNSAll #Far Horizons
+  parent: Intercom
+  suffix: All, NS
+  components:
+  - type: ContainerFill
+    containers:
+      board:
+      - IntercomElectronics
+      key_slots:
+      - EncryptionKeySyndiCommon
+      - EncryptionKeySyndiMaster

@@ -1,0 +1,140 @@
+- type: entity
+  name: automender
+  description: A device used to heal patients brute, burn or both damage types.
+  parent: [ BaseStarlightHealingItem, SolutionInjector ] #FH
+  id: BaseAutoMender
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Specific/Medical/medical.rsi #FH
+    layers: 
+    - state: mender
+      map: ["enum.SolutionContainerLayers.Base"]
+    - state: mender1
+      map: ["enum.SolutionContainerLayers.Fill"]
+      visible: false
+  - type: Item
+    sprite: _FarHorizons/Objects/Specific/Medical/medical.rsi #FH
+    heldPrefix: mender
+  - type: Solution # FH - migrated from SolutionContainerManager
+    solution:
+      maxVol: 35
+  - type: RefillableSolution
+    solution: injector
+  - type: DrawableSolution
+    solution: injector
+  - type: DrainableSolution
+    solution: injector
+  - type: Appearance
+  - type: SolutionContainerVisuals
+    maxFillLevels: 4 #FH
+    fillBaseName: mender
+    solutionName: injector
+  - type: Tag #FH
+    tags: #FH
+    - AutoMender #FH
+  - type: InteractRestriction #FH - Edit
+    restrictInteractionTarget:
+      blacklist:  # Use blacklist instead of whitelist so can be clicked on bags/medkits
+        - IPC
+
+- type: entity
+  id: AutoMenderBrute
+  name: Brute Automender #FH
+  description: A device used to heal a patient's brute injuries. Uses bicaridine to work. #FH
+  parent: BaseAutoMender
+  components:
+#FH - Start
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Specific/Medical/medical.rsi
+    layers: 
+    - state: brutemender
+      map: ["enum.SolutionContainerLayers.Base"]
+    - state: mender1
+      map: ["enum.SolutionContainerLayers.Fill"]
+      visible: false
+  - type: Item
+    sprite: _FarHorizons/Objects/Specific/Medical/medical.rsi
+    heldPrefix: brutemender
+#FH - End
+  - type: Solution # FH - migrated from SolutionContainerManager
+    solution:
+      maxVol: 30
+  - type: Healing
+    solutionDrain: true
+    reagentsToDrain:
+    - ReagentId: Bicaridine
+      Quantity: 0.5
+    delay: 0.5
+    damageContainers:
+      - Biological
+    damage:
+      types: # Far Horizons changed to types
+        Blunt: -0.6
+        Slash: -0.6
+        Piercing: -0.6
+    healingBeginSound:
+      path: "/Audio/_Starlight/Items/Medical/mender.ogg"
+    healingEndSound:
+      path: "/Audio/_Starlight/Items/Medical/mender2.ogg"
+      
+- type: entity
+  suffix: Filled
+  parent: AutoMenderBrute
+  id: AutoMenderBruteFilled
+  components:
+  - type: Solution # FH - migrated from SolutionContainerManager
+    id: injector
+    solution:
+      reagents:
+      - ReagentId: Bicaridine
+        Quantity: 30
+      
+- type: entity
+  id: AutoMenderBurn
+  name: Burn Automender #FH
+  description: A device used to heal a patient's burns. Uses dermaline to work. #FH
+  parent: BaseAutoMender
+  components:
+#FH - Start
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Specific/Medical/medical.rsi
+    layers: 
+    - state: burnmender
+      map: ["enum.SolutionContainerLayers.Base"]
+    - state: mender1
+      map: ["enum.SolutionContainerLayers.Fill"]
+      visible: false
+  - type: Item
+    sprite: _FarHorizons/Objects/Specific/Medical/medical.rsi
+    heldPrefix: burnmender
+#FH - End
+  - type: Healing
+    solutionDrain: true
+    reagentsToDrain:
+    - ReagentId: Dermaline
+      Quantity: 0.5
+    damageContainers:
+      - Biological
+    delay: 0.5
+    damage:
+      types:
+        Heat: -1.5
+        Cold: -1.5
+        Shock: -1.5
+        Caustic: -1
+    healingBeginSound:
+      path: "/Audio/_Starlight/Items/Medical/mender.ogg"
+    healingEndSound:
+      path: "/Audio/_Starlight/Items/Medical/mender2.ogg"
+      
+- type: entity
+  suffix: Filled
+  parent: AutoMenderBurn
+  id: AutoMenderBurnFilled
+  components:
+  - type: Solution # FH - migrated from SolutionContainerManager
+    solution:
+      reagents:
+      - ReagentId: Dermaline
+        Quantity: 35

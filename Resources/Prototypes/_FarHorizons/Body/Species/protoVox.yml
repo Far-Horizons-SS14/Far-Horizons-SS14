@@ -42,10 +42,17 @@
 
 - type: entity
   parent:
+  - ActiveCritBase
   - AppearanceProtoVox
   - BaseMobProtoVox
   id: MobProtoVox
   name: Urist McVoxster
+  components:
+    - type: FluidFootprintSpreader
+      footprint: Chicken
+      footprintSize: 1.0
+      stepSpacing: 0.2
+      lateralOffset: 0.15
 
 # Organs
 
@@ -80,7 +87,12 @@
 - type: entity
   parent: [ OrganProtoVoxExternalUnsprited, OrganVoxTorso ]
   id: OrganProtoVoxTorso
-
+  components:
+  - type: VisualOrganMarkings
+    hideableLayers:
+    - enum.HumanoidVisualLayers.BodyCover
+    - enum.HumanoidVisualLayers.BodyCoverCover
+    
 - type: entity
   parent: [ OrganProtoVoxExternalUnsprited, OrganVoxHead ]
   id: OrganProtoVoxHead

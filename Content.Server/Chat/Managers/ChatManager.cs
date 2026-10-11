@@ -37,19 +37,19 @@ internal sealed partial class ChatManager : IChatManager
         { "revolutionary", "#aa00ff" }
     };
 
-    [Dependency] private readonly IReplayRecordingManager _replay = default!;
-    [Dependency] private readonly IServerNetManager _netManager = default!;
-    [Dependency] private readonly IAdminManager _adminManager = default!;
-    [Dependency] private readonly IAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly IServerPreferencesManager _preferencesManager = default!;
-    [Dependency] private readonly IConfigurationManager _configurationManager = default!;
-    [Dependency] private readonly INetConfigurationManager _netConfigManager = default!;
-    [Dependency] private readonly IEntityManager _entityManager = default!;
-    [Dependency] private readonly PlayerRateLimitManager _rateLimitManager = default!;
-    [Dependency] private readonly ISharedPlayerManager _player = default!;
-    [Dependency] private readonly DiscordChatLink _discordLink = default!;
-    [Dependency] private readonly IDiscordLinkManager _discordLinkManager = default!;
-    [Dependency] private readonly ILogManager _logManager = default!;
+    [Dependency] private IReplayRecordingManager _replay = default!;
+    [Dependency] private IServerNetManager _netManager = default!;
+    [Dependency] private IAdminManager _adminManager = default!;
+    [Dependency] private IAdminLogManager _adminLogger = default!;
+    [Dependency] private IServerPreferencesManager _preferencesManager = default!;
+    [Dependency] private IConfigurationManager _configurationManager = default!;
+    [Dependency] private INetConfigurationManager _netConfigManager = default!;
+    [Dependency] private IEntityManager _entityManager = default!;
+    [Dependency] private PlayerRateLimitManager _rateLimitManager = default!;
+    [Dependency] private ISharedPlayerManager _player = default!;
+    [Dependency] private DiscordChatLink _discordLink = default!;
+    [Dependency] private IDiscordLinkManager _discordLinkManager = default!;
+    [Dependency] private ILogManager _logManager = default!;
 
     private ISawmill _sawmill = default!;
 
@@ -266,6 +266,11 @@ internal sealed partial class ChatManager : IChatManager
             case OOCChatType.Admin:
                 SendAdminChat(player, message);
                 break;
+            // Far Horizons start
+            case OOCChatType.Mentor:
+                SendMentorChat(player, message);
+                break;
+            // Far Horizons end
         }
     }
 
@@ -295,7 +300,7 @@ internal sealed partial class ChatManager : IChatManager
         var playerName = player.Name;
         var playerTitle = "";
 
-        if (_adminManager.HasAdminFlag(player, AdminFlags.NameColor))
+        if (_adminManager.HasAdminFlag(player, AdminFlags.NameColor, true)) //FH
         {
             var prefs = _preferencesManager.GetPreferences(player.UserId);
             colorOverride = prefs.AdminOOCColor;
@@ -323,7 +328,7 @@ internal sealed partial class ChatManager : IChatManager
             return;
         }
 
-        var clients = _adminManager.ActiveAdmins.Select(p => p.Channel);
+        var clients = _adminManager.ActiveAdmins.Where(p => _adminManager.HasAdminFlag(p, AdminFlags.Adminchat)).Select(p => p.Channel); // Far Horizons - only relay message to Adminchat permission holders
 
         var prefix = GetAdminTitle(player);
         
@@ -348,6 +353,43 @@ internal sealed partial class ChatManager : IChatManager
         _discordLink.SendMessage(message, player.Name, ChatChannel.AdminChat);
         _adminLogger.Add(LogType.Chat, $"Admin chat from {player:Player}: {message}");
     }
+
+    // Far Horizons start
+    private void SendMentorChat(ICommonSession player, string message)
+    {
+        if (!_discordLinkManager.Mentors.Contains(player) && !_adminManager.IsAdmin(player))
+        {
+            _adminLogger.Add(LogType.Chat, LogImpact.Extreme, $"{player:Player} attempted to send mentor message but was neither mentor nor admin");
+            return;
+        }
+
+        var adminClients = _adminManager.ActiveAdmins.Select(p => p.Channel);
+        var mentorClients = _discordLinkManager.Mentors.Select(p => p.Channel);
+        var clients = adminClients.Union(mentorClients);
+
+        var prefix = GetAdminTitle(player);
+        
+        var wrappedMessage = Loc.GetString("chat-manager-send-admin-chat-wrap-message",
+                                        ("adminChannelName", prefix),
+                                        ("playerName", player.Name), ("message", FormattedMessage.EscapeText(message)));
+
+        foreach (var client in clients)
+        {
+            var isSource = client != player.Channel;
+            ChatMessageToOne(ChatChannel.MentorChat,
+                message,
+                wrappedMessage,
+                default,
+                false,
+                client,
+                audioPath: isSource ? _netConfigManager.GetClientCVar(client, CCVars.AdminChatSoundPath) : default,
+                audioVolume: isSource ? _netConfigManager.GetClientCVar(client, CCVars.AdminChatSoundVolume) : default,
+                author: player.UserId);
+        }
+
+        _adminLogger.Add(LogType.Chat, $"Mentor chat from {player:Player}: {message}");
+    }
+    // Far Horizons end
 
     #endregion
 
@@ -458,5 +500,6 @@ internal sealed partial class ChatManager : IChatManager
 public enum OOCChatType : byte
 {
     OOC,
-    Admin
+    Admin,
+    Mentor // Far Horizons
 }

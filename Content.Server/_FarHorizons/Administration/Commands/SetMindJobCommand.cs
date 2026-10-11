@@ -11,14 +11,14 @@ using Robust.Shared.Prototypes;
 namespace Content.Server._FarHorizons.Administration.Commands;
 
 [AdminCommand(AdminFlags.Admin)]
-public sealed class SetMindJobCommand : LocalizedEntityCommands
+public sealed partial class SetMindJobCommand : LocalizedEntityCommands
 {
     public override string Command => "setmindjob";
     public override string Description => "Sets job to the player's mind.";
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
-    [Dependency] private readonly MindSystem _mind = default!;
-    [Dependency] private readonly RoleSystem _roles = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IPlayerManager _playerManager = default!;
+    [Dependency] private MindSystem _mind = default!;
+    [Dependency] private RoleSystem _roles = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
 
     public override void Execute(IConsoleShell shell, string argStr, string[] args)
     {

@@ -84,6 +84,7 @@ public partial class MobStateSystem
             case MobState.Alive:
                 //unused
                 break;
+            case MobState.ActiveCritical: // Far Horizons
             case MobState.Critical:
                 _standing.Stand(target);
                 break;
@@ -115,6 +116,7 @@ public partial class MobStateSystem
                 _appearance.SetData(target, MobStateVisuals.State, MobState.Alive);
                 break;
             }
+            case MobState.ActiveCritical: // Far Horizons
             case MobState.Critical:
             {
                 Down(target);
@@ -182,14 +184,14 @@ public partial class MobStateSystem
     private void OnEquipAttempt(EntityUid target, MobStateComponent component, IsEquippingAttemptEvent args)
     {
         // is this a self-equip, or are they being stripped?
-        if (args.Equipee == target)
+        if (args.User == target)
             CheckAct(target, component, args);
     }
 
     private void OnUnequipAttempt(EntityUid target, MobStateComponent component, IsUnequippingAttemptEvent args)
     {
         // is this a self-equip, or are they being stripped?
-        if (args.Unequipee == target)
+        if (args.User == target)
             CheckAct(target, component, args);
     }
 

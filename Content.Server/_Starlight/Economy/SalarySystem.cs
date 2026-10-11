@@ -1,9 +1,11 @@
 ﻿using System.Linq;
+using Content.Server._FarHorizons.Banking;
 using Content.Server.Administration.Managers;
 using Content.Server.Chat.Managers;
 using Content.Server.GameTicking.Events;
 using Content.Server.Mind;
 using Content.Server.Roles;
+using Content.Shared._FarHorizons.Factions;
 using Content.Shared.Chat;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
@@ -16,14 +18,16 @@ using Robust.Shared.Timing;
 namespace Content.Shared.Starlight.Economy;
 public sealed partial class SalarySystem : SharedSalarySystem
 {
-    [Dependency] private readonly IEntityManager _entityManager = default!;
-    [Dependency] private readonly IPlayerRolesManager _playerRolesManager = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly IGameTiming _time = default!;
-    [Dependency] private readonly IPrototypeManager _prototypes = default!;
-    [Dependency] private readonly IChatManager _chat = default!;
-    [Dependency] private readonly RoleSystem _roles = default!;
-    [Dependency] private readonly MindSystem _mind = default!;
+    [Dependency] private IEntityManager _entityManager = default!;
+    [Dependency] private IPlayerRolesManager _playerRolesManager = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private IGameTiming _time = default!;
+    [Dependency] private IPrototypeManager _prototypes = default!;
+    [Dependency] private IChatManager _chat = default!;
+    [Dependency] private RoleSystem _roles = default!;
+    [Dependency] private MindSystem _mind = default!;
+    [Dependency] private ISharedFactionManager _factions = default!; // Far Horizons
+    [Dependency] private BankingSystem _banking = default!; // Far Horizons
 
     private float _delayAccumulator = 0f;
     private readonly Stopwatch _stopwatch = new();
@@ -58,11 +62,16 @@ public sealed partial class SalarySystem : SharedSalarySystem
                 }
                 if (!_entityManager.TryGetComponent<MobStateComponent>(query.Current.Session.AttachedEntity, out var state) 
                     || state.CurrentState == MobState.Critical 
+                    || state.CurrentState == MobState.ActiveCritical // Far Horizons
                     || state.CurrentState == MobState.Dead)
                     continue;
                 if (_time.CurTime - lastTime > TimeSpan.FromMinutes(15)
                     && _mind.TryGetMind(query.Current.Session.UserId, out var mind))
                 {
+                    // Far Horizons start
+                    var senderProto = _roles.MindGetFaction(mind.Value.Owner) ?? _factions.GetCurrentFaction() ?? _factions.GetDefaultFaction();
+                    var sender = _prototypes.Index(senderProto).Name;
+                    // Far Horizons end
 
                     var roles = _roles.MindGetAllRoleInfo((mind.Value.Owner, mind.Value.Comp));
                     foreach (var role in roles)
@@ -71,9 +80,9 @@ public sealed partial class SalarySystem : SharedSalarySystem
                         {
                             var amount = CalculateSalaryWithBonuses(salary, query.Current.Session);
 
-                            query.Current.Data.Balance += amount;
-                            var message = Loc.GetString("economy-chat-salary-message", ("amount", amount), ("sender", "NanoTrasen"));
-                            var wrappedMessage = Loc.GetString("economy-chat-salary-wrapped-message", ("amount", amount), ("sender", "NanoTrasen"), ("senderColor", "#2384CE"));
+                            _banking.ChangeBalance(query.Current.Session.AttachedEntity.Value, amount); // Far Horizons
+                            var message = Loc.GetString("economy-chat-salary-message", ("amount", amount), ("sender", sender)); // Far Horizons
+                            var wrappedMessage = Loc.GetString("economy-chat-salary-wrapped-message", ("amount", amount), ("sender", sender), ("senderColor", "#2384CE")); // Far Horizons
                             _chat.ChatMessageToOne(ChatChannel.Notifications, message, wrappedMessage, default, false, query.Current.Session.Channel, Color.FromHex("#57A3F7"));
                         }
                     }
@@ -98,6 +107,8 @@ public sealed partial class SalarySystem : SharedSalarySystem
             return;
 
         playerData.Balance += amount;
+        if (session.AttachedEntity != null)
+            _banking.ChangeBalance(session.AttachedEntity.Value, amount); // Far Horizons
 
         // We need to make a prototype
         var i = _random.Next(0, 20);

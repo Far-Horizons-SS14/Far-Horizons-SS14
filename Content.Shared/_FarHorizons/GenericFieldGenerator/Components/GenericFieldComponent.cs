@@ -1,6 +1,4 @@
 using Robust.Shared.GameStates;
-using Robust.Shared.Map;
-using Robust.Shared.Map.Components;
 
 namespace Content.Shared._FarHorizons.GenericFieldGenerator.Components;
 

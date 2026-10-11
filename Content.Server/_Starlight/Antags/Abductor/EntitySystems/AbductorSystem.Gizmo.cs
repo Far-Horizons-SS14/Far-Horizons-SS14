@@ -20,8 +20,8 @@ namespace Content.Server.Starlight.Antags.Abductor;
 
 public sealed partial class AbductorSystem : SharedAbductorSystem
 {
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly ActionBlockerSystem _actionBlockerSystem = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private ActionBlockerSystem _actionBlockerSystem = default!;
 
     private static readonly ProtoId<TagPrototype> _abductor = "Abductor";
     public void InitializeGizmo()

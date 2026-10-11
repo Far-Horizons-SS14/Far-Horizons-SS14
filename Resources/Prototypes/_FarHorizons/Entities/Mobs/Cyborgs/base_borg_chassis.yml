@@ -8,92 +8,58 @@
     receiveFrequencyId: SecborgControl
     transmitFrequencyId: SecurityRoboticsConsole
     savableAddress: false
-
-
-- type: entity # TODO implement sirens
-  parent: [BaseBorgChassis, BaseSecBorgTransponder]
-  id: BorgChassisSecurity
-  name: security cyborg
-  description: A special chassis produced by Nanotrasen to aid station side security forces in their duties.
-  components:
   - type: BorgTransponder
     name: security cyborg
     sprite:
       sprite: _FarHorizons/Mobs/Silicon/Chassis/security.rsi
       state: borg
+
+
+#region ## NanoTrasen ##
+
+- type: entity # TODO implement sirens
+  parent: [BaseBorgChassis, BaseSecBorgTransponder]
+  id: BorgChassisSecuritySelectable
+  name: Security Cyborg
+  description: A special chassis produced by Nanotrasen to aid station side security forces in their duties.
+  components:
   - type: TextToSpeech
-  - type: Sprite
-    sprite: _FarHorizons/Mobs/Silicon/Chassis/security.rsi
-    layers:
-      - state: borg
-      - state: borg_e
-        map: ["enum.BorgVisualLayers.Light"]
-        shader: unshaded
-        visible: false
-      - state: borg_l
-        shader: unshaded
-        map: ["light"]
-        visible: false
-      # - state: borg_siren_on
-      #   map: [ "enum.BorgVisualLayers.Siren", "siren" ]
-      #   shader: unshaded
   - type: RandomMetadata
     nameSegments:
     - NamesBorg
   - type: NpcFactionMember
     factions:
     - NanoTrasenSilicon
-  - type: Access
-    enabled: false
-    groups:
-    - Security # Ensure it can go anywhere inside of sec.
-    tags:
-    - Maintenance # Was told it's not unbalanced to give it maints.
-    - External # Is borg. Can go outside.
-  - type: AccessReader
-    access: [["Command"], ["Armory"]] # Warden & Command. Todo, sec roboticist
   - type: ShowJobIcons
-  - type: ShowMindShieldIcons
-  - type: ShowCriminalRecordIcons
+  - type: ShowCrewIcons
   - type: InteractionPopup
     interactSuccessSound:
       path: /Audio/Ambience/Objects/periodic_beep.ogg
-  - type: FlashImmunity
-  - type: IntrinsicRadioTransmitter
-    channels:
-    - Binary
-    - Common
-    - Science
-    - Security
-  - type: ActiveRadio
-    channels:
-    - Binary
-    - Common
-    - Science
-    - Security
-  # - type: ActionGrant
-  #   actions:
-  #   - ActionBorgToggleSirens
-  - type: EmagSiliconLaw
-    stunTime: 5
-  - type: SiliconLawProvider
-    laws: Robocop
+  - type: Sprite
+    sprite: _FarHorizons/Mobs/Silicon/Chassis/security.rsi
+    layers:
+    - state: borg
+      map: [ "movement", "enum.BorgVisualLayers.Body" ]
+    - state: borg_e_r
+      map: [ "enum.BorgVisualLayers.Light" ]
+      shader: unshaded
+      visible: false
+    - state: borg_l
+      shader: unshaded
+      map: [ "light","enum.BorgVisualLayers.LightStatus" ]
+      visible: false
   - type: BorgChassis
-    maxModules: 6
+    maxModules: 0
     hasMindState: borg_e
     noMindState: borg_e_r
-
-- type: entity
-  parent: BorgChassisSecurity
-  id: BorgChassisSecurityModule
-  suffix: Module
-  components:
-  - type: ContainerFill
-    containers:
-      borg_module:
-      - BorgModuleTool
-      - BorgModuleBaton
-      - BorgModuleDominator
+  - type: BorgSwitchableType
+    inherentRadioChannels:
+    - Binary
+    - Common
+    availableTypes:
+    - security
+  - type: SiliconLawProvider
+    laws: Robocop
 
 - type: entity
   parent: BaseBorgChassisNotIonStormable
@@ -104,7 +70,7 @@
   abstract: true
   components:
   - type: Sprite
-    sprite: Mobs/Silicon/Chassis/generic.rsi
+    sprite: _Starlight/Mobs/Silicon/Chassis/NTNC_Borg.rsi
   - type: TextToSpeech
   - type: RandomMetadata
     nameSegments:
@@ -112,14 +78,6 @@
   - type: NpcFactionMember
     factions:
     - NanoTrasenSilicon
-  - type: Access
-    enabled: false
-    groups:
-    - AllAccess
-    tags:
-    - CentralCommand
-  - type: AccessReader
-    access: [["CentralCommand"]]
   - type: ShowJobIcons
   - type: InteractionPopup
     interactSuccessSound:
@@ -178,7 +136,6 @@
   components:
   - type: TextToSpeech
   - type: Sprite
-    sprite: _FarHorizons/Mobs/Silicon/Chassis/ntnc_haw.rsi
     layers:
       - state: borg
       - state: borg_e
@@ -230,6 +187,7 @@
       - !type:EmptyContainersBehaviour
         containers:
         - borg_brain
+        - borg_module
         - cell_slot
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
@@ -300,3 +258,162 @@
   - type: FootstepModifier # it flies instead of walking
     footstepSoundCollection:
       collection: FootstepHoverXenoborg
+
+#region ## NeoSol ##
+
+- type: entity
+  abstract: true
+  id: BaseBorgTransponderNS
+  components:
+  - type: TextToSpeech
+  - type: BorgTransponder
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: CyborgControlNS
+    transmitFrequencyId: RoboticsConsoleNS
+    savableAddress: false
+  - type: TimerTrigger
+    delay: 10
+    examinable: false
+    beepSound:
+      path: /Audio/Effects/Cargo/buzz_two.ogg
+      params:
+        volume: -4
+  # prevent any funnies if someone makes a cyborg item...
+  - type: ExplodeOnTrigger
+    keysIn:
+    - timer
+  # explosion does most of its damage in the center and less at the edges
+  - type: Explosive
+    explosionType: Minibomb
+    deleteAfterExplosion: false # let damage threshold gib the borg
+    totalIntensity: 30
+    intensitySlope: 20
+    maxIntensity: 20
+    canCreateVacuum: false # its for killing the borg not the station
+  - type: SpaceRescuePingSender
+    color: "#2f88ff"
+
+- type: entity
+  abstract: true
+  parent: BaseBorgTransponderNS
+  id: BaseSecBorgTransponderNS
+  components:
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: SecborgControlNS
+    transmitFrequencyId: SecurityRoboticsConsoleNS
+    savableAddress: false
+  - type: BorgTransponder
+    name: L.E.A.D. Cyborg
+    sprite:
+      sprite: _FarHorizons/Mobs/Silicon/Chassis/security.rsi
+      state: borg
+
+- type: entity
+  id: BaseBorgChassisNS
+  parent: [BaseBorgChassis, BaseBorgTransponderNS]
+  abstract: true
+  components:
+  - type: TextToSpeech
+  - type: RandomMetadata
+    nameSegments:
+    - NamesBorg
+  - type: NpcFactionMember
+    factions:
+    - NeoSolSilicon
+  - type: ShowJobIcons
+  - type: ShowCrewIcons
+  - type: InteractionPopup
+    interactSuccessSound:
+      path: /Audio/Ambience/Objects/periodic_beep.ogg
+  - type: Vocal
+    sounds:
+      Unsexed: UnisexSiliconSyndicate
+
+- type: entity
+  parent: [BaseBorgChassisNS, BaseSecBorgTransponderNS]
+  id: BorgChassisSecuritySelectableNS
+  name: Security Cyborg
+  description: A special chassis produced by Nanotrasen to aid station side security forces in their duties.
+  suffix: NS
+  components:
+  - type: RandomMetadata
+    nameSegments:
+    - NamesBorg
+  - type: Sprite
+    sprite: Mobs/Silicon/Chassis/synd_sec.rsi
+    layers:
+    - state: borg
+      map: [ "movement", "enum.BorgVisualLayers.Body" ]
+    - state: borg_e_r
+      map: [ "enum.BorgVisualLayers.Light" ]
+      shader: unshaded
+      visible: false
+    - state: borg_l
+      shader: unshaded
+      map: [ "light","enum.BorgVisualLayers.LightStatus" ]
+      visible: false
+  - type: BorgChassis
+    maxModules: 0
+    hasMindState: borg_e
+    noMindState: borg_e_r
+  - type: BorgSwitchableType
+    inherentRadioChannels:
+    - SyndiCommon
+    - Binary
+    availableTypes:
+    - securityNS
+  - type: SiliconLawProvider
+    laws: Robocop
+
+- type: entity
+  id: BorgChassisSecurityNS
+  parent: BorgChassisSelectableNS
+  name: Security Cyborg
+  suffix: NS
+  components:
+  - type: BorgSwitchableType
+    selectedBorgType: securityNS
+
+- type: entity
+  id: BorgChassisSelectableNS
+  parent: BaseBorgChassisNS
+  components:
+  - type: Sprite
+    layers:
+    - state: borg
+      map: [ "movement", "enum.BorgVisualLayers.Body" ]
+    - state: borg_e_r
+      map: [ "enum.BorgVisualLayers.Light" ]
+      shader: unshaded
+      visible: false
+    - state: borg_l
+      shader: unshaded
+      map: [ "light","enum.BorgVisualLayers.LightStatus" ]
+      visible: false
+  - type: BorgChassis
+    maxModules: 0
+    hasMindState: borg_e
+    noMindState: borg_e_r
+  - type: BorgTransponder
+    sprite:
+      sprite: Mobs/Silicon/Chassis/generic.rsi
+      state: borg
+    name: cyborg
+  - type: InteractionPopup
+    interactSuccessString: petting-success-generic-cyborg
+    interactFailureString: petting-failure-generic-cyborg
+  - type: BorgSwitchableType
+    inherentRadioChannels:
+    - SyndiCommon
+    - Binary
+    availableTypes:
+    - engineeringNS
+    - genericNS
+    - janitorNS
+    - medicalNS
+    - purrfusNS
+    - serviceNS
+    - cargo
+    - mining

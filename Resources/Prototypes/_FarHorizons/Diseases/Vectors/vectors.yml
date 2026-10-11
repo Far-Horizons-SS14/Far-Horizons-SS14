@@ -1,0 +1,51 @@
+- type: Vector
+  id: Bacteria
+  stats:
+    stealth: 0
+    resistance: 0
+    speed: 0
+    transmittable: 0
+  timers:
+    stage01: 240
+    stage12: 180
+    stage23: 120
+    stage34: 60
+
+- type: Vector
+  id: Virus
+  stats:
+    stealth: -4
+    resistance: -3
+    speed: 5
+    transmittable: 6
+  timers:
+    stage01: 60
+    stage12: 120
+    stage23: 180
+    stage34: 240
+
+- type: Vector
+  id: Fungus
+  stats:
+    stealth: 4
+    resistance: 6
+    speed: 1
+    transmittable: -4
+  timers:
+    stage01: 150
+    stage12: 150
+    stage23: 150
+    stage34: 150
+
+- type: Vector
+  id: BioWeapon
+  stats:
+    stealth: -8
+    resistance: 4
+    speed: 6
+    transmittable: 4
+  timers:
+    stage01: 30
+    stage12: 60
+    stage23: 90
+    stage34: 120

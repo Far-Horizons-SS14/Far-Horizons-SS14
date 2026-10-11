@@ -37,6 +37,13 @@
   metabolisms:
     Digestion:
       effects:
+       # Far Horizons start
+      - !type:Vomit
+        probability: 0.7
+        conditions:
+          - !type:MetabolizerTypeCondition
+            type: [ LesserVampire ]
+      # Far Horizons end
       - !type:SatiateHunger
         conditions:
         - !type:MetabolizerTypeCondition
@@ -146,9 +153,9 @@
   color: "#86530E"
 
 - type: reagent
-  id: Saxoite
-  name: reagent-name-saxoite
-  desc: reagent-desc-saxoite
+  id: Brass
+  name: reagent-name-brass
+  desc: reagent-desc-brass
   physicalDesc: reagent-physical-desc-ground-brass
   flavor: sax
   color: "#B8A603"

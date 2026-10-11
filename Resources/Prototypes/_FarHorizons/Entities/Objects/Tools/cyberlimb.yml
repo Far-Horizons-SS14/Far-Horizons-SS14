@@ -1,0 +1,47 @@
+- type: entity
+  name: Multitool
+  parent: Multitool
+  id: MultitoolCyber
+  description: An advanced tool to copy, store, and send electrical pulses and signals through wires and machines.
+  components:
+  - type: Tag
+    tags:
+      - CyberHandItem
+
+- type: entity
+  name: Network Configurator
+  parent: NetworkConfigurator
+  id: NetworkConfiguratorCyber
+  description: 'A common tool for assembly and disassembly. Remember: lefty latchy, righty removey.'
+  components:
+  - type: Tag
+    tags:
+      - CyberHandItem
+
+- type: entity
+  name: Jaws of Death
+  parent: SyndicateJawsOfLife
+  id: SyndicateJawsOfLifeCyber
+  description: A set of Jaws of Death, compressed through the magic of science.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Tools/cyberling.rsi
+    state: jaws_pry
+  - type: Tag
+    tags:
+    - CyberHandItem
+  - type: MultipleTool
+    statusShowBehavior: true
+    entries:
+      - behavior: Prying
+        sprite:
+          sprite: _Starlight/Objects/Tools/cyberling.rsi
+          state: jaws_pry
+        useSound: /Audio/Items/jaws_pry.ogg
+        changeSound: /Audio/Items/change_jaws.ogg
+      - behavior: Cutting
+        sprite:
+          sprite: _Starlight/Objects/Tools/cyberling.rsi
+          state: jaws_cutter
+        useSound: /Audio/Items/jaws_cut.ogg
+        changeSound: /Audio/Items/change_jaws.ogg

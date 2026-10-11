@@ -1,4 +1,5 @@
 using Content.Shared.Dragon;
+using Content.Shared.EntityTable.EntitySelectors; // FH
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
@@ -35,6 +36,6 @@ public sealed partial class DragonRiftComponent : SharedDragonRiftComponent
     [ViewVariables(VVAccess.ReadWrite), DataField("spawnCooldown")]
     public float SpawnCooldown = 30f;
 
-    [ViewVariables(VVAccess.ReadWrite), DataField("spawn", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
-    public string SpawnPrototype = "MobCarpDragon";
+    [ViewVariables(VVAccess.ReadWrite), DataField("spawn")] // FH
+    public EntityTableSelector SpawnTable; //FH
 }

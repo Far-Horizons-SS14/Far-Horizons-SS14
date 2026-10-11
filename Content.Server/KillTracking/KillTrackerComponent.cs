@@ -13,8 +13,8 @@ public sealed partial class KillTrackerComponent : Component
     /// <summary>
     /// The mobstate that registers as a "kill"
     /// </summary>
-    [DataField("killState")]
-    public MobState KillState = MobState.Critical;
+    [DataField]
+    public List<MobState> KillStates = new() { MobState.ActiveCritical, MobState.Critical}; // Far Horizons
 
     /// <summary>
     /// A dictionary of sources and how much damage they've done to this entity over time.

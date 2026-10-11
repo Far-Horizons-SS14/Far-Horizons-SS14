@@ -24,3 +24,30 @@
     walkModifier: 1
     sprintModifier: 1
   - type: Dumpable
+
+- type: entity
+  parent: ClothingBackpackDuffelSyndicateSecurity
+  id: BorgContraDuffelNS
+  name: Cyborg Contraband Storage
+  description: Using the technology of ore bags, NeoSol repurposed a duffel bag specifically for securing contraband by cyborgs.
+  components:
+  - type: ItemToggle
+    onUse: false
+    verbToggleOn: "Activate Magnet"
+    verbToggleOff: "Deactivate Magnet"
+  - type: ComponentToggler
+    components: 
+    - type: MagnetPickup
+  - type: Storage
+    maxItemSize: Huge
+    grid:
+    - 0,0,8,3
+    quickInsert: true
+    areaInsert: true
+    whitelist:
+      components:
+        - Contraband # please work
+  - type: ClothingSpeedModifier
+    walkModifier: 1
+    sprintModifier: 1
+  - type: Dumpable

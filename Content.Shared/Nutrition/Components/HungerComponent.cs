@@ -133,12 +133,11 @@ public sealed partial class HungerComponent : Component
     [AutoNetworkedField]
     public TimeSpan ThresholdUpdateRate = TimeSpan.FromSeconds(1);
     
-    //Starlight begin
     /// <summary>
     /// A list of values to drain hunger by every update tick. Gets multiplied by decay rate.
     /// </summary>
-    [ViewVariables] public readonly List<(EntityUid, float, TimeSpan?)> HungerDrains = [];
-    //Starlight end
+    /// Far Horizons
+    [ViewVariables, AutoNetworkedField] public List<(float mod, TimeSpan endTime)> HungerDrains = [];
 }
 
 [Serializable, NetSerializable]

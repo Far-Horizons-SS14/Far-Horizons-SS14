@@ -59,11 +59,11 @@ namespace Content.Benchmarks
 
         private sealed class TestDummy
         {
-            [Dependency] private readonly X1 _x1;
-            [Dependency] private readonly X2 _x2;
-            [Dependency] private readonly X3 _x3;
-            [Dependency] private readonly X4 _x4;
-            [Dependency] private readonly X5 _x5;
+            
+            
+            
+            
+            
         }
     }
 }

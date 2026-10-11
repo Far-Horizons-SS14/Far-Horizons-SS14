@@ -1,3 +1,30 @@
+#region ## GSL ##
+- type: entity
+  parent: ClothingHandsButcherable
+  id: ClothingHandsGlovesFingerlessCargo
+  name: Cargo Fingerless Gloves
+  description: Plain brown gloves without fingertips for the hard working. 
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Hands/Gloves/fingerless.rsi 
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Hands/Gloves/fingerless.rsi 
+  - type: Fiber
+    fiberMaterial: fibers-synthetic
+    fiberColor: fibers-brown 
+  - type: DamageOnInteractProtection
+    damageProtection:
+      flatReductions:
+        Heat: 0 
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#7c552f"
+      right:
+      - state: inhand-right
+        color: "#7c552f"
+
 - type: entity
   parent: ClothingHandsGlovesSyntheticBase
   id: ClothingHandsGlovesCargo
@@ -24,6 +51,93 @@
   - type: Fiber
     fiberColor: fibers-black
 
+- type: entity
+  parent: ClothingHandsBase
+  id: ClothingHandsGlovesScrapperTierOne
+  name: Basic Salvage Gloves
+  description: These gloves will protect the wearer from electric shocks. Does not come with any armor protection.
+  components:
+  - type: FingerprintMask
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Hands/Gloves/salvaget1.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Hands/Gloves/salvaget1.rsi
+  - type: Insulated
+  - type: Fiber
+    fiberMaterial: fibers-insulative
+    fiberColor: fibers-brown
+
+- type: entity
+  parent: ClothingHandsGlovesScrapperTierOne
+  id: ClothingHandsGlovesScrapperTierTwo
+  name: Salvage Gloves
+  description: These gloves will protect the wearer from electric shocks along with some minor armor.
+  components:
+  - type: FingerprintMask
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Hands/Gloves/salvaget2.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Hands/Gloves/salvaget2.rsi
+  - type: Armor
+    modifiers: 
+      coefficients:
+        Blunt: 1
+  - type: LimbArmor
+    limbs:
+      HandRight:
+        coefficients:
+          Blunt: 0.85
+          Slash: 0.8
+          Piercing: 0.8
+      HandLeft:
+        coefficients:
+          Blunt: 0.85
+          Slash: 0.8
+          Piercing: 0.8
+
+- type: entity
+  parent: [ BaseSalvageContraband, ClothingHandsGlovesCombat ]
+  id: ClothingHandsSalvageMercGlovesCombatGoliath
+  name: Goliath Salvage Combat Gloves 
+  description: High-quality insulated gloves that provide protection while salvaging with added Goliath Flesh.
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Clothing/Hands/Gloves/salvagecombat_goliath.rsi 
+    - type: Clothing
+      sprite: _FarHorizons/Clothing/Hands/Gloves/salvagecombat_goliath.rsi 
+    - type: Fiber
+      fiberColor: fibers-red
+    - type: LimbArmor
+      limbs:
+        HandRight:
+          coefficients:
+            Blunt: 0.65
+            Slash: 0.60
+            Piercing: 0.60
+        HandLeft:
+          coefficients:
+            Blunt: 0.65
+            Slash: 0.60
+            Piercing: 0.60
+    - type: MeleeWeapon
+      autoAttack: true
+      attackRate: 1.0
+      damage:
+        types:
+          Blunt: 7
+          Slash: 7
+          Structural: 14
+      soundHit:
+        collection: MetalThud
+        params:
+          volume: 5
+          pitch: 0.3
+          variation: 0.025
+    - type: Construction
+      graph: SalvageCombatGlovesGoliath
+      node: salvageCombatGlovesGoliath
+      
+#region ## NanoTrasen ##
 # upstream deleting these, preserving them here
 - type: entity
   parent: ClothingHandsGlovesBoxingBlue
@@ -113,8 +227,10 @@
     denialMessage: "lmg-restricted-to-hardsuit-message"
     denialSound: /Audio/Machines/custom_deny.ogg
 
-#region Syndicate
+#region ## NeoSol ##
 
+
+#region Command
 - type: entity
   parent: ClothingHandsBase
   id: ClothingHandsGlovesHopSyndi
@@ -122,9 +238,9 @@
   description: Perfect for dealing with paperwork and matters with bureaucracy.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/Hands/Gloves/syndihop.rsi #Far Horizons
+    sprite: _FarHorizons/Clothing/Hands/Gloves/NeoSol/hop.rsi #Far Horizons
   - type: Clothing
-    sprite: _FarHorizons/Clothing/Hands/Gloves/syndihop.rsi #Far Horizons
+    sprite: _FarHorizons/Clothing/Hands/Gloves/NeoSol/hop.rsi #Far Horizons
   - type: Fiber
     fiberMaterial: fibers-durathread
     fiberColor: fibers-black
@@ -137,3 +253,143 @@
     limbs:
       HandRight: {}
       HandLeft: {}
+
+#region Service
+- type: entity
+  parent: ClothingHandsGlovesJanitor
+  id: ClothingHandsGlovesJanitorNS
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Hands/Gloves/NeoSol/janitor.rsi 
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Hands/Gloves/NeoSol/janitor.rsi 
+
+- type: entity
+  parent: ClothingHandsGlovesLeather
+  id: ClothingHandsGlovesLeatherNS
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Hands/Gloves/NeoSol/leather.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Hands/Gloves/NeoSol/leather.rsi
+
+# Far Horizons blue sec
+- type: entity
+  parent: [ClothingHandsButcherable, BaseSecurityContraband]
+  id: ClothingHandsGlovesSecurityBlue
+  name: Blue Security Gloves
+  description: Black gloves, but slightly blue! The detective will LOVE you if you wear these.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Hands/Gloves/securityglovesblue.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Hands/Gloves/securityglovesblue.rsi
+  - type: Fiber
+    fiberMaterial: fibers-blue-and-black-woven
+  - type: FingerprintMask
+
+- type: entity
+  parent: [ClothingHandsButcherable, BaseSecurityContraband]
+  id: ClothingHandsGlovesSecurityFingerlessBlue
+  name: Fingerless Blue Security Gloves
+  description: Black gloves, but slightly blue! The detective will HATE you if you wear these.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Hands/Gloves/securityglovesfingerlessblue.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Hands/Gloves/securityglovesfingerlessblue.rsi
+  - type: Fiber
+    fiberMaterial: fibers-blue-and-black-woven
+ 
+# Consortium Weapons
+
+- type: entity
+  parent: [ClothingHandsBase, BaseSyndicateContraband]
+  id: ClothingHandsKnuckleDustersConsortium
+  name: Consortium Knuckle Dusters
+  description: "Plastitanium knuckle dusters branded with the blood-blue C. A real man beats someone to death with these."
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Hands/Gloves/consortium_knuckle_duster.rsi
+    state: consortium-knuckle-duster
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Hands/Gloves/consortium_knuckle_duster.rsi
+  - type: MeleeWeapon
+    attackRate: 1.5
+    damage:
+      types:
+        Blunt: 8
+        Piercing: 8
+    soundHit:
+      collection: Knuckles
+      params:
+        variation: 0.125
+    animation: WeaponArcFist
+    mustBeEquippedToUse: true
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - Kangaroo
+  - type: StaticPrice
+    price: 2000
+
+- type: entity
+  parent: [ClothingHandsButcherable, BaseSyndicateContraband]
+  id: ClothingHandsPoweredGloves
+  name: Powered Gloves
+  description: These gloves allow you to punch incredibly Hard.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Hands/Gloves/power_fist.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Hands/Gloves/power_fist.rsi
+  - type: MeleeWeapon
+    autoAttack: true
+    attackRate: 1
+    damage:
+      types:
+       Blunt: 32
+    soundHit:
+      collection: Knuckles
+      params:
+        variation: 0.125
+    mustBeEquippedToUse: true
+  - type: Fiber
+    fiberMaterial: fibers-leather
+    fiberColor: fibers-black
+  - type: FingerprintMask
+  - type: MeleeSpeech
+  - type: ActivatableUI
+    key: enum.MeleeSpeechUiKey.Key
+    verbOnly: true
+  - type: Actions
+  - type: UserInterface
+    interfaces:
+      enum.MeleeSpeechUiKey.Key:
+        type: MeleeSpeechBoundUserInterface
+  - type: StaticPrice
+    price: 2500
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+
+
+- type: entity
+  parent: ClothingHandsGlovesSyntheticBase
+  id: ClothingHandsGlovesWizard
+  name: Wizard Gloves
+  description: A Wizard's Gloves
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Hands/Gloves/wizard.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Hands/Gloves/wizard.rsi
+  - type: Butcherable
+    butcheringType: Knife
+    spawned:
+    - id: MaterialCloth1
+      amount: 1
+  - type: Fiber
+    fiberColor: fibers-white

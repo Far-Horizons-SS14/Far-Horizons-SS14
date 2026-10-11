@@ -20,7 +20,7 @@
           type: ChameleonBoundUserInterface
 
 - type: entity
-  parent: [Clothing, ClothingSlotBase]
+  parent: [SolutionTank, SolutionGinormous, Clothing, ClothingSlotBase]
   id: ClothingBackpackWaterTank
   name: backpack water tank
   description: Holds a large amount of fluids. Supplies to spray nozzles in your hands, and has a slot on the side for said spray nozzles.
@@ -54,10 +54,6 @@
   - type: SolutionAmmoProvider
     solutionId: tank
     proto: BulletWaterShot
-  - type: SolutionContainerManager
-    solutions:
-      tank:
-        maxVol: 1000 #much water
   - type: SolutionTransfer
     transferAmount: 50
     maxTransferAmount: 100
@@ -78,7 +74,7 @@
     exactVolume: true
 
 - type: entity
-  parent: ClothingBackpack
+  parent: ClothingBackpackSatchel
   id: ClothingBagPet
   name: pet bag
   description: A small bag designed for use by pets and small animals.
@@ -124,7 +120,7 @@
         location: Middle
 
 - type: entity
-  parent: ClothingBackpack
+  parent: ClothingBackpackSatchel
   id: XenoborgMaterialBag
   name: silicon storage square
   description: A knockoff version of a bluespace bag, can vacumn up select materials, unfit for use by humanoids due to harmful emissions.

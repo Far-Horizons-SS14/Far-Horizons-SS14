@@ -35,3 +35,4 @@ construction-recipe-airlock-glass-shuttle-fh = Glass Shuttle Airlock
 construction-recipe-plastic-flaps-clear-fh = Plastic Flaps (Clear)
 construction-recipe-plastic-flaps-opaque-fh = Plastic Flaps (Opaque)
 recipes-secret-door-name-fh = Secret Door
+construction-recipe-turnstile-fh = Turnstile

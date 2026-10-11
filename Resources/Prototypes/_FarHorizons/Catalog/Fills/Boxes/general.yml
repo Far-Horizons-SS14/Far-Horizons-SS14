@@ -10,3 +10,108 @@
       - id: ClothingUniformJumpskirtBrightPerformer
       - id: ClothingHeadBrightPerformerWig
       - id: PersonalAI
+
+- type: entity
+  name: ID Card Box 
+  suffix: 4, Filled, NS
+  parent: BoxID
+  id: BoxIDNS
+  description: A box of spare blank ID cards.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase:
+        id: NeoSolAssistantIDCard 
+        amount: 4
+
+- type: entity
+  name: PDA Box
+  suffix: 4, Filled, NS
+  parent: BoxPDA
+  id: BoxPDANS
+  description: A box of spare PDA microcomputers.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase:
+        id: NeoSolAssistantPDA 
+        amount: 4
+
+- type: entity
+  name: Assistant Encryption Key Box
+  parent: BoxEncryptionKeyAssistant
+  id: BoxEncryptionKeyAssistantNS
+  suffix: NS
+  description: A box of spare NeoSol encryption keys.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase:
+        id: EncryptionKeySyndiCommon
+        amount: 4
+
+- type: entity
+  name: Engineering Encryption Key Box
+  parent: BoxEncryptionKeyAssistantNS
+  id: BoxEncryptionKeyEngineeringNS
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase:
+        id: EncryptionKeySyndiEngi
+        amount: 4
+
+- type: entity
+  name: Med-Sci Encryption Key Box
+  parent: BoxEncryptionKeyAssistantNS
+  id: BoxEncryptionKeyMedicalScienceNS
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase:
+        id: EncryptionKeySyndiMedSci
+        amount: 4
+
+- type: entity
+  name: Medical Encryption Key Box
+  parent: BoxEncryptionKeyAssistantNS
+  id: BoxEncryptionKeyMedicalNS
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase:
+        id: EncryptionKeySyndiMed
+        amount: 4
+
+- type: entity
+  name: Science Encryption Key Box
+  parent: BoxEncryptionKeyAssistantNS
+  id: BoxEncryptionKeyScienceNS
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase:
+        id: EncryptionKeySyndiSci
+        amount: 4
+
+- type: entity
+  name: Security Encryption Key Box
+  parent: BoxEncryptionKeyAssistantNS
+  id: BoxEncryptionKeySecurityNS
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase:
+        id: EncryptionKeySyndiSecurity
+        amount: 4
+
+- type: entity
+  name: Service Encryption Key Box
+  parent: BoxEncryptionKeyAssistantNS
+  id: BoxEncryptionKeyServiceNS
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase:
+        id: EncryptionKeySyndiService
+        amount: 4

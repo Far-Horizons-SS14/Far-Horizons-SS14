@@ -1,0 +1,54 @@
+- type: job
+  id: IAA
+  name: job-name-iaa
+  description: job-description-iaa
+  playTimeTracker: JobIAA
+  requirements:
+  - !type:DepartmentTimeRequirement
+    department: Command
+    time: 36000 # 10h
+  - !type:DepartmentTimeRequirement
+    department: Security
+    time: 36000 # 10h
+  startingGear: IAAGear
+  icon: "JobIconIAA"
+  rules: job-rules-corporate-aligned
+  supervisors: job-supervisors-magistrate
+  canBeAntag: false
+  displayWeight: 40
+  access:
+  - Brig
+  - BrigNS # Far Horizons
+  - Maintenance
+  - MaintenanceNS # Far Horizons
+  - Lawyer
+  - LawyerNS # Far Horizons
+  - Command #Far Horizons
+  - Executive # Far Horizons
+  - GenpopEnter
+  - GenpopLeave
+  - GenpopEnterNS # Far Horizons
+  - GenpopLeaveNS # Far Horizons
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant ]
+
+- type: startingGear
+  id: IAAGear
+  equipment:
+    #shoes: ClothingShoesColorBlack
+    id: IAAPDA
+    eyes: ClothingEyesGlassesSunglasses
+    ears: ClothingHeadsetIAA
+    belt: BoxFolderNanoTrasenClipboard
+  inhand:
+    - BriefcaseIAAFilled
+  storage: #Far Horizons
+    back:
+      - BookSpaceLaw
+
+- type: chameleonOutfit
+  id: IAAChameleonOutfit
+  job: IAA
+  equipment:
+    eyes: ClothingEyesGlassesSunglasses

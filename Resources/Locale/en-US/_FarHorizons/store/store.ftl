@@ -1,0 +1,1 @@
+store-preset-name-cantrips = Intrinsics Selector

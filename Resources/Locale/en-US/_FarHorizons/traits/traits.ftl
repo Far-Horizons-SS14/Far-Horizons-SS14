@@ -12,3 +12,6 @@ trait-cowboy-desc = You speak with a distinct cowboy accent!
 
 trait-pirate-accent-name = Pirate accent
 trait-pirate-accent-desc = You can't stop speaking like a pirate!
+
+trait-dwarf-name = Dwarven Accent
+trait-dwarf-desc = A'm gaun tae hae a fight wi tha Thaven o'er there!

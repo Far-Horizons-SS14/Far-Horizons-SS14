@@ -1,0 +1,105 @@
+- type: entity
+  name: A.C.M.A.N.-type generator
+  description: |-
+    An industrial generator capable of powering small ships and shuttles.
+    Runs off welding fuel and is rated for up to 50 kW. Needs two air scrubbers to prevent buildup of toxic gasses.
+    WARNING: Do not put in a non-ventilated room, you will suffocate!
+  parent: [SolutionTank, SolutionNormal, PortableGeneratorSwitchableBase]
+  id: GeneratorAcman
+  suffix: Welding Fuel, 50 kW
+  components:
+    - type: AmbientSound
+      range: 6
+
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeAabb
+            bounds: "-0.30,-0.30,0.30,0.30"
+          density: 80
+          mask:
+            - MachineMask
+          layer:
+            - MachineLayer
+
+    - type: Sprite
+      sprite: _FarHorizons/Structures/Power/Generation/portable_generator.rsi
+      layers:
+        - state: portgen0
+          map: [ "enum.GeneratorVisualLayers.Body" ]
+        - state: portgen_on_unlit
+          map: [ "enum.GeneratorVisualLayers.Unlit" ]
+          shader: unshaded
+          visible: false
+    - type: GenericVisualizer
+      visuals:
+        enum.GeneratorVisuals.Running:
+          enum.GeneratorVisualLayers.Body:
+            True: { state: portgen0on }
+            False: { state: portgen0 }
+          enum.GeneratorVisualLayers.Unlit:
+            True: { visible: true }
+            False: { visible: false }
+
+    - type: Machine
+      board: GeneratorAcmanMachineCircuitboard
+    - type: FuelGenerator
+      minTargetPower: 10000
+      maxTargetPower: 50000
+      targetPower: 50000
+      optimalPower: 50000
+      optimalBurnRate: 0.11111111
+      fuelEfficiencyConstant: 0.1
+    - type: ChemicalFuelGeneratorAdapter
+      solution: tank
+      reagents:
+        WeldingFuel: 1
+    - type: RefillableSolution
+      solution: tank
+    - type: PortableGenerator
+    - type: PowerMonitoringDevice
+      group: Generator
+      loadNodes:
+        - output_hv
+        - output_mv
+      sprite: _FarHorizons/Structures/Power/Generation/portable_generator.rsi
+      state: portgen0
+    - type: PowerSupplier
+      supplyRampRate: 7500
+      supplyRampTolerance: 2500
+    - type: GeneratorExhaustGas
+      gasType: CarbonDioxide
+      # Nasty thing, needs two scrubbers in the room to effectively keep buildup from happening.
+      moleRatio: 3
+    - type: Explosive
+      explosionType: Default
+      tileBreakScale: 0
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 200
+          behaviors:
+            - !type:DoActsBehavior
+              acts: [ "Destruction" ]
+        - trigger:
+            !type:DamageTrigger
+            damage: 100
+          behaviors:
+            - !type:SpillBehavior
+              solution: tank
+            - !type:PlaySoundBehavior
+              sound:
+                collection: MetalBreak
+            - !type:ChangeConstructionNodeBehavior
+              node: machineFrame
+            - !type:DoActsBehavior
+              acts: ["Destruction"]
+        - trigger:
+            !type:DamageTypeTrigger
+            damageType: Piercing
+            damage: 75
+          behaviors:
+            - !type:SolutionExplosionBehavior
+              solution: tank

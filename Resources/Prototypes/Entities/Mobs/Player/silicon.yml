@@ -37,7 +37,6 @@
   - type: ActionGrant
     actions:
     - ActionJumpToCore
-    - ActionSurvCameraLights
     - ActionAIViewLaws
     - ActionAIShunt # Starlight AI Shunt ability
     - ActionAIWarp # Starlight
@@ -84,22 +83,6 @@
   #region Starlight
   - type: StationAIShuntable
   #endregion Starlight
-  #FarHorizonsStart
-  - type: DepartmentalAnnouncement
-    channels:
-    - Binary
-    - Common
-    - Command
-    - Engineering
-    - Medical
-    - Science
-    - Security
-    - Service
-    - GSL # Far Horizons
-    - CFA # Far Horizons
-    currentChannel: Common
-    titleAlt: comms-console-announcement-title-station-ai-alt 
-  #FarHorizonsEnd
   - type: ShowCrewIcons
   - type: DamagedSiliconAccent
     startPowerCorruptionAtCharIdx: 4
@@ -235,6 +218,7 @@
     container: station_ai_mind_slot
   - type: Damageable
     damageModifierSet: StrongMetallic
+  - type: Injurable
   - type: Repairable
     doAfterDelay: 10
     allowSelfRepair: false
@@ -316,6 +300,16 @@
         enum.StationAiVisualLayers.Base:
           False: { state: ai_empty }
           True: { state: ai_error }
+  - type: CreamPied
+    sprite:
+      sprite: Effects/creampie.rsi
+      state: creampie_ai
+  - type: Reactive
+    reactions:
+    - reagents: [Water, SpaceCleaner]
+      methods: [Touch]
+      effects:
+      - !type:WashCreamPie
   - type: InteractionPopup
     interactSuccessString: petting-success-station-ai
     interactFailureString: petting-failure-station-ai
@@ -355,6 +349,15 @@
       - StationAiCoreElectronics
   - type: StaticPrice
     price: 5000
+# Starlight-start: Changed to core linking
+  - type: DeviceList
+  - type: DeviceNetwork
+    deviceNetId: Wired
+  - type: DeviceLinkSource
+    range: 300 #FH
+    ports:
+      - AiLawConsoleSender
+# Starlight-end
 
 # The job-ready version of an AI spawn.
 - type: entity
@@ -409,6 +412,7 @@
         density: 200
   - type: Damageable
     damageModifierSet: StrongMetallic
+  - type: Injurable
   - type: Destructible
     thresholds:
     - trigger:
@@ -529,6 +533,16 @@
   description: The AI's viewer.
   categories: [ HideSpawnMenu, DoNotMap ]
   components:
+  - type: Fixtures
+    fixtures:
+      lightTrigger:
+        shape:
+          !type:PhysShapeCircle
+          radius: 8
+        density: 80
+        hard: false
+        layer:
+        - GhostImpassable
   - type: NoFTL
   - type: Tag
     tags:
@@ -546,6 +560,7 @@
     sprite: Mobs/Silicon/station_ai.rsi
     layers:
     - state: ai_camera
+  - type: CameraActiveOnCollideCollider
 
 # The holographic representation of the AI that is projected from a holopad.
 - type: entity
@@ -608,6 +623,11 @@
         - BorgModuleOperative
         - BorgModuleL6C
         - BorgModuleDoubleEsword
+        #Far Horizons Start
+        - BorgModuleAccessSyndicate
+        - BorgModuleSpeedBasic
+        - BorgModuleArmorBasic
+        #Far Horizons End
   - type: ItemSlots
     slots:
       cell_slot:
@@ -680,6 +700,11 @@
         - BorgModuleTopicals
         - BorgModuleSyndicateRescue # starlight
         - BorgModuleSyndicateWeapon
+        #Far Horizons Start
+        - BorgModuleAccessSyndicate
+        - BorgModuleSpeedBasic
+        - BorgModuleArmorBasic
+        #Far Horizons End
   - type: ItemSlots
     slots:
       cell_slot:
@@ -732,6 +757,11 @@
       - BorgModuleConstruction
       - BorgModuleRCD
       - BorgModuleCable
+      #Far Horizons Start
+      - BorgModuleAccessGSL
+      - BorgModuleSpeedBasic
+      - BorgModuleArmorBasic
+      #Far Horizons End
   - type: ItemSlots
     slots:
       cell_slot:
@@ -768,6 +798,11 @@
         - BorgModulePrying
         - BorgModuleTool
         - BorgModuleFireExtinguisher
+        #Far Horizons Start
+        - BorgModuleAccessGSL
+        - BorgModuleSpeedBasic
+        - BorgModuleArmorBasic
+        #Far Horizons End
   - type: ItemSlots
     slots:
       cell_slot:
@@ -806,6 +841,11 @@
       - BorgModuleFireExtinguisher
       - BorgModuleCleaning
       - BorgModuleCustodial
+      #Far Horizons Start
+      - BorgModuleAccessGSL
+      - BorgModuleSpeedBasic
+      - BorgModuleArmorBasic
+      #Far Horizons End
   - type: ItemSlots
     slots:
       cell_slot:
@@ -845,6 +885,11 @@
       - BorgModuleChemical
       - BorgModuleTopicals
       - BorgModuleRescue
+      #Far Horizons Start
+      - BorgModuleAccessGSL
+      - BorgModuleSpeedBasic
+      - BorgModuleArmorBasic
+      #Far Horizons End
   - type: ItemSlots
     slots:
       cell_slot:
@@ -883,6 +928,11 @@
       - BorgModuleMining
       - BorgModuleTraversal
       - BorgModuleAppraisal
+      #Far Horizons Start
+      - BorgModuleAccessGSL
+      - BorgModuleSpeedBasic
+      - BorgModuleArmorBasic
+      #Far Horizons End
   - type: ItemSlots
     slots:
       cell_slot:
@@ -920,6 +970,11 @@
       - BorgModuleOperative
       - BorgModuleC20r
       - BorgModuleEsword
+      #Far Horizons Start
+      - BorgModuleAccessSyndicate
+      - BorgModuleSpeedBasic
+      - BorgModuleArmorBasic
+      #Far Horizons End
   - type: ItemSlots
     slots:
       cell_slot:
@@ -941,48 +996,4 @@
       settings: default
     reregister: false
     job: Borg
-  - type: GhostTakeoverAvailable
-    
-# TODO: Move to FarHorizons
-- type: entity
-  id: PlayerBorgHAWBattery
-  parent: NTNCBorgChassisHAW
-  suffix: Battery, module
-  components:
-  - type: ContainerFill
-    containers:
-      borg_brain:
-        - PositronicBrain
-      borg_module:
-        - BorgModuleAdvancedTool
-        - CentcommAccessBreakerModule
-        - CentcommLaserModule
-        - CentcommBulwarkModule
-        - CentcommModuleSpaceMovement
-  - type: ItemSlots
-    slots:
-      cell_slot:
-        name: power-cell-slot-component-slot-name-default
-        startingItem: PowerCellMicroreactor
-
-- type: entity
-  id: PlayerBorgSOSUBattery
-  parent: NTNCBorgChassisSOSU
-  suffix: Battery, module
-  components:
-  - type: ContainerFill
-    containers:
-      borg_brain:
-        - PositronicBrain
-      borg_module:
-        - BorgModuleAdvancedTool
-        - CentcommAccessBreakerModule
-        - CentcommLaserModule
-        - CentcommModuleChameleonProjector
-        - CentcommModuleCloakDevice
-  - type: ItemSlots
-    slots:
-      cell_slot:
-        name: power-cell-slot-component-slot-name-default
-        startingItem: PowerCellMicroreactor
   - type: GhostTakeoverAvailable

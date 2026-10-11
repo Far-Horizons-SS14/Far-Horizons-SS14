@@ -9,7 +9,7 @@ namespace Content.Server.Administration.Commands;
 
 #if DEBUG
 [AdminCommand(AdminFlags.Host)]
-public sealed class AdminLogBulk : IConsoleCommand
+public sealed partial class AdminLogBulk : IConsoleCommand
 {
     public string Command => "adminlogbulk";
     public string Description => "Adds debug logs to the database.";

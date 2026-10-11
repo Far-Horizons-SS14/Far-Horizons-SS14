@@ -5,22 +5,50 @@
   color: "#b48b57"
   radioChannel: GSL # Far Horizons
   acquisitionSlip: PaperAcquisitionSlipCargo
+  # Starlight BEGIN
+  tamperSealName: tamper-seal-account-name-cargo
+  tamperSealColor: "#b48b57" #FH
+  tamperSealAccesses:
+    - allOf: [ "Cargo" ] # Regular crew
+  #    noneOf: [ "Borg" ] #FH
+  #  - allOf: [ "Borg", "BorgCargo" ] # Cyborg #FH
+  # Starlight END
 
 - type: cargoAccount
   id: Engineering
   name: cargo-account-engineering-name
   code: cargo-account-engineering-code
-  color: "#ff733c"
+  color: "#ff733c" #FH
   radioChannel: Engineering
   acquisitionSlip: PaperAcquisitionSlipEngineering
+  # Starlight BEGIN
+  tamperSealName: tamper-seal-account-name-engineering
+  tamperSealColor: "#ff733c" #FH
+  factionSealName: tamper-seal-faction-name-nanotrasen #FH
+  factionSealColor: "#0000ff" #FH
+  tamperSealAccesses:
+    - allOf: [ "Engineering" ] # Regular crew
+  #    noneOf: [ "Borg" ] #FH
+  #  - allOf: [ "Borg", "BorgEngineering" ] # Cyborg #FH
+  # Starlight END
 
 - type: cargoAccount
   id: Medical
   name: cargo-account-medical-name
   code: cargo-account-medical-code
-  color: "#57b8f0"
+  color: "#57b8f0" #FH
   radioChannel: Medical
   acquisitionSlip: PaperAcquisitionSlipMedical
+  # Starlight BEGIN
+  tamperSealName: tamper-seal-account-name-medical
+  tamperSealColor: "#57b8f0" #FH
+  factionSealName: tamper-seal-faction-name-nanotrasen #FH
+  factionSealColor: "#0000ff" #FH
+  tamperSealAccesses:
+    - allOf: [ "Medical" ] # Regular crew
+  #    noneOf: [ "Borg" ] #FH
+  #  - allOf: [ "Borg", "BorgMedical" ] # Cyborg #FH
+  # Starlight END
 
 - type: cargoAccount
   id: Science
@@ -29,19 +57,49 @@
   color: "#cd7ccd"
   radioChannel: Science
   acquisitionSlip: PaperAcquisitionSlipScience
+  # Starlight BEGIN
+  tamperSealName: tamper-seal-account-name-science
+  tamperSealColor: "#cd7ccd" #FH
+  factionSealName: tamper-seal-faction-name-nanotrasen #FH
+  factionSealColor: "#0000ff" #FH
+  tamperSealAccesses:
+    - allOf: [ "Research" ] # Regular crew
+  #    noneOf: [ "Borg" ] #FH
+  #  - allOf: [ "Borg", "BorgResearch" ] # Cyborg #FH
+  # Starlight END
 
 - type: cargoAccount
   id: Security
   name: cargo-account-security-name
   code: cargo-account-security-code
-  color: "#ff4242"
+  color: "#0082d9" #FH
   radioChannel: Security
   acquisitionSlip: PaperAcquisitionSlipSecurity
+  # Starlight BEGIN
+  tamperSealName: tamper-seal-account-name-security
+  tamperSealColor: "#0082d9" #FH
+  factionSealName: tamper-seal-faction-name-nanotrasen #FH
+  factionSealColor: "#0000ff" #FH
+  tamperSealAccesses:
+    - allOf: [ "Security" ] # Regular crew
+  #    noneOf: [ "Borg" ] #FH
+  #  - allOf: [ "Borg", "BorgSecurity" ] # Cyborg #FH
+  # Starlight END
 
 - type: cargoAccount
   id: Service
   name: cargo-account-service-name
   code: cargo-account-service-code
-  color: "#539c00"
+  color: "#539c00" #FH
   radioChannel: Service
   acquisitionSlip: PaperAcquisitionSlipService
+  # Starlight BEGIN
+  tamperSealName: tamper-seal-account-name-service
+  tamperSealColor: "#539c00" #FH
+  factionSealName: tamper-seal-faction-name-nanotrasen #FH
+  factionSealColor: "#0000ff" #FH
+  tamperSealAccesses:
+    - allOf: [ "Service" ] # Regular crew
+  #    noneOf: [ "Borg" ] #FH
+  #  - allOf: [ "Borg", "BorgService" ] # Cyborg #FH
+  # Starlight END

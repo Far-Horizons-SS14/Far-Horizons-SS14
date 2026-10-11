@@ -23,11 +23,31 @@
   - FlatpackerMachineCircuitboard
   - SheetifierMachineCircuitboard
   - PowerCageRechargerCircuitboard
-  - AnalysisComputerCircuitboard
+  - AnalysisComputerCircuitboardNS
   - AnomalyVesselCircuitboard
   - AnomalyVesselExperimentalCircuitboard
   - AnomalySynchronizerCircuitboard
   - APECircuitboard
   - ArtifactAnalyzerMachineCircuitboard
   - ArtifactCrusherMachineCircuitboard
-  - ResearchTreeMapElectronics #FH
+
+- type: latheRecipePack
+  id: NSCameraBoards
+  recipes:
+  - SurveillanceCameraRouterCircuitboard
+  - SurveillanceCameraMonitorCircuitboardNS
+  - SurveillanceWirelessCameraMonitorCircuitboardNS
+  - SurveillanceCameraWirelessRouterCircuitboard
+  - ComputerTelevisionCircuitboard
+  - SurveillanceWirelessCameraMovableCircuitboard
+  - SurveillanceWirelessCameraAnchoredCircuitboard
+
+- type: latheRecipePack
+  id: NSShuttleBoards
+  recipes:
+  - ShuttleConsoleCircuitboard
+  - RadarConsoleCircuitboard
+  - ThrusterMachineCircuitboard
+  - GyroscopeMachineCircuitboard
+  - MiniGravityGeneratorCircuitboard
+  - WallmountMassScannerElectronics # Starlight

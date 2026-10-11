@@ -16,7 +16,7 @@ public sealed partial class CureWait : CureStep
     /// Ticks since infection required before curing can occur.
     /// </summary>
     [DataField]
-    public int RequiredTicks { get; private set; } = 90;
+    public int RequiredTicks { get; set; } = 90;
 }
 
 public sealed partial class CureWait

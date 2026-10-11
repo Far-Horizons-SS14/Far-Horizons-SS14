@@ -19,16 +19,18 @@ using Robust.Shared.Utility;
 
 namespace Content.Shared.Implants;
 
-public abstract class SharedImplanterSystem : EntitySystem
+public abstract partial class SharedImplanterSystem : EntitySystem
 {
-    [Dependency] private readonly SharedContainerSystem _container = default!;
-    [Dependency] private readonly ItemSlotsSystem _itemSlots = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
-    [Dependency] private readonly DamageableSystem _damageableSystem = default!;
-    [Dependency] private readonly SharedUserInterfaceSystem _uiSystem = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
+    [Dependency] private SharedContainerSystem _container = default!;
+    [Dependency] private ItemSlotsSystem _itemSlots = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private EntityWhitelistSystem _whitelistSystem = default!;
+    [Dependency] private DamageableSystem _damageableSystem = default!;
+    [Dependency] private SharedUserInterfaceSystem _uiSystem = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
+
+    [Dependency] private EntityQuery<SubdermalImplantComponent> _implantCompQuery = default!;
 
     public override void Initialize()
     {
@@ -241,8 +243,8 @@ public abstract class SharedImplanterSystem : EntitySystem
                 // If the target is a revolutionary, check if they were converted by a different head revolutionary
                 if (targetIsRev)
                 {
-                    // First check if the target has a RevolutionaryConverterComponent
-                    if (TryComp<RevolutionaryConverterComponent>(target, out var converterComp) && 
+                    // First check if the target has a RevolutionaryConvertedByComponent
+                    if (TryComp<RevolutionaryConvertedByComponent>(target, out var converterComp) && 
                         converterComp.ConverterUid != null && 
                         converterComp.ConverterUid != user)
                     {
@@ -251,7 +253,7 @@ public abstract class SharedImplanterSystem : EntitySystem
                         return false;
                     }
                     
-                    // If the target doesn't have a RevolutionaryConverterComponent or it's not set,
+                    // If the target doesn't have a RevolutionaryConvertedByComponent or it's not set,
                     // fall back to checking the implant owner
                     if (hasOwner && ownerComp != null && ownerComp.OwnerUid != null)
                     {
@@ -291,8 +293,8 @@ public abstract class SharedImplanterSystem : EntitySystem
                 // If the user is trying to implant themselves with an implant from a different head revolutionary
                 if (user == target && userIsRev && !userIsHeadRev)
                 {
-                    // First check if the user has a RevolutionaryConverterComponent
-                    if (TryComp<RevolutionaryConverterComponent>(user, out var converterComp) && 
+                    // First check if the user has a RevolutionaryConvertedByComponent
+                    if (TryComp<RevolutionaryConvertedByComponent>(user, out var converterComp) && 
                         converterComp.ConverterUid != null)
                     {
                         // If the implant has an owner component
@@ -336,7 +338,7 @@ public abstract class SharedImplanterSystem : EntitySystem
                     }
                     else
                     {
-                        // If the user doesn't have a RevolutionaryConverterComponent, 
+                        // If the user doesn't have a RevolutionaryConvertedByComponent, 
                         // they shouldn't be able to implant themselves with any USSP uplink
                         _popup.PopupEntity(Loc.GetString("Not your headrev."), user, user);
                         return false;
@@ -376,13 +378,11 @@ public abstract class SharedImplanterSystem : EntitySystem
 
         if (_container.TryGetContainer(target, ImplanterComponent.ImplantSlotId, out var implantContainer))
         {
-            var implantCompQuery = GetEntityQuery<SubdermalImplantComponent>();
-
             if (component.AllowDeimplantAll)
             {
                 foreach (var implant in implantContainer.ContainedEntities)
                 {
-                    if (!implantCompQuery.TryGetComponent(implant, out var implantComp))
+                    if (!_implantCompQuery.TryGetComponent(implant, out var implantComp))
                         continue;
 
                     //Don't remove a permanent implant and look for the next that can be drawn
@@ -417,7 +417,7 @@ public abstract class SharedImplanterSystem : EntitySystem
                     }
                 }
 
-                if (implant != null && implantCompQuery.TryGetComponent(implant, out var implantComp))
+                if (implant != null && _implantCompQuery.TryGetComponent(implant, out var implantComp))
                 {
                     //Don't remove a permanent implant
                     if (!_container.CanRemove(implant.Value, implantContainer))
@@ -437,7 +437,7 @@ public abstract class SharedImplanterSystem : EntitySystem
                 }
                 else
                 {
-                    DrawCatastrophicFailure(implanter, component, user);
+                    DrawCatastrophicFailure(implanter, component, user, target); // FarHorizons - damage target rather than operator
                 }
             }
 
@@ -446,7 +446,7 @@ public abstract class SharedImplanterSystem : EntitySystem
         }
         else
         {
-            DrawCatastrophicFailure(implanter, component, user);
+            DrawCatastrophicFailure(implanter, component, user, target); // FarHorizons - damage target rather than operator
         }
     }
 
@@ -468,11 +468,11 @@ public abstract class SharedImplanterSystem : EntitySystem
         RaiseLocalEvent(target, ref ev);
     }
 
-    private void DrawCatastrophicFailure(EntityUid implanter, ImplanterComponent component, EntityUid user)
+    private void DrawCatastrophicFailure(EntityUid implanter, ImplanterComponent component, EntityUid user, EntityUid target) // FarHorizons - damage target rather than operator
     {
-        _damageableSystem.TryChangeDamage(user, component.DeimplantFailureDamage, ignoreResistances: true, origin: implanter);
-        var userName = Identity.Entity(user, EntityManager);
-        var failedCatastrophicallyMessage = Loc.GetString("implanter-draw-failed-catastrophically", ("user", userName));
+        _damageableSystem.TryChangeDamage(target, component.DeimplantFailureDamage, ignoreResistances: false, origin: implanter); // FarHorizons - damage target rather than operator
+        var targetName = Identity.Entity(target, EntityManager); /// FarHorizons - It is NOT going into that guys hand :P
+        var failedCatastrophicallyMessage = Loc.GetString("implanter-draw-failed-catastrophically-fh", ("target", targetName)); /// FarHorizons - It is NOT going into that guys hand :P
         _popup.PopupEntity(failedCatastrophicallyMessage, user, PopupType.MediumCaution);
     }
 

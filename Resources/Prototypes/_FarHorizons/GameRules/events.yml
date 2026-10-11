@@ -18,3 +18,77 @@
     - DiseaseFlu
     minInfections: 2
     maxInfections: 5
+
+- type: entity
+  parent: BaseLambdaRule
+  id: LambdaLoneOpsSpawn
+  components:
+  - type: StationEvent
+    earliestStart: 55
+    weight: 3
+    minimumPlayers: 20
+    duration: null
+    faction: FactionSyndicate
+  - type: NukeopsRule
+    roundEndBehavior: Nothing
+    greetSoundNotification: /Audio/_FarHorizons/Ambience/Antag/lambda_start.ogg
+  - type: AntagSelection
+    definitions:
+    - spawnerPrototype: SpawnPointLoneNukeOperative
+      min: 1
+      max: 1
+      prefRoles: [ Nukeops ]
+      pickPlayer: false
+      startingGear: ConsortiumLoneOperativeGearFull
+      roleLoadout:
+      - RoleSurvivalLambda
+      components:
+      - type: NukeOperative
+        syndStatusIcon: ConsortiumFaction
+      - type: RandomMetadata
+        nameSegments:
+        - NamesSyndicatePrefix
+        - NamesSyndicateNormal # TODO - replace with blue names??
+        nameFormat: name-format-nukie-generic
+      - type: NpcFactionMember
+        factions:
+        - Consortium
+      mindRoles:
+      - MindRoleLambdaLoneops
+  # The order of thise is important, startup events get executed from bottom up
+  # Loading map after loading ghost roles leads to bugs
+  # Yes, it is stupid
+  - type: RuleGrids
+  - type: LoadMapRule
+    gridPath: /Maps/_FarHorizons/Shuttles/ShuttleEvent/KillerTamashi-Striker.yml # TODO: replace with blue shuttle
+  - type: DynamicRuleCost
+    cost: 75
+
+- type: entity
+  parent: BaseTraitorRuleNS
+  id: SleeperAgentsNS
+  components:
+  - type: StationEvent
+    earliestStart: 40
+    weight: 6
+    minimumPlayers: 15
+    maxOccurrences: 1
+    startAnnouncement: station-event-communication-interception
+    startAudio:
+      path: /Audio/_Starlight/Announcements/attention.ogg
+    duration: null
+    occursDuringRoundEnd: false
+    faction: FactionSyndicate
+  - type: AlertLevelInterceptionRule
+  - type: AntagSelection
+    definitions:
+    - prefRoles: [ TraitorSleeper ]
+      fallbackRoles: [ Traitor ]
+      min: 1
+      max: 2
+      playerRatio: 10
+      blacklist:
+        components:
+        - AntagImmune
+      mindRoles:
+      - MindRoleTraitorSleeperNS

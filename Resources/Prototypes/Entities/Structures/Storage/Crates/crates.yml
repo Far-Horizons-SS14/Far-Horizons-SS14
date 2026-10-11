@@ -45,6 +45,30 @@
     sprite: Structures/Storage/Crates/freezer.rsi
   - type: Sprite
     sprite: Structures/Storage/Crates/freezer.rsi
+    # Starlight BEGIN
+    layers:
+      - state: base
+        map: ["enum.StorageVisualLayers.Base"]
+      - state: closed
+        map: ["enum.StorageVisualLayers.Door"]
+      - state: welded
+        visible: false
+        map: ["enum.WeldableLayers.BaseWelded"]
+      - state: freezer_ribbon_sealed # <-- The only real change relative to CrateGeneric.
+        sprite: _Starlight/Structures/Storage/tamper_seal32.rsi
+        visible: false
+        map: [ "enum.TamperSealLayers.Sealed" ]
+      - state: paper
+        sprite: Structures/Storage/Crates/labels.rsi
+        map: ["enum.PaperLabelVisuals.Layer"]
+    # Starlight END
+      # Far Horizons Start
+      - state: freezer_faction_ribbon_sealed
+        sprite: _FarHorizons/Structures/Storage/tamper_seal32.rsi
+        visible: false
+        map: [ "enum.FactionTamperSealLayers.Sealed" ]
+      #Far Horizons
+
   - type: AntiRottingContainer
   - type: ExplosionResistance
     damageCoefficient: 0.50
@@ -202,7 +226,7 @@
   - type: Sprite
     sprite: Structures/Storage/Crates/sec_gear.rsi
   - type: AccessReader
-    access: [["Security"], ["Cadet"]]
+    access: [["Security"], ["Cadet"], ["SecurityNS"], ["CadetNS"]] #FH
 
 - type: entity
   parent: CrateBaseSecure
@@ -214,7 +238,7 @@
   - type: Sprite
     sprite: Structures/Storage/Crates/engicrate_secure.rsi
   - type: AccessReader
-    access: [["Engineering"]]
+    access: [["Engineering"], ["EngineeringNS"]] #FH
 
 - type: entity
   parent: CrateBaseSecure
@@ -226,7 +250,7 @@
   - type: Sprite
     sprite: Structures/Storage/Crates/medicalcrate_secure.rsi
   - type: AccessReader
-    access: [["Medical"]]
+    access: [["Medical"], ["MedicalNS"]] #FH
 
 - type: entity
   parent: CrateBaseSecure
@@ -238,7 +262,7 @@
     - type: Sprite
       sprite: Structures/Storage/Crates/chemcrate_secure.rsi
     - type: AccessReader
-      access: [["Chemistry"]]
+      access: [["Chemistry"], ["ChemistryNS"]] #FH
 
 - type: entity
   parent: CrateBaseSecure
@@ -260,7 +284,7 @@
   - type: Sprite
     sprite: Structures/Storage/Crates/scicrate_secure.rsi
   - type: AccessReader
-    access: [["Research"]]
+    access: [["Research"], ["ResearchNS"]] #FH
 
 - type: entity
   parent: CrateBaseSecure
@@ -272,7 +296,7 @@
   - type: Sprite
     sprite: Structures/Storage/Crates/plasma.rsi
   - type: AccessReader
-    access: [["Engineering"], ["Research"], ["Chemistry"]]
+    access: [["Engineering"], ["Research"], ["Chemistry"], ["EngineeringNS"], ["ResearchNS"], ["ChemistryNS"]] #FH
 
 - type: entity
   parent: CrateBaseSecure
@@ -294,7 +318,7 @@
   - type: Sprite
     sprite: Structures/Storage/Crates/hydro_secure.rsi
   - type: AccessReader
-    access: [["Hydroponics"]]
+    access: [["Hydroponics"], ["HydroponicsNS"]] #FH
 
 - type: entity
   parent: CrateBaseSecure
@@ -306,19 +330,19 @@
   - type: Sprite
     sprite: Structures/Storage/Crates/weapon.rsi
   - type: AccessReader
-    access: [["Armory"]]
+    access: [["Armory"], ["ArmoryNS"]] #FH
 
 - type: entity
   parent: [ CrateBaseSecure, BaseSecurityContraband ]
   suffix: Armory, Secure
-  id: CrateContrabandStorageSecure
+  id: CrateContrabandStorageSecure # Far Horizons: Use faction specific version instead.
   name: contraband storage crate
   description: An armory access locked crate for storing contraband confiscated from suspects or prisoners.
   components:
   - type: Sprite
     sprite: Structures/Storage/Crates/sec_gear.rsi
   - type: AccessReader
-    access: [["Armory"]]
+    access: [["Armory"], ["ArmoryNS"]] #FH
 
 - type: entity
   parent: CrateBaseSecure
@@ -330,7 +354,7 @@
   - type: Sprite
     sprite: Structures/Storage/Crates/command.rsi
   - type: AccessReader
-    access: [["Command"]]
+    access: [["Command"], ["Executive"]] #FH
 
 - type: entity
   parent: CrateBaseSecure
@@ -358,6 +382,18 @@
     - state: base
     - state: closed
       map: ["enum.StorageVisualLayers.Door"]
+      # Starlight BEGIN
+    - state: livestock_ribbon_sealed # Tamper seal
+      sprite: _Starlight/Structures/Storage/tamper_seal32.rsi
+      visible: false
+      map: [ "enum.TamperSealLayers.Sealed" ]
+      # Starlight END
+      # Far Horizons Start
+    - state: livestock_faction_ribbon_sealed # Tamper seal
+      sprite: _FarHorizons/Structures/Storage/tamper_seal32.rsi
+      visible: false
+      map: [ "enum.FactionTamperSealLayers.Sealed" ]
+      # Far Horizons End
     - state: paper
       sprite: Structures/Storage/Crates/labels.rsi
       offset: "-0.25,0.625"
@@ -401,6 +437,10 @@
     - entity_storage
   - type: StaticPrice
     price: 125
+    # Starlight BEGIN
+  - type: TamperSealable
+    destroyToolQualities: [ Cutting, Slicing ]
+    # Starlight END
 
 - type: entity
   parent: CrateGeneric
@@ -533,7 +573,7 @@
   - type: OverrideSell
     overrideAccount: Engineering
   - type: AccessReader
-    access: [["Engineering"]]
+    access: [["Engineering"], ["Engineering"]] #FH
 
 - type: entity
   id: CrateLockBoxMedical
@@ -563,7 +603,7 @@
   - type: OverrideSell
     overrideAccount: Medical
   - type: AccessReader
-    access: [["Medical"]]
+    access: [["Medical"], ["MedicalNS"]] #FH
 
 - type: entity
   id: CrateLockBoxScience
@@ -593,12 +633,12 @@
   - type: OverrideSell
     overrideAccount: Science
   - type: AccessReader
-    access: [["Research"]]
+    access: [["Research"], ["ResearchNS"]] #FH
 
 - type: entity
   id: CrateLockBoxSecurity
   parent: CrateBaseLockBox
-  name: security lock box
+  name: Security Lock Box
   components:
   - type: Sprite
     layers:
@@ -623,7 +663,7 @@
   - type: OverrideSell
     overrideAccount: Security
   - type: AccessReader
-    access: [["Security"], ["Cadet"]] # Starlight: add cadet
+    access: [["Security"], ["Cadet"], ["SecurityNS"], ["CadetNS"]]  # Starlight: add cadet #FH
 
 - type: entity
   id: CrateLockBoxService
@@ -653,7 +693,7 @@
   - type: OverrideSell
     overrideAccount: Service
   - type: AccessReader
-    access: [["Service"]]
+    access: [["Service"], ["ServiceNS"]] #FH
 
 - type: entity
   parent: CrateGeneric
@@ -671,6 +711,18 @@
     - state: welded
       visible: false
       map: ["enum.WeldableLayers.BaseWelded"]
+      # Starlight BEGIN
+    - state: pirate_ribbon_sealed
+      sprite: _Starlight/Structures/Storage/tamper_seal32.rsi
+      visible: false
+      map: [ "enum.TamperSealLayers.Sealed" ]
+      # Starlight END
+      # Far Horizons Start
+    - state: pirate_faction_ribbon_sealed
+      sprite: _FarHorizons/Structures/Storage/tamper_seal32.rsi
+      visible: false
+      map: [ "enum.FactionTamperSealLayers.Sealed" ]
+      # Far Horizons End
     - state: paper
       sprite: Structures/Storage/Crates/labels.rsi
       offset: "0.0,-0.09375"
@@ -700,6 +752,18 @@
     - state: welded
       visible: false
       map: ["enum.WeldableLayers.BaseWelded"]
+      # Starlight BEGIN
+    - state: toybox_ribbon_sealed
+      sprite: _Starlight/Structures/Storage/tamper_seal32.rsi
+      visible: false
+      map: [ "enum.TamperSealLayers.Sealed" ]
+      # Starlight END
+      # Far Horizons Start
+    - state: toybox_faction_ribbon_sealed
+      sprite: _FarHorizons/Structures/Storage/tamper_seal32.rsi
+      visible: false
+      map: [ "enum.FactionTamperSealLayers.Sealed" ]
+      # Far Horizons End
     - state: paper
       map: ["enum.PaperLabelVisuals.Layer"]
   - type: Icon
@@ -891,7 +955,7 @@
       offset: "0.0,0.03125"
       map: ["enum.PaperLabelVisuals.Layer"]
   - type: AccessReader
-    access: [["Janitor"]]
+    access: [["Janitor"], ["Janitor"]] #FH
   - type: Paintable
     group: null
 
@@ -902,6 +966,9 @@
   components:
   - type: Stealth
     hadOutline: true
+    shimmerFrequency: 0.05
   - type: StealthOnMove
     passiveVisibilityRate: -0.10
     movementVisibilityRate: 0.10
+  - type: EntityStorage #FH
+    airtight: false #FH

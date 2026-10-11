@@ -50,10 +50,13 @@
     - RadioImplantTrinary #FH
     - RadioImplantNexus #FH
     - VoiceMaskImplant
+    - MindShieldImplantNS # FH
+    - MindShieldImplantGSL # FH
+    - FakeMindShieldImplantNS # FH
     deimplantFailureDamage:
       types:
-        Cellular: 50
-        Heat: 10
+        Cellular: 20 #FH
+#        Heat: 10 - FH
   - type: Sprite
     sprite: Objects/Specific/Medical/implanter.rsi
     state: implanter0
@@ -187,7 +190,7 @@
 
 - type: entity
   id: TrackingImplanter
-  name: tracking implanter
+  name: Tracking Implant (NT) #FH
   parent: BaseImplantOnlyImplanter
   components:
   - type: Implanter
@@ -303,21 +306,33 @@
 
 - type: entity
   id: FakeMindShieldImplanter
-  name: fake mindshield implanter
+  name: Fake Mindshield Implanter (NT) #FH
   parent: BaseImplantOnlyImplanterSyndi
   components:
   - type: Implanter
     implant: FakeMindShieldImplant
+    blacklist: 
+      components:
+      - Guardian
+      - FakeMindShield #FH
+      tags:
+      - Unimplantable
 
 # Security and Command implanters
 
 - type: entity
   id: MindShieldImplanter
-  name: mindshield implanter
+  name: MindShield Implanter (NT) #FH
   parent: BaseImplantOnlyImplanter
   components:
   - type: Implanter
     implant: MindShieldImplant
+    blacklist: 
+      components:
+      - Guardian
+      - MindShield #FH
+      tags:
+      - Unimplantable
 
 # Centcomm implanters
 

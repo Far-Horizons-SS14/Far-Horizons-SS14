@@ -501,12 +501,21 @@
   flavor: bitter
   color: "#FFFFE5"
   metabolisms:
+    # Far Horizons start
+    Digestion:
+      effects:
+      - !type:Vomit
+        probability: 0.7
+        conditions:
+          - !type:MetabolizerTypeCondition
+            type: [ LesserVampire ]
+    # Far Horizons end
     Bloodstream:
       effects:
       - !type:PopupMessage
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [ Animal, Vox, Vampire, Protogen, ProtoBird, Avali, Resomi ] # FH - add Protogen
+          type: [ Animal, Vox, Vampire, Protogen, ProtoBird, Avali, Resomi, LesserVampire ] # FH - add Protogen
           inverted: true
         type: Local
         visualType: MediumCaution
@@ -516,12 +525,12 @@
         probability: 0.1 
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [ Animal, Vox, Plant, Vampire, Protogen, ProtoBird, ProtoDionae, Avali, Resomi ] # FH - add Protogen
+          type: [ Animal, Vox, Plant, Vampire, Protogen, ProtoBird, ProtoDionae, Avali, Resomi, LesserVampire ] # FH - add Protogen
           inverted: true
       - !type:HealthChange
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [ Animal, Vox, Plant, Vampire, Protogen, ProtoBird, ProtoDionae, Avali, Resomi ] # FH - add Protogen
+          type: [ Animal, Vox, Plant, Vampire, Protogen, ProtoBird, ProtoDionae, Avali, Resomi, LesserVampire ] # FH - add Protogen
           inverted: true
         damage:
           types:
@@ -561,7 +570,7 @@
       - !type:CauseDisease 
         conditions: 
         - !type:MetabolizerTypeCondition 
-          type: [ Animal, Vox, Protogen, ProtoBird, Avali, Resomi ]
+          type: [ Animal, Vox, Protogen, ProtoBird, Avali, Resomi, LesserVampire ]
           inverted: true
         disease: DiseaseFoodPoisoning
         probability: 0.05

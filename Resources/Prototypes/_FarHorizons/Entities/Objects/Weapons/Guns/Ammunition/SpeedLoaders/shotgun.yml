@@ -1,0 +1,75 @@
+- type: entity
+  id: SpeedLoaderShotgunFlare
+  name: 12 Gauge Flare Speedloader
+  parent: [ BaseSpeedLoaderShotgun, BaseSecurityContraband ]
+  components:
+  - type: BallisticAmmoProvider
+    proto: ShellShotgunFlare
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Speedloaders/Shotgun/12g_speed_loader.rsi
+    layers:
+      - state: base
+        map: [ "enum.GunVisualLayers.Base" ]
+      - state: base-8
+        map: [ "enum.GunVisualLayers.Mag" ]
+      - state: base-tip-8
+        map: [ "enum.GunVisualLayers.Tip" ]
+        color: "#ED7942"
+
+- type: entity
+  id: SpeedLoaderShotgunPractice
+  name: 12 Gauge Blank Speedloader
+  parent: [ BaseSpeedLoaderShotgun, BaseSecurityContraband ]
+  components:
+  - type: BallisticAmmoProvider
+    proto: ShellShotgunPractice
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Speedloaders/Shotgun/12g_speed_loader.rsi
+    layers:
+      - state: base
+        map: [ "enum.GunVisualLayers.Base" ]
+      - state: base-8
+        map: [ "enum.GunVisualLayers.Mag" ]
+      - state: base-tip-8
+        map: [ "enum.GunVisualLayers.Tip" ]
+        color: "#F5F5F5"
+
+- type: entity
+  id: SpeedLoaderShotgunFlechette
+  name: 12 Gauge Flechette Speedloader
+  parent: [ BaseSpeedLoaderShotgun, BaseSecurityContraband ]
+  components:
+  - type: BallisticAmmoProvider
+    proto: ShellShotgunFlechette
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Speedloaders/Shotgun/12g_speed_loader.rsi
+    layers:
+      - state: base
+        map: [ "enum.GunVisualLayers.Base" ]
+      - state: base-8
+        map: [ "enum.GunVisualLayers.Mag" ]
+      - state: base-tip-8
+        map: [ "enum.GunVisualLayers.Tip" ]
+        color: "#252525"
+
+- type: entity
+  id: SpeedLoaderShotgunUraniumFlechette
+  name: 12 Gauge Uranium Flechette Speedloader
+  parent: [ BaseSpeedLoaderShotgun, BaseSecurityContraband ]
+  components:
+  - type: BallisticAmmoProvider
+    proto: ShellShotgunUraniumFlechette
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Speedloaders/Shotgun/12g_speed_loader.rsi
+    layers:
+      - state: base
+        map: [ "enum.GunVisualLayers.Base" ]
+      - state: slug-8
+        map: [ "enum.GunVisualLayers.Mag" ]
+      - state: base-tip-8
+        map: [ "enum.GunVisualLayers.Tip" ]
+        color: "#252525"
+  - type: MagazineVisuals
+    magState: slug
+    steps: 9
+    zeroVisible: false

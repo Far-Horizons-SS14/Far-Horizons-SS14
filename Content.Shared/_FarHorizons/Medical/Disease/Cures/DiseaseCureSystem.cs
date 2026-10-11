@@ -12,11 +12,11 @@ namespace Content.Shared._FarHorizons.Medical.Disease.Cures;
 
 public sealed partial class SharedDiseaseCureSystem : EntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _prototypes = default!;
-    [Dependency] private readonly IEntitySystemManager _entitySystemManager = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SharedDiseaseSystem _disease = default!;
+    [Dependency] private IPrototypeManager _prototypes = default!;
+    [Dependency] private IEntitySystemManager _entitySystemManager = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private SharedDiseaseSystem _disease = default!;
 
     /// <summary>
     /// Executes a configured cure step via its polymorphic OnCure.
@@ -33,27 +33,10 @@ public sealed partial class SharedDiseaseCureSystem : EntitySystem
     /// </summary>
     public void TriggerCureSteps(Entity<DiseaseCarrierComponent> ent, DiseaseData disease)
     {
-        if (!ent.Comp.ActiveDiseases.TryGetValue(disease, out var stageData))
-            return;
-        if(!_prototypes.TryIndex(disease.Id, out var diseaseProto))
-            return; 
-
-        var stageCfg = diseaseProto.Stages.FirstOrDefault(s => s.Stage == stageData.Stage);
-        if (stageCfg == null)
-            return;
-
-        // TODO: Replace with RandomPredicted once the engine PR is merged
-        var seed = SharedRandomExtensions.HashCodeCombine((int)_timing.CurTick.Value, GetNetEntity(ent).Id, stageData.MinStageUntil.Microseconds);
-        var rand = new System.Random(seed);
-
         // Disease-level cures.
-        var applicable = stageCfg.CureSteps.Count > 0 ? stageCfg.CureSteps : diseaseProto.CureSteps;
+        var applicable = disease.CureSteps;
         foreach (var step in applicable)
         {
-            // Calculates the probability of treatment at each tick.
-            if (!rand.Prob(Math.Clamp(step.CureChance, 0f, 1f)))
-                continue;
-
             if (!ExecuteCureStep(ent, step, disease))
                 continue;
 
@@ -64,7 +47,7 @@ public sealed partial class SharedDiseaseCureSystem : EntitySystem
         }
 
         // Symptom-level cures.
-        foreach (var entry in stageCfg.Symptoms)
+        foreach (var entry in disease.Symptoms)
         {
             var symptomId = entry.Symptom;
             if (!_prototypes.TryIndex(symptomId, out var symptomProto))
@@ -79,9 +62,6 @@ public sealed partial class SharedDiseaseCureSystem : EntitySystem
 
             foreach (var step in symptomProto.CureSteps)
             {
-                if (!rand.Prob(Math.Clamp(step.CureChance, 0f, 1f)))
-                    continue;
-
                 if (!ExecuteCureStep(ent, step, disease))
                     continue;
 

@@ -18,17 +18,24 @@
   - BorgModuleInflatable
   - BorgModuleArtifact
   - BorgModuleAnomaly
+
+  #Far Horizons Start
+  additionalModules:
+  - BorgModuleAccessNT
+  - BorgModuleArmorBasic
+  - BorgModuleSpeedBasic
+  #Far Horizons End
+
   radioChannels:
   - Science
 
   # Visual
-  inventoryTemplateId: borgShort
+  inventoryTemplateId: borg # Starlight - why was this not always the case?  
   spritePath: Mobs/Silicon/Chassis/generic.rsi
 
   # Pet
   petSuccessString: petting-success-generic-cyborg
   petFailureString: petting-failure-generic-cyborg
-
 
 # Engineering borg
 - type: borgType
@@ -51,9 +58,26 @@
   - BorgModuleRCD
   - BorgModuleCable
 
+  #Far Horizons Start
+  additionalModules:
+  - BorgModuleAccessNT
+  - BorgModuleArmorBasic
+  - BorgModuleSpeedBasic
+  #Far Horizons End
+
   radioChannels:
   - Engineering
   - Science
+
+  # Starlight start: Engiborg hud, access
+  addComponents:
+  - type: ShowHealthBars
+    damageContainers:
+    - Inorganic
+    - Silicon
+    - Robotic #FH
+  - type: ShowAccessReaderSettings
+  # Starlight end
 
   # Visual
   inventoryTemplateId: borgShort
@@ -84,6 +108,7 @@
     tags:
     - BorgModuleGeneric
     - BorgModuleCargo
+    - BorgModuleMining #STARLIGHT
 
   defaultModules:
   - BorgModulePrying
@@ -93,9 +118,18 @@
   - BorgModuleTraversal
   - BorgModuleAppraisal
 
+  #Far Horizons Start
+  additionalModules:
+  - BorgModuleAccessGSL
+  - BorgModuleArmorBasic
+  - BorgModuleSpeedBasic
+  #Far Horizons End
+
   radioChannels:
   - GSL # Far Horizons
   - Science
+  - SyndiSci #FH
+  #- Expedition #Starlight #FH
 
   # Visual
   inventoryTemplateId: borgTall
@@ -112,7 +146,6 @@
     department: Cargo
     time: 0 # Far Horizons - Temporary
   # Starlight-end
-
 
 # Janitor borg
 - type: borgType
@@ -132,6 +165,13 @@
   - BorgModuleTool # Far Horizons - we love our cyborgs actually
   - BorgModuleCleaning
   - BorgModuleCustodial
+
+  #Far Horizons Start
+  additionalModules:
+  - BorgModuleAccessNT
+  - BorgModuleArmorBasic
+  - BorgModuleSpeedBasic
+  #Far Horizons End
 
   radioChannels:
   - Science
@@ -165,6 +205,13 @@
   - BorgModuleTool # Far Horizons - we love our cyborgs actually
   - BorgModuleChemical
   - BorgModuleTopicals
+
+  #Far Horizons Start
+  additionalModules:
+  - BorgModuleAccessNT
+  - BorgModuleArmorBasic
+  - BorgModuleSpeedBasic
+  #Far Horizons End
 
   radioChannels:
   - Science
@@ -225,6 +272,13 @@
   # Starlight end
   - BorgModuleClowning
   
+  #Far Horizons Start
+  additionalModules:
+  - BorgModuleAccessNT
+  - BorgModuleArmorBasic
+  - BorgModuleSpeedBasic
+  #Far Horizons End
+
   radioChannels:
   - Science
   - Service

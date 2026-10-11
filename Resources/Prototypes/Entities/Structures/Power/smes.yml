@@ -40,6 +40,7 @@
       netsync: false
       startingCharge: 0
       maxCharge: 8000000
+      pricePerJoule: 0.0005 # Far Horizons (was 0.0001)
     - type: ExaminableBattery
     - type: NodeContainer
       examinable: true
@@ -86,8 +87,9 @@
       highVoltageNode: input
       mediumVoltageNode: output
     - type: Damageable
-      damageContainer: StructuralInorganic
       damageModifierSet: StructuralMetallicStrong
+    - type: Injurable
+      damageContainer: StructuralInorganic
     - type: BatterySensor
     - type: DeviceNetwork
       deviceNetId: AtmosDevices

@@ -42,9 +42,11 @@
 
 - type: entity
   parent:
+  - ActiveCritBase
   - AppearanceProtoKin
   - BaseMobProtoKin
   id: MobProtoKin
+  name: Urist McDuskin #pronounced Dusk-Kin
   components:
     - type: Bloodstream 
       bloodlossDamage:
@@ -57,7 +59,11 @@
         reagents:
           - ReagentId: ShadekinBlood
             Quantity: 300 
-  name: Urist McDuskin #pronounced Dusk-Kin
+    - type: FluidFootprintSpreader
+      footprint: Animal
+      footprintSize: 0.75
+      stepSpacing: 0.2
+      lateralOffset: 0.15
 
 # Organs
 
@@ -75,7 +81,12 @@
 - type: entity
   parent: [ OrganProtoKinExternal, OrganShadekinTorso ]
   id: OrganProtoKinTorso
-
+  components:
+  - type: VisualOrganMarkings
+    hideableLayers:
+    - enum.HumanoidVisualLayers.BodyCover
+    - enum.HumanoidVisualLayers.BodyCoverCover
+    
 - type: entity
   parent: [ OrganProtoKinExternal, OrganShadekinHead ]
   id: OrganProtoKinHead

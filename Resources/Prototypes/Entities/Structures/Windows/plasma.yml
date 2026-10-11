@@ -1,16 +1,18 @@
 - type: entity
   id: PlasmaWindow
-  name: plasma window
+  name: Plasma Window #FH CRUSADE
+  suffix: "NT" #FH
   parent: [BaseDeltaPressurePlasma, WindowRCDResistant]
   components:
   - type: Sprite
     drawdepth: WallTops
-    sprite: Structures/Windows/plasma_window.rsi
+    sprite: _FarHorizons/Structures/Windows/NanoTrasen/plasma_window.rsi # Far Horizons
   - type: Icon
-    sprite: Structures/Windows/plasma_window.rsi
+    sprite: _FarHorizons/Structures/Windows/NanoTrasen/plasma_window.rsi # Far Horizons
   - type: Damageable
-    damageContainer: StructuralInorganic
     damageModifierSet: Glass
+  - type: Injurable
+    damageContainer: StructuralInorganic
   - type: Destructible
     thresholds:
     - trigger:
@@ -52,6 +54,9 @@
     price: 100
   - type: RadiationBlocker
     resistance: 2
+  - type: Paintable #FH start
+    group: PlasmaWindow 
+  - type: GenericPaintable #FH end
 
 - type: entity
   id: PlasmaWindowDirectional
@@ -112,7 +117,7 @@
 - type: entity
   parent: PlasmaWindow
   id: PlasmaWindowDiagonal
-  suffix: diagonal
+  suffix: Diagonal, NT #FH
   placement:
     mode: SnapgridCenter
     snap:
@@ -120,7 +125,7 @@
   components:
   - type: Sprite
     drawdepth: WallTops
-    sprite: Structures/Windows/plasma_diagonal.rsi
+    sprite: _FarHorizons/Structures/Windows/NanoTrasen/plasma_diagonal.rsi #FH
     state: state0
   - type: Tag
     tags:
@@ -128,10 +133,10 @@
     - Window
   - type: IconSmooth
     mode: Diagonal
-    key: windows
+    key: walls #FH
     base: state
   - type: Icon
-    sprite: Structures/Windows/plasma_diagonal.rsi
+    sprite: _FarHorizons/Structures/Windows/NanoTrasen/plasma_diagonal.rsi #FH
     state: state0
   - type: Fixtures
     fixtures:
@@ -157,3 +162,6 @@
   - type: Construction
     graph: WindowDiagonal
     node: plasmaWindowDiagonal
+  - type: Paintable #FH start
+    group: PlasmaWindowDiagonal 
+  - type: GenericPaintable #FH end

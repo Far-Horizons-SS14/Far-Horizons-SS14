@@ -1,3 +1,4 @@
+using Content.Shared._FarHorizons.Factions;
 using Content.Shared.Access.Systems;
 using Content.Shared.PDA;
 using Content.Shared.Roles;
@@ -64,4 +65,18 @@ public sealed partial class IdCardComponent : Component
 
     [DataField]
     public bool CanMicrowave = true;
+
+    //Far Horizons Start
+    [DataField, AutoNetworkedField]
+    public ProtoId<FactionPrototype>? Faction = null;
+
+    [DataField]
+    public bool CanRenameObject = true;
+
+    [DataField]
+    public bool AllowDepartmentChange = true;
+
+    [DataField]
+    public bool AllowJobIconChange = true;
+    //Far Horizons End
 }

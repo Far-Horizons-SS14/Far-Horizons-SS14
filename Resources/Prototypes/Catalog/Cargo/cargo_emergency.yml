@@ -17,6 +17,7 @@
   cost: 1500
   category: cargoproduct-category-name-emergency
   group: market
+  personalOrder: true # Far Horizons
 
 - type: cargoProduct
   id: EmergencyInternals
@@ -24,9 +25,10 @@
     sprite: Clothing/Mask/breath.rsi
     state: icon
   product: CrateEmergencyInternals
-  cost: 600
+  cost: 920 #FH
   category: cargoproduct-category-name-emergency
   group: market
+  personalOrder: true # Far Horizons
 
 - type: cargoProduct
   id: EmergencyInternalsLarge
@@ -34,9 +36,10 @@
     sprite: Clothing/Mask/breath.rsi
     state: icon
   product: CrateEmergencyInternalsLarge
-  cost: 1200
+  cost: 1750 #FH
   category: cargoproduct-category-name-emergency
   group: market
+  personalOrder: true # Far Horizons
 
 - type: cargoProduct
   id: EmergencyRadiation
@@ -47,16 +50,22 @@
   cost: 1000
   category: cargoproduct-category-name-emergency
   group: market
+  personalOrder: true # Far Horizons
 
 - type: cargoProduct
   id: EmergencyInflatablewall
+  description: cargoproduct-description-emergencyinflatablewall
   icon:
     sprite: Objects/Misc/inflatable_wall.rsi
     state: item_wall
-  product: CrateEmergencyInflatablewall
+  product: BoxInflatable
+  container:
+    entity: WrappedParcel
+    containerId: contents
   cost: 500
   category: cargoproduct-category-name-emergency
   group: market
+  personalOrder: true # Far Horizons
 
 - type: cargoProduct
   id: EmergencyNitrogenTanks
@@ -67,6 +76,7 @@
   cost: 350
   category: cargoproduct-category-name-emergency
   group: market
+  personalOrder: true # Far Horizons
 
 - type: cargoProduct
   id: EmergencyBiosuit
@@ -77,3 +87,4 @@
   cost: 800
   category: cargoproduct-category-name-emergency
   group: market
+  personalOrder: true # Far Horizons

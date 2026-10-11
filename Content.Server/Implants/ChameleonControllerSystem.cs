@@ -1,4 +1,4 @@
-﻿using Content.Server.Clothing.Systems;
+using Content.Server.Clothing.Systems;
 using Content.Server.Preferences.Managers;
 using Content.Shared._FarHorizons.Body;
 using Content.Shared.Clothing;
@@ -15,13 +15,13 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server.Implants;
 
-public sealed class ChameleonControllerSystem : SharedChameleonControllerSystem
+public sealed partial class ChameleonControllerSystem : SharedChameleonControllerSystem
 {
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly InventorySystem _inventory = default!;
-    [Dependency] private readonly SharedStationSpawningSystem _stationSpawningSystem = default!;
-    [Dependency] private readonly ChameleonClothingSystem _chameleonClothingSystem = default!;
-    [Dependency] private readonly UseDelaySystem _delay = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
+    [Dependency] private InventorySystem _inventory = default!;
+    [Dependency] private SharedStationSpawningSystem _stationSpawningSystem = default!;
+    [Dependency] private ChameleonClothingSystem _chameleonClothingSystem = default!;
+    [Dependency] private UseDelaySystem _delay = default!;
 
     public override void Initialize()
     {
@@ -102,7 +102,7 @@ public sealed class ChameleonControllerSystem : SharedChameleonControllerSystem
 
     private void ChameleonControllerOutfitItemSelected(Entity<ChameleonClothingComponent> ent, ref InventoryRelayedEvent<ChameleonControllerOutfitSelectedEvent> args)
     {
-        if (!_inventory.TryGetContainingSlot(ent.Owner, out var slot))
+        if (!ent.Comp.CanBeSetByController || !_inventory.TryGetContainingSlot(ent.Owner, out var slot))
             return;
 
         _chameleonClothingSystem.SetSelectedPrototype(ent, GetGearForSlot(args, slot.Name), component: ent.Comp);

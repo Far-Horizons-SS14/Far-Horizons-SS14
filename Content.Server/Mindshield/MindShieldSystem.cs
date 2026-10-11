@@ -15,12 +15,12 @@ namespace Content.Server.Mindshield;
 /// System used for adding or removing components with a mindshield implant
 /// as well as checking if the implanted is a Rev or Head Rev.
 /// </summary>
-public sealed class MindShieldSystem : EntitySystem
+public sealed partial class MindShieldSystem : EntitySystem
 {
-    [Dependency] private readonly IAdminLogManager _adminLogManager = default!;
-    [Dependency] private readonly RoleSystem _roleSystem = default!;
-    [Dependency] private readonly MindSystem _mindSystem = default!;
-    [Dependency] private readonly PopupSystem _popupSystem = default!;
+    [Dependency] private IAdminLogManager _adminLogManager = default!;
+    [Dependency] private RoleSystem _roleSystem = default!;
+    [Dependency] private MindSystem _mindSystem = default!;
+    [Dependency] private PopupSystem _popupSystem = default!;
 
     public override void Initialize()
     {
@@ -32,7 +32,9 @@ public sealed class MindShieldSystem : EntitySystem
 
     private void OnImplantImplanted(Entity<MindShieldImplantComponent> ent, ref ImplantImplantedEvent ev)
     {
-        EnsureComp<MindShieldComponent>(ev.Implanted);
+        var mindshield = EnsureComp<MindShieldComponent>(ev.Implanted);     //
+        mindshield.MindShieldStatusIcon = ent.Comp.MindShieldStatusIcon;    // FarHorizons - allow for different mindshield icons
+        Dirty(ev.Implanted, mindshield);                                    //
         MindShieldRemovalCheck(ev.Implanted, ev.Implant);
     }
 

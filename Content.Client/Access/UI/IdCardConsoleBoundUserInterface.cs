@@ -1,44 +1,36 @@
 using Content.Shared.Access;
 using Content.Shared.Access.Components;
-using Content.Shared.Access.Systems;
-using Content.Shared.CCVar;
+// FH start
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.CrewManifest;
-using Content.Shared.Roles;
-using Robust.Shared.Configuration;
 using Robust.Shared.Prototypes;
 using static Content.Shared.Access.Components.IdCardConsoleComponent;
-// Starlight-edit: Start
 using Robust.Client.UserInterface;
-using Content.Shared._Starlight.Access; 
-// Starlight-edit: End
+using Content.Shared._FarHorizons.Factions;
+// FH end
 
 namespace Content.Client.Access.UI
 {
-    public sealed class IdCardConsoleBoundUserInterface : BoundUserInterface
+    public sealed partial class IdCardConsoleBoundUserInterface : BoundUserInterface
     {
-        [Dependency] private readonly IConfigurationManager _cfgManager = default!;
 
         private IdCardConsoleWindow? _window;
 
-        // CCVar.
-        private int _maxNameLength;
-        private int _maxIdJobLength;
-
         public IdCardConsoleBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
         {
-            _maxNameLength =_cfgManager.GetCVar(CCVars.MaxNameLength);
-            _maxIdJobLength = _cfgManager.GetCVar(CCVars.MaxIdJobLength);
         }
 
         protected override void Open()
         {
             base.Open();
-            // Starlight-edit: Start
+            // FH start
             _window = this.CreateWindow<IdCardConsoleWindow>();
-            _window.Initialize(this);
+            
             _window.Title = EntMan.GetComponent<MetaDataComponent>(Owner).EntityName;
-            // Starlight-edit: End
+            var test = EntMan.GetComponent<IdCardConsoleComponent>(Owner).Factions;
+            _window.ComputerFactions = EntMan.GetComponent<IdCardConsoleComponent>(Owner).Factions; // FH
+            _window.Initialize(this);
+            // FH end
             _window.CrewManifestButton.OnPressed += _ => SendMessage(new CrewManifestOpenUiMessage());
             _window.PrivilegedIdButton.OnPressed += _ => SendMessage(new ItemSlotButtonPressedEvent(PrivilegedIdCardSlotId));
             _window.TargetIdButton.OnPressed += _ => SendMessage(new ItemSlotButtonPressedEvent(TargetIdCardSlotId));
@@ -63,14 +55,8 @@ namespace Content.Client.Access.UI
             _window?.UpdateState(castState);
         }
 
-        public void SubmitData(string newFullName, string newJobTitle, List<ProtoId<AccessLevelPrototype>> newAccessList, ProtoId<JobPrototype> newJobPrototype)
+        public void SubmitData(string newFullName, string newJobTitle, List<ProtoId<AccessLevelPrototype>> newAccessList, ProtoId<FactionJobAssignmentPrototype>? newJobPrototype) //FH
         {
-            if (newFullName.Length > _maxNameLength)
-                newFullName = newFullName[.._maxNameLength];
-
-            if (newJobTitle.Length > _maxIdJobLength)
-                newJobTitle = newJobTitle[.._maxIdJobLength];
-
             SendMessage(new WriteToTargetIdMessage(
                 newFullName,
                 newJobTitle,

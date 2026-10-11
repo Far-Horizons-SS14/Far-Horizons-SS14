@@ -1,0 +1,36 @@
+- type: entity
+  parent: VendingMachine
+  id: VendingMachineBoozeNeoSol #Damnit Minar. I didn't notice the no id in your pr.
+  suffix: NS
+  description: A technological marvel, supposedly able to mix just the mixture you'd like to drink the moment you ask for one. It has some imprints on it.
+  components:
+  - type: VendingMachine
+    pack: BoozeOMatInventory
+    offState: off
+    showPrices: false
+    brokenState: broken
+    normalState: normal-unshaded
+    denyState: deny-unshaded
+    loopDeny: false
+  - type: Machine
+    board: VendingMachineBoozeSyndicateCircuitboard
+  - type: DatasetVocalizer
+    dataset: BruiseOMatAds
+  - type: SpeakOnUIClosed
+    pack: BruiseOMatGoodbyes
+  - type: Sprite
+    sprite: Structures/Machines/VendingMachines/bruiseomat.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: AccessReader
+    access: [["BarNS"]]
+  - type: GuideHelp
+    guides:
+    - Bartender
+    - Drinks

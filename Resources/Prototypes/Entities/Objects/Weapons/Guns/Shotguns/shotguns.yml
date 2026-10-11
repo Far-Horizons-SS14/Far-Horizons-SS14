@@ -10,23 +10,25 @@
     - Abductor
     messages:
     - abductor-gun-restricted-1
-  - type: KnockbackByUserTag # Starlight
+#FarHorizons - Start
+  - type: KnockbackByUserTag
     doestContain:
       Skating:
         knockback: 2
         staminaMultiplier: 50
-      Resomi:
+      Animal:
         knockback: 3
         staminaMultiplier: 20
-      Avali:
-        knockback: 1 # half of what resomi take
+      Resomi:
+        knockback: 3 #Hollow bones
         staminaMultiplier: 20
       Felionoid:
-        knockback: 1.5 #half of what resomi take
+        knockback: 2 #Small & Light
         staminaMultiplier: 20
-      Animal: #FH
-        knockback: 3 #FH
-        staminaMultiplier: 20 #FH
+      Avali:
+        knockback: 1 #Small
+        staminaMultiplier: 20
+#FarHorizons - End
   - type: Sprite
     layers:
     - state: icon
@@ -194,7 +196,7 @@
   description: An old yet faithful design, and a favorite among irregular forces of many worlds. Uses .50 shotgun shells and suffers from a slow pump-action. #Another FH Change
   components: # intend for Kammerer to have tighter choke for slower fire rate and/or manual cycling
   - type: Item
-    sprite: _FarHorizons/Objects/Weapons/Guns/Shotguns/pump_inhands_64x.rsi # FH - Edit
+    sprite: _FarHorizons/Objects/Weapons/Guns/Shotguns/Kammerer/inhands_64x.rsi # FH - Edit
   - type: Gun
     spread: 10 # FH - Edit
     pump: true
@@ -208,9 +210,9 @@
     soundInsert:
       path: /Audio/Weapons/Guns/MagIn/shotgun_insert.ogg
   - type: Sprite
-    sprite: _FarHorizons/Objects/Weapons/Guns/Shotguns/pump.rsi # FH - Edit
+    sprite: _FarHorizons/Objects/Weapons/Guns/Shotguns/Kammerer/clothing.rsi # FH - Edit
   - type: Clothing
-    sprite: _FarHorizons/Objects/Weapons/Guns/Shotguns/pump.rsi # FH - Edit
+    sprite: _FarHorizons/Objects/Weapons/Guns/Shotguns/Kammerer/clothing.rsi # FH - Edit
   - type: GunRequiresWield #remove when inaccuracy on spreads is fixed
   - type: Tag
     tags:
@@ -341,7 +343,7 @@
   parent: [BaseWeaponShotgun, BaseGunWieldable, BaseSyndicateContraband]
   id: WeaponShotgunHushpup
   name: Hushpup
-  description: An obscure modification of the Enforcer, fitted with an experimental muffler. Great for those with a strict moral code. Uses .50 shotgun shells.
+  description: An obscure modification of the Sentinel, fitted with an experimental muffler. Great for those with a strict moral code. Uses .50 shotgun shells. #FH
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Shotguns/hushpup.rsi

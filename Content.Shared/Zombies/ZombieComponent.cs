@@ -96,7 +96,7 @@ public sealed partial class ZombieComponent : Component
             { "Blunt", -0.7 }, // Starlight-edit
             { "Slash", -0.5 }, // Starlight-edit
             { "Piercing", -0.6 }, // Starlight-edit
-            { "Heat", -0.02 },
+            // { "Heat", -0.02 }, // Far Horizons removed heat regeneration
             { "Shock", -0.05 } // Starlight-edit
         }
     };
@@ -176,5 +176,5 @@ public sealed partial class ZombieComponent : Component
     /// The blood reagents to give the zombie. In case you want zombies that bleed milk, or something.
     /// </summary>
     [DataField("newBloodReagents")]
-    public Solution NewBloodReagents = new([new("ZombieBlood", 1)]);
+    public Solution NewBloodReagents = new([new("ZombieBlood", 300)]); //FH-Fix Blood
 }

@@ -1,0 +1,374 @@
+- type: entity
+  id: BaseAdSign
+  parent: BaseBarSign
+  name: ad sign
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Wallmounts/flatscreentv.rsi
+    state: empty
+  - type: BarSign
+    emped: EmpedSign
+    broken: BrokenSign
+    titleName: adsign-ui-menu
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Breakage" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalGlassBreak
+  - type: LitOnPowered
+  - type: Repairable
+    doAfterDelay: 5
+  - type: PointLight
+    enabled: true
+    energy: 2
+    radius: 2.5
+    offset: 0.0, -.75
+
+#region Generics
+- type: barSign
+  id: EmpedSign
+  name: barsign-prototype-name-emped-screen
+  icon:
+    sprite: _FarHorizons/Structures/Wallmounts/flatscreentv.rsi
+    state: television_wall
+  description: barsign-prototype-description-emped-screen
+  hidden: true
+  signType: AdSignGeneric
+  color: "#002DB3"
+        
+- type: barSign
+  id: BrokenSign
+  name: barsign-prototype-name-broken-screen
+  icon:
+    sprite: _FarHorizons/Structures/Wallmounts/flatscreentv.rsi
+    state: television_wallbroken
+  description: barsign-prototype-description-broken-screen
+  hidden: true
+  signType: AdSignGeneric
+  color: "#002DB3"
+
+#region ## GSL ##
+- type: entity
+  id: BaseAdSignGSL
+  parent: BaseAdSign
+  name: Ad Sign
+  suffix: GSL
+  components:
+  - type: AccessReader
+    access: [["Cargo"]]
+  - type: BarSign
+    emped: EmpedSign
+    signType: [AdSignGeneric, AdSignGSL]
+
+- type: entity
+  parent: BaseAdSignGSL
+  id: AdSignMiners
+  name: Miner LMC Ad
+  description: An ad trying to recruit more miners for GSL.
+  suffix: CWS, GSL
+  components:
+  - type: BarSign
+    current: MinersSign
+
+- type: barSign
+  id: MinersSign
+  name: barsign-prototype-name-miner-screen
+  icon:
+    sprite: _FarHorizons/Structures/Wallmounts/flatscreentv.rsi
+    state: MinersLMC
+  description: barsign-prototype-description-miner-screen
+  signType: AdSignGSL
+  color: "#f7ba00"
+
+#region ## NanoTrasen ##
+- type: entity
+  id: BaseAdSignNT
+  parent: BaseAdSign
+  name: Ad Sign
+  suffix: NT
+  components:
+  - type: AccessReader
+    access: [["Service"]]
+  - type: BarSign
+    emped: EmpedSign
+    signType: [AdSignNT, AdSignGeneric, AdSignGSL]
+
+- type: entity
+  parent: BaseAdSignNT
+  id: AdSignCWS
+  name: Clockwork Solutions Ad
+  description: Just a simple sign displaying an ad for Clockwork Solutions trying to look tough.
+  suffix: CWS, NT
+  components:
+  - type: BarSign
+    current: CWSSign
+
+- type: barSign
+  id: CWSSign
+  name: barsign-prototype-name-cwc-screen
+  icon:
+    sprite: _FarHorizons/Structures/Wallmounts/flatscreentv.rsi
+    state: CWSscreen
+  description: barsign-prototype-description-cwc-screen
+  signType: AdSignNT
+  color: "#ebf700"
+
+- type: entity
+  parent: BaseAdSignNT
+  id: AdSignSec
+  name: NT Corporate Security Ad
+  description: An ad sign attempting to repair security's reputation.
+  suffix: Sec, NT
+  components:
+  - type: BarSign
+    current: SecSign
+
+- type: barSign
+  id: SecSign
+  name: barsign-prototype-name-sec-screen
+  icon:
+    sprite: _FarHorizons/Structures/Wallmounts/flatscreentv.rsi
+    state: Secpropa
+  description: barsign-prototype-description-sec-screen
+  signType: AdSignNT
+  color: "#adb1ff"
+
+- type: entity
+  parent: BaseAdSignNT
+  id: AdSignGensys
+  name: Gensys Ad
+  description: An ad sign claiming Gensys is here to help us
+  suffix: Gensys, NT
+  components:
+  - type: BarSign
+    current: GenSysSign
+
+- type: barSign
+  id: GenSysSign
+  name: barsign-prototype-name-gensys-screen
+  icon:
+    sprite: _FarHorizons/Structures/Wallmounts/flatscreentv.rsi
+    state: Gensys
+  description: barsign-prototype-description-gensys-screen
+  signType: AdSignNT
+  color: "#f7ba00"
+
+- type: entity
+  parent: BaseAdSignNT
+  id: AdSignLimb
+  name: Limb Augments Ad
+  description: An ad advertising Limb Augment's medical service.
+  suffix: Limb, NT
+  components:
+  - type: BarSign
+    current: LimbSign
+
+- type: barSign
+  id: LimbSign
+  name: barsign-prototype-name-limb-screen
+  icon:
+    sprite: _FarHorizons/Structures/Wallmounts/flatscreentv.rsi
+    state: Limehelp
+  description: barsign-prototype-description-limb-screen
+  signType: AdSignNT
+  color: "#3decff"
+
+- type: entity
+  parent: BaseAdSignNT
+  id: AdSignNTWorlds
+  name: NT Worlds Ad
+  description: An ad showing an idealistic version of worlds under NT control
+  suffix: NTWorlds, NT
+  components:
+  - type: BarSign
+    current: NTWorldsSign
+
+- type: barSign
+  id: NTWorldsSign
+  name: barsign-prototype-name-ntworlds-screen
+  icon:
+    sprite: _FarHorizons/Structures/Wallmounts/flatscreentv.rsi
+    state: NTworlds
+  description: barsign-prototype-description-ntworlds-screen
+  signType: AdSignNT
+  color: "#3decff"
+
+- type: entity
+  parent: BaseAdSignNT
+  id: AdSignTelosMonkey
+  name: Telos Industries Ad
+  description: An ad showing the usage of monkeys in Telos Industries attempts at innovation. Poor little guys.
+  suffix: Telosmonkey, NT
+  components:
+  - type: BarSign
+    current: TelosMonkeySign
+
+- type: barSign
+  id: TelosMonkeySign
+  name: barsign-prototype-name-telosmonkey-screen
+  icon:
+    sprite: _FarHorizons/Structures/Wallmounts/flatscreentv.rsi
+    state: Telosmonkey
+  description: barsign-prototype-description-telosmonkey-screen
+  signType: AdSignNT
+  color: "#ed75f8"
+
+- type: entity
+  parent: BaseAdSignNT
+  id: AdSignTelosText
+  name: Telos Industries Ad
+  description: An ad showing the usage of monkeys in Telos Industries attempts at innovation. Poor little guys.
+  suffix: Telostext, NT
+  components:
+  - type: BarSign
+    current: TelosTextSign
+
+- type: barSign
+  id: TelosTextSign
+  name: barsign-prototype-name-telostext-screen
+  icon:
+    sprite: _FarHorizons/Structures/Wallmounts/flatscreentv.rsi
+    state: Telostext
+  description: barsign-prototype-description-telostext-screen
+  signType: AdSignNT
+  color: "#ed75f8"
+
+#region ## NeoSol ##
+- type: entity
+  id: BaseAdSignNS
+  parent: BaseAdSign
+  name: Ad Sign
+  suffix: NS
+  components:
+  - type: AccessReader
+    access: [["ServiceNS"]]
+  - type: BarSign
+    emped: EmpedSign
+    signType: [AdSignNS, AdSignGeneric, AdSignGSL]
+
+- type: entity
+  parent: BaseAdSignNS
+  id: AdSignCSS
+  name: Caprica & Solaris Systems Ad
+  description: An ad showing Caprica Engineers on their way to power the station.
+  suffix: CSS, NS
+  components:
+  - type: BarSign
+    current: CSSSign
+
+- type: barSign
+  id: CSSSign
+  name: barsign-prototype-name-css-screen
+  icon:
+    sprite: _FarHorizons/Structures/Wallmounts/flatscreentv.rsi
+    state: CSCScreen
+  description: barsign-prototype-description-css-screen
+  signType: AdSignNS
+  color: "#ffc401"
+
+- type: entity
+  parent: BaseAdSignNS
+  id: AdSignNSWorlds
+  name: NS Worlds Ad
+  description: An ad showing the classic NeoSol industrialized city.
+  suffix: NsWorlds, NS
+  components:
+  - type: BarSign
+    current: NSWorldsSign
+
+- type: barSign
+  id: NSWorldsSign
+  name: barsign-prototype-name-nsworlds-screen
+  icon:
+    sprite: _FarHorizons/Structures/Wallmounts/flatscreentv.rsi
+    state: NSworlds
+  description: barsign-prototype-description-nsworlds-screen
+  signType: AdSignNS
+  color: "#f34040"
+
+- type: entity
+  parent: BaseAdSignNS
+  id: AdSignSecBigBrother
+  name: Aegis Corporate Securities Ad
+  description: An ad that gives off big brother vibe.
+  suffix: SecBigBrother, NS
+  components:
+  - type: BarSign
+    current: SecBigBrotherSign
+
+- type: barSign
+  id: SecBigBrotherSign
+  name: barsign-prototype-name-aegis-screen
+  icon:
+    sprite: _FarHorizons/Structures/Wallmounts/flatscreentv.rsi
+    state: SecBigBrother
+  description: barsign-prototype-description-aegis-screen
+  signType: AdSignNS
+  color: "#f34040"
+
+- type: entity
+  parent: BaseAdSignNS
+  id: AdSignCybersun
+  name: Cybersun Ad
+  description: An ad advertising Cybersun implants.
+  suffix: Cybersun, NS
+  components:
+  - type: BarSign
+    current: CybersunSign
+
+- type: barSign
+  id: CybersunSign
+  name: barsign-prototype-name-cybersun-screen
+  icon:
+    sprite: _FarHorizons/Structures/Wallmounts/flatscreentv.rsi
+    state: Cybersun
+  description: barsign-prototype-description-cybersun-screen
+  signType: AdSignNS
+  color: "#f34040"
+
+- type: entity
+  parent: BaseAdSignNS
+  id: AdSignCybersunBorg
+  name: Cybersun Ad
+  description: An ad advertising the new Cybersun cyborg models.
+  suffix: CybersunBorg, NS
+  components:
+  - type: BarSign
+    current: CybersunBorgSign
+
+- type: barSign
+  id: CybersunBorgSign
+  name: barsign-prototype-name-cybersunborg-screen
+  icon:
+    sprite: _FarHorizons/Structures/Wallmounts/flatscreentv.rsi
+    state: CybersunBorg
+  description: barsign-prototype-description-cybersunborg-screen
+  signType: AdSignNS
+  color: "#f34040"
+
+- type: entity
+  parent: BaseAdSignNS
+  id: AdSignInterdyne
+  name: Interdyne Pharmaceuticals Ad
+  description: An ad advertising Interdyne and its new pharmaceutical advancements.
+  suffix: Interdyne, NS
+  components:
+  - type: BarSign
+    current: InterdyneSign
+
+- type: barSign
+  id: InterdyneSign
+  name: barsign-prototype-name-interdyne-screen
+  icon:
+    sprite: _FarHorizons/Structures/Wallmounts/flatscreentv.rsi
+    state: Interdyne
+  description: barsign-prototype-description-interdyne-screen
+  signType: AdSignNS
+  color: "#3decff"

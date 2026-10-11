@@ -22,6 +22,9 @@
   - type: TimerTriggerVisuals
     primingSound:
       path: /Audio/Items/smoke_grenade_prime.ogg
+  - type: Tag #FH start
+    tags:
+    - HandGrenadePacifiedWhitelist #FH end - everything that parents this grenade is non-lethal
 
 - type: entity
   parent: [ BaseCivilianContraband, SmokeGrenade ]
@@ -41,9 +44,10 @@
       reagents:
       - ReagentId: SpaceCleaner
         Quantity: 30
-  - type: Tag #Far Horizons
+  - type: Tag
     tags:
-    - Cleanade
+    - Cleanade # Far Horizons
+    - CleanerGrenade
 
 - type: entity
   parent: SmokeGrenade
@@ -125,3 +129,6 @@
     components:
     - type: TriggerOnUse
     - type: TimerTrigger
+  - type: Tag #FH start
+    tags:
+    - HandGrenadePacifiedWhitelist #FH end

@@ -1,3 +1,4 @@
+using Content.Shared.Chemistry.Components;
 using Content.Shared.NPC.Prototypes;
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
@@ -69,5 +70,31 @@ namespace Content.Server.Dragon
         /// </summary>
         [DataField]
         public ProtoId<NpcFactionPrototype> Faction = "Dragon";
+
+        /// <summary>
+        /// The smoke to spawn upon rift timeout death.
+        /// </summary>
+        [DataField]
+        public EntProtoId SmokePrototype = "BloodSmoke";
+
+        /// <summary>
+        /// The solution to place into the smoke (mostly just needed for color)
+        /// </summary>
+        [DataField]
+        public Solution SmokeSolution = new ([new("Blood", 1)]);
+
+        //FH start
+        /// <summary>
+        /// How much to heal per second when a rift is active
+        /// </summary>
+        [ViewVariables(VVAccess.ReadWrite), DataField("regenRate")]
+        public float RegenRate = -1f;
+
+        /// <summary>
+        /// Used to accurately heal a dragon every second
+        /// </summary>
+        [DataField("healingaccumulator")]
+        public float HealingAccumulator;
+        //FH end
     }
 }

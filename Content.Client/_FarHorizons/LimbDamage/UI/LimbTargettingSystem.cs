@@ -1,19 +1,24 @@
 using System.Linq;
+using Content.Shared._FarHorizons.CCVar;
 using Content.Shared._FarHorizons.LimbDamage.Components;
 using Content.Shared.Body;
 using Content.Shared.Input;
 using Robust.Client.Player;
+using Robust.Shared.Configuration;
 using Robust.Shared.Input.Binding;
 using Robust.Shared.Prototypes;
 
 namespace Content.Client._FarHorizons.LimbDamage.UI;
 
-public sealed class LimbTargettingSystem : EntitySystem
+public sealed partial class LimbTargettingSystem : EntitySystem
 {
-    [Dependency] private readonly IPlayerManager _player = default!;
-    [Dependency] private readonly IPrototypeManager _protoMan = default!;
+    [Dependency] private IPlayerManager _player = default!;
+    [Dependency] private IPrototypeManager _protoMan = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
 
     public Action<ProtoId<OrganCategoryPrototype>>? LocalTargetUpdated;
+
+    private const string DefaultStyle = "LimbTargetHuman";
 
     public override void Initialize()
     {
@@ -45,6 +50,21 @@ public sealed class LimbTargettingSystem : EntitySystem
 
     public void SetTarget(ProtoId<OrganCategoryPrototype> target) => 
         RaiseNetworkEvent(new ChangeLimbTargetMessage(target));
+    
+    public ProtoId<LimbTargettingPrototype> GetTargetterStyle()
+    {
+        var style = _cfg.GetCVar(FHCCVars.LimbTargettingStyle);
+
+        if (_cfg.GetCVar(FHCCVars.LimbTargettingMatchSpecies) &&
+            _player.LocalSession?.AttachedEntity is { } playerEnt &&
+            TryComp<LimbDamageableComponent>(playerEnt, out var limbDamageable))
+            style = limbDamageable.Proto;
+
+        if (!_protoMan.HasIndex<LimbTargettingPrototype>(style))
+            style = DefaultStyle;
+
+        return style;
+    }
 
     private ProtoId<OrganCategoryPrototype>? CycleTarget(bool forward = true)
     {
@@ -52,7 +72,7 @@ public sealed class LimbTargettingSystem : EntitySystem
             !TryComp<LimbTargettingComponent>(_player.LocalEntity, out var limbTargetting))
             return null;
 
-        var targets = _protoMan.Index(limbTargetting.Proto).Limbs.Select(p => p.Limb).ToList();
+        var targets = _protoMan.Index(GetTargetterStyle()).Limbs.Select(p => p.Limb).ToList();
         var curIndex = targets.IndexOf(limbTargetting.Target);
         int newIndex;
         if (forward)

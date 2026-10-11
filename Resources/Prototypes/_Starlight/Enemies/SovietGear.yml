@@ -1,0 +1,91 @@
+- type: startingGear
+  id: SovietComradeGear
+  equipment:
+    head: ClothingHeadHatUshanka
+    jumpsuit: ClothingUniformJumpsuitSoviet
+    shoes: ClothingShoesBootsCowboyBlack
+    id: SovietIdCard
+#utility (non-shotgunner) belt
+- type: startingGear
+  id: SovietComradeGearBelt
+  equipment:
+    belt: ClothingSovietBelt
+  storage:
+    belt:
+    - RadioHandheld
+    - GeigerCounter
+    - Flare
+    - Flare
+    - Flare
+    - Flare
+#melee
+- type: startingGear
+  id: SovietComradeGearBrokenBottle
+  parent: [SovietComradeGear, SovietComradeGearBelt]
+  inhand:
+  - BrokenBottle
+- type: startingGear
+  id: SovietComradeGearFinka
+  parent: SovietComradeGear
+  inhand:
+  - Finka
+#shotgun
+- type: startingGear
+  id: SovietComradeGearSawn
+  parent: [SovietComradeGear, SovietComradeGearBelt] #Far Horizons
+  equipment:
+#Far Horizons-Start
+    rig: ClothingSovietBandolier
+  storage:
+    belt:
+    - RadioHandheld
+    - GeigerCounter
+    - ShellShotgun
+    - ShellShotgun
+    - ShellShotgun
+    - ShellShotgun
+    - ShellShotgun
+    - ShellShotgun
+    - ShellShotgun
+    - ShellShotgun
+    - ShellShotgun
+    - ShellShotgun # 12 shots total, but they might as well be airsofts against any kind of armor
+#Far Horizons-End
+  inhand:
+  - WeaponShotgunSawn
+#pistol
+- type: startingGear
+  id: SovietComradeGearMakarov
+  parent: [SovietComradeGear, SovietComradeGearBelt]
+  inhand:
+  - WeaponPistolMakarov
+  # Far Horizons start
+  storage:
+    belt:
+    - RadioHandheld
+    - GeigerCounter
+    - Flare
+    - Flare
+    - Flare
+    - Flare
+    - MagazinePistolSP # Added ammo here
+    - MagazinePistolSP
+    - MagazinePistolSP
+  # Far Horizons end
+#rifle
+- type: startingGear
+  id: SovietComradeGearAk
+  parent: [SovietComradeGear, SovietComradeGearBelt]
+  inhand:
+  - WeaponRifleAk
+  # Far Horizons start
+  storage:
+    belt:
+    - RadioHandheld
+    - GeigerCounter
+    - Flare
+    - Flare
+    - Flare
+    - Flare
+    - MagazineLightRifleSP # Just one will be enough
+  # Far Horizons end

@@ -10,7 +10,7 @@ namespace Content.Server.Mind.Toolshed;
 ///     Contains various mind-manipulation commands like getting minds, controlling mobs, etc.
 /// </summary>
 [ToolshedCommand]
-public sealed class MindCommand : ToolshedCommand
+public sealed partial class MindCommand : ToolshedCommand
 {
     private SharedMindSystem? _mind;
 

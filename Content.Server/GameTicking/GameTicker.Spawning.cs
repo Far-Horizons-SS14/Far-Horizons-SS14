@@ -43,11 +43,11 @@ namespace Content.Server.GameTicking
 {
     public sealed partial class GameTicker
     {
-        [Dependency] private readonly IAdminManager _adminManager = default!;
-        [Dependency] private readonly SharedJobSystem _jobs = default!;
-        [Dependency] private readonly AdminSystem _admin = default!;
-        [Dependency] private readonly NewLifeSystem _newLifeSystem = default!; //🌟Starlight🌟
-        [Dependency] private readonly PolymorphSystem _polymorphSystem = default!;
+        [Dependency] private IAdminManager _adminManager = default!;
+        [Dependency] private SharedJobSystem _jobs = default!;
+        [Dependency] private AdminSystem _admin = default!;
+        [Dependency] private NewLifeSystem _newLifeSystem = default!; //🌟Starlight🌟
+        [Dependency] private PolymorphSystem _polymorphSystem = default!;
 
         public static readonly EntProtoId ObserverPrototypeName = "MobObserver";
         public static readonly EntProtoId AdminObserverPrototypeName = "AdminObserver";
@@ -265,7 +265,6 @@ namespace Content.Server.GameTicking
                 }
 
                 character = HumanoidCharacterProfile.RandomWithSpecies(speciesId);
-                character.Appearance = HumanoidCharacterAppearance.EnsureValid(character.Appearance, character.Species, character.Sex);
             }
 
             // We raise this event to allow other systems to handle spawning this player themselves. (e.g. late-join wizard, etc)
@@ -290,12 +289,12 @@ namespace Content.Server.GameTicking
 
             // Pick best job best on prefs.
             var playerPreferences = _prefsManager.GetPreferences(player.UserId);
-            
+
             // Far Horizons
             var jobPriorities = playerPreferences.JobPrioritiesFiltered()
                                         .Where(p => _factions.ListSpawnableFactionIDs().Contains(p.Key.faction));
 
-            // StationJobsSystem doesn't know about factions, so if we have multiple of the same job with different factions available, 
+            // StationJobsSystem doesn't know about factions, so if we have multiple of the same job with different factions available,
             // we take the highest pritority job as the only one to consider.
             // It shouldn't really matter until dual station, and then most of this code will need to be rewritten anyways.
             Dictionary<ProtoId<JobPrototype>, JobPriority> jobPrioritiesFiltered = [];
@@ -308,7 +307,7 @@ namespace Content.Server.GameTicking
                 _stationJobs.PickBestAvailableJobWithPriority(station,
                                                 jobPrioritiesFiltered,
                                                 true,
-                                                restrictedRoles) 
+                                                restrictedRoles)
                 is ProtoId<JobPrototype> job
             ){
                 // Hopefully select the same faction we dropped before
@@ -347,7 +346,7 @@ namespace Content.Server.GameTicking
                 return;
             }
             //starlight end
-            
+
             _newLifeSystem.SaveCharacterToUsed(player.UserId, playerPreferences.IndexOfCharacter(character));     //🌟Starlight🌟
 
             DoSpawn(player, character, station, faction, jobId, silent, out var mob, out var jobPrototype, out var jobName);
@@ -383,13 +382,13 @@ namespace Content.Server.GameTicking
             }
             if (player.UserId == new Guid("{c69211d4-1a75-4e57-b539-c90243e2ceda}")) // Sparlight Start
             {
-                EntityManager.EnsureComponent<PolymorphableComponent>(mob);
-                EntityManager.RemoveComponent<LanguageSpeakerComponent>(mob);
-                EntityManager.RemoveComponent<LanguageKnowledgeComponent>(mob);
+                EnsureComp<PolymorphableComponent>(mob);
+                RemComp<LanguageSpeakerComponent>(mob);
+                RemComp<LanguageKnowledgeComponent>(mob);
                 mob = _polymorphSystem.PolymorphEntity(mob, "PermanentCorgiMorph") ?? mob;
-                EntityManager.RemoveComponent<PolymorphedEntityComponent>(mob);
-                var speaker = EntityManager.EnsureComponent<LanguageSpeakerComponent>(mob);
-                var knowledge = EntityManager.EnsureComponent<LanguageKnowledgeComponent>(mob);
+                RemComp<PolymorphedEntityComponent>(mob);
+                var speaker = EnsureComp<LanguageSpeakerComponent>(mob);
+                var knowledge = EnsureComp<LanguageKnowledgeComponent>(mob);
                 speaker.SpokenLanguages.Remove(SharedLanguageSystem.FallbackLanguagePrototype);
                 knowledge.SpokenLanguages = speaker.SpokenLanguages;
                 knowledge.UnderstoodLanguages = speaker.UnderstoodLanguages;
@@ -458,23 +457,24 @@ namespace Content.Server.GameTicking
 
             DebugTools.AssertNotNull(data);
 
-            var newMind = _mind.CreateMind(data!.UserId, character.Name);
-            _mind.SetUserId(newMind, data.UserId);
-
             jobPrototype = _prototypeManager.Index<JobPrototype>(jobId);
 
-            _playTimeTrackings.PlayerRolesChanged(player);
 
             var mobMaybe = _stationSpawning.SpawnPlayerCharacterOnStation(station, faction, jobId, character);
             DebugTools.AssertNotNull(mobMaybe);
             mob = mobMaybe!.Value;
+
+            var newMind = _mind.CreateMind(data.UserId, Name(mob));
+            _mind.SetUserId(newMind, data.UserId);
+
+            _playTimeTrackings.PlayerRolesChanged(player);
 
             //Far Horizons start
             //handle character voices
             newMind.Comp.Symspeech = character.Symspeech ?? character.DefaultSymspeech();
 
             var siliconSymspeech = character.SiliconSymspeech;
-            
+
             if (siliconSymspeech is null)
             {
                 var defaultSiliconVoice = _prototypeManager.Index<VoicePrototype>(Symspeech.DefaultSiliconVoice);
@@ -487,13 +487,13 @@ namespace Content.Server.GameTicking
                     defaultSiliconVoice.DefaultVolume
                     );
             }
-            
+
             newMind.Comp.SiliconSymspeech = siliconSymspeech;
             //Far Horizons end
 
             _mind.TransferTo(newMind, mob);
 
-            _roles.MindAddJobRole(newMind, silent: silent, jobPrototype: jobId);
+            _roles.MindAddJobRole(newMind, silent: silent, jobPrototype: jobId, factionPrototype: faction); // Far Horizons
             jobName = _jobs.MindTryGetJobName(newMind);
             _admin.UpdatePlayerList(player);
         }
@@ -642,7 +642,7 @@ namespace Content.Server.GameTicking
                 var spawn = _robustRandom.Pick(_possiblePositions);
                 var toMap = _transform.ToMapCoordinates(spawn);
 
-                if (_mapManager.TryFindGridAt(toMap, out var gridUid, out _))
+                if (_map.TryFindGridAt(toMap, out var gridUid, out _))
                 {
                     var gridXform = Transform(gridUid);
 

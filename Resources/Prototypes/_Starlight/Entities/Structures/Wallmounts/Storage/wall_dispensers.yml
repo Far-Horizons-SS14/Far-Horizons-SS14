@@ -1,0 +1,11 @@
+- type: entity
+  parent: BaseDispenser
+  id: BoneGelDispenser
+  name: bone gel dispenser
+  components:
+  - type: Solution # FH - migrated from SolutionContainerManager
+    solution:
+      reagents:
+      - ReagentId: BoneGel
+        Quantity: 360
+  - type: ReagentTank

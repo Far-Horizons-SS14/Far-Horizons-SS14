@@ -20,18 +20,18 @@ using Robust.Client.UserInterface.CustomControls;
 
 namespace Content.Client.Lobby
 {
-    public sealed class LobbyState : Robust.Client.State.State
+    public sealed partial class LobbyState : Robust.Client.State.State
     {
-        [Dependency] private readonly IConfigurationManager _cfg = default!;
-        [Dependency] private readonly IClientConsoleHost _consoleHost = default!;
-        [Dependency] private readonly IEntityManager _entityManager = default!;
-        [Dependency] private readonly IResourceCache _resourceCache = default!;
-        [Dependency] private readonly IUserInterfaceManager _userInterfaceManager = default!;
-        [Dependency] private readonly IGameTiming _gameTiming = default!;
-        [Dependency] private readonly IVoteManager _voteManager = default!;
-        [Dependency] private readonly ClientsidePlaytimeTrackingManager _playtimeTracking = default!;
-        [Dependency] private readonly IClientPreferencesManager _preferences = default!; //Starlight
-        [Dependency] private readonly IPrototypeManager _protoMan = default!;
+        [Dependency] private IConfigurationManager _cfg = default!;
+        [Dependency] private IClientConsoleHost _consoleHost = default!;
+        [Dependency] private IEntityManager _entityManager = default!;
+        [Dependency] private IResourceCache _resourceCache = default!;
+        [Dependency] private IUserInterfaceManager _userInterfaceManager = default!;
+        [Dependency] private IGameTiming _gameTiming = default!;
+        [Dependency] private IVoteManager _voteManager = default!;
+        [Dependency] private ClientsidePlaytimeTrackingManager _playtimeTracking = default!;
+        [Dependency] private IClientPreferencesManager _preferences = default!; //Starlight
+        [Dependency] private IPrototypeManager _protoMan = default!;
 
         private ClientGameTicker _gameTicker = default!;
         private ContentAudioSystem _contentAudioSystem = default!;
@@ -217,6 +217,7 @@ namespace Content.Client.Lobby
                 Lobby!.ReadyButton.Pressed = false;
                 Lobby!.ReadyButton.Disabled = false;
                 Lobby!.ObserveButton.Disabled = false;
+                Lobby!.JobPicksButton.Disabled = true; // Far Horizons
             }
             else
             {
@@ -231,6 +232,7 @@ namespace Content.Client.Lobby
                 Lobby!.ReadyButton.ToggleMode = true;
                 Lobby!.ReadyButton.Disabled = !_readyPossibleWithCharacters; // Starlight - false -> !_readyPossibleWithCharacters
                 Lobby!.ObserveButton.Disabled = true;
+                Lobby!.JobPicksButton.Disabled = false; // Far Horizons
             }
 
             if (_gameTicker.ServerInfoBlob != null)

@@ -38,7 +38,7 @@ namespace Content.Shared.Humanoid
         BodyCover, // Far Horizons
         BodyCoverCover, // Far Horizons
         TailCover, // Far Horizons
-        
+        Wings, // Far Horizons
         Other
     }
 }

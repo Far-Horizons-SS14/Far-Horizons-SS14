@@ -8,11 +8,11 @@ using Robust.Shared.Player;
 using Content.Shared.Damage.Systems;
 
 namespace Content.Shared._Starlight.Antags.TerrorSpider;
-public sealed class TerrorEggSystem : AccUpdateEntitySystem
+public sealed partial class TerrorEggSystem : AccUpdateEntitySystem
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly IPrototypeManager _prototypes = default!;
-    [Dependency] private readonly DamageableSystem _damageable = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private IPrototypeManager _prototypes = default!;
+    [Dependency] private DamageableSystem _damageable = default!;
 
     private const string BluntDamageType = "Blunt"; // Far Horizons - make compiler stop yelling at me
 
@@ -40,7 +40,7 @@ public sealed class TerrorEggSystem : AccUpdateEntitySystem
             _damageable.TryChangeDamage(egg.Value.Owner, _damage, false);
             if (egg.Value.Comp.Counter >= 300)
             {
-                var entity = EntityManager.SpawnEntity(_random.Pick(_terrorSpiders), Transform(egg.Value.Owner).Coordinates);
+                var entity = Spawn(_random.Pick(_terrorSpiders), Transform(egg.Value.Owner).Coordinates);
                 RemComp<EggHolderComponent>(egg.Value.Owner);
             }
         }

@@ -70,6 +70,9 @@
       - NanoTaskCartridge
       - NewsReaderCartridge
       - MedTekCartridge
+      - NanoChatCartridge
+      - FrontierBankCartridge
+      - GSLNowCartridge
 
 #Security
 
@@ -100,6 +103,9 @@
     - NewsReaderCartridge
     - WantedListCartridge
     - MedTekCartridge
+    - NanoChatCartridge
+    - FrontierBankCartridge
+    - GSLNowCartridge
 
 # For Detective Inquisitive Tethers
 - type: entity
@@ -207,6 +213,14 @@
       whitelist:
         components:
         - IdCard
+    credstickSlot:
+      priority: -3
+      name: pda-credstick-slot-name
+      ejectSound: /Audio/Machines/id_swipe.ogg
+      insertSound: /Audio/Machines/id_insert.ogg
+      whitelist:
+        tags:
+        - Credstick
   - type: PdaVisuals
   - type: Item
     size: Small
@@ -217,6 +231,7 @@
       PDA-pai: !type:ContainerSlot {}
       Cartridge-Slot: !type:ContainerSlot {}
       program-container: !type:Container
+      PDA-credstick: !type:ContainerSlot {}
   - type: ItemSlots
   - type: Clothing
     quickEquip: false
@@ -245,6 +260,9 @@
       - NotekeeperCartridge
       - NanoTaskCartridge
       - NewsReaderCartridge
+      - NanoChatCartridge
+      - FrontierBankCartridge
+      - GSLNowCartridge
     cartridgeSlot:
       priority: -1
       name: device-pda-slot-component-slot-name-cartridge
@@ -334,6 +352,14 @@
       whitelist:
         components:
         - IdCard
+    credstickSlot:
+      priority: -3
+      name: pda-credstick-slot-name
+      ejectSound: /Audio/Machines/id_swipe.ogg
+      insertSound: /Audio/Machines/id_insert.ogg
+      whitelist:
+        tags:
+        - Credstick
   - type: PdaVisuals
   - type: Item
     size: Small
@@ -344,6 +370,7 @@
       PDA-pai: !type:ContainerSlot {}
       Cartridge-Slot: !type:ContainerSlot {}
       program-container: !type:Container
+      PDA-credstick: !type:ContainerSlot {}
   - type: ItemSlots
   - type: Clothing
     quickEquip: false
@@ -375,6 +402,9 @@
       - NotekeeperCartridge
       - NanoTaskCartridge
       - NewsReaderCartridge
+      - NanoChatCartridge
+      - FrontierBankCartridge
+      - GSLNowCartridge
     cartridgeSlot:
       priority: -1
       name: device-pda-slot-component-slot-name-cartridge
@@ -429,6 +459,9 @@
       - NanoTaskCartridge
       - NewsReaderCartridge
       - MedTekCartridge
+      - NanoChatCartridge
+      - FrontierBankCartridge
+      - GSLNowCartridge
 
 - type: entity
   parent: BaseNeoSolPDA
@@ -441,7 +474,10 @@
     - NotekeeperCartridge
     - NanoTaskCartridge
     - NewsReaderCartridge
-    - WantedListCartridge
+    - WantedListCartridgeNS
+    - NanoChatCartridge
+    - FrontierBankCartridge
+    - GSLNowCartridge
 
 - type: entity
   parent: BaseNeoSolPDA
@@ -457,6 +493,9 @@
       - NewsReaderCartridge
       - HullSenseCartridge
       - AstroNavCartridge
+      - NanoChatCartridge
+      - FrontierBankCartridge
+      - GSLNowCartridge
 
 #endregion
 
@@ -592,68 +631,96 @@
     - NotekeeperCartridge
     - NanoTaskCartridge
     - NewsReaderCartridge
-    - WantedListCartridge
+    - WantedListCartridgeNS
     - LogProbeCartridge
+    - NanoChatCartridge
+    - FrontierBankCartridge
+    - GSLNowCartridge
 
 #endregion
 
 #region NeoSol Reps
 
-#- type: entity #Commented out until sprites
-#  parent: BaseNeoSolPDA
-#  id: RedSwordPDA
-#  name: Red Sword Officer's PDA
-#  components:
-#  - type: Sprite
-#    sprite: _FarHorizons/Objects/Devices/neosol_pda.rsi
-#  - type: Pda
-#    id: RedSwordIDCard
-#  - type: Appearance
-#    appearanceDataInit:
-#     enum.PdaVisuals.PdaType:
-#       !type:String
-#       pda-redsword
-#  - type: PdaBorderColor
-#    borderColor: "#181c26"
-#    accentHColor: "#25c1c4"
-#  - type: Icon
-#    sprite: _FarHorizons/Objects/Devices/neosol_pda.rsi
-#    state: pda-redsword
-#  - type: CartridgeLoader
-#    uiKey: enum.PdaUiKey.Key
-#    preinstalled:
-#      - CrewManifestCartridge
-#      - NotekeeperCartridge
-#      - NanoTaskCartridge
-#      - NewsReaderCartridge
-#      - MedTekCartridge
+- type: entity
+  parent: BaseNeoSolPDA
+  id: RedSwordPDA
+  name: Red Sword Operative's PDA
+  description: It has seen more "peacekeeping" than most security forces.
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Devices/neosol_pda.rsi
+  - type: Pda
+    id: RedSwordIDCard
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-redswordoperative
+  - type: PdaBorderColor
+    borderColor: "#181c26"
+    accentHColor: "#25c1c4"
+  - type: Icon
+    sprite: _FarHorizons/Objects/Devices/neosol_pda.rsi
+    state: pda-redswordoperative
+  - type: CartridgeLoader
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NanoTaskCartridge
+      - NewsReaderCartridge
+      - MedTekCartridge
+      - NanoChatCartridge
+      - FrontierBankCartridge
+      - GSLNowCartridge
 
-#- type: entity #Will do with Red Sword PDA
-#  parent: BaseNeoSolPDA
-#  id: NeoSolRepresentativePDA
-#  name: NeoSol Representative PDA
-#  components:
-#  - type: Pda
-#    id: NeoSolRepresentativeIDCard
-#    penSlot:
-#      startingItem: PenNTR
-#      priority: -1
-#      whitelist:
-#        tags:
-#        - Write
-#  - type: Appearance
-#    appearanceDataInit:
-#     enum.PdaVisuals.PdaType:
-#       !type:String
-#       pda-neosolrep
-#  - type: PdaBorderColor
-#    borderColor: "#151515"
-#  - type: Icon
-#    state: pda-neosolrep
+- type: entity #Will do with Red Sword PDA
+  parent: BaseNeoSolPDA
+  id: NeoSolRepresentativePDA
+  name: NeoSol Representative PDA
+  description: Gilded with gold and in pristine condition.
+  suffix: NS
+  components:
+  - type: Pda
+    id: NeoSolRepresentativeIDCard
+    penSlot:
+      startingItem: PenNTR
+      priority: -1
+      whitelist:
+        tags:
+        - Write
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-neosolrepresentative
+  - type: PdaBorderColor
+    borderColor: "#151515"
+  - type: Icon
+    state: pda-neosolrepresentative
 
 #endregion
 
 #region NeoSol Civilian/Service
+
+- type: entity
+  parent: BaseNeoSolPDA
+  id: NeoSolClearPDA
+  name: Clear PDA
+  description: 99 and 44/100ths percent pure plastic.
+  components:
+  - type: Pda
+    id: NeoSolAssistantIDCard
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-clear
+  - type: PdaBorderColor
+    borderColor: "#0e6044"
+  - type: Icon
+    state: pda-clear
 
 - type: entity
   parent: BaseNeoSolPDA
@@ -771,6 +838,9 @@
     preinstalled:
     - CrewManifestCartridge
     - NewsReaderCartridge
+    - NanoChatCartridge
+    - FrontierBankCartridge
+    - GSLNowCartridge
   - type: Appearance
     appearanceDataInit:
      enum.PdaVisuals.PdaType:
@@ -1063,6 +1133,18 @@
     borderColor: "#141633"
   - type: Icon
     state: pda-paramedic
+  - type: CartridgeLoader
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NanoTaskCartridge
+      - NewsReaderCartridge
+      - MedTekCartridge
+      - NanoChatCartridge
+      - AstroNavCartridge
+      - FrontierBankCartridge
+      - GSLNowCartridge
 
 - type: entity
   parent: BaseNeoSolMedicalPDA
@@ -1130,8 +1212,11 @@
     - NotekeeperCartridge
     - NanoTaskCartridge
     - NewsReaderCartridge
-    - WantedListCartridge
+    - WantedListCartridgeNS
     - MedTekCartridge
+    - NanoChatCartridge
+    - FrontierBankCartridge
+    - GSLNowCartridge
 
 - type: entity
   parent: BaseNeoSolMedicalPDA
@@ -1157,8 +1242,11 @@
     - NotekeeperCartridge
     - NanoTaskCartridge
     - NewsReaderCartridge
-    - WantedListCartridge
+    - WantedListCartridgeNS
     - MedTekCartridge
+    - NanoChatCartridge
+    - FrontierBankCartridge
+    - GSLNowCartridge
 
 - type: entity
   parent: BaseEnforcerPDA
@@ -1197,6 +1285,25 @@
     accentHColor: "#004cae"
   - type: Icon
     state: pda-enforcer
+    
+- type: entity
+  parent: BaseEnforcerPDA
+  id: SeniorEnforcerPDA
+  name: Senior Enforcer PDA
+  description: Red to hide the stains of assistant blood.
+  components:
+  - type: Pda
+    id: EnforcerIDCard
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-seniorenforcer
+  - type: PdaBorderColor
+    borderColor: "#111230"
+    accentHColor: "#004cae"
+  - type: Icon
+    state: pda-seniorenforcer
 
 - type: entity
   parent: BaseEnforcerPDA
@@ -1241,8 +1348,11 @@
     - NotekeeperCartridge
     - NanoTaskCartridge
     - NewsReaderCartridge
-    - WantedListCartridge
+    - WantedListCartridgeNS
     - LogProbeCartridge
+    - NanoChatCartridge
+    - FrontierBankCartridge
+    - GSLNowCartridge
 
 #endregion
 
@@ -1378,11 +1488,12 @@
   id: SHCPDA
   name: SHC PDA
   description: A red sign of walking bureaucracy.
+  suffix: NS
   components:
   - type: Pda
     id: SHCIDCard
     penSlot:
-      startingItem: PenCentcom
+      startingItem: CyberPen
       priority: -1
       whitelist:
         tags:
@@ -1406,9 +1517,207 @@
       - NanoTaskCartridge
       - NewsReaderCartridge
       - MedTekCartridge
-      - WantedListCartridge
+      - WantedListCartridgeNS
       - LogProbeCartridge
       - AstroNavCartridge
       - HullSenseCartridge
+      - NanoChatCartridge
+      - FrontierBankCartridge
+      - GSLNowCartridge
+
+- type: entity
+  parent: SHCPDA
+  id: COAOfficialPDA
+  name: COA Official PDA
+  components: 
+  - type: Pda
+    id: HCCOAIDCard
+    penSlot:
+      startingItem: CyberPen
+      priority: -1
+      whitelist:
+        tags:
+        - Write
+
+- type: entity
+  parent: SHCPDA
+  id: GWSOfficialPDA
+  name: GWS Official PDA
+  components: 
+  - type: Pda
+    id: HCGWSIDCard
+    penSlot:
+      startingItem: CyberPen
+      priority: -1
+      whitelist:
+        tags:
+        - Write
+
+- type: entity
+  parent: SHCPDA
+  id: DCIOfficialPDA
+  name: DCI Official PDA
+  components: 
+  - type: Pda
+    id: HCDCIIDCard
+    penSlot:
+      startingItem: CyberPen
+      priority: -1
+      whitelist:
+        tags:
+        - Write
+
+
 
 #endregion
+
+
+#region Lambda Operatives
+
+- type: entity
+  parent: [ BaseNukeOpsPDA, BaseSyndicateContraband ]
+  id: LambdaPDA
+  name: Lambda PDA
+  description: Ok, time to be a productive member of- oh cool I'm a bad guy time to kill people!
+  suffix: NT
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Devices/pda.rsi
+    layers:
+    - map: [ "enum.PdaVisualLayers.Base" ]
+      state: "LAMBDA-operative"
+    - state: "light_overlay"
+      map: [ "enum.PdaVisualLayers.Flashlight" ]
+      shader: "unshaded"
+      visible: false
+    - state: "LAMBDA_id_overlay"
+      map: [ "enum.PdaVisualLayers.IdLight" ]
+      shader: "unshaded"
+      visible: false
+  - type: Pda
+    id: LambdaOperativeIDCard
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       LAMBDA-operative
+  - type: PdaBorderColor
+    borderColor: "#aeaeae"
+  - type: Icon
+    state: LAMBDA-operative
+  - type: CartridgeLoader
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - NotekeeperCartridge
+      - NanoTaskCartridge
+      - NanoChatCartridge
+      - FrontierBankCartridge
+      - GSLNowCartridge
+
+- type: entity
+  parent: [ LambdaPDA, BaseSyndicateContraband ]
+  id: LambdaOperativePDA
+  name: Lambda Operative PDA
+  description: Death to NS!
+  suffix: NT
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Devices/pda.rsi
+    layers:
+    - map: [ "enum.PdaVisualLayers.Base" ]
+      state: "LAMBDA-operative"
+    - state: "light_overlay"
+      map: [ "enum.PdaVisualLayers.Flashlight" ]
+      shader: "unshaded"
+      visible: false
+    - state: "LAMBDA_id_overlay"
+      map: [ "enum.PdaVisualLayers.IdLight" ]
+      shader: "unshaded"
+      visible: false
+  - type: Pda
+    id: LambdaOperativeIDCard
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       LAMBDA-operative
+  - type: PdaBorderColor
+    borderColor: "#aeaeae"
+  - type: Icon
+    state: LAMBDA-operative
+
+- type: entity
+  parent: [ LambdaOperativePDA, BaseSyndicateContraband ]
+  id: LambdaCorpsmanPDA
+  name: Lambda Corpsman PDA
+  description: Commander... I need to cook!
+  suffix: NT
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Devices/pda.rsi
+    layers:
+    - map: [ "enum.PdaVisualLayers.Base" ]
+      state: "LAMBDA-agent"
+    - state: "light_overlay"
+      map: [ "enum.PdaVisualLayers.Flashlight" ]
+      shader: "unshaded"
+      visible: false
+    - state: "LAMBDA_id_overlay"
+      map: [ "enum.PdaVisualLayers.IdLight" ]
+      shader: "unshaded"
+      visible: false
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       LAMBDA-agent
+  - type: Icon
+    state: LAMBDA-agent
+  - type: Pda
+    id: LambdaCorpsmanIDCard
+  - type: PdaBorderColor
+    borderColor: "#aeaeae"
+    accentVColor: "#003154"
+  - type: CartridgeLoader
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - NotekeeperCartridge
+      - NanoTaskCartridge
+      - MedTekCartridge
+      - NanoChatCartridge
+      - FrontierBankCartridge
+      - GSLNowCartridge
+
+- type: entity
+  parent: [ LambdaOperativePDA, BaseSyndicateContraband ]
+  id: LambdaCommanderPDA
+  name: Lambda Commander PDA
+  description: So what are we, some kind of Nukie squad?
+  suffix: NT
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Devices/pda.rsi
+    layers:
+    - map: [ "enum.PdaVisualLayers.Base" ]
+      state: "LAMBDA-commander"
+    - state: "light_overlay"
+      map: [ "enum.PdaVisualLayers.Flashlight" ]
+      shader: "unshaded"
+      visible: false
+    - state: "LAMBDA_id_overlay"
+      map: [ "enum.PdaVisualLayers.IdLight" ]
+      shader: "unshaded"
+      visible: false
+  - type: Pda
+    id: LambdaCommanderIDCard
+  - type: PdaBorderColor
+    borderColor: "#004272"
+    accentVColor: "#004272"
+    accentHColor: "#c2c1c1"
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       LAMBDA-commander
+  - type: Icon
+    state: LAMBDA-commander

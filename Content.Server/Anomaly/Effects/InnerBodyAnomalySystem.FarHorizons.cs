@@ -7,7 +7,7 @@ namespace Content.Server.Anomaly.Effects;
 
 public sealed partial class InnerBodyAnomalySystem
 {
-    [Dependency] private readonly ActionGrantSystem _actionGrant = default!;
+    [Dependency] private ActionGrantSystem _actionGrant = default!;
 
     private void AddComponentsCarefully(EntityUid target, ComponentRegistry components)
     {
@@ -51,7 +51,7 @@ public sealed partial class InnerBodyAnomalySystem
     {
         if (!TryComp<ActionGrantComponent>(target, out var comp))
         {
-            EntityManager.AddComponent(target, component);
+            AddComp(target, component);
             return;
         }
 
@@ -65,7 +65,7 @@ public sealed partial class InnerBodyAnomalySystem
         
         if (comp.Actions == component.Actions)
         {
-            EntityManager.RemoveComponent<ActionGrantComponent>(target);
+            RemComp<ActionGrantComponent>(target);
             return;
         }
 

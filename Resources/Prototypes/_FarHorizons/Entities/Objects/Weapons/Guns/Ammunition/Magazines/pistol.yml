@@ -451,6 +451,109 @@
       right:
       - state: inhand-right-mag
 
+- type: entity
+  id: BaseMagazinePistolCivilian
+  name: 9mm Civilian Magazine (Pistol)
+  parent: [ BaseItem ]
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - MagazinePistolCivilian
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgePistol
+    capacity: 7
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      right:
+      - state: inhand-right-mag
+    size: Small
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/9mm_mag.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 6
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  id: MagazinePistolCivilianEmpty
+  name: 9mm Civilian Magazine (Pistol Any)
+  suffix: Empty
+  parent: MagazinePistolCivilianSP
+  description: 7-round single stack pistol magazine. Intended to hold general-purpose kinetic ammunition.
+  components:
+  - type: BallisticAmmoProvider
+    proto: null
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      right:
+      - state: inhand-right-mag
+
+
+- type: entity
+  id: MagazinePistolCivilianSP
+  name: 9mm Civilian Magazine (Pistol SP)
+  parent: BaseMagazinePistolCivilian
+  description: 7-round single stack pistol magazine loaded with Soft-Point 9mm rounds. Effective against lightly-armored targets.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgePistolSP
+  - type: Sprite
+    layers:
+    - state: sp
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      right:
+      - state: inhand-right-mag
+
+- type: entity
+  id: MagazinePistolCivilianRubber
+  name: 9mm Civilian Magazine (Pistol Rubber)
+  parent: BaseMagazinePistolCivilian
+  description: 7-round single stack pistol magazine loaded with Rubber 9mm rounds. Mostly harmless.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgePistolRubber
+  - type: Sprite
+    layers:
+    - state: rubber
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      right:
+      - state: inhand-right-mag
+
 #region 9mm (SMG)
 
 - type: entity
@@ -886,3 +989,101 @@
     steps: 6
     zeroVisible: false
   - type: Appearance
+  
+# Magazine for UA - Corona
+
+- type: entity
+  id: BaseMagazineBatteryUA
+  name: "Magazine (UA)"
+  parent: [ BaseItem ]
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - MagazineBatteryUA
+  - type: Item
+    size: Small
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeBatteryUA
+    capacity: 6
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/Energy_Magnum_Mag.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 7
+    zeroVisible: false
+  - type: Appearance
+ 
+- type: entity
+  id: MagazineBatteryUA
+  name: "Magazine (UA)"
+  parent: BaseMagazineBatteryUA
+  components:
+  - type: BallisticAmmoProvider
+    proto: CapsuleUA
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+ #AP Magazine for UA - Corona
+
+- type: entity
+  id: BaseMagazineBatteryUAAP
+  name: "AP Magazine (UA)"
+  parent: [ BaseItem ]
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - MagazineBatteryUA
+  - type: Item
+    size: Small
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeBatteryUA
+    capacity: 6
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/Energy_Magnum_Mag.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 7
+    zeroVisible: false
+  - type: Appearance
+ 
+- type: entity
+  id: MagazineBatteryUAAP
+  name: "AP Magazine (UA)"
+  parent: BaseMagazineBatteryUAAP
+  components:
+  - type: BallisticAmmoProvider
+    proto: CapsuleUAAP
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]

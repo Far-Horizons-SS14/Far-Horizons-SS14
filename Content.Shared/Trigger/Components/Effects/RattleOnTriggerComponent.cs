@@ -25,6 +25,7 @@ public sealed partial class RattleOnTriggerComponent : BaseXOnTriggerComponent
     public Dictionary<MobState, LocId> Messages = new()
     {
         {MobState.Critical, "rattle-on-trigger-critical-message"},
+        {MobState.ActiveCritical, "rattle-on-trigger-critical-message"}, // Far Horizons
         {MobState.Dead, "rattle-on-trigger-dead-message"}
     };
 }

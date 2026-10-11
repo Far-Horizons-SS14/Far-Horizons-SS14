@@ -33,25 +33,24 @@ namespace Content.Shared.Stunnable;
 /// </summary>
 public abstract partial class SharedStunSystem
 {
-    private EntityQuery<CrawlerComponent> _crawlerQuery;
-
-    [Dependency] private readonly EntityLookupSystem _entityLookup = default!;
-    [Dependency] private readonly SharedGunSystem _gunSystem = default!; // 🌟Starlight🌟
-    [Dependency] private readonly SharedHandsSystem _hands = default!;
-    [Dependency] private readonly SharedItemSystem _item = default!; // 🌟Starlight🌟
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SharedPhysicsSystem _physics = default!;
-    [Dependency] private readonly StandingStateSystem _standingState = default!;
-    [Dependency] private readonly IConfigurationManager _cfgManager = default!;
+    [Dependency] private EntityLookupSystem _entityLookup = default!;
+    [Dependency] private SharedGunSystem _gunSystem = default!; // 🌟Starlight🌟
+    [Dependency] private SharedHandsSystem _hands = default!;
+    [Dependency] private SharedItemSystem _item = default!; // 🌟Starlight🌟
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private SharedPhysicsSystem _physics = default!;
+    [Dependency] private StandingStateSystem _standingState = default!;
+    [Dependency] private IConfigurationManager _cfgManager = default!;
 
     private static readonly ProtoId<ItemSizePrototype> MaxItemSize = "Small";
+
+    [Dependency] private EntityQuery<CrawlerComponent> _crawlerQuery = default!;
+    [Dependency] private EntityQuery<FixturesComponent> _fixtureQuery = default!;
 
     public static readonly ProtoId<AlertPrototype> KnockdownAlert = "Knockdown";
 
     private void InitializeKnockdown()
     {
-        _crawlerQuery = GetEntityQuery<CrawlerComponent>();
-
         SubscribeLocalEvent<KnockedDownComponent, RejuvenateEvent>(OnRejuvenate);
 
         // Startup and Shutdown
@@ -446,6 +445,10 @@ public abstract partial class SharedStunSystem
 
         var ev = new TryForceStandEvent(entity.Comp.ForceStandStamina);
         RaiseLocalEvent(entity, ref ev);
+        //Far Horizons Start
+        if(ev.Cancelled)
+            return false;
+        //Far Horizons End
 
         if (!Stamina.TryTakeStamina(entity, ev.Stamina, entity.Comp, visual: true))
         {
@@ -473,17 +476,14 @@ public abstract partial class SharedStunSystem
         if (intersecting.Count == 0)
             return false;
 
-        var fixtureQuery = GetEntityQuery<FixturesComponent>();
-        var xformQuery = GetEntityQuery<TransformComponent>();
-
         var ourAABB = _entityLookup.GetAABBNoContainer(entity, entity.Comp.LocalPosition, entity.Comp.LocalRotation);
 
         foreach (var ent in intersecting)
         {
-            if (!fixtureQuery.TryGetComponent(ent, out var fixtures))
+            if (!_fixtureQuery.TryGetComponent(ent, out var fixtures))
                 continue;
 
-            if (!xformQuery.TryComp(ent, out var xformComp))
+            if (!TryComp(ent, out TransformComponent? xformComp))
                 continue;
 
             var xform = new Transform(xformComp.LocalPosition, xformComp.LocalRotation);

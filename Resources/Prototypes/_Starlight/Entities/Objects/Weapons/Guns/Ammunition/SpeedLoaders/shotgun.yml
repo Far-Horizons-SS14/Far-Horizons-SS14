@@ -1,0 +1,157 @@
+- type: entity
+  id: BaseSpeedLoaderShotgun
+  name: 12 Gauge Speedloader #FH
+  parent: [ BaseItem ]
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - SpeedLoaderShotgun
+  - type: SpeedLoader
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    fillDelay: 0.1
+    whitelist:
+      tags:
+        - ShellShotgun
+    capacity: 8 #FH
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+        ents: []
+#FH - Start
+  - type: Item
+    size: Small
+    shape:
+    - 0,0,1,0
+    storedOffset: 0,1
+#FH - End
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Speedloaders/Shotgun/12g_speed_loader.rsi #FH
+    layers:
+      - state: base
+        map: [ "enum.GunVisualLayers.Base" ]
+      - state: base-8 #FH
+        map: [ "enum.GunVisualLayers.Mag" ]
+      - state: base-tip-8 #FH
+        map: [ "enum.GunVisualLayers.Tip" ]
+        color: "#F4001F"
+  - type: MagazineVisuals
+    magState: base
+    steps: 9
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  id: SpeedLoaderShotgunEmpty
+  name: 12 Gauge Speedloader #FH
+  parent: [ BaseSpeedLoaderShotgun, BaseSecuritySalvageContraband ]
+  components:
+  - type: BallisticAmmoProvider
+    proto: null
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Speedloaders/Shotgun/12g_speed_loader.rsi #FH
+    layers:
+      - state: base
+        map: [ "enum.GunVisualLayers.Base" ]
+      - state: base-1 #FH
+        map: [ "enum.GunVisualLayers.Mag" ]
+      - state: base-tip-1 #FH
+        map: [ "enum.GunVisualLayers.Tip" ]
+        color: "#F4001F"
+
+- type: entity
+  id: SpeedLoaderMagnumBasic
+  name: 12 Gauge Buckshot Speedloader #FH
+  parent: [ BaseSpeedLoaderShotgun, BaseSecurityContraband ]
+  components:
+  - type: BallisticAmmoProvider
+    proto: ShellShotgun
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Speedloaders/Shotgun/12g_speed_loader.rsi #FH
+    layers:
+      - state: base
+        map: [ "enum.GunVisualLayers.Base" ]
+      - state: base-8 #FH
+        map: [ "enum.GunVisualLayers.Mag" ]
+      - state: base-tip-8 #FH
+        map: [ "enum.GunVisualLayers.Tip" ]
+        color: "#F4001F"
+
+- type: entity
+  id: SpeedLoaderShotgunBeanbag
+  name: 12 Gauge Beanbag Speedloader #FH
+  parent: [ BaseSpeedLoaderShotgun, BaseSecurityBartenderContraband ]
+  components:
+  - type: BallisticAmmoProvider
+    proto: ShellShotgunBeanbag
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Speedloaders/Shotgun/12g_speed_loader.rsi #FH
+    layers:
+      - state: base
+        map: [ "enum.GunVisualLayers.Base" ]
+      - state: base-8 #FH
+        map: [ "enum.GunVisualLayers.Mag" ]
+      - state: base-tip-8 #FH
+        map: [ "enum.GunVisualLayers.Tip" ]
+        color: "#FBEF06" #FH
+
+- type: entity
+  id: SpeedLoaderShotgunSlug
+  name: 12 Gauge Slug Speedloader #FH
+  parent: [ BaseSpeedLoaderShotgun, BaseSecurityContraband ]
+  components:
+  - type: BallisticAmmoProvider
+    proto: ShellShotgunSlug
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Speedloaders/Shotgun/12g_speed_loader.rsi #FH
+    layers:
+      - state: base
+        map: [ "enum.GunVisualLayers.Base" ]
+      - state: base-8 #FH
+        map: [ "enum.GunVisualLayers.Mag" ]
+      - state: base-tip-8 #FH
+        map: [ "enum.GunVisualLayers.Tip" ]
+        color: "#164B31" #FH
+
+- type: entity
+  id: SpeedLoaderShotgunUranium
+  name: 12 Gauge Uranium Speedloader #FH
+  parent: [ BaseSpeedLoaderShotgun, BaseSecurityContraband ]
+  components:
+  - type: BallisticAmmoProvider
+    proto: ShellShotgunUranium
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Speedloaders/Shotgun/12g_speed_loader.rsi #FH
+    layers:
+      - state: base
+        map: [ "enum.GunVisualLayers.Base" ]
+      - state: slug-8 #FH
+        map: [ "enum.GunVisualLayers.Mag" ]
+      - state: slug-tip-8 #FH
+        map: [ "enum.GunVisualLayers.Tip" ]
+        color: "#164B31" #FH
+#FH - Start
+  - type: MagazineVisuals
+    magState: slug
+    steps: 9
+    zeroVisible: false
+#FH - End
+
+- type: entity
+  id: SpeedLoaderShotgunIncendiary
+  name: 12 Gauge Incendiary Speedloader #FH
+  parent: [ BaseSpeedLoaderShotgun, BaseSecurityContraband ]
+  components:
+  - type: BallisticAmmoProvider
+    proto: ShellShotgunIncendiary
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Speedloaders/Shotgun/12g_speed_loader.rsi #FH
+    layers:
+      - state: base
+        map: [ "enum.GunVisualLayers.Base" ]
+      - state: base-8 #FH
+        map: [ "enum.GunVisualLayers.Mag" ]
+      - state: base-tip-8 #FH
+        map: [ "enum.GunVisualLayers.Tip" ]
+        color: "#C9E9FF" #FH

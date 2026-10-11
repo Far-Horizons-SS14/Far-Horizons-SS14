@@ -11,7 +11,7 @@ namespace Content.Client._FarHorizons.Research.UI;
 [GenerateTypedNameReferences]
 public sealed partial class FHResearchConsoleWindow : FancyWindow
 {
-    [Dependency] private readonly IPrototypeManager _protoMan = default!;
+    [Dependency] private IPrototypeManager _protoMan = default!;
 
     private HashSet<ResearchTreeNodePrototype> _allNodes = [];
     private HashSet<ProtoId<ResearchTreeTierPrototype>> _unlockedTiers = [];
@@ -108,10 +108,10 @@ public sealed partial class FHResearchConsoleWindow : FancyWindow
             {
                 // Node not found in _allNodes - treat as no selection
                 _selected = null;
-                SelectionScroll.Visible = false;
-                NoSelectionBox.Visible = true;
                 UpdateRequirements();
                 UpdateUnlocks();
+                SelectionScroll.Visible = false;
+                NoSelectionBox.Visible = true;
                 return;
             }
             
@@ -123,6 +123,9 @@ public sealed partial class FHResearchConsoleWindow : FancyWindow
                 SelectedProgressLabel.Visible = true;
                 SelectedProgressLabel.Text = Loc.GetString("research-tree-label-progress", ("progress", _researchProgress[selected.Value]), ("required", _selected.Cost));
             }
+
+            UpdateRequirements();
+            UpdateUnlocks();
 
             SelectionScroll.Visible = true;
             NoSelectionBox.Visible = false;
@@ -144,12 +147,11 @@ public sealed partial class FHResearchConsoleWindow : FancyWindow
             SelectedCost.Text = _selected.Cost.ToString();
         } else {
             _selected = null;
+            UpdateRequirements();
+            UpdateUnlocks();
             SelectionScroll.Visible = false;
             NoSelectionBox.Visible = true;
         }
-
-        UpdateRequirements();
-        UpdateUnlocks();
     }
 
     private void QuickResearch(ProtoId<ResearchTreeNodePrototype> node) =>

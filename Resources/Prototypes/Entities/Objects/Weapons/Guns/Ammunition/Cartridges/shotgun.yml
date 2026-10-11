@@ -19,7 +19,7 @@
 - type: entity
   parent: [ BaseShellShotgun, BaseSecurityBartenderContraband ]
   id: ShellShotgunBeanbag
-  name: 12 gauge beanbag slug # Starlight change: .50 -> 12 gauge
+  name: 12 Gauge Beanbag Shell #FH Just call it beanbag nerd
   components:
   - type: Tag
     tags:
@@ -31,7 +31,7 @@
         map: [ "enum.AmmoVisualLayers.Base" ]
       - state: tip
         map: [ "enum.AmmoVisualLayers.Tip" ]
-        color: "#149A1E"
+        color: "#FBEF06" #FH These are usually see through, but, in absence of that yellow is apparently a good color.
       - state: spent
         map: [ "enum.AmmoVisualLayers.Spent" ]
         visible: false
@@ -43,15 +43,15 @@
 - type: entity
   parent: [ BaseShellShotgun, BaseSecurityContraband]
   id: ShellShotgunSlug
-  name: 12 gauge slug # Starlight change: .50 -> 12 gauge
+  name: 12 Gauge Slug #FH - Captalization
   components:
   - type: Sprite
     layers:
-      - state: slug
+      - state: base #FH
         map: [ "enum.AmmoVisualLayers.Base" ]
       - state: tip-long
         map: [ "enum.AmmoVisualLayers.Tip" ]
-        color: "#252525"
+        color: "#164B31" #FH 99.9% of video games have these green.
       - state: spent-long
         map: [ "enum.AmmoVisualLayers.Spent" ]
         visible: false
@@ -63,7 +63,7 @@
 - type: entity
   parent: BaseShellShotgun
   id: ShellShotgunFlare
-  name: 12 gauge flare # Starlight change: .50 -> 12 gauge
+  name: 12 Gauge Flare #FH
   components:
   - type: Tag
     tags:
@@ -75,7 +75,7 @@
         map: [ "enum.AmmoVisualLayers.Base" ]
       - state: tip
         map: [ "enum.AmmoVisualLayers.Tip" ]
-        color: "#FFFF0B"
+        color: "#ED7942" #FH
       - state: flare
       - state: spent
         map: [ "enum.AmmoVisualLayers.Spent" ]
@@ -88,7 +88,7 @@
 - type: entity
   id: ShellShotgun
   parent: [ BaseShellShotgun, BaseSecurityContraband ]
-  name: 12 gauge buckshot # Starlight change: .50 -> 12 gauge
+  name: 12 Gauge Buckshot #FH
   components:
   - type: Sprite
     layers:
@@ -108,7 +108,7 @@
 - type: entity
   id: ShellShotgunIncendiary
   parent: [ BaseShellShotgun, BaseSecurityContraband ]
-  name: 12 gauge incendiary buckshot # Starlight change: .50 -> 12 gauge
+  name: 12 Gauge Incendiary Buckshot #FH
   components:
   - type: Sprite
     layers:
@@ -116,7 +116,7 @@
         map: [ "enum.AmmoVisualLayers.Base" ]
       - state: tip
         map: [ "enum.AmmoVisualLayers.Tip" ]
-        color: "#FFFF0B"
+        color: "#C9E9FF" #FH Incind is white.
       - state: incendiary
       - state: spent
         map: [ "enum.AmmoVisualLayers.Spent" ]
@@ -128,7 +128,7 @@
 
 - type: entity
   id: ShellShotgunPractice
-  name: 12 gauge blank # Starlight change: .50 -> 12 gauge
+  name: 12 Gauge Blank #FH
   parent: [ BaseShellShotgun, BaseSecurityContraband ]
   components:
   - type: Sprite
@@ -147,9 +147,10 @@
     proto: PelletShotgunPracticeSpreadTrace
 
 - type: entity
+  parent: [ SolutionAmmo, SolutionToolVeryTiny, BaseShellShotgun, BaseSecurityContraband ]
   id: ShellTranquilizer
-  name: 12 gauge tranquilizer slug # Starlight change: .50 -> 12 gauge
-  parent: [ BaseShellShotgun, BaseSecurityContraband ]
+  name: 12 Gauge Tranquilizer Slug #FH
+  description: The standard cartridge used by most modern shotguns. Tranquilizer ammunition contains a single ballistic syringe loaded with a strong sedative that harmlessly puts targets to sleep.
   components:
   - type: Tag
     tags:
@@ -168,18 +169,17 @@
   - type: CartridgeAmmo
     proto: PelletShotgunTranquilizer
   - type: ChemicalAmmo
-  - type: SolutionContainerManager
-    solutions:
-      ammo:
-        reagents:
-        - ReagentId: Nocturine #🌟Starlight🌟
-          Quantity: 5
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Nocturine #🌟Starlight🌟
+        Quantity: 7.5
   - type: SolutionTransfer
     maxTransferAmount: 3.5
 
 - type: entity
   id: ShellShotgunImprovised
-  name: improvised 12 gauge shell # Starlight change: .50 -> 12 gauge
+  name: Improvised 12 Gauge Buckshot #FH
   description: A homemade shotgun shell that shoots painful glass shrapnel. The spread is so wide that it couldn't hit the broad side of a barn.
   parent: [ BaseShellShotgun, BaseSecurityContraband ]
   components:
@@ -207,7 +207,7 @@
 
 - type: entity
   id: ShellShotgunUranium
-  name: 12 gauge uranium buckshot shell # Starlight change: .50 -> 12 gauge
+  name: 12 Gauge Uranium Slug #FH
   parent: [ BaseShellShotgun, BaseSecurityContraband ]
   components:
   - type: Sprite
@@ -216,7 +216,7 @@
         map: [ "enum.AmmoVisualLayers.Base" ]
       - state: tip-long
         map: [ "enum.AmmoVisualLayers.Tip" ]
-        color: "#252525"
+        color: "#164B31" #FH
       - state: depleted-uranium
       - state: spent-long
         map: [ "enum.AmmoVisualLayers.Spent" ]
@@ -228,7 +228,7 @@
 
 - type: entity #🌟Starlight🌟
   id: ShellShotgunBreaching
-  name: 12 gauge breaching shell # Starlight change: .50 -> 12 gauge
+  name: 12 Gauge Breaching Shell #FH
   parent: [ BaseShellShotgun, BaseSyndicateContraband ]
   components:
   - type: Sprite

@@ -5,22 +5,32 @@ using Content.Server.Construction.Components;
 using Content.Shared._FarHorizons.Doors.Components;
 using Content.Shared.Light.Components;
 using Robust.Shared.Physics.Components;
+using Robust.Shared.Configuration;
+using Content.Shared._FarHorizons.CCVar;
 
 namespace Content.Server.Airlocks;
 
-public sealed class AirlockFixupSystem : EntitySystem
+public sealed partial class AirlockFixupSystem : EntitySystem
 {
-    [Dependency] private readonly IEntityManager _entityManager = default!;
+    [Dependency] private IEntityManager _entityManager = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
     private ConcurrentBag<int> knownFhMaps = [];
+    private bool _active = false;
 
     public override void Initialize()
     {
         base.Initialize();
         SubscribeLocalEvent<FHDoorComponent, MapInitEvent>(OnAirlockMapInit);
+
+        _active = _cfg.GetCVar(FHCCVars.MigrateDoors);
+        _cfg.OnValueChanged(FHCCVars.MigrateDoors, val => _active = val);
     }
 
     private void OnAirlockMapInit(EntityUid uid, FHDoorComponent component, ref MapInitEvent args)
     {
+        if (!_active)
+            return;
+
         try
         {
             var transform = _entityManager.GetComponent<TransformComponent>(uid);

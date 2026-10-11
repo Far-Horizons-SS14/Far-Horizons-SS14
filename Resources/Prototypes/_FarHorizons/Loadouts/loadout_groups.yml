@@ -9,6 +9,7 @@
   - EmergencyOxygenCargo
   - EmergencyNitrogenCargo
   - EmergencyNonBreatherCargo
+  - EmergencyIPCCargo #FH
 
 # Quartermaster
 
@@ -21,6 +22,16 @@
   - EmergencyOxygenExtendedCommand02
   - EmergencyNitrogenExtendedCommandN2
   - EmergencyNonBreatherExtendedCommandNone
+  - EmergencyNonBreatherExtendedCommandIPC #FH
+
+# Cargo Tech
+- type: loadoutGroup
+  id: CargoTechHandsGloves
+  name: loadout-group-cargo-technician-hands
+  minLimit: 0
+  loadouts:
+  - CargoTechnicianFingerlessGloves
+  - CargoTechnicianFingerlessGlovesCargo
 
 # Mining Specialist
 
@@ -39,6 +50,9 @@
   - MiningBackpack
   - MiningDuffel
   - MiningSatchel
+  - MiningBackpackSenior
+  - MiningDuffelSenior
+  - MiningSatchelSenior
 
 - type: loadoutGroup
   id: MiningSpecialistBelt
@@ -56,6 +70,19 @@
   loadouts:
   - SalvageHelmet
   - CargoTechnicianHead
+  - SalvageBeret
+
+#Salvage Lead
+- type: loadoutGroup
+  id: SalvageLeadHead
+  name: loadout-group-salvage-head
+  minLimit: 0
+  loadouts:
+  - SalvageHelmet
+  - CargoTechnicianHead
+  - SalvageBeret
+  - SalvageLeadBeret
+
 
 #region CFA/Law
 
@@ -134,6 +161,7 @@
   - EmergencyOxygenStationManagement
   - EmergencyNitrogenStationManagement
   - EmergencyNonBreatherStationManagement
+  - EmergencyIPCStationManagement #FH
 
 
 #region Command
@@ -148,6 +176,7 @@
   - EmergencyOxygenExtendedCommand02
   - EmergencyNitrogenExtendedCommandN2
   - EmergencyNonBreatherExtendedCommandNone
+  - EmergencyNonBreatherExtendedCommandIPC #FH
 
 # Head of Personnel
 - type: loadoutGroup
@@ -159,6 +188,7 @@
   - EmergencyOxygenExtendedCommand02
   - EmergencyNitrogenExtendedCommandN2
   - EmergencyNonBreatherExtendedCommandNone
+  - EmergencyNonBreatherExtendedCommandIPC #FH
 
 # Research Director
 - type: loadoutGroup
@@ -170,6 +200,7 @@
   - EmergencyOxygenExtendedCommand02
   - EmergencyNitrogenExtendedCommandN2
   - EmergencyNonBreatherExtendedCommandNone
+  - EmergencyNonBreatherExtendedCommandIPC #FH
 
 # General Command
 - type: loadoutGroup
@@ -206,12 +237,16 @@
   - EmergencyOxygenExtendedCommand02
   - EmergencyNitrogenExtendedCommandN2
   - EmergencyNonBreatherExtendedCommandNone
+  - EmergencyNonBreatherExtendedCommandIPC #FH
 # Chief Medical Officer
 
 - type: loadoutGroup
   id: CMOBackpack
   name: loadout-group-cmo-backpack
   loadouts:
+    - CMOBackpack
+    - CMODuffel
+    - CMOSatchel
     - MedicalDoctorBackpack
     - MedicalDoctorDuffel
     - MedicalDoctorSatchel
@@ -235,6 +270,7 @@
   - EmergencyOxygenExtendedCommand02
   - EmergencyNitrogenExtendedCommandN2
   - EmergencyNonBreatherExtendedCommandNone
+  - EmergencyNonBreatherExtendedCommandIPC #FH
 # NTR
 
 - type: loadoutGroup
@@ -259,18 +295,24 @@
   id: HoSSidearm
   name: loadout-group-security-sidearm
   loadouts:
-  - SecurityRevolverInspectorM500
-  - SecurityRevolverInspector
-  - SecurityRevolverOathbreakerM500
-  - SecurityRevolverOathbreaker
-  - SecurityRevolverInstigatorM500
-  - SecurityRevolverInstigator
+# Job Specific - Important for Salvage for this to be at the top
   - SecurityPistolN1984
-  - SecurityPistolDueProcess
+# Default
+  - SecurityMKT
+  - SecurityRevolverInstigator
+# HoS's Special
   - SecurityPistolEnforcerFH
   - SecurityPistolPathology
+  - SecurityPistolDueProcess
+  - SecurityRevolverOathbreaker
+  - SecurityRevolverInspector
+# Prestige Weapons
   - SecurityPistolMk58
-  - SecurityMk78
+  - LeverActionModel2325Pistol
+  - SecurityRevolverInspectorcustom
+  - SecurityRevolverOathbreakercustom
+  - SecurityRevolverInstigatorcustom
+  - RevolverIndomitable
 
 - type: loadoutGroup
   id: SurvivalHeadOfSecurity
@@ -281,6 +323,7 @@
   - EmergencyOxygenExtendedCommand02
   - EmergencyNitrogenExtendedCommandN2
   - EmergencyNonBreatherExtendedCommandNone
+  - EmergencyNonBreatherExtendedCommandIPC #FH
 
 #region Research
 
@@ -293,6 +336,7 @@
   - EmergencyOxygenScience
   - EmergencyNitrogenScience
   - EmergencyNonBreatherScience
+  - EmergencyIPCScience #FH
 
 #region Engineering
 
@@ -424,18 +468,33 @@
 
 #region Security
 
+# General Sec
+
+- type: loadoutGroup
+  id: SecurityLongarm  
+  name: loadout-group-security-longarm
+  minLimit: 0
+  loadouts:
+  - LeverActionNT
+  - LeverActionModel2325
+
 # Brigmedic
 
 - type: loadoutGroup
   id: BrigmedicSidearm  
   name: loadout-group-security-sidearm
   loadouts:
-  - SecurityRevolverOathbreakerM500
+# Job Specific - Important for Salvage for this to be at the top
   - SecurityRevolverOathbreaker
-  - SecurityPistolMk58
-  - SecurityMk78
-  - SecurityRevolverInstigatorM500
+  - SecurityRevolverOathbreakercustom
+# Default
+  - SecurityMKT
   - SecurityRevolverInstigator
+# Prestige Weapons
+  - SecurityRevolverInstigatorcustom
+  - SecurityPistolMk58
+  - RevolverIndomitable
+  - LeverActionModel2325Pistol
 
 # Cadet
 
@@ -455,6 +514,8 @@
   loadouts:
   - SecurityHelmet
   - CorpsmanBeret
+  - DeputyHat
+  - DeputyHelmet
 
 - type: loadoutGroup
   id: CorpsmanJumpsuit
@@ -462,6 +523,7 @@
   loadouts:
   - JumpsuitCorpsman
   - JumpskirtCorpsman
+  - DeputyUniform
 
 - type: loadoutGroup
   id: CorpsmanBackpack
@@ -477,6 +539,7 @@
   loadouts:
   - SecurityOfficerWintercoat
   - CorpsmanCoat
+  - DeputySheriffCorpsmanCoat
 
 - type: loadoutGroup
   id: CorpsmanEyewear
@@ -485,12 +548,16 @@
   - CorpsmanGlasses
   - CorpsmanHud
   - CorpsmanVisor
+  - DeputyMedicalGlasses
 
 - type: loadoutGroup
   id: CorpsmanBelt
   name: loadout-group-corpsman-belt
+  minLimit: 1 
+  maxLimit: 2 # omg my first commit ever for ss14 :o  - enerjak / 'poke' on discord
   loadouts:
   - CorpsmanBelt
+  - CorpsmanRig
 
 - type: loadoutGroup
   id: CorpsmanGloves
@@ -503,11 +570,16 @@
   id: CorpsmanSidearm  
   name: loadout-group-security-sidearm
   loadouts:
+# Job Specific - Important for Salvage for this to be at the top
   - SecurityPistolPathology
-  - SecurityPistolMk58
-  - SecurityMk78
-  - SecurityRevolverInstigatorM500
+# Default
+  - SecurityMKT
   - SecurityRevolverInstigator
+# Prestige Weapons
+  - SecurityRevolverInstigatorcustom
+  - SecurityPistolMk58
+  - LeverActionModel2325Pistol
+  - RevolverIndomitable
 
 - type: loadoutGroup
   id: CorpsmanID
@@ -522,9 +594,14 @@
   id: DetectiveSidearm 
   name: loadout-group-security-sidearm
   loadouts:
-  - SecurityRevolverInspectorM500
+# Job Specific - Important for Salvage for this to be at the top
   - SecurityRevolverInspector
+  - SecurityRevolverInspectorcustom
+# Default
   - SecurityRevolverInstigatorDet
+# Prestige Weapons
+  - LeverActionModel2325Pistol
+  - RevolverIndomitable
 
 # Warden
 
@@ -532,11 +609,16 @@
   id: WardenSidearm 
   name: loadout-group-security-sidearm
   loadouts:
+# Job Specific - Important for Salvage for this to be at the top
   - SecurityPistolDueProcess
-  - SecurityPistolMk58
-  - SecurityMk78
-  - SecurityRevolverInstigatorM500
+# Default
+  - SecurityMKT
   - SecurityRevolverInstigator
+# Prestige Weapons
+  - SecurityRevolverInstigatorcustom
+  - SecurityPistolMk58
+  - LeverActionModel2325Pistol
+  - RevolverIndomitable
 
 #region Service
 
@@ -607,3 +689,37 @@
   - EmergencyOxygenService
   - EmergencyNitrogenService
   - EmergencyNonBreatherService
+  - EmergencyIPCService #FH
+
+#region Civilian
+- type: loadoutGroup
+  id: CivilianWeaponsFactionless
+  name: loadout-group-civilian-weapons
+  minLimit: 0
+  loadouts:
+  - Mk58Civ
+  - InstigatorCiv
+  - LeverActionCiv
+  - LeverActionPistolCiv
+
+- type: loadoutGroup
+  id: CivilianWeaponsNT
+  parent: CivilianWeaponsFactionless
+  loadouts:
+  - MKTCiv
+
+- type: loadoutGroup
+  id: CivilianWeaponsNS
+  parent: CivilianWeaponsFactionless
+  loadouts:
+  - MKSCiv
+
+#region Credstick
+- type: loadoutGroup
+  id: Credsticks
+  name: loadout-group-credsticks
+  minLimit: 1
+  loadouts:
+  - CredstickDefault
+  - CredstickGold
+  - CredstickPlatinum

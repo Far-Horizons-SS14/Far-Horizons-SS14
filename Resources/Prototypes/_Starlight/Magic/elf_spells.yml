@@ -1,0 +1,146 @@
+# Luminous Orb
+
+- type: entity
+  parent: BaseAction
+  id: ActionCantripGlow
+  name: Luminous Orb
+  description: Creates a short-lived luminous ball of light. Decays after 25 seconds.
+  components:
+  - type: Magic
+    requiresClothes: false
+  - type: Action
+    useDelay: 255
+    itemIconStyle: BigAction
+    icon:
+      sprite: _Starlight/Objects/Magic/luminous_orb.rsi
+      state: icon
+  - type: InstantAction
+    event: !type:SpawnItemInHandEvent
+      spawned: ElfLuminousOrb
+      requiresFreeHand: false
+  - type: SpeakOnAction
+    sentence: action-speech-cantrip-glow
+    whisper: true
+  - type: ColorObjectToEyeColor
+
+# Magic Ember
+
+- type: entity
+  parent: BaseAction
+  id: ActionCantripSpark
+  name: Ember #Far Horizons
+  description: Creates a short-lived flame suitable for use as an ignition source. Decays after 5 seconds.
+  components:
+  - type: Magic
+    requiresClothes: false
+  - type: Action
+    useDelay: 20
+    itemIconStyle: BigAction
+    icon:
+      sprite: _Starlight/Objects/Magic/ember.rsi
+      state: icon
+  - type: InstantAction
+    event: !type:SpawnItemInHandEvent
+      spawned: ElfMagicEmber
+      requiresFreeHand: true
+  - type: SpeakOnAction
+    sentence: action-speech-cantrip-spark
+    whisper: true
+  - type: ColorObjectToEyeColor #FH
+
+# Rejuvenation/Antidote
+
+- type: entity
+  parent: BaseAction
+  id: ActionCantripAntidote
+  name: Botanical Rejuvenating #Far Horizons
+  description: Procures a substance to mend vitality of a plant. Evaporates after 15 seconds. #Far Horizons
+  components:
+  - type: Magic
+    requiresClothes: false
+  - type: Action
+    useDelay: 30
+    itemIconStyle: BigAction
+    icon:
+      sprite: _Starlight/Objects/Magic/antidote.rsi
+      state: icon
+  - type: InstantAction
+    event: !type:SpawnItemInHandEvent
+      spawned: ElfAntidoteSeed
+      requiresFreeHand: true
+  - type: SpeakOnAction
+    sentence: action-speech-cantrip-antidote
+    whisper: true
+
+# Cleanse
+
+- type: entity
+  parent: BaseAction
+  id: ActionCantripMop
+  name: Cleansing Aura #Far Horizons
+  description: Removes filth around you. Like a tiny cleanade. Only affects tiles adjacent to where you stand.
+  components:
+  - type: Magic
+    requiresClothes: false
+  - type: Action
+    useDelay: 15
+    itemIconStyle: BigAction
+    icon:
+      sprite: _Starlight/Objects/Magic/mop.rsi
+      state: icon
+  - type: InstantAction
+    event: !type:InstantSpawnSpellEvent
+      prototype: ElfCleanseSmoke
+  - type: SpeakOnAction
+    sentence: action-speech-cantrip-mop
+    whisper: true
+
+# Hemostasis
+
+- type: entity
+  parent: BaseAction
+  id: ActionCantripBandage
+  name: Haemostatic Assistance #Far Horizons
+  description: Procures means to assist with stemming a bleeding wound. Evaporates after 15 seconds. #Far Horizons
+  components:
+  - type: Magic
+    requiresClothes: false
+  - type: Action
+    useDelay: 45
+    itemIconStyle: BigAction
+    icon:
+      sprite: _Starlight/Objects/Magic/bandage.rsi
+      state: icon
+  - type: InstantAction
+    event: !type:SpawnItemInHandEvent
+      spawned: ElfRuneHaemostatic
+      requiresFreeHand: true
+  - type: SpeakOnAction
+    sentence: action-speech-cantrip-bandage
+    whisper: true
+
+# Psychic Whisper - disabled in store until i figure out how to make it work properly
+
+- type: entity
+  parent: BaseAction
+  id: ActionCantripMessage
+  name: Psychic Whisper
+  description: Transmits a secret message into the mind of a single target.
+  components:
+  - type: Magic
+    requiresClothes: false
+  - type: Action
+    useDelay: 5
+    itemIconStyle: BigAction
+    icon:
+      sprite: _Starlight/Objects/Magic/message.rsi
+      state: icon
+  - type: EntityTargetAction
+    whitelist:
+      components:
+      - MobState
+      - PAI
+      - StationAiCore
+    event: !type:PsychicWhisperEvent
+
+

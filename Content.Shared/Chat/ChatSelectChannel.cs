@@ -7,7 +7,7 @@
     ///     Maps to <see cref="ChatChannel"/>, giving better names.
     /// </remarks>
     [Flags]
-    public enum ChatSelectChannel : ushort
+    public enum ChatSelectChannel : uint // Far Horizons - we ran out of channels so ushort -> uint
     {
         None = 0,
 
@@ -55,6 +55,12 @@
         ///     Admin chat
         /// </summary>
         Admin = ChatChannel.AdminChat,
+
+        /// <summary>
+        ///     Far Horizons
+        ///     Mentor chat
+        /// </summary>
+        Mentor = ChatChannel.MentorChat,
 
         Console = ChatChannel.Unspecified
     }

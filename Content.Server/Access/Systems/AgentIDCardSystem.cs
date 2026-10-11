@@ -1,35 +1,38 @@
-using Content.Server.Access.Components;
-using Content.Server.Popups;
-using Content.Shared.UserInterface;
-using Content.Shared.Access.Components;
-using Content.Shared.Access.Systems;
-using Content.Shared.Interaction;
-using Content.Shared.StatusIcon;
-using Robust.Server.GameObjects;
-using Robust.Shared.Prototypes;
-using Content.Shared.Roles;
 using System.Diagnostics.CodeAnalysis;
+using Content.Server.Access.Components;
 using Content.Server.Clothing.Systems;
 using Content.Server.Implants;
-using Content.Server.VoiceMask;
+using Content.Server.Popups;
+using Content.Shared.Access.Components;
+using Content.Shared.Access.Systems;
+using Content.Shared.Clothing.Components;
 using Content.Shared.Implants;
+using Content.Shared.Interaction;
 using Content.Shared.Inventory;
 using Content.Shared.Lock;
 using Content.Shared.PDA;
+using Content.Shared.Roles;
+using Content.Shared.StatusIcon;
+using Content.Shared.UserInterface;
 using Content.Shared.VoiceMask;
+using Robust.Server.GameObjects;
+using Robust.Shared.Prototypes;
+using Content.Shared._CD.NanoChat; // CD
+using Content.Shared.Silicons.Borgs.Components; //Far Horizons
 
 namespace Content.Server.Access.Systems
 {
-    public sealed class AgentIDCardSystem : SharedAgentIdCardSystem
+    public sealed partial class AgentIDCardSystem : SharedAgentIdCardSystem
     {
-        [Dependency] private readonly PopupSystem _popupSystem = default!;
-        [Dependency] private readonly IdCardSystem _cardSystem = default!;
-        [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
-        [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-        [Dependency] private readonly ChameleonClothingSystem _chameleon = default!;
-        [Dependency] private readonly ChameleonControllerSystem _chamController = default!;
-        [Dependency] private readonly LockSystem _lock = default!;
-        [Dependency] private readonly SharedJobStatusSystem _jobStatus = default!;
+        [Dependency] private PopupSystem _popupSystem = default!;
+        [Dependency] private IdCardSystem _cardSystem = default!;
+        [Dependency] private UserInterfaceSystem _uiSystem = default!;
+        [Dependency] private IPrototypeManager _prototypeManager = default!;
+        [Dependency] private ChameleonClothingSystem _chameleon = default!;
+        [Dependency] private ChameleonControllerSystem _chamController = default!;
+        [Dependency] private LockSystem _lock = default!;
+        [Dependency] private SharedJobStatusSystem _jobStatus = default!;
+        [Dependency] private SharedNanoChatSystem _nanoChat = default!; // CD
 
         public override void Initialize()
         {
@@ -40,6 +43,7 @@ namespace Content.Server.Access.Systems
             SubscribeLocalEvent<AgentIDCardComponent, AgentIDCardNameChangedMessage>(OnNameChanged);
             SubscribeLocalEvent<AgentIDCardComponent, AgentIDCardJobChangedMessage>(OnJobChanged);
             SubscribeLocalEvent<AgentIDCardComponent, AgentIDCardJobIconChangedMessage>(OnJobIconChanged);
+            SubscribeLocalEvent<AgentIDCardComponent, AgentIDCardNumberChangedMessage>(OnNumberChanged); // CD
             SubscribeLocalEvent<AgentIDCardComponent, InventoryRelayedEvent<ChameleonControllerOutfitSelectedEvent>>(OnChameleonControllerOutfitChangedItem);
             SubscribeLocalEvent<AgentIDCardComponent, InventoryRelayedEvent<VoiceMaskNameUpdatedEvent>>(OnVoiceMaskNameChanged);
         }
@@ -80,7 +84,8 @@ namespace Content.Server.Access.Systems
             if (!proto.TryGetComponent<PdaComponent>(out var comp, EntityManager.ComponentFactory))
                 return;
 
-            _chameleon.SetSelectedPrototype(ent, comp.IdCard);
+            if (TryComp<ChameleonClothingComponent>(ent, out var chameleonComp) && chameleonComp.CanBeSetByController)
+                _chameleon.SetSelectedPrototype(ent, comp.IdCard, component: chameleonComp);
         }
 
         private void OnVoiceMaskNameChanged(Entity<AgentIDCardComponent> ent, ref InventoryRelayedEvent<VoiceMaskNameUpdatedEvent> args)
@@ -94,6 +99,16 @@ namespace Content.Server.Access.Systems
             _cardSystem.TryChangeFullName(ent, args.Args.NewName, idCard);
         }
 
+        // CD - Add number change handler
+        private void OnNumberChanged(Entity<AgentIDCardComponent> ent, ref AgentIDCardNumberChangedMessage args)
+        {
+            if (!TryComp<NanoChatCardComponent>(ent, out var comp))
+                return;
+
+            _nanoChat.SetNumber((ent, comp), args.Number);
+            Dirty(ent, comp);
+        }
+
         private void OnAfterInteract(EntityUid uid, AgentIDCardComponent component, AfterInteractEvent args)
         {
             if (args.Target == null || !args.CanReach || _lock.IsLocked(uid) ||
@@ -103,9 +118,53 @@ namespace Content.Server.Access.Systems
             if (!TryComp<AccessComponent>(uid, out var access) || !HasComp<IdCardComponent>(uid))
                 return;
 
+            if(HasComp<PassiveBorgModuleComponent>(args.Target)) return; //Far Horizons
+
             var beforeLength = access.Tags.Count;
             access.Tags.UnionWith(targetAccess.Tags);
             var addedLength = access.Tags.Count - beforeLength;
+
+            // CD - Copy NanoChat data if available
+            if (TryComp<NanoChatCardComponent>(args.Target, out var targetNanoChat) &&
+                TryComp<NanoChatCardComponent>(uid, out var agentNanoChat))
+            {
+                // First clear existing data
+                _nanoChat.Clear((uid, agentNanoChat));
+
+                // Copy the number
+                if (_nanoChat.GetNumber((args.Target.Value, targetNanoChat)) is { } number)
+                    _nanoChat.SetNumber((uid, agentNanoChat), number);
+
+                // Copy all recipients and their messages
+                foreach (var (recipientNumber, recipient) in _nanoChat.GetRecipients((args.Target.Value, targetNanoChat)))
+                {
+                    _nanoChat.SetRecipient((uid, agentNanoChat), recipientNumber, recipient);
+
+                    if (_nanoChat.GetMessagesForRecipient((args.Target.Value, targetNanoChat), recipientNumber) is not
+                        { } messages)
+                        continue;
+
+                    foreach (var message in messages)
+                    {
+                        _nanoChat.AddMessage((uid, agentNanoChat), recipientNumber, message);
+                    }
+                }
+            }
+            // End CD
+
+            if (addedLength == 0)
+            {
+                _popupSystem.PopupEntity(Loc.GetString("agent-id-no-new", ("card", args.Target)), args.Target.Value, args.User);
+                return;
+            }
+
+            Dirty(uid, access);
+
+            if (addedLength == 1)
+            {
+                _popupSystem.PopupEntity(Loc.GetString("agent-id-new-1", ("card", args.Target)), args.Target.Value, args.User);
+                return;
+            }
 
             _popupSystem.PopupEntity(Loc.GetString("agent-id-new", ("number", addedLength), ("card", args.Target)), args.Target.Value, args.User);
             if (addedLength > 0)
@@ -120,7 +179,17 @@ namespace Content.Server.Access.Systems
             if (!TryComp<IdCardComponent>(uid, out var idCard))
                 return;
 
-            var state = new AgentIDCardBoundUserInterfaceState(idCard.FullName ?? "", idCard.LocalizedJobTitle ?? "", idCard.JobIcon);
+            // CD - Get current number if it exists
+            uint? currentNumber = null;
+            if (TryComp<NanoChatCardComponent>(uid, out var comp))
+                currentNumber = comp.Number;
+
+            var state = new AgentIDCardBoundUserInterfaceState(
+                idCard.FullName ?? "",
+                idCard.LocalizedJobTitle ?? "",
+                idCard.JobIcon,
+                currentNumber); // CD - Pass current number
+
             _uiSystem.SetUiState(uid, AgentIDCardUiKey.Key, state);
         }
 

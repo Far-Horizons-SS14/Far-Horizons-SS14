@@ -264,7 +264,7 @@
     boltClosed: null
   - type: Gun
     fireRate: 5.5
-    minAngle: 1
+    minAngle: 1 #FH
     maxAngle: 6
     angleIncrease: 1.5
     angleDecay: 6
@@ -276,10 +276,13 @@
     - Burst
     - FullAuto
     - SemiAuto
-  - type: Wieldable # Far Horizons
-    unwieldOnUse: false # Far Horizons
-  - type: GunWieldBonus # Far Horizons
-    maxAngle: -4 # Far Horizons
+#FH - Start
+  - type: Wieldable
+    unwieldOnUse: false
+  - type: GunWieldBonus
+    minAngle: -1
+    maxAngle: -4
+#FH - End
   - type: ItemSlots
     slots:
       gun_magazine:

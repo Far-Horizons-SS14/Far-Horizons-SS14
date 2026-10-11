@@ -120,3 +120,34 @@ loadout-group-recruit-uniform = Recruit Uniform
 #### SHC
 
 loadout-group-rso-shoes = Red Sword Operative Shoes
+
+# NT Rep
+loadout-group-nanotrasenrepresentative-backpack = NanoTrasen Representative Backpack
+
+# NS Rep
+loadout-group-neosolrepresentative-head = NeoSol Representative Head
+loadout-group-neosolrepresentative-jumpsuit = NeoSol Representative Jumpsuit
+loadout-group-neosolrepresentative-outerclothing = NeoSol Representative Outer Clothing
+loadout-group-neosolrepresentative-eyewear = NeoSol Representative Eyewear
+loadout-group-neosolrepresentative-shoes = NeoSol Representative Shoes
+loadout-group-neosolrepresentative-backpack = NeoSol Representative Backpack
+
+# RSO
+loadout-group-redsword-eyewear = Red Sword Operative Eyewear
+loadout-group-redsword-neck = Red Sword Operative Neck
+loadout-group-redsword-jumpsuit = Red Sword Operative Jumpsuit
+loadout-group-redsword-outerclothing = Red Sword Operative Outer Clothing
+loadout-group-backpack-outerclothing = Red Sword operative Backpack
+
+# Medical Director
+loadout-group-medical-director-head = Medical Director Head
+loadout-group-medical-director-jumpsuit = Medical Director Jumpsuit
+loadout-group-medical-director-outerclothing = Medical Director Outer Clothing
+loadout-group-medical-director-neck = Medical Director Neck
+loadout-group-medical-director-shoes = Medical Director Shoes
+
+# Epistemics Provost
+loadout-group-epistemics-provost-head = Epistemics Provost Head
+loadout-group-epistemics-provost-neck = Epistemics Provost Neck
+loadout-group-epistemics-provost-jumpsuit = Epistemics Provost Jumpsuit
+loadout-group-epistemics-provost-outerclothing = Epistemics Provost Outer Clothing

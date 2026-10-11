@@ -1,4 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using Content.Shared.Hands.Components;
 
 namespace Content.Shared.Hands.EntitySystems;
@@ -38,5 +39,17 @@ public abstract partial class SharedHandsSystem
         return false;
     }
 
-    public bool TrySelectEmptyHand(EntityUid uid, HandsComponent? handsComp = null) => TrySelect(uid, null, handsComp);
+    // Far Horizons
+    public bool TrySelectEmptyHand(EntityUid uid, HandsComponent? handsComp = null)
+    {
+        if (!Resolve(uid, ref handsComp, false))
+            return false;
+
+        var hand = handsComp.Hands.Keys.FirstOrDefault(hand => HandIsEmpty((uid, handsComp), hand));
+
+        if (hand == null) return false;
+        
+        SetActiveHand((uid, handsComp), hand);
+        return true;
+    }
 }

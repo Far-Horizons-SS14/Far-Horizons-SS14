@@ -19,12 +19,12 @@ namespace Content.Client.Lobby.UI;
 [GenerateTypedNameReferences]
 public sealed partial class LobbyCharacterPreviewPanel : Control
 {
-    [Dependency] private readonly IEntityManager _entManager = default!;
-    [Dependency] private readonly IClientPreferencesManager _preferences = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly JobRequirementsManager _requirements = default!;
-    [Dependency] private readonly IUserInterfaceManager _uiManager = default!;
-    [Dependency] private readonly ISharedFactionManager _factions = default!; // Far Horizons
+    [Dependency] private IEntityManager _entManager = default!;
+    [Dependency] private IClientPreferencesManager _preferences = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private JobRequirementsManager _requirements = default!;
+    [Dependency] private IUserInterfaceManager _uiManager = default!;
+    [Dependency] private ISharedFactionManager _factions = default!; // Far Horizons
 
     private SpriteSystem _sprite = default!;
 
@@ -342,6 +342,18 @@ public sealed partial class LobbyCharacterPreviewPanel : Control
             {
                 result.Add((faction, job), prio);
             }
+
+            // Far Horizons start
+            // Include jobs from other factions
+            if ((prio != JobPriority.High || !result.Any(p => p.Value == JobPriority.High)) && // Not high prio though, since there can only be one
+                _preferences.Preferences is {} prefs &&
+                _factions.GetCurrentFaction() is {} currentFaction)
+            {
+                var relevantFactions = _factions.ListFactions().Where(p => p.Major && p.ID != currentFaction.ID).Select(p => p.ID).ToList();
+                foreach (var existingPrio in prefs.JobPriorities.Where(p => relevantFactions.Contains(p.Key.faction) && p.Value == prio))
+                    result.Add(existingPrio.Key, existingPrio.Value);
+            }
+            // Far Horizons end
         }
 
         return result;

@@ -185,7 +185,7 @@ public sealed partial class SpeciesPrototype : IPrototype
     ///     Can be used to disable roundstart cybernetics
     /// </summary>
     [DataField]
-    public int RoundstartCyberwareCapacity = 3;
+    public int RoundstartCyberwareCapacity = 1; // Far Horizons 1 default
 
     // Far Horizons subspecies start
     [DataField]

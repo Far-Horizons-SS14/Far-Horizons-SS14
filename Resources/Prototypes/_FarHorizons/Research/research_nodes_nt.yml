@@ -22,6 +22,7 @@
     - MechEquipmentKineticAccelerator
     - RadarConsoleCircuitboard
     - HandHeldMassScanner
+    - WeaponHoloflarePistolSci
   announceTo:
     - GSL # Far Horizons
 
@@ -73,6 +74,7 @@
     - RipleyCentralElectronics
     - RipleyPeripheralsElectronics
     - MechEquipmentGrabber
+    - BorgModuleAdvancedLoading
   announceTo:
     - GSL # Far Horizons
 
@@ -130,6 +132,7 @@
     - SpeedLoaderShotgunIncendiary
     - SpeedLoaderRevolver38Uranium
     - SpeedLoaderShotgunUranium
+    - SpeedLoaderShotgunUraniumFlechette
     - SpeedLoaderMagnumUranium
     - SpeedLoaderRevolver38Incendiary
 #Magazine
@@ -138,6 +141,8 @@
     - MagazinePistolSubMachineGunIncendiary
     - MagazineLightRifleIncendiary
     - MagazineShotgunIncendiary
+    - MagazineShotgunUranium
+    - MagazineShotgunUraniumFlechette
     - Rifle556HeavyMagazineIncendiary
     - MagazinePistolSubMachineGunIncendiary
     - MagazineMagnumIncendiary
@@ -165,6 +170,7 @@
     - MagazineBoxLightRifleUranium
     - MagazineBoxRifle556Uranium
     - BoxShotgunUranium
+    - BoxShotgunUraniumFlechette
 #Canister
     - MagazineCanisterPistolIncendiary
     - MagazineCanisterPistolUranium
@@ -174,6 +180,9 @@
     - MagazineCanisterMagnumUranium
     - MagazineCanisterRevolver38Incendiary
     - MagazineCanisterRevolver38Uranium
+    - MagazineCanisterShotgun12GIncendiary
+    - MagazineCanisterShotgun12GUranium
+    - MagazineCanisterShotgun12GUraniumFlechette
   announceTo:
     - Security
 
@@ -241,6 +250,7 @@
     - PortableGeneratorPacmanMachineCircuitboard
     - PortableGeneratorSuperPacmanMachineCircuitboard
     - PortableGeneratorJrPacmanMachineCircuitboard
+    - GeneratorAcmanMachineCircuitboard
     - SolarControlComputerCircuitboard
     - SolarTrackerElectronics
     - EmitterCircuitboard
@@ -374,6 +384,7 @@
   unlocks:
     - NodeScanner
     - AnalysisComputerCircuitboard
+    - AnalysisComputerCircuitboardNS #Temp addition until NS tree is added
     - ArtifactAnalyzerMachineCircuitboard
 
 - type: researchTreeNode
@@ -389,7 +400,6 @@
     - AnomCoreHarvesting
   unlocks:
     - TechDiskComputerCircuitboard
-    - ResearchTreeMapElectronics
 
 # Civ
 
@@ -426,7 +436,9 @@
     - SurveillanceWirelessCameraMovableCircuitboard
     - SurveillanceWirelessCameraAnchoredCircuitboard
     - SurveillanceCameraMonitorCircuitboard
+    - SurveillanceCameraMonitorCircuitboardNS #Temp addition until NS tree is added
     - SurveillanceWirelessCameraMonitorCircuitboard
+    - SurveillanceWirelessCameraMonitorCircuitboardNS #Temp addition until NS tree is added
     - TelecomServerCircuitboard
     - HolopadMachineCircuitboard
   announceTo:
@@ -469,6 +481,8 @@
     - RightLegCyber
     - LeftFootCyber
     - RightFootCyber
+    - LeftLegCyberHydraulic
+    - RightLegCyberHydraulic
   announceTo:
     - Medical
 
@@ -760,8 +774,14 @@
     - ThrusterMachineCircuitboard
     - GyroscopeMachineCircuitboard
     - MiniGravityGeneratorCircuitboard
+    - SMESShipMachineCircuitboard
+    - SMESShuttleMachineCircuitboard
+    - WallmountSubstationElectronicsShip
+    - WallmountSubstationElectronicsShuttle
+    - SubstationShipMachineCircuitboard
+    - SubstationShuttleMachineCircuitboard
   announceTo:
-    - GSL # Far Horizons
+    - GSL
     - Engineering
 
 - type: researchTreeNode
@@ -1206,8 +1226,6 @@
   - RightArmCyberHerakles
   - LeftArmCyberRipper
   - RightArmCyberRipper
-  - LeftLegCyberHydraulic
-  - RightLegCyberHydraulic
   - LeftLegCyberCargo
   - RightLegCyberCargo
 
@@ -1772,6 +1790,7 @@
     - SyringeGun
   unlocks:
     - CloningConsoleComputerCircuitboard 
+    - CloningConsoleComputerCircuitboardNS #Temp addition until NS tree is added
     - CloningPodMachineCircuitboard 
     - MedicalScannerMachineCircuitboard
   announceTo:

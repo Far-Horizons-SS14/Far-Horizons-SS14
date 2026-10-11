@@ -8,9 +8,17 @@
   override:
     name: faction-syndicate-job-captain
     icon: JobIconSyndieCaptain
-    #supervisors: job-supervisors-nshc
+    supervisors: job-supervisors-nshc
     loadout: SyndieCaptain
     startingGear: SyndieCaptain
+    accessGroups: 
+    - AllAccessNS
+    special: &neosol_command_mindshield
+      - !type:AddImplantSpecial
+        implants: [ MindShieldImplantNS ]
+      - !type:AddComponentSpecial
+        components:
+          - type: CommandStaff
 
 - type: factionJobAssignment
   id: SyndieHeadOfSecurity
@@ -20,9 +28,23 @@
   override:
     name: faction-syndicate-job-hos
     icon: JobIconSyndieHeadOfSecurity
-    #supervisors: job-supervisors-commandant
+    supervisors: job-supervisors-commandant
     loadout: SyndieHeadOfSecurity
     startingGear: SyndieHoSGear
+    access:
+    - Marshal
+    - Executive
+    - BrigNS
+    - SecurityNS
+    - ArmoryNS
+    - MaintenanceNS
+    - ExternalNS
+    - DetectiveNS
+    - CryogenicsNS
+    - BrigmedicNS
+    - GenpopEnterNS
+    - GenpopLeaveNS
+    special: *neosol_command_mindshield
 
 
 - type: factionJobAssignment
@@ -33,9 +55,21 @@
   override:
     name: faction-syndicate-job-ce
     icon: JobIconSyndieChiefEngineer
-    #supervisors: job-supervisors-commandant
+    supervisors: job-supervisors-commandant
     loadout: SyndieChiefEngineer
     startingGear: SyndieChiefEngineerGear
+    access:
+    - MaintenanceNS
+    - EngineeringNS
+    - Executive
+    - ExternalNS
+    - Foreman
+    - AtmosphericsNS
+    - BrigNS
+    - CryogenicsNS
+    - GenpopEnterNS
+    - GenpopLeaveNS
+    special: *neosol_command_mindshield
 
 
 - type: factionJobAssignment
@@ -46,9 +80,20 @@
   override:
     name: faction-syndicate-job-cmo
     icon: JobIconSyndieChiefMedicalOfficer
-    #supervisors: job-supervisors-commandant
+    supervisors: job-supervisors-commandant
     loadout: SyndieChiefMedicalOfficer
     startingGear: SyndieCMOGear
+    access:
+    - MedicalNS
+    - Executive
+    - MaintenanceNS
+    - ChemistryNS
+    - MedicalDirector
+    - BrigNS
+    - CryogenicsNS
+    - SurgeryNS 
+    - ParamedicNS
+    special: *neosol_command_mindshield
 
 - type: factionJobAssignment
   id: SyndieResearchDirector
@@ -58,9 +103,18 @@
   override:
     name: faction-syndicate-job-rd
     icon: JobIconSyndieResearchDirector
-    #supervisors: job-supervisors-commandant
+    supervisors: job-supervisors-commandant
     loadout: SyndieResearchDirector
     startingGear: SyndieResearchDirectorGear
+    access:
+    - ResearchNS
+    - Executive
+    - MaintenanceNS
+    - EpistemicsProvost
+    - BrigNS
+    - CryogenicsNS
+    - RoboticsNS
+    special: *neosol_command_mindshield
 
 - type: factionJobAssignment
   id: SyndieHeadOfPersonnel
@@ -70,9 +124,40 @@
   override:
     name: faction-syndicate-job-hop
     icon: JobIconSyndieHeadOfPersonnel
-    #supervisors: job-supervisors-commandant
+    supervisors: job-supervisors-commandant
     loadout: SyndieHeadOfPersonnel
     startingGear: SyndieHoPGear
+    access:
+    - Executive
+    - PersonnelManager
+    - BarNS
+    - ServiceNS
+    - MaintenanceNS
+    - JanitorNS
+    - TheatreNS
+    - KitchenNS
+    - ChapelNS
+    - HydroponicsNS
+    - ExternalNS
+    - CryogenicsNS
+    - ChemistryNS
+    - EngineeringNS
+    - ResearchNS
+    - DetectiveNS
+    - SecurityNS
+    - BrigNS
+    - AtmosphericsNS
+    - MedicalNS
+    - RoboticsNS
+    - BrigmedicNS 
+    - SurgeryNS
+    - ParamedicNS 
+    - Mining 
+    - SalvageLead 
+    - Salvage
+    - Lawyer
+    - Cargo
+    special: *neosol_command_mindshield
 
 #region NSHC
 
@@ -84,10 +169,85 @@
   override:
     name: faction-syndicate-job-rep
     icon: JobIconSyndieNanoTrasenRepresentative
-    #supervisors: job-supervisors-nshc
-    loadout: SyndieNanoTrasenRepresentative
-    startingGear: SyndieNanoTrasenRepresentativeGear
+    supervisors: job-supervisors-nshc
+    loadout: NeoSolRepresentative
+    startingGear: NeoSolRepresentativeGear
+    access:
+      - CryogenicsNS
+      - Executive
+      - BarNS
+      - ServiceNS
+      - MaintenanceNS
+      - JanitorNS
+      - TheatreNS
+      - KitchenNS
+      - ChapelNS
+      - HydroponicsNS
+      - ExternalNS
+      - ChemistryNS
+      - EngineeringNS
+      - ResearchNS
+      - RoboticsNS
+      - DetectiveNS
+      - SecurityNS
+      - BrigNS
+      - AtmosphericsNS
+      - MedicalNS
+      - NSRep
+      - BrigmedicNS
+      - SurgeryNS
+      - ParamedicNS
+      - Lawyer
+      - Salvage
+      - Mining
+      - SalvageLead
+      - Cargo
+    special: *neosol_command_mindshield
 
+- type: factionJobAssignment
+  id: SyndieBlueShield
+  faction: FactionSyndicate
+  job: BlueShield
+  override:
+    name: faction-syndicate-job-bso
+    icon: JobIconSyndieBlueShieldOfficer
+    supervisors: job-supervisors-nshc
+    loadout: RedSwordOperative
+    startingGear: RedSwordGear
+    access:
+      - Executive
+      - BarNS
+      - ServiceNS
+      - MaintenanceNS
+      - JanitorNS
+      - TheatreNS
+      - KitchenNS
+      - ChapelNS
+      - HydroponicsNS
+      - ExternalNS
+      - ChemistryNS
+      - EngineeringNS
+      - ResearchNS
+      - RoboticsNS
+      - DetectiveNS
+      - Salvage
+      - SecurityNS
+      - BrigmedicNS
+      - BrigNS
+      - LawyerNS
+      - AtmosphericsNS
+      - Cargo
+      - MedicalNS
+      - RedSword
+      - SurgeryNS
+      - ParamedicNS
+      - Mining
+      - SalvageLead
+      - Cargo
+    special: &neosol_mindshield
+      - !type:AddImplantSpecial
+        implants: [ MindShieldImplantNS ]
+    
 #region Civilan
 
 - type: factionJobAssignment
@@ -96,50 +256,92 @@
   job: Assistant
   weight: 0
   override:
-    #supervisors: job-supervisors-pm
+    supervisors: job-supervisors-pm
+    startingGear: SyndieAssistantGear
     loadout: SyndieAssistant
+    access:
+    - MaintenanceNS
 
 - type: factionJobAssignment
   id: SyndieBartender
   faction: FactionSyndicate
   job: Bartender
   override:
-    #supervisors: job-supervisors-pm
+    supervisors: job-supervisors-pm
+    startingGear: SyndieBartenderGear
+    access:
+    - ServiceNS
+    - MaintenanceNS
+    - BarNS
+    extendedAccess:
+    - KitchenNS
+    - HydroponicsNS
 
 - type: factionJobAssignment
   id: SyndieBotanist
   faction: FactionSyndicate
   job: Botanist
   override:
-    #supervisors: job-supervisors-pm
+    supervisors: job-supervisors-pm
+    startingGear: SyndieBotanistGear
+    loadout: SyndieBotanist
+    access:
+    - ServiceNS
+    - MaintenanceNS
+    - HydroponicsNS
+    extendedAccess:
+    - KitchenNS
+    - BarNS
 
 - type: factionJobAssignment
   id: SyndieBoxer
   faction: FactionSyndicate
   job: Boxer
   override:
-    #supervisors: job-supervisors-pm
+    supervisors: job-supervisors-pm
+    startingGear: SyndieBoxerGear
+    access:
+    - ServiceNS
+    - MaintenanceNS
 
 - type: factionJobAssignment
   id: SyndieChaplain
   faction: FactionSyndicate
   job: Chaplain
   override:
-    #supervisors: job-supervisors-pm
+    supervisors: job-supervisors-pm
+    startingGear: SyndieChaplainGear
+    access:
+    - ChapelNS
+    - MaintenanceNS
 
 - type: factionJobAssignment
   id: SyndieChef
   faction: FactionSyndicate
   job: Chef
   override:
-    #supervisors: job-supervisors-pm
+    supervisors: job-supervisors-pm
+    startingGear: SyndieChefGear
+    loadout: SyndieChef
+    access:
+    - ServiceNS
+    - MaintenanceNS
+    - KitchenNS
+    extendedAccess:
+    - HydroponicsNS
+    - BarNS
 
 - type: factionJobAssignment
   id: SyndieClown
   faction: FactionSyndicate
   job: Clown
   override:
-    #supervisors: job-supervisors-pm
+    supervisors: job-supervisors-pm
+    startingGear: SyndieClownGear
+    loadout: SyndieClown
+    access:
+    - TheatreNS
+    - MaintenanceNS
 
 - type: factionJobAssignment
   id: SyndieJanitor
@@ -147,28 +349,46 @@
   job: Janitor
   override:
     name: faction-syndicate-job-janitor
-    #supervisors: job-supervisors-pm
+    supervisors: job-supervisors-pm
+    startingGear: SyndieJanitorGear
+    loadout: SyndieJanitor
+    access:
+    - ServiceNS
+    - JanitorNS
+    - MaintenanceNS
 
 - type: factionJobAssignment
   id: SyndieLibrarian
   faction: FactionSyndicate
   job: Librarian
   override:
-    #supervisors: job-supervisors-pm
+    supervisors: job-supervisors-pm
+    startingGear: SyndieLibrarianGear
+    access:
+    - ServiceNS
+    - MaintenanceNS
 
 - type: factionJobAssignment
   id: SyndieMime
   faction: FactionSyndicate
   job: Mime
   override:
-    #supervisors: job-supervisors-pm
+    supervisors: job-supervisors-pm
+    startingGear: SyndieMimeGear
+    access:
+    - TheatreNS
+    - MaintenanceNS
 
 - type: factionJobAssignment
   id: SyndieMusician
   faction: FactionSyndicate
   job: Musician
   override:
-    #supervisors: job-supervisors-pm
+    supervisors: job-supervisors-pm
+    startingGear: SyndieMusicianGear
+    access:
+    - MaintenanceNS
+    - TheatreNS
 
 - type: factionJobAssignment
   id: SyndieReporter
@@ -176,21 +396,37 @@
   job: Reporter
   override:
     name: faction-syndicate-job-reporter
-    #supervisors: job-supervisors-pm
+    supervisors: job-supervisors-pm
+    startingGear: SyndieReporterGear
+    access:
+    - ServiceNS
+    - MaintenanceNS
 
 - type: factionJobAssignment
   id: SyndieServiceWorker
   faction: FactionSyndicate
   job: ServiceWorker
   override:
-    #supervisors: job-supervisors-pm
+    supervisors: job-supervisors-pm
+    startingGear: SyndieServiceWorkerGear
+    access:
+    - ServiceNS
+    - MaintenanceNS
+    - BarNS
+    - KitchenNS
+    extendedAccess:
+    - HydroponicsNS
 
 - type: factionJobAssignment
   id: SyndieZookeeper
   faction: FactionSyndicate
   job: Zookeeper
   override:
-    #supervisors: job-supervisors-pm
+    supervisors: job-supervisors-pm
+    startingGear: SyndieZookeeperGear
+    access:
+    - ServiceNS
+    - MaintenanceNS
 
 #region Law
 
@@ -213,9 +449,14 @@
   override:
     name: faction-syndicate-job-atmos
     icon: JobIconSyndieAtmosphericTechnician
-    #supervisors: job-supervisors-foreman
+    supervisors: job-supervisors-foreman
     loadout: SyndieAtmosphericTechnician
     startingGear: SyndieAtmosphericTechnicianGear
+    access:
+    - MaintenanceNS
+    - EngineeringNS
+    - ExternalNS
+    - AtmosphericsNS
 
 - type: factionJobAssignment
   id: SyndieStationEngineer
@@ -225,9 +466,15 @@
   override:
     name: faction-syndicate-job-engineer
     icon: JobIconSyndieEngineer
-    #supervisors: job-supervisors-foreman
+    supervisors: job-supervisors-foreman
     loadout: SyndieStationEngineer
     startingGear: SyndieStationEngineerGear
+    access:
+    - MaintenanceNS
+    - EngineeringNS
+    - ExternalNS
+    extendedAccess:
+    - AtmosphericsNS
 
 - type: factionJobAssignment
   id: SyndieTechnicalAssistant
@@ -237,9 +484,13 @@
   override:
     name: faction-syndicate-job-ta
     icon: JobIconSyndieTechnicalAssistant
-    #supervisors: job-supervisors-foreman
+    supervisors: job-supervisors-foreman
     loadout: SyndieTechnicalAssistant
     startingGear: SyndieTechnicalAssistantGear
+    access:
+    - MaintenanceNS
+    - EngineeringNS
+    - ExternalNS
 
 #region Medical
 
@@ -251,9 +502,15 @@
   override:
     name: faction-syndicate-job-surgeon
     icon: JobIconSyndieSurgeon
-    #supervisors: job-supervisors-md
+    supervisors: job-supervisors-md
     loadout: SyndieSurgeon
     startingGear: SyndieSurgeonGear
+    access:
+    - MedicalNS
+    - MaintenanceNS
+    - SurgeryNS
+    extendedAccess:
+    - ParamedicNS
 
 - type: factionJobAssignment
   id: SyndieChemist
@@ -263,9 +520,16 @@
   override:
     name: faction-syndicate-job-chemist
     icon: JobIconSyndieChemist
-    #supervisors: job-supervisors-md
+    supervisors: job-supervisors-md
     loadout: SyndieChemist
     startingGear: SyndieChemistGear
+    access:
+    - MedicalNS
+    - ChemistryNS
+    - MaintenanceNS
+    extendedAccess:
+    - ParamedicNS
+    - SurgeryNS
 
 - type: factionJobAssignment
   id: SyndieParamedic
@@ -275,9 +539,17 @@
   override:
     name: faction-syndicate-job-paramedic
     icon: JobIconSyndieParamedic
-    #supervisors: job-supervisors-md
+    supervisors: job-supervisors-md
     loadout: SyndieParamedic
     startingGear: SyndieParamedicGear
+    access:
+    - MedicalNS
+    - MaintenanceNS
+    - ExternalNS
+    - ParamedicNS
+    extendedAccess:
+    - ChemistryNS
+    - SurgeryNS
 
 - type: factionJobAssignment
   id: SyndieMedicalDoctor
@@ -287,9 +559,16 @@
   override:
     name: faction-syndicate-job-doctor
     icon: JobIconSyndieMedicalDoctor
-    #supervisors: job-supervisors-md
+    supervisors: job-supervisors-md
     loadout: SyndieMedicalDoctor
     startingGear: SyndieDoctorGear
+    access:
+    - MedicalNS
+    - MaintenanceNS
+    extendedAccess:
+    - ChemistryNS
+    - ParamedicNS
+    - SurgeryNS
 
 - type: factionJobAssignment
   id: SyndieMedicalIntern
@@ -299,9 +578,12 @@
   override:
     name: faction-syndicate-job-intern
     icon: JobIconSyndieMedicalIntern
-    #supervisors: job-supervisors-md
+    supervisors: job-supervisors-md
     loadout: SyndieMedicalIntern
     startingGear: SyndieMedicalInternGear
+    access:
+    - MedicalNS
+    - MaintenanceNS
 
 - type: factionJobAssignment
   id: SyndiePsychologist
@@ -311,9 +593,14 @@
   override:
     name: faction-syndicate-job-psychologist
     icon: JobIconSyndiePsychologist
-    #supervisors: job-supervisors-md
+    supervisors: job-supervisors-md
     loadout: SyndiePsychologist
     startingGear: SyndiePsychologistGear
+    access:
+    - MedicalNS
+    - MaintenanceNS
+    extendedAccess:
+    - ChemistryNS
 
 #region Science
 
@@ -325,9 +612,13 @@
   override:
     name: faction-syndicate-job-roboticist
     icon: JobIconSyndieRoboticist
-    #supervisors: job-supervisors-ep
+    supervisors: job-supervisors-ep
     loadout: SyndieRoboticist
     startingGear: SyndieRoboticistGear
+    access:
+      - ResearchNS
+      - MaintenanceNS
+      - RoboticsNS
 
 - type: factionJobAssignment
   id: SyndieScientist
@@ -337,10 +628,15 @@
   override:
     name: faction-syndicate-job-scientist
     icon: JobIconSyndieScientist
-    #supervisors: job-supervisors-ep
+    supervisors: job-supervisors-ep
     loadout: SyndieScientist
     startingGear: SyndieScientistGear
-
+    access:
+    - ResearchNS
+    - MaintenanceNS
+    extendedAccess:
+    - RoboticsNS
+    
 - type: factionJobAssignment
   id: SyndieResearchAssistant
   faction: FactionSyndicate
@@ -349,9 +645,12 @@
   override:
     name: faction-syndicate-job-ra
     icon: JobIconSyndieResearchAssistant
-    #supervisors: job-supervisors-ep
+    supervisors: job-supervisors-ep
     loadout: SyndieResearchAssistant
     startingGear: SyndieResearchAssistantGear
+    access:
+    - ResearchNS
+    - MaintenanceNS
 
 #region Silicon
 
@@ -362,7 +661,9 @@
   weight: 0
   override:
     icon: JobIconSyndieAI
-    #supervisors: job-supervisors-ep
+    supervisors: job-supervisors-ep
+    jobEntity: StationAiBrainNS
+    loadout: JobStationAiNS
 
 - type: factionJobAssignment
   id: SyndieBorg
@@ -372,8 +673,9 @@
   override:
     name: faction-syndicate-job-borg
     icon: JobIconSyndieBorg
-    #supervisors: job-supervisors-ep
-    jobEntity: PlayerBorgBatterySyndicate
+    supervisors: job-supervisors-ep
+    jobEntity: PlayerBorgChassisNS
+    loadout: JobBorgNS
 
 #region Security
 
@@ -385,9 +687,21 @@
   override:
     name: faction-syndicate-job-warden
     icon: JobIconSyndieWarden
-    #supervisors: job-supervisors-marshal
+    supervisors: job-supervisors-marshal
     loadout: SyndieWarden
     startingGear: SyndieWardenGear
+    access:
+    - SecurityNS
+    - BrigNS
+    - ArmoryNS
+    - MaintenanceNS
+    - ExternalNS
+    - DetectiveNS
+    - CryogenicsNS
+    - BrigmedicNS
+    - GenpopEnterNS
+    - GenpopLeaveNS
+    special: *neosol_mindshield
 
 - type: factionJobAssignment
   id: SyndieCorpsman
@@ -397,9 +711,19 @@
   override:
     name: faction-syndicate-job-corpsman
     icon: JobIconSyndieCorpsman
-    #supervisors: job-supervisors-marshal
+    supervisors: job-supervisors-marshal
     loadout: SyndieCorpsman
     startingGear: SyndieCorpsmanGear
+    access:
+    - SecurityNS
+    - BrigNS
+    - MaintenanceNS
+    - ServiceNS
+    - MedicalNS
+    - ExternalNS
+    - CryogenicsNS
+    - BrigmedicNS
+    special: *neosol_mindshield
 
 - type: factionJobAssignment
   id: SyndieBrigmedic
@@ -409,9 +733,21 @@
   override:
     name: faction-syndicate-job-brigmed
     icon: JobIconSyndieBrigmedic
-    #supervisors: job-supervisors-marshal
+    supervisors: job-supervisors-marshal
     loadout: SyndieBrigmedic
     startingGear: SyndieBrigmedicGear
+    access:
+    - SecurityNS
+    - BrigNS
+    - MaintenanceNS
+    - ServiceNS
+    - MedicalNS
+    - ExternalNS
+    - CryogenicsNS
+    - BrigmedicNS
+    - ChemistryNS
+    - SurgeryNS
+    special: *neosol_mindshield
 
 - type: factionJobAssignment
   id: SyndieDetective
@@ -421,9 +757,17 @@
   override:
     name: faction-syndicate-job-detective
     icon: JobIconSyndieDetective
-    #supervisors: job-supervisors-marshal
+    supervisors: job-supervisors-marshal
     loadout: SyndieDetective
     startingGear: SyndieDetectiveGear
+    access:
+    - SecurityNS
+    - BrigNS
+    - MaintenanceNS
+    - DetectiveNS
+    - CryogenicsNS
+    - ExternalNS
+    special: *neosol_mindshield
 
 - type: factionJobAssignment
   id: SyndieSecurityOfficer
@@ -433,9 +777,16 @@
   override:
     name: faction-syndicate-job-officer
     icon: JobIconSyndieSecurityOfficer
-    #supervisors: job-supervisors-marshal
+    supervisors: job-supervisors-marshal
     loadout: SyndieSecurityOfficer
     startingGear: SyndieSecurityOfficerGear
+    access:
+    - SecurityNS
+    - BrigNS
+    - MaintenanceNS
+    - ExternalNS
+    - CryogenicsNS
+    special: *neosol_mindshield
 
 - type: factionJobAssignment
   id: SyndieSecurityCadet
@@ -445,9 +796,16 @@
   override:
     name: faction-syndicate-job-cadet
     icon: JobIconSyndieCadet
-    #supervisors: job-supervisors-marshal
+    supervisors: job-supervisors-marshal
     loadout: SyndieSecurityCadet
     startingGear: SyndieSecurityCadetGear
+    access:
+    - CadetNS 
+    - BrigNS
+    - MaintenanceNS
+    - ExternalNS
+    - CryogenicsNS
+    special: *neosol_mindshield
 
 - type: factionJobAssignment
   id: SyndieSecBorg
@@ -457,17 +815,5 @@
   override:
     name: faction-syndicate-job-secborg
     icon: JobIconSyndieSecborg
-    #supervisors: job-supervisors-marshal
-    jobEntity: PlayerSecBorgBatterySyndicate
-
-# Syndie jobs
-- type: factionJobAssignment
-  id: SyndieBlueShield
-  faction: FactionSyndicate
-  job: BlueShield
-  override:
-    name: faction-syndicate-job-bso
-    icon: JobIconSyndieBlueShieldOfficer
-    #supervisors: job-supervisors-nshc
-    loadout: SyndieBlueShield
-    startingGear: SyndieBlueShieldGear
+    supervisors: job-supervisors-marshal
+    jobEntity: PlayerSecBorgChassisNS

@@ -75,3 +75,132 @@
     layers: 
         - state: banner_CC
           map: [ "foldedLayer" ]
+
+- type: entity
+  id: BannerBaseNeosol
+  parent: BannerBase
+  name: Base Banner Neosol
+  suffix: NS
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Structures/Decoration/banner_neosol.rsi
+      noRot: true
+
+- type: entity
+  id: BannerEngineeringNS
+  parent: BannerBaseNeosol
+  name: Engineering Banner
+  suffix: NS
+  description: A banner displaying the colors of the engineering department. Scrungularty.
+  components:
+  - type: GenericVisualizer
+    visuals:
+      enum.FoldedVisuals.State:
+        foldedLayer:
+          True: { state: banner_engineering }
+          False: { state: banner_engineering_rolled }
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Decoration/banner_neosol.rsi
+    noRot: true
+    layers:
+        - state: banner_engineering
+          map: [ "foldedLayer" ]
+
+- type: entity
+  id: BannerMedicalNS
+  parent: BannerBaseNeosol
+  name: Medical Banner
+  description: A banner displaying the colors of the medical department. How sterile.
+  suffix: NS
+  components:
+  - type: GenericVisualizer #FH
+    visuals:
+      enum.FoldedVisuals.State:
+        foldedLayer:
+          True: { state: banner_medical }
+          False: { state: banner_medical_rolled }
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Decoration/banner_neosol.rsi
+    noRot: true
+    layers:
+        - state: banner_medical
+          map: [ "foldedLayer" ]
+
+- type: entity
+  id: BannerScienceNS
+  parent: BannerBaseNeosol
+  name: Science Banner
+  description: A banner displaying the colors of the science department. Where science has no bounds, and regulations are rarely followed.
+  suffix: NS
+  components:
+  - type: GenericVisualizer
+    visuals:
+      enum.FoldedVisuals.State:
+        foldedLayer:
+          True: { state: banner_science }
+          False: { state: banner_science_rolled }
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Decoration/banner_neosol.rsi
+    noRot: true
+    layers:
+        - state: banner_science
+          map: [ "foldedLayer" ]
+
+- type: entity
+  id: BannerSecurityNS
+  parent: BannerBaseNeosol
+  name: Security Banner
+  description: A banner displaying the colors of the security department. You're surprised it's not vandalised.
+  suffix: NS
+  components:
+  - type: GenericVisualizer
+    visuals:
+      enum.FoldedVisuals.State:
+        foldedLayer:
+          True: { state: banner_security }
+          False: { state: banner_security_rolled }
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Decoration/banner_neosol.rsi
+    noRot: true
+    layers:
+        - state: banner_security
+          map: [ "foldedLayer" ]
+
+- type: entity
+  id: BannerSHC
+  parent: BannerBaseNeosol
+  name: SHC Banner
+  description: A banner displaying the SHC logo. It is remarkably clean.
+  suffix: NS
+  components:
+  - type: GenericVisualizer 
+    visuals:
+      enum.FoldedVisuals.State:
+        foldedLayer:
+          True: { state: banner_SHC }
+          False: { state: banner_SHC_rolled }
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Decoration/banner_neosol.rsi 
+    noRot: true 
+    layers: 
+        - state: banner_SHC
+          map: [ "foldedLayer" ]
+
+- type: entity
+  id: BannerLambda
+  parent: BannerBaseNeosol
+  name: Lambda Banner
+  description: A banner displaying the ██████ logo.
+  components:
+  - type: GenericVisualizer 
+    visuals:
+      enum.FoldedVisuals.State:
+        foldedLayer:
+          True: { state: banner_LAMBDA }
+          False: { state: banner_LAMBDA_rolled }
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Decoration/banner_neosol.rsi 
+    noRot: true 
+    layers: 
+        - state: banner_LAMBDA
+          map: [ "foldedLayer" ]

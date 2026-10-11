@@ -190,6 +190,7 @@
   parent: VendingMachine
   id: VendingMachineBooze
   name: Booze-O-Mat
+  suffix: NT #FH
   description: A technological marvel, supposedly able to mix just the mixture you'd like to drink the moment you ask for one.
   components:
   - type: VendingMachine
@@ -264,6 +265,7 @@
   parent: VendingMachine
   id: VendingMachineCart
   name: PTech
+  suffix: NT #FH
   description: PTech vending! Providing a ROBUST selection of PDAs, cartridges, and anything else a dull paper pusher needs!
   components:
   - type: VendingMachine
@@ -916,6 +918,7 @@
   parent: VendingMachine
   id: VendingMachineMedicalBase
   name: NanoMed Civilian
+  suffix: NT #FH
   description: It's a medical drug dispenser. Natural chemicals only!
   components:
   - type: VendingMachine
@@ -953,6 +956,7 @@
   parent: VendingMachineMedicalBase
   id: VendingMachineMedical
   name: NanoMed Plus
+  suffix: NT #FH
   components:
   - type: VendingMachine
     pack: NanoMedPlusInventory
@@ -1014,6 +1018,7 @@
   parent: VendingMachine
   id: VendingMachineSec
   name: SecTech
+  suffix: NT #FH
   description: A vending machine containing Security equipment. A label reads SECURITY PERSONNEL ONLY.
   components:
   - type: VendingMachine
@@ -1668,6 +1673,7 @@
   parent: VendingMachine
   id: VendingMachineSecDrobe
   name: SecDrobe
+  suffix: NT #Far Horizons
   description: A vending machine for security and security-related clothing!
   components:
   - type: VendingMachine
@@ -1702,6 +1708,7 @@
   parent: VendingMachine
   id: VendingBarDrobe
   name: BarDrobe
+  suffix: NT #Far Horizons
   description: A stylish vendor to dispense the most stylish bar clothing!
   components:
   - type: VendingMachine
@@ -1797,6 +1804,7 @@
   parent: VendingMachine
   id: VendingMachineMediDrobe
   name: MediDrobe
+  suffix: NT #FH
   description: A vending machine rumoured to be capable of dispensing clothing for medical personnel.
   components:
   - type: VendingMachine
@@ -1827,6 +1835,7 @@
   parent: VendingMachine
   id: VendingMachineChemDrobe
   name: ChemDrobe
+  suffix: NT #Far Horizons
   description: A vending machine for dispensing chemistry related clothing.
   components:
   - type: VendingMachine
@@ -1887,6 +1896,7 @@
   parent: VendingMachine
   id: VendingMachineAtmosDrobe
   name: AtmosDrobe
+  suffix: NT #FH
   description: This relatively unknown vending machine delivers clothing for Atmospherics Technicians, an equally unknown job.
   components:
   - type: VendingMachine
@@ -1915,12 +1925,13 @@
     energy: 3.0
     color: "#b89e2a"
   - type: AccessReader
-    access: [["Engineering"]]
+    access: [["Atmospherics"]] #Far Horizons - Why the fuck does the atmos drobe have engi access?
 
 - type: entity
   parent: VendingMachine
   id: VendingMachineEngiDrobe
   name: EngiDrobe
+  suffix: NT #FH
   description: A vending machine renowned for vending industrial grade clothing.
   components:
   - type: VendingMachine
@@ -1955,6 +1966,7 @@
   parent: VendingMachine
   id: VendingMachineChefDrobe
   name: ChefDrobe
+  suffix: NT #FH
   description: This vending machine might not dispense meat, but it certainly dispenses chef related clothing.
   components:
   - type: VendingMachine
@@ -1985,6 +1997,7 @@
   parent: VendingMachine
   id: VendingMachineDetDrobe
   name: DetDrobe
+  suffix: NT #FH
   description: A machine for all your detective needs, as long as you need clothes.
   components:
   - type: VendingMachine
@@ -2015,6 +2028,7 @@
   parent: VendingMachine
   id: VendingMachineJaniDrobe
   name: JaniDrobe
+  suffix: NT #FH
   description: A self cleaning vending machine capable of dispensing clothing for janitors.
   components:
   - type: VendingMachine
@@ -2049,6 +2063,7 @@
   parent: VendingMachine
   id: VendingMachineSciDrobe
   name: SciDrobe
+  suffix: NT #FH
   description: A simple vending machine suitable to dispense well tailored science clothing. Endorsed by Space Cubans.
   components:
   - type: VendingMachine
@@ -2114,6 +2129,7 @@
   parent: VendingMachine
   id: VendingMachineRoboDrobe
   name: RoboDrobe
+  suffix: NT #FH
   description: A vending machine designed to dispense clothing known only to roboticists.
   components:
   - type: VendingMachine
@@ -2400,6 +2416,7 @@
   parent: VendingMachineWallmount
   id: VendingMachineWallMedicalCivilian
   name: NanoMed band-aid
+  suffix: NT #FH
   description: It's a wall-mounted medical equipment dispenser. Natural chemicals only!
   components:
   - type: VendingMachine
@@ -2433,6 +2450,7 @@
   parent: VendingMachineWallMedicalCivilian
   id: VendingMachineWallMedical
   name: NanoMed
+  suffix: NT #FH
   components:
   - type: VendingMachine
     pack: NanoMedInventory

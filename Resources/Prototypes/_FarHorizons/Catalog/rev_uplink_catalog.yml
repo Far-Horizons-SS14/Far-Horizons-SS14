@@ -112,6 +112,10 @@
     Conversion: 10
   categories:
   - RevUplinkPassive
+  conditions:
+  - !type:RevRiftListingCondition
+    requiresActiveRift: false
+    disableAfterRiftDestroyed: true
 
 #region Weapons (Tickets)
 - type: listing

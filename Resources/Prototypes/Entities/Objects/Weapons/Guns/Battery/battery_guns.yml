@@ -988,19 +988,4 @@
     fireRate: 2
     minAngle: 1
     maxAngle: 2
-
-- type: entity
-  name: CentComm Cyborg Laser
-  parent: [ WeaponAdvancedLaser, BaseCentcommContraband ]
-  id: CentcommCyborgLaser
-  description: Standard issue NTNC Cyborg laser with internal self-charging battery. You probably don't want this aiming at you...
-  components:
-  - type: BatteryAmmoProvider
-    proto: Pulse
-    fireCost: 150
-  - type: Battery
-    maxCharge: 1200
-    startingCharge: 1200
-  - type: BatterySelfRecharger
-    autoRechargeRate: 150
 #Far Horizons-End

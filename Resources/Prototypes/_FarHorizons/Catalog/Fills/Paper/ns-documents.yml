@@ -1,0 +1,477 @@
+# Base
+
+- type: entity
+  parent: Paper
+  id: PrintedNSDocument
+  abstract: true
+  description: Bureaucratic unit for NeoSol. A document printed on a printer.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Misc/bureaucracy.rsi
+    layers:
+    - state: paper_ns
+    - state: paper_words_ns
+      map: ["enum.PaperVisualLayers.Writing"]
+      visible: false
+    - state: paper_stamp-generic
+      sprite: Objects/Misc/bureaucracy.rsi
+      map: ["enum.PaperVisualLayers.Stamp"]
+      visible: false
+    
+# Reports
+
+- type: entity
+  parent: PrintedNSDocument
+  id: PrintedNSDocumentReportMorgue
+  name: Morgue DNR Report
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Paper
+      content: doc-text-printer-neosol-report-morgue
+      
+    
+- type: entity
+  parent: PrintedNSDocument
+  id: PrintedNSDocumentReportStation
+  name: Station Situation Report
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Paper
+      content: doc-text-printer-neosol-report-station
+      
+- type: entity
+  parent: PrintedNSDocument
+  id: PrintedNSDocumentReportOnEliminationOfViolations
+  name: Issue Resolution Report
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Paper
+      content: doc-text-printer-neosol-report-on-elimination-of-violations
+      
+- type: entity
+  parent: PrintedNSDocument
+  id: PrintedNSDocumentReportDepartment
+  name: Departmental Review
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Paper
+      content: doc-text-printer-neosol-report-department
+      
+- type: entity
+  parent: PrintedNSDocument
+  id: PrintedNSDocumentReportEmployeePerformance
+  name: Work Report
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Paper
+      content: doc-text-printer-neosol-report-employee-performance
+      
+- type: entity
+  parent: PrintedNSDocument
+  id: PrintedNSDocumentReportOnTheChaptersMeeting
+  name: Vote Record
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Paper
+      content: doc-text-printer-neosol-report-on-the-chapters-meeting
+
+- type: entity
+  parent: PrintedNSDocument
+  id: PrintedNSDocumentInternalAffairsAgentsReport
+  name: Audit Report
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Paper
+      content: doc-text-printer-neosol-internal-affairs-agents-report
+      
+- type: entity
+  parent: PrintedNSDocument
+  id: PrintedNSDocumentConditionReport
+  name: Maintenance Report
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Paper
+      content: doc-text-printer-neosol-condition-report
+      
+- type: entity
+  parent: PrintedNSDocument
+  id: PrintedNSDocumentObjectInvestigationReport
+  name: Unknown Object Investigation Report
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Paper
+      content: doc-text-printer-neosol-object-investigation-report
+      
+- type: entity
+  parent: PrintedNSDocument
+  id: PrintedNSDocumentExperimentReport
+  name: Experiment Report
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Paper
+      content: doc-text-printer-neosol-experiment-report
+      
+- type: entity
+  parent: PrintedNSDocument
+  id: PrintedNSDocumentDisposalReport
+  name: Disposal Report
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Paper
+      content: doc-text-printer-neosol-disposal-report
+      
+
+- type: entity
+  parent: PrintedNSDocument
+  id: PrintedNSDocumentArrestReport
+  name: Arrest Report
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Paper
+      content: doc-text-printer-neosol-arrest-report
+
+- type: entity
+  parent: PrintedNSDocument
+  id: PrintedNSDocumentSalvageLeadReport
+  name: Salvage Lead Report
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Paper
+      content: doc-text-printer-neosol-salvagelead-report
+
+# Statements
+
+- type: entity
+  parent: PrintedNSDocument
+  id: PrintedNSDocumentStatementAppointmentInterimChapter
+  name: Interim Command Appointment
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Paper
+      content: doc-text-printer-neosol-statement-appointment-interim-chapter
+      
+- type: entity
+  parent: PrintedNSDocument
+  id: PrintedNSDocumentEmploymentStatement
+  name: Employment Contract
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Paper
+      content: doc-text-printer-neosol-employment-statement
+      
+- type: entity
+  parent: PrintedNSDocument
+  id: PrintedNSDocumentResignationStatement
+  name: Notice of Resignation
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Paper
+      content: doc-text-printer-neosol-resignation-statement
+      
+- type: entity
+  parent: PrintedNSDocument
+  id: PrintedNSDocumentAccessRequestStatement
+  name: Access Request
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Paper
+      content: doc-text-printer-neosol-access-request-statement
+      
+- type: entity
+  parent: PrintedNSDocument
+  id: PrintedNSDocumentEquipmentRequestStatement
+  name: Equipment Request
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Paper
+      content: doc-text-printer-neosol-equipment-request-statement
+      
+# InquiriesAndAppeals
+      
+- type: entity
+  parent: PrintedNSDocument
+  id: PrintedNSDocumentInvocation
+  name: Notice of Summons
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Paper
+      content: doc-text-printer-neosol-invocation
+      
+- type: entity
+  parent: PrintedNSDocument
+  id: PrintedNSDocumentEvacuationShuttleRequest
+  name: Evacuation Shuttle Request
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Paper
+      content: doc-text-printer-neosol-evacuation-shuttle-request
+      
+- type: entity
+  parent: PrintedNSDocument
+  id: PrintedNSDocumentShuttleRegistrationRequest
+  name: Shuttle Registration Form
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Paper
+      content: doc-text-printer-neosol-shuttle-registration-request
+      
+- type: entity
+  parent: PrintedNSDocument
+  id: PrintedNSDocumentRequestCallCentCommMembers
+  name: Request to Call High Command Members
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Paper
+      content: doc-text-printer-neosol-request-call-centcomm-members
+      
+- type: entity
+  parent: PrintedNSDocument
+  id: PrintedNSDocumentRequestRequestEstablishThreatLevel
+  name: Request to Establish Threat Level
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Paper
+      content: doc-text-printer-neosol-request-establish-threat-level
+      
+- type: entity
+  parent: PrintedNSDocument
+  id: PrintedNSDocumentRequestChangeSalary
+  name: Salary Change Request
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Paper
+      content: doc-text-printer-neosol-request-change-salary
+      
+- type: entity
+  parent: PrintedNSDocument
+  id: PrintedNSDocumentRequestForNonlistedEmployment
+  name: Non-Listed Employment Contract
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Paper
+      content: doc-text-printer-neosol-request-for-non-listed-employment
+      
+- type: entity
+  parent: PrintedNSDocument
+  id: PrintedNSDocumentRequestForPromotion
+  name: Request for Promotion
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Paper
+      content: doc-text-printer-neosol-request-for-promotion
+      
+- type: entity
+  parent: PrintedNSDocument
+  id: PrintedNSDocumentRequestNSDocuments
+  name: Request for Release of Documents
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Paper
+      content: doc-text-printer-neosol-request-documents
+      
+- type: entity
+  parent: PrintedNSDocument
+  id: PrintedNSDocumentRequestEuthanasia
+  name: Petition for Euthanasia
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Paper
+      content: doc-text-printer-neosol-request-euthanasia
+      
+- type: entity
+  parent: PrintedNSDocument
+  id: PrintedNSDocumentRequestConstructionWork
+  name: Construction Request
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Paper
+      content: doc-text-printer-neosol-request-construction-work
+      
+- type: entity
+  parent: PrintedNSDocument
+  id: PrintedNSDocumentRequestModernization
+  name: Modernization Request
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Paper
+      content: doc-text-printer-neosol-request-modernization
+      
+- type: entity
+  parent: PrintedNSDocument
+  id: PrintedNSDocumentRequestERT
+  name: Emergency Response Team (ERT) Request
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Paper
+      content: doc-text-printer-neosol-request-ert
+      
+- type: entity
+  parent: PrintedNSDocument
+  id: PrintedNSDocumentProductOrder
+  name: Product Order
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Paper
+      content: doc-text-printer-neosol-product-order
+# Complaints
+
+- type: entity
+  parent: PrintedNSDocument
+  id: PrintedNSDocumentComplaintViolationLaborRules
+  name: Departmental Complaint
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Paper
+      content: doc-text-printer-neosol-complaint-violation-labor-rules
+      
+- type: entity
+  parent: PrintedNSDocument
+  id: PrintedNSDocumentComplaintOffense
+  name: Criminal Complaint
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Paper
+      content: doc-text-printer-neosol-offense-complaint
+      
+# Permissions
+
+- type: entity
+  parent: PrintedNSDocument
+  id: PrintedNSDocumentPermissionEquipment
+  name: Equipment Permit
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Paper
+      content: doc-text-printer-neosol-permission-equipment    
+      
+- type: entity
+  parent: PrintedNSDocument
+  id: PrintedNSDocumentSearchPermission
+  name: Search Warrant
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Paper
+      content: doc-text-printer-neosol-search-permission
+      
+- type: entity
+  parent: PrintedNSDocument
+  id: PrintedNSDocumentPermissionToCarryWeapons
+  name: Weapon Permit
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Paper
+      content: doc-text-printer-neosol-permission-to-carry-weapons
+      
+- type: entity
+  parent: PrintedNSDocument
+  id: PrintedNSDocumentPermissionDisposeBody
+  name: Body Disposal Authorization
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Paper
+      content: doc-text-printer-neosol-permission-dispose-body
+      
+- type: entity
+  parent: PrintedNSDocument
+  id: PrintedNSDocumentConstructionPermit
+  name: Construction Permit
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Paper
+      content: doc-text-printer-neosol-construction-permit
+     
+- type: entity
+  parent: PrintedNSDocument
+  id: PrintedNSDocumentSurgeryConsentPermit
+  name: Surgery Consent Form
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Paper
+      content: doc-text-printer-neosol-surgery-consent-permit
+      
+# OrdersAndInstructions
+
+- type: entity
+  parent: PrintedNSDocument
+  id: PrintedNSDocumentDismissalOrder
+  name: Dismissal Order
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Paper
+      content: doc-text-printer-neosol-dismissal-order
+      
+- type: entity
+  parent: PrintedNSDocument
+  id: PrintedNSDocumentAccessRevocationOrder
+  name: Access Revocation Order
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Paper
+      content: doc-text-printer-neosol-access-revocation-order
+      
+- type: entity
+  parent: PrintedNSDocument
+  id: PrintedNSDocumentIncentiveOrder
+  name: Recognition of Honour
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Paper
+      content: doc-text-printer-neosol-incentive-order
+      
+- type: entity
+  parent: PrintedNSDocument
+  id: PrintedNSDocumentPrisonerParoleOrder
+  name: Order of Mandatory Parole
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Paper
+      content: doc-text-printer-neosol-prisoner-parole-order
+      
+- type: entity
+  parent: PrintedNSDocument
+  id: PrintedNSDocumentOrderRecognizingReasonablenessCreature
+  name: Declaration of Sentience
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Paper
+      content: doc-text-printer-neosol-order-recognizing-reasonableness-creature
+      
+- type: entity
+  parent: PrintedNSDocument
+  id: PrintedNSDocumentMedicalInterventionOrder
+  name: Medical Intervention Order
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Paper
+      content: doc-text-printer-neosol-medical-intervention-order
+
+- type: entity
+  parent: PrintedNSDocument
+  id: PrintedNSDocumentExecutionDNROrder
+  name: Execution & DNR Order
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Paper
+      content: doc-text-printer-neosol-execution-dnr-order
+
+# Communications
+
+- type: entity
+  parent: PrintedNSDocument
+  id: PrintedNSDocumentCentCommCommunication
+  name: High Command Communication
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Paper
+      content: doc-text-printer-neosol-centcomm-communication
+
+#greenshift alert
+
+- type: entity
+  parent: PrintedNSDocument
+  id: PrintedNSDocumentGreenshiftAlert
+  name: Notice of Station Location
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Paper
+      content: doc-text-printer-neosol-station-location

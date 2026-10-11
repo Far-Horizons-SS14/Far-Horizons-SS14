@@ -7,7 +7,7 @@ using Robust.Shared.Console;
 namespace Content.Server.Nutrition;
 
 [AdminCommand(AdminFlags.Debug)]
-public sealed class Thirsty : LocalizedEntityCommands
+public sealed partial class Thirsty : LocalizedEntityCommands
 {
     public override string Command => "thirsty";
 

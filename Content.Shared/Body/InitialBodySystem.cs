@@ -4,9 +4,9 @@ using Robust.Shared.Map;
 
 namespace Content.Shared.Body;
 
-public sealed class InitialBodySystem : EntitySystem
+public sealed partial class InitialBodySystem : EntitySystem
 {
-    [Dependency] private readonly SharedContainerSystem _container = default!;
+    [Dependency] private SharedContainerSystem _container = default!;
 
     public override void Initialize()
     {
@@ -32,16 +32,27 @@ public sealed class InitialBodySystem : EntitySystem
         var xform = Transform(ent);
         var coords = new EntityCoordinates(ent, Vector2.Zero);
 
-        foreach (var proto in ent.Comp.Organs.Values)
+        //FH-Edit Start
+        ent.Comp.Spawning = true;
+        Dirty(ent);
+        try
         {
-            // TODO: When e#6192 is merged replace this all with TrySpawnInContainer...
-            var spawn = Spawn(proto, coords);
-
-            if (!_container.Insert(spawn, container, containerXform: xform))
+            foreach (var proto in ent.Comp.Organs.Values)
             {
-                Log.Error($"Entity {ToPrettyString(ent)} with a {nameof(InitialBodyComponent)} failed to insert an entity: {ToPrettyString(spawn)}.\n");
-                Del(spawn);
+                var spawn = Spawn(proto, coords);
+
+                if (!_container.Insert(spawn, container, containerXform: xform))
+                {
+                    Log.Error($"Entity {ToPrettyString(ent)} with a {nameof(InitialBodyComponent)} failed to insert an entity: {ToPrettyString(spawn)}.\n");
+                    Del(spawn);
+                }
             }
         }
+        finally
+        {
+            ent.Comp.Spawning = false;
+            Dirty(ent);
+        }
+        //FH-Edit End
     }
 }

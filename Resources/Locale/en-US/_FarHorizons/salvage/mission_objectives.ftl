@@ -30,5 +30,19 @@ salvage-mission-objective-name-shutdown = Shutdown
 salvage-mission-objective-description-shutdown = Rogue devices detected on the ground. Shut them down.
 salvage-mission-objective-announcement-shutdown = Your mission is to find and destroy {$numTargets} suspicious devices. You will be paid extra for any additional devices you destroy.
 
+salvage-mission-objective-name-disarm = Disarm
+salvage-mission-objective-description-disarm = Disable the self-destruction protocol in an automated factory.
+salvage-mission-objective-announcement-disarm = Your mission is to find the disarm codes, then enter them into security consoles in order to stop the self destruction sequence. There are {$numTargets} codes in total.
+salvage-mission-objective-disarm-paper = Your disarm code for the shift: #{$code}
+
+salvage-mission-objective-name-data-heist = Data Heist
+salvage-mission-objective-description-data-heist = Find and download remaining secret data from the facility.
+salvage-mission-objective-announcement-data-heist = Your mission is to find the passwords, then enter them into data consoles to download stored data. Bring disks with you when you return. We require {$numTargets} disks returned to us, but will pay for up to {$bonusCap} additional disks.
+salvage-mission-objective-data-heist-paper = Your mainframe access code: #{$code}
+
+salvage-mission-objective-name-headhunt = Headhunt
+salvage-mission-objective-description-headhunt = Sector authorities have posted a bounty to evict illegal settlers from the planet surface.
+salvage-mission-objective-announcement-headhunt = Your mission is to either bring the targets into custody alive, or bring proof of their deaths. You will be paid for each target.
+
 salvage-mission-objective-completed-message = Salvage mission completed. {$bonus}/{$maxBonus} bonus objectives completed. Total payout: {$totalReward} tickets and {$totalCash} spesos.
 salvage-mission-objective-failed-message = Salvage mission failed.

@@ -1,0 +1,199 @@
+- type: entity
+  abstract: true
+  parent: [ BaseItem, BaseSecurityContraband ]
+  id: BaseMagazineShotgun
+  name: 12 Gauge Drum
+  components:
+  - type: Tag
+    tags:
+    - MagazineShotgun
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - ShellShotgun
+    capacity: 12
+    soundRack:
+      path: /Audio/Weapons/Guns/Cock/smg_cock.ogg
+  - type: Item
+    size: Small
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      right:
+      - state: inhand-right-mag
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Magazine/Shotgun/12g.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  id: MagazineShotgunEmpty
+  name: 12 Gauge Drum
+  suffix: empty
+  description: A large drum magazine used by some military-grade automatic shotguns.
+  parent: BaseMagazineShotgun
+  components:
+  - type: BallisticAmmoProvider
+    proto: null
+
+- type: entity
+  parent: BaseMagazineShotgun
+  id: MagazineShotgun
+  name: 12 Gauge Buckshot Drum
+  description: A large drum magazine used by some military-grade automatic shotguns. Filled with Buckshot, which is good for unarmored targets.
+  components:
+  - type: BallisticAmmoProvider
+    proto: ShellShotgun
+  - type: Sprite
+    layers:
+    - state: hp
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  parent: BaseMagazineShotgun
+  id: MagazineShotgunFlechette
+  name: 12 Gauge Flechette Drum
+  description: A large drum magazine used by some military-grade automatic shotguns. Filled with Flechette rounds, which is good for lightly armored targets.
+  components:
+  - type: BallisticAmmoProvider
+    proto: ShellShotgunFlechette
+  - type: Sprite
+    layers:
+    - state: sp
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  parent: BaseMagazineShotgun
+  id: MagazineShotgunSlug
+  name: 12 Gauge Slug Drum
+  description: A large drum magazine used by some military-grade automatic shotguns. Filled with Slugs, which is good for armored targets.
+  components:
+  - type: BallisticAmmoProvider
+    proto: ShellShotgunSlug
+  - type: Sprite
+    layers:
+    - state: fmj
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  id: MagazineShotgunBeanbag
+  name: 12 Gauge Beanbag Drum
+  parent: BaseMagazineShotgun
+  description: A large drum magazine used by some military-grade automatic shotguns. Intended to hold less-than-lethal beanbag ammunition.
+  components:
+  - type: BallisticAmmoProvider
+    proto: ShellShotgunBeanbag
+  - type: Sprite
+    layers:
+    - state: rubber
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  id: MagazineShotgunIncendiary
+  name: 12 Gauge Incendiary Buckshot Drum 
+  parent: BaseMagazineShotgun
+  description: A large drum magazine used by some military-grade automatic shotguns. Good for burning people alive.
+  components:
+  - type: BallisticAmmoProvider
+    proto: ShellShotgunIncendiary
+  - type: Sprite
+    layers:
+    - state: incendiary
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  id: MagazineShotgunUranium
+  name: 12 Gauge Uranium Slug Drum 
+  parent: BaseMagazineShotgun
+  description: A large drum magazine used by some military-grade automatic shotguns. Good for punching through heavy armor.
+  components:
+  - type: BallisticAmmoProvider
+    proto: ShellShotgunUranium
+  - type: Sprite
+    layers:
+    - state: uranium
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  id: MagazineShotgunUraniumFlechette
+  name: 12 Gauge Uranium Flechette Drum 
+  parent: BaseMagazineShotgun
+  description: A large drum magazine used by some military-grade automatic shotguns. Good for punching through heavy armor.
+  components:
+  - type: BallisticAmmoProvider
+    proto: ShellShotgunUraniumFlechette
+  - type: Sprite
+    layers:
+    - state: uranium
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  id: MagazineShotgunPractice
+  name: 12 Gauge Practice Drum 
+  parent: BaseMagazineShotgun
+  description: A large drum magazine used by some military-grade automatic shotguns. Good for target practice.
+  components:
+  - type: BallisticAmmoProvider
+    proto: ShellShotgunPractice
+  - type: Sprite
+    layers:
+    - state: practice
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  id: MagazineShotgunFlare
+  name: 12 Gauge Flare Drum 
+  parent: BaseMagazineShotgun
+  description: A large drum magazine used by some military-grade automatic shotguns. Good for lighting up places.
+  components:
+  - type: BallisticAmmoProvider
+    proto: ShellShotgunFlare
+  - type: Sprite
+    layers:
+    - state: flare
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+#todo - remove
+- type: entity
+  id: MagazineShotgunBreach
+  name: 12 Gauge Breaching Drum 
+  parent: BaseMagazineShotgun
+  components:
+  - type: BallisticAmmoProvider
+    proto: ShellShotgunBreaching
+  - type: Sprite
+    layers:
+    - state: fmj
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]

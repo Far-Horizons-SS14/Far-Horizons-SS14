@@ -9,12 +9,12 @@
     
     ## Starting the Nuclear Generator
 	To start the Nuclear Generator, engineers must follow these steps:
-	- Fill the coolant loop with a gas.
-	- Set the Gas Turbine's Flow Rate according to the Nuclear Reactor setup.
+	- Fill the coolant loop with a gas. For basic setups, filling the loop with a single room temperature Nitrogen gas cannister is sufficient.
+	- Set the Gas Turbine's Flow Rate to 200. As the temperature in the Nuclear Reactor increases, increasing the Flow Rate might be recommended to let the coolant gasses give away more heat in the Gas Turbine.
 	- Insert the Fuel Rods into the empty spots in the Nuclear Reactor grid, typically by a control rod(s) and surrounded by heat exchangers and gas channels.
-	- Retract the Control Rods to start warming up the Nuclear Reactor.
-	- As the Nuclear Reactor warms up, engineers will want to keep adjusting the Gas Turbine's Stator Load to maintain optimal RPM.
+	- Retract the Control Rods to 80% to start warming up the Nuclear Reactor. As the time period during which the fission process is maintained increases, Control Rods might need to be retracted or inserted to modulate the reaction.
+	- As the Nuclear Reactor warms up, engineers will want to keep adjusting the Gas Turbine's Stator Load to maintain optimal RPM. Optimal RPM is indicated on the turbine as a green node.
 	- Once the Gas Turbine is making enough power for the station, the Control Rods should be inserted to the point of maintaining Nuclear Reactor temperature.
 
-	Over time, the Fuel Rods will lose radioactivity, meaning the Control Rods should be retracted further or the Fuel Rods replaced.
+	Over time, the Fuel Rods will lose radioactivity, meaning the Control Rods should be retracted further or the Fuel Rods replaced. If the choice to replace Fuel Rods is made, engineers should keep in mind that the Stator Load will require adjustment.
 </Document>

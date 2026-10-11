@@ -10,8 +10,9 @@ vehicle-toggle-trunk-close = You closed the trunk
 
 vehicle-verb-enter = Enter Vehicle
 vehicle-verb-leave = Leave Vehicle
-vehicle-verb-remove = Remove Passenger
+vehicle-verb-remove = Remove {$passenger}
 
-vehicle-remove-passenger-attempt = Someone starts to remove a passenger from the vehicle
+vehicle-remove-passenger-attempt = {$user} starts to remove {$passenger} from the vehicle
 
 vehicle-examine-broken = This vehicle is completely broken.
+vehicle-examine-repair = Use {INDEFINITE($quality)} [bold]{$quality}[/bold] tool to begin repairs.

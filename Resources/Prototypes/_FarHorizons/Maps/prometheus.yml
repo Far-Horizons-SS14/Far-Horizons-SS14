@@ -1,0 +1,85 @@
+- type: gameMap
+  id: FHPrometheus
+  mapName: 'Prometheus'
+  mapPath: /Maps/_FarHorizons/Stations/NeoSol/Prometheus.yml
+  minPlayers: 40
+  maxPlayers: 100
+  faction: FactionSyndicate
+  stations:
+    FHPrometheus:
+      stationProto: StandardNeosolStation
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: '{0} Prometheus {1}'
+          nameGenerator:
+            !type:NeosolNameGenerator
+            prefixCreator: '14'
+        - type: StationEmergencyShuttle
+          emergencyShuttlePath: /Maps/_FarHorizons/Shuttles/unity-evac.yml
+        - type: StationCargoShuttle
+          path: /Maps/_FarHorizons/Shuttles/KillerTamashi-Cargo-Shuttle.yml
+        - type: StationArrivals
+          shuttlePath: /Maps/_FarHorizons/Shuttles/arrivals-neosol.yml
+        - type: StationJobs
+          availableJobs:
+            #service
+            Bartender: [ 2, 2 ]
+            Botanist: [ 2, 2]
+            Boxer: [ 1, 1 ]
+            Chef: [ 2, 2 ]
+            Janitor: [ 2, 2 ]
+            Captain: [ 1, 1 ]
+            HeadOfPersonnel: [ 1, 1 ]
+            Chaplain: [ 1, 1 ]
+            Librarian: [ 1, 1 ]
+            ServiceWorker: [ 3, 3 ]
+            #engineering
+            ChiefEngineer: [ 1, 1 ]
+            StationEngineer: [ 3, 4 ]
+            AtmosphericTechnician: [ 3, 3 ]
+            TechnicalAssistant: [ 2, 2 ]
+            #medical
+            ChiefMedicalOfficer: [ 1, 1 ]
+            MedicalDoctor: [ 3, 5 ]
+            Chemist: [ 2, 2 ]
+            MedicalIntern: [ 3, 3 ]
+            Psychologist: [ 1, 1 ]
+            Surgeon: [ 1, 2 ]
+            Paramedic: [ 2, 2 ]
+            #science
+            ResearchDirector: [ 1, 1 ]
+            Scientist: [ 3, 6 ]
+            ResearchAssistant: [ 3, 7 ]
+            Roboticist: [ 2, 2 ]
+            #security
+            HeadOfSecurity: [ 1, 1 ]
+            SecurityOfficer: [ 4, 7 ]
+            Warden: [ 1, 1 ]
+            SecurityCadet: [ 2, 3 ]
+            Detective: [ 1, 1 ]
+            Brigmedic: [ 1, 1 ]
+            Corpsman: [ 1, 1] #Far Horizons
+            SecBorg: [ 1, 1] #Far Horizons
+            #supply
+            CargoTechnician: [ 4, 7 ]
+            MailTech: [ 2, 2 ]
+            Quartermaster: [ 1, 1 ]
+            SalvageSpecialist: [ 4, 6 ]
+            MiningSpecialist: [ 4, 5 ]
+            SalvageLead: [ 1, 1 ]
+            #civilian
+            Assistant: [ -1, -1 ]
+            Clown: [ 1, 1 ]
+            Mime: [ 1, 1 ]
+            Musician: [ 1, 1 ]
+            Reporter: [ 1, 2 ]
+            Zookeeper: [ 1, 1 ]
+            # silicon
+            StationAi: [ 1, 1 ]
+            Borg: [ 3, 3 ]
+            #law
+            Magistrate: [ 1, 1 ]
+            IAA: [ 1, 4 ]
+            #Representives
+            BlueShield: [ 1, 1 ]
+            NanoTrasenRepresentative: [ 1, 1 ]

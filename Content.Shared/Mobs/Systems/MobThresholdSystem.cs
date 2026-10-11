@@ -11,11 +11,12 @@ using Robust.Shared.GameStates;
 
 namespace Content.Shared.Mobs.Systems;
 
-public sealed class MobThresholdSystem : EntitySystem
+// Far Horizons - made partial
+public sealed partial class MobThresholdSystem : EntitySystem
 {
-    [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
-    [Dependency] private readonly AlertsSystem _alerts = default!;
-    [Dependency] private readonly DamageableSystem _damageable = default!;
+    [Dependency] private MobStateSystem _mobStateSystem = default!;
+    [Dependency] private AlertsSystem _alerts = default!;
+    [Dependency] private DamageableSystem _damageable = default!;
 
     public override void Initialize()
     {
@@ -176,6 +177,7 @@ public sealed class MobThresholdSystem : EntitySystem
             return false;
 
         return TryGetThresholdForState(target, MobState.Critical, out threshold, thresholdComponent)
+               || TryGetThresholdForState(target, MobState.ActiveCritical, out threshold, thresholdComponent) // Far Horizons
                || TryGetThresholdForState(target, MobState.Dead, out threshold, thresholdComponent);
     }
 

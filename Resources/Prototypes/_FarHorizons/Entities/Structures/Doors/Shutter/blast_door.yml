@@ -1,0 +1,79 @@
+- type: entity
+  id: BlastDoorSecure
+  parent: BaseShutter
+  name: Secure Blast Door
+  description: This one correctly says 'Blast Door'
+  suffix: Armory/Command
+  components:
+  - type: AccessReader
+    containerAccessProvider: board
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Doors/Shutters/blastdoor.rsi
+    layers:
+    - state: closed
+      map: ["enum.DoorVisualLayers.Base"]
+    - state: welded
+      map: ["enum.WeldableLayers.BaseWelded"]
+  - type: Door
+    performCollisionCheck: false #Allows for forceful door closing.
+    closeTimeOne: 0.4
+    closeTimeTwo: 0.4
+    openTimeOne: 0.4
+    openTimeTwo: 0.4
+    openingAnimationTime: 0.5
+    closingAnimationTime: 0.5
+    canPry: false
+    crushDamage:
+      types:
+        Blunt: 50 #It tries harder to close. Will make sure people learn real fast not to stand in the way.
+    openSound:
+      path: /Audio/Machines/blastdoor.ogg
+    closeSound:
+      path: /Audio/Machines/blastdoor.ogg
+  - type: Occluder
+  - type: Appearance
+  - type: RadiationBlocker
+    resistance: 10
+  - type: Damageable
+    damageModifierSet: StrongMetallic
+  - type: Injurable
+    damageContainer: StructuralInorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1000
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsCommandArmory ]
+  - type: Construction
+    graph: BlastDoorSecure
+    node: blastdoor
+    containers:
+    - board
+  - type: StaticPrice
+    price: 800
+  - type: InteractionPopup
+    interactSuccessString: comp-window-knock
+    messagePerceivedByOthers: comp-window-knock
+    interactSuccessSound:
+      path: /Audio/Effects/glass_knock.ogg
+
+- type: entity
+  id: BlastDoorSecureOpen
+  parent: BlastDoorSecure
+  suffix: Open
+  components:
+  - type: Door
+    state: Open
+  - type: Occluder
+    enabled: false
+  - type: Physics
+    canCollide: false
+  - type: Airtight
+    airBlocked: false
+  - type: RadiationBlocker
+    enabled: false

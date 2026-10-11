@@ -1,0 +1,16 @@
+- type: constructionGraph
+  id: WeaponRevolverOathbreakerGraph
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: attachment
+      steps:
+      - tag: OathBreaker
+        icon:
+          sprite: _FarHorizons/Objects/Weapons/Guns/Revolvers/Stock_Oath_Breaker/sprite_64x32.rsi
+          state: icon
+        name: crafting-menu-name-OathBreakerExtended
+        doAfter: 10
+  - node: attachment
+    entity: WeaponRevolverOathbreaker

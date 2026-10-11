@@ -3,7 +3,7 @@ using Content.Shared.FixedPoint;
 
 namespace Content.Shared.Vampire;
 
-public sealed class SharedVampireSystem : EntitySystem
+public sealed partial class SharedVampireSystem : EntitySystem
 {
     public FixedPoint2 GetBloodEssence(EntityUid vampire)
     {

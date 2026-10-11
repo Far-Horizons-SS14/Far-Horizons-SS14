@@ -1,0 +1,10 @@
+﻿- type: entity
+  parent: [ToteBase, BaseCommandContraband] #FH
+  id: BoxMagiCircuitBoards
+  name: Concord Liason Circuit Tote #FH
+  components:
+    - type: EntityTableContainerFill
+      containers:
+        storagebase: !type:AllSelector
+          children:
+            - id: LawCommsComputerCircuitboard # Starlight

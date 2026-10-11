@@ -1,41 +1,42 @@
-using Content.Shared.Eye;
-using Robust.Server.GameObjects;
 using Content.Server.Atmos.Components;
-using Content.Shared.Temperature.Components;
-using Content.Shared.Movement.Components;
-using Content.Shared.Stealth;
-using Content.Shared.Stealth.Components;
-using System.Linq;
-using Content.Shared.NPC.Components;
-using Content.Shared.NPC.Systems;
-using Content.Shared._Starlight.NullSpace;
-using Content.Shared.Movement.Pulling.Systems;
-using Content.Shared.Movement.Pulling.Components;
 using Content.Server.Atmos.EntitySystems;
+using Content.Server._Starlight.Bluespace;
 using Content.Server._Starlight.Weapons.Ranged;
-using Content.Shared.Inventory.VirtualItem;
+using Content.Shared.Atmos;
+using Content.Shared.Eye;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
-using Content.Shared.Interaction.Components;
 using Content.Shared.Hands;
+using Content.Shared.Interaction.Components;
+using Content.Shared.Inventory.VirtualItem;
+using Content.Shared.Movement.Components;
+using Content.Shared.Movement.Pulling.Components;
+using Content.Shared.Movement.Pulling.Systems;
+using Content.Shared.NPC.Components;
+using Content.Shared.NPC.Systems;
+using Content.Shared.Stealth.Components;
+using Content.Shared.Stealth;
+using Content.Shared.Temperature.Components;
+using Content.Shared._Starlight.NullSpace;
+using Robust.Server.GameObjects;
 using Robust.Server.Player;
-using Robust.Shared.Player;
 using Robust.Shared.Enums;
-using Content.Server._Starlight.Bluespace;
+using Robust.Shared.Player;
+using System.Linq;
 
 namespace Content.Server._Starlight.NullSpace;
 
 public sealed partial class NullSpaceSystem : SharedNullSpaceSystem
 {
-    [Dependency] private readonly VisibilitySystem _visibilitySystem = default!;
-    [Dependency] private readonly SharedStealthSystem _stealth = default!;
-    [Dependency] private readonly EyeSystem _eye = default!;
-    [Dependency] private readonly NpcFactionSystem _factions = default!;
-    [Dependency] private readonly PullingSystem _pulling = default!;
-    [Dependency] private readonly SharedVirtualItemSystem _virtualItem = default!;
-    [Dependency] private readonly SharedHandsSystem _hands = default!;
-    [Dependency] private readonly IPlayerManager _player = default!;
-    [Dependency] private readonly NullSpacePhaseSystem _phaseSystem = default!;
+    [Dependency] private VisibilitySystem _visibilitySystem = default!;
+    [Dependency] private SharedStealthSystem _stealth = default!;
+    [Dependency] private EyeSystem _eye = default!;
+    [Dependency] private NpcFactionSystem _factions = default!;
+    [Dependency] private PullingSystem _pulling = default!;
+    [Dependency] private SharedVirtualItemSystem _virtualItem = default!;
+    [Dependency] private SharedHandsSystem _hands = default!;
+    [Dependency] private IPlayerManager _player = default!;
+    [Dependency] private NullSpacePhaseSystem _phaseSystem = default!;
     public override void Initialize()
     {
         base.Initialize();

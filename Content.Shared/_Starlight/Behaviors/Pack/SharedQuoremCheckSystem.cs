@@ -13,11 +13,11 @@ namespace Content.Shared._Starlight.Behaviors.Pack;
 /// <summary>
 /// This handles deciding whether the pack has reached critical mass
 /// </summary>
-public abstract class SharedQuoremCheckSystem : EntitySystem
+public abstract partial class SharedQuoremCheckSystem : EntitySystem
 {
-    [Dependency] private readonly NpcFactionSystem _npcFactionSystem = default!;
-    [Dependency] private readonly MobStateSystem _mobState = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private NpcFactionSystem _npcFactionSystem = default!;
+    [Dependency] private MobStateSystem _mobState = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
 
     protected Dictionary<int, HashSet<EntityUid>> _packGroups = new Dictionary<int, HashSet<EntityUid>>();
     private int _nextId;

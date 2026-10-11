@@ -167,4 +167,14 @@ public sealed partial class BorgTypePrototype : IPrototype
     [DataField]
     public HashSet<JobRequirement> Requirements = new (); // Starlight-edit
     // Starlight-end
+
+    //Far Horizons Start
+
+    /// <summary>
+    /// What passive modules does the borg spawn with.
+    /// </summary>
+    [DataField]
+    public EntProtoId[] AdditionalModules = [];
+
+    //Far Horizons End
 }

@@ -3,6 +3,8 @@ using Content.Shared._FarHorizons.Silicons.IPC.Components;
 using Content.Shared.Alert;
 using Content.Shared.Atmos;
 using Robust.Shared.Prototypes;
+using Content.Shared._Starlight.CoolingUnit;
+using Content.Shared.Item.ItemToggle.Components;
 
 namespace Content.Server._FarHorizons.Silicons.IPC;
 
@@ -55,18 +57,18 @@ public sealed partial class IPCSystem
             return false;
 
         foreach (var slotID in ent.Comp.ExternalCoolingCheckSlots)
-            if (!_container.TryGetContainer(ent, slotID, out var container) ||
-                container.ContainedEntities.Count != 1 ||
-                !_tag.HasTag(container.ContainedEntities[0], ent.Comp.ExternalCoolingTag))
-                return false;
-
-        ent.Comp.FansCurrentlyOff = false;
-        ent.Comp.CanSwitchModeIn = TimeSpan.Zero;
-        ent.Comp.CurrentTemp = temp.CurrentTemperature;
-        HandleFans(ent, temp, null, true, true);
-        UpdateThermalsAlert(ent);
-        Dirty(ent);
-        return true;
+            if (_container.TryGetContainer(ent, slotID, out var container) && container.ContainedEntities.Count == 1 && (_tag.HasTag(container.ContainedEntities[0], ent.Comp.ExternalCoolingTag) 
+                || (HasComp<CoolingUnitComponent>(container.ContainedEntities[0]) && TryComp<ItemToggleComponent>(container.ContainedEntities[0], out var itemtoggle) && itemtoggle.Activated)))
+            {
+                ent.Comp.FansCurrentlyOff = false;
+                ent.Comp.CanSwitchModeIn = TimeSpan.Zero;
+                ent.Comp.CurrentTemp = temp.CurrentTemperature;
+                HandleFans(ent, temp, null, true, true);
+                UpdateThermalsAlert(ent);
+                Dirty(ent);
+                return true;
+            }
+        return false;
     }
 
     private void RadiateHeat(Entity<IPCThermalRegulationComponent> ent, TemperatureComponent temp, float externalTemp, float produceHeat = 0)

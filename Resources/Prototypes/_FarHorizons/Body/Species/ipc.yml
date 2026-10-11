@@ -1,7 +1,12 @@
 - type: markingsGroup
   id: IPC
-  onlyGroupWhitelisted: true
   limits:
+    enum.HumanoidVisualLayers.Hair:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.FacialHair:
+      limit: 1
+      required: false
     enum.HumanoidVisualLayers.HeadTop:
       limit: 1
       required: false
@@ -11,8 +16,8 @@
       default: [ ScreenBsod ]
     enum.HumanoidVisualLayers.Head:
       limit: 1
-      required: false
-      default: [ MarkingBishopHead ]
+      required: true
+      default: [ MarkingStandardHead ]
     enum.HumanoidVisualLayers.Chest:
       limit: 1
       required: false
@@ -67,13 +72,108 @@
       Heart: OrganIPCHeart
   - type: HumanoidProfile
     species: IPC
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _FarHorizons/Mobs/Species/IPC/parts.rsi
+    layers:
+    # Torso
+    - map: [ "enum.HumanoidVisualLayers.Chest" ]
+
+    # Head
+    - map: [ "enum.HumanoidVisualLayers.Head" ]
+    - map: [ "enum.HumanoidVisualLayers.Snout" ]
+    - map: [ "enum.HumanoidVisualLayers.Eyes" ]
+
+    # Limbs
+    - map: [ "enum.HumanoidVisualLayers.RArm" ]
+    - map: [ "enum.HumanoidVisualLayers.LArm" ]
+    - map: [ "enum.HumanoidVisualLayers.RLeg" ]
+    - map: [ "enum.HumanoidVisualLayers.LLeg" ]
+
+    # Underwear & clothing
+    - map: [ "enum.HumanoidVisualLayers.UndergarmentBottom" ]
+    - map: [ "enum.HumanoidVisualLayers.UndergarmentTop" ]
+    - map: ["jumpsuit"]
+
+    # Extremities
+    - map: ["enum.HumanoidVisualLayers.LFoot"]
+    - map: ["enum.HumanoidVisualLayers.RFoot"]
+    - map: ["enum.HumanoidVisualLayers.LHand"]
+    - map: ["enum.HumanoidVisualLayers.RHand"]
+
+    # Stuff that goes over the body but below equipment
+    - map: ["enum.HumanoidVisualLayers.BodyCover"] # Far Horizons
+    - map: ["enum.HumanoidVisualLayers.BodyCoverCover"] # Far Horizons
+    - map: [ "enum.HumanoidVisualLayers.HeadSide" ]
+    - map: [ "enum.HumanoidVisualLayers.FaceCover" ] # Far Horizons
+    - map: [ "enum.HumanoidVisualLayers.FaceCoverCover" ] # Far Horizons
+    - map: ["enum.HumanoidVisualLayers.Overlay"]
+
+    # More equipment
+    - map: [ "gloves" ]
+    - map: [ "shoes" ]
+    - map: [ "ears" ]
+    - map: [ "eyes" ]
+    - map: [ "rig" ] #FarHorizons
+    - map: [ "belt" ]
+    - map: [ "id" ]
+    - map: [ "outerClothing" ]
+    - map: [ "back" ]
+    - map: [ "neck" ]
+    - map: [ "pin" ] #FarHorizons
+    - map: [ "suitstorage" ]
+
+    # Stuff that goes in front of equipment
+    - map: [ "enum.HumanoidVisualLayers.SnoutCover" ]
+    - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
+      shader: HologramFH
+    - map: [ "enum.HumanoidVisualLayers.Hair" ]
+      shader: HologramFH
+    - map: [ "enum.HumanoidVisualLayers.HeadTop" ]
+    - map: [ "enum.HumanoidVisualLayers.Wings" ] # Far Horizon
+    - map: [ "enum.HumanoidVisualLayers.Tail" ]
+    - map: [ "enum.HumanoidVisualLayers.TailCover" ] # Far Horizons
+    - map: [ "enum.HumanoidVisualLayers.TailOverlay" ]
+
+    # Stuff that goes in front of stuff that goes in front of equipment
+    - map: [ "mask" ]
+    - map: [ "head" ]
+    - map: [ "pocket1" ]
+    - map: [ "pocket2" ]
+
+    - map: ["enum.BorgVisualLayers.Body"]
+      state: light
+      visible: false
+    - map: ["enum.BorgVisualLayers.Light"]
+      state: light
+      shader: unshaded
+      visible: false
+    - map: [ "enum.HumanoidVisualLayers.Handcuffs" ]
+      color: "#ffffff"
+      sprite: Objects/Misc/handcuffs.rsi # Would do a custom dog handcuff sprite but unfortunately handcuffs have their overlay baked-in to the cuff itself so this is mostly filler
+      state: body-overlay-2
+      visible: false
+    - map: ["enum.BorgVisualLayers.LightStatus"]
+      state: light
+      shader: unshaded
+      visible: false
+    - map: [ "clownedon" ] # Dynamically generated
+      sprite: "Effects/creampie.rsi"
+      state: "creampie_human"
+      visible: false
 
 - type: entity
   parent:
+  - ActiveCritBase
   - AppearanceIPC
   - BaseMobIPC
   id: MobIPC
   name: Urist McRobot
+  components:
+    - type: FluidFootprintSpreader
+      footprint: Robot
+      stepSpacing: 0.2
+      lateralOffset: 0.15
 
 # Organs
 
@@ -88,13 +188,13 @@
       reagents:
       - ReagentId: Oil
         Quantity: 10
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 5
-        reagents:
-        - ReagentId: Oil
-          Quantity: 10
+  - type: Solution
+    id: food
+    solution:
+      maxVol: 5
+      reagents:
+      - ReagentId: Oil
+        Quantity: 10
 
 - type: entity
   parent: OrganIPC
@@ -139,18 +239,34 @@
       - Inorganic
 
 - type: entity
-  parent: [ DamageableLimbVisualsIPC, OrganBaseHeadSexed, OrganBaseHeadVitalNonEdible, OrganIPCExternal ]
+  parent: [ DamageableLimbVisualsIPC, OrganBaseHeadNonVitalNonEdible, OrganIPCExternal ]
   id: OrganIPCHead
   components:
-  - type: VisualOrganMarkings
-    markingData:
-      layers:
-      - Head
-      - HeadSide
-      - HeadTop
+  - type: Sprite
+    sprite: _FarHorizons/Mobs/Species/IPC/blank.rsi
+    state: blank
+  - type: VisualOrgan
+    data:
+      sprite: _FarHorizons/Mobs/Species/IPC/blank.rsi
+      state: blank
   - type: Tag
     tags:
       - Inorganic
+  - type: LimbDamageEffect
+    effects:
+      - effect: !type:LimbEffectDetach
+        condition: !type:LimbConditionSpecificDamage
+          damageType: Slash
+          damageAmount: 100 # -50 over base since it's non vital
+      - effect: !type:LimbEffectDestroy
+        condition: !type:LimbConditionOr
+          conditions:
+            - !type:LimbConditionSpecificDamage
+              damageType: Blunt
+              damageAmount: 250
+            - !type:LimbConditionSpecificDamage
+              damageType: Heat
+              damageAmount: 2000 # +500 over base
 
 - type: entity
   parent: [ DamageableLimbVisualsIPC, OrganBaseArmLeftNonEdible, OrganIPCExternal ]
@@ -179,7 +295,7 @@
               damageAmount: 250
             - !type:LimbConditionSpecificDamage
               damageType: Heat
-              damageAmount: 500
+              damageAmount: 750 # + 250 over base
   - type: Tag
     tags:
       - Inorganic
@@ -211,7 +327,7 @@
               damageAmount: 250
             - !type:LimbConditionSpecificDamage
               damageType: Heat
-              damageAmount: 500
+              damageAmount: 750 # + 250 over base
   - type: Tag
     tags:
       - Inorganic
@@ -243,7 +359,7 @@
               damageAmount: 150
             - !type:LimbConditionSpecificDamage
               damageType: Heat
-              damageAmount: 300
+              damageAmount: 500 # +200 over base
   - type: Tag
     tags:
       - Inorganic
@@ -275,7 +391,7 @@
               damageAmount: 150
             - !type:LimbConditionSpecificDamage
               damageType: Heat
-              damageAmount: 300
+              damageAmount: 500 # +200 over base
   - type: Tag
     tags:
       - Inorganic
@@ -310,7 +426,7 @@
               damageAmount: 250
             - !type:LimbConditionSpecificDamage
               damageType: Heat
-              damageAmount: 500
+              damageAmount: 750 # + 250 over base
   - type: Tag
     tags:
       - Inorganic
@@ -345,7 +461,7 @@
               damageAmount: 250
             - !type:LimbConditionSpecificDamage
               damageType: Heat
-              damageAmount: 500
+              damageAmount: 750 # + 250 over base
   - type: Tag
     tags:
       - Inorganic
@@ -380,7 +496,7 @@
               damageAmount: 150
             - !type:LimbConditionSpecificDamage
               damageType: Heat
-              damageAmount: 300
+              damageAmount: 500 # +200 over base
   - type: Tag
     tags:
       - Inorganic
@@ -415,7 +531,7 @@
               damageAmount: 150
             - !type:LimbConditionSpecificDamage
               damageType: Heat
-              damageAmount: 300
+              damageAmount: 500 # +200 over base
   - type: Tag
     tags:
       - Inorganic
@@ -441,7 +557,7 @@
         glitchDuration: 10.0
       6:
         additionalEffects:
-          StatusEffectBlinded: 2.0
+          StatusEffectBlindness: 2.0
   - type: Tag
     tags:
       - Inorganic

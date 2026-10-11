@@ -102,8 +102,9 @@
   - type: AccessReader
     access: [["Medical"]]
   - type: Damageable
-    damageContainer: StructuralInorganic
     damageModifierSet: Inflatable
+  - type: Injurable
+    damageContainer: StructuralInorganic
   - type: Destructible
     thresholds:
     - trigger:
@@ -133,7 +134,7 @@
 #   snap: Center
 
 - type: entity
-  parent: BaseItem
+  parent: [SolutionFood, SolutionTiny, BaseItem]
   id: Ash
   name: Ash #Far Horizons - The Great Capitalization Crusade
   description: This used to be something, but now it's not.
@@ -147,13 +148,11 @@
     tags:
     - Burnt
     - Trash
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 50
-        reagents:
-        - ReagentId: Ash
-          Quantity: 10
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Ash
+        Quantity: 15
   - type: SolutionSpiker
     sourceSolution: food
     ignoreEmpty: true
@@ -168,22 +167,18 @@
   name: Ectoplasm #Far Horizons - The Great Capitalization Crusade
   description: Much less deadly in this form.
   components:
-    - type: Sprite
-      sprite: Mobs/Ghosts/revenant.rsi
-      state: ectoplasm
-    - type: Tag
-      tags:
-        - Trash
-        - Ectoplasm
-    - type: SolutionContainerManager
-      solutions:
-        food:
-          maxVol: 50
-          reagents:
-            - ReagentId: Ash
-              Quantity: 25
-            - ReagentId: Arcryox
-              Quantity: 25
-    - type: GuideHelp
-      guides:
-      - MinorAntagonists
+  - type: Sprite
+    sprite: Mobs/Ghosts/revenant.rsi
+    state: ectoplasm
+  - type: Tag
+    tags:
+      - Trash
+      - Ectoplasm
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Fresium
+        Quantity: 15
+  - type: GuideHelp
+    guides:
+    - MinorAntagonists

@@ -4,7 +4,7 @@ using Content.Shared.VentCraw;
 
 namespace Content.Server.VentCraw;
 
-public sealed class VentCrawClothingSystem : EntitySystem
+public sealed partial class VentCrawClothingSystem : EntitySystem
 {
     public override void Initialize()
     {

@@ -68,12 +68,11 @@ public sealed partial class ThirstComponent : Component
         {ThirstThreshold.Dead, "Parched"},
     };
     
-    //Starlight begin
     /// <summary>
     /// A list of values to drain thirst by every update tick. Gets multiplied by decay rate.
     /// </summary>
-    [DataField] public List<(EntityUid, float, TimeSpan?)> ThirstDrains = [];
-    //Starlight end
+    /// Far Horizons
+    [ViewVariables(VVAccess.ReadWrite), AutoNetworkedField] public List<(float mod, TimeSpan endTime)> ThirstDrains = [];
 }
 
 [Flags]

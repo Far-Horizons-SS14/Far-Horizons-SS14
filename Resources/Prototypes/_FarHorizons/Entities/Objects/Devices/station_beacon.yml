@@ -101,3 +101,143 @@
   components:
   - type: NavMapBeacon
     defaultText: station-beacon-security-ship-bridge-brigmedic
+
+- type: entity
+  parent: DefaultStationBeaconEngineering
+  id: DefaultStationBeaconNuclear
+  suffix: Nuclear Reactor
+  components:
+  - type: NavMapBeacon
+    defaultText: station-beacon-nuclear
+
+
+#region NeoSol
+
+- type: entity
+  parent: DefaultStationBeacon
+  id: DefaultStationBeaconExecutive
+  suffix: Executive
+  components:
+  - type: NavMapBeacon
+    defaultText: station-beacon-executive
+    color: "#ff0019"
+
+- type: entity
+  parent: DefaultStationBeaconExecutive
+  id: DefaultStationBeaconCommandantsQuarters
+  suffix: Commandant's Quarters
+  components:
+  - type: NavMapBeacon
+    defaultText: station-beacon-commandant
+
+- type: entity
+  parent: DefaultStationBeaconExecutive
+  id: DefaultStationBeaconPMOffice
+  suffix: PM's Office
+  components:
+  - type: NavMapBeacon
+    defaultText: station-beacon-pm
+
+- type: entity
+  parent: DefaultStationBeacon
+  id: DefaultStationBeaconSecurityNS
+  suffix: Security
+  components:
+  - type: NavMapBeacon
+    defaultText: station-beacon-security
+    color: "#e34d4d"
+
+- type: entity
+  parent: DefaultStationBeaconSecurityNS
+  id: DefaultStationBeaconConstablesOffice
+  suffix: Constable's Office
+  components:
+  - type: NavMapBeacon
+    defaultText: station-beacon-constable
+
+- type: entity
+  parent: DefaultStationBeaconSecurityNS
+  id: DefaultStationBeaconMarshalRoom
+  suffix: Marshal’s Room
+  components:
+  - type: NavMapBeacon
+    defaultText: station-beacon-marshal
+
+- type: entity
+  parent: DefaultStationBeaconSecurityNS
+  id: DefaultStationBeaconInspectorRoom
+  suffix: Inspector's Room
+  components:
+  - type: NavMapBeacon
+    defaultText: station-beacon-inspector
+
+- type: entity
+  parent: DefaultStationBeacon
+  id: DefaultStationBeaconMedicalNS
+  suffix: Medical
+  components:
+  - type: NavMapBeacon
+    defaultText: station-beacon-medical
+    color: "#2d169e"
+
+- type: entity
+  parent: DefaultStationBeaconMedicalNS
+  id: DefaultStationBeaconMDRoom
+  suffix: MD's room
+  components:
+  - type: NavMapBeacon
+    defaultText: station-beacon-md
+
+- type: entity
+  parent: DefaultStationBeacon
+  id: DefaultStationBeaconScienceNS
+  suffix: Science
+  components:
+  - type: NavMapBeacon
+    defaultText: station-beacon-science
+    color: "#a11848"
+
+- type: entity
+  parent: DefaultStationBeaconScienceNS
+  id: DefaultStationBeaconEPRoom
+  suffix: EP's Room
+  components:
+  - type: NavMapBeacon
+    defaultText: station-beacon-ep
+
+- type: entity
+  parent: DefaultStationBeacon
+  id: DefaultStationBeaconEngineeringNS
+  suffix: Engineering
+  components:
+  - type: NavMapBeacon
+    defaultText: station-beacon-engineering
+    color: "#b34e29"
+
+- type: entity
+  parent: DefaultStationBeaconEngineering
+  id: DefaultStationBeaconForemanRoom
+  suffix: Foreman's Room
+  components:
+  - type: NavMapBeacon
+    defaultText: station-beacon-foreman
+
+- type: entity
+  parent: DefaultStationBeacon
+  id: DefaultStationBeaconServiceNS
+  suffix: Service
+  components:
+  - type: NavMapBeacon
+    defaultText: station-beacon-service
+    color: "#00786d"
+
+
+
+# NeoSol High Command Beacons
+- type: entity
+  parent: DefaultStationBeaconGhost
+  id: DefaultStationBeaconHighCommand
+  suffix: High Command
+  components:
+  - type: NavMapBeacon
+    text: CentComm

@@ -24,11 +24,21 @@
       coefficients:
         Blunt: 0.9
         Slash: 0.9
+#FH start
         Piercing: 0.9
         Heat: 0.9
-  - type: LimbArmor # Far Horizons
+  - type: LimbArmor
     limbs:
-      Head: {}
+      Head:
+        flatReductions:
+          Piercing: 5
+          Heat: 4
+        coefficients:
+          Blunt: 0.7
+          Slash: 0.7
+          Piercing: 0.7
+          Heat: 0.7
+#FarHorizons - End
 
 #Basic Helmet (Security Helmet)
 - type: entity
@@ -490,6 +500,7 @@
   parent: [ BaseSyndicateContraband, ClothingHeadHelmetBase ]
   id: ClothingHeadHelmetRaid
   name: Syndicate Raid Helmet #Far Horizons - The Great Capitalization Crusade
+  suffix: NS #Far Horizons
   description: An armored helmet for use with the syndicate raid suit. Very stylish.
   components:
   - type: Sprite
@@ -638,7 +649,7 @@
     energy: 2.5
     color: red
     netsync: false
-    mask: /Textures/Effects/LightMasks/double_cone.png
+    lightMask: ConeDouble
   - type: RotatingLight
     speed: 360
   - type: PowerCellSlot

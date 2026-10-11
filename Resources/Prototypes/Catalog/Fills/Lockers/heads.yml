@@ -17,9 +17,9 @@
     - id: RadioHandheldExpedition #starlight 
     - id: ClothingBeltSalvage #Far Horizons
     - id: ClothingBeltSalvageWebbing #Far Horizons
-    - id: SalvageShuttleConsoleCircuitboard #starlight
+    # - id: SalvageShuttleConsoleCircuitboard #starlight
     - id: ShipLabeler # Far Horizons
-    - id: MiningShuttleConsoleCircuitboard #starlight
+    # - id: MiningShuttleConsoleCircuitboard #starlight
     # - id: EncryptionKeySalvage # Far Horizons - removed
     - id: PrintedDocumentGreenshiftAlert #SL
       conditions: #SL
@@ -134,6 +134,7 @@
     - id: JetpackCaptainFilled
     - id: OxygenTankFilled
     - id: NitrogenTankFilled # Starlight - vox gang
+    - id: CoolingUnit # Starlight
 
 # No laser locker, used when the antique laser is placed in the special display crate
 - type: entity
@@ -195,12 +196,12 @@
     - id: ClothingNeckGoldmedal
     - id: DoorRemoteService
     - id: HoPIDCard
-    - id: IDComputerCircuitboard
-    - id: FundingAllocationComputerCircuitboard
-    - id: CargoRequestServiceComputerCircuitboard
-    - id: RubberStampApproved
-    - id: RubberStampDenied
-    - id: RubberStampHop
+    #- id: IDComputerCircuitboard # FarHorizons - Dupes in the BoxHoPCircuitboards
+    #- id: FundingAllocationComputerCircuitboard # FarHorizons - Dupes in the BoxHoPCircuitboards
+    #- id: CargoRequestServiceComputerCircuitboard # FarHorizons - Dupes in the BoxHoPCircuitboards
+    #- id: RubberStampApproved # FarHorizons - Dupes in the BoxHoPStamps
+    #- id: RubberStampDenied # FarHorizons - Dupes in the BoxHoPStamps
+    #- id: RubberStampHop # FarHorizons - Dupes in the BoxHoPStamps
     - id: ClothingEyesHudCommand
     - id: ClothingEyesGlassesCommand #Far Horizons
     #- id: BoxFolderHoPClipboard #Starlight Change - #Far Horizons disabled - HoP already spawns with one.
@@ -238,7 +239,7 @@
     - id: ClothingHandsGlovesColorYellow
     - id: ClothingHeadsetAltEngineering
     - id: DoorRemoteEngineering
-    - id: CargoRequestEngineeringComputerCircuitboard
+    # - id: CargoRequestEngineeringComputerCircuitboard # FarHorizons - Dupes in the BoxCECircuitboards
     - id: ShipyardRCD # Far Horizons
     - id: BoxCECircuitboards
     - id: MatBag #FH
@@ -274,6 +275,7 @@
     - id: JetpackVoidFilled
     - id: OxygenTankFilled
     - id: NitrogenTankFilled # Starlight - vox gang
+    - id: CoolingUnit # Starlight
 
 # No hardsuit locker
 - type: entity
@@ -327,6 +329,8 @@
     - id: RubberStampCMO #Far Horizons
     - id: PlushieLizardJobChiefmedicalofficer
       prob: 0.02
+    - id: BoxCMOCircuitboards #Far Horizons
+    - id: CoolingUnitNitrogen #FH
 
 # Hardsuit table, used for suit storage as well
 - type: entityTable
@@ -337,6 +341,7 @@
     - id: ClothingOuterHardsuitMedical
     - id: OxygenTankFilled
     - id: NitrogenTankFilled # Starlight - vox gang
+    - id: CoolingUnit # Starlight
 
 # No hardsuit locker
 - type: entity
@@ -372,7 +377,7 @@
     - id: ClothingNeckCloakRdElite
     - id: Intellicard
     - id: BoxEncryptionKeyScience
-    - id: BoxRDCircuitboards
+    - id: BoxRDCircuitboards 
     - id: ClothingBeltUtilityFilled
     - id: ClothingHeadsetAltScience
     - id: DoorRemoteResearch
@@ -402,6 +407,7 @@
     - id: ClothingOuterHardsuitRd
     - id: OxygenTankFilled
     - id: NitrogenTankFilled # Starlight - vox gang
+    - id: CoolingUnit # Starlight
 
 # No hardsuit locker
 - type: entity
@@ -456,7 +462,7 @@
     - id: WeaponTaser
     - id: WantedListCartridge
     - id: DrinkHosFlask
-    - id: SecurityShuttleConsoleCircuitboard #SL
+    # - id: SecurityShuttleConsoleCircuitboard #FH - Moved to the BoxHoSCircuitboards
     - id: PrintedDocumentGreenshiftAlert #SL
       conditions: #SL
       - !type:GamemodeCondition #SL
@@ -476,6 +482,7 @@
     - id: JetpackSecurityFilled
     - id: OxygenTankFilled
     - id: NitrogenTankFilled # Starlight - vox gang
+    - id: CoolingUnit # Starlight
     - id: ClothingShoesBootsMagSec
 
 # No hardsuit locker

@@ -2,6 +2,9 @@ using Content.Server.Administration.Logs;
 using Content.Server.Destructible;
 using Content.Server.Effects;
 using Content.Server.Weapons.Ranged.Systems;
+using Content.Shared._FarHorizons.LimbDamage;
+using Content.Shared._FarHorizons.LimbDamage.Components;
+using Content.Shared.Body;
 using Content.Shared.Camera;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
@@ -9,19 +12,22 @@ using Content.Shared.Damage.Systems;
 using Content.Shared.Database;
 using Content.Shared.FixedPoint;
 using Content.Shared.Projectiles;
+using Content.Shared.Weapons.Ranged.Components;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Player;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Projectiles;
 
-public sealed class ProjectileSystem : SharedProjectileSystem
+public sealed partial class ProjectileSystem : SharedProjectileSystem
 {
-    [Dependency] private readonly IAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly ColorFlashEffectSystem _color = default!;
-    [Dependency] private readonly DamageableSystem _damageableSystem = default!;
-    [Dependency] private readonly DestructibleSystem _destructibleSystem = default!;
-    [Dependency] private readonly GunSystem _guns = default!;
-    [Dependency] private readonly SharedCameraRecoilSystem _sharedCameraRecoil = default!;
+    [Dependency] private IAdminLogManager _adminLogger = default!;
+    [Dependency] private ColorFlashEffectSystem _color = default!;
+    [Dependency] private DamageableSystem _damageableSystem = default!;
+    [Dependency] private DestructibleSystem _destructibleSystem = default!;
+    [Dependency] private GunSystem _guns = default!;
+    [Dependency] private SharedCameraRecoilSystem _sharedCameraRecoil = default!;
+    [Dependency] private LimbDamageSystem _limbDamage = default!; // Far Horizons
 
     public override void Initialize()
     {
@@ -58,7 +64,22 @@ public sealed class ProjectileSystem : SharedProjectileSystem
         }
         var deleted = Deleted(target);
 
-        if (_damageableSystem.TryChangeDamage((target, damageableComponent), ev.Damage, out var damage, component.IgnoreResistances, origin: component.Shooter) && Exists(component.Shooter))
+        // Far Horizons limb damage start
+        var shouldTargetLimb = TryComp<LimbDamageableComponent>(target, out var limbDmgTarget);
+        ProtoId<OrganCategoryPrototype>? limbTarget = null;
+        
+        if (TryComp<TargetedProjectileComponent>(uid, out var targeted) &&
+            shouldTargetLimb &&
+            targeted.LimbTarget != null)
+            _limbDamage.CheckAttackHit((target, limbDmgTarget), targeted.LimbTarget.Value, out limbTarget);
+        else if (shouldTargetLimb)
+            limbTarget = _limbDamage.TryScatterHitTarget((target, limbDmgTarget));
+
+        shouldTargetLimb &= limbTarget != null;
+
+        if (((shouldTargetLimb && _limbDamage.TryChangeLimbDamage((target, limbDmgTarget), limbTarget!.Value, ev.Damage, out var damage, component.IgnoreResistances, origin: component.Shooter)) ||
+            _damageableSystem.TryChangeDamage((target, damageableComponent), ev.Damage, out damage, component.IgnoreResistances, origin: component.Shooter)) && Exists(component.Shooter))
+        // Far Horizons end
         {
             if (!deleted)
             {

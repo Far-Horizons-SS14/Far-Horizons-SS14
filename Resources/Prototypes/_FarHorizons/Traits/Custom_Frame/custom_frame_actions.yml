@@ -1,0 +1,64 @@
+- type: entity
+  parent: BaseAction
+  id: ActionOpenCustomFrameTraits
+  name: Custom Frame Traits
+  description: Select your modifications.
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    priority: -20
+    icon:
+      sprite: _FarHorizons/Interface/Actions/actions_custom_frame.rsi
+      state: trait_selection
+  - type: InstantAction
+    event: !type:OpenBackgroundTraitsEvent
+    
+- type: entity
+  parent: BaseAction
+  id: ActionCustomTraitOverclocking
+  name: Overclocking
+  description: Turn up the voltage going to your legs at the cost of shutting down your fans for extra speed.
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    priority: -20
+    icon:
+      sprite: _FarHorizons/Interface/Actions/actions_custom_frame.rsi
+      state: trait_overclocking_off
+    iconOn:
+      sprite: _FarHorizons/Interface/Actions/actions_custom_frame.rsi
+      state: trait_overclocking_on
+    useDelay: 10
+  - type: InstantAction
+    event: !type:OverclockingTraitEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionCustomTraitRepairNanites
+  name: Repair Nanites Toggle
+  description: Activate your repair nanites.
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    priority: -20
+    icon:
+      sprite: _FarHorizons/Interface/Actions/actions_custom_frame.rsi
+      state: trait_repair_off
+    iconOn:
+      sprite: _FarHorizons/Interface/Actions/actions_custom_frame.rsi
+      state: trait_repair_on
+    useDelay: 5
+  - type: InstantAction
+    event: !type:RepairNanitesTraitEvent
+
+- type: entity
+  parent: ActionIntrinsicStore
+  id: ActionCustomTraitLanguageDatabase
+  name: Language Database
+  description: Swap out languages on the go!
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    icon:
+      sprite: _FarHorizons/Interface/Actions/actions_custom_frame.rsi
+      state: trait_language_database

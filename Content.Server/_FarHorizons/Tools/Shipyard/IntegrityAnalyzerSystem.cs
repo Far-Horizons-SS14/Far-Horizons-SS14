@@ -19,15 +19,15 @@ using Content.Shared.Damage.Components;
 
 namespace Content.Server.FarHorizons.Tools.Shipyard.Systems;
 
-public sealed class IntegrityAnalyzerSystem : EntitySystem
+public sealed partial class IntegrityAnalyzerSystem : EntitySystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly PowerCellSystem _cell = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedDoAfterSystem _doAfterSystem = default!;
-    [Dependency] private readonly ItemToggleSystem _toggle = default!;
-    [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
-    [Dependency] private readonly TransformSystem _transformSystem = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private PowerCellSystem _cell = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedDoAfterSystem _doAfterSystem = default!;
+    [Dependency] private ItemToggleSystem _toggle = default!;
+    [Dependency] private UserInterfaceSystem _uiSystem = default!;
+    [Dependency] private TransformSystem _transformSystem = default!;
 
     public override void Initialize()
     {
@@ -78,14 +78,14 @@ public sealed class IntegrityAnalyzerSystem : EntitySystem
     private void OnAfterInteract(Entity<IntegrityAnalyzerComponent> uid, ref AfterInteractEvent args)
     {
         if (args.Target == null 
-            || !TryComp<DamageableComponent>(args.Target, out var damageableComponent)
+            || !TryComp<InjurableComponent>(args.Target, out var injurableComponent)
             || HasComp<MobStateComponent>(args.Target)
             || !_cell.HasDrawCharge(uid.Owner, user: args.User))
             return;
         
         if (uid.Comp.DamageContainers != null 
-            && damageableComponent.DamageContainerID != null 
-            && !uid.Comp.DamageContainers.Contains(damageableComponent.DamageContainerID))
+            && injurableComponent.DamageContainer != null 
+            && !uid.Comp.DamageContainers.Contains(injurableComponent.DamageContainer.Value))
             return;
 
         _audio.PlayPvs(uid.Comp.ScanningBeginSound, uid);

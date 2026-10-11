@@ -1,0 +1,29 @@
+- type: entity
+  id: LeftHandImplantHypoClaws 
+  name: Left Hand HypoClaws Implant 
+  description: Gives you retractable Hypo Claws!
+  parent: BaseEntityHandImplant
+  components:
+  - type: Sprite
+    state: l_hand_implant_claws 
+  - type: Organ 
+    category: HandLeftImplant 
+  - type: FunctionalOrgan
+    comps:
+    - type: InherentAction
+      action: ActionRetractableItemHypoClaws
+
+- type: entity
+  id: RightHandImplantHypoClaws 
+  name: Right Hand HypoClaws Implant 
+  description: Gives you retractable Hypo Claws!
+  parent: BaseEntityHandImplant
+  components:
+  - type: Sprite
+    state: r_hand_implant_claws 
+  - type: Organ 
+    category: HandRightImplant 
+  - type: FunctionalOrgan
+    comps:
+    - type: InherentAction
+      action: ActionRetractableItemHypoClaws

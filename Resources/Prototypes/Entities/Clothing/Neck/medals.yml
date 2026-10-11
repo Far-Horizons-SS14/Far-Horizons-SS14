@@ -127,26 +127,26 @@
       - Medal
       - WhitelistChameleon
 
-- type: entity
-  parent: ClothingNeckBase
-  id: ClothingNeckSecuritymedal
-  name: security medal
-  description: Given for the best work in the security department.
-  components:
-  - type: Sprite
-    sprite: Clothing/Neck/Medals/securitymedal.rsi
-  - type: Clothing
-    sprite: Clothing/Neck/Medals/securitymedal.rsi
-    # Far Horizons-Start Add pin slot
-    quickEquip: true
-    slots:
-      - neck
-      - pin
-    # Far Horizons-End
-  - type: Tag
-    tags:
-      - Medal
-      - WhitelistChameleon
+# - type: entity
+#   parent: ClothingNeckBase
+#   id: ClothingNeckSecuritymedal
+#   name: security medal
+#   description: Given for the best work in the security department.
+#   components:
+#   - type: Sprite
+#     sprite: Clothing/Neck/Medals/securitymedal.rsi
+#   - type: Clothing
+#     sprite: Clothing/Neck/Medals/securitymedal.rsi
+#     # Far Horizons-Start Add pin slot
+#     quickEquip: true
+#     slots:
+#       - neck
+#       - pin
+#     # Far Horizons-End
+#   - type: Tag
+#     tags:
+#       - Medal
+#       - WhitelistChameleon
 
 - type: entity
   parent: ClothingNeckBase

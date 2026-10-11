@@ -1,5 +1,6 @@
 using Content.Shared._FarHorizons.LimbDamage.Components;
 using Content.Shared._FarHorizons.Silicons.HumanoidEMP;
+using Content.Shared._FarHorizons.Vampire;
 using Content.Shared.Body.Events;
 using Content.Shared.Gibbing;
 using Content.Shared.Humanoid;
@@ -24,6 +25,7 @@ public sealed partial class BodySystem
         SubscribeLocalEvent<BodyComponent, LimbHitCheckEvent>(RefRelayBodyEvent); // Far Horizons
         SubscribeLocalEvent<BodyComponent, LimbScatterHitTargetCheckEvent>(RefRelayBodyEvent); // Far Horizons
         SubscribeLocalEvent<BodyComponent, GatherOrganEmpEffectEvent>(RefRelayBodyEvent); // Far Horizons
+        SubscribeLocalEvent<BodyComponent, MakeVampireOrganEvent>(RefRelayBodyEvent); // Far Horizons
         SubscribeLocalEvent<BodyComponent, RejuvenateEvent>(RelayBodyEvent); // Far Horizons
     }
 

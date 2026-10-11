@@ -13,7 +13,7 @@ namespace Content.Client.Power.Generation.Teg;
 /// </para>
 /// </remarks>
 /// <seealso cref="TegCirculatorComponent"/>
-public sealed class TegSystem : EntitySystem
+public sealed partial class TegSystem : EntitySystem
 {
     private static readonly EntProtoId ArrowPrototype = "TegCirculatorArrow";
 

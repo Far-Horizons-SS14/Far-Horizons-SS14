@@ -10,7 +10,7 @@ namespace Content.Shared.NukeOps;
 /// <summary>
 /// This is used for tagging a mob as a nuke operative.
 /// </summary>
-[RegisterComponent, NetworkedComponent]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class NukeOperativeComponent : Component
 {
 
@@ -18,5 +18,6 @@ public sealed partial class NukeOperativeComponent : Component
     ///
     /// </summary>
     [DataField("syndStatusIcon", customTypeSerializer: typeof(PrototypeIdSerializer<FactionIconPrototype>))]
+    [AutoNetworkedField]
     public string SyndStatusIcon = "SyndicateFaction";
 }

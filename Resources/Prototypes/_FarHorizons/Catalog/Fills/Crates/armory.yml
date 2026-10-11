@@ -1,14 +1,142 @@
 - type: entity
   parent: [ CrateWeaponSecure, BaseSecurityContraband ]
   id: CrateArmorySMGLight
-  name: Light SMG crate
-  description: Contains two P2-91s with four mags. Requires Armory access to open.
+  name: Light SMG Crate
+  description: Contains two Sparvs with four mags. Requires Armory access to open.
   components:
   - type: EntityTableContainerFill
     containers:
       entity_storage: !type:AllSelector
         children:
-        - id: WeaponSubMachineGunP291
+        - id: WeaponSubMachineGunSparv
           amount: 2
         - id: MagazinePistolSubMachineGunSP
           amount: 4
+
+- type: entity
+  parent: [ CrateWeaponSecure, BaseSecurityContraband ]
+  id: CrateArmoryCivilianMk58
+  name: Civilian Mk 58 Crate
+  description: Contains two Civilian Mk 58s with four mags. Requires Armory access to open.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: WeaponPistolMk58Civilian
+          amount: 2
+        - id: MagazinePistolCivilianSP
+          amount: 4          
+
+- type: entity
+  parent: [ CrateWeaponSecure, BaseSecurityContraband ]
+  id: CrateArmoryCivilianMKS
+  name: Civilian MK-S Crate
+  description: Contains two Civilian MK-Ss with four mags. Requires Armory access to open.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: WeaponPistolMKSCivilian
+          amount: 2
+        - id: MagazinePistolCivilianSP
+          amount: 4
+
+- type: entity
+  parent: [ CrateWeaponSecure, BaseSecurityContraband ]
+  id: CrateArmoryCivilianMKT
+  name: Civilian MK-T Crate
+  description: Contains two Civilian MK-Ts with four mags. Requires Armory access to open.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: WeaponPistolMKTCivilian
+          amount: 2
+        - id: MagazinePistolCivilianSP
+          amount: 4
+
+- type: entity
+  parent: [ CrateWeaponSecure, BaseSecurityContraband ]
+  id: CrateArmoryCivilianInstigator
+  name: Civilian Instigator Crate
+  description: Contains two Civilian Instigators with four speed loaders. Requires Armory access to open.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: WeaponRevolverInstigatorCivilian
+          amount: 2
+        - id: SpeedLoaderRevolver38CivilianSP
+          amount: 4
+
+- type: entity
+  parent: [ CrateWeaponSecure, BaseSecurityContraband ]
+  id: CrateArmoryCivilianLever
+  name: Swordfish Lever-Action Crate
+  description: Contains two Swordfish Lever-Actions with four speed loaders. Requires Armory access to open.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: WeaponLeverActionCivilian
+          amount: 2
+        - id: SpeedLoaderLeverCivilianMagnumSP
+          amount: 4
+
+- type: entity
+  parent: [ CrateWeaponSecure, BaseSecurityContraband ]
+  id: CrateArmoryPistolAmmo
+  name: 9mm Pistol SP Ammo Crate
+  description: Contains 480 rounds of 9mm Pistol SP ammo. Requires Armory access to open.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: MagazineBoxPistolSP
+          amount: 4
+
+- type: entity
+  parent: [ CrateWeaponSecure, BaseSecurityContraband ]
+  id: CrateArmoryMagnumAmmo
+  name: .44 Magnum SP Ammo Crate
+  description: Contains 480 rounds of .44 Magnum SP ammo. Requires Armory access to open.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: MagazineBoxMagnumSP
+          amount: 15 
+
+- type: entity
+  parent: [ CrateWeaponSecure, BaseSecurityContraband ]
+  id: CrateArmoryRevolverAmmo
+  name: .38 Special SP Ammo Crate
+  description: Contains 480 rounds of .38 Special SP ammo. Requires Armory access to open.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: MagazineBoxRevolver38SP
+          amount: 5
+          
+- type: entity
+  parent: [ CrateWeaponSecure, BaseSecurityContraband ]
+  id: CrateTrackingImplantsNS
+  name: Tracking Implants (NS)
+  description: Contains a handful of NeoSol tracking implanters. Good for prisoners you'd like to release but still keep track of.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage:
+        id: TrackingImplanterNS
+        amount: 5
+  - type: AccessReader
+    access: [["ArmoryNS"]]

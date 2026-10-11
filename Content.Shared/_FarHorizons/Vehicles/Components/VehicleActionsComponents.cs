@@ -1,7 +1,7 @@
 using Robust.Shared.Prototypes;
 using Robust.Shared.GameStates;
 
-namespace Content.Shared._FarHorizons.Vehicles.Components;
+namespace Content.Shared._FarHorizons.Vehicles;
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState(true)]
 public sealed partial class VehicleActionsComponent : Component

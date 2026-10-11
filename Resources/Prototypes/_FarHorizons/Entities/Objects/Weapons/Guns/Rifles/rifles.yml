@@ -64,24 +64,24 @@
     zeroVisible: true
   - type: Appearance
 
-#region Stock IFV-50
+#region Stock Hannibal
 - type: entity
-  name: IFV-50
+  name: Hannibal
   parent: [ BaseWeaponRifle, BaseSecurityContraband ]
-  id: WeaponRifleIFV-50
+  id: WeaponRifleHannibal
   description: A hard-hitting but slow firing high end military grade battle rifle with a two round burst reciever. Feeds from .38 special magazines.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Objects/Weapons/Guns/Rifles/IFV-50/ifv-50_x64x32.rsi
+    sprite: _FarHorizons/Objects/Weapons/Guns/Rifles/Hannibal/Hannibal_x64x32.rsi
     layers:
     - state: base
       map: [ "enum.GunVisualLayers.Base" ]
     - state: mag-0
       map: [ "enum.GunVisualLayers.Mag" ]
   - type: Clothing
-    sprite: _FarHorizons/Objects/Weapons/Guns/Rifles/IFV-50/ifv-50_x32.rsi
+    sprite: _FarHorizons/Objects/Weapons/Guns/Rifles/Hannibal/Hannibal_x32.rsi
   - type: Item
-    sprite: _FarHorizons/Objects/Weapons/Guns/Rifles/IFV-50/ifv-50_x64x64.rsi
+    sprite: _FarHorizons/Objects/Weapons/Guns/Rifles/Hannibal/Hannibal_x64x64.rsi
   - type: GunWieldBonus #2-4 Deviation (Stock)
     minAngle: -18 # 2
     maxAngle: -28 # 4
@@ -134,7 +134,7 @@
     delay: 1.5
   - type: Tag
     tags:
-    - IFV-50
+    - Hannibal
 #region =NanoTrasen=
 
 
@@ -165,9 +165,10 @@
     magState: mag
     steps: 5
     zeroVisible: true
+  - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset # Holo-Sights
-    maxOffset: 0.5
-    pvsIncrease: 0.3
+    maxOffset: 2.5
+    pvsIncrease: 0.25
   - type: ChamberMagazineAmmoProvider
     autoEject: true
   - type: UseDelay # Grip
@@ -176,25 +177,62 @@
     walkModifier: 0.95
     sprintModifier: 0.95
 
-#region IFV-50-T
+#region consortium Lecter Type-T
+
 - type: entity
-  name: IFV-50-T
-  parent: [ WeaponRifleIFV-50 ]
-  id: WeaponRifleIFV-50T
-  description: A modified burst IFV-50 platform utilized by NanoTrasen, it packs a vertical grip and shorter stock for easier handling in space-station environments, a scope for the rare encounter at range as well as electronic status lights. Feeds from .38 Special Magazines.
+  name: Lecter Type-T
+  parent: WeaponRifleLecter
+  id: WeaponRifleLecterC
+  description: "A modifed Lecter platform utilized by NanoTrasen with a simple angled grip and holographic sights for easy target acquisition, as well as electronic status lights. Feeds from 5.56 Magazines."
+  suffix: C
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/Rifles/nt_lecter.rsi
+    layers:
+    - state: base
+      map: [ "enum.GunVisualLayers.Base" ]
+    - state: mag-0
+      map: [ "enum.GunVisualLayers.Mag" ]
+  - type: GunWieldBonus #1-5 Deviation / Holo-Sights
+    minAngle: -20
+    maxAngle: -27
+  - type: Clothing
+    sprite: _FarHorizons/Objects/Weapons/Guns/Rifles/nt_lecter.rsi
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: true
+  - type: CursorOffsetRequiresWield
+  - type: EyeCursorOffset # Holo-Sights
+    maxOffset: 2.5
+    pvsIncrease: 0.25
+  - type: ChamberMagazineAmmoProvider
+    autoEject: true
+  - type: UseDelay # Grip
+    delay: 0.5
+  - type: SpeedModifiedOnWield # Light Stock
+    walkModifier: 0.95
+    sprintModifier: 0.95
+
+#region Hannibal-T
+- type: entity
+  name: Hannibal-T
+  parent: [ WeaponRifleHannibal ]
+  id: WeaponRifleHannibalT
+  description: A modified burst Hannibal platform utilized by NanoTrasen, it packs a vertical grip and shorter stock for easier handling in space-station environments, a scope for the rare encounter at range as well as electronic status lights. Feeds from .38 Special Magazines.
   suffix: NT
   components:
   - type: Sprite
-    sprite: _FarHorizons/Objects/Weapons/Guns/Rifles/NT_IFV-50/ifv-50_x64x32.rsi
+    sprite: _FarHorizons/Objects/Weapons/Guns/Rifles/NT_Hannibal/Hannibal_x64x32.rsi
     layers:
     - state: base
       map: [ "enum.GunVisualLayers.Base" ]
     - state: mag-0
       map: [ "enum.GunVisualLayers.Mag" ]
   - type: Clothing
-    sprite: _FarHorizons/Objects/Weapons/Guns/Rifles/NT_IFV-50/ifv-50_x32.rsi
+    sprite: _FarHorizons/Objects/Weapons/Guns/Rifles/NT_Hannibal/Hannibal_x32.rsi
   - type: Item
-    sprite: _FarHorizons/Objects/Weapons/Guns/Rifles/NT_IFV-50/ifv-50_x64x64.rsi
+    sprite: _FarHorizons/Objects/Weapons/Guns/Rifles/NT_Hannibal/Hannibal_x64x64.rsi
   - type: MagazineVisuals
     magState: mag
     steps: 5
@@ -210,7 +248,7 @@
         allowMovement: true
       - name: 1.5x
         zoom: 1.5
-        offset: 7
+        offset: 0
         doAfter: 0
         allowMovement: true
   - type: ChamberMagazineAmmoProvider
@@ -262,7 +300,6 @@
       types:
         Slash: 22 # Bit better than combat knife which clocks in at 18 damage/s
     soundHit: /Audio/Weapons/bladeslice.ogg
-    angle: 0
     animation: WeaponArcThrust
   - type: AltFireMelee
     attackType: Heavy
@@ -272,25 +309,25 @@
     walkModifier: 0.90
     sprintModifier: 0.90
 
-#region IFV-50-S
+#region Hannibal-S
 - type: entity
-  name: IFV-50-S
-  parent: [ WeaponRifleIFV-50 ]
-  id: WeaponRifleIFV-50S
-  description: A modified burst IFV-50 platform utilized by NeoSol, it more resembles a Designated Marksman Rifle rather than a Battle Rifle with it's extended barrel and stock. Also has a Gunsword for additional lethality at close range. Feeds from .38 Special Magazines.
+  name: Hannibal-S
+  parent: [ WeaponRifleHannibal ]
+  id: WeaponRifleHannibalS
+  description: A modified burst Hannibal platform utilized by NeoSol, it more resembles a Designated Marksman Rifle rather than a Battle Rifle with it's extended barrel and stock. Also has a Gunsword for additional lethality at close range. Feeds from .38 Special Magazines.
   suffix: NS
   components:
   - type: Sprite
-    sprite: _FarHorizons/Objects/Weapons/Guns/Rifles/NS_IFV-50/ifv-50_x64x32.rsi
+    sprite: _FarHorizons/Objects/Weapons/Guns/Rifles/NS_Hannibal/Hannibal_x64x32.rsi
     layers:
     - state: base
       map: [ "enum.GunVisualLayers.Base" ]
     - state: mag-0
       map: [ "enum.GunVisualLayers.Mag" ]
   - type: Clothing
-    sprite: _FarHorizons/Objects/Weapons/Guns/Rifles/NS_IFV-50/ifv-50_x32.rsi
+    sprite: _FarHorizons/Objects/Weapons/Guns/Rifles/NS_Hannibal/Hannibal_x32.rsi
   - type: Item
-    sprite: _FarHorizons/Objects/Weapons/Guns/Rifles/NS_IFV-50/ifv-50_x64x64.rsi
+    sprite: _FarHorizons/Objects/Weapons/Guns/Rifles/NS_Hannibal/Hannibal_x64x64.rsi
   - type: MagazineVisuals
     magState: mag
     steps: 5
@@ -305,7 +342,6 @@
       types:
         Slash: 30 # Better than Bladed Lector which is 22/s -> This is 24/s
     soundHit: /Audio/Weapons/bladeslice.ogg
-    angle: 0
     animation: WeaponArcThrust
   - type: Scope
     canUseInsideContainer: true
@@ -329,6 +365,7 @@
     walkModifier: 0.90
     sprintModifier: 0.90
 
+
 #region =Syndicate=
 
 
@@ -342,7 +379,7 @@
   parent: [BaseWeaponRifle, BaseSyndicateContraband]
   id: WeaponRifleLecterS
   description: "An illegal modifcation of the Lecter platform utilized by the Syndicate with a compact profile for ease of use with an entire chainsaw stuck on the end to make getting into melee with this thing downright lethal. Feeds from 5.56 Magazines."
-  suffix: S
+  suffix: NS
   components:
   - type: Sprite
     sprite: _FarHorizons/Objects/Weapons/Guns/Rifles/s_lecter.rsi

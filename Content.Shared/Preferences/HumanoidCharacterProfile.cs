@@ -146,7 +146,9 @@ namespace Content.Shared.Preferences
             Dictionary<string, RoleLoadout> loadouts,
             List<string> cybernetics, // Starlight
             bool enabled,
-            RoleLoadout? speciesLoadout) // Far Horizons
+            RoleLoadout? speciesLoadout, // Far Horizons
+            PlayerProvidedCharacterRecords? cdCharacterRecords = null // Far Horizons
+            )
         {
             Name = name;
             Symspeech = symspeech;
@@ -171,6 +173,7 @@ namespace Content.Shared.Preferences
             Cybernetics = cybernetics; // Starlight
             Enabled = enabled;
             SpeciesLoadout = speciesLoadout;
+            CDCharacterRecords = cdCharacterRecords ?? PlayerProvidedCharacterRecords.DefaultRecords(); // Far Horizons
         }
 
         /// <summary>Copy constructor</summary>
@@ -197,15 +200,9 @@ namespace Content.Shared.Preferences
                 new Dictionary<string, RoleLoadout>(other.Loadouts),
                 other.Cybernetics, // Starlight
                 other.Enabled,
-                other.SpeciesLoadout) // Far Horizons
-        {
-            // Cosmatic Drift Record System-start
-            CDCharacterRecords = other.CDCharacterRecords != null
-                ? new PlayerProvidedCharacterRecords(other.CDCharacterRecords)
-                : PlayerProvidedCharacterRecords.DefaultRecords();
-            CDCharacterRecords.EnsureValid();
-            // Cosmatic Drift Record System-end
-        }
+                other.SpeciesLoadout, // Far Horizons
+                other.CDCharacterRecords // Far Horizons
+                ) { }
 
         /// <summary>
         ///     Get the default humanoid character profile, using internal constant values.
@@ -654,16 +651,13 @@ namespace Content.Shared.Preferences
             }
 
             var allCybernetics = CyberneticImplant.GetAllCybernetics(prototypeManager);
-            var installedCybernetics = allCybernetics.Where(p => Cybernetics.Contains(p.ID))
-                                       .ToList();
-            if (installedCybernetics.Select(p => p.Cost).Sum() <= speciesPrototype.RoundstartCyberwareCapacity)
-            {
-                Cybernetics = installedCybernetics.Select(p => p.ID).ToList();
-            }
-            else
-            {
-                Cybernetics = [];
-            }
+            // Far Horizons start
+            var installedCybernetics = allCybernetics.Where(p => Cybernetics.Contains(p.Id)).ToList();
+            Cybernetics =
+                installedCybernetics.Select(p => p.Cost).Sum() <= GetProfileCyberwareCapacity(prototypeManager)
+                    ? installedCybernetics.Select(p => p.Id).ToList()
+                    : [];
+            // Far Horizons end
             // Starlight - End
 
             string flavortext;
@@ -784,6 +778,7 @@ namespace Content.Shared.Preferences
             // Track points count for each group.
             var groups = new Dictionary<string, int>();
             var result = new List<ProtoId<TraitPrototype>>();
+            var totalInGroup = new Dictionary<string, int>(); // Far Horizons
 
             foreach (var trait in traits)
             {
@@ -807,6 +802,16 @@ namespace Content.Shared.Preferences
                 // Too expensive.
                 if (existing > category.MaxPoints) // Starlight
                     continue;
+                
+                // Far Horizons start
+                var total = totalInGroup.GetOrNew(category.ID);
+                total += 1;
+
+                if (total > category.MaxTraits)
+                    continue;
+                
+                totalInGroup[category.ID] = total;
+                // Far Horizons end
 
                 groups[category.ID] = existing;
                 result.Add(trait);

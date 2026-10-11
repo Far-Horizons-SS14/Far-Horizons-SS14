@@ -45,8 +45,6 @@
   abstract: true
   parent: BasePaperLabelable # We use this instead of BasePaperLabelableVisualized because WrappedParcel needs its own GenericVisualizer component for the parcel itself, and WrappedParcelHumanoid currently doesn't have label sprites at all
   id: BaseWrappedParcel
-  name: wrapped parcel
-  description: Something wrapped up in paper. I wonder what's inside...
   components:
   - type: Physics
     bodyType: Dynamic
@@ -66,6 +64,7 @@
         volume: -4
     unwrapTrash: ParcelWrapTrash
   - type: Damageable
+  - type: Injurable
     damageContainer: Inorganic
   - type: Destructible
     thresholds:
@@ -99,6 +98,8 @@
 - type: entity
   parent: [ BaseItem, BaseWrappedParcel ]
   id: WrappedParcel
+  name: wrapped parcel
+  description: Something wrapped up in paper. I wonder what's inside...
   components:
   - type: Appearance
   - type: GenericVisualizer
@@ -107,7 +108,7 @@
         enum.WrappedParcelVisuals.Layer:
           "Tiny": { state: "parcel-tiny" }
           "Small": { state: "parcel-small" }
-          "Medium": { state: "parcel-medium" }
+          "Normal": { state: "parcel-medium" } #FH Edit- ITs normal not medium somehow...
           "Large": { state: "parcel-medium" }
           "Huge": { state: "parcel-large" }
           "Ginormous": { state: "parcel-large" }
@@ -121,6 +122,24 @@
           Bounty: { state: bounty }
           CaptainsPaper: { state: captains_paper }
           Invoice: { state: invoice }
+      #FH Start
+      enum.TamperSealVisuals.Size:
+        enum.TamperSealLayers.Sealed:
+          "Tiny": { state: "tiny-seal" }
+          "Small": { state: "small-seal" }
+          "Normal": { state: "medium-seal" }
+          "Large": { state: "medium-seal" }
+          "Huge": { state: "large-seal" }
+          "Ginormous": { state: "large-seal" }
+      enum.FactionTamperSealVisuals.Size:
+        enum.FactionTamperSealLayers.Sealed:
+          "Tiny": { state: "tiny-factionseal" }
+          "Small": { state: "small-factionseal" }
+          "Normal": { state: "medium-factionseal" }
+          "Large": { state: "medium-factionseal" }
+          "Huge": { state: "large-factionseal" }
+          "Ginormous": { state: "large-factionseal" }
+      #FH End
   - type: Sprite
     sprite: Objects/Misc/ParcelWrap/wrapped_parcel.rsi
     layers:
@@ -130,10 +149,23 @@
       visible: false
       sprite: Objects/Misc/ParcelWrap/paper_labels.rsi
       map: ["enum.PaperLabelVisuals.Layer"]
+  #FH Start
+    - state: tiny-seal
+      sprite: _FarHorizons/Structures/Storage/tamper_seal_parcel.rsi
+      visible: false
+      map: [ "enum.TamperSealLayers.Sealed" ]
+    - state: tiny-factionseal
+      sprite: _FarHorizons/Structures/Storage/tamper_seal_parcel.rsi
+      visible: false
+      map: [ "enum.FactionTamperSealLayers.Sealed" ]
+  - type: TamperSealable
+    destroyToolQualities: [ Cutting, Slicing ]
+  #FH End
 
 - type: entity
   parent: BaseWrappedParcel
   id: WrappedParcelHumanoid
+  name: wrapped parcel
   description: Something wrapped up in paper. It's suspiciously human-shaped.
   components:
   - type: Physics

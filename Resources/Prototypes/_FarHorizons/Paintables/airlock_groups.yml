@@ -18,6 +18,8 @@
     science: FHAirlockScience
     security: FHAirlockSecurity
     virology: FHAirlockVirology
+    liaison: FHAirlockLiaison
+    quartermaster: FHAirlockQuartermaster
 
 - type: paintableGroup
   id: FHAirlockGlass
@@ -38,3 +40,15 @@
     science: FHAirlockScienceGlass
     security: FHAirlockSecurityGlass
     virology: FHAirlockVirologyGlass
+    liaison: FHAirlockLiaisonGlass
+    quartermaster: FHAirlockQuartermasterGlass
+
+- type: paintableGroup
+  id: SolidSecretDoor #secret doors are a type of door, which is close enough. not like there is a better place for this anyways
+  time: 2
+  cost: 1
+  defaultStyle: generic
+  styles:
+    nanotrasen: SolidSecretDoor
+    generic: SolidSecretDoorGeneric
+    neosol: SolidSecretDoorNS

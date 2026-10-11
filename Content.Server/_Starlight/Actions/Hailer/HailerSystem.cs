@@ -9,13 +9,13 @@ using Robust.Shared.Audio.Systems;
 
 namespace Content.Server._Starlight.Actions.Hailer;
 
-public sealed class HailerSystem : EntitySystem
+public sealed partial class HailerSystem : EntitySystem
 {
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly ChatSystem _chat = default!;
-    [Dependency] private readonly ActionsSystem _actions = default!;
-    [Dependency] private readonly InventorySystem _inventory = default!;
-    [Dependency] private readonly UseDelaySystem _useDelay = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private ChatSystem _chat = default!;
+    [Dependency] private ActionsSystem _actions = default!;
+    [Dependency] private InventorySystem _inventory = default!;
+    [Dependency] private UseDelaySystem _useDelay = default!;
 
     public override void Initialize()
     {
@@ -28,14 +28,14 @@ public sealed class HailerSystem : EntitySystem
 
     private void OnEquipped(EntityUid uid, HailerComponent component, GotEquippedEvent args)
     {
-        _actions.AddAction(args.Equipee, ref component.ActionEntity, component.Action);
+        _actions.AddAction(args.EquipTarget, ref component.ActionEntity, component.Action);
     }
 
     private void OnUnequipped(EntityUid uid, HailerComponent component, GotUnequippedEvent args)
     {
         if (component.ActionEntity != null)
         {
-            _actions.RemoveAction(args.Equipee, component.ActionEntity);
+            _actions.RemoveAction(args.EquipTarget, component.ActionEntity);
             component.ActionEntity = null;
         }
     }

@@ -113,10 +113,17 @@
 
 - type: entity
   parent:
+  - ActiveCritBase
   - AppearanceCyclorite
   - BaseMobCyclorite
   id: MobCyclorite
   name: Urist Cyclorite
+  components:
+    - type: MobThresholds
+      thresholds:
+        0: Alive
+        120: ActiveCritical
+        240: Dead
 
 # Organs
 
@@ -271,16 +278,14 @@
   - type: Metabolizer
     solutionOnBody: false
     metabolizerTypes: [ Slime ]
-  - type: SolutionContainerManager
-    solutions:
-      food: {}
-      Lung:
-        maxVol: 100.0
-        canReact: false
 
 - type: entity
-  parent: [ OrganBaseHeart, OrganCycloriteInternal, OrganCycloriteMetabolizer ]
+  parent: [ OrganBaseHeart, OrganCycloriteInternal, OrganCycloriteMetabolizer ] 
   id: OrganCycloriteHeart
+  components: 
+  - type: Metabolizer
+    maxReagents: 2
+    metabolizerTypes: [ Cyclorite ] 
 
 - type: entity
   parent: [ OrganBaseStomach, OrganCycloriteInternal, OrganCycloriteMetabolizer ]

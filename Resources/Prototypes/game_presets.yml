@@ -37,6 +37,7 @@
   minPlayers: 40
   description: all-at-once-description
   showInVote: false
+  faction: FactionNT # Far Horizons
   rules:
     - Nukeops
     - Traitor
@@ -61,6 +62,7 @@
   description: aller-at-once-description
   showInVote: false #Please god dont do this
   minPlayers: 40
+  faction: FactionNT # Far Horizons
   rules:
     - Nukeops
     - Traitor
@@ -154,10 +156,11 @@
   description: traitor-description
   minPlayers: 4
   showInVote: true # 🌟Starlight🌟
+  faction: FactionNT # Far Horizons
   rules:
   # - DummyNonAntagChance 🌟Starlight🌟
   - Traitor
-  - SubGamemodesRuleNoChangelings #Starlight
+  - SubGamemodesRuleNoChangelingsNoXenoborgs #Far Horizons - Fuck off Xenoborgs.
   - BasicStationEventScheduler
   - MeteorSwarmScheduler
   - SpaceTrafficControlEventScheduler
@@ -186,10 +189,11 @@
   description: nukeops-description
   minPlayers: 40
   showInVote: true # 🌟Starlight🌟
+  faction: FactionNT # Far Horizons
   rules:
   - Nukeops
   # - DummyNonAntagChance 🌟Starlight🌟
-  - SubGamemodesRule
+  - SubGamemodesRuleNoXenoborg #Far Horizons - Xenoborgs are now turning into a major antag, no more nukeops/xenoborg combo.
   - BasicStationEventScheduler
   - MeteorSwarmScheduler
   - SpaceTrafficControlEventScheduler
@@ -208,7 +212,7 @@
   rules:
   # - DummyNonAntagChance 🌟Starlight🌟
   - Revolutionary
-  - SubGamemodesRule
+  - SubGamemodesRuleNoXenoborg #Far Horizons - Xenoborgs are now turning into a major antag, no more rev/xenoborg combo.
   - BasicStationEventScheduler
   - MeteorSwarmScheduler
   - SpaceTrafficControlEventScheduler
@@ -224,7 +228,7 @@
   rules:
   - Wizard
   # - DummyNonAntagChance 🌟Starlight🌟
-  - SubGamemodesRuleNoWizard #No Dual Wizards at the start, midround is fine
+  - SubGamemodesRuleNoWizardNoXenoborg #No Dual Wizards at the start, midround is fine -- #Far Horizons - Also fuck off Xenoborgs.
   - BasicStationEventScheduler
   - MeteorSwarmScheduler
   - SpaceTrafficControlEventScheduler
@@ -240,7 +244,7 @@
   rules:
   - Xenoborgs
   # - DummyNonAntagChance 🌟Starlight🌟
-  - SubGamemodesRuleNoWizardNoXenoborg # no two motherships
+  - SubGamemodesRuleNoXenoborg # no two motherships - #Far Horizons - I enabled Wizards to spawn on Xenoborgs, because why the fuck not?
   - BasicStationEventScheduler
   - MeteorSwarmScheduler
   - SpaceTrafficControlEventScheduler
@@ -311,7 +315,7 @@
   showInVote: false
   rules:
     - SLChangeling #Starlight
-    - SubGamemodesRule
+    - SubGamemodesRuleNoXenoborg #Far Horizons - Xenoborgs are now a major antag. No more including in this.
     - BasicStationEventScheduler
     - BasicRoundstartVariation
 
@@ -324,10 +328,11 @@
   description: traitorling-description
   showInVote: true #Starlight
   minPlayers: 50 #Starlight
+  faction: FactionNT # Far Horizons
   rules:
     - SLChangeling #Starlight
     - Traitor
-    - SubGamemodesRuleNoChangelings #Starlight
+    - SubGamemodesRuleNoXenoborgsMaybeTraitorLingx2 #Far Horizons - Xenoborgs are now a major antag. No more including in this.
     - BasicStationEventScheduler
     - BasicRoundstartVariation
 
@@ -355,11 +360,12 @@
   description: shitstation-description
   showInVote: true
   minPlayers: 60
+  faction: FactionNT # Far Horizons
   rules:
     - DerelictGenericCyborgSpawn
     - BasicStationEventScheduler
     - MeteorSwarmMildScheduler
-    - SubGamemodesRuleNoChangelings #Far Horizons
+    - SubGamemodesRuleNoXenoborg #Far Horizons - Changed from no extra changelings to no Xenoborgs. Would rather more changelings than xenoborgs.
     - IonStorm
     - CockroachMigration
     - MouseMigration

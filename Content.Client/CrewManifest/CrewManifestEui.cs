@@ -6,7 +6,7 @@ using JetBrains.Annotations;
 namespace Content.Client.CrewManifest;
 
 [UsedImplicitly]
-public sealed class CrewManifestEui : BaseEui
+public sealed partial class CrewManifestEui : BaseEui
 {
     private readonly CrewManifestUi _window;
 

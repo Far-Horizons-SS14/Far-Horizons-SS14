@@ -118,14 +118,14 @@ public sealed partial class IPCSystem
 
         if (TryComp<DamageableComponent>(ent, out var damageableComponent) &&
             _mobThreshold.TryGetThresholdForState(ent, MobState.Dead, out var thresholdDead) &&
-            _mobThreshold.TryGetThresholdForState(ent, MobState.Critical, out var thresholdCrit))
+            _mobThreshold.TryGetThresholdForState(ent, MobState.ActiveCritical, out var thresholdCrit))
         {
             var totalDamage = _damageable.GetPositiveDamage((ent, damageableComponent)).DamageDict
                 .Sum(p => (float)p.Value);
             if (totalDamage < thresholdCrit)
                 _state.ChangeMobState(ent, MobState.Alive);
             else if (totalDamage < thresholdDead)
-                _state.ChangeMobState(ent, MobState.Critical);
+                _state.ChangeMobState(ent, MobState.ActiveCritical);
         } else
             dead = true;
 

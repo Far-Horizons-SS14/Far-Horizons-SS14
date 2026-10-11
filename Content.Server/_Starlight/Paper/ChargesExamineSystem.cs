@@ -3,7 +3,7 @@ using Robust.Shared.Utility;
 
 namespace Content.Server._Starlight.Paper;
 
-public sealed class ChargesExamineSystem : EntitySystem
+public sealed partial class ChargesExamineSystem : EntitySystem
 {
     public override void Initialize()
     {

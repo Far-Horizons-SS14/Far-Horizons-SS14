@@ -36,6 +36,7 @@
 - type: entity
   parent: BaseSpeciesAppearance
   id: AppearanceArachnid
+  categories: [ HideSpawnMenu ]
   name: arachnid appearance
   components:
   - type: Inventory
@@ -68,6 +69,7 @@
 
 - type: entity
   parent:
+  - ActiveCritBase # FH
   - AppearanceArachnid
   - BaseSpeciesMobOrganic
   - BaseSpeciesPickupableLarge #FH
@@ -124,7 +126,7 @@
     bloodReferenceSolution:
       reagents:
       - ReagentId: CopperBlood
-        Quantity: 300
+        Quantity: 600
   - type: MeleeWeapon
     animation: WeaponArcBite
     soundHit:
@@ -142,7 +144,7 @@
   - type: Speech
     speechVerb: Arachnid
     speechSounds: Arachnid
-    allowedEmotes: ['Click', 'Chitter']
+    allowedEmotes: ['Click', 'Chitter', 'Hisses'] # FarHorizons
   - type: Vocal
     sounds:
       Male: UnisexArachnid
@@ -150,6 +152,10 @@
       Unsexed: UnisexArachnid
   - type: TypingIndicator
     proto: spider
+  - type: CreamPied
+    sprite:
+      sprite: Effects/creampie.rsi
+      state: creampie_arachnid
   - type: VisionOrganRequiredForVision # Far Horizons
   - type: LimbDamageable # Far Horizons
     proto: LimbTargetArachnid

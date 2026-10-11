@@ -3,14 +3,13 @@ using System.Linq;
 using Content.Server.Chat.Systems;
 using Content.Server.Containers;
 using Content.Server.StationRecords.Systems;
-using Content.Shared.Access.Components;
-using static Content.Shared.Access.Components.IdCardConsoleComponent;
-using Content.Shared.Access.Systems;
 using Content.Shared.Access;
+using Content.Shared.Access.Components;
+using Content.Shared.Access.Systems;
 using Content.Shared.Administration.Logs;
+using Content.Shared.CCVar;
 using Content.Shared.Construction;
 using Content.Shared.Containers.ItemSlots;
-using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Database;
 using Content.Shared.Roles;
@@ -18,29 +17,34 @@ using Content.Shared.StationRecords;
 using Content.Shared.Throwing;
 using JetBrains.Annotations;
 using Robust.Server.GameObjects;
+using Robust.Shared.Configuration;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using static Content.Shared.Access.Components.IdCardConsoleComponent;
 using Content.Shared.Chat; // Starlight
+using Content.Shared._FarHorizons.Factions; //FH
 using Content.Server._FarHorizons.Factions; // Far Horizons (since when are we marking imports?)
 
 namespace Content.Server.Access.Systems;
 
 [UsedImplicitly]
-public sealed class IdCardConsoleSystem : SharedIdCardConsoleSystem
+public sealed partial class IdCardConsoleSystem : SharedIdCardConsoleSystem
 {
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
-    [Dependency] private readonly StationRecordsSystem _record = default!;
-    [Dependency] private readonly UserInterfaceSystem _userInterface = default!;
-    [Dependency] private readonly AccessReaderSystem _accessReader = default!;
-    [Dependency] private readonly AccessSystem _access = default!;
-    [Dependency] private readonly IdCardSystem _idCard = default!;
-    [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly SharedContainerSystem _container = default!;
-    [Dependency] private readonly ThrowingSystem _throwing = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly ChatSystem _chat = default!;
-    [Dependency] private readonly IServerFactionManager _factions = default!; // Far Horizons
+    [Dependency] private IConfigurationManager _cfgManager = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
+    [Dependency] private StationRecordsSystem _record = default!;
+    [Dependency] private UserInterfaceSystem _userInterface = default!;
+    [Dependency] private AccessReaderSystem _accessReader = default!;
+    [Dependency] private AccessSystem _access = default!;
+    [Dependency] private IdCardSystem _idCard = default!;
+    [Dependency] private ISharedAdminLogManager _adminLogger = default!;
+    [Dependency] private SharedContainerSystem _container = default!;
+    [Dependency] private ThrowingSystem _throwing = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private ChatSystem _chat = default!;
+    [Dependency] private IServerFactionManager _factions = default!; // Far Horizons
+    [Dependency] private ISharedFactionManager _sharedfactions = default!; // Far Horizons
 
     public override void Initialize()
     {
@@ -186,12 +190,13 @@ public sealed class IdCardConsoleSystem : SharedIdCardConsoleSystem
             var targetAccessComponent = Comp<AccessComponent>(targetId);
 
             var jobProto = targetIdComponent.JobPrototype ?? new ProtoId<JobPrototype>(string.Empty);
+            var factionProto = targetIdComponent.Faction ?? new ProtoId<FactionPrototype>(string.Empty); //FH
             if (TryComp<StationRecordKeyStorageComponent>(targetId, out var keyStorage)
                 && keyStorage.Key is { } key
                 && _record.TryGetRecord<GeneralStationRecord>(key, out var record))
-            {
                 jobProto = record.JobPrototype;
-            }
+
+            var jobfactionproto = _sharedfactions.GetJobAssignment((factionProto, jobProto)); //FH
 
             newState = new IdCardConsoleBoundUserInterfaceState(
                 component.PrivilegedIdSlot.HasItem,
@@ -201,7 +206,11 @@ public sealed class IdCardConsoleSystem : SharedIdCardConsoleSystem
                 targetIdComponent.LocalizedJobTitle,
                 targetAccessComponent.Tags.ToList(),
                 possibleAccess,
-                jobProto,
+                //FH start
+                jobfactionproto != null
+                    ? jobfactionproto.ID
+                    : string.Empty, //if this is null, just ignore it
+                //FH end
                 privilegedIdName,
                 Name(targetId),
                 // Starlight-edit: Start
@@ -221,7 +230,7 @@ public sealed class IdCardConsoleSystem : SharedIdCardConsoleSystem
         string newFullName,
         string newJobTitle,
         List<ProtoId<AccessLevelPrototype>> newAccessList,
-        ProtoId<JobPrototype> newJobProto,
+        ProtoId<FactionJobAssignmentPrototype>? newJobProto, //FH
         EntityUid player,
         IdCardConsoleComponent? component = null)
     {
@@ -231,23 +240,39 @@ public sealed class IdCardConsoleSystem : SharedIdCardConsoleSystem
         if (component.TargetIdSlot.Item is not { Valid: true } targetId || !PrivilegedIdIsAuthorized(uid, component, out var privilegedId))
             return;
 
+        // Limit name and job title lengths
+        var maxNameLength = _cfgManager.GetCVar(CCVars.MaxNameLength);
+        var maxIdJobLength = _cfgManager.GetCVar(CCVars.MaxIdJobLength);
+
+        if (newFullName.Length > maxNameLength)
+            newFullName = newFullName[..maxNameLength];
+
+        if (newJobTitle.Length > maxIdJobLength)
+            newJobTitle = newJobTitle[..maxIdJobLength];
+
         _idCard.TryChangeFullName(targetId, newFullName, player: player);
         _idCard.TryChangeJobTitle(targetId, newJobTitle, player: player);
 
-        if (_prototype.TryIndex<JobPrototype>(newJobProto, out var job)
-            && _prototype.Resolve(_factions.OverrideJobIcon((_factions.DecideFactionForJob(job), job)), out var jobIcon)) // Far Horizons faction icon override
+        //FH start
+        if (_prototype.TryIndex(newJobProto, out var jobfactionproto)
+            &&_prototype.TryIndex(jobfactionproto.Job, out var job)
+            && _prototype.Resolve(_factions.OverrideJobIcon((jobfactionproto.Faction, job)), out var jobIcon))
         {
             _idCard.TryChangeJobIcon(targetId, jobIcon, player: player);
             _idCard.TryChangeJobDepartment(targetId, job);
+            _idCard.TryChangeFaction(targetId, jobfactionproto.Faction);
         }
+        //FH end
 
-        UpdateStationRecord(uid, targetId, newFullName, newJobTitle, job);
+        UpdateStationRecord(uid, targetId, newFullName, newJobTitle, jobfactionproto); //FH
+
         if ((!TryComp<StationRecordKeyStorageComponent>(targetId, out var keyStorage)
             || keyStorage.Key is not { } key
             || !_record.TryGetRecord<GeneralStationRecord>(key, out _))
-            && newJobProto != string.Empty)
+            && newJobProto != string.Empty //FH
+            && jobfactionproto != null) //FH
         {
-            Comp<IdCardComponent>(targetId).JobPrototype = newJobProto;
+            Comp<IdCardComponent>(targetId).JobPrototype = jobfactionproto.Job; //FH
         }
 
         // Starlight-edit: Start
@@ -284,6 +309,7 @@ public sealed class IdCardConsoleSystem : SharedIdCardConsoleSystem
         if (oldTags.SetEquals(finalTags))
             return;
 
+        /*Far Horizons Start - Needs to be removed due to not allowing consoles to modify an access it doesn't have.
         var difference = finalTags.Union(oldTags).Except(finalTags.Intersect(oldTags)).ToHashSet();
         // Starlight-edit: End
         if (!difference.IsSubsetOf(privilegedPerms))
@@ -291,6 +317,7 @@ public sealed class IdCardConsoleSystem : SharedIdCardConsoleSystem
             _sawmill.Warning($"User {ToPrettyString(uid)} tried to modify permissions they could not give/take!");
             return;
         }
+        Far Horizons End*/
 
         // Starlight-edit: Start
         var addedTags = finalTags.Except(oldTags).Select(tag => "+" + tag).ToList();
@@ -319,7 +346,7 @@ public sealed class IdCardConsoleSystem : SharedIdCardConsoleSystem
         return _accessReader.IsAllowed(id.Value, uid, reader);
     }
 
-    private void UpdateStationRecord(EntityUid uid, EntityUid targetId, string newFullName, ProtoId<AccessLevelPrototype> newJobTitle, JobPrototype? newJobProto)
+    private void UpdateStationRecord(EntityUid uid, EntityUid targetId, string newFullName, ProtoId<AccessLevelPrototype> newJobTitle, FactionJobAssignmentPrototype? newJobProto) //FH
     {
         if (!TryComp<StationRecordKeyStorageComponent>(targetId, out var keyStorage)
             || keyStorage.Key is not { } key
@@ -331,11 +358,13 @@ public sealed class IdCardConsoleSystem : SharedIdCardConsoleSystem
         record.Name = newFullName;
         record.JobTitle = newJobTitle;
 
-        if (newJobProto != null)
+        //FH start
+        if (newJobProto != null && _prototype.TryIndex(newJobProto.Job, out var job))
         {
-            record.JobPrototype = newJobProto.ID;
-            record.JobIcon = _factions.OverrideJobIcon((_factions.DecideFactionForJob(newJobProto), newJobProto));
+            record.JobPrototype = job.ID;
+            record.JobIcon = _factions.OverrideJobIcon((newJobProto.Faction, newJobProto.Job));
         }
+        //FH end
 
         _record.Synchronize(key);
     }

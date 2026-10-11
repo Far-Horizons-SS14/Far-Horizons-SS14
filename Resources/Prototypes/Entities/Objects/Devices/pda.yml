@@ -1,6 +1,6 @@
 - type: entity
   abstract: true
-  parent: [ BaseItem, StorePresetUplink ] #PDA's have uplinks so they have to inherit the data.
+  parent: [ BaseItem ]
   id: BasePDA
   name: PDA
   description: Personal Data Assistant.
@@ -45,6 +45,16 @@
       whitelist:
         components:
         - IdCard
+    # Far Horizons start
+    credstickSlot:
+      priority: -3
+      name: pda-credstick-slot-name
+      ejectSound: /Audio/Machines/id_swipe.ogg
+      insertSound: /Audio/Machines/id_insert.ogg
+      whitelist:
+        tags:
+        - Credstick
+    # Far Horizons end
   - type: PdaVisuals
   - type: Item
     size: Small
@@ -55,6 +65,7 @@
       PDA-pai: !type:ContainerSlot {}
       Cartridge-Slot: !type:ContainerSlot {}
       program-container: !type:Container
+      PDA-credstick: !type:ContainerSlot {} # Far Horizons
   - type: ItemSlots
   - type: Clothing
     quickEquip: false
@@ -86,6 +97,9 @@
       - NotekeeperCartridge
       - NanoTaskCartridge
       - NewsReaderCartridge
+      - NanoChatCartridge # CD
+      - FrontierBankCartridge # Far Horzions
+      - GSLNowCartridge # Far Horizons
     cartridgeSlot:
       priority: -1
       name: device-pda-slot-component-slot-name-cartridge
@@ -112,6 +126,7 @@
         type: HealthAnalyzerBoundUserInterface
       enum.IntegrityAnalyzerUiKey.Key: #FarHorizons
         type: IntegrityAnalyzerBoundUserInterface #FarHorizons
+  - type: RemoteStore # PDAs can access uplinks so they need this component.
   - type: Tag
     tags:
     - DoorBumpOpener
@@ -160,6 +175,9 @@
     - NanoTaskCartridge
     - NewsReaderCartridge
     - WantedListCartridge
+    - NanoChatCartridge # CD
+    - FrontierBankCartridge # Far Horzions
+    - GSLNowCartridge # Far Horizons
 
 - type: entity
   parent: BasePDA
@@ -174,12 +192,15 @@
       - NanoTaskCartridge
       - NewsReaderCartridge
       - MedTekCartridge
+      - NanoChatCartridge # CD
+      - FrontierBankCartridge # Far Horzions
+      - GSLNowCartridge # Far Horizons
 
 #FarHorizons Start
 - type: entity
   parent: BasePDA
   id: BaseEngineerPDA
-  abstract: true
+  abstract: true 
   components:
   - type: CartridgeLoader
     uiKey: enum.PdaUiKey.Key
@@ -190,6 +211,9 @@
       - NewsReaderCartridge
       - HullSenseCartridge
       - AstroNavCartridge #FH
+      - NanoChatCartridge #FH
+      - FrontierBankCartridge # Far Horzions
+      - GSLNowCartridge # Far Horizons
 #FarHorizons End
 
 - type: entity
@@ -467,6 +491,9 @@
     preinstalled:
     - CrewManifestCartridge
     - NewsReaderCartridge
+    - NanoChatCartridge #FH
+    - FrontierBankCartridge # Far Horzions
+    - GSLNowCartridge # Far Horizons
   - type: Appearance
     appearanceDataInit:
      enum.PdaVisuals.PdaType:
@@ -534,6 +561,9 @@
     - NanoTaskCartridge
     - NewsReaderCartridge
     - AstroNavCartridge
+    - NanoChatCartridge # CD
+    - FrontierBankCartridge # Far Horzions
+    - GSLNowCartridge # Far Horizons
 
 - type: entity
   parent: BasePDA
@@ -580,6 +610,9 @@
       - NanoTaskCartridge
       - NewsReaderCartridge
       - AstroNavCartridge
+      - NanoChatCartridge # CD
+      - FrontierBankCartridge # Far Horzions
+      - GSLNowCartridge # Far Horizons
 
 - type: entity
   parent: BasePDA
@@ -841,6 +874,20 @@
     borderColor: "#141633" #FH
   - type: Icon
     state: pda-paramedic
+#FarHorizons Start
+  - type: CartridgeLoader
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NanoTaskCartridge
+      - NewsReaderCartridge
+      - MedTekCartridge
+      - NanoChatCartridge
+      - AstroNavCartridge
+      - FrontierBankCartridge # Far Horzions
+      - GSLNowCartridge # Far Horizons
+#FarHorizons End
 
 - type: entity
   parent: BaseMedicalPDA
@@ -925,6 +972,9 @@
     - NewsReaderCartridge
     - WantedListCartridge
     - LogProbeCartridge
+    - NanoChatCartridge # CD
+    - FrontierBankCartridge # Far Horzions
+    - GSLNowCartridge # Far Horizons
 
 - type: entity
   parent: BaseSecurityPDA
@@ -1001,6 +1051,8 @@
       - LogProbeCartridge
       - AstroNavCartridge
       - HullSenseCartridge #FarHorizons
+      - NanoChatCartridge # CD
+      - FrontierBankCartridge # Far Horzions
 
 - type: entity
   parent: CentcomPDA
@@ -1028,6 +1080,7 @@
       - MedTekCartridge
       - AstroNavCartridge
       - HullSenseCartridge #FarHorizons
+      - FrontierBankCartridge # Far Horzions
   - type: Tag #  Ignore Chameleon tags
     tags:
     - DoorBumpOpener
@@ -1134,6 +1187,7 @@
   id: SyndiPDA
   name: Syndicate PDA #Far Horizons - The Great Capitalization Crusade
   description: Ok, time to be a productive member of- oh cool I'm a bad guy time to kill people!
+  suffix: NS #Far Horizons
   components:
   - type: Pda
     id: OperativeIDCard
@@ -1151,12 +1205,16 @@
     preinstalled:
       - NotekeeperCartridge
       - NanoTaskCartridge
+      - NanoChatCartridge # CD
+      - FrontierBankCartridge # Far Horzions
+      - GSLNowCartridge # Far Horizons
 
 - type: entity
   parent: [ SyndiPDA, BaseSyndicateContraband ]
   id: SyndiOperativePDA
   name: Syndicate Operative PDA #Far Horizons - The Great Capitalization Crusade
   description: Death to NT!
+  suffix: NS #Far Horizons
   components:
   - type: Pda
     id: SyndiOperativeIDCard
@@ -1173,6 +1231,7 @@
   id: SyndiCorpsmanPDA
   name: Syndicate Corpsman PDA #Far Horizons - The Great Capitalization Crusade
   description: Commander... I need to cook!
+  suffix: NS #Far Horizons
   components:
   - type: Pda
     id: SyndiCorpsmanIDCard
@@ -1192,12 +1251,16 @@
       - NotekeeperCartridge
       - NanoTaskCartridge
       - MedTekCartridge
+      - NanoChatCartridge # CD
+      - FrontierBankCartridge # Far Horzions
+      - GSLNowCartridge # Far Horizons
 
 - type: entity
   parent: [ SyndiOperativePDA, BaseSyndicateContraband ]
   id: SyndiCommanderPDA
   name: Syndicate Commander PDA #Far Horizons - The Great Capitalization Crusade
   description: So what are we, some kind of Nukie squad?
+  suffix: NS #Far Horizons
   components:
   - type: Pda
     id: SyndiCommanderIDCard
@@ -1241,6 +1304,9 @@
       - LogProbeCartridge
       - AstroNavCartridge
       - HullSenseCartridge #FarHorizons
+      - NanoChatCartridge # CD
+      - FrontierBankCartridge # Far Horzions
+      - GSLNowCartridge # Far Horizons
 
 - type: entity
   parent: ERTLeaderPDA
@@ -1410,6 +1476,9 @@
     - NewsReaderCartridge
     - WantedListCartridge
     - LogProbeCartridge
+    - NanoChatCartridge # CD
+    - FrontierBankCartridge # Far Horzions
+    - GSLNowCartridge # Far Horizons
 
 - type: entity
   parent: BaseMedicalPDA
@@ -1437,6 +1506,9 @@
     - NewsReaderCartridge
     - WantedListCartridge
     - MedTekCartridge
+    - NanoChatCartridge # CD
+    - FrontierBankCartridge # Far Horzions
+    - GSLNowCartridge # Far Horizons
 
 - type: entity
   parent: ClownPDA

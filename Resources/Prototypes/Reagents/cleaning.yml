@@ -31,6 +31,7 @@
     cleanCost: 0.13
   - !type:CleanDecalsReaction
     cleanCost: 0.13
+  cleansFootprints: true # Far Horizons
 
 - type: reagent
   id: SpaceCleaner
@@ -45,6 +46,7 @@
   tileReactions:
     - !type:CleanTileReaction {}
     - !type:CleanDecalsReaction {}
+  cleansFootprints: true # Far Horizons
 
 - type: reagent
   id: SoapReagent
@@ -73,6 +75,7 @@
         key: PoliteLanguage
         component: PoliteAccent
       # STARLIGHT END
+  cleansFootprints: true # Far Horizons
 
 - type: reagent
   id: SpaceLube
@@ -126,3 +129,4 @@
         time: 5
   footstepSound:
     collection: FootstepSlime
+  makesFootprints: true # Far Horizons

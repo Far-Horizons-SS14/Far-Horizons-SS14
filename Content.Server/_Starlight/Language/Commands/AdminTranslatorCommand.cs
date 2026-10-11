@@ -15,7 +15,7 @@ using System.Linq;
 namespace Content.Server._Starlight.Language.Commands;
 
 [ToolshedCommand(Name = "translator"), AdminCommand(AdminFlags.Admin)]
-public sealed class AdminTranslatorCommand : ToolshedCommand
+public sealed partial class AdminTranslatorCommand : ToolshedCommand
 {
     private LanguageSystem? _language;
     private ContainerSystem? _containers;

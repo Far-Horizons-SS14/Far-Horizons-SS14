@@ -1,0 +1,11 @@
+- type: entity
+  parent: BaseBarrelChem
+  id: BarrelChemFilledOil
+  suffix: Oil
+  description: Well, this is one well oiled barrel.
+  components:
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Oil
+        Quantity: 500

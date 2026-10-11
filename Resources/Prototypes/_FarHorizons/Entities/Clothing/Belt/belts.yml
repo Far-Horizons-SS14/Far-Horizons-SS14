@@ -1,10 +1,11 @@
-#region Cargo
+#region ## GSL ##
 
 - type: entity
   parent: ClothingBeltStorageBase
   id: ClothingBeltCargo
   name: Cargo Utility Belt
   description: Can hold a various amount of lo- required gear used by Cargo.
+  suffix: GSL
   components:
   - type: Sprite
     sprite: _FarHorizons/Clothing/Belt/cargoutility.rsi
@@ -37,6 +38,10 @@
         - ImprovisedWrench
         - ImprovisedMultitool
         - Knife
+        - UtilityKnife # Starlight start
+        - Document # Relevant cargo gear
+        - Folder
+        - Write # Starlight end
       components:
         - StationMap
         - SprayPainter
@@ -98,6 +103,7 @@
   id: ClothingBeltSalvage
   name: Salvage Utility Belt
   description: Can hold a various amount of lo- required gear used by the Salvage and Mining teams.
+  suffix: GSL
   components:
   - type: Sprite
     sprite: _FarHorizons/Clothing/Belt/cargoutility.rsi
@@ -139,6 +145,7 @@
         - GrappleGun
         - Write
         - Paper
+        - HoloflarePistol
       components:
         - StationMap
         - SprayPainter
@@ -200,13 +207,222 @@
           - Wrench
           - ImprovisedWrench
 
+
+ # Salvage Lead Belt
+    
+- type: entity
+  parent: [ClothingBeltStorageBase, ClothingSlotBase, BaseSalvageContraband]
+  id: ClothingBeltMacheteScabbard
+  name: Crusher Machete Scabbard
+  description: A high power scabbard designed to carry the elusive Crusher Machete granted to the greatest salvage has to offer.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Belt/crushchetesheath.rsi
+    state: sheath
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Belt/crushchetesheath.rsi
+    slots:
+    - suitStorage
+    - Belt
+  - type: Item
+    size: Ginormous
+  - type: Storage
+    grid:
+    - 0,0,0,0 #left
+    - 1,0,1,1 #left - grapple
+    - 3,0,7,1
+    whitelist:
+      tags:
+        - Wirecutter
+        - Crowbar
+        - Screwdriver
+        - Flashlight
+        - Wrench
+        - GeigerCounter
+        - Flare
+        - CableCoil
+        - Powerdrill
+        - JawsOfLife
+        - CigPack
+        - Radio
+        - HolofanProjector
+        - Multitool
+        - AppraisalTool
+        - GPS
+        - WeldingMask
+        - RemoteSignaller
+        - ImprovisedCrowbar
+        - ImprovisedScrewdriver
+        - ImprovisedWirecutter
+        - ImprovisedWrench
+        - ImprovisedMultitool
+        - Knife
+        - GrappleGun
+        - Write
+        - Paper
+        - HoloflarePistol
+      components:
+        - StationMap
+        - SprayPainter
+        - SprayPainterAmmo
+        - NetworkConfigurator
+        - Welder
+        - PowerCell
+        - Geiger
+        - TrayScanner
+        - GasAnalyzer
+        - HandLabeler
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+      item: !type:ContainerSlot
+  - type: ItemSlots
+    slots:
+      item:
+        name: Crusher Machete
+        insertVerbText: sheath-insert-verb
+        ejectVerbText: sheath-eject-verb
+        insertSound: /Audio/Items/sheath.ogg
+        ejectSound: /Audio/Items/unsheath.ogg
+        whitelist:
+          tags:
+          - CrusherMachete
+  - type: ItemMapper
+    mapLayers:
+      sheath-sabre:
+        whitelist:
+          tags:
+          - CrusherMachete
+  - type: Appearance
+
+#region ## Nanotrasen ##
+
+
+
+
+
+#region Security
+
+- type: entity
+  parent: [ClothingBeltMedical, ClothingBeltSecurity, BaseSecurityContraband]
+  id: ClothingBeltBrigmedic
+  name: Brigmedic's Tactical Trauma Belt
+  description: Has many small pouches and a few larger ones to hold life-saving supplies, or life-ending supplies depending on which side you're on.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Belt/brigmedic_belt.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Belt/brigmedic_belt.rsi
+  - type: Storage
+    grid:
+    - 0,0,1,0 #left
+    - 0,1,0,1 #left - cube
+    - 3,0,10,1
+    - 12,0,13,0 #right
+    - 12,1,12,1 #right - cube
+    whitelist:
+      tags:
+      - SecBeltEquip
+      - BrigmedicBeltEquip
+      - CigPack
+      - Taser
+      - Wrench
+      - Bottle
+      - Spray
+      - Brutepack
+      - Bloodpack
+      - AmmoniaPack
+      - Gauze
+      - Ointment
+      - PillCanister
+      - Radio
+      - DiscreteHealthAnalyzer
+      - SurgeryTool
+      - Dropper
+      - Truncheon
+      - Sidearm
+      - MagazinePistol
+      - MagazineMagnum
+      - Hypospray
+      - Medkit
+      - Vial
+      - ExternalContainerInjectorVial
+      - HoloflarePistol # FH
+      components:
+      - Stunbaton
+      - FlashOnTrigger
+      - SmokeOnTrigger
+      - Flash
+      - Handcuff
+      - BallisticAmmoProvider
+      - Ammo
+      - Injector
+      - Pill
+      - HandLabeler
+      - Blocking # FH
+  - type: Appearance
+  - type: ExplosionResistance
+    damageCoefficient: 0
+
+- type: entity
+  parent: ClothingBeltBrigmedic
+  id: ClothingBeltCorpsman
+  name: Corpsman's Duty Belt
+  description: A tactical belt with as many pockets and bags to hold all the medical items you need!
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Belt/corpsman_belt.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Belt/corpsman_belt.rsi
+  - type: Appearance
+
+- type: entity
+  parent: ClothingBeltSecurity
+  id: ClothingBeltSecurityDeputy
+  name: Deputy Belt
+  description: Has two prominent holsters on either side of the belt with a nice big golden belt buckle in the middle. Still manages to hold security-related items, despite the thinner nature of the belt.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Belt/deputy_belt.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Belt/deputy_belt.rsi
+
+- type: entity
+  parent: ClothingBeltBrigmedic
+  id: ClothingBeltSecurityDeputyMedical
+  name: Deputy Medical Belt
+  description: Has two prominent holsters on either side of the belt with a nice big golden belt buckle in the middle. Has a large fanny pack attached to the back to store medical items.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Belt/deputy_belt_medical.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Belt/deputy_belt_medical.rsi
+
 #region Command
+
+- type: entity
+  parent: [ ClothingBeltStorageBase, ContentsExplosionResistanceBase, BaseBlueshieldContraband ]
+  id: ClothingBeltBlueShield
+  name: Blueshield Officer's Belt
+  description: Tactical belt that can hold just about anything, making it a very desired thing by Security.
+  components:
+  - type: Storage
+    grid:
+    - 0,0,7,1
+    - 9,0,10,1
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Belt/blueshield_belt.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Belt/blueshield_belt.rsi
+  - type: ExplosionResistance
+    damageCoefficient: 0
 
 - type: entity
   parent: ClothingBeltStorageBase
   id: ClothingBeltHoP
-  name: head of personnel belt
+  name: Head of Personnel Belt
   description: A very clean belt with some wear on some lesser seen parts. Can fit plenty of paperwork and writing implements inside.
+  suffix: NT
   components:
   - type: Sprite
     sprite: _FarHorizons/Clothing/Belt/hop.rsi
@@ -308,6 +524,7 @@
   id: ClothingBeltScience
   name: Science Belt
   description: Can hold various scientific things.
+  suffix: NT
   components:
   - type: Sprite
     sprite: _FarHorizons/Clothing/Belt/sciencebelt.rsi
@@ -398,54 +615,8 @@
           - Wrench
           - ImprovisedWrench
 
-- type: entity
-  id: ClothingBeltScienceRoboticist
-  parent: ClothingBeltScience
-  suffix: Roboticist
-  components:
-  - type: StorageFill
-    contents:
-      - id: CrowbarYellow
-      - id: Wrench
-      - id: Screwdriver
-      - id: Wirecutter
-      - id: Welder
-      - id: Multitool
 
-- type: entity
-  id: ClothingBeltScienceRD
-  parent: ClothingBeltScience
-  suffix: ResearchDirector
-  components:
-  - type: StorageFill
-    contents:
-      - id: CrowbarYellow
-      - id: Wrench
-      - id: Screwdriver
-      - id: Wirecutter
-      - id: Welder
-      - id: Multitool
-      - id: AnomalyScanner
-      - id: NodeScanner
-
-#region Security
-
-
-
-
-
-
-
-
-
-
-
-
-
-#region Syndicate
-
-
-
+#region ## NeoSol ##
 
 
 
@@ -463,12 +634,13 @@
   id: ClothingBeltSheathSyndi
   name: Sabre Sheath
   description: An ornate sheath designed to hold an officer's blade.
+  suffix: NS
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/Belt/syndisheath.rsi
+    sprite: _FarHorizons/Clothing/Belt/NeoSol/sheath.rsi
     state: sheath
   - type: Clothing
-    sprite: _FarHorizons/Clothing/Belt/syndisheath.rsi
+    sprite: _FarHorizons/Clothing/Belt/NeoSol/sheath.rsi
   - type: Item
     size: Ginormous
   - type: ItemSlots
@@ -497,12 +669,13 @@
   id: ClothingBeltHoPSyndi
   name: Personnel Manager Belt
   description: A very clean belt with some wear on some lesser seen parts. Can fit plenty of paperwork and writing implements inside.
+  suffix: NS
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/Belt/syndihop.rsi
+    sprite: _FarHorizons/Clothing/Belt/NeoSol/hop.rsi
     state: icon
   - type: Clothing
-    sprite: _FarHorizons/Clothing/Belt/syndihop.rsi
+    sprite: _FarHorizons/Clothing/Belt/NeoSol/hop.rsi
 
 # Foreman (Chief Engineer)
 
@@ -511,6 +684,7 @@
   id: ClothingBeltChiefEngineerSyndi
   name: Foreman's Toolbelt
   description: Holds tools, looks snazzy.
+  suffix: NS
   components:
   - type: Sprite
     sprite: Clothing/Belt/ce.rsi # Needs to be resprited
@@ -528,6 +702,7 @@
   abstract: true
   parent: ClothingBeltStorageBase
   id: BaseClothingBeltEngineeringSyndi
+  suffix: NS
   components:
   - type: Storage
     # Don't add more than absolutely needed to this whitelist!
@@ -629,7 +804,7 @@
   parent: BaseClothingBeltEngineeringSyndi
   id: ClothingBeltUtilitySyndi
   name: Utility Belt
-  suffix: S
+  suffix: NS
   description: Can hold various things.
   components:
   - type: Sprite
@@ -640,7 +815,40 @@
     tags:
     - UtilityBelt
     - WhitelistChameleon
-    
+
+#region Service
+- type: entity
+  parent: ClothingBeltChef
+  id: ClothingBeltChefNS
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Belt/NeoSol/chef.rsi 
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Belt/NeoSol/chef.rsi 
+
+- type: entity
+  parent: ClothingBeltJanitor
+  id: ClothingBeltJanitorNS
+  suffix: NS
+  description: A belt used to hold most janitorial supplies.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Belt/NeoSol/janitor.rsi 
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Belt/NeoSol/janitor.rsi 
+
+- type: entity
+  parent: ClothingBeltPlant
+  id: ClothingBeltPlantNS
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Belt/NeoSol/plant.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Belt/NeoSol/plant.rsi
+
+
 #region Security
 
 # Corpsman (Corpsman)
@@ -650,76 +858,27 @@
   id: ClothingBeltCorpsmanSyndi
   name: Corpsman Belt
   description: A tactical belt with as many pockets and bags to hold all the medical items you need!
+  suffix: NS
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/Belt/corpsmansyndi.rsi
+    sprite: _FarHorizons/Clothing/Belt/NeoSol/corpsmanbelt.rsi
   - type: Clothing
-    sprite: _FarHorizons/Clothing/Belt/corpsmansyndi.rsi
+    sprite: _FarHorizons/Clothing/Belt/NeoSol/corpsmanbelt.rsi
   - type: Appearance
-
-- type: entity
-  id: ClothingBeltCorpsmanSyndiFilled
-  parent: ClothingBeltCorpsmanSyndi
-  suffix: Filled
-  components:
-  - type: StorageFill
-    contents:
-      - id: Stunbaton
-      - id: Handcuffs    
-      - id: Brutepack
-      - id: Ointment
-      - id: Gauze
 
 # Brigmedic (Brigmedic)
-
-- type: entity
-  parent: ClothingBeltBrigmedic
-  id: ClothingBeltBrigmedicWebSyndi
-  name: Tactical Trauma Rig
-  description: A stylish alternative to the belt.
-  components:
-  - type: Sprite
-    sprite: _FarHorizons/Clothing/Belt/brigmedicwebbing-syndi.rsi
-  - type: Clothing
-    sprite: _FarHorizons/Clothing/Belt/brigmedicwebbing-syndi.rsi
-  - type: Appearance
-
-- type: entity
-  id: ClothingBeltBrigmedicWebSyndiFilled
-  parent: ClothingBeltBrigmedicWebSyndi
-  suffix: Filled
-  components:
-  - type: StorageFill
-    contents:
-      - id: Stunbaton
-      - id: Handcuffs    
-      - id: Brutepack
-      - id: Ointment
-      - id: Gauze
 
 - type: entity
   parent: ClothingBeltBrigmedic
   id: ClothingBeltBrigmedicSyndi
   name: Tactical Trauma Belt
   description: Because why choose between being a medic or a security guard when you can be both?
+  suffix: NS
   components:
   - type: Sprite
-    sprite: _Starlight/Clothing/Belt/tactical_trauma.rsi
+    sprite: _FarHorizons/Clothing/Belt/brigmedic_belt.rsi
   - type: Clothing
-    sprite: _Starlight/Clothing/Belt/tactical_trauma.rsi
-
-- type: entity
-  id: ClothingBeltBrigmedicSyndiFilled
-  parent: ClothingBeltBrigmedicSyndi
-  suffix: Filled
-  components:
-  - type: StorageFill
-    contents:
-      - id: Stunbaton
-      - id: Handcuffs    
-      - id: Brutepack
-      - id: Ointment
-      - id: Gauze
+    sprite: _FarHorizons/Clothing/Belt/brigmedic_belt.rsi
 
 # General Security
 
@@ -728,21 +887,61 @@
   id: ClothingBeltSecuritySyndi
   name: Security Belt
   description: Can hold security gear like handcuffs and flashes.
+  suffix: NS
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/Belt/securitysyndi.rsi
+    sprite: _FarHorizons/Clothing/Belt/NeoSol/security.rsi
   - type: Clothing
-    sprite: _FarHorizons/Clothing/Belt/securitysyndi.rsi
-
-- type: entity
-  id: ClothingBeltSecuritySyndiFilled
-  parent: ClothingBeltSecuritySyndi
-  suffix: Filled
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      storagebase: !type:NestedSelector
-        tableId: BeltSecurityEntityTable
+    sprite: _FarHorizons/Clothing/Belt/NeoSol/security.rsi
+  - type: ExplosionResistance
+    damageCoefficient: 0.9
+  - type: Storage
+    grid: # Starlight
+    - 0,0,1,0 #left
+    - 0,1,0,1 #left - cube
+    - 3,0,10,1
+    - 12,0,13,0 #right
+    - 12,1,12,1 #right - cube
+    whitelist:
+      tags:
+      - CigPack
+      - Taser
+      - SecBeltEquip
+      - Radio
+      - Sidearm
+      - MagazinePistol
+      - MagazineMagnum
+      - CombatKnife
+      - Truncheon
+      - HandGrenade
+      components:
+      - Stunbaton
+      - FlashOnTrigger
+      - SmokeOnTrigger
+      - Flash
+      - Handcuff
+      - BallisticAmmoProvider
+      - CartridgeAmmo
+      - DoorRemote
+      - Whistle
+      - BalloonPopper
+      - Injector #FH
+  - type: ItemMapper
+    sprite: *BeltOverlay
+    mapLayers:
+      flashbang:
+        whitelist:
+          components:
+          - FlashOnTrigger
+      stunbaton:
+        whitelist:
+          components:
+          - Stunbaton
+      tear_gas_grenade:
+        whitelist:
+          components:
+          - SmokeOnTrigger
+  - type: Appearance
 
 # Syndicate Nukies
 
@@ -769,3 +968,76 @@
     damageCoefficient: 0.1
   - type: StaticPrice
     price: 500
+
+# region Medical
+
+- type: entity
+  parent: ClothingBeltStorageBase
+  id: ClothingBeltMedicalSyndi
+  name: Medical Belt
+  description: Can hold various medical equipment.
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Belt/NeoSol/medical.rsi 
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Belt/NeoSol/medical.rsi
+  - type: Storage
+    whitelist:
+      tags:
+      - Wrench
+      - Bottle
+      - Spray
+      - Brutepack
+      - Bloodpack
+      - AmmoniaPack # Far Horizons
+      - Gauze
+      - Ointment
+      - Tourniquet
+      - CigPack
+      - PillCanister
+      - Radio
+      - DiscreteHealthAnalyzer
+      - SurgeryTool
+      - Dropper
+      components:
+      - Injector
+      - Pill
+      - HandLabeler
+  - type: ItemMapper
+    sprite: *BeltOverlay
+    mapLayers:
+      bottle:
+        whitelist:
+          tags:
+          - Bottle
+      hypo:
+        whitelist:
+          tags:
+          - Hypospray
+      pill:
+        whitelist:
+          components:
+          - Pill
+          tags:
+          - PillCanister
+      bottle_spray:
+        whitelist:
+          tags:
+          - Spray
+      wrench:
+        whitelist:
+          tags:
+          - Wrench
+  - type: Appearance
+
+- type: entity
+  parent: ClothingBeltMedicalSyndi
+  id: ClothingBeltMedicalEMTSyndi
+  name: EMT Belt
+  description: Perfect for holding various equipment for medical emergencies.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Belt/NeoSol/emt.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Belt/NeoSol/emt.rsi

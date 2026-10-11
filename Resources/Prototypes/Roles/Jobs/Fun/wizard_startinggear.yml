@@ -2,7 +2,7 @@
 - type: startingGear
   id: WizardBlueGear
   equipment:
-    jumpsuit: ClothingUniformJumpsuitColorDarkBlue
+    jumpsuit: ClothingUniformJumpsuitWizard #FH
     head: ClothingHeadHatWizard
     back: ClothingBackpack # Wizard backpack?
     outerClothing: ClothingOuterWizard
@@ -12,12 +12,13 @@
     belt: ClothingBeltWand
     pocket1: WizardTeleportScroll
     pocket2: WizardsGrimoire
+    gloves: ClothingHandsGlovesWizard #FH
 
 - type: startingGear
   id: WizardRedGear
   parent: WizardBlueGear
   equipment:
-    jumpsuit: ClothingUniformJumpsuitColorRed
+    #jumpsuit: ClothingUniformJumpsuitColorRed #FH
     head: ClothingHeadHatRedwizard
     outerClothing: ClothingOuterWizardRed
 
@@ -25,7 +26,7 @@
   id: WizardVioletGear
   parent: WizardBlueGear
   equipment:
-    jumpsuit: ClothingUniformJumpsuitColorPurple
+    #jumpsuit: ClothingUniformJumpsuitColorPurple #FH
     head: ClothingHeadHatVioletwizard
     outerClothing: ClothingOuterWizardViolet
 
@@ -38,4 +39,4 @@
     eyes: ClothingEyesGlassesCheapSunglasses
     mask: ClothingMaskBreath
     neck: ClothingNeckLGBTPin
-    gloves: ClothingHandsGlovesColorBlack
+    #gloves: ClothingHandsGlovesColorBlack #FH

@@ -8,7 +8,7 @@ namespace Content.Server._Starlight.NullSpace;
 
 public sealed partial class ShowNullSpaceSystem : SharedShowNullSpaceSystem
 {
-    [Dependency] private readonly EyeSystem _eye = default!;
+    [Dependency] private EyeSystem _eye = default!;
     public override void Initialize()
     {
         base.Initialize();
@@ -34,12 +34,12 @@ public sealed partial class ShowNullSpaceSystem : SharedShowNullSpaceSystem
             || !clothing.Slots.HasFlag(args.SlotFlags))
             return;
 
-        EnsureComp<ShowNullSpaceComponent>(args.Equipee);
+        EnsureComp<ShowNullSpaceComponent>(args.EquipTarget);
     }
 
     private void OnUnequipped(EntityUid uid, ShowNullSpaceComponent component, GotUnequippedEvent args)
     {
-        RemComp<ShowNullSpaceComponent>(args.Equipee);
+        RemComp<ShowNullSpaceComponent>(args.EquipTarget);
     }
 
     private void Toggle(EntityUid uid, bool toggle)

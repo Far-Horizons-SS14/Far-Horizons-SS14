@@ -11,18 +11,14 @@ namespace Content.Shared.Communications
     public sealed class CommunicationsConsoleInterfaceState : BoundUserInterfaceState
     {
         public readonly bool CanAnnounce;
-        public readonly bool CanBroadcast = true;
+        public readonly bool CanBroadcast; // Starlight
         public readonly bool CanCall;
+        public readonly bool CanShuttle; //FarHorizons
         public readonly TimeSpan? ExpectedCountdownEnd;
         public readonly bool CountdownStarted;
         public List<string>? AlertLevels;
         public string CurrentAlert;
         public float CurrentAlertDelay;
-
-        //FarHorizon Start
-        public List<string>? Channels;
-        public string CurrentChannel;
-        //FarHorizon End
         // Starlight edit Start
         public readonly TimeSpan? AnnouncementCooldownEnd;
         public readonly TimeSpan? ShuttleCountdownEnd;
@@ -33,11 +29,11 @@ namespace Content.Shared.Communications
         public CommunicationsConsoleInterfaceState(
             bool canAnnounce,
             bool canCall,
+            bool canShuttle, //FarHorizons
             List<string>? alertLevels,
             string currentAlert,
             float currentAlertDelay,
-            List<string>? channels,
-            string currentChannel,
+            bool canBroadcast,
             TimeSpan? expectedCountdownEnd = null,
             TimeSpan? announcementCooldownEnd = null,
             TimeSpan? callRecallCooldownEnd = null,
@@ -49,16 +45,14 @@ namespace Content.Shared.Communications
         {
             CanAnnounce = canAnnounce;
             CanCall = canCall;
+            CanShuttle = canShuttle; //FarHorizons
             ExpectedCountdownEnd = expectedCountdownEnd;
             CountdownStarted = expectedCountdownEnd != null;
             AlertLevels = alertLevels;
             CurrentAlert = currentAlert;
             CurrentAlertDelay = currentAlertDelay;
-            //FarHorizon Start
-            Channels = channels;
-            CurrentChannel = currentChannel;
-            //FarHorizon End
             // Starlight Start
+            CanBroadcast = canBroadcast;
             AnnouncementCooldownEnd = announcementCooldownEnd;
             CallRecallCooldownEnd = callRecallCooldownEnd;
             ShuttleCountdownEnd = shuttleCountdownEnd;

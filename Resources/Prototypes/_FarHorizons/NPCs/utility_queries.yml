@@ -1,0 +1,83 @@
+- type: utilityQuery
+  id: InventoryAmmo
+  query:
+    - !type:InventoryQuery
+    - !type:ComponentFilter
+      components:
+        - type: BallisticAmmoProvider
+        - type: Item
+  considerations:
+    - !type:TargetAmmoMatchesCon
+      curve: !type:BoolCurve
+    - !type:TargetAmmoCon
+      curve: !type:QuadraticCurve
+
+- type: utilityQuery
+  id: InventoryIndividualAmmo
+  query:
+    - !type:InventoryQuery
+    - !type:ComponentFilter
+      components:
+        - type: CartridgeAmmo
+          proto: BaseItem # This is irrelevant and not checked, but component requires default proto to be set
+        - type: Item
+  considerations:
+    - !type:TargetAmmoMatchesCon
+      curve: !type:BoolCurve
+    - !type:TargetAmmoUnspentCon
+      curve: !type:BoolCurve
+
+- type: utilityQuery
+  id: NearbyIndividualAmmo
+  query:
+    - !type:ComponentQuery
+      components:
+        - type: CartridgeAmmo
+          proto: BaseItem # This is irrelevant and not checked, but component requires default proto to be set
+        - type: Item
+  considerations:
+    - !type:TargetAmmoMatchesCon
+      curve: !type:BoolCurve
+    - !type:TargetDistanceCon
+      curve: !type:PresetCurve
+        preset: TargetDistance
+    - !type:TargetAmmoUnspentCon
+      curve: !type:BoolCurve
+    - !type:TargetAccessibleCon
+      curve: !type:BoolCurve
+
+- type: utilityQuery
+  id: RealDocInjectable
+  query:
+    - !type:ComponentQuery
+      components:
+        - type: InjectableSolution
+        - type: Damageable
+        - type: MobState
+    - !type:ComponentFilter
+      components:
+        - type: NPCRecentlyInjected
+      retainWithComp: false
+    #FH Start
+    - !type:DamageContainerFilter
+      damageContainers:
+        - Biological
+        - BiologicalMetaphysical
+      invert: true
+    - !type:HasDamageTypeFilter
+      damageGroups:
+        - Brute
+        - Burn
+        - Airloss
+        - Toxin
+    #FH End
+  considerations:
+    - !type:TargetIsCritCon
+      curve: !type:QuadraticCurve
+        slope: 1
+        exponent: 1
+        yOffset: 0.1
+        xOffset: 0
+    - !type:TargetDistanceCon
+      curve: !type:PresetCurve
+        preset: TargetDistance

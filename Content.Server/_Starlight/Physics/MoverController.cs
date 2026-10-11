@@ -28,7 +28,7 @@ using DroneConsoleComponent = Content.Server.Shuttles.DroneConsoleComponent;
 
 namespace Content.Server._Starlight.Physics;
 
-public sealed class SLMoverController : SharedMoverController
+public sealed partial class SLMoverController : SharedMoverController
 {
     private static readonly Gauge ActiveMoverGauge = Metrics.CreateGauge(
         "physics_active_mover_count",
@@ -38,11 +38,11 @@ public sealed class SLMoverController : SharedMoverController
     "physics_active_prioritized_mover_count"    ,
     "Active amount of prioritized InputMovers being processed by MoverController");
 
-    [Dependency] private readonly ThrusterSystem _thruster = default!;
-    [Dependency] private readonly SharedTransformSystem _xformSystem = default!;
-    [Dependency] private readonly IParallelManager _parallel = default!; 
-    [Dependency] private readonly IPlayerManager _players = default!; 
-    [Dependency] private readonly SharedAudioSystem _audio = default!; 
+    [Dependency] private ThrusterSystem _thruster = default!;
+    [Dependency] private SharedTransformSystem _xformSystem = default!;
+    [Dependency] private IParallelManager _parallel = default!; 
+    [Dependency] private IPlayerManager _players = default!; 
+    [Dependency] private SharedAudioSystem _audio = default!; 
 
     private HandleMobMovementJob _handleMobMovementJob; 
 

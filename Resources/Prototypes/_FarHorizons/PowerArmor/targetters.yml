@@ -1,0 +1,41 @@
+- type: limbTargetting
+  id: LimbTargetPowerArmor
+  name: ui-options-limb-targetting-species-human
+  drawDebugBoxes: false
+  hideInSettings: true
+  limbs:
+    - limb: Torso
+      area: 0.35, 0.3, 0.65, 0.7
+      sprites:
+        - sprite: _FarHorizons/Clothing/OuterClothing/PowerArmor/ntjuggsuit.rsi
+          state: chest
+    - limb: Head
+      area: 0.35, 0.1, 0.65, 0.3
+      sprites:
+        - sprite: _FarHorizons/Clothing/OuterClothing/PowerArmor/ntjuggsuit.rsi
+          state: equipped-head
+    - limb: ArmLeft
+      area: 0.65, 0.3, 0.8, 0.55
+      sprites:
+        - sprite: _FarHorizons/Clothing/OuterClothing/PowerArmor/ntjuggsuit.rsi
+          state: larm
+    - limb: ArmRight
+      area: 0.2, 0.3, 0.35, 0.55
+      sprites:
+        - sprite: _FarHorizons/Clothing/OuterClothing/PowerArmor/ntjuggsuit.rsi
+          state: rarm
+    - limb: LegLeft
+      area: 0.5, 0.7, 0.65, 0.9
+      sprites:
+        - sprite: _FarHorizons/Clothing/OuterClothing/PowerArmor/ntjuggsuit.rsi
+          state: lleg
+    - limb: LegRight
+      area: 0.35, 0.7, 0.5, 0.9
+      sprites:
+        - sprite: _FarHorizons/Clothing/OuterClothing/PowerArmor/ntjuggsuit.rsi
+          state: rleg
+  labels:
+    - text: R
+      position: 0.05, 0.1
+    - text: L
+      position: 0.8, 0.1

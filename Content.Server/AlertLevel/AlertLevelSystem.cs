@@ -9,13 +9,13 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server.AlertLevel;
 
-public sealed class AlertLevelSystem : EntitySystem
+public sealed partial class AlertLevelSystem : EntitySystem
 {
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly ChatSystem _chatSystem = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly StationSystem _stationSystem = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private ChatSystem _chatSystem = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private StationSystem _stationSystem = default!;
 
     // Until stations are a prototype, this is how it's going to have to be.
     public const string DefaultAlertLevelSet = "stationAlerts";
@@ -140,7 +140,7 @@ public sealed class AlertLevelSystem : EntitySystem
     /// <param name="force">Force the alert change. This applies if the alert level is not selectable or not.</param>
     /// <param name="locked">Will it be possible to change level by crew.</param>
     public void SetLevel(EntityUid station, string level, bool playSound, bool announce, bool force = false,
-        bool locked = false, MetaDataComponent? dataComponent = null, AlertLevelComponent? component = null)
+        bool locked = false, MetaDataComponent? dataComponent = null, AlertLevelComponent? component = null, string? actor = null) // Starlight: +actor
     {
         if (!Resolve(station, ref component, ref dataComponent)
             || component.AlertLevels == null
@@ -185,7 +185,11 @@ public sealed class AlertLevelSystem : EntitySystem
         }
 
         // The full announcement to be spat out into chat.
-        var announcementFull = Loc.GetString("alert-level-announcement", ("name", name), ("announcement", announcement));
+        // Starlight BEGIN
+        var announcementFull = actor != null
+            ? Loc.GetString("alert-level-announcement-sender", ("name", name), ("announcement", announcement), ("sender", actor))
+            : Loc.GetString("alert-level-announcement", ("name", name), ("announcement", announcement));
+        // Starlight END
 
         var playDefault = false;
         if (playSound)

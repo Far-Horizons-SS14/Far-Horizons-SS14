@@ -1,0 +1,278 @@
+- type: entity
+  id: BoxFolderPMClipboard
+  parent: [BoxFolderClipboard, BaseGrandTheftContraband]
+  name: Bureaucratic Digi-Board
+  suffix: NS, Filled
+  description: A bulky electric clipboard, filled with bureaucracy. Contains a portable ID card computer. Vulnerable to assistants.
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Objects/Misc/pm_clipboard.rsi
+      layers:
+        - state: pm_clipboard
+        - state: pm_clipboard_paper
+          map: ["pm_clipboard_paper"]
+          visible: false
+        - state: pm_clipboard_pen
+          map: ["pm_clipboard_pen"]
+          visible: false
+        - state: pm_clipboard_target_id
+          map: ["pm_clipboard_target_id"]
+          visible: false
+        - state: pm_clipboard_priv_id
+          map: ["pm_clipboard_priv_id"]
+          visible: false
+        - state: pm_clipboard_over
+    - type: ItemSlots
+      slots:
+        pen_slot:
+          name: clipboard-slot-component-slot-name-pen
+          whitelist:
+            tags:
+            - Write
+          insertOnInteract: true
+    - type: Item
+      sprite: _FarHorizons/Objects/Misc/pm_clipboard.rsi
+      size: Normal
+    - type: Clothing
+      sprite: _FarHorizons/Objects/Misc/pm_clipboard.rsi
+      slots: [belt, pocket]
+    - type: Storage
+      maxItemSize: Small
+      grid:
+      - 0,0,4,3
+      quickInsert: true
+    - type: EntityTableContainerFill
+      containers:
+        storagebase: !type:AllSelector
+          children:
+          - id: Paper
+            amount: 10
+    - type: IdCardConsole
+      accessGroups:
+      - GeneralNS
+      - SecurityNS
+      - Cargo
+      - Executive
+      - ResearchNS
+      - MedicalNS
+      - ServiceNS
+      - EngineeringNS
+      factions:
+      - FactionSyndicate
+      - FactionCFA
+      - FactionCargonia
+      privilegedIdSlot:
+        name: fh-id-card-clipboard-priviliged-id
+        ejectSound: /Audio/Machines/id_swipe.ogg
+        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+        ejectOnBreak: true
+        swap: false
+        whitelist:
+          components:
+          - IdCard
+      targetIdSlot:
+        name: fh-id-card-clipboard-target-id
+        ejectSound: /Audio/Machines/id_swipe.ogg
+        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+        ejectOnBreak: true
+        swap: false
+        whitelist:
+          components:
+          - IdCard
+    - type: ActivatableUI
+      key: enum.IdCardConsoleUiKey.Key
+    - type: UserInterface
+      interfaces:
+        enum.IdCardConsoleUiKey.Key:
+          type: IdCardConsoleBoundUserInterface
+        enum.WiresUiKey.Key:
+          type: WiresBoundUserInterface
+        enum.StorageUiKey.Key:
+          type: StorageBoundUserInterface
+    - type: ItemMapper
+      mapLayers:
+        pm_clipboard_paper:
+          whitelist:
+            tags:
+            - Document
+        pm_clipboard_pen:
+          whitelist:
+            tags:
+            - Write
+        pm_clipboard_priv_id:
+          minCount: 1
+          whitelist:
+            tags:
+            - DoorBumpOpener
+        pm_clipboard_target_id:
+          minCount: 2
+          whitelist: 
+            tags:
+            - DoorBumpOpener
+    - type: MeleeWeapon
+      damage:
+        types:
+          Slash: 10
+    - type: LandAtCursor
+    - type: DamageOtherOnHit
+      damage:
+        types:
+          Slash: 8
+    - type: Tag
+      tags:
+      - Folder
+      - HighRiskItem
+    - type: StealTarget
+      stealGroup: HoPBoardSteal
+    - type: ContainerContainer
+      containers:
+        storagebase: !type:Container
+        pen_slot: !type:ContainerSlot
+        IdCardConsole-privilegedId: !type:ContainerSlot
+        IdCardConsole-targetId: !type:ContainerSlot
+
+- type: entity
+  id: UniversalBureaucraticDigiBoard
+  parent: [BoxFolderClipboard]
+  name: Universal Bureaucratic Digi-Board
+  suffix: Admin, Filled
+  description: A bulky electric clipboard, filled with bureaucracy. Contains a portable ID card computer. Vulnerable to assistants.
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Objects/Misc/uni_clipboard.rsi
+      layers:
+        - state: uni_clipboard
+        - state: uni_clipboard_paper
+          map: ["uni_clipboard_paper"]
+          visible: false
+        - state: uni_clipboard_pen
+          map: ["uni_clipboard_pen"]
+          visible: false
+        - state: uni_clipboard_target_id
+          map: ["uni_clipboard_target_id"]
+          visible: false
+        - state: uni_clipboard_priv_id
+          map: ["uni_clipboard_priv_id"]
+          visible: false
+        - state: uni_clipboard_over
+    - type: ItemSlots
+      slots:
+        pen_slot:
+          name: clipboard-slot-component-slot-name-pen
+          whitelist:
+            tags:
+            - Write
+          insertOnInteract: true
+    - type: Item
+      sprite: _FarHorizons/Objects/Misc/uni_clipboard.rsi
+      size: Normal
+    - type: Clothing
+      sprite: _FarHorizons/Objects/Misc/uni_clipboard.rsi
+      slots: [belt, pocket]
+    - type: Storage
+      maxItemSize: Small
+      grid:
+      - 0,0,4,3
+      quickInsert: true
+    - type: EntityTableContainerFill
+      containers:
+        storagebase: !type:AllSelector
+          children:
+          - id: Paper
+            amount: 10
+    - type: IdCardConsole
+      accessGroups:
+      - General
+      - Security
+      - Cargo
+      - Command
+      - Research
+      - Medical
+      - Service
+      - Engineering
+      - Misc
+      - CentralCommand
+      - Syndicate
+      - Silicon
+      - Xenoborg
+      - GeneralNS
+      - SecurityNS
+      - Executive
+      - ResearchNS
+      - MedicalNS
+      - ServiceNS
+      - EngineeringNS
+      - NSHighCommand
+      - SiliconNS
+      - LambdaSquadron
+      factions:
+      - FactionNT
+      - FactionSyndicate
+      - FactionCFA
+      - FactionCargonia
+      privilegedIdSlot:
+        name: fh-id-card-clipboard-priviliged-id
+        ejectSound: /Audio/Machines/id_swipe.ogg
+        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+        ejectOnBreak: true
+        swap: false
+        whitelist:
+          components:
+          - IdCard
+      targetIdSlot:
+        name: fh-id-card-clipboard-target-id
+        ejectSound: /Audio/Machines/id_swipe.ogg
+        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+        ejectOnBreak: true
+        swap: false
+        whitelist:
+          components:
+          - IdCard
+    - type: ActivatableUI
+      key: enum.IdCardConsoleUiKey.Key
+    - type: UserInterface
+      interfaces:
+        enum.IdCardConsoleUiKey.Key:
+          type: IdCardConsoleBoundUserInterface
+        enum.WiresUiKey.Key:
+          type: WiresBoundUserInterface
+        enum.StorageUiKey.Key:
+          type: StorageBoundUserInterface
+    - type: ItemMapper
+      mapLayers:
+        uni_clipboard_paper:
+          whitelist:
+            tags:
+            - Document
+        uni_clipboard_pen:
+          whitelist:
+            tags:
+            - Write
+        uni_clipboard_priv_id:
+          minCount: 1
+          whitelist:
+            tags:
+            - DoorBumpOpener
+        uni_clipboard_target_id:
+          minCount: 2
+          whitelist: 
+            tags:
+            - DoorBumpOpener
+    - type: MeleeWeapon
+      damage:
+        types:
+          Slash: 10
+    - type: LandAtCursor
+    - type: DamageOtherOnHit
+      damage:
+        types:
+          Slash: 8
+    - type: Tag
+      tags:
+      - Folder
+    - type: ContainerContainer
+      containers:
+        storagebase: !type:Container
+        pen_slot: !type:ContainerSlot
+        IdCardConsole-privilegedId: !type:ContainerSlot
+        IdCardConsole-targetId: !type:ContainerSlot

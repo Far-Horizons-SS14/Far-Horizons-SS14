@@ -18,33 +18,23 @@ using Robust.Shared.Containers; // Starlight
 
 namespace Content.Shared.Station;
 
-public abstract class SharedStationSpawningSystem : EntitySystem
+public abstract partial class SharedStationSpawningSystem : EntitySystem
 {
-    [Dependency] protected readonly IPrototypeManager PrototypeManager = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] protected readonly InventorySystem InventorySystem = default!;
-    [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
-    [Dependency] private readonly MetaDataSystem _metadata = default!;
-    [Dependency] private readonly SharedStorageSystem _storage = default!;
-    [Dependency] private readonly SharedTransformSystem _xformSystem = default!;
-    [Dependency] private readonly ItemSlotsSystem _itemSlots = default!; // Starlight
-    [Dependency] private readonly SharedContainerSystem _container = default!; // Far Horizons
+    [Dependency] protected IPrototypeManager PrototypeManager = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] protected InventorySystem InventorySystem = default!;
+    [Dependency] private SharedHandsSystem _handsSystem = default!;
+    [Dependency] private MetaDataSystem _metadata = default!;
+    [Dependency] private SharedStorageSystem _storage = default!;
+    [Dependency] private SharedTransformSystem _xformSystem = default!;
+    [Dependency] private ItemSlotsSystem _itemSlots = default!; // Starlight
+    [Dependency] private SharedContainerSystem _container = default!; // Far Horizons
 
-    private EntityQuery<HandsComponent> _handsQuery;
-    private EntityQuery<InventoryComponent> _inventoryQuery;
-    private EntityQuery<StorageComponent> _storageQuery;
-    private EntityQuery<TransformComponent> _xformQuery;
-    private EntityQuery<ItemSlotsComponent> _itemSlotsQuery; // Starlight
-
-    public override void Initialize()
-    {
-        base.Initialize();
-        _handsQuery = GetEntityQuery<HandsComponent>();
-        _inventoryQuery = GetEntityQuery<InventoryComponent>();
-        _storageQuery = GetEntityQuery<StorageComponent>();
-        _xformQuery = GetEntityQuery<TransformComponent>();
-        _itemSlotsQuery = GetEntityQuery<ItemSlotsComponent>(); // Starlight
-    }
+    [Dependency] private EntityQuery<HandsComponent> _handsQuery = default!;
+    [Dependency] private EntityQuery<InventoryComponent> _inventoryQuery = default!;
+    [Dependency] private EntityQuery<StorageComponent> _storageQuery = default!;
+    [Dependency] private EntityQuery<TransformComponent> _xformQuery = default!;
+    [Dependency] private EntityQuery<ItemSlotsComponent> _itemSlotsQuery = default!; // Starlight
 
     /// <summary>
     ///     Equips the data from a `RoleLoadout` onto an entity.

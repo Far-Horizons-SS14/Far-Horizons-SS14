@@ -83,8 +83,9 @@
     lastSignals:
       DoorStatus: false
   - type: Damageable
-    damageContainer: StructuralInorganic
     damageModifierSet: Glass
+  - type: Injurable
+    damageContainer: StructuralInorganic
   - type: ExaminableDamage
     messages: WindowMessages
   - type: RCDDeconstructable
@@ -137,8 +138,8 @@
     denyAnimationTime: 0.4
     animatePanel: false
     openUnlitVisible: true
-    # needed so that windoors will close regardless of whether there are people in it; it doesn't crush after all
-    safety: false
+    # needed so that windoors loop between closing and reopening less often even though they don't crush
+    safety: true
   - type: NavMapDoor
   - type: DoorBolt
   - type: Electrified
@@ -180,6 +181,9 @@
       - BulletUnarmedCollide #Starlight -- Make bullet pre-arming not phase through windoors 
       - DoorRemoteWhitelist
       # This tag is used by door remotes to allow or not a door remote to normally be able to interact with a door
+  - type: LineOfSightExclude # Far Horizons
+  - type: StructureOcclusion #Far Horizons
+    occlusionAmount: 0.25
 
 - type: entity
   id: BaseSecureWindoor
@@ -257,6 +261,8 @@
       - DoorRemoteWhitelist
       # This tag is used by door remotes to allow or not a door remote to normally be able to interact with a door
       - BulletUnarmedCollide #Starlight -- Make bullet pre-arming not phase through windoors 
+  - type: StructureOcclusion #Far Horizons
+    occlusionAmount: 0.3
 
 #Plasma Windoors
 - type: entity

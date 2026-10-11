@@ -1,0 +1,49 @@
+- type: htnCompound
+  id: ElderCompound
+  branches:
+    - preconditions:
+        - !type:HasComponentPrecondition
+          comp: ElderBossDecoyRegeneration
+        - !type:KeyExistsPrecondition
+          key: Target
+      tasks:
+        - !type:HTNPrimitiveTask
+          operator: !type:UnSetKeyOperator
+            key: Target
+    - preconditions:
+        - !type:HasComponentPrecondition
+          comp: ElderBossDecoyRegeneration
+      tasks:
+        - !type:HTNPrimitiveTask
+          operator: !type:SetFloatOperator
+            targetKey: IdleTime
+            amount: 1
+        - !type:HTNPrimitiveTask
+          operator: !type:WaitOperator
+            key: IdleTime
+    - preconditions:
+        - !type:HasComponentPrecondition
+          invert: true
+          comp: ElderBossDecoyRegeneration
+      tasks:
+        - !type:HTNCompoundTask
+          task: MeleeCombatCompound
+    - preconditions:
+        - !type:HasComponentPrecondition
+          invert: true
+          comp: ElderBossDecoyRegeneration
+      tasks:
+        - !type:HTNCompoundTask
+          task: IdleCompound
+
+- type: htnCompound
+  id: ElderDecoyCompound
+  branches:
+    - tasks:
+        - !type:HTNPrimitiveTask
+          operator: !type:SetFloatOperator
+            targetKey: IdleTime
+            amount: 1
+        - !type:HTNPrimitiveTask
+          operator: !type:WaitOperator
+            key: IdleTime

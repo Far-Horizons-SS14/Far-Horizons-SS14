@@ -1,6 +1,7 @@
 using Content.Server.Administration.Logs;
 using Content.Server.Body.Components;
 using Content.Server.Temperature.Components;
+using Content.Shared._FarHorizons.LimbDamage;
 using Content.Shared.Alert;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
@@ -19,10 +20,11 @@ namespace Content.Server.Temperature.Systems;
 /// </summary>
 public sealed partial class TemperatureSystem
 {
-    [Dependency] private readonly AlertsSystem _alerts = default!;
-    [Dependency] private readonly DamageableSystem _damageable = default!;
-    [Dependency] private readonly IAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly IGameTiming _gameTiming = default!;
+    [Dependency] private AlertsSystem _alerts = default!;
+    [Dependency] private DamageableSystem _damageable = default!;
+    [Dependency] private IAdminLogManager _adminLogger = default!;
+    [Dependency] private IGameTiming _gameTiming = default!;
+    [Dependency] private LimbDamageSystem _limbDamage = default!; // Far Horizons
 
     private EntityQuery<TemperatureDamageComponent> _tempDamageQuery;
     private EntityQuery<ContainerTemperatureComponent> _containerTemperatureQuery;
@@ -49,6 +51,8 @@ public sealed partial class TemperatureSystem
     /// On a scale of 0. to 1. where 0. is the ideal temperature and 1. is a temperature damage threshold this is the point where the component starts raising temperature alerts.
     /// </summary>
     public static readonly float MinAlertTemperatureScale = 0.33f;
+
+    private const float LIMB_DAMAGE_MULTIPLIER = 2f; // Far Horizons - deal this much more damage to limbs as dealt to torso (damage is randomly split between all available limbs)
 
     private void InitializeDamage()
     {
@@ -113,6 +117,7 @@ public sealed partial class TemperatureSystem
             var diff = Math.Abs(temperature.CurrentTemperature - heatDamageThreshold);
             var tempDamage = c / (1 + a * Math.Pow(Math.E, -heatK * diff)) - y;
             _damageable.TryChangeDamage(entity.Owner, entity.Comp.HeatDamage * tempDamage * deltaTime.TotalSeconds, ignoreResistances: true, interruptsDoAfters: false);
+            _limbDamage.ChangeDamageRandom(entity.Owner, entity.Comp.HeatDamage * tempDamage * deltaTime.TotalSeconds * LIMB_DAMAGE_MULTIPLIER, ignoreResistances: true, interruptsDoAfters: false); // Far Horizons
         }
         else if (temperature.CurrentTemperature <= coldDamageThreshold)
         {
@@ -126,6 +131,7 @@ public sealed partial class TemperatureSystem
             var tempDamage =
                 Math.Sqrt(diff * (Math.Pow(entity.Comp.DamageCap.Double(), 2) / coldDamageThreshold));
             _damageable.TryChangeDamage(entity.Owner, entity.Comp.ColdDamage * tempDamage * deltaTime.TotalSeconds, ignoreResistances: true, interruptsDoAfters: false);
+            _limbDamage.ChangeDamageRandom(entity.Owner, entity.Comp.ColdDamage * tempDamage * deltaTime.TotalSeconds * LIMB_DAMAGE_MULTIPLIER, ignoreResistances: true, interruptsDoAfters: false); // Far Horizons
         }
         else if (entity.Comp.TakingDamage)
         {

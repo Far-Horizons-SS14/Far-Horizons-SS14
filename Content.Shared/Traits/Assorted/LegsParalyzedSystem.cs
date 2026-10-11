@@ -1,14 +1,13 @@
-﻿using Content.Shared.Buckle.Components;
+﻿/*using Content.Shared.Buckle.Components;
 using Content.Shared.Movement.Events;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Standing;
 using Content.Shared.Throwing;
 using Content.Shared.Stunnable;
-using Content.Shared.Movement.Components;//FarHorizons
 
 namespace Content.Shared.Traits.Assorted;
 
-public sealed class LegsParalyzedSystem : EntitySystem
+public sealed partial class LegsParalyzedSystem : EntitySystem
 {
     public override void Initialize()
     {
@@ -16,40 +15,31 @@ public sealed class LegsParalyzedSystem : EntitySystem
         SubscribeLocalEvent<LegsParalyzedComponent, ComponentShutdown>(OnShutdown);
         SubscribeLocalEvent<LegsParalyzedComponent, BuckledEvent>(OnBuckled);
         SubscribeLocalEvent<LegsParalyzedComponent, UnbuckledEvent>(OnUnbuckled);
-        //FarHorizons-Start
-        /*SubscribeLocalEvent<LegsParalyzedComponent, ThrowPushbackAttemptEvent>(OnThrowPushbackAttempt);
-        SubscribeLocalEvent<LegsParalyzedComponent, UpdateCanMoveEvent>(OnUpdateCanMoveEvent);*/
-        //FarHorizons-End
+        SubscribeLocalEvent<LegsParalyzedComponent, ThrowPushbackAttemptEvent>(OnThrowPushbackAttempt);
+        SubscribeLocalEvent<LegsParalyzedComponent, UpdateCanMoveEvent>(OnUpdateCanMoveEvent);
     }
 
     private void OnStartup(EntityUid uid, LegsParalyzedComponent component, ComponentStartup args)
     {
         // TODO: In future probably must be surgery related wound
-        /*_movementSpeedModifierSystem.ChangeBaseSpeed(uid, 0, 0, 20);*/
-        EnsureComp<WormComponent>(uid); //FarHorizons
-        EnsureComp<KnockedDownComponent>(uid);//FarHorizons
+        _movementSpeedModifierSystem.ChangeBaseSpeed(uid, 0, 0, 20);
+
     }
 
     private void OnShutdown(EntityUid uid, LegsParalyzedComponent component, ComponentShutdown args)
     {
-        /*_standingSystem.Stand(uid);
-        _bodySystem.UpdateMovementSpeed(uid);*/
-        RemCompDeferred<WormComponent>(uid); //FarHorizons
-        RemCompDeferred<KnockedDownComponent>(uid); //FarHorizons
+        _standingSystem.Stand(uid);
+        _bodySystem.UpdateMovementSpeed(uid);
     }
 
     private void OnBuckled(EntityUid uid, LegsParalyzedComponent component, ref BuckledEvent args)
     {
-        //_standingSystem.Stand(uid);
-        RemCompDeferred<WormComponent>(uid); //FarHorizons
-        RemCompDeferred<KnockedDownComponent>(uid); //FarHorizons
+        _standingSystem.Stand(uid);
     }
 
     private void OnUnbuckled(EntityUid uid, LegsParalyzedComponent component, ref UnbuckledEvent args)
     {
-        /*_standingSystem.Down(uid);*/
-        EnsureComp<WormComponent>(uid); //FarHorizons
-        EnsureComp<KnockedDownComponent>(uid); //FarHorizons
+        _standingSystem.Down(uid);
     }
 
     //FarHorizons-edit Start
@@ -61,6 +51,5 @@ public sealed class LegsParalyzedSystem : EntitySystem
     private void OnThrowPushbackAttempt(EntityUid uid, LegsParalyzedComponent component, ThrowPushbackAttemptEvent args)
     {
         args.Cancel();
-    }*/
-    //FarHorizons-edit End
-}
+    }
+}*/

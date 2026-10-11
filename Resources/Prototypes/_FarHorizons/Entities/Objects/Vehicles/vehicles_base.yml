@@ -51,6 +51,7 @@
   - type: Pierceable 
     level: HardenedMetal
   - type: Damageable
+  - type: Injurable
     damageContainer: StructuralInorganic
   - type: Destructible
     thresholds:
@@ -105,11 +106,17 @@
       dismountOnStun: true
       dismountOnKnockdown: true
       armorAffectsVehicle: true
-      northOffset: "0, -0.15"
-      southOffset: "0, -0.15"
-      eastOffset: "0, -0.15"
-      westOffset: "-0, -0.15"
-      southDrawDepth: BelowMobs
+    - type: DirectionalOverride
+      offsets: 
+        North: "0, -0.15"
+        South: "0, -0.15"
+        East: "0, -0.15"
+        West: "-0, -0.15"
+      drawDepths: 
+        North: OverMobs
+        South: BelowMobs
+        East: OverMobs
+        West: OverMobs
     - type: MovementSpeedModifier
       baseSprintSpeed: 4.5
       baseWalkSpeed: 2.5
@@ -168,6 +175,9 @@
       riderWhitelist:
         tags:
           - CanPilot
+      riderBlacklist:
+        components:
+          - PowerArmorUser
       hornSound: 
         path: /Audio/Effects/Vehicle/bicyclebell.ogg
       soundHit:
@@ -177,12 +187,17 @@
       dismountOnStun: true
       dismountOnKnockdown: true
       armorAffectsVehicle: true
-      northOffset: "0, -0.25"
-      southOffset: "0, -0.25"
-      eastOffset: "0, -0.25"
-      westOffset: "-0, -0.25"
-      eastDrawDepth: BelowMobs
-      westDrawDepth: BelowMobs
+    - type: DirectionalOverride
+      offsets: 
+        North: "0, -0.25"
+        South: "0, -0.25"
+        East: "0, -0.25"
+        West: "0, -0.25"
+      drawDepths: 
+        North: OverMobs
+        South: OverMobs
+        East: BelowMobs
+        West: BelowMobs
     - type: MovementSpeedModifier
       baseSprintSpeed: 4.5
       baseWalkSpeed: 2.5

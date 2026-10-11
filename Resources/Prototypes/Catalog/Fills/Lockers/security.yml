@@ -61,6 +61,7 @@
     children:
     - id: ClothingOuterHardsuitWarden
     - id: OxygenTankFilled
+    - id: CoolingUnit # Starlight - Beep, Boop!
     - id: NitrogenTankFilled # Starlight - vox gang
     - id: ClothingMaskBreath
 
@@ -238,7 +239,7 @@
   id: FillGunSafePistolMk58
   table: !type:AllSelector
     children:
-    - id: WeaponPistolMk78 #Far Horizons
+    - id: WeaponPistolMKT #Far Horizons
       amount: 2
     - id: WeaponPistolEnforcerTypeT #FH
       amount: 1
@@ -269,7 +270,7 @@
     children:
     - id: WeaponRifleLecter
       amount: 1
-    - id: WeaponRifleIFV-50T #FH
+    - id: WeaponRifleHannibalT #FH
       amount: 1
     - id: MagazineRifle556HP #FH
       amount: 3
@@ -292,28 +293,28 @@
     children:
     - id: WeaponSubMachineGunDrozdTypeT #FH
       amount: 1
-    - id: WeaponSubMachineGunP291T #Far Horizons
+    - id: WeaponSubMachineGunSparvT #Far Horizons
       amount: 2
     - id: MagazinePistolSubMachineGunSP
       amount: 4
 
 - type: entity
   parent: [GunSafeBaseSecure, BaseSecurityContraband]
-  id: GunSafeShotgunEnforcer
+  id: GunSafeShotgunSentinel #FH
   name: heavy shotgun safe
   components:
   - type: EntityTableContainerFill
     containers:
       entity_storage: !type:NestedSelector
-        tableId: FillGunSafeShotgunEnforcer
+        tableId: FillGunSafeShotgunSentinel #FH
 
 - type: entityTable
-  id: FillGunSafeShotgunEnforcer
+  id: FillGunSafeShotgunSentinel #FH
   table: !type:AllSelector
     children:
     - id: SpeedLoaderMagnumBasic
       amount: 2
-    - id: WeaponShotgunEnforcer
+    - id: WeaponShotgunSentinel #FH
       amount: 2
     - id: WeaponShotgunRiot
       amount: 1

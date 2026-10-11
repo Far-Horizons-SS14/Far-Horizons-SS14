@@ -20,10 +20,10 @@ namespace Content.Server.Administration.Systems;
 
 public sealed partial class AdminVerbSystem
 {
-    [Dependency] private readonly AntagSelectionSystem _antag = default!;
-    [Dependency] private readonly ZombieSystem _zombie = default!;
-    [Dependency] private readonly GameTicker _gameTicker = default!;
-    [Dependency] private readonly OutfitSystem _outfit = default!;
+    [Dependency] private AntagSelectionSystem _antag = default!;
+    [Dependency] private ZombieSystem _zombie = default!;
+    [Dependency] private GameTicker _gameTicker = default!;
+    [Dependency] private OutfitSystem _outfit = default!;
 
     private static readonly EntProtoId DefaultTraitorRule = "Traitor";
     private static readonly EntProtoId DefaultInitialInfectedRule = "Zombie";
@@ -36,7 +36,9 @@ public sealed partial class AdminVerbSystem
     private static readonly EntProtoId DefaultNinjaRule = "NinjaSpawn";
     private static readonly ProtoId<StartingGearPrototype> PirateGearId = "PirateGear";
     private static readonly EntProtoId DefaultVampireRule = "Vampire"; //Starlight
-    private static readonly EntProtoId DefaultBrighteyeRule = "Brighteye"; //Starlight
+    private static readonly EntProtoId DefaultTraitorNSRule = "TraitorNS"; // Far Horizons
+    private static readonly EntProtoId DefaultLambdaLoneopsRule = "LambdaLoneOpsSpawn"; // Far Horizons
+    //private static readonly EntProtoId DefaultBrighteyeRule = "Brighteye"; //Starlight - FH removed
 
     // All antag verbs have names so invokeverb works.
     private void AddAntagVerbs(GetVerbsEvent<Verb> args)
@@ -258,22 +260,55 @@ public sealed partial class AdminVerbSystem
         };
         args.Verbs.Add(vampire);
 
-        if (HasComp<ShadekinComponent>(args.Target))
+        // Far Horizons start
+        var traitorNSName = Loc.GetString("admin-verb-text-make-traitor-ns");
+        Verb traitorNS = new()
         {
-            Verb brighteye = new()
+            Text = traitorNSName,
+            Category = VerbCategory.Antag,
+            Icon = new SpriteSpecifier.Rsi(new ResPath("/Textures/_FarHorizons/Interface/Misc/job_icons.rsi"), "Consortium"),
+            Act = () =>
             {
-                Text = Loc.GetString("admin-verb-text-make-brighteye"),
-                Category = VerbCategory.Antag,
-                Icon = new SpriteSpecifier.Rsi(new ResPath("/Textures/_Starlight/Interface/Actions/shadekin.rsi"), "rest"),
-                Act = () =>
-                {
-                    _gameTicker.StartGameRule("TheDarkMap"); // The Dark should always be spawned for any brighteye.
-                    _antag.ForceMakeAntag<BrighteyeRuleComponent>(targetPlayer, DefaultBrighteyeRule);
-                },
-                Impact = LogImpact.High,
-                Message = Loc.GetString("admin-verb-make-brighteye"),
-            };
-            args.Verbs.Add(brighteye);
-        }
+                _antag.ForceMakeAntag<TraitorRuleComponent>(targetPlayer, DefaultTraitorNSRule);
+            },
+            Impact = LogImpact.High,
+            Message = string.Join(": ", traitorName, Loc.GetString("admin-verb-make-traitor-ns")),
+        };
+        args.Verbs.Add(traitorNS);
+
+        var nukeOpNameNS = Loc.GetString("admin-verb-text-make-nuclear-operative-ns");
+        Verb nukeOpNS = new()
+        {
+            Text = nukeOpNameNS,
+            Category = VerbCategory.Antag,
+            Icon = new SpriteSpecifier.Rsi(new("/Textures/_FarHorizons/Clothing/Head/Hardsuits/hardliner.rsi"), "icon"),
+            Act = () =>
+            {
+                _antag.ForceMakeAntag<NukeopsRuleComponent>(targetPlayer, DefaultLambdaLoneopsRule);
+            },
+            Impact = LogImpact.High,
+            Message = string.Join(": ", nukeOpNameNS, Loc.GetString("admin-verb-make-nuclear-operative-ns")),
+        };
+        args.Verbs.Add(nukeOpNS);
+        // Far Horizons end
+
+        // FH - removed brighteye
+        // if (HasComp<ShadekinComponent>(args.Target))
+        // {
+        //     Verb brighteye = new()
+        //     {
+        //         Text = Loc.GetString("admin-verb-text-make-brighteye"),
+        //         Category = VerbCategory.Antag,
+        //         Icon = new SpriteSpecifier.Rsi(new ResPath("/Textures/_Starlight/Interface/Actions/shadekin.rsi"), "rest"),
+        //         Act = () =>
+        //         {
+        //             _gameTicker.StartGameRule("TheDarkMap"); // The Dark should always be spawned for any brighteye.
+        //             _antag.ForceMakeAntag<BrighteyeRuleComponent>(targetPlayer, DefaultBrighteyeRule);
+        //         },
+        //         Impact = LogImpact.High,
+        //         Message = Loc.GetString("admin-verb-make-brighteye"),
+        //     };
+        //     args.Verbs.Add(brighteye);
+        // }
     }
 }

@@ -1,0 +1,33 @@
+- type: entity
+  parent: BaseMindRoleAntag
+  id: MindRoleScientistAbductor #FH
+  name: Scientist Abductor Role #FH
+  components:
+  - type: MindRole
+    exclusiveAntag: true
+    antagPrototype: ScientistAbductorAntag #FH
+  - type: Abductor
+
+#FarHorizons Start
+- type: entity
+  parent: BaseMindRoleAntag
+  id: MindRoleAgentAbductor
+  name: Agent Abductor Role
+  components:
+  - type: MindRole
+    exclusiveAntag: true
+    antagPrototype: AgentAbductorAntag
+  - type: Abductor
+#FarHorizons End
+
+# FH - removed brighteye as antag
+# - type: entity
+#   parent: BaseMindRoleAntag
+#   id: MindRoleBrighteye
+#   name: Brighteye Role
+#   components:
+#   - type: MindRole
+#     antagPrototype: Brighteye
+#     subtype: roles-antag-brighteye-name
+#     exclusiveAntag: true
+#   - type: BrighteyeRole

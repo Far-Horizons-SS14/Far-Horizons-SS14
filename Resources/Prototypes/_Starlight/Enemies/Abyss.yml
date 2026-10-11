@@ -1,0 +1,106 @@
+- type: entity
+  name: worm
+  parent: [ SimpleSpaceMobBase, MobCombat ]
+  id: MobWorm
+  components:
+    - type: NPCUseActionOnTarget
+      actionId: ActionMobBlink
+    - type: Sprite
+      sprite: _Starlight/Mobs/Abyss/worm.rsi
+      layers:
+        - map: [ "enum.DamageStateVisualLayers.Base" ]
+          state: worm
+    - type: InputMover
+    - type: MobMover
+    - type: HTN
+      rootTask:
+        task: ElderCompound
+      blackboard:
+        VisionRadius: !type:Single
+          9
+        AggroVisionRadius: !type:Single
+          15
+    - type: NpcFactionMember
+      factions:
+      - Abyss
+    - type: CombatMode
+    - type: LimbTargetting # Far Horizons
+    - type: Physics
+    - type: MobState
+    - type: MobThresholds
+      thresholds:
+        0: Alive
+        40: Dead
+    - type: MovementSpeedModifier
+      baseWalkSpeed: 2.5
+      baseSprintSpeed: 5.5
+    - type: Stamina
+      baseCritThreshold: 40
+      animationThreshold: 20
+    - type: DamageStateVisuals
+      states:
+        Alive:
+          Base: worm
+        Dead:
+          Base: dead
+    - type: MeleeWeapon
+      altDisarm: false
+      animation: WeaponArcBite
+      soundHit:
+        path: /Audio/Effects/bite.ogg
+      damage:
+        types:
+          Blunt: 4
+          Structural: 3
+          Caustic: 2
+          Cellular: 1
+    - type: TypingIndicator
+      proto: alien
+    - type: Tag
+      tags:
+        - DoorBumpOpener
+    - type: NoSlip
+    - type: StatusEffects # Overwriting basesimplemob to remove flash, getting flashed as dragon just feelsbad
+      allowed:
+      - SlowedDown
+      - Stutter
+      - Electrocution
+      - ForcedSleep
+      - TemporaryBlindness
+      - Pacified
+      - RadiationProtection
+      - Drowsiness
+
+- type: entity
+  id: ActionMobBlink
+  name: Blink
+  description: Teleport to the clicked location.
+  components:
+  - type: Action
+    useDelay: 10
+    sound: !type:SoundPathSpecifier
+      path: /Audio/Magic/blink.ogg
+    checkConsciousness: false
+    checkCanInteract: false
+    itemIconStyle: BigAction
+    icon:
+      sprite: Objects/Magic/magicactions.rsi
+      state: blink
+  - type: TargetAction
+    range: 16
+    checkCanAccess: false
+  - type: WorldTargetAction
+    event: !type:TeleportSpellEvent
+      ignoreWalls: true
+
+- type: entity
+  id: WeaponElderSlash
+  parent: WeaponArcSlash
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: WeaponArcVisuals
+      animation: Slash
+    - type: Sprite
+      sprite: _Starlight/Mobs/Abyss/elder.rsi
+      state: claw
+      drawdepth: Effects

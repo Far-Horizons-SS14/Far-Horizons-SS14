@@ -10,7 +10,7 @@ using Robust.Shared.Toolshed;
 namespace Content.Server.Cloning.Commands;
 
 [ToolshedCommand, AdminCommand(AdminFlags.Fun)]
-public sealed class CloneCommand : ToolshedCommand
+public sealed partial class CloneCommand : ToolshedCommand
 {
     private SharedVisualBodySystem? _visualBody;
     private CloningSystem? _cloning;

@@ -1,3 +1,16 @@
+#region ## GSL ##
+- type: entity
+  parent: ClothingHeadHatHardhatBase
+  id: ClothingHeadHatHardhatMiner
+  name: Mining Specialist Hard Hat
+  description: A hard hat used in dangerous working conditions to protect the head. Comes with a built-in flashlight.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Head/Hardhats/minerhardhat.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Head/Hardhats/minerhardhat.rsi
+    
+#region ## NanoTrasen ##
 - type: entity
   parent: ClothingHeadHatHardhatBase
   id: ClothingHeadHatHardhatAtmos
@@ -9,51 +22,40 @@
   - type: Clothing
     sprite: _FarHorizons/Clothing/Head/Hardhats/atmos.rsi
 
-- type: entity
-  parent: ClothingHeadHatHardhatBase
-  id: ClothingHeadHatHardhatMiner
-  name: Mining Specialist Hard Hat
-  description: A hard hat used in dangerous working conditions to protect the head. Comes with a built-in flashlight.
-  components:
-  - type: Sprite
-    sprite: _FarHorizons/Clothing/Head/Hardhats/minerhardhat.rsi
-  - type: Clothing
-    sprite: _FarHorizons/Clothing/Head/Hardhats/minerhardhat.rsi
-
-#region Syndicate
+#region ## NeoSol ##
 
 - type: entity
   parent: ClothingHeadHatHardhatBase
   id: ClothingHeadHatHardhatAtmosSyndi
   name: Atmospheric Hard Hat
-  suffix: S
+  suffix: NS
   description: A hard hat, painted in red, highlighted in yellow and blue, used in dangerous working conditions to protect the head. Comes with a built-in flashlight and partial face cover.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/Head/Hardhats/atmos-syndi.rsi
+    sprite: _FarHorizons/Clothing/Head/Hardhats/NeoSol/atmos.rsi
   - type: Clothing
-    sprite: _FarHorizons/Clothing/Head/Hardhats/atmos-syndi.rsi
+    sprite: _FarHorizons/Clothing/Head/Hardhats/NeoSol/atmos.rsi
 
 - type: entity
   parent: ClothingHeadHatHardhatBase
   id: ClothingHeadHatHardhatOrangeSyndi
   name: Red and Orange Hard Hat
-  suffix: S
+  suffix: NS
   description: A hard hat, painted in red and orange, used in dangerous working conditions to protect the head. Comes with a built-in flashlight.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/Head/Hardhats/orange-syndi.rsi
+    sprite: _FarHorizons/Clothing/Head/Hardhats/NeoSol/orange.rsi
   - type: Clothing
-    sprite: _FarHorizons/Clothing/Head/Hardhats/orange-syndi.rsi
+    sprite: _FarHorizons/Clothing/Head/Hardhats/NeoSol/orange.rsi
 
 - type: entity
   parent: ClothingHeadHatHardhatBase
   id: ClothingHeadHatHardhatRedSyndi
   name: Red and Yellow Hard Hat
-  suffix: S
+  suffix: NS
   description: A hard hat, painted in red and highlighted in yellow, used in dangerous working conditions to protect the head. Comes with a built-in flashlight.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/Head/Hardhats/red-syndi.rsi
+    sprite: _FarHorizons/Clothing/Head/Hardhats/NeoSol/red.rsi
   - type: Clothing
-    sprite: _FarHorizons/Clothing/Head/Hardhats/red-syndi.rsi
+    sprite: _FarHorizons/Clothing/Head/Hardhats/NeoSol/red.rsi

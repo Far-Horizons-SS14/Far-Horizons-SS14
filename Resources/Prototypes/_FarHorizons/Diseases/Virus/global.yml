@@ -2,53 +2,59 @@
   id: DiseaseCold
   name: disease-DiseaseCold-name
   desc: disease-DiseaseCold-desc
-  spreadPath: [ Airborne ]
-  permeabilityMod: 0.5
+  strainName: COVID-2077
+  strainId: covid2077
+  vector: Virus
+  symptoms:
+  - symptom: SymptomCough
+    probability:
+      1: 0.02
+      2: 0.04
+  - symptom: SymptomSneeze
+    probability:
+      1: 0.02
+      2: 0.04
+  - symptom: SymptomFever
   cureSteps:
   - !type:CureConditions
-    cureChance: 0.15
     conditions:
-    - !type:ReagentCondition
-      reagent: Spaceacillin
-      min: 1
-    - !type:TemperatureCondition
+    - !type:CureReagent
+      reagent: Salbutamol
+      min: 10
+    - !type:CureTemperature
       max: 308.15
   - !type:CureWait
     requiredTicks: 900
   - !type:CureBedrest
       bedrestChance: 0.00066 #Abysmally Low to have an average of 300 ticks before a heal if they sleep
       sleepMultiplier: 5
-  stages:
-  - stage: 0
-    stealth: [ Hidden, VeryHidden ]
-  - stage: 1
-    stealth: [ Hidden ]
-    sensations: [ "disease-sensation-throat-sore", "disease-sensation-throat-mucus" ]
-    symptoms:
-    - symptom: SymptomCough
-    - symptom: SymptomSneeze
-
-  - stage: 2
-    sensations: [ "disease-sensation-throat-sore", "disease-sensation-throat-mucus" ]
-    symptoms:
-    - symptom: SymptomCough
-    - symptom: SymptomSneeze
-    - symptom: SymptomFever
-    - symptom: SymptomTransitionToFlu
+  stealth: [ Hidden ]
+  spreadPath: [ Airborne ]
 
 - type: disease
   id: DiseaseCold9
   name: disease-DiseaseCold9-name
   desc: disease-DiseaseCold9-desc
-  spreadPath: [ Contact ]
+  strainName: RSV-FRZN
+  strainId: rsvfrzn
+  vector: Virus
+  symptoms:
+  - symptom: SymptomCough
+    probability:
+      1: 0.02
+      2: 0.04
+  - symptom: SymptomSneeze
+    probability:
+      1: 0.02
+      2: 0.04
+  - symptom: SymptomFreeze
   cureSteps:
   - !type:CureConditions
-    cureChance: 0.15 # Higher chance to cure, since two reagents are required.
     conditions:
-    - !type:ReagentCondition
+    - !type:CureReagent
       reagent: Spaceacillin
       min: 1
-    - !type:ReagentCondition
+    - !type:CureReagent
       reagent: Leporazine
       min: 1
   - !type:CureWait
@@ -56,71 +62,38 @@
   - !type:CureBedrest
       bedrestChance: 0.00066 #Abysmally Low to have an average of 300 ticks before a heal if they sleep
       sleepMultiplier: 5
-  stages:
-  - stage: 0
-    stealth: [ Hidden, VeryHidden ]
-  - stage: 1
-    stealth: [ Hidden ]
-    sensations: [ "disease-sensation-throat-sore", "disease-sensation-stiff" ]
-    symptoms:
-    - symptom: SymptomCough
-      probability: 0.02
-    - symptom: SymptomSneeze
-      probability: 0.02
-    - symptom: SymptomFreezeLight
-  - stage: 2
-    stealth: [ Hidden ]
-    sensations: [ "disease-sensation-throat-sore", "disease-sensation-stiff" ]
-    symptoms:
-    - symptom: SymptomCough
-      probability: 0.04
-    - symptom: SymptomSneeze
-      probability: 0.04
-    - symptom: SymptomFreeze
+  stealth: [ Hidden ]
+  spreadPath: [ Contact ]
 
 - type: disease
   id: DiseaseFlu
   name: disease-DiseaseFlu-name
   desc: disease-DiseaseFlu-desc
-  spreadPath: [ Airborne ]
-  permeabilityMod: 0.75
+  strainName: INF-X
+  strainId: infx
+  vector: Virus
+  symptoms:
+    - symptom: SymptomCough
+      probability:
+        1: 0.02
+        2: 0.04
+    - symptom: SymptomSneeze
+      probability:
+        1: 0.02
+        2: 0.04
+    - symptom: SymptomToxin
   cureSteps:
   - !type:CureConditions
-    cureChance: 0.15
     conditions:
-    - !type:ReagentCondition
+    - !type:CureReagent
       reagent: Spaceacillin
-      min: 1
-    - !type:ReagentCondition
+    - !type:CureReagent
       reagent: Salbutamol
-      min: 1
   - !type:CureWait
     requiredTicks: 900
   - !type:CureBedrest
       bedrestChance: 0.00066 #Abysmally Low to have an average of 300 ticks before a heal if they sleep
       sleepMultiplier: 5
-  stages:
-  - stage: 0
-    stealth: [ Hidden ]
-  - stage: 1
-    sensations: [ "disease-sensation-muscles-ache", "disease-sensation-stomach-hurt" ]
-    symptoms:
-    - symptom: SymptomCough
-    - symptom: SymptomSneeze
-    - symptom: SymptomToxinLight
-    cureSteps:
-    - !type:CureBedrest
-      bedrestChance: 0.20
-      sleepMultiplier: 1
-      lowerStage: true
-  - stage: 2
-    sensations: [ "disease-sensation-muscles-ache", "disease-sensation-stomach-hurt" ]
-    symptoms:
-    - symptom: SymptomCough
-    - symptom: SymptomSneeze
-    - symptom: SymptomToxinLight
-    cureSteps:
-    - !type:CureBedrest
-      bedrestChance: 0.15
-      sleepMultiplier: 1
-      lowerStage: true
+  stealth: [ Hidden ]
+  spreadPath: [ Airborne ]
+  permeabilityMod: 0.75

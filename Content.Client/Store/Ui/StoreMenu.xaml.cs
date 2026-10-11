@@ -17,8 +17,8 @@ namespace Content.Client.Store.Ui;
 [GenerateTypedNameReferences]
 public sealed partial class StoreMenu : DefaultWindow
 {
-    [Dependency] private readonly IEntityManager _entityManager = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IEntityManager _entityManager = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
 
     private StoreWithdrawWindow? _withdrawWindow;
 
@@ -412,4 +412,8 @@ public sealed partial class StoreMenu : DefaultWindow
     }
 
     // Starlight-end
+
+    // Far Horizons
+    public void SetWithdraw(bool enabled) => 
+        WithdrawButton.Disabled = WithdrawButton.Disabled || !enabled;
 }

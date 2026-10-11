@@ -25,6 +25,41 @@
 
 - type: latheRecipe
   parent: [ BaseCircuitboardRecipe, BaseEngineeringMachineRecipeCategory ]
+  id: SMESShuttleMachineCircuitboard
+  result: SMESShuttleMachineCircuitboard
+
+- type: latheRecipe
+  parent: [ BaseGoldCircuitboardRecipe, BaseEngineeringMachineRecipeCategory ]
+  id: SMESShipMachineCircuitboard
+  result: SMESShipMachineCircuitboard
+
+- type: latheRecipe
+  parent: [ BaseGoldCircuitboardRecipe, BaseMachineRecipeCategory ]
+  id: WallmountSubstationElectronicsShip
+  result: WallmountSubstationElectronicsShip
+
+- type: latheRecipe
+  parent: [ BaseCircuitboardRecipe, BaseMachineRecipeCategory ]
+  id: WallmountSubstationElectronicsShuttle
+  result: WallmountSubstationElectronicsShuttle
+
+- type: latheRecipe
+  parent: [ BaseGoldCircuitboardRecipe, BaseMachineRecipeCategory ]
+  id: SubstationShipMachineCircuitboard
+  result: SubstationShipMachineCircuitboard
+
+- type: latheRecipe
+  parent: [ BaseCircuitboardRecipe, BaseMachineRecipeCategory ]
+  id: SubstationShuttleMachineCircuitboard
+  result: SubstationShuttleMachineCircuitboard
+
+- type: latheRecipe
+  parent: PortableGeneratorPacmanMachineCircuitboard
+  id: GeneratorAcmanMachineCircuitboard
+  result: GeneratorAcmanMachineCircuitboard
+  
+- type: latheRecipe
+  parent: [ BaseCircuitboardRecipe, BaseEngineeringMachineRecipeCategory ]
   id: FusionReactorCoolantPumpMachineCircuitboard
   result: FusionReactorCoolantPumpMachineCircuitboard
 
@@ -47,7 +82,6 @@
   parent: [ BaseCircuitboardRecipe, BaseEngineeringMachineRecipeCategory ]
   id: FusionReactorControllerMachineCircuitboard
   result: FusionReactorControllerMachineCircuitboard
-
 ## NeoSol Station
 
 - type: latheRecipe

@@ -7,10 +7,10 @@ namespace Content.Shared.CollectiveMind;
 
 public abstract partial class SharedCollectiveMindSystem : EntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly IComponentFactory _componentFactory = default!;
-    [Dependency] private readonly TagSystem _tag = default!;
-    [Dependency] private readonly ILogManager _logManager = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IComponentFactory _componentFactory = default!;
+    [Dependency] private TagSystem _tag = default!;
+    [Dependency] private ILogManager _logManager = default!;
     private ISawmill _sawmill = default!;
 
     private readonly Dictionary<CollectiveMindPrototype, int> _globalMindIDTracker = new();

@@ -18,4 +18,9 @@ public sealed partial class AttachedClothingComponent : Component
     /// </summary>
     [DataField, AutoNetworkedField]
     public EntityUid AttachedUid;
+
+    //FarHorizons Start
+    [DataField, AutoNetworkedField]
+    public string Slot;
+    //FarHorizons End
 }

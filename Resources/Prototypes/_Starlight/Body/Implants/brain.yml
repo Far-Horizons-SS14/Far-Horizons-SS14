@@ -1,0 +1,56 @@
+- type: entity
+  id: BaseEntityBrainImplant
+  abstract: true
+  parent: [ BaseItem, BaseImplant ]
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/implants.rsi
+  - type: Organ
+    category: BrainImplant
+  - type: BrainImplant
+  - type: FlavorProfile
+    flavors:
+      - people
+
+- type: entity
+  id: BrainImplantTranslator
+  name: Translator Implant
+  description: Translates from your language to galactic common right in your brain!
+  parent: BaseEntityBrainImplant
+  components:
+  - type: Sprite
+    state: brain_implant_translator
+  - type: FunctionalOrgan
+    comps:
+    - type: IntrinsicTranslator
+      spoken:
+      - GalacticCommon
+      understood:
+      - GalacticCommon
+
+- type: entity
+  id: BrainImplantComms
+  name: Integrated Headset Implant 
+  description: A headset, right in your brain!
+  parent: BaseEntityBrainImplant
+  components:
+  - type: Sprite
+    state: brain_implant_comms
+  - type: FunctionalOrgan
+    comps:
+    - type: ActiveRadio
+    - type: IntrinsicRadioReceiver
+    - type: IntrinsicRadioTransmitter
+    #FH Start
+    - type: IPCRadio
+      keysCapacity: 4
+      copyHeadsetKeys: false  
+      removeHeadset: false 
+    - type: WiresPanel
+  - type: RoundstartImplantable
+    cost: 2
+    iconScale: 1.3
+    iconOffset: -7, -5
+    description:
+      - roundstart-cybernetics-brain-radio-description
+  #FH End

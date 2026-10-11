@@ -4,6 +4,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 using Content.Shared.DeviceLinking;
+using Robust.Shared.Audio;
 
 namespace Content.Shared._FarHorizons.GenericFieldGenerator.Components;
 
@@ -45,7 +46,7 @@ public sealed partial class GenericFieldGeneratorComponent : Component
     /// The masks the raycast should not go through
     /// </summary>
     [DataField("collisionMask")]
-    public int CollisionMask = (int) (CollisionGroup.MobMask | CollisionGroup.Impassable | CollisionGroup.MachineMask | CollisionGroup.Opaque);
+    public int CollisionMask = (int)  CollisionGroup.Impassable ;
 
     /// <summary>
     /// A collection of connections that the generator has based on direction.
@@ -83,6 +84,18 @@ public sealed partial class GenericFieldGeneratorComponent : Component
     /// Used to retry connection when fully charged, but not connected
     /// </summary>
     public bool Removing = false;
+
+    /// <summary>
+    /// Sound played on field creation.
+    /// </summary>
+    [DataField]
+    public SoundSpecifier? PowerUpSound;
+
+    /// <summary>
+    /// Sound played on field fizzle.
+    /// </summary>
+    [DataField]
+    public SoundSpecifier? PowerDownSound;
 
     //Ports
     [DataField]

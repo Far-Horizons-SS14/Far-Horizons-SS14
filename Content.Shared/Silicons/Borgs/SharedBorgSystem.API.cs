@@ -209,7 +209,9 @@ public abstract partial class SharedBorgSystem
         if (!Resolve(chassis, ref chassis.Comp) || !Resolve(module, ref module.Comp))
             return false;
 
-        if (chassis.Comp.ModuleContainer.ContainedEntities.Count >= chassis.Comp.MaxModules)
+        var passiveModuleCount = chassis.Comp.ModuleContainer.ContainedEntities.Count(HasComp<PassiveBorgModuleComponent>); //Far Horizons
+
+        if (chassis.Comp.ModuleContainer.ContainedEntities.Count >= chassis.Comp.MaxModules + passiveModuleCount && !HasComp<PassiveBorgModuleComponent>(module)) //Far Horizons
         {
             _popup.PopupClient(Loc.GetString("borg-module-too-many"), chassis.Owner, user);
             return false;
@@ -237,8 +239,25 @@ public abstract partial class SharedBorgSystem
             }
         }
 
-        var attemptEv = new BorgModuleInsertAttemptEvent(module.Owner);
+        //Far Horizons Start
+        if (TryComp<PassiveBorgModuleComponent>(module, out var passiveModuleComp))
+        {
+            foreach (var containedModuleUid in chassis.Comp.ModuleContainer.ContainedEntities)
+            {
+                if (!TryComp<PassiveBorgModuleComponent>(containedModuleUid, out var containedPassiveModuleComp))
+                    continue;
+                if(passiveModuleComp.PassiveType == containedPassiveModuleComp.PassiveType)
+                {
+                    _popup.PopupClient(Loc.GetString("borg-module-duplicate"), chassis.Owner, user);
+                    return false;
+                }
+            }
+        }
+        //FaHorizons End
+
+        var attemptEv = new BorgModuleInsertAttemptEvent(module.Owner, chassis.Owner);
         RaiseLocalEvent(chassis, ref attemptEv);
+        RaiseLocalEvent(module, ref attemptEv);
 
         if (attemptEv.Cancelled)
         {

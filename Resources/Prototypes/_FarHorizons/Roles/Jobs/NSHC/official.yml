@@ -1,0 +1,44 @@
+- type: job
+  id: HighCommandOfficial
+  name: job-name-highcommoff
+  description: job-description-highcommoff
+  playTimeTracker: JobHighCommandOfficial
+  requirements:
+  - !type:PermissionRequirement
+    permission: CCSHC
+  setPreference: false
+  startingGear: HighCommandGear
+  icon: "JobIconCentComm"
+  supervisors: job-supervisors-marshal
+  canBeAntag: false
+  accessGroups:
+  - AllAccessNS
+  access:
+  - NSHighCommand
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplantNS, DeathRattleImplantNSHC ]
+
+- type: startingGear
+  id: HighCommandGear
+  equipment:
+    jumpsuit: ClothingAltUniformJumpsuitCentcomOfficial # alt version
+    shoes: ClothingShoesBootsCombatFilled
+    head: ClothingHeadHatCentcom
+    eyes: ClothingEyesGlassesCentComm
+    gloves: ClothingHandsGlovesColorBlack
+    outerClothing: ClothingOuterArmorCentcommCarapace
+    id: SHCPDA
+    ears: ClothingHeadsetAltCentCom
+    belt: WeaponPistolN1984
+    pocket1: BoxFolderCentComClipboardThreePapers
+    pocket2: PenCentcom
+
+
+- type: chameleonOutfit
+  id: HighCommansOfficialOutfit
+  job: HighCommandOfficial
+  hasMindShield: true
+  equipment:
+    neck: ClothingNeckScarfStripedCentcom
+    mask: ClothingMaskGasCentcom

@@ -5,7 +5,7 @@ using Content.Shared.Ghost.Roles;
 
 namespace Content.Server.Ghost.Roles.UI;
 
-public sealed class NewLifeEui : BaseEui
+public sealed partial class NewLifeEui : BaseEui
 {
     private readonly NewLifeSystem _newLifeSystem;
     private readonly HashSet<int> _usedSlots;

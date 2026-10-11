@@ -14,10 +14,10 @@ namespace Content.Server.NodeContainer.EntitySystems
     /// </summary>
     /// <seealso cref="NodeGroupSystem"/>
     [UsedImplicitly]
-    public sealed class NodeContainerSystem : SharedNodeContainerSystem
+    public sealed partial class NodeContainerSystem : SharedNodeContainerSystem
     {
-        [Dependency] private readonly NodeGroupSystem _nodeGroupSystem = default!;
-        [Dependency] private readonly DockPipeSystem _dockPipeSystem = default!; // Starlight: DockPipeSystem
+        [Dependency] private NodeGroupSystem _nodeGroupSystem = default!;
+        [Dependency] private DockPipeSystem _dockPipeSystem = default!; // Starlight: DockPipeSystem
         private EntityQuery<NodeContainerComponent> _query;
 
         public override void Initialize()

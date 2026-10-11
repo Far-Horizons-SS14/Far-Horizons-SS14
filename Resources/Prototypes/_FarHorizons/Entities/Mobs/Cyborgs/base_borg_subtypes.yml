@@ -1,0 +1,94 @@
+# generic
+- type: entity
+  parent: BorgSubtypeBase
+  abstract: true
+  id: BorgGenericSubtypeBaseNS
+  name: Borg Generic Subtype
+  suffix: NS
+  components:
+    - type: BorgSubtypeDefinition
+      parentType: genericNS
+
+      dummyPrototype: BorgChassisGenericNS
+
+# engineering
+- type: entity
+  parent: BorgSubtypeBase
+  abstract: true
+  id: BorgEngineerSubtypeBaseNS
+  name: Borg Engineering Subtype
+  suffix: NS
+  components:
+    - type: BorgSubtypeDefinition
+      parentType: engineeringNS
+
+      # Entity prototype for preview in selection menu
+      dummyPrototype: BorgChassisEngineerNS
+
+# janitor
+- type: entity
+  parent: BorgSubtypeBase
+  abstract: true
+  id: BorgJanitorSubtypeBaseNS
+  name: Borg Janitor Subtype
+  suffix: NS
+  components:
+    - type: BorgSubtypeDefinition
+      parentType: janitorNS
+
+      # Entity prototype for preview in selection menu
+      dummyPrototype: BorgChassisJanitorNS
+
+# medical
+- type: entity
+  parent: BorgSubtypeBase
+  abstract: true
+  id: BorgMedicalSubtypeBaseNS
+  name: Borg Medical Subtype
+  suffix: NS
+  components:
+    - type: BorgSubtypeDefinition
+      parentType: medicalNS
+
+      # Description
+      dummyPrototype: BorgChassisMedicalNS
+
+# service
+- type: entity
+  parent: BorgSubtypeBase
+  abstract: true
+  id: BorgServiceSubtypeBaseNS
+  name: Borg Service Subtype
+  suffix: NS
+  components:
+    - type: BorgSubtypeDefinition
+      parentType: serviceNS
+
+      # Description
+      dummyPrototype: BorgChassisServiceNS
+
+- type: entity
+  parent: BorgSubtypeBase
+  abstract: true
+  id: BorgPurrfusSubtypeBaseNS
+  name: Borg Purrfus Subtype
+  suffix: NS
+  components:
+    - type: BorgSubtypeDefinition
+      parentType: purrfusNS
+
+      # Description
+      dummyPrototype: BorgChassisPurrfusNS
+
+- type: entity
+  parent: BorgSubtypeBase
+  abstract: true
+  id: BorgSecuritySubtypeBaseNS
+  name: Borg Security Subtype
+  suffix: NS
+  components:
+    - type: BorgSubtypeDefinition
+      parentType: securityNS
+
+      # Description
+      dummyPrototype: BorgChassisSecurityNS

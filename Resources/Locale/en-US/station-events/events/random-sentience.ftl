@@ -1,7 +1,7 @@
 ## Phrases used for where central command got this information.
 random-sentience-event-data-1 = scans from our long-range sensors
 random-sentience-event-data-2 = our sophisticated probabilistic models
-random-sentience-event-data-3 = our omnipotence
+random-sentience-event-data-3 = our omnipotence, and definitely not scientific guesswork
 random-sentience-event-data-4 = the communications traffic on your station
 random-sentience-event-data-5 = energy emissions we detected
 random-sentience-event-data-6 = [REDACTED]

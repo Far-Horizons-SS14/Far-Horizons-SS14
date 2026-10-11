@@ -7,9 +7,9 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Client.Overlays;
 
-public sealed class ShowDiseaseIconsSystem : EquipmentHudSystem<ShowDiseaseIconsComponent>
+public sealed partial class ShowDiseaseIconsSystem : EquipmentHudSystem<ShowDiseaseIconsComponent>
 {
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
 
     public override void Initialize()
     {
@@ -32,18 +32,13 @@ public sealed class ShowDiseaseIconsSystem : EquipmentHudSystem<ShowDiseaseIcons
 
         var showDisease = carrier.ActiveDiseases.Any(x =>
         {
-            if(!_prototype.TryIndex(x.Key.Id, out var disease))
+            var stages = _prototype.Index(x.Key.Vector).Timers;
+            var maxStage = stages.Count;
+
+            if(x.Key.Stealth.HasFlag(DiseaseStealthFlags.Hidden) && x.Value.Stage < maxStage/2)
                 return false;
 
-            var index = x.Value.Stage;
-
-            if (index < 0 || index >= disease.Stages.Count)
-            {
-                Log.Error($"Invalid stage index {index} for {x.Key}");
-                return false;
-            }
-
-            return (disease.Stages[index].Stealth & DiseaseStealthFlags.VeryHidden) == 0;
+            return true;
         });
 
         if (_prototype.Resolve(iconId, out var iconPrototype) && showDisease)

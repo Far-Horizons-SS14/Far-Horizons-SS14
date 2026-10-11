@@ -15,6 +15,7 @@ using Content.Shared.Roles;
 using Content.Shared.Roles.Components;
 using Content.Shared.Silicons.Laws;
 using Content.Shared.Silicons.Laws.Components;
+using Content.Shared.Silicons.StationAi; // Starlight-edit
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
 using Robust.Shared.Containers;
@@ -25,16 +26,17 @@ using Robust.Shared.Toolshed;
 namespace Content.Server.Silicons.Laws;
 
 /// <inheritdoc/>
-public sealed class SiliconLawSystem : SharedSiliconLawSystem
+public sealed partial class SiliconLawSystem : SharedSiliconLawSystem
 {
-    [Dependency] private readonly IChatManager _chatManager = default!;
-    [Dependency] private readonly SharedMindSystem _mind = default!;
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
-    [Dependency] private readonly SharedRoleSystem _roles = default!;
-    [Dependency] private readonly StationSystem _station = default!;
-    [Dependency] private readonly UserInterfaceSystem _userInterface = default!;
-    [Dependency] private readonly EmagSystem _emag = default!;
-    [Dependency] private readonly IEntityManager _entMan = default!; // Starlight
+    [Dependency] private IChatManager _chatManager = default!;
+    [Dependency] private SharedMindSystem _mind = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
+    [Dependency] private SharedRoleSystem _roles = default!;
+    [Dependency] private StationSystem _station = default!;
+    [Dependency] private UserInterfaceSystem _userInterface = default!;
+    [Dependency] private EmagSystem _emag = default!;
+    [Dependency] private SharedContainerSystem _container = default!;
+    [Dependency] private IEntityManager _entMan = default!; // Starlight
 
 
     private static readonly ProtoId<SiliconLawsetPrototype> DefaultCrewLawset = "Crewsimov";
@@ -125,9 +127,24 @@ public sealed class SiliconLawSystem : SharedSiliconLawSystem
     {
         if (args.Handled)
             return;
+        
+        // Starlight-start: AI upload console linking
+        if (!component.Subverted 
+            && TryComp<StationAiCoreComponent>(Transform(uid).ParentUid, out var aiCore) 
+            && aiCore.LawConsole != null
+            && _container.TryGetContainer(aiCore.LawConsole.Value, "circuit_holder", out var container) 
+            && container.ContainedEntities.Count != 0 
+            && TryComp(container.ContainedEntities.First(), out SiliconLawProviderComponent? provider) 
+            && provider != null 
+            && component.Laws != provider.Laws)
+        {
+            component.Laws = provider.Laws;
+            var lawset = GetLawset(provider.Laws).Laws;
+            SetLaws(lawset, uid, provider.LawUploadSound);
+        }
+        // Starlight-end
 
-        if (component.Lawset == null)
-            component.Lawset = GetLawset(component.Laws);
+        component.Lawset ??= GetLawset(component.Laws);
 
         args.Laws = component.Lawset;
 
@@ -335,8 +352,10 @@ public sealed class SiliconLawSystem : SharedSiliconLawSystem
 
         var lawset = provider.Lawset ?? GetLawset(provider.Laws);
 
-        var query = EntityManager.CompRegistryQueryEnumerator(ent.Comp.Components);
-        while (query.MoveNext(out var update))
+        // Starlight-start
+        if (ent.Comp.Core != null
+            && TryComp<StationAiHolderComponent>(ent.Comp.Core.Value, out var holder)
+            && holder.Slot.ContainerSlot?.ContainedEntity is { } update)
         {
             if (TryComp<ShowCrewIconsComponent>(update, out var crewIconComp))
             {
@@ -344,15 +363,22 @@ public sealed class SiliconLawSystem : SharedSiliconLawSystem
                 Dirty(update, crewIconComp);
             }
             SetLaws(lawset.Laws, update, provider.LawUploadSound);
-            // Starlight: Components on lawboards TODO remove components provided by the old board when it is removed.
+            // Components on lawboards TODO remove components provided by the old board when it is removed.
             if (provider.Components != null)
                 _entMan.AddComponents(update, provider.Components);
         }
+        // Starlight-end
+
+//        var query = EntityManager.CompRegistryQueryEnumerator(ent.Comp.Components); Starlight-edit: Changed to device linking
+//        while (query.MoveNext(out var update))
+//        {
+//            SetLaws(lawset.Laws, update, provider.LawUploadSound);
+//        }
     }
 }
 
 [ToolshedCommand, AdminCommand(AdminFlags.Admin)]
-public sealed class LawsCommand : ToolshedCommand
+public sealed partial class LawsCommand : ToolshedCommand
 {
     private SiliconLawSystem? _law;
 

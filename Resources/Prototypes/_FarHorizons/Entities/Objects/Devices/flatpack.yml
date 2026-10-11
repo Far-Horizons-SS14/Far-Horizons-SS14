@@ -38,6 +38,20 @@
   
 - type: entity
   parent: BaseFlatpack
+  id: NSDocPrinterFlatpack
+  name: NeoSol Document Printer Flatpack
+  description: A flatpack used for constructing a NeoSol Document Printer.
+  components:
+  - type: Sprite
+    layers:
+    - state: base
+    - state: overlay
+      color: "#cec8ac"
+    - state: icon-default
+  - type: Flatpack
+    entity: NSPrinterDoc
+
+- type: entity
   id: FusionReactorTorusFlatpack
   name: Fusion Reactor Torus Flatpack
   description: A flatpack used for a piece of the fusion reactor's torus.

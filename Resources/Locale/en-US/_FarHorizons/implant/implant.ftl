@@ -1,0 +1,1 @@
+implanter-draw-failed-catastrophically-fh = The implanter finds nothing and draws a small portion of {$target}'s brain matter into the tube!

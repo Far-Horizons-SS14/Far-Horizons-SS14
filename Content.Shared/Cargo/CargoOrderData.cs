@@ -8,28 +8,16 @@ namespace Content.Shared.Cargo
     public sealed partial class CargoOrderData
     {
         /// <summary>
-        /// Price when the order was added.
-        /// </summary>
-        [DataField]
-        public int Price;
-
-        /// <summary>
         /// A unique (arbitrary) ID which identifies this order.
         /// </summary>
         [DataField]
         public int OrderId { get; private set; }
 
         /// <summary>
-        /// Prototype Id for the item to be created
+        /// The ID of the cargo product ordered.
         /// </summary>
         [DataField]
-        public string ProductId { get; private set; }
-
-        /// <summary>
-        /// Prototype Name
-        /// </summary>
-        [DataField]
-        public string ProductName { get; private set; }
+        public ProtoId<CargoProductPrototype> Product;
 
         /// <summary>
         /// The number of items in the order. Not readonly, as it might change
@@ -60,16 +48,37 @@ namespace Content.Shared.Cargo
         [DataField]
         public ProtoId<CargoAccountPrototype> Account;
 
-        public CargoOrderData(int orderId, string productId, string productName, int price, int amount, string requester, string reason, ProtoId<CargoAccountPrototype> account)
+        #region Starlight
+        /// <summary>
+        /// The ID of the station this order belongs to.
+        /// </summary>
+        [DataField]
+        public NetEntity StationId;
+        #endregion
+
+        // Far Horizons start
+        [DataField] public NetEntity? ChargeCreditsFrom;
+        [DataField] public string? PersonalOrderRecipient;
+        [DataField] public string? PersonalOrderStation;
+        [DataField] public string? PersonalOrderInstructions;
+        [DataField] public bool? PersonalDeliverySuccess = null;
+        // Far Horizons end
+
+        public CargoOrderData(int orderId, ProtoId<CargoProductPrototype> product, int amount, string requester, string reason, ProtoId<CargoAccountPrototype> account, NetEntity stationId, NetEntity? chargeCreditsFrom = null, string? recipient = null, string? station = null, string? instructions = null) // Starlight: +stationId; Far horizons - charge credits
         {
             OrderId = orderId;
-            ProductId = productId;
-            ProductName = productName;
-            Price = price;
+            Product = product;
             OrderQuantity = amount;
             Requester = requester;
             Reason = reason;
             Account = account;
+            StationId = stationId; // Starlight
+            // Far Horizons start
+            ChargeCreditsFrom = chargeCreditsFrom;
+            PersonalOrderRecipient = recipient;
+            PersonalOrderStation = station;
+            PersonalOrderInstructions = instructions;
+            // Far Horizons end
         }
 
         public void SetApproverData(string? approver)

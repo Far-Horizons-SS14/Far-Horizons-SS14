@@ -1,0 +1,2773 @@
+# Below is the Bace uplink gear
+# TODO: make more categories
+# Guns
+
+- type: listing
+  id: ConsortiumUplinkPistolViper
+  name: uplink-consortium-pistol-viper-name-fh
+  description: uplink-consortium-pistol-viper-desc-fh
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Pistols/viper.rsi, state: icon }
+  productEntity: ConsortiumBriefcaseWeaponViperFilled
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Refinedbluespacecrystal: 2
+  cost:
+    Refinedbluespacecrystal: 3
+  categories:
+  - ConsortiumUplinkWeaponry
+
+# Inbuilt suppressor so it's sneaky + more expensive.
+- type: listing
+  id: ConsortiumUplinkPistolCobra
+  name: uplink-consortium-pistol-cobra-name-fh 
+  description: uplink-consortium-pistol-cobra-desc-fh 
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Pistols/cobra.rsi, state: icon }
+  productEntity: ConsortiumBriefcaseWeaponCobraFilled
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Refinedbluespacecrystal: 2
+  cost:
+    Refinedbluespacecrystal: 4
+  categories:
+  - ConsortiumUplinkWeaponry
+
+# Poor accuracy, slow to fire, cheap option
+- type: listing
+  id: ConsortiumUplinkRifleMosin
+  name: uplink-consortium-rifle-mosin-name
+  description: uplink-consortium-rifle-mosin-desc
+  productEntity: WeaponSniperMosin
+  cost:
+    Refinedbluespacecrystal: 1
+  categories:
+  - ConsortiumUplinkWeaponry
+
+- type: listing
+  id: ConsortiumUplinkEsword
+  name: uplink-consortium-esword-name
+  description: uplink-consortium-esword-desc
+  icon: { sprite: /Textures/Objects/Weapons/Melee/e_sword.rsi, state: icon }
+  discountCategory: veryRareDiscounts
+  discountDownTo:
+    Refinedbluespacecrystal: 4
+  productEntity: EnergySword
+  cost:
+    Refinedbluespacecrystal: 8
+  categories:
+  - ConsortiumUplinkWeaponry
+
+- type: listing
+  id: ConsortiumUplinkEnergyDagger
+  name: uplink-consortium-edagger-name
+  description: uplink-consortium-edagger-desc
+  icon: { sprite: /Textures/Objects/Weapons/Melee/e_dagger.rsi, state: icon }
+  productEntity: EnergyDaggerBox
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Refinedbluespacecrystal: 1
+  cost:
+    Refinedbluespacecrystal: 2
+  categories:
+  - ConsortiumUplinkWeaponry
+
+- type: listing
+  id: ConsortiumUplinkEnergyCrossbow
+  name: uplink-consortium-energycrossbow-name
+  description: uplink-consortium-energycrossbow-desc
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Refinedbluespacecrystal: 3
+  productEntity: WeaponEnergyCrossbow
+  cost:
+    Refinedbluespacecrystal: 5
+  categories:
+  - ConsortiumUplinkWeaponry
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: ConsortiumUplinkThrowingKnivesKit
+  name: uplink-consortium-knives-kit-name
+  description: uplink-consortium-knives-kit-desc
+  icon: { sprite: /Textures/Objects/Storage/boxicons.rsi, state: throwing_knives }
+  productEntity: ThrowingKnivesKit
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Refinedbluespacecrystal: 3
+  cost:
+    Refinedbluespacecrystal: 6
+  categories:
+    - ConsortiumUplinkWeaponry
+
+- type: listing
+  id: ConsortiumUplinkHomerunBat
+  name: uplink-consortium-homerun-bat-name
+  description: uplink-consortium-homerun-bat-desc
+  productEntity: HomerunBat
+  discountCategory: veryRareDiscounts
+  discountDownTo:
+    Refinedbluespacecrystal: 4
+  cost:
+    Refinedbluespacecrystal: 7
+  categories:
+  - ConsortiumUplinkWeaponry
+
+- type: listing
+  id: ConsortiumUplinkGlovesNorthStar
+  name: uplink-consortium-gloves-north-star-name
+  description: uplink-consortium-gloves-north-star-desc
+  productEntity: ClothingHandsPoweredGloves
+  discountCategory: veryRareDiscounts
+  discountDownTo:
+    Refinedbluespacecrystal: 4
+  cost:
+    Refinedbluespacecrystal: 8
+  categories:
+  - ConsortiumUplinkWeaponry
+
+- type: listing
+  id: ConsortiumUplinkGlovesKnuckleDusters
+  name: uplink-consortium-gloves-knuckleduster-name
+  description: uplink-consortium-gloves-knuckleduster-desc
+  icon: { sprite: _FarHorizons/Clothing/Hands/Gloves/consortium_knuckle_duster.rsi, state: consortium-knuckle-duster }
+  productEntity: ClothingHandsKnuckleDustersConsortium
+  discountCategory: veryRareDiscounts
+  discountDownTo:
+    Refinedbluespacecrystal: 2
+  cost:
+    Refinedbluespacecrystal: 4
+  categories:
+  - ConsortiumUplinkWeaponry
+
+- type: listing
+  id: ConsortiumUplinkEshield
+  name: uplink-consortium-eshield-name
+  description: uplink-consortium-eshield-desc
+  icon: { sprite: /Textures/Objects/Weapons/Melee/e_shield.rsi, state: eshield-on }
+  productEntity: EnergyShield
+  discountCategory: veryRareDiscounts
+  discountDownTo:
+    Refinedbluespacecrystal: 4
+  cost:
+    Refinedbluespacecrystal: 8
+  categories:
+  - ConsortiumUplinkWeaponry
+#  conditions: #Starlight edit, i want chaos, also its balanced around its base price, it breaks under kinetic fire pretty easily and it costs a third of traitor tc
+#  - !type:StoreWhitelistCondition
+#    whitelist:
+#      tags:
+#      - NukeOpsUplink
+
+- type: listing
+  id: ConsortiumUplinkRiggedBoxingGloves
+  name: uplink-consortium-rigged-boxing-gloves-name
+  description: uplink-consortium-rigged-boxing-gloves-desc
+  icon: { sprite: Clothing/Hands/Gloves/Boxing/boxingblue.rsi, state: icon }
+  productEntity: ClothingHandsGlovesBoxingRiggedBlue # TODO Replace this with the random spawner when it's not bugged
+  discountCategory: veryRareDiscounts
+  discountDownTo:
+    Refinedbluespacecrystal: 8
+  cost:
+    Refinedbluespacecrystal: 10
+  categories:
+  - ConsortiumUplinkWeaponry
+
+- type: listing
+  id: ConsortiumUplinkSniperBundle
+  name: uplink-consortium-sniper-bundle-name
+  description: uplink-consortium-sniper-bundle-desc
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Snipers/heavy_sniper.rsi, state: base }
+  productEntity: BriefcaseSyndieSniperBundleFilled
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Refinedbluespacecrystal: 6
+  cost:
+    Refinedbluespacecrystal: 10
+  categories:
+  - ConsortiumUplinkWeaponry
+
+- type: listing
+  id: ConsortiumUplinkFireAxe
+  name: uplink-consortium-fire-axe-flaming-name
+  description: uplink-consortium-fire-axe-flaming-desc
+  icon: { sprite: /Textures/Objects/Weapons/Melee/fireaxeflaming.rsi, state: icon }
+  productEntity: FireAxeFlaming
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Refinedbluespacecrystal: 10
+  cost:
+    Refinedbluespacecrystal: 15
+  categories:
+  - ConsortiumUplinkWeaponry
+
+- type: listing
+  id: ConsortiumUplinkHushpup
+  name: uplink-consortium-hushpup-name
+  description: uplink-consortium-hushpup-desc
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Shotguns/hushpup.rsi, state: icon }
+  productEntity: ConsortiumBriefcaseWeaponHushpupFilled
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Refinedbluespacecrystal: 8
+  cost:
+    Refinedbluespacecrystal: 10
+  categories:
+  - ConsortiumUplinkWeaponry
+
+# - type: listing
+#   id: ConsortiumUplinkC20R
+#   name: uplink-consortium-c20r-name
+#   description: uplink-consortium-c20r-desc
+#   icon: { sprite: /Textures/Objects/Weapons/Guns/SMGs/c20r.rsi, state: icon }
+#   productEntity: BriefcaseWeaponC20Filled
+#   discountCategory: veryRareDiscounts
+#   discountDownTo:
+#     Refinedbluespacecrystal: 10
+#   cost:
+#     Refinedbluespacecrystal: 14
+#   categories:
+#   - ConsortiumUplinkWeaponry
+#   conditions:
+#   - !type:StoreWhitelistCondition
+#     blacklist:
+#       tags:
+#       - NukeOpsUplink
+
+- type: listing
+  id: ConsortiumUplinkC20RBundle
+  name: uplink-consortium-smg-c20r-name-fh
+  description: uplink-consortium-smg-c20r-desc-fh 
+  icon: { sprite: /Textures/Objects/Weapons/Guns/SMGs/c20r.rsi, state: icon }
+  productEntity: ConsortiumBriefcaseWeaponC20RFilled 
+  discountCategory: veryRareDiscounts
+  discountDownTo:
+    Refinedbluespacecrystal: 10
+  cost:
+    Refinedbluespacecrystal: 17
+  categories:
+  - ConsortiumUplinkWeaponry
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+
+# - type: listing
+#   id: ConsortiumUplinkBulldog
+#   name: uplink-consortium-bulldog-name
+#   description: uplink-consortium-bulldog-desc
+#   icon: { sprite: /Textures/Objects/Weapons/Guns/Shotguns/bulldog.rsi, state: icon }
+#   productEntity: BriefcaseWeaponBulldogFilled
+#   discountCategory: veryRareDiscounts
+#   discountDownTo:
+#     Refinedbluespacecrystal: 10
+#   cost:
+#     Refinedbluespacecrystal: 14
+#   categories:
+#   - ConsortiumUplinkWeaponry
+#   conditions:
+#   - !type:StoreWhitelistCondition
+#     blacklist:
+#       tags:
+#       - NukeOpsUplink
+
+- type: listing
+  id: ConsortiumUplinkBulldogBundle
+  name: uplink-consortium-bulldog-bundle-name
+  description: uplink-consortium-bulldog-bundle-desc-fh 
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Shotguns/bulldog.rsi, state: icon }
+  productEntity: ConsortiumBriefcaseWeaponBulldogFilled
+  discountCategory: veryRareDiscounts
+  discountDownTo:
+    Refinedbluespacecrystal: 12
+  cost:
+    Refinedbluespacecrystal: 20
+  categories:
+  - ConsortiumUplinkWeaponry
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+
+- type: listing
+  id: ConsortiumUplinkEstocBundle
+  name: uplink-consortium-rifle-estoc-name-fh 
+  description: uplink-consortium-rifle-estoc-desc-fh 
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Rifles/estoc.rsi, state: icon }
+  productEntity: ConsortiumBriefcaseWeaponEstocFilled
+  discountCategory: veryRareDiscounts
+  discountDownTo:
+    Refinedbluespacecrystal: 11
+  cost:
+    Refinedbluespacecrystal: 18
+  categories:
+  - ConsortiumUplinkWeaponry
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+
+# - type: listing
+#   id: ConsortiumUplinkGrenadeLauncher
+#   name: uplink-consortium-grenade-launcher-name
+#   description: uplink-consortium-grenade-launcher-desc
+#   icon: { sprite: /Textures/Objects/Weapons/Guns/Launchers/china_lake.rsi, state: icon }
+#   productEntity: BriefcaseWeaponChinaLakeFilled
+#   cost:
+#     Refinedbluespacecrystal: 20
+#   categories:
+#   - ConsortiumUplinkWeaponry
+#   conditions:
+#   - !type:StoreWhitelistCondition
+#     blacklist:
+#       tags:
+#       - NukeOpsUplink
+
+- type: listing
+  id: ConsortiumUplinkGrenadeLauncherBundle
+  name: uplink-consortium-grenade-launcher-bundle-name
+  description: uplink-consortium-grenade-launcher-bundle-desc
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Launchers/china_lake.rsi, state: icon }
+  productEntity: CrateConsortiumChinaLakeUplink
+  discountCategory: veryRareDiscounts
+  discountDownTo:
+    Refinedbluespacecrystal: 24
+  cost:
+    Refinedbluespacecrystal: 30
+  categories:
+  - ConsortiumUplinkWeaponry
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+
+- type: listing
+  id: ConsortiumUplinkWeaponShotgunMinotaur
+  name: uplink-consortium-minotaur-name-fh
+  description: uplink-consortium-minotaur-desc-fh
+  productEntity: ConsortiumBriefcaseWeaponMinotaurFilled
+  icon:
+    {
+      sprite: /Textures/_Starlight/Objects/Weapons/Guns/Shotguns/minotaur.rsi,
+      state: icon,
+    }
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Refinedbluespacecrystal: 15
+  cost:
+    Refinedbluespacecrystal: 20
+  categories:
+    - ConsortiumUplinkWeaponry
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - NukeOpsUplink
+
+- type: listing
+  id: ConsortiumUplinkWeaponRiflePitpull
+  name: uplink-consortium-pitbull-name-fh
+  description: uplink-consortium-pitbull-desc-fh
+  icon:
+    { 
+     sprite: /Textures/_Starlight/Objects/Weapons/Guns/Rifles/pitbull.rsi,
+     state: icon 
+    }
+  productEntity: ConsortiumBriefcaseWeaponPitbullFilled
+  discountCategory: veryRareDiscounts
+  discountDownTo:
+    Refinedbluespacecrystal: 15
+  cost:
+    Refinedbluespacecrystal: 20
+  categories:
+   - ConsortiumUplinkWeaponry
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - NukeOpsUplink
+
+- type: listing
+  id: ConsortiumUplinkL6SawBundle
+  name: uplink-consortium-lmg-l6-name-fh
+  description: uplink-consortium-lmg-l6-desc-fh
+  icon: { sprite: /Textures/Objects/Weapons/Guns/LMGs/l6_x64.rsi, state: icon }
+  productEntity: CrateConsortiumL6Uplink
+  discountCategory: veryRareDiscounts
+  discountDownTo:
+    Refinedbluespacecrystal: 20
+  cost:
+    Refinedbluespacecrystal: 25
+  categories:
+  - ConsortiumUplinkWeaponry
+
+# Explosives
+
+- type: listing
+  id: ConsortiumUplinkExplosiveGrenade
+  name: uplink-consortium-explosive-grenade-name
+  description: uplink-consortium-explosive-grenade-desc
+  productEntity: ExGrenade
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Refinedbluespacecrystal: 2
+  cost:
+    Refinedbluespacecrystal: 4
+  categories:
+  - ConsortiumUplinkExplosives
+  # Far Horizons - traitors can have grenades
+  # conditions:
+  # - !type:StoreWhitelistCondition
+  #   whitelist:
+  #     tags:
+  #     - NukeOpsUplink
+
+- type: listing
+  id: ConsortiumUplinkSmokeGrenade
+  name: uplink-consortium-smoke-grenade-name
+  description: uplink-consortium-smoke-grenade-desc
+  productEntity: SmokeGrenade
+  cost:
+    Refinedbluespacecrystal: 1
+  categories:
+  - ConsortiumUplinkExplosives
+
+- type: listing
+  id: ConsortiumUplinkSyndieMiniBomb
+  name: uplink-consortium-mini-bomb-name
+  description: uplink-consortium-mini-bomb-desc
+  productEntity: SyndieMiniBomb
+  discountCategory: veryRareDiscounts
+  discountDownTo:
+    Refinedbluespacecrystal: 3
+  cost:
+    Refinedbluespacecrystal: 6
+  categories:
+    - ConsortiumUplinkExplosives
+
+- type: listing
+  id: ConsortiumUplinkSingularityGrenade
+  name: uplink-consortium-singularity-grenade-name
+  description: uplink-consortium-singularity-grenade-desc
+  productEntity: SingularityGrenade
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Refinedbluespacecrystal: 1
+  cost:
+    Refinedbluespacecrystal: 2
+  categories:
+    - ConsortiumUplinkDisruption
+
+- type: listing
+  id: ConsortiumUplinkGrenadePenguin
+  name: uplink-consortium-penguin-grenade-name
+  description: uplink-consortium-penguin-grenade-desc
+  productEntity: MobGrenadePenguin
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Refinedbluespacecrystal: 3
+  cost:
+    Refinedbluespacecrystal: 4
+  categories:
+    - ConsortiumUplinkExplosives
+  conditions:
+  - !type:BuyerWhitelistCondition
+    blacklist:
+      components:
+      - SurplusBundle
+
+- type: listing
+  id: ConsortiumUplinkC4
+  name: uplink-consortium-c4-name
+  description: uplink-consortium-c4-desc
+  productEntity: C4
+  discountCategory: veryRareDiscounts
+  discountDownTo:
+    Refinedbluespacecrystal: 1
+  cost:
+    Refinedbluespacecrystal: 2
+  categories:
+  - ConsortiumUplinkExplosives
+
+- type: listing
+  id: ConsortiumUplinkGrenadierRig
+  name: uplink-consortium-grenadier-rig-name
+  description: uplink-consortium-grenadier-rig-desc
+  productEntity: ClothingBeltOperativeWebbingGrenadeFilled
+  discountCategory: veryRareDiscounts
+  discountDownTo:
+    Refinedbluespacecrystal: 6
+  cost:
+    Refinedbluespacecrystal: 12
+  categories:
+  - ConsortiumUplinkExplosives
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+
+- type: listing
+  id: ConsortiumUplinkC4Bundle
+  name: uplink-consortium-c4-bundle-name
+  description: uplink-consortium-c4-bundle-desc
+  productEntity: ClothingBackpackDuffelSyndicateC4tBundle
+  discountCategory: veryRareDiscounts
+  discountDownTo:
+    Refinedbluespacecrystal: 8
+  cost:
+    Refinedbluespacecrystal: 12 #you're buying bulk so its a 25% discount, so no additional random discount over it
+  categories:
+  - ConsortiumUplinkExplosives
+
+- type: listing
+  id: ConsortiumUplinkEmpGrenade
+  name: uplink-consortium-emp-grenade-name
+  description: uplink-consortium-emp-grenade-desc
+  productEntity: EmpGrenade
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Refinedbluespacecrystal: 1
+  cost:
+    Refinedbluespacecrystal: 2
+  categories:
+  - ConsortiumUplinkExplosives
+
+- type: listing
+  id: ConsortiumUplinkExplodingPen
+  name: uplink-consortium-exploding-pen-name
+  description: uplink-consortium-exploding-pen-desc
+  icon: { sprite: /Textures/Objects/Misc/pens.rsi, state: pen }
+  productEntity: PenExplodingBox
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Refinedbluespacecrystal: 2
+  cost:
+    Refinedbluespacecrystal: 4
+  categories:
+  - ConsortiumUplinkExplosives
+
+- type: listing
+  id: ConsortiumUplinkSyndicateBomb
+  name: uplink-consortium-exploding-syndicate-bomb-name
+  description: uplink-consortium-exploding-syndicate-bomb-desc
+  productEntity: SyndicateBomb
+  cost:
+    Refinedbluespacecrystal: 11
+  categories:
+    - ConsortiumUplinkExplosives
+  restockTime: 1800
+  conditions:
+  - !type:StoreWhitelistCondition
+    blacklist:
+      tags:
+      - NukeOpsUplink
+
+- type: listing
+  id: ConsortiumUplinkSyndicateBombNukie
+  name: uplink-consortium-exploding-syndicate-bomb-name
+  description: uplink-consortium-exploding-syndicate-bomb-desc
+  productEntity: SyndicateBomb
+  cost:
+    Refinedbluespacecrystal: 11
+  categories:
+    - ConsortiumUplinkExplosives
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+
+- type: listing
+  id: ConsortiumUplinkGrenadeShrapnel
+  name: uplink-consortium-shrapnel-grenade-name
+  description: uplink-consortium-shrapnel-grenade-desc
+  productEntity: GrenadeShrapnel
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Refinedbluespacecrystal: 2
+  cost:
+    Refinedbluespacecrystal: 4
+  categories:
+  - ConsortiumUplinkExplosives
+
+- type: listing
+  id: ConsortiumUplinkGrenadeIncendiary
+  name: uplink-consortium-incendiary-grenade-name
+  description: uplink-consortium-incendiary-grenade-desc
+  productEntity: GrenadeIncendiary
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Refinedbluespacecrystal: 2
+  cost:
+    Refinedbluespacecrystal: 4
+  categories:
+  - ConsortiumUplinkExplosives
+
+# Ammo
+
+- type: listing
+  id: ConsortiumUplinkPistol9mmMagazineSP
+  name: uplink-consortium-pistol-magazine-nameSP
+  description: uplink-consortium-pistol-magazine-descSP
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/pistol_mag.rsi, state: red-icon }
+  productEntity: MagazinePistolHP
+  cost:
+    Refinedbluespacecrystal: 1
+  categories:
+  - ConsortiumUplinkAmmo
+
+- type: listing
+  id: ConsortiumUplinkPistol9mmMagazineHP
+  name: uplink-consortium-pistol-magazine-nameHP
+  description: uplink-consortium-pistol-magazine-descHP
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/pistol_mag.rsi, state: sp }
+  productEntity: MagazinePistolSP
+  cost:
+    Refinedbluespacecrystal: 1
+  categories:
+  - ConsortiumUplinkAmmo
+
+- type: listing
+  id: ConsortiumUplinkPistol9mmMagazineFMJ
+  name: uplink-consortium-pistol-magazine-nameFMJ
+  description: uplink-consortium-pistol-magazine-descFMJ
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/pistol_mag.rsi, state: fmj }
+  productEntity: MagazinePistolFMJ
+  cost:
+    Refinedbluespacecrystal: 1
+  categories:
+  - ConsortiumUplinkAmmo
+
+# For the C20R
+- type: listing
+  id: ConsortiumUplinkMagazinePistolSubMachineGun
+  name: uplink-consortium-pistol-magazine-c20r-name
+  description: uplink-consortium-pistol-magazine-c20r-desc
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/smg_mag.rsi, state: red-icon }
+  productEntity: MagazinePistolSubMachineGunFMJ
+  cost:
+    Refinedbluespacecrystal: 2
+  categories:
+  - ConsortiumUplinkAmmo
+
+# For the Bulldog
+- type: listing
+  id: ConsortiumUplinkMagazineShotgunPellet
+  name: uplink-consortium-magazine-bulldog-pellet-name
+  description: uplink-consortium-magazine-bulldog-pellet-desc
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Shotgun/m12.rsi, state: pellets }
+  productEntity: MagazineShotgun
+  cost:
+    Refinedbluespacecrystal: 2
+  categories:
+  - ConsortiumUplinkAmmo
+
+- type: listing
+  id: ConsortiumUplinkMagazineShotgunSlug
+  name: uplink-consortium-magazine-bulldog-slug-name
+  description: uplink-consortium-magazine-bulldog-slug-desc
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Shotgun/m12.rsi, state: slug }
+  productEntity: MagazineShotgunSlug
+  cost:
+    Refinedbluespacecrystal: 2
+  categories:
+  - ConsortiumUplinkAmmo
+
+# For the Cobra
+- type: listing
+  id: ConsortiumUplinkMagazinePistolCaselessRifle
+  name: uplink-consortium-pistol-magazine-caseless-name
+  description: uplink-consortium-pistol-magazine-caseless-desc
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/CaselessRifle/caseless_pistol_mag.rsi, state: red-icon }
+  productEntity: MagazinePistolCaselessRifle
+  cost:
+    Refinedbluespacecrystal: 1
+  categories:
+  - ConsortiumUplinkAmmo
+
+# For the mosin
+- type: listing
+  id: ConsortiumUplinkMosinAmmo
+  name: uplink-consortium-mosin-ammo-name
+  description: uplink-consortium-mosin-ammo-desc
+  productEntity: MagazineBoxLightRifleFMJ
+  cost:
+    Refinedbluespacecrystal: 1
+  categories:
+  - ConsortiumUplinkAmmo
+
+# For the Estoc
+- type: listing
+  id: ConsortiumUplinkEstocAmmo
+  name: uplink-consortium-estoc-ammo-name
+  description: uplink-consortium-estoc-ammo-desc
+  productEntity: MagazineRifle556SP #FH
+  cost:
+    Refinedbluespacecrystal: 2
+  categories:
+  - ConsortiumUplinkAmmo
+
+# for the hristov
+- type: listing
+  id: ConsortiumUplinkHristovAmmo
+  name: uplink-consortium-sniper-ammo-name
+  description: uplink-consortium-sniper-ammo-desc
+  productEntity: MagazineBoxAntiMateriel
+  cost:
+    Refinedbluespacecrystal: 2
+  categories:
+  - ConsortiumUplinkAmmo
+
+- type: listing
+  id: ConsortiumUplinkAmmoBundle
+
+  name: uplink-consortium-ammo-bundle-name-fh
+  description: uplink-consortium-ammo-bundle-desc-fh
+  productEntity: AmmoSelectionAmmoBagC
+  cost:
+    Refinedbluespacecrystal: 15
+  categories:
+  - ConsortiumUplinkAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - NukeOpsUplink
+    - !type:BuyerWhitelistCondition
+      blacklist:
+        components:
+          - SurplusBundle
+
+#Chemicals
+
+- type: listing
+  id: ConsortiumUplinkHypopen
+  name: uplink-consortium-hypopen-name
+  description: uplink-consortium-hypopen-desc
+  icon: { sprite: /Textures/Objects/Misc/pens.rsi, state: pen }
+  productEntity: HypopenBox
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Refinedbluespacecrystal: 4
+  cost:
+    Refinedbluespacecrystal: 6
+  categories:
+  - ConsortiumUplinkChemicals
+
+- type: listing
+  id: ConsortiumUplinkHypoDart
+  name: uplink-consortium-hypodart-name
+  description: uplink-consortium-hypodart-desc
+  icon: { sprite: /Textures/Objects/Fun/Darts/dart_red.rsi, state: icon }
+  productEntity: HypoDartBox
+  discountCategory: veryRareDiscounts
+  discountDownTo:
+    Refinedbluespacecrystal: 1
+  cost:
+    Refinedbluespacecrystal: 2
+  categories:
+  - ConsortiumUplinkChemicals
+
+- type: listing
+  id: ConsortiumUplinkChemistryKitBundle
+  name: uplink-consortium-chemistry-kit-name
+  description: uplink-consortium-chemistry-kit-desc
+  icon: { sprite: /Textures/Objects/Storage/boxicons.rsi, state: vials }
+  productEntity: ChemicalSynthesisKit
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Refinedbluespacecrystal: 2
+  cost:
+    Refinedbluespacecrystal: 4
+  categories:
+  - ConsortiumUplinkChemicals
+
+- type: listing
+  id: ConsortiumUplinkZombieBundle
+  name: uplink-consortium-zombie-bundle-name
+  description: uplink-consortium-zombie-bundle-desc
+  icon: { sprite: /Textures/Structures/Wallmounts/signs.rsi, state: bio }
+  productEntity: ClothingBackpackDuffelZombieBundle
+  cost:
+    Refinedbluespacecrystal: 40
+  categories:
+  - ConsortiumUplinkChemicals
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+  - !type:BuyerWhitelistCondition
+    blacklist:
+      components:
+      - SurplusBundle
+
+- type: listing
+  id: ConsortiumUplinkNocturineChemistryBottle
+  name: uplink-consortium-nocturine-chemistry-bottle-name
+  description: uplink-consortium-nocturine-chemistry-bottle-desc
+  productEntity: ChemistryBottleNocturine
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Refinedbluespacecrystal: 2
+  cost:
+    Refinedbluespacecrystal: 4
+  categories:
+  - ConsortiumUplinkChemicals
+
+- type: listing
+  id: ConsortiumUplinkCombatMedkit
+  name: uplink-consortium-combat-medkit-name
+  description: uplink-consortium-combat-medkit-desc
+  productEntity: MedkitCombatFilled
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Refinedbluespacecrystal: 2
+  cost:
+    Refinedbluespacecrystal: 3
+  categories:
+  - ConsortiumUplinkChemicals
+
+- type: listing
+  id: ConsortiumUplinkCombatMedipen
+  name: uplink-consortium-combat-medipen-name
+  description: uplink-consortium-combat-medipen-desc
+  productEntity: CombatMedipen
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Refinedbluespacecrystal: 2
+  cost:
+    Refinedbluespacecrystal: 3
+  categories:
+  - ConsortiumUplinkChemicals
+
+- type: listing
+  id: ConsortiumUplinkStimpack
+  name: uplink-consortium-stimpack-name
+  description: uplink-consortium-stimpack-desc
+  productEntity: Stimpack
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Refinedbluespacecrystal: 1
+  cost:
+    Refinedbluespacecrystal: 2
+  categories:
+  - ConsortiumUplinkChemicals
+
+- type: listing
+  id: ConsortiumUplinkStimkit
+  name: uplink-consortium-stimkit-name
+  description: uplink-consortium-stimkit-desc
+  productEntity: StimkitFilled
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Refinedbluespacecrystal: 3
+  cost:
+    Refinedbluespacecrystal: 5
+  categories:
+  - ConsortiumUplinkChemicals
+
+- type: listing
+  id: ConsortiumUplinkCigarettes
+  name: uplink-consortium-cigarettes-name
+  description: uplink-consortium-cigarettes-desc
+  productEntity: CigPackSyndicate
+  cost:
+    Refinedbluespacecrystal: 1
+  categories:
+  - ConsortiumUplinkChemicals
+
+- type: listing
+  id: ConsortiumUplinkMedsBundle
+  name: uplink-consortium-meds-bundle-name
+  description: uplink-consortium-meds-bundle-desc
+  productEntity: ClothingBackpackDuffelSyndicateMedicalBundleFilled
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Refinedbluespacecrystal: 16
+  cost:
+    Refinedbluespacecrystal: 24
+  categories:
+  - ConsortiumUplinkChemicals
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - NukeOpsUplink
+    - !type:BuyerWhitelistCondition
+      blacklist:
+        components:
+          - SurplusBundle
+
+# Deception
+- type: listing
+  id: ConsortiumUplinkSyndicateIDCard
+  name: uplink-consortium-syndicate-id-card-name
+  description: uplink-consortium-syndicate-id-card-desc
+  productEntity: SyndicateIDCard
+  cost:
+    Refinedbluespacecrystal: 1
+  categories:
+  - ConsortiumUplinkDeception
+
+- type: listing
+  id: ConsortiumUplinkAgentIDCard
+  name: uplink-consortium-agent-id-card-name
+  description: uplink-consortium-agent-id-card-desc
+  productEntity: AgentIDCard
+  discountCategory: veryRareDiscounts
+  discountDownTo:
+    Refinedbluespacecrystal: 1
+  cost:
+    Refinedbluespacecrystal: 3
+  categories:
+  - ConsortiumUplinkDeception
+
+- type: listing
+  id: ConsortiumUplinkStealthBox
+  name: uplink-consortium-stealth-box-name
+  description: uplink-consortium-stealth-box-desc
+  productEntity: StealthBox
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Refinedbluespacecrystal: 2
+  cost:
+    Refinedbluespacecrystal: 5
+  categories:
+  - ConsortiumUplinkDeception
+
+- type: listing
+  id: ConsortiumUplinkChameleonProjector
+  name: uplink-consortium-chameleon-projector-name
+  description: uplink-consortium-chameleon-projector-desc
+  productEntity: ChameleonProjector
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Refinedbluespacecrystal: 2
+  cost:
+    Refinedbluespacecrystal: 3
+  categories:
+  - ConsortiumUplinkDeception
+
+- type: listing
+  id: ConsortiumUplinkHeadsetEncryptionKey
+  name: uplink-consortium-encryption-key-name
+  description: uplink-consortium-encryption-key-desc
+  icon: { sprite: /Textures/Objects/Devices/encryption_keys.rsi, state: synd_label }
+  productEntity: BoxEncryptionKeySyndie # Two for the price of one
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Refinedbluespacecrystal: 1
+  cost:
+    Refinedbluespacecrystal: 2
+  categories:
+  - ConsortiumUplinkDeception
+
+- type: listing
+  id: ConsortiumUplinkBinaryTranslatorKey
+  name: uplink-consortium-binary-translator-key-name
+  description: uplink-consortium-binary-translator-key-desc
+  icon: { sprite: /Textures/Objects/Devices/encryption_keys.rsi, state: ai_label }
+  productEntity: EncryptionKeyBinarySyndicate
+  cost:
+    Refinedbluespacecrystal: 1
+  categories:
+  - ConsortiumUplinkDeception
+
+- type: listing
+  id: ConsortiumUplinkCyberpen
+  name: uplink-consortium-cyberpen-name
+  description: uplink-consortium-cyberpen-desc
+  productEntity: CyberPen
+  cost:
+    Refinedbluespacecrystal: 1
+  categories:
+  - ConsortiumUplinkDeception
+
+- type: listing
+  id: ConsortiumUplinkDecoyDisk
+  name: uplink-consortium-decoy-disk-name
+  description: uplink-consortium-decoy-disk-desc
+  productEntity: NukeDiskFake
+  cost:
+    Refinedbluespacecrystal: 1
+  categories:
+  - ConsortiumUplinkDeception
+
+- type: listing
+  id: ConsortiumUplinkBribe
+  name: uplink-consortium-bribe-name
+  description: uplink-consortium-bribe-desc
+  productEntity: BriefcaseSyndieLobbyingBundleFilled
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Refinedbluespacecrystal: 2
+  cost:
+    Refinedbluespacecrystal: 4
+  categories:
+    - ConsortiumUplinkDeception
+
+# - type: listing
+#   id: ConsortiumUplinkGigacancerScanner
+#   name: Ultragigacancer Health Analyzer
+#   description: Works like a normal health analyzer, other than giving everyone it scans ultragigacancer.
+#   productEntity: HandheldHealthAnalyzerGigacancer
+#   cost:
+#     Refinedbluespacecrystal: 5
+#   categories:
+#   - ConsortiumUplinkDeception
+
+- type: listing
+  id: ConsortiumUplinkSyndicateBombFake
+  name: uplink-consortium-exploding-syndicate-bomb-fake-name
+  description: uplink-consortium-exploding-syndicate-bomb-fake-desc
+  productEntity: SyndicateBombFake
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Refinedbluespacecrystal: 1
+  cost:
+    Refinedbluespacecrystal: 4
+  categories:
+  - ConsortiumUplinkDeception
+  restockTime: 1800
+  conditions:
+  - !type:StoreWhitelistCondition
+    blacklist:
+      tags:
+      - NukeOpsUplink
+
+- type: listing
+  id: ConsortiumUplinkSyndicateBombFakeNukie
+  name: uplink-consortium-exploding-syndicate-bomb-fake-name
+  description: uplink-consortium-exploding-syndicate-bomb-fake-desc
+  productEntity: SyndicateBombFake
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Refinedbluespacecrystal: 1
+  cost:
+    Refinedbluespacecrystal: 4
+  categories:
+  - ConsortiumUplinkDeception
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+
+# Disruption
+
+- type: listing
+  id: ConsortiumUplinkAccessBreaker
+  name: uplink-consortium-access-breaker-name
+  description: uplink-consortium-access-breaker-desc
+  productEntity: NTAccessBreaker
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Refinedbluespacecrystal: 2
+  cost:
+    Refinedbluespacecrystal: 4
+  categories:
+  - ConsortiumUplinkDisruption
+
+- type: listing
+  id: ConsortiumUplinkEmag
+  name: uplink-consortium-emag-name
+  description: uplink-consortium-emag-desc
+  productEntity: Emag
+  discountCategory: veryRareDiscounts
+  discountDownTo:
+    Refinedbluespacecrystal: 3
+  cost:
+    Refinedbluespacecrystal: 5
+  categories:
+  - ConsortiumUplinkDisruption
+
+- type: listing
+  id: ConsortiumUplinkRadioJammer
+  name: uplink-consortium-radio-jammer-name
+  description: uplink-consortium-radio-jammer-desc
+  productEntity: RadioJammer
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Refinedbluespacecrystal: 2
+  cost:
+    Refinedbluespacecrystal: 3
+  categories:
+  - ConsortiumUplinkDisruption
+
+- type: listing
+  id: ConsortiumUplinkSyndicateWeaponModule
+  name: uplink-consortium-syndicate-weapon-module-name
+  description: uplink-consortium-syndicate-weapon-module-desc
+  productEntity: BorgModuleSyndicateWeapon
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Refinedbluespacecrystal: 3
+  cost:
+    Refinedbluespacecrystal: 5
+  categories:
+  - ConsortiumUplinkDisruption
+
+- type: listing
+  id: ConsortiumUplinkDisposableTurret
+  name: uplink-consortium-disposable-turret-name
+  description: uplink-consortium-disposable-turret-desc
+  productEntity: ToolboxElectricalTurretFilled
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Refinedbluespacecrystal: 2
+  cost:
+    Refinedbluespacecrystal: 4
+  categories:
+  - ConsortiumUplinkDisruption
+  conditions:
+  - !type:StoreWhitelistCondition
+    blacklist:
+      tags:
+      - NukeOpsUplink
+
+- type: listing
+  id: ConsortiumUplinkSyndicateMartyrModule
+  name: uplink-consortium-syndicate-martyr-module-name
+  description: uplink-consortium-syndicate-martyr-module-desc
+  productEntity: BorgModuleMartyr
+  icon: { sprite: /Textures/Objects/Specific/Robotics/borgmodule.rsi, state: syndicateborgbomb }
+  discountCategory: veryRareDiscounts
+  discountDownTo:
+    Refinedbluespacecrystal: 2
+  cost:
+    Refinedbluespacecrystal: 4
+  categories:
+    - ConsortiumUplinkDisruption
+
+- type: listing
+  id: ConsortiumUplinkSoapSyndie
+  name: uplink-consortium-soap-name
+  description: uplink-consortium-soap-desc
+  productEntity: SoapSyndie
+  cost:
+    Refinedbluespacecrystal: 1
+  categories:
+  - ConsortiumUplinkDisruption
+
+- type: listing
+  id: ConsortiumUplinkSlipocalypseClusterSoap
+  name: uplink-consortium-slipocalypse-clustersoap-name
+  description: uplink-consortium-slipocalypse-clustersoap-desc
+  productEntity: SlipocalypseClusterSoap
+  discountCategory: rareDiscounts
+  cost:
+    Refinedbluespacecrystal: 1
+  categories:
+  - ConsortiumUplinkDisruption
+
+- type: listing
+  id: ConsortiumUplinkToolbox
+  name: uplink-consortium-toolbox-name
+  description: uplink-consortium-toolbox-desc
+  productEntity: ToolboxSyndicateFilled
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Refinedbluespacecrystal: 1
+  cost:
+    Refinedbluespacecrystal: 2
+  categories:
+  - ConsortiumUplinkDisruption
+
+- type: listing
+  id: ConsortiumUplinkSyndicateJawsOfLife
+  name: uplink-consortium-syndicate-jaws-of-life-name
+  description: uplink-consortium-syndicate-jaws-of-life-desc
+  productEntity: SyndicateJawsOfLife
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Refinedbluespacecrystal: 1
+  cost:
+    Refinedbluespacecrystal: 2
+  categories:
+  - ConsortiumUplinkDisruption
+
+- type: listing
+  id: ConsortiumUplinkDuffelSurgery
+  name: uplink-consortium-duffel-surgery-name
+  description: uplink-consortium-duffel-surgery-desc
+  productEntity: ClothingBackpackDuffelSyndicateFilledMedical
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Refinedbluespacecrystal: 2
+  cost:
+    Refinedbluespacecrystal: 4
+  categories:
+  - ConsortiumUplinkDisruption
+
+- type: listing
+  id: ConsortiumUplinkPowerSink
+  name: uplink-consortium-power-sink-name
+  description: uplink-consortium-power-sink-desc
+  productEntity: PowerSink
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Refinedbluespacecrystal: 4
+  cost:
+    Refinedbluespacecrystal: 8
+  categories:
+  - ConsortiumUplinkExplosives
+
+# Starlight start edit: Syndimov
+# - type: listing
+#   id: ConsortiumUplinkAntimovCircuitBoard
+#   name: uplink-consortium-antimov-law-name
+#   description: uplink-consortium-antimov-law-desc
+#   productEntity: AntimovCircuitBoard
+#   discountCategory: usualDiscounts
+#   discountDownTo:
+#     Refinedbluespacecrystal: 10
+#   cost:
+#     Refinedbluespacecrystal: 14
+#   categories:
+#   - ConsortiumUplinkDisruption
+#   conditions:
+#   - !type:StoreWhitelistCondition
+#      blacklist:
+#        tags:
+#        - NukeOpsUplink
+# Starlight end edit: Syndimov
+
+- type: listing
+  id: ConsortiumUplinkSurplusBundle
+  name: uplink-consortium-surplus-bundle-name
+  description: uplink-consortium-surplus-bundle-desc
+  productEntity: CrateSyndicateSurplusBundle
+  cost:
+    Refinedbluespacecrystal: 20
+  categories:
+  - ConsortiumUplinkDisruption
+  conditions:
+  - !type:StoreWhitelistCondition
+    blacklist:
+      tags:
+      - NukeOpsUplink
+  - !type:BuyerWhitelistCondition
+    blacklist:
+      components:
+      - SurplusBundle
+
+- type: listing
+  id: ConsortiumUplinkStarterKit
+  name: uplink-consortium-starter-kit-name
+  description: uplink-consortium-starter-kit-desc
+  productEntity: ClothingBackpackDuffelSyndicateFilledStarterKit
+  cost:
+    Refinedbluespacecrystal: 40
+  categories:
+  - ConsortiumUplinkDisruption
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+        - NukeOpsUplink
+    - !type:BuyerWhitelistCondition
+      blacklist:
+        components:
+        - SurplusBundle
+
+# Starlight edit Start: Disable singularity beacon as its ban bait
+# - type: listing
+#   id: ConsortiumUplinkSingarityBeacon
+#   name: uplink-consortium-singularity-beacon-name
+#   description: uplink-consortium-singularity-beacon-desc
+#   productEntity: SingularityBeacon
+#   discountCategory: usualDiscounts
+#   discountDownTo:
+#     Refinedbluespacecrystal: 4
+#   cost:
+#     Refinedbluespacecrystal: 12
+#   categories:
+#     - ConsortiumUplinkDisruption
+# Starlight edit end
+
+- type: listing
+  id: ConsortiumUplinkCameraBug
+  name: uplink-consortium-cameraBug-name
+  description: uplink-consortium-cameraBug-desc
+  productEntity: NTCameraBug
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Refinedbluespacecrystal: 1
+  cost:
+    Refinedbluespacecrystal: 2
+  categories:
+  - ConsortiumUplinkDisruption
+
+# Allies
+
+- type: listing
+  id: ConsortiumUplinkHoloparaKit
+  name: uplink-consortium-holopara-kit-name
+  description: uplink-consortium-holopara-kit-desc
+  icon: { sprite: /Textures/Objects/Misc/guardian_info.rsi, state: icon }
+  productEntity: BoxHoloparasite
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Refinedbluespacecrystal: 8
+  cost:
+    Refinedbluespacecrystal: 12
+  categories:
+  - ConsortiumUplinkAllies
+  conditions:
+  - !type:StoreWhitelistCondition
+    blacklist:
+      tags:
+      - NukeOpsUplink
+
+- type: listing
+  id: ConsortiumUplinkReinforcementRadioSyndicate
+  name: uplink-consortium-reinforcement-radio-name
+  description: uplink-consortium-reinforcement-radio-traitor-desc
+  productEntity: ReinforcementRadioSyndicate
+  icon: { sprite: Objects/Devices/communication.rsi, state: old-radio-urist }
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Refinedbluespacecrystal: 7
+  cost:
+    Refinedbluespacecrystal: 11
+  categories:
+  - ConsortiumUplinkAllies
+  conditions:
+    - !type:StoreWhitelistCondition
+      blacklist:
+        tags:
+          - NukeOpsUplink
+
+- type: listing
+  id: ConsortiumUplinkReinforcementRadioSyndicateNukeops # Version for Nukeops that spawns another nuclear operative without the uplink.
+  name: uplink-consortium-reinforcement-radio-nukeops-name
+  description: uplink-consortium-reinforcement-radio-nukeops-desc
+  productEntity: ReinforcementRadioSyndicateNukeops
+  icon: { sprite: Objects/Devices/communication.rsi, state: old-radio-nukeop }
+  cost:
+    Refinedbluespacecrystal: 30
+  categories:
+  - ConsortiumUplinkAllies
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - NukeOpsUplink
+
+- type: listing
+  id: ConsortiumUplinkReinforcementRadioSyndicateCyborgAssault
+  name:  uplink-consortium-reinforcement-radio-assault-cyborg-name
+  description: uplink-consortium-reinforcement-radio-assault-cyborg-desc
+  productEntity: ReinforcementRadioSyndicateCyborgAssault
+  icon: { sprite: Objects/Devices/communication.rsi, state: old-radio-borg-assault }
+  cost:
+    Refinedbluespacecrystal: 40 # Starlight
+  categories:
+    - ConsortiumUplinkAllies
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - NukeOpsUplink
+
+- type: listing
+  id: ConsortiumUplinkReinforcementRadioSyndicateAncestor
+  name: uplink-consortium-reinforcement-radio-ancestor-name
+  description: uplink-consortium-reinforcement-radio-ancestor-desc
+  productEntity: ReinforcementRadioSyndicateAncestor
+  icon: { sprite: Objects/Devices/communication.rsi, state: old-radio-ancestor }
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Refinedbluespacecrystal: 4
+  cost:
+    Refinedbluespacecrystal: 6
+  categories:
+  - ConsortiumUplinkAllies
+  conditions:
+    - !type:StoreWhitelistCondition
+      blacklist:
+        tags:
+          - NukeOpsUplink
+
+- type: listing
+  id: ConsortiumUplinkReinforcementRadioSyndicateAncestorNukeops # Version for Nukeops that spawns a syndicate monkey with the NukeOperative component.
+  name: uplink-consortium-reinforcement-radio-ancestor-name
+  description: uplink-consortium-reinforcement-radio-ancestor-desc
+  productEntity: ReinforcementRadioSyndicateAncestorNukeops
+  icon: { sprite: Objects/Devices/communication.rsi, state: old-radio-ancestor }
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Refinedbluespacecrystal: 4
+  cost:
+    Refinedbluespacecrystal: 6
+  categories:
+  - ConsortiumUplinkAllies
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - NukeOpsUplink
+
+- type: listing
+  id: ConsortiumUplinkCarpDehydrated
+  name: uplink-consortium-carp-dehydrated-name
+  description: uplink-consortium-carp-dehydrated-desc
+  productEntity: DehydratedSpaceCarp
+  cost:
+    Refinedbluespacecrystal: 1
+  categories:
+  - ConsortiumUplinkAllies
+  conditions:
+  - !type:StoreWhitelistCondition
+    blacklist:
+      tags:
+      - NukeOpsUplink
+
+- type: listing
+  id: ConsortiumUplinkMobCatMicrobomb
+  name: uplink-consortium-mobcat-microbomb-name
+  description: uplink-consortium-mobcat-microbomb-desc
+  icon: { sprite: Objects/Devices/communication.rsi, state: old-radio-syndicat }
+  productEntity: ReinforcementRadioSyndicateSyndiCat
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Refinedbluespacecrystal: 3
+  cost:
+    Refinedbluespacecrystal: 6
+  categories:
+    - ConsortiumUplinkAllies
+
+- type: listing
+  id: ConsortiumUplinkSyndicatePersonalAI
+  name: uplink-consortium-syndicate-pai-name
+  description: uplink-consortium-syndicate-pai-desc
+  icon: { sprite: /Textures/Objects/Fun/pai.rsi, state: syndicate-icon-pai-off }
+  productEntity: SyndicatePersonalAI
+  cost:
+    Refinedbluespacecrystal: 1
+  categories:
+    - ConsortiumUplinkAllies
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: ConsortiumUplinkDarkGygax
+  name: uplink-consortium-mech-teleporter-assault-name
+  description: uplink-consortium-mech-teleporter-assault-desc
+  icon: { sprite: /Textures/Objects/Specific/Mech/mecha.rsi, state: darkgygax }
+  productEntity: CrateCybersunDarkGygaxBundle
+  cost:
+    Refinedbluespacecrystal: 100
+  categories:
+  - ConsortiumUplinkAllies
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+
+- type: listing
+  id: ConsortiumUplinkMauler
+  name: uplink-consortium-mech-teleporter-heavy-name
+  description: uplink-consortium-mech-teleporter-heavy-desc
+  icon: { sprite: /Textures/Objects/Specific/Mech/mecha.rsi, state: mauler }
+  productEntity: CrateCybersunMaulerBundle
+  cost:
+    Refinedbluespacecrystal: 150
+  categories:
+  - ConsortiumUplinkAllies
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+
+# Implants
+
+- type: listing
+  id: ConsortiumUplinkStorageImplanter
+  name: uplink-consortium-storage-implanter-name
+  description: uplink-consortium-storage-implanter-desc
+  icon: { sprite: /Textures/Clothing/Back/Backpacks/backpack.rsi, state: icon }
+  productEntity: NTStorageImplanter
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Refinedbluespacecrystal: 4
+  cost:
+    Refinedbluespacecrystal: 8
+  categories:
+    - ConsortiumUplinkImplants
+  conditions:
+    - !type:StoreWhitelistCondition
+      blacklist:
+        tags:
+          - NukeOpsUplink
+
+- type: listing
+  id: ConsortiumUplinkFreedomImplanter
+  name: uplink-consortium-freedom-implanter-name
+  description: uplink-consortium-freedom-implanter-desc
+  icon: { sprite: /Textures/Actions/Implants/implants.rsi, state: freedom }
+  productEntity: NTFreedomImplanter
+  discountCategory: veryRareDiscounts
+  discountDownTo:
+    Refinedbluespacecrystal: 1
+  cost:
+    Refinedbluespacecrystal: 2
+  categories:
+    - ConsortiumUplinkImplants
+
+- type: listing
+  id: ConsortiumUplinkScramImplanter
+  name: uplink-consortium-scram-implanter-name
+  description: uplink-consortium-scram-implanter-desc
+  icon: { sprite: /Textures/Structures/Specific/anomaly.rsi, state: anom4 }
+  productEntity: NTScramImplanter
+  discountCategory: veryRareDiscounts
+  discountDownTo:
+    Refinedbluespacecrystal: 1
+  cost:
+    Refinedbluespacecrystal: 2 # it's a gamble that may kill you easily so 1 TC per use.
+  categories:
+    - ConsortiumUplinkImplants
+
+- type: listing
+  id: ConsortiumUplinkDnaScramblerImplant
+  name: uplink-consortium-dna-scrambler-implanter-name
+  description: uplink-consortium-dna-scrambler-implanter-desc
+  icon: { sprite: /Textures/Mobs/Species/Human/parts.rsi, state: full }
+  productEntity: NTDnaScramblerImplanter
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Refinedbluespacecrystal: 2
+  cost:
+    Refinedbluespacecrystal: 3
+  categories:
+    - ConsortiumUplinkImplants
+
+- type: listing
+  id: ConsortiumUplinkEmpImplanter
+  name: uplink-consortium-emp-implanter-name
+  description: uplink-consortium-emp-implanter-desc
+  icon: { sprite: /Textures/Effects/emp.rsi, state: emp_disable }
+  productEntity: NTEmpImplanter
+  discountCategory: veryRareDiscounts
+  discountDownTo:
+    Refinedbluespacecrystal: 1
+  cost:
+    Refinedbluespacecrystal: 2
+  categories:
+    - ConsortiumUplinkImplants
+
+- type: listing
+  id: ConsortiumUplinkRadioImplanter
+  name: uplink-consortium-radio-implanter-name
+  description: uplink-consortium-radio-implanter-desc
+  icon: { sprite: /Textures/Objects/Devices/encryption_keys.rsi, state: synd_label }
+  productEntity: NTRadioImplanter
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Refinedbluespacecrystal: 1
+  cost:
+    Refinedbluespacecrystal: 2
+  categories:
+  - ConsortiumUplinkImplants
+
+- type: listing
+  id: ConsortiumUplinkMicroBombImplanter
+  name: uplink-consortium-micro-bomb-implanter-name
+  description: uplink-consortium-micro-bomb-implanter-desc
+  icon: { sprite: /Textures/Actions/Implants/implants.rsi, state: explosive }
+  productEntity: NTMicroBombImplanter
+  cost:
+    Refinedbluespacecrystal: 2
+  categories:
+  - ConsortiumUplinkImplants
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+  - !type:BuyerWhitelistCondition
+    blacklist:
+      components:
+      - SurplusBundle
+
+- type: listing
+  id: ConsortiumUplinkMacroBombImplanter
+  name: uplink-consortium-macro-bomb-implanter-name
+  description: uplink-consortium-macro-bomb-implanter-desc
+  icon: { sprite: /Textures/Actions/Implants/implants.rsi, state: explosive }
+  productEntity: NTMacroBombImplanter
+  cost:
+    Refinedbluespacecrystal: 13
+  categories:
+    - ConsortiumUplinkImplants
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - NukeOpsUplink
+    - !type:BuyerWhitelistCondition
+      blacklist:
+        components:
+          - SurplusBundle
+
+- type: listing
+  id: ConsortiumUplinkDeathAcidifierImplanter
+  name: uplink-consortium-death-acidifier-implant-name
+  description: uplink-consortium-death-acidifier-implant-desc
+  icon: { sprite: /Textures/Objects/Magic/magicactions.rsi, state: gib }
+  productEntity: NTDeathAcidifierImplanter
+  cost:
+    Refinedbluespacecrystal: 4
+  categories:
+    - ConsortiumUplinkImplants
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - NukeOpsUplink
+
+- type: listing
+  id: ConsortiumUplinkUplinkImplanter # uplink uplink real
+  name: uplink-consortium-uplink-implanter-name
+  description: uplink-consortium-uplink-implanter-desc
+  icon: { sprite: /Textures/Objects/Devices/communication.rsi, state: old-radio }
+  productEntity: ConsortiumUplinkImplanter
+  cost:
+    Refinedbluespacecrystal: 1
+  categories:
+  - ConsortiumUplinkImplants
+  conditions:
+    - !type:StoreWhitelistCondition
+      blacklist:
+        tags:
+          - NukeOpsUplink
+
+- type: listing
+  id: ConsortiumUplinkDeathRattle
+  name: uplink-consortium-deathrattle-implant-name
+  description: uplink-consortium-deathrattle-implant-desc
+  productEntity: BoxDeathRattleImplants
+  cost:
+    Refinedbluespacecrystal: 4
+  categories:
+  - ConsortiumUplinkImplants
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - NukeOpsUplink
+    - !type:BuyerWhitelistCondition
+      blacklist:
+        components:
+          - SurplusBundle
+
+- type: listing
+  id: ConsortiumUplinkFakeMindshield
+  name: uplink-consortium-fake-mindshield-name
+  description: uplink-consortium-fake-mindshield-desc
+  icon: { sprite: Interface/Actions/actions_fakemindshield.rsi, state: icon-on }
+  productEntity: FakeMindShieldImplanter
+  discountDownTo:
+    Refinedbluespacecrystal: 2
+  cost:
+    Refinedbluespacecrystal: 4
+  categories:
+  - ConsortiumUplinkImplants
+
+- type: listing
+  id: ConsortiumUplinkVoiceMaskImplant
+  name: uplink-consortium-voice-mask-implanter-name
+  description: uplink-consortium-voice-mask-implanter-desc
+  icon: { sprite: Interface/Actions/voice-mask.rsi, state: icon }
+  productEntity: NTVoiceMaskImplanter
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Refinedbluespacecrystal: 1
+  cost:
+    Refinedbluespacecrystal: 2
+  categories:
+  - ConsortiumUplinkImplants
+
+# Wearables
+
+- type: listing
+  id: ConsortiumUplinkJetpack
+  name: uplink-consortium-black-jetpack-name
+  description: uplink-consortium-black-jetpack-desc
+  productEntity: JetpackBlackFilled
+  cost:
+    Refinedbluespacecrystal: 1
+  categories:
+  - ConsortiumUplinkWearables
+
+- type: listing
+  id: ConsortiumUplinkChestRig
+  name: uplink-consortium-chest-rig-name
+  description: uplink-consortium-chest-rig-desc
+  productEntity: ClothingBeltOperativeWebbing
+  cost:
+    Refinedbluespacecrystal: 1
+  categories:
+  - ConsortiumUplinkWearables
+
+- type: listing
+  id: ConsortiumUplinkChameleon
+  name: uplink-consortium-chameleon-name
+  description: uplink-consortium-chameleon-desc
+  productEntity: ClothingBackpackChameleonFillAgent
+  icon: { sprite: /Textures/Clothing/Uniforms/Jumpsuit/rainbow.rsi, state: icon }
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Refinedbluespacecrystal: 2
+  cost:
+    Refinedbluespacecrystal: 4
+  categories:
+    - ConsortiumUplinkWearables
+
+- type: listing
+  id: ConsortiumUplinkClothingNoSlipsShoes
+  name: uplink-consortium-clothing-no-slips-shoes-name
+  description: uplink-consortium-clothing-no-slips-shoes-desc
+  productEntity: ClothingShoesChameleonNoSlips
+  discountCategory: veryRareDiscounts
+  discountDownTo:
+    Refinedbluespacecrystal: 1
+  cost:
+    Refinedbluespacecrystal: 2
+  categories:
+  - ConsortiumUplinkWearables
+
+- type: listing
+  id: ConsortiumUplinkClothingOuterVestWeb
+  name: uplink-consortium-clothing-outer-vest-web-name
+  description: uplink-consortium-clothing-outer-vest-web-desc
+  productEntity: ClothingOuterVestWeb
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Refinedbluespacecrystal: 3 #SL / Rebalanced pricing: Armor Vest 2, Web Vest 3, Elite Web vest 4
+  cost:
+    Refinedbluespacecrystal: 4 #SL / Rebalanced pricing: Armor Vest 3, Web Vest 4, Elite Web vest 5
+  categories:
+  - ConsortiumUplinkWearables
+
+- type: listing
+  id: ConsortiumUplinkClothingOuterVestWebElite
+  name: uplink-consortium-clothing-outer-vest-web-elite-name
+  description: uplink-consortium-clothing-outer-vest-web-elite-desc
+  productEntity: ClothingOuterVestWebElite
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Refinedbluespacecrystal: 4 #SL / Rebalanced pricing: Armor Vest 2, Web Vest 3, Elite Web vest 4
+  cost:
+    Refinedbluespacecrystal: 5 #SL / Rebalanced pricing: Armor Vest 3, Web Vest 4, Elite Web vest 5
+  categories:
+  - ConsortiumUplinkWearables
+
+- type: listing
+  id: ConsortiumUplinkClothingShoesBootsMagSyndie
+  name: uplink-consortium-clothing-shoes-boots-mag-syndie-name
+  description: uplink-consortium-clothing-shoes-boots-mag-syndie-desc
+  productEntity: ClothingShoesBootsMagSyndie
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Refinedbluespacecrystal: 1
+  cost:
+    Refinedbluespacecrystal: 2
+  categories:
+  - ConsortiumUplinkWearables
+
+- type: listing
+  id: ConsortiumUplinkEVASyndie
+  name: uplink-consortium-eva-syndie-name
+  description: uplink-consortium-eva-syndie-desc
+  icon: { sprite: /Textures/Clothing/OuterClothing/Suits/eva_syndicate.rsi, state: icon }
+  productEntity: ClothingBackpackDuffelSyndicateEVABundle
+  cost:
+    Refinedbluespacecrystal: 1
+  categories:
+  - ConsortiumUplinkWearables
+
+- type: listing
+  id: ConsortiumUplinkHardsuitCarp
+  name: uplink-consortium-hardsuit-carp-name
+  description: uplink-consortium-hardsuit-carp-desc
+  icon: { sprite: /Textures/Clothing/OuterClothing/Suits/carpsuit.rsi, state: icon }
+  productEntity: ClothingOuterHardsuitCarp
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Refinedbluespacecrystal: 2
+  cost:
+    Refinedbluespacecrystal: 3
+  categories:
+  - ConsortiumUplinkWearables
+
+- type: listing
+  id: ConsortiumUplinkLambdaHardsuit
+  name: uplink-consortium-hardsuit-lambda-name
+  description: uplink-consortium-hardsuit-lambda-desc
+  icon: { sprite: /Textures/_FarHorizons/Clothing/OuterClothing/Hardsuits/hardliner.rsi, state: icon }
+  productEntity: ClothingBackpackDuffelLambdaHardsuitBundle
+  discountCategory: veryRareDiscounts
+  discountDownTo:
+    Refinedbluespacecrystal: 4
+  cost:
+    Refinedbluespacecrystal: 7
+  categories:
+  - ConsortiumUplinkWearables
+
+- type: listing
+  id: UplinkHardsuitLambdaInfiltration
+  name: uplink-consortium-hardsuit-infiltration-name
+  description: uplink-consortium-hardsuit-infiltration-desc
+  icon: { sprite: /Textures/_FarHorizons/Clothing/OuterClothing/Hardsuits/hardliner_infiltration.rsi, state: icon }
+  productEntity: ClothingBackpackDuffelLambdaInfiltration
+  discountCategory: veryRareDiscounts
+  discountDownTo:
+    Refinedbluespacecrystal: 5
+  cost:
+    Refinedbluespacecrystal: 10
+  categories:
+  - ConsortiumUplinkWearables
+
+- type: listing
+  id: ConsortiumUplinkClothingOuterArmorLambdaRaid
+  name: uplink-consortium-lambda-raid-name
+  description: uplink-consortium-lambda-raid-desc
+  icon: { sprite: /Textures/_FarHorizons/Clothing/OuterClothing/Armor/hardliner_raid.rsi, state: icon }
+  productEntity: ClothingBackpackLambdaRaidBundle
+  cost:
+    Refinedbluespacecrystal: 10
+  categories:
+  - ConsortiumUplinkWearables
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+
+- type: listing
+  id: ConsortiumUplinkHardsuitLambdaElite
+  name: uplink-consortium-hardsuit-lambda-elite-name
+  description: uplink-consortium-hardsuit-lambda-elite-desc
+  icon: { sprite: /Textures/_FarHorizons/Clothing/OuterClothing/Hardsuits/hardliner_elite.rsi, state: icon }
+  productEntity: ClothingBackpackDuffelLambdaEliteHardsuitBundle
+  cost:
+    Refinedbluespacecrystal: 10 #Starlight edit
+  categories:
+  - ConsortiumUplinkWearables
+
+- type: listing
+  id: ConsortiumUplinkClothingOuterHardsuitJuggernaut
+  name: uplink-consortium-clothing-outer-hardsuit-juggernaut-name
+  description: uplink-consortium-clothing-outer-hardsuit-juggernaut-desc
+  icon: { sprite: /Textures/_FarHorizons/Clothing/OuterClothing/Hardsuits/hardliner_heavy.rsi, state: icon }
+  productEntity: CrateLambdaJuggernautBundle
+  cost:
+    Refinedbluespacecrystal: 12
+  categories:
+  - ConsortiumUplinkWearables
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - NukeOpsUplink
+# Misc
+
+- type: listing
+  id: ConsortiumUplinkClothingEyesHudSyndicate
+  name: uplink-consortium-clothing-eyes-hud-syndicate-name
+  description: uplink-consortium-clothing-eyes-hud-syndicate-desc
+  productEntity: ClothingEyesHudSyndicate
+  cost:
+    Refinedbluespacecrystal: 2
+  categories:
+    - ConsortiumUplinkWearables
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - NukeOpsUplink
+
+- type: listing
+  id: ConsortiumUplinkBackpackSyndicate
+  name: uplink-consortium-backpack-syndicate-name
+  description: uplink-consortium-backpack-syndicate-desc
+  productEntity: ClothingBackpackSyndicate
+  cost:
+    Refinedbluespacecrystal: 2
+  categories:
+    - ConsortiumUplinkWearables
+
+ # Pointless
+
+- type: listing
+  id: ConsortiumUplinkBarberScissors
+  name: uplink-consortium-barber-scissors-name
+  description: uplink-consortium-barber-scissors-desc
+  productEntity: BarberScissors
+  cost:
+    Refinedbluespacecrystal: 1
+  categories:
+  - ConsortiumUplinkPointless
+
+- type: listing
+  id: ConsortiumUplinkSnackBox
+  name: uplink-consortium-snack-box-name
+  description: uplink-consortium-snack-box-desc
+  productEntity: HappyHonkNukieSnacks
+  cost:
+    Refinedbluespacecrystal: 1
+  categories:
+  - ConsortiumUplinkPointless
+
+- type: listing
+  id: ConsortiumUplinkClothingConductingGloves
+  name: uplink-consortium-clothing-conducting-gloves-name
+  description: uplink-consortium-clothing-conducting-gloves-desc
+  productEntity: ClothingHandsGlovesConducting
+  cost:
+    Refinedbluespacecrystal: 1
+  categories:
+  - ConsortiumUplinkPointless
+
+- type: listing
+  id: ConsortiumUplinkRevolverCapGun
+  name: uplink-consortium-revolver-cap-gun-name
+  description: uplink-consortium-revolver-cap-gun-desc
+  productEntity: RevolverCapGun
+  cost:
+    Refinedbluespacecrystal: 1
+  categories:
+  - ConsortiumUplinkPointless
+
+- type: listing
+  id: ConsortiumUplinkSyndicateStamp
+  name: uplink-consortium-syndicate-stamp-name
+  description: uplink-consortium-syndicate-stamp-desc
+  productEntity: RubberStampSyndicate
+  categories:
+  - ConsortiumUplinkPointless
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: ConsortiumUplinkCatEars
+  name: uplink-consortium-cat-ears-name
+  description: uplink-consortium-cat-ears-desc
+  productEntity: ClothingHeadHatCatEars
+  cost:
+    Refinedbluespacecrystal: 26
+  categories:
+  - ConsortiumUplinkPointless
+  conditions:
+  - !type:BuyerWhitelistCondition
+    blacklist:
+      components:
+      - SurplusBundle
+
+- type: listing
+  id: ConsortiumUplinkOutlawHat
+  name: uplink-consortium-outlaw-hat-name
+  description: uplink-consortium-outlaw-hat-desc
+  productEntity: ClothingHeadHatOutlawHat
+  categories:
+  - ConsortiumUplinkPointless
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: ConsortiumUplinkOutlawGlasses
+  name: uplink-consortium-outlaw-glasses-name
+  description: uplink-consortium-outlaw-glasses-desc
+  productEntity: ClothingEyesGlassesOutlawGlasses
+  cost:
+    Refinedbluespacecrystal: 1
+  categories:
+  - ConsortiumUplinkPointless
+
+- type: listing
+  id: ConsortiumUplinkCostumePyjama
+  name: uplink-consortium-costume-pyjama-name
+  description: uplink-consortium-costume-pyjama-desc
+  productEntity: ClothingBackpackDuffelSyndicatePyjamaBundle
+  cost:
+    Refinedbluespacecrystal: 2
+  categories:
+  - ConsortiumUplinkPointless
+
+- type: listing
+  id: ConsortiumUplinkCostumeClown
+  name: uplink-consortium-costume-clown-name
+  description: uplink-consortium-costume-clown-desc
+  productEntity: ClothingBackpackDuffelSyndicateCostumeClown
+  cost:
+    Refinedbluespacecrystal: 2
+  categories:
+  - ConsortiumUplinkPointless
+
+- type: listing
+  id: ConsortiumUplinkCarpSuitBundle
+  name: uplink-consortium-carp-suit-bundle-name
+  description: uplink-consortium-carp-suit-bundle-desc
+  productEntity: ClothingBackpackDuffelSyndicateCarpSuit
+  cost:
+    Refinedbluespacecrystal: 2
+  categories:
+  - ConsortiumUplinkPointless
+
+- type: listing
+  id: ConsortiumUplinkOperativeSuit
+  name: uplink-consortium-operative-suit-name
+  description: uplink-consortium-operative-suit-desc
+  productEntity: ClothingUniformJumpsuitOperative
+  categories:
+  - ConsortiumUplinkPointless
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: ConsortiumUplinkOperativeSkirt
+  name: uplink-consortium-operative-skirt-name
+  description: uplink-consortium-operative-skirt-desc
+  productEntity: ClothingUniformJumpskirtOperative
+  categories:
+  - ConsortiumUplinkPointless
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: ConsortiumUplinkBalloon
+  name: uplink-consortium-balloon-name
+  description: uplink-consortium-balloon-desc
+  productEntity: BalloonSyn
+  cost:
+    Refinedbluespacecrystal: 20
+  categories:
+  - ConsortiumUplinkPointless
+  conditions:
+  - !type:BuyerWhitelistCondition
+    blacklist:
+      components:
+      - SurplusBundle
+
+- type: listing
+  id: ConsortiumUplinkScarfSyndieRed
+  name: uplink-consortium-scarf-syndie-red-name
+  description: uplink-consortium-scarf-syndie-red-desc
+  productEntity: ClothingNeckScarfStripedSyndieRed
+  categories:
+  - ConsortiumUplinkPointless
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: ConsortiumUplinkScarfSyndieGreen
+  name: uplink-consortium-scarf-syndie-green-name
+  description: uplink-consortium-scarf-syndie-green-desc
+  productEntity: ClothingNeckScarfStripedSyndieGreen
+  categories:
+    - ConsortiumUplinkPointless
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: ConsortiumUplinkSyndicateBusinessCard
+  name: uplink-consortium-business-card-name
+  description: uplink-consortium-business-card-desc
+  productEntity: SyndicateBusinessCard
+  categories:
+    - ConsortiumUplinkPointless
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 3
+
+- type: listing
+  id: ConsortiumUplinkDecoyKit
+  name: uplink-consortium-decoy-kit-name
+  description: uplink-consortium-decoy-kit-desc
+  icon: { sprite: /Textures/Objects/Tools/Decoys/operative_decoy.rsi, state: folded }
+  productEntity: ClothingBackpackDuffelSyndicateDecoyKitFilled
+  cost:
+    Refinedbluespacecrystal: 1
+  categories:
+  - ConsortiumUplinkPointless
+
+# Job Specific
+
+- type: listing
+  id: ConsortiumUplinkGatfruitSeeds
+  name: uplink-consortium-gatfruit-seeds-name
+  description: uplink-consortium-gatfruit-seeds-desc
+  productEntity: GatfruitSeeds
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Refinedbluespacecrystal: 3
+  cost:
+    Refinedbluespacecrystal: 6
+  categories:
+  - ConsortiumUplinkJob
+  conditions:
+  - !type:BuyerJobCondition
+    whitelist:
+    - Botanist
+
+- type: listing
+  id: ConsortiumUplinkHolyHandGrenade
+  name: uplink-consortium-holy-hand-grenade-name
+  description: uplink-consortium-holy-hand-grenade-desc
+  productEntity: HolyHandGrenade
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Refinedbluespacecrystal: 14
+  cost:
+    Refinedbluespacecrystal: 20
+  categories:
+  - ConsortiumUplinkJob
+  conditions:
+  - !type:BuyerJobCondition
+    whitelist:
+    - Chaplain
+
+- type: listing
+  id: ConsortiumUplinkRevolverCapGunFake
+  name: uplink-consortium-revolver-cap-gun-fake-name
+  description: uplink-consortium-revolver-cap-gun-fake-desc
+  productEntity: RevolverCapGunFake
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Refinedbluespacecrystal: 2
+  cost:
+    Refinedbluespacecrystal: 3
+  categories:
+  - ConsortiumUplinkJob
+  conditions:
+  - !type:BuyerJobCondition
+    whitelist:
+    - Mime
+    - Clown
+
+- type: listing
+  id: ConsortiumUplinkClusterBananaPeel
+  name: uplink-consortium-cluster-banana-peel-name
+  description: uplink-consortium-cluster-banana-peel-desc
+  productEntity: ClusterBananaPeel
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Refinedbluespacecrystal: 3
+  cost:
+    Refinedbluespacecrystal: 5
+  categories:
+  - ConsortiumUplinkJob
+  conditions:
+  - !type:BuyerJobCondition
+    whitelist:
+    - Clown
+
+- type: listing
+  id: ConsortiumUplinkHoloclownKit
+  name: uplink-consortium-holoclown-kit-name
+  description: uplink-consortium-holoclown-kit-desc
+  icon: { sprite: /Textures/Objects/Fun/figurines.rsi, state: holoclown }
+  productEntity: BoxHoloclown
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Refinedbluespacecrystal: 6
+  cost:
+    Refinedbluespacecrystal: 12
+  categories:
+  - ConsortiumUplinkJob
+  conditions:
+  - !type:BuyerJobCondition
+    whitelist:
+    - Clown
+
+- type: listing
+  id: ConsortiumUplinkHotPotato
+  name: uplink-consortium-hot-potato-name
+  description: uplink-consortium-hot-potato-desc
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Refinedbluespacecrystal: 2
+  productEntity: HotPotato
+  cost:
+    Refinedbluespacecrystal: 4
+  categories:
+  - ConsortiumUplinkJob
+  conditions:
+  - !type:BuyerJobCondition
+    whitelist:
+    - Chef
+    - Botanist
+    - Clown
+    - Mime
+
+- type: listing
+  id: ConsortiumUplinkChimpUpgradeKit
+  name: uplink-consortium-chimp-upgrade-kit-name
+  description: uplink-consortium-chimp-upgrade-kit-desc
+  productEntity: WeaponPistolCHIMPUpgradeKit
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Refinedbluespacecrystal: 2
+  cost:
+    Refinedbluespacecrystal: 4
+  categories:
+  - ConsortiumUplinkJob
+  conditions:
+    - !type:BuyerDepartmentCondition
+      whitelist:
+      - Science
+
+- type: listing
+  id: ConsortiumUplinkProximityMine
+  name: uplink-consortium-proximity-mine-name
+  description: uplink-consortium-proximity-mine-desc
+  productEntity: WetFloorSignMineExplosive
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Refinedbluespacecrystal: 2
+  cost:
+    Refinedbluespacecrystal: 5 # was 4, with my buff made it 5 to be closer to minibomb -panzer
+  categories:
+  - ConsortiumUplinkJob
+  conditions:
+  - !type:BuyerJobCondition
+    whitelist:
+    - Janitor
+  - !type:BuyerWhitelistCondition
+    blacklist:
+      components:
+      - SurplusBundle
+
+- type: listing
+  id: ConsortiumUplinkSyndicateSpongeBox
+  name: uplink-consortium-syndicate-sponge-box-name
+  description: uplink-consortium-syndicate-sponge-box-desc
+  icon: { sprite:  Objects/Misc/monkeycube.rsi, state: box}
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Refinedbluespacecrystal: 2
+  productEntity: SyndicateSpongeBox
+  cost:
+    Refinedbluespacecrystal: 4
+  categories:
+  - ConsortiumUplinkJob
+  conditions:
+  - !type:BuyerJobCondition # We can't use BuyerDepartmentCondition here since Chef can also get this
+    whitelist:
+    - Scientist
+    - ResearchDirector
+    - Chef
+
+- type: listing
+  id: ConsortiumUplinkCaneBlade
+  name: uplink-consortium-cane-blade-name
+  description: uplink-consortium-cane-blade-desc
+  icon: { sprite:  Objects/Weapons/Melee/cane.rsi, state: cane}
+  productEntity: CaneSheathFilled
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Refinedbluespacecrystal: 2
+  cost:
+    Refinedbluespacecrystal: 3
+  categories:
+  - ConsortiumUplinkJob
+  conditions:
+  - !type:BuyerJobCondition
+    whitelist:
+    - Librarian
+
+- type: listing
+  id: ConsortiumUplinkCombatBakery
+  name: uplink-consortium-combat-bakery-name
+  description: uplink-consortium-combat-bakery-desc
+  icon: { sprite:  Objects/Consumable/Food/Baked/bread.rsi, state: baguette}
+  productEntity: CombatBakeryKit
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Refinedbluespacecrystal: 2
+  cost:
+    Refinedbluespacecrystal: 4
+  categories:
+  - ConsortiumUplinkJob
+  conditions:
+  - !type:BuyerJobCondition
+    whitelist:
+    - Chef
+    - Mime
+
+- type: listing
+  id: ConsortiumUplinkContrabandLighter
+  name: uplink-consortium-contraband-lighter-name
+  description: uplink-consortium-contraband-lighter-desc
+  icon: { sprite:  Objects/Tools/Lighters/syndielighter.rsi, state: icon}
+  productEntity: UplinkLighterBox
+  cost:
+    Refinedbluespacecrystal: 1
+  categories:
+  - ConsortiumUplinkPointless
+
+- type: listing
+  id: ConsortiumUplinkSmugglerSatchel
+  name: uplink-consortium-smuggler-satchel-name
+  description: uplink-consortium-smuggler-satchel-desc
+  productEntity: ClothingBackpackSatchelSmugglerUnanchored
+  cost:
+    Refinedbluespacecrystal: 1
+  categories:
+  - ConsortiumUplinkDeception
+
+- type: listing
+  id: ConsortiumUplinkAcolyteArmor
+  name: uplink-consortium-acolyte-armor-name
+  description: uplink-consortium-acolyte-armor-desc
+  icon: { sprite: Clothing/OuterClothing/Armor/cult_armour.rsi, state: icon}
+  productEntity: ClothingBackpackDuffelAcolyteBundle
+  discountCategory: veryRareDiscounts
+  discountDownTo:
+    Refinedbluespacecrystal: 3
+  cost:
+    Refinedbluespacecrystal: 4
+  categories:
+  - ConsortiumUplinkJob
+  conditions:
+  - !type:BuyerJobCondition
+    whitelist:
+    - Chaplain
+
+- type: listing
+  id: ConsortiumUplinkBriefcaseGun
+  name: uplink-consortium-briefcase-gun-name
+  description: uplink-consortium-briefcase-gun-desc
+  productEntity: WeaponSubMachineGunBriefcase
+  discountCategory: veryRareDiscounts
+  discountDownTo:
+    Refinedbluespacecrystal: 10
+  cost:
+    Refinedbluespacecrystal: 14
+  categories:
+  - ConsortiumUplinkJob
+  conditions:
+  - !type:BuyerJobCondition
+    whitelist:
+    - Lawyer
+
+# Below is the extras added by FH
+# Uplink Catalog for M81A1 "Fissure" Crate Bundle
+
+- type: listing
+  id: ConsortiumUplinkM81A1FissureCrateTeleporter
+  name: uplink-consortium-M81A1-fissure-crate-teleporter-name
+  description: uplink-consortium-M81A1-fissure-crate-teleporter-desc
+  icon: { sprite: /Textures/_FarHorizons/Objects/Weapons/Guns/Launchers/m81a1_fissure.rsi, state: base }
+  productEntity: CrateConsortiumM81A1Uplink
+  cost:
+    Refinedbluespacecrystal: 30
+  categories:
+  - ConsortiumUplinkWeaponry
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+
+# 120mmm Rockets
+
+- type: listing
+  id: ConsortiumUplinkRocketAmmo120mmHE
+  name: uplink-consortium-rocket-ammo-120mm-HE-name
+  description: uplink-consortium-rocket-ammo-120mm-HE-desc
+  icon: { sprite: /Textures/_FarHorizons/Objects/Weapons/Guns/Ammunition/Explosives/120mm_explosives.rsi, state: 120mm_HE}
+  productEntity: RocketAmmo120mmHE
+  cost: 
+    Refinedbluespacecrystal: 4
+  categories:
+    - ConsortiumUplinkAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+
+- type: listing 
+  id: ConsortiumUplinkRocketAmmo120mmAP
+  name: uplink-consortium-rocket-ammo-120mm-AP-name
+  description: uplink-consortium-rocket-ammo-120mm-AP-desc
+  icon: { sprite: /Textures/_FarHorizons/Objects/Weapons/Guns/Ammunition/Explosives/120mm_explosives.rsi, state: 120mm_AP}
+  productEntity: RocketAmmo120mmAP
+  cost:
+    Refinedbluespacecrystal: 5
+  categories:
+    - ConsortiumUplinkAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+
+- type: listing
+  id: ConsortiumUplinkRocketAmmo120mmIncendiary
+  name: uplink-consortium-rocket-ammo-120mm-incendiary-name
+  description: uplink-consortium-rocket-ammo-120mm-incendiary-desc
+  icon: { sprite: /Textures/_FarHorizons/Objects/Weapons/Guns/Ammunition/Explosives/120mm_explosives.rsi, state: 120mm_incendiary}
+  productEntity: RocketAmmo120mmIncendiary
+  cost:
+    Refinedbluespacecrystal: 4
+  categories:
+    - ConsortiumUplinkAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+
+- type: listing
+  id: ConsortiumUplinkRocketAmmo120mmShrapnel
+  name: uplink-consortium-rocket-ammo-120mm-shrapnel-name
+  description: uplink-consortium-rocket-ammo-120mm-shrapnel-desc
+  icon: { sprite: /Textures/_FarHorizons/Objects/Weapons/Guns/Ammunition/Explosives/120mm_explosives.rsi, state: 120mm_shrapnel}
+  productEntity: RocketAmmo120mmShrapnel
+  cost:
+    Refinedbluespacecrystal: 2
+  categories:
+    - ConsortiumUplinkAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+
+- type: listing
+  id: ConsortiumUplinkSyndicateSecway
+  name: uplink-consortium-syndicate-secway-name
+  description: uplink-consortium-syndicate-secway-description
+  icon: { sprite: /Textures/_FarHorizons/Objects/Vehicles/syndicate_segway.rsi, state: icon}
+  productEntity: VehicleSegwayNSTFilled
+  cost:
+    Refinedbluespacecrystal: 2 # What's more loud than a bloodred? A red segway. Plus, not that useful in the grand theme of things, asides from the universal key you get.. Funny though.
+  categories:
+    - ConsortiumUplinkVehicles
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 3 # Fun for the whole family
+
+- type: listing
+  id: ConsortiumUplinkSyndicateSecwayArmoredLight
+  name: uplink-consortium-syndicate-secway-armored-light-name
+  description: uplink-consortium-syndicate-secway-armored-light-description
+  icon: { sprite: /Textures/_FarHorizons/Objects/Vehicles/Armored/syndicate_segway_armored_light.rsi, state: icon}
+  productEntity: VehicleSegwayArmoredLightNST
+  cost:
+    Refinedbluespacecrystal: 4 # May I introduce you to it's slightly less useless cousin?
+  categories:
+    - ConsortiumUplinkVehicles
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 2 # It's not THAT strong.
+
+- type: listing 
+  id: ConsortiumUplinkWeaponRifleLecterT
+  name: uplink-consortium-lecter-type-t-name
+  description: uplink-consortium-lecter-type-t-description
+  icon: { sprite: /Textures/_FarHorizons/Objects/Weapons/Guns/Rifles/nt_lecter.rsi, state: icon}
+  productEntity: ConsortiumBriefcaseWeaponLecterTFilled
+  cost:
+    Refinedbluespacecrystal: 18
+  categories:
+    - ConsortiumUplinkWeaponry
+
+- type: listing
+  id: ConsortiumUplinkUziBundle
+  name: uplink-consortium-uzi-bundle-name
+  description: uplink-consortium-uzi-bundle-desc
+  icon: { sprite: /Textures/_FarHorizons/Objects/Weapons/Guns/SMGs/h6_uzi.rsi, state: icon }
+  productEntity: ConsortiumBriefcaseWeaponUziFilled
+  discountCategory: veryRareDiscounts
+  discountDownTo:
+    Refinedbluespacecrystal: 15
+  cost:
+    Refinedbluespacecrystal: 20
+  categories:
+  - ConsortiumUplinkWeaponry
+
+- type: listing
+  id: ConsortiumUplinkWeaponPistolDeagle
+  name: uplink-consortium-deagle-name
+  description: uplink-consortium-deagle-desc
+  icon: { sprite: /Textures/_Starlight/Objects/Weapons/Guns/Pistols/deagle.rsi, state: icon }
+  productEntity: ConsortiumBriefcaseWeaponJungleHawkFilled
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Refinedbluespacecrystal: 5
+  cost:
+    Refinedbluespacecrystal: 8
+  categories:
+    - ConsortiumUplinkWeaponry
+
+- type: listing
+  id: ConsortiumUplinkWeaponPistolStechkin
+  name: uplink-consortium-stechkin-name
+  description: uplink-consortium-stechkin-desc
+  icon: { sprite: /Textures/_Starlight/Objects/Weapons/Guns/Pistols/stechkin.rsi, state: icon }
+  productEntity: ConsortiumBriefcaseWeaponStechkinFilled
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Refinedbluespacecrystal: 3
+  cost:
+    Refinedbluespacecrystal: 6
+  categories:
+    - ConsortiumUplinkWeaponry
+# Restored wizden content
+
+- type: listing
+  id: ConsortiumUplinkRiggedBoxingGlovesAssistant
+  name: uplink-consortium-rigged-boxing-gloves-name
+  description: uplink-consortium-rigged-boxing-gloves-desc
+  productEntity: ClothingHandsGlovesBoxingRigged
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Refinedbluespacecrystal: 3
+  cost:
+    Refinedbluespacecrystal: 6
+  categories:
+    - ConsortiumUplinkJob
+  conditions:
+    - !type:BuyerJobCondition
+      whitelist:
+        - Assistant
+
+- type: listing
+  id: ConsortiumUplinkNecronomicon
+  name: uplink-consortium-necronomicon-name
+  description: uplink-consortium-necronomicon-desc
+  productEntity: BibleNecronomicon
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Refinedbluespacecrystal: 2
+  cost:
+    Refinedbluespacecrystal: 4
+  categories:
+  - ConsortiumUplinkJob
+  conditions:
+  - !type:BuyerJobCondition
+    whitelist:
+    - Chaplain
+  - !type:BuyerWhitelistCondition
+    blacklist:
+      components:
+      - SurplusBundle
+
+- type: listing
+  id: ConsortiumUplinkBananaPeelExplosive
+  name: uplink-consortium-banana-peel-explosive-name
+  description: uplink-consortium-banana-peel-explosive-desc
+  icon: { sprite: Objects/Specific/Hydroponics/banana.rsi, state: peel }
+  productEntity: TrashBananaPeelExplosiveUnarmed
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Refinedbluespacecrystal: 1
+  cost:
+    Refinedbluespacecrystal: 2
+  categories:
+  - ConsortiumUplinkJob
+  conditions:
+  - !type:BuyerJobCondition
+    whitelist:
+    - Clown
+
+- type: listing
+  id: ConsortiumUplinkSuperSurplusBundle
+  name: uplink-consortium-super-surplus-bundle-name
+  description: uplink-consortium-super-surplus-bundle-desc
+  productEntity: CrateSyndicateSuperSurplusBundle
+  cost:
+    Refinedbluespacecrystal: 40
+  categories:
+  - ConsortiumUplinkDisruption
+  conditions:
+  - !type:StoreWhitelistCondition
+    blacklist:
+      tags:
+      - NukeOpsUplink
+  - !type:BuyerWhitelistCondition
+    blacklist:
+      components:
+      - SurplusBundle
+
+- type: listing
+  id: ConsortiumUplinkWhiteholeGrenade
+  name: uplink-consortium-whitehole-grenade-name
+  description: uplink-consortium-whitehole-grenade-desc
+  productEntity: WhiteholeGrenade
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Refinedbluespacecrystal: 1
+  cost:
+    Refinedbluespacecrystal: 2
+  categories:
+    - ConsortiumUplinkDisruption
+
+- type: listing
+  id: ConsortiumUplinkHolster
+  name: uplink-consortium-holster-name
+  description: uplink-consortium-holster-desc
+  productEntity: ClothingBeltSyndieHolster
+  cost:
+    Refinedbluespacecrystal: 1
+  categories:
+  - ConsortiumUplinkWearables
+
+- type: listing
+  id: ConsortiumUplinkExplosiveGrenadeFlash
+  name: uplink-consortium-flash-grenade-name
+  description: uplink-consortium-flash-grenade-desc
+  productEntity: GrenadeFlashBang
+  cost:
+    Refinedbluespacecrystal: 1
+  categories:
+  - ConsortiumUplinkExplosives
+
+- type: listing
+  id: ConsortiumUplinkClusterGrenade
+  name: uplink-consortium-cluster-grenade-name
+  description: uplink-consortium-cluster-grenade-desc
+  productEntity: ClusterGrenade
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Refinedbluespacecrystal: 5
+  cost:
+    Refinedbluespacecrystal: 8
+  categories:
+  - ConsortiumUplinkExplosives
+
+- type: listing
+  id: ConsortiumUplinkEmpKit
+  name: uplink-consortium-emp-kit-name
+  description: uplink-consortium-emp-kit-desc
+  productEntity: ElectricalDisruptionKit
+  discountCategory: veryRareDiscounts
+  discountDownTo:
+    Refinedbluespacecrystal: 4
+  cost:
+    Refinedbluespacecrystal: 6
+  categories:
+    - ConsortiumUplinkExplosives
+
+- type: listing
+  id: ConsortiumUplinkPistolCoronaAPBundle
+  name: uplink-consortium-pistol-corona-name-fh-ap
+  description: uplink-consortium-pistol-corona-desc-fh-ap
+  icon: { sprite: _FarHorizons/Objects/Weapons/Guns/Pistols/Energy_Magnum.rsi, state: icon }
+  productEntity: ConsortiumBriefcaseWeaponCoronaAPFilled
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Refinedbluespacecrystal: 4
+  cost:
+    Refinedbluespacecrystal: 10
+  categories:
+  - ConsortiumUplinkWeaponry
+
+- type: listing
+  id: ConsortiumUplinkPistolCorona # I got backlash for making it 10 tc depsite it coming in a better bundle. Not the end of the world to have 2 options.
+  name: uplink-consortium-pistol-corona-name-fh
+  icon: { sprite: _FarHorizons/Objects/Weapons/Guns/Pistols/Energy_Magnum.rsi, state: icon }
+  description: uplink-consortium-pistol-corona-desc-fh
+  productEntity: ConsortiumBriefcaseWeaponCoronaFilled
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Refinedbluespacecrystal: 2
+  cost:
+    Refinedbluespacecrystal: 4
+  categories:
+  - ConsortiumUplinkWeaponry
+
+- type: listing
+  id: ConsortiumUplinkSpeedLoaderMagnumAP
+  name: uplink-consortium-ua-magazine-name
+  description: uplink-consortium-ua-magazine-desc
+  icon: { sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/Energy_Magnum_Mag.rsi, state: icon }
+  productEntity: MagazineBatteryUAAP
+  cost:
+    Refinedbluespacecrystal: 3
+  categories:
+  - ConsortiumUplinkAmmo
+
+# Cybernetics
+
+- type: listing
+  id: ConsortiumUplinkCyberEyeNightVision
+  name: uplink-nightvision-eyes
+  description: uplink-nightvision-eyes-desc-fh  #FH
+  icon:
+    {
+      sprite: /Textures/_Starlight/Objects/Specific/Medical/implants.rsi,
+      state: eyes_night,
+    }
+  productEntity: CyberneticImplanterConsortiumCyberEyeNightVision #FH
+  discountDownTo:
+    Refinedbluespacecrystal: 2
+  cost:
+    Refinedbluespacecrystal: 4
+  categories:
+    - ConsortiumUplinkCybernetics
+
+- type: listing
+  id: ConsortiumUplinkCyberEyeThermal
+  name: uplink-thermalvision-eyes
+  description: uplink-thermalvision-eyes-desc-fh #FH
+  icon:
+    {
+      sprite: /Textures/_Starlight/Objects/Specific/Medical/implants.rsi,
+      state: eyes_thermal,
+    }
+  productEntity: CyberneticImplanterConsortiumCyberEyeThermal #FH
+  discountDownTo:
+    Refinedbluespacecrystal: 4
+  cost:
+    Refinedbluespacecrystal: 8
+  categories:
+    - ConsortiumUplinkCybernetics
+
+- type: listing
+  id: ConsortiumUplinkForensicsImplant #FH
+  name: uplink-forensics-implant-name #FH
+  description: uplink-forensics-implant-desc-fh #FH
+  icon: { sprite: _Starlight/Objects/Specific/Medical/implants.rsi, state: l_hand_implant_forensics } #FH
+  productEntity: CyberneticImplanterConsortiumHandImplantForensics #FH
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Refinedbluespacecrystal: 1
+  cost:
+    Refinedbluespacecrystal: 2
+  categories:
+  - ConsortiumUplinkCybernetics
+
+- type: listing
+  id: ConsortiumUplinkAgentEyeImplant #FH
+  name: uplink-agent-implant-name
+  description: uplink-agent-implant-desc #FH
+  icon: { sprite: _Starlight/Objects/Specific/Medical/implants.rsi, state: eye_implant_syndicate }
+  productEntity: CyberneticImplanterConsortiumEyeImplantAgent #FH
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Refinedbluespacecrystal: 2
+  cost:
+    Refinedbluespacecrystal: 5
+  categories:
+  - ConsortiumUplinkCybernetics

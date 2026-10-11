@@ -1,19 +1,15 @@
 using System.Text.RegularExpressions;
 using Content.Server.Speech.Components;
 using Content.Shared.Speech;
+using Content.Shared.Speech.EntitySystems;
+using Content.Shared._Starlight.Speech;
 
 namespace Content.Server.Speech.EntitySystems;
 
-public sealed class ArchaicAccentSystem : EntitySystem
+public sealed partial class ArchaicAccentSystem : RelayAccentSystem<ArchaicAccentComponent>
 {
-    [Dependency] private readonly ReplacementAccentSystem _replacement = default!;
+    [Dependency] private ReplacementAccentSystem _replacement = default!;
 
-    public override void Initialize()
-    {
-        base.Initialize();
-        SubscribeLocalEvent<ArchaicAccentComponent, AccentGetEvent>(OnAccent);
-    }
-
-    private void OnAccent(EntityUid uid, ArchaicAccentComponent component, AccentGetEvent args) 
-        => args.Message = _replacement.ApplyReplacements(args.Message, "archaic");
+    protected override SpeechMessage AccentuateInternal(EntityUid uid, ArchaicAccentComponent component, SpeechMessage message)
+        => _replacement.ApplyReplacements(message, "archaic");
 }

@@ -115,57 +115,180 @@
   - type: ExplosionResistance
     damageCoefficient: 0.80
 
-
-#region Syndicate
-
-
-
-
-
-
-
-
-
-
-
-#region General Armor
-
+#region ## GSL ##
 - type: entity
-  parent: [ ClothingOuterArmorBaseFHSyndi, BaseSecurityContraband ]
-  id: ClothingOuterArmorReflectiveSyndi
-  name: Reflective Vest
-  suffix: S
-  description: An armored vest with advanced shielding to protect against energy weapons.
+  parent: [ ClothingOuterArmorBaseFH, BaseSalvageContraband ]
+  id: ClothingOuterArmorSalvageMedium
+  name: Salvage Armor
+  description: Alternative to the classic salvager suit for when oxygen isn't a problem.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/OuterClothing/Armor/armor_reflec-syndi.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Armor/salvage.rsi
   - type: Clothing
-    sprite: _FarHorizons/Clothing/OuterClothing/Armor/armor_reflec-syndi.rsi
-  - type: Pierceable
-    level: Metal
+    sprite: _FarHorizons/Clothing/OuterClothing/Armor/salvage.rsi
   - type: Armor
     modifiers:
       flatReductions:
-        Heat: 4
+        Piercing: 2
+        Heat: 1
       coefficients:
-        Blunt: 0.9
-        Slash: 0.9
-        Piercing: 0.9
-        Heat: 0.4 # this technically means it protects against fires pretty well? -heat is just for lasers and stuff, not atmos temperature
+        Blunt: 0.7
+        Slash: 0.6
+        Piercing: 0.75
+        Heat: 0.8
   - type: LimbArmor
     limbs:
       ArmRight: {}
       ArmLeft: {}
       LegRight: {}
       LegLeft: {}
-  - type: Reflect
-    reflectProb: 1
-    reflects:
-      - Energy
-    reflectingInHands: false
-  - type: Tag
-    tags:
-    - ReflectArmor
+  - type: ExplosionResistance
+    damageCoefficient: 0.80
+
+- type: entity
+  parent: ClothingOuterArmorSalvageMedium
+  id: ClothingOuterArmorSalvageMediumGoliath
+  name: Goliath Salvage Armor
+  description: Alternative to the classic salvager suit for when oxygen isn't a problem. Reinforced against heat by the extra goliath flesh.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/Armor/salvage_goliath.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/Armor/salvage_goliath.rsi
+  - type: Armor
+    modifiers:
+      flatReductions:
+        Piercing: 3
+        Heat: 3
+      coefficients:
+        Blunt: 0.65
+        Slash: 0.55
+        Piercing: 0.6
+        Heat: 0.75
+        Caustic: 0.8
+        Radiation: 0.75
+  - type: LimbArmor
+    limbs:
+      ArmRight: {}
+      ArmLeft: {}
+      LegRight: {}
+      LegLeft: {}
+  - type: Construction
+    graph: SalvageArmorGoliath
+    node: salvageArmorGoliath
+
+- type: entity
+  parent: [ ClothingOuterArmorBaseFH, BaseSalvageContraband ]
+  id: ClothingOuterArmorSalvageHeavy
+  name: Heavy Salvage Armor
+  description: Alternative to the classic salvager suit for when oxygen isn't a problem with extra platings at the cost of speed.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/Armor/salvageheavy.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/Armor/salvageheavy.rsi
+  - type: Armor
+    modifiers:
+      flatReductions:
+        Piercing: 3
+        Heat: 2
+      coefficients:
+        Blunt: 0.65
+        Slash: 0.55
+        Piercing: 0.75
+        Heat: 0.75
+  - type: LimbArmor
+    limbs:
+      ArmRight: {}
+      ArmLeft: {}
+      LegRight: {}
+      LegLeft: {}
+  - type: ExplosionResistance
+    damageCoefficient: 0.70
+  - type: ClothingSpeedModifier
+    walkModifier: 1
+    sprintModifier: 0.85
+
+- type: entity
+  parent: ClothingOuterArmorSalvageHeavy
+  id: ClothingOuterArmorSalvageHeavyGoliath
+  name: Heavy Goliath Salvage Armor
+  description: Alternative to the classic salvager suit for when oxygen isn't a problem with extra platings at the cost of speed. Reinforced against heat by the extra goliath flesh.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/Armor/salvageheavy_goliath.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/Armor/salvageheavy_goliath.rsi
+  - type: Armor
+    modifiers:
+      flatReductions:
+        Piercing: 4
+        Heat: 3
+      coefficients:
+        Blunt: 0.6
+        Slash: 0.5
+        Piercing: 0.6
+        Heat: 0.65
+        Caustic: 0.7
+        Radiation: 0.65
+  - type: LimbArmor
+    limbs:
+      ArmRight: {}
+      ArmLeft: {}
+      LegRight: {}
+      LegLeft: {}
+  - type: Construction
+    graph: SalvageHeavyArmorGoliath
+    node: salvageHeavyArmorGoliath
+
+- type: entity
+  parent: [BaseSalvageContraband, ClothingOuterVestWeb] #web vest so it should have some pockets for ammo
+  id: ClothingOuterVestWebSalvageMercGoliath
+  name: Goliath Salvage Web Vest #Far Horizons - The Great Capitalization Crusade
+  description: A versatile armored vest, popular among salvagers for its protective yet lightweight design.
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Clothing/OuterClothing/Vests/salvage_goliath.rsi
+    - type: Clothing
+      sprite: _FarHorizons/Clothing/OuterClothing/Vests/salvage_goliath.rsi
+    - type: Pierceable
+      level: Metal
+    - type: Armor
+      modifiers:
+        flatReductions:
+          Piercing: 5
+          Heat: 2
+        coefficients:
+          Blunt: 0.7
+          Slash: 0.7
+          Piercing: 0.6
+          Heat: 0.8
+          Caustic: 0.75
+      staminaModifier: 0.85
+    - type: LimbArmor # Far Horizons
+      limbs:
+        ArmRight: {}
+        ArmLeft: {}
+        LegRight: {}
+        LegLeft: {}
+    - type: ExplosionResistance
+      damageCoefficient: 0.9
+    - type: Construction
+      graph: WebVestGoliath
+      node: webVestGoliath
+    
+#region ## NeoSol ##
+
+
+
+
+
+
+
+
+
+
+
 
 #region Command
 
@@ -175,17 +298,53 @@
   parent: [ ClothingOuterArmorBaseCarapace, BaseCommandContraband ]
   id: ClothingOuterArmorCaptainCarapaceSyndi
   name: Commandant's Carapace
-  suffix: S
+  suffix: NS
   description: An armored chestpiece that provides protection whilst still offering maximum mobility and flexibility. Issued only to the station's finest.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/OuterClothing/Armor/captain_carapace-syndi.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Armor/NeoSol/captain_carapace.rsi
   - type: Clothing
-    sprite: _FarHorizons/Clothing/OuterClothing/Armor/captain_carapace-syndi.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Armor/NeoSol/captain_carapace.rsi
   - type: Tag
     tags:
     - CorgiWearable
     - WhitelistChameleon
+
+# Red Sword Operative (BSO)
+
+- type: entity
+  parent: [ ClothingOuterArmorBase, BaseBlueshieldContraband ] # Technically not Blueshield, but that's a problem for another day
+  id: ClothingOuterArmorRedSword
+  name: Red Sword Operative's Bulletproof Vest
+  description: Much better than a standard Type-I armored vest. Don't lose it, you will NOT get a replacement.
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/Armor/NeoSol/redsword.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/Armor/NeoSol/redsword.rsi
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      flatReductions:
+        Piercing: 5 
+        Heat: 4
+      coefficients:
+        Blunt: 0.6
+        Slash: 0.6
+        Piercing: 0.6
+        Heat: 0.7
+  - type: LimbArmor
+    limbs:
+      ArmRight: {}
+      ArmLeft: {}
+      LegRight: {}
+      LegLeft: {}
+  - type: ExplosionResistance
+    damageCoefficient: 0.80
+  - type: Item
+    size: Normal
 
 #region Security
 
@@ -196,13 +355,13 @@
   parent: ClothingOuterArmorBasic
   id: ClothingOuterArmorBasicSlimSyndi
   name: Armor Vest Slim
-  suffix: S, Slim
+  suffix: NS, Slim
   description: A slim Type I armored vest that provides decent protection against most types of damage.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/OuterClothing/Armor/security_slim-syndi.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Armor/NeoSol/security_slim.rsi
   - type: Clothing
-    sprite: _FarHorizons/Clothing/OuterClothing/Armor/security_slim-syndi.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Armor/NeoSol/security_slim.rsi
 
 - type: entity
   abstract: true
@@ -212,9 +371,9 @@
   description: The normal armor base has a sec contra label, which means anything inhereting takes it. Please use this one instead!
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/OuterClothing/Armor/security-syndi.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Armor/NeoSol/security.rsi
   - type: Clothing
-    sprite: _FarHorizons/Clothing/OuterClothing/Armor/security-syndi.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Armor/NeoSol/security.rsi
   - type: Pierceable
     level: Metal
   - type: Armor #Based on /tg/ but slightly compensated to fit the fact that armor stacks in SS14.
@@ -231,7 +390,9 @@
 - type: entity
   parent: [ BaseSecurityBartenderContraband, ClothingOuterArmorBaseFHSyndi ]
   id: ClothingOuterArmorBasicSyndi
-  suffix: S
+  name: Armor Vest
+  description: A standard Type I armored vest that provides decent protection against most types of damage.
+  suffix: NS
   components:
   - type: Tag
     tags:
@@ -258,13 +419,13 @@
   parent: [ ClothingOuterArmorBaseFHSyndi, BaseSecurityContraband ]
   id: ClothingOuterArmorBulletproofSyndi
   name: Bulletproof Vest
-  suffix: S
+  suffix: NS
   description: A Type III heavy bulletproof vest that excels in protecting the wearer against traditional projectile weaponry and explosives to a minor extent.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/OuterClothing/Armor/bulletproof-syndi.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Armor/NeoSol/bulletproof.rsi
   - type: Clothing
-    sprite: _FarHorizons/Clothing/OuterClothing/Armor/bulletproof-syndi.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Armor/NeoSol/bulletproof.rsi
   - type: Pierceable
     level: Metal
   - type: Armor
@@ -292,15 +453,15 @@
   parent: [ ClothingOuterArmorBaseFHSyndi, BaseSecurityContraband ]
   id: ClothingOuterArmorPlateSyndi
   name: Plate Carrier
-  suffix: S
+  suffix: NS
   description: A standard Type II armored vest that provides good protection against bullets and lasers with the help of a plate inserted in the back and front, but not much else.
   components:
   - type: Pierceable
     level: Metal
   - type: Sprite
-    sprite: _FarHorizons/Clothing/OuterClothing/Armor/platecarrier-syndi.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Armor/NeoSol/platecarrier.rsi
   - type: Clothing
-    sprite: _FarHorizons/Clothing/OuterClothing/Armor/platecarrier-syndi.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Armor/NeoSol/platecarrier.rsi
   - type: Armor
     modifiers:
       flatReductions:
@@ -323,15 +484,15 @@
   parent: [ ClothingOuterArmorBaseFHSyndi, BaseSecurityContraband ]
   id: ClothingOuterArmorStabSyndi
   name: Stabproof Vest
-  suffix: S
+  suffix: NS
   description: Contrary to it's name, it's just a Type II armored vest that provides good protection against stabs and punches, but not much else.
   components:
   - type: Pierceable
     level: Metal
   - type: Sprite
-    sprite: _FarHorizons/Clothing/OuterClothing/Armor/stabvest-syndi.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Armor/NeoSol/stabvest.rsi
   - type: Clothing
-    sprite: _FarHorizons/Clothing/OuterClothing/Armor/stabvest-syndi.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Armor/NeoSol/stabvest.rsi
   - type: Armor
     modifiers:
       coefficients:
@@ -350,15 +511,15 @@
   parent: [ClothingOuterArmorBaseFHSyndi, BaseSecurityContraband]
   id: ClothingOuterArmorHeatAbsorbSyndi
   name: Heat Absorbent Vest
-  suffix: S
+  suffix: NS
   description: Advanced vest designed to absorb heat rather than reflect it, but still has some reflective properties itself. Not good against bullets or blunt impacts due to the fragile material.
   components:
   - type: Pierceable
     level: Metal
   - type: Sprite
-    sprite: _FarHorizons/Clothing/OuterClothing/Armor/armor_reflec-syndi.rsi #Needs updating eventually to not use the reflective vest sprites.
+    sprite: _FarHorizons/Clothing/OuterClothing/Armor/NeoSol/armor_reflec.rsi #Needs updating eventually to not use the reflective vest sprites.
   - type: Clothing
-    sprite: _FarHorizons/Clothing/OuterClothing/Armor/armor_reflec-syndi.rsi #Needs updating eventually to not use the reflective vest sprites.
+    sprite: _FarHorizons/Clothing/OuterClothing/Armor/NeoSol/armor_reflec.rsi #Needs updating eventually to not use the reflective vest sprites.
   - type: Armor
     modifiers:
       flatReductions:
@@ -375,19 +536,90 @@
       LegRight: {}
       LegLeft: {}
 
+- type: entity
+  parent: [ ClothingOuterArmorBaseFHSyndi, BaseSecurityContraband ]
+  id: ClothingOuterArmorReflectiveSyndi
+  name: Reflective Vest
+  suffix: NS
+  description: An armored vest with advanced shielding to protect against energy weapons.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/Armor/NeoSol/armor_reflec.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/Armor/NeoSol/armor_reflec.rsi
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      flatReductions:
+        Heat: 4
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.4 # this technically means it protects against fires pretty well? -heat is just for lasers and stuff, not atmos temperature
+  - type: LimbArmor
+    limbs:
+      ArmRight: {}
+      ArmLeft: {}
+      LegRight: {}
+      LegLeft: {}
+  - type: Reflect
+    reflectProb: 1
+    reflects:
+      - Energy
+    reflectingInHands: false
+  - type: Tag
+    tags:
+    - ReflectArmor
+
+- type: entity
+  parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing, BaseSecurityContraband]
+  id: ClothingOuterArmorRiotNeoSol
+  name: Riot Suit 
+  suffix: NS
+  description: A suit of semi-flexible polycarbonate body armor with heavy padding to protect against melee attacks. Perfect for fighting delinquents around the station.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/Armor/NeoSol/security.rsi ##Placeholder till Riot Armor resprited.
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/Armor/NeoSol/security.rsi ##Placeholder till Riot Armor resprited.
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.4
+        Slash: 0.4
+        Piercing: 0.7
+        Heat: 0.9
+        Caustic: 0.9
+  - type: LimbArmor
+    limbs:
+      ArmRight: {}
+      ArmLeft: {}
+      LegRight: {}
+      LegLeft: {}
+  - type: ExplosionResistance
+    damageCoefficient: 0.9
+  - type: GroupExamine
+  - type: Tag
+    tags:
+    - RiotArmor
+
 # Inspector (Detective)
 
 - type: entity
   parent: [ ClothingOuterArmorBaseFHSyndi, BaseSecurityContraband ]
   id: ClothingOuterVestDetectiveSyndi
   name: Inspector's Vest
-  suffix: S
+  suffix: NS
   description: A hard-boiled private investigator's armored vest.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/OuterClothing/Vests/detvest-syndi.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Vests/NeoSol/detvest.rsi
   - type: Clothing
-    sprite: _FarHorizons/Clothing/OuterClothing/Vests/detvest-syndi.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Vests/NeoSol/detvest.rsi
   - type: Armor
     modifiers:
       flatReductions:
@@ -514,13 +746,13 @@
   parent: [ ClothingOuterArmorBaseFHSyndi, BaseSecurityContraband ]
   id: ClothingOuterVestBrigmedicSyndi
   name: Brigmedic's Vest
-  suffix: S
+  suffix: NS
   description: An armored vest made for the station's Brigmedic.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/OuterClothing/Vests/brigmedic-syndi.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Vests/NeoSol/brigmedic.rsi
   - type: Clothing
-    sprite: _FarHorizons/Clothing/OuterClothing/Vests/brigmedic-syndi.rsi
+    sprite: _FarHorizons/Clothing/OuterClothing/Vests/NeoSol/brigmedic.rsi
   - type: Armor
     modifiers:
       flatReductions:
@@ -537,3 +769,112 @@
       ArmLeft: {}
       LegRight: {}
       LegLeft: {}
+
+
+
+#region ## NanoTrasen ##
+
+
+
+
+
+
+
+#region Lambda Raid Suit
+- type: entity
+  parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing, BaseSyndicateContraband ]
+  id: ClothingOuterArmorLambdaRaid
+  name: Lambda Raid Suit "Apollo"
+  suffix: NT
+  description: A very durable and reasonably flexible suit of armor for those missions, where speed is of utmost necessity. Incapable of space walks.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/Armor/hardliner_raid.rsi
+    layers:
+    - state: icon
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/Armor/hardliner_raid.rsi
+    clothingVisuals:
+      outerClothing:
+        - state: equipped-OUTERCLOTHING
+      outerClothing-vox:
+        - state: equipped-OUTERCLOTHING-vox
+      outerClothing-resomi:
+        - state: equipped-OUTERCLOTHING-resomi
+      outerClothing-avali:
+        - state: equipped-OUTERCLOTHING-avali
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      flatReductions:
+        Piercing: 5
+        Heat: 4 
+      coefficients:
+        Blunt: 0.45
+        Slash: 0.45
+        Piercing: 0.35
+        Heat: 0.3
+        Caustic: 0.5
+    staminaModifier: 0.1
+  - type: LimbArmor 
+    limbs:
+      ArmRight: {}
+      ArmLeft: {}
+      LegRight: {}
+      LegLeft: {}
+  - type: ExplosionResistance
+    damageCoefficient: 0.35
+  - type: ClothingSpeedModifier
+    walkModifier: 1
+    sprintModifier: 1.1
+  #Shoulder mounted flashlight
+  - type: ToggleableVisuals
+    spriteLayer: light
+    clothingVisuals:
+      outerClothing:
+        - state: equipped-OUTERCLOTHING-light
+      outerClothing-vox:
+        - state: equipped-OUTERCLOTHING-light-vox
+      outerClothing-resomi:
+        - state: equipped-OUTERCLOTHING-light-resomi
+      outerClothing-avali:
+        - state: equipped-OUTERCLOTHING-light-avali
+  - type: ItemTogglePointLight
+  - type: Appearance
+  - type: HandheldLight
+    addPrefix: false
+    blinkingBehaviourId: blinking
+    radiatingBehaviourId: radiating
+  - type: PointLight
+    enabled: false
+    color: white
+    radius: 5
+    energy: 2
+    lightMask: ConeSingle
+    autoRot: true
+    netsync: false
+  - type: LightBehaviour
+    behaviours:
+      - !type:FadeBehaviour
+        id: radiating
+        interpolate: Linear
+        maxDuration: 2.0
+        startValue: 3.0
+        endValue: 2.0
+        isLooped: true
+        reverseWhenFinished: true
+      - !type:PulseBehaviour
+        id: blinking
+        interpolate: Nearest
+        maxDuration: 1.0
+        startValue: 0.1
+        endValue: 2.0
+        isLooped: true
+  - type: Battery
+    maxCharge: 600
+    startingCharge: 600
+  - type: BatterySelfRecharger
+    autoRechargeRate: 2
+  - type: Item
+    size: Normal

@@ -11,7 +11,7 @@ namespace Content.Shared.Weapons.Ranged.Systems;
 
 public abstract partial class SharedGunSystem
 {
-    [Dependency] private readonly DamageExamineSystem _damageExamine = default!;
+    [Dependency] private DamageExamineSystem _damageExamine = default!;
 
     // needed for server system
     protected virtual void InitializeCartridge()
@@ -39,7 +39,7 @@ public abstract partial class SharedGunSystem
 
     private void OnCartridgeDamageExamine(Entity<CartridgeAmmoComponent> ent, ref DamageExamineEvent args)
     {
-        var damageSpec = GetProjectileDamage(ent.Comp.Prototype);
+        var damageSpec = GetProjectileDamage(ent.Comp.Prototype) ?? GetHitscanDamage(ent.Comp.Prototype); // Far Horizons
 
         if (damageSpec == null)
             return;

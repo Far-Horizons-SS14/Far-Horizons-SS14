@@ -174,11 +174,12 @@
     - type: ContainerFill
       containers:
         key_slots:
-        - EncryptionKeyStationMaster
+        - EncryptionKeyBlackmarket #FH
     - type: Sprite
-      sprite: Clothing/Ears/Headsets/wizard.rsi
+      sprite: _FarHorizons/Clothing/Ears/Headsets/wizard.rsi #FH
+      state: icon_alt
     - type: Clothing
-      sprite: Clothing/Ears/Headsets/wizard.rsi
+      sprite: _FarHorizons/Clothing/Ears/Headsets/wizard.rsi #FH
     - type: RadioChime
       sound:
         path: /Audio/_Starlight/Effects/Radio/wizard.ogg

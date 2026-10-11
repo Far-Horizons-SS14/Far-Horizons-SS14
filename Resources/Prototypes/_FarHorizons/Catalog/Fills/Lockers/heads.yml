@@ -23,11 +23,10 @@
     - id: DoorRemoteSecurity
     - id: HoloprojectorSecurity
     - id: RubberStampHos
-    - id: SecurityTechFabCircuitboard
-    - id: CargoRequestSecurityComputerCircuitboard
     - id: WeaponDisabler
     - id: WantedListCartridge
     - id: DrinkHosFlask
+    - id: BoxHoSCircuitboards
 
 - type: entity
   id: LockerHeadOfSecurityFHFilledHardsuit
@@ -51,8 +50,6 @@
     - id: DoorRemoteSecurity
     - id: HoloprojectorSecurity
     - id: RubberStampHos
-    - id: SecurityTechFabCircuitboard
-    - id: CargoRequestSecurityComputerCircuitboard
     - id: WeaponDisabler
     - id: WantedListCartridge
     - id: DrinkHosFlask
@@ -62,6 +59,7 @@
     - id: OxygenTankFilled
     - id: NitrogenTankFilled
     - id: ClothingShoesBootsMagSec
+    - id: BoxHoSCircuitboards
 
 # Locker & Hardsuit table for QM's locker
 
@@ -142,43 +140,33 @@
         tableId: LockerFillQuarterMasterHardsuit
 
 
-#region Syndicate
+#region ## NeoSol ##
 
 # Commandant (Captain)
-
-- type: entity
-  id: LockerCommandantFilledNoLaser
-  suffix: S, Filled
-  parent: LockerCommandant
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      entity_storage: !type:NestedSelector
-        tableId: LockerFillCommandantNoLaser
 
 - type: entityTable
   id: LockerFillCommandantNoLaser
   table: !type:AllSelector
     children:
     - id: ClothingNeckCloakCapFormalSyndi
-    - id: CaptainIDCard
+    - id: CommandantIDCard
     - id: CigarGoldCase
       prob: 0.25
     - id: ClothingBeltSheathFilledSyndi
     - id: ClothingHeadsetAltCommandSyndi
     - id: ClothingOuterArmorCaptainCarapaceSyndi
-    - id: CommsComputerCircuitboard
+    - id: CommsComputerCircuitboardNS
     - id: DoorRemoteCustom
     - id: MedalCase
     - id: NukeDisk
     - id: PinpointerNuclear
     - id: PlushieNuke
       prob: 0.1
-    - id: RubberStampCaptain
+    - id: RubberStampCommandant
     - id: SpaceCash1000
     - id: ClothingEyesGlassesCommandSyndi
     - id: ClothingEyesHudCommandSyndi
-    - id: EncryptionKeyCargo # Far Horizons - replaced with cargo key
+    #- id: EncryptionKeyCargo # Far Horizons - replaced with cargo key
     - id: OrganSkeletonPersonHead
       conditions:
       - !type:PlayerCountCondition
@@ -189,10 +177,30 @@
         presets:
         - Greenshift
         - Sandbox
+    - id: PlushieLizardJobCaptain
+      prob: 0.02
+
+- type: entityTable
+  id: LockerFillCommandantLaser
+  table: !type:AllSelector
+    children:
+    - !type:NestedSelector
+      tableId: LockerFillCommandantNoLaser
+    - id: WeaponAntiqueLaser
+
+- type: entity
+  id: LockerCommandantFilledNoLaser
+  suffix: NS, Filled
+  parent: LockerCommandant
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: LockerFillCommandantNoLaser
 
 - type: entity
   id: LockerCommandantFilled
-  suffix: S, Filled, AntiqueLaser
+  suffix: NS, Filled, AntiqueLaser
   parent: LockerCommandant
   components:
   - type: EntityTableContainerFill
@@ -200,17 +208,9 @@
       entity_storage: !type:NestedSelector
         tableId: LockerFillCommandantLaser
 
-- type: entityTable
-  id: LockerFillCommandantLaser
-  table: !type:AllSelector
-    children:
-    - !type:NestedSelector
-      tableId: LockerFillCaptainNoLaser
-    - id: WeaponAntiqueLaser
-
 - type: entity
   id: LockerCommandantFilledHardsuit
-  suffix: S, Filled, Hardsuit
+  suffix: NS, Filled, Hardsuit
   parent: LockerCommandant
   components:
   - type: EntityTableContainerFill
@@ -224,42 +224,32 @@
 
 # Personnel Manager (HoP)
 
-- type: entity
-  id: LockerPersonnelManagerFilled
-  suffix: S, Filled
-  parent: LockerPersonnelManager
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      entity_storage: !type:NestedSelector
-        tableId: LockerFillPersonnelManager
-
 - type: entityTable
   id: LockerFillPersonnelManager
   table: !type:AllSelector
     children:
     - id: ClothingNeckMantleHOPSyndi
     - id: ClothingBeltHoPSyndi
-    - id: AccessConfigurator
-    - id: BoxEncryptionKeyAssistant
-    - id: BoxEncryptionKeyService
+    - id: AccessConfiguratorNS
+    - id: BoxEncryptionKeyAssistantNS
+    - id: BoxEncryptionKeyServiceNS
     - id: BoxHeadset
-    - id: BoxID
-    - id: BoxPDA
+    - id: BoxIDNS
+    - id: BoxPDANS
     - id: CigarGoldCase
       prob: 0.25
     - id: ClothingBackpackIan
       prob: 0.5
-    - id: ClothingHeadsetHoP
+    - id: ClothingHeadsetPMNS
     - id: ClothingNeckGoldmedal
-    - id: DoorRemoteService
-    - id: HoPIDCard
-    - id: IDComputerCircuitboard
-    - id: FundingAllocationComputerCircuitboard
-    - id: CargoRequestServiceComputerCircuitboard
+    - id: DoorRemoteServiceNS
+    - id: PersonnelManagerIDCard
+    - id: IDComputerCircuitboardNS
+    - id: FundingAllocationComputerCircuitboardNS
+    - id: CargoRequestServiceComputerCircuitboardNS
     - id: RubberStampApproved
     - id: RubberStampDenied
-    - id: RubberStampHop
+    - id: RubberStampPM
     - id: ClothingEyesGlassesCommandSyndi
     - id: ClothingEyesHudCommandSyndi
     - id: PrintedDocumentGreenshiftAlert
@@ -269,101 +259,15 @@
         - Greenshift
         - Sandbox
 
-# Marshal (HoS)
-
-
-# No Hardsuit
 - type: entity
-  id: LockerMarshalFilled
-  suffix: S, Filled
-  parent: LockerMarshal
+  id: LockerPersonnelManagerFilled
+  suffix: NS, Filled
+  parent: LockerPersonnelManager
   components:
   - type: EntityTableContainerFill
     containers:
       entity_storage: !type:NestedSelector
-        tableId: LockerFillMarshalNoHardsuit
-
-- type: entityTable
-  id: LockerFillMarshalNoHardsuit
-  table: !type:AllSelector
-    children:
-    - id: ClothingNeckCloakHosEliteSyndi
-    - id: WeaponEnergySMG
-    - id: BookSpaceLaw
-    - id: BoxEncryptionKeySecurity
-    - id: CigarGoldCase
-      prob: 0.50
-    - id: ClothingBeltSecuritySyndiFilled
-    - id: ClothingEyesGlassesSecuritySyndi
-    - id: ClothingEyesHudSecuritySyndi
-    - id: ClothingHeadsetAltSecurityHoSSyndi
-    - id: ClothingMaskNeckGaiter
-    - id: ClothingOuterCoatHoSTrenchSyndi
-    - id: ClothingShoesBootsJackSyndiFilled
-    - id: DoorRemoteSecurity
-    - id: HoloprojectorSecurity
-    - id: RubberStampHos
-    - id: SecurityTechFabCircuitboard
-    - id: CargoRequestSecurityComputerCircuitboard
-    - id: WeaponDisabler
-    - id: WantedListCartridge
-    - id: DrinkHosFlask
-    - id: SecurityShuttleConsoleCircuitboard
-    - id: PrintedDocumentGreenshiftAlert
-      conditions:
-      - !type:GamemodeCondition
-        presets:
-        - Greenshift
-        - Sandbox
-
-# Hardsuit
-
-- type: entity
-  id: LockerMarshalHardsuitFilled
-  suffix: S, Filled, Hardsuit
-  parent: LockerMarshal
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      entity_storage: !type:NestedSelector
-        tableId: LockerFillMarshalHardsuit
-
-- type: entityTable
-  id: LockerFillMarshalHardsuit
-  table: !type:AllSelector
-    children:
-    - id: ClothingNeckCloakHosEliteSyndi
-    - id: WeaponEnergySMG
-    - id: BookSpaceLaw
-    - id: BoxEncryptionKeySecurity
-    - id: CigarGoldCase
-    - id: ClothingBeltSecuritySyndiFilled
-    - id: ClothingEyesGlassesSecuritySyndi
-    - id: ClothingEyesHudSecuritySyndi
-    - id: ClothingHeadsetAltSecurityHoSSyndi
-    - id: ClothingMaskNeckGaiter
-    - id: ClothingOuterCoatHoSTrenchSyndi
-    - id: ClothingShoesBootsJackSyndiFilled
-    - id: DoorRemoteSecurity
-    - id: HoloprojectorSecurity
-    - id: RubberStampHos
-    - id: SecurityTechFabCircuitboard
-    - id: CargoRequestSecurityComputerCircuitboard
-    - id: WeaponDisabler
-    - id: WantedListCartridge
-    - id: DrinkHosFlask
-    - id: ClothingMaskGasSwat
-    - id: ClothingOuterHardsuitSecurityRedSyndi
-    - id: JetpackSecurityFilled
-    - id: OxygenTankFilled
-    - id: NitrogenTankFilled
-    - id: ClothingShoesBootsMagSec
-    - id: PrintedDocumentGreenshiftAlert
-      conditions:
-      - !type:GamemodeCondition
-        presets:
-        - Greenshift
-        - Sandbox
+        tableId: LockerFillPersonnelManager
 
 # Foreman (Chief Engineer)
 
@@ -373,8 +277,8 @@
   table: !type:AllSelector
     children:
     #- id: ClothingNeckCloakCeElite
-    - id: AccessConfigurator
-    - id: BoxEncryptionKeyEngineering
+    - id: AccessConfiguratorNS
+    - id: BoxEncryptionKeyEngineeringNS
     - id: CigarCase
       prob: 0.15
     - id: ClothingBeltChiefEngineerFilledSyndi
@@ -382,9 +286,9 @@
     - id: ClothingHandsGlovesColorYellow
     - id: ClothingHeadsetAltCESyndi
     - id: DoorRemoteEngineering
-    - id: CargoRequestEngineeringComputerCircuitboard
+    - id: CargoRequestEngineeringComputerCircuitboardNS
     - id: ShipyardRCD
-    - id: BoxCECircuitboards
+    - id: BoxCECircuitboardsNS
     - id: MatBag
     - id: WeaponGrapplingGun
     - id: BoxFlare
@@ -392,7 +296,7 @@
     - id: SheetSteel
     - id: SheetGlass
     - id: RCDAmmo
-    - id: RubberStampCE
+    - id: RubberStampForeman
     - id: MetalFoamGrenade
     - id: PlushieMatthew
       prob: 0.15
@@ -421,7 +325,7 @@
 # No hardsuit locker
 - type: entity
   id: LockerChiefEngineerFilledSyndi
-  suffix: S, Filled
+  suffix: NS, Filled
   parent: LockerChiefEngineerSyndi
   components:
   - type: EntityTableContainerFill
@@ -432,7 +336,7 @@
 # No hardsuit + hardsuit locker
 - type: entity
   id: LockerChiefEngineerFilledHardsuitSyndi
-  suffix: S, Filled, Hardsuit
+  suffix: NS, Filled, Hardsuit
   parent: LockerChiefEngineerSyndi
   components:
   - type: EntityTableContainerFill
@@ -443,6 +347,211 @@
           tableId: LockerFillChiefEngineerNoHardsuitSyndi
         - !type:NestedSelector
           tableId: FillChiefEngineerHardsuitSyndi
+
+# Medical Director (CMO)
+
+# No hardsuit table
+- type: entityTable
+  id: LockerFillChiefMedicalOfficerNoHardsuitSyndi
+  table: !type:AllSelector
+    children:
+    - id: ClothingCloakCmoElite
+    - id: BoxEncryptionKeyMedicalNS
+    - id: ClothingBackpackDuffelSurgerySyndiFilled
+    - id: ClothingEyesHudMedicalSyndi
+    - id: ClothingBeltMedicalSyndiFilled
+    - id: HandheldCrewMonitor
+    - id: Hypospray
+    - id: MedTekCartridge
+    - id: AutoMenderBurnFilled 
+    - id: AutoMenderBruteFilled 
+    - id: CMOLicense 
+    - id: DoorRemoteMedicalNS
+    - id: PrintedDocumentGreenshiftAlert 
+      conditions: 
+      - !type:GamemodeCondition 
+        presets: 
+        - Greenshift 
+        - Sandbox 
+    - id: RubberStampMD
+    - id: PlushieLizardJobChiefmedicalofficer
+      prob: 0.02
+    - id: CoolingUnitNitrogen
+
+# Hardsuit table, used for suit storage as well
+- type: entityTable
+  id: FillChiefMedicalOfficerHardsuitSyndi
+  table: !type:AllSelector
+    children:
+    - id: ClothingMaskBreathMedical
+    - id: ClothingOuterHardsuitMedicalSyndi
+    - id: OxygenTankFilled
+    - id: NitrogenTankFilled # Starlight - vox gang
+
+# No hardsuit locker
+- type: entity
+  id: LockerChiefMedicalOfficerNSFilled
+  suffix: NS, Filled
+  parent: LockerChiefMedicalOfficerNS
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: LockerFillChiefMedicalOfficerNoHardsuitSyndi
+
+# No hardsuit + Hardsuit locker
+- type: entity
+  id: LockerChiefMedicalOfficerNSFilledHardsuit
+  suffix: NS, Filled, Hardsuit
+  parent: LockerChiefMedicalOfficerNS
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - !type:NestedSelector
+          tableId: LockerFillChiefMedicalOfficerNoHardsuitSyndi
+        - !type:NestedSelector
+          tableId: FillChiefMedicalOfficerHardsuitSyndi
+
+# Epistemics Provost (RD)
+
+# No hardsuit table
+- type: entityTable
+  id: LockerFillResearchDirectorNoHardsuitSyndi
+  table: !type:AllSelector
+    children:
+    - id: ClothingNeckCloakRdElite
+    - id: Intellicard
+    - id: BoxEncryptionKeyScienceNS
+    - id: BoxRDCircuitboardsNS
+    - id: ClothingBeltScienceRD
+    - id: ClothingHeadsetAltScience
+    - id: DoorRemoteResearchNS
+    - id: HandTeleporter
+    - id: RubberStampEP
+    - id: RDDiploma 
+    - id: PrintedDocumentGreenshiftAlert 
+      conditions: 
+      - !type:GamemodeCondition 
+        presets: 
+        - Greenshift 
+        - Sandbox 
+    - id: RDDiploma
+    - id: PlushieLizardJobResearchdirector
+      prob: 0.02
+
+# Hardsuit table, used for suit storage as well
+- type: entityTable
+  id: FillResearchDirectorHardsuitSyndi
+  table: !type:AllSelector
+    children:
+    - id: ClothingMaskBreath
+    - id: ClothingOuterHardsuitRdSyndi
+    - id: OxygenTankFilled
+    - id: NitrogenTankFilled 
+
+# No hardsuit locker
+- type: entity
+  id: LockerResearchDirectorNSFilled
+  suffix: NS, Filled
+  parent: LockerResearchDirectorNS
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: LockerFillResearchDirectorNoHardsuitSyndi
+
+# No hardsuit + Hardsuit locker
+- type: entity
+  id: LockerResearchDirectorNSFilledHardsuit
+  suffix: NS, Filled, Hardsuit
+  parent: LockerResearchDirectorNS
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - !type:NestedSelector
+          tableId: LockerFillResearchDirectorNoHardsuitSyndi
+        - !type:NestedSelector
+          tableId: FillResearchDirectorHardsuitSyndi
+
+# Marshal (HoS)
+
+
+# No Hardsuit
+
+- type: entityTable
+  id: LockerFillMarshalNoHardsuit
+  table: !type:AllSelector
+    children:
+    - id: ClothingNeckCloakHosEliteSyndi
+    - id: WeaponSniperWatcher
+    - id: BookSpaceLaw
+    - id: BoxEncryptionKeySecurityNS
+    - id: CigarGoldCase
+      prob: 0.50
+    - id: ClothingBeltSecuritySyndiFilled
+    - id: ClothingEyesGlassesSecuritySyndi
+    - id: ClothingEyesHudSecuritySyndi
+    - id: ClothingHeadsetAltSecurityHoSSyndi
+    - id: ClothingMaskNeckGaiter
+    - id: ClothingOuterCoatHoSTrenchSyndi
+    - id: ClothingShoesBootsJackSyndiFilled
+    - id: DoorRemoteSecurityNS
+    - id: HoloprojectorSecurityNS
+    - id: RubberStampMarshal
+    - id: SecurityTechFabCircuitboard
+    - id: SecurityAmmoTechFabCircuitboardNS
+    - id: CargoRequestSecurityComputerCircuitboardNS
+    - id: WeaponDisabler
+    - id: WantedListCartridgeNS
+    - id: DrinkMarshalFlask
+    - id: SecurityShuttleConsoleCircuitboardNS
+    - id: PrintedDocumentGreenshiftAlert
+      conditions:
+      - !type:GamemodeCondition
+        presets:
+        - Greenshift
+        - Sandbox
+
+# Hardsuit
+# Hardsuit table, used for suit storage as well
+- type: entityTable
+  id: LockerFillMarshalHardsuit
+  table: !type:AllSelector
+    children:
+    - id: ClothingMaskGasSwat
+    - id: ClothingOuterHardsuitSecurityRed
+    - id: JetpackSecurityNSFilled
+    - id: OxygenTankFilled
+    - id: NitrogenTankFilled 
+    - id: ClothingShoesBootsMagSec
+
+- type: entity
+  id: LockerMarshalFilled
+  suffix: NS, Filled
+  parent: LockerMarshal
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: LockerFillMarshalNoHardsuit
+
+- type: entity
+  id: LockerMarshalHardsuitFilled
+  suffix: NS, Filled, Hardsuit
+  parent: LockerMarshal
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - !type:NestedSelector
+          tableId: LockerFillMarshalNoHardsuit
+        - !type:NestedSelector
+          tableId: LockerFillMarshalHardsuit
           
 #region SHC
 
@@ -450,8 +559,8 @@
 
 - type: entity
   id: LockerRepresentativeFilledSyndi
-  suffix: S, Filled
-  parent: LockerRepresentative
+  suffix: NS, Filled
+  parent: LockerRepresentativeNS
   components:
   - type: EntityTableContainerFill
     containers:
@@ -459,27 +568,86 @@
         children:
         - id: ClothingEyesHudCommandSyndi
         - id: ClothingEyesGlassesCommandSyndi
-        #- id: ClothingHeadHatCapNtrep
-        #- id: ClothingUniformJumpsuitNtrepFormal
-        #- id: ClothingUniformJumpskirtNtrep
-        #- id: ClothingUniformJumpsuitNtrep
-        #- id: ClothingOuterCoatNtrep
+        - id: ClothingHeadHatBeretNSR
+        - id: ClothingHeadHatCapNSR
+        - id: ClothingUniformJumpsuitNSR
+        - id: ClothingUniformJumpskirtNSR
+        - id: ClothingUniformJumpsuitNSRFormal
+        - id: ClothingUniformJumpskirtNSRFormal
+        - id: ClothingUniformJumpsuitNSRTurtleNeck
+        - id: ClothingUniformJumpskirtNSRTurtleNeck
+        - id: ClothingUniformJumpsuitNSRHighCommand
+        - id: ClothingUniformJumpskirtNSRHighCommand
+        - id: ClothingOuterCoatNSR
+        - id: ClothingOuterWinterNSR
         - id: ClothingShoesBootsLaceup
         - id: ClothingHeadsetAltCommandSyndi
         - id: WeaponDisabler
         - id: LuxuryPen
         - id: BoxFolderClipboardFilled
-        - id: PrinterDocFlatpack
+        - id: NSDocPrinterFlatpack
         - id: FaxMachineFlatpack
         - id: PlushieEmmie
         - id: ClothingOuterHardsuitNtrepSyndi
 
 - type: entity
   id: LockerRepresentativeFilledBluespacedSyndi
-  suffix: S, Filled, Bluespaced
+  suffix: NS, Filled, Bluespaced
   parent: LockerRepresentativeFilledSyndi
   categories: [ Spawner ]
   components:
   - type: TriggerOnSpawn
   - type: SpawnOnTrigger
     proto: EffectFlashBluespace
+
+- type: entity
+  id: LockerRSOFilled
+  suffix: NS, Filled
+  parent: LockerRedsword
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: FlashlightSeclite
+        - id: ClothingHandsGlovesCombat
+        - id: ClothingShoesBootsCombat
+        - id: TrackingImplanterNS
+          amount: 3
+        - id: MedkitAdvancedFilled
+        - id: WeaponPistolDP 
+        - id: MagazinePistol38SP 
+          amount: 2
+        - id: ClothingEyesGlassesRedSword
+        - id: ClothingEyesHudBlueShield
+        - id: ClothingEyesHudRedSword
+        - id: ClothingUniformJumpsuitRedSword
+        - id: ClothingUniformJumpskirtRedSword
+        - id: ClothingUniformJumpsuitEliteRedSword
+        - id: ClothingUniformJumpskirtEliteRedSword
+        - id: ClothingUniformJumpsuitRedSwordFormal
+        - id: ClothingUniformJumpskirtRedSwordFormal
+        - id: HandheldGPSBasic
+        - id: ClothingNeckCloakRsoElite
+        - id: ClothingNeckCloakRsoElite
+        - id: RadioHandheldSecurityNS
+        - id: ClothingOuterCoatRedSword
+        - id: RubberStampRSO
+
+- type: entity
+  id: LockerRSOFilledBluespaced
+  suffix: NS, Filled, Bluespaced
+  parent: LockerBSOFilled
+  categories: [ Spawner ]
+  components:
+  - type: TriggerOnSpawn
+  - type: SpawnOnTrigger
+    proto: EffectFlashBluespace
+
+- type: entity
+  id: LockerFreezerNSVaultFilled
+  suffix: NS, Vault, Filled
+  parent: LockerFreezerVaultFilled
+  components:
+  - type: AccessReader
+    access: [ [ "Executive" ] ]

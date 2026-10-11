@@ -1,13 +1,13 @@
-using Content.Shared._FarHorizons.Vehicles.Components; //FarHorizons
+using Content.Shared._FarHorizons.Vehicles; //FarHorizons
 using Content.Shared.Damage.Systems;
 using Content.Shared.Weapons.Hitscan.Components;
 using Content.Shared.Weapons.Hitscan.Events;
 
 namespace Content.Shared.Weapons.Hitscan.Systems;
 
-public sealed class HitscanStunSystem : EntitySystem
+public sealed partial class HitscanStunSystem : EntitySystem
 {
-    [Dependency] private readonly SharedStaminaSystem _stamina = default!;
+    [Dependency] private SharedStaminaSystem _stamina = default!;
 
     public override void Initialize()
     {

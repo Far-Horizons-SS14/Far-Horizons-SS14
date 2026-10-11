@@ -1,0 +1,39 @@
+- type: job
+  id: HC-COAOfficial
+  name: job-name-hc-coa-official
+  description: job-description-hc-coa-official
+  playTimeTracker: JobHC-COAOfficial
+  setPreference: false
+  startingGear: HC-COAGear
+  icon: "JobIconCentComm"
+  supervisors: job-supervisors-nshc
+  canBeAntag: false
+  accessGroups:
+  - AllAccessNS
+  access:
+  - NSHighCommand
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplantNS, DeathRattleImplantNSHC ]
+
+- type: startingGear
+  id: HC-COAGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitCentcomOfficial
+    shoes: ClothingShoesBootsCombatFilled
+    head: ClothingHeadHatCentcom
+    mask: ClothingMaskGasCentcom
+    eyes: ClothingEyesGlassesCentComm
+    gloves: ClothingHandsGlovesColorBlack
+    outerClothing: ClothingOuterArmorCentcommCarapace
+    back: ClothingBackpackSatchelLeather
+    id: CADOfficialPDA
+    ears: ClothingHeadsetAltCentCom
+    belt: BoxFolderCentComClipboardThreePapers
+    suitstorage: WeaponPistolN1984
+    pocket1: MagazineMagnum
+    suitstorage2: NitrogenTankFilled
+  storage:
+    autoImplant:
+      - MindShieldImplanterNS
+      - DeathRattleImplanterNSHC

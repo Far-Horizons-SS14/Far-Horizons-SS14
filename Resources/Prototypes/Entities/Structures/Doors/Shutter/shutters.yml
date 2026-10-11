@@ -43,6 +43,7 @@
     tags:
     - ForceNoFixRotations # Don't want the fixrotations command to target these
   - type: Door
+    performCollisionCheck: false #FH - Allows for forceful door closing.
     openDrawDepth: BlastDoors
     closedDrawDepth: BlastDoors
     bumpOpen: false
@@ -71,8 +72,9 @@
   - type: RadiationBlocker
     resistance: 2
   - type: Damageable
-    damageContainer: StructuralInorganic
     damageModifierSet: StructuralMetallic
+  - type: Injurable
+    damageContainer: StructuralInorganic
   - type: Destructible
     thresholds:
     - trigger:
@@ -103,6 +105,7 @@
     interactSuccessSound:
       collection: FenceRattle
   - type: BlockWeather
+  - type: StructureOcclusion #Far Horizons
 
 - type: entity
   id: ShuttersNormal
@@ -221,8 +224,9 @@
     - board
   - type: InteractionOutline
   - type: Damageable
-    damageContainer: StructuralInorganic
     damageModifierSet: Metallic
+  - type: Injurable
+    damageContainer: StructuralInorganic
   - type: Destructible
     thresholds:
     - trigger:

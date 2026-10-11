@@ -20,4 +20,26 @@ public sealed partial class BarSignPrototype : IPrototype
 
     [DataField]
     public bool Hidden { get; private set; }
+
+    // FarHorizons Start
+    [DataField]
+    public SignType SignType { get; private set; } = SignType.BarSign;
+
+    [ViewVariables(VVAccess.ReadWrite)]
+    [DataField("color")]
+    public Color? Color { get; private set; }
+    // FarHorizons End
 }
+
+// FarHorizons Start
+[Flags]
+public enum SignType
+{
+    None = 0,
+    BarSign = 1 << 0,
+    AdSignGeneric = 1 << 1,
+    AdSignNT = 1 << 2,
+    AdSignNS = 1 << 3,
+    AdSignGSL = 1 << 4,
+}
+// FarHorizons End

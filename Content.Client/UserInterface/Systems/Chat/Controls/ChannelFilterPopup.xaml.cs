@@ -31,6 +31,7 @@ public sealed partial class ChannelFilterPopup : Popup
         ChatChannel.Admin,
         ChatChannel.AdminAlert,
         ChatChannel.AdminChat,
+        ChatChannel.MentorChat, // Far Horizons
         ChatChannel.Server,
         ChatChannel.CollectiveMind
     };
@@ -67,6 +68,7 @@ public sealed partial class ChannelFilterPopup : Popup
         InitializeTTSMuteChannels();
         TTSClearQueueButton.OnPressed += _ => ClearQueue();
         // Starlight end
+        InitializeFHOptions(cfg); // Far Horizons
     }
     // Starlight start
 

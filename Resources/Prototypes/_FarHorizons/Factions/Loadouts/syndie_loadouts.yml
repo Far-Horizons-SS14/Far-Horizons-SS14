@@ -56,6 +56,15 @@
   id: ForemanHardhat
   equipment:
     head: ClothingHeadHatHardhatWhite
+
+- type: loadout
+  id: MedicalDirectorBeret
+  equipment:
+    head: ClothingHeadHatBeretCmoSyndi
+
+- type: loadout
+  id: ResearchDirectorBeretSyndi
+  startingGear: RDBeret
   
 # Engineering
 
@@ -88,6 +97,29 @@
   id: SyndiHardhatRed
   equipment:
     head: ClothingHeadHatHardhatRedSyndi
+
+# Medical
+
+- type: loadout
+  id: MedicalBeretSyndi
+  equipment:
+    head: ClothingHeadHatBeretMedicSyndi
+
+- type: loadout
+  id: NurseHatSyndi
+  equipment:
+    head: ClothingHeadNurseHatSyndi
+
+- type: loadout
+  id: ChemistBeretSyndi
+  equipment:
+    head: ClothingHeadHatBeretChemistSyndi
+
+- type: loadout
+  id: ParamedicHeadSyndi
+  equipment:
+    head: ClothingHeadHatParamedicsoftSyndi
+
 # Security
 
 - type: loadout
@@ -149,6 +181,62 @@
   id: SecHelmetHeatAbsorbSyndi
   equipment:
     head: ClothingHeadHelmetHeatAbsorbentSyndi
+
+- type: loadout
+  id: NSRCap
+  equipment:
+    head: ClothingHeadHatCapNSR
+
+- type: loadout
+  id: NSRBeret
+  equipment:
+    head: ClothingHeadHatBeretNSR
+
+- type: loadout
+  id: JanitorHeadNS
+  equipment:
+    head: ClothingHeadHatJanitorNS
+
+- type: loadout
+  id: DeputyHatRed
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: DeputyOfficer
+  equipment:
+    head: ClothingHeadHatSecurityDeputySyndi
+
+- type: loadout
+  id: DeputyHelmetRed
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: DeputyOfficer
+  equipment:
+    head: ClothingHeadHelmetSecurityDeputySyndi
+    
+- type: loadout
+  id: EnforcerPDA
+  equipment:
+    id: EnforcerPDA
+    
+- type: loadout
+  id: SeniorEnforcerPDA
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SeniorOfficer
+  equipment:
+    id: SeniorEnforcerPDA
+
+
+#Botanist
+- type: loadout
+  id: BotanistBandanaNS
+  equipment:
+    head: ClothingHeadBandBotany
+
+- type: loadout
+  id: BotanistRancherHatNS
+  equipment:
+    head: ClothingHeadRancherHatNS
 
 #region Ears / Headsets
 
@@ -228,6 +316,12 @@
   id: EngineeringSyndiGoggles
   equipment:
     eyes: ClothingEyesGlassesMesonSyndi
+# Medical
+
+- type: loadout
+  id: MedicalHudSyndi
+  equipment:
+    eyes: ClothingEyesHudMedicalSyndi
 
 # Security
 
@@ -270,6 +364,35 @@
   id: SecMedVisorSyndi
   equipment:
     eyes: ClothingEyesVisorSecMedSyndi
+
+  #NSR
+
+- type: loadout
+  id: NSRGlasses
+  equipment:
+    eyes: ClothingEyesSunGlassesHudSkillSyndi
+
+- type: loadout
+  id: NSRHud
+  equipment:
+    eyes: ClothingEyesHudSkillsSyndi
+
+  #RSO
+
+- type: loadout
+  id: RSOGlasses
+  equipment:
+    eyes: ClothingEyesGlassesRedSword
+
+- type: loadout
+  id: RSOHud
+  equipment:
+    eyes: ClothingEyesHudRedSword
+
+- type: loadout
+  id: RSOVisor
+  equipment:
+    eyes: ClothingEyesVisorRedSword
 
 #region Neck
 
@@ -331,12 +454,52 @@
   equipment:
     neck: ClothingNeckMantleCESyndi
 
+- type: loadout
+  id: ResearchDirectorMantleSyndi
+  equipment:
+    neck: ClothingNeckMantleRD
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MasterRD
+
+- type: startingGear
+  id: ResearchDirectorMantleSyndi
+  equipment:
+    neck: ClothingNeckMantleRD
+
+- type: loadout
+  id: ResearchDirectorCloakSyndi
+  equipment:
+    neck: ClothingNeckCloakRd
+
+- type: loadout
+  id: RSOMantleElite
+  equipment:
+    neck: ClothingNeckCloakRsoElite
+
 # Security
 
 - type: loadout
   id: InspectorTie
   equipment:
     neck: ClothingNeckTieDetSyndi
+
+#region Mask 
+
+# Medical
+
+- type: loadout
+  id: SterileMaskSyndi
+  equipment:
+    mask: ClothingMaskSterile
+
+#Service
+
+- type: loadout
+  id: JanitorMaskNS
+  equipment:
+    mask: ClothingMaskJanitorNS
+
 
 #region Jumpsuit
 
@@ -472,6 +635,37 @@
   equipment:
     jumpsuit: ClothingUniformJumpskirtChiefEngineerBrightSyndi
 
+- type: loadout
+  id: MedicalDirectorJumpsuit
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitCMOSyndi
+
+- type: loadout
+  id: MedicalDirectorJumpskirt
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtCMOSyndi
+
+- type: loadout
+  id: MedicalDirectorTurtleneckJumpsuit
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitCMOTurtleSyndi
+
+- type: loadout
+  id: MedicalDirectorTurtleneckJumpskirt
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtCMOTurtleSyndi
+
+- type: loadout
+  id: ResearchDirectorJumpsuitSyndi
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitResearchDirectorSyndi
+
+- type: loadout
+  id: ResearchDirectorJumpskirtSyndi
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtResearchDirectorSyndi
+
+
 # Civilian
 
 - type: loadout
@@ -493,6 +687,7 @@
   id: AncientJumpskirtSyndi
   equipment:
     jumpsuit: ClothingUniformJumpskirtAncientSyndi
+
 # Engineering
 
 - type: loadout
@@ -524,6 +719,128 @@
   id: EngiSyndiJumpskirt
   equipment:
     jumpsuit: ClothingUniformJumpskirtEngineeringSyndi
+
+# Medical
+
+- type: loadout
+  id: MedicalDoctorJumpsuitSyndi
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitMedicalDoctorSyndi
+
+- type: loadout
+  id: MedicalDoctorJumpskirtSyndi
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtMedicalDoctorSyndi
+
+- type: loadout
+  id: SeniorPhysicianJumpsuitSyndi
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SeniorPhysician
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSeniorPhysicianSyndi
+
+- type: loadout
+  id: SeniorPhysicianJumpskirtSyndi
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SeniorPhysician
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtSeniorPhysicianSyndi
+
+- type: loadout
+  id: PharmacistJumpsuit
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitChemistrySyndi
+
+- type: loadout
+  id: PharmacistJumpskirt
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtChemistrySyndi
+
+- type: loadout
+  id: SeniorPharmacistJumpsuit
+  effects:
+    - !type:GroupLoadoutEffect
+        proto: SeniorChemist
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSeniorChemist
+
+- type: loadout
+  id: SeniorPharmacistJumpskirt
+  effects:
+    - !type:GroupLoadoutEffect
+        proto: SeniorChemist
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtSeniorChemist
+
+- type: loadout
+  id: ParamedicJumpsuitSyndi
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitParamedicSyndi
+
+- type: loadout
+  id: ParamedicJumpskirtSyndi
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtParamedicSyndi
+
+- type: loadout
+  id: WhiteJumpsuitSyndi
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitColorWhite
+
+- type: loadout
+  id: WhiteJumpskirtSyndi
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtColorWhite
+
+- type: loadout
+  id: PsychologistJumpsuitSyndi
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitPsychologist
+
+- type: loadout
+  id: PsychologistJumpskirtSyndi
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtPsychologist
+
+# Science
+
+- type: loadout
+  id: RoboticistJumpsuitSyndi
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitRoboticistSyndi
+
+- type: loadout
+  id: RoboticistJumpskirtSyndi
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtRoboticistSyndi
+
+- type: loadout
+  id: ScientistJumpsuitSyndi
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitScientistSyndi
+
+- type: loadout
+  id: ScientistJumpskirtSyndi
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtScientistSyndi
+
+- type: loadout
+  id: ScientistJumpskirtFormalSyndi
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtScientistFormalSyndi
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MasterRD 
+
+- type: loadout
+  id: ScientistJumpsuitFormalSyndi
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitScientistFormalSyndi
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MasterRD 
 
 # Security
 
@@ -617,13 +934,152 @@
   equipment:
     jumpsuit: ClothingUniformJumpskirtSecCadetSyndi
 
+- type: loadout
+  id: NSRJumpsuit
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitNSR
+
+- type: loadout
+  id: NSRJumpskirt
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtNSR
+
+- type: loadout
+  id: NSRJumpsuitFormal
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitNSRFormal
+
+- type: loadout
+  id: NSRJumpskirtFormal
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtNSRFormal
+
+- type: loadout
+  id: NSRJumpsuitCC
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitNSRHighCommand
+
+- type: loadout
+  id: NSRJumpskirtCC
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtNSRHighCommand
+
+- type: loadout
+  id: NSRTurtleneck
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitNSRTurtleNeck
+
+- type: loadout
+  id: NSRTurtleneckSkirt
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtNSRTurtleNeck
+
+- type: loadout
+  id: RSOJumpsuit
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitRedSword
+
+- type: loadout
+  id: RSOJumpskirt
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtRedSword
+
+- type: loadout
+  id: RSOJumpsuitFormal
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitRedSwordFormal
+
+- type: loadout
+  id: RSOJumpskirtFormal
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtRedSwordFormal
+
+- type: loadout
+  id: RSOJumpsuitElite
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitEliteRedSword
+
+- type: loadout
+  id: RSOJumpskirtElite
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtEliteRedSword
+
+#Chef
+- type: loadout
+  id: ChefJumpsuitNS
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitChefNS
+
+- type: loadout
+  id: ChefJumpskirtNS
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtChefNS
+
+#Janitor
+- type: loadout
+  id: JanitorJumpsuitNS
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitJanitorNS
+
+- type: loadout
+  id: JanitorJumpskirtNS
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtJanitorNS
+
+#Botanist
+- type: loadout
+  id: BotanistJumpsuitNS
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitHydroponicsNS
+
+- type: loadout
+  id: BotanistJumpskirtNS
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtHydroponicsNS
+
+- type: loadout
+  id: BotanistOverallsJumpsuitNS
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitOverallNS
+
+- type: loadout
+  id: BotanistOverallsJumpskirtNS
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtOverallsNS
+
+- type: loadout
+  id: DeputyUniformRed
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: DeputyOfficer
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSecDeputySyndi
+
+#Clown
+
+- type: loadout
+  id: ClownSuitNS
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitClownNS
+
 #region Hands
 
+# Medical
+- type: loadout
+  id: LatexGlovesSyndi
+  equipment:
+    gloves: ClothingHandsGlovesLatex
 
+- type: loadout
+  id: NitrileGlovesSyndi
+  equipment:
+    gloves: ClothingHandsGlovesNitrile
 
-
-
-
+#Janitor
+- type: loadout
+  id: JanitorRubberGlovesNS
+  equipment:
+    gloves: ClothingHandsGlovesJanitorNS
 
 #region Belt
 
@@ -750,6 +1206,112 @@
   equipment:
     back: ClothingBackpackSatchelForeman
 
+# Medical
+- type: loadout
+  id: MedicalDirectorBackpack
+  equipment:
+    back: ClothingBackpackMD
+
+- type: loadout
+  id: MedicalDirectorDuffel
+  equipment:
+    back: ClothingBackpackDuffelMD
+
+- type: loadout
+  id: MedicalDirectorSatchel
+  equipment:
+    back: ClothingBackpackSatchelMD
+
+- type: loadout
+  id: MedicalDoctorBackpackSyndi
+  equipment:
+    back: ClothingBackpackMedicalSyndi
+
+- type: loadout
+  id: MedicalDoctorSatchelSyndi
+  equipment:
+    back: ClothingBackpackSatchelMedicalSyndi
+
+- type: loadout
+  id: MedicalDoctorDuffelSyndi
+  equipment:
+    back: ClothingBackpackDuffelMedicalSyndi
+
+- type: loadout
+  id: PharmacistBackpack
+  equipment:
+    back: ClothingBackpackChemistrySyndi
+
+- type: loadout
+  id: PharmacistSatchel
+  equipment:
+    back: ClothingBackpackSatchelChemistrySyndi
+
+- type: loadout
+  id: PharmacistDuffel
+  equipment:
+    back: ClothingBackpackDuffelChemistrySyndi
+
+- type: loadout
+  id: ParamedicBackpackSyndi
+  equipment:
+    back: ClothingBackpackParamedicSyndi
+
+- type: loadout
+  id: ParamedicDuffelSyndi
+  equipment:
+    back: ClothingBackpackDuffelParamedicSyndi
+
+- type: loadout
+  id: ParamedicSatchelSyndi
+  equipment:
+    back: ClothingBackpackSatchelParamedicSyndi
+
+- type: loadout
+  id: ScientistBackpackSyndi
+  equipment:
+    back: ClothingBackpackScience
+
+- type: loadout
+  id: ScientistSatchelSyndi
+  equipment:
+    back: ClothingBackpackSatchelScience
+
+- type: loadout
+  id: ScientistDuffelSyndi
+  equipment:
+    back: ClothingBackpackDuffelScience
+
+- type: loadout
+  id: NSRBackpack
+  equipment:
+    back: ClothingBackpackNsRepresentative
+
+- type: loadout
+  id: NSRDuffel
+  equipment:
+    back: ClothingBackpackDuffelNsRepresentative
+
+- type: loadout
+  id: NSRSatchel
+  equipment:
+    back: ClothingSatchelNsRepresentative
+
+- type: loadout
+  id: RSOBackpack
+  equipment:
+    back: ClothingBackpackRedSword
+
+- type: loadout
+  id: RSODuffel
+  equipment:
+    back: ClothingBackpackDuffelRedSword
+
+- type: loadout
+  id: RSOSatchel
+  equipment:
+    back: ClothingBackpackSatchelRedSword
+
 #region Outer Clothing
 
 - type: loadout
@@ -787,12 +1349,100 @@
   equipment:
     outerClothing: ClothingOuterCoatHoSTrenchSyndi
 
+- type: loadout
+  id: MedicalDirectorLabCoat
+  equipment:
+    outerClothing: ClothingOuterCoatLabCmoSyndi
+
+- type: loadout
+  id: MedicalDirectorWintercoat
+  equipment:
+    outerClothing: ClothingOuterWinterCMOSyndi
+
+- type: loadout
+  id: ResearchDirectorLabCoatSyndi
+  equipment:
+    outerClothing: ClothingOuterCoatRD
+
+- type: loadout
+  id: ResearchDirectorWintercoatSyndi
+  equipment:
+    outerClothing: ClothingOuterWinterRD
+
 # Engineering
 
 - type: loadout
   id: HazardVest
   equipment:
     outerClothing: ClothingOuterVestHazard
+
+# Medical
+
+- type: loadout
+  id: RegularLabCoatSyndi
+  equipment:
+    outerClothing: ClothingOuterCoatLabSyndi
+
+- type: loadout
+  id: MedicalDoctorWintercoatSyndi
+  equipment:
+    outerClothing: ClothingOuterWinterMedSyndi
+
+- type: loadout
+  id: SeniorPhysicianLabCoatSyndi
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SeniorPhysician
+  equipment:
+    outerClothing: ClothingOuterCoatLabSeniorPhysicianSyndi
+
+- type: loadout
+  id: PharmacistLabCoat
+  equipment:
+    outerClothing: ClothingOuterCoatLabChemSyndi
+
+- type: loadout
+  id: PharmacistWintercoat
+  equipment:
+    outerClothing: ClothingOuterWinterChem
+
+- type: loadout
+  id: SeniorPharmacistLabCoat
+  effects:
+    - !type:GroupLoadoutEffect
+        proto: SeniorChemist
+  equipment:
+    outerClothing: ClothingOuterCoatLabSeniorChemist
+
+- type: loadout
+  id: SeniorPharmacistWintercoat
+  effects:
+    - !type:GroupLoadoutEffect
+        proto: SeniorChemist
+  equipment:
+    outerClothing: ClothingOuterWinterChemSenior
+
+- type: loadout
+  id: ParamedicWindbreakerSyndi
+  equipment:
+    outerClothing: ClothingOuterCoatParamedicWB
+
+- type: loadout
+  id: ParamedicWintercoatSyndi
+  equipment:
+    outerClothing: ClothingOuterWinterPara
+
+# Science
+
+- type: loadout
+  id: ScienceLabCoatSyndi
+  equipment:
+    outerClothing: ClothingOuterCoatRndSyndi
+
+- type: loadout
+  id: ScienceWintercoatSyndi
+  equipment:
+    outerClothing: ClothingOuterWinterSciSyndi
 
 # Security
 
@@ -866,7 +1516,75 @@
   equipment:
     outerClothing: ClothingOuterSecurityBomberSyndi
 
-#region Boots
+- type: loadout
+  id: NSRCoat
+  equipment:
+    outerClothing: ClothingOuterCoatNSR
+
+- type: loadout
+  id: NSRWinterCoat
+  equipment:
+    outerClothing: ClothingOuterWinterNSR
+
+- type: loadout
+  id: RSOArmorVest
+  equipment:
+    outerClothing: ClothingOuterArmorRedSword
+
+- type: loadout
+  id: RSOArmorCoat
+  equipment:
+    outerClothing: ClothingOuterCoatRedSword
+
+- type: loadout
+  id: DeputyDusterRed
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: DeputyOfficer
+  equipment:
+    outerClothing: ClothingOuterCoatDusterSecurityDeputySyndi
+
+- type: loadout
+  id: DeputyCoatRed
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: DeputyOfficer
+  equipment:
+    outerClothing: ClothingOuterWinterSecurityDeputySyndi
+
+- type: loadout
+  id: DeputyBrigmedicCoatRed
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: DeputyOfficer
+  equipment:
+    outerClothing: ClothingOuterWinterSecurityDeputyBrigmedicSyndi
+
+- type: loadout
+  id: DeputySheriffCorpsmanCoatRed
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: DeputyOfficer
+  equipment:
+    outerClothing: ClothingOuterWinterSecurityDeputySheriffCorpsmanSyndi
+
+- type: loadout
+  id: DeputySheriffWardenCoatRed
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: DeputyOfficer
+  equipment:
+    outerClothing: ClothingOuterWinterSecurityDeputySheriffWardenSyndi
+
+- type: loadout
+  id: SheriffHOSCoatRed
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: DeputyOfficer
+  equipment:
+    outerClothing: ClothingOuterWinterSecuritySheriffHoSSyndi
+
+#region Boots/Shoes
 
 - type: loadout
   id: BootsWinterSyndicate
@@ -887,3 +1605,123 @@
   id: WorkBootsSyndi
   equipment:
     shoes: ClothingShoesBootsWorkSyndi
+
+- type: loadout
+  id: BlueShoesSyndi
+  equipment:
+    shoes: ClothingShoesColorBlue
+
+- type: loadout
+  id: WhiteShoesSyndi
+  equipment:
+    shoes: ClothingShoesColorWhite
+
+- type: loadout
+  id: MedicalWinterBootsSyndi
+  equipment:
+    shoes: ClothingShoesBootsWinterMed
+
+- type: loadout
+  id: ClownShoesNS
+  equipment:
+    shoes: ClothingShoesClownNS
+
+# region PDA
+
+# Medical
+- type: loadout
+  id: SurgeonPDASyndi
+  equipment:
+    id: NeoSolSurgeonPDA
+
+- type: loadout
+  id: SeniorSurgeonPDASyndi
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SeniorPhysician
+  equipment:
+    id: SeniorSurgeonPDA
+
+- type: loadout
+  id: MedicalDoctorPDASyndi
+  equipment:
+    id: NeoSolMedicalPDA
+
+- type: loadout
+  id: SeniorPhysicianPDASyndi
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SeniorPhysician
+  equipment:
+    id: SeniorPhysicianPDA
+
+# Science
+
+- type: loadout
+  id: ScientistPDASyndi
+  equipment:
+    id: AcademicPDA
+
+- type: loadout
+  id: SeniorResearcherPDASyndi
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SeniorResearcher
+  equipment:
+    id: SeniorResearcherPDA
+
+#region Weapons
+
+- type: loadout
+  id: SecurityDominatorNS 
+  equipment:
+    pocket2: WeaponDominatorNS
+
+- type: loadout
+  id: SecurityPistolMKS
+  dummyEntity: WeaponPistolMKS
+  storage:
+    back:
+    - WeaponPistolMKS
+    - MagazinePistolSP
+    - MagazinePistolRubber
+    - MagazinePistolRubber
+
+- type: loadout
+  id: SecurityPistolEnforcerFHNS
+  dummyEntity: WeaponPistolEnforcerTypeS
+  effects:
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:RoleTimeRequirement
+        role: JobHeadOfSecurity
+        time: 36000 # Needs to be earned
+  storage:
+    back:
+    - WeaponPistolEnforcerTypeS
+    - MagazinePistolSP
+    - MagazinePistolSP
+    - MagazinePistolRubber
+
+- type: loadout
+  id: LeverActionNS
+  dummyEntity: WeaponLeverActionNS
+  storage:
+    back:
+    - WeaponLeverActionNS
+    - SpeedLoaderMagnumLeverSP
+    - SpeedLoaderMagnumLeverSP
+    - SpeedLoaderMagnumLeverRubber
+
+# Silicons
+- type: roleLoadout
+  id: JobBorgNS
+  nameDataset: NamesBorg
+  canCustomizeName: true
+  groups:
+  - SiliconBrainType
+
+- type: roleLoadout
+  id: JobStationAiNS
+  nameDataset: NamesAI
+  canCustomizeName: true

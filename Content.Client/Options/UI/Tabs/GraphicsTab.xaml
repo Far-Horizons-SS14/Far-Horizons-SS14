@@ -19,6 +19,9 @@
                 <CheckBox Name="TracesCheckBox"
                           Text="{Loc 'ui-options-trace'}"
                           ToolTip="{Loc 'ui-options-trace-tooltip'}" />
+                <!-- Far Horizons start -->
+                <CheckBox Name="RenderStarSystemCheckBox" Text="{Loc 'ui-options-render-star-system'}" />
+                <!-- Far Horizons end -->
                 <!-- Interface -->
                 <Label Text="{Loc 'ui-options-interface-label'}" StyleClasses="LabelKeyText"/>
                 <ui:OptionDropDown Name="DropDownUIScale" Title="{Loc 'ui-options-scale-label'}" />

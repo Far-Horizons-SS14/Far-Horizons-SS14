@@ -1,0 +1,54 @@
+
+- type: entity
+  parent: WeaponEnergyTurretStationBase
+  id: WeaponEnergyTurretNSAI
+  suffix: AI, NS
+  components:
+  - type: AccessReader
+    access: [["StationAiNS"], ["EpistemicsProvost"]]
+  - type: StationAiTurret
+  - type: TurretTargetSettings
+    exemptAccessLevels:
+    - BorgNS
+    - BasicSiliconNS
+  - type: Machine
+    board: WeaponEnergyTurretAIMachineCircuitboard
+  - type: DeviceNetwork
+    receiveFrequencyId: TurretControlAI
+    transmitFrequencyId: TurretAI
+
+- type: entity
+  parent: WeaponEnergyTurretStationBase
+  id: WeaponEnergyTurretNSSecurity
+  suffix: Security, NS
+  components:
+  - type: AccessReader
+    access: [["StationAiNS"], ["SecurityNS"]]
+  - type: TurretTargetSettings
+    exemptAccessLevels:
+    - SecurityNS
+    - BorgNS
+    - BasicSiliconNS
+  - type: Machine
+    board: WeaponEnergyTurretSecurityMachineCircuitboard
+  - type: DeviceNetwork
+    receiveFrequencyId: TurretControl
+    transmitFrequencyId: Turret
+
+- type: entity
+  parent: WeaponEnergyTurretStationBase
+  id: WeaponEnergyTurretNSCommand
+  suffix: Command, NS
+  components:
+  - type: AccessReader
+    access: [["StationAiNS"], ["Executive"]]
+  - type: TurretTargetSettings
+    exemptAccessLevels:
+    - Executive
+    - BorgNS
+    - BasicSiliconNS
+  - type: Machine
+    board: WeaponEnergyTurretCommandMachineCircuitboard
+  - type: DeviceNetwork
+    receiveFrequencyId: TurretControl
+    transmitFrequencyId: Turret

@@ -38,6 +38,7 @@
 
 - type: entity
   parent:
+  - ActiveCritBase
   - AppearanceProtoArachnid
   - BaseMobProtoArachnid
   id: MobProtoArachnid
@@ -59,7 +60,12 @@
 - type: entity
   parent: [ OrganProtoArachnidExternal, OrganArachnidTorso ]
   id: OrganProtoArachnidTorso
-
+  components:
+  - type: VisualOrganMarkings
+    hideableLayers:
+    - enum.HumanoidVisualLayers.BodyCover
+    - enum.HumanoidVisualLayers.BodyCoverCover
+    
 - type: entity
   parent: [ OrganProtoArachnidExternal, OrganArachnidHead ]
   id: OrganProtoArachnidHead

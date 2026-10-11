@@ -2,14 +2,16 @@
 
 - type: entity
   name: Reinforced Jug
-  parent: BaseItem
+  parent: [ BaseItem, SolutionBeaker ]
   id: JugReinforced
   description: Used to contain a very large amount of chemicals or solutions. Chugging is extremely ill-advised, now explosion AND spill proof!
   components:
-    - type: SolutionContainerManager
-      solutions:
-        beaker:
-          maxVol: 300
+    - type: TESTSolutionSizeNonStandard
+      reason: Reinforced jugs are specifically an upgrade over the standard jugs
+    - type: Solution
+      id: beaker
+      solution:
+        maxVol: 360
     - type: Sprite
       sprite: _FarHorizons/Objects/Specific/Chemistry/reinforced_jug.rsi
       layers:
@@ -54,3 +56,196 @@
       - ChemDispensable
       - ChemBag
     - type: DnaSubstanceTrace
+
+- type: entity
+  name: Jerrycan
+  parent: [SolutionBeaker, BaseItem]
+  id: JerrycanBase
+  description: Used to contain various types of gases for vehicles and generators. Reinforced with plasteel to prevent explosion-related industrial accidents.
+  abstract: true
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Objects/Specific/Vehicle/jerrycan.rsi
+    - type: Item
+      sprite: _FarHorizons/Objects/Specific/Vehicle/jerrycan.rsi
+    - type: MixableSolution
+      solution: beaker
+    - type: RefillableSolution
+      solution: beaker
+    - type: DrainableSolution
+      solution: beaker
+    - type: ExaminableSolution
+      solution: beaker
+    - type: DrawableSolution
+      solution: beaker
+    - type: InjectableSolution
+      solution: beaker
+    - type: SolutionTransfer
+      canChangeTransferAmount: true
+    - type: SolutionItemStatus
+      solution: beaker
+    - type: UserInterface
+      interfaces:
+        enum.TransferAmountUiKey.Key:
+          type: TransferAmountBoundUserInterface
+    - type: Appearance
+    - type: StaticPrice
+      price: 60
+    - type: Label
+    - type: DnaSubstanceTrace
+    - type: TESTSolutionSizeNonStandard
+      reason: It seems like the jerry cans are generally twice as solution-dense as normal containers
+
+- type: entity
+  name: Gasoline Canister
+  parent: [SolutionNormal, JerrycanBase]
+  id: JerrycanGasolineSmall
+  components:
+    - type: Sprite
+      layers:
+        - state: gasoline_small-jerrycan
+    - type: Item
+      size: Small
+      shape:
+      - 0,0,1,0
+      storedOffset: 0, 1
+      heldPrefix: gasoline_small
+    - type: Appearance
+
+- type: entity
+  parent: JerrycanGasolineSmall
+  id: JerrycanGasolineSmallFilled
+  suffix: Filled
+  components:
+    - type: Solution
+      solution:
+        reagents:
+        - ReagentId: WeldingFuel #Replace with Gasoline if we ever want to stop using welding fuel for everything.
+          Quantity: 120
+
+- type: entity
+  name: Gasoline Jerrycan
+  parent: [SolutionLarge, JerrycanBase]
+  id: JerrycanGasoline
+  components:
+    - type: Sprite
+      layers:
+        - state: gasoline-jerrycan
+    - type: Item
+      size: Normal
+      heldPrefix: gasoline
+    - type: Appearance
+
+- type: entity
+  parent: JerrycanGasoline
+  id: JerrycanGasolineFilled
+  suffix: Filled
+  components:
+    - type: Solution
+      solution:
+        reagents:
+        - ReagentId: WeldingFuel #Replace with Gasoline
+          Quantity: 240
+
+- type: entity
+  name: Large Gasoline Jerrycan
+  parent: [SolutionHuge, JerrycanBase]
+  id: JerrycanGasolineLarge
+  components:
+    - type: Sprite
+      layers:
+        - state: gasoline_large-jerrycan
+    - type: Item
+      size: Large
+      shape:
+      - 0,0,1,2
+      heldPrefix: gasoline_large
+    - type: Appearance
+
+- type: entity
+  parent: JerrycanGasolineLarge
+  id: JerrycanGasolineLargeFilled
+  suffix: Filled
+  components:
+    - type: Solution
+      solution:
+        reagents:
+        - ReagentId: WeldingFuel #Replace with Gasoline
+          Quantity: 480
+
+- type: entity
+  name: Diesel Canister
+  parent: [SolutionNormal, JerrycanBase]
+  id: JerrycanDieselSmall
+  components:
+    - type: Sprite
+      layers:
+        - state: diesel_small-jerrycan
+    - type: Item
+      size: Small
+      shape:
+      - 0,0,1,0
+      storedOffset: 0, 1
+      heldPrefix: diesel_small
+    - type: Appearance
+
+- type: entity
+  parent: JerrycanDieselSmall
+  id: JerrycanDieselSmallFilled
+  suffix: Filled
+  components:
+    - type: Solution
+      solution:
+        reagents:
+        - ReagentId: WeldingFuel #Replace with Diesel
+          Quantity: 120
+
+- type: entity
+  name: Diesel Jerrycan
+  parent: [SolutionLarge, JerrycanBase]
+  id: JerrycanDiesel
+  components:
+    - type: Sprite
+      layers:
+        - state: diesel-jerrycan
+    - type: Item
+      size: Normal
+      heldPrefix: diesel
+    - type: Appearance
+
+- type: entity
+  parent: JerrycanDiesel
+  id: JerrycanDieselFilled
+  suffix: Filled
+  components:
+    - type: Solution
+      solution:
+        reagents:
+        - ReagentId: WeldingFuel #Replace with Diesel
+          Quantity: 240
+
+- type: entity
+  name: Large Diesel Jerrycan
+  parent: [SolutionHuge, JerrycanBase]
+  id: JerrycanDieselLarge
+  components:
+    - type: Sprite
+      layers:
+        - state: diesel_large-jerrycan
+    - type: Item
+      size: Large
+      shape:
+      - 0,0,1,2
+      heldPrefix: diesel_large
+    - type: Appearance
+
+- type: entity
+  parent: JerrycanDieselLarge
+  id: JerrycanDieselLargeFilled
+  suffix: Filled
+  components:
+    - type: Solution
+      solution:
+        reagents:
+        - ReagentId: WeldingFuel #Replace with Diesel
+          Quantity: 480

@@ -1,0 +1,67 @@
+#M81A1 "Fissure" Crate Teleporter
+
+- type: entity
+  id: CrateConsortiumM81A1Uplink
+  suffix: Filled
+  parent: CrateConsortium
+  name: M81A1 "Fissure" Crate
+  description: Finally getting to see this in the field really means only one thing, no where is safe. Glory to the Consortium!
+  components:
+  - type: StorageFill
+    contents:
+      - id: WeaponLauncherM81A1Fissure
+      - id: ClothingBeltM81RocketLoaderChestRigFilled
+
+- type: entity
+  id: CrateConsortiumL6Uplink
+  suffix: Filled
+  parent: CrateConsortium
+  name: L6 SAW Crate
+  description: A time-honored classic. Blast away those that stand between you and your objective!
+  components:
+  - type: StorageFill
+    contents:
+      - id: WeaponLightMachineGunL6 #This may seem overkill, but it -is- the entire TC budget. Plus, you're not doing things quiet with this. Come on. Don't lie.
+      - id: MagazineLightRifleBoxSP
+      - id: MagazineLightRifleBoxSP
+      - id: MagazineLightRifleBoxSP
+      - id: MagazineLightRifleBoxSP
+      - id: MagazineLightRifleBoxSP
+      - id: MagazineCanisterLightRifleSP
+  
+- type: entity
+  id: CrateConsortiumChinaLakeUplink
+  suffix: Filled
+  parent: CrateConsortium
+  name: China-Lake Crate
+  description: A pump-action grenade launcher commonly used by the infamous Nuclear Operatives. PLOOP!
+  components:
+  - type: StorageFill
+    contents:
+      - id: WeaponLauncherChinaLake
+      - id: GrenadeBlast
+      - id: GrenadeBlast
+      - id: GrenadeBlast
+      - id: GrenadeBlast
+      - id: GrenadeFrag
+      - id: GrenadeFrag
+      - id: GrenadeFrag
+      - id: GrenadeFrag
+
+#region Lambda Juggsuit
+- type: entity
+  parent: CrateConsortium
+  id: CrateLambdaJuggernautBundle
+  name: Lambda "Polyphemus" Juggernaut Bundle
+  suffix: NT, Filled
+  description: Contains everything except a big gun to go postal.
+  components:
+  - type: StorageFill
+    contents:
+      - id: ClothingOuterHardsuitLambdaJuggernaut
+      - id: ClothingHandsGlovesSyndicatePowered
+      - id: ClothingMaskGasSyndicate
+      - id: ClothingHandsGlovesCombat
+      - id: DoubleEmergencyOxygenTankFilled
+      - id: DoubleEmergencyNitrogenTankFilled
+      - id: EmergencyCoolingUnit

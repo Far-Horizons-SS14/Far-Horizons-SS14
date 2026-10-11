@@ -6,7 +6,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Client._Starlight.Chemistry.ExternalContainerInjector;
 
-public sealed class ExternalContainerInjectorSystem : SharedExternalContainerInjectorSystem
+public sealed partial class ExternalContainerInjectorSystem : SharedExternalContainerInjectorSystem
 {
     public override void Initialize()
     {

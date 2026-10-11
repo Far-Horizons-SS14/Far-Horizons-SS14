@@ -6,7 +6,7 @@ using Robust.Shared.Toolshed.Errors;
 namespace Content.Server.Administration.Toolshed;
 
 [ToolshedCommand, AdminCommand(AdminFlags.Debug)]
-public sealed class RejuvenateCommand : ToolshedCommand
+public sealed partial class RejuvenateCommand : ToolshedCommand
 {
     private RejuvenateSystem? _rejuvenate;
 

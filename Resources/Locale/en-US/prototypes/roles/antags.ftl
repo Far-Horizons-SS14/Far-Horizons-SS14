@@ -46,6 +46,9 @@ roles-antag-dragon-objective = Create a carp army to take over this quadrant.
 
 # Starlight start
 roles-antag-changeling-description = Use your shapeshifting abilities to complete your objectives.
+
+roles-antag-ssf-name = Soviet Special Forces
+roles-antag-ssf-objective = Carry out your mission for the Union and eliminate any threats to it.
 # Starlight end
 
 roles-antag-mothership-core-name = Xenoborg Core

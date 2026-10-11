@@ -3,12 +3,18 @@ using Content.Shared.Atmos.EntitySystems;
 
 namespace Content.Client.Atmos.EntitySystems;
 
-public sealed class GasTankSystem : SharedGasTankSystem
+public sealed partial class GasTankSystem : SharedGasTankSystem
 {
     public override void Initialize()
     {
         base.Initialize();
         SubscribeLocalEvent<GasTankComponent, AfterAutoHandleStateEvent>(OnGasTankState);
+    }
+
+    protected override void DeviceUpdated(Entity<GasTankComponent> entity, ref AtmosDeviceUpdateEvent args)
+    {
+        // Atmos not predicted :(
+        throw new NotImplementedException();
     }
 
     private void OnGasTankState(Entity<GasTankComponent> ent, ref AfterAutoHandleStateEvent args)
@@ -32,10 +38,11 @@ public sealed class GasTankSystem : SharedGasTankSystem
             bui.Update<GasTankBoundUserInterfaceState>();
         }
         // Starlight edit start - Show simplified UI for when the breathing organ is inaccessible
-        // if (UI.TryGetOpenUi(ent.Owner, SharedGasTankUiKey.OrganKey, out var organBui))
-        // {
-        //     organBui.Update<GasTankBoundUserInterfaceState>();
-        // }
+        // Far Horizons - Edit Uncommented
+        if (UI.TryGetOpenUi(ent.Owner, SharedGasTankUiKey.OrganKey, out var organBui))
+        {
+             organBui.Update<GasTankBoundUserInterfaceState>();
+        }
         // Starlight edit end
     }
 }

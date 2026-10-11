@@ -2,19 +2,28 @@
 - type: latheRecipePack
   id: FarHorizonsAmmoStatic
   recipes:
+# Practice
+  - MagazinePistol38Practice
+  - MagazineBoxRevolver38Practice
+  - MagazineRifle38Practice
+  - SpeedLoaderRevolver38Practice
+  - MagazineMagnumPractice
+  - MagazineCanisterRifle556Practice
+  - MagazineCanisterMagnumPractice
+  - SpeedLoaderMagnumPractice
 ######################CANISTER#######################
-# Light Rifle
-  - MagazineCanisterLightRifleRubber
-  - MagazineCanisterLightRifleSP
-  - MagazineCanisterLightRifleHP
-  - MagazineCanisterLightRifleFMJ
-  - MagazineCanisterLightRifle
 # Pistol
   - MagazineCanisterPistolRubber
   - MagazineCanisterPistolSP
   - MagazineCanisterPistolHP
   - MagazineCanisterPistolFMJ
   - MagazineCanisterPistol
+# Light Rifle
+  - MagazineCanisterLightRifleRubber
+  - MagazineCanisterLightRifleSP 
+  - MagazineCanisterLightRifleHP
+  - MagazineCanisterLightRifleFMJ
+  - MagazineCanisterLightRifle
 # Rifle
   - MagazineCanisterRifle556Rubber
   - MagazineCanisterRifle556SP
@@ -33,56 +42,55 @@
   - MagazineCanisterRevolver38HP
   - MagazineCanisterRevolver38FMJ
   - MagazineCanisterRevolver38
+# Shotgun
+  - MagazineCanisterShotgun12G
+  - MagazineCanisterShotgun12GBuckshot
+  - MagazineCanisterShotgun12GFlechette
+  - MagazineCanisterShotgun12GSlug
+  - MagazineCanisterShotgun12GBeanbag
+  - MagazineCanisterShotgun12GPractice
+  - MagazineCanisterShotgun12GFlare
 ######################BOX#######################
 # Light Rifle
   - MagazineBoxLightRifleSP
   - MagazineBoxLightRifleHP
   - MagazineBoxLightRifleFMJ
-# Magnum
-  - MagazineBoxMagnumSP
-  - MagazineBoxMagnumHP
-  - MagazineBoxMagnumFMJ
-# Pistol
-  - MagazineBoxCaselessRifle
-  - MagazineBoxCaselessRifleRubber
-  - MagazineBoxPistolSP
-  - MagazineBoxPistolHP
-  - MagazineBoxPistolFMJ
-  - MagazineBoxRevolver38SP
-  - MagazineBoxRevolver38HP
-  - MagazineBoxRevolver38FMJ
 # Rifle
+  - MagazineBoxRifle556Rubber
   - MagazineBoxRifle556SP
   - MagazineBoxRifle556HP
   - MagazineBoxRifle556FMJ
+  - MagazineBoxRifle556
+# Pistol
+  - MagazineBoxPistolRubber
+  - MagazineBoxPistolSP
+  - MagazineBoxPistolHP
+  - MagazineBoxPistolFMJ
+  - MagazineBoxPistol
+# Why is this a pistol bullet????
+  - MagazineBoxCaselessRifle
+  - MagazineBoxCaselessRifleRubber
+# Revolver
+  - MagazineBoxRevolver38Rubber
+  - MagazineBoxRevolver38SP
+  - MagazineBoxRevolver38HP
+  - MagazineBoxRevolver38FMJ
+  - MagazineBoxRevolver38
+# Magnum
+  - MagazineBoxMagnumRubber
+  - MagazineBoxMagnumSP
+  - MagazineBoxMagnumHP
+  - MagazineBoxMagnumFMJ
 # Shotgun
   - BoxLethalshot
   - BoxShotgunSlug
   - BoxShellTranquilizer
+  - BoxBeanbag
+  - BoxShotgunFlechette
 #####################MAGAZINE#######################
-# LMG
-  - Rifle556HeavyMagazineSP
-  - Rifle556HeavyMagazineHP
-  - Rifle556HeavyMagazineFMJ
-  - Rifle556HeavyMagazineEmpty
-# Light Rifle
-  - MagazineLightRifleSP
-  - MagazineLightRifleHP
-  - MagazineLightRifleFMJ
-  - MagazineLightRifleMaxim
-  - SpeedLoaderLightRifle
-  - MagazineLightRifleEmpty
-# Magnum
-  - SpeedLoaderMagnumSP
-  - SpeedLoaderMagnumHP
-  - SpeedLoaderMagnumFMJ
-  - MagazineMagnum
-  - MagazineMagnumRifleSP
-  - MagazineMagnumEmpty
-  - SpeedLoaderMagnumEmpty
 # Pistol
-  - MagazinePistolCaselessRifle
-  - MagazineCaselessRifleRubber
+  - MagazinePistol38Rubber
+  - MagazinePistolRubber
   - MagazinePistolSP
   - MagazinePistolHP
   - MagazinePistolFMJ
@@ -91,6 +99,59 @@
   - MagazinePistol38HP
   - MagazinePistol38FMJ
   - MagazinePistol38Empty
+
+  - MagazinePistolCaselessRifle
+  - MagazineCaselessRifleRubber
+# Revolver
+  - SpeedLoaderRevolver38Rubber
+  - SpeedLoaderRevolver38Empty
+  - SpeedLoaderRevolver38SP
+  - SpeedLoaderRevolver38HP
+  - SpeedLoaderRevolver38FMJ
+# Light Rifle
+  - MagazineLightRifleSP
+  - MagazineLightRifleHP
+  - MagazineLightRifleFMJ
+  - MagazineLightRifleMaxim
+  - SpeedLoaderLightRifle
+  - MagazineLightRifleEmpty
+# Rifle
+  - MagazineRifle38Empty 
+  - MagazineRifle38SP 
+  - MagazineRifle38HP 
+  - MagazineRifle38FMJ 
+  - MagazineRifle38Rubber
+  - MagazineRifle556SP
+  - MagazineRifle556HP
+  - MagazineRifle556FMJ
+  - MagazineRifle556Empty
+# Shotgun
+  - MagazineShotgunEmpty
+  - MagazineShotgun
+  - MagazineShotgunFlechette
+  - MagazineShotgunSlug
+  - MagazineShotgunBeanbag
+  - MagazineShotgunPractice
+  - MagazineShotgunFlare
+  - SpeedLoaderMagnumBasic
+  - SpeedLoaderShotgunEmpty
+  - SpeedLoaderShotgunSlug
+  - SpeedLoaderShotgunBeanbag
+  - SpeedLoaderShotgunFlechette
+  - SpeedLoaderShotgunFlare
+  - SpeedLoaderShotgunPractice
+# Magnum
+  - MagazineMagnum
+  - MagazineMagnumHP
+  - MagazineMagnumFMJ
+  - MagazineMagnumRubber
+  - MagazineMagnumEmpty
+# Magnum - Speedloader
+  - SpeedLoaderMagnumEmpty
+  - SpeedLoaderMagnumSP
+  - SpeedLoaderMagnumHP
+  - SpeedLoaderMagnumFMJ
+  - SpeedLoaderMagnumRubber
 # SMG
   - MagazinePistolSubMachineGunSP
   - MagazinePistolSubMachineGunHP
@@ -98,19 +159,13 @@
   - MagazinePistolSubMachineGunEmpty
   - MagazinePistolSubMachineGunUzi
   - MagazinePistolSubMachineGunPPSH
-# Rifle
-  - MagazineRifle556SP
-  - MagazineRifle556HP
-  - MagazineRifle556FMJ
-  - MagazineRifle556Empty
-# Shotgun
-  - MagazineShotgun
-  - MagazineShotgunEmpty
-  - MagazineShotgunSlug
-  - SpeedLoaderMagnumBasic
-  - SpeedLoaderShotgunEmpty
-  - SpeedLoaderShotgunSlug
-  - SpeedLoaderShotgunBeanbag
+# LMG
+  - Rifle556HeavyMagazinePractice
+  - Rifle556HeavyMagazineRubber
+  - Rifle556HeavyMagazineSP
+  - Rifle556HeavyMagazineHP
+  - Rifle556HeavyMagazineFMJ
+  - Rifle556HeavyMagazineEmpty
 ####################################################
 
 # Shared between AmmoFab and emagged Protolathe
@@ -138,6 +193,10 @@
   - MagazineCanisterRevolver38Incendiary
   - MagazineCanisterRevolver38Uranium
   - MagazineCanisterRevolver38AP
+# Shotgun
+  - MagazineCanisterShotgun12GIncendiary
+  - MagazineCanisterShotgun12GUranium
+  - MagazineCanisterShotgun12GUraniumFlechette
 #####################BOX#######################
 # Light Rifle
   - MagazineBoxLightRifleIncendiary
@@ -151,6 +210,9 @@
   - MagazineBoxPistolIncendiary
   - MagazineBoxPistolUranium
   - MagazineBoxPistolAP
+# Revolver
+  - MagazineBoxRevolver38Incendiary
+  - MagazineBoxRevolver38Uranium
   - MagazineBoxRevolver38AP
 # Rifle
   - MagazineBoxRifle556Incendiary
@@ -159,6 +221,7 @@
 # Shotgun
   - BoxShotgunIncendiary
   - BoxShotgunUranium
+  - BoxShotgunUraniumFlechette
 #####################MAGAZINE#######################
 # LMG
   - Rifle556HeavyMagazineIncendiary
@@ -172,22 +235,37 @@
   - SpeedLoaderMagnumIncendiary
   - SpeedLoaderMagnumUranium
   - SpeedLoaderMagnumAP
+  - MagazineMagnumIncendiary
+  - MagazineMagnumUranium
+  - MagazineMagnumAP
 # Pistol
+  - MagazinePistol38Incendiary
+  - MagazinePistol38Uranium
   - MagazinePistolIncendiary
   - MagazinePistolUranium
   - MagazinePistolAP
   - MagazinePistol38AP
+# Revolver
+  - SpeedLoaderRevolver38Incendiary
+  - SpeedLoaderRevolver38Uranium
+  - SpeedLoaderRevolver38AP
 # SMG
   - MagazinePistolSubMachineGunIncendiary
   - MagazinePistolSubMachineGunUranium
   - MagazinePistolSubMachineGunAP
 # Rifle
+  - MagazineRifle38Incendiary 
+  - MagazineRifle38Uranium  
+  - MagazineRifle38AP 
   - MagazineRifle556Incendiary
   - MagazineRifle556Uranium
   - MagazineRifle556AP
 # Shotgun
   - MagazineShotgunIncendiary
+  - MagazineShotgunUranium
+  - MagazineShotgunUraniumFlechette
   - SpeedLoaderShotgunIncendiary
   - SpeedLoaderShotgunUranium
+  - SpeedLoaderShotgunUraniumFlechette
 # Grenade
   - MagazineGrenadeEmpty

@@ -12,21 +12,20 @@ namespace Content.Shared.Mobs.Systems;
 [Virtual]
 public partial class MobStateSystem : EntitySystem
 {
-    [Dependency] private readonly ActionBlockerSystem _blocker = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly StandingStateSystem _standing = default!;
-    [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly ILogManager _logManager = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly DamageableSystem _damageable = default!;
+    [Dependency] private ActionBlockerSystem _blocker = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private StandingStateSystem _standing = default!;
+    [Dependency] private ISharedAdminLogManager _adminLogger = default!;
+    [Dependency] private ILogManager _logManager = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private DamageableSystem _damageable = default!;
     private ISawmill _sawmill = default!;
 
-    private EntityQuery<MobStateComponent> _mobStateQuery;
+    [Dependency] private EntityQuery<MobStateComponent> _mobStateQuery = default!;
 
     public override void Initialize()
     {
         _sawmill = _logManager.GetSawmill("MobState");
-        _mobStateQuery = GetEntityQuery<MobStateComponent>();
         base.Initialize();
         SubscribeEvents();
     }
@@ -59,7 +58,7 @@ public partial class MobStateSystem : EntitySystem
     {
         if (!_mobStateQuery.Resolve(target, ref component, false))
             return false;
-        return component.CurrentState == MobState.Critical;
+        return component.CurrentState is MobState.Critical or MobState.ActiveCritical; // Far Horizons
     }
 
     /// <summary>
@@ -80,12 +79,18 @@ public partial class MobStateSystem : EntitySystem
     /// </summary>
     /// <param name="target">Target Entity</param>
     /// <param name="component">The MobState component owned by the target</param>
+    /// <param name="allowActiveCrit">Far Horizons. Should active crit be considered incapacitated for this check</param>
     /// <returns>If the entity is Critical or Dead</returns>
-    public bool IsIncapacitated(EntityUid target, MobStateComponent? component = null)
+    public bool IsIncapacitated(EntityUid target, MobStateComponent? component = null, bool allowActiveCrit = false)
     {
         if (!_mobStateQuery.Resolve(target, ref component, false))
             return false;
-        return component.CurrentState is MobState.Critical or MobState.Dead;
+        
+        // Far Horizons
+        if (!allowActiveCrit)
+            return component.CurrentState is MobState.Critical or MobState.Dead;
+        
+        return component.CurrentState is MobState.Critical or MobState.ActiveCritical or MobState.Dead; // Far Horizons
     }
 
     /// <summary>

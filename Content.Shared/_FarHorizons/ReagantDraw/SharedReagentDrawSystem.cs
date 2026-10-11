@@ -3,23 +3,20 @@ using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.EntitySystems;
 using Robust.Shared.Timing;
 using Robust.Shared.Containers;
-using Content.Shared._FarHorizons.ReagentDraw.Components;
-using Content.Shared.Destructible;
 
-namespace Content.Shared._FarHorizons.ReagentDraw.EntitySystems;
+namespace Content.Shared._FarHorizons.ReagentDraw;
 
-public sealed class SharedReagentDrawSystem : EntitySystem
+public sealed partial class SharedReagentDrawSystem : EntitySystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly SharedSolutionContainerSystem _solutionContainer = default!;
-    [Dependency] private readonly SharedContainerSystem _container = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private SharedSolutionContainerSystem _solutionContainer = default!;
+    [Dependency] private SharedContainerSystem _container = default!;
 
     public override void Initialize()
     {
         base.Initialize();
         SubscribeLocalEvent<ReagentDrawComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<ReagentDrawComponent, SolutionTransferAttemptEvent>(OnSolutionTransferAttempt);
-        SubscribeLocalEvent<ReagentDrawComponent, BreakageEventArgs>(OnBreakageEvent);
     }
 
     public override void Update(float frameTime)
@@ -36,10 +33,10 @@ public sealed class SharedReagentDrawSystem : EntitySystem
                 continue;
             
             comp.NextUpdateTime = _timing.CurTime + comp.Delay;
-            if(TryUseReagant(uid, comp.DrainRate, comp))
+            if(TryUseReagent(uid, comp.DrainRate, comp))
                 continue;
             
-            var ev = new ReagantContainerSlotEmptyEvent();
+            var ev = new ReagentContainerSlotEmptyEvent();
             RaiseLocalEvent(uid, ref ev);
         }
     }
@@ -47,62 +44,62 @@ public sealed class SharedReagentDrawSystem : EntitySystem
     private void OnMapInit(Entity<ReagentDrawComponent> ent, ref MapInitEvent args) => 
         ent.Comp.NextUpdateTime = _timing.CurTime + ent.Comp.Delay;
 
-    public bool TryUseReagant(EntityUid uid, float value, ReagentDrawComponent? reagantComp = null)
+    public bool TryUseReagent(EntityUid uid, float value, ReagentDrawComponent? reagentComp = null)
     {
-        if (!Resolve(uid, ref reagantComp, false))
+        if (!Resolve(uid, ref reagentComp, false))
             return false;
 
-        if(!_solutionContainer.ResolveSolution(uid, reagantComp.SolutionContainer, ref reagantComp.Solution, out var solution)
+        if(!_solutionContainer.ResolveSolution(uid, reagentComp.SolutionContainer, ref reagentComp.Solution, out var solution)
         || value > solution.Volume) 
             return false;
 
-        UseReagant(uid, value, solution, reagantComp);
+        UseReagent(uid, value, solution, reagentComp);
         return true;
     }
 
-    private float UseReagant(EntityUid uid, float value, Solution solution, ReagentDrawComponent? reagantComp = null)
+    private float UseReagent(EntityUid uid, float value, Solution solution, ReagentDrawComponent? reagentComp = null)
     {
-        if (value <= 0 || !Resolve(uid, ref reagantComp) || solution.Volume == 0)
+        if (value <= 0 || !Resolve(uid, ref reagentComp) || solution.Volume == 0)
             return 0;
 
-        return ChangeReagant(uid, value, solution, reagantComp);
+        return ChangeReagent(uid, value, solution, reagentComp);
     }
 
-    public float ChangeReagant(EntityUid uid, float value, Solution solution, ReagentDrawComponent? reagantComp = null)
+    public float ChangeReagent(EntityUid uid, float value, Solution solution, ReagentDrawComponent? reagentComp = null)
     {
-        if (!Resolve(uid, ref reagantComp))
+        if (!Resolve(uid, ref reagentComp))
             return 0;
     
         solution.RemoveSolution(value);
 
-        if( _container.TryGetContainer(uid, $"solution@{reagantComp.SolutionContainer}", out var solutionContainer) &&
+        if( _container.TryGetContainer(uid, $"solution@{reagentComp.SolutionContainer}", out var solutionContainer) &&
             solutionContainer is ContainerSlot solutionSlot &&
             solutionSlot.ContainedEntity is { } containedSolution && TryComp<SolutionComponent>(containedSolution, out var solutionComp))
         {
             Dirty(containedSolution, solutionComp);
         }
 
-        var ev = new ReagantChangedEvent(solution.Volume.Float(), solution.MaxVolume.Float());
-        var ev2 = new SolutionContainerChangedEvent();
+        var ev = new ReagentChangedEvent(solution.Volume.Float(), solution.MaxVolume.Float());
+        var ev2 = new SolutionChangedEvent();
         RaiseLocalEvent(uid, ref ev);
         RaiseLocalEvent(uid, ref ev2);
 
         return solution.Volume.Float();
     }
 
-    public bool HasDrawReagant(
+    public bool HasDrawReagent(
         EntityUid uid,
-        ReagentDrawComponent? reagantComp = null)
+        ReagentDrawComponent? reagentComp = null)
     {
-        if (!Resolve(uid, ref reagantComp, false))
+        if (!Resolve(uid, ref reagentComp, false))
             return true;
 
-        return HasReagant(uid, reagantComp.DrainRate, reagantComp);
+        return HasReagent(uid, reagentComp.DrainRate, reagentComp);
     }
     
-    public bool HasReagant(EntityUid uid, float charge, ReagentDrawComponent reagantComp)
+    public bool HasReagent(EntityUid uid, float charge, ReagentDrawComponent reagentComp)
     {
-        if(!_solutionContainer.ResolveSolution(uid, reagantComp.SolutionContainer, ref reagantComp.Solution, out var solution)) 
+        if(!_solutionContainer.ResolveSolution(uid, reagentComp.SolutionContainer, ref reagentComp.Solution, out var solution)) 
             return false;
 
         if (solution.Volume < charge)
@@ -113,20 +110,22 @@ public sealed class SharedReagentDrawSystem : EntitySystem
 
     private void OnSolutionTransferAttempt(Entity<ReagentDrawComponent> ent, ref SolutionTransferAttemptEvent args)
     {
-        if(ent.Comp.WhitelistedReagants.Count == 0) return;
+        if(ent.Comp.WhitelistedReagents.Count == 0) return;
 
         var solution = args.SolutionEntity.Comp.Solution;
-        if (solution.Contents.Any(sol => !ent.Comp.WhitelistedReagants.Any(req => req.Id == sol.Reagent.ToString())))
+        if (solution.Contents.Any(sol => !ent.Comp.WhitelistedReagents.Any(req => req.Id == sol.Reagent.ToString())))
         {
             args.Cancel("This solution isn't the right solution!");
             return;
         }
     }
 
-    private void OnBreakageEvent(EntityUid ent, ReagentDrawComponent component, BreakageEventArgs args)
+    public void SetDrawEnabled(Entity<ReagentDrawComponent?> ent, bool enabled)
     {
-        if(!_solutionContainer.ResolveSolution(ent, component.SolutionContainer, ref component.Solution, out var solution)) return;
-
-        UseReagant(ent, solution.Volume.Float(), solution, component);
-    }
+        if (Resolve(ent, ref ent.Comp, false) && ent.Comp.Enabled != enabled)
+        {
+            ent.Comp.Enabled = enabled;
+            Dirty(ent, ent.Comp);
+        }
+    } 
 }

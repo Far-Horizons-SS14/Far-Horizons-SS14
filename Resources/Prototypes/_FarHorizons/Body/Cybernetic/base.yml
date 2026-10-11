@@ -14,13 +14,13 @@
       reagents:
       - ReagentId: Iron
         Quantity: 30
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 5
-        reagents:
-        - ReagentId: Oil
-          Quantity: 10
+  - type: Solution
+    id: food
+    solution:
+      maxVol: 5
+      reagents:
+      - ReagentId: Oil
+        Quantity: 10
   - type: OrganEmpTarget
     baseDamage:
       types:
@@ -83,7 +83,11 @@
     - type: Tag
       tags:
         - Inorganic
-
+    - type: UserInterface
+      interfaces:
+        enum.LimbItemToggleMenuUiKey.Key:
+          type: CyberLimbSystemItemsRadial
+          
 - type: entity
   parent: [ OrganBaseArmLeftNonEdible, OrganCyberExternal ]
   id: OrganCyberArmLeft
@@ -120,6 +124,10 @@
     - type: Tag
       tags:
         - Inorganic
+    - type: UserInterface
+      interfaces:
+        enum.LimbItemToggleMenuUiKey.Key:
+          type: CyberLimbSystemItemsRadial
 
 - type: entity
   parent: [ OrganBaseHandRightNonEdible, OrganCyberExternal ]

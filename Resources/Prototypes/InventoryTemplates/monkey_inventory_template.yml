@@ -27,6 +27,14 @@
     uiWindowPos: 1,0
     strippingWindowPos: 0,2
     displayName: Jumpsuit
+  #FarHorizons Start
+  - name: gloves
+    slotTexture: gloves
+    slotFlags: GLOVES
+    uiWindowPos: 2,1
+    strippingWindowPos: 2,2
+    displayName: Gloves
+  #FarHorizons End
   - name: id
     slotTexture: id
     fullTextureName: template_small
@@ -36,7 +44,32 @@
     uiWindowPos: 2,1
     strippingWindowPos: 2,4
     dependsOn: jumpsuit
+    dependsOnWhitelist: #FH
+        components: #FH
+          - Pda #FH
     displayName: ID
+  #FarHorizons Start
+  - name: belt
+    slotTexture: belt
+    fullTextureName: template_small
+    slotFlags: BELT
+    slotGroup: SecondHotbar
+    stripTime: 6
+    uiWindowPos: 3,1
+    strippingWindowPos: 1,5
+    displayName: Belt
+  - name: pocket1
+    slotTexture: pocket
+    fullTextureName: template_small
+    slotFlags: POCKET
+    slotGroup: MainHotbar
+    stripTime: 3
+    uiWindowPos: 0,3
+    strippingWindowPos: 1,4
+    dependsOn: jumpsuit
+    displayName: Pocket 1
+    stripHidden: true
+  #FarHorizons End
   - name: suitstorage
     slotTexture: suit_storage
     slotFlags:   SUITSTORAGE

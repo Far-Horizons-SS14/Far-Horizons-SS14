@@ -19,13 +19,13 @@ namespace Content.Server.Starlight.Antags.Abductor;
 
 public sealed partial class AbductorSystem : SharedAbductorSystem
 {
-    [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
-    [Dependency] private readonly SharedColorFlashEffectSystem _color = default!;
-    [Dependency] private readonly PullingSystem _pullingSystem = default!;
-    [Dependency] private readonly InventorySystem _inv = default!;
-    [Dependency] private readonly MobStateSystem _mobState = default!;
-    [Dependency] private readonly RemoteEyeSystem _remoteEye = default!;
-    [Dependency] private readonly MetaDataSystem _metaData = default!; //FarHorizons
+    [Dependency] private SharedAudioSystem _audioSystem = default!;
+    [Dependency] private SharedColorFlashEffectSystem _color = default!;
+    [Dependency] private PullingSystem _pullingSystem = default!;
+    [Dependency] private InventorySystem _inv = default!;
+    [Dependency] private MobStateSystem _mobState = default!;
+    [Dependency] private RemoteEyeSystem _remoteEye = default!;
+    [Dependency] private MetaDataSystem _metaData = default!; //FarHorizons
 
     private static readonly EntProtoId<InstantActionComponent> _gizmoMark = "ActionGizmoMark";
     private static readonly EntProtoId<InstantActionComponent> _sendYourself = "ActionSendYourself";
@@ -81,7 +81,7 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
 
     private void OnReturn(AbductorReturnToShipEvent ev)
     {
-        if (_mobState.IsIncapacitated(ev.Performer))
+        if (_mobState.IsIncapacitated(ev.Performer, allowActiveCrit: true)) // Far Horizons
             return;
         AbductorAgentComponent? agentComp = null;
         if (!TryComp<AbductorScientistComponent>(ev.Performer, out var scientistComp) && !TryComp<AbductorAgentComponent>(ev.Performer, out agentComp))
@@ -193,7 +193,7 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
     
     private void OnDoAfterSendYourself(EntityUid ent, AbductorSendYourselfDoAfterEvent args)
     {
-        if (_mobState.IsIncapacitated(ent))
+        if (_mobState.IsIncapacitated(ent, allowActiveCrit: true)) // Far Horizons
             return;
         _color.RaiseEffect(Color.FromHex("#BA0099"), new List<EntityUid>(1) { ent }, Filter.Pvs(ent, entityManager: EntityManager));
         if (_pullingSystem.IsPulling(ent))

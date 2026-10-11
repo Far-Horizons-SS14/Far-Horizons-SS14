@@ -22,7 +22,7 @@ using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
-using Content.Shared._FarHorizons.Vehicles.Components; // FarHorizons
+using Content.Shared._FarHorizons.Vehicles; // FarHorizons
 
 namespace Content.Shared.Buckle;
 
@@ -30,7 +30,7 @@ public abstract partial class SharedBuckleSystem
 {
     public static ProtoId<AlertCategoryPrototype> BuckledAlertCategory = "Buckled";
 
-    [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
+    [Dependency] private EntityWhitelistSystem _whitelistSystem = default!;
 
     private void InitializeBuckle()
     {

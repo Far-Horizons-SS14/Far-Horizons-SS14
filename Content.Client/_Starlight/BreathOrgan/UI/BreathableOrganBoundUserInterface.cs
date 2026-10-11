@@ -46,7 +46,7 @@ namespace Content.Client._Starlight.BreathOrgan.UI
             if (EntMan.TryGetComponent(Owner, out GasTankComponent? component))
             {
                 var canConnect = EntMan.System<SharedGasTankSystem>().CanConnectToInternals((Owner, component));
-                _window?.Update(canConnect, component.IsConnected, component.OutputPressure);
+                _window?.Update(canConnect, component.IsConnected, component.Air.Pressure);
             }
 
             if (state is GasTankBoundUserInterfaceState cast)

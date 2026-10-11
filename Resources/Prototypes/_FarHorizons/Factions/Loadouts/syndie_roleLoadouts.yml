@@ -6,12 +6,15 @@
   - CommandantHead
   - CommandantNeck
   - CommandantJumpsuit
-  - CaptainBackpack
+  - CommandantBackpack
   - CommandantOuterClothing
   - CaptainShoes
   - CommandantEyewear
-  - SurvivalExtended
+  - SurvivalCaptain
   - Trinkets
+  - Scarves
+  - CapPens
+  - Credsticks
 
 - type: roleLoadout
   id: SyndieHeadOfSecurity #Marshal
@@ -23,11 +26,17 @@
   - MarshalUniform
   - SecurityBackpackSyndi
   - SecurityBeltSyndi
-  - SecurityNonLethalWeapon
+  - SecurityNonLethalWeaponNS
   - MarshalOuterClothing
+  - SecurityLongarmNS
+  - MarshalSidearm
   - SecurityShoesSyndi
-  - SurvivalSecurity
+  - SurvivalHeadOfSecurity
   - Trinkets
+  - Scarves
+  - Pens
+  - HeadofSecurityJobTrinkets
+  - Credsticks
 
 - type: roleLoadout
   id: SyndieChiefEngineer #Foreman
@@ -40,37 +49,49 @@
   - ForemanBackpacks
   #- ChiefEngineerOuterClothing 
   - ForemanShoes
-  - SurvivalExtended
+  - SurvivalChiefEngineer
   - Trinkets
+  - Scarves
+  - Pens
+  - CivilianWeaponsNS
+  - Credsticks
 
 - type: roleLoadout
   id: SyndieChiefMedicalOfficer #Medical Director
   groups:
-  - ChiefMedicalOfficerHead
-  - MedicalMask
-  - ChiefMedicalOfficerJumpsuit
-  - MedicalGloves
-  - MedicalBackpack
-  - ChiefMedicalOfficerOuterClothing
-  - ChiefMedicalOfficerNeck
-  - ChiefMedicalOfficerShoes
-  - MedicalEyewear
-  - SurvivalMedical
+  - MedicalDirectorHead
+  - MedicalMaskSyndi
+  - MedicalDirectorJumpsuit
+  - MedicalGlovesSyndi
+  - MedicalDirectorBackpack
+  - MedicalDirectorOuterClothing
+  #- MedicalDirectorNeck #Disabled currently due to no mantles/cloaks made for NS side.
+  - MedicalDirectorShoes
+  - MedicalEyewearSyndi
+  - SurvivalChiefMedicalOfficer
   - Trinkets
+  - Scarves 
+  - Pens 
+  - CivilianWeaponsNS
+  - Credsticks
 
 - type: roleLoadout
   id: SyndieResearchDirector #Head of Research
   groups:
-  - ResearchDirectorHead
-  - ResearchDirectorNeck
-  - ResearchDirectorJumpsuit
-  - ScientistBackpack
-  - ResearchDirectorOuterClothing
+  - ResearchDirectorHeadSyndi
+  - ResearchDirectorNeckSyndi
+  - ResearchDirectorJumpsuitSyndi
+  - ScientistBackpackSyndi
+  - ResearchDirectorOuterClothingSyndi
   - ScientistGloves
   - ResearchDirectorShoes
   - Glasses
-  - Survival
+  - SurvivalResearchDirector 
   - Trinkets
+  - Scarves
+  - Pens 
+  - CivilianWeaponsNS
+  - Credsticks
 
 - type: roleLoadout
   id: SyndieHeadOfPersonnel #Personnel Manager
@@ -82,8 +103,12 @@
   - PMOuterClothing
   - HoPShoes
   - CommandEyewearSyndi
-  - Survival
+  - SurvivalHeadOfPersonnel 
   - Trinkets
+  - Scarves 
+  - HoPPens
+  - CivilianWeaponsNS
+  - Credsticks
 
 
 - type: roleLoadout
@@ -97,16 +122,8 @@
   - CommandEyewearSyndi
   - Survival
   - Trinkets
-
-- type: roleLoadout
-  id: SyndieNanoTrasenRepresentative #NeoSol Representative
-  groups:
-  - NanoTrasenRepresentativeJumpsuit
-  - NanoTrasenRepresentativeEyewear
-  - CommonBackpack
-  - NanotrasenRepresentativeShoes
-  - Trinkets
-  - Survival
+  - CivilianWeaponsFactionless
+  - Credsticks
 
 #region Law
 
@@ -119,6 +136,8 @@
   - LawyerShoes
   - Trinkets
   - Survival
+  - CivilianWeaponsFactionless
+  - Credsticks
 
 #region Civilian
 
@@ -139,6 +158,8 @@
   - Trinkets
   - Scarves
   - Pens
+  - CivilianWeaponsNS
+  - Credsticks
 
 #region Engineering
 
@@ -153,6 +174,10 @@
   - EnviroShoes
   - SurvivalExtended
   - Trinkets
+  - Scarves 
+  - Pens
+  - CivilianWeaponsNS
+  - Credsticks
 
 - type: roleLoadout
   id: SyndieStationEngineer #Station Engineer
@@ -166,6 +191,10 @@
   - StationEngineerID
   - SurvivalExtended
   - Trinkets
+  - Scarves
+  - Pens 
+  - CivilianWeaponsNS
+  - Credsticks
 
 - type: roleLoadout
   id: SyndieTechnicalAssistant #Technical Assistant
@@ -174,123 +203,166 @@
   - StationEngineerBackpack
   - SurvivalExtended
   - Trinkets
-
+  - Scarves
+  - Pens 
+  - CivilianWeaponsNS
+  - Credsticks
+  
 #region Medical
 
 - type: roleLoadout
   id: SyndieSurgeon #Physician
   groups:
-  - MedicalDoctorHead
-  - MedicalMask
-  - MedicalDoctorJumpsuit
-  - MedicalGloves
-  - MedicalBackpack
-  - MedicalDoctorOuterClothing
-  - MedicalShoes
-  - MedicalDoctorPDA
-  - MedicalEyewear
+  - MedicalDoctorHeadSyndi
+  - MedicalMaskSyndi
+  - MedicalDoctorJumpsuitSyndi
+  - MedicalGlovesSyndi
+  - MedicalBackpackSyndi
+  - MedicalDoctorOuterClothingSyndi
+  - MedicalShoesSyndi
+  - SurgeonPDASyndi
+  - MedicalEyewearSyndi
   - SurvivalMedical
   - Trinkets
+  - Scarves
+  - SurgeonEquipmentGroup
+  - Pens
+  - CivilianWeaponsNS
+  - Credsticks
 
 - type: roleLoadout
   id: SyndieChemist #Pharmacist
   groups:
-  - ChemistHead
-  - MedicalMask
-  - ChemistJumpsuit
-  - MedicalGloves
-  - ChemistBackpack
-  - ChemistOuterClothing
-  - MedicalShoes
+  - ChemistHeadSyndi
+  - MedicalMaskSyndi
+  - PharmacistJumpsuit
+  - MedicalGlovesSyndi
+  - PharmacistBackpack
+  - PharmacistOuterClothing
+  - MedicalShoesSyndi
+  - ChemistEyewear
+  - ChemistBeaker 
+  - ChemistLabeler 
   - SurvivalMedical
   - Trinkets
+  - Scarves
+  - Pens
+  - CivilianWeaponsNS
+  - Credsticks
 
 - type: roleLoadout
   id: SyndieParamedic #Medic
   groups:
-  - ParamedicHead
-  - MedicalMask
-  - ParamedicJumpsuit
-  - MedicalGloves
-  - MedicalBackpack
-  - ParamedicOuterClothing
-  - ParamedicShoes
-  - MedicalEyewear
+  - ParamedicHeadSyndi
+  - MedicalMaskSyndi
+  - ParamedicJumpsuitSyndi
+  - MedicalGlovesSyndi
+  - ParamedicBackpackSyndi
+  - ParamedicOuterClothingSyndi
+  - ParamedicShoesSyndi
+  - MedicalEyewearSyndi
   - SurvivalMedical
   - Trinkets
+  - Scarves
+  - Pens
+  - CivilianWeaponsNS
+  - Credsticks
 
 - type: roleLoadout
   id: SyndieMedicalDoctor #Clinician
   groups:
-  - MedicalDoctorHead
-  - MedicalMask
-  - MedicalDoctorJumpsuit
-  - MedicalGloves
-  - MedicalBackpack
-  - MedicalDoctorOuterClothing
-  - MedicalShoes
-  - MedicalDoctorPDA
-  - MedicalEyewear
+  - MedicalDoctorHeadSyndi
+  - MedicalMaskSyndi
+  - MedicalDoctorJumpsuitSyndi
+  - MedicalGlovesSyndi
+  - MedicalBackpackSyndi
+  - MedicalDoctorOuterClothingSyndi
+  - MedicalShoesSyndi
+  - MedicalDoctorPDASyndi
+  - MedicalEyewearSyndi
   - SurvivalMedical
   - Trinkets
+  - Scarves
+  - Pens
+  - CivilianWeaponsNS
+  - Credsticks
 
 - type: roleLoadout
   id: SyndieMedicalIntern #Nursing Assistant
   groups:
-  - MedicalInternJumpsuit
-  - MedicalBackpack
-  - MedicalEyewear
+  - MedicalInternJumpsuitSyndi
+  - MedicalBackpackSyndi
+  - MedicalEyewearSyndi
   - SurvivalMedical
   - Trinkets
+  - Scarves
+  - Pens
+  - CivilianWeaponsNS
+  - Credsticks
 
 - type: roleLoadout
   id: SyndiePsychologist #Psychoanalyst
   groups:
-  - PsychologistJumpsuit
-  - MedicalBackpack
-  - CivilianShoes
+  - PsychologistJumpsuitSyndi
+  - MedicalBackpackSyndi
+  - SyndieShoes
   - Glasses
   - Survival
-  - Trinkets
+  - Scarves
+  - Pens
+  - CivilianWeaponsNS
+  - Credsticks
 
 #region Science
 
 - type: roleLoadout
   id: SyndieRoboticist #Robotics Engineer
   groups:
-  - RoboticistHead
-  - RoboticistGoggles
-  - RoboticistJumpsuit
-  - RoboticistGloves
-  - RoboticistOuterClothing
-  - RoboticistBackpack
-  - RoboticistShoes
-  - Survival
+  - RoboticistHeadSyndi
+  - RoboticistGogglesSyndi
+  - RoboticistJumpsuitSyndi
+  - RoboticistGlovesSyndi
+  - RoboticistOuterClothingSyndi
+  - RoboticistBackpackSyndi
+  - RoboticistShoesSyndi
+  - SurvivalResearch 
   - Trinkets
+  - Scarves
+  - Pens
+  - CivilianWeaponsNS
+  - Credsticks
 
 - type: roleLoadout
   id: SyndieScientist #Researcher
   groups:
-  - ScientistHead
+  - ScientistHeadSyndi
   - ScientistNeck
-  - ScientistJumpsuit
-  - ScientistBackpack
-  - ScientistOuterClothing
+  - ScientistJumpsuitSyndi
+  - ScientistBackpackSyndi
+  - ScientistOuterClothingSyndi
   - ScientistGloves
   - ScientistShoes
-  - ScientistPDA
+  - ScientistPDASyndi
   - Glasses
-  - Survival
+  - SurvivalResearch
   - Trinkets
+  - Scarves
+  - Pens 
+  - CivilianWeaponsNS
+  - Credsticks
 
 - type: roleLoadout
   id: SyndieResearchAssistant #Undergraduate
   groups:
-  - ResearchAssistantJumpsuit
-  - ScientistBackpack
+  - ResearchAssistantJumpsuitSyndi
+  - ScientistBackpackSyndi
   - Glasses
   - Survival
   - Trinkets
+  - Scarves
+  - Pens
+  - CivilianWeaponsNS
+  - Credsticks
 
 #region Security
 
@@ -305,8 +377,15 @@
   - SecurityBackpackSyndi
   - SecurityBeltSyndi
   - SecurityShoesSyndi
+  - SecurityLongarmNS
+  - ConstableSidearm
+  - SecurityNonLethalWeaponNS 
   - SurvivalSecurity
   - Trinkets
+  - Scarves
+  - Pens
+  - WardenJobTrinkets
+  - Credsticks
 
 - type: roleLoadout
   id: SyndieCorpsman #Corpsman
@@ -316,14 +395,19 @@
     - SecMedEyesSyndi
     - CorpsmanJumpsuit
     - CorpsmanBackpack
-    - CorpsmanOuterClothing
+    - CorpsmanSyndiOuterClothing
     - CorpsmanSyndiBelt
     - CorpsmanGloves
     - SecurityShoesSyndi
-    - SecurityNonLethalWeapon
-    - SecuritySidearm
+    - SecurityLongarmNS
+    - CorpsmanSidearm #Still needs new NS version
+    - SecurityNonLethalWeaponNS
     - SurvivalSecurity
     - Trinkets
+    - Scarves
+    - Pens
+    - SecurityJobTrinkets
+    - Credsticks
 
 - type: roleLoadout
   id: SyndieBrigmedic #Brigmedic
@@ -336,11 +420,16 @@
     - BrigmedicSyndiBackpack
     - BrigSyndiGloves
     - BrigSyndiBelt
-    - SecurityNonLethalWeapon
-    - SecuritySidearm
     - SecurityShoesSyndi
+    - SecurityLongarmNS
+    - BrigmedicSidearm #Still needs new NS versions
+    - SecurityNonLethalWeaponNS
     - SurvivalSecurity
     - Trinkets
+    - Scarves
+    - Pens
+    - SecurityJobTrinkets
+    - Credsticks
 
 - type: roleLoadout
   id: SyndieDetective #Inspector
@@ -353,8 +442,15 @@
   - SecurityBackpackSyndi
   - InspectorOuterClothing
   - InspectorShoes
+  - SecurityLongarmNS
+  - DetectiveSidearm #Still needs new NS versions
+  - SecurityNonLethalWeaponNS
   - SurvivalSecurity
   - Trinkets
+  - Scarves
+  - Pens
+  - DetectiveJobTrinkets
+  - Credsticks
 
 - type: roleLoadout
   id: SyndieSecurityOfficer #Enforcer
@@ -366,32 +462,128 @@
   - EnforcerOuterClothing
   - SecurityBackpackSyndi
   - SecurityBeltSyndi
-  - SecurityPDA
-  - SecurityNonLethalWeapon
-  - SecuritySidearm
+  - SecurityPDANS
+  - SecurityLongarmNS
+  - SecuritySidearmNS
+  - SecurityNonLethalWeaponNS
   - SecurityShoesSyndi
   - SurvivalSecurity
   - Trinkets
+  - Scarves # Starlight
+  - Pens # Starlight
+  - SecurityJobTrinkets
+  - Credsticks
 
 - type: roleLoadout
   id: SyndieSecurityCadet #Recruit
   groups:
   - RecruitUniform
   - SecurityBackpackSyndi
-  - SecurityNonLethalWeapon
+  - SecurityNonLethalWeaponNS
   - SurvivalSecurity
   - Trinkets
+  - Scarves 
+  - Pens
+  - Credsticks
+
+#region Service
+- type: roleLoadout
+  id: SyndieChef
+  groups:
+  - ChefHead
+  - ChefMask
+  - ChefJumpsuitNS
+  - CommonBackpack
+  - ChefOuterClothing
+  - CivilianShoes 
+  - Glasses
+  - SurvivalService 
+  - Trinkets
+  - Scarves 
+  - Pens 
+  - CivilianWeaponsNS
+  - Credsticks
+
+- type: roleLoadout
+  id: SyndieJanitor
+  groups:
+  - JanitorHeadNS
+  - JanitorMaskNS
+  - JanitorJumpsuitNS
+  - JanitorGlovesNS
+  - CommonBackpack
+  - JanitorOuterClothing
+  - Glasses
+  - SurvivalService 
+  - Trinkets
+  - Scarves
+  - Pens 
+  - JanitorJobTrinkets
+  - CivilianWeaponsNS
+  - Credsticks
+
+- type: roleLoadout
+  id: SyndieBotanist
+  groups:
+  - BotanistHeadNS
+  - BotanistJumpsuitNS
+  - BotanistBackpack
+  - BotanistOuterClothing
+  - CivilianShoes
+  - Glasses
+  - SurvivalService 
+  - Trinkets
+  - Scarves 
+  - Pens 
+  - CivilianWeaponsNS
+  - Credsticks
+
+- type: roleLoadout
+  id: SyndieClown
+  canCustomizeName: true
+  groups:
+  - ClownHead
+  - ClownJumpsuitNS
+  - ClownBackpack
+  - ClownOuterClothing
+  - ClownShoesNS
+  - Glasses
+  - SurvivalService #FH
+  - Trinkets
+  - Scarves
+  - ClownPens
+  - ClownJobTrinkets
+  - Credsticks
 
 #region SHC
 
 - type: roleLoadout
-  id: SyndieBlueShield #"Red Shield" Operative
+  id: RedSwordOperative #"Red Sword" Operative
   groups:
-  - BlueShieldJumpsuit
-  - BlueShieldBackpack
-  - BlueShieldOuterclothing
+  - RedSwordEyewear
+  - RedSwordNeck
+  - RedSwordJumpsuit
+  - RedSwordOuterclothing
+  - RedSwordBackpack
   - RedSwordShoes
-  - BlueShieldNeck
-  - BlueShieldEyewear
   - Trinkets
+  - Scarves
+  - Pens
   - SurvivalSecurity
+  - Credsticks
+
+- type: roleLoadout
+  id: NeoSolRepresentative #NeoSol Representative
+  groups:
+  - NeoSolRepresentativeEyewear
+  - NeoSolRepresentativeHead
+  - NeoSolRepresentativeJumpsuit
+  - NeoSolOuterClothing
+  - NeoSolRepresentativeBackpack
+  - NeoSolRepresentativeShoes
+  - Trinkets
+  - Scarves
+  - NTRPens
+  - SurvivalStationManagement
+  - CivilianWeaponsNS
+  - Credsticks

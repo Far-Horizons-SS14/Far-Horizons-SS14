@@ -6,7 +6,7 @@ namespace Content.Shared._Starlight.Fixtures;
 /// This handles the mixing of soft and hard fixutres
 /// TODO: If the engine PR for this gets merged, delete this file and all related files and use the engine component
 /// </summary>
-public sealed class MixedFixturesSystem : EntitySystem
+public sealed partial class MixedFixturesSystem : EntitySystem
 {
     /// <inheritdoc/>
     public override void Initialize()

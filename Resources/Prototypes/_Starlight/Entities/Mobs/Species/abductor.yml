@@ -1,0 +1,54 @@
+- type: entity
+  save: false
+  name: Urist McAbductor
+  parent:
+  - MobBloodstream
+  - MobFlammable
+  - BaseSpeciesMob
+  id: BaseMobAbductor
+  abstract: true
+  components:
+  - type: Inventory
+    templateId: abductor
+  #- type: Absorbable Starlight: Done on purpose so the abductors don't get absorbed.
+  - type: Muted
+  - type: Icon
+    sprite: _Starlight/Mobs/Species/Abductor/parts.rsi
+    state: full
+  - type: Fingerprint
+  - type: Blindable
+  - type: Body
+    prototype: Abductor
+    requiredLegs: 2
+  - type: FireVisuals
+    alternateState: Standing
+  - type: Damageable
+  - type: Injurable
+    damageContainer: Biological
+  - type: Tag
+    tags:
+    - CanPilot
+    - FootstepSound
+    - DoorBumpOpener
+  - type: DamageVisuals
+    damageOverlayGroups:
+      Brute:
+        sprite: Mobs/Effects/brute_damage.rsi
+        color: "#878787"
+      Burn:
+        sprite: Mobs/Effects/burn_damage.rsi
+  - type: PassiveDamage
+    allowedStates:
+    - Alive
+    damageCap: 40
+    damage:
+      types:
+        Heat: -0.14
+        Blunt: -0.14
+        Piercing: -0.14
+        Slash: -0.14
+  - type: Bloodstream
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: AbductorBlood
+        Quantity: 300

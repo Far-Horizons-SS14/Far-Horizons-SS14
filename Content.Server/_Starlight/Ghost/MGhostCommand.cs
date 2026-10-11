@@ -11,10 +11,10 @@ using Robust.Shared.Console;
 namespace Content.Server._Starlight.Ghost;
 
 [UsedImplicitly, AnyCommand]
-public sealed class MGhostCommand : LocalizedCommands
+public sealed partial class MGhostCommand : LocalizedCommands
 {
-    [Dependency] private readonly IEntityManager _entities = default!;
-    [Dependency] private readonly IDiscordLinkManager _discordLinkManager = default!;
+    [Dependency] private IEntityManager _entities = default!;
+    [Dependency] private IDiscordLinkManager _discordLinkManager = default!;
 
     public override string Command => "mghost";
     public override string Help => "mghost";
@@ -39,7 +39,7 @@ public sealed class MGhostCommand : LocalizedCommands
 
         if (!_discordLinkManager.HasPermission(player.UserId.UserId, AdditionalPermissionsTypes.Mentor)) // if you are a admin you should be using aghost
         {
-            shell.WriteError(LocalizationManager.GetString("mghost-mentors-only"));
+            shell.WriteError(LocalizationManager.GetString("fh-mghost-mentors-only")); //FH, this didnt have a .ftl for some reason
             return;
         }
 

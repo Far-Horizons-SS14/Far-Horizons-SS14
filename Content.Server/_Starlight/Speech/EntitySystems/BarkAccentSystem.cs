@@ -1,14 +1,15 @@
 using Content.Shared.StatusEffectNew;
 using Content.Server.Speech.Components;
 using Content.Shared.Speech;
+using Content.Shared.Speech.EntitySystems;
 using Robust.Shared.Random;
 using Content.Shared._Starlight.Speech;
 
 namespace Content.Server._Starlight.Speech.EntitySystems;
 
-public sealed class BarkAccentSystem : EntitySystem
+public sealed partial class BarkAccentSystem : RelayAccentSystem<BarkAccentComponent>
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private IRobustRandom _random = default!;
 
     private static readonly IReadOnlyList<string> _barks = new List<string>{
         " Woof!", " WOOF", " wof-wof"
@@ -21,12 +22,6 @@ public sealed class BarkAccentSystem : EntitySystem
         { "oh", "oof" },
         { "Oh", "Oof" },
     };
-
-    public override void Initialize()
-    {
-        SubscribeLocalEvent<BarkAccentComponent, AccentGetEvent>(OnAccent);
-        SubscribeLocalEvent<BarkAccentComponent, StatusEffectRelayedEvent<AccentGetEvent>>(OnAccentRelayed);
-    }
 
     public SpeechMessage Accentuate(SpeechMessage message)
     {
@@ -45,9 +40,6 @@ public sealed class BarkAccentSystem : EntitySystem
         return message;
     }
 
-    private void OnAccent(Entity<BarkAccentComponent> entity, ref AccentGetEvent args)
-        => args.Message = Accentuate(args.Message);
-
-    private void OnAccentRelayed(Entity<BarkAccentComponent> entity, ref StatusEffectRelayedEvent<AccentGetEvent> args)
-        => args.Args.Message = Accentuate(args.Args.Message);
+    protected override SpeechMessage AccentuateInternal(EntityUid uid, BarkAccentComponent component, SpeechMessage message)
+        => Accentuate(message);
 }

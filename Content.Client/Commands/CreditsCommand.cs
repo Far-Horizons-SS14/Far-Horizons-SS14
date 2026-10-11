@@ -6,7 +6,7 @@ using Robust.Shared.Console;
 namespace Content.Client.Commands;
 
 [UsedImplicitly, AnyCommand]
-public sealed class CreditsCommand : LocalizedCommands
+public sealed partial class CreditsCommand : LocalizedCommands
 {
     public override string Command => "credits";
 

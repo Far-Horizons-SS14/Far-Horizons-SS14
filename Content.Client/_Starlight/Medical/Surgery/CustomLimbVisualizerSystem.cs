@@ -23,7 +23,7 @@ using System.Linq;
 
 namespace Content.Client._Starlight.Medical.Surgery;
 
-public sealed class CustomLimbVisualizerSystem : EntitySystem
+public sealed partial class CustomLimbVisualizerSystem : EntitySystem
 {
     public override void Initialize()
     {

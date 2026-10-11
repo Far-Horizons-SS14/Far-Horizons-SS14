@@ -16,7 +16,7 @@ faction-syndicate-job-cadet = Recruit
 faction-syndicate-job-secborg = L.E.A.D.
 ## Law Enforcement Assault Droid
 
-faction-syndicate-job-bso = Red Shield Operative
+faction-syndicate-job-bso = Red Sword Operative
 
 faction-syndicate-job-janitor = Custodian
 faction-syndicate-job-reporter = Journalist

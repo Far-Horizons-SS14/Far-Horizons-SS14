@@ -1,0 +1,39 @@
+- type: entity
+  id: StaminaSurge
+  name: "[color=yellow]Stamina Surge[/color]"
+  description: Grants increased stamina regeneration and resistance for a while at the cost of drastically increased hunger.
+  components:
+    - type: Action
+      useDelay: 50 # Far Horizons
+      itemIconStyle: BigAction
+      icon:
+        sprite: _Starlight/Interface/Actions/actions_lagomorph.rsi
+        state: stamina-active
+    # Far Horizons
+    #- type: LimitedCharges
+    #  maxCharges: 1
+    #- type: AutoRecharge
+    #  rechargeDuration: 50
+    - type: InstantAction
+      event: !type:StaminaSurgeActionEvent
+    - type: BlockActionInCrit # FH
+
+- type: entity
+  id: Zoomies
+  name: "[color=lightblue]Zoomies!![/color]"
+  description: Boost sprint speed at the cost of drastically increased thirst.
+  components:
+    - type: Action
+      useDelay: 40 # FarHorizons
+      itemIconStyle: BigAction
+      icon:
+        sprite: _Starlight/Interface/Actions/actions_lagomorph.rsi
+        state: zoomies-btn
+    # Far Horizons
+    #- type: LimitedCharges
+    #  maxCharges: 1
+    #- type: AutoRecharge
+    #  rechargeDuration: 50
+    - type: InstantAction
+      event: !type:ZoomiesActionEvent
+    - type: BlockActionInCrit # FH

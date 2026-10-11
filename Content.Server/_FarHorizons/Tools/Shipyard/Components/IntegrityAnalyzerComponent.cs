@@ -4,6 +4,7 @@ using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.List;
 using Content.Server.FarHorizons.Tools.Shipyard.Systems;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
 namespace Content.Server.FarHorizons.Tools.Shipyard.Components;
 
@@ -60,8 +61,8 @@ public sealed partial class IntegrityAnalyzerComponent : Component
     [DataField]
     public bool Silent;
     
-    [DataField("damageContainers", customTypeSerializer: typeof(PrototypeIdListSerializer<DamageContainerPrototype>))]
-    public List<string>? DamageContainers;
+    [DataField]
+    public List<ProtoId<DamageContainerPrototype>>? DamageContainers;
 
     [DataField]
     public EntProtoId Action = "ActionHullSense";

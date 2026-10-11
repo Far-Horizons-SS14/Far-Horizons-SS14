@@ -22,6 +22,18 @@
     - state: welded
       visible: false
       map: ["enum.WeldableLayers.BaseWelded"]
+      # Starlight BEGIN
+    - state: crate_ribbon_sealed
+      sprite: _Starlight/Structures/Storage/tamper_seal32.rsi
+      visible: false
+      map: [ "enum.TamperSealLayers.Sealed" ]
+      # Starlight END
+      # Far Horizons Start
+    - state: crate_faction_ribbon_sealed
+      sprite: _FarHorizons/Structures/Storage/tamper_seal32.rsi
+      visible: false
+      map: [ "enum.FactionTamperSealLayers.Sealed" ]
+      # Far Horizons End
     - state: paper
       sprite: Structures/Storage/Crates/labels.rsi
       map: ["enum.PaperLabelVisuals.Layer"]
@@ -42,8 +54,9 @@
   - type: PlaceableSurface
     isPlaceable: false # defaults to closed.
   - type: Damageable
-    damageContainer: StructuralInorganic
     damageModifierSet: Metallic
+  - type: Injurable
+    damageContainer: StructuralInorganic
   - type: Destructible
     thresholds:
     - trigger:
@@ -70,9 +83,22 @@
     containers:
       - entity_storage
   - type: RequireProjectileTarget
-  # Starlight-start: Blinding from containers
-  - type: ChildBlockVision
-  # Starlight-end
+  # Starlight BEGIN
+  - type: ChildBlockVision # Blinding from containers
+  - type: TamperSealable
+    destroyToolQualities: [ Cutting, Slicing ]
+  - type: PaperLabel # Overrides parent
+    labelSlot:
+      priority: 100 # <-- Only change relative to BasePaperLabelable.
+      insertVerbText: comp-paper-label-insert
+      ejectVerbText: comp-paper-label-eject
+      whitelist:
+        components:
+          - Paper
+      blacklist:
+        tags:
+          - Book
+  # Starlight END
 
 - type: entity
   parent: CrateGeneric
@@ -88,6 +114,10 @@
   suffix: Secure
   components:
   - type: Lock
+    # Starlight Start
+    popupMessage: false
+    powerNeeded: true
+    # Starlight End
   - type: LockVisuals
   - type: AccessReader
   - type: Icon
@@ -109,9 +139,36 @@
       sprite: Structures/Storage/Crates/labels.rsi
       offset: "-0.5,0"
       map: ["enum.PaperLabelVisuals.Layer"]
+    # Starlight Start: Maintenance panel
+    - state: panel_open
+      sprite: _Starlight/Structures/Storage/Crates/base.rsi
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+      visible: false
+    - state: electrified_ai
+      sprite: Interface/Misc/ai_hud.rsi
+      shader: unshaded
+      visible: false
+      map: ["enum.ElectrifiedLayers.HUD"]
+    - state: electrified
+      sprite: Effects/electricity.rsi
+      shader: unshaded
+      visible: false
+      map: ["enum.ElectrifiedLayers.Sparks"]
+    - state: crate_ribbon_sealed # Tamper seal
+      sprite: _Starlight/Structures/Storage/tamper_seal32.rsi
+      visible: false
+      map: [ "enum.TamperSealLayers.Sealed" ]
+      # Starlight END
+      # Far Horizons Start
+    - state: crate_faction_ribbon_sealed
+      sprite: _FarHorizons/Structures/Storage/tamper_seal32.rsi
+      visible: false
+      map: [ "enum.FactionTamperSealLayers.Sealed" ]
+      # Far Horizons End
   - type: Damageable
-    damageContainer: StructuralInorganic
     damageModifierSet: StructuralMetallic
+  - type: Injurable
+    damageContainer: StructuralInorganic
   - type: Destructible
     thresholds:
     - trigger:
@@ -135,3 +192,24 @@
     spread: 90
   - type: Paintable
     group: CrateSecure
+  # Starlight-start: Wires panel
+  - type: PoweredLocker
+  - type: StationAiWhitelist
+  - type: WiresPanel
+  - type: WiresPanelSecurity
+    wiresAccessible: True
+  - type: WiresVisuals
+  - type: Wires
+    boardName: wires-board-name-locker
+    layoutId: Locker
+  - type: UserInterface
+    interfaces:
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
+  - type: GenericVisualizer
+    visuals:
+      enum.ElectrifiedVisuals.ShowSparks:
+        enum.ElectrifiedLayers.Sparks:
+          True: { visible: True }
+          False: { visible: False }
+  # Starlight-end

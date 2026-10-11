@@ -17,6 +17,8 @@
   - type: Tag
     tags:
     - BoxCardboard
+  - type: Storage #FH
+    maxItemSize: Normal
 
 - type: entity
   parent: BoxBaseSmall
@@ -279,10 +281,6 @@
   id: BoxFlare
   description: A box of flares. Party time.
   components:
-  - type: Item #FH
-    size: Small
-    shape: 
-    - 0,0,1,1 
   - type: EntityTableContainerFill
     containers:
       storagebase:
@@ -314,6 +312,7 @@
     whitelist:
       tags:
         - TrashBag
+        - TrashBagBlue
   - type: Sprite
     layers:
       - state: box
@@ -323,7 +322,8 @@
   name: Assistant Encryption Key Box #Far Horizons - The Great Capitalization Crusade
   parent: BoxCardboard
   id: BoxEncryptionKeyAssistant
-  description: A box of spare encryption keys.
+  suffix: NT #FH
+  description: A box of spare Nanotrasen encryption keys. #FH
   components:
   - type: EntityTableContainerFill
     containers:
@@ -343,6 +343,8 @@
   name: Cargo Encryption Key Box #Far Horizons - The Great Capitalization Crusade
   parent: BoxEncryptionKeyAssistant
   id: BoxEncryptionKeyCargo
+  suffix: GSL #FH
+  description: A box of spare GSL encryption keys. #FH
   components:
   - type: EntityTableContainerFill
     containers:

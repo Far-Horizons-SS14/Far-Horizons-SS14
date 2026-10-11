@@ -1,5 +1,5 @@
 
-#region Law ####
+#region ## CFA ##
 
 - type: entity
   parent: ClothingEyesBase
@@ -43,7 +43,85 @@
     coverage: EYES
   - type: ShowJobIcons
 
-#region NanoTrasen ##
+#region ## GSL ##
+
+- type: entity
+  parent: [ClothingEyesBase, BaseSalvageContraband]
+  id: ClothingEyesGlassesScrapper
+  name: Salvage Objective Glasses 
+  description: A pair of glasses that helps tracking down the mission objective for salvage.
+  suffix: GSL
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Eyes/Glasses/salvage.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Eyes/Glasses/salvage.rsi
+  - type: Tag
+    tags:
+    - PetWearable
+    - WhitelistChameleon
+  - type: FlashImmunity
+  - type: EyeProtection
+  - type: ShowObjectiveIcons
+  - type: IdentityBlocker
+    coverage: EYES
+
+
+- type: entity
+  parent: [ClothingEyesBase, ShowMedicalIcons, BaseSalvageContraband]
+  id: ClothingEyesGlassesScrapperMedical
+  name: Salvage Medical Glasses 
+  description: A modified pair of medical glasses with objective tracking. Trademarked by GSL.
+  suffix: GSL
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Eyes/Glasses/salvagemed.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Eyes/Glasses/salvagemed.rsi
+  - type: Tag
+    tags:
+    - HudMedical
+    - PetWearable
+    - WhitelistChameleon
+  - type: FlashImmunity
+  - type: EyeProtection
+  - type: IdentityBlocker
+    coverage: EYES
+  - type: ShowHealthBars
+    damageContainers:
+    - Biological
+    - Silicon
+    - Robotic
+  - type: ShowObjectiveIcons
+  - type: ShowHealthIcons
+    damageContainers:
+    - Biological
+    - Silicon
+    - Robotic
+
+- type: entity
+  parent: ClothingEyesGlassesBrigmedic
+  id: ClothingEyesGlassesDeputyMedical
+  name: Deputy Medical Glasses
+  description: Shows health status icons and crew id icons alike.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Eyes/Glasses/deputy.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Eyes/Glasses/deputy.rsi
+
+- type: entity
+  parent: ClothingEyesGlassesSecurity
+  id: ClothingEyesGlassesDeputy
+  name: Deputy Glasses
+  description: Exact same thing as normal Security Glasses, except it has a different paintjob. Sylish!
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Eyes/Glasses/deputy.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Eyes/Glasses/deputy.rsi
+  
+#region ## NanoTrasen ##
 
 
 - type: entity
@@ -71,98 +149,17 @@
   - type: IdentityBlocker
     coverage: EYES
 
-#region Syndicate ####
-
-
-
-
-
-
-
-
-
-#region Command
 - type: entity
-  parent: [ClothingEyesBase, BaseCommandContraband]
-  id: ClothingEyesGlassesCommandSyndi
-  name: Administration Glasses
-  suffix: S
-  description: Upgraded sunglasses that provide flash immunity and show ID card status.
-  components:
-  - type: Sprite
-    sprite: _FarHorizons/Clothing/Eyes/Glasses/syndicommandglasses.rsi
-  - type: Clothing
-    sprite: _FarHorizons/Clothing/Eyes/Glasses/syndicommandglasses.rsi
-  - type: FlashImmunity
-  - type: EyeProtection
-    protectionTime: 5
-  - type: Tag
-    tags:
-    - HamsterWearable
-    - PetWearable
-    - WhitelistChameleon
-  - type: IdentityBlocker
-    coverage: EYES
-  - type: ShowJobIcons
-
-#region Engineering
-
-- type: entity
-  parent: [ ClothingEyesBase, BaseEngineeringSalvageContraband ]
-  id: ClothingEyesGlassesMesonSyndi
-  name: Engineering Goggles
-  suffix: S
-  description: Yellow-tinted goggles using a proprietary polymer that provides protection from eye damage of all types, it has a small switch on the side to enable an inbuilt tray scanner.
-  components:
-  - type: Sprite
-    sprite: _FarHorizons/Clothing/Eyes/Glasses/meson-syndi.rsi
-  - type: Clothing
-    sprite: _FarHorizons/Clothing/Eyes/Glasses/meson-syndi.rsi
-  - type: TrayScanner
-  - type: EyeProtection
-  - type: IdentityBlocker
-    coverage: EYES
-  - type: Tag
-    tags:
-    - PetWearable
-    - WhitelistChameleon
-
-- type: entity
-  parent: ClothingEyesBase
-  id: ClothingEyesGlassesThermalSyndi
-  name: Optical Thermal Scanner
-  suffix: S
-  description: Thermals in the shape of glasses.
-  components:
-  - type: Sprite
-    sprite: _FarHorizons/Clothing/Eyes/Glasses/thermalsyndi.rsi
-  - type: Clothing
-    sprite: _FarHorizons/Clothing/Eyes/Glasses/thermalsyndi.rsi
-  - type: Armor
-    modifiers:
-      coefficients:
-        Heat: 0.95
-  - type: GroupExamine
-  - type: IdentityBlocker
-    coverage: EYES
-  - type: ThermalSight
-  - type: LimbArmor
-    limbs:
-      Head: {}
-
-#region Security
-
-- type: entity
-  parent: [ ClothingEyesBase, ShowSecurityIcons, BaseSecurityContraband ]
-  id: ClothingEyesGlassesSecuritySyndi
+  parent: [ClothingEyesBase, ShowSecurityIcons, BaseSecurityContraband]
+  id: ClothingEyesGlassesSecurity
   name: Security Glasses
-  suffix: S
+  suffix: NT
   description: Upgraded sunglasses that provide flash immunity and a security HUD.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/Eyes/Glasses/secglasses-syndi.rsi
+    sprite: _FarHorizons/Clothing/Eyes/Glasses/secglasses.rsi
   - type: Clothing
-    sprite: _FarHorizons/Clothing/Eyes/Glasses/secglasses-syndi.rsi
+    sprite: _FarHorizons/Clothing/Eyes/Glasses/secglasses.rsi
   - type: FlashImmunity
   - type: EyeProtection
     protectionTime: 5
@@ -181,19 +178,208 @@
   - type: IdentityBlocker
     coverage: EYES
 
+- type: entity
+  parent: [ClothingEyesBase, ShowSecurityIcons, BaseSecurityContraband]
+  id: ClothingEyeGlassesSecurityPrescription
+  name: Prescription Security Glasses
+  suffix: NT
+  description: A set of unshielded prescription glasses for Security.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Eyes/Glasses/prescriptionsecglasses.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Eyes/Glasses/prescriptionsecglasses.rsi
+  - type: VisionCorrection
+  - type: Tag
+    tags:
+    - HudSecurity
+    - WhitelistChameleon
+
+#region ## NeoSol ##
+
+
+
+
+
+
+
+
+
+#region Command
+- type: entity
+  parent: [ClothingEyesBase, BaseCommandContraband]
+  id: ClothingEyesGlassesCommandSyndi
+  name: Administration Glasses
+  suffix: NS
+  description: Upgraded sunglasses that provide flash immunity and show ID card status.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Eyes/Glasses/NeoSol/commandglasses.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Eyes/Glasses/NeoSol/commandglasses.rsi
+  - type: FlashImmunity
+  - type: EyeProtection
+    protectionTime: 5
+  - type: Tag
+    tags:
+    - HamsterWearable
+    - PetWearable
+    - WhitelistChameleon
+  - type: IdentityBlocker
+    coverage: EYES
+  - type: ShowJobIcons
+
+- type: entity
+  parent: [ClothingEyesBase, BaseCommandContraband]
+  id: ClothingEyesSunGlassesHudSkillSyndi
+  name: Skills Sunglasses
+  description: Sunglasses with a build-in skills HUD, showing the employment history of nearby NeoSol crew members.
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Eyes/Glasses/NeoSol/sunhudskill.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Eyes/Glasses/NeoSol/sunhudskill.rsi
+  - type: FlashImmunity
+  - type: ShowJobIcons
+  - type: ShowMindShieldIcons
+  - type: ShowCriminalRecordIcons
+  - type: EyeProtection
+    protectionTime: 5
+
+- type: entity
+  parent: [ ClothingEyesBase, BaseBlueshieldContraband ] # Technically not Blueshield, but that's a problem for another day
+  id: ClothingEyesGlassesRedSword
+  name: Red Sword Operative's Glasses
+  description: The innovative red-lined lenses hide your eyes from light flashes and have a built-in visor.
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Eyes/Glasses/NeoSol/redswordoperative.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Eyes/Glasses/NeoSol/redswordoperative.rsi
+  - type: FlashImmunity
+  - type: ShowJobIcons
+  - type: ShowMindShieldIcons
+  - type: ShowCriminalRecordIcons
+  - type: ShowHealthBars
+    damageContainers:
+    - Biological
+  - type: ShowHealthIcons
+    damageContainers:
+    - Biological
+  - type: Tag
+    tags:
+    - HudMedical
+  - type: EyeProtection
+    protectionTime: 5
+
+#region Engineering
+
+- type: entity
+  parent: [ ClothingEyesBase, BaseEngineeringSalvageContraband ]
+  id: ClothingEyesGlassesMesonSyndi
+  name: Engineering Goggles
+  suffix: NS
+  description: Yellow-tinted goggles using a proprietary polymer that provides protection from eye damage of all types, it has a small switch on the side to enable an inbuilt tray scanner.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Eyes/Glasses/NeoSol/meson.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Eyes/Glasses/NeoSol/meson.rsi
+  - type: TrayScanner
+  - type: EyeProtection
+  - type: IdentityBlocker
+    coverage: EYES
+  - type: Tag
+    tags:
+    - PetWearable
+    - WhitelistChameleon
+
+- type: entity
+  parent: ClothingEyesBase
+  id: ClothingEyesGlassesThermalSyndi
+  name: Optical Thermal Scanner
+  suffix: NS
+  description: Thermals in the shape of glasses.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Eyes/Glasses/NeoSol/thermal.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Eyes/Glasses/NeoSol/thermal.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Heat: 0.95
+  - type: GroupExamine
+  - type: IdentityBlocker
+    coverage: EYES
+  - type: ThermalSight
+  - type: LimbArmor
+    limbs:
+      Head: {}
+
+#region Security
+
+- type: entity
+  parent: [ ClothingEyesBase, ShowSecurityIcons, BaseSecurityContraband ]
+  id: ClothingEyesGlassesSecuritySyndi
+  name: Security Glasses
+  suffix: NS
+  description: Upgraded sunglasses that provide flash immunity and a security HUD.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Eyes/Glasses/NeoSol/secglasses.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Eyes/Glasses/NeoSol/secglasses.rsi
+  - type: FlashImmunity
+  - type: EyeProtection
+    protectionTime: 5
+  - type: Construction
+    graph: GlassesSecHUD
+    node: glassesSec
+  - type: Tag
+    tags:
+    - HamsterWearable
+    - PetWearable
+    - WhitelistChameleon
+  - type: GuideHelp
+    guides:
+    - Security
+    - Antagonists
+  - type: IdentityBlocker
+    coverage: EYES
+
+- type: entity
+  parent: [ClothingEyesBase, ShowSecurityIcons, BaseSecurityContraband]
+  id: ClothingEyeGlassesSecuritySyndiePrescription
+  name: Prescription Security Glasses
+  suffix: NS
+  description: A set of unshielded prescription glasses for Security.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Eyes/Glasses/prescriptionsecglasses.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Eyes/Glasses/prescriptionsecglasses.rsi
+  - type: VisionCorrection
+  - type: Tag
+    tags:
+    - HudSecurity
+    - WhitelistChameleon
+
 # Brigmedic
 
 - type: entity
   parent: [ClothingEyesBase, ShowSecurityIcons, BaseSecurityContraband]
   id: ClothingEyesGlassesBrigmedicSyndi
   name: Security Medical Glasses
-  suffix: S
+  suffix: NS
   description: Tamashi-upgraded glasses. Yes. Security medical ones.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/Eyes/Glasses/brigmedicglasses-syndi.rsi
+    sprite: _FarHorizons/Clothing/Eyes/Glasses/NeoSol/brigmedicglasses.rsi
   - type: Clothing
-    sprite: _FarHorizons/Clothing/Eyes/Glasses/brigmedicglasses-syndi.rsi
+    sprite: _FarHorizons/Clothing/Eyes/Glasses/NeoSol/brigmedicglasses.rsi
   - type: FlashImmunity
   - type: SolutionScanner
   - type: EyeProtection

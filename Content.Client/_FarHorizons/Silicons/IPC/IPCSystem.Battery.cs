@@ -11,6 +11,7 @@ public sealed partial class IPCSystem
 
     protected override void SetupBattery()
     {
+        base.SetupBattery();
         SubscribeLocalEvent<IPCBatteryComponent, LocalPlayerAttachedEvent>(OnPlayerAttached);
         SubscribeLocalEvent<IPCBatteryComponent, LocalPlayerDetachedEvent>(OnPlayerDetached);
     }

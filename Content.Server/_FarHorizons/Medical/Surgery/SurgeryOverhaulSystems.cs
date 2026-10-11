@@ -35,22 +35,22 @@ namespace Content.Server._FarHorizons.Medical.SurgeryOverhaul.Systems;
 
 public sealed partial class SurgeryOverhaulSystem : EntitySystem
 {
-    [Dependency] private readonly MetaDataSystem _metaData = default!;
-    [Dependency] private readonly VisualBodySystem _visualBody = default!;
-    [Dependency] private readonly HumanoidProfileSystem _profile = default!;
-    [Dependency] private readonly IdentitySystem _identity = default!;
-    [Dependency] private readonly INetManager _net = default!;
-    [Dependency] private readonly DamageableSystem _damageableSystem = default!;
-    [Dependency] private readonly IPrototypeManager _prototypes = default!;
-    [Dependency] private readonly FHResearchSystem _fhResearch = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly IComponentFactory _componentFactory = default!;
-    [Dependency] private readonly StarlightEntitySystem _entity = default!;
-    [Dependency] private readonly BlindableSystem _blindableSystem = default!;
-    [Dependency] private readonly SharedRottingSystem _rottingSystem = default!;
-    [Dependency] private readonly SharedContainerSystem _containers = default!;
-    [Dependency] private readonly TagSystem _tag = default!;
-    [Dependency] private readonly LimbDamageSystem _limbDamage = default!;
+    [Dependency] private MetaDataSystem _metaData = default!;
+    [Dependency] private VisualBodySystem _visualBody = default!;
+    [Dependency] private HumanoidProfileSystem _profile = default!;
+    [Dependency] private IdentitySystem _identity = default!;
+    [Dependency] private INetManager _net = default!;
+    [Dependency] private DamageableSystem _damageableSystem = default!;
+    [Dependency] private IPrototypeManager _prototypes = default!;
+    [Dependency] private FHResearchSystem _fhResearch = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private IComponentFactory _componentFactory = default!;
+    [Dependency] private StarlightEntitySystem _entity = default!;
+    [Dependency] private BlindableSystem _blindableSystem = default!;
+    [Dependency] private SharedRottingSystem _rottingSystem = default!;
+    [Dependency] private SharedContainerSystem _containers = default!;
+    [Dependency] private TagSystem _tag = default!;
+    [Dependency] private LimbDamageSystem _limbDamage = default!;
 
     private readonly List<EntProtoId> _surgeriesForRotten = [];
     private readonly string _organicTag = "Organic";

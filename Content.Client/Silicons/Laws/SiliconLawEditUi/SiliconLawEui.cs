@@ -4,7 +4,7 @@ using Content.Shared.Silicons.Laws;
 
 namespace Content.Client.Silicons.Laws.SiliconLawEditUi;
 
-public sealed class SiliconLawEui : BaseEui
+public sealed partial class SiliconLawEui : BaseEui
 {
     private readonly EntityManager _entityManager;
 

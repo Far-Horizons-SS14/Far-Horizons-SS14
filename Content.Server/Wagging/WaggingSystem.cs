@@ -14,13 +14,13 @@ namespace Content.Server.Wagging;
 /// <summary>
 /// Adds an action to toggle wagging animation for tails markings that supporting this
 /// </summary>
-public sealed class WaggingSystem : EntitySystem
+public sealed partial class WaggingSystem : EntitySystem
 {
-    [Dependency] private readonly ActionsSystem _actions = default!;
-    [Dependency] private readonly SharedVisualBodySystem _visualBody = default!;
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
+    [Dependency] private ActionsSystem _actions = default!;
+    [Dependency] private SharedVisualBodySystem _visualBody = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
 
-    [Dependency] private readonly StarlightMarkingSystem _starlightMarking = default!; //starlight edit
+    [Dependency] private StarlightMarkingSystem _starlightMarking = default!; //starlight edit
 
     public override void Initialize()
     {
@@ -38,7 +38,16 @@ public sealed class WaggingSystem : EntitySystem
         if (!args.Settings.EventComponents.Contains(Factory.GetRegistration(ent.Comp.GetType()).Name))
             return;
 
-        EnsureComp<WaggingComponent>(args.CloneUid);
+        // Make sure to set the datafields before adding the component so that the correct action gets spawned on map init.
+        var cloneComp = Factory.GetComponent<WaggingComponent>();
+        cloneComp.Action = ent.Comp.Action;
+        cloneComp.Layer = ent.Comp.Layer;
+        cloneComp.Organ = ent.Comp.Organ;
+        // Starlight wagging
+        //cloneComp.Suffix = ent.Comp.Suffix;
+        cloneComp.Suffixes = ent.Comp.Suffixes;
+        // End of Starlight wagging
+        AddComp(args.CloneUid, cloneComp, true);
     }
 
     // private void OnWaggingMapInit(Entity<WaggingComponent> ent, ref MapInitEvent args)

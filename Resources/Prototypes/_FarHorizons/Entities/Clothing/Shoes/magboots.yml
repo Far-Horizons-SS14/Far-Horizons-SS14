@@ -37,7 +37,7 @@
   parent: [ClothingShoesBase, BaseToggleClothing]
   id: ClothingShoesBootsMagBaseSyndi
   name: Magboots
-  suffix: S
+  suffix: NS
   description: Magnetic boots, often used during extravehicular activity to ensure the user remains safely attached to the vehicle.
   abstract: true
   components:
@@ -83,7 +83,7 @@
   parent: [ClothingShoesBootsMagBase, BaseGrandTheftContraband]
   id: ClothingShoesBootsMagAdvSyndi
   name: Advanced Magboots
-  suffix: S
+  suffix: NS
   description: State-of-the-art magnetic boots that do not slow down their wearer.
   components:
   - type: Sprite
@@ -100,13 +100,13 @@
     - HighRiskItem
   - type: StaticPrice
     price: 750
-  #- type: StealTarget - Disabling for now because I can't be bothered to go through the steal target list currently.
-  #  stealGroup: ClothingShoesBootsMagAdv
+  - type: StealTarget
+    stealGroup: ClothingShoesBootsMagAdv
 
 - type: entity
   parent: [ClothingShoesBootsMagBase]
   id: ClothingShoesBootsMagSciSyndi
-  suffix: S
+  suffix: NS
   components:
   - type: Sprite
     sprite: Clothing/Shoes/Boots/magboots-science.rsi # Needs respriting for Syndicate side
@@ -131,7 +131,7 @@
     walkModifier: 0.9
     sprintModifier: 0.9
   - type: GasTank
-    outputPressure: 42.6
+    releasePressure: 42.6
     air:
       # 2 minutes of thrust
       volume: 0.75

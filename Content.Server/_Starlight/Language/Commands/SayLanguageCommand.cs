@@ -7,7 +7,7 @@ using Robust.Shared.Enums;
 namespace Content.Server._Starlight.Language.Commands;
 
 [AnyCommand]
-public sealed class SayLanguageCommand : IConsoleCommand
+public sealed partial class SayLanguageCommand : IConsoleCommand
 {
     public string Command => "saylang";
     public string Description => Loc.GetString("command-saylang-desc");

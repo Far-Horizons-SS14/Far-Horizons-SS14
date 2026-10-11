@@ -1,0 +1,16 @@
+- type: entity
+  id: EffectBossElderInnerCircle
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TimedDespawn
+    lifetime: 0.5
+  - type: OverlayVFX
+    shader: BossVFXElderInnerCircle
+  - type: AmbientSound
+    enabled: true
+    volume: 2
+    range: 15
+    sound:
+      path: /Audio/Items/Flare/flare_burn.ogg
+      params:
+        loop: true

@@ -12,72 +12,14 @@
     - GalacticCommon
     - Machine
     - Trinary
-  - type: Sprite
-    drawdepth: Mobs
-    sprite: _FarHorizons/Mobs/Species/IPC/parts.rsi
-    layers:
-    - map: [ "enum.HumanoidVisualLayers.Chest" ]
-    - map: [ "enum.HumanoidVisualLayers.Head" ]
-    - map: [ "enum.HumanoidVisualLayers.Snout" ]
-    - map: [ "enum.HumanoidVisualLayers.Eyes" ]
-    - map: [ "enum.HumanoidVisualLayers.RArm" ]
-    - map: [ "enum.HumanoidVisualLayers.LArm" ]
-    - map: [ "enum.HumanoidVisualLayers.RLeg" ]
-    - map: [ "enum.HumanoidVisualLayers.LLeg" ]
-    - map: [ "enum.HumanoidVisualLayers.UndergarmentBottom" ]
-    - map: [ "enum.HumanoidVisualLayers.UndergarmentTop" ]
-    - map: ["jumpsuit"]
-    - map: ["enum.HumanoidVisualLayers.LFoot"]
-    - map: ["enum.HumanoidVisualLayers.RFoot"]
-    - map: ["enum.HumanoidVisualLayers.LHand"]
-    - map: ["enum.HumanoidVisualLayers.RHand"]
-    - map: [ "gloves" ]
-    - map: [ "shoes" ]
-    - map: [ "ears" ]
-    - map: [ "eyes" ]
-    - map: [ "outerClothing" ]
-    - map: [ "belt" ]
-    - map: [ "id" ]
-    - map: [ "back" ]
-    - map: [ "neck" ]
-    - map: [ "enum.HumanoidVisualLayers.SnoutCover" ]
-    - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
-    - map: [ "enum.HumanoidVisualLayers.Hair" ]
-    - map: [ "enum.HumanoidVisualLayers.HeadSide" ]
-    - map: [ "enum.HumanoidVisualLayers.HeadTop" ]
-    - map: [ "enum.HumanoidVisualLayers.Tail" ]
-    - map: [ "mask" ]
-    - map: [ "head" ]
-    - map: [ "pocket1" ]
-    - map: [ "pocket2" ]
-    - map: ["enum.BorgVisualLayers.Body"]
-      state: light
-      visible: false
-    - map: ["enum.BorgVisualLayers.Light"]
-      state: light
-      shader: unshaded
-      visible: false
-    - map: [ "enum.HumanoidVisualLayers.Handcuffs" ]
-      color: "#ffffff"
-      sprite: Objects/Misc/handcuffs.rsi # Would do a custom dog handcuff sprite but unfortunately handcuffs have their overlay baked-in to the cuff itself so this is mostly filler
-      state: body-overlay-2
-      visible: false
-    - map: ["enum.BorgVisualLayers.LightStatus"]
-      state: light
-      shader: unshaded
-      visible: false
-    - map: [ "clownedon" ] # Dynamically generated
-      sprite: "Effects/creampie.rsi"
-      state: "creampie_human"
-      visible: false
   - type: MobThresholds
     thresholds:
       0: Alive
-      100: Critical
+      100: ActiveCritical
       200: Dead
     stateAlertDict:
       Alive: IPCHealth
-      Critical: BorgCrit
+      ActiveCritical: BorgCrit
       Dead: BorgDead
   - type: WiresPanel
   - type: DamageVisuals
@@ -118,21 +60,20 @@
   - type: Stamina
     staminaAlert: "IPCStamina"
   - type: Damageable
-    damageContainer: Robotic
     damageModifierSet: IPC
-  - type: SolutionContainerManager
+  - type: Injurable
+    damageContainer: Robotic
+  - type: SolutionManager
     solutions:
-      bloodstream:
-        canReact: false # My robots aren't beakers! (oil -> ash conversion is evil and needs to go)
-      bloodstreamTemporary:
-        canReact: false
-      metabolites:
-        canReact: false
+    - SolutionIPCBloodstream
+    - SolutionIPCBloodstreamTemporary
+    - SolutionIPCMetabolites
   - type: Bloodstream
     bloodReferenceSolution:
       reagents:
       - ReagentId: Oil
         Quantity: 300
+    minBloodDamage: 8
     bleedReductionAmount: 0 # No natural wound closing whatsoever
     bloodlossThreshold: 0.75 # Everyone else start taking bloodloss damage at 90%, but with no natural bleeding stop - IPC can last for a bit longer
   - type: IPCWeldClosesWounds
@@ -168,7 +109,7 @@
     slots:
       cell_slot:
         name: power-cell-slot-component-slot-name-default
-        startingItem: PowerCellMedium
+        startingItem: PowerCellMedium 
   # Brain
   - type: IPCBrainHolder
   - type: ContainerFill
@@ -242,12 +183,13 @@
   - type: Repairable # So welder is just a special little snowflake in the code. I tried making healing with welder work through ConditionalHealing component, but it would require too many changes in too many places. So we will keep on the trend and have brute healing defined here. /shrug
     doAfterDelay: 2 # A bit slower than conventional topicals, but heals for more.
     allowSelfRepair: true
-    fuelCost: 10
+    fuelCost: 5
     damage:
       types:
         Blunt: -10
         Piercing: -10
         Slash: -10
+    selfRepairPenalty: 1.5
   - type: HumanoidEMP # HumanoidEMP is needed to receive EMP effects, it may carry its own innate effects, but doesn't have to
     effectCooldown: 2
     baseDamage:
@@ -328,6 +270,8 @@
       enum.ThavenMoodsUiKey.Key: # impstation edit
         type: ThavenMoodsBoundUserInterface
         requireInputValidation: false
+      enum.BackgroundTraitsUiKey.Key:
+        type: BackgroundTraitsBoundUserInterface
   - type: ActivatableUI
     key: enum.IPCUiKey.Key
   - type: UIRequiresLock
@@ -358,6 +302,12 @@
     externalCoolingTag: IPCExternalCooling # Items must have this tag on them
     externalCoolingCheckSlots: # All slots must have item in them, and all these items must have tag
       - outerClothing
+      - suitstorage
+      - suitstorage2
+      - belt
+      - back
+      - pocket1
+      - pocket2
       #- head # uncomment and add tags to helmets if you want them to be closed in space
     fansEfficiencyLowThreshold: 0.15 # Efficiency has to be lower than this before fansEfficiencyLowAlert is shown (percentage, from 0 to 1)
     fansOffExamineText: ipc-thermals-examine-off
@@ -405,6 +355,36 @@
       - shoes
   - type: LimbDamageable # Far Horizons
     proto: LimbTargetIPC
+
+- type: entity
+  parent: Solution
+  id: SolutionIPCBloodstream
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: bloodstream
+    solution:
+      canReact: false # My robots aren't beakers! (oil -> ash conversion is evil and needs to go)
+
+- type: entity
+  parent: Solution
+  id: SolutionIPCBloodstreamTemporary
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: bloodstreamTemporary
+    solution:
+      canReact: false
+
+- type: entity
+  parent: Solution
+  id: SolutionIPCMetabolites
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: metabolites
+    solution:
+      canReact: false
 
 - type: entity
   parent: BaseMentalAction

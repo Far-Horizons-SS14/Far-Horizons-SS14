@@ -102,7 +102,7 @@
     radius: 1.5
     energy: 3.0
     enabled: false
-    mask: /Textures/Effects/LightMasks/cone.png
+    lightMask: ConeSingle
     autoRot: true
     offset: "0, 0.4"
     castShadows: false
@@ -301,8 +301,6 @@
           type: GunneryConsoleBoundUserInterface
         enum.WiresUiKey.Key:
           type: WiresBoundUserInterface
-  - type: WorldLoader
-    radius: 256
   - type: PointLight
     radius: 1.5
     energy: 4.0
@@ -342,3 +340,1277 @@
     radius: 1.5
     energy: 1.6
     color: "#FC0097"
+
+#region NeoSol
+
+
+
+
+
+
+
+#region Command
+  
+- type: entity
+  parent: ComputerId
+  id: ComputerIdNS
+  name: ID Card Computer
+  suffix: NS
+  description: Terminal for programming NeoSol employee ID cards to access parts of the station.
+  components:
+  - type: IdCardConsole
+    accessGroups:
+    - GeneralNS
+    - SecurityNS
+    - Cargo
+    - Executive
+    - ResearchNS
+    - MedicalNS
+    - ServiceNS
+    - EngineeringNS
+    - General
+    - Security
+    - Command
+    - Research
+    - Medical
+    - Service
+    - Engineering
+    factions:
+    - FactionSyndicate
+    - FactionCFA
+    - FactionCargonia
+  - type: Computer
+    board: IDComputerCircuitboardNS
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/command.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer-synd
+    - map: ["computerLayerKeyboard"]
+      state: id_keyboard
+    - map: ["computerLayerScreen"]
+      state: id
+    - map: ["computerLayerKeys"]
+      state: id_keyboard
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      sprite: Structures/Machines/computers.rsi
+      state: generic_panel_open
+  - type: EdgeConnection
+    connectionKey: computers
+    allowedDirections: East, West
+  - type: GenericVisualizer
+    visuals:
+      enum.ComputerVisuals.Powered:
+        computerLayerScreen:
+          True: { visible: true, shader: unshaded }
+          False: { visible: false }
+        computerLayerKeys:
+          True: { visible: true, shader: unshaded }
+          False: { visible: true, shader: shaded }
+      enum.WiresVisuals.MaintenancePanelState:
+        enum.WiresVisualLayers.MaintenancePanel:
+          True: { visible: false }
+          False: { visible: true }
+      enum.EdgeConnectionVisuals.ConnectionMask:
+        computerLayerBody:
+          None: { state: computer-synd, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/command.rsi }
+          West: { state: computer_r-synd, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/command.rsi }
+          East: { state: computer_l-synd, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/command.rsi }
+          East, West: { state: computer_l_r-synd, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/command.rsi }
+
+- type: entity
+  parent: ComputerComms
+  id: ComputerCommsNS
+  suffix: NS, Command
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/command.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer-synd
+    - map: ["computerLayerKeyboard"]
+      state: comms_keyboard
+    - map: ["computerLayerScreen"]
+      state: comm
+    - map: ["computerLayerKeys"]
+      state: comms_keyboard
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      sprite: Structures/Machines/computers.rsi
+      state: generic_panel_open
+  - type: EdgeConnection
+    connectionKey: computers
+    allowedDirections: East, West
+  - type: GenericVisualizer
+    visuals:
+      enum.ComputerVisuals.Powered:
+        computerLayerScreen:
+          True: { visible: true, shader: unshaded }
+          False: { visible: false }
+        computerLayerKeys:
+          True: { visible: true, shader: unshaded }
+          False: { visible: true, shader: shaded }
+      enum.WiresVisuals.MaintenancePanelState:
+        enum.WiresVisualLayers.MaintenancePanel:
+          True: { visible: false }
+          False: { visible: true }
+      enum.EdgeConnectionVisuals.ConnectionMask:
+        computerLayerBody:
+          None: { state: computer-synd, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/command.rsi }
+          West: { state: computer_r-synd, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/command.rsi }
+          East: { state: computer_l-synd, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/command.rsi }
+          East, West: { state: computer_l_r-synd, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/command.rsi }
+  - type: Computer
+    board: CommsComputerCircuitboardNS
+
+- type: entity
+  parent: ComputerFundingAllocation
+  id: ComputerFundingAllocationNS
+  suffix: NS
+  components:
+  - type: AccessReader
+    access: [["PersonnelManager"], ["Quartermaster"]]
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/command.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer-synd
+    - map: ["computerLayerKeyboard"]
+      state: comms_keyboard
+    - map: ["computerLayerScreen"]
+      state: allocate
+    - map: ["computerLayerKeys"]
+      state: allocate_keyboard
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      sprite: Structures/Machines/computers.rsi
+      state: generic_panel_open
+  - type: EdgeConnection
+    connectionKey: computers
+    allowedDirections: East, West
+  - type: GenericVisualizer
+    visuals:
+      enum.ComputerVisuals.Powered:
+        computerLayerScreen:
+          True: { visible: true, shader: unshaded }
+          False: { visible: false }
+        computerLayerKeys:
+          True: { visible: true, shader: unshaded }
+          False: { visible: true, shader: shaded }
+      enum.WiresVisuals.MaintenancePanelState:
+        enum.WiresVisualLayers.MaintenancePanel:
+          True: { visible: false }
+          False: { visible: true }
+      enum.EdgeConnectionVisuals.ConnectionMask:
+        computerLayerBody:
+          None: { state: computer-synd, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/command.rsi }
+          West: { state: computer_r-synd, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/command.rsi }
+          East: { state: computer_l-synd, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/command.rsi }
+          East, West: { state: computer_l_r-synd, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/command.rsi }
+  - type: Computer
+    board: FundingAllocationComputerCircuitboardNS
+
+- type: entity
+  parent: RecruitmentComputer
+  id: RecruitmentComputerNS
+  suffix: NS
+  components:
+  - type: AccessReader
+    access: [["NSHighCommand"]]
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/command.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer-synd
+    - map: ["computerLayerKeyboard"]
+      state: recruitment_keyboard
+    - map: ["computerLayerScreen"]
+      state: recruitment
+    - map: ["computerLayerKeys"]
+      state: recruitment_keyboard
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      sprite: Structures/Machines/computers.rsi
+      state: generic_panel_open
+  - type: EdgeConnection
+    connectionKey: computers
+    allowedDirections: East, West
+  - type: GenericVisualizer
+    visuals:
+      enum.ComputerVisuals.Powered:
+        computerLayerScreen:
+          True: { visible: true, shader: unshaded }
+          False: { visible: false }
+        computerLayerKeys:
+          True: { visible: true, shader: unshaded }
+          False: { visible: true, shader: shaded }
+      enum.WiresVisuals.MaintenancePanelState:
+        enum.WiresVisualLayers.MaintenancePanel:
+          True: { visible: false }
+          False: { visible: true }
+      enum.EdgeConnectionVisuals.ConnectionMask:
+        computerLayerBody:
+          None: { state: computer-synd, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/command.rsi }
+          West: { state: computer_r-synd, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/command.rsi }
+          East: { state: computer_l-synd, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/command.rsi }
+          East, West: { state: computer_l_r-synd, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/command.rsi }
+  - type: Computer
+    board: RecruitmentComputerCircuitboardNS
+
+#region Engineering
+
+
+- type: entity
+  parent: ComputerComms
+  id: ComputerCommsEngineeringNS
+  name: Engineering Communications Computer
+  suffix: NS
+  description: A computer used to make station wide announcements via keyboard, set the appropriate alert level, and call the emergency shuttle.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/engineering.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer-eng
+    - map: ["computerLayerKeyboard"]
+      state: engi_keyboard
+    - map: ["computerLayerScreen"]
+      sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/command.rsi
+      state: comm
+    - map: ["computerLayerKeys"]
+      state: engi_keyboard
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      sprite: Structures/Machines/computers.rsi
+      state: generic_panel_open
+  - type: EdgeConnection
+    connectionKey: computers
+    allowedDirections: East, West
+  - type: GenericVisualizer
+    visuals:
+      enum.ComputerVisuals.Powered:
+        computerLayerScreen:
+          True: { visible: true, shader: unshaded }
+          False: { visible: false }
+        computerLayerKeys:
+          True: { visible: true, shader: unshaded }
+          False: { visible: true, shader: shaded }
+      enum.WiresVisuals.MaintenancePanelState:
+        enum.WiresVisualLayers.MaintenancePanel:
+          True: { visible: false }
+          False: { visible: true }
+      enum.EdgeConnectionVisuals.ConnectionMask:
+        computerLayerBody:
+          None: { state: computer-eng, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/engineering.rsi }
+          West: { state: computer_r-eng, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/engineering.rsi }
+          East: { state: computer_l-eng, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/engineering.rsi }
+          East, West: { state: computer_l_r-eng, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/engineering.rsi }
+  - type: AccessReader
+    access: [["Foreman"]]
+  - type: CommunicationsConsole
+    title: comms-console-announcement-title-eng
+    sound: /Audio/_Starlight/Announcements/announce2.ogg
+    color: "#ff733c"
+    settableAlertLevels:
+      - green
+      - yellow
+      - orange
+    canBroadcast: false
+    canShuttle: false
+  - type: Computer
+    board: EngineeringCommsComputerCircuitboardNS
+  - type: PointLight
+    radius: 1.5
+    energy: 4.0
+    color: "#ff733c"
+
+- type: entity
+  id: ComputerCargoOrdersEngineeringNS
+  parent: ComputerCargoOrdersEngineering
+  name: Engineering Request Computer
+  suffix: NS
+  description: Used by the engineering department to order supplies.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/engineering.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer-eng
+    - map: ["computerLayerKeyboard"]
+      state: engi_keyboard
+    - map: ["computerLayerScreen"]
+      state: request-eng
+    - map: ["computerLayerKeys"]
+      state: engi_keyboard
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      sprite: Structures/Machines/computers.rsi
+      state: generic_panel_open
+  - type: EdgeConnection
+    connectionKey: computers
+    allowedDirections: East, West
+  - type: GenericVisualizer
+    visuals:
+      enum.ComputerVisuals.Powered:
+        computerLayerScreen:
+          True: { visible: true, shader: unshaded }
+          False: { visible: false }
+        computerLayerKeys:
+          True: { visible: true, shader: unshaded }
+          False: { visible: true, shader: shaded }
+      enum.WiresVisuals.MaintenancePanelState:
+        enum.WiresVisualLayers.MaintenancePanel:
+          True: { visible: false }
+          False: { visible: true }
+      enum.EdgeConnectionVisuals.ConnectionMask:
+        computerLayerBody:
+          None: { state: computer-eng, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/engineering.rsi }
+          West: { state: computer_r-eng, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/engineering.rsi }
+          East: { state: computer_l-eng, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/engineering.rsi }
+          East, West: { state: computer_l_r-eng, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/engineering.rsi }
+  - type: CargoOrderConsole
+    account: EngineeringNS
+    announcementChannel: SyndiEngi
+    removeLimitAccess: [ "Foreman" ]
+    mode: PrintSlip
+  - type: ActiveRadio
+    channels:
+    - SyndiEngi
+  - type: AccessReader
+    access: [["EngineeringNS"]]
+  - type: Computer
+    board: CargoRequestEngineeringComputerCircuitboardNS
+
+- type: entity
+  parent: ComputerPowerMonitoring
+  id: ComputerPowerMonitoringNS
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/engineering.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer-eng
+    - map: ["computerLayerKeyboard"]
+      state: power_monitor_keyboard
+    - map: ["computerLayerScreen"]
+      state: power_monitor
+    - map: ["computerLayerKeys"]
+      state: power_monitor_keyboard
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      sprite: Structures/Machines/computers.rsi
+      state: generic_panel_open
+  - type: EdgeConnection
+    connectionKey: computers
+    allowedDirections: East, West
+  - type: GenericVisualizer
+    visuals:
+      enum.ComputerVisuals.Powered:
+        computerLayerScreen:
+          True: { visible: true, shader: unshaded }
+          False: { visible: false }
+        computerLayerKeys:
+          True: { visible: true, shader: unshaded }
+          False: { visible: true, shader: shaded }
+      enum.WiresVisuals.MaintenancePanelState:
+        enum.WiresVisualLayers.MaintenancePanel:
+          True: { visible: false }
+          False: { visible: true }
+      enum.EdgeConnectionVisuals.ConnectionMask:
+        computerLayerBody:
+          None: { state: computer-eng, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/engineering.rsi }
+          West: { state: computer_r-eng, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/engineering.rsi }
+          East: { state: computer_l-eng, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/engineering.rsi }
+          East, West: { state: computer_l_r-eng, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/engineering.rsi }
+  - type: Computer
+    board: PowerComputerCircuitboardNS
+
+- type: entity
+  parent: ComputerSolarControl
+  id: ComputerSolarControlNS
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/engineering.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer-eng
+    - map: ["computerLayerKeyboard"]
+      state: solar_screen_keyboard
+    - map: ["computerLayerScreen"]
+      state: solar_screen
+    - map: ["computerLayerKeys"]
+      state: solar_screen_keyboard
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      sprite: Structures/Machines/computers.rsi
+      state: generic_panel_open
+  - type: EdgeConnection
+    connectionKey: computers
+    allowedDirections: East, West
+  - type: GenericVisualizer
+    visuals:
+      enum.ComputerVisuals.Powered:
+        computerLayerScreen:
+          True: { visible: true, shader: unshaded }
+          False: { visible: false }
+        computerLayerKeys:
+          True: { visible: true, shader: unshaded }
+          False: { visible: true, shader: shaded }
+      enum.WiresVisuals.MaintenancePanelState:
+        enum.WiresVisualLayers.MaintenancePanel:
+          True: { visible: false }
+          False: { visible: true }
+      enum.EdgeConnectionVisuals.ConnectionMask:
+        computerLayerBody:
+          None: { state: computer-eng, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/engineering.rsi }
+          West: { state: computer_r-eng, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/engineering.rsi }
+          East: { state: computer_l-eng, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/engineering.rsi }
+          East, West: { state: computer_l_r-eng, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/engineering.rsi }
+  - type: Computer
+    board: SolarControlComputerCircuitboardNS
+
+#region Medical
+
+- type: entity
+  parent: ComputerCrewMonitoring
+  id: ComputerCrewMonitoringNS
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/medical.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer-med
+    - map: ["computerLayerKeyboard"]
+      state: crew_keyboard
+    - map: ["computerLayerScreen"]
+      state: crew
+    - map: ["computerLayerKeys"]
+      state: crew_keyboard
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      sprite: Structures/Machines/computers.rsi
+      state: generic_panel_open
+  - type: EdgeConnection
+    connectionKey: computers
+    allowedDirections: East, West
+  - type: GenericVisualizer
+    visuals:
+      enum.ComputerVisuals.Powered:
+        computerLayerScreen:
+          True: { visible: true, shader: unshaded }
+          False: { visible: false }
+        computerLayerKeys:
+          True: { visible: true, shader: unshaded }
+          False: { visible: true, shader: shaded }
+      enum.WiresVisuals.MaintenancePanelState:
+        enum.WiresVisualLayers.MaintenancePanel:
+          True: { visible: false }
+          False: { visible: true }
+      enum.EdgeConnectionVisuals.ConnectionMask:
+        computerLayerBody:
+          None: { state: computer-med, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/medical.rsi }
+          West: { state: computer_r-med, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/medical.rsi }
+          East: { state: computer_l-med, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/medical.rsi }
+          East, West: { state: computer_l_r-med, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/medical.rsi }
+  - type: Computer
+    board: CrewMonitoringComputerCircuitboardNS
+
+- type: entity
+  parent: ComputerMedicalRecords
+  id: ComputerMedicalRecordsNS
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/medical.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer-med
+    - map: ["computerLayerKeyboard"]
+      state: medcomp_keyboard
+    - map: ["computerLayerScreen"]
+      state: medcomp
+    - map: ["computerLayerKeys"]
+      state: medcomp_keyboard
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      sprite: Structures/Machines/computers.rsi
+      state: generic_panel_open
+  - type: EdgeConnection
+    connectionKey: computers
+    allowedDirections: East, West
+  - type: GenericVisualizer
+    visuals:
+      enum.ComputerVisuals.Powered:
+        computerLayerScreen:
+          True: { visible: true, shader: unshaded }
+          False: { visible: false }
+        computerLayerKeys:
+          True: { visible: true, shader: unshaded }
+          False: { visible: true, shader: shaded }
+      enum.WiresVisuals.MaintenancePanelState:
+        enum.WiresVisualLayers.MaintenancePanel:
+          True: { visible: false }
+          False: { visible: true }
+      enum.EdgeConnectionVisuals.ConnectionMask:
+        computerLayerBody:
+          None: { state: computer-med, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/medical.rsi }
+          West: { state: computer_r-med, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/medical.rsi }
+          East: { state: computer_l-med, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/medical.rsi }
+          East, West: { state: computer_l_r-med, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/medical.rsi }
+  - type: AccessReader
+    access: [["SecurityNS"], ["CadetNS"]] # Starlight: add cadet
+  - type: Computer
+    board: MedicalRecordsComputerCircuitboardNS
+
+- type: entity
+  parent: ComputerCloningConsole
+  id: ComputerCloningConsoleNS
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/medical.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer-med
+    - map: ["computerLayerKeyboard"]
+      state: dna_keyboard
+    - map: ["computerLayerScreen"]
+      state: dna
+    - map: ["computerLayerKeys"]
+      state: dna_keyboard
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      sprite: Structures/Machines/computers.rsi
+      state: generic_panel_open
+  - type: EdgeConnection
+    connectionKey: computers
+    allowedDirections: East, West
+  - type: GenericVisualizer
+    visuals:
+      enum.ComputerVisuals.Powered:
+        computerLayerScreen:
+          True: { visible: true, shader: unshaded }
+          False: { visible: false }
+        computerLayerKeys:
+          True: { visible: true, shader: unshaded }
+          False: { visible: true, shader: shaded }
+      enum.WiresVisuals.MaintenancePanelState:
+        enum.WiresVisualLayers.MaintenancePanel:
+          True: { visible: false }
+          False: { visible: true }
+      enum.EdgeConnectionVisuals.ConnectionMask:
+        computerLayerBody:
+          None: { state: computer-med, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/medical.rsi }
+          West: { state: computer_r-med, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/medical.rsi }
+          East: { state: computer_l-med, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/medical.rsi }
+          East, West: { state: computer_l_r-med, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/medical.rsi }
+  - type: Computer
+    board: CloningConsoleComputerCircuitboardNS
+
+- type: entity
+  parent: ComputerCargoOrdersMedical
+  id: ComputerCargoOrdersMedicalNS 
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/medical.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer-med
+    - map: ["computerLayerKeyboard"]
+      state: request-med_keyboard
+    - map: ["computerLayerScreen"]
+      state: request-med
+    - map: ["computerLayerKeys"]
+      state: request-med_keyboard
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      sprite: Structures/Machines/computers.rsi
+      state: generic_panel_open
+  - type: EdgeConnection
+    connectionKey: computers
+    allowedDirections: East, West
+  - type: GenericVisualizer
+    visuals:
+      enum.ComputerVisuals.Powered:
+        computerLayerScreen:
+          True: { visible: true, shader: unshaded }
+          False: { visible: false }
+        computerLayerKeys:
+          True: { visible: true, shader: unshaded }
+          False: { visible: true, shader: shaded }
+      enum.WiresVisuals.MaintenancePanelState:
+        enum.WiresVisualLayers.MaintenancePanel:
+          True: { visible: false }
+          False: { visible: true }
+      enum.EdgeConnectionVisuals.ConnectionMask:
+        computerLayerBody:
+          None: { state: computer-med, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/medical.rsi }
+          West: { state: computer_r-med, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/medical.rsi }
+          East: { state: computer_l-med, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/medical.rsi }
+          East, West: { state: computer_l_r-med, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/medical.rsi }
+  - type: CargoOrderConsole
+    account: MedicalNS
+    announcementChannel: SyndiMed
+    removeLimitAccess: [ "MedicalDirector" ]
+    mode: PrintSlip
+  - type: ActiveRadio
+    channels:
+    - SyndiMed
+  - type: AccessReader
+    access: [["MedicalNS"]]
+  - type: Computer
+    board: CargoRequestMedicalComputerCircuitboardNS
+
+- type: entity
+  parent: ComputerCommsMedical
+  id: ComputerCommsMedicalNS
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/medical.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer-med
+    - map: ["computerLayerKeyboard"]
+      state: request-med_keyboard
+    - map: ["computerLayerScreen"]
+      sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/command.rsi
+      state: comm
+    - map: ["computerLayerKeys"]
+      state: request-med_keyboard
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      sprite: Structures/Machines/computers.rsi
+      state: generic_panel_open
+  - type: EdgeConnection
+    connectionKey: computers
+    allowedDirections: East, West
+  - type: GenericVisualizer
+    visuals:
+      enum.ComputerVisuals.Powered:
+        computerLayerScreen:
+          True: { visible: true, shader: unshaded }
+          False: { visible: false }
+        computerLayerKeys:
+          True: { visible: true, shader: unshaded }
+          False: { visible: true, shader: shaded }
+      enum.WiresVisuals.MaintenancePanelState:
+        enum.WiresVisualLayers.MaintenancePanel:
+          True: { visible: false }
+          False: { visible: true }
+      enum.EdgeConnectionVisuals.ConnectionMask:
+        computerLayerBody:
+          None: { state: computer-med, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/medical.rsi }
+          West: { state: computer_r-med, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/medical.rsi }
+          East: { state: computer_l-med, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/medical.rsi }
+          East, West: { state: computer_l_r-med, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/medical.rsi }
+  - type: AccessReader
+    access: [[ "MedicalDirector" ]]
+  - type: Computer
+    board: MedicalCommsComputerCircuitboardNS
+
+#region Science
+
+- type: entity
+  parent: ComputerAnalysisConsole
+  id: ComputerAnalysisConsoleNS
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/science.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer-sci
+    - map: ["computerLayerKeyboard"]
+      state: science_keyboard
+    - map: ["computerLayerScreen"]
+      state: artifact
+    - map: ["computerLayerKeys"]
+      state: science_keyboard
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      sprite: Structures/Machines/computers.rsi
+      state: generic_panel_open
+  - type: EdgeConnection
+    connectionKey: computers
+    allowedDirections: East, West
+  - type: GenericVisualizer
+    visuals:
+      enum.ComputerVisuals.Powered:
+        computerLayerScreen:
+          True: { visible: true, shader: unshaded }
+          False: { visible: false }
+        computerLayerKeys:
+          True: { visible: true, shader: unshaded }
+          False: { visible: true, shader: shaded }
+      enum.WiresVisuals.MaintenancePanelState:
+        enum.WiresVisualLayers.MaintenancePanel:
+          True: { visible: false }
+          False: { visible: true }
+      enum.EdgeConnectionVisuals.ConnectionMask:
+        computerLayerBody:
+          None: { state: computer-sci, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/science.rsi }
+          West: { state: computer_r-sci, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/science.rsi }
+          East: { state: computer_l-sci, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/science.rsi }
+          East, West: { state: computer_l_r-sci, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/science.rsi }
+  - type: Computer
+    board: AnalysisComputerCircuitboardNS
+
+- type: entity
+  parent: ComputerRoboticsControl
+  id: ComputerRoboticsControlNS
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/science.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer-sci
+    - map: ["computerLayerKeyboard"]
+      state: science_keyboard_2
+    - map: ["computerLayerScreen"]
+      state: mecha
+    - map: ["computerLayerKeys"]
+      state: science_keyboard_2
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      sprite: Structures/Machines/computers.rsi
+      state: generic_panel_open
+  - type: EdgeConnection
+    connectionKey: computers
+    allowedDirections: East, West
+  - type: GenericVisualizer
+    visuals:
+      enum.ComputerVisuals.Powered:
+        computerLayerScreen:
+          True: { visible: true, shader: unshaded }
+          False: { visible: false }
+        computerLayerKeys:
+          True: { visible: true, shader: unshaded }
+          False: { visible: true, shader: shaded }
+      enum.WiresVisuals.MaintenancePanelState:
+        enum.WiresVisualLayers.MaintenancePanel:
+          True: { visible: false }
+          False: { visible: true }
+      enum.EdgeConnectionVisuals.ConnectionMask:
+        computerLayerBody:
+          None: { state: computer-sci, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/science.rsi }
+          West: { state: computer_r-sci, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/science.rsi }
+          East: { state: computer_l-sci, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/science.rsi }
+          East, West: { state: computer_l_r-sci, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/science.rsi }
+  - type: ActiveRadio
+    channels:
+    - SyndiSci
+  - type: AccessReader # only used for dangerous things
+    access: [["RoboticsNS"]]
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: RoboticsConsoleNS
+    transmitFrequencyId: CyborgControlNS
+  - type: Computer
+    board: RoboticsConsoleCircuitboardNS
+
+- type: entity
+  parent: ComputerResearchAndDevelopment
+  id: ComputerResearchAndDevelopmentNS
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/science.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer-sci
+    - map: ["computerLayerKeyboard"]
+      state: science_keyboard
+    - map: ["computerLayerScreen"]
+      state: rdcomp
+    - map: ["computerLayerKeys"]
+      state: science_keyboard
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      sprite: Structures/Machines/computers.rsi
+      state: generic_panel_open
+  - type: EdgeConnection
+    connectionKey: computers
+    allowedDirections: East, West
+  - type: GenericVisualizer
+    visuals:
+      enum.ComputerVisuals.Powered:
+        computerLayerScreen:
+          True: { visible: true, shader: unshaded }
+          False: { visible: false }
+        computerLayerKeys:
+          True: { visible: true, shader: unshaded }
+          False: { visible: true, shader: shaded }
+      enum.WiresVisuals.MaintenancePanelState:
+        enum.WiresVisualLayers.MaintenancePanel:
+          True: { visible: false }
+          False: { visible: true }
+      enum.EdgeConnectionVisuals.ConnectionMask:
+        computerLayerBody:
+          None: { state: computer-sci, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/science.rsi }
+          West: { state: computer_r-sci, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/science.rsi }
+          East: { state: computer_l-sci, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/science.rsi }
+          East, West: { state: computer_l_r-sci, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/science.rsi }
+  - type: AccessReader
+    access: [["ResearchNS"]]
+  - type: Computer
+    board: ResearchComputerCircuitboardNS
+
+- type: entity
+  parent: ComputerCommsScience
+  id: ComputerCommsScienceNS
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/science.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer-sci
+    - map: ["computerLayerKeyboard"]
+      state: science_keyboard
+    - map: ["computerLayerScreen"]
+      sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/command.rsi
+      state: comm
+    - map: ["computerLayerKeys"]
+      state: science_keyboard
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      sprite: Structures/Machines/computers.rsi
+      state: generic_panel_open
+  - type: EdgeConnection
+    connectionKey: computers
+    allowedDirections: East, West
+  - type: GenericVisualizer
+    visuals:
+      enum.ComputerVisuals.Powered:
+        computerLayerScreen:
+          True: { visible: true, shader: unshaded }
+          False: { visible: false }
+        computerLayerKeys:
+          True: { visible: true, shader: unshaded }
+          False: { visible: true, shader: shaded }
+      enum.WiresVisuals.MaintenancePanelState:
+        enum.WiresVisualLayers.MaintenancePanel:
+          True: { visible: false }
+          False: { visible: true }
+      enum.EdgeConnectionVisuals.ConnectionMask:
+        computerLayerBody:
+          None: { state: computer-sci, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/science.rsi }
+          West: { state: computer_r-sci, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/science.rsi }
+          East: { state: computer_l-sci, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/science.rsi }
+          East, West: { state: computer_l_r-sci, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/science.rsi }
+  - type: AccessReader
+    access: [[ "EpistemicsProvost" ]]
+  - type: CommunicationsConsole
+    title: comms-console-announcement-title-sci
+    sound: /Audio/_Starlight/Announcements/announce2.ogg
+    color: "#cd7ccd"
+    settableAlertLevels:
+      - green
+      - yellow
+    canBroadcast: false
+    canShuttle: false
+  - type: Computer
+    board: ScienceCommsComputerCircuitboardNS
+
+- type: entity
+  id: ComputerCargoOrdersScienceNS
+  parent: ComputerCargoOrdersScience
+  name: Science Request Computer
+  description: Used by the science department to order supplies.
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/science.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer-sci
+    - map: ["computerLayerKeyboard"]
+      state: science_keyboard
+    - map: ["computerLayerScreen"]
+      state: request-sci
+    - map: ["computerLayerKeys"]
+      state: science_keyboard
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      sprite: Structures/Machines/computers.rsi
+      state: generic_panel_open
+  - type: EdgeConnection
+    connectionKey: computers
+    allowedDirections: East, West
+  - type: GenericVisualizer
+    visuals:
+      enum.ComputerVisuals.Powered:
+        computerLayerScreen:
+          True: { visible: true, shader: unshaded }
+          False: { visible: false }
+        computerLayerKeys:
+          True: { visible: true, shader: unshaded }
+          False: { visible: true, shader: shaded }
+      enum.WiresVisuals.MaintenancePanelState:
+        enum.WiresVisualLayers.MaintenancePanel:
+          True: { visible: false }
+          False: { visible: true }
+      enum.EdgeConnectionVisuals.ConnectionMask:
+        computerLayerBody:
+          None: { state: computer-sci, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/science.rsi }
+          West: { state: computer_r-sci, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/science.rsi }
+          East: { state: computer_l-sci, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/science.rsi }
+          East, West: { state: computer_l_r-sci, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/science.rsi }
+  - type: CargoOrderConsole
+    account: ScienceNS
+    announcementChannel: SyndiSci
+    removeLimitAccess: [ "EpistemicsProvost" ]
+    mode: PrintSlip
+  - type: ActiveRadio
+    channels:
+    - SyndiSci
+  - type: AccessReader
+    access: [["ResearchNS"]]
+  - type: Computer
+    board: CargoRequestScienceComputerCircuitboardNS
+
+#region Security
+
+- type: entity
+  parent: ComputerSurveillanceCameraMonitor
+  id: ComputerSurveillanceCameraMonitorNS
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/security.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer-sec
+    - map: ["computerLayerKeyboard"]
+      state: security_keyboard
+    - map: ["computerLayerScreen"]
+      state: cameras
+    - map: ["computerLayerKeys"]
+      state: security_keyboard
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      sprite: Structures/Machines/computers.rsi
+      state: generic_panel_open
+  - type: EdgeConnection
+    connectionKey: computers
+    allowedDirections: East, West
+  - type: GenericVisualizer
+    visuals:
+      enum.ComputerVisuals.Powered:
+        computerLayerScreen:
+          True: { visible: true, shader: unshaded }
+          False: { visible: false }
+        computerLayerKeys:
+          True: { visible: true, shader: unshaded }
+          False: { visible: true, shader: shaded }
+      enum.WiresVisuals.MaintenancePanelState:
+        enum.WiresVisualLayers.MaintenancePanel:
+          True: { visible: false }
+          False: { visible: true }
+      enum.EdgeConnectionVisuals.ConnectionMask:
+        computerLayerBody:
+          None: { state: computer-sec, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/security.rsi }
+          West: { state: computer_r-sec, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/security.rsi }
+          East: { state: computer_l-sec, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/security.rsi }
+          East, West: { state: computer_l_r-sec, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/security.rsi }
+  - type: Computer
+    board: SurveillanceCameraMonitorCircuitboardNS
+
+- type: entity
+  parent: ComputerSurveillanceWirelessCameraMonitor
+  id: ComputerSurveillanceWirelessCameraMonitorNS
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/security.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer-sec
+    - map: ["computerLayerKeyboard"]
+      state: security_keyboard
+    - map: ["computerLayerScreen"]
+      state: cameras
+    - map: ["computerLayerKeys"]
+      state: security_keyboard
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      sprite: Structures/Machines/computers.rsi
+      state: generic_panel_open
+  - type: EdgeConnection
+    connectionKey: computers
+    allowedDirections: East, West
+  - type: GenericVisualizer
+    visuals:
+      enum.ComputerVisuals.Powered:
+        computerLayerScreen:
+          True: { visible: true, shader: unshaded }
+          False: { visible: false }
+        computerLayerKeys:
+          True: { visible: true, shader: unshaded }
+          False: { visible: true, shader: shaded }
+      enum.WiresVisuals.MaintenancePanelState:
+        enum.WiresVisualLayers.MaintenancePanel:
+          True: { visible: false }
+          False: { visible: true }
+      enum.EdgeConnectionVisuals.ConnectionMask:
+        computerLayerBody:
+          None: { state: computer-sec, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/security.rsi }
+          West: { state: computer_r-sec, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/security.rsi }
+          East: { state: computer_l-sec, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/security.rsi }
+          East, West: { state: computer_l_r-sec, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/security.rsi }
+  - type: Computer
+    board: SurveillanceWirelessCameraMonitorCircuitboardNS
+
+- type: entity
+  parent: ComputerShuttleSecurity
+  id: ComputerShuttleSecurityNS
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/security.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer-sec
+    - map: ["computerLayerKeyboard"]
+      state: security_keyboard
+    - map: ["computerLayerScreen"]
+      state: forensic
+    - map: ["computerLayerKeys"]
+      state: security_keyboard
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      sprite: Structures/Machines/computers.rsi
+      state: generic_panel_open
+  - type: EdgeConnection
+    connectionKey: computers
+    allowedDirections: East, West
+  - type: GenericVisualizer
+    visuals:
+      enum.ComputerVisuals.Powered:
+        computerLayerScreen:
+          True: { visible: true, shader: unshaded }
+          False: { visible: false }
+        computerLayerKeys:
+          True: { visible: true, shader: unshaded }
+          False: { visible: true, shader: shaded }
+      enum.WiresVisuals.MaintenancePanelState:
+        enum.WiresVisualLayers.MaintenancePanel:
+          True: { visible: false }
+          False: { visible: true }
+      enum.EdgeConnectionVisuals.ConnectionMask:
+        computerLayerBody:
+          None: { state: computer-sec, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/security.rsi }
+          West: { state: computer_r-sec, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/security.rsi }
+          East: { state: computer_l-sec, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/security.rsi }
+          East, West: { state: computer_l_r-sec, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/security.rsi }
+  - type: Computer
+    board: SecurityShuttleConsoleCircuitboardNS
+
+- type: entity
+  parent: ComputerCargoOrdersSecurity
+  id: ComputerCargoOrdersSecurityNS
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/security.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer-sec
+    - map: ["computerLayerKeyboard"]
+      state: security_keyboard
+    - map: ["computerLayerScreen"]
+      state: request-sec
+    - map: ["computerLayerKeys"]
+      state: security_keyboard
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      sprite: Structures/Machines/computers.rsi
+      state: generic_panel_open
+  - type: EdgeConnection
+    connectionKey: computers
+    allowedDirections: East, West
+  - type: GenericVisualizer
+    visuals:
+      enum.ComputerVisuals.Powered:
+        computerLayerScreen:
+          True: { visible: true, shader: unshaded }
+          False: { visible: false }
+        computerLayerKeys:
+          True: { visible: true, shader: unshaded }
+          False: { visible: true, shader: shaded }
+      enum.WiresVisuals.MaintenancePanelState:
+        enum.WiresVisualLayers.MaintenancePanel:
+          True: { visible: false }
+          False: { visible: true }
+      enum.EdgeConnectionVisuals.ConnectionMask:
+        computerLayerBody:
+          None: { state: computer-sec, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/security.rsi }
+          West: { state: computer_r-sec, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/security.rsi }
+          East: { state: computer_l-sec, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/security.rsi }
+          East, West: { state: computer_l_r-sec, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/security.rsi }
+  - type: CargoOrderConsole
+    account: SecurityNS
+    announcementChannel: SyndiSec
+    removeLimitAccess: [ "Marshal" ]
+    mode: PrintSlip
+  - type: ActiveRadio
+    channels:
+    - SyndiSec
+  - type: AccessReader
+    access: [["SecurityNS"]]
+  - type: Computer
+    board: CargoRequestSecurityComputerCircuitboardNS
+
+- type: entity
+  parent: ComputerCriminalRecords
+  id: ComputerCriminalRecordsNS
+  suffix: NS
+  components:
+  - type: CriminalRecordsConsole
+    securityChannel: SyndiSec
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/security.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer-sec
+    - map: ["computerLayerKeyboard"]
+      state: security_keyboard
+    - map: ["computerLayerScreen"]
+      state: explosive
+    - map: ["computerLayerKeys"]
+      state: security_keyboard
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      sprite: Structures/Machines/computers.rsi
+      state: generic_panel_open
+  - type: EdgeConnection
+    connectionKey: computers
+    allowedDirections: East, West
+  - type: GenericVisualizer
+    visuals:
+      enum.ComputerVisuals.Powered:
+        computerLayerScreen:
+          True: { visible: true, shader: unshaded }
+          False: { visible: false }
+        computerLayerKeys:
+          True: { visible: true, shader: unshaded }
+          False: { visible: true, shader: shaded }
+      enum.WiresVisuals.MaintenancePanelState:
+        enum.WiresVisualLayers.MaintenancePanel:
+          True: { visible: false }
+          False: { visible: true }
+      enum.EdgeConnectionVisuals.ConnectionMask:
+        computerLayerBody:
+          None: { state: computer-sec, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/security.rsi }
+          West: { state: computer_r-sec, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/security.rsi }
+          East: { state: computer_l-sec, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/security.rsi }
+          East, West: { state: computer_l_r-sec, sprite: _FarHorizons/Structures/Machines/Computers/NeoSol/security.rsi }
+  - type: AccessReader
+    access: [["SecurityNS"], ["CadetNS"]]
+  - type: Computer
+    board: CriminalRecordsComputerCircuitboardNS
+
+#region Service
+- type: entity
+  id: ComputerCargoOrdersServiceNS
+  parent: ComputerCargoOrdersService
+  name: Service Request Computer
+  description: Used by the service department to order supplies.
+  suffix: NS
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: request-srv
+    - map: ["computerLayerKeys"]
+      state: generic_keys
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: CargoOrderConsole
+    account: ServiceNS
+    announcementChannel: SyndiService
+    removeLimitAccess: [ "PersonnelManager" ]
+    mode: PrintSlip
+  - type: ActiveRadio
+    channels:
+    - SyndiService
+  - type: AccessReader
+    access: [["ServiceNS"]]
+  - type: Computer
+    board: CargoRequestServiceComputerCircuitboardNS
+
+- type: entity
+  parent: ComputerComms
+  id: HighCommandComputerComms
+  name: High Command Communications Computer
+  suffix: NS
+  description: A computer used to make world wide announcements via keyboard. The superior cousin of the regular communications computer.
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: comm_logs
+    - map: ["computerLayerKeys"]
+      state: generic_keys
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: AccessReader
+    access: [[ "NSHighCommand" ]]
+  - type: CommunicationsConsole
+    title: comms-console-announcement-title-nshc
+    color: "#ff0000"
+    canShuttle: false
+    global: true
+  - type: Computer
+    board: HighCommandCommsComputerCircuitboardNS
+  - type: PointLight
+    radius: 1.5
+    energy: 4.0
+    color: "#00FF00"
+  - type: ContainerContainer
+    containers:
+      board: !type:Container
+      pai_slot: !type:ContainerSlot #FH
+
+#region GSL
+
+- type: entity
+  parent: ComputerId
+  id: ComputerIdGSL
+  name: ID Card Computer
+  suffix: GSL
+  description: Terminal for programming GSL employee ID cards.
+  components:
+  - type: IdCardConsole
+    accessGroups:
+    - General
+    - GeneralNS
+    - Cargo
+    factions:
+    - FactionCargonia
+  - type: Computer
+    board: IDComputerCircuitboardGSL
+  - type: Sprite
+    sprite: Structures/Machines/computers.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: id
+    - map: ["computerLayerKeys"]
+      state: id_key
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      sprite: Structures/Machines/computers.rsi
+      state: generic_panel_open
+  - type: EdgeConnection
+    connectionKey: computers
+    allowedDirections: East, West
+  - type: GenericVisualizer
+    visuals:
+      enum.ComputerVisuals.Powered:
+        computerLayerScreen:
+          True: { visible: true, shader: unshaded }
+          False: { visible: false }
+        computerLayerKeys:
+          True: { visible: true, shader: unshaded }
+          False: { visible: true, shader: shaded }
+      enum.EdgeConnectionVisuals.ConnectionMask:
+        computerLayerBody:
+          None: { state: computer, sprite: Structures/Machines/computers.rsi }
+          West: { state: computer_r, sprite: _Starlight/Structures/Machines/computers.rsi }
+          East: { state: computer_l, sprite: _Starlight/Structures/Machines/computers.rsi }
+          East, West: { state: computer_l_r, sprite: _Starlight/Structures/Machines/computers.rsi }

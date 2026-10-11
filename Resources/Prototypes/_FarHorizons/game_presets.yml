@@ -1,0 +1,127 @@
+- type: gamePreset
+  id: AllAtOnceNS
+  alias:
+  - all_ns
+  name: all-at-once-title
+  minPlayers: 40
+  description: all-at-once-description
+  showInVote: false
+  faction: FactionSyndicate
+  rules:
+    - Lambda
+    - TraitorNS
+    - Revolutionary
+    - Zombie
+    - Wizard
+    - Xenoborgs
+    - KesslerSyndromeScheduler
+    - RampingStationEventScheduler
+    - SLChangeling
+    - SpaceTrafficControlEventScheduler
+    - BasicRoundstartVariation
+
+- type: gamePreset
+  id: AllerAtOnceNS
+  alias:
+  - allall_ns
+  - aller_ns
+  - badidea_ns
+  - punishment_ns
+  name: aller-at-once-title
+  description: aller-at-once-description
+  showInVote: false #Please god dont do this
+  minPlayers: 40
+  faction: FactionSyndicate
+  rules:
+    - Lambda
+    - TraitorNS
+    - Revolutionary
+    - Zombie
+    - Wizard
+    - Xenoborgs
+    - BasicStationEventScheduler
+    - KesslerSyndromeScheduler
+    - MeteorSwarmMildScheduler
+    - MeteorSwarmScheduler
+    - RampingStationEventScheduler
+    - SpaceTrafficControlEventScheduler
+    - SpaceTrafficControlFriendlyEventScheduler
+    - BasicRoundstartVariation
+
+- type: gamePreset
+  id: TraitorNS
+  alias:
+    - traitor_ns
+    - tator_ns
+  name: traitor-title
+  description: traitor-description
+  minPlayers: 4
+  showInVote: true
+  faction: FactionSyndicate
+  rules:
+  - Traitor
+  - SubGamemodesRuleNoChangelingsNoXenoborgs
+  - BasicStationEventScheduler
+  - MeteorSwarmScheduler
+  - SpaceTrafficControlEventScheduler
+  - BasicRoundstartVariation
+  - RailroadingMinor
+
+- type: gamePreset
+  id: Lambda
+  alias:
+    - lambda
+    - blukies
+  name: nukeops-title
+  description: nukeops-description
+  minPlayers: 40
+  showInVote: true
+  faction: FactionSyndicate
+  rules:
+  - Lambda
+  - SubGamemodesRuleNoXenoborg
+  - BasicStationEventScheduler
+  - MeteorSwarmScheduler
+  - SpaceTrafficControlEventScheduler
+  - BasicRoundstartVariation
+
+- type: gamePreset
+  id: TraitorlingNS
+  alias:
+    - lingtraitor_ns
+    - traitorling_ns
+  name: traitorling-title
+  description: traitorling-description
+  showInVote: true
+  minPlayers: 50
+  faction: FactionSyndicate
+  rules:
+    - SLChangeling
+    - TraitorNS
+    - SubGamemodesRuleNoXenoborgsMaybeTraitorLingx2
+    - BasicStationEventScheduler
+    - BasicRoundstartVariation
+
+- type: gamePreset
+  id: ShitStationNS
+  alias:
+    - shitstation_ns
+    - trashstation_ns
+  name: shitstation-title
+  description: shitstation-description
+  showInVote: true
+  minPlayers: 60
+  faction: FactionSyndicate
+  rules:
+    - DerelictGenericCyborgSpawn
+    - BasicStationEventScheduler
+    - MeteorSwarmMildScheduler
+    - SubGamemodesRuleNoXenoborg
+    - IonStorm
+    - CockroachMigration
+    - MouseMigration
+    - BasicRoundstartVariation
+    - BasicRoundstartVariation
+    - BasicRoundstartVariation
+    - SLChangeling
+    - TraitorNS

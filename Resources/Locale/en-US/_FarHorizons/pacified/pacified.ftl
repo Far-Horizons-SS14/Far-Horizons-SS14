@@ -1,0 +1,1 @@
+pacified-cannot-activate-handgrenade = I can't arm { THE($entity) }, it could hurt someone!

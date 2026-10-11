@@ -13,10 +13,10 @@ namespace Content.Shared._Starlight.Chemistry.ExternalContainerInjector;
 /// <summary>
 /// System for Injectors that use solutions from inserted vials instead of internal solutions.
 /// </summary>
-public abstract class SharedExternalContainerInjectorSystem : EntitySystem
+public abstract partial class SharedExternalContainerInjectorSystem : EntitySystem
 {
-    [Dependency] private readonly SharedSolutionContainerSystem _solutionContainers = default!;
-    [Dependency] private readonly ItemSlotsSystem _itemSlots = default!;
+    [Dependency] private SharedSolutionContainerSystem _solutionContainers = default!;
+    [Dependency] private ItemSlotsSystem _itemSlots = default!;
 
     public override void Initialize()
     {
@@ -72,9 +72,10 @@ public abstract class SharedExternalContainerInjectorSystem : EntitySystem
 
     protected bool EligibleEntity(EntityUid entity, IEntityManager entMan, ExternalContainerInjectorComponent component)
     {
+        var hasSolutionContainer = _solutionContainers.TryGetSolution(entity, component.VialSolutionName, out _, out _);
         return component.OnlyAffectsMobs
-            ? entMan.HasComponent<SolutionContainerManagerComponent>(entity) &&
+            ? hasSolutionContainer &&
               entMan.HasComponent<MobStateComponent>(entity)
-            : entMan.HasComponent<SolutionContainerManagerComponent>(entity);
+            : hasSolutionContainer;
     }
 }

@@ -15,14 +15,14 @@ using Content.Shared._Starlight.Language.Components;
 
 namespace Content.Server._FarHorizons.Tools.HandheldRadio;
 
-public sealed class HandheldRadioSystem : EntitySystem
+public sealed partial class HandheldRadioSystem : EntitySystem
 {
-    [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
-    [Dependency] private readonly InteractionSystem _interaction = default!;
-    [Dependency] private readonly LanguageSystem _language = default!;
-    [Dependency] private readonly ChatSystem _chat = default!;
-    [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly AppearanceSystem _appearance = default!;
+    [Dependency] private UserInterfaceSystem _uiSystem = default!;
+    [Dependency] private InteractionSystem _interaction = default!;
+    [Dependency] private LanguageSystem _language = default!;
+    [Dependency] private ChatSystem _chat = default!;
+    [Dependency] private PopupSystem _popup = default!;
+    [Dependency] private AppearanceSystem _appearance = default!;
 
     private readonly Dictionary<float, HashSet<Entity<HandheldRadioComponent>>> _frequencyCache = [];
 
@@ -157,7 +157,8 @@ public sealed class HandheldRadioSystem : EntitySystem
             HasComp<HandheldRadioComponent>(args.Source) ||
             !TryComp(args.Source, out TransformComponent? source_tf) ||
             !TryComp(ent, out TransformComponent? target_tf) ||
-            !_interaction.InRangeUnobstructed((args.Source, source_tf), (ent, target_tf), ent.Comp.MicListeningRange))
+            !_interaction.InRangeUnobstructed((args.Source, source_tf), (ent, target_tf), ent.Comp.MicListeningRange) ||
+            !_language.GetLanguage(args.Source).SpeechOverride.AllowRadio)
                 args.Cancel();
     }
 
@@ -186,7 +187,10 @@ public sealed class HandheldRadioSystem : EntitySystem
             if (senderTf.MapID != targetTf.MapID && !targetRadio.Comp.RecievesFromAnyMap)
                 continue;
             
-            var name = Loc.GetString("speech-name-relay", ("speaker", Name(radio)), ("originalName", Name(source)));
+            var nameEv = new TransformSpeakerNameEvent(source, Name(source));
+            RaiseLocalEvent(source, nameEv);
+            
+            var name = Loc.GetString("speech-name-relay", ("speaker", Name(targetRadio)), ("originalName", nameEv.VoiceName));
             LanguagePrototype? language = null;
             if (TryComp(source, out LanguageSpeakerComponent? sourceLang))
                 language = _language.GetLanguage((source, sourceLang));

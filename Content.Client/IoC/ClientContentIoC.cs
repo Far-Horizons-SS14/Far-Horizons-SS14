@@ -33,8 +33,10 @@ using Content.Shared.Players.RateLimiting;
 using Content.Shared.Starlight;
 using Content.Shared._FarHorizons.Factions;
 using Content.Client._FarHorizons.Factions;
+using Content.Client._FarHorizons.Lobby;
 using Content.Shared._Starlight.DocumentManager;
 using Content.Shared._FarHorizons.DiscordLink;
+using Content.Shared._FarHorizons.Lobby;
 
 namespace Content.Client.IoC
 {
@@ -80,6 +82,7 @@ namespace Content.Client.IoC
             collection.Register<ISharedFactionManager, ClientFactionManager>();
             collection.Register<IDiscordLinkManagerShared, DiscordLinkManager>();  // double-registered for compatibility
             collection.Register<DiscordLinkManager>();  
+            collection.Register<ISharedLobbyManager, ClientLobbyManager>();
             // Far Horizons end
             collection.Register<PreWrittenDocumentManager>(); // Starlight
         }

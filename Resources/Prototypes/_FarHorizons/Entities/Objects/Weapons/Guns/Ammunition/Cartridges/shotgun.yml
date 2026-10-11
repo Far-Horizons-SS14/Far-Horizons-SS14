@@ -1,0 +1,40 @@
+- type: entity
+  id: ShellShotgunFlechette
+  name: 12 Gauge Flechette
+  parent: [ BaseShellShotgun, BaseSecurityContraband ]
+  components:
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip-long
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#252525"
+      - state: spent-long
+        map: [ "enum.AmmoVisualLayers.Spent" ]
+        visible: false
+  - type: CartridgeAmmo
+    soundEject:
+      collection: ShellEject
+    proto: PelletShotgunFlechetteTrace
+
+- type: entity
+  id: ShellShotgunUraniumFlechette
+  name: 12 Gauge Uranium Flechette
+  parent: [ BaseShellShotgun, BaseSecurityContraband ]
+  components:
+  - type: Sprite
+    layers:
+      - state: slug
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip-long
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#252525"
+      - state: depleted-uranium
+      - state: spent-long
+        map: [ "enum.AmmoVisualLayers.Spent" ]
+        visible: false
+  - type: CartridgeAmmo
+    soundEject:
+      collection: ShellEject
+    proto: PelletShotgunUraniumFlechetteTrace

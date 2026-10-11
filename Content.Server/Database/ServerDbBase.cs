@@ -296,8 +296,8 @@ namespace Content.Server.Database
                 .ToList();
             var flattenedMarkings = appearance.Markings.SelectMany(it => it.Value)
                 .ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
-            var hairMarking = flattenedMarkings.FirstOrNull(kvp => kvp.Key == HumanoidVisualLayers.Hair)?.Value.FirstOrDefault();
-            var facialHairMarking = flattenedMarkings.FirstOrNull(kvp => kvp.Key == HumanoidVisualLayers.FacialHair)?.Value.FirstOrDefault();
+            var hairMarking = flattenedMarkings.FirstOrNull(kvp => kvp.Key == HumanoidVisualLayers.Hair)?.Value.FirstOrNull();
+            var facialHairMarking = flattenedMarkings.FirstOrNull(kvp => kvp.Key == HumanoidVisualLayers.FacialHair)?.Value.FirstOrNull();
             profile.Markings =
                 JsonSerializer.SerializeToDocument(legacyMarkings.Select(marking => marking.ToString()).ToList());
             profile.HairName = hairMarking?.MarkingId ?? HairStyles.DefaultHairStyle;
@@ -342,29 +342,29 @@ namespace Content.Server.Database
 
             profile.FarHorizonsProfile ??= new FarHorizonsModel.FarHorizonsProfile();
 
-            if (humanoid.Symspeech is { } symspeech)
-                profile.FarHorizonsProfile.Symspeech = new FarHorizonsModel.SymspeechDTO()
-                {
-                    Voice = symspeech.Voice.Id,
-                    Pitch = symspeech.Pitch,
-                    Speed = symspeech.Speed,
-                    Pause = symspeech.Pause,
-                    Polyphony = symspeech.Polyphony,
-                    Volume = symspeech.Volume,
-                };
+            if (humanoid.Symspeech is { } symspeech && !string.IsNullOrEmpty(symspeech.Voice.Id))
+            {
+                profile.FarHorizonsProfile.Symspeech ??= new FarHorizonsModel.SymspeechDTO();
+                profile.FarHorizonsProfile.Symspeech.Voice = symspeech.Voice.Id;
+                profile.FarHorizonsProfile.Symspeech.Pitch = symspeech.Pitch;
+                profile.FarHorizonsProfile.Symspeech.Speed = symspeech.Speed;
+                profile.FarHorizonsProfile.Symspeech.Pause = symspeech.Pause;
+                profile.FarHorizonsProfile.Symspeech.Polyphony = symspeech.Polyphony;
+                profile.FarHorizonsProfile.Symspeech.Volume = symspeech.Volume;
+            }
             else
                 profile.FarHorizonsProfile.Symspeech = null;
 
-            if (humanoid.SiliconSymspeech is { } siliconSymspeech)
-                profile.FarHorizonsProfile.SiliconSymspeech = new FarHorizonsModel.SymspeechDTO()
-                {
-                    Voice = siliconSymspeech.Voice.Id,
-                    Pitch = siliconSymspeech.Pitch,
-                    Speed = siliconSymspeech.Speed,
-                    Pause = siliconSymspeech.Pause,
-                    Polyphony = siliconSymspeech.Polyphony,
-                    Volume = siliconSymspeech.Volume,
-                };
+            if (humanoid.SiliconSymspeech is { } siliconSymspeech && !string.IsNullOrEmpty(siliconSymspeech.Voice.Id))
+            {
+                profile.FarHorizonsProfile.SiliconSymspeech ??= new FarHorizonsModel.SymspeechDTO();
+                profile.FarHorizonsProfile.SiliconSymspeech.Voice = siliconSymspeech.Voice.Id;
+                profile.FarHorizonsProfile.SiliconSymspeech.Pitch = siliconSymspeech.Pitch;
+                profile.FarHorizonsProfile.SiliconSymspeech.Speed = siliconSymspeech.Speed;
+                profile.FarHorizonsProfile.SiliconSymspeech.Pause = siliconSymspeech.Pause;
+                profile.FarHorizonsProfile.SiliconSymspeech.Polyphony = siliconSymspeech.Polyphony;
+                profile.FarHorizonsProfile.SiliconSymspeech.Volume = siliconSymspeech.Volume;
+            }
             else
                 profile.FarHorizonsProfile.SiliconSymspeech = null;
             

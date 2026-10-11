@@ -3,7 +3,6 @@ using Content.Shared._Starlight.Traits.Effects;
 using Content.Shared.GameTicking;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
-using Content.Shared.Humanoid;
 using Content.Shared.Preferences;
 using Content.Shared.Roles;
 using Content.Shared.Starlight.CCVar;
@@ -11,20 +10,21 @@ using Content.Shared.Whitelist;
 using Robust.Shared.Configuration;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
+using Content.Shared._FarHorizons.Traits; //FH
 
 namespace Content.Server._Starlight.Traits;
 
 /// <summary>
 /// Server system that validates and applies traits to players on spawn.
 /// </summary>
-public sealed class TraitSystem : EntitySystem
+public sealed partial class TraitSystem : EntitySystem
 {
-    [Dependency] private readonly IComponentFactory _factory = default!;
-    [Dependency] private readonly IConfigurationManager _config = default!;
-    [Dependency] private readonly ILogManager _log = default!;
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
-    [Dependency] private readonly SharedHandsSystem _hands = default!;
-    [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
+    [Dependency] private IComponentFactory _factory = default!;
+    [Dependency] private IConfigurationManager _config = default!;
+    [Dependency] private ILogManager _log = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
+    [Dependency] private SharedHandsSystem _hands = default!;
+    [Dependency] private EntityWhitelistSystem _whitelistSystem = default!;
 
     private int _maxTraitCount;
     private int _maxTraitPoints;
@@ -58,12 +58,16 @@ public sealed class TraitSystem : EntitySystem
 
             ApplyTrait(args.Mob, trait);
         }
+        //Far Horizons Start
+        var ev = new TraitsApplied();
+        RaiseLocalEvent(args.Mob, ref ev);
+        //Far Horizons End
     }
 
     /// <summary>
     /// Applies a traits to an entity.
     /// </summary>
-    public void ApplyTraits(EntityUid Mob, HumanoidCharacterProfile profile, ICommonSession session)
+    public void ApplyTraits(EntityUid Mob, HumanoidCharacterProfile profile, ICommonSession? session) //Far Horizons
     {
         var validTraits = ValidateTraits(Mob, profile.TraitPreferences, session, profile);
 
@@ -74,6 +78,11 @@ public sealed class TraitSystem : EntitySystem
 
             ApplyTrait(Mob, trait);
         }
+
+        //Far Horizons Start
+        var ev = new TraitsApplied();
+        RaiseLocalEvent(Mob, ref ev);
+        //Far Horizons End
     }
 
     /// <summary>

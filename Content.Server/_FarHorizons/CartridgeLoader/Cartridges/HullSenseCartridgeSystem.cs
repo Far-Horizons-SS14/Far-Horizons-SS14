@@ -12,10 +12,10 @@ using Content.Shared.Damage.Components;
 
 namespace Content.Server.CartridgeLoader.Cartridges;
 
-public sealed class HullSenseCartridgeSystem : EntitySystem
+public sealed partial class HullSenseCartridgeSystem : EntitySystem
 {
-    [Dependency] private readonly CartridgeLoaderSystem _cartridgeLoaderSystem = default!;
-    [Dependency] private readonly SharedInteractionSystem _interactionSystem = default!;
+    [Dependency] private CartridgeLoaderSystem _cartridgeLoaderSystem = default!;
+    [Dependency] private SharedInteractionSystem _interactionSystem = default!;
     public override void Initialize()
     {
         base.Initialize();

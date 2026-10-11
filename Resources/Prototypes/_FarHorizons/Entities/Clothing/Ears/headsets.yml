@@ -1,4 +1,4 @@
-#region NanoTrasen
+#region ## NanoTrasen ##
 
 - type: entity
   parent: [ClothingHeadsetAlt, BaseCentcommContraband]
@@ -48,7 +48,7 @@
 
 
 
-#region Syndicate
+#region ## NeoSol ##
 
 - type: entity
   parent: [ClothingHeadsetAlt, BaseSyndicateContraband]
@@ -74,8 +74,8 @@
 - type: entity
   parent: [ClothingHeadset, BaseCommandContraband]
   id: ClothingHeadsetCommandSyndi
-  name: Command Headset
-  suffix: S
+  name: Executive Headset
+  suffix: NS
   description: A headset with a commanding channel.
   components:
   - type: ContainerFill
@@ -83,9 +83,9 @@
       key_slots:
       - EncryptionKeySyndiMaster
   - type: Sprite
-    sprite: _FarHorizons/Clothing/Ears/Headsets/syndicommand.rsi #Far Horizons
+    sprite: _FarHorizons/Clothing/Ears/Headsets/NeoSol/command.rsi #Far Horizons
   - type: Clothing
-    sprite: _FarHorizons/Clothing/Ears/Headsets/syndicommand.rsi #Far Horizons
+    sprite: _FarHorizons/Clothing/Ears/Headsets/NeoSol/command.rsi #Far Horizons
   - type: RadioChime
     sound:
       path: /Audio/_Starlight/Effects/Radio/captain.ogg
@@ -93,17 +93,17 @@
 - type: entity
   parent: [ClothingHeadsetAlt, BaseCommandContraband]
   id: ClothingHeadsetAltCommandSyndi
-  name: Command Over-Ear Headset
-  suffix: S
+  name: Executive Over-Ear Headset
+  suffix: NS
   components:
   - type: ContainerFill
     containers:
       key_slots:
       - EncryptionKeySyndiMaster
   - type: Sprite
-    sprite: _FarHorizons/Clothing/Ears/Headsets/syndicommand.rsi #Far Horizons
+    sprite: _FarHorizons/Clothing/Ears/Headsets/NeoSol/command.rsi #Far Horizons
   - type: Clothing
-    sprite: _FarHorizons/Clothing/Ears/Headsets/syndicommand.rsi #Far Horizons
+    sprite: _FarHorizons/Clothing/Ears/Headsets/NeoSol/command.rsi #Far Horizons
   - type: RadioChime
     sound:
       path: /Audio/_Starlight/Effects/Radio/captain.ogg
@@ -112,7 +112,7 @@
   parent: [ClothingHeadset, BaseCommandContraband]
   id: ClothingHeadsetSecurityHoSSyndi
   name: Marshal's Headset
-  suffix: S
+  suffix: NS
   description: This is used by the Marshal in their line of duty.
   components:
   - type: ContainerFill
@@ -122,9 +122,9 @@
       - EncryptionKeySyndiCommand
       - EncryptionKeySyndiCommon
   - type: Sprite
-    sprite: _FarHorizons/Clothing/Ears/Headsets/security-syndi.rsi
+    sprite: _FarHorizons/Clothing/Ears/Headsets/NeoSol/security.rsi
   - type: Clothing
-    sprite: _FarHorizons/Clothing/Ears/Headsets/security-syndi.rsi
+    sprite: _FarHorizons/Clothing/Ears/Headsets/NeoSol/security.rsi
   - type: RadioChime
     sound:
       path: /Audio/_Starlight/Effects/Radio/hos.ogg
@@ -133,7 +133,7 @@
   parent: [ClothingHeadsetAlt, BaseCommandContraband]
   id: ClothingHeadsetAltSecurityHoSSyndi
   name: Marshal's Over-Ear Headset
-  suffix: S
+  suffix: NS
   description: This is used by the Marshal in their line of duty. Helps to muffle all of the nonsense the clown is spouting off.
   components:
   - type: ContainerFill
@@ -143,9 +143,9 @@
       - EncryptionKeySyndiCommand
       - EncryptionKeySyndiCommon
   - type: Sprite
-    sprite: _FarHorizons/Clothing/Ears/Headsets/security-syndi.rsi
+    sprite: _FarHorizons/Clothing/Ears/Headsets/NeoSol/security.rsi
   - type: Clothing
-    sprite: _FarHorizons/Clothing/Ears/Headsets/security-syndi.rsi
+    sprite: _FarHorizons/Clothing/Ears/Headsets/NeoSol/security.rsi
   - type: RadioChime
     sound:
       path: /Audio/_Starlight/Effects/Radio/hos.ogg
@@ -154,7 +154,7 @@
   parent: [ClothingHeadset, BaseCommandContraband]
   id: ClothingHeadsetCESyndi
   name: Foreman Headset
-  suffix: S
+  suffix: NS
   description: A headset for the technical lead to ignore all emergency calls on.
   components:
   - type: ContainerFill
@@ -164,9 +164,9 @@
       - EncryptionKeySyndiCommand
       - EncryptionKeySyndiCommon
   - type: Sprite
-    sprite: _FarHorizons/Clothing/Ears/Headsets/engineering-syndi.rsi
+    sprite: _FarHorizons/Clothing/Ears/Headsets/NeoSol/engineering.rsi
   - type: Clothing
-    sprite: _FarHorizons/Clothing/Ears/Headsets/engineering-syndi.rsi
+    sprite: _FarHorizons/Clothing/Ears/Headsets/NeoSol/engineering.rsi
   - type: RadioChime
     sound:
       path: /Audio/_Starlight/Effects/Radio/ce.ogg
@@ -175,7 +175,7 @@
   parent: [ClothingHeadsetAlt, BaseCommandContraband]
   id: ClothingHeadsetAltCESyndi
   name: Foreman Over-Ear Headset
-  suffix: S
+  suffix: NS
   description: A headset for the technical lead to ignore all emergency calls on.
   components:
   - type: ContainerFill
@@ -185,12 +185,86 @@
       - EncryptionKeySyndiCommand
       - EncryptionKeySyndiCommon
   - type: Sprite
-    sprite: _FarHorizons/Clothing/Ears/Headsets/engineering-syndi.rsi
+    sprite: _FarHorizons/Clothing/Ears/Headsets/NeoSol/engineering.rsi
   - type: Clothing
-    sprite: _FarHorizons/Clothing/Ears/Headsets/engineering-syndi.rsi
+    sprite: _FarHorizons/Clothing/Ears/Headsets/NeoSol/engineering.rsi
   - type: RadioChime
     sound:
       path: /Audio/_Starlight/Effects/Radio/ce.ogg
+
+# Red Sword Operative (BSO)
+
+- type: entity
+  parent: [ ClothingHeadset, BaseBlueshieldContraband ] # Technically not Blueshield, but that's a problem for another day
+  id: ClothingHeadsetRSO
+  name: Red Sword Operative Headset
+  description: A headset specialized in tuning out everyone but command.
+  suffix: NS
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeySyndiMaster
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Ears/Headsets/NeoSol/redswordoperative.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Ears/Headsets/NeoSol/redswordoperative.rsi
+  - type: RadioChime
+    sound:
+      path: /Audio/_Starlight/Effects/Radio/bso.ogg
+
+- type: entity
+  parent: [ ClothingHeadsetAlt, BaseBlueshieldContraband ] # Technically not Blueshield, but that's a problem for another day
+  id: ClothingHeadsetAltRSO
+  name: Red Sword Operative Over-Ear Headset
+  description: A headset specialized in tuning out everyone but command.
+  suffix: NS
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeySyndiMaster
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Ears/Headsets/NeoSol/redswordoperative.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Ears/Headsets/NeoSol/redswordoperative.rsi
+  - type: RadioChime
+    sound:
+      path: /Audio/_Starlight/Effects/Radio/bso.ogg
+
+- type: entity
+  parent: [ClothingHeadsetScience, BaseCommandContraband]
+  id: ClothingHeadsetRDNS
+  name: Epistemics Provost Headset 
+  description: Lamarr used to love chewing on this...
+  suffix: NS
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeySyndiSci
+      - EncryptionKeySyndiCommand
+      - EncryptionKeySyndiCommon
+  - type: RadioChime
+    sound:
+      path: /Audio/_Starlight/Effects/Radio/rd.ogg
+
+- type: entity
+  parent: [ClothingHeadsetAlt, BaseCommandContraband]
+  id: ClothingHeadsetPMNS
+  name: Executive Over-Ear Headset
+  suffix: NS
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeySyndiService
+      - EncryptionKeySyndiCommand
+      - EncryptionKeySyndiCommon
+  - type: Sprite
+    sprite: Clothing/Ears/Headsets/command.rsi
+  - type: Clothing
+    sprite: Clothing/Ears/Headsets/command.rsi
 
 #region Engineering
 
@@ -198,7 +272,7 @@
   parent: ClothingHeadset
   id: ClothingHeadsetEngineeringSyndi
   name: Engineering Headset
-  suffix: S
+  suffix: NS
   description: A headset for engineers to chat while the station burns around them.
   components:
   - type: ContainerFill
@@ -207,9 +281,119 @@
       - EncryptionKeySyndiEngi
       - EncryptionKeySyndiCommon
   - type: Sprite
-    sprite: _FarHorizons/Clothing/Ears/Headsets/engineering-syndi.rsi
+    sprite: _FarHorizons/Clothing/Ears/Headsets/NeoSol/engineering.rsi
   - type: Clothing
-    sprite: _FarHorizons/Clothing/Ears/Headsets/engineering-syndi.rsi
+    sprite: _FarHorizons/Clothing/Ears/Headsets/NeoSol/engineering.rsi
+
+#region Medical
+
+- type: entity
+  parent: ClothingHeadset
+  id: ClothingHeadsetMedicalSyndi
+  name: Medical Headset 
+  description: A headset for the trained staff of the medbay.
+  suffix: NS
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeySyndiMed
+      - EncryptionKeySyndiCommon
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Ears/Headsets/NeoSol/medical.rsi 
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Ears/Headsets/NeoSol/medical.rsi 
+
+- type: entity
+  parent: [ClothingHeadsetAlt, BaseCommandContraband]
+  id: ClothingHeadsetAltMedicalSyndi
+  name: Medical Director's Over-Ear Headset 
+  suffix: NS
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeySyndiMed
+      - EncryptionKeySyndiCommand
+      - EncryptionKeySyndiCommon
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Ears/Headsets/NeoSol/medical.rsi 
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Ears/Headsets/NeoSol/medical.rsi 
+  - type: StealTarget
+    stealGroup: ClothingHeadsetAltMedical
+  - type: RadioChime
+    sound:
+      path: /Audio/_Starlight/Effects/Radio/cmo.ogg
+
+- type: entity
+  parent: [ClothingHeadsetMedicalSyndi, BaseCommandContraband]
+  id: ClothingHeadsetCMOSyndi
+  name: MD Headset
+  description: A headset used by the MD.
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeySyndiMed
+      - EncryptionKeySyndiCommand
+      - EncryptionKeySyndiCommon
+  - type: RadioChime
+    sound:
+      path: /Audio/_Starlight/Effects/Radio/cmo.ogg
+
+
+#region Science
+- type: entity
+  parent: ClothingHeadset
+  id: ClothingHeadsetScienceNS
+  name: Science Headset 
+  description: A sciency headset. Like usual.
+  suffix: NS
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeySyndiSci
+      - EncryptionKeySyndiCommon
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Ears/Headsets/science.rsi 
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Ears/Headsets/science.rsi 
+
+- type: entity
+  parent: ClothingHeadsetScience
+  id: ClothingHeadsetMedicalScienceNS
+  name: Medical Research Headset 
+  description: A headset that is a result of the mating between medical and science.
+  suffix: NS
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeySyndiMedSci
+      - EncryptionKeySyndiCommon
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Ears/Headsets/medicalscience.rsi 
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Ears/Headsets/medicalscience.rsi 
+
+- type: entity
+  parent: ClothingHeadsetScience
+  id: ClothingHeadsetRoboticsNS
+  name: Robotics Headset 
+  description: Made specifically for the roboticists, who cannot decide between departments.
+  suffix: NS
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeySyndiSciRobo
+      - EncryptionKeySyndiCommon
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Ears/Headsets/robotics.rsi 
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Ears/Headsets/robotics.rsi 
 
 #region Security
 
@@ -218,7 +402,7 @@
   parent: [ClothingHeadset, BaseSecurityContraband]
   id: ClothingHeadsetSecuritySyndi
   name: Security Headset
-  suffix: S
+  suffix: NS
   description: This is used by your elite security force.
   components:
   - type: ContainerFill
@@ -227,9 +411,9 @@
       - EncryptionKeySyndiSecurity
       - EncryptionKeySyndiCommon
   - type: Sprite
-    sprite: _FarHorizons/Clothing/Ears/Headsets/security-syndi.rsi
+    sprite: _FarHorizons/Clothing/Ears/Headsets/NeoSol/security.rsi
   - type: Clothing
-    sprite: _FarHorizons/Clothing/Ears/Headsets/security-syndi.rsi
+    sprite: _FarHorizons/Clothing/Ears/Headsets/NeoSol/security.rsi
   - type: RadioChime
     sound:
       path: /Audio/_Starlight/Effects/Radio/secoff.ogg
@@ -238,7 +422,7 @@
   parent: [ClothingHeadsetAlt, BaseSecurityContraband]
   id: ClothingHeadsetAltSecuritySyndi
   name: Security Over-Ear Headset
-  suffix: S
+  suffix: NS
   description: This is used by your elite security force.
   components:
   - type: ContainerFill
@@ -247,9 +431,9 @@
       - EncryptionKeySyndiSecurity
       - EncryptionKeySyndiCommon
   - type: Sprite
-    sprite: _FarHorizons/Clothing/Ears/Headsets/security-syndi.rsi
+    sprite: _FarHorizons/Clothing/Ears/Headsets/NeoSol/security.rsi
   - type: Clothing
-    sprite: _FarHorizons/Clothing/Ears/Headsets/security-syndi.rsi
+    sprite: _FarHorizons/Clothing/Ears/Headsets/NeoSol/security.rsi
   - type: RadioChime
     sound:
       path: /Audio/_Starlight/Effects/Radio/secoff.ogg
@@ -260,7 +444,7 @@
   parent: [ ClothingHeadset, BaseSecurityContraband ]
   id: ClothingHeadsetSecurityWardenSyndi
   name: Constable's Headset
-  suffix: S
+  suffix: NS
   description: This is used by your elite Constable.
   components:
   - type: ContainerFill
@@ -269,9 +453,9 @@
       - EncryptionKeySyndiSecurity
       - EncryptionKeySyndiCommon
   - type: Sprite
-    sprite: _FarHorizons/Clothing/Ears/Headsets/security-syndi.rsi
+    sprite: _FarHorizons/Clothing/Ears/Headsets/NeoSol/security.rsi
   - type: Clothing
-    sprite: _FarHorizons/Clothing/Ears/Headsets/security-syndi.rsi
+    sprite: _FarHorizons/Clothing/Ears/Headsets/NeoSol/security.rsi
   - type: RadioChime
     sound:
       path: /Audio/_Starlight/Effects/Radio/warden.ogg
@@ -280,7 +464,7 @@
   parent: [ ClothingHeadsetAlt, BaseSecurityContraband ]
   id: ClothingHeadsetAltSecurityWardenSyndi
   name: Constable's Over-Ear Headset
-  suffix: S
+  suffix: NS
   description: This is used by your elite Constable. Helps to muffle the tortured screams in the brig.
   components:
   - type: ContainerFill
@@ -289,9 +473,9 @@
       - EncryptionKeySyndiSecurity
       - EncryptionKeySyndiCommon
   - type: Sprite
-    sprite: _FarHorizons/Clothing/Ears/Headsets/security-syndi.rsi
+    sprite: _FarHorizons/Clothing/Ears/Headsets/NeoSol/security.rsi
   - type: Clothing
-    sprite: _FarHorizons/Clothing/Ears/Headsets/security-syndi.rsi
+    sprite: _FarHorizons/Clothing/Ears/Headsets/NeoSol/security.rsi
   - type: RadioChime
     sound:
       path: /Audio/_Starlight/Effects/Radio/warden.ogg
@@ -302,7 +486,7 @@
   parent: [ClothingHeadset, BaseSecurityContraband]
   id: ClothingHeadsetSecMedSyndi
   name: Security Medical Headset
-  suffix: S
+  suffix: NS
   description: A headset that helps to hear the death cries.
   components:
   - type: ContainerFill
@@ -311,9 +495,9 @@
       - EncryptionKeySyndiSecMed
       - EncryptionKeySyndiCommon
   - type: Sprite
-    sprite: _FarHorizons/Clothing/Ears/Headsets/secmed-syndi.rsi
+    sprite: _FarHorizons/Clothing/Ears/Headsets/NeoSol/secmed.rsi
   - type: Clothing
-    sprite: _FarHorizons/Clothing/Ears/Headsets/secmed-syndi.rsi
+    sprite: _FarHorizons/Clothing/Ears/Headsets/NeoSol/secmed.rsi
   - type: RadioChime
     sound:
       path: /Audio/_Starlight/Effects/Radio/brigmedic.ogg
@@ -322,7 +506,7 @@
   parent: [ClothingHeadsetAlt, BaseSecurityContraband]
   id: ClothingHeadsetAltSecMedSyndi
   name: Security Medical Over-Ear Headset
-  suffix: S
+  suffix: NS
   description: A headset that helps to hear the death cries.
   components:
   - type: ContainerFill
@@ -331,9 +515,57 @@
       - EncryptionKeySyndiSecMed
       - EncryptionKeySyndiCommon
   - type: Sprite
-    sprite: _FarHorizons/Clothing/Ears/Headsets/secmed-syndi.rsi
+    sprite: _FarHorizons/Clothing/Ears/Headsets/NeoSol/secmed.rsi
   - type: Clothing
-    sprite: _FarHorizons/Clothing/Ears/Headsets/secmed-syndi.rsi
+    sprite: _FarHorizons/Clothing/Ears/Headsets/NeoSol/secmed.rsi
   - type: RadioChime
     sound:
       path: /Audio/_Starlight/Effects/Radio/brigmedic.ogg
+
+#region Service
+- type: entity
+  parent: ClothingHeadsetService
+  id: ClothingHeadsetServiceNS
+  suffix: NS
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeySyndiService
+      - EncryptionKeySyndiCommon
+  - type: Sprite
+    sprite: Clothing/Ears/Headsets/service.rsi
+  - type: Clothing
+    sprite: Clothing/Ears/Headsets/service.rsi
+
+- type: entity
+  parent: ClothingHeadset
+  id: ClothingHeadsetAssistantNS
+  name: Assistant Headset 
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeySyndiCommon
+  - type: Sprite
+    sprite: Clothing/Ears/Headsets/service.rsi
+
+- type: entity
+  parent: [ ClothingHeadset]
+  id: ClothingHeadsetNSHC
+  name: NSHC Headset
+  description: A headset used by the upper echelons of NeoSol.
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeySHC
+      - EncryptionKeySyndiMaster
+      - EncryptionKeyGMN
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Ears/Headsets/NeoSol/security.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Ears/Headsets/NeoSol/security.rsi
+  - type: RadioChime #Starlight
+    sound:
+      path: /Audio/_Starlight/Effects/Radio/marauder.ogg

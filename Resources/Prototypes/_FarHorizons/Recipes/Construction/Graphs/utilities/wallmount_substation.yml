@@ -1,0 +1,201 @@
+#region Ship
+- type: constructionGraph
+  id: SubstationWallShip
+  start: start
+  graph:
+    - node: start
+      edges:
+      - to: frame
+        steps:
+        - material: Steel
+          amount: 15
+          doAfter: 2
+
+    - node: frame
+      entity: SubstationWallShipFrame
+      edges:
+      - to: start
+        steps:
+        - tool: Welding
+          doAfter: 8
+        completed:
+        - !type:GivePrototype
+          prototype: SheetSteel1
+          amount: 15
+        - !type:DeleteEntity {}
+      - to: parts
+        steps:
+        - material: Cable
+          amount: 15
+          doAfter: 1
+        - material: CableMV
+          amount: 15
+          doAfter: 1
+        - material: CableHV
+          amount: 15
+          doAfter: 1
+        - tool: Screwing
+          doAfter: 4
+
+    - node: parts
+      entity: SubstationWallShipFrame
+      edges:
+      - to: electronics
+        steps:
+        - tag: WallmountSubstationElectronicsShip
+          store: board
+          name: wallmount-substation-circuit-board-ship
+          icon:
+            sprite: "Objects/Misc/module.rsi"
+            state: "charger_APC"
+          doAfter: 0.5
+        - anyTags:
+            - PowerCellHigh
+          store: powercell
+          name: tag-power-cell-high
+          icon:
+            sprite: "Objects/Power/power_cells.rsi"
+            state: "high"
+          doAfter: 0.5
+        - material: Manipulator
+          amount: 3
+          doAfter: 1
+      - to: frame
+        completed:
+        - !type:GivePrototype
+          prototype: CableApcStack1
+          amount: 15
+        - !type:GivePrototype
+          prototype: CableMVStack1
+          amount: 15
+        - !type:GivePrototype
+          prototype: CableHVStack1
+          amount: 15
+        steps:
+        - tool: Cutting
+          doAfter: 2
+
+
+    - node: electronics
+      edges:
+      - to: substation
+        steps:
+        - tool: Screwing
+          doAfter: 4
+
+    - node: substation
+      entity: SubstationWallShip
+      edges:
+      - to: parts
+        conditions:
+        - !type:WirePanel {}
+        - !type:ContainerNotEmpty
+          container: board
+        completed:
+        - !type:EmptyAllContainers
+          pickup: true
+          emptyAtUser: true
+        steps:
+        - tool: Prying
+          doAfter: 2
+
+#region Shuttle
+- type: constructionGraph
+  id: SubstationWallShuttle
+  start: start
+  graph:
+    - node: start
+      edges:
+      - to: frame
+        steps:
+        - material: Steel
+          amount: 10
+          doAfter: 1.5
+
+    - node: frame
+      entity: SubstationWallShuttleFrame
+      edges:
+      - to: start
+        steps:
+        - tool: Welding
+          doAfter: 6
+        completed:
+        - !type:GivePrototype
+          prototype: SheetSteel1
+          amount: 10
+        - !type:DeleteEntity {}
+      - to: parts
+        steps:
+        - material: Cable
+          amount: 10
+          doAfter: 0.8
+        - material: CableMV
+          amount: 10
+          doAfter: 0.8
+        - material: CableHV
+          amount: 10
+          doAfter: 0.8
+        - tool: Screwing
+          doAfter: 3
+
+    - node: parts
+      entity: SubstationWallShuttleFrame
+      edges:
+      - to: electronics
+        steps:
+        - tag: WallmountSubstationElectronicsShuttle
+          store: board
+          name: wallmount-substation-circuit-board-shuttle
+          icon:
+            sprite: "Objects/Misc/module.rsi"
+            state: "charger_APC"
+          doAfter: 0.5
+        - anyTags:
+            - PowerCellMedium
+          store: powercell
+          name: tag-power-cell-medium
+          icon:
+            sprite: "Objects/Power/power_cells.rsi"
+            state: "medium"
+          doAfter: 0.5
+        - material: Manipulator
+          amount: 2
+          doAfter: 0.8
+      - to: frame
+        completed:
+        - !type:GivePrototype
+          prototype: CableApcStack1
+          amount: 10
+        - !type:GivePrototype
+          prototype: CableMVStack1
+          amount: 10
+        - !type:GivePrototype
+          prototype: CableHVStack1
+          amount: 10
+        steps:
+        - tool: Cutting
+          doAfter: 1.5
+
+
+    - node: electronics
+      edges:
+      - to: substation
+        steps:
+        - tool: Screwing
+          doAfter: 2.5
+
+    - node: substation
+      entity: SubstationWallShuttle
+      edges:
+      - to: parts
+        conditions:
+        - !type:WirePanel {}
+        - !type:ContainerNotEmpty
+          container: board
+        completed:
+        - !type:EmptyAllContainers
+          pickup: true
+          emptyAtUser: true
+        steps:
+        - tool: Prying
+          doAfter: 1.5

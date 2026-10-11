@@ -15,17 +15,17 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared.Access.Systems;
 
-public abstract class SharedIdCardSystem : EntitySystem
+public abstract partial class SharedIdCardSystem : EntitySystem // Far Horizons partial
 {
-    [Dependency] private readonly IConfigurationManager _cfgManager = default!;
-    [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly SharedAccessSystem _access = default!;
-    [Dependency] private readonly SharedHandsSystem _hands = default!;
-    [Dependency] private readonly InventorySystem _inventorySystem = default!;
-    [Dependency] private readonly MetaDataSystem _metaSystem = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly SharedJobStatusSystem _jobStatus = default!;
+    [Dependency] private IConfigurationManager _cfgManager = default!;
+    [Dependency] private ISharedAdminLogManager _adminLogger = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private SharedAccessSystem _access = default!;
+    [Dependency] private SharedHandsSystem _hands = default!;
+    [Dependency] private InventorySystem _inventorySystem = default!;
+    [Dependency] private MetaDataSystem _metaSystem = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private SharedJobStatusSystem _jobStatus = default!;
 
     // CCVar.
     private int _maxNameLength;
@@ -180,7 +180,7 @@ public abstract class SharedIdCardSystem : EntitySystem
         {
             return false;
         }
-
+        if(!id.AllowJobIconChange) return false;
         if (id.JobIcon == jobIcon.ID)
         {
             return true;
@@ -202,7 +202,7 @@ public abstract class SharedIdCardSystem : EntitySystem
     {
         if (!Resolve(uid, ref id))
             return false;
-
+        if(!id.AllowDepartmentChange) return false; //Far Horizons
         id.JobDepartments.Clear();
         foreach (var department in _prototypeManager.EnumeratePrototypes<DepartmentPrototype>())
         {
@@ -219,7 +219,7 @@ public abstract class SharedIdCardSystem : EntitySystem
     {
         if (!Resolve(uid, ref id))
             return false;
-
+        if(!id.AllowDepartmentChange) return false; //Far Horizons
         id.JobDepartments.Clear();
         foreach (var department in departments)
         {
@@ -242,7 +242,7 @@ public abstract class SharedIdCardSystem : EntitySystem
     {
         if (!Resolve(uid, ref id))
             return false;
-
+        if(!id.CanRenameObject) return false; //Far Horizons
         if (!string.IsNullOrWhiteSpace(fullName))
         {
             fullName = fullName.Trim();
@@ -279,7 +279,7 @@ public abstract class SharedIdCardSystem : EntitySystem
     {
         if (!Resolve(uid, ref id))
             return;
-
+        if(!id.CanRenameObject) return; //Far Horizons
         var jobSuffix = string.IsNullOrWhiteSpace(id.LocalizedJobTitle) ? string.Empty : $" ({id.LocalizedJobTitle})";
 
         var val = string.IsNullOrWhiteSpace(id.FullName)

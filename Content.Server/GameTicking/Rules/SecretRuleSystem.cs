@@ -12,15 +12,17 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Configuration;
 using Robust.Shared.Utility;
+using Content.Server._FarHorizons.Factions;
 
 namespace Content.Server.GameTicking.Rules;
 
-public sealed class SecretRuleSystem : GameRuleSystem<SecretRuleComponent>
+public sealed partial class SecretRuleSystem : GameRuleSystem<SecretRuleComponent>
 {
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly IConfigurationManager _configurationManager = default!;
-    [Dependency] private readonly IAdminLogManager _adminLogger = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private IConfigurationManager _configurationManager = default!;
+    [Dependency] private IAdminLogManager _adminLogger = default!;
+    [Dependency] private IServerFactionManager _factions = default!; // Far Horizons
 
     private string _ruleCompName = default!;
 
@@ -74,6 +76,7 @@ public sealed class SecretRuleSystem : GameRuleSystem<SecretRuleComponent>
     private bool TryPickPreset(ProtoId<WeightedRandomPrototype> weights, [NotNullWhen(true)] out GamePresetPrototype? preset)
     {
         var options = _prototypeManager.Index(weights).Weights.ShallowClone();
+        options = options.Where(kv => CheckPresetEligible(kv.Key)).ToDictionary(); // Far Horizons - preemptively ignore presets as to not affect overall weights
         var players = GameTicker.ReadyPlayerCount();
 
         GamePresetPrototype? selectedPreset = null;
@@ -164,6 +167,11 @@ public sealed class SecretRuleSystem : GameRuleSystem<SecretRuleComponent>
 
             if (ruleComp.MinPlayers > players && ruleComp.CancelPresetOnTooFewPlayers)
                 return false;
+            
+            // Far Horizons start
+            if (ruleComp.Faction != null && _factions.GetCurrentFaction()?.ID != ruleComp.Faction)
+                return false;
+            // Far Horizons end
         }
 
         return true;

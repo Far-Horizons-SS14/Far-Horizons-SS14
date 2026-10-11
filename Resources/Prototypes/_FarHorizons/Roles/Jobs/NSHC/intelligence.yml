@@ -1,0 +1,39 @@
+- type: job
+  id: HC-DCIOfficial
+  name: job-name-hc-dci-official
+  description: job-description-hc-dci-official
+  playTimeTracker: JobHC-DCIOfficial
+  setPreference: false
+  startingGear: HC-DCIGear
+  icon: "JobIconCentComm"
+  supervisors: job-supervisors-nshc
+  canBeAntag: false
+  accessGroups:
+  - AllAccessNS
+  access:
+  - NSHighCommand
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplantNS, DeathRattleImplantNSHC ]
+
+- type: startingGear
+  id: HC-DCIGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitCentcomOfficer
+    shoes: ClothingShoesBootsCombatFilled
+    head: ClothingHeadHatBeretCommand
+    mask: ClothingMaskGasCentcom
+    eyes: ClothingEyesGlassesCentComm
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterArmorCentcommCarapace
+    back: ClothingBackpackNTNC
+    id: CIDOfficialPDA
+    ears: ClothingHeadsetAltCentCom
+    belt: ClothingBeltSheathFilled
+    suitstorage: WeaponSubMachineGunWt550
+    pocket1: MagazinePistolSubMachineGunTopMounted
+    suitstorage2: NitrogenTankFilled
+  storage:
+    autoImplant:
+      - MindShieldImplanterNS
+      - DeathRattleImplanterNSHC

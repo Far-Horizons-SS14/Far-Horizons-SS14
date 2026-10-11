@@ -19,26 +19,27 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Medical;
 
-public sealed class VomitSystem : EntitySystem
+public sealed partial class VomitSystem : EntitySystem
 {
-    [Dependency] private readonly INetManager _netManager = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly HungerSystem _hunger = default!;
-    [Dependency] private readonly MobStateSystem _mobState = default!;
-    [Dependency] private readonly MovementModStatusSystem _movementMod = default!;
-    [Dependency] private readonly ThirstSystem _thirst = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedBloodstreamSystem _bloodstream = default!;
-    [Dependency] private readonly SharedForensicsSystem _forensics = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SharedPuddleSystem _puddle = default!;
-    [Dependency] private readonly SharedSolutionContainerSystem _solutionContainer = default!;
+    [Dependency] private INetManager _netManager = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
+    [Dependency] private HungerSystem _hunger = default!;
+    [Dependency] private MobStateSystem _mobState = default!;
+    [Dependency] private MovementModStatusSystem _movementMod = default!;
+    [Dependency] private ThirstSystem _thirst = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedBloodstreamSystem _bloodstream = default!;
+    [Dependency] private SharedForensicsSystem _forensics = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private SharedPuddleSystem _puddle = default!;
+    [Dependency] private SharedSolutionContainerSystem _solutionContainer = default!;
 
     public override void Initialize()
     {
         base.Initialize();
 
         SubscribeLocalEvent<StomachComponent, BodyRelayedEvent<TryVomitEvent>>(TryVomitSolution);
+        SubscribeLocalEvent<StomachComponent, TryVomitEvent>(TryVomitBodyWrapper); // Far Horizons slime moment
     }
 
     private const float ChemMultiplier = 0.1f;
@@ -49,6 +50,17 @@ public sealed class VomitSystem : EntitySystem
 
     private readonly SoundSpecifier _vomitSound = new SoundCollectionSpecifier(VomitCollection,
         AudioParams.Default.WithVariation(0.2f).WithVolume(-4f));
+
+    // Far Horizons start
+    private void TryVomitBodyWrapper(Entity<StomachComponent> ent, ref TryVomitEvent args)
+    {
+        if (!TryComp<BodyComponent>(ent, out var body)) return;
+
+        var ev = new BodyRelayedEvent<TryVomitEvent>((ent, body), args);
+        TryVomitSolution(ent, ref ev);
+        args = ev.Args;
+    }
+    // Far Horizons end
 
     private void TryVomitSolution(Entity<StomachComponent> ent, ref BodyRelayedEvent<TryVomitEvent> args)
     {

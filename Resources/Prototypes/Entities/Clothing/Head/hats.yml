@@ -322,9 +322,9 @@
   description: A hat used by chefs to keep their hair out of your food. Judging by the food in the mess, they don't work.
   components:
   - type: Sprite
-    sprite: Clothing/Head/Hats/chefhat.rsi
+    sprite: _FarHorizons/Clothing/Head/Hats/chefhat.rsi #Far Horizons
   - type: Clothing
-    sprite: Clothing/Head/Hats/chefhat.rsi
+    sprite: _FarHorizons/Clothing/Head/Hats/chefhat.rsi #Far Horizons
   - type: Storage
     grid:
     - 0,0,0,0
@@ -539,9 +539,9 @@
   description: A strange-looking red hat that most certainly belongs to a powerful magic-user.
   components:
   - type: Sprite
-    sprite: Clothing/Head/Hats/redwizard.rsi
+    sprite: _FarHorizons/Clothing/Head/Hats/redwizardhat.rsi #FH
   - type: Clothing
-    sprite: Clothing/Head/Hats/redwizard.rsi
+    sprite: _FarHorizons/Clothing/Head/Hats/redwizardhat.rsi #FH
   - type: Tag
     tags:
     - PetWearable
@@ -745,9 +745,9 @@
   description: A strange-looking violet hat that most certainly belongs to a powerful magic-user.
   components:
   - type: Sprite
-    sprite: Clothing/Head/Hats/violetwizard.rsi
+    sprite: _FarHorizons/Clothing/Head/Hats/violetwizardhat.rsi #FH
   - type: Clothing
-    sprite: Clothing/Head/Hats/violetwizard.rsi
+    sprite: _FarHorizons/Clothing/Head/Hats/violetwizardhat.rsi #FH
   - type: Tag
     tags:
     - PetWearable
@@ -781,9 +781,9 @@
   components:
   - type: WizardClothes #Yes this will count
   - type: Sprite
-    sprite: Clothing/Head/Hats/witch.rsi
+    sprite: _FarHorizons/Clothing/Head/Hats/witchhat.rsi #FH
   - type: Clothing
-    sprite: Clothing/Head/Hats/witch.rsi
+    sprite: _FarHorizons/Clothing/Head/Hats/witchhat.rsi #FH
   - type: Tag
     tags:
     - PetWearable
@@ -824,9 +824,9 @@
   description: A strange-looking blue hat that most certainly belongs to a powerful magic-user.
   components:
   - type: Sprite
-    sprite: Clothing/Head/Hats/wizardhat.rsi
+    sprite: _FarHorizons/Clothing/Head/Hats/wizardhat.rsi #FH
   - type: Clothing
-    sprite: Clothing/Head/Hats/wizardhat.rsi
+    sprite: _FarHorizons/Clothing/Head/Hats/wizardhat.rsi #FH
   - type: Tag
     tags:
     - PetWearable
@@ -1470,6 +1470,7 @@
         Heat: 1
   - type: Damageable
     damageModifierSet: Wood
+  - type: Injurable
   - type: Appearance
   - type: FireVisuals
     sprite: Effects/fire.rsi
@@ -1554,3 +1555,14 @@
     tags:
     - PetWearable
     - CorgiWearable
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatMitreClown
+  name: honkmother mitre
+  description: It's hard for parishoners to see a banana peel on the floor when they're looking up at your glorious chapeau.
+  components:
+  - type: Sprite
+    sprite: Clothing/Head/Hats/mitre_clown.rsi
+  - type: Clothing
+    sprite: Clothing/Head/Hats/mitre_clown.rsi

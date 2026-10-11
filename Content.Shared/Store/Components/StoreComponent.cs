@@ -1,3 +1,4 @@
+using Content.Shared._Starlight.Language; // FH
 using Content.Shared.FixedPoint;
 using Content.Shared.NPC.Prototypes;
 using Robust.Shared.Audio;
@@ -108,6 +109,23 @@ public sealed partial class StoreComponent : Component
     [DataField]
     public SoundSpecifier BuySuccessSound = new SoundPathSpecifier("/Audio/Effects/kaching.ogg");
     #endregion
+
+    //Far Horizons Start
+
+    /// <summary>
+    ///     All current languages bought from this shop.
+    /// </summary>
+    [ViewVariables, DataField]
+    public List<LanguagePrototype> BoughtLanguages = new();
+
+    /// <summary>
+    ///     Just a check for if the store requires to be on the starting map (apparently it wasn't a thing before?)
+    /// </summary>
+
+    [ViewVariables, DataField]
+    public bool RequireStartingMap = true;
+
+    //Far Horizons End
 }
 
 /// <summary>
@@ -120,6 +138,13 @@ public readonly record struct StoreAddedEvent;
 /// </summary>
 [ByRefEvent]
 public readonly record struct StoreRemovedEvent;
+
+/// <summary>
+/// Far Horizons/Starlight: event broadcast after a store rebuilds its listing catalog,
+/// allowing server-side listing state to be reapplied.
+/// </summary>
+[ByRefEvent]
+public readonly record struct StoreListingsRefreshedEvent(EntityUid Store);
 
 /// <summary>
 ///     Broadcast when an Entity with the <see cref="StoreRefundComponent"/> is deleted

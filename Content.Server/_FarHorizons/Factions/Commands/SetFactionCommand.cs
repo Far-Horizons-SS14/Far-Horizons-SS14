@@ -7,9 +7,9 @@ using Robust.Shared.Console;
 namespace Content.Server._FarHorizons.Factions.Commands;
 
 [AdminCommand(AdminFlags.Round)]
-public sealed class SetFactionCommand : IConsoleCommand
+public sealed partial class SetFactionCommand : IConsoleCommand
 {
-    [Dependency] private readonly IServerFactionManager _factions = default!;
+    [Dependency] private IServerFactionManager _factions = default!;
 
     public string Command => "setfaction";
     public string Description => Loc.GetString("set-faction-command-description");

@@ -3,6 +3,6 @@ using Content.Shared.Item;
 
 namespace Content.Server.Item;
 
-public sealed class ItemSwitchSystem : SharedItemSwitchSystem
+public sealed partial class ItemSwitchSystem : SharedItemSwitchSystem
 {
 }

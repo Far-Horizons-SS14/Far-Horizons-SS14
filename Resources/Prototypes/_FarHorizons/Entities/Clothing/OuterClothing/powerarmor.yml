@@ -1,0 +1,174 @@
+- type: entity
+  id: PowerArmorNaked
+  name: Power Armor
+  description: A modular hardsuit that is able to add or remove parts. It has a powered exoskeleton underneath in order to assist user moving the extra weight. Some assembly required.
+  components:
+  - type: Animateable
+  - type: Clickable
+  - type: InteractionOutline
+  - type: MovedByPressure
+  - type: CollisionWake
+  - type: GravityAffected
+  - type: WiresPanel
+    openDelay: 5
+  - type: Physics
+    bodyType: Dynamic
+    fixedRotation: false
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.25,0.25,0.25"
+        density: 500
+        mask:
+        - ItemMask
+        restitution: 0.3  # fite me
+        friction: 0.2
+  - type: Pullable
+  - type: DamageExaminable
+  - type: Appearance
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/PowerArmor/underarmor.rsi
+    drawdepth: Items
+    noRot: true
+    layers: 
+    - map: [ "enum.PowerArmorVisualLayers.UnderArmor" ]
+      state: underarmor
+    - map: [ "enum.PowerArmorVisualLayers.Chest" ]
+    - map: [ "enum.PowerArmorVisualLayers.RArm" ]
+    - map: [ "enum.PowerArmorVisualLayers.LArm" ]
+    - map: [ "enum.PowerArmorVisualLayers.RLeg" ]
+    - map: [ "enum.PowerArmorVisualLayers.LLeg" ]
+  - type: Clothing
+    slots: [ OUTERCLOTHING ]
+    equipSound: /Audio/Mecha/mechmove03.ogg 
+    unequipSound: /Audio/Mecha/mechmove03.ogg
+    equipDelay: 3.0 
+    unequipDelay: 3.0 
+    clothingVisuals: 
+      outerClothing:
+      - map: [ "enum.PowerArmorVisualLayers.UnderArmor" ]
+        state: underarmor
+      - map: [ "enum.PowerArmorVisualLayers.Chest" ]
+      - map: [ "enum.PowerArmorVisualLayers.RArm" ]
+      - map: [ "enum.PowerArmorVisualLayers.LArm" ]
+      - map: [ "enum.PowerArmorVisualLayers.RLeg" ]
+      - map: [ "enum.PowerArmorVisualLayers.LLeg" ]
+  - type: PressureProtection
+    highPressureMultiplier: 0.3
+    lowPressureMultiplier: 1000
+  - type: TemperatureProtection
+    heatingCoefficient: 0.01
+    coolingCoefficient: 0.01
+  - type: ClothingSpeedModifier #Basically unpowered speed
+    walkModifier: 0.4
+    sprintModifier: 0.4
+  - type: HeldSpeedModifier
+  - type: Pierceable
+    level: Metal
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellMedium
+        whitelist:
+          tags:
+            - PowerCell
+  - type: ContainerContainer
+    containers:
+      toggleable-clothing: !type:Container
+        ents: []
+      parts: !type:Container
+        ents: []
+      modules: !type:Container
+        ents: []
+      cell_slot: !type:ContainerSlot {}
+  - type: GroupExamine
+  - type: Tag
+    tags:
+    - Hardsuit
+    - WhitelistChameleon
+    - IPCExternalCooling 
+    - RequiredForLmgTag
+  - type: ProtectedFromStepTriggers
+    slots: WITHOUT_POCKET
+  - type: DamageOnInteractProtection
+    damageProtection:
+      flatReductions:
+        Heat: 10 
+    slots: OUTERCLOTHING
+  - type: HideLayerClothing
+    slots:
+    - Tail
+  - type: ArmorSparkEffect
+  - type: SpaceRescuePingSender 
+  - type: HeatRadiationBlocker
+  - type: ToggleableClothingMultiple
+    clothingPrototypes: 
+      head: PowerArmorHelmetNaked
+  - type: PowerArmor
+    parts:
+      Chest: null
+      RArm: null
+      LArm: null
+      RLeg: null
+      LLeg: null
+  - type: ActivatableUI
+    key: enum.PowerArmorMenuUiKey.Key
+  - type: SimpleToolUsage
+    quality: Prying
+  - type: UserInterface
+    interfaces:
+      enum.PowerArmorMenuUiKey.Key:
+        type: PowerArmorBoundUserInterface
+      enum.PowerArmorRadialMenuUiKey.Key:
+        type: PowerArmorRadialBoundUserInterface
+      enum.ClothingToggleRadialMenuUiKey.Key:
+        type: ToggleableClothingRadialMultipleBoundUserInterface
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+    fitsInCharger: false
+  - type: PowerCellDraw
+    enabled: false
+    drawRate: 0.5
+  - type: ActionGrant
+    actions:
+    - ActionOpenPowerArmorRadialMenu
+    - ActionOpenPowerArmorMenu
+  - type: ItemActionGrant
+    actions:
+    - ActionOpenPowerArmorRadialMenu
+    activeIfWorn: true
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: TechMarch
+      params:
+        pitch: 0.9
+        variation: 0.09
+
+- type: entity
+  parent: PowerArmorNaked
+  id: PowerArmorNTJuggernautFilled
+  suffix: NT, Filled
+  components:
+  - type: ToggleableClothingMultiple
+    clothingPrototypes: 
+      head: PowerArmorHelmetNTJuggernautFilled
+      gloves: ClothingHandsGlovesSecurityPowered
+      shoes: ClothingShoesBootsMagAdvSec
+    replaceExistingClothing: 
+      head: true
+      gloves: true
+      shoes: true
+  - type: ContainerFill
+    containers:
+      modules: 
+        - PowerArmorModuleIDLockSecurityNT
+        - PowerArmorModuleSecurityVisor
+      parts:
+        - PowerArmorChestNTJuggernaut
+        - PowerArmorLArmNTJuggernaut
+        - PowerArmorRArmNTJuggernaut
+        - PowerArmorLLegNTJuggernaut
+        - PowerArmorRLegNTJuggernaut

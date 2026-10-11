@@ -321,6 +321,9 @@
   id: Cleaver # Storage whitelist: ClothingBeltChef. ItemMapper: ClothingBeltChef
 
 - type: Tag
+  id: CleanerGrenade # Storage whitelist: ClothingBeltJanitor. ItemMapper: ClothingBeltJanitor
+
+- type: Tag
   id: ClothMade # SpecialDigestible: OrganMothStomach. Storage whitelist: FoodBoxCloth
 
 - type: Tag
@@ -717,7 +720,7 @@
   id: Handcuffs # It's handcuffs. ConstructionGraph: makeshiftstunprod, Bola, PneumaticCannon
 
 - type: Tag
-  id: HandGrenade # Storage whitelist: ClothingBeltSecurity
+  id: HandGrenade # Storage whitelist: ClothingBeltSecurity - also used to pacify grenades #FH
 
 - type: Tag
   id: HappyHonk # ConstructionGraph: HonkBot
@@ -870,6 +873,9 @@
 
 - type: Tag
   id: LightBulb # Storage whitelist: BoxLightbulb. ConstructionGraph: HelmetJustice
+
+- type: Tag
+  id: LightReplacer # Storage whitelist: ClothingBeltJanitor. ItemMapper: ClothingBeltJanitor
 
 - type: Tag
   id: Lime # CargoBounty: BountyLime
@@ -1502,6 +1508,9 @@
 
 - type: Tag
   id: TrashBag # Storage whitelist: BoxTrashbag, ClothingBeltJanitor, JanitorialTrolley. ItemMapper: JanitorialTrolley
+
+- type: Tag
+  id: TrashBagBlue # Storage whitelist: BoxTrashbag, ClothingBeltJanitor, JanitorialTrolley. ItemMapper: JanitorialTrolley
 
 - type: Tag
   id: Truncheon # Storage whitelist: ClothingBeltSecurity

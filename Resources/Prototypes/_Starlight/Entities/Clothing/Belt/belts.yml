@@ -1,0 +1,174 @@
+- type: entity
+  parent: [ ClothingBeltStorageBase, BaseMajorContraband ]
+  id: ClothingAbductorBelt
+  name: Abductor Belt #Far Horizons - The Great Capitalization Crusade
+  description: Can hold various OUR things.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Belt/abductor.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Belt/abductor.rsi
+  - type: Storage
+    maxItemSize: Normal
+    grid:
+    - 0,0,9,1
+    whitelist:
+      tags:
+        - Powerdrill
+        - Wirecutter
+        - Crowbar
+        - Screwdriver
+        - Flashlight
+        - Wrench
+        - GeigerCounter
+        - Flare
+        - CableCoil
+        - CigPack
+        - Radio
+        - Knife
+        - Multitool
+        - AppraisalTool
+        - JawsOfLife
+        - GPS
+        - WeldingMask
+      components:
+        - SprayPainter
+        - NetworkConfigurator
+        - Welder
+        - PowerCell
+        - Geiger
+        - TrayScanner
+        - GasAnalyzer
+        - HandLabeler
+        - FlashOnTrigger
+        - SmokeOnTrigger
+        - Flash
+        - Handcuff
+        - BallisticAmmoProvider
+        - Ammo
+  - type: Appearance
+  - type: StaticPrice
+    price: 1000
+
+# USSP 
+
+- type: entity
+  parent: [ClothingBeltStorageBase, BaseSovietContraband]
+  id: ClothingSovietBelt
+  name: Soviet Belt #Far Horizons - The Great Capitalization Crusade
+  description: Can hold various OUR things.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Belt/soviet.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Belt/soviet.rsi
+  - type: Storage
+    grid:
+    - 0,0,9,1
+    whitelist:
+      tags:
+        - Powerdrill
+        - Wirecutter
+        - Crowbar
+        - Screwdriver
+        - Flashlight
+        - Wrench
+        - GeigerCounter
+        - Flare
+        - CableCoil
+        - CigPack
+        - Radio
+        - Knife
+        - Multitool
+        - AppraisalTool
+        - JawsOfLife
+        - GPS
+        - WeldingMask
+                
+        #Starlight
+        - ImprovisedCrowbar
+        - ImprovisedScrewdriver
+        - ImprovisedWirecutter
+        - ImprovisedWrench
+        - ImprovisedMultitool
+      components:
+        - SprayPainter
+        - NetworkConfigurator
+        - Welder
+        - PowerCell
+        - Geiger
+        - TrayScanner
+        - GasAnalyzer
+        - HandLabeler
+        - FlashOnTrigger
+        - SmokeOnTrigger
+        - Flash
+        - Handcuff
+        - BallisticAmmoProvider
+        - Ammo
+        - CartridgeAmmo # Far Horizons
+  - type: ItemMapper
+    mapLayers:
+      flashbang:
+        whitelist:
+          components:
+          - FlashOnTrigger
+      #stunbaton:
+      #  whitelist:
+      #    components:
+      #    - Stunbaton
+      tear_gas_grenade:
+        whitelist:
+          components:
+          - SmokeOnTrigger
+      drill:
+        whitelist:
+          tags:
+          - Powerdrill
+      cutters_red:
+        whitelist:
+          tags:
+          - Wirecutter
+          
+          #Starlight
+          - ImprovisedWirecutter
+      crowbar:
+        whitelist:
+          tags:
+          - Crowbar
+
+          #Starlight
+          - ImprovisedCrowbar
+      crowbar_red:
+        whitelist:
+          tags:
+          - CrowbarRed
+      jaws:
+        whitelist:
+          tags:
+          - JawsOfLife
+      screwdriver_nuke:
+        whitelist:
+          tags:
+          - Screwdriver
+
+          #Starlight
+          - ImprovisedScrewdriver
+      wrench:
+        whitelist:
+          tags:
+          - Wrench
+          
+          #Starlight
+          - ImprovisedWrench
+      multitool:
+        whitelist:
+          tags:
+            - Multitool
+
+            #Starlight
+            - ImprovisedMultitool
+    sprite: Clothing/Belt/belt_overlay.rsi
+  - type: Appearance
+  - type: StaticPrice
+    price: 1000

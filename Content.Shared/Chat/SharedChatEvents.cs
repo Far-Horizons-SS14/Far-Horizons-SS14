@@ -74,7 +74,10 @@ public sealed class EntitySpokeEvent : EntityEventArgs
     /// </summary>
     public RadioChannelPrototype? Channel;
 
-    public EntitySpokeEvent(EntityUid source, SpeechMessage message, RadioChannelPrototype? channel, string? obfuscatedMessage, bool isWhisper, LanguagePrototype language) // Starlight - added isWhisper, language, ttsMessage
+    // Far Horizons edit - When true the entity speaking wont be sent as TTS message locally.
+    public bool SuppressLocalTTS;
+
+    public EntitySpokeEvent(EntityUid source, SpeechMessage message, RadioChannelPrototype? channel, string? obfuscatedMessage, bool isWhisper, LanguagePrototype language, bool suppressLocalTTS = false) // Starlight - added isWhisper, language, ttsMessage // Far Horizons edit - add SuppressLocalTTS
     {
         Source = source;
         Message = message;
@@ -82,5 +85,6 @@ public sealed class EntitySpokeEvent : EntityEventArgs
         ObfuscatedMessage = obfuscatedMessage;
         IsWhisper = isWhisper; // Starlight
         Language = language; // Starlight
+        SuppressLocalTTS = suppressLocalTTS; // Far Horizons
     }
 }

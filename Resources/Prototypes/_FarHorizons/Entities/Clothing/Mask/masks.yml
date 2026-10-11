@@ -1,3 +1,4 @@
+#region ## NanoTrasen
 - type: entity
   parent: [ ClothingMaskGas, BaseSecurityContraband ]
   id: ClothingMaskGasCorpsman
@@ -81,8 +82,25 @@
     tags:
     - HeavySecSuit
 
-## Syndicate Station
+- type: entity
+  parent: ClothingMaskNeckGaiter
+  id: ClothingMaskNeckGaiterBlue
+  name: Blue Neck Gaiter
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Mask/neckgaiterblue.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Mask/neckgaiterblue.rsi
 
+#region ## NeoSol ##
+
+
+
+
+
+
+
+#region Command
 
 - type: entity
   parent: [ClothingMaskGasAtmos, BaseCommandContraband]
@@ -91,8 +109,113 @@
   description: The Syndicate cut corners and repainted a spare atmospheric gas mask, but don't tell anyone.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/Mask/syndigascaptain.rsi #Far Horizons
+    sprite: _FarHorizons/Clothing/Mask/NeoSol/gascaptain.rsi #Far Horizons
   - type: Clothing
-    sprite: _FarHorizons/Clothing/Mask/syndigascaptain.rsi #Far Horizons
+    sprite: _FarHorizons/Clothing/Mask/NeoSol/gascaptain.rsi #Far Horizons
   - type: BreathMask
   - type: IngestionBlocker
+
+#region Service
+
+- type: entity
+  parent: ClothingMaskBase
+  id: ClothingMaskJanitorNS
+  name: Janitorial Gas Mask
+  description: A mask designed to deal with the unpleasant smells of the station.
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Mask/NeoSol/janitor.rsi
+    state: icon
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Mask/NeoSol/janitor.rsi
+  - type: BreathMask
+  - type: IngestionBlocker
+  - type: IdentityBlocker
+    coverage: MOUTH
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+  - type: HideLayerClothing
+    slots:
+    - Snout
+
+- type: entity
+  parent: ClothingMaskBase
+  id: ClothingMaskClownBaseNS
+  abstract: true
+  name: Clown Wig and Mask
+  suffix: NS
+  description: A true prankster's facial attire. A clown is incomplete without his wig and mask.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Mask/NeoSol/clown.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Mask/NeoSol/clown.rsi
+  - type: BreathMask
+  - type: IdentityBlocker
+  - type: Tag
+    tags:
+    - ClownMask
+    - WhitelistChameleon
+  - type: HideLayerClothing
+    slots:
+    - Snout
+
+- type: entity
+  parent: [ClothingMaskClownBaseNS, BaseFoldable]
+  id: ClothingMaskClownNS
+  suffix: NS
+  description: A clown mask featuring a foldable wig; a true prankster's attire.
+  components:
+  - type: Appearance
+  - type: Foldable
+    canFoldInsideContainer: true
+  - type: FoldableClothing
+    foldedEquippedPrefix: opened
+    foldedHeldPrefix: opened
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Mask/NeoSol/clown.rsi
+    layers:
+    - state: icon
+      map: [ "unfoldedLayer" ]
+    - state: icon-opened
+      map: [ "foldedLayer" ]
+      visible: false
+  - type: Tag
+    tags:
+    - ClownMask
+    - HamsterWearable
+    - WhitelistChameleon
+  - type: HideLayerClothing
+    slots:
+    - Snout
+
+- type: entity
+  parent: [ClothingMaskClownBaseNS, BaseSecurityContraband]
+  id: ClothingMaskClownSecurityNS
+  name: Security Clown Wig and Mask
+  description: A debatably oxymoronic but protective mask and wig.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Mask/NeoSol/clown_security.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Mask/NeoSol/clown_security.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.95
+        Slash: 0.95
+        Piercing: 0.95
+        Heat: 0.95
+  - type: LimbArmor
+    limbs:
+      Head: {}
+  - type: Tag
+    tags:
+    - ClownMask
+    - HamsterWearable
+    - WhitelistChameleon
+  - type: HideLayerClothing
+    slots:
+    - Snout

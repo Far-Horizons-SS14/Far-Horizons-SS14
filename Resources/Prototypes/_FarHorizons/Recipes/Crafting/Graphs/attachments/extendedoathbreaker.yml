@@ -1,0 +1,21 @@
+- type: constructionGraph
+  id: WeaponRevolverOathbreakerExtendedGraph
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: attachment
+      steps:
+      - tag: OathBreaker
+        icon:
+          sprite: _FarHorizons/Objects/Weapons/Guns/Revolvers/oath_breaker.rsi
+          state: icon
+        name: crafting-menu-name-OathBreaker
+      - tag: CombatKnife
+        icon:
+          sprite: Objects/Weapons/Melee/combat_knife.rsi
+          state: icon
+        doAfter: 10
+        name: crafting-menu-name-CombatKnife
+  - node: attachment
+    entity: WeaponRevolverOathbreakerExtended

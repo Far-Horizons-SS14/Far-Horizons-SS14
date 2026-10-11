@@ -7,6 +7,7 @@
   cost: 7000
   category: cargoproduct-category-name-livestock
   group: market
+  personalOrder: true # Far Horizons
 
 - type: cargoProduct
   id: LivestockButterfly
@@ -17,6 +18,7 @@
   cost: 4400
   category: cargoproduct-category-name-livestock
   group: market
+  personalOrder: true # Far Horizons
 
 - type: cargoProduct
   id: LivestockCat
@@ -27,6 +29,7 @@
   cost: 1200
   category: cargoproduct-category-name-livestock
   group: market
+  personalOrder: true # Far Horizons
 
 - type: cargoProduct
   id: LivestockChicken
@@ -37,6 +40,7 @@
   cost: 4000
   category: cargoproduct-category-name-livestock
   group: market
+  personalOrder: true # Far Horizons
 
 - type: cargoProduct
   id: LivestockCrab
@@ -47,6 +51,7 @@
   cost: 3000
   category: cargoproduct-category-name-livestock
   group: market
+  personalOrder: true # Far Horizons
 
 - type: cargoProduct
   id: LivestockDuck
@@ -57,6 +62,7 @@
   cost: 4000
   category: cargoproduct-category-name-livestock
   group: market
+  personalOrder: true # Far Horizons
 
 - type: cargoProduct
   id: LivestockCorgi
@@ -67,6 +73,7 @@
   cost: 1200
   category: cargoproduct-category-name-livestock
   group: market
+  personalOrder: true # Far Horizons
 
 - type: cargoProduct
   id: LivestockPupCorgi
@@ -77,6 +84,7 @@
   cost: 1200
   category: cargoproduct-category-name-livestock
   group: market
+  personalOrder: true # Far Horizons
 
 - type: cargoProduct
   id: LivestockCow
@@ -87,6 +95,7 @@
   cost: 3200
   category: cargoproduct-category-name-livestock
   group: market
+  personalOrder: true # Far Horizons
 
 - type: cargoProduct
   id: LivestockGoat
@@ -97,6 +106,7 @@
   cost: 1200
   category: cargoproduct-category-name-livestock
   group: market
+  personalOrder: true # Far Horizons
 
 - type: cargoProduct
   id: LivestockGoose
@@ -107,26 +117,35 @@
   cost: 2100
   category: cargoproduct-category-name-livestock
   group: market
+  personalOrder: true # Far Horizons
 
 - type: cargoProduct
   id: LivestockMonkeyCube
   icon:
     sprite: Objects/Misc/monkeycube.rsi
     state: box
-  product: CrateNPCMonkeyCube
+  product: MonkeyCubeBox
+  container:
+    entity: WrappedParcel
+    containerId: contents
   cost: 2000
   category: cargoproduct-category-name-livestock
   group: market
+  personalOrder: true # Far Horizons
 
 - type: cargoProduct
   id: LivestockKoboldCube
   icon:
     sprite: Objects/Misc/monkeycube.rsi
     state: box_kobold
-  product: CrateNPCKoboldCube
+  product: KoboldCubeBox
+  container:
+    entity: WrappedParcel
+    containerId: contents
   cost: 2000
   category: cargoproduct-category-name-livestock
   group: market
+  personalOrder: true # Far Horizons
 
 - type: cargoProduct
   id: LivestockMouse
@@ -137,6 +156,7 @@
   cost: 4400
   category: cargoproduct-category-name-livestock
   group: market
+  personalOrder: true # Far Horizons
 
 - type: cargoProduct
   id: LivestockParrot
@@ -147,6 +167,7 @@
   cost: 3000
   category: cargoproduct-category-name-livestock
   group: market
+  personalOrder: true # Far Horizons
 
 - type: cargoProduct
   id: LivestockPenguin
@@ -157,6 +178,7 @@
   cost: 2100
   category: cargoproduct-category-name-livestock
   group: market
+  personalOrder: true # Far Horizons
 
 - type: cargoProduct
   id: LivestockPig
@@ -167,6 +189,7 @@
   cost: 1100
   category: cargoproduct-category-name-livestock
   group: market
+  personalOrder: true # Far Horizons
 
 - type: cargoProduct
   id: LivestockSnake
@@ -177,6 +200,7 @@
   cost: 3000
   category: cargoproduct-category-name-livestock
   group: market
+  personalOrder: true # Far Horizons
 
 - type: cargoProduct
   id: LivestockHamster
@@ -187,6 +211,7 @@
   cost: 2800
   category: cargoproduct-category-name-livestock
   group: market
+  personalOrder: true # Far Horizons
 
 - type: cargoProduct
   id: LivestockLizard
@@ -197,6 +222,7 @@
   cost: 1100
   category: cargoproduct-category-name-livestock
   group: market
+  personalOrder: true # Far Horizons
 
 - type: cargoProduct
   id: LivestockKangaroo
@@ -207,6 +233,7 @@
   cost: 2800
   category: cargoproduct-category-name-livestock
   group: market
+  personalOrder: true # Far Horizons
 
 - type: cargoProduct
   id: LivestockMothroach
@@ -217,3 +244,4 @@
   cost: 5000
   category: cargoproduct-category-name-livestock
   group: market
+  personalOrder: true # Far Horizons

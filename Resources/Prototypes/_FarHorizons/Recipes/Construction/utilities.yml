@@ -1,0 +1,32 @@
+- type: construction
+  id: ResearchTreeMap
+  graph: ResearchTreeMap
+  startNode: start
+  targetNode: research_tree_map
+  category: construction-category-structures
+  placementMode: SnapgridCenter
+  objectType: Structure
+  canRotate: true
+  canBuildInImpassable: true
+  conditions:
+  - !type:WallmountCondition {}
+
+- type: construction
+  id: SubstationWallShip
+  graph: SubstationWallShip
+  startNode: start
+  targetNode: substation
+  category: construction-category-utilities
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: true
+
+- type: construction
+  id: SubstationWallShuttle
+  graph: SubstationWallShuttle
+  startNode: start
+  targetNode: substation
+  category: construction-category-utilities
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: true

@@ -1,0 +1,576 @@
+- type: entity
+  parent: BasePDA
+  id: RoboticistPDA
+  name: Roboticist PDA #Far Horizons - The Great Capitalization Crusade
+  description: Covered in dirt and oil. The screen is covered in something sticky.
+  components:
+  - type: Pda
+    id: RoboticistIDCard
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-roboticist
+  - type: PdaBorderColor
+    borderColor: "#111112" #FH
+    accentVColor: "#d33725"
+    accentHColor: "#d33725" #FH
+  - type: Icon
+    state: pda-roboticist
+  - type: HealthAnalyzer
+    scanningEndSound:
+      path: "/Audio/Items/Medical/healthscanner.ogg"
+    damageContainers:
+    - Silicon #FH
+    - Robotic #FH
+
+- type: entity
+  parent: BaseMedicalPDA
+  id: SeniorChemistPDA
+  name: Senior Chemist PDA #Far Horizons - The Great Capitalization Crusade
+  description: Smells faintly of bratwurst.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Devices/pda.rsi #FH
+  - type: Pda
+    id: ChemistIDCard
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-seniorchemist
+  - type: PdaBorderColor
+    borderColor: "#d3d3d3" #FH
+    accentVColor: "#cc5100" #FH
+  - type: Icon
+    sprite: _FarHorizons/Objects/Devices/pda.rsi #FH
+    state: pda-seniorchemist
+
+- type: entity
+  parent: BaseMedicalPDA
+  id: VeteranBrigmedicPDA
+  name: Veteran Brigmedic PDA #Far Horizons - The Great Capitalization Crusade
+  description: This pulse has never stopped under my watch.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Devices/pda.rsi #FH
+  - type: Pda
+    id: BrigmedicIDCard
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-veteranbrigmedic
+  - type: PdaBorderColor
+    borderColor: "#0060a5" #FH
+    accentHColor: "#ffffff" #FH
+    accentVColor: "#ffffff" #FH
+  - type: Icon
+    sprite: _FarHorizons/Objects/Devices/pda.rsi #FH
+    state: pda-veteranbrigmedic
+  - type: CartridgeLoader
+    preinstalled:
+    - CrewManifestCartridge
+    - NotekeeperCartridge
+    - NanoTaskCartridge
+    - NewsReaderCartridge
+    - WantedListCartridge
+    - MedTekCartridge
+    - NanoChatCartridge
+    - FrontierBankCartridge # Far Horzions
+    - GSLNowCartridge # Far Horizons
+
+# - type: entity
+#   parent: BaseMedicalPDA
+#   id: CorpsmanPDA
+#   name: corpsman PDA
+#   description: How's it going to end?
+#   components:
+#   - type: Sprite
+#     sprite: _Starlight/Objects/Devices/pda.rsi
+#   - type: Pda
+#     id: BrigmedicIDCard
+#   - type: Appearance
+#     appearanceDataInit:
+#      enum.PdaVisuals.PdaType:
+#        !type:String
+#        pda-corpsman
+#   - type: PdaBorderColor
+#     borderColor: "#A32D26"
+#     accentHColor: "#d7d7d0"
+#     accentVColor: "#d7d7d0"
+#   - type: Icon
+#     sprite: _Starlight/Objects/Devices/pda.rsi
+#     state: pda-corpsman
+#   - type: CartridgeLoader
+#     preinstalled:
+#     - CrewManifestCartridge
+#     - NotekeeperCartridge
+#     - NanoTaskCartridge
+#     - NewsReaderCartridge
+#     - WantedListCartridge
+#     - MedTekCartridge
+
+- type: entity
+  parent: BaseMedicalPDA
+  id: VeteranCorpsmanPDA
+  name: Veteran Corpsman PDA #Far Horizons - The Great Capitalization Crusade
+  description: I've seen the end. I couldn't change a thing...
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Devices/pda.rsi #FH
+  - type: Pda
+    id: CorpsmanIDCard #FH
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-veterancorpsman
+  - type: PdaBorderColor
+    borderColor: "#878787" #FH
+    accentHColor: "#0077cc" #FH
+    accentVColor: "#0077cc" #FH
+  - type: Icon
+    sprite: _FarHorizons/Objects/Devices/pda.rsi #FH
+    state: pda-veterancorpsman
+  - type: CartridgeLoader
+    preinstalled:
+    - CrewManifestCartridge
+    - NotekeeperCartridge
+    - NanoTaskCartridge
+    - NewsReaderCartridge
+    - WantedListCartridge
+    - MedTekCartridge
+    - NanoChatCartridge
+    - FrontierBankCartridge # Far Horzions
+    - GSLNowCartridge # Far Horizons
+
+- type: entity
+  parent: BasePDA
+  id: MagistratePDA
+  name: Concord Liaison PDA #Far Horizons - The Great Capitalization Crusade
+  components:
+  - type: Pda
+    id: MagistrateIDCard
+    penSlot:
+      startingItem: LuxuryPen #Far Horizons
+      priority: -1
+      whitelist:
+        tags:
+        - Write
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-captain
+  - type: CartridgeLoader #Far Horizons
+    preinstalled:
+    - CrewManifestCartridge
+    - NotekeeperCartridge
+    - NanoTaskCartridge
+    - NewsReaderCartridge
+    - WantedListCartridge
+    - NanoChatCartridge #FH
+    - FrontierBankCartridge # Far Horzions
+    - GSLNowCartridge # Far Horizons
+  - type: PdaBorderColor
+    borderColor: "#7C5D00"
+  - type: Icon
+    state: pda-captain
+
+- type: entity
+  parent: BasePDA
+  id: NanoTrasenRepresentativePDA
+  name: NanoTrasen Representative PDA #Far Horizons - The Great Capitalization Crusade
+  components:
+  - type: Pda
+    id: NanoTrasenRepresentativeIDCard
+    penSlot:
+      startingItem: PenNTR
+      priority: -1
+      whitelist:
+        tags:
+        - Write
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-ntrep
+  - type: PdaBorderColor
+    borderColor: "#151515" #FH
+  - type: Icon
+    state: pda-ntrep
+
+- type: entity
+  parent: CentcomPDA
+  id: CentCommOperatorPDA
+  suffix: CentComm Operator
+  components:
+  - type: Pda
+    id: CentcomIDCardOperator
+
+- type: entity
+  parent: BasePDA
+  id: IAAPDA
+  name: Affairs Official PDA # Far Horizons
+  description: Corporation and profit are best friends.
+  components:
+  - type: Pda
+    id: IAAIDCard
+    penSlot: #Far Horizons
+      startingItem: LuxuryPen
+      priority: -1
+      whitelist:
+        tags:
+        - Write
+  - type: CartridgeLoader #Far Horizons
+    preinstalled:
+    - CrewManifestCartridge    
+    - NotekeeperCartridge
+    - NanoTaskCartridge
+    - NewsReaderCartridge
+    - WantedListCartridge
+    - NanoChatCartridge #FH
+    - FrontierBankCartridge # Far Horzions
+    - GSLNowCartridge # Far Horizons
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-lawyer
+  - type: PdaBorderColor
+    borderColor: "#6f6192"
+  - type: Icon
+    state: pda-lawyer
+
+- type: entity
+  parent: BasePDA
+  id: BlueShieldPDA
+  name: BlueShield Officer's PDA #Far Horizons - The Great Capitalization Crusade
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Devices/pda.rsi #FH
+  - type: Pda
+    id: BlueShieldIDCard
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-blueshield
+  - type: PdaBorderColor #FH
+    borderColor: "#181c26" #FH
+    accentHColor: "#25c1c4" #FH
+  - type: Icon
+    sprite: _FarHorizons/Objects/Devices/pda.rsi #FH
+    state: pda-blueshield
+  - type: CartridgeLoader
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NanoTaskCartridge
+      - NewsReaderCartridge
+      - MedTekCartridge
+      - NanoChatCartridge
+      - FrontierBankCartridge # Far Horzions
+      - GSLNowCartridge # Far Horizons
+
+- type: entity
+  parent: BasePDA
+  id: SalvageLeadPDA
+  name: Salvage Lead PDA #Far Horizons - The Great Capitalization Crusade
+  description: Smells like blood and ash.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Devices/pda.rsi #FH
+  - type: Pda
+    id: SalvageLeadIDCard
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-salvagelead
+  - type: PdaBorderColor
+    borderColor: "#413015" #FH
+    accentHColor: "#c17733" #FH
+    accentVColor: "#c17733" #FH
+  - type: Icon
+    sprite: _FarHorizons/Objects/Devices/pda.rsi #FH
+    state: pda-salvagelead
+  - type: CartridgeLoader
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NanoTaskCartridge
+      - NewsReaderCartridge
+      - AstroNavCartridge
+      - NanoChatCartridge
+      - FrontierBankCartridge # Far Horzions
+      - GSLNowCartridge # Far Horizons
+
+- type: entity
+  parent: SalvageLeadPDA
+  id: VeteranSalvageLeadPDA
+  name: Veteran Salvage Lead PDA #Far Horizons - The Great Capitalization Crusade
+  description: looks like this was patched up with a bunch of scrap. barely.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Devices/pda.rsi #FH
+  - type: Pda
+    id: SalvageLeadIDCard
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-veteransalvagelead
+  - type: PdaBorderColor
+    borderColor: "#413015" #FH
+    accentHColor: "#e39751" #FH
+    accentVColor: "#9a5719" #FH
+  - type: Icon
+    sprite: _FarHorizons/Objects/Devices/pda.rsi #FH
+    state: pda-veteransalvagelead
+
+- type: entity
+  parent: SalvagePDA
+  id: VeteranSalvagePDA
+  name: Veteran Salvage PDA #Far Horizons - The Great Capitalization Crusade
+  description: looks like this was patched up with a bunch of scrap. barely.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Devices/pda.rsi #FH
+  - type: Pda
+    id: SalvageIDCard
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-veteransalvage
+  - type: PdaBorderColor
+    borderColor: "#967032" #FH
+    accentVColor: "#8f36c6"
+    accentHColor: "#8f36c6" #FH
+  - type: Icon
+    sprite: _FarHorizons/Objects/Devices/pda.rsi #FH
+    state: pda-veteransalvage
+
+- type: entity
+  parent: BasePDA
+  id: MiningPDA
+  name: Mining PDA #Far Horizons - The Great Capitalization Crusade
+  description: there is dirt in every crack.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Devices/pda.rsi #FH
+  - type: Pda
+    id: MiningIDCard
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-mining
+  - type: PdaBorderColor
+    borderColor: "#5b4829" #FH
+    accentHColor: "#2528b6" #FH
+  - type: Icon
+    sprite: _FarHorizons/Objects/Devices/pda.rsi #FH
+    state: pda-mining
+  - type: CartridgeLoader
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+    - CrewManifestCartridge
+    - NotekeeperCartridge
+    - NanoTaskCartridge
+    - NewsReaderCartridge
+    - AstroNavCartridge
+    - NanoChatCartridge
+    - FrontierBankCartridge # Far Horzions
+    - GSLNowCartridge # Far Horizons
+
+- type: entity
+  parent: MiningPDA
+  id: VeteranMiningPDA
+  name: Veteran Mining PDA #Far Horizons - The Great Capitalization Crusade
+  description: the screen is cracked, and the buttons barely work.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Devices/pda.rsi #FH
+  - type: Pda
+    id: MiningIDCard
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-mining #FH
+  - type: PdaBorderColor
+    borderColor: "#5b4829" #FH
+    accentHColor: "#2528b6" #FH
+  - type: Icon
+    sprite: _FarHorizons/Objects/Devices/pda.rsi #FH
+    state: pda-veteranmining
+
+- type: entity
+  parent: BasePDA
+  id: MailPDA
+  name: Mail PDA #Far Horizons - The Great Capitalization Crusade
+  description: watch out for papercuts.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Devices/pda.rsi #FH
+  - type: Pda
+    id: MailTechIDCard
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-mailtech
+  - type: PdaBorderColor
+    borderColor: "#775422" #FH
+    accentVColor: "#32968a" #FH
+  - type: Icon
+    sprite: _FarHorizons/Objects/Devices/pda.rsi #FH
+    state: pda-mailtech
+
+# Pun Pun
+- type: entity
+  parent: BasePDA
+  id: PunPunPDA
+  name: Pun Pun's PDA
+  description: Smells like bananas.
+  components:
+  - type: Pda
+    id: PunPunIDCard
+  - type: PdaBorderColor
+    borderColor: "#333333"
+    accentVColor: "#ffdc54"
+
+- type: entity
+  parent: BasePDA
+  id: CommanderPDA
+  name: Commander PDA #Far Horizons - The Great Capitalization Crusade
+  description: Screw captiancy, LETS GET THAT FUKKIN DISK
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Objects/Devices/pda.rsi #FH
+    - type: Pda
+      id: CommanderIDCard
+    - type: Appearance
+      appearanceDataInit:
+        enum.PdaVisuals.PdaType:
+          !type:String
+          pda-commander
+    - type: PdaBorderColor
+      borderColor: "#221314" #FH
+    - type: Icon
+      sprite: _FarHorizons/Objects/Devices/pda.rsi #FH
+      state: pda-commander
+
+- type: entity
+  parent: BasePDA
+  id: NTNCBlueShieldPDA
+  name: Naval Officer's PDA #Far Horizons - The Great Capitalization Crusade
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Devices/pda.rsi #FH
+  - type: Pda
+    id: NTNCBlueShieldIDCard
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-blueshield
+  - type: PdaBorderColor #FH
+    borderColor: "#181c26" #FH
+    accentHColor: "#25c1c4" #FH
+  - type: Icon
+    sprite: _FarHorizons/Objects/Devices/pda.rsi #FH
+    state: pda-blueshield
+  - type: CartridgeLoader
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NanoTaskCartridge
+      - NewsReaderCartridge
+      - MedTekCartridge
+      - WantedListCartridge
+      - LogProbeCartridge
+      - AstroNavCartridge
+      - NanoChatCartridge
+      - FrontierBankCartridge # Far Horzions
+      - GSLNowCartridge # Far Horizons
+
+- type: entity
+  parent: BasePDA
+  id: NTNCCSPDA
+  name: NTNC Naval Officer's PDA #Far Horizons - The Great Capitalization Crusade
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Devices/pda.rsi #FH
+  - type: Pda
+    id: NTNCBlueShieldIDCard
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-ntnc-cs
+  - type: PdaBorderColor #FH
+    borderColor: "#102c0d" #FH
+  - type: Icon
+    sprite: _FarHorizons/Objects/Devices/pda.rsi #FH
+    state: pda-ntnc-cs
+  - type: CartridgeLoader
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NanoTaskCartridge
+      - NewsReaderCartridge
+      - MedTekCartridge
+      - WantedListCartridge
+      - LogProbeCartridge
+      - AstroNavCartridge
+      - NanoChatCartridge
+      - FrontierBankCartridge # Far Horzions
+      - GSLNowCartridge # Far Horizons
+
+- type: entity
+  parent: ClearPDA
+  id: BorgiClearPDA
+  suffix: Borgi
+  components:
+  - type: Pda
+    id: AssistantDerelictBorgiIDCard
+  - type: Tag #  Ignore Chameleon tags
+    tags:
+    - DoorBumpOpener
+
+- type: entity
+  parent: CentcomPDA
+  id: NTSFPDA
+  suffix: NTSF #starlight
+  components:
+  - type: Pda
+    id: CentcomIDCardNTSF
+  - type: HealthAnalyzer
+    maxScanRange: null
+    scanDelay: 0
+    silent: true
+  - type: Tag #  Ignore Chameleon tags
+    tags:
+    - DoorBumpOpener
+  - type: CartridgeLoader
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NanoTaskCartridge
+      - NewsReaderCartridge
+      - MedTekCartridge
+      - WantedListCartridge
+      - LogProbeCartridge
+      - AstroNavCartridge
+      - NanoChatCartridge
+      - FrontierBankCartridge # Far Horzions
+      - GSLNowCartridge # Far Horizons

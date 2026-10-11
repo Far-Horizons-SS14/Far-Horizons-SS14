@@ -1,0 +1,235 @@
+- type: entity
+  id: BaseAmmoProvider
+  parent: BaseItem
+  abstract: true
+  components:
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Item
+    size: Normal
+  - type: Sprite
+    sprite: Objects/Storage/boxes.rsi
+
+- type: entity
+  abstract: true
+  parent: BaseAmmoProvider
+  id: AmmoProviderShotgunShell
+  description: 32-shell box of 12 Gauge Shotgun ammunition.
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Boxes/Shotgun/12g.rsi
+    - type: BallisticAmmoProvider
+      mayTransfer: true
+      whitelist:
+        tags:
+        - ShellShotgun
+      capacity: 32 #4x mag size
+    - type: MagazineVisuals
+      magState: mag
+      steps: 5
+      zeroVisible: false
+    - type: Appearance
+    - type: Tag
+      tags:
+      - ShotgunBoxAmmo
+      - AmmoBoxShotgun12g
+
+#Boxes
+- type: entity
+  id: BoxLethalshot
+  parent: AmmoProviderShotgunShell
+  name: Box of 12 Gauge Buckshot
+  description: 32-shell box of 12 Gauge Buckshot. Good for unarmored targets.
+  components:
+    - type: BallisticAmmoProvider
+      proto: ShellShotgun
+    - type: Sprite
+      layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-1
+        color: "#F4001F"
+        map: ["enum.GunVisualLayers.Mag"]
+      - state: mag-tip-1
+        map: [ "enum.GunVisualLayers.Tip" ]
+      - state: hp
+
+- type: entity
+  id: BoxShotgunFlechette
+  parent: AmmoProviderShotgunShell
+  name: Box of 12 Gauge Flechette
+  description: 32-shell box of 12 Gauge Flechette. Good for lightly armored targets.
+  components:
+    - type: BallisticAmmoProvider
+      proto: ShellShotgunFlechette
+    - type: Sprite
+      layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-1
+        color: "#252525"
+        map: ["enum.GunVisualLayers.Mag"]
+      - state: mag-tip-1
+        map: [ "enum.GunVisualLayers.Tip" ]
+      - state: sp
+
+- type: entity
+  id: BoxShotgunSlug
+  parent: AmmoProviderShotgunShell
+  name: Box of 12 Gauge Slugs
+  description: 32-shell box of 12 Gauge Slugs. Good for armored targets.
+  components:
+    - type: BallisticAmmoProvider
+      proto: ShellShotgunSlug
+    - type: Sprite
+      layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-1
+        map: ["enum.GunVisualLayers.Mag"]
+        color: "#164B31"
+      - state: mag-tip-1
+        map: [ "enum.GunVisualLayers.Tip" ]
+      - state: fmj
+
+- type: entity
+  parent: AmmoProviderShotgunShell
+  id: BoxBeanbag
+  name: Box of 12 Gauge Beanbags
+  description: 32-shell box of 12 Gauge Beanbags. Mostly harmless.
+  components:
+    - type: BallisticAmmoProvider
+      proto: ShellShotgunBeanbag
+    - type: Sprite
+      layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-1
+        map: ["enum.GunVisualLayers.Mag"]
+        color: "#FBEF06"
+      - state: mag-tip-1
+        map: [ "enum.GunVisualLayers.Tip" ]
+      - state: rubber
+
+- type: entity
+  name: Box of 12 Gauge Flares
+  parent: AmmoProviderShotgunShell
+  id: BoxShotgunFlare
+  description: 32-shell box of 12 Gauge Flares. Good for lighting up places.
+  components:
+    - type: BallisticAmmoProvider
+      proto: ShellShotgunFlare
+    - type: Sprite
+      layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-1
+        map: ["enum.GunVisualLayers.Mag"]
+        color: "#ED7942"
+      - state: mag-tip-1
+        map: [ "enum.GunVisualLayers.Tip" ]
+      - state: flare
+
+- type: entity
+  name: Box of 12 Gauge Incendiary Buckshot
+  parent: AmmoProviderShotgunShell
+  id: BoxShotgunIncendiary
+  description: 32-shell box of 12 Gauge Incendiary Buckshot. Good for setting people on fire.
+  components:
+    - type: BallisticAmmoProvider
+      proto: ShellShotgunIncendiary
+    - type: Sprite
+      layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-1
+        map: ["enum.GunVisualLayers.Mag"]
+        color: "#C9E9FF"
+      - state: mag-tip-1
+        map: [ "enum.GunVisualLayers.Tip" ]
+      - state: incendiary
+
+- type: entity
+  name: Box of 12 Gauge Uranium Slugs
+  parent: AmmoProviderShotgunShell
+  id: BoxShotgunUranium
+  description: 32-shell box of 12 Gauge Uranium Slugs. Good for heavily armored targets.
+  components:
+    - type: BallisticAmmoProvider
+      proto: ShellShotgunUranium
+    - type: MagazineVisuals
+      magState: slug
+      steps: 5
+      zeroVisible: false
+    - type: Sprite
+      layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: slug-1
+        map: ["enum.GunVisualLayers.Mag"]
+        color: "#164B31"
+      - state: slug-tip-1
+        map: [ "enum.GunVisualLayers.Tip" ]
+      - state: uranium
+
+- type: entity
+  name: Box of 12 Gauge Uranium Flechette
+  parent: AmmoProviderShotgunShell
+  id: BoxShotgunUraniumFlechette
+  description: 32-shell box of 12 Gauge Uranium Flechette. Good for heavily armored targets.
+  components:
+    - type: BallisticAmmoProvider
+      proto: ShellShotgunUraniumFlechette
+    - type: MagazineVisuals
+      magState: slug
+      steps: 5
+      zeroVisible: false
+    - type: Sprite
+      layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: slug-1
+        map: ["enum.GunVisualLayers.Mag"]
+        color: "#252525"
+      - state: slug-tip-1
+        map: [ "enum.GunVisualLayers.Tip" ]
+      - state: uranium
+
+- type: entity
+  name: Box of 12 Gauge Blanks
+  parent: AmmoProviderShotgunShell
+  id: BoxShotgunPractice
+  description: 32-shell box of 12 Gauge Blanks. Intended to hold harmless practice ammunition.
+  components:
+    - type: BallisticAmmoProvider
+      proto: ShellShotgunPractice
+    - type: Sprite
+      layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-1
+        map: ["enum.GunVisualLayers.Mag"]
+        color: "#F5F5F5"
+      - state: mag-tip-1
+        map: [ "enum.GunVisualLayers.Tip" ]
+      - state: practice
+
+- type: entity
+  name: Box of 12 Gauge Tranquilizer Slugs
+  parent: AmmoProviderShotgunShell
+  id: BoxShellTranquilizer
+  description: 32-shell box of 12 Gauge Tranquilizer Slugs. Intended to hold nonlethal tranquilizer ammunition.
+  components:
+    - type: BallisticAmmoProvider
+      proto: ShellTranquilizer
+    - type: Sprite
+      layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-1
+        color: "#49CECE"
+        map: ["enum.GunVisualLayers.Mag"]
+      - state: mag-tip-1
+        map: [ "enum.GunVisualLayers.Tip" ]
+      - state: tranquilizer

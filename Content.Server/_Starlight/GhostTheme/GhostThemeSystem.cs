@@ -16,14 +16,14 @@ using Content.Server.Players.PlayTimeTracking;
 namespace Content.Server.Ghost.Roles;
 
 [UsedImplicitly]
-public sealed class GhostThemeSystem : EntitySystem
+public sealed partial class GhostThemeSystem : EntitySystem
 {
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
-    [Dependency] private readonly EuiManager _euiManager = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly IPlayerRolesManager _playerRoles = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly PlayTimeTrackingManager _playTimeTracking = default!;  // Far Horizons
+    [Dependency] private IPlayerManager _playerManager = default!;
+    [Dependency] private EuiManager _euiManager = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IPlayerRolesManager _playerRoles = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private PlayTimeTrackingManager _playTimeTracking = default!;  // Far Horizons
 
     public override void Initialize()
     {
@@ -36,7 +36,7 @@ public sealed class GhostThemeSystem : EntitySystem
     public void OpenEui(ICommonSession session)
     {
         if (session.AttachedEntity is not { Valid: true } attached ||
-            !EntityManager.HasComponent<GhostComponent>(attached))
+            !HasComp<GhostComponent>(attached))
             return;
 
         if (_openUis.ContainsKey(session))
@@ -75,7 +75,7 @@ public sealed class GhostThemeSystem : EntitySystem
     public void ChangeColor(ICommonSession session, Color color)
     {
         if (session.AttachedEntity is not { Valid: true } attached ||
-            !EntityManager.TryGetComponent<GhostThemeComponent>(attached, out var themes))
+            !TryComp<GhostThemeComponent>(attached, out var themes))
             return;
 
         themes.GhostThemeColor = color;
@@ -93,7 +93,7 @@ public sealed class GhostThemeSystem : EntitySystem
     public void ChangeTheme(ICommonSession session, string theme)
     {
         if (session.AttachedEntity is not { Valid: true } attached ||
-            !EntityManager.TryGetComponent<GhostThemeComponent>(attached, out var themes))
+            !TryComp<GhostThemeComponent>(attached, out var themes))
             return;
 
         if(!_prototypeManager.TryIndex<GhostThemePrototype>(theme, out var proto))
@@ -156,9 +156,9 @@ public sealed class GhostThemeSystem : EntitySystem
 }
 
 [AnyCommand]
-public sealed class GhostTheme : IConsoleCommand
+public sealed partial class GhostTheme : IConsoleCommand
 {
-    [Dependency] private readonly IEntityManager _e = default!;
+    [Dependency] private IEntityManager _e = default!;
 
     public string Command => "ghostTheme";
     public string Description => "Opens ghost theme preferences window.";

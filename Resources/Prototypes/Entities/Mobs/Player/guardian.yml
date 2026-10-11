@@ -73,13 +73,13 @@
           layer:
             - Opaque
     - type: Damageable
+    - type: Injurable
       damageContainer: Biological
     - type: MobState
       allowedStates:
         - Alive
     - type: CombatMode
     - type: LimbTargetting # Far Horizons
-      proto: LimbTargetHuman
     - type: Internals
     - type: Examiner
     - type: Speech

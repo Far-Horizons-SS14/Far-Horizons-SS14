@@ -9,7 +9,7 @@ using Robust.Shared.Toolshed.TypeParsers;
 namespace Content.Server.Administration.Toolshed;
 
 [ToolshedCommand, AdminCommand(AdminFlags.Debug)]
-public sealed class TagCommand : ToolshedCommand
+public sealed partial class TagCommand : ToolshedCommand
 {
     private TagSystem? _tag;
 

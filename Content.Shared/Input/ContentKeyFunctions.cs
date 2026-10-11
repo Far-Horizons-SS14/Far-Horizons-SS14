@@ -158,6 +158,8 @@ namespace Content.Shared.Input
 
         public static readonly BoundKeyFunction TargetNextLimb = "TargetNextLimb";
         public static readonly BoundKeyFunction TargetPreviousLimb = "TargetPreviousLimb";
+
+        public static readonly BoundKeyFunction FocusMentorChatWindow = "FocusMentorChatWindow"; // Far Horizons
         // Far Horizons end
     }
 }

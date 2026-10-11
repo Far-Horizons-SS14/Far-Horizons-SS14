@@ -60,4 +60,11 @@ public sealed partial class SlotDefinition
     ///     Entity blacklist for CanEquip checks.
     /// </summary>
     [DataField("blacklist")] public EntityWhitelist? Blacklist = null;
+
+    // Far Horizons - for hiding protogen cybernetics
+    [DataField] public bool StripDisabled { get; private set; }
+
+    // Far Horizons - For bypassing the dependsOn check so we can have PDAs that don't require jumpsuits while allowing 
+    //  ID cards to be put in jumpsuit id slots.
+    [DataField("dependsOnWhitelist")] public EntityWhitelist? DependsOnWhitelist = null;
 }

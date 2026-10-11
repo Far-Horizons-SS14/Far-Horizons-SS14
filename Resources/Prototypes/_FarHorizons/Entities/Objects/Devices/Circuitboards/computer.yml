@@ -41,3 +41,389 @@
       state: cpu_security
     - type: ComputerBoard
       prototype: ShuttleGunneryConsole
+
+- type: entity
+  parent: IDComputerCircuitboard
+  id: IDComputerCircuitboardNS
+  name: ID Card Computer Board
+  description: A computer printed circuit board for an ID card console.
+  suffix: NS
+  components:
+  - type: ComputerBoard
+    prototype: ComputerIdNS
+
+- type: entity
+  parent: IDComputerCircuitboard
+  id: IDComputerCircuitboardGSL
+  name: ID Card Computer Board
+  description: A computer printed circuit board for an ID card console.
+  suffix: GSL
+  components:
+  - type: Sprite
+    state: cpu_supply
+  - type: ComputerBoard
+    prototype: ComputerIdGSL
+
+
+- type: entity
+  parent: [ BaseComputerCircuitboard, BaseCommandContraband ]
+  id: CommsComputerCircuitboardNS
+  name: communications computer board
+  suffix: NS
+  description: A computer printed circuit board for a communications console.
+  components:
+    - type: Sprite
+      state: cpu_command
+    - type: ComputerBoard
+      prototype: ComputerCommsNS
+
+- type: entity
+  parent: [ BaseComputerCircuitboard, BaseCommandContraband ]
+  id: EngineeringCommsComputerCircuitboardNS
+  name: engineering communications console board
+  suffix: NS
+  description: A computer printed circuit board for a engineering communications console.
+  components:
+    - type: Sprite
+      state: cpu_engineering
+    - type: ComputerBoard
+      prototype: ComputerCommsEngineeringNS
+
+- type: entity
+  parent: [ BaseComputerCircuitboard, BaseCommandContraband ]
+  id: MedicalCommsComputerCircuitboardNS
+  name: medical communications console board
+  suffix: NS
+  description: A computer printed circuit board for a medical communications console.
+  components:
+    - type: Sprite
+      state: cpu_medical
+    - type: ComputerBoard
+      prototype: ComputerCommsMedicalNS
+
+- type: entity
+  parent: [ BaseComputerCircuitboard, BaseCommandContraband ]
+  id: ScienceCommsComputerCircuitboardNS
+  name: science communications console board
+  suffix: NS
+  description: A computer printed circuit board for a science communications console.
+  components:
+    - type: Sprite
+      state: cpu_science
+    - type: ComputerBoard
+      prototype: ComputerCommsScienceNS
+
+- type: entity
+  parent: [BaseComputerCircuitboard, BaseGrandTheftContraband]
+  id: RecruitmentComputerCircuitboardNS
+  name: recruitment computer computer board
+  suffix: NS
+  description: A computer printed circuit board for an recruitment computer.
+  components:
+    - type: Sprite
+      state: cpu_command
+    - type: ComputerBoard
+      prototype: RecruitmentComputerNS
+    - type: StaticPrice
+      price: 750
+    - type: Tag
+      tags:
+      - HighRiskItem
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: PowerComputerCircuitboardNS
+  name: power monitoring computer board
+  suffix: NS
+  description: A computer printed circuit board for a power monitoring computer.
+  components:
+    - type: Sprite
+      state: cpu_engineering
+    - type: ComputerBoard
+      prototype: ComputerPowerMonitoringNS
+    #Starlight start
+    - type: Construction
+      deconstructionTarget: null
+      graph: ComputerCircuitBoard
+      node: power
+    #Starlight end
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: SolarControlComputerCircuitboardNS
+  name: solar control computer board
+  suffix: NS
+  description: A computer printed circuit board for a solar control console.
+  components:
+    - type: Sprite
+      state: cpu_engineering
+    - type: ComputerBoard
+      prototype: ComputerSolarControlNS
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: CrewMonitoringComputerCircuitboardNS
+  name: crew monitoring computer board
+  suffix: NS
+  description: A computer printed circuit board for a crew monitoring console.
+  components:
+  - type: Sprite
+    state: cpu_medical
+  - type: ComputerBoard
+    prototype: ComputerCrewMonitoringNS
+  #Starlight start
+  - type: Construction
+    deconstructionTarget: null
+    graph: ComputerCircuitBoard
+    node: crew
+  #Starlight end
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: MedicalRecordsComputerCircuitboardNS
+  name: medical records computer board
+  suffix: NS
+  description: A computer printed circuit board for a medical records computer.
+  components:
+    - type: Sprite
+      state: cpu_medical
+    - type: ComputerBoard
+      prototype: ComputerMedicalRecordsNS
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: CloningConsoleComputerCircuitboardNS
+  name: cloning console computer board
+  suffix: NS
+  description: A computer printed circuit board for a cloning console.
+  components:
+    - type: Sprite
+      state: cpu_medical
+    - type: ComputerBoard
+      prototype: ComputerCloningConsoleNS
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: CargoRequestMedicalComputerCircuitboardNS
+  name: medical request computer board
+  suffix: NS
+  description: A computer printed circuit board for a medical request computer.
+  components:
+  - type: Sprite
+    state: cpu_medical
+  - type: ComputerBoard
+    prototype: ComputerCargoOrdersMedicalNS
+  - type: StaticPrice
+    price: 750
+  #Starlight start
+  - type: Construction
+    deconstructionTarget: null
+    graph: ComputerCircuitBoard
+    node: medicalRequest
+  #Starlight end
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: AnalysisComputerCircuitboardNS
+  name: analysis computer board
+  suffix: NS
+  description: A computer printed circuit board for an analysis console.
+  components:
+    - type: Sprite
+      state: cpu_science
+    - type: ComputerBoard
+      prototype: ComputerAnalysisConsoleNS
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: RoboticsConsoleCircuitboardNS
+  name: robotics control console board
+  suffix: NS
+  description: A computer printed circuit board for a robotics control console.
+  components:
+    - type: Sprite
+      state: cpu_science
+    - type: ComputerBoard
+      prototype: ComputerRoboticsControlNS
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: ResearchComputerCircuitboardNS
+  name: R&D computer board
+  suffix: NS
+  description: A computer printed circuit board for a R&D console.
+  components:
+    - type: Sprite
+      state: cpu_science
+    - type: ComputerBoard
+      prototype: ComputerResearchAndDevelopmentNS
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: CargoRequestScienceComputerCircuitboardNS
+  name: science request computer board
+  suffix: NS
+  description: A computer printed circuit board for a science request computer.
+  components:
+  - type: Sprite
+    state: cpu_science
+  - type: ComputerBoard
+    prototype: ComputerCargoOrdersScienceNS
+  - type: StaticPrice
+    price: 750
+  #Starlight start
+  - type: Construction
+    deconstructionTarget: null
+    graph: ComputerCircuitBoard
+    node: scienceRequest
+  #Starlight end
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: CargoRequestEngineeringComputerCircuitboardNS
+  name: engineering request computer board
+  suffix: NS
+  description: A computer printed circuit board for an engineering request computer.
+  components:
+  - type: Sprite
+    state: cpu_engineering
+  - type: ComputerBoard
+    prototype: ComputerCargoOrdersEngineeringNS
+  - type: StaticPrice
+    price: 750
+  #Starlight start
+  - type: Construction
+    deconstructionTarget: null
+    graph: ComputerCircuitBoard
+    node: engineeringRequest
+  #Starlight end
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: SurveillanceCameraMonitorCircuitboardNS
+  name: surveillance camera monitor board
+  suffix: NS
+  description: A computer printed circuit board for a surveillance camera monitor.
+  components:
+  - type: Sprite
+    state: cpu_security
+  - type: ComputerBoard
+    prototype: ComputerSurveillanceCameraMonitorNS
+  - type: Tag
+    tags:
+    - SurveillanceCameraMonitorCircuitboard
+    - RamChip # FH
+  #Starlight start
+  - type: Construction
+    deconstructionTarget: null
+    graph: ComputerCircuitBoard
+    node: camera
+  #Starlight end
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: SurveillanceWirelessCameraMonitorCircuitboardNS
+  name: surveillance wireless camera monitor board
+  suffix: NS
+  description: A computer printed circuit board for a surveillance wireless camera monitor.
+  components:
+  - type: Sprite
+    state: cpu_service
+  - type: ComputerBoard
+    prototype: ComputerSurveillanceWirelessCameraMonitorNS
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: SecurityShuttleConsoleCircuitboardNS
+  name: security shuttle console board
+  suffix: NS
+  description: A computer printed circuit board for a security shuttle console.
+  components:
+    - type: Sprite
+      state: cpu_supply
+    - type: ComputerBoard
+      prototype: ComputerShuttleSecurityNS
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: CargoRequestSecurityComputerCircuitboardNS
+  name: security request computer board
+  suffix: NS
+  description: A computer printed circuit board for a security request computer.
+  components:
+  - type: Sprite
+    state: cpu_security
+  - type: ComputerBoard
+    prototype: ComputerCargoOrdersSecurityNS
+  - type: StaticPrice
+    price: 750
+  #Starlight start
+  - type: Construction
+    deconstructionTarget: null
+    graph: ComputerCircuitBoard
+    node: securityRequest
+  #Starlight end
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: CriminalRecordsComputerCircuitboardNS
+  name: criminal records computer board
+  suffix: NS
+  description: A computer printed circuit board for a criminal records computer.
+  components:
+    - type: Sprite
+      state: cpu_security
+    - type: ComputerBoard
+      prototype: ComputerCriminalRecordsNS
+    #Starlight start
+    - type: Construction
+      deconstructionTarget: null
+      graph: ComputerCircuitBoard
+      node: crime
+    #Starlight end
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: CargoRequestServiceComputerCircuitboardNS
+  name: service request computer board
+  suffix: NS
+  description: A computer printed circuit board for a service request computer.
+  components:
+  - type: Sprite
+    state: cpu_service
+  - type: ComputerBoard
+    prototype: ComputerCargoOrdersServiceNS
+  - type: StaticPrice
+    price: 750
+  #Starlight start
+  - type: Construction
+    deconstructionTarget: null
+    graph: ComputerCircuitBoard
+    node: serviceRequest
+  #Starlight end
+
+- type: entity
+  parent: [ BaseComputerCircuitboard, BaseCentcommContraband ]
+  id: HighCommandCommsComputerCircuitboardNS
+  name: high command communications computer board
+  suffix: NS
+  description: A computer printed circuit board for a high command communications console.
+  components:
+  - type: Sprite
+    state: cpu_centcomm
+  - type: ComputerBoard
+    prototype: HighCommandComputerComms
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: FundingAllocationComputerCircuitboardNS
+  name: funding allocation computer board
+  suffix: NS
+  description: A computer printed circuit board for a funding allocation card console.
+  components:
+  - type: Sprite
+    state: cpu_command
+  - type: ComputerBoard
+    prototype: ComputerFundingAllocationNS
+  - type: StaticPrice
+    price: 750

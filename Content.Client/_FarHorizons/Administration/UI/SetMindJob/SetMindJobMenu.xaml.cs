@@ -15,8 +15,8 @@ namespace Content.Client._FarHorizons.Administration.UI.SetMindJob;
 [GenerateTypedNameReferences]
 public sealed partial class SetMindJobMenu : DefaultWindow
 {
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly IClientConsoleHost _consoleHost = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IClientConsoleHost _consoleHost = default!;
 
     public NetUserId? TargetEntityId { get; set; }
     private JobPrototype? _selectedJob;

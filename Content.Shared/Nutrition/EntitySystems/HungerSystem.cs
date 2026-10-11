@@ -13,16 +13,16 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared.Nutrition.EntitySystems;
 
-public sealed class HungerSystem : EntitySystem
+public sealed partial class HungerSystem : EntitySystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly AlertsSystem _alerts = default!;
-    [Dependency] private readonly DamageableSystem _damageable = default!;
-    [Dependency] private readonly MobStateSystem _mobState = default!;
-    [Dependency] private readonly MovementSpeedModifierSystem _movementSpeedModifier = default!;
-    [Dependency] private readonly SharedJetpackSystem _jetpack = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private AlertsSystem _alerts = default!;
+    [Dependency] private DamageableSystem _damageable = default!;
+    [Dependency] private MobStateSystem _mobState = default!;
+    [Dependency] private MovementSpeedModifierSystem _movementSpeedModifier = default!;
+    [Dependency] private SharedJetpackSystem _jetpack = default!;
 
     private static readonly ProtoId<SatiationIconPrototype> HungerIconOverfedId = "HungerIconOverfed";
     private static readonly ProtoId<SatiationIconPrototype> HungerIconPeckishId = "HungerIconPeckish";
@@ -270,32 +270,28 @@ public sealed class HungerSystem : EntitySystem
                 continue;
             hunger.NextThresholdUpdateTime = _timing.CurTime + hunger.ThresholdUpdateRate;
             
-            //Starlight begin
+            //Far Horizons start
+            if (hunger.HungerDrains.RemoveAll(p => p.endTime < _timing.CurTime) > 0)
+                DirtyField(uid, hunger, nameof(HungerComponent.HungerDrains));
+
             if (hunger.HungerDrains.Count > 0)
             {
-                var totalDrain =
-                    hunger.HungerDrains.Aggregate<(EntityUid, float, TimeSpan?), float>(1,
-                        (current, modifier) => current * modifier.Item2);
-                ModifyHunger(uid, -totalDrain * hunger.ActualDecayRate, hunger);
+                var totalDrainMod = hunger.HungerDrains.Aggregate(1f, (current, modifier) => current * modifier.mod);
+                ModifyHunger(uid, -hunger.ActualDecayRate * totalDrainMod, hunger);
             }
-            //Starlight end
+            //Far Horizons end
 
             UpdateCurrentThreshold(uid, hunger);
             DoContinuousHungerEffects(uid, hunger);
         }
     }
     
-    //Starlight begin
-    public void AddHungerDrain(EntityUid uid, float mod, TimeSpan? endTime, HungerComponent? comp = null)
+    //Far Horizons start
+    public void AddHungerDrain(Entity<HungerComponent?> ent, float mod, TimeSpan endTime)
     {
-        if (!Resolve(uid, ref comp)) return;
-        comp.HungerDrains.Add((uid, mod, endTime));
+        if (!Resolve(ent, ref ent.Comp)) return;
+        ent.Comp.HungerDrains.Add((mod, endTime));
+        DirtyField(ent, ent.Comp, nameof(HungerComponent.HungerDrains));
     }
-
-    public void RemoveHungerDrain(EntityUid uid, TimeSpan? endTime, HungerComponent? comp = null)
-    {
-        if (!Resolve(uid, ref comp)) return;
-        comp.HungerDrains.RemoveAll(x => x.Item1 == uid && x.Item3 == endTime);
-    }
-    //Starlight end
+    //Far Horizons end
 }

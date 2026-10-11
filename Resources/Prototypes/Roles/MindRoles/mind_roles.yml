@@ -5,6 +5,8 @@
   abstract: true
   components:
   - type: MindRole
+  - type: MindBankAccess
+    roundSpendingLimit: 5000
 
 - type: entity
   parent: BaseMindRole

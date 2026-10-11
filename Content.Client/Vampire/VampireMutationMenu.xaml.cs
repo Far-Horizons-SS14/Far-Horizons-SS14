@@ -16,7 +16,7 @@ namespace Content.Client.Vampire;
 [GenerateTypedNameReferences]
 public sealed partial class VampireMutationMenu : DefaultWindow
 {
-    [Dependency] private readonly IEntityManager _entityManager = default!;
+    [Dependency] private IEntityManager _entityManager = default!;
     private IResourceCache _resourceCache;
     private readonly SpriteSystem _sprite;
     public event Action<VampireMutationsType>? OnIdSelected;

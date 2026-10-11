@@ -1,6 +1,7 @@
 using System.Linq;
 using Content.Client.Lobby.UI.Loadouts;
 using Content.Shared._FarHorizons.Factions;
+using Content.Shared._FarHorizons.Humanoid;
 using Content.Shared._Starlight.Traits;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Prototypes;
@@ -141,7 +142,7 @@ public sealed partial class HumanoidProfileEditor
 
     private void OnCyberneticsUpdated(List<CyberneticImplant> cybernetics)
     {
-        Profile = Profile?.WithCybernetics(cybernetics.Select(p => p.ID).ToList());
+        Profile = Profile?.WithCybernetics(cybernetics.Select(p => p.Id).ToList());
         ReloadPreview();
     }
 
@@ -205,10 +206,12 @@ public sealed partial class HumanoidProfileEditor
 
     private void UpdateCybernetics()
     {
+        // Far Horizons start
         if (Profile is null)
-        {
             return;
-        }
-        Cybernetics.SetData(Profile.Cybernetics, (_species.Find(x => x.ID == Profile?.Species) ?? _species.First()).RoundstartCyberwareCapacity);
+        var species = _species.Find(x => x.ID == Profile?.Species) ?? _species.First();
+
+        Cybernetics.SetData(Profile.Cybernetics, species, Profile.GetProfileCyberwareCapacity(_prototypeManager));
+        // Far Horizons end
     }
 }

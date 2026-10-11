@@ -5,11 +5,11 @@ using Robust.Shared.Containers;
 
 namespace Content.Shared.PDA
 {
-    public abstract class SharedPdaSystem : EntitySystem
+    public abstract partial class SharedPdaSystem : EntitySystem
     {
-        [Dependency] protected readonly ItemSlotsSystem ItemSlotsSystem = default!;
-        [Dependency] protected readonly SharedAppearanceSystem Appearance = default!;
-        [Dependency] private readonly SharedJobStatusSystem _jobStatus = default!;
+        [Dependency] protected ItemSlotsSystem ItemSlotsSystem = default!;
+        [Dependency] protected SharedAppearanceSystem Appearance = default!;
+        [Dependency] private SharedJobStatusSystem _jobStatus = default!;
 
         public override void Initialize()
         {
@@ -31,6 +31,7 @@ namespace Content.Shared.PDA
             ItemSlotsSystem.AddItemSlot(uid, PdaComponent.PdaIdSlotId, pda.IdSlot);
             ItemSlotsSystem.AddItemSlot(uid, PdaComponent.PdaPenSlotId, pda.PenSlot);
             ItemSlotsSystem.AddItemSlot(uid, PdaComponent.PdaPaiSlotId, pda.PaiSlot);
+            ItemSlotsSystem.AddItemSlot(uid, PdaComponent.PdaCredstickSlotId, pda.CredstickSlot); // Far Horizons
 
             UpdatePdaAppearance(uid, pda);
         }
@@ -40,6 +41,7 @@ namespace Content.Shared.PDA
             ItemSlotsSystem.RemoveItemSlot(uid, pda.IdSlot);
             ItemSlotsSystem.RemoveItemSlot(uid, pda.PenSlot);
             ItemSlotsSystem.RemoveItemSlot(uid, pda.PaiSlot);
+            ItemSlotsSystem.RemoveItemSlot(uid, pda.CredstickSlot); // Far Horizons
         }
 
         protected virtual void OnItemInserted(EntityUid uid, PdaComponent pda, EntInsertedIntoContainerMessage args)

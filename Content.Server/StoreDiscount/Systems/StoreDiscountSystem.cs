@@ -12,12 +12,12 @@ namespace Content.Server.StoreDiscount.Systems;
 /// <summary>
 /// Discount system that is part of <see cref="StoreSystem"/>.
 /// </summary>
-public sealed class StoreDiscountSystem : EntitySystem
+public sealed partial class StoreDiscountSystem : EntitySystem
 {
     private static readonly ProtoId<StoreCategoryPrototype> DiscountedStoreCategoryPrototypeKey = "DiscountedItems";
 
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
 
     /// <inheritdoc />
     public override void Initialize()
@@ -31,7 +31,7 @@ public sealed class StoreDiscountSystem : EntitySystem
     /// <summary> Decrements discounted item count, removes discount modifier and category, if counter reaches zero. </summary>
     private void OnBuyFinished(ref StoreBuyFinishedEvent ev)
     {
-        var (storeId, purchasedItem) = ev;
+        var (storeId, purchasedItem, _) = ev; // FH - add discard for third field we added
         if (!TryComp<StoreDiscountComponent>(storeId, out var discountsComponent))
         {
             return;

@@ -1,6 +1,8 @@
 using System.Numerics;
 using Content.Shared.CollectiveMind;
 using Content.Shared.Chat;
+using Robust.Shared.Configuration;
+using Content.Shared._FarHorizons.CCVar;
 
 namespace Content.Client.UserInterface.Systems.Chat.Controls;
 
@@ -12,6 +14,8 @@ public sealed class ChannelSelectorButton : ChatPopupButton<ChannelSelectorPopup
 
     private const int SelectorDropdownOffset = 38;
 
+    private readonly IConfigurationManager _cfg; // Far Horizons
+
     public ChannelSelectorButton()
     {
         Name = "ChannelSelector";
@@ -22,6 +26,8 @@ public sealed class ChannelSelectorButton : ChatPopupButton<ChannelSelectorPopup
         {
             Select(firstSelector);
         }
+
+        _cfg = IoCManager.Resolve<IConfigurationManager>(); // Far Horizons
     }
 
     protected override UIBox2 GetPopupPosition()
@@ -65,6 +71,7 @@ public sealed class ChannelSelectorButton : ChatPopupButton<ChannelSelectorPopup
             ChatSelectChannel.OOC => Color.LightSkyBlue,
             ChatSelectChannel.Dead => Color.MediumPurple,
             ChatSelectChannel.Admin => Color.HotPink,
+            ChatSelectChannel.Mentor => Color.DarkViolet, // Far Horizons
             _ => Color.DarkGray
         };
     }
@@ -73,7 +80,13 @@ public sealed class ChannelSelectorButton : ChatPopupButton<ChannelSelectorPopup
     {
         if (radio != null)
         {
-            Text = Loc.GetString(radio.Name);
+            // Far Horizons start
+            var name = Loc.GetString(radio.Name);
+            if (_cfg.GetCVar(FHCCVars.ChatShowFactionPrefix) && radio.ChatPrefix != null)
+                name = $"({radio.ChatPrefix}){name}";
+            
+            Text = name;
+            // Far Horizons end
             Modulate = radio?.Color ?? ChannelSelectColor(channel);
         }
         else if (collectiveMind != null)

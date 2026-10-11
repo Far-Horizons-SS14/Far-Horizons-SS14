@@ -4,7 +4,7 @@ namespace Content.Shared.Chat
     ///     Represents chat channels that the player can filter chat tabs by.
     /// </summary>
     [Flags]
-    public enum ChatChannel : ushort
+    public enum ChatChannel : uint // Far Horizons - we ran out of channels, so ushort -> uint
     {
         None = 0,
 
@@ -86,16 +86,22 @@ namespace Content.Shared.Chat
         CollectiveMind = 1 << 14,
 
         /// <summary>
+        ///     Far Horizons
+        ///     Mentor chat
+        /// </summary>
+        MentorChat = 1 << 15,
+
+        /// <summary>
         ///     Unspecified.
         /// </summary>
-        Unspecified = 1 << 15,
+        Unspecified = 1 << 16,
 
         /// <summary>
         ///     Channels considered to be IC.
         /// </summary>
         IC = Local | Whisper | Radio | Dead | Emotes | Damage | Visual | CollectiveMind | Notifications,
 
-        AdminRelated = Admin | AdminAlert | AdminChat,
+        AdminRelated = Admin | AdminAlert | AdminChat | MentorChat, // Far Horizons - added mentor
     }
 
     /// <summary>

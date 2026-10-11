@@ -39,10 +39,16 @@
 
 - type: loadout
   id: SalvageSpecialistJumpskirtFormal
+  effects: #FH
+  - !type:GroupLoadoutEffect #FH
+    proto: VeteranSalvageSpecialist #FH
   equipment:
     jumpsuit: ClothingUniformJumpskirtCargoSalvageFormal
 
 - type: loadout
   id: SalvageSpecialistJumpsuitFormal
+  effects: #FH
+  - !type:GroupLoadoutEffect #FH
+    proto: VeteranSalvageSpecialist #FH
   equipment:
     jumpsuit: ClothingUniformJumpsuitSalvageFormal # Starlight end 🌟

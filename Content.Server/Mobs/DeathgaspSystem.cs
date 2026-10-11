@@ -7,9 +7,9 @@ using Robust.Shared.Prototypes;
 namespace Content.Server.Mobs;
 
 /// <see cref="DeathgaspComponent"/>
-public sealed class DeathgaspSystem: EntitySystem
+public sealed partial class DeathgaspSystem: EntitySystem
 {
-    [Dependency] private readonly ChatSystem _chat = default!;
+    [Dependency] private ChatSystem _chat = default!;
 
     public override void Initialize()
     {
@@ -21,7 +21,8 @@ public sealed class DeathgaspSystem: EntitySystem
     private void OnMobStateChanged(EntityUid uid, DeathgaspComponent component, MobStateChangedEvent args)
     {
         // don't deathgasp if they arent going straight from crit to dead
-        if (args.NewMobState != MobState.Dead || args.OldMobState != MobState.Critical)
+        List<MobState> critStates = [MobState.Critical, MobState.ActiveCritical]; // Far Horizons
+        if (args.NewMobState != MobState.Dead || !critStates.Contains(args.OldMobState))
             return;
 
         Deathgasp(uid, component);

@@ -1,0 +1,87 @@
+- type: job
+  id: Magistrate
+  name: job-name-magistrate
+  description: job-description-magistrate
+  playTimeTracker: JobMagistrate
+  requirements:
+    - !type:DepartmentTimeRequirement
+      department: Command
+      time: 180000 #50 hrs
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 36000 # 10h
+#    - !type:RolesRequirement                #Far Horizons Disabled Currently Till Whitelist Added
+#      proto: ExtRolesReq
+  startingGear: MagistrateGear
+  icon: "JobIconMagistrate"
+  rules: job-rules-corporate-aligned
+  supervisors: job-supervisors-centcom
+  canBeAntag: false
+  setPreference: true
+  access:
+  - Magistrate
+  - Bar
+  - BarNS  # Far Horizons
+  - Kitchen
+  - KitchenNS  # Far Horizons
+  - Hydroponics
+  - HydroponicsNS  # Far Horizons
+  - Janitor
+  - JanitorNS  # Far Horizons
+  - Theatre
+  - TheatreNS # Far Horizons
+  - Chapel
+  - ChapelNS # Far Horizons
+  - External #Far Horizons
+  - ExternalNS #Far Horizons
+  - Lawyer
+  - LawyerNS # Far Horizons
+  - Brig
+  - BrigNS # Far Horizons
+  - Security
+  - SecurityNS # Far Horizons
+  - Command
+  - Executive # Far Horizons
+  - Maintenance
+  - MaintenanceNS # Far Horizons
+  - GenpopEnter
+  - GenpopLeave
+  - GenpopEnterNS # Far Horizons
+  - GenpopLeaveNS # Far Horizons
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant ]
+  - !type:AddComponentSpecial
+    components:
+      - type: CommandStaff
+
+- type: startingGear
+  id: MagistrateGear
+  equipment:
+    #jumpsuit: MagistrateUniformSuit #Far Horizons
+    #shoes: ClothingShoesBootsLaceup
+    #eyes: ClothingEyesGlassesSecurity #Far Horizons
+    gloves: ClothingHandsGlovesColorWhite
+    #outerClothing: ClothingOuterRobesJudge #Far Horizons
+    id: MagistratePDA
+    ears: ClothingHeadsetMagistrate
+    #head: ClothingHeadHatPwig #Far Horizons
+    belt: BoxFolderNanoTrasenClipboard
+  storage:
+    back:
+    - RubberStampMagistrate
+    - ClothingNeckLawyerbadge
+    - GavelHammer
+    - GavelBlock
+    - BookSpaceLaw #Far Horizons
+    #- MagistrateUniformSkirt #Far Horizons
+
+- type: chameleonOutfit
+  id: MagistrateChameleonOutfit
+  job: Magistrate
+  equipment:
+    head: ClothingHeadHatPwig
+    eyes: ClothingEyesGlassesSecurity
+    outerClothing: ClothingOuterRobesJudge
+    neck: ClothingNeckLawyerbadge
+    gloves: ClothingHandsGlovesColorWhite

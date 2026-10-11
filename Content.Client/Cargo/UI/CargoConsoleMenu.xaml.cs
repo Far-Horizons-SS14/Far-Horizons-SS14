@@ -18,7 +18,7 @@ namespace Content.Client.Cargo.UI
     [GenerateTypedNameReferences]
     public sealed partial class CargoConsoleMenu : FancyWindow
     {
-        [Dependency] private readonly IGameTiming _timing = default!;
+        [Dependency] private IGameTiming _timing = default!;
 
         private readonly IEntityManager _entityManager;
         private readonly IPrototypeManager _protoManager;
@@ -211,14 +211,41 @@ namespace Content.Client.Cargo.UI
 
             foreach (var order in orders)
             {
-                if (order.Approved)
+                if (order.Approved || !_protoManager.Resolve(order.Product, out var productProto))
                     continue;
 
-                var product = _protoManager.Index<EntityPrototype>(order.ProductId);
-                var productName = product.Name;
+                var product = _protoManager.Index<EntityPrototype>(productProto.Product);
+                var productName = productProto.Name;
                 var requester = !string.IsNullOrEmpty(order.Requester) ?
                     order.Requester : Loc.GetString("cargo-console-menu-order-row-alerts-requester-unknown");
                 var account = _protoManager.Index(order.Account);
+
+                // Far Horizons start
+                var orderName = "";
+                if (order.ChargeCreditsFrom == null)
+                    orderName = Loc.GetString(
+                                "cargo-console-menu-populate-orders-cargo-order-row-product-name-text",
+                                ("orderRequester", requester),
+                                ("accountColor", account.Color),
+                                ("account", Loc.GetString(account.Code)));
+                else
+                    orderName = Loc.GetString(
+                                "cargo-console-menu-populate-orders-cargo-order-row-personal-product-name-text",
+                                ("orderRequester", requester));
+                
+                var orderTitle = "";
+                if (order.ChargeCreditsFrom == null)
+                    orderTitle = Loc.GetString(
+                                 "cargo-console-menu-order-row-title",
+                                 ("productName", productName),
+                                 ("orderAmount", order.OrderQuantity),
+                                 ("orderPrice", productProto.Cost));
+                else
+                    orderTitle = Loc.GetString(
+                                 "cargo-console-menu-personal-order-row-title",
+                                 ("productName", productName),
+                                 ("orderPrice", MathF.Floor(productProto.Cost * productProto.CreditCost)));
+                // Far Horizons end
 
                 var row = new CargoOrderRow
                 {
@@ -226,11 +253,7 @@ namespace Content.Client.Cargo.UI
 
                     Title =
                     {
-                        Text = Loc.GetString(
-                            "cargo-console-menu-order-row-title",
-                            ("productName", productName),
-                            ("orderAmount", order.OrderQuantity),
-                            ("orderPrice", order.Price)),
+                        Text = orderTitle,
                     },
 
                     Stride =
@@ -246,11 +269,7 @@ namespace Content.Client.Cargo.UI
 
                     ProductName =
                     {
-                        Text = Loc.GetString(
-                            "cargo-console-menu-populate-orders-cargo-order-row-product-name-text",
-                            ("orderRequester", requester),
-                            ("accountColor", account.Color),
-                            ("account", Loc.GetString(account.Code)))
+                        Text = orderName // Far Horizons
                     },
 
                     Description =

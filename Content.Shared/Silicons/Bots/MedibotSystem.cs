@@ -18,15 +18,15 @@ namespace Content.Shared.Silicons.Bots;
 /// <summary>
 /// Handles emagging medibots and provides api.
 /// </summary>
-public sealed class MedibotSystem : EntitySystem
+public sealed partial class MedibotSystem : EntitySystem
 {
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly EmagSystem _emag = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private EmagSystem _emag = default!;
     [Dependency] private SharedInteractionSystem _interaction = default!;
     [Dependency] private SharedSolutionContainerSystem _solutionContainer = default!;
     [Dependency] private SharedPopupSystem _popup = default!;
     [Dependency] private SharedDoAfterSystem _doAfter = default!;
-    [Dependency] private readonly DamageableSystem _damageable = default!;
+    [Dependency] private DamageableSystem _damageable = default!;
 
     public override void Initialize()
     {
@@ -103,7 +103,7 @@ public sealed class MedibotSystem : EntitySystem
         if (!TryComp<DamageableComponent>(target, out var damageable)) return false;
         if (!_solutionContainer.TryGetInjectableSolution(target, out _, out _)) return false;
 
-        if (mobState.CurrentState != MobState.Alive && mobState.CurrentState != MobState.Critical)
+        if (mobState.CurrentState != MobState.Alive && mobState.CurrentState != MobState.Critical && mobState.CurrentState != MobState.ActiveCritical) // Far Horizons
         {
             _popup.PopupClient(Loc.GetString("medibot-target-dead"), medibot, medibot);
             return false;

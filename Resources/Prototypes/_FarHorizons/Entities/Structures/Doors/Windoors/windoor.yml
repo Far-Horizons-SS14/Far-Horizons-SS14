@@ -1,7 +1,43 @@
+#region GSL
+
+
+- type: entity
+  parent: Windoor
+  id: WindoorCargoLocked
+  suffix: GSL, Cargo, Locked #Far Horizons - Dual Station Clarity
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsCargo ]
+  - type: Wires
+    layoutId: AirlockCargo
+
+- type: entity
+  parent: WindoorSecure
+  id: WindoorSecureCargoLocked
+  suffix: GSL, Cargo, Secure, Locked #Far Horizons - Dual Station Clarity
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsCargo ]
+  - type: Wires
+    layoutId: AirlockCargo
+
+- type: entity
+  parent: WindoorSecureCargoLocked
+  id: WindoorSecureSalvageLocked
+  suffix: GSL, Salvage, Secure, Locked #Far Horizons - Dual Station Clarity
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSalvage ]
+
+#region NanoTrasen
+
 - type: entity
   parent: WindoorSecure
   id: FHWindoorSecureRoboticsLocked
-  suffix: Robotics, Locked
+  suffix: NT, Robotics, Locked
   components:
   - type: ContainerFill
     containers:
@@ -12,10 +48,541 @@
 - type: entity
   parent: WindoorSecure
   id: WindoorSecureSecurityNoCadetLocked
-  suffix: Security, No Cadet, Locked
+  suffix: NT, Security, No Cadet, Locked
   components:
   - type: ContainerFill
     containers:
       board: [ DoorElectronicsSecurityNoCadet ]
   - type: Wires
     layoutId: AirlockSecurity
+
+#region NeoSol
+
+#Base Locks
+
+- type: entity
+  parent: WindoorSecure
+  id: WindoorNSSecureEngineeringLocked
+  suffix: NS, Engineering, Locked #Far Horizons - Dual Station Clarity
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNSEngineering ]
+  - type: Wires
+    layoutId: AirlockEngineering
+
+- type: entity
+  parent: WindoorSecure
+  id: WindoorNSSecureExecutiveLocked
+  suffix: NS, Executive, Locked #Far Horizons - Dual Station Clarity
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNSExecutive ]
+  - type: WiresPanelSecurity
+    securityLevel: medSecurity
+  - type: Wires
+    layoutId: AirlockCommand
+
+- type: entity
+  parent: WindoorSecure
+  id: WindoorNSSecureExternalLocked
+  suffix: NS, External, Locked #Far Horizons - Dual Station Clarity
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNSExternal ]
+  - type: Wires
+    layoutId: AirlockExternal
+
+- type: entity
+  parent: WindoorSecure
+  id: WindoorNSSecureMedicalLocked
+  suffix: NS, Medical, Locked #Far Horizons - Dual Station Clarity
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNSMedical ]
+  - type: Wires
+    layoutId: AirlockMedical
+
+- type: entity
+  parent: WindoorSecure
+  id: WindoorNSSecureScienceLocked
+  suffix: NS, Science, Locked #Far Horizons - Dual Station Clarity
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNSResearch ]
+  - type: Wires
+    layoutId: AirlockScience
+
+- type: entity
+  parent: WindoorSecure
+  id: WindoorNSSecureSecurityLocked
+  suffix: NS, Security, Locked #Far Horizons - Dual Station Clarity
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNSSecurity ]
+  - type: Wires
+    layoutId: AirlockSecurity
+
+- type: entity
+  parent: Windoor
+  id: WindoorNSServiceLocked
+  suffix: NS, Service, Locked #Far Horizons - Dual Station Clarity
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNSService ]
+  - type: Wires
+    layoutId: AirlockService
+
+- type: entity
+  parent: WindoorSecure
+  id: WindoorNSSecureServiceLocked
+  suffix: NS, Service, Secure, Locked #Far Horizons - Dual Station Clarity
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNSService ]
+  - type: Wires
+    layoutId: AirlockService
+
+#Specified Locks
+
+- type: entity
+  parent: WindoorNSServiceLocked
+  id: WindoorNSBarLocked
+  suffix: NS, Bar, Locked #Far Horizons - Dual Station Clarity
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNSBar ]
+
+- type: entity
+  parent: WindoorNSServiceLocked
+  id: WindoorNSBarKitchenLocked
+  suffix: NS, Bar&Kitchen, Locked #Far Horizons - Dual Station Clarity
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNSBarKitchen ]
+
+- type: entity
+  parent: Windoor
+  id: WindoorNSChapelLocked
+  suffix: NS, Chapel, Locked #Far Horizons - Dual Station Clarity
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNSChapel ]
+
+- type: entity
+  parent: WindoorNSServiceLocked
+  id: WindoorNSHydroponicsLocked
+  suffix: NS, Hydroponics, Locked #Far Horizons - Dual Station Clarity
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNSHydroponics ]
+
+- type: entity
+  parent: WindoorNSServiceLocked
+  id: WindoorNSJanitorLocked
+  suffix: NS, Janitor, Locked #Far Horizons - Dual Station Clarity
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNSJanitor ]
+
+- type: entity
+  parent: WindoorPlasma
+  id: PlasmaWindoorNSJanitorLocked
+  suffix: NS, Janitor, Locked, Plasma #Far Horizons - Dual Station Clarity
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNSJanitor ]
+  - type: Wires
+    layoutId: AirlockService
+
+- type: entity
+  parent: WindoorNSServiceLocked
+  id: WindoorNSKitchenLocked
+  suffix: NS, Kitchen, Locked #Far Horizons - Dual Station Clarity
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNSKitchen ]
+
+- type: entity
+  parent: WindoorNSServiceLocked
+  id: WindoorNSKitchenHydroponicsLocked
+  suffix: NS, Kitchen&Hydroponics, Locked #Far Horizons - Dual Station Clarity
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNSKitchenHydroponics ]
+
+- type: entity
+  parent: WindoorNSServiceLocked
+  id: WindoorNSTheatreLocked
+  suffix: NS, Theatre, Locked #Far Horizons - Dual Station Clarity
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNSTheatre ]
+
+# Secure
+
+- type: entity
+  parent: WindoorSecure
+  id: WindoorNSSecureArmoryLocked
+  suffix: NS, Armory, Locked #Far Horizons - Dual Station Clarity
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNSArmory ]
+  - type: Wires
+    layoutId: AirlockArmory
+
+- type: entity
+  parent: WindoorSecurePlasma
+  id: PlasmaWindoorNSSecureArmoryLocked
+  suffix: NS, Armory, Locked, Plasma #Far Horizons - Dual Station Clarity
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNSArmory ]
+  - type: Wires
+    layoutId: AirlockArmory
+
+- type: entity
+  parent: WindoorSecureEngineeringLocked
+  id: WindoorNSSecureAtmosphericsLocked
+  suffix: NS, Atmospherics, Locked #Far Horizons - Dual Station Clarity
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNSAtmospherics ]
+
+- type: entity
+  parent: WindoorSecurePlasma
+  id: PlasmaWindoorNSSecureAtmosphericsLocked
+  suffix: NS, Atmospherics, Locked, Plasma #Far Horizons - Dual Station Clarity
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNSAtmospherics ]
+
+- type: entity
+  parent: WindoorSecureServiceLocked
+  id: WindoorNSSecureBarLocked
+  suffix: NS, Bar, Locked #Far Horizons - Dual Station Clarity
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNSBar ]
+
+- type: entity
+  parent: WindoorSecureSecurityLocked
+  id: WindoorNSSecureBrigLocked
+  suffix: NS, Brig, Locked #Far Horizons - Dual Station Clarity
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNSBrig ]
+
+- type: entity
+  parent: WindoorSecure
+  id: WindoorNSSecureChapelLocked
+  suffix: NS, Chapel, Locked #Far Horizons - Dual Station Clarity
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNSChapel ]
+
+- type: entity
+  parent: WindoorSecureMedicalLocked
+  id: WindoorNSSecureChemistryLocked
+  suffix: NS, Chemistry, Secure, Locked #Far Horizons - Dual Station Clarity
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNSChemistry ]
+
+- type: entity
+  parent: WindoorSecurePlasma
+  id: PlasmaWindoorNSSecureChemistryLocked
+  suffix: NS, Chemistry, Locked, Secure, Plasma #Far Horizons - Dual Station Clarity
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNSChemistry ]
+  - type: Wires
+    layoutId: AirlockMedical
+
+- type: entity
+  parent: WindoorSecure
+  id: WindoorNSSecureHighCommandLocked
+  suffix: NS, High Command, Locked, Secure #Far Horizons - Dual Station Clarity
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNSHighCommand ]
+
+- type: entity
+  parent: WindoorSecurePlasma
+  id: PlasmaWindoorNSSecureHighCommandLocked
+  suffix: NS, High Command, Locked, Secure, Plasma #Far Horizons - Dual Station Clarity
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNSHighCommand ]
+
+- type: entity
+  parent: WindoorSecureUranium
+  id: UraniumWindoorNSSecureHighCommandLocked
+  suffix: NS, High Command, Locked, Secure, Uranium #Far Horizons - Dual Station Clarity
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNSHighCommand ]
+  - type: WiresPanelSecurity
+    securityLevel: medSecurity
+  - type: Wires
+    layoutId: AirlockCommand
+
+- type: entity
+  parent: WindoorSecurePlasma
+  id: PlasmaWindoorNSSecureExecutiveLocked
+  suffix: NS, Executive, Locked, Secure, Plasma #Far Horizons - Dual Station Clarity
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNSExecutive ]
+  - type: WiresPanelSecurity
+    securityLevel: medSecurity
+  - type: Wires
+    layoutId: AirlockCommand
+
+- type: entity
+  parent: WindoorSecureSecurityLocked
+  id: WindoorNSSecureInspectorLocked
+  suffix: NS, Inspector, Locked, Secure #Far Horizons - Dual Station Clarity
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNSDetective ]
+
+- type: entity
+  parent: WindoorSecurePlasma
+  id: PlasmaWindoorNSSecureEngineeringLocked
+  suffix: NS, Engineering, Locked, Secure, Plasma #Far Horizons - Dual Station Clarity
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNSEngineering ]
+  - type: Wires
+    layoutId: AirlockEngineering
+
+- type: entity
+  parent: WindoorSecureUranium
+  id: UraniumWindoorNSSecureEngineeringLocked
+  suffix: NS, Engineering, Locked, Secure, Uranium #Far Horizons - Dual Station Clarity
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNSEngineering ]
+  - type: Wires
+    layoutId: AirlockEngineering
+
+- type: entity
+  parent: WindoorSecureServiceLocked
+  id: WindoorNSSecureJanitorLocked
+  suffix: NS, Janitor, Locked, Secure, #Far Horizons - Dual Station Clarity
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNSJanitor ]
+
+- type: entity
+  parent: WindoorSecurePlasma
+  id: PlasmaWindoorNSSecureJanitorLocked
+  suffix: NS, Janitor, Locked, Secure, Plasma #Far Horizons - Dual Station Clarity
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNSJanitor ]
+  - type: Wires
+    layoutId: AirlockService
+
+- type: entity
+  parent: WindoorSecureServiceLocked
+  id: WindoorNSSecureKitchenLocked
+  suffix: NS, Kitchen, Secure, Locked #Far Horizons - Dual Station Clarity
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNSKitchen ]
+
+- type: entity
+  parent: WindoorSecureSecurityLocked
+  id: WindoorNSSecureSecurityLawyerLocked
+  suffix: NS, Security/Lawyer, Secure, Locked #Far Horizons - Dual Station Clarity
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNSSecurityLawyer ]
+
+- type: entity
+  parent: WindoorSecureCommandLocked
+  id: WindoorNSSecureEpistemicsProvostLocked
+  suffix: NS, Epistemics Provost, Secure, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNSEpistemicsProvost ]
+
+- type: entity
+  parent: WindoorSecurePlasma
+  id: PlasmaWindoorNSSecureSecurityLocked
+  suffix: NS, Security, Locked, Plasma #Far Horizons - Dual Station Clarity
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNSSecurity ]
+  - type: Wires
+    layoutId: AirlockSecurity
+
+- type: entity
+  parent: WindoorSecurePlasma
+  id: PlasmaWindoorNSSecureScienceLocked
+  suffix: NS, Science, Locked, Plasma #Far Horizons - Dual Station Clarity
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNSResearch ]
+  - type: Wires
+    layoutId: AirlockScience
+
+- type: entity
+  parent: WindoorSecureCommandLocked
+  id: WindoorNSSecurePersonnelManagerLocked
+  suffix: NS, Personnel Manager, Locked #Far Horizons - Dual Station Clarity
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNSPersonnelManager ]
+
+#region Lambda (NanoTrasen)
+
+- type: entity
+  parent: Windoor
+  id: WindoorConsortiumLocked
+  suffix: NT, Consortium, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsLambdaAgent ]
+
+- type: entity
+  parent: WindoorSecure
+  id: WindoorSecureConsortiumLocked
+  suffix: NT, Consortium, Secure, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsLambdaAgent ]
+
+- type: entity
+  parent: WindoorPlasma
+  id: PlasmaWindoorNTConsortiumLocked
+  suffix: NT, Consortium, Locked, Plasma
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsLambdaAgent ]
+
+- type: entity
+  parent: WindoorSecurePlasma
+  id: PlasmaWindoorNTSecureConsortiumLocked
+  suffix: NT, Consortium, Secure, Locked, Plasma
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsLambdaAgent ]
+
+- type: entity
+  parent: WindoorUranium
+  id: UraniumWindoorNTConsortiumLocked
+  suffix: NT, Consortium, Locked, Uranium
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsLambdaAgent ]
+
+- type: entity
+  parent: WindoorSecureUranium
+  id: UraniumWindoorNTSecureConsortiumLocked
+  suffix: NT, Consortium, Secure, Locked, Uranium
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsLambdaAgent ]
+
+- type: entity
+  parent: Windoor
+  id: WindoorNTNukeopLocked
+  suffix: NT, Lambda, SquadOp, Locked #Far Horizons - Dual Station Clarity
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsLambdaSquadop ]
+
+- type: entity
+  parent: WindoorSecure
+  id: WindoorSecureNTNukeopLocked
+  suffix: NT, Lambda, SquadOp, Secure, Locked #Far Horizons - Dual Station Clarity
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsLambdaSquadop ]
+
+- type: entity
+  parent: WindoorPlasma
+  id: PlasmaWindoorNTNukeopLocked
+  suffix: NT, Lambda, SquadOp, Locked, Plasma #Far Horizons - Dual Station Clarity
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsLambdaSquadop ]
+
+- type: entity
+  parent: WindoorSecurePlasma
+  id: PlasmaWindoorSecureNTNukeopLocked
+  suffix: NT, Lambda, SquadOp, Locked, Secure, Plasma #Far Horizons - Dual Station Clarity
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsLambdaSquadop ]
+
+- type: entity
+  parent: WindoorUranium
+  id: UraniumWindoorNTNukeopLocked
+  suffix: NT, Lambda, SquadOp, Locked, Uranium #Far Horizons - Dual Station Clarity
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsLambdaSquadop ]
+
+- type: entity
+  parent: WindoorSecureUranium
+  id: UraniumWindoorSecureNTNukeopLocked
+  suffix: NT, Lambda, SquadOp, Locked, Secure, Uranium #Far Horizons - Dual Station Clarity
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsLambdaSquadop ]

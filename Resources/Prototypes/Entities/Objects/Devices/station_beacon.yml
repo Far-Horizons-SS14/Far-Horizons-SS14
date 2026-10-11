@@ -1,7 +1,7 @@
 - type: entity
   parent: BaseItem
   id: DefaultStationBeacon
-  name: station beacon
+  name: Station Beacon #FH
   description: A small device that transmits information to station maps. Can be configured.
   placement:
     mode: SnapgridCenter
@@ -48,8 +48,9 @@
   - type: Transform
     anchored: true
   - type: Damageable
-    damageContainer: Inorganic
     damageModifierSet: Metallic
+  - type: Injurable
+    damageContainer: Inorganic
   - type: Destructible
     thresholds:
     - trigger: # for nukes
@@ -99,7 +100,7 @@
 - type: entity
   parent: BaseItem
   id: StationBeaconPart
-  name: station beacon flatpack
+  name: Station Beacon Flatpack #FH
   description: A flatpack used for constructing a station beacon.
   components:
   - type: Item

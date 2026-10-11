@@ -12,7 +12,7 @@
       default: [ ProtoCyclopsMediumArmor ]
 
 - type: entity
-  parent: AppearanceCyclorite
+  parent: BaseSpeciesAppearance
   id: AppearanceProtoCyclops
   name: ProtoCyclops Appearance
   components:
@@ -33,7 +33,7 @@
       Tongue: OrganProtogenTongue
       Ears: OrganProtogenEars
       Lungs: OrganProtogenLungs
-      Heart: OrganProtogenHeart
+      Heart: OrganProtoCyclopsHeart
       Stomach: OrganProtogenStomach
       Liver: OrganProtogenLiver
       Kidneys: OrganProtogenKidneys
@@ -42,10 +42,17 @@
 
 - type: entity
   parent:
+  - ActiveCritBase
   - AppearanceProtoCyclops
   - BaseMobProtoCyclops
   id: MobProtoCyclops
   name: Urist McCyclopster
+  components:
+    - type: MobThresholds
+      thresholds:
+        0: Alive
+        120: ActiveCritical
+        240: Dead
 
 # Organs
 
@@ -58,12 +65,25 @@
     markingData:
       group: ProtoCyclops
 
+- type: entity 
+  parent: OrganProtogenHeart
+  id: OrganProtoCyclopsHeart
+  components:
+  - type: Metabolizer
+    maxReagents: 2
+    metabolizerTypes: [ Cyclorite ] 
+
 # Limbs
 
 - type: entity
   parent: [ OrganProtoCyclopsExternal, OrganCycloriteTorso ]
   id: OrganProtoCyclopsTorso
-
+  components:
+  - type: VisualOrganMarkings
+    hideableLayers:
+    - enum.HumanoidVisualLayers.BodyCover
+    - enum.HumanoidVisualLayers.BodyCoverCover
+    
 - type: entity
   parent: [ OrganProtoCyclopsExternal, OrganCycloriteHead ]
   id: OrganProtoCyclopsHead

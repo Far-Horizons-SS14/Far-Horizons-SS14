@@ -112,6 +112,8 @@ namespace Content.Client.Input
 
             human.AddFunction(ContentKeyFunctions.TargetNextLimb);
             human.AddFunction(ContentKeyFunctions.TargetPreviousLimb);
+
+            human.AddFunction(ContentKeyFunctions.FocusMentorChatWindow);
             // Far Horizons end
 
             // actions should be common (for ghosts, mobs, etc)

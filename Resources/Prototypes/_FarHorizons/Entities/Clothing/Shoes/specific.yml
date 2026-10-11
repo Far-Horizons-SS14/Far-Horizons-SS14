@@ -1,0 +1,36 @@
+- type: entity
+  parent: ClothingShoesClownBase
+  id: ClothingShoesClownNS
+  name: Clown Shoes
+  suffix: NS
+  description: "The prankster's standard-issue clowning shoes. Damn they're huge!"
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Shoes/Specific/NeoSol/clown.rsi
+  - type: Clothing
+    sprite: Clothing/Shoes/Specific/clown.rsi
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepClown
+      params:
+        variation: 0.17
+  # for H.O.N.K. construction
+  - type: Tag
+    tags:
+    - ClownShoes
+    - WhitelistChameleon
+
+- type: entity
+  parent: ClothingShoesBase
+  id: ClothingShoesWizardHeels
+  name: Wizard High Heels
+  description: A Wizard's High Heels
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Shoes/Specific/wizardheels.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Shoes/Specific/wizardheels.rsi
+  - type: Tag
+    tags:
+    - ClownShoes
+    - WhitelistChameleon

@@ -64,6 +64,7 @@
         - id: DerelictMedicalCyborgSpawn
         - id: DerelictMiningCyborgSpawn
         - id: DerelictBorgiSpawn # Starlight
+        - id: DerelictPurrfusCyborgSpawn #Starlight
     - !type:GroupSelector # Other Borgs
       weight: 15
       children:
@@ -289,8 +290,9 @@
       - ParadoxCloneObjectiveBlacklist
   - type: AntagObjectives
     objectives:
-    - ParadoxCloneKillObjective
     - ParadoxCloneLivingObjective
+    - ParadoxCloneKillObjective #FH
+    - ParadoxCloneKeepAliveObjective #FH
   - type: AntagRandomSpawn # TODO: improve spawning so they only start in maints
   - type: AntagSelection
     agentName: paradox-clone-round-end-agent-name
@@ -303,7 +305,7 @@
       roleLoadout:
       # - RoleSurvivalVoxTank - Starlight edit - Should no longer be needed
       briefing:
-        text: paradox-clone-role-greeting
+        text: ghost-role-information-paradox-clone-description-fh #FH
         color: lightblue
         sound: /Audio/Misc/paradox_clone_greeting.ogg
       mindRoles:
@@ -329,7 +331,7 @@
   components:
   - type: StationEvent
     weight: 1 # rare
-    duration: 1
+    duration: null
     earliestStart: 30
     reoccurrenceDelay: 60
     minimumPlayers: 30
@@ -581,6 +583,7 @@
     weight: 3 # 🌟Starlight🌟 Casualization
     minimumPlayers: 20
     duration: null # LoneOpsSpawn needs an infinite duration so that it inherits the NukeOpsRule things of an actually appropriate end scrreen (not always "Neutral outcome!") and... ending the game if the station is nuked.
+    faction: FactionNT # Far Horizons
   - type: NukeopsRule
     roundEndBehavior: Nothing
   - type: AntagSelection
@@ -611,7 +614,7 @@
   # Yes, it is stupid
   - type: RuleGrids
   - type: LoadMapRule
-    gridPath: /Maps/Shuttles/ShuttleEvent/striker.yml
+    gridPath: /Maps/_FarHorizons/Shuttles/ShuttleEvent/KillerTamashi-Striker.yml
   # Far Horizons end
   - type: DynamicRuleCost
     cost: 75
@@ -630,6 +633,7 @@
       path: /Audio/_Starlight/Announcements/attention.ogg
     duration: null # the rule has to last the whole round not 1 second
     occursDuringRoundEnd: false
+    faction: FactionNT # Far Horizons
   - type: AlertLevelInterceptionRule
   - type: AntagSelection
     definitions:

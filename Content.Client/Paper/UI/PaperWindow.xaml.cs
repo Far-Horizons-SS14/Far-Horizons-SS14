@@ -12,6 +12,7 @@ using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Utility;
 using Robust.Client.UserInterface.RichText;
+using Content.Client._FarHorizons.UserInterface.RichText;
 using Robust.Shared.Input;
 using Robust.Shared.IoC;
 
@@ -22,8 +23,8 @@ namespace Content.Client.Paper.UI
     {
         private PaperComponent.PaperBoundUserInterfaceState _currentState = default!;
         private string _currentRawText = string.Empty;
-        [Dependency] private readonly IInputManager _inputManager = default!;
-        [Dependency] private readonly IResourceCache _resCache = default!;
+        [Dependency] private IInputManager _inputManager = default!;
+        [Dependency] private IResourceCache _resCache = default!;
 
         private static Color DefaultTextColor = new(25, 25, 25);
 
@@ -58,6 +59,18 @@ namespace Content.Client.Paper.UI
             typeof(LogoTag),
             typeof(SyndieLogoTag),
             typeof(CCLogoTag),
+            //Far Horizons-Start
+            typeof(CFALogoTag),
+            typeof(NSLogoTag),
+            typeof(HCLogoTag),
+            typeof(MELogoTag),
+            typeof(NSGSLLogoTag),
+            typeof(CDLogoTag),
+            typeof(IPLogoTag),
+            typeof(MRILogoTag),
+            typeof(ACSLogoTag),
+            typeof(NSCFALogoTag),
+            //Far Horizons-End
             typeof(CheckTagHandler)
         };
 

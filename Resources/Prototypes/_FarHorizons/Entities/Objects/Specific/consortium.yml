@@ -1,0 +1,131 @@
+# Refined Bluespace Crystals
+
+- type: entity
+  name: Refined Bluespace Crystals
+  parent: [BaseItem, BaseSyndicateContraband]
+  id: RefinedBluespaceCrystal
+  suffix: 20 RB
+  description: It seems to be pulsing with suspiciously enticing energies.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Specific/Consortium/refinedbluespacecrystal.rsi
+    state: refinedbluespacecrystal
+  - type: Item
+    sprite: _FarHorizons/Objects/Specific/Consortium/refinedbluespacecrystal.rsi
+    size: Tiny
+  - type: Stack
+    count: 20
+    stackType: Telecrystal
+  - type: StaticPrice
+    price: 0
+  - type: StackPrice
+    price: 200
+  - type: Currency
+    price:
+      Refinedbluespacecrystal: 1
+
+- type: entity
+  parent: RefinedBluespaceCrystal
+  id: RefinedBluespaceCrystal1
+  suffix: 1 RB
+  components:
+  - type: Stack
+    count: 1
+
+- type: entity
+  parent: RefinedBluespaceCrystal
+  id: RefinedBluespaceCrystal5
+  suffix: 5 RB
+  components:
+  - type: Stack
+    count: 5
+
+- type: entity
+  parent: RefinedBluespaceCrystal
+  id: RefinedBluespaceCrystal10
+  suffix: 10 RB
+  components:
+  - type: Stack
+    count: 10
+
+# Uplinks
+- type: entity
+  parent: [BaseItem, BaseSyndicateContraband]
+  id: BaseConsortiumUplinkRadio
+  name: Consortium Uplink
+  description: Suspiciously looking old radio...
+  suffix: Empty
+  components:
+  - type: Sprite
+    sprite: Objects/Devices/communication.rsi
+    layers:
+    - state: old-radio
+  - type: Item
+    sprite: Objects/Devices/communication.rsi
+    heldPrefix: old-radio
+  - type: UserInterface
+    interfaces:
+      enum.StoreUiKey.Key:
+        type: StoreBoundUserInterface
+  - type: ActivatableUI
+    key: enum.StoreUiKey.Key
+  - type: Store
+    balance:
+      Refinedbluespacecrystal: 0
+      
+- type: entity
+  parent: [BaseConsortiumUplinkRadio, StorePresetConsortiumUplink]
+  id: BaseConsortiumUplinkRadioPreset
+  
+- type: entity
+  parent: BaseConsortiumUplinkRadioPreset
+  id: BaseConsortiumUplinkRadio20RB
+  suffix: 20 RB
+  components:
+  - type: Store
+    balance:
+      Refinedbluespacecrystal: 20
+
+- type: entity
+  parent: BaseConsortiumUplinkRadioPreset
+  id: BaseConsortiumUplinkRadio25RB
+  suffix: 25 RB
+  components:
+  - type: Store
+    balance:
+      Refinedbluespacecrystal: 25
+
+#this uplink MUST be used for nukeops, as it has the tag for filtering the listing.
+- type: entity
+  parent: BaseConsortiumUplinkRadioPreset
+  id: BaseConsortiumUplinkRadio40RB
+  suffix: 40 RB, NukeOps
+  components:
+  - type: Store
+    balance:
+      Refinedbluespacecrystal: 40
+  - type: Tag
+    tags:
+    - NukeOpsUplink
+
+- type: entity
+  parent: BaseConsortiumUplinkRadioPreset
+  id: BaseConsortiumUplinkRadio60RB
+  suffix: 60 RB, LoneOps
+  components:
+  - type: Store
+    balance:
+      Refinedbluespacecrystal: 60
+  - type: Tag
+    tags:
+    - NukeOpsUplink
+
+- type: entity
+  parent: BaseConsortiumUplinkRadioPreset
+  id: BaseConsortiumUplinkRadioDebug
+  suffix: DEBUG
+  components:
+  - type: Store
+    balance:
+      Refinedbluespacecrystal: 99999
+    expectedFaction: #nulls out the expected faction

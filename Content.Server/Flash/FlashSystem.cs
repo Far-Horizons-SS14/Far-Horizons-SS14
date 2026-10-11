@@ -2,4 +2,4 @@
 
 namespace Content.Server.Flash;
 
-public sealed class FlashSystem : SharedFlashSystem;
+public sealed partial class FlashSystem : SharedFlashSystem;

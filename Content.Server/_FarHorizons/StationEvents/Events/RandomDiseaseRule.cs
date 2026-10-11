@@ -11,10 +11,10 @@ namespace Content.Server.StationEvents.Events;
 ///     Station event that infects a random selection of suitable players with a randomly chosen disease from a configured pool.
 ///     Mirrors the structure/pattern of other events like RandomSentienceRule.
 /// </summary>
-public sealed class RandomDiseaseRule : StationEventSystem<RandomDiseaseRuleComponent>
+public sealed partial class RandomDiseaseRule : StationEventSystem<RandomDiseaseRuleComponent>
 {
-    [Dependency] private readonly SharedDiseaseSystem _disease = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private SharedDiseaseSystem _disease = default!;
+    [Dependency] private IRobustRandom _random = default!;
 
     protected override void Started(EntityUid uid, RandomDiseaseRuleComponent comp, GameRuleComponent gameRule, GameRuleStartedEvent args)
     {
@@ -29,12 +29,10 @@ public sealed class RandomDiseaseRule : StationEventSystem<RandomDiseaseRuleComp
         // Choose disease uniformly from pool.
         var chosenDisease = _random.Pick(comp.Disease).Id;
         
-        var disease = _disease.CreateDisease(chosenDisease);
-        var stage = _disease.CreateStage(chosenDisease);
-        if(disease == null || stage == null)
-        {
-            return;
-        }
+        var disease = _disease.GenerateDisease(chosenDisease);
+        if(disease == null) return;
+        var stage = _disease.CreateStage(disease.Value);
+        if(stage == null) return;
 
         // Collect eligible humanoids with carrier component on the chosen station.
         var candidates = new List<EntityUid>();
@@ -44,7 +42,7 @@ public sealed class RandomDiseaseRule : StationEventSystem<RandomDiseaseRuleComp
             if (StationSystem.GetOwningStation(ent, xform) != station)
                 continue;
 
-            if (!_disease.CanBeInfected(ent, disease))
+            if (!_disease.CanBeInfected(ent, disease.Value))
                 continue;
 
             if (!mind.HasMind)
@@ -70,11 +68,11 @@ public sealed class RandomDiseaseRule : StationEventSystem<RandomDiseaseRuleComp
             // Optional: skip entities already immune if desired.
             if (comp.SkipImmune)
             {
-                if (TryComp<DiseaseCarrierComponent>(ent, out var carrier) && carrier.Immunity.TryGetValue(disease, out var immunity) && immunity >= 1f)
+                if (TryComp<DiseaseCarrierComponent>(ent, out var carrier) && carrier.Immunity.TryGetValue(disease.Value, out var immunity) && immunity >= 1f)
                     continue;
             }
 
-            if (_disease.Infect(ent, disease, stage))
+            if (_disease.Infect(ent, disease.Value, stage))
                 infected++;
         }
     }

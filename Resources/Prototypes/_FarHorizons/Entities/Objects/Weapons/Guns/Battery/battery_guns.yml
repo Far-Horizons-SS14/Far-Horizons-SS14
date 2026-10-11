@@ -65,8 +65,18 @@
 
 - type: entity
   name: Cyborg Dominator
+  suffix: NT
   parent: WeaponDominator
   id: BorgWeaponDominator
+  components:
+  - type: BatterySelfRecharger
+    autoRechargeRate: 25
+
+- type: entity
+  name: Cyborg Dominator
+  suffix: NS
+  parent: WeaponDominatorNS
+  id: BorgWeaponDominatorNS
   components:
   - type: BatterySelfRecharger
     autoRechargeRate: 25
@@ -261,6 +271,7 @@
   name: Dominator Pistol
   parent: [ BaseWeaponBatterySmall, BaseSecurityContraband ]
   id: WeaponDominator
+  suffix: NT
   description: A high-tech pistol typically used in planetside law enforcement, it boasts 3 modes that are tied into the alert level of the station; Stun, Lethal and Destroy.
   components:
   - type: Sprite
@@ -359,7 +370,7 @@
   - type: Clothing
     sprite: _FarHorizons/Objects/Weapons/Guns/Battery/plasma_shotgun.rsi
   - type: Gun
-    fireRate: 1 # bring back to 2 when bullet spread is a thing
+    fireRate: 2 
     spread: 10
     soundGunshot:
       path: /Audio/_Starlight/Weapons/Energy/laser_shotgun.ogg
@@ -379,7 +390,12 @@
       fireCost: 150 # ~ 8 shots 
       visualState: lethal
       magState: lethal
-      heldPrefix: lethal 
+      heldPrefix: lethal
+    - proto: BoltPlasmaSingle
+      fireCost: 200 # ~ 6 shots 
+      visualState: lethal
+      magState: lethal
+      heldPrefix: lethal
   - type: Item
     size: Large
     sprite: _FarHorizons/Objects/Weapons/Guns/Battery/plasma_shotgun_inhands_64x.rsi
@@ -420,7 +436,7 @@
   - type: Clothing
     sprite: _FarHorizons/Objects/Weapons/Guns/Battery/laser_shotgun.rsi
   - type: Gun
-    fireRate: 1 # bring back to 2 when bullet spread is a thing
+    fireRate: 2
     spread: 10
     soundGunshot:
       path: /Audio/_Starlight/Weapons/Energy/laser_shotgun.ogg
@@ -456,6 +472,17 @@
         - violet
         - red
         - gamma
+    - proto: RedLaserBeamSingle
+      fireCost: 300 # ~ 8 shots 
+      visualState: lethal
+      magState: lethal
+      heldPrefix: lethal
+      conditions:
+      - !type:AlertLevelCondition
+        alertLevels:
+        - violet
+        - red
+        - gamma
   - type: Item
     size: Large
     sprite: _FarHorizons/Objects/Weapons/Guns/Battery/laser_shotgun_inhands_64x.rsi
@@ -464,3 +491,323 @@
   - type: Battery
     maxCharge: 2400
     startingCharge: 2400
+
+- type: entity
+  id: WeaponHoloflarePistol 
+  parent: BaseWeaponBattery
+  name: Holoflare Pistol 
+  description: A PKA-platform pistol that can shoot many short-lifetime flares of varying intensity.
+  suffix: Salv
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/Battery/holoflare_pistol.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: low-unshaded
+      map: ["enum.FireModesLayers.FireMode"]
+    - state: low-unshaded-5
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Item
+    sprite: _FarHorizons/Objects/Weapons/Guns/Battery/holoflare_pistol.rsi
+    size: Normal
+    shape:
+    - 0,0,1,0
+    - 0,1,0,1
+  - type: Gun
+    selectedMode: SemiAuto
+    fireRate: 1
+    availableModes:
+      - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/flaregun.ogg
+  - type: BatteryAmmoProvider
+    proto: LowIntensityHoloflare
+    fireCost: 50
+  - type: BatteryWeaponFireModes
+    fireModes: 
+    - proto: LowIntensityHoloflare
+      magState: low
+      fireCost: 50
+      visualState: low-unshaded
+      heldPrefix: low
+    - proto: MediumIntensityHoloflare
+      magState: medium
+      fireCost: 100
+      visualState: medium-unshaded
+      heldPrefix: medium
+    - proto: HighIntensityHoloflare
+      magState: high
+      fireCost: 150
+      visualState: high-unshaded
+      heldPrefix: high
+  - type: Battery
+    maxCharge: 600
+    startingCharge: 600
+  - type: BatterySelfRecharger
+    autoRechargeRate: 5
+  - type: MagazineVisuals
+    magState: low
+    steps: 6
+    zeroVisible: true
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - pocket
+    - belt
+    - back
+    - suitStorage
+  - type: Appearance
+  - type: Tag
+    tags:
+      - HoloflarePistol
+  - type: StaticPrice
+    price: 50
+  - type: PacifismAllowedGun
+
+- type: entity
+  id: WeaponHoloflarePistolSec
+  parent: WeaponHoloflarePistol
+  description: A regular Holoflare Pistol with a snazzy paint job to represent the station's security department.
+  suffix: Sec
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/Battery/holoflare_pistol.rsi
+    layers:
+    - state: base-sec
+      map: ["enum.GunVisualLayers.Base"]
+    - state: low-unshaded
+      map: ["enum.FireModesLayers.FireMode"]
+    - state: low-unshaded-5
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: BatteryAmmoProvider
+    proto: LowIntensityHoloflareSec
+    fireCost: 50
+  - type: BatteryWeaponFireModes
+    fireModes: 
+    - proto: LowIntensityHoloflareSec
+      magState: low
+      fireCost: 50
+      visualState: low-unshaded
+      heldPrefix: low
+    - proto: MediumIntensityHoloflareSec
+      magState: medium
+      fireCost: 100
+      visualState: medium-unshaded
+      heldPrefix: medium
+    - proto: HighIntensityHoloflareSec
+      magState: high
+      fireCost: 150
+      visualState: high-unshaded
+      heldPrefix: high
+
+- type: entity
+  id: WeaponHoloflarePistolEngi
+  parent: WeaponHoloflarePistol
+  description: A regular Holoflare Pistol with a snazzy paint job to represent the station's engineering department.
+  suffix: Engi
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/Battery/holoflare_pistol.rsi
+    layers:
+    - state: base-engi
+      map: ["enum.GunVisualLayers.Base"]
+    - state: low-unshaded
+      map: ["enum.FireModesLayers.FireMode"]
+    - state: low-unshaded-5
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: BatteryAmmoProvider
+    proto: LowIntensityHoloflareEngi
+    fireCost: 50
+  - type: BatteryWeaponFireModes
+    fireModes: 
+    - proto: LowIntensityHoloflareEngi
+      magState: low
+      fireCost: 50
+      visualState: low-unshaded
+      heldPrefix: low
+    - proto: MediumIntensityHoloflareEngi
+      magState: medium
+      fireCost: 100
+      visualState: medium-unshaded
+      heldPrefix: medium
+    - proto: HighIntensityHoloflareEngi
+      magState: high
+      fireCost: 150
+      visualState: high-unshaded
+      heldPrefix: high
+
+- type: entity
+  id: WeaponHoloflarePistolSci
+  parent: WeaponHoloflarePistol
+  description: A regular Holoflare Pistol with a snazzy paint job to represent the station's science department.
+  suffix: Sci
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/Battery/holoflare_pistol.rsi
+    layers:
+    - state: base-sci
+      map: ["enum.GunVisualLayers.Base"]
+    - state: low-unshaded
+      map: ["enum.FireModesLayers.FireMode"]
+    - state: low-unshaded-5
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: BatteryAmmoProvider
+    proto: LowIntensityHoloflareSci
+    fireCost: 50
+  - type: BatteryWeaponFireModes
+    fireModes: 
+    - proto: LowIntensityHoloflareSci
+      magState: low
+      fireCost: 50
+      visualState: low-unshaded
+      heldPrefix: low
+    - proto: MediumIntensityHoloflareSci
+      magState: medium
+      fireCost: 100
+      visualState: medium-unshaded
+      heldPrefix: medium
+    - proto: HighIntensityHoloflareSci
+      magState: high
+      fireCost: 150
+      visualState: high-unshaded
+      heldPrefix: high
+
+#region Neosol
+
+- type: entity
+  name: Dominator Pistol
+  parent: [ BaseWeaponBatterySmall, BaseSecurityContraband ]
+  id: WeaponDominatorNS
+  suffix: NS
+  description: A high-tech pistol typically used in planetside law enforcement, it boasts 3 modes that are tied into the alert level of the station; Stun, Lethal and Destroy.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/Battery/dominator_pistol.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: stun
+      map: ["enum.FireModesLayers.FireMode"]
+    - state: stun-unshaded-3
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Appearance
+  - type: Item
+    heldPrefix: stun
+  - type: Clothing
+    sprite: _FarHorizons/Objects/Weapons/Guns/Battery/dominator_pistol.rsi
+  - type: MagazineVisuals
+    magState: stun
+    steps: 4
+    zeroVisible: true
+  - type: Lock
+    autoUnlock: true
+    autoLock: true
+  - type: AccessReader
+    access: [["SecurityNS"]]
+  - type: BatteryAmmoProvider
+    proto: BoltTaserFH
+    fireCost: 500
+  - type: BatteryWeaponFireModes
+    fireModes:
+    - proto: BoltTaserFH
+      fireCost: 500
+      visualState: stun
+      magState: stun
+      heldPrefix: stun
+      conditions:
+      - !type:AlertLevelCondition
+        alertLevels:
+        - green
+        - blue
+        - violet
+        - yellow
+        - red
+        - gamma
+    - proto: RedLaserBeamDominator
+      fireCost: 50 
+      visualState: lethal
+      magState: lethal
+      heldPrefix: lethal
+      conditions:
+      - !type:AlertLevelCondition
+        alertLevels:
+        - blue
+        - violet
+        - yellow
+        - red
+        - gamma
+    - proto: DestroyBeamDominator
+      fireCost: 250
+      visualState: destroy
+      magState: destroy
+      heldPrefix: destroy
+      conditions:
+      - !type:AlertLevelCondition
+        alertLevels:
+        - violet
+        - red
+        - gamma
+  - type: Tag
+    tags:
+    - Sidearm
+    - Dominator
+
+- type: entity
+  name: X-01 Multiphase Energy Gun
+  suffix: NS
+  parent: [ BaseWeaponBatterySmall, BaseBlueshieldContraband ]
+  id: WeaponMultiphaseGunNS
+  description: This is an expensive, modern version of the antique laser pistol, with several unique fire modes.
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Battery/multiphase_gun.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: disable-unshaded
+      map: ["enum.FireModesLayers.FireMode"]
+      shader: unshaded
+    - state: disable-unshaded-0
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Lock
+    mindShieldLock: true
+  - type: AccessReader
+    access: [["RedSword"]]
+  - type: Item
+    size: Small
+    shape:
+    - 0, 0, 1, 1
+  - type: MagazineVisuals
+    magState: disable
+    steps: 5
+    zeroVisible: true
+  - type: BatteryAmmoProvider
+    proto: TaserBolt
+    fireCost: 100
+  - type: BatteryWeaponFireModes
+    fireModes:
+    - proto: TaserBolt
+      fireCost: 100
+      magState: stun
+      visualState: stun-unshaded
+    - proto: RedLaserBeam
+      fireCost: 75
+      magState: kill
+      visualState: kill-unshaded
+    - proto: DestroyBeam
+      fireCost: 750
+      magState: destroy
+      visualState: destroy-unshaded
+  - type: Battery
+    maxCharge: 1500
+    startingCharge: 1500
+  - type: BatterySelfRecharger
+    autoRechargeRate: 20

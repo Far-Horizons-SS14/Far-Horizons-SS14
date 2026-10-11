@@ -271,7 +271,7 @@
   placementMode: SnapgridCenter
 
 - type: construction
-  id: Window
+  id: WindowGeneric #FH
   graph: Window
   startNode: start
   targetNode: window
@@ -299,7 +299,7 @@
   placementMode: SnapgridCenter
 
 - type: construction
-  id: ReinforcedWindow
+  id: ReinforcedWindowGeneric #FH
   graph: Window
   startNode: start
   targetNode: reinforcedWindow
@@ -627,10 +627,11 @@
 
 - type: construction
   id: Turnstile
+  name: construction-recipe-turnstile-fh # Far Horizons - The Capitalization Fight Continues
   graph: Turnstile
   startNode: start
   targetNode: turnstile
-  category: construction-category-structures-fh #Far Horizons - The Great Capitalization Crusade
+  category: construction-category-structures
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false

@@ -9,13 +9,13 @@ using Robust.Shared.Random;
 
 namespace Content.Server._Starlight.Paper;
 
-public sealed class AntagOnSignSystem : EntitySystem
+public sealed partial class AntagOnSignSystem : EntitySystem
 {
 
-    [Dependency] private readonly AntagSelectionSystem _antag = default!;
-    [Dependency] private readonly GameTicker _gameTicker = default!;
-    [Dependency] private readonly IComponentFactory _componentFactory = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private AntagSelectionSystem _antag = default!;
+    [Dependency] private GameTicker _gameTicker = default!;
+    [Dependency] private IComponentFactory _componentFactory = default!;
+    [Dependency] private IRobustRandom _random = default!;
     private ISawmill _sawmill = default!;
 
 

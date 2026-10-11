@@ -1,0 +1,14 @@
+- type: entity
+  id: MedkitRoboticFilled
+  suffix: Filled
+  parent: MedkitRobotic
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: CableHVStack
+        - id: BloodpackOil #FH
+          amount: 2
+        - id: Welder
+        - id: ClothingHeadHatWelding

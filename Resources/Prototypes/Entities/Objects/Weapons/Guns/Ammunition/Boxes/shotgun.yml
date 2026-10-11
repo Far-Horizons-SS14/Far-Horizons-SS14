@@ -1,191 +1,211 @@
-- type: entity
-  id: BaseAmmoProvider
-  parent: BaseItem
-  abstract: true
-  components:
-  - type: ContainerContainer
-    containers:
-      ballistic-ammo: !type:Container
-  - type: Item
-    size: Normal
-  - type: Sprite
-    sprite: Objects/Storage/boxes.rsi
+#region Moved to _FarHorizons
+#- type: entity
+#  id: BaseAmmoProvider
+#  parent: BaseItem
+#  abstract: true
+#  components:
+#  - type: ContainerContainer
+#    containers:
+#      ballistic-ammo: !type:Container
+#  - type: Item
+#    size: Normal
+#  - type: Sprite
+#    sprite: Objects/Storage/boxes.rsi
+#FH - End
 
-- type: entity
-  abstract: true
-  parent: BaseAmmoProvider
-  id: AmmoProviderShotgunShell
-  description: 32-shell box of .50 Shotgun ammunition. #Far Horizons
-  components:
-    - type: Sprite
-      sprite: Objects/Weapons/Guns/Ammunition/Boxes/shotgun.rsi
-    - type: BallisticAmmoProvider
-      mayTransfer: true
-      whitelist:
-        tags:
-        - ShellShotgun
-      capacity: 32 #FH - 4x mag size
-    - type: MagazineVisuals
-      magState: mag
-      steps: 5
-      zeroVisible: false
-    - type: Appearance
-    - type: Tag #FH
-      tags: #FH
-      - ShotgunBoxAmmo #FH
+#FH - Start
+#- type: entity
+#  abstract: true
+#  parent: BaseAmmoProvider
+#  id: AmmoProviderShotgunShell
+#  description: 32-shell box of .50 Shotgun ammunition. #Far Horizons
+#  components:
+#    - type: Sprite
+#      sprite: Objects/Weapons/Guns/Ammunition/Boxes/shotgun.rsi
+#    - type: BallisticAmmoProvider
+#      mayTransfer: true
+#      whitelist:
+#        tags:
+#        - ShellShotgun
+#      capacity: 32 #FH - 4x mag size
+#    - type: MagazineVisuals
+#      magState: mag
+#      steps: 5
+#      zeroVisible: false
+#    - type: Appearance
+#    - type: Tag #FH
+#      tags: #FH
+#      - ShotgunBoxAmmo #FH
+#FH - End
 
 # Shotgun Shells
-- type: entity
-  parent: AmmoProviderShotgunShell
-  id: BoxBeanbag
-  name: box of 12 gauge beanbag slugs # Starlight change: .50 -> 12 gauge
-  components:
-    - type: BallisticAmmoProvider
-      proto: ShellShotgunBeanbag
-    - type: MagazineVisuals
-      magState: mag-beanbag
-      steps: 5
-      zeroVisible: false
-    - type: Sprite
-      layers:
-      - state: base
-        map: ["enum.GunVisualLayers.Base"]
-      - state: mag-beanbag-1
-        map: ["enum.GunVisualLayers.Mag"]
-      - state: beanbag
+#FH - Start
+#- type: entity
+#  parent: AmmoProviderShotgunShell
+#  id: BoxBeanbag
+#  name: box of 12 gauge beanbag slugs # Starlight change: .50 -> 12 gauge
+#  components:
+#    - type: BallisticAmmoProvider
+#      proto: ShellShotgunBeanbag
+#    - type: MagazineVisuals
+#      magState: mag-beanbag
+#      steps: 5
+#      zeroVisible: false
+#    - type: Sprite
+#      layers:
+#      - state: base
+#        map: ["enum.GunVisualLayers.Base"]
+#      - state: mag-beanbag-1
+#        map: ["enum.GunVisualLayers.Mag"]
+#      - state: beanbag
+#FH - End
 
-- type: entity
-  name: box of 12 gauge buckshot # Starlight change: .50 -> 12 gauge
-  parent: AmmoProviderShotgunShell
-  id: BoxLethalshot
-  description: A cardboard box of .50 shotgun shells. Intended to hold general-purpose kinetic ammunition.
-  components:
-    - type: BallisticAmmoProvider
-      proto: ShellShotgun
-    - type: Sprite
-      layers:
-      - state: base
-        map: ["enum.GunVisualLayers.Base"]
-      - state: mag-1
-        map: ["enum.GunVisualLayers.Mag"]
-      - state: lethal
+#FH - Start
+#- type: entity
+#  name: box of 12 gauge buckshot # Starlight change: .50 -> 12 gauge
+#  parent: AmmoProviderShotgunShell
+#  id: BoxLethalshot
+#  description: A cardboard box of .50 shotgun shells. Intended to hold general-purpose kinetic ammunition.
+#  components:
+#    - type: BallisticAmmoProvider
+#      proto: ShellShotgun
+#    - type: Sprite
+#      layers:
+#      - state: base
+#        map: ["enum.GunVisualLayers.Base"]
+#      - state: mag-1
+#        map: ["enum.GunVisualLayers.Mag"]
+#      - state: lethal
+#FH - End
 
-- type: entity
-  name: box of 12 gauge slugs # Starlight change: .50 -> 12 gauge
-  parent: AmmoProviderShotgunShell
-  id: BoxShotgunSlug
-  description: A cardboard box of .50 shotgun shells. Intended to hold long-ranged slug ammunition.
-  components:
-    - type: BallisticAmmoProvider
-      proto: ShellShotgunSlug
-    - type: MagazineVisuals
-      magState: mag-slug
-      steps: 5
-      zeroVisible: false
-    - type: Sprite
-      layers:
-      - state: base
-        map: ["enum.GunVisualLayers.Base"]
-      - state: mag-slug-1
-        map: ["enum.GunVisualLayers.Mag"]
-      - state: slug
+#FH - Start
+#- type: entity
+#  name: box of 12 gauge slugs # Starlight change: .50 -> 12 gauge
+#  parent: AmmoProviderShotgunShell
+#  id: BoxShotgunSlug
+#  description: A cardboard box of .50 shotgun shells. Intended to hold long-ranged slug ammunition.
+#  components:
+#    - type: BallisticAmmoProvider
+#      proto: ShellShotgunSlug
+#    - type: MagazineVisuals
+#      magState: mag-slug
+#      steps: 5
+#      zeroVisible: false
+#    - type: Sprite
+#      layers:
+#      - state: base
+#        map: ["enum.GunVisualLayers.Base"]
+#      - state: mag-slug-1
+#        map: ["enum.GunVisualLayers.Mag"]
+#      - state: slug
+#FH - End
 
-- type: entity
-  name: box of 12 gauge flares # Starlight change: .50 -> 12 gauge
-  parent: AmmoProviderShotgunShell
-  id: BoxShotgunFlare
-  description: A cardboard box of .50 shotgun shells. Intended to hold illuminating flare ammunition.
-  components:
-    - type: BallisticAmmoProvider
-      proto: ShellShotgunFlare
-    - type: MagazineVisuals
-      magState: mag-flare
-      steps: 5
-      zeroVisible: false
-    - type: Sprite
-      layers:
-      - state: base
-        map: ["enum.GunVisualLayers.Base"]
-      - state: mag-flare-1
-        map: ["enum.GunVisualLayers.Mag"]
-      - state: flare
+#FH - Start
+#- type: entity
+#  name: box of 12 gauge flares # Starlight change: .50 -> 12 gauge
+#  parent: AmmoProviderShotgunShell
+#  id: BoxShotgunFlare
+#  description: A cardboard box of .50 shotgun shells. Intended to hold illuminating flare ammunition.
+#  components:
+#    - type: BallisticAmmoProvider
+#      proto: ShellShotgunFlare
+#    - type: MagazineVisuals
+#      magState: mag-flare
+#      steps: 5
+#      zeroVisible: false
+#    - type: Sprite
+#      layers:
+#      - state: base
+#        map: ["enum.GunVisualLayers.Base"]
+#      - state: mag-flare-1
+#        map: ["enum.GunVisualLayers.Mag"]
+#      - state: flare
+#FH - End
 
-- type: entity
-  name: box of 12 gauge incendiary buckshot # Starlight change: .50 -> 12 gauge
-  parent: AmmoProviderShotgunShell
-  id: BoxShotgunIncendiary
-  description: A cardboard box of .50 shotgun shells. Intended to hold self-igniting incendiary ammunition.
-  components:
-    - type: BallisticAmmoProvider
-      proto: ShellShotgunIncendiary
-    - type: MagazineVisuals
-      magState: mag-incend
-      steps: 5
-      zeroVisible: false
-    - type: Sprite
-      layers:
-      - state: base
-        map: ["enum.GunVisualLayers.Base"]
-      - state: mag-incend-1
-        map: ["enum.GunVisualLayers.Mag"]
-      - state: incendiary
+#FH - Start
+#- type: entity
+#  name: box of 12 gauge incendiary buckshot # Starlight change: .50 -> 12 gauge
+#  parent: AmmoProviderShotgunShell
+#  id: BoxShotgunIncendiary
+#  description: A cardboard box of .50 shotgun shells. Intended to hold self-igniting incendiary ammunition.
+#  components:
+#    - type: BallisticAmmoProvider
+#      proto: ShellShotgunIncendiary
+#    - type: MagazineVisuals
+#      magState: mag-incend
+#      steps: 5
+#      zeroVisible: false
+#    - type: Sprite
+#      layers:
+#      - state: base
+#        map: ["enum.GunVisualLayers.Base"]
+#      - state: mag-incend-1
+#        map: ["enum.GunVisualLayers.Mag"]
+#      - state: incendiary
+#FH - End
 
-- type: entity
-  name: box of 12 gauge uranium buckshot # Starlight change: .50 -> 12 gauge
-  parent: AmmoProviderShotgunShell
-  id: BoxShotgunUranium
-  description: A cardboard box of .50 shotgun shells. Intended to hold exotic uranium-core ammunition.
-  components:
-    - type: BallisticAmmoProvider
-      proto: ShellShotgunUranium
-    - type: MagazineVisuals
-      magState: mag-uranium
-      steps: 5
-      zeroVisible: false
-    - type: Sprite
-      layers:
-      - state: base
-        map: ["enum.GunVisualLayers.Base"]
-      - state: mag-uranium-1
-        map: ["enum.GunVisualLayers.Mag"]
-      - state: uranium
+#FH - Start
+#- type: entity
+#  name: box of 12 gauge uranium buckshot # Starlight change: .50 -> 12 gauge
+#  parent: AmmoProviderShotgunShell
+#  id: BoxShotgunUranium
+#  description: A cardboard box of .50 shotgun shells. Intended to hold exotic uranium-core ammunition.
+#  components:
+#    - type: BallisticAmmoProvider
+#      proto: ShellShotgunUranium
+#    - type: MagazineVisuals
+#      magState: mag-uranium
+#      steps: 5
+#      zeroVisible: false
+#    - type: Sprite
+#      layers:
+#      - state: base
+#        map: ["enum.GunVisualLayers.Base"]
+#      - state: mag-uranium-1
+#        map: ["enum.GunVisualLayers.Mag"]
+#      - state: uranium
+#FH - End
 
-- type: entity
-  name: box of 12 gauge blanks # Starlight change: .50 -> 12 gauge
-  parent: AmmoProviderShotgunShell
-  id: BoxShotgunPractice
-  description: A cardboard box of .50 shotgun shells. Intended to hold harmless practice ammunition.
-  components:
-    - type: BallisticAmmoProvider
-      proto: ShellShotgunPractice
-    - type: MagazineVisuals
-      magState: mag-practice
-      steps: 5
-      zeroVisible: false
-    - type: Sprite
-      layers:
-      - state: base
-        map: ["enum.GunVisualLayers.Base"]
-      - state: mag-practice-1
-        map: ["enum.GunVisualLayers.Mag"]
-      - state: practice
+#FH - Start
+#- type: entity
+#  name: box of 12 gauge blanks # Starlight change: .50 -> 12 gauge
+#  parent: AmmoProviderShotgunShell
+#  id: BoxShotgunPractice
+#  description: A cardboard box of .50 shotgun shells. Intended to hold harmless practice ammunition.
+#  components:
+#    - type: BallisticAmmoProvider
+#      proto: ShellShotgunPractice
+#    - type: MagazineVisuals
+#      magState: mag-practice
+#      steps: 5
+#      zeroVisible: false
+#    - type: Sprite
+#      layers:
+#      - state: base
+#        map: ["enum.GunVisualLayers.Base"]
+#      - state: mag-practice-1
+#        map: ["enum.GunVisualLayers.Mag"]
+#      - state: practice
+#FH - End
 
-- type: entity
-  name: box of 12 gauge tranquilizer slugs # Starlight change: .50 -> 12 gauge
-  parent: AmmoProviderShotgunShell
-  id: BoxShellTranquilizer
-  description: A cardboard box of .50 shotgun shells. Intended to hold nonlethal tranquilizer ammunition.
-  components:
-    - type: BallisticAmmoProvider
-      proto: ShellTranquilizer
-    - type: MagazineVisuals
-      magState: mag-tranq
-      steps: 5
-      zeroVisible: false
-    - type: Sprite
-      layers:
-      - state: base
-        map: ["enum.GunVisualLayers.Base"]
-      - state: mag-tranq-1
-        map: ["enum.GunVisualLayers.Mag"]
-      - state: tranquilizer
+#FH - Start
+#- type: entity
+#  name: box of 12 gauge tranquilizer slugs # Starlight change: .50 -> 12 gauge
+#  parent: AmmoProviderShotgunShell
+#  id: BoxShellTranquilizer
+#  description: A cardboard box of .50 shotgun shells. Intended to hold nonlethal tranquilizer ammunition.
+#  components:
+#    - type: BallisticAmmoProvider
+#      proto: ShellTranquilizer
+#    - type: MagazineVisuals
+#      magState: mag-tranq
+#      steps: 5
+#      zeroVisible: false
+#    - type: Sprite
+#      layers:
+#      - state: base
+#        map: ["enum.GunVisualLayers.Base"]
+#      - state: mag-tranq-1
+#        map: ["enum.GunVisualLayers.Mag"]
+#      - state: tranquilizer
+#FH - End

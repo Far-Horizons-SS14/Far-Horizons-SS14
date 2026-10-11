@@ -29,10 +29,10 @@ namespace Content.Server.Voting.Managers
 {
     public sealed partial class VoteManager
     {
-        [Dependency] private readonly IPlayerLocator _locator = default!;
-        [Dependency] private readonly ILogManager _logManager = default!;
-        [Dependency] private readonly IBanManager _bans = default!;
-        [Dependency] private readonly VoteWebhooks _voteWebhooks = default!;
+        [Dependency] private IPlayerLocator _locator = default!;
+        [Dependency] private ILogManager _logManager = default!;
+        [Dependency] private IBanManager _bans = default!;
+        [Dependency] private VoteWebhooks _voteWebhooks = default!;
 
         private VotingSystem? _votingSystem;
         private RoleSystem? _roleSystem;
@@ -320,7 +320,8 @@ namespace Content.Server.Voting.Managers
         {
             var maps = new Dictionary<string, GameMapPrototype>();
             var eligibleMaps = _gameMapManager.CurrentlyEligibleMaps().ToList();
-            var selectedMaps = eligibleMaps.OrderBy(_ => _random.Next()).Take(_cfg.GetCVar(StarlightCCVars.MapVotingCount)).ToList();
+            var numOptions = Math.Min(_cfg.GetCVar(StarlightCCVars.MapVotingCount), eligibleMaps.Count); // Far Horizons
+            var selectedMaps = eligibleMaps.OrderBy(_ => _random.Next()).Take(numOptions).ToList(); // Far Horizons
             maps.Add(Loc.GetString("ui-vote-secret-map"), _random.Pick(selectedMaps));
             foreach (var map in selectedMaps)
             {
@@ -677,6 +678,13 @@ namespace Content.Server.Voting.Managers
 
                 if (_playerManager.PlayerCount > (preset.MaxPlayers ?? int.MaxValue))
                     continue;
+                
+                // Far Horizons start
+                if (preset.Faction != null &&
+                    (_factions.GetCurrentFaction() is not {} faction ||
+                    preset.Faction != faction.ID))
+                    continue;
+                // Far Horizons end
 
                 //STARLIGHT
                 //check if its on the cooldown list

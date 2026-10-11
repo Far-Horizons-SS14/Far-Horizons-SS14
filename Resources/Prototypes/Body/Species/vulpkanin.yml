@@ -63,6 +63,7 @@
 - type: entity
   parent: BaseSpeciesAppearance
   id: AppearanceVulpkanin
+  categories: [ HideSpawnMenu ]
   name: vulpkanin appearance
   components:
   - type: InitialBody
@@ -115,6 +116,7 @@
 
 - type: entity
   parent:
+  - ActiveCritBase # FH
   - AppearanceVulpkanin
   - BaseSpeciesMobOrganic
   - BaseSpeciesPickupableLarge #FH
@@ -233,9 +235,20 @@
     bloodReferenceSolution:
       reagents:
       - ReagentId: SulfurBlood
-        Quantity: 300
-  - type: LimbDamageable # Far Horizons
+        Quantity: 600
+  - type: CreamPied
+    sprite:
+      sprite: Effects/creampie.rsi
+      state: creampie_vulpkanin
+  # Far Horizons start
+  - type: LimbDamageable
     proto: LimbTargetVulp
+  - type: FluidFootprintSpreader
+    footprint: Animal
+    footprintSize: 1.0
+    stepSpacing: 0.2
+    lateralOffset: 0.15
+  # Far Horizons end
 
 - type: entity
   parent: OrganBase
@@ -299,6 +312,12 @@
 #     dependentHidingLayers:
 #       enum.HumanoidVisualLayers.Snout:
 #       - enum.HumanoidVisualLayers.SnoutCover
+#    markingsDisplacement:
+#      Hair:
+#        sizeMaps:
+#          32:
+#            sprite: Mobs/Species/Vulpkanin/displacement.rsi
+#            state: hair
 
 # - type: entity
 #   parent: [ OrganBaseArmLeft, OrganVulpkaninExternal ]

@@ -10,9 +10,9 @@ using Robust.Shared.Network;
 namespace Content.Server._FarHorizons.Administration.UI;
 
 [UsedImplicitly]
-public sealed class SetMindJobEui : BaseEui
+public sealed partial class SetMindJobEui : BaseEui
 {
-    [Dependency] private readonly IAdminManager _adminManager = default!;
+    [Dependency] private IAdminManager _adminManager = default!;
     private readonly NetUserId _target;
 
     public SetMindJobEui(NetUserId entity)

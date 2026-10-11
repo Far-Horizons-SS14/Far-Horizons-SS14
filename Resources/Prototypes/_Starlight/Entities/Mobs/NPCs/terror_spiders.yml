@@ -1,0 +1,527 @@
+- type: entity
+  name: terror spider
+  parent: [ BaseMobHemocyanin, SimpleMobBase, MobCombat ] #FarHorizons
+  id: MobTerrorSpider
+  description: a deadly hybrid of a giant spider and xenomorph.
+  abstract: true
+  components:
+  - type: LanguageKnowledge
+    speaks:
+    - Chittin
+    - Darktongue
+    understands:
+    - Chittin
+    - Darktongue
+  - type: ThermalVision
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base", "movement"]
+      state: alive
+      sprite: _Starlight/Mobs/Animals/Spiders/terror_red.rsi
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.45
+        density: 190
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: alive
+      Critical:
+        Base: dead
+      Dead:
+        Base: dead
+  - type: Butcherable
+    spawned:
+    - id: FoodMeatSpider
+      amount: 4
+  - type: CombatMode
+  - type: LimbTargetting # Far Horizons
+  - type: Body
+  - type: Damageable
+    damageModifierSet: TerrorSpider
+  - type: Injurable
+    damageContainer: Biological
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      90: Dead
+  - type: MeleeWeapon
+    altDisarm: false
+    angle: 0
+    animation: WeaponArcBite
+    soundHit:
+      path: /Audio/Effects/bite.ogg
+    damage:
+      types:
+        Piercing: 18
+  - type: Solution # FH - migrated from SolutionContainerManager
+    id: melee
+    solution:
+      maxVol: 30
+  - type: SolutionRegeneration
+    generated:
+      reagents:
+      - ReagentId: Mechanotoxin
+        Quantity: 1
+  - type: MeleeChemicalInjector
+    transferAmount: 0.75
+    solution: melee
+  - type: ReplacementAccent
+    accent: xeno
+  - type: NoSlip
+  - type: Spider
+  - type: IgnoreSpiderWeb
+  - type: Bloodstream
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: CopperBlood
+        Quantity: 150
+  - type: Speech
+    speechVerb: Arachnid
+    speechSounds: Arachnid
+    allowedEmotes: ['Click', 'Chitter']
+  - type: Vocal
+    sounds:
+      Male: UnisexArachnid
+      Female: UnisexArachnid
+      Unsexed: UnisexArachnid
+  - type: TypingIndicator
+    proto: spider
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - FootstepSound
+  - type: Prying # Open door from xeno.yml.
+    pryPowered: true
+    force: true
+    speedModifier: 1.5
+    useSound:
+      path: /Audio/Items/crowbar.ogg
+  - type: PassiveDamage 
+    allowedStates:
+    - Alive
+    damageCap: 89
+    damage:
+      types:
+        Poison: -0.07
+        Blunt: -0.05
+        Piercing: -0.05
+        Slash: -0.05
+        Heat: -0.05
+        Cold: -0.05
+        Shock: -0.05
+  - type: NpcFactionMember
+    factions:
+      - Xeno
+  - type: InputMover
+  - type: MobMover
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+  - type: GhostRole
+    makeSentient: true
+    name: ghost-role-terror-spider-name
+    description: ghost-role-terror-spider-description
+    rules: ghost-role-terror-spider-rules
+    raffle:
+      settings: short
+  - type: GhostTakeoverAvailable
+  - type: Puller
+    needsHands: false
+
+- type: entity
+  name: terror red
+  parent: MobTerrorSpider
+  id: MobTerrorRedUnevolvable
+  abstract: true
+  components:
+  - type: Spider
+    webPrototype: SpiderWebStrong
+  - type: VentCrawler
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      140: Dead
+  - type: PassiveDamage 
+    allowedStates:
+    - Alive
+    damageCap: 139
+    damage:
+      types: # Far Horizons changed to types
+        Poison: -0.8
+        Blunt: -0.25
+        Slash: -0.25
+        Piercing: -0.25
+        Heat: -0.25
+        Shock: -0.25
+        Cold: -0.25
+        Asphyxiation: -0.5
+        Bloodloss: -0.5
+  - type: MeleeWeapon
+    altDisarm: false
+    angle: 0
+    animation: WeaponArcBite
+    soundHit:
+      path: /Audio/Effects/bite.ogg
+    damage:
+      types:
+        Piercing: 21
+        Structural: 20
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 3.00
+    baseSprintSpeed : 4.00
+
+- type: entity
+  name: terror red
+  parent: MobTerrorRedUnevolvable
+  id: MobTerrorRed
+  components:
+  - type: Evolving
+    evolveTo: MobTerrorPurple
+    conditions: 
+    - !type:SpiderWebCondition
+      targetWebAmount: 36
+
+- type: entity
+  name: terror gray
+  parent: MobTerrorSpider
+  id: MobTerrorGrayUnevolvable
+  abstract: true
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base", "movement"]
+      state: alive
+      sprite: _Starlight/Mobs/Animals/Spiders/terror_gray2.rsi
+  - type: Spider
+    webPrototype: SpiderWebStealth
+    webSpawnCooldown: 20
+  - type: VentCrawler
+  - type: StealthOnWeb
+  - type: StaminaDamageOnHit
+    damage: 100
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      80: Dead
+  - type: PassiveDamage 
+    allowedStates:
+    - Alive
+    damageCap: 79
+    damage:
+      types: # Far Horizons changed to types
+        Poison: -0.5
+        Blunt: -0.15
+        Slash: -0.15
+        Piercing: -0.15
+        Asphyxiation: -0.75
+        Bloodloss: -0.75
+  - type: MeleeWeapon
+    altDisarm: false
+    angle: 0
+    animation: WeaponArcBite
+    soundHit:
+      path: /Audio/Effects/bite.ogg
+    damage:
+      types:
+        Piercing: 11
+  - type: Prying
+    pryPowered: false
+    force: true
+    speedModifier: 1.5
+    useSound:
+      path: /Audio/Items/crowbar.ogg
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 3.00
+    baseSprintSpeed : 5
+
+- type: entity
+  name: terror gray
+  parent: MobTerrorGrayUnevolvable
+  id: MobTerrorGray
+  components:
+  - type: Evolving
+    evolveTo: MobTerrorBlack
+    conditions: 
+    - !type:SpiderWebCondition
+      targetWebAmount: 36
+    
+- type: entity
+  name: terror green
+  parent: MobTerrorSpider
+  id: MobTerrorGreenUnevolvable
+  abstract: true
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base", "movement"]
+      state: alive
+      sprite: _Starlight/Mobs/Animals/Spiders/terror_green.rsi
+  - type: Spider
+    webPrototype: SpiderWebSlime
+  - type: VentCrawler
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      80: Dead
+  - type: PassiveDamage 
+    allowedStates:
+    - Alive
+    damageCap: 79
+    damage:
+      types:
+        Poison: -0.5
+        Blunt: -0.5
+        Piercing: -0.5
+        Slash: -0.5
+        Heat: -0.5
+        Cold: -0.5
+        Shock: -0.5
+        Bloodloss: -0.5
+        Asphyxiation: -0.5
+  - type: MeleeWeapon
+    altDisarm: false
+    angle: 0
+    animation: WeaponArcBite
+    soundHit:
+      path: /Audio/Effects/bite.ogg
+    damage:
+      types:
+        Piercing: 11
+  - type: MeleeChemicalInjector
+    transferAmount: 2.75
+    solution: melee
+  - type: Prying
+    pryPowered: false
+    force: true
+    speedModifier: 1.5
+    useSound:
+      path: /Audio/Items/crowbar.ogg
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 3.00
+    baseSprintSpeed : 4.75
+  - type: ActionGrant
+    actions:
+    - ActionEggInjection
+
+- type: entity
+  name: terror green
+  parent: MobTerrorGreenUnevolvable
+  id: MobTerrorGreen
+  components:
+  - type: Evolving
+    evolveTo: MobTerrorWhite
+    conditions: 
+    - !type:EggsInjectCondition
+
+##########
+# Tier 2 #
+##########
+
+# Black
+
+- type: entity
+  name: terror black
+  parent: MobTerrorGrayUnevolvable
+  id: MobTerrorBlackUnevolvable
+  abstract: true
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: alive
+      sprite: _Starlight/Mobs/Animals/Spiders/terror_widow.rsi
+  - type: Jump
+    knockdownTargetOnCollision: true
+  - type: Spider
+    webPrototype: SpiderWebPoison
+
+- type: entity
+  name: terror black
+  parent: MobTerrorBlackUnevolvable
+  id: MobTerrorBlack
+
+# Purple
+
+- type: entity
+  name: terror purple
+  parent: MobTerrorRedUnevolvable
+  id: MobTerrorPurple
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: alive
+      sprite: _Starlight/Mobs/Animals/Spiders/terror_purple.rsi
+  - type: ActionGrant
+    actions:
+    - ActionSpiderEMPScream
+
+# White
+
+- type: entity
+  name: terror white
+  parent: MobTerrorGreenUnevolvable
+  id: MobTerrorWhiteUnevolvable
+  abstract: true
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: alive
+      sprite: _Starlight/Mobs/Animals/Spiders/terror_white.rsi
+  - type: BatteryAmmoProvider
+    proto: BulletAcidHitscan
+    fireCost: 50
+  - type: BatterySelfRecharger
+    autoRechargeRate: 10
+  - type: Battery
+    maxCharge: 150
+    startingCharge: 150
+  - type: Gun
+    fireRate: 0.5
+    useKey: false
+    selectedMode: Burst
+    availableModes:
+      - Burst
+    soundGunshot: /Audio/Weapons/Xeno/alien_spitacid.ogg
+
+- type: entity
+  name: terror white
+  parent: MobTerrorWhiteUnevolvable
+  id: MobTerrorWhite
+
+# Tier 3
+
+# Prince
+
+- type: entity
+  name: prince of terror
+  parent: MobTerrorRedUnevolvable
+  id: MobTerrorPrince
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: alive
+      sprite: _Starlight/Mobs/Animals/Spiders/terror_prince.rsi
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      125: Critical
+      150: Dead
+  - type: MeleeWeapon
+    damage:
+      types:
+        Piercing: 25
+  - type: PassiveDamage 
+    allowedStates:
+    - Alive
+    - Critical
+    damageCap: 149
+    damage:
+      types:
+        Poison: -0.1
+        Blunt: -0.1
+        Piercing: -0.1
+        Slash: -0.1
+        Heat: -0.1
+        Cold: -0.1
+        Shock: -0.1
+
+# Princess
+
+- type: entity
+  name: princess of terror
+  parent: MobTerrorSpider
+  id: MobTerrorPrincess
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base", "movement"]
+      state: alive
+      sprite: _Starlight/Mobs/Animals/Spiders/terror_princess.rsi
+  - type: VentCrawler
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      160: Dead
+  - type: PassiveDamage 
+    allowedStates:
+    - Alive
+    damageCap: 179
+    damage:
+      types:
+        Poison: -1
+        Blunt: -0.5
+        Piercing: -0.5
+        Slash: -0.5
+        Heat: -0.5
+        Cold: -0.5
+        Shock: -0.5
+        Bloodloss: -1
+        Asphyxiation: -1
+  - type: MeleeWeapon
+    altDisarm: false
+    angle: 0
+    animation: WeaponArcBite
+    soundHit:
+      path: /Audio/Effects/bite.ogg
+    damage:
+      types:
+        Piercing: 15
+  - type: MeleeChemicalInjector
+    transferAmount: 3.75
+    solution: melee
+  - type: Prying
+    pryPowered: true
+    force: true
+    speedModifier: 1.5
+    useSound:
+      path: /Audio/Items/crowbar.ogg
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 3.00
+    baseSprintSpeed : 3.75
+  - type: TerrorPrincess
+  - type: ActionGrant
+    actions:
+    - ActionEggsLaying
+  - type: UserInterface
+    interfaces:
+      enum.EggsLayingUiKey.Key:
+        type: EggsLayingBui
+
+# Mother
+
+- type: entity
+  name: mother of terror
+  parent: MobTerrorBlackUnevolvable
+  id: MobTerrorMother
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: alive
+      sprite: _Starlight/Mobs/Animals/Spiders/terror_mother.rsi
+  - type: Spider
+    webPrototype: SpiderWebSpiderlings
+  - type: SpawnOnAction
+    action: ActionRoyalJelly
+    entityToSpawn: SpiderJelly

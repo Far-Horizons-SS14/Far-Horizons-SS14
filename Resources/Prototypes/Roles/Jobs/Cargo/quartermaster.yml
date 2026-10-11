@@ -25,13 +25,18 @@
   - Mining # Starlight
   - Quartermaster
   - Maintenance
+  - MaintenanceNS  # Far Horizons
   - External
+  - ExternalNS  # Far Horizons
   - Command
+  - Executive  # Far Horizons
   - Brig
+  - BrigNS  # Far Horizons
   - Cryogenics
+  - CryogenicsNS  # Far Horizons
   special:
   - !type:AddImplantSpecial
-    implants: [ MindShieldImplant ]
+    implants: [ MindShieldImplantGSL ] # Far Horizons
   - !type:AddComponentSpecial
     components:
       - type: CommandStaff

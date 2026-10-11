@@ -18,7 +18,7 @@ namespace Content.Server.CollectiveMind;
 
 public sealed partial class CollectiveMind : SharedCollectiveMindSystem
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private IRobustRandom _random = default!;
     public override void Initialize()
     {
         base.Initialize();
@@ -33,7 +33,7 @@ public sealed partial class CollectiveMind : SharedCollectiveMindSystem
         //we need to check if the entity is sleeping, or crit
         if (TryComp<MobStateComponent>(uid, out var mobState))
         {
-            if (mobState.CurrentState == MobState.Critical || TryComp<SleepingComponent>(uid, out _))
+            if (mobState.CurrentState == MobState.Critical || mobState.CurrentState == MobState.ActiveCritical || TryComp<SleepingComponent>(uid, out _)) // Far Horizons
             {
                 if (ent.Comp.CorruptWhenUnconscious)
                     args.Message = Corrupt(args.Message, ref ent.Comp);

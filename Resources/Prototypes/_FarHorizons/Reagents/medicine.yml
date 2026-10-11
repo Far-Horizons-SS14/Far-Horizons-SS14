@@ -132,9 +132,6 @@
         damage:
           types:
             Poison: -0.25
-      - !type:CleanBloodstream
-        cleanseRate: 0.5
-        excluded: Spaceacillin
       - !type:HealthChange
         conditions:
         - !type:ReagentCondition
@@ -143,6 +140,10 @@
         damage:
           types:
             Poison: 2.5
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectDiseaseImmunity
+        time: 10
+        type: Set
 
 - type: reagent
   id: Perfluorodecalin
@@ -191,6 +192,43 @@
   flavor: metallic
   color: "#7C0F00"
   metabolisms:
+    Digestion:
+      effects:
+      - !type:FillBloodPool
+        factor: 1.5
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ LesserVampire ]
+      - !type:SatiateThirst
+        factor: 3
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ LesserVampire ]
+      - !type:SatiateHunger
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ LesserVampire ]
+      - !type:EvenHealthChange # Trico effect by drinking blood
+        damage:
+          Brute: -1
+          Burn: -1
+          Toxin: -0.5
+        affectAllLimbs: true
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ LesserVampireHealingBlood ]
+      - !type:HealthChange
+        damage:
+          types:
+            Bloodloss: -3
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ LesserVampireHealingBlood ]
+      - !type:ModifyBloodLevel
+        amount: 1
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ LesserVampireHealingBlood ]
     Bloodstream:
       effects:
         - !type:HealthChange

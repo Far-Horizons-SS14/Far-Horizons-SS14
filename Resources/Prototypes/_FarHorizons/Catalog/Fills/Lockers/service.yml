@@ -1,0 +1,69 @@
+#region NeoSol
+
+# Bartender
+
+- type: entity
+  id: LockerBoozeFilledNS
+  suffix: Filled
+  parent: LockerBoozeNeoSol
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: FillLockerBoozeNS
+
+- type: entityTable
+  id: FillLockerBoozeNS
+  table: !type:AllSelector
+    children:
+    - id: ClothingOuterArmorBasicSlimSyndi
+    - id: WeaponShotgunDoubleBarreledRubber
+    - id: DrinkShaker
+    - id: ClothingEyesHudBeer
+    - id: HandLabeler
+    - id: DrinkBeerBottleFull
+      amount: !type:BinomialNumberSelector
+        trials: 3
+    - !type:AllSelector
+      rolls: 2
+      children:
+      - id: BoxBeanbag
+      - id: RagItem
+    - id: PlushieLizardJobBartender
+      prob: 0.02
+    - id: PlushieLizardJobServiceworker
+      prob: 0.02
+
+# Botanist
+
+- type: entity
+  id: LockerBotanistFilledNS
+  suffix: Filled
+  parent: LockerBotanistNeoSol
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: FillLockerBotanistNS
+
+- type: entityTable
+  id: FillLockerBotanistNS
+  table: !type:AllSelector
+    children:
+    - id: ClothingHandsGlovesLeather
+    - id: ClothingOuterApronBotanist
+    - id: ClothingHeadBandBotany
+    - id: ChemistryBottleRobustHarvest
+      prob: 0.3
+    - id: ClothingBeltPlant
+    - id: PlantBag ##Some maps don't have nutrivend
+    - id: BoxMouthSwab
+    - id: Dropper
+    - id: HandLabeler
+    - id: ClothingUniformOveralls
+    - id: ClothingHeadHatTrucker
+      prob: 0.1
+    - id: PlushieLizardJobBotanist
+      prob: 0.02
+    - id: PlushieLizardJobServiceworker
+      prob: 0.02

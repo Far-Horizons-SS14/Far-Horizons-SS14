@@ -1,0 +1,112 @@
+- type: trait
+  id: MagicalEncounter
+  name: trait-background-magical-encounter-name
+  description: trait-background-magical-encounter-description
+  category: BackgroundTraits
+  cost: 2
+  effects:
+    - !type:AddCompsEffect
+      components:
+      - type: IntrinsicAugments
+        action: ActionOpenCantripStore
+        addComponents:
+          - type: Store
+            name: store-preset-name-cantrips
+            categories:
+            - CantripsStandard
+            currencyWhitelist:
+            - IntrinsicPoint
+            refundAllowed: false
+            balance:
+              IntrinsicPoint: 2
+
+- type: trait
+  id: Chromehead
+  name: trait-background-chromehead-name
+  description: trait-background-chromehead-description
+  category: BackgroundTraits
+  cost: 3
+  effects:
+    - !type:CyberneticsPointsEffect
+      change: 3 # +3 points to spend
+
+- type: trait
+  id: Vampire
+  name: trait-background-vampire-name
+  description: trait-background-vampire-description
+  category: BackgroundTraits
+  cost: 2
+  effects:
+    - !type:AddCompsEffect
+      components:
+      - type: LesserVampire
+        bloodPoolAlert: VampireBloodPool
+        bloodPoolAlertSegments: 25 # 25 segment display alert
+        bloodPoolMax: 100
+        metabolizer: LesserVampire
+        drinkDelay: 2
+        drinkAmount: 4 # Tiny little sips, we wouldn't want to hurt anyone, would we?
+        hungerDrain: 4
+        thirstDrain: 15
+      - type: BackgroundTraits
+        traitsAction: ActionOpenVampireTraits
+        traitsUiKey: enum.BackgroundTraitsUiKey.Key
+        allowTraitSelection: true
+        windowName: lesser-vampire-ui-menu-title
+        traits: 
+          - Scavenger
+          - BloodDependencyI
+          - InsatiableHunger
+          - Gourmand
+          - Defanged
+          - UvSensitivity
+          - BloodDependencyII
+          - ExtendableFangs
+          - Charm
+          - AbsorbLanguage
+          - Transfusion
+          - SupernaturalStrength
+          - HealingBlood
+          - Conversion
+  requirements:
+    - !type:SpeciesRequirement
+      species:
+        - IPC
+      inverted: true
+
+- type: trait
+  id: CustomFrame
+  name: trait-background-custom-frame-name
+  description: trait-background-custom-frame-description
+  category: BackgroundTraits
+  cost: 2
+  effects:
+    - !type:AddCompsEffect
+      components:
+      - type: BackgroundTraits
+        traitsAction: ActionOpenCustomFrameTraits
+        traitsUiKey: enum.BackgroundTraitsUiKey.Key
+        allowTraitSelection: true
+        traits: 
+          #Negative
+          - OvervoltedI
+          - CheapOilFilter
+          - HeavierFrame
+          - IntegratedBattery
+          - CompromisedIntegrity
+          - RadiationVulnerability
+          - OutdatedWiring
+          - MicroreactorIncompatibility
+          #Positive
+          - UndervoltedI
+          - LanguageDatabase
+          - UndervoltedII
+          - RepairNanites
+          - ModuleCompatibility
+          - Overclocking
+          - BetterInsulation
+          - BloodPowered
+  requirements:
+    - !type:SpeciesRequirement
+      species:
+        - IPC

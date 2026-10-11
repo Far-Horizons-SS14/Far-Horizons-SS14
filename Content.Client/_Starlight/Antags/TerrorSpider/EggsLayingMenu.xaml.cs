@@ -18,7 +18,7 @@ namespace Content.Client._Starlight.Antags.TerrorSpider;
 [GenerateTypedNameReferences]
 public sealed partial class EggsLayingMenu : RadialMenu
 {
-    [Dependency] private readonly EntityManager _entManager = default!;
+    [Dependency] private EntityManager _entManager = default!;
 
     private SpriteSystem? _sprites;
     public event Action<EntProtoId>? EggChosen;

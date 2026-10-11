@@ -50,4 +50,7 @@ public sealed partial class FactionPrototype : IPrototype
     [DataField("weight")]
     public int Weight { get; private set; }
 
+    [DataField]
+    public string? MapPool;
+
 }

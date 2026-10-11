@@ -8,7 +8,7 @@
     - type: Sprite
       sprite: _FarHorizons/Structures/Machines/HoloTables/holotable.rsi
       layers:
-        - state: Table-Frame
+        - state: Medical-Holotable
           type: Icon
           sprite: _FarHorizons/Structures/Machines/HoloTables/medical_holotable.rsi
         - map: [ "enum.PowerDeviceVisualLayers.Powered" ]
@@ -52,8 +52,9 @@
     - type: Clickable
     - type: InteractionOutline
     - type: Damageable
-      damageContainer: StructuralInorganic
       damageModifierSet: Metallic
+    - type: Injurable
+      damageContainer: StructuralInorganic
     - type: ApcPowerReceiver
       powerLoad: 50
     - type: LitOnPowered
@@ -72,7 +73,7 @@
   - type: Sprite
     sprite: _FarHorizons/Structures/Machines/HoloTables/holotable.rsi
     layers:
-      - state: Table-Frame
+      - state: Medical-Holotable
         type: Icon
         sprite: _FarHorizons/Structures/Machines/HoloTables/medical_holotable.rsi
       - map: [ "enum.PowerDeviceVisualLayers.Powered" ]
@@ -90,13 +91,14 @@
   id: EngineeringHolotable
   parent: HolotableBase
   name: Engineering Holotable
+  suffix: NT
   components:
     - type: Sprite
       sprite: _FarHorizons/Structures/Machines/HoloTables/engineering_holotable.rsi
       layers:
-      - state: Table-Frame
+      - state: Engineering-Table
         type: Icon
-        sprite: _FarHorizons/Structures/Machines/HoloTables/medical_holotable.rsi
+        sprite: _FarHorizons/Structures/Machines/HoloTables/engineering_holotable.rsi
       - map: [ "enum.PowerDeviceVisualLayers.Powered" ]
         state: engiholo
         shader: unshaded
@@ -126,14 +128,126 @@
           type: WiresBoundUserInterface
 
 - type: entity
+  id: SolarsHolotable
+  parent: HolotableBase
+  name: Solar Holotable
+  suffix: NT
+  description: Holographic display table. Used to control the station's solar panel arrays.
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Structures/Machines/HoloTables/engineering_holotable.rsi
+      layers:
+      - state: Engineering-Table
+        type: Icon
+        sprite: _FarHorizons/Structures/Machines/HoloTables/engineering_holotable.rsi
+      - map: [ "enum.PowerDeviceVisualLayers.Powered" ]
+        state: Solar-Holotable
+        shader: unshaded
+        type: Icon
+        sprite: _FarHorizons/Structures/Machines/HoloTables/engineering_holotable.rsi
+    - type: Appearance
+    - type: PointLight
+      radius: 3
+      energy: 2
+      color: "#d9b12e"
+    - type: SolarControlConsole
+    - type: ActivatableUI
+      singleUser: true
+      key: enum.SolarControlConsoleUiKey.Key
+    - type: UserInterface
+      interfaces:
+        enum.SolarControlConsoleUiKey.Key:
+          type: SolarControlConsoleBoundUserInterface
+        enum.WiresUiKey.Key:
+          type: WiresBoundUserInterface
+
+- type: entity
+  id: AtmosHolotable
+  parent: HolotableBase
+  name: Atmos Holotable
+  suffix: NT
+  description: Holographic display table. Used to monitor the station's atmospheric networks.
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Structures/Machines/HoloTables/engineering_holotable.rsi
+      layers:
+      - state: Engineering-Table
+        type: Icon
+        sprite: _FarHorizons/Structures/Machines/HoloTables/engineering_holotable.rsi
+      - map: [ "enum.PowerDeviceVisualLayers.Powered" ]
+        state: Atmos-Holotable
+        shader: unshaded
+        type: Icon
+        sprite: _FarHorizons/Structures/Machines/HoloTables/engineering_holotable.rsi
+    - type: Appearance
+    - type: PointLight
+      radius: 3
+      energy: 2
+      color: "#d9b12e"
+    - type: AtmosMonitoringConsole
+      navMapTileColor: "#1a1a1a"
+      navMapWallColor: "#404040"
+    - type: ActivatableUI
+      singleUser: true
+      key: enum.AtmosMonitoringConsoleUiKey.Key
+    - type: UserInterface
+      interfaces:
+        enum.AtmosMonitoringConsoleUiKey.Key:
+          type: AtmosMonitoringConsoleBoundUserInterface
+        enum.WiresUiKey.Key:
+          type: WiresBoundUserInterface
+
+- type: entity
+  id: ReactorHolotable
+  parent: HolotableBase
+  name: Reactor Holotable
+  suffix: NT
+  description: Holographic display table. Used to monitor a nuclear reactor.
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Structures/Machines/HoloTables/engineering_holotable.rsi
+      layers:
+      - state: Engineering-Table
+        type: Icon
+        sprite: _FarHorizons/Structures/Machines/HoloTables/engineering_holotable.rsi
+      - map: [ "enum.PowerDeviceVisualLayers.Powered" ]
+        state: Reactor-Holotable
+        shader: unshaded
+        type: Icon
+        sprite: _FarHorizons/Structures/Machines/HoloTables/engineering_holotable.rsi
+    - type: Appearance
+    - type: PointLight
+      radius: 3
+      energy: 2
+      color: "#d9b12e"
+    - type: NuclearReactorMonitor
+    - type: ActivatableUI
+      key: enum.NuclearReactorUiKey.Key
+    - type: UserInterface
+      interfaces:
+        enum.NuclearReactorUiKey.Key:
+          type: NuclearReactorBoundUserInterface
+    - type: AccessReader # You got a permit for that meltdown?
+      access: [["Engineering"]]
+    - type: Lock
+      unlockOnClick: false
+    - type: DeviceList
+    - type: DeviceNetwork
+      deviceNetId: Wireless
+    - type: DeviceLinkSink
+      ports:
+        - NuclearReactorDataReceiver
+
+- type: entity
   id: MedicalHolotable
   parent: HolotableBase
   name: Medical Holotable
+  suffix: NT
   components:
   - type: Sprite
     sprite: _FarHorizons/Structures/Machines/HoloTables/medical_holotable.rsi
     layers:
-      - state: Table-Frame
+      - state: Medical-Holotable
         type: Icon
         sprite: _FarHorizons/Structures/Machines/HoloTables/medical_holotable.rsi
       - map: [ "enum.PowerDeviceVisualLayers.Powered" ]
@@ -155,7 +269,7 @@
   - type: Sprite
     sprite: _FarHorizons/Structures/Machines/HoloTables/sec_holotables.rsi
     layers:
-      - state: TableFrame
+      - state: Table-Frame
         type: Icon
         sprite: _FarHorizons/Structures/Machines/HoloTables/sec_holotables.rsi
       - map: [ "enum.TextScreenVisuals.AlertLevel" ]
@@ -181,9 +295,158 @@
   - type: Sprite
     sprite: _FarHorizons/Structures/Machines/HoloTables/sec_holotables.rsi
     layers:
-      - state: TableFrame
+      - state: Table-Frame
         type: Icon
         sprite: _FarHorizons/Structures/Machines/HoloTables/sec_holotables.rsi
+      - map: [ "enum.PowerDeviceVisualLayers.Powered" ]
+        state: Wanted
+        shader: unshaded
+        type: Icon
+        sprite: _FarHorizons/Structures/Machines/HoloTables/sec_holotables.rsi
+  - type: Appearance
+  - type: PointLight
+    radius: 3
+    energy: 2
+    color: "#66ccde"
+
+#region NeoSol
+
+- type: entity
+  parent: HolotableBase
+  id: MedicalHolotableNS
+  name: Medical Holotable
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Machines/NS/HoloTables/medical_holotable.rsi
+    layers:
+      - state: Medical-Holotable
+        type: Icon
+        sprite: _FarHorizons/Structures/Machines/NS/HoloTables/medical_holotable.rsi
+      - map: [ "enum.PowerDeviceVisualLayers.Powered" ]
+        state: HoloMed
+        type: Icon
+        sprite: _FarHorizons/Structures/Machines/NS/HoloTables/medical_holotable.rsi
+  - type: Appearance
+  - type: PointLight
+    radius: 3
+    energy: 2
+    color: "#9e4fe3"
+
+- type: entity
+  parent: EngineeringHolotable
+  id: EngineeringHolotableNS
+  name: Engineering Holotable
+  suffix: NS
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Structures/Machines/NS/HoloTables/engineering_holotable.rsi
+      layers:
+      - state: Engineering-Table
+        type: Icon
+        sprite: _FarHorizons/Structures/Machines/NS/HoloTables/engineering_holotable.rsi
+      - map: [ "enum.PowerDeviceVisualLayers.Powered" ]
+        state: engiholo
+        shader: unshaded
+        type: Icon
+        sprite: _FarHorizons/Structures/Machines/HoloTables/engineering_holotable.rsi
+
+- type: entity
+  parent: HolotableBase 
+  id: AlertLevelHolotableNS
+  name: Alert Level Holotable
+  suffix: NS
+  description: Shows the current security alert level on station. If it's red that means you should stay in your department as much as possible.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Machines/NS/HoloTables/sec_holotables.rsi
+    layers:
+      - state: Table-Frame
+        type: Icon
+        sprite: _FarHorizons/Structures/Machines/NS/HoloTables/sec_holotables.rsi
+      - map: [ "enum.TextScreenVisuals.AlertLevel" ]
+        state: green
+        type: Icon
+        sprite: _FarHorizons/Structures/Machines/NS/HoloTables/sec_holotables.rsi
+  - type: Appearance
+  - type: PointLight
+    radius: 3
+    energy: 2
+    color: "#ffbdcc"
+  - type: Screen
+  - type: ScreenVisuals
+  - type: ApcPowerReceiver
+    powerLoad: 0
+
+- type: entity
+  id: SolarHolotableNS
+  parent: SolarsHolotable
+  name: Solar Holotable
+  suffix: NS
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Structures/Machines/NS/HoloTables/engineering_holotable.rsi
+      layers:
+      - state: Engineering-Table
+        type: Icon
+        sprite: _FarHorizons/Structures/Machines/NS/HoloTables/engineering_holotable.rsi
+      - map: [ "enum.PowerDeviceVisualLayers.Powered" ]
+        state: Solar-Holotable
+        shader: unshaded
+        type: Icon
+        sprite: _FarHorizons/Structures/Machines/NS/HoloTables/engineering_holotable.rsi
+
+- type: entity
+  id: AtmosHolotableNS
+  parent: AtmosHolotable
+  name: Atmos Holotable
+  suffix: NS
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Structures/Machines/NS/HoloTables/engineering_holotable.rsi
+      layers:
+      - state: Engineering-Table
+        type: Icon
+        sprite: _FarHorizons/Structures/Machines/NS/HoloTables/engineering_holotable.rsi
+      - map: [ "enum.PowerDeviceVisualLayers.Powered" ]
+        state: Atmos-Holotable
+        shader: unshaded
+        type: Icon
+        sprite: _FarHorizons/Structures/Machines/NS/HoloTables/engineering_holotable.rsi
+
+- type: entity
+  id: ReactorHolotableNS
+  parent: ReactorHolotable
+  name: Reactor Holotable
+  suffix: NS
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Structures/Machines/NS/HoloTables/engineering_holotable.rsi
+      layers:
+      - state: Engineering-Table
+        type: Icon
+        sprite: _FarHorizons/Structures/Machines/NS/HoloTables/engineering_holotable.rsi
+      - map: [ "enum.PowerDeviceVisualLayers.Powered" ]
+        state: Reactor-Holotable
+        shader: unshaded
+        type: Icon
+        sprite: _FarHorizons/Structures/Machines/NS/HoloTables/engineering_holotable.rsi
+    - type: AccessReader # You got a permit for that meltdown?
+      access: [["EngineeringNS"]]
+
+- type: entity
+  id: WantedHolotableNS
+  parent: WantedHolotable
+  name: Wanted Holotable
+  suffix: NS
+  description: Shows the current wanted people on station, or at least it was supposed to before Security told the designers not to announce wanted suspects and it became a security records kiosk instead.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Machines/NS/HoloTables/sec_holotables.rsi
+    layers:
+      - state: Table-Frame
+        type: Icon
+        sprite: _FarHorizons/Structures/Machines/NS/HoloTables/sec_holotables.rsi
       - map: [ "enum.PowerDeviceVisualLayers.Powered" ]
         state: Wanted
         shader: unshaded

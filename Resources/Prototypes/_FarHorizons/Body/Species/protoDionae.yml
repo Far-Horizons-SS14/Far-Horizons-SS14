@@ -42,10 +42,17 @@
 
 - type: entity
   parent:
+  - ActiveCritBase
   - AppearanceProtoDionae
   - BaseMobProtoDionae
   id: MobProtoDionae
   name: Urist McPlantster
+  components:
+    - type: FluidFootprintSpreader
+      footprint: Diona
+      footprintSize: 2.0
+      stepSpacing: 0.3
+      lateralOffset: 0
 
 # Organs
 
@@ -63,7 +70,12 @@
 - type: entity
   parent: [ OrganProtoDionaeExternal, OrganDionaTorso ]
   id: OrganProtoDionaeTorso
-
+  components:
+  - type: VisualOrganMarkings
+    hideableLayers:
+    - enum.HumanoidVisualLayers.BodyCover
+    - enum.HumanoidVisualLayers.BodyCoverCover
+    
 - type: entity
   parent: [ OrganProtoDionaeExternal, OrganDionaHead ]
   id: OrganProtoDionaeHead

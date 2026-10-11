@@ -1,0 +1,205 @@
+<cartridges:GSLNowUiFragment
+    xmlns="https://spacestation14.io"
+    xmlns:cartridges="clr-namespace:Content.Client._FarHorizons.CartridgeLoader.Cartridges"
+    xmlns:customControls="clr-namespace:Content.Client.Administration.UI.CustomControls"
+    xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+    xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+    Orientation="Vertical"
+    HorizontalExpand="True"
+    VerticalExpand="True"
+    Margin="5">
+
+    <!-- Root overlay container: controls layering -->
+    <PanelContainer HorizontalExpand="True" VerticalExpand="True">
+
+        <!-- Main container that fills the entire PDA screen -->
+        <BoxContainer Orientation="Vertical"
+                      HorizontalExpand="True"
+                      VerticalExpand="True">
+            <TabContainer Name="MainTabs" VerticalExpand="True">
+
+                <!-- Products tab -->
+                <BoxContainer Orientation="Vertical" Name="{Loc 'gsl-now-products-tab'}">
+                    <PanelContainer StyleClasses="LowDivider" Margin="0 4.5 0 0"/>
+
+                    <BoxContainer Orientation="Horizontal"
+                          Margin="0 2 0 0">
+
+                        <LineEdit Name="SearchBar"
+                            PlaceHolder="{Loc 'cargo-console-menu-search-bar-placeholder'}"
+                            HorizontalExpand="True" />
+
+                        <OptionButton Name="Categories"
+                            Prefix="{Loc 'cargo-console-menu-categories-label'}"
+                            StyleClasses="OpenLeft"/>
+                    </BoxContainer>
+
+                    <!-- Product list -->
+                    <ScrollContainer
+                        HorizontalExpand="False"
+                        VerticalExpand="True"
+                        HScrollEnabled="False">
+
+                        <BoxContainer Name="Products"
+                            Orientation="Vertical"
+                            HorizontalExpand="True"
+                            VerticalExpand="True">
+
+                            <!-- Products get added here by code -->
+                        </BoxContainer>
+                    </ScrollContainer>
+                </BoxContainer>
+
+                <!-- Orders tab -->
+                <BoxContainer Orientation="Vertical" Name="{Loc 'gsl-now-orders-tab'}">
+                    
+                    <GridContainer Columns="3" Margin="5 0 0 0">
+                        <!-- Next order -->
+                        <Label Text="{Loc 'gsl-now-next-order-label'}"
+                            StyleClasses="LabelKeyText" />
+
+                        <PanelContainer StyleClasses="LowDivider" Margin="0 -2 0 -1"/>
+
+                        <Label Name="OrderTimeLeft"
+                            Text="{Loc 'gsl-now-next-order-none-text'}"
+                            Margin="4 0"/>
+                    </GridContainer>
+
+                    <!-- Orders Part -->
+                    <BoxContainer Orientation="Vertical"
+                        VerticalExpand="True">
+
+                        <!-- Title -->
+                        <controls:StripeBack>
+                            <Label Text="{Loc 'gsl-now-orders-label'}"
+                                HorizontalAlignment="Center"
+                                Margin="4"/>
+                        </controls:StripeBack>
+
+                        <PanelContainer VerticalExpand="True"
+                            Margin="0 -4 0 0">
+
+                            <!-- Background -->
+                            <PanelContainer.PanelOverride>
+                                <gfx:StyleBoxFlat BackgroundColor="#040404" />
+                            </PanelContainer.PanelOverride>
+
+                            <BoxContainer Orientation="Vertical"
+                                Margin="6">
+                                <ScrollContainer VerticalExpand="True">
+                                    <BoxContainer 
+                                        Name="OrdersContainer"
+                                        Orientation="Vertical"
+                                        StyleClasses="transparentItemList"
+                                        VerticalExpand="True"
+                                        SeparationOverride="6">
+
+                                        <!-- Orders are added here by code -->
+                                    </BoxContainer>
+                                </ScrollContainer>
+                            </BoxContainer>
+                        </PanelContainer>
+                    </BoxContainer>
+                </BoxContainer>
+            </TabContainer>
+        </BoxContainer>
+
+        <!-- Dark Semi-Transparent Backdrop -->
+        <PanelContainer Name="OrderModalOverlay"
+                        HorizontalExpand="True"
+                        VerticalExpand="True"
+                        Visible="False"
+                        StyleClasses="BackgroundPanelDark">
+
+            <!-- Center Order Details Dialog Box -->
+            <BoxContainer HorizontalAlignment="Center"
+                          VerticalAlignment="Center"
+                          MinWidth="240">
+                <PanelContainer StyleClasses="BackgroundPanel">
+                    <BoxContainer Orientation="Vertical"
+                                  Margin="8"
+                                  SeparationOverride="8">
+
+                        <Label Name="OrderModalTitleLabel"
+                               Text="{Loc 'gsl-now-order-modal-title'}"
+                               HorizontalAlignment="Center"
+                               StyleClasses="LabelHeading" />
+
+                        <PanelContainer StyleClasses="LowDivider" />
+
+                        <!-- Delivery Recipient Input -->
+                        <BoxContainer Orientation="Vertical" SeparationOverride="2">
+                            <Label Text="{Loc 'gsl-now-recipient-label'}"
+                                   StyleClasses="LabelSubtext" />
+                            <LineEdit Name="RecipientInput"
+                                      Editable="False"
+                                      HorizontalExpand="True" />
+                        </BoxContainer>
+
+                        <!-- Station Name Input -->
+                        <BoxContainer Orientation="Vertical" SeparationOverride="2">
+                            <Label Text="{Loc 'gsl-now-station-label'}"
+                                   StyleClasses="LabelSubtext" />
+                            <LineEdit Name="StationInput"
+                                      Editable="False"
+                                      HorizontalExpand="True" />
+                        </BoxContainer>
+
+                        <!-- Special Instructions Input -->
+                        <BoxContainer Orientation="Vertical" SeparationOverride="2">
+                            <Label Text="{Loc 'gsl-now-instructions-label'}"
+                                   StyleClasses="LabelSubtext" />
+                            <LineEdit Name="InstructionsInput"
+                                      HorizontalExpand="True" />
+                        </BoxContainer>
+
+                        <!-- Confirm / Cancel Actions -->
+                        <BoxContainer Orientation="Horizontal"
+                                      HorizontalExpand="True"
+                                      SeparationOverride="6"
+                                      Margin="0 4 0 0">
+                            <Button Name="OrderConfirmButton"
+                                    Text="{Loc 'gsl-now-confirm'}"
+                                    HorizontalExpand="True" />
+                            <Button Name="OrderCancelButton"
+                                    Text="{Loc 'gsl-now-cancel'}"
+                                    HorizontalExpand="True" />
+                        </BoxContainer>
+
+                    </BoxContainer>
+                </PanelContainer>
+            </BoxContainer>
+
+        </PanelContainer>
+
+        <PanelContainer Name="ErrorModalOverlay"
+                        HorizontalExpand="True"
+                        VerticalExpand="True"
+                        Visible="False"
+                        StyleClasses="BackgroundPanelDark">
+
+            <BoxContainer HorizontalAlignment="Center"
+                          VerticalAlignment="Center"
+                          MinWidth="200"
+                          MaxWidth="280">
+                <PanelContainer StyleClasses="BackgroundPanel">
+                    <BoxContainer Orientation="Vertical"
+                                  Margin="8"
+                                  SeparationOverride="8">
+
+                        <RichTextLabel Name="ErrorMessageLabel"
+                               Text="{Loc 'gsl-now-error-timer'}"
+                               HorizontalAlignment="Center" />
+
+                        <Button Name="ErrorCloseButton"
+                                Text="{Loc 'gsl-now-confirm'}"
+                                HorizontalAlignment="Center"
+                                MinWidth="80" />
+
+                    </BoxContainer>
+                </PanelContainer>
+            </BoxContainer>
+        </PanelContainer>
+
+    </PanelContainer>
+</cartridges:GSLNowUiFragment>

@@ -3,13 +3,13 @@ using Robust.Shared.Containers;
 
 namespace Content.Shared.CartridgeLoader;
 
-public abstract class SharedCartridgeLoaderSystem : EntitySystem
+public abstract partial class SharedCartridgeLoaderSystem : EntitySystem
 {
     public const string InstalledContainerId = "program-container";
 
-    [Dependency] private readonly ItemSlotsSystem _itemSlotsSystem = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearanceSystem = default!;
-    [Dependency] private readonly SharedContainerSystem _container = default!;
+    [Dependency] private ItemSlotsSystem _itemSlotsSystem = default!;
+    [Dependency] private SharedAppearanceSystem _appearanceSystem = default!;
+    [Dependency] private SharedContainerSystem _container = default!;
 
     public override void Initialize()
     {
@@ -118,9 +118,12 @@ public sealed class CartridgeUiReadyEvent : EntityEventArgs
 {
     public readonly EntityUid Loader;
 
-    public CartridgeUiReadyEvent(EntityUid loader)
+    public readonly EntityUid Actor; // Far Horizons
+
+    public CartridgeUiReadyEvent(EntityUid loader, EntityUid actor) // Far Horizons
     {
         Loader = loader;
+        Actor = actor; // Far Horizons
     }
 }
 

@@ -1,0 +1,38 @@
+uniform highp float width;
+uniform highp float alpha;
+uniform highp float lineSpeed;
+uniform highp float lineFreq;
+uniform highp float colorFactor;
+uniform highp float glitchSpeed;
+uniform highp float glitchFreq;
+uniform highp float glitchThreshold;
+uniform highp float burstSpeed;      
+uniform highp float burstThreshold;  
+uniform highp float pixelShift;
+
+
+void fragment() {
+    highp vec2 size = TEXTURE_PIXEL_SIZE * width;
+    highp float scanline = sin((UV.y * lineFreq) - (TIME * lineSpeed));
+    highp float glitch = sin((UV.y * glitchFreq) + (TIME * glitchSpeed));
+    highp vec2 sampleUV = UV;
+
+    highp float burst = sin(TIME * burstSpeed);
+
+    if (burst > burstThreshold) {
+        if (glitch > glitchThreshold) {
+            highp float shiftAmount = sin(UV.y * 1.5707963)*sin(TIME * 1.5707963);
+            sampleUV.x += TEXTURE_PIXEL_SIZE.x * pixelShift * shiftAmount;
+        }
+        else if (glitch < -glitchThreshold) {
+            highp float shiftAmount = sin(UV.y * 1.5707963)*sin(TIME * 1.5707963);
+            sampleUV.x += TEXTURE_PIXEL_SIZE.x * -pixelShift * shiftAmount;
+        }
+    }
+
+    highp vec3 final_color = zTexture(sampleUV).rgb;
+    if (scanline < 0.0) {
+        final_color *= colorFactor;
+    }
+    COLOR = vec4(final_color, zTexture(sampleUV).a * alpha);
+}

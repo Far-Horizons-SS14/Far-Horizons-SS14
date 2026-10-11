@@ -1,10 +1,25 @@
-#region Static recipes
+#region Static Recipes - NS
+- type: latheRecipePack
+  id: FarHorizonsNSSecurityGeneralEquipmentStatic
+  recipes:
+  - WeaponLeverActionNS
+
+#region Static recipes - NT
 
 - type: latheRecipePack
   id: FarHorizonsSecurityGeneralEquipmentStatic
   recipes:
   - SoftPouchSecurity
   - HardPouchSecurity
+  - WeaponLeverActionNT
+
+- type: latheRecipePack
+  id: FarHorizonsNanoTrasenHardlightTechnologyStatic # Exclusive to NT
+  recipes:
+  - SpeedLoaderMagnumLeverEmptyHardlight
+  - WeaponLeverActionModel2325
+  - WeaponLeverActionModel2325Pistol
+  - WeaponRevolverIndomitable
 
 # Practice ammo/mags and practice weapons
 - type: latheRecipePack
@@ -46,6 +61,14 @@
   - MagazineCanisterRevolver38HP
   - MagazineCanisterRevolver38FMJ
   - MagazineCanisterRevolver38
+# Shotgun
+  - MagazineCanisterShotgun12G
+  - MagazineCanisterShotgun12GBuckshot
+  - MagazineCanisterShotgun12GFlechette
+  - MagazineCanisterShotgun12GSlug
+  - MagazineCanisterShotgun12GBeanbag
+  - MagazineCanisterShotgun12GPractice
+  - MagazineCanisterShotgun12GFlare
 ######################BOX#######################
 # Rifle
   - MagazineBoxRifle556Rubber
@@ -70,11 +93,13 @@
   - MagazineBoxMagnumSP
   - MagazineBoxMagnumHP
   - MagazineBoxMagnumFMJ
+  - MagazineBoxMagnum
 # Shotgun
   - BoxLethalshot
   - BoxShotgunSlug
   - BoxShellTranquilizer
   - BoxBeanbag
+  - BoxShotgunFlechette
 #####################MAGAZINE#######################
 # Pistol
   - MagazinePistol38Rubber
@@ -104,13 +129,20 @@
   - MagazineRifle556FMJ
   - MagazineRifle556Empty
 # Shotgun
-  - MagazineShotgun
   - MagazineShotgunEmpty
+  - MagazineShotgun
+  - MagazineShotgunFlechette
   - MagazineShotgunSlug
+  - MagazineShotgunBeanbag
+  - MagazineShotgunPractice
+  - MagazineShotgunFlare
   - SpeedLoaderMagnumBasic
   - SpeedLoaderShotgunEmpty
   - SpeedLoaderShotgunSlug
   - SpeedLoaderShotgunBeanbag
+  - SpeedLoaderShotgunFlechette
+  - SpeedLoaderShotgunFlare
+  - SpeedLoaderShotgunPractice
 # Magnum
   - MagazineMagnum
   - MagazineMagnumHP
@@ -122,6 +154,14 @@
   - SpeedLoaderMagnumSP
   - SpeedLoaderMagnumHP
   - SpeedLoaderMagnumFMJ
+  - SpeedLoaderMagnumRubber
+# Magnum - Lever Speedloader
+  - SpeedLoaderMagnumLeverEmpty
+  - SpeedLoaderMagnumLeverRubber
+  - SpeedLoaderMagnumLeverHP
+  - SpeedLoaderMagnumLeverSP
+  - SpeedLoaderMagnumLeverFMJ
+  - SpeedLoaderMagnumLeverPractice
 # SMG
   - MagazinePistolSubMachineGunSP
   - MagazinePistolSubMachineGunHP
@@ -135,7 +175,7 @@
   - Rifle556HeavyMagazineFMJ
   - Rifle556HeavyMagazineEmpty
 
-#region Dynamic recipes
+#region Dynamic recipes - NT
 - type: latheRecipePack
   id: FarHorizonsSecurityWeaponsDynamic
   recipes:
@@ -175,6 +215,10 @@
   - MagazineCanisterRevolver38Incendiary
   - MagazineCanisterRevolver38Uranium
   - MagazineCanisterRevolver38AP
+# Shotgun
+  - MagazineCanisterShotgun12GIncendiary
+  - MagazineCanisterShotgun12GUranium
+  - MagazineCanisterShotgun12GUraniumFlechette
 #####################BOX#######################
 # Pistol
   - MagazineBoxPistolIncendiary
@@ -188,7 +232,6 @@
   - MagazineBoxMagnumIncendiary
   - MagazineBoxMagnumUranium
   - MagazineBoxMagnumAP
-  - MagazineBoxMagnum
 # Rifle
   - MagazineBoxRifle556Incendiary
   - MagazineBoxRifle556Uranium
@@ -196,6 +239,7 @@
 # Shotgun
   - BoxShotgunIncendiary
   - BoxShotgunUranium
+  - BoxShotgunUraniumFlechette
 #####################MAGAZINE#######################
 # Magnum
   - MagazineMagnumIncendiary
@@ -216,6 +260,10 @@
   - SpeedLoaderMagnumIncendiary
   - SpeedLoaderMagnumUranium
   - SpeedLoaderMagnumAP
+#Magnum Lever Speedloader
+  - SpeedLoaderMagnumLeverIncendiary
+  - SpeedLoaderMagnumLeverUranium
+  - SpeedLoaderMagnumLeverAP
 # SMG
   - MagazinePistolSubMachineGunIncendiary
   - MagazinePistolSubMachineGunUranium
@@ -229,8 +277,11 @@
   - MagazineRifle556AP
 # Shotgun
   - MagazineShotgunIncendiary
+  - MagazineShotgunUranium
+  - MagazineShotgunUraniumFlechette
   - SpeedLoaderShotgunIncendiary
   - SpeedLoaderShotgunUranium
+  - SpeedLoaderShotgunUraniumFlechette
 # LMG
   - Rifle556HeavyMagazineIncendiary
   - Rifle556HeavyMagazineUranium

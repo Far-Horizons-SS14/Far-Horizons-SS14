@@ -10,7 +10,7 @@ namespace Content.Server.Power.Commands;
 /// Debug/admin command for inspecting and managing docked cable connections.
 /// </summary>
 [AdminCommand(AdminFlags.Debug)]
-public sealed class DockCableCommand : IConsoleCommand
+public sealed partial class DockCableCommand : IConsoleCommand
 {
     public string Command => "dockcable";
     public string Description => "Inspect and manage docked cable connections between docks/grids.";

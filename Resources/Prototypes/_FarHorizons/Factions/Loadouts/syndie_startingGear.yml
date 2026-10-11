@@ -1,13 +1,38 @@
+#region NSHC
+- type: startingGear
+  id: NeoSolRepresentativeGear
+  equipment:
+    id: NeoSolRepresentativePDA
+    ears: ClothingHeadsetCommandSyndi
+    belt: BoxFolderNanoTrasenClipboard
+  storage:
+    back:
+    - RubberStampNtrep
+    - CaneNT
+
+- type: startingGear
+  id: RedSwordGear
+  equipment:
+    head: ClothingHeadHatBeretBlueShield
+    ears: ClothingHeadsetRSO
+    id: RedSwordPDA
+    belt: ClothingBeltRedSwordWebbingFilled
+    gloves: ClothingHandsGlovesCombat
+    pocket1: WeaponMultiphaseGunNS
+    pocket2: HandheldBSOCrewMonitorNS
+  storage:
+    back:
+    - Flash
+    - ClothingMaskGasBSO
+
 #region Command
 
 - type: startingGear
   id: SyndieCaptain
   equipment:
     gloves: ClothingHandsGlovesCaptain
-    id: CaptainPDA
+    id: CommandantPDA
     ears: ClothingHeadsetAltCommandSyndi
-    mask: ClothingMaskGasCaptainSyndi
-    belt: ClothingBeltSheathSyndi
   storage:
     back:
     - Flash
@@ -15,8 +40,9 @@
 - type: startingGear
   id: SyndieHoSGear
   equipment:
-    id: HoSPDA
+    id: MarshalPDA
     gloves: ClothingHandsGlovesCombat
+    ears: ClothingHeadsetSecurityHoSSyndi
   storage:
     back:
     - Flash
@@ -24,8 +50,9 @@
 - type: startingGear
   id: SyndieChiefEngineerGear
   equipment:
-    id: CEPDA
+    id: ForemanPDA
     belt: ClothingBeltUtilityEngineeringSyndi
+    ears: ClothingHeadsetCESyndi
   storage:
     back:
     - Flash
@@ -33,9 +60,9 @@
 - type: startingGear
   id: SyndieCMOGear
   equipment:
-    id: CMOPDA
-    ears: ClothingHeadsetCMO
-    belt: ClothingBeltMedicalFilled
+    id: MedicalDirectorPDA
+    ears: ClothingHeadsetCMOSyndi
+    belt: ClothingBeltMedicalSyndiFilled
   storage:
     back:
     - Flash
@@ -43,8 +70,8 @@
 - type: startingGear
   id: SyndieResearchDirectorGear
   equipment:
-    id: RnDPDA
-    ears: ClothingHeadsetRD
+    id: EpistemicsProvostPDA
+    ears: ClothingHeadsetRDNS
     belt: ClothingBeltScienceRD
   storage:
     back:
@@ -53,9 +80,9 @@
 - type: startingGear
   id: SyndieHoPGear
   equipment:
-    id: HoPPDA
+    id: PersonnelManagerPDA
     gloves: ClothingHandsGlovesHopSyndi
-    ears: ClothingHeadsetHoP
+    ears: ClothingHeadsetPMNS
     belt: ClothingBeltHoPSyndi
   storage:
     back:
@@ -78,19 +105,6 @@
     - GavelBlock
     - BookSpaceLaw
 
-- type: startingGear
-  id: SyndieNanoTrasenRepresentativeGear
-  equipment:
-    head: ClothingHeadHatCapNtrep
-    id: NanoTrasenRepresentativePDA
-    ears: ClothingHeadsetAltCommand
-    outerClothing: ClothingOuterCoatNtrep
-    belt: BoxFolderNanoTrasenClipboard
-  storage:
-    back:
-    - RubberStampNtrep
-    - CaneNT
-
 #region Law
 
 - type: startingGear
@@ -111,7 +125,7 @@
 - type: startingGear
   id: SyndieAtmosphericTechnicianGear
   equipment:
-    id: AtmosPDA
+    id: NeoSolAtmosPDA
     belt: ClothingBeltUtilityEngineeringSyndi
     ears: ClothingHeadsetEngineeringSyndi
 
@@ -125,7 +139,7 @@
   id: SyndieTechnicalAssistantGear
   equipment:
     shoes: ClothingShoesBootsWorkSyndi
-    id: TechnicalAssistantPDA
+    id: NeoSolTechnicalAssistantPDA
     belt: ClothingBeltUtilityEngineeringSyndi
     ears: ClothingHeadsetEngineeringSyndi
     pocket2: BookEngineersHandbook
@@ -135,27 +149,24 @@
 - type: startingGear
   id: SyndieSurgeonGear
   equipment:
-    ears: ClothingHeadsetMedical
-    belt: ClothingBeltMedicalFilled
-  inhand:
-    - ClothingBackpackDuffelSurgeryFilled
+    ears: ClothingHeadsetMedicalSyndi
+    belt: ClothingBeltMedicalSyndiFilled
 
 - type: startingGear
   id: SyndieChemistGear
   equipment:
-    id: ChemistryPDA
-    ears: ClothingHeadsetMedical
+    id: PharmacistPDA
+    ears: ClothingHeadsetMedicalSyndi
     rig: ChemBag
-    belt: ClothingBeltMedicalFilled
+    belt: ClothingBeltMedicalSyndiFilled
     pocket1: HandLabeler
-    eyes: ClothingEyesGlassesChemical
 
 - type: startingGear
   id: SyndieParamedicGear
   equipment:
-    id: ParamedicPDA
-    ears: ClothingHeadsetMedical
-    belt: ClothingBeltMedicalEMTFilled
+    id: NeoSolParamedicPDA
+    ears: ClothingHeadsetMedicalSyndi
+    belt: ClothingBeltMedicalEMTSyndiFilled
   storage:
     back:
     - EmergencyRollerBedSpawnFolded
@@ -164,23 +175,23 @@
 - type: startingGear
   id: SyndieDoctorGear
   equipment:
-    ears: ClothingHeadsetMedical
-    belt: ClothingBeltMedicalFilled
+    ears: ClothingHeadsetMedicalSyndi
+    belt: ClothingBeltMedicalSyndiFilled
 
 - type: startingGear
   id: SyndieMedicalInternGear
   equipment:
     shoes: ClothingShoesColorWhite
-    id: MedicalInternPDA
-    ears: ClothingHeadsetMedical
-    belt: ClothingBeltMedicalFilled
+    id: NeoSolMedicalInternPDA
+    ears: ClothingHeadsetMedicalSyndi
+    belt: ClothingBeltMedicalSyndiFilled
     pocket2: BookMedicalReferenceBook
 
 - type: startingGear
   id: SyndiePsychologistGear
   equipment:
-    id: PsychologistPDA
-    ears: ClothingHeadsetMedical
+    id: NeoSolPsychologistPDA
+    ears: ClothingHeadsetMedicalSyndi
   storage:
     back:
     - RubberStampPsychologist
@@ -190,22 +201,22 @@
 - type: startingGear
   id: SyndieRoboticistGear
   equipment:
-    id: RoboticistPDA
+    id: MechanistPDA
     belt: ClothingBeltScienceRoboticist
-    ears: ClothingHeadsetRobotics
+    ears: ClothingHeadsetRoboticsNS
 
 - type: startingGear
   id: SyndieScientistGear
   equipment:
-    ears: ClothingHeadsetScience
+    ears: ClothingHeadsetScienceNS
     belt: ClothingBeltScience
 
 - type: startingGear
   id: SyndieResearchAssistantGear
   equipment:
     shoes: ClothingShoesColorWhite
-    id: ResearchAssistantPDA
-    ears: ClothingHeadsetScience
+    id: LabTechnicianPDA
+    ears: ClothingHeadsetScienceNS
     pocket2: BookScientistsGuidebook
     belt: ClothingBeltScience
 
@@ -214,8 +225,9 @@
 - type: startingGear
   id: SyndieWardenGear
   equipment:
-    id: WardenPDA
+    id: ConstablePDA
     pocket1: WeaponPistolDP
+    ears: ClothingHeadsetSecurityWardenSyndi
   storage:
     back:
     - Flash
@@ -226,8 +238,9 @@
   id: SyndieCorpsmanGear
   equipment:
     neck: ClothingNeckTieBlue
-    pocket2: HandheldCorpsmanCrewMonitor
-    id: CorpsmanPDA
+    pocket2: HandheldCorpsmanCrewMonitorNS
+    id: NeoSolCorpsmanPDA
+    ears: ClothingHeadsetSecMedSyndi
   storage:
     back:
     - Flash
@@ -238,9 +251,10 @@
   id: SyndieBrigmedicGear
   equipment:
     neck: ClothingNeckTieRed
-    pocket2: HandheldBrigmedicCrewMonitor
+    pocket2: HandheldBrigmedicCrewMonitorNS
     mask: ClothingMaskBreathMedicalSecurity
-    id: BrigmedicPDA
+    id: NeoSolBrigmedicPDA
+    ears: ClothingHeadsetSecMedSyndi
   storage:
     back:
     - Flash
@@ -248,8 +262,9 @@
 - type: startingGear
   id: SyndieDetectiveGear
   equipment:
-    id: DetectivePDA
+    id: InspectorPDA
     belt: ClothingBeltHolsterFilled
+    ears: ClothingHeadsetSecuritySyndi
   storage:
     back:
     - Flash
@@ -258,6 +273,8 @@
 
 - type: startingGear
   id: SyndieSecurityOfficerGear
+  equipment:
+    ears: ClothingHeadsetSecuritySyndi
   storage:
     back:
     - Flash
@@ -269,30 +286,134 @@
     eyes: ClothingEyesGlassesSecuritySyndi
     shoes: ClothingShoesBootsJackFilled
     outerClothing: ClothingOuterArmorBasic
-    id: SecurityCadetPDA
+    id: RecruitPDA
     ears: ClothingHeadsetSecuritySyndi
     belt: ClothingBeltSecuritySyndiFilled
     pocket2: BookSecurity
   storage:
     back:
     - Flash
-
-# Syndie Jobs
+    
+#region Service
+- type: startingGear
+  id: SyndieAssistantGear
+  equipment:
+    ears: ClothingHeadsetAssistantNS
 
 - type: startingGear
-  id: SyndieBlueShieldGear
+  id: SyndieChefGear
   equipment:
-    head: ClothingHeadHatBeretBlueShield
-    id: BlueShieldPDA
-    ears: ClothingHeadsetAltBSO
-    belt: ClothingBeltBlueShieldWebbingFilled
-    gloves: ClothingHandsGlovesCombat
-    pocket1: WeaponMultiphaseGun
-    pocket2: HandheldBSOCrewMonitor
+    shoes: ClothingShoesChefNS
+    id: NeoSolChefPDA
+    ears: ClothingHeadsetServiceNS
+    belt: ClothingBeltChefNSFilled
+
+- type: startingGear
+  id: SyndieJanitorGear
+  equipment:
+    shoes: ClothingShoesGaloshesNS
+    id: CustodianPDA
+    ears: ClothingHeadsetServiceNS
+    belt: ClothingBeltJanitorNSFilled
+
+- type: startingGear
+  id: SyndieBotanistGear
+  equipment:
+    shoes: ClothingShoesBootsBotanyNS
+    id: NeoSolBotanistPDA
+    ears: ClothingHeadsetServiceNS
+    belt: ClothingBeltPlantNSFilled
+    rig: PlantBag 
+
+- type: startingGear
+  id: SyndieBartenderGear
+  equipment:
+    #shoes: ClothingShoesColorBlack # 🌟Starlight🌟
+    id: NeoSolBartenderPDA
+    ears: ClothingHeadsetServiceNS
+
+- type: startingGear
+  id: SyndieBoxerGear
+  equipment:
+    id: NeoSolBoxerPDA
+    ears: ClothingHeadsetServiceNS
+    shoes: ClothingShoesColorRed
+    belt: ClothingBeltChampion
+
+- type: startingGear
+  id: SyndieChaplainGear
+  equipment:
+    #shoes: ClothingShoesColorBlack # 🌟Starlight🌟
+    id: NeoSolChaplainPDA
+    ears: ClothingHeadsetServiceNS
   storage:
     back:
-    - Flash
-    - ClothingMaskGasBSO
+    - RubberStampChaplain
+
+- type: startingGear
+  id: SyndieClownGear
+  equipment:
+    mask: ClothingMaskClownNS
+    pocket1: BikeHorn
+    pocket2: ClownRecorder
+    id: NeoSolClownPDA
+    ears: ClothingHeadsetServiceNS
+  inhand:
+  - FoolboxFilled
+  storage:
+    back:
+    - RubberStampClown
+    - CrayonRainbow
+
+- type: startingGear
+  id: SyndieLibrarianGear
+  equipment:
+    id: NeoSolLibrarianPDA
+    ears: ClothingHeadsetServiceNS
+    pocket1: d20Dice
+    pocket2: HandLabeler
+  storage:
+    back:
+    - BookRandom
+
+- type: startingGear
+  id: SyndieMimeGear
+  equipment:
+    gloves: ClothingHandsGlovesColorWhite
+    shoes: ClothingShoesColorWhite
+    id: NeoSolMimePDA
+    pocket1: CrayonMime
+    ears: ClothingHeadsetServiceNS
+  storage:
+    back:
+    - RubberStampMime
+
+- type: startingGear
+  id: SyndieMusicianGear
+  equipment:
+    eyes: ClothingEyesGlassesSunglasses
+    id: NeoSolMusicianPDA
+    ears: ClothingHeadsetServiceNS
+
+- type: startingGear
+  id: SyndieReporterGear
+  equipment:
+    id: JournalistPDA
+    ears: ClothingHeadsetServiceNS
+
+- type: startingGear
+  id: SyndieServiceWorkerGear
+  equipment:
+    id: NeoSolServiceWorkerPDA
+    ears: ClothingHeadsetServiceNS
+
+- type: startingGear
+  id: SyndieZookeeperGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSafari
+    head: ClothingHeadSafari
+    id: NeoSolZookeeperPDA
+    ears: ClothingHeadsetServiceNS
 
 #region Silicon
 

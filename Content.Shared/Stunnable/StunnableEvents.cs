@@ -78,7 +78,14 @@ public record struct GetStandUpTimeEvent(TimeSpan DoAfterTime);
 /// </summary>
 /// <param name="Stamina">The stamina damage the entity will take when it forces itself to stand.</param>
 [ByRefEvent]
-public record struct TryForceStandEvent(float Stamina);
+//Far Horizons Start
+public sealed partial class TryForceStandEvent : CancellableEntityEventArgs
+{
+    public float Stamina;
+    public TryForceStandEvent(float stamina) 
+        => Stamina = stamina;
+}
+//Far Horizons End
 
 /// <summary>
 ///     Raised when you click on the Knocked Down Alert

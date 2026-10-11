@@ -506,6 +506,7 @@
         hard: True
         restitution: 0
         friction: 0.4
+  - type: EntityStorage
 
 - type: entity
   parent: LockerPrisoner
@@ -587,6 +588,7 @@
   id: LockerEvidence
   parent: LockerSecurity
   name: Evidence Locker #Far Horizons - The Great Capitalization Crusade
+  suffix: NT #FH
   description: To store bags of bullet casings and detainee belongings.
   components:
   - type: AccessReader
@@ -598,7 +600,7 @@
   name: Armory Closet #Far Horizons - The Great Capitalization Crusade
   parent: LockerBaseSecure
   description: It's a personal storage unit with a blood-red design.
-  suffix: "Locked"
+  suffix: Syndicate, "Locked" #FH
   components:
   - type: Appearance
   - type: EntityStorageVisuals
@@ -639,6 +641,7 @@
 - type: entity
   id: LockerClown
   name: Clown Locker #Far Horizons - The Great Capitalization Crusade
+  suffix: NT #FH
   parent: LockerBaseSecure
   components:
   - type: Appearance
@@ -653,6 +656,7 @@
 - type: entity
   id: LockerMime
   name: Mime Locker #Far Horizons - The Great Capitalization Crusade
+  suffix: NT #FH
   parent: LockerBaseSecure
   components:
   - type: Appearance
@@ -666,7 +670,8 @@
 # Representative
 - type: entity
   id: LockerRepresentative
-  name: Representative Locker #Far Horizons - The Great Capitalization Crusade
+  name: NanoTrasen Representative's Locker #Far Horizons - The Great Capitalization Crusade and make clear who it belongs to
+  suffix: NT #FH
   parent: LockerBaseSecure
   components:
   - type: Appearance

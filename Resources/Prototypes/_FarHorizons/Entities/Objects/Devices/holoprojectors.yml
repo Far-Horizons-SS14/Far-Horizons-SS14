@@ -1,7 +1,7 @@
 - type: entity
   parent: Holoprojector
   id: RadiationBlockingProjector
-  name: radiation barrier projector
+  name: Radiation Barrier Projector
   description: Stop the deadly radiation from a delamination or meltdown, at least for a little while.
   components:
   - type: HolosignProjector
@@ -20,3 +20,68 @@
   #   - AtmosTools
   #   - Fires
   #   - Spacing
+
+
+#region Security
+
+# NanoTrasen
+- type: entity
+  parent: Holoprojector
+  id: HoloprojectorSecurity
+  name: Holobarrier Projector
+  suffix: NT
+  description: Creates a solid but fragile holographic barrier.
+  components:
+  - type: HolosignProjector
+    signProto: HolosignSecurity
+    chargeUse: 90
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Devices/Holoprojectors/security_nt.rsi
+    state: icon
+  - type: Tag
+    tags:
+    - HolofanProjector
+    - SecBeltEquip
+  - type: StaticPrice
+    price: 50
+
+- type: entity
+  parent: HoloprojectorSecurity
+  id: HoloprojectorSecurityEmpty
+  suffix: NT, Empty
+  components:
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+
+# NeoSol
+- type: entity
+  parent: Holoprojector
+  id: HoloprojectorSecurityNS
+  name: Holobarrier Projector
+  suffix: NS
+  description: Creates a solid but fragile holographic barrier.
+  components:
+  - type: HolosignProjector
+    signProto: HolosignSecurityNS
+    chargeUse: 90
+  - type: Sprite
+    sprite: Objects/Devices/Holoprojectors/security.rsi
+    state: icon
+  - type: Tag
+    tags:
+    - HolofanProjector
+    - SecBeltEquip
+  - type: StaticPrice
+    price: 50
+
+- type: entity
+  parent: HoloprojectorSecurityNS
+  id: HoloprojectorSecurityNSEmpty
+  suffix: NS, Empty
+  components:
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default

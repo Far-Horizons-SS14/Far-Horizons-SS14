@@ -22,7 +22,7 @@
 
 // STARLIGHTED
 
-//public sealed class MoverController : SharedMoverController
+//public sealed partial class MoverController : SharedMoverController
 //{
 //    private static readonly Gauge ActiveMoverGauge = Metrics.CreateGauge(
 //        "physics_active_mover_count",
@@ -33,9 +33,9 @@
 //        "physics_active_player_mover_count",
 //        "Active amount of player InputMovers being processed by MoverController");
 
-//    [Dependency] private readonly ThrusterSystem _thruster = default!;
-//    [Dependency] private readonly SharedTransformSystem _xformSystem = default!;
-//    [Dependency] private readonly IConfigurationManager _cfg = default!; // Starlight
+//    [Dependency] private ThrusterSystem _thruster = default!;
+//    [Dependency] private SharedTransformSystem _xformSystem = default!;
+//    [Dependency] private IConfigurationManager _cfg = default!; // Starlight
 
 //    private Dictionary<EntityUid, (ShuttleComponent, List<(EntityUid, PilotComponent, InputMoverComponent, TransformComponent)>)> _shuttlePilots = new();
 

@@ -31,32 +31,33 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Damage.Systems;
+using Content.Shared.Body.Components; // Far Horizons
 
 namespace Content.Server.Cloning;
 
-public sealed class CloningPodSystem : EntitySystem
+public sealed partial class CloningPodSystem : EntitySystem
 {
-    [Dependency] private readonly DeviceLinkSystem _signalSystem = default!;
-    [Dependency] private readonly IPlayerManager _playerManager = null!;
-    [Dependency] private readonly EuiManager _euiManager = null!;
-    [Dependency] private readonly CloningConsoleSystem _cloningConsoleSystem = default!;
-    [Dependency] private readonly ContainerSystem _containerSystem = default!;
-    [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
-    [Dependency] private readonly PowerReceiverSystem _powerReceiverSystem = default!;
-    [Dependency] private readonly IRobustRandom _robustRandom = default!;
-    [Dependency] private readonly AtmosphereSystem _atmosphereSystem = default!;
-    [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly PuddleSystem _puddleSystem = default!;
-    [Dependency] private readonly ChatSystem _chatSystem = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly IConfigurationManager _configManager = default!;
-    [Dependency] private readonly MaterialStorageSystem _material = default!;
-    [Dependency] private readonly PopupSystem _popupSystem = default!;
-    [Dependency] private readonly SharedMindSystem _mindSystem = default!;
-    [Dependency] private readonly CloningSystem _cloning = default!;
-    [Dependency] private readonly EmagSystem _emag = default!;
-    [Dependency] private readonly DamageableSystem _damageable = default!;
+    [Dependency] private DeviceLinkSystem _signalSystem = default!;
+    [Dependency] private IPlayerManager _playerManager = null!;
+    [Dependency] private EuiManager _euiManager = null!;
+    [Dependency] private CloningConsoleSystem _cloningConsoleSystem = default!;
+    [Dependency] private ContainerSystem _containerSystem = default!;
+    [Dependency] private MobStateSystem _mobStateSystem = default!;
+    [Dependency] private PowerReceiverSystem _powerReceiverSystem = default!;
+    [Dependency] private IRobustRandom _robustRandom = default!;
+    [Dependency] private AtmosphereSystem _atmosphereSystem = default!;
+    [Dependency] private SharedTransformSystem _transformSystem = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private PuddleSystem _puddleSystem = default!;
+    [Dependency] private ChatSystem _chatSystem = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private IConfigurationManager _configManager = default!;
+    [Dependency] private MaterialStorageSystem _material = default!;
+    [Dependency] private PopupSystem _popupSystem = default!;
+    [Dependency] private SharedMindSystem _mindSystem = default!;
+    [Dependency] private CloningSystem _cloning = default!;
+    [Dependency] private EmagSystem _emag = default!;
+    [Dependency] private DamageableSystem _damageable = default!;
 
     public readonly Dictionary<MindComponent, EntityUid> ClonesWaitingForMind = new();
     public readonly ProtoId<CloningSettingsPrototype> SettingsId = "CloningPod";
@@ -153,7 +154,7 @@ public sealed class CloningPodSystem : EntitySystem
             ClonesWaitingForMind.Remove(mind);
         }
 
-        if (mind.OwnedEntity != null && !_mobStateSystem.IsDead(mind.OwnedEntity.Value))
+        if (mind.OwnedEntity != null && !_mobStateSystem.IsDead(mind.OwnedEntity.Value) && !HasComp<BrainComponent>(mind.OwnedEntity.Value)) // Far Horizons
             return false; // Body controlled by mind is not dead
 
         // Yes, we still need to track down the client because we need to open the Eui
@@ -163,7 +164,7 @@ public sealed class CloningPodSystem : EntitySystem
         if (!TryComp<PhysicsComponent>(bodyToClone, out var physics))
             return false;
 
-        var cloningCost = (int)Math.Round(physics.FixturesMass);
+        var cloningCost = !HasComp<BrainComponent>(bodyToClone) ? (int)Math.Round(physics.FixturesMass) : 100; //Far Horizons
 
         if (_configManager.GetCVar(CCVars.BiomassEasyMode))
             cloningCost = (int)Math.Round(cloningCost * EasyModeCloningCost);

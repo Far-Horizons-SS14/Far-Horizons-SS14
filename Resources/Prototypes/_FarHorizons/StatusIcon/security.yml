@@ -4,3 +4,23 @@
   icon:
     sprite: /Textures/_FarHorizons/Interface/Misc/security_icons.rsi
     state: hud_arrest
+
+- type: securityIcon
+  id: MindShieldIconNS
+  priority: 2
+  locationPreference: Right
+  layer: Mod
+  isShaded: true
+  icon:
+    sprite: /Textures/_FarHorizons/Interface/Misc/syndie_job_icons.rsi
+    state: NeoSolMindShield
+
+- type: securityIcon
+  id: MindShieldIconGSL
+  priority: 2
+  locationPreference: Right
+  layer: Mod
+  isShaded: true
+  icon:
+    sprite: /Textures/_FarHorizons/Interface/Misc/job_icons.rsi
+    state: GeminiMindShield

@@ -21,12 +21,51 @@
         - RocketAmmo120mmHE
       120mmrocket_slot1:
         - RocketAmmo120mmShrapnel
+#region ##NanoTrasen##
 
+
+
+
+
+
+#region Science
+- type: entity
+  id: ClothingBeltScienceRoboticist
+  parent: ClothingBeltScience
+  suffix: NT, Roboticist, Filled
+  components:
+  - type: StorageFill
+    contents:
+      - id: CrowbarYellow
+      - id: Wrench
+      - id: Screwdriver
+      - id: Wirecutter
+      - id: Welder
+      - id: ClothingHeadHatWelding 
+      - id: Multitool
+
+- type: entity
+  id: ClothingBeltScienceRD
+  parent: ClothingBeltScience
+  suffix: NT, ResearchDirector, Filled
+  components:
+  - type: StorageFill
+    contents:
+      - id: CrowbarYellow
+      - id: Wrench
+      - id: Screwdriver
+      - id: Wirecutter
+      - id: Welder
+      - id: Multitool
+      - id: AnomalyScanner
+      - id: NodeScanner
+
+#region Security
 #Scug Belt
 - type: entity
   id: ClothingBeltHolsterScugFilled
   parent: ClothingBeltHolster
-  suffix: Filled
+  suffix: NT, Filled
   components:
   - type: EntityTableContainerFill
     containers:
@@ -35,8 +74,33 @@
         - id: SpeedLoaderMagnumRubber
         - id: SpeedLoaderMagnumSP
         - id: WeaponRevolverInitiator
-        
-#region Syndicate
+
+- type: entity
+  id: ClothingBeltSecurityDeputyMedicalFilled
+  parent: ClothingBeltSecurityDeputyMedical
+  suffix: NT, Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: Stunbaton
+        - id: Handcuffs    
+        - id: Brutepack
+        - id: Ointment
+        - id: Gauze
+
+- type: entity
+  id: ClothingBeltSecurityDeputyFilled
+  parent: ClothingBeltSecurityDeputy
+  suffix: NT, Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:NestedSelector
+        tableId: BeltSecurityEntityTable
+
+#region ##NeoSol##
 
 
 
@@ -53,7 +117,7 @@
 - type: entity
   id: ClothingBeltSheathFilledSyndi
   parent: ClothingBeltSheathSyndi
-  suffix: Filled
+  suffix: NS, Filled
   components:
   - type: ContainerFill
     containers:
@@ -65,7 +129,7 @@
 - type: entity
   id: ClothingBeltChiefEngineerFilledSyndi
   parent: ClothingBeltChiefEngineerSyndi
-  suffix: S, Filled
+  suffix: NS, Filled
   components:
   - type: EntityTableContainerFill
     containers:
@@ -78,13 +142,30 @@
         - id: HolofanProjector
         - id: GasAnalyzer
         - id: trayScanner
+# RSO
+
+- type: entity
+  id: ClothingBeltRedSwordWebbingFilled
+  parent: ClothingBeltRSOWebbing
+  suffix: Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: Handcuffs
+        - id: Handcuffs
+        - id: Stunbaton
+        - id: GrenadeFlashBang
+        - id: TearGasGrenade
+        - id: SecurityMedkitFHFilledBSO
 
 #region Engineering
 
 - type: entity
   id: ClothingBeltUtilityFilledSyndi
   parent: ClothingBeltUtilitySyndi
-  suffix: S, Filled
+  suffix: NS, Filled
   components:
   - type: EntityTableContainerFill
     containers:
@@ -95,12 +176,13 @@
         - id: Screwdriver
         - id: Wirecutter
         - id: Welder
+        - id: ClothingHeadHatWelding
         - id: NetworkConfigurator
 
 - type: entity
   id: ClothingBeltUtilityEngineeringSyndi
   parent: ClothingBeltUtilitySyndi
-  suffix: S, Engineering
+  suffix: NS, Engineering
   components:
   - type: EntityTableContainerFill
     containers:
@@ -112,3 +194,165 @@
         - id: Wirecutter
         - id: Welder
         - id: Multitool
+        - id: GasAnalyzer
+
+#region Medical
+
+- type: entity
+  parent: ClothingBeltMedicalSyndi
+  id: ClothingBeltMedicalSyndiFilled
+  suffix: NS, Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: Brutepack
+        - id: Ointment
+        - id: Bloodpack
+        - id: BloodpackAmmonia #Far Horizons
+        - id: Gauze
+        - id: PillCanisterTricordrazine
+
+- type: entity
+  parent: ClothingBeltMedicalEMTSyndi
+  id: ClothingBeltMedicalEMTSyndiFilled
+  suffix: NS, Paramedic, Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: Bloodpack
+        - id: BloodpackAmmonia #Far Horizons
+        - id: Gauze
+        # Reagents focused on emergency response rather than outright healing
+        - id: ChemistryBottleInaprovaline
+          amount: 2
+        - id: ChemistryBottleHaloperidol
+        - id: ChemistryBottleEthylredoxrazine
+        - id: ChemistryBottleIpecac
+        - id: ChemistryBottleCharcoal
+
+#region Security
+
+- type: entity
+  id: ClothingBeltBrigmedicSyndiFilled
+  parent: ClothingBeltBrigmedicSyndi
+  suffix: NS, Filled
+  components:
+  - type: StorageFill
+    contents:
+      - id: Stunbaton
+      - id: Handcuffs    
+      - id: Brutepack
+      - id: Ointment
+      - id: Gauze
+
+- type: entity
+  id: ClothingBeltCorpsmanSyndiFilled
+  parent: ClothingBeltCorpsmanSyndi
+  suffix: NS, Filled
+  components:
+  - type: StorageFill
+    contents:
+      - id: Stunbaton
+      - id: Handcuffs    
+      - id: Brutepack
+      - id: Ointment
+      - id: Gauze
+
+- type: entity
+  id: ClothingBeltSecuritySyndiFilled
+  parent: ClothingBeltSecuritySyndi
+  suffix: NS, Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:NestedSelector
+        tableId: BeltSecurityEntityTableNS
+
+- type: entityTable
+  id: BeltSecurityEntityTableNS
+  table: !type:AllSelector
+    children:
+    - id: Stunbaton
+    - id: Handcuffs
+      amount: 2
+    - id: HoloprojectorSecurityNS
+    - id: RadioHandheldSecurityNS
+
+#region Service
+- type: entity
+  id: ClothingBeltChefNSFilled
+  parent: ClothingBeltChefNS
+  suffix: NS, Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: FoodShakerSalt
+        - id: FoodShakerPepper
+
+- type: entity
+  id: ClothingBeltJanitorNSFilled
+  parent: ClothingBeltJanitorNS
+  suffix: NS, Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - !type:NestedSelector
+          tableId: AllSoapsTable
+        - id: SprayBottleSpaceCleaner
+        - id: CleanerGrenade
+          amount: 2
+        - id: FlashlightLantern
+        - id: LightReplacer
+
+- type: entity
+  id: ClothingBeltPlantNSFilled
+  parent: ClothingBeltPlantNS
+  suffix: NS, Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: HydroponicsToolMiniHoe
+        - id: HydroponicsToolSpade
+        - id: HydroponicsToolClippers
+        - id: ChemistryBottleRobustHarvest
+
+#region ##GSL##
+
+- type: entity
+  id: ClothingBeltSheathSwordMachete
+  parent: ClothingBeltMacheteScabbard
+  suffix: OnlyMachete
+  components:
+  - type: ContainerFill
+    containers:
+      item:
+      - WeaponCrusherMachete
+
+- type: entity
+  id: ClothingBeltSheathFilledMachete
+  parent: ClothingBeltMacheteScabbard
+  suffix: Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: Crowbar
+        - id: Wrench
+        - id: Screwdriver
+        - id: Wirecutter
+        - id: Welder
+        - id: NetworkConfigurator
+      item: !type:AllSelector
+        children:
+        - id: WeaponCrusherMachete

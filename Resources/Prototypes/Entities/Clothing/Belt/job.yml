@@ -155,9 +155,9 @@
   description: A belt used to hold most janitorial supplies.
   components:
   - type: Sprite
-    sprite: Clothing/Belt/janitor.rsi
+    sprite: _FarHorizons/Clothing/Belt/janitor.rsi #Far Horizons
   - type: Clothing
-    sprite: Clothing/Belt/janitor.rsi
+    sprite: _FarHorizons/Clothing/Belt/janitor.rsi #Far Horizons
   - type: Storage
     maxItemSize: Large
     whitelist:
@@ -172,11 +172,11 @@
       - WetFloorSign
       - HolosignProjector
       - Plunger
+      - TrashBagBlue
       - GoldenPlunger
       - WireBrush
-      components:
       - LightReplacer
-      - SmokeOnTrigger
+      - CleanerGrenade
   - type: ItemMapper
     sprite: *BeltOverlay
     mapLayers:
@@ -188,10 +188,46 @@
         whitelist:
           tags:
           - Spray
-      wrench:
+      light_replacer:
         whitelist:
           tags:
-          - Wrench
+          - LightReplacer
+      trashbag:
+        whitelist:
+          tags:
+          - TrashBag
+      trashbag_blue:
+        whitelist:
+          tags:
+          - TrashBagBlue
+      wetfloorsign:
+        whitelist:
+          tags:
+          - WetFloorSign
+      soap:
+        whitelist:
+          tags:
+          - Soap
+      wire_brush:
+        whitelist:
+          tags:
+          - WireBrush
+      holosign:
+        whitelist:
+          tags:
+          - HolosignProjector
+      plunger:
+        whitelist:
+          tags:
+          - Plunger
+      golden_plunger:
+        whitelist:
+          tags:
+          - GoldenPlunger
+      cleaner_grenade:
+        whitelist:
+          tags:
+          - CleanerGrenade
   - type: Appearance
 
 - type: entity
@@ -279,9 +315,9 @@
   description: A belt used to hold most hydroponics supplies. Suprisingly, not green.
   components:
   - type: Sprite
-    sprite: Clothing/Belt/plant.rsi
+    sprite: _FarHorizons/Clothing/Belt/plant.rsi #Far Horizons
   - type: Clothing
-    sprite: Clothing/Belt/plant.rsi
+    sprite: _FarHorizons/Clothing/Belt/plant.rsi #Far Horizons
   - type: Storage
     whitelist:
       tags:
@@ -330,9 +366,9 @@
   description: A belt used to hold kitchen knives and condiments for quick access.
   components:
   - type: Sprite
-    sprite: Clothing/Belt/chef.rsi
+    sprite: _FarHorizons/Clothing/Belt/chef.rsi #Far Horizons
   - type: Clothing
-    sprite: Clothing/Belt/chef.rsi
+    sprite: _FarHorizons/Clothing/Belt/chef.rsi #Far Horizons
   - type: Storage
     whitelist:
       tags:
@@ -431,6 +467,7 @@
       - CombatKnife
       - Truncheon
       - HandGrenade
+      - HoloflarePistol # FH
       components:
       - Stunbaton
       - FlashOnTrigger
@@ -443,6 +480,7 @@
       - Whistle
       - BalloonPopper
       - Injector #FH
+      - Blocking # FH
   - type: ItemMapper
     sprite: *BeltOverlay
     mapLayers:

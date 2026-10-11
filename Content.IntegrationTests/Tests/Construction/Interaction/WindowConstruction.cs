@@ -4,8 +4,8 @@ namespace Content.IntegrationTests.Tests.Construction.Interaction;
 
 public sealed class WindowConstruction : InteractionTest
 {
-    private const string Window = "Window";
-    private const string RWindow = "ReinforcedWindow";
+    private const string Window = "WindowGeneric"; //FH
+    private const string RWindow = "ReinforcedWindowGeneric"; //FH
 
     [Test]
     public async Task ConstructWindow()

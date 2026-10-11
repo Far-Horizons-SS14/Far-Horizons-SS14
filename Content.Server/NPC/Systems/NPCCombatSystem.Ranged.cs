@@ -12,8 +12,8 @@ namespace Content.Server.NPC.Systems;
 
 public sealed partial class NPCCombatSystem
 {
-    [Dependency] private readonly SharedCombatModeSystem _combat = default!;
-    [Dependency] private readonly RotateToFaceSystem _rotate = default!;
+    [Dependency] private SharedCombatModeSystem _combat = default!;
+    [Dependency] private RotateToFaceSystem _rotate = default!;
 
     private EntityQuery<CombatModeComponent> _combatQuery;
     private EntityQuery<NPCSteeringComponent> _steeringQuery;
@@ -104,13 +104,13 @@ public sealed partial class NPCCombatSystem
                 _combat.SetInCombatMode(uid, true, combatMode);
             }
 
-            //🌟Starlight🌟
-            if (!_gun.IsChamberClosed(uid)
-                && TryComp<ChamberMagazineAmmoProviderComponent>(gun, out var magazineComp))
-            {
-                _gun.SetBoltClosed(gun, magazineComp, true);
-            }
-
+            // Far Horizons start
+            if (TryComp<ChamberMagazineAmmoProviderComponent>(gun, out var magazineComp) &&
+                ((_itemSlots.TryGetSlot(gun, "gun_chamber", out var chamber) &&
+                chamber.Item == null) ||
+                magazineComp.BoltClosed == false))
+                _gun.UseChambered(gun, magazineComp);
+            // Far Horizons end
 
             var ammoEv = new GetAmmoCountEvent();
             RaiseLocalEvent(gun, ref ammoEv);
@@ -204,7 +204,7 @@ public sealed partial class NPCCombatSystem
 
             EntityCoordinates targetCordinates;
 
-            if (_mapManager.TryFindGridAt(xform.MapID, targetPos, out var gridUid, out var mapGrid))
+            if (_map.TryFindGridAt(xform.MapID, targetPos, out var gridUid, out var mapGrid))
             {
                 targetCordinates = new EntityCoordinates(gridUid, _map.WorldToLocal(gridUid, mapGrid, targetSpot));
             }

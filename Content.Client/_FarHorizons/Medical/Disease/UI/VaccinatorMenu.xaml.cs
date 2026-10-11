@@ -20,8 +20,8 @@ namespace Content.Client._FarHorizons.Medical.Disease.UI;
 [GenerateTypedNameReferences]
 public sealed partial class VaccinatorMenu : FancyWindow
 {
-    [Dependency] private readonly IEntityManager _entityManager = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IEntityManager _entityManager = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
     public event Action? CreateVaccineAction;
     private readonly MaterialStorageSystem _materialStorage;
     private readonly SharedContainerSystem _container;

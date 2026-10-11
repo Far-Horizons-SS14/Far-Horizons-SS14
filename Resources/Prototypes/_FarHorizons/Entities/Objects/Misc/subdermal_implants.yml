@@ -69,3 +69,129 @@
   - type: RadioImplant
     radioChannels:
     - Lambda
+
+- type: entity
+  id: LanguageDatabaseImplant
+  name: Language Database Implant
+  description: A subdermal implant containing a database of languages.
+  parent: BaseSubdermalImplant
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: SubdermalImplant
+      implantAction: ActionCustomTraitLanguageDatabase
+      permanent: true
+    - type: Store
+      name: custom-frame-trait-language-database-name 
+      categories:
+      - Languages 
+      currencyWhitelist:
+      - SiliconMemory
+      balance:
+        SiliconMemory: 5
+      refundAllowed: true
+      requireStartingMap: false
+      ownerOnly: true
+      buySuccessSound: /Audio/Machines/chime.ogg
+    - type: UserInterface
+      interfaces:
+        enum.StoreUiKey.Key:
+          type: StoreBoundUserInterface
+
+- type: entity
+  parent: MindShieldImplant
+  id: MindShieldImplantNS
+  name: Mindshield Implant (NS)
+  description: This implant will ensure protection against mind control devices. # FH
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: MindShieldImplant
+    mindShieldStatusIcon: MindShieldIconNS
+
+- type: entity
+  parent: MindShieldImplant
+  id: MindShieldImplantGSL
+  name: Mindshield Implant (GSL)
+  description: This implant will ensure protection against mind control devices. # FH
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: MindShieldImplant
+    mindShieldStatusIcon: MindShieldIconGSL
+
+- type: entity
+  parent: BaseSubdermalImplant
+  id: FakeMindShieldImplantNS
+  name: Fake Mindshield Implant (NS)
+  description: This implant allows the implanter to produce a fake signal that security huds use to identify individuals implanted with a mindshield. # FH
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SubdermalImplant
+    implantAction: FakeMindShieldToggleAction
+    implantComponents:
+    - type: FakeMindShield # TODO: put the component on the implant and use implant relay events for the status icon
+      mindShieldStatusIcon: MindShieldIconNS
+  - type: FakeMindShieldImplant
+
+
+- type: entity
+  parent: DeathRattleImplant
+  id: DeathRattleImplantNSHC
+  name: NSHC Death Rattle Implant
+  suffix: NS
+  description: This implant will inform the NSHC radio channel should the user fall into critical condition or die.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RattleOnTrigger
+    radioChannel: SHC
+
+
+- type: entity
+  parent: BaseSubdermalImplant
+  id: TrackingImplantNS
+  name: Tracking Implant (NS)
+  description: This implant has a tracking device attached to the suit sensor network, as well as a condition monitor for the Security radio channel.
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: SubdermalImplant
+      whitelist:
+        components:
+        - MobState # admeme implanting a chair with tracking implant needs to give the chair mobstate so it can die first
+    - type: SuitSensor
+      randomMode: false
+      controlsLocked: true
+      mode: SensorCords
+      activationContainer: "implant"
+    - type: DeviceNetwork
+      deviceNetId: Wireless
+      transmitFrequencyId: SuitSensor
+    - type: StationLimitedNetwork
+    - type: WirelessNetworkConnection
+      range: 500
+    #region Starlight Tracker rattle
+    - type: TriggerOnMobstateChange
+      mobState:
+      - ActiveCritical
+      - Critical
+    - type: RattleOnTrigger
+      targetUser: true
+      radioChannel: SyndiSec
+    #endregion Starlight tracker rattle
+
+- type: entity
+  parent: BaseSubdermalImplant
+  id: ConsortiumUplinkImplant
+  name: Consortium uplink implant
+  description: This implant lets the user access a hidden Consortium uplink at will.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SubdermalImplant
+    implantAction: ActionOpenUplinkImplant
+    whitelist:
+      components:
+      - Hands
+  - type: RemoteStore
+    proto: StorePresetConsortiumRemoteUplink
+    currency: Refinedbluespacecrystal
+  - type: UserInterface
+    interfaces:
+      enum.StoreUiKey.Key:
+        type: StoreBoundUserInterface

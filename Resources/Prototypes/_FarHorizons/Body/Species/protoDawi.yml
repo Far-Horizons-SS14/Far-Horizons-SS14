@@ -29,10 +29,17 @@
 
 - type: entity
   parent:
+  - ActiveCritBase
   - AppearanceProtoDawi
   - BaseMobProtoDawi
   id: MobProtoDawi
   name: Urist McHands The ProtoDawi
+  components:
+    - type: MobThresholds
+      thresholds:
+        0: Alive
+        110: ActiveCritical
+        220: Dead
 
 # Organs
 
@@ -49,11 +56,18 @@
   components:
   - type: Metabolizer
     metabolizerTypes: [ Dwarf ]
-  - type: SolutionContainerManager
+  - type: SolutionManager
     solutions:
-      food: {}
-      stomach:
-        maxVol: 75
+    - SolutionProtoDawiStomach
+
+- type: entity
+  parent: SolutionStomach
+  id: SolutionProtoDawiStomach
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    solution:
+      maxVol: 225
 
 - type: entity
   parent: OrganProtogenLiver

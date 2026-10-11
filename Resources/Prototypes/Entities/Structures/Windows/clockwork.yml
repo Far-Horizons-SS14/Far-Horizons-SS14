@@ -2,7 +2,7 @@
   id: ClockworkWindow
   name: clockwork window
   description: Don't smudge up the brass down there.
-  parent: Window
+  parent: BaseWindow #FH 
   components:
   - type: Sprite
     drawdepth: WallTops
@@ -13,8 +13,9 @@
     fuelCost: 10
     doAfterDelay: 2
   - type: Damageable
-    damageContainer: StructuralInorganic
     damageModifierSet: RGlass
+  - type: Injurable
+    damageContainer: StructuralInorganic
   - type: Destructible
     thresholds:
     - trigger:
@@ -52,6 +53,8 @@
     trackAllDamage: true
     damageOverlay:
       sprite: Structures/Windows/cracks.rsi
+  - type: Paintable #FH start
+    group: null #FH end
 
 - type: entity
   id: WindowClockworkDirectional

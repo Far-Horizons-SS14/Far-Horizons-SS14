@@ -69,6 +69,12 @@
       prob: 0.5 #Starlight
     - !type:NestedSelector
       tableId: FillEmergencyInflatables
+    #FH Start
+    - !type:GroupSelector
+      children:
+      - id: CoolingUnit
+      - id: EmergencyCoolingUnit
+    #FH End
 
 - type: entity
   id: ClosetEmergencyFilledRandom
@@ -111,6 +117,12 @@
       - id: NitrogenTankFilled
     - !type:NestedSelector
       tableId: FillEmergencyInflatables
+    #FH Start
+    - !type:GroupSelector
+      children:
+      - id: CoolingUnit
+      - id: EmergencyCoolingUnit
+    #FH End
 
 - type: entity
   id: ClosetEmergencyN2FilledRandom
@@ -145,6 +157,8 @@
       - id: OxygenTankFilled
       - id: EmergencyNitrogenTankFilled # Starlight - vox gang
       - id: NitrogenTankFilled # Starlight - vox gang
+      - id: CoolingUnit # Starlight - Beep, Boop!
+      - id: EmergencyCoolingUnit # Starlight
     - id: CrowbarRed
     - !type:GroupSelector
       children:
@@ -297,6 +311,7 @@
     - id: PowerCellMedium
     - id: DoubleEmergencyOxygenTankFilled
     - id: DoubleEmergencyNitrogenTankFilled
+    - id: CoolingUnit # FH
 
 - type: entityTable
   id: ToiletCisternUtilityTable

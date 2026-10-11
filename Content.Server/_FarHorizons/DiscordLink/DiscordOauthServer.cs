@@ -8,12 +8,12 @@ using Robust.Shared.Configuration;
 
 namespace Content.Server._FarHorizons.DiscordLink;
 
-public sealed class DiscordOauthServer : IPostInjectInit
+public sealed partial class DiscordOauthServer : IPostInjectInit
 {
-    [Dependency] private readonly IStatusHost _statusHost = default!;
-    [Dependency] private readonly IDiscordLinkManager _discordLinkManager = default!;
-    [Dependency] private readonly ILogManager _logManager = default!;
-    [Dependency] private readonly DiscordRequestsAdapter _requests = default!;
+    [Dependency] private IStatusHost _statusHost = default!;
+    [Dependency] private IDiscordLinkManager _discordLinkManager = default!;
+    [Dependency] private ILogManager _logManager = default!;
+    [Dependency] private DiscordRequestsAdapter _requests = default!;
     private ISawmill _sawmill = default!;
 
     private void RegisterHandler(HttpMethod method, string exactPath, Func<IStatusHandlerContext, Task> handler)

@@ -1,0 +1,624 @@
+# Weapons
+
+uplink-consortium-pistol-viper-name = Viper
+uplink-consortium-pistol-viper-desc = A small, easily concealable, but somewhat underpowered gun. Retrofitted with a fully automatic receiver. Uses pistol magazines (9mm).
+
+uplink-consortium-pistol-corona-name = UA - Corona 
+uplink-consortium-pistol-corona-desc = A intellectually complex, effective, and loud Consortium Pistol. Named afer the outer part of a star. Uses UA capsule.
+
+uplink-consortium-pistol-cobra-name = Cobra
+uplink-consortium-pistol-cobra-desc = A rugged, robust operator handgun with inbuilt silencer. Uses pistol magazines (.25 caseless).
+
+uplink-consortium-rifle-mosin-name = Kardashev-Mosin
+uplink-consortium-rifle-mosin-desc = A bolt action service rifle that has seen many wars. Not modern by any standard, hand loaded, and terrible recoil, but it is cheap.
+
+uplink-consortium-esword-name = Energy Sword
+uplink-consortium-esword-desc = A very dangerous energy sword that can reflect shots. Can be stored in pockets when turned off. Makes a lot of noise when used or turned on.
+
+uplink-consortium-esword-double-name = Double Bladed Energy Sword
+uplink-consortium-esword-double-desc = A much more expensive counter part to the normal energy sword: with a much higher reflection chance, larger attack angle, higher structural damage, and faster swing. Makes a lot of noise when used or turned on.
+
+uplink-consortium-hypereutactic-blade-name = Hypereutactic Blade
+uplink-consortium-hypereutactic-blade-desc = A gigantic energy sword with power that matches its looks. Requires two hands. Slow and unwieldy, yet pretty adept at reflecting. Previously made infamous by an operative wearing a joy mask. You wouldn't want to see this coming at you down the hall!
+
+uplink-consortium-edagger-name = Energy Dagger
+uplink-consortium-edagger-desc = A small energy blade conveniently disguised in the form of a pen.
+
+uplink-consortium-fire-axe-flaming-name = Fire Axe
+uplink-consortium-fire-axe-flaming-desc = A classic-style weapon infused with advanced atmos technology to allow it to set targets on fire. Now with rugged rubberized handle!
+
+uplink-consortium-gloves-north-star-name = Powered Gloves
+uplink-consortium-gloves-north-star-desc = A pair of gloves that increase your punching power drastically, allowing you to beat people to death in several punches.
+
+uplink-consortium-gloves-knuckleduster-name = Consortium Knuckle Dusters
+uplink-consortium-gloves-knuckleduster-desc = A pair of plastitanium knuckle dusters that let you punch hard enough to break the Commandants jaw into pieces.
+
+uplink-consortium-hushpup-name = Hushpup
+uplink-consortium-hushpup-desc = A powerful silenced shotgun with a low magazine capacity. Uses 12 gauge shotgun shells.
+
+uplink-consortium-c20r-name = C-20r
+uplink-consortium-c20r-desc = Old faithful: The classic C-20r Submachine Gun.
+
+uplink-consortium-bulldog-name = Bulldog
+uplink-consortium-bulldog-desc = Lean and mean: Contains the popular Bulldog Shotgun.
+
+uplink-consortium-grenade-launcher-name = China-Lake Crate
+uplink-consortium-grenade-launcher-desc = An old China-Lake grenade launcher bundled with 5 rounds of anti-personnel ammo.
+
+# Explosives
+uplink-consortium-explosive-grenade-name = Explosive Grenade
+uplink-consortium-explosive-grenade-desc = A simplistic grenade with a 3.5 second long fuse that is geared towards injuring personnel. Causes minimal hull damage.
+
+uplink-consortium-flash-grenade-name = Flashbang
+uplink-consortium-flash-grenade-desc = A standard-issue flashbang, capable of blinding and slowing down anyone without proper protection. This, of course, includes you; make sure you're properly equipped before using it.
+
+uplink-consortium-smoke-grenade-name = Smoke Grenade
+uplink-consortium-smoke-grenade-desc = A grenade that releases a huge cloud of smoke, perfect for killing someone in the shadows or making a sneaky getaway.
+
+uplink-consortium-mini-bomb-name = Minibomb
+uplink-consortium-mini-bomb-desc = A low-yield, high-impact precision sabotage explosive with a 5 second long fuse. Perfect for quickly destroying a machine, dead body, or whatever else needs to go.
+
+uplink-consortium-singularity-grenade-name = Singularity Grenade
+uplink-consortium-singularity-grenade-desc = Grenade that simulates the power of a singularity, generates powerful gravity well.
+
+uplink-consortium-whitehole-grenade-name = Whitehole Grenade
+uplink-consortium-whitehole-grenade-desc = Grenade that repulses everything around for about 10 seconds. Very useful in small rooms and for chasing someone.
+
+uplink-consortium-penguin-grenade-name = Grenade Penguin
+uplink-consortium-penguin-grenade-desc = A small, highly-aggressive penguin with a grenade strapped around its neck. Trained to ignore all Syndicate agents and relentlessly pursue a single, random nearby target when released.
+
+uplink-consortium-c4-name = C-4
+uplink-consortium-c4-desc = Use it to breach walls, airlocks or sabotage equipment. It can be attached to almost all objects and has a modifiable timer with a minimum setting of 10 seconds.
+
+uplink-consortium-c4-bundle-name = C-4 Bundle
+uplink-consortium-c4-bundle-desc = Because sometimes quantity is quality. Contains 8 C-4 plastic explosives.
+
+uplink-consortium-grenadier-rig-name = Grenadier Chest Rig
+uplink-consortium-grenadier-rig-desc = All you need for a loud party: 4 explosive grenades, 2 EMP grenades and 2 minibombs in a chest rig.
+
+uplink-consortium-emp-grenade-name = EMP Grenade
+uplink-consortium-emp-grenade-desc = A grenade designed to disrupt electronic systems. Useful for disrupting communications, security's energy weapons, and APCs when you're in a tight spot.
+
+uplink-consortium-exploding-pen-name = Exploding Pen
+uplink-consortium-exploding-pen-desc = A class IV explosive device contained within a standard pen. Comes with a 4 second fuse.
+
+uplink-consortium-exploding-syndicate-bomb-name = Syndicate Bomb
+uplink-consortium-exploding-syndicate-bomb-desc = A big, anchored bomb that can create a huge explosion if not defused in time. Useful as a distraction. Has an adjustable timer with a minimum setting of 180 seconds.
+
+uplink-consortium-exploding-syndicate-bomb-fake-name = Decoy Syndicate Bomb
+uplink-consortium-exploding-syndicate-bomb-fake-desc = A training bomb carefully made to look just like the real thing. In all ways similar to a syndicate bomb, but only creates a tiny explosion.
+
+uplink-consortium-cluster-grenade-name = Cluster Grenade
+uplink-consortium-cluster-grenade-desc = Three explosive grenades bundled together. The cluster splits after 3.5 seconds.
+
+uplink-consortium-incendiary-grenade-name = Incendiary Grenade
+uplink-consortium-incendiary-grenade-desc = Releases a spray of incendiary fragments, igniting anyone near the detonation area.
+
+uplink-consortium-shrapnel-grenade-name = Shrapnel Grenade
+uplink-consortium-shrapnel-grenade-desc = Launches a spray of sharp fragments dealing great damage against unarmored targets.
+
+# Ammo
+uplink-consortium-pistol-magazine-name = Pistol Magazine (9mm)
+uplink-consortium-pistol-magazine-desc = Pistol magazine with 15 cartridges. Compatible with the Viper.
+
+uplink-consortium-pistol-magazine-nameFMJ = Pistol Magazine (9mm FMJ)
+uplink-consortium-pistol-magazine-descFMJ = Pistol magazine with 10 cartridges
+
+uplink-consortium-pistol-magazine-nameSP = Pistol Magazine (9mm SP)
+uplink-consortium-pistol-magazine-descSP = Pistol magazine with 10 cartridges.
+
+uplink-consortium-pistol-magazine-nameHP = Pistol Magazine (9mm HP)
+uplink-consortium-pistol-magazine-descHP = Pistol magazine with 10 cartridges.
+
+uplink-consortium-pistol-magazine-c20r-name = SMG magazine (9mm)
+uplink-consortium-pistol-magazine-c20r-desc = SMG magazine with 30 cartridges. Compatible with C-20r.
+
+uplink-consortium-magazine-bulldog-pellet-name = Drum magazine (12 gauge pellet)
+uplink-consortium-magazine-bulldog-pellet-desc = Shotgun magazine with 8 shells filled with buckshot. Compatible with the Bulldog.
+
+uplink-consortium-magazine-bulldog-slug-name = Drum magazine (12 gauge slug)
+uplink-consortium-magazine-bulldog-slug-desc = Shotgun magazine with 8 shells filled with slugs. Compatible with the Bulldog.
+
+uplink-consortium-estoc-ammo-name = Rifle magazine (5.56 rifle)
+uplink-consortium-estoc-ammo-desc = A rifle magazine with 25 cartridges. Compatible with the Estoc DMR.
+
+uplink-consortium-pistol-magazine-caseless-name = Pistol Magazine (.25 caseless)
+uplink-consortium-pistol-magazine-caseless-desc = Pistol magazine with 10 cartridges. Compatible with the Cobra.
+
+uplink-consortium-ua-magazine-name = AP Magazine (UA)
+uplink-consortium-ua-magazine-desc = Specialised pistol magazine with 6 armor-piercing cartridges, capable of ignoring armor entirely. Compatible with the UA - Corona.
+
+uplink-consortium-mosin-ammo-name = Ammunition Box (.30 rifle)
+uplink-consortium-mosin-ammo-desc = A box of 60 cartridges for the surplus rifle.
+
+uplink-consortium-sniper-ammo-name = Ammunition Box (.60 antimateriel)
+uplink-consortium-sniper-ammo-desc = A box of 10 cartridges for the Hristov sniper rifle.
+
+# Utility
+uplink-consortium-holopara-kit-name = Holoparasite Kit
+uplink-consortium-holopara-kit-desc = The pride and joy of Cybersun. Contains an injector that hosts a sentient metaphysical guardian made of hard light which resides in the user's body when not active.
+    The guardian can punch rapidly and is immune to hazardous environments while being resistant to direct trauma, but shares any damage it takes with the user.
+
+uplink-consortium-holoclown-kit-name = Holoclown Kit
+uplink-consortium-holoclown-kit-desc = A joint venture between Cybersun and Honk.co. Contains an injector that hosts a sentient metaphysical clown made of hard light which resides in the user's body when not active.
+    The holoclown has pockets to store things, a hardlight hand it can manipulate the environment with and is immune to hazardous environments while being resistant to direct trauma, but shares any damage it takes with the user.
+
+uplink-consortium-holster-name = Shoulder Holster
+uplink-consortium-holster-desc = A deep shoulder holster capable of holding many types of ballistics.
+
+uplink-consortium-chest-rig-name = Chest Rig
+uplink-consortium-chest-rig-desc = Explosion-resistant tactical webbing used for holding traitor goods.
+
+uplink-consortium-emag-name = Emag
+uplink-consortium-emag-desc = The business card of the syndicate, this sequencer is able to tamper with a variety of station devices. Recharges automatically.
+
+uplink-consortium-access-breaker-name = Access Breaker
+uplink-consortium-access-breaker-desc = A hacked access configurator and a good friend of the emag. This device is able to force airlocks open as well as erase access requirements from station equipment. Recharges automatically.
+
+uplink-consortium-agent-id-card-name = Agent ID Card
+uplink-consortium-agent-id-card-desc = A modified ID card that can copy accesses from other cards and change its name and job title at-will.
+
+uplink-consortium-syndicate-id-card-name = Syndicate ID Card
+uplink-consortium-syndicate-id-card-desc = A Syndicate ID card, with Syndicate access. Unlikely to be useful on its own, but goes great with reconfigured doors. Does not come with access-copying functionality.
+
+uplink-consortium-black-jetpack-name = Black Jetpack
+uplink-consortium-black-jetpack-desc = A black jetpack. It allows you to fly around in space. Refills not included, use your fuel wisely.
+
+uplink-consortium-reinforcement-radio-ancestor-name = Genetic Ancestor Reinforcement Teleporter
+uplink-consortium-reinforcement-radio-ancestor-desc =  Call in a trained ancestor of your choosing to assist you. Comes with a single syndicate cigarette.
+
+uplink-consortium-reinforcement-radio-name = Reinforcement Teleporter
+uplink-consortium-reinforcement-radio-traitor-desc =  Radio in a reinforcement agent of extremely questionable quality. No off button, buy this if you're ready to party. Call in a medic or spy or thief to help you out. Good luck.
+
+uplink-consortium-reinforcement-radio-nukeops-name = Nuclear Operative Teleporter
+uplink-consortium-reinforcement-radio-nukeops-desc =  Radio in a nuclear operative of extremely questionable quality. No off button, buy this if you're ready to party. They have basic nuclear operative gear.
+
+uplink-consortium-reinforcement-radio-assault-cyborg-name = Syndicate Assault Cyborg Teleporter
+uplink-consortium-reinforcement-radio-assault-cyborg-desc = Radio in a syndicate assault cyborg, equipped with a modified L6, a double esword and basic hacking tools.
+
+uplink-consortium-mech-teleporter-heavy-name = Heavy Mech teleporter
+uplink-consortium-mech-teleporter-heavy-desc = Contains Cybersan heavy armored mech with integrated chainsword, Ultra AC-2, LBX AC 10 "Scattershot", BRM-6 Missile Rack and P-X Tesla Cannon.
+
+uplink-consortium-mech-teleporter-assault-name = Assault Mech teleporter
+uplink-consortium-mech-teleporter-assault-desc = Contains Cybersan lightly armored mech with integrated chainsword, LBX AC 10 "Scattershot", SRM-8 Light Missile Rack and P-X Tesla Cannon.
+
+uplink-consortium-stealth-box-name = Stealth Box
+uplink-consortium-stealth-box-desc = A box outfitted with stealth technology. Sneak around unnoticed, but don't move too fast or you'll be revealed!
+
+uplink-consortium-headset-name = Syndicate Over-Ear Headset
+uplink-consortium-headset-desc = A headset that allows you to communicate with other syndicate operatives. Has 4 slots for encryption keys.
+
+uplink-consortium-encryption-key-name = Syndicate Encryption Keys
+uplink-consortium-encryption-key-desc = Two encryption keys for access to the secret frequency of our special agents. Give the spare to a friend, but make sure it doesn't fall into enemy hands.
+
+uplink-consortium-binary-translator-key-name = Binary Translator Key
+uplink-consortium-binary-translator-key-desc = Lets you tap into the silicons' binary channel. Don't talk on it though, at least not without a voice mask.
+
+uplink-consortium-hypopen-name = Hypopen
+uplink-consortium-hypopen-desc = A chemical hypospray disguised as a pen, capable of instantly injecting up to 10u of reagents. Starts empty.
+
+uplink-consortium-clothing-eyes-hud-syndicate-name = Syndicate Visor
+uplink-consortium-clothing-eyes-hud-syndicate-desc = The syndicate's professional head-up display, designed for better detection of humanoids and their subsequent elimination.
+
+uplink-consortium-radio-jammer-name = Radio Jammer
+uplink-consortium-radio-jammer-desc = This device will disrupt any nearby outgoing radio communication as well as suit sensors when activated.
+
+uplink-consortium-syndicate-weapon-module-name = Weapon Cyborg Module
+uplink-consortium-syndicate-weapon-module-desc = Upgrades a cyborg with both an energy dagger and a Viper ROW pistol.
+
+uplink-consortium-syndicate-martyr-module-name = Martyr Cyborg Module
+uplink-consortium-syndicate-martyr-module-desc = Turn your emagged borg friend into a walking bomb with just this module. Make sure they're loyal to your cause, results may vary.
+
+uplink-consortium-singularity-beacon-name = Singularity Beacon
+uplink-consortium-singularity-beacon-desc = A device that attracts singularities. Has to be anchored and powered. Causes singularities to grow when consumed.
+
+uplink-consortium-antimov-law-name = Antimov Law Circuit
+uplink-consortium-antimov-law-desc = A very dangerous Lawset to use when you want to cause the A.I. to go haywire, use with caution.
+
+# Implants
+uplink-consortium-storage-implanter-name = Storage Implanter
+uplink-consortium-storage-implanter-desc = Hide goodies inside of yourself with new bluespace technology!
+
+uplink-consortium-freedom-implanter-name = Freedom Implanter
+uplink-consortium-freedom-implanter-desc = Get away from those nasty sec officers with this three use implant!
+
+uplink-consortium-scram-implanter-name = Scram Implanter
+uplink-consortium-scram-implanter-desc = A 2-use implant which teleports you within a large radius. Attempts to teleport you onto an unobstructed tile. May sometimes fail to do so. Life insurance not included.
+
+uplink-consortium-dna-scrambler-implanter-name = DNA Scrambler Implanter
+uplink-consortium-dna-scrambler-implanter-desc = A single use implant that can be activated to modify your DNA and give you a completely new look.
+
+uplink-consortium-emp-implanter-name = EMP Implanter
+uplink-consortium-emp-implanter-desc = Detonates a small EMP pulse on activation that drains nearby electronics of their power, can be used three times before the internal battery runs out.
+
+uplink-consortium-macro-bomb-implanter-name = Macro Bomb Implanter
+uplink-consortium-macro-bomb-implanter-desc = Inject this and on death you'll create a large explosion. Huge team casualty cost, use at own risk. Replaces internal micro bomb.
+
+uplink-consortium-uplink-implanter-name = Uplink Implanter
+uplink-consortium-uplink-implanter-desc = Stealthily order equipment without the need for a PDA. Swallow telecrystals to top up the uplink.
+
+uplink-consortium-deathrattle-implant-name = Box Of Deathrattle Implants
+uplink-consortium-deathrattle-implant-desc = A box containing enough deathrattle implants for the whole squad. Relays a message containing your position to the syndicate channel when you go into a critical state or die.
+
+uplink-consortium-death-acidifier-implant-name = Death Acidifier Implant
+uplink-consortium-death-acidifier-implant-desc = Completely melts the user and their equipment on use or death.
+
+uplink-consortium-micro-bomb-implanter-name = Micro Bomb Implanter
+uplink-consortium-micro-bomb-implanter-desc = Explode on death or manual activation with this implant. Destroys the body with all equipment.
+
+uplink-consortium-radio-implanter-name = Radio Implanter
+uplink-consortium-radio-implanter-desc = Implants a Syndicate radio, allowing covert communication without a headset.
+
+uplink-consortium-voice-mask-implanter-name = Identity Mask Implanter
+uplink-consortium-voice-mask-implanter-desc = Modifies your vocal cords and facial structure to be able to mimic anyone you could imagine.
+
+# Bundles
+uplink-consortium-observation-kit-name = Observation Kit
+uplink-consortium-observation-kit-desc = Includes surveillance camera monitor board and security hud disguised as sunglasses.
+
+uplink-consortium-emp-kit-name = Electrical Disruptor Kit
+uplink-consortium-emp-kit-desc = The ultimate reversal on energy-based weaponry: Disables disablers, stuns stunbatons, discharges laser guns! Contains 3 EMP grenades and an EMP implanter. Note: Does not disrupt actual firearms.
+
+uplink-consortium-decoy-kit-name = Decoy Kit
+uplink-consortium-decoy-kit-desc = State-of-the-art distraction technology straight from RND. Comes with five realistic balloons, four decoy grenades, and some snap poppers!
+
+uplink-consortium-chemistry-kit-name = Chemical Synthesis Kit
+uplink-consortium-chemistry-kit-desc = A starter kit for the aspiring chemist, includes two vials of vestine for all your criminal needs!
+
+uplink-consortium-knives-kit-name = Throwing Knives Kit
+uplink-consortium-knives-kit-desc = A set of 8 throwing knives, perfect for embedding into the body of your victims. Capable of ignoring armor entirely when thrown.
+
+uplink-consortium-homerun-bat-name = Homerun Bat
+uplink-consortium-homerun-bat-desc = Send your enemies flying. Hey batta batta batta SWING batta!
+
+uplink-consortium-meds-bundle-name = Interdyne Medical Bundle
+uplink-consortium-meds-bundle-desc = An assortment of autoinjectors and premium medical equipment to cover for every possible situation. Contains an elite compact defibrillator that can be used as a weapon.
+
+uplink-consortium-ammo-bundle-name = Ammo Bundle
+uplink-consortium-ammo-bundle-desc = Reloading! Contains 4 magazines for the C-20r, 4 drums for the Bulldog, 3 magazines for the Estoc DMR, and 2 ammo boxes for the L6 SAW.
+
+uplink-consortium-sniper-bundle-name = Sniper Bundle
+uplink-consortium-sniper-bundle-desc = An inconspicuous briefcase that contains a Hristov, 10 spare bullets and a convenient disguise.
+
+uplink-consortium-c20r-bundle-name = C-20r Bundle
+uplink-consortium-c20r-bundle-desc = Old faithful: The classic C-20r Submachine Gun, bundled with three magazines.
+
+uplink-consortium-bulldog-bundle-name = Bulldog Bundle
+uplink-consortium-bulldog-bundle-desc = Lean and mean: Contains the popular Bulldog Shotgun, a 12g slug drum, and four 12g buckshot drums.
+
+uplink-consortium-estoc-bundle-name = Estoc DMR bundle
+uplink-consortium-estoc-bundle-desc = A designated marksman rifle, fitted with a mid-range optic for longer-range combat. Bundled with two rifle magazines (5.56 Rifle).
+
+uplink-consortium-grenade-launcher-bundle-name = China-Lake Crate
+uplink-consortium-grenade-launcher-bundle-desc = An old China-Lake grenade launcher bundled with 11 rounds of varying destructive capability.
+
+uplink-consortium-l6-saw-bundle-name = L6 Saw Bundle
+uplink-consortium-l6-saw-bundle-desc = More dakka: The iconic L6 light machine gun, bundled with 2 box magazines.
+
+uplink-consortium-zombie-bundle-name = Syndicate Zombie Bundle
+uplink-consortium-zombie-bundle-desc = An all-in-one kit for unleashing the undead upon a station.
+
+uplink-consortium-surplus-bundle-name = Surplus Crate
+uplink-consortium-surplus-bundle-desc = Contains 50 telecrystals worth of completely random Syndicate items. It can be useless junk or really good.
+
+uplink-consortium-super-surplus-bundle-name = Super Surplus Crate
+uplink-consortium-super-surplus-bundle-desc = Contains 125 telecrystals worth of completely random Syndicate items.
+
+uplink-consortium-starter-kit-name = Basic Operative Bundle
+uplink-consortium-starter-kit-desc = Contains 40 telecrystals of basic operative gear. For those operatives who just don't know what they should buy.
+
+# Tools
+uplink-consortium-toolbox-name = Toolbox
+uplink-consortium-toolbox-desc = A full compliment of tools for the mechanically inclined traitor. Includes a pair of insulated combat gloves and a syndicate gas mask as well.
+
+uplink-consortium-syndicate-jaws-of-life-name = Jaws Of Death
+uplink-consortium-syndicate-jaws-of-life-desc = A combined prying and cutting tool. Useful for entering the station or its departments. Can even open bolted doors!
+
+uplink-consortium-duffel-surgery-name = Surgical Duffel Bag
+uplink-consortium-duffel-surgery-desc = A large duffel bag containing a full suite of surgical tools.
+
+uplink-consortium-power-sink-name = Power Sink
+uplink-consortium-power-sink-desc = Drains immense amounts of electricity from the grid, then explodes once it's saturated. Use wrench to connect it to wires.
+
+uplink-consortium-carp-dehydrated-name = Dehydrated Space Carp
+uplink-consortium-carp-dehydrated-desc = Looks like a plush toy carp, but just add water and it becomes a real-life space carp!
+
+# Job Specific
+uplink-consortium-gatfruit-seeds-name = Packet Of Gatfruit Seeds
+uplink-consortium-gatfruit-seeds-desc = And who says guns don't grow on trees?
+
+uplink-consortium-rigged-boxing-gloves-name = Rigged Boxing Gloves
+uplink-consortium-rigged-boxing-gloves-desc = Float like a butterfly, sting like a bee.
+
+uplink-consortium-necronomicon-name = Necronomicon
+uplink-consortium-necronomicon-desc = An unholy book capable of summoning a demonic familiar.
+
+uplink-consortium-holy-hand-grenade-name = Holy Hand Grenade
+uplink-consortium-holy-hand-grenade-desc = O Lord, bless this thy hand grenade, that with it thou mayst blow thine enemies to tiny bits, in thy mercy.
+
+uplink-consortium-revolver-cap-gun-fake-name = Fake Cap Gun
+uplink-consortium-revolver-cap-gun-fake-desc = Fool your enemy! It can use both cap and magnum bullets. Comes loaded with magnum bullets.
+
+uplink-consortium-banana-peel-explosive-name = Explosive Banana Peel
+uplink-consortium-banana-peel-explosive-desc = They will burst into laughter when they slip on it!
+
+uplink-consortium-hot-potato-name = Hot Potato
+uplink-consortium-hot-potato-desc = Once activated, this time bomb can't be dropped - only passed to someone else!
+
+uplink-consortium-chimp-upgrade-kit-name = C.H.I.M.P. Handcannon Upgrade Chip
+uplink-consortium-chimp-upgrade-kit-desc = Insert this chip into a standard C.H.I.M.P. handcannon to allow it to fire omega particles. Omega particles inflict severe burns and cause anomalies to go supercritical.
+
+uplink-consortium-proximity-mine-name = Proximity Mine
+uplink-consortium-proximity-mine-desc = A throwable mine disguised as a wet floor sign. Detonates on contact with almost anything, safety always off.
+
+uplink-consortium-disposable-turret-name = Disposable Ballistic Turret
+uplink-consortium-disposable-turret-desc = Looks and functions like a normal electrical toolbox. Upon hitting the toolbox it will transform into a ballistic turret, theoretically shooting at anyone except members of the syndicate. Can be turned back into a toolbox using a screwdriver and repaired using a wrench.
+
+uplink-consortium-cluster-banana-peel-name = Cluster Banana
+uplink-consortium-cluster-banana-peel-desc = Splits into 6 explosive banana peels after being thrown, the peels detonate automatically after 20 seconds if nobody slips on them.
+
+uplink-consortium-cane-blade-name = Cane Blade
+uplink-consortium-cane-blade-desc = A cane that has a hidden blade that can be unsheathed.
+
+# Armor
+uplink-consortium-chameleon-name = Chameleon Kit
+uplink-consortium-chameleon-desc = A backpack full of items that contain chameleon technology allowing you to disguise as pretty much anyone on the station, and more! Comes with a free Agent ID card!
+
+uplink-consortium-clothing-no-slips-shoes-name = No-slip Shoes
+uplink-consortium-clothing-no-slips-shoes-desc = Chameleon shoes that protect you from slips.
+
+uplink-consortium-clothing-chameleon-thieving-gloves-name = Chameleon Thieving Gloves
+uplink-consortium-clothing-chameleon-thieving-gloves-desc = Discreetly steal from pockets and improve your thieving technique with these fancy new gloves. They can change appearance to match any pair of gloves!
+
+uplink-consortium-clothing-outer-vest-web-name = Web Vest
+uplink-consortium-clothing-outer-vest-web-desc = A synthetic armor vest. This one has added webbing and ballistic plates.
+
+uplink-consortium-clothing-outer-vest-web-elite-name = Elite Web Vest
+uplink-consortium-clothing-outer-vest-web-elite-desc = A synthetic armor vest. This one has added webbing and heat resistant fibers.
+
+uplink-consortium-clothing-shoes-boots-mag-syndie-name = Blood-red Magboots
+uplink-consortium-clothing-shoes-boots-mag-syndie-desc = A pair of boots that prevent slipping and, in zero gravity, allow you to move normally, at the cost of a slight slowdown. Additionally, they have jetpack functionality and come fueled, but don't last for long.
+
+uplink-consortium-eva-syndie-name = Syndicate EVA Bundle
+uplink-consortium-eva-syndie-desc = A simple EVA suit that offers no protection other than what's needed to survive in space.
+
+uplink-consortium-hardsuit-carp-name = Carp Hardsuit
+uplink-consortium-hardsuit-carp-desc = Looks like an ordinary carp suit, except fully spaceproof and tricks space carp into thinking you are one of them.
+
+uplink-consortium-hardsuit-lambda-name = "Spartan" Hardsuit
+uplink-consortium-hardsuit-lambda-desc = The signiture hardsuit of the Lambda Hardliners. The perfect choice to fight against insurmountable odds.
+
+uplink-consortium-lambda-raid-name = Lambda Raid Suit "Apollo"
+uplink-consortium-lambda-raid-desc = A very durable and reasonably flexible suit of armor for those missions, where speed is of utmost necessity. Incapable of space walks.
+
+uplink-consortium-hardsuit-infiltration-name = Lambda Infiltration Hardsuit "Hades"
+uplink-consortium-hardsuit-infiltration-desc = A specialized hardsuit, allowing the user to be efficient and unseen, just like Tartarus.
+
+uplink-consortium-hardsuit-lambda-elite-name = Lambda Elite Hardsuit "Helios"
+uplink-consortium-hardsuit-lambda-elite-desc = An elite version of the "Spartan" hardsuit, allowing the user to embody The Sun during missions.
+
+uplink-consortium-clothing-outer-hardsuit-juggernaut-name = Lambda Juggernaut Suit "Polyphemus"
+uplink-consortium-clothing-outer-hardsuit-juggernaut-desc = A suit of armor as powerful as the fabled cyclops. Protects everything except the eyes exceptionally well.
+
+uplink-consortium-energy-dome-name = Personal Energy Dome
+uplink-consortium-energy-dome-desc = A personal shield generator that protects the wearer from lasers and bullets but prevents from using ranged weapons himself. Comes with a small power cell.
+
+# Misc
+uplink-consortium-cyberpen-name = Cybersun Pen
+uplink-consortium-cyberpen-desc = Cybersun's legal department pen, invaluable for forging documents and escaping prisons. Smells vaguely of hard-light and war profiteering.
+
+uplink-consortium-decoy-disk-name = Decoy Nuclear Disk
+uplink-consortium-decoy-disk-desc = A piece of plastic with a lenticular printing, made to look like a nuclear authentication disk.
+
+uplink-consortium-cigarettes-name = Syndicate Smokes Packet
+uplink-consortium-cigarettes-desc = Elite cigarettes for elite agents. Infused with medicine for when you need to do more than calm your nerves.
+
+uplink-consortium-clothing-conducting-gloves-name = Conducting Gloves
+uplink-consortium-clothing-conducting-gloves-desc = Looks exactly like insulated gloves, but shocks you far worse than if you had nothing at all! Best given as a gift to assistants you really don't like.
+
+uplink-consortium-snack-box-name = Syndicate Snack Box
+uplink-consortium-snack-box-desc = A box of delicious snacks and drinks to eat alone or with your team. Includes 1 toy you didn't want.
+
+uplink-consortium-eshield-name = Energy Shield
+uplink-consortium-eshield-desc = Exotic energy shield that reflects almost all laser beams, as well as a little protection from bullets and other physical attacks.
+
+uplink-consortium-soap-name = Soap
+uplink-consortium-soap-desc = An untrustworthy bar of soap. Smells of fear.
+
+uplink-consortium-ultrabright-lantern-name = Extra-Bright Lantern
+uplink-consortium-ultrabright-lantern-desc = This ultra-bright lantern can be used to blind people, similar to a flash.
+
+uplink-consortium-combat-medkit-name = Combat Medical Kit
+uplink-consortium-combat-medkit-desc = A medkit made for fixing combat injuries.
+
+uplink-consortium-combat-medipen-name = Combat Medipen
+uplink-consortium-combat-medipen-desc = A single-use medipen containing chemicals that regenerate most types of damage.
+
+uplink-consortium-nocturine-chemistry-bottle-name = Nocturine Bottle
+uplink-consortium-nocturine-chemistry-bottle-desc = A chemical that puts your target straight to sleep.
+
+uplink-consortium-stimpack-name = Hyperzine Injector
+uplink-consortium-stimpack-desc = The legendary chemical produced by Donk Co. for the Syndicate. Injecting yourself with this will increase your run speed and let you recover from stuns faster for 60 seconds.
+
+uplink-consortium-stimkit-name = Hyperzine Injector Kit
+uplink-consortium-stimkit-desc = A medkit containing 6 hyperzine microinjectors, which each inject you with enough hyperzine to last for 30 seconds.
+
+uplink-consortium-syndicate-segway-crate-name = Syndicate Segway
+uplink-consortium-syndicate-segway-crate-desc = Be an enemy of the corporation, in style!
+
+uplink-consortium-syndicate-sponge-box-name = Syndicate Sponge Box
+uplink-consortium-syndicate-sponge-box-desc = A box containing 6 syndicate sponges disguised as monkey cubes, these cubes turn into a variety of angry wildlife after coming into contact with water.
+
+uplink-consortium-slipocalypse-clustersoap-name = Slipocalypse Clustersoap
+uplink-consortium-slipocalypse-clustersoap-desc = Scatters arounds small pieces of syndicate-brand soap after being thrown, these pieces of soap evaporate after 60 seconds.
+
+uplink-consortium-mobcat-microbomb-name = SyndiCat Teleporter
+uplink-consortium-mobcat-microbomb-desc = Call in a handy cat equipped with a microbomb implant. Explodes when seriously injured. Can bite painfully.
+
+uplink-consortium-chameleon-projector-name = Chameleon Projector
+uplink-consortium-chameleon-projector-desc = Disappear in plain sight by creating a hologram of an item around you. Do not use this to play the game "Object Search".
+
+# Pointless
+uplink-consortium-revolver-cap-gun-name = Cap Gun
+uplink-consortium-revolver-cap-gun-desc = Looks almost like the real thing! Ages 8 and up.
+
+uplink-consortium-syndicate-stamp-name = Syndicate Rubber Stamp
+uplink-consortium-syndicate-stamp-desc = A rubber stamp for stamping important documents.
+
+uplink-consortium-cat-ears-name = Cat Ears
+uplink-consortium-cat-ears-desc = UwU
+
+uplink-consortium-outlaw-hat-name = Outlaw Hat
+uplink-consortium-outlaw-hat-desc = A hat that makes you look like you carry a notched pistol, numbered one and nineteen more.
+
+uplink-consortium-outlaw-glasses-name = Outlaw Glasses
+uplink-consortium-outlaw-glasses-desc = A must for every self-respecting undercover agent.
+
+uplink-consortium-costume-pyjama-name = Syndicate Pyjama Duffel Bag
+uplink-consortium-costume-pyjama-desc = Contains 3 pairs of syndicate pyjamas and 4 plushies for the ultimate sleepover.
+
+uplink-consortium-costume-clown-name = Clown Costume Duffel Bag
+uplink-consortium-costume-clown-desc = Contains a complete Clown outfit. Includes PDA and service radio.
+
+uplink-consortium-carp-suit-bundle-name = Carp Suit Duffel Bag
+uplink-consortium-carp-suit-bundle-desc = Contains a carp suit and some friends to play with.
+
+uplink-consortium-operative-suit-name = Operative Jumpsuit
+uplink-consortium-operative-suit-desc = A suit given to our nuclear operatives with fine fabric to make sure you stand out, no other benefits aside from looking cool.
+
+uplink-consortium-operative-skirt-name = Operative Jumpskirt
+uplink-consortium-operative-skirt-desc = A skirt given to our nuclear operatives with fine fabric to make sure you stand out, no other benefits aside from looking cool.
+
+uplink-consortium-balloon-name = Syndie Balloon
+uplink-consortium-balloon-desc = Handed out to the bravest souls who survived the "atomic twister" ride at Syndieland.
+
+uplink-consortium-scarf-syndie-red-name = Striped Syndicate Red Scarf
+uplink-consortium-scarf-syndie-red-desc = A stylish striped syndicate red scarf. The perfect winter accessory for those with a keen fashion sense, and those who are in the mood to steal something.
+
+uplink-consortium-scarf-syndie-green-name = Striped Syndicate Green Scarf
+uplink-consortium-scarf-syndie-green-desc = A stylish striped syndicate green scarf. The perfect winter accessory for those with a keen fashion sense, and those who are in the mood to steal something.
+
+uplink-consortium-syndicate-pai-name = Syndicate Personal AI Device
+uplink-consortium-syndicate-pai-desc = A Syndicate variant of the pAI with access to the Syndicate radio channel. We do not guarantee their usefulness.
+
+uplink-consortium-bribe-name = Lobbying Bundle
+uplink-consortium-bribe-desc = A heartfelt gift that can help you sway someone's opinion. Real or counterfeit? Yes.
+
+uplink-consortium-hypodart-name = Hypodart
+uplink-consortium-hypodart-desc = A seemingly unremarkable dart with an enlarged reservoir for chemicals. It can store up to 10u reagents in itself, and instantly inject when it hits the target. Starts empty.
+
+uplink-consortium-barber-scissors-name = Barber Scissors
+uplink-consortium-barber-scissors-desc = A good tool to give your fellow agent a nice haircut, unless you want to give it to yourself.
+
+uplink-consortium-backpack-syndicate-name = Syndicate backpack
+uplink-consortium-backpack-syndicate-desc = A lightweight explosion-proof backpack for holding various traitor goods.
+
+uplink-consortium-cameraBug-name = Camera Bug
+uplink-consortium-cameraBug-desc = A portable device that allows you to view the station's cameras.
+
+uplink-consortium-combat-bakery-name = Combat Bakery Kit
+uplink-consortium-combat-bakery-desc = A kit of clandestine baked weapons. Contains a baguette sword, a pair of throwing croissants, and a syndicate microwave board for making more. Once the job is done, eat the evidence.
+
+uplink-consortium-business-card-name = Syndicate Business Card
+uplink-consortium-business-card-desc = A business card that you can give to someone to demonstrate your involvement in the syndicate or leave at the crime scene in order to make fun of the detective. You can buy no more than three of them.
+
+uplink-consortium-fake-mindshield-name = Fake Mindshield
+uplink-consortium-fake-mindshield-desc = A togglable implant capable of mimicking the same transmissions a real mindshield puts out when on, tricking capable Heads-up displays into thinking you have a mindshield (Nanotrasen brand implanter not provided.)
+
+uplink-consortium-contraband-lighter-name = Contraband Lighter Box
+uplink-consortium-contraband-lighter-desc = A mystery box guaranteed to contain a syndicate branded lighter. No fuel required
+
+uplink-consortium-smuggler-satchel-name = Smuggler's Satchel
+uplink-consortium-smuggler-satchel-desc = A handy, suspicious looking satchel. Just flat enough to fit underneath floor tiles.
+
+uplink-consortium-acolyte-armor-name = Acolyte Armor
+uplink-consortium-acolyte-armor-desc = The must have of any self respecting cult leader. An evil looking piece of armor, made of bones, and surprisingly resistant to damage.
+
+uplink-consortium-briefcase-gun-name = Briefcase Gun
+uplink-consortium-briefcase-gun-desc = An indistinct briefcase with a highly compact C-20K mounted inside it. Careful not the grip the handle too tight!
+
+uplink-consortium-energycrossbow-name = Mini Energy Crossbow
+uplink-consortium-energycrossbow-desc = The go-to sidearm of any operative who prefers their victims not to be moving. Fires regenerating toxic arrows that floors victims in an instant.
+
+
+uplink-consortium-M81A1-fissure-crate-teleporter-name = M81A1 "Fissure" Bundle
+uplink-consortium-M81A1-fissure-crate-teleporter-desc = For when you need extra BOOM in your operations, comes included with a M81 rocket loader chest rig that is equipped with seven 120mm rockets. "This is guranteed to blow up in your face... consortium approved!" - Random Lone Operative 
+
+uplink-consortium-rocket-ammo-120mm-HE-name = 120mm High-Explosive Rocket
+uplink-consortium-rocket-ammo-120mm-HE-desc = A robust rocket ammo that is designed to give as much "OOMF" as possible, results are that of a large explosion. Maintain Caution & Spacing.
+
+uplink-consortium-rocket-ammo-120mm-AP-name = 120mm Armor-Piercing Rocket
+uplink-consortium-rocket-ammo-120mm-AP-desc = A robust yet lean rocket ammo that is designed to skew your enemies even with the toughest of armor. Maintain large amounts of cauton & spacing.
+
+uplink-consortium-rocket-ammo-120mm-incendiary-name = 120mm Incendiary Rocket
+uplink-consortium-rocket-ammo-120mm-incendiary-desc = A robust rocket ammo that is designed to ensure your enemies are set ablaze and stay ablaze still they stop wiggling, results are of a large fiery explosion. Maintain Caution & Spacing.
+
+uplink-consortium-rocket-ammo-120mm-shrapnel-name = 120mm Shrapnel Rocket
+uplink-consortium-rocket-ammo-120mm-shrapnel-desc = A toned-down variant of the 120mm armor-piercing rocket, can't pierce any size of armor.
+
+uplink-consortium-syndicate-secway-name = Segway
+uplink-consortium-syndicate-secway-description = Outspeed security on this BLISTERINGLY fast one horsepower segway!
+
+uplink-consortium-syndicate-secway-armored-light-name = Lightly Armored Segway
+uplink-consortium-syndicate-secway-armored-light-description = Outspeed security on this BLISTERINGLY fast one horsepower segway! Now with the same protection as Type I vest.
+
+uplink-consortium-lecter-type-t-name = Lecter Type-T Case
+uplink-consortium-lecter-type-t-description = A simple lecter with a short barrel and a angled foregrip to enable better handling, pre-loaded with SP. Also comes with an Ammo Selector.
+
+uplink-consortium-deagle-name = Jungle Hawk Case
+uplink-consortium-deagle-desc = A robust .44 magnum handgun pre-loaded with SP. Comes with an Ammo Selector.
+
+uplink-consortium-stechkin-name = Stechkin Pistol Case
+uplink-consortium-stechkin-desc = A small, easily concealable .38 Special Handgun. Comes pre-loaded with FMJ and an Ammo Selector.
+
+uplink-consortium-pistol-corona-name-fh = Corona Case
+uplink-consortium-pistol-corona-desc-fh = A intellectually complex, effective, and loud Consortium Pistol. Comes with 3 extra magazines. Uses UA capsules.
+
+uplink-consortium-pistol-corona-name-fh-ap = AP Corona Case
+uplink-consortium-pistol-corona-desc-fh-ap = A intellectually complex, effective, and loud Consortium Pistol. Comes with 3 extra AP magazines. Uses UA capsules.
+
+uplink-consortium-pistol-viper-name-fh = Viper Case
+uplink-consortium-pistol-viper-desc-fh = A small, easily concealable but somewhat underpowered gun pre-loaded with SP. Retrofitted with a fully automatic receiver, uses pistol magazines (9mm). Comes with an Ammo Selector.
+
+uplink-consortium-pistol-cobra-name-fh = Cobra Case
+uplink-consortium-pistol-cobra-desc-fh  = A rugged, robust operator handgun with inbuilt silencer. Uses pistol magazines (.25 caseless). Comes with three spare magazines and an ammo box.
+
+uplink-consortium-lmg-l6-name-fh = L6 SAW Crate
+uplink-consortium-lmg-l6-desc-fh = The iconic L6 light machine gun loaded with 7.62 SP, for operators not intending on completing their task through subterfuge. Comes with five light machine gun magazines and an 7.62 ammo canister.
+
+uplink-consortium-smg-c20r-name-fh = C-20r Case
+uplink-consortium-smg-c20r-desc-fh = Old Faithful: The classic C-20r submachine gun loaded with 9mm SP, comes with an Ammo Selector.
+
+uplink-consortium-rifle-estoc-name-fh = Estoc DMR Case
+uplink-consortium-rifle-estoc-desc-fh = A designated marksman rifle, fitted with decent optics allowing for longer ranged combat. Comes loaded with 5.56 SP and an Ammo Selector.
+
+uplink-consortium-uzi-bundle-name = Type H6 Uzi Case
+uplink-consortium-uzi-bundle-desc = Contains the Type H6 Uzi loaded with 9mm SP and an Ammo Selector.
+
+uplink-consortium-ammo-bundle-name-fh = Ammo Bundle Selector
+uplink-consortium-ammo-bundle-desc-fh = Reloading! Contains 4-5 magazines and one canister each of your choice for all nuclear operative weapons, except for the China-Lake and M81A1
+
+uplink-consortium-nightvision-eyes-desc-fh = Allows you to see in the dark but makes you more vulnerable to flashes. 
+uplink-consortium-thermalvision-eyes-desc-fh = Allows you to see in the dark and detect creatures through walls but makes you more vulnerable to flashes. 
+uplink-consortium-mantis-blade-arms-desc-fh = Originally used as a simple construction tool, now turned into hidden blades that can extend from your arm while still keeping its destructive prying skill. Truly a sight to behold. 
+uplink-consortium-advanced-claws-desc-fh = A cybernetic implant for hands. Allows an agent to extend sharp plasteel claws at will, and hide them away just as quickly. 
+uplink-consortium-forensics-implant-desc-fh = A cybernetic implant for hands. Removes an agent's fingerprints so as to not leave evidence of a crime. Does not work through gloves. 
+uplink-consortium-syndie-implant-desc-fh = A cybernetic eye implant. Enables an agent to see information about the station crew, humanoids and syndicate without any glasses. 
+
+uplink-consortium-bulldog-bundle-desc-fh = Lean and mean: Contains the popular Bulldog Shotgun and an Ammo Selector.
+
+uplink-consortium-minotaur-name-fh = Minotaur Case
+uplink-consortium-minotaur-desc-fh = Lean and mean: Contains smooth, powerful, highly illegal Shotgun and an Ammo Selector.
+
+uplink-consortium-pitbull-name-fh = Pitbull Case
+uplink-consortium-pitbull-desc-fh = Lean and mean: Contains smooth, powerful, highly illegal Shotgun and an Ammo Selector.
+
+uplink-consortium-hypo-claws-left-name = Left Hand HypoClaws Implant 
+uplink-consortium-hypo-claws-right-name = Right Hand HypoClaws Implant 
+uplink-consortium-hypo-claws-desc = Sharp, retractable plasteel claws, with hypo injector technology to inject chems into victims. Can be retracted and hidden on demand.
+uplink-consortium-bunker-breaker-arm-left-name = Left Bunker Breaker Arm
+uplink-consortium-bunker-breaker-arm-right-name = Right Bunker Breaker Arm
+uplink-consortium-bunker-breaker-desc = Augmented arm with all the tools needed to go where you dont belong, including a jaws of death.
+uplink-consortium-ifa30-left-arm-name = Left IFA-30 Case
+uplink-consortium-ifa30-right-arm-name = Right IFA-30 Case
+uplink-consortium-ifa30-arms-desc = A modern IFA-30 SMG for mobile operations integrated into a Cybernetic Arm, comes with an Ammo Selector.

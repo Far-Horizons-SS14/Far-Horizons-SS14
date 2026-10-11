@@ -26,7 +26,7 @@
   id: BaseTraitorStealObjective
   components:
   - type: StealCondition
-    verifyMapExistence: false
+    verifyMapExistence: true #FH
   - type: Objective
     difficulty: 1.5 #Starlight edit, this was way too high and it made stuff like hypo, crew monitor, license and diploma cost 2.75 which is odd
   - type: ObjectiveLimit
@@ -82,29 +82,24 @@
 #    - type: HijackShuttleCondition
 
 # kill
+# FH Edit Begin -- Increasing overall round entropy by removing RR of a random person i.e. the janitor is going to increase likelyhood of rolling more high-profile objectives
+
+# - type: entity
+#   parent: [BaseTraitorObjective, BaseKillRandomObjective]
+#   id: KillRandomPersonObjective
+#   description: Do it however you like, just make sure they don't get off the station.
+#   components:
+#   - type: Objective
+#     difficulty: 1.75
+#     unique: false
+#   - type: TargetObjective
+#     title: objective-condition-maroon-person-title
+#   - type: KillPersonCondition
+#     requireMaroon: true
+#FH Edit End
 
 - type: entity
-  parent: [BaseTraitorObjective, BaseKillObjective]
-  id: KillRandomPersonObjective
-  description: Do it however you like, just make sure they don't get off the station.
-  components:
-  - type: Objective
-    difficulty: 1.5 #Starlight edit
-    unique: false
-  - type: TargetObjective
-    title: objective-condition-maroon-person-title
-  - type: PickRandomPerson
-    filters:
-    # Can't have multiple objectives to kill the same person.
-    - !type:TargetObjectiveMindFilter
-      blacklist:
-        components:
-        - KillPersonCondition
-  - type: KillPersonCondition
-    requireMaroon: true
-
-- type: entity
-  parent: [BaseTraitorObjective, BaseKillObjective]
+  parent: [BaseTraitorObjective, BaseKillRandomObjective]
   id: KillRandomHeadObjective
   description: We need this head gone and you probably know why. Make sure they don't make it to CentComm, even if they're dead. Good luck, agent.
   components:
@@ -116,14 +111,16 @@
   - type: TargetObjective
     title: objective-condition-kill-maroon-title
   - type: PickRandomPerson
-    filters:
-    - !type:BodyMindFilter
+    conditions:
+    - !type:BodyWhitelistCondition
       whitelist:
         components:
         - CommandStaff
+        - HighValueTarget #FH
     # Can't have multiple objectives to kill the same person.
-    - !type:TargetObjectiveMindFilter
-      blacklist:
+    - !type:ObjectiveTargetCondition
+      inverted: true
+      whitelist:
         components:
         - KillPersonCondition
   - type: KillPersonCondition
@@ -131,6 +128,25 @@
     # if ce flies a shittle to centcom you better find a way onto it
     requireDead: true
     requireMaroon: true
+
+- type: entity
+  parent: [BaseTraitorObjective, BaseKillRandomObjective]
+  id: KillStationAiObjective
+  description: Nanotrasen proudly boasts about their state of the art artificial intelligence. Remind them it's just another toy that can be broken.
+  components:
+  - type: Objective
+    difficulty: 3.0
+    # there's probably only one AI
+    unique: true
+    icon:
+      sprite: Mobs/Silicon/station_ai.rsi
+      state: ai_dead # TODO: Change this to broken when we have a better objectives UI, broken sprite is currently too big!
+  - type: TargetObjective
+    title: objective-condition-kill-station-ai
+  - type: PickRandomPerson
+    pool: !type:AliveAiPool
+  - type: KillPersonCondition
+    requireDead: true
 
 # social
 
@@ -144,14 +160,15 @@
   - type: TargetObjective
     title: objective-condition-other-traitor-alive-title
   - type: PickRandomPerson
-    filters:
-    - !type:HasRoleMindFilter
+    conditions:
+    - !type:RoleCondition
       whitelist:
         components:
         - TraitorRole
     # Can't have multiple objectives to help/save the same person
-    - !type:TargetObjectiveMindFilter
-      blacklist:
+    - !type:ObjectiveTargetCondition
+      inverted: true
+      whitelist:
         components:
         - HelpProgressCondition
         - KeepAliveCondition
@@ -166,21 +183,23 @@
   - type: TargetObjective
     title: objective-condition-other-traitor-progress-title
   - type: PickRandomPerson
-    filters:
-    - !type:HasRoleMindFilter
+    conditions:
+    - !type:RoleCondition
       whitelist:
         components:
         - TraitorRole
     # Can't help anyone who is tasked with helping:
     # 1. thats boring
     # 2. no cyclic progress dependencies!!!
-    - !type:ObjectiveMindFilter
-      blacklist:
+    - !type:ObjectiveCondition
+      inverted: true
+      whitelist:
         components:
         - HelpProgressCondition
     # Can't have multiple objectives to help/save the same person
-    - !type:TargetObjectiveMindFilter
-      blacklist:
+    - !type:ObjectiveTargetCondition
+      inverted: true
+      whitelist:
         components:
         - HelpProgressCondition
         - KeepAliveCondition
@@ -306,6 +325,7 @@
   - type: ObjectiveLimit
     limit: 3 # ian only has 2 slices, 3 obj for drama
   - type: StealCondition
+    verifyMapExistence: false #FH
     stealGroup: FoodMeatCorgi
     owner: objective-condition-steal-Ian
 
@@ -359,3 +379,57 @@
   - type: StealCondition
     stealGroup: NukeDisk
     owner: objective-condition-steal-station
+
+# sabotage
+- type: entity
+  parent: BaseTraitorObjective
+  id: SupercritAnomaliesObjective
+  description: Nanotrasen is very interested in anomalies with potentially catastrophic consequences. Introduce them to the fire they're playing with.
+  components:
+  - type: Objective
+    difficulty: 2
+    icon:
+      sprite: Structures/Specific/anomaly.rsi
+      state: anom1
+  - type: SupercriticalAnomaliesCondition
+  - type: NumberObjective
+    min: 3
+    max: 4
+    title: objective-condition-supercrit-anomalies-title
+  - type: ObjectiveLimit
+    limit: 1
+
+# other
+- type: entity
+  parent: BaseTraitorObjective
+  id: HijackTradeStationObjective
+  name: Hijack the Automated Trade Station.
+  description: Your uplink has been authorized one hijack beacon. Deploy it on the Automated Trade Station and defend it whilst it hijacks the trade station.
+  components:
+  - type: Objective
+    difficulty: 3
+    icon:
+      sprite: Objects/Tools/hijack_beacon.rsi
+      state: extraction_point
+  - type: HijackTradeStationCondition
+  - type: ObjectiveLimit
+    # There is only one trade station so there should never be more than one of these objectives.
+    limit: 1
+
+- type: entity
+  parent: [BaseTraitorObjective, BaseCounterObjective]
+  id: MailFraudObjective
+  description: We're interested in Nanotrasen's correspondence. Letter opener not provided.
+  components:
+  - type: Objective
+    difficulty: 0.5
+    icon:
+      sprite: Objects/Specific/Cargo/mail_bag.rsi
+      state: icon
+  - type: MailFraudCondition
+  - type: NumberObjective
+    min: 8
+    max: 12
+    title: objective-condition-mail-fraud-title
+  - type: ObjectiveLimit
+    limit: 1

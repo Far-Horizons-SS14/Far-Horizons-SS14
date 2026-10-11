@@ -1,0 +1,165 @@
+- type: entity
+  parent: BaseItem
+  id: CredstickEmpty
+  name: Credstick
+  description: A universal device for storing credits. It glows faintly when it's has money on it.
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Objects/Misc/credstick.rsi
+      layers:
+      - state: credstick
+      - map: [ "lights" ]
+        state: lights
+        shader: "unshaded"
+        visible: false
+    - type: Item
+      size: Tiny
+    - type: Tag
+      tags:
+      - Credstick
+    - type: PhysicalComposition
+      materialComposition:
+        Plastic: 10
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape: !type:PolygonShape
+            vertices:
+            - -0.3,0.1
+            - -0.1,0.3
+            - 0.3,-0.1
+            - 0.1,-0.3
+          density: 20 # derived from base_item
+          mask:
+          - ItemMask
+          restitution: 0.3
+          friction: 0.2
+    - type: Appearance
+    - type: GenericVisualizer
+      visuals:
+        enum.CredstickContentsState.Empty:
+          lights:
+            True: {visible: false}
+            False: {visible: true}
+    - type: Credstick
+    - type: UserInterface
+      interfaces:
+        enum.CredstickTransferUi.DialogKey:
+          type: CredstickTransferDialogBui
+    - type: CredstickDirectTransferTarget
+
+- type: entity
+  parent: CredstickEmpty
+  id: CredstickDeluxeEmpty
+  name: Deluxe Credstick
+  description: A universal device for storing credits. Plated with fake gold, it marks you as bank's valuable customer.
+  components:
+    - type: Sprite
+      layers:
+      - state: credstick_gold
+      - map: [ "lights" ]
+        state: lights
+        shader: "unshaded"
+        visible: false
+
+- type: entity
+  parent: CredstickEmpty
+  id: CredstickPremiumEmpty
+  name: Premium Credstick
+  description: A universal device for storing credits. Platinum credstick is the true display of status and prestige.
+  components:
+    - type: Sprite
+      layers:
+      - state: credstick_platinum
+      - map: [ "lights" ]
+        state: lights
+        shader: "unshaded"
+        visible: false
+
+- type: entity
+  parent: CredstickEmpty
+  id: Credstick1
+  suffix: 1 credit
+  components:
+    - type: Credstick
+      balance: 1
+
+- type: entity
+  parent: CredstickEmpty
+  id: Credstick10
+  suffix: 10 credit
+  components:
+    - type: Credstick
+      balance: 10
+
+- type: entity
+  parent: CredstickEmpty
+  id: Credstick50
+  suffix: 50 credits
+  components:
+    - type: Credstick
+      balance: 50
+
+- type: entity
+  parent: CredstickEmpty
+  id: Credstick100
+  suffix: 100 credits
+  components:
+    - type: Credstick
+      balance: 100
+
+- type: entity
+  parent: CredstickEmpty
+  id: Credstick200
+  suffix: 200 credits
+  components:
+    - type: Credstick
+      balance: 200
+
+- type: entity
+  parent: CredstickEmpty
+  id: Credstick500
+  suffix: 500 credits
+  components:
+    - type: Credstick
+      balance: 500
+
+- type: entity
+  parent: CredstickDeluxeEmpty
+  id: Credstick1000
+  suffix: 1000 credits
+  components:
+    - type: Credstick
+      balance: 1000
+
+- type: entity
+  parent: CredstickDeluxeEmpty
+  id: Credstick5000
+  suffix: 5000 credits
+  components:
+    - type: Credstick
+      balance: 5000
+
+- type: entity
+  parent: CredstickPremiumEmpty
+  id: Credstick10000
+  suffix: 10000 credits
+  components:
+    - type: Credstick
+      balance: 10000
+
+- type: entity
+  parent: CredstickPremiumEmpty
+  id: Credstick20000
+  suffix: 20000 credits
+  components:
+    - type: Credstick
+      balance: 20000
+
+- type: entity
+  parent: CredstickPremiumEmpty
+  id: Credstick50000
+  suffix: 50000 credits
+  components:
+    - type: Credstick
+      balance: 50000

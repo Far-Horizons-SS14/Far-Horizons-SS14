@@ -7,12 +7,12 @@ using Robust.Shared.Map.Components;
 
 namespace Content.Server._FarHorizons.GenericFieldGenerator.EntitySystems;
 
-public sealed class GenericFieldSystem : EntitySystem
+public sealed partial class GenericFieldSystem : EntitySystem
 {
-    [Dependency] private readonly GenericFieldGeneratorSystem _genericgen = default!;
-    [Dependency] private readonly DamageableSystem _damageable = default!;
-    [Dependency] private readonly SharedMapSystem _mapSystem = default!;
-    [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
+    [Dependency] private GenericFieldGeneratorSystem _genericgen = default!;
+    [Dependency] private DamageableSystem _damageable = default!;
+    [Dependency] private SharedMapSystem _mapSystem = default!;
+    [Dependency] private SharedTransformSystem _transformSystem = default!;
     public override void Initialize()
     {
         base.Initialize();

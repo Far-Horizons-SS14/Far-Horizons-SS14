@@ -33,8 +33,9 @@
   - type: PlacementReplacement
     key: walls
   - type: Damageable
-    damageContainer: StructuralInorganic
     damageModifierSet: StructuralMetallic
+  - type: Injurable
+    damageContainer: StructuralInorganic
   - type: Physics
     bodyType: Static
   - type: Fixtures
@@ -57,6 +58,7 @@
   - type: SunShadowCast
   - type: Ricochetable
     chance: 0.4
+  - type: StructureOcclusion #Far Horizons
 
 - type: entity
   abstract: true
@@ -84,6 +86,11 @@
     airBlockedDirection:
     - South
     - East
+  - type: Occluder
+    polygon:
+    - "-0.5,-0.5"
+    - "0.5,0.5"
+    - "0.5,-0.5"
   - type: Fixtures
     fixtures:
       fix1:
@@ -329,6 +336,8 @@
   - type: IconSmooth
     key: walls
     base: diamond
+  - type: StructureOcclusion #Far Horizons
+    occlusionAmount: 2.0
 
 - type: entity
   parent: BaseWall
@@ -382,6 +391,8 @@
   - type: IconSmooth
     key: walls
     base: gold
+  - type: StructureOcclusion #Far Horizons
+    occlusionAmount: 2.0
 
 - type: entity
   parent: BaseWall
@@ -524,10 +535,13 @@
           - WallLayer
           density: 4000
     - type: Damageable
-      damageContainer: StructuralInorganic
       damageModifierSet: StructuralMetallicStrong
+    - type: Injurable
+      damageContainer: StructuralInorganic
     - type: RadiationBlocker
       resistance: 5
+    - type: StructureOcclusion #Far Horizons
+      occlusionAmount: 2.5
 
 - type: entity
   parent: WallPlastitaniumIndestructible
@@ -537,6 +551,17 @@
   components:
     - type: Destructible
       thresholds:
+#FH Edit - Start
+        - trigger:
+            !type:DamageTrigger
+            damage: 1100
+          behaviors:
+          - !type:PlaySoundBehavior
+            sound:
+              collection: MetalSlam
+          - !type:DoActsBehavior
+            acts: ["Destruction"]
+#FH Edit - End
         - trigger:
             !type:DamageTrigger
             damage: 1000
@@ -563,8 +588,9 @@
     sprite: Structures/Walls/plastitanium_diagonal.rsi
     state: state0
   - type: Damageable
-    damageContainer: StructuralInorganic
     damageModifierSet: StructuralMetallicStrong
+  - type: Injurable
+    damageContainer: StructuralInorganic
   - type: RadiationBlocker
     resistance: 5
 
@@ -601,28 +627,30 @@
 - type: entity
   parent: BaseWall
   id: WallReinforced
-  name: Reinforced Wall [NT] #Far Horizons - The Great Capitalization Crusade
+  name: Reinforced Wall #Far Horizons - The Great Capitalization Crusade
+  suffix: NT #FH
   components:
   - type: Pierceable
     level: HardenedMetal
   - type: Ricochetable
     chance: 0.75
   - type: Sprite
-    sprite: Structures/Walls/solid.rsi
+    sprite: _FarHorizons/Structures/Walls/NanoTrasen/solid.rsi #FH
   - type: Icon
-    sprite: Structures/Walls/solid.rsi
+    sprite: _FarHorizons/Structures/Walls/NanoTrasen/solid.rsi #FH
     state: rgeneric
   - type: Construction
     graph: Girder
     node: reinforcedWall
   - type: Damageable
-    damageContainer: StructuralInorganic
     damageModifierSet: StructuralMetallicStrong
+  - type: Injurable
+    damageContainer: StructuralInorganic
   - type: Destructible
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 600
+        damage: 500 #FH - Prevents shuttle ramming from spawning girders, mostly.
       behaviors:
       - !type:DoActsBehavior
         acts: ["Destruction"]
@@ -671,16 +699,21 @@
         layer:
         - WallLayer
         density: 2000
+  - type: Paintable #FH start
+    group: WallReinforced
+  - type: GenericPaintable #FH end
+  - type: StructureOcclusion #Far Horizons
+    occlusionAmount: 1.33
 
 - type: entity
   parent: WallReinforced
   id: WallReinforcedRust
-  suffix: Rusted #Far Horizons - The Great Capitalization Crusade
+  suffix: Rusted, NT #Far Horizons - The Great Capitalization Crusade
   components:
   - type: Sprite
-    sprite: Structures/Walls/solid_rust.rsi
+    sprite: _FarHorizons/Structures/Walls/NanoTrasen/solid_rust.rsi #FH
   - type: Icon
-    sprite: Structures/Walls/solid_rust.rsi
+    sprite: _FarHorizons/Structures/Walls/NanoTrasen/solid_rust.rsi #FH
     state: rgeneric
   - type: Construction
     graph: Girder
@@ -715,17 +748,19 @@
   parent: WallDiagonalBase
   id: WallReinforcedDiagonal
   name: Reinforced Wall #Far Horizons - The Great Capitalization Crusade
+  suffix: Diagonal, NT # Far Horizons
   components:
   - type: Sprite
     drawdepth: Walls
-    sprite: Structures/Walls/reinforced_diagonal.rsi
+    sprite: _FarHorizons/Structures/Walls/NanoTrasen/reinforced_diagonal.rsi #FH
     state: state0
   - type: Icon
-    sprite: Structures/Walls/reinforced_diagonal.rsi
+    sprite: _FarHorizons/Structures/Walls/NanoTrasen/reinforced_diagonal.rsi #FH
     state: state0
   - type: Damageable
-    damageContainer: StructuralInorganic
     damageModifierSet: StructuralMetallicStrong
+  - type: Injurable
+    damageContainer: StructuralInorganic
   - type: Destructible
     thresholds:
     - trigger:
@@ -750,6 +785,9 @@
         acts: ["Destruction"]
   - type: RadiationBlocker
     resistance: 5
+  - type: Paintable #FH start
+    group: WallReinforcedDiagonal 
+  - type: GenericPaintable #FH end
 
 # Riveting
 - type: entity
@@ -762,8 +800,9 @@
   - type: Icon
     sprite: Structures/Walls/riveted.rsi
   - type: Damageable
-    damageContainer: StructuralInorganic
     damageModifierSet: StructuralMetallicStrong
+  - type: Injurable
+    damageContainer: StructuralInorganic
   - type: Destructible
     thresholds:
     - trigger:
@@ -860,14 +899,14 @@
   parent: WallDiagonalBase
   id: WallShuttleDiagonal
   name: Shuttle Wall #Far Horizons - The Great Capitalization Crusade
-  suffix: Diagonal #Far Horizons
+  suffix: Diagonal, NT #Far Horizons
   components:
   - type: Sprite
     drawdepth: Walls
-    sprite: _FarHorizons/Structures/Walls/shuttle_diagonal.rsi #Far Horizons
+    sprite: _FarHorizons/Structures/Walls/NanoTrasen/shuttle_diagonal.rsi #Far Horizons
     state: state0
   - type: Icon
-    sprite: _FarHorizons/Structures/Walls/shuttle_diagonal.rsi #Far Horizons
+    sprite: _FarHorizons/Structures/Walls/NanoTrasen/shuttle_diagonal.rsi #Far Horizons
     state: state0
   - type: IconSmooth #Far Horizons
     key: walls
@@ -897,8 +936,9 @@
         - WallLayer
         density: 2000
   - type: Damageable
-    damageContainer: StructuralInorganic
     damageModifierSet: StructuralMetallicStrong
+  - type: Injurable
+    damageContainer: StructuralInorganic
   - type: Destructible
     thresholds:
     - trigger:
@@ -933,10 +973,12 @@
   parent: BaseWall
   id: WallShuttle
   name: Shuttle Wall #Far Horizons - The Great Capitalization Crusade
+  suffix: NT # Far Horizons
   components:
   - type: Damageable
-    damageContainer: StructuralInorganic
     damageModifierSet: StructuralMetallicStrong
+  - type: Injurable
+    damageContainer: StructuralInorganic
   - type: Destructible
     thresholds:
     - trigger:
@@ -950,7 +992,7 @@
           collection: MetalSlam
     - trigger:
         !type:DamageTrigger
-        damage: 400
+        damage: 500 #FH
       behaviors:
       - !type:PlaySoundBehavior
         sound:
@@ -960,13 +1002,13 @@
       - !type:DoActsBehavior
         acts: ["Destruction"]
   - type: StaticPrice
-    price: 250
+    price: 300
   - type: RadiationBlocker
     resistance: 5
   - type: Sprite
-    sprite: Structures/Walls/shuttle.rsi
+    sprite: _FarHorizons/Structures/Walls/NanoTrasen/shuttle.rsi #FH
   - type: Icon
-    sprite: Structures/Walls/shuttle.rsi
+    sprite: _FarHorizons/Structures/Walls/NanoTrasen/shuttle.rsi #FH
     state: full
   - type: Construction
     graph: Girder
@@ -1006,16 +1048,17 @@
 - type: entity
   parent: BaseWall
   id: WallSolid
-  name: Solid Wall [NT] #Far Horizons - The Great Capitalization Crusade
+  name: Solid Wall #Far Horizons - The Great Capitalization Crusade
+  suffix: NT #FH
   components:
   - type: Sprite
-    sprite: Structures/Walls/solid.rsi
+    sprite: _FarHorizons/Structures/Walls/NanoTrasen/solid.rsi #FH
   - type: WallReplacementMarker
   - type: Construction
     graph: Girder
     node: wall
   - type: Icon
-    sprite: Structures/Walls/solid.rsi
+    sprite: _FarHorizons/Structures/Walls/NanoTrasen/solid.rsi #FH
   - type: RCDDeconstructable
     cost: 6
     delay: 8
@@ -1045,18 +1088,22 @@
   - type: IconSmooth
     key: walls
     base: solid
+  - type: Paintable #FH start
+    group: WallSolid 
+  - type: GenericPaintable #FH end
 
 - type: entity
   parent: WallDiagonalBase
   id: WallSolidDiagonal
-  name: Solid Wall [NT] #Far Horizons - The Great Capitalization Crusade
+  name: Solid Wall #Far Horizons - The Great Capitalization Crusade
+  suffix: Diagonal, NT #FH
   components:
   - type: Sprite
     drawdepth: Walls
-    sprite: Structures/Walls/solid_diagonal.rsi
+    sprite: _FarHorizons/Structures/Walls/NanoTrasen/solid_diagonal.rsi #FH
     state: state0
   - type: Icon
-    sprite: Structures/Walls/solid_diagonal.rsi
+    sprite: _FarHorizons/Structures/Walls/NanoTrasen/solid_diagonal.rsi #FH
     state: state0
   - type: Ricochetable
     chance: 0.4
@@ -1082,16 +1129,19 @@
           collection: MetalSlam
       - !type:DoActsBehavior
         acts: ["Destruction"]
+  - type: Paintable #FH start
+    group: WallSolidDiagonal 
+  - type: GenericPaintable #FH end
 
 - type: entity
   parent: WallSolid
   id: WallSolidRust
-  suffix: Rusted #Far Horizons - The Great Capitalization Crusade
+  suffix: Rusted, NT #Far Horizons - The Great Capitalization Crusade
   components:
   - type: Sprite
-    sprite: Structures/Walls/solid_rust.rsi
+    sprite: _FarHorizons/Structures/Walls/NanoTrasen/solid_rust.rsi #FH
   - type: Icon
-    sprite: Structures/Walls/solid_rust.rsi
+    sprite: _FarHorizons/Structures/Walls/NanoTrasen/solid_rust.rsi #FH
     state: full
   - type: Construction
     graph: Girder
@@ -1178,8 +1228,9 @@
     sprite: Structures/Walls/xeno.rsi
     state: rgeneric
   - type: Damageable
-    damageContainer: StructuralInorganic
     damageModifierSet: StructuralMetallicStrong
+  - type: Injurable
+    damageContainer: StructuralInorganic
   - type: Destructible
     thresholds:
     - trigger:
@@ -1224,6 +1275,8 @@
   - type: Construction
     graph: Girder
     node: reinforcedWallChitin
+  - type: StructureOcclusion #Far Horizons
+    occlusionAmount: 1.33
 
 - type: entity
   parent: WallPlastitanium
@@ -1304,6 +1357,8 @@
     base: uranium
   - type: RadiationBlocker
     resistance: 6
+  - type: StructureOcclusion #Far Horizons
+    occlusionAmount: 2.0
 
 - type: entity
   parent: BaseWall
@@ -1397,6 +1452,8 @@
   - type: Construction
     graph: WebStructures
     node: wall
+  - type: StructureOcclusion #Far Horizons
+    occlusionAmount: 0.5
 
 
 # Lavalend Walls
@@ -1461,8 +1518,9 @@
     sprite: Structures/Walls/mining_diagonal.rsi
     state: state0
   - type: Damageable
-    damageContainer: StructuralInorganic
     damageModifierSet: StructuralMetallicStrong
+  - type: Injurable
+    damageContainer: StructuralInorganic
   - type: Destructible
     thresholds:
     - trigger:
@@ -1561,6 +1619,7 @@
         layer:
         - GlassLayer
   - type: Airtight
+  - type: LineOfSightExclude # Far Horizons
 
 - type: entity
   id: WallForce
@@ -1761,8 +1820,9 @@
     node: cardwall
     deconstructionTarget: start
   - type: Damageable
-    damageContainer: StructuralInorganic
     damageModifierSet: Card
+  - type: Injurable
+    damageContainer: StructuralInorganic
   - type: Physics
     bodyType: Static
   - type: Fixtures
@@ -1800,3 +1860,5 @@
   - type: Occluder
   - type: BlockWeather
   - type: SunShadowCast
+  - type: StructureOcclusion #Far Horizons
+    occlusionAmount: 0.25

@@ -8,6 +8,7 @@ using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Timing;
 
 namespace Content.Client.Guidebook.Controls;
 
@@ -17,10 +18,13 @@ namespace Content.Client.Guidebook.Controls;
 [UsedImplicitly, GenerateTypedNameReferences]
 public sealed partial class GuideReagentGroupEmbed : BoxContainer, IDocumentTag
 {
-    [Dependency] private readonly ILogManager _logManager = default!;
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
+    [Dependency] private ILogManager _logManager = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
 
     private readonly ISawmill _sawmill;
+
+    // Starlight
+    private List<ReagentPrototype>? _reagentsToAdd;
 
     public GuideReagentGroupEmbed()
     {
@@ -34,11 +38,7 @@ public sealed partial class GuideReagentGroupEmbed : BoxContainer, IDocumentTag
     {
         var prototypes = _prototype.EnumeratePrototypes<ReagentPrototype>()
             .Where(p => p.Group.Equals(group)).OrderBy(p => p.LocalizedName);
-        foreach (var reagent in prototypes)
-        {
-            var embed = new GuideReagentEmbed(reagent);
-            GroupContainer.AddChild(embed);
-        }
+        _reagentsToAdd = prototypes.ToList(); // Starlight
     }
 
     public bool TryParseTag(Dictionary<string, string> args, [NotNullWhen(true)] out Control? control)
@@ -52,13 +52,30 @@ public sealed partial class GuideReagentGroupEmbed : BoxContainer, IDocumentTag
 
         var prototypes = _prototype.EnumeratePrototypes<ReagentPrototype>()
             .Where(p => p.Group.Equals(group)).OrderBy(p => p.LocalizedName);
-        foreach (var reagent in prototypes)
-        {
-            var embed = new GuideReagentEmbed(reagent);
-            GroupContainer.AddChild(embed);
-        }
+        _reagentsToAdd = prototypes.ToList(); // Starlight
 
         control = this;
         return true;
+    }
+
+    // Starlight
+    protected override void FrameUpdate(FrameEventArgs args)
+    {
+        base.FrameUpdate(args);
+
+        if (_reagentsToAdd == null)
+            return;
+
+        // Stop after adding 5 reagents, wait for next frame update
+        // This prevents it from lagging as much, and helps to not trigger
+        // the style update limit in engine
+        var count = _reagentsToAdd.Count;
+        for (var i = count - 1; i >= Math.Max(0, count - 5); i--)
+        {
+            var reagent = _reagentsToAdd[i];
+            _reagentsToAdd.RemoveAt(i);
+            var embed = new GuideReagentEmbed(reagent);
+            GroupContainer.AddChild(embed);
+        }
     }
 }

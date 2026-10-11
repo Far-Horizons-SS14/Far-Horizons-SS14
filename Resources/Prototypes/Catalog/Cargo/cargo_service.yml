@@ -7,6 +7,7 @@
   cost: 560
   category: cargoproduct-category-name-service
   group: market
+  personalOrder: true # Far Horizons
 
 - type: cargoProduct
   id: ServiceCleanerGrenades
@@ -17,6 +18,7 @@
   cost: 400
   category: cargoproduct-category-name-service
   group: market
+  personalOrder: true # Far Horizons
 
 - type: cargoProduct
   id: ServiceLightsReplacement
@@ -27,6 +29,7 @@
   cost: 600
   category: cargoproduct-category-name-service
   group: market
+  personalOrder: true # Far Horizons
 
 - type: cargoProduct
   id: ServiceLightsHoliday
@@ -37,6 +40,7 @@
   cost: 800
   category: cargoproduct-category-name-service
   group: market
+  personalOrder: true # Far Horizons
 
 - type: cargoProduct
   id: ServiceLightsColorful
@@ -47,16 +51,21 @@
   cost: 800
   category: cargoproduct-category-name-service
   group: market
+  personalOrder: true # Far Horizons
 
 - type: cargoProduct
   id: MousetrapBoxes
   icon:
     sprite: Objects/Devices/mousetrap.rsi
     state: mousetrap
-  product: CrateMousetrapBoxes
+  product: BoxMousetrap
+  container:
+    entity: WrappedParcel
+    containerId: contents
   cost: 500
   category: cargoproduct-category-name-service
   group: market
+  personalOrder: true # Far Horizons
 
 - type: cargoProduct
   id: ServiceTheatre
@@ -67,6 +76,7 @@
   cost: 1800
   category: cargoproduct-category-name-service
   group: market
+  personalOrder: true # Far Horizons
 
 - type: cargoProduct
   id: ServiceSmokeables
@@ -77,6 +87,7 @@
   cost: 1500
   category: cargoproduct-category-name-service
   group: market
+  personalOrder: true # Far Horizons
 
 - type: cargoProduct
   id: ServiceCustomSmokable
@@ -87,6 +98,7 @@
   cost: 1000
   category: cargoproduct-category-name-service
   group: market
+  personalOrder: true # Far Horizons
 
 - type: cargoProduct
   id: ServiceBureaucracy
@@ -97,6 +109,7 @@
   cost: 1000
   category: cargoproduct-category-name-service
   group: market
+  personalOrder: true # Far Horizons
 
 - type: cargoProduct
   id: ServiceFaxMachine
@@ -127,6 +140,7 @@
   cost: 1000
   category: cargoproduct-category-name-service
   group: market
+  personalOrder: true # Far Horizons
 
 - type: cargoProduct
   id: ServiceGuidebooks
@@ -137,6 +151,7 @@
   cost: 1300
   category: cargoproduct-category-name-service
   group: market
+  personalOrder: true # Far Horizons
 
 - type: cargoProduct
   id: ServiceSodaDispenser
@@ -167,6 +182,7 @@
   cost: 400
   category: cargoproduct-category-name-service
   group: market
+  personalOrder: true # Far Horizons
 
 - type: cargoProduct
   id: ServiceJanitorBiosuit

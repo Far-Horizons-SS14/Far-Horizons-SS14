@@ -1,0 +1,345 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Inspired on RMC14 maptable, Sprited by ItsAbby, Screen used by TGstation",
+  "size": {
+    "x": 32,
+    "y": 32
+ },
+ "states": [
+        {
+            "name": "alert-0",
+            "directions": 4
+        },
+        {
+            "name": "alert-1",
+            "directions": 4
+        },
+        {
+            "name": "alert-2",
+            "directions": 4,
+            "delays": [
+                [
+                    0.1,
+                    0.1
+                ],
+                [
+                    0.1,
+                    0.1
+                ],
+                [
+                    0.1,
+                    0.1
+                ],
+                [
+                    0.1,
+                    0.1
+                ]
+            ]
+         },
+        {
+            "name": "dron_control_monitor",
+            "directions": 4,
+            "delays": [
+                [
+                    0.05,
+                    0.05,
+                    0.05,
+                    0.05,
+                    0.05,
+                    0.05,
+                    0.05,
+                    0.05
+                ],
+                [
+                    0.05,
+                    0.05,
+                    0.05,
+                    0.05,
+                    0.05,
+                    0.05,
+                    0.05,
+                    0.05
+                ],
+                [
+                    0.05,
+                    0.05,
+                    0.05,
+                    0.05,
+                    0.05,
+                    0.05,
+                    0.05,
+                    0.05
+                ],
+                [
+                    0.05,
+                    0.05,
+                    0.05,
+                    0.05,
+                    0.05,
+                    0.05,
+                    0.05,
+                    0.05
+                ]
+            ]
+        },
+        {
+            "name": "engie_cams",
+            "directions": 4,
+            "delays": [
+                [
+                    1.8,
+                    0.1,
+                    1.8,
+                    0.1,
+                    1.8,
+                    0.1,
+                    1.8,
+                    0.1
+                ],
+                [
+                    1.8,
+                    0.1,
+                    1.8,
+                    0.1,
+                    1.8,
+                    0.1,
+                    1.8,
+                    0.1
+                ],
+                [
+                    1.8,
+                    0.1,
+                    1.8,
+                    0.1,
+                    1.8,
+                    0.1,
+                    1.8,
+                    0.1
+                ],
+                [
+                    1.8,
+                    0.1,
+                    1.8,
+                    0.1,
+                    1.8,
+                    0.1,
+                    1.8,
+                    0.1
+                ]
+            ]
+        },
+        {
+            "name": "engine",
+            "directions": 4,
+            "delays": [
+                [
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                [
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                [
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2
+                ],
+                [
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2,
+                    0.2
+                ]
+            ]
+ },
+        {
+            "name": "power_monitor",
+            "directions": 4,
+            "delays": [
+                [
+                    0.6,
+                    0.6,
+                    0.6,
+                    0.6
+                ],
+                [
+                    0.6,
+                    0.6,
+                    0.6,
+                    0.6
+                ],
+                [
+                    0.6,
+                    0.6,
+                    0.6,
+                    0.6
+                ],
+                [
+                    0.6,
+                    0.6,
+                    0.6,
+                    0.6
+                ]
+            ]
+        },
+        {
+            "name": "power_monitor_warn",
+            "directions": 4,
+            "delays": [
+                [
+                    0.2,
+                    0.2
+                ],
+                [
+                    0.2,
+                    0.2
+                ],
+                [
+                    0.2,
+                    0.2
+                ],
+                [
+                    0.2,
+                    0.2
+                ]
+            ]
+        },
+        {
+            "name": "solar_screen",
+            "directions": 4,
+            "delays": [
+                [
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1
+                ],
+                [
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1
+                ],
+                [
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1
+                ],
+                [
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1
+                ]
+            ]
+         },
+        {
+            "name": "request-eng",
+            "directions": 4,
+            "delays": [
+                [
+                    0.3,
+                    0.3,
+                    0.3,
+                    0.3,
+                    0.3,
+                    0.3
+                ],
+                [
+                    0.3,
+                    0.3,
+                    0.3,
+                    0.3,
+                    0.3,
+                    0.3
+                ],
+                [
+                    0.3,
+                    0.3,
+                    0.3,
+                    0.3,
+                    0.3,
+                    0.3
+                ],
+                [
+                    0.3,
+                    0.3,
+                    0.3,
+                    0.3,
+                    0.3,
+                    0.3
+                ]
+            ]
+        },
+        {
+
+            "name": "solar_screen_keyboard",
+            "directions": 4
+        },
+        {
+            "name": "power_monitor_keyboard",
+            "directions": 4
+        },
+        {
+            "name": "engi_keyboard",
+            "directions": 4
+        },
+        {
+            "name": "computer-eng",
+            "directions": 4
+        },
+        {
+            "name": "computer_broken-eng",
+            "directions": 4
+        },
+        {
+
+            "name": "computer_l-eng",
+            "directions": 4
+        },
+        {
+            "name": "computer_r-eng",
+            "directions": 4
+        },
+        {
+            "name": "computer_l_r-eng",
+            "directions": 4
+        },
+        {
+            "name": "computer_l-broken-eng",
+            "directions": 4
+        },
+        {
+            "name": "computer_r-broken-eng",
+            "directions": 4
+        },
+        {
+            "name": "computer_l_r-broken-eng",
+            "directions": 4
+        }
+    ]
+}

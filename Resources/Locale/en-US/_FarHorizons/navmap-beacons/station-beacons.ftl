@@ -12,3 +12,19 @@ station-beacon-security-ship-bridge-rear = Security Ship Rear Bridge
 station-beacon-security-ship-bridge-brigmedic = Security Ship Brigmedic
 station-beacon-security-ship-bridge-briefing = Security Ship Briefing
 station-beacon-security-ship-bridge-engineering = Security Ship Engineering
+
+station-beacon-nuclear = Nuclear Reactor
+
+station-beacon-executive = Executive
+station-beacon-commandant = Commandant
+station-beacon-pm = Personnel
+
+station-beacon-constable = Constable
+station-beacon-marshal = Marshal
+station-beacon-inspector = Inspector
+
+station-beacon-md = Med Director
+
+station-beacon-ep = Epistemics
+
+station-beacon-foreman = Foreman

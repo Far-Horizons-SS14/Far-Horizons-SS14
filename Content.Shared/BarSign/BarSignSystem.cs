@@ -3,17 +3,21 @@ using System.Linq;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using Content.Shared.Destructible; //FarHorizons
+using Content.Shared.Repairable; //FarHorizons
+using Robust.Shared.Timing; //FarHorizons
 
 namespace Content.Shared.BarSign;
 
-public sealed class BarSignSystem : EntitySystem
+public sealed partial class BarSignSystem : EntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly MetaDataSystem _metaData = default!;
-    [Dependency] private readonly SharedUserInterfaceSystem _ui = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private MetaDataSystem _metaData = default!;
+    [Dependency] private SharedUserInterfaceSystem _ui = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private SharedPointLightSystem _pointLight = default!; //FarHorizons
+    [Dependency] private IGameTiming _timing = default!; //FarHorizons
 
     public override void Initialize()
     {
@@ -26,14 +30,15 @@ public sealed class BarSignSystem : EntitySystem
         });
 
         SubscribeLocalEvent<BarSignComponent, EmpPulseEvent>(OnEmpPulse);
+        SubscribeLocalEvent<BarSignComponent, BreakageEventArgs>(OnBreakage); //FarHorizons
+        SubscribeLocalEvent<BarSignComponent, RepairedEvent>(OnRepairFinished); //FarHorizons
         SubscribeLocalEvent<BarSignComponent, BoundUserInterfaceMessageAttempt>(OnBoundUIAttempt);
     }
-
     private void OnMapInit(Entity<BarSignComponent> ent, ref MapInitEvent args)
     {
         BarSignPrototype? newPrototype;
         if (ent.Comp.Current is null)
-            newPrototype = _random.Pick(GetAllBarSigns(_prototypeManager));
+            newPrototype = _random.Pick(GetAllBarSigns(_prototypeManager).Where(p => ent.Comp.SignType.HasFlag(p.SignType)).ToList()); //FarHorizons
         else if (!_prototypeManager.Resolve(ent.Comp.Current, out newPrototype))
             return;
 
@@ -79,7 +84,7 @@ public sealed class BarSignSystem : EntitySystem
     /// </summary>
     public void SetBarSign(Entity<BarSignComponent> ent, BarSignPrototype newPrototype)
     {
-        if (HasComp<EmpDisabledComponent>(ent))
+        if (HasComp<EmpDisabledComponent>(ent) || ent.Comp.isBroken) //FarHorizons
             return;
 
         var meta = MetaData(ent);
@@ -87,6 +92,9 @@ public sealed class BarSignSystem : EntitySystem
         _metaData.SetEntityName(ent, name, meta);
         _metaData.SetEntityDescription(ent, Loc.GetString(newPrototype.Description), meta);
         _appearance.SetData(ent.Owner, BarSignVisuals.BarSignPrototype, newPrototype.ID);
+
+        if(newPrototype.Color != null) //FarHorizons
+            _pointLight.SetColor(ent.Owner, newPrototype.Color.Value);
 
         ent.Comp.Current = newPrototype.ID;
         Dirty(ent);
@@ -106,4 +114,26 @@ public sealed class BarSignSystem : EntitySystem
             .Where(p => !p.Hidden)
             .ToList();
     }
+
+    // FarHorizons Start
+    private void OnBreakage(Entity<BarSignComponent> ent, ref BreakageEventArgs args)
+    {
+        if (!_prototypeManager.Resolve(ent.Comp.Broken, out var brokenPrototype))
+            return;
+
+        SetBarSign(ent, brokenPrototype);
+        ent.Comp.isBroken = true;
+        Dirty(ent);
+    }
+
+    private void OnRepairFinished(Entity<BarSignComponent> ent, ref RepairedEvent args)
+    {
+        if(!_timing.IsFirstTimePredicted) return;
+        
+        ent.Comp.isBroken = false;
+        var newSign = GetAllBarSigns(_prototypeManager).Where(p => ent.Comp.SignType.HasFlag(p.SignType)).ToList();
+        SetBarSign(ent, _random.Pick(newSign));
+        Dirty(ent);
+    }
+    // FarHorizons End
 }

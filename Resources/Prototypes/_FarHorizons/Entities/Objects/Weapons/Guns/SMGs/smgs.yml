@@ -4,22 +4,22 @@
 
 
 
-#region Stock P2-91
+#region Stock sparv
 - type: entity
-  name: P2-91
+  name: Sparv
   parent: [BaseWeaponSubMachineGun, BaseSecurityContraband]
-  id: WeaponSubMachineGunP291
+  id: WeaponSubMachineGunSparv
   description: The much cheaper version of the NanoTransen manufactored WT500, without the specalized electronics that stabilize your aim. For a Personal Defense Weapon on a budget, it does a good job of dropping the person in front of you dead. Feeds from 9mm Magazines.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Objects/Weapons/Guns/SMGs/p91.rsi
+    sprite: _FarHorizons/Objects/Weapons/Guns/SMGs/Sparv.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
-    sprite: _FarHorizons/Objects/Weapons/Guns/SMGs/p91.rsi
+    sprite: _FarHorizons/Objects/Weapons/Guns/SMGs/Sparv.rsi
     quickEquip: false
     slots:
     - suitStorage
@@ -52,7 +52,7 @@
   - type: Appearance
   - type: Tag
     tags:
-    - P291
+    - Sparv
 
 #region =NanoTrasen=
 
@@ -127,15 +127,15 @@
       tags:
       - Drozd
 
-#region P2-91-T
+#region Sparv-T
 - type: entity
-  name: P2-91-T
+  name: Sparv-T
   parent: [BaseWeaponSubMachineGun, BaseSecurityContraband]
-  id: WeaponSubMachineGunP291T
-  description: A heavily modified P291 platform made as a compromise between the more expensive WT500 and the unreliable P291s, utilized by NanoTrasen. It does the job of a Personal Defense Weapon fairly well, boasting decent accuracy for continuous one-handed firing. Feeds from 9mm Magazines.
+  id: WeaponSubMachineGunSparvT
+  description: A heavily modified Sparv platform made as a compromise between the more expensive WT500 and the unreliable Sparvs, utilized by NanoTrasen. It does the job of a Personal Defense Weapon fairly well, boasting decent accuracy for continuous one-handed firing. Feeds from 9mm Magazines.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Objects/Weapons/Guns/SMGs/nt_p91.rsi
+    sprite: _FarHorizons/Objects/Weapons/Guns/SMGs/nt_Sparv.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -173,7 +173,7 @@
     autoEject: true
   - type: Tag
     tags:
-    - P291
+    - Sparv
 
 #region =NeoSol=
 
@@ -197,9 +197,9 @@
         - state: mag-0
           map: ["enum.GunVisualLayers.Mag"]
     - type: Clothing
-      sprite: _FarHorizons/Objects/Weapons/Guns/Rifles/NS_Drozd/ns_drozd_x32.rsi
+      sprite: _FarHorizons/Objects/Weapons/Guns/SMGs/NS_Drozd/ns_drozd_x32.rsi
     - type: Item
-      sprite: _FarHorizons/Objects/Weapons/Guns/Rifles/NS_Lecter/ns_drozd_x32.rsi
+      sprite: _FarHorizons/Objects/Weapons/Guns/SMGs/NS_Drozd/ns_drozd_x32.rsi
     - type: Wieldable
       unwieldOnUse: false
     - type: GunWieldBonus # 1-5 Deviation / Long Barrel & Heavy Stock/Grip
@@ -263,24 +263,24 @@
       tags:
       - Drozd
 
-#region P2-91-S
+#region Sparv-S
 - type: entity
-  name: P2-91-S
+  name: Sparv-S
   parent: [BaseWeaponSubMachineGun, BaseSecurityContraband]
-  id: WeaponSubMachineGunP291S
-  description: A custom made P291 platform meant to rival NanoTrasen-made WT500s. It does the job of a Personal Defense Weapon fairly well, boasting impressive accuracy for a one-handed weapon. Feeds from 9mm Magazines.
+  id: WeaponSubMachineGunSparvS
+  description: A custom made Sparv platform meant to rival NanoTrasen-made WT500s. It does the job of a Personal Defense Weapon fairly well, boasting impressive accuracy for a one-handed weapon. Feeds from 9mm Magazines.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Objects/Weapons/Guns/SMGs/NS_P91/ns_p91_x32x64.rsi
+    sprite: _FarHorizons/Objects/Weapons/Guns/SMGs/NS_Sparv/Sparv_x32x64.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
-    sprite: _FarHorizons/Objects/Weapons/Guns/SMGs/NS_P91/ns_p91_x32.rsi
+    sprite: _FarHorizons/Objects/Weapons/Guns/SMGs/NS_Sparv/ns_Sparv_x32.rsi
   - type: Item
-    sprite: _FarHorizons/Objects/Weapons/Guns/SMGs/NS_P91/ns_p91_x32.rsi
+    sprite: _FarHorizons/Objects/Weapons/Guns/SMGs/NS_Sparv/ns_Sparv_x32.rsi
   - type: Wieldable
     unwieldOnUse: false
   - type: GunWieldBonus # 1 - 6 Deviation / Addition of Grip
@@ -325,4 +325,167 @@
     attackType: Heavy
   - type: Tag
     tags:
-    - P291
+    - Sparv
+
+
+  #region Contable's
+- type: entity
+  name: Compliance
+  parent: [BaseWeaponSubMachineGun, BaseSecurityContraband]
+  id: WeaponSubMachineGunCompliance
+  description: A small bullpup SMG, designed for close quarters combat and subduing prison riots. Feeds from 9mm Magazines.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/SMGs/NS_Sparv/Sparv_x32x64.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: _FarHorizons/Objects/Weapons/Guns/SMGs/NS_Sparv/ns_Sparv_x32.rsi
+  - type: Item
+    sprite: _FarHorizons/Objects/Weapons/Guns/SMGs/NS_Sparv/ns_Sparv_x32.rsi
+  - type: Wieldable
+    unwieldOnUse: false
+  - type: GunWieldBonus # 1 - 15 Deviation / Addition of Grip
+    minAngle: 0
+    maxAngle: -10
+  - type: Gun # 1 - 25 Deviation (When one-handed)
+    fireRate: 10
+    minAngle: 1
+    maxAngle: 25
+    angleIncrease: 8
+    angleDecay: 5
+    selectedMode: FullAuto
+    availableModes:
+    - SemiAuto
+    - FullAuto
+    soundGunshot:
+      path: /Audio/_Starlight/Weapons/Guns/Gunshots/uzi.ogg
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: true
+  - type: Appearance
+  - type: Sharp
+  - type: MeleeWeapon
+    wideAnimationRotation: -90
+    attackRate: 1.5
+    soundHit:
+      collection: MetalThud
+    angle: 0
+    animation: WeaponArcThrust
+    damage:
+      types:
+        Blunt: 7 #Far horizons
+  - type: StaminaDamageOnHit
+    damage: 20
+  - type: UseDelay
+    delay: 1
+  - type: SpeedModifiedOnWield
+    walkModifier: 1
+    sprintModifier: 1
+  - type: AltFireMelee
+    attackType: Heavy
+
+
+#region = Syndicate =
+
+
+
+
+
+#region IFA-30
+- type: entity
+  name: IFA-30 Submachine Gun
+  description: A modern IFA-30 SMG for mobile operations attached to your arm, Fires 9mm Magazines.
+  parent: [BaseWeaponSubMachineGun, BaseSyndicateContraband]
+  id: WeaponSubMachineGunCyberIFA30
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/SMGs/ifa30.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Gun
+    minAngle: 2
+    maxAngle: 12
+    fireRate: 6
+    angleIncrease: 3
+    angleDecay: 16
+    availableModes:
+    - FullAuto
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/c-20r.ogg
+  - type: ChamberMagazineAmmoProvider
+    autoEject: false
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: true
+  - type: Appearance
+  - type: Tag
+    tags:
+      - CyberHandItem
+
+#region = consortium =
+
+#region consortium
+
+- type: entity
+  name: Type H6 Uzi
+  parent: [BaseWeaponSubMachineGun, BaseMajorContraband]
+  id: WeaponSubMachineGunH6Uzi
+  description: An over engineered version of the classic Uzi that has single or 4 round firing modes.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/SMGs/h6_uzi.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Gun
+    fireRate: 5
+    minAngle: 1
+    maxAngle: 20
+    angleIncrease: 8
+    angleDecay: 5
+    selectedMode: FullAuto
+    shotsPerBurst: 4
+    availableModes:
+    - SemiAuto
+    - Burst
+    - FullAuto
+    soundGunshot:
+      path: /Audio/_Starlight/Weapons/Guns/Gunshots/uzi.ogg
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+  - type: ChamberMagazineAmmoProvider
+    autoEject: true
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazinePistolSubMachineGunSP
+        insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazinePistolSubMachineGunSP
+        whitelistFailPopup: gun-magazine-whitelist-fail
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgePistolSP
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgePistol

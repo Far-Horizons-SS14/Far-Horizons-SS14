@@ -1,3 +1,42 @@
+#region ## GSL ##
+- type: entity
+  parent: [ ClothingHeadBase , BaseSalvageContraband ]
+  id: ClothingHeadHatBeretSalvage
+  name: Salvage Specialist's Beret
+  description: A purple beret.
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Clothing/Head/Hats/beret_salvage.rsi
+    - type: Clothing
+      sprite: _FarHorizons/Clothing/Head/Hats/beret_salvage.rsi
+    - type: Tag
+      tags:
+        - PetWearable
+        - CorgiWearable
+
+- type: entity
+  parent: [ ClothingHeadBase , BaseSalvageContraband ]
+  id: ClothingHeadHatBeretSalvageLead
+  name: Salvage Lead's Beret
+  description: A tan beret.
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Clothing/Head/Hats/beret_salvagelead.rsi
+    - type: Clothing
+      sprite: _FarHorizons/Clothing/Head/Hats/beret_salvagelead.rsi
+    - type: Tag
+      tags:
+        - PetWearable
+        - CorgiWearable
+
+#region ## NanoTrasen ##
+
+
+
+
+
+
+
 #region Command
 
 - type: entity
@@ -128,7 +167,37 @@
     - PetWearable
     - CorgiWearable
 
-#region Syndicate ####
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatSecurityDeputy
+  name: Deputy Hat
+  description: The peak of law enforcement fashion.
+  suffix: NT
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Head/Hats/deputy_hat.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Head/Hats/deputy_hat.rsi
+
+#region Service
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadRancherHat
+  name: Rancher Hat
+  description: A fancy hat for hot days!
+  suffix: NT
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Head/Hats/botanist_rancher_hat.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Head/Hats/botanist_rancher_hat.rsi
+  - type: Tag
+    tags:
+    - PetWearable
+    - CorgiWearable
+    - WhitelistChameleon
+
+#region ## NeoSol ##
 
 
 
@@ -163,15 +232,15 @@
   parent: [ ClothingHeadBase, BaseCommandContraband ]
   id: ClothingHeadHatCapcapSyndi
   name: Com Cap
-  suffix: S
+  suffix: NS
   description: A grand, stylish cap worn by the Commandant. Shows the station who's in charge.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/Head/Hats/syndicapcap.rsi
+    sprite: _FarHorizons/Clothing/Head/Hats/NeoSol/capcap.rsi
   - type: Clothing
-    sprite: _FarHorizons/Clothing/Head/Hats/syndicapcap.rsi
+    sprite: _FarHorizons/Clothing/Head/Hats/NeoSol/capcap.rsi
   - type: Item
-    sprite: _FarHorizons/Clothing/Head/Hats/syndicapcap.rsi
+    sprite: _FarHorizons/Clothing/Head/Hats/NeoSol/capcap.rsi
   - type: Tag
     tags:
     - PetWearable
@@ -189,13 +258,13 @@
   parent: [ ClothingHeadBase, BaseCommandContraband ]
   id: ClothingHeadHatCaptainSyndi
   name: Commandant's Hardhat
-  suffix: S
+  suffix: NS
   description: Feels good being the king.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/Head/Hats/syndicaptain.rsi
+    sprite: _FarHorizons/Clothing/Head/Hats/NeoSol/captain.rsi
   - type: Clothing
-    sprite: _FarHorizons/Clothing/Head/Hats/syndicaptain.rsi
+    sprite: _FarHorizons/Clothing/Head/Hats/NeoSol/captain.rsi
   - type: Tag
     tags:
     - PetWearable
@@ -211,13 +280,13 @@
   parent: [ ClothingHeadHatHopcap, BaseCommandContraband ]
   id: ClothingHeadHatHopcapSyndi
   name: Personnel Manager's Cap
-  suffix: S
+  suffix: NS
   description: A stylish cap worn by the Personnel Manager. Shows paperwork who's in charge.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/Head/Hats/syndihopcap.rsi
+    sprite: _FarHorizons/Clothing/Head/Hats/NeoSol/hopcap.rsi
   - type: Clothing
-    sprite: _FarHorizons/Clothing/Head/Hats/syndihopcap.rsi
+    sprite: _FarHorizons/Clothing/Head/Hats/NeoSol/hopcap.rsi
   - type: Tag
     tags:
     - PetWearable
@@ -231,13 +300,13 @@
   parent: [ ClothingHeadHatBeretHoP, BaseCommandContraband ]
   id: ClothingHeadHatBeretHoPSyndi
   name: Personnel Manager's Beret
-  suffix: S
+  suffix: NS
   description: A simplistic but rugged red beret for the Personnel Manager.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/Head/Hats/syndiberet_hop.rsi
+    sprite: _FarHorizons/Clothing/Head/Hats/NeoSol/beret_hop.rsi
   - type: Clothing
-    sprite: _FarHorizons/Clothing/Head/Hats/syndiberet_hop.rsi
+    sprite: _FarHorizons/Clothing/Head/Hats/NeoSol/beret_hop.rsi
 
 # Marshal (Head of Security)
 
@@ -245,13 +314,13 @@
   parent: [ClothingHeadBase, BaseCommandContraband]
   id: ClothingHeadHatBeretMarshal
   name: Marshal's Beret
-  suffix: S
+  suffix: NS
   description: A black beret with a commander's rank emblem. For officers that are more inclined towards style than safety.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/Head/Hats/beret_hos-syndi.rsi
+    sprite: _FarHorizons/Clothing/Head/Hats/NeoSol/beret_hos.rsi
   - type: Clothing
-    sprite: _FarHorizons/Clothing/Head/Hats/beret_hos-syndi.rsi
+    sprite: _FarHorizons/Clothing/Head/Hats/NeoSol/beret_hos.rsi
   - type: Tag
     tags:
     - PetWearable
@@ -265,13 +334,13 @@
   parent: [ClothingHeadBase, BaseCommandContraband]
   id: ClothingHeadHatSheriffMarshal
   name: Marshal's Sheriff Hat
-  suffix: S
+  suffix: NS
   description: A black sherriff hat with gold lacing. This station aint big enough for enemies of the syndicate.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/Head/Hats/hos_sheriff-syndi.rsi
+    sprite: _FarHorizons/Clothing/Head/Hats/NeoSol/hos_sheriff.rsi
   - type: Clothing
-    sprite: _FarHorizons/Clothing/Head/Hats/hos_sheriff-syndi.rsi
+    sprite: _FarHorizons/Clothing/Head/Hats/NeoSol/hos_sheriff.rsi
   - type: Tag
     tags:
     - PetWearable
@@ -285,13 +354,13 @@
   parent: [ClothingHeadBase, BaseCommandContraband]
   id: ClothingHeadHatMarshalHat
   name: Marshal's Hat
-  suffix: S
+  suffix: NS
   description: The robust hat of the Marshal. For showing the officers who's the real boss.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/Head/Hats/hoshat-syndi.rsi
+    sprite: _FarHorizons/Clothing/Head/Hats/NeoSol/hoshat.rsi
   - type: Clothing
-    sprite: _FarHorizons/Clothing/Head/Hats/hoshat-syndi.rsi
+    sprite: _FarHorizons/Clothing/Head/Hats/NeoSol/hoshat.rsi
   - type: Tag
     tags:
     - PetWearable
@@ -307,17 +376,68 @@
   parent: ClothingHeadBase
   id: ClothingHeadHatBeretCESyndi
   name: Foreman's Beret
-  suffix: S
+  suffix: NS
   description: A red colored beret for the head of engineering.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/Head/Hats/beret_CE-syndi.rsi
+    sprite: _FarHorizons/Clothing/Head/Hats/NeoSol/beret_CE.rsi
   - type: Clothing
-    sprite: _FarHorizons/Clothing/Head/Hats/beret_CE-syndi.rsi
+    sprite: _FarHorizons/Clothing/Head/Hats/NeoSol/beret_CE.rsi
   - type: Tag
     tags:
     - PetWearable
     - CorgiWearable
+
+# NeoSol Representative (NTR)
+
+- type: entity
+  parent: [ ClothingHeadBase, BaseRepresentativesContraband ]
+  id: ClothingHeadHatBeretNSR
+  name: NeoSol Representative's Beret
+  description: A red colored beret to remind command of their betters.
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Head/Hats/NeoSol/beret_shrep.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Head/Hats/NeoSol/beret_shrep.rsi
+  - type: Tag
+    tags:
+    - PetWearable
+    - CorgiWearable
+
+- type: entity
+  parent: [ ClothingHeadBase, BaseRepresentativesContraband ]
+  id: ClothingHeadHatCapNSR
+  name: NeoSol Representative Cap
+  description: The cap to keep command in line.
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Head/Hats/NeoSol/shrep.rsi 
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Head/Hats/NeoSol/shrep.rsi
+  - type: Tag
+    tags:
+    - PetWearable
+    - CorgiWearable
+
+# Red Sword Operative (BSO)
+
+- type: entity
+  parent: [ ClothingHeadBase, BaseBlueshieldContraband ] # Technically not Blueshield, but that's a problem for another day
+  id: ClothingHeadHatBeretRedSword
+  name: Red Sword Operative's Beret
+  description: A reminder of the standards that others cannot hope to meet.
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Head/Hats/NeoSol/baret_redsword.rsi 
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Head/Hats/NeoSol/baret_redsword.rsi 
+  - type: Tag
+    tags:
+    - HamsterWearable
 
 #region Engineering
 
@@ -325,13 +445,13 @@
   parent: ClothingHeadBase
   id: ClothingHeadHatBeretAtmosSyndi
   name: Atmospheric Beret
-  suffix: S
+  suffix: NS
   description: A brightly colored yellow beret with red accent.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/Head/Hats/beret_atmos-syndi.rsi
+    sprite: _FarHorizons/Clothing/Head/Hats/NeoSol/beret_atmos.rsi
   - type: Clothing
-    sprite: _FarHorizons/Clothing/Head/Hats/beret_atmos-syndi.rsi
+    sprite: _FarHorizons/Clothing/Head/Hats/NeoSol/beret_atmos.rsi
   - type: Tag
     tags:
     - PetWearable
@@ -341,13 +461,34 @@
   parent: ClothingHeadBase
   id: ClothingHeadHatBeretEngineeringSyndi
   name: Engineering Beret
-  suffix: S
+  suffix: NS
   description: A beret with the engineering department's insignia. For engineers that are more inclined towards style than safety.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/Head/Hats/beret_engineering-syndi.rsi #Far Horizons
+    sprite: _FarHorizons/Clothing/Head/Hats/NeoSol/beret_engineering.rsi #Far Horizons
   - type: Clothing
-    sprite: _FarHorizons/Clothing/Head/Hats/beret_engineering-syndi.rsi #Far Horizons
+    sprite: _FarHorizons/Clothing/Head/Hats/NeoSol/beret_engineering.rsi #Far Horizons
+  - type: Tag
+    tags:
+    - PetWearable
+    - CorgiWearable
+    - ClothMade
+    - Recyclable
+    - HamsterWearable
+    - WhitelistChameleon
+    
+#region Medical
+- type: entity
+  parent: [ClothingHeadBase, BaseCommandContraband]
+  id: ClothingHeadHatBeretCmoSyndi
+  name: Medical Director's Beret 
+  description: A turquoise beret with a cross on the front. The sight of it calms you down and makes it clear that you will be cured.
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Head/Hats/NeoSol/beret_cmo.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Head/Hats/NeoSol/beret_cmo.rsi
   - type: Tag
     tags:
     - PetWearable
@@ -357,19 +498,97 @@
     - HamsterWearable
     - WhitelistChameleon
 
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatBeretMedicSyndi
+  name: Medical Beret 
+  description: A sterile white beret.
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Head/Hats/NeoSol/beret_medic.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Head/Hats/NeoSol/beret_medic.rsi
+  - type: Tag
+    tags:
+    - PetWearable
+    - CorgiWearable
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatBeretVirologistSyndi
+  name: Virology Beret
+  description: A sterile green beret.
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Head/Hats/NeoSol/beret_virology.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Head/Hats/NeoSol/beret_virology.rsi
+  - type: Tag
+    tags:
+    - PetWearable
+    - CorgiWearable
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadNurseHatSyndi
+  name: Nurse Hat 
+  description: Somehow I feel I'm not supposed to leave this place.
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Head/Hats/NeoSol/nursehat.rsi 
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Head/Hats/NeoSol/nursehat.rsi 
+  - type: Tag
+    tags:
+    - ClothMade
+    - Recyclable
+    - HamsterWearable
+    - WhitelistChameleon
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatBeretChemistSyndi
+  name: Pharmacist Beret
+  description: A sterile orange beret.
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Head/Hats/NeoSol/beret_chemist.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Head/Hats/NeoSol/beret_chemist.rsi
+  - type: Tag
+    tags:
+    - PetWearable
+    - CorgiWearable
+
 #region Security
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatSecurityDeputySyndi
+  name: Deputy Hat
+  description: The peak of law enforcement fashion.
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Head/Hats/NeoSol/deputy_hat_red.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Head/Hats/NeoSol/deputy_hat_red.rsi
 
 - type: entity
   parent: ClothingHeadBase
   id: ClothingHeadHatBeretSecuritySyndi
   name: Security Beret
-  suffix: S
+  suffix: NS
   description: A beret with the security department's insignia. For officers that are more inclined towards style than safety.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/Head/Hats/beret_security-syndi.rsi
+    sprite: _FarHorizons/Clothing/Head/Hats/NeoSol/beret_security.rsi
   - type: Clothing
-    sprite: _FarHorizons/Clothing/Head/Hats/beret_security-syndi.rsi
+    sprite: _FarHorizons/Clothing/Head/Hats/NeoSol/beret_security.rsi
   - type: Tag
     tags:
     - ClothMade
@@ -383,13 +602,13 @@
   parent: ClothingHeadBase
   id: ClothingHeadHatSecurityTrooperSyndi
   name: Trooper Hat
-  suffix: S
+  suffix: NS
   description: A campaign hat for the Syndicate Troopers. It's supposed to come with a case, too...
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/Head/Hats/security_trooper_hat-syndi.rsi
+    sprite: _FarHorizons/Clothing/Head/Hats/NeoSol/security_trooper_hat.rsi
   - type: Clothing
-    sprite: _FarHorizons/Clothing/Head/Hats/security_trooper_hat-syndi.rsi
+    sprite: _FarHorizons/Clothing/Head/Hats/NeoSol/security_trooper_hat.rsi
   - type: Tag
     tags:
     - ClothMade
@@ -399,13 +618,13 @@
   parent: ClothingHeadBase
   id: ClothingHeadHatSecurityCapSyndi
   name: Security Cap
-  suffix: S
+  suffix: NS
   description: A red security cap for the security department. 
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/Head/Hats/securitycap-syndi.rsi
+    sprite: _FarHorizons/Clothing/Head/Hats/NeoSol/securitycap.rsi
   - type: Clothing
-    sprite: _FarHorizons/Clothing/Head/Hats/securitycap-syndi.rsi
+    sprite: _FarHorizons/Clothing/Head/Hats/NeoSol/securitycap.rsi
   - type: Tag
     tags:
     - ClothMade
@@ -417,13 +636,13 @@
   parent: [ ClothingHeadBase, BaseSecurityContraband ]
   id: ClothingHeadHatConstableCap
   name: Constable's Cap
-  suffix: S
+  suffix: NS
   description: This hat emphasizes that you are THE LAW. If you look closely you can see some blood splatter...
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/Head/Hats/warden_cap-syndi.rsi
+    sprite: _FarHorizons/Clothing/Head/Hats/NeoSol/warden_cap.rsi
   - type: Clothing
-    sprite: _FarHorizons/Clothing/Head/Hats/warden_cap-syndi.rsi
+    sprite: _FarHorizons/Clothing/Head/Hats/NeoSol/warden_cap.rsi
   #- type: StealTarget    - Omega: Temporarily disabled till I can sort it out another time.
   #  stealGroup: ClothingHeadHatConstable
   - type: Tag
@@ -435,13 +654,13 @@
   parent: ClothingHeadBase
   id: ClothingHeadHatBeretConstable
   name: Constable's Beret
-  suffix: S
+  suffix: NS
   description: A faded red beret with a guardian's rank emblem. For officers that are more inclined towards style than safety.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/Head/Hats/beret_warden-syndi.rsi
+    sprite: _FarHorizons/Clothing/Head/Hats/NeoSol/beret_warden.rsi
   - type: Clothing
-    sprite: _FarHorizons/Clothing/Head/Hats/beret_warden-syndi.rsi
+    sprite: _FarHorizons/Clothing/Head/Hats/NeoSol/beret_warden.rsi
   - type: Tag
     tags:
     - PetWearable
@@ -453,15 +672,25 @@
   parent: ClothingHeadBase
   id: ClothingHeadHatBeretBrigSyndi
   name: Brigmedic Beret
-  suffix: S
+  suffix: NS
   description: A white beret for Brigmedics.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/Head/Hats/beret_brigmedic-syndi.rsi
+    sprite: _FarHorizons/Clothing/Head/Hats/NeoSol/beret_brigmedic.rsi
   - type: Clothing
-    sprite: _FarHorizons/Clothing/Head/Hats/beret_brigmedic-syndi.rsi
+    sprite: _FarHorizons/Clothing/Head/Hats/NeoSol/beret_brigmedic.rsi
   - type: Tag
     tags:
     - PetWearable
     - CorgiWearable
 
+#region Service
+- type: entity
+  parent: ClothingHeadRancherHat
+  id: ClothingHeadRancherHatNS
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Head/Hats/NeoSol/botanist_rancher_hat.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Head/Hats/NeoSol/botanist_rancher_hat.rsi

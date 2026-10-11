@@ -47,6 +47,9 @@ public sealed partial class MarkingPicker : Control
         if (_markingsModel is null)
             return;
 
+        if (OrganTabs.ChildCount > 0) //Far Horizons Fix.
+            OrganTabs.CurrentTab = 0;
+
         OrganTabs.RemoveAllChildren();
 
         var i = 0;
@@ -56,8 +59,13 @@ public sealed partial class MarkingPicker : Control
             if (control.Empty)
                 continue;
 
-            OrganTabs.AddChild(control);
-            OrganTabs.SetTabTitle(i, Loc.GetString($"markings-organ-{organ.Id}"));
+            //Far Horizons Start
+            OrganTabs.AddChild(control); 
+            if (Loc.TryGetString($"markings-organ-{organ.Id}-{organData.Group}", out var organTitle))
+                OrganTabs.SetTabTitle(i, organTitle);
+            else
+                OrganTabs.SetTabTitle(i, Loc.GetString($"markings-organ-{organ.Id}"));
+            //Far Horizons End
             i++;
         }
 

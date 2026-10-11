@@ -74,6 +74,7 @@
 - type: entity
   parent: BaseSpeciesAppearance
   id: AppearanceVox
+  categories: [ HideSpawnMenu ]
   name: vox appearance
   components:
   - type: Inventory
@@ -158,6 +159,7 @@
 
 - type: entity
   parent:
+  - ActiveCritBase # FH
   - AppearanceVox
   - BaseSpeciesMobOrganic
   - BaseSpeciesPickupableLarge #FH
@@ -182,6 +184,10 @@
     allowedEmotes: ['Click', 'Chitter']
   - type: TypingIndicator
     proto: vox
+  - type: CreamPied
+    sprite:
+      sprite: Effects/creampie.rsi
+      state: creampie_vox
   - type: Vocal
     sounds:
       Male: UnisexVox
@@ -255,7 +261,7 @@
     bloodReferenceSolution:
       reagents:
       - ReagentId: AmmoniaBlood
-        Quantity: 300
+        Quantity: 600
   - type: MeleeWeapon
     soundHit:
       collection: AlienClaw
@@ -272,8 +278,15 @@
       - AnomalyHost
       - Vox
   - type: Wagging
-  - type: LimbDamageable # Far Horizons
+  # Far Horizons start
+  - type: LimbDamageable
     proto: LimbTargetVox
+  - type: FluidFootprintSpreader
+    footprint: Chicken
+    footprintSize: 1.0
+    stepSpacing: 0.2
+    lateralOffset: 0.15
+  # Far Horizons end
 
 - type: entity
   parent: OrganBase
@@ -347,6 +360,12 @@
     dependentHidingLayers:
       enum.HumanoidVisualLayers.Snout:
       - enum.HumanoidVisualLayers.SnoutCover
+    markingsDisplacement:
+      Hair:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Vox/displacement.rsi
+            state: hair
 
 - type: entity
   parent: [ DamageableLimbVisualsVox, OrganBaseArmLeft, OrganVoxExternal ]
@@ -421,7 +440,7 @@
       moles:
         Nitrogen: 4.1027581 # Prefill with 10L of nitrogen
       temperature: 293.15
-    outputPressure: 21.3
+    releasePressure: 21.3
   - type: OrganGasTankFillable
     targetPressure: 1000.0 # 1MPa of pressure target on refill
   - type: UseDelay
@@ -440,6 +459,8 @@
     tags:
     - GasTank
     #Starlight end
+  - type: AtmosDevice #FH
+    requireAnchored: false
 
 - type: entity
   parent: [ OrganBaseHeart, OrganVoxInternal, OrganVoxMetabolizer ]

@@ -1,3 +1,4 @@
+using Content.Shared.Access;
 using Content.Shared.Preferences.Loadouts;
 using Content.Shared.Roles;
 using Content.Shared.StatusIcon;
@@ -29,11 +30,19 @@ public interface ISharedFactionManager
 
     public bool TryFindFaction(string search, out FactionPrototype? faction);
 
+    public FactionJobAssignmentPrototype? GetJobAssignment((ProtoId<FactionPrototype> faction, ProtoId<JobPrototype> job) factionJob);
+    public bool TryGetJobAssignment((ProtoId<FactionPrototype> faction, ProtoId<JobPrototype> job) factionJob, out FactionJobAssignmentPrototype? assignment);
+    
+
+    public string? GetMapPool();
+
     // Overrides for JobPrototype
     public string OverrideLocalizedJobName(FactionJobAssignmentPrototype assignment);
     public string OverrideLocalizedJobName((ProtoId<FactionPrototype>? faction, ProtoId<JobPrototype> job) factionJob);
     public string? OverrideLocalizedJobDescription(FactionJobAssignmentPrototype assignment);
     public string? OverrideLocalizedJobDescription((ProtoId<FactionPrototype> faction, ProtoId<JobPrototype> job) factionJob);
+    public string OverrideLocalizedJobSupervisors(FactionJobAssignmentPrototype assignment);
+    public string OverrideLocalizedJobSupervisors((ProtoId<FactionPrototype>? faction, ProtoId<JobPrototype> job) factionJob);
     public ProtoId<JobIconPrototype> OverrideJobIcon(FactionJobAssignmentPrototype assignment);
     public ProtoId<JobIconPrototype> OverrideJobIcon((ProtoId<FactionPrototype>? faction, ProtoId<JobPrototype> job) factionJob);
     public ProtoId<StartingGearPrototype>? OverrideJobStartingGear(FactionJobAssignmentPrototype assignment);
@@ -44,4 +53,16 @@ public interface ISharedFactionManager
     public EntProtoId? OverrideJobEntity((ProtoId<FactionPrototype>? faction, ProtoId<JobPrototype> job) factionJob);
     public EntProtoId? OverrideJobPreviewEntity(FactionJobAssignmentPrototype assignment);
     public EntProtoId? OverrideJobPreviewEntity((ProtoId<FactionPrototype>? faction, ProtoId<JobPrototype> job) factionJob);
+    public IReadOnlyCollection<ProtoId<AccessLevelPrototype>>? OverrideJobAccess(FactionJobAssignmentPrototype assignment);
+    public IReadOnlyCollection<ProtoId<AccessLevelPrototype>>? OverrideJobAccess((ProtoId<FactionPrototype>? faction, ProtoId<JobPrototype> job) factionJob);
+    public IReadOnlyCollection<ProtoId<AccessGroupPrototype>>? OverrideJobAccessGroups(FactionJobAssignmentPrototype assignment);
+    public IReadOnlyCollection<ProtoId<AccessGroupPrototype>>? OverrideJobAccessGroups((ProtoId<FactionPrototype>? faction, ProtoId<JobPrototype> job) factionJob);
+    public IReadOnlyCollection<ProtoId<AccessLevelPrototype>>? OverrideJobExtendedAccess(FactionJobAssignmentPrototype assignment);
+    public IReadOnlyCollection<ProtoId<AccessLevelPrototype>>? OverrideJobExtendedAccess((ProtoId<FactionPrototype>? faction, ProtoId<JobPrototype> job) factionJob);
+    public IReadOnlyCollection<ProtoId<AccessGroupPrototype>>? OverrideJobExtendedAccessGroups(FactionJobAssignmentPrototype assignment);
+    public IReadOnlyCollection<ProtoId<AccessGroupPrototype>>? OverrideJobExtendedAccessGroups((ProtoId<FactionPrototype>? faction, ProtoId<JobPrototype> job) factionJob);
+    public JobSpecial[] OverrideJobSpecial(FactionJobAssignmentPrototype assignment);
+    public JobSpecial[] OverrideJobSpecial((ProtoId<FactionPrototype>? faction, ProtoId<JobPrototype> job) factionJob);
+    public string GetAnnouncerSender(ProtoId<FactionPrototype> faction);
+    public string GetAnnouncerSender();
 }

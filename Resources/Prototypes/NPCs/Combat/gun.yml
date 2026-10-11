@@ -96,6 +96,33 @@
 - type: htnCompound
   id: RangedCombatCompound
   branches:
+    # Close or rack the gun chamber if necessary
+    - preconditions:
+        - !type:ActiveHandComponentPrecondition
+          components:
+            - type: Gun
+        - !type:GunAmmoPrecondition
+          minPercent: 0.001
+        - !type:NeedToRackBoltPrecondition
+      tasks:
+        - !type:HTNPrimitiveTask
+          operator: !type:RackBoltOperator
+
+    # Wield gun
+    - preconditions:
+        - !type:ActiveHandComponentPrecondition
+          components:
+            - type: Gun
+        - !type:WieldedPrecondition
+          wielded: false
+        # Far Horizons start - Don't wield an empty gun
+        - !type:GunAmmoPrecondition
+          minPercent: 0.001
+        # Far Horizons end
+      tasks:
+        - !type:HTNPrimitiveTask
+          operator: !type:WieldOperator
+
     # Move to target and shoot them if ammo
     - preconditions:
         - !type:GunAmmoPrecondition
@@ -132,6 +159,56 @@
 #
 #        - !type:HTNCompoundTask
 #          task: PickupAmmoCompound
+
+    # FH start
+    # Not todo reload gun
+    - preconditions:
+        - !type:ActiveHandComponentPrecondition
+          components:
+            - type: Gun
+            - type: ChamberMagazineAmmoProvider
+        - !type:GunAmmoPrecondition
+          maxPercent: 0.0
+      tasks:
+        - !type:HTNCompoundTask
+          task: ReloadGunFromInventoryCompound
+
+    # If still at 0 ammo - try to reload from ground
+    - preconditions:
+        - !type:ActiveHandComponentPrecondition
+          components:
+            - type: Gun
+            - type: ChamberMagazineAmmoProvider
+        - !type:GunAmmoPrecondition
+          maxPercent: 0.0
+      tasks:
+        - !type:HTNCompoundTask
+          task: ReloadGunFromGroundCompound
+    
+    # Reload shotguns
+    - preconditions:
+        - !type:ActiveHandComponentPrecondition
+          components:
+            - type: Gun
+            - type: BallisticAmmoProvider
+        - !type:GunAmmoPrecondition
+          maxPercent: 0.0
+      tasks:
+        - !type:HTNCompoundTask
+          task: ReloadShotgunFromInventoryCompound
+    
+    # Reload shotguns from ground if still at 0 ammo
+    - preconditions:
+        - !type:ActiveHandComponentPrecondition
+          components:
+            - type: Gun
+            - type: BallisticAmmoProvider
+        - !type:GunAmmoPrecondition
+          maxPercent: 0.0
+      tasks:
+        - !type:HTNCompoundTask
+          task: ReloadShotgunFromGroundCompound
+    # FH end
 
     # Pickup gun with ammo if we have no ammo
     -  preconditions:

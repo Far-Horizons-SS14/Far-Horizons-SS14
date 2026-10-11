@@ -26,6 +26,7 @@ namespace Content.Shared.Humanoid.Markings
         BodyCover, // Far Horizons
         BodyCoverCover, // Far Horizons
         TailCover, // Far Horizons
+        Wings // Far Horizons
     }
 
     public static class MarkingCategoriesConversion
@@ -59,6 +60,7 @@ namespace Content.Shared.Humanoid.Markings
                 HumanoidVisualLayers.BodyCover => MarkingCategories.BodyCover,
                 HumanoidVisualLayers.BodyCoverCover => MarkingCategories.BodyCoverCover,
                 HumanoidVisualLayers.TailCover => MarkingCategories.TailCover,
+                HumanoidVisualLayers.Wings => MarkingCategories.Wings,
                 _ => MarkingCategories.Overlay
             };
         }

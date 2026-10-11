@@ -12,7 +12,7 @@ namespace Content.Shared._Starlight.NullSpace;
 
 public abstract partial class SharedNullSpaceSystem : EntitySystem
 {
-    [Dependency] private readonly PullingSystem _pulling = default!;
+    [Dependency] private PullingSystem _pulling = default!;
     public EntProtoId _shadekinShadow = "ShadekinShadow";
 
     public override void Initialize()
@@ -31,7 +31,7 @@ public abstract partial class SharedNullSpaceSystem : EntitySystem
 
     private void OnMobStateChanged(EntityUid uid, NullSpaceComponent component, MobStateChangedEvent args)
     {
-        if (args.NewMobState == MobState.Critical || args.NewMobState == MobState.Dead)
+        if (args.NewMobState is MobState.Critical or MobState.ActiveCritical or MobState.Dead) // Far Horizons
         {
             SpawnAtPosition(_shadekinShadow, Transform(uid).Coordinates);
             RemComp(uid, component);

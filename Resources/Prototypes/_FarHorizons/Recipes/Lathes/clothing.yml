@@ -1,3 +1,4 @@
+#region ## NanoTrasen ##
 ## Command Hats
 
 - type: latheRecipe
@@ -32,6 +33,11 @@
   id: ClothingHeadHatBeretVirologist
   result: ClothingHeadHatBeretVirologist
 
+- type: latheRecipe
+  parent: BaseHatRecipe
+  id: ClothingHeadRancherHat
+  result: ClothingHeadRancherHat
+
 ## Non-Command Uniforms
 
 - type: latheRecipe
@@ -46,8 +52,14 @@
 
 
 
-#region Syndicate
+#region ## NeoSol ##
 
+
+
+
+
+
+#region Command
 ## Command Hats
 - type: latheRecipe
   parent: BaseCommandHatRecipe
@@ -186,6 +198,7 @@
   id: ClothingOuterCoatHoSTrenchSyndi
   result: ClothingOuterCoatHoSTrenchSyndi
 
+#region Security
 
 ## Overwatch Hats 
 
@@ -346,3 +359,206 @@
   parent: BaseNeckClothingRecipe
   id: ClothingNeckTieDetSyndi
   result: ClothingNeckTieDetSyndi
+
+#region Medical
+
+## Medical Hats 
+
+- type: latheRecipe
+  parent: BaseHatRecipe
+  id: ClothingHeadHatBeretCmoSyndi
+  result: ClothingHeadHatBeretCmoSyndi
+
+- type: latheRecipe
+  parent: BaseHatRecipe
+  id: ClothingHeadHatParamedicsoftSyndi
+  result: ClothingHeadHatParamedicsoftSyndi
+
+- type: latheRecipe
+  parent: BaseHatRecipe
+  id: ClothingHeadHatBeretMedicSyndi
+  result: ClothingHeadHatBeretMedicSyndi
+
+- type: latheRecipe
+  parent: BaseHatRecipe
+  id: ClothingHeadHatBeretChemistSyndi
+  result: ClothingHeadHatBeretChemistSyndi
+
+- type: latheRecipe
+  parent: BaseHatRecipe
+  id: ClothingHeadHatBeretVirologistSyndi
+  result: ClothingHeadHatBeretVirologistSyndi
+
+## Medical Jumpsuits
+
+- type: latheRecipe
+  parent: BaseJumpsuitRecipe
+  id: ClothingUniformJumpsuitChemistrySyndi
+  result: ClothingUniformJumpsuitChemistrySyndi
+
+- type: latheRecipe
+  parent: BaseJumpsuitRecipe
+  id: ClothingUniformJumpskirtChemistrySyndi
+  result: ClothingUniformJumpskirtChemistrySyndi
+
+- type: latheRecipe
+  parent: BaseJumpsuitRecipe
+  id: ClothingUniformJumpsuitCMOSyndi
+  result: ClothingUniformJumpsuitCMOSyndi
+
+- type: latheRecipe
+  parent: BaseJumpsuitRecipe
+  id: ClothingUniformJumpskirtCMOSyndi
+  result: ClothingUniformJumpskirtCMOSyndi
+
+- type: latheRecipe
+  parent: BaseJumpsuitRecipe
+  id: ClothingUniformJumpsuitCMOTurtleSyndi
+  result: ClothingUniformJumpsuitCMOTurtleSyndi
+
+- type: latheRecipe
+  parent: BaseJumpsuitRecipe
+  id: ClothingUniformJumpskirtCMOTurtleSyndi
+  result: ClothingUniformJumpskirtCMOTurtleSyndi
+
+- type: latheRecipe
+  parent: BaseJumpsuitRecipe
+  id: ClothingUniformJumpsuitMedicalDoctorSyndi
+  result: ClothingUniformJumpsuitMedicalDoctorSyndi
+
+- type: latheRecipe
+  parent: BaseJumpsuitRecipe
+  id: ClothingUniformJumpskirtMedicalDoctorSyndi
+  result: ClothingUniformJumpskirtMedicalDoctorSyndi
+
+- type: latheRecipe
+  parent: BaseJumpsuitRecipe
+  id: ClothingUniformJumpsuitSeniorPhysicianSyndi
+  result: ClothingUniformJumpsuitSeniorPhysicianSyndi
+
+- type: latheRecipe
+  parent: BaseJumpsuitRecipe
+  id: ClothingUniformJumpskirtSeniorPhysicianSyndi
+  result: ClothingUniformJumpskirtSeniorPhysicianSyndi
+
+- type: latheRecipe
+  parent: BaseJumpsuitRecipe
+  id: ClothingUniformJumpsuitParamedicSyndi
+  result: ClothingUniformJumpsuitParamedicSyndi
+
+- type: latheRecipe
+  parent: BaseJumpsuitRecipe
+  id: ClothingUniformJumpskirtParamedicSyndi
+  result: ClothingUniformJumpskirtParamedicSyndi
+
+- type: latheRecipe
+  parent: BaseJumpsuitRecipe
+  id: ClothingUniformJumpsuitVirologySyndi
+  result: ClothingUniformJumpsuitVirologySyndi
+
+- type: latheRecipe
+  parent: BaseJumpsuitRecipe
+  id: ClothingUniformJumpskirtVirologySyndi
+  result: ClothingUniformJumpskirtVirologySyndi
+
+#region Service
+#Service Hats
+- type: latheRecipe
+  parent: BaseHatRecipe
+  id: ClothingHeadRancherHatNS
+  result: ClothingHeadRancherHatNS
+
+#Service Masks
+- type: latheRecipe
+  parent: BaseHatRecipe
+  id: ClothingMaskJanitorNS
+  result: ClothingMaskJanitorNS
+
+#Service Jumpsuits
+- type: latheRecipe
+  parent: BaseJumpsuitRecipe
+  id: ClothingUniformJumpsuitHydroponicsNS
+  result: ClothingUniformJumpsuitHydroponicsNS
+
+- type: latheRecipe
+  parent: BaseJumpsuitRecipe
+  id: ClothingUniformJumpsuitOverallNS
+  result: ClothingUniformJumpsuitOverallNS
+
+- type: latheRecipe
+  parent: BaseJumpsuitRecipe
+  id: ClothingUniformJumpskirtOveralls
+  result: ClothingUniformJumpskirtOveralls
+
+- type: latheRecipe
+  parent: BaseJumpsuitRecipe
+  id: ClothingUniformJumpsuitChefNS
+  result: ClothingUniformJumpsuitChefNS
+
+- type: latheRecipe
+  parent: BaseJumpsuitRecipe
+  id: ClothingUniformJumpsuitJanitorNS
+  result: ClothingUniformJumpsuitJanitorNS
+
+- type: latheRecipe
+  parent: BaseJumpsuitRecipe
+  id: ClothingUniformJumpskirtHydroponicsNS
+  result: ClothingUniformJumpskirtHydroponicsNS
+
+- type: latheRecipe
+  parent: BaseJumpsuitRecipe
+  id: ClothingUniformJumpskirtOverallsNS
+  result: ClothingUniformJumpskirtOverallsNS
+
+- type: latheRecipe
+  parent: BaseJumpsuitRecipe
+  id: ClothingUniformJumpskirtChefNS
+  result: ClothingUniformJumpskirtChefNS  
+
+- type: latheRecipe
+  parent: BaseJumpsuitRecipe
+  id: ClothingUniformJumpskirtJanitorNS
+  result: ClothingUniformJumpskirtJanitorNS  
+
+#region Science
+# Science Jumpsuits
+
+- type: latheRecipe
+  parent: BaseJumpsuitRecipe
+  id: ClothingUniformJumpsuitResearchDirectorSyndi
+  result: ClothingUniformJumpsuitResearchDirectorSyndi
+
+- type: latheRecipe
+  parent: BaseJumpsuitRecipe
+  id: ClothingUniformJumpskirtResearchDirectorSyndi
+  result: ClothingUniformJumpskirtResearchDirectorSyndi
+
+- type: latheRecipe
+  parent: BaseJumpsuitRecipe
+  id: ClothingUniformJumpsuitScientistSyndi
+  result: ClothingUniformJumpsuitScientistSyndi
+
+- type: latheRecipe
+  parent: BaseJumpsuitRecipe
+  id: ClothingUniformJumpsuitScientistFormalSyndi
+  result: ClothingUniformJumpsuitScientistFormalSyndi
+
+- type: latheRecipe
+  parent: BaseJumpsuitRecipe
+  id: ClothingUniformJumpskirtScientistSyndi
+  result: ClothingUniformJumpskirtScientistSyndi
+
+- type: latheRecipe
+  parent: BaseJumpsuitRecipe
+  id: ClothingUniformJumpskirtScientistFormalSyndi
+  result: ClothingUniformJumpskirtScientistFormalSyndi
+
+- type: latheRecipe
+  parent: BaseJumpsuitRecipe
+  id: ClothingUniformJumpsuitRoboticistSyndi
+  result: ClothingUniformJumpsuitRoboticistSyndi
+
+- type: latheRecipe
+  parent: BaseJumpsuitRecipe
+  id: ClothingUniformJumpskirtRoboticistSyndi
+  result: ClothingUniformJumpskirtRoboticistSyndi

@@ -5,7 +5,7 @@ using Content.Shared.StatusEffectNew;
 
 namespace Content.Server._Starlight.Speech.EntitySystems;
 
-public sealed class OwOAccentSystem : EntitySystem
+public sealed partial class OwOAccentSystem : EntitySystem
 {
     private static readonly IReadOnlyDictionary<string, string> _specialWords = new Dictionary<string, string>()
     {

@@ -1,0 +1,77 @@
+- type: loadout
+  id: Mk58Civ
+  dummyEntity: WeaponPistolMk58Civilian
+  effects:
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:OverallPlaytimeRequirement
+          time: 36000 # 10h
+  storage:
+    back: 
+    - WeaponPistolMk58Civilian
+    - MagazinePistolCivilianSP
+
+- type: loadout
+  id: MKSCiv
+  dummyEntity: WeaponPistolMKSCivilian
+  effects:
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:OverallPlaytimeRequirement
+          time: 36000 # 10h
+  storage:
+    back: 
+    - WeaponPistolMKSCivilian
+    - MagazinePistolCivilianSP
+
+- type: loadout
+  id: MKTCiv
+  dummyEntity: WeaponPistolMKTCivilian
+  effects:
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:OverallPlaytimeRequirement
+          time: 36000 # 10h
+  storage:
+    back: 
+    - WeaponPistolMKTCivilian
+    - MagazinePistolCivilianSP
+    
+- type: loadout
+  id: InstigatorCiv
+  dummyEntity: WeaponRevolverInstigatorCivilian
+  effects:
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:OverallPlaytimeRequirement
+          time: 36000 # 10h
+  storage:
+    back: 
+    - WeaponRevolverInstigatorCivilian
+    - SpeedLoaderRevolver38CivilianSP
+
+- type: loadout
+  id: LeverActionCiv
+  dummyEntity: WeaponLeverActionCivilian
+  effects:
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:OverallPlaytimeRequirement
+          time: 54000 # 15h
+  storage:
+    back: 
+    - WeaponLeverActionCivilian
+    - SpeedLoaderLeverCivilianMagnumSP
+
+- type: loadout
+  id: LeverActionPistolCiv
+  dummyEntity: WeaponLeverActionCivilianPistol
+  effects:
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:OverallPlaytimeRequirement
+          time: 54000 # 15h
+  storage:
+    back: 
+    - WeaponLeverActionCivilianPistol
+    - SpeedLoaderLeverCivilianMagnumSP

@@ -1,0 +1,352 @@
+# ---- Ballistics ----
+# naming: BLT (Ballistic) + Rounds per minute + caliber + Name
+# example: BLT-240 "Custodian"
+
+
+- type: entity
+  id: ShuttleGunSweeper
+  parent: [ShuttleGunBase, ConstructibleMachine]
+  name: BLT-480 "Sweeper"
+  description: A quick firing anti personnel cannon chambed in 7.62. An external ammo supply is required to fire.
+  categories: [ DoNotMap ]
+  components:
+  - type: Sprite #sprite needs changed before this ever gets used. think of a mounted LMG.
+    sprite: Objects/Weapons/Guns/Shuttles/launcher.rsi
+    layers:
+    - state: exp-2100g
+    - state: mag-7
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+      ballistic-ammo: !type:Container
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 350
+      behaviors:
+        - !type:ChangeConstructionNodeBehavior
+          node: machineFrame
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+  - type: Gun
+    projectileSpeed: 80
+    fireRate: 6
+    soundGunshot: #sound will also need changed
+      path: /Audio/Weapons/Guns/Gunshots/ship_duster.ogg
+      params:
+        variation: 0.05
+        pitch: 0.8
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/empty.ogg
+  - type: Machine
+    board: ShuttleGunSweeperCircuitboard
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+        - CartridgeLightRifle
+    capacity: 30 # most of its mag capacity should be stored in the distributor
+  - type: MagazineVisuals
+    magState: mag
+    steps: 8
+    zeroVisible: false
+  - type: BallisticAmmoReceiver
+
+# ---- Launchers ----
+# naming: EXP (Explosion) + conventional power + suffix (g for Grenade, c for RPG Cartridge) + Name
+# example: EXP-100c "Poppy"
+
+- type: entity
+  id: ShuttleGunHornet
+  parent: [ShuttleGunBase, ConstructibleMachine]
+  name: EXP-800c "Hornet"
+  description: A small stationary rocket launcher that holds 4 cartridges.
+  categories: [ DoNotMap ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Shuttles/launcher.rsi
+    layers:
+    - state: exp-320g
+    - state: mag-7
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+      ballistic-ammo: !type:Container
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+        - !type:ChangeConstructionNodeBehavior
+          node: machineFrame
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+  - type: Gun
+    projectileSpeed: 80
+    fireRate: 1
+    angleDecay: 45
+    minAngle: 0
+    maxAngle: 15
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/ship_friendship.ogg
+      params:
+        pitch: 0.8
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/empty.ogg
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+        - RocketAmmo120mm
+    capacity: 4
+    soundInsert:
+      path: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+  - type: Machine
+    board: ShuttleGunHornetCircuitboard
+  - type: MagazineVisuals
+    magState: mag
+    steps: 8
+    zeroVisible: false
+  - type: BallisticAmmoReceiver
+
+# ---- Laser weapon branch ----
+# naming: LSE (Laser) + conventional power + suffix (c for PowerCage, e for wired energy) + Name
+# example: LSE-100e "Clown destroyer" (powered by the wiring, very weak)
+
+- type: entity
+  id: ShuttleGunStingMachineGun
+  parent: [ ShuttleGunBase, ConstructibleMachine]
+  name: LSE-200c "Sting Machine Gun"
+  description: A fast firing laser machine gun. Requires power cages to fire.
+  categories: [ DoNotMap ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Shuttles/laser.rsi
+    layers:
+    - state: lse-400c
+    - state: mag-unshaded-9
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+      cell_slot: !type:ContainerSlot
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 250
+      behaviors:
+        - !type:ChangeConstructionNodeBehavior
+          node: machineFrame
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+  - type: Gun
+    fireRate: 12
+    useKey: false
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/ship_svalinn.ogg
+      params:
+        variation: 0.05
+  - type: MagazineVisuals
+    magState: mag
+    steps: 10
+    zeroVisible: true
+  - type: Machine
+    board: ShuttleGunStingMachineGunCircuitboard
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: Magazine
+        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
+        whitelist:
+          tags:
+            - PowerCage
+  - type: GunneryManagedTargeting
+    targetingCollisionMask:
+      - Opaque
+  - type: BatteryAmmoProvider
+    proto: RedShuttleLightLaser
+    fireCost: 20
+
+- type: entity
+  id: ShuttleGunNest
+  parent: [ ShuttleGunBase, ConstructibleMachine]
+  name: LSE-4300c "Nest"
+  description: Advanced heavy laser unit. Utilizes power cages for heavily damaging lasers but drains power quickly.
+  categories: [ DoNotMap ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Shuttles/laser.rsi
+    layers:
+    - state: lse-1200c
+    - state: mag-unshaded-9
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+      cell_slot: !type:ContainerSlot
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+        - !type:ChangeConstructionNodeBehavior
+          node: machineFrame
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+  - type: Gun
+    fireRate: 0.5
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/ship_perforator.ogg
+      params:
+        variation: 0.05
+  - type: MagazineVisuals
+    magState: mag
+    steps: 10
+    zeroVisible: true
+  - type: Machine
+    board: ShuttleGunNestCircuitboard
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: Magazine
+        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
+        whitelist:
+          tags:
+            - PowerCage
+  - type: GunneryManagedTargeting
+    targetingCollisionMask:
+      - Opaque
+  - type: BatteryAmmoProvider
+    proto: RedShuttleHeavyLaser
+    fireCost: 300
+
+# ---- Other weapon branch ----
+# naming: 3 letter acronym + conventional power + suffix (usually what it's powered by/its ammo) + Name
+# example: 
+
+- type: entity
+  id: ShuttleGunCoil
+  parent: [ ShuttleGunBase, ConstructibleMachine]
+  name: TES-2100c "Coil"
+  description: Stationary tesla ball launcher. Highly damaging to electronics and personnel but slow bullet travel time, uses power cages.
+  categories: [ DoNotMap ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Shuttles/laser.rsi
+    layers:
+    - state: lse-1200c
+    - state: mag-unshaded-9
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+      cell_slot: !type:ContainerSlot
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+        - !type:ChangeConstructionNodeBehavior
+          node: machineFrame
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+  - type: Gun
+    fireRate: 1
+    projectileSpeed: 10
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/ship_perforator.ogg
+      params:
+        variation: 0.05
+  - type: MagazineVisuals
+    magState: mag
+    steps: 10
+    zeroVisible: true
+  - type: Machine
+    board: ShuttleGunCoilCircuitboard
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: Magazine
+        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
+        whitelist:
+          tags:
+            - PowerCage
+  - type: GunneryManagedTargeting
+    targetingCollisionMask:
+      - Opaque
+  - type: BatteryAmmoProvider
+    proto: ShuttleTeslaBullet
+    fireCost: 300
+
+- type: entity
+  id: ShuttleGunMono
+  parent: [ShuttleGunBase, ConstructibleMachine]
+  name: RAIL-5000 "Mono"
+  description: A Single shot rail gun for all of your ship destroying needs. Requires railgun rods to fire.
+  categories: [ DoNotMap ]
+  components:
+  - type: Sprite #sprite needs changed before this ever gets used. think of a mounted LMG.
+    sprite: Objects/Weapons/Guns/Shuttles/launcher.rsi
+    layers:
+    - state: exp-2100g
+    - state: mag-7
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+      ballistic-ammo: !type:Container
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 350
+      behaviors:
+        - !type:ChangeConstructionNodeBehavior
+          node: machineFrame
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+  - type: Gun
+    projectileSpeed: 80
+    fireRate: 0.1
+    soundGunshot: #sound will also need changed
+      path: /Audio/Weapons/Guns/Gunshots/ship_duster.ogg
+      params:
+        variation: 0.05
+        pitch: 0.8
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/empty.ogg
+  - type: Machine
+    board: ShuttleGunMonoCircuitboard
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+        - ShuttleRailgunRod
+    capacity: 1
+  - type: MagazineVisuals
+    magState: mag
+    steps: 8
+    zeroVisible: false
+  - type: BallisticAmmoReceiver

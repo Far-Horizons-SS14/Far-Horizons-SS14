@@ -2,7 +2,7 @@
 
 namespace Content.Client.Revolutionary.UI;
 
-public sealed class DeconvertedEui : BaseEui
+public sealed partial class DeconvertedEui : BaseEui
 {
     private readonly DeconvertedMenu _menu;
 

@@ -20,7 +20,7 @@ public sealed class IconCache
             if (texture == null)
                 continue;
             
-            _iconCache[node.ID] = ((icon.Path, icon.State), Color.TryFromHex(icon.Color));
+            _iconCache[node.ID] = ((icon.Path, icon.State), Color.TryFromHex(icon.Color, out var color) ? color : null);
         }
     }
 

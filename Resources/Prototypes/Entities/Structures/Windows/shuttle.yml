@@ -1,19 +1,21 @@
 - type: entity
   id: ShuttleWindow
   name: Shuttle Window # Far Horizons - The Great Capitalization Crusade
+  suffix: NT # Far Horizons
   parent: [BaseDeltaPressureReinforcedGlass, WindowRCDResistant]
   components:
   - type: Sprite
     drawdepth: WallTops
-    sprite: _FarHorizons/Structures/Windows/shuttle_window.rsi #FH
+    sprite: _FarHorizons/Structures/Windows/NanoTrasen/shuttle_window.rsi #FH
   - type: Icon
-    sprite: _FarHorizons/Structures/Windows/shuttle_window.rsi #FH
+    sprite: _FarHorizons/Structures/Windows/NanoTrasen/shuttle_window.rsi #FH
   - type: Repairable
     fuelCost: 15
     doAfterDelay: 3
   - type: Damageable
-    damageContainer: StructuralInorganic
     damageModifierSet: RGlass
+  - type: Injurable
+    damageContainer: StructuralInorganic
   - type: Destructible
     thresholds:
     - trigger:
@@ -40,7 +42,7 @@
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
   - type: IconSmooth
-    key: walls # Far Horizons... This will surely get fixed, eventually, during a lunar eclipse, when all the stars align.
+    key: walls # Far Horizons... This will surely get fixed, eventually, during a lunar eclipse, when all the stars align. - the stars weep in my presence 
     base: swindow
   - type: Construction
     graph: Window
@@ -58,7 +60,7 @@
 - type: entity
   parent: ShuttleWindow
   id: ShuttleWindowDiagonal
-  suffix: Diagonal # Far Horizons - The Great Capitalization Crusade
+  suffix: Diagonal, NT # Far Horizons - The Great Capitalization Crusade
   placement:
     mode: SnapgridCenter
     snap:
@@ -66,7 +68,7 @@
   components:
   - type: Sprite
     drawdepth: WallTops
-    sprite: _FarHorizons/Structures/Windows/shuttle_window_diagonal.rsi #FH
+    sprite: _FarHorizons/Structures/Windows/NanoTrasen/shuttle_window_diagonal.rsi #FH
     state: state0
   - type: Tag
     tags:
@@ -74,10 +76,10 @@
     - Window
   - type: IconSmooth
     mode: Diagonal
-    key: walls # Far Horizons... This will surely get fixed, eventually, during a lunar eclipse, when all the stars align.
+    key: walls # Far Horizons... This will surely get fixed, eventually, during a lunar eclipse, when all the stars align. - the stars weep in my presence 
     base: state
   - type: Icon
-    sprite: _FarHorizons/Structures/Windows/shuttle_window_diagonal.rsi #FH
+    sprite: _FarHorizons/Structures/Windows/NanoTrasen/shuttle_window_diagonal.rsi #FH
     state: state0
   - type: Fixtures
     fixtures:

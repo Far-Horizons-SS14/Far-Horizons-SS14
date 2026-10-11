@@ -1,3 +1,4 @@
+using Content.Shared._FarHorizons.Factions;
 using Content.Shared.Roles;
 using Robust.Shared.Prototypes;
 
@@ -15,4 +16,9 @@ public sealed partial class PresetIdCardComponent : Component
     // FarHorizons - custom job titles
     [DataField("customJobTitle")]
     public string? CustomJobTitle;
+    
+    // FarHorizons Start - Faction Support
+    [DataField("faction")]
+    public ProtoId<FactionPrototype>? Faction;
+    // FarHorizons End
 }

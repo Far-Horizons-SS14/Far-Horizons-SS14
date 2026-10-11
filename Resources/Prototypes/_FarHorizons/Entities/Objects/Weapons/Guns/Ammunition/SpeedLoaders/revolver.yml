@@ -193,3 +193,87 @@
       map: [ "enum.GunVisualLayers.Tip" ]
       color: "#43c4f7"
   - type: Appearance
+
+- type: entity
+  id: BaseSpeedLoaderRevolver38Civilian
+  name: ".38 Special Civlian Speed Loader (Revolver)"
+  parent: [BaseItem]
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+      - SpeedLoaderRevolver38
+  - type: SpeedLoader
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+        - CartridgeRevolver38
+    capacity: 6
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Speedloaders/Revolver/38_speed_loader.rsi
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+        ents: []
+  - type: MagazineVisuals
+    magState: base
+    steps: 7
+
+#region Civilian .38
+- type: entity
+  id: SpeedLoaderRevolver38CivilianEmpty
+  name: ".38 Special Civilian Speed Loader (Revolver Any)"
+  suffix: Empty
+  parent: BaseSpeedLoaderRevolver38Civilian
+  description: 6-round revolver speedloader. Intended to hold general-purpose kinetic ammunition.
+  components:
+  - type: BallisticAmmoProvider
+    proto: null
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: base-8
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: base-tip-8
+      map: [ "enum.GunVisualLayers.Tip" ]
+      color: "#8F4830"
+  - type: Appearance
+
+- type: entity
+  id: SpeedLoaderRevolver38CivilianSP
+  name: ".38 Special Civilian Speed Loader (Revolver SP)"
+  parent: BaseSpeedLoaderRevolver38Civilian
+  description: 6-round revolver speedloader loaded with Soft-Point .38 rounds. Effective against lightly-armored targets.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRevolver38SP
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: base-8
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: base-tip-8
+      map: [ "enum.GunVisualLayers.Tip" ]
+      color: "#326ec8"
+  - type: Appearance
+
+- type: entity
+  id: SpeedLoaderRevolver38CivilianRubber
+  name: ".38 Special Civilian Speed loader (Revolver Rubber)"
+  parent: BaseSpeedLoaderRevolver38Civilian
+  description: 6-round revolver speedloader loaded with Rubber .38 rounds. Mostly harmless.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRevolver38Rubber
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: base-8
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: base-tip-8
+      map: [ "enum.GunVisualLayers.Tip" ]
+      color: "#43c4f7"
+  - type: Appearance

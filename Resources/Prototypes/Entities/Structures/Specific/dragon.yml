@@ -6,6 +6,14 @@
     mode: SnapgridCenter
   components:
   - type: DragonRift
+  #FH start
+    spawn: !type:GroupSelector 
+      children:
+      - id: MobCarpDragon
+        weight: 95
+      - id: MobSharkDragon
+        weight: 5
+  #FH end
   - type: Transform
     anchored: true
   - type: Physics
@@ -32,8 +40,9 @@
     # only show after making the announcement at 50%
     enabled: false
   - type: Damageable
-    damageContainer: Inorganic
     damageModifierSet: Metallic
+  - type: Injurable
+    damageContainer: Inorganic
   - type: Destructible
     thresholds:
     - trigger:

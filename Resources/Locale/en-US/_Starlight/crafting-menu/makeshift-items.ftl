@@ -64,17 +64,17 @@ crafting-menu-text-IRB = Better than nothing. Fairly full with phosphorus but st
 crafting-menu-name-IMGB = improvised ammo box
 crafting-menu-text-IMGB = Organization is not the strong suit of any tider. Can hold all kinds of bullets.
 
-crafting-menu-name-IMGP = improvised ammo box (.35 auto)
-crafting-menu-text-IMGP = Organization is not the strong suit of any tider. Holds 40 improvised .35 auto rounds.
+crafting-menu-name-IMGP = improvised ammo box (9mm)
+crafting-menu-text-IMGP = Organization is not the strong suit of any tider. Holds 40 improvised 9mm rounds.
 
 crafting-menu-name-IMGR = improvised ammo box (.30 rifle)
 crafting-menu-text-IMGR = Organization is not the strong suit of any tider. Holds 40 improvised .30 rifle rounds.
 
-crafting-menu-name-IMGM = improvised ammo box (.45 magnum)
-crafting-menu-text-IMGM = Organization is not the strong suit of any tider. Holds 40 improvised .45 magnum rounds.
+crafting-menu-name-IMGM = improvised ammo box (.44 magnum)
+crafting-menu-text-IMGM = Organization is not the strong suit of any tider. Holds 40 improvised .44 magnum rounds.
 
-crafting-menu-name-IMGS = improvised ammo box (.50 shotgun)
-crafting-menu-text-IMGS = Organization is not the strong suit of any tider. Holds 40 improvised .50 shotgun shells.
+crafting-menu-name-IMGS = improvised ammo box (12 gauge shotgun)
+crafting-menu-text-IMGS = Organization is not the strong suit of any tider. Holds 40 improvised 12 gauge shotgun shells.
 
 crafting-menu-name-phosphorus = crushed phosphorus
 crafting-menu-text-phosphorus = Crushing the tips off of matches yields this bright red, exceedingly volatile compound.
@@ -186,7 +186,7 @@ crafting-menu-name-CGREN = green crayon
 
 crafting-menu-name-CYELO = yellow crayon
 
-crafting-menu-name-IRS = improvised .30/.45 speed loader
+crafting-menu-name-IRS = improvised .30/.44 speed loader
 crafting-menu-text-IRS = Little more than a spring-loaded tube that can hold bullets.
 
 crafting-menu-name-RIPRL = left ripperdoc arm

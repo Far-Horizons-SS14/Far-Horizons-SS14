@@ -1,3 +1,4 @@
+using Content.IntegrationTests.Fixtures;
 using System.Numerics;
 using Content.Server.Construction.Components;
 using Content.Shared.Construction.Prototypes;
@@ -8,7 +9,7 @@ using Robust.Shared.Prototypes;
 namespace Content.IntegrationTests.Tests.Construction
 {
     [TestFixture]
-    public sealed class ConstructionPrototypeTest
+    public sealed class ConstructionPrototypeTest : GameTest
     {
         // discount linter for construction graphs
         // TODO: Create serialization validators for these?
@@ -20,7 +21,7 @@ namespace Content.IntegrationTests.Tests.Construction
         [Test]
         public async Task TestStartNodeValid()
         {
-            await using var pair = await PoolManager.GetServerClient();
+            var pair = Pair;
             var server = pair.Server;
 
             var entMan = server.ResolveDependency<IEntityManager>();
@@ -45,14 +46,12 @@ namespace Content.IntegrationTests.Tests.Construction
                         $"Found no startNode \"{construction.Node}\" on graph \"{graph.ID}\" for entity \"{proto.ID}\"!");
                 }
             });
-
-            await pair.CleanReturnAsync();
         }
 
         [Test]
         public async Task TestStartIsValid()
         {
-            await using var pair = await PoolManager.GetServerClient();
+            var pair = Pair;
             var server = pair.Server;
 
             var protoMan = server.ResolveDependency<IPrototypeManager>();
@@ -68,7 +67,6 @@ namespace Content.IntegrationTests.Tests.Construction
                         $"Found no startNode \"{start}\" on graph \"{graph.ID}\" for construction prototype \"{proto.ID}\"!");
                 }
             });
-            await pair.CleanReturnAsync();
         }
 
         [Test]
@@ -90,13 +88,12 @@ namespace Content.IntegrationTests.Tests.Construction
                         $"Found no targetNode \"{target}\" on graph \"{graph.ID}\" for construction prototype \"{proto.ID}\"!");
                 }
             });
-            await pair.CleanReturnAsync();
         }
 
         [Test]
         public async Task DeconstructionIsValid()
         {
-            await using var pair = await PoolManager.GetServerClient();
+            var pair = Pair;
             var server = pair.Server;
 
             var protoMan = server.ResolveDependency<IPrototypeManager>();
@@ -119,14 +116,12 @@ namespace Content.IntegrationTests.Tests.Construction
                     Assert.That(graph.Nodes.ContainsKey(target), $"Invalid deconstruction node \"{target}\" on graph \"{graph.ID}\" for construction entity \"{proto.ID}\"!");
                 }
             });
-
-            await pair.CleanReturnAsync();
         }
 
         [Test]
         public async Task TestStartReachesValidTarget()
         {
-            await using var pair = await PoolManager.GetServerClient();
+            var pair = Pair;
             var server = pair.Server;
 
             var protoMan = server.ResolveDependency<IPrototypeManager>();
@@ -157,7 +152,6 @@ namespace Content.IntegrationTests.Tests.Construction
                 }
             });
 
-            await pair.CleanReturnAsync();
         }
     }
 }

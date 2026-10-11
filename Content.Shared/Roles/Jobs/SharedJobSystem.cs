@@ -15,9 +15,9 @@ namespace Content.Shared.Roles.Jobs;
 /// Far Horizons: Make partial to add code to a separate file
 public abstract partial class SharedJobSystem : EntitySystem
 {
-    [Dependency] private readonly SharedPlayerSystem _playerSystem = default!;
-    [Dependency] private readonly IPrototypeManager _prototypes = default!;
-    [Dependency] private readonly SharedRoleSystem _roles = default!;
+    [Dependency] private SharedPlayerSystem _playerSystem = default!;
+    [Dependency] private IPrototypeManager _prototypes = default!;
+    [Dependency] private SharedRoleSystem _roles = default!;
 
     private readonly Dictionary<string, string> _inverseTrackerLookup = new();
 
@@ -141,18 +141,18 @@ public abstract partial class SharedJobSystem : EntitySystem
         return true;
     }
 
-    public bool MindHasJobWithId(EntityUid? mindId, string prototypeId)
+    public bool MindHasJobWithId(EntityUid? mindId, params ProtoId<JobPrototype>[] prototypes)
     {
-
         if (mindId is null)
             return false;
 
-        _roles.MindHasRole<JobRoleComponent>(mindId.Value, out var role);
-
-        if (role is null)
+        if (!_roles.MindHasRole<JobRoleComponent>(mindId.Value, out var role))
             return false;
 
-        return role.Value.Comp1.JobPrototype == prototypeId;
+        if (role.Value.Comp1.JobPrototype is not { } protoId)
+            return false;
+
+        return prototypes.Contains(protoId);
     }
 
     public bool MindTryGetJob(

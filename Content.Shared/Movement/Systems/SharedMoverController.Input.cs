@@ -346,7 +346,7 @@ namespace Content.Shared.Movement.Systems
                 if (MoverQuery.TryGetComponent(entity, out var mover))
                     SetMoveInput((entity, mover), MoveButtons.None);
 
-                if (!_mobState.IsIncapacitated(entity))
+                if (!_mobState.IsIncapacitated(entity) && !_activeCrit.IsBlackout(entity)) // Far Horizons
                     HandleDirChange(relayMover.RelayEntity, dir, subTick, state);
 
                 return;

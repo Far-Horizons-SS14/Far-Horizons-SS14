@@ -11,6 +11,7 @@ on:
       - '**.slnx'
       - '**.yml'
       - '**.yaml'
+      - '**.ftl'
 
 concurrency:
   group: pr-${{ github.event.pull_request.number }}

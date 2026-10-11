@@ -1,0 +1,33 @@
+- type: entity
+  id: StorePresetConsortiumUplink
+  abstract: true
+  components:
+  - type: Store
+    name: store-preset-name-uplink
+    categories:
+    - ConsortiumUplinkWeaponry
+    - ConsortiumUplinkAmmo
+    - ConsortiumUplinkExplosives
+    - ConsortiumUplinkChemicals
+    - ConsortiumUplinkDeception
+    - ConsortiumUplinkDisruption
+    - ConsortiumUplinkImplants
+    - ConsortiumUplinkAllies
+    - ConsortiumUplinkWearables
+    - ConsortiumUplinkJob
+    - ConsortiumUplinkCybernetics
+    - ConsortiumUplinkPointless
+    - ConsortiumUplinkVehicles
+    currencyWhitelist:
+    - Refinedbluespacecrystal
+    balance:
+      Refinedbluespacecrystal: 0
+    expectedFaction:
+      - Consortium
+
+- type: entity
+  parent: StorePresetConsortiumUplink
+  id: StorePresetConsortiumRemoteUplink
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RingerAccessUplink

@@ -5,11 +5,11 @@ using Content.Shared.Wagging;
 
 namespace Content.Shared._Starlight.Wagging;
 
-public sealed class StarlightWaggingSystem : EntitySystem
+public sealed partial class StarlightWaggingSystem : EntitySystem
 {
-    [Dependency] private readonly SharedActionsSystem _actions = default!;
-    [Dependency] private readonly StarlightMarkingSystem _starlightMarking = default!;
-    [Dependency] private readonly SharedVisualBodySystem _visualBody = default!;
+    [Dependency] private SharedActionsSystem _actions = default!;
+    [Dependency] private StarlightMarkingSystem _starlightMarking = default!;
+    [Dependency] private SharedVisualBodySystem _visualBody = default!;
 
     public override void Initialize()
     {

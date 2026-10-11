@@ -1,0 +1,105 @@
+- type: entity
+  id: ShuttleGunSweeperCircuitboard
+  parent: BaseMachineCircuitboard
+  name: BLT-480 "Sweeper" Machine Board
+  description: A machine printed circuit board for a BLT-480 "Sweeper".
+  suffix: DO NOT MAP, Machine Board
+  categories: [ DoNotMap ]
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: ShuttleGunSweeper
+    stackRequirements:
+      Manipulator: 8
+      Steel: 5
+      CableHV: 2
+
+- type: entity
+  id: ShuttleGunHornetCircuitboard
+  parent: BaseMachineCircuitboard
+  name: EXP-800c "Hornet" Machine Board
+  description: A machine printed circuit board for an EXP-800c "Hornet".
+  suffix: DO NOT MAP, Machine Board
+  categories: [ DoNotMap ]
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: ShuttleGunHornet
+    stackRequirements:
+      Manipulator: 4
+      Steel: 12
+      CableHV: 4
+
+- type: entity
+  id: ShuttleGunStingMachineGunCircuitboard
+  parent: BaseMachineCircuitboard
+  name: LSE-200c "Sting Machine Gun" Machine Board
+  description: A machine printed circuit board for a LSE-200c "Sting machine gun".
+  suffix: DO NOT MAP, Machine Board
+  categories: [ DoNotMap ]
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: ShuttleGunStingMachineGun
+    stackRequirements:
+      Manipulator: 4
+      Steel: 8
+      CableHV: 4
+      Glass: 5
+
+- type: entity
+  id: ShuttleGunNestCircuitboard
+  parent: BaseMachineCircuitboard
+  name: LSE-4300c "Nest" Machine Board
+  description: A machine printed circuit board for a LSE-4300c "Nest".
+  suffix: DO NOT MAP, Machine Board
+  categories: [ DoNotMap ]
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: ShuttleGunNest
+    stackRequirements:
+      Manipulator: 10
+      Steel: 15
+      CableHV: 5
+      Glass: 30
+
+- type: entity
+  id: ShuttleGunCoilCircuitboard
+  parent: BaseMachineCircuitboard
+  name: TES-2100c "Coil" Machine Board
+  description: A machine printed circuit board for a TES-2100c "Coil".
+  suffix: DO NOT MAP, Machine Board
+  categories: [ DoNotMap ]
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: ShuttleGunCoil
+    stackRequirements:
+      Manipulator: 4
+      Gold: 5
+      CableHV: 15
+      Glass: 15
+
+- type: entity
+  id: ShuttleGunMonoCircuitboard
+  parent: BaseMachineCircuitboard
+  name: RAIL-5000 "Mono" Machine Board
+  description: A machine printed circuit board for a RAIL-5000 "Mono".
+  suffix: DO NOT MAP, Machine Board
+  categories: [ DoNotMap ]
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: ShuttleGunMono
+    stackRequirements:
+      Manipulator: 5
+      Steel: 30
+      Plasteel: 10
+      CableHV: 30

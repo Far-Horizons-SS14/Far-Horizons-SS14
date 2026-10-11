@@ -1,0 +1,232 @@
+- type: entity
+  abstract: true
+  parent: BaseItem
+  id: BaseMagazineCanisterShotgun12G
+  components:
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - ShellShotgun
+    proto: ShellShotgun
+    capacity: 128 # 16x speedloader size 
+  - type: Item
+    size: Large
+    shape:
+    - 0,0,2,1
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Canisters/shell_canister.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: b12g
+  - type: MagazineVisuals
+    magState: mag
+    steps: 15
+    zeroVisible: false
+  - type: Appearance
+  - type: Tag
+    tags:
+      - AmmoBoxShotgun12g
+
+# Boxes
+- type: entity
+  parent: BaseMagazineCanisterShotgun12G
+  id: MagazineCanisterShotgun12G
+  name: 12 Gauge Ammunition Canister (Shotgun Any)
+  description: A heavy duty metal canister of 12 Gauge rounds.
+  components:
+  - type: BallisticAmmoProvider
+    proto: null
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: mag-tip-1
+      map: [ "enum.GunVisualLayers.Tip" ]
+    - state: b12g
+
+- type: entity
+  parent: BaseMagazineCanisterShotgun12G
+  id: MagazineCanisterShotgun12GBuckshot
+  name: 12 Gauge Ammunition Canister (Shotgun HP)
+  description: A heavy duty metal canister of 12 Gauge Buckshot. Effective against unarmored targets.
+  components:
+  - type: BallisticAmmoProvider
+    proto: ShellShotgun
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+      color: "#F4001F"
+    - state: mag-tip-1
+      map: [ "enum.GunVisualLayers.Tip" ]
+    - state: hp
+    - state: b12g
+
+- type: entity
+  parent: BaseMagazineCanisterShotgun12G
+  id: MagazineCanisterShotgun12GFlechette
+  name: 12 Gauge Ammunition Canister (Shotgun Flechette)
+  description: A heavy duty metal canister of 12 Gauge Flechette rounds. Effective against lightly-armored targets.
+  components:
+  - type: BallisticAmmoProvider
+    proto: ShellShotgunFlechette
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+      color: "#252525"
+    - state: mag-tip-1
+      map: [ "enum.GunVisualLayers.Tip" ]
+    - state: sp
+    - state: b12g
+
+- type: entity
+  parent: BaseMagazineCanisterShotgun12G
+  id: MagazineCanisterShotgun12GSlug
+  name: 12 Gauge Ammunition Canister (Shotgun Slug)
+  description: A heavy duty metal canister of 12 Gauge Slug rounds. Effective against armored targets and structures.
+  components:
+  - type: BallisticAmmoProvider
+    proto: ShellShotgunSlug
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+      color: "#164B31"
+    - state: mag-tip-1
+      map: [ "enum.GunVisualLayers.Tip" ]
+    - state: fmj
+    - state: b12g
+
+- type: entity
+  parent: BaseMagazineCanisterShotgun12G
+  id: MagazineCanisterShotgun12GPractice
+  name: 12 Gauge Ammunition Canister (Shotgun Practice)
+  description: A heavy duty metal canister of Chalk-Loaded 12 Gauge Buckshot. Used for target practice.
+  components:
+  - type: BallisticAmmoProvider
+    proto: ShellShotgunPractice
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+      color: "#F5F5F5"
+    - state: mag-tip-1
+      map: [ "enum.GunVisualLayers.Tip" ]
+    - state: practice
+    - state: b12g
+
+- type: entity
+  id: MagazineCanisterShotgun12GIncendiary
+  parent: BaseMagazineCanisterShotgun12G
+  name: 12 Gauge Ammunition Canister (Shotgun Incendiary)
+  description: A heavy duty metal canister of Self-Igniting 12 Gauge Buckshot. Burns people alive.
+  components:
+  - type: BallisticAmmoProvider
+    proto: ShellShotgunIncendiary
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+      color: "#C9E9FF"
+    - state: mag-tip-1
+      map: [ "enum.GunVisualLayers.Tip" ]
+    - state: incendiary
+    - state: b12g
+
+- type: entity
+  id: MagazineCanisterShotgun12GUranium
+  parent: BaseMagazineCanisterShotgun12G
+  name: 12 Gauge Ammunition Canister (Shotgun Uranium Slug)
+  description: A heavy duty metal canister of Uranium-Core 12 Gauge Slugs. Delivers radiation poisoning on contact.
+  components:
+  - type: BallisticAmmoProvider
+    proto: ShellShotgunUranium
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+      color: "#164B31"
+    - state: mag-tip-1
+      map: [ "enum.GunVisualLayers.Tip" ]
+    - state: uranium
+    - state: b12g
+
+- type: entity
+  id: MagazineCanisterShotgun12GUraniumFlechette
+  parent: BaseMagazineCanisterShotgun12G
+  name: 12 Gauge Ammunition Canister (Shotgun Uranium Flechette)
+  description: A heavy duty metal canister of Uranium-Core 12 Gauge Flechette. Delivers radiation poisoning on contact.
+  components:
+  - type: BallisticAmmoProvider
+    proto: ShellShotgunUraniumFlechette
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+      color: "#252525"
+    - state: mag-tip-1
+      map: [ "enum.GunVisualLayers.Tip" ]
+    - state: uranium
+    - state: b12g
+
+- type: entity
+  id: MagazineCanisterShotgun12GBeanbag
+  parent: BaseMagazineCanisterShotgun12G
+  name: 12 Gauge Ammunition Canister (Shotgun Beanbag)
+  description: A heavy duty metal canister of 12 Gauge Beanbags. Mostly harmless.
+  components:
+  - type: BallisticAmmoProvider
+    proto: ShellShotgunBeanbag
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+      color: "#FBEF06"
+    - state: mag-tip-1
+      map: [ "enum.GunVisualLayers.Tip" ]
+    - state: rubber
+    - state: b12g
+
+- type: entity
+  id: MagazineCanisterShotgun12GFlare
+  parent: BaseMagazineCanisterShotgun12G
+  name: 12 Gauge Ammunition Canister (Shotgun Flare)
+  description: A heavy duty metal canister of 12 Gauge Flare Slugs. Good for lighting up areas.
+  components:
+  - type: BallisticAmmoProvider
+    proto: ShellShotgunFlare
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+      color: "#ED7942"
+    - state: mag-tip-1
+      map: [ "enum.GunVisualLayers.Tip" ]
+    - state: flare
+    - state: b12g

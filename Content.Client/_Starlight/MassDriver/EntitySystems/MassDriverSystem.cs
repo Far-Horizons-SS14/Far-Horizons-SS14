@@ -6,9 +6,9 @@ using Robust.Shared.Utility;
 
 namespace Content.Client._Starlight.MassDriver.EntitySystems;
 
-public sealed class MassDriverSystem : SharedMassDriverSystem
+public sealed partial class MassDriverSystem : SharedMassDriverSystem
 {
-    [Dependency] private readonly SharedUserInterfaceSystem _ui = default!;
+    [Dependency] private SharedUserInterfaceSystem _ui = default!;
 
     public override void Initialize()
     {

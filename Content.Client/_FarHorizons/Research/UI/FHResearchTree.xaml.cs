@@ -19,8 +19,8 @@ namespace Content.Client._FarHorizons.Research.UI;
 [GenerateTypedNameReferences]
 public sealed partial class FHResearchTree : BoxContainer
 {
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IGameTiming _timing = default!;
 
     public Action<ProtoId<ResearchTreeNodePrototype>?>? OnSelectionChanged;
     public Action<ProtoId<ResearchTreeNodePrototype>>? OnQuickResearch;

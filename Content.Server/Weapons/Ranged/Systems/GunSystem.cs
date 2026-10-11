@@ -1,6 +1,7 @@
 using System.Numerics;
 using Content.Server.Cargo.Systems;
 using Content.Server.Weapons.Ranged.Components;
+using Content.Shared._FarHorizons.LimbDamage;
 using Content.Shared.Cargo;
 using Content.Shared.Damage;
 using Content.Shared.Projectiles;
@@ -16,24 +17,24 @@ using Robust.Shared.Map;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+using Robust.Shared.Random;
 
 #region Starlight
 using Content.Shared.Mech.Components;
 using Robust.Server.GameObjects;
-using Robust.Shared.Random;
 #endregion Starlight
-using Content.Shared._FarHorizons.Vehicles.Components; //FarHorizons
+using Content.Shared._FarHorizons.Vehicles; //FarHorizons
 
 namespace Content.Server.Weapons.Ranged.Systems;
 
 public sealed partial class GunSystem : SharedGunSystem
 {
-    [Dependency] private readonly PricingSystem _pricing = default!;
-    [Dependency] private readonly SharedMapSystem _map = default!;
-
+    [Dependency] private PricingSystem _pricing = default!;
+    [Dependency] private SharedMapSystem _map = default!;
+    [Dependency] private LimbDamageSystem _limbDamage = default!; // Far Horizons
 #region Starlight
-    [Dependency] private readonly TransformSystem _transform = default!;
-    [Dependency] private readonly IRobustRandom _rand = default!;
+    [Dependency] private TransformSystem _transform = default!;
+    [Dependency] private IRobustRandom _rand = default!;
 #endregion Starlight
 
     private const float DamagePitchVariation = 0.05f;
@@ -83,7 +84,7 @@ public sealed partial class GunSystem : SharedGunSystem
         var angle = GetRecoilAngle(Timing.CurTime, gun, mapDirection.ToAngle());
 
         // If applicable, this ensures the projectile is parented to grid on spawn, instead of the map.
-        var fromEnt = MapManager.TryFindGridAt(fromMap, out var gridUid, out _)
+        var fromEnt = _map.TryFindGridAt(fromMap, out var gridUid, out _)
             ? TransformSystem.WithEntityId(fromCoordinates, gridUid)
             : new EntityCoordinates(_map.GetMapOrInvalid(fromMap.MapId), fromMap.Position);
 
@@ -248,6 +249,7 @@ public sealed partial class GunSystem : SharedGunSystem
         {
             var targeted = EnsureComp<TargetedProjectileComponent>(uid);
             targeted.Target = target;
+            targeted.LimbTarget = user == null ? null : _limbDamage.GetCurrentSelectedTarget(user.Value); // Far Horizons
             Dirty(uid, targeted);
         }
         
@@ -256,7 +258,7 @@ public sealed partial class GunSystem : SharedGunSystem
         {
             var hitscanEv = new HitscanTraceEvent
             {
-                FromCoordinates = EntityManager.GetComponent<TransformComponent>(uid).Coordinates,
+                FromCoordinates = Comp<TransformComponent>(uid).Coordinates,
                 ShotDirection = mapDirection.Normalized(),
                 Gun = gun,
                 Shooter = user,

@@ -1,0 +1,65 @@
+light_mode unshaded;
+
+#include "/Textures/_FarHorizons/Shaders/shader_utils.swsl"
+
+uniform highp vec2 center;
+uniform highp float range;
+uniform bool outerCircle;
+uniform highp float falloff_width;
+
+uniform highp vec3 color1;
+uniform highp vec3 color2;
+uniform highp float noise_scale;
+uniform highp float time_scale;
+uniform highp float hole_threshold;
+
+uniform highp vec2 viewportMin;
+uniform highp vec2 viewportMax;
+
+void fragment() {
+    highp vec2 worldCoord = mix(viewportMin, viewportMax, UV);
+    highp float dist = distance(worldCoord, center);
+
+    highp vec2 noise_uv = worldCoord * noise_scale;
+    highp float t = TIME * time_scale;
+
+    highp vec2 q = vec2(
+        fbm(noise_uv + vec2(0.0, 0.0) + vec2(t * 0.2, t * 0.1)),
+        fbm(noise_uv + vec2(5.2, 1.3) + vec2(t * -0.15, t * 0.2))
+    );
+
+    highp vec2 r = vec2(
+        fbm(noise_uv + 4.0 * q + vec2(1.7, 9.2) + t * 0.35),
+        fbm(noise_uv + 4.0 * q + vec2(8.3, 2.8) + t * 0.15)
+    );
+
+    highp float f = fbm(noise_uv + 4.0 * r);
+    highp float procedural_pattern = clamp((f + 1.0) * 0.5, 0.0, 1.0);
+
+    highp vec3 mixed_color = mix(color1, color2, procedural_pattern);
+    highp float hole_mask = smoothstep(hole_threshold, hole_threshold + 0.15, procedural_pattern);
+
+    highp float alpha = 1.0;
+
+    if (outerCircle) {
+        if (dist < range) {
+            discard;
+        }
+
+        alpha = clamp((dist - range) / falloff_width, 0.0, 1.0);
+    } else {
+        if (dist > range) {
+            discard;
+        }
+
+        alpha = 1.0 - (dist / range);
+    }
+
+    highp float final_alpha = alpha * hole_mask;
+
+    if (final_alpha < 0.001) {
+        discard;
+    }
+
+    COLOR = vec4(mixed_color, final_alpha);
+}

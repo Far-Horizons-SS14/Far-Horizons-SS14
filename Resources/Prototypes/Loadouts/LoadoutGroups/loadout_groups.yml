@@ -103,10 +103,10 @@
   - LighterGatcha #SL
   - MagicCrayon #SL
   - HappyHonk #SL
-  - leftripperarm #SL
-  - rightmechwrightarm #SL
-  - leftcargoleg #SL
-  - rightcargoleg #SL
+#  - leftripperarm #SL #FH - Removed cyberlimbs
+#  - rightmechwrightarm #SL
+#  - leftcargoleg #SL
+#  - rightcargoleg #SL
   - CigPackBub #SL
   - PillCanisterPsicodine #SL
   - ClothingDogTags # SL
@@ -140,6 +140,7 @@
   - EmergencyOxygen
 #  - LoadoutSpeciesVoxNitrogen - Starlight removed
   - EmergencyNonBreather # 🌟Starlight🌟
+  - EmergencyIPC #FH
 
 # nitrogen or oxygen tank, depending on what your species needs
 - type: loadoutGroup
@@ -149,6 +150,7 @@
   loadouts:
   - LoadoutSpeciesEVANitrogen
   - LoadoutSpeciesEVAOxygen
+  - LoadoutSpeciesEVAIPC #FH
 
 # vox get a nitrogen tank, other species get nothing
 # Starlight edit start - Removed - vox no longer spawn with nitrogen tanks automatically
@@ -167,6 +169,7 @@
   loadouts:
   - LoadoutSpeciesPocketDoubleNitrogen
   - LoadoutSpeciesPocketDoubleOxygen
+  - LoadoutSpeciesPocketDoubleIPC #FH
 
 # Command
 - type: loadoutGroup
@@ -611,6 +614,7 @@
   loadouts:
   - BotanistHead
   - BotanistBandana
+  - BotanistRancherHat #FH
 
 - type: loadoutGroup
   id: BotanistJumpsuit
@@ -618,7 +622,8 @@
   loadouts:
   - BotanistJumpsuit
   - BotanistJumpskirt
-  - BotanistOveralls
+  - BotanistJumpsuitOverall #FH
+  - BotanistJumpskirtOverall #FH
 
 - type: loadoutGroup
   id: BotanistBackpack
@@ -650,6 +655,7 @@
   loadouts:
   - JesterHat
   - JesterAltHat
+  - ClownMitre
 
 - type: loadoutGroup
   id: ClownJumpsuit
@@ -694,6 +700,7 @@
   - EmergencyOxygenClown
 #  - LoadoutSpeciesVoxNitrogen - Starlight removed
   - EmergencyNonBreatherClown # 🌟Starlight🌟
+  - EmergencyIPCClown #FH
 
 - type: loadoutGroup
   id: ClownJobTrinkets
@@ -760,6 +767,7 @@
   - EmergencySpeciesMothMime
 #  - LoadoutSpeciesVoxNitrogen - Starlight removed
   - EmergencyNonBreatherMime # 🌟Starlight🌟
+  - EmergencyIPCMime #FH
 
 #- type: loadoutGroup
 #  id: MimeJobTrinkets
@@ -896,10 +904,12 @@
   name: loadout-group-cargo-technician-jumpsuit
   loadouts:
   - CargoTechnicianJumpsuit
-  - CargoTechnicianJumpsuitAlt # afterlight
-  - CargoTechnicianJumpsuitFormal # afterlight
   - CargoTechnicianJumpskirt
+  - CargoTechnicianJumpsuitFormal # afterlight
   - CargoTechnicianJumpskirtFormal # afterlight
+  - CargoTechnicianJumpsuitSenior #FH
+  - CargoTechnicianJumpskirtSenior #FH
+  - CargoTechnicianJumpsuitAlt # afterlight
   - CargoTechnicianOveralls #Starlight
 
 - type: loadoutGroup
@@ -956,6 +966,9 @@
   - SalvageSpecialistBackpack
   - SalvageSpecialistSatchel
   - SalvageSpecialistDuffel
+  - SalvageSpecialistBackpackSenior #FH
+  - SalvageSpecialistSatchelSenior #FH
+  - SalvageSpecialistDuffelSenior #FH
   - LeatherSatchel # starlight
 
 - type: loadoutGroup
@@ -971,8 +984,14 @@
   loadouts:
   - SalvageSpecialistJumpsuit # 🌟Starlight🌟
   - SalvageSpecialistJumpskirt # 🌟Starlight🌟
+  - SalvageMedicJumpsuit #FH
+  - SalvageMedicJumpskirt #FH
   - SalvageSpecialistJumpsuitFormal # 🌟Starlight🌟
   - SalvageSpecialistJumpskirtFormal # 🌟Starlight🌟
+  - SalvageSpecialistJumpsuitSenior #FH
+  - SalvageSpecialistJumpskirtSenior #FH
+  - SalvageMedicJumpsuitFormal #FH
+  - SalvageMedicJumpskirtFormal #FH
 
 - type: loadoutGroup
   id: SalvageSpecialistShoes
@@ -1161,6 +1180,7 @@
   - EmergencyOxygenExtended
 #  - LoadoutSpeciesVoxNitrogen - Starlight removed
   - EmergencyNonBreatherExtended # 🌟Starlight🌟
+  - EmergencyIPCExtended #FH
 
 # Science
 - type: loadoutGroup
@@ -1318,6 +1338,8 @@
   - HeadofSecurityHead
   - HeadofSecuritySheriff #Starlight
   - HeadofSecurityBeret
+  - DeputyHat #FH
+  - DeputyHelmet #FH
 
 - type: loadoutGroup
   id: HeadofSecurityJumpsuit
@@ -1333,6 +1355,7 @@
   - HeadofSecurityBlackSkirt
   - HeadofSecurityBlueJumpsuit
   - HeadofSecurityGreyJumpsuit
+  - DeputyUniform #FH
 
 - type: loadoutGroup
   id: HeadofSecurityNeck
@@ -1351,6 +1374,7 @@
   loadouts:
   - HeadofSecurityCoat
   - HeadofSecurityWinterCoat
+  - SheriffHOSCoat #FH
 
 - type: loadoutGroup
   id: HeadofSecurityJobTrinkets
@@ -1358,6 +1382,7 @@
   minLimit: 0
   loadouts:
   - SecStar
+  - DeputyBadge #FH
 
 - type: loadoutGroup
   id: WardenHead
@@ -1366,6 +1391,8 @@
   loadouts:
   - WardenHead
   - WardenBeret
+  - DeputyHat #FH
+  - DeputyHelmet #FH
 
 - type: loadoutGroup
   id: WardenJumpsuit
@@ -1373,6 +1400,7 @@
   loadouts:
   - WardenJumpsuit
   - WardenJumpskirt
+  - DeputyUniform #FH
 
 - type: loadoutGroup
   id: WardenOuterClothing
@@ -1382,6 +1410,7 @@
   loadouts:
   - WardenCoat
   - WardenArmoredWinterCoat
+  - DeputySheriffWardenCoat #FH
 
 - type: loadoutGroup
   id: WardenJobTrinkets
@@ -1389,6 +1418,7 @@
   minLimit: 0
   loadouts:
   - SecStar
+  - DeputyBadge #FH
 
 - type: loadoutGroup
   id: SecurityEyewear
@@ -1399,6 +1429,7 @@
   - DetectiveNoirGlasses
   - SecurityVisor #Far Horizons
   - SecurityPrescriptionGlasses #FH
+  - DeputyGlasses #FH
 
 - type: loadoutGroup
   id: BrigmedicHead
@@ -1407,16 +1438,16 @@
   loadouts:
   - BrigmedicBeret
   - SecurityHelmet
-#FH - Corpsman Removal
+  - DeputyHat #FH
+  - DeputyHelmet #FH
 
 - type: loadoutGroup
   id: BrigmedicJumpsuit
   name: loadout-group-brigmedic-jumpsuit
   loadouts:
   - JumpsuitBrigmedic
-#FH - Corpsman Removal
   - JumpskirtBrigmedic
-#FH - Corpsman Removal
+  - DeputyUniform #FH
 
 - type: loadoutGroup
   id: BrigmedicBackpack
@@ -1435,7 +1466,7 @@
   loadouts:
   - BrigmedicCoat
   - SecurityOfficerWintercoat
-#FH - Corpsman Removal
+  - DeputyBrigmedicCoat #FH
 
 - type: loadoutGroup
   id: BrigmedicEyewear
@@ -1446,6 +1477,7 @@
   - BrigmedicHud
   - BrigmedicEyePatchHud # Starlight
   - BrigmedicPrescriptionGlasses #FH
+  - DeputyMedicalGlasses #FH
 
 - type: loadoutGroup
   id: BrigmedicBelt
@@ -1454,15 +1486,15 @@
   maxLimit: 2 #FH
   loadouts:
   - BrigmedicRig
+  - MedicalRigDeputy #FH
   - BrigmedicBelt #Starlight
-#FH - Corpsman Removal
+  - MedicalBeltDeputy #FH
 
 - type: loadoutGroup
   id: BrigmedicGloves
   name: loadout-group-brigmedic-gloves
   loadouts:
   - Nitrile
-#FH - Corpsman Removal
 
 - type: loadoutGroup
   id: SecurityHead
@@ -1470,12 +1502,14 @@
   minLimit: 0
   loadouts:
   - SecurityHelmet
+  - DeputyHelmet #FH
   - SecurityHelmetPlate
   - SecurityHelmetStabproof
   - SecurityHelmetHeatAbsorbent
   - SecurityBeret
   - SecurityHat
   - TrooperHat
+  - DeputyHat #FH
 
 - type: loadoutGroup
   id: SecurityJumpsuit
@@ -1490,6 +1524,7 @@
   - TrooperUniform
   - SecurityJumpsuitBlue
   - SecurityTshirt #Starlight
+  - DeputyUniform #FH
 
 - type: loadoutGroup
   id: SecurityBackpack
@@ -1507,7 +1542,9 @@
   maxLimit: 2 #FH
   loadouts:
   - SecurityBelt
+  - DeputyBelt #FH
   - SecurityWebbing
+  - DeputyRig #FH
 
 - type: loadoutGroup
   id: SecurityOuterClothing
@@ -1521,8 +1558,10 @@
   - ArmorVestStab
   - ArmorVestHeatAbsorb
   - SecurityOfficerWintercoat
+  - DeputyCoat #FH
   - SecurityBomber #Starlight
   - WindbreakerSecurity #Starlight
+  - DeputyDuster #FH
 
 - type: loadoutGroup
   id: SecurityShoes
@@ -1531,6 +1570,7 @@
   - JackBoots
   - SecurityWinterBoots
   - HighHeelBootsFilled # 🌟Starlight🌟
+  - CombatShoes #FH
 
 - type: loadoutGroup
   id: SecurityPDA
@@ -1545,6 +1585,7 @@
   minLimit: 0
   loadouts:
   - SecStar
+  - DeputyBadge #FH
 
 - type: loadoutGroup
   id: DetectiveHead
@@ -1553,6 +1594,8 @@
   loadouts:
   - DetectiveFedora
   - DetectiveFedoraGrey
+  - DeputyHat #FH
+  - DeputyHelmet #FH
 
 - type: loadoutGroup
   id: DetectiveNeck
@@ -1570,6 +1613,7 @@
   - DetectiveJumpskirt
   - NoirJumpsuit
   - NoirJumpskirt
+  - DeputyUniform #FH
 
 - type: loadoutGroup
   id: DetectiveOuterClothing
@@ -1580,6 +1624,9 @@
   - DetectiveArmorVest
   - DetectiveCoat
   - DetectiveCoatGrey
+  - SecurityOfficerWintercoat
+  - DeputyDuster #FH
+  - DeputyCoat #FH
 
 - type: loadoutGroup
   id: DetectiveJobTrinkets
@@ -1587,6 +1634,7 @@
   minLimit: 0
   loadouts:
   - SecStar
+  - DeputyBadge #FH
 
 - type: loadoutGroup
   id: SecurityCadetJumpsuit
@@ -1612,6 +1660,7 @@
   - EmergencyOxygenSecurity
 #  - LoadoutSpeciesVoxNitrogen - Starlight removed
   - EmergencyNonbreatherSecurity # 🌟Starlight🌟
+  - EmergencyIPCSecurity #FH
 
 # Wildcards
 - type: loadoutGroup
@@ -1667,6 +1716,7 @@
   - EmergencyOxygenSyndicate
 #  - LoadoutSpeciesVoxNitrogen - Starlight removed
   - EmergencyNonBreatherSyndicate # 🌟Starlight🌟
+  - EmergencyIPCSyndicate #FH
 
 # Starlight edit start - Removed - vox no longer spawn with gas masks automatically
 # - type: loadoutGroup
@@ -1685,6 +1735,7 @@
   loadouts:
   - EmergencyNitrogenMilitaryDouble
   - EmergencyOxygenMilitaryDouble
+  - EmergencyIPCMilitaryDouble #FH
 
 # - type: loadoutGroup
 #   id: GroupSpeciesBreathToolMedical

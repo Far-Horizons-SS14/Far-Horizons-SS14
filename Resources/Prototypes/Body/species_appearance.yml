@@ -32,6 +32,8 @@
     # Stuff that goes over the body but below equipment
     - map: ["enum.HumanoidVisualLayers.BodyCover"] # Far Horizons
     - map: ["enum.HumanoidVisualLayers.BodyCoverCover"] # Far Horizons
+    - map: [ "enum.HumanoidVisualLayers.FaceCover" ] # Far Horizons
+    - map: [ "enum.HumanoidVisualLayers.FaceCoverCover" ] # Far Horizons
     - map: ["enum.HumanoidVisualLayers.Overlay"]
 
     # More equipment
@@ -51,11 +53,10 @@
     # Stuff that goes in front of equipment
     - map: [ "enum.HumanoidVisualLayers.SnoutCover" ]
     - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
-    - map: [ "enum.HumanoidVisualLayers.FaceCover" ] # Far Horizons
-    - map: [ "enum.HumanoidVisualLayers.FaceCoverCover" ] # Far Horizons
     - map: [ "enum.HumanoidVisualLayers.Hair" ]
     - map: [ "enum.HumanoidVisualLayers.HeadSide" ]
     - map: [ "enum.HumanoidVisualLayers.HeadTop" ]
+    - map: [ "enum.HumanoidVisualLayers.Wings" ] # Far Horizon
     - map: [ "enum.HumanoidVisualLayers.Tail" ]
     - map: [ "enum.HumanoidVisualLayers.TailCover" ] # Far Horizons
     - map: [ "enum.HumanoidVisualLayers.TailOverlay" ]
@@ -71,11 +72,6 @@
       color: "#ffffff"
       sprite: Objects/Misc/handcuffs.rsi
       state: body-overlay-2
-      visible: false
-
-    - map: [ "clownedon" ] # Dynamically generated
-      sprite: "Effects/creampie.rsi"
-      state: "creampie_human"
       visible: false
 
 - type: entity

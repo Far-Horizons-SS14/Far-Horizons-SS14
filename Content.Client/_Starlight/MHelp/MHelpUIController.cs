@@ -31,14 +31,14 @@ using Robust.Shared.Utility;
 namespace Content.Client.UserInterface.Systems.Bwoink;
 
 [UsedImplicitly]
-public sealed class MHelpUIController : UIController, IOnSystemChanged<MentorSystem>, IOnStateChanged<GameplayState>, IOnStateChanged<LobbyState>
+public sealed partial class MHelpUIController : UIController, IOnSystemChanged<MentorSystem>, IOnStateChanged<GameplayState>, IOnStateChanged<LobbyState>
 {
-    [Dependency] private readonly IClientAdminManager _adminManager = default!;
-    [Dependency] private readonly IConfigurationManager _config = default!;
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
-    [Dependency] private readonly IClyde _clyde = default!;
+    [Dependency] private IClientAdminManager _adminManager = default!;
+    [Dependency] private IConfigurationManager _config = default!;
+    [Dependency] private IPlayerManager _playerManager = default!;
+    [Dependency] private IClyde _clyde = default!;
     [UISystemDependency] private readonly AudioSystem _audio = default!;
-    [Dependency] private readonly DiscordLinkManager _discordLinkManager = default!;  // Far Horizons
+    [Dependency] private DiscordLinkManager _discordLinkManager = default!;  // Far Horizons
 
     private MentorSystem? _mentorSystem;
     private Controls.MenuButton? GameMHelpButton => UIManager.GetActiveUIWidgetOrNull<GameTopMenuBar>()?.MHelpButton;

@@ -31,9 +31,42 @@
         color: "#FF00CC"
 
 - type: entity
+  id: BaseBorgModuleSyndicateCombat
+  parent: BaseBorgModule
+  abstract: true
+  components:
+  - type: BorgModule
+    borgFitTypes:
+    - borg-type-syndicate
+  - type: Tag
+    tags:
+    - BorgModuleGeneric
+    - BorgModuleIPCIncompatible
+    - BorgModuleSyndicate
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-icon-inhand-left
+        color: "#FF0000"
+      - state: base-module-inhand-left
+        color: "#891417"
+      - state: base-part-inhand-left
+      - state: base-stripes-inhand-left
+        color: "#7B0F12"
+      right:
+      - state: base-icon-inhand-right
+        color: "#FF0000"
+      - state: base-module-inhand-right
+        color: "#891417"
+      - state: base-part-inhand-right
+      - state: base-stripes-inhand-right
+        color: "#7B0F12"
+
+- type: entity
   parent: [BaseBorgModuleSecurity,BaseProviderBorgModule,BaseSecurityContraband]
   id: BorgModuleBaton
   name: Baton Cyborg Module
+  suffix: NT
   description: Now even cyborgs can enjoy harm batong.
   components:
   - type: Sprite
@@ -60,6 +93,7 @@
   parent: [BaseBorgModuleSecurity,BaseProviderBorgModule,BaseSecurityContraband]
   id: BorgModuleDominator
   name: Dominator Cyborg Module
+  suffix: NT
   description: Module with a dominator specifically designed for cyborgs.
   components:
   - type: Sprite
@@ -77,6 +111,7 @@
   parent: [BaseBorgModuleSecurity,BaseProviderBorgModule,BaseSecurityContraband]
   id: BorgModuleLaserCarbine
   name: Laser Carbine Cyborg Module
+  suffix: NT
   description: Module with a Laser Carbine specifically designed for cyborgs.
   components:
   - type: Sprite
@@ -87,6 +122,69 @@
     hands:
     - item: BorgWeaponWeaponLaserCarbine
     - item: RadioHandheldSecurity
+  - type: BorgModuleIcon
+    icon: { sprite: _FarHorizons/Interface/Actions/actions_borg.rsi, state: laser-carbine-module } # TODO icon
+
+- type: entity
+  parent: [BaseBorgModuleSecurity,BaseProviderBorgModule,BaseSecurityContraband]
+  id: BorgModuleBatonNS
+  name: Baton Cyborg Module
+  suffix: NS
+  description: Now even cyborgs can enjoy harm batong.
+  components:
+  - type: Sprite
+    layers:
+    - state: security
+    - state: icon-security
+  - type: ItemBorgModule
+    hands:
+    - item: Stunbaton
+    - item: BorgFlash
+    - item: Handcuffs
+      hand:
+        emptyLabel: borg-slot-handcuffs-empty
+        emptyRepresentative: Handcuffs
+        whitelist:
+          tags:
+          - Handcuffs
+    - item: RadioHandheldSecurityNS
+    - item: BorgContraDuffelNS
+  - type: BorgModuleIcon
+    icon: { sprite: _FarHorizons/Interface/Actions/actions_borg.rsi, state: stunbaton-module } # TODO icon
+
+- type: entity
+  parent: [BaseBorgModuleSecurity,BaseProviderBorgModule,BaseSecurityContraband]
+  id: BorgModuleDominatorNS
+  name: Dominator Cyborg Module
+  suffix: NS
+  description: Module with a dominator specifically designed for cyborgs.
+  components:
+  - type: Sprite
+    layers:
+    - state: security
+    - state: icon-security
+  - type: ItemBorgModule
+    hands:
+    - item: BorgWeaponDominatorNS
+    - item: RadioHandheldSecurityNS
+  - type: BorgModuleIcon
+    icon: { sprite: _FarHorizons/Interface/Actions/actions_borg.rsi, state: dominator-module } # TODO icon
+
+- type: entity
+  parent: [BaseBorgModuleSecurity,BaseProviderBorgModule,BaseSecurityContraband]
+  id: BorgModuleLaserCarbineNS
+  name: Laser Carbine Cyborg Module
+  suffix: NS
+  description: Module with a Laser Carbine specifically designed for cyborgs.
+  components:
+  - type: Sprite
+    layers:
+    - state: security
+    - state: icon-security
+  - type: ItemBorgModule
+    hands:
+    - item: BorgWeaponWeaponLaserCarbine #This is generic weapon
+    - item: RadioHandheldSecurityNS #To be fixed
   - type: BorgModuleIcon
     icon: { sprite: _FarHorizons/Interface/Actions/actions_borg.rsi, state: laser-carbine-module } # TODO icon
 
@@ -200,7 +298,7 @@
     - state: icon-centcomm
   - type: ItemBorgModule
     hands:
-    - item: ChameleonProjector
+    - item: ChameleonProjectorNoBattery
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-projector-module }
 
@@ -246,16 +344,19 @@
           - Cleanade
   - type: BorgModuleIcon
     icon: { sprite: _FarHorizons/Interface/Actions/actions_borg.rsi, state: adv-light-replacer-module }
+  - type: Tag
+    tags:
+    - BorgModuleJanitor
 
 - type: entity
-  parent: [ BaseBorgModuleCargo, BaseProviderBorgModule ]
+  parent: [ BaseBorgModuleMining, BaseProviderBorgModule ]
   id: BorgModulePKA
   name: Salvage PKA Cyborg Module
   description: Gemini Stellar Logistics decided it was sometimes more cost efficient to send in a force of cyborgs to clear out problems on missions. PKA module worked great for that.
   components:
   - type: Sprite
     layers:
-    - state: cargo
+    - state: mining
     - state: icon-rcd #This needs to be replaced with a decent icon at some point. {sprite: _FarHorizons/Objects/Specific/Robotics/borgmodule.rsi, state: icon-light-replacer-adv }
   - type: ItemBorgModule
     hands:
@@ -263,3 +364,296 @@
     - item: RadioHandheldExpedition
   - type: BorgModuleIcon
     icon: { sprite: _FarHorizons/Interface/Actions/actions_borg.rsi, state: pka-module }
+
+#region Passive Borg Modules
+- type: entity
+  id: BasePassiveBorgModule
+  parent: [ BaseBorgModule ]
+  name: Pasive Borg Module
+  abstract: true
+  description: A passive module that control the cyborg's access.
+  components:
+    - type: Sprite
+      layers:
+      - state: generic
+      - state: icon-template
+    - type: PassiveBorgModule
+    - type: Tag
+      tags:
+      - BorgModuleGeneric
+      - BorgModuleIPCIncompatible 
+
+
+#region Access Modules
+- type: entity
+  id: BorgModuleAccessBase
+  parent: [ BasePassiveBorgModule ]
+  name: Access Module
+  description: A passive module that control the cyborg's access.
+  components:
+  - type: PassiveBorgModule
+    passiveType: Access
+  - type: Tag
+    tags:
+    - BorgModuleGeneric
+    - BorgModuleIPCIncompatible 
+    - BorgModuleAccess
+  - type: DoorElectronics
+    accessGroups:
+    - AllAccess
+    - AllAccessNS
+  - type: ActivatableUI
+    key: enum.DoorElectronicsConfigurationUiKey.Key
+    requiredItems:
+      tags:
+      - DoorElectronicsConfigurator
+  - type: UserInterface
+    interfaces:
+      enum.DoorElectronicsConfigurationUiKey.Key:
+        type: DoorElectronicsBoundUserInterface
+  - type: Access
+    enabled: false
+  - type: AccessReader
+  - type: IdCard
+    canRenameObject: false
+    allowDepartmentChange: false
+
+
+#NanoTrasen
+- type: entity
+  id: BorgModuleAccessNT
+  parent: [ BorgModuleAccessBase ]
+  name: NanoTrasen Access Module
+  description: A passive module that control the cyborg's access.
+  suffix: NT
+  components:
+  - type: Access
+    groups:
+    - AllAccess
+    tags:
+    - Borg
+  - type: AccessReader
+    access: [["Command"], ["Robotics"]] 
+
+- type: entity
+  id: BorgModuleSecAccessNT
+  parent: [ BorgModuleAccessBase ]
+  name: NanoTrasen Security Access Module
+  description: A passive module that control the cyborg's access.
+  suffix: NT
+  components:
+  - type: Access
+    groups:
+    - Security 
+    tags:
+    - Maintenance 
+    - External 
+  - type: AccessReader
+    access: [["Command"], ["Armory"]]
+
+- type: entity
+  id: BorgModuleAccessCC
+  parent: [ BorgModuleAccessBase ]
+  name: Central Command Access Module
+  description: A passive module that control the cyborg's access.
+  suffix: NT
+  components:
+  - type: Access
+    groups:
+    - AllAccess
+    tags:
+    - CentralCommand
+  - type: AccessReader
+    access: [["CentralCommand"]]
+
+#NeoSol
+- type: entity
+  id: BorgModuleAccessNS
+  parent: [ BorgModuleAccessBase ]
+  name: NeoSol Access Module
+  description: A passive module that control the cyborg's access.
+  suffix: NS
+  components:
+  - type: Access
+    groups:
+    - AllAccessNS
+    tags:
+    - BorgNS
+  - type: AccessReader
+    access: [["Executive"], ["RoboticsNS"]] 
+
+- type: entity
+  id: BorgModuleSecAccessNS
+  parent: [ BorgModuleAccessBase ]
+  name: NeoSol Security Access Module
+  description: A passive module that control the cyborg's access.
+  suffix: NS
+  components:
+    - type: Access
+      groups:
+      - SecurityNS
+      tags:
+      - MaintenanceNS
+      - ExternalNS
+    - type: AccessReader
+      access: [["Executive"], ["ArmoryNS"]]
+
+#GSL
+- type: entity
+  id: BorgModuleAccessGSL
+  parent: [ BorgModuleAccessBase ]
+  name: Gemini Star Logistics Access Module
+  description: A passive module that control the cyborg's access.
+  suffix: GSL
+  components:
+  - type: Sprite
+    layers:
+    - state: cargo
+    - state: icon-template
+  - type: Access
+    groups:
+    - AllAccessNS
+    - AllAccess
+    tags:
+    - BorgNS
+  - type: AccessReader
+    access: [["Quartermaster"], ["SalvageLead"]] 
+
+#Syndicate
+- type: entity
+  id: BorgModuleAccessSyndicate
+  parent: [ BorgModuleAccessBase ]
+  name: Syndicate Access Module
+  description: A passive module that control the cyborg's access.
+  suffix: Syndicate
+  components:
+  - type: Sprite
+    layers:
+    - state: syndicate
+    - state: icon-syndicate
+  - type: Access
+    tags:
+    - NuclearOperative
+    - SyndicateAgent
+  - type: AccessReader
+    access: [["SyndicateAgent"], ["NuclearOperative"]]
+
+#XenoBorg
+- type: entity
+  id: BorgModuleAccessXenoborg
+  parent: [ BorgModuleAccessBase ]
+  name: Xenoborg Access Module
+  description: A passive module that control the cyborg's access.
+  suffix: Xenoborg
+  components:
+  - type: Sprite
+    layers:
+    - state: xenoborg_generic
+    - state: icon-xenoborg-basic
+  - type: Access
+    tags:
+    - Xenoborg
+  - type: AccessReader
+    access: [["Xenoborg"]]
+
+#region Armor Modules
+- type: entity
+  id: BorgModuleArmorBasic
+  parent: [ BasePassiveBorgModule ]
+  name: Basic Armor Module
+  description: A passive module that control the cyborg's armor.
+  components:
+  - type: PassiveBorgModule
+    passiveType: Armor
+  - type: ArmorBorgModule
+    damageModifierSet: BorgArmorBase
+
+- type: entity
+  id: BorgModuleArmorSecBorg
+  parent: [ BasePassiveBorgModule ]
+  name: Security Cyborg Armor Module
+  description: A passive module that control the cyborg's armor.
+  components:
+  - type: PassiveBorgModule
+    passiveType: Armor
+  - type: ArmorBorgModule
+    damageModifierSet: BorgSecBorgArmor
+  - type: ComponentBorgModule
+    components:
+    - type: BodySpeedModifier
+      walkModifier: 0.95
+      sprintModifier: 0.95
+
+- type: entity
+  id: BorgModuleArmorReflective
+  parent: [ BasePassiveBorgModule ]
+  name: Reflective Armor Module
+  description: A passive module that control the cyborg's armor.
+  components:
+  - type: PassiveBorgModule
+    passiveType: Armor
+  - type: ArmorBorgModule
+    damageModifierSet: BorgArmorReflective
+  - type: ComponentBorgModule
+    components:
+    - type: Reflect
+      reflectProb: 1
+      reflects:
+        - Energy
+    - type: BodySpeedModifier
+      walkModifier: 0.85
+      sprintModifier: 0.85
+
+- type: entity
+  id: BorgModuleArmorSyndicate
+  parent: [ BasePassiveBorgModule ]
+  name: Syndicate Armor Module
+  description: A passive module that control the cyborg's armor.
+  components:
+  - type: PassiveBorgModule
+    passiveType: Armor
+  - type: ArmorBorgModule
+    damageModifierSet: BorgArmorSyndicate
+  - type: ComponentBorgModule
+    components:
+    - type: BodySpeedModifier
+      walkModifier: 0.8
+      sprintModifier: 0.8
+
+#region Speed Modules
+
+- type: entity
+  id: BorgModuleSpeedBasic
+  parent: [ BasePassiveBorgModule ]
+  name: Speed Module
+  description: A passive module that control the cyborg's speed.
+  components:
+  - type: PassiveBorgModule
+    passiveType: Speed
+  - type: ComponentBorgModule
+    components:
+    - type: MovementSpeedModifier
+      baseWalkSpeed : 2.5
+      baseSprintSpeed : 4.5
+    uninstallComponents:
+    - type: MovementSpeedModifier
+      baseWalkSpeed : 1.0
+      baseSprintSpeed : 2.0
+
+- type: entity
+  id: BorgModuleSpeedAdvanced
+  parent: [ BasePassiveBorgModule ]
+  name: Advanced Speed Module
+  description: A passive module that control the cyborg's speed.
+  components:
+  - type: PassiveBorgModule
+    passiveType: Speed
+  - type: ComponentBorgModule
+    components:
+    - type: MovementSpeedModifier
+      baseWalkSpeed : 3
+      baseSprintSpeed : 5.4
+    uninstallComponents: 
+    - type: MovementSpeedModifier
+      baseWalkSpeed : 1.0
+      baseSprintSpeed : 2.0

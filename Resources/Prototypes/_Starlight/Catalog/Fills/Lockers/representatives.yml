@@ -1,0 +1,129 @@
+# Locker & Hardsuit table for Nanotrasen Rep's Locker
+# Suit Storage Unit (NT Rep Addition) - START -
+- type: entityTable
+  id: FillNanotrasenRepLockerHardsuit
+  table: !type:AllSelector
+    children:
+    - id: ClothingEyesHudSkills
+    - id: ClothingEyesSunGlassesHudSkill
+    - id: ClothingHeadHatCapNtrep
+    - id: ClothingUniformJumpsuitNtrepFormal
+    - id: ClothingUniformJumpskirtNtrep
+    - id: ClothingUniformJumpsuitNtrep
+    - id: ClothingOuterCoatNtrep
+    - id: ClothingShoesBootsLaceup
+    - id: ClothingHeadsetAltCommand
+    - id: WeaponDisabler
+    - id: LuxuryPen
+    - id: BoxFolderClipboardFilled
+    - id: PrinterDocFlatpack
+    - id: FaxMachineFlatpack
+    - id: PlushieEmmie
+    # Start of Nanotrasen Rep's Suit-Storage table
+    - id: ClothingOuterHardsuitNtrep
+    - id: ClothingMaskBreath
+    - id: OxygenTankFilled
+    - id: NitrogenTankFilled
+# Suit Storage Unit (NT Rep Addition) - END -
+
+- type: entity
+  id: LockerRepresentativeFilledHardsuit # FH
+  suffix: Filled, Hardsuit # FH
+  parent: LockerRepresentative
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children: 
+        - !type:NestedSelector
+          tableId: FillNanotrasenRepLockerHardsuit # FH
+# FH, Suit Storage Unit Changes - START -
+# Locker table for Nanotrasen Rep's Locker
+
+- type: entityTable
+  id: FillNanotrasenRepLocker
+  table: !type:AllSelector
+    children:
+    - id: ClothingEyesHudSkills
+    - id: ClothingEyesSunGlassesHudSkill
+    - id: ClothingHeadHatCapNtrep
+    - id: ClothingUniformJumpsuitNtrepFormal
+    - id: ClothingUniformJumpskirtNtrep
+    - id: ClothingUniformJumpsuitNtrep
+    - id: ClothingOuterCoatNtrep
+    - id: ClothingShoesBootsLaceup
+    - id: ClothingHeadsetAltCommand
+    - id: WeaponDisabler
+    - id: LuxuryPen
+    - id: BoxFolderClipboardFilled
+    - id: PrinterDocFlatpack
+    - id: FaxMachineFlatpack
+    - id: PlushieEmmie
+
+- type: entity
+  id: LockerRepresentativeFilled
+  parent: LockerRepresentative
+  suffix: Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: FillNanotrasenRepLocker
+
+# Nanotrasen Rep's Bluespace Varient:
+# FH, Suit Storage Unit Changes - END -
+- type: entity
+  id: LockerRepresentativeFilledBluespaced
+  suffix: Filled, Bluespaced
+  parent: LockerRepresentativeFilled
+  categories: [ Spawner ]
+  components:
+  - type: TriggerOnSpawn
+  - type: SpawnOnTrigger
+    proto: EffectFlashBluespace
+
+- type: entity
+  id: LockerBSOFilled
+  suffix: Filled
+  parent: LockerBlueshield
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: FlashlightSeclite
+        - id: ClothingHandsGlovesCombat
+        - id: ClothingShoesBootsCombat
+        - id: TrackingImplanter
+          amount: 3
+        - id: MedkitAdvancedFilled
+        - id: ClothingEyesGlassesBlueShield
+        - id: ClothingEyesHudBlueShield
+        - id: ClothingHeadHatBeretBlueShield
+        - id: ClothingUniformJumpsuitBlueShield
+        - id: ClothingUniformJumpskirtBlueShield
+        - id: HandheldGPSBasic
+        - id: ClothingNeckCloakBsoElite
+        - id: RadioHandheldSecurity
+        - id: ClothingUniformJumpsuitBlueShieldCaptain
+        - id: ClothingOuterCoatBlueShield
+        - id: ClothingNeckCloakBsoCape
+        - id: RubberStampBSO
+#FarHorizons - Start
+        - id: ClothingBackpackBlueShield
+        - id: ClothingBeltBlueShieldWeb
+        - id: ClothingBeltBlueShield
+        - id: WeaponPistolDP
+        - id: MagazinePistol38SP
+          amount: 2
+#FarHorizons - End
+
+- type: entity
+  id: LockerBSOFilledBluespaced
+  suffix: Filled, Bluespaced
+  parent: LockerBSOFilled
+  categories: [ Spawner ]
+  components:
+  - type: TriggerOnSpawn
+  - type: SpawnOnTrigger
+    proto: EffectFlashBluespace

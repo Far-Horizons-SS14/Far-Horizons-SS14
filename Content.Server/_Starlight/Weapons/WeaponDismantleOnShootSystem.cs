@@ -22,10 +22,10 @@ using Content.Shared.Damage.Systems;
 namespace Content.Server._Starlight.Weapon.Systems;
 public sealed partial class WeaponDismantleOnShootSystem : SharedWeaponDismantleOnShootSystem
 {
-    [Dependency] private readonly ThrowingSystem _throwing = default!;
-    [Dependency] private readonly DamageableSystem Damageable = default!;
-    [Dependency] private readonly IEntityManager _entityManager = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private ThrowingSystem _throwing = default!;
+    [Dependency] private DamageableSystem Damageable = default!;
+    [Dependency] private IEntityManager _entityManager = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
     public override void Initialize()
     {
         base.Initialize();

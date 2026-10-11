@@ -7,6 +7,7 @@ using Content.Client.Verbs.UI;
 using Content.Shared.Hands;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
+using Content.Shared.Interaction.Components; //FH-Edit
 using Content.Shared.Inventory.VirtualItem;
 using Content.Shared.Item;
 using JetBrains.Annotations;
@@ -21,15 +22,15 @@ using Robust.Shared.Utility;
 namespace Content.Client.Hands.Systems
 {
     [UsedImplicitly]
-    public sealed class HandsSystem : SharedHandsSystem
+    public sealed partial class HandsSystem : SharedHandsSystem
     {
-        [Dependency] private readonly IPlayerManager _playerManager = default!;
-        [Dependency] private readonly IUserInterfaceManager _ui = default!;
+        [Dependency] private IPlayerManager _playerManager = default!;
+        [Dependency] private IUserInterfaceManager _ui = default!;
 
-        [Dependency] private readonly StrippableSystem _stripSys = default!;
-        [Dependency] private readonly SpriteSystem _sprite = default!;
-        [Dependency] private readonly ExamineSystem _examine = default!;
-        [Dependency] private readonly DisplacementMapSystem _displacement = default!;
+        [Dependency] private StrippableSystem _stripSys = default!;
+        [Dependency] private SpriteSystem _sprite = default!;
+        [Dependency] private ExamineSystem _examine = default!;
+        [Dependency] private DisplacementMapSystem _displacement = default!;
 
         public event Action<string?>? OnPlayerSetActiveHand;
         public event Action<Entity<HandsComponent>>? OnPlayerHandsAdded;
@@ -139,9 +140,11 @@ namespace Content.Client.Hands.Systems
                 return;
             }
 
-            if (handName != hands.ActiveHandId && pressedEntity == null)
+            if (handName != hands.ActiveHandId && (pressedEntity == null || HasComp<UnremoveableComponent>(pressedEntity))) //FH-Edit
             {
                 // change active hand
+                if(HasComp<UnremoveableComponent>(pressedEntity)) //FH-Edit Else you wouldnt be able to reload gun based cybernetics
+                    RaisePredictiveEvent(new RequestHandInteractUsingEvent(handName)); 
                 RaisePredictiveEvent(new RequestSetHandEvent(handName));
                 return;
             }

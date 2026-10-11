@@ -63,8 +63,13 @@ namespace Content.Server.Bible.Components
         [DataField("locPrefix")]
         public string LocPrefix = "bible";
 
-        //#region Starlight
+        /// <summary>
+        /// A short light effect to display when successfully healing someone
+        /// </summary>
+        [DataField]
+        public EntProtoId? HealingLightEffect = "HolyLightEffect";
 
+#region Starlight
         /// <summary>
         /// what is the chance a successfull bible thwack removes the cluwning.
         /// </summary>
@@ -76,6 +81,6 @@ namespace Content.Server.Bible.Components
         /// </summary>
         [DataField]
         public ProtoId<TagPrototype> RemovableAnywaysTag = "BibleThwackRemovable";
-        //#endregion Starlight
+#endregion Starlight
     }
 }

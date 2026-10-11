@@ -6,19 +6,91 @@
   cost:
     SalvageTicket: 350
   categories:
-  - SalvageEquipment
+  - SalvageWeapons
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 5
   - !type:BuyerAccessCondition
 
 - type: listing
+  id: VendorSalvageProtoKineticCrusher
+  productEntity: WeaponCrusher
+  cost:
+    SalvageTicket: 300
+  categories:
+  - SalvageWeapons
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 6
+  - !type:BuyerAccessCondition
+
+- type: listing
+  id: VendorSalvageProtoKineticCrusherSpear
+  productEntity: WeaponCrusherSpear
+  cost:
+    SalvageTicket: 350
+  categories:
+  - SalvageWeapons
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 6
+  - !type:BuyerAccessCondition
+
+- type: listing
+  id: VendorSalvageProtoKineticCrusherHammer
+  productEntity: WeaponCrusherHammer
+  cost:
+    SalvageTicket: 450
+  categories:
+  - SalvageWeapons
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 4
+  - !type:BuyerAccessCondition
+
+- type: listing
+  id: VendorSalvageProtoKineticCrusherDagger
+  productEntity: WeaponCrusherDagger
+  cost:
+    SalvageTicket: 150
+  categories:
+  - SalvageWeapons
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 8
+  - !type:BuyerAccessCondition
+
+- type: listing
   id: VendorVehicleSkeletonMotorcycle
-  productEntity: VehicleSkeletonMotorcycleFueledwithKEys
+  productEntity: VehicleSkeletonMotorcycleFueledwithKeys
   cost:
     SalvageTicket: 800
   categories:
-  - SalvageEquipment
+  - SalvageVehicles
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 5
+  - !type:BuyerAccessCondition
+
+- type: listing
+  id: VendorClothingHandsGlovesScrapperTierOne
+  productEntity: ClothingHandsGlovesScrapperTierOne
+  cost:
+    SalvageTicket: 100
+  categories:
+  - SalvageMercenaryEquipment
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 5
+  - !type:BuyerAccessCondition
+
+- type: listing
+  id: VendorClothingHandsGlovesScrapperTierTwo
+  productEntity: ClothingHandsGlovesScrapperTierTwo
+  cost:
+    SalvageTicket: 150
+  categories:
+  - SalvageMercenaryEquipment
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 5
@@ -39,7 +111,7 @@
   id: VendorWeaponMark1SniperRifle
   productEntity: WeaponRifleMark1Sniper
   cost:
-    SalvageTicket: 600
+    SalvageTicket: 500
   categories:
   - SalvageWeapons
   conditions:
@@ -49,7 +121,7 @@
   id: VendorWeaponMarkalibur1Rifle
   productEntity: Markalibur1SheathFilled
   cost:
-    SalvageTicket: 1000
+    SalvageTicket: 750
   categories:
   - SalvageWeapons
   conditions:
@@ -62,7 +134,7 @@
   cost:
     SalvageTicket: 250
   categories:
-  - SalvageConsumeables
+  - SalvageAmmo
   conditions:
   - !type:BuyerAccessCondition
 
@@ -72,6 +144,168 @@
   cost:
     SalvageTicket: 750
   categories:
-  - SalvageConsumeables
+  - SalvageAmmo
   conditions:
+  - !type:BuyerAccessCondition
+
+- type: listing
+  id: VendorBoxRevolver38
+  productEntity: MagazineBoxRevolver38SP
+  cost:
+    SalvageTicket: 400
+  categories:
+  - SalvageAmmo
+  conditions:
+  - !type:BuyerAccessCondition
+
+- type: listing
+  id: VendorBoxPistol
+  productEntity: MagazineBoxPistolSP
+  cost:
+    SalvageTicket: 600
+  categories:
+  - SalvageAmmo
+  conditions:
+  - !type:BuyerAccessCondition
+
+- type: listing
+  id: VendorSalvageMagazine38
+  productEntity: MagazinePistol38Empty
+  cost:
+    SalvageTicket: 75
+  categories:
+  - SalvageAmmo
+  conditions:
+  - !type:BuyerAccessCondition
+
+- type: listing
+  id: VendorSalvageSpeedloader38
+  productEntity: SpeedLoaderRevolver38Empty
+  cost:
+    SalvageTicket: 75
+  categories:
+  - SalvageAmmo
+  conditions:
+  - !type:BuyerAccessCondition
+
+- type: listing
+  id: VendorSalvageSpeedloader44
+  productEntity: SpeedLoaderMagnumEmpty
+  cost:
+    SalvageTicket: 75
+  categories:
+  - SalvageAmmo
+  conditions:
+  - !type:BuyerAccessCondition
+
+#Armor
+- type: listing
+  id: VendorSalvageClothingOuterArmorSalvageMedium
+  productEntity: ClothingOuterArmorSalvageMedium
+  cost:
+    SalvageTicket: 250
+  categories:
+  - SalvageArmor
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 5
+  - !type:BuyerAccessCondition
+
+- type: listing
+  id: VendorSalvageClothingOuterArmorSalvageHeavy
+  productEntity: ClothingOuterArmorSalvageHeavy
+  cost:
+    SalvageTicket: 400
+  categories:
+  - SalvageArmor
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 2
+  - !type:BuyerAccessCondition
+
+- type: listing
+  id: VendorSalvageClothingHeadHelmetSalvageMedium
+  productEntity: ClothingHeadHelmetSalvageMedium
+  cost:
+    SalvageTicket: 100
+  categories:
+  - SalvageArmor
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 5
+  - !type:BuyerAccessCondition
+
+- type: listing
+  id: VendorSalvageClothingHeadHelmetSalvageHeavy
+  productEntity: ClothingHeadHelmetSalvageHeavy
+  cost:
+    SalvageTicket: 150
+  categories:
+  - SalvageArmor
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 2
+  - !type:BuyerAccessCondition
+
+# Eyes stuff
+- type: listing
+  id: VendorSalvageClothingEyesHudScrapper
+  productEntity: ClothingEyesHudScrapper
+  cost:
+    SalvageTicket: 75
+  categories:
+  - SalvageMercenaryEquipment
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 5
+  - !type:BuyerAccessCondition
+
+- type: listing
+  id: VendorSalvageClothingEyesGlassesScrapper
+  productEntity: ClothingEyesGlassesScrapper
+  cost:
+    SalvageTicket: 150
+  categories:
+  - SalvageMercenaryEquipment
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 5
+  - !type:BuyerAccessCondition
+
+- type: listing
+  id: VendorSalvageClothingEyesHudScrapperMedical
+  productEntity: ClothingEyesHudScrapperMedical
+  cost:
+    SalvageTicket: 250
+  categories:
+  - SalvageMercenaryEquipment
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 2
+  - !type:BuyerAccessCondition
+
+- type: listing
+  id: VendorSalvageClothingEyesGlassesScrapperMedical
+  productEntity: ClothingEyesGlassesScrapperMedical
+  cost:
+    SalvageTicket: 300
+  categories:
+  - SalvageMercenaryEquipment
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 2
+  - !type:BuyerAccessCondition
+
+# Luxury
+
+- type: listing
+  id: VendorSalvageAmmoPrinter
+  productEntity: AmmoTechFabCircuitboard
+  cost:
+    SalvageTicket: 10000
+  categories:
+  - SalvageLuxury
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
   - !type:BuyerAccessCondition

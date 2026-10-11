@@ -18,30 +18,28 @@ using Content.Shared.Maps;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Content.Server.DeviceLinking.Systems;
+using Content.Shared.Audio;
 using Content.Shared.DeviceLinking;
-using Content.Shared.Emag.Systems;
-using Content.Shared.Light;
-using Content.Shared.Light.Components;
-using Content.Shared.Lock;
+using Robust.Shared.Audio.Systems;
 
 namespace Content.Server._FarHorizons.GenericFieldGenerator.EntitySystems;
 
-public sealed class GenericFieldGeneratorSystem : EntitySystem
+public sealed partial class GenericFieldGeneratorSystem : EntitySystem
 {
-    [Dependency] private readonly IAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly AppearanceSystem _visualizer = default!;
-    [Dependency] private readonly PhysicsSystem _physics = default!;
-    [Dependency] private readonly PopupSystem _popupSystem = default!;
-    [Dependency] private readonly SharedPointLightSystem _light = default!;
-    [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
-    [Dependency] private readonly BatterySystem _battery = default!;
-    [Dependency] private readonly ITileDefinitionManager _tiledef = default!;
-    [Dependency] private readonly TileSystem _tile = default!;
-    [Dependency] private readonly SharedMapSystem _mapSystem = default!;
-    [Dependency] private readonly GenericFieldSystem _genericfield = default!;
-    [Dependency] private readonly DeviceLinkSystem _signalSystem = default!;
-    [Dependency] private readonly SharedRgbLightControllerSystem _rgbSystem = default!;
-    [Dependency] private readonly EmagSystem _emag = default!;
+    [Dependency] private IAdminLogManager _adminLogger = default!;
+    [Dependency] private AppearanceSystem _visualizer = default!;
+    [Dependency] private PhysicsSystem _physics = default!;
+    [Dependency] private PopupSystem _popupSystem = default!;
+    [Dependency] private SharedPointLightSystem _light = default!;
+    [Dependency] private SharedTransformSystem _transformSystem = default!;
+    [Dependency] private BatterySystem _battery = default!;
+    [Dependency] private ITileDefinitionManager _tiledef = default!;
+    [Dependency] private TileSystem _tile = default!;
+    [Dependency] private SharedMapSystem _mapSystem = default!;
+    [Dependency] private GenericFieldSystem _genericfield = default!;
+    [Dependency] private DeviceLinkSystem _signalSystem = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedAmbientSoundSystem _ambientSoundSystem = default!;
 
     public override void Initialize()
     {
@@ -58,7 +56,6 @@ public sealed class GenericFieldGeneratorSystem : EntitySystem
         SubscribeLocalEvent<GenericFieldGeneratorComponent, BatteryStateChangedEvent>(OnBatteryStateChanged);
         SubscribeLocalEvent<GenericFieldGeneratorComponent, ChargeChangedEvent>(OnChargeChanged);
         SubscribeLocalEvent<GenericFieldGeneratorComponent, SignalReceivedEvent>(OnSignalReceived);
-        SubscribeLocalEvent<GenericFieldGeneratorComponent, GotEmaggedEvent>(OnGotEmagged);
     }
 
     public override void Update(float frameTime)
@@ -203,6 +200,14 @@ public sealed class GenericFieldGeneratorSystem : EntitySystem
         var value = component.Connections.Value;
         var (otheruid, othercomponent) = value.Item1;
 
+        _audio.PlayPvs(component.PowerDownSound, generator);
+        _audio.PlayPvs(component.PowerDownSound, value.Item1);
+
+        if (TryComp<AmbientSoundComponent>(generator, out var ambientComponent))
+            _ambientSoundSystem.SetAmbience(generator, false, ambientComponent);
+        if (TryComp<AmbientSoundComponent>(value.Item1, out var otherambientComponent))
+            _ambientSoundSystem.SetAmbience(value.Item1, false, otherambientComponent);
+
         foreach (var field in value.Item2)
         {
             if (TryComp<GenericFieldComponent>(field, out var fieldComp) && fieldComp.TempTile)
@@ -313,35 +318,6 @@ public sealed class GenericFieldGeneratorSystem : EntitySystem
 
     private void OnChargeChanged(Entity<GenericFieldGeneratorComponent> generator, ref ChargeChangedEvent args) => ChangePowerVisualizer(generator);
 
-    private void OnGotEmagged(Entity<GenericFieldGeneratorComponent> generator, ref GotEmaggedEvent args)
-    {
-        if (!_emag.CompareFlag(args.Type, EmagType.Interaction))
-        {
-            args.Handled = false;
-            return;
-        }
-
-        if (TryComp<LockComponent>(generator, out var lockcomp) && lockcomp.Locked)
-        {
-            _popupSystem.PopupEntity(Loc.GetString("comp-genericfield-locked"), generator);
-            args.Handled = false;
-            return;
-        }
-
-        generator.Comp.CreatedField = "HomographicField";
-
-        //makes the generator go rainbow, no reason to ever remove this beacause emag cant be removed without deconstructing
-        var rgb = EnsureComp<RgbLightControllerComponent>(generator);
-        _rgbSystem.SetCycleRate(generator, 0.5f, rgb);
-
-        if (!generator.Comp.IsConnected)
-            _popupSystem.PopupEntity(Loc.GetString("comp-genericfield-emag"), generator, PopupType.LargeCaution);
-
-        RemoveConnections(generator);
-
-        args.Handled = true;
-    }
-
     #endregion
 
     #region Connections
@@ -423,6 +399,12 @@ public sealed class GenericFieldGeneratorSystem : EntitySystem
 
         _popupSystem.PopupEntity(Loc.GetString("comp-genericfield-connected"), generator);
         _popupSystem.PopupEntity(Loc.GetString("comp-genericfield-connected"), ent);
+        _audio.PlayPvs(generator.Comp.PowerUpSound, generator);
+        _audio.PlayPvs(generator.Comp.PowerUpSound, ent);
+        if (TryComp<AmbientSoundComponent>(generator, out var ambientComponent))
+            _ambientSoundSystem.SetAmbience(generator, true, ambientComponent);
+        if (TryComp<AmbientSoundComponent>(ent, out var otherambientComponent))
+            _ambientSoundSystem.SetAmbience(ent, true, otherambientComponent);
         return true;
     }
 
@@ -535,15 +517,15 @@ public sealed class GenericFieldGeneratorSystem : EntitySystem
     {
         if (!TryComp<BatteryComponent>(generator, out var batteryComponent))
             return;
-        var charge = batteryComponent.LastCharge;
-        _visualizer.SetData(generator, GenericFieldGeneratorVisuals.PowerLight, charge switch //I dont like hardcoding these values, but I also dont feel like having a giant pile of if statments
+        var charge = batteryComponent.LastCharge/batteryComponent.MaxCharge;
+        _visualizer.SetData(generator, GenericFieldGeneratorVisuals.PowerLight, charge switch
         {
-            <= 50 => PowerLevelVisuals.NoPower,
-            >= 1450 => PowerLevelVisuals.FullPower,
-            >= 1200 => PowerLevelVisuals.VeryHighPower,
-            >= 900 => PowerLevelVisuals.HighPower,
-            >= 600 => PowerLevelVisuals.MediumPower,
-            >= 300 => PowerLevelVisuals.LowPower,
+            <= 0.05F => PowerLevelVisuals.NoPower,
+            >= 0.95F => PowerLevelVisuals.FullPower,
+            >= 0.8F => PowerLevelVisuals.VeryHighPower,
+            >= 0.6F => PowerLevelVisuals.HighPower,
+            >= 0.4F => PowerLevelVisuals.MediumPower,
+            >= 0.2F => PowerLevelVisuals.LowPower,
             _ => PowerLevelVisuals.MinimalPower
         });
         if (TryComp<BatteryChargerComponent>(generator, out _))

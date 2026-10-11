@@ -1,0 +1,256 @@
+#region Negative Traits
+- type: backgroundTrait
+  id: OvervoltedI
+  name: custom-frame-trait-overvolted-i-name
+  description: custom-frame-trait-overvolted-i-description
+  incompatible:
+    - UndervoltedI
+    - UndervoltedII
+  cost: -2
+  effects:
+    - !type:OverrideCompsEffect
+      components:
+        - type: PowerCellDraw
+          drawRate: 0.75
+
+- type: backgroundTrait
+  id: HeavierFrame
+  name: custom-frame-trait-heavier-frame-name
+  description: custom-frame-trait-heavier-frame-description
+  cost: -4
+  effects:
+    - !type:OverrideCompsEffect
+      components:
+      - type: FootstepModifier
+        footstepSoundCollection:
+          path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
+          params:
+            volume: -10
+      - type: HeavierFrameTrait
+        speedModifier: 0.95
+
+- type: backgroundTrait
+  id: IntegratedBattery
+  name: custom-frame-trait-integrated-battery-name
+  description: custom-frame-trait-integrated-battery-description
+  cost: -4
+  incompatible: 
+  - BloodPowered
+  - MicroreactorIncompatibility
+  effects:
+    - !type:OverrideCompsEffect
+      components:
+      - type: IntegratedBatteryTrait
+
+- type: backgroundTrait
+  id: CompromisedIntegrity
+  name: custom-frame-trait-compromised-integrity-name
+  description: custom-frame-trait-compromised-integrity-description
+  incompatible: 
+  - BetterInsulation
+  cost: -5
+  effects:
+    - !type:OverrideCompsEffect
+      components:
+      - type: SetDamageModifierTrait
+        damageModifierSetId: IPCWeaker
+
+- type: backgroundTrait
+  id: RadiationVulnerability
+  name: custom-frame-trait-radiation-vulnerability-name
+  description: custom-frame-trait-radiation-vulnerability-description
+  incompatible: 
+  - BetterInsulation
+  cost: -5
+  effects:
+    - !type:OverrideCompsEffect
+      components:
+      - type: SetDamageModifierTrait
+        damageModifierSetId: IPCRadiation
+      - type: GlitchOnIonStorm
+        duration: 60
+        ramp: 5
+
+- type: backgroundTrait
+  id: OutdatedWiring
+  name: custom-frame-trait-outdated-wiring-name
+  description: custom-frame-trait-outdated-wiring-description
+  cost: -6
+  effects:
+    - !type:RemCompsEffect
+      components:
+      - BatteryDrainer
+
+- type: backgroundTrait
+  id: CheapOilFilter
+  name: custom-frame-trait-cheap-oil-filter-name
+  description: custom-frame-trait-cheap-oil-filter-description
+  cost: -6
+  effects:
+    - !type:OverrideCompsEffect
+      components:
+      - type: ModifyBloodstreamTrait
+        bloodRefreshRate: 0
+        bloodReductionAmount: 0
+
+- type: backgroundTrait
+  id: MicroreactorIncompatibility
+  name: custom-frame-trait-microreactor-incompatibility-name
+  description: custom-frame-trait-microreactor-incompatibility-description
+  cost: -8
+  incompatible: 
+  - BloodPowered
+  - IntegratedBattery
+  effects:
+    - !type:OverrideCompsEffect
+      components:
+      - type: MicroreactorIncompatibilityTrait
+
+#region Positive Traits
+
+- type: backgroundTrait
+  id: UndervoltedI
+  name: custom-frame-trait-undervolted-i-name
+  description: custom-frame-trait-undervolted-i-description
+  incompatible:
+    - UndervoltedII
+    - OvervoltedI
+  cost: 2
+  effects:
+    - !type:OverrideCompsEffect
+      components:
+        - type: PowerCellDraw
+          drawRate: 0.5
+
+- type: backgroundTrait
+  id: LanguageDatabase
+  name: custom-frame-trait-language-database-name
+  description: custom-frame-trait-language-database-description
+  cost: 3
+  effects:
+    - !type:OverrideCompsEffect
+      components:
+      - type: LanguageDatabaseTrait
+
+- type: backgroundTrait
+  id: UndervoltedII
+  name: custom-frame-trait-undervolted-ii-name
+  description: custom-frame-trait-undervolted-ii-description
+  incompatible:
+    - UndervoltedI
+    - OvervoltedI
+  cost: 4
+  effects:
+    - !type:OverrideCompsEffect
+      components:
+        - type: PowerCellDraw
+          drawRate: 0.4
+
+- type: backgroundTrait
+  id: BloodPowered
+  name: custom-frame-trait-blood-powered-name
+  description: custom-frame-trait-blood-powered-description
+  cost: 5
+  incompatible: 
+  - RepairNanites
+  - MicroreactorIncompatibility
+  - IntegratedBattery
+  effects:
+    - !type:OverrideCompsEffect
+      components:
+      - type: Reactive
+        groups:
+          Flammable: [ Touch ]
+          Extinguish: [ Touch ]
+          Acidic: [Touch, Ingestion]
+        reactions:
+        - reagents: [Water, SpaceCleaner]
+          methods: [Touch]
+          effects:
+            - !type:WashCreamPie
+        - reagents: [ Blood, SulfurBlood, AvaliBlood, CopperBlood, AbductorBlood, AmmoniaBlood, InsectBlood, Slime, UniversalBlood, Amoxla ]
+          methods: [ Touch ]
+          effects:
+            - !type:EvenHealthChange
+              damage:
+                Burn: -0.25
+                Brute: -0.25
+              affectAllLimbs: true
+            - !type:ModifyBleed
+              amount: -0.1
+            - !type:ModifyBatteryLevel
+              amount: 10
+            - !type:PopupMessage
+              type: Local
+              visualType: Large
+              messages: [ "custom-frame-trait-blood-powered-healed" ]
+              probability: 1.0
+      - type: BloodPoweredTrait
+    - !type:RemCompsEffect
+      components:
+      - BatteryDrainer
+
+- type: backgroundTrait
+  id: RepairNanites
+  name: custom-frame-trait-repair-nanites-name
+  description: custom-frame-trait-repair-nanites-description
+  cost: 5
+  incompatible: 
+  - BloodPowered
+  effects:
+    - !type:OverrideCompsEffect
+      components:
+      - type: RepairNanitesTrait
+        action: ActionCustomTraitRepairNanites
+        drawRateMultiplier: 3.0
+        allowedStates:
+        - Alive
+        - ActiveCritical
+        damageCap: 75
+        damage:
+          types:
+            Blunt: -1.0
+            Piercing: -1.0
+            Slash: -1.0
+
+- type: backgroundTrait
+  id: BetterInsulation
+  name: custom-frame-trait-better-insulation-name
+  description: custom-frame-trait-better-insulation-description
+  cost: 5
+  incompatible: 
+  - RadiationVulnerability
+  - CompromisedIntegrity
+  effects:
+    - !type:OverrideCompsEffect
+      components:
+      - type: Insulated
+        coefficient: 0.4
+
+- type: backgroundTrait
+  id: ModuleCompatibility
+  name: custom-frame-trait-module-compatibility-name
+  description: custom-frame-trait-module-compatibility-description
+  incompatible: 
+    - Overclocking
+  cost: 9
+  effects:
+    - !type:OverrideCompsEffect
+      components:
+      - type: CyborgModuleTrait
+        moduleSlotId: borg_module
+      - type: IPCModules
+
+
+- type: backgroundTrait
+  id: Overclocking
+  name: custom-frame-trait-overclocking-name
+  description: custom-frame-trait-overclocking-description
+  incompatible: 
+    - ModuleCompatibility
+  cost: 9
+  effects:
+    - !type:OverrideCompsEffect
+      components:
+      - type: OverclockingTrait
+        action: ActionCustomTraitOverclocking

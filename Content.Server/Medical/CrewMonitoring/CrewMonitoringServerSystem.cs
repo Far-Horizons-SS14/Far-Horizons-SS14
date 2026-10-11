@@ -8,12 +8,12 @@ using Content.Shared.DeviceNetwork.Components;
 
 namespace Content.Server.Medical.CrewMonitoring;
 
-public sealed class CrewMonitoringServerSystem : EntitySystem
+public sealed partial class CrewMonitoringServerSystem : EntitySystem
 {
-    [Dependency] private readonly SuitSensorSystem _sensors = default!;
-    [Dependency] private readonly IGameTiming _gameTiming = default!;
-    [Dependency] private readonly DeviceNetworkSystem _deviceNetworkSystem = default!;
-    [Dependency] private readonly SingletonDeviceNetServerSystem _singletonServerSystem = default!;
+    [Dependency] private SuitSensorSystem _sensors = default!;
+    [Dependency] private IGameTiming _gameTiming = default!;
+    [Dependency] private DeviceNetworkSystem _deviceNetworkSystem = default!;
+    [Dependency] private SingletonDeviceNetServerSystem _singletonServerSystem = default!;
 
     private const float UpdateRate = 3f;
     private float _updateDiff;
@@ -66,7 +66,7 @@ public sealed class CrewMonitoringServerSystem : EntitySystem
     /// </summary>
     private void OnRemove(EntityUid uid, CrewMonitoringServerComponent component, ComponentRemove args)
     {
-        component.SensorStatus.Clear();
+        //component.SensorStatus.Clear(); // Starlight: Don't instantly wipe sensor list, let it time out instead.
     }
 
     /// <summary>

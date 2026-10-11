@@ -14,7 +14,7 @@
   query:
     - !type:ComponentQuery
       components:
-        - type: Ammo
+        - type: BallisticAmmoProvider # Far Horizons
         - type: Item
   considerations:
     - !type:TargetAmmoMatchesCon
@@ -22,7 +22,8 @@
     - !type:TargetDistanceCon
       curve: !type:PresetCurve
         preset: TargetDistance
-    # TODO: Get ammo count.
+    - !type:TargetAmmoCon # Far Horizons
+      curve: !type:QuadraticCurve
     - !type:TargetAccessibleCon
       curve: !type:BoolCurve
 
@@ -87,6 +88,8 @@
     - !type:NearbyHostilesQuery
   considerations:
     - !type:TargetIsAliveCon
+      curve: !type:BoolCurve
+    - !type:TargetIsVisibleCon
       curve: !type:BoolCurve
     - !type:TargetDistanceCon
       curve: !type:PresetCurve
@@ -214,6 +217,20 @@
       components:
         - type: NPCRecentlyInjected
       retainWithComp: false
+    #FH Start
+    - !type:DamageContainerFilter
+      damageContainers:
+        - Biological
+        - BiologicalMetaphysical
+      invert: true
+    - !type:HasDamageTypeFilter
+      damageGroups:
+        - Brute
+        - Burn
+        - Airloss
+      damageTypes:
+        - Poison
+    #FH End
   considerations:
     - !type:TargetIsCritCon
       curve: !type:QuadraticCurve
@@ -231,6 +248,8 @@
     - !type:NearbyHostilesQuery
   considerations:
     - !type:TargetIsAliveCon
+      curve: !type:BoolCurve
+    - !type:TargetIsVisibleCon
       curve: !type:BoolCurve
     - !type:TargetIsCritCon
       curve: !type:InverseBoolCurve

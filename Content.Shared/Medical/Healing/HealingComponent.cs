@@ -4,6 +4,7 @@ using Content.Shared.Damage.Prototypes;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
+using Content.Shared.FixedPoint; //FH
 
 namespace Content.Shared.Medical.Healing;
 
@@ -75,5 +76,11 @@ public sealed partial class HealingComponent : Component
     #region FarHorizons
     [DataField]
     public int AdjustEyeDamage = 0;
+
+    /// <remarks>
+    /// The max damage a healing item can heal. 
+    /// </remarks>
+    [DataField, AutoNetworkedField]
+    public Dictionary<ProtoId<DamageGroupPrototype>, FixedPoint2> DamageCaps = new();
     #endregion
 }

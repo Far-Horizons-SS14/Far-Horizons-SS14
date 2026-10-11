@@ -17,7 +17,7 @@
 - type: entity
   parent: BriefcaseBrown
   id: BriefcaseBrownSyndicateFilledPistolDeagle
-  suffix: S, Filled
+  suffix: NS, Filled
   components:
   - type: EntityTableContainerFill
     containers:
@@ -31,7 +31,7 @@
 - type: entity
   parent: BriefcaseBrown
   id: BriefcaseBrownSyndicateFilledPistolStechkin
-  suffix: S, Filled
+  suffix: NS, Filled
   components:
   - type: EntityTableContainerFill
     containers:
@@ -54,32 +54,6 @@
         - id: SpeedLoaderMagnumAP
           amount: 2
         - id: MagazineBoxMagnumAP
-
-- type: entity
-  parent: BriefcaseBrown
-  id: BriefcaseBrownSyndicateFilledPistolViper
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      storagebase: !type:AllSelector
-        children:
-        - id: WeaponPistolViper
-        - id: MagazinePistolSP
-          amount: 2
-        - id: MagazineBoxPistolSP
-
-- type: entity
-  parent: BriefcaseBrown
-  id: BriefcaseBrownSyndicateFilledPistolCobra
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      storagebase: !type:AllSelector
-        children:
-        - id: WeaponPistolCobra
-        - id: MagazinePistolCaselessRifle
-          amount: 2
-        - id: MagazineBoxCaselessRifle
 
 #region Soviet
 - type: entity
@@ -290,3 +264,287 @@
         - id: ToolDebug
         - id: WelderIndustrial
         - id: Multitool
+
+#region Syndicate
+- type: entity
+  parent: ClothingBackpackDuffelSyndicateAmmo
+  id: ClothingBackpackDuffelSyndicateAmmoFilledHP
+  name: Hollow-Point Ammo Bundle
+  description: Reloading! Contains 4-5 hollow-point magazines and one canister for all available nuclear operative weapons, minus the China-Lake.
+  suffix: S
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: MagazineCanisterRevolver38HP
+        - id: MagazineCanisterMagnumHP
+        - id: MagazineCanisterRifle556HP
+        - id: MagazineCanisterLightRifleHP
+        - id: MagazineCanisterPistolHP
+        - id: MagazinePistolSubMachineGunHP
+          amount: 9
+        - id: MagazineShotgun
+          amount: 7
+        - id: MagazineRifle556HP
+          amount: 4
+        - id: MagazineMagnumRifleSP #no HP counterpart
+          amount: 4
+        - id: MagazineLightRifleBoxSP #no HP counterpart
+          amount: 4
+        - id: SpeedLoaderMagnumAP
+          amount: 2
+        - id: SpeedLoaderMagnumHP
+          amount: 2
+        - id: MagazinePistolCaselessRifle
+          amount: 5
+        - id: MagazinePistolHP
+          amount: 5
+        - id: MagazinePistol38HP
+          amount: 5
+        - id: MagazineBoxAntiMateriel
+          amount: 4
+        - id: MagazineMagnum
+          amount: 4
+
+- type: entity
+  parent: ClothingBackpackDuffelSyndicateAmmo
+  id: ClothingBackpackDuffelSyndicateAmmoFilledFMJ
+  name: Full Metal Jacket Ammo Bundle
+  description: Reloading! Contains 4-5 full metal jacket magazines and one canister for all avaliable nuclear operative weapons, minus the China-Lake.
+  suffix: S
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: MagazineCanisterRevolver38FMJ
+        - id: MagazineCanisterMagnumFMJ
+        - id: MagazineCanisterRifle556FMJ
+        - id: MagazineCanisterLightRifleFMJ
+        - id: MagazineCanisterPistolFMJ
+        - id: MagazinePistolSubMachineGunFMJ
+          amount: 9
+        - id: MagazineRifle556FMJ
+          amount: 4
+        - id: MagazineMagnumRifleSP #no FMJ counterpart
+          amount: 4
+        - id: MagazineLightRifleBoxSP #no FMJ counterpart
+          amount: 4
+        - id: MagazineShotgunSlug
+          amount: 7
+        - id: SpeedLoaderMagnumAP
+          amount: 2
+        - id: SpeedLoaderMagnumFMJ
+          amount: 2
+        - id: MagazinePistolCaselessRifle
+          amount: 5
+        - id: MagazinePistolFMJ
+          amount: 5
+        - id: MagazinePistol38FMJ
+          amount: 5
+        - id: MagazineBoxAntiMateriel
+          amount: 4
+        - id: MagazineMagnumFMJ
+          amount: 4
+
+#region NeoSol
+- type: entity
+  parent: ClothingBackpackDuffelMedicalSyndi
+  id: ClothingBackpackDuffelSurgerySyndiFilled
+  name: Surgical Duffel Bag
+  description: "A large duffel bag for holding extra medical supplies - this one seems to be designed for holding surgical tools."
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: Hemostat
+        - id: Saw
+        - id: Drill
+        - id: Cautery
+        - id: Retractor
+        - id: Scalpel
+        - id: BoneGel
+        - id: BoneSetter
+  
+#region Consortium
+- type: entity
+  parent: ClothingBackpackDuffelSyndicateAmmo
+  id: ClothingBackpackDuffelConsortiumAmmoFilledHP
+  name: Hollow-Point Ammo Bundle
+  description: Reloading! Contains 4-5 hollow-point magazines and one canister for all available nuclear operative weapons, minus the China-Lake.
+  suffix: C
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: MagazineCanisterRevolver38HP
+        - id: MagazineCanisterMagnumHP
+        - id: MagazineCanisterRifle556HP
+        - id: MagazineCanisterLightRifleHP
+        - id: MagazineCanisterPistolHP
+        - id: MagazinePistolSubMachineGunHP
+          amount: 9
+        - id: MagazineShotgun
+          amount: 7
+        - id: MagazineRifle556HP
+          amount: 4
+        - id: MagazineMagnumRifleSP #no HP counterpart
+          amount: 4
+        - id: MagazineLightRifleBoxSP #no HP counterpart
+          amount: 4
+        - id: MagazineBatteryUAAP
+          amount: 2
+        - id: MagazineBatteryUA
+          amount: 2
+        - id: MagazinePistolCaselessRifle
+          amount: 5
+        - id: MagazinePistolHP
+          amount: 5
+        - id: MagazinePistol38HP
+          amount: 5
+        - id: MagazineBoxAntiMateriel
+          amount: 4
+        - id: MagazineMagnum
+          amount: 4
+
+- type: entity
+  parent: ClothingBackpackDuffelSyndicateAmmo
+  id: ClothingBackpackDuffelConsortiumAmmoFilledFMJ
+  name: Full Metal Jacket Ammo Bundle
+  description: Reloading! Contains 4-5 full metal jacket magazines and one canister for all avaliable nuclear operative weapons, minus the China-Lake.
+  suffix: C
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: MagazineCanisterRevolver38FMJ
+        - id: MagazineCanisterMagnumFMJ
+        - id: MagazineCanisterRifle556FMJ
+        - id: MagazineCanisterLightRifleFMJ
+        - id: MagazineCanisterPistolFMJ
+        - id: MagazinePistolSubMachineGunFMJ
+          amount: 9
+        - id: MagazineRifle556FMJ
+          amount: 4
+        - id: MagazineMagnumRifleSP #no FMJ counterpart
+          amount: 4
+        - id: MagazineLightRifleBoxSP #no FMJ counterpart
+          amount: 4
+        - id: MagazineShotgunSlug
+          amount: 7
+        - id: MagazineBatteryUAAP
+          amount: 2
+        - id: MagazineBatteryUA
+          amount: 2
+        - id: MagazinePistolCaselessRifle
+          amount: 5
+        - id: MagazinePistolFMJ
+          amount: 5
+        - id: MagazinePistol38FMJ
+          amount: 5
+        - id: MagazineBoxAntiMateriel
+          amount: 4
+        - id: MagazineMagnumFMJ
+          amount: 4
+
+- type: entity
+  parent: ClothingBackpackDuffelSyndicateAmmo
+  id: ClothingBackpackDuffelConsortiumAmmoFilled
+  name: Soft-Point Ammo Bundle
+  description: "Reloading! Contains 4-5 soft-point magazines and one canister for all avaliable nuclear operative weapons, minus the China-Lake." #FH
+  suffix: C
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: MagazineCanisterRevolver38SP
+        - id: MagazineCanisterMagnumSP
+        - id: MagazineCanisterRifle556SP
+        - id: MagazineCanisterLightRifleSP
+        - id: MagazineCanisterPistolSP
+        - id: MagazinePistolSubMachineGunSP
+          amount: 5
+        - id: MagazineRifle556SP
+          amount: 4
+        - id: MagazineMagnumRifleSP
+          amount: 4
+        - id: MagazineLightRifleBoxSP
+          amount: 4
+        - id: MagazineShotgunFlechette
+          amount: 7
+        - id: MagazineBatteryUAAP
+          amount: 2
+        - id: MagazineBatteryUA
+          amount: 2
+        - id: MagazinePistolCaselessRifle
+          amount: 5
+        - id: MagazinePistolSP
+          amount: 5
+        - id: MagazinePistol38SP
+          amount: 5
+        - id: MagazinePistolSubMachineGunSP
+          amount: 4
+        - id: MagazineBoxAntiMateriel
+          amount: 4
+        - id: MagazineMagnum
+          amount: 4
+
+#regoin Lambda Hardsuits
+
+
+
+#region base lambda hardsuit
+- type: entity
+  parent: ClothingBackpackDuffelLambdaBundle
+  id: ClothingBackpackDuffelLambdaHardsuitBundle
+  name: Lambda "Spartan" Hardsuit Bundle
+  description: Contains the Lambda Hardliner's signature "Spartan" hardsuit.
+  suffix: NT
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingOuterHardsuitLambda
+        - !type:NestedSelector
+          tableId: SyndicateHardsuitExtrasEntityTable # For now leaving the Syndicate Extras table
+
+#region Lambda Infil suit
+- type: entity
+  parent: ClothingBackpackDuffelLambdaBundle
+  id: ClothingBackpackDuffelLambdaInfiltration
+  name: Lambda "Hades" Hardsuit Bundle
+  description: Contains the Lambda "Hades" hardsuit. Perfect for infiltration.
+  suffix: NT
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingOuterHardsuitLambdaInfiltration
+        - id: ClothingMaskGasSyndicate
+        - id: ClothingHandsGlovesCombat
+        - id: DoubleEmergencyOxygenTankFilled
+        - id: DoubleEmergencyNitrogenTankFilled
+        - id: EmergencyCoolingUnit
+
+#region lambda elite suit
+- type: entity
+  parent: ClothingBackpackDuffelLambdaBundle
+  id: ClothingBackpackDuffelLambdaEliteHardsuitBundle
+  name: Lambda "Helios" Hardsuit Bundle
+  description: Contains Lambda's "Helios" hardsuit, which comes with some more stuff in it.
+  suffix: NT
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingOuterHardsuitLambdaElite
+        - !type:NestedSelector
+          tableId: SyndicateHardsuitExtrasEntityTable

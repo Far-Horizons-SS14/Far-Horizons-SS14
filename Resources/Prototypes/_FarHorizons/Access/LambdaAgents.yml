@@ -1,0 +1,13 @@
+- type: accessLevel
+  id: LambdaOperative
+  name: id-card-access-level-nuclear-operative
+
+- type: accessLevel
+  id: LambdaAgent
+  name: id-card-access-level-syndicate-agent
+
+- type: accessGroup
+  id: LambdaSquadron
+  tags:
+  - LambdaOperative
+  - LambdaAgent

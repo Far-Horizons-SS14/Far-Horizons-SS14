@@ -46,7 +46,7 @@
 - type: entity
   parent: WindoorServiceLocked
   id: WindoorBarLocked
-  suffix: Bar, Locked
+  suffix: NT, Bar, Locked #Far Horizons - Dual Station Clarity
   components:
   - type: ContainerFill
     containers:
@@ -55,27 +55,27 @@
 - type: entity
   parent: WindoorServiceLocked
   id: WindoorBarKitchenLocked
-  suffix: Bar&Kitchen, Locked
+  suffix: NT, Bar&Kitchen, Locked #Far Horizons - Dual Station Clarity
   components:
   - type: ContainerFill
     containers:
       board: [ DoorElectronicsBarKitchen ]
 
-- type: entity
-  parent: Windoor
-  id: WindoorCargoLocked
-  suffix: Cargo, Locked
-  components:
-  - type: ContainerFill
-    containers:
-      board: [ DoorElectronicsCargo ]
-  - type: Wires
-    layoutId: AirlockCargo
+#- type: entity  #Far Horizons - Moving GSL windoors to our directory.
+#  parent: Windoor
+#  id: WindoorCargoLocked
+#  suffix: GSL, Cargo, Locked 
+#  components:
+#  - type: ContainerFill
+#    containers:
+#      board: [ DoorElectronicsCargo ]
+#  - type: Wires
+#    layoutId: AirlockCargo
 
 - type: entity
   parent: Windoor
   id: WindoorChapelLocked
-  suffix: Chapel, Locked
+  suffix: NT, Chapel, Locked #Far Horizons - Dual Station Clarity
   components:
   - type: ContainerFill
     containers:
@@ -84,7 +84,7 @@
 - type: entity
   parent: WindoorServiceLocked
   id: WindoorHydroponicsLocked
-  suffix: Hydroponics, Locked
+  suffix: NT, Hydroponics, Locked #Far Horizons - Dual Station Clarity
   components:
   - type: ContainerFill
     containers:
@@ -93,7 +93,7 @@
 - type: entity
   parent: WindoorServiceLocked
   id: WindoorJanitorLocked
-  suffix: Janitor, Locked
+  suffix: NT, Janitor, Locked #Far Horizons - Dual Station Clarity
   components:
   - type: ContainerFill
     containers:
@@ -102,7 +102,7 @@
 - type: entity
   parent: WindoorPlasma
   id: PlasmaWindoorJanitorLocked
-  suffix: Janitor, Locked, Plasma
+  suffix: NT, Janitor, Locked, Plasma #Far Horizons - Dual Station Clarity
   components:
   - type: ContainerFill
     containers:
@@ -113,7 +113,7 @@
 - type: entity
   parent: WindoorServiceLocked
   id: WindoorKitchenLocked
-  suffix: Kitchen, Locked
+  suffix: NT, Kitchen, Locked #Far Horizons - Dual Station Clarity
   components:
   - type: ContainerFill
     containers:
@@ -122,7 +122,7 @@
 - type: entity
   parent: WindoorServiceLocked
   id: WindoorKitchenHydroponicsLocked
-  suffix: Kitchen&Hydroponics, Locked
+  suffix: NT, Kitchen&Hydroponics, Locked #Far Horizons - Dual Station Clarity
   components:
   - type: ContainerFill
     containers:
@@ -131,7 +131,7 @@
 - type: entity
   parent: Windoor
   id: WindoorServiceLocked
-  suffix: Service, Locked
+  suffix: NT, Service, Locked #Far Horizons - Dual Station Clarity
   components:
   - type: ContainerFill
     containers:
@@ -142,7 +142,7 @@
 - type: entity
   parent: WindoorServiceLocked
   id: WindoorTheatreLocked
-  suffix: Theatre, Locked
+  suffix: NT, Theatre, Locked #Far Horizons - Dual Station Clarity
   components:
   - type: ContainerFill
     containers:
@@ -153,7 +153,7 @@
 - type: entity
   parent: WindoorSecure
   id: WindoorSecureArmoryLocked
-  suffix: Armory, Locked
+  suffix: NT, Armory, Locked #Far Horizons - Dual Station Clarity
   components:
   - type: ContainerFill
     containers:
@@ -164,7 +164,7 @@
 - type: entity
   parent: WindoorSecurePlasma
   id: PlasmaWindoorSecureArmoryLocked
-  suffix: Armory, Locked, Plasma
+  suffix: NT, Armory, Locked, Plasma #Far Horizons - Dual Station Clarity
   components:
   - type: ContainerFill
     containers:
@@ -175,7 +175,7 @@
 - type: entity
   parent: WindoorSecureEngineeringLocked
   id: WindoorSecureAtmosphericsLocked
-  suffix: Atmospherics, Locked
+  suffix: NT, Atmospherics, Locked #Far Horizons - Dual Station Clarity
   components:
   - type: ContainerFill
     containers:
@@ -184,7 +184,7 @@
 - type: entity
   parent: PlasmaWindoorSecureEngineeringLocked
   id: PlasmaWindoorSecureAtmosphericsLocked
-  suffix: Atmospherics, Locked, Plasma
+  suffix: NT, Atmospherics, Locked, Plasma #Far Horizons - Dual Station Clarity
   components:
   - type: ContainerFill
     containers:
@@ -193,7 +193,7 @@
 - type: entity
   parent: WindoorSecureServiceLocked
   id: WindoorSecureBarLocked
-  suffix: Bar, Locked
+  suffix: NT, Bar, Locked #Far Horizons - Dual Station Clarity
   components:
   - type: ContainerFill
     containers:
@@ -202,27 +202,27 @@
 - type: entity
   parent: WindoorSecureSecurityLocked
   id: WindoorSecureBrigLocked
-  suffix: Brig, Locked
+  suffix: NT, Brig, Locked #Far Horizons - Dual Station Clarity
   components:
   - type: ContainerFill
     containers:
       board: [ DoorElectronicsBrig ]
 
-- type: entity
-  parent: WindoorSecure
-  id: WindoorSecureCargoLocked
-  suffix: Cargo, Locked
-  components:
-  - type: ContainerFill
-    containers:
-      board: [ DoorElectronicsCargo ]
-  - type: Wires
-    layoutId: AirlockCargo
+#- type: entity  #Far Horizons - Moving GSL windoors to our directory.
+#  parent: WindoorSecure
+#  id: WindoorSecureCargoLocked
+#  suffix: NT, Cargo, Locked
+#  components:
+#  - type: ContainerFill
+#    containers:
+#      board: [ DoorElectronicsCargo ]
+#  - type: Wires
+#    layoutId: AirlockCargo
 
 - type: entity
   parent: WindoorSecure
   id: WindoorSecureChapelLocked
-  suffix: Chapel, Locked
+  suffix: NT, Chapel, Locked #Far Horizons - Dual Station Clarity
   components:
   - type: ContainerFill
     containers:
@@ -231,7 +231,7 @@
 - type: entity
   parent: WindoorSecureMedicalLocked
   id: WindoorSecureChemistryLocked
-  suffix: Chemistry, Locked
+  suffix: NT, Chemistry, Locked #Far Horizons - Dual Station Clarity
   components:
   - type: ContainerFill
     containers:
@@ -240,7 +240,7 @@
 - type: entity
   parent: WindoorSecurePlasma
   id: PlasmaWindoorSecureChemistryLocked
-  suffix: Chemistry, Locked, Plasma
+  suffix: NT, Chemistry, Locked, Plasma #Far Horizons - Dual Station Clarity
   components:
   - type: ContainerFill
     containers:
@@ -251,7 +251,7 @@
 - type: entity
   parent: WindoorSecureCommandLocked
   id: WindoorSecureCentralCommandLocked
-  suffix: Central Command, Locked
+  suffix: NT, Central Command, Locked #Far Horizons - Dual Station Clarity
   components:
   - type: ContainerFill
     containers:
@@ -260,7 +260,7 @@
 - type: entity
   parent: PlasmaWindoorSecureCommandLocked
   id: PlasmaWindoorSecureCentralCommandLocked
-  suffix: Central Command, Locked, Plasma
+  suffix: NT, Central Command, Locked, Plasma #Far Horizons - Dual Station Clarity
   components:
   - type: ContainerFill
     containers:
@@ -269,7 +269,7 @@
 - type: entity
   parent: WindoorSecureUranium
   id: UraniumWindoorSecureCentralCommandLocked
-  suffix: Central Command, Locked, Uranium
+  suffix: NT, Central Command, Locked, Uranium #Far Horizons - Dual Station Clarity
   components:
   - type: ContainerFill
     containers:
@@ -282,7 +282,7 @@
 - type: entity
   parent: WindoorSecure
   id: WindoorSecureCommandLocked
-  suffix: Command, Locked
+  suffix: NT, Command, Locked #Far Horizons - Dual Station Clarity
   components:
   - type: ContainerFill
     containers:
@@ -295,7 +295,7 @@
 - type: entity
   parent: WindoorSecurePlasma
   id: PlasmaWindoorSecureCommandLocked
-  suffix: Command, Locked, Plasma
+  suffix: NT, Command, Locked, Plasma #Far Horizons - Dual Station Clarity
   components:
   - type: ContainerFill
     containers:
@@ -308,7 +308,7 @@
 - type: entity
   parent: WindoorSecureSecurityLocked
   id: WindoorSecureDetectiveLocked
-  suffix: Detective, Locked
+  suffix: NT, Detective, Locked #Far Horizons - Dual Station Clarity
   components:
   - type: ContainerFill
     containers:
@@ -317,7 +317,7 @@
 - type: entity
   parent: WindoorSecure
   id: WindoorSecureEngineeringLocked
-  suffix: Engineering, Locked
+  suffix: NT, Engineering, Locked #Far Horizons - Dual Station Clarity
   components:
   - type: ContainerFill
     containers:
@@ -328,7 +328,7 @@
 - type: entity
   parent: WindoorSecurePlasma
   id: PlasmaWindoorSecureEngineeringLocked
-  suffix: Engineering, Locked, Plasma
+  suffix: NT, Engineering, Locked, Plasma #Far Horizons - Dual Station Clarity
   components:
   - type: ContainerFill
     containers:
@@ -339,7 +339,7 @@
 - type: entity
   parent: WindoorSecureUranium
   id: UraniumWindoorSecureEngineeringLocked
-  suffix: Engineering, Locked, Uranium
+  suffix: NT, Engineering, Locked, Uranium #Far Horizons - Dual Station Clarity
   components:
   - type: ContainerFill
     containers:
@@ -350,7 +350,7 @@
 - type: entity
   parent: WindoorSecure
   id: WindoorSecureExternalLocked
-  suffix: External, Locked
+  suffix: NT, External, Locked #Far Horizons - Dual Station Clarity
   components:
   - type: ContainerFill
     containers:
@@ -361,7 +361,7 @@
 - type: entity
   parent: WindoorSecureServiceLocked
   id: WindoorSecureJanitorLocked
-  suffix: Janitor, Locked
+  suffix: NT, Janitor, Locked #Far Horizons - Dual Station Clarity
   components:
   - type: ContainerFill
     containers:
@@ -370,7 +370,7 @@
 - type: entity
   parent: WindoorSecurePlasma
   id: PlasmaWindoorSecureJanitorLocked
-  suffix: Janitor, Locked, Plasma
+  suffix: NT, Janitor, Locked, Plasma #Far Horizons - Dual Station Clarity
   components:
   - type: ContainerFill
     containers:
@@ -381,7 +381,7 @@
 - type: entity
   parent: WindoorSecureServiceLocked
   id: WindoorSecureKitchenLocked
-  suffix: Kitchen, Locked
+  suffix: NT, Kitchen, Locked #Far Horizons - Dual Station Clarity
   components:
   - type: ContainerFill
     containers:
@@ -390,7 +390,7 @@
 - type: entity
   parent: WindoorSecureSecurityLocked
   id: WindoorSecureSecurityLawyerLocked
-  suffix: Security/Lawyer, Locked
+  suffix: NT, Security/Lawyer, Locked #Far Horizons - Dual Station Clarity
   components:
   - type: ContainerFill
     containers:
@@ -399,7 +399,7 @@
 - type: entity
   parent: WindoorSecure
   id: WindoorSecureMedicalLocked
-  suffix: Medical, Locked
+  suffix: NT, Medical, Locked #Far Horizons - Dual Station Clarity
   components:
   - type: ContainerFill
     containers:
@@ -410,25 +410,25 @@
 - type: entity
   parent: WindoorSecureCommandLocked
   id: WindoorSecureResearchDirectorLocked
-  suffix: ResearchDirector, Locked
+  suffix: NT, ResearchDirector, Locked
   components:
   - type: ContainerFill
     containers:
       board: [ DoorElectronicsResearchDirector ]
 
-- type: entity
-  parent: WindoorSecureCargoLocked
-  id: WindoorSecureSalvageLocked
-  suffix: Salvage, Locked
-  components:
-  - type: ContainerFill
-    containers:
-      board: [ DoorElectronicsSalvage ]
+#- type: entity  #Far Horizons - Moving GSL windoors to our directory.
+#  parent: WindoorSecureCargoLocked
+#  id: WindoorSecureSalvageLocked
+#  suffix: GSL, Salvage, Locked
+#  components:
+#  - type: ContainerFill
+#    containers:
+#      board: [ DoorElectronicsSalvage ]
 
 - type: entity
   parent: WindoorSecure
   id: WindoorSecureSecurityLocked
-  suffix: Security, Locked
+  suffix: NT, Security, Locked #Far Horizons - Dual Station Clarity
   components:
   - type: ContainerFill
     containers:
@@ -439,7 +439,7 @@
 - type: entity
   parent: WindoorSecurePlasma
   id: PlasmaWindoorSecureSecurityLocked
-  suffix: Security, Locked, Plasma
+  suffix: NT, Security, Locked, Plasma #Far Horizons - Dual Station Clarity
   components:
   - type: ContainerFill
     containers:
@@ -450,7 +450,7 @@
 - type: entity
   parent: WindoorSecure
   id: WindoorSecureScienceLocked
-  suffix: Science, Locked
+  suffix: NT, Science, Locked #Far Horizons - Dual Station Clarity
   components:
   - type: ContainerFill
     containers:
@@ -461,7 +461,7 @@
 - type: entity
   parent: WindoorSecurePlasma
   id: PlasmaWindoorSecureScienceLocked
-  suffix: Science, Locked, Plasma
+  suffix: NT, Science, Locked, Plasma #Far Horizons - Dual Station Clarity
   components:
   - type: ContainerFill
     containers:
@@ -472,7 +472,7 @@
 - type: entity
   parent: WindoorSecure
   id: WindoorSecureServiceLocked
-  suffix: Service, Locked
+  suffix: NT, Service, Locked #Far Horizons - Dual Station Clarity
   components:
   - type: ContainerFill
     containers:
@@ -483,7 +483,7 @@
 - type: entity
   parent: WindoorSecureCommandLocked
   id: WindoorSecureHeadOfPersonnelLocked
-  suffix: HeadOfPersonnel, Locked
+  suffix: NT, HeadOfPersonnel, Locked #Far Horizons - Dual Station Clarity
   components:
   - type: ContainerFill
     containers:
@@ -494,7 +494,7 @@
 - type: entity
   parent: Windoor
   id: WindoorSyndicateLocked
-  suffix: Syndicate, Locked
+  suffix: NS, Syndicate, Locked #Far Horizons - Dual Station Clarity
   components:
   - type: ContainerFill
     containers:
@@ -503,7 +503,7 @@
 - type: entity
   parent: WindoorSecure
   id: WindoorSecureSyndicateLocked
-  suffix: Syndicate, Locked
+  suffix: NS, Syndicate, Locked #Far Horizons - Dual Station Clarity
   components:
   - type: ContainerFill
     containers:
@@ -512,7 +512,7 @@
 - type: entity
   parent: WindoorPlasma
   id: PlasmaWindoorSyndicateLocked
-  suffix: Syndicate, Locked, Plasma
+  suffix: NS, Syndicate, Locked, Plasma #Far Horizons - Dual Station Clarity
   components:
   - type: ContainerFill
     containers:
@@ -521,7 +521,7 @@
 - type: entity
   parent: WindoorSecurePlasma
   id: PlasmaWindoorSecureSyndicateLocked
-  suffix: Syndicate, Locked, Plasma
+  suffix: NS, Syndicate, Locked, Plasma #Far Horizons - Dual Station Clarity
   components:
   - type: ContainerFill
     containers:
@@ -530,7 +530,7 @@
 - type: entity
   parent: WindoorUranium
   id: UraniumWindoorSyndicateLocked
-  suffix: Syndicate, Locked, Uranium
+  suffix: NS, Syndicate, Locked, Uranium #Far Horizons - Dual Station Clarity
   components:
   - type: ContainerFill
     containers:
@@ -539,7 +539,7 @@
 - type: entity
   parent: WindoorSecureUranium
   id: UraniumWindoorSecureSyndicateLocked
-  suffix: Syndicate, Locked, Uranium
+  suffix: NS, Syndicate, Locked, Uranium #Far Horizons - Dual Station Clarity
   components:
   - type: ContainerFill
     containers:
@@ -548,7 +548,7 @@
 - type: entity
   parent: Windoor
   id: WindoorNukeopLocked
-  suffix: Nukeop, Locked
+  suffix: NS, Syndicate, Nukeop, Locked #Far Horizons - Dual Station Clarity
   components:
   - type: ContainerFill
     containers:
@@ -557,7 +557,7 @@
 - type: entity
   parent: WindoorSecure
   id: WindoorSecureNukeopLocked
-  suffix: Nukeop, Locked
+  suffix: NS, Syndicate, Nukeop, Locked #Far Horizons - Dual Station Clarity
   components:
   - type: ContainerFill
     containers:
@@ -566,7 +566,7 @@
 - type: entity
   parent: WindoorPlasma
   id: PlasmaWindoorNukeopLocked
-  suffix: Nukeop, Locked, Plasma
+  suffix: Ns, Syndicate, Nukeop, Locked, Plasma #Far Horizons - Dual Station Clarity
   components:
   - type: ContainerFill
     containers:
@@ -575,7 +575,7 @@
 - type: entity
   parent: WindoorSecurePlasma
   id: PlasmaWindoorSecureNukeopLocked
-  suffix: Nukeop, Locked, Plasma
+  suffix: Syndicate, Nukeop, Locked, Plasma #Far Horizons - Dual Station Clarity
   components:
   - type: ContainerFill
     containers:
@@ -584,7 +584,7 @@
 - type: entity
   parent: WindoorUranium
   id: UraniumWindoorNukeopLocked
-  suffix: Nukeop, Locked, Uranium
+  suffix: Syndicate, Nukeop, Locked, Uranium #Far Horizons - Dual Station Clarity
   components:
   - type: ContainerFill
     containers:
@@ -593,7 +593,7 @@
 - type: entity
   parent: WindoorSecureUranium
   id: UraniumWindoorSecureNukeopLocked
-  suffix: Nukeop, Locked, Uranium
+  suffix: Syndicate, Nukeop, Locked, Uranium #Far Horizons - Dual Station Clarity
   components:
   - type: ContainerFill
     containers:

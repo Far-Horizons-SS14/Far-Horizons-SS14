@@ -13,11 +13,11 @@ using Robust.Shared.Player;
 
 namespace Content.Server.CartridgeLoader;
 
-public sealed class CartridgeLoaderSystem : SharedCartridgeLoaderSystem
+public sealed partial class CartridgeLoaderSystem : SharedCartridgeLoaderSystem
 {
-    [Dependency] private readonly ContainerSystem _containerSystem = default!;
-    [Dependency] private readonly UserInterfaceSystem _userInterfaceSystem = default!;
-    [Dependency] private readonly PdaSystem _pda = default!;
+    [Dependency] private ContainerSystem _containerSystem = default!;
+    [Dependency] private UserInterfaceSystem _userInterfaceSystem = default!;
+    [Dependency] private PdaSystem _pda = default!;
 
     public override void Initialize()
     {
@@ -415,7 +415,7 @@ public sealed class CartridgeLoaderSystem : SharedCartridgeLoaderSystem
                 break;
             case CartridgeUiMessageAction.UIReady:
                 if (component.ActiveProgram.HasValue)
-                    RaiseLocalEvent(component.ActiveProgram.Value, new CartridgeUiReadyEvent(loaderUid));
+                    RaiseLocalEvent(component.ActiveProgram.Value, new CartridgeUiReadyEvent(loaderUid, message.Actor)); // Far Horizons - pass actor to UI ready event
                 break;
             default:
                 throw new ArgumentOutOfRangeException($"Unrecognized UI action passed from cartridge loader ui {message.Action}.");

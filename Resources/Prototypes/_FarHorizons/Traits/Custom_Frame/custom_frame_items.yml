@@ -1,0 +1,290 @@
+- type: entity
+  parent: BaseItem
+  id: CyborgModuleSelector
+  name: Undetermined Cyborg Module
+  description: A small cyborg module with infinite possibilities.
+  components:
+  - type: Item
+    storedRotation: -90
+    inhandVisuals:
+      left:
+      - state: base-icon-inhand-left
+        color: "#8FCBCB"
+      - state: base-module-inhand-left
+        color: "#A1A1A1"
+      - state: base-part-inhand-left
+      - state: base-stripes-inhand-left
+        color: "#7D7D7D"
+      right:
+      - state: base-icon-inhand-right
+        color: "#8FCBCB"
+      - state: base-module-inhand-right
+        color: "#A1A1A1"
+      - state: base-part-inhand-right
+      - state: base-stripes-inhand-right
+        color: "#7D7D7D"
+  - type: Sprite
+    sprite: Objects/Specific/Robotics/borgmodule.rsi
+    state: generic
+  - type: ThiefUndeterminedBackpack
+    toolName: custom-frame-trait-module-compatibility-menu-selection
+    toolDesc: custom-frame-trait-module-compatibility-menu-description
+    maxSelectedSets: 1
+    possibleSets:
+    - ModuleCable
+    - ModuleArtistry
+    - ModuleTraversal
+    - ModuleTool
+    - ModuleInflatable
+    - ModuleAppraisal
+    - ModuleMining
+    - ModuleConstruction
+    - ModuleCustodial
+    - ModuleCleaning
+    - ModuleTopicals
+    - ModuleChemical
+    - ModuleArtifact
+    - ModuleAnomaly
+    - ModuleClowning
+    - ModulePaperwork
+    - ModuleBartending
+    - ModuleBooks
+    - ModuleBotany
+    - ModuleCooking
+    - ModuleMail
+  - type: ActivatableUI
+    key: enum.ThiefBackpackUIKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.ThiefBackpackUIKey.Key:
+        type: ThiefBackpackBoundUserInterface
+
+- type: thiefBackpackSet
+  id: ModuleCable
+  name: Cable Module
+  description: A cyborg module dedicated to cable management.
+  sprite:
+    sprite: Objects/Specific/Robotics/borgmodule.rsi
+    state: icon-cables
+  content:
+  - BorgModuleCable
+
+- type: thiefBackpackSet
+  id: ModuleArtistry
+  name: Artistry Module
+  description: A cyborg module dedicated to artistry.
+  sprite:
+    sprite: Objects/Specific/Robotics/borgmodule.rsi
+    state: icon-artistry
+  content:
+  - BorgModuleArtistry
+  - Screwdriver
+
+- type: thiefBackpackSet
+  id: ModuleTraversal
+  name: Traversal Module
+  description: A cyborg module dedicated to space travel.
+  sprite:
+    sprite: Objects/Specific/Robotics/borgmodule.rsi
+    state: icon-grappling-gun
+  content:
+  - BorgModuleTraversal
+  - Screwdriver
+
+- type: thiefBackpackSet
+  id: ModuleTool
+  name: Tool Module
+  description: A cyborg module dedicated to tool.
+  sprite:
+    sprite: Objects/Specific/Robotics/borgmodule.rsi
+    state: icon-tools
+  content:
+  - BorgModuleTool
+  - Screwdriver
+
+- type: thiefBackpackSet
+  id: ModuleInflatable
+  name: Inflatable Module
+  description: A cyborg module dedicated to setting up emergency walls.
+  sprite:
+    sprite: Objects/Specific/Robotics/borgmodule.rsi
+    state: icon-inflatable
+  content:
+  - BorgModuleInflatable
+  - Screwdriver
+
+- type: thiefBackpackSet
+  id: ModuleAppraisal
+  name: Appraisal Module
+  description: A cyborg module dedicated to cargo work.
+  sprite:
+    sprite: Objects/Specific/Robotics/borgmodule.rsi
+    state: icon-appraisal
+  content:
+  - BorgModuleAppraisal
+  - Screwdriver
+
+- type: thiefBackpackSet
+  id: ModuleMining
+  name: Mining Module
+  description: A cyborg module dedicated to mining work.
+  sprite:
+    sprite: Objects/Specific/Robotics/borgmodule.rsi
+    state: icon-mining
+  content:
+  - BorgModuleMining
+  - Screwdriver
+
+- type: thiefBackpackSet
+  id: ModuleConstruction
+  name: Construction Module
+  description: A cyborg module dedicated to construction work.
+  sprite:
+    sprite: Objects/Specific/Robotics/borgmodule.rsi
+    state: icon-construction
+  content:
+  - BorgModuleConstruction
+  - Screwdriver
+
+- type: thiefBackpackSet
+  id: ModuleCustodial
+  name: Custodial Module
+  description: A cyborg module dedicated to custodial work.
+  sprite:
+    sprite: Objects/Specific/Robotics/borgmodule.rsi
+    state: icon-light-replacer
+  content:
+  - BorgModuleCustodial
+  - Screwdriver
+
+- type: thiefBackpackSet
+  id: ModuleCleaning
+  name: Cleaning Module
+  description: A cyborg module dedicated to cleaning work.
+  sprite:
+    sprite: Objects/Specific/Robotics/borgmodule.rsi
+    state: icon-mop
+  content:
+  - BorgModuleCleaning
+  - Screwdriver
+
+- type: thiefBackpackSet
+  id: ModuleTopicals
+  name: Topicals Module
+  description: A cyborg module dedicated to first aid work.
+  sprite:
+    sprite: Objects/Specific/Robotics/borgmodule.rsi
+    state: icon-treatment
+  content:
+  - BorgModuleTopicals
+  - Screwdriver
+
+- type: thiefBackpackSet
+  id: ModuleChemical
+  name: Chemical Module
+  description: A cyborg module dedicated to chemistry work.
+  sprite:
+    sprite: Objects/Specific/Robotics/borgmodule.rsi
+    state: icon-chemist
+  content:
+  - BorgModuleChemical
+  - Screwdriver
+
+- type: thiefBackpackSet
+  id: ModuleArtifact
+  name: Artifact Module
+  description: A cyborg module dedicated to artifact research.
+  sprite:
+    sprite: Objects/Specific/Robotics/borgmodule.rsi
+    state: icon-artifacts
+  content:
+  - BorgModuleArtifact
+  - Screwdriver
+
+- type: thiefBackpackSet
+  id: ModuleAnomaly
+  name: Anomaly Module
+  description: A cyborg module dedicated to anomaly research.
+  sprite:
+    sprite: Objects/Specific/Robotics/borgmodule.rsi
+    state: icon-anomalies
+  content:
+  - BorgModuleAnomaly
+  - Screwdriver
+
+- type: thiefBackpackSet
+  id: ModuleClowning
+  name: Clowning Module
+  description: A cyborg module dedicated to clowning work.
+  sprite:
+    sprite: Objects/Specific/Robotics/borgmodule.rsi
+    state: icon-clown
+  content:
+  - BorgModuleClowning
+  - Screwdriver
+
+- type: thiefBackpackSet
+  id: ModulePaperwork
+  name: Paperwork Module
+  description: A cyborg module dedicated to paper work.
+  sprite:
+    sprite: Objects/Specific/Robotics/borgmodule.rsi
+    state: icon-paperwork
+  content:
+  - BorgModulePaperwork
+  - Screwdriver
+
+- type: thiefBackpackSet
+  id: ModuleBartending
+  name: Bartending Module
+  description: A cyborg module dedicated to bartending work.
+  sprite:
+    sprite: Objects/Specific/Robotics/borgmodule.rsi
+    state: icon-bartending
+  content:
+  - BorgModuleBartending
+  - Screwdriver
+
+- type: thiefBackpackSet
+  id: ModuleBooks
+  name: Books Module
+  description: A cyborg module dedicated to book keeping work.
+  sprite:
+    sprite: Objects/Specific/Robotics/borgmodule.rsi
+    state: icon-pen
+  content:
+  - BorgModuleBooks
+  - Screwdriver
+
+- type: thiefBackpackSet
+  id: ModuleBotany
+  name: Botany Module
+  description: A cyborg module dedicated to botany work.
+  sprite:
+    sprite: Objects/Specific/Robotics/borgmodule.rsi
+    state: icon-gardening
+  content:
+  - BorgModuleBotany
+  - Screwdriver
+
+- type: thiefBackpackSet
+  id: ModuleCooking
+  name: Cooking Module
+  description: A cyborg module dedicated to cooking work.
+  sprite:
+    sprite: Objects/Specific/Robotics/borgmodule.rsi
+    state: icon-cooking
+  content:
+  - BorgModuleCooking
+  - Screwdriver
+
+- type: thiefBackpackSet
+  id: ModuleMail
+  name: Mail Module
+  description: A cyborg module dedicated to mail delivery work.
+  sprite:
+    sprite: Objects/Specific/Robotics/borgmodule.rsi
+    state: icon-mail
+  content:
+  - BorgModuleMail
+  - Screwdriver

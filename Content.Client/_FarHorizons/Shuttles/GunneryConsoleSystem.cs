@@ -4,10 +4,10 @@ using Robust.Client.GameObjects;
 
 namespace Content.Client._FarHorizons.Shuttles;
 
-public sealed class GunneryConsoleSystem : EntitySystem
+public sealed partial class GunneryConsoleSystem : EntitySystem
 {
-    [Dependency] private readonly SpriteSystem _spriteSystem = default!;
-    [Dependency] private readonly TransformSystem _transformSystem = default!;
+    [Dependency] private SpriteSystem _spriteSystem = default!;
+    [Dependency] private TransformSystem _transformSystem = default!;
 
     public override void Initialize()
     {
@@ -33,7 +33,7 @@ public sealed class GunneryConsoleSystem : EntitySystem
 
     private void RotateTurrets(GunneryConsoleComponent comp)
     {
-        var turretUids = comp.SelectedTurrets.Select(EntityManager.GetEntity);
+        var turretUids = comp.SelectedTurrets.Select(GetEntity);
 
         foreach (var turret in turretUids)
         {

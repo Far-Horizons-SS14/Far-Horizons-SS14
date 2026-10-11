@@ -23,7 +23,11 @@
       reagents:
       - ReagentId: Blood
         Quantity: 650
-  - type: AntagMonsterScaling ## Starlight
+#  - type: AntagMonsterScaling ## Starlight - FH, turned off
+#FH Edit - Start
+  - type: Stamina
+    baseCritThreshold: 10000 #Dragon is supposed to be stun immune, but all the code does is make it immune to the status effect. This should do the trick.
+#FH Edit - End
   - type: GhostRole
     allowMovement: true
     allowSpeech: true
@@ -53,7 +57,6 @@
     speechVerb: LargeMob
   - type: CombatMode
   - type: LimbTargetting # Far Horizons
-    proto: LimbTargetHuman
   - type: MobMover
   - type: InputMover
   - type: MovementSpeedModifier
@@ -106,13 +109,15 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      350: Critical
-      400: Dead
+      600: Critical #FH
+      650: Dead #FH
   - type: SlowOnDamage
     speedModifierThresholds:
-      200: 0.9
-      250: 0.7
-      300: 0.5
+#FH Edit - Start
+      450: 0.9
+      500: 0.7
+      550: 0.5
+#FH Edit - End
   # disable taking damage from fire, since its a fire breathing dragon
   - type: Flammable
     damage:
@@ -120,9 +125,7 @@
   - type: StatusEffects # Overwriting basesimplemob to remove flash, getting flashed as dragon just feelsbad
     allowed:
     - Electrocution
-    - TemporaryBlindness
     - Pacified
-    - RadiationProtection
     - Adrenaline
   - type: Temperature
   - type: TemperatureDamage
@@ -149,8 +152,8 @@
       path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
     damage:
       types:
-        Piercing: 15
-        Slash: 15
+#        Piercing: 15 #FH - Flats fuck with it
+        Slash: 30 #FH was 15
   - type: Devourer
     foodPreferenceWhitelist:
       components:
@@ -307,3 +310,16 @@
     range: 0
   - type: WorldTargetAction
     event: !type:ActionGunShootEvent
+
+- type: entity
+  parent: Smoke
+  id: BloodSmoke
+  name: smoke
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Smoke
+    spreadAmount: 3
+    duration: 2
+  - type: Sprite
+    sprite: Effects/chemsmoke.rsi
+    state: chemsmoke_white

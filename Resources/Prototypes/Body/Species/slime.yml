@@ -46,6 +46,7 @@
 - type: entity
   parent: BaseSpeciesAppearance
   id: AppearanceSlimePerson
+  categories: [ HideSpawnMenu ]
   name: SlimePerson appearance
   components:
   - type: Inventory
@@ -74,6 +75,7 @@
 
 - type: entity
   parent:
+  - ActiveCritBase # FH
   - AppearanceSlimePerson
   - BaseSpeciesMobOrganic
   - BaseSpeciesPickupableLarge #FH
@@ -126,6 +128,8 @@
         type: SurgeryBui
       enum.VampireMutationUiKey.Key:
         type: VampireMutationBoundUserInterface
+      enum.BackgroundTraitsUiKey.Key: #Far Horizons
+        type: BackgroundTraitsBoundUserInterface
   - type: UseDelay
     delay: 0.5
   - type: Speech
@@ -141,16 +145,18 @@
       Unsexed: MaleSlime
   - type: Damageable
     damageModifierSet: Slime
-  - type: PassiveDamage # Around 8 damage a minute healed
+  - type: PassiveDamage # FH - Around 6 damage a minute healed
     allowedStates:
     - Alive
     damageCap: 65
     damage:
       types:
         Heat: -0.14
-        Blunt: -0.05
-        Piercing: -0.05
-        Slash: -0.05
+        # FH start - the guidebook lied
+        Blunt: -0.1
+        Piercing: -0.1
+        Slash: -0.1
+        # FH end
   - type: DamageVisuals
     damageOverlayGroups:
       Brute:
@@ -162,7 +168,7 @@
     bloodReferenceSolution: # TODO Color slime blood based on their slime color or smth
       reagents:
       - ReagentId: Slime
-        Quantity: 300
+        Quantity: 600
   - type: Barotrauma
     damage:
       types:
@@ -244,11 +250,9 @@
       Metabolites:
         solutionName: metabolites
         solutionOnBody: false
-  - type: SolutionContainerManager
+  - type: SolutionManager
     solutions:
-      food: {}
-      stomach:
-        maxVol: 50
+    - SolutionStomach
   # FarHorizons End
 
 - type: entity
@@ -353,11 +357,10 @@
     category: SentientCore
 #FarHorizons - Moving metabolizer/stomach to entire body, instead of core.
 #  components:
-#  - type: SolutionContainerManager
+#  - type: SolutionManager
 #    solutions:
 #      food: {}
-#      stomach:
-#        maxVol: 50.0
+#    - SolutionStomach
 #  - type: Stomach
 #  - type: Metabolizer
 #    maxReagents: 6

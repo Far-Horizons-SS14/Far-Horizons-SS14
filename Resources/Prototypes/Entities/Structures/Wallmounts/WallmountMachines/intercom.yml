@@ -128,6 +128,25 @@
     - state: panel
       visible: false
       map: [ "wires" ]
+  - type: Destructible
+    thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 200
+        behaviors:
+          - !type:DoActsBehavior
+            acts: [ "Destruction" ]
+      - trigger:
+          !type:DamageTrigger
+          damage: 100
+        behaviors:
+          - !type:DoActsBehavior
+            acts: [ "Destruction" ]
+          - !type:PlaySoundBehavior
+            sound:
+              collection: MetalGlassBreak
+              params:
+                volume: -4
   - type: Appearance
   - type: GenericVisualizer
     visuals:
@@ -205,7 +224,7 @@
 - type: entity
   id: IntercomCommon
   parent: Intercom
-  suffix: Common
+  suffix: Common, NT #Far Horizons
   components:
   - type: ContainerFill
     containers:
@@ -217,7 +236,7 @@
 - type: entity
   id: IntercomCommand
   parent: BaseIntercomSecure
-  suffix: Command
+  suffix: Command, NT #Far Horizons
   description: An intercom. It's been reinforced with metal.
   components:
   - type: ContainerFill
@@ -231,7 +250,7 @@
 - type: entity
   id: IntercomEngineering
   parent: Intercom
-  suffix: Engineering
+  suffix: Engineering, NT #Far Horizons
   components:
   - type: ContainerFill
     containers:
@@ -244,7 +263,7 @@
 - type: entity
   id: IntercomMedical
   parent: Intercom
-  suffix: Medical
+  suffix: Medical, NT #Far Horizons
   components:
   - type: ContainerFill
     containers:
@@ -257,7 +276,7 @@
 - type: entity
   id: IntercomScience
   parent: Intercom
-  suffix: Science
+  suffix: Science, NT #Far Horizons
   components:
   - type: ContainerFill
     containers:
@@ -270,7 +289,7 @@
 - type: entity
   id: IntercomSecurity
   parent: BaseIntercomSecure
-  suffix: Security
+  suffix: Security, NT #Far Horizons
   description: An intercom. It's been reinforced with metal from security helmets, making it a bitch-and-a-half to open.
   components:
   - type: ContainerFill
@@ -284,7 +303,7 @@
 - type: entity
   id: IntercomService
   parent: Intercom
-  suffix: Service
+  suffix: Service, NT #Far Horizons
   components:
   - type: ContainerFill
     containers:
@@ -310,7 +329,7 @@
 - type: entity
   id: IntercomAll
   parent: Intercom
-  suffix: All
+  suffix: All, NT #Far Horizons
   components:
   - type: ContainerFill
     containers:

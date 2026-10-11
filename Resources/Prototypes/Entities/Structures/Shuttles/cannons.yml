@@ -16,13 +16,20 @@
     availableModes:
       - SemiAuto
   - type: Damageable
-    damageContainer: StructuralInorganic
     damageModifierSet: Electronic
+  - type: Injurable
+    damageContainer: StructuralInorganic
   - type: DeviceNetwork
     deviceNetId: Wireless
     receiveFrequencyId: BasicDevice
   - type: WirelessNetworkConnection
     range: 200
+    # FarHorizons edit start
+  - type: GunneryManagedTargeting
+    targetingCollisionMask:
+    - Impassable
+    - BulletImpassable
+    # FarHorizons edit end
   - type: DeviceLinkSink
     ports:
     - Trigger
@@ -92,6 +99,11 @@
           tags:
             - PowerCell
             - PowerCellSmall
+    # FarHorizons edit start
+  - type: GunneryManagedTargeting
+    targetingCollisionMask:
+      - Opaque
+    # FarHorizons edit end
   - type: BatteryAmmoProvider
     proto: RedLightLaser
     fireCost: 50
@@ -148,6 +160,11 @@
         whitelist:
           tags:
             - PowerCage
+    # FarHorizons edit start
+  - type: GunneryManagedTargeting
+    targetingCollisionMask:
+      - Opaque
+    # FarHorizons edit end
   - type: BatteryAmmoProvider
     proto: RedShuttleLaser
     fireCost: 150
@@ -281,8 +298,9 @@
     containers:
       ballistic-ammo: !type:Container
   - type: Damageable
-    damageContainer: StructuralInorganic
     damageModifierSet: Metallic
+  - type: Injurable
+    damageContainer: StructuralInorganic
   - type: Destructible
     thresholds:
     - trigger:

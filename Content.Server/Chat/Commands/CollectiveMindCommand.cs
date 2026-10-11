@@ -8,7 +8,7 @@ using Content.Shared.Chat; // Starlight
 namespace Content.Server.Chat.Commands
 {
     [AnyCommand]
-    internal sealed class CollectiveMindCommand : IConsoleCommand
+    internal sealed partial class CollectiveMindCommand : IConsoleCommand
     {
         public string Command => "cmsay";
         public string Description => "Send chat messages to the collective mind.";

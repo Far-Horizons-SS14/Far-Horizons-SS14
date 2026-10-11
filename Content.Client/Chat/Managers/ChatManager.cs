@@ -7,11 +7,11 @@ using Robust.Shared.Utility;
 
 namespace Content.Client.Chat.Managers;
 
-internal sealed class ChatManager : IChatManager
+internal sealed partial class ChatManager : IChatManager
 {
-    [Dependency] private readonly IClientConsoleHost _consoleHost = default!;
-    [Dependency] private readonly IClientAdminManager _adminMgr = default!;
-    [Dependency] private readonly IEntitySystemManager _systems = default!;
+    [Dependency] private IClientConsoleHost _consoleHost = default!;
+    [Dependency] private IClientAdminManager _adminMgr = default!;
+    [Dependency] private IEntitySystemManager _systems = default!;
 
     private ISawmill _sawmill = default!;
     public event Action? PermissionsUpdated;
@@ -86,6 +86,12 @@ internal sealed class ChatManager : IChatManager
             case ChatSelectChannel.CollectiveMind:
                 _consoleHost.ExecuteCommand($"cmsay \"{CommandParsing.Escape(str)}\"");
                 break;
+            
+            // Far Horizons start
+            case ChatSelectChannel.Mentor:
+                _consoleHost.ExecuteCommand($"msay \"{CommandParsing.Escape(str)}\"");
+                break;
+            // Far Horizons end
 
             default:
                 throw new ArgumentOutOfRangeException(nameof(channel), channel, null);

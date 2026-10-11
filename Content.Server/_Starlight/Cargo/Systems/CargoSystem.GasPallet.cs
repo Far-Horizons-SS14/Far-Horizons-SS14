@@ -4,6 +4,7 @@ using Content.Server.Cargo.Components;
 using Content.Server.NodeContainer.EntitySystems;
 using Content.Server.NodeContainer.Nodes;
 using Content.Shared.Atmos;
+using Content.Shared.Atmos.Components;
 
 namespace Content.Server.Cargo.Systems;
 
@@ -12,10 +13,10 @@ namespace Content.Server.Cargo.Systems;
 /// fed through pipe systems instead of in canisters, allowing
 /// for high-volume sales.
 /// </summary>
-public sealed class CargoGasPalletSystem : EntitySystem
+public sealed partial class CargoGasPalletSystem : EntitySystem
 {
-    [Dependency] private readonly AtmosphereSystem _atmosphereSystem = default!;
-    [Dependency] private readonly NodeContainerSystem _nodeContainer = default!;
+    [Dependency] private AtmosphereSystem _atmosphereSystem = default!;
+    [Dependency] private NodeContainerSystem _nodeContainer = default!;
 
     public override void Initialize()
     {

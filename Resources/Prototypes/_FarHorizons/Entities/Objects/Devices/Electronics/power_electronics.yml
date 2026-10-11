@@ -1,0 +1,31 @@
+- type: entity
+  id: WallmountSubstationElectronicsShip
+  parent: BaseElectronics
+  name: Wallmount Ship Substation Electronics
+  description: Circuit used to construct a wallmount substation.
+  components:
+    - type: Sprite
+      sprite: Objects/Misc/module.rsi
+      state: charger_APC
+    - type: StaticPrice
+      price: 40
+    - type: Tag
+      tags:
+        - WallmountSubstationElectronicsShip
+        - RamChip
+
+- type: entity
+  id: WallmountSubstationElectronicsShuttle
+  parent: BaseElectronics
+  name: Wallmount Shuttle Substation Electronics
+  description: Circuit used to construct a wallmount substation.
+  components:
+    - type: Sprite
+      sprite: Objects/Misc/module.rsi
+      state: charger_APC
+    - type: StaticPrice
+      price: 40
+    - type: Tag
+      tags:
+        - WallmountSubstationElectronicsShuttle
+        - RamChip

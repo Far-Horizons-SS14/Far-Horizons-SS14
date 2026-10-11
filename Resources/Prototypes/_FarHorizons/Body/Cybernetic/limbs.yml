@@ -52,28 +52,50 @@
   id: LeftArmCyber
   components:
     - type: RoundstartImplantable
-      cost: 1
+      cost: 0
+      iconScale: 3
+      iconOffset: -50, -30
+      description:
+        - roundstart-cybernetics-basic-level-description
+        - roundstart-cybernetics-hand-attached-description
+        - roundstart-cybernetics-generic-limb-description
 
 - type: entity
   parent: [ OrganCyberArmRight, WithRightCyberHand ]
   id: RightArmCyber
   components:
     - type: RoundstartImplantable
-      cost: 1
+      cost: 0
+      iconScale: 3
+      iconOffset: -20, -30
+      description:
+        - roundstart-cybernetics-basic-level-description
+        - roundstart-cybernetics-hand-attached-description
+        - roundstart-cybernetics-generic-limb-description
 
 - type: entity
   parent: OrganCyberHandLeft
   id: LeftHandCyber
   components:
     - type: RoundstartImplantable
-      cost: 1
+      cost: 0
+      iconScale: 3
+      iconOffset: -60, -45
+      description:
+        - roundstart-cybernetics-basic-level-description
+        - roundstart-cybernetics-generic-limb-description
 
 - type: entity
   parent: OrganCyberHandRight
   id: RightHandCyber
   components:
     - type: RoundstartImplantable
-      cost: 1
+      cost: 0
+      iconScale: 3
+      iconOffset: -10, -45
+      description:
+        - roundstart-cybernetics-basic-level-description
+        - roundstart-cybernetics-generic-limb-description
 
 - type: entity
   parent: [ OrganCyberLegLeft, WithLeftCyberFoot ]
@@ -82,7 +104,13 @@
     - type: MovementOrgan
       sprintSpeedModifier: 1.05 # +5%
     - type: RoundstartImplantable
-      cost: 2
+      cost: 0
+      iconScale: 3
+      iconOffset: -45, -68
+      description:
+        - roundstart-cybernetics-basic-level-description
+        - roundstart-cybernetics-foot-attached-description
+        - roundstart-cybernetics-generic-limb-description
 
 - type: entity
   parent: [ OrganCyberLegRight, WithRightCyberFoot ]
@@ -91,21 +119,37 @@
     - type: MovementOrgan
       sprintSpeedModifier: 1.05 # +5%
     - type: RoundstartImplantable
-      cost: 2
+      cost: 0
+      iconScale: 3
+      iconOffset: -25, -68
+      description:
+        - roundstart-cybernetics-basic-level-description
+        - roundstart-cybernetics-foot-attached-description
+        - roundstart-cybernetics-generic-limb-description
 
 - type: entity
   parent: OrganCyberFootLeft
   id: LeftFootCyber
   components:
     - type: RoundstartImplantable
-      cost: 1
+      cost: 0
+      iconScale: 3
+      iconOffset: -45, -80
+      description:
+        - roundstart-cybernetics-basic-level-description
+        - roundstart-cybernetics-generic-limb-description
 
 - type: entity
   parent: OrganCyberFootRight
   id: RightFootCyber
   components:
     - type: RoundstartImplantable
-      cost: 1
+      cost: 0
+      iconScale: 3
+      iconOffset: -25, -80
+      description:
+        - roundstart-cybernetics-basic-level-description
+        - roundstart-cybernetics-generic-limb-description
       
 #reaper
 - type: entity
@@ -116,10 +160,10 @@
   components:
     - type: VisualOrgan
       data:
-        sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi #FH
+        sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi 
         state: "l_silver_arm"
     - type: Sprite
-      sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi #FH
+      sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi 
       state: "l_silver_arm"
     - type: LimbItemStorage
       items:
@@ -150,10 +194,10 @@
   components:
     - type: VisualOrgan
       data:
-        sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi #FH
+        sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi 
         state: "r_silver_arm"
     - type: Sprite
-      sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi #FH
+      sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi 
       state: "r_silver_arm"
     - type: LimbItemStorage
       items:
@@ -185,10 +229,10 @@
   components:
     - type: VisualOrgan
       data:
-        sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi #FH
+        sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi 
         state: "l_steel_arm"
     - type: Sprite
-      sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi #FH
+      sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi 
       state: "l_steel_arm"
     - type: LimbItemStorage
       items:
@@ -197,6 +241,86 @@
         - CrowbarCyber
         - WirecutterCyber
         - WelderCyber
+        - NetworkConfiguratorCyber
+    - type: LimbItemDeployer
+      action: ActionToggleCyberHandLeft
+      sound: 
+        path: /Audio/_Starlight/Medical/Cyber/deploy.ogg
+      handWhitelist:
+        tags:
+          - CyberHandItem
+      stateOn: l_steel_arm_TOOLS
+      stateOff: l_steel_arm
+    - type: RoundstartImplantable
+      cost: 2
+      iconScale: 2.5
+      iconOffset: -40, -25
+      description:
+        - roundstart-cybernetics-mechwright-description
+        - roundstart-cybernetics-hand-attached-description
+        - roundstart-cybernetics-generic-limb-description
+
+- type: entity
+  parent: [ OrganCyberArmRight, WithRightCyberHand ]
+  id: RightArmCyberMechwright
+  name: Right Mechwright Arm
+  description: Augmented arm for the tiders of the modern age.
+  components:
+    - type: VisualOrgan
+      data:
+        sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi 
+        state: "r_steel_arm"
+    - type: Sprite
+      sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi 
+      state: "r_steel_arm"
+    - type: LimbItemStorage
+      items:
+        - WrenchCyber
+        - ScrewdriverCyber
+        - CrowbarCyber
+        - WirecutterCyber
+        - WelderCyber
+        - NetworkConfiguratorCyber
+    - type: LimbItemDeployer
+      action: ActionToggleCyberHandRight
+      sound: 
+        path: /Audio/_Starlight/Medical/Cyber/deploy.ogg
+      handWhitelist:
+        tags:
+          - CyberHandItem
+      stateOn: r_steel_arm_TOOLS
+      stateOff: r_steel_arm
+    - type: RoundstartImplantable
+      cost: 2
+      iconScale: 2.5
+      iconOffset: -10, -25
+      description:
+        - roundstart-cybernetics-mechwright-description
+        - roundstart-cybernetics-hand-attached-description
+        - roundstart-cybernetics-generic-limb-description
+
+#Bunker Breaker
+
+- type: entity
+  parent: [ OrganCyberArmLeft, WithLeftCyberHand, BaseSyndicateContraband ]
+  id: LeftArmCyberBunkerBreaker
+  name: Left Bunker Breaker Arm
+  description: Augmented arm with all the tools needed to go where you dont belong.
+  components:
+    - type: VisualOrgan
+      data:
+        sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi 
+        state: "l_steel_arm"
+    - type: Sprite
+      sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi 
+      state: "l_steel_arm"
+    - type: LimbItemStorage
+      items:
+        - WrenchCyber
+        - ScrewdriverCyber
+        - WelderCyber
+        - SyndicateJawsOfLifeCyber
+        - MultitoolCyber
     - type: LimbItemDeployer
       action: ActionToggleCyberHandLeft
       sound: 
@@ -208,25 +332,25 @@
       stateOff: l_steel_arm
 
 - type: entity
-  parent: [ OrganCyberArmRight, WithRightCyberHand ]
-  id: RightArmCyberMechwright
-  name: Right Mechwright Arm
-  description: Augmented arm for the tiders of the modern age.
+  parent: [ OrganCyberArmRight, WithRightCyberHand, BaseSyndicateContraband ]
+  id: RightArmCyberBunkerBreaker
+  name: Right Bunker Breaker Arm
+  description: Augmented arm with all the tools needed to go where you dont belong.
   components:
     - type: VisualOrgan
       data:
-        sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi #FH
+        sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi 
         state: "r_steel_arm"
     - type: Sprite
-      sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi #FH
+      sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi 
       state: "r_steel_arm"
     - type: LimbItemStorage
       items:
         - WrenchCyber
         - ScrewdriverCyber
-        - CrowbarCyber
-        - WirecutterCyber
         - WelderCyber
+        - SyndicateJawsOfLifeCyber
+        - MultitoolCyber
     - type: LimbItemDeployer
       action: ActionToggleCyberHandRight
       sound: 
@@ -237,7 +361,6 @@
       stateOn: r_steel_arm_TOOLS
       stateOff: r_steel_arm
 
-
 #Bulwark 
 - type: entity
   id: LeftArmCyberBulwark
@@ -246,10 +369,10 @@
   components:
     - type: VisualOrgan
       data:
-        sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi #FH
+        sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi 
         state: "l_bulwark_arm"
     - type: Sprite
-      sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi #FH
+      sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi 
       state: "l_bulwark_arm"
     - type: LimbItemStorage
       items:
@@ -272,10 +395,10 @@
   components:
     - type: VisualOrgan
       data:
-        sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi #FH
+        sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi 
         state: "r_bulwark_arm"
     - type: Sprite
-      sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi #FH
+      sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi 
       state: "r_bulwark_arm"
     - type: LimbItemStorage
       items:
@@ -299,10 +422,10 @@
   components:
     - type: VisualOrgan
       data:
-        sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi #FH
+        sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi 
         state: "l_mantis_blade_arm"
     - type: Sprite
-      sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi #FH
+      sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi 
       state: "l_mantis_blade_arm"
     - type: LimbItemStorage
       items:
@@ -318,16 +441,16 @@
       stateOff: l_mantis_blade_arm
 
 - type: entity
-  parent: [ OrganCyberArmRight, BaseSecurityContraband, WithRightCyberHand ]
+  parent: [ OrganCyberArmRight, BaseSyndicateContraband, WithRightCyberHand ]
   id: RightArmCyberMantisBlade
   name: Right Mantis Blade Arm
   components:
     - type: VisualOrgan
       data:
-        sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi #FH
+        sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi 
         state: "r_mantis_blade_arm"
     - type: Sprite
-      sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi #FH
+      sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi 
       state: "r_mantis_blade_arm"
     - type: LimbItemStorage
       items:
@@ -351,10 +474,10 @@
   components:
     - type: VisualOrgan
       data:
-        sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi #FH
+        sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi 
         state: "l_ripper_arm"
     - type: Sprite
-      sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi #FH
+      sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi 
       state: "l_ripper_arm"
     - type: LimbItemStorage
       items:
@@ -378,6 +501,12 @@
       stateOff: l_ripper_arm
     - type: RoundstartImplantable
       cost: 2
+      iconScale: 2.5
+      iconOffset: -40, -25
+      description:
+        - roundstart-cybernetics-ripper-description
+        - roundstart-cybernetics-hand-attached-description
+        - roundstart-cybernetics-generic-limb-description
     - type: Construction
       graph: RipperLeftGraph
       node: left
@@ -390,10 +519,10 @@
   components:
     - type: VisualOrgan
       data:
-        sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi #FH
+        sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi 
         state: "r_ripper_arm"
     - type: Sprite
-      sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi #FH
+      sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi 
       state: "r_ripper_arm"
     - type: LimbItemStorage
       items:
@@ -417,6 +546,12 @@
       stateOff: r_ripper_arm
     - type: RoundstartImplantable
       cost: 2
+      iconScale: 2.5
+      iconOffset: -10, -25
+      description:
+        - roundstart-cybernetics-ripper-description
+        - roundstart-cybernetics-hand-attached-description
+        - roundstart-cybernetics-generic-limb-description
     - type: Construction
       graph: RipperRightGraph
       node: right
@@ -430,17 +565,17 @@
   components:
     - type: VisualOrgan
       data:
-        sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi #FH
+        sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi 
         state: l_engineer_arm
     - type: Sprite
-      sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi #FH
+      sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi 
       state: l_engineer_arm
     - type: LimbItemStorage
       items:
         - JawsOfLifeCyber
         - PowerDrillCyber
         - WelderExperimentalCyber
-        - RCDCyber
+        - MultitoolCyber
     - type: LimbItemDeployer
       action: ActionToggleCyberHandLeft
       sound: 
@@ -459,17 +594,17 @@
   components:
     - type: VisualOrgan
       data:
-        sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi #FH
+        sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi 
         state: r_engineer_arm
     - type: Sprite
-      sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi #FH
+      sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi 
       state: r_engineer_arm
     - type: LimbItemStorage
       items:
         - JawsOfLifeCyber
         - PowerDrillCyber
         - WelderExperimentalCyber
-        - RCDCyber
+        - MultitoolCyber
     - type: LimbItemDeployer
       action: ActionToggleCyberHandRight
       sound: 
@@ -489,10 +624,10 @@
   components:
     - type: VisualOrgan
       data:
-        sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi #FH
+        sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi 
         state: l_spacer_arm
     - type: Sprite
-      sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi #FH
+      sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi 
       state: l_spacer_arm
     - type: LimbItemStorage
       items:
@@ -517,10 +652,10 @@
   components:
     - type: VisualOrgan
       data:
-        sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi #FH
+        sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi 
         state: r_spacer_arm
     - type: Sprite
-      sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi #FH
+      sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi 
       state: r_spacer_arm
     - type: LimbItemStorage
       items:
@@ -546,10 +681,10 @@
   components:
     - type: VisualOrgan
       data:
-        sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi #FH
+        sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi 
         state: l_gorilla_arm
     - type: Sprite
-      sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi #FH
+      sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi 
       state: l_gorilla_arm
     - type: LimbItemStorage
       items:
@@ -575,10 +710,10 @@
   components:
     - type: VisualOrgan
       data:
-        sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi #FH
+        sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi 
         state: r_gorilla_arm
     - type: Sprite
-      sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi #FH
+      sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi 
       state: r_gorilla_arm
     - type: LimbItemStorage
       items:
@@ -604,14 +739,13 @@
   components:
     - type: VisualOrgan
       data:
-        sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi #FH
+        sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi 
         state: l_angel_arm
     - type: Sprite
-      sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi #FH
+      sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi 
       state: l_angel_arm
     - type: LimbItemStorage
       items:
-        - AutoinjectorCyber
         - AutoinjectorCyberTricordrazine
         - AutoinjectorCyberInaprovaline
         - DefibrillatorCyber
@@ -624,6 +758,14 @@
           - CyberHandItem
       stateOn: l_angel_arm_TOOLS
       stateOff: l_angel_arm
+    - type: RoundstartImplantable
+      cost: 1
+      iconScale: 2.5
+      iconOffset: -40, -25
+      description:
+        - roundstart-cybernetics-angel-description
+        - roundstart-cybernetics-hand-attached-description
+        - roundstart-cybernetics-generic-limb-description
 
 - type: entity
   id: RightArmCyberAngel
@@ -633,14 +775,13 @@
   components:
     - type: VisualOrgan
       data:
-        sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi #FH
+        sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi 
         state: r_angel_arm
     - type: Sprite
-      sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi #FH
+      sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi 
       state: r_angel_arm
     - type: LimbItemStorage
       items:
-        - AdvancedJetInjectorCyber
         - AutoinjectorCyberTricordrazine
         - AutoinjectorCyberInaprovaline
         - DefibrillatorCyber
@@ -653,6 +794,14 @@
           - CyberHandItem
       stateOn: r_angel_arm_TOOLS
       stateOff: r_angel_arm
+    - type: RoundstartImplantable
+      cost: 1
+      iconScale: 2.5
+      iconOffset: -10, -25
+      description:
+        - roundstart-cybernetics-angel-description
+        - roundstart-cybernetics-hand-attached-description
+        - roundstart-cybernetics-generic-limb-description
 
 # Zeus
 - type: entity
@@ -662,10 +811,10 @@
   components:
     - type: VisualOrgan
       data:
-        sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi #FH
+        sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi 
         state: l_zeus_arm
     - type: Sprite
-      sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi #FH
+      sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi 
       state: l_zeus_arm
     - type: LimbItemStorage
       items:
@@ -688,10 +837,10 @@
   components:
     - type: VisualOrgan
       data:
-        sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi #FH
+        sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi 
         state: r_zeus_arm
     - type: Sprite
-      sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi #FH
+      sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi 
       state: r_zeus_arm
     - type: LimbItemStorage
       items:
@@ -716,10 +865,10 @@
   components:
     - type: VisualOrgan
       data:
-        sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi #FH
+        sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi 
         state: l_riplet_arm
     - type: Sprite
-      sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi #FH
+      sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi 
       state: l_riplet_arm
     - type: LimbItemStorage
       items:
@@ -742,10 +891,10 @@
   components:
     - type: VisualOrgan
       data:
-        sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi #FH
+        sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi 
         state: r_riplet_arm
     - type: Sprite
-      sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi #FH
+      sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi 
       state: r_riplet_arm
     - type: LimbItemStorage
       items:
@@ -769,10 +918,10 @@
   components:
     - type: VisualOrgan
       data:
-        sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi #FH
+        sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi 
         state: l_persephone_arm
     - type: Sprite
-      sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi #FH
+      sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi 
       state: l_persephone_arm
     - type: LimbItemStorage
       items:
@@ -792,6 +941,14 @@
           - CyberHandItem
       stateOn: l_persephone_arm_TOOLS
       stateOff: l_persephone_arm
+    - type: RoundstartImplantable
+      cost: 1
+      iconScale: 2.5
+      iconOffset: -40, -25
+      description:
+        - roundstart-cybernetics-persephone-description
+        - roundstart-cybernetics-hand-attached-description
+        - roundstart-cybernetics-generic-limb-description
 
 - type: entity
   id: RightArmCyberPersephone
@@ -801,10 +958,10 @@
   components:
     - type: VisualOrgan
       data:
-        sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi #FH
+        sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi 
         state: r_persephone_arm
     - type: Sprite
-      sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi #FH
+      sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi 
       state: r_persephone_arm
     - type: LimbItemStorage
       items:
@@ -824,6 +981,14 @@
           - CyberHandItem
       stateOn: r_persephone_arm_TOOLS
       stateOff: r_persephone_arm
+    - type: RoundstartImplantable
+      cost: 1
+      iconScale: 2.5
+      iconOffset: -10, -25
+      description:
+        - roundstart-cybernetics-persephone-description
+        - roundstart-cybernetics-hand-attached-description
+        - roundstart-cybernetics-generic-limb-description
 
 # Scribe
 - type: entity
@@ -834,10 +999,10 @@
   components:
     - type: VisualOrgan
       data:
-        sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi #FH
+        sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi 
         state: l_scribe_arm
     - type: Sprite
-      sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi #FH
+      sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi 
       state: l_scribe_arm
     - type: LimbItemStorage
       items:
@@ -854,6 +1019,14 @@
           - CyberHandItem
       stateOn: l_scribe_arm_TOOLS
       stateOff: l_scribe_arm
+    - type: RoundstartImplantable
+      cost: 1
+      iconScale: 2.5
+      iconOffset: -40, -25
+      description:
+        - roundstart-cybernetics-scribe-description
+        - roundstart-cybernetics-hand-attached-description
+        - roundstart-cybernetics-generic-limb-description
 
 - type: entity
   id: RightArmCyberScribe
@@ -863,10 +1036,10 @@
   components:
     - type: VisualOrgan
       data:
-        sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi #FH
+        sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi 
         state: r_scribe_arm
     - type: Sprite
-      sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi #FH
+      sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi 
       state: r_scribe_arm
     - type: LimbItemStorage
       items:
@@ -883,6 +1056,14 @@
           - CyberHandItem
       stateOn: r_scribe_arm_TOOLS
       stateOff: r_scribe_arm
+    - type: RoundstartImplantable
+      cost: 1
+      iconScale: 2.5
+      iconOffset: -10, -25
+      description:
+        - roundstart-cybernetics-scribe-description
+        - roundstart-cybernetics-hand-attached-description
+        - roundstart-cybernetics-generic-limb-description
 
 # Herakles
 
@@ -932,10 +1113,10 @@
   components:
     - type: VisualOrgan
       data:
-        sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi #FH
+        sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi 
         state: l_investigator_arm
     - type: Sprite
-      sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi #FH
+      sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi 
       state: l_investigator_arm
     - type: LimbItemStorage
       items:
@@ -962,10 +1143,10 @@
   components:
     - type: VisualOrgan
       data:
-        sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi #FH
+        sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi 
         state: r_investigator_arm
     - type: Sprite
-      sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi #FH
+      sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi 
       state: r_investigator_arm
     - type: LimbItemStorage
       items:
@@ -985,6 +1166,57 @@
       stateOn: r_investigator_arm_TOOLS
       stateOff: r_investigator_arm
 
+# IFA-30 Arm
+- type: entity
+  parent: [ OrganCyberArmLeft, BaseSyndicateContraband, WithLeftCyberHand ]
+  id: LeftArmCyberIFA30
+  name: Left IFA-30 Cybernetic Arm
+  components:
+    - type: VisualOrgan
+      data:
+        sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi 
+        state: "l_ifa30_arm"
+    - type: Sprite
+      sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi 
+      state: "l_ifa30_arm"
+    - type: LimbItemStorage
+      items:
+        - WeaponSubMachineGunCyberIFA30
+    - type: LimbItemDeployer
+      action: ActionToggleCyberIFA30Left
+      sound:
+        path: /Audio/Effects/metal_scrape1.ogg
+      handWhitelist:
+        tags:
+          - CyberHandItem
+      stateOn: l_ifa30_arm_GUN
+      stateOff: l_ifa30_arm
+
+- type: entity
+  parent: [ OrganCyberArmRight, BaseSyndicateContraband, WithRightCyberHand ]
+  id: RightArmCyberIFA30
+  name: Right IFA-30 Cybernetic Arm
+  components:
+    - type: VisualOrgan
+      data:
+        sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi 
+        state: "r_ifa30_arm"
+    - type: Sprite
+      sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi 
+      state: "r_ifa30_arm"
+    - type: LimbItemStorage
+      items:
+        - WeaponSubMachineGunCyberIFA30
+    - type: LimbItemDeployer
+      action: ActionToggleCyberIFA30Right
+      sound:
+        path: /Audio/Effects/metal_scrape1.ogg
+      handWhitelist:
+        tags:
+          - CyberHandItem
+      stateOn: r_ifa30_arm_GUN
+      stateOff: r_ifa30_arm
+
 # Hydraulic Legs
 - type: entity
   id: LeftLegCyberHydraulic
@@ -993,13 +1225,13 @@
   components:
     - type: VisualOrgan
       data:
-        sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi #FH
+        sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi 
         state: l_leg_hydraulic
     - type: Sprite
-      sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi #FH
+      sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi 
       state: l_leg_hydraulic
     - type: MovementOrgan
-      sprintSpeedModifier: 1.20
+      sprintSpeedModifier: 1.15
     - type: FootstepModifier
       footstepSoundCollection:
         path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
@@ -1013,10 +1245,10 @@
   components:
     - type: VisualOrgan
       data:
-        sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi #FH
+        sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi 
         state: r_leg_hydraulic
     - type: Sprite
-      sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi #FH
+      sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi 
       state: r_leg_hydraulic
     - type: MovementOrgan
       sprintSpeedModifier: 1.15
@@ -1034,10 +1266,10 @@
   components:
     - type: VisualOrgan
       data:
-        sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi #FH
+        sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi 
         state: l_leg_pilebunker
     - type: Sprite
-      sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi #FH
+      sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi 
       state: l_leg_pilebunker
     - type: MovementOrgan
       sprintSpeedModifier: 1.10
@@ -1056,10 +1288,10 @@
   components:
     - type: VisualOrgan
       data:
-        sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi #FH
+        sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi 
         state: r_leg_pilebunker
     - type: Sprite
-      sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi #FH
+      sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi 
       state: r_leg_pilebunker
     - type: MovementOrgan
       sprintSpeedModifier: 1.10
@@ -1082,10 +1314,10 @@
       size: Normal 
     - type: VisualOrgan
       data:
-        sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi #FH
+        sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi 
         state: l_leg_cargo
     - type: Sprite
-      sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi #FH
+      sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi 
       state: l_leg_cargo
     - type: MovementOrgan
       sprintSpeedModifier: 1.05
@@ -1117,6 +1349,14 @@
       interfaces:
         enum.StorageUiKey.Key:
           type: StorageBoundUserInterface
+    - type: RoundstartImplantable
+      cost: 1
+      iconScale: 3
+      iconOffset: -45, -68
+      description:
+        - roundstart-cybernetics-cargo-description
+        - roundstart-cybernetics-foot-attached-description
+        - roundstart-cybernetics-generic-limb-description
 
 - type: entity
   id: RightLegCyberCargo
@@ -1128,10 +1368,10 @@
       size: Normal 
     - type: VisualOrgan
       data:
-        sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi #FH
+        sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi 
         state: r_leg_cargo
     - type: Sprite
-      sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi #FH
+      sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi 
       state: r_leg_cargo
     - type: MovementOrgan
       sprintSpeedModifier: 1.05
@@ -1163,6 +1403,14 @@
       interfaces:
         enum.StorageUiKey.Key:
           type: StorageBoundUserInterface
+    - type: RoundstartImplantable
+      cost: 1
+      iconScale: 3
+      iconOffset: -25, -68
+      description:
+        - roundstart-cybernetics-cargo-description
+        - roundstart-cybernetics-foot-attached-description
+        - roundstart-cybernetics-generic-limb-description
 
 # Speed legs
 - type: entity

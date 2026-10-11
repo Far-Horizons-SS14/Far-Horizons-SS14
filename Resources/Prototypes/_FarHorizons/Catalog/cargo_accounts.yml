@@ -1,0 +1,69 @@
+- type: cargoAccount
+  id: EngineeringNS
+  name: cargo-account-engineering-ns-name
+  code: cargo-account-engineering-code
+  color: "#f27803"
+  radioChannel: SyndiEngi
+  acquisitionSlip: PaperAcquisitionSlipEngineering
+  tamperSealName: tamper-seal-account-name-engineering
+  tamperSealColor: "#f27803"
+  factionSealName: tamper-seal-faction-name-neosol
+  factionSealColor: "#ff0000"
+  tamperSealAccesses:
+    - allOf: [ "EngineeringNS" ]
+
+- type: cargoAccount
+  id: MedicalNS
+  name: cargo-account-medical-ns-name
+  code: cargo-account-medical-code
+  color: "#038ae1"
+  radioChannel: SyndiMed
+  acquisitionSlip: PaperAcquisitionSlipMedical
+  tamperSealName: tamper-seal-account-name-medical
+  tamperSealColor: "#038ae1"
+  factionSealName: tamper-seal-faction-name-neosol
+  factionSealColor: "#ff0000"
+  tamperSealAccesses:
+    - allOf: [ "MedicalNS" ] 
+
+- type: cargoAccount
+  id: ScienceNS
+  name: cargo-account-science-ns-name
+  code: cargo-account-science-code
+  color: "#a94ac2"
+  radioChannel: SyndiSci
+  acquisitionSlip: PaperAcquisitionSlipScience
+  tamperSealName: tamper-seal-account-name-science
+  tamperSealColor: "#a94ac2"
+  factionSealName: tamper-seal-faction-name-neosol
+  factionSealColor: "#ff0000"
+  tamperSealAccesses:
+    - allOf: [ "ResearchNS" ]
+
+- type: cargoAccount
+  id: SecurityNS
+  name: cargo-account-security-ns-name
+  code: cargo-account-security-code
+  color: "#b31717"
+  radioChannel: SyndiSec
+  acquisitionSlip: PaperAcquisitionSlipSecurity
+  tamperSealName: tamper-seal-account-name-security
+  tamperSealColor: "#b31717"
+  factionSealName: tamper-seal-faction-name-neosol
+  factionSealColor: "#ff0000"
+  tamperSealAccesses:
+    - allOf: [ "SecurityNS" ]
+
+- type: cargoAccount
+  id: ServiceNS
+  name: cargo-account-service-ns-name
+  code: cargo-account-service-code
+  color: "#F1C232"
+  radioChannel: SyndiService
+  acquisitionSlip: PaperAcquisitionSlipService
+  tamperSealName: tamper-seal-account-name-service
+  tamperSealColor: "#F1C232"
+  factionSealName: tamper-seal-faction-name-neosol
+  factionSealColor: "#ff0000"
+  tamperSealAccesses:
+    - allOf: [ "ServiceNS" ]

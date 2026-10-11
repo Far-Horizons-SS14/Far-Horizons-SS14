@@ -13,19 +13,34 @@ using Content.Shared.Interaction;
 using Content.Shared.Labels.Components;
 using Content.Shared.Paper;
 using Content.Shared.Station.Components;
+using Content.Shared.Tools;
 using JetBrains.Annotations;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
+using Robust.Shared.Random;
+
+#region Starlight
+using Content.Shared._Starlight.Cargo.TamperSeal.Components;
+using Content.Server._Starlight.Cargo.TamperSeal.Components;
+using Content.Shared._Starlight.CCVar;
+using Content.Shared.Access;
+#endregion
 
 namespace Content.Server.Cargo.Systems
 {
     public sealed partial class CargoSystem
     {
-        [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
-        [Dependency] private readonly EmagSystem _emag = default!;
-        [Dependency] private readonly IGameTiming _timing = default!;
+        [Dependency] private SharedTransformSystem _transformSystem = default!;
+        [Dependency] private EmagSystem _emag = default!;
+        [Dependency] private IGameTiming _timing = default!;
+
+        #region Starlight
+        private float _tamperSealRewardMultiplier = 0.3f; // Far Horizons buffed 10% -> 30%
+        private float _tamperSealPenaltyMultiplier = 0.1f;
+        private float _tamperSealRefundMultiplier = 0.5f;
+        #endregion
 
         private void InitializeConsole()
         {
@@ -36,6 +51,12 @@ namespace Content.Server.Cargo.Systems
             SubscribeLocalEvent<CargoOrderConsoleComponent, ComponentInit>(OnInit);
             SubscribeLocalEvent<CargoOrderConsoleComponent, InteractUsingEvent>(OnInteractUsing);
             SubscribeLocalEvent<CargoOrderConsoleComponent, GotEmaggedEvent>(OnEmagged);
+
+            // Starlight BEGIN
+            _cfg.OnValueChanged(StarlightCCVars.TamperSealRewardMultiplier, v => _tamperSealRewardMultiplier = v, true);
+            _cfg.OnValueChanged(StarlightCCVars.TamperSealPenaltyMultiplier, v => _tamperSealPenaltyMultiplier = v, true);
+            _cfg.OnValueChanged(StarlightCCVars.TamperSealRefundMultiplier, v => _tamperSealRefundMultiplier = v, true);
+            // Starlight END
         }
 
         private void OnInteractUsingCash(EntityUid uid, CargoOrderConsoleComponent component, ref InteractUsingEvent args)
@@ -76,7 +97,7 @@ namespace Content.Server.Cargo.Systems
                 return;
 
             var orderId = GenerateOrderId(orderDatabase);
-            var data = new CargoOrderData(orderId, product.Product, product.Name, product.Cost, slip.OrderQuantity, slip.Requester, slip.Reason, slip.Account);
+            var data = new CargoOrderData(orderId, product, slip.OrderQuantity, slip.Requester, slip.Reason, slip.Account, GetNetEntity(stationUid.Value)); // Starlight: +stationUid
 
             if (!TryAddOrder(stationUid.Value, ent.Comp.Account, data, orderDatabase))
             {
@@ -88,7 +109,7 @@ namespace Content.Server.Cargo.Systems
             _audio.PlayPvs(ent.Comp.ScanSound, ent);
             _adminLogger.Add(LogType.Action,
                 LogImpact.Low,
-                $"{ToPrettyString(args.User):user} inserted order slip [orderId:{data.OrderId}, quantity:{data.OrderQuantity}, product:{data.ProductId}, requester:{data.Requester}, reason:{data.Reason}]");
+                $"{ToPrettyString(args.User):user} inserted order slip [orderId:{data.OrderId}, quantity:{data.OrderQuantity}, product:{data.Product}, requester:{data.Requester}, reason:{data.Reason}]");
             QueueDel(args.Used);
             args.Handled = true;
         }
@@ -173,7 +194,7 @@ namespace Content.Server.Cargo.Systems
             }
 
             // Invalid order
-            if (!_protoMan.HasIndex<EntityPrototype>(order.ProductId))
+            if (!_protoMan.Resolve(order.Product, out var product))
             {
                 ConsolePopup(args.Actor, Loc.GetString("cargo-console-invalid-product"));
                 PlayDenySound(uid, component);
@@ -201,11 +222,14 @@ namespace Content.Server.Cargo.Systems
                 PlayDenySound(uid, component);
             }
 
-            var cost = order.Price * order.OrderQuantity;
+            var cost = product.Cost * order.OrderQuantity;
             var accountBalance = GetBalanceFromAccount((station.Value, bank), order.Account);
 
             // Not enough balance
-            if (cost > accountBalance)
+            // Far Horizons start
+            if ((order.ChargeCreditsFrom == null && (cost > accountBalance)) ||
+                (order.ChargeCreditsFrom != null && !PersonalAccountHasBalance(order.ChargeCreditsFrom.Value, product)))
+            // Far Horizons end
             {
                 ConsolePopup(args.Actor, Loc.GetString("cargo-console-insufficient-funds", ("cost", cost)));
                 PlayDenySound(uid, component);
@@ -238,13 +262,20 @@ namespace Content.Server.Cargo.Systems
                 order.SetApproverData(tryGetIdentityShortInfoEvent.Title);
 
                 var message = Loc.GetString("cargo-console-unlock-approved-order-broadcast",
-                    ("productName", Loc.GetString(order.ProductName)),
+                    ("productName", Loc.GetString(product.Name)),
                     ("orderAmount", order.OrderQuantity),
                     ("approver", order.Approver ?? string.Empty),
                     ("cost", cost));
-                _radio.SendRadioMessage(uid, message, account.RadioChannel, uid, escapeMarkup: false);
-                if (CargoOrderConsoleComponent.BaseAnnouncementChannel != account.RadioChannel)
-                    _radio.SendRadioMessage(uid, message, CargoOrderConsoleComponent.BaseAnnouncementChannel, uid, escapeMarkup: false);
+                
+                // Far Horizons start
+                // Only notify about station orders
+                if (order.ChargeCreditsFrom == null)
+                {
+                    _radio.SendRadioMessage(uid, message, account.RadioChannel, uid, escapeMarkup: false);
+                    if (CargoOrderConsoleComponent.BaseAnnouncementChannel != account.RadioChannel)
+                        _radio.SendRadioMessage(uid, message, CargoOrderConsoleComponent.BaseAnnouncementChannel, uid, escapeMarkup: false);
+                }
+                // Far Horizons end
             }
 
             ConsolePopup(args.Actor, Loc.GetString("cargo-console-trade-station", ("destination", MetaData(ev.FulfillmentEntity.Value).EntityName)));
@@ -252,10 +283,20 @@ namespace Content.Server.Cargo.Systems
             // Log order approval
             _adminLogger.Add(LogType.Action,
                 LogImpact.Low,
-                $"{ToPrettyString(player):user} approved order [orderId:{order.OrderId}, quantity:{order.OrderQuantity}, product:{order.ProductId}, requester:{order.Requester}, reason:{order.Reason}] on account {order.Account} with balance at {accountBalance}");
+                $"{ToPrettyString(player):user} approved order [orderId:{order.OrderId}, quantity:{order.OrderQuantity}, product:{order.Product}, requester:{order.Requester}, reason:{order.Reason}] on account {order.Account} with balance at {accountBalance}");
 
-            orderDatabase.Orders[component.Account].Remove(order);
-            UpdateBankAccount((station.Value, bank), -cost, order.Account);
+            // Far Horizons start
+            if (order.ChargeCreditsFrom == null)
+            {
+                orderDatabase.Orders[component.Account].Remove(order);
+                UpdateBankAccount((station.Value, bank), -cost, order.Account);
+            }
+            else
+            {
+                UpdatePersonalBankAccount(order.ChargeCreditsFrom.Value, product);
+                NotifyAppUser(order.ChargeCreditsFrom.Value);
+            }
+            // Far Horizons end
             UpdateOrders(station.Value);
         }
 
@@ -386,7 +427,7 @@ namespace Content.Server.Cargo.Systems
 
             var targetAccount = component.Mode == CargoOrderConsoleMode.SendToPrimary ? bank.PrimaryAccount : component.Account;
 
-            var data = GetOrderData(args, product, GenerateOrderId(orderDatabase), component.Account);
+            var data = new CargoOrderData(GenerateOrderId(orderDatabase), product, args.Amount, args.Requester, args.Reason, component.Account, GetNetEntity(stationUid.Value)); // Starlight: +stationUid
 
             if (!TryAddOrder(stationUid.Value, targetAccount, data, orderDatabase))
             {
@@ -397,7 +438,7 @@ namespace Content.Server.Cargo.Systems
             // Log order addition
             _adminLogger.Add(LogType.Action,
                 LogImpact.Low,
-                $"{ToPrettyString(player):user} added order [orderId:{data.OrderId}, quantity:{data.OrderQuantity}, product:{data.ProductId}, requester:{data.Requester}, reason:{data.Reason}]");
+                $"{ToPrettyString(player):user} added order [orderId:{data.OrderId}, quantity:{data.OrderQuantity}, product:{data.Product}, requester:{data.Requester}, reason:{data.Reason}]");
 
         }
 
@@ -464,10 +505,15 @@ namespace Content.Server.Cargo.Systems
             }
         }
 
+        #region Starlight
+        // This is an upstream method, but it is now unused due to our changes elsewhere in this file.
+        /*
         private static CargoOrderData GetOrderData(CargoConsoleAddOrderMessage args, CargoProductPrototype cargoProduct, int id, ProtoId<CargoAccountPrototype> account)
         {
-            return new CargoOrderData(id, cargoProduct.Product, cargoProduct.Name, cargoProduct.Cost, args.Amount, args.Requester, args.Reason, account);
+            return new CargoOrderData(id, cargoProduct, args.Amount, args.Requester, args.Reason, account);
         }
+        */
+        #endregion
 
         public int GetOutstandingOrderCount(Entity<StationCargoOrderDatabaseComponent> station, ProtoId<CargoAccountPrototype> account)
         {
@@ -519,9 +565,7 @@ namespace Content.Server.Cargo.Systems
 
         public bool AddAndApproveOrder(
             EntityUid dbUid,
-            string spawnId,
-            string name,
-            int cost,
+            CargoProductPrototype product,
             int qty,
             string sender,
             string description,
@@ -531,10 +575,9 @@ namespace Content.Server.Cargo.Systems
             Entity<StationDataComponent> stationData
         )
         {
-            DebugTools.Assert(_protoMan.HasIndex<EntityPrototype>(spawnId));
             // Make an order
             var id = GenerateOrderId(component);
-            var order = new CargoOrderData(id, spawnId, name, cost, qty, sender, description, account);
+            var order = new CargoOrderData(id, product, qty, sender, description, account, GetNetEntity(stationData.Owner)); // Starlight: +stationUid
 
             // Approve it now
             order.SetApproverData(dest, sender);
@@ -543,7 +586,7 @@ namespace Content.Server.Cargo.Systems
             // Log order addition
             _adminLogger.Add(LogType.Action,
                 LogImpact.Low,
-                $"AddAndApproveOrder {description} added order [orderId:{order.OrderId}, quantity:{order.OrderQuantity}, product:{order.ProductId}, requester:{order.Requester}, reason:{order.Reason}]");
+                $"AddAndApproveOrder {description} added order [orderId:{order.OrderId}, quantity:{order.OrderQuantity}, product:{order.Product}, requester:{order.Requester}, reason:{order.Reason}]");
 
             // Add it to the list
             return TryAddOrder(dbUid, account, order, component) && TryFulfillOrder(stationData, account, order, component).HasValue;
@@ -568,6 +611,11 @@ namespace Content.Server.Cargo.Systems
             var sequenceIdx = orderDB.Orders[account].FindIndex(order => order.OrderId == index);
             if (sequenceIdx != -1)
             {
+                // Far Horizons start
+                if (orderDB.Orders[account][sequenceIdx].ChargeCreditsFrom is {} personalSource)
+                    NotifyAppUser(personalSource, false);
+                // Far Horizons end
+
                 orderDB.Orders[account].RemoveAt(sequenceIdx);
             }
             UpdateOrders(dbUid);
@@ -618,11 +666,34 @@ namespace Content.Server.Cargo.Systems
         /// </summary>
         private bool FulfillOrder(CargoOrderData order, ProtoId<CargoAccountPrototype> account, EntityCoordinates spawn, string? paperProto)
         {
+            if (!_protoMan.Resolve(order.Product, out var product))
+                return false;
+
             // Create the item itself
-            var item = Spawn(order.ProductId, spawn);
+            var item = Spawn(product.Product, spawn);
+            var itemXForm = Transform(item);
 
             // Ensure the item doesn't start anchored
-            _transformSystem.Unanchor(item, Transform(item));
+            _transformSystem.Unanchor(item, itemXForm);
+
+            // Spawn container and insert the item into it if a container is defined.
+            if (product.Container is { } productContainer)
+            {
+                var containerEntity = Spawn(productContainer.Entity, itemXForm.Coordinates);
+                _transformSystem.SetLocalRotation(containerEntity, itemXForm.LocalRotation);
+
+                if (!_container.TryGetContainer(containerEntity, productContainer.ContainerId, out var container1) ||
+                    !_container.Insert(item, container1, force: true))
+                {
+                    DebugTools.Assert(
+                        $"Failed to insert cargo product into its specified container. This indicates an error in the cargo product definition's YAML as the product should be insertable into its container. {nameof(CargoProductPrototype)}: {(ProtoId<CargoProductPrototype>)order.Product.Id}");
+                    QueueDel(containerEntity);
+                }
+                else
+                {
+                    item = containerEntity;
+                }
+            }
 
             // Create a sheet of paper to write the order details on
             var printed = Spawn(paperProto, spawn);
@@ -632,18 +703,28 @@ namespace Content.Server.Cargo.Systems
                 var val = Loc.GetString("cargo-console-paper-print-name", ("orderNumber", order.OrderId));
                 _metaSystem.SetEntityName(printed, val);
 
-                var accountProto = _protoMan.Index(account);
-                _paperSystem.SetContent((printed, paper),
-                    Loc.GetString(
+                // Far Horizons start
+                var paperContent = "";
+                if (order.ChargeCreditsFrom == null)
+                {
+                    var accountProto = _protoMan.Index(account);
+
+                    paperContent = Loc.GetString(
                         "cargo-console-paper-print-text",
                         ("orderNumber", order.OrderId),
-                        ("itemName", MetaData(item).EntityName),
+                        ("itemName", product.Name),
                         ("orderQuantity", order.OrderQuantity),
                         ("requester", order.Requester),
                         ("reason", string.IsNullOrWhiteSpace(order.Reason) ? Loc.GetString("cargo-console-paper-reason-default") : order.Reason),
                         ("account", Loc.GetString(accountProto.Name)),
                         ("accountcode", Loc.GetString(accountProto.Code)),
-                        ("approver", string.IsNullOrWhiteSpace(order.Approver) ? Loc.GetString("cargo-console-paper-approver-default") : order.Approver)));
+                        ("approver", string.IsNullOrWhiteSpace(order.Approver) ? Loc.GetString("cargo-console-paper-approver-default") : order.Approver));
+                }
+                else
+                    paperContent = GetPersonalOrderPaperConent(order, product);
+
+                _paperSystem.SetContent((printed, paper), paperContent);
+                // Far Horizons end
 
                 // attempt to attach the label to the item
                 if (TryComp<PaperLabelComponent>(item, out var label))
@@ -652,8 +733,49 @@ namespace Content.Server.Cargo.Systems
                 }
             }
 
-            return true;
+            // Starlight BEGIN
+            // If the entity does not support tamper seals, do not apply one.
+            if (!TryComp<TamperSealableComponent>(item, out var tamperSealable))
+                return true;
 
+            var recipient = _protoMan.Index(account);
+
+            // Far Horizons start
+            if (order.ChargeCreditsFrom != null)
+            {
+                SealPersonalOrder(item, order, product, tamperSealable);
+                return true;
+            }
+            // Far Horizons end
+
+            // Apply a tamper seal to the entity. This does the actual sealing logic.
+            var seal = EnsureComp<TamperSealComponent>(item);
+            seal.Recipient = account;
+            seal.RecipientName = recipient.TamperSealName;
+            seal.RecipientExamineColor = recipient.Color;
+            seal.Color = recipient.TamperSealColor;
+            seal.FactionName = recipient.FactionSealName; //FarHorizons
+            seal.FactionColor = recipient.FactionSealColor; //FarHorizons
+            seal.Accesses = new List<TamperSealAccessPattern>(recipient.TamperSealAccesses);
+            seal.DestroyToolQualities = new HashSet<ProtoId<ToolQualityPrototype>>(tamperSealable.DestroyToolQualities);
+
+            var cost = product.Cost * order.OrderQuantity;
+
+            // Attach a tamper seal value component to enable reward/penalty on unseal/destroy.
+            var value = EnsureComp<TamperSealValueComponent>(item);
+            value.StationId = GetEntity(order.StationId);
+            value.Value = cost;
+            value.Reward = (int) Math.Floor(_tamperSealRewardMultiplier * cost); // Rewards rounded down.
+            value.Penalty = (int) Math.Ceiling(_tamperSealPenaltyMultiplier * cost); // Penalties rounded up.
+            value.Refund = (int) Math.Ceiling(_tamperSealRefundMultiplier * cost); // Refunds rounded up.
+
+            // Attach an integrity component. This is used by the integrity system to detect repeat tampering.
+            var integrity = EnsureComp<TamperSealIntegrityBeaconComponent>(item);
+            integrity.StationId = GetEntity(order.StationId);
+
+            DirtyEntity(item);
+            return true;
+            // Starlight END
         }
 
         public List<ProtoId<CargoProductPrototype>> GetAvailableProducts(Entity<CargoOrderConsoleComponent> ent)

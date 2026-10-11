@@ -8,7 +8,7 @@ using Robust.Shared.Toolshed;
 namespace Content.Server.GameTicking.Commands;
 
 [ToolshedCommand, AdminCommand(AdminFlags.Round)]
-public sealed class DynamicRuleCommand : ToolshedCommand
+public sealed partial class DynamicRuleCommand : ToolshedCommand
 {
     private DynamicRuleSystem? _dynamicRuleSystem;
 

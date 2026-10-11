@@ -137,3 +137,81 @@
   components:
   - type: Implanter
     implant: DeathAcidifierImplant
+
+- type: entity
+  id: ConsortiumUplinkImplanter
+  name: Consortium Uplink Implanter
+  parent: BaseImplantOnlyImplanterLambda
+  components:
+  - type: Implanter
+    implant: ConsortiumUplinkImplant
+
+- type: entity
+  id: LanguageDatabaseImplanter
+  name: Language Database Implanter
+  parent: BaseImplantOnlyImplanter
+  components:
+  - type: Implanter
+    implant: LanguageDatabaseImplant
+
+#GSL
+- type: entity
+  id: MindShieldImplanterGSL
+  parent: MindShieldImplanter
+  name: MindShield Implanter (GSL)
+  components:
+  - type: Implanter
+    implant: MindShieldImplantGSL
+    blacklist:
+      components:
+      - Guardian
+      - MindShield
+      tags:
+      - Unimplantable
+
+#NeoSol
+- type: entity
+  id: MindShieldImplanterNS
+  parent: MindShieldImplanter
+  name: MindShield Implanter (NS)
+  components:
+  - type: Implanter
+    implant: MindShieldImplantNS
+    blacklist:
+      components:
+      - Guardian
+      - MindShield
+      tags:
+      - Unimplantable
+
+#Fake
+- type: entity
+  id: FakeMindShieldImplanterNS
+  name: Fake Mindshield Implanter (NS)
+  parent: BaseImplantOnlyImplanterSyndi
+  components:
+  - type: Implanter
+    implant: FakeMindShieldImplantNS
+    blacklist:
+      components:
+      - Guardian
+      - FakeMindShield
+      tags:
+      - Unimplantable
+
+- type: entity
+  id: DeathRattleImplanterNSHC
+  name: NSHC Death Rattle Implanter
+  parent: BaseImplantOnlyImplanter
+  suffix: NS
+  components:
+  - type: Implanter
+    implant: DeathRattleImplantNSHC
+
+- type: entity
+  id: TrackingImplanterNS
+  name: Tracking Implant (NS)
+  parent: BaseImplantOnlyImplanter
+  components:
+  - type: Implanter
+    implant: TrackingImplantNS

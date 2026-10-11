@@ -22,16 +22,16 @@ namespace Content.Shared._RMC14.Scoping;
 
 public abstract partial class SharedScopeSystem : EntitySystem
 {
-    [Dependency] private readonly ActionContainerSystem _actionContainer = default!;
-    [Dependency] private readonly SharedActionsSystem _actionsSystem = default!;
-    [Dependency] private readonly SharedContainerSystem _container = default!;
-    [Dependency] private readonly SharedContentEyeSystem _contentEye = default!;
-    [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
-    [Dependency] private readonly SharedEyeSystem _eye = default!;
-    [Dependency] private readonly SharedHandsSystem _hands = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly PullingSystem _pulling = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private ActionContainerSystem _actionContainer = default!;
+    [Dependency] private SharedActionsSystem _actionsSystem = default!;
+    [Dependency] private SharedContainerSystem _container = default!;
+    [Dependency] private SharedContentEyeSystem _contentEye = default!;
+    [Dependency] private SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private SharedEyeSystem _eye = default!;
+    [Dependency] private SharedHandsSystem _hands = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private PullingSystem _pulling = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
 
     public override void Initialize()
     {
@@ -150,7 +150,7 @@ public abstract partial class SharedScopeSystem : EntitySystem
         //     return;
         // Far Horizons End
 
-        var dir = _transform.GetWorldRotation(args.User).GetCardinalDir(); // Far Horizons - World rotation instead of local rotation
+        var dir = GetEyeDirection(args.User); // Far Horizons - Calculate direction
         if (ent.Comp.ScopingDirection != dir)
             Unscope(ent);
     }
@@ -195,7 +195,7 @@ public abstract partial class SharedScopeSystem : EntitySystem
 
     private void OnGunGunShot(Entity<GunScopingComponent> ent, ref GunShotEvent args)
     {
-        var dir = _transform.GetWorldRotation(args.User).GetCardinalDir(); // Far Horizons - World rotation instead of local rotation
+        var dir = GetEyeDirection(args.User); // Far Horizons - Calculate direction
         if (TryComp(ent.Comp.Scope, out ScopeComponent? scope) && scope.ScopingDirection != dir)
             UnscopeGun(ent);
     }
@@ -257,7 +257,7 @@ public abstract partial class SharedScopeSystem : EntitySystem
         if (!CanScopePopup(scope, user))
             return null;
 
-        var cardinalDir = _transform.GetWorldRotation(user).GetCardinalDir();
+        var cardinalDir = GetEyeDirection(user); // Far Horizons - Calculate direction
         var ev = new ScopeDoAfterEvent(cardinalDir);
         var zoomLevel = GetCurrentZoomLevel(scope);
         var doAfter = new DoAfterArgs(EntityManager, user, zoomLevel.DoAfter, ev, scope, null, scope)
@@ -427,4 +427,8 @@ public abstract partial class SharedScopeSystem : EntitySystem
         RaiseLocalEvent(user, ref ev);
         _eye.SetOffset(user, ev.Offset);
     }
+
+    // FarHorizons edit start - get local rotation
+    private Direction GetEyeDirection(EntityUid user) => _transform.GetWorldRotation(user).GetDir();
+    // FarHorizons edit end
 }

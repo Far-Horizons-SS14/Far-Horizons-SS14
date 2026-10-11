@@ -3,17 +3,18 @@ using System.Linq;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Database;
 using Content.Shared.Emoting;
+using Content.Shared.EntityConditions;
 using Content.Shared.Examine;
 using Content.Shared.GameTicking;
 using Content.Shared.Humanoid;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Movement.Components;
 using Content.Shared.Mind.Components;
-using Content.Shared.Mind.Filters;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Objectives.Systems;
 using Content.Shared.Players;
+using Content.Shared.Silicons.StationAi;
 using Content.Shared.Speech;
 using Content.Shared._Starlight.Language.Systems; // Starlight-edit
 using Content.Shared._Starlight.Language.Components; // Starlight-edit
@@ -33,21 +34,23 @@ namespace Content.Shared.Mind;
 
 public abstract partial class SharedMindSystem : EntitySystem
 {
-    [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly MobStateSystem _mobState = default!;
-    [Dependency] private readonly SharedObjectivesSystem _objectives = default!;
-    [Dependency] private readonly SharedPlayerSystem _player = default!;
-    [Dependency] private readonly MetaDataSystem _metadata = default!;
-    [Dependency] private readonly EntityWhitelistSystem _whitelist = default!;
-    [Dependency] private readonly SharedContainerSystem _container = default!;
-    [Dependency] private readonly SharedLanguageSystem _language = default!; // Starlight-edit
-    [Dependency] private readonly SharedPhysicsSystem _physics = default!;
+    [Dependency] private IDependencyCollection _dependency = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private ISharedAdminLogManager _adminLogger = default!;
+    [Dependency] private EntityWhitelistSystem _whitelist = default!;
+    [Dependency] private MetaDataSystem _metadata = default!;
+    [Dependency] private MobStateSystem _mobState = default!;
+    [Dependency] private SharedContainerSystem _container = default!;
+    [Dependency] private SharedEntityConditionsSystem _conditions = default!;
+    [Dependency] private SharedObjectivesSystem _objectives = default!;
+    [Dependency] private SharedPhysicsSystem _physics = default!;
+    [Dependency] private SharedPlayerSystem _player = default!;
+    [Dependency] private SharedLanguageSystem _language = default!;
 
     [ViewVariables]
     protected readonly Dictionary<NetUserId, EntityUid> UserMinds = new();
 
-    private HashSet<Entity<MindComponent>> _pickingMinds = new();
+    private readonly HashSet<Entity<MindComponent>> _pickingMinds = new();
 
     private readonly EntProtoId _mindProto = "MindBase";
 
@@ -631,11 +634,10 @@ public abstract partial class SharedMindSystem : EntitySystem
     /// Picks a random mind from a pool after applying a list of filters.
     /// Returns null if no valid mind could be found.
     /// </summary>
-    public Entity<MindComponent>? PickFromPool(IMindPool pool, List<MindFilter> filters, EntityUid? exclude = null)
+    public Entity<MindComponent>? PickFromPool(IMindPool pool, EntityUid? exclude = null, params EntityCondition[] conditions)
     {
         _pickingMinds.Clear();
-        pool.FindMinds(_pickingMinds, exclude, EntityManager, this);
-        FilterMinds(_pickingMinds, filters, exclude);
+        pool.FindMinds(_pickingMinds, _dependency, exclude, conditions);
 
         if (_pickingMinds.Count == 0)
             return null;
@@ -644,26 +646,19 @@ public abstract partial class SharedMindSystem : EntitySystem
     }
 
     /// <summary>
-    /// Filters minds from a hashset using a single <see cref="MindFilter"/>.
+    /// Filters minds from a hashset using a single <see cref="EntityCondition"/>.
     /// </summary>
-    public void FilterMinds(HashSet<Entity<MindComponent>> minds, MindFilter filter, EntityUid? exclude = null)
+    public void FilterMinds(HashSet<Entity<MindComponent>> minds, EntityCondition condition)
     {
-        minds.RemoveWhere(mind => filter.Filter(mind, exclude, EntityManager, this));
+        minds.RemoveWhere(mind => !_conditions.TryCondition(mind, condition));
     }
 
     /// <summary>
-    /// Filters minds from a hashset using a list of <see cref="MindFilter"/>s to apply sequentially.
+    /// Filters minds from a hashset using a list of <see cref="EntityCondition"/>s to apply sequentially.
     /// </summary>
-    public void FilterMinds(HashSet<Entity<MindComponent>> minds, List<MindFilter> filters, EntityUid? exclude = null)
+    public void FilterMinds(HashSet<Entity<MindComponent>> minds, EntityCondition[] conditions)
     {
-        foreach (var filter in filters)
-        {
-            // no point calling it if there are none left
-            if (minds.Count == 0)
-                break;
-
-            FilterMinds(minds, filter, exclude);
-        }
+        minds.RemoveWhere(mind => !_conditions.TryConditions(mind, conditions));
     }
 
     /// <summary>
@@ -694,7 +689,7 @@ public abstract partial class SharedMindSystem : EntitySystem
         }
 
         // Starlight-start
-        var speaker = EnsureComp<LanguageSpeakerComponent>(uid);
+        var speaker = EnsureComp<LanguageKnowledgeComponent>(uid); //FH Fix
 
         // If the entity already speaks some language (like monkey or robot), we do nothing else.
         // Otherwise, we give them the fallback language

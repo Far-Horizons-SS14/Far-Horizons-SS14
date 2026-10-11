@@ -8,6 +8,7 @@
   - type: Sprite
     sprite: _FarHorizons/Objects/Power/FissionGenerator/reactor_parts.rsi
     state: default_rod
+  - type: Appearance
   - type: Item
     size: Huge
   - type: MultiHandedItem
@@ -22,7 +23,7 @@
 
 - type: entity
   id: BaseReactorFuelRod
-  parent: [ BaseReactorPart, BaseEngineeringContraband ]
+  parent: [ BaseReactorPart, BaseEngineeringContraband, SolutionFood, SolutionGinormous ]
   abstract: true
   name: Fuel Rod
   description: A fuel rod for a nuclear reactor.
@@ -43,15 +44,16 @@
       - metal
       - electrons
   - type: BadFood
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        reagents:
-        - ReagentId: Uranium
-          Quantity: 800
-        - ReagentId: Radium
-          Quantity: 200
-        canReact: false
+  - type: TESTSolutionSizeNonStandard
+    reason: Fuel rods were 1k, dropped to 960 as part of solution normalization but they're still double the expected density
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Uranium
+        Quantity: 768
+      - ReagentId: Radium
+        Quantity: 192
+      canReact: false
   - type: StealTarget
     stealGroup: ReactorFuelRodSteal
   - type: SentienceTarget

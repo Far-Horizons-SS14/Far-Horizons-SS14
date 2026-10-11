@@ -9,17 +9,17 @@ using Robust.Client.Player;
 
 namespace Content.Client._Starlight.Crayon.Overlays;
 
-public sealed class CrayonDecalGhostOverlay : DecalPlacementOverlay
+public sealed partial class CrayonDecalGhostOverlay : DecalPlacementOverlay
 {
-    [Dependency] private readonly IEyeManager _eyeManager = default!;
-    [Dependency] private readonly IInputManager _inputManager = default!;
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
+    [Dependency] private IEyeManager _eyeManager = default!;
+    [Dependency] private IInputManager _inputManager = default!;
+    [Dependency] private IPlayerManager _playerManager = default!;
     private readonly SharedInteractionSystem _interaction;
     private readonly DecalPrototype? _decalPrototype;
     private readonly Angle _rotation;
     private readonly Color _color;
 
-    public CrayonDecalGhostOverlay(DecalPlacementSystem placement, SharedTransformSystem transform, SpriteSystem sprite, SharedInteractionSystem interaction, DecalPrototype? decalPrototype, Angle rotation, Color color) : base(placement, transform, sprite)
+    public CrayonDecalGhostOverlay(DecalPlacementSystem placement, SharedMapSystem maps, SharedTransformSystem transform, SpriteSystem sprite, SharedInteractionSystem interaction, DecalPrototype? decalPrototype, Angle rotation, Color color) : base(placement, maps, transform, sprite)
     {
         IoCManager.InjectDependencies(this);
         _interaction = interaction;

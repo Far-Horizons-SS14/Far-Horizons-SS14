@@ -1,0 +1,39 @@
+- type: entity
+  name: Hypo Claws
+  parent: [ BaseClaws, BaseSyndicateContraband, SolutionHypospray, SolutionToolSmall ]
+  id: HypoClaws
+  description: Sharp, retractable plasteel claws, with hypo injector technology to inject chems.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Melee/claws.rsi
+  - type: MeleeWeapon
+    autoAttack: true
+    mustBeEquippedToUse: true
+    altDisarm: true
+    soundHit:
+      collection: AlienClaw
+    angle: 30
+    animation: WeaponArcClaw
+    attackRate: 2
+    damage:
+      types:
+        Slash: 12
+  - type: Injector
+    solutionName: hypospray
+    currentTransferAmount: 1
+    ignoreClosed: false
+    activeModeProtoId: HyposprayDynamicMode
+    allowedModes:
+    - HyposprayDynamicMode
+    - HyposprayInjectMode
+  - type: ExaminableSolution
+    solution: hypospray
+    exactVolume: true
+  - type: Appearance
+  - type: RefillableSolution
+    solution: hypospray
+  - type: Fiber
+    fiberMaterial: fibers-rubber
+    fiberColor: fibers-red-and-black-woven
+  - type: FingerprintMask
+

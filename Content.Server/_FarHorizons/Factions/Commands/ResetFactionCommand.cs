@@ -7,9 +7,9 @@ using Robust.Shared.Console;
 namespace Content.Server._FarHorizons.Factions.Commands;
 
 [AdminCommand(AdminFlags.Round)]
-public sealed class ResetFactionCommand : IConsoleCommand
+public sealed partial class ResetFactionCommand : IConsoleCommand
 {
-    [Dependency] private readonly IServerFactionManager _factions = default!;
+    [Dependency] private IServerFactionManager _factions = default!;
 
     public string Command => "resetfaction";
     public string Description => Loc.GetString("reset-faction-command-description");

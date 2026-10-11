@@ -32,8 +32,9 @@
       node: grille
       deconstructionTarget: start
     - type: Damageable
-      damageContainer: StructuralInorganic
       damageModifierSet: PerforatedMetallic
+    - type: Injurable
+      damageContainer: StructuralInorganic
     - type: Electrified
       requirePower: true
       noWindowInTile: true
@@ -59,6 +60,8 @@
           shape:
             !type:PhysShapeAabb
             bounds: "-0.5,-0.5,0.5,0.5"
+          mask:
+          - FullTileMask
           layer:
           - GlassLayer
     - type: Destructible
@@ -85,6 +88,7 @@
             True: { visible: True }
             False: { visible: False }
     - type: AnimationPlayer
+    - type: LineOfSightExclude # Far Horizons
 
 - type: entity
   id: ClockworkGrille
@@ -135,8 +139,9 @@
     tags:
     - ForceNoFixRotations
   - type: Damageable
-    damageContainer: StructuralInorganic
     damageModifierSet: FlimsyMetallic
+  - type: Injurable
+    damageContainer: StructuralInorganic
   - type: Destructible
     thresholds:
     - trigger:

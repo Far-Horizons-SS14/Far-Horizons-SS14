@@ -1,0 +1,102 @@
+- type: entity
+  parent: [ ClothingHeadset, BaseLawContraband ]
+  id: ClothingHeadsetIAA
+  name: Affairs Official Headset # Far Horizons
+  description: A headset for Affairs Official to hear the captain's last words. # Far Horizons
+  components:
+    - type: ContainerFill
+      containers:
+        key_slots:
+        - EncryptionKeyLaw
+        - EncryptionKeySecurity
+        - EncryptionKeyCommon
+    - type: Sprite
+      sprite: _FarHorizons/Clothing/Ears/Headsets/law.rsi #Far Horizons
+
+- type: entity
+  parent: [ ClothingHeadset, BaseLawContraband ]
+  id: ClothingHeadsetMagistrate
+  name: Concord Liaison's Headset #Far Horizons
+  description: A headset for the liaison to hear the far whispers of space law. #Far Horizons
+  components:
+    - type: ContainerFill
+      containers:
+        key_slots:
+        - EncryptionKeyLaw
+        - EncryptionKeySecurity
+        - EncryptionKeyCommon
+        - EncryptionKeyCommand
+        #Far Horizons-Start - Dual station comms for Corporate Liaison and Quartermaster
+        - EncryptionKeySyndiCommon
+        - EncryptionKeySyndiCommand
+        - EncryptionKeySyndiSecurity
+        #Far Horizons-End
+    - type: Sprite
+      sprite: _FarHorizons/Clothing/Ears/Headsets/law.rsi #Far Horizons
+
+- type: entity
+  parent: [ ClothingHeadset, BaseMajorContraband ]
+  id: ClothingHeadsetAssistantNinja
+  name: stolen headset
+  components:
+  - type: Sprite
+    sprite: Clothing/Ears/Headsets/service.rsi
+  - type: RadioChime
+    sound:
+      path: /Audio/_Starlight/Effects/Radio/ninja.ogg
+
+- type: entity
+  parent: [ ClothingHeadset, BaseSecurityContraband ]
+  id: ClothingHeadsetSecurityWarden
+  name: Warden's Headset #FH
+  description: This is used by your elite warden.
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeySecurity
+      - EncryptionKeyCommon
+  - type: Sprite
+    sprite: Clothing/Ears/Headsets/security.rsi
+  - type: Clothing
+    sprite: Clothing/Ears/Headsets/security.rsi
+  - type: RadioChime
+    sound:
+      path: /Audio/_Starlight/Effects/Radio/warden.ogg
+
+- type: entity
+  parent: [ ClothingHeadsetAlt, BaseSovietContraband ]
+  id: ClothingHeadsetAltSoviet
+  name: SSF marine over-ear headset
+  description: Priyom.
+  components:
+  - type: Headset
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeySoviet
+  - type: Sprite
+    sprite: _Starlight/Clothing/Ears/Headsets/soviet_headset.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Ears/Headsets/soviet_headset.rsi
+  - type: RadioChime
+    sound:
+      path: /Audio/_Starlight/Effects/Radio/soviet.ogg
+
+- type: entity
+  parent: ClothingHeadsetCargo
+  id: ClothingHeadsetSalvageLead
+  name: salvage lead's headset
+  description: Headset used by the salvage lead.
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      # - EncryptionKeyExpedition # Far Horizons - removed
+      - EncryptionKeyCargo
+      - EncryptionKeyCommon
+      - EncryptionKeySyndiCommon # Far Horizons
+  - type: Sprite
+    sprite: Clothing/Ears/Headsets/mining.rsi
+  - type: Clothing
+    sprite: Clothing/Ears/Headsets/mining.rsi

@@ -1,0 +1,54 @@
+- type: entity
+  parent: BaseAction
+  id: ActionRetractableItemHypoClaws
+  name: Hypo Claws
+  description: Extend or retract your claws!
+  components:
+  - type: Action
+    useDelay: 1
+    raiseOnAction: true
+    itemIconStyle: BigAction
+    icon:
+      sprite: _Starlight/Actions/implants.rsi
+      state: toggle_claws
+  - type: InstantAction
+    event: !type:OnRetractableItemActionEvent
+  - type: RetractableItemAction
+    spawnedPrototype: HypoClaws
+    spawnInHand: false
+    slot: gloves
+    requiredSlots: GLOVES
+    summonSounds:
+      collection: ClawsUnsheathe
+    retractSounds:
+      collection: ClawsSheathe
+    isCybernetic: true
+
+#technically I dont need this, but I really dont like the look of the default icon
+- type: entity
+  id: ActionToggleCyberIFA30Left
+  name: Toggle IFA-30
+  description: Toggle the left IFA-30. Press twice to toggle immediately.
+  components:
+    - type: Action
+      useDelay: 5
+      icon:
+        sprite: /Textures/_FarHorizons/Objects/Weapons/Guns/SMGs/ifa30.rsi
+        state: icon
+      itemIconStyle: NoItem
+    - type: InstantAction
+      event: !type:ToggleCyberlimbMenuEvent
+
+- type: entity
+  id: ActionToggleCyberIFA30Right
+  name: Toggle IFA-30
+  description: Toggle the right IFA-30. Press twice to toggle immediately.
+  components:
+    - type: Action
+      useDelay: 5
+      icon:
+        sprite: /Textures/_FarHorizons/Objects/Weapons/Guns/SMGs/ifa30.rsi
+        state: icon
+      itemIconStyle: NoItem
+    - type: InstantAction
+      event: !type:ToggleCyberlimbMenuEvent

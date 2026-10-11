@@ -6,8 +6,10 @@ using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.FixedPoint;
 using Content.Shared.Medical.Healing;
+using Content.Shared.Random.Helpers;
 using Content.Shared.Tag;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Random;
 using Robust.Shared.Utility;
 
 namespace Content.Shared._FarHorizons.LimbDamage;
@@ -71,6 +73,48 @@ public partial class LimbDamageSystem
         foreach (var limb in allLimbs)
             _damageable.ChangeDamage(limb.Owner, damage, ignoreResistances, interruptsDoAfters, origin,
                 ignoreGlobalModifiers, armorPenetration, canHeal);
+    }
+
+    public void ChangeDamageRandom(Entity<LimbDamageableComponent?> target, DamageSpecifier damage,
+        bool ignoreResistances = false, bool interruptsDoAfters = true, EntityUid? origin = null,
+        bool ignoreGlobalModifiers = false, float armorPenetration = 0, bool canHeal = true)
+    {
+        if (!Resolve(target, ref target.Comp, false))
+            return;
+        
+        var allLimbs = GetAllDamageable(target);
+        if (allLimbs.Count == 0)
+            return;
+        
+        var random = SharedRandomExtensions.PredictedRandom(_timing, GetNetEntity(target.Owner));
+
+        if (allLimbs.Count == 1)
+        {
+            _damageable.ChangeDamage(allLimbs[0].Owner, damage, ignoreResistances, interruptsDoAfters, origin,
+                ignoreGlobalModifiers, armorPenetration, canHeal);
+            return;
+        }
+
+        var weights = new float[allLimbs.Count];
+        var totalWeight = 0f;
+        const float Min = 0.05f;
+        const float Max = 1.0f;
+
+        for (var i = 0; i < weights.Length; i++)
+        {
+            var weight = Min + (random.NextSingle() * (Max - Min));
+            weights[i] = weight;
+            totalWeight += weight;
+        }
+
+        for (var i = 0; i < allLimbs.Count; i++)
+        {
+            var proportion = weights[i] / totalWeight;
+            var limbDamage = damage * proportion;
+
+            _damageable.ChangeDamage(allLimbs[i].Owner, limbDamage, ignoreResistances, interruptsDoAfters, origin,
+                ignoreGlobalModifiers, armorPenetration, canHeal);
+        }
     }
 
     public DamageSpecifier HealAllEvenly(Entity<LimbDamageableComponent?> target, FixedPoint2 amount,

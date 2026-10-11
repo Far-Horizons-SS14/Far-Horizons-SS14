@@ -42,10 +42,17 @@
 
 - type: entity
   parent:
+  - ActiveCritBase
   - AppearanceProtoVulp
   - BaseMobProtoVulp
   id: MobProtoVulp
   name: Urist McVulpster
+  components:
+    - type: FluidFootprintSpreader
+      footprint: Animal
+      footprintSize: 1.0
+      stepSpacing: 0.2
+      lateralOffset: 0.15
 
 # Organs
 
@@ -68,7 +75,12 @@
 - type: entity
   parent: [ OrganBaseTorsoSexed, OrganBaseTorso, OrganProtoVulpExternal ]
   id: OrganProtoVulpTorso
-
+  components:
+  - type: VisualOrganMarkings
+    hideableLayers:
+    - enum.HumanoidVisualLayers.BodyCover
+    - enum.HumanoidVisualLayers.BodyCoverCover
+    
 - type: entity
   parent: [ OrganBaseHeadSexed, OrganBaseHead, OrganProtoVulpExternal ]
   id: OrganProtoVulpHead
@@ -137,13 +149,20 @@
   components:
   - type: Metabolizer
     updateInterval: 0.75
-  - type: SolutionContainerManager
+  - type: SolutionManager
     solutions:
-      food: {}
-      stomach:
-        maxVol: 100 #he hungers
+    - SolutionProtoVulpStomach
   - type: Stomach
     specialDigestible:
       tags:
       - RamChip
     isSpecialDigestibleExclusive: false
+
+- type: entity
+  parent: SolutionStomach
+  id: SolutionProtoVulpStomach
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    solution:
+      maxVol: 300

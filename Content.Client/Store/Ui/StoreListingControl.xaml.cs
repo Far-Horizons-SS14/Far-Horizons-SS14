@@ -15,9 +15,9 @@ public sealed partial class StoreListingControl : Control
 {
     public event Action<string, string>? OnListingHoverEntered; // Starlight
     public event Action? OnListingHoverExited; // Starlight
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
-    [Dependency] private readonly IEntityManager _entity = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
+    [Dependency] private IEntityManager _entity = default!;
+    [Dependency] private IGameTiming _timing = default!;
     private readonly ClientGameTicker _ticker;
 
     private readonly ListingDataWithCostModifiers _data;
@@ -103,7 +103,7 @@ public sealed partial class StoreListingControl : Control
                 var m = _priceNumberRegex.Match(_price);
                 if (m.Success)
                 {
-                    StoreItemBuyButton.Text = $"{m.Groups[1].Value}¢";
+                    StoreItemBuyButton.Text = $"{m.Groups[1].Value}ï¿½";
                 }
                 else
                 {

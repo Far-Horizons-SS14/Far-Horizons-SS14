@@ -12,12 +12,12 @@ using Content.Shared.Weapons.Melee.Events; // Starlight-edit
 
 namespace Content.Server.Spider;
 
-public sealed class SpiderSystem : SharedSpiderSystem
+public sealed partial class SpiderSystem : SharedSpiderSystem
 {
-    [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly MobStateSystem _mobState = default!;
-    [Dependency] private readonly EntityLookupSystem _lookup = default!; // Starlight-edit
+    [Dependency] private PopupSystem _popup = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private MobStateSystem _mobState = default!;
+    [Dependency] private EntityLookupSystem _lookup = default!; // Starlight-edit
 
     /// <summary>
     ///     A recycled hashset used to check turfs for spiderwebs.
@@ -34,7 +34,7 @@ public sealed class SpiderSystem : SharedSpiderSystem
     // Starlight-start
     public void OnMeleeHit(EntityUid uid, SpiderComponent component, ref MeleeHitEvent args)
     {
-        if (component.CantBreakWeb && args.HitEntities.Any(EntityManager.HasComponent<SpiderWebObjectComponent>))
+        if (component.CantBreakWeb && args.HitEntities.Any(HasComp<SpiderWebObjectComponent>))
             args.BonusDamage = -args.BaseDamage;
     }
     // Starlight-end

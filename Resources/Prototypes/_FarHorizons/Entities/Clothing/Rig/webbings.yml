@@ -1,4 +1,4 @@
-#region Base
+#region ## Base ##
 
 - type: entity
   parent: [ClothingBeltStorageBase, ContentsExplosionResistanceBase]
@@ -38,81 +38,65 @@
     tags: 
     - Webbing
 
-#region NanoTransen Security
 - type: entity
-  parent: ClothingBeltWebbingBase
-  id: ClothingBeltSecurityWebbing
-  name: Security Carrier
-  description: Unique and versatile chest rig, can hold spare magazines.
+  parent: [ClothingBeltStorageBase, ContentsExplosionResistanceBase]
+  id: ClothingBeltTacticalMedicalWebbingBase
+  name: Tactical Medical Webbing
+  description: Can hold bits and bobs, magazines, grenades AND life-saving medical supplies! Truly, there is nothing else it can possibly do.
   components:
   - type: Sprite
     sprite: Clothing/Belt/securitywebbing.rsi
   - type: Clothing
     sprite: Clothing/Belt/securitywebbing.rsi
-
-- type: entity
-  parent: ClothingBeltStorageBase
-  id: ClothingBeltHolster
-  name: Shoulder Holster
-  description: 'A holster to carry a handgun and ammo. WARNING: Badasses only.'
-  components:
-  - type: Sprite
-    sprite: Clothing/Belt/holster.rsi
-  - type: Clothing
-    sprite: Clothing/Belt/holster.rsi
     slots:
       - rig
+  - type: ExplosionResistance
+    damageCoefficient: 0
   - type: Storage
     grid:
     - 0,0,3,1
-  - type: Tag
-    tags: 
-    - Webbing
-    - ShoulderHolster #So Detective Wawa can have this.
-
-- type: entity
-  parent: ClothingBeltWebbingBase
-  id: ClothingBeltBrigmedicWeb
-  name: Tactical Trauma Rig
-  description: A stylish alternative to the belt.
-  components:
-  - type: Sprite
-    sprite: _Starlight/Clothing/Belt/brigmedicwebbing.rsi
-  - type: Clothing
-    sprite: _Starlight/Clothing/Belt/brigmedicwebbing.rsi
-  - type: Appearance
-
-#region NanoTransen Service
-- type: entity
-  parent: [ClothingBeltAmmoProviderBase, BaseSecurityBartenderContraband]
-  id: ClothingBeltBandolier
-  name: Bandolier
-  description: A bandolier for holding shotgun ammunition.
-  components:
-  - type: Sprite
-    sprite: Clothing/Belt/bandolier.rsi
-  - type: Clothing
-    sprite: Clothing/Belt/bandolier.rsi
-    slots:
-      - rig
-  - type: Item
-    size: Huge
-  - type: BallisticAmmoProvider
+    - 0,3,3,4
     whitelist:
       tags:
-        - ShellShotgun
-    capacity: 14
+        - CigPack
+        - MagazinePistol
+        - MagazineMagnum
+        - CombatKnife
+        - HandGrenade
+        - Radio
+        - Knife
+        - Cartridge
+        - Bottle
+        - Vial
+        - Gauze
+        - Brutepack
+        - Bloodpack
+        - AmmoniaPack
+        - Ointment
+        - Tourniquet
+        - PillCanister
+        - SurgeryTool
+        - Dropper
+      components:
+        - DoorRemote
+        - Whistle
+        - BallisticAmmoProvider
+        - CartridgeAmmo
+        - Injector
+        - Pill
+  - type: Appearance
   - type: Tag
     tags: 
     - Webbing
 
-#region Cargo
+#region ## GSL ##
 
 - type: entity
   parent: ClothingBeltWebbingBase
   id: ClothingBeltSalvageWebbing
   name: Salvage Utility Rig
   description: When the salvage wrecks weren't enough, the salvage team stole these rigs from their cargo technician friends.
+  suffix: GSL
   components:
   - type: Sprite
     sprite: _FarHorizons/Clothing/Belt/salvagewebbing.rsi
@@ -149,6 +133,7 @@
   id: ClothingBeltMercWebbing
   name: Mercenary Webbing
   description: Ideal for storing spare ammo, grenades and other bits and bobs.
+  suffix: GSL
   components:
   - type: Sprite
     sprite: Clothing/Belt/mercwebbing.rsi
@@ -156,23 +141,157 @@
     sprite: Clothing/Belt/mercwebbing.rsi
 
 - type: entity
-  parent: [BaseSalvageContraband, ClothingBeltWebbingBase]
+  parent: [ClothingBeltWebbingBase, BaseSalvageContraband]
   id: ClothingBeltSalvageMercWebbing
-  name: Scrapper Webbing
+  name: Salvage Webbing
   description: Ideal for storing spare ammo, some small items and the totally not contraband grenades.
+  suffix: GSL
   components:
     - type: Sprite
-      sprite: _Starlight/Clothing/Belt/salvage.rsi
+      sprite: _Starlight/Clothing/Belt/salvage.rsi # Reverted to SL sprite
     - type: Clothing
-      sprite: _Starlight/Clothing/Belt/salvage.rsi
+      sprite: _Starlight/Clothing/Belt/salvage.rsi # Reverted to SL sprite
+    - type: ExplosionResistance
+      damageCoefficient: 0.7
+      worn: false
+    - type: Armor
+      modifiers:
+        coefficients:
+          Blunt: 0.95
+          Slash: 0.95
+          Piercing: 0.95
+      priceMultiplier: 1.15
 
 
-#region NanoTrasen Navy
+#region ## Nanotrasen ##
+- type: entity
+  parent: ClothingBeltWebbingBase
+  id: ClothingBeltSecurityWebbing
+  name: Security Carrier
+  description: Unique and versatile chest rig, can hold spare magazines.
+  suffix: NT
+  components:
+  - type: Sprite
+    sprite: Clothing/Belt/securitywebbing.rsi
+  - type: Clothing
+    sprite: Clothing/Belt/securitywebbing.rsi
+
+- type: entity
+  parent: ClothingBeltStorageBase
+  id: ClothingBeltHolster
+  name: Shoulder Holster
+  description: 'A holster to carry a handgun and ammo. WARNING: Badasses only.'
+  suffix: NT
+  components:
+  - type: Sprite
+    sprite: Clothing/Belt/holster.rsi
+  - type: Clothing
+    sprite: Clothing/Belt/holster.rsi
+    slots:
+      - rig
+  - type: Storage
+    grid:
+    - 0,0,3,1
+  - type: Tag
+    tags: 
+    - Webbing
+    - ShoulderHolster #So Detective Wawa can have this.
+
+- type: entity
+  parent: ClothingBeltTacticalMedicalWebbingBase
+  id: ClothingBeltBrigmedicWeb
+  name: Brigmedic's Tactical Trauma Rig
+  description: Evermore pockets for all the bottles and vials! Or magazines, if you're boring.
+  suffix: NT
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Belt/brigmedic_webbing.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Belt/brigmedic_webbing.rsi
+  - type: Appearance
+
+- type: entity
+  parent: ClothingBeltTacticalMedicalWebbingBase
+  id: ClothingBeltCorpsmanWeb
+  name: Corpsman's Duty Rig
+  description: Can hold life-saving medical supplies or magazines. Or both.
+  suffix: NT
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Belt/corpsman_webbing.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Belt/corpsman_webbing.rsi
+  - type: Appearance
+
+- type: entity
+  parent: [ClothingBeltWebbingBase, BaseBlueshieldContraband]
+  id: ClothingBeltBlueShieldWeb
+  name: Blueshield Officer's Rig
+  description: Heavy duty rig that is unfortunately, limited in what it can hold. 
+  suffix: NT
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Belt/blueshield_webbing.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Belt/blueshield_webbing.rsi
+  - type: Appearance
+
+- type: entity
+  parent: ClothingBeltWebbingBase
+  id: ClothingBeltSecurityDeputyWeb
+  name: Deputy Belt Bags
+  description: Small series of belt bags that attach seamlessly with the Deputy Belt, allowing for quick grenade and magazine storage.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Belt/deputy_webbing.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Belt/deputy_webbing.rsi
+  - type: Appearance
+
+- type: entity
+  parent: ClothingBeltTacticalMedicalWebbingBase
+  id: ClothingBeltSecurityDeputyMedicalWeb
+  name: Deputy Medical Belt Bags
+  description: Small series of belt bags that attach seamlessly with the Deputy Medical Belt, allowing for quick storage of medical supplies.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Belt/deputy_webbing_medical.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Belt/deputy_webbing_medical.rsi
+  - type: Appearance
+
+#region Service
+- type: entity
+  parent: [ClothingBeltAmmoProviderBase, BaseSecurityBartenderContraband]
+  id: ClothingBeltBandolier
+  name: Bandolier
+  description: A bandolier for holding shotgun ammunition.
+  suffix: NT
+  components:
+  - type: Sprite
+    sprite: Clothing/Belt/bandolier.rsi
+  - type: Clothing
+    sprite: Clothing/Belt/bandolier.rsi
+    slots:
+      - rig
+  - type: Item
+    size: Huge
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+        - ShellShotgun
+    capacity: 14
+  - type: Tag
+    tags: 
+    - Webbing
+
+#region Navy
 - type: entity
   parent: [ClothingBeltWebbingBase, BaseCentcommContraband]
   id: ClothingBeltNTNCRig
-  name: NanoTrasen marine rig
+  name: NanoTrasen Marine Rig
   description: A military rig worn by NanoTrasen Marines.
+  suffix: NT
   components:
   - type: Storage #Starlight
     grid:
@@ -189,28 +308,83 @@
     damageCoefficient: 0.1
   - type: StaticPrice
     price: 900
-#region Syndi/NT split
+
+
+
+
+
+#region ## NeoSol ##
 
 
 
 
 
 
+#region Command
 
-#region Syndicate Security
+# Red Sword Operative (BSO)
+
+- type: entity
+  parent: [ ClothingBeltStorageBase, ContentsExplosionResistanceBase, BaseBlueshieldContraband ] # Technically not Blueshield, but that's a problem for another day
+  id: ClothingBeltRSOWebbing
+  name: Red Sword Operative Rig
+  description: Custom built to hold 28% more pain for the enemy.
+  suffix: NS
+  components:
+  - type: Storage
+    grid:
+    - 0,0,7,1
+    - 9,0,10,1 #right
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Belt/NeoSol/redswordwebbing.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Belt/NeoSol/redswordwebbing.rsi
+  - type: ExplosionResistance
+    damageCoefficient: 0.5
+
+#region Security
 
 - type: entity
   parent: ClothingBeltWebbingBase
   id: ClothingBeltSecurityWebbingSyndi
   name: Security Carrier
-  description: Unique and versatile chest rig, can hold security gear.
+  description: Unique and versatile chest rig, can hold spare magazines.
+  suffix: NS
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/Belt/securitywebbingsyndi.rsi
+    sprite: _FarHorizons/Clothing/Belt/NeoSol/securitywebbing.rsi
   - type: Clothing
-    sprite: _FarHorizons/Clothing/Belt/securitywebbingsyndi.rsi
+    sprite: _FarHorizons/Clothing/Belt/NeoSol/securitywebbing.rsi
 
-# region Syndicate Nukies
+# Brigmedic (Brigmedic)
+
+- type: entity
+  parent: ClothingBeltBrigmedic
+  id: ClothingBeltBrigmedicWebSyndi
+  name: Tactical Trauma Rig
+  description: A stylish alternative to the belt.
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Belt/NeoSol/brigmedicwebbing.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Belt/NeoSol/brigmedicwebbing.rsi
+  - type: Appearance
+
+- type: entity
+  id: ClothingBeltBrigmedicWebSyndiFilled
+  parent: ClothingBeltBrigmedicWebSyndi
+  suffix: NS, Filled
+  components:
+  - type: StorageFill
+    contents:
+      - id: Stunbaton
+      - id: Handcuffs    
+      - id: Brutepack
+      - id: Ointment
+      - id: Gauze
+
+# region Nukies
 
 - type: entity
   parent: [ClothingBeltWebbingBase, BaseMajorContraband]
@@ -219,9 +393,9 @@
   description: A set of tactical webbing worn by various military corpsmen.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/Belt/paramedicwebbing.rsi
+    sprite: _FarHorizons/Clothing/Belt/NeoSol/paramedicwebbing.rsi
   - type: Clothing
-    sprite: _FarHorizons/Clothing/Belt/paramedicwebbing.rsi
+    sprite: _FarHorizons/Clothing/Belt/NeoSol/paramedicwebbing.rsi
   - type: Item
     size: Huge
 
@@ -312,7 +486,7 @@
     tags: 
     - Webbing
 
-#region USSP
+#region ## USSP ##
 - type: entity
   parent: [ClothingBeltWebbingBase, ContentsExplosionResistanceBase, BaseSovietContraband]
   id: ClothingBeltSovietMarineWebbing

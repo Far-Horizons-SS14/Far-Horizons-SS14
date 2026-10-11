@@ -18,6 +18,7 @@ using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
 using Content.Shared.NPC.Systems;
 using Content.Shared.Revolutionary.Components;
+using Content.Shared.Revolutionary.Events;
 using Content.Shared.Store;
 using Content.Shared.Store.Events;
 using Robust.Shared.Maths;
@@ -43,19 +44,19 @@ namespace Content.Server.Revolutionary;
 /// <summary>
 /// Handles the revolutionary supply rift system.
 /// </summary>
-public sealed class RevSupplyRiftSystem : EntitySystem
+public sealed partial class RevSupplyRiftSystem : EntitySystem
 {
-    [Dependency] private readonly ChatSystem _chat = default!;
-    [Dependency] private readonly Chat.Managers.IChatManager _chatManager = default!;
-    [Dependency] private readonly NavMapSystem _navMap = default!;
-    [Dependency] private readonly StoreSystem _store = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly ISharedPlayerManager _playerManager = default!;
-    [Dependency] private readonly IAdminManager _adminManager = default!;
-    [Dependency] private readonly AlertLevelSystem _alert = default!; // Starlight
-    [Dependency] private readonly StationSystem _station = default!; // starlight
-    [Dependency] private readonly IConfigurationManager _config = default!; // Starlight
+    [Dependency] private ChatSystem _chat = default!;
+    [Dependency] private Chat.Managers.IChatManager _chatManager = default!;
+    [Dependency] private NavMapSystem _navMap = default!;
+    [Dependency] private StoreSystem _store = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private ISharedPlayerManager _playerManager = default!;
+    [Dependency] private IAdminManager _adminManager = default!;
+    [Dependency] private AlertLevelSystem _alert = default!; // Starlight
+    [Dependency] private StationSystem _station = default!; // starlight
+    [Dependency] private IConfigurationManager _config = default!; // Starlight
 
     private const string RevSupplyRiftListingId = "RevSupplyRiftListing";
     
@@ -88,7 +89,7 @@ public sealed class RevSupplyRiftSystem : EntitySystem
         SubscribeLocalEvent<RevSupplyRiftComponent, ComponentStartup>(OnRevRiftStartup);
         SubscribeLocalEvent<RevSupplyRiftComponent, ComponentShutdown>(OnRevRiftShutdown);
         SubscribeLocalEvent<StorePurchaseAttemptEvent>(OnStorePurchaseAttempt);
-        SubscribeLocalEvent<StorePurchaseCompletedEvent>(OnStorePurchaseCompleted);
+        SubscribeLocalEvent<StoreBuyFinishedEvent>(OnStorePurchaseCompleted);
         
         // Subscribe to the round restart cleanup event to reset the rift destroyed flag
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestart);
@@ -158,12 +159,12 @@ public sealed class RevSupplyRiftSystem : EntitySystem
     }
     
     /// <summary>
-    /// Handles the StorePurchaseCompletedEvent for revolutionary supply rifts.
+    /// Handles completed purchases for revolutionary supply rifts.
     /// </summary>
-    private void OnStorePurchaseCompleted(ref StorePurchaseCompletedEvent args)
+    private void OnStorePurchaseCompleted(ref StoreBuyFinishedEvent args)
     {
         // Only handle the revolutionary supply rift listing
-        if (args.ListingId != RevSupplyRiftListingId)
+        if (args.PurchasedItem.ID != RevSupplyRiftListingId)
             return;
         
         // Mark that we're done processing a rift purchase
@@ -184,6 +185,8 @@ public sealed class RevSupplyRiftSystem : EntitySystem
         
         // Store the active rift
         _activeRift = uid;
+        var opened = new RevSupplyRiftOpenedEvent();
+        RaiseLocalEvent(ref opened);
         
         // Try to get the name of the revolutionary who placed the rift
         // The Dragon property in DragonRiftComponent is actually the revolutionary player entity
@@ -223,7 +226,7 @@ public sealed class RevSupplyRiftSystem : EntitySystem
             if (TryComp(uid, out TransformComponent? riftTransform))
             {
                 // Get all entities with HumanoidAppearanceComponent within a small radius
-                var nearbyHumanoids = EntityManager.EntityQuery<HumanoidProfileComponent, TransformComponent>()
+                var nearbyHumanoids = EntityQuery<HumanoidProfileComponent, TransformComponent>()
                     .Where(pair => 
                     {
                         var (_, otherTransform) = pair;
@@ -302,6 +305,8 @@ public sealed class RevSupplyRiftSystem : EntitySystem
             // Mark that a rift has been destroyed
             _riftDestroyed = true;
             _activeRift = null;
+            var destroyed = new RevSupplyRiftDestroyedEvent();
+            RaiseLocalEvent(ref destroyed);
             
             // Update all uplinks with the destroyed message
             UpdateRiftDestroyedListing();

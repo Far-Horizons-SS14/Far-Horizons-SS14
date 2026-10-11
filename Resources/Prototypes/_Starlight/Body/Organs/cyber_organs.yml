@@ -1,0 +1,215 @@
+- type: entity
+  id: CyberEyeNightVision
+  name: Night Vision Cyber Eyes #FH CRUSADE
+  description: Enables you to see in the dark.
+  parent: [ OrganCyber, OrganHumanEyes, OrganCyberExternal ] #FH
+  components:
+  - type: VisualOrgan #FH Start
+    data: 
+      sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi #all of the organs in this file probably need to be reparented, using the Human Parents is giving them all stuff they shouldnt have
+      state: eyes_night #FH End
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/implants.rsi
+    layers:
+      - state: eyes_night
+  - type: FunctionalOrgan
+    comps: 
+    - type: NightVision
+  # Far Horizons - EMP effects from installed cybernetics
+  - type: OrganEmpTarget
+    baseDamage:
+      types:
+        Shock: 5
+    thresholds:
+      1:
+        glitchDuration: 5.0
+      6:
+        glitchDuration: 5.0
+        additionalEffects:
+          StatusEffectBlindness: 2.0
+
+- type: entity
+  id: CyberEyeThermal
+  name: Thermal Vision Cyber Eyes #FH CRUSADE
+  description: Enables you to see in the dark and detect warm objects through walls.
+  parent: [ OrganCyber, OrganHumanEyes, OrganCyberExternal ] #FH
+  components:
+  - type: VisualOrgan #FH Start
+    data: 
+      sprite: _FarHorizons/Mobs/Species/Cyberlimbs/parts.rsi
+      state: eyes_thermal #FH End
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/implants.rsi
+    layers:
+      - state: eyes_thermal
+  - type: FunctionalOrgan
+    comps: 
+    - type: ThermalVision
+  # Far Horizons - EMP effects from installed cybernetics
+  - type: OrganEmpTarget
+    baseDamage:
+      types:
+        Shock: 5
+    thresholds:
+      1:
+        glitchDuration: 5.0
+      6:
+        glitchDuration: 5.0
+        additionalEffects:
+          StatusEffectBlindness: 2.0
+
+- type: entity
+  id: BudgetCyberEyes
+  name: Budget CyberEyes
+  description: Cold and soulless. Just as depressing to look out of as to look into.
+  parent: [ OrganCyber, OrganHumanEyes, OrganCyberExternal ] #FH
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/budget_cyber_organs.rsi
+    layers:
+      - state: eyeball-l
+      - state: eyeball-r
+  - type: FunctionalOrgan
+    comps: 
+    - type: NoirOverlay
+  # Far Horizons - EMP effects from installed cybernetics
+  - type: OrganEmpTarget
+    baseDamage:
+      types:
+        Shock: 5
+    thresholds:
+      1:
+        glitchDuration: 5.0
+      6:
+        glitchDuration: 5.0
+        additionalEffects:
+          StatusEffectBlindness: 2.0
+  # FH start
+  - type: RoundstartImplantable
+    cost: 0
+    iconScale: 1.5
+    iconOffset: 0, -5
+    description:
+      - roundstart-cybernetics-budget-level-description
+      - roundstart-cybernetics-generic-limb-description
+  # FH end
+
+- type: entity
+  id: BudgetCyberTongue
+  name: Budget CyberTongue
+  description: An artificial tongue with full range of movement. Taste buds not included.
+  parent: [ OrganCyber, OrganHumanTongue ]
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/budget_cyber_organs.rsi
+  - type: FunctionalOrgan
+    comps: 
+    - type: UnableToTaste
+
+- type: entity
+  id: BudgetCyberLiver
+  name: Budget CyberLiver
+  description: "Design so reliable, it didn't have to be changed for the last 237 years! Warning: This product isn't meant for recreational drinking!"
+  parent: [ OrganCyber, OrganHumanLiver ]
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/budget_cyber_organs.rsi
+    state: liver
+  - type: Metabolizer # The liver metabolizes certain chemicals only, like alcohol.
+    maxReagents: 1
+    metabolizerTypes: [BudgetCyber]
+    updateInterval: 0.2 # removes alcohol very slowly along with the stomach removing it as a drink
+
+- type: entity
+  id: BudgetCyberStomach
+  name: Budget CyberStomach
+  description: An artifical stomach. Its lack of elasticity is a desired feature for those who want to control their eating habits.
+  parent: [ OrganCyber, OrganHumanStomach ]
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/budget_cyber_organs.rsi
+    state: stomach
+  - type: Solution # FH - migrated from SolutionContainerManager
+    solution:
+      maxVol: 5
+      reagents:
+      - ReagentId: UncookedAnimalProteins
+        Quantity: 5
+  - type: SolutionManager # FH - migrated from SolutionContainerManager
+    solutions:
+    - SolutionBudgetCyberStomach
+  - type: Metabolizer
+    maxReagents: 3
+    metabolizerTypes: [BudgetCyber]
+
+- type: entity
+  parent: SolutionStomach
+  id: SolutionBudgetCyberStomach
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution # FH - migrated from SolutionContainerManager
+    solution:
+      maxVol: 30
+
+- type: entity
+  id: BudgetCyberKidneys
+  name: Budget CyberKidneys
+  description: A pair of artificial kidneys. Due to cheap materials used, they waste significantly more water than organic ones.
+  parent: [ OrganCyber, OrganHumanKidneys ]
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/budget_cyber_organs.rsi
+    layers:
+      - state: kidney-l
+      - state: kidney-r
+  - type: FunctionalOrgan
+    comps: 
+    - type: ThirstRateMultiplier
+      multiplier: 1.25
+
+- type: entity
+  id: CyberRebreather
+  name: Cyber Rebreather
+  description: Artificial lungs with an integrated gas tank system. Can be filled with any breathable gas mixture.
+  parent: [ OrganCyber, OrganHumanLungs ]
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/breathable_cyber_lungs.rsi
+    layers:
+      - state: lung-l
+      - state: lung-r
+  - type: Metabolizer
+    metabolizerTypes: [ Human ]
+  - type: Lung
+    alert: LowOxygen
+  - type: Item
+    size: Normal
+    heldPrefix: lungs
+    sprite: _Starlight/Objects/Specific/Medical/breathable_cyber_lungs.rsi
+    shape:
+    - 0,0,3,3
+  - type: BreathMask
+  - type: OrganBreathTool
+    startActivated: false
+  - type: GasTank
+    air:
+      volume: 2.5
+      temperature: 293.15
+    releasePressure: 21.3
+  - type: OrganGasTankFillable
+    targetPressure: 1000.0
+  - type: UseDelay
+    delays:
+      gasTank:
+        length: 1.0
+  - type: ActivatableUI
+    key: enum.SharedGasTankUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.SharedGasTankUiKey.Key:
+        type: GasTankBoundUserInterface
+      enum.SharedGasTankUiKey.OrganKey:
+        type: BreathableOrganBoundUserInterface
+  - type: Tag
+    tags:
+    - GasTank

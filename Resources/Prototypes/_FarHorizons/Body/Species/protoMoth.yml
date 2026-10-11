@@ -33,7 +33,7 @@
       Tongue: OrganProtogenTongue
       Ears: OrganProtogenEars
       Lungs: OrganProtogenLungs
-      Heart: OrganProtogenHeart
+      Heart: OrganProtoMothHeart
       Stomach: OrganProtoMothStomach
       Liver: OrganProtogenLiver
       Kidneys: OrganProtogenKidneys
@@ -42,10 +42,17 @@
 
 - type: entity
   parent:
+  - ActiveCritBase
   - AppearanceProtoMoth
   - BaseMobProtoMoth
   id: MobProtoMoth
   name: Urist McFluffster
+  components:
+    - type: FluidFootprintSpreader
+      footprint: Insect
+      footprintSize: 0.75
+      stepSpacing: 0.2
+      lateralOffset: 0.1
 
 # Organs
 
@@ -58,12 +65,25 @@
     markingData:
       group: ProtoMoth
 
+- type: entity 
+  parent: OrganProtogenHeart
+  id: OrganProtoMothHeart
+  components:
+  - type: Metabolizer
+    maxReagents: 2
+    metabolizerTypes: [ Moth ] 
+
 # Limbs
 
 - type: entity
   parent: [ OrganProtoMothExternal, OrganMothTorso ]
   id: OrganProtoMothTorso
-
+  components:
+  - type: VisualOrganMarkings
+    hideableLayers:
+    - enum.HumanoidVisualLayers.BodyCover
+    - enum.HumanoidVisualLayers.BodyCoverCover
+    
 - type: entity
   parent: [ OrganProtoMothExternal, OrganMothHead ]
   id: OrganProtoMothHead

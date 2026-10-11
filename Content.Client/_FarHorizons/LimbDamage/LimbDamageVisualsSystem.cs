@@ -10,10 +10,10 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Client._FarHorizons.LimbDamage;
 
-public sealed class LimbDamageVisualsSystem : VisualizerSystem<LimbDamageVisualsComponent>
+public sealed partial class LimbDamageVisualsSystem : VisualizerSystem<LimbDamageVisualsComponent>
 {
-    [Dependency] private readonly DamageableSystem _damageable = default!;
-    [Dependency] private readonly SpriteSystem _sprite = default!;
+    [Dependency] private DamageableSystem _damageable = default!;
+    [Dependency] private SpriteSystem _sprite = default!;
 
     public override void Initialize()
     {

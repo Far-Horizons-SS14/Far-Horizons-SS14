@@ -15,8 +15,8 @@ namespace Content.Server.Starlight.Antags.Abductor;
 public sealed partial class AbductorSystem : SharedAbductorSystem
 {
     
-    [Dependency] private readonly BodySystem _body = default!;
-    [Dependency] private readonly ISharedAdminLogManager _admin = default!;
+    [Dependency] private BodySystem _body = default!;
+    [Dependency] private ISharedAdminLogManager _admin = default!;
     
     public void InitializeExtractor()
     {

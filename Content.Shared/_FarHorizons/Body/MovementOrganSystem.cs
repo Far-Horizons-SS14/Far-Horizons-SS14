@@ -2,21 +2,22 @@ using System.Linq;
 using Content.Shared.Body;
 using Content.Shared.Inventory;
 using Content.Shared.Movement.Systems;
-using Content.Shared.Traits.Assorted;
+using Content.Shared._FarHorizons.Traits.Assorted;
 
 namespace Content.Shared._FarHorizons.Body;
 
 public sealed partial class MovementOrganSystem : EntitySystem
 {
-    [Dependency] private readonly MovementSpeedModifierSystem _movementSpeed = default!;
-    [Dependency] private readonly InventorySystem _inventory = default!;
-
+    [Dependency] private MovementSpeedModifierSystem _movementSpeed = default!;
+    [Dependency] private InventorySystem _inventory = default!;
     private const float NoLegsModifier = 0.1f;
+    private const string WheelChairBound = "WheelchairBound";
 
     public override void Initialize()
     {
         base.Initialize();
 
+        SubscribeLocalEvent<MovementOrganExpectedToMoveComponent, MapInitEvent>((ent, ref _) => RefreshModifiers(ent), after: [typeof(InitialBodySystem)]);
         SubscribeLocalEvent<MovementOrganExpectedToMoveComponent, RefreshMovementSpeedModifiersEvent>(OnMovementModifierRefresh);
         SubscribeLocalEvent<MovementOrganComponent, OrganGotRemovedEvent>((_, ref args) => RefreshModifiers(args.Target));
         SubscribeLocalEvent<MovementOrganComponent, OrganGotInsertedEvent>((_, ref args) => RefreshModifiers(args.Target));
@@ -24,52 +25,49 @@ public sealed partial class MovementOrganSystem : EntitySystem
 
     private void RefreshModifiers(EntityUid target)
     {
-        if (TerminatingOrDeleted(target)) return;
+        if (TerminatingOrDeleted(target) || !TryComp<BodyComponent>(target, out var body) || body.Organs == null || body.Organs.Count == 0)
+            return;
+
+        if (TryComp<InitialBodyComponent>(target, out var initialBody) && initialBody.Spawning)
+            return;
+
+        var legCount = body.Organs.ContainedEntities.Count(HasComp<MovementOrganComponent>);
+
+        var hasTrait = TryComp<HumanoidCharacterProfileComponent>(target, out var hcpComp)
+                    && hcpComp.Profile != null
+                    && hcpComp.Profile.TraitPreferences.Contains(WheelChairBound);
+
+        if (legCount <= 1 || hasTrait)
+            EnsureComp<LegsParalyzedComponent>(target);
+        else if (HasComp<LegsParalyzedComponent>(target))
+            RemComp<LegsParalyzedComponent>(target);
+
         _movementSpeed.RefreshMovementSpeedModifiers(target);
     }
 
     private void OnMovementModifierRefresh(Entity<MovementOrganExpectedToMoveComponent> ent, ref RefreshMovementSpeedModifiersEvent args)
     {
-        if (!TryComp<BodyComponent>(ent, out var body)) return;
+        if (TerminatingOrDeleted(ent)) return;
+        
+        var totalWalkModifier = NoLegsModifier;
+        var totalSprintModifier = NoLegsModifier;
 
-        if (body.Organs == null || body.Organs.Count == 0) return;
-
-        var allLegs = body.Organs.ContainedEntities.Select(CompOrNull<MovementOrganComponent>).Where(p => p != null)
-            .ToList();
-
-        var shoesEquipped = _inventory.TryGetSlotEntity(ent, "shoes", out _);
-
-        var walkSpeedModifier = allLegs.Sum(p => p!.ShoesNegate && shoesEquipped ? 1 : p.WalkSpeedModifier);
-        var sprintSpeedModifier = allLegs.Sum(p => p!.ShoesNegate && shoesEquipped ? 1 : p.SprintSpeedModifier);
-
-        var totalWalkModifier = walkSpeedModifier / ent.Comp.ExpectedAmount;
-        var totalSprintModifier = sprintSpeedModifier / ent.Comp.ExpectedAmount;
-
-        if (allLegs.Count == 0)
+        if(!HasComp<LegsParalyzedComponent>(ent))
         {
-            totalWalkModifier = NoLegsModifier;
-            totalSprintModifier = NoLegsModifier;
-            EnsureComp<LegsParalyzedComponent>(ent);
-        }
-        else if (HasComp<LegsParalyzedComponent>(ent))
-        {
-            var shouldBeParalyzed = false;
-            
-            if (TryComp<HumanoidCharacterProfileComponent>(ent, out var hcpComp) && hcpComp.Profile != null)
-            {
-                var traits = hcpComp.Profile.TraitPreferences;
-                foreach (var trait in traits)
-                {
-                    if (trait == "WheelchairBound")
-                    {
-                        shouldBeParalyzed = true;
-                        break;
-                    }
-                }
-            }
-            
-            if (!shouldBeParalyzed)
-                RemComp<LegsParalyzedComponent>(ent);
+            if (!TryComp<BodyComponent>(ent, out var body)) return;
+
+            if (body.Organs == null || body.Organs.Count == 0) return;
+
+            var allLegs = body.Organs.ContainedEntities.Select(CompOrNull<MovementOrganComponent>).Where(p => p != null)
+                .ToList();
+
+            var shoesEquipped = _inventory.TryGetSlotEntity(ent, "shoes", out _);
+
+            var walkSpeedModifier = allLegs.Sum(p => p!.ShoesNegate && shoesEquipped ? 1 : p.WalkSpeedModifier);
+            var sprintSpeedModifier = allLegs.Sum(p => p!.ShoesNegate && shoesEquipped ? 1 : p.SprintSpeedModifier);
+
+            totalWalkModifier = walkSpeedModifier / ent.Comp.ExpectedAmount;
+            totalSprintModifier = sprintSpeedModifier / ent.Comp.ExpectedAmount;
         }
         
         args.ModifySpeed(totalWalkModifier, totalSprintModifier);

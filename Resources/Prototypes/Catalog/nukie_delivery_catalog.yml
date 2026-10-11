@@ -6,14 +6,15 @@
 # If you can't justify these benefits, consider other options: Uplinks, Starting Loadouts & Mapping on the planet/shuttle.
 # NOTE: At the moment of writing the store doesn't take TC, but if you can find a scenario where pooling TC works with the above benefits, that could be changed.
 
-- type: listing
-  id: NukieDeliveryMedicineBundle
-  name: nukie-delivery-medicine-bundle-name
-  description: nukie-delivery-medicine-bundle-desc
-  productEntity: ClothingBackpackDuffelSyndicateFilledMedicine
-  categories:
-  - NukieDelivery
-  restockTime: 1200
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
+# FH - we aren't using this functionality.
+#- type: listing
+#  id: NukieDeliveryMedicineBundle
+#  name: nukie-delivery-medicine-bundle-name
+#  description: nukie-delivery-medicine-bundle-desc
+#  productEntity: ClothingBackpackDuffelSyndicateFilledMedicine
+#  categories:
+#  - NukieDelivery
+#  restockTime: 1200
+#  conditions:
+#  - !type:ListingLimitedStockCondition
+#    stock: 1

@@ -11,8 +11,9 @@
     layers:
     - state: base
   - type: Damageable
-    damageContainer: StructuralInorganic
     damageModifierSet: StructuralMetallic
+  - type: Injurable
+    damageContainer: StructuralInorganic
   - type: Destructible
     thresholds:
     - trigger:
@@ -126,6 +127,18 @@
     - Security
     - Service
     - Theatre
+    #FH Start
+    - SalvageLead
+    - Surgery
+    - Cadet
+    - BlueShield
+    - Ntrep
+    - Magistrate
+    - Brigmedic
+    - Robotics
+    - Paramedic
+    - Mining
+    #FH End
   - type: DeviceList
     isAllowList: true
   - type: DeviceNetwork

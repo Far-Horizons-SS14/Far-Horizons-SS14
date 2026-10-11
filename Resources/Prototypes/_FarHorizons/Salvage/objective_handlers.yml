@@ -21,3 +21,19 @@
 - type: salvageMissionObjectiveHandler
   id: MissionObjectiveShutdownHandler
   handler: !type:SalvageMissionShutdown
+
+- type: salvageMissionObjectiveHandler
+  id: MissionObjectiveDisarmHandler
+  handler: !type:SalvageMissionDisarm
+    numBodies: 20
+    codeLength: 4
+
+- type: salvageMissionObjectiveHandler
+  id: MissionObjectiveDataHeistHandler
+  handler: !type:SalvageMissionDataHeist
+    numBodies: 20
+    codeLength: 6
+
+- type: salvageMissionObjectiveHandler
+  id: MissionObjectiveHeadHuntHandler
+  handler: !type:SalvageMissionHeadHunt

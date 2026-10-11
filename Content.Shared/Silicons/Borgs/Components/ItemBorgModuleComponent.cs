@@ -54,7 +54,7 @@ public partial record struct BorgHand
     /// The settings for the hand, including a whitelist.
     /// </summary>
     [DataField]
-    public Hand Hand = new();
+    public Hand Hand = new(HandLocation.Middle); 
 
     [DataField]
     public bool ForceRemovable = false;

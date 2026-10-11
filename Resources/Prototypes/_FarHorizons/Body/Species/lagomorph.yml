@@ -1,11 +1,9 @@
 - type: markingsGroup
   parent: Undergarments
   id: Lagomorph
+  onlyGroupWhitelisted: true
   limits:
     enum.HumanoidVisualLayers.Hair:
-      limit: 1
-      required: false
-    enum.HumanoidVisualLayers.FacialHair:
       limit: 1
       required: false
     enum.HumanoidVisualLayers.Head:
@@ -56,12 +54,18 @@
   name: lagomorph appearance
   components:
   - type: Inventory
-    femaleDisplacements:
+    speciesId: lagomorph
+    displacements:
       jumpsuit:
         sizeMaps:
           32:
-            sprite: Mobs/Species/Human/displacement.rsi
-            state: jumpsuit-female
+            sprite: _Starlight/Mobs/Species/Lagomorph/displacement.rsi
+            state: jumpsuit
+      outerClothing:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Lagomorph/displacement.rsi
+            state: jumpsuit
   - type: InitialBody
     organs:
       Torso: OrganLagomorphTorso
@@ -75,7 +79,7 @@
       FootLeft: OrganLagomorphFootLeft
       FootRight: OrganLagomorphFootRight
       Brain: OrganHumanBrain
-      Eyes: OrganHumanEyes
+      Eyes: OrganLagomorphEyes
       Tongue: OrganHumanTongue
       Appendix: OrganHumanAppendix
       Ears: OrganHumanEars
@@ -89,6 +93,7 @@
 
 - type: entity
   parent:
+  - ActiveCritBase
   - AppearanceLagomorph
   - BaseMobLagomorph
   id: MobLagomorph
@@ -142,6 +147,16 @@
   id: OrganLagomorphHead
   components:
   - type: VisualOrganMarkings
+    markingData:
+      layers:
+      - Head
+      - Hair
+      - Snout
+      - SnoutCover
+      - HeadSide
+      - HeadTop
+      - FaceCover 
+      - FaceCoverCover 
     hideableLayers:
     - enum.HumanoidVisualLayers.Snout
     - enum.HumanoidVisualLayers.HeadTop
@@ -189,6 +204,14 @@
 - type: entity
   parent: [ OrganBaseFootRight, OrganLagomorphExternal ]
   id: OrganLagomorphFootRight
+
+- type: entity
+  parent: [ OrganBaseEyes, OrganLagomorphInternal, OrganLagomorphExternal ]
+  id: OrganLagomorphEyes
+  components:
+  - type: VisualOrgan
+    data:
+      sprite: _Starlight/Mobs/Species/Lagomorph/parts.rsi
 
 - type: entity
   parent: [ OrganBaseHeart, OrganLagomorphInternal, OrganLagomorphMetabolizer ]

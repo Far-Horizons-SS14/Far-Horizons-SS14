@@ -16,20 +16,22 @@
   - type: Repairable # So welder is just a special little snowflake in the code. I tried making healing with welder work through ConditionalHealing component, but it would require too many changes in too many places. So we will keep on the trend and have brute healing defined here. /shrug
     doAfterDelay: 1 # Faster than normal so using welding to heal isn't absolute ass for protogens
     allowSelfRepair: true
-    fuelCost: 10
+    fuelCost: 5
     damage:
       types: # 5 for each type with reduction applied
         Blunt: -10
         Piercing: -10
         Slash: -10
+    selfRepairPenalty: 2
   - type: Hunger
   - type: Icon
     sprite: _FarHorizons/Mobs/Species/Protogen/parts.rsi
     state: full
   - type: Thirst
   - type: Damageable
-    damageContainer: Biological
     damageModifierSet: Protogen
+  - type: Injurable
+    damageContainer: Biological
   # Music player
   - type: ActionGrant
     actions:
@@ -56,6 +58,8 @@
       enum.InstrumentUiKey.Key:
         type: InstrumentBoundUserInterface
         requireInputValidation: false
+      enum.BackgroundTraitsUiKey.Key:
+        type: BackgroundTraitsBoundUserInterface
   - type: GlitchOnIonStorm
     duration: 25
     ramp: 3
@@ -127,9 +131,9 @@
     allowedEmotes: ['Chirp', 'Flap', 'Hisses', 'Squish', 'Purr', 'Growl', 'Trill', 'Scree', 'Call', 'Squawk', 'Bark', 'Snarl', 'Whine', 'Howl', 'Yip', 'Mew', 'Meow','Thump', 'Liss', 'Lurr', 'Rattle', "Marr", "Wurble", 'Chitter', 'Squeak', 'Click', 'Beep', 'Ping', 'Buzz', 'Buzz-Two', 'Chime', 'Honk']
   - type: Vocal
     sounds:
-      Male: MaleProtogen
-      Female: FemaleProtogen
-      Unsexed: MaleProtogen
+      Male: ProtoHumanMSounds
+      Female: ProtoHumanFSounds
+      Unsexed: ProtoHumanMSounds
   - type: UniversalHealModifier
     modifier: 0.5
   - type: Absorbable
@@ -176,8 +180,9 @@
     sprite: _FarHorizons/Mobs/Species/Proto-Vulp/parts.rsi
     state: full
   - type: Damageable
-    damageContainer: Biological
     damageModifierSet: ProtoVulp
+  - type: Injurable
+    damageContainer: Biological
   - type: Body
     prototype: ProtoVulp
     requiredLegs: 2
@@ -208,6 +213,11 @@
   - type: ContentEye
     targetZoom: "1.125, 1.125"
     maxZoom: "1.125, 1.125"
+  - type: Vocal
+    sounds:
+      Male: ProtoVulpMSounds
+      Female: ProtoVulpFSounds
+      Unsexed: ProtoVulpMSounds
   - type: Tag
     tags:
       - CanPilot
@@ -251,8 +261,9 @@
     prototype: ProtoVox
     requiredLegs: 2
   - type: Damageable
-    damageContainer: Biological
     damageModifierSet: ProtoVox
+  - type: Injurable
+    damageContainer: Biological
   - type: Butcherable
     butcheringType: Spike
     spawned:
@@ -336,6 +347,11 @@
         32:
           sprite: Mobs/Species/Vox/displacement.rsi
           state: hand_r
+  - type: Vocal
+    sounds:
+      Male: ProtoVoxMSounds
+      Female: ProtoVoxFSounds
+      Unsexed: ProtoVoxMSounds
   - type: Tag
     tags:
       - CanPilot
@@ -393,8 +409,9 @@
       - id: FoodThavenMeat
         amount: 5
   - type: Damageable
-    damageContainer: Biological
     damageModifierSet: ProtoThaven
+  - type: Injurable
+    damageContainer: Biological
   - type: Inventory
     templateId: protogen
     displacements:
@@ -486,6 +503,8 @@
       enum.InstrumentUiKey.Key:
         type: InstrumentBoundUserInterface
         requireInputValidation: false
+      enum.BackgroundTraitsUiKey.Key:
+        type: BackgroundTraitsBoundUserInterface
   - type: Icon
     sprite: _FarHorizons/Mobs/Species/Proto-Slime/parts.rsi
     state: full
@@ -510,8 +529,9 @@
   - type: UseDelay
     delay: 0.5
   - type: Damageable
-    damageContainer: Biological
     damageModifierSet: ProtoSlimePerson
+  - type: Injurable
+    damageContainer: Biological
   - type: PassiveDamage
     allowedStates:
     - Alive
@@ -618,11 +638,9 @@
       Metabolites:
         solutionName: metabolites
         solutionOnBody: false
-  - type: SolutionContainerManager
+  - type: SolutionManager
     solutions:
-      food: {}
-      stomach:
-        maxVol: 50
+    - SolutionStomach
   - type: ReattacheableLimbs 
 
 #region SHADEKIN ####
@@ -648,12 +666,13 @@
     - type: Repairable # So welder is just a special little snowflake in the code. I tried making healing with welder work through ConditionalHealing component, but it would require too many changes in too many places. So we will keep on the trend and have brute healing defined here. /shrug
       doAfterDelay: 1 # Faster than normal so using welding to heal isn't absolute ass for protogens
       allowSelfRepair: true
-      fuelCost: 10
+      fuelCost: 5
       damage:
         types: # 5 for each type with reduction applied
           Blunt: -10
           Piercing: -10
           Slash: -10
+      selfRepairPenalty: 2
     - type: Shadekin
       thresholds:
         0.8: Low
@@ -695,6 +714,8 @@
         enum.InstrumentUiKey.Key:
           type: InstrumentBoundUserInterface
           requireInputValidation: false
+        enum.BackgroundTraitsUiKey.Key:
+          type: BackgroundTraitsBoundUserInterface
     - type: HumanoidEMP # HumanoidEMP is needed to receive EMP effects, it may carry its own innate effects, but doesn't have to
       effectCooldown: 2
       baseDamage:
@@ -709,9 +730,9 @@
       allowedEmotes: ['Chirp', 'Hisses', 'Squish', 'Purr', 'Growl', 'Trill', 'Scree', 'Call', 'Squawk', 'Bark', 'Snarl', 'Whine', 'Howl', 'Yip', 'Mew', 'Meow','Thump', 'Liss', 'Lurr', 'Rattle', "Marr", "Wurble", 'Chitter', 'Squeak', 'Click', 'Beep', 'Ping', 'Buzz', 'Buzz-Two', 'Chime', 'Honk']
     - type: Vocal
       sounds:
-        Male: MaleProtogen
-        Female: FemaleProtogen
-        Unsexed: MaleProtogen
+        Male: ProtoShadekinMSounds
+        Female: ProtoShadekinFSounds
+        Unsexed: ProtoShadekinMSounds
     - type: MeleeWeapon
       soundHit:
         collection: AlienClaw
@@ -724,8 +745,9 @@
     - type: FlashModifier
       modifier: 2
     - type: Damageable
-      damageContainer: Biological
       damageModifierSet: ProtoKin
+    - type: Injurable
+      damageContainer: Biological
     - type: Reactive
       groups:
         Flammable: [Touch]
@@ -851,6 +873,9 @@
         - mask
         - gloves
         - shoes
+    - type: GlitchOnIonStorm
+      duration: 25
+      ramp: 3
     - type: LimbDamageable # Far Horizons
       proto: LimbTargetShadekin
 
@@ -899,8 +924,9 @@
     normalState: Resomi_minor_burning
     alternateState: Resomi_burning
   - type: Damageable
-    damageContainer: Biological
     damageModifierSet: ProtoResomi
+  - type: Injurable
+    damageContainer: Biological
   - type: Fixtures
     fixtures: 
       fix1:
@@ -929,7 +955,7 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      85: Critical
+      85: ActiveCritical
       170: Dead
   - type: SlowOnDamage
     speedModifierThresholds:
@@ -1076,6 +1102,11 @@
           32:
             sprite: Mobs/Species/Resomi/displacement.rsi
             state: belt
+  - type: Vocal
+    sounds:
+      Male: ProtoResomiMSounds
+      Female: ProtoResomiFSounds
+      Unsexed: ProtoResomiMSounds
   - type: Tag
     tags:
     - CanPilot
@@ -1126,8 +1157,9 @@
       amount: 5
   - type: LizardAccent
   - type: Damageable
-    damageContainer: Biological
     damageModifierSet: ProtoReptile
+  - type: Injurable
+    damageContainer: Biological
   - type: Temperature
     currentTemperature: 310.15
     specificHeat: 42
@@ -1175,6 +1207,11 @@
           32:
             sprite: Mobs/Species/Reptilian/displacement.rsi
             state: mask
+  - type: Vocal
+    sounds:
+      Male: ProtoReptilianMSounds
+      Female: ProtoReptilianFSounds
+      Unsexed: ProtoReptilianMSounds
   - type: Tag
     tags:
       - CanPilot
@@ -1218,8 +1255,9 @@
     prototype: ProtoMoth
     requiredLegs: 2
   - type: Damageable
-    damageContainer: Biological
     damageModifierSet: ProtoMoth
+  - type: Injurable
+    damageContainer: Biological
   - type: ZombieAccentOverride
     accent: zombieMoth
   - type: Butcherable
@@ -1247,7 +1285,7 @@
   - type: Flammable
     damage:
       types:
-        Heat: 2.5
+        Heat: 4.5
   - type: Temperature
     currentTemperature: 310.15
     specificHeat: 46
@@ -1320,6 +1358,11 @@
           32:
             sprite: Mobs/Species/Moth/displacement.rsi
             state: shoes
+  - type: Vocal
+    sounds:
+      Male: ProtoMothMSounds
+      Female: ProtoMothFSounds
+      Unsexed: ProtoMothMSounds
   - type: Tag
     tags:
       - CanPilot
@@ -1369,8 +1412,9 @@
       types:
         Blunt: 5
   - type: Damageable
-    damageContainer: Biological
     damageModifierSet: ProtoHumie
+  - type: Injurable
+    damageContainer: Biological
   - type: Inventory
     templateId: protogen
     femaleDisplacements:
@@ -1427,7 +1471,7 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      75: Critical
+      75: ActiveCritical
       150: Dead
   - type: SlowOnDamage
     speedModifierThresholds:
@@ -1439,8 +1483,9 @@
     - id: FoodMeatHuman
       amount: 3
   - type: Damageable
-    damageContainer: Biological
     damageModifierSet: ProtoFeline
+  - type: Injurable
+    damageContainer: Biological
   - type: MeleeWeapon
     soundHit:
       collection: AlienClaw
@@ -1463,6 +1508,11 @@
       - !type:Emote
         emote: Hisses
         showInChat: false
+  - type: Vocal
+    sounds:
+      Male: ProtoFelionoidMSounds
+      Female: ProtoFelionoidFSounds
+      Unsexed: ProtoFelionoidMSounds
   - type: Tag
     tags:
     - CanPilot
@@ -1554,7 +1604,7 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      110: Critical
+      110: ActiveCritical
       220: Dead
   - type: Icon
     sprite: _FarHorizons/Mobs/Species/Proto-Humie/parts.rsi
@@ -1582,8 +1632,6 @@
         - MobMask
         layer:
         - MobLayer
-  - type: ReplacementAccent
-    accent: dwarf
   - type: Inventory
     templateId: protogen
     femaleDisplacements:
@@ -1624,6 +1672,11 @@
     - Machine
     - Trinary
     - Sylvan
+  - type: Vocal
+    sounds:
+      Male: ProtoDionaMSounds
+      Female: ProtoDionaFSounds
+      Unsexed: ProtoDionaMSounds
   - type: Tag
     tags:
     - CanPilot
@@ -1644,8 +1697,9 @@
     prototype: ProtoDionae
     requiredLegs: 2
   - type: Damageable
-    damageContainer: Biological
     damageModifierSet: ProtoDionae
+  - type: Injurable
+    damageContainer: Biological
   - type: DamageVisuals
     damageOverlayGroups:
       Brute:
@@ -1714,9 +1768,9 @@
         layer:
           - MobLayer
   - type: IgnoreKudzu
-  - type: IgniteOnHeatDamage
-    fireStacks: 1
-    threshold: 12
+#  - type: IgniteOnHeatDamage #FH it sucks so bad // parity with regular diona
+#    fireStacks: 1
+#    threshold: 12
   - type: GibAction
     actionPrototype: DionaGibAction
     allowedStates:
@@ -1781,11 +1835,12 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      120: Critical
+      120: ActiveCritical
       240: Dead
   - type: Damageable
-    damageContainer: Biological
     damageModifierSet: ProtoCyclops
+  - type: Injurable
+    damageContainer: Biological
   - type: DamageVisuals
     damageOverlayGroups:
       Brute:
@@ -1867,6 +1922,11 @@
           32:
             sprite: _Starlight/Mobs/Species/Cyclorite/displacement.rsi
             state: outer
+  - type: Vocal
+    sounds:
+      Male: ProtoCycloriteMSounds
+      Female: ProtoCycloriteFSounds
+      Unsexed: ProtoCycloriteMSounds
   - type: Tag
     tags:
       - CanPilot
@@ -1904,6 +1964,11 @@
       - Machine
       - Trinary
       - Scratch
+    - type: Vocal
+      sounds:
+        Male: ProtoAvaliMSounds
+        Female: ProtoAvaliFSounds
+        Unsexed: ProtoAvaliMSounds
     - type: Tag
       tags:
         - CanPilot
@@ -1936,6 +2001,11 @@
             32:
               sprite: _Starlight/Mobs/Species/Avali/displacement.rsi
               state: jumpsuit
+        outerClothing:
+          sizeMaps:
+            32:
+              sprite: _Starlight/Mobs/Species/Avali/displacement.rsi
+              state: outerclothing
         shoes:
           sizeMaps:
             32:
@@ -1956,6 +2026,47 @@
             32:
               sprite: _Starlight/Mobs/Species/Avali/displacement.rsi
               state: back
+        gloves:
+          sizeMaps:
+            32:
+              sprite: _Starlight/Mobs/Species/Avali/displacement.rsi
+              state: gloves
+      femaleDisplacements:
+        jumpsuit:
+          sizeMaps:
+            32:
+              sprite: _Starlight/Mobs/Species/Avali/displacement.rsi
+              state: jumpsuit
+        outerClothing:
+          sizeMaps:
+            32:
+              sprite: _Starlight/Mobs/Species/Avali/displacement.rsi
+              state: outerclothing
+        shoes:
+          sizeMaps:
+            32:
+              sprite: _Starlight/Mobs/Species/Avali/displacement.rsi
+              state: shoes
+        head:
+          sizeMaps:
+            32:
+              sprite: _Starlight/Mobs/Species/Avali/displacement.rsi
+              state: head
+        hand:
+          sizeMaps:
+            32:
+              sprite: _Starlight/Mobs/Species/Avali/displacement.rsi
+              state: hand
+        back:
+          sizeMaps:
+            32:
+              sprite: _Starlight/Mobs/Species/Avali/displacement.rsi
+              state: back
+        gloves:
+          sizeMaps:
+            32:
+              sprite: _Starlight/Mobs/Species/Avali/displacement.rsi
+              state: gloves
     - type: Butcherable
       butcheringType: Spike
       spawned:
@@ -1964,7 +2075,7 @@
     - type: MobThresholds
       thresholds:
         0: Alive
-        90: Critical
+        90: ActiveCritical
         180: Dead
     - type: TemperatureSpeed
       thresholds:
@@ -1988,8 +2099,9 @@
       baseWeightlessFriction: 1
       baseWeightlessModifier: 1
     - type: Damageable
-      damageContainer: Biological
       damageModifierSet: ProtoAvali
+    - type: Injurable
+      damageContainer: Biological
     - type: DamageVisuals
       damageOverlayGroups:
         Brute:
@@ -2059,6 +2171,11 @@
     productionLength: 2
     entityProduced: MaterialWebSilk1
     hungerCost: 4 # Should total to 25 total silk on full hunger
+  - type: Vocal
+    sounds:
+      Male: ProtoArachnidMSounds
+      Female: ProtoArachnidFSounds
+      Unsexed: ProtoArachnidMSounds
   - type: Tag
     tags:
     - CanPilot

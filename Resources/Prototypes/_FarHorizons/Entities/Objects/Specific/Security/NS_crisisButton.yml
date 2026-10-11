@@ -1,0 +1,53 @@
+- type: entity
+  name: Crisis Button
+  suffix: NT
+  parent: BaseItem
+  id: CrisisButton
+  description: Used to broadcast an distress call to security comms.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Specific/Security/crisisButton_nt.rsi
+    state: icon
+  - type: Item
+    size: Tiny
+  - type: UseDelay
+    delay: 120.0
+  - type: EmitSoundOnUse
+    sound:
+        collection: TriggerActivate
+  - type: TriggerOnUse
+  - type: RattleOnTrigger
+    radioChannel: Security
+    targetUser: true
+    messages:
+      Alive: rattle-on-trigger-distress-message
+  - type: Tag
+    tags:
+      - SecBeltEquip
+
+- type: entity
+  name: Crisis Button
+  suffix: NS
+  parent: BaseItem
+  id: CrisisButton_NS
+  description: Used to broadcast an distress call to security comms.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Security/crisisButton.rsi
+    state: icon
+  - type: Item
+    size: Tiny
+  - type: UseDelay
+    delay: 120.0
+  - type: EmitSoundOnUse
+    sound:
+        collection: TriggerActivate
+  - type: TriggerOnUse
+  - type: RattleOnTrigger
+    radioChannel: SyndiSec
+    targetUser: true
+    messages:
+      Alive: rattle-on-trigger-distress-message
+  - type: Tag
+    tags:
+      - SecBeltEquip

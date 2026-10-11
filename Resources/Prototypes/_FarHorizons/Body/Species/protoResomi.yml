@@ -42,11 +42,17 @@
 
 - type: entity
   parent:
+  - ActiveCritBase
   - AppearanceProtoResomi
   - BaseMobProtoResomi
   id: MobProtoResomi
   name: Urist McRapster
   components:
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      85: ActiveCritical
+      170: Dead
   - type: TemperatureDamage
     heatDamageThreshold: 310
     coldDamageThreshold: 223
@@ -61,6 +67,16 @@
     shiveringHeatRegulation: 2000
     normalBodyTemperature: 261
     thermalRegulationTemperatureThreshold: 1
+  - type: TemperatureSpeed
+    thresholds:
+      250: 0.9
+      230: 0.8
+      223: 0.6
+  - type: FluidFootprintSpreader
+    footprint: Chicken
+    footprintSize: 0.75
+    stepSpacing: 0.2
+    lateralOffset: 0.1
     
 # Organs
 
@@ -78,7 +94,12 @@
 - type: entity
   parent: [ OrganProtoResomiExternal, OrganResomiTorso ]
   id: OrganProtoResomiTorso
-
+  components:
+  - type: VisualOrganMarkings
+    hideableLayers:
+    - enum.HumanoidVisualLayers.BodyCover
+    - enum.HumanoidVisualLayers.BodyCoverCover
+    
 - type: entity
   parent: [ OrganProtoResomiExternal, OrganResomiHead ]
   id: OrganProtoResomiHead

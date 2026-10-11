@@ -46,5 +46,17 @@ public sealed partial class RadioChannelPrototype : IPrototype
 
     [DataField]
     public ProtoId<JobIconPrototype> AnonymousIcon = "JobIconNoId";
+
+    [DataField] 
+    public RadioChannelType RadioChannelType = RadioChannelType.Radio;
+
+    [DataField]
+    public string? ChatPrefix = null;
     // Far Horizons end
+}
+
+public enum RadioChannelType 
+{
+    Radio,
+    CollectiveMind
 }

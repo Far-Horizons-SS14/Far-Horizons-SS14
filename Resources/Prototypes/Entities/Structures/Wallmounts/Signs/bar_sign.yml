@@ -1,11 +1,11 @@
 ﻿- type: entity
   id: BaseBarSign
   parent: [ BaseWallmountGlass, BaseWallmountMachine ]
-  name: bar sign
+  name: Bar Sign #FH
   abstract: true
   components:
   - type: AmbientSound #SL
-    volume: -7 #SL
+    volume: -10 #FH
     range: 4 #SL
     sound: #SL
       path: /Audio/_Starlight/Effects/Machinery/electric_buzz.ogg #SL
@@ -45,6 +45,7 @@
   - type: Wires
     boardName: wires-board-name-barsign
     layoutId: BarSign
+  - type: AmbientOnPowered #FH
 
 - type: entity
   parent: BaseBarSign
