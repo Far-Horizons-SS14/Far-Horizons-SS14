@@ -8,7 +8,25 @@
   - type: Sprite
     sprite: Structures/Piping/Atmospherics/thermomachine.rsi
     layers:
-      - state: freezerOn
+    - map: ["enum.FusionReactorCoolantPumpVisualLayers.Enabled"]
+      state: freezerOff
+    - map: [ "enum.PipeVisualLayers.Pipe" ]
+      state: pipe
+      renderingStrategy: Default
+  - type: GenericVisualizer # When proper sprites are made, this is going to be redone
+    visuals:
+      enum.FusionReactorCoolantPumpVisuals.Enabled:
+        enum.FusionReactorCoolantPumpVisualLayers.Enabled:
+          InletOff: { state: freezerOff }
+          InletOn: { state: freezerOn }
+          OutletOff: { state: heaterOff }
+          OutletOn: { state: heaterOn }
+  - type: AtmosPipeLayers
+    spriteLayersRsiPaths:
+      enum.PipeVisualLayers.Pipe:
+        Primary: Structures/Piping/Atmospherics/thermomachine.rsi
+        Secondary: Structures/Piping/Atmospherics/thermomachine_alt1.rsi
+        Tertiary: Structures/Piping/Atmospherics/thermomachine_alt2.rsi
   - type: Appearance
   - type: InteractionOutline
   - type: Rotatable
@@ -67,7 +85,11 @@
   components:
   - type: Sprite
     layers:
-      - state: heaterOn
+    - map: ["enum.FusionReactorCoolantPumpVisualLayers.Enabled"]
+      state: heaterOff
+    - map: [ "enum.PipeVisualLayers.Pipe" ]
+      state: pipe
+      renderingStrategy: Default
   - type: FusionReactorCoolantPump
     isInlet: false
 
@@ -80,7 +102,21 @@
   - type: Sprite
     sprite: _FarHorizons/Structures/Power/smes.rsi
     layers:
-      - state: smes
+    - state: smes
+    - map: ["enum.FusionReactorBatteryVisualLayers.ChargeLevel"]
+      state: "smes-og1"
+      shader: unshaded
+      visible: false
+  - type: GenericVisualizer
+    visuals:
+      enum.FusionReactorBatteryVisuals.ChargeLevel:
+        enum.FusionReactorBatteryVisualLayers.ChargeLevel:
+          Level0: { visible: false }
+          Level1: { visible: true, state: "smes-og1" }
+          Level2: { visible: true, state: "smes-og2" }
+          Level3: { visible: true, state: "smes-og3" }
+          Level4: { visible: true, state: "smes-og4" }
+          Level5: { visible: true, state: "smes-og5" }
   - type: Appearance
   - type: InteractionOutline
   - type: Rotatable
@@ -154,6 +190,24 @@
     sprite: Structures/Power/Generation/Singularity/emitter.rsi
     layers:
     - state: emitter2
+    - map: ["enum.FusionReactorMaserVisualLayers.Enabled"]
+      state: beam
+      shader: unshaded
+      visible: false
+    - map: ["enum.FusionReactorMaserVisualLayers.Injecting"]
+      state: locked
+      shader: unshaded
+      visible: false
+  - type: GenericVisualizer
+    visuals:
+      enum.FusionReactorMaserVisuals.Enabled:
+        enum.FusionReactorMaserVisualLayers.Enabled:
+          True: { visible: true }
+          False: { visible: false }
+      enum.FusionReactorMaserVisuals.Injecting:
+        enum.FusionReactorMaserVisualLayers.Injecting:
+          True: { visible: true }
+          False: { visible: false }
   - type: Appearance
   - type: InteractionOutline
   - type: Rotatable
@@ -193,7 +247,7 @@
       reactor:
         !type:DirectionalNode
         nodeGroupID: FusionReactor
-        nodeDirection: North
+        nodeDirection: South
   - type: ActivatableUI
     key: enum.FusionReactorUiKey.Key
   - type: ActivatableUIRequiresAnchor
@@ -217,7 +271,25 @@
   - type: Sprite
     sprite: Structures/Machines/gasrecycler.rsi
     layers:
-      - state: running
+    - map: [ "enum.PipeVisualLayers.Pipe" ]
+      sprite: Structures/Piping/Atmospherics/pipe.rsi
+      state: pipeUnaryConnectors
+      renderingStrategy: Default
+    - state: running
+    - map: ["enum.FusionReactorGasInletVisualLayers.Enabled"]
+      state: unlit
+  - type: GenericVisualizer
+    visuals:
+      enum.FusionReactorGasInletVisuals.Enabled:
+        enum.FusionReactorGasInletVisualLayers.Enabled:
+          True: { visible: false }
+          False: { visible: true }
+  - type: AtmosPipeLayers
+    spriteLayersRsiPaths:
+      enum.PipeVisualLayers.Pipe:
+        Primary: Structures/Piping/Atmospherics/pipe.rsi
+        Secondary: Structures/Piping/Atmospherics/pipe_alt1.rsi
+        Tertiary: Structures/Piping/Atmospherics/pipe_alt2.rsi
   - type: Appearance
   - type: InteractionOutline
   - type: Rotatable

@@ -32,6 +32,8 @@ public sealed partial class FusionReactorSystem
         {
             fusionReactor.Integrity -= MathF.Min((MathF.Pow(pressure, 1 / fusionReactor.ResistancePressure) - 0.5f) * (MathF.Pow(temperature, 1 / fusionReactor.ResistanceTemperature) - 0.5f) * dt, fusionReactor.IntegrityMaxDecay * dt);
         }
+
+        fusionReactor.Integrity = Math.Min(fusionReactor.Integrity, fusionReactor.IntegrityMax);
     }
 
     private void UpdateMeltdownStage(FusionReactorNodeGroup fusionReactor)

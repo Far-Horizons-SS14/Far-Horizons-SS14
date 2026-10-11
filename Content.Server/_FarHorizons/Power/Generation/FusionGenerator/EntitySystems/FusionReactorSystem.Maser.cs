@@ -39,6 +39,7 @@ public sealed partial class FusionReactorSystem
             SetOnSatisfy(uid, () => _fusionSystem.ChangeJoule(fusionReactor.Plasma, GetPowerSupplied(uid) * dt));
 
             UpdateMaserAudio(uid, comp);
+            UpdateMaserVisuals(uid, comp);
 
             if (comp.InjectAntimatter)
             {
@@ -78,6 +79,12 @@ public sealed partial class FusionReactorSystem
             return;
 
         _ambientSoundSystem.SetVolume(uid, (comp.PowerSetting / (float)comp.MaxPowerSetting * 4) - 8);
+    }
+
+    private void UpdateMaserVisuals(EntityUid uid, FusionReactorMaserComponent comp)
+    {
+        _appearance.SetData(uid, FusionReactorMaserVisuals.Enabled, comp.PowerSetting > 0);
+        _appearance.SetData(uid, FusionReactorMaserVisuals.Injecting, comp.InjectAntimatter);
     }
 
     private void OnMaserPowerMessage(EntityUid uid, FusionReactorMaserComponent comp, ref FusionReactorMaserSetPowerMessage args) =>

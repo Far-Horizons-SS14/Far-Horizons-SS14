@@ -22,6 +22,7 @@ public sealed partial class FusionReactorSystem
     {
         comp.Enabled &= IsValid(uid);
         UpdateGasInletAudio(uid, comp);
+        UpdateGasInletVisuals(uid, comp);
         if (!comp.Enabled)
         {
             comp.Production.Clear();
@@ -62,6 +63,9 @@ public sealed partial class FusionReactorSystem
 
     private void UpdateGasInletAudio(EntityUid uid, FusionReactorGasInletComponent comp) => 
         _ambientSoundSystem.SetAmbience(uid, comp.Enabled);
+
+    private void UpdateGasInletVisuals(EntityUid uid, FusionReactorGasInletComponent comp) =>
+        _appearance.SetData(uid, FusionReactorGasInletVisuals.Enabled, comp.Enabled);
 
     private void OnGasInletSetEnableMessage(EntityUid uid, FusionReactorGasInletComponent comp, ref FusionReactorGasInletSetEnableMessage args) =>
         comp.Enabled = args.Enable;

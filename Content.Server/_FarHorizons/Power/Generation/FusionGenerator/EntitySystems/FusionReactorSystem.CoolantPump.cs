@@ -76,6 +76,7 @@ public sealed partial class FusionReactorSystem
         comp.Enabled &= IsValid(uid);
         SetPowerDraw(uid, comp.Enabled);
         UpdateCoolantPumpAudio(uid, comp);
+        UpdateCoolantPumpVisuals(uid, comp);
         if (!comp.Enabled)
             return;
 
@@ -115,6 +116,15 @@ public sealed partial class FusionReactorSystem
     {
         _ambientSoundSystem.SetAmbience(uid, comp.Enabled);
         Dirty(uid, comp);
+    }
+
+    private void UpdateCoolantPumpVisuals(EntityUid uid, FusionReactorCoolantPumpComponent comp)
+    {
+        var visualState = comp.IsInlet ?
+            comp.Enabled ? FusionReactorCoolantPumpEnabledType.InletOn : FusionReactorCoolantPumpEnabledType.InletOff :
+            comp.Enabled ? FusionReactorCoolantPumpEnabledType.OutletOn : FusionReactorCoolantPumpEnabledType.OutletOff;
+
+        _appearance.SetData(uid, FusionReactorCoolantPumpVisuals.Enabled, visualState);
     }
 
     private void OnCoolantPumpSetEnableMessage(EntityUid uid, FusionReactorCoolantPumpComponent comp, ref FusionReactorCoolantPumpSetEnableMessage args)

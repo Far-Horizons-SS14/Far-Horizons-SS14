@@ -7,6 +7,21 @@
   - type: Sprite
     sprite: Structures/Power/Generation/ame.rsi
     state: control
+    layers:
+    - state: control
+    - map: ["display"]
+      state: control_on
+      shader: unshaded
+      visible: false
+  - type: GenericVisualizer
+    visuals:
+      enum.FusionReactorControllerVisuals.Display:
+        enum.FusionReactorControllerVisualLayers.Display:
+          Off: { visible: false }
+          On: { state: control_on, visible: true }
+          Warning: { state: control_warning, visible: true }
+          Critical: { state: control_critical, visible: true }
+          Bad: { state: control_fuck, visible: true }
   - type: Appearance
   - type: InteractionOutline
   - type: Rotatable
@@ -44,6 +59,8 @@
   - type: PowerMonitoringDevice
     group: Generator
     loadNode: output
+    sprite: Structures/Power/Generation/ame.rsi
+    state: static
   - type: PowerSupplier
     supplyRampRate: 75000
     supplyRampTolerance: 5000

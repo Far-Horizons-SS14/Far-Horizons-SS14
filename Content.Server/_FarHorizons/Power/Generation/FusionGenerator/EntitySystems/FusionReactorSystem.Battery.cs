@@ -35,7 +35,7 @@ public sealed partial class FusionReactorSystem : EntitySystem
     {
         comp.Battery = EnsureComp<BatteryComponent>(uid);
         comp.Battery.NetSyncEnabled = false;
-        
+
         comp.NetBattery = EnsureComp<PowerNetworkBatteryComponent>(uid);
     }
 
@@ -66,6 +66,22 @@ public sealed partial class FusionReactorSystem : EntitySystem
             args.PushMarkup(Loc.GetString("fusion-reactor-powersupply-examine-gen", ("supply", comp.Supply)));
             args.PushMarkup(Loc.GetString("fusion-reactor-powersupply-examine-out", ("surplus", comp.Surplus)));
         }
+    }
+
+    private void UpdateBatteryVisuals(EntityUid uid, FusionReactorBatteryComponent comp)
+    {
+        var chargeLevel = _battery.GetChargeLevel(uid) switch
+        {
+            float n when n == 0 => FusionReactorBatteryVisualChargeLevel.Level0,
+            float n when n is > 0 and <= 0.2f => FusionReactorBatteryVisualChargeLevel.Level1,
+            float n when n is > 0.2f and <= 0.4f => FusionReactorBatteryVisualChargeLevel.Level2,
+            float n when n is > 0.4f and <= 0.6f => FusionReactorBatteryVisualChargeLevel.Level3,
+            float n when n is > 0.6f and <= 0.8f => FusionReactorBatteryVisualChargeLevel.Level4,
+            float n when n is > 0.8f => FusionReactorBatteryVisualChargeLevel.Level5,
+            _ => FusionReactorBatteryVisualChargeLevel.Level0
+        };
+
+        _appearance.SetData(uid, FusionReactorBatteryVisuals.ChargeLevel, chargeLevel);
     }
 
     #region BUI

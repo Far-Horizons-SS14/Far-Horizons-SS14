@@ -45,6 +45,7 @@ public sealed partial class FusionReactorSystem : EntitySystem
     [Dependency] private readonly NodeContainerSystem _nodeContainer = default!;
     [Dependency] private readonly RadioSystem _radioSystem = default!;
     [Dependency] private readonly ServerGlobalSoundSystem _soundSystem = default!;
+    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
     [Dependency] private readonly SharedCameraRecoilSystem _sharedCameraRecoil = default!;
     [Dependency] private readonly SharedMapSystem _mapSystem = default!;
@@ -126,6 +127,14 @@ public sealed partial class FusionReactorSystem : EntitySystem
         UpdateMeltdownStage(fusionReactor);
 
         UpdateRadio(fusionReactor);
+
+        UpdateVisuals(fusionReactor);
+    }
+
+    private void UpdateVisuals(FusionReactorNodeGroup fusionReactor)
+    {
+        foreach(var (uid, comp) in fusionReactor.Batteries)
+            UpdateBatteryVisuals(uid, comp);
     }
 
     private bool TryGetReactorGroup(EntityUid uid, [NotNullWhen(true)] out FusionReactorNodeGroup? reactorNodeGroup)
