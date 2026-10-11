@@ -1,6 +1,5 @@
 using Content.Client.UserInterface;
 using Content.Shared._FarHorizons.Power.Generation.FusionGenerator;
-using Content.Shared.IdentityManagement;
 using JetBrains.Annotations;
 using Robust.Client.Timing;
 using Robust.Client.UserInterface;
@@ -8,9 +7,9 @@ using Robust.Client.UserInterface;
 namespace Content.Client._FarHorizons.Power.UI.FusionReactor;
 
 [UsedImplicitly]
-public sealed class FusionReactorCapacitorBoundUserInterface : BoundUserInterface, IBuiPreTickUpdate
+public sealed partial class FusionReactorCapacitorBoundUserInterface : BoundUserInterface, IBuiPreTickUpdate
 {
-    [Dependency] private readonly IClientGameTiming _gameTiming = null!;
+    [Dependency] private IClientGameTiming _gameTiming = null!;
 
     [ViewVariables]
     private FusionReactorBatteryWindow? _window;

@@ -13,8 +13,8 @@ namespace Content.Client._FarHorizons.Power.UI.FusionReactor;
 [GenerateTypedNameReferences]
 public sealed partial class FusionReactorGraphic : Control
 {
-    [Dependency] private readonly IResourceCache _resourceCache = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private IResourceCache _resourceCache = default!;
+    [Dependency] private IRobustRandom _random = default!;
 
     private readonly bool _isInit = false;
     private float _frametime = 0;

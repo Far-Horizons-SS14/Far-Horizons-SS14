@@ -15,8 +15,8 @@ namespace Content.Client._FarHorizons.Power.UI.FusionReactor;
 [GenerateTypedNameReferences]
 public sealed partial class FusionReactorControllerWindow : FancyWindow
 {
-    [Dependency] private readonly IResourceCache _resourceCache = default!;
-    [Dependency] private readonly IGameTiming _gameTiming = default!;
+    [Dependency] private IResourceCache _resourceCache = default!;
+    [Dependency] private IGameTiming _gameTiming = default!;
 
     public Action<KeyValuePair<FusionAtom, FusionReactorTransferData>>? OnTransferSet;
     public Action<FusionReactorControllerSetExtractMessage>? OnExtractSet;

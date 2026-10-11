@@ -12,7 +12,7 @@ namespace Content.Client._FarHorizons.Power.UI.FusionReactor;
 [GenerateTypedNameReferences]
 public sealed partial class FusionReactorGasInletWindow : FancyWindow
 {
-    [Dependency] private readonly IEntityManager _entManager = default!;
+    [Dependency] private IEntityManager _entManager = default!;
 
     private float _maxTransferRate = 0;
 

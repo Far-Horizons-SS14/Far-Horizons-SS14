@@ -8,9 +8,9 @@ using Robust.Client.UserInterface;
 namespace Content.Client._FarHorizons.Power.UI.FusionReactor;
 
 [UsedImplicitly]
-public sealed class FusionReactorControllerBoundUserInterface : BoundUserInterface, IBuiPreTickUpdate
+public sealed partial class FusionReactorControllerBoundUserInterface : BoundUserInterface, IBuiPreTickUpdate
 {
-    [Dependency] private readonly IClientGameTiming _gameTiming = null!;
+    [Dependency] private IClientGameTiming _gameTiming = null!;
 
     [ViewVariables]
     private FusionReactorControllerWindow? _window;

@@ -10,9 +10,9 @@ namespace Content.Client._FarHorizons.Power.UI.FusionReactor;
 /// Initializes a <see cref="FusionReactorMaserWindow"/> and updates it when new server messages are received.
 /// </summary>
 [UsedImplicitly]
-public sealed class FusionReactorMaserBoundUserInterface : BoundUserInterface, IBuiPreTickUpdate
+public sealed partial class FusionReactorMaserBoundUserInterface : BoundUserInterface, IBuiPreTickUpdate
 {
-    [Dependency] private readonly IClientGameTiming _gameTiming = null!;
+    [Dependency] private IClientGameTiming _gameTiming = null!;
 
     [ViewVariables]
     private FusionReactorMaserWindow? _window;
