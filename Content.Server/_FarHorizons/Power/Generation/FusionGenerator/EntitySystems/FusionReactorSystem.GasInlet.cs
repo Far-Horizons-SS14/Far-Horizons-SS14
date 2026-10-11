@@ -1,9 +1,9 @@
 using System.Linq;
-using Content.Server.Atmos.Piping.Components;
 using Content.Server.NodeContainer.Nodes;
 using Content.Shared._FarHorizons.Fusion;
 using Content.Shared._FarHorizons.Power.Generation.FusionGenerator;
 using Content.Shared._FarHorizons.Power.Generation.FusionGenerator.Components;
+using Content.Shared.Atmos.Components;
 
 namespace Content.Server._FarHorizons.Power.Generation.FusionGenerator.EntitySystems;
 

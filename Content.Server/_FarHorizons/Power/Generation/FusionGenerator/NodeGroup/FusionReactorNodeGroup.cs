@@ -18,7 +18,7 @@ namespace Content.Server._FarHorizons.Power.Generation.FusionGenerator.NodeGroup
 [NodeGroup(NodeGroupID.FusionReactor)]
 public sealed partial class FusionReactorNodeGroup : BaseNodeGroup
 {
-    [Dependency] private readonly EntityManager _entityManager = default!;
+    [Dependency] private EntityManager _entityManager = default!;
 
     private FusionReactorSystem? _fusionReactorSystem;
     private AtmosphereSystem? _atmosphereSystem;
@@ -103,13 +103,13 @@ public sealed partial class FusionReactorNodeGroup : BaseNodeGroup
     /// <summary>
     /// The "health" of the reactor
     /// </summary>
-    [DataField]
+    [ViewVariables(VVAccess.ReadWrite)]
     public float Integrity = 100;
 
     /// <summary>
     /// The maximum value of <see cref="Integrity"/>
     /// </summary>
-    [DataField]
+    [ViewVariables(VVAccess.ReadWrite)]
     public float IntegrityMax = 100;
 
     /// <summary>
@@ -121,13 +121,13 @@ public sealed partial class FusionReactorNodeGroup : BaseNodeGroup
     /// <summary>
     /// How much <see cref="Integrity"/> should be recovered per second
     /// </summary>
-    [DataField]
+    [ViewVariables(VVAccess.ReadWrite)]
     public float IntegrityRegeneration = 0.1f;
 
     /// <summary>
     /// The maximum amount <see cref="Integrity"/> can be removed per second
     /// </summary>
-    [DataField]
+    [ViewVariables(VVAccess.ReadWrite)]
     public float IntegrityMaxDecay = 0.5f;
 
     /// <summary>
@@ -136,7 +136,7 @@ public sealed partial class FusionReactorNodeGroup : BaseNodeGroup
     /// <remarks>
     /// d = p ^ (1 / this) - 0.5
     /// </remarks>
-    [DataField]
+    [ViewVariables(VVAccess.ReadWrite)]
     public float ResistancePressure = 10;
 
     /// <summary>
@@ -145,7 +145,7 @@ public sealed partial class FusionReactorNodeGroup : BaseNodeGroup
     /// <remarks>
     /// d = t ^ (1 / this) - 0.5
     /// </remarks>
-    [DataField]
+    [ViewVariables(VVAccess.ReadWrite)]
     public float ResistanceTemperature = 10;
 
     /// <summary>
@@ -169,7 +169,7 @@ public sealed partial class FusionReactorNodeGroup : BaseNodeGroup
     /// <summary>
     /// Minimum difference between <see cref="LastAnnouncedIntegrity"/> and <see cref="IntegrityRatio"/> before another announcement is made
     /// </summary>
-    [DataField]
+    [ViewVariables(VVAccess.ReadWrite)]
     public float AnnouncementInterval = 0.05f;
 
     /// <summary>

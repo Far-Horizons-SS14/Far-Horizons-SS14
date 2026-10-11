@@ -68,7 +68,7 @@ public sealed partial class FusionReactorSystem : EntitySystem
         }
     }
 
-    private void UpdateBatteryVisuals(EntityUid uid, FusionReactorBatteryComponent comp)
+    private void UpdateBatteryVisuals(EntityUid uid)
     {
         var chargeLevel = _battery.GetChargeLevel(uid) switch
         {

@@ -5,7 +5,7 @@ namespace Content.Server._FarHorizons.Fusion.Systems;
 
 public sealed partial class FusionSystem : EntitySystem
 {
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
     public float HeatScale { get; private set; }
     public float MassScale { get; private set; }
     public float EnergyScale { get; private set; }

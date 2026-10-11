@@ -110,7 +110,7 @@ public sealed partial class FusionReactorSystem
         MaxPowerSetting = maser.MaxPowerSetting,
 
         AMInjection = maser.InjectAntimatter,
-        AMJar = EntityManager.GetNetEntity(maser.AMJarSlot.Item),
+        AMJar = GetNetEntity(maser.AMJarSlot.Item),
         Antimatter = TryComp<AmeFuelContainerComponent>(maser.AMJarSlot.Item, out var fuelContainer) ? fuelContainer.FuelAmount : 0,
 
         RequestedPower = TryComp<FusionReactorPowerDrawComponent>(uid, out var powerDrawComponent) && powerDrawComponent.Enabled ? powerDrawComponent.Draw : 0,

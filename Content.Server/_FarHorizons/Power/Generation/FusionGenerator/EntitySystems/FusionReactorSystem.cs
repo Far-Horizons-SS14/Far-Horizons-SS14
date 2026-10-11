@@ -29,35 +29,33 @@ namespace Content.Server._FarHorizons.Power.Generation.FusionGenerator.EntitySys
 
 public sealed partial class FusionReactorSystem : EntitySystem
 {
-    [Dependency] private readonly AmbientSoundSystem _ambientSoundSystem = default!;
-    [Dependency] private readonly AtmosphereSystem _atmosphereSystem = default!;
-    [Dependency] private readonly BatterySystem _battery = default!;
-    [Dependency] private readonly ChatSystem _chatSystem = default!;
-    [Dependency] private readonly EmpSystem _empSystem = default!;
-    [Dependency] private readonly ExplosionSystem _explosionSystem = default!;
-    [Dependency] private readonly FusionSystem _fusionSystem = default!;
-    [Dependency] private readonly GhostSystem _ghostSystem = default!;
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly IGameTiming _gameTiming = default!;
-    [Dependency] private readonly IPrototypeManager _protoMan = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly ItemSlotsSystem _slotsSystem = default!;
-    [Dependency] private readonly NodeContainerSystem _nodeContainer = default!;
-    [Dependency] private readonly RadioSystem _radioSystem = default!;
-    [Dependency] private readonly ServerGlobalSoundSystem _soundSystem = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
-    [Dependency] private readonly SharedCameraRecoilSystem _sharedCameraRecoil = default!;
-    [Dependency] private readonly SharedMapSystem _mapSystem = default!;
-    [Dependency] private readonly SharedPointLightSystem _lightSystem = default!;
-    [Dependency] private readonly StationSystem _station = default!;
-    [Dependency] private readonly TransformSystem _transformSystem = default!;
-    [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
+    [Dependency] private AmbientSoundSystem _ambientSoundSystem = default!;
+    [Dependency] private AtmosphereSystem _atmosphereSystem = default!;
+    [Dependency] private BatterySystem _battery = default!;
+    [Dependency] private ChatSystem _chatSystem = default!;
+    [Dependency] private EmpSystem _empSystem = default!;
+    [Dependency] private ExplosionSystem _explosionSystem = default!;
+    [Dependency] private FusionSystem _fusionSystem = default!;
+    [Dependency] private GhostSystem _ghostSystem = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
+    [Dependency] private IGameTiming _gameTiming = default!;
+    [Dependency] private IPrototypeManager _protoMan = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private ItemSlotsSystem _slotsSystem = default!;
+    [Dependency] private NodeContainerSystem _nodeContainer = default!;
+    [Dependency] private RadioSystem _radioSystem = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private SharedAudioSystem _audioSystem = default!;
+    [Dependency] private SharedCameraRecoilSystem _sharedCameraRecoil = default!;
+    [Dependency] private SharedMapSystem _mapSystem = default!;
+    [Dependency] private StationSystem _station = default!;
+    [Dependency] private TransformSystem _transformSystem = default!;
+    [Dependency] private UserInterfaceSystem _uiSystem = default!;
 
     /// <summary>
     /// May eventually be handled by a grid/map level component like the atmosphere system, but for now the system can keep track of it.
     /// </summary>
-    private readonly List<FusionReactorNodeGroup> _fusionReactors = [];
+    private List<FusionReactorNodeGroup> _fusionReactors = [];
 
     public override void Initialize()
     {
@@ -133,14 +131,14 @@ public sealed partial class FusionReactorSystem : EntitySystem
 
     private void UpdateVisuals(FusionReactorNodeGroup fusionReactor)
     {
-        foreach(var (uid, comp) in fusionReactor.Batteries)
-            UpdateBatteryVisuals(uid, comp);
+        foreach(var (uid, _) in fusionReactor.Batteries)
+            UpdateBatteryVisuals(uid);
     }
 
     private bool TryGetReactorGroup(EntityUid uid, [NotNullWhen(true)] out FusionReactorNodeGroup? reactorNodeGroup)
     {
         reactorNodeGroup = null;
-        if (!EntityManager.TryGetComponent<NodeContainerComponent>(uid, out var nodeContainer))
+        if (!TryComp<NodeContainerComponent>(uid, out var nodeContainer))
             return false;
 
         if (!nodeContainer.Nodes.TryGetValue("reactor", out var node))

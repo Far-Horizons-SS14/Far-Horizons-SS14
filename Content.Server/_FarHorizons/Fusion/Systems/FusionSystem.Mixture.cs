@@ -9,7 +9,7 @@ namespace Content.Server._FarHorizons.Fusion.Systems;
 
 public sealed partial class FusionSystem
 {
-    [Dependency] private readonly IPrototypeManager _protoMan = default!;
+    [Dependency] private IPrototypeManager _protoMan = default!;
 
     private FusionReactionPrototype[] _fusionReactions = [];
     private FusionDecayPrototype[] _fusionDecays = [];
