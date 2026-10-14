@@ -37,27 +37,31 @@
     - type: StaticPrice
       price: 40
 
-#region NeoSol
-- type: entity
-  id: AutofabMachineCircuitboard
-  parent: BaseMachineCircuitboard
-  name: Autofab Machine Board
-  description: A machine printed circuit board for an Autofab.
-  components:
-    - type: MachineBoard
-      prototype: Autofab
-      stackRequirements:
-        Manipulator: 4
-        Glass: 1
-
 - type: entity
   parent: BaseMachineCircuitboard
-  id: AutofabSubzeroMachineCircuitboard
-  name: Subzero Autofab Machine Board
-  description: A machine printed circuit board for a Subzero Autofab.
+  id: BiochemicalLatheMachineCircuitboard
+  name: Biochemical Lathe Machine Board
+  description: A machine printed circuit board for a Biochemical Lathe.
   components:
   - type: MachineBoard
-    prototype: AutofabSubzero
+    prototype: BiochemicalLathe
+    stackRequirements:
+      Manipulator: 2
+      Glass: 5
+    tagRequirements:
+      GlassBeaker:
+        amount: 2
+        defaultPrototype: Beaker
+
+#region NeoSol
+- type: entity
+  parent: BaseMachineCircuitboard
+  id: AutolatheSubzeroMachineCircuitboard
+  name: Subzero Autolathe Machine Board
+  description: A machine printed circuit board for a Subzero Autolathe.
+  components:
+  - type: MachineBoard
+    prototype: AutolatheSubzero
     stackRequirements:
       Manipulator: 3
       Glass: 1

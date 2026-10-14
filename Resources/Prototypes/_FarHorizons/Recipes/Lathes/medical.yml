@@ -53,6 +53,165 @@
   id: HardPouchMedical
   result: HardPouchMedical
 
+#region Organs
+- type: latheRecipe
+  id: BaseOrganInternalRecipe 
+  completetime: 2
+  abstract: true
+  materials:
+    Biomass: 4
+
+- type: latheRecipe
+  id: BaseOrganLimbRecipe
+  completetime: 3
+  abstract: true
+  materials:
+    Biomass: 8
+
+- type: latheRecipe
+  id: BaseOrganExtremityRecipe 
+  completetime: 1
+  abstract: true
+  materials:
+    Biomass: 3
+
+# Human
+- type: latheRecipe
+  parent: BaseOrganLimbRecipe
+  id: LeftArmWithHandHuman
+  result: LeftArmWithHandHuman
+  categories:
+  - LeftArm
+  - Human
+
+- type: latheRecipe
+  parent: BaseOrganLimbRecipe
+  id: RightArmWithHandHuman
+  result: RightArmWithHandHuman
+  categories:
+  - RightArm
+  - Human
+
+- type: latheRecipe
+  parent: BaseOrganExtremityRecipe
+  id: OrganHumanHandLeft
+  result: OrganHumanHandLeft
+  categories:
+  - LeftHand
+  - Human
+
+- type: latheRecipe
+  parent: BaseOrganExtremityRecipe
+  id: OrganHumanHandRight
+  result: OrganHumanHandRight
+  categories:
+  - RightHand
+  - Human
+
+- type: latheRecipe
+  parent: BaseOrganLimbRecipe
+  id: LeftLegWithFootHuman
+  result: LeftLegWithFootHuman
+  categories:
+  - LeftLeg
+  - Human
+
+- type: latheRecipe
+  parent: BaseOrganLimbRecipe
+  id: RightLegWithFootHuman
+  result: RightLegWithFootHuman
+  categories:
+  - RightLeg
+  - Human
+
+- type: latheRecipe
+  parent: BaseOrganExtremityRecipe
+  id: OrganHumanFootLeft
+  result: OrganHumanFootLeft
+  categories:
+  - LeftFoot
+  - Human
+
+- type: latheRecipe
+  parent: BaseOrganExtremityRecipe
+  id: OrganHumanFootRight
+  result: OrganHumanFootRight
+  categories:
+  - RightFoot
+  - Human
+
+- type: latheRecipe
+  parent: BaseOrganInternalRecipe
+  id: OrganHumanEyes
+  result: OrganHumanEyes
+  categories:
+  - Eyes
+  - Human
+
+- type: latheRecipe
+  parent: BaseOrganInternalRecipe
+  id: OrganHumanTongue
+  result: OrganHumanTongue
+  categories:
+  - Tongue
+  - Human
+
+- type: latheRecipe
+  parent: BaseOrganInternalRecipe
+  id: OrganHumanAppendix
+  result: OrganHumanAppendix
+  categories:
+  - Appendix
+  - Human
+
+- type: latheRecipe
+  parent: BaseOrganInternalRecipe
+  id: OrganHumanEars
+  result: OrganHumanEars
+  categories:
+  - Ears
+  - Human
+
+- type: latheRecipe
+  parent: BaseOrganInternalRecipe
+  id: OrganHumanLungs
+  result: OrganHumanLungs
+  categories:
+  - Lungs
+  - Human
+
+- type: latheRecipe
+  parent: BaseOrganInternalRecipe
+  id: OrganHumanHeart
+  result: OrganHumanHeart
+  categories:
+  - Heart
+  - Human
+
+- type: latheRecipe
+  parent: BaseOrganInternalRecipe
+  id: OrganHumanStomach
+  result: OrganHumanStomach
+  categories:
+  - Stomach
+  - Human
+
+- type: latheRecipe
+  parent: BaseOrganInternalRecipe
+  id: OrganHumanLiver
+  result: OrganHumanLiver
+  categories:
+  - Liver
+  - Human
+
+- type: latheRecipe
+  parent: BaseOrganInternalRecipe
+  id: OrganHumanKidneys
+  result: OrganHumanKidneys
+  categories:
+  - Kidneys
+  - Human
+
 #region Misc
 
 - type: latheRecipe

@@ -2,8 +2,8 @@
   id: MedicalMicrowave
   parent: [BaseMachinePowered, SmallConstructibleMachine]
   name: Medical Autoclave
-  description: Used for sterilizing medical equipment and making sterile topicals. Seems to stay on once activated.
-  suffix: Right
+  suffix: NT
+  description: Used for sterilizing medical equipment and making sterile topicals.
   components:
   - type: CookingDevice
     capacity: 10
@@ -11,14 +11,14 @@
   - type: GenericVisualizer
     visuals:
       enum.PowerDeviceVisuals.VisualState:
-#        enum.MicrowaveVisualizerLayers.Base: - Doesn't work with modular stuff.
-#          Idle: { state: "michaelwave_0" }
-#          Broken: { state: "michaelwave_0" }
-#          Cooking: { state: "michaelwave_0" }
+        enum.MicrowaveVisualizerLayers.Base:
+          Idle: { state: "michaelwave_0" }
+          Broken: { state: "michaelwave_0" }
+          Cooking: { state: "michaelwave_0" }
         enum.MicrowaveVisualizerLayers.BaseUnlit:
-#          Idle: { state: "unlit_michaelwave" }
-#          Broken: { state: "unlit_michaelwave" }
-          Cooking: { state: "med_michaelwave_running_unlit" } # Microwave will stay on after being activated. It was either this or the incorrect base sprite being applied.
+          Idle: { state: "unlit_michaelwave" }
+          Broken: { state: "unlit_michaelwave" }
+          Cooking: { state: "med_michaelwave_running_unlit" }
       enum.PowerDeviceVisuals.Powered:
         enum.MicrowaveVisualizerLayers.BaseUnlit:
           True: { visible: true }
@@ -51,7 +51,7 @@
           - MachineLayer
   - type: Sprite
     sprite: _FarHorizons/Structures/Machines/NT/medical_michaelwave.rsi
-    snapCardinals: false
+    snapCardinals: true
     layers:
     - state: michaelwave_0
       map: ["enum.MicrowaveVisualizerLayers.Base"]
@@ -97,11 +97,11 @@
     guides:
     - Chef
     - FoodRecipes
-# Attempting to make modular, properly.
-  - type: Transform
-    anchored: true
-  - type: IconSmooth
-    mode: CardinalFlags
-    base: michaelwave_
-    key: ame_shield # REALLY needs to be replaced in the future with something that only has 4 cardinal directions
-  - type: AmeShield
+
+- type: entity
+  id: MedicalMicrowaveNS
+  parent: MedicalMicrowave
+  suffix: NS
+  components:
+  - type: Sprite # Purple for an amazing reason
+    sprite: _FarHorizons/Structures/Machines/NS/medical_michaelwave.rsi
