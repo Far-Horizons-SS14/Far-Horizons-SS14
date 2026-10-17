@@ -1,3 +1,4 @@
+using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.Components.SolutionManager;
 using Content.Shared.DoAfter;
 using Content.Shared.IdentityManagement;
@@ -6,29 +7,24 @@ using Content.Shared.Verbs;
 
 namespace Content.Shared._FarHorizons.Vampire;
 
-public partial class SharedLesserVampireSystem
+public abstract partial class SharedLesserVampireSystem
 {
-    private void InitializeVerbs()
-    {
-        SubscribeLocalEvent<VampireDrinkableComponent, GetVerbsEvent<AlternativeVerb>>(OnBloodpackVerb);
-        SubscribeLocalEvent<VampireBiteableComponent, GetVerbsEvent<AlternativeVerb>>(OnBiteVerb);
-    }
-
+    [SubscribeLocalEvent]
     private void OnBloodpackVerb(Entity<VampireDrinkableComponent> ent, ref GetVerbsEvent<AlternativeVerb> args)
     {
         if (!args.CanComplexInteract ||
             !_interaction.InRangeAndAccessible(args.User, args.Target) ||
             !TryComp<LesserVampireComponent>(args.User, out var vampire) ||
-            !TryComp<SolutionManagerComponent>(ent, out var solutionContainer) ||
+            !TryComp<SolutionComponent>(ent, out var solution) ||
             !VampireCanDrinkBlood((args.User, vampire)) ||
-            !CanDrinkFromContainer((args.User, vampire), (ent, solutionContainer, ent.Comp)))
+            !CanDrinkFromContainer((ent, solution, ent.Comp)))
             return;
 
         Entity<LesserVampireComponent> vampireEnt = (args.User, vampire);
 
         AlternativeVerb drink = new()
         {
-            Act = () => DrinkFromContainer(vampireEnt, (ent, solutionContainer, ent.Comp)),
+            Act = () => DrinkFromContainer(vampireEnt, ent),
             Text = Loc.GetString("lesser-vampire-drink-bloodpack"),
             Priority = 1
         };
@@ -36,6 +32,7 @@ public partial class SharedLesserVampireSystem
         args.Verbs.Add(drink);
     }
 
+    [SubscribeLocalEvent]
     private void OnBiteVerb(Entity<VampireBiteableComponent> ent, ref GetVerbsEvent<AlternativeVerb> args)
     {
         if (!args.CanComplexInteract ||
@@ -45,7 +42,7 @@ public partial class SharedLesserVampireSystem
             !TryComp<SolutionManagerComponent>(ent, out var solutionContainer) ||
             !VampireCanDrinkBlood((args.User, vampire)) ||
             !VampireCanBite((args.User, vampire), args.Target) ||
-            !CanDrinkFromContainer((args.User, vampire), (ent, solutionContainer, ent.Comp)))
+            !CanDrinkFromBody((ent, solutionContainer, ent.Comp)))
             return;
 
         Entity<LesserVampireComponent> vampireEnt = (args.User, vampire);
@@ -61,10 +58,10 @@ public partial class SharedLesserVampireSystem
     }
 
     public void DrinkFromContainer(Entity<LesserVampireComponent> ent,
-        Entity<SolutionManagerComponent, VampireDrinkableComponent> target)
+        Entity<VampireDrinkableComponent> target)
     {
         var doAfterEventArgs =
-            new DoAfterArgs(EntityManager, ent, target.Comp2.Duration, new LesserVampireDrinkBloodDoAfterEvent(),
+            new DoAfterArgs(EntityManager, ent, target.Comp.Duration, new LesserVampireDrinkBloodDoAfterEvent(),
                 eventTarget: ent, target: target)
             {
                 BreakOnMove = true,

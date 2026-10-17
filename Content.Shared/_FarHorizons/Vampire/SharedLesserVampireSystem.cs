@@ -9,7 +9,6 @@ using Content.Shared.Mobs.Systems;
 using Content.Shared.Nutrition.EntitySystems;
 using Content.Shared.Popups;
 using Robust.Shared.Audio.Systems;
-using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 
 namespace Content.Shared._FarHorizons.Vampire;
@@ -29,16 +28,7 @@ public abstract partial class SharedLesserVampireSystem : EntitySystem
     [Dependency] private MobStateSystem _mobState = default!;
     [Dependency] private SharedInteractionSystem _interaction = default!;
 
-    public override void Initialize()
-    {
-        base.Initialize();
-
-        InitializeVerbs();
-        InitializeDrinking();
-
-        SubscribeLocalEvent<LesserVampireComponent, ExaminedEvent>(OnExamined);
-    }
-
+    [SubscribeLocalEvent]
     private void OnExamined(Entity<LesserVampireComponent> ent, ref ExaminedEvent args)
     {
         if (!args.IsInDetailsRange ||
