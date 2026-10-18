@@ -73,13 +73,13 @@
     steps: 5
     zeroVisible: true
   - type: BatteryAmmoProvider
-    proto: DisablerBolt
-    fireCost: 50
+    proto: TaserProjectileRifle #FH
+    fireCost: 500 #FH
   - type: Appearance
   - type: BatteryWeaponFireModes
     fireModes:
-    - proto: DisablerBolt
-      fireCost: 50
+    - proto: TaserProjectileRifle #FH
+      fireCost: 500 #FH
       visualState: disable
       magState: disable
       heldPrefix: disable4
@@ -109,12 +109,12 @@
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
   - type: BatteryAmmoProvider
-    proto: DisablerBolt
-    fireCost: 150
+    proto: TaserProjectile #FH
+    fireCost: 500
   - type: BatteryWeaponFireModes
     fireModes:
-    - proto: DisablerBolt
-      fireCost: 150
+    - proto: TaserProjectile #FH
+      fireCost: 500
     - proto: RedLaserBeam
       fireCost: 200
       conditions:
@@ -192,13 +192,13 @@
     steps: 5
     zeroVisible: true
   - type: BatteryAmmoProvider
-    proto: TaserBolt #FH
-    fireCost: 100 #FH
+    proto: TaserProjectileRifle #FH
+    fireCost: 500 #FH
   - type: BatteryWeaponFireModes
     fireModes:
 # FH - Removal of Disabler mode
-    - proto: TaserBolt
-      fireCost: 100
+    - proto: TaserProjectileRifle #FH
+      fireCost: 500
       magState: stun
       visualState: stun-unshaded
     - proto: RedLaserBeam
@@ -237,12 +237,12 @@
     - 0, 0, 1, 1
     sprite: _Starlight/Objects/Weapons/Guns/Battery/Energy_Magnum.rsi
   - type: BatteryAmmoProvider
-    proto: DisablerBolt
-    fireCost: 80
+    proto: TaserProjectile #FH
+    fireCost: 500
   - type: BatteryWeaponFireModes
     fireModes:
-    - proto: DisablerBolt
-      fireCost: 125
+    - proto: TaserProjectile #FH
+      fireCost: 500
       magState: disable
       visualState: disable-unshaded
     - proto: RedHeavyLaser # Does slightly more damage but costs more energy.
@@ -495,12 +495,12 @@
     steps: 5
     zeroVisible: true
   - type: BatteryAmmoProvider
-    proto: DisablerBolt
-    fireCost: 75
+    proto: TaserProjectile #FH
+    fireCost: 500
   - type: BatteryWeaponFireModes
     fireModes:
-    - proto: DisablerBolt
-      fireCost: 75
+    - proto: TaserProjectile #FH
+      fireCost: 500
       magState: disable
       visualState: disable
     - proto: RedLaserBeam
@@ -510,6 +510,14 @@
   - type: Battery
     maxCharge: 1500
     startingCharge: 1500
+  #FH Start
+  - type: Tazer
+    damagePerSecond:
+      types:
+        Shock: 3.5
+    maxDistance: 5
+    staminaDrainRate: 10
+  #FH End
 
 - type: entity
   parent: [ BaseWeaponBatterySmall, BaseMajorContraband ]
@@ -792,16 +800,16 @@
       params:
          volume: -2
   - type: BatteryAmmoProvider
-    proto: BulletEnergySMGLaser
-    fireCost: 50
+    proto: TaserProjectileRifle #FH
+    fireCost: 500
   - type: BatteryWeaponFireModes
     fireModes:
     - proto: BulletEnergySMGLaser
       fireCost: 50
       magState: laser
       visualState: laser
-    - proto: BulletEnergySMGDisabler
-      fireCost: 25
+    - proto: TaserProjectileRifle #FH
+      fireCost: 500
       magState: disable
       visualState: disable
   - type: Item
@@ -824,6 +832,14 @@
   - type: BatterySelfRecharger
     autoRechargeRate: 80
     autoRechargePauseTime: 10
+  #FH Start
+  - type: Tazer
+    damagePerSecond:
+      types:
+        Shock: 3.5
+    maxDistance: 7
+    staminaDrainRate: 10
+  #FH End
 
 - type: entity
   name: Pulse Cannon #Far Horizons - The Great Capitalization Crusade
