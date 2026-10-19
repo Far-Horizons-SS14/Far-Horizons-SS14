@@ -1,8 +1,6 @@
 using System.Linq;
 using Content.Shared._FarHorizons.Body;
 using Content.Shared.Body;
-using Content.Server.Mind;
-using Content.Shared.Starlight.Medical.Surgery.Steps.Parts;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server._FarHorizons.Body;
@@ -33,10 +31,6 @@ public sealed partial class ConnectedOrganSystem : SharedConnectedOrganSystem
             !TryComp<BodyComponent>(args.Target, out var body) || 
             body.Organs == null) 
             return;
-
-        // Sanity check to avoid endless bleed damage when they reattach surgically removed limbs
-        if (HasComp<IncisionOpenComponent>(ent))
-            RemCompDeferred<IncisionOpenComponent>(ent);
         
         var connectedCategories = _protoMan.EnumeratePrototypes<OrganCategoryPrototype>()
             .Where(p => p.ConnectsTo == ent.Comp.Category).Select(p => (ProtoId<OrganCategoryPrototype>)p.ID).ToList();
