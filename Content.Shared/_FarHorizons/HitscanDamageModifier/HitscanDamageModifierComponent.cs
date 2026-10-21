@@ -1,5 +1,4 @@
 using Content.Shared.Damage;
-using Content.Shared.Weapons.Hitscan.Systems;
 using Robust.Shared.GameStates;
 
 namespace Content.Shared._FarHorizons.HitscanDamageModifier;
