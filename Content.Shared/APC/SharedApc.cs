@@ -1,3 +1,4 @@
+using Content.Shared._FarHorizons.Power.SmartGrid; // Far Horizons
 using Robust.Shared.Serialization;
 
 namespace Content.Shared.APC
@@ -183,8 +184,18 @@ namespace Content.Shared.APC
         public readonly float Charge;
         public readonly float MaxLoad;
         public readonly bool Tripped;
+        public readonly SmartGridAvailabilityState SmartGrid; // Far Horizons
 
-        public ApcBoundInterfaceState(bool mainBreaker, int power, ApcExternalPowerState apcExternalPower, float charge, float maxLoad, bool tripped)
+        // Far Horizons start
+        public ApcBoundInterfaceState(
+            bool mainBreaker,
+            int power,
+            ApcExternalPowerState apcExternalPower,
+            float charge,
+            float maxLoad,
+            bool tripped,
+            SmartGridAvailabilityState smartGrid)
+        // Far Horizons end
         {
             MainBreaker = mainBreaker;
             Power = power;
@@ -192,6 +203,7 @@ namespace Content.Shared.APC
             Charge = charge;
             MaxLoad = maxLoad;
             Tripped = tripped;
+            SmartGrid = smartGrid; // Far Horizons
         }
 
         public bool Equals(ApcBoundInterfaceState? other)
@@ -203,7 +215,10 @@ namespace Content.Shared.APC
                    ApcExternalPower == other.ApcExternalPower &&
                    MathHelper.CloseTo(Charge, other.Charge) &&
                    MathHelper.CloseTo(MaxLoad, other.MaxLoad) &&
-                   Tripped == other.Tripped;
+                   // Far Horizons start
+                   Tripped == other.Tripped &&
+                   SmartGrid == other.SmartGrid;
+                   // Far Horizons end
         }
 
         public override bool Equals(object? obj)
@@ -213,7 +228,16 @@ namespace Content.Shared.APC
 
         public override int GetHashCode()
         {
-            return HashCode.Combine(MainBreaker, Power, (int) ApcExternalPower, Charge, MaxLoad, Tripped);
+            // Far Horizons start
+            return HashCode.Combine(
+                MainBreaker,
+                Power,
+                (int) ApcExternalPower,
+                Charge,
+                MaxLoad,
+                Tripped,
+                SmartGrid);
+            // Far Horizons end
         }
     }
 

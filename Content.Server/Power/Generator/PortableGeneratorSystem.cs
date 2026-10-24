@@ -222,6 +222,13 @@ public sealed partial class PortableGeneratorSystem : SharedPortableGeneratorSys
         _uiSystem.SetUiState(
             uid,
             GeneratorComponentUiKey.Key,
-            new PortableGeneratorComponentBuiState(fuelComp, fuel, clogged, networkStats));
+            // Far Horizons start
+            new PortableGeneratorComponentBuiState(
+                fuelComp,
+                fuel,
+                clogged,
+                networkStats,
+                _smartGrid.GetAvailabilityState(uid)));
+            // Far Horizons end
     }
 }

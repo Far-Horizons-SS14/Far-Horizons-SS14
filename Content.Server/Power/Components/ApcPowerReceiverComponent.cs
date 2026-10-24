@@ -45,9 +45,31 @@ namespace Content.Server.Power.Components
         [DataField("powerDisabled")]
         public override bool PowerDisabled
         {
-            get => !NetworkLoad.Enabled;
-            set => NetworkLoad.Enabled = !value;
+            // Far Horizons start
+            get => field;
+            set
+            {
+                field = value;
+                UpdateLoadEnabled();
+            }
+            // Far Horizons end
         }
+
+        // Far Horizons start
+        /// <summary>
+        ///     Whether the smart grid has disabled this receiver. This is kept separate from the manual power state.
+        /// </summary>
+        [ViewVariables]
+        public bool SmartGridDisabled
+        {
+            get;
+            set
+            {
+                field = value;
+                UpdateLoadEnabled();
+            }
+        }
+        // Far Horizons end
 
         [ViewVariables]
         public PowerState.Load NetworkLoad { get; } = new PowerState.Load
@@ -56,5 +78,12 @@ namespace Content.Server.Power.Components
         };
 
         public float PowerReceived => NetworkLoad.ReceivingPower;
+
+        // Far Horizons start
+        private void UpdateLoadEnabled()
+        {
+            NetworkLoad.Enabled = !PowerDisabled && !SmartGridDisabled;
+        }
+        // Far Horizons end
     }
 }
