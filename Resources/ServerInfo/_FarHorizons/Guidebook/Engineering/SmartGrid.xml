@@ -1,0 +1,243 @@
+<Document>
+  # Smart Grid
+
+  The smart grid protects important station systems when power is scarce. It
+  monitors each power network and deliberately turns off lower-priority devices
+  before a shortage becomes a station-wide brownout.
+
+  Smart-grid shedding does not create power. A network can still brown out if
+  it cannot physically supply the loads that remain enabled, either due to
+  being considered essential or due to manual overrides.
+
+  <Box>
+    <GuideEntityEmbed Entity="SMESBasic" Caption="SMES"/>
+    <GuideEntityEmbed Entity="SubstationBasic" Caption="Substation"/>
+    <GuideEntityEmbed Entity="APCBasic" Caption="APC"/>
+  </Box>
+
+  ## Availability levels
+
+  Every eligible powered device belongs to one of five availability levels.
+  The grid supplies every level at or below its current availability ceiling.
+  [color=green]General[/color] is the normal, fully available state. As the
+  ceiling falls, higher-numbered levels are shed first.
+
+  <Table Columns="3">
+    <ColorBox>
+      <Box>
+        Level
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        Availability
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        Examples
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        4
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        [color=green]General[/color]
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        All other devices.
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        3
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        [color=#b6d900]Lighting[/color]
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        Standard lighting.
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        2
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        [color=yellow]Shuttle Operations[/color]
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        Shuttle controls, engines, gyros, and cameras.
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        1
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        [color=orange]Life Support[/color]
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        Airlocks, atmospherics equipment and gas pumps, cryogenic tubes, stasis beds, and surgical equipment.
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        0
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        [color=red]Essential Systems[/color]
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        Containment emitters, the AI core, and cyborg chargers.
+      </Box>
+    </ColorBox>
+  </Table>
+
+  This order means a shortage normally removes general machinery first, followed
+  by lights, shuttle systems, and Life Support. Essential Systems are kept
+  online as long as the physical power network can support them.
+
+  A wire network's effective availability is limited by its own local ceiling and
+  the applicable signals feeding it. Batteries and generators on the same network
+  can support one another, while a more restrictive relay or manual output can
+  still lower the network's availability.
+
+  ## Automatic shedding
+
+  The smart grid watches generation, battery reserves, and output limits on
+  each network. A shortage must persist briefly before a level is shed, which
+  prevents momentary generator ramping or a transient load spike from cycling
+  equipment off and on.
+
+  Recovery is deliberately slower. After a network remains free of shortages for
+  a sustained period, it restores one level at a time. If the shortage continues,
+  the grid instead sheds another level. Fix the underlying deficit by bringing
+  generation online, reducing demand, restoring damaged cables, or charging
+  depleted storage.
+
+  ### Generators
+
+  An enabled generator sends General availability while it is ramping up, then
+  asks the grid to reduce demand only after it has remained at its own output
+  limit. This ensures that it gets sufficient demand to continue ramping rather
+  than settling below the output it could otherwise support. Disabled generators
+  and generators producing no power send no availability signal.
+
+  ### Power Network Batteries
+
+  SMESes, substations, and APCs are power network batteries. Their behavior is
+  split based on whether they're in [bold]Primary Mode[/bold] or [bold]Reserve
+  Mode[/bold]. A device is in [bold]Reserve Mode[/bold] when its input is supplied
+  through an upstream power-network battery with its output breaker enabled.
+  Otherwise, it is in [bold]Primary Mode[/bold].
+
+  In [bold]Reserve Mode[/bold], a battery will generally forward the availability
+  signal it receives from its input network. This means that its battery storage is
+  generally not touched unless the upstream batteries are fully drained (at which
+  point it will expend its charge to power whatever demands are still online
+  downstream).
+
+  In [bold]Primary Mode[/bold], a battery will proactively attempt to increase the
+  availability level of its downstream network by using its stored energy. Each
+  availability level has a cutoff threshold. Below that threshold, a discharging
+  [bold]Primary Mode[/bold] battery trips a reserve breaker and sheds that level.
+  Until it sheds a level, a [bold]Primary Mode[/bold] battery continues to provide
+  the highest availability level it has not shed. Once a level is shed, the battery
+  will not restore that level until it has recharged to the higher recovery threshold
+  for that availability level. This hysteresis reduces rapid cycling of availability
+  levels.
+
+  ### Power Consumers
+
+  Power consumers are each assigned an availability level, and will stop consuming
+  network power if the availability level of their input network is below their
+  assigned level. They may continue to consume power if they have an internal battery
+  of their own.
+
+  ## Manual controls
+
+  ### Reserve breakers
+
+  For batteries in [bold]Primary Mode[/bold], there are dashed outlines on the
+  charge meter that indicate the thresholds for shedding and recovering. Clicking
+  an active region trips that breaker and every higher availability level. Clicking
+  a tripped region instead recovers that breaker and every lower level.
+
+  This is separate from an output availability override and is not persistent:
+  automatic reserve logic can trip the breaker again almost immediately. It is
+  most useful when the charge level is within the trip region, or when sufficient
+  upstream generation is actively charging the battery.
+
+  ### Output availability overrides
+
+  Portable generators, SMESes, substations, and APCs have a Smart Grid
+  Availability control in their interface. It lists the availability levels
+  from General at the top to Essential Systems at the bottom.
+
+  - The left [color=cyan]->[/color] marks availability received from the input
+    network.
+  - The right [color=cyan]->[/color] marks availability sent to the output
+    network.
+  - A solid outline marks a manual selection.
+
+  Select a level to override automatic availability for that device's output
+  network. This is useful for retaining service to a critical room during an
+  emergency, or for deliberately shedding a downstream area. Selecting the
+  same level again returns the device to automatic operation.
+
+  When the device returns to automatic load shedding from a manual override,
+  it does so at the level that was selected when the override was cleared.
+  This allows for setting a temporary override and then unsetting it after
+  power is restored to recover a network more quickly than it would naturally
+  scale back up.
+
+  ## Inspecting the grid
+
+  Use a multitool on an anchored power cable to inspect that cable's network.
+  In addition to normal power statistics, the report shows:
+
+  - Current availability and local availability.
+  - Whether the grid is stable, preparing to shed, or preparing to recover.
+  - The immediate sources supplying that network and whether they are healthy,
+    output-capped, low on reserve, or disabled.
+
+  The Power Monitoring Computer also shows smart-grid status for its focused
+  power devices. Inspect the HV network for station-wide causes, then follow
+  through SMES, substation, and APC boundaries to isolate the affected area.
+
+  <Box>
+    <GuideEntityEmbed Entity="Multitool" Caption="Multitool"/>
+    <GuideEntityEmbed Entity="ComputerPowerMonitoring" Caption="Power Monitoring Computer"/>
+  </Box>
+
+  ## Responding to a power emergency
+
+  - Communicate! Although telecommunications equipment is load-shed early, handheld radios will continue to work.
+  - Inspect the affected network with a multitool or the Power Monitoring Computer.
+  - Determine whether the problem is insufficient generation, a drained or capped battery, or a broken/disconnected supply path.
+  - Restore generation or storage capacity before relying on manual overrides.
+  - If needed, use a nearby APC, substation, SMES, or portable generator to choose a temporary availability level for the affected output network.
+  - Return the control to automatic operation once the underlying fault is resolved.
+</Document>

@@ -1,4 +1,5 @@
 ﻿using Robust.Shared.Serialization;
+using Content.Shared._FarHorizons.Power.SmartGrid; // Far Horizons
 
 namespace Content.Shared.Power;
 
@@ -42,6 +43,11 @@ public sealed class BatteryBuiState : BoundUserInterfaceState
     // Storage
     public float Charge;
     public float Capacity;
+
+    // Far Horizons start
+    // Smart grid
+    public SmartGridAvailabilityState SmartGrid;
+    // Far Horizons end
 }
 
 /// <summary>
@@ -79,4 +85,3 @@ public sealed class BatterySetDischargeRateMessage(float rate) : BoundUserInterf
 {
     public float Rate = rate;
 }
-

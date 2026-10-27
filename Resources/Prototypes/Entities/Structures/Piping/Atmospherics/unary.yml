@@ -91,6 +91,10 @@
       guides:
       - AirVent
       - DeviceMonitoringAndControl
+    # Far Horizons start
+    - type: SmartGridLoad
+      priority: LifeSupport
+    # Far Horizons end
 
 - type: entity
   parent: GasUnaryBase
@@ -201,6 +205,10 @@
       guides:
       - AirScrubber
       - DeviceMonitoringAndControl
+    # Far Horizons start
+    - type: SmartGridLoad
+      priority: LifeSupport
+    # Far Horizons end
 
 - type: entity
   parent: GasUnaryBase
@@ -526,4 +534,3 @@
   - type: GuideHelp
     guides:
     - GasCondensing
-

@@ -166,6 +166,10 @@
     guides:
     - ShuttleCraft
   - type: SpaceRescuePingReceiver # Far Horizons
+  # Far Horizons start
+  - type: SmartGridLoad
+    priority: ShuttleOperations
+  # Far Horizons end
 
 - type: entity
   parent: BaseComputerShuttle
@@ -764,11 +768,13 @@
     ports:
       - BodyScannerSender
   # Starlight-end
-  #FarHorizons Start
+  # Far Horizons Start
   - type: ResearchClient
   - type: TechnologyDatabase
   - type: ActivatableUIRequiresPower
-  #FarHorizons End
+  - type: SmartGridLoad
+    priority: LifeSupport
+  # Far Horizons end
 
 - type: entity
   parent: BaseComputerAiAccess

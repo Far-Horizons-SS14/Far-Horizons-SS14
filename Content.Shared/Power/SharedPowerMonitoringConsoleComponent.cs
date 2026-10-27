@@ -1,3 +1,4 @@
+using Content.Shared._FarHorizons.Power.SmartGrid; // Far Horizons
 using Robust.Shared.GameStates;
 using Robust.Shared.Map;
 using Robust.Shared.Serialization;
@@ -75,6 +76,7 @@ public sealed class PowerMonitoringConsoleBoundInterfaceState : BoundUserInterfa
     public PowerMonitoringConsoleEntry[] AllEntries;
     public PowerMonitoringConsoleEntry[] FocusSources;
     public PowerMonitoringConsoleEntry[] FocusLoads;
+    public SmartGridNetworkStatus? SmartGridStatus; // Far Horizons
 
     public PowerMonitoringConsoleBoundInterfaceState
         (double totalSources,
@@ -82,7 +84,10 @@ public sealed class PowerMonitoringConsoleBoundInterfaceState : BoundUserInterfa
         double totalLoads,
         PowerMonitoringConsoleEntry[] allEntries,
         PowerMonitoringConsoleEntry[] focusSources,
-        PowerMonitoringConsoleEntry[] focusLoads)
+        // Far Horizons start
+        PowerMonitoringConsoleEntry[] focusLoads,
+        SmartGridNetworkStatus? smartGridStatus)
+        // Far Horizons end
     {
         TotalSources = totalSources;
         TotalBatteryUsage = totalBatteryUsage;
@@ -90,6 +95,7 @@ public sealed class PowerMonitoringConsoleBoundInterfaceState : BoundUserInterfa
         AllEntries = allEntries;
         FocusSources = focusSources;
         FocusLoads = focusLoads;
+        SmartGridStatus = smartGridStatus; // Far Horizons
     }
 }
 
