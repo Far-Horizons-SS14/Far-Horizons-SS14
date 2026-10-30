@@ -1,69 +1,3 @@
-# region Tasers
-- type: entity
-  id: BoltTaserFH
-  name: Taser
-  parent: BasicHitscanNoBeam
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: HitscanBasicDamage
-    damage:
-      types:
-        Shock: 5
-  - type: HitscanCrawlerTargetEffects
-    knockdownDuration: 3 #in seconds
-  - type: HitscanBasicRaycast
-    maxDistance: 5 #tiles
-  - type: HitscanBasicVisuals
-    bullet:
-      sprite:
-        sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
-        state: spark
-      color: "#ffff33"
-
-- type: entity
-  id: BoltTaserRifle #Use in rifles exclusively
-  name: Taser Bolt
-  parent: BasicHitscanNoBeam
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: HitscanBasicDamage
-    damage:
-      types:
-        Shock: 2
-  - type: HitscanStaminaDamage
-    staminaDamage: 12 # Very weak but has range. Ten shots given stun will likely fade with time.
-  - type: HitscanBasicRaycast
-    maxDistance: 20
-  - type: HitscanBasicVisuals
-    bullet:
-      sprite:
-        sprite: Objects/Weapons/Guns/Projectiles/projectiles_tg.rsi
-        state: omnilaser_greyscale
-      color: "#ffff33"
-
-- type: entity
-  id: BoltTaserSpread # Only use in shotguns
-  name: Split Taser Bolt
-  parent: BasicHitscanNoBeam
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: HitscanBasicDamage
-    damage:
-      types:
-        Shock: 12 # Change to 1 shock per shot when spread is added  ~ 12 shock per shot, ~36 shock damage to stamcrit
-#  count: 12 Not supported in laser hitscan, readd when support is added.
-#  spread: 30 Not supported in laser hitscan, readd when support is added.
-  - type: HitscanStaminaDamage
-    staminaDamage: 48 # Change to 3 when support is added ~ 48, three shots assuming you hit them all.
-  - type: HitscanBasicRaycast
-    maxDistance: 4
-  - type: HitscanBasicVisuals
-    bullet:
-      sprite:
-        sprite: Objects/Weapons/Guns/Projectiles/projectiles_tg.rsi
-        state: omnilaser_greyscale
-      color: "#ffff33"
-
 #region Plasma
 - type: entity
   id: BoltPlasma
@@ -80,8 +14,6 @@
         Structural: 15 # 75 total
   - type: HitscanBasicRaycast
     collisionMask: BulletImpassable
-
-
 
 - type: entity
   id: BoltPlasmaSpread

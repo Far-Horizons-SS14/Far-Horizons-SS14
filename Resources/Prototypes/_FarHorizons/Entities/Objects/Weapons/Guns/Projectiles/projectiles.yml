@@ -495,3 +495,84 @@
   - type: Tag
     tags:
       - HideContextMenu
+
+- type: entity
+  id: TaserProjectile
+  name: TaserProjectile
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: EmbeddableProjectile
+      deleteOnRemove: true
+    - type: FlyBySound
+    - type: Clickable
+    - type: InteractionOutline
+    - type: Sprite
+      noRot: false
+      sprite: _FarHorizons/Objects/Weapons/Guns/Misc/taserline.rsi
+      layers:
+      - state: prong
+        shader: unshaded
+      drawdepth: OverMobs
+    - type: Physics
+      bodyType: Dynamic
+    - type: TileFrictionModifier
+      modifier: 0
+    - type: Fixtures
+      fixtures:
+        projectile:
+          shape:
+            !type:PhysShapeAabb
+            bounds: "-0.1,-0.10,0.1,0.30"
+          hard: false
+          mask:
+          - Impassable
+          - BulletImpassable
+        fly-by:
+          shape: !type:PhysShapeCircle
+            radius: 1.5
+          layer:
+          - Impassable
+          - MidImpassable
+          - HighImpassable
+          - LowImpassable
+          hard: False
+    - type: Projectile
+      deleteOnCollide: false
+      damage:
+        types:
+          Shock: 2
+      soundHit:
+        path: /Audio/Weapons/Guns/Hits/bullet_hit.ogg
+    - type: TazerProjectile
+    - type: TimedDespawn
+      lifetime: 0.270
+
+- type: entity
+  id: TaserProjectileRifle
+  name: TaserProjectileRifle
+  parent: TaserProjectile
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Projectile
+      deleteOnCollide: false
+      damage:
+        types:
+          Shock: 5
+      soundHit:
+        path: /Audio/Weapons/Guns/Hits/bullet_hit.ogg
+    - type: TazerProjectile
+    - type: TimedDespawn
+      lifetime: 0.405
+
+- type: entity
+  name: TaserProjectileBarrage
+  id: TaserProjectileBarrage
+  categories: [ HideSpawnMenu ]
+  parent: TaserProjectile
+  components:
+  - type: ProjectileSpread
+    proto: TaserProjectileRifle
+    count: 3
+    spread: 30
+  - type: TimedDespawn
+    lifetime: 0.135 
