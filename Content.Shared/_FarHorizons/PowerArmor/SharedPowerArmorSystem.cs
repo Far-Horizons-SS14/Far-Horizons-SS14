@@ -115,7 +115,7 @@ public abstract partial class SharedPowerArmorSystem : EntitySystem
 
         var modifiers = papComp.isBroken ? papComp.BrokenModifiers : papComp.Modifiers;
         var modifiedDamage = DamageSpecifier.ApplyModifierSet(args.Args.Damage, modifiers, args.Args.ArmorPenetration, args.Args.CanHeal);
-        args.Args.Damage = papComp.BlockAllDamageToUser && !papComp.isBroken ? modifiedDamage * 0 : modifiedDamage;
+        args.Args.Damage = papComp.isBroken ? modifiedDamage : modifiedDamage * papComp.DamageTransferModifier;
         if (!papComp.isBroken)
             _damageable.ChangeDamage(part.Value, modifiedDamage);
     }
@@ -143,7 +143,7 @@ public abstract partial class SharedPowerArmorSystem : EntitySystem
 
         var modifiers = papComp.isBroken ? papComp.BrokenModifiers : papComp.Modifiers;
         var modifiedDamage = DamageSpecifier.ApplyModifierSet(args.Args.Damage, modifiers, args.Args.ArmorPenetration, args.Args.CanHeal);
-        args.Args.Damage = papComp.BlockAllDamageToUser && !papComp.isBroken ? modifiedDamage * 0 : modifiedDamage;
+        args.Args.Damage = papComp.isBroken ? modifiedDamage : modifiedDamage * papComp.DamageTransferModifier;
         if (!papComp.isBroken)
             _damageable.ChangeDamage(part.Value, modifiedDamage);
     }

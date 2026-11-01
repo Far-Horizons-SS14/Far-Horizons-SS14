@@ -10,13 +10,13 @@ namespace Content.Shared._FarHorizons.PowerArmor;
 public sealed partial class PowerArmorPartComponent : Component
 {
     /// <summary>
-    /// 
+    /// How much damage goes to the user.
     /// </summary>
     [DataField(required: true)]
-    public bool BlockAllDamageToUser = false;
+    public float DamageTransferModifier = 1.0f;
 
     /// <summary>
-    /// Optional: The damage reduction when the part is unbroken
+    /// The damage reduction when the part is unbroken.
     /// </summary>
     [DataField]
     public DamageModifierSet Modifiers = default!;
