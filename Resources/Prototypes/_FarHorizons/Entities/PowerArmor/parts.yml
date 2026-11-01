@@ -105,6 +105,7 @@
   - type: Sprite
     sprite: _FarHorizons/Clothing/OuterClothing/PowerArmor/ntjuggsuit.rsi
   - type: PowerArmorPart
+    damageTransferModifier: 0.1
     modifiers:
       flatReductions:
         Piercing: 5
@@ -123,7 +124,7 @@
         Piercing: 0.70 
         Heat: 0.80
         Radiation: 0.25
-    speedModifier: 0.085 #Formula for this speed reduction would be like 0.6 (Armor) * (0.085 * Parts installed) with 6 = 0.306
+    speedModifier: 0.0817 #Formula for this speed reduction is ClothingSpeedModifier × (1 − n × partPenalty)
 
 - type: entity
   id: PowerArmorNTJuggernautLimbs

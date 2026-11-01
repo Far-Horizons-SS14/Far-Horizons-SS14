@@ -21,12 +21,6 @@ public sealed partial class PowerArmorSystem : SharedPowerArmorSystem
     private static readonly TimeSpan _alertUpdateDelay = TimeSpan.FromSeconds(0.5f);
     private TimeSpan _nextAlertUpdate;
 
-    public override void Initialize()
-    {
-        base.Initialize();
-        SubscribeLocalEvent<PowerArmorPartComponent, AppearanceChangeEvent>(OnAppearanceChange);
-    }
-
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
@@ -68,6 +62,7 @@ public sealed partial class PowerArmorSystem : SharedPowerArmorSystem
 
         _alerts.ShowAlert(ent.Owner, ent.Comp.BatteryAlert, chargeLevel);
     }
+
     protected override void OnPartInserted(Entity<PowerArmorPartComponent> ent, ref EntGotInsertedIntoContainerMessage args)
     {
         base.OnPartInserted(ent, ref args);
@@ -127,6 +122,7 @@ public sealed partial class PowerArmorSystem : SharedPowerArmorSystem
         }
     }
     
+    [SubscribeLocalEvent]
     private void OnAppearanceChange(Entity<PowerArmorPartComponent> ent, ref AppearanceChangeEvent args)
     {
         if(!_appearance.TryGetData<NetEntity>(ent.Owner, PowerArmorPartVisuals.PowerArmor, out var powerArmorNetEntity)) 
