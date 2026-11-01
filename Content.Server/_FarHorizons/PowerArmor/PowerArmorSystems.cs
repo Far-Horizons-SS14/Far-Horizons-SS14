@@ -8,19 +8,15 @@ namespace Content.Server._FarHorizons.PowerArmor;
 public sealed partial class PowerArmorSystem : SharedPowerArmorSystem
 {
     [Dependency] DestructibleSystem _destructible = default!;   
-    public override void Initialize()
-    {
-        base.Initialize();
-        SubscribeLocalEvent<PowerArmorPartComponent, MapInitEvent>(OnPAPInit);
-        SubscribeLocalEvent<PowerArmorComponent, EntGotInsertedIntoContainerMessage>(OnPAInsert);
-    }
 
+    [SubscribeLocalEvent]
     private void OnPAPInit(Entity<PowerArmorPartComponent> ent, ref MapInitEvent args)
     {
         ent.Comp.MaxIntegrity = _destructible.DestroyedAt(ent.Owner);
         Dirty(ent);
     }
 
+    [SubscribeLocalEvent]
     private void OnPAInsert(Entity<PowerArmorComponent> ent, ref EntGotInsertedIntoContainerMessage args)
     {
         var PowerArmor = args.Container.Owner;
