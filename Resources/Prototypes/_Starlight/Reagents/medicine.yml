@@ -84,6 +84,15 @@
     # Far Horizons end
     Bloodstream:
       effects:
+    # Far Horizons start
+      - !type:AdjustReagent
+          conditions:
+          - !type:ReagentCondition
+            reagent: Hemex
+            min: 1
+          reagent: Hemex
+          amount: -3
+    # Far Horizons end
       - !type:HealthChange
         conditions:
         - !type:MetabolizerTypeCondition
