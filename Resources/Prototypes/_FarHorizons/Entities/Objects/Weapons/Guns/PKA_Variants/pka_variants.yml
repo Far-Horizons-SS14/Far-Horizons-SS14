@@ -45,10 +45,31 @@
       upgrades: !type:Container
 
 - type: entity
-  parent: WeaponProtoKineticAccelerator
+  parent: BaseItem
   id: BorgWeaponPKA
   name: Cyborg Proto-Kinetic Accelerator
+  description: An adaptation of the famous PKA for use by cyborgs.
   components:
+    - type: Sprite
+      sprite: Objects/Weapons/Guns/Basic/kinetic_accelerator.rsi
+      layers:
+      - state: icon
+      - state: animation-icon
+        visible: false
+        map: [ "empty-icon" ]
+    - type: RandomSprite
+      available:
+        - 0:
+            icon: ""
+            icon_h: ""
+            icon_u: ""
+      heldPrefixes:
+        icon_h: "h"
+        icon_u: "u"
+    # todo: add itemcomponent with inhandVisuals states using unused texture and animation assets in kinetic_accelerator.rsi
+    # todo: add clothingcomponent with clothingVisuals states using unused texture and animations assets in kinetic_accelerator.rsi
+    - type: Item
+      sprite: Objects/Weapons/Guns/Basic/kinetic_accelerator.rsi
     - type: Gun
       fireRate: 0.5
       selectedMode: SemiAuto
@@ -60,3 +81,35 @@
       soundGunshot:
         path: /Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg
       projectileSpeed: 25
+    - type: AmmoCounter
+    - type: Appearance
+    - type: GenericVisualizer
+      visuals:
+        enum.AmmoVisuals.HasAmmo:
+          empty-icon:
+            True: { visible: False }
+            False: { visible: True }
+          #todo: add other 'empty' animations
+    - type: RechargeBasicEntityAmmo
+      rechargeCooldown: 0.75
+      rechargeSound:
+        path: /Audio/Weapons/Guns/MagIn/kinetic_reload.ogg
+    - type: BasicEntityAmmoProvider
+      proto: BulletKinetic
+      capacity: 1
+      count: 1
+    - type: Clothing
+      sprite: Objects/Weapons/Guns/Basic/kinetic_accelerator.rsi
+      quickEquip: false
+      slots:
+      - suitStorage
+      - Belt
+    - type: UseDelay
+      delay: 1
+    - type: UpgradeableGun
+      whitelist:
+        tags:
+        - PKAUpgrade
+    - type: ContainerContainer
+      containers:
+        upgrades: !type:Container
