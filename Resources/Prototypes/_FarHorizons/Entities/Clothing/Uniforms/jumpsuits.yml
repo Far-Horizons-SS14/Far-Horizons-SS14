@@ -980,3 +980,28 @@
     sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/wizard.rsi
   - type: Clothing
     sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/wizard.rsi
+
+#region ## USSP ## 
+- type: entity
+  parent: [ClothingUniformBase, BaseSovietContraband]
+  id: ClothingUniformJumpsuitAdmiral
+  name: Admiral's Jumpsuit
+  suffix: USSP
+  description: A formal jumpsuit for the admiral of a USSP Station.
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/USSP/admiral.rsi
+    - type: Clothing
+      sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/USSP/admiral.rsi
+
+- type: entity
+  parent: [ClothingUniformBase, BaseSovietContraband]
+  id: ClothingUniformJumpsuitCommissar
+  name: Commissar's Jumpsuit
+  suffix: USSP
+  description: A fancy red suit that covers the blood stains of the USSP deserters.
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/USSP/commissar.rsi
+    - type: Clothing
+      sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/USSP/commissar.rsi

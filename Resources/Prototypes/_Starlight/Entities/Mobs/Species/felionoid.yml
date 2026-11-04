@@ -44,8 +44,9 @@
     - id: FoodMeatHuman
       amount: 3
   - type: Damageable
-    damageContainer: Biological
     damageModifierSet: Vox
+  - type: Injurable
+    damageContainer: Biological
   - type: MeleeWeapon
     soundHit:
       collection: AlienClaw

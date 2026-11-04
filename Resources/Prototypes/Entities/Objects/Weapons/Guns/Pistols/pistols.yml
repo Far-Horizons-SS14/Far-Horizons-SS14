@@ -74,6 +74,19 @@
   - type: Appearance
   - type: StaticPrice
     price: 500
+  # starlight start
+  - type: MeleeWeapon
+    wideAnimationRotation: 0
+    damage:
+      types:
+        Blunt: 6
+    angle: 0
+    animation: WeaponArcThrust
+    soundHit:
+      collection: MetalThud
+  - type: AltFireMelee
+  - type: ForceQuickDraw #All pistols can now be smart equipped from pockets instead of removing their magazines! Rejoice!
+  # starlight end
 
 - type: entity
   name: Viper #Far Horizons - The Great Capitalization Crusade

@@ -23,8 +23,9 @@
   - type: Item
     size: Normal
   - type: Damageable
-    damageContainer: Inorganic
     damageModifierSet: Metallic
+  - type: Injurable
+    damageContainer: Inorganic
   - type: Destructible
     thresholds:
     - trigger:
@@ -334,6 +335,7 @@
     canRestock:
     - PTechInventory
     - PTechInventoryNS #FH
+    - PTechInventoryGSL #FH
   - type: Sprite
     layers:
     - state: base

@@ -47,6 +47,7 @@
         - IdCard
     # Far Horizons start
     credstickSlot:
+      priority: -3
       name: pda-credstick-slot-name
       ejectSound: /Audio/Machines/id_swipe.ogg
       insertSound: /Audio/Machines/id_insert.ogg
@@ -1186,6 +1187,7 @@
   id: SyndiPDA
   name: Syndicate PDA #Far Horizons - The Great Capitalization Crusade
   description: Ok, time to be a productive member of- oh cool I'm a bad guy time to kill people!
+  suffix: NS #Far Horizons
   components:
   - type: Pda
     id: OperativeIDCard
@@ -1212,6 +1214,7 @@
   id: SyndiOperativePDA
   name: Syndicate Operative PDA #Far Horizons - The Great Capitalization Crusade
   description: Death to NT!
+  suffix: NS #Far Horizons
   components:
   - type: Pda
     id: SyndiOperativeIDCard
@@ -1228,6 +1231,7 @@
   id: SyndiCorpsmanPDA
   name: Syndicate Corpsman PDA #Far Horizons - The Great Capitalization Crusade
   description: Commander... I need to cook!
+  suffix: NS #Far Horizons
   components:
   - type: Pda
     id: SyndiCorpsmanIDCard
@@ -1256,6 +1260,7 @@
   id: SyndiCommanderPDA
   name: Syndicate Commander PDA #Far Horizons - The Great Capitalization Crusade
   description: So what are we, some kind of Nukie squad?
+  suffix: NS #Far Horizons
   components:
   - type: Pda
     id: SyndiCommanderIDCard

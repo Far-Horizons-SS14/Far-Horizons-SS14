@@ -1,5 +1,3 @@
-command-description-container-insert =
-    Inserts the given entity into the specified container on the piped entity.
 command-description-container-insertmany =
     Inserts the piped entities into the specified container on the specified entity.
 command-description-container-create =
@@ -12,8 +10,6 @@ command-description-container-dropandget =
     Drops all contained entities from the specified container on the piped entity, and return all dropped items instead of the piped entity.
 command-description-container-dropanddelete =
     Drops all contained entities from the specified container on the piped entity, then delete the container.
-command-description-container-get =
-    Gets the container object of the given container ID on the piped entity.
 command-description-container-getentities =
     Gets all entities in the given container on the piped entity.
 command-description-container-getcontaining =

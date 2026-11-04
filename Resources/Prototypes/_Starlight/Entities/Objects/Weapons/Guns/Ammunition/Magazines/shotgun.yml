@@ -2,7 +2,7 @@
 
 - type: entity
   id: BaseMagazineShotgunToz
-  name: Magazine (.42 Shells) #Far Horizons - The Great Capitalization Crusade
+  name: 12 Gauge Magazine #Far Horizons - The Great Capitalization Crusade
   parent: [ BaseItem, BaseSecurityContraband ]
   abstract: true
   components:
@@ -13,7 +13,7 @@
     mayTransfer: true
     whitelist:
       tags:
-      - ShellShotgunToz
+      - ShellShotgun #FH
     capacity: 2
     soundRack:
       path: /Audio/Weapons/Guns/Cock/smg_cock.ogg
@@ -42,7 +42,7 @@
 
 - type: entity
   id: MagazineShotgunTozEmpty
-  name: Magazine (.42 Shells) #Far Horizons - The Great Capitalization Crusade
+  name: 12 Gauge Magazine #Far Horizons - The Great Capitalization Crusade
   suffix: Empty #Far Horizons - The Great Capitalization Crusade
   parent: BaseMagazineShotgunToz
   components:
@@ -51,7 +51,7 @@
 
 - type: entity
   id: MagazineShotgunToz
-  name: Magazine (.42 Pellet) #Far Horizons - The Great Capitalization Crusade
+  name: 12 Gauge Magazine #Far Horizons - The Great Capitalization Crusade
   parent: BaseMagazineShotgunToz
   components:
   - type: BallisticAmmoProvider
@@ -65,7 +65,7 @@
 
 - type: entity
   id: MagazineShotgunTozExtendedEmpty
-  name: Magazine (.42 Shells) #Far Horizons - The Great Capitalization Crusade
+  name: 12 Gauge Magazine #Far Horizons - The Great Capitalization Crusade
   suffix: Extended, Empty #Far Horizons - The Great Capitalization Crusade
   parent: BaseMagazineShotgunToz
   components:
@@ -81,12 +81,12 @@
 
 - type: entity
   id: MagazineShotgunTozExtended
-  name: Magazine (.42 Pellet) #Far Horizons - The Great Capitalization Crusade
+  name: 12 Gauge Magazine #Far Horizons - The Great Capitalization Crusade
   suffix: Extended #Far Horizons
   parent: BaseMagazineShotgunToz
   components:
   - type: BallisticAmmoProvider
-    proto: ShellShotgunToz
+    proto: ShellShotgun
     capacity: 5
   - type: Sprite
     layers:

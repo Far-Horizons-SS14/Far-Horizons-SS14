@@ -37,10 +37,15 @@
   <Project Path="Content.Server/Content.Server.csproj" />
   <Project Path="Content.Shared.Database/Content.Shared.Database.csproj" />
   <Project Path="Content.Shared/Content.Shared.csproj" />
+  <Project Path="Content.Starlight.Codegen/Content.Starlight.Codegen.csproj">
+    <BuildType Solution="DebugOpt|*" Project="Debug" />
+    <BuildType Solution="Tools|*" Project="Debug" />
+  </Project>
   <Project Path="Content.Tests/Content.Tests.csproj" />
   <Project Path="Content.Tools/Content.Tools.csproj" />
   <Project Path="Content.YAMLLinter/Content.YAMLLinter.csproj" />
   <Project Path="Pow3r/Pow3r.csproj" />
+  <Folder Name="/RobustToolbox/.github/" />
   <Folder Name="/RobustToolbox/.github/workflows/">
     <File Path="RobustToolbox/.github/workflows/benchmarks.yml" />
     <File Path="RobustToolbox/.github/workflows/build-all-configurations.yml" />
@@ -107,6 +112,10 @@
       <BuildType Solution="Tools|*" Project="Release" />
     </Project>
     <Project Path="RobustToolbox/Robust.Shared.CompNetworkGenerator/Robust.Shared.CompNetworkGenerator.csproj">
+      <BuildType Solution="DebugOpt|*" Project="Debug" />
+      <BuildType Solution="Tools|*" Project="Release" />
+    </Project>
+    <Project Path="RobustToolbox/Robust.Shared.EntitySystemSubscriptionsGenerator/Robust.Shared.EntitySystemSubscriptionsGenerator.csproj">
       <BuildType Solution="DebugOpt|*" Project="Debug" />
       <BuildType Solution="Tools|*" Project="Release" />
     </Project>

@@ -1,13 +1,11 @@
-using Content.Shared._FarHorizons.Vehicles.Components;
 using Content.Shared.Damage.Components;
 using Content.Shared.Movement.Pulling.Events;
 using Content.Shared.Mobs.Components;
 using Content.Shared._Starlight.Actions.Events;
 using Content.Shared.Buckle.Components;
 using Content.Shared.Movement.Events;
-using Content.Shared.Movement.Systems;
 using Content.Shared.Stunnable;
-using Content.Shared._FarHorizons.ReagentDraw.Components;
+using Content.Shared._FarHorizons.ReagentDraw;
 using Content.Shared.Wieldable;
 using Content.Shared.Wieldable.Components;
 using Content.Shared.Weapons.Ranged.Systems;
@@ -29,19 +27,10 @@ public abstract partial class SharedVehicleSystem
         SubscribeLocalEvent<RiderComponent, KnockedDownEvent>(OnKnockdown);
         SubscribeLocalEvent<RiderComponent, UpdateCanMoveEvent>(OnUpdateCanMoveEvent);
         SubscribeLocalEvent<RiderComponent, JumpActionEvent>(OnJumpActionEvent);
-        SubscribeLocalEvent<RiderComponent, WieldAttemptEvent>(OnWieldAttemptEvent);
         SubscribeLocalEvent<RiderComponent, ShooterImpulseEvent>(OnShooterEvent);
-        SubscribeLocalEvent<RiderComponent, RefreshMovementSpeedModifiersEvent>(OnMovementSpeedRefreshRiderEvent, after: [typeof(MovementSpeedModifierSystem)]);
-        SubscribeLocalEvent<RiderComponent, DidEquipHandEvent>(OnHandEquippedRider);
         SubscribeLocalEvent<RiderComponent, PullAttemptEvent>(OnPullAttempt);
         SubscribeLocalEvent<RiderComponent, EntityTerminatingEvent>(OnRiderTerminating);
-
-        SubscribeLocalEvent<GunComponent, ItemWieldedEvent>(OnGunWielded);
-        SubscribeLocalEvent<GunComponent, ItemUnwieldedEvent>(OnGunUnwielded);
-        SubscribeLocalEvent<GunComponent, GunRefreshModifiersEvent>(OnGunRefreshModifiers);
     }
-    #region Rider Events
-
     private void OnStunned(Entity<RiderComponent> ent, ref StunnedEvent args)
     { 
         var vehicle = ent.Comp.Riding;
@@ -89,7 +78,7 @@ public abstract partial class SharedVehicleSystem
 
         var noPower =
             (vehicleComp.CellPowered && pcdComp != null && !_powerCell.HasDrawCharge(riding)) ^
-            (!vehicleComp.CellPowered && rdComp != null && !_reagentDraw.HasDrawReagant(riding));
+            (!vehicleComp.CellPowered && rdComp != null && !_reagentDraw.HasDrawReagent(riding));
 
         if (!noPower) return;
 
@@ -112,13 +101,6 @@ public abstract partial class SharedVehicleSystem
         args.Cancel();
     }
 
-    private void OnWieldAttemptEvent(Entity<RiderComponent> ent, ref WieldAttemptEvent args)
-    {
-        if(ent.Comp.Riding != null && TryComp<VehicleComponent>(ent.Comp.Riding.Value, out var vehicleComp) && !vehicleComp.DisallowWieldingGuns) return;
-
-        args.Cancel();
-    }
-
     private void OnShooterEvent(Entity<RiderComponent> ent, ref ShooterImpulseEvent args)
     {
         if(!TryComp<StaminaComponent>(ent.Owner, out var stamina)) return;
@@ -131,18 +113,6 @@ public abstract partial class SharedVehicleSystem
                 _stamina.TakeStaminaDamage(ent.Owner, stamina.CritThreshold*0.10f, component: stamina);
             }
         }
-    }
-
-    private void OnMovementSpeedRefreshRiderEvent(Entity<RiderComponent> ent, ref RefreshMovementSpeedModifiersEvent args)
-    {
-        if(ent.Comp.Riding == null) return;
-        _movementSpeed.RefreshMovementSpeedModifiers(ent.Comp.Riding.Value);
-    }
-
-    private void OnHandEquippedRider(Entity<RiderComponent> ent, ref DidEquipHandEvent args)
-    {
-        if(!HasComp<GunComponent>(args.Equipped)) return;
-        _gun.RefreshModifiers(args.Equipped);
     }
 
     private void OnPullAttempt(Entity<RiderComponent> ent, ref PullAttemptEvent args)
@@ -161,29 +131,45 @@ public abstract partial class SharedVehicleSystem
 
     private void OnRiderTerminating(Entity<RiderComponent> ent, ref EntityTerminatingEvent args)
     {
-        if (ent.Comp.Riding is { } vehicle && TryComp<VehicleComponent>(vehicle, out var vehicleComp))
-            RemoveRider(ent.Owner, vehicle, vehicleComp);
+        if (ent.Comp.Riding is { } vehicle)
+            RemoveRider(ent.Owner, vehicle);
     }
 
-    #endregion
-    #region Gun Events
-    private void OnGunUnwielded(EntityUid uid, GunComponent component, ItemUnwieldedEvent args)
+    [SubscribeLocalEvent]
+    private void OnHandEquipped(Entity<RiderComponent> ent, ref GotEquippedHandEvent args)
     {
-        if(HasComp<RiderComponent>(args.User))
-            _gun.RefreshModifiers(uid);
+        if(ent.Comp.Riding is not { } vehicle) return;
+        RemoveRider(ent.Owner, vehicle);
     }
 
-    private void OnGunWielded(EntityUid uid, GunComponent component, ref ItemWieldedEvent args)
+    [SubscribeLocalEvent]
+    private void OnHandEquippedRider(Entity<RiderComponent> ent, ref DidEquipHandEvent args)
     {
-        if(HasComp<RiderComponent>(args.User))
-            _gun.RefreshModifiers(uid);
+        if (TryComp<GunComponent>(args.Equipped, out var gun))
+            _gun.RefreshModifiers((args.Equipped, gun));
     }
 
+    [SubscribeLocalEvent]
+    private void OnHandUnequippedRider(Entity<RiderComponent> ent, ref DidUnequipHandEvent args)
+    {
+        if (TryComp<GunComponent>(args.Unequipped, out var gun))
+            _gun.RefreshModifiers((args.Unequipped, gun));
+    }
+
+    [SubscribeLocalEvent]
+    private void OnWieldAttemptEvent(Entity<RiderComponent> ent, ref WieldAttemptEvent args)
+    {
+        if(ent.Comp.Riding == null || !TryComp<VehicleComponent>(ent.Comp.Riding.Value, out var vehicleComp) || !vehicleComp.DisallowWieldingGuns)
+            return;
+
+        args.Cancel();
+    }
+
+    [SubscribeLocalEvent]
     private void OnGunRefreshModifiers(Entity<GunComponent> ent, ref GunRefreshModifiersEvent args)
     {
         var transform = Transform(ent.Owner);
-        if(!TryComp<RiderComponent>(transform.ParentUid, out var riderComp)) return;
-        if(riderComp.Riding == null) return;
+        if(!TryComp<RiderComponent>(transform.ParentUid, out var riderComp) || riderComp.Riding == null) return;
         if(HasComp<PowerCellDrawComponent>(riderComp.Riding.Value) 
             ^ HasComp<ReagentDrawComponent>(riderComp.Riding.Value))
         {
@@ -200,5 +186,12 @@ public abstract partial class SharedVehicleSystem
         }
     }
 
-    #endregion
+    private void RefreshHeldGuns(EntityUid rider)
+    {
+        foreach (var held in _handsSystem.EnumerateHeld(rider))
+        {
+            if (TryComp<GunComponent>(held, out var gun))
+                _gun.RefreshModifiers((held, gun));
+        }
+    }
 }

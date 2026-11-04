@@ -3,7 +3,6 @@ using Content.Shared._Starlight.Traits.Effects;
 using Content.Shared.GameTicking;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
-using Content.Shared.Humanoid;
 using Content.Shared.Preferences;
 using Content.Shared.Roles;
 using Content.Shared.Starlight.CCVar;
@@ -11,6 +10,7 @@ using Content.Shared.Whitelist;
 using Robust.Shared.Configuration;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
+using Content.Shared._FarHorizons.Traits; //FH
 
 namespace Content.Server._Starlight.Traits;
 
@@ -58,6 +58,10 @@ public sealed partial class TraitSystem : EntitySystem
 
             ApplyTrait(args.Mob, trait);
         }
+        //Far Horizons Start
+        var ev = new TraitsApplied();
+        RaiseLocalEvent(args.Mob, ref ev);
+        //Far Horizons End
     }
 
     /// <summary>
@@ -74,6 +78,11 @@ public sealed partial class TraitSystem : EntitySystem
 
             ApplyTrait(Mob, trait);
         }
+
+        //Far Horizons Start
+        var ev = new TraitsApplied();
+        RaiseLocalEvent(Mob, ref ev);
+        //Far Horizons End
     }
 
     /// <summary>

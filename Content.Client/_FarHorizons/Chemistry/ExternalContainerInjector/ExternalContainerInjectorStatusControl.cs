@@ -26,7 +26,7 @@ public sealed class ExternalContainerInjectorStatusControl : Control
         _solutionContainers = IoCManager.Resolve<IEntitySystemManager>().GetEntitySystem<SharedSolutionContainerSystem>();
         _itemSlots = IoCManager.Resolve<IEntitySystemManager>().GetEntitySystem<ItemSlotsSystem>();
 
-        _label = new RichTextLabel { StyleClasses = { StyleNano.StyleClassItemStatus } };
+        _label = new RichTextLabel { StyleClasses = { StyleClass.ItemStatus } };
         AddChild(_label);
     }
 

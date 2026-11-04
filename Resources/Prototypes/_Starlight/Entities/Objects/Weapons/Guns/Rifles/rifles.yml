@@ -129,7 +129,7 @@
   name: ARG
   parent: [ BaseWeaponRifle, BaseSecurityContraband ]
   id: WeaponRifleARG
-  description: An old galactic standard assault rifle, used by various paramilitary groups and former SVS militias ever since. Uses .30 rifle ammo.
+  description: An old galactic standard assault rifle, used by various paramilitary groups and former SVS militias ever since. Uses 7.62 rifle ammo. #FH
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Guns/Rifles/arg.rsi
@@ -153,21 +153,21 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazineLightRifleFMJ
+        startingItem: MagazineRifle762FMJ #FH
         insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
         priority: 2
         whitelist:
           tags:
-          - MagazineLightRifle
+          - MagazineRifle762 #FH
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
-        startingItem: CartridgeLightRifleFMJ
+        startingItem: CartridgeRifle762FMJ #FH
         priority: 1
         whitelist:
           tags:
-          - CartridgeLightRifle
+          - CartridgeRifle762 #FH
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot ""

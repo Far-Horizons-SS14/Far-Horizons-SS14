@@ -41,23 +41,30 @@ public sealed partial class CyberLimbSystem : EntitySystem
     }
 
     private void OnLimbToggle(Entity<LimbItemDeployerComponent> ent, ref ToggleLimbEvent args)
+        => LimbToggle(ent, args.Performer); //Far Horizons Edit
+
+    //Far Horizons Start
+    private void LimbToggle(Entity<LimbItemDeployerComponent> ent, EntityUid Performer) 
     {
         if (!TryComp<LimbItemStorageComponent>(ent, out var storage))
             return;
             
-        ent.Comp.Toggled = !ent.Comp.Toggled && (!ent.Comp.IsCybernetic || !TryComp(args.Performer, out CyberneticDisruptionComponent? _));
+        ent.Comp.Toggled = !ent.Comp.Toggled && (!ent.Comp.IsCybernetic || !TryComp(Performer, out CyberneticDisruptionComponent? _));
 
         if (ent.Comp.Toggled)
         {
             foreach (var item in storage.ItemEntities)
             {
-                var handId = $"{ent.Owner}_{item}";
-                var hands = EnsureComp<HandsComponent>(args.Performer);
-                _hands.AddHand((args.Performer, hands), handId, HandLocation.Functional, whitelist: ent.Comp.HandWhitelist);
-                _hands.DoPickup(args.Performer, handId, item, hands);
-                EnsureComp<UnremoveableComponent>(item);
+                if(!item.Value) //FH-Edit
+                    continue;
+
+                var handId = $"{ent.Owner}_{item.Key}";
+                var hands = EnsureComp<HandsComponent>(Performer);
+                _hands.AddHand((Performer, hands), handId, HandLocation.Functional, whitelist: ent.Comp.HandWhitelist);
+                _hands.DoPickup(Performer, handId, item.Key, hands);
+                EnsureComp<UnremoveableComponent>(item.Key);
                 if (storage.ItemEntities.Count == 1) //FH, if this cybernetic only has one item, set it to active hand
-                    _hands.SetActiveHand((args.Performer, hands), handId); //FH, this makes combat cybernetics with weapons much stronger
+                    _hands.SetActiveHand((Performer, hands), handId); //FH, this makes combat cybernetics with weapons much stronger
             }
         }
         else
@@ -65,10 +72,10 @@ public sealed partial class CyberLimbSystem : EntitySystem
             var container = _container.EnsureContainer<Container>(ent.Owner, ent.Comp.ContainerId, out _);
             foreach (var item in storage.ItemEntities)
             {
-                var handId = $"{ent.Owner}_{item}";
-                RemComp<UnremoveableComponent>(item);
-                _container.Insert(_slEnt.Entity<TransformComponent, MetaDataComponent, PhysicsComponent>(item), container, force: true);
-                _hands.RemoveHand(args.Performer, handId);
+                var handId = $"{ent.Owner}_{item.Key}";
+                RemComp<UnremoveableComponent>(item.Key);
+                _container.Insert(_slEnt.Entity<TransformComponent, MetaDataComponent, PhysicsComponent>(item.Key), container, force: true);
+                _hands.RemoveHand(Performer, handId);
             }
         }
 
@@ -78,10 +85,11 @@ public sealed partial class CyberLimbSystem : EntitySystem
             Dirty<VisualOrganComponent>((ent.Owner, visualOrgan));
         }
 
-        _audio.PlayPvs(ent.Comp.Sound, args.Performer);
+        _audio.PlayPvs(ent.Comp.Sound, Performer);
 
         Dirty(ent);
     }
+    //Far Horizons End
 
     private void OnCyberneticsDisrupted(Entity<LimbItemDeployerComponent> ent, ref BodyRelayedEvent<CyberneticDisruptionEvent> args)
     {

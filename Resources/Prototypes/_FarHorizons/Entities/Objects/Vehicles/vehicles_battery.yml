@@ -54,265 +54,22 @@
       unbuckleTime: 2
       dismountOnStun: true
       dismountOnKnockdown: true
-      northOffset: "0, -0.12"
-      southOffset: "0, -0.12"
-      eastOffset: "0, -0.2"
-      westOffset: "-0, -0.2"
-      northDrawDepth: BelowMobs
+    - type: DirectionalOverride
+      offsets: 
+        North: "0, -0.12"
+        South: "0, -0.12"
+        East: "0, -0.2"
+        West: "0, -0.2"
+      drawDepths: 
+        North: BelowMobs
+        South: OverMobs
+        East: OverMobs
+        West: OverMobs
     - type: VehicleMods
       vehicleType: Electric
       equipmentSlots: [tires, engine, armor, headlight]
 
-#region NT
-- type: entity
-  id: VehicleSecway
-  parent: [VehicleBatteryBuckleBase, BaseSecurityContraband]
-  name: Secway
-  description: The future of transportation. Popularized by St. James, the patron saint of security officers and internet forum moderators.
-  suffix: NT
-  components:
-  - type: ItemSlots
-    slots:
-      key_slot:
-        name: Keys
-        whitelist:
-          requireAll: true
-          tags:
-          - VehicleKey
-          - SecwayKeys
-      cell_slot:
-        name: power-cell-slot-component-slot-name-default
-        disableEject: true
-        swap: true
-  - type: Sprite
-    drawdepth: OverMobs
-    sprite: _FarHorizons/Objects/Vehicles/secway.rsi
-    layers:
-    - state: vehicle
-      map: ["enum.VehicleVisualLayers.Base"]
-    noRot: true
-  - type: VehicleBuckle
-    armorAffectsVehicle: true
-  - type: VehicleMods
-    vehicleType: Electric
-    equipmentSlots: [tires, engine, armor, headlight, lightbar]
-  - type: ItemMapper
-    mapLayers:
-      lightarmor:
-        whitelist:
-          tags:
-            - VehicleLightArmor
-  - type: StealTarget
-    stealGroup: VehicleSecwaySteal
-  - type: Tag
-    tags:
-    - Secway
-    - DoorBumpOpener
-    - FootstepSound
-  - type: FluidFootprintSpreader
-    footprint: TireDual
-    footprintSize: 0.5
-    stepSpacing: 0.05
-    lateralOffset: 0.15
-
-- type: entity
-  id: VehicleSecwayFilled
-  parent: VehicleSecway
-  suffix: Filled, NT
-  components: 
-    - type: ContainerFill
-      containers:
-        cell_slot:
-        - PowerCellMedium
-        key_slot:
-        - VehicleKeySecway
-    - type: VehicleMods
-      startingEquipment:
-        - BasicTires
-        - ElectricEngine
-        - BasicArmorKit
-        - BasicHeadlight
-        - SecSiren
-
-- type: entity
-  id: VehicleSecwayArmoredLight
-  parent: VehicleSecway
-  suffix: Filled, NT, Armored
-  components: 
-    - type: ContainerFill
-      containers:
-        cell_slot:
-        - PowerCellMedium
-        key_slot:
-        - VehicleKeySecway
-    - type: VehicleMods
-      startingEquipment:
-        - BasicTires
-        - ElectricEngine
-        - LightArmorKit
-        - BasicHeadlight
-        - SecSiren
-
-- type: entity
-  id: VehicleSecwayTurbo
-  parent: VehicleSecway
-  name: Secway Turbo
-  description: An upgraded Secway, it is better in every single aspect.
-  components:
-    - type: Sprite
-      drawdepth: OverMobs
-      sprite: _FarHorizons/Objects/Vehicles/secway_turbo.rsi
-      layers:
-      - state: vehicle
-        map: ["enum.VehicleVisualLayers.Base"]
-      noRot: true
-    - type: ItemSlots
-      slots:
-        key_slot:
-          name: Keys
-          whitelist:
-            requireAll: true
-            tags:
-            - VehicleKey
-            - SecwayTurboKeys
-        cell_slot:
-          name: power-cell-slot-component-slot-name-default
-          disableEject: true
-          swap: true
-
-- type: entity
-  id: VehicleSecwayTurboFilled
-  parent: VehicleSecwayTurbo
-  suffix: Filled, NT
-  components: 
-    - type: ContainerFill
-      containers:
-        cell_slot:
-        - PowerCellMedium
-        key_slot:
-        - VehicleKeySecway
-    - type: VehicleMods
-      startingEquipment:
-        - BasicTires
-        - ElectricTurboEngine
-        - BasicArmorKit
-        - HeadlightLED
-        - SecSiren
-
-#region Syndicate
-- type: entity
-  id: VehicleSecwayS
-  parent: VehicleSecway
-  suffix: NS
-  components:
-    - type: Sprite
-      drawdepth: OverMobs
-      sprite: _FarHorizons/Objects/Vehicles/neosol_secway.rsi
-      layers:
-      - state: vehicle
-        map: ["enum.VehicleVisualLayers.Base"]
-      noRot: true 
-  
-- type: entity
-  id: VehicleSecwaySFilled
-  parent: VehicleSecwayS
-  suffix: Filled, S
-  components: 
-    - type: ContainerFill
-      containers:
-        cell_slot:
-        - PowerCellMedium
-        key_slot:
-        - VehicleKeySecway
-    - type: VehicleMods
-      startingEquipment:
-        - BasicTires
-        - ElectricEngine
-        - BasicArmorKit
-        - BasicHeadlight
-        - SecSiren
-
-- type: entity
-  id: VehicleSegwayNST
-  parent: [VehicleBatteryBuckleBase, BaseSyndicateContraband]
-  suffix: NST
-  name: Syndicate Segway
-  description: It's a segway but painted red with the symbol of the syndicate stamped on it.
-  components:
-    - type: Sprite
-      drawdepth: OverMobs
-      sprite: _FarHorizons/Objects/Vehicles/syndicate_segway.rsi
-      layers:
-      - state: vehicle
-        map: ["enum.VehicleVisualLayers.Base"]
-      noRot: true
-    - type: VehicleBuckle
-      armorAffectsVehicle: true
-    - type: VehicleMods
-      vehicleType: Electric
-      equipmentSlots: [tires, engine, armor, headlight, lightbar]
-    - type: ItemMapper
-      mapLayers:
-        lightarmor:
-          whitelist:
-            tags:
-              - VehicleLightArmor
-    - type: ItemSlots
-      slots:
-        key_slot:
-          name: Keys
-          whitelist:
-            requireAll: true
-            tags:
-            - VehicleKey
-            - SyndicateSegwayKeys
-        cell_slot:
-          name: power-cell-slot-component-slot-name-default
-          disableEject: true
-          swap: true
-    - type: FluidFootprintSpreader
-      footprint: TireDual
-      footprintSize: 0.5
-      stepSpacing: 0.05
-      lateralOffset: 0.15
-
-- type: entity
-  id: VehicleSegwayNSTFilled
-  parent: VehicleSegwayNST
-  suffix: Filled, NST
-  components: 
-    - type: ContainerFill
-      containers:
-        cell_slot:
-        - PowerCellMedium
-        key_slot:
-        - VehicleKeyElectronicNST
-    - type: VehicleMods
-      startingEquipment:
-        - BasicTires
-        - ElectricEngine
-        - BasicArmorKit
-        - HeadlightLED
-  
-- type: entity
-  id: VehicleSegwayArmoredLightNST
-  parent: VehicleSegwayNST
-  suffix: Filled, NST, Armored
-  components: 
-    - type: ContainerFill
-      containers:
-        cell_slot:
-        - PowerCellMedium
-        key_slot:
-        - VehicleKeyElectronicNST
-    - type: VehicleMods
-      startingEquipment:
-        - BasicTires
-        - ElectricEngine
-        - LightArmorKit
-        - HeadlightLED
-
-#region Civilian
+#region Segway
 - type: entity
   id: VehicleSegway
   parent: VehicleBatteryBuckleBase
@@ -371,6 +128,212 @@
         - BasicTires
         - ElectricEngine
         - BasicHeadlight
+
+#NT
+- type: entity
+  id: VehicleSecway
+  parent: [VehicleSegway, BaseSecurityContraband]
+  name: Secway
+  description: The future of transportation. Popularized by St. James, the patron saint of security officers and internet forum moderators.
+  suffix: NT
+  components:
+  - type: ItemSlots
+    slots:
+      key_slot:
+        name: Keys
+        whitelist:
+          requireAll: true
+          tags:
+          - VehicleKey
+          - SecwayKeys
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        disableEject: true
+        swap: true
+  - type: Sprite
+    drawdepth: OverMobs
+    sprite: _FarHorizons/Objects/Vehicles/secway.rsi
+    layers:
+    - state: vehicle
+      map: ["enum.VehicleVisualLayers.Base"]
+    noRot: true
+  - type: StealTarget
+    stealGroup: VehicleSecwaySteal
+  - type: Tag
+    tags:
+    - Secway
+    - DoorBumpOpener
+    - FootstepSound
+
+- type: entity
+  id: VehicleSecwayFilled
+  parent: VehicleSecway
+  suffix: Filled, NT
+  components: 
+    - type: ContainerFill
+      containers:
+        cell_slot:
+        - PowerCellMedium
+        key_slot:
+        - VehicleKeySecway
+    - type: VehicleMods
+      startingEquipment:
+        - BasicTires
+        - ElectricEngine
+        - BasicArmorKit
+        - BasicHeadlight
+        - SecSiren
+
+- type: entity
+  id: VehicleSecwayArmoredLight
+  parent: VehicleSecway
+  suffix: Filled, NT, Armored
+  components: 
+    - type: ContainerFill
+      containers:
+        cell_slot:
+        - PowerCellMedium
+        key_slot:
+        - VehicleKeySecway
+    - type: VehicleMods
+      startingEquipment:
+        - BasicTires
+        - ElectricEngine
+        - LightArmorKit
+        - BasicHeadlight
+        - SecSiren
+
+- type: entity
+  id: VehicleSecwayTurbo
+  parent: VehicleSecway
+  name: Secway Turbo
+  description: An upgraded Secway, it is better in every single aspect.
+  components:
+    - type: Sprite
+      drawdepth: OverMobs
+      sprite: _FarHorizons/Objects/Vehicles/secway_turbo.rsi
+      layers:
+      - state: vehicle
+        map: ["enum.VehicleVisualLayers.Base"]
+      noRot: true
+
+- type: entity
+  id: VehicleSecwayTurboFilled
+  parent: VehicleSecwayTurbo
+  suffix: Filled, NT
+  components: 
+    - type: ContainerFill
+      containers:
+        cell_slot:
+        - PowerCellMedium
+        key_slot:
+        - VehicleKeySecway
+    - type: VehicleMods
+      startingEquipment:
+        - BasicTires
+        - ElectricTurboEngine
+        - BasicArmorKit
+        - HeadlightLED
+        - SecSiren
+
+#Syndicate
+- type: entity
+  id: VehicleSecwayS
+  parent: VehicleSecway
+  suffix: NS
+  components:
+    - type: Sprite
+      drawdepth: OverMobs
+      sprite: _FarHorizons/Objects/Vehicles/neosol_secway.rsi
+      layers:
+      - state: vehicle
+        map: ["enum.VehicleVisualLayers.Base"]
+      noRot: true 
+  
+- type: entity
+  id: VehicleSecwaySFilled
+  parent: VehicleSecwayS
+  suffix: Filled, S
+  components: 
+    - type: ContainerFill
+      containers:
+        cell_slot:
+        - PowerCellMedium
+        key_slot:
+        - VehicleKeySecway
+    - type: VehicleMods
+      startingEquipment:
+        - BasicTires
+        - ElectricEngine
+        - BasicArmorKit
+        - BasicHeadlight
+        - SecSiren
+
+- type: entity
+  id: VehicleSegwayNST
+  parent: [VehicleSegway, BaseSyndicateContraband]
+  suffix: NST
+  name: Syndicate Segway
+  description: It's a segway but painted red with the symbol of the syndicate stamped on it.
+  components:
+    - type: Sprite
+      drawdepth: OverMobs
+      sprite: _FarHorizons/Objects/Vehicles/syndicate_segway.rsi
+      layers:
+      - state: vehicle
+        map: ["enum.VehicleVisualLayers.Base"]
+      noRot: true
+    - type: ItemSlots
+      slots:
+        key_slot:
+          name: Keys
+          whitelist:
+            requireAll: true
+            tags:
+            - VehicleKey
+            - SyndicateSegwayKeys
+        cell_slot:
+          name: power-cell-slot-component-slot-name-default
+          disableEject: true
+          swap: true
+
+- type: entity
+  id: VehicleSegwayNSTFilled
+  parent: VehicleSegwayNST
+  suffix: Filled, NST
+  components: 
+    - type: ContainerFill
+      containers:
+        cell_slot:
+        - PowerCellMedium
+        key_slot:
+        - VehicleKeyElectronicNST
+    - type: VehicleMods
+      startingEquipment:
+        - BasicTires
+        - ElectricEngine
+        - BasicArmorKit
+        - HeadlightLED
+  
+- type: entity
+  id: VehicleSegwayArmoredLightNST
+  parent: VehicleSegwayNST
+  suffix: Filled, NST, Armored
+  components: 
+    - type: ContainerFill
+      containers:
+        cell_slot:
+        - PowerCellMedium
+        key_slot:
+        - VehicleKeyElectronicNST
+    - type: VehicleMods
+      startingEquipment:
+        - BasicTires
+        - ElectricEngine
+        - LightArmorKit
+        - HeadlightLED
+
+#region Civilian
         
 - type: entity
   id: VehicleJanicart
@@ -408,10 +371,10 @@
         whitelist:
           tags:
             - TrashBag
-  - type: SolutionContainerManager
-    solutions:
-      watertank:
-        maxVol: 100
+  - type: Solution
+    id: watertank
+    solution:
+      maxVol: 120
   - type: RefillableSolution
     solution: watertank
   - type: ExaminableSolution
@@ -420,7 +383,7 @@
   - type: ReagentDraw
     enabled: false
     solutionContainer: watertank
-    whitelistedReagants: 
+    whitelistedReagents: 
     - Water
     drainRate: 1
   - type: ItemMapper
@@ -443,13 +406,11 @@
   parent: VehicleJanicart
   suffix: Filled, Keys
   components: 
-    - type: SolutionContainerManager
-      solutions:
-        watertank:
-          reagents:
-          - ReagentId: Water
-            Quantity: 100
-          maxVol: 100
+    - type: Solution
+      solution:
+        reagents:
+        - ReagentId: Water
+          Quantity: 120
     - type: ContainerFill
       containers:
         cell_slot:

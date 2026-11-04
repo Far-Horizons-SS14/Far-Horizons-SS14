@@ -1,7 +1,7 @@
 - type: entity
   id: ActionToggleCyberLimb
   name: Toggle Limb
-  description: Toggle Limb.
+  description: Toggle Limb. Press twice to toggle immediately. #FH-Edit
   components:
     - type: Action
       useDelay: 1
@@ -10,12 +10,12 @@
         state: cyber-hand-left
       itemIconStyle: BigItem
     - type: InstantAction
-      event: !type:ToggleLimbEvent
+      event: !type:ToggleCyberlimbMenuEvent #FH-Edit
 
 - type: entity
   id: ActionToggleCyberHandLeft
   name: Toggle Hand.
-  description: Toggle the left hand
+  description: Toggle the left hand. Press twice to toggle immediately. #FH-Edit
   components:
     - type: Action
       useDelay: 1
@@ -24,12 +24,12 @@
         state: cyber-hand-left
       itemIconStyle: BigItem
     - type: InstantAction
-      event: !type:ToggleLimbEvent
+      event: !type:ToggleCyberlimbMenuEvent #FH-Edit
 
 - type: entity
   id: ActionToggleCyberHandRight
   name: Toggle Hand.
-  description: Toggle the right hand
+  description: Toggle the right hand. Press twice to toggle immediately. #FH-Edit
   components:
     - type: Action
       useDelay: 1
@@ -38,7 +38,7 @@
         state: cyber-hand-right
       itemIconStyle: BigItem
     - type: InstantAction
-      event: !type:ToggleLimbEvent
+      event: !type:ToggleCyberlimbMenuEvent #FH-Edit
 
 
 - type: entity

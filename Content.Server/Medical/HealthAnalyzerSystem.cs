@@ -98,9 +98,9 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
 
         // Starlight - Check DamageContainers... this is an upstream variable that is unsued... lets use it!
         if (uid.Comp.DamageContainers is not null
-            && TryComp<DamageableComponent>(args.Target, out var damageable)
-            && damageable.DamageContainerID is not null
-            && !uid.Comp.DamageContainers.Contains(damageable.DamageContainerID))
+            && TryComp<InjurableComponent>(args.Target, out var injurable)
+            && injurable.DamageContainer is not null
+            && !uid.Comp.DamageContainers.Contains(injurable.DamageContainer))
             return;
 
         _audio.PlayPvs(uid.Comp.ScanningBeginSound, uid);

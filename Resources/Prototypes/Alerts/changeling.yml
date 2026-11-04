@@ -1,3 +1,18 @@
+# for ChangelingFleshClothingAbilityComponent
+- type: alert
+  id: ChangelingFleshClothing
+  clickEvent: !type:ToggleFleshClothingEvent
+  icons:
+  - sprite: /Textures/Interface/Alerts/changeling.rsi
+    state: flesh-clothing-off
+  - sprite: /Textures/Interface/Alerts/changeling.rsi
+    state: flesh-clothing-on
+  name: changeling-flesh-clothing-alert-name
+  description: changeling-flesh-clothing-alert-desc
+  minSeverity: 0
+  maxSeverity: 1
+
+# Starlight start
 - type: alert
   id: ChangelingChemicals
   icons:
@@ -33,3 +48,4 @@
     sprite: /Textures/Changeling/changeling_biomass.rsi
     layers:
     - map: [ "enum.AlertVisualLayers.Base" ]
+# Starlight end

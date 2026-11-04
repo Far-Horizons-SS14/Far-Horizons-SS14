@@ -55,6 +55,8 @@ public sealed partial class FactionJobAssignmentPrototype : IPrototype
 
     [DataField("override")]
     public JobOverride? Override = default!;
+
+    [DataField] public bool Hidden = false;
 }
 
 /// <summary>

@@ -255,8 +255,9 @@ public abstract partial class SharedBorgSystem
         }
         //FaHorizons End
 
-        var attemptEv = new BorgModuleInsertAttemptEvent(module.Owner);
+        var attemptEv = new BorgModuleInsertAttemptEvent(module.Owner, chassis.Owner);
         RaiseLocalEvent(chassis, ref attemptEv);
+        RaiseLocalEvent(module, ref attemptEv);
 
         if (attemptEv.Cancelled)
         {

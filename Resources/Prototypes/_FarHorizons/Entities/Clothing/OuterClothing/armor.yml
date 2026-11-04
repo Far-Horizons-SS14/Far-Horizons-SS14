@@ -927,3 +927,20 @@
     autoRechargeRate: 2
   - type: Item
     size: Normal
+
+#region ## USSP ##
+- type: entity
+  parent: [ ClothingOuterArmorBaseCarapace, ClothingOuterWinterCoat, BaseSovietContraband ]
+  id: ClothingOuterArmorAdmiralCarapace
+  name: Admiral's Carapace
+  suffix: USSP
+  description: An armored chestpiece that provides protection whilst still offering maximum mobility and flexibility. Issued only to the station's finest.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/Armor/USSP/admiral_carapace.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/Armor/USSP/admiral_carapace.rsi
+  - type: Tag
+    tags:
+    - CorgiWearable
+    - WhitelistChameleon

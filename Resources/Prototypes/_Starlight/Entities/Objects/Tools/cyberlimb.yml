@@ -151,7 +151,7 @@
 
 - type: entity
   name: welding tool
-  parent: BaseItem
+  parent: [ BaseItem, SolutionWelder ]
   id: WelderCyber
   description: "Melts anything as long as it's fueled, don't forget your eye protection!"
   components:
@@ -225,14 +225,13 @@
     soundHit:
       collection: MetalThud
   - type: RefillableSolution
-    solution: Welder
-  - type: SolutionContainerManager
-    solutions:
-      Welder:
-        reagents:
-        - ReagentId: WeldingFuel
-          Quantity: 100
-        maxVol: 100
+    solution: welder
+  - type: Solution # FH - migrated from SolutionContainerManager
+    solution:
+      reagents:
+      - ReagentId: WeldingFuel
+        Quantity: 120
+      maxVol: 120
   - type: Tool
     speedModifier: 1.75
     useSound:
@@ -498,7 +497,7 @@
 # Responder
 - type: entity
   name: autoinjector cybernetic arm attachment
-  parent: BaseItem
+  parent: [ BaseItem, SolutionHypospray, SolutionToolTiny ]
   description: A sterile injector for rapid administration of drugs to patients.
   id: AutoinjectorCyber
   components:
@@ -510,10 +509,6 @@
         - state: autoinjector-fill-1
           map: ["enum.SolutionContainerLayers.Fill"]
           visible: false
-    - type: SolutionContainerManager
-      solutions:
-        hypospray:
-          maxVol: 15
     - type: ExaminableSolution
       solution: hypospray
     - type: Injector
@@ -543,10 +538,6 @@
   description: A sterile injector for rapid administration of drugs to patients.
   id: AutoinjectorCyberTricordrazine
   components:
-    - type: SolutionContainerManager
-      solutions:
-        hypospray:
-          maxVol: 15
     - type: Injector
       solutionName: hypospray
       ignoreClosed: false
@@ -565,10 +556,6 @@
   description: A sterile injector for rapid administration of drugs to patients.
   id: AutoinjectorCyberInaprovaline
   components:
-    - type: SolutionContainerManager
-      solutions:
-        hypospray:
-          maxVol: 15
     - type: Injector
       solutionName: hypospray
       ignoreClosed: false
@@ -865,10 +852,10 @@
 
 
 - type: entity
-  parent: Dropper
+  parent: [ Dropper, SolutionToolSmall ]
   id: CyberToolDropper
   name: hydraulic pipette cybernetic arm attachment
-  description: State-of-the-art hydraulic dropper built into a cybernetic arm. It features a higher capacity than hand-powered droppers, able to hold 15 units of liquid.
+  description: State-of-the-art hydraulic dropper built into a cybernetic arm. It features a higher capacity than hand-powered droppers, able to hold 30 units of liquid.
   components:
     - type: Sprite
       sprite: _Starlight/Objects/Tools/cyberling.rsi
@@ -878,10 +865,6 @@
         - state: dropper1
           map: ["enum.SolutionContainerLayers.Fill"]
           visible: false
-    - type: SolutionContainerManager
-      solutions:
-        injector:
-          maxVol: 15
     - type: Tag
       tags:
         - CyberHandItem
@@ -1143,7 +1126,7 @@
 
 - type: entity
   id: VialCyber
-  parent: BaseItem
+  parent: [ BaseItem, SolutionBeaker, SolutionToolSmall ]
   name: cybernetic vial
   description: Fluid storage, integrated right into your arm!
   components:
@@ -1167,10 +1150,6 @@
     solution: beaker
     destroyOnEmpty: false
     utensil: None
-  - type: SolutionContainerManager
-    solutions:
-      beaker:
-        maxVol: 30
   - type: ExaminableSolution
     solution: beaker
     exactVolume: true
@@ -1218,7 +1197,6 @@
   suffix: Water
   components:
   - type: SolutionRegeneration
-    solution: beaker
     generated:
       reagents:
       - ReagentId: Water
@@ -1232,7 +1210,6 @@
   suffix: Blood
   components:
   - type: SolutionRegeneration
-    solution: beaker
     generated:
       reagents:
       - ReagentId: Blood

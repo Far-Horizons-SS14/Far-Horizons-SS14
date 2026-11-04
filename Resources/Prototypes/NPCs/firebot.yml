@@ -4,6 +4,11 @@
     - tasks:
         - !type:HTNCompoundTask
           task: DouseFireTargetCompound
+    # Far Horizons start
+    - tasks:
+        - !type:HTNCompoundTask
+          task: PatrolBeaconCompound
+    # Far Horizons end
     - tasks:
         - !type:HTNCompoundTask
           task: IdleCompound
@@ -16,11 +21,10 @@
           operator: !type:UtilityOperator
             proto: NearbyOnFire
 
-        - !type:HTNPrimitiveTask
-          operator: !type:SpeakOperator
-            speech: !type:SingleSpeakOperatorSpeech
-              line: firebot-fire-detected
-            hidden: true
+        # Far Horizons start - menu speech toggle
+        - !type:HTNCompoundTask
+          task: FirebotSpeakCompound
+        # Far Horizons end
 
         - !type:HTNPrimitiveTask
           operator: !type:MoveToOperator
@@ -55,3 +59,18 @@
               proto: NearbyOnFire
               key: Target
 
+# Far Horizons start - menu speech toggle
+- type: htnCompound
+  id: FirebotSpeakCompound
+  branches:
+    - preconditions:
+        - !type:KeyExistsPrecondition
+          key: SimpleBotSpeechEnabled
+      tasks:
+        - !type:HTNPrimitiveTask
+          operator: !type:SpeakOperator
+            speech: !type:SingleSpeakOperatorSpeech
+              line: firebot-fire-detected
+            hidden: true
+    - tasks: []
+# Far Horizons end

@@ -8,3 +8,12 @@
   - type: ContainerFill
     containers:
       board: [ DoorElectronicsSecurity ]
+
+- type: entity
+  parent: AirlockGlassShuttleSecurityPlastitanium
+  id: AirlockGlassShuttleSecurityPlastitaniumSecurityShuttle
+  suffix: Security Shuttle, External, Docking, Security, Locked
+  components:
+  - type: RandomGridFill
+    pathWeights:
+      "/Maps/_FarHorizons/Shuttles/KillerTamashi-Sec-Pursuit-MK-2.yml": 1

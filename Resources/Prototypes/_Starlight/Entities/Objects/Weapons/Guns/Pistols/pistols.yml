@@ -1,16 +1,18 @@
 - type: entity
-  name: makarov
+  name: Makarov #FH
   parent: [BaseWeaponPistol, BaseSovietContraband]
   id: WeaponPistolMakarov
-  description: A cheap and cumbersome pistol, with a dot on the rear sight indicating the direction in which it tends to misfire, as this model does not shoot straight. Uses 9mm ammo.
+  description: A cheap and reliable pistol. Uses 9mm ammo. #FH
   components:
   - type: Sprite
-    sprite: _Starlight/Objects/Weapons/Guns/Pistols/makarov.rsi
+    sprite: _FarHorizons/Objects/Weapons/Guns/Pistols/makarov.rsi #FH
   - type: Gun
-    minAngle: 1
-    maxAngle: 30
-    angleIncrease: 9
-    angleDecay: 10
+#FH - Start
+#    minAngle: 1
+#    maxAngle: 30
+#    angleIncrease: 9
+#    angleDecay: 10
+#FH - End
     fireRate: 3
     availableModes:
     - SemiAuto

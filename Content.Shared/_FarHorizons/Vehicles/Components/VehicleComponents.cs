@@ -1,8 +1,12 @@
 using Robust.Shared.GameStates;
 using Robust.Shared.Audio;
 using Content.Shared.Whitelist;
+using Content.Shared.FixedPoint;
+using Robust.Shared.Serialization;
+using Content.Shared.DoAfter;
+using Content.Shared.Actions;
 
-namespace Content.Shared._FarHorizons.Vehicles.Components;
+namespace Content.Shared._FarHorizons.Vehicles;
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState(true)]
 public sealed partial class VehicleComponent : Component
@@ -12,6 +16,12 @@ public sealed partial class VehicleComponent : Component
     /// </summary>
     [ViewVariables, AutoNetworkedField]
     public EntityUid? Rider;
+
+    /// <summary>
+    /// The list of passengers in the vehicle
+    /// </summary>
+    [ViewVariables, AutoNetworkedField]
+    public List<EntityUid> Passengers = new();
 
     /// <summary>
     /// check if a vehicle requires ignition before allowing it to move
@@ -68,10 +78,10 @@ public sealed partial class VehicleComponent : Component
     public int HandsNeeded = 2;
 
     /// <summary>
-    /// Vehicle health for integrity sake match it to the breakage trigger.
+    /// Vehicle Integrity
     /// </summary>
-    [DataField("health")]
-    public int Health = 150;
+    [ViewVariables, AutoNetworkedField]
+    public FixedPoint2 MaxIntegrity = 0;
 
     /// <summary>
     /// how long does it take the vehicle to start
@@ -90,6 +100,13 @@ public sealed partial class VehicleComponent : Component
     /// </summary>
     [DataField("allowCrashing"), AutoNetworkedField]
     public bool AllowCrashing = false;
+
+    /// <summary>
+    /// Basically what portion of the damage done to the vehicle is transferred to the passengers
+    /// take into account this multiplier will also be divided across all the passengers so 20% damage will be 5% to each passenger if there is 4 passengers
+    /// </summary>
+    [DataField("damageTransfer")]
+    public float DamageTransferMultiplier = 1.0f;
 
     /// <summary>
     /// Sound played whenever the vehicle is started
@@ -121,3 +138,42 @@ public sealed partial class VehicleComponent : Component
     [DataField]
     public string? BrokenState;
 }
+
+#region Events
+
+[ByRefEvent]
+public readonly record struct AddRiderActions(EntityUid Rider);
+
+[ByRefEvent]
+public readonly record struct RemoveRiderActions(EntityUid Rider);
+
+[ByRefEvent]
+public readonly record struct TurnOffVehicleEvent();
+
+[Serializable, NetSerializable]
+public sealed partial class VehicleRemoveDoAfter : SimpleDoAfterEvent
+{
+    public readonly NetEntity Passenger;
+    public VehicleRemoveDoAfter(NetEntity passenger) 
+        => Passenger = passenger;
+}
+
+[Serializable, NetSerializable]
+public sealed partial class VehicleEntryDoAfter : SimpleDoAfterEvent;
+
+[Serializable, NetSerializable]
+public sealed partial class VehicleUnbuckleDoAfter : SimpleDoAfterEvent;
+
+[Serializable, NetSerializable]
+public sealed partial class TurnKeysDoAfter : SimpleDoAfterEvent;
+
+[Serializable, NetSerializable]
+public sealed partial class EjectKeysDoAfter : SimpleDoAfterEvent;
+
+public sealed partial class TurnKeysEvent : InstantActionEvent;
+
+public sealed partial class HornActionEvent : InstantActionEvent;
+
+public sealed partial class ToggleTrunkActionEvent : InstantActionEvent;
+
+#endregion

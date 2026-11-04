@@ -57,7 +57,7 @@
 
 - type: entity
   id: SpeedLoaderMagnumLeverImprovised
-  name: "Speed loader (.30 /.44 Magnum)" #FH
+  name: "Speed loader (7.62 /.44 Magnum)" #FH
   parent: [BaseSpeedLoaderShotgun, BaseMinorContraband]
   components:
   - type: BallisticAmmoProvider
@@ -66,8 +66,8 @@
       tags:
         - CartridgeMagnum
         - CartridgeMagnumImprovised
-        - CartridgeLightRifle
-        - CartridgeLightRifleImprovised
+        - CartridgeRifle762 #FH
+        - CartridgeRifle762Improvised #FH
     capacity: 8
   - type: MagazineVisuals
     magState: base

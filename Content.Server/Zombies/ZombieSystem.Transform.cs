@@ -6,14 +6,12 @@ using Content.Server.Chat;
 using Content.Server.Chat.Managers;
 using Content.Server.Ghost;
 using Content.Server.Ghost.Roles.Components;
-using Content.Server.Humanoid;
 using Content.Server.Inventory;
 using Content.Server.Mind;
 using Content.Server.NPC;
 using Content.Server.NPC.HTN;
 using Content.Server.NPC.Systems;
 using Content.Server.StationEvents.Components;
-using Content.Server.Speech.Components;
 using Content.Shared.Body;
 using Content.Shared.Body.Components;
 using Content.Shared.CombatMode;
@@ -34,10 +32,8 @@ using Content.Shared.Popups;
 using Content.Shared.Weapons.Melee;
 using Content.Shared.Zombies;
 using Content.Shared.Prying.Components;
-using Content.Shared.Traits.Assorted;
 using Robust.Shared.Audio.Systems;
 using Content.Shared.Ghost.Roles.Components;
-using Content.Shared.Humanoid.Markings;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Tag;
 using Robust.Shared.Player;
@@ -51,6 +47,8 @@ using Robust.Shared.Utility;
 using Content.Server._Starlight.Language;
 using Content.Shared._Starlight.Language.Components;
 #endregion Starlight
+
+using Content.Shared._FarHorizons.Traits.Assorted; //FH
 
 namespace Content.Server.Zombies;
 

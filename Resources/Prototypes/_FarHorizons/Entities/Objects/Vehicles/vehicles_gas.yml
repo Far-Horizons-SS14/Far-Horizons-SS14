@@ -33,12 +33,17 @@
     dismountOnStun: true
     dismountOnKnockdown: true
     ejectOnCrash: true
-    northOffset: "0, -0.12"
-    southOffset: "0, -0.12"
-    eastOffset: "0, -0.2"
-    westOffset: "-0, -0.2"
-    eastDrawDepth: BelowMobs
-    westDrawDepth: BelowMobs
+  - type: DirectionalOverride
+    offsets: 
+      North: "0, -0.12"
+      South: "0, -0.12"
+      East: "0, -0.2"
+      West: "0, -0.2"
+    drawDepths: 
+      North: OverMobs
+      South: OverMobs
+      East: BelowMobs
+      West: BelowMobs
   - type: Strap
   - type: Fixtures
     fixtures:
@@ -65,10 +70,10 @@
     containers:
       key_slot: !type:ContainerSlot
       vehicle_mods_container: !type:Container
-  - type: SolutionContainerManager
-    solutions:
-      fueltank:
-        maxVol: 150
+  - type: Solution
+    id: fueltank
+    solution:
+      maxVol: 150
   - type: RefillableSolution
     solution: fueltank
   - type: ExaminableSolution
@@ -77,7 +82,7 @@
   - type: ReagentDraw
     enabled: false
     solutionContainer: fueltank
-    whitelistedReagants: 
+    whitelistedReagents: 
     - WeldingFuel
   - type: FootstepModifier
     footstepSoundCollection:
@@ -131,13 +136,11 @@
   parent: VehicleATV
   suffix: Filled
   components: 
-    - type: SolutionContainerManager
-      solutions:
-        fueltank:
-          reagents:
-          - ReagentId: WeldingFuel
-            Quantity: 150
-          maxVol: 150
+    - type: Solution
+      solution:
+        reagents:
+        - ReagentId: WeldingFuel
+          Quantity: 150
     - type: ContainerFill
       containers:
         key_slot:
@@ -208,13 +211,11 @@
   parent: VehicleATVNTSec
   suffix: Fueled
   components: 
-    - type: SolutionContainerManager
-      solutions:
-        fueltank:
-          reagents:
-          - ReagentId: WeldingFuel
-            Quantity: 150
-          maxVol: 150
+    - type: Solution
+      solution:
+        reagents:
+        - ReagentId: WeldingFuel
+          Quantity: 150
     - type: VehicleMods
       startingEquipment:
         - BasicTires
@@ -284,13 +285,11 @@
   parent: VehicleSkeletonMotorcycle
   suffix: Fueled, Keys
   components: 
-    - type: SolutionContainerManager
-      solutions:
-        fueltank:
-          reagents:
-          - ReagentId: WeldingFuel
-            Quantity: 150
-          maxVol: 150
+    - type: Solution
+      solution:
+        reagents:
+        - ReagentId: WeldingFuel
+          Quantity: 150
     - type: ContainerFill
       containers:
         key_slot:
@@ -333,6 +332,7 @@
         - PowerArmorUser
     soundHit:
       collection: MetalThud
+    damageTransfer: 0.5
   - type: VehicleContainer
     seats: 2
     passengerWhitelist:
@@ -344,10 +344,10 @@
       passenger_slot: !type:Container
       storagebase: !type:Container
       vehicle_mods_container: !type:Container
-  - type: SolutionContainerManager
-    solutions:
-      fueltank:
-        maxVol: 150
+  - type: Solution
+    id: fueltank 
+    solution:
+      maxVol: 150
   - type: RefillableSolution
     solution: fueltank
   - type: ExaminableSolution
@@ -356,7 +356,7 @@
   - type: ReagentDraw
     enabled: false
     solutionContainer: fueltank
-    whitelistedReagants: 
+    whitelistedReagents: 
     - WeldingFuel
   - type: FootstepModifier
     footstepSoundCollection:
@@ -410,7 +410,8 @@
           collection: MetalBreak
       - !type:DoActsBehavior
         acts: ["Breakage"]
-      - !type:ExplodeBehavior
+      - !type:SolutionExplosionBehavior
+        solution: fueltank
       - !type:EmptyContainersBehaviour
         containers:
         - passenger_slot
@@ -455,13 +456,11 @@
   parent: VehicleClownCar
   suffix: Filled
   components: 
-    - type: SolutionContainerManager
-      solutions:
-        fueltank:
-          reagents:
-          - ReagentId: WeldingFuel
-            Quantity: 150
-          maxVol: 150
+    - type: Solution
+      solution:
+        reagents:
+        - ReagentId: WeldingFuel
+          Quantity: 150
     - type: ContainerFill
       containers:
         key_slot:

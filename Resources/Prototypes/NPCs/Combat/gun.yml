@@ -96,8 +96,90 @@
 - type: htnCompound
   id: RangedCombatCompound
   branches:
+  #FH Start
+    #If they see a gun and arent currently handling a gun go grab that gun
+    - preconditions:
+        - !type:ActiveHandEntityPrecondition
+        - !type:ActiveHandComponentPrecondition
+          components:
+            - type: Gun
+          invert: true
+        - !type:ActiveHandComponentPrecondition
+          components:
+            - type: BallisticAmmoProvider
+          invert: true
+      tasks:
+        - !type:HTNPrimitiveTask
+          operator: !type:UtilityOperator
+            proto: NearbyGuns
+        - !type:HTNPrimitiveTask
+          operator: !type:DropOperator
+
+    - preconditions:
+        - !type:ActiveHandFreePrecondition
+      tasks:
+        - !type:HTNCompoundTask
+          task: PickupGunCompound
+  #FH-End
+
+    # Close or rack the gun chamber if necessary
+    - preconditions:
+        - !type:ActiveHandComponentPrecondition
+          components:
+            - type: Gun
+        - !type:GunAmmoPrecondition
+          minPercent: 0.001
+        - !type:NeedToRackBoltPrecondition
+      tasks:
+        - !type:HTNPrimitiveTask
+          operator: !type:RackBoltOperator
+
+    #FH-Start
+    # Cycle a manual bolt if the gun cannot rack in one action.
+    - preconditions:
+        - !type:ActiveHandComponentPrecondition
+          components:
+            - type: Gun
+        - !type:GunAmmoPrecondition
+          minPercent: 0.001
+        - !type:NeedToCycleBoltPrecondition
+      tasks:
+        - !type:HTNPrimitiveTask
+          operator: !type:CycleBoltOperator
+
+    # pump the gun if necessary
+    - preconditions:
+        - !type:ActiveHandComponentPrecondition
+          components:
+            - type: Gun
+        - !type:GunAmmoPrecondition
+          minPercent: 0.001
+        - !type:NeedToPumpPrecondition
+      tasks:
+        - !type:HTNPrimitiveTask
+          operator: !type:PumpOperator
+    #FH-End
+
+    # Wield gun
+    - preconditions:
+        - !type:ActiveHandComponentPrecondition
+          components:
+            - type: Gun
+        - !type:WieldedPrecondition
+          wielded: false
+        # Far Horizons start - Don't wield an empty gun
+        - !type:GunAmmoPrecondition
+          minPercent: 0.001
+        # Far Horizons end
+      tasks:
+        - !type:HTNPrimitiveTask
+          operator: !type:WieldOperator
+
     # Move to target and shoot them if ammo
     - preconditions:
+        - !type:ActiveHandComponentPrecondition
+          components:
+            - type: Gun
         - !type:GunAmmoPrecondition
           minPercent: 0.001
       tasks:
@@ -144,21 +226,10 @@
           maxPercent: 0.0
       tasks:
         - !type:HTNCompoundTask
-          task: ReloadGunFromInventoryCompound
+          task: BeforeReloadCompound
+        - !type:HTNCompoundTask
+          task: ReloadMagazineGunCompound
 
-    # If still at 0 ammo - try to reload from ground
-    - preconditions:
-        - !type:ActiveHandComponentPrecondition
-          components:
-            - type: Gun
-            - type: ChamberMagazineAmmoProvider
-        - !type:GunAmmoPrecondition
-          maxPercent: 0.0
-      tasks:
-        - !type:HTNCompoundTask
-          task: ReloadGunFromGroundCompound
-    
-    # Reload shotguns
     - preconditions:
         - !type:ActiveHandComponentPrecondition
           components:
@@ -168,36 +239,41 @@
           maxPercent: 0.0
       tasks:
         - !type:HTNCompoundTask
-          task: ReloadShotgunFromInventoryCompound
-    
-    # Reload shotguns from ground if still at 0 ammo
+          task: BeforeReloadCompound
+        - !type:HTNCompoundTask
+          task: ReloadBallisticGunCompound
+
+    # In case reload was interrupted by a replan this finished them swapping to their gun.
     - preconditions:
         - !type:ActiveHandComponentPrecondition
           components:
-            - type: Gun
             - type: BallisticAmmoProvider
-        - !type:GunAmmoPrecondition
-          maxPercent: 0.0
+        - !type:ActiveHandComponentPrecondition
+          components:
+            - type: Gun
+          invert: true
+        - !type:KeyExistsPrecondition
+          key: HeldGun
       tasks:
-        - !type:HTNCompoundTask
-          task: ReloadShotgunFromGroundCompound
+        - !type:HTNPrimitiveTask
+          operator: !type:DropOperator
+        - !type:HTNPrimitiveTask
+          operator: !type:SwapToHandHoldingEntityOperator
+            targetKey: HeldGun
     # FH end
-
-    # Pickup gun with ammo if we have no ammo
-    -  preconditions:
-         - !type:ActiveHandComponentPrecondition
-           components:
-             - type: Gun
-           invert: true
-       tasks:
-         - !type:HTNCompoundTask
-           task: PickupGunCompound
 
     # Discard gun if no ammo
     - preconditions:
         - !type:ActiveHandComponentPrecondition
           components:
             - type: Gun
+        - !type:ActiveHandComponentPrecondition
+           components:
+            - type: MeleeWeapon
+              damage:
+                types:
+                  Blunt: 0
+           invert: true
         - !type:GunAmmoPrecondition
           maxPercent: 0.001
       tasks:

@@ -6,6 +6,7 @@ using Content.Shared.DoAfter;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Implants;
 using Content.Shared.Implants.Components;
+using Content.Shared.Mobs;
 using Content.Shared.PowerCell;
 using Content.Shared.PowerCell.Components;
 using Content.Shared.StatusEffectNew;
@@ -110,6 +111,8 @@ public sealed partial class OverclockingTraitSystem : IPCToggleActionTraitSystem
             _status.TryRemoveStatusEffect(ent.Owner, "StatusEffectIPCFanDisabled");
         }
     }
+
+    protected override void OnDeath(Entity<OverclockingTraitComponent> ent, ref MobStateChangedEvent args) => base.OnDeath(ent, ref args);
 }
 
 public sealed partial class RepairNanitesTraitSystem : IPCToggleActionTraitSystem<RepairNanitesTraitComponent, RepairNanitesTraitEvent>
@@ -151,6 +154,8 @@ public sealed partial class RepairNanitesTraitSystem : IPCToggleActionTraitSyste
             Dirty(ent.Owner, psdComp);
         }
     }
+
+    protected override void OnDeath(Entity<RepairNanitesTraitComponent> ent, ref MobStateChangedEvent args) => base.OnDeath(ent, ref args);
 }
 
 public sealed partial class BloodPoweredTraitSystem : IPCTraitSystem<BloodPoweredTraitComponent>

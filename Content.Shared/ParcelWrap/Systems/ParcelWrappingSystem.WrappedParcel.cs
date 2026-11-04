@@ -8,6 +8,7 @@ using Content.Shared.Popups;
 using Content.Shared.Verbs;
 using Robust.Shared.Containers;
 using Robust.Shared.Timing;
+using Content.Shared._Starlight.Cargo.TamperSeal.Components; //FH
 
 namespace Content.Shared.ParcelWrap.Systems;
 
@@ -63,7 +64,7 @@ public sealed partial class ParcelWrappingSystem
 
     private void OnUseInHand(Entity<WrappedParcelComponent> entity, ref UseInHandEvent args)
     {
-        if (args.Handled)
+        if (args.Handled || (TryComp<TamperSealComponent>(entity, out var tsComp) && !tsComp.Opened)) //FH-Edit
             return;
 
         args.Handled = TryStartUnwrapDoAfter(args.User, entity);
@@ -72,7 +73,7 @@ public sealed partial class ParcelWrappingSystem
     private void OnGetVerbsForWrappedParcel(Entity<WrappedParcelComponent> entity,
         ref GetVerbsEvent<InteractionVerb> args)
     {
-        if (!args.CanAccess || !args.CanComplexInteract)
+        if (!args.CanAccess || !args.CanComplexInteract || HasComp<TamperSealComponent>(entity)) //FH-Edit
             return;
 
         if (!entity.Comp.CanSelfUnwrap && entity.Comp.Contents.Contains(args.User))

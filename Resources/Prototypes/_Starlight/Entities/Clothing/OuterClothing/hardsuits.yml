@@ -187,7 +187,7 @@
 
 #Space Hazard Suit
 - type: entity
-  parent: [ClothingOuterHardsuitBase, BaseCargoContraband]
+  parent: [ ClothingOuterHardsuitBase ] # Far Horizons - removed contra base
   id: ClothingOuterHardsuitSpaceHazard
   name: space hazard hardsuit
   description: A special suit that protects against hazardous, low pressure environments. Specifically for the dangers of space mining.
@@ -294,8 +294,9 @@
       maxVisibility: 0.15
       lastVisibility: 0.15
   - type: PowerCellDraw
-    drawRate: 14 # roughly 200 seconds on the default cell
+    drawRate: 5.6 #FH-Edit Roughly the half the amount of the old duration # roughly 200 seconds on the default cell
   - type: ToggleCellDraw
+    disableSelfRechargeOnToggle: true #FH
   - type: PowerCellSlot
     cellSlotId: cell_slot
     fitsInCharger: false
@@ -307,8 +308,9 @@
     slots:
       cell_slot:
         name: power-cell-slot-component-slot-name-default
-        startingItem: PowerCellUltra
+        startingItem: PowerCellMicroreactor #FH
         disableEject: true
+        swap: false #FH
         whitelist:
           tags:
             - PowerCell

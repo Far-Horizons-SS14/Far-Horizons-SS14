@@ -445,6 +445,10 @@ public abstract partial class SharedStunSystem
 
         var ev = new TryForceStandEvent(entity.Comp.ForceStandStamina);
         RaiseLocalEvent(entity, ref ev);
+        //Far Horizons Start
+        if(ev.Cancelled)
+            return false;
+        //Far Horizons End
 
         if (!Stamina.TryTakeStamina(entity, ev.Stamina, entity.Comp, visual: true))
         {

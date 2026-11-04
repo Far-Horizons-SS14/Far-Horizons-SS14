@@ -77,7 +77,7 @@ public sealed partial class FHResearchConsoleBoundUserInterface(EntityUid owner,
     {
         if (_queuedNodes.Contains(node))
             SendRemoveFromQueueRequest(node);
-        else if (_unlockedNodes.Contains(node))
+        else if (_unlockedNodes.Contains(node) && !_researchedNodes.Contains(node))
             SendReseachRequest(node);
     }
 

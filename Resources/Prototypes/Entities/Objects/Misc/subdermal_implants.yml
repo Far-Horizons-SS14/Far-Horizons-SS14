@@ -176,6 +176,8 @@
       components:
       - Hands # prevent mouse buying grenade penguin since its not telepathic
   - type: RemoteStore
+    proto: StorePresetRemoteUplink # Far Horizons
+    currency: Telecrystal # Far Horizons
   - type: UserInterface
     interfaces:
       enum.StoreUiKey.Key:

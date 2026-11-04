@@ -303,6 +303,7 @@ public sealed partial class NPCBlackboard : IEnumerable<KeyValuePair<string, obj
     /// Can the NPC click open entities such as doors.
     /// </summary>
     public const string NavInteract = "NavInteract";
+    public const string NavAccess = "NavAccess"; // Far Horizons
 
     /// <summary>
     /// Can the NPC pry open doors for steering.

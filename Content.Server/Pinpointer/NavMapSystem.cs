@@ -189,9 +189,14 @@ public sealed partial class NavMapSystem : SharedNavMapSystem
         if (!TryComp<NavMapBeaconComponent>(ent, out var beacon))
             return;
 
+        // Far Horizons start
+        var nextBeacon = args.NextBeacon?.Trim() ?? string.Empty;
+        // Far Horizons end
+
         if (beacon.Text == args.Text &&
             beacon.Color == args.Color &&
-            beacon.Enabled == args.Enabled)
+            beacon.Enabled == args.Enabled &&
+            beacon.NextBeacon == nextBeacon) // Far Horizons
             return;
 
         _adminLog.Add(LogType.Action, LogImpact.Medium,
@@ -205,6 +210,9 @@ public sealed partial class NavMapSystem : SharedNavMapSystem
         beacon.Text = args.Text;
         beacon.Color = args.Color;
         beacon.Enabled = args.Enabled;
+
+        beacon.NextBeacon = nextBeacon; // Far Horizons
+
         Dirty(ent, beacon);
 
         UpdateBeaconEnabledVisuals((ent, beacon));

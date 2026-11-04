@@ -37,6 +37,8 @@ public sealed partial class LimbDamageableZombieSystem : EntitySystem
 
     private void OnZombified(Entity<LimbDamageableComponent> ent, ref EntityZombifiedEvent args)
     {
+        if (HasComp<LegacyZombieLockComponent>(ent)) return;
+
         var maybeHead = _limbDamage.GetAllDamageable(ent.AsNullable()).Where(p => p.Comp.Organ?.Category == _headCategory).FirstOrNull();
 
         if (maybeHead is not { } head)

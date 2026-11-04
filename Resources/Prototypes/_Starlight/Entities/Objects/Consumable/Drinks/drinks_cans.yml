@@ -4,19 +4,11 @@
   name: Crab Juice can
   description: Now, what do you have to wash that awful taste out of my mouth?
   components:
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        maxVol: 30
-        reagents:
-        - ReagentId: JuiceCrab
-          Quantity: 30
-      grindable:
-        reagents:
-        - ReagentId: Aluminium
-          Quantity: 4
-        - ReagentId: Iron
-          Quantity: 1
+  - type: Solution # FH - migrated from SolutionContainerManager
+    solution:
+      reagents:
+      - ReagentId: JuiceCrab
+        Quantity: 40
   - type: Tag
     tags:
     - DrinkCan

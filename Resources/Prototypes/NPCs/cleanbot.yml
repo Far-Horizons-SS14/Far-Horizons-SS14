@@ -4,6 +4,17 @@
     - tasks:
         - !type:HTNCompoundTask
           task: BufferNearbyPuddlesCompound
+    # Far Horizons start
+    - tasks:
+        - !type:HTNCompoundTask
+          task: DisposePulledTrashCompound
+    - tasks:
+        - !type:HTNCompoundTask
+          task: CollectNearbyTrashCompound
+    - tasks:
+        - !type:HTNCompoundTask
+          task: PatrolBeaconCompound
+    # Far Horizons end
     - tasks:
         - !type:HTNCompoundTask
           task: IdleCompound
@@ -36,3 +47,52 @@
               id: PuddleService
               proto: NearbyPuddles
               key: Target
+
+# Far Horizons start
+- type: htnCompound
+  id: DisposePulledTrashCompound
+  branches:
+    - preconditions:
+        - !type:PullingPrecondition
+          whitelist:
+            tags:
+              - Trash
+      tasks:
+        - !type:HTNPrimitiveTask
+          operator: !type:UtilityOperator
+            proto: NearbyDisposalUnits
+            key: DisposalBinTarget
+            keyCoordinates: TargetCoordinates
+        - !type:HTNPrimitiveTask
+          operator: !type:MoveToOperator
+            pathfindInPlanning: true
+            targetKey: TargetCoordinates
+            rangeKey: InteractRange
+        - !type:HTNPrimitiveTask
+          operator: !type:DisposalInsertOperator
+            targetKey: TrashTarget
+            disposalTargetKey: DisposalBinTarget
+            bypassHands: true
+
+- type: htnCompound
+  id: CollectNearbyTrashCompound
+  branches:
+    - preconditions:
+        - !type:PullingPrecondition
+          pulling: false
+      tasks:
+        - !type:HTNPrimitiveTask
+          operator: !type:UtilityOperator
+            proto: NearbyTrash
+            key: TrashTarget
+            keyCoordinates: TargetCoordinates
+        - !type:HTNPrimitiveTask
+          operator: !type:MoveToOperator
+            pathfindInPlanning: true
+            targetKey: TargetCoordinates
+            rangeKey: InteractRange
+        - !type:HTNPrimitiveTask
+          operator: !type:StartPullOperator
+            targetKey: TrashTarget
+            removeTargetOnShutdown: false
+# Far Horizons end

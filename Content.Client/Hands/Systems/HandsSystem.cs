@@ -7,6 +7,7 @@ using Content.Client.Verbs.UI;
 using Content.Shared.Hands;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
+using Content.Shared.Interaction.Components; //FH-Edit
 using Content.Shared.Inventory.VirtualItem;
 using Content.Shared.Item;
 using JetBrains.Annotations;
@@ -139,9 +140,11 @@ namespace Content.Client.Hands.Systems
                 return;
             }
 
-            if (handName != hands.ActiveHandId && pressedEntity == null)
+            if (handName != hands.ActiveHandId && (pressedEntity == null || HasComp<UnremoveableComponent>(pressedEntity))) //FH-Edit
             {
                 // change active hand
+                if(HasComp<UnremoveableComponent>(pressedEntity)) //FH-Edit Else you wouldnt be able to reload gun based cybernetics
+                    RaisePredictiveEvent(new RequestHandInteractUsingEvent(handName)); 
                 RaisePredictiveEvent(new RequestSetHandEvent(handName));
                 return;
             }

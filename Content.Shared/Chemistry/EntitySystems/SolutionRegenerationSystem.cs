@@ -17,7 +17,6 @@ public sealed partial class SolutionRegenerationSystem : EntitySystem
         base.Initialize();
 
         SubscribeLocalEvent<SolutionRegenerationComponent, MapInitEvent>(OnMapInit);
-        SubscribeLocalEvent<SolutionRegenerationComponent, EntRemovedFromContainerMessage>(OnEntRemoved);
     }
 
     private void OnMapInit(Entity<SolutionRegenerationComponent> ent, ref MapInitEvent args)
@@ -25,24 +24,27 @@ public sealed partial class SolutionRegenerationSystem : EntitySystem
         ent.Comp.NextRegenTime = _timing.CurTime + ent.Comp.Duration;
 
         Dirty(ent);
-    }
 
-    // Workaround for https://github.com/space-wizards/space-station-14/pull/35314
-    private void OnEntRemoved(Entity<SolutionRegenerationComponent> ent, ref EntRemovedFromContainerMessage args)
-    {
-        // Make sure the removed entity was our contained solution and clear our cached reference
-        if (args.Entity == ent.Comp.SolutionRef?.Owner)
-            ent.Comp.SolutionRef = null;
+        // Far Horizons start
+        // if we have solution regeneration and the solution has empty volume, we need to add the active regeneration component so that it can tick and generate solution
+        if (!_timing.ApplyingState &&
+            TryComp<SolutionComponent>(ent, out var solution) &&
+            solution.Solution.AvailableVolume > FixedPoint2.Zero)
+        {
+            EnsureComp<SLActiveSolutionRegenerationComponent>(ent);
+        }
+        // Far Horizons end
     }
 
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
 
+        // TODO: SolutionRegenerationComponent on Solution Entities!
         // Starlight start
         var time = _timing.CurTime;
-        var query = EntityQueryEnumerator<SLActiveSolutionRegenerationComponent, SolutionRegenerationComponent, SolutionContainerManagerComponent>();
-        while (query.MoveNext(out var uid, out _, out var regen, out var manager))
+        var query = EntityQueryEnumerator<SLActiveSolutionRegenerationComponent, SolutionRegenerationComponent, SolutionComponent>();
+        while (query.MoveNext(out var uid, out _, out var regen, out var solutionComp))
         {
             if (time < regen.NextRegenTime)
                 continue;
@@ -52,13 +54,7 @@ public sealed partial class SolutionRegenerationSystem : EntitySystem
             regen.NextRegenTime = time + regen.Duration;
             // Needs to be networked and dirtied so that the client can reroll it during prediction
             Dirty(uid, regen);
-            if (!_solutionContainer.ResolveSolution((uid, manager),
-                    regen.SolutionName,
-                    ref regen.SolutionRef,
-                    out var solution))
-                continue;
-
-            var amount = FixedPoint2.Min(solution.AvailableVolume, regen.Generated.Volume);
+            var amount = FixedPoint2.Min(solutionComp.Solution.AvailableVolume, regen.Generated.Volume);
             if (amount <= FixedPoint2.Zero)
             {
                 RemCompDeferred<SLActiveSolutionRegenerationComponent>(uid);
@@ -71,7 +67,7 @@ public sealed partial class SolutionRegenerationSystem : EntitySystem
                 ? regen.Generated
                 : regen.Generated.Clone().SplitSolution(amount);
 
-            _solutionContainer.TryAddSolution(regen.SolutionRef.Value, generated);
+            _solutionContainer.TryAddSolution((uid, solutionComp), generated); // FH - swap to solutionEnt.Value
         }
     }
 }

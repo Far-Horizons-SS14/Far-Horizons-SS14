@@ -67,6 +67,8 @@ entities:
     components:
     - type: MetaData
       name: NeoSol High Command
+    - type: BecomesCustomStarSystem
+      customSystem: BlackHoleNSHC
     - type: Transform
       parent: invalid
     - type: Parallax
@@ -30136,7 +30138,7 @@ entities:
     - type: Transform
       parent: 1
       pos: 17.5,14.5
-- proto: MagazineCanisterLightRifleAP
+- proto: MagazineCanisterRifle762AP
   entities:
   - uid: 593
     components:

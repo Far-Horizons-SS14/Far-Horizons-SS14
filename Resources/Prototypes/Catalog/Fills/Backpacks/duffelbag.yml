@@ -38,24 +38,21 @@
         - id: BoneGel
         - id: BoneSetterAdvanced
 
-- type: entity
-  parent: ClothingBackpackDuffelSyndicateMedicalBundle
-  id: ClothingBackpackDuffelSyndicateFilledMedicine
-  name: Syndicate Medicine Duffel Bag #FH
-  description: A large duffel bag containing essential medicinal reagents.
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      storagebase: !type:AllSelector
-        children:
-        - id: JugBicaridine
-        - id: JugPuncturase
-        - id: JugDermaline
-        - id: JugDylovene
-        - id: JugHyronalin
-        - id: JugSaline
-        - id: JugDexalinPlus
-        - id: JugTranexamicAcid
+# FH - disabled to avoid confusion
+#- type: entity
+#  parent: ClothingBackpackDuffelSyndicateMedicalBundle
+#  id: ClothingBackpackDuffelSyndicateFilledMedicine
+#  name: Syndicate Medicine Duffel Bag #FH
+#  description: A large duffel bag containing essential medicinal reagents.
+#  components:
+#  - type: EntityTableContainerFill
+#    containers:
+#      storagebase: !type:AllSelector
+#        children:
+#        - id: JugBicaridine
+#        - id: JugPunctTranex
+#        - id: JugPyraDerma
+#        - id: JugDexPlusSaline
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle
@@ -126,9 +123,9 @@
       storagebase: !type:AllSelector
         children:
         - id: WeaponLightMachineGunL6
-        - id: MagazineBoxLightRifleSP
-        - id: MagazineLightRifleBoxSP
-        - id: MagazineLightRifleBoxSP
+        - id: MagazineBoxRifle762SP #FH
+        - id: MagazineRifle762BoxSP #FH
+        - id: MagazineRifle762BoxSP #FH
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle
@@ -180,7 +177,7 @@
         - id: MagazineCanisterRevolver38SP
         - id: MagazineCanisterMagnumSP
         - id: MagazineCanisterRifle556SP
-        - id: MagazineCanisterLightRifleSP
+        - id: MagazineCanisterRifle762SP #FH
         - id: MagazineCanisterPistolSP
         - id: MagazinePistolSubMachineGunSP
           amount: 5
@@ -188,7 +185,7 @@
           amount: 4
         - id: MagazineMagnumRifleSP
           amount: 4
-        - id: MagazineLightRifleBoxSP
+        - id: MagazineRifle762BoxSP #FH
           amount: 4
         - id: MagazineShotgunFlechette
           amount: 7

@@ -13,6 +13,7 @@ public sealed partial class CyberLimbSystem : EntitySystem
     [Dependency] private HandsSystem _hands = default!;
     [Dependency] private ContainerSystem _container = default!;
     [Dependency] private AudioSystem _audio = default!;
+    [Dependency] private UserInterfaceSystem _uiSystem = default!; //Far Horizons
 
     public override void Initialize()
     {

@@ -1,0 +1,158 @@
+- type: entity
+  parent: BaseMagazineRifle762
+  id: BaseMagazineRifle762Pan
+  name: "Pan Magazine (7.62 Rifle)"
+  description: Antiquated and impractical, not to mention unreasonably large. Does not hold up properly to modern LMG magazines, but for your purposes, it'll do you just fine.
+  abstract: true
+  components:
+  - type: BallisticAmmoProvider
+    proto: null
+    capacity: 47
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Magazine/LMG/dp28.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    size: Normal
+  - type: Tag
+    tags:
+      - MagazineRifle762Pan
+
+#SP is found in light_rifle under wiz directory
+
+- type: entity
+  parent: BaseMagazineRifle762Pan
+  id: MagazineRifle762PanEmpty
+  name: "Pan Magazine (7.62 Rifle Any)"
+  components:
+  - type: BallisticAmmoProvider
+    proto: null
+    capacity: 47
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  parent: BaseMagazineRifle762Pan
+  id: MagazineRifle762PanHP
+  name: "Pan Magazine (7.62 Rifle HP)"
+  description: Antiquated and impractical, not to mention unreasonably large. Does not hold up properly to modern LMG magazines, but for your purposes, it'll do you just fine. Holds Hollow-Point 7.62 bullets, good against unarmored targets.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifle762HP
+    capacity: 47
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: hp
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  parent: BaseMagazineRifle762Pan
+  id: MagazineRifle762PanFMJ
+  name: "Pan Magazine (7.62 Rifle FMJ)"
+  description: Antiquated and impractical, not to mention unreasonably large. Does not hold up properly to modern LMG magazines, but for your purposes, it'll do you just fine. Holds Full Metal Jacket 7.62 bullets, good against armored targets.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifle762FMJ
+    capacity: 47
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: fmj
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  parent: BaseMagazineRifle762Pan
+  id: MagazineRifle762PanIncendiary
+  name: "Pan Magazine (7.62 Rifle Incendiary)"
+  description: Antiquated and impractical, not to mention unreasonably large. Does not hold up properly to modern LMG magazines, but for your purposes, it'll do you just fine. Holds Self-Igniting 7.62 bullets, good against fleshy targets.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifle762Incendiary
+    capacity: 47
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: incendiary
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  parent: BaseMagazineRifle762Pan
+  id: MagazineRifle762PanUranium
+  name: "Pan Magazine (7.62 Rifle Uranium)"
+  description: Antiquated and impractical, not to mention unreasonably large. Does not hold up properly to modern LMG magazines, but for your purposes, it'll do you just fine. Holds Uranium-Core 7.62 bullets, delivers radiation poisoning on contact.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifle762Uranium
+    capacity: 47
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: uranium
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  parent: BaseMagazineRifle762Pan
+  id: MagazineRifle762PanAP
+  name: "Pan Magazine (7.62 Rifle Armor-Piercing)"
+  description: Antiquated and impractical, not to mention unreasonably large. Does not hold up properly to modern LMG magazines, but for your purposes, it'll do you just fine. Holds Armor-Piercing 7.62 bullets, good against heavily armored targets.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifle762AP
+    capacity: 47
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: ap
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  parent: BaseMagazineRifle762Pan
+  id: MagazineRifle762PanRubber
+  name: "Pan Magazine (7.62 Rifle Rubber)"
+  description: Antiquated and impractical, not to mention unreasonably large. Does not hold up properly to modern LMG magazines, but for your purposes, it'll do you just fine. Holds mostly harmless rubber 7.62 bullets.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifle762Rubber
+    capacity: 47
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: rubber
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  parent: BaseMagazineRifle762Pan
+  id: MagazineRifle762PanPractice
+  name: "Pan Magazine (7.62 Rifle Practice)"
+  description: Antiquated and impractical, not to mention unreasonably large. Does not hold up properly to modern LMG magazines, but for your purposes, it'll do you just fine. Holds chalk-loaded 7.62 bullets, good for target practice.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifle762Practice
+    capacity: 47
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: practice
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]

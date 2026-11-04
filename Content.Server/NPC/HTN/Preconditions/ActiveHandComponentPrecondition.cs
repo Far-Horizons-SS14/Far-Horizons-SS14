@@ -31,8 +31,7 @@ public sealed partial class ActiveHandComponentPrecondition : HTNPrecondition
         {
             var hasComp = _entManager.HasComponent(entity, comp.Value.Component.GetType());
 
-            if (!hasComp ||
-                Invert && hasComp)
+            if (!hasComp ^ Invert)
             {
                 return false;
             }

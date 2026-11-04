@@ -139,6 +139,14 @@
     implant: DeathAcidifierImplant
 
 - type: entity
+  id: ConsortiumUplinkImplanter
+  name: Consortium Uplink Implanter
+  parent: BaseImplantOnlyImplanterLambda
+  components:
+  - type: Implanter
+    implant: ConsortiumUplinkImplant
+
+- type: entity
   id: LanguageDatabaseImplanter
   name: Language Database Implanter
   parent: BaseImplantOnlyImplanter

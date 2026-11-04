@@ -554,11 +554,9 @@ public sealed partial class ChatSystem : SharedChatSystem
             ("channel", collectiveMind.LocalizedName),
             ("number", Number));
 
-        adminMessageWrap = Loc.GetString("collective-mind-chat-wrap-message-admin",
+        adminMessageWrap = Loc.GetString("fh-collective-mind-chat-wrap-message-admin",
             ("source", source),
-            ("message", FormattedMessage.EscapeText(message)),
-            ("channel", collectiveMind.LocalizedName),
-            ("number", Number));
+            ("message", FormattedMessage.EscapeText(message)));
 
         if (collectiveMind.ShowNames)
             messageWrap = adminMessageWrap;

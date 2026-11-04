@@ -1,10 +1,10 @@
 - type: entity
-  parent: BaseMagazineBoxLightRifle
-  id: MagazineBoxLightRifleRubber
-  name: ammunition box (.30 rifle rubber)
+  parent: BaseMagazineBoxRifle762 #FH
+  id: MagazineBoxRifle762Rubber #FH
+  name: ammunition box (7.62 rifle rubber) #FH
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgeLightRifleRubber
+    proto: CartridgeRifle762Rubber #FH
   - type: Sprite
     layers:
     - state: base

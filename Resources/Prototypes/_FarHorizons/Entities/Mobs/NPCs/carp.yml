@@ -1,0 +1,38 @@
+- type: entity
+  name: sharkminnow
+  parent: MobShark
+  id: MobSharkDragon
+  suffix: Dragon
+  components:
+    - type: GhostRole
+      allowMovement: true
+      allowSpeech: true
+      makeSentient: true
+      name: ghost-role-information-sentient-sharkminnow-name
+      description: ghost-role-information-sentient-sharkminnow-description
+      rules: ghost-role-information-space-dragon-summoned-carp-rules
+      mindRoles:
+      - MindRoleGhostRoleTeamAntagonistFlock
+    - type: GhostTakeoverAvailable
+    - type: HTN
+      rootTask:
+        task: DragonCarpCompound
+    - type: Temperature
+    - type: TemperatureDamage
+      heatDamageThreshold: 1200
+    - type: Flammable
+      damage:
+        types: {}
+    - type: Damageable
+      damageModifierSet: DragonSharkminnowResistances
+    - type: Prying
+      pryPowered: true
+      force: true
+      speedModifier: 2
+      useSound:
+         path: /Audio/Items/crowbar.ogg 
+    - type: MeleeWeapon
+      damage:
+        types:
+          Slash: 15
+          Structural: 30 # ~ 20 hits solo, much less in groups. Given rarer spawns, should even out? - Might need to be tweaked depending on feedback.

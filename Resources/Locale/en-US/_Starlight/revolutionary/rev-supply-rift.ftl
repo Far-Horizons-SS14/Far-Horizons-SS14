@@ -26,7 +26,6 @@ finka-name = Finka (SNKVD)
 finka-desc = The knife's secret technique was...
 mosin-name = Kardashev-Mosin
 dp-name = DP-28 LMG
-dp-desc = From RA-TA-TA-TA with love. Uses .30 ammo.
 ppsh-name = PPSH 59 SMG
 toz-name = ZOZ-106
 toz-desc = Aim at head and eyes. Uses .42 ammo, comes with extended magazine.

@@ -1,0 +1,221 @@
+#region P-P chain
+- type: fusionDecay
+  id: Be7>Li7
+  reactant:
+    proton: 4
+    neutron: 3
+  energy: 861000
+  halflife: 4598208 # 53.22 Days
+  products:
+    3,4: 1
+
+- type: fusionDecay
+  id: B8>Be8
+  reactant:
+    proton: 5
+    neutron: 3
+  energy: 18071000
+  halflife: 0.7719
+  products:
+    4,4: 1
+
+- type: fusionDecay
+  id: Be8>2He4
+  reactant:
+    proton: 4
+    neutron: 4
+  energy: 8.92000
+  halflife: 8.19e-17
+  products:
+    2,2: 2
+#endregion
+
+#region CNO Cycles (Cold)
+- type: fusionDecay
+  id: N13>C13
+  reactant:
+    proton: 7
+    neutron: 6
+  energy: 1200000
+  halflife: 597.9
+  products:
+    6,7: 1
+
+- type: fusionDecay
+  id: O15>N15
+  reactant:
+    proton: 8
+    neutron: 7
+  energy: 1730000
+  halflife: 122.24
+  products:
+    7,8: 1
+
+- type: fusionDecay
+  id: F17>O17
+  reactant:
+    proton: 9
+    neutron: 8
+  energy: 2760000
+  halflife: 64.49
+  products:
+    8,9: 1
+
+- type: fusionDecay
+  id: F18>O18
+  reactant:
+    proton: 9
+    neutron: 9
+  energy: 1656000
+  halflife: 6586.26
+  products:
+    8,10: 1
+#endregion
+
+#region CNO Cycles (Hot)
+- type: fusionDecay
+  id: O14>N14
+  reactant:
+    proton: 8
+    neutron: 6
+  energy: 5140000
+  halflife: 70.641
+  products:
+    7,7: 1
+
+- type: fusionDecay
+  id: Ne18>F18
+  reactant:
+    proton: 10
+    neutron: 8
+  energy: 4440000
+  halflife: 1.672
+  products:
+    9,9: 1
+
+- type: fusionDecay
+  id: Ne19>F19
+  reactant:
+    proton: 10
+    neutron: 9
+  energy: 3320000
+  halflife: 17.22
+  products:
+    9,10: 1
+#endregion
+
+#region Carbon Burning
+- type: fusionDecay
+  id: Mg23>Na23
+  reactant:
+    proton: 12
+    neutron: 11
+  energy: 4057000
+  halflife: 11.317
+  products:
+    11,12: 1
+#endregion
+
+#region Oxygen Burning
+- type: fusionDecay
+  id: S31>P31
+  reactant:
+    proton: 16
+    neutron: 15
+  energy: 4374040
+  halflife: 2.572
+  products:
+    15,16: 1
+
+- type: fusionDecay
+  id: P30>Si30
+  reactant:
+    proton: 15
+    neutron: 15
+  energy: 3210152
+  halflife: 149.9
+  products:
+    14,16: 1
+#endregion
+
+#region Silicon Burning
+- type: fusionDecay
+  id: Ti44>Sc44
+  reactant:
+    proton: 22
+    neutron: 22
+  energy: 268000
+  halflife: 1988087976 # 63 Years
+  products:
+    21,23: 1
+
+- type: fusionDecay
+  id: Sc44>Ca44
+  reactant:
+    proton: 21
+    neutron: 23
+  energy: 3653000
+  halflife: 14137.2
+  products:
+    20,24: 1
+
+- type: fusionDecay
+  id: Cr48>V48
+  reactant:
+    proton: 24
+    neutron: 24
+  energy: 1659000
+  halflife: 77616
+  products:
+    23,25: 1
+
+- type: fusionDecay
+  id: V48>Ti48
+  reactant:
+    proton: 23
+    neutron: 25
+  energy: 4012000
+  halflife: 1380110.4 # 15.9735 Days
+  products:
+    22,26: 1
+
+- type: fusionDecay
+  id: Fe52>Mn52
+  reactant:
+    proton: 26
+    neutron: 26
+  energy: 2372000
+  halflife: 29790
+  products:
+    25,27: 1
+
+- type: fusionDecay
+  id: Mn52>Cr52
+  reactant:
+    proton: 25
+    neutron: 27
+  energy: 4712000
+  halflife: 483062.4 # 5.591 Days
+  products:
+    24,28: 1
+
+- type: fusionDecay
+  id: Ni56>Co56
+  reactant:
+    proton: 28
+    neutron: 28
+  energy: 2134000
+  halflife: 509760 # 5.9 Days
+  products:
+    27,29: 1
+
+- type: fusionDecay
+  id: Co56>Fe56 # Iron is Inevitable
+  reactant:
+    proton: 27
+    neutron: 29
+  energy: 4566000
+  halflife: 6676128 # 77.27 Days
+  products:
+    26,30: 1
+#endregion

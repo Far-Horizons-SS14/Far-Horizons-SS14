@@ -13,6 +13,8 @@ using Content.Shared.Damage.Components;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.GameStates;
 using Robust.Shared.Utility;
+using Content.Shared.EntityTable; //FH
+using System.Linq; //FH
 
 namespace Content.Server.Dragon;
 
@@ -27,6 +29,7 @@ public sealed partial class DragonRiftSystem : EntitySystem
     [Dependency] private NavMapSystem _navMap = default!;
     [Dependency] private NPCSystem _npc = default!;
     [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private EntityTableSystem _entityTable = default!; //FH
 
     public override void Initialize()
     {
@@ -88,7 +91,9 @@ public sealed partial class DragonRiftSystem : EntitySystem
             if (comp.SpawnAccumulator > comp.SpawnCooldown)
             {
                 comp.SpawnAccumulator -= comp.SpawnCooldown;
-                var ent = Spawn(comp.SpawnPrototype, xform.Coordinates);
+
+                var spawn = _entityTable.GetSpawns(comp.SpawnTable).First(); //FH
+                var ent = Spawn(spawn, xform.Coordinates); //FH
 
                 // Update their look to match the leader.
                 if (TryComp<RandomSpriteComponent>(comp.Dragon, out var randomSprite))

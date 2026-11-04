@@ -278,3 +278,156 @@
   materials:
     Plastic: 4000
     Uranium: 4000
+
+#region 7.92 Clip - 5
+#TODO - Standardize all ammo crafting
+#eg. Cost of base mag + Cost of bullet = Mag Cost + note of cost of 1 bullet for future reference
+#Cost of 1 bullet - 22 steel
+#incend/rubber mags are 100% plastic + cost of mag
+#incend should probably cost something exotic like uranium/ap. but plasma might be asking too much?
+#uranium mags are 50/50 plastic & uranium + cost of mag
+#ap mags are 33/33/33 steel/plastic/uranium + cost of mag
+#practice mags are cheap
+
+- type: latheRecipe
+  id: SpeedLoaderRifle792Rubber
+  result: SpeedLoaderRifle792Rubber
+  categories:
+  - Ammo
+  completetime: 1
+  materials:
+    Steel: 50
+    Plastic: 160
+
+- type: latheRecipe
+  parent: BaseEmptyAmmoRecipe
+  id: SpeedLoaderRifle792
+  result: SpeedLoaderRifle792
+  materials:
+    Steel: 50
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: SpeedLoaderRifle792HP
+  result: SpeedLoaderRifle792HP
+  materials:
+    Steel: 160
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: SpeedLoaderRifle792SP
+  result: SpeedLoaderRifle792SP
+  materials:
+    Steel: 160
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: SpeedLoaderRifle792FMJ
+  result: SpeedLoaderRifle792FMJ
+  materials:
+    Steel: 160
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: SpeedLoaderRifle792Incendiary
+  result: SpeedLoaderRifle792Incendiary
+  materials:
+    Steel: 50
+    Plastic: 160
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: SpeedLoaderRifle792Uranium
+  result: SpeedLoaderRifle792Uranium
+  materials:
+    Steel: 50
+    Plastic: 160
+    Uranium: 160
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: SpeedLoaderRifle792AP
+  result: SpeedLoaderRifle792AP
+  materials:
+    Steel: 210
+    Uranium: 160
+    Plastic: 160
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: SpeedLoaderRifle792Practice
+  result: SpeedLoaderRifle792Practice
+  materials:
+    Steel: 100
+
+#region 7.92 Box - 20
+- type: latheRecipe
+  id: MagazineBoxRifle792Rubber
+  result: MagazineBoxRifle792Rubber
+  categories:
+  - Ammo
+  completetime: 1
+  materials:
+    Steel: 100
+    Plastic: 640 #x4 clip
+
+- type: latheRecipe
+  parent: BaseEmptyAmmoRecipe
+  id: MagazineBoxRifle792
+  result: MagazineBoxRifle792
+  materials:
+    Steel: 100 #x2 clip
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineBoxRifle792HP
+  result: MagazineBoxRifle792HP
+  materials:
+    Steel: 640
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineBoxRifle792SP
+  result: MagazineBoxRifle792SP
+  materials:
+    Steel: 640
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineBoxRifle792FMJ
+  result: MagazineBoxRifle792FMJ
+  materials:
+    Steel: 640
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineBoxRifle792Incendiary
+  result: MagazineBoxRifle792Incendiary
+  materials:
+    Steel: 100
+    Plastic: 640
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineBoxRifle792Uranium
+  result: MagazineBoxRifle792Uranium
+  materials:
+    Steel: 100
+    Plastic: 640
+    Uranium: 640
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineBoxRifle792AP
+  result: MagazineBoxRifle792AP
+  materials:
+    Steel: 740
+    Uranium: 640
+    Plastic: 640
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineBoxRifle792Practice
+  result: MagazineBoxRifle792Practice
+  materials:
+    Steel: 150

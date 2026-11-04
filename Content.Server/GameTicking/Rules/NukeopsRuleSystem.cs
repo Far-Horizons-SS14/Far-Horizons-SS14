@@ -597,7 +597,7 @@ public sealed partial class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleCompon
         var target = (ent.Comp.TargetStation is not null) ? Name(ent.Comp.TargetStation.Value) : "the target";
 
         _antag.SendBriefing(args.Session,
-            Loc.GetString("nukeops-welcome",
+            Loc.GetString(ent.Comp.GreetingMessage, // Far Horizons
                 ("station", target),
                 ("name", Name(ent))),
             Color.Red,

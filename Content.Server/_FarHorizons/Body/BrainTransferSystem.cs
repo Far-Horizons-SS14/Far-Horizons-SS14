@@ -7,14 +7,12 @@ using Content.Shared._FarHorizons.Body;
 using Content.Shared._Starlight.Language.Components;
 using Content.Shared.Body;
 using Content.Shared.Body.Components;
-using Content.Shared.GameTicking;
 using Content.Shared.Humanoid;
 using Content.Shared.NPC;
 using Content.Shared.NPC.Components;
 using Content.Shared.Species.Components;
 using Content.Shared.Traits.Assorted;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Serialization.Markdown.Mapping;
 using Robust.Shared.Utility;
 
 namespace Content.Server._FarHorizons.Body;

@@ -1,22 +1,22 @@
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Body.Systems;
-using Content.Shared._FarHorizons.Vehicles.Components;
+using Content.Shared._FarHorizons.Vehicles;
 using Content.Shared.Atmos;
 using Content.Shared.Atmos.Components;
 
-namespace Content.Server._FarHorizons.Vehicles.Atmos;
+namespace Content.Server._FarHorizons.Vehicles;
 
 /// <summary>
 /// Handles atmospheric systems for mechs including air circulation, fans, and life support.
 /// </summary>
-public sealed partial class VehicleAtmosphereSystem : EntitySystem
+public sealed partial class VehicleSystem
 {
     [Dependency] private AtmosphereSystem _atmosphere = default!;
     private const float MinExternalPressure = 0.05f;
     private const float PressureTolerance = 0.1f;
 
     /// <inheritdoc/>
-    public override void Initialize()
+    public void InitializeAtmos()
     {        
         SubscribeLocalEvent<VehicleModsComponent, AtmosDeviceUpdateEvent>(OnAtmosUpdate);
         SubscribeLocalEvent<VehicleEquipmentComponent, VehicleFanToggle>(OnFanToggle);

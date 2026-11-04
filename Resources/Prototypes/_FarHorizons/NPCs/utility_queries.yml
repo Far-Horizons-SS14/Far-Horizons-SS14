@@ -45,3 +45,94 @@
       curve: !type:BoolCurve
     - !type:TargetAccessibleCon
       curve: !type:BoolCurve
+
+- type: utilityQuery
+  id: NearbyDisposalUnits
+  query:
+    - !type:ComponentQuery
+      components:
+        - type: DisposalUnit
+    - !type:ComponentFilter
+      retainWithComp: false
+      components:
+        - type: MailingUnit
+  considerations:
+    - !type:TargetDistanceCon
+      curve: !type:PresetCurve
+        preset: TargetDistance
+    - !type:TargetAccessibleCon
+      curve: !type:BoolCurve
+
+- type: utilityQuery
+  id: NearbyTrash
+  query:
+    - !type:ComponentQuery
+      components:
+        - type: Item
+        - type: Pullable
+        - type: Tag
+    - !type:EntityWhitelistFilter
+      whitelist:
+        tags:
+          - Trash
+    - !type:PullableFilter
+    - !type:RemoveAnchoredFilter
+  considerations:
+    - !type:TargetDistanceCon
+      curve: !type:PresetCurve
+        preset: TargetDistance
+    - !type:TargetAccessibleCon
+      curve: !type:BoolCurve
+
+- type: utilityQuery
+  id: RealDocInjectable
+  query:
+    - !type:ComponentQuery
+      components:
+        - type: InjectableSolution
+        - type: Damageable
+        - type: MobState
+    - !type:ComponentFilter
+      components:
+        - type: NPCRecentlyInjected
+      retainWithComp: false
+    #FH Start
+    - !type:DamageContainerFilter
+      damageContainers:
+        - Biological
+        - BiologicalMetaphysical
+      invert: true
+    - !type:HasDamageTypeFilter
+      damageGroups:
+        - Brute
+        - Burn
+        - Airloss
+        - Toxin
+    #FH End
+  considerations:
+    - !type:TargetIsCritCon
+      curve: !type:QuadraticCurve
+        slope: 1
+        exponent: 1
+        yOffset: 0.1
+        xOffset: 0
+    - !type:TargetDistanceCon
+      curve: !type:PresetCurve
+        preset: TargetDistance
+
+- type: utilityQuery
+  id: InventoryMelee
+  query:
+    - !type:InventoryQuery
+    - !type:ComponentFilter
+      components:
+        - type: MeleeWeapon
+          damage:
+            types:
+              Blunt: 0
+  considerations:
+    - !type:TargetMeleeCon
+      curve: !type:QuadraticCurve
+        slope: 0.5
+        exponent: 0.5
+        yOffset: 0

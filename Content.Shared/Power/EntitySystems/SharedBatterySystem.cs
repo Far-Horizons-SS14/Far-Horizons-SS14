@@ -4,6 +4,10 @@ using Content.Shared.Examine;
 using Content.Shared.Power.Components;
 using Content.Shared.Rejuvenate;
 using Robust.Shared.Timing;
+//FH Start
+using Content.Shared.PowerCell.Components;
+using Content.Shared.Item.ItemToggle;
+//FH End
 
 namespace Content.Shared.Power.EntitySystems;
 
@@ -14,6 +18,7 @@ public abstract partial class SharedBatterySystem : EntitySystem
 {
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private ItemToggleSystem _itemToggle = default!; //FH
 
     public override void Initialize()
     {
@@ -103,12 +108,27 @@ public abstract partial class SharedBatterySystem : EntitySystem
         args.CurrentCharge += GetCharge(ent.AsNullable());
         args.MaxCharge += ent.Comp.MaxCharge;
     }
-
+    /// <summary>
+    /// When a power cell that has a non-zero AutoRechargePause; ensure that the pause is reset whenever this is called unless the pause is over, and it is not discharging.
+    /// </summary>
     private void OnRefreshChargeRate(Entity<BatterySelfRechargerComponent> ent, ref RefreshChargeRateEvent args)
     {
-        if (_timing.CurTime < ent.Comp.NextAutoRecharge)
-            return; // Still on cooldown
+        //FH Start
+        if(TryComp<ToggleCellDrawComponent>(Transform(ent).ParentUid, out var tcdComp) && 
+        tcdComp.DisableSelfRechargeOnToggle &&
+        _itemToggle.IsActivated(Transform(ent).ParentUid)) 
+            return; 
+        // FH End
 
+        #region Starlight
+        if (ent.Comp.AutoRechargePauseTime > TimeSpan.Zero &&
+            (_timing.CurTime < ent.Comp.NextAutoRecharge ||
+             args.NewChargeRate < 0f)) // reset pause only for pause-enabled batteries
+        {
+            ent.Comp.NextAutoRecharge = _timing.CurTime + ent.Comp.AutoRechargePauseTime;
+            return;
+        }
+        #endregion
         args.NewChargeRate += ent.Comp.AutoRechargeRate;
     }
 

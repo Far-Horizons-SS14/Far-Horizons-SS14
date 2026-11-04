@@ -561,12 +561,25 @@ public sealed partial class GhostRoleSystem : EntitySystem
         List<ProtoId<JobPrototype>>? jobIds,
         List<ProtoId<AntagPrototype>>? antagIds)
     {
-        List<(ProtoId<FactionPrototype>, ProtoId<JobPrototype>)>? factionJobs = jobIds?.Select(p => (_factions.DecideFactionForJob(p)!.Value, p)).ToList();
+        var factionJobs = GetFactionJobs(jobIds); // Far-Horizons - set up the faction job assignment list
         var ev = new IsRoleAllowedEvent(player, factionJobs, antagIds, cancelled: false, isSpawning: false); // Starlight-edit: add last two parameters
         RaiseLocalEvent(ref ev);
 
         return !ev.Cancelled;
     }
+
+    // Far-Horizons start - look up the faction assignments for a job list
+    internal List<(ProtoId<FactionPrototype>, ProtoId<JobPrototype>)>? GetFactionJobs(
+        List<ProtoId<JobPrototype>>? jobIds)
+    {
+        return jobIds?.Select(job =>
+        {
+            // Although all jobs currently should have a faction assignment, guard against ones without just in case
+            var faction = _factions.DecideFactionForJob(job) ?? _factions.GetDefaultFaction().ID;
+            return (faction, job);
+        }).ToList();
+    }
+    // Far-Horizons end
 
     /// <summary>
     /// Attempts having the player take over the ghost role with the corresponding ID. Does not start a raffle.

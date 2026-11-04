@@ -1461,20 +1461,20 @@
       hands:
       - item: WeaponLightMachineGunL6C
       # starlight start - L6C uses ammo
-      - item: MagazineLightRifleBoxSP
+      - item: MagazineRifle762BoxSP #FH
         hand:
-          emptyRepresentative: MagazineLightRifleBoxSP
+          emptyRepresentative: MagazineRifle762BoxSP #FH
           emptyLabel: borg-slot-light-box-empty
           whitelist:
             tags:
-            - MagazineLightRifleBox
-      - item: MagazineLightRifleBoxSP
+            - MagazineRifle762Box #FH
+      - item: MagazineRifle762BoxSP #FH
         hand:
-          emptyRepresentative: MagazineLightRifleBoxSP
+          emptyRepresentative: MagazineRifle762BoxSP #FH
           emptyLabel: borg-slot-light-box-empty
           whitelist:
             tags:
-            - MagazineLightRifleBox
+            - MagazineRifle762Box #FH
       # starlight end
       - item: PinpointerSyndicateNuclear
     - type: BorgModuleIcon
@@ -1687,7 +1687,7 @@
     - state: icon-xenoborg-tile
   - type: ItemBorgModule
     hands:
-    - item: WeaponTileGunEmpty
+    - item: WeaponTileGun
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-tile-module }
 

@@ -44,6 +44,7 @@
     normalState: fire
   - type: Damageable
     damageModifierSet: Wood
+  - type: Injurable # FH - needed for Damageable
   - type: Edible
     solution: food
     delay: 7
@@ -52,13 +53,13 @@
     flavors:
     - paper
   - type: BadFood
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 1
-        reagents:
-        - ReagentId: Fiber
-          Quantity: 1
+  - type: Solution # FH - migrated from SolutionContainerManager
+    id: food
+    solution:
+      maxVol: 1
+      reagents:
+      - ReagentId: Fiber
+        Quantity: 1
   - type: Material
   - type: PhysicalComposition
     materialComposition:

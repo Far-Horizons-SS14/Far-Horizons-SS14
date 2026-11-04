@@ -74,10 +74,8 @@
     maxFillLevels: 1
     changeColor: false
     emptySpriteName: salpen_empty
-  - type: SolutionContainerManager
-    solutions:
-      pen:
-        maxVol: 5
-        reagents:
-          - ReagentId: Vaccine
-            Quantity: 5
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Vaccine
+        Quantity: 5

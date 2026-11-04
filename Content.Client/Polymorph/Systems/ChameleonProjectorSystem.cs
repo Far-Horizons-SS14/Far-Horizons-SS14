@@ -28,7 +28,20 @@ public sealed partial class ChameleonProjectorSystem : SharedChameleonProjectorS
 
     private void OnHandleState(Entity<ChameleonDisguiseComponent> ent, ref AfterAutoHandleStateEvent args)
     {
-        CopyComp<SpriteComponent>(ent);
+        // Far Horizons start - The lifecycle around the chameleon disguise means that we can get an OnHandleState before
+        // the sprites are initialized, triggering their shader initializion twice and thus a warning. Ignoring any state
+        // updates until after they're initialized and then copying the visuals (via our separate-file OnDisguiseStartup)
+        // avoids this warning.
+        if (!Initialized(ent))
+            return;
+
+        CopyVisuals(ent);
+    }
+
+    private void CopyVisuals(Entity<ChameleonDisguiseComponent> ent)
+    {
+        // Far Horizons end
+        CopySprite(ent);
         CopyComp<GenericVisualizerComponent>(ent);
         CopyComp<SolutionContainerVisualsComponent>(ent);
         CopyComp<BurnStateVisualsComponent>(ent);
@@ -36,6 +49,18 @@ public sealed partial class ChameleonProjectorSystem : SharedChameleonProjectorS
         // reload appearance to hopefully prevent any invisible layers
         if (_appearanceQuery.TryComp(ent, out var appearance))
             _appearance.QueueUpdate(ent, appearance);
+    }
+
+    /// <summary>
+    /// Copies the source entity/prototype's sprite onto the disguise.
+    /// </summary>
+    private void CopySprite(Entity<ChameleonDisguiseComponent> ent)
+    {
+        if (!GetSrcEntity<SpriteComponent>(ent.Comp, out var src))
+            return;
+
+        var dest = EnsureComp<SpriteComponent>(ent);
+        _sprite.CopySprite(src, (ent.Owner, dest));
     }
 
     private void OnStartup(Entity<ChameleonDisguisedComponent> ent, ref ComponentStartup args)

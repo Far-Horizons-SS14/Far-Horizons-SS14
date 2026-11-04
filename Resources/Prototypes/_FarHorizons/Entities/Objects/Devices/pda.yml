@@ -213,6 +213,14 @@
       whitelist:
         components:
         - IdCard
+    credstickSlot:
+      priority: -3
+      name: pda-credstick-slot-name
+      ejectSound: /Audio/Machines/id_swipe.ogg
+      insertSound: /Audio/Machines/id_insert.ogg
+      whitelist:
+        tags:
+        - Credstick
   - type: PdaVisuals
   - type: Item
     size: Small
@@ -223,6 +231,7 @@
       PDA-pai: !type:ContainerSlot {}
       Cartridge-Slot: !type:ContainerSlot {}
       program-container: !type:Container
+      PDA-credstick: !type:ContainerSlot {}
   - type: ItemSlots
   - type: Clothing
     quickEquip: false
@@ -343,6 +352,14 @@
       whitelist:
         components:
         - IdCard
+    credstickSlot:
+      priority: -3
+      name: pda-credstick-slot-name
+      ejectSound: /Audio/Machines/id_swipe.ogg
+      insertSound: /Audio/Machines/id_insert.ogg
+      whitelist:
+        tags:
+        - Credstick
   - type: PdaVisuals
   - type: Item
     size: Small
@@ -353,6 +370,7 @@
       PDA-pai: !type:ContainerSlot {}
       Cartridge-Slot: !type:ContainerSlot {}
       program-container: !type:Container
+      PDA-credstick: !type:ContainerSlot {}
   - type: ItemSlots
   - type: Clothing
     quickEquip: false
@@ -1552,3 +1570,154 @@
 
 
 #endregion
+
+
+#region Lambda Operatives
+
+- type: entity
+  parent: [ BaseNukeOpsPDA, BaseSyndicateContraband ]
+  id: LambdaPDA
+  name: Lambda PDA
+  description: Ok, time to be a productive member of- oh cool I'm a bad guy time to kill people!
+  suffix: NT
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Devices/pda.rsi
+    layers:
+    - map: [ "enum.PdaVisualLayers.Base" ]
+      state: "LAMBDA-operative"
+    - state: "light_overlay"
+      map: [ "enum.PdaVisualLayers.Flashlight" ]
+      shader: "unshaded"
+      visible: false
+    - state: "LAMBDA_id_overlay"
+      map: [ "enum.PdaVisualLayers.IdLight" ]
+      shader: "unshaded"
+      visible: false
+  - type: Pda
+    id: LambdaOperativeIDCard
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       LAMBDA-operative
+  - type: PdaBorderColor
+    borderColor: "#aeaeae"
+  - type: Icon
+    state: LAMBDA-operative
+  - type: CartridgeLoader
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - NotekeeperCartridge
+      - NanoTaskCartridge
+      - NanoChatCartridge
+      - FrontierBankCartridge
+      - GSLNowCartridge
+
+- type: entity
+  parent: [ LambdaPDA, BaseSyndicateContraband ]
+  id: LambdaOperativePDA
+  name: Lambda Operative PDA
+  description: Death to NS!
+  suffix: NT
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Devices/pda.rsi
+    layers:
+    - map: [ "enum.PdaVisualLayers.Base" ]
+      state: "LAMBDA-operative"
+    - state: "light_overlay"
+      map: [ "enum.PdaVisualLayers.Flashlight" ]
+      shader: "unshaded"
+      visible: false
+    - state: "LAMBDA_id_overlay"
+      map: [ "enum.PdaVisualLayers.IdLight" ]
+      shader: "unshaded"
+      visible: false
+  - type: Pda
+    id: LambdaOperativeIDCard
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       LAMBDA-operative
+  - type: PdaBorderColor
+    borderColor: "#aeaeae"
+  - type: Icon
+    state: LAMBDA-operative
+
+- type: entity
+  parent: [ LambdaOperativePDA, BaseSyndicateContraband ]
+  id: LambdaCorpsmanPDA
+  name: Lambda Corpsman PDA
+  description: Commander... I need to cook!
+  suffix: NT
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Devices/pda.rsi
+    layers:
+    - map: [ "enum.PdaVisualLayers.Base" ]
+      state: "LAMBDA-agent"
+    - state: "light_overlay"
+      map: [ "enum.PdaVisualLayers.Flashlight" ]
+      shader: "unshaded"
+      visible: false
+    - state: "LAMBDA_id_overlay"
+      map: [ "enum.PdaVisualLayers.IdLight" ]
+      shader: "unshaded"
+      visible: false
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       LAMBDA-agent
+  - type: Icon
+    state: LAMBDA-agent
+  - type: Pda
+    id: LambdaCorpsmanIDCard
+  - type: PdaBorderColor
+    borderColor: "#aeaeae"
+    accentVColor: "#003154"
+  - type: CartridgeLoader
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - NotekeeperCartridge
+      - NanoTaskCartridge
+      - MedTekCartridge
+      - NanoChatCartridge
+      - FrontierBankCartridge
+      - GSLNowCartridge
+
+- type: entity
+  parent: [ LambdaOperativePDA, BaseSyndicateContraband ]
+  id: LambdaCommanderPDA
+  name: Lambda Commander PDA
+  description: So what are we, some kind of Nukie squad?
+  suffix: NT
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Devices/pda.rsi
+    layers:
+    - map: [ "enum.PdaVisualLayers.Base" ]
+      state: "LAMBDA-commander"
+    - state: "light_overlay"
+      map: [ "enum.PdaVisualLayers.Flashlight" ]
+      shader: "unshaded"
+      visible: false
+    - state: "LAMBDA_id_overlay"
+      map: [ "enum.PdaVisualLayers.IdLight" ]
+      shader: "unshaded"
+      visible: false
+  - type: Pda
+    id: LambdaCommanderIDCard
+  - type: PdaBorderColor
+    borderColor: "#004272"
+    accentVColor: "#004272"
+    accentHColor: "#c2c1c1"
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       LAMBDA-commander
+  - type: Icon
+    state: LAMBDA-commander

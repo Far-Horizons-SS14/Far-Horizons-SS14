@@ -9,7 +9,7 @@
   name: AK-205
   parent: [ BaseWeaponRifle, BaseMajorContraband ]
   id: WeaponRifleAk205
-  description: An upgraded version of the AKMS, made for space combat. Feeds from .30 rifle magazines.
+  description: An upgraded version of the AKMS, made for space combat. Feeds from 7.62 rifle magazines.
   components:
   - type: Sprite
     sprite: _FarHorizons/Objects/Weapons/Guns/Rifles/ak-205.rsi
@@ -39,21 +39,21 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazineLightRifleSP
+        startingItem: MagazineRifle762SP
         insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
         priority: 2
         whitelist:
           tags:
-          - MagazineLightRifle
+          - MagazineRifle762
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
-        startingItem: CartridgeLightRifleSP
+        startingItem: CartridgeRifle762SP
         priority: 1
         whitelist:
           tags:
-          - CartridgeLightRifle
+          - CartridgeRifle762
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot ""
@@ -300,7 +300,6 @@
       types:
         Slash: 22 # Bit better than combat knife which clocks in at 18 damage/s
     soundHit: /Audio/Weapons/bladeslice.ogg
-    angle: 0
     animation: WeaponArcThrust
   - type: AltFireMelee
     attackType: Heavy
@@ -343,7 +342,6 @@
       types:
         Slash: 30 # Better than Bladed Lector which is 22/s -> This is 24/s
     soundHit: /Audio/Weapons/bladeslice.ogg
-    angle: 0
     animation: WeaponArcThrust
   - type: Scope
     canUseInsideContainer: true

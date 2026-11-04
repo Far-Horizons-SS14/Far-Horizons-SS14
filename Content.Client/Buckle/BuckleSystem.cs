@@ -1,5 +1,5 @@
 using Content.Client.Rotation;
-using Content.Shared._FarHorizons.Vehicles.Components;//FarHorizon
+using Content.Shared._FarHorizons.Vehicles;//FarHorizon
 using Content.Shared.Buckle;
 using Content.Shared.Buckle.Components;
 using Content.Shared.Movement.Systems;

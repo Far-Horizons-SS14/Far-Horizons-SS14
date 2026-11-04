@@ -1,0 +1,28 @@
+# Low-priority bot behavior which moves to a configured, reachable beacon.
+- type: htnCompound
+  id: PatrolBeaconCompound
+  branches:
+    - preconditions:
+        - !type:BuckledPrecondition
+          isBuckled: false
+        - !type:PulledPrecondition
+          isPulled: false
+      tasks:
+        - !type:HTNPrimitiveTask
+          operator: !type:FindPatrolBeaconOperator
+        - !type:HTNPrimitiveTask
+          operator: !type:MoveToOperator
+            pathfindInPlanning: false
+        - !type:HTNPrimitiveTask
+          operator: !type:AdvancePatrolBeaconOperator
+        - !type:HTNPrimitiveTask
+          operator: !type:SetFloatOperator
+            targetKey: IdleTime
+            amount: 3
+        - !type:HTNPrimitiveTask
+          operator: !type:WaitOperator
+            key: IdleTime
+          preconditions:
+            - !type:KeyExistsPrecondition
+              key: IdleTime
+

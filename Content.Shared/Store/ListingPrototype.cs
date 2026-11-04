@@ -30,6 +30,7 @@ public partial class ListingData : IEquatable<ListingData>
         other.Icon,
         other.Priority,
         other.ProductEntity,
+        other.ProductComponents,
         other.ProductAction,
         other.ProductLanguage, //Starlight
         other.ProductUpgradeId,
@@ -57,6 +58,7 @@ public partial class ListingData : IEquatable<ListingData>
         SpriteSpecifier? icon,
         int priority,
         EntProtoId? productEntity,
+        EntProtoId? productComponents,
         EntProtoId? productAction,
         string? productLanguage, //Starlight
         ProtoId<ListingPrototype>? productUpgradeId,
@@ -80,6 +82,7 @@ public partial class ListingData : IEquatable<ListingData>
         Icon = icon;
         Priority = priority;
         ProductEntity = productEntity;
+        ProductComponents = productComponents;
         ProductAction = productAction;
         ProductLanguage = productLanguage; //Starlight
         ProductUpgradeId = productUpgradeId;
@@ -150,6 +153,15 @@ public partial class ListingData : IEquatable<ListingData>
     /// </summary>
     [DataField]
     public int Priority;
+
+    /// <summary>
+    /// A dummy entity containing the components to be added to the buyer if the listing is bought.
+    /// </summary>
+    /// <remarks>
+    /// We use an EntProtoId rather than a ComponentRegistry to keep ListingData equatable.
+    /// </remarks>
+    [DataField]
+    public EntProtoId? ProductComponents;
 
     /// <summary>
     /// The entity that is given when the listing is purchased.
@@ -239,6 +251,7 @@ public partial class ListingData : IEquatable<ListingData>
             Name != listing.Name ||
             Description != listing.Description ||
             ProductEntity != listing.ProductEntity ||
+            ProductComponents != listing.ProductComponents ||
             ProductAction != listing.ProductAction ||
             ProductLanguage != listing.ProductLanguage || // Starlight
             ProductEvent?.GetType() != listing.ProductEvent?.GetType() ||
@@ -314,6 +327,7 @@ public sealed partial class ListingDataWithCostModifiers : ListingData
             listingData.Icon,
             listingData.Priority,
             listingData.ProductEntity,
+            listingData.ProductComponents,
             listingData.ProductAction,
             listingData.ProductLanguage, //Starlight
             listingData.ProductUpgradeId,

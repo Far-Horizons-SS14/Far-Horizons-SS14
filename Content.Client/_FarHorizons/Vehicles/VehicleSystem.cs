@@ -1,22 +1,13 @@
 using Content.Shared._FarHorizons.Vehicles;
-using Content.Shared._FarHorizons.Vehicles.Components;
 using Robust.Client.GameObjects;
-using Robust.Client.Graphics;
 
 namespace Content.Client._FarHorizons.Vehicles;
 
-public sealed partial class VehicleSystems : SharedVehicleSystem
+public sealed partial class VehicleSystem : SharedVehicleSystem
 {
     [Dependency] private SpriteSystem _sprite = default!;
-    [Dependency] private IEyeManager _eye = default!;
-    public override void Initialize()
-    {
-        base.Initialize();
 
-        SubscribeLocalEvent<VehicleComponent, AppearanceChangeEvent>(OnAppearanceChanged);
-        _transform.OnGlobalMoveEvent += OnMoveEvent;
-    }
-
+    [SubscribeLocalEvent]
     private void OnAppearanceChanged(EntityUid uid, VehicleComponent component, ref AppearanceChangeEvent args)
     {
         if (args.Sprite == null)
@@ -56,52 +47,5 @@ public sealed partial class VehicleSystems : SharedVehicleSystem
 
         _sprite.LayerSetAutoAnimated(sprite.AsNullable(), layer, false);
         _sprite.LayerSetRsiState(sprite.AsNullable(), layer, state);
-    }
-
-    private void OnMoveEvent(ref MoveEvent ev)
-    {
-        var target = ev.Entity;
-        if(!TryComp<VehicleBuckleComponent>(target, out var vbComp) 
-            || !TryComp<SpriteComponent>(target, out var spriteComp)
-            || !TryComp<VehicleComponent>(target, out var vehicleComp)
-            || (!vehicleComp.Started && vehicleComp.RequireIgnition)) return;
-
-        var rotation = Transform(target.Owner).LocalRotation + (_eye.CurrentEye.Rotation - (Transform(target.Owner).LocalRotation - _transform.GetWorldRotation(target.Owner)));
-        var direction = rotation.GetDir();
-        switch(direction)
-        {
-            case Direction.North:
-                _sprite.SetDrawDepth((target, spriteComp), vbComp.northDrawDepth);
-                _sprite.SetOffset((target, spriteComp), vbComp.NorthOffset);
-                break;
-            case Direction.South:
-                _sprite.SetDrawDepth((target, spriteComp), vbComp.southDrawDepth);
-                _sprite.SetOffset((target, spriteComp), vbComp.SouthOffset);
-                break;
-            case Direction.West:
-                _sprite.SetDrawDepth((target, spriteComp), vbComp.westDrawDepth);
-                _sprite.SetOffset((target, spriteComp), vbComp.WestOffset);
-                break;
-            case Direction.East:
-                _sprite.SetDrawDepth((target, spriteComp), vbComp.eastDrawDepth);
-                _sprite.SetOffset((target, spriteComp), vbComp.EastOffset);
-                break;
-            case Direction.NorthWest:
-                _sprite.SetDrawDepth((target, spriteComp), vbComp.westDrawDepth);
-                _sprite.SetOffset((target, spriteComp), vbComp.WestOffset);
-                break;
-            case Direction.NorthEast:
-                _sprite.SetDrawDepth((target, spriteComp), vbComp.eastDrawDepth);
-                _sprite.SetOffset((target, spriteComp), vbComp.EastOffset);
-                break;
-            case Direction.SouthWest:
-                _sprite.SetDrawDepth((target, spriteComp), vbComp.westDrawDepth);
-                _sprite.SetOffset((target, spriteComp), vbComp.WestOffset);
-                break;
-            case Direction.SouthEast:
-                _sprite.SetDrawDepth((target, spriteComp), vbComp.eastDrawDepth);
-                _sprite.SetOffset((target, spriteComp), vbComp.EastOffset);
-                break;        
-        }
     }
 }

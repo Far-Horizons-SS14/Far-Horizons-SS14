@@ -12,8 +12,8 @@
 - type: entity
   parent: [ ClothingOuterArmorBase, ClothingOuterStorageBase, AllowSuitStorageClothing, BaseSecurityContraband ]
   id: ClothingOuterCoatDetective
-  name: Detective Armored Trenchcoat #Far Horizons - The Great Capitalization Crusade
-  description: An 18th-century multi-purpose trenchcoat. Someone who wears this means serious business.
+  name: Detective's Armored Trenchcoat #Far Horizons - The Great Capitalization Crusade
+  description: An 20th-century trenchcoat with an armored underlay. Someone who wears this means serious business.
   components:
   - type: Sprite
     sprite: _FarHorizons/Clothing/OuterClothing/Coats/detective.rsi #Far Horizons
@@ -178,7 +178,7 @@
         id: SyndieHandyFlag
 
 - type: entity
-  parent: ClothingOuterStorageBase
+  parent: ClothingOuterStorageEdible
   id: ClothingOuterCoatTrench
   name: Trench Coat #Far Horizons - The Great Capitalization Crusade
   description: A comfy trench coat.
@@ -202,15 +202,6 @@
       ArmLeft: {}
       LegRight: {}
       LegLeft: {}
-  - type: Edible
-    requiresSpecialDigestion: true
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 20
-        reagents:
-        - ReagentId: Fiber
-          Quantity: 20
 
 - type: entity
   parent: ClothingOuterStorageFoldableBase

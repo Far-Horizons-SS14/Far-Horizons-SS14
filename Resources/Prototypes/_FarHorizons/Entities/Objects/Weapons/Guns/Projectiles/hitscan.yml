@@ -241,6 +241,161 @@
 
 
 
+
+#region 7.92
+- type: entity
+  id: BulletRifle792TraceHP # Bolt actions
+  parent: BulletTrace
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HitscanBasicDamage
+    armorPenetration: -1.00
+    damage:
+      types:
+        Piercing: 78 #Follows +30% formula. Technically more power than histrov, but histrov should 1-shot unarmored anyway so eh.
+  - type: HitscanStaminaDamage
+    staminaDamage: 7.5
+  - type: HitscanPierce
+    chance: 0.03
+    deviation: 0.12
+  - type: HitscanRicochet
+    chance: 0.15
+  - type: HitscanBasicVisuals
+    bullet:
+      sprite:
+        sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+        state: bullet
+
+- type: entity
+  id: BulletRifle792TraceSP
+  parent: BulletTrace
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HitscanBasicDamage
+    armorPenetration: -0.13
+    damage:
+      types:
+        Piercing: 60 # Should 4-shot (sec armor), histrov 2-shots, revolver 7-shots.
+  - type: HitscanStaminaDamage
+    staminaDamage: 3
+  - type: HitscanPierce
+    chance: 0.40
+    deviation: 0.12
+  - type: HitscanRicochet
+    chance: 0.30
+  - type: HitscanBasicVisuals
+    bullet:
+      sprite:
+        sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+        state: sp
+
+- type: entity
+  id: BulletRifle792TraceFMJ
+  parent: BulletTrace
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HitscanBasicDamage
+    armorPenetration: 0.25
+    damage:
+      types:
+        Piercing: 42 #Does -30% / Normal is -40% but I had to adjust / 6-shots BP, SP is 8
+  - type: HitscanStaminaDamage
+    staminaDamage: 13
+  - type: HitscanPierce
+    chance: 0.69
+    deviation: 0.12
+    pierceLevel: HardenedMetal
+  - type: HitscanRicochet
+    chance: 0.80
+  - type: HitscanBasicVisuals
+    bullet:
+      sprite:
+        sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+        state: fmj
+
+- type: entity
+  id: BulletRifle792TraceIncendiary #does SP damage but split mostly into fire
+  parent: BulletTrace
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HitscanBasicDamage
+    damage:
+      types:
+        Piercing: 10
+        Heat: 50
+  - type: HitscanPierce
+    chance: 0.69
+    deviation: 0.12
+  - type: HitscanRicochet
+    chance: 0.48
+  - type: HitscanReflect
+    reflectiveType: NonEnergy
+    maxReflections: 20 # This is the recursion depth for reflect, ricochet, and pierce
+
+- type: entity
+  id: BulletRifle792TraceUranium #FMJ damage but some rads
+  parent: BulletTrace
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HitscanBasicDamage
+    damage:
+      types:
+        Radiation: 6
+        Piercing: 36
+    armorPenetration: 0.35
+  - type: HitscanPierce
+    chance: 0.75
+    pierceLevel: HardenedMetal
+    deviation: 0.12
+  - type: HitscanRicochet
+    chance: 0.80
+  - type: HitscanReflect
+    reflectiveType: NonEnergy
+    maxReflections: 20 # This is the recursion depth for reflect, ricochet, and pierce
+
+- type: entity
+  id: BulletRifle792TraceAP #FMJ damage but just high pen
+  parent: BulletTrace
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HitscanBasicDamage
+    armorPenetration: 0.69
+    damage:
+      types:
+        Piercing: 42
+  - type: HitscanStaminaDamage
+    staminaDamage: 10
+  - type: HitscanPierce
+    chance: 0.63
+    deviation: 0.15
+    pierceLevel: HardenedMetal
+  - type: HitscanRicochet
+    chance: 0.35
+  - type: HitscanBasicVisuals
+    bullet:
+      sprite:
+        sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+        state: ap
+
+- type: entity
+  id: BulletRifle792TracePractice
+  parent: BulletTrace
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HitscanBasicDamage
+    damage:
+      types:
+        Blunt: 4
+  - type: HitscanPierce
+    chance: 0.69
+    pierceLevel: Wood
+    deviation: 0.12
+  - type: HitscanRicochet
+    chance: 0.48
+  - type: HitscanReflect
+    reflectiveType: NonEnergy
+    maxReflections: 20 # This is the recursion depth for reflect, ricochet, and pierce
+
 #region .38
 - type: entity
   id: BulletRevolverTrace38Practice
@@ -442,19 +597,19 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: HitscanBasicDamage
-    armorPenetration: -0.13
+    armorPenetration: 0.25
     damage:
       types:
-        Piercing: 30
-        Structural: 10
+        Piercing: 6.7
+        Structural: 13.4
   - type: HitscanPierce
-    chance: 0.40
+    chance: 0.34
   - type: ProjectileSpread
-    proto: PelletShotgunTrace
+    proto: PelletShotgunFlechetteTrace
     count: 6
     spread: 10 #This needs to be removed from hitscan code itself in the future, it breaks guns because spread is not supposed to be defined here.
   - type: HitscanRicochet
-    chance: 0.30
+    chance: 0.40
 
 - type: entity
   id: PelletShotgunSlugTrace
@@ -491,7 +646,7 @@
         Structural: 23.33
     armorPenetration: 0.35
   - type: HitscanPierce
-    chance: 0.75
+    chance: 0.37
     pierceLevel: HardenedMetal
   - type: HitscanBasicVisuals
     bullet:
@@ -503,7 +658,7 @@
     count: 6
     spread: 10 #This needs to be removed from hitscan code itself in the future, it breaks guns because spread is not supposed to be defined here.
   - type: HitscanRicochet
-    chance: 0.80
+    chance: 0.40
 
 - type: entity
   id: PelletShotgunUraniumSpreadTrace
@@ -729,6 +884,18 @@
       sprite:
         sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
         state: rubber
+
+- type: entity
+  id: RubberBulletRifle792Trace
+  parent: RubberBulletTrace
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HitscanBasicDamage
+    damage:
+      types:
+        Blunt: 5 # ~ 20 blunt
+  - type: HitscanStaminaDamage
+    staminaDamage: 35 # ~ 3/6 shots
 
 - type: entity
   id: RubberBulletMagnumTrace

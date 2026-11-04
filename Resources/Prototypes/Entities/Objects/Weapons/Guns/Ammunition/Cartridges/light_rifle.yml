@@ -1,14 +1,14 @@
 - type: entity
-  id: BaseCartridgeLightRifleSP
-  name: cartridge (.30 rifle SP)
+  id: BaseCartridgeRifle762SP #FH
+  name: cartridge (7.62 rifle SP) #FH
   parent: [ BaseCartridge, BaseSecuritySalvageContraband ] #Far Horizons
   abstract: true
   components:
   - type: Tag
     tags:
-    - CartridgeLightRifle
+    - CartridgeRifle762 #FH
   - type: CartridgeAmmo
-    proto: BulletLightRifleTraceSP
+    proto: BulletRifle762TraceSP #FH
   - type: Sprite
     sprite: Objects/Weapons/Guns/Ammunition/Casings/ammo_casing.rsi
     layers:
@@ -18,12 +18,12 @@
   - type: SpentAmmoVisuals
 
 - type: entity
-  id: CartridgeLightRifleSP
-  name: cartridge (.30 rifle SP)
-  parent: BaseCartridgeLightRifleSP
+  id: CartridgeRifle762SP #FH
+  name: cartridge (7.62 rifle SP) #FH
+  parent: BaseCartridgeRifle762SP #FH
   components:
   - type: CartridgeAmmo
-    proto: BulletLightRifleTraceSP
+    proto: BulletRifle762TraceSP #FH
   - type: Sprite
     layers:
       - state: base
@@ -33,12 +33,12 @@
         color: "#3F47DB"
 
 - type: entity
-  id: CartridgeLightRifleHP
-  name: cartridge (.30 rifle HP)
-  parent: BaseCartridgeLightRifleSP
+  id: CartridgeRifle762HP #FH
+  name: cartridge (7.62 rifle HP) #FH
+  parent: BaseCartridgeRifle762SP #FH
   components:
   - type: CartridgeAmmo
-    proto: BulletLightRifleTraceHP
+    proto: BulletRifle762TraceHP #FH
   - type: Sprite
     layers:
       - state: base
@@ -48,12 +48,12 @@
         color: "#000000"
 
 - type: entity
-  id: CartridgeLightRifleFMJ
-  name: cartridge (.30 rifle FMJ)
-  parent: BaseCartridgeLightRifleSP
+  id: CartridgeRifle762FMJ #FH
+  name: cartridge (7.62 rifle FMJ) #FH
+  parent: BaseCartridgeRifle762SP #FH
   components:
   - type: CartridgeAmmo
-    proto: BulletLightRifleTraceFMJ
+    proto: BulletRifle762TraceFMJ #FH
   - type: Sprite
     layers:
       - state: base
@@ -63,12 +63,12 @@
         color: "#B68F0E"
 
 - type: entity
-  id: CartridgeLightRifleAP
-  name: cartridge (.30 rifle AP)
-  parent: BaseCartridgeLightRifleSP
+  id: CartridgeRifle762AP #FH
+  name: cartridge (7.62 rifle AP) #FH
+  parent: BaseCartridgeRifle762SP #FH
   components:
   - type: CartridgeAmmo
-    proto: BulletLightRifleTraceAP
+    proto: BulletRifle762TraceAP #FH
   - type: Sprite
     layers:
       - state: base
@@ -78,12 +78,12 @@
         color: "#1A8C1A"
 
 - type: entity
-  id: CartridgeLightRiflePractice
-  name: cartridge (.30 rifle practice)
-  parent: BaseCartridgeLightRifleSP
+  id: CartridgeRifle762Practice #FH
+  name: cartridge (7.62 rifle practice) #FH
+  parent: BaseCartridgeRifle762SP #FH
   components:
   - type: CartridgeAmmo
-    proto: BulletLightRifleTracePractice
+    proto: BulletRifle762TracePractice #FH
   - type: Sprite
     layers:
       - state: base
@@ -93,12 +93,12 @@
         color: "#D86E2C"
 
 - type: entity
-  id: CartridgeLightRifleIncendiary
-  name: cartridge (.30 rifle incendiary)
-  parent: BaseCartridgeLightRifleSP
+  id: CartridgeRifle762Incendiary #FH
+  name: cartridge (7.62 rifle incendiary) #FH
+  parent: BaseCartridgeRifle762SP #FH
   components:
   - type: CartridgeAmmo
-    proto: BulletLightRifleTraceIncendiary
+    proto: BulletRifle762TraceIncendiary #FH
   - type: Sprite
     layers:
       - state: base
@@ -108,12 +108,12 @@
         color: "#BFC8CA"
 
 - type: entity
-  id: CartridgeLightRifleUranium
-  name: cartridge (.30 rifle uranium)
-  parent: BaseCartridgeLightRifleSP
+  id: CartridgeRifle762Uranium #FH
+  name: cartridge (7.62 rifle uranium) #FH
+  parent: BaseCartridgeRifle762SP #FH
   components:
   - type: CartridgeAmmo
-    proto: BulletLightRifleTraceUranium
+    proto: BulletRifle762TraceUranium #FH
   - type: Sprite
     layers:
       - state: base

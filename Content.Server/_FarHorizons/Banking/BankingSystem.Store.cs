@@ -13,7 +13,7 @@ public sealed partial class BankingSystem
     {
         var store = EnsureComp<StoreComponent>(ent);
         store.Balance = new();
-        _itemSlot.AddItemSlot(ent, ent.Comp.SlotId, ent.Comp.CredstickSlot);
+        ItemSlots.AddItemSlot(ent, ent.Comp.SlotId, ent.Comp.CredstickSlot);
     }
 
     [SubscribeLocalEvent]

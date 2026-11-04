@@ -81,14 +81,9 @@
 #         reagents:
 #           - ReagentId: Water
 #             Quantity: 10
-#     - type: SolutionContainerManager
+#     - type: SolutionManager # FH - migrated from SolutionContainerManager
 #       solutions:
-#         absorbed:
-#           maxVol: 50
-#         food:
-#           reagents:
-#             - ReagentId: Slime
-#               Quantity: 5
+#       - SolutionMopNormal
 #     - type: DrainableSolution
 #       solution: drainBuffer
 #     - type: SolutionPurge
@@ -362,6 +357,7 @@
 #         - Xenoborg
 #         - Mouse
 #     - type: Damageable
+#     - type: Injurable
 #       damageContainer: Silicon
 #     - type: Destructible
 #       thresholds:

@@ -1,0 +1,188 @@
+#region Base
+
+- type: entity
+  name: BaseWeaponBoltAction
+  parent: [ BaseItem, BaseGunWieldable ]
+  id: BaseWeaponBoltAction
+  description: A rooty tooty point and shooty.
+  abstract: true
+  components:
+  - type: RestrictByUserTag
+    doestContain:
+    - Abductor
+    messages:
+    - abductor-gun-restricted-1
+  - type: KnockbackByUserTag
+    doestContain:
+      Resomi:
+        knockback: 2
+      Avali:
+        knockback: 1 # half of what resomi take
+      Felionoid:
+        knockback: 1 # half of what resomi take
+      Animal:
+        knockback: 2 
+  - type: ChamberMagazineAmmoProvider
+    autoCycle: false
+    canRack: false
+    soundBoltClosed: 
+      path: /Audio/_Starlight/Weapons/Guns/Cock/cycle_bolt.ogg
+    soundBoltOpened: 
+      path: /Audio/_Starlight/Weapons/Guns/Cock/cycle_bolt.ogg
+    soundRack:
+      path: /Audio/_Starlight/Weapons/Guns/Cock/cycle_bolt.ogg
+      params:
+        variation: 0.146
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: SpeedLoaderRifle792SP
+        priority: 2
+        whitelist:
+          tags:
+          - SpeedLoaderRifle792
+        whitelistFailPopup: gun-magazine-whitelist-fail
+        insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeRifle792SP
+        priority: 1
+        whitelist:
+          tags:
+          - CartridgeRifle792
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+  - type: Item
+    size: Large
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Snipers/bolt_gun_wood.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: AmmoCounter
+  - type: Gun
+    pump: false
+    fireRate: 0.8
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/sniper.ogg
+  - type: StaticPrice
+    price: 500
+  - type: CursorOffsetRequiresWield
+  - type: EyeCursorOffset # Long range guns inherently get a bit of extra range w/o attachements
+    maxOffset: 1
+    pvsIncrease: 0.3
+  - type: UseDelay
+    delay: 2
+  - type: SpeedModifiedOnWield
+    walkModifier: 0.90
+    sprintModifier: 0.90
+  - type: GunRequiresWield
+
+#region Mosin
+- type: entity
+  name: Kardashev-Mosin #Umm aktually it's bolt-gun-wood
+  parent: [BaseWeaponBoltAction, BaseGunWieldable, BaseMajorContraband]
+  id: WeaponSniperMosin
+  description: A weapon of the masses, a true relic. The Kardashev-Mosin has served in nearly every armed conflict since its creation 670 years ago. The bolt-action design of the rifle remains virtually identical to its original design, whether used for hunting, sniping, or endless trench warfare. Uses 7.92 ammo.
+  components:
+  - type: Gun
+    soundGunshot:
+      path: /Audio/_Starlight/Weapons/Guns/Gunshots/mosin.ogg
+      params:
+        variation: 0.246
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/Bolt_Actions/Mosin/mosin_x64x32.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: base1
+      map: [ "enum.SolutionContainerLayers.Fill" ]
+      visible: false
+  - type: Clothing
+    sprite: _FarHorizons/Objects/Weapons/Guns/Bolt_Actions/Mosin/mosin_x32.rsi
+  - type: Item
+    sprite: _FarHorizons/Objects/Weapons/Guns/Bolt_Actions/Mosin/mosin_x32.rsi
+  - type: Appearance
+  - type: SolutionContainerVisuals
+    maxFillLevels: 1
+    fillBaseName: base
+    inHandsFillBaseName: -fill-
+    inHandsMaxFillLevels: 1
+    equippedFillBaseName: -fill-
+    equippedMaxFillLevels: 1
+  - type: MeleeWeapon
+    wideAnimationRotation: -90
+    damage:
+      types:
+        Piercing: 18 #the pokey knife at the end of the mosin is now on par with an actual knife.
+    angle: 0
+    animation: WeaponArcThrust
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+  - type: MeleeRequiresWield
+  - type: AltFireMelee
+    attackType: Heavy
+  - type: SolutionContainerManager
+    solutions:
+      melee:
+        maxVol: 2
+  - type: MeleeChemicalInjector
+    solution: melee
+  - type: RefillableSolution
+    solution: melee
+  - type: InjectableSolution
+    solution: melee
+  - type: SolutionTransfer
+    maxTransferAmount: 2
+  - type: Sharp
+  - type: StaticPrice
+    price: 500
+  - type: GunRequiresWield
+
+- type: entity
+  name: Scoped Kardashev-Mosin
+  parent: WeaponSniperMosin
+  id: WeaponSniperMosinScoped
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/Bolt_Actions/Mosin/scoped_mosin_x64x32.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: base1
+      map: [ "enum.SolutionContainerLayers.Fill" ]
+      visible: false
+  - type: EyeCursorOffset
+    maxOffset: 0
+    pvsIncrease: 0
+  - type: Scope
+    canUseInsideContainer: true
+    canUseNightVision: true
+    zoomLevels:
+      - name: 1x
+        zoom: 1
+        offset: 7
+        doAfter: 0
+        allowMovement: true
+      - name: 2x
+        zoom: 2
+        offset: 7
+        doAfter: 0
+        allowMovement: true
+      - name: 3x
+        zoom: 3
+        offset: 7
+        doAfter: 0
+        allowMovement: true

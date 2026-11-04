@@ -785,7 +785,7 @@ public sealed partial class VampireSystem
         if (TryComp<BodyComponent>(vampire.Owner, out var body) && _body.TryGetOrgansWithComponent<StomachComponent>((vampire.Owner, body), out var stomachs))
         {
             //Pick the first one that has space available
-            var firstStomach = stomachs.FirstOrNull(stomach => _stomach.CanTransferSolution(stomach.Owner, ingestedSolution, stomach.Comp));
+            var firstStomach = stomachs.FirstOrNull(stomach => _stomach.CanTransferSolution((stomach.Owner, stomach.Comp, null), ingestedSolution));
             if (firstStomach == null)
             {
                 //We are full
@@ -793,7 +793,7 @@ public sealed partial class VampireSystem
                 return false;
             }
             //Fill the stomach with that delicious blood
-            return _stomach.TryTransferSolution(firstStomach.Value.Owner, ingestedSolution, firstStomach.Value.Comp);
+            return _stomach.TryTransferSolution((firstStomach.Value.Owner, firstStomach.Value.Comp, null), ingestedSolution);
         }
 
         //No stomach

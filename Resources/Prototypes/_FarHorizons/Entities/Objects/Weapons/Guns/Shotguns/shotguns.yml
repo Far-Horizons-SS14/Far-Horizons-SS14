@@ -130,7 +130,7 @@
   name: Sentinel
   parent: [BaseWeaponShotgunAny, BaseGunWieldable, BaseSecurityContraband]
   id: WeaponShotgunSentinel
-  description: An odd magazine-fed pump action shotgun that is the result of a regulatory compromise. Fires as fast as you can pump it, loads 12 gauge shotgun shells.
+  description: An odd magazine-fed bolt-action shotgun that is the result of a regulatory compromise. Fires as fast as you can operate the bolt, loads 12 gauge shotgun shells.
   components:
   - type: Sprite
     sprite: _FarHorizons/Objects/Weapons/Guns/Shotguns/Sentinel/clothing.rsi
@@ -433,7 +433,6 @@
       types:
         Slash: 22
     soundHit: /Audio/Weapons/bladeslice.ogg
-    angle: 0
     animation: WeaponArcThrust
   - type: AltFireMelee
   - type: Scope
@@ -508,7 +507,6 @@
       types:
         Slash: 22
     soundHit: /Audio/Weapons/bladeslice.ogg
-    angle: 0
     animation: WeaponArcThrust
   - type: AltFireMelee
   - type: Scope
@@ -592,7 +590,6 @@
       types:
         Slash: 22
     soundHit: /Audio/Weapons/bladeslice.ogg
-    angle: 0
     animation: WeaponArcThrust
   - type: AltFireMelee
   - type: Scope
@@ -632,3 +629,21 @@
   #- Gunsword (+0.5 ADS / +22 Slash melee)
   #- Heavy Frame (-2 Spread / -1 Knockback / + 0.5 ADS)
   # Knockback reduction is a little stronger than listed, as the math for the multiplier is weird.
+
+#region ZoZ
+- type: entity
+  parent: WeaponShotgunToz106Extended
+  id: WeaponShotgunToz106ExtendedFlechette
+  suffix: Extended Mag, Flechette
+  components:
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        startingItem: MagazineShotgunTozExtendedFlechette
+        priority: 2 #FH
+        whitelist: #FH
+          tags: #FH
+          - MagazineShotgunToz #FH
+        whitelistFailPopup: gun-magazine-whitelist-fail #FH
+        insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg #FH
+        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg #FH

@@ -1,3 +1,3 @@
 @echo off
-dotnet run --project Content.Server --configuration Release
+dotnet run -p:NoWarn="NU1902%%3BNU1903" --project Content.Server --configuration Release
 pause

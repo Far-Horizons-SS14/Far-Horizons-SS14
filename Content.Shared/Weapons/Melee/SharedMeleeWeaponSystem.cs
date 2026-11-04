@@ -2,7 +2,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Numerics;
 using Content.Shared._FarHorizons.LimbDamage;
-using Content.Shared._FarHorizons.Vehicles.Components;
+using Content.Shared._FarHorizons.Vehicles;
 using Content.Shared._Starlight.Weapons.Melee.Events; // Starlight-edit
 using Content.Shared.ActionBlocker;
 using Content.Shared.Actions.Events;

@@ -82,7 +82,11 @@ public sealed partial class NPCSteeringSystem
             var isClimbable = (poly.Data.Flags & PathfindingBreadcrumbFlag.Climb) != 0x0;
 
             // Just walk into it stupid
-            if (isDoor && !isAccessRequired)
+            // Far Horizons start
+            if (isDoor &&
+                ((!isAccessRequired && (component.Flags & PathFlags.Interact) != 0x0) ||
+                 (isAccessRequired && (component.Flags & PathFlags.Access) != 0x0)))
+            // Far Horizons end
             {
                 var doorQuery = GetEntityQuery<DoorComponent>();
 
@@ -92,7 +96,11 @@ public sealed partial class NPCSteeringSystem
                     if (!doorQuery.TryGetComponent(ent, out var door))
                         continue;
 
-                    if (!door.BumpOpen && (component.Flags & PathFlags.Interact) != 0x0)
+                    // Far Horizons start
+                    var canInteract = (component.Flags & PathFlags.Interact) != 0x0 ||
+                                      (isAccessRequired && (component.Flags & PathFlags.Access) != 0x0);
+                    if (canInteract)
+                    // Far Horizons end
                     {
                         if (door.State != DoorState.Opening)
                         {

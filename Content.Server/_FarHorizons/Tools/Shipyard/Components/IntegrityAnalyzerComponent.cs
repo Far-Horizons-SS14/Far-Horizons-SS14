@@ -63,10 +63,4 @@ public sealed partial class IntegrityAnalyzerComponent : Component
     
     [DataField]
     public List<ProtoId<DamageContainerPrototype>>? DamageContainers;
-
-    [DataField]
-    public EntProtoId Action = "ActionHullSense";
-
-    [DataField]
-    public EntityUid? ActionEntity;
 }

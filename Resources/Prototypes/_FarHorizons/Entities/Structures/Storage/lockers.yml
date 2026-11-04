@@ -269,7 +269,7 @@
 #region Representatives
 - type: entity
   id: LockerRedsword
-  parent: LockerBaseSecureSyndi
+  parent: [ LockerBaseSecureSyndi , LockerBaseSecure ] # Needs both parents, otherwise will turn into a generic locker when hacked
   name: Redsword Operative's Locker 
   components:
   - type: Appearance
@@ -285,7 +285,7 @@
 - type: entity
   id: LockerRepresentativeNS
   name: NeoSol Representative's Locker 
-  parent: LockerBaseSecureSyndi
+  parent: [ LockerBaseSecureSyndi , LockerBaseSecure ] # Needs both parents, otherwise will turn into a generic locker when hacked
   components:
   - type: Appearance
   - type: AccessReader
@@ -303,7 +303,7 @@
 
 - type: entity
   id: LockerCommandant
-  parent: LockerBaseSecureSyndi
+  parent: [ LockerBaseSecureSyndi , LockerBaseSecure ] # Needs both parents, otherwise will turn into a generic locker when hacked
   name: Commandant's Locker
   components:
   - type: Appearance
@@ -320,7 +320,7 @@
 
 - type: entity
   id: LockerPersonnelManager
-  parent: LockerBaseSecureSyndi
+  parent: [ LockerBaseSecureSyndi , LockerBaseSecure ] # Needs both parents, otherwise will turn into a generic locker when hacked
   name: Personnel Manager's Locker
   components:
   - type: Appearance
@@ -337,7 +337,7 @@
 
 - type: entity
   id: LockerMarshal
-  parent: LockerBaseSecureSyndi
+  parent: [ LockerBaseSecureSyndi , LockerBaseSecure ] # Needs both parents, otherwise will turn into a generic locker when hacked
   name: Marshal's Locker
   components:
   - type: Sprite
@@ -356,7 +356,7 @@
 
 - type: entity
   id: LockerChiefEngineerSyndi
-  parent: LockerBaseSecureSyndi
+  parent: [ LockerBaseSecureSyndi , LockerBaseSecure ] # Needs both parents, otherwise will turn into a generic locker when hacked
   name: Foreman's Locker
   components:
   - type: Appearance
@@ -372,7 +372,7 @@
   # Medical Director (CMO)
 - type: entity
   id: LockerChiefMedicalOfficerNS
-  parent: LockerBaseSecureSyndi
+  parent: [ LockerBaseSecureSyndi , LockerBaseSecure ] # Needs both parents, otherwise will turn into a generic locker when hacked
   name: Medical Director's Locker
   components:
   - type: Appearance
@@ -388,7 +388,7 @@
 # Epistemics Provost (RD)
 - type: entity
   id: LockerResearchDirectorNS
-  parent: LockerBaseSecureSyndi
+  parent: [ LockerBaseSecureSyndi , LockerBaseSecure ] # Needs both parents, otherwise will turn into a generic locker when hacked
   name: Epistemics Provost's Locker 
   components:
   - type: Appearance
@@ -406,7 +406,7 @@
 # Atmos tech
 - type: entity
   id: LockerAtmosphericsSyndi
-  parent: LockerBaseNS
+  parent: [ LockerBaseNS , LockerBase ] # Needs both parents, otherwise will turn into a generic locker when hacked
   name: Atmospheric Technician's Locker
   components:
   - type: Appearance
@@ -420,7 +420,7 @@
 # Engineer
 - type: entity
   id: LockerEngineerSyndi
-  parent: LockerBaseNS
+  parent: [ LockerBaseNS , LockerBase ] # Needs both parents, otherwise will turn into a generic locker when hacked
   name: Engineer's Locker
   suffix: NS
   components:
@@ -435,7 +435,7 @@
 # Electrical supplies
 - type: entity
   id: LockerElectricalSuppliesSyndi
-  parent: LockerBaseNS
+  parent: [ LockerBaseNS , LockerBase ] # Needs both parents, otherwise will turn into a generic locker when hacked
   name: Electrical Supplies Locker
   components:
   - type: Sprite
@@ -450,7 +450,7 @@
 
 # Evac Repair
 - type: entity
-  parent: LockerBaseNS
+  parent: [ LockerBaseNS , LockerBase ] # Needs both parents, otherwise will turn into a generic locker when hacked
   id: LockerEvacRepairSyndi
   name: Emergency Shuttle Emergency Locker
   description: It's emergencies all the way down.
@@ -485,7 +485,7 @@
 # Welding supplies
 - type: entity
   id: LockerWeldingSuppliesSyndi
-  parent: LockerBaseNS
+  parent: [ LockerBaseNS , LockerBase ] # Needs both parents, otherwise will turn into a generic locker when hacked
   name: Welding Supplies Locker
   components:
   - type: Sprite
@@ -501,7 +501,7 @@
 #region Medical
 - type: entity
   id: LockerMedicineNS
-  parent: LockerBaseNS
+  parent: [ LockerBaseNS , LockerBase ] # Needs both parents, otherwise will turn into a generic locker when hacked
   name: Medicine Locker
   description: Filled to the brim with medical junk.
   components:
@@ -515,7 +515,7 @@
 
 - type: entity
   id: LockerMedicalNS
-  parent: LockerBaseNS
+  parent: [ LockerBaseNS , LockerBase ] # Needs both parents, otherwise will turn into a generic locker when hacked
   name: Medical Doctor's Locker
   components:
   - type: Appearance
@@ -528,7 +528,7 @@
 
 - type: entity
   id: LockerChemistryNS
-  parent: LockerBaseNS
+  parent: [ LockerBaseNS , LockerBase ] # Needs both parents, otherwise will turn into a generic locker when hacked
   name: Chemical Locker 
   components:
   - type: Appearance
@@ -541,7 +541,7 @@
 
 - type: entity
   id: LockerParamedicNS
-  parent: LockerBaseNS
+  parent: [ LockerBaseNS , LockerBase ] # Needs both parents, otherwise will turn into a generic locker when hacked
   name: Paramedic's Locker
   components:
   - type: Appearance
@@ -555,7 +555,7 @@
 #region Research
 - type: entity
   id: LockerScientistNS
-  parent: LockerBaseNS
+  parent: [ LockerBaseNS , LockerBase ] # Needs both parents, otherwise will turn into a generic locker when hacked
   name: Scientist's Locker 
   components:
   - type: Appearance
@@ -572,7 +572,7 @@
 
 - type: entity
   id: LockerSecurityFHSyndi
-  parent: LockerBaseSecureSyndi
+  parent: [ LockerBaseSecureSyndi , LockerBaseSecure ] # Needs both parents, otherwise will turn into a generic locker when hacked
   name: Enforcer's Locker
   components:
   - type: Sprite
@@ -587,7 +587,7 @@
 
 - type: entity
   id: LockerSecurityLargeFHSyndi
-  parent: LockerBaseSecureSyndi
+  parent: [ LockerBaseSecureSyndi , LockerBaseSecure ] # Needs both parents, otherwise will turn into a generic locker when hacked
   name: Large Enforcer's Locker
   components:
   - type: Appearance
@@ -602,7 +602,7 @@
 
 - type: entity
   id: LockerSecurityLargeFHLSyndi
-  parent: LockerBaseSecureSyndi
+  parent: [ LockerBaseSecureSyndi , LockerBaseSecure ] # Needs both parents, otherwise will turn into a generic locker when hacked
   name: Large Enforcer's Locker
   components:
   - type: Appearance
@@ -619,7 +619,7 @@
 
 - type: entity
   id: LockerSecurityLargeFHMSyndi
-  parent: LockerBaseSecureSyndi
+  parent: [ LockerBaseSecureSyndi , LockerBaseSecure ] # Needs both parents, otherwise will turn into a generic locker when hacked
   name: Large Enforcer's Locker
   components:
   - type: Appearance
@@ -636,7 +636,7 @@
 
 - type: entity
   id: LockerSecurityLargeFHRSyndi
-  parent: LockerBaseSecureSyndi
+  parent: [ LockerBaseSecureSyndi , LockerBaseSecure ] # Needs both parents, otherwise will turn into a generic locker when hacked
   name: Large Enforcer's Locker
   components:
   - type: Appearance

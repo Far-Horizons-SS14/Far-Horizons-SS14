@@ -90,7 +90,7 @@
   parent: [ ClothingNeckBase, BaseCentcommContraband ]
   id: ClothingNeckMantleHCRank1
   name: High Command Mantle 
-  description: A High Command Officer's Mantle, If Your Not A Member Of High Command You Shouldn’t Have This.
+  description: A High Command Officer's Mantle, If Your Not A Member Of High Command You Shouldnï¿½t Have This.
   suffix: NS , Unranked
   components:
   - type: Sprite
@@ -100,7 +100,7 @@
   parent: [ ClothingNeckBase, BaseCentcommContraband ]
   id: ClothingNeckMantleHCRank2
   name: High Command Mantle 
-  description: A High Command Officer's Mantle, This One Is Worn By Lower Middle Management, If Your Not A Member Of High Command You Shouldn’t Have This.
+  description: A High Command Officer's Mantle, This One Is Worn By Lower Middle Management, If Your Not A Member Of High Command You Shouldnï¿½t Have This.
   suffix: NS , Game Admin
   components:
   - type: Sprite
@@ -110,7 +110,7 @@
   parent: [ ClothingNeckBase, BaseCentcommContraband ]
   id: ClothingNeckMantleHCRank3
   name: High Command Mantle 
-  description: A High Command Officer's Mantle, This One Is Worn By Middle Middle Management, If Your Not A Member Of High Command You Shouldn’t Have This.
+  description: A High Command Officer's Mantle, This One Is Worn By Middle Middle Management, If Your Not A Member Of High Command You Shouldnï¿½t Have This.
   suffix: NS , Senior Admin
   components:
   - type: Sprite
@@ -152,7 +152,7 @@
   parent: [ ClothingNeckBase, BaseCentcommContraband ]
   id: ClothingNeckMantleCCRank1
   name: Central Command Mantle 
-  description: A Central Command Officer's Mantle, If Your Not A Member Of Central Command You Shouldn’t Have This.
+  description: A Central Command Officer's Mantle, If Your Not A Member Of Central Command You Shouldnï¿½t Have This.
   suffix: NT , Unranked
   components:
   - type: Sprite
@@ -162,7 +162,7 @@
   parent: [ ClothingNeckBase, BaseCentcommContraband ]
   id: ClothingNeckMantleCCRank2
   name: Central Command Mantle 
-  description: A Central Command Officer's Mantle, This One Is Worn By Lower Middle Management, If Your Not A Member Of Central Command You Shouldn’t Have This.
+  description: A Central Command Officer's Mantle, This One Is Worn By Lower Middle Management, If Your Not A Member Of Central Command You Shouldnï¿½t Have This.
   suffix: NT , Game Admin
   components:
   - type: Sprite
@@ -172,7 +172,7 @@
   parent: [ ClothingNeckBase, BaseCentcommContraband ]
   id: ClothingNeckMantleCCRank3
   name: Central Command Mantle 
-  description: A Central Command Officer's Mantle, This One Is Worn By Middle Middle Management, If Your Not A Member Of Central Command You Shouldn’t Have This.
+  description: A Central Command Officer's Mantle, This One Is Worn By Middle Middle Management, If Your Not A Member Of Central Command You Shouldnï¿½t Have This.
   suffix: NT , Senior Admin
   components:
   - type: Sprite
@@ -207,3 +207,39 @@
   components:
   - type: Sprite
     sprite: _FarHorizons/Clothing/Neck/Cloaks/CentComm/Central_Command_Mantle_Rank_6.rsi
+#region ## USSP ##
+- type: entity
+  parent: [ClothingNeckBase, BaseSovietContraband]
+  id: ClothingNeckMantleAdmiral
+  name: Admiral's Mantle
+  suffix: USSP
+  description: A mantle that shows off the status of an Admiral of a USSP station.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Neck/Mantles/USSP/admiralmantle.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Neck/Mantles/USSP/admiralmantle.rsi
+
+- type: entity
+  parent: [ClothingNeckBase, BaseSovietContraband]
+  id: ClothingNeckMantleCommissar
+  name: Commissar's Mantle
+  suffix: USSP
+  description: A mantle to given to the best performing Commissars.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Neck/Mantles/USSP/commissarmantle.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Neck/Mantles/USSP/commissarmantle.rsi
+
+- type: entity
+  parent: [ClothingNeckBase, BaseSovietContraband]
+  id: ClothingNeckMantleImperialOfficerFormal
+  name: Imperial Officer's Formal Mantle
+  suffix: USSP
+  description: A formal mantle from a Imperial Officer, one of the highest rankings in the USSP.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Neck/Mantles/USSP/imperialofficerformalmantle.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Neck/Mantles/USSP/imperialofficerformalmantle.rsi

@@ -162,62 +162,53 @@ public sealed partial class HumanoidCharacterAppearance : IEquatable<HumanoidCha
 
         //FarHorizons Start
         Dictionary<ProtoId<OrganCategoryPrototype>, Dictionary<HumanoidVisualLayers, List<Marking>>> newMarkings = new();
-
+        
         foreach (var organ in markingManager.GetOrgans(species))
         {
             if (!markingManager.TryGetMarkingData(organ.Value, out var markingData))
                 continue;
+                
+            var group = protoMan.Index(markingData.Value.Group);
 
             if (markingData.Value.Layers.Count == 0)
                 continue;
 
             var layers = markingData.Value.Layers
-                .Where(l => _randomizableLayers.Contains(l))
+                .Where(_randomizableLayers.Contains)
                 .ToList();
-
-            if (layers.Count == 0)
-                continue;
-
-            var layerCount = random.Next(0, layers.Count + 1);
-            var chosenLayers = random.GetItems(layers, layerCount, false);
 
             var categoryMarkings = new Dictionary<HumanoidVisualLayers, List<Marking>>();
 
-            foreach (var layer in chosenLayers)
+            foreach (var layer in layers)
             {
-                var group = protoMan.Index(markingData.Value.Group);
-
                 if (!group.Limits.TryGetValue(layer, out var limitData))
                     continue;
-
-                if(limitData.Default.Count == 0)
-                {
-                    if(layer is HumanoidVisualLayers.Hair)
-                        if (random.Prob(0.20f))
-                            continue;
-                    if (layer is HumanoidVisualLayers.Tail)
-                        if (random.Prob(0.90f))
-                            continue;
-                    if(layer is HumanoidVisualLayers.FacialHair)
-                        if(random.Prob(sex == Sex.Female ? 0.90f : 0.70f))
-                            continue;
-                }
-
                 var markings = markingManager
                     .MarkingsByLayerAndGroupAndSex(layer, markingData.Value.Group, sex)
                     .ToList();
 
-                if (markings.Count == 0)
+                if (markings.Count == 0 || limitData.Limit == 0)
                     continue;
 
-                var markCount = random.Next(1, limitData.Limit + 1);
+                if(!limitData.Required && layer is not HumanoidVisualLayers.FacialHair)
+                    if (random.Prob(0.20f))
+                        continue;
+
+                else if(!limitData.Required && layer is HumanoidVisualLayers.FacialHair)
+                    if(random.Prob(sex == Sex.Female ? 0.90f : 0.70f))
+                        continue;
+
+                var markCount = random.Next(1, limitData.Limit);
                 var chosenMarkings = random.GetItems(markings, markCount, false);
 
                 var newMarkingList = new List<Marking>();
                 foreach (var chosenMarking in chosenMarkings)
                 {
-                    if (chosenMarking.Value.Coloring.Layers == null) continue;
-                    newMarkingList.Add(new Marking(chosenMarking.Value.ID, chosenMarking.Value.Coloring.Layers.Count));
+                    var colors = Enumerable.Repeat(
+                        chosenMarking.Value.Coloring.Default.FallbackColor,
+                        chosenMarking.Value.Sprites.Count).ToList();
+
+                    newMarkingList.Add(new Marking(chosenMarking.Value.ID, colors));                
                 }
 
                 if (newMarkingList.Count > 0)
@@ -228,7 +219,12 @@ public sealed partial class HumanoidCharacterAppearance : IEquatable<HumanoidCha
                 newMarkings[organ.Key] = categoryMarkings;
         }
         //FarHorizons End
-        return new HumanoidCharacterAppearance(newEyeColor, false, newSkinColor, newMarkings, newWidth, newHeight); //FarHorizons randomized Markings
+        // Safety step. Most systems which called Random() also called this, and not doing so caused issues with markings.
+        // In the future it could *maybe* be removed, but it's probably worth the extra CPU cycles to validate this info.
+        return EnsureValid(
+            new HumanoidCharacterAppearance(newEyeColor, false, newSkinColor, newMarkings, newWidth, newHeight), //FarHorizons randomized Markings
+            species,
+            sex);
     }
 
     //FarHorizons Start
@@ -240,7 +236,13 @@ public sealed partial class HumanoidCharacterAppearance : IEquatable<HumanoidCha
         HumanoidVisualLayers.Snout,
         HumanoidVisualLayers.HeadTop,
         HumanoidVisualLayers.FacialHair,
-        HumanoidVisualLayers.Chest
+        HumanoidVisualLayers.Chest,
+        HumanoidVisualLayers.BodyCover,
+        HumanoidVisualLayers.BodyCoverCover,
+        HumanoidVisualLayers.Eyes, 
+        HumanoidVisualLayers.FaceCover,
+        HumanoidVisualLayers.FaceCoverCover,
+        HumanoidVisualLayers.Wings
     ];
     //FarHorizons End
 

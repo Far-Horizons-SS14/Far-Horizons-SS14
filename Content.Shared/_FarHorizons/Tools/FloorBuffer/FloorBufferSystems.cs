@@ -15,8 +15,7 @@ using Content.Shared.Toggleable;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Hands;
 using Content.Shared.Audio;
-using Content.Shared._FarHorizons.ReagentDraw.EntitySystems;
-using Content.Shared._FarHorizons.ReagentDraw.Components;
+using Content.Shared._FarHorizons.ReagentDraw;
 
 namespace Content.Shared._FarHorizons.Tools.FloorBuffer.Systems;
 
@@ -73,7 +72,7 @@ public sealed partial class FloorBufferSystem : EntitySystem
             if(!TryComp<MapGridComponent>(xForm.GridUid, out var grid))
                 continue;
                         
-            if(TryComp<ReagentDrawComponent>(uid, out var rdComp) && !_ReagentDraw.HasDrawReagant(uid))
+            if(TryComp<ReagentDrawComponent>(uid, out var rdComp) && !_ReagentDraw.HasDrawReagent(uid))
             {
                 floorComp.Enabled = false;
                 rdComp.Enabled = false;

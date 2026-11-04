@@ -7,4 +7,10 @@ namespace Content.Shared.PowerCell.Components;
 /// Make toggling this item require power, and deactivates the item when power runs out.
 /// </summary>
 [RegisterComponent, NetworkedComponent]
-public sealed partial class ToggleCellDrawComponent : Component;
+public sealed partial class ToggleCellDrawComponent : Component
+{
+    //FH Start
+    [DataField, ViewVariables]
+    public bool DisableSelfRechargeOnToggle = false;
+    //FH End
+}

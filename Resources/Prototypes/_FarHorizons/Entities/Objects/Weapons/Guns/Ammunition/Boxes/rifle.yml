@@ -1,3 +1,4 @@
+#region 5.56
 - type: entity
   parent: BaseMagazineBoxRifle556
   id: MagazineBoxRifle556
@@ -69,6 +70,224 @@
   components:
   - type: BallisticAmmoProvider
     proto: CartridgeRifle556Rubber
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: rubber
+
+#region 7.62
+- type: entity
+  parent: BaseMagazineBoxRifle762
+  id: MagazineBoxRifle762HP
+  name: ammunition box (7.62 rifle HP)
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifle762HP
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: hp
+
+- type: entity
+  parent: BaseMagazineBoxRifle762
+  id: MagazineBoxRifle762FMJ
+  name: ammunition box (7.62 rifle FMJ)
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifle762FMJ
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: fmj
+
+- type: entity
+  parent: BaseMagazineBoxRifle762
+  id: MagazineBoxRifle762AP
+  name: ammunition box (7.62 rifle AP)
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifle762AP
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: ap
+
+#region 7.92
+- type: entity
+  abstract: true
+  parent: BaseItem
+  id: BaseMagazineBoxRifle792
+  components:
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeRifle792
+    proto: CartridgeRifle792SP
+    capacity: 20 #4x mag size
+  - type: Item
+    size: Small
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Boxes/Rifle/7.92.rsi
+  - type: MagazineVisuals
+    magState: mag
+    steps: 9
+    zeroVisible: false
+  - type: Appearance
+  - type: Tag
+    tags:
+      - AmmoBoxRifle792
+
+- type: entity
+  parent: BaseMagazineBoxRifle792
+  id: MagazineBoxRifle792
+  name: 7.92 Ammunition Box (Rifle Any)
+  description: A cardboard box designed to hold 7.92 rounds.
+  components:
+  - type: BallisticAmmoProvider
+    proto: null
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  parent: BaseMagazineBoxRifle792
+  id: MagazineBoxRifle792HP
+  name: 7.92 Ammunition Box (Rifle HP)
+  description: A cardboard box of Hollow-Point 7.92 rounds. Effective against unarmored targets.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifle792HP
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: hp
+
+- type: entity
+  parent: BaseMagazineBoxRifle792
+  id: MagazineBoxRifle792SP
+  name: 7.92 Ammunition Box (Rifle SP)
+  description: A cardboard box of Soft-Point 7.92 rounds. Effective against lightly-armored targets.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifle792SP
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: sp
+
+- type: entity
+  parent: BaseMagazineBoxRifle792
+  id: MagazineBoxRifle792FMJ
+  name: 7.92 Ammunition Box (Rifle FMJ)
+  description: A cardboard box of Full Metal Jacket 7.92 rounds. Effective against armored targets.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifle792FMJ
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: fmj
+
+- type: entity
+  parent: BaseMagazineBoxRifle792
+  id: MagazineBoxRifle792Incendiary
+  name: 7.92 Ammunition Box (Rifle Incendiary)
+  description: A cardboard box of Self-Igniting 7.92 rounds. Burns people alive.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifle792Incendiary
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: incendiary
+
+- type: entity
+  parent: BaseMagazineBoxRifle792
+  id: MagazineBoxRifle792Uranium
+  name: 7.92 Ammunition Box (Rifle Uranium)
+  description: A cardboard box of Uranium-Core 7.92 rounds. Delivers radiation poisoning on contact.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifle792Uranium
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: uranium
+
+- type: entity
+  parent: BaseMagazineBoxRifle792
+  id: MagazineBoxRifle792AP
+  name: 7.92 Ammunition Box (Rifle AP)
+  description: A cardboard box of Armor-Piercing 7.92 rounds. Effective against heavily armored targets.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifle792AP
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: ap
+
+- type: entity
+  parent: BaseMagazineBoxRifle792
+  id: MagazineBoxRifle792Practice
+  name: 7.92 Ammunition Box (Rifle Practice)
+  description: A cardboard box of Chalk-Loaded 7.92 rounds. Used for target practice.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifle792Practice
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: practice
+
+- type: entity
+  parent: BaseMagazineBoxRifle792
+  id: MagazineBoxRifle792Rubber
+  name: 7.92 Ammunition Box (Rifle Rubber)
+  description: A cardboard box of Rubber 7.92 rounds. Mostly harmless.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifle792Rubber
   - type: Sprite
     layers:
     - state: base

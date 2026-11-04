@@ -11,13 +11,12 @@
   - type: Sprite
     color: "#728FCE"
     state: cheesewedge
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 5
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 3.75
+  - type: Solution
+    solution:
+      maxVol: 5
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 3.75
   - type: Tag
     tags:
     - Slice

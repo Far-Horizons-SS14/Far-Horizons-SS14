@@ -19,6 +19,7 @@ using System.Linq;
 using System.Text;
 using Content.Server.Codewords;
 using Robust.Shared.Map;
+using Content.Shared.Store;
 
 namespace Content.Server.GameTicking.Rules;
 
@@ -93,7 +94,7 @@ public sealed partial class TraitorRuleSystem : GameRuleSystem<TraitorRuleCompon
 
             // Choose and generate an Uplink, and return the uplink code if applicable
             Log.Debug($"MakeTraitor {ToPrettyString(traitor)} - Uplink request start");
-            var uplinkParams = RequestUplink(traitor, startingBalance, briefing);
+            var uplinkParams = RequestUplink(traitor, startingBalance, briefing, component.StoreProto, component.ImplantProto, component.UplinkCatalogProto, component.CurrencyProto); // Far Horizons
             code = uplinkParams.Item1;
             briefing = uplinkParams.Item2;
             Log.Debug($"MakeTraitor {ToPrettyString(traitor)} - Uplink request completed");
@@ -108,7 +109,7 @@ public sealed partial class TraitorRuleSystem : GameRuleSystem<TraitorRuleCompon
 
         if (component.GiveBriefing)
         {
-            _antag.SendBriefing(traitor, GenerateBriefing(codewords, code, issuer), null, component.GreetSoundNotification);
+            _antag.SendBriefing(traitor, GenerateBriefing(codewords, code, component.GreetingMessage, component.CodewordsMessage, issuer), null, component.GreetSoundNotification); // Far Horizons
             Log.Debug($"MakeTraitor {ToPrettyString(traitor)} - Sent the Briefing");
         }
 
@@ -146,12 +147,12 @@ public sealed partial class TraitorRuleSystem : GameRuleSystem<TraitorRuleCompon
         return true;
     }
 
-    private (Note[]?, string) RequestUplink(EntityUid traitor, FixedPoint2 startingBalance, string briefing)
+    private (Note[]?, string) RequestUplink(EntityUid traitor, FixedPoint2 startingBalance, string briefing, EntProtoId storeProto, EntProtoId implantProto, ProtoId<ListingPrototype> implantCatalogProto, ProtoId<CurrencyPrototype> currencyProto) // Far Horizons
     {
         var pda = _uplink.FindUplinkTarget(traitor);
 
         Log.Debug($"MakeTraitor {ToPrettyString(traitor)} - Uplink add");
-        var uplinked = _uplink.AddUplink(traitor, startingBalance, out var code, pda, giveDiscounts: true, bindToPda: false);
+        var uplinked = _uplink.AddUplink(traitor, startingBalance, out var code, pda, giveDiscounts: true, bindToPda: false, storeProto, implantProto, implantCatalogProto, currencyProto); // Far Horizons
 
         if (code != null && uplinked == AddUplinkResult.Pda)
         {
@@ -186,12 +187,12 @@ public sealed partial class TraitorRuleSystem : GameRuleSystem<TraitorRuleCompon
     }
 
     // TODO: figure out how to handle this? add priority to briefing event?
-    private string GenerateBriefing(string[]? codewords, Note[]? uplinkCode, string? objectiveIssuer = null)
+    private string GenerateBriefing(string[]? codewords, Note[]? uplinkCode, LocId greetingsMessage, LocId codewordMessage, string? objectiveIssuer = null) // Far Horizons
     {
         var sb = new StringBuilder();
-        sb.AppendLine(Loc.GetString("traitor-role-greeting", ("corporation", objectiveIssuer ?? Loc.GetString("objective-issuer-unknown"))));
+        sb.AppendLine(Loc.GetString(greetingsMessage, ("corporation", objectiveIssuer ?? Loc.GetString("objective-issuer-unknown")))); // Far Horizons
         if (codewords != null)
-            sb.AppendLine(Loc.GetString("traitor-role-codewords", ("codewords", string.Join(", ", codewords))));
+            sb.AppendLine(Loc.GetString(codewordMessage, ("codewords", string.Join(", ", codewords)))); // Far Horizons
         if (uplinkCode != null)
             sb.AppendLine(Loc.GetString("traitor-role-uplink-code", ("code", string.Join("-", uplinkCode).Replace("sharp", "#"))));
         else

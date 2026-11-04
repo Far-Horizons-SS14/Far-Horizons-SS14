@@ -1,3 +1,4 @@
+using Robust.Shared.GameStates; //FH
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Body;
@@ -6,7 +7,7 @@ namespace Content.Shared.Body;
 /// On map initialization, spawns the given organs into the body.
 /// Liable to change as the body becomes more complex.
 /// </summary>
-[RegisterComponent]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState] //FH
 [Access(typeof(InitialBodySystem))]
 public sealed partial class InitialBodyComponent : Component
 {
@@ -15,4 +16,9 @@ public sealed partial class InitialBodyComponent : Component
     /// </summary>
     [DataField(required: true)]
     public Dictionary<ProtoId<OrganCategoryPrototype>, EntProtoId<OrganComponent>> Organs;
+
+    //FH Start
+    [ViewVariables, AutoNetworkedField]
+    public bool Spawning;
+    //FH End
 }

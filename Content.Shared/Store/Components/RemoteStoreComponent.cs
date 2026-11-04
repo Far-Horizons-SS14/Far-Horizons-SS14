@@ -1,4 +1,5 @@
 using Robust.Shared.GameStates;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Store.Components;
 
@@ -14,4 +15,7 @@ public sealed partial class RemoteStoreComponent : Component
     /// </summary>
     [DataField]
     public EntityUid? Store;
+
+    [DataField] public EntProtoId? Proto; // Far Horizons
+    [DataField] public ProtoId<CurrencyPrototype>? Currency; // Far Horizons
 }

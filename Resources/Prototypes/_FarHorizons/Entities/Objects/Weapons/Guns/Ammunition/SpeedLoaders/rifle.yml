@@ -1,0 +1,197 @@
+#region 7.92 Speedloader
+- type: entity
+  id: BaseSpeedLoaderRifle792
+  parent: [ BaseItem, BaseSecurityContraband ]
+  abstract: true
+  name: "7.92 Speed Loader (Rifle)"
+  description: 5-round 7.92 speed loader, designed for low capacity rifles. Also doubles as a magazine in compatible rifles.
+  components:
+  - type: Item
+    size: Tiny
+    storedOffset: 0,-1
+  - type: Tag
+    tags:
+      - SpeedLoaderRifle792
+  - type: SpeedLoader
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+        - CartridgeRifle792
+    capacity: 5
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+        ents: []
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Speedloaders/Bolt_Action/stripper_clip.rsi
+    layers:
+      - state: base
+        map: [ "enum.GunVisualLayers.Base" ]
+      - state: mag-5
+        map: [ "enum.GunVisualLayers.Mag" ]
+      - state: mag-tip-5
+        map: [ "enum.GunVisualLayers.Tip" ]
+        color: "#C7B458"
+  - type: MagazineVisuals
+    magState: mag
+    steps: 6
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  id: SpeedLoaderRifle792
+  name: "7.92 Speed Loader (Rifle Any)"
+  parent: BaseSpeedLoaderRifle792
+  components:
+  - type: BallisticAmmoProvider
+    proto: null
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.GunVisualLayers.Base" ]
+      - state: mag-5
+        map: [ "enum.GunVisualLayers.Mag" ]
+
+- type: entity
+  id: SpeedLoaderRifle792HP
+  name: "7.92 Speed Loader (Rifle HP)"
+  parent: BaseSpeedLoaderRifle792
+  description: 5-round 7.92 speed loader, designed for low capacity rifles. Also doubles as a magazine in compatible rifles. Loaded with Hollow-Point rounds, good for unarmored targets.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifle792HP
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.GunVisualLayers.Base" ]
+      - state: mag-5
+        map: [ "enum.GunVisualLayers.Mag" ]
+      - state: mag-tip-5
+        map: [ "enum.GunVisualLayers.Tip" ]
+        color: "#000000"
+
+- type: entity
+  id: SpeedLoaderRifle792SP
+  name: "7.92 Speed Loader (Rifle SP)"
+  parent: BaseSpeedLoaderRifle792
+  description: 5-round 7.92 speed loader, designed for low capacity rifles. Also doubles as a magazine in compatible rifles. Loaded with Soft-Point rounds, good for lightly-armored targets.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifle792SP
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.GunVisualLayers.Base" ]
+      - state: mag-5
+        map: [ "enum.GunVisualLayers.Mag" ]
+      - state: mag-tip-5
+        map: [ "enum.GunVisualLayers.Tip" ]
+        color: "#3F47DB"
+
+- type: entity
+  id: SpeedLoaderRifle792FMJ
+  name: "7.92 Speed Loader (Rifle FMJ)"
+  parent: BaseSpeedLoaderRifle792
+  description: 5-round 7.92 speed loader, designed for low capacity rifles. Also doubles as a magazine in compatible rifles. Loaded with Full Metal Jacket rounds, good for armored targets.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifle792FMJ
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.GunVisualLayers.Base" ]
+      - state: mag-5
+        map: [ "enum.GunVisualLayers.Mag" ]
+      - state: mag-tip-5
+        map: [ "enum.GunVisualLayers.Tip" ]
+        color: "#C7B458"
+
+- type: entity
+  id: SpeedLoaderRifle792AP
+  name: "7.92 Speed Loader (Rifle AP)"
+  parent: BaseSpeedLoaderRifle792
+  description: 5-round 7.92 speed loader, designed for low capacity rifles. Also doubles as a magazine in compatible rifles. Loaded with Armor-Piercing rounds, good for heavily armored targets.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifle792AP
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.GunVisualLayers.Base" ]
+      - state: mag-5
+        map: [ "enum.GunVisualLayers.Mag" ]
+      - state: mag-tip-5
+        map: [ "enum.GunVisualLayers.Tip" ]
+        color: "#1A8C1A"
+
+- type: entity
+  id: SpeedLoaderRifle792Incendiary
+  name: "7.92 Speed Loader (Rifle Incendiary)"
+  parent: BaseSpeedLoaderRifle792
+  description: 5-round 7.92 speed loader, designed for low capacity rifles. Also doubles as a magazine in compatible rifles. Loaded with Self-Igniting rounds, good for fleshy tagets.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifle792Incendiary
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.GunVisualLayers.Base" ]
+      - state: mag-5
+        map: [ "enum.GunVisualLayers.Mag" ]
+      - state: mag-tip-5
+        map: [ "enum.GunVisualLayers.Tip" ]
+        color: "#BFC8CA"
+
+- type: entity
+  id: SpeedLoaderRifle792Uranium
+  name: "7.92 Speed Loader (Rifle Uranium)"
+  parent: BaseSpeedLoaderRifle792
+  description: 5-round 7.92 speed loader, designed for low capacity rifles. Also doubles as a magazine in compatible rifles. Loaded with Uranium-Core rounds, delivers radiation poisoning on contact.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifle792Uranium
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.GunVisualLayers.Base" ]
+      - state: mag-5
+        map: [ "enum.GunVisualLayers.Mag" ]
+      - state: mag-tip-5
+        map: [ "enum.GunVisualLayers.Tip" ]
+        color: "#65fe08"
+
+- type: entity
+  id: SpeedLoaderRifle792Practice
+  name: "7.92 Speed Loader (Rifle Practice)"
+  parent: BaseSpeedLoaderRifle792
+  description: 5-round 7.92 speed loader, designed for low capacity rifles. Also doubles as a magazine in compatible rifles. Loaded with chalk-filled bullets, good for practicing your aim.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifle792Practice
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.GunVisualLayers.Base" ]
+      - state: mag-5
+        map: [ "enum.GunVisualLayers.Mag" ]
+      - state: mag-tip-5
+        map: [ "enum.GunVisualLayers.Tip" ]
+        color: "#D86E2C"
+
+- type: entity
+  id: SpeedLoaderRifle792Rubber
+  name: "7.92 Speed Loader (Rifle Rubber)"
+  parent: BaseSpeedLoaderRifle792
+  description: 5-round 7.92 speed loader, designed for low capacity rifles. Also doubles as a magazine in compatible rifles. Loaded with rubber bullets, mostly harmless.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifle792Rubber
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.GunVisualLayers.Base" ]
+      - state: mag-5
+        map: [ "enum.GunVisualLayers.Mag" ]
+      - state: mag-tip-5
+        map: [ "enum.GunVisualLayers.Tip" ]
+        color: "#00C1B8"

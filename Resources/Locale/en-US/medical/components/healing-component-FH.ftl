@@ -1,0 +1,1 @@
+﻿medical-item-body-too-damaged = The body is too damaged to heal with {$item}.

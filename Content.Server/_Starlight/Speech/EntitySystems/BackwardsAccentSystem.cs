@@ -1,14 +1,13 @@
 using System.Linq;
 using Content.Server.Speech.Components;
 using Content.Shared.Speech;
+using Content.Shared.Speech.EntitySystems;
+using Content.Shared._Starlight.Speech;
 
 namespace Content.Server._Starlight.Speech.EntitySystems;
 
-public sealed partial class BackwardsAccentSystem : EntitySystem
+public sealed class BackwardsAccentSystem : RelayAccentSystem<BackwardsAccentComponent>
 {
-    public override void Initialize() 
-        => SubscribeLocalEvent<BackwardsAccentComponent, AccentGetEvent>(OnAccent);
-
     public string Accentuate(string message)
     {
         var arr = message.ToCharArray();
@@ -16,9 +15,10 @@ public sealed partial class BackwardsAccentSystem : EntitySystem
         return new string(arr);
     }
 
-    private void OnAccent(EntityUid uid, BackwardsAccentComponent component, AccentGetEvent args)
+    protected override SpeechMessage AccentuateInternal(EntityUid uid, BackwardsAccentComponent component, SpeechMessage message)
     {
-        args.Message.Text = Accentuate(args.Message.Text);
-        args.Message.Tts = string.Join(' ', (args.Message.Tts ?? args.Message.Text).Split(' ').Reverse());
+        message.Text = Accentuate(message.Text);
+        message.Tts = string.Join(' ', (message.Tts ?? message.Text).Split(' ').Reverse());
+        return message;
     }
 }

@@ -401,3 +401,54 @@
     sprite: _FarHorizons/Clothing/OuterClothing/WinterCoats/NeoSol/deputy_sheriff_warden_red.rsi
   - type: Clothing
     sprite: _FarHorizons/Clothing/OuterClothing/WinterCoats/NeoSol/deputy_sheriff_warden_red.rsi
+
+#region ## USSP ##
+- type: entity
+  parent: [ ClothingOuterArmorHoS, ClothingOuterWinterCoat, BaseSovietContraband ]
+  id: ClothingOuterWinterCommissar
+  name: Commissar's Armored Trench Coat
+  suffix: USSP
+  description: A sturdy, utilitarian trench coat designed to protect the Commissar from any threats and hypothermic events.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/WinterCoats/USSP/commisar.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/WinterCoats/USSP/commisar.rsi
+
+- type: entity
+  parent: [ ClothingOuterArmorWarden, ClothingOuterWinterCoat, BaseSovietContraband ]
+  id: ClothingOuterWinterDmitriGreatCoat
+  name: Dmitri Great Coat
+  suffix: USSP
+  description: A sturdy, utilitarian great coat designed to protect the average USSP officer from any threats and hypothermic events.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/WinterCoats/USSP/dmitri.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/WinterCoats/USSP/dmitri.rsi
+
+- type: entity
+  parent: [ ClothingOuterArmorWarden, ClothingOuterWinterCoat, BaseSovietContraband ]
+  id: ClothingOuterWinterLagernichGreatCoat
+  name: Lagernich Great Coat
+  suffix: USSP
+  description: A sturdy, utilitarian great coat designed to protect the average USSP officer from any threats and hypothermic events.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/WinterCoats/USSP/lagernich.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/WinterCoats/USSP/lagernich.rsi
+
+- type: entity
+  parent: [ ClothingOuterArmorBasic, ClothingOuterWinterCoat, BaseSovietContraband ]
+  id: ClothingOuterWinterMilitsiya
+  name: Militsiya Coat
+  suffix: USSP
+  description: A sturdy, utilitarian great coat designed to protect the a USSP soldier from any threats and hypothermic events.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/WinterCoats/USSP/militsiya.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/WinterCoats/USSP/militsiya.rsi
+  - type: ExplosionResistance
+    damageCoefficient: 0.9 

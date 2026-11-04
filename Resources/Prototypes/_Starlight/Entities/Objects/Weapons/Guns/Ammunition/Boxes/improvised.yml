@@ -12,8 +12,8 @@
         - CartridgePistolImprovised
         - CartridgeMagnum
         - CartridgeMagnumImprovised
-        - CartridgeLightRifle
-        - CartridgeLightRifleImprovised
+        - CartridgeRifle762 #FH
+        - CartridgeRifle762Improvised #FH
         - ShellShotgun
         - ShellShotgunImprovised
     proto: null
@@ -62,10 +62,10 @@
 - type: entity
   parent: BaseMagazineBoxImprovised
   id: MagazineBoxImprovisedRifle
-  name: improvised ammunition box (.30 rifle improvised)
+  name: improvised ammunition box (7.62 rifle improvised) #FH
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgeLightRifleImprovised
+    proto: CartridgeRifle762Improvised #FH
   - type: Sprite
     layers:
     - state: base

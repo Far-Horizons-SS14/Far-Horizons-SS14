@@ -32,7 +32,7 @@
     sprite: Objects/Tanks/Jetpacks/blue.rsi
     layers:
     - state: icon
-      map: ["enum.JetpackVisuals.Layer"]
+      map: ["enum.CoolingUnitVisuals.Layer"]
   - type: Item
     sprite: Objects/Tanks/Jetpacks/blue.rsi
     size: Huge
@@ -59,8 +59,8 @@
   - type: Appearance
   - type: GenericVisualizer
     visuals:
-      enum.JetpackVisuals.Enabled:
-        enum.JetpackVisuals.Layer:
+      enum.CoolingUnitVisuals.Enabled:
+        enum.CoolingUnitVisuals.Layer:
           True: {state: icon-on}
           False: {state: icon}
   - type: StaticPrice

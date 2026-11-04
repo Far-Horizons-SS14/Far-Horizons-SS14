@@ -114,7 +114,7 @@ public sealed partial class OutfitSystem : EntitySystem
 
         // See if this starting gear is associated with a job
         // Far horizons, find outfits from faction jobs
-        foreach (var jobAssignment in _factions.ListFactionJobs())
+        foreach (var jobAssignment in _factions.ListFactionJobs(true))
         {
             if (!_prototypeManager.TryIndex(jobAssignment.Job, out var job) ||
                 !_prototypeManager.TryIndex(jobAssignment.Faction, out var faction))

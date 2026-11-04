@@ -101,6 +101,7 @@
     - GrenadeStinger
   announceTo:
     - Security
+    - SyndiSec #Temp until NS tree
 
 - type: researchTreeNode
   id: SecVehicleParts
@@ -115,6 +116,7 @@
     - SecSiren
   announceTo:
     - Security
+    - SyndiSec #Temp until NS tree
 
 - type: researchTreeNode
   id: SpecialAmmo
@@ -127,6 +129,9 @@
   requires:
     - RiotControl
   unlocks:
+#LMG
+    - MagazineRifle762BoxIncendiary
+    - MagazineRifle762BoxUranium
 #Speedloader
     - SpeedLoaderMagnumIncendiary
     - SpeedLoaderShotgunIncendiary
@@ -139,7 +144,7 @@
     - MagazineRifle556Incendiary
     - MagazinePistolIncendiary
     - MagazinePistolSubMachineGunIncendiary
-    - MagazineLightRifleIncendiary
+    - MagazineRifle762Incendiary
     - MagazineShotgunIncendiary
     - MagazineShotgunUranium
     - MagazineShotgunUraniumFlechette
@@ -148,6 +153,9 @@
     - MagazineMagnumIncendiary
     - MagazinePistol38Incendiary
     - MagazineRifle38Incendiary
+    - MagazinePistolSubMachineGunPPSHIncendiary
+    - MagazineRifle762PanIncendiary
+    - SpeedLoaderRifle792Incendiary
     - MagazineRifle38Uranium
     - MagazineMagnumUranium
     - MagazinePistol38Uranium
@@ -156,21 +164,26 @@
     - MagazineRifle556Uranium
     - MagazinePistolUranium
     - MagazinePistolSubMachineGunUranium
-    - MagazineLightRifleUranium
+    - MagazineRifle762Uranium
+    - MagazinePistolSubMachineGunPPSHUranium
+    - MagazineRifle762PanUranium
+    - SpeedLoaderRifle792Uranium
 #Box
     - BoxShotgunIncendiary
     - MagazineBoxPistolIncendiary
     - MagazineBoxMagnumIncendiary
-    - MagazineBoxLightRifleIncendiary
+    - MagazineBoxRifle762Incendiary
     - MagazineBoxRifle556Incendiary
     - MagazineBoxRevolver38Incendiary
+    - MagazineBoxRifle792Incendiary
     - MagazineBoxRevolver38Uranium
     - MagazineBoxPistolUranium
     - MagazineBoxMagnumUranium
-    - MagazineBoxLightRifleUranium
+    - MagazineBoxRifle762Uranium
     - MagazineBoxRifle556Uranium
     - BoxShotgunUranium
     - BoxShotgunUraniumFlechette
+    - MagazineBoxRifle792Uranium
 #Canister
     - MagazineCanisterPistolIncendiary
     - MagazineCanisterPistolUranium
@@ -185,6 +198,7 @@
     - MagazineCanisterShotgun12GUraniumFlechette
   announceTo:
     - Security
+    - SyndiSec #Temp until NS tree
 
 # Space
 
@@ -201,6 +215,7 @@
     - GasRecyclerMachineCircuitboard
   announceTo:
     - Engineering
+    - SyndiEngi #Temp until NS tree
 
 - type: researchTreeNode
   id: AdvAtmospherics
@@ -218,6 +233,7 @@
     - HolofanProjector
   announceTo:
     - Engineering
+    - SyndiEngi #Temp until NS tree
 
 # Laser
 
@@ -235,6 +251,7 @@
     - WeaponLaserPistol
   announceTo:
     - Security
+    - SyndiSec #Temp until NS tree
 
 # Power
 
@@ -256,6 +273,7 @@
     - EmitterCircuitboard
   announceTo:
     - Engineering
+    - SyndiEngi #Temp until NS tree
 
 - type: researchTreeNode
   id: AdvPowerCells
@@ -273,6 +291,7 @@
     - SMESAdvancedMachineCircuitboard
   announceTo:
     - Engineering
+    - SyndiEngi #Temp until NS tree
 
 - type: researchTreeNode
   id: ExplosiveTech
@@ -297,6 +316,7 @@
     - GrenadeShrapnel
   announceTo:
     - Security
+    - SyndiSec #Temp until NS tree
 
 - type: researchTreeNode
   id: NuclearPowerGeneration
@@ -384,6 +404,7 @@
   unlocks:
     - NodeScanner
     - AnalysisComputerCircuitboard
+    - AnalysisComputerCircuitboardNS #Temp addition until NS tree is added
     - ArtifactAnalyzerMachineCircuitboard
 
 - type: researchTreeNode
@@ -420,6 +441,7 @@
     - JukeboxCircuitBoard
   announceTo:
     - Service
+    - SyndiService #Temp until NS tree
 
 - type: researchTreeNode
   id: AVComms
@@ -435,12 +457,16 @@
     - SurveillanceWirelessCameraMovableCircuitboard
     - SurveillanceWirelessCameraAnchoredCircuitboard
     - SurveillanceCameraMonitorCircuitboard
+    - SurveillanceCameraMonitorCircuitboardNS #Temp addition until NS tree is added
     - SurveillanceWirelessCameraMonitorCircuitboard
+    - SurveillanceWirelessCameraMonitorCircuitboardNS #Temp addition until NS tree is added
     - TelecomServerCircuitboard
     - HolopadMachineCircuitboard
   announceTo:
     - Service
     - Security
+    - SyndiSec #Temp until NS tree
+    - SyndiService #Temp until NS tree
 
 # Robotics
 
@@ -482,6 +508,7 @@
     - RightLegCyberHydraulic
   announceTo:
     - Medical
+    - SyndiMed #Temp until NS tree
 
 - type: researchTreeNode
   id: BudgetCyberorgans
@@ -501,6 +528,7 @@
     - BudgetCyberKidneys
   announceTo:
     - Medical
+    - SyndiMed #Temp until NS tree
 
 # Chem
 
@@ -516,6 +544,7 @@
     - SlowAutoinjector
   announceTo:
     - Medical
+    - SyndiMed #Temp until NS tree
 
 - type: researchTreeNode
   id: AdvSpray
@@ -532,6 +561,7 @@
     - ClothingBackpackWaterTank
   announceTo:
     - Service
+    - SyndiService #Temp until NS tree
 
 # Biology
 
@@ -557,6 +587,7 @@
     - UnlockFlagSurgerySpeed1
   announceTo:
     - Medical
+    - SyndiMed #Temp until NS tree
 
 - type: researchTreeNode
   id: MeatManipulation
@@ -574,6 +605,7 @@
     - BiomassReclaimerMachineCircuitboard
   announceTo:
     - Service
+    - SyndiService #Temp until NS tree
 
 - type: researchTreeNode
   id: Hydroponics
@@ -589,6 +621,7 @@
     - ReagentGrinderIndustrialMachineCircuitboard
   announceTo:
     - Service
+    - SyndiService #Temp until NS tree
 
 #Vehicles
 - type: researchTreeNode
@@ -660,6 +693,7 @@
     - VimHarness
   announceTo:
     - Service
+    - SyndiService #Temp until NS tree
 
 - type: researchTreeNode
   id: IndustialMech
@@ -704,6 +738,7 @@
   announceTo:
     - Security
     - GSL # Far Horizons
+    - SyndiSec #Temp until NS tree
 
 - type: researchTreeNode
   id: APAmmo
@@ -716,21 +751,27 @@
   requires: 
     - SpecialAmmo
   unlocks:
+#LMG
+    - MagazineRifle762BoxAP
 #SpeedLoader
     - SpeedLoaderMagnumAP
 #Magazine
     - MagazinePistolAP
     - MagazinePistol38AP
     - MagazineRifle556AP
-    - MagazineLightRifleAP
+    - MagazineRifle762AP
     - Rifle556HeavyMagazineAP
     - MagazinePistolSubMachineGunAP
+    - MagazinePistolSubMachineGunPPSHAP
+    - MagazineRifle762PanAP
+    - SpeedLoaderRifle792AP
 #Box
     - MagazineBoxMagnumAP
     - MagazineBoxPistolAP
     - MagazineBoxRevolver38AP
     - MagazineBoxRifle556AP
-    - MagazineBoxLightRifleAP
+    - MagazineBoxRifle762AP
+    - MagazineBoxRifle792AP
 #Canister
     - MagazineCanisterPistolAP
     - MagazineCanisterRifle556AP
@@ -738,6 +779,7 @@
     - MagazineCanisterRevolver38AP
   announceTo:
     - Security
+    - SyndiSec #Temp until NS tree
 
 - type: researchTreeNode
   id: PaddyMech
@@ -753,6 +795,7 @@
     - PaddyUpgradeKit
   announceTo:
     - Security
+    - SyndiSec #Temp until NS tree
 
 # Space
 
@@ -780,6 +823,7 @@
   announceTo:
     - GSL
     - Engineering
+    - SyndiEngi #Temp until NS tree
 
 - type: researchTreeNode
   id: PointDefense
@@ -797,6 +841,8 @@
     - Security
     - GSL # Far Horizons
     - Engineering
+    - SyndiSec #Temp until NS tree
+    - SyndiEngi #Temp until NS tree
 
 - type: researchTreeNode
   id: ShuttleArmament
@@ -822,6 +868,8 @@
     - Security
     - GSL # Far Horizons
     - Engineering
+    - SyndiSec #Temp until NS tree
+    - SyndiEngi #Temp until NS tree
 
 # Lasers
 
@@ -841,6 +889,7 @@
     - WeaponLaserImmolator
   announceTo:
     - Security
+    - SyndiSec #Temp until NS tree
 
 - type: researchTreeNode
   id: IonGun
@@ -858,6 +907,7 @@
     - WeaponIonCarbine
   announceTo:
     - Security
+    - SyndiSec #Temp until NS tree
 
 - type: researchTreeNode
   id: RayGun
@@ -873,6 +923,7 @@
     - WeaponXrayCannon
   announceTo:
     - Security
+    - SyndiSec #Temp until NS tree
 
 - type: researchTreeNode
   id: EnergyBarriers
@@ -889,6 +940,8 @@
   announceTo:
     - Engineering
     - Security
+    - SyndiEngi #Temp until NS tree
+    - SyndiSec #Temp until NS tree
 
 # Power
 
@@ -912,6 +965,8 @@
   announceTo:
     - Security
     - Medical
+    - SyndiSec #Temp until NS tree
+    - SyndiMed #Temp until NS tree
 
 - type: researchTreeNode
   id: AdvancedTools
@@ -932,6 +987,8 @@
     - FultonBeacon
   announceTo:
     - Engineering
+    - GSL # For the fultons
+    - SyndiEngi #Temp until NS tree
 
 - type: researchTreeNode
   id: NuclearPowerRecycling
@@ -958,6 +1015,27 @@
     - GoldGasTurbineStator
   announceTo:
     - Engineering
+    - SyndiEngi #Temp until NS tree
+
+- type: researchTreeNode
+  id: FusionReactorUnlock
+  name: research-tree-node-fusion-1
+  cost: 20000
+  icon:
+    state: power
+    color: "#EFB341"
+  tier: Tier2
+  requires:
+    - NuclearPowerGeneration
+  unlocks:
+    - FusionReactorCoolantPumpMachineCircuitboard
+    - FusionReactorCapacitorMachineCircuitboard
+    - FusionReactorMaserMachineCircuitboard
+    - FusionReactorGasInletMachineCircuitboard
+    - FusionReactorControllerMachineCircuitboard
+  announceTo:
+    - Engineering
+    - SyndiEngi #Temp until NS tree
 
 # Research
 
@@ -1019,6 +1097,8 @@
   announceTo:
     - Engineering
     - Security
+    - SyndiEngi #Temp until NS tree
+    - SyndiSec #Temp until NS tree
 
 # Computing
 
@@ -1095,6 +1175,8 @@
   announceTo:
     - Service
     - Engineering
+    - SyndiService #Temp until NS tree
+    - SyndiEngi #Temp until NS tree
 
 - type: researchTreeNode
   id: BananiumWeapons
@@ -1111,6 +1193,7 @@
     - MechEquipmentHonkerMousetrapMortar
   announceTo:
     - Service
+    - SyndiService #Temp until NS tree
 
 # Robotics
 
@@ -1140,6 +1223,8 @@
     - ArtistCircuitBoard
     - NutimovCircuitBoard
     - JermovCircuitBoard
+  announceTo:
+    - Binary
 
 - type: researchTreeNode
   id: ClowningTech
@@ -1157,6 +1242,7 @@
     - BorgModuleAdvancedClowning
   announceTo:
     - Service
+    - SyndiService #Temp until NS tree
 
 - type: researchTreeNode
   id: AdvMedBorg
@@ -1172,6 +1258,7 @@
     - BorgModuleAdvancedTopical
   announceTo:
     - Medical
+    - SyndiMed #Temp until NS tree
 
 # Cybernetics
 
@@ -1213,6 +1300,10 @@
     - Engineering
     - Service
     - GSL
+    - SyndiSec #Temp until NS tree
+    - SyndiMed #Temp until NS tree
+    - SyndiEngi #Temp until NS tree
+    - SyndiService #Temp until NS tree
 
 - type: researchTreeNode
   id: Harmpack
@@ -1228,6 +1319,7 @@
     - ClothingBackpackHarmpack
   announceTo:
     - Security
+    - SyndiSec #Temp until NS tree
 
 - type: researchTreeNode
   id: EyeImplants
@@ -1249,6 +1341,9 @@
     - Security
     - Medical
     - Engineering
+    - SyndiSec #Temp until NS tree
+    - SyndiMed #Temp until NS tree
+    - SyndiEngi #Temp until NS tree
 
 - type: researchTreeNode
   id: BrainImplants
@@ -1266,6 +1361,7 @@
     - BrainImplantTranslator
   announceTo:
     - Medical
+    - SyndiMed #Temp until NS tree
 
 - type: researchTreeNode
   id: HandImplants
@@ -1289,6 +1385,8 @@
   announceTo:
     - Medical
     - Security
+    - SyndiMed #Temp until NS tree
+    - SyndiSec #Temp until NS tree
 
 # Chem
 
@@ -1310,6 +1408,7 @@
     - JanitorRCD
   announceTo:
     - Service
+    - SyndiService #Temp until NS tree
 
 # Biology
 
@@ -1334,6 +1433,7 @@
     - UnlockFlagSurgerySpeed2
   announceTo:
     - Medical
+    - SyndiMed #Temp until NS tree
 
 - type: researchTreeNode
   id: StasisBed
@@ -1353,6 +1453,7 @@
     - SyringeCryostasis
   announceTo:
     - Medical
+    - SyndiMed #Temp until NS tree
 
 #Vehicles
 - type: researchTreeNode
@@ -1402,6 +1503,7 @@
     - WeaponMechCombatUltraRifle
   announceTo:
     - Security
+    - SyndiSec #Temp until NS tree
 
 - type: researchTreeNode
   id: DurandMech
@@ -1428,6 +1530,7 @@
     - WeaponMechCombatShotgunIncendiary
   announceTo:
     - Security
+    - SyndiSec #Temp until NS tree
 
 # Space
 
@@ -1450,6 +1553,8 @@
     - Security
     - GSL # Far Horizons
     - Engineering
+    - SyndiSec #Temp until NS tree
+    - SyndiEngi #Temp until NS tree
 
 # Power
 
@@ -1467,6 +1572,7 @@
     - WeaponMechCombatMissileRack8
   announceTo:
     - Security
+    - SyndiSec #Temp until NS tree
 
 - type: researchTreeNode
   id: Microreactor
@@ -1484,6 +1590,7 @@
     - PowerCellHyper
   announceTo:
     - Engineering
+    - SyndiEngi #Temp until NS tree
 
 # Energy weapons
 
@@ -1502,6 +1609,7 @@
     - WeaponTemperatureGun
   announceTo:
     - Security
+    - SyndiSec #Temp until NS tree
 
 - type: researchTreeNode
   id: AdvLaserPistol
@@ -1520,6 +1628,7 @@
     - WeaponMechCombatImmolationGun
   announceTo:
     - Security
+    - SyndiSec #Temp until NS tree
 
 - type: researchTreeNode
   id: Declone
@@ -1535,6 +1644,7 @@
     - WeaponDecloner
   announceTo:
     - Security
+    - SyndiSec #Temp until NS tree
 
 # Physics / bluespace
 
@@ -1590,6 +1700,8 @@
     - GSL # Far Horizons
     - Medical
     - Service
+    - SyndiMed #Temp until NS tree
+    - SyndiService #Temp until NS tree
 
 # Computing
 
@@ -1607,6 +1719,7 @@
     - ScanGateMachineCircuitboard
   announceTo:
     - Security
+    - SyndiSec #Temp until NS tree
 
 - type: researchTreeNode
   id: QuantumDataManagement #increase queue size to 10 and buffer size to 100k
@@ -1654,6 +1767,9 @@
     - Medical
     - Engineering
     - GSL
+    - SyndiSec #Temp until NS tree
+    - SyndiMed #Temp until NS tree
+    - SyndiEngi #Temp until NS tree
 
 - type: researchTreeNode
   id: NVEyes
@@ -1669,6 +1785,7 @@
     - CyberEyeNightVision
   announceTo:
     - Medical
+    - SyndiMed #Temp until NS tree
 
 - type: researchTreeNode
   id: ThermalEyes
@@ -1684,6 +1801,9 @@
     - CyberEyeThermal
   announceTo:
     - Medical
+    - Security
+    - SyndiMed #Temp until NS tree
+    - SyndiSec #Temp until NS tree
 
 # Cyborgs
 
@@ -1724,19 +1844,19 @@
 - type: researchTreeNode
   id: SecBorg
   name: research-tree-node-mech-security
-  cost: 35000
+  cost: 9000
   icon:
     state: electronics
     color: "#003860"
-  tier: Tier3
+  tier: Tier2
   requires:
-    - BorgPlaceholder3
-    - FunctionalCyberlimbsMKII
+    - LaserGun
   unlocks:
     - SecborgEndoskeleton
     - BorgModuleLaserCarbine
   announceTo:
     - Security
+    - SyndiSec #Temp until NS tree
 
 # Chem
 
@@ -1755,6 +1875,7 @@
     - MiniSyringe
   announceTo:
     - Medical
+    - SyndiMed #Temp until NS tree
 
 - type: researchTreeNode
   id: Cloning
@@ -1769,7 +1890,9 @@
     - SyringeGun
   unlocks:
     - CloningConsoleComputerCircuitboard 
+    - CloningConsoleComputerCircuitboardNS #Temp addition until NS tree is added
     - CloningPodMachineCircuitboard 
     - MedicalScannerMachineCircuitboard
   announceTo:
     - Medical
+    - SyndiMed #Temp until NS tree

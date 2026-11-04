@@ -5,7 +5,6 @@ using Content.Server.Roles;
 using Content.Server.Store.Systems;
 using Content.Shared._FarHorizons.Banking;
 using Content.Shared._FarHorizons.Banking.Components;
-using Content.Shared.Containers.ItemSlots;
 using Content.Shared.PDA;
 using Robust.Server.Audio;
 using Robust.Server.GameObjects;
@@ -20,7 +19,6 @@ public sealed partial class BankingSystem : SharedBankingSystem
     [Dependency] private RoleSystem _role = default!;
     [Dependency] private AudioSystem _audio = default!;
     [Dependency] private UserInterfaceSystem _ui = default!;
-    [Dependency] private ItemSlotsSystem _itemSlot = default!;
     [Dependency] private StoreSystem _store = default!;
     
     public BankAccountBalance? GetBalance(EntityUid ent)

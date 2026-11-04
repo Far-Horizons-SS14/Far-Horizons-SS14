@@ -5,7 +5,7 @@
 #Basic armor vest for inheritance
 - type: entity
   abstract: true
-  parent: [ClothingOuterBaseMedium, AllowSuitStorageClothing, BaseSecurityContraband]
+  parent: [ ClothingOuterBaseMedium, AllowSuitStorageClothing ]
   id: ClothingOuterArmorBase
   name: Armor Vest #Far Horizons - The Great Capitalization Crusade
   description: A standard Type I armored vest that provides decent protection against most types of damage.
@@ -33,9 +33,9 @@
     damageCoefficient: 0.90
   - type: ArmorSparkEffect #starlight
 
-#Standard armor vest, allowed for security and bartenders
+#Standard armor vest, allowed for security only
 - type: entity
-  parent: [ BaseSecurityBartenderContraband, ClothingOuterArmorBase]
+  parent: [ BaseSecurityContraband, ClothingOuterArmorBase ]
   id: ClothingOuterArmorBasic
   components:
   - type: Tag
@@ -58,9 +58,9 @@
       LegRight: {}
       LegLeft: {}
 
-#Alternate / slim basic armor vest
+#Alternate / slim basic armor vest, allowed for security and bartenders
 - type: entity
-  parent: ClothingOuterArmorBasic
+  parent: [ BaseSecurityBartenderContraband, ClothingOuterArmorBasic ]
   id: ClothingOuterArmorBasicSlim
   name: Armor Vest #Far Horizons - The Great Capitalization Crusade
   suffix: Slim #Far Horizons - The Great Capitalization Crusade
@@ -72,7 +72,7 @@
     sprite: _FarHorizons/Clothing/OuterClothing/Armor/security_slim.rsi #Far Horizons
 
 - type: entity
-  parent: ClothingOuterArmorBase
+  parent: ClothingOuterArmorBasic
   id: ClothingOuterArmorBulletproof
   name: Bulletproof Vest #Far Horizons - The Great Capitalization Crusade
   suffix: NT #Far Horizons - Dual Station Clarity
@@ -106,7 +106,7 @@
     - BulletproofArmor #FH
 
 - type: entity
-  parent: ClothingOuterArmorBase
+  parent: ClothingOuterArmorBasic
   id: ClothingOuterArmorReflective
   name: Reflective Vest #Far Horizons - The Great Capitalization Crusade
   suffix: NT #Far Horizons - Dual Station Clarity
@@ -144,7 +144,7 @@
 
 #Detective's vest
 - type: entity
-  parent: [ClothingOuterArmorBase, BaseSecurityContraband]
+  parent: [ClothingOuterArmorBasic, BaseSecurityContraband]
   id: ClothingOuterVestDetective
   name: Detective's Vest #Far Horizons - The Great Capitalization Crusade
   suffix: NT #Far Horizons - Dual Station Clarity
@@ -262,7 +262,7 @@
 
 #Elite web vest
 - type: entity
-  parent: [ClothingOuterArmorBase, AllowSuitStorageClothing, BaseSyndicateContraband]
+  parent: [ClothingOuterArmorBase, ClothingOuterStorageBase, BaseSyndicateContraband]
   id: ClothingOuterVestWebElite
   name: Elite Web Vest #Far Horizons - The Great Capitalization Crusade
   suffix: NS #Far Horizons - Dual Station Clarity

@@ -9,10 +9,10 @@
     solution: fuel
     modifiers:
       WeldingFuel: 0.2
-  - type: SolutionContainerManager
-    solutions:
-      fuel:
-        maxVol: 500
+  - type: Solution # FH - migrated from SolutionContainerManager
+    id: fuel
+    solution:
+      maxVol: 600
   - type: Spillable
     solution: fuel
   - type: RefillableSolution

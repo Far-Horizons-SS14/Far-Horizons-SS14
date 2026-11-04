@@ -182,6 +182,7 @@
     unlitRunningState: unlit # Far Horizons - replace with animations when available
     staticPacks:
     - FarHorizonsSecurityAmmoStatic
+    - FarHorizonsCivilianMagazinesStatic
     dynamicPacks:
     - FarHorizonsSecurityAmmoDynamic
     - FarHorizonsSecurityThrowablesDynamic
@@ -242,22 +243,23 @@
     - NSScienceBoardsStatic
     - NSServiceBoardsStatic
     - CargoBoardsStatic #Should Syndi have this?
-    - MedicalBoardsStatic
-    - EngineeringBoardsStatic
-#    - StarlightVendorBoards #TODO: Figure out what to do with all the vending machines
+    - NSMedicalBoardsStatic 
+    - NSEngineeringBoardsStatic 
+    - NSStarlightVendorBoards
     dynamicPacks: #TODO: SYNDI TECH
-    - EngineeringBoards
+    - NSEngineeringBoards
     - CargoBoards
-    - MedicalBoards
-    - ServiceBoards
+    - NSMedicalBoards
+    - NSServiceBoards
     - NSScienceBoards
-    - CameraBoards
+    - NSCameraBoards
     - MechBoards
     - ShuttleBoards
     - StarlightMechBoards
     - StarlightLawboards
     - StarlightCircuitImprinterLootable
     - ReactorCircuitboards
+    - FusionReactorCircuitboards
   - type: EmagLatheRecipes
     emagDynamicPacks: #TODO: NT THEMED EMAG PACKS
     - StarlightSecurityBoards
@@ -370,6 +372,7 @@
     - SecurityWeaponsStatic
     - FarHorizonsCivilianMagazinesStatic
     - FarHorizonsCivilianWeaponsStatic
+    - FarHorizonsNSSecurityGeneralEquipmentStatic
     dynamicPacks:
     - SalvageSecurityBoards
     - SalvageSecurityWeapons
@@ -563,6 +566,7 @@
     unlitRunningState: unlit # Far Horizons - replace with animations when available
     staticPacks:
     - FarHorizonsSecurityAmmoStatic
+    - FarHorizonsCivilianMagazinesStatic
     dynamicPacks:
     - FarHorizonsSecurityAmmoDynamic
     - FarHorizonsSecurityThrowablesDynamic

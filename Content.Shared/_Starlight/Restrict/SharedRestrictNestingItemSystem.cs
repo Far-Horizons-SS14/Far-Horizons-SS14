@@ -216,8 +216,13 @@ public abstract partial class SharedRestrictNestingItemSystem : EntitySystem
         if (TryComp<RestrictNestingItemComponent>(item, out var nestingItem) && !skipInitialItem)
             return true;
 
+        // Far Horizons start
+        if (!TryComp<ContainerManagerComponent>(item, out var containerComp))
+            return false;
+
         //now run this on all items in the inventory
-        var containers = _containerSystem.GetAllContainers(item).ToList();
+        var containers = _containerSystem.GetAllContainers(item, containerComp).ToList();
+        // Far Horizons end
         var items = containers.SelectMany(container => container.ContainedEntities).ToList();
 
         foreach (var itemInInventory in items)

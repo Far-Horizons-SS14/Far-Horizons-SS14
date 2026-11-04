@@ -55,8 +55,9 @@
             params:
               volume: -6
     - type: Damageable
-      damageContainer: StructuralInorganic
       damageModifierSet: StructuralMetallicStrong
+    - type: Injurable
+      damageContainer: StructuralInorganic
     - type: Appearance
     - type: DamageVisuals
       thresholds: [0, 150, 300]
@@ -65,4 +66,4 @@
       targetLayers: 
         - enum.TowerOfBabelLayers.Tower
     - type: TowerOfBabel
-    
+

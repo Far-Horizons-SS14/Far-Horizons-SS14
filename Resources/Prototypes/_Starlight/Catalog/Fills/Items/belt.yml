@@ -83,55 +83,56 @@
   parent: ClothingBeltNTNC
 
 # GMN webbings
-- type: entity
-  id: ClothingOuterVestWebEliteFilledMAA
-  parent: ClothingOuterVestWebElite
-  suffix: Filled
-  components:
-  - type: Storage #Starlight
-    maxItemSize: Normal
-    grid:
-    - 0,0,1,0 #left
-    - 0,1,0,1 #left - cube
-    - 3,0,10,1
-    - 12,0,13,1 #right
-    whitelist:
-      tags:
-        - Bola
-        - CigPack
-        - Taser
-        - SecBeltEquip
-        - Radio
-        - Sidearm
-        - MagazinePistol
-        - MagazineMagnum
-        - CombatKnife
-        - Truncheon
-        - HandGrenade
-      components:
-        - Stunbaton
-        - FlashOnTrigger
-        - SmokeOnTrigger
-        - Flash
-        - Handcuff
-        - BallisticAmmoProvider
-        - CartridgeAmmo
-        - DoorRemote
-        - Whistle
-        - BalloonPopper
-  - type: EntityTableContainerFill
-    containers:
-      storagebase: !type:AllSelector
-        children:
-        - id: WeaponPistolStechkin
-        - id: MagazinePistolFMJ
-        - id: MagazinePistolSP
-        - id: Stunbaton
-        - id: Handcuffs
-        - id: Handcuffs
-        - id: GrenadeShrapnel
-        - id: Bola
-        - id: HoloprojectorSecurity
+# FH - removed because it's extremely large and not obtainable outside of random presents
+#- type: entity
+#  id: ClothingOuterVestWebEliteFilledMAA
+#  parent: ClothingOuterVestWebElite
+#  suffix: Filled
+#  components:
+#  - type: Storage #Starlight
+#    maxItemSize: Normal
+#    grid:
+#    - 0,0,1,0 #left
+#    - 0,1,0,1 #left - cube
+#    - 3,0,10,1
+#    - 12,0,13,1 #right
+#    whitelist:
+#      tags:
+#        - Bola
+#        - CigPack
+#        - Taser
+#        - SecBeltEquip
+#        - Radio
+#        - Sidearm
+#        - MagazinePistol
+#        - MagazineMagnum
+#        - CombatKnife
+#        - Truncheon
+#        - HandGrenade
+#      components:
+#        - Stunbaton
+#        - FlashOnTrigger
+#        - SmokeOnTrigger
+#        - Flash
+#        - Handcuff
+#        - BallisticAmmoProvider
+#        - CartridgeAmmo
+#        - DoorRemote
+#        - Whistle
+#        - BalloonPopper
+#  - type: EntityTableContainerFill
+#    containers:
+#      storagebase: !type:AllSelector
+#        children:
+#        - id: WeaponPistolStechkin
+#        - id: MagazinePistolFMJ
+#        - id: MagazinePistolSP
+#        - id: Stunbaton
+#        - id: Handcuffs
+#        - id: Handcuffs
+#        - id: GrenadeShrapnel
+#        - id: Bola
+#        - id: HoloprojectorSecurity
 
 - type: entity
   id: ClothingBeltMilitaryWebbingFilledDamageControle

@@ -46,26 +46,35 @@
     - Snow
     - Mountains # Far Horizons
     - LowDesert # Far Horizons
+  # Far Horizons Start
   entries:
-    - proto: MobSovietComradeBrokenBottle
+    - proto: MobSovietComradeMiner
       cost: 3
-    - proto: MobSovietComradeFinka
-      cost: 8
-    #shotgun
-    - proto: MobSovietComradeSawn
-      cost: 8
     #pistol
     - proto: MobSovietComradeMakarov 
+      cost: 8
+    #mosin
+    - proto: MobSovietComradeMosin
       cost: 10
       prob: 0.9
+    #shotgun
+    - proto: MobSovietComradeShotgun
+      cost: 15
+      prob: 0.6
+    #smg
+    - proto: MobSovietComradeSMG
+      cost: 20
+      prob: 0.5
     #rifle
     - proto: MobSovietComradeAk 
       cost: 30
-      prob: 0.5
+      prob: 0.4
+      max: 1
     #boss / meeeh
     - proto: MobBearSoviet
       cost: 35
-      prob: 0.4
+      prob: 0.3
+  # Far Horizons - End
   difficulties: 
     - Difficult
   configs:

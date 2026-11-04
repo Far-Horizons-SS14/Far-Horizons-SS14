@@ -27,10 +27,10 @@ public sealed partial class FluidFootprintSystem : SharedFluidFootprintSystem
             if (!Solution.ResolveSolution(args.OtherEntity, SmokeComponent.SolutionName, ref solutionEnt, out solution))
                 return;
         }
-        else if (HasComp<VaporComponent>(args.OtherEntity))
+        else if (HasComp<VaporComponent>(args.OtherEntity) && TryComp<SolutionComponent>(args.OtherEntity, out var solutionComp))
         {
-            if (!Solution.ResolveSolution(args.OtherEntity, VaporComponent.SolutionName, ref solutionEnt, out solution))
-                return;
+            solutionEnt = (args.OtherEntity, solutionComp);
+            solution = solutionComp.Solution;
         }
         else if (TryComp<FloorBufferComponent>(args.OtherEntity, out var floorBuffer) && floorBuffer.Enabled)
         {

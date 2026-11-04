@@ -211,8 +211,9 @@ public abstract partial class SharedGunSystem
             args.PushMarkup(Loc.GetString("gun-magazine-empty"));
         // 🌟Starlight🌟 end me
     }
-
-    private void ManualCycle(Entity<BallisticAmmoProviderComponent> ent, MapCoordinates coordinates, EntityUid? user = null, GunComponent? gunComp = null)
+    
+    //FH-Edit - Made public so NPCs can pump their guns.
+    public void ManualCycle(Entity<BallisticAmmoProviderComponent> ent, MapCoordinates coordinates, EntityUid? user = null, GunComponent? gunComp = null)
     {
         if (!ent.Comp.Cycleable)
             return;

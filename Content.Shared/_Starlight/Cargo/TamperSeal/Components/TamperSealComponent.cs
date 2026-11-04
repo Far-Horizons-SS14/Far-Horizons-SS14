@@ -144,7 +144,8 @@ public partial record struct TamperSealAccessPattern(
 public enum TamperSealVisuals : byte
 {
     Opened,
-    Destroyed
+    Destroyed,
+    Size //FH
 }
 
 /// <summary>
@@ -167,7 +168,8 @@ public enum TamperSealLayers : byte
 public enum FactionTamperSealVisuals : byte
 {
     Opened,
-    Destroyed
+    Destroyed,
+    Size
 }
 
 /// <summary>

@@ -29,6 +29,16 @@ public sealed class WeaponTests : InteractionTest
         var mosinNet = await PlaceInHands(SniperMosin);
         var mosinEnt = ToServer(mosinNet);
 
+        // Far Horizons start - We need to manually close the bolt on the mosin, since it spawns with the bolt open now.
+        await Server.WaitPost(() =>
+        {
+            var chamber = Comp<ChamberMagazineAmmoProviderComponent>(mosinNet);
+            Assert.That(chamber.BoltClosed, Is.False, "Mosin was spawned with a closed bolt!");
+            gunSystem.SetBoltClosed(mosinEnt, chamber, true);
+            Assert.That(chamber.BoltClosed, Is.True, "Mosin failed to close the bolt when manually set!");
+        });
+        // Far Horizons end
+
         await Pair.RunSeconds(2f); // Guns have a cooldown when picking them up.
 
         Assert.That(HasComp<GunRequiresWieldComponent>(mosinNet),

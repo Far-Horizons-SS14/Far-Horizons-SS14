@@ -102,8 +102,15 @@
   components:
   - type: Metabolizer
     updateInterval: 0.75
-  - type: SolutionContainerManager
+  - type: SolutionManager
     solutions:
-      food: {}
-      stomach:
-        maxVol: 100 #he hungers
+    - SolutionVulpkaninStomach
+
+- type: entity
+  parent: SolutionStomach
+  id: SolutionVulpkaninStomach
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    solution:
+      maxVol: 300

@@ -3,6 +3,7 @@ using Content.Shared.Actions;
 using Content.Shared._FarHorizons.UI.BackgroundTraits;
 using Robust.Shared.Network;
 using Robust.Shared.Utility;
+using Content.Shared.Mobs;
 
 namespace Content.Shared._FarHorizons.Vampire.Traits;
 
@@ -138,6 +139,8 @@ public abstract partial class LesserVampireToggleActionTraitSystem<T, TEvent>
         if (_net.IsServer)
             Vampire.RefreshBloodPoolChange((ent.Owner, ent.Comp1));
     }
+
+    protected override void OnDeath(Entity<T> ent, ref MobStateChangedEvent args) => base.OnDeath(ent, ref args);
 
     protected virtual void RefreshBloodpoolDrain(Entity<LesserVampireComponent, T> ent, ref GetVampireBloodPoolChange args) { }
 }

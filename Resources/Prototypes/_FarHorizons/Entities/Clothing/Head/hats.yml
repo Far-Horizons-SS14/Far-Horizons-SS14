@@ -717,3 +717,40 @@
     - Recyclable
     - WhitelistChameleon
     - HamsterWearable
+#region ## USSP ##
+
+- type: entity
+  parent: [ClothingHeadBase, BaseSovietContraband]
+  id: ClothingHeadHatCapAdmiral
+  name: Admiral Cap
+  suffix: USSP
+  description: A white cap that denotes a high ranking admiral in the USSP.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Head/Hats/USSP/admiral_cap.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Head/Hats/USSP/admiral_cap.rsi
+
+- type: entity
+  parent: [ClothingHeadBase, BaseSovietContraband]
+  id: ClothingHeadHatCapCommissar
+  name: Commissar Cap
+  suffix: USSP
+  description: A brown cap that belongs to the head of a USSP squad. 
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Head/Hats/USSP/commissar_cap.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Head/Hats/USSP/commissar_cap.rsi
+
+- type: entity
+  parent: [ClothingHeadBase, BaseSovietContraband]
+  id: ClothingHeadHatCapMilitsya
+  name: Militsya Flatcap
+  suffix: USSP
+  description: A brown cap that belongs to the typical USSP soldier.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Head/Hats/USSP/militsya_cap.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Head/Hats/USSP/militsya_cap.rsi

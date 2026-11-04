@@ -29,7 +29,7 @@
 - type: entity
   id: OrganEdible
   abstract: true
-  parent: BaseItem
+  parent: [BaseItem, SolutionOrganEdibleFood]
   components:
   - type: Edible
   - type: Extractable
@@ -40,13 +40,6 @@
       - ReagentId: Blood
         Quantity: 20
     grindableSolutionName: food
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 5
-        reagents:
-        - ReagentId: UncookedAnimalProteins
-          Quantity: 5
   - type: FlavorProfile
     flavors:
       - people
@@ -54,6 +47,18 @@
     tags:
       - Meat
       - Organic
+
+- type: entity
+  parent: SolutionFood
+  id: SolutionOrganEdibleFood
+  abstract: true
+  components:
+  - type: Solution
+    solution:
+      maxVol: 5
+      reagents:
+      - ReagentId: UncookedAnimalProteins
+        Quantity: 5
   # Far Horizons end
 
 - type: entity
@@ -759,18 +764,28 @@
   - type: Lung
   - type: Metabolizer
     stages: [ Respiration ]
-  - type: SolutionContainerManager
+  - type: TESTSolutionSizeNonStandard # FH
+    reason: Lung gas capacity is determined by respiratory mechanics rather than inventory size.
+  - type: SolutionManager
     solutions:
-      Lung:
-        maxVol: 100.0
-        canReact: false
-      food: {}
+    - SolutionLungGas
   - type: Sprite
     layers:
     - state: lung-l
     - state: lung-r
   - type: Item
     heldPrefix: lungs
+
+- type: entity
+  parent: Solution
+  id: SolutionLungGas # TODO: Metabolize directly from gasses :(
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: Lung
+    solution:
+      maxVol: 100.0
+      canReact: false
 
 - type: entity
   parent: OrganEdible #FH
@@ -816,11 +831,11 @@
   - type: Organ
     category: Stomach
   - type: Stomach
-  - type: SolutionContainerManager
+  - type: TESTSolutionSizeNonStandard # FH
+    reason: Stomach capacity is determined by digestion mechanics rather than inventory size.
+  - type: SolutionManager
     solutions:
-      food: {}
-      stomach:
-        maxVol: 50
+    - SolutionStomach
   - type: Metabolizer
     maxReagents: 3
     stages: [ Digestion ]
@@ -829,6 +844,16 @@
     - state: stomach
   - type: Item
     heldPrefix: stomach
+
+- type: entity
+  parent: Solution
+  id: SolutionStomach
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: stomach
+    solution:
+      maxVol: 150 # 1.25 liters which is average for a human
 
 - type: entity
   parent: OrganEdible #FH

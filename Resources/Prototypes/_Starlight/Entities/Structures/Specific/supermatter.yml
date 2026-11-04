@@ -41,6 +41,7 @@
     color: "#FFFB97"
   - type: Damageable
     damageModifierSet: RGlass
+  - type: Injurable
     damageContainer: StructuralInorganic
  # - type: LightningTarget  Tesla needs to interact too.
  #   priority: 1
@@ -54,8 +55,9 @@
     mode: SnapgridCenter
   components:
     - type: Damageable
-      damageContainer: StructuralInorganic
       damageModifierSet: Glass
+    - type: Injurable
+      damageContainer: StructuralInorganic
     - type: Destructible
       thresholds:
         - trigger:

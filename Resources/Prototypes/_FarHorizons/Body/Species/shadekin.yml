@@ -218,11 +218,18 @@
   parent: [ OrganBaseStomach, OrganShadekinInternal, OrganShadekinMetabolizer ]
   id: OrganShadekinStomach
   components:
-  - type: SolutionContainerManager
+  - type: SolutionManager
     solutions:
-      food: {}
-      stomach:
-        maxVol: 40
+    - SolutionShadekinStomach
+
+- type: entity
+  parent: SolutionStomach
+  id: SolutionShadekinStomach
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    solution:
+      maxVol: 120
 
 - type: entity
   parent: [ OrganBaseLiver, OrganShadekinInternal, OrganShadekinMetabolizer ]

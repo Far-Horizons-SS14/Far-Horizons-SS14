@@ -37,7 +37,7 @@ namespace Content.Server.Cargo.Systems
         [Dependency] private IGameTiming _timing = default!;
 
         #region Starlight
-        private float _tamperSealRewardMultiplier = 0.1f;
+        private float _tamperSealRewardMultiplier = 0.3f; // Far Horizons buffed 10% -> 30%
         private float _tamperSealPenaltyMultiplier = 0.1f;
         private float _tamperSealRefundMultiplier = 0.5f;
         #endregion

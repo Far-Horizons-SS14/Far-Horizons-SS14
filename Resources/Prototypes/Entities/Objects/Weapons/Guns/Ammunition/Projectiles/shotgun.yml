@@ -125,21 +125,17 @@
     spread: 45
 
 - type: entity
+  parent: [SolutionAmmo, SolutionToolVeryTiny, BaseBulletPractice]
   id: PelletShotgunTranquilizer
-  name: 12 gauge traunquilizer slug # Starlight change: .50 -> 12 gauge
   categories: [ HideSpawnMenu ]
-  parent: BaseBulletPractice
+  name: 12 gauge tranquilizer slug # Starlight change: .50 -> 12 gauge
   components:
   - type: Projectile
     damage:
       types:
         Blunt: 1
-  - type: SolutionContainerManager
-    solutions:
-      ammo:
-        maxVol: 15
   - type: SolutionInjectOnProjectileHit
-    transferAmount: 15
+    transferAmount: 7.5
     solution: ammo
 
 - type: entity

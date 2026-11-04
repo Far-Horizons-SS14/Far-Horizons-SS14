@@ -51,6 +51,7 @@
     - Mineshaft
     - Reactor
     - Factory
+    - Bunker
 
 - type: salvageMissionObjective
   id: MissionObjectiveCapture
@@ -105,6 +106,7 @@
     - SnowyLabs
     - Reactor
     - Factory
+    - Bunker
 
 - type: salvageMissionObjective
   id: MissionObjectivePurge
@@ -133,6 +135,7 @@
     - SnowyLabs
     - Reactor
     - Factory
+    - Bunker
 
 - type: salvageMissionObjective
   id: MissionObjectiveShutdown
@@ -164,6 +167,7 @@
     - Mineshaft
     - Reactor
     - Factory
+    - Bunker
 
 - type: salvageMissionObjective
   id: MissionObjectiveDisarm
@@ -188,6 +192,30 @@
     - Challenging
   allowedDungeons:
     - Factory
+
+- type: salvageMissionObjective
+  id: MissionObjectiveDataHeist
+  handlerId: "MissionObjectiveDataHeistHandler"
+  name: salvage-mission-objective-name-data-heist
+  description: salvage-mission-objective-description-data-heist
+  announcement: salvage-mission-objective-announcement-data-heist
+  baseReward:
+    Easy: 800
+    Moderate: 1000
+    Challenging: 1150 # Lower rewards, but bonuses can bring it up quite high
+  cashMultiplier: 4.5
+  numTargets:
+    Easy: 1
+    Moderate: 1
+    Challenging: 2
+  bonus: 450
+  bonusCap: 4
+  allowedDifficulties:
+    - Easy
+    - Moderate
+    - Challenging
+  allowedDungeons:
+    - Bunker
 
 - type: salvageMissionObjective
   id: MissionObjectiveHeadHunt

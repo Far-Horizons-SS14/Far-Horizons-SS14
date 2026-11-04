@@ -66,11 +66,21 @@
         - id: MagazinePistolSP
           amount: 4
         - id: MagazineBoxPistolSP
-        - id: WeaponSniperMosin
-        - id: SpeedLoaderLightRifle
+        - id: SpeedLoaderRifle792SP
           amount: 4
-        - id: MagazineBoxMagnumSP
+        - id: MagazineBoxRifle792SP
+        - !type:NestedSelector
+          tableId: MosinTable
 
+- type: entityTable
+  id: MosinTable
+  table: !type:GroupSelector
+    children:
+    - id: WeaponSniperMosin
+      weight: 2
+    - id: WeaponSniperMosinScoped
+      weight: 1
+  
 - type: entity
   id: CrateSovietEVABundleCombatAdvanced
   name: Advanced Soviet Combat Hardsuit Crate
@@ -92,9 +102,9 @@
         - id: OxygenTankFilled
         - id: NitrogenTankFilled
         - id: WeaponRifleAk
-        - id: MagazineLightRifleSP
+        - id: MagazineRifle762SP
           amount: 4
-        - id: MagazineBoxLightRifleSP
+        - id: MagazineBoxRifle762SP
         - id: WeaponPistolAPS
         - id: MagazinePistol38SP
           amount: 4
@@ -123,9 +133,9 @@
         - id: ClothingSovietGasMask
         - id: CommanderWhistle
         - id: WeaponRifleAk
-        - id: MagazineLightRifleFMJ
+        - id: MagazineRifle762FMJ
           amount: 4
-        - id: MagazineBoxLightRifleFMJ
+        - id: MagazineBoxRifle762FMJ
         - id: WeaponPistolAPS
         - id: MagazinePistol38FMJ
           amount: 4
@@ -146,18 +156,18 @@
         children:
         - id: MedkitFilled
           amount: 4
-        - id: MagazineLightRifleSP
+        - id: MagazineRifle762SP
           amount: 4
         - id: MagazinePistol38SP
           amount: 4
-        - id: SpeedLoaderLightRifle
+        - id: SpeedLoaderRifle762
           amount: 4
         - id: MagazinePistolSP
           amount: 4
         - id: MagazineCanisterRevolver38SP
         - id: MagazineCanisterPistolSP
         - id: MagazineCanisterMagnumSP
-        - id: MagazineCanisterLightRifleSP
+        - id: MagazineCanisterRifle762SP
         - id: FoodTinMRE
           amount: 6
         - id: DrinkWaterBottleFull

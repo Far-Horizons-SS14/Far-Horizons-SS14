@@ -4,6 +4,7 @@ using Content.Shared._FarHorizons.Medical.Disease.Prototypes;
 using Robust.Shared.Containers;
 using Robust.Shared.Map;
 using Robust.Shared.Timing;
+using System.Linq;
 
 namespace Content.Shared._FarHorizons.Medical.Disease.Systems;
 
@@ -20,7 +21,7 @@ public sealed partial class DiseaseAirborneSystem : EntitySystem
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private SharedContainerSystem _container = default!;
 
-    private readonly HashSet<EntityUid> _tmpTargets = [];
+    private HashSet<EntityUid> _tmpTargets = [];
 
     /// <inheritdoc/>
     public override void Update(float frameTime)
@@ -66,6 +67,7 @@ public sealed partial class DiseaseAirborneSystem : EntitySystem
         var sourceContained = _container.IsEntityOrParentInContainer(source);
         var flags = sourceContained ? LookupFlags.All : LookupFlags.Uncontained;
         _lookup.GetEntitiesInRange(mapPos.MapId, mapPos.Position, range, _tmpTargets, flags);
+        _tmpTargets = _tmpTargets.Where(x => HasComp<DiseaseCarrierComponent>(x) && x != source ).ToHashSet();
 
         // Chance takes into account the patient's equipment
         var chance = Math.Clamp(disease.AirborneInfect * chanceMultiplier, 0f, 1f);

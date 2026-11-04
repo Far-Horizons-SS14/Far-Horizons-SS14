@@ -1,6 +1,6 @@
 ﻿- type: entity
   id: BaseElectronics
-  parent: BaseItem
+  parent: [BaseItem, SolutionElectronicsEdibleFood] # FH - inherit from SolutionElectronicsEdibleFood so we avoid race where Edible adds food solution as well if run first
   name: base electronics
   abstract: true
   suffix: Electronics
@@ -26,24 +26,42 @@
     - shocking
   - type: Extractable
     grindableSolutionName: ramchip
-  - type: SolutionContainerManager
+  - type: SolutionManager
     solutions:
-      food:
-        maxVol: 15
-        reagents:
-        - ReagentId: BatteryAcid
-          Quantity: 15
-      ramchip:
-        reagents:
-        - ReagentId: BatteryAcid
-          Quantity: 15
-        - ReagentId: Gold
-          Quantity: 10
-        - ReagentId: Iron
-          Quantity: 10
-        - ReagentId: Silicon
-          Quantity: 50
+    - SolutionElectronicsRamChip
   - type: Tag
     tags:
     - RamChip #Protogen joke, makes them able to eat them.
+
+- type: entity
+  parent: SolutionFood
+  id: SolutionElectronicsEdibleFood
+  abstract: true
+  components:
+  - type: Solution
+    solution:
+      maxVol: 15
+      reagents:
+      - ReagentId: BatteryAcid
+        Quantity: 15
+
+- type: entity
+  parent: Solution
+  id: SolutionElectronicsRamChip
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: ramchip
+    solution:
+      maxVol: 60
+      reagents:
+      - ReagentId: BatteryAcid
+        Quantity: 12
+      - ReagentId: Gold
+        Quantity: 8
+      - ReagentId: Iron
+        Quantity: 8
+      - ReagentId: Silicon
+        Quantity: 30
+
 #FH - End

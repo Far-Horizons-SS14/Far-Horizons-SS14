@@ -1,16 +1,16 @@
 - type: entity
   name: patch
-  description: On-touch administration of chemicals.	
+  description: On-touch administration of chemicals.
   parent: BaseStarlightHealingItem
   id: BasePatch
   abstract: true
   components:
   - type: Sprite
     state: bandaid
-  - type: SolutionContainerManager
-    solutions:
-      patch:
-        maxVol: 20
+  - type: Solution # FH - migrated from SolutionContainerManager
+    id: patch
+    solution:
+      maxVol: 20
   - type: Item
     size: Small
   - type: Appearance
@@ -20,11 +20,11 @@
       - Patch
   - type: Extractable
     grindableSolutionName: patch
-      
+
 - type: entity
   id: Patch
   parent: BasePatch
-  
+
 - type: entity
   id: PatchBrute
   name: brute patch
@@ -32,14 +32,12 @@
   components:
   - type: Sprite
     state: bandaid-brute
-  - type: SolutionContainerManager
-    solutions:
-      patch:
-        maxVol: 20
-        reagents:
-        - ReagentId: Bicaridine
-          Quantity: 20 #FH
-          
+  - type: Solution # FH - migrated from SolutionContainerManager
+    solution:
+      reagents:
+      - ReagentId: Bicaridine
+        Quantity: 20 #FH
+
 - type: entity
   id: PatchBurnSmall
   name: burn patch small
@@ -47,14 +45,12 @@
   components:
   - type: Sprite
     state: bandaid-burn-small
-  - type: SolutionContainerManager
-    solutions:
-      patch:
-        maxVol: 20
-        reagents:
-        - ReagentId: Dermaline
-          Quantity: 10
-          
+  - type: Solution # FH - migrated from SolutionContainerManager
+    solution:
+      reagents:
+      - ReagentId: Dermaline
+        Quantity: 10
+
 - type: entity
   id: PatchBurn
   name: burn patch
@@ -62,14 +58,12 @@
   components:
   - type: Sprite
     state: bandaid-burn
-  - type: SolutionContainerManager
-    solutions:
-      patch:
-        maxVol: 20
-        reagents:
-        - ReagentId: Dermaline #FH - Why was it OMNI???
-          Quantity: 20
-          
+  - type: Solution # FH - migrated from SolutionContainerManager
+    solution:
+      reagents:
+      - ReagentId: Dermaline #FH - Why was it OMNI???
+        Quantity: 20
+
 - type: entity
   id: PatchMedical
   name: medical patch
@@ -77,16 +71,14 @@
   components:
   - type: Sprite
     state: bandaid-med
-  - type: SolutionContainerManager
-    solutions:
-      patch:
-        maxVol: 20
-        reagents:
-        - ReagentId: Dermaline
-          Quantity: 10
-        - ReagentId: Bicaridine
-          Quantity: 10
-          
+  - type: Solution # FH - migrated from SolutionContainerManager
+    solution:
+      reagents:
+      - ReagentId: Dermaline
+        Quantity: 10
+      - ReagentId: Bicaridine
+        Quantity: 10
+
 - type: entity
   id: PatchClown
   name: clown patch
@@ -94,18 +86,16 @@
   components:
   - type: Sprite
     state: bandaid-clown
-  - type: SolutionContainerManager
-    solutions:
-      patch:
-        maxVol: 20
-        reagents:
-        - ReagentId: Bananadine
-          Quantity: 5
-        - ReagentId: Happiness
-          Quantity: 5
-        - ReagentId: MuteToxin
-          Quantity: 10
-          
+  - type: Solution # FH - migrated from SolutionContainerManager
+    solution:
+      reagents:
+      - ReagentId: Bananadine
+        Quantity: 5
+      - ReagentId: Happiness
+        Quantity: 5
+      - ReagentId: MuteToxin
+        Quantity: 10
+
 - type: entity
   name: patch pack
   id: PatchPack
@@ -128,6 +118,6 @@
     quickInsert: true
     areaInsert: true
     areaInsertRadius: 1
-    whitelist: 
+    whitelist:
       tags:
       - Patch

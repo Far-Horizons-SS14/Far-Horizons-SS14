@@ -1,6 +1,7 @@
 using Content.Shared.Item.ItemToggle;
 using Content.Shared.Item.ItemToggle.Components;
 using Content.Shared.PowerCell.Components;
+using Content.Shared.Power.EntitySystems; //FH
 
 namespace Content.Shared.PowerCell;
 
@@ -11,6 +12,7 @@ public sealed partial class ToggleCellDrawSystem : EntitySystem
 {
     [Dependency] private ItemToggleSystem _toggle = default!;
     [Dependency] private PowerCellSystem _cell = default!;
+    [Dependency] private SharedBatterySystem _battery = default!;
 
     public override void Initialize()
     {
@@ -37,10 +39,18 @@ public sealed partial class ToggleCellDrawSystem : EntitySystem
     private void OnToggled(Entity<ToggleCellDrawComponent> ent, ref ItemToggledEvent args)
     {
         _cell.SetDrawEnabled(ent.Owner, args.Activated);
+        //FH Start
+        if(ent.Comp.DisableSelfRechargeOnToggle) 
+            _battery.RefreshChargeRate(ent.Owner); 
+        //FH End
     }
 
     private void OnEmpty(Entity<ToggleCellDrawComponent> ent, ref PowerCellSlotEmptyEvent args)
     {
         _toggle.TryDeactivate(ent.Owner);
+        //FH Start
+        if(ent.Comp.DisableSelfRechargeOnToggle) 
+            _battery.RefreshChargeRate(ent.Owner); 
+        //FH End
     }
 }

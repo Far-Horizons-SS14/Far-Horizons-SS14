@@ -65,6 +65,12 @@ public sealed partial class PathfindingSystem
             {
                 modifier += 0.5f;
             }
+            // Far Horizons start
+            else if (isDoor && isAccess && (request.Flags & PathFlags.Access) != 0x0)
+            {
+                modifier += 0.5f;
+            }
+            // Far Horizons end
             // Door we can force open one way or another
             else if (isDoor && isAccess && (request.Flags & PathFlags.Prying) != 0x0)
             {

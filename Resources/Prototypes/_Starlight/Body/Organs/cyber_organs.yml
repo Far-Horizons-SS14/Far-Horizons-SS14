@@ -26,7 +26,7 @@
       6:
         glitchDuration: 5.0
         additionalEffects:
-          StatusEffectBlinded: 2.0
+          StatusEffectBlindness: 2.0
 
 - type: entity
   id: CyberEyeThermal
@@ -56,7 +56,7 @@
       6:
         glitchDuration: 5.0
         additionalEffects:
-          StatusEffectBlinded: 2.0
+          StatusEffectBlindness: 2.0
 
 - type: entity
   id: BudgetCyberEyes
@@ -83,7 +83,7 @@
       6:
         glitchDuration: 5.0
         additionalEffects:
-          StatusEffectBlinded: 2.0
+          StatusEffectBlindness: 2.0
   # FH start
   - type: RoundstartImplantable
     cost: 0
@@ -129,18 +129,27 @@
   - type: Sprite
     sprite: _Starlight/Objects/Specific/Medical/budget_cyber_organs.rsi
     state: stomach
-  - type: SolutionContainerManager
+  - type: Solution # FH - migrated from SolutionContainerManager
+    solution:
+      maxVol: 5
+      reagents:
+      - ReagentId: UncookedAnimalProteins
+        Quantity: 5
+  - type: SolutionManager # FH - migrated from SolutionContainerManager
     solutions:
-      stomach:
-        maxVol: 30
-      food:
-        maxVol: 5
-        reagents:
-        - ReagentId: UncookedAnimalProteins
-          Quantity: 5
+    - SolutionBudgetCyberStomach
   - type: Metabolizer
     maxReagents: 3
     metabolizerTypes: [BudgetCyber]
+
+- type: entity
+  parent: SolutionStomach
+  id: SolutionBudgetCyberStomach
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution # FH - migrated from SolutionContainerManager
+    solution:
+      maxVol: 30
 
 - type: entity
   id: BudgetCyberKidneys
@@ -201,12 +210,6 @@
         type: GasTankBoundUserInterface
       enum.SharedGasTankUiKey.OrganKey:
         type: BreathableOrganBoundUserInterface
-  - type: SolutionContainerManager
-    solutions:
-      Lung:
-        maxVol: 100.0
-        canReact: false
-      food: {}
   - type: Tag
     tags:
     - GasTank

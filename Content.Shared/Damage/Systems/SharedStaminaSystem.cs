@@ -27,7 +27,7 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 using Robust.Shared.Timing;
-using Content.Shared._FarHorizons.Vehicles.Components;
+using Content.Shared._FarHorizons.Vehicles;
 
 namespace Content.Shared.Damage.Systems;
 
@@ -421,8 +421,7 @@ public abstract partial class SharedStaminaSystem : EntitySystem
         component.Critical = true;
         component.StaminaDamage = component.CritThreshold;
 
-        if (StunSystem.TryUpdateParalyzeDuration(uid, component.StunTime))
-            StunSystem.TrySeeingStars(uid);
+        StunSystem.TryUpdateParalyzeDuration(uid, component.StunTime);
 
         // Give them buffer before being able to be re-stunned
         component.NextUpdate = Timing.CurTime + component.StunTime + StamCritBufferTime;

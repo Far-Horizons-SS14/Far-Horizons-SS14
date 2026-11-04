@@ -17,3 +17,31 @@
   cost: 3000
   category: cargoproduct-category-name-medical
   group: market
+
+- type: cargoProduct
+  id: WrappedParcelAloeExtract
+  name: cargo-order-aloeextract
+  icon:
+    sprite: Objects/Specific/Hydroponics/aloe.rsi
+    state: produce
+  product: SealableBeakerAloe
+  container:
+    entity: WrappedParcel
+    containerId: contents
+  cost: 750
+  category: cargoproduct-category-name-medical
+  group: market
+
+- type: cargoProduct
+  id: WrappedParcelGalaxythistle
+  name: cargo-order-galaxythistleextract
+  icon:
+    sprite: Objects/Specific/Hydroponics/galaxythistle.rsi
+    state: produce
+  product: SealableBeakerGalaxythistle
+  container:
+    entity: WrappedParcel
+    containerId: contents
+  cost: 500
+  category: cargoproduct-category-name-medical
+  group: market

@@ -1176,3 +1176,46 @@
   - type: PressureProtection
     highPressureMultiplier: 0.45
     lowPressureMultiplier: 10000
+
+#region ## USSP ##
+- type: entity
+  parent: [ ClothingHeadHelmetHardsuitCap, BaseSovietContraband ]
+  id: ClothingHeadHelmetHardsuitAdmiral
+  name: Admiral's Hardsuit Helmet
+  suffix: USSP
+  description: Special hardsuit helmet, made for the Admiral of a USSP station.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Head/Hardsuits/USSP/admiral_ussp.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Head/Hardsuits/USSP/admiral_ussp.rsi
+  - type: PointLight
+    color: "#fccd7d"
+    radius: 3.5
+    energy: 5
+
+- type: entity
+  parent: [ ClothingHeadHelmetHardsuitSecurity, BaseSovietContraband ]
+  id: ClothingHeadHelmetHardsuitAegis
+  name: Aegis C-04 Hardsuit Helmet
+  suffix: USSP
+  description: Armored hardsuit helmet for the standard USSP soldier.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Head/Hardsuits/USSP/aegis_ussp.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Head/Hardsuits/USSP/aegis_ussp.rsi
+  - type: PointLight
+    color: "#fccd7d"
+
+- type: entity
+  parent: [ClothingHeadHelmetHardsuitMining, BaseSovietContraband]
+  id: ClothingHeadHelmetCygnianMiner
+  name: Cygnian Mining Hardsuit Helmet
+  suffix: USSP
+  description: Even the USSP realizes the dangers of space mining.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Head/Hardsuits/USSP/mining_ussp.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Head/Hardsuits/USSP/mining_ussp.rsi

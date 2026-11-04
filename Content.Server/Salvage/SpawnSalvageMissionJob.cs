@@ -33,7 +33,7 @@ using Content.Shared.Weather;
 
 namespace Content.Server.Salvage;
 
-public sealed class SpawnSalvageMissionJob : Job<bool>
+public sealed partial class SpawnSalvageMissionJob : Job<bool> //FH-Edit
 {
     private readonly IEntityManager _entManager;
     private readonly IGameTiming _timing;
@@ -245,6 +245,35 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
 
         var probSum = budgetEntries.Sum(x => x.Prob);
 
+        //FH-Start Add a min mob just in case you want x of a certain mob
+        var spawnCounts = new Dictionary<EntProtoId, int>();
+
+        foreach (var group in faction.MobGroups)
+        {
+            for (var i = 0; i < group.Min; i++)
+            {
+                if (group.Max != null && spawnCounts.GetValueOrDefault(group.Proto) >= group.Max)
+                    break;
+
+                try
+                {
+                    if (!await SpawnRandomEntry((mapUid, grid), group, dungeon, random))
+                        break;
+
+                    spawnCounts[group.Proto] = spawnCounts.GetValueOrDefault(group.Proto) + 1;
+                    mobBudget = Math.Max(0f, mobBudget - group.Cost);
+                }
+                catch (Exception e)
+                {
+                    _sawmill.Error($"Failed to spawn min mobs for {group.Proto}: {e}");
+                    break;
+                }
+            }
+        }
+        
+        RemoveMaxed(budgetEntries, spawnCounts, ref probSum);
+        //FH-End
+
         while (mobBudget > 0f)
         {
             var entry = randomSystem.GetBudgetEntry(ref mobBudget, ref probSum, budgetEntries, random);
@@ -253,7 +282,13 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
 
             try
             {
-                await SpawnRandomEntry((mapUid, grid), entry, dungeon, random);
+                //FH-Start 
+                if (!await SpawnRandomEntry((mapUid, grid), entry, dungeon, random))
+                    continue;
+
+                spawnCounts[entry.Proto] = spawnCounts.GetValueOrDefault(entry.Proto) + 1;
+                RemoveMaxed(budgetEntries, spawnCounts, ref probSum);
+                //FH-Start End
             }
             catch (Exception e)
             {
@@ -303,7 +338,8 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
         return true;
     }
 
-    private async Task SpawnRandomEntry(Entity<MapGridComponent> grid, IBudgetEntry entry, Dungeon dungeon, Random random)
+    //FH-Edit make it return true so we can count the mob toward spawn caps
+    private async Task<bool> SpawnRandomEntry(Entity<MapGridComponent> grid, IBudgetEntry entry, Dungeon dungeon, Random random)
     {
         await SuspendIfOutOfTime();
 
@@ -330,10 +366,10 @@ public sealed class SpawnSalvageMissionJob : Job<bool>
                 var uid = _entManager.SpawnAtPosition(entry.Proto, _map.GridTileToLocal(grid, grid, tile));
                 _entManager.RemoveComponent<GhostRoleComponent>(uid);
                 _entManager.RemoveComponent<GhostTakeoverAvailableComponent>(uid);
-                return;
+                return true; //FH-Edit
             }
         }
-
+        return false; //FH-Edit
         // oh noooooooooooo
     }
 

@@ -306,7 +306,7 @@
 - type: entity
   parent: [ClothingBeltMedical, ClothingBeltSecurity, BaseSecurityContraband]
   id: ClothingBeltBrigmedic
-  name: Brigmedic's Tactical Truama Belt
+  name: Brigmedic's Tactical Trauma Belt
   description: Has many small pouches and a few larger ones to hold life-saving supplies, or life-ending supplies depending on which side you're on.
   components:
   - type: Sprite
@@ -322,42 +322,44 @@
     - 12,1,12,1 #right - cube
     whitelist:
       tags:
-        - SecBeltEquip
-        - BrigmedicBeltEquip
-        - CigPack
-        - Taser
-        - Wrench
-        - Bottle
-        - Spray
-        - Brutepack
-        - Bloodpack
-        - AmmoniaPack
-        - Gauze
-        - Ointment
-        - PillCanister
-        - Radio
-        - DiscreteHealthAnalyzer
-        - SurgeryTool
-        - Dropper
-        - Truncheon
-        - Sidearm
-        - MagazinePistol
-        - MagazineMagnum
-        - Hypospray
-        - Medkit
-        - Vial
-        - ExternalContainerInjectorVial
+      - SecBeltEquip
+      - BrigmedicBeltEquip
+      - CigPack
+      - Taser
+      - Wrench
+      - Bottle
+      - Spray
+      - Brutepack
+      - Bloodpack
+      - AmmoniaPack
+      - Gauze
+      - Ointment
+      - PillCanister
+      - Radio
+      - DiscreteHealthAnalyzer
+      - SurgeryTool
+      - Dropper
+      - Truncheon
+      - Sidearm
+      - MagazinePistol
+      - MagazineMagnum
+      - Hypospray
+      - Medkit
+      - Vial
+      - ExternalContainerInjectorVial
+      - HoloflarePistol # FH
       components:
-        - Stunbaton
-        - FlashOnTrigger
-        - SmokeOnTrigger
-        - Flash
-        - Handcuff
-        - BallisticAmmoProvider
-        - Ammo
-        - Injector
-        - Pill
-        - HandLabeler
+      - Stunbaton
+      - FlashOnTrigger
+      - SmokeOnTrigger
+      - Flash
+      - Handcuff
+      - BallisticAmmoProvider
+      - Ammo
+      - Injector
+      - Pill
+      - HandLabeler
+      - Blocking # FH
   - type: Appearance
   - type: ExplosionResistance
     damageCoefficient: 0

@@ -473,7 +473,7 @@
       maxVisibility: 0.15
       lastVisibility: 0.15
   - type: PowerCellDraw
-    drawRate: 14 # roughly 200 seconds on the default cell
+    drawRate: 5.6 #FH-Edit Roughly the half the amount of the old duration
   - type: ToggleCellDraw
   - type: PowerCellSlot
     cellSlotId: cell_slot
@@ -486,8 +486,9 @@
     slots:
       cell_slot:
         name: power-cell-slot-component-slot-name-default
-        startingItem: PowerCellUltra
+        startingItem: PowerCellMicroreactor #FH
         disableEject: true
+        swap: false #FH
         whitelist:
           tags:
             - PowerCell
@@ -1300,3 +1301,44 @@
     damageCoefficient: 0.9
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitNtrepSyndi
+
+#region ## USSP ##
+- type: entity
+  parent: [ClothingOuterHardsuitCap, BaseSovietContraband]
+  id: ClothingOuterHardsuitAdmiral
+  name: Admiral's Armored Spacesuit
+  suffix: USSP
+  description: A formal armored spacesuit, made for the station's Admiral.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/USSP/admiral_ussp.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/USSP/admiral_ussp.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitAdmiral
+
+- type: entity
+  parent: [ClothingOuterHardsuitSecurity, BaseSovietContraband]
+  id: ClothingOuterHardsuitAegis
+  name: Aegis C-04 Armored Hardsuit
+  suffix: USSP
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/USSP/aegis_ussp.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/USSP/aegis_ussp.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitAegis
+
+- type: entity
+  parent: [ClothingOuterHardsuitMining, BaseSovietContraband]
+  id: ClothingOuterHardsuitCygnianMiner
+  name: Cygnian Mining Hardsuit
+  suffix: USSP
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/USSP/mining_ussp.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/OuterClothing/Hardsuits/USSP/mining_ussp.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetCygnianMiner

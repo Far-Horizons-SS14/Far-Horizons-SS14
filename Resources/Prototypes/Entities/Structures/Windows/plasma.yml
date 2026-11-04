@@ -10,8 +10,9 @@
   - type: Icon
     sprite: _FarHorizons/Structures/Windows/NanoTrasen/plasma_window.rsi # Far Horizons
   - type: Damageable
-    damageContainer: StructuralInorganic
     damageModifierSet: Glass
+  - type: Injurable
+    damageContainer: StructuralInorganic
   - type: Destructible
     thresholds:
     - trigger:

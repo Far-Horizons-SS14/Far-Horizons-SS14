@@ -35,8 +35,8 @@
   - type: BallisticAmmoProvider
     whitelist:
       tags:
-      - CartridgeLightRifle
-      - CartridgeLightRifleImprovised
+      - CartridgeRifle762 #FH
+      - CartridgeRifle762Improvised #FH
     capacity: 2
     proto: null
   - type: WeaponDismantleOnShoot
@@ -112,7 +112,7 @@
   name: Forged Repeater Rifle
   parent: WeaponSniperMakeshift
   id: WeaponSniperForged
-  description: The best a tider can achive, reliable fire-rate and accuracy with a satisfying lever-action system. What more can you ask for? Is fitted to be able to chamber both .30 / .44 #FH
+  description: The best a tider can achive, reliable fire-rate and accuracy with a satisfying lever-action system. What more can you ask for? Is fitted to be able to chamber both 7.62 / .44 #FH
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Guns/Snipers/forged_rifle.rsi
@@ -134,8 +134,8 @@
     capacity: 8
     whitelist:
       tags:
-      - CartridgeLightRifle
-      - CartridgeLightRifleImprovised
+      - CartridgeRifle762 #FH
+      - CartridgeRifle762Improvised #FH
       - CartridgeMagnum
       - CartridgeMagnumImprovised
   - type: WeaponDismantleOnShoot

@@ -1,6 +1,6 @@
 - type: entity
   name: small reinforced vial
-  parent: BaseItem
+  parent: [ BaseItem, SolutionBeaker, SolutionVeryTiny ]
   id: ReinforcedMiniatureEmptyChemistryVial
   description: A small vial made with blast-resistant glass.
   components:
@@ -28,10 +28,6 @@
     fillBaseName: vial-1-
     inHandsMaxFillLevels: 2
     inHandsFillBaseName: -fill-
-  - type: SolutionContainerManager
-    solutions:
-      beaker:
-        maxVol: 10
   - type: MixableSolution
     solution: beaker
   - type: RefillableSolution
@@ -73,16 +69,12 @@
 - type: entity
   name: reinforced vial
   id: ChemistryVialReinforced
-  parent: ReinforcedMiniatureEmptyChemistryVial
+  parent: [ SolutionNormal, ReinforcedMiniatureEmptyChemistryVial ]
   description: A small vial, now explosion proof.
   components:
   - type: Tag
     tags:
     - Vial
-  - type: SolutionContainerManager
-    solutions:
-      beaker:
-        maxVol: 40
   - type: Sprite
     sprite: _FarHorizons/Objects/Specific/Chemistry/reinforced_vial.rsi
     layers:
@@ -93,3 +85,5 @@
   - type: Item
     size: Tiny
     sprite: _FarHorizons/Objects/Specific/Chemistry/reinforced_vial.rsi
+  - type: TESTSolutionSizeNonStandard
+    reason: Reinforced vials are specifically an upgrade over the standard vials

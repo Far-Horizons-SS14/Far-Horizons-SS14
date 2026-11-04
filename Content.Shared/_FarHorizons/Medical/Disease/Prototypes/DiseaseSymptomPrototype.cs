@@ -89,13 +89,13 @@ public sealed partial class SymptomAirborneBurst
     /// Multiplier to disease airborne range for this burst.
     /// </summary>
     [DataField]
-    public float RangeMultiplier { get; private set; } = 1.0f;
+    public float RangeMultiplier { get; private set; } = 0.0f;
 
     /// <summary>
     /// Multiplier to disease airborne infection chance for this burst.
     /// </summary>
     [DataField]
-    public float ChanceMultiplier { get; private set; } = 1.0f;
+    public float ChanceMultiplier { get; private set; } = 0.0f;
 }
 
 /// <summary>
@@ -123,5 +123,5 @@ public abstract partial class SymptomBehavior
     /// <summary>
     /// Called when the symptom is triggered on the carrier.
     /// </summary>
-    public virtual void OnSymptom(Entity<DiseaseCarrierComponent> entity, DiseaseData disease, StageData stage, DiseaseSymptomPrototype symptom) { }
+    public virtual bool TryTriggerSymptom(Entity<DiseaseCarrierComponent> entity, DiseaseData disease, StageData stage, DiseaseSymptomPrototype symptom) => true;
 }

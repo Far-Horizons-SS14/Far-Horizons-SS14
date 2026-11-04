@@ -44,7 +44,7 @@
     state: medibot
   - type: HTN
     rootTask:
-      task: MedibotCompound
+      task: RealDocCompound #FH
   - type: Anchorable
   - type: InteractionPopup
     interactSuccessString: petting-success-medibot
@@ -58,8 +58,8 @@
   # starlight
   - type: WiresPanel
   - type: Wires
-    boardName: wires-board-name-medibot
-    layoutId: MedibotControls
+    boardName: wires-board-name-simple-bot # FH - change to unified simple bot wires
+    layoutId: SimpleBotControls # FH - change to unified simple bot wires
     alwaysRandomize: true
   - type: UserInterface
     interfaces:
@@ -67,6 +67,16 @@
         type: WiresBoundUserInterface
       enum.StrippingUiKey.Key:
         type: StrippableBoundUserInterface
+      # Far Horizons start
+      enum.SimpleBotConfigurationUiKey.Key:
+        type: SimpleBotConfigurationBoundUserInterface
+      # Far Horizons end
+  # Far Horizons start
+  - type: SimpleBotConfiguration
+  - type: PassivePower
+  - type: StationAiWhitelist
+  - type: ActivatableUIRequiresPower
+  # Far Horizons end
 
 - type: entity
   name: BrigKit
@@ -135,4 +145,3 @@
   - type: Tag
     tags:
     - Medkit
-

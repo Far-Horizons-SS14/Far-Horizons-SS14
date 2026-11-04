@@ -16,10 +16,9 @@
   - type: Item
     sprite: Objects/Specific/Medical/medical.rsi
     heldPrefix: bloodpack
-  - type: SolutionContainerManager
-    solutions:
-      injector:
-        maxVol: 10
+  - type: Solution
+    solution:
+      maxVol: 10
   - type: Healing
     solutionDrain: true
     reagentsToDrain:
@@ -31,7 +30,7 @@
     damage:
       types:
         Bloodloss: -10
-    modifyBloodLevel: 20 # ~ 6 per use / 60% recovered per pack / 6 uses = 40%, consumes 6u. Not exact but this is as close as I'm getting to 1-1. Small buff for bloodbags ig.
+    modifyBloodLevel: 36 # 6% per use / 60% recovered per pack / 1 to 1 blood healed with the injected chemical
     healingBeginSound:
       path: "/Audio/Items/Medical/brutepack_begin.ogg"
       params:
@@ -63,15 +62,13 @@
 - type: entity
   suffix: Filled
   parent: BloodpackEmpty
-  id: Bloodpack
+  id: Bloodpack 
   components:
-  - type: SolutionContainerManager
-    solutions:
-      injector:
-        maxVol: 10
-        reagents:
-        - ReagentId: UniversalBlood
-          Quantity: 10
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: UniversalBlood
+        Quantity: 10
 
 #region Amoxla Pack
 - type: entity
@@ -103,7 +100,7 @@
       types:
         Bloodloss: -6
         Asphyxiation: -7
-    modifyBloodLevel: 20 # ~ 6% per use
+    modifyBloodLevel: 36 # 6% per use / more healed than if injecting the chem but on par with the normal bloodpack
   - type: InteractRestriction 
     restrictInteractionTarget:
       blacklist:
@@ -131,13 +128,11 @@
   parent: BloodpackEmptyAmmonia
   id: BloodpackAmmonia
   components:
-  - type: SolutionContainerManager
-    solutions:
-      injector:
-        maxVol: 10
-        reagents:
-        - ReagentId: Amoxla
-          Quantity: 10
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Amoxla
+        Quantity: 10
 
 #region Oil Pack
 - type: entity
@@ -169,7 +164,7 @@
     damage:
       types:
         Bloodloss: -1
-    modifyBloodLevel: 20 # ~ 6% per use
+    modifyBloodLevel: 20 # ~ 6.6% per use / IPC have 300u of blood instead of 600u like everyone else so this needs to be lower
   - type: InteractRestriction 
     restrictInteractionTarget:
       blacklist:  # All species but IPC.
@@ -197,13 +192,11 @@
   parent: BloodpackEmptyOil
   id: BloodpackOil
   components:
-  - type: SolutionContainerManager
-    solutions:
-      injector:
-        maxVol: 10
-        reagents:
-        - ReagentId: Oil
-          Quantity: 10
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Oil
+        Quantity: 10
 
 #region Pills
 - type: entity
@@ -243,13 +236,11 @@
   components:
   - type: Label
     currentLabel: reagent-name-amoxla
-  - type: SolutionContainerManager
-    solutions:
-      injector:
-        maxVol: 15
-        reagents:
-          - ReagentId: Amoxla
-            Quantity: 15
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Amoxla
+        Quantity: 15
 
 - type: entity
   suffix: Chloral Hydrate
@@ -258,13 +249,11 @@
   components:
   - type: Label
     currentLabel: reagent-name-chloral-hydrate 
-  - type: SolutionContainerManager
-    solutions:
-      injector:
-        maxVol: 15
-        reagents:
-          - ReagentId: ChloralHydrate
-            Quantity: 15
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: ChloralHydrate
+        Quantity: 15
 
 #region Blue Ointment
 - type: entity
@@ -287,10 +276,9 @@
     size: Small
     sprite: _FarHorizons/Objects/Specific/Medical/blue_ointment.rsi
     heldPrefix: ointment
-  - type: SolutionContainerManager
-    solutions:
-      injector:
-        maxVol: 20
+  - type: Solution
+    solution:
+      maxVol: 20
   - type: Healing
     solutionDrain: true
     reagentsToDrain:
@@ -315,6 +303,8 @@
       params:
         volume: 1.0
         variation: 0.125
+    damageCaps: 
+      Burn: 400
   - type: SolutionContainerVisuals
     maxFillLevels: 6
     fillBaseName: ointment
@@ -346,13 +336,11 @@
   parent: BlueOintmentEmpty
   id: BlueOintment
   components:
-  - type: SolutionContainerManager
-    solutions:
-      injector:
-        maxVol: 20
-        reagents:
-        - ReagentId: BurnCreamBlue
-          Quantity: 20
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: BurnCreamBlue
+        Quantity: 20
 
 #region Aloe Vera
 - type: entity
@@ -375,10 +363,9 @@
     size: Small
     sprite: _FarHorizons/Objects/Specific/Medical/green_ointment.rsi
     heldPrefix: ointment
-  - type: SolutionContainerManager
-    solutions:
-      injector:
-        maxVol: 10
+  - type: Solution
+    solution:
+      maxVol: 10
   - type: Healing
     solutionDrain: true
     reagentsToDrain:
@@ -403,6 +390,8 @@
       params:
         volume: 1.0
         variation: 0.125
+    damageCaps: 
+      Burn: 400
   - type: SolutionContainerVisuals
     maxFillLevels: 8
     fillBaseName: ointment
@@ -435,13 +424,11 @@
   parent: AloeCreamEmpty
   id: AloeCream
   components:
-  - type: SolutionContainerManager
-    solutions:
-      injector:
-        maxVol: 10
-        reagents:
-        - ReagentId: AloeVeraCream
-          Quantity: 10
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: AloeVeraCream
+        Quantity: 10
 
 #region Ointment
 - type: entity
@@ -464,10 +451,9 @@
     size: Small
     sprite: _FarHorizons/Objects/Specific/Medical/ointment.rsi
     heldPrefix: ointment
-  - type: SolutionContainerManager
-    solutions:
-      injector:
-        maxVol: 20
+  - type: Solution
+    solution:
+      maxVol: 20
   - type: Healing
     solutionDrain: true
     reagentsToDrain:
@@ -492,6 +478,8 @@
       params:
         volume: 1.0
         variation: 0.125
+    damageCaps: 
+      Burn: 400
   - type: SolutionContainerVisuals
     maxFillLevels: 6
     fillBaseName: ointment
@@ -523,26 +511,22 @@
   parent: OintmentEmpty
   id: Ointment
   components:
-  - type: SolutionContainerManager
-    solutions:
-      injector:
-        maxVol: 20
-        reagents:
-        - ReagentId: BurnCream
-          Quantity: 20
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: BurnCream
+        Quantity: 20
 
 - type: entity
   suffix: One Use
   parent: OintmentEmpty
   id: Ointment1 # Leftover to keep maps from breaking, and also fit with "only one use" for said maps.
   components:
-  - type: SolutionContainerManager
-    solutions:
-      injector:
-        maxVol: 10
-        reagents:
-        - ReagentId: BurnCream
-          Quantity: 1
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: BurnCream
+        Quantity: 1
 
 #region Brute Pack
 - type: entity
@@ -596,6 +580,8 @@
       params:
         volume: 1.0
         variation: 0.125
+    damageCaps: 
+      Brute: 400
   - type: StackPrice
     price: 5
   - type: InteractRestriction
@@ -678,6 +664,8 @@
       params:
         volume: 1.0
         variation: 0.125
+    damageCaps: 
+      Brute: 400
   - type: StackPrice
     price: 5
   - type: InteractRestriction
@@ -770,6 +758,8 @@
       params:
         volume: 1.0
         variation: 0.125
+    damageCaps:
+      Brute: 400
   - type: StackPrice
     price: 5
   - type: InteractRestriction
@@ -852,6 +842,8 @@
       params:
         volume: 1.0
         variation: 0.125
+    damageCaps: 
+      Brute: 400
   - type: StackPrice
     price: 5
   - type: InteractRestriction
@@ -934,6 +926,8 @@
       params:
         volume: 1.0
         variation: 0.125
+    damageCaps: 
+      Brute: 400
   - type: StackPrice
     price: 5
   - type: InteractRestriction
@@ -976,13 +970,11 @@
     state: pill12
   - type: Label
     currentLabel: ibuprofen 5u
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 20
-        reagents:
-        - ReagentId: Ibuprofen
-          Quantity: 5
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Ibuprofen
+        Quantity: 5
 
 - type: entity
   name: Pill Canister

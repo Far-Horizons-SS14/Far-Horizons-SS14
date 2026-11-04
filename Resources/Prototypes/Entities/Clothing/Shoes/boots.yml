@@ -81,7 +81,7 @@
         variation: 0.09
 
 - type: entity
-  parent: ClothingShoesMilitaryBase
+  parent: [ ClothingShoesMilitaryBase ]
   id: ClothingShoesBootsMerc
   name: Mercenary Boots #Far Horizons - The Great Capitalization Crusade
   description: Boots that have gone through many conflicts and that have proven their combat reliability.
@@ -90,6 +90,8 @@
     sprite: Clothing/Shoes/Boots/mercboots.rsi
   - type: Clothing
     sprite: Clothing/Shoes/Boots/mercboots.rsi
+  - type: ClothingSlowOnDamageModifier
+    modifier: 0.5
 
 - type: entity
   parent: ClothingShoesBaseButcherable
@@ -190,13 +192,11 @@
       - cobwebs
     ignoreReagents:
       - Fiber
-  - type: SolutionContainerManager
-    solutions: # 6 (3 (fiber count of web) * 2 (to craft)) + 4 (magical crafting bonus)
-      food:
-        maxVol: 10
-        reagents:
-        - ReagentId: Fiber
-          Quantity: 10
+  - type: Solution
+    solution: # 20 (10 (fiber count of web) * 2 (to craft))
+      reagents:
+      - ReagentId: Fiber
+        Quantity: 20
   - type: Butcherable
     spawned:
     - id: MaterialWebSilk1

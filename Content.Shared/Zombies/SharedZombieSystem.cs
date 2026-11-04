@@ -20,7 +20,7 @@ public abstract class SharedZombieSystem : EntitySystem
 
     private void OnResistanceQuery(Entity<ZombificationResistanceComponent> ent, ref InventoryRelayedEvent<ZombificationResistanceQueryEvent> query)
     {
-        query.Args.TotalCoefficient *= ent.Comp.ZombificationResistanceCoefficient;
+        query.Args.TotalCoefficient -= 1f - ent.Comp.ZombificationResistanceCoefficient;
     }
 
     private void OnArmorExamine(Entity<ZombificationResistanceComponent> ent, ref ArmorExamineEvent args)

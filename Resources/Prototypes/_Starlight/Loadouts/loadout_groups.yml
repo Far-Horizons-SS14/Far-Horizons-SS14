@@ -287,12 +287,18 @@
   id: SecuritySidearm
   name: loadout-group-security-sidearm
   loadouts:
-  - SecurityPistolMk58 # FarHorizons
-  - SecurityMKT # FarHorizons
-  #- SecurityPistolDP //Far Horizons Change
-  #- SecurityPistolEnforcer //Far Horizons Change
-  - SecurityRevolverInstigatorcustom # FarHorizons
-  - SecurityRevolverInstigator # FarHorizons
+#FH Edit - Start
+# Default - Important for Salvage for this to be at the top
+  - SecurityMKT
+  - SecurityRevolverInstigator
+  #- SecurityPistolDP
+  #- SecurityPistolEnforcer
+# Prestige Weapons
+  - SecurityRevolverInstigatorcustom
+  - SecurityPistolMk58
+  - LeverActionModel2325Pistol
+  - RevolverIndomitable
+#FH Edit - End
 
 # Assorted Boots
 - type: loadoutGroup

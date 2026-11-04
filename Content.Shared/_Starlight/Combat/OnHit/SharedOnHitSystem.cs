@@ -17,7 +17,7 @@ using Content.Shared.FixedPoint;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
-using Content.Shared._FarHorizons.Vehicles.Components;
+using Content.Shared._FarHorizons.Vehicles; //FH
 
 namespace Content.Shared._Starlight.Combat.OnHit;
 

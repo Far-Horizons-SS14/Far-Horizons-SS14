@@ -1,4 +1,4 @@
-using Content.Shared._FarHorizons.Vehicles.Components; // FarHorizons
+using Content.Shared._FarHorizons.Vehicles; // FarHorizons
 using Content.Shared.Damage.Systems;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Stunnable;

@@ -23,7 +23,7 @@ using Robust.Shared.Random;
 using Content.Shared.Mech.Components;
 using Robust.Server.GameObjects;
 #endregion Starlight
-using Content.Shared._FarHorizons.Vehicles.Components; //FarHorizons
+using Content.Shared._FarHorizons.Vehicles; //FarHorizons
 
 namespace Content.Server.Weapons.Ranged.Systems;
 

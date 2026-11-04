@@ -11,6 +11,8 @@
   - MagazineCanisterRifle556Practice
   - MagazineCanisterMagnumPractice
   - SpeedLoaderMagnumPractice
+  - MagazineRifle762PanPractice
+  - MagazinePistolSubMachineGunPPSHPractice
 ######################CANISTER#######################
 # Pistol
   - MagazineCanisterPistolRubber
@@ -19,11 +21,11 @@
   - MagazineCanisterPistolFMJ
   - MagazineCanisterPistol
 # Light Rifle
-  - MagazineCanisterLightRifleRubber
-  - MagazineCanisterLightRifleSP 
-  - MagazineCanisterLightRifleHP
-  - MagazineCanisterLightRifleFMJ
-  - MagazineCanisterLightRifle
+  - MagazineCanisterRifle762Rubber
+  - MagazineCanisterRifle762SP 
+  - MagazineCanisterRifle762HP
+  - MagazineCanisterRifle762FMJ
+  - MagazineCanisterRifle762
 # Rifle
   - MagazineCanisterRifle556Rubber
   - MagazineCanisterRifle556SP
@@ -51,10 +53,17 @@
   - MagazineCanisterShotgun12GPractice
   - MagazineCanisterShotgun12GFlare
 ######################BOX#######################
+# 7.92
+  - MagazineBoxRifle792
+  - MagazineBoxRifle792HP
+  - MagazineBoxRifle792SP
+  - MagazineBoxRifle792FMJ
+  - MagazineBoxRifle792Practice
+  - MagazineBoxRifle792Rubber
 # Light Rifle
-  - MagazineBoxLightRifleSP
-  - MagazineBoxLightRifleHP
-  - MagazineBoxLightRifleFMJ
+  - MagazineBoxRifle762SP
+  - MagazineBoxRifle762HP
+  - MagazineBoxRifle762FMJ
 # Rifle
   - MagazineBoxRifle556Rubber
   - MagazineBoxRifle556SP
@@ -108,13 +117,24 @@
   - SpeedLoaderRevolver38SP
   - SpeedLoaderRevolver38HP
   - SpeedLoaderRevolver38FMJ
-# Light Rifle
-  - MagazineLightRifleSP
-  - MagazineLightRifleHP
-  - MagazineLightRifleFMJ
-  - MagazineLightRifleMaxim
-  - SpeedLoaderLightRifle
-  - MagazineLightRifleEmpty
+# 7.92
+  - SpeedLoaderRifle792
+  - SpeedLoaderRifle792HP
+  - SpeedLoaderRifle792SP
+  - SpeedLoaderRifle792FMJ
+  - SpeedLoaderRifle792Practice
+  - SpeedLoaderRifle792Rubber
+# 7.62
+  - MagazineRifle762SP
+  - MagazineRifle762HP
+  - MagazineRifle762FMJ
+  - MagazineRifle762Empty
+# 7.62 - Pan
+  - MagazineRifle762PanEmpty
+  - MagazineRifle762PanHP
+  - MagazineRifle762Maxim
+  - MagazineRifle762PanFMJ
+  - MagazineRifle762PanRubber
 # Rifle
   - MagazineRifle38Empty 
   - MagazineRifle38SP 
@@ -158,7 +178,13 @@
   - MagazinePistolSubMachineGunFMJ
   - MagazinePistolSubMachineGunEmpty
   - MagazinePistolSubMachineGunUzi
+# SMG - Drum
   - MagazinePistolSubMachineGunPPSH
+  - MagazinePistolSubMachineGunPPSHEmpty
+  - MagazinePistolSubMachineGunPPSHRubber
+  - MagazinePistolSubMachineGunPPSHHP
+  - MagazinePistolSubMachineGunPPSH
+  - MagazinePistolSubMachineGunPPSHFMJ
 # LMG
   - Rifle556HeavyMagazinePractice
   - Rifle556HeavyMagazineRubber
@@ -174,9 +200,9 @@
   recipes:
 ######################CANISTER#######################
 # Light Rifle
-  - MagazineCanisterLightRifleIncendiary
-  - MagazineCanisterLightRifleUranium
-  - MagazineCanisterLightRifleAP
+  - MagazineCanisterRifle762Incendiary
+  - MagazineCanisterRifle762Uranium
+  - MagazineCanisterRifle762AP
 # Pistol
   - MagazineCanisterPistolIncendiary
   - MagazineCanisterPistolUranium
@@ -198,10 +224,14 @@
   - MagazineCanisterShotgun12GUranium
   - MagazineCanisterShotgun12GUraniumFlechette
 #####################BOX#######################
+# 7.92
+  - MagazineBoxRifle792Incendiary
+  - MagazineBoxRifle792Uranium
+  - MagazineBoxRifle792AP
 # Light Rifle
-  - MagazineBoxLightRifleIncendiary
-  - MagazineBoxLightRifleUranium
-  - MagazineBoxLightRifleAP
+  - MagazineBoxRifle762Incendiary
+  - MagazineBoxRifle762Uranium
+  - MagazineBoxRifle762AP
 # Magnum
   - MagazineBoxMagnumIncendiary
   - MagazineBoxMagnumUranium
@@ -227,10 +257,18 @@
   - Rifle556HeavyMagazineIncendiary
   - Rifle556HeavyMagazineUranium
   - Rifle556HeavyMagazineAP
-# Light Rifle
-  - MagazineLightRifleIncendiary
-  - MagazineLightRifleUranium
-  - MagazineLightRifleAP
+# 7.92
+  - SpeedLoaderRifle792Incendiary
+  - SpeedLoaderRifle792Uranium
+  - SpeedLoaderRifle792AP
+# 7.62
+  - MagazineRifle762Incendiary
+  - MagazineRifle762Uranium
+  - MagazineRifle762AP
+# 7.62 - Pan
+  - MagazineRifle762PanIncendiary
+  - MagazineRifle762PanUranium
+  - MagazineRifle762PanAP
 # Magnum
   - SpeedLoaderMagnumIncendiary
   - SpeedLoaderMagnumUranium
@@ -253,6 +291,10 @@
   - MagazinePistolSubMachineGunIncendiary
   - MagazinePistolSubMachineGunUranium
   - MagazinePistolSubMachineGunAP
+# SMG - Drum
+  - MagazinePistolSubMachineGunPPSHIncendiary
+  - MagazinePistolSubMachineGunPPSHUranium
+  - MagazinePistolSubMachineGunPPSHAP
 # Rifle
   - MagazineRifle38Incendiary 
   - MagazineRifle38Uranium  

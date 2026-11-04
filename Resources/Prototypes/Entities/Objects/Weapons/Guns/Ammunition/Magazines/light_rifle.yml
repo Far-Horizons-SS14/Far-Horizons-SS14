@@ -1,19 +1,19 @@
 # Empty mags
 - type: entity
-  id: BaseMagazineLightRifle
+  id: BaseMagazineRifle762 #FH
   parent: [ BaseItem, BaseSecurityContraband ]
   abstract: true
-  name: "magazine (.30 rifle)"
+  name: "magazine (7.62 rifle)" #FH
   components:
   - type: Tag
     tags:
-      - MagazineLightRifle
+      - MagazineRifle762 #FH
   - type: BallisticAmmoProvider
     mayTransfer: true
     whitelist:
       tags:
-        - CartridgeLightRifle
-    proto: CartridgeLightRifleSP
+        - CartridgeRifle762 #FH
+    proto: CartridgeRifle762SP #FH
     capacity: 30
   - type: Item
     size: Small
@@ -21,7 +21,7 @@
     containers:
       ballistic-ammo: !type:Container
   - type: Sprite
-    sprite: Objects/Weapons/Guns/Ammunition/Magazine/LightRifle/light_rifle_mag.rsi
+    sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Magazine/Rifle/akms.rsi #FH
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -35,20 +35,30 @@
 
 # Magazines
 - type: entity
-  id: MagazineLightRifleBoxSP
-  name: L6 SAW magazine box (.30 rifle SP)
-  parent: BaseMagazineLightRifle
-  description: Box containing a 100-round belt of linked .30 rifle rounds, used by light machine guns such as the L6. Intended to hold general-purpose kinetic ammunition.
+#FH Edit - Start
+  id: MagazineRifle762BoxSP
+  name: L6 SAW Magazine Box (7.62 rifle SP)
+  parent: BaseMagazineRifle762
+  description: Box containing a 100-round belt of linked 7.62 rifle rounds, used by light machine guns such as the L6. Intended to hold general-purpose kinetic ammunition.
+#FH Edit - End
   components:
   - type: Tag
     tags:
-      - MagazineLightRifleBox
+      - MagazineRifle762Box #FH
   - type: BallisticAmmoProvider
-    proto: CartridgeLightRifleSP
+    proto: CartridgeRifle762SP #FH
     capacity: 100
   - type: Item
   - type: Sprite
-    sprite: Objects/Weapons/Guns/Ammunition/Magazine/LightRifle/light_rifle_box.rsi
+#FH Edit - Start
+    sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Magazine/LMG/7.62.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: sp
+#FH Edit - End
   - type: MagazineVisuals
     magState: mag
     steps: 8
@@ -57,10 +67,13 @@
 
 
 - type: entity
-  id: MagazineLightRifleEmpty
-  name: "magazine (.30 rifle any)"
+#FH Edit - Start
+  id: MagazineRifle762Empty
+  name: "7.62 Magazine (Rifle Any)"
   suffix: empty
-  parent: MagazineLightRifleSP
+  parent: MagazineRifle762SP
+  description: Curved 30-round double stack magazine for combat rifles.
+#FH Edit - End
   components:
   - type: BallisticAmmoProvider
     proto: null
@@ -72,169 +85,123 @@
       map: ["enum.GunVisualLayers.Mag"]
 
 - type: entity
-  id: MagazineLightRifleSP
-  name: "magazine (.30 rifle SP)"
-  parent: BaseMagazineLightRifle
+#FH Edit - Start
+  id: MagazineRifle762SP
+  name: "7.62 Magazine (Rifle SP)"
+  parent: BaseMagazineRifle762 
+  description: Curved 30-round double stack magazine for combat rifles. Holds Soft-Point 7.62 rounds, effective against lightly-armored targets.
+#FH Edit - End
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgeLightRifleSP
+    proto: CartridgeRifle762SP #FH
   - type: Sprite
     layers:
+#FH Edit - Start
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
     - state: sp
-      map: ["enum.GunVisualLayers.Base"]
+#FH Edit - End
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
 
 
 - type: entity
-  id: MagazineLightRifleHP
-  name: "magazine (.30 rifle HP)"
-  parent: BaseMagazineLightRifle
-  description: Curved 30-round double stack magazine for combat rifles. Intended to hold general-purpose kinetic ammunition.
+#FH Edit - Start
+  parent: BaseMagazineRifle762
+  id: MagazineRifle762Practice
+  name: "7.62 Magazine (Rifle Practice)"
+  description: Curved 30-round double stack magazine for combat rifles. Holds Chalk-Loaded 7.62 Rifle rounds, used for target practice.
+#FH Edit - End
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgeLightRifleHP
+    proto: CartridgeRifle762Practice #FH
   - type: Sprite
     layers:
+#FH Edit - Start
     - state: base
       map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-  - type: Item
-    inhandVisuals:
-      left:
-      - state: inhand-left-mag
-      right:
-      - state: inhand-right-mag
-
-
-- type: entity
-  id: MagazineLightRifleFMJ
-  name: "magazine (.30 rifle FMJ)"
-  parent: BaseMagazineLightRifle
-  components:
-  - type: BallisticAmmoProvider
-    proto: CartridgeLightRifleFMJ
-  - type: Sprite
-    layers:
-    - state: fmj
-      map: ["enum.GunVisualLayers.Base"]
+    - state: practice
+#FH Edit - End
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
 
 - type: entity
-  id: MagazineLightRifleAP
-  name: "magazine (.30 rifle AP)"
-  parent: BaseMagazineLightRifle
+#FH Edit - Start
+  parent: BaseMagazineRifle762
+  id: MagazineRifle762Uranium
+  name: "7.62 Magazine (Rifle Uranium)"
+  description: Curved 30-round double stack magazine for combat rifles. Holds Uranium-Core 7.62 Rifle rounds. Delivers radiation poisoning on contact.
+#FH Edit - End
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgeLightRifleAP
+    proto: CartridgeRifle762Uranium #FH
   - type: Sprite
     layers:
-    - state: ap
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-  - type: Item
-    inhandVisuals:
-      left:
-      - state: inhand-left-mag
-      right:
-      - state: inhand-right-mag
-
-- type: entity
-  parent: BaseMagazineLightRifle
-  id: MagazineLightRiflePractice
-  name: "magazine (.30 rifle practice)"
-  description: Curved 30-round double stack magazine for combat rifles. Intended to hold harmless practice ammunition.
-  components:
-  - type: BallisticAmmoProvider
-    proto: CartridgeLightRiflePractice
-  - type: Sprite
-    layers:
+#FH Edit - Start
     - state: base
       map: ["enum.GunVisualLayers.Base"]
+    - state: uranium
+#FH Edit - End
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
-    - state: stripe
-      color: "#dbdbdb"
-  - type: Item
-    inhandVisuals:
-      left:
-      - state: inhand-left-mag
-      - state: inhand-left-stripe
-        color: "#dbdbdb"
-      right:
-      - state: inhand-right-mag
-      - state: inhand-right-stripe
-        color: "#dbdbdb"
 
 - type: entity
-  parent: BaseMagazineLightRifle
-  id: MagazineLightRifleUranium
-  name: "magazine (.30 rifle uranium)"
-  description: Curved 30-round double stack magazine for combat rifles. Intended to hold exotic uranium-core ammunition.
+#FH Edit - Start
+  id: MagazineRifle762Incendiary
+  name: "7.62 Magazine (Rifle Incendiary)"
+  parent: BaseMagazineRifle762
+  description: Curved 30-round double stack magazine for combat rifles. Holds Self-Igniting 7.62 Rifle rounds. Burns people alive.
+#FH Edit - End
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgeLightRifleUranium
+    proto: CartridgeRifle762Incendiary #FH
   - type: Sprite
     layers:
+#FH Edit - Start
     - state: base
       map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-    - state: stripe
-      color: "#00cd42"
-  - type: Item
-    inhandVisuals:
-      left:
-      - state: inhand-left-mag
-      - state: inhand-left-stripe
-        color: "#00cd42"
-      right:
-      - state: inhand-right-mag
-      - state: inhand-right-stripe
-        color: "#00cd42"
-
-- type: entity
-  id: MagazineLightRifleIncendiary
-  name: "magazine (.30 rifle incendiary)"
-  parent: BaseMagazineLightRifle
-  description: Curved 30-round double stack magazine for combat rifles. Intended to hold self-igniting incendiary ammunition.
-  components:
-  - type: BallisticAmmoProvider
-    proto: CartridgeLightRifleIncendiary
-  - type: Sprite
-    layers:
     - state: incendiary
-      map: ["enum.GunVisualLayers.Base"]
+#FH Edit - End
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
 
 - type: entity
-  id: MagazineLightRifleMaxim
-  name: "pan magazine (.30 rifle)"
-  parent: BaseMagazineLightRifle
+#FH Edit - Start
+  id: MagazineRifle762Maxim
+  name: "Pan Magazine (7.62 Rifle SP)"
+  parent: BaseMagazineRifle762Pan
+  description: Antiquated and impractical, not to mention unreasonably large. Does not hold up properly to modern LMG magazines, but for your purposes, it'll do you just fine. Holds Soft-Point 7.62 bullets, good against lightly armored targets.
+#FH Edit - End
   components:
   - type: Tag
     tags:
-      - MagazineLightRiflePan
+      - MagazineRifle762Pan #FH
   - type: BallisticAmmoProvider
-    proto: CartridgeLightRifleSP
+    proto: CartridgeRifle762SP #FH
     capacity: 47
   - type: Sprite
-    sprite: Objects/Weapons/Guns/Ammunition/Magazine/LightRifle/maxim.rsi
+#FH Edit - Start
+#    sprite: _FarHorizons/Objects/Weapons/Guns/Ammunition/Magazine/LMG/dp28.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: sp
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+#FH Edit - End
 
 - type: entity
-  id: MagazineLightRiflePkBox
-  name: "PK munitions box (.30 rifle)"
-  parent: BaseMagazineLightRifle
+#FH Edit - Start
+  id: MagazineRifle762PkBox
+  name: "PK munitions box (7.62 rifle)"
+  parent: BaseMagazineRifle762
+#FH Edit - End
   components:
   - type: Tag
     tags:
-      - MagazineLightRifleBox
+      - MagazineRifle762Box #FH
   - type: BallisticAmmoProvider
-    proto: CartridgeLightRifleSP
+    proto: CartridgeRifle762SP #FH
     capacity: 80
   - type: Sprite
     layers:
@@ -242,15 +209,15 @@
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
-    - state: stripe
-      color: "#ff6e52"
+#    - state: stripe - FH
+#      color: "#ff6e52" - FH
   - type: Item
     inhandVisuals:
       left:
       - state: inhand-left-mag
-      - state: inhand-left-stripe
-        color: "#ff6e52"
+#      - state: inhand-left-stripe - FH
+#        color: "#ff6e52" - FH
       right:
       - state: inhand-right-mag
-      - state: inhand-right-stripe
-        color: "#ff6e52"
+#      - state: inhand-right-stripe - FH
+#        color: "#ff6e52" - FH

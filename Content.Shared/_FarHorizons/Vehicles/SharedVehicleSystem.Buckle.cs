@@ -1,17 +1,25 @@
-using Content.Shared._FarHorizons.Vehicles.Components;
-using Content.Shared.Movement.Components;
-using Content.Shared._FarHorizons.Vehicles.Events;
 using Content.Shared.Buckle.Components;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Popups;
 using Content.Shared.DoAfter;
 using Content.Shared.Wieldable.Components;
 using Content.Shared.Wieldable;
+using Content.Shared.Clothing;
+using Content.Shared.Inventory;
 
 namespace Content.Shared._FarHorizons.Vehicles;
 
 public abstract partial class SharedVehicleSystem
 {    
+    public const SlotFlags WeightSlots =
+        SlotFlags.FEET |
+        SlotFlags.HEAD |
+        SlotFlags.EYES |
+        SlotFlags.GLOVES |
+        SlotFlags.MASK |
+        SlotFlags.NECK |
+        SlotFlags.INNERCLOTHING |
+        SlotFlags.OUTERCLOTHING;
     [Dependency] protected MovementSpeedModifierSystem _movementSpeed = default!;
     [Dependency] protected SharedWieldableSystem _wield = default!;
     public void InitializeBuckle()
@@ -25,8 +33,7 @@ public abstract partial class SharedVehicleSystem
 
     private void OnStrapped(Entity<VehicleBuckleComponent> ent, ref StrappedEvent args)
     {
-        if(!TryComp<VehicleComponent>(ent, out var vehicleComp)) return;
-        SetUpRider(args.Buckle.Owner, ent.Owner, vehicleComp);
+        SetUpRider(args.Buckle.Owner, ent.Owner);
         foreach(var held in _handsSystem.EnumerateHeld(args.Buckle.Owner))
         {
             if(TryComp<WieldableComponent>(held, out var wieldComp))
@@ -66,11 +73,9 @@ public abstract partial class SharedVehicleSystem
     }
 
     private void OnUnstrapped(Entity<VehicleBuckleComponent> ent, ref UnstrappedEvent args)
-    {
-        if(!TryComp<VehicleComponent>(ent, out var vehicleComp)) return;
-                
+    {                
         if(HasComp<RiderComponent>(args.Buckle.Owner))
-            RemoveRider(args.Buckle.Owner, ent.Owner, vehicleComp);
+            RemoveRider(args.Buckle.Owner, ent.Owner);
     }
 
     private void OnUnbuckleDoAfter(Entity<VehicleBuckleComponent> ent, ref VehicleUnbuckleDoAfter args)
@@ -87,7 +92,9 @@ public abstract partial class SharedVehicleSystem
     {
         if(!ent.Comp.armoraffectsvehicle) return;
         if(!TryComp<VehicleComponent>(ent.Owner, out var vehicleComp) || vehicleComp.Rider == null) return;
-        if(!TryComp<MovementSpeedModifierComponent>(vehicleComp.Rider.Value, out var msmComp)) return;
-        args.ModifySpeed(msmComp.WalkSpeedModifier, msmComp.SprintSpeedModifier);
+         
+        var clothingSpeedEv = new ClothingSpeedModifierQueryEvent(WeightSlots);
+        RaiseLocalEvent(vehicleComp.Rider.Value, clothingSpeedEv);
+        args.ModifySpeed(clothingSpeedEv.TotalWalkCoefficient, clothingSpeedEv.TotalSprintCoefficient);
     }
 }

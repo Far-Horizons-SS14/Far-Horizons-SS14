@@ -26,7 +26,7 @@ public interface ISharedFactionManager
     public IEnumerable<FactionPrototype> ListSpawnableFactions();
     public IEnumerable<ProtoId<FactionPrototype>> ListSpawnableFactionIDs();
     public IEnumerable<FactionDepartmentAssignmentPrototype> ListFactionDepartments();
-    public IEnumerable<FactionJobAssignmentPrototype> ListFactionJobs();
+    public IEnumerable<FactionJobAssignmentPrototype> ListFactionJobs(bool showHidden = false);
 
     public bool TryFindFaction(string search, out FactionPrototype? faction);
 

@@ -390,7 +390,8 @@
     attackType: Heavy
 
 
-#region = Syndicate =
+#region =Syndicate=
+
 
 
 
@@ -432,10 +433,13 @@
     tags:
       - CyberHandItem
 
-#region = consortium =
+#region =Consortium=
 
-#region consortium
 
+
+
+
+#region H6 Uzi
 - type: entity
   name: Type H6 Uzi
   parent: [BaseWeaponSubMachineGun, BaseMajorContraband]
@@ -489,3 +493,73 @@
         whitelist:
           tags:
             - CartridgePistol
+
+#region =Soviet=
+
+
+
+
+
+#region PPSH
+- type: entity
+  name: PPSh-59
+  parent: [BaseWeaponSubMachineGun, BaseSovietContraband]
+  id: WeaponSubMachineGunPPSH
+  description: Beloved by USSP veterans and feared by friendly fire protocols everywhere. Uses specially manufactured PPSh 9mm drums.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Objects/Weapons/Guns/SMGs/PPSh59/ppsh59_x64x32.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    sprite: _FarHorizons/Objects/Weapons/Guns/SMGs/PPSh59/ppsh59_x32.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Objects/Weapons/Guns/SMGs/PPSh59/ppsh59_x32.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: Wieldable
+    unwieldOnUse: false
+  - type: GunWieldBonus
+    minAngle: -9
+    maxAngle: -9
+  - type: Gun
+    minAngle: 21
+    maxAngle: 32
+    fireRate: 8
+    selectedMode: FullAuto
+    availableModes:
+    - SemiAuto
+    - FullAuto
+    soundGunshot:
+      path: /Audio/_Starlight/Weapons/Guns/Gunshots/ppsh.ogg
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazinePistolSubMachineGunPPSH
+        insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazineSMGPPSH
+        whitelistFailPopup: gun-magazine-whitelist-fail
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgePistolSP
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgePistol
+  - type: UseDelay
+    delay: 1 #Drum mag makes it unwieldly

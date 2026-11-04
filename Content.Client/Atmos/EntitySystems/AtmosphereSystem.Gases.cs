@@ -46,10 +46,10 @@ public sealed partial class AtmosphereSystem
     public override float GetMass(float[] moles)
     {
         var tmp = new float[moles.Length];
-        TensorPrimitives.Multiply(moles, GasMolarMasses, tmp);
+        NumericsHelpers.Multiply(moles, GasMolarMasses, tmp);
 
         // Conversion of grams to kilograms.
-        return TensorPrimitives.Sum(tmp) * Atmospherics.gToKg;
+        return NumericsHelpers.HorizontalAdd(tmp) * Atmospherics.gToKg;
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]

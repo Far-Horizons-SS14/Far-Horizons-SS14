@@ -19,7 +19,7 @@ using Content.Shared.Mech.Components;
 using Robust.Shared.Prototypes;
 using Content.Shared._Starlight.NullSpace;
 
-using Content.Shared._FarHorizons.Vehicles.Components;
+using Content.Shared._FarHorizons.Vehicles;
 using Content.Shared._FarHorizons.LimbDamage;
 using Content.Shared._FarHorizons.LimbDamage.Components;
 #endregion Starlight

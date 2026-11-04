@@ -34,7 +34,9 @@ public sealed partial class SharedDiseaseSymptomSystem : EntitySystem
         void RunSingleBehavior(SymptomBehavior behavior)
         {
             deps.InjectDependencies(behavior);
-            behavior.OnSymptom(ent, disease, stage, symptom);
+            if(behavior.TryTriggerSymptom(ent, disease, stage, symptom))
+                ApplyAirborneBurst(symptom, ent, disease);
+                
         }
 
         if (symptom.SingleBehavior && symptom.Behaviors.Count > 0)
@@ -54,18 +56,16 @@ public sealed partial class SharedDiseaseSymptomSystem : EntitySystem
                 RunSingleBehavior(behavior);
             }
         }
-
-        ApplyAirborneBurst(symptom, ent, disease);
     }
 
     /// <summary>
     /// Applies a single-shot airborne spread burst if configured.
     /// </summary>
-    private void ApplyAirborneBurst(DiseaseSymptomPrototype symptom, Entity<DiseaseCarrierComponent> ent, DiseaseData disease)
+    public void ApplyAirborneBurst(DiseaseSymptomPrototype symptom, Entity<DiseaseCarrierComponent> ent, DiseaseData disease)
     {
         var cfg = symptom.AirborneBurst;
 
-        if ((disease.SpreadPath & DiseaseSpreadPath.Airborne) == 0)
+        if ((disease.SpreadPath & DiseaseSpreadPath.Airborne) == 0 || (cfg.ChanceMultiplier == 0 && cfg.RangeMultiplier == 0))
             return;
 
         var range = disease.AirborneRange * MathF.Max(0.1f, cfg.RangeMultiplier);

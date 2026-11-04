@@ -4,12 +4,11 @@
   name: Vodkizine bottle
   description: The best cure for and cause of a hangover.
   components:
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        reagents:
-        - ReagentId: Vodkizine
-          Quantity: 100
+  - type: Solution # FH - migrated from SolutionContainerManager
+    solution:
+      reagents:
+      - ReagentId: Vodkizine
+        Quantity: 120
   - type: Label
     currentLabel: reagent-name-vodkizine
   - type: Sprite

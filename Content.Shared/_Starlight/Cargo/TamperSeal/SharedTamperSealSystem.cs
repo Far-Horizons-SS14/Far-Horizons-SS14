@@ -153,7 +153,7 @@ public abstract partial class SharedTamperSealSystem : EntitySystem
         // High-priority text so it shows at the top, since the tamper seal is the first thing you need to deal with
         // when interacting with an entity that has one.
         // Far Horizons start
-        if (seal.EntityAccess != null)
+        if (seal.EntityAccess == null)
             args.PushMarkup(Loc.GetString("tamper-seal-examine-sealed-restricted",
                 ("faction", Loc.GetString(seal.FactionName)), // FH
                 ("factionColor", seal.FactionColor), //FH

@@ -114,8 +114,9 @@
       baseWeightlessFriction: 1
       baseWeightlessModifier: 1
     - type: Damageable
-      damageContainer: Biological
       damageModifierSet: Avali
+    - type: Injurable
+      damageContainer: Biological
     - type: DamageVisuals
       damageOverlayGroups:
         Brute:
@@ -125,7 +126,7 @@
       bloodReferenceSolution:
         reagents:
         - ReagentId: AvaliBlood
-          Quantity: 300
+          Quantity: 600 # Far Horizons - match the current humanoid bloodstream reference volume
     - type: MeleeWeapon
       soundHit:
         path: /Audio/Weapons/pierce.ogg

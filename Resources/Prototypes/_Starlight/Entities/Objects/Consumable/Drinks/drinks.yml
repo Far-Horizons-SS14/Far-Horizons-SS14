@@ -3,13 +3,11 @@
   id: DrinkDraganSpecialGlass
   suffix: dragan special
   components:
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        maxVol: 30
-        reagents:
-        - ReagentId: DraganSpecial
-          Quantity: 30
+  - type: Solution # FH - migrated from SolutionContainerManager
+    solution:
+      reagents:
+      - ReagentId: DraganSpecial
+        Quantity: 30
   - type: Icon
     sprite: _Starlight/Objects/Consumable/Drinks/dragan_special.rsi
     state: icon
@@ -20,10 +18,7 @@
   name: water bottle
   description: Simple clean water of unknown origin. You think that maybe you dont want to know it.
   components:
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        maxVol: 30
+  - type: Solution # FH - migrated from SolutionContainerManager
   - type: Construction
     graph: DrinkWaterBottleEmpty
     node: waterbottle

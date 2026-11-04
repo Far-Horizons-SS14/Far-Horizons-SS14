@@ -1,14 +1,14 @@
 - type: entity
   abstract: true
   parent: BaseItem
-  id: BaseMagazineCanisterLightRifle
+  id: BaseMagazineCanisterRifle762
   components:
   - type: BallisticAmmoProvider
     mayTransfer: true
     whitelist:
       tags:
-        - CartridgeLightRifle
-    proto: CartridgeLightRifleSP
+        - CartridgeRifle762
+    proto: CartridgeRifle762SP
     capacity: 480 # 16x mag size
   - type: Item
     size: Large
@@ -31,8 +31,8 @@
 
 # Boxes
 - type: entity
-  parent: BaseMagazineCanisterLightRifle
-  id: MagazineCanisterLightRifle
+  parent: BaseMagazineCanisterRifle762
+  id: MagazineCanisterRifle762
   name: 7.62 Ammunition Canister (Rifle Any)
   description: A heavy duty metal canister of 7.62 rounds.
   components:
@@ -47,13 +47,13 @@
     - state: b7.62
 
 - type: entity
-  parent: BaseMagazineCanisterLightRifle
-  id: MagazineCanisterLightRifleHP
+  parent: BaseMagazineCanisterRifle762
+  id: MagazineCanisterRifle762HP
   name: 7.62 Ammunition Canister (Rifle HP)
   description: A heavy duty metal canister of Hollow-Point 7.62 Rifle rounds. Effective against unarmored targets.
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgeLightRifleHP
+    proto: CartridgeRifle762HP
   - type: Sprite
     layers:
     - state: base
@@ -64,13 +64,13 @@
     - state: b7.62
 
 - type: entity
-  parent: BaseMagazineCanisterLightRifle
-  id: MagazineCanisterLightRifleSP
+  parent: BaseMagazineCanisterRifle762
+  id: MagazineCanisterRifle762SP
   name: 7.62 Ammunition Canister (Rifle SP)
   description: A heavy duty metal canister of Soft-Point 7.62 Rifle rounds. Effective against lightly-armored targets.
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgeLightRifleSP
+    proto: CartridgeRifle762SP
   - type: Sprite
     layers:
     - state: base
@@ -81,13 +81,13 @@
     - state: b7.62
 
 - type: entity
-  parent: BaseMagazineCanisterLightRifle
-  id: MagazineCanisterLightRifleFMJ
+  parent: BaseMagazineCanisterRifle762
+  id: MagazineCanisterRifle762FMJ
   name: 7.62 Ammunition Canister (Rifle FMJ)
   description: A heavy duty metal canister of Full Metal Jacket 7.62 Rifle rounds. Effective against armored targets.
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgeLightRifleFMJ
+    proto: CartridgeRifle762FMJ
   - type: Sprite
     layers:
     - state: base
@@ -98,13 +98,13 @@
     - state: b7.62
 
 - type: entity
-  id: MagazineCanisterLightRifleAP
-  parent: BaseMagazineCanisterLightRifle
+  id: MagazineCanisterRifle762AP
+  parent: BaseMagazineCanisterRifle762
   name: 7.62 Ammunition Canister (Rifle AP)
   description: A heavy duty metal canister of Armor-Piercing 7.62 Rifle rounds. Effective on heavily armored targets.
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgeLightRifleAP
+    proto: CartridgeRifle762AP
   - type: Sprite
     layers:
     - state: base
@@ -115,13 +115,13 @@
     - state: b7.62
 
 - type: entity
-  parent: BaseMagazineCanisterLightRifle
-  id: MagazineCanisterLightRiflePractice
+  parent: BaseMagazineCanisterRifle762
+  id: MagazineCanisterRifle762Practice
   name: 7.62 Ammunition Canister (Rifle Practice)
   description: A heavy duty metal canister of Chalk-Loaded 7.62 Rifle rounds. Used for target practice.
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgeLightRiflePractice
+    proto: CartridgeRifle762Practice
   - type: Sprite
     layers:
     - state: base
@@ -132,13 +132,13 @@
     - state: b7.62
 
 - type: entity
-  id: MagazineCanisterLightRifleIncendiary
-  parent: BaseMagazineCanisterLightRifle
+  id: MagazineCanisterRifle762Incendiary
+  parent: BaseMagazineCanisterRifle762
   name: 7.62 Ammunition Canister (Rifle Incendiary)
   description: A heavy duty metal canister of Self-Igniting 7.62 Rifle rounds. Burns people alive.
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgeLightRifleIncendiary
+    proto: CartridgeRifle762Incendiary
   - type: Sprite
     layers:
     - state: base
@@ -149,13 +149,13 @@
     - state: b7.62
 
 - type: entity
-  id: MagazineCanisterLightRifleUranium
-  parent: BaseMagazineCanisterLightRifle
+  id: MagazineCanisterRifle762Uranium
+  parent: BaseMagazineCanisterRifle762
   name: 7.62 Ammunition Canister (Rifle Uranium)
   description: A heavy duty metal canister of Uranium-Core 7.62 Rifle rounds. Delivers radiation poisoning on contact.
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgeLightRifleUranium
+    proto: CartridgeRifle762Uranium
   - type: Sprite
     layers:
     - state: base
@@ -166,13 +166,13 @@
     - state: b7.62
 
 - type: entity
-  id: MagazineCanisterLightRifleRubber
-  parent: BaseMagazineCanisterLightRifle
+  id: MagazineCanisterRifle762Rubber
+  parent: BaseMagazineCanisterRifle762
   name: 7.62 Ammunition Canister (Rifle Rubber)
   description: A heavy duty metal canister of Rubber 7.62 Rifle rounds. Mostly harmless.
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgeLightRifleRubber
+    proto: CartridgeRifle762Rubber
   - type: Sprite
     layers:
     - state: base

@@ -44,36 +44,36 @@
         id: MagazinePistolCaselessRiflePractice
         amount: 4
 
-# LightRifle
+# Rifle762 - FH
 - type: entity
-  name: box of .30 rifle magazines
+  name: box of 7.62 rifle magazines #FH
   parent: BoxMagazine
-  id: BoxMagazineLightRifle
-  description: A box full of .30 rifle magazines.
+  id: BoxMagazineRifle762 #FH
+  description: A box full of 7.62 rifle magazines. #FH
   components:
   - type: EntityTableContainerFill
     containers:
       storagebase: !type:AllSelector
         children:
-        - id: MagazineLightRifleSP
+        - id: MagazineRifle762SP #FH
           amount: 1
-        - id: MagazineLightRifleHP
+        - id: MagazineRifle762HP #FH
           amount: 1
-        - id: MagazineLightRifleFMJ
+        - id: MagazineRifle762FMJ #FH
           amount: 1
-        - id: MagazineLightRifleAP
+        - id: MagazineRifle762AP #FH
           amount: 1
 
 - type: entity
-  name: box of .30 rifle (practice) magazines
+  name: box of 7.62 rifle (practice) magazines #FH
   parent: BoxMagazine
-  id: BoxMagazineLightRiflePractice
-  description: A box full of .30 rifle (practice) magazines.
+  id: BoxMagazineRifle762Practice #FH
+  description: A box full of 7.62 rifle (practice) magazines. #FH
   components:
   - type: EntityTableContainerFill
     containers:
       storagebase:
-        id: MagazineLightRiflePractice
+        id: MagazineRifle762Practice #FH
         amount: 4
 
 # Magnum

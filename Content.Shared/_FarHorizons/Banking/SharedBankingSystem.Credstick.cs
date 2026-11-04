@@ -1,8 +1,11 @@
 using Content.Shared._FarHorizons.Banking.Components;
 using Content.Shared.Alert;
+using Content.Shared.Cargo.Components;
+using Content.Shared.DragDrop;
 using Content.Shared.Hands.Components;
 using Content.Shared.Inventory;
 using Content.Shared.PDA;
+using Content.Shared.Verbs;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared._FarHorizons.Banking;
@@ -70,6 +73,33 @@ public abstract partial class SharedBankingSystem
         return null;
     }
 
+    public void CredstickDirectTransfer(Entity<CredstickComponent> source, Entity<CredstickDirectTransferTargetComponent> target, int amount)
+    {
+        if (source.Comp.Balance < amount)
+            return;
+
+        if (TryComp<CredstickComponent>(target, out var targetCredstick))
+        {
+            CredstickChangeBalance(source.AsNullable(), -amount);
+            CredstickChangeBalance((target, targetCredstick), amount);
+            return;
+        }
+
+        if (!TryComp<CargoOrderConsoleComponent>(target, out var console) ||
+            _station.GetOwningStation(target) is not {} station)
+            return;
+        
+        CredstickChangeBalance(source.AsNullable(), -amount);
+        _cargo.TryAdjustBankAccount(station, console.Account, amount);
+    }
+
+    public void CredstickOpenOfferDialog(Entity<CredstickComponent> ent, EntityUid target, EntityUid user)
+    {
+        ent.Comp.TransferSource = user;
+        ent.Comp.TransferTarget = target;
+        _ui.OpenUi(ent.Owner, ent.Comp.TransferUiKey, user);
+    }
+
     private void CredstickUpdateAppearance(Entity<CredstickComponent?> ent, int? balance = null)
     {
         balance ??= CredstickGetBalance(ent);
@@ -96,16 +126,47 @@ public abstract partial class SharedBankingSystem
     [SubscribeLocalEvent]
     private void OnCredstickInit(Entity<CredstickComponent> ent, ref MapInitEvent args) =>
         CredstickUpdateAppearance(ent.AsNullable());
+
+    [SubscribeLocalEvent]
+    private void OnCanDragCredstick(Entity<CredstickComponent> ent, ref CanDragEvent args) => 
+        args.Handled = true;
     
+    [SubscribeLocalEvent]
+    private void OnCredstickCanDrop(Entity<CredstickComponent> ent, ref CanDropDraggedEvent args)
+    {
+        if (!ItemSlots.TryGetAvailableSlot(args.Target, ent, null, out _))
+            return;
+
+        args.CanDrop = true;
+        args.Handled = true;
+    }
+
+    [SubscribeLocalEvent]
+    private void OnCredstickDragged(Entity<CredstickComponent> ent, ref DragDropDraggedEvent args)
+    {
+        if (!ItemSlots.TryGetAvailableSlot(args.Target, ent, null, out var slot))
+            return;
+        
+        ItemSlots.TryInsert(args.Target, slot, ent, null);
+    }
+
     [SubscribeLocalEvent]
     private void OnCreditsTransfer(Entity<CredstickComponent> ent, ref CredstickTransferDialogConfirmed args)
     {
         if (ent.Comp.TransferTarget == null ||
             ent.Comp.TransferSource == null ||
-            FindCredstick(ent.Comp.TransferTarget.Value) is not {} targetCredstick ||
             args.Amount > ent.Comp.Balance ||
             args.Amount <= 0 ||
             !_interaction.InRangeAndAccessible(ent.Comp.TransferSource.Value, ent.Comp.TransferTarget.Value))
+            return;
+        
+        if (TryComp<CredstickDirectTransferTargetComponent>(ent.Comp.TransferTarget, out var transferTarget))
+        {
+            CredstickDirectTransfer(ent, (ent.Comp.TransferTarget.Value, transferTarget), args.Amount);
+            return;
+        }
+
+        if (FindCredstick(ent.Comp.TransferTarget.Value) is not {} targetCredstick)
             return;
         
         var sender = EnsureComp<CredstickTransferSenderComponent>(ent.Comp.TransferSource.Value);
@@ -182,5 +243,26 @@ public abstract partial class SharedBankingSystem
             if (ent.Comp.ToEntity != null)
                 _alerts.ClearAlert(ent.Comp.ToEntity.Value, _transferAlert);
         }
+    }
+
+    [SubscribeLocalEvent]
+    private void DirectTransferVerb(EntityUid uid, CredstickDirectTransferTargetComponent component, GetVerbsEvent<Verb> args)
+    {
+        if (!args.CanAccess ||
+            !args.CanInteract ||
+            args.User == args.Target ||
+            args.Using is null ||
+            args.Using == args.Target ||
+            !TryComp<CredstickComponent>(args.Using, out var credstick) ||
+            credstick.Balance <= 0)
+            return;
+        
+        args.Verbs.Add(new Verb()
+        {
+            Act = () => CredstickOpenOfferDialog((args.Using.Value, credstick), args.Target, args.User),
+            DoContactInteraction = true,
+            Text = Loc.GetString("credstick-offer-transfer"),
+            IconEntity = GetNetEntity(args.Using)
+        });
     }
 }

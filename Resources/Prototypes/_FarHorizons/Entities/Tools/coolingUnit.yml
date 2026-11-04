@@ -1,0 +1,71 @@
+- type: entity
+  parent: [ BaseItem, SolutionTank, SolutionSmall ]
+  id: CoolingUnitNitrogen
+  name: Experimental Portable Cryogenics Unit
+  description: A experimental cryogenic device able to cool a body to subzero temperatures using liquid nitrogen for its fuel.
+  components:
+    - type: Sprite
+      sprite: _FarHorizons/Objects/Tanks/cryogenicunit.rsi
+      layers:
+        - state: icon
+          map: ["enum.CoolingUnitVisuals.Layer"]
+    - type: Appearance
+    - type: Item
+      size: Large
+      shape:
+      - 0,0,1,3
+    - type: Clothing
+      quickEquip: false
+      sprite: _FarHorizons/Objects/Tanks/cryogenicunit.rsi
+      slots:
+        - Back
+        - suitStorage
+        - Belt
+    - type: UseDelay
+      delay: 1
+    - type: ToggleReagentDraw
+    - type: RefillableSolution
+      solution: tank
+    - type: ExaminableSolution
+      solution: tank
+      exactVolume: true
+    - type: ReagentDraw
+      enabled: false
+      drainRate: 0.25
+      solutionContainer: tank
+      whitelistedReagents:
+        - Nitrogen
+    - type: Solution
+      solution:
+        reagents:
+        - ReagentId: Nitrogen
+          Quantity: 60
+    - type: ItemToggle
+      soundActivate: /Audio/Items/flashlight_on.ogg
+      soundDeactivate: /Audio/Items/flashlight_on.ogg
+    - type: CoolingUnit
+      desiredTemp: 255.3
+      requiredSlots: 
+      - SUITSTORAGE
+      - BACK
+      - BELT
+    - type: ToggleableVisuals
+      spriteLayer: power
+    - type: PhysicalComposition
+      materialComposition:
+        Steel: 185
+    - type: StaticPrice
+      price: 30
+    - type: UserInterface
+      interfaces:
+        enum.CoolingUnitUiKey.Key:
+          type: CoolingUnitBoundUserInterface
+    - type: ActivatableUI
+      inHandsOnly: false
+      key: enum.CoolingUnitUiKey.Key
+    - type: GenericVisualizer
+      visuals:
+        enum.CoolingUnitVisuals.Enabled:
+          enum.CoolingUnitVisuals.Layer:
+            True: {state: icon-on}
+            False: {state: icon}

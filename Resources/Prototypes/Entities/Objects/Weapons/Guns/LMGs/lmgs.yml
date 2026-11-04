@@ -64,20 +64,20 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazineLightRifleBoxSP
+        startingItem: MagazineRifle762BoxSP #FH
         insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
         priority: 2
         whitelist:
           tags:
-            - MagazineLightRifleBox
+            - MagazineRifle762Box #FH
       gun_chamber:
         name: Chamber
-        startingItem: CartridgeLightRifleSP
+        startingItem: CartridgeRifle762SP #FH
         priority: 1
         whitelist:
           tags:
-            - CartridgeLightRifle
+            - CartridgeRifle762 #FH
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot
@@ -94,7 +94,7 @@
   name: L6 SAW
   id: WeaponLightMachineGunL6
   parent: [BaseWeaponLightMachineGun, BaseSyndicateContraband]
-  description: Developed by Waffle Corp, the L6 Squad Automatic Weapon is a deadly light machine gun often used by the Gorlex Marauders. Although bulky and cumbersome, its heavy barrel and high ammo capacity make it perfect for suppressing combatants with a hail of bullets. Feeds from .30 ammo belts.
+  description: Developed by Waffle Corp, the L6 Squad Automatic Weapon is a deadly light machine gun often used by the Gorlex Marauders. Although bulky and cumbersome, its heavy barrel and high ammo capacity make it perfect for suppressing combatants with a hail of bullets. Feeds from 7.62 ammo belts. #FH
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/LMGs/l6_x64.rsi
@@ -135,20 +135,20 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazineLightRifleBoxSP # will be replaced with FMJ
+        startingItem: MagazineRifle762BoxSP #FH
         insertSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
         ejectSound: /Audio/Weapons/Guns/MagIn/rifle_load.ogg
         priority: 2
         whitelist:
           tags:
-            - MagazineLightRifleBox
+            - MagazineRifle762Box #FH
       gun_chamber:
         name: Chamber
-        startingItem: CartridgeLightRifleSP # will be replaced with FMJ
+        startingItem: CartridgeRifle762SP #FH
         priority: 1
         whitelist:
           tags:
-            - CartridgeLightRifle
+            - CartridgeRifle762 #FH
   - type: StaticPrice
     price: 10000
 
@@ -190,20 +190,20 @@
       slots:
         gun_magazine:
           name: Magazine
-          startingItem: MagazineLightRifleBoxSP
+          startingItem: MagazineRifle762BoxSP #FH
           insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
           ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
           priority: 2
           whitelist:
             tags:
-              - MagazineLightRifleBox
+              - MagazineRifle762Box #FH
         gun_chamber:
           name: Chamber
-          startingItem: CartridgeLightRifleSP
+          startingItem: CartridgeRifle762SP #FH
           priority: 1
           whitelist:
             tags:
-              - CartridgeLightRifle
+              - CartridgeRifle762 #FH
     - type: ContainerContainer
       containers:
         gun_magazine: !type:ContainerSlot

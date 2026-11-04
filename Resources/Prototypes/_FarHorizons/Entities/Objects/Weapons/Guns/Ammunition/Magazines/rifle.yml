@@ -227,7 +227,7 @@
 - type: entity
   id: Rifle556HeavyBase
   name: "5.56 Box Magazine (Rifle)"
-  parent: BaseMagazineBoxLightRifle
+  parent: BaseMagazineBoxRifle762
   abstract: true
   components:
   - type: Tag
@@ -568,3 +568,181 @@
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
+
+#region 7.62
+- type: entity
+  id: MagazineRifle762HP
+  name: "7.62 Magazine (Rifle HP)"
+  parent: BaseMagazineRifle762
+  description: Curved 30-round double stack magazine for heavy assault rifles. Holds Hollow-Point 7.62 rounds, effective against unarmored targets.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifle762HP
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: hp
+
+- type: entity
+  id: MagazineRifle762FMJ
+  name: "7.62 Magazine (Rifle FMJ)"
+  parent: BaseMagazineRifle762
+  description: Curved 30-round double stack magazine for heavy assault rifles. Holds Full Metal Jacket 7.62 rounds, effective against armored targets.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifle762FMJ
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: fmj
+
+- type: entity
+  id: MagazineRifle762AP
+  name: "7.62 Magazine (Rifle AP)"
+  parent: BaseMagazineRifle762
+  description: Curved 30-round double stack magazine for heavy assault rifles. Holds Full Metal Jacket 7.62 rounds, effective against heavily armored targets.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifle762AP
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: ap
+
+- type: entity
+  id: MagazineRifle762Rubber
+  name: "7.62 Magazine (Rifle Rubber)"
+  parent: BaseMagazineRifle762
+  description: Curved 30-round double stack magazine for heavy assault rifles. Mostly harmless.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifle762Rubber
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: rubber
+
+#region 7.62 Heavy
+- type: entity
+  id: MagazineRifle762BoxHP
+  name: L6 SAW Magazine Box (7.62 rifle HP)
+  parent: MagazineRifle762BoxSP
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifle762HP
+    capacity: 100
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: hp
+
+- type: entity
+  id: MagazineRifle762BoxFMJ
+  name: L6 SAW Magazine Box (7.62 rifle FMJ)
+  parent: MagazineRifle762BoxSP
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifle762FMJ
+    capacity: 100
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: fmj
+
+- type: entity
+  id: MagazineRifle762BoxAP
+  name: L6 SAW Magazine Box (7.62 rifle AP)
+  parent: MagazineRifle762BoxSP
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifle762AP
+    capacity: 100
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: ap
+
+- type: entity
+  id: MagazineRifle762BoxPractice
+  name: L6 SAW Magazine Box (7.62 rifle Practice)
+  parent: MagazineRifle762BoxSP
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifle762Practice
+    capacity: 100
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: practice
+
+- type: entity
+  id: MagazineRifle762BoxIncendiary
+  name: L6 SAW Magazine Box (7.62 rifle Incendiary)
+  parent: MagazineRifle762BoxSP
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifle762Incendiary
+    capacity: 100
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: incendiary
+
+- type: entity
+  id: MagazineRifle762BoxUranium
+  name: L6 SAW Magazine Box (7.62 rifle Uranium)
+  parent: MagazineRifle762BoxSP
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifle762Uranium
+    capacity: 100
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: uranium
+
+- type: entity
+  id: MagazineRifle762BoxRubber
+  name: L6 SAW Magazine Box (7.62 rifle Rubber)
+  parent: MagazineRifle762BoxSP
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeRifle762Rubber
+    capacity: 100
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: rubber

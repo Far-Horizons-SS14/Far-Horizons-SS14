@@ -1538,14 +1538,18 @@
     state: something-old2
 
 - type: entity
-  parent: BaseSignNS
+  parent: [ BaseSignNS, BaseSignPowered ]
   id: SignSecurityNS
   suffix: NS
   name: security sign
   description: A sign depicting the security insignia.
   components:
   - type: Sprite
-    state: security
+    layers:
+    - state: off
+    - state: security
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
 
 - type: entity
   parent: BaseSignNS

@@ -1,6 +1,6 @@
 - type: latheRecipe
-  id: CartridgeLightRifleRubber
-  result: CartridgeLightRifleRubber
+  id: CartridgeRifle762Rubber
+  result: CartridgeRifle762Rubber
   categories:
   - Ammo
   completetime: 2
@@ -8,46 +8,46 @@
     Plastic: 10
     Steel: 5
 
-#region 7.62 Magazines
+#region 7.62 Magazines - 30
 - type: latheRecipe
   parent: BaseEmptyAmmoRecipe
-  id: MagazineLightRifleEmpty
-  result: MagazineLightRifleEmpty
+  id: MagazineRifle762Empty
+  result: MagazineRifle762Empty
   materials:
     Steel: 25
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
-  id: MagazineLightRifleSP
-  result: MagazineLightRifleSP
+  id: MagazineRifle762SP
+  result: MagazineRifle762SP
   materials:
     Steel: 565
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
-  id: MagazineLightRifleHP
-  result: MagazineLightRifleHP
+  id: MagazineRifle762HP
+  result: MagazineRifle762HP
   materials:
     Steel: 565
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
-  id: MagazineLightRifleFMJ
-  result: MagazineLightRifleFMJ
+  id: MagazineRifle762FMJ
+  result: MagazineRifle762FMJ
   materials:
     Steel: 565
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
-  id: MagazineLightRiflePractice
-  result: MagazineLightRiflePractice
+  id: MagazineRifle762Practice
+  result: MagazineRifle762Practice
   materials:
     Steel: 205
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
-  id: MagazineLightRifleUranium
-  result: MagazineLightRifleUranium
+  id: MagazineRifle762Uranium
+  result: MagazineRifle762Uranium
   materials:
     Steel: 25
     Plastic: 360
@@ -55,47 +55,168 @@
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
-  id: MagazineLightRifleIncendiary
-  result: MagazineLightRifleIncendiary
+  id: MagazineRifle762Incendiary
+  result: MagazineRifle762Incendiary
   materials:
     Steel: 25
     Plastic: 540
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
-  id: MagazineLightRifleAP
-  result: MagazineLightRifleAP
+  id: MagazineRifle762AP
+  result: MagazineRifle762AP
   materials:
+    Plastic: 525
     Steel: 525
     Uranium: 525
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: SpeedLoaderRifle762
+  result: SpeedLoaderRifle762
+  materials:
+    Steel: 200
+
+#region 7.62 Pan - 47
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineRifle762PanEmpty
+  result: MagazineRifle762PanEmpty
+  materials:
+    Steel: 100
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineRifle762PanHP
+  result: MagazineRifle762PanHP
+  materials:
+    Steel: 881
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineRifle762Maxim
+  result: MagazineRifle762Maxim #SP
+  materials:
+    Steel: 881
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineRifle762PanFMJ
+  result: MagazineRifle762PanFMJ
+  materials:
+    Steel: 881
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineRifle762PanAP
+  result: MagazineRifle762PanAP
+  materials:
+    Plastic: 819
+    Steel: 819
+    Uranium: 819
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineRifle762PanIncendiary
+  result: MagazineRifle762PanIncendiary
+  materials:
+    Steel: 100
+    Plastic: 540
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineRifle762PanUranium
+  result: MagazineRifle762PanUranium
+  materials:
+    Steel: 100
+    Plastic: 561
+    Uranium: 561
+
+- type: latheRecipe
+  id: MagazineRifle762PanRubber
+  result: MagazineRifle762PanRubber
+  categories:
+  - Ammo
+  completetime: 5
+  materials:
+    Steel: 100
+    Plastic: 156
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineRifle762PanPractice
+  result: MagazineRifle762PanPractice
+  materials:
+    Steel: 319
 
 #region 7.62 Heavy
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
-  id: MagazineLightRifleMaxim
-  result: MagazineLightRifleMaxim
+  id: MagazineRifle762BoxHP
+  result: MagazineRifle762BoxHP
   materials:
-    Steel: 350
-
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: SpeedLoaderLightRifle
-  result: SpeedLoaderLightRifle
-  materials:
-    Steel: 200
+    Steel: 1500
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
   id: L6SawMagazine
-  result: MagazineLightRifleBoxSP
+  result: MagazineRifle762BoxSP
   materials:
-    Steel: 1600
+    Steel: 1500
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineRifle762BoxFMJ
+  result: MagazineRifle762BoxFMJ
+  materials:
+    Steel: 1500
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineRifle762BoxAP
+  result: MagazineRifle762BoxAP
+  materials:
+    Plastic: 1000
+    Steel: 1000
+    Uranium: 1000
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineRifle762BoxPractice
+  result: MagazineRifle762BoxPractice
+  materials:
+    Steel: 500
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineRifle762BoxIncendiary
+  result: MagazineRifle762BoxIncendiary
+  materials:
+    Plastic: 1500
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineRifle762BoxUranium
+  result: MagazineRifle762BoxUranium
+  materials:
+    Plastic: 1000
+    Uranium: 1000
+
+- type: latheRecipe
+  id: MagazineRifle762BoxRubber
+  result: MagazineRifle762BoxRubber
+  categories:
+  - Ammo
+  completetime: 5
+  materials:
+    Steel: 583
+    Plastic: 1000
 
 #region 7.62 Boxes
 - type: latheRecipe
-  id: MagazineBoxLightRifleRubber
-  result: MagazineBoxLightRifleRubber
+  id: MagazineBoxRifle762Rubber
+  result: MagazineBoxRifle762Rubber
   categories:
   - Ammo
   completetime: 5
@@ -105,29 +226,29 @@
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
-  id: MagazineBoxLightRifleSP
-  result: MagazineBoxLightRifleSP
+  id: MagazineBoxRifle762SP
+  result: MagazineBoxRifle762SP
   materials:
     Steel: 1800
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
-  id: MagazineBoxLightRifleHP
-  result: MagazineBoxLightRifleHP
+  id: MagazineBoxRifle762HP
+  result: MagazineBoxRifle762HP
   materials:
     Steel: 1800
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
-  id: MagazineBoxLightRifleFMJ
-  result: MagazineBoxLightRifleFMJ
+  id: MagazineBoxRifle762FMJ
+  result: MagazineBoxRifle762FMJ
   materials:
     Steel: 1800
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
-  id: MagazineBoxLightRifleAP
-  result: MagazineBoxLightRifleAP
+  id: MagazineBoxRifle762AP
+  result: MagazineBoxRifle762AP
   materials:
     Plastic: 1200
     Steel: 1200
@@ -135,30 +256,30 @@
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
-  id: MagazineBoxLightRiflePractice
-  result: MagazineBoxLightRiflePractice
+  id: MagazineBoxRifle762Practice
+  result: MagazineBoxRifle762Practice
   materials:
     Steel: 600
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
-  id: MagazineBoxLightRifleIncendiary
-  result: MagazineBoxLightRifleIncendiary
+  id: MagazineBoxRifle762Incendiary
+  result: MagazineBoxRifle762Incendiary
   materials:
     Plastic: 1800
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
-  id: MagazineBoxLightRifleUranium
-  result: MagazineBoxLightRifleUranium
+  id: MagazineBoxRifle762Uranium
+  result: MagazineBoxRifle762Uranium
   materials:
     Plastic: 1200
     Uranium: 1200
 
 #region 7.62 Canister
 - type: latheRecipe
-  id: MagazineCanisterLightRifleRubber
-  result: MagazineCanisterLightRifleRubber
+  id: MagazineCanisterRifle762Rubber
+  result: MagazineCanisterRifle762Rubber
   categories:
   - Ammo
   completetime: 5
@@ -168,36 +289,36 @@
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
-  id: MagazineCanisterLightRifle
-  result: MagazineCanisterLightRifle
+  id: MagazineCanisterRifle762
+  result: MagazineCanisterRifle762
   materials:
     Steel: 300
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
-  id: MagazineCanisterLightRifleSP
-  result: MagazineCanisterLightRifleSP
+  id: MagazineCanisterRifle762SP
+  result: MagazineCanisterRifle762SP
   materials:
     Steel: 7200
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
-  id: MagazineCanisterLightRifleHP
-  result: MagazineCanisterLightRifleHP
+  id: MagazineCanisterRifle762HP
+  result: MagazineCanisterRifle762HP
   materials:
     Steel: 7200
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
-  id: MagazineCanisterLightRifleFMJ
-  result: MagazineCanisterLightRifleFMJ
+  id: MagazineCanisterRifle762FMJ
+  result: MagazineCanisterRifle762FMJ
   materials:
     Steel: 7200
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
-  id: MagazineCanisterLightRifleAP
-  result: MagazineCanisterLightRifleAP
+  id: MagazineCanisterRifle762AP
+  result: MagazineCanisterRifle762AP
   materials:
     Plastic: 4800
     Steel: 4800
@@ -205,22 +326,22 @@
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
-  id: MagazineCanisterLightRiflePractice
-  result: MagazineCanisterLightRiflePractice
+  id: MagazineCanisterRifle762Practice
+  result: MagazineCanisterRifle762Practice
   materials:
     Steel: 2400
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
-  id: MagazineCanisterLightRifleIncendiary
-  result: MagazineCanisterLightRifleIncendiary
+  id: MagazineCanisterRifle762Incendiary
+  result: MagazineCanisterRifle762Incendiary
   materials:
     Plastic: 7200
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
-  id: MagazineCanisterLightRifleUranium
-  result: MagazineCanisterLightRifleUranium
+  id: MagazineCanisterRifle762Uranium
+  result: MagazineCanisterRifle762Uranium
   materials:
     Plastic: 4800
     Uranium: 4800

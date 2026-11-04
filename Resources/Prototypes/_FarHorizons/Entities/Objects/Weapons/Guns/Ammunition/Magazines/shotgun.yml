@@ -197,3 +197,20 @@
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
+
+#ZoZ
+- type: entity
+  id: MagazineShotgunTozExtendedFlechette
+  name: 12 Gauge Magazine 
+  suffix: Extended, Flechette 
+  parent: BaseMagazineShotgunToz
+  components:
+  - type: BallisticAmmoProvider
+    proto: ShellShotgunFlechette
+    capacity: 5
+  - type: Sprite
+    layers:
+    - state: extended
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]

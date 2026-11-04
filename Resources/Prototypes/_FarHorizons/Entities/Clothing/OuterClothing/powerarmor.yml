@@ -1,6 +1,7 @@
 - type: entity
   id: PowerArmorNaked
   name: Power Armor
+  parent: AllowSuitStorageClothing
   description: A modular hardsuit that is able to add or remove parts. It has a powered exoskeleton underneath in order to assist user moving the extra weight. Some assembly required.
   components:
   - type: Animateable
@@ -64,6 +65,7 @@
   - type: ClothingSpeedModifier #Basically unpowered speed
     walkModifier: 0.4
     sprintModifier: 0.4
+    requireActivated: false
   - type: HeldSpeedModifier
   - type: Pierceable
     level: Metal
@@ -142,16 +144,33 @@
     activeIfWorn: true
   - type: FootstepModifier
     footstepSoundCollection:
-      collection: TechMarch
+      path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
       params:
-        pitch: 0.9
-        variation: 0.09
+        volume: -6
+        pitch: 0.7
+        variation: 0.025
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 1.0
+    staminaModifier: 0.3
+    ignoreKnockdown: true
 
 - type: entity
   parent: PowerArmorNaked
   id: PowerArmorNTJuggernautFilled
+  name: Powered Juggernaut Armor
+  description: Mobile fortress designed to act as the station's first line of defense, only allowed out in specific situations. Check the Security Almanac for proper utilization.
   suffix: NT, Filled
   components:
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellHigh
+        whitelist:
+          tags:
+            - PowerCell
   - type: ToggleableClothingMultiple
     clothingPrototypes: 
       head: PowerArmorHelmetNTJuggernautFilled

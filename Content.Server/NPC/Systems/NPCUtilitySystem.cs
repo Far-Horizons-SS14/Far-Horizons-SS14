@@ -39,6 +39,7 @@ using Content.Shared.Stealth;
 using Content.Shared.Stealth.Components;
 using Content.Shared.Weapons.Ranged.Systems;
 using Content.Server._FarHorizons.NPC.Queries.Considerations;
+using Content.Server._FarHorizons.NPC.Queries.Filters;
 
 namespace Content.Server.NPC.Systems;
 
@@ -288,10 +289,15 @@ public sealed partial class NPCUtilitySystem : EntitySystem // Far Horizons made
                     return 0f;
                 }
 
-                if (ballisticAmmoProvider != null && 
+                if (ballisticAmmoProvider != null &&
                     _whitelistSystem.IsWhitelistFailOrNull(ballisticAmmoProvider.Whitelist, targetUid))
                 {
-                    return 0f;
+                    if(!TryComp<BallisticAmmoProviderComponent>(targetUid, out var targetBallisticAmmoComp) ||
+                        targetBallisticAmmoComp.Proto == null || 
+                        _whitelistSystem.IsWhitelistFailOrNull(ballisticAmmoProvider.Whitelist, targetBallisticAmmoComp.Proto.Value))
+                    {
+                        return 0f;
+                    }
                 }
                 // Far Horizons end
 
@@ -621,6 +627,20 @@ public sealed partial class NPCUtilitySystem : EntitySystem // Far Horizons made
 
                 break;
             }
+            // Far Horizons start
+            // All FH additions will be defined externally to avoid bloating this function beyond reason
+            case ExternalFilter externalFilter:
+            {
+                _entityList.Clear();
+                
+                _entityList.AddRange(externalFilter.GetEntities(blackboard, entities, EntityManager));
+
+                foreach (var ent in _entityList)
+                    entities.Remove(ent);
+
+                break;
+            }
+            // Far Horizons end
             default:
                 throw new NotImplementedException();
         }

@@ -1,4 +1,4 @@
-﻿using Content.Shared._FarHorizons.Vehicles.Components; //FarHorizons
+﻿using Content.Shared._FarHorizons.Vehicles; //FarHorizons
 using Content.Shared.Interaction;
 using Content.Shared.Mech.Components;
 

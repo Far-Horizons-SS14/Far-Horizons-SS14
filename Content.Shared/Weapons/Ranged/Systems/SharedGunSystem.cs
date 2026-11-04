@@ -38,7 +38,7 @@ using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using Content.Shared.VentCraw;
 using Content.Shared.Mech.Components; // Startlight-edit
-using Content.Shared._FarHorizons.Vehicles.Components; //FarHorizons
+using Content.Shared._FarHorizons.Vehicles; //FarHorizons
 
 #region Starlight
 using Content.Shared.Starlight.Utility;

@@ -5,7 +5,6 @@ using Content.Server.NodeContainer.Nodes;
 using Content.Shared.Atmos;
 using Content.Shared.Atmos.Components;
 using Content.Shared.Atmos.Piping.Binary.Components;
-using Content.Shared.Atmos.Piping.Components;
 using Content.Shared.Atmos.Piping.Unary.Systems;
 using Content.Shared.Cargo;
 using Content.Shared.Database;

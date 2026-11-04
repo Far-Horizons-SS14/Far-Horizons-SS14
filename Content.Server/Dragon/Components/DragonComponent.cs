@@ -82,5 +82,19 @@ namespace Content.Server.Dragon
         /// </summary>
         [DataField]
         public Solution SmokeSolution = new ([new("Blood", 1)]);
+
+        //FH start
+        /// <summary>
+        /// How much to heal per second when a rift is active
+        /// </summary>
+        [ViewVariables(VVAccess.ReadWrite), DataField("regenRate")]
+        public float RegenRate = -1f;
+
+        /// <summary>
+        /// Used to accurately heal a dragon every second
+        /// </summary>
+        [DataField("healingaccumulator")]
+        public float HealingAccumulator;
+        //FH end
     }
 }

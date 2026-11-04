@@ -1,0 +1,29 @@
+- type: entity
+  name: Sealable Beaker
+  parent: SealableBeaker
+  suffix: Aloe Extract
+  description: Used to contain a moderate amount of chemicals and solutions. Can be sealed to avoid spills. Still pretty fragile.
+  id: SealableBeakerAloe
+  components:
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Aloe
+        Quantity: 60
+  - type: Label
+    currentLabel: Aloe Extract
+
+- type: entity
+  name: Sealable Beaker
+  parent: SealableBeaker
+  suffix: Galaxythistle Extract
+  description: Used to contain a moderate amount of chemicals and solutions. Can be sealed to avoid spills. Still pretty fragile.
+  id: SealableBeakerGalaxythistle
+  components:
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Stellibinin
+        Quantity: 60
+  - type: Label
+    currentLabel: Galaxythistle Extract

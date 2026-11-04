@@ -22,7 +22,7 @@ using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
-using Content.Shared._FarHorizons.Vehicles.Components; // FarHorizons
+using Content.Shared._FarHorizons.Vehicles; // FarHorizons
 
 namespace Content.Shared.Buckle;
 

@@ -1,5 +1,7 @@
 using System.Linq;
 using Content.Shared.Actions;
+using Content.Shared.Mobs;
+using Content.Shared.Mobs.Components;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
@@ -113,7 +115,11 @@ public abstract partial class BackgroundToggleActionTraitSystem<TBase, T, TEvent
 {
     [Dependency] private INetManager _net = default!;
 
-    public override void Initialize() => base.Initialize();
+    public override void Initialize() 
+    {
+        base.Initialize();
+        SubscribeLocalEvent<T, MobStateChangedEvent>(OnDeath);
+    }
 
     protected override void TraitInit(Entity<TBase, T> ent)
     {
@@ -144,6 +150,25 @@ public abstract partial class BackgroundToggleActionTraitSystem<TBase, T, TEvent
     }
 
     protected virtual void OnToggled(Entity<TBase, T> ent, bool toggle) { }
+
+    protected virtual void OnDeath(Entity<T> ent, ref MobStateChangedEvent args)
+    {
+        if (!TryComp<TBase>(ent, out var anchor)) return;
+        if (_net.IsServer && args.NewMobState.Equals(MobState.Dead))
+        {
+            ent.Comp.Toggled = false;
+            Dirty(ent);
+        }
+
+        OnToggled((ent.Owner, anchor, ent.Comp), ent.Comp.Toggled);
+        var action = Actions.GetActions(ent)
+            .Where(p => MetaData(p).EntityPrototype is { } entProto && entProto.ID == ent.Comp.Action)
+            .FirstOrNull();
+
+        if (action == null) return;
+
+        Actions.SetToggled(action.Value.AsNullable(), ent.Comp.Toggled);
+    }
 }
 public abstract class BackgroundTraitSystem<T> : BackgroundTraitSystem<BackgroundTraitComponent, T>
     where T : BackgroundTraitComponent { }

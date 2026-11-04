@@ -89,10 +89,10 @@ public abstract partial class SharedFactionManager : ISharedFactionManager
             PopulateCache();
         return _factionDepartments;
     }
-    public IEnumerable<FactionJobAssignmentPrototype> ListFactionJobs(){
+    public IEnumerable<FactionJobAssignmentPrototype> ListFactionJobs(bool showHidden = false){
         if (_factionJobs.Count == 0)
             PopulateCache();
-        return _factionJobs;
+        return showHidden ? _factionJobs : _factionJobs.Where(p => !p.Hidden);
     }
     
     public bool TryFindFaction(string search, [NotNullWhen(true)] out FactionPrototype? faction){

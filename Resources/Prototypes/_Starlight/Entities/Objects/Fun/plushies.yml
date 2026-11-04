@@ -1256,6 +1256,7 @@
           Heat: 1
     - type: Damageable
       damageModifierSet: Wood
+    - type: Injurable # FH edit - add missing injurable component to make damage work
     - type: FireVisuals
       sprite: Effects/fire.rsi
       normalState: fire
@@ -1452,15 +1453,13 @@
       reagents:
       - ReagentId: JuiceThatMakesYouWeh
         Quantity: 30
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 20
-        reagents:
-        - ReagentId: Fiber
-          Quantity: 10
-        - ReagentId: JuiceThatMakesYouWeh
-          Quantity: 10
+  - type: Solution # FH - migrated from SolutionContainerManager
+    solution:
+      reagents:
+      - ReagentId: Fiber
+        Quantity: 20
+      - ReagentId: JuiceThatMakesYouWeh
+        Quantity: 10
   - type: Clothing
     quickEquip: false
     sprite: _Starlight/Objects/Fun/Plushies/galio_plushie.rsi
@@ -1552,15 +1551,13 @@
       reagents:
       - ReagentId: JuiceThatMakesYouWeh
         Quantity: 30
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 20
-        reagents:
-        - ReagentId: Fiber
-          Quantity: 10
-        - ReagentId: JuiceThatMakesYouWeh
-          Quantity: 10
+  - type: Solution # FH - migrated from SolutionContainerManager
+    solution:
+      reagents:
+      - ReagentId: Fiber
+        Quantity: 20
+      - ReagentId: JuiceThatMakesYouWeh
+        Quantity: 10
   - type: Clothing
     quickEquip: false
     sprite: _Starlight/Objects/Fun/Plushies/doxesthecaptain.rsi
