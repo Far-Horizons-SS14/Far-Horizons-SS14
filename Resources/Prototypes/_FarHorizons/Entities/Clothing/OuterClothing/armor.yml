@@ -815,7 +815,13 @@
         Radiation: 0.5
         Caustic: 0.5
     staminaModifier: 0.35
-  - type: LimbArmor
+  - type: LimbArmor 
+    limbs:
+      ArmRight: {}
+      ArmLeft: {}
+      LegRight: {}
+      LegLeft: {}
+  - type: ExplosionResistance
     damageCoefficient: 0.5
   - type: FireProtection
     reduction: 0.85
