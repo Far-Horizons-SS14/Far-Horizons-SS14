@@ -245,6 +245,39 @@
         - state: box-cc
         - state: stamp-cc-departments
 
+
+- type: entity
+  name: NSHC Administrative Stamps Box
+  parent: BoxCardboard
+  id: BoxStampsHCAdministrative
+  components:
+    - type: Storage
+      maxItemSize: Small
+      grid:
+        - 0,0,4,4
+      whitelist:
+        components:
+          - Stamp
+    - type: EntityTableContainerFill
+      containers:
+        storagebase: !type:AllSelector
+          children:
+            - id: RubberStampAcknowledged
+            - id: RubberStampMissingStamps
+            - id: RubberStampIncorrectStamps
+            - id: RubberStampIncorrectForm
+            - id: RubberStampIncompleteForm
+            - id: RubberStampSentToATS
+            - id: RubberStampDeferToCommand
+            - id: RubberStampStandby
+            - id: RubberStampApproved
+            - id: RubberStampDenied
+    - type: Sprite
+      sprite: _Starlight/Objects/Storage/boxes.rsi
+      layers:
+        - state: box-cc
+        - state: stamp-cc-admin
+
 #region NanoTrasen Security
 
 

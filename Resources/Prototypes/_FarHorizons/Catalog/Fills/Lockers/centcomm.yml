@@ -1,16 +1,16 @@
 - type: entity
   id: CADFilled
-  name: Central Administrative Division Secretary Locker
+  name: CAD Secretary Locker
   suffix: Filled
   parent: LockerBaseSecure
   components:
   - type: Appearance
   - type: Sprite
-    sprite: _Starlight/Structures/Storage/closet.rsi
+    sprite: _FarHorizons/Structures/Storage/closet.rsi
   - type: EntityStorageVisuals
-    stateBaseClosed: bssecure
-    stateDoorOpen: bssecure_open
-    stateDoorClosed: bssecure_door
+    stateBaseClosed: cad
+    stateDoorOpen: cad_open
+    stateDoorClosed: cad_door
   - type: AccessReader
     access: [ [ "CentralCommand" ] ]
   - type: WiresPanelSecurity
@@ -21,11 +21,12 @@
     - id: ClothingBackpackSatchelLeather
     - id: MagazineMagnum
       amount: 2
-    - id: ClothingEyesHudCommand
     - id: MindShieldImplanter
     - id: DeathRattleImplanterCentcomm
+    - id: BluespaceImplanter
     - id: ClothingUniformJumpskirtCentcommAdminFormalWear
-    - id: ClothingEyesGlassesCommand
+    - id: ClothingEyesHudCentComm
+    - id: ClothingEyesGlassesCentComm
     - id: ClothingHandsGlovesHop
     - id: CentcomPDA
     - id: WeaponPistolN1984
@@ -33,23 +34,29 @@
     - id: ClothingHeadHatCentcomcap
     - id: ClothingShoesBootsLaceup
     - id: ClothingOuterArmorCentcommCarapace
-    - id: ClothingHeadsetCentCom
+    - id: ClothingHeadsetAltCentCom
     - id: ClothingMaskGasCentcom
+    - id: AllHumanoidTranslator
+    - id: BSOxygenTankFilled
+    - id: BSNitrogenTankFilled
     - id: PowerCellAntiqueProto
+      amount: 2
+    - id: RubberStampCAD
+    - id: BoxStampsCCAdministrative
 
 - type: entity
   id: CSDFilled
-  name: Central Security Division Cadet Locker
+  name: CSD Cadet Locker
   suffix: Filled
   parent: LockerBaseSecure
   components:
   - type: Appearance
   - type: Sprite
-    sprite: _Starlight/Structures/Storage/closet.rsi
+    sprite: _FarHorizons/Structures/Storage/closet.rsi
   - type: EntityStorageVisuals
-    stateBaseClosed: bssecure
-    stateDoorOpen: bssecure_open
-    stateDoorClosed: bssecure_door
+    stateBaseClosed: csd
+    stateDoorOpen: csd_open
+    stateDoorClosed: csd_door
   - type: AccessReader
     access: [ [ "CentralCommand" ] ]
   - type: WiresPanelSecurity
@@ -60,10 +67,11 @@
     - id: ClothingBackpackSatchelSecurity
     - id: MagazineMagnum
       amount: 2
-    - id: ClothingEyesHudCommand
     - id: MindShieldImplanter
     - id: DeathRattleImplanterCentcomm
+    - id: BluespaceImplanter
     - id: ClothingUniformJumpskirtCentcommSecurityFormalWear
+    - id: ClothingEyesHudCentComm
     - id: ClothingEyesGlassesCentComm
     - id: ClothingHandsGlovesCombat
     - id: CentcomPDA
@@ -74,4 +82,10 @@
     - id: ClothingOuterVestWebEliteCentcomm
     - id: ClothingHeadsetAltCentComDS
     - id: ClothingMaskGasCentcom
+    - id: AllHumanoidTranslator
+    - id: BSOxygenTankFilled
+    - id: BSNitrogenTankFilled
     - id: PowerCellAntiqueProto
+      amount: 2
+    - id: RubberStampCSD
+    - id: BoxStampsCCAdministrative

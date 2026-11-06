@@ -551,10 +551,30 @@
     sprite: Clothing/Ears/Headsets/service.rsi
 
 - type: entity
-  parent: [ ClothingHeadset]
+  parent: [ ClothingHeadset , BaseCentcommContraband]
   id: ClothingHeadsetNSHC
   name: NSHC Headset
   description: A headset used by the upper echelons of NeoSol.
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeySHC
+      - EncryptionKeySyndiMaster
+      - EncryptionKeyGMN
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Ears/Headsets/NeoSol/security.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Ears/Headsets/NeoSol/security.rsi
+  - type: RadioChime #Starlight
+    sound:
+      path: /Audio/_Starlight/Effects/Radio/marauder.ogg
+
+- type: entity
+  parent: [ ClothingHeadsetAlt , BaseCentcommContraband]
+  id: ClothingHeadsetAltNSHC
+  name: NSHC Over-Ear Headset
+  description: A over-ear headset used by the upper echelons of NeoSol.
   components:
   - type: ContainerFill
     containers:

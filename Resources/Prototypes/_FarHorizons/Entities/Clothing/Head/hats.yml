@@ -695,6 +695,28 @@
   - type: Clothing
     sprite: _FarHorizons/Clothing/Head/Hats/NeoSol/botanist_rancher_hat.rsi
 
+#region High Command
+- type: entity
+  parent: [ ClothingHeadBase, BaseCentcommContraband ]
+  id: ClothingHeadHatHighCap
+  name: High Cap
+  suffix: NS
+  description: A grand, stylish cap worn by High Command. Shows the station who's in charge.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Head/Hats/NeoSol/highcap.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Head/Hats/NeoSol/highcap.rsi
+  - type: Item
+    sprite: _FarHorizons/Clothing/Head/Hats/NeoSol/highcap.rsi
+  - type: Tag
+    tags:
+    - PetWearable
+    - CorgiWearable
+    - ClothMade
+    - Recyclable
+    - WhitelistChameleon
+    - HamsterWearable
 #region ## USSP ##
 
 - type: entity

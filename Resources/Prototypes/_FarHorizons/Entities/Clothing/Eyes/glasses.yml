@@ -214,9 +214,9 @@
   description: Upgraded sunglasses that provide flash immunity and show ID card status.
   components:
   - type: Sprite
-    sprite: _FarHorizons/Clothing/Eyes/Glasses/NeoSol/commandglasses.rsi
+    sprite: _FarHorizons/Clothing/Eyes/Glasses/NeoSol/redswordoperative.rsi
   - type: Clothing
-    sprite: _FarHorizons/Clothing/Eyes/Glasses/NeoSol/commandglasses.rsi
+    sprite: _FarHorizons/Clothing/Eyes/Glasses/NeoSol/redswordoperative.rsi
   - type: FlashImmunity
   - type: EyeProtection
     protectionTime: 5
@@ -392,5 +392,33 @@
     tags:
     - HamsterWearable
     - WhitelistChameleon
+  - type: IdentityBlocker
+    coverage: EYES
+
+#region High Command
+- type: entity
+  parent: [ClothingEyesBase, BaseCentcommContraband]
+  id: ClothingEyesGlassesHighCommand
+  name: NSHC Glasses
+  suffix: NS
+  description: The innovative red lenses hide your eyes from light flashes and have a built-in visor.
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Eyes/Glasses/NeoSol/redswordoperative.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Eyes/Glasses/NeoSol/redswordoperative.rsi
+  - type: FlashImmunity
+  - type: ShowJobIcons
+  - type: ShowMindShieldIcons
+  - type: ShowCriminalRecordIcons
+  - type: ShowHealthBars
+    damageContainers:
+    - Biological
+  - type: ShowHealthIcons
+    damageContainers:
+    - Biological
+  - type: Tag
+    tags:
+    - HudMedical
   - type: IdentityBlocker
     coverage: EYES

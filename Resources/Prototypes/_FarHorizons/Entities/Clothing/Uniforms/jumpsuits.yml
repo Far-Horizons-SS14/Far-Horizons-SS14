@@ -953,6 +953,21 @@
     - BibleThwackRemovable
 
 
+#region High Command
+- type: entity
+  parent: [ ClothingUniformBase, BaseCentcommContraband ]
+  id: ClothingUniformJumpsuitHighCommand
+  name: High Command Jumpsuit
+  suffix: NS
+  description: It's a dark purple jumpsuit with some gold markings denoting the rank of "High Command".
+  components:
+  - type: RollUpSleeves
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/NeoSol/high_command_jumpsuit.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Uniforms/Jumpsuit/NeoSol/high_command_jumpsuit.rsi
+
+
 #region Wizard
 
 - type: entity

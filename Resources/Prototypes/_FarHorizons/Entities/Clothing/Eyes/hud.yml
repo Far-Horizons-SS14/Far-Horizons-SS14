@@ -254,3 +254,30 @@
     - PetWearable
     - WhitelistChameleon
     - HudSecurity
+
+#region High Command
+- type: entity
+  parent: [ ClothingEyesBase, BaseCentcommContraband ]
+  id: ClothingEyesHudHighCommand
+  name: NSHC HUD
+  description: An innovative heads-up display that scans the humanoids in view and provides accurate data about their ID status, security records, and medical information.
+  suffix: NS
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/Eyes/Hud/NeoSol/redswordoperative.rsi
+  - type: Clothing
+    sprite: _FarHorizons/Clothing/Eyes/Hud/NeoSol/redswordoperative.rsi
+  - type: ShowJobIcons
+  - type: ShowMindShieldIcons
+  - type: ShowCriminalRecordIcons
+  - type: ShowHealthBars
+    damageContainers:
+    - Biological
+  - type: ShowHealthIcons
+    damageContainers:
+    - Biological
+  - type: Tag
+    tags:
+    - HudMedical
+  - type: EyeProtection
+    protectionTime: 5
