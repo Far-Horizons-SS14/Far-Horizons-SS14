@@ -1,0 +1,17 @@
+- type: entity
+  parent: StatusEffectDamageModifierBase
+  id: StatusEffectNaniteDefense
+  name: Nanite Defense
+  components:
+  - type: DamageModifierStatusEffect
+    modifiers:
+      coefficients:
+        Piercing: 0.9
+        Slash: 0.9
+        Blunt: 0.9
+        Heat: 0.9
+      flatReductions: # might be too much? can chuck this out of the window if it is
+        Piercing: 1
+        Slash: 1
+        Blunt: 1
+        Heat: 1

@@ -21,3 +21,6 @@ disease-symptom-SymptomNarcolepsy-name = Narcolepsy
 disease-symptom-SymptomFreeze-name = Freeze
 disease-symptom-SymptomFreezeLight-name = Light Freeze
 disease-symptom-SymptomGeneticDamage-name = Genetic Damage
+disease-symptom-SymptomNaniteDefense-name = Nanite Defense
+disease-symptom-SymptomNaniteSpeed-name = Nanite Speed
+disease-symptom-SymptomNaniteRegen-name = Nanite Regen

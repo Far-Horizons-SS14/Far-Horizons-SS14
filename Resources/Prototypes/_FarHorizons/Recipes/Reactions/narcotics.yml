@@ -1,0 +1,39 @@
+- type: reaction
+  id: Crynex # hard to tider chem, unless you get pure lithium you'll end up with 33% crynex 66% other chems
+  reactants: 
+    Nanites: 
+      amount: 1
+    Ice: # yes there is ice on the nukie bases (bar)
+      amount: 2
+    Lithium: 
+      amount: 2
+  products: 
+    Crynex: 1
+
+- type: reaction
+  id: Chitinen
+  reactants: 
+    Nanites: 
+      amount: 1
+    Milk: # strong bones. yes there is milk on the nukie bases (bar)
+      amount: 1
+    iron: 
+      amount: 5
+    copper: 
+      amount: 2 #makes tider chem slightly harder, will result in a ~60% pure result if you use the lazy option, can still achieve 99% pure with some math
+  products: 
+    Chitinen: 1
+
+- type: reaction
+  id: Alacrity # you're not making this outside of a chem master
+  reactants:
+    Nanites: 
+      amount: 1
+    SodiumCarbonate: 
+      amount: 1
+    Ephedrine: 
+      amount: 2
+    Aluminium: 
+      amount: 4
+  products: 
+    Alacrity: 1

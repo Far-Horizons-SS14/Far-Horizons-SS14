@@ -1,0 +1,84 @@
+#region consortium chems
+- type: reagent
+  id: Crynex # nocturine counterpart, no forced sleep but leaves the victim just as powerless
+  name: reagent-name-crynex
+  group: Narcotics
+  desc: reagent-desc-crynex
+  physicalDesc: reagent-physical-desc-frosty
+  contrabandSeverity: Syndicate
+  color: "#799fb3"
+  metabolisms:
+    Bloodstream:
+      effects:
+      - !type:GenericStatusEffect
+        conditions:
+          - !type:ReagentCondition
+            reagent: Crynex
+            min: 6
+        key: Pacified
+        component: Pacified
+        time: 2
+      - !type:MovementSpeedModifier
+        conditions:
+          - !type:ReagentCondition
+            reagent: Crynex
+            min: 6
+        walkSpeedModifier: 0.5
+        sprintSpeedModifier: 0.5
+      - !type:AdjustTemperature
+        amount: -50000
+        conditions:
+        - !type:ReagentCondition
+            reagent: Crynex
+            min: 6
+        - !type:TemperatureCondition
+            min: 200.15 # will cause cold damage
+      - !type:MovementSpeedModifier # mixing with cryox makes it slightly stronger
+        conditions:
+          - !type:ReagentCondition
+            reagent: Crynex
+            min: 6
+            reagent: Cryoxadone
+            min: 1
+        walkSpeedModifier: 0.3
+        sprintSpeedModifier: 0.3
+
+- type: reagent
+  id: Chitinen
+  name: reagent-name-chitinen
+  group: Narcotics
+  desc: reagent-desc-chitinen
+  physicalDesc: reagent-physical-desc-reasonably-metallic
+  contrabandSeverity: Syndicate
+  flavor: metallic
+  color: "#a3a162"
+  metabolisms:
+    Bloodstream:
+      effects:
+      - !type:CauseDisease 
+        conditions: 
+        - !type:ReagentCondition
+            reagent: Chitinen
+            min: 13
+        disease: DiseaseNaniteDefense
+        probability: 1
+
+- type: reagent
+  id: Alacrity # hyperzine counterpart, weaker healing and speedboost for longer duration
+  name: reagent-name-alacrity
+  group: Narcotics
+  desc: reagent-desc-alacrity
+  physicalDesc: reagent-physical-desc-soothing
+  contrabandSeverity: Syndicate
+  flavor: metallic
+  color: "#96c098"
+  metabolisms:
+    Bloodstream:
+      effects:
+      - !type:CauseDisease 
+        conditions: 
+        - !type:ReagentCondition
+            reagent: Alacrity
+            min: 13
+        disease: DiseaseNaniteSpeed
+        probability: 1
