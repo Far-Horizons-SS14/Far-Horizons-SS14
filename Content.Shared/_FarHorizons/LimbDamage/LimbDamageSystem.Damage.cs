@@ -1,5 +1,7 @@
+using Content.Shared._FarHorizons.HitscanDamageModifier;
 using Content.Shared._FarHorizons.LimbDamage.Components;
 using Content.Shared.Body;
+using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Rejuvenate;
@@ -34,7 +36,14 @@ public partial class LimbDamageSystem
             !TryComp<HitscanBasicDamageComponent>(ent, out var damageComp))
             return;
 
-        var dmg = damageComp.Damage * _damageable.UniversalHitscanDamageModifier;
+        //Hitscan Damage Modifiers
+        DamageSpecifier dmg;
+
+        if (TryComp<HitscanDamageModifierComponent>(args.Data.Gun, out var damagemodcomp))
+            dmg = (damageComp.Damage += damagemodcomp.Damage) * _damageable.UniversalHitscanDamageModifier;
+        else //Normal Behavior
+            dmg = damageComp.Damage * _damageable.UniversalHitscanDamageModifier;
+        
         if (!TryChangeLimbDamage(args.Data.HitEntity.Value, ent.Comp.Target, dmg, out var damageDealt,
                 damageComp.IgnoreResistances, true, args.Data.Shooter, false, damageComp.ArmorPenetration, false, false, true))
             return;

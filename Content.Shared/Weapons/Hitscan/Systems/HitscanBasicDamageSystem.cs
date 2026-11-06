@@ -1,3 +1,4 @@
+using Content.Shared._FarHorizons.HitscanDamageModifier; //FH
 using Content.Shared._FarHorizons.LimbDamage;
 using Content.Shared.Body;
 using Content.Shared.Damage;
@@ -26,7 +27,14 @@ public sealed partial class HitscanBasicDamageSystem : EntitySystem
             args.DamageHandled) // Far Horisons
             return;
 
-        var dmg = ent.Comp.Damage * _damage.UniversalHitscanDamageModifier;
+        //FH start Hitscan Damage Modifiers
+        DamageSpecifier dmg;
+
+        if (TryComp<HitscanDamageModifierComponent>(args.Data.Gun, out var damagemodcomp))
+            dmg = (ent.Comp.Damage += damagemodcomp.Damage) * _damage.UniversalHitscanDamageModifier;
+        else //Normal Behavior
+            dmg = ent.Comp.Damage * _damage.UniversalHitscanDamageModifier;
+        //FH end
 
         // Far Horizons limb targetting start
         ProtoId<OrganCategoryPrototype>? limbTarget = null;
