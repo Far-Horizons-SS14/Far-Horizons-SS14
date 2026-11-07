@@ -40,7 +40,7 @@ public abstract partial class SharedTimeSystem : EntitySystem
     }
 
     /// <summary>
-    /// Gets the station's date. This is 500 years in the future from today's date.
+    /// Gets the station's date. This is 300 years in the future from today's date.
     /// </summary>
     public string GetDate()
     {
