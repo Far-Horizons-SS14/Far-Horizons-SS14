@@ -15715,6 +15715,7 @@ entities:
       parent: 1
     - type: Battery
       maxCharge: 25000000
+      startingCharge: 25000000 # FH - this makes it _much_ more realistic to a real station, with a charged primary battery at the start.
 - proto: SubstationWallBasic
   entities:
   - uid: 2800

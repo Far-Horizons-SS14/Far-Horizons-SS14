@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Server._FarHorizons.Power.SmartGrid; // Far Horizons
 using Content.Server.NodeContainer.EntitySystems;
 using Content.Server.Power.Components;
 using Content.Server.Power.NodeGroups;
@@ -25,6 +26,7 @@ namespace Content.Server.Power.EntitySystems
         [Dependency] private IConfigurationManager _cfg = default!;
         [Dependency] private IParallelManager _parMan = default!;
         [Dependency] private BatterySystem _battery = default!;
+        [Dependency] private SmartGridSystem _smartGrid = default!; // Far Horizons
 
         private readonly PowerState _powerState = new();
         private readonly HashSet<PowerNet> _powerNetReconnectQueue = new();
@@ -289,6 +291,7 @@ namespace Content.Server.Power.EntitySystems
 
             // Synchronize batteries, the other way around.
             RaiseLocalEvent(new NetworkBatteryPostSync());
+            _smartGrid.UpdateAfterPowerSolver(); // Far Horizons
 
             // Send events where necessary.
             // TODO: Instead of querying ALL power components every tick, and then checking if an event needs to be
@@ -324,6 +327,7 @@ namespace Content.Server.Power.EntitySystems
         private bool IsPoweredCalculate(ApcPowerReceiverComponent comp)
         {
             return !comp.PowerDisabled
+                   && !comp.SmartGridDisabled // Far Horizons
                    && (!comp.NeedsPower
                        || MathHelper.CloseToPercent(comp.NetworkLoad.ReceivingPower,
                            comp.Load));
@@ -354,7 +358,7 @@ namespace Content.Server.Power.EntitySystems
                     apcReceiver.Load = apcBattery.IdleLoad;
 
                     // Try to draw power from the battery if there isn't sufficient external power
-                    var requireBattery = !powered && !apcReceiver.PowerDisabled;
+                    var requireBattery = !powered && !apcReceiver.PowerDisabled && !apcReceiver.SmartGridDisabled; // Far Horizons
 
                     if (requireBattery)
                     {

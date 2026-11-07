@@ -80,7 +80,7 @@ namespace Content.Server.Power.EntitySystems
 
                 float storageRatio = ps.InStorageCurrent / Math.Max(ps.InStorageMax, 1.0f);
                 float outStorageRatio = ps.OutStorageCurrent / Math.Max(ps.OutStorageMax, 1.0f);
-                return Loc.GetString("cable-multitool-system-statistics",
+                var statistics = Loc.GetString("cable-multitool-system-statistics", // Far Horizons
                     ("supplyc", ps.SupplyCurrent),
                     ("supplyb", ps.SupplyBatteries),
                     ("supplym", ps.SupplyTheoretical),
@@ -92,6 +92,7 @@ namespace Content.Server.Power.EntitySystems
                     ("storageor", outStorageRatio),
                     ("storageom", ps.OutStorageMax)
                 );
+                return $"{statistics}\n{GetSmartGridStatus(p)}\n{GetSmartGridSources(p)}"; // Far Horizons
             }
             return Loc.GetString("cable-multitool-system-internal-error-no-power-node");
         }

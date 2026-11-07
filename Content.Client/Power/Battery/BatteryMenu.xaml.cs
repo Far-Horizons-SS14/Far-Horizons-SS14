@@ -1,4 +1,6 @@
-﻿using System.Diagnostics.CodeAnalysis;
+/* Far Horizons - forked into Content.Client/_FarHorizons/Power/Battery/BatteryMenu.xaml.cs.
+
+using System.Diagnostics.CodeAnalysis;
 using Content.Client.Stylesheets;
 using Content.Client.UserInterface.Controls;
 using Content.Shared.Power;
@@ -278,3 +280,4 @@ public sealed partial class BatteryMenu : FancyWindow
         }
     }
 }
+*/

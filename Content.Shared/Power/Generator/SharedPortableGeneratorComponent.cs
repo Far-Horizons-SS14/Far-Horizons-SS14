@@ -1,4 +1,5 @@
 ﻿using Robust.Shared.Audio;
+using Content.Shared._FarHorizons.Power.SmartGrid; // Far Horizons
 using Robust.Shared.Serialization;
 
 namespace Content.Shared.Power.Generator;
@@ -103,12 +104,16 @@ public sealed class PortableGeneratorComponentBuiState : BoundUserInterfaceState
     public float MaximumPower;
     public float OptimalPower;
     public bool On;
+    public SmartGridAvailabilityState SmartGrid; // Far Horizons
 
     public PortableGeneratorComponentBuiState(
         FuelGeneratorComponent component,
         float remainingFuel,
         bool clogged,
-        (float Demand, float Supply)? networkStats)
+        // Far Horizons start
+        (float Demand, float Supply)? networkStats,
+        SmartGridAvailabilityState smartGrid)
+        // Far Horizons end
     {
         RemainingFuel = remainingFuel;
         Clogged = clogged;
@@ -117,6 +122,7 @@ public sealed class PortableGeneratorComponentBuiState : BoundUserInterfaceState
         OptimalPower = component.OptimalPower;
         On = component.On;
         NetworkStats = networkStats;
+        SmartGrid = smartGrid; // Far Horizons
     }
 }
 
