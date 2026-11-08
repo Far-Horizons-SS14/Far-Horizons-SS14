@@ -50,18 +50,7 @@
         - id: MagazineMagnum
         - id: MagazineMagnum
 
-- type: entity
-  parent: ClothingBackpackDuffelSyndicateBundle
-  id: ClothingBackpackDufelSyndicateFilledMantisBladeArms
-  name: Mantis Blade bundle
-  description: "Contains a pair of cybernetic arms, watch out. You got a psycho on the loose."
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      storagebase: !type:AllSelector
-        children:
-        - id: CyberneticImplanterSyndicateArmCyberMantisBlade #FH
-        - id: CyberneticImplanterSyndicateArmCyberMantisBlade #FH
+#FH - Removed ClothingBackpackDufelSyndicateFilledMantisBladeArms
     
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle
