@@ -5,7 +5,7 @@ namespace Content.Shared._FarHorizons.CCVar;
 public sealed partial class FHCCVars
 {
     public static readonly CVarDef<bool> RunFactionVoteAfterRestart = 
-        CVarDef.Create("vote.run_faction_vote_after_restart", true);
+        CVarDef.Create("vote.run_faction_vote_after_restart", false);
         
     /// <summary>
     ///     List of factions enabled for vote.
