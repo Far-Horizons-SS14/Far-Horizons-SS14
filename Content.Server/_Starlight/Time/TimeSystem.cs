@@ -23,7 +23,7 @@ public sealed partial class TimeSystem : SharedTimeSystem
     /// </summary>
     private void OnRoundStart(RoundStartingEvent ev)
     {
-        Date = DateTime.UtcNow.AddYears(500);
+        Date = DateTime.UtcNow.AddYears(300); //FH takes place 300 years in the future. This should help change the time display.
         RaiseNetworkEvent(new RoundDateSetEvent(Date));
     }
 
