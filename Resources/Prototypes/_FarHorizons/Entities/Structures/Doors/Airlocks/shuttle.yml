@@ -155,6 +155,7 @@
 - type: entity
   id: FHAirlockGlassShuttleSyndicate
   parent: FHAirlockGlassShuttle
+  suffix: Syndicate, Glass, Docking
   components:
   - type: Sprite
     sprite: _FarHorizons/Structures/Doors/Airlocks/Glass/external.rsi
@@ -165,12 +166,35 @@
 - type: entity
   parent: FHAirlockShuttle
   id: FHAirlockShuttleSyndicate
+  suffix: Syndicate, Docking
   components:
   - type: Sprite
     sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/external.rsi
   - type: ContainerFill
     containers:
       board: [ BaseDoorElectronicsSyndicate ]
+
+- type: entity
+  id: FHAirlockGlassShuttleLambda
+  parent: FHAirlockGlassShuttle
+  suffix: Lambda, SquadOp, Glass, Docking
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Doors/Airlocks/Glass/external.rsi
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsLambdaSquadop ]
+
+- type: entity
+  parent: FHAirlockShuttle
+  id: FHAirlockShuttleLambda
+  suffix: Lambda, SquadOp, Docking
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Structures/Doors/Airlocks/Standard/external.rsi
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsLambdaSquadop ]
 
 - type: entity
   parent: FHAirlockShuttle
