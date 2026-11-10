@@ -1,7 +1,8 @@
 - type: entity
   parent: [BaseStructure, StructureWheeled, BaseMajorContraband]
   id: NuclearBomb
-  name: nuclear fission explosive
+  name: Nuclear fission explosive # Far Horizons - Capitalisation
+  suffix: NanoTrasen, Anchored # Far Horizons - labelling nukes
   description: You probably shouldn't stick around to see if this is armed.
   components:
   - type: Transform
@@ -122,7 +123,7 @@
 - type: entity
   parent: NuclearBomb
   id: NuclearBombUnanchored
-  suffix: unanchored
+  suffix: Syndicate, Unanchored # Far Horizons - labelling nukes
   components:
   - type: Transform
     anchored: false
