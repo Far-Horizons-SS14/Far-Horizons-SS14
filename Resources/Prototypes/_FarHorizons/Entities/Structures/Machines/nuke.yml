@@ -5,6 +5,9 @@
   components:
   - type: NukeLabel
     prefix: "nuke-label-neosol"
+  - type: WarpPoint
+    follow: true
+    location: Nuclear bomb (NS)
 
 - type: entity
   parent: NuclearBomb
@@ -17,6 +20,9 @@
     bodyType: Dynamic
   - type: NukeLabel
     prefix: "nuke-label-lambda"
+  - type: WarpPoint
+    follow: true
+    location: Nuclear bomb (Lambda)
 
 - type: entity
   parent: NuclearBombKeg

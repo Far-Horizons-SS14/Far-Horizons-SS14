@@ -114,7 +114,7 @@
     - UnDissolvable # Starlight-edit
   - type: WarpPoint
     follow: true
-    location: nuclear bomb
+    location: Nuclear bomb (NT) # Far Horizons - clearer warp points
     blacklist:
       tags:
       - GhostOnlyWarp
@@ -133,6 +133,9 @@
   - type: NukeLabel
     prefix: "nuke-label-syndicate"
   # Starlight-end
+  - type: WarpPoint # Far Horizons - clearer warp points
+    follow: true
+    location: Nuclear bomb (Syndicate)
 
 - type: entity
   parent: StorageTankBig
