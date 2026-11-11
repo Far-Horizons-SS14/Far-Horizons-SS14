@@ -6,6 +6,7 @@ using Content.Shared.Voting;
 using Robust.Server.Player;
 using Robust.Shared.Timing;
 using Robust.Shared.Configuration;
+using Content.Shared._FarHorizons.CCVar; //FH
 
 namespace Content.Server.Starlight.GameTicking;
 
@@ -18,6 +19,11 @@ public sealed partial class RoundEndVoteSystem : EntitySystem
     [Dependency] private IPlayerManager _playerManager = default!;
 
     private TimeSpan? _voteStartTime;
+    //FH Start
+    private TimeSpan? _voteFactionStartTime;
+    private const float InBetweenVoteTime = 5f;
+    private const float MinBeforeStart = 20f;
+    //FH End
 
     public override void Initialize()
     {
@@ -34,8 +40,11 @@ public sealed partial class RoundEndVoteSystem : EntitySystem
             return;
         }
         
-        _voteStartTime = _gameTiming.CurTime + _gameTicker.LobbyDuration - TimeSpan.FromSeconds(_cfg.GetCVar(StarlightCCVars.VotingsDelay));
-        Log.Warning($"Vote will start at {_voteStartTime}");
+        //FH Start
+        _voteStartTime = _gameTiming.CurTime + _gameTicker.LobbyDuration - TimeSpan.FromSeconds(_cfg.GetCVar(StarlightCCVars.VotingsDelay) + MinBeforeStart);
+        _voteFactionStartTime = _voteStartTime - TimeSpan.FromSeconds(_cfg.GetCVar(FHCCVars.VoteTimerFaction) + InBetweenVoteTime);
+        Log.Warning($"Vote will start at {_voteStartTime} & faction vote will start at {_voteFactionStartTime}");
+        //FH End
 
         if (_cfg.GetCVar(StarlightCCVars.ResetPresetAfterRestart))
             _gameTicker.SetGamePreset("Secret");
@@ -48,6 +57,15 @@ public sealed partial class RoundEndVoteSystem : EntitySystem
         if (_gameTicker.RunLevel != GameRunLevel.PreRoundLobby || _voteStartTime == null)
             return;
 
+        //FH Start
+        if(_voteFactionStartTime != null && 
+        _gameTiming.CurTime >= _voteFactionStartTime && 
+        _cfg.GetCVar(FHCCVars.RunFactionVoteAfterRestart))
+        {
+            _voteManager.CreateStandardVote(null, StandardVoteType.Faction);
+            _voteFactionStartTime = null;
+        }
+        //FH End
         if (_gameTiming.CurTime >= _voteStartTime)
         {
             StartRoundEndVotes();

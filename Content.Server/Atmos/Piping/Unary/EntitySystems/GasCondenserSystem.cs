@@ -48,12 +48,18 @@ public sealed partial class GasCondenserSystem : EntitySystem
                 continue;
 
             if (_atmosphereSystem.GetGas(i).Reagent is not { } gasReagent)
+            {
+                inlet.Air.AdjustMoles(i, moles); // Far Horizons - if a gas has no reagent, then we can't convert it, so put it back in the mixture, rather than deleting it.
                 continue;
+            }
 
             var moleToReagentMultiplier = entity.Comp.MolesToReagentMultiplier;
             var amount = FixedPoint2.Min(FixedPoint2.New(moles * moleToReagentMultiplier), solution.AvailableVolume);
             if (amount <= 0)
+            {
+                inlet.Air.AdjustMoles(i, moles); // Far Horizons - if we can't add any more reagent to the solution, then put the gas back in the mixture, rather than deleting it.
                 continue;
+            }
 
             solution.AddReagent(gasReagent, amount);
 
@@ -66,10 +72,24 @@ public sealed partial class GasCondenserSystem : EntitySystem
 
     public float NumberOfMolesToConvert(ApcPowerReceiverComponent comp, GasMixture mix, float dt)
     {
+        // Far Horizons start - determine the number of moles to obtain from the input mixture, but correctly
+        // Note that the upstream code here considers GetHeatCapacity, rather than GetHeatCapacity / Mol, so it's wildly innacurate with large pipenets, and the outputs swing wildly there.
+        if (mix.TotalMoles == 0)
+            return 0;
+
+        var heatCapacityPerMol = _atmosphereSystem.GetHeatCapacity(mix, true) / mix.TotalMoles;
+        var energy = comp.Load * dt;
+        var efficiency = 0.8f; // 80% efficient at using energy to drop the gas temperature to condense it.
+        var temperatureDrop = Math.Max(mix.Temperature - 90, 1); // temperature drop needed to condense the gas - this is a hack, we're using the condensation temp for O2 for all gasses. Gate it to a 1K drop to avoid divide by zero errors.
+        // dimensional analysis - efficiency (scalar) * energy (J) / (temperature drop (K) * heat capacity per mol (J/(mol*K))) = moles
+        return efficiency * energy / (temperatureDrop * heatCapacityPerMol);
+        // Far Horizons end
+        /* Far Horizons - Upstream code preserved for reference
         var hc = _atmosphereSystem.GetHeatCapacity(mix, true);
         var alpha = 0.8f; // tuned to give us 1-ish u/second of reagent conversion
         // ignores the energy needed to cool down the solution to the condensation point, but that probably adds too much difficulty and so let's not simulate that
         var energy = comp.Load * dt;
         return energy / (alpha * hc);
+        */// Far Horizons - End of preserved upstream block
     }
 }
