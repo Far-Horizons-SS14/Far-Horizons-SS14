@@ -1,7 +1,8 @@
 - type: entity
   parent: [BaseStructure, StructureWheeled, BaseMajorContraband]
   id: NuclearBomb
-  name: nuclear fission explosive
+  name: Nuclear Fission Explosive # Far Horizons - Capitalisation
+  suffix: NanoTrasen, Anchored # Far Horizons - labelling nukes
   description: You probably shouldn't stick around to see if this is armed.
   components:
   - type: Transform
@@ -113,7 +114,7 @@
     - UnDissolvable # Starlight-edit
   - type: WarpPoint
     follow: true
-    location: nuclear bomb
+    location: Nuclear bomb (NT) # Far Horizons - clearer warp points
     blacklist:
       tags:
       - GhostOnlyWarp
@@ -122,7 +123,7 @@
 - type: entity
   parent: NuclearBomb
   id: NuclearBombUnanchored
-  suffix: unanchored
+  suffix: Syndicate, Unanchored # Far Horizons - labelling nukes
   components:
   - type: Transform
     anchored: false
@@ -132,12 +133,15 @@
   - type: NukeLabel
     prefix: "nuke-label-syndicate"
   # Starlight-end
+  - type: WarpPoint # Far Horizons - clearer warp points
+    follow: true
+    location: Nuclear bomb (Syndicate)
 
 - type: entity
   parent: StorageTankBig
   id: NuclearBombKeg
-  name: nuclear fission explosive
-  suffix: keg
+  name: Nuclear Fission Explosive # Far Horizons - Capitalisation
+  suffix: NanoTrasen, Keg # Far Horizons, better nuke labelling
   description: You probably shouldn't stick around to see if this is armed. It has a tap on the side.
   components:
   - type: Transform
