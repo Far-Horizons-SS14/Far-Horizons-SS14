@@ -71,17 +71,17 @@
 #region consortium chems
 
 - type: reagent
-  id: Nanites
-  name: reagent-name-nanites
+  id: Kerosil
+  name: reagent-name-kerosil
   group: Toxins
-  desc: reagent-desc-nanites
+  desc: reagent-desc-kerosil
   physicalDesc: reagent-physical-desc-grainy
   contrabandSeverity: Syndicate
   flavor: metallic
   color: "#7e6b6b"
   plantMetabolism:
   - !type:PlantMutateChemicals
-    randomPickBotanyReagent: EvilRandomFillSolution #will need to separate botany mutations between syndie chems and consortium chems later
+    randomPickBotanyReagent: ConsortiumRandomFillSolution 
   - !type:PlantAdjustToxins
     amount: 10
   metabolisms:
@@ -108,7 +108,7 @@
         time: 30 
         type: Update
       - !type:ModifyBleed
-        amount: 1
+        amount: 5
       - !type:HealthChange
         damage:
           types:

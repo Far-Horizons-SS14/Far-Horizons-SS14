@@ -1,0 +1,21 @@
+- type: entity
+  parent: [BoxVial, BaseSyndicateContraband]
+  id: ConsortiumChemicalSynthesisKit
+  name: chemical synthesis kit
+  description: A starter kit for the aspiring chemist, includes two vials of Kerosil for all your criminal needs!
+  components:
+  - type: Storage
+    grid:
+    - 0,0,3,2
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: Beaker
+          amount: 2
+        - id: Dropper
+        - id: ClothingEyesGlassesChemical
+        - id: Syringe
+        - id: KerosilChemistryVial
+          amount: 2
+        - id: ChemistryEmptyVial

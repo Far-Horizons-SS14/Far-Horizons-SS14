@@ -52,18 +52,18 @@
   spreadPath: [ NonContagious ]
 
 - type: disease
-  id: DiseaseNaniteDefense
-  name: disease-DiseaseNaniteDefense-name
-  desc: disease-DiseaseNaniteDefense-desc
+  id: DiseaseKerosilDefense
+  name: disease-DiseaseKerosilDefense-name
+  desc: disease-DiseaseKerosilDefense-desc
   strainName: LMD.Def.37
   strainId: lmddef37
-  vector: Nanite
+  vector: Kerosil
   symptoms:
   - symptom: SymptomJitters
     probability: 
       1: 0.1
       2: 0.1
-  - symptom: SymptomNaniteDefense
+  - symptom: SymptomKerosilDefense
     probability: 
       1: 1
       2: 1
@@ -76,27 +76,27 @@
   - !type:CureWait
     requiredTicks: 900 #15 minutes of light armor
   - !type:CureBedrest
-      bedrestChance: 0 #can't cure nanites by sleeping, not that you'd want to
+      bedrestChance: 0 #can't cure it by sleeping, not that you'd want to
       sleepMultiplier: 5
   spreadPath: [ NonContagious ]
 
 - type: disease
-  id: DiseaseNaniteSpeed
-  name: disease-DiseaseNaniteSpeed-name
-  desc: disease-DiseaseNaniteSpeed-desc
+  id: DiseaseKerosilSpeed
+  name: disease-DiseaseKerosilSpeed-name
+  desc: disease-DiseaseKerosilSpeed-desc
   strainName: LMD.Spd.52
   strainId: lmdspd52
-  vector: Nanite
+  vector: Kerosil
   symptoms:
   - symptom: SymptomJitters
     probability: 
       1: 0.25
       2: 0.5
-  - symptom: SymptomNaniteSpeed
+  - symptom: SymptomKerosilSpeed
     probability: 
       1: 1
       2: 1
-  - symptom: SymptomNaniteRegen
+  - symptom: SymptomKerosilRegen
     probability: 
       1: 1
       2: 1
@@ -109,6 +109,6 @@
   - !type:CureWait
     requiredTicks: 900 #15 minutes of light speed and regen
   - !type:CureBedrest
-      bedrestChance: 0 #can't cure nanites by sleeping, not that you'd want to
+      bedrestChance: 0 #can't cure it by sleeping, not that you'd want to
       sleepMultiplier: 5
   spreadPath: [ NonContagious ]

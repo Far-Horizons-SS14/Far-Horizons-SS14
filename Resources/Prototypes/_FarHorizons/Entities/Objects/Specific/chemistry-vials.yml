@@ -87,3 +87,21 @@
     sprite: _FarHorizons/Objects/Specific/Chemistry/reinforced_vial.rsi
   - type: TESTSolutionSizeNonStandard
     reason: Reinforced vials are specifically an upgrade over the standard vials
+
+#region Reagent filled
+
+- type: entity
+  parent: ChemistryEmptyVial
+  id: KerosilChemistryVial
+  suffix: kerosil
+  components:
+  - type: Label
+    currentLabel: reagent-name-kerosil
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Kerosil
+        Quantity: 30
+  - type: Tag
+    tags: &TagVial # Remove trash tag when we have a filled solution
+    - CentrifugeCompatible

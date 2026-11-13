@@ -323,8 +323,8 @@
 #region Consortium chems
 
 - type: diseaseSymptom
-  id: SymptomNaniteDefense
-  name: disease-symptom-SymptomNaniteDefense-name
+  id: SymptomKerosilDefense
+  name: disease-symptom-SymptomKerosilDefense-name
   tier: 1
   stats:
     stealth: 0
@@ -336,16 +336,17 @@
   - !type:SymptomStatusEffect
     effects:
     - !type:ModifyStatusEffect
-        effectProto: StatusEffectNaniteDefense
+        effectProto: StatusEffectKerosilDefense
         time: 1
         type: Add
+    conditions:
     - !type:SymptomStageCondition
       min: 0
     probability: 1
 
 - type: diseaseSymptom
-  id: SymptomNaniteSpeed
-  name: disease-symptom-SymptomNaniteSpeed-name
+  id: SymptomKerosilSpeed
+  name: disease-symptom-SymptomKerosilSpeed-name
   tier: 1
   stats:
     stealth: 0
@@ -359,13 +360,14 @@
     - !type:MovementSpeedModifier
         walkSpeedModifier: 1.1
         sprintSpeedModifier: 1.1
+    conditions:
     - !type:SymptomStageCondition
       min: 0
     probability: 1
 
 - type: diseaseSymptom
-  id: SymptomNaniteRegen
-  name: disease-symptom-SymptomNaniteRegen-name
+  id: SymptomKerosilRegen
+  name: disease-symptom-SymptomKerosilRegen-name
   tier: 1
   stats:
     stealth: 0
@@ -382,6 +384,7 @@
           Burn: -0.33
           Toxin: -0.2
         affectAllLimbs: true
+    conditions:
     - !type:SymptomStageCondition
       min: 0
     probability: 1

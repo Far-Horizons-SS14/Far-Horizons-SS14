@@ -25,8 +25,8 @@ disease-DiseaseAMIV-desc = Gradually mixes the subject's genome with that of a m
 disease-DiseaseOwOnavirus-name = OwOnavirus
 disease-DiseaseOwOnavirus-desc = The subject's behavior transforms into that of a feline creature. May cause mental illness.
 
-disease-DiseaseNaniteDefense-name = Defensive nanites
-disease-DiseaseNaniteDefense-desc = The subject's skin is covered in nanites that harden in response to physical trauma.
+disease-DiseaseKerosilDefense-name = Defensive kerosil
+disease-DiseaseKerosilDefense-desc = The subject's skin is covered in a protective layer that hardens in response to physical trauma.
 
-disease-DiseaseNaniteSpeed-name = Speed nanites
-disease-DiseaseNaniteSpeed-desc = The subject is energized by nanites inside of their bloodstream, enhancing speed and regeneration.
+disease-DiseaseKerosilSpeed-name = Speed Kerosil
+disease-DiseaseKerosilSpeed-desc = The subject is energized by a stimulant inside of their bloodstream, enhancing speed and regeneration.

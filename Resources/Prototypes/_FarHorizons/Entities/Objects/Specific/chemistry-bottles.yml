@@ -74,3 +74,16 @@
       reagents:
       - ReagentId: ChloralHydrate
         Quantity: 30
+
+- type: entity
+  id: ChemistryBottleCrynex
+  suffix: crynex
+  parent: BaseChemistryBottleFilled
+  components:
+  - type: Label
+    currentLabel: reagent-name-crynex
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Crynex
+        Quantity: 30

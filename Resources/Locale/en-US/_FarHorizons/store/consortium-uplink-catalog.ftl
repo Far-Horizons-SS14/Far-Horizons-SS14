@@ -263,7 +263,7 @@ uplink-consortium-decoy-kit-name = Decoy Kit
 uplink-consortium-decoy-kit-desc = State-of-the-art distraction technology straight from RND. Comes with five realistic balloons, four decoy grenades, and some snap poppers!
 
 uplink-consortium-chemistry-kit-name = Chemical Synthesis Kit
-uplink-consortium-chemistry-kit-desc = A starter kit for the aspiring chemist, includes two vials of vestine for all your criminal needs!
+uplink-consortium-chemistry-kit-desc = A starter kit for the aspiring chemist, includes two vials of Kerosil for all your criminal needs!
 
 uplink-consortium-knives-kit-name = Throwing Knives Kit
 uplink-consortium-knives-kit-desc = A set of 8 throwing knives, perfect for embedding into the body of your victims. Capable of ignoring armor entirely when thrown.
@@ -434,14 +434,11 @@ uplink-consortium-combat-medkit-desc = A medkit made for fixing combat injuries.
 uplink-consortium-combat-medipen-name = Combat Medipen
 uplink-consortium-combat-medipen-desc = A single-use medipen containing chemicals that regenerate most types of damage.
 
-uplink-consortium-nocturine-chemistry-bottle-name = Nocturine Bottle
-uplink-consortium-nocturine-chemistry-bottle-desc = A chemical that puts your target straight to sleep.
+uplink-consortium-crynex-chemistry-bottle-name = Crynex Bottle
+uplink-consortium-crynex-chemistry-bottle-desc = A chemical that freezes your target solid.
 
-uplink-consortium-stimpack-name = Hyperzine Injector
-uplink-consortium-stimpack-desc = The legendary chemical produced by Donk Co. for the Syndicate. Injecting yourself with this will increase your run speed and let you recover from stuns faster for 60 seconds.
-
-uplink-consortium-stimkit-name = Hyperzine Injector Kit
-uplink-consortium-stimkit-desc = A medkit containing 6 hyperzine microinjectors, which each inject you with enough hyperzine to last for 30 seconds.
+uplink-consortium-chitinen-injector-name = Chitinen Injector
+uplink-consortium-chitinen-injector-desc = Armor in liquid form, injecting yourself with this will grant you 1 flat and 10% resistance to all brute damages and heat, effects last for 15 minutes.
 
 uplink-consortium-syndicate-segway-crate-name = Syndicate Segway
 uplink-consortium-syndicate-segway-crate-desc = Be an enemy of the corporation, in style!
@@ -622,3 +619,6 @@ uplink-consortium-bunker-breaker-desc = Augmented arm with all the tools needed 
 uplink-consortium-ifa30-left-arm-name = Left IFA-30 Case
 uplink-consortium-ifa30-right-arm-name = Right IFA-30 Case
 uplink-consortium-ifa30-arms-desc = A modern IFA-30 SMG for mobile operations integrated into a Cybernetic Arm, comes with an Ammo Selector.
+
+uplink-consortium-alacrity-medipen-name = Alacrity Medipen
+uplink-consortium-alacrity-medipen-desc = A single dose of Alacrity, capable of enhancing the user's regeneration and speed for 15 minutes.
