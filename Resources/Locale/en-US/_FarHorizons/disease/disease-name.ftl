@@ -25,7 +25,7 @@ disease-DiseaseAMIV-desc = Gradually mixes the subject's genome with that of a m
 disease-DiseaseOwOnavirus-name = OwOnavirus
 disease-DiseaseOwOnavirus-desc = The subject's behavior transforms into that of a feline creature. May cause mental illness.
 
-disease-DiseaseKerosilDefense-name = Defensive kerosil
+disease-DiseaseKerosilDefense-name = Defensive Kerosil
 disease-DiseaseKerosilDefense-desc = The subject's skin is covered in a protective layer that hardens in response to physical trauma.
 
 disease-DiseaseKerosilSpeed-name = Speed Kerosil
