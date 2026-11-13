@@ -2,3 +2,6 @@ fh-nuke-component-announcement-armed = Attention! The station's self-destruct me
 fh-nuke-component-announcement-evac = Attention! {$time} seconds until self-destruct. Board the nearest escape pod immediately.
 
 fh-escape-pods-left = The Escape Pods have launched. Estimate {$transitTime} seconds until arrival at CentComm.
+
+nuke-label-neosol = NS-{$serial}
+nuke-label-lambda = LAM-{$serial}
