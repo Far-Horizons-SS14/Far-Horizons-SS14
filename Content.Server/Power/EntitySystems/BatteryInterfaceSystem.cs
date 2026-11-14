@@ -43,6 +43,8 @@ public sealed partial class BatteryInterfaceSystem : EntitySystem
                 subs.Event<BatterySetChargeRateMessage>(HandleSetChargeRate);
                 subs.Event<BatterySetDischargeRateMessage>(HandleSetDischargeRate);
             });
+
+        InitializeFH(); // Far Horizons
     }
 
     private void HandleSetInputBreaker(Entity<BatteryInterfaceComponent> ent, ref BatterySetInputBreakerMessage args)
@@ -113,6 +115,7 @@ public sealed partial class BatteryInterfaceSystem : EntitySystem
                 MinMaxChargeRate = batteryInterface.MinChargeRate,
                 SupplyingNetworkHasPower = CheckHasPower<BatteryChargerComponent>(uid),
                 LoadingNetworkHasPower = CheckHasPower<BatteryDischargerComponent>(uid),
+                SmartGrid = _smartGrid.GetAvailabilityState(uid), // Far Horizons
             });
 
         return;

@@ -25,11 +25,13 @@
   - type: PlaceableSurface
     isPlaceable: false
   # Starlight-end
-  # FarHorizons Start
+  # Far Horizons Start
   - type: SurgeryBedSpeed
     bedSpeedModifier: 1.0
   - type: AntiRotOnBuckle
   - type: ApcPowerReceiver
     powerLoad: 500
   - type: ExtensionCableReceiver
-  # FarHorizons End
+  - type: SmartGridLoad
+    priority: LifeSupport
+  # Far Horizons end

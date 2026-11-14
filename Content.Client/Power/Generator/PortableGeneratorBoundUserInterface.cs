@@ -1,4 +1,6 @@
-﻿using Content.Shared.Power.Generator;
+/* Far Horizons - forked into Content.Client/_FarHorizons/Power/Generator/PortableGeneratorBoundUserInterface.cs.
+
+using Content.Shared.Power.Generator;
 using JetBrains.Annotations;
 using Robust.Client.GameObjects;
 using Robust.Client.UserInterface;
@@ -69,3 +71,4 @@ public sealed class PortableGeneratorBoundUserInterface : BoundUserInterface
         SendMessage(new PortableGeneratorEjectFuelMessage());
     }
 }
+*/

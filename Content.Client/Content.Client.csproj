@@ -32,4 +32,17 @@
   <Import Project="..\RobustToolbox\MSBuild\Robust.Properties.targets" />
   <Import Project="..\RobustToolbox\MSBuild\XamlIL.targets" />
   <Import Project="..\RobustToolbox\MSBuild\Robust.EntitySystemSubscriptionsGenerator.targets" />
+
+  <!-- Far Horizons: these upstream UIs are replaced by forks under _FarHorizons/Power.
+       I ended up forking these rather than modifying them in-place because the merge conflicts
+       would have been a nightmare to deal with in a conflict state.
+       Must come after the XamlIL.targets import, which adds the XAML items. -->
+  <ItemGroup>
+    <EmbeddedResource Remove="Power\APC\UI\ApcMenu.xaml" />
+    <EmbeddedResource Remove="Power\Battery\BatteryMenu.xaml" />
+    <EmbeddedResource Remove="Power\Generator\GeneratorWindow.xaml" />
+    <AdditionalFiles Remove="Power\APC\UI\ApcMenu.xaml" />
+    <AdditionalFiles Remove="Power\Battery\BatteryMenu.xaml" />
+    <AdditionalFiles Remove="Power\Generator\GeneratorWindow.xaml" />
+  </ItemGroup>
 </Project>

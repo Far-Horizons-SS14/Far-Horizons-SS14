@@ -1,4 +1,6 @@
-﻿using Content.Client.UserInterface;
+/* Far Horizons - forked into Content.Client/_FarHorizons/Power/Battery/BatteryBoundUserInterface.cs.
+
+using Content.Client.UserInterface;
 using Content.Shared.Power;
 using JetBrains.Annotations;
 using Robust.Client.Timing;
@@ -83,3 +85,4 @@ public sealed partial class BatteryBoundUserInterface : BoundUserInterface, IBui
         _menu?.Update(batteryState);
     }
 }
+*/
