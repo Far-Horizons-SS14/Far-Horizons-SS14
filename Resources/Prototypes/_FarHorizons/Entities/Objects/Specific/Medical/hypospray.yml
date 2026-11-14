@@ -84,3 +84,80 @@
     tags:
     - Syringe
     - Trash
+
+- type: entity
+  abstract: true
+  parent: [SolutionToolTiny, ChemicalMedipen, BaseSyndicateContraband]
+  id: ConsortiumMedipen
+
+- type: entity
+  parent: ConsortiumMedipen
+  id: ChitinenInjector
+  name: Chitinen Injector
+  description: A chemical injector containing a dose of Chitinen. For when it's time to take a few shots. Effects last for about 15 minutes.
+  components:
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-needle-inhand-left
+      - state: base-colorA-inhand-left
+        color: "#9a040e"
+      - state: base-colorB-inhand-left
+        color: "#c62933"
+      right:
+      - state: base-needle-inhand-right
+      - state: base-colorA-inhand-right
+        color: "#9a040e"
+      - state: base-colorB-inhand-right
+        color: "#c62933"
+  - type: Sprite
+    sprite: Objects/Specific/Medical/medipen.rsi # placeholder sprite, will need changed to not be bright syndicate red
+    layers:
+    - state: stimpen
+      map: ["enum.SolutionContainerLayers.Fill"]
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Chitinen
+        Quantity: 15
+  - type: SolutionContainerVisuals
+    maxFillLevels: 1
+    changeColor: false
+    emptySpriteName: stimpen_empty
+  - type: StaticPrice
+    price: 1500
+
+- type: entity
+  parent: ConsortiumMedipen
+  id: AlacrityMedipen
+  name: Alacrity Medipen
+  description: A single-dose, non-refillable medipen containing enough Alacrity to boost your body for 15 minutes.
+  components:
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-needle-inhand-left
+      - state: base-colorA-inhand-left
+        color: "#5bcaca"
+      - state: base-colorB-inhand-left
+      right:
+      - state: base-needle-inhand-right
+      - state: base-colorA-inhand-right
+        color: "#5bcaca"
+      - state: base-colorB-inhand-right
+  - type: Sprite
+    sprite: Objects/Specific/Medical/medipen.rsi # placeholder sprite
+    layers:
+    - state: morphen
+      map: ["enum.SolutionContainerLayers.Fill"]
+  - type: SolutionContainerVisuals
+    maxFillLevels: 1
+    changeColor: false
+    emptySpriteName: morphen_empty
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Alacrity
+        Quantity: 15
+  - type: StaticPrice
+    price: 1500

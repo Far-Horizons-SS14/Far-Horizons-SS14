@@ -50,3 +50,59 @@
       bedrestChance: 0.00066 #Abysmally Low to have an average of 300 ticks before a heal if they sleep
       sleepMultiplier: 5
   spreadPath: [ NonContagious ]
+
+- type: disease
+  id: DiseaseKerosilDefense
+  name: disease-DiseaseKerosilDefense-name
+  desc: disease-DiseaseKerosilDefense-desc
+  strainName: LMD.Def.37
+  strainId: lmddef37
+  vector: Kerosil
+  symptoms:
+  - symptom: SymptomJitters
+    probability: 
+      1: 0.1
+      2: 0.1
+  - symptom: SymptomKerosilDefense
+    probability: 
+      1: 1
+      2: 1
+  cureSteps:
+  - !type:CureConditions
+    conditions:
+    - !type:CureReagent
+      reagent: Licoxide
+      min: 2
+  - !type:CureWait
+    requiredTicks: 900 #15 minutes of light armor
+  spreadPath: [ NonContagious ]
+
+- type: disease
+  id: DiseaseKerosilSpeed
+  name: disease-DiseaseKerosilSpeed-name
+  desc: disease-DiseaseKerosilSpeed-desc
+  strainName: LMD.Spd.52
+  strainId: lmdspd52
+  vector: Kerosil
+  symptoms:
+  - symptom: SymptomJitters
+    probability: 
+      1: 0.25
+      2: 0.5
+  - symptom: SymptomKerosilSpeed
+    probability: 
+      1: 1
+      2: 1
+  - symptom: SymptomKerosilRegen
+    probability: 
+      1: 1
+      2: 1
+  cureSteps:
+  - !type:CureConditions
+    conditions:
+    - !type:CureReagent
+      reagent: Licoxide
+      min: 2
+  - !type:CureWait
+    requiredTicks: 900 #15 minutes of light speed and regen
+  spreadPath: [ NonContagious ]

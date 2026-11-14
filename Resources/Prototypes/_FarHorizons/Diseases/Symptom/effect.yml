@@ -319,3 +319,72 @@
     - !type:SymptomStageCondition
       min: 0
     probability: 0.5
+
+#region Consortium chems
+
+- type: diseaseSymptom
+  id: SymptomKerosilDefense
+  name: disease-symptom-SymptomKerosilDefense-name
+  tier: 1
+  stats:
+    stealth: 0
+    resistance: 0
+    speed: 0
+    transmittable: 0
+  onlyAlive: true
+  behaviors:
+  - !type:SymptomStatusEffect
+    effects:
+    - !type:ModifyStatusEffect
+        effectProto: StatusEffectKerosilDefense
+        time: 1
+        type: Add
+    conditions:
+    - !type:SymptomStageCondition
+      min: 0
+    probability: 1
+
+- type: diseaseSymptom
+  id: SymptomKerosilSpeed
+  name: disease-symptom-SymptomKerosilSpeed-name
+  tier: 1
+  stats:
+    stealth: 0
+    resistance: 0
+    speed: 0
+    transmittable: 0
+  onlyAlive: true
+  behaviors:
+  - !type:SymptomStatusEffect
+    effects:
+    - !type:MovementSpeedModifier
+        walkSpeedModifier: 1.1
+        sprintSpeedModifier: 1.1
+    conditions:
+    - !type:SymptomStageCondition
+      min: 0
+    probability: 1
+
+- type: diseaseSymptom
+  id: SymptomKerosilRegen
+  name: disease-symptom-SymptomKerosilRegen-name
+  tier: 1
+  stats:
+    stealth: 0
+    resistance: 0
+    speed: 0
+    transmittable: 0
+  onlyAlive: true
+  behaviors:
+  - !type:SymptomStatusEffect
+    effects:
+    - !type:EvenHealthChange
+        damage:
+          Brute: -0.33 # 20 a minute, kinda bad but it doesn't take a spot in metabolism
+          Burn: -0.33
+          Toxin: -0.2
+        affectAllLimbs: true
+    conditions:
+    - !type:SymptomStageCondition
+      min: 0
+    probability: 1
