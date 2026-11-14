@@ -75,9 +75,6 @@
       min: 2
   - !type:CureWait
     requiredTicks: 900 #15 minutes of light armor
-  - !type:CureBedrest
-      bedrestChance: 0 #can't cure it by sleeping, not that you'd want to
-      sleepMultiplier: 5
   spreadPath: [ NonContagious ]
 
 - type: disease
@@ -108,7 +105,4 @@
       min: 2
   - !type:CureWait
     requiredTicks: 900 #15 minutes of light speed and regen
-  - !type:CureBedrest
-      bedrestChance: 0 #can't cure it by sleeping, not that you'd want to
-      sleepMultiplier: 5
   spreadPath: [ NonContagious ]
