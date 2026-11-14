@@ -4,7 +4,8 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Roles.Jobs;
 
-public abstract partial class SharedJobSystem{
+public abstract partial class SharedJobSystem
+{
     [Dependency] private readonly ISharedFactionManager _factions = default!;
 
     public ProtoId<FactionPrototype>? MindGetFactionId(EntityUid? mindId) =>

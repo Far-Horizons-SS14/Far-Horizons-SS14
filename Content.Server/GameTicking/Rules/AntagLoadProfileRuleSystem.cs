@@ -3,9 +3,9 @@ using Content.Server.Antag;
 using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Humanoid;
 using Content.Server.Preferences.Managers;
-using Content.Shared.Body;
 using Content.Server.Traits;
 using Content.Shared._Starlight.Character.Info;
+using Content.Shared.Body;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Preferences;
@@ -19,7 +19,7 @@ public sealed class AntagLoadProfileRuleSystem : GameRuleSystem<AntagLoadProfile
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly IServerPreferencesManager _prefs = default!;
     [Dependency] private readonly SharedVisualBodySystem _visualBody = default!;
-    [Dependency] private readonly TraitSystem _traitSystem = default!; //Starlight
+    [Dependency] private readonly TraitSystem _traitSystem = default!;
 
     public override void Initialize()
     {
@@ -33,16 +33,13 @@ public sealed class AntagLoadProfileRuleSystem : GameRuleSystem<AntagLoadProfile
         if (args.Handled)
             return;
 
-        // Try to find a profile with this antagonist enabled on the player preferences
         HumanoidCharacterProfile? profile = null;
         if (args.Session != null)
         {
-            var roles = args.AntagRoles;
             var prefs = _prefs.GetPreferences(args.Session.UserId);
-            profile = prefs.SelectProfileForAntag(roles);
+            profile = prefs.SelectProfileForAntag(args.Antag.PrefRoles);
         }
 
-        // Startlight - Start (Changing fully so RandomWithSpecies loads with a specieID)
         var species = _proto.Index(HumanoidCharacterProfile.DefaultSpecies);
         if (profile is not null)
             species = _proto.Index(profile.Species);
@@ -50,14 +47,15 @@ public sealed class AntagLoadProfileRuleSystem : GameRuleSystem<AntagLoadProfile
         if (ent.Comp.SpeciesHardOverride is not null)
             species = _proto.Index(ent.Comp.SpeciesHardOverride.Value);
         else if (ent.Comp.SpeciesOverride is not null
-            && (ent.Comp.SpeciesOverrideBlacklist?.Contains(new ProtoId<SpeciesPrototype>(species.ID)) ?? false))
+                 && (ent.Comp.SpeciesOverrideBlacklist?.Contains(new ProtoId<SpeciesPrototype>(species.ID)) ?? false))
+        {
             species = _proto.Index(ent.Comp.SpeciesOverride.Value);
+        }
 
-        if (profile is null)
-            profile = HumanoidCharacterProfile.RandomWithSpecies(species.ID);
+        profile ??= HumanoidCharacterProfile.RandomWithSpecies(species.ID);
 
-        args.Entity = Spawn(species.Prototype);
-        if (profile?.WithSpecies(species.ID) is { } humanoidProfile)
+        args.Entity = Spawn(species.Prototype, args.Coords);
+        if (profile.WithSpecies(species.ID) is { } humanoidProfile)
         {
             _visualBody.ApplyProfileTo(args.Entity.Value, humanoidProfile);
             _humanoidProfile.ApplyProfileTo(args.Entity.Value, humanoidProfile);

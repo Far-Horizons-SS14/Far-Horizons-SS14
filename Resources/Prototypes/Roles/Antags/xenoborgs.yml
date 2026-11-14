@@ -12,6 +12,14 @@
   guides: [ Xenoborgs ]
   playTimeTracker: AntagMothershipCore # Starlight
 
+- type: antagSpecifier
+  parent: RestrictedAntag
+  id: MothershipCore
+  prefRoles: [ MothershipCore ]
+  spawnerPrototype: SpawnPointGhostRoleMothershipCore
+  mindRoles:
+  - MindRoleMothershipCore
+
 - type: antag
   id: Xenoborg
   name: roles-antag-xenoborg-name
@@ -25,3 +33,16 @@
     time: 3600 # 1 hour - Far Horizons // 54000  # Starlight 15 hrs
   guides: [ Xenoborgs ]
   playTimeTracker: AntagXenoborg # Starlight
+
+- type: antagSpecifier
+  abstract: true
+  parent: RestrictedAntag
+  id: BaseXenoborg
+  prefRoles: [ Xenoborg ]
+  spawnerPrototype: SpawnPointGhostRoleXenoborg
+  mindRoles:
+  - MindRoleXenoborg
+
+- type: antagSpecifier
+  parent: BaseXenoborg
+  id: Xenoborg

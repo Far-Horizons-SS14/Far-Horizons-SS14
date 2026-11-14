@@ -3,11 +3,14 @@ using System.Linq;
 using Content.Client.Lobby;
 using Content.Server.Antag;
 using Content.Server.GameTicking;
+using Content.Server.Mind;
+using Content.Server.Roles;
 using Content.Shared.CCVar;
 using Content.Shared._FarHorizons.Factions;
 using Content.Shared.GameTicking;
 using Content.Shared.Preferences;
 using Content.Shared.Roles;
+using Content.Shared.Roles.Components;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
@@ -36,17 +39,15 @@ public sealed class CharacterSelectionTest
       min: 5
       max: 10
   - type: AntagSelection
-    selectionTime: IntraPlayerSpawn
-    definitions:
-    - prefRoles: [ Traitor ]
-      max: 99
+    selectionTime: PrePlayerSpawn
+    lateJoinAdditional: true
+    antags:
+    - !type:LinearAntagCount
+      proto: Traitor
       playerRatio: 1
-      blacklist:
-        components:
-        - AntagImmune
-      lateJoinAdditional: true
-      mindRoles:
-      - MindRoleTraitor
+      range:
+        min: 0
+        max: 99
 
 - type: gamePreset
   id: {TraitorsMode}
@@ -387,17 +388,11 @@ public sealed class CharacterSelectionTest
             Assert.That(ticker.PlayerGameStatuses[pair.Client.User!.Value], Is.EqualTo(PlayerGameStatus.JoinedGame));
             pair.AssertJob(data.ExpectedJob.Value, pair.Player!);
             var antagSystem = pair.Server.System<AntagSelectionSystem>();
-            var antags = antagSystem.GetPreSelectedAntagDefinitions(pair.Player);
-            if (data.ExpectTraitor)
-            {
-                Assert.That(antags.Count, Is.EqualTo(1));
-                Assert.That(antags.First().MindRoles.Count, Is.EqualTo(1));
-                Assert.That(antags.First().MindRoles.First(), Is.EqualTo("MindRoleTraitor"));
-            }
-            else
-            {
-                Assert.That(antags.Count, Is.EqualTo(0));
-            }
+            var roleSystem = pair.Server.System<RoleSystem>();
+            var mindSystem = pair.Server.System<MindSystem>();
+            Assert.That(antagSystem.IsAssignedAntag(pair.Player!), Is.EqualTo(data.ExpectTraitor));
+            Assert.That(mindSystem.TryGetMind(pair.Player!, out var mind, out _), Is.True);
+            Assert.That(roleSystem.MindHasRole<TraitorRoleComponent>(mind), Is.EqualTo(data.ExpectTraitor));
             Assert.That(pair.Server.EntMan.TryGetComponent<HumanoidCharacterProfileComponent>(pair.Player!.AttachedEntity.Value,
                 out var profileComp), "No HumanoidCharacterProfileComponent attached to spawned entity");
             var spawnedProfile = profileComp!.Profile ?? new HumanoidCharacterProfile();

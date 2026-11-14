@@ -11,3 +11,17 @@
     time: 3600 # 1 hour - Far Horizons // 3h
   playTimeTracker: AntagVampire
  #Starlight
+
+- type: antagSpecifier
+  parent: RestrictedAntag
+  id: Vampire
+  prefRoles:
+  - Vampire
+  blacklist:
+    components:
+    - AntagImmune
+    - BibleUser
+    tags:
+    - IPC
+  mindRoles:
+  - MindRoleVampire

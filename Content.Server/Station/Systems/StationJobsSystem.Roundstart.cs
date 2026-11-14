@@ -312,20 +312,36 @@ public sealed partial class StationJobsSystem
 
             var roleBans = _banManager.GetJobBans(player);
             var isPreselectedAntag = _antag.GetPreSelectedAntagSessions().Contains(session);
-            var preselectedAntags = _antag.GetPreSelectedAntagDefinitions(session);
+            var preselectedAntags = _antag.GetPreSelectedAntagSpecifiers(session);
+            var (whitelist, blacklist) = _antag.GetAntagJobs(session);
 
             // Get all the jobs that a player has selected with a priority greater than Never and also that they
             // have an enabled character with that job preference selected
             var playerPrefs = _serverPreferences.GetPreferences(player);
             // Far Horizons, we don't want to spawn jobs from inactive faction
-            var playerJobs = playerPrefs.JobPriorities.Where(p => allowedFactions.Contains(p.Key.faction)).ToDictionary();
+            var playerJobs = playerPrefs.JobPriorities
+                .Where(p => allowedFactions.Contains(p.Key.faction) && p.Value > JobPriority.Never)
+                .ToDictionary();
             var allCharacterJobs = new HashSet<(ProtoId<FactionPrototype>, ProtoId<JobPrototype>)>();
             foreach (var profile in playerPrefs.Characters.Values)
             {
                 if (profile is not HumanoidCharacterProfile { Enabled: true } humanoid)
                     continue;
-                // Far Horizons, we don't want to spawn jobs from inactive faction
-                allCharacterJobs.UnionWith(humanoid.JobPreferences.Where(p => allowedFactions.Contains(p.faction)));
+
+                foreach (var factionJob in humanoid.JobPreferences)
+                {
+                    if (!allowedFactions.Contains(factionJob.faction))
+                        continue;
+
+                    // A preselected player must be able to use every antag from a single profile.
+                    if (isPreselectedAntag && !preselectedAntags.All(antag =>
+                            antag.PrefRoles.Any(humanoid.AntagPreferences.Contains)))
+                    {
+                        continue;
+                    }
+
+                    allCharacterJobs.Add(factionJob);
+                }
             }
             var filteredPlayerJobs = new HashSet<(ProtoId<FactionPrototype>, ProtoId<JobPrototype>)>();
             foreach (var ((faction, job), priority) in playerJobs)
@@ -355,14 +371,10 @@ public sealed partial class StationJobsSystem
                 if (!_prototypeManager.Resolve(jobId, out var job))
                     continue;
 
-                // If we're an antag but the job can't be an antag, don't allow this job
-                if (isPreselectedAntag && !job.CanBeAntag)
+                if (whitelist != null && !whitelist.Contains(jobId))
                     continue;
 
-                // If we're an antag, make sure that we have a character that is eligible to
-                // become all of our selected antags
-                if (isPreselectedAntag && !preselectedAntags.All(antag =>
-                        _antag.HasPrimaryAntagPreference(session, antag, AntagSelectionTime.IntraPlayerSpawn, job)))
+                if (blacklist != null && blacklist.Contains(jobId))
                     continue;
 
                 if (weight is not null && job.Weight != weight.Value)

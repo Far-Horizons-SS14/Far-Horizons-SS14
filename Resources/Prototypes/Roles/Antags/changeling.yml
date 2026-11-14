@@ -11,3 +11,34 @@
     time: 0 # Far Horizons - Temporary // 3h
   playTimeTracker: AntagChangeling
   # Starlight end Starlight
+
+- type: antagSpecifier
+  parent: RestrictedAntag
+  id: Changeling
+  prefRoles: [ Changeling ]
+  blacklist:
+    components:
+    - AntagImmune
+    tags:
+    - IPC
+  briefing:
+    text: changeling-role-greeting
+    color: Red
+    sound: /Audio/Ambience/Antag/changeling_start.ogg
+  components:
+  - type: ChangelingDevour
+  - type: ChangelingIdentity
+  - type: ChangelingTransform
+  - type: ActionGrant
+    actions:
+    - ActionChangelingStore
+  - type: Store
+    name: store-preset-name-changeling
+    categories:
+    - ChangelingAbilities
+    currencyWhitelist:
+    - ChangelingDNA
+    balance:
+      ChangelingDNA: 50
+  mindRoles:
+  - MindRoleChangeling
