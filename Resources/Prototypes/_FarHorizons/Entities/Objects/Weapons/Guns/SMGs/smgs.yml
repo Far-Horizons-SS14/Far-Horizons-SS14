@@ -414,7 +414,7 @@
   - type: Gun
     minAngle: 2
     maxAngle: 12
-    fireRate: 6
+    fireRate: 5
     angleIncrease: 3
     angleDecay: 16
     availableModes:
@@ -422,6 +422,10 @@
     - SemiAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/c-20r.ogg
+  - type: HitscanDamageModifier
+    damage:
+      types:
+        Piercing: 4
   - type: ChamberMagazineAmmoProvider
     autoEject: false
   - type: MagazineVisuals

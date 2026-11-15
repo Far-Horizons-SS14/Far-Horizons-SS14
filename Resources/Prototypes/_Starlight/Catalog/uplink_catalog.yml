@@ -202,19 +202,19 @@
 
 - type: listing
   id: UplinkMantisBladeArm
-  name: uplink-mantis-blade-arms-name
+  name: uplink-mantis-blade-arms-name-fh
   description: uplink-mantis-blade-arms-desc-fh #FH
   icon:
     {
       sprite: /Textures/_Starlight/Objects/Weapons/Melee/cybermantisblade.rsi,
       state: cybermantisblade,
     }
-  productEntity: ClothingBackpackDufelSyndicateFilledMantisBladeArms
+  productEntity: CyberneticImplanterSyndicateArmCyberMantisBlade #FH - No longer a bundle
   discountCategory: rareDiscounts
   discountDownTo:
-    Telecrystal: 12
+    Telecrystal: 7 #FH
   cost:
-    Telecrystal: 15
+    Telecrystal: 10 #FH
   categories:
     - UplinkCybernetics
 
