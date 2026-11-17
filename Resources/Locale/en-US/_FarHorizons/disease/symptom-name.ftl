@@ -21,3 +21,6 @@ disease-symptom-SymptomNarcolepsy-name = Narcolepsy
 disease-symptom-SymptomFreeze-name = Freeze
 disease-symptom-SymptomFreezeLight-name = Light Freeze
 disease-symptom-SymptomGeneticDamage-name = Genetic Damage
+disease-symptom-SymptomKerosilDefense-name = Kerosil Defense
+disease-symptom-SymptomKerosilSpeed-name = Kerosil Speed
+disease-symptom-SymptomKerosilRegen-name = Kerosil Regen

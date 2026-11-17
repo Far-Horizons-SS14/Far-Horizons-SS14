@@ -779,7 +779,7 @@
   name: uplink-consortium-chemistry-kit-name
   description: uplink-consortium-chemistry-kit-desc
   icon: { sprite: /Textures/Objects/Storage/boxicons.rsi, state: vials }
-  productEntity: ChemicalSynthesisKit
+  productEntity: ConsortiumChemicalSynthesisKit
   discountCategory: usualDiscounts
   discountDownTo:
     Refinedbluespacecrystal: 2
@@ -809,10 +809,10 @@
       - SurplusBundle
 
 - type: listing
-  id: ConsortiumUplinkNocturineChemistryBottle
-  name: uplink-consortium-nocturine-chemistry-bottle-name
-  description: uplink-consortium-nocturine-chemistry-bottle-desc
-  productEntity: ChemistryBottleNocturine
+  id: ConsortiumUplinkCrynexChemistryBottle
+  name: uplink-consortium-crynex-chemistry-bottle-name
+  description: uplink-consortium-crynex-chemistry-bottle-desc
+  productEntity: ChemistryBottleCrynex
   discountCategory: usualDiscounts
   discountDownTo:
     Refinedbluespacecrystal: 2
@@ -848,15 +848,28 @@
   - ConsortiumUplinkChemicals
 
 - type: listing
-  id: ConsortiumUplinkStimpack
-  name: uplink-consortium-stimpack-name
-  description: uplink-consortium-stimpack-desc
-  productEntity: Stimpack
+  id: ConsortiumUplinkChitinenInjector
+  name: uplink-consortium-chitinen-injector-name
+  description: uplink-consortium-chitinen-injector-desc
+  productEntity: ChitinenInjector
   discountCategory: usualDiscounts
   discountDownTo:
-    Refinedbluespacecrystal: 1
-  cost:
     Refinedbluespacecrystal: 2
+  cost:
+    Refinedbluespacecrystal: 3
+  categories:
+  - ConsortiumUplinkChemicals
+
+- type: listing
+  id: ConsortiumUplinkAlacrityMedipen
+  name: uplink-consortium-alacrity-medipen-name
+  description: uplink-consortium-alacrity-medipen-desc
+  productEntity: AlacrityMedipen
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Refinedbluespacecrystal: 2
+  cost:
+    Refinedbluespacecrystal: 3
   categories:
   - ConsortiumUplinkChemicals
 

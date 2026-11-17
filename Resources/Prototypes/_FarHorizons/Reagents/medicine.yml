@@ -255,6 +255,13 @@
               Caustic: 2
               Slash: 2
               Asphyxiation: 6 # Heart Attack-inducing.
+        - !type:AdjustReagent
+          conditions:
+          - !type:ReagentCondition
+            reagent: Hemex
+            min: 1
+          reagent: Hemex
+          amount: -3
 
 #region Topical Chems
 - type: reagent

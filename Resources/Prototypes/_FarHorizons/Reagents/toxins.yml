@@ -67,3 +67,49 @@
         damage:
           types:
             Poison: 1.30
+
+#region consortium chems
+
+- type: reagent
+  id: Kerosil
+  name: reagent-name-kerosil
+  group: Toxins
+  desc: reagent-desc-kerosil
+  physicalDesc: reagent-physical-desc-grainy
+  contrabandSeverity: Syndicate
+  flavor: metallic
+  color: "#7e6b6b"
+  plantMetabolism:
+  - !type:PlantMutateChemicals
+    randomPickBotanyReagent: ConsortiumRandomFillSolution 
+  - !type:PlantAdjustToxins
+    amount: 10
+  metabolisms:
+    Bloodstream:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Poison: 1
+
+- type: reagent
+  id: Hemex # Lexorin counterpart, less stealthy but more deadly
+  name: reagent-name-hemex
+  group: Toxins
+  desc: reagent-desc-hemex
+  physicalDesc: reagent-physical-desc-viscous
+  contrabandSeverity: Syndicate
+  color: "#940000"
+  metabolisms:
+    Bloodstream:
+      effects: # UBR and Amox cleanse it and counter its damage, like how Dex+ counters lexorin
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectHemorrhage # makes bleeding faster by 1.33x
+        time: 30 
+        type: Update
+      - !type:ModifyBleed
+        amount: 5
+      - !type:HealthChange
+        damage:
+          types:
+            Bloodloss: 10 # same dps as lexorin, but due to the bleeding it causes you end up losing some of the chemical before it deals damage
