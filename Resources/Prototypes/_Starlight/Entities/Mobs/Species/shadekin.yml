@@ -1,7 +1,7 @@
 - type: entity
   save: false
   name: Urist McShadow
-  parent: [MobBloodstream, MobAtmosStandard, MobFlammable, BaseSpeciesMob, BaseSpeciesPickupableLarge] #FH
+  parent: [MobBloodstream, MobAtmosStandard, MobFlammable, BaseSpeciesMob, BaseSpeciesPickupableLarge, BaseSurgeryTargetShadekin] #FH
   id: BaseMobShadekin
   abstract: true
   components:
@@ -180,3 +180,4 @@
         - shoes
     - type: LimbDamageable # Far Horizons
       proto: LimbTargetShadekin
+    - type: LimbStatusEffectManager # Far Horizons

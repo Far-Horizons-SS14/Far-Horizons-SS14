@@ -48,7 +48,7 @@
 
 
 - type: entity
-  parent: [ OrganBaseArmRightNonEdible, OrganCyberExternal ]
+  parent: [ BaseSurgeryLimbTargetRightArmInorganic, OrganBaseArmRightNonEdible, OrganCyberExternal ]
   id: OrganCyberArmRight
   abstract: true
   name: Right Cyber Arm
@@ -89,7 +89,7 @@
           type: CyberLimbSystemItemsRadial
           
 - type: entity
-  parent: [ OrganBaseArmLeftNonEdible, OrganCyberExternal ]
+  parent: [ BaseSurgeryLimbTargetLeftArmInorganic, OrganBaseArmLeftNonEdible, OrganCyberExternal ]
   id: OrganCyberArmLeft
   abstract: true
   name: Left Cyber Arm
@@ -130,7 +130,7 @@
           type: CyberLimbSystemItemsRadial
 
 - type: entity
-  parent: [ OrganBaseHandRightNonEdible, OrganCyberExternal ]
+  parent: [ BaseSurgeryLimbTargeRightHandInorganic, OrganBaseHandRightNonEdible, OrganCyberExternal ]
   id: OrganCyberHandRight
   abstract: true
   name: Right Cyber Hand
@@ -167,7 +167,7 @@
         - Inorganic
 
 - type: entity
-  parent: [ OrganBaseHandLeftNonEdible, OrganCyberExternal ]
+  parent: [ BaseSurgeryLimbTargetLeftHandInorganic, OrganBaseHandLeftNonEdible, OrganCyberExternal ]
   id: OrganCyberHandLeft
   abstract: true
   name: Left Cyber Hand
@@ -204,7 +204,7 @@
         - Inorganic
 
 - type: entity
-  parent: [ OrganBaseLegRightNonEdible, OrganCyberExternal ]
+  parent: [ BaseSurgeryLimbTargetRightLegInorganic, OrganBaseLegRightNonEdible, OrganCyberExternal ]
   id: OrganCyberLegRight
   abstract: true
   name: Right Cyber Leg
@@ -244,7 +244,7 @@
         - Inorganic
 
 - type: entity
-  parent: [ OrganBaseLegLeftNonEdible, OrganCyberExternal ]
+  parent: [ BaseSurgeryLimbTargetLeftLegInorganic, OrganBaseLegLeftNonEdible, OrganCyberExternal ]
   id: OrganCyberLegLeft
   abstract: true
   name: Left Cyber Leg
@@ -284,7 +284,7 @@
         - Inorganic
 
 - type: entity
-  parent: [ OrganBaseFootRightNonEdible, OrganCyberExternal ]
+  parent: [ BaseSurgeryLimbTargetRightFootInorganic, OrganBaseFootRightNonEdible, OrganCyberExternal ]
   id: OrganCyberFootRight
   abstract: true
   name: Right Cyber Foot
@@ -324,7 +324,7 @@
         - Inorganic
 
 - type: entity
-  parent: [ OrganBaseFootLeftNonEdible, OrganCyberExternal ]
+  parent: [ BaseSurgeryLimbTargetLeftFootInorganic, OrganBaseFootLeftNonEdible, OrganCyberExternal ]
   id: OrganCyberFootLeft
   abstract: true
   name: Left Cyber Foot

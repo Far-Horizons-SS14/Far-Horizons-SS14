@@ -1,0 +1,64 @@
+- type: surgeryStep
+  parent: BoneSetterSurgery
+  id: SurgerySlimeAlterFacialStructure
+  name: Alter Facial Structure
+  baseTime: 4
+  popup: surgery-slime-alter-face-structure-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses: 
+        - LimbStatusEffectSurgicalIncisionHeldOpen
+    - !type:SurgeryLimbHasStatus
+      inverse: true
+      statuses:
+        - LimbStatusEffectSurgicalSlimeFaceStructureAltered
+  effects:
+    - !type:SurgeryApplyLimbStatus
+      statuses:
+        - LimbStatusEffectSurgicalSlimeFaceStructureAltered
+    - !type:SurgeryProgressStatusChain
+      chain: Bleed
+    - !type:SurgeryPainEffect
+
+- type: surgeryStep
+  parent: BoneSetterSurgery
+  id: SurgerySlimeRevertFacialStructure
+  name: Revert Facial Structure
+  baseTime: 2
+  popup: surgery-slime-revert-face-structure-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses: 
+        - LimbStatusEffectSurgicalIncisionHeldOpen
+    - !type:SurgeryLimbHasStatus
+      statuses:
+        - LimbStatusEffectSurgicalSlimeFaceStructureAltered
+  effects:
+    - !type:SurgeryRemoveLimbStatus
+      statuses:
+        - LimbStatusEffectSurgicalSlimeFaceStructureAltered
+
+- type: surgeryStep
+  parent: HemostatSurgery
+  id: SurgerySlimeChangeAppearance
+  name: Change Appearance
+  baseTime: 4
+  popup: surgery-change-appearance-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses: 
+        - LimbStatusEffectSurgicalSlimeFaceStructureAltered
+    - !type:SurgeryLimbHasStatus
+      inverse: true
+      statuses:
+        - LimbStatusEffectBleedI
+        - LimbStatusEffectBleedII
+        - LimbStatusEffectBleedIII
+  effects:
+    - !type:SurgeryRemoveLimbStatus
+      statuses:
+        - LimbStatusEffectSurgicalSlimeFaceStructureAltered
+    - !type:SurgeryChangeAppearance
+    - !type:SurgeryProgressStatusChain
+      chain: Bleed
+    - !type:SurgeryPainEffect

@@ -1,0 +1,169 @@
+# region Limbs
+
+- type: surgeryStep
+  parent: ScalpelSurgery
+  id: SurgeryDeepenIncision
+  name: Deepen Incision
+  baseTime: 2
+  popup: surgery-deepen-incision-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses:
+        - LimbStatusEffectSurgicalIncision
+    - !type:SurgeryLimbHasStatus
+      inverse: true
+      statuses:
+        - LimbStatusEffectSurgicalIncisionHeldOpen
+        - LimbStatusEffectSurgicalDeepIncision
+  effects:
+    - !type:SurgeryApplyLimbStatus
+      statuses:
+        - LimbStatusEffectSurgicalDeepIncision
+    - !type:SurgeryPainEffect
+
+- type: surgeryStep
+  parent: CauterySurgery
+  id: SurgeryCloseDeepIncision
+  name: Close Deep Incision
+  baseTime: 1
+  popup: surgery-close-deep-incision-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses:
+        - LimbStatusEffectSurgicalDeepIncision
+    - !type:SurgeryLimbHasStatus
+      inverse: true
+      statuses:
+        - LimbStatusEffectBleedI
+        - LimbStatusEffectBleedII
+        - LimbStatusEffectBleedIII
+  effects:
+    - !type:SurgeryRemoveLimbStatus
+      statuses:
+        - LimbStatusEffectSurgicalDeepIncision
+
+- type: surgeryStep
+  parent: HemostatSurgery
+  id: SurgeryTendBrute
+  name: Tend Brute Wound [Repeatable]
+  baseTime: 2
+  popup: surgery-tend-brute-popup-message
+  repeatable: true
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses:
+        - LimbStatusEffectSurgicalDeepIncision
+    - !type:SurgeryLimbHasStatus
+      inverse: true
+      statuses:
+        - LimbStatusEffectBleedI
+        - LimbStatusEffectBleedII
+        - LimbStatusEffectBleedIII
+  softConditions:
+    - !type:SurgeryLimbHasDamage
+      types:
+        - Blunt
+        - Piercing
+        - Slash
+  effects:
+    - !type:SurgeryLimbHealDamage
+      baseHealing: 5 # 5 flat damage per type is healed as baseline
+      proportionalHealing: 0.02 # then 2% of current damage per type is healed as a bonus
+      types:
+        - Blunt
+        - Piercing
+        - Slash
+
+- type: surgeryStep
+  parent: ScalpelSurgery
+  id: SurgeryTendBurn
+  name: Tend Burn Wound [Repeatable]
+  baseTime: 2
+  popup: surgery-tend-burn-popup-message
+  repeatable: true
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses:
+        - LimbStatusEffectSurgicalDeepIncision
+    - !type:SurgeryLimbHasStatus
+      inverse: true
+      statuses:
+        - LimbStatusEffectBleedI
+        - LimbStatusEffectBleedII
+        - LimbStatusEffectBleedIII
+  softConditions:
+    - !type:SurgeryLimbHasDamage
+      types:
+        - Heat
+        - Cold
+        - Caustic
+  effects:
+    - !type:SurgeryLimbHealDamage
+      baseHealing: 5
+      proportionalHealing: 0.02
+      types:
+        - Heat
+        - Cold
+        - Caustic
+
+# region Eyes
+
+- type: surgeryStep
+  parent: HemostatSurgery
+  id: SurgeryTreatEyeDamage
+  name: Treat Eye Damage [Repeatable]
+  baseTime: 2
+  popup: surgery-treat-eye-damage-popup-message
+  repeatable: true
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses: 
+        - LimbStatusEffectSurgicalCutOpticNerve
+    - !type:SurgeryLimbHasStatus
+      inverse: true
+      statuses:
+        - LimbStatusEffectBleedI
+        - LimbStatusEffectBleedII
+        - LimbStatusEffectBleedIII
+    - !type:SurgeryHasOrgan
+      category: Eyes
+  softConditions:
+    - !type:SurgeryEyeDamageGt
+      value: 0
+  effects:
+    - !type:SurgeryTreatEyeDamage
+      amount: 1
+    - !type:SurgeryPainEffect
+
+# region Lungs
+
+- type: surgeryStep
+  parent: HemostatSurgery
+  id: SurgeryTreatLungDamage
+  name: Treat Lung Damage [Repeatable]
+  baseTime: 2
+  popup: surgery-treat-lung-damage-popup-message
+  repeatable: true
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses:
+        - LimbStatusEffectSurgicalLungsAccessed
+    - !type:SurgeryLimbHasStatus
+      inverse: true
+      statuses:
+        - LimbStatusEffectBleedI
+        - LimbStatusEffectBleedII
+        - LimbStatusEffectBleedIII
+    - !type:SurgeryHasOrgan
+      category: Lungs
+  softConditions:
+    - !type:SurgeryLimbHasDamage
+      types:
+        - Asphyxiation
+  effects:
+    - !type:SurgeryLimbHealDamage
+      baseHealing: 15
+      proportionalHealing: 0.01
+      types:
+        - Asphyxiation
+    - !type:SurgeryPainEffect

@@ -1,0 +1,877 @@
+# region Abdomen
+
+- type: surgeryStep
+  parent: ScalpelSurgery
+  id: SurgeryAccessAbdomen
+  name: Access Abdomen
+  baseTime: 2
+  popup: surgery-access-abdomen-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses: 
+        - LimbStatusEffectSurgicalIncisionHeldOpen
+    - !type:SurgeryLimbHasStatus
+      inverse: true
+      statuses:
+        - LimbStatusEffectSurgicalAbdomenAccessed
+        - LimbStatusEffectSurgicalRibcageOpen
+  effects:
+    - !type:SurgeryApplyLimbStatus
+      statuses:
+        - LimbStatusEffectSurgicalAbdomenAccessed
+    - !type:SurgeryProgressStatusChain
+      chain: Bleed
+    - !type:SurgeryPainEffect
+
+- type: surgeryStep
+  parent: CauterySurgery
+  id: SurgeryCloseAbdomen
+  name: Close Abdomen
+  baseTime: 1
+  popup: surgery-close-abdomen-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses: 
+        - LimbStatusEffectSurgicalIncisionHeldOpen
+    - !type:SurgeryLimbHasStatus
+      statuses:
+        - LimbStatusEffectSurgicalAbdomenAccessed
+    - !type:SurgeryLimbHasStatus
+      inverse: true
+      statuses:
+        - LimbStatusEffectSurgicalHepaticArteryClamped
+        - LimbStatusEffectSurgicalKidneysAccessed
+        - LimbStatusEffectSurgicalEsophagusCut
+  effects:
+    - !type:SurgeryRemoveLimbStatus
+      statuses:
+        - LimbStatusEffectSurgicalAbdomenAccessed
+
+# region Cavity
+
+- type: surgeryStep
+  parent: BoneSetterSurgery
+  id: SurgeryRemoveCavityItem
+  name: Remove Cavity Item
+  baseTime: 4
+  popup: surgery-remove-cavity-item-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses: 
+        - LimbStatusEffectSurgicalAbdomenAccessed
+    - !type:SurgeryHasOrgan
+      category: Cavity
+  effects:
+    - !type:SurgeryRemoveOrgan
+      category: Cavity
+
+- type: surgeryStep
+  id: SurgeryImplantCavityItem
+  name: Insert Item Into Cavity
+  baseTime: 3
+  popup: surgery-implant-cavity-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses: 
+        - LimbStatusEffectSurgicalAbdomenAccessed
+    - !type:SurgeryLimbHasStatus
+      inverse: true
+      statuses: 
+        - LimbStatusEffectSurgicalHepaticArteryClamped
+        - LimbStatusEffectSurgicalKidneysAccessed
+    - !type:SurgeryHasOrgan
+      inverse: true
+      category: Cavity
+  softConditions:
+    - !type:HeldItemNotSurgeryTool # Albeit funny, I don't want to risk accidentially implanting tool instead of using it
+    - !type:HeldItemSize
+      allowedSizes:
+        - Tiny
+        - Small
+  effects:
+    - !type:SurgeryInsertCustomOrgan
+      category: Cavity
+    - !type:SurgeryPainEffect
+
+# region Liver
+
+- type: surgeryStep
+  parent: HemostatSurgery
+  id: SurgeryClampHepaticArtery
+  name: Clamp Hepatic Artery
+  baseTime: 2
+  popup: surgery-clamp-hepatic-artery-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses: 
+        - LimbStatusEffectSurgicalAbdomenAccessed
+    - !type:SurgeryLimbHasStatus
+      inverse: true
+      statuses:
+        - LimbStatusEffectBleedI
+        - LimbStatusEffectBleedII
+        - LimbStatusEffectBleedIII
+        - LimbStatusEffectSurgicalHepaticArteryClamped
+        - LimbStatusEffectSurgicalKidneysAccessed
+        - LimbStatusEffectSurgicalEsophagusCut
+  effects:
+    - !type:SurgeryApplyLimbStatus
+      statuses:
+        - LimbStatusEffectSurgicalHepaticArteryClamped
+
+- type: surgeryStep
+  parent: HemostatSurgery
+  id: SurgeryReleaseHepaticArtery
+  name: Release Hepatic Artery
+  baseTime: 1
+  popup: surgery-release-hepatic-artery-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses: 
+        - LimbStatusEffectSurgicalAbdomenAccessed
+    - !type:SurgeryLimbHasStatus
+      statuses:
+        - LimbStatusEffectSurgicalHepaticArteryClamped
+    - !type:SurgeryLimbHasStatus
+      inverse: true
+      statuses:
+        - LimbStatusEffectBleedI
+        - LimbStatusEffectBleedII
+        - LimbStatusEffectBleedIII
+  effects:
+    - !type:SurgeryRemoveLimbStatus
+      statuses:
+        - LimbStatusEffectSurgicalHepaticArteryClamped
+
+- type: surgeryStep
+  parent: ScalpelSurgery
+  id: SurgeryRemoveLiver
+  name: Remove Liver
+  baseTime: 4
+  popup: surgery-remove-liver-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses: 
+        - LimbStatusEffectSurgicalHepaticArteryClamped
+    - !type:SurgeryLimbHasStatus
+      inverse: true
+      statuses:
+        - LimbStatusEffectNecrosisLiver
+    - !type:SurgeryHasOrgan
+      category: Liver
+  effects:
+    - !type:SurgeryRemoveOrgan
+      category: Liver
+    - !type:SurgeryProgressStatusChain
+      chain: Bleed
+    - !type:SurgeryPainEffect
+
+- type: surgeryStep
+  id: SurgeryImplantLiver
+  name: Implant Liver
+  baseTime: 3
+  popup: surgery-implant-liver-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses: 
+        - LimbStatusEffectSurgicalHepaticArteryClamped
+    - !type:SurgeryHasOrgan
+      inverse: true
+      category: Liver
+  softConditions:
+    - !type:SurgeryOrganHeld
+      category: Liver
+  effects:
+    - !type:SurgeryInsertOrgan
+
+# region Kidneys
+
+- type: surgeryStep
+  parent: RetractorSurgery
+  id: SurgeryAccessKidneys
+  name: Access Kidneys
+  baseTime: 2
+  popup: surgery-access-kidneys-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses: 
+        - LimbStatusEffectSurgicalAbdomenAccessed
+    - !type:SurgeryLimbHasStatus
+      inverse: true
+      statuses:
+        - LimbStatusEffectSurgicalKidneysAccessed
+        - LimbStatusEffectSurgicalHepaticArteryClamped
+        - LimbStatusEffectSurgicalEsophagusCut
+  effects:
+    - !type:SurgeryApplyLimbStatus
+      statuses:
+        - LimbStatusEffectSurgicalKidneysAccessed
+
+- type: surgeryStep
+  parent: RetractorSurgery
+  id: SurgeryCloseKidneys
+  name: Close Kidneys
+  baseTime: 1
+  popup: surgery-close-kidneys-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses: 
+        - LimbStatusEffectSurgicalAbdomenAccessed
+    - !type:SurgeryLimbHasStatus
+      statuses:
+        - LimbStatusEffectSurgicalKidneysAccessed
+  effects:
+    - !type:SurgeryRemoveLimbStatus
+      statuses:
+        - LimbStatusEffectSurgicalKidneysAccessed
+
+- type: surgeryStep
+  parent: ScalpelSurgery
+  id: SurgeryRemoveKidneys
+  name: Remove Kidneys
+  baseTime: 4
+  popup: surgery-remove-kidneys-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses: 
+        - LimbStatusEffectSurgicalKidneysAccessed
+    - !type:SurgeryLimbHasStatus
+      inverse: true
+      statuses:
+        - LimbStatusEffectNecrosisKidneys
+    - !type:SurgeryHasOrgan
+      category: Kidneys
+  effects:
+    - !type:SurgeryRemoveOrgan
+      category: Kidneys
+    - !type:SurgeryProgressStatusChain
+      chain: Bleed
+    - !type:SurgeryPainEffect
+
+- type: surgeryStep
+  id: SurgeryImplantKidneys
+  name: Implant Kidneys
+  baseTime: 3
+  popup: surgery-implant-kidneys-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses: 
+        - LimbStatusEffectSurgicalKidneysAccessed
+    - !type:SurgeryHasOrgan
+      inverse: true
+      category: Kidneys
+  softConditions:
+    - !type:SurgeryOrganHeld
+      category: Kidneys
+  effects:
+    - !type:SurgeryInsertOrgan
+
+# region Stomach
+
+- type: surgeryStep
+  parent: ScalpelSurgery
+  id: SurgeryCutEsophagus
+  name: Cut Esophagus
+  baseTime: 2
+  popup: surgery-cut-esophagus-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses: 
+        - LimbStatusEffectSurgicalAbdomenAccessed
+    - !type:SurgeryLimbHasStatus
+      inverse: true
+      statuses:
+        - LimbStatusEffectSurgicalEsophagusCut
+        - LimbStatusEffectSurgicalKidneysAccessed
+        - LimbStatusEffectSurgicalHepaticArteryClamped
+  effects:
+    - !type:SurgeryApplyLimbStatus
+      statuses:
+        - LimbStatusEffectSurgicalEsophagusCut
+    - !type:SurgeryProgressStatusChain
+      chain: Bleed
+    - !type:SurgeryPainEffect
+
+- type: surgeryStep
+  parent: CauterySurgery
+  id: SurgeryConnectEsophagus
+  name: Connect Esophagus
+  baseTime: 1
+  popup: surgery-connect-esophagus-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses:
+        - LimbStatusEffectSurgicalAbdomenAccessed
+    - !type:SurgeryLimbHasStatus
+      statuses:
+        - LimbStatusEffectSurgicalEsophagusCut
+  effects:
+    - !type:SurgeryRemoveLimbStatus
+      statuses:
+        - LimbStatusEffectSurgicalEsophagusCut
+
+- type: surgeryStep
+  parent: ScalpelSurgery
+  id: SurgeryRemoveStomach
+  name: Remove Stomach
+  baseTime: 4
+  popup: surgery-remove-stomach-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses: 
+        - LimbStatusEffectSurgicalEsophagusCut
+    - !type:SurgeryLimbHasStatus
+      inverse: true
+      statuses:
+        - LimbStatusEffectNecrosisStomach
+    - !type:SurgeryHasOrgan
+      category: Stomach
+  effects:
+    - !type:SurgeryRemoveOrgan
+      category: Stomach
+    - !type:SurgeryProgressStatusChain
+      chain: Bleed
+    - !type:SurgeryPainEffect
+
+- type: surgeryStep
+  id: SurgeryImplantStomach
+  name: Implant Stomach
+  baseTime: 3
+  popup: surgery-implant-stomach-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses: 
+        - LimbStatusEffectSurgicalEsophagusCut
+    - !type:SurgeryHasOrgan
+      inverse: true
+      category: Stomach
+  softConditions:
+    - !type:SurgeryOrganHeld
+      category: Stomach
+  effects:
+    - !type:SurgeryInsertOrgan
+
+# region Ribcage
+
+- type: surgeryStep
+  parent: BoneSawSurgery
+  id: SurgeryOpenRibcage
+  name: Open Ribcage
+  baseTime: 2
+  popup: surgery-open-ribcage-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses: 
+        - LimbStatusEffectSurgicalIncisionHeldOpen
+    - !type:SurgeryLimbHasStatus
+      inverse: true
+      statuses:
+        - LimbStatusEffectSurgicalRibcageOpen
+        - LimbStatusEffectSurgicalAbdomenAccessed
+        - LimbStatusEffectSurgicalShadekinCoreAccessed
+  effects:
+    - !type:SurgeryApplyLimbStatus
+      statuses:
+        - LimbStatusEffectSurgicalRibcageOpen
+    - !type:SurgeryProgressStatusChain
+      chain: Bleed
+    - !type:SurgeryPainEffect
+
+- type: surgeryStep
+  parent: BoneSetterSurgery
+  id: SurgeryCloseRibcage
+  name: Close Ribcage
+  baseTime: 1
+  popup: surgery-close-ribcage-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses: 
+        - LimbStatusEffectSurgicalIncisionHeldOpen
+    - !type:SurgeryLimbHasStatus
+      statuses:
+        - LimbStatusEffectSurgicalRibcageOpen
+    - !type:SurgeryLimbHasStatus
+      inverse: true
+      statuses:
+        - LimbStatusEffectSurgicalAortaClamped
+        - LimbStatusEffectSurgicalLungsAccessed
+        - LimbStatusEffectSurgicalShadekinCoreAccessed
+        - LimbStatusEffectSurgicalDionaCoreAccessed
+  effects:
+    - !type:SurgeryRemoveLimbStatus
+      statuses:
+        - LimbStatusEffectSurgicalRibcageOpen
+
+# region Heart
+
+- type: surgeryStep
+  parent: HemostatSurgery
+  id: SurgeryClampAorta
+  name: Clamp Aorta
+  baseTime: 2
+  popup: surgery-clamp-aorta-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses: 
+        - LimbStatusEffectSurgicalRibcageOpen
+    - !type:SurgeryLimbHasStatus
+      inverse: true
+      statuses:
+        - LimbStatusEffectBleedI
+        - LimbStatusEffectBleedII
+        - LimbStatusEffectBleedIII
+        - LimbStatusEffectSurgicalAortaClamped
+        - LimbStatusEffectSurgicalLungsAccessed
+        - LimbStatusEffectSurgicalShadekinCoreAccessed
+        - LimbStatusEffectSurgicalDionaCoreAccessed
+  effects:
+    - !type:SurgeryApplyLimbStatus
+      statuses:
+        - LimbStatusEffectSurgicalAortaClamped
+
+- type: surgeryStep
+  parent: HemostatSurgery
+  id: SurgeryReleaseAorta
+  name: Release Aorta
+  baseTime: 1
+  popup: surgery-release-aorta-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses: 
+        - LimbStatusEffectSurgicalRibcageOpen
+    - !type:SurgeryLimbHasStatus
+      statuses:
+        - LimbStatusEffectSurgicalAortaClamped
+    - !type:SurgeryLimbHasStatus
+      inverse: true
+      statuses:
+        - LimbStatusEffectBleedI
+        - LimbStatusEffectBleedII
+        - LimbStatusEffectBleedIII
+  effects:
+    - !type:SurgeryRemoveLimbStatus
+      statuses:
+        - LimbStatusEffectSurgicalAortaClamped
+
+- type: surgeryStep
+  parent: ScalpelSurgery
+  id: SurgeryRemoveHeart
+  name: Remove Heart
+  baseTime: 4
+  popup: surgery-remove-heart-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses: 
+        - LimbStatusEffectSurgicalAortaClamped
+    - !type:SurgeryHasOrgan
+      category: Heart
+  effects:
+    - !type:SurgeryRemoveOrgan
+      category: Heart
+    - !type:SurgeryProgressStatusChain
+      chain: Bleed
+
+- type: surgeryStep
+  id: SurgeryImplantHeart
+  name: Implant Heart
+  baseTime: 3
+  popup: surgery-implant-heart-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses: 
+        - LimbStatusEffectSurgicalAortaClamped
+    - !type:SurgeryHasOrgan
+      inverse: true
+      category: Heart
+  softConditions:
+    - !type:SurgeryOrganHeld
+      category: Heart
+  effects:
+    - !type:SurgeryInsertOrgan
+
+# region Lungs
+
+- type: surgeryStep
+  parent: RetractorSurgery
+  id: SurgeryAccessLungs
+  name: Access Lungs
+  baseTime: 2
+  popup: surgery-access-lungs-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses: 
+        - LimbStatusEffectSurgicalRibcageOpen
+    - !type:SurgeryLimbHasStatus
+      inverse: true
+      statuses:
+        - LimbStatusEffectSurgicalLungsAccessed
+        - LimbStatusEffectSurgicalAortaClamped
+        - LimbStatusEffectSurgicalShadekinCoreAccessed
+  effects:
+    - !type:SurgeryApplyLimbStatus
+      statuses:
+        - LimbStatusEffectSurgicalLungsAccessed
+
+- type: surgeryStep
+  parent: RetractorSurgery
+  id: SurgeryCloseLungs
+  name: Close Lungs
+  baseTime: 1
+  popup: surgery-close-lungs-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses: 
+        - LimbStatusEffectSurgicalRibcageOpen
+    - !type:SurgeryLimbHasStatus
+      statuses:
+        - LimbStatusEffectSurgicalLungsAccessed
+  effects:
+    - !type:SurgeryRemoveLimbStatus
+      statuses:
+        - LimbStatusEffectSurgicalLungsAccessed
+
+- type: surgeryStep
+  parent: ScalpelSurgery
+  id: SurgeryRemoveLungs
+  name: Remove Lungs
+  baseTime: 4
+  popup: surgery-remove-lungs-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses: 
+        - LimbStatusEffectSurgicalLungsAccessed
+    - !type:SurgeryHasOrgan
+      category: Lungs
+  effects:
+    - !type:SurgeryRemoveOrgan
+      category: Lungs
+    - !type:SurgeryProgressStatusChain
+      chain: Bleed
+    - !type:SurgeryPainEffect
+
+- type: surgeryStep
+  id: SurgeryImplantLungs
+  name: Implant Lungs
+  baseTime: 3
+  popup: surgery-implant-lungs-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses: 
+        - LimbStatusEffectSurgicalLungsAccessed
+    - !type:SurgeryHasOrgan
+      inverse: true
+      category: Lungs
+  softConditions:
+    - !type:SurgeryOrganHeld
+      category: Lungs
+    - !type:HeldItemHasComponenent
+      inverse: true
+      components:
+        - type: OrganShadekinCore
+  effects:
+    - !type:SurgeryInsertOrgan
+
+# region Tongue
+
+- type: surgeryStep
+  parent: HemostatSurgery
+  id: SurgeryClampLingualArtery
+  name: Clamp Lingual Artery
+  baseTime: 2
+  popup: surgery-clamp-lingual-artery-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses:
+        - LimbStatusEffectSurgicalIncision
+    - !type:SurgeryLimbHasStatus
+      inverse: true
+      statuses:
+        - LimbStatusEffectBleedI
+        - LimbStatusEffectBleedII
+        - LimbStatusEffectBleedIII
+        - LimbStatusEffectSurgicalClampedLingualArtery
+        - LimbStatusEffectSurgicalIncisionHeldOpen
+        - LimbStatusEffectSurgicalDeepIncision
+    - !type:SurgeryHasOrgan
+      category: Tongue
+  effects:
+    - !type:SurgeryApplyLimbStatus
+      statuses:
+        - LimbStatusEffectSurgicalClampedLingualArtery
+
+- type: surgeryStep
+  parent: HemostatSurgery
+  id: SurgeryReleaseLingualArtery
+  name: Release Lingual Artery
+  baseTime: 1
+  popup: surgery-release-lingual-artery-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses:
+        - LimbStatusEffectSurgicalClampedLingualArtery
+    - !type:SurgeryLimbHasStatus
+      inverse: true
+      statuses:
+        - LimbStatusEffectBleedI
+        - LimbStatusEffectBleedII
+        - LimbStatusEffectBleedIII
+        - LimbStatusEffectSurgicalIncisionHeldOpen
+    - !type:SurgeryHasOrgan
+      category: Tongue
+  effects:
+    - !type:SurgeryRemoveLimbStatus
+      statuses:
+        - LimbStatusEffectSurgicalClampedLingualArtery
+
+- type: surgeryStep
+  parent: ScalpelSurgery
+  id: SurgeryRemoveTongue
+  name: Remove Tongue
+  baseTime: 4
+  popup: surgery-remove-tongue-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses: 
+        - LimbStatusEffectSurgicalClampedLingualArtery
+    - !type:SurgeryLimbHasStatus
+      inverse: true
+      statuses: 
+        - LimbStatusEffectSurgicalIncisionHeldOpen
+    - !type:SurgeryLimbHasStatus
+      inverse: true
+      statuses:
+        - LimbStatusEffectNecrosisTongue
+    - !type:SurgeryHasOrgan
+      category: Tongue
+  effects:
+    - !type:SurgeryRemoveOrgan
+      category: Tongue
+    - !type:SurgeryProgressStatusChain
+      chain: Bleed
+    - !type:SurgeryPainEffect
+
+- type: surgeryStep
+  id: SurgeryImplantTongue
+  name: Implant Tongue
+  baseTime: 3
+  popup: surgery-implant-tongue-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses: 
+        - LimbStatusEffectSurgicalClampedLingualArtery
+    - !type:SurgeryHasOrgan
+      inverse: true
+      category: Tongue
+  softConditions:
+    - !type:SurgeryOrganHeld
+      category: Tongue
+  effects:
+    - !type:SurgeryInsertOrgan
+
+# region Eyes
+
+- type: surgeryStep
+  parent: ScalpelSurgery
+  id: SurgeryCutOpticNerve
+  name: Cut Optic Nerve
+  baseTime: 2
+  popup: surgery-cut-optic-nerve-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses: 
+        - LimbStatusEffectSurgicalIncisionHeldOpen
+    - !type:SurgeryLimbHasStatus
+      inverse: true
+      statuses:
+        - LimbStatusEffectSurgicalCutOpticNerve
+        - LimbStatusEffectSurgicalSkullDrilled
+        - LimbStatusEffectSurgicalVesselsDetached
+        - LimbStatusEffectSurgicalFacialBonesCut
+        - LimbStatusEffectSurgicalFacialBonesRepositioned
+  effects:
+    - !type:SurgeryApplyLimbStatus
+      statuses:
+        - LimbStatusEffectSurgicalCutOpticNerve
+    - !type:SurgeryProgressStatusChain
+      chain: Bleed
+    - !type:SurgeryPainEffect
+
+- type: surgeryStep
+  parent: CauterySurgery
+  id: SurgeryRestoreOpticNerve
+  name: Restore Optic Nerve
+  baseTime: 1
+  popup: surgery-restore-optic-nerve-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses: 
+        - LimbStatusEffectSurgicalIncisionHeldOpen
+    - !type:SurgeryLimbHasStatus
+      statuses:
+        - LimbStatusEffectSurgicalCutOpticNerve
+  effects:
+    - !type:SurgeryRemoveLimbStatus
+      statuses:
+        - LimbStatusEffectSurgicalCutOpticNerve
+
+- type: surgeryStep
+  parent: ScalpelSurgery
+  id: SurgeryRemoveEyes
+  name: Remove Eyes
+  baseTime: 4
+  popup: surgery-remove-eyes-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses: 
+        - LimbStatusEffectSurgicalCutOpticNerve
+    - !type:SurgeryLimbHasStatus
+      inverse: true
+      statuses:
+        - LimbStatusEffectNecrosisEyes
+    - !type:SurgeryHasOrgan
+      category: Eyes
+  effects:
+    - !type:SurgeryRemoveOrgan
+      category: Eyes
+    - !type:SurgeryProgressStatusChain
+      chain: Bleed
+    - !type:SurgeryPainEffect
+
+- type: surgeryStep
+  id: SurgeryImplantEyes
+  name: Implant Eyes
+  baseTime: 3
+  popup: surgery-implant-eyes-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses: 
+        - LimbStatusEffectSurgicalCutOpticNerve
+    - !type:SurgeryHasOrgan
+      inverse: true
+      category: Eyes
+  softConditions:
+    - !type:SurgeryOrganHeld
+      category: Eyes
+  effects:
+    - !type:SurgeryInsertOrgan
+
+# region Brain
+
+- type: surgeryStep
+  parent: SurgicalDrillSurgery
+  id: SurgeryDrillSkull
+  name: Drill Skull
+  baseTime: 3
+  popup: surgery-drill-skull-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses: 
+        - LimbStatusEffectSurgicalIncisionHeldOpen
+        - LimbStatusEffectSurgicalFacialBonesCut
+        - LimbStatusEffectSurgicalFacialBonesRepositioned
+    - !type:SurgeryLimbHasStatus
+      inverse: true
+      statuses:
+        - LimbStatusEffectSurgicalSkullDrilled
+  effects:
+    - !type:SurgeryApplyLimbStatus
+      statuses:
+        - LimbStatusEffectSurgicalSkullDrilled
+    - !type:SurgeryProgressStatusChain
+      chain: Bleed
+    - !type:SurgeryPainEffect
+
+- type: surgeryStep
+  parent: BoneGelSurgery
+  id: SurgeryPatchSkull
+  name: Patch Skull
+  baseTime: 2
+  popup: surgery-patch-skull-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses: 
+        - LimbStatusEffectSurgicalIncisionHeldOpen
+    - !type:SurgeryLimbHasStatus
+      statuses:
+        - LimbStatusEffectSurgicalSkullDrilled
+    - !type:SurgeryLimbHasStatus
+      inverse: true
+      statuses:
+        - LimbStatusEffectSurgicalSkullOpen
+  effects:
+    - !type:SurgeryRemoveLimbStatus
+      statuses:
+        - LimbStatusEffectSurgicalSkullDrilled
+
+- type: surgeryStep
+  parent: BoneSawSurgery
+  id: SurgeryOpenSkull
+  name: Open Skull
+  baseTime: 4
+  popup: surgery-open-skull-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses: 
+        - LimbStatusEffectSurgicalSkullDrilled
+    - !type:SurgeryLimbHasStatus
+      inverse: true
+      statuses:
+        - LimbStatusEffectSurgicalSkullOpen
+  effects:
+    - !type:SurgeryApplyLimbStatus
+      statuses:
+        - LimbStatusEffectSurgicalSkullOpen
+    - !type:SurgeryProgressStatusChain
+      chain: Bleed
+    - !type:SurgeryPainEffect
+
+- type: surgeryStep
+  parent: BoneGelSurgery
+  id: SurgeryCloseSkull
+  name: Close Skull
+  baseTime: 2
+  popup: surgery-close-skull-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses:
+        - LimbStatusEffectSurgicalSkullOpen
+  effects:
+    - !type:SurgeryRemoveLimbStatus
+      statuses:
+        - LimbStatusEffectSurgicalSkullOpen
+
+- type: surgeryStep
+  parent: ScalpelSurgery
+  id: SurgeryRemoveBrain
+  name: Remove Brain
+  baseTime: 4
+  popup: surgery-remove-brain-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses: 
+        - LimbStatusEffectSurgicalSkullOpen
+    - !type:SurgeryHasOrgan
+      category: Brain
+  effects:
+    - !type:SurgeryRemoveOrgan
+      category: Brain
+    - !type:SurgeryProgressStatusChain
+      chain: Bleed
+
+- type: surgeryStep
+  id: SurgeryImplantBrain
+  name: Implant Brain
+  baseTime: 3
+  popup: surgery-implant-brain-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses: 
+        - LimbStatusEffectSurgicalSkullOpen
+    - !type:SurgeryHasOrgan
+      inverse: true
+      category: Brain
+  softConditions:
+    - !type:SurgeryOrganHeld
+      category: Brain
+  effects:
+    - !type:SurgeryInsertOrgan

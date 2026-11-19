@@ -1,4 +1,5 @@
 using Content.Shared._FarHorizons.LimbDamage.Components;
+using Content.Shared._FarHorizons.Medical.LimbStatusEffect;
 using Content.Shared.Body;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
@@ -16,6 +17,7 @@ public sealed partial class LimbDamageSystem : EntitySystem
     [Dependency] private IPrototypeManager _protoMan = default!;
     [Dependency] private ExamineSystemShared _examine = default!;
     [Dependency] private TagSystem _tag = default!;
+    [Dependency] private LimbStatusEffectSystem _limbStatusEffect = default!;
 
     public override void Initialize()
     {

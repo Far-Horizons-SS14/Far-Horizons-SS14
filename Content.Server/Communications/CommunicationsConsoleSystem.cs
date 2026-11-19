@@ -10,6 +10,7 @@ using Content.Server.RoundEnd;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Systems;
 using Content.Server.Station.Systems;
+using Content.Shared._FarHorizons.Medical.Trauma;
 using Content.Shared._Starlight.Speech;
 using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
@@ -314,7 +315,8 @@ namespace Content.Server.Communications
                 }
 
                 // Starlight start
-                if (!HasComp<MutedComponent>(mob))
+                if (!HasComp<MutedComponent>(mob) &&
+                    !HasComp<SurgeryLimbStatusMuteComponent>(mob)) // Far Horizons
                     speaker = mob; 
                 // Starlight end
 

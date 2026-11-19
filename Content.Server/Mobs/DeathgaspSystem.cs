@@ -1,5 +1,6 @@
 ﻿using Content.Server.Chat.Systems;
 using Content.Server.Speech.Muting;
+using Content.Shared._FarHorizons.Medical.Trauma;
 using Content.Shared.Mobs;
 using Content.Shared.Speech.Muting;
 using Robust.Shared.Prototypes;
@@ -36,7 +37,8 @@ public sealed partial class DeathgaspSystem: EntitySystem
         if (!Resolve(uid, ref component, false))
             return false;
 
-        if (HasComp<MutedComponent>(uid))
+        if (HasComp<MutedComponent>(uid) ||
+            HasComp<SurgeryLimbStatusMuteComponent>(uid)) // Far Horizons
             return false;
 
         _chat.TryEmoteWithChat(uid, component.Prototype, ignoreActionBlocker: true);

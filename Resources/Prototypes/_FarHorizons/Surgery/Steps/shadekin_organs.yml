@@ -1,0 +1,79 @@
+# region Core
+
+- type: surgeryStep
+  parent: RetractorSurgery
+  id: SurgeryShadekinAccessCore
+  name: Access Core
+  baseTime: 2
+  popup: surgery-shadekin-access-core-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses: 
+        - LimbStatusEffectSurgicalRibcageOpen
+    - !type:SurgeryLimbHasStatus
+      inverse: true
+      statuses:
+        - LimbStatusEffectSurgicalShadekinCoreAccessed
+        - LimbStatusEffectSurgicalAortaClamped
+  effects:
+    - !type:SurgeryApplyLimbStatus
+      statuses:
+        - LimbStatusEffectSurgicalShadekinCoreAccessed
+
+- type: surgeryStep
+  parent: RetractorSurgery
+  id: SurgeryShadekinCloseCore
+  name: Close Core
+  baseTime: 1
+  popup: surgery-shadekin-close-core-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses: 
+        - LimbStatusEffectSurgicalRibcageOpen
+    - !type:SurgeryLimbHasStatus
+      statuses:
+        - LimbStatusEffectSurgicalShadekinCoreAccessed
+  effects:
+    - !type:SurgeryRemoveLimbStatus
+      statuses:
+        - LimbStatusEffectSurgicalShadekinCoreAccessed
+
+- type: surgeryStep
+  parent: ScalpelSurgery
+  id: SurgeryShadekinRemoveCore
+  name: Remove Core
+  baseTime: 4
+  popup: surgery-shadekin-remove-core-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses: 
+        - LimbStatusEffectSurgicalShadekinCoreAccessed
+    - !type:SurgeryHasOrgan
+      category: Lungs
+  effects:
+    - !type:SurgeryRemoveOrgan
+      category: Lungs
+    - !type:SurgeryProgressStatusChain
+      chain: Bleed
+    - !type:SurgeryPainEffect
+
+- type: surgeryStep
+  id: SurgeryShadekinImplantCore
+  name: Implant Core
+  baseTime: 3
+  popup: surgery-shadekin-implant-core-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses: 
+        - LimbStatusEffectSurgicalShadekinCoreAccessed
+    - !type:SurgeryHasOrgan
+      inverse: true
+      category: Lungs
+  softConditions:
+    - !type:SurgeryOrganHeld
+      category: Lungs
+    - !type:HeldItemHasComponenent
+      components:
+        - type: OrganShadekinCore
+  effects:
+    - !type:SurgeryInsertOrgan

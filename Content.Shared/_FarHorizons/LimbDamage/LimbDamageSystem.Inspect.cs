@@ -116,7 +116,7 @@ public partial class LimbDamageSystem
         if (fullDamage.All(p => ProcessThresholds(p.Value, _inspectThresholds).All(e => e.Value == 0)))
         {
             msg.AddMarkupOrThrow(Loc.GetString("limb-health-no-damage", ("target", Identity.Entity(ent, EntityManager))));
-            return msg;
+            return AddBodyLimbStatusInsepct(ent, msg);
         }
 
         var first = true;
@@ -155,6 +155,37 @@ public partial class LimbDamageSystem
                 first = false;
                 
             msg.AddMarkupOrThrow(finalMessage);
+        }
+        
+        return AddBodyLimbStatusInsepct(ent, msg);
+    }
+
+    private FormattedMessage AddBodyLimbStatusInsepct(EntityUid uid, FormattedMessage msg)
+    {
+        var limbStatuses = _limbStatusEffect.GetStatusPerLimb(uid);
+        var relevantStatus = limbStatuses.Where(kv => _inspectOrder.Contains(kv.Key)).ToDictionary();
+
+        if (!relevantStatus.Any())
+            return msg;
+        
+        msg.PushNewline();
+        msg.PushNewline();
+        msg.AddMarkupOrThrow(Loc.GetString("limb-status-header"));
+        msg.PushNewline();
+
+        foreach (var limb in _inspectOrder)
+        {
+            if (!relevantStatus.TryGetValue(limb, out var statuses))
+                continue;
+
+            var limbName = Loc.GetString($"limb-category-limb-name-{limb.Id.ToLower()}");
+            var statusText = _limbStatusEffect.GetInspectText(statuses);
+            if (statusText == null)
+                continue;
+            
+            var limbStatusMessage = Loc.GetString("limb-status-message", ("target", Identity.Entity(uid, EntityManager)), ("limb", limbName), ("statuses", statusText));
+            msg.PushNewline();
+            msg.AddMarkupOrThrow(limbStatusMessage);
         }
 
         return msg;

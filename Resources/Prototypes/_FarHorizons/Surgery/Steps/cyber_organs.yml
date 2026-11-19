@@ -1,0 +1,351 @@
+# region Chest Internals
+
+- type: surgeryStep
+  parent: WirecutterSurgery
+  id: SurgeryDisconnectHydraulics
+  name: Disconnect Hydraulics
+  baseTime: 2
+  popup: surgery-cyber-disconnect-hydraulics-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses: 
+        - LimbStatusEffectSurgicalPlatingPried
+    - !type:SurgeryLimbHasStatus
+      inverse: true
+      statuses:
+        - LimbStatusEffectSurgicalHydraulicsCut
+  effects:
+    - !type:SurgeryApplyLimbStatus
+      statuses:
+        - LimbStatusEffectSurgicalHydraulicsCut
+    - !type:SurgeryProgressStatusChain
+      needsToBeAlive: false
+      chain: OilLeak
+
+- type: surgeryStep
+  parent: WirecutterSurgery
+  id: SurgeryReconnectHydraulics
+  name: Reconnect Hydraulics
+  baseTime: 1
+  popup: surgery-cyber-reconnect-hydraulics-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses: 
+        - LimbStatusEffectSurgicalPlatingPried
+    - !type:SurgeryLimbHasStatus
+      statuses:
+        - LimbStatusEffectSurgicalHydraulicsCut
+    - !type:SurgeryLimbHasStatus
+      inverse: true
+      statuses:
+        - LimbStatusEffectSurgicalPumpPoweredDown
+  effects:
+    - !type:SurgeryRemoveLimbStatus
+      statuses:
+        - LimbStatusEffectSurgicalHydraulicsCut
+
+# region Cavity
+
+- type: surgeryStep
+  parent: WrenchSurgery
+  id: SurgeryRemoveCavityItemCyber
+  name: Remove Cavity Item
+  baseTime: 4
+  popup: surgery-remove-cavity-item-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses: 
+        - LimbStatusEffectSurgicalHydraulicsCut
+    - !type:SurgeryLimbHasStatus
+      inverse: true
+      statuses:
+        - LimbStatusEffectSurgicalPumpPoweredDown
+    - !type:SurgeryHasOrgan
+      category: Cavity
+  effects:
+    - !type:SurgeryRemoveOrgan
+      category: Cavity
+
+- type: surgeryStep
+  id: SurgeryImplantCavityItemCyber
+  name: Insert Item Into Cavity
+  baseTime: 3
+  popup: surgery-implant-cavity-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses: 
+        - LimbStatusEffectSurgicalHydraulicsCut
+    - !type:SurgeryLimbHasStatus
+      inverse: true
+      statuses:
+        - LimbStatusEffectSurgicalPumpPoweredDown
+    - !type:SurgeryHasOrgan
+      inverse: true
+      category: Cavity
+  softConditions:
+    - !type:HeldItemNotSurgeryTool # Albeit funny, I don't want to risk accidentially implanting tool instead of using it
+    - !type:HeldItemSize
+      allowedSizes:
+        - Tiny
+        - Small
+  effects:
+    - !type:SurgeryInsertCustomOrgan
+      category: Cavity
+
+# region Heart
+
+- type: surgeryStep
+  parent: MultitoolSurgery
+  id: SurgeryPowerDownPump
+  name: Power Pump Down
+  baseTime: 2
+  popup: surgery-cyber-power-down-pump-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses: 
+        - LimbStatusEffectSurgicalHydraulicsCut
+    - !type:SurgeryLimbHasStatus
+      inverse: true
+      statuses:
+        - LimbStatusEffectSurgicalPumpPoweredDown
+    - !type:SurgeryHasOrgan
+      category: Heart
+  effects:
+    - !type:SurgeryApplyLimbStatus
+      statuses:
+        - LimbStatusEffectSurgicalPumpPoweredDown
+
+- type: surgeryStep
+  parent: MultitoolSurgery
+  id: SurgeryPowerUpPump
+  name: Power Pump Up
+  baseTime: 1
+  popup: surgery-cyber-power-up-pump-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses: 
+        - LimbStatusEffectSurgicalHydraulicsCut
+    - !type:SurgeryLimbHasStatus
+      statuses:
+        - LimbStatusEffectSurgicalPumpPoweredDown
+  effects:
+    - !type:SurgeryRemoveLimbStatus
+      statuses:
+        - LimbStatusEffectSurgicalPumpPoweredDown
+
+- type: surgeryStep
+  parent: WelderSurgery
+  id: SurgeryRemovePump
+  name: Remove Pump
+  baseTime: 4
+  popup: surgery-cyber-remove-pump-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses: 
+        - LimbStatusEffectSurgicalPumpPoweredDown
+    - !type:SurgeryLimbHasStatus
+      inverse: true
+      statuses:
+        - LimbStatusEffectLeakingOilI
+        - LimbStatusEffectLeakingOilII
+        - LimbStatusEffectLeakingOilIII
+    - !type:SurgeryHasOrgan
+      category: Heart
+  effects:
+    - !type:SurgeryRemoveOrgan
+      category: Heart
+    - !type:SurgeryProgressStatusChain
+      needsToBeAlive: false
+      chain: OilLeak
+
+- type: surgeryStep
+  id: SurgeryImplantPump
+  name: Insert Pump
+  baseTime: 3
+  popup: surgery-cyber-implant-pump-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses: 
+        - LimbStatusEffectSurgicalPumpPoweredDown
+    - !type:SurgeryHasOrgan
+      inverse: true
+      category: Heart
+  softConditions:
+    - !type:SurgeryOrganHeld
+      category: Heart
+  effects:
+    - !type:SurgeryInsertOrgan
+
+# region Eyes
+
+- type: surgeryStep
+  parent: MultitoolSurgery
+  id: SurgeryPowerDownOptics
+  name: Power Optics Down
+  baseTime: 2
+  popup: surgery-cyber-power-down-optics-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses: 
+        - LimbStatusEffectSurgicalPlatingPried
+    - !type:SurgeryLimbHasStatus
+      inverse: true
+      statuses:
+        - LimbStatusEffectSurgicalOpticsPoweredDown
+        - LimbStatusEffectSurgicalVocalizerWiresCut
+    - !type:SurgeryHasOrgan
+      category: Eyes
+  effects:
+    - !type:SurgeryApplyLimbStatus
+      statuses:
+        - LimbStatusEffectSurgicalOpticsPoweredDown
+
+- type: surgeryStep
+  parent: MultitoolSurgery
+  id: SurgeryPowerUpOptics
+  name: Power Optics Up
+  baseTime: 1
+  popup: surgery-cyber-power-up-optics-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses: 
+        - LimbStatusEffectSurgicalPlatingPried
+    - !type:SurgeryLimbHasStatus
+      statuses:
+        - LimbStatusEffectSurgicalOpticsPoweredDown
+    - !type:SurgeryHasOrgan
+      category: Eyes
+  effects:
+    - !type:SurgeryRemoveLimbStatus
+      statuses:
+        - LimbStatusEffectSurgicalOpticsPoweredDown
+
+- type: surgeryStep
+  parent: WelderSurgery
+  id: SurgeryRemoveOptics
+  name: Remove Optics
+  baseTime: 4
+  popup: surgery-cyber-remove-optics-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses: 
+        - LimbStatusEffectSurgicalOpticsPoweredDown
+    - !type:SurgeryLimbHasStatus
+      inverse: true
+      statuses:
+        - LimbStatusEffectLeakingOilI
+        - LimbStatusEffectLeakingOilII
+        - LimbStatusEffectLeakingOilIII
+    - !type:SurgeryHasOrgan
+      category: Eyes
+  effects:
+    - !type:SurgeryRemoveOrgan
+      category: Eyes
+    - !type:SurgeryProgressStatusChain
+      needsToBeAlive: false
+      chain: OilLeak
+
+- type: surgeryStep
+  id: SurgeryImplantOptics
+  name: Insert Optics
+  baseTime: 3
+  popup: surgery-cyber-implant-optics-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses: 
+        - LimbStatusEffectSurgicalOpticsPoweredDown
+    - !type:SurgeryHasOrgan
+      inverse: true
+      category: Eyes
+  softConditions:
+    - !type:SurgeryOrganHeld
+      category: Eyes
+  effects:
+    - !type:SurgeryInsertOrgan
+
+# region Tongue
+
+- type: surgeryStep
+  parent: WirecutterSurgery
+  id: SurgeryCutVocalizerWires
+  name: Cut Vocalizer Wires
+  baseTime: 2
+  popup: surgery-cyber-cut-vocalizer-wires-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses: 
+        - LimbStatusEffectSurgicalPlatingPried
+    - !type:SurgeryLimbHasStatus
+      inverse: true
+      statuses:
+        - LimbStatusEffectSurgicalOpticsPoweredDown
+        - LimbStatusEffectSurgicalVocalizerWiresCut
+    - !type:SurgeryHasOrgan
+      category: Tongue
+  effects:
+    - !type:SurgeryApplyLimbStatus
+      statuses:
+        - LimbStatusEffectSurgicalVocalizerWiresCut
+
+- type: surgeryStep
+  parent: WirecutterSurgery
+  id: SurgeryRestoreVocalizerWires
+  name: Restore Vocalizer Wires
+  baseTime: 1
+  popup: surgery-cyber-restore-vocalizer-wires-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses: 
+        - LimbStatusEffectSurgicalPlatingPried
+    - !type:SurgeryLimbHasStatus
+      statuses:
+        - LimbStatusEffectSurgicalVocalizerWiresCut
+    - !type:SurgeryHasOrgan
+      category: Tongue
+  effects:
+    - !type:SurgeryRemoveLimbStatus
+      statuses:
+        - LimbStatusEffectSurgicalVocalizerWiresCut
+
+- type: surgeryStep
+  parent: WelderSurgery
+  id: SurgeryRemoveVocalizer
+  name: Remove Vocalizer
+  baseTime: 4
+  popup: surgery-cyber-remove-vocalizer-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses: 
+        - LimbStatusEffectSurgicalVocalizerWiresCut
+    - !type:SurgeryLimbHasStatus
+      inverse: true
+      statuses:
+        - LimbStatusEffectLeakingOilI
+        - LimbStatusEffectLeakingOilII
+        - LimbStatusEffectLeakingOilIII
+    - !type:SurgeryHasOrgan
+      category: Tongue
+  effects:
+    - !type:SurgeryRemoveOrgan
+      category: Tongue
+    - !type:SurgeryProgressStatusChain
+      needsToBeAlive: false
+      chain: OilLeak
+
+- type: surgeryStep
+  id: SurgeryImplantVocalizer
+  name: Insert Vocalizer
+  baseTime: 3
+  popup: surgery-cyber-implant-vocalizer-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses: 
+        - LimbStatusEffectSurgicalVocalizerWiresCut
+    - !type:SurgeryHasOrgan
+      inverse: true
+      category: Tongue
+  softConditions:
+    - !type:SurgeryOrganHeld
+      category: Tongue
+  effects:
+    - !type:SurgeryInsertOrgan

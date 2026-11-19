@@ -1,0 +1,107 @@
+- type: surgeryStep
+  parent: HemostatSurgery
+  id: SurgeryClampBleeding
+  name: Clamp Bleed
+  baseTime: 1
+  popup: surgery-clamp-bleed-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses: 
+        - LimbStatusEffectBleedI
+        - LimbStatusEffectBleedII
+        - LimbStatusEffectBleedIII
+  effects:
+    - !type:SurgeryRemoveLimbStatus
+      statuses:
+        - LimbStatusEffectBleedI
+        - LimbStatusEffectBleedII
+        - LimbStatusEffectBleedIII
+
+- type: surgeryStep
+  parent: ScalpelSurgery
+  id: SurgeryMakeIncision
+  name: Make Incision
+  baseTime: 2
+  popup: surgery-make-incision-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      inverse: true
+      statuses:
+        - LimbStatusEffectSurgicalIncision
+  effects:
+    - !type:SurgeryApplyLimbStatus
+      statuses:
+        - LimbStatusEffectSurgicalIncision
+    - !type:SurgeryProgressStatusChain
+      chain: Bleed
+    - !type:SurgeryPainEffect
+
+- type: surgeryStep
+  parent: CauterySurgery
+  id: SurgeryCloseIncision
+  name: Close Incision
+  baseTime: 1
+  popup: surgery-close-incision-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses:
+        - LimbStatusEffectSurgicalIncision
+    - !type:SurgeryLimbHasStatus
+      inverse: true
+      statuses:
+        - LimbStatusEffectSurgicalDeepIncision
+        - LimbStatusEffectSurgicalIncisionHeldOpen
+        - LimbStatusEffectBleedI
+        - LimbStatusEffectBleedII
+        - LimbStatusEffectBleedIII
+  effects:
+    - !type:SurgeryRemoveLimbStatus
+      statuses:
+        - LimbStatusEffectSurgicalIncision
+
+- type: surgeryStep
+  parent: RetractorSurgery
+  id: SurgeryHoldIncisionOpen
+  name: Hold Incision Open
+  baseTime: 2
+  popup: surgery-hold-incision-open-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses:
+        - LimbStatusEffectSurgicalIncision
+    - !type:SurgeryLimbHasStatus
+      inverse: true
+      statuses:
+        - LimbStatusEffectSurgicalIncisionHeldOpen
+        - LimbStatusEffectSurgicalDeepIncision
+  effects:
+    - !type:SurgeryApplyLimbStatus
+      statuses:
+        - LimbStatusEffectSurgicalIncisionHeldOpen
+    - !type:SurgeryPainEffect
+
+- type: surgeryStep
+  parent: RetractorSurgery
+  id: SurgeryReleaseOpenIncision
+  name: Release Incision
+  baseTime: 1
+  popup: surgery-release-open-incision-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses:
+        - LimbStatusEffectSurgicalIncisionHeldOpen
+    - !type:SurgeryLimbHasStatus
+      inverse: true
+      statuses:
+        - LimbStatusEffectSurgicalVesselsDetached
+        - LimbStatusEffectSurgicalDislocatedBone
+        - LimbStatusEffectSurgicalAbdomenAccessed
+        - LimbStatusEffectSurgicalRibcageOpen
+        - LimbStatusEffectSurgicalFacialBonesCut
+        - LimbStatusEffectSurgicalFacialBonesRepositioned
+        - LimbStatusEffectSurgicalSlimeCoreAccessed
+        - LimbStatusEffectSurgicalSlimeFaceStructureAltered
+  effects:
+    - !type:SurgeryRemoveLimbStatus
+      statuses:
+        - LimbStatusEffectSurgicalIncisionHeldOpen
