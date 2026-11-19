@@ -42,6 +42,32 @@
     - !type:SurgeryPainEffect
     - !type:SurgeryReduceNecrosisTime
 
+# Slime Limb
+
+- type: surgeryStep
+  parent: SurgerySlimeAmputateLimb
+  id: SurgerySlimeNecrosisAmputateLimb
+  name: Amputate Rotten Limb
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses:
+        - LimbStatusEffectSurgicalIncisionHeldOpen
+    - !type:SurgeryLimbHasStatus
+      statuses:
+        - LimbStatusEffectNecrosisLimb
+  effects:
+    - !type:SurgeryRemoveLimbStatus
+      statuses:
+        - LimbStatusEffectSurgicalIncision
+        - LimbStatusEffectSurgicalIncisionHeldOpen
+        - LimbStatusEffectBleedI
+        - LimbStatusEffectBleedII
+        - LimbStatusEffectBleedIII
+        - LimbStatusEffectNecrosisLimb
+    - !type:SurgeryDetachLimb
+    - !type:SurgeryPainEffect
+    - !type:SurgeryReduceNecrosisTime
+
 # Liver
 
 - type: surgeryStep

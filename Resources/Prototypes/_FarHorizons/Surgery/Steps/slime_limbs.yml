@@ -10,6 +10,10 @@
     - !type:SurgeryLimbHasStatus
       statuses:
         - LimbStatusEffectSurgicalIncisionHeldOpen
+    - !type:SurgeryLimbHasStatus
+      inverse: true
+      statuses:
+        - LimbStatusEffectNecrosisLimb
   effects:
     - !type:SurgeryRemoveLimbStatus
       statuses:
