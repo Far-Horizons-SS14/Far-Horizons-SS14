@@ -157,7 +157,6 @@
       statuses: 
         - LimbStatusEffectSurgicalCutOpticNerve
     - !type:SurgeryLimbHasStatus
-      inverse: true
       statuses:
         - LimbStatusEffectNecrosisEyes
     - !type:SurgeryHasOrgan
@@ -188,7 +187,6 @@
       statuses: 
         - LimbStatusEffectSurgicalIncisionHeldOpen
     - !type:SurgeryLimbHasStatus
-      inverse: true
       statuses:
         - LimbStatusEffectNecrosisTongue
     - !type:SurgeryHasOrgan
