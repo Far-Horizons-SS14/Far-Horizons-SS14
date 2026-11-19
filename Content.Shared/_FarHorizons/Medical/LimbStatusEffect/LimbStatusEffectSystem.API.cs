@@ -36,7 +36,10 @@ public sealed partial class LimbStatusEffectSystem
             return;
         
         if (ent.Comp.Statuses.ContainsKey(status))
+        {
             ent.Comp.Statuses.Remove(status);
+            Dirty(ent);
+        }
         
         RefreshStatus(ent);
     }
