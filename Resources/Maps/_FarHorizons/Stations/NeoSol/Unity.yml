@@ -4,8 +4,8 @@ meta:
   engineVersion: 288.1.0
   forkId: farhorizons
   forkVersion: bdb974b8c
-  time: 11/20/2026 13:51:51
-  entityCount: 23205
+  time: 11/20/2026 14:01:19
+  entityCount: 23207
 maps:
 - 1
 grids:
@@ -58971,7 +58971,7 @@ entities:
       pos: -2.5,6.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -610699.4
+      secondsUntilStateChange: -611265.44
   - uid: 9545
     components:
     - type: Transform
@@ -60450,12 +60450,6 @@ entities:
       parent: 2
       rot: 1.5707963267948966 rad
       pos: 35.5,-3.5
-  - uid: 9767
-    components:
-    - type: Transform
-      parent: 2
-      rot: 1.5707963267948966 rad
-      pos: 30.5,-5.5
   - uid: 9768
     components:
     - type: Transform
@@ -60519,12 +60513,6 @@ entities:
     - type: Transform
       parent: 2
       pos: -14.5,-4.5
-  - uid: 9779
-    components:
-    - type: Transform
-      parent: 2
-      rot: -1.5707963267948966 rad
-      pos: 37.5,-5.5
   - uid: 9780
     components:
     - type: Transform
@@ -60567,6 +60555,17 @@ entities:
       parent: 2
       rot: 3.141592653589793 rad
       pos: 33.5,0.5
+  - uid: 10608
+    components:
+    - type: Transform
+      parent: 2
+      pos: 38.5,-5.5
+  - uid: 10616
+    components:
+    - type: Transform
+      parent: 2
+      rot: 1.5707963267948966 rad
+      pos: 29.5,-5.5
 - proto: DisposalJunction
   entities:
   - uid: 9787
@@ -60667,6 +60666,18 @@ entities:
     - type: Transform
       parent: 2
       pos: 31.5,2.5
+  - uid: 23206
+    components:
+    - type: Transform
+      parent: 2
+      rot: -1.5707963267948966 rad
+      pos: 29.5,-6.5
+  - uid: 23207
+    components:
+    - type: Transform
+      parent: 2
+      rot: -1.5707963267948966 rad
+      pos: 38.5,-6.5
 - proto: DisposalJunctionFlipped
   entities:
   - uid: 9805
@@ -65221,12 +65232,6 @@ entities:
       parent: 2
       rot: 1.5707963267948966 rad
       pos: -12.5,-27.5
-  - uid: 10608
-    components:
-    - type: Transform
-      parent: 2
-      rot: -1.5707963267948966 rad
-      pos: 29.5,-6.5
   - uid: 10609
     components:
     - type: Transform
@@ -65269,12 +65274,6 @@ entities:
       parent: 2
       rot: -1.5707963267948966 rad
       pos: 36.5,-6.5
-  - uid: 10616
-    components:
-    - type: Transform
-      parent: 2
-      rot: -1.5707963267948966 rad
-      pos: 38.5,-6.5
   - uid: 10617
     components:
     - type: Transform
@@ -65581,6 +65580,24 @@ entities:
       pos: -13.5,-17.5
 - proto: DisposalRouterFlipped
   entities:
+  - uid: 9767
+    components:
+    - type: Transform
+      parent: 2
+      rot: 1.5707963267948966 rad
+      pos: 37.5,-5.5
+    - type: DisposalRouter
+      tags:
+      - '*'
+  - uid: 9779
+    components:
+    - type: Transform
+      parent: 2
+      rot: -1.5707963267948966 rad
+      pos: 30.5,-5.5
+    - type: DisposalRouter
+      tags:
+      - '*'
   - uid: 10660
     components:
     - type: Transform
@@ -68185,7 +68202,7 @@ entities:
       pos: -4.5,-8.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -313315.66
+      secondsUntilStateChange: -313881.75
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -68238,7 +68255,7 @@ entities:
       pos: 50.5,3.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -439017.56
+      secondsUntilStateChange: -439583.66
     - type: DeviceLinkSink
       invokeCounter: 1
     - type: DeviceLinkSource
@@ -68331,7 +68348,7 @@ entities:
       pos: 13.5,-7.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -371310.7
+      secondsUntilStateChange: -371876.78
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -68364,7 +68381,7 @@ entities:
       pos: 1.5,-26.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -566076.9
+      secondsUntilStateChange: -566642.94
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -68390,7 +68407,7 @@ entities:
       pos: 37.5,-0.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -436929.16
+      secondsUntilStateChange: -437495.25
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -68444,7 +68461,7 @@ entities:
       pos: 31.5,-47.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -276486.78
+      secondsUntilStateChange: -277052.88
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -68780,7 +68797,7 @@ entities:
       pos: -2.5,2.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -668502.25
+      secondsUntilStateChange: -669068.3
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -68791,7 +68808,7 @@ entities:
       pos: 18.5,6.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -197567.22
+      secondsUntilStateChange: -198133.31
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -68802,7 +68819,7 @@ entities:
       pos: -9.5,-15.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -665773.56
+      secondsUntilStateChange: -666339.6
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -68857,7 +68874,7 @@ entities:
       pos: 35.5,19.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -656051.56
+      secondsUntilStateChange: -656617.6
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -68887,7 +68904,7 @@ entities:
       pos: 39.5,18.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -611523.5
+      secondsUntilStateChange: -612089.56
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -68942,7 +68959,7 @@ entities:
       pos: -17.5,0.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -552381.75
+      secondsUntilStateChange: -552947.8
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -69005,7 +69022,7 @@ entities:
       pos: 59.5,-18.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -254552.84
+      secondsUntilStateChange: -255118.94
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -69032,7 +69049,7 @@ entities:
       pos: 37.5,34.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -140161.86
+      secondsUntilStateChange: -140727.95
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -69070,7 +69087,7 @@ entities:
       pos: 49.5,-16.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -605286.44
+      secondsUntilStateChange: -605852.5
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -69193,7 +69210,7 @@ entities:
       pos: 13.5,-3.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -524290.94
+      secondsUntilStateChange: -524857.06
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -69236,7 +69253,7 @@ entities:
       pos: 11.5,0.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -315839.22
+      secondsUntilStateChange: -316405.3
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -69261,7 +69278,7 @@ entities:
       accessListsOriginal: []
     - type: Door
       state: Opening
-      secondsUntilStateChange: -191313.83
+      secondsUntilStateChange: -191879.92
     - type: DeviceLinkSink
       invokeCounter: 1
     - type: DeviceLinkSource
@@ -69761,7 +69778,7 @@ entities:
       pos: 26.5,13.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -557528.5
+      secondsUntilStateChange: -558094.56
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -70105,7 +70122,7 @@ entities:
       pos: 17.5,18.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -611757.56
+      secondsUntilStateChange: -612323.6
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -70170,7 +70187,7 @@ entities:
       pos: -4.5,-14.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -655150.7
+      secondsUntilStateChange: -655716.75
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -70350,7 +70367,7 @@ entities:
       pos: 67.5,13.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -449255.94
+      secondsUntilStateChange: -449822.03
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -70429,7 +70446,7 @@ entities:
       pos: 56.5,-34.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -543923.3
+      secondsUntilStateChange: -544489.4
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -70458,7 +70475,7 @@ entities:
       pos: -7.5,-47.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -507155.1
+      secondsUntilStateChange: -507721.2
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -70693,7 +70710,7 @@ entities:
       pos: 14.5,-0.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -151006.19
+      secondsUntilStateChange: -151572.28
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -70959,7 +70976,7 @@ entities:
       pos: 6.5,-59.5
     - type: Door
       state: Opening
-      secondsUntilStateChange: -308580.12
+      secondsUntilStateChange: -309146.22
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
