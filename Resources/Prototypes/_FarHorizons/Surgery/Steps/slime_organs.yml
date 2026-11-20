@@ -1,0 +1,127 @@
+# region Lungs
+
+- type: surgeryStep
+  parent: ScalpelSurgery
+  id: SurgerySlimeRemoveLungs
+  name: Remove Lungs
+  baseTime: 4
+  popup: surgery-remove-lungs-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses: 
+        - LimbStatusEffectSurgicalIncisionHeldOpen
+    - !type:SurgeryLimbHasStatus
+      inverse: true
+      statuses:
+        - LimbStatusEffectSurgicalSlimeCoreAccessed
+    - !type:SurgeryHasOrgan
+      category: Lungs
+  effects:
+    - !type:SurgeryRemoveOrgan
+      category: Lungs
+    - !type:SurgeryProgressStatusChain
+      chain: Bleed
+    - !type:SurgeryPainEffect
+
+- type: surgeryStep
+  id: SurgerySlimeImplantLungs
+  name: Implant Lungs
+  baseTime: 3
+  popup: surgery-implant-lungs-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses: 
+        - LimbStatusEffectSurgicalIncisionHeldOpen
+    - !type:SurgeryHasOrgan
+      inverse: true
+      category: Lungs
+  softConditions:
+    - !type:SurgeryOrganHeld
+      category: Lungs
+    - !type:HeldItemHasComponenent
+      inverse: true
+      components:
+        - type: OrganShadekinCore
+  effects:
+    - !type:SurgeryInsertOrgan
+
+# region Sentient Core
+
+- type: surgeryStep
+  parent: HemostatSurgery
+  id: SurgerySlimeAccessCore
+  name: Access Core
+  baseTime: 3
+  popup: surgery-slime-access-core-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses: 
+        - LimbStatusEffectSurgicalIncisionHeldOpen
+    - !type:SurgeryLimbHasStatus
+      inverse: true
+      statuses:
+        - LimbStatusEffectSurgicalSlimeCoreAccessed
+        - LimbStatusEffectBleedI
+        - LimbStatusEffectBleedII
+        - LimbStatusEffectBleedIII
+  effects:
+    - !type:SurgeryApplyLimbStatus
+      statuses:
+        - LimbStatusEffectSurgicalSlimeCoreAccessed
+
+- type: surgeryStep
+  parent: HemostatSurgery
+  id: SurgerySlimeCloseCore
+  name: Close Core
+  baseTime: 1
+  popup: surgery-slime-close-core-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses:
+        - LimbStatusEffectSurgicalSlimeCoreAccessed
+    - !type:SurgeryLimbHasStatus
+      inverse: true
+      statuses:
+        - LimbStatusEffectBleedI
+        - LimbStatusEffectBleedII
+        - LimbStatusEffectBleedIII
+  effects:
+    - !type:SurgeryRemoveLimbStatus
+      statuses:
+        - LimbStatusEffectSurgicalSlimeCoreAccessed
+
+- type: surgeryStep
+  parent: ScalpelSurgery
+  id: SurgerySlimeRemoveCore
+  name: Remove Sentient Core
+  baseTime: 4
+  popup: surgery-slime-remove-core-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses: 
+        - LimbStatusEffectSurgicalSlimeCoreAccessed
+    - !type:SurgeryHasOrgan
+      category: SentientCore
+  effects:
+    - !type:SurgeryRemoveOrgan
+      category: SentientCore
+    - !type:SurgeryProgressStatusChain
+      chain: Bleed
+
+- type: surgeryStep
+  id: SurgerySlimeImplantCore
+  name: Implant Sentient Core
+  baseTime: 3
+  popup: surgery-slime-implant-core-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses: 
+        - LimbStatusEffectSurgicalSlimeCoreAccessed
+    - !type:SurgeryHasOrgan
+      inverse: true
+      category: SentientCore
+  softConditions:
+    - !type:SurgeryOrganHeld
+      category: SentientCore
+  effects:
+    - !type:SurgeryInsertOrgan

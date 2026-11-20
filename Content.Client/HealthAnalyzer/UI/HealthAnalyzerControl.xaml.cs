@@ -23,7 +23,8 @@ using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
-using Content.Shared._FarHorizons.Medical.Disease.Components; //FarHorizons
+using Content.Shared._FarHorizons.Medical.Disease.Components;
+using Content.Shared._FarHorizons.Medical.LimbStatusEffect;
 
 namespace Content.Client.HealthAnalyzer.UI;
 
@@ -42,6 +43,7 @@ public sealed partial class HealthAnalyzerControl : BoxContainer
     private readonly IResourceCache _cache;
     private readonly DamageableSystem _damageable;
     private readonly LimbDamageSystem _limbDamage; // Far Horizons
+    private readonly LimbStatusEffectSystem _limbStatusEffect; // Far Horizons
     public event Action<BaseButton.ButtonEventArgs>? OnServerListButtonPressed; // Far Horizons
 
     private ProtoId<OrganCategoryPrototype> _currTarget = "Torso";
@@ -60,6 +62,7 @@ public sealed partial class HealthAnalyzerControl : BoxContainer
         _cache = dependencies.Resolve<IResourceCache>();
         _damageable = _entityManager.System<DamageableSystem>();
         _limbDamage = _entityManager.System<LimbDamageSystem>(); // Far Horizons
+        _limbStatusEffect = _entityManager.System<LimbStatusEffectSystem>(); // Far Horizons
 
         ServerListButton.OnPressed += a => OnServerListButtonPressed?.Invoke(a); // Far Horizons
         LimbTargettingDisplay.OnSelectedLimb += SetLimbTarget;
@@ -514,6 +517,22 @@ public sealed partial class HealthAnalyzerControl : BoxContainer
             .ToDictionary(g => g.Key, g => g.Value);
 
         DrawDiagnosticGroups(sortedGroups, damagePerType);
+
+        // Far Horizons start
+        // Statuses
+
+        var statuses = _limbStatusEffect.GetStatusPerLimb(_targetEnt.Value);
+        var detectablePerLimb = statuses
+                                .Select(kv => (Limb: kv.Key, Names: GetDetectableStatusNames(kv.Value)))
+                                .Where(p => p.Names.Count > 0)
+                                .ToList();
+        
+        var statusNames = detectablePerLimb.FirstOrDefault(p => p.Limb.Equals(_currTarget)).Names ?? new List<string>();
+        var limbNames = detectablePerLimb.Select(p => Loc.GetString($"limb-category-limb-name-{p.Limb.Id.ToLower()}")).ToList();
+        
+        DrawStatuses(statusNames);
+        DrawAttention(limbNames);
+        // Far Horizons end
 
         StatusText.Visible = _currTarget == _defaultLimb;
         StatusLabel.Visible = _currTarget == _defaultLimb;

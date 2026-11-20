@@ -1488,7 +1488,7 @@
 - type: entity
   name: monkey
   id: MobMonkey
-  parent: [ AppearanceMonkey, MobBaseAncestor, BaseSpeciesPickupable] #Far Horizons
+  parent: [ AppearanceMonkey, MobBaseAncestor, BaseSpeciesPickupable, BaseSurgeryTargetOrganic] #Far Horizons
   description: New church of neo-darwinists actually believe that EVERY animal evolved from a monkey. Tastes like pork, and killing them is both fun and relaxing.
   components:
   - type: NameIdentifier
@@ -1523,6 +1523,7 @@
       Unsexed: MonkeySounds
   - type: LimbDamageable
     proto: LimbTargetMonkey
+  - type: LimbStatusEffectManager
   #FarHorizons End
 
 
@@ -1727,13 +1728,16 @@
             sprite: _Starlight/Mobs/Animals/displacements.rsi
             state: hand-kobold
   # Starlight End
-  - type: LimbDamageable # Far Horizons
+  # Far Horizons start
+  - type: LimbDamageable
     proto: LimbTargetKobold
+  - type: LimbStatusEffectManager
+  # Far Horizons end
 
 - type: entity
   name: kobold
   id: MobKobold
-  parent: MobBaseKobold
+  parent: [ MobBaseKobold, BaseSurgeryTargetOrganic ] # Far Horizons
   description: Cousins to the sentient race of lizard people, kobolds blend in with their natural habitat and are as nasty as monkeys; ready to pull out your hair and stab you to death.
   components:
   - type: Clumsy
@@ -4068,8 +4072,6 @@
         type: StrippableBoundUserInterface
       enum.StorageUiKey.Key:
         type: StorageBoundUserInterface
-      enum.SurgeryUIKey.Key: #FarHorizons
-        type: SurgeryBui #FarHorizons
   # Custom inventory template
   - type: Inventory
     speciesId: dog

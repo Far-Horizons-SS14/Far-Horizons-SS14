@@ -77,6 +77,7 @@
   parent:
   - ActiveCritBase # FH
   - AppearanceSlimePerson
+  - BaseSurgeryTargetSlime # FH
   - BaseSpeciesMobOrganic
   - BaseSpeciesPickupableLarge #FH
   - OrganSlimePersonMetabolizer #FH
@@ -124,12 +125,12 @@
         type: StrippableBoundUserInterface
       enum.StoreUiKey.Key:
         type: StoreBoundUserInterface
-      enum.SurgeryUIKey.Key:
-        type: SurgeryBui
       enum.VampireMutationUiKey.Key:
         type: VampireMutationBoundUserInterface
       enum.BackgroundTraitsUiKey.Key: #Far Horizons
         type: BackgroundTraitsBoundUserInterface
+      enum.SurgeryOptionUiKey.Key: # Far Horizons
+          type: SurgeryOptionRadial
   - type: UseDelay
     delay: 0.5
   - type: Speech
@@ -312,39 +313,39 @@
   id: OrganSlimePersonTorso
 
 - type: entity
-  parent: [ DamageableLimbVisualsSlime, OrganBaseHeadSexed, OrganBaseHeadNonVitalEdible, OrganSlimePersonExternal ] #FarHorizons
+  parent: [ DamageableLimbVisualsSlime, OrganBaseHeadSexed, BaseSurgeryLimbTargetHeadSlime, OrganBaseHeadNonVitalEdible, OrganSlimePersonExternal ] #FarHorizons
   id: OrganSlimePersonHead
 
 - type: entity
-  parent: [ DamageableLimbVisualsSlime, OrganBaseArmLeft, OrganSlimePersonExternal ]
+  parent: [ DamageableLimbVisualsSlime, BaseSurgeryLimbTargetLeftArmSlime, OrganBaseArmLeft, OrganSlimePersonExternal ] # Far Horizons
   id: OrganSlimePersonArmLeft
 
 - type: entity
-  parent: [ DamageableLimbVisualsSlime, OrganBaseArmRight, OrganSlimePersonExternal ]
+  parent: [ DamageableLimbVisualsSlime, BaseSurgeryLimbTargetRightArmSlime, OrganBaseArmRight, OrganSlimePersonExternal ] # Far Horizons
   id: OrganSlimePersonArmRight
 
 - type: entity
-  parent: [ OrganBaseHandLeft, OrganSlimePersonExternal ]
+  parent: [ BaseSurgeryLimbTargetLeftHandSlime, OrganBaseHandLeft, OrganSlimePersonExternal ] # Far Horizons
   id: OrganSlimePersonHandLeft
 
 - type: entity
-  parent: [ OrganBaseHandRight, OrganSlimePersonExternal ]
+  parent: [ BaseSurgeryLimbTargetRightHandSlime, OrganBaseHandRight, OrganSlimePersonExternal ] # Far Horizons
   id: OrganSlimePersonHandRight
 
 - type: entity
-  parent: [ DamageableLimbVisualsSlime, OrganBaseLegLeft, OrganSlimePersonExternal ]
+  parent: [ DamageableLimbVisualsSlime, BaseSurgeryLimbTargetLeftLegSlime, OrganBaseLegLeft, OrganSlimePersonExternal ] # Far Horizons
   id: OrganSlimePersonLegLeft
 
 - type: entity
-  parent: [ DamageableLimbVisualsSlime, OrganBaseLegRight, OrganSlimePersonExternal ]
+  parent: [ DamageableLimbVisualsSlime, BaseSurgeryLimbTargetRightLegSlime, OrganBaseLegRight, OrganSlimePersonExternal ] # Far Horizons
   id: OrganSlimePersonLegRight
 
 - type: entity
-  parent: [ OrganBaseFootLeft, OrganSlimePersonExternal ]
+  parent: [ BaseSurgeryLimbTargetLeftFootSlime, OrganBaseFootLeft, OrganSlimePersonExternal ] # Far Horizons
   id: OrganSlimePersonFootLeft
 
 - type: entity
-  parent: [ OrganBaseFootRight, OrganSlimePersonExternal ]
+  parent: [ BaseSurgeryLimbTargetRightFootSlime, OrganBaseFootRight, OrganSlimePersonExternal ] # Far Horizons
   id: OrganSlimePersonFootRight
 
 - type: entity

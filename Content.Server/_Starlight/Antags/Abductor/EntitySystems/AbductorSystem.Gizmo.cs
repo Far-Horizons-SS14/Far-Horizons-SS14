@@ -1,5 +1,4 @@
 ﻿using Content.Shared.Starlight.Antags.Abductor;
-using Content.Shared.Starlight.Medical.Surgery;
 using Content.Shared.Actions;
 using Content.Shared.DoAfter;
 using Content.Shared.Effects;

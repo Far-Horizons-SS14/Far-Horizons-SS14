@@ -1,0 +1,203 @@
+- type: surgeryStep
+  parent: RetractorSurgery
+  id: SurgeryInspectNecrosis
+  name: Inspect Necrosis [Repeatable]
+  baseTime: 4
+  popup: surgery-inspect-necrosis-popup-message
+  repeatable: true
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses:
+        - LimbStatusEffectSurgicalDeepIncision
+  softConditions:
+    - !type:SurgeryHasUnadressedNecrosis
+  effects:
+    - !type:SurgeryApplyRandomNecrosisStatus
+
+# Limb
+
+- type: surgeryStep
+  parent: SurgeryAmputateLimb
+  id: SurgeryNecrosisAmputateLimb
+  name: Amputate Rotten Limb
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses:
+        - LimbStatusEffectSurgicalMuscleDetached
+    - !type:SurgeryLimbHasStatus
+      statuses:
+        - LimbStatusEffectNecrosisLimb
+  effects:
+    - !type:SurgeryRemoveLimbStatus
+      statuses:
+        - LimbStatusEffectSurgicalIncision
+        - LimbStatusEffectSurgicalIncisionHeldOpen
+        - LimbStatusEffectSurgicalVesselsDetached
+        - LimbStatusEffectSurgicalMuscleDetached
+        - LimbStatusEffectBleedI
+        - LimbStatusEffectBleedII
+        - LimbStatusEffectBleedIII
+        - LimbStatusEffectNecrosisLimb
+    - !type:SurgeryDetachLimb
+    - !type:SurgeryPainEffect
+    - !type:SurgeryReduceNecrosisTime
+
+# Slime Limb
+
+- type: surgeryStep
+  parent: SurgerySlimeAmputateLimb
+  id: SurgerySlimeNecrosisAmputateLimb
+  name: Amputate Rotten Limb
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses:
+        - LimbStatusEffectSurgicalIncisionHeldOpen
+    - !type:SurgeryLimbHasStatus
+      statuses:
+        - LimbStatusEffectNecrosisLimb
+  effects:
+    - !type:SurgeryRemoveLimbStatus
+      statuses:
+        - LimbStatusEffectSurgicalIncision
+        - LimbStatusEffectSurgicalIncisionHeldOpen
+        - LimbStatusEffectBleedI
+        - LimbStatusEffectBleedII
+        - LimbStatusEffectBleedIII
+        - LimbStatusEffectNecrosisLimb
+    - !type:SurgeryDetachLimb
+    - !type:SurgeryPainEffect
+    - !type:SurgeryReduceNecrosisTime
+
+# Liver
+
+- type: surgeryStep
+  parent: SurgeryRemoveLiver
+  id: SurgeryNecrosisRemoveLiver
+  name: Remove Rotten Liver
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses: 
+        - LimbStatusEffectSurgicalHepaticArteryClamped
+    - !type:SurgeryLimbHasStatus
+      statuses:
+        - LimbStatusEffectNecrosisLiver
+    - !type:SurgeryHasOrgan
+      category: Liver
+  effects:
+    - !type:SurgeryRemoveOrgan
+      category: Liver
+    - !type:SurgeryProgressStatusChain
+      chain: Bleed
+    - !type:SurgeryPainEffect
+    - !type:SurgeryRemoveLimbStatus
+      statuses:
+        - LimbStatusEffectNecrosisLiver
+    - !type:SurgeryReduceNecrosisTime
+
+# Stomach
+
+- type: surgeryStep
+  parent: SurgeryRemoveStomach
+  id: SurgeryNecrosisRemoveStomach
+  name: Remove Rotten Stomach
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses: 
+        - LimbStatusEffectSurgicalEsophagusCut
+    - !type:SurgeryLimbHasStatus
+      statuses:
+        - LimbStatusEffectNecrosisStomach
+    - !type:SurgeryHasOrgan
+      category: Stomach
+  effects:
+    - !type:SurgeryRemoveOrgan
+      category: Stomach
+    - !type:SurgeryProgressStatusChain
+      chain: Bleed
+    - !type:SurgeryPainEffect
+    - !type:SurgeryRemoveLimbStatus
+      statuses:
+        - LimbStatusEffectNecrosisStomach
+    - !type:SurgeryReduceNecrosisTime
+
+# Kidneys
+
+- type: surgeryStep
+  parent: SurgeryRemoveKidneys
+  id: SurgeryNecrosisRemoveKidneys
+  name: Remove Rotten Kidneys
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses: 
+        - LimbStatusEffectSurgicalKidneysAccessed
+    - !type:SurgeryLimbHasStatus
+      statuses:
+        - LimbStatusEffectNecrosisKidneys
+    - !type:SurgeryHasOrgan
+      category: Kidneys
+  effects:
+    - !type:SurgeryRemoveOrgan
+      category: Kidneys
+    - !type:SurgeryProgressStatusChain
+      chain: Bleed
+    - !type:SurgeryPainEffect
+    - !type:SurgeryRemoveLimbStatus
+      statuses:
+        - LimbStatusEffectNecrosisKidneys
+    - !type:SurgeryReduceNecrosisTime
+
+# Eyes
+
+- type: surgeryStep
+  parent: SurgeryRemoveEyes
+  id: SurgeryNecrosisRemoveEyes
+  name: Remove Rotten Eyes
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses: 
+        - LimbStatusEffectSurgicalCutOpticNerve
+    - !type:SurgeryLimbHasStatus
+      statuses:
+        - LimbStatusEffectNecrosisEyes
+    - !type:SurgeryHasOrgan
+      category: Eyes
+  effects:
+    - !type:SurgeryRemoveOrgan
+      category: Eyes
+    - !type:SurgeryProgressStatusChain
+      chain: Bleed
+    - !type:SurgeryPainEffect
+    - !type:SurgeryRemoveLimbStatus
+      statuses:
+        - LimbStatusEffectNecrosisEyes
+    - !type:SurgeryReduceNecrosisTime
+
+# Tongue
+
+- type: surgeryStep
+  parent: SurgeryRemoveTongue
+  id: SurgeryNecrosisRemoveTongue
+  name: Remove Rotten Tongue
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses: 
+        - LimbStatusEffectSurgicalClampedLingualArtery
+    - !type:SurgeryLimbHasStatus
+      inverse: true
+      statuses: 
+        - LimbStatusEffectSurgicalIncisionHeldOpen
+    - !type:SurgeryLimbHasStatus
+      statuses:
+        - LimbStatusEffectNecrosisTongue
+    - !type:SurgeryHasOrgan
+      category: Tongue
+  effects:
+    - !type:SurgeryRemoveOrgan
+      category: Tongue
+    - !type:SurgeryProgressStatusChain
+      chain: Bleed
+    - !type:SurgeryPainEffect
+    - !type:SurgeryRemoveLimbStatus
+      statuses:
+        - LimbStatusEffectNecrosisTongue
+    - !type:SurgeryReduceNecrosisTime

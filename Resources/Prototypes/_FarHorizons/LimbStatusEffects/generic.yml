@@ -1,0 +1,63 @@
+# region Organic
+
+- type: limbStatusEffect
+  id: LimbStatusEffectBleedI
+  name: limb-status-bleed-i
+  detectable: true
+  visible: false
+  effects:
+    - !type:LimbStatusEffectBleed
+      minBleedCap: 1
+
+- type: limbStatusEffect
+  id: LimbStatusEffectBleedII
+  name: limb-status-bleed-ii
+  detectable: true
+  visible: true
+  inspectText: limb-status-bleed-ii-inspect
+  effects:
+    - !type:LimbStatusEffectBleed
+      minBleedCap: 2
+
+- type: limbStatusEffect
+  id: LimbStatusEffectBleedIII
+  name: limb-status-bleed-iii
+  detectable: true
+  visible: true
+  inspectText: limb-status-bleed-iii-inspect
+  hidesAll: true
+  effects:
+    - !type:LimbStatusEffectBleed
+      minBleedCap: 4
+
+# region Inorganic
+
+- type: limbStatusEffect
+  id: LimbStatusEffectLeakingOilI
+  name: limb-status-leaking-oil-i
+  detectable: true
+  visible: false
+  effects:
+    - !type:LimbStatusEffectBleed
+      minBleedCap: 1
+
+- type: limbStatusEffect
+  id: LimbStatusEffectLeakingOilII
+  name: limb-status-leaking-oil-ii
+  detectable: true
+  visible: true
+  inspectText: limb-status-leaking-oil-ii-inspect
+  effects:
+    - !type:LimbStatusEffectBleed
+      minBleedCap: 2
+
+- type: limbStatusEffect
+  id: LimbStatusEffectLeakingOilIII
+  name: limb-status-leaking-oil-iii
+  detectable: true
+  visible: true
+  inspectText: limb-status-leaking-oil-iii-inspect
+  hidesAll: true
+  effects:
+    - !type:LimbStatusEffectBleed
+      minBleedCap: 4

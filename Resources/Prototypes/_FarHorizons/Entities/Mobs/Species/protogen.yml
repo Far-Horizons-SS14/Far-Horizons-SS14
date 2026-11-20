@@ -48,8 +48,6 @@
         type: StrippableBoundUserInterface
       enum.StoreUiKey.Key:
         type: StoreBoundUserInterface
-      enum.SurgeryUIKey.Key:
-        type: SurgeryBui
       enum.VampireMutationUiKey.Key:
         type: VampireMutationBoundUserInterface
       enum.ThavenMoodsUiKey.Key: # impstation edit
@@ -60,6 +58,8 @@
         requireInputValidation: false
       enum.BackgroundTraitsUiKey.Key:
         type: BackgroundTraitsBoundUserInterface
+      enum.SurgeryOptionUiKey.Key:
+          type: SurgeryOptionRadial
   - type: GlitchOnIonStorm
     duration: 25
     ramp: 3
@@ -471,7 +471,7 @@
 #region LAPSI ####
 
 - type: entity
-  parent: BaseMobProtogenNoVision
+  parent: [ BaseSurgeryTargetSlime, BaseMobProtogenNoVision ]
   id: BaseMobProtoSlimePerson
   name: Urist McSlimester
   abstract: true
@@ -496,8 +496,6 @@
         type: StrippableBoundUserInterface
       enum.StoreUiKey.Key:
         type: StoreBoundUserInterface
-      enum.SurgeryUIKey.Key:
-        type: SurgeryBui
       enum.VampireMutationUiKey.Key:
         type: VampireMutationBoundUserInterface
       enum.InstrumentUiKey.Key:
@@ -505,6 +503,8 @@
         requireInputValidation: false
       enum.BackgroundTraitsUiKey.Key:
         type: BackgroundTraitsBoundUserInterface
+      enum.SurgeryOptionUiKey.Key:
+        type: SurgeryOptionRadial
   - type: Icon
     sprite: _FarHorizons/Mobs/Species/Proto-Slime/parts.rsi
     state: full
@@ -649,7 +649,7 @@
 - type: entity
   save: false
   name: Urist McDuskin #pronounced Dusk-Kin
-  parent: [MobBloodstream, MobAtmosStandard, MobFlammable, BaseSpeciesMob, BaseSpeciesPickupableLarge] #These fucks have no lungs, can't just inherent from protogen..
+  parent: [MobBloodstream, MobAtmosStandard, MobFlammable, BaseSpeciesMob, BaseSpeciesPickupableLarge, BaseSurgeryTargetShadekin] #These fucks have no lungs, can't just inherent from protogen..
   id: BaseMobProtoKin
   abstract: true
   components:
@@ -704,8 +704,6 @@
           type: StrippableBoundUserInterface
         enum.StoreUiKey.Key:
           type: StoreBoundUserInterface
-        enum.SurgeryUIKey.Key:
-          type: SurgeryBui
         enum.VampireMutationUiKey.Key:
           type: VampireMutationBoundUserInterface
         enum.ThavenMoodsUiKey.Key: # impstation edit
@@ -716,6 +714,8 @@
           requireInputValidation: false
         enum.BackgroundTraitsUiKey.Key:
           type: BackgroundTraitsBoundUserInterface
+        enum.SurgeryOptionUiKey.Key:
+          type: SurgeryOptionRadial
     - type: HumanoidEMP # HumanoidEMP is needed to receive EMP effects, it may carry its own innate effects, but doesn't have to
       effectCooldown: 2
       baseDamage:
@@ -878,6 +878,7 @@
       ramp: 3
     - type: LimbDamageable # Far Horizons
       proto: LimbTargetShadekin
+    - type: LimbStatusEffectManager
 
 #region RESOMI ####
 

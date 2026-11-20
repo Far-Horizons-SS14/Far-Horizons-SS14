@@ -7,7 +7,6 @@ using Robust.Shared.Prototypes;
 namespace Content.Shared.Starlight.Medical.Surgery.Effects.Step;
 
 [RegisterComponent, NetworkedComponent]
-[Access(typeof(SharedSurgerySystem))]
 public sealed partial class SurgeryToolComponent : Component
 {
     /*
@@ -24,7 +23,7 @@ public sealed partial class SurgeryToolComponent : Component
     public SoundSpecifier? EndSound;*/
 }
 
-[RegisterComponent, NetworkedComponent, Access(typeof(SharedSurgerySystem), typeof(SharedBodyScannerSystem))]
+[RegisterComponent, NetworkedComponent]
 [AutoGenerateComponentState]
 public sealed partial class OperatingTableComponent : Component
 {
@@ -32,7 +31,7 @@ public sealed partial class OperatingTableComponent : Component
     public EntityUid? Scanner;
 }
 
-[RegisterComponent, NetworkedComponent, Access(typeof(SharedBodyScannerSystem))]
+[RegisterComponent, NetworkedComponent]
 [AutoGenerateComponentState]
 public sealed partial class BodyScannerComponent : Component
 {
@@ -46,7 +45,7 @@ public sealed partial class BodyScannerComponent : Component
     public ProtoId<SourcePortPrototype> LinkingPort = "BodyScannerSender";
 }
 
-[RegisterComponent, NetworkedComponent, Access(typeof(SharedSurgerySystem))]
+[RegisterComponent, NetworkedComponent]
 public sealed partial class BoneGelComponent : Component, ISurgeryToolComponent
 {
     public string ToolName => "bone gel";
@@ -67,7 +66,7 @@ public sealed partial class BoneGelComponent : Component, ISurgeryToolComponent
     //FarHorizons End
 }
 
-[RegisterComponent, NetworkedComponent, Access(typeof(SharedSurgerySystem))]
+[RegisterComponent, NetworkedComponent]
 public sealed partial class BoneSawComponent : Component, ISurgeryToolComponent
 {
     public string ToolName => "a bone saw";
@@ -88,7 +87,7 @@ public sealed partial class BoneSawComponent : Component, ISurgeryToolComponent
     //FarHorizons End
 }
 
-[RegisterComponent, NetworkedComponent, Access(typeof(SharedSurgerySystem))]
+[RegisterComponent, NetworkedComponent]
 public sealed partial class BoneSetterComponent : Component, ISurgeryToolComponent
 {
     public string ToolName => "a bone setter";
@@ -109,7 +108,7 @@ public sealed partial class BoneSetterComponent : Component, ISurgeryToolCompone
     //FarHorizons End
 }
 
-[RegisterComponent, NetworkedComponent, Access(typeof(SharedSurgerySystem))]
+[RegisterComponent, NetworkedComponent]
 public sealed partial class CauteryComponent : Component, ISurgeryToolComponent
 {
     public string ToolName => "a cautery";
@@ -130,7 +129,7 @@ public sealed partial class CauteryComponent : Component, ISurgeryToolComponent
     //FarHorizons End
 }
 
-[RegisterComponent, NetworkedComponent, Access(typeof(SharedSurgerySystem))]
+[RegisterComponent, NetworkedComponent]
 public sealed partial class HemostatComponent : Component, ISurgeryToolComponent
 {
     public string ToolName => "a hemostat";
@@ -151,7 +150,7 @@ public sealed partial class HemostatComponent : Component, ISurgeryToolComponent
     //FarHorizons End
 }
 
-[RegisterComponent, NetworkedComponent, Access(typeof(SharedSurgerySystem))]
+[RegisterComponent, NetworkedComponent]
 public sealed partial class RetractorComponent : Component, ISurgeryToolComponent
 {
     public string ToolName => "a retractor";
@@ -172,7 +171,7 @@ public sealed partial class RetractorComponent : Component, ISurgeryToolComponen
     //FarHorizons End
 }
 
-[RegisterComponent, NetworkedComponent, Access(typeof(SharedSurgerySystem))]
+[RegisterComponent, NetworkedComponent]
 public sealed partial class ScalpelComponent : Component, ISurgeryToolComponent
 {
     public string ToolName => "a scalpel";
@@ -193,7 +192,7 @@ public sealed partial class ScalpelComponent : Component, ISurgeryToolComponent
     //FarHorizons End
 }
 
-[RegisterComponent, NetworkedComponent, Access(typeof(SharedSurgerySystem))]
+[RegisterComponent, NetworkedComponent]
 public sealed partial class SurgicalDrillComponent : Component, ISurgeryToolComponent
 {
     public string ToolName => "a surgical drill";
@@ -215,7 +214,7 @@ public sealed partial class SurgicalDrillComponent : Component, ISurgeryToolComp
 }
 
 //FarHorizons Start
-[RegisterComponent, NetworkedComponent, Access(typeof(SharedSurgerySystem))]
+[RegisterComponent, NetworkedComponent]
 public sealed partial class CrowbarSurgeryComponent : Component, ISurgeryToolComponent
 {
     public string ToolName => "a crowbar";
@@ -234,7 +233,7 @@ public sealed partial class CrowbarSurgeryComponent : Component, ISurgeryToolCom
     public SoundSpecifier? EndSound { get; private set; }
 }
 
-[RegisterComponent, NetworkedComponent, Access(typeof(SharedSurgerySystem))]
+[RegisterComponent, NetworkedComponent]
 public sealed partial class MultitoolSurgeryComponent : Component, ISurgeryToolComponent
 {
     public string ToolName => "a multitool";
@@ -253,7 +252,7 @@ public sealed partial class MultitoolSurgeryComponent : Component, ISurgeryToolC
     public SoundSpecifier? EndSound { get; private set; }
 }
 
-[RegisterComponent, NetworkedComponent, Access(typeof(SharedSurgerySystem))]
+[RegisterComponent, NetworkedComponent]
 public sealed partial class ScrewdriverSurgeryComponent : Component, ISurgeryToolComponent
 {
     public string ToolName => "a screwdriver";
@@ -272,7 +271,7 @@ public sealed partial class ScrewdriverSurgeryComponent : Component, ISurgeryToo
     public SoundSpecifier? EndSound { get; private set; }
 }
 
-[RegisterComponent, NetworkedComponent, Access(typeof(SharedSurgerySystem))]
+[RegisterComponent, NetworkedComponent]
 public sealed partial class WelderSurgeryComponent : Component, ISurgeryToolComponent
 {
     public string ToolName => "a welder";
@@ -291,7 +290,7 @@ public sealed partial class WelderSurgeryComponent : Component, ISurgeryToolComp
     public SoundSpecifier? EndSound { get; private set; }
 }
 
-[RegisterComponent, NetworkedComponent, Access(typeof(SharedSurgerySystem))]
+[RegisterComponent, NetworkedComponent]
 public sealed partial class WirecutterSurgeryComponent : Component, ISurgeryToolComponent
 {
     public string ToolName => "a wirecutter";
@@ -310,7 +309,7 @@ public sealed partial class WirecutterSurgeryComponent : Component, ISurgeryTool
     public SoundSpecifier? EndSound { get; private set; }
 }
 
-[RegisterComponent, NetworkedComponent, Access(typeof(SharedSurgerySystem))]
+[RegisterComponent, NetworkedComponent]
 public sealed partial class WrenchSurgeryComponent : Component, ISurgeryToolComponent
 {
     public string ToolName => "a wrench";

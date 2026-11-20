@@ -17,8 +17,8 @@ public sealed partial class ConditionalHealingSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<ConditionalHealingComponent, UseInHandEvent>(OnUse, before: [typeof(HealingSystem), typeof(SharedSurgerySystem)]);
-        SubscribeLocalEvent<ConditionalHealingComponent, AfterInteractEvent>(OnAfterInteract, before: [typeof(HealingSystem), typeof(SharedSurgerySystem)]);
+        SubscribeLocalEvent<ConditionalHealingComponent, UseInHandEvent>(OnUse, before: [typeof(HealingSystem)]);
+        SubscribeLocalEvent<ConditionalHealingComponent, AfterInteractEvent>(OnAfterInteract, before: [typeof(HealingSystem)]);
     }
 
     private void OnUse(Entity<ConditionalHealingComponent> ent, ref UseInHandEvent args)

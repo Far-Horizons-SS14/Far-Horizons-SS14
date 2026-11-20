@@ -1,0 +1,77 @@
+# region Sentient Core
+
+- type: surgeryStep
+  parent: BoneSawSurgery
+  id: SurgeryDionaAccessCore
+  name: Access Brain
+  baseTime: 3
+  popup: surgery-diona-access-core-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses: 
+        - LimbStatusEffectSurgicalRibcageOpen
+    - !type:SurgeryLimbHasStatus
+      inverse: true
+      statuses:
+        - LimbStatusEffectSurgicalAortaClamped
+        - LimbStatusEffectSurgicalLungsAccessed
+        - LimbStatusEffectSurgicalDionaCoreAccessed
+  effects:
+    - !type:SurgeryApplyLimbStatus
+      statuses:
+        - LimbStatusEffectSurgicalDionaCoreAccessed
+
+- type: surgeryStep
+  parent: BoneSetterSurgery
+  id: SurgeryDionaCloseCore
+  name: Close Brain
+  baseTime: 1
+  popup: surgery-diona-close-core-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses: 
+        - LimbStatusEffectSurgicalRibcageOpen
+    - !type:SurgeryLimbHasStatus
+      statuses:
+        - LimbStatusEffectSurgicalDionaCoreAccessed
+  effects:
+    - !type:SurgeryRemoveLimbStatus
+      statuses:
+        - LimbStatusEffectSurgicalDionaCoreAccessed
+
+- type: surgeryStep
+  parent: ScalpelSurgery
+  id: SurgeryDionaRemoveCore
+  name: Remove Brain
+  baseTime: 4
+  popup: surgery-diona-remove-core-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses: 
+        - LimbStatusEffectSurgicalDionaCoreAccessed
+    - !type:SurgeryHasOrgan
+      category: SentientCore
+  effects:
+    - !type:SurgeryRemoveOrgan
+      category: SentientCore
+    - !type:SurgeryProgressStatusChain
+      chain: Bleed
+
+# You can't hold the creature that is the brain
+# - type: surgeryStep
+#   id: SurgeryDionaImplantCore
+#   name: Implant Brain
+#   baseTime: 3
+#   popup: surgery-diona-implant-core-popup-message
+#   conditions:
+#     - !type:SurgeryLimbHasStatus
+#       statuses: 
+#         - LimbStatusEffectSurgicalDionaCoreAccessed
+#     - !type:SurgeryHasOrgan
+#       inverse: true
+#       category: SentientCore
+#   softConditions:
+#     - !type:SurgeryOrganHeld
+#       category: SentientCore
+#   effects:
+#     - !type:SurgeryInsertOrgan

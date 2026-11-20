@@ -1,14 +1,13 @@
 using Content.Shared.DeviceLinking.Events;
 using Content.Shared.Buckle.Components;
 using Content.Shared.Starlight.Medical.Surgery.Effects.Step;
-using Content.Shared.Starlight.Medical.Surgery;
 using Content.Server.Medical;
 using Content.Server.Medical.Components;
 using System.Linq;
 
 namespace Content.Server.Starlight.Medical.Surgery;
 
-public sealed partial class BodyScannerSystem : SharedBodyScannerSystem
+public sealed partial class BodyScannerSystem : EntitySystem
 {
     [Dependency] private HealthAnalyzerSystem _healthAnalyzer = default!;
     

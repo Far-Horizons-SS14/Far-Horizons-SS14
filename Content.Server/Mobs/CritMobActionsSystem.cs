@@ -8,6 +8,7 @@ using Content.Shared.Mobs.Systems;
 using Robust.Server.Console;
 using Robust.Shared.Player;
 using Content.Shared.Speech.Muting;
+using Content.Shared._FarHorizons.Medical.Trauma;
 
 namespace Content.Server.Mobs;
 
@@ -48,7 +49,8 @@ public sealed partial class CritMobActionsSystem : EntitySystem
         if (!_mobState.IsCritical(uid))
             return;
 
-        if (HasComp<MutedComponent>(uid))
+        if (HasComp<MutedComponent>(uid) ||
+            HasComp<SurgeryLimbStatusMuteComponent>(uid)) // Far Horizons
         {
             _popupSystem.PopupEntity(Loc.GetString("fake-death-muted"), uid, uid);
             return;

@@ -1,4 +1,5 @@
 using Content.Server.Chat.Systems;
+using Content.Shared._FarHorizons.Medical.Trauma;
 using Content.Shared._Starlight.Speech;
 using Content.Shared.Actions.Events;
 using Content.Shared.Chat;
@@ -29,7 +30,8 @@ public sealed partial class SpeakOnActionSystem : SharedSpeakOnActionSystem
         var user = args.Performer;
 
         // If we can't speak, we can't speak
-        if (!HasComp<SpeechComponent>(user) || HasComp<MutedComponent>(user))
+        if (!HasComp<SpeechComponent>(user) || HasComp<MutedComponent>(user) ||
+            HasComp<SurgeryLimbStatusMuteComponent>(user)) // Far Horizons
             return;
 
         if (string.IsNullOrWhiteSpace(ent.Comp.Sentence))

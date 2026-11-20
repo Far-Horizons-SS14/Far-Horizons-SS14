@@ -72,6 +72,7 @@
   parent:
   - ActiveCritBase # FH
   - AppearanceDiona
+  - BaseSurgeryTargetDiona # FH
   - BaseSpeciesMobOrganic
   - BaseSpeciesPickupableLarge #FH
   id: MobDiona
@@ -266,7 +267,7 @@
   id: OrganDionaTorso
 
 - type: entity
-  parent: [ DamageableLimbVisualsDiona, OrganBaseHeadNonVitalEdible, OrganDionaExternal ] #FarHorizons
+  parent: [ DamageableLimbVisualsDiona, BaseSurgeryLimbTargetHeadDiona, OrganBaseHeadNonVitalEdible, OrganDionaExternal ] #FarHorizons
   id: OrganDionaHead
 
 - type: entity

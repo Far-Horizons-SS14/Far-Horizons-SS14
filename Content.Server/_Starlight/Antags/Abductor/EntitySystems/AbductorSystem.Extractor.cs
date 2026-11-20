@@ -3,12 +3,9 @@ using Content.Shared.Administration.Logs;
 using Content.Shared.Body;
 using Content.Shared.Database;
 using Content.Shared.Interaction;
-using Content.Shared.Starlight.Medical.Surgery;
 using Content.Shared.DoAfter;
-using Content.Shared.Body.Systems;
-using Content.Shared.Starlight.Medical.Surgery.Steps.Parts;
-using Content.Shared._FarHorizons.Body;
 using Content.Shared.Humanoid;
+using Content.Shared.Starlight.Medical.Surgery.Steps.Parts;
 
 namespace Content.Server.Starlight.Antags.Abductor;
 

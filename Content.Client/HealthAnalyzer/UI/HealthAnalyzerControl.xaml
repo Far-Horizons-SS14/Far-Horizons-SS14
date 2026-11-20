@@ -32,6 +32,24 @@
 
         <PanelContainer StyleClasses="LowDivider" />
 
+        <!--FarHorizons Start-->
+        <BoxContainer
+            Name="AttentionContainer"
+            Visible="False"
+            Margin="0 5 0 5"
+            Orientation="Vertical">
+            <Label
+                Text="{Loc 'health-analyzer-window-attention-title'}"
+                StyleClasses="LabelSubText" />
+            <RichTextLabel
+                Name="AttentionLabel"
+                Margin="0 2 0 0"
+                HorizontalExpand="True" />
+        </BoxContainer>
+
+        <PanelContainer Name="AttentionDivider" Visible="False" StyleClasses="LowDivider" />
+        <!--FarHorizons End-->
+
         <GridContainer Margin="0 5 0 0" Columns="2">
             <Label Name="StatusText" Text="{Loc 'health-analyzer-window-entity-status-text'}" />
             <Label Name="StatusLabel" />
@@ -62,6 +80,17 @@
         Margin="0 5 0 5"
         Orientation="Vertical">
     </BoxContainer>
+
+    <!--FarHorizons Start-->
+    <PanelContainer Name="LimbStatusDivider" Visible="False" StyleClasses="LowDivider" />
+
+    <BoxContainer
+        Name="LimbStatusContainer"
+        Visible="False"
+        Margin="0 5 0 5"
+        Orientation="Vertical">
+    </BoxContainer>
+    <!--FarHorizons End-->
     
     <!-- Starlight begin - metabolizing chems section of ui -->
     <PanelContainer Name="ChemicalsDivider" Visible="False" StyleClasses="LowDivider" />

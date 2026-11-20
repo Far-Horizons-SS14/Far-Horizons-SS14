@@ -13,6 +13,7 @@ using Content.Shared.VentCraw;
 using Robust.Shared.Containers;
 using Robust.Shared.Timing;
 using Content.Shared.Starlight;
+using Content.Shared.Damage;
 
 namespace Content.Server._Starlight.Medical.Surgery;
 public sealed partial class OrganSystem : EntitySystem
@@ -138,7 +139,7 @@ public sealed partial class OrganSystem : EntitySystem
         if (!TryComp<DamageableComponent>(args.Target, out var bodyDamageable)
             || ent.Comp.StoredDamage == null) return;
 
-        _damageableSystem.ChangeDamage((args.Target, bodyDamageable), ent.Comp.StoredDamage.Invert(), true, false);
+        _damageableSystem.ChangeDamage((args.Target, bodyDamageable), ent.Comp.StoredDamage, true, false); // Far Horizons stored inverted
         ent.Comp.StoredDamage = null;
     }
     private void OnOrganExtracted(Entity<OrganDamageComponent> ent, ref OrganGotRemovedEvent args)
@@ -147,7 +148,14 @@ public sealed partial class OrganSystem : EntitySystem
         if (ent.Comp.Damage is null
          || !TryComp<DamageableComponent>(args.Target, out var bodyDamageable)) return;
 
-        ent.Comp.StoredDamage = _damageableSystem.ChangeDamage((args.Target, bodyDamageable), ent.Comp.Damage.Invert(), true, false);
+        // Far Horizons start - something happened to ChangeDamage() and it no longer returns actual damage it's done, making a workaround
+        var before = _damageableSystem.GetPositiveDamage((args.Target, bodyDamageable));
+
+        _damageableSystem.ChangeDamage((args.Target, bodyDamageable), ent.Comp.Damage.Invert(), true, false);
+
+        var actual = _damageableSystem.GetPositiveDamage((args.Target, bodyDamageable)) - before;
+        ent.Comp.StoredDamage = actual.Invert();
+        // Far Horizons end
     }
 
     private void OnAbductorOrganImplanted(Entity<AbductorOrganComponent> ent, ref OrganGotInsertedEvent args)

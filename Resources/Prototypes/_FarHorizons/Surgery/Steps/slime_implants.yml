@@ -1,0 +1,134 @@
+# region Eyes
+
+- type: surgeryStep
+  parent: HemostatSurgery
+  id: SurgerySlimeRemoveEyeImplant
+  name: Remove Eye Implant
+  baseTime: 4
+  popup: surgery-remove-eye-implant-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses: 
+        - LimbStatusEffectSurgicalIncisionHeldOpen
+    - !type:SurgeryLimbHasStatus
+      inverse: true
+      statuses:
+        - LimbStatusEffectBleedI
+        - LimbStatusEffectBleedII
+        - LimbStatusEffectBleedIII
+    - !type:SurgeryHasOrgan
+      category: EyeImplant
+  effects:
+    - !type:SurgeryRemoveOrgan
+      category: EyeImplant
+    - !type:SurgeryProgressStatusChain
+      chain: Bleed
+    - !type:SurgeryPainEffect
+
+- type: surgeryStep
+  id: SurgerySlimeImplantEyeImplant
+  name: Implant Eye Implant
+  baseTime: 3
+  popup: surgery-implant-eye-implant-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses: 
+        - LimbStatusEffectSurgicalIncisionHeldOpen
+    - !type:SurgeryHasOrgan
+      inverse: true
+      category: EyeImplant
+  softConditions:
+    - !type:SurgeryOrganHeld
+      category: EyeImplant
+  effects:
+    - !type:SurgeryInsertOrgan
+
+# region Left Hand
+
+- type: surgeryStep
+  parent: HemostatSurgery
+  id: SurgerySlimeRemoveLeftHandImplant
+  name: Remove Left Hand Implant
+  baseTime: 4
+  popup: surgery-remove-hand-implant-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses: 
+        - LimbStatusEffectSurgicalIncisionHeldOpen
+    - !type:SurgeryLimbHasStatus
+      inverse: true
+      statuses:
+        - LimbStatusEffectBleedI
+        - LimbStatusEffectBleedII
+        - LimbStatusEffectBleedIII
+    - !type:SurgeryHasOrgan
+      category: HandLeftImplant
+  effects:
+    - !type:SurgeryRemoveOrgan
+      category: HandLeftImplant
+    - !type:SurgeryProgressStatusChain
+      chain: Bleed
+    - !type:SurgeryPainEffect
+
+- type: surgeryStep
+  id: SurgerySlimeImplantLeftHandImplant
+  name: Implant Left Hand Implant
+  baseTime: 3
+  popup: surgery-implant-hand-implant-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses: 
+        - LimbStatusEffectSurgicalIncisionHeldOpen
+    - !type:SurgeryHasOrgan
+      inverse: true
+      category: HandLeftImplant
+  softConditions:
+    - !type:SurgeryOrganHeld
+      category: HandLeftImplant
+  effects:
+    - !type:SurgeryInsertOrgan
+
+# region Right Hand
+
+- type: surgeryStep
+  parent: HemostatSurgery
+  id: SurgerySlimeRemoveRightHandImplant
+  name: Remove Right Hand Implant
+  baseTime: 4
+  popup: surgery-remove-hand-implant-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses: 
+        - LimbStatusEffectSurgicalIncisionHeldOpen
+    - !type:SurgeryLimbHasStatus
+      inverse: true
+      statuses:
+        - LimbStatusEffectBleedI
+        - LimbStatusEffectBleedII
+        - LimbStatusEffectBleedIII
+    - !type:SurgeryHasOrgan
+      category: HandRightImplant
+  effects:
+    - !type:SurgeryRemoveOrgan
+      category: HandRightImplant
+    - !type:SurgeryProgressStatusChain
+      chain: Bleed
+    - !type:SurgeryPainEffect
+
+- type: surgeryStep
+  id: SurgerySlimeImplantRightHandImplant
+  name: Implant Right Hand Implant
+  baseTime: 3
+  popup: surgery-implant-hand-implant-popup-message
+  conditions:
+    - !type:SurgeryLimbHasStatus
+      statuses: 
+        - LimbStatusEffectSurgicalIncisionHeldOpen
+    - !type:SurgeryHasOrgan
+      inverse: true
+      category: HandRightImplant
+  softConditions:
+    - !type:SurgeryOrganHeld
+      category: HandRightImplant
+  effects:
+    - !type:SurgeryInsertOrgan
