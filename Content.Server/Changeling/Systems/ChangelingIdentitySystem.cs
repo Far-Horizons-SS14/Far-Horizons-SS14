@@ -35,6 +35,10 @@ public sealed class ChangelingIdentitySystem : SharedChangelingIdentitySystem
 
         var netCurrent = GetNetEntity(current);
 
-        args.State = new ChangelingIdentityComponentState(sentIdentities, netCurrent, entity.Comp.IdentityCloningSettings);
+        args.State = new ChangelingIdentityComponentState(
+            sentIdentities,
+            netCurrent,
+            entity.Comp.IdentityCloningSettings,
+            entity.Comp.MaxStoredDisguises);
     }
 }

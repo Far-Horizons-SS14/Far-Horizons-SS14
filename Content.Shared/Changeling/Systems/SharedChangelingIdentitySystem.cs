@@ -300,6 +300,17 @@ public abstract class SharedChangelingIdentitySystem : EntitySystem
     }
 
     /// <summary>
+    /// Returns whether the changeling has space to store another disguise.
+    /// </summary>
+    public bool HasFreeDisguiseSlot(Entity<ChangelingIdentityComponent?> ent)
+    {
+        if (!Resolve(ent, ref ent.Comp, false))
+            return false;
+
+        return ent.Comp.ConsumedIdentities.Count(data => data.Identity != null) < ent.Comp.MaxStoredDisguises;
+    }
+
+    /// <summary>
     /// Create a paused map for storing devoured identities as a clone of the player.
     /// </summary>
     private void EnsurePausedMap()

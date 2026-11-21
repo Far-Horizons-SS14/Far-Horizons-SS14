@@ -255,6 +255,13 @@ public sealed class ChangelingDevourSystem : EntitySystem
             return false;
         }
 
+        if (!HasIdentity(changeling.Owner, victim) && !_changelingIdentitySystem.HasFreeDisguiseSlot(changeling.Owner))
+        {
+            if (showPopup)
+                _popupSystem.PopupClient(Loc.GetString("changeling-devour-attempt-failed-no-space"), changeling.Owner, changeling.Owner, PopupType.Medium);
+            return false;
+        }
+
         return true;
     }
 

@@ -41,6 +41,7 @@ public sealed class ChangelingIdentitySystem : SharedChangelingIdentitySystem
         ent.Comp.CurrentIdentity = EnsureEntity<ChangelingStoredIdentityComponent>(state.CurrentIdentity, ent);
 
         ent.Comp.IdentityCloningSettings = state.IdentityCloningSettings;
+        ent.Comp.MaxStoredDisguises = state.MaxStoredDisguises;
 
         UpdateUi(ent);
     }

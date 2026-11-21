@@ -37,6 +37,12 @@ public sealed partial class ChangelingIdentityComponent : Component
     [DataField]
     public ProtoId<CloningSettingsPrototype> IdentityCloningSettings = "ChangelingCloningSettings";
 
+    /// <summary>
+    /// Maximum number of stored disguises, including the changeling's starting identity.
+    /// </summary>
+    [DataField]
+    public int MaxStoredDisguises = 5;
+
     public override bool SendOnlyToOwner => true;
 }
 
@@ -47,14 +53,17 @@ public sealed class ChangelingIdentityComponentState : ComponentState
     public NetEntity? CurrentIdentity;
 
     public ProtoId<CloningSettingsPrototype> IdentityCloningSettings;
+    public int MaxStoredDisguises;
 
     public ChangelingIdentityComponentState(List<ChangelingNetworkedIdentityData> consumedIdentities,
         NetEntity? currentIdentity,
-        ProtoId<CloningSettingsPrototype> identityCloningSettings)
+        ProtoId<CloningSettingsPrototype> identityCloningSettings,
+        int maxStoredDisguises)
     {
         ConsumedIdentities = consumedIdentities;
         CurrentIdentity = currentIdentity;
         IdentityCloningSettings = identityCloningSettings;
+        MaxStoredDisguises = maxStoredDisguises;
     }
 }
 
