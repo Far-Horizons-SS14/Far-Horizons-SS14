@@ -213,7 +213,10 @@ public sealed partial class ApcSystem : EntitySystem
             (int) MathF.Ceiling(battery.CurrentSupply), apc.LastExternalState,
             charge,
             apc.MaxLoad,
-            apc.TripFlag);
+            // Far Horizons start
+            apc.TripFlag,
+            _smartGrid.GetAvailabilityState(uid));
+            // Far Horizons end
 
         _ui.SetUiState((uid, ui), ApcUiKey.Key, state);
     }

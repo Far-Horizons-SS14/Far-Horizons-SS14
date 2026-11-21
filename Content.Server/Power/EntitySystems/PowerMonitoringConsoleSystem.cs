@@ -1,9 +1,11 @@
+using Content.Server._FarHorizons.Power.SmartGrid; // Far Horizons
 using Content.Server.NodeContainer.EntitySystems;
 using Content.Server.Power.Components;
 using Content.Server.Power.Nodes;
 using Content.Server.Power.NodeGroups;
 using Content.Server.StationEvents.Components;
 using Content.Shared.GameTicking.Components;
+using Content.Shared._FarHorizons.Power.SmartGrid; // Far Horizons
 using Content.Shared.Pinpointer;
 using Content.Shared.Station.Components;
 using Content.Shared.Power;
@@ -24,6 +26,7 @@ internal sealed partial class PowerMonitoringConsoleSystem : SharedPowerMonitori
     [Dependency] private UserInterfaceSystem _userInterfaceSystem = default!;
     [Dependency] private SharedMapSystem _sharedMapSystem = default!;
     [Dependency] private SharedBatterySystem _battery = default!;
+    [Dependency] private SmartGridSystem _smartGrid = default!; // Far Horizons
 
     // Note: this data does not need to be saved
     private Dictionary<EntityUid, Dictionary<Vector2i, PowerCableChunk>> _gridPowerCableChunks = new();
@@ -315,6 +318,7 @@ internal sealed partial class PowerMonitoringConsoleSystem : SharedPowerMonitori
         var allEntries = new List<PowerMonitoringConsoleEntry>();
         var sourcesForFocus = new List<PowerMonitoringConsoleEntry>();
         var loadsForFocus = new List<PowerMonitoringConsoleEntry>();
+        SmartGridNetworkStatus? smartGridStatus = null; // Far Horizons
         var flags = component.Flags;
 
         // Reset RoguePowerConsumer flag
@@ -394,6 +398,14 @@ internal sealed partial class PowerMonitoringConsoleSystem : SharedPowerMonitori
                 if (nodeContainer.Nodes.TryGetValue(loadNodeName, out var loadNode))
                     GetLoadsForNode(component.Focus.Value, loadNode, out loadsForFocus);
 
+                // Far Horizons start
+                if (loadNode?.NodeGroup is IBasePowerNet network
+                    && _smartGrid.TryGetStatus(network, out var status))
+                {
+                    smartGridStatus = status;
+                }
+                // Far Horizons end
+
                 // If the UI focus changed, update the highlighted power network
                 if (TryComp<PowerMonitoringCableNetworksComponent>(uid, out var cableNetworks) &&
                     cableNetworks.FocusChunks.Count == 0)
@@ -426,7 +438,10 @@ internal sealed partial class PowerMonitoringConsoleSystem : SharedPowerMonitori
                 totalLoads,
                 allEntries.ToArray(),
                 sourcesForFocus.ToArray(),
-                loadsForFocus.ToArray()));
+                // Far Horizons start
+                loadsForFocus.ToArray(),
+                smartGridStatus));
+                // Far Horizons end
     }
 
     private PowerStats GetPowerStats(EntityUid uid, PowerMonitoringDeviceComponent device)

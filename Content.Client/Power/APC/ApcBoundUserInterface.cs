@@ -1,3 +1,5 @@
+/* Far Horizons - forked into Content.Client/_FarHorizons/Power/APC/ApcBoundUserInterface.cs.
+
 using Content.Client.Power.APC.UI;
 using Content.Shared.Access.Systems;
 using Content.Shared.APC;
@@ -47,3 +49,4 @@ namespace Content.Client.Power.APC
         }
     }
 }
+*/
