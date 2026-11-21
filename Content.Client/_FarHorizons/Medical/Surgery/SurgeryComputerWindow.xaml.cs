@@ -23,8 +23,6 @@ public sealed partial class SurgeryComputerWindow : FancyWindow
     private readonly LimbStatusEffectSystem _limbStatusEffect;
     private readonly SurgerySystem _surgery;
     private readonly SpriteSystem _sprite;
-
-    public event Action<string>? OnSurgerySelected;
     public event Action? OnBackPressed;
     
     private EntityUid? _targetEnt = null;
