@@ -109,16 +109,14 @@ public sealed partial class GameTicker
     private void InitializeGamePreset()
     {
         SetGamePreset(LobbyEnabled ? _cfg.GetCVar(CCVars.GameLobbyDefaultPreset) : "sandbox");
-        //#region Starlight
-        SubscribeAllEvent<PresetConditionCheckEvent>(CheckPresetCondition);
     }
 
-        private void CheckPresetCondition(PresetConditionCheckEvent ev)
-        {
-            if (CurrentPreset != null)
-                ev.Valid = ev.Presets.Contains(CurrentPreset.ID);
-        }
-        //#endregion Starlight
+    // Starlight
+    private void CheckPresetCondition(PresetConditionCheckEvent ev)
+    {
+        if (CurrentPreset != null)
+            ev.Valid = ev.Presets.Contains(CurrentPreset.ID);
+    }
 
     public void SetGamePreset(GamePresetPrototype? preset, bool force = false, GamePresetPrototype? decoy = null, int? resetDelay = null)
     {

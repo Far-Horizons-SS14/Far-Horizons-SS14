@@ -14,6 +14,7 @@ using Content.Server.ServerUpdates;
 using Content.Server.Station.Systems;
 using Content.Shared.CCVar;
 using Content.Shared.Chat;
+using Content.Shared._Starlight.EntityTable;
 using Content.Shared.GameTicking;
 using Content.Shared.Mind;
 using Content.Shared.Roles;
@@ -98,6 +99,7 @@ namespace Content.Server.GameTicking
             InitializeCVars();
             InitializePlayer();
             InitializeLobbyBackground();
+            SubscribeAllEvent<PresetConditionCheckEvent>(CheckPresetCondition); // Far Horizons - subscribe once, not on preset resets, to avoid duplicate subscriptions
             InitializeGamePreset();
             DebugTools.Assert(_prototypeManager.Index(FallbackOverflowJob).Name == FallbackOverflowJobName,
                 "Overflow role does not have the correct name!");
