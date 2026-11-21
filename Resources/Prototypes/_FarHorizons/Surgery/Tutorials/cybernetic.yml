@@ -49,7 +49,7 @@
       conditionComplete:
         - !type:SurgeryLimbHasStatus
           statuses:
-            - LimbStatusEffectSurgicalStructureUnscrewed
+            - LimbStatusEffectSurgicalLimbPoweredDown
     - step: SurgeryAmputateLimbCyber
       conditionComplete:
         - !type:ConditionNever
