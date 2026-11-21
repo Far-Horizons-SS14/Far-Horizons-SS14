@@ -1,0 +1,262 @@
+- type: surgeryTutorial
+  id: SurgeryTutorialFinisherTendWounds
+  name: Finish Tend Wounds
+  steps:
+    - &undoBleeding
+      step: SurgeryClampBleeding
+      conditionComplete:
+        - !type:SurgeryLimbHasStatus
+          inverse: true
+          statuses:
+            - LimbStatusEffectBleedI
+            - LimbStatusEffectBleedII
+            - LimbStatusEffectBleedIII
+    - &undoDeepIncision
+      step: SurgeryCloseDeepIncision
+      conditionComplete:
+        - !type:SurgeryLimbHasStatus
+          inverse: true
+          statuses:
+            - LimbStatusEffectSurgicalDeepIncision
+    - &undoIncision
+      step: SurgeryCloseIncision
+      conditionComplete:
+        - !type:SurgeryLimbHasStatus
+          inverse: true
+          statuses:
+            - LimbStatusEffectSurgicalIncision
+
+- type: surgeryTutorial
+  id: SurgeryTutorialFinisherHandImplant
+  name: Finish Hand Implant Surgery
+  steps:
+    - *undoBleeding
+    - &reattachMuscle
+      step: SurgeryReattachMuscles
+      conditionComplete:
+        - !type:SurgeryLimbHasStatus
+          inverse: true
+          statuses:
+            - LimbStatusEffectSurgicalMuscleDetached
+    - &reattachVessels
+      step: SurgeryReattachVessels
+      conditionComplete:
+        - !type:SurgeryLimbHasStatus
+          inverse: true
+          statuses:
+            - LimbStatusEffectSurgicalVesselsDetached
+    - &closeOpenIncision
+      step: SurgeryReleaseOpenIncision
+      conditionComplete:
+        - !type:SurgeryLimbHasStatus
+          inverse: true
+          statuses:
+            - LimbStatusEffectSurgicalIncisionHeldOpen
+    - *undoIncision
+
+- type: surgeryTutorial
+  id: SurgeryTutorialFinisherBasic
+  name: Finish Surgery
+  steps:
+    - *undoBleeding
+    - *closeOpenIncision
+    - *undoIncision
+
+- type: surgeryTutorial
+  id: SurgeryTutorialFinisherTongue
+  name: Finish Tongue Surgery
+  steps:
+    - *undoBleeding
+    - &releaseLingualArtery
+      step: SurgeryReleaseLingualArtery
+      conditionComplete:
+        - !type:SurgeryLimbHasStatus
+          inverse: true
+          statuses:
+            - LimbStatusEffectSurgicalClampedLingualArtery
+    - *undoIncision
+
+- type: surgeryTutorial
+  id: SurgeryTutorialFinisherEyes
+  name: Finish Eye Surgery
+  steps:
+    - *undoBleeding
+    - &restoreOpticNerve
+      step: SurgeryRestoreOpticNerve
+      conditionComplete:
+        - !type:SurgeryLimbHasStatus
+          inverse: true
+          statuses:
+            - LimbStatusEffectSurgicalCutOpticNerve
+    - *closeOpenIncision
+    - *undoIncision
+
+- type: surgeryTutorial
+  id: SurgeryTutorialFinisherBrain
+  name: Finish Brain Surgery
+  steps:
+    - *undoBleeding
+    - &closeSkull
+      step: SurgeryCloseSkull
+      conditionComplete:
+        - !type:SurgeryLimbHasStatus
+          inverse: true
+          statuses:
+            - LimbStatusEffectSurgicalSkullOpen
+    - &patchSkull
+      step: SurgeryPatchSkull
+      conditionComplete:
+        - !type:SurgeryLimbHasStatus
+          inverse: true
+          statuses:
+            - LimbStatusEffectSurgicalSkullDrilled
+    - *closeOpenIncision
+    - *undoIncision
+
+- type: surgeryTutorial
+  id: SurgeryTutorialFinisherBrainImplant
+  name: Finish Brain Surgery
+  steps:
+    - *undoBleeding
+    - *patchSkull
+    - *closeOpenIncision
+    - *undoIncision
+
+- type: surgeryTutorial
+  id: SurgeryTutorialFinisherLiver
+  name: Finish Liver Surgery
+  steps:
+    - *undoBleeding
+    - &releaseHeparicArtery
+      step: SurgeryReleaseHepaticArtery
+      conditionComplete:
+        - !type:SurgeryLimbHasStatus
+          inverse: true
+          statuses:
+            - LimbStatusEffectSurgicalHepaticArteryClamped
+    - &closeAbdomen
+      step: SurgeryCloseAbdomen
+      conditionComplete:
+        - !type:SurgeryLimbHasStatus
+          inverse: true
+          statuses:
+            - LimbStatusEffectSurgicalAbdomenAccessed
+    - *closeOpenIncision
+    - *undoIncision
+
+- type: surgeryTutorial
+  id: SurgeryTutorialFinisherKidneys
+  name: Finish Kidneys Surgery
+  steps:
+    - *undoBleeding
+    - &closeKidneys
+      step: SurgeryCloseKidneys
+      conditionComplete:
+        - !type:SurgeryLimbHasStatus
+          inverse: true
+          statuses:
+            - LimbStatusEffectSurgicalKidneysAccessed
+    - *closeAbdomen
+    - *closeOpenIncision
+    - *undoIncision
+
+- type: surgeryTutorial
+  id: SurgeryTutorialFinisherStomach
+  name: Finish Stomach Surgery
+  steps:
+    - *undoBleeding
+    - &connectEsophagus
+      step: SurgeryConnectEsophagus
+      conditionComplete:
+        - !type:SurgeryLimbHasStatus
+          inverse: true
+          statuses:
+            - LimbStatusEffectSurgicalEsophagusCut
+    - *closeAbdomen
+    - *closeOpenIncision
+    - *undoIncision
+
+- type: surgeryTutorial
+  id: SurgeryTutorialFinisherHeart
+  name: Finish Heart Surgery
+  steps:
+    - *undoBleeding
+    - &releaseAorta
+      step: SurgeryReleaseAorta
+      conditionComplete:
+        - !type:SurgeryLimbHasStatus
+          inverse: true
+          statuses:
+            - LimbStatusEffectSurgicalAortaClamped
+    - &closeRibcage
+      step: SurgeryCloseRibcage
+      conditionComplete:
+        - !type:SurgeryLimbHasStatus
+          inverse: true
+          statuses:
+            - LimbStatusEffectSurgicalRibcageOpen
+    - *closeOpenIncision
+    - *undoIncision
+
+- type: surgeryTutorial
+  id: SurgeryTutorialFinisherLung
+  name: Finish Lungs Surgery
+  steps:
+    - *undoBleeding
+    - &closeLungs
+      step: SurgeryCloseLungs
+      conditionComplete:
+        - !type:SurgeryLimbHasStatus
+          inverse: true
+          statuses:
+            - LimbStatusEffectSurgicalLungsAccessed
+    - *closeRibcage
+    - *closeOpenIncision
+    - *undoIncision
+
+- type: surgeryTutorial
+  id: SurgeryTutorialFinisherShadekinCore
+  name: Finish Core Surgery
+  steps:
+    - *undoBleeding
+    - &closeShadekinCore
+      step: SurgeryShadekinCloseCore
+      conditionComplete:
+        - !type:SurgeryLimbHasStatus
+          inverse: true
+          statuses:
+            - LimbStatusEffectSurgicalShadekinCoreAccessed
+    - *closeRibcage
+    - *closeOpenIncision
+    - *undoIncision
+
+- type: surgeryTutorial
+  id: SurgeryTutorialFinisherDionaCore
+  name: Finish Brain Surgery
+  steps:
+    - *undoBleeding
+    - &closeDionaCore
+      step: SurgeryDionaCloseCore
+      conditionComplete:
+        - !type:SurgeryLimbHasStatus
+          inverse: true
+          statuses:
+            - LimbStatusEffectSurgicalDionaCoreAccessed
+    - *closeRibcage
+    - *closeOpenIncision
+    - *undoIncision
+
+- type: surgeryTutorial
+  id: SurgeryTutorialFinisherSlimeCore
+  name: Finish Core Surgery
+  steps:
+    - *undoBleeding
+    - &closeSlimeCore
+      step: SurgerySlimeCloseCore
+      conditionComplete:
+        - !type:SurgeryLimbHasStatus
+          inverse: true
+          statuses:
+            - LimbStatusEffectSurgicalSlimeCoreAccessed
+    - *closeOpenIncision
+    - *undoIncision

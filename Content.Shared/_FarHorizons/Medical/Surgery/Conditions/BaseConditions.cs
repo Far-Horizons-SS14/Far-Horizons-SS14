@@ -68,3 +68,11 @@ public sealed partial class WeldingToolEnabledCondition : ISurgeryStepCondition
     public bool Validate(IEntityManager entMan, LimbStatusEffectSystem limbStatus, EntityUid target, EntityUid? limb, EntityUid? tool) =>
         (entMan.TryGetComponent<WelderComponent>(tool, out var welder) && welder.Enabled) ^ Inverse;
 }
+
+public sealed partial class ConditionNever : ISurgeryStepCondition
+{
+    [DataField] public bool Inverse { get; set; }
+
+    public bool Validate(IEntityManager entMan, LimbStatusEffectSystem limbStatus, EntityUid target, EntityUid? limb, EntityUid? tool) =>
+        Inverse;
+}

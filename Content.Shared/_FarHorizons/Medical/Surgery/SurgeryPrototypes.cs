@@ -38,6 +38,7 @@ public sealed partial class SurgeryStepPackPrototype : IPrototype
     public string ID { get; private set; } = default!;
 
     [DataField(required: true)] public List<ProtoId<SurgeryStepPrototype>> Steps;
+    [DataField] public List<ProtoId<SurgeryTutorialPrototype>> Tutorials = new();
 }
 
 [ImplicitDataDefinitionForInheritors]

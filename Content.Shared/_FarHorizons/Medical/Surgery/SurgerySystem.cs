@@ -36,7 +36,7 @@ public sealed partial class SurgerySystem : EntitySystem
         if (!TryComp<LimbTargettingComponent>(args.User, out var limbTarget))
             return;
         
-        var targetLimb = GetTargetLimb(target, limbTarget.Target);
+        var targetLimb = GetTargetLimb(target.Owner, limbTarget.Target);
 
         if (!IsSurgeryPossible(args.User, target, targetLimb))
             return;

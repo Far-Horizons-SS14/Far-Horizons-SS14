@@ -54,7 +54,7 @@
   conditions:
     - !type:SurgeryLimbHasStatus
       statuses: 
-        - LimbStatusEffectSurgicalStructureUnscrewed
+        - LimbStatusEffectSurgicalLimbPoweredDown
     - !type:SurgeryHasOrgan
       category: HandLeftImplant
   effects:
@@ -72,7 +72,7 @@
   conditions:
     - !type:SurgeryLimbHasStatus
       statuses: 
-        - LimbStatusEffectSurgicalStructureUnscrewed
+        - LimbStatusEffectSurgicalLimbPoweredDown
     - !type:SurgeryHasOrgan
       inverse: true
       category: HandLeftImplant
@@ -93,7 +93,7 @@
   conditions:
     - !type:SurgeryLimbHasStatus
       statuses: 
-        - LimbStatusEffectSurgicalStructureUnscrewed
+        - LimbStatusEffectSurgicalLimbPoweredDown
     - !type:SurgeryHasOrgan
       category: HandRightImplant
   effects:
@@ -111,7 +111,7 @@
   conditions:
     - !type:SurgeryLimbHasStatus
       statuses: 
-        - LimbStatusEffectSurgicalStructureUnscrewed
+        - LimbStatusEffectSurgicalLimbPoweredDown
     - !type:SurgeryHasOrgan
       inverse: true
       category: HandRightImplant

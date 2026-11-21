@@ -121,15 +121,15 @@ public sealed partial class SurgerySystem
         return time;
     }
 
-    public Entity<OrganComponent, SurgeryLimbTargetComponent>? GetTargetLimb(EntityUid ent, ProtoId<OrganCategoryPrototype> target)
+    public Entity<OrganComponent, SurgeryLimbTargetComponent>? GetTargetLimb(Entity<BodyComponent?> ent, ProtoId<OrganCategoryPrototype> target)
     {
         if (target == _defaultLimb ||
-            !TryComp<BodyComponent>(ent, out var body) ||
-            body.Organs == null ||
-            body.Organs.Count == 0)
+            !Resolve(ent, ref ent.Comp) ||
+            ent.Comp.Organs == null ||
+            ent.Comp.Organs.Count == 0)
             return null;
         
-        var targetLimb = body.Organs.ContainedEntities
+        var targetLimb = ent.Comp.Organs.ContainedEntities
                          .Select(p => (Entity<OrganComponent?, SurgeryLimbTargetComponent?>)(p, CompOrNull<OrganComponent>(p), CompOrNull<SurgeryLimbTargetComponent>(p)))
                          .Where(p => p.Comp1 != null && p.Comp2 != null)
                          .FirstOrNull(p => p.Comp1!.Category == target);
@@ -172,7 +172,7 @@ public sealed partial class SurgerySystem
             body.Organs.Count == 0)
             return steps;
 
-        var targetLimb = GetTargetLimb(ent, target);
+        var targetLimb = GetTargetLimb((ent.Owner, body), target);
         
         if (targetLimb == null)
             return steps;

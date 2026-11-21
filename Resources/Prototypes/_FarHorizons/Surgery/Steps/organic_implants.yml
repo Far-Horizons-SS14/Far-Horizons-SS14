@@ -93,7 +93,7 @@
   conditions:
     - !type:SurgeryLimbHasStatus
       statuses: 
-        - LimbStatusEffectSurgicalVesselsDetached
+        - LimbStatusEffectSurgicalMuscleDetached
     - !type:SurgeryHasOrgan
       category: HandLeftImplant
   effects:
@@ -111,7 +111,7 @@
   conditions:
     - !type:SurgeryLimbHasStatus
       statuses: 
-        - LimbStatusEffectSurgicalVesselsDetached
+        - LimbStatusEffectSurgicalMuscleDetached
     - !type:SurgeryHasOrgan
       inverse: true
       category: HandLeftImplant
@@ -132,7 +132,7 @@
   conditions:
     - !type:SurgeryLimbHasStatus
       statuses: 
-        - LimbStatusEffectSurgicalVesselsDetached
+        - LimbStatusEffectSurgicalMuscleDetached
     - !type:SurgeryHasOrgan
       category: HandRightImplant
   effects:
@@ -150,7 +150,7 @@
   conditions:
     - !type:SurgeryLimbHasStatus
       statuses: 
-        - LimbStatusEffectSurgicalVesselsDetached
+        - LimbStatusEffectSurgicalMuscleDetached
     - !type:SurgeryHasOrgan
       inverse: true
       category: HandRightImplant
