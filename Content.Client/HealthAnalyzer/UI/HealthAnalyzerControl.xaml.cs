@@ -25,6 +25,9 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using Content.Shared._FarHorizons.Medical.Disease.Components;
 using Content.Shared._FarHorizons.Medical.LimbStatusEffect;
+using Robust.Shared.Configuration;
+using Content.Client._FarHorizons.LimbDamage.UI;
+using Content.Shared._FarHorizons.CCVar;
 
 namespace Content.Client.HealthAnalyzer.UI;
 
@@ -41,13 +44,7 @@ public sealed partial class HealthAnalyzerControl : BoxContainer
     private readonly SpriteSystem _spriteSystem;
     private readonly IPrototypeManager _prototypes;
     private readonly IResourceCache _cache;
-    private readonly DamageableSystem _damageable;
-    private readonly LimbDamageSystem _limbDamage; // Far Horizons
-    private readonly LimbStatusEffectSystem _limbStatusEffect; // Far Horizons
-    public event Action<BaseButton.ButtonEventArgs>? OnServerListButtonPressed; // Far Horizons
-
-    private ProtoId<OrganCategoryPrototype> _currTarget = "Torso";
-    private static ProtoId<OrganCategoryPrototype> _defaultLimb = "Torso";
+    // private readonly DamageableSystem _damageable; // Far Horizons - replaced with limb damage
 
     private EntityUid? _targetEnt = null;
 
@@ -60,12 +57,18 @@ public sealed partial class HealthAnalyzerControl : BoxContainer
         _spriteSystem = _entityManager.System<SpriteSystem>();
         _prototypes = dependencies.Resolve<IPrototypeManager>();
         _cache = dependencies.Resolve<IResourceCache>();
-        _damageable = _entityManager.System<DamageableSystem>();
-        _limbDamage = _entityManager.System<LimbDamageSystem>(); // Far Horizons
-        _limbStatusEffect = _entityManager.System<LimbStatusEffectSystem>(); // Far Horizons
+        // Far Horizons start
+        _cfg = dependencies.Resolve<IConfigurationManager>();
+        //_damageable = _entityManager.System<DamageableSystem>();
+        _limbDamage = _entityManager.System<LimbDamageSystem>();
+        _limbStatusEffect = _entityManager.System<LimbStatusEffectSystem>();
+        _limbTargetting = _entityManager.System<LimbTargettingSystem>();
 
-        ServerListButton.OnPressed += a => OnServerListButtonPressed?.Invoke(a); // Far Horizons
+        ServerListButton.OnPressed += a => OnServerListButtonPressed?.Invoke(a);
         LimbTargettingDisplay.OnSelectedLimb += SetLimbTarget;
+
+        _cfg.OnValueChanged(FHCCVars.LimbTargettingSyncHealthAnalyzer, SetupSyncLimbTarget, true);
+        // Far Horizons end
     }
 
     public void Populate(HealthAnalyzerUiState state)
@@ -467,82 +470,4 @@ public sealed partial class HealthAnalyzerControl : BoxContainer
         return titleRow;
     }
     // Starlight end
-    //FarHorizons Start
-    public void SetEntity(EntityUid uid)
-    {
-        if (!_entityManager.HasComponent<ResearchClientComponent>(uid))
-        {
-            ServerListButton.Visible = false;
-        }
-    }
-
-    private void SetLimbTarget(ProtoId<OrganCategoryPrototype> target)
-    {
-        _currTarget = target;
-        LimbTargettingDisplay.UpdateLimb(_currTarget);
-        Repopulate();
-    }
-
-    private void Repopulate()
-    {
-        if (_targetEnt == null)
-            return;
-
-        if (!_entityManager.HasComponent<LimbDamageableComponent>(_targetEnt.Value))
-            LimbTargettingDisplay.Visible = false;
-
-        var fullBodyDamage = _limbDamage.TryGetFullBodyDamage(_targetEnt.Value);
-        var fullBodyDamageGroups = _limbDamage.TryGetFullBodyDamageGroups(_targetEnt.Value);
-
-        if (fullBodyDamage == null ||
-            fullBodyDamageGroups == null)
-            return;
-
-        if (!fullBodyDamage.ContainsKey(_currTarget))
-            _currTarget = _defaultLimb;
-
-        LimbTargettingDisplay.SetHealth(fullBodyDamage.ToDictionary(p => p.Key, p => p.Value.Sum(e => (float)e.Value)));
-
-        // Total Damage
-
-        DamageLabel.Text = fullBodyDamage[_currTarget].Select(p => (float)p.Value).Sum().ToString();
-        
-        // Damage Groups
-
-        IReadOnlyDictionary<ProtoId<DamageTypePrototype>, FixedPoint2> damagePerType = fullBodyDamage[_currTarget];
-
-        var groupOrder = new List<string> { "Burn", "Brute", "Airloss", "Toxin", "Genetic" };
-        var sortedGroups = fullBodyDamageGroups[_currTarget]
-            .OrderBy(g => groupOrder.IndexOf(g.Key))
-            .ToDictionary(g => g.Key, g => g.Value);
-
-        DrawDiagnosticGroups(sortedGroups, damagePerType);
-
-        // Far Horizons start
-        // Statuses
-
-        var statuses = _limbStatusEffect.GetStatusPerLimb(_targetEnt.Value);
-        var detectablePerLimb = statuses
-                                .Select(kv => (Limb: kv.Key, Names: GetDetectableStatusNames(kv.Value)))
-                                .Where(p => p.Names.Count > 0)
-                                .ToList();
-        
-        var statusNames = detectablePerLimb.FirstOrDefault(p => p.Limb.Equals(_currTarget)).Names ?? new List<string>();
-        var limbNames = detectablePerLimb.Select(p => Loc.GetString($"limb-category-limb-name-{p.Limb.Id.ToLower()}")).ToList();
-        
-        DrawStatuses(statusNames);
-        DrawAttention(limbNames);
-        // Far Horizons end
-
-        StatusText.Visible = _currTarget == _defaultLimb;
-        StatusLabel.Visible = _currTarget == _defaultLimb;
-        TemperatureText.Visible = _currTarget == _defaultLimb;
-        TemperatureLabel.Visible = _currTarget == _defaultLimb;
-        BloodText.Visible = _currTarget == _defaultLimb;
-        BloodLabel.Visible = _currTarget == _defaultLimb;
-        DiseaseText.Visible = _currTarget == _defaultLimb;
-        DiseaseContainer.Visible = _currTarget == _defaultLimb;
-        ChemicalsContainer.Visible = _currTarget == _defaultLimb;
-    }
-    //FarHorizons End
 }

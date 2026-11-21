@@ -68,6 +68,7 @@ public sealed partial class MiscTab : Control
         // Far Horizons start
         Control.AddOptionDropDown(FHCCVars.LimbTargettingStyle, DropDownTargetterSpecies, limbTargetters);
         Control.AddOptionCheckBox(FHCCVars.LimbTargettingMatchSpecies, MatchTargetterToSpeciesCheckBox);
+        Control.AddOptionCheckBox(FHCCVars.LimbTargettingSyncHealthAnalyzer, SyncHealthAnalyzerTargetCheckBox);
         // Far Horizons end
 
         Control.Initialize();
