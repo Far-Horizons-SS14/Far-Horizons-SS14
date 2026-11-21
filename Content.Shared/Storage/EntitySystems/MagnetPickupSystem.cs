@@ -1,3 +1,4 @@
+using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Inventory;
 using Content.Shared.Storage.Components;
 using Content.Shared.Whitelist;
@@ -18,6 +19,7 @@ public sealed class MagnetPickupSystem : EntitySystem
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly SharedStorageSystem _storage = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
+    [Dependency] private readonly SharedHandsSystem _hands = default!;
     [Dependency] private readonly SharedMaterialStorageSystem _materialStorage = default!; // Starlight edit
 
     [Dependency] private readonly EntityQuery<PhysicsComponent> _physicsQuery = default!;
@@ -51,15 +53,23 @@ public sealed class MagnetPickupSystem : EntitySystem
             comp.NextScan += ScanDelay;
             Dirty(uid, comp);
 
-            if (!_inventory.TryGetContainingSlot((uid, xform, meta), out var slotDef))
+            var parentUid = xform.ParentUid;
+
+            if (comp.RequireActiveHand && (!_hands.TryGetActiveItem(parentUid, out var activeItem) || activeItem != uid))
+                continue;
+
+            if (comp.SlotFlags != null)
             {
-                if (comp.RequiresEquipping)
-                    continue;
-            }
-            else
-            {
-                if ((slotDef.SlotFlags & comp.SlotFlags) == 0x0)
-                    continue;
+                if (!_inventory.TryGetContainingSlot((uid, xform, meta), out var slotDef))
+                {
+                    if (comp.RequiresEquipping)
+                        continue;
+                }
+                else
+                {
+                    if ((slotDef.SlotFlags & comp.SlotFlags) == 0x0)
+                        continue;
+                }
             }
 
             if (TryComp<StorageComponent>(uid, out var storage))

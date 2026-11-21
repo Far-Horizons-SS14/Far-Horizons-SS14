@@ -33,6 +33,7 @@ public sealed class ChangelingIdentitySystem : SharedChangelingIdentitySystem
                 OriginalJob = identity.OriginalJob,
                 OriginalName = identity.OriginalName,
                 Starting = identity.Starting,
+                GrantedDna = identity.GrantedDna,
             };
 
             ent.Comp.ConsumedIdentities.Add(data);
