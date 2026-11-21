@@ -158,10 +158,11 @@ namespace Content.Server.GameTicking
                 var antagSpecifiers = _antagSelection.GetPreSelectedAntagSpecifiers(playerSession);
                 if (antagSpecifiers.Count > 0)
                 {
-                    // For each antag definition, make sure that at least one of the AntagPrototypes is in
-                    // the character's preferences.
+                    // One profile must opt into every assigned specifier. This is a bit weird, but for allatonce if antags
+                    // aren't mutually exclusive one player can get assigned multiple, in which case they need to have a
+                    // profile that opts into all of them.
                     filteredPlayerProfiles = filteredPlayerProfiles.Where(profile =>
-                        antagSpecifiers.Any(antagSpecifier => antagSpecifier.PrefRoles.Any(profile.AntagPreferences.Contains)));
+                        antagSpecifiers.All(antagSpecifier => antagSpecifier.PrefRoles.Any(profile.AntagPreferences.Contains)));
                 }
 
                 var finalPlayerProfiles = filteredPlayerProfiles.ToList();
