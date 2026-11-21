@@ -62,31 +62,31 @@ namespace Content.Server.GameTicking.Rules;
 /// <summary>
 /// Where all the main stuff for Revolutionaries happens (Assigning Head Revs, Command on station, and checking for the game to end.)
 /// </summary>
-public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleComponent>
+public sealed partial class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleComponent>
 {
-    [Dependency] private readonly AntagSelectionSystem _antag = default!;
-    [Dependency] private readonly EmergencyShuttleSystem _emergencyShuttle = default!;
-    [Dependency] private readonly EuiManager _euiMan = default!;
-    [Dependency] private readonly IAdminLogManager _adminLogManager = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly ISharedPlayerManager _player = default!;
-    [Dependency] private readonly MindSystem _mind = default!;
-    [Dependency] private readonly MobStateSystem _mobState = default!;
-    [Dependency] private readonly NpcFactionSystem _npcFaction = default!;
-    [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly RoleSystem _role = default!;
-    [Dependency] private readonly RoundEndSystem _roundEnd = default!;
-    [Dependency] private readonly SharedStunSystem _stun = default!;
-    [Dependency] private readonly StationSystem _stationSystem = default!;
-    [Dependency] private readonly ChatSystem _chatSystem = default!; // Starlight
-    [Dependency] private readonly SharedAudioSystem _audioSystem = default!; // Starlight
-    [Dependency] private readonly SpecialLobbyContentSystem _specialLobbyContent = default!; // Starlight
-    [Dependency] private readonly AlertLevelSystem _alert = default!; // Starlight
-    [Dependency] private readonly StoreSystem _storeSystem = default!; // Far Horizons: USSP uplinks use detached stores.
-    [Dependency] private readonly SubdermalImplantSystem _implantSystem = default!; // Far Horizons
-    [Dependency] private readonly InventorySystem _inventorySystem = default!; // Far Horizons
-    [Dependency] private readonly SharedHandsSystem _handsSystem = default!; // Far Horizons
-    [Dependency] private readonly USSPUplinkSystem _uplinkSystem = default!; // Far Horizons
+    [Dependency] private AntagSelectionSystem _antag = default!;
+    [Dependency] private EmergencyShuttleSystem _emergencyShuttle = default!;
+    [Dependency] private EuiManager _euiMan = default!;
+    [Dependency] private IAdminLogManager _adminLogManager = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private ISharedPlayerManager _player = default!;
+    [Dependency] private MindSystem _mind = default!;
+    [Dependency] private MobStateSystem _mobState = default!;
+    [Dependency] private NpcFactionSystem _npcFaction = default!;
+    [Dependency] private PopupSystem _popup = default!;
+    [Dependency] private RoleSystem _role = default!;
+    [Dependency] private RoundEndSystem _roundEnd = default!;
+    [Dependency] private SharedStunSystem _stun = default!;
+    [Dependency] private StationSystem _stationSystem = default!;
+    [Dependency] private ChatSystem _chatSystem = default!; // Starlight
+    [Dependency] private SharedAudioSystem _audioSystem = default!; // Starlight
+    [Dependency] private SpecialLobbyContentSystem _specialLobbyContent = default!; // Starlight
+    [Dependency] private AlertLevelSystem _alert = default!; // Starlight
+    [Dependency] private StoreSystem _storeSystem = default!; // Far Horizons: USSP uplinks use detached stores.
+    [Dependency] private SubdermalImplantSystem _implantSystem = default!; // Far Horizons
+    [Dependency] private InventorySystem _inventorySystem = default!; // Far Horizons
+    [Dependency] private SharedHandsSystem _handsSystem = default!; // Far Horizons
+    [Dependency] private USSPUplinkSystem _uplinkSystem = default!; // Far Horizons
 
     // Starlight
     private readonly SoundSpecifier RevEndGlobalSound = new SoundPathSpecifier("/Audio/_Starlight/Effects/sov_choir_global.ogg");

@@ -12,7 +12,7 @@ using Robust.Shared.Utility;
 namespace Content.Client.RCD;
 
 [UsedImplicitly]
-public sealed class RCDMenuBoundUserInterface : BoundUserInterface
+public sealed partial class RCDMenuBoundUserInterface : BoundUserInterface
 {
     private const string TopLevelActionCategory = "Main";
 
@@ -27,8 +27,8 @@ public sealed class RCDMenuBoundUserInterface : BoundUserInterface
             ["EmptyLighting"] = ("rcd-component-emptylighting", new SpriteSpecifier.Texture(new ResPath("/Textures/_FarHorizons/Interface/Radial/RCD/empty_lighting.png"))), /// Far Horizons - Janiborg gets lights, engineering gets fixtures. 
         };
 
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly ISharedPlayerManager _playerManager = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private ISharedPlayerManager _playerManager = default!;
 
     private SimpleRadialMenu? _menu;
 

@@ -10,12 +10,12 @@ using Content.Shared.Mobs.Systems;
 
 namespace Content.Server.Body.Systems;
 
-public sealed class ThermalRegulatorSystem : EntitySystem
+public sealed partial class ThermalRegulatorSystem : EntitySystem
 {
-    [Dependency] private readonly IGameTiming _gameTiming = default!;
-    [Dependency] private readonly TemperatureSystem _tempSys = default!;
-    [Dependency] private readonly ActionBlockerSystem _actionBlockerSys = default!;
-    [Dependency] private readonly MobStateSystem _mobState = default!;  // Starlight edit
+    [Dependency] private IGameTiming _gameTiming = default!;
+    [Dependency] private TemperatureSystem _tempSys = default!;
+    [Dependency] private ActionBlockerSystem _actionBlockerSys = default!;
+    [Dependency] private MobStateSystem _mobState = default!;  // Starlight edit
 
     public override void Initialize()
     {

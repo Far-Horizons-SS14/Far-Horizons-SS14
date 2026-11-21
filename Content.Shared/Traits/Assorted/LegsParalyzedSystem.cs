@@ -8,7 +8,7 @@ using Content.Shared.Movement.Components;//FarHorizons
 
 namespace Content.Shared.Traits.Assorted;
 
-public sealed class LegsParalyzedSystem : EntitySystem
+public sealed partial class LegsParalyzedSystem : EntitySystem
 {
     public override void Initialize()
     {

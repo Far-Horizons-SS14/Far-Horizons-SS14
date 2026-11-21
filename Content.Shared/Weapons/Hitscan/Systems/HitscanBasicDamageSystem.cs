@@ -8,10 +8,10 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Weapons.Hitscan.Systems;
 
-public sealed class HitscanBasicDamageSystem : EntitySystem
+public sealed partial class HitscanBasicDamageSystem : EntitySystem
 {
-    [Dependency] private readonly DamageableSystem _damage = default!;
-    [Dependency] private readonly LimbDamageSystem _limbDamage = default!;
+    [Dependency] private DamageableSystem _damage = default!;
+    [Dependency] private LimbDamageSystem _limbDamage = default!;
 
     public override void Initialize()
     {

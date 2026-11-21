@@ -9,15 +9,15 @@ using Robust.Shared.Timing; //FarHorizons
 
 namespace Content.Shared.BarSign;
 
-public sealed class BarSignSystem : EntitySystem
+public sealed partial class BarSignSystem : EntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly MetaDataSystem _metaData = default!;
-    [Dependency] private readonly SharedUserInterfaceSystem _ui = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly SharedPointLightSystem _pointLight = default!; //FarHorizons
-    [Dependency] private readonly IGameTiming _timing = default!; //FarHorizons
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private MetaDataSystem _metaData = default!;
+    [Dependency] private SharedUserInterfaceSystem _ui = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private SharedPointLightSystem _pointLight = default!; //FarHorizons
+    [Dependency] private IGameTiming _timing = default!; //FarHorizons
 
     public override void Initialize()
     {

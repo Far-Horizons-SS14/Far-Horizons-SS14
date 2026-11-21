@@ -9,11 +9,11 @@ using Robust.Shared.Map;
 namespace Content.Client.Decals.Overlays;
 
 [Virtual]
-public class DecalPlacementOverlay : Overlay
+public partial class DecalPlacementOverlay : Overlay // Starlight - unsealed so the ghost can override it
 {
-    [Dependency] private readonly IEyeManager _eyeManager = default!;
-    [Dependency] private readonly IInputManager _inputManager = default!;
-    [Dependency] private readonly IMapManager _mapManager = default!;
+    [Dependency] private IEyeManager _eyeManager = default!;
+    [Dependency] private IInputManager _inputManager = default!;
+    [Dependency] private IMapManager _mapManager = default!;
     private readonly DecalPlacementSystem _placement;
     private readonly SharedTransformSystem _transform;
     private readonly SpriteSystem _sprite;

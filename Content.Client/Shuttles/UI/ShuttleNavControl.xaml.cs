@@ -22,9 +22,9 @@ namespace Content.Client.Shuttles.UI;
 [GenerateTypedNameReferences, Virtual]
 public partial class ShuttleNavControl : BaseShuttleControl // Far Horizons - made sealed type [Virtual] to allow inheritance
 {
-    [Dependency] private readonly IMapManager _mapManager = default!;
-    [Dependency] private readonly IGameTiming _timing = default!; // Far Horizons
-    [Dependency] private readonly IEntityManager _entMan = default!; // Far Horizons
+    [Dependency] private IMapManager _mapManager = default!;
+    [Dependency] private IGameTiming _timing = default!; // Far Horizons
+    [Dependency] private IEntityManager _entMan = default!; // Far Horizons
     private readonly SharedShuttleSystem _shuttles;
     private readonly SharedTransformSystem _transform;
 

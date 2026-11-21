@@ -10,12 +10,12 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server.StationEvents.Events;
 
-public sealed class CargoGiftsRule : StationEventSystem<CargoGiftsRuleComponent>
+public sealed partial class CargoGiftsRule : StationEventSystem<CargoGiftsRuleComponent>
 {
-    [Dependency] private readonly CargoSystem _cargoSystem = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly GameTicker _ticker = default!;
-    [Dependency] private readonly ISharedFactionManager _factions = default!; // Far Horizons
+    [Dependency] private CargoSystem _cargoSystem = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private GameTicker _ticker = default!;
+    [Dependency] private ISharedFactionManager _factions = default!; // Far Horizons
 
     protected override void Added(EntityUid uid, CargoGiftsRuleComponent component, GameRuleComponent gameRule, GameRuleAddedEvent args)
     {

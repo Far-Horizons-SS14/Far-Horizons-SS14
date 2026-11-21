@@ -10,7 +10,7 @@ public sealed partial class ActiveHandFreePrecondition : HTNPrecondition
 
     [DataField] public bool Invert; // Far Horizons
 
-    [Dependency] private readonly IEntityManager _entManager = default!;
+    [Dependency] private IEntityManager _entManager = default!;
 
     public override bool IsMet(NPCBlackboard blackboard)
     {

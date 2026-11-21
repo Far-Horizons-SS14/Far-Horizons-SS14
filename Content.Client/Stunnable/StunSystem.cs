@@ -15,16 +15,16 @@ using Robust.Client.Graphics;
 
 namespace Content.Client.Stunnable;
 
-public sealed class StunSystem : SharedStunSystem
+public sealed partial class StunSystem : SharedStunSystem
 {
-    [Dependency] private readonly SharedCombatModeSystem _combat = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private SharedCombatModeSystem _combat = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private SpriteSystem _spriteSystem = default!;
     #region Starlight
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly AnimationPlayerSystem _animation = default!;
-    [Dependency] private readonly IEyeManager _eyeManager = default!;
-    [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
-    [Dependency] private readonly SpriteSystem _sprites = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private AnimationPlayerSystem _animation = default!;
+    [Dependency] private IEyeManager _eyeManager = default!;
+    [Dependency] private SharedTransformSystem _transformSystem = default!;
     #endregion
     private readonly int[] _sign = [-1, 1];
 
@@ -63,11 +63,11 @@ public sealed class StunSystem : SharedStunSystem
 
         var spriteEntity = (entity.Owner, sprite);
 
-        _sprites.LayerMapReserve(spriteEntity, StunVisualLayers.StamCrit);
-        _sprites.LayerSetVisible(spriteEntity, StunVisualLayers.StamCrit, false);
-        _sprites.LayerSetOffset(spriteEntity, StunVisualLayers.StamCrit, new Vector2(0, 0.3125f));
+        _spriteSystem.LayerMapReserve(spriteEntity, StunVisualLayers.StamCrit);
+        _spriteSystem.LayerSetVisible(spriteEntity, StunVisualLayers.StamCrit, false);
+        _spriteSystem.LayerSetOffset(spriteEntity, StunVisualLayers.StamCrit, new Vector2(0, 0.3125f));
 
-        _sprites.LayerSetRsi(spriteEntity, StunVisualLayers.StamCrit, entity.Comp.StarsPath);
+        _spriteSystem.LayerSetRsi(spriteEntity, StunVisualLayers.StamCrit, entity.Comp.StarsPath);
 
         UpdateAppearance((entity, sprite), entity.Comp.State);
     }
@@ -83,13 +83,13 @@ public sealed class StunSystem : SharedStunSystem
         if (!Resolve(entity, ref entity.Comp))
             return;
 
-        if (!_sprites.LayerMapTryGet((entity, entity.Comp), StunVisualLayers.StamCrit, out var index, false))
+        if (!_spriteSystem.LayerMapTryGet((entity, entity.Comp), StunVisualLayers.StamCrit, out var index, false))
             return;
 
         var visible = Appearance.TryGetData<bool>(entity, StunVisuals.SeeingStars, out var stars) && stars;
 
-        _sprites.LayerSetVisible((entity, entity.Comp), index, visible);
-        _sprites.LayerSetRsiState((entity, entity.Comp), index, state);
+        _spriteSystem.LayerSetVisible((entity, entity.Comp), index, visible);
+        _spriteSystem.LayerSetRsiState((entity, entity.Comp), index, state);
     }
 
     /// <summary>
@@ -198,12 +198,12 @@ public sealed class StunSystem : SharedStunSystem
         if (rotation.GetDir() is Direction.SouthEast or Direction.East or Direction.NorthEast or Direction.North)
         {
             rotationVisuals.HorizontalRotation = Angle.FromDegrees(270);
-            _sprites.SetRotation(uid, Angle.FromDegrees(270));
+            _spriteSystem.SetRotation(uid, Angle.FromDegrees(270));
         }
         else
         {
             rotationVisuals.HorizontalRotation = Angle.FromDegrees(90);
-            _sprites.SetRotation(uid, Angle.FromDegrees(90));
+            _spriteSystem.SetRotation(uid, Angle.FromDegrees(90));
         }
     }
     #endregion

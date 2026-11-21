@@ -11,7 +11,7 @@ using Content.Shared._FarHorizons.Factions;
 
 namespace Content.Client.Access.UI
 {
-    public sealed class IdCardConsoleBoundUserInterface : BoundUserInterface
+    public sealed partial class IdCardConsoleBoundUserInterface : BoundUserInterface
     {
 
         private IdCardConsoleWindow? _window;

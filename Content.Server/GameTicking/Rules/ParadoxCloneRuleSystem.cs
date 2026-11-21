@@ -17,16 +17,16 @@ using Robust.Shared.Random;
 
 namespace Content.Server.GameTicking.Rules;
 
-public sealed class ParadoxCloneRuleSystem : GameRuleSystem<ParadoxCloneRuleComponent>
+public sealed partial class ParadoxCloneRuleSystem : GameRuleSystem<ParadoxCloneRuleComponent>
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly CloningSystem _cloning = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly SharedMindSystem _mind = default!;
-    [Dependency] private readonly SuitSensorSystem _sensor = default!;
-    [Dependency] private readonly TargetSystem _target = default!;
-    [Dependency] private readonly SharedCollectiveMindSystem _collectiveMindUpdate = default!;
-    [Dependency] private readonly IChatManager _chatManager = default!; // SL add
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private CloningSystem _cloning = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private SharedMindSystem _mind = default!;
+    [Dependency] private SuitSensorSystem _sensor = default!;
+    [Dependency] private TargetSystem _target = default!;
+    [Dependency] private SharedCollectiveMindSystem _collectiveMindUpdate = default!;
+    [Dependency] private IChatManager _chatManager = default!; // SL add
 
     public override void Initialize()
     {

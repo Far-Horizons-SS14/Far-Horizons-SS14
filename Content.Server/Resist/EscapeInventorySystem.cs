@@ -15,15 +15,15 @@ using Content.Shared._FarHorizons.Vehicles.Components;
 
 namespace Content.Server.Resist;
 
-public sealed class EscapeInventorySystem : EntitySystem
+public sealed partial class EscapeInventorySystem : EntitySystem
 {
-    [Dependency] private readonly SharedDoAfterSystem _doAfterSystem = default!;
-    [Dependency] private readonly PopupSystem _popupSystem = default!;
-    [Dependency] private readonly SharedContainerSystem _containerSystem = default!;
-    [Dependency] private readonly ActionBlockerSystem _actionBlockerSystem = default!;
-    [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
-    [Dependency] private readonly TagSystem _tagSystem = default!; // Starlight Edit
-    [Dependency] private readonly TransformSystem _transformSystem = default!; // Starlight Edit
+    [Dependency] private SharedDoAfterSystem _doAfterSystem = default!;
+    [Dependency] private PopupSystem _popupSystem = default!;
+    [Dependency] private SharedContainerSystem _containerSystem = default!;
+    [Dependency] private ActionBlockerSystem _actionBlockerSystem = default!;
+    [Dependency] private SharedHandsSystem _handsSystem = default!;
+    [Dependency] private TagSystem _tagSystem = default!; // Starlight Edit
+    [Dependency] private TransformSystem _transformSystem = default!; // Starlight Edit
 
     private const string PersonnelStorage = "PersonnelStorage";
 

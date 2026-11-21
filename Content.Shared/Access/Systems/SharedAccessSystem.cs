@@ -13,12 +13,12 @@ using Content.Shared._FarHorizons.Factions; //FarHorizons
 
 namespace Content.Shared.Access.Systems
 {
-    public abstract class SharedAccessSystem : EntitySystem
+    public abstract partial class SharedAccessSystem : EntitySystem
     {
-        [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-        [Dependency] private readonly SharedContainerSystem _container = default!; // Starlight
-        [Dependency] private readonly SharedHandsSystem _hands = default!; // Starlight
-        [Dependency] private readonly ISharedFactionManager _factions = default!; // Far Horizons
+        [Dependency] private IPrototypeManager _prototypeManager = default!;
+        [Dependency] private SharedContainerSystem _container = default!; // Starlight
+        [Dependency] private SharedHandsSystem _hands = default!; // Starlight
+        [Dependency] private ISharedFactionManager _factions = default!; // Far Horizons
 
         public override void Initialize()
         {

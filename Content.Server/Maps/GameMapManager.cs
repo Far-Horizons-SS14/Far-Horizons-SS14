@@ -15,15 +15,15 @@ using Robust.Shared.Utility;
 
 namespace Content.Server.Maps;
 
-public sealed class GameMapManager : IGameMapManager
+public sealed partial class GameMapManager : IGameMapManager
 {
-    [Dependency] private readonly IEntityManager _entityManager = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly IConfigurationManager _configurationManager = default!;
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
-    [Dependency] private readonly IResourceManager _resMan = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly IServerFactionManager _factions = default!; // Far Horizons
+    [Dependency] private IEntityManager _entityManager = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IConfigurationManager _configurationManager = default!;
+    [Dependency] private IPlayerManager _playerManager = default!;
+    [Dependency] private IResourceManager _resMan = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private IServerFactionManager _factions = default!; // Far Horizons
 
     [ViewVariables(VVAccess.ReadOnly)]
     private readonly Queue<string> _previousMaps = new();

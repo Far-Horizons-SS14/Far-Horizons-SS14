@@ -17,12 +17,12 @@ using Robust.Shared.Timing; // Starlight
 
 namespace Content.Server.Medical.CrewMonitoring;
 
-public sealed class CrewMonitoringConsoleSystem : EntitySystem
+public sealed partial class CrewMonitoringConsoleSystem : EntitySystem
 {
-    [Dependency] private readonly PowerCellSystem _cell = default!;
-    [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
-    [Dependency] private readonly StationAiSystem _stationAiSystem = default!; // Starlight
-    [Dependency] private readonly IGameTiming _gameTiming = default!; // Starlight
+    [Dependency] private PowerCellSystem _cell = default!;
+    [Dependency] private UserInterfaceSystem _uiSystem = default!;
+    [Dependency] private StationAiSystem _stationAiSystem = default!; // Starlight
+    [Dependency] private IGameTiming _gameTiming = default!; // Starlight
 
     private readonly ISawmill _sawmill = Logger.GetSawmill("crewmonitoring"); // Starlight
 
