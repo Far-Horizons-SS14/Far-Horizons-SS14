@@ -66,36 +66,36 @@
     comps:
     - type: FingerprintMask
 
+#FH start - How claws work was completely redone, this entire chunk is our changes at this point
 - type: entity
-  id: LeftHandImplantClaws #FH
-  name: Left Hand Claws Implant #FH
+  id: LeftHandImplantClaws
+  name: Left Hand Claws Implant
   description: Gives you retractable claws!
-  parent: BaseEntityHandImplant
+  parent: BaseClawImplant
   components:
   - type: Sprite
-    state: l_hand_implant_claws #FH
-  - type: Organ #FH
-    category: HandLeftImplant #FH
-  - type: FunctionalOrgan
-    comps:
-    - type: InherentAction
-      action: ActionRetractableItemAdvancedClaws
+    state: l_hand_implant_claws
+  - type: Organ
+    category: HandLeftImplant
+  - type: LimbItemStorage
+    items:
+      - AdvancedClaws
 
 - type: entity
-  id: RightHandImplantClaws #FH
-  name: Right Hand Claws Implant #FH
+  id: RightHandImplantClaws
+  name: Right Hand Claws Implant
   description: Gives you retractable claws!
-  parent: BaseEntityHandImplant
+  parent: BaseClawImplant
   components:
   - type: Sprite
-    state: r_hand_implant_claws #FH
-  - type: Organ #FH
-    category: HandRightImplant #FH
-  - type: FunctionalOrgan
-    comps:
-    - type: InherentAction
-      action: ActionRetractableItemAdvancedClaws
-
+    state: r_hand_implant_claws
+  - type: Organ
+    category: HandRightImplant
+  - type: LimbItemStorage
+    items:
+      - AdvancedClaws
+#FH end
+  
 - type: entity
   id: LeftHandImplantThrusters #FH
   name: Left Hand Thruster Implant #FH
